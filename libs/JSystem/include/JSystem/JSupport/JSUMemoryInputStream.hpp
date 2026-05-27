@@ -4,9 +4,11 @@
 
 class JSUMemoryInputStream : public JSURandomInputStream {
 public:
-    JSUMemoryInputStream(const void* pBuffer, s32 size) : JSURandomInputStream() { setBuffer(pBuffer, size); }
+    JSUMemoryInputStream(const void* pBuffer, s32 size) : JSURandomInputStream() {
+        setBuffer(pBuffer, size);
+    }
 
-    virtual ~JSUMemoryInputStream();
+    virtual ~JSUMemoryInputStream(){};
     virtual u32 readData(void*, s32);
     virtual s32 getLength() const;
     virtual s32 getPosition() const;

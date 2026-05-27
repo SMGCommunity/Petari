@@ -17,7 +17,7 @@
 | `isValidNormalComet__20GalaxyStatusAccessorCFl` | `0x803B0294` | :white_check_mark: (100.0%) |
 | `isCometStar__20GalaxyStatusAccessorCFl` | `0x803B02F0` | :white_check_mark: (100.0%) |
 | `isExistGrandStar__20GalaxyStatusAccessorCFv` | `0x803B0360` | :white_check_mark: (100.0%) |
-| `isExistAnyComet__20GalaxyStatusAccessorCFv` | `0x803B03D0` | :x: (88.1%) |
+| `isExistAnyComet__20GalaxyStatusAccessorCFv` | `0x803B03D0` | :white_check_mark: (100.0%) |
 | `getNormalCometScenarioNo__20GalaxyStatusAccessorCFv` | `0x803B0464` | :white_check_mark: (100.0%) |
 | `getCoin100CometScenarioNo__20GalaxyStatusAccessorCFv` | `0x803B050C` | :white_check_mark: (100.0%) |
 | `canOpen__20GalaxyStatusAccessorCFv` | `0x803B05B4` | :white_check_mark: (100.0%) |
@@ -30,5 +30,5 @@
 | `getNormalScenarioNum__20GalaxyStatusAccessorCFv` | `0x803B07C8` | :white_check_mark: (100.0%) |
 | `getAppearPowerStarObjName__20GalaxyStatusAccessorCFl` | `0x803B085C` | :white_check_mark: (100.0%) |
 | `getActivePowerStarId__20GalaxyStatusAccessorCFl` | `0x803B08E0` | :white_check_mark: (100.0%) |
-| `isValidCoin100__20GalaxyStatusAccessorCFl` | `0x803B0928` | :x: (99.8%) |
+| `isValidCoin100__20GalaxyStatusAccessorCFl` | `0x803B0928` | :white_check_mark: (100.0%) |
 | `isHiddenStar__20GalaxyStatusAccessorCFl` | `0x803B09C8` | :white_check_mark: (100.0%) |

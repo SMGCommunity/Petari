@@ -7,8 +7,8 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__13ButlerExplainFPCc` | `0x8026DEA8` | :white_check_mark: (100.0%) |
-| `init__13ButlerExplainFRC12JMapInfoIter` | `0x8026DEE4` | :x: (99.9%) |
-| `control__13ButlerExplainFv` | `0x8026DFC8` | :x: (100.0%) |
+| `init__13ButlerExplainFRC12JMapInfoIter` | `0x8026DEE4` | :x: (100.0%) |
+| `control__13ButlerExplainFv` | `0x8026DFC8` | :white_check_mark: (100.0%) |
 | `startDemo__13ButlerExplainFv` | `0x8026E030` | :white_check_mark: (100.0%) |
 | `__sinit_\ButlerExplain_cpp` | `0x8026E038` | :white_check_mark: (100.0%) |
 | `__ct__Q216NrvButlerExplain20ButlerExplainNrvDemoFv` | `0x8026E040` | :white_check_mark: (100.0%) |

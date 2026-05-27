@@ -1,10 +1,12 @@
 # main/Game/MapObj/JumpHole
 
+**Source Path:** `src/Game/MapObj/JumpHole.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__8JumpHoleFPCc` | `0x801ECF98` | :x: (0.0%) |
+| `__ct__8JumpHoleFPCc` | `0x801ECF98` | :x: (27.6%) |
 | `init__8JumpHoleFRC12JMapInfoIter` | `0x801ED06C` | :x: (0.0%) |
 | `initAfterPlacement__8JumpHoleFv` | `0x801ED1A0` | :x: (0.0%) |
 | `control__8JumpHoleFv` | `0x801ED1E4` | :x: (0.0%) |
@@ -24,4 +26,4 @@
 | `execute__Q211NrvJumpHole16JumpHoleNrvSetUpCFP5Spine` | `0x801EDBF0` | :x: (0.0%) |
 | `execute__Q211NrvJumpHole20JumpHoleNrvSetCenterCFP5Spine` | `0x801EDBF8` | :x: (0.0%) |
 | `execute__Q211NrvJumpHole15JumpHoleNrvWaitCFP5Spine` | `0x801EDC00` | :x: (0.0%) |
-| `__dt__8JumpHoleFv` | `0x801EDC08` | :x: (0.0%) |
+| `__dt__8JumpHoleFv` | `0x801EDC08` | :white_check_mark: (100.0%) |

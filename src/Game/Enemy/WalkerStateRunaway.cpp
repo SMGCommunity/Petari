@@ -1,16 +1,5 @@
 #include "Game/Enemy/WalkerStateRunaway.hpp"
 
-// TODO: replace this call with MR::clamp
-inline f32 clamp(f32 x, f32 min, f32 max) {
-    if (x < min) {
-        return min;
-    } else if (x > max) {
-        return max;
-    } else {
-        return x;
-    }
-}
-
 namespace {
     static WalkerStateRunawayParam sDefaultParam;
 };
@@ -128,9 +117,8 @@ void WalkerStateRunaway::exeRunaway() {
                                       MR::calcNerveValue(mHost, mRunawayParam->mRunawayTurnTime, mRunawayParam->mRunawayTurnRateMaxDegree,
                                                          mRunawayParam->mRunawayTurnRateMinDegree));
 
-    // TODO: MR::clamp
     MR::setBckRate(getHost(),
-                   clamp(mRunawaySpeed / mRunawayParam->mRunawayBckRatio, mRunawayParam->mMinRunawayBckRate, mRunawayParam->mMaxRunawayBckRate));
+                   MR::clamp(mRunawaySpeed / mRunawayParam->mRunawayBckRatio, mRunawayParam->mMinRunawayBckRate, mRunawayParam->mMaxRunawayBckRate));
     MR::addVelocityMoveToDirection(getHost(), *mDirection, check18() ? mRunawaySpeed : 0.0f);
     MR::addVelocityToGravity(getHost(), MR::isBindedGround(getHost()) ? mRunawayParam->mGroundAccel : mRunawayParam->mAirAccel);
     MR::attenuateVelocity(getHost(), check18() ? mRunawayParam->_14 : mRunawayParam->_18);

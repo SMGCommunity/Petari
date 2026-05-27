@@ -1,11 +1,13 @@
 # main/Game/Enemy/FireBubble
 
+**Source Path:** `src/Game/Enemy/FireBubble.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `negate__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>` | `0x800ECC34` | :x: (0.0%) |
-| `__ct__10FireBubbleFPCc` | `0x800ECC50` | :x: (0.0%) |
+| `__ct__10FireBubbleFPCc` | `0x800ECC50` | :x: (36.1%) |
 | `init__10FireBubbleFRC12JMapInfoIter` | `0x800ECCEC` | :x: (0.0%) |
 | `appear__10FireBubbleFv` | `0x800ECE68` | :x: (0.0%) |
 | `appear__10FireBubbleFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x800ECEC4` | :x: (0.0%) |

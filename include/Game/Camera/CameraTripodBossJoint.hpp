@@ -17,10 +17,8 @@ public:
     f32 mAngleB;  // 0x4C
     f32 mAngleA;  // 0x50
     f32 mDist;    // 0x54
-    s32 _58;
-    f32 mAxisX;  // 0x5C
-    f32 mAxisY;  // 0x60
-    f32 mAxisZ;  // 0x64
+    s32 _58;     // 0x58 : Joint ID
+    TVec3f mAxis;  // 0x5C
     bool _68;
     u8 _69[3];
     f32 _6C;

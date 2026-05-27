@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__21BossKameckStateBattleFP10BossKameck` | `0x8003AAF8` | :x: (99.3%) |
+| `__ct__21BossKameckStateBattleFP10BossKameck` | `0x8003AAF8` | :white_check_mark: (100.0%) |
 | `init__21BossKameckStateBattleFv` | `0x8003AB90` | :white_check_mark: (100.0%) |
 | `appear__21BossKameckStateBattleFv` | `0x8003AB98` | :white_check_mark: (100.0%) |
 | `setMoveRail__21BossKameckStateBattleFP18BossKameckMoveRail` | `0x8003ABD4` | :white_check_mark: (100.0%) |

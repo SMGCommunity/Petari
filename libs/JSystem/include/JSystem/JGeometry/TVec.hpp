@@ -43,15 +43,22 @@ namespace JGeometry {
             y = _y;
         }
 
-        // inline
-        inline TVec2(const TVec2< T >& rSrc) {
-            x = rSrc.x;
-            y = rSrc.y;
-        }
-
         void add(const TVec2< T >& other) {
             x += other.x;
             y += other.y;
+        }
+
+        inline TVec2& addInline(const TVec2< T >& other) const {
+            TVec2 ret(*this);
+            ret.add(other);
+            return ret;
+        }
+
+        inline const TVec2& addOperatorInline(const TVec2& rOther) const {
+            TVec2 ret(*this);
+            ret.x += rOther.x;
+            ret.y += rOther.y;
+            return ret;
         }
 
         /* General operations */
@@ -91,8 +98,26 @@ namespace JGeometry {
             y = y - rOther.y;
         }
 
+        void sub(const TVec2< T >& rA, const TVec2< T >& rB) {
+            x = rA.x - rB.x;
+            y = rA.y - rB.y;
+        }
+
+        inline TVec2& subInline(const TVec2< T >& other) const {
+            TVec2 ret = *this;
+            ret.sub(other);
+            return ret;
+        }
+
+        inline const TVec2& subOperatorInline(const TVec2& rOther) const {
+            TVec2 ret(*this);
+            ret.x -= rOther.x;
+            ret.y -= rOther.y;
+            return ret;
+        }
+
         T length() const {
-            return JGeometry::TUtil< T >::sqrt((x * x) + (y * y));
+            return JGeometry::TUtil< T >::sqrt(squared());
         }
 
         T squared() const {
@@ -112,14 +137,38 @@ namespace JGeometry {
             y *= scalar;
         }
 
-        /* Operators */
-        void operator=(const TVec2< T >& rSrc) {
-            x = rSrc.x;
-            y = rSrc.y;
+        inline TVec2& scaleInline(f32 scalar) {
+            TVec2 ret(*this);
+            ret.scale(scalar);
+            return ret;
         }
-        TVec2< T >& operator+(const TVec2< T >& rOther) const;
-        TVec2< T >& operator-(const TVec2< T >& rOther) const;
-        TVec2< T >& operator*(f32 scale) const;
+
+        /* Operators */
+        TVec2< T > operator+(const TVec2< T >& rOther) const {
+            TVec2 ret(*this);
+            ret.x += rOther.x;
+            ret.y += rOther.y;
+            return ret;
+        }
+
+        TVec2< T > operator-(const TVec2< T >& rOther) const {
+            TVec2 ret(*this);
+            ret.x -= rOther.x;
+            ret.y -= rOther.y;
+            return ret;
+        }
+
+        TVec2< T > operator*(f32 scale) const {
+            TVec2 ret(*this);
+            ret.x *= scale;
+            ret.y *= scale;
+            return ret;
+        }
+
+        inline void operator-=(const TVec2< T >& rOther) {
+            x = x - rOther.x;
+            y = y - rOther.y;
+        }
 
         f32 setLength(f32 newlength) {
             f32 oldlength = squared();
@@ -194,7 +243,7 @@ namespace JGeometry {
         }
     };
 
-    __attribute__((always_inline)) inline void setTVec3f(const f32* a, f32* b) {
+    ALWAYS_INLINE inline void setTVec3f(const f32* a, f32* b) {
 #ifdef __MWERKS__
         const register f32* v_a = a;
         register f32* v_b = b;
@@ -272,6 +321,13 @@ namespace JGeometry {
             z = y = x = val;
         }
 
+        template < typename T >
+        inline TVec3(const TVec2< T >& rVec) {
+            x = rVec.x;
+            y = rVec.y;
+            z = 0;
+        }
+
         inline TVec3() {
         }
 
@@ -280,6 +336,10 @@ namespace JGeometry {
         }
         operator const Vec*() const {
             return (Vec*)&x;
+        }
+
+        operator const TVec2< f32 >&() const {
+            return *reinterpret_cast< const TVec2< f32 >* >(this);
         }
 
         TVec3& operator=(const TVec3& b) NO_INLINE {
@@ -353,6 +413,12 @@ namespace JGeometry {
 
         // appears to be needed in RingBeam to match stack in some places
         TVec3 scaleInline(f32 scalar) const {
+            TVec3 ret(*this);
+            ret.scale(scalar);
+            return ret;
+        }
+
+        TVec3 scaleInline2(f32 scalar) const {
             TVec3 ret(*this);
             ret.scale(scalar);
             return ret;
@@ -693,6 +759,12 @@ namespace JGeometry {
             return magnitude;
         }
 
+        inline f32 normalizePS() {
+            float magnitude = PSVECMag(this);
+            PSVECNormalize(this, this);
+            return magnitude;
+        }
+
         f32 setLength(f32 newlength) {
             f32 oldlength = squared();
             if (oldlength <= 0.0000038146973f) {
@@ -715,7 +787,7 @@ namespace JGeometry {
             return lengthinv * oldlength;
         };
 
-        f32 setLength(const TVec3& rVec, f32 newlength)  {
+        f32 setLength(const TVec3& rVec, f32 newlength) {
             f32 oldlength = rVec.squared();
             if (oldlength <= 0.0000038146973f) {
                 zero();
@@ -742,6 +814,11 @@ namespace JGeometry {
         inline TVec3 cross(const TVec3& b) const {
             TVec3 ret;
             PSVECCrossProduct(this, &b, &ret);
+            return ret;
+        }
+
+        inline TVec3 copy() const {
+            TVec3 ret(*this);
             return ret;
         }
     };
@@ -965,6 +1042,7 @@ namespace JGeometry {
 typedef JGeometry::TVec2< s16 > TVec2s;
 typedef JGeometry::TVec2< f32 > TVec2f;
 typedef JGeometry::TVec3< f32 > TVec3f;
+typedef JGeometry::TVec3< s8 > TVec3Sc;
 typedef JGeometry::TVec3< s16 > TVec3s;
 typedef JGeometry::TVec4< f32 > TVec4f;
 typedef JGeometry::TQuat4< f32 > TQuat4f;

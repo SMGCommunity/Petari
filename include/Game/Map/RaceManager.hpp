@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Screen/LayoutActor.hpp"
+#include "Game/Util/NPCUtil.hpp"
 
 class PlayerRacer;
 class RaceManager;
@@ -18,6 +19,7 @@ public:
 
     void playCountAndGo();
     void playGo();
+    void playRecord();  // Note: this is very likely stripped
     void playGoal();
     void playLose();
     void playTimeUp();
@@ -35,9 +37,16 @@ public:
 class AbstractRacer {
 public:
     /// @brief Creates a new `AbstractRacer`.
-    AbstractRacer();
+    AbstractRacer() {
+        initRacer();
+    }
 
-    virtual void initRacer();
+    virtual void initRacer() {
+        mRailCoord = 0.0f;
+        _8 = 0.0f;
+        mCurrPosition.zero();
+        mPrevPosition.zero();
+    }
     virtual void prepRacer(const RaceManager* pRaceManager) = 0;
     virtual void startRacer() = 0;
     virtual bool updateRacer(const RaceManager* pRaceManager) = 0;
@@ -46,7 +55,11 @@ public:
     virtual void resetRacer(const RaceManager* pRaceManager) = 0;
     virtual void exitRacer() = 0;
 
-    /* 0x04 */ f32 _4;
+    static bool compRacer(const AbstractRacer* pRacerA, const AbstractRacer* pRacerB) {
+        return pRacerA->mRailCoord > pRacerB->mRailCoord;
+    }
+
+    /* 0x04 */ f32 mRailCoord;
     /* 0x08 */ f32 _8;
     /* 0x0C */ TVec3f mCurrPosition;
     /* 0x18 */ TVec3f mPrevPosition;
@@ -55,15 +68,11 @@ public:
 class AbstractAudience {
 public:
     /// @brief Creates a new `AbstractAudience`.
-    AbstractAudience();
+    AbstractAudience() {
+    }
 
     virtual void prepAudience() = 0;
     virtual void resetAudience() = 0;
-
-    /* 0x04 */ u8 _4;
-    /* 0x08 */ s32 _8;
-    /* 0x0C */ s32 _C;
-    /* 0x10 */ s32 _10;
 };
 
 class RaceManager : public LiveActor {

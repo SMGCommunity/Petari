@@ -1,10 +1,12 @@
 # main/Game/Enemy/TakoHei
 
+**Source Path:** `src/Game/Enemy/TakoHei.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__7TakoHeiFPCc` | `0x80146AEC` | :x: (0.0%) |
+| `__ct__7TakoHeiFPCc` | `0x80146AEC` | :x: (24.6%) |
 | `init__7TakoHeiFRC12JMapInfoIter` | `0x80146BD0` | :x: (0.0%) |
 | `initAfterPlacement__7TakoHeiFv` | `0x80146D44` | :x: (0.0%) |
 | `initSensor__7TakoHeiFv` | `0x80146D88` | :x: (0.0%) |
@@ -63,7 +65,7 @@
 | `isDown__7TakoHeiCFv` | `0x80148CAC` | :x: (0.0%) |
 | `isFallNextMove__7TakoHeiCFv` | `0x80148D2C` | :x: (0.0%) |
 | `isInSightMario__7TakoHeiCFv` | `0x80148DAC` | :x: (0.0%) |
-| `__dt__7TakoHeiFv` | `0x80148E8C` | :x: (0.0%) |
+| `__dt__7TakoHeiFv` | `0x80148E8C` | :white_check_mark: (100.0%) |
 | `__sinit_\TakoHei_cpp` | `0x80148EE8` | :x: (0.0%) |
 | `__ct__Q210NrvTakoHei19TakoHeiNrvNonActiveFv` | `0x80148FA4` | :x: (0.0%) |
 | `__ct__Q210NrvTakoHei14TakoHeiNrvWaitFv` | `0x80148FB4` | :x: (0.0%) |

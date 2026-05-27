@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__13AssemblyBlockFPCc` | `0x801A87E0` | :white_check_mark: (100.0%) |
-| `init__13AssemblyBlockFRC12JMapInfoIter` | `0x801A886C` | :x: (99.4%) |
+| `init__13AssemblyBlockFRC12JMapInfoIter` | `0x801A886C` | :x: (97.0%) |
 | `exeWait__13AssemblyBlockFv` | `0x801A8B98` | :x: (0.0%) |
 | `exeAssemble__13AssemblyBlockFv` | `0x801A8CF4` | :x: (99.9%) |
 | `exeAssembleWait__13AssemblyBlockFv` | `0x801A8E00` | :white_check_mark: (100.0%) |

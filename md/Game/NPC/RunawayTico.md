@@ -1,12 +1,14 @@
 # main/Game/NPC/RunawayTico
 
+**Source Path:** `src/Game/NPC/RunawayTico.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__11RunawayTicoFPCc` | `0x80286FD8` | :x: (0.0%) |
+| `__ct__11RunawayTicoFPCc` | `0x80286FD8` | :x: (68.6%) |
 | `__dt__4TicoFv` | `0x8028702C` | :x: (0.0%) |
-| `makeArchiveList__11RunawayTicoFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x802870A4` | :x: (0.0%) |
+| `makeArchiveList__11RunawayTicoFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x802870A4` | :white_check_mark: (100.0%) |
 | `init__11RunawayTicoFRC12JMapInfoIter` | `0x80287130` | :x: (0.0%) |
 | `initAfterPlacement__11RunawayTicoFv` | `0x8028733C` | :x: (0.0%) |
 | `appearBushComment__11RunawayTicoFRCQ29JGeometry8TVec3<f>` | `0x80287390` | :x: (0.0%) |
@@ -42,4 +44,4 @@
 | `Functor<11RunawayTico>__2MRFP11RunawayTicoM11RunawayTicoFPCvPv_v_Q22MR49FunctorV0M<P11RunawayTico,M11RunawayTicoFPCvPv_v>` | `0x80287D70` | :x: (0.0%) |
 | `__cl__Q22MR49FunctorV0M<P11RunawayTico,M11RunawayTicoFPCvPv_v>CFv` | `0x80287DB0` | :x: (0.0%) |
 | `clone__Q22MR49FunctorV0M<P11RunawayTico,M11RunawayTicoFPCvPv_v>CFP7JKRHeap` | `0x80287DE0` | :x: (0.0%) |
-| `__dt__11RunawayTicoFv` | `0x80287E48` | :x: (0.0%) |
+| `__dt__11RunawayTicoFv` | `0x80287E48` | :white_check_mark: (100.0%) |

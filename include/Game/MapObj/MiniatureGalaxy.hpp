@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "revolution/types.h"
+#include "JSystem/J3DGraphBase/J3DTexture.hpp"
 
 class NameObjArchiveListCollector;
+class AstroDomeOrbit;
+class GalaxyNamePlate;
 
 class MiniatureGalaxy : public LiveActor {
 public:
@@ -21,26 +22,43 @@ public:
 
     void initPartsModel();
     void setScale(f32);
-    bool tryZoomIn(bool);
-    bool tryZoomOut();
+    void tryZoomIn(bool);
+    void tryZoomOut();
     void updateZoomInOut();
     void updateNamePlate();
     void appearUnknownModel(const char*);
-    void showUnknownModel(const char*);
+    void showUnknownModel();
     void showSelectModel();
     void hideUnknownModel();
     void appearSelectModel();
     void disappearSelectModel();
     void showNamePlate(bool);
     bool isUseKoopaFaceModel() const;
-    void playPointerME();
-    void playNeedStartME();
+    void playPointedME();
+    void playNeedStarME();
+
     void exeWait();
+    void exeSelected();
     void exeNotSelected();
+    void exeConfirmed();
     void exeOpen();
 
-    s32 _8C;
-    u8 unc[0x88];
-    const char* _118;
-    u8 _11C[0x138];
+    /* 0x8C */ s32 mGalaxyType;  // 0 = major, 1 = minor, 2 = bowser (obj_arg0)
+    /* 0x90 */ s32 mState;       // 0 = hidden, 1 = can't open, 2 = can open, 3 = open
+    /* 0x94 */ ModelObj* mUnknownModel;
+    /* 0x98 */ ModelObj* mShadowModel;
+    /* 0x9C */ ModelObj* mSelectModel;
+    /* 0xA0 */ ModelObj* mStarPlateModel;
+    /* 0xA4 */ TMtx34f _A4;
+    /* 0xD4 */ TMtx34f _D4;
+    /* 0x104 */ ProjmapEffectMtxSetter* mProjmapEffectMtxSetter;
+    /* 0x108 */ TVec3f _108;
+    /* 0x114 */ const char* mMiniatureName;
+    /* 0x118 */ const char* mName;
+    /* 0x11C */ s32 mCanZoomIn;
+    /* 0x120 */ s32 mZoomLevel;
+    /* 0x124 */ J3DTexMtx _124;
+    /* 0x1B8 */ J3DTexMtx _1B8;
+    /* 0x24C */ AstroDomeOrbit* mOrbit;
+    /* 0x250 */ GalaxyNamePlate* mNamePlate;
 };

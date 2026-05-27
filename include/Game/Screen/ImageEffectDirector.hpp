@@ -47,6 +47,7 @@ public:
     void incPlayerSyncIntensity();
     void decPlayerSyncIntensity();
     void setPlayerSync(bool);
+    void updateAuto();
 
     /* 0x0C */ bool mIsAuto;
     /* 0x0D */ bool mIsPlayerSync;
@@ -54,11 +55,11 @@ public:
     /* 0x0F */ bool _F;
     /* 0x10 */ s32 mPlayerSyncIntensity;
     /* 0x14 */ f32 mDepthOfFieldIntensity;
-    /* 0x18 */ ImageEffectStateImpl::StateNull* _18;
-    /* 0x1C */ ImageEffectStateImpl::StateBloomNormal* _1C;
-    /* 0x20 */ ImageEffectStateImpl::StateBloomSimple* _20;
-    /* 0x24 */ ImageEffectStateImpl::StateScreenBlur* _24;
-    /* 0x28 */ ImageEffectStateImpl::StateDepthOfField* _28;
+    /* 0x18 */ ImageEffectStateImpl::StateNull* mStateNull;
+    /* 0x1C */ ImageEffectStateImpl::StateBloomNormal* mStateBloomNormal;
+    /* 0x20 */ ImageEffectStateImpl::StateBloomSimple* mStateBloomSimple;
+    /* 0x24 */ ImageEffectStateImpl::StateScreenBlur* mStateScreenBlur;
+    /* 0x28 */ ImageEffectStateImpl::StateDepthOfField* mStateDepthOfField;
     /* 0x2C */ ImageEffectState* mState;
     /* 0x30 */ ImageEffectBase* mCurrentEffect;
 };

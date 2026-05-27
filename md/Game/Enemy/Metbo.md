@@ -1,10 +1,12 @@
 # main/Game/Enemy/Metbo
 
+**Source Path:** `src/Game/Enemy/Metbo.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__5MetboFPCc` | `0x80122D94` | :x: (0.0%) |
+| `__ct__5MetboFPCc` | `0x80122D94` | :x: (46.3%) |
 | `init__5MetboFRC12JMapInfoIter` | `0x80122E10` | :x: (0.0%) |
 | `exeNonActive__5MetboFv` | `0x8012308C` | :x: (0.0%) |
 | `exeWait__5MetboFv` | `0x80123148` | :x: (0.0%) |
@@ -37,7 +39,7 @@
 | `trySearch__5MetboFv` | `0x80124678` | :x: (0.0%) |
 | `tryDPDSwoon__5MetboFv` | `0x80124780` | :x: (0.0%) |
 | `isNrvNormal__5MetboCFv` | `0x801248B4` | :x: (0.0%) |
-| `__dt__5MetboFv` | `0x80124950` | :x: (0.0%) |
+| `__dt__5MetboFv` | `0x80124950` | :white_check_mark: (100.0%) |
 | `__sinit_\Metbo_cpp` | `0x801249AC` | :x: (0.0%) |
 | `__ct__Q28NrvMetbo17MetboNrvNonActiveFv` | `0x80124A50` | :x: (0.0%) |
 | `__ct__Q28NrvMetbo12MetboNrvWaitFv` | `0x80124A60` | :x: (0.0%) |

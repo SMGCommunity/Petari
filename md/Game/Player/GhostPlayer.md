@@ -1,12 +1,14 @@
 # main/Game/Player/GhostPlayer
 
+**Source Path:** `src/Game/Player/GhostPlayer.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `playSound__25@unnamed@GhostPlayer_cpp@FP9LiveActorPCc` | `0x802A46A8` | :x: (0.0%) |
-| `makeArchiveList__11GhostPlayerFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x802A475C` | :x: (0.0%) |
-| `__ct__11GhostPlayerFPCc` | `0x802A47E4` | :x: (0.0%) |
+| `makeArchiveList__11GhostPlayerFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x802A475C` | :x: (99.9%) |
+| `__ct__11GhostPlayerFPCc` | `0x802A47E4` | :x: (47.1%) |
 | `init__11GhostPlayerFRC12JMapInfoIter` | `0x802A4850` | :x: (0.0%) |
 | `appear__11GhostPlayerFv` | `0x802A4C34` | :x: (0.0%) |
 | `control__11GhostPlayerFv` | `0x802A4CDC` | :x: (0.0%) |
@@ -32,7 +34,7 @@
 | `convToFloat__2MRFRQ29JGeometry9TVec3<Sc>ScPQ29JGeometry8TVec3<f>` | `0x802A653C` | :x: (0.0%) |
 | `convToFloat__2MRFsScPf` | `0x802A65F8` | :x: (0.0%) |
 | `convToFloat__2MRFScScPf` | `0x802A6664` | :x: (0.0%) |
-| `__dt__11GhostPlayerFv` | `0x802A66D4` | :x: (0.0%) |
+| `__dt__11GhostPlayerFv` | `0x802A66D4` | :white_check_mark: (100.0%) |
 | `__sinit_\GhostPlayer_cpp` | `0x802A6730` | :x: (0.0%) |
 | `__ct__Q214NrvGhostPlayer15HostTypeNrvWaitFv` | `0x802A678C` | :x: (0.0%) |
 | `__ct__Q214NrvGhostPlayer18HostTypeNrvWinDemoFv` | `0x802A679C` | :x: (0.0%) |

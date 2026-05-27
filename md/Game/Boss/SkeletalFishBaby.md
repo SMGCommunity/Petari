@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `isValid__12JMapInfoIterCFv` | `0x8007624C` | :white_check_mark: (100.0%) |
 | `__ct__16SkeletalFishBabyFPCc` | `0x800762A8` | :white_check_mark: (100.0%) |
-| `init__16SkeletalFishBabyFRC12JMapInfoIter` | `0x80076364` | :x: (95.5%) |
+| `init__16SkeletalFishBabyFRC12JMapInfoIter` | `0x80076364` | :white_check_mark: (100.0%) |
 | `makeActorAppeared__16SkeletalFishBabyFv` | `0x80076580` | :white_check_mark: (100.0%) |
 | `appear__16SkeletalFishBabyFv` | `0x800765D4` | :white_check_mark: (100.0%) |
 | `kill__16SkeletalFishBabyFv` | `0x800765D8` | :white_check_mark: (100.0%) |

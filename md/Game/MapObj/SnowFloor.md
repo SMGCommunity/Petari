@@ -1,11 +1,13 @@
 # main/Game/MapObj/SnowFloor
 
+**Source Path:** `src/Game/MapObj/SnowFloor.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__dt__9SnowFloorFv` | `0x802296E8` | :x: (0.0%) |
-| `__ct__9SnowFloorFPCc` | `0x80229744` | :x: (0.0%) |
+| `__dt__9SnowFloorFv` | `0x802296E8` | :white_check_mark: (100.0%) |
+| `__ct__9SnowFloorFPCc` | `0x80229744` | :x: (72.1%) |
 | `init__9SnowFloorFRC12JMapInfoIter` | `0x80229790` | :x: (0.0%) |
 | `drawSetup__9SnowFloorFv` | `0x80229A34` | :x: (0.0%) |
 | `initLocalPoint__9SnowFloorFRC12JMapInfoIter` | `0x80229BDC` | :x: (0.0%) |

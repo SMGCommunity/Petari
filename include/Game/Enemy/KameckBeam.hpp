@@ -43,4 +43,6 @@ public:
     MtxPtr _A0;
     TVec3f _A4;
     TVec3f _B0;
+    u32 _BC;
+    u32* _C0;
 };

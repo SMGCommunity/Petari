@@ -4,17 +4,28 @@
 
 class Color8 {
 public:
-    Color8() {}
+    Color8() : mColor(-1) {
+    }
 
-    Color8(GXColor color) { set(color); }
+    Color8(GXColor color) {
+        set(color);
+    }
 
-    Color8(u8 r, u8 g, u8 b, u8 a) { set(r, g, b, a); }
+    Color8(u8 r, u8 g, u8 b, u8 a) {
+        set(r, g, b, a);
+    }
 
-    Color8(u32 color) { mColor = color; }
+    Color8(u32 color) {
+        mColor = color;
+    }
 
-    inline operator GXColor() const { return mGXColor; }
+    inline operator GXColor() const {
+        return mGXColor;
+    }
 
-    inline operator u32() const { return mColor; }
+    inline operator u32() const {
+        return mColor;
+    }
 
     inline const Color8& operator=(const GXColor& other) {
         mGXColor = other;
@@ -57,7 +68,8 @@ public:
 
 class Color10 {
 public:
-    Color10() : r(0x3FF), g(0x3FF), b(0x3FF), a(0x3FF) {}
+    Color10() : r(0x3FF), g(0x3FF), b(0x3FF), a(0x3FF) {
+    }
 
     u16 r;
     u16 g;

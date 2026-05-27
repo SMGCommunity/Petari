@@ -1,5 +1,7 @@
 # main/Game/MapObj/Sandstorm
 
+**Source Path:** `src/Game/MapObj/Sandstorm.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -8,8 +10,8 @@
 | `init__15SunakazeKunTrapFRC12JMapInfoIter` | `0x8021F798` | :x: (0.0%) |
 | `exeTrap__15SunakazeKunTrapFv` | `0x8021F880` | :x: (0.0%) |
 | `attackSensor__15SunakazeKunTrapFP9HitSensorP9HitSensor` | `0x8021F9C4` | :x: (0.0%) |
-| `__ct__9SandstormFPCc` | `0x8021FA14` | :x: (0.0%) |
-| `makeArchiveList__9SandstormFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8021FAC4` | :x: (0.0%) |
+| `__ct__9SandstormFPCc` | `0x8021FA14` | :x: (32.6%) |
+| `makeArchiveList__9SandstormFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x8021FAC4` | :white_check_mark: (100.0%) |
 | `init__9SandstormFRC12JMapInfoIter` | `0x8021FB1C` | :x: (0.0%) |
 | `exeNonActive__9SandstormFv` | `0x8021FDA0` | :x: (0.0%) |
 | `exeWait__9SandstormFv` | `0x8021FE24` | :x: (0.0%) |
@@ -34,7 +36,7 @@
 | `tryNonActive__9SandstormFv` | `0x80220EF0` | :x: (0.0%) |
 | `isSunakazeKun__9SandstormCFv` | `0x80220F40` | :x: (0.0%) |
 | `__dt__15SunakazeKunTrapFv` | `0x80220F54` | :x: (0.0%) |
-| `__dt__9SandstormFv` | `0x80220FAC` | :x: (0.0%) |
+| `__dt__9SandstormFv` | `0x80220FAC` | :white_check_mark: (100.0%) |
 | `__sinit_\Sandstorm_cpp` | `0x80221008` | :x: (0.0%) |
 | `__ct__Q218NrvSunakazeKunTrap22SunakazeKunTrapNrvTrapFv` | `0x8022105C` | :x: (0.0%) |
 | `__ct__Q212NrvSandstorm21SandstormNrvNonActiveFv` | `0x8022106C` | :x: (0.0%) |

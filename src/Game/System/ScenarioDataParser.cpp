@@ -12,8 +12,8 @@
 
 namespace {
     struct GalaxyNameSortLt {
-        bool operator()(ScenarioData** ppLhs, ScenarioData** ppRhs) {
-            return GalaxyNameSortTable::getGalaxySortIndex((*ppLhs)->mGalaxyName) < GalaxyNameSortTable::getGalaxySortIndex((*ppRhs)->mGalaxyName);
+        bool operator()(ScenarioData* ppLhs, ScenarioData* ppRhs) {
+            return GalaxyNameSortTable::getGalaxySortIndex(ppLhs->mGalaxyName) < GalaxyNameSortTable::getGalaxySortIndex(ppRhs->mGalaxyName);
         }
     };
 
@@ -105,7 +105,8 @@ s32 ScenarioData::getZoneId(const char* pZoneName) const {
     return 0;
 }
 
-ScenarioDataIter::ScenarioDataIter(const ScenarioDataParser* pParser, int param2) : mParser(pParser), mCur(param2) {}
+ScenarioDataIter::ScenarioDataIter(const ScenarioDataParser* pParser, int param2) : mParser(pParser), mCur(param2) {
+}
 
 bool ScenarioDataIter::isEnd() const {
     return mParser->mScenarioData.size() <= mCur;

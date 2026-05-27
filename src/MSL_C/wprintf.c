@@ -211,7 +211,7 @@ typedef struct {
     case L'x':
     case L'X':
         if (f.argument_options == long_double_argument) {
-            f.conversion_char = long_long_argument;
+            f.argument_options = long_long_argument;
         }
 
         if (!f.precision_specified) {
@@ -297,7 +297,7 @@ typedef struct {
 
     case L'n':
         if (f.argument_options == long_double_argument) {
-            f.conversion_char = long_long_argument;
+            f.argument_options = long_long_argument;
         }
 
         break;

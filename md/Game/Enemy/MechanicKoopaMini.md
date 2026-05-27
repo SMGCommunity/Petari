@@ -1,10 +1,12 @@
 # main/Game/Enemy/MechanicKoopaMini
 
+**Source Path:** `src/Game/Enemy/MechanicKoopaMini.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__17MechanicKoopaMiniFPCc` | `0x8011CE88` | :x: (0.0%) |
+| `__ct__17MechanicKoopaMiniFPCc` | `0x8011CE88` | :x: (71.7%) |
 | `onAppearSwitchOn__17MechanicKoopaMiniFv` | `0x8011CED8` | :x: (0.0%) |
 | `init__17MechanicKoopaMiniFRC12JMapInfoIter` | `0x8011CEF4` | :x: (0.0%) |
 | `initAfterPlacement__17MechanicKoopaMiniFv` | `0x8011D1E8` | :x: (0.0%) |
@@ -67,4 +69,4 @@
 | `execute__Q220NrvMechanicKoopaMini15HostTypeNrvWaitCFP5Spine` | `0x8011E92C` | :x: (0.0%) |
 | `__cl__Q22MR61FunctorV0M<P17MechanicKoopaMini,M17MechanicKoopaMiniFPCvPv_v>CFv` | `0x8011E934` | :x: (0.0%) |
 | `clone__Q22MR61FunctorV0M<P17MechanicKoopaMini,M17MechanicKoopaMiniFPCvPv_v>CFP7JKRHeap` | `0x8011E964` | :x: (0.0%) |
-| `__dt__17MechanicKoopaMiniFv` | `0x8011E9CC` | :x: (0.0%) |
+| `__dt__17MechanicKoopaMiniFv` | `0x8011E9CC` | :white_check_mark: (100.0%) |

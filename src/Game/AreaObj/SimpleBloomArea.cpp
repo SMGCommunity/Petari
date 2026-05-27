@@ -2,7 +2,7 @@
 #include "Game/Util.hpp"
 
 SimpleBloomArea::SimpleBloomArea(int type, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, type, pName) {
-    _40 = 0;
+    mMaskFilterColor = MASK_FILTER_ALL;
     _44 = 128;
     _45 = 76;
 }
@@ -14,7 +14,7 @@ void SimpleBloomArea::init(const JMapInfoIter& rIter) {
     MR::createSimpleBloom();
 
     if (mObjArg0 >= 0) {
-        _40 = static_cast< u8 >(mObjArg0);
+        mMaskFilterColor = static_cast< u8 >(mObjArg0);
     }
 
     if (mObjArg1 >= 0) {

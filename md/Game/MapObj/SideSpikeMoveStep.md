@@ -1,10 +1,12 @@
 # main/Game/MapObj/SideSpikeMoveStep
 
+**Source Path:** `src/Game/MapObj/SideSpikeMoveStep.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__17SideSpikeMoveStepFPCc` | `0x8022571C` | :x: (0.0%) |
+| `__ct__17SideSpikeMoveStepFPCc` | `0x8022571C` | :x: (67.9%) |
 | `init__17SideSpikeMoveStepFRC12JMapInfoIter` | `0x80225774` | :x: (0.0%) |
 | `exeWait__17SideSpikeMoveStepFv` | `0x802258D8` | :x: (0.0%) |
 | `exeDPDStop__17SideSpikeMoveStepFv` | `0x802259AC` | :x: (0.0%) |
@@ -12,7 +14,7 @@
 | `calcAndSetBaseMtx__17SideSpikeMoveStepFv` | `0x80225A6C` | :x: (0.0%) |
 | `control__17SideSpikeMoveStepFv` | `0x80225AD4` | :x: (0.0%) |
 | `receiveOtherMsg__17SideSpikeMoveStepFUlP9HitSensorP9HitSensor` | `0x80225B0C` | :x: (0.0%) |
-| `__dt__17SideSpikeMoveStepFv` | `0x80225BA0` | :x: (0.0%) |
+| `__dt__17SideSpikeMoveStepFv` | `0x80225BA0` | :white_check_mark: (100.0%) |
 | `__sinit_\SideSpikeMoveStep_cpp` | `0x80225BF8` | :x: (0.0%) |
 | `__ct__Q220NrvSideSpikeMoveStep24SideSpikeMoveStepNrvWaitFv` | `0x80225C2C` | :x: (0.0%) |
 | `__ct__Q220NrvSideSpikeMoveStep27SideSpikeMoveStepNrvDPDStopFv` | `0x80225C3C` | :x: (0.0%) |

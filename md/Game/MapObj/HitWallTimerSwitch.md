@@ -1,10 +1,12 @@
 # main/Game/MapObj/HitWallTimerSwitch
 
+**Source Path:** `src/Game/MapObj/HitWallTimerSwitch.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__18HitWallTimerSwitchFPCc` | `0x801E6C20` | :x: (0.0%) |
+| `__ct__18HitWallTimerSwitchFPCc` | `0x801E6C20` | :x: (67.8%) |
 | `init__18HitWallTimerSwitchFRC12JMapInfoIter` | `0x801E6C74` | :x: (0.0%) |
 | `initAfterPlacement__18HitWallTimerSwitchFv` | `0x801E6DF0` | :x: (0.0%) |
 | `calcAnim__18HitWallTimerSwitchFv` | `0x801E6DF8` | :x: (0.0%) |
@@ -20,7 +22,7 @@
 | `exeSwitchDown__18HitWallTimerSwitchFv` | `0x801E71C4` | :x: (0.0%) |
 | `exeOn__18HitWallTimerSwitchFv` | `0x801E7224` | :x: (0.0%) |
 | `exeSwitchUp__18HitWallTimerSwitchFv` | `0x801E728C` | :x: (0.0%) |
-| `__dt__18HitWallTimerSwitchFv` | `0x801E72E8` | :x: (0.0%) |
+| `__dt__18HitWallTimerSwitchFv` | `0x801E72E8` | :white_check_mark: (100.0%) |
 | `__sinit_\HitWallTimerSwitch_cpp` | `0x801E7344` | :x: (0.0%) |
 | `__ct__Q221NrvHitWallTimerSwitch24HitWallTimerSwitchNrvOffFv` | `0x801E7380` | :x: (0.0%) |
 | `__ct__Q221NrvHitWallTimerSwitch31HitWallTimerSwitchNrvSwitchDownFv` | `0x801E7390` | :x: (0.0%) |

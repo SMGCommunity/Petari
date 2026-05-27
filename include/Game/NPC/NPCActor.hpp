@@ -2,6 +2,7 @@
 
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util/JointController.hpp"
 
@@ -141,6 +142,15 @@ public:
         _138 = "Pointing";
     }
 
+    inline void setTalkAction(const char* pActionName) {
+        _11C = pActionName;
+        _120 = pActionName;
+    }
+
+    TalkMessageCtrl* getMsgCtrl() const {
+        return mMsgCtrl;
+    }
+
     LodCtrl* mLodCtrl;          // 0x8C
     TalkMessageCtrl* mMsgCtrl;  // 0x90
     PartsModel* _94;
@@ -173,7 +183,7 @@ public:
     f32 _118;
     const char* _11C;
     const char* _120;
-    u8 _124;
+    u8 _124;  // follow rail on ground
     u8 _125;
     u8 _126;
     u8 _127;

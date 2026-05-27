@@ -3,6 +3,7 @@
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
 #define POIHANA_BEHAVIOR_NORMAL 0
@@ -56,7 +57,8 @@ Poihana::Poihana(const char* pName) : LiveActor(pName) {
     _E5 = 0;
 }
 
-Poihana::~Poihana() {}
+Poihana::~Poihana() {
+}
 
 /*void Poihana::init(const JMapInfoIter &rIter) {
     MR::initDefaultPos(this, rIter);
@@ -707,27 +709,27 @@ void Poihana::startBound() {
     mScale.z = 1.0f;
 }
 
-/*
- * This function calculates Poihana's scale for 40 frames after being trampled. This is
- * used to simulate the "vibrating" visual effect. This is not 1:1 the same as in SMG1,
- * but it looks VERY similar and appears to be even more efficient compared to SMG1's
- * unusually complicated calculations.
- */
-/*void Poihana::calcBound() {
-    if (mBoundTimer != -1) {
-        f32 scale = 1.0f;
+void Poihana::calcBound() {
+    // FIXME
+    // https://decomp.me/scratch/580s2
 
-        if (mBoundTimer < 40) {
-            scale = 0.05f * sin(0.393f * mBoundTimer) + 1.0f;
-            mBoundTimer++;
-        }
-        else {
-            mBoundTimer = -1;
-        }
-
-        mScale.setAll(scale);
+    if (mBoundTimer == -1) {
+        return;
     }
-}*/
+
+    if (mBoundTimer >= 40) {
+        mScale.set(1.0f, 1.0f, 1.0f);
+        mBoundTimer = -1;
+        return;
+    }
+
+    mBoundTimer++;
+
+    f32 s = 0.4f - mBoundTimer * 0.01f;
+
+    mScale.set(s * 0.9f * MR::sinDegree(mBoundTimer * (9.0f * 1.0f)) + 1.0f, s * 1.0f * MR::sinDegree(mBoundTimer * (9.0f * 3.0f)) + 1.0f,
+               s * 0.9f * MR::sinDegree(mBoundTimer * (9.0f * 2.0f)) + 1.0f);
+}
 
 void Poihana::contactMario(HitSensor* pSender, HitSensor* pReceiver) {
     bool isShooting;

@@ -8,8 +8,8 @@
 |------|---------|---------|
 | `__ct__12MaterialCtrlFP12J3DModelDataPCc` | `0x80167868` | :white_check_mark: (100.0%) |
 | `update__12MaterialCtrlFv` | `0x801678C4` | :white_check_mark: (100.0%) |
-| `__ct__7FogCtrlFP12J3DModelDatab` | `0x80167954` | :white_check_mark: (100.0%) |
-| `update__7FogCtrlFv` | `0x80167AC4` | :x: (69.3%) |
+| `__ct__7FogCtrlFP12J3DModelDatab` | `0x80167954` | :x: (0.0%) |
+| `update__7FogCtrlFv` | `0x80167AC4` | :x: (0.0%) |
 | `__ct__12MatColorCtrlFP12J3DModelDataPCcUlPC10J3DGXColor` | `0x80167B64` | :white_check_mark: (100.0%) |
 | `updateMaterial__12MatColorCtrlFP11J3DMaterial` | `0x80167BB8` | :white_check_mark: (100.0%) |
 | `__ct__26ViewProjmapEffectMtxSetterFP12J3DModelData` | `0x80167BD8` | :x: (0.0%) |
@@ -32,7 +32,7 @@
 | `updateMaterial__12MaterialCtrlFP11J3DMaterial` | `0x801685E8` | :x: (0.0%) |
 | `setTevColor__11J3DTevBlockFUlPC13J3DGXColorS10` | `0x801685EC` | :x: (0.0%) |
 | `getFog__10J3DPEBlockFv` | `0x801685F0` | :x: (0.0%) |
-| `setMatColor__13J3DColorBlockFUlPC10J3DGXColor` | `0x801685F8` | :x: (0.0%) |
+| `setMatColor__13J3DColorBlockFUlPC10J3DGXColor` | `0x801685F8` | :white_check_mark: (100.0%) |
 | `setZMode__10J3DPEBlockFPC8J3DZMode` | `0x801685FC` | :x: (0.0%) |
 | `setBlend__10J3DPEBlockFPC8J3DBlend` | `0x80168600` | :x: (0.0%) |
 | `setTexMtx__14J3DTexGenBlockFUlP9J3DTexMtx` | `0x80168604` | :x: (0.0%) |

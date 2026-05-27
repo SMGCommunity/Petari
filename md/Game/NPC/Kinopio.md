@@ -1,11 +1,13 @@
 # main/Game/NPC/Kinopio
 
+**Source Path:** `src/Game/NPC/Kinopio.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__Q221@unnamed@Kinopio_cpp@5ParamFv` | `0x80273494` | :x: (0.0%) |
-| `__ct__7KinopioFPCc` | `0x802734DC` | :x: (0.0%) |
+| `__ct__7KinopioFPCc` | `0x802734DC` | :x: (45.8%) |
 | `init__7KinopioFRC12JMapInfoIter` | `0x80273558` | :x: (0.0%) |
 | `exeReaction__7KinopioFv` | `0x80273CE8` | :x: (0.0%) |
 | `exeJump__7KinopioFv` | `0x80273E90` | :x: (0.0%) |
@@ -68,4 +70,4 @@
 | `clone__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>CFv` | `0x802750E8` | :x: (0.0%) |
 | `clone__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>CFP7JKRHeap` | `0x80275128` | :x: (0.0%) |
 | `__ct__47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>FRC47TalkMessageFuncM<P7Kinopio,M7KinopioFPCvPvUl_b>` | `0x8027516C` | :x: (0.0%) |
-| `__dt__7KinopioFv` | `0x8027519C` | :x: (0.0%) |
+| `__dt__7KinopioFv` | `0x8027519C` | :white_check_mark: (100.0%) |

@@ -233,17 +233,17 @@ bool ScenarioSelectLayout::trySelect() {
             return true;
         }
 
-        if (!MR::isStarPointerInScreen(0)) {
+        if (!MR::isStarPointerInScreen(WPAD_CHAN0)) {
             for (s32 i = 0; i < 7; i++) {
                 if (mStar[i]->_30) {
                     continue;
                 }
 
-                if (mStar[i]->_44) {
+                if (mStar[i]->mStarCollectedStatus) {
                     continue;
                 }
 
-                mSelectedScenarioNo = mStar[i]->mFrame;
+                mSelectedScenarioNo = mStar[i]->mStageID;
 
                 return true;
             }
@@ -259,7 +259,7 @@ ScenarioSelectStar* ScenarioSelectLayout::getSelectedStar() const {
             continue;
         }
 
-        if (mSelectedScenarioNo != mStar[i]->mFrame) {
+        if (mSelectedScenarioNo != mStar[i]->mStageID) {
             continue;
         }
 

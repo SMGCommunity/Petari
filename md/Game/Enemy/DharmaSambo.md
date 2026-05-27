@@ -1,5 +1,7 @@
 # main/Game/Enemy/DharmaSambo
 
+**Source Path:** `src/Game/Enemy/DharmaSambo.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -7,7 +9,7 @@
 | `__dt__Q22MR51Vector<Q22MR36AssignableArray<P16DharmaSamboParts>>Fv` | `0x800E7278` | :x: (0.0%) |
 | `__dt__Q22MR48Vector<Q22MR33AssignableArray<P13FixedPosition>>Fv` | `0x800E72D0` | :x: (0.0%) |
 | `mul__Q29JGeometry8TVec3<f>FRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x800E7328` | :x: (0.0%) |
-| `__ct__11DharmaSamboFPCc` | `0x800E734C` | :x: (0.0%) |
+| `__ct__11DharmaSamboFPCc` | `0x800E734C` | :x: (37.6%) |
 | `init__11DharmaSamboFRC12JMapInfoIter` | `0x800E73DC` | :x: (0.0%) |
 | `initAfterPlacement__11DharmaSamboFv` | `0x800E7698` | :x: (0.0%) |
 | `appear__11DharmaSamboFv` | `0x800E769C` | :x: (0.0%) |
@@ -90,5 +92,5 @@
 | `copyRotate__13FixedPositionCFPQ29JGeometry8TVec3<f>` | `0x800E9BB8` | :x: (0.0%) |
 | `__dt__Q22MR33AssignableArray<P13FixedPosition>Fv` | `0x800E9CD8` | :x: (0.0%) |
 | `__dt__Q22MR36AssignableArray<P16DharmaSamboParts>Fv` | `0x800E9D38` | :x: (0.0%) |
-| `__dt__11DharmaSamboFv` | `0x800E9D98` | :x: (0.0%) |
+| `__dt__11DharmaSamboFv` | `0x800E9D98` | :x: (74.2%) |
 | `__dt__16DharmaSamboPartsFv` | `0x800E9E14` | :x: (0.0%) |

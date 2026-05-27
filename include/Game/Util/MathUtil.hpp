@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JMath/JMATrigonometric.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TQuat.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
@@ -180,6 +181,16 @@ namespace MR {
     bool isInRange(f32, f32, f32);
     f32 calcRotateY(f32, f32);
     f32 calcRotateZ(const TVec3f&, const TVec3f&);
+
+    inline f32 toDegree(f32 angle) {
+        f32 cnv = 180.0f / PI;
+        return angle * cnv;
+    }
+
+    inline f32 toRadian(f32 angle) {
+        f32 cnv = PI_180;
+        return angle * cnv;
+    }
 
     /// @brief Computes the distance between two points.
     /// @param[in] rPos1 A reference to the position of the first point.
@@ -395,36 +406,74 @@ namespace MR {
     /// @brief Computes the cosine of a number, in radians.
     /// @param x The number of radians to evaluate.
     /// @return The ratio of the length of the adjacent to that of the hypotenuse.
-    f32 cos(f32 x);
+    inline f32 cos(f32 x) {
+        return JMACosRadian(x);
+    }
 
     /// @brief Computes the sine of a number, in radians.
     /// @param x The number of radians to evaluate.
     /// @return The ratio of the length of the opposite to that of the hypotenuse.
-    f32 sin(f32 x);
+    inline f32 sin(f32 x) {
+        return JMASinRadian(x);
+    }
+
+    /// @brief Computes the tangent of a number, in radians.
+    /// @param x The number of radians to evaluate.
+    /// @return The ratio of the length of the opposite to that of the adjacent.
+    inline f32 tan(f32 x) {
+        return sin(x) / cos(x);
+    }
 
     /// @brief Computes the cosine of a number, in degrees.
     /// @param x The number of degrees to evaluate.
     /// @return The ratio of the length of the adjacent to that of the hypotenuse.
-    f32 cosDegree(f32 x);
+    inline f32 cosDegree(f32 x) {
+        return JMACosDegree(x);
+    }
 
     /// @brief Computes the sine of a number, in degrees.
     /// @param x The number of degrees to evaluate.
     /// @return The ratio of the length of the opposite to that of the hypotenuse.
-    f32 sinDegree(f32 x);
+    inline f32 sinDegree(f32 x) {
+        return JMASinDegree(x);
+    }
+
+    /// @brief Computes the tangent of a number, in degrees.
+    /// @param x The number of degrees to evaluate.
+    /// @return The ratio of the length of the opposite to that of the adjacent.
+    inline f32 tanDegree(f32 x) {
+        return sinDegree(x) / cosDegree(x);
+    }
 
     /// @brief Compares two numbers for the smallest value.
     /// @param a The first number to evaluate.
     /// @param b The second number to evaluate.
     /// @retval `a` if less than `b`.
     /// @retval `b` if less than or equal to `a`.
-    f32 min(f32 a, f32 b);
+    inline f32 min(f32 a, f32 b) {
+        a = a >= b ? b : a;
+        return a;
+    }
+
+    inline s32 min(s32 a, s32 b) {
+        a = a >= b ? b : a;
+        return a;
+    }
 
     /// @brief Compares two numbers for the largest value.
     /// @param a The first number to evaluate.
     /// @param b The second number to evaluate.
     /// @retval `a` if greater than or equal to `b`.
     /// @retval `b` if greater than `a`.
-    f32 max(f32 a, f32 b);
+    inline f32 max(f32 a, f32 b) {
+        a = a >= b ? a : b;
+        return a;
+    }
+
+    inline s32 max(s32 a, s32 b) {
+        a = a >= b ? a : b;
+        return a;
+    }
 
     /// @brief Restricts a number to an interval.
     /// @param x The number to evaluate.
@@ -433,7 +482,18 @@ namespace MR {
     /// @retval `min` if the number is less than or equal to `min`.
     /// @retval `max` if the number is greater than or equal to `max`.
     /// @retval `x` if the number is greater than `min` and less than `max`.
-    f32 clamp(f32 x, f32 min, f32 max);
+    inline f32 clamp(f32 x, f32 min, f32 max) {
+        f32 ret;
+        if (x < min) {
+            ret = min;
+        } else if (x > max) {
+            ret = max;
+        } else {
+            ret = x;
+        }
+
+        return ret;
+    }
 
     /// @brief Restricts an integer to an interval.
     /// @param x The integer to evaluate.
@@ -442,13 +502,25 @@ namespace MR {
     /// @retval `min` if the integer is less than or equal to `min`.
     /// @retval `max` if the integer is greater than or equal to `max`.
     /// @retval `x` if the integer is greater than `min` and less than `max`.
-    s32 clamp(s32 x, s32 min, s32 max);
+    inline s32 clamp(s32 x, s32 min, s32 max) {
+        if (x < min) {
+            return min;
+        }
+
+        if (x > max) {
+            return max;
+        }
+
+        return x;
+    }
 
     /// @brief Restricts a number to the unit interval.
     /// @param[in,out] pX A pointer to the number to evaluate and initialize.
-    void clamp01(f32* pX);  // { *pX = *pX < 0.0f ? 0.0f : *pX > 1.0f ? 1.0f : *pX; }
+    inline void clamp01(f32* pX) {
+        *pX = *pX < 0.0f ? 0.0f : *pX > 1.0f ? 1.0f : *pX;
+    }
 
-    void clampBoth(f32* value, f32 min, f32 max);
+    inline void clampBoth(f32* value, f32 min, f32 max);
 
     inline f32 repeat(f32 value, f32 min, f32 max) {
         return min + (f32)fmod(max + (value - min), max);
@@ -460,6 +532,14 @@ namespace MR {
 
     inline f32 repeatDegree(f32 value) {
         return repeat(value, 0.0f, 360.0f);
+    }
+
+    inline f32 negateIfLessZero(f32 val) {
+        if (val < 0.0f) {
+            val = -val;
+        }
+
+        return val;
     }
 
 #ifdef __MWERKS__

@@ -99,8 +99,9 @@ BigBubble::BigBubble(const char* pName)
     : LiveActor(pName), mSurface(nullptr), mMoveLimitter(nullptr), mHost(nullptr), mRider(nullptr), mMergeBubble(nullptr), mBubbleQuat(0, 0, 0, 1),
       mRiderQuat(0, 0, 0, 1), mRiderPos(0.0f, 0.0f, 0.0f), mSpawnPosition(0.0f, 0.0f, 0.0f), _18C(0.0f, 0.0f, 0.0f), mPointerPos(0.0f, 0.0f, 0.0f),
       _1A4(0.0f, 0.0f, 0.0f), mMoment(0.0f, 0.0f, 0.0f), mCoriolisAccel(1.0f, 0.0f, 0.0f), mInterpolateTime(0), mBlowForce(0), _200(0),
-      mReduceVolumeTimer(0), _208(0), mMergeIndex(-1), mShapeType(-1), _214(0), mAppearRadius(1.0f), mVolume(1.0f), _220(0.0f), mBinderRadius(0.0f),
-      mWarningColor(255, 0, 0, 0), _22C(false), _22D(false), mIsHidden(false), _22F(false), mIsBroken(false), mIsShrinkable(true), mIsAttached(true) {
+      mReduceVolumeTimer(0), _208(0), mMergeIndex(-1), mShapeType(-1), _214(0), mAppearRadius(1.0f), mVolume(1.0f), mDrawZ(0.0f), mBinderRadius(0.0f),
+      mWarningColor(255, 0, 0, 0), mIsObstruct(false), _22D(false), mIsHidden(false), mIsExitLimitter(false), mIsBroken(false), mIsShrinkable(true),
+      mIsAttached(true) {
     mSurface = new OctahedronBezierSurface(3);
     mEffectMtx.identity();
     mBaseMtx.identity();
@@ -153,7 +154,7 @@ void BigBubble::makeActorAppeared() {
 
     mMergeIndex = -1;
     mMergeBubble = nullptr;
-    _22F = false;
+    mIsExitLimitter = false;
     mIsBroken = false;
 }
 
@@ -220,7 +221,7 @@ void BigBubble::calcAnim() {
     }
 
     f32 dot = MR::getCamZdir().dot(mPosition);
-    _220 = dot + mScale.x;
+    mDrawZ = dot + mScale.x;
 }
 
 void BigBubble::draw() const {
@@ -230,7 +231,7 @@ void BigBubble::draw() const {
     }
 }
 
-void BigBubble::generate(const TVec3f& rPos, const TVec3f& rUp, f32 volume, bool b, s32 actionType, s32 shapeType,
+void BigBubble::generate(const TVec3f& rPos, const TVec3f& rUp, f32 volume, bool isObstruct, s32 actionType, s32 shapeType,
                          const BigBubbleMoveLimitter* pLimitter) {
     setShapeType(shapeType);
     setActionType(actionType);
@@ -242,7 +243,7 @@ void BigBubble::generate(const TVec3f& rPos, const TVec3f& rUp, f32 volume, bool
         mMoveLimitter->limitPosition(&mPosition, getSize());
     }
 
-    _22C = b;
+    mIsObstruct = isObstruct;
     mAppearRadius = getRadius(volume);
 
     resetDeformVelocity();
@@ -548,7 +549,7 @@ bool BigBubble::tryBreak() {
         breakBubble = true;
     }
 
-    if (breakBubble || _22F) {
+    if (breakBubble || mIsExitLimitter) {
         setNerve(&NrvBigBubble::BigBubbleNrvBreak::sInstance);
         return true;
     }
@@ -557,7 +558,7 @@ bool BigBubble::tryBreak() {
 }
 
 bool BigBubble::tryAutoBreak() {
-    if (!_22C && MR::isGreaterStep(this, sAutoBreakTime) || _22F) {
+    if (!mIsObstruct && MR::isGreaterStep(this, sAutoBreakTime) || mIsExitLimitter) {
         if (mRider != nullptr) {
             MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
             mRider = nullptr;
@@ -657,7 +658,7 @@ void BigBubble::exeWait() {
 
     addCoriolisAccel();
 
-    if (_22C) {
+    if (mIsObstruct) {
         MR::zeroVelocity(this);
     } else {
         updateNormalVelocity();
@@ -950,10 +951,10 @@ bool BigBubble::addAccelPointing(s32 padChannel) {
 void BigBubble::doMoveLimit() {
     if (mMoveLimitter != nullptr) {
         if (mMoveLimitter->limitPosition(&mPosition, getSize())) {
-            _22F = true;
+            mIsExitLimitter = true;
         }
         if (mMoveLimitter->limitVelocity(&mVelocity, mPosition, getSize())) {
-            _22F = true;
+            mIsExitLimitter = true;
         }
     }
 }

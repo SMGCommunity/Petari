@@ -1,15 +1,17 @@
 # main/Game/Enemy/JumpGuarder
 
+**Source Path:** `src/Game/Enemy/JumpGuarder.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__11JumpEmitterFPCc` | `0x800FF3A0` | :x: (0.0%) |
-| `kill__11JumpEmitterFv` | `0x800FF40C` | :x: (0.0%) |
-| `initEventCamera__11JumpEmitterFRC12JMapInfoIter` | `0x800FF440` | :x: (0.0%) |
-| `startEventCamera__11JumpEmitterFv` | `0x800FF4CC` | :x: (0.0%) |
-| `updateEventCamera__11JumpEmitterFv` | `0x800FF520` | :x: (0.0%) |
-| `endEventCamera__11JumpEmitterFv` | `0x800FF5D8` | :x: (0.0%) |
+| `__ct__11JumpEmitterFPCc` | `0x800FF3A0` | :white_check_mark: (100.0%) |
+| `kill__11JumpEmitterFv` | `0x800FF40C` | :white_check_mark: (100.0%) |
+| `initEventCamera__11JumpEmitterFRC12JMapInfoIter` | `0x800FF440` | :white_check_mark: (100.0%) |
+| `startEventCamera__11JumpEmitterFv` | `0x800FF4CC` | :x: (77.1%) |
+| `updateEventCamera__11JumpEmitterFv` | `0x800FF520` | :white_check_mark: (100.0%) |
+| `endEventCamera__11JumpEmitterFv` | `0x800FF5D8` | :white_check_mark: (100.0%) |
 | `updateRotate__11JumpEmitterFv` | `0x800FF604` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__11JumpGuarderFUlP9HitSensorP9HitSensor` | `0x800FF7CC` | :x: (0.0%) |
 | `receiveOtherMsg__11JumpGuarderFUlP9HitSensorP9HitSensor` | `0x800FF8E0` | :x: (0.0%) |
@@ -26,7 +28,7 @@
 | `exeOpen__11JumpGuarderFv` | `0x801000A4` | :x: (0.0%) |
 | `exeClose__11JumpGuarderFv` | `0x801004AC` | :x: (0.0%) |
 | `exeInter__11JumpGuarderFv` | `0x8010052C` | :x: (0.0%) |
-| `__ct__11JumpGuarderFPCc` | `0x801005AC` | :x: (0.0%) |
+| `__ct__11JumpGuarderFPCc` | `0x801005AC` | :x: (57.4%) |
 | `init__11JumpGuarderFRC12JMapInfoIter` | `0x80100610` | :x: (0.0%) |
 | `__ct__15JumpGuarderBabyFv` | `0x8010093C` | :x: (0.0%) |
 | `__dt__15JumpGuarderBabyFv` | `0x80100980` | :x: (0.0%) |
@@ -34,7 +36,7 @@
 | `enableAttack__11JumpGuarderFv` | `0x80100B1C` | :x: (0.0%) |
 | `isHit__11JumpGuarderCFPC9LiveActor` | `0x80100BA8` | :x: (0.0%) |
 | `enableGroupAttack__2MRFP9LiveActorff` | `0x80100BE4` | :x: (0.0%) |
-| `__dt__11JumpGuarderFv` | `0x80100CE4` | :x: (0.0%) |
+| `__dt__11JumpGuarderFv` | `0x80100CE4` | :white_check_mark: (100.0%) |
 | `__sinit_\JumpGuarder_cpp` | `0x80100D3C` | :x: (0.0%) |
 | `__ct__Q214NrvJumpGuarder18JumpGuarderNrvHideFv` | `0x80100DB8` | :x: (0.0%) |
 | `__ct__Q214NrvJumpGuarder16JumpGuarderNrvUpFv` | `0x80100DC8` | :x: (0.0%) |

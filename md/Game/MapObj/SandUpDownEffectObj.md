@@ -1,12 +1,14 @@
 # main/Game/MapObj/SandUpDownEffectObj
 
+**Source Path:** `src/Game/MapObj/SandUpDownEffectObj.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `findLineCheckParamData__33@unnamed@SandUpDownEffectObj_cpp@FPCc` | `0x80221104` | :x: (0.0%) |
 | `isNotGroundCodeNoStampSand__33@unnamed@SandUpDownEffectObj_cpp@FPC8Triangle` | `0x80221178` | :x: (0.0%) |
-| `__ct__19SandUpDownEffectObjFPCc` | `0x802211A0` | :x: (0.0%) |
+| `__ct__19SandUpDownEffectObjFPCc` | `0x802211A0` | :x: (54.8%) |
 | `init__19SandUpDownEffectObjFRC12JMapInfoIter` | `0x80221204` | :x: (0.0%) |
 | `exeFallingRock__19SandUpDownEffectObjFv` | `0x802213E0` | :x: (0.0%) |
 | `exeFallingRockAndSmoke__19SandUpDownEffectObjFv` | `0x80221498` | :x: (0.0%) |
@@ -31,4 +33,4 @@
 | `Functor<19SandUpDownEffectObj>__2MRFP19SandUpDownEffectObjM19SandUpDownEffectObjFPCvPv_v_Q22MR65FunctorV0M<P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v>` | `0x80221888` | :x: (0.0%) |
 | `__cl__Q22MR65FunctorV0M<P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v>CFv` | `0x802218C8` | :x: (0.0%) |
 | `clone__Q22MR65FunctorV0M<P19SandUpDownEffectObj,M19SandUpDownEffectObjFPCvPv_v>CFP7JKRHeap` | `0x802218F8` | :x: (0.0%) |
-| `__dt__19SandUpDownEffectObjFv` | `0x80221960` | :x: (0.0%) |
+| `__dt__19SandUpDownEffectObjFv` | `0x80221960` | :white_check_mark: (100.0%) |

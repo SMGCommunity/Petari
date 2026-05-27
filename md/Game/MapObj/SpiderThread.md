@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__12SpiderThreadFPCc` | `0x802300FC` | :white_check_mark: (100.0%) |
 | `init__12SpiderThreadFRC12JMapInfoIter` | `0x80230228` | :white_check_mark: (100.0%) |
-| `initThread__12SpiderThreadFRCQ29JGeometry8TVec3<f>` | `0x8023022C` | :white_check_mark: (100.0%) |
+| `initThread__12SpiderThreadFRCQ29JGeometry8TVec3<f>` | `0x8023022C` | :x: (88.9%) |
 | `movement__12SpiderThreadFv` | `0x80230378` | :white_check_mark: (100.0%) |
 | `draw__12SpiderThreadCFv` | `0x802304F8` | :white_check_mark: (100.0%) |
 | `startActorBind__12SpiderThreadFP9LiveActorPPCQ29JGeometry8TVec3<f>PPCQ29JGeometry8TVec3<f>PPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l` | `0x80230594` | :white_check_mark: (100.0%) |

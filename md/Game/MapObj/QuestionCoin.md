@@ -1,10 +1,12 @@
 # main/Game/MapObj/QuestionCoin
 
+**Source Path:** `src/Game/MapObj/QuestionCoin.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__12QuestionCoinFPCc` | `0x80216DA8` | :x: (0.0%) |
+| `__ct__12QuestionCoinFPCc` | `0x80216DA8` | :x: (35.0%) |
 | `init__12QuestionCoinFRC12JMapInfoIter` | `0x80216E4C` | :x: (0.0%) |
 | `initAfterPlacement__12QuestionCoinFv` | `0x8021705C` | :x: (0.0%) |
 | `appear__12QuestionCoinFv` | `0x80217314` | :x: (0.0%) |
@@ -28,4 +30,4 @@
 | `execute__Q215NrvQuestionCoin12HostTypeWaitCFP5Spine` | `0x80217AF0` | :x: (0.0%) |
 | `__cl__Q22MR51FunctorV0M<P12QuestionCoin,M12QuestionCoinFPCvPv_v>CFv` | `0x80217AF4` | :x: (0.0%) |
 | `clone__Q22MR51FunctorV0M<P12QuestionCoin,M12QuestionCoinFPCvPv_v>CFP7JKRHeap` | `0x80217B24` | :x: (0.0%) |
-| `__dt__12QuestionCoinFv` | `0x80217B8C` | :x: (0.0%) |
+| `__dt__12QuestionCoinFv` | `0x80217B8C` | :white_check_mark: (100.0%) |

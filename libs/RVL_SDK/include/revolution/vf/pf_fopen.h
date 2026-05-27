@@ -3,6 +3,6 @@
 
 #include <revolution/types.h>
 
-struct PF_FILE * VFipf2_fopen(const char *path, const char *mode);
+struct PF_FILE* VFipf2_fopen(const s8* path, const s8* mode);
 
 #endif

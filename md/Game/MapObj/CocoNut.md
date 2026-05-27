@@ -33,7 +33,7 @@
 | `tryPushedFromActor__7CocoNutFP9HitSensorP9HitSensor` | `0x801C4F2C` | :white_check_mark: (100.0%) |
 | `reviseFrontVec__7CocoNutFv` | `0x801C5088` | :x: (100.0%) |
 | `statusToWait__7CocoNutFv` | `0x801C51C8` | :white_check_mark: (100.0%) |
-| `tryMoveEnd__7CocoNutFv` | `0x801C5278` | :x: (92.9%) |
+| `tryMoveEnd__7CocoNutFv` | `0x801C5278` | :white_check_mark: (100.0%) |
 | `tryDisappear__7CocoNutFv` | `0x801C5360` | :white_check_mark: (100.0%) |
 | `isValidPushedFromPlayer__7CocoNutCFPC9HitSensorPC9HitSensor` | `0x801C5400` | :white_check_mark: (100.0%) |
 | `calcHitSpeedAndFrontVec__7CocoNutCFPfPfPQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801C5528` | :x: (95.6%) |

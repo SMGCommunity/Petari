@@ -1,10 +1,12 @@
 # main/Game/Map/SphereSelectorHandle
 
+**Source Path:** `src/Game/Map/SphereSelectorHandle.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__20SphereSelectorHandleFPCc` | `0x8019D404` | :x: (0.0%) |
+| `__ct__20SphereSelectorHandleFPCc` | `0x8019D404` | :x: (29.8%) |
 | `init__20SphereSelectorHandleFRC12JMapInfoIter` | `0x8019D4C4` | :x: (0.0%) |
 | `appear__20SphereSelectorHandleFv` | `0x8019D564` | :x: (0.0%) |
 | `isPointing__20SphereSelectorHandleCFv` | `0x8019D64C` | :x: (0.0%) |
@@ -32,7 +34,7 @@
 | `exeGalaxyConfirmStart__20SphereSelectorHandleFv` | `0x8019E21C` | :x: (0.0%) |
 | `exeGalaxyConfirmCancel__20SphereSelectorHandleFv` | `0x8019E284` | :x: (0.0%) |
 | `exeIdleEndForFileSelect__20SphereSelectorHandleFv` | `0x8019E330` | :x: (0.0%) |
-| `__dt__20SphereSelectorHandleFv` | `0x8019E384` | :x: (0.0%) |
+| `__dt__20SphereSelectorHandleFv` | `0x8019E384` | :white_check_mark: (100.0%) |
 | `__sinit_\SphereSelectorHandle_cpp` | `0x8019E3E0` | :x: (0.0%) |
 | `__ct__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvWaitFv` | `0x8019E454` | :x: (0.0%) |
 | `__ct__Q223NrvSphereSelectorHandle27SphereSelectorHandleNrvHoldFv` | `0x8019E464` | :x: (0.0%) |

@@ -1,5 +1,7 @@
 # main/Game/MapObj/ElectricRail
 
+**Source Path:** `src/Game/MapObj/ElectricRail.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -16,7 +18,7 @@
 | `drawShape__24ElectricRailShadowDrawerCFv` | `0x801D4080` | :x: (0.0%) |
 | `isDraw__24ElectricRailShadowDrawerCFv` | `0x801D4090` | :x: (0.0%) |
 | `drawShadowVolumeShape__24ElectricRailShadowDrawerCFP21ElectricRailSeparatorl` | `0x801D4098` | :x: (0.0%) |
-| `__ct__12ElectricRailFPCc` | `0x801D4380` | :x: (0.0%) |
+| `__ct__12ElectricRailFPCc` | `0x801D4380` | :x: (49.4%) |
 | `init__12ElectricRailFRC12JMapInfoIter` | `0x801D43F4` | :x: (0.0%) |
 | `initAfterPlacement__12ElectricRailFv` | `0x801D45D8` | :x: (0.0%) |
 | `draw__12ElectricRailCFv` | `0x801D4660` | :x: (0.0%) |
@@ -51,4 +53,4 @@
 | `__cl__Q22MR51FunctorV0M<P12ElectricRail,M12ElectricRailFPCvPv_v>CFv` | `0x801D5930` | :x: (0.0%) |
 | `clone__Q22MR51FunctorV0M<P12ElectricRail,M12ElectricRailFPCvPv_v>CFP7JKRHeap` | `0x801D5960` | :x: (0.0%) |
 | `__dt__24ElectricRailShadowDrawerFv` | `0x801D59C8` | :x: (0.0%) |
-| `__dt__12ElectricRailFv` | `0x801D5A20` | :x: (0.0%) |
+| `__dt__12ElectricRailFv` | `0x801D5A20` | :white_check_mark: (100.0%) |

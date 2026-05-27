@@ -1,5 +1,7 @@
 # main/Game/Enemy/Hanachan
 
+**Source Path:** `src/Game/Enemy/Hanachan.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -29,7 +31,7 @@
 | `isHeadHitWall__13HanachanPartsFv` | `0x800F3540` | :x: (0.0%) |
 | `changeHeadAngry__13HanachanPartsFv` | `0x800F35C0` | :x: (0.0%) |
 | `changeHeadCalmDown__13HanachanPartsFv` | `0x800F3610` | :x: (0.0%) |
-| `__ct__8HanachanFPCc` | `0x800F3660` | :x: (0.0%) |
+| `__ct__8HanachanFPCc` | `0x800F3660` | :x: (48.9%) |
 | `init__8HanachanFRC12JMapInfoIter` | `0x800F36D4` | :x: (0.0%) |
 | `initAfterPlacement__8HanachanFv` | `0x800F3A80` | :x: (0.0%) |
 | `kill__8HanachanFv` | `0x800F3A88` | :x: (0.0%) |
@@ -60,7 +62,7 @@
 | `moveHeadToPlayer__8HanachanFff` | `0x800F5148` | :x: (0.0%) |
 | `moveBodyAlongHead__8HanachanFv` | `0x800F522C` | :x: (0.0%) |
 | `__dt__13HanachanPartsFv` | `0x800F53CC` | :x: (0.0%) |
-| `__dt__8HanachanFv` | `0x800F5428` | :x: (0.0%) |
+| `__dt__8HanachanFv` | `0x800F5428` | :white_check_mark: (100.0%) |
 | `__sinit_\Hanachan_cpp` | `0x800F5484` | :x: (0.0%) |
 | `__ct__Q211NrvHanachan20HanachanPartsNrvWalkFv` | `0x800F5598` | :x: (0.0%) |
 | `__ct__Q211NrvHanachan27HanachanPartsNrvBecomeAngryFv` | `0x800F55A8` | :x: (0.0%) |

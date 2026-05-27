@@ -1,10 +1,12 @@
 # main/Game/Enemy/BegomanLauncher
 
+**Source Path:** `src/Game/Enemy/BegomanLauncher.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__15BegomanLauncherFPCc` | `0x800D5338` | :x: (0.0%) |
+| `__ct__15BegomanLauncherFPCc` | `0x800D5338` | :x: (67.6%) |
 | `init__15BegomanLauncherFRC12JMapInfoIter` | `0x800D538C` | :x: (0.0%) |
 | `initAfterPlacement__15BegomanLauncherFv` | `0x800D5728` | :x: (0.0%) |
 | `kill__15BegomanLauncherFv` | `0x800D572C` | :x: (0.0%) |
@@ -29,4 +31,4 @@
 | `Functor<15BegomanLauncher>__2MRFP15BegomanLauncherM15BegomanLauncherFPCvPv_v_Q22MR57FunctorV0M<P15BegomanLauncher,M15BegomanLauncherFPCvPv_v>` | `0x800D5CF0` | :x: (0.0%) |
 | `__cl__Q22MR57FunctorV0M<P15BegomanLauncher,M15BegomanLauncherFPCvPv_v>CFv` | `0x800D5D30` | :x: (0.0%) |
 | `clone__Q22MR57FunctorV0M<P15BegomanLauncher,M15BegomanLauncherFPCvPv_v>CFP7JKRHeap` | `0x800D5D60` | :x: (0.0%) |
-| `__dt__15BegomanLauncherFv` | `0x800D5DC8` | :x: (0.0%) |
+| `__dt__15BegomanLauncherFv` | `0x800D5DC8` | :white_check_mark: (100.0%) |

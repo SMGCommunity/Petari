@@ -1,10 +1,12 @@
 # main/Game/MapObj/SimpleBreakableObj
 
+**Source Path:** `src/Game/MapObj/SimpleBreakableObj.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__18SimpleBreakableObjFPCc` | `0x80225CA4` | :x: (0.0%) |
+| `__ct__18SimpleBreakableObjFPCc` | `0x80225CA4` | :x: (47.8%) |
 | `init__18SimpleBreakableObjFRC12JMapInfoIter` | `0x80225D1C` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__18SimpleBreakableObjFUlP9HitSensorP9HitSensor` | `0x80226040` | :x: (0.0%) |
 | `receiveMsgEnemyAttack__18SimpleBreakableObjFUlP9HitSensorP9HitSensor` | `0x8022615C` | :x: (0.0%) |
@@ -20,7 +22,7 @@
 | `exeTryStartDemo__18SimpleBreakableObjFv` | `0x802266EC` | :x: (0.0%) |
 | `exeDemo__18SimpleBreakableObjFv` | `0x80226760` | :x: (0.0%) |
 | `connectToScene__26SimpleBreakableIndirectObjFRC19MapObjActorInitInfo` | `0x802267EC` | :x: (0.0%) |
-| `__dt__18SimpleBreakableObjFv` | `0x802267F0` | :x: (0.0%) |
+| `__dt__18SimpleBreakableObjFv` | `0x802267F0` | :x: (95.7%) |
 | `__sinit_\SimpleBreakableObj_cpp` | `0x8022684C` | :x: (0.0%) |
 | `__ct__Q221NrvSimpleBreakableObj12HostTypeWaitFv` | `0x80226880` | :x: (0.0%) |
 | `__ct__Q221NrvSimpleBreakableObj20HostTypeTryStartDemoFv` | `0x80226890` | :x: (0.0%) |

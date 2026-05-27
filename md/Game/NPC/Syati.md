@@ -1,11 +1,13 @@
 # main/Game/NPC/Syati
 
+**Source Path:** `src/Game/NPC/Syati.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `setEulerZ__Q29JGeometry9TQuat4<f>Ff` | `0x802892D0` | :x: (0.0%) |
-| `__ct__5SyatiFPCc` | `0x80289350` | :x: (0.0%) |
+| `__ct__5SyatiFPCc` | `0x80289350` | :x: (25.5%) |
 | `init__5SyatiFRC12JMapInfoIter` | `0x80289430` | :x: (0.0%) |
 | `exeWait__5SyatiFv` | `0x80289768` | :x: (0.0%) |
 | `exeFadeoutBeforeTalk__5SyatiFv` | `0x8028980C` | :x: (0.0%) |
@@ -91,4 +93,4 @@
 | `__dt__29JointControlDelegator<5Syati>Fv` | `0x8028B634` | :x: (0.0%) |
 | `calcJointMatrix__29JointControlDelegator<5Syati>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x8028B674` | :x: (0.0%) |
 | `calcJointMatrixAfterChild__29JointControlDelegator<5Syati>FPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RC19JointControllerInfo` | `0x8028B6DC` | :x: (0.0%) |
-| `__dt__5SyatiFv` | `0x8028B744` | :x: (0.0%) |
+| `__dt__5SyatiFv` | `0x8028B744` | :white_check_mark: (100.0%) |

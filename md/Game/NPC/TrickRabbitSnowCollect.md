@@ -1,10 +1,12 @@
 # main/Game/NPC/TrickRabbitSnowCollect
 
+**Source Path:** `src/Game/NPC/TrickRabbitSnowCollect.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__22TrickRabbitSnowCollectFPCc` | `0x80297A28` | :x: (0.0%) |
+| `__ct__22TrickRabbitSnowCollectFPCc` | `0x80297A28` | :x: (52.7%) |
 | `init__22TrickRabbitSnowCollectFRC12JMapInfoIter` | `0x80297A94` | :x: (0.0%) |
 | `initRabbits__22TrickRabbitSnowCollectFRC12JMapInfoIter` | `0x80297BC8` | :x: (0.0%) |
 | `initTalk__22TrickRabbitSnowCollectFRC12JMapInfoIter` | `0x80297CB4` | :x: (0.0%) |
@@ -31,7 +33,7 @@
 | `noticeCaught__26TrickRabbitCollectListenerFP15TrickRabbitSnow` | `0x802986E4` | :x: (0.0%) |
 | `noticeAppear__26TrickRabbitCollectListenerFP15TrickRabbitSnow` | `0x802986EC` | :x: (0.0%) |
 | `noticeStart__26TrickRabbitCollectListenerFP15TrickRabbitSnow` | `0x802986F0` | :x: (0.0%) |
-| `__dt__22TrickRabbitSnowCollectFv` | `0x802986F4` | :x: (0.0%) |
+| `__dt__22TrickRabbitSnowCollectFv` | `0x802986F4` | :white_check_mark: (100.0%) |
 | `__sinit_\TrickRabbitSnowCollect_cpp` | `0x80298750` | :x: (0.0%) |
 | `__ct__Q228NrvTrickRabbitFreeRunCollect32TrickRabbitSnowCollectNrvTryDemoFv` | `0x802987EC` | :x: (0.0%) |
 | `__ct__Q228NrvTrickRabbitFreeRunCollect29TrickRabbitSnowCollectNrvWaitFv` | `0x802987FC` | :x: (0.0%) |

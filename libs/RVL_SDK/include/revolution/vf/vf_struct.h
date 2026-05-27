@@ -3,6 +3,25 @@
 
 #include "revolution/types.h"
 
+struct PR_BINHEADER {
+    // total size: 0x20
+    s8 signature[4];     // offset 0x0, size 0x4
+    u16 byteOrder;       // offset 0x4, size 0x2
+    u8 version[2];       // offset 0x6, size 0x2
+    u8 fileSize[4];      // offset 0x8, size 0x4
+    u16 headerSize;      // offset 0xC, size 0x2
+    u16 dataBlocks;      // offset 0xE, size 0x2
+    u8 volatile_memory;  // offset 0x10, size 0x1
+    u8 pad[15];          // offset 0x11, size 0xF
+};
+
+enum FatType {
+    FAT_12 = 0,
+    FAT_16 = 1,
+    FAT_32 = 2,
+    FAT_ERR = -1,
+};  // offset 0x0, size 0x4
+
 typedef struct PF_CURSOR {
     unsigned long position;
     unsigned long sector;
@@ -12,24 +31,19 @@ typedef struct PF_CURSOR {
 
 typedef struct PF_BPB {
     // total size: 0x38
-    unsigned short bytes_per_sector;      // offset 0x0, size 0x2
-    unsigned short num_reserved_sectors;  // offset 0x2, size 0x2
-    unsigned short num_root_dir_entries;  // offset 0x4, size 0x2
-    unsigned char sectors_per_cluster;    // offset 0x6, size 0x1
-    unsigned char num_FATs;               // offset 0x7, size 0x1
-    unsigned long total_sectors;          // offset 0x8, size 0x4
-    unsigned long sectors_per_FAT;        // offset 0xC, size 0x4
-    unsigned long root_dir_cluster;       // offset 0x10, size 0x4
-    unsigned short fs_info_sector;        // offset 0x14, size 0x2
-    unsigned short backup_boot_sector;    // offset 0x16, size 0x2
-    unsigned short ext_flags;             // offset 0x18, size 0x2
-    unsigned char media;                  // offset 0x1A, size 0x1
-    enum /* @enum$142pf_volume_c */ {
-        FAT_12 = 0,
-        FAT_16 = 1,
-        FAT_32 = 2,
-        FAT_ERR = -1,
-    } fat_type;                              // offset 0x1C, size 0x4
+    unsigned short bytes_per_sector;         // offset 0x0, size 0x2
+    unsigned short num_reserved_sectors;     // offset 0x2, size 0x2
+    unsigned short num_root_dir_entries;     // offset 0x4, size 0x2
+    unsigned char sectors_per_cluster;       // offset 0x6, size 0x1
+    unsigned char num_FATs;                  // offset 0x7, size 0x1
+    unsigned long total_sectors;             // offset 0x8, size 0x4
+    unsigned long sectors_per_FAT;           // offset 0xC, size 0x4
+    unsigned long root_dir_cluster;          // offset 0x10, size 0x4
+    unsigned short fs_info_sector;           // offset 0x14, size 0x2
+    unsigned short backup_boot_sector;       // offset 0x16, size 0x2
+    unsigned short ext_flags;                // offset 0x18, size 0x2
+    unsigned char media;                     // offset 0x1A, size 0x1
+    enum FatType fat_type;                   // offset 0x1C, size 0x4
     unsigned char log2_bytes_per_sector;     // offset 0x20, size 0x1
     unsigned char log2_sectors_per_cluster;  // offset 0x21, size 0x1
     unsigned char num_active_FATs;           // offset 0x22, size 0x1
@@ -354,7 +368,7 @@ typedef struct PF_VOLUME_SET {
     struct PF_VOLUME volumes[26];         // offset 0x48, size 0x27D00
 } PF_VOLUME_SET;
 
-typedef struct {
+typedef struct PF_CACHE_SETTING {
     // total size: 0x14
     PF_CACHE_PAGE* pages;             // offset 0x0, size 0x4
     unsigned char (*buffers)[512];    // offset 0x4, size 0x4
@@ -363,7 +377,8 @@ typedef struct {
     unsigned long num_fat_buf_size;   // offset 0xC, size 0x4
     unsigned long num_data_buf_size;  // offset 0x10, size 0x4
 } PF_CACHE_SETTING;
-typedef struct {
+
+typedef struct PF_DRV_TBL {
     // total size: 0xC
     void* p_part;             // offset 0x0, size 0x4
     PF_CACHE_SETTING* cache;  // offset 0x4, size 0x4
@@ -373,7 +388,7 @@ typedef struct {
 
 struct PF_VOLUME_SET VFipf_vol_set;
 
-typedef struct {
+typedef struct PF_DEV_INF {
     // total size: 0x10
     unsigned long cls;  // offset 0x0, size 0x4
     unsigned long ecl;  // offset 0x4, size 0x4
@@ -381,7 +396,7 @@ typedef struct {
     unsigned long spc;  // offset 0xC, size 0x4
 } PF_DEV_INF;
 
-typedef struct {
+typedef struct PF_STR {
     // total size: 0xC
     const signed char* p_head;  // offset 0x0, size 0x4
     const signed char* p_tail;  // offset 0x4, size 0x4
@@ -418,9 +433,9 @@ typedef struct PF_ENT_ITER {
 
 typedef struct PF_FILE_NAME_ITER {
     // total size: 0x8
-    const signed char * buf; // offset 0x0, size 0x4
-    unsigned short kind; // offset 0x4, size 0x2
-    unsigned short index; // offset 0x6, size 0x2
+    const signed char* buf;  // offset 0x0, size 0x4
+    unsigned short kind;     // offset 0x4, size 0x2
+    unsigned short index;    // offset 0x6, size 0x2
 } PF_FILE_NAME_ITER;
 
 typedef struct PF_SYSTEM_SET {
@@ -518,5 +533,47 @@ typedef struct PDM_MBR {
     unsigned long epbr_base_sector;          // offset 0x4, size 0x4
     struct PDM_PART_TBL partition_table[4];  // offset 0x8, size 0x50
 } PDM_MBR;
+
+typedef struct VF_DRIVE_INFO {
+    // total size: 0x14
+    u32 prf_file_size;      // offset 0x0, size 0x4
+    s32 last_device_error;  // offset 0x4, size 0x4
+    u32 fat_type;           // offset 0x8, size 0x4
+    u32 reserved_sec_num;   // offset 0xC, size 0x4
+    u32 root_ent_num;       // offset 0x10, size 0x4
+} VF_DRIVE_INFO;
+
+typedef struct VF_HANDLE_DEVICE {
+    // total size: 0x10
+    u32 status;     // offset 0x0, size 0x4
+    u32 err;        // offset 0x4, size 0x4
+    u32 type;       // offset 0x8, size 0x4
+    u32 sync_mode;  // offset 0xC, size 0x4
+} VF_HANDLE_DEVICE;
+
+typedef struct VF_HANDLE_CACHE {
+    // total size: 0x10
+    struct MEMiHeapHead* heap_handle;       // offset 0x0, size 0x4
+    u32 cache_pages;                        // offset 0x4, size 0x4
+    struct PF_CACHE_PAGE* pf_cache_page_p;  // offset 0x8, size 0x4
+    u8 (*pf_cache_buf_p)[512];              // offset 0xC, size 0x4
+} VF_HANDLE_CACHE;
+
+typedef struct VF_HANDLE_DRIVE {
+    // total size: 0x13C
+    void* file_p;                          // offset 0x0, size 0x4
+    struct PDM_DISK* pf_disk_p;            // offset 0x4, size 0x4
+    struct PF_DRV_TBL pf_drv;              // offset 0x8, size 0xC
+    struct PDM_PARTITION* pf_part_p;       // offset 0x14, size 0x4
+    struct VF_HANDLE_CACHE cache;          // offset 0x18, size 0x10
+    struct PF_CACHE_SETTING pf_cache_set;  // offset 0x28, size 0x14
+    u8 pf_filename[255];                   // offset 0x3C, size 0xFF
+} VF_HANDLE_DRIVE;
+
+typedef struct VF_HANDLE_TYPE {
+    // total size: 0x140
+    struct VF_HANDLE_DEVICE* device_p;  // offset 0x0, size 0x4
+    struct VF_HANDLE_DRIVE drive;       // offset 0x4, size 0x13C
+} VF_HANDLE_TYPE;
 
 #endif  // VF_STRUCT_H

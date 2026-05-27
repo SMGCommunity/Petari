@@ -27,7 +27,11 @@ void setTextBoxHorizontalPositionRecursive(LayoutActor* pActor, const char* pPan
 namespace {
     void showPaneRecursive(nw4r::lyt::Pane*);
     void hidePaneRecursive(nw4r::lyt::Pane*);
-    void initFrameCtrlReverse(J3DFrameCtrl*);
+    void initFrameCtrlReverse(J3DFrameCtrl* pFrameCtrl) {
+        pFrameCtrl->mAttribute = pFrameCtrl->EMode_RESET;
+        pFrameCtrl->setRate(-pFrameCtrl->mRate);
+        pFrameCtrl->setFrame(pFrameCtrl->mEnd);
+    }
     bool getTextDrawRectRecursive(nw4r::ut::Rect*, const nw4r::lyt::Pane*, bool);
     u32 getTextLineNumMaxRecursiveSub(const nw4r::lyt::Pane*);
 
@@ -103,6 +107,12 @@ namespace MR {
 
     void setTextBoxArgStringRecursive(LayoutActor* pActor, const char* pPaneName, const wchar_t* pMessage, s32 param4) {
         executeTextBoxRecursive(pActor, pPaneName, TextBoxRecursiveSetArgString(pMessage, param4));
+    }
+
+    void setPaneAlphaFloat(const LayoutActor* pActor, const char* pName, f32 f) {
+        f32 var = MR::clamp(f, 0.0f, 1.0f);
+        nw4r::lyt::Pane* pane = pActor->getLayoutManager()->getPane(pName);
+        pane->mAlpha = var * 255;
     }
 
     void setTextBoxArgGameMessageRecursive(LayoutActor* pActor, const char* pPaneName, const char* pMessageId, s32 param4) {

@@ -1,10 +1,12 @@
 # main/Game/Enemy/StringSpider
 
+**Source Path:** `src/Game/Enemy/StringSpider.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__12StringSpiderFPCc` | `0x801427AC` | :x: (0.0%) |
+| `__ct__12StringSpiderFPCc` | `0x801427AC` | :x: (37.6%) |
 | `getSearchToAttackTime__12StringSpiderFv` | `0x8014283C` | :x: (0.0%) |
 | `init__12StringSpiderFRC12JMapInfoIter` | `0x80142854` | :x: (0.0%) |
 | `initAfterPlacement__12StringSpiderFv` | `0x80142C38` | :x: (0.0%) |
@@ -45,7 +47,7 @@
 | `startSwingLevelSound__12StringSpiderFv` | `0x80144CE4` | :x: (0.0%) |
 | `__ct__18StringSpiderStringFPCc` | `0x80144DBC` | :x: (0.0%) |
 | `calcAndSetBaseMtx__18StringSpiderStringFv` | `0x80144E5C` | :x: (0.0%) |
-| `__dt__12StringSpiderFv` | `0x80144F6C` | :x: (0.0%) |
+| `__dt__12StringSpiderFv` | `0x80144F6C` | :white_check_mark: (100.0%) |
 | `__dt__18StringSpiderStringFv` | `0x80144FC8` | :x: (0.0%) |
 | `__sinit_\StringSpider_cpp` | `0x80145024` | :x: (0.0%) |
 | `__ct__Q215NrvStringSpider15HostTypeNrvWaitFv` | `0x801450B0` | :x: (0.0%) |

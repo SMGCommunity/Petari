@@ -1,12 +1,14 @@
 # main/Game/NPC/Rosetta
 
+**Source Path:** `src/Game/NPC/Rosetta.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__7RosettaFPCc` | `0x8028217C` | :x: (0.0%) |
 | `__dt__11FadeStarterFv` | `0x802821DC` | :x: (0.0%) |
-| `makeArchiveList__7RosettaFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x80282234` | :x: (0.0%) |
+| `makeArchiveList__7RosettaFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x80282234` | :x: (35.0%) |
 | `init__7RosettaFRC12JMapInfoIter` | `0x802822F0` | :x: (0.0%) |
 | `calcAndSetBaseMtx__7RosettaFv` | `0x80282718` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__7RosettaFUlP9HitSensorP9HitSensor` | `0x80282750` | :x: (0.0%) |

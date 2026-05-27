@@ -1,10 +1,12 @@
 # main/Game/MapObj/BlueStarCupsulePlanet
 
+**Source Path:** `src/Game/MapObj/BlueStarCupsulePlanet.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__21BlueStarCupsulePlanetFPCc` | `0x801B8E20` | :x: (0.0%) |
+| `__ct__21BlueStarCupsulePlanetFPCc` | `0x801B8E20` | :x: (62.1%) |
 | `init__21BlueStarCupsulePlanetFRC12JMapInfoIter` | `0x801B8E7C` | :x: (0.0%) |
 | `control__21BlueStarCupsulePlanetFv` | `0x801B9200` | :x: (0.0%) |
 | `startClipped__21BlueStarCupsulePlanetFv` | `0x801B9234` | :x: (0.0%) |
@@ -41,7 +43,7 @@
 | `Functor<21BlueStarCupsulePlanet>__2MRFP21BlueStarCupsulePlanetM21BlueStarCupsulePlanetFPCvPv_v_Q22MR69FunctorV0M<P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v>` | `0x801B9B24` | :x: (0.0%) |
 | `__cl__Q22MR69FunctorV0M<P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v>CFv` | `0x801B9B64` | :x: (0.0%) |
 | `clone__Q22MR69FunctorV0M<P21BlueStarCupsulePlanet,M21BlueStarCupsulePlanetFPCvPv_v>CFP7JKRHeap` | `0x801B9B94` | :x: (0.0%) |
-| `__dt__21BlueStarCupsulePlanetFv` | `0x801B9BFC` | :x: (0.0%) |
+| `__dt__21BlueStarCupsulePlanetFv` | `0x801B9BFC` | :white_check_mark: (100.0%) |
 | `releaseDistance__18GCaptureTargetableCFv` | `0x801B9C58` | :x: (0.0%) |
 | `canEndHold__18GCaptureTargetableCFv` | `0x801B9C60` | :x: (0.0%) |
 | `getPointableRange__18GCaptureTargetableCFv` | `0x801B9C68` | :x: (0.0%) |

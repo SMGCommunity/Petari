@@ -328,19 +328,45 @@ namespace MR {
     }
     */
 
-    // calcRotateZ
+    // Compiler refuses to cooperate, but mathematically this is correct
+    f32 calcRotateZ(const TVec3f& a1, const TVec3f& a2) {
+        TVec2f vec(a2.y - a1.y, a2.x - a1.x);
+        return 57.29578f * JMath::sAtanTable.atan2_(vec.x, vec.y);
+    }
 
     f32 calcDistanceXY(const TVec3f& rPos1, const TVec3f& rPos2) {
         f32 xDelta = rPos1.x - rPos2.x;
         f32 yDelta = rPos1.y - rPos2.y;
-
         return JGeometry::TUtil< f32 >::sqrt(xDelta * xDelta + yDelta * yDelta);
     }
 
-    // rotateVecDegree
-    // rotateVecDegree
-    // rotateVecDegree
-    // rotateVecDegree
+    void rotateVecDegree(f32* x, f32* y, f32 degree) {
+        f32 originalX = *x;
+        f32 originalY = *y;
+        f32 Sin = JMASinDegree(degree);
+        f32 Cos = JMACosDegree(degree);
+
+        *x = (Cos * originalX) - (Sin * originalY);
+        *y = (Sin * originalX) + (Cos * originalY);
+    }
+    void rotateVecDegree(TVec2f* pDst, f32 degree) {
+        rotateVecDegree(&pDst->x, &pDst->y, degree);
+    }
+
+    void rotateVecDegree(TVec3f* pDst, const TVec3f& rAxis, f32 degree) {
+        TRot3f rotation;
+        rotation.identity();
+        rotation.setRotate(rAxis, degree * PI_180);
+        rotation.mult(*pDst, *pDst);
+    }
+
+    void rotateVecDegree(TVec3f* pDst, const TVec3f& rSrc, const TVec3f& rAxis, f32 degree) {
+        TRot3f rotation;
+        rotation.identity();
+        rotation.setRotate(rAxis, degree * PI_180);
+        rotation.mult(rSrc, *pDst);
+    }
+
     // rotateVecRadian
     // rotateVecRadian
     // calcLocalVec
@@ -874,7 +900,13 @@ namespace MR {
         return __fabsf(1.0f - rVec.length()) <= tolerance;
     }
 
-    // setNan
+    // Matches with no consequences, but I am not exactly sure if *THIS* is what Nintendo would've done...
+    void setNan(TVec3f& rDst) {
+        JGeometry::TVec3< int >* tmp = (JGeometry::TVec3< int >*)&rDst;
+        tmp->x = -1;
+        tmp->y = -1;
+        tmp->z = -1;
+    }
 
     bool isNan(const TVec3f& rVec) {
         if (__fpclassifyf(rVec.x) == 1 || __fpclassifyf(rVec.y) == 1 || __fpclassifyf(rVec.z) == 1) {
@@ -906,6 +938,27 @@ namespace MR {
         pDst->z = pSrc.z * scale;
     }
 
-    // getRotatedAxisY
-    // getRotatedAxisZ
+    void getRotatedAxisY(TVec3f* pDst, const TVec3f& pSrc) {
+        f32 var = pSrc.x;
+        f32 CosX = JMACosDegree(var);
+        var = pSrc.y;
+        f32 CosY = JMACosDegree(var);
+        var = pSrc.z;
+        f32 CosZ = JMACosDegree(var);
+        var = pSrc.x;
+        f32 SinX = JMASinDegree(var);
+        var = pSrc.y;
+        f32 SinY = JMASinDegree(var);
+        var = pSrc.z;
+        f32 SinZ = JMASinDegree(var);
+
+        pDst->set((SinX * (CosZ * SinY)) - (SinZ * CosX), (SinX * (SinZ * SinY)) + (CosZ * CosX), CosY * SinX);
+    }
+
+    void getRotatedAxisZ(TVec3f* pDst, const TVec3f& pSrc) {
+        TVec3f vec(0.0f, 0.0f, 1.0f);
+        TMtx34f mtx;
+        MR::makeMtxTR(mtx.toMtxPtr(), 0.0f, 0.0f, 0.0f, pSrc.x, pSrc.y, pSrc.z);
+        PSMTXMultVec(mtx, &vec, pDst);
+    }
 };  // namespace MR

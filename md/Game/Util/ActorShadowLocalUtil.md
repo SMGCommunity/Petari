@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `getValue<b>__12JMapInfoIterCFPCcPb_b` | `0x803C5054` | :x: (0.0%) |
+| `getValue<b>__12JMapInfoIterCFPCcPb_b` | `0x803C5054` | :white_check_mark: (100.0%) |
 | `getShadowControllerCount__11ActorShadowFPC9LiveActor` | `0x803C50E4` | :white_check_mark: (100.0%) |
 | `getShadowController__11ActorShadowFPC9LiveActorUl` | `0x803C50EC` | :white_check_mark: (100.0%) |
 | `getShadowController__11ActorShadowFPC9LiveActorPCc` | `0x803C50F4` | :white_check_mark: (100.0%) |
@@ -21,8 +21,8 @@
 | `getJointNameFromCSV__11ActorShadowFPPCcRC12JMapInfoIter` | `0x803C5328` | :x: (0.0%) |
 | `getShadowTypeFromCSV__11ActorShadowFRC12JMapInfoIter` | `0x803C5390` | :x: (0.0%) |
 | `setUpShadowControlBaseMtxFromCSV__11ActorShadowFP16ShadowControllerP9LiveActorRC12JMapInfoIter` | `0x803C5420` | :x: (0.0%) |
-| `setUpShadowControlIsFollowScaleFromCSV__11ActorShadowFP16ShadowControllerRC12JMapInfoIter` | `0x803C55AC` | :x: (0.0%) |
-| `setUpShadowControlIsSyncShowFromCSV__11ActorShadowFP16ShadowControllerRC12JMapInfoIter` | `0x803C5610` | :x: (0.0%) |
+| `setUpShadowControlIsFollowScaleFromCSV__11ActorShadowFP16ShadowControllerRC12JMapInfoIter` | `0x803C55AC` | :white_check_mark: (100.0%) |
+| `setUpShadowControlIsSyncShowFromCSV__11ActorShadowFP16ShadowControllerRC12JMapInfoIter` | `0x803C5610` | :white_check_mark: (100.0%) |
 | `setUpShadowControlCalcCollisionFromCSV__11ActorShadowFP16ShadowControllerRC12JMapInfoIter` | `0x803C5674` | :x: (0.0%) |
 | `setUpShadowControlCalcGravityFromCSV__11ActorShadowFP16ShadowControllerRC12JMapInfoIter` | `0x803C5700` | :x: (0.0%) |
 | `setUpShadowControlFromCSV__11ActorShadowFP16ShadowControllerP9LiveActorRC12JMapInfoIter` | `0x803C57C0` | :white_check_mark: (100.0%) |

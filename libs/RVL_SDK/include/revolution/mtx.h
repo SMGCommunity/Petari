@@ -33,8 +33,8 @@ typedef f32 (*Mtx44Ptr)[4];
 typedef f32 Mtx33[3][3];
 typedef f32 (*Mtx3P)[3];
 
-#define MTXDegToRad(a) ((a) * 0.01745329252f)
-#define MTXRadToDeg(a) ((a) * 57.29577951f)
+#define MTXDegToRad(a) ((a)*0.01745329252f)
+#define MTXRadToDeg(a) ((a)*57.29577951f)
 
 #define MTXRowCol(m, r, c) ((m)[(r)][(c)])
 
@@ -61,6 +61,8 @@ void PSMTXRotRad(Mtx m, char axis, f32 rad);
 void PSMTXRotAxisRad(Mtx dst, const Vec*, f32);
 
 void PSMTXTrans(Mtx m, f32 xT, f32 yT, f32 zT);
+void PSMTX44Identity(Mtx44 m);
+void PSMTX44Copy(const Mtx44 m, Mtx44 dst);
 
 /* Paired Single Quaternion */
 void PSQUATMultiply(const Quaternion*, const Quaternion*, Quaternion*);

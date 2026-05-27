@@ -19,6 +19,7 @@ namespace MR {
 
     void stopStageBGM(u32);
     void unlockStageBGM();
+    void setNextStageBGM(const char*);
 
     void startLastStageBGM();
 
@@ -67,6 +68,8 @@ namespace MR {
     void setCubeBgmChangeInvalid();
     bool isCubeBgmChangeInvalid();
     void clearBgmQueue();
+
+    void setMicMtx(Mtx, s32);
 
     void startEventBGM(s32);
     void startAfterBossBGM();

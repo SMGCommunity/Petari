@@ -24,6 +24,7 @@ namespace MR {
     bool isPlayerRefuseTalk();
     bool isPlayerTeresaDisappear();
     bool isPlayerInAreaObj(const char*);
+    bool isPlayerTakingActor(const char*);
     TVec3f* getPlayerPos();
     TVec3f* getPlayerCenterPos();
     void getPlayerTakePos(TVec3f*);

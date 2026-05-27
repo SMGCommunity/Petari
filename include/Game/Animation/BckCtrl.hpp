@@ -3,11 +3,13 @@
 #include <revolution.h>
 
 class XanimePlayer;
+class ResourceHolder;
 
 class BckCtrlData {
 public:
     // some callers inline this and some do not
-    BckCtrlData() : _0(""), mPlayFrame(-1), mStartFrame(-1), mEndFrame(-1), mRepeatFrame(-1), mInterpole(-1), mLoopMode(0xff) {}
+    BckCtrlData() : _0(""), mPlayFrame(-1), mStartFrame(-1), mEndFrame(-1), mRepeatFrame(-1), mInterpole(-1), mLoopMode(0xff) {
+    }
 
     void operator=(const BckCtrlData&);
 
@@ -30,6 +32,8 @@ public:
 
 class BckCtrl {
 public:
+    BckCtrl(ResourceHolder*, const char*);
+
     BckCtrlData* find(const char*) const;
     void add(const BckCtrlData&);
     void overWrite(const BckCtrlData&);

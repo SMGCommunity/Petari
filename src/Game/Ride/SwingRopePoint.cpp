@@ -2,19 +2,20 @@
 #include "Game/Util/MathUtil.hpp"
 
 SwingRopePoint::SwingRopePoint(const TVec3f& rPos)
-    : mPosition(rPos), mVelocity(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f) {}
+    : mPosition(rPos), mVelocity(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f) {
+}
 
 void SwingRopePoint::addAccel(const TVec3f& rAccel) {
     mVelocity.add(rAccel);
 }
 
-bool SwingRopePoint::restrict(const TVec3f& rAnchor, f32 length, const TVec3f* pVec) {
+bool SwingRopePoint::restrict(const TVec3f& rAnchor, f32 length, const TVec3f* pVel) {
     TVec3f nextPosDiff(mPosition);
     nextPosDiff.add(mVelocity);
     nextPosDiff.sub(rAnchor);
 
-    if (pVec != nullptr) {
-        nextPosDiff.sub(*pVec);
+    if (pVel != nullptr) {
+        nextPosDiff.sub(*pVel);
     }
 
     TVec3f v2(nextPosDiff);

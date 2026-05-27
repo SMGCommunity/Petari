@@ -29,10 +29,10 @@ void JumpBeamer::control() {
     TMtx34f mtx;
     mtx.identity();
     MR::makeMtxTRS(mtx, TVec3f(0.0f, 0.0f, 0.0f), head->mRotation, head->mScale);
-    JMath::gekko_ps_copy12(&_90, _8C);
+    _90.setInline(_8C);
     TMtx34f v5;
     v5.concat(_90, mtx);
-    JMath::gekko_ps_copy12(&_90, &v5);
+    _90.setInline(v5);
     updateEventCamera();
 }
 

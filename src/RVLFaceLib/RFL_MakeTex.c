@@ -1,8 +1,8 @@
 #include <RVLFaceLibInternal.h>
 #include <cmath>
+#include <revolution/gx/GXVert.h>
 
-void RFLiSetupCopyTex(GXTexFmt fmt, u16 width, u16 height, void* buffer,
-                      GXColor clearColor) {
+void RFLiSetupCopyTex(GXTexFmt fmt, u16 width, u16 height, void* buffer, GXColor clearColor) {
     GXSetFog(GX_FOG_NONE, 1.0f, 1.0f, 0.0f, 0.0f, (GXColor){0, 0, 0, 0});
     GXSetColorUpdate(TRUE);
     GXSetAlphaUpdate(TRUE);
@@ -19,8 +19,7 @@ void RFLiSetupCopyTex(GXTexFmt fmt, u16 width, u16 height, void* buffer,
     GXPixModeSync();
 }
 
-void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
-                     RFLResolution resolution) {
+void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers, RFLResolution resolution) {
     int i;
     RFLiCharInfo infos[RFLExp_Max];
     RFLiFaceParts parts[RFLExp_Max];
@@ -147,12 +146,10 @@ void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
         infos[expr] = *info;
         infos[expr].eye.type = 48;
 
-        changeEyeRot = RFLi_EYE_ROT_OFFSET[info->eye.type] -
-                       RFLi_EYE_ROT_OFFSET[infos[expr].eye.type];
+        changeEyeRot = RFLi_EYE_ROT_OFFSET[info->eye.type] - RFLi_EYE_ROT_OFFSET[infos[expr].eye.type];
         if (changeEyeRot + (int)infos[expr].eye.rotate < 0) {
             infos[expr].eye.rotate = 0;
-        } else if (changeEyeRot + (int)infos[expr].eye.rotate >
-                   RFLi_MAX_EYE_ROTATE) {
+        } else if (changeEyeRot + (int)infos[expr].eye.rotate > RFLi_MAX_EYE_ROTATE) {
             infos[expr].eye.rotate = RFLi_MAX_EYE_ROTATE;
         } else {
             infos[expr].eye.rotate += changeEyeRot;
@@ -169,8 +166,7 @@ void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
         changeEyebrowRot = 2;
         if (changeEyebrowRot + (int)infos[expr].eyebrow.rotate < 0) {
             infos[expr].eyebrow.rotate = 0;
-        } else if (changeEyebrowRot + (int)infos[expr].eyebrow.rotate >
-                   RFLi_MAX_EYEBROW_ROTATE) {
+        } else if (changeEyebrowRot + (int)infos[expr].eyebrow.rotate > RFLi_MAX_EYEBROW_ROTATE) {
             infos[expr].eyebrow.rotate = RFLi_MAX_EYEBROW_ROTATE;
         } else {
             infos[expr].eyebrow.rotate += changeEyebrowRot;
@@ -179,8 +175,7 @@ void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
         changeEyeRot = 2;
         if (changeEyeRot + (int)infos[expr].eye.rotate < 0) {
             infos[expr].eye.rotate = 0;
-        } else if (changeEyeRot + (int)infos[expr].eye.rotate >
-                   RFLi_MAX_EYE_ROTATE) {
+        } else if (changeEyeRot + (int)infos[expr].eye.rotate > RFLi_MAX_EYE_ROTATE) {
             infos[expr].eye.rotate = RFLi_MAX_EYE_ROTATE;
         } else {
             infos[expr].eye.rotate += changeEyeRot;
@@ -199,8 +194,7 @@ void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
         changeEyebrowRot = -2;
         if (changeEyebrowRot + (int)infos[expr].eyebrow.rotate < 0) {
             infos[expr].eyebrow.rotate = 0;
-        } else if (changeEyebrowRot + (int)infos[expr].eyebrow.rotate >
-                   RFLi_MAX_EYEBROW_ROTATE) {
+        } else if (changeEyebrowRot + (int)infos[expr].eyebrow.rotate > RFLi_MAX_EYEBROW_ROTATE) {
             infos[expr].eyebrow.rotate = RFLi_MAX_EYEBROW_ROTATE;
         } else {
             infos[expr].eyebrow.rotate += changeEyebrowRot;
@@ -209,8 +203,7 @@ void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
         changeEyeRot = -2;
         if (changeEyeRot + (int)infos[expr].eye.rotate < 0) {
             infos[expr].eye.rotate = 0;
-        } else if (changeEyeRot + (int)infos[expr].eye.rotate >
-                   RFLi_MAX_EYE_ROTATE) {
+        } else if (changeEyeRot + (int)infos[expr].eye.rotate > RFLi_MAX_EYE_ROTATE) {
             infos[expr].eye.rotate = RFLi_MAX_EYE_ROTATE;
         } else {
             infos[expr].eye.rotate += changeEyeRot;
@@ -227,12 +220,10 @@ void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
         infos[expr].eyebrow.y -= 2;
         infos[expr].eye.type = 49;
 
-        changeEyeRot = RFLi_EYE_ROT_OFFSET[info->eye.type] -
-                       RFLi_EYE_ROT_OFFSET[infos[expr].eye.type];
+        changeEyeRot = RFLi_EYE_ROT_OFFSET[info->eye.type] - RFLi_EYE_ROT_OFFSET[infos[expr].eye.type];
         if (changeEyeRot + (int)infos[expr].eye.rotate < 0) {
             infos[expr].eye.rotate = 0;
-        } else if (changeEyeRot + (int)infos[expr].eye.rotate >
-                   RFLi_MAX_EYE_ROTATE) {
+        } else if (changeEyeRot + (int)infos[expr].eye.rotate > RFLi_MAX_EYE_ROTATE) {
             infos[expr].eye.rotate = RFLi_MAX_EYE_ROTATE;
         } else {
             infos[expr].eye.rotate += changeEyeRot;
@@ -246,12 +237,10 @@ void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
         infos[expr] = *info;
         infos[expr].eye.type = 26;
 
-        changeEyeRot = RFLi_EYE_ROT_OFFSET[info->eye.type] -
-                       RFLi_EYE_ROT_OFFSET[infos[expr].eye.type];
+        changeEyeRot = RFLi_EYE_ROT_OFFSET[info->eye.type] - RFLi_EYE_ROT_OFFSET[infos[expr].eye.type];
         if (changeEyeRot + (int)infos[expr].eye.rotate < 0) {
             infos[expr].eye.rotate = 0;
-        } else if (changeEyeRot + (int)infos[expr].eye.rotate >
-                   RFLi_MAX_EYE_ROTATE) {
+        } else if (changeEyeRot + (int)infos[expr].eye.rotate > RFLi_MAX_EYE_ROTATE) {
             infos[expr].eye.rotate = RFLi_MAX_EYE_ROTATE;
         } else {
             infos[expr].eye.rotate += changeEyeRot;
@@ -291,32 +280,27 @@ void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
         }
 
         if (*eyeTex[i] == NULL) {
-            *eyeTex[i] = RFLiLoadTexture(RFLiPartsTex_Eye, infos[i].eye.type,
-                                         *eyeBuf[i]);
+            *eyeTex[i] = RFLiLoadTexture(RFLiPartsTex_Eye, infos[i].eye.type, *eyeBuf[i]);
             DCStoreRange(*eyeBuf[i], eyeSize);
         }
 
         if (*mouthTex[i] == NULL) {
-            *mouthTex[i] = RFLiLoadTexture(RFLiPartsTex_Mouth,
-                                           infos[i].mouth.type, *mouthBuf[i]);
+            *mouthTex[i] = RFLiLoadTexture(RFLiPartsTex_Mouth, infos[i].mouth.type, *mouthBuf[i]);
             DCStoreRange(*mouthBuf[i], mouthSize);
         }
 
         if (eyebrowNormalTex == NULL) {
-            eyebrowNormalTex = RFLiLoadTexture(
-                RFLiPartsTex_Eyebrow, infos[i].eyebrow.type, eyebrowNormal);
+            eyebrowNormalTex = RFLiLoadTexture(RFLiPartsTex_Eyebrow, infos[i].eyebrow.type, eyebrowNormal);
             DCStoreRange(eyebrowNormal, eyebrowSize);
         }
 
         if (mustacheNormalTex == NULL) {
-            mustacheNormalTex = RFLiLoadTexture(
-                RFLiPartsTex_Mustache, infos[i].beard.mustache, mustacheNormal);
+            mustacheNormalTex = RFLiLoadTexture(RFLiPartsTex_Mustache, infos[i].beard.mustache, mustacheNormal);
             DCStoreRange(mustacheNormal, mustacheSize);
         }
 
         if (moleNormalTex == NULL) {
-            moleNormalTex = RFLiLoadTexture(RFLiPartsTex_Mole,
-                                            infos[i].mole.type, moleNormal);
+            moleNormalTex = RFLiLoadTexture(RFLiPartsTex_Mole, infos[i].mole.type, moleNormal);
             DCStoreRange(moleNormal, moleSize);
         }
 
@@ -463,11 +447,9 @@ void RFLiMakeTexture(const RFLiCharInfo* info, u8** buffers,
 void RFLiInitRFLTexture(RFLiTexObj* tobj) {
     RFLiTexture* tex = tobj->texture;
 
-    GXInitTexObj(&tobj->tobj, RFLiGetTexImage(tex), tex->width, tex->height,
-                 tex->format, GX_CLAMP, GX_CLAMP, FALSE);
-    GXInitTexObjLOD(&tobj->tobj, tex->minFilt, tex->magFilt, tex->minLOD,
-                    tex->maxLOD, tex->lodBias, tex->enableBiasClamp,
-                    tex->enableEdgeLOD, tex->enableMaxAniso);
+    GXInitTexObj(&tobj->tobj, RFLiGetTexImage(tex), tex->width, tex->height, tex->format, GX_CLAMP, GX_CLAMP, FALSE);
+    GXInitTexObjLOD(&tobj->tobj, tex->minFilt, tex->magFilt, tex->minLOD, tex->maxLOD, tex->lodBias, tex->enableBiasClamp, tex->enableEdgeLOD,
+                    tex->enableMaxAniso);
 }
 
 void RFLiSetup2DCameraAndParam(void) {
@@ -492,18 +474,13 @@ void RFLiSetup2DCameraAndParam(void) {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_S16, 8);
     GXSetNumChans(1);
-    GXSetChanCtrl(GX_COLOR0A0, FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL,
-                  GX_DF_NONE, 2);
+    GXSetChanCtrl(GX_COLOR0A0, FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, 2);
     GXSetNumTexGens(1);
     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, 0, 0x7D);
-    GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE,
-                          GX_CH_ALPHA);
-    GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED, GX_CH_RED, GX_CH_RED,
-                          GX_CH_ALPHA);
-    GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN,
-                          GX_CH_ALPHA);
-    GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE,
-                          GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP0, GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP1, GX_CH_RED, GX_CH_RED, GX_CH_RED, GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP2, GX_CH_GREEN, GX_CH_GREEN, GX_CH_GREEN, GX_CH_ALPHA);
+    GXSetTevSwapModeTable(GX_TEV_SWAP3, GX_CH_BLUE, GX_CH_BLUE, GX_CH_BLUE, GX_CH_ALPHA);
 }
 
 void RFLiSetTev4Mole(void) {
@@ -512,12 +489,9 @@ void RFLiSetTev4Mole(void) {
     GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0);
-    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
-                    GX_CA_TEXA);
-    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
-    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetTevColor(GX_TEVREG0, RFLi_MOLE_COLOR0);
 }
 
@@ -527,34 +501,23 @@ void RFLiSetTev4Mouth(u32 color) {
     GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP1, GX_TEV_SWAP1);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO);
-    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
-                    GX_CA_TEXA);
-    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
-    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
 
     GXSetTevSwapMode(GX_TEVSTAGE1, GX_TEV_SWAP3, GX_TEV_SWAP2);
     GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-    GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_C1, GX_CC_TEXC,
-                    GX_CC_CPREV);
-    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
-                    GX_CA_APREV);
-    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
-    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
+    GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_C1, GX_CC_TEXC, GX_CC_CPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV);
+    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
 
     GXSetTevSwapMode(GX_TEVSTAGE2, GX_TEV_SWAP2, GX_TEV_SWAP3);
     GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-    GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ZERO, GX_CC_ONE, GX_CC_TEXC,
-                    GX_CC_CPREV);
-    GXSetTevAlphaIn(GX_TEVSTAGE2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
-                    GX_CA_APREV);
-    GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
-    GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
+    GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ZERO, GX_CC_ONE, GX_CC_TEXC, GX_CC_CPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV);
+    GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
 
     GXSetTevColor(GX_TEVREG0, RFLi_MOUTH_COLOR0[color]);
     GXSetTevColor(GX_TEVREG1, RFLi_MOUTH_COLOR1[color]);
@@ -568,32 +531,21 @@ void RFLiSetTev4Eye(u32 color, u32 type) {
     GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP1, GX_TEV_SWAP1);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_C0, GX_CC_TEXC, GX_CC_ZERO);
-    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
-                    GX_CA_TEXA);
-    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
-    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetTevSwapMode(GX_TEVSTAGE1, GX_TEV_SWAP3, GX_TEV_SWAP3);
     GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-    GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_C1, GX_CC_TEXC,
-                    GX_CC_CPREV);
-    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
-                    GX_CA_APREV);
-    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
-    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
+    GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_C1, GX_CC_TEXC, GX_CC_CPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV);
+    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetTevSwapMode(GX_TEVSTAGE2, GX_TEV_SWAP2, GX_TEV_SWAP2);
     GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-    GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ZERO, GX_CC_ONE, GX_CC_TEXC,
-                    GX_CC_CPREV);
-    GXSetTevAlphaIn(GX_TEVSTAGE2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
-                    GX_CA_APREV);
-    GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
-    GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
+    GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ZERO, GX_CC_ONE, GX_CC_TEXC, GX_CC_CPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV);
+    GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
 
     switch (type) {
     case 9:
@@ -618,12 +570,9 @@ void RFLiSetTev4Eyebrow(u32 color) {
     GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0);
-    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
-                    GX_CA_TEXA);
-    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
-    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetTevColor(GX_TEVREG0, RFLi_EYEBROW_COLOR0[color]);
 }
 
@@ -632,50 +581,35 @@ void RFLiSetTev4Mustache(u32 color) {
     GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0);
-    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO,
-                    GX_CA_TEXA);
-    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
-    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1,
-                    GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_TEXA);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetTevColor(GX_TEVREG0, RFLi_BEARD_COLOR0[color]);
 }
 
-void RFLiSetFaceParts(const RFLiCharInfo* info, RFLiFaceParts* face,
-                      RFLi_MASKRSL resolution) {
+void RFLiSetFaceParts(const RFLiCharInfo* info, RFLiFaceParts* face, RFLi_MASKRSL resolution) {
     f32 eyeX = RFLi_TEX_EYE_BASE_X + RFLi_TEX_SCALE_X * info->eye.x;
-    f32 eyeY =
-        RFLi_TEX_EYE_BASE_Y + 1.1600001f * RFLi_TEX_SCALE_Y * info->eye.y;
+    f32 eyeY = RFLi_TEX_EYE_BASE_Y + 1.1600001f * RFLi_TEX_SCALE_Y * info->eye.y;
     f32 eyeW = RFLi_TEX_EYE_BASE_W * RFLi_TEX_SCALE2DIM(info->eye.scale);
     f32 eyeH = RFLi_TEX_EYE_BASE_H * RFLi_TEX_SCALE2DIM(info->eye.scale);
-    f32 eyeA = RFLi_TEX_ROTATE2ANG(info->eye.rotate +
-                                   RFLi_EYE_ROT_OFFSET[info->eye.type]);
+    f32 eyeA = RFLi_TEX_ROTATE2ANG(info->eye.rotate + RFLi_EYE_ROT_OFFSET[info->eye.type]);
 
     f32 eyebrowX = RFLi_TEX_EYEBROW_BASE_X + RFLi_TEX_SCALE_X * info->eyebrow.x;
-    f32 eyebrowY = RFLi_TEX_EYEBROW_BASE_Y +
-                   1.1600001f * RFLi_TEX_SCALE_Y * info->eyebrow.y;
-    f32 eyebrowW =
-        RFLi_TEX_EYEBROW_BASE_W * RFLi_TEX_SCALE2DIM(info->eyebrow.scale);
-    f32 eyebrowH =
-        RFLi_TEX_EYEBROW_BASE_H * RFLi_TEX_SCALE2DIM(info->eyebrow.scale);
-    f32 eyebrowA = RFLi_TEX_ROTATE2ANG(
-        info->eyebrow.rotate + RFLi_EYEBROW_ROT_OFFSET[info->eyebrow.type]);
+    f32 eyebrowY = RFLi_TEX_EYEBROW_BASE_Y + 1.1600001f * RFLi_TEX_SCALE_Y * info->eyebrow.y;
+    f32 eyebrowW = RFLi_TEX_EYEBROW_BASE_W * RFLi_TEX_SCALE2DIM(info->eyebrow.scale);
+    f32 eyebrowH = RFLi_TEX_EYEBROW_BASE_H * RFLi_TEX_SCALE2DIM(info->eyebrow.scale);
+    f32 eyebrowA = RFLi_TEX_ROTATE2ANG(info->eyebrow.rotate + RFLi_EYEBROW_ROT_OFFSET[info->eyebrow.type]);
 
-    f32 mouthY =
-        RFLi_TEX_MOUTH_BASE_Y + 1.1600001f * RFLi_TEX_SCALE_Y * info->mouth.y;
+    f32 mouthY = RFLi_TEX_MOUTH_BASE_Y + 1.1600001f * RFLi_TEX_SCALE_Y * info->mouth.y;
     f32 mouthW = RFLi_TEX_MOUTH_BASE_W * RFLi_TEX_SCALE2DIM(info->mouth.scale);
     f32 mouthH = RFLi_TEX_MOUTH_BASE_H * RFLi_TEX_SCALE2DIM(info->mouth.scale);
 
-    f32 mustacheY = RFLi_TEX_MUSTACHE_BASE_Y +
-                    1.1600001f * RFLi_TEX_SCALE_Y * info->beard.y;
-    f32 mustacheW =
-        RFLi_TEX_MUSTACHE_BASE_W * RFLi_TEX_SCALE2DIM(info->beard.scale);
-    f32 mustacheH =
-        RFLi_TEX_MUSTACHE_BASE_H * RFLi_TEX_SCALE2DIM(info->beard.scale);
+    f32 mustacheY = RFLi_TEX_MUSTACHE_BASE_Y + 1.1600001f * RFLi_TEX_SCALE_Y * info->beard.y;
+    f32 mustacheW = RFLi_TEX_MUSTACHE_BASE_W * RFLi_TEX_SCALE2DIM(info->beard.scale);
+    f32 mustacheH = RFLi_TEX_MUSTACHE_BASE_H * RFLi_TEX_SCALE2DIM(info->beard.scale);
 
     f32 moleX = RFLi_TEX_MOLE_BASE_X + 2.0f * RFLi_TEX_SCALE_X * info->mole.x;
-    f32 moleY =
-        RFLi_TEX_MOLE_BASE_Y + 1.1600001f * RFLi_TEX_SCALE_Y * info->mole.y;
+    f32 moleY = RFLi_TEX_MOLE_BASE_Y + 1.1600001f * RFLi_TEX_SCALE_Y * info->mole.y;
     f32 moleW = RFLi_TEX_MOLE_BASE_W + RFLi_TEX_SCALE2DIM(info->mole.scale);
     f32 moleH = RFLi_TEX_MOLE_BASE_H + RFLi_TEX_SCALE2DIM(info->mole.scale);
 
@@ -738,8 +672,7 @@ void RFLiSetFaceParts(const RFLiCharInfo* info, RFLiFaceParts* face,
     face->mole.origin = RFL_ORIGIN_CENTER;
 }
 
-void RFLiCapture(u8* buffer, const RFLiCharInfo* info, RFLiFaceParts* face,
-                 RFLi_MASKRSL resolution) {
+void RFLiCapture(u8* buffer, const RFLiCharInfo* info, RFLiFaceParts* face, RFLi_MASKRSL resolution) {
     f32 vp[6];
 
     GXInvalidateTexAll();
@@ -797,25 +730,22 @@ void RFLiCapture(u8* buffer, const RFLiCharInfo* info, RFLiFaceParts* face,
 
     if (RFLiGetManager()->modelDrawCb == NULL) {
         GXDrawDone();
-    }
-    else {
+    } else {
         RFLiGetManager()->modelDrawCb();
     }
 
     DCInvalidateRange(buffer, RFLiGetMaskSize(resolution));
     GXCopyTex(buffer, 1);
     GXPixModeSync();
-    GXSetViewportv(vp);
+    GXSetViewport(vp[0], vp[1], vp[2], vp[3], vp[4], vp[5]);
 }
 
 void RFLiDrawFaceParts(RFLiPart* part) {
     GXLoadTexObj(&part->ngtobj.tobj, GX_TEXMAP0);
-    RFLiDrawQuad(part->x, part->y, part->width, part->height, part->angle,
-                 part->origin);
+    RFLiDrawQuad(part->x, part->y, part->width, part->height, part->angle, part->origin);
 }
 
-void RFLiDrawQuad(f32 x, f32 y, f32 width, f32 height, f32 rotZ,
-                  RFL_ORIGIN origin) {
+void RFLiDrawQuad(f32 x, f32 y, f32 width, f32 height, f32 rotZ, RFL_ORIGIN origin) {
     Mtx rot;
     Mtx pos;
     f32 baseX;
@@ -824,7 +754,7 @@ void RFLiDrawQuad(f32 x, f32 y, f32 width, f32 height, f32 rotZ,
 
     PSMTXIdentity(pos);
     PSMTXScaleApply(pos, pos, width, height, 1.0f);
-    PSMTXRotRad(rot, (3.141592653589793f / 180.0f) * rotZ, 'z');
+    PSMTXRotRad(rot, 'z', (3.141592653589793f / 180.0f) * rotZ);
     PSMTXConcat(rot, pos, pos);
     PSMTXScaleApply(pos, pos, RFLi_TEX_SCALE_X, RFLi_TEX_SCALE_Y, 1.0f);
     PSMTXTransApply(pos, pos, x, y, 0.0f);

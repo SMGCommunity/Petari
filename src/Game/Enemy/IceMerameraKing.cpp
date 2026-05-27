@@ -9,6 +9,7 @@
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/types.h"
@@ -97,14 +98,13 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     MR::setShadowDropLength(this, nullptr, 1500.0f);
     MR::declarePowerStar(this);
     MR::declareStarPiece(this, 24);
-    mFixedPos = new FixedPosition(this, "Top", TVec3f(0, 0, 0), TVec3f(0.0f, 0.0f, 0.0f));
+    mFixedPos = new FixedPosition(this, "Top", TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
     MR::tryRegisterDemoCast(this, rIter);
     mActor.mArray.mArr = new ThrowingIce*[0x6];
     mActor.mArray.mMaxSize = 6;
-
-    for (int i = 0; i < 6; i++) {
+    for (s32 i = 0; i < 6; i++) {
         mActor[i] = new ThrowingIce("投擲用の氷");
-        mActor[i]->initWithoutIter();
+        initWithoutIter();
         mActor.mCount += 1;
         MR::tryRegisterDemoCast(mActor[i], rIter);
     }
@@ -120,12 +120,12 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     _AC->makeActorDead();
     s32 childNum = MR::getChildObjNum(rIter);
     _F0 = childNum;
-    mModelArray = new ThrowingIce*[childNum];
+    mModelArray = new Meramera*[childNum];
 
     for (s32 i = 0; i < _F0; i++) {
-        mModelArray[i] = new ThrowingIce("メラメラ");  // wrong
+        mModelArray[i] = new Meramera("メラメラ");  // wrong
         MR::initChildObj(mModelArray[i], rIter, i);
-        mModelArray[i]->appear();
+        mModelArray[i]->makeActorDead();
         MR::tryRegisterDemoCast(mModelArray[i], rIter);
     }
 
@@ -234,11 +234,11 @@ void IceMerameraKing::exeSearch() {
         } else {
             if (isEnableThrow()) {
                 if (!(_EC > 2)) {
-                    if (MR::isGreaterStep(this, 200) && isDeadAllIce()) {
+                    if (MR::isGreaterStep(this, 100) && isDeadAllIce()) {
                         _E0 = 0;
                         setNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance);
                     }
-                } else if (MR::isGreaterStep(this, 100) && isDeadAllIce()) {
+                } else if (MR::isGreaterStep(this, 200) && isDeadAllIce()) {
                     _E0 = 0;
                     setNerve(&NrvIceMerameraKing::HostTypeNrvThrow::sInstance);
                 }
@@ -502,7 +502,7 @@ void IceMerameraKing::exeAttack() {
         MR::moveAndTurnToPlayer(this, &_B0, hAttackParam[0], hAttackParam[1], hAttackParam[2], hAttackParam[3]);
     }
 
-    if (MR::isOnGround(this)) {
+    if (MR::isOnGround(this)) { 
         setNerve(&NrvIceMerameraKing::HostTypeNrvAttackAfter::sInstance);
     }
 }
@@ -511,7 +511,7 @@ void IceMerameraKing::exeAttackAfter() {
     if (MR::isFirstStep(this)) {
         _A8->appear();
         _A8->mPosition.set< f32 >(mPosition);
-        _A8->mPosition.set< f32 >(_D4);
+        _A8->mRotation.set< f32 >(_D4);
         MR::emitEffect(this, "Land");
         MR::startAction(this, "AttackEnd");
         MR::startSound(this, "SE_BM_ICEMERAKING_HIP_DROP", -1, -1);
@@ -787,41 +787,14 @@ ThrowingIce* IceMerameraKing::getDeadWeaponAndAppear() {
     // major
 }
 
-bool IceMerameraKing::calcJoint(TPos3f* vec, const JointControllerInfo& info) {
-    TMtx34f v16;
-    TVec3f v15;
-    v16.mMtx[0][3] = 0.0f;
-    v16.mMtx[1][3] = 0.0f;
-    v16.mMtx[2][3] = 0.0f;
-    f32 v3 = _100.y;
-    f32 v4 = _100.x;
-    f32 v5 = 2.0f * _100.y;
-    f32 v6 = _100.z;
-
-    f32 v7 = 2.0f * _100.x;
-    f32 v8 = 2.0f * _100.w;
-    f32 v9 = ((1.0f - ((2.0f * _100.x) * _100.x)) - ((2.0f * _100.z) * _100.z));
-    f32 v10 = (((2.0f * _100.x) * _100.y) + ((2.0f * _100.w) * _100.z));
-    v16.mMtx[0][0] = (1.0f - ((2.0f * _100.y) * _100.y)) - ((2.0f * _100.z) * _100.z);
-    f32 v11 = ((1.0f - (v7 * v4)) - (v5 * v3));
-    v16.mMtx[0][1] = (v7 * v3) - (v8 * v6);
-    f32 v12 = (v8 * v3);
-    v16.mMtx[1][1] = v9;
-    f32 v13 = (v8 * v4);
-    v16.mMtx[1][0] = v10;
-    v16.mMtx[2][2] = v11;
-    v16.mMtx[0][2] = (v7 * v6) + v12;
-    v16.mMtx[1][2] = (v5 * v6) - v13;
-    v16.mMtx[2][0] = (v7 * v6) - v12;
-    v16.mMtx[2][1] = (v5 * v6) + v13;
-    vec->getTrans(v15);
-    mPosition.x = 0.0f;
-    mRotation.y = 0.0f;
-    mScale.z = 0.0f;
-    vec->concat(v16, *vec);
-    mPosition.x = v15.x;
-    mRotation.y = v15.y;
-    mScale.z = v15.z;
+bool IceMerameraKing::calcJoint(TPos3f* a2, const JointControllerInfo& info) {
+    TPos3f mtx;
+    TVec3f v3;
+    mtx.makeQuatInline(_100);
+    a2->getTrans(v3);
+    a2->zeroTransInline2();
+    a2->concat(mtx, *a2);
+    a2->setTransInline(v3);  
     return true;
 }
 

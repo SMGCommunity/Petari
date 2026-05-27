@@ -27,7 +27,7 @@
 | `add__18PriorDrawAirHolderFP12PriorDrawAir` | `0x8017132C` | :white_check_mark: (100.0%) |
 | `isExistValidDrawAir__18PriorDrawAirHolderCFv` | `0x80171348` | :white_check_mark: (100.0%) |
 | `isExistPriorDrawAir__2MRFv` | `0x801713B8` | :white_check_mark: (100.0%) |
-| `__sinit_\Air_cpp` | `0x801713FC` | :x: (67.3%) |
+| `__sinit_\Air_cpp` | `0x801713FC` | :white_check_mark: (100.0%) |
 | `__ct__Q26NrvAir10HostTypeInFv` | `0x80171428` | :white_check_mark: (100.0%) |
 | `__ct__Q26NrvAir11HostTypeOutFv` | `0x80171438` | :white_check_mark: (100.0%) |
 | `execute__Q26NrvAir11HostTypeOutCFP5Spine` | `0x80171448` | :white_check_mark: (100.0%) |

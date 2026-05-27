@@ -1,11 +1,13 @@
 # main/Game/MapObj/SnowFloorTile
 
+**Source Path:** `src/Game/MapObj/SnowFloorTile.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__dt__13SnowFloorTileFv` | `0x8022B968` | :x: (0.0%) |
-| `__ct__13SnowFloorTileFPCc` | `0x8022B9C4` | :x: (0.0%) |
+| `__dt__13SnowFloorTileFv` | `0x8022B968` | :white_check_mark: (100.0%) |
+| `__ct__13SnowFloorTileFPCc` | `0x8022B9C4` | :x: (72.1%) |
 | `init__13SnowFloorTileFRC12JMapInfoIter` | `0x8022BA10` | :x: (0.0%) |
 | `initLocalPoint__13SnowFloorTileFRC12JMapInfoIter` | `0x8022BCC8` | :x: (0.0%) |
 | `calcLocalPoint__13SnowFloorTileFRCQ29JGeometry8TVec3<f>PQ29JGeometry8TVec3<f>f` | `0x8022BD68` | :x: (0.0%) |

@@ -1,6 +1,7 @@
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/SingletonHolder.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/System/GameDataGalaxyStorage.hpp"
 #include "Game/System/GameDataHolder.hpp"
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
@@ -43,11 +44,11 @@ namespace GameDataFunction {
     void setGameFlagPowerStarSuccess(const char* pGalaxyName, s32 scenarioNo, bool isOwned) {
         getCurrentGameDataHolder()->setPowerStar(pGalaxyName, scenarioNo, isOwned);
     }
-    /*
+
     GameDataSomeScenarioAccessor makeGalaxyScenarioAccessor(const char* pGalaxyName, s32 scenarioNo) {
         return getCurrentGameDataHolder()->makeGalaxyScenarioAccessor(pGalaxyName, scenarioNo);
     }
-    */
+
     bool isOnGalaxyScenarioFlagAlreadyVisited(const char* pGalaxyName, s32 scenarioNo) {
         return getCurrentGameDataHolder()->isOnGalaxyScenarioFlagAlreadyVisited(pGalaxyName, scenarioNo);
     }
@@ -82,7 +83,7 @@ namespace GameDataFunction {
         return getCurrentGameDataHolder()->getPictureBookChapterCanRead();
     }
 
-    u16 getPictureBookChapterAlreadyRead() {
+    u32 getPictureBookChapterAlreadyRead() {
         return getCurrentGameDataHolder()->getPictureBookChapterAlreadyRead();
     }
 
@@ -99,15 +100,14 @@ namespace GameDataFunction {
     }
 
     bool canOnAndIsOffGameEventFlag(const char* pName) {
-        return getCurrentGameDataHolder()->canOnGameEventFlag(pName)
-            && !getCurrentGameDataHolder()->isOnGameEventFlag(pName);
+        return getCurrentGameDataHolder()->canOnGameEventFlag(pName) && !getCurrentGameDataHolder()->isOnGameEventFlag(pName);
     }
 
     bool isOnGameEventFlag(const char* pName) {
         return getCurrentGameDataHolder()->isOnGameEventFlag(pName);
     }
 
-    u16 getGameEventValue(const char* pName) {
+    u32 getGameEventValue(const char* pName) {
         return getCurrentGameDataHolder()->getGameEventValue(pName);
     }
 
@@ -171,11 +171,11 @@ namespace GameDataFunction {
         getCurrentGameDataHolder()->updateSpinDriverPathStorage(pGalaxyName, scenarioNo, param3, param4);
     }
 
-    s32 getStarPieceNumGivingToTicoSeed(int index) {
+    u32 getStarPieceNumGivingToTicoSeed(int index) {
         return getCurrentGameDataHolder()->getStarPieceNumGivingToTicoSeed(index);
     }
 
-    s32 getStarPieceNumMaxGivingToTicoSeed(int index) {
+    u32 getStarPieceNumMaxGivingToTicoSeed(int index) {
         return getCurrentGameDataHolder()->getStarPieceNumMaxGivingToTicoSeed(index);
     }
 
@@ -252,23 +252,20 @@ namespace GameDataFunction {
     }
 
     bool isOnJustGameEventFlag(const char* pName) {
-        return getCurrentGameDataHolder()->isOnGameEventFlag(pName)
-            && !getSceneStartGameDataHolder()->isOnGameEventFlag(pName);
+        return getCurrentGameDataHolder()->isOnGameEventFlag(pName) && !getSceneStartGameDataHolder()->isOnGameEventFlag(pName);
     }
 
     bool canOnJustGameEventFlag(const char* pName) {
-        return getCurrentGameDataHolder()->canOnGameEventFlag(pName)
-            && !getSceneStartGameDataHolder()->canOnGameEventFlag(pName);
+        return getCurrentGameDataHolder()->canOnGameEventFlag(pName) && !getSceneStartGameDataHolder()->canOnGameEventFlag(pName);
     }
 
     bool isOnJustAppearGalaxy(const char* pGalaxyName) {
-        return getCurrentGameDataHolder()->isAppearGalaxy(pGalaxyName)
-            && !getSceneStartGameDataHolder()->isAppearGalaxy(pGalaxyName);
+        return getCurrentGameDataHolder()->isAppearGalaxy(pGalaxyName) && !getSceneStartGameDataHolder()->isAppearGalaxy(pGalaxyName);
     }
 
     bool isEqualJustPowerStarNum(int powerStarNum) {
-        return getCurrentGameDataHolder()->calcCurrentPowerStarNum() == powerStarNum
-            && getSceneStartGameDataHolder()->calcCurrentPowerStarNum() != powerStarNum;
+        return getCurrentGameDataHolder()->calcCurrentPowerStarNum() == powerStarNum &&
+               getSceneStartGameDataHolder()->calcCurrentPowerStarNum() != powerStarNum;
     }
 
     GameDataHolder* getCurrentGameDataHolder() {

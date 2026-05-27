@@ -18,6 +18,6 @@
 | `isBindedAny__13FireMarioBallCFv` | `0x802A4184` | :white_check_mark: (100.0%) |
 | `tryToKill__13FireMarioBallFv` | `0x802A4200` | :white_check_mark: (100.0%) |
 | `exeThrow__13FireMarioBallFv` | `0x802A4320` | :white_check_mark: (100.0%) |
-| `__sinit_\FireMarioBall_cpp` | `0x802A4524` | :x: (0.0%) |
+| `__sinit_\FireMarioBall_cpp` | `0x802A4524` | :white_check_mark: (100.0%) |
 | `__ct__Q216NrvFireMarioBall21FireMarioBallNrvThrowFv` | `0x802A452C` | :white_check_mark: (100.0%) |
 | `execute__Q216NrvFireMarioBall21FireMarioBallNrvThrowCFP5Spine` | `0x802A453C` | :white_check_mark: (100.0%) |

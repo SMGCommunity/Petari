@@ -33,4 +33,4 @@
 | `__selection_sort<RQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt,PQ226GameEventFlagTableInstance3Key>__3stdFPQ226GameEventFlagTableInstance3KeyPQ226GameEventFlagTableInstance3KeyRQ232@unnamed@GameEventFlagTable_cpp@19GameEventFlagSortLt_v` | `0x803B4AF4` | :white_check_mark: (100.0%) |
 | `getStarPieceNumToOpenExclamationGalaxy__18GameEventFlagTableFPCc` | `0x803B4B88` | :white_check_mark: (100.0%) |
 | `calcGreenPowerStarNum__18GameEventFlagTableFv` | `0x803B4BE8` | :white_check_mark: (100.0%) |
-| `getGalaxyDependedFlags__18GameEventFlagTableFPPCciPCc` | `0x803B4BF4` | :x: (0.0%) |
+| `getGalaxyDependedFlags__18GameEventFlagTableFPPCciPCc` | `0x803B4BF4` | :white_check_mark: (100.0%) |

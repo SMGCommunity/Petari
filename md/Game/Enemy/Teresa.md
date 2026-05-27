@@ -1,10 +1,12 @@
 # main/Game/Enemy/Teresa
 
+**Source Path:** `src/Game/Enemy/Teresa.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__6TeresaFPCc` | `0x80149710` | :x: (0.0%) |
+| `__ct__6TeresaFPCc` | `0x80149710` | :x: (20.0%) |
 | `init__6TeresaFRC12JMapInfoIter` | `0x80149820` | :x: (0.0%) |
 | `initDummyModel__6TeresaFRC12JMapInfoIter` | `0x80149A00` | :x: (0.0%) |
 | `initFromJMapParam__6TeresaFRC12JMapInfoIter` | `0x80149AE4` | :x: (0.0%) |
@@ -103,7 +105,7 @@
 | `executeOnEnd__Q29NrvTeresa23TeresaNrvAppearFromWallCFP5Spine` | `0x8014C5C4` | :x: (0.0%) |
 | `execute__Q29NrvTeresa23TeresaNrvAppearFromWallCFP5Spine` | `0x8014C5CC` | :x: (0.0%) |
 | `isInvalidTriangle__32TriangleFilterDelegator<6Teresa>CFPC8Triangle` | `0x8014C5D4` | :x: (0.0%) |
-| `__dt__6TeresaFv` | `0x8014C604` | :x: (0.0%) |
+| `__dt__6TeresaFv` | `0x8014C604` | :white_check_mark: (100.0%) |
 | `__ct__Q29NrvTeresa23TeresaNrvAppearFromWallFv` | `0x8014C660` | :x: (0.0%) |
 | `__ct__Q29NrvTeresa25TeresaNrvAppearFromGroundFv` | `0x8014C670` | :x: (0.0%) |
 | `__ct__Q29NrvTeresa13TeresaNrvWaitFv` | `0x8014C680` | :x: (0.0%) |

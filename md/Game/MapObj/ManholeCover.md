@@ -7,11 +7,11 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `init__12ManholeCoverFRC12JMapInfoIter` | `0x801F6310` | :white_check_mark: (100.0%) |
-| `receiveMsgPlayerAttack__12ManholeCoverFUlP9HitSensorP9HitSensor` | `0x801F63D0` | :x: (93.2%) |
-| `receiveOtherMsg__12ManholeCoverFUlP9HitSensorP9HitSensor` | `0x801F6464` | :x: (0.0%) |
-| `exeOpen__12ManholeCoverFv` | `0x801F64C8` | :x: (0.0%) |
-| `exeRattle__12ManholeCoverFv` | `0x801F653C` | :x: (0.0%) |
-| `__dt__12ManholeCoverFv` | `0x801F65CC` | :x: (0.0%) |
+| `receiveMsgPlayerAttack__12ManholeCoverFUlP9HitSensorP9HitSensor` | `0x801F63D0` | :white_check_mark: (100.0%) |
+| `receiveOtherMsg__12ManholeCoverFUlP9HitSensorP9HitSensor` | `0x801F6464` | :white_check_mark: (100.0%) |
+| `exeOpen__12ManholeCoverFv` | `0x801F64C8` | :white_check_mark: (100.0%) |
+| `exeRattle__12ManholeCoverFv` | `0x801F653C` | :white_check_mark: (100.0%) |
+| `__dt__12ManholeCoverFv` | `0x801F65CC` | :x: (91.7%) |
 | `__sinit_\ManholeCover_cpp` | `0x801F662C` | :white_check_mark: (100.0%) |
 | `__ct__Q215NrvManholeCover12HostTypeWaitFv` | `0x801F6660` | :white_check_mark: (100.0%) |
 | `__ct__Q215NrvManholeCover12HostTypeOpenFv` | `0x801F6670` | :white_check_mark: (100.0%) |

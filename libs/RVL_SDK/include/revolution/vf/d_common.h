@@ -5,4 +5,6 @@
 
 s32 dCommon_FlushFromVol(PF_VOLUME* i_vol_p, int i_setLastDeviceError);
 
+u32 dCommon_getResvSecNumFromDisk(struct PDM_DISK* p_disk);
+
 #endif  // D_COMMON_H

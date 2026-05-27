@@ -10,7 +10,7 @@
 | `init__Q217AstroDomeBlueStar12CaptureActorFRC12JMapInfoIter` | `0x801AA658` | :white_check_mark: (100.0%) |
 | `kill__Q217AstroDomeBlueStar12CaptureActorFv` | `0x801AA6FC` | :white_check_mark: (100.0%) |
 | `updateTransTraction__Q217AstroDomeBlueStar12CaptureActorFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>l` | `0x801AA748` | :x: (0.0%) |
-| `__ct__17AstroDomeBlueStarFPCc` | `0x801AA8D0` | :white_check_mark: (100.0%) |
+| `__ct__17AstroDomeBlueStarFPCc` | `0x801AA8D0` | :x: (72.3%) |
 | `init__17AstroDomeBlueStarFRC12JMapInfoIter` | `0x801AA944` | :x: (0.0%) |
 | `appear__17AstroDomeBlueStarFv` | `0x801AAC04` | :x: (0.0%) |
 | `kill__17AstroDomeBlueStarFv` | `0x801AAC3C` | :x: (0.0%) |

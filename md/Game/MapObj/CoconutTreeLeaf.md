@@ -1,5 +1,7 @@
 # main/Game/MapObj/CoconutTreeLeaf
 
+**Source Path:** `src/Game/MapObj/CoconutTreeLeaf.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -8,11 +10,11 @@
 | `init__15CoconutTreeLeafFRC12JMapInfoIter` | `0x801C6224` | :x: (0.0%) |
 | `update__15CoconutTreeLeafFff` | `0x801C62B8` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__15CoconutTreeLeafFUlP9HitSensorP9HitSensor` | `0x801C6614` | :x: (0.0%) |
-| `__ct__20CoconutTreeLeafGroupFPCc` | `0x801C667C` | :x: (0.0%) |
+| `__ct__20CoconutTreeLeafGroupFPCc` | `0x801C667C` | :x: (54.2%) |
 | `init__20CoconutTreeLeafGroupFRC12JMapInfoIter` | `0x801C66DC` | :x: (0.0%) |
 | `startClipped__20CoconutTreeLeafGroupFv` | `0x801C67EC` | :x: (0.0%) |
 | `endClipped__20CoconutTreeLeafGroupFv` | `0x801C6858` | :x: (0.0%) |
 | `control__20CoconutTreeLeafGroupFv` | `0x801C68C4` | :x: (0.0%) |
 | `__dt__15CoconutTreeLeafFv` | `0x801C6988` | :x: (0.0%) |
-| `__dt__20CoconutTreeLeafGroupFv` | `0x801C69E4` | :x: (0.0%) |
+| `__dt__20CoconutTreeLeafGroupFv` | `0x801C69E4` | :white_check_mark: (100.0%) |
 | `getBaseMtx__15CoconutTreeLeafCFv` | `0x801C6A40` | :x: (0.0%) |

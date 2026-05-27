@@ -2,6 +2,8 @@
 
 #include "JSystem/JGeometry/TQuat.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include "JSystem/JMath/JMath.hpp"
+#include "revolution/mtx.h"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <cmath>
 
@@ -17,90 +19,15 @@ namespace JGeometry {
         void scale(T scale);
 
         inline void setInline(const SMatrix34C< T >& rSrc) {
-#ifdef __MWERKS__
-            register const SMatrix34C< T >* pSrc = &rSrc;
-            register SMatrix34C< T >* pDest = this;
-            register f32 rzztz;
-            register f32 rxzyz;
-            register f32 rzyty;
-            register f32 rxyyy;
-            register f32 rzxtx;
-            register f32 rxxyx;
+            JMath::gekko_ps_copy12(this, rSrc);
+        }
 
-            __asm {
-                psq_l     rxxyx, 0(pSrc), 0, 0
-                psq_l     rzxtx, 8(pSrc), 0, 0
-                psq_l     rxyyy, 0x10(pSrc), 0, 0
-                psq_l     rzyty, 0x18(pSrc), 0, 0
-                psq_l     rxzyz, 0x20(pSrc), 0, 0
-                psq_l     rzztz, 0x28(pSrc), 0, 0
-                psq_st    rxxyx, 0(pDest), 0, 0
-                psq_st    rzxtx, 8(pDest), 0, 0
-                psq_st    rxyyy, 0x10(pDest), 0, 0
-                psq_st    rzyty, 0x18(pDest), 0, 0
-                psq_st    rxzyz, 0x20(pDest), 0, 0
-                psq_st    rzztz, 0x28(pDest), 0, 0
-            }
-            ;
-#endif
+        inline void setInline(const SMatrix34C< T >* rSrc) {
+            JMath::gekko_ps_copy12(this, rSrc);
         }
 
         inline void setInline(const MtxPtr rSrc) {
-#ifdef __MWERKS__
-            register const MtxPtr pSrc = rSrc;
-            register SMatrix34C< T >* pDest = this;
-            register f32 rzztz;
-            register f32 rxzyz;
-            register f32 rzyty;
-            register f32 rxyyy;
-            register f32 rzxtx;
-            register f32 rxxyx;
-
-            __asm {
-                psq_l     rxxyx, 0(pSrc), 0, 0
-                psq_l     rzxtx, 8(pSrc), 0, 0
-                psq_l     rxyyy, 0x10(pSrc), 0, 0
-                psq_l     rzyty, 0x18(pSrc), 0, 0
-                psq_l     rxzyz, 0x20(pSrc), 0, 0
-                psq_l     rzztz, 0x28(pSrc), 0, 0
-                psq_st    rxxyx, 0(pDest), 0, 0
-                psq_st    rzxtx, 8(pDest), 0, 0
-                psq_st    rxyyy, 0x10(pDest), 0, 0
-                psq_st    rzyty, 0x18(pDest), 0, 0
-                psq_st    rxzyz, 0x20(pDest), 0, 0
-                psq_st    rzztz, 0x28(pDest), 0, 0
-            }
-            ;
-#endif
-        }
-
-        inline void setInline_2(MtxPtr rSrc) {
-#ifdef __MWERKS__
-            register MtxPtr pSrc = rSrc;
-            register SMatrix34C< T >* pDest = this;
-            register f32 rzztz;
-            register f32 rxzyz;
-            register f32 rzyty;
-            register f32 rxyyy;
-            register f32 rzxtx;
-            register f32 rxxyx;
-
-            __asm {
-                psq_l     rxxyx, 0(pSrc), 0, 0
-                psq_l     rzxtx, 8(pSrc), 0, 0
-                psq_l     rxyyy, 0x10(pSrc), 0, 0
-                psq_st    rxxyx, 0(pDest), 0, 0
-                psq_l     rzyty, 0x18(pSrc), 0, 0
-                psq_st    rzxtx, 8(pDest), 0, 0
-                psq_l     rxzyz, 0x20(pSrc), 0, 0
-                psq_st    rxyyy, 0x10(pDest), 0, 0
-                psq_l     rzztz, 0x28(pSrc), 0, 0
-                psq_st    rzyty, 0x18(pDest), 0, 0
-                psq_st    rxzyz, 0x20(pDest), 0, 0
-                psq_st    rzztz, 0x28(pDest), 0, 0
-            }
-            ;
-#endif
+            JMath::gekko_ps_copy12(this, rSrc);
         }
 
         inline void scaleInline(T scalar) {
@@ -143,7 +70,7 @@ namespace JGeometry {
             return get(x, y);
         }
 
-        __attribute__((always_inline)) inline f32 dot() const {
+        ALWAYS_INLINE inline f32 dot() const {
             return ((this->mMtx[1][0] * this->mMtx[1][0]) + (this->mMtx[0][0] * this->mMtx[0][0]) + (this->mMtx[2][0] * this->mMtx[2][0]) +
                     (this->mMtx[0][1] * this->mMtx[0][1]) + (this->mMtx[1][1] * this->mMtx[1][1]) + (this->mMtx[2][1] * this->mMtx[2][1]) +
                     (this->mMtx[0][2] * this->mMtx[0][2]) + (this->mMtx[1][2] * this->mMtx[1][2]) + (this->mMtx[2][2] * this->mMtx[2][2]));
@@ -250,6 +177,40 @@ namespace JGeometry {
         }
         void setXDir(const TVec3f& rSrc);
         void setXDir(f32 x, f32 y, f32 z);
+
+        inline void setXDirInline(f32 x, f32 y, f32 z) {
+            this->mMtx[0][0] = x;
+            this->mMtx[1][0] = y;
+            this->mMtx[2][0] = z;
+        }
+        inline void setXDirInline(const TVec3f& rSrc) {
+            this->mMtx[0][0] = rSrc.x;
+            this->mMtx[1][0] = rSrc.y;
+            this->mMtx[2][0] = rSrc.z;
+        }
+
+        inline void setYDirInline(f32 x, f32 y, f32 z) {
+            this->mMtx[0][1] = x;
+            this->mMtx[1][1] = y;
+            this->mMtx[2][1] = z;
+        }
+        inline void setYDirInline(const TVec3f& rSrc) {
+            this->mMtx[0][1] = rSrc.x;
+            this->mMtx[1][1] = rSrc.y;
+            this->mMtx[2][1] = rSrc.z;
+        }
+
+        inline void setZDirInline(f32 x, f32 y, f32 z) {
+            this->mMtx[0][2] = x;
+            this->mMtx[1][2] = y;
+            this->mMtx[2][2] = z;
+        }
+        inline void setZDirInline(const TVec3f& rSrc) {
+            this->mMtx[0][2] = rSrc.x;
+            this->mMtx[1][2] = rSrc.y;
+            this->mMtx[2][2] = rSrc.z;
+        }
+
         void setYDir(const TVec3f& rSrc);
         void setYDir(f32 x, f32 y, f32 z);
         void setZDir(const TVec3f& rSrc);
@@ -329,6 +290,12 @@ namespace JGeometry {
             f32 z = this->mMtx[2][1];
             f32 y = this->mMtx[1][1];
             f32 x = this->mMtx[0][1];
+            rDest.set< f32 >(x, y, z);
+        }
+        inline void getYDirInline2(TVec3f& rDest) const {
+            f32 x = this->mMtx[0][1];
+            f32 y = this->mMtx[1][1];
+            f32 z = this->mMtx[2][1];
             rDest.set< f32 >(x, y, z);
         }
 
@@ -542,6 +509,14 @@ namespace JGeometry {
             this->mMtx[2][2] = (negc * (z * z) + c);
         }
 
+        inline void setRotateInlineZeroTrans(const TVec3f& vec1, f32 r) {
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
+
+            setRotateInline(vec1, r);
+        }
+
         inline void mult33Inline(const TVec3f& rSrc, TVec3f& rDst) const {
             f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
             a32 = this->mMtx[2][1];
@@ -566,6 +541,14 @@ namespace JGeometry {
     public:
         TPosition3(){};
 
+        TPosition3(MtxPtr rSrc) {
+            JMath::gekko_ps_copy12(this, rSrc);
+        }
+
+        TPosition3(const TPosition3< T >* rSrc) {
+            JMath::gekko_ps_copy12(this, rSrc);
+        }
+
         void getTrans(TVec3f& rDest) const;
 
         void setTrans(const TVec3f& rSrc) {
@@ -575,7 +558,12 @@ namespace JGeometry {
         }
 
         void setTrans(f32 x, f32 y, f32 z);
-        void zeroTrans();
+        
+        void zeroTrans() {
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
+        }
 
         void makeRotate(const TVec3f&, f32);
 
@@ -583,6 +571,11 @@ namespace JGeometry {
             zeroTrans();
             TRotation3< T >::setQuat(rSrcQuat);
         }
+
+        inline void makeQuatInline(const TQuat4f& rSrcQuat) {
+            zeroTransInline();
+            TRotation3< T >::setQuat(rSrcQuat);
+        }        
 
         void setPositionFromLookAt(const TPosition3< T >& rLookAt);
 
@@ -607,6 +600,13 @@ namespace JGeometry {
             f32 z = this->mMtx[2][3];
             f32 y = this->mMtx[1][3];
             f32 x = this->mMtx[0][3];
+            rDest.set< f32 >(x, y, z);
+        }
+
+        inline void getTransInline2(TVec3f& rDest) const {
+            f32 x = this->mMtx[0][3];
+            f32 y = this->mMtx[1][3];
+            f32 z = this->mMtx[2][3];
             rDest.set< f32 >(x, y, z);
         }
 
@@ -694,9 +694,92 @@ namespace JGeometry {
             this->mMtx[2][2] = invLenZ * this->mMtx[2][2];
         }
     };
+
+    template < typename T >
+    struct SMatrix44C {
+    public:
+        typedef f32 ArrType[4];
+        void set(const ArrType*);
+        void set(const SMatrix44C< T >& rSrc);
+        void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz, T wx, T wy, T wz, T ww);
+
+        inline Mtx44Ptr toMtx44() {
+            return (Mtx44Ptr)mMtx;
+        }
+
+        inline const Mtx44* toCMtx44() const {
+            return (const Mtx44*)mMtx;
+        }
+
+        inline Mtx44Ptr toMtx44Ptr() {
+            return (Mtx44Ptr)mMtx;
+        }
+
+        operator ArrType*() {
+            return mMtx;
+        }
+
+        operator const ArrType*() const {
+            return mMtx;
+        }
+
+        f32 get(int x, int y) const {
+            return mMtx[x][y];
+        }
+
+        f32 operator()(int x, int y) const {
+            return get(x, y);
+        }
+
+        inline void setInline(const Mtx44Ptr rSrc) {
+            JMath::gekko_ps_copy16(this, rSrc);
+        }
+
+        inline void setInline(const SMatrix44C< T >& rSrc) {
+            JMath::gekko_ps_copy16(this, rSrc);
+        }
+
+        inline void setInline(const SMatrix44C< T >* rSrc) {
+            JMath::gekko_ps_copy16(this, rSrc);
+        }
+
+        T mMtx[4][4];
+    };
+
+    template < typename T >
+    struct TMatrix44 : public T {
+    public:
+        void identity();
+        void concat(const T& rSrcA, const T& rSrcB);
+        void concat(const T& rSrc);
+        void invert(const TMatrix44< T >& rDest);
+
+        inline void mult(const TVec3f& rSrc, TVec3f& rDest) const {
+            TVec4f pos(rSrc.x * this->mMtx[0][0] + rSrc.z * this->mMtx[0][2], rSrc.y * this->mMtx[1][1] + rSrc.z * this->mMtx[1][2],
+                       rSrc.z * this->mMtx[2][2] + this->mMtx[2][3], -rSrc.z);
+
+            rDest.scale(1.0f / pos.w, *pos.toTVec3());
+        }
+    };
+
+    template < class T >
+    struct TProjection3 : public T {
+    public:
+        TProjection3(){};
+
+        TProjection3(const Mtx44Ptr rSrc) {
+            JMath::gekko_ps_copy16(this, rSrc);
+        }
+
+        void identity44();
+    };
+
 };  // namespace JGeometry
 
 typedef JGeometry::SMatrix34C< f32 > TSMtxf;
 typedef JGeometry::TMatrix34< TSMtxf > TMtx34f;
 typedef JGeometry::TRotation3< TMtx34f > TRot3f;
 typedef JGeometry::TPosition3< TMtx34f > TPos3f;
+typedef JGeometry::SMatrix44C< f32 > TSMtx44f;
+typedef JGeometry::TMatrix44< TSMtx44f > TMtx44f;
+typedef JGeometry::TProjection3< TMtx44f > TProj3f;

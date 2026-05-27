@@ -1,10 +1,12 @@
 # main/Game/Enemy/Unizo
 
+**Source Path:** `src/Game/Enemy/Unizo.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__5UnizoFPCc` | `0x8014D14C` | :x: (0.0%) |
+| `__ct__5UnizoFPCc` | `0x8014D14C` | :x: (33.8%) |
 | `initType__5UnizoFRC12JMapInfoIter` | `0x8014D1F4` | :x: (0.0%) |
 | `init__5UnizoFRC12JMapInfoIter` | `0x8014D28C` | :x: (0.0%) |
 | `initAfterPlacement__5UnizoFv` | `0x8014D620` | :x: (0.0%) |
@@ -45,7 +47,7 @@
 | `isEnablePointBind__5UnizoCFv` | `0x8014F300` | :x: (0.0%) |
 | `appearBreakModel__5UnizoFv` | `0x8014F3A8` | :x: (0.0%) |
 | `startWallHitSound__5UnizoFv` | `0x8014F56C` | :x: (0.0%) |
-| `__dt__5UnizoFv` | `0x8014F644` | :x: (0.0%) |
+| `__dt__5UnizoFv` | `0x8014F644` | :white_check_mark: (100.0%) |
 | `__sinit_\Unizo_cpp` | `0x8014F6A0` | :x: (0.0%) |
 | `__ct__Q28NrvUnizo12UnizoNrvWaitFv` | `0x8014F70C` | :x: (0.0%) |
 | `__ct__Q28NrvUnizo12UnizoNrvJumpFv` | `0x8014F71C` | :x: (0.0%) |

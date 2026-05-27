@@ -61,14 +61,59 @@ namespace JMath {
         return JMAFastSqrt(value);
     }
 
-    void gekko_ps_copy12(void*, const void*);
-    void gekko_ps_copy16(void*, const void*);
+    inline void gekko_ps_copy12(__REGISTER void* pDest, __REGISTER const void* pSrc) {
+#ifdef __MWERKS__
+        register f32 f_0, f_1, f_2, f_3, f_4, f_5;
+
+        __asm {
+                psq_l     f_0, 0(pSrc), 0, 0
+                psq_l     f_1, 8(pSrc), 0, 0
+                psq_l     f_2, 0x10(pSrc), 0, 0
+                psq_l     f_3, 0x18(pSrc), 0, 0
+                psq_l     f_4, 0x20(pSrc), 0, 0
+                psq_l     f_5, 0x28(pSrc), 0, 0
+                psq_st    f_0, 0(pDest), 0, 0
+                psq_st    f_1, 8(pDest), 0, 0
+                psq_st    f_2, 0x10(pDest), 0, 0
+                psq_st    f_3, 0x18(pDest), 0, 0
+                psq_st    f_4, 0x20(pDest), 0, 0
+                psq_st    f_5, 0x28(pDest), 0, 0
+        }
+        ;
+#endif
+    }
+
+    inline void gekko_ps_copy16(__REGISTER void* pDest, __REGISTER const void* pSrc) {
+#ifdef __MWERKS__
+        register f32 f_0, f_1, f_2, f_3, f_4, f_5, f_6, f_7;
+
+        __asm {
+                psq_l     f_0, 0(pSrc), 0, 0
+                psq_l     f_1, 8(pSrc), 0, 0
+                psq_l     f_2, 0x10(pSrc), 0, 0
+                psq_l     f_3, 0x18(pSrc), 0, 0
+                psq_l     f_4, 0x20(pSrc), 0, 0
+                psq_l     f_5, 0x28(pSrc), 0, 0
+                psq_l     f_6, 0x30(pSrc), 0, 0
+                psq_l     f_7, 0x38(pSrc), 0, 0
+                psq_st    f_0, 0(pDest), 0, 0
+                psq_st    f_1, 8(pDest), 0, 0
+                psq_st    f_2, 0x10(pDest), 0, 0
+                psq_st    f_3, 0x18(pDest), 0, 0
+                psq_st    f_4, 0x20(pDest), 0, 0
+                psq_st    f_5, 0x28(pDest), 0, 0
+                psq_st    f_6, 0x30(pDest), 0, 0
+                psq_st    f_7, 0x38(pDest), 0, 0
+        }
+        ;
+#endif
+    }
 };  // namespace JMath
 
 namespace JMathInlineVEC {
 #ifdef __MWERKS__
 
-    __attribute__((always_inline)) inline void PSVECCopy(register const Vec* src, register Vec* dest) {
+    ALWAYS_INLINE inline void PSVECCopy(register const Vec* src, register Vec* dest) {
         register f32 xy, z;
         __asm {
             lfs z, 8(src)
@@ -78,7 +123,7 @@ namespace JMathInlineVEC {
         }
     }
 
-    __attribute__((always_inline)) inline void PSVECAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
+    ALWAYS_INLINE inline void PSVECAdd(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
         register f32 v1xy, v2xy, d1xy, d1z, v1z, v2z;
 
         __asm {            
@@ -94,7 +139,7 @@ namespace JMathInlineVEC {
         }
     }
 
-    __attribute__((always_inline)) inline void PSVECAdd2(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
+    ALWAYS_INLINE inline void PSVECAdd2(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
         register f32 v2z, d1z, v1z, v2xy, v1xy, d1xy;
 
         __asm {            
@@ -109,7 +154,7 @@ namespace JMathInlineVEC {
         }
     }
 
-    __attribute__((always_inline)) inline void PSVECAdd3(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
+    ALWAYS_INLINE inline void PSVECAdd3(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
         register f32 v2xy, v1xy, d1xy, d1z, v2z, v1z;
 
         __asm {            
@@ -125,7 +170,7 @@ namespace JMathInlineVEC {
         }
     }
 
-    __attribute__((always_inline)) inline void PSVECSubtract(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
+    ALWAYS_INLINE inline void PSVECSubtract(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
         register f32 v1xy, v2xy, dxy, v1z, v2z, dz;
         __asm {
             psq_l     v1xy, 0(vec1), 0, 0
@@ -140,7 +185,7 @@ namespace JMathInlineVEC {
         }
     }
 
-    __attribute__((always_inline)) inline void PSVECSubtract2(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
+    ALWAYS_INLINE inline void PSVECSubtract2(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
         register f32 v1xy, v2xy, v1z, v2z, dxy, dz;
         __asm {
             psq_l     v2xy, 0(vec1), 0, 0
@@ -155,7 +200,7 @@ namespace JMathInlineVEC {
         }
     }
 
-    __attribute__((always_inline)) inline void PSVECMultiply(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
+    ALWAYS_INLINE inline void PSVECMultiply(register const Vec* vec1, register const Vec* vec2, register Vec* dst) {
         register f32 v1xy, v2xy, dxy, v1z, v2z, dz;
         __asm {
             psq_l     v1xy, 0(vec1), 0, 0
@@ -169,7 +214,7 @@ namespace JMathInlineVEC {
         }
     }
 
-    __attribute__((always_inline)) inline f32 PSVECSquareMag(register const Vec* src) {
+    ALWAYS_INLINE inline f32 PSVECSquareMag(register const Vec* src) {
         register f32 xy, z, ret;
         __asm {
             psq_l xy, 0(src), 0, 0
@@ -181,7 +226,7 @@ namespace JMathInlineVEC {
         return ret;
     }
 
-    __attribute__((always_inline)) inline void PSVECNegate(register const Vec* src, register Vec* dst) {
+    ALWAYS_INLINE inline void PSVECNegate(register const Vec* src, register Vec* dst) {
         register f32 xy;
         __asm {
             psq_l xy, 0(src), 0, 0
@@ -191,7 +236,7 @@ namespace JMathInlineVEC {
         dst->z = -src->z;
     }
 
-    __attribute__((always_inline)) inline f32 PSVECSquareDistance(const register Vec* a, const register Vec* b) {
+    ALWAYS_INLINE inline f32 PSVECSquareDistance(const register Vec* a, const register Vec* b) {
         register f32 dyz, dxy, sqdist;
         register f32 v0xy, v1yz, v0yz, v1xy;
 

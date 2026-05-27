@@ -17,7 +17,11 @@ namespace MR {
     J3DModelData* getJ3DModelData(const LiveActor*);
     J3DModelData* getJ3DModelData(const char*);
 
+    void initEnvelopeAndEnvMapOrProjMapModelData(J3DModelData*);
+
     ResTIMG* getResTIMG(const LiveActor*, int);
+
+    void downFracVtx(J3DModelData*);
 
     void calcJ3DModel(LiveActor*);
 
@@ -27,7 +31,7 @@ namespace MR {
     J3DMaterial* getMaterial(J3DModelData*, int);
     J3DMaterial* getMaterial(J3DModel*, int);
     J3DMaterial* getMaterial(const LiveActor*, int);
-    u16 getMaterialNum(J3DModel*);
+    s32 getMaterialNum(J3DModel*);
     const char* getMaterialName(const J3DModelData*, int);
     void updateModelDiffDL(LiveActor*);
     bool isEnvelope(J3DMaterial*);
@@ -55,6 +59,13 @@ namespace MR {
     bool isExistSubModel(const char*, const char*);
 
     bool isExistEffectTexMtx(LiveActor*);
+
+    void getLightNum(J3DMaterial*, s32*, s32*, s32*, s32*);
+    s32 getLightNum(J3DMaterial*);
+    s32 getLightNumMax(const LiveActor*);
+    s32 getLightNumMax(J3DModelData*);
+
+    bool isUseFur(const J3DModelData*);
 
     s16 getBckFrameMax(const LiveActor*, const char*);
     s16 getBrkFrameMax(const LiveActor*, const char*);

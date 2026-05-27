@@ -1,5 +1,7 @@
 # main/Game/Enemy/MogucchiHill
 
+**Source Path:** `src/Game/Enemy/MogucchiHill.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
@@ -20,7 +22,7 @@
 | `receiveMsgPlayerAttack__17MogucchiHillPieceFUlP9HitSensorP9HitSensor` | `0x801282CC` | :x: (0.0%) |
 | `receiveMsgEnemyAttack__17MogucchiHillPieceFUlP9HitSensorP9HitSensor` | `0x801284F4` | :x: (0.0%) |
 | `isTargetGoingAway__17MogucchiHillPieceCFP9HitSensorP9HitSensor` | `0x801285D8` | :x: (0.0%) |
-| `__ct__12MogucchiHillFP9LiveActorlPCc` | `0x80128638` | :x: (0.0%) |
+| `__ct__12MogucchiHillFP9LiveActorlPCc` | `0x80128638` | :x: (20.4%) |
 | `init__12MogucchiHillFRC12JMapInfoIter` | `0x80128704` | :x: (0.0%) |
 | `start__12MogucchiHillFv` | `0x80128758` | :x: (0.0%) |
 | `end__12MogucchiHillFv` | `0x801287BC` | :x: (0.0%) |

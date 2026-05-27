@@ -7,20 +7,6 @@ class LayoutActor;
 class LiveActor;
 class StarPointerOnOffController;
 
-namespace {
-    class StarPointerTargetInfo;
-
-    typedef bool (*StarPointerFunc1)(StarPointerTargetInfo*, const TVec3f&, const TVec2f&, f32, f32);
-    typedef bool (*StarPointerFunc2)(s32);
-
-    StarPointerOnOffController* getStarPointerOnOffController();
-    bool always(s32);
-    void onReaction(u64, s32, bool, bool, bool);
-    bool checkPointingTarget(StarPointerTargetInfo*, const TVec3f&, const TVec2f&, f32, f32);
-    bool checkPointingWithoutCheckZ(StarPointerTargetInfo*, const TVec3f&, const TVec2f&, f32, f32);
-    bool isStarPointerPointingCore(StarPointerTargetInfo*, const LiveActor*, s32, StarPointerFunc1, StarPointerFunc2, bool, bool, bool);
-};  // namespace
-
 namespace MR {
     void initStarPointerGameScene();
     void createStarPointerLayout();
@@ -57,7 +43,7 @@ namespace MR {
     void setStarPointerTargetRadius3d(LiveActor*, f32);
     bool isStarPointerPointing(const TVec3f&, f32, s32, bool);
     MtxPtr getStarPointerViewMtx();
-    MtxPtr getStarPointerProjMtx();
+    Mtx44Ptr getStarPointerProjMtx();
     f32 getStarPointerRadius(s32);
     TVec2f* getStarPointerScreenPosition(s32);
     TVec2f getStarPointerScreenPositionOrEdge(s32);
