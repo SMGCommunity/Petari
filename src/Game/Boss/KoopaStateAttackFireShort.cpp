@@ -1,15 +1,15 @@
 #include "Game/Boss/KoopaStateAttackFireShort.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 
+namespace {
+    MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 1.0f, 0.0f};
+}  // namespace
+
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) {
         MR::moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
     }
 }  // namespace MR
-
-namespace {
-    MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 1.0f, 0.0f};
-}
 
 namespace NrvKoopaStateAttackFireShort {
     NEW_NERVE(KoopaStateAttackFireShortNrvStart, KoopaStateAttackFireShort, Start);
