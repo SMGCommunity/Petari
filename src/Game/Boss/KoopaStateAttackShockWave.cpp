@@ -136,7 +136,7 @@ void KoopaStateAttackShockWave::exeLand() {
         MR::startAction(mHost, "ShockWaveLand");
     }
 
-    if (MR::isStep(this, mJumpDelay) && (_14++, _14 < _10)) {
+    if (MR::isStep(this, mJumpDelay) && ++_14 < _10) {
         setNerve(&NrvKoopaStateAttackShockWave::KoopaStateAttackShockWaveNrvJumpFast::sInstance);
     } else {
         if (MR::isActionEnd(mHost)) {
