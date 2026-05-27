@@ -5,7 +5,7 @@
 
 class FireBall : public LiveActor {
 public:
-    FireBall(const char*);
+    FireBall(const char* = "ファイアーボール");
 
     virtual void init(const JMapInfoIter&);
     virtual void appear();
