@@ -149,8 +149,8 @@ void KoopaParts::initVs2() {
 }
 
 namespace {
-    ModelObjNpc* createDemoNpc(const char* pName, const char* a2) {
-        ModelObjNpc* pModelObjNpc = new ModelObjNpc(pName, a2, nullptr);
+    ModelObjNpc* createDemoNpc(const char* pName, const char* pModelArcName) {
+        ModelObjNpc* pModelObjNpc = new ModelObjNpc(pName, pModelArcName, nullptr);
         pModelObjNpc->initWithoutIter();
         MR::resetPosition(pModelObjNpc, "デモ中心");
 
