@@ -524,6 +524,8 @@ namespace JGeometry {
             z = z_;
         }
 
+        void set(const Vec& rVec);
+
         inline void set(f32 val) {
             x = val;
             y = val;

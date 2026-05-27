@@ -1,3 +1,4 @@
+#include "Game/Enemy/CocoNutBall.hpp"
 #include "Game/Enemy/OtaRock.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/FireBall.hpp"

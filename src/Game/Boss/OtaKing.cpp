@@ -3,6 +3,7 @@
 #include "Game/Boss/OtaKingLongFoot.hpp"
 #include "Game/Boss/OtaKingMagma.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/CocoNutBall.hpp"
 #include "Game/Enemy/FireBall.hpp"
 #include "Game/Enemy/FireBubble.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
@@ -12,21 +13,6 @@
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/ActorCameraUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/LayoutUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MapPartsUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/MemoryUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/ScreenUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
@@ -588,7 +574,8 @@ void OtaKing::initLongFoot(const JMapInfoIter& rIter) {
             _94[i]->mScale.set(cLongFootScale);
         }
 
-        _A8.setTransAndIdentity(mPosition);
+        _A8.identity();
+        _A8.setTrans(mPosition);
         _94[0]->initFixedPosition(_A8, TVec3f(735.0f, 80.0f, -55.0f), TVec3f(-9.0f, 266.0f, 0.0f));
         _94[1]->initFixedPosition(_A8, TVec3f(-959.0f, 130.0f, 0.0f), TVec3f(0.0f, 107.0f, 14.0f));
         _94[2]->initFixedPosition(_A8, TVec3f(0.0f, 43.0f, 884.0f), TVec3f(-8.0f, 159.0f, 0.0f));

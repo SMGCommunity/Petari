@@ -2,12 +2,12 @@
 
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/FireBall.hpp"
-#include "Game/Enemy/CocoNutBall.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/FixedPosition.hpp"
 
 #include <JSystem/JGeometry/TMatrix.hpp>
 
+class CocoNutBall;
 class NameObjArchiveListCollector;
 class JMapInfoIter;
 

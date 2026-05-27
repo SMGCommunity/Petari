@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Boss/OtaKing.hpp"
-#include "Game/Enemy/CocoNutBall.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
@@ -10,6 +9,7 @@
 
 class AudAnmSoundObject;
 class AnimScaleController;
+class CocoNutBall;
 class FireBall;
 class FireBubble;
 class FixedPosition;
