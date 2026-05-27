@@ -120,7 +120,7 @@ f32 KoopaFunction::getPlanetRadius(const Koopa* pKoopa) {
     return pKoopa->mParts->getPlanetRadius();
 }
 
-TVec3f& KoopaFunction::getKoopaFront(Koopa* pKoopa) {
+const TVec3f& KoopaFunction::getKoopaFront(const Koopa* pKoopa) {
     return pKoopa->mFront;
 }
 

@@ -49,7 +49,7 @@ namespace KoopaFunction {
     TVec3f& getPlanetCenterPos(const Koopa*);
     f32 getPlanetRadius(const Koopa*);
 
-    TVec3f& getKoopaFront(Koopa*);
+    const TVec3f& getKoopaFront(const Koopa*);
     TVec3f* getKoopaFrontPtr(Koopa*);
 
     bool isKoopaSightPlayer(const Koopa*, const MR::ActorSightParam&);
