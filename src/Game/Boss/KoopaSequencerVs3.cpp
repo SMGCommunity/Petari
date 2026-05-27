@@ -12,14 +12,14 @@ void KoopaSequencerVs3::init(Koopa*, const JMapInfoIter&) {
 void calcAndSetBaseMtx() {
 }
 
-bool KoopaSequencerVs3::attackSensor(HitSensor*, HitSensor*) {
+bool KoopaSequencerVs3::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
-bool KoopaSequencerVs3::receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*) {
+bool KoopaSequencerVs3::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 }
 
-bool KoopaSequencerVs3::receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*) {
+bool KoopaSequencerVs3::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 }
 
-bool KoopaSequencerVs3::receiveOtherMsg(u32, HitSensor*, HitSensor*) {
+bool KoopaSequencerVs3::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 }
