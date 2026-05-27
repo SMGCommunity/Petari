@@ -192,7 +192,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
         TVec3f difference = *_10;
         difference.subInline(mHost->mPosition);
 
-        _28 = (PSVECMag(difference) / 35.0f) + 10;
+        _28 = (difference.length() / 35.0f) + 10;
 
         MR::normalizeOrZero(&difference);
         difference.scaleInline(35.0f);
