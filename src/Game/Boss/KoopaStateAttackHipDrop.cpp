@@ -93,9 +93,9 @@ bool KoopaStateAttackHipDrop::attackSensor(HitSensor* pSender, HitSensor* pRecei
 
     if (KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver)) {
         return false;
-    } else {
-        return KoopaFunction::tryKoopaBodyAttackPlayerMaximum(pSender, pReceiver);
     }
+
+    return KoopaFunction::tryKoopaBodyAttackPlayerMaximum(pSender, pReceiver);
 }
 
 bool KoopaStateAttackHipDrop::isDamage() const {
