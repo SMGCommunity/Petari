@@ -483,9 +483,9 @@ void KoopaFunction::tryRestartKoopa() {
     }
 }
 
-void KoopaFunction::moveAndTurnKoopaToPlayer(Koopa* pKoopa, const MR::ActorMoveParam& rMoveParam) {
+bool KoopaFunction::moveAndTurnKoopaToPlayer(Koopa* pKoopa, const MR::ActorMoveParam& rMoveParam) {
     MR::moveAndTurnToPlayer(pKoopa, &pKoopa->mFront, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    MR::sendMsgEnemyAttackToBindedSensor(pKoopa, getKoopaMessageSensor(pKoopa));
+    return MR::sendMsgEnemyAttackToBindedSensor(pKoopa, getKoopaMessageSensor(pKoopa));
 }
 
 void KoopaFunction::startBreakKoopaArmor(Koopa* pKoopa) {

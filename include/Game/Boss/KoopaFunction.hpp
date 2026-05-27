@@ -144,7 +144,7 @@ namespace KoopaFunction {
 
     void tryRestartKoopa();
 
-    void moveAndTurnKoopaToPlayer(Koopa*, const MR::ActorMoveParam&);
+    bool moveAndTurnKoopaToPlayer(Koopa*, const MR::ActorMoveParam&);
     void startBreakKoopaArmor(Koopa*);
     bool tryKoopaShellAttackPlayer(HitSensor*, HitSensor*);
     void startKoopaSpinHitBlow(Koopa*);
