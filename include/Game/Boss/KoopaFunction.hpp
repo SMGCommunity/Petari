@@ -20,7 +20,7 @@ class ModelObj;
 
 namespace {
     bool tryStartCameraDemo(Koopa*, const char*, const char*, const char*, bool);
-}
+}  // namespace
 
 namespace MR {
     struct ActorSightParam {
