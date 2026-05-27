@@ -9,7 +9,7 @@ KoopaSequencerVs3::~KoopaSequencerVs3() {
 void KoopaSequencerVs3::init(Koopa*, const JMapInfoIter&) {
 }
 
-void calcAndSetBaseMtx() {
+void KoopaSequencerVs3::calcAndSetBaseMtx() {
 }
 
 bool KoopaSequencerVs3::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
