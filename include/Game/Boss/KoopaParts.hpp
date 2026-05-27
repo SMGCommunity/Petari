@@ -43,10 +43,10 @@ public:
     void createCommonParts();
     void createFireStairs(bool);
 
-    /* 0x0 */ Koopa* mKoopa;
-    /* 0x4 */ f32 mPlanetRadius;
-    /* 0x8 */ LiveActor* mThornBig;
-    /* 0xC */ LiveActor* mThornSmall;
+    /* 0x00 */ Koopa* mKoopa;
+    /* 0x04 */ f32 mPlanetRadius;
+    /* 0x08 */ LiveActor* mThornBig;
+    /* 0x0C */ LiveActor* mThornSmall;
     /* 0x10 */ LiveActor* mArmorBreak;
     /* 0x14 */ LiveActor* mThornBreak;
     /* 0x18 */ KoopaBattleMapPlanet* mPlanetLv1;
@@ -72,5 +72,5 @@ public:
     /* 0x68 */ ModelObj* mMeteor1;
     /* 0x6C */ ModelObj* mMeteor2;
     /* 0x70 */ ModelObj* mMeteor3;
-    /* 0x74*/ ActorCameraInfo* mActorCameraInfo;
+    /* 0x74 */ ActorCameraInfo* mActorCameraInfo;
 };
