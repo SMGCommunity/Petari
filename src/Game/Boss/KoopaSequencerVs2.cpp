@@ -9,14 +9,14 @@ KoopaSequencerVs2::~KoopaSequencerVs2() {
 void KoopaSequencerVs2::init(Koopa* pKoopa, const JMapInfoIter& rIter) {
 }
 
-bool KoopaSequencerVs2::attackSensor(HitSensor*, HitSensor*) {
+bool KoopaSequencerVs2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
-bool KoopaSequencerVs2::receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*) {
+bool KoopaSequencerVs2::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 }
 
-bool KoopaSequencerVs2::receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*) {
+bool KoopaSequencerVs2::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 }
 
-bool KoopaSequencerVs2::receiveOtherMsg(u32, HitSensor*, HitSensor*) {
+bool KoopaSequencerVs2::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 }
