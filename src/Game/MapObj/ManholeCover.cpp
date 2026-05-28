@@ -1,9 +1,13 @@
 #include "Game/MapObj/ManholeCover.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+
+namespace {
+    static const f32 sSensorRadius = 150.0f;
+    static const s32 sRattleTime = 45;
+};  // namespace
 
 namespace NrvManholeCover {
     NEW_NERVE(HostTypeWait, ManholeCover, Wait);
@@ -20,11 +24,7 @@ void ManholeCover::init(const JMapInfoIter& rIter) {
     info.setupEffect(0);
     info.setupSound(4);
     info.setupHitSensor();
-    TVec3f param;
-    param.x = 0.0f;
-    param.y = 0.0f;
-    param.z = 0.0f;
-    info.setupHitSensorParam(1, 150.0f, param);
+    info.setupHitSensorParam(1, ::sSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
     info.setupNerve(&NrvManholeCover::HostTypeWait::sInstance);
     MapObjActor::initialize(rIter, info);
 }
@@ -33,6 +33,7 @@ bool ManholeCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
     if ((MR::isMsgPlayerHipDropFloor(msg) || MR::isMsgPlayerUpperPunch(msg)) &&
         (isNerve(&NrvManholeCover::HostTypeWait::sInstance) || isNerve(&NrvManholeCover::HostTypeRattle::sInstance))) {
         setNerve(&NrvManholeCover::HostTypeOpen::sInstance);
+
         return true;
     }
 
@@ -42,8 +43,10 @@ bool ManholeCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
 bool ManholeCover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgSpinStormRange(msg) && isNerve(&NrvManholeCover::HostTypeWait::sInstance)) {
         setNerve(&NrvManholeCover::HostTypeRattle::sInstance);
+
         return true;
     }
+
     return false;
 }
 
@@ -65,7 +68,7 @@ void ManholeCover::exeRattle() {
         MR::startSound(this, "SE_OJ_MANHOLE_RATTLE", -1, -1);
     }
 
-    if (MR::isGreaterStep(this, 45) && MR::isBckStopped(this)) {
+    if (MR::isGreaterStep(this, ::sRattleTime) && MR::isBckStopped(this)) {
         setNerve(&NrvManholeCover::HostTypeWait::sInstance);
     }
 }
