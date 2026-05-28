@@ -14,13 +14,13 @@ namespace MR {
 }  // namespace MR
 
 namespace NrvKoopaStateAttackHipDrop {
-    NEW_NERVE(KoopaStateAttackHipDropNrvDamage, KoopaStateAttackHipDrop, Damage);
-    NEW_NERVE(KoopaStateAttackHipDropNrvLand, KoopaStateAttackHipDrop, Land);
-    NEW_NERVE(KoopaStateAttackHipDropNrvJumpAttackDown, KoopaStateAttackHipDrop, JumpAttackDown);
-    NEW_NERVE(KoopaStateAttackHipDropNrvJumpWaitAir, KoopaStateAttackHipDrop, JumpWaitAir);
-    NEW_NERVE(KoopaStateAttackHipDropNrvJumpUp, KoopaStateAttackHipDrop, JumpUp);
-    NEW_NERVE(KoopaStateAttackHipDropNrvJumpStart, KoopaStateAttackHipDrop, JumpStart);
     NEW_NERVE(KoopaStateAttackHipDropNrvRun, KoopaStateAttackHipDrop, Run);
+    NEW_NERVE(KoopaStateAttackHipDropNrvJumpStart, KoopaStateAttackHipDrop, JumpStart);
+    NEW_NERVE(KoopaStateAttackHipDropNrvJumpUp, KoopaStateAttackHipDrop, JumpUp);
+    NEW_NERVE(KoopaStateAttackHipDropNrvJumpWaitAir, KoopaStateAttackHipDrop, JumpWaitAir);
+    NEW_NERVE(KoopaStateAttackHipDropNrvJumpAttackDown, KoopaStateAttackHipDrop, JumpAttackDown);
+    NEW_NERVE(KoopaStateAttackHipDropNrvLand, KoopaStateAttackHipDrop, Land);
+    NEW_NERVE(KoopaStateAttackHipDropNrvDamage, KoopaStateAttackHipDrop, Damage);
 }  // namespace NrvKoopaStateAttackHipDrop
 
 KoopaStateAttackHipDrop::KoopaStateAttackHipDrop(Koopa* pKoopa)
@@ -202,42 +202,46 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
         MR::startSound(mHost, "SE_BV_KOOPA_HIPDROP", -1, -1);
     }
 
-    if (MR::isBindedGround(mHost) || MR::isGreaterStep(this, _28)) {
-        Koopa* pKoopa = mHost;
-        if (!MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body"))) {
-            if (MR::isBindedGround(mHost)) {
-                pKoopa = mHost;
-                if (MR::sendMsgToBindedSensor(192, pKoopa, pKoopa->getSensor("Body"))) {
-                    MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
-                    MR::stopScene(15);
+    if (!MR::isBindedGround(mHost) && !MR::isGreaterStep(this, _28)) {
+        return;
+    }
 
-                    if (MR::sendMsgToBindedSensor(194, KoopaFunction::getKoopaMessageSensor(mHost))) {
-                        MR::zeroVelocity(mHost);
+    Koopa* pKoopa = mHost;
+    if (MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body"))) {
+        return;
+    }
 
-                        MR::tryRumblePadAndCameraDistanceVeryStrong(mHost, 1500.0f, 3000.0f, 2000.0f);
+    if (MR::isBindedGround(mHost)) {
+        pKoopa = mHost;
+        if (MR::sendMsgToBindedSensor(192, pKoopa, pKoopa->getSensor("Body"))) {
+            MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
+            MR::stopScene(15);
 
-                        MR::startSound(mHost, "SE_OJ_KOOPA_PLATE_LAVA_ST", -1, -1);
+            if (MR::sendMsgToBindedSensor(194, KoopaFunction::getKoopaMessageSensor(mHost))) {
+                MR::zeroVelocity(mHost);
 
-                        setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvDamage::sInstance);
-                    } else {
-                        MR::tryRumblePadAndCameraDistanceMiddle(mHost, 1500.0f, 3000.0f, 2000.0f);
-                    }
+                MR::tryRumblePadAndCameraDistanceVeryStrong(mHost, 1500.0f, 3000.0f, 2000.0f);
 
-                    return;
-                }
+                MR::startSound(mHost, "SE_OJ_KOOPA_PLATE_LAVA_ST", -1, -1);
+
+                setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvDamage::sInstance);
+            } else {
+                MR::tryRumblePadAndCameraDistanceMiddle(mHost, 1500.0f, 3000.0f, 2000.0f);
             }
 
-            MR::zeroVelocity(mHost);
-            MR::tryRumblePadAndCameraDistanceStrong(mHost, 1500.0f, 3000.0f, 2000.0f);
-
-            KoopaFunction::emitKoopaShockWave(mHost);
-
-            KoopaFunction::startKoopaCamera(mHost, "ヒップドロップ着地");
-            MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
-
-            setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvLand::sInstance);
+            return;
         }
     }
+
+    MR::zeroVelocity(mHost);
+    MR::tryRumblePadAndCameraDistanceStrong(mHost, 1500.0f, 3000.0f, 2000.0f);
+
+    KoopaFunction::emitKoopaShockWave(mHost);
+
+    KoopaFunction::startKoopaCamera(mHost, "ヒップドロップ着地");
+    MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
+
+    setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvLand::sInstance);
 }
 
 void KoopaStateAttackHipDrop::exeLand() {
