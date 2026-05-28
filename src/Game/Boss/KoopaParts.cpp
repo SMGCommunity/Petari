@@ -213,9 +213,9 @@ void KoopaParts::initVs3() {
     mKoopaJr = createDemoNpc("クッパＪｒ", "KoopaJr");
     mKoopaJrShip = createDemoNpc("クッパＪｒ戦艦", "KoopaJrShip");
 
-    mMeteor1 = createMeteorStrike("デモ砲弾１", "MeteorStrike");
-    mMeteor2 = createMeteorStrike("デモ砲弾２", "MeteorStrike");
-    mMeteor3 = createMeteorStrike("デモ砲弾３", "MeteorStrike");
+    mMeteor1 = createDemoEnemy("デモ砲弾１", "MeteorStrike");
+    mMeteor2 = createDemoEnemy("デモ砲弾２", "MeteorStrike");
+    mMeteor3 = createDemoEnemy("デモ砲弾３", "MeteorStrike");
 
     createCommonParts();
 }
