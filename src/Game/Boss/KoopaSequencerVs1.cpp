@@ -17,6 +17,7 @@ KoopaSequencerVs1::KoopaSequencerVs1() : KoopaSequencer("クッパ戦（Ｖｓ�
 KoopaSequencerVs1::~KoopaSequencerVs1() {
 }
 
+/* 
 void KoopaSequencerVs1::init(Koopa* pKoopa, const JMapInfoIter& rIter) {
 }
 
@@ -55,3 +56,4 @@ void KoopaSequencerVs1::exeDemoBattleEnd() {
 
 void KoopaSequencerVs1::exeWaitDemo() {
 }
+ */

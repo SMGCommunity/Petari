@@ -1,5 +1,6 @@
 #include "Game/Boss/KoopaSequencerVs3.hpp"
 
+/* 
 KoopaSequencerVs3::KoopaSequencerVs3() : KoopaSequencer("クッパ戦（Ｖｓ３進行役）", 3) {
 }
 
@@ -23,3 +24,4 @@ bool KoopaSequencerVs3::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSe
 
 bool KoopaSequencerVs3::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 }
+*/
