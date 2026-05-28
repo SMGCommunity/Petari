@@ -113,7 +113,8 @@ namespace NrvStaffRollLine {
     NEW_NERVE(StaffRollLineNrvScroll, StaffRollLine, Scroll);
 };
 
-StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName, true), mPosition(0.0f, 0.0f) {}
+StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName, true), mPosition(0.0f, 0.0f) {
+}
 
 void StaffRollLine::init(const JMapInfoIter& rIter) {
     initLayoutManager("StaffRoll", 1);
@@ -145,7 +146,8 @@ namespace NrvStaffRollPicture {
     NEW_NERVE(StaffRollPictureNrvWork, StaffRollPicture, Work);
 };
 
-StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture(nullptr) {}
+StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture(nullptr) {
+}
 
 void StaffRollPicture::init(const JMapInfoIter& rIter) {
     initLayoutManager("StaffRollPicture", 1);
@@ -160,7 +162,7 @@ void StaffRollPicture::init(const JMapInfoIter& rIter) {
 }
 
 void StaffRollPicture::exeWork() {
-    for (s32 i = 0; i < sizeof(sPictureTimingTable) / sizeof(*sPictureTimingTable); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(sPictureTimingTable); i++) {
         const PictureTiming* pPictureTiming = &sPictureTimingTable[i];
 
         if (MR::isStep(this, pPictureTiming->mAppearStep)) {
@@ -242,7 +244,8 @@ namespace NrvStaffRoll {
 
 StaffRoll::StaffRoll(const char* pName)
     : LayoutActor(pName, true), mInfo(nullptr), mLine(nullptr), mPicture(nullptr), mMsg(nullptr), mMsgLineNum(0), mMsgLine(0),
-      mTitleLogoPos(0.0f, 0.0f), mEndLogoPos(0.0f, 0.0f), _48(-1), _4C(0) {}
+      mTitleLogoPos(0.0f, 0.0f), mEndLogoPos(0.0f, 0.0f), _48(-1), _4C(0) {
+}
 
 void StaffRoll::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -313,7 +316,7 @@ bool StaffRoll::isNextLineEmpty() const {
     }
 
     wchar_t message[256];
-    MR::getMessageLine(message, sizeof(message) / sizeof(*message), mMsg, mMsgLine);
+    MR::getMessageLine(message, ARRAY_SIZE(message), mMsg, mMsgLine);
 
     return message[0] == '\0';
 }
@@ -516,7 +519,8 @@ void StaffRoll::exeSave() {
     setNerve(&NrvStaffRoll::StaffRollNrvEnd::sInstance);
 }
 
-void StaffRoll::exeEnd() {}
+void StaffRoll::exeEnd() {
+}
 
 void StaffRoll::movement() {
     if (!MR::isExecuteCalcAnimLayout(this)) {

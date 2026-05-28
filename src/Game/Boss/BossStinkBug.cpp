@@ -142,7 +142,7 @@ void BossStinkBug::initSensor() {
     MR::addHitSensorEnemyAttack(this, "attack_right", 8, 1000.0f, TVec3f(120.0f, 50.0f, 300.0f));
     MR::invalidateHitSensor(this, "attack_left");
     MR::invalidateHitSensor(this, "attack_right");
-    for (int i = 0; i < (s32)(sizeof(::sSensorNameList) / sizeof(char*)); i++) {
+    for (int i = 0; i < ARRAY_SIZE(::sSensorNameList); i++) {
         MR::addMessageSensorReceiver(this, ::sSensorNameList[i]);
     }
 }

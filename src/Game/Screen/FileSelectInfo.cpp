@@ -103,8 +103,8 @@ void FileSelectInfo::setInfo(u16* pName, s32 number, s32 starNum, s32 starPieceN
     mIsViewNormalEnding = isViewNormalEnding;
     mIsViewCompleteEnding = isViewCompleteEnding;
 
-    MR::copyString(mDateMessage, pDateMessage, sizeof(mDateMessage) / sizeof(wchar_t));
-    MR::copyString(mTimeMessage, pTimeMessage, sizeof(mTimeMessage) / sizeof(wchar_t));
+    MR::copyString(mDateMessage, pDateMessage, ARRAY_SIZE(mDateMessage));
+    MR::copyString(mTimeMessage, pTimeMessage, ARRAY_SIZE(mTimeMessage));
 
     mMissNum = missNum;
 }

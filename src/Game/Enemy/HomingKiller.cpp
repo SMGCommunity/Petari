@@ -550,21 +550,21 @@ bool HomingKiller::tryBindedBreak() {
     if (MR::isBinded(this)) {
         if (MR::isBindedGround(this)) {
             HitSensor* groundSensor = MR::getGroundSensor(this);
-            if (isSensorType(groundSensor, cSensorTableAttackIfBinded, ARRAY_SIZEU(cSensorTableAttackIfBinded))) {
+            if (isSensorType(groundSensor, cSensorTableAttackIfBinded, ARRAY_SIZE(cSensorTableAttackIfBinded))) {
                 MR::sendMsgEnemyAttackExplosion(groundSensor, getSensor("body"));
             }
         }
 
         if (MR::isBindedWall(this)) {
             HitSensor* wallSensor = MR::getWallSensor(this);
-            if (isSensorType(wallSensor, cSensorTableAttackIfBinded, ARRAY_SIZEU(cSensorTableAttackIfBinded))) {
+            if (isSensorType(wallSensor, cSensorTableAttackIfBinded, ARRAY_SIZE(cSensorTableAttackIfBinded))) {
                 MR::sendMsgEnemyAttackExplosion(wallSensor, getSensor("body"));
             }
         }
 
         if (MR::isBindedRoof(this)) {
             HitSensor* roofSensor = MR::getRoofSensor(this);
-            if (isSensorType(roofSensor, cSensorTableAttackIfBinded, ARRAY_SIZEU(cSensorTableAttackIfBinded))) {
+            if (isSensorType(roofSensor, cSensorTableAttackIfBinded, ARRAY_SIZE(cSensorTableAttackIfBinded))) {
                 MR::sendMsgEnemyAttackExplosion(roofSensor, getSensor("body"));
             }
         }
@@ -577,7 +577,7 @@ bool HomingKiller::tryBindedBreak() {
 }
 
 bool HomingKiller::tryToExplosion(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isSensorType(pReceiver, cSensorTableTryExplosion, ARRAY_SIZEU(cSensorTableTryExplosion)) || MR::isSensorEnemy(pReceiver)) {
+    if (isSensorType(pReceiver, cSensorTableTryExplosion, ARRAY_SIZE(cSensorTableTryExplosion)) || MR::isSensorEnemy(pReceiver)) {
         if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
             return true;
         }

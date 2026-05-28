@@ -210,10 +210,11 @@ namespace RumbleData {
         }
     }
 
-    void checkHashCollision() {}
+    void checkHashCollision() {
+    }
 
     u32 getTableSize() {
-        return sizeof(gRumblePatternTable) / sizeof(*gRumblePatternTable) - 1;
+        return ARRAY_SIZE(gRumblePatternTable) - 1;
     }
 
     RumblePattern* getData(u16 index) {

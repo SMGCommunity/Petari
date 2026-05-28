@@ -17,14 +17,14 @@ namespace {
     };
 };
 
-CometEventKeeper::CometEventKeeper() : mExecutorTimeLimit(nullptr), mScreenFilter(nullptr), mCometName(nullptr), mCometStateIndex(0) {}
+CometEventKeeper::CometEventKeeper() : mExecutorTimeLimit(nullptr), mScreenFilter(nullptr), mCometName(nullptr), mCometStateIndex(0) {
+}
 
 void CometEventKeeper::init() {
     initCometStatus();
 
     if (isStartEvent("Red") || isStartEvent("Black")) {
-        mExecutorTimeLimit = new CometEventExecutorTimeLimit(
-            getTimeLimitFromTable(sTimeLimitInfoTable, sizeof(sTimeLimitInfoTable) / sizeof(*sTimeLimitInfoTable)) / 60);
+        mExecutorTimeLimit = new CometEventExecutorTimeLimit(getTimeLimitFromTable(sTimeLimitInfoTable, ARRAY_SIZE(sTimeLimitInfoTable)) / 60);
         mExecutorTimeLimit->initWithoutIter();
         mExecutorTimeLimit->kill();
     }

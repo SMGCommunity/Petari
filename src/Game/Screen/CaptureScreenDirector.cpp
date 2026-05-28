@@ -80,7 +80,7 @@ const TimingInfo* CaptureScreenDirector::getCurrentTiming() const {
 }
 
 const TimingInfo* CaptureScreenDirector::findFromName(const char* pName) const {
-    for (int i = 0; i < sizeof(cTimingInfo) / sizeof(*cTimingInfo); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(cTimingInfo); i++) {
         if (strcmp(cTimingInfo[i].mName, pName) == 0) {
             return &cTimingInfo[i];
         }

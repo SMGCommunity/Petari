@@ -614,9 +614,11 @@ void StorySequenceExecutor::forceStop() {
     setNerve(&::StorySequenceExecutorIdle::sInstance);
 }
 
-void StorySequenceExecutor::exeIdle() {}
+void StorySequenceExecutor::exeIdle() {
+}
 
-void StorySequenceExecutor::exeWaitToSceneStart() {}
+void StorySequenceExecutor::exeWaitToSceneStart() {
+}
 
 void StorySequenceExecutor::exePlayDemoSequence() {
     const StorySequenceExecutorType::DemoSequenceInfo* pDemoInfo = getCurrentDemoInfo();
@@ -949,7 +951,7 @@ void StorySequenceExecutor::decideNextEventForMoveGalaxy(GalaxyMoveArgument* pMo
             return;
         }
 
-        for (s32 i = 0; i < sizeof(::cDemoFortressDiscoverCheckListTable) / sizeof(*::cDemoFortressDiscoverCheckListTable); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(::cDemoFortressDiscoverCheckListTable); i++) {
             s32 grandGalaxyId = GameDataConst::getIncludedGrandGalaxyId(::cDemoFortressDiscoverCheckListTable[i].mStageName);
 
             if (!GameDataFunction::canOnAndIsOffGameEventFlag(::cDemoFortressDiscoverCheckListTable[i].mStageName)) {

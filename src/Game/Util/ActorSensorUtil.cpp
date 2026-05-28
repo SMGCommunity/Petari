@@ -631,7 +631,7 @@ namespace MR {
 
     bool sendMsgToBindedSensor(u32 msg, LiveActor* pActor, HitSensor* pSender) {
         HitInfo* info[32];
-        u32 size = pActor->mBinder->copyPlaneArrayAndSortingSensor(info, sizeof(info) / sizeof(*info));
+        u32 size = pActor->mBinder->copyPlaneArrayAndSortingSensor(info, ARRAY_SIZE(info));
 
         if (size == 0) {
             return false;

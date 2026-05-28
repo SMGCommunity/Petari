@@ -2,7 +2,7 @@
 #include "Game/Util/ScreenUtil.hpp"
 
 ScreenPreserver::ScreenPreserver() : NameObj(""), mIsActive(false) {
-    for (s32 i = 0; i < sizeof(_D) / sizeof(*_D); i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(_D); i++) {
         _D[i] = 0;
     }
 }

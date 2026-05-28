@@ -131,7 +131,7 @@ namespace MR {
         if (language < 0) {
             i = 0;
         } else {
-            s32 size = sizeof(cSCLanguage2GameLanguageTable[4]) / sizeof(*cSCLanguage2GameLanguageTable[4]);
+            s32 size = ARRAY_SIZE(cSCLanguage2GameLanguageTable[4]);
 
             if (language <= size) {
                 i = language;
@@ -191,7 +191,7 @@ namespace MR {
     }
 
     u32 getLanguageNum() {
-        return sizeof(cLanguages) / sizeof(*cLanguages);
+        return ARRAY_SIZE(cLanguages);
     }
 
     const char* getLanguagePrefixByIndex(u32 index) {

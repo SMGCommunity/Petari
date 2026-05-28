@@ -73,7 +73,7 @@ bool AudRmxSeqNoteOnTimer::update(f32 f1) {
 }
 
 JAISoundID AudRmxSeqNoteOnTimer::getFreeSeID() {
-    for (u32 i = 0; i < 0x10; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(cRemixNoteTrackSeId); i++) {
         JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(cRemixNoteTrackSeId[i]);
         u32* handleID = AudWrap::getRemixSeqObject()->getHandleSoundID(id);
         if (handleID == nullptr) {
@@ -93,13 +93,13 @@ AudRemixSequencer::AudRemixSequencer() {
 }
 
 void AudRemixSequencer::initNoteOnBuff() {
-    for (int i = 0; i < 0x20; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_0); i++) {
         _0[i].initData();
     }
 }
 
 void AudRemixSequencer::update() {
-    for (int i = 0; i < 0x20; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_0); i++) {
         bool isUpdate = (_0[i]._4 > 0.0f);
         if (isUpdate) {
             _0[i].update(_204);
@@ -115,7 +115,7 @@ void AudRemixSequencer::setTempo(f32 f1) {
 }
 
 AudRmxSeqNoteOnTimer* AudRemixSequencer::newNoteOnTimer() {
-    for (int i = 0; i < 0x20; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_0); i++) {
         bool isUsed = (_0[i]._4 > 0.0f);
         if (!isUsed) {
             return &_0[i];

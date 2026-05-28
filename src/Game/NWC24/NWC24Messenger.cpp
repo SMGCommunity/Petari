@@ -650,7 +650,7 @@ namespace NWC24MessengerSub {
         }
 
         static wchar_t sMessage[32];
-        swprintf(sMessage, sizeof(sMessage) / sizeof(*sMessage), L"%06d", -param2);
+        swprintf(sMessage, ARRAY_SIZE(sMessage), L"%06d", -param2);
 
         mWindow->setTextBoxArgString(sMessage, 0);
     }
@@ -675,7 +675,8 @@ namespace NWC24MessengerSub {
 
     SendTask::SendTask()
         : _0(false), mIsBG(false), _2(false), mIsMsgLedPattern(false), mRetryNo(0), mErr(NWC24_OK), mErrCode(0), mSentSize(0), mTaskName(nullptr),
-          mMessage(nullptr), mAltName(nullptr) {}
+          mMessage(nullptr), mAltName(nullptr) {
+    }
 };  // namespace NWC24MessengerSub
 
 namespace MR {

@@ -16,7 +16,7 @@ namespace {
     };
 
     const Param* getParam(const char* pParamName) {
-        for (u32 i = 0; i < sizeof(sDataTable) / sizeof(*sDataTable); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(sDataTable); i++) {
             if (MR::isEqualString(pParamName, sDataTable[i].mParamName)) {
                 return &sDataTable[i];
             }
@@ -41,7 +41,7 @@ namespace MR {
         }
 
         bool isExistCameraShaking(const char* pParamName) {
-            return getParam(pParamName)->mCameraShakeIntensity > 0.0f;
+            return 0.0f < getParam(pParamName)->mCameraShakeIntensity;
         }
 
         bool isExistPadRumble(const char* pParamName) {

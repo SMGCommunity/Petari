@@ -32,7 +32,8 @@ namespace NrvTimeLimitLayout {
 
 TimeLimitLayout::TimeLimitLayout(u32 timeLimit)
     : LayoutActor("タイムリミット", true), mTime(0), mTimeLimit(timeLimit), mScaleControl(nullptr), mFadeControl(nullptr), mCurrentTiming(nullptr),
-      mIsSuspend(false), _35(false) {}
+      mIsSuspend(false), _35(false) {
+}
 
 void TimeLimitLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("TimeLimit", 1);
@@ -188,7 +189,8 @@ void TimeLimitLayout::exeFadeout() {
     }
 }
 
-void TimeLimitLayout::exeTimeUpReady() {}
+void TimeLimitLayout::exeTimeUpReady() {
+}
 
 void TimeLimitLayout::control() {
     mFadeControl->update();
@@ -201,7 +203,7 @@ void TimeLimitLayout::control() {
 }
 
 const Timing* TimeLimitLayout::getCurrentTiming() const {
-    for (s32 i = 0; i < sizeof(::sTimingTable) / sizeof(*::sTimingTable); i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(::sTimingTable); i++) {
         u32 scaleStartFrame = ::sTimingTable[i].mScaleStartFrame;
         u32 timeLimit = mTimeLimit;
         u32 frame = scaleStartFrame - ::sTimingTable[i].mScaleKeepFrame;

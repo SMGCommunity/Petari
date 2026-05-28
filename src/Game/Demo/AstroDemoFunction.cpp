@@ -22,7 +22,7 @@ namespace AstroDemoFunction {
     }
 
     int getActiveGrandStarReturnDemoIndex() {
-        for (int i = 0; i < sizeof(cGrandStarReturnDemoTable) / sizeof(*cGrandStarReturnDemoTable); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(::cGrandStarReturnDemoTable); i++) {
             if (MR::isDemoActive(cGrandStarReturnDemoTable[i])) {
                 return i;
             }
@@ -58,7 +58,7 @@ namespace AstroDemoFunction {
     }
 
     void tryRegisterGrandStarReturn(LiveActor* pParam1, const JMapInfoIter& rIter) {
-        for (int i = 0; i < sizeof(cGrandStarReturnDemoTable) / sizeof(*cGrandStarReturnDemoTable); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(::cGrandStarReturnDemoTable); i++) {
             AstroDemoFunction::tryRegisterDemo(pParam1, cGrandStarReturnDemoTable[i], rIter);
         }
     }
@@ -66,7 +66,7 @@ namespace AstroDemoFunction {
     void tryRegisterGrandStarReturnWithFunction(LiveActor* pParam1, const JMapInfoIter& rIter, const MR::FunctorBase& rFunctor) {
         const char* pDemoName;
 
-        for (int i = 0; i < sizeof(cGrandStarReturnDemoTable) / sizeof(*cGrandStarReturnDemoTable); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(::cGrandStarReturnDemoTable); i++) {
             pDemoName = cGrandStarReturnDemoTable[i];
 
             if (MR::isDemoExist(pDemoName) && MR::tryRegisterDemoCast(pParam1, pDemoName, rIter)) {

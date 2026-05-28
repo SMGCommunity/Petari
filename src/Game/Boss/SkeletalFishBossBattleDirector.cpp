@@ -14,11 +14,11 @@ SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss*
     _D4 = 0;
     MR::connectToSceneEnemyMovement(this);
 
-    for (s32 i = 0; i < 0x20; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mColumns); i++) {
         mColumns[i] = nullptr;
     }
 
-    for (s32 i = 0; i < 4; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mGuardModels); i++) {
         ModelObj* guardMdl = new ModelObj("デモ用スカルシャークガード", "SkeletalFishGuard", nullptr, MR::DrawBufferType_Enemy, -2, -2, false);
         mGuardModels[i] = guardMdl;
         mGuardModels[i]->initWithoutIter();
@@ -61,16 +61,17 @@ void SkeletalFishBossBattleDirector::startPowerUpDemo2() {
 
 void SkeletalFishBossBattleDirector::playGuardAnim(const char* pAnimName, s32 numGuards) {
     for (s32 i = 0; i < numGuards; i++) {
-        char buf[0x80];
-        snprintf(buf, sizeof(buf), "%s%c", pAnimName, i + 0x41);
+        char animName[0x80];
+        snprintf(animName, sizeof(animName), "%s%c", pAnimName, i + 'A');
         mGuardModels[i]->makeActorAppeared();
         MR::requestMovementOn(mGuardModels[i]);
-        MR::startBck(mGuardModels[i], buf, nullptr);
+        MR::startBck(mGuardModels[i], animName, nullptr);
         MR::startSound(mGuardModels[i], "SE_BM_SKL_GUARD_APPEAR", -1, -1);
     }
 }
 
-void SkeletalFishBossBattleDirector::movement() {}
+void SkeletalFishBossBattleDirector::movement() {
+}
 
 void SkeletalFishBossBattleDirector::tryColumnCollision(HitSensor* pSensor) {
     for (s32 i = 0; i < _90; i++) {
@@ -112,7 +113,7 @@ void SkeletalFishBossBattleDirector::endPowerUpDemo2() {
 }
 
 void SkeletalFishBossBattleDirector::killGuard() {
-    for (s32 i = 0; i < 4; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mGuardModels); i++) {
         mGuardModels[i]->makeActorDead();
     }
 }
@@ -129,4 +130,5 @@ void SkeletalFishBossBattleDirector::killBirdLouse() {
     }
 }
 
-SkeletalFishBossBattleDirector::~SkeletalFishBossBattleDirector() {}
+SkeletalFishBossBattleDirector::~SkeletalFishBossBattleDirector() {
+}

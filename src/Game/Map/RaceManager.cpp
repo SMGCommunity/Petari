@@ -539,7 +539,7 @@ namespace RaceManagerFunction {
     }
 
     s32 getRaceId(const char* pGalaxyName, s32 scenarioNo) {
-        for (u32 i = 0; i < ARRAY_SIZEU(sRaceStruct); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(sRaceStruct); i++) {
             const RaceStructData& rRaceStructData = getRaceStruceData(i);
 
             if (MR::isEqualString(rRaceStructData.mGalaxyName, pGalaxyName) && rRaceStructData.mScenarioNo == scenarioNo) {

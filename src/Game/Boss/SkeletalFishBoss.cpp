@@ -94,7 +94,7 @@ SkeletalFishBoss::SkeletalFishBoss(const char* pName) : LiveActor(pName) {
     _1B0 = 0;
     _1B4 = -1;
 
-    for (u32 i = 0; i < 0xD; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mControllers); i++) {
         mControllers[i] = nullptr;
     }
 
@@ -606,17 +606,13 @@ SkeletalFishBossHead* SkeletalFishBoss::getHeadActor() const {
 }
 
 void SkeletalFishBoss::calcAndSetBaseMtx() {
-    bool isInDemo = false;
-
-    if (isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
-        isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
-        isInDemo = true;
-    }
+    bool isInDemo = isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
+                    isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
 
     if (isInDemo) {
-        MR::setBaseTRMtx(this, _150.toMtxPtr());
+        MR::setBaseTRMtx(this, _150);
     } else {
-        for (u32 i = 0; i < 0xD; i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(mControllers); i++) {
             mControllers[i]->registerCallBack();
         }
 
@@ -646,7 +642,7 @@ void SkeletalFishBoss::initJoint() {
         mJointIndicies[i] = -1;
     }
 
-    for (s32 i = 0; i < 0xD; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mControllers); i++) {
         char buf[16];
         snprintf(buf, sizeof(buf), "Joint%02d", i);
         mControllers[i] = MR::createJointDelegatorWithNullChildFunc(this, &SkeletalFishBoss::calcJoint, buf);
@@ -1016,7 +1012,7 @@ SkeletalFishBossHead::SkeletalFishBossHead(LiveActor* pActor)
     initHitSensor(17);
     MR::addHitSensorAtJointEnemy(this, "body", "Head", 8, 400.0f, TVec3f(0.0f, -120.0f, 320.0f));
 
-    for (u32 i = 0; i < 0xD; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(sHitPosData); i++) {
         // SkeletalFishBoss::HitPos* data = &sHitPosData[i];
         TVec3f offset(sHitPosData[i].mOffset);
         // offset.setInlinePS((TVec3f)data->mOffset);

@@ -34,16 +34,16 @@ namespace {
         {"IcicleRockLight", nullptr, "SE_OJ_LV_ICICLE_ROCK_LIGHT", -1, nullptr, 0},
         {"UFOKinokoLandingBlackSmoke", nullptr, "SE_OJ_LV_UFO_KINOKO_SMOKE", -1, nullptr, 0},
     };
+
     const s_effectDataTable* findDataElement(const char* pString) {
-        u32 i = 0;
-        u32 v2 = 0;
-        for (i = 0; i < sizeof(sEffectDataTable) / sizeof(*sEffectDataTable); i++) {
-            const s_effectDataTable* table = &sEffectDataTable[v2];
+        for (u32 i = 0, j = 0; i < ARRAY_SIZE(sEffectDataTable); i++, j++) {
+            const s_effectDataTable* table = &sEffectDataTable[j];
+
             if (MR::isEqualString(pString, table->_0)) {
                 return table;
             }
-            v2 += 1;
         }
+
         return nullptr;
     }
 };  // namespace
@@ -104,6 +104,9 @@ void SimpleEffectObj::setStateWait() {
 
 void SimpleEffectObj::setStateMove() {
     setNerve(&NrvSimpleEffectObj::HostTypeMove::sInstance);
+}
+
+void SimpleEffectObj::exeWait() {
 }
 
 void SimpleEffectObj::exeMove() {
@@ -170,5 +173,3 @@ void SimpleEffectObj::exeMove() {
         }
     }
 }
-
-inline void SimpleEffectObj::exeWait() {}

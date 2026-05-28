@@ -419,7 +419,7 @@ void Flag::draw() const {
 
         const Vec2 stickCoords[] = {{1.0f, 0.0f}, {0.0f, 1.0f}, {-1.0f, 0.0f}, {1.0f, 0.0f}};
 
-        GXSetArray(GX_VA_CLR0, &sStickColors, ARRAY_SIZEU(sStickColors));
+        GXSetArray(GX_VA_CLR0, &sStickColors, ARRAY_SIZE(sStickColors));
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 8);
 
         f32 length = mStickLength + mPointIntervalV * (mNumPointsV - 1);

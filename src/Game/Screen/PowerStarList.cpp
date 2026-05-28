@@ -92,7 +92,7 @@ void PowerStarList::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "Title", 1);
     MR::createAndAddPaneCtrl(this, "Belt", 1);
 
-    for (s32 i = 0; i < sizeof(cSeparatorPaneTable) / sizeof(*cSeparatorPaneTable); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(cSeparatorPaneTable); i++) {
         MR::createAndAddPaneCtrl(this, cSeparatorPaneTable[i], 1);
         MR::setFollowPos(&mSeparatorArray[i]._4, this, cSeparatorPaneTable[i]);
         MR::setFollowTypeAdd(this, cSeparatorPaneTable[i]);
@@ -123,7 +123,8 @@ namespace {
     class ListItem {
     public:
         /// @brief Creates a new `ListItem`.
-        ListItem() : _0(-1), _4(0) {}
+        ListItem() : _0(-1), _4(0) {
+        }
 
     private:
         /* 0x00 */ s32 _0;
@@ -186,7 +187,7 @@ namespace {
     class TextBuffer {
     public:
         TextBuffer(LayoutActor* pActor, const char* const* ppParam2, s32 param3) : mActor(pActor), _4(ppParam2), _8(param3), mTail(mBuffer) {
-            swprintf(mBuffer, sizeof(mBuffer) / sizeof(*mBuffer), L"");
+            swprintf(mBuffer, ARRAY_SIZE(mBuffer), L"");
         }
 
         void addNewLine(s32 param1) {
@@ -203,7 +204,7 @@ namespace {
             if (param1 == v1 * _8) {
                 MR::setTextBoxMessageRecursive(mActor, _4[v1 - 1], mBuffer);
                 mTail = mBuffer;
-                swprintf(mBuffer, sizeof(mBuffer) / sizeof(*mBuffer), L"");
+                swprintf(mBuffer, ARRAY_SIZE(mBuffer), L"");
             }
         }
 

@@ -3,7 +3,7 @@
 void MarioActor::initMember() {
     _8C = 0;
     mDLchanger = nullptr;
-    for (int i = 0; i < 0x40; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_94); i++) {
         _94[i] = 0;
     }
     mDL[0] = nullptr;
@@ -134,7 +134,7 @@ void MarioActor::initMember() {
     PSMTXIdentity(_3EC.toMtxPtr());
     _420 = 0;
     _424 = 0;
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_428); i++) {
         _428[i] = 0;
     }
 
@@ -162,23 +162,23 @@ void MarioActor::initMember() {
     _4B4 = 0.0f;
     _4B8.zero();
     _4C4.zero();
-    for (int i = 0; i < 0x80; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_4D0); i++) {
         _4D0[i] = 0;
     }
     _6D0 = 0;
     _6D4 = 0.0f;
     _6D8 = 0.0f;
-    for (int i = 0; i < 0x40; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_6DC); i++) {
         _6DC[i] = nullptr;
     }
     _7DC = 0;
     _7DE = 0;
     _7E0 = 0;
     _7E2 = 0;
-    for (int i = 0; i < 0x40; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_7E4); i++) {
         _7E4[i] = 0;
     }
-    for (int i = 0; i < 0x40; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_8E4); i++) {
         _8E4[i] = 0;
     }
     _924 = nullptr;
@@ -197,7 +197,7 @@ void MarioActor::initMember() {
     _94E = 0;
     _950 = 0;
     _951 = 0;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_954); i++) {
         _954[i] = 0;
     }
     _974 = 0;
@@ -244,7 +244,7 @@ void MarioActor::initMember() {
     _A18.zero();
     _A24 = 0;
     _A25 = 0;
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mModels); i++) {
         mModels[i] = nullptr;
     }
     _A40 = 0;
@@ -264,7 +264,7 @@ void MarioActor::initMember() {
     _A68 = 0.0f;
     _A6C = 0;
     _A6E = 0;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_A70); i++) {
         _A70[i] = nullptr;
         _A90[i] = nullptr;
     }
@@ -286,7 +286,7 @@ void MarioActor::initMember() {
     _B48 = nullptr;
     _B4C = 0;
     _B50 = 0;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_B54); i++) {
         _B54[i] = 0;
     }
     _B60 = 0;

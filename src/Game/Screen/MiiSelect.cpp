@@ -34,7 +34,7 @@ MiiSelect::MiiSelect(const char* pName) : LayoutActor(pName, true) {
     _200 = 0;
     _204 = new FileSelectIconID();
 
-    for (int i = 0; i < sizeof(_20) / sizeof(*_20); i++) {
+    for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         _20[i] = nullptr;
     }
 
@@ -141,9 +141,7 @@ void MiiSelect::exeWait() {
         validateAllIcon();
         setCurrentPageGroupB();
 
-        s32 size = sizeof(_20) / sizeof(*_20);
-
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < ARRAY_SIZE(_20); i++) {
             if (_20[i]->isHidden()) {
                 continue;
             }
@@ -155,9 +153,7 @@ void MiiSelect::exeWait() {
         setCurrentPageNum();
     }
 
-    s32 size = sizeof(_20) / sizeof(*_20);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         if (_20[i]->trySelect()) {
             // ...
         }
@@ -216,7 +212,8 @@ void MiiSelect::exeScrollRight() {
     }
 }
 
-void MiiSelect::exeSelected() {}
+void MiiSelect::exeSelected() {
+}
 
 void MiiSelect::exeDisappear() {
     if (MR::isFirstStep(this)) {
@@ -228,12 +225,11 @@ void MiiSelect::exeDisappear() {
     }
 }
 
-void MiiSelect::exeDummySelected() {}
+void MiiSelect::exeDummySelected() {
+}
 
 void MiiSelect::control() {
-    s32 size = sizeof(_20) / sizeof(*_20);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         _20[i]->update();
     }
 
@@ -264,9 +260,7 @@ void MiiSelect::createButtons() {
         "PicArrowR",
     };
 
-    s32 size = sizeof(_20) / sizeof(*_20);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         MR::createAndAddPaneCtrl(this, pane[i], 1);
 
         _20[i] = new ButtonPaneController(this, pane[i], bound[i], 0, true);
@@ -289,17 +283,13 @@ void MiiSelect::callbackRight() {
 }
 
 void MiiSelect::appearButtons() {
-    s32 size = sizeof(_20) / sizeof(*_20);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         _20[i]->appear();
     }
 }
 
 void MiiSelect::disappearButtons() {
-    s32 size = sizeof(_20) / sizeof(*_20);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_20); i++) {
         _20[i]->disappear();
     }
 }
@@ -444,7 +434,7 @@ void MiiSelect::onSelectDummy() {
 
 namespace MiiSelectSub {
     Page::Page(MiiSelect* pHost) : mHost(pHost), _20(true) {
-        for (int i = 0; i < sizeof(mIconArray) / sizeof(*mIconArray); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(mIconArray); i++) {
             mIconArray[i] = new MiiSelectIcon(-1, -1, -1, "Miiセレクト用アイコン");
         }
     }
@@ -459,9 +449,7 @@ namespace MiiSelectSub {
             v = 1;
         }
 
-        s32 size = sizeof(mIconArray) / sizeof(*mIconArray);
-
-        for (s32 i = 0; i < size; i++) {
+        for (s32 i = 0; i < ARRAY_SIZE(mIconArray); i++) {
             char paneName[128];
 
             snprintf(paneName, sizeof(paneName), "Mii%02d", v + i);
@@ -471,25 +459,19 @@ namespace MiiSelectSub {
     }
 
     void Page::invalidateAllIcon() {
-        s32 size = sizeof(mIconArray) / sizeof(*mIconArray);
-
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < ARRAY_SIZE(mIconArray); i++) {
             mIconArray[i]->invalidate();
         }
     }
 
     void Page::validateAllIcon() {
-        s32 size = sizeof(mIconArray) / sizeof(*mIconArray);
-
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < ARRAY_SIZE(mIconArray); i++) {
             mIconArray[i]->validate();
         }
     }
 
     void Page::prohibitIcon(const FileSelectIconID& rIconID) {
-        s32 size = sizeof(mIconArray) / sizeof(*mIconArray);
-
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < ARRAY_SIZE(mIconArray); i++) {
             if (MR::isDead(mIconArray[i])) {
                 continue;
             }

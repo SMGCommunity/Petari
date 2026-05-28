@@ -13,7 +13,6 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Ride.hpp"
 
-
 namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);
     NEW_NERVE(MorphItemObjNeoNrvAppear, MorphItemObjNeo, Appear);
@@ -8315,7 +8314,7 @@ namespace NameObjFactory {
     }
 
     bool isPlayerArchiveLoaderObj(const char* pArchive) {
-        for (s32 i = 0; i < sizeof(cPlayerArchiveLoaderObjTable) / sizeof(*cPlayerArchiveLoaderObjTable); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(cPlayerArchiveLoaderObjTable); i++) {
             if (MR::isEqualStringCase(cPlayerArchiveLoaderObjTable[i], pArchive)) {
                 return true;
             }
@@ -8329,8 +8328,7 @@ namespace NameObjFactory {
             pTable = cCreateTable;
         }
 
-        for (const Name2CreateFunc* pName2CreateFunc = pTable; pName2CreateFunc != cCreateTable + sizeof(cCreateTable) / sizeof(*cCreateTable);
-             pName2CreateFunc++) {
+        for (const Name2CreateFunc* pName2CreateFunc = pTable; pName2CreateFunc != cCreateTable + ARRAY_SIZE(cCreateTable); pName2CreateFunc++) {
             if (pName2CreateFunc->mName == nullptr) {
                 continue;
             }
@@ -8356,16 +8354,14 @@ namespace NameObjFactory {
             }
 
             for (const Name2Archive* pName2Archive = cName2ArchiveNamesTable;
-                 pName2Archive != cName2ArchiveNamesTable + sizeof(cName2ArchiveNamesTable) / sizeof(*cName2ArchiveNamesTable); pName2Archive++) {
+                 pName2Archive != cName2ArchiveNamesTable + ARRAY_SIZE(cName2ArchiveNamesTable); pName2Archive++) {
                 if (MR::isEqualString(pName2Archive->mObjectName, pName)) {
                     pArchiveList->addArchive(pName2Archive->mArchiveName);
                 }
             }
 
             for (const Name2MakeArchiveListFunc* pName2ArchiveFunc = cName2MakeArchiveListFuncTable;
-                 pName2ArchiveFunc !=
-                 cName2MakeArchiveListFuncTable + sizeof(cName2MakeArchiveListFuncTable) / sizeof(*cName2MakeArchiveListFuncTable);
-                 pName2ArchiveFunc++) {
+                 pName2ArchiveFunc != cName2MakeArchiveListFuncTable + ARRAY_SIZE(cName2MakeArchiveListFuncTable); pName2ArchiveFunc++) {
                 if (MR::isEqualString(pName2ArchiveFunc->mName, pName)) {
                     pName2ArchiveFunc->mArchiveFunc(pArchiveList, rIter);
                 }

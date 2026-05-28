@@ -100,11 +100,10 @@ void StarPiece::init(const JMapInfoIter& rIter) {
         MR::getObjectName(&objName, rIter);
     }
 
-    s32 numInitColors = sizeof(initColors) / sizeof(initColors[0]);
-    if (arg3 >= 0 && arg3 < numInitColors) {
+    if (arg3 >= 0 && arg3 < getNumColor()) {
         mColor = initColors[arg3];
     } else {
-        mColor = initColors[MR::getRandom(0, numInitColors)];
+        mColor = initColors[MR::getRandom(0, getNumColor())];
     }
 
     initModelManagerWithAnm("StarPiece", nullptr, true);
@@ -189,7 +188,7 @@ void StarPiece::setColor(s32 colorIndex) {
 }
 
 s32 StarPiece::getNumColor() {
-    return sizeof(initColors) / sizeof(initColors[0]);
+    return ARRAY_SIZE(initColors);
 }
 
 void StarPiece::appearFromGroup() {

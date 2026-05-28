@@ -36,7 +36,8 @@ namespace {
     NEW_NERVE(DemoKoopaJrShipNrvFlyAway, DemoKoopaJrShip, FlyAway);
 };  // namespace
 
-DemoKoopaJrShip::DemoKoopaJrShip(const char* pName) : LiveActor(pName), mKoopaJrObj(nullptr), mAnimCameraIndex(-1) {}
+DemoKoopaJrShip::DemoKoopaJrShip(const char* pName) : LiveActor(pName), mKoopaJrObj(nullptr), mAnimCameraIndex(-1) {
+}
 
 void DemoKoopaJrShip::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -134,7 +135,7 @@ void DemoKoopaJrShip::control() {
 void DemoKoopaJrShip::initAnimID(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mAnimCameraIndex);
 
-    if (mAnimCameraIndex >= sizeof(sAnim) / sizeof(*sAnim)) {
+    if (mAnimCameraIndex >= ARRAY_SIZEU(sAnim)) {
         mAnimCameraIndex = -1;
     }
 

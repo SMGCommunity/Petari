@@ -61,7 +61,7 @@ ScenarioSelectLayout::ScenarioSelectLayout(EffectSystem* pEffectSystem, const Ca
       mStarTopFollowPos(0.0f, 0.0f), mBackButton(nullptr), mMarioPaneFollowPos(0.0f, 0.0f), mMarioPaneName(nullptr), _A4(0), _A8(-1) {
     mEffectHostMtx.identity();
 
-    for (s32 i = 0; i < sizeof(mQuestionPane) / sizeof(*mQuestionPane); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mQuestionPane); i++) {
         mQuestionPane[i].zero();
     }
 }
@@ -85,7 +85,7 @@ void ScenarioSelectLayout::init(const JMapInfoIter& rIter) {
     MR::setFollowPos(&mNewGreenTextFollowPos, this, "NewStarGreen");
     MR::setFollowPos(&mMarioPaneFollowPos, this, "Mario");
 
-    for (s32 i = 0; i < sizeof(mQuestionPane) / sizeof(*mQuestionPane); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mQuestionPane); i++) {
         MR::createAndAddPaneCtrl(this, cQuestionPaneName[i], 1);
         MR::setFollowPos(&mQuestionPane[i], this, cQuestionPaneName[i]);
     }
@@ -376,7 +376,7 @@ void ScenarioSelectLayout::startAnimAllNewPane(const char* pAnimName) {
     MR::startPaneAnim(this, "New", pAnimName, 0);
     MR::startPaneAnim(this, "NewStarGreen", pAnimName, 0);
 
-    for (s32 i = 0; i < sizeof(cQuestionPaneName) / sizeof(*cQuestionPaneName); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(cQuestionPaneName); i++) {
         MR::startPaneAnim(this, cQuestionPaneName[i], pAnimName, 0);
     }
 }
@@ -385,7 +385,7 @@ void ScenarioSelectLayout::setAnimRateAllNewPane(f32 rate) {
     MR::setPaneAnimRate(this, "New", rate, 0);
     MR::setPaneAnimRate(this, "NewStarGreen", rate, 0);
 
-    for (s32 i = 0; i < sizeof(cQuestionPaneName) / sizeof(*cQuestionPaneName); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(cQuestionPaneName); i++) {
         MR::setPaneAnimRate(this, cQuestionPaneName[i], rate, 0);
     }
 }

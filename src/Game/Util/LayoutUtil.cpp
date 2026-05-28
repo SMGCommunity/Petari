@@ -95,7 +95,7 @@ namespace MR {
         va_list list;
 
         va_start(list, pFormat);
-        vswprintf(message, sizeof(message) / sizeof(*message), pFormat, list);
+        vswprintf(message, ARRAY_SIZE(message), pFormat, list);
         va_end(list);
 
         setTextBoxMessageRecursive(pActor, pPaneName, message);

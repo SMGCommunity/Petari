@@ -15,7 +15,7 @@ namespace {
 };  // namespace
 
 FileSelectButton::FileSelectButton(const char* pName) : LayoutActor(pName, true) {
-    for (int i = 0; i < sizeof(mButtonCtrl) / sizeof(*mButtonCtrl); i++) {
+    for (int i = 0; i < ARRAY_SIZE(mButtonCtrl); i++) {
         mButtonCtrl[i] = nullptr;
         mCallbackFunctor[i] = nullptr;
     }
@@ -33,9 +33,7 @@ void FileSelectButton::init(const JMapInfoIter& rIter) {
 void FileSelectButton::appear() {
     LayoutActor::appear();
 
-    int size = sizeof(mButtonCtrl) / sizeof(*mButtonCtrl);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mButtonCtrl); i++) {
         mButtonCtrl[i]->appear();
     }
 
@@ -47,9 +45,7 @@ void FileSelectButton::kill() {
 }
 
 void FileSelectButton::disappear() {
-    int size = sizeof(mButtonCtrl) / sizeof(*mButtonCtrl);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mButtonCtrl); i++) {
         mButtonCtrl[i]->disappear();
     }
 
@@ -71,9 +67,7 @@ void FileSelectButton::shiftSelect() {
 }
 
 void FileSelectButton::exeSelect() {
-    int size = sizeof(mButtonCtrl) / sizeof(*mButtonCtrl);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mButtonCtrl); i++) {
         if (mButtonCtrl[i]->isPointingTrigger()) {
             MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
         }
@@ -89,12 +83,11 @@ void FileSelectButton::exeSelect() {
     }
 }
 
-void FileSelectButton::exeWait() {}
+void FileSelectButton::exeWait() {
+}
 
 void FileSelectButton::exeDisappear() {
-    int size = sizeof(mButtonCtrl) / sizeof(*mButtonCtrl);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mButtonCtrl); i++) {
         if (!mButtonCtrl[i]->isHidden()) {
             return;
         }
@@ -104,9 +97,7 @@ void FileSelectButton::exeDisappear() {
 }
 
 void FileSelectButton::control() {
-    int size = sizeof(mButtonCtrl) / sizeof(*mButtonCtrl);
-
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mButtonCtrl); i++) {
         if (mButtonCtrl[i]->isDecidedWait()) {
             mButtonCtrl[i]->forceToWait();
         }
@@ -134,7 +125,7 @@ void FileSelectButton::createButtonController() {
     mButtonCtrl[0] = new ButtonPaneController(this, "StartButton", "BoxStartButton", 0, true);
     mButtonCtrl[4] = new ButtonPaneController(this, "P2ManualButton", "BoxP2", 0, true);
 
-    for (int i = 0; i < sizeof(mButtonCtrl) / sizeof(*mButtonCtrl); i++) {
+    for (int i = 0; i < ARRAY_SIZE(mButtonCtrl); i++) {
         mButtonCtrl[i]->_22 = false;
     }
 }
