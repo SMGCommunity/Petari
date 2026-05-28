@@ -5,6 +5,7 @@
 #include "Game/Enemy/MoguStone.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/FixedPosition.hpp"
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -261,16 +262,18 @@ void IceMerameraKing::exeThrow() {
     if (MR::isStep(this, 22)) {
         _90 = getDeadWeaponAndAppear();
         mFixedPos->mMtx.getTrans(_90->mPosition);
-        if (!_90) {
+        ThrowingIce *a = _90;
+        if (!a) {
             setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
             return;
         }
-        _E0++;
+        TVec3f pos = a->mPosition;
+        _E0 += 1;
         TVec3f v11(*MR::getPlayerVelocity());
         v11.scale(35.0f);
         TVec3f v12(*MR::getPlayerCenterPos());
         v12.add(v11);
-        _90->emitIce(mPosition, v12, -5.0f, mGravity);
+        _90->emitIce(pos, v12, -5.0f, mGravity);
         _90 = nullptr;
         MR::startSound(this, "SE_BM_ICEMERAKING_THROW", -1, -1);
     }
@@ -554,20 +557,20 @@ void IceMerameraKing::exeAngryDemo() {
         MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY1", -1, -1);
     }
     MR::playLevelMarioPinchBGM(true);
-
+    
     if (MR::isDemoPartLastStep("怒りデモ")) {
         if (!(_EC > 2)) {
             TVec3f v7(mGravity);
             v7.scale(200.0f);
             TVec3f v8(mPosition);
-            v7.sub(v8);
-            MR::appearStarPiece(this, v7, 8, 15.0f, 70.0f, false);
+            v8.sub(v7);
+            MR::appearStarPiece(this, v8, 8, 15.0f, 70.0f, false);
         } else {
             TVec3f v5(mGravity);
             v5.scale(200.0f);
             TVec3f v6(mPosition);
-            v5.sub(v6);
-            MR::appearStarPiece(this, v5, 16, 15.0f, 70.0f, false);
+            v6.sub(v5);
+            MR::appearStarPiece(this, v6, 16, 15.0f, 70.0f, false);
         }
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
         setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
@@ -771,20 +774,23 @@ bool IceMerameraKing::isEnableThrow() {
 ThrowingIce* IceMerameraKing::getDeadWeaponAndAppear() {
     ThrowingIce* v7;
     s32 tempE4 = _E4;
-    s32 temp = mActor.mCount;
-    for (s32 i = 0; i < temp; i++) {
+    s32 count = mActor.mCount;
+    for (s32 i = 0; i < count; i++) {
         if (MR::isDead(mActor[tempE4])) {
             MR::resetPosition(mActor[tempE4], mPosition);
-            mActor[tempE4]->appear();
-            _E4 += temp + 1 - ((_E4 + temp + 1) / (temp * temp));
+            LiveActor* weapon = mActor[tempE4];
+            weapon->appear();
+            mActor.begin();
+            _E4 += count;
+            _E4++;
+            _E4 %= count;
             v7 = mActor[tempE4];
             return v7;
         }
-        tempE4 += temp + 1 - ((tempE4 + temp + 1) / (temp * temp));
+
+        tempE4 = (tempE4 + count + 1) % count;
     }
-    v7 = nullptr;
-    return v7;
-    // major
+    return nullptr;
 }
 
 bool IceMerameraKing::calcJoint(TPos3f* a2, const JointControllerInfo& info) {
