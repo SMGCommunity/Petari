@@ -130,7 +130,7 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
 
     MR::tryRegisterDemoCast(_AC, rIter);
     MR::registerDemoActionNerve(this, &NrvIceMerameraKing::HostTypeNrvBeginDemo::sInstance, nullptr);
-    mSpinParticle = new SpinPullParticleCallBack();
+    mSpinParticle = new MerameraParticleCallBack();
     mJointController = MR::createJointDelegatorWithNullChildFunc(this, &IceMerameraKing::calcJoint, "JointRoot");
     makeActorAppeared();
     MR::emitEffect(this, "BodyIce");
