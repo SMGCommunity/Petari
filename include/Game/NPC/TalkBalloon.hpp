@@ -118,6 +118,6 @@ public:
 };
 
 namespace MR {
-    void recoverSoundVolumeSetting(unsigned long);
+    void recoverSoundVolumeSetting(u32);
     bool isCameraInterpolatingNearlyEnd();
 }  // namespace MR

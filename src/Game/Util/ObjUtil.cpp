@@ -642,7 +642,7 @@ namespace MR {
         appearEventPowerStar(pObj->mName, param2, &rParam3, false, false);
     }
 
-    void requestAppearPowerStar(const NameObj* pObj, const LiveActor* pActor, float flt) {
+    void requestAppearPowerStar(const NameObj* pObj, const LiveActor* pActor, f32 flt) {
         MtxPtr baseMtx = pActor->getBaseMtx();
         TVec3f baseMtxY(baseMtx[1][0], baseMtx[1][1], baseMtx[1][2]);
         baseMtxY.scale(flt);

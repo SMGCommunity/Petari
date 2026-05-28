@@ -12,7 +12,7 @@ void LavaStrangeRock::init(const JMapInfoIter& rIter) {
     s32 v1 = -1;
     MR::getJMapInfoArg0NoInit(rIter, &v1);
 
-    if ((unsigned)v1 + 1 <= 1) {
+    if (v1 + 1 <= 1U) {
         _90 = 0;
     } else if (v1 == 1) {
         _90 = 1;
@@ -118,7 +118,7 @@ void LavaStrangeRock::exeWait() {
             return;
         }
         MR::emitEffect(this, "Break");
-        switch ((unsigned)mRockType) {  // the lack of breaks here is intentional
+        switch (mRockType) {  // the lack of breaks here is intentional
         case 0:
             MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_S", -1, -1);
         case 1:

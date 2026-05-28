@@ -371,8 +371,8 @@ void StaffRoll::exeTitleLogoScroll() {
 
 /*
 void StaffRoll::exeLineScroll() {
-    float v1 = MR::mod(MR::getScreenHeight() - 220.0f, ::getStaffRollParam()->mScrollSpeed);
-    float v2 = 14211 - (v1 == 0.0f) + (MR::getScreenHeight() - 220.0f) / ::getStaffRollParam()->mScrollSpeed;
+    f32 v1 = MR::mod(MR::getScreenHeight() - 220.0f, ::getStaffRollParam()->mScrollSpeed);
+    f32 v2 = 14211 - (v1 == 0.0f) + (MR::getScreenHeight() - 220.0f) / ::getStaffRollParam()->mScrollSpeed;
 
     if (v2 > _4C) {
         return;

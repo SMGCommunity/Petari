@@ -273,7 +273,7 @@ namespace MR {
         CameraParamChunkEvent* pChunk = getCameraDirector()->getEventParameter(0, pEventName);
         if (pChunk) {
             pChunk->mGeneralParam->mWPoint.set(rWPoint);
-            crossToPolar(rWPoint, a3, (float*)pChunk->mGeneralParam, &pChunk->mGeneralParam->mAxis.x, &pChunk->mGeneralParam->mAxis.y);
+            crossToPolar(rWPoint, a3, (f32*)pChunk->mGeneralParam, &pChunk->mGeneralParam->mAxis.x, &pChunk->mGeneralParam->mAxis.y);
             pChunk->mGeneralParam->mUp.set(rUpVec);
             pChunk->setLOfsErpOff(doZeroWOffset);
             if (!doZeroWOffset) {
@@ -420,7 +420,7 @@ namespace MR {
         getCameraDirector()->startEvent(pInfo->mZoneID, pName, camTarget, a3);
     }
 
-    void startEventCameraTargetPlayer(const ActorCameraInfo* pInfo, const char* pName, long a3) {
+    void startEventCameraTargetPlayer(const ActorCameraInfo* pInfo, const char* pName, s32 a3) {
         CameraTargetArg camTarget = CameraTargetArg();
         setCameraTargetToPlayer(&camTarget);
         getCameraDirector()->startEvent(pInfo->mZoneID, pName, camTarget, a3);
@@ -445,7 +445,7 @@ namespace MR {
         getCameraDirector()->startEvent(0, pName, rCamTarget, a3);
     }
 
-    void startEventCameraAnim(const ActorCameraInfo* pInfo, const char* pEventName, const CameraTargetArg& rCamTarget, long a4, float a5) {
+    void startEventCameraAnim(const ActorCameraInfo* pInfo, const char* pEventName, const CameraTargetArg& rCamTarget, s32 a4, f32 a5) {
         CameraParamChunkEvent* pChunk = getCameraDirector()->getEventParameter(pInfo->mZoneID, pEventName);
         if (pChunk) {
             pChunk->mGeneralParam->mDist = a5;

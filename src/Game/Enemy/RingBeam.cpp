@@ -35,7 +35,7 @@ void RingBeamShadowDrawer::drawShape() const {
     TVec3f Trans;
     TVec3f listXDir;
     TVec3f listYDir;
-    float f1 = 0.2026834f;
+    f32 f1 = 0.2026834f;
 
     baseMtxCopy.setInline(_1c->getBaseMtx());
     baseMtxCopy.getXDir(XDir);
@@ -43,7 +43,7 @@ void RingBeamShadowDrawer::drawShape() const {
     baseMtxCopy.getTrans(Trans);
     PSMTXRotAxisRad(mtx, &YDir, f1);
     XDirScaled.scale(_20, XDir);
-    float f2 = 0.0f;
+    f32 f2 = 0.0f;
     for (int i = 0; i < 32; i++) {
         JMathInlineVEC::PSVECAdd(&Trans, &XDirScaled, &temp);
         MR::calcGravityVector(_1c, temp, &temp2, nullptr, 0);

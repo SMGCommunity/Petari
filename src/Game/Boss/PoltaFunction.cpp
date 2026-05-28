@@ -150,7 +150,7 @@ namespace PoltaFunction {
         return pPolta->mGroundRockHolder->getObjectCount() - pPolta->mGroundRockHolder->getLivingActorNum();
     }
 
-    bool appearGroundRock(Polta* pPolta, float param2, float param3) {
+    bool appearGroundRock(Polta* pPolta, f32 param2, f32 param3) {
         PoltaGroundRockHolder* groundRockHolder = pPolta->mGroundRockHolder;
         PoltaGroundRock* deadMember = groundRockHolder->getDeadActor() ? (PoltaGroundRock*)groundRockHolder->getDeadActor() : nullptr;
 
@@ -185,7 +185,7 @@ namespace PoltaFunction {
     }
 
     // All the params besides pPolta go unused.
-    bool appearBombTeresaFromRoot(Polta* pPolta, float param2, float param3, s32 param4) {
+    bool appearBombTeresaFromRoot(Polta* pPolta, f32 param2, f32 param3, s32 param4) {
         TVec3f v8;
         JMAVECScaleAdd(pPolta->mGravity, pPolta->mPosition, &v8, -120.0f);
         BombTeresa* deadMember = pPolta->mBombTeresaHolder->getDeadMember();

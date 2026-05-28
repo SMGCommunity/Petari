@@ -202,7 +202,7 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     _480 = new Triangle();
     _484 = new Triangle();
 
-    for (unsigned int i = 0; i < ARRAY_SIZE(_57C); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(_57C); i++) {
         _57C[i] = new Triangle();
     }
 
@@ -226,7 +226,7 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     _56C = 0;
     _570 = 0;
 
-    for (unsigned int i = 0; i < ARRAY_SIZE(_A8C); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(_A8C); i++) {
         _A8C[i].zero();
     }
 
@@ -465,7 +465,7 @@ void Mario::updateMorphResetTimer() {
         setFrontVec(_43C);
     }
     if (!isPlayerModeBee() && !isPlayerModeTeresa() && mMovementStates._0 && _3BC > 600 && !MR::isNearZero(getGravityVec())) {
-        float f1 = MR::vecKillElement(_2D4, getGravityVec(), &stack_2c);
+        f32 f1 = MR::vecKillElement(_2D4, getGravityVec(), &stack_2c);
         TVec3f stack_14(getGravityVec());
         stack_14.scale(f1);
         _2D4 = stack_14;
@@ -609,7 +609,7 @@ bool Mario::isNonFixHeadVec() const {
 void Mario::slopeTiltHead(TVec3f* pVec) {
     if (mMovementStates._1) {
         if (_8F0 > 0.0f && !mMovementStates._23) {
-            float blendFactor = _8F0 / 5.0f;
+            f32 blendFactor = _8F0 / 5.0f;
             if (blendFactor > 1.0f) {
                 blendFactor = 1.0f;
             }
@@ -671,7 +671,7 @@ void Mario::fixFrontVecFromUpSide() {
     if (MR::isNearZero(frontVec) == false) {
         setFrontVec(frontVec);
         _22C = mFrontVec;
-        float scaleFactor = PSVECMag((Vec*)&_328);
+        f32 scaleFactor = PSVECMag((Vec*)&_328);
         TVec3f scaledFront(mFrontVec);  // inlined when it shouldn't be
         scaledFront.scale(scaleFactor);
         _328 = scaledFront;
@@ -709,7 +709,7 @@ void Mario::setFrontVec(const TVec3f& rFront) {
         }
         if (plusMinus6A0.dot(rFront) > 0.0f) {
             // maybe this reflects rFront around _6A0?? (very unsure)
-            float f1 = MR::vecKillElement(rFront, plusMinus6A0, &frontWithout6A0);
+            f32 f1 = MR::vecKillElement(rFront, plusMinus6A0, &frontWithout6A0);
             TVec3f scaled6A0(plusMinus6A0);
             scaled6A0.scale(f1);
             frontWithout6A0 -= scaled6A0;
@@ -760,11 +760,11 @@ void Mario::setFrontVecKeepUp(const TVec3f& rFront, u32 _750_set) {
     TVec3f rotVec2;
     PSMTXRotAxisRad(rotMtx, &mHeadVec, _74C);
     PSMTXMultVec(rotMtx, &mFrontVec, &rotFrontVec);
-    float angleDiff = MR::diffAngleAbs(rFront, rotFrontVec);
+    f32 angleDiff = MR::diffAngleAbs(rFront, rotFrontVec);
     if (angleDiff > 0.024543693f) {
         PSMTXRotAxisRad(rotMtx, &mHeadVec, PI_180);
         PSMTXMultVec(rotMtx, &rotFrontVec, &rotVec2);
-        float angleDiff2 = MR::diffAngleAbs(rFront, rotVec2);
+        f32 angleDiff2 = MR::diffAngleAbs(rFront, rotVec2);
         if (angleDiff2 < angleDiff) {
             _74C = -angleDiff;
         } else {
@@ -827,7 +827,7 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
     PSVECCrossProduct(&mSideVec, &mHeadVec, &front);
     setFrontVec(front);
     _22C = mFrontVec;
-    float _328mag = PSVECMag(&_328);
+    f32 _328mag = PSVECMag(&_328);
     TVec3f scaledFront(mFrontVec);
     scaledFront.scale(_328mag);
     _328 = scaledFront;
@@ -1135,7 +1135,7 @@ void Mario::initAfterConst() {
         MR::vecKillElement(_160, _6A0, &_160);
         TVec3f stack_74(_694);
         stack_74 -= _688;
-        float f29 = MR::vecKillElement(stack_74, _6A0, &stack_ec);
+        f32 f29 = MR::vecKillElement(stack_74, _6A0, &stack_ec);
         if (f29 > 1.0f) {
             f29 = 1.0f;
         }
@@ -1156,13 +1156,13 @@ void Mario::initAfterConst() {
             _578 = 0;
         }
         if (!mMovementStates._22) {
-            float PI_30 = 0.10471976;
-            float zero = 0.0f;
-            float SQRT2_2 = 0.707f;
+            f32 PI_30 = 0.10471976;
+            f32 zero = 0.0f;
+            f32 SQRT2_2 = 0.707f;
             for (u32 i = 0; i < _578; i++) {
                 if (MR::vecKillElement(_160, *_57C[i]->getNormal(0), &stack_e0) < zero) {
                     _160 = stack_e0;
-                    float f28 = MR::vecKillElement(_2D4, *_57C[i]->getNormal(0), &stack_d4);
+                    f32 f28 = MR::vecKillElement(_2D4, *_57C[i]->getNormal(0), &stack_d4);
                     if (f28 <= 0.0f) {
                         TVec3f stack_50(*_57C[i]->getNormal(0));
                         stack_50.scale(f28);
@@ -1174,7 +1174,7 @@ void Mario::initAfterConst() {
                     }
                     else if (MR::diffAngleAbs(*getGravityVec(), _2D4) < PI_30) {
                         MR::vecKillElement(*_57C[i]->getNormal(0), *getGravityVec(), &stack_c8);
-                        float _2D4Mag = PSVECMag(&_2D4);
+                        f32 _2D4Mag = PSVECMag(&_2D4);
                         MR::normalizeOrZero(&stack_c8);
                         _2D4 += stack_c8;
                         _2D4.setLength(_2D4Mag);
@@ -1199,11 +1199,11 @@ void Mario::initAfterConst() {
         }
     }
     else if (isSwimming() && !mMovementStates._22) {
-        float SQRT2_2 = 0.707f;
+        f32 SQRT2_2 = 0.707f;
         for (u32 i = 0; i < _578; i++) {
             if (MR::vecKillElement(_160, *_57C[i]->getNormal(0), &stack_b0) < 0.0f) {
                 _160 = stack_b0;
-                float f28 = MR::vecKillElement(mSwim->_A0, *_57C[i]->getNormal(0), &mSwim->_A0);
+                f32 f28 = MR::vecKillElement(mSwim->_A0, *_57C[i]->getNormal(0), &mSwim->_A0);
                 TVec3f stack_20(*_57C[i]->getNormal(0));
                 stack_20.scale(f28);
                 TVec3f stack_2c(stack_20);
@@ -1215,11 +1215,11 @@ void Mario::initAfterConst() {
     else if (!_1C._B && mActor->_288.dot(_368) < 0.707f && MR::isNearZero(mActor->_288)) {
         TVec3f stack_a4(mActor->_288);
         MR::normalizeOrZero(&stack_a4);
-        float f2 = MR::vecKillElement(_160, stack_a4, &stack_98);
+        f32 f2 = MR::vecKillElement(_160, stack_a4, &stack_98);
         if (f2 < 0.0f) {
             _160 = stack_98;
             MR::normalizeOrZero(&stack_a4);
-            float f1 = 1.0f - MR::clamp((-stack_a4.dot(mFrontVec)-0.3f) * 1.4285715f, 0.0f, 1.0f);
+            f32 f1 = 1.0f - MR::clamp((-stack_a4.dot(mFrontVec)-0.3f) * 1.4285715f, 0.0f, 1.0f);
             if (!mMovementStates._8 && f1 < 0.1f) {
                 if (mMovementStates._1A) {
                     TVec3f stack_14(getSideWallNorm());
@@ -1229,10 +1229,10 @@ void Mario::initAfterConst() {
                 else {
                     int s28 = mActor->mBinder->mPlaneNum;
                     if (s28 != 0) {
-                        float f28 = 0.0f;
+                        f32 f28 = 0.0f;
                         int index = 0;
                         for (int i = 0; i < s28; i++) {
-                            float dot = mActor->mBinder->getPlane(i)->getNormal(0)->dot(mFrontVec);
+                            f32 dot = mActor->mBinder->getPlane(i)->getNormal(0)->dot(mFrontVec);
                             if (dot < 0.0f) {
                                 index = i;
                                 f28 = dot;

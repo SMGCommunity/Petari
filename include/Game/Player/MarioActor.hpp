@@ -332,7 +332,7 @@ public:
     J3DModelX* getSimpleModel() const;
     void createTextureDL(DLholder*, u16, u16);
     void swapTexture(const char*, u8) const;
-    void copyMaterial(J3DModel*, u16, long);
+    void copyMaterial(J3DModel*, u16, s32);
     void rushDropThrowMemoSensor();
     void offTakingFlag();
 

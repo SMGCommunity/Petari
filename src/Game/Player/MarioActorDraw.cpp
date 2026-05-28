@@ -608,7 +608,7 @@ void MarioActor::initFace() {
     faceData->mTexture = actorData->mTexture;
     faceData->mTextureName = actorData->mTextureName;
 
-    for (long i = 0; i < _A5B; i++) {
+    for (s32 i = 0; i < _A5B; i++) {
         s32 faceJoint = MR::getJointIndex(this, "Face0");
         J3DModel* faceModel = MR::getJ3DModel(_A5C);
         copyMaterial(faceModel, static_cast< u16 >(faceJoint), i);
@@ -744,7 +744,7 @@ void MarioActor::createTextureDL(DLholder* pHolder, u16 texMapID, u16 texIndex) 
     DCStoreRange(pHolder->mDL, alignedSize);
 }
 
-void MarioActor::copyMaterial(J3DModel* pModel, u16 materialNo, long packetIndex) {
+void MarioActor::copyMaterial(J3DModel* pModel, u16 materialNo, s32 packetIndex) {
     J3DModelDataForMarioActorDraw* modelData = reinterpret_cast< J3DModelDataForMarioActorDraw* >(mModels[mCurrModel]->mModelData);
     J3DMaterialForMarioActorDraw* material = modelData->mMaterialNodePointer[materialNo];
     material = material->mpOrigMaterial;

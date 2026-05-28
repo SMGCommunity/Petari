@@ -325,7 +325,7 @@ void MarioModule::playEffectRTW(const char* pEffectName, const TVec3f& a2, const
     mActor->playEffectRTW(pEffectName, a2, a3);
 }
 
-void MarioModule::playEffectSRT(const char* pEffectName, float a2, const TVec3f& a3, const TVec3f& a4) {
+void MarioModule::playEffectSRT(const char* pEffectName, f32 a2, const TVec3f& a3, const TVec3f& a4) {
     mActor->playEffectSRT(pEffectName, a2, a3, a4);
 }
 
@@ -513,7 +513,7 @@ bool MarioModule::isSlipPolygon(const Triangle* pTri) const {
         return false;
     }
 
-    float angle = calcAngleD(*pTri->getNormal(0));
+    f32 angle = calcAngleD(*pTri->getNormal(0));
 
     return angle >= mActor->mConst->getTable()->mFlatAngle - 0.5f;
 }
@@ -533,7 +533,7 @@ f32 MarioModule::calcPolygonAngleD(const Triangle* pTri) const {
 }
 
 f32 MarioModule::calcAngleD(const TVec3f& rVec) const {
-    float f31 = (MR::acosEx(-mActor->mMario->getAirGravityVec().dot(rVec)) / 3.14159f) * 180.0f;
+    f32 f31 = (MR::acosEx(-mActor->mMario->getAirGravityVec().dot(rVec)) / 3.14159f) * 180.0f;
     if (MR::isNearZero(f31, 1.0f)) {
         f31 = 0.0f;
     }

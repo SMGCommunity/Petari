@@ -2,7 +2,7 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
 
-MorphItemObjNeo::MorphItemObjNeo(const char* pName, long a2) : NameObj(pName) {}
+MorphItemObjNeo::MorphItemObjNeo(const char* pName, s32 a2) : NameObj(pName) {}
 MorphItemObjNeo::~MorphItemObjNeo() {}
 void MorphItemObjNeo::exeWait() {}
 void MorphItemObjNeo::exeAppear() {}

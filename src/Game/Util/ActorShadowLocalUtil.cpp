@@ -77,10 +77,10 @@ namespace ActorShadow {
     } 
 
     void setUpShadowControlFromCSV(ShadowController* pController, LiveActor* pActor, const JMapInfoIter& rIter) {
-        float dropLength(1000.0f);
+        f32 dropLength(1000.0f);
         rIter.getValue("DropLength", &dropLength);
         pController->setDropLength(dropLength);
-        float dropOffset(0.0f);
+        f32 dropOffset(0.0f);
         rIter.getValue("DropStart", &dropOffset);
         pController->setDropStartOffset(dropOffset);
         setUpShadowControlBaseMtxFromCSV(pController, pActor, rIter);
@@ -109,7 +109,7 @@ namespace ActorShadow {
         pController->setDropTypeSurface();
         ShadowSurfaceCircle* pSurfaceCircle = new ShadowSurfaceCircle();
         pController->setShadowDrawer(pSurfaceCircle);
-        float radius(100.0f);
+        f32 radius(100.0f);
         rIter.getValue("Radius", &radius);
         pSurfaceCircle->setRadius(radius);
         return pSurfaceCircle;

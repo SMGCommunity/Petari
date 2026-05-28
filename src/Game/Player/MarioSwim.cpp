@@ -46,10 +46,10 @@ namespace {
 
     static f32 cSwimWeightTable[] = {0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
     static f32 cWeightTableSP[] = {0.0f, 0.0f, 0.75f, 0.25f};
-    static f32 cLimitAngleSink = JGeometry::TUtil< float >::PI() / 1.0001f;
-    static f32 cNeutralAngleWait = (JGeometry::TUtil< float >::PI() / 2.0f) - (JGeometry::TUtil< float >::PI() / 6.0f);
-    static f32 cLimitAngleWait = JGeometry::TUtil< float >::PI() / 1.5f;
-    static f32 cUpperAngleWait = JGeometry::TUtil< float >::PI() / 100.0f;
+    static f32 cLimitAngleSink = JGeometry::TUtil< f32 >::PI() / 1.0001f;
+    static f32 cNeutralAngleWait = (JGeometry::TUtil< f32 >::PI() / 2.0f) - (JGeometry::TUtil< f32 >::PI() / 6.0f);
+    static f32 cLimitAngleWait = JGeometry::TUtil< f32 >::PI() / 1.5f;
+    static f32 cUpperAngleWait = JGeometry::TUtil< f32 >::PI() / 100.0f;
     static f32 cWaterSurfaceRange = 160.0f;
     static f32 cTurnMotionSpeed = 5.0f;
 

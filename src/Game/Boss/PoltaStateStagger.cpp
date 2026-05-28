@@ -30,7 +30,7 @@ void PoltaStateStagger::exeWait() {
     }
     TVec3f v2;
 
-    float v17;
+    f32 v17;
     MR::separateScalarAndDirection(&v17, &v2, getHost()->_E0 - getHost()->mPosition);
 
     if (v17 >= 1800.0f) {
