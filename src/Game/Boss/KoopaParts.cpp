@@ -167,7 +167,7 @@ namespace {
         return pModelObjNpc;
     };
 
-    ModelObj* createMeteorStrike(const char* pName1, const char* pName2) {
+    ModelObj* createDemoEnemy(const char* pName1, const char* pName2) {
         ModelObj* pModelObj = MR::createModelObjEnemy(pName1, pName2, nullptr);
         pModelObj->initWithoutIter();
         MR::resetPosition(pModelObj, "デモ中心");
