@@ -3,6 +3,7 @@
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 
 namespace {
     void makeShockWaveMtx(TPos3f* pDest, const TVec3f& rUp, const TVec3f& rFront, const TVec3f& r6, f32 f1, f32 f2) NO_INLINE {
@@ -136,7 +137,7 @@ void KoopaShockWave::updateHitSensor(HitSensor* pSensor) {
     TVec3f* localVec = MR::getPlayerPos();
     MR::calcLocalVec(localVec, _94);
 
-    f32 degree = JMath::sAtanTable.atan2_(-localVec->z, localVec->x);
+    f32 degree = JMAATan2(-localVec->z, localVec->x);
 
     TPos3f matrix = _94;
     matrix.setTrans(KoopaFunction::getPlanetCenterPos(mKoopa));
