@@ -1,8 +1,6 @@
 #include "Game/Boss/BossStinkBugAngryDemo.hpp"
 #include "Game/Boss/BossStinkBug.hpp"
-#include "Game/Boss/BossStinkBugActionBase.hpp"
 #include "Game/Demo/DemoPositionController.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
@@ -10,16 +8,19 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
+
+namespace {
+    static const s32 sFlySoundStartStep1 = 155;
+    static const s32 sFlySoundStartStep2 = 200;
+};  // namespace
 
 namespace NrvBossStinkBugAngryDemo {
     NEW_NERVE(BossStinkBugAngryDemoNrvTryStart, BossStinkBugAngryDemo, TryStart);
     NEW_NERVE(BossStinkBugAngryDemoNrvDemo, BossStinkBugAngryDemo, Demo);
+};  // namespace NrvBossStinkBugAngryDemo
 
-}  // namespace NrvBossStinkBugAngryDemo
-
-BossStinkBugAngryDemo::BossStinkBugAngryDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter)
-    : BossStinkBugActionBase("終了デモ", pStinkBug), mDemoPositionController(nullptr) {
+BossStinkBugAngryDemo::BossStinkBugAngryDemo(BossStinkBug* pHost, const JMapInfoIter& rIter)
+    : BossStinkBugActionBase("終了デモ", pHost), mDemoPositionController(nullptr) {
     initNerve(&NrvBossStinkBugAngryDemo::BossStinkBugAngryDemoNrvDemo::sInstance);
     mDemoPositionController = new DemoPositionController("BossStinkBugDemo", rIter);
     mDemoPositionController->initAnimCamera("AngryDemo");
@@ -43,12 +44,12 @@ void BossStinkBugAngryDemo::exeDemo() {
         MR::tryStartAllAnim(getHost()->getWingModel(), "AngryDemo");
     }
 
-    if (MR::isGreaterStep(this, 155) && MR::isLessStep(this, 201)) {
+    if (MR::isGreaterStep(this, ::sFlySoundStartStep1) && MR::isLessStep(this, ::sFlySoundStartStep2 + 1)) {
         MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 550, 120, -1);
         MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", 250, 20, -1);
     }
 
-    if (MR::isGreaterStep(this, 200)) {
+    if (MR::isGreaterStep(this, ::sFlySoundStartStep2)) {
         MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 550, 126, -1);
         MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", 550, 126, -1);
         MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE2", 550, 126, -1);
