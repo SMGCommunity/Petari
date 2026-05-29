@@ -12,13 +12,9 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
-#include "revolution/types.h"
-
 
 namespace PoltaFunction {
-
     void onMovement(Polta* pPolta) {
         MR::forceDeleteEffectAll(pPolta);
         MR::requestMovementOn(pPolta);
@@ -173,15 +169,15 @@ namespace PoltaFunction {
     // bool appearRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5, s32 rockType)
 
     bool appearWhiteRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
-        appearRockCircle(pPolta, rVec, param3, param4, param5, 0);
+        return appearRockCircle(pPolta, rVec, param3, param4, param5, 0);
     }
 
     bool appearBlackRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
-        appearRockCircle(pPolta, rVec, param3, param4, param5, 1);
+        return appearRockCircle(pPolta, rVec, param3, param4, param5, 1);
     }
 
     bool appearYellowRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
-        appearRockCircle(pPolta, rVec, param3, param4, param5, 2);
+        return appearRockCircle(pPolta, rVec, param3, param4, param5, 2);
     }
 
     // All the params besides pPolta go unused.
@@ -249,5 +245,4 @@ namespace PoltaFunction {
             break;
         }
     }
-
 };  // namespace PoltaFunction
