@@ -364,7 +364,7 @@ void BossStinkBug::attackSensor(HitSensor* pSender, HitSensor* pReciever) {
 
 bool BossStinkBug::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mActionSequencer != nullptr) {
-        mActionSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
+        return mActionSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     } else {
         return false;
     }
