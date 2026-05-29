@@ -4430,30 +4430,30 @@ Game/MapObj/ClipAreaDropLaser.cpp:
 
 Game/MapObj/ClipAreaHolder.cpp:
 	.text       start:0x801C1DDC end:0x801C21EC
-	.data       start:0x80591800 end:0x80591838
+	.data       start:0x80591800 end:0x80591830
 
 Game/MapObj/ClipAreaMovable.cpp:
 	.text       start:0x801C21EC end:0x801C28A4
-	.data       start:0x80591838 end:0x805918D8
+	.data       start:0x80591830 end:0x805918B8
 	.sdata2     start:0x806BCA88 end:0x806BCA90
 
 Game/MapObj/ClipAreaShape.cpp:
 	.text       start:0x801C28A4 end:0x801C2EAC
-	.data       start:0x805918D8 end:0x80591918
+	.data       start:0x805918B8 end:0x80591918
 	.sdata2     start:0x806BCA90 end:0x806BCAB0
 
 Game/MapObj/ClipFieldFillDraw.cpp:
 	.text       start:0x801C2EAC end:0x801C3540
-	.data       start:0x80591918 end:0x80591948
+	.data       start:0x80591918 end:0x80591940
 	.sdata2     start:0x806BCAB0 end:0x806BCAC0
 
 Game/MapObj/ClipFieldMapParts.cpp:
 	.text       start:0x801C3540 end:0x801C3694
-	.data       start:0x80591948 end:0x805919D0
+	.data       start:0x80591940 end:0x805919C8
 
 Game/MapObj/ClipFieldSwitch.cpp:
 	.text       start:0x801C3694 end:0x801C3884
-	.data       start:0x805919D0 end:0x80591A48
+	.data       start:0x805919C8 end:0x80591A48
 	.sdata2     start:0x806BCAC0 end:0x806BCAD0
 
 Game/MapObj/CocoNut.cpp:
