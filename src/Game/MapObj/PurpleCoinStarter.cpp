@@ -1,25 +1,26 @@
 #include "Game/MapObj/PurpleCoinStarter.hpp"
-#include "Game/Util.hpp"
+#include "Game/Map/StageSwitch.hpp"
+#include "Game/MapObj/PurpleCoinHolder.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
-PurpleCoinStarter::PurpleCoinStarter(const char* pName) : NameObj(pName) {
-    mCoinHolder = nullptr;
-    mSwitchCtrl = nullptr;
+PurpleCoinStarter::PurpleCoinStarter(const char* pName) : NameObj(pName), mHost(), mStageSwitchCtrl() {
 }
 
 void PurpleCoinStarter::init(const JMapInfoIter& rIter) {
-    mSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);
-    MR::listenNameObjStageSwitchOnAppear(this, mSwitchCtrl,
-                                         MR::FunctorV0M< PurpleCoinStarter*, void (PurpleCoinStarter::*)(void) >(this, &PurpleCoinStarter::start));
+    mStageSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);
+    MR::listenNameObjStageSwitchOnAppear(this, mStageSwitchCtrl, MR::Functor_Inline(this, PurpleCoinStarter::start));
     MR::createPurpleCoinHolder();
     MR::registPurpleCoinStarter(this);
 }
 
-void PurpleCoinStarter::setHost(PurpleCoinHolder* pHolder) {
-    mCoinHolder = pHolder;
+void PurpleCoinStarter::setHost(PurpleCoinHolder* pHost) {
+    mHost = pHost;
 }
 
 void PurpleCoinStarter::start() {
-    mCoinHolder->start();
+    mHost->start();
 }
 
-PurpleCoinStarter::~PurpleCoinStarter() {}
+PurpleCoinStarter::~PurpleCoinStarter() {
+}
