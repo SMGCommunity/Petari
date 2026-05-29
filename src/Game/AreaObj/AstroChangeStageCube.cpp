@@ -1,9 +1,21 @@
 #include "Game/AreaObj/AstroChangeStageCube.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
-AstroChangeStageCube::AstroChangeStageCube(int a1, const char* pName) : AreaObj(a1, pName) {
-    _3C = 1;
-    _44 = 0;
+namespace {
+    const s32 cChangeStageWaitFrame = 5;
+    const s32 cHeavensDoorScenarioNo = 2;
+    const s32 cWipeFrame = 110;
+};  // namespace
+
+AstroChangeStageCube::AstroChangeStageCube(int type, const char* pName) : AreaObj(type, pName), _3C(1), mWaitFrame(0) {
 }
 
 void AstroChangeStageCube::init(const JMapInfoIter& rIter) {
@@ -26,7 +38,7 @@ void AstroChangeStageCube::init(const JMapInfoIter& rIter) {
     }
 }
 
-bool AstroChangeStageCube::isInVolume(const TVec3f& rVec) const {
+bool AstroChangeStageCube::isInVolume(const TVec3f& rPos) const {
     if (MR::isPlayerInBind() || MR::isDemoActive()) {
         return false;
     }
@@ -53,15 +65,11 @@ bool AstroChangeStageCube::isInVolume(const TVec3f& rVec) const {
         break;
     }
 
-    return AreaObj::isInVolume(rVec);
+    return AreaObj::isInVolume(rPos);
 }
 
 void AstroChangeStageCube::movement() {
-    bool isValid = false;
-
-    if (mIsValid && _15 && mIsAwake) {
-        isValid = true;
-    }
+    bool isValid = mIsValid && _15 && mIsAwake;
 
     if (isValid) {
         TVec3f* playerPos = MR::getPlayerPos();
@@ -71,50 +79,52 @@ void AstroChangeStageCube::movement() {
         }
 
         mIsValid = false;
-        MR::stopStageBGM(5);
-        MR::stopSubBGM(5);
+
+        MR::stopStageBGM(::cChangeStageWaitFrame);
+        MR::stopSubBGM(::cChangeStageWaitFrame);
 
         switch (mObjArg0) {
-        case 3:
-        case 1:
-        case 5:
-            MR::startSystemSE("SE_DM_ASTRO_WIPE_IN", -1, -1);
-            break;
         case 0:
+        case 2:
+        case 4:
             MR::startSystemSE("SE_DM_ASTRO_WIPE_OUT", -1, -1);
+            break;
+        case 1:
+        case 3:
+        case 5:
+        default:
+            MR::startSystemSE("SE_DM_ASTRO_WIPE_IN", -1, -1);
             break;
         }
 
-        _44 = 0;
+        mWaitFrame = 0;
+    } else if (mWaitFrame < ::cChangeStageWaitFrame) {
+        mWaitFrame++;
     } else {
-        if (_44 < 5) {
-            _44++;
-        } else {
-            MR::closeSystemWipeCircleWithCaptureScreen(0x6E);
-            MR::setWipeCircleCenterPos(*MR::getPlayerCenterPos());
+        MR::closeSystemWipeCircleWithCaptureScreen(::cWipeFrame);
+        MR::setWipeCircleCenterPos(*MR::getPlayerCenterPos());
 
-            switch (mObjArg0) {
-            case 0:
-            case 4:
-                MR::requestGoToAstroGalaxy(_3C);
-                break;
-            case 2:
-                MR::requestChangeStageInGameMoving("AstroGalaxy", 1, JMapIdInfo(_3C, 0));
-                break;
-            case 1:
-                if (MR::isOnGameEventFlagRosettaTalkAboutTicoInTower()) {
-                    MR::requestStartScenarioSelect("HeavensDoorGalaxy");
-                } else {
-                    MR::requestChangeStageInGameMoving("HeavensDoorGalaxy", 2, JMapIdInfo(_3C, 0));
-                }
-                break;
-            case 3:
-                MR::requestChangeStageInGameMoving("LibraryRoom", 1, JMapIdInfo(_3C, 0));
-                break;
-            case 5:
-                MR::requestGoToAstroDomeFromAstroGalaxy(mObjArg2, _3C);
-                break;
+        switch (mObjArg0) {
+        case 0:
+        case 4:
+            MR::requestGoToAstroGalaxy(_3C);
+            break;
+        case 2:
+            MR::requestChangeStageInGameMoving("AstroGalaxy", 1, JMapIdInfo(_3C, 0));
+            break;
+        case 1:
+            if (MR::isOnGameEventFlagRosettaTalkAboutTicoInTower()) {
+                MR::requestStartScenarioSelect("HeavensDoorGalaxy");
+            } else {
+                MR::requestChangeStageInGameMoving("HeavensDoorGalaxy", ::cHeavensDoorScenarioNo, JMapIdInfo(_3C, 0));
             }
+            break;
+        case 3:
+            MR::requestChangeStageInGameMoving("LibraryRoom", 1, JMapIdInfo(_3C, 0));
+            break;
+        case 5:
+            MR::requestGoToAstroDomeFromAstroGalaxy(mObjArg2, _3C);
+            break;
         }
     }
 }
