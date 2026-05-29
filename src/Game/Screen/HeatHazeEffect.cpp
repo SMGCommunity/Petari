@@ -31,7 +31,7 @@ void HeatHazeDirector::movement() {
 
     if (pHazeCube != nullptr) {
         if (MR::isDead(mEffect)) {
-            mEffect->_8C = pHazeCube->_3C;
+            mEffect->_8C = pHazeCube->mDistance;
             mEffect->appear();
         }
     } else if (!MR::isDead(mEffect)) {
