@@ -1,4 +1,5 @@
 #include "Game/MapObj/FirePressure.hpp"
+#include "Game/MapObj/FirePressureBullet.hpp"
 #include "Game/MapObj/FirePressureBulletHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include <JSystem/JMath/JMath.hpp>

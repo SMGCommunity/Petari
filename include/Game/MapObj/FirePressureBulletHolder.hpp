@@ -1,16 +1,19 @@
 #pragma once
 
-#include "Game/MapObj/FirePressureBullet.hpp"
 #include "Game/NameObj/NameObj.hpp"
+
+class FirePressureBullet;
 
 class FirePressureBulletHolder : public NameObj {
 public:
-    FirePressureBulletHolder(const char*);
+    /// @brief Creates a new `FirePressureBulletHolder`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    FirePressureBulletHolder(const char* pName);
 
     virtual ~FirePressureBulletHolder();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
 
     FirePressureBullet* callEmptyBullet();
 
-    FirePressureBullet* mBullets[0x8];  // 0xC
+    /* 0x0C */ FirePressureBullet* mBullet[8];
 };
