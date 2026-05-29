@@ -132,9 +132,9 @@ bool KoopaFunction::isKoopaSightPlayer(const Koopa* pKoopa, const MR::ActorSight
     return MR::isInSightFanPlayer(pKoopa, pKoopa->mFront, rSightParam._0, rSightParam._4, rSightParam._8);
 }
 
-void KoopaFunction::escapeKoopaFromPlayer(Koopa* pKoopa, const MR::ActorMoveParam& rMoveParam) {
+bool KoopaFunction::escapeKoopaFromPlayer(Koopa* pKoopa, const MR::ActorMoveParam& rMoveParam) {
     MR::escapeFromPlayer(pKoopa, &pKoopa->mFront, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    MR::sendMsgEnemyAttackToBindedSensor(pKoopa, getKoopaMessageSensor(pKoopa));
+    return MR::sendMsgEnemyAttackToBindedSensor(pKoopa, getKoopaMessageSensor(pKoopa));
 }
 
 bool KoopaFunction::isKoopaVs1(const Koopa* pKoopa) {

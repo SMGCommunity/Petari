@@ -53,7 +53,7 @@ namespace KoopaFunction {
     TVec3f* getKoopaFrontPtr(Koopa*);
 
     bool isKoopaSightPlayer(const Koopa*, const MR::ActorSightParam&);
-    void escapeKoopaFromPlayer(Koopa*, const MR::ActorMoveParam&);
+    bool escapeKoopaFromPlayer(Koopa*, const MR::ActorMoveParam&);
 
     bool isKoopaVs1(const Koopa*);
     bool isKoopaVs2(const Koopa*);
