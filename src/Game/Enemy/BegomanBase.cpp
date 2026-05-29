@@ -52,7 +52,7 @@ const BegomanSound* BegomanBase::getSoundBoss() {
 }
 
 void BegomanBase::initCore(const JMapInfoIter& rIter, const char* pModelArcName, bool a1) {
-    MR::createSceneObj(0x3D);
+    MR::createSceneObj(SceneObj_BegomanAttackPermitter);
     MR::useStageSwitchWriteDead(this, rIter);
     MR::useStageSwitchReadA(this, rIter);
     initModelManagerWithAnm(pModelArcName, nullptr, false);
@@ -648,7 +648,7 @@ void BegomanBase::launchBegomanBabyLauncher(LiveActor* pActor, BegomanBaby** bab
     }
 }
 
-const Nerve* BegomanBase::setNerveLaunch() {}
+void BegomanBase::setNerveLaunch() {}
 
 void BegomanBase::updateRotateY(f32 newRotationTarget, f32 rotationLimit) {
     f32 newYRotation = 0.0f;

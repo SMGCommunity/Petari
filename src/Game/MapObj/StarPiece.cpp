@@ -792,7 +792,7 @@ bool StarPiece::tryCalcGravity() {
     return false;
 }
 
-bool StarPiece::trySetGravityAndFront(const TVec3f& rVec1) {
+void StarPiece::trySetGravityAndFront(const TVec3f& rVec1) {
     if (!tryCalcGravity()) {
         mGravity.set(rVec1);
         MR::normalizeOrZero(&mGravity);

@@ -15,7 +15,7 @@ namespace BossStinkBugFunction {
     void turnRail(BossStinkBug*, const TVec3f&, f32, f32, f32, f32, f32, bool);
     void regainToRail(BossStinkBug*, const TVec3f&, f32, f32, f32, f32);
     void setFallVelocity(BossStinkBug*, const TVec3f&, f32, f32, f32);
-    bool throwBomb(BossStinkBug*);
+    void throwBomb(BossStinkBug*);
     void invalidateAttack(BossStinkBug*);
     bool isHipDropableSensor(const BossStinkBug*, const HitSensor*);
     bool isExistPlayerBack(const BossStinkBug*, f32);
