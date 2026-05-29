@@ -1,9 +1,7 @@
 #include "Game/Boss/BossStinkBugFinishDemo.hpp"
 #include "Game/Boss/BossStinkBug.hpp"
-#include "Game/Boss/BossStinkBugActionBase.hpp"
 #include "Game/Demo/DemoPositionController.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
@@ -12,16 +10,19 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
+
+namespace {
+    static const s32 sAppearPowerStarStep = 60;
+};  // namespace
 
 namespace NrvBossStinkBugFinishDemo {
     NEW_NERVE(BossStinkBugFinishDemoNrvTryStart, BossStinkBugFinishDemo, TryStart);
     NEW_NERVE(BossStinkBugFinishDemoNrvDemo, BossStinkBugFinishDemo, Demo);
     NEW_NERVE(BossStinkBugFinishDemoNrvAppearPowerStar, BossStinkBugFinishDemo, AppearPowerStar);
-}  // namespace NrvBossStinkBugFinishDemo
+};  // namespace NrvBossStinkBugFinishDemo
 
-BossStinkBugFinishDemo::BossStinkBugFinishDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter)
-    : BossStinkBugActionBase("終了デモ", pStinkBug), mDemoPositionController(nullptr) {
+BossStinkBugFinishDemo::BossStinkBugFinishDemo(BossStinkBug* pHost, const JMapInfoIter& rIter)
+    : BossStinkBugActionBase("終了デモ", pHost), mDemoPositionController(nullptr) {
     initNerve(&NrvBossStinkBugFinishDemo::BossStinkBugFinishDemoNrvDemo::sInstance);
     mDemoPositionController = new DemoPositionController("BossStinkBugDemo", rIter);
     mDemoPositionController->initAnimCamera("FinishDemo");
@@ -62,7 +63,7 @@ void BossStinkBugFinishDemo::exeAppearPowerStar() {
         MR::tryRumblePadVeryStrong(getHost(), 0);
     }
 
-    if (MR::isStep(this, 30)) {
+    if (MR::isStep(this, ::sAppearPowerStarStep)) {
         mDemoPositionController->endDemo("FinishDemo");
         MR::requestAppearPowerStar(getHost(), getHost()->mPosition);
         MR::endDemo(getHost(), "ボスカメムシ終了デモ");
@@ -70,7 +71,7 @@ void BossStinkBugFinishDemo::exeAppearPowerStar() {
         MR::startAfterBossBGM();
     }
 
-    if (MR::isGreaterStep(this, 60) && MR::isEndPowerStarAppearDemo(getHost())) {
+    if (MR::isGreaterStep(this, ::sAppearPowerStarStep) && MR::isEndPowerStarAppearDemo(getHost())) {
         kill();
         getHost()->kill();
     }
