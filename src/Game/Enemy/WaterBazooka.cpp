@@ -6,6 +6,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/MapObj/WaterPressureBullet.hpp"
 #include "Game/MapObj/WaterPressureBulletHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
