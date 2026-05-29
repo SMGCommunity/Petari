@@ -199,7 +199,7 @@ Game/Animation/XanimeCore.cpp:
 Game/Animation/XanimePlayer.cpp:
 	.text       start:0x8001B148 end:0x8001C4D4
 	.data       start:0x80564B48 end:0x80564B68
-	.sdata      start:0x806B1650 end:0x806B1698
+	.sdata      start:0x806B1650 end:0x806B1658
 	.sdata2     start:0x806B7D78 end:0x806B7D88
 
 Game/Animation/XanimeResource.cpp:
@@ -505,6 +505,7 @@ Game/AudioLib/AudSeStrategy.cpp:
 Game/AudioLib/AudSoundNameConverter.cpp:
 	.text       start:0x800327BC end:0x80032D78
 	.data       start:0x805667B8 end:0x80566800
+	.sdata      start:0x806B1658 end:0x806B1690
 	.sbss       start:0x806B2F10 end:0x806B2F18
 
 Game/AudioLib/AudSoundObjHolder.cpp:
@@ -550,6 +551,7 @@ Game/Boss/BossBegomanHead.cpp:
 	.text       start:0x80036BE4 end:0x8003754C
 	.ctors      start:0x8052E848 end:0x8052E84C
 	.data       start:0x80566D08 end:0x80566E78
+	.sdata      start:0x806B1690 end:0x806B1698
 	.sbss       start:0x806B2F88 end:0x806B2FA8
 	.sdata2     start:0x806B8180 end:0x806B8190
 

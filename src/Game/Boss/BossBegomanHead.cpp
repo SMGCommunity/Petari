@@ -2,6 +2,11 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/JointController.hpp"
 
+namespace {
+    static const f32 hSpikeRotate = 0.23f;
+    static const f32 hSpikeRotateTurn = 0.2f;
+};  // namespace
+
 namespace NrvBossBegomanHead {
     NEW_NERVE(HostTypeNrvDemoWait, BossBegomanHead, DemoWait);
     NEW_NERVE(HostTypeNrvOpeningDemo, BossBegomanHead, OpeningDemo);
@@ -79,7 +84,7 @@ void BossBegomanHead::exeOffWait() {
         MR::startAction(this, "OffWait");
     }
 
-    _9C -= 0.23f;
+    _9C -= ::hSpikeRotate;
 }
 
 void BossBegomanHead::exeSwitchOn() {
@@ -103,7 +108,7 @@ void BossBegomanHead::exeTurn() {
         MR::startAction(this, "Turn");
     }
 
-    _9C -= 0.2f;
+    _9C -= ::hSpikeRotateTurn;
 }
 
 void BossBegomanHead::exeTurnEnd() {
@@ -111,7 +116,7 @@ void BossBegomanHead::exeTurnEnd() {
         MR::startAction(this, "TurnEnd");
     }
 
-    _9C -= 0.23f;
+    _9C -= ::hSpikeRotate;
 
     MR::setNerveAtBckStopped(this, &NrvBossBegomanHead::HostTypeNrvOffWait::sInstance);
 }
