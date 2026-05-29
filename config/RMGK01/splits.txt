@@ -5678,7 +5678,7 @@ Game/MapObj/SpinDriver.cpp:
 	.ctors      start:0x8052EEC0 end:0x8052EEC4
 	.rodata     start:0x80533898 end:0x805338A8
 	.data       start:0x805A09B8 end:0x805A0D30
-	.sdata      start:0x806B2020 end:0x806B2068
+	.sdata      start:0x806B2020 end:0x806B2028
 	.sbss       start:0x806B58C0 end:0x806B58E0
 	.sdata2     start:0x806BE1C0 end:0x806BE228
 
@@ -5712,6 +5712,7 @@ Game/MapObj/SpinLeverSwitch.cpp:
 	.text       start:0x80239320 end:0x802398DC
 	.ctors      start:0x8052EEC8 end:0x8052EECC
 	.data       start:0x805A0EF0 end:0x805A1020
+	.sdata      start:0x806B2028 end:0x806B2030
 	.sbss       start:0x806B58E8 end:0x806B58F8
 	.sdata2     start:0x806BE2C8 end:0x806BE2D0
 
@@ -5719,6 +5720,7 @@ Game/MapObj/SpinningBox.cpp:
 	.text       start:0x802398DC end:0x8023B194
 	.ctors      start:0x8052EECC end:0x8052EED0
 	.data       start:0x805A1020 end:0x805A11F8
+	.sdata      start:0x806B2030 end:0x806B2038
 	.sbss       start:0x806B58F8 end:0x806B5910
 	.sdata2     start:0x806BE2D0 end:0x806BE348
 
@@ -5726,6 +5728,7 @@ Game/MapObj/SpringJetWater.cpp:
 	.text       start:0x8023B194 end:0x8023B98C
 	.ctors      start:0x8052EED0 end:0x8052EED4
 	.data       start:0x805A11F8 end:0x805A12A0
+	.sdata      start:0x806B2038 end:0x806B2040
 	.sbss       start:0x806B5910 end:0x806B5920
 	.sdata2     start:0x806BE348 end:0x806BE370
 
@@ -5740,6 +5743,7 @@ Game/MapObj/SpringWaterFloaterSpot.cpp:
 Game/MapObj/StageEffectDataTable.cpp:
 	.text       start:0x8023C59C end:0x8023D084
 	.rodata     start:0x805338C0 end:0x80534C18
+	.sdata      start:0x806B2040 end:0x806B2050
 	.sdata2     start:0x806BE3B0 end:0x806BE3B8
 
 Game/MapObj/StarPiece.cpp:
@@ -5747,6 +5751,7 @@ Game/MapObj/StarPiece.cpp:
 	.ctors      start:0x8052EED8 end:0x8052EEDC
 	.rodata     start:0x80534C18 end:0x80534C48
 	.data       start:0x805A3720 end:0x805A3A38
+	.sdata      start:0x806B2050 end:0x806B2058
 	.sbss       start:0x806B5930 end:0x806B5960
 	.sdata2     start:0x806BE3B8 end:0x806BE440
 
@@ -5796,12 +5801,14 @@ Game/MapObj/SubmarineVolcanoBigColumn.cpp:
 	.text       start:0x80245538 end:0x80245A68
 	.ctors      start:0x8052EEF0 end:0x8052EEF4
 	.data       start:0x805A40F8 end:0x805A4210
+	.sdata      start:0x806B2058 end:0x806B2060
 	.sbss       start:0x806B5988 end:0x806B5990
 	.sdata2     start:0x806BE530 end:0x806BE540
 
 Game/MapObj/Sun.cpp:
 	.text       start:0x80245A68 end:0x80245B5C
 	.data       start:0x805A4210 end:0x805A4288
+	.sdata      start:0x806B2060 end:0x806B2068
 
 Game/MapObj/SuperSpinDriver.cpp:
 	.text       start:0x80245B5C end:0x80248C58
