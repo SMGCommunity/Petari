@@ -936,8 +936,7 @@ bool WaterBazooka::tryShotBullet() {
     if (mIsElectric) {
         bullet = selectBulletElectric();
     } else {
-        bullet =
-            reinterpret_cast< WaterPressureBulletHolder* >(MR::getSceneObjHolder()->getObj(SceneObj_WaterPressureBulletHolder))->callEmptyBullet();
+        bullet = MR::getSceneObj< WaterPressureBulletHolder >(SceneObj_WaterPressureBulletHolder)->callEmptyBullet();
     }
 
     if (bullet == nullptr) {

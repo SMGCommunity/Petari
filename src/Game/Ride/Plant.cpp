@@ -42,7 +42,6 @@ namespace NrvPlant {
     NEW_NERVE(PlantNrvHangStart, Plant, HangStart);
     NEW_NERVE(PlantNrvHangUp, Plant, HangUp);
     NEW_NERVE(PlantNrvHangDown, Plant, HangDown);
-
 };  // namespace NrvPlant
 
 Plant::Plant(const char* pName)
@@ -57,7 +56,7 @@ void Plant::init(const JMapInfoIter& pMapInfoIter) {
     MR::createSceneObj(SceneObj_PlantStalkDrawInit);
     MR::createSceneObj(SceneObj_PlantLeafDrawInit);
 
-    mShapeDraw = ((PlantLeafDrawInit*)MR::getSceneObjHolder()->getObj(SceneObj_PlantLeafDrawInit))->mShapeDraw;
+    mShapeDraw = MR::getSceneObj< PlantLeafDrawInit >(SceneObj_PlantLeafDrawInit)->mShapeDraw;
 
     MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, -1, MR::DrawType_Plant);
 
