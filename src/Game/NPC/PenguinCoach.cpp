@@ -30,7 +30,7 @@ namespace NrvPenguinCoach {
     NEW_NERVE(PenguinCoachNrvFade, PenguinCoach, Fade);
     NEW_NERVE(PenguinCoachNrvTutorial, PenguinCoach, Tutorial);
     NEW_NERVE(PenguinCoachNrvPraise, PenguinCoach, Praise);
-}  // namespace NrvPenguinCoach
+};  // namespace NrvPenguinCoach
 
 PenguinCoach::PenguinCoach(const char* pName) : NPCActor(pName), mIsRaceComplete(false), mTakeOutStar(nullptr), mBehavior(-1), mCameraInfo(nullptr) {
 }

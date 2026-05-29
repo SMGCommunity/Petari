@@ -34,12 +34,12 @@ namespace {
     NEW_NERVE(MogucchiNrvDive, Mogucchi, Dive);
     NEW_NERVE(MogucchiNrvScatter, Mogucchi, Scatter);
     NEW_NERVE(MogucchiNrvDie, Mogucchi, Die);
-}  // namespace
+};  // namespace
 
 namespace {
     Vec sBodyOffset;
     Vec sHeadOffset;
-}  // namespace
+};  // namespace
 
 Mogucchi::Mogucchi(const char* pName)
     : LiveActor(pName), mHill(nullptr), mHole(nullptr), mGrounded(false), mScatterPropulsionSpeed(0.0f), mScatterNormal(0.0f, 0.0f, 1.0f), _E4(0.0f),

@@ -17,7 +17,7 @@ namespace NrvStinkBugSmall {
     NEW_NERVE(StinkBugSmallNrvRecover, StinkBugSmall, Recover);
     NEW_NERVE_ONEND(StinkBugSmallNrvDPDSwoon, StinkBugSmall, DPDSwoon, DPDSwoon);
     NEW_NERVE(StinkBugSmallNrvForceFall, StinkBugSmall, ForceFall);
-}  // namespace NrvStinkBugSmall
+};  // namespace NrvStinkBugSmall
 
 StinkBugSmall::StinkBugSmall(const char* pName) : StinkBugBase(pName), mScaleController(nullptr), mBindStarPointer(nullptr), _C4(nullptr) {
 }

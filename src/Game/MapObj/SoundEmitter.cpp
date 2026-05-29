@@ -20,7 +20,7 @@ namespace {
 namespace NrvSoundEmitter {
     NEW_NERVE(SoundEmitterNrvStandBy, SoundEmitter, StandBy);
     NEW_NERVE(SoundEmitterNrvPlaySound, SoundEmitter, PlaySound);
-}  // namespace NrvSoundEmitter
+};  // namespace NrvSoundEmitter
 
 SoundEmitter::SoundEmitter(const char* pName) : LiveActor(pName) {
     _8C = -1;

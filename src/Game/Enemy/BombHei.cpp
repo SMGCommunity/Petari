@@ -57,7 +57,7 @@ namespace {
     // const BombHeiParam hPursueNearParam =
     // const BombHeiParam hPursueWaitParam =
     static s32 hCountTimer = hStartBrkTime;
-}  // namespace
+};  // namespace
 
 namespace NrvBombHei {
     NEW_NERVE(HostTypeNrvLaunch, BombHei, Launch);
@@ -76,7 +76,7 @@ namespace NrvBombHei {
     NEW_NERVE(HostTypeNrvExplode, BombHei, Explode);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, BombHei, BindStarPointer, BindStarPointer);
 
-}  // namespace NrvBombHei
+};  // namespace NrvBombHei
 
 BombHei::BombHei(const char* pName)
     : LiveActor(pName), mScaleController(nullptr), mBindStarPointerState(nullptr), mRotQuat(0.0f, 0.0f, 0.0f, 1.0f), mFront(0, 0, 1),

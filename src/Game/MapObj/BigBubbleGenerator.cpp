@@ -13,12 +13,12 @@ namespace {
     static const f32 sActiveDistance = 1500.0f;
     static const f32 sNonActiveDistance = 2000.0f;
     static const f32 sGenerateOffsetY = 60.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvBigBubbleGenerator {
     NEW_NERVE(BigBubbleGeneratorNrvNonActive, BigBubbleGenerator, NonActive);
     NEW_NERVE(BigBubbleGeneratorNrvActive, BigBubbleGenerator, Active);
-}  // namespace NrvBigBubbleGenerator
+};  // namespace NrvBigBubbleGenerator
 
 BigBubbleGenerator::BigBubbleGenerator(const char* pName)
     : LiveActor(pName), mSpawnTimer(-1), mMinSize(1.0f), mMaxSize(1.0f), mIsObstruct(0), mShape(-1), mLimitterID(-1), mAttachedBubble(nullptr) {

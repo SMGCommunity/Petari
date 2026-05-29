@@ -7,7 +7,7 @@ namespace NrvWaterBazookaCapsule {
     NEW_NERVE(WaterBazookaCapsuleNrvNormal, WaterBazookaCapsule, Normal);
     NEW_NERVE(WaterBazookaCapsuleNrvCrack, WaterBazookaCapsule, Crack);
     NEW_NERVE(WaterBazookaCapsuleNrvBreak, WaterBazookaCapsule, Break);
-}  // namespace NrvWaterBazookaCapsule
+};  // namespace NrvWaterBazookaCapsule
 
 WaterBazookaCapsule::WaterBazookaCapsule(LiveActor* pActor, const char* pName)
     : PartsModel(pActor, pName, "WaterBazookaCapsule", nullptr, MR::DrawBufferType_Enemy, false) {}

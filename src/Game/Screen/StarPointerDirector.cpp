@@ -254,4 +254,4 @@ namespace StarPointerFunction {
     bool canShoot(s32 channel) {
         return getStarPointerDirector()->getStarPointerLayout(channel)->mShootDisabled == false;
     }
-}  // namespace StarPointerFunction
+};  // namespace StarPointerFunction

@@ -6,7 +6,7 @@ namespace NrvKoopaJrShipCannonShell {
     NEW_NERVE(HostTypeDown, KoopaJrShipCannonShell, Down);
     NEW_NERVE(HostTypeHipDropDown, KoopaJrShipCannonShell, Down);
     NEW_NERVE(HostTypeFreeze, KoopaJrShipCannonShell, Freeze);
-}  // namespace NrvKoopaJrShipCannonShell
+};  // namespace NrvKoopaJrShipCannonShell
 
 namespace {
     static const f32 sBodySensorRadius = 75.0f;
@@ -274,4 +274,4 @@ namespace CannonShellUtil {
             pHolder->registerCannonShell(pShell);
         }
     }
-}  // namespace CannonShellUtil
+};  // namespace CannonShellUtil

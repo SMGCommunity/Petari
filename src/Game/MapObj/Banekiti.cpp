@@ -4,7 +4,7 @@ namespace NrvBanekiti {
     NEW_NERVE(BanekitiNrvWait, Banekiti, Wait);
     NEW_NERVE(BanekitiNrvRepel, Banekiti, Repel);
     NEW_NERVE_ONEND(BanekitiNrvDPDSwoon, Banekiti, DPDSwoon, DPDSwoon);
-}  // namespace NrvBanekiti
+};  // namespace NrvBanekiti
 
 Banekiti::Banekiti(const char* pName) : LiveActor(pName) {
     mAnimScaleCtrl = nullptr;

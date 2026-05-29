@@ -67,5 +67,4 @@ namespace MR {
     s32 getWatchEdgeArg7(const RailGraphIter* pIter) {
         return pIter->getWatchEdge()->mPointArg7;
     }
-
 };  // namespace MR

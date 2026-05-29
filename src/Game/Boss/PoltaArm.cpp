@@ -22,7 +22,7 @@ namespace NrvPoltaArm {
     NEW_NERVE_ONEND(PoltaArmNrvRepair, PoltaArm, Repair, Repair);
     NEW_NERVE(PoltaArmNrvWaitDamageEnd, PoltaArm, WaitDamageEnd);
     NEW_NERVE(PoltaArmNrvWaitRepairEnd, PoltaArm, WaitRepairEnd);
-}  // namespace NrvPoltaArm
+};  // namespace NrvPoltaArm
 
 PoltaArm::PoltaArm(const char* pName, const char* pModelName, MtxPtr pMtx)
     : ModelObj(pName, pModelName, pMtx, 18, -2, -2, false), mFormationModel(nullptr), mBreakModel(nullptr), _C8(2), _CC(2), mBrokenCounter(0), _D4(0),

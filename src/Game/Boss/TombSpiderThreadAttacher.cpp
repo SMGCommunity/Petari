@@ -8,7 +8,7 @@
 namespace NrvTombSpiderThreadAttacher {
     NEW_NERVE(TombSpiderThreadAttacherNrvFree, TombSpiderThreadAttacher, Free);
     NEW_NERVE(TombSpiderThreadAttacherNrvAttach, TombSpiderThreadAttacher, Attach);
-}  // namespace NrvTombSpiderThreadAttacher
+};  // namespace NrvTombSpiderThreadAttacher
 
 TombSpiderThreadAttacher::TombSpiderThreadAttacher(LiveActor* pActor, const char* pJointName, f32 radius, f32 offset)
     : LiveActor("巣の付着点"), mJointMtx(nullptr), mRadius(radius), mZOffset(offset) {

@@ -26,14 +26,14 @@ namespace {
     static const f32 sShakePeriodStart = 17.0f;
     static const f32 sShakePeriodSlowPitch = 0.65f;
     static const f32 sSinkDepthMax = 25.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvLotusLeaf {
     NEW_NERVE(HostTypeWait, LotusLeaf, Wait);
     NEW_NERVE(HostTypeShakeOnPlayer, LotusLeaf, Shake);
     NEW_NERVE(HostTypeShake, LotusLeaf, Shake);
     NEW_NERVE(HostTypeWaitPlayerOn, LotusLeaf, WaitPlayerOn);
-}  // namespace NrvLotusLeaf
+};  // namespace NrvLotusLeaf
 
 LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(0.0f), mShakePeriod(0.0f) {}
 

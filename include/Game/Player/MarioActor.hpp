@@ -788,4 +788,4 @@ namespace NrvMarioActor {
     NERVE_DECL_EXE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
     NERVE_DECL_EXE(MarioActorNrvTimeWait, MarioActor, TimeWait);
     NERVE_DECL_EXE(MarioActorNrvNoRush, MarioActor, Wait);
-}  // namespace NrvMarioActor
+};  // namespace NrvMarioActor

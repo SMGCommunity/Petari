@@ -71,7 +71,7 @@ namespace {
     static const f32 sTutorialAccel = 0.5f;
     static const f32 sTutorialFric = 0.95f;
     static const s32 sBgmStateChangeFrames = 30;
-}  // namespace
+};  // namespace
 
 namespace NrvTamakoro {
     NEW_NERVE(TamakoroNrvStandByTutorial, Tamakoro, StandByTutorial);
@@ -94,7 +94,7 @@ namespace NrvTamakoro {
     NEW_NERVE(TamakoroNrvRideRailFast, Tamakoro, RideRailFast);
     NEW_NERVE(TamakoroNrvRideRailFastEnd, Tamakoro, RideRailFastEnd);
     NEW_NERVE(TamakoroNrvBindEnd, Tamakoro, BindEnd);
-}  // namespace NrvTamakoro
+};  // namespace NrvTamakoro
 
 Tamakoro::Tamakoro(const char* pName)
     : LiveActor(pName), mAccelSensorCtrl(nullptr), mTutorial(nullptr), mJointCtrl(nullptr), mBallRotateQuat(0, 0, 0, 1), mMarioRotateQuat(0, 0, 0, 1),

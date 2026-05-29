@@ -25,7 +25,7 @@ namespace {
     static const s32 sStepBattle2ndStartJumpStart = 150;
     static const s32 sStepBattle2ndStartJumpEnd = 190;
     static const s32 sStepBattleEndPlanetBreak = 15;
-}  // namespace
+};  // namespace
 
 TombSpiderDemo::TombSpiderDemo(TombSpider* pParent) : mParent(pParent), mRotateSpeed(0.0f) {
     mMtx.identity();

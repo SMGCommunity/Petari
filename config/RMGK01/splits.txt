@@ -704,7 +704,7 @@ Game/Boss/DinoPackun.cpp:
 	.rodata     start:0x80530F18 end:0x80530F60
 	.data       start:0x80568960 end:0x80568C68
 	.bss        start:0x8060A5F8 end:0x8060A660
-	.sdata      start:0x806B16C0 end:0x806B16E0
+	.sdata      start:0x806B16C0 end:0x806B16D0
 	.sdata2     start:0x806B83D8 end:0x806B8450
 
 Game/Boss/DinoPackunAction.cpp:
@@ -799,6 +799,7 @@ Game/Boss/DinoPackunStateDamage.cpp:
 	.ctors      start:0x8052E8B8 end:0x8052E8BC
 	.data       start:0x80569A08 end:0x80569C88
 	.bss        start:0x8060A690 end:0x8060A6A8
+	.sdata      start:0x806B16D0 end:0x806B16D8
 	.sbss       start:0x806B3200 end:0x806B3218
 	.sdata2     start:0x806B85C0 end:0x806B85E0
 
@@ -832,6 +833,7 @@ Game/Boss/DinoPackunTrackFire.cpp:
 	.text       start:0x8004DA68 end:0x8004E024
 	.ctors      start:0x8052E8C4 end:0x8052E8C8
 	.data       start:0x80569FB8 end:0x8056A0D0
+	.sdata      start:0x806B16D8 end:0x806B16E0
 	.sbss       start:0x806B3230 end:0x806B3238
 	.sdata2     start:0x806B8650 end:0x806B8660
 

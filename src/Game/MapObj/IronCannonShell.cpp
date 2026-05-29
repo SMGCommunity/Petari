@@ -3,13 +3,13 @@
 namespace NrvIronCannonLauncherPoint {
     NEW_NERVE(IronCannonLauncherPointNrvWait, IronCannonLauncherPoint, Wait);
     NEW_NERVE(IronCannonLauncherPointNrvShot, IronCannonLauncherPoint, Shot);
-}  // namespace NrvKoopaJrShipCannonShell
+};  // namespace NrvKoopaJrShipCannonShell
 
 namespace NrvIronCannonLauncher {
     NEW_NERVE(IronCannonLauncherNrvRelax, IronCannonLauncher, Relax);
     NEW_NERVE(IronCannonLauncherNrvWait, IronCannonLauncher, Wait);
     NEW_NERVE(IronCannonLauncherNrvShot, IronCannonLauncher, Shot);
-}  // namespace NrvKoopaJrShipCannonShell
+};  // namespace NrvKoopaJrShipCannonShell
 
 namespace {
     static const s32 sDefaultShotInterval = 300;

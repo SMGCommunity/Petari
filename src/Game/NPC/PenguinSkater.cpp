@@ -19,7 +19,7 @@ namespace {
     static const f32 sSamePosition = 10.0f;
     static const s32 sMarioPoseBlendTime = 5;
     static const s32 sDemoSkateSeStartTiming = 33;
-}  // namespace
+};  // namespace
 
 namespace NrvPenguinSkater {
     NEW_NERVE(PenguinSkaterNrvReaction, PenguinSkater, Reaction);

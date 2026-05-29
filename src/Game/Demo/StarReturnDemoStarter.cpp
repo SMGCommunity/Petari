@@ -10,7 +10,7 @@
 namespace {
     const char* cDemoMovePartName = "移動";
     const char* cDemoWaitPartName = "ウェイト";
-}  // namespace
+};  // namespace
 
 StarReturnDemoStarter::StarReturnDemoStarter(const char* pName)
     : LiveActor(pName), mReturnDemoRailMove(), mStageResultInformer(), mPosition(gZeroVec), mPowerStar(), mLuma(), mHair(), mFrame() {
@@ -28,7 +28,7 @@ namespace NrvStarReturnDemoStarter {
     NEW_NERVE(StarReturnDemoStarterNrvStageResult, StarReturnDemoStarter, StageResult);
     NEW_NERVE(StarReturnDemoStarterNrvFadeOut, StarReturnDemoStarter, FadeOut);
     NEW_NERVE(StarReturnDemoStarterNrvStageResultAfter, StarReturnDemoStarter, StageResultAfter);
-}  // namespace NrvStarReturnDemoStarter
+};  // namespace NrvStarReturnDemoStarter
 
 StarReturnDemoStarter::~StarReturnDemoStarter() {
 }

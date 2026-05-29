@@ -53,7 +53,7 @@ namespace {
     static f32 cWaterSurfaceRange = 160.0f;
     static f32 cTurnMotionSpeed = 5.0f;
 
-}  // namespace
+};  // namespace
 
 inline f32 get100Deg() {
     return DEG_TO_RAD(100);

@@ -61,7 +61,7 @@ namespace {
     KarikariDirector* getKarikariDirector() {
         return MR::getSceneObj< KarikariDirector >(SceneObj_KarikariDirector);
     }
-}  // namespace
+};  // namespace
 
 namespace NrvKarikari {
     NEW_NERVE(HostTypeNrvFall, Karikari, Fall);
@@ -82,7 +82,7 @@ namespace NrvKarikari {
     NEW_NERVE(HostTypeNrvBlowOutStarPiece, Karikari, BlowOut);
     NEW_NERVE(HostTypeNrvInTornado, Karikari, InTornado);
     NEW_NERVE(HostTypeNrvPress, Karikari, Press);
-}  // namespace NrvKarikari
+};  // namespace NrvKarikari
 
 Karikari::Karikari(const char* pName)
     : LiveActor(pName), mFront(0.0f, 0.0f, 1.0f), mClingPosition(nullptr), mIsReadyToLandTornado(false), _9D(false), _9E(true), mIsPushable(true),

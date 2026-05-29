@@ -41,7 +41,7 @@ namespace {
         }
         return name;
     };
-}  // namespace
+};  // namespace
 
 bool ActorAnimKeeper::start(const char* pName) {
     ActorAnimKeeperInfo* info = findAnimInfo(pName);
@@ -112,7 +112,7 @@ namespace {
         snprintf(pOut, sizeof(pOut), "%sIsKeepAnim", pAnimType);
         MR::getCsvDataU8(&pDataInfo->mIsKeepAnim, pInfo, pOut, index);
     }
-}  // namespace
+};  // namespace
 
 bool ActorAnimKeeper::initAnimData() {
     const ResourceHolder* pResourceHolder = MR::getResourceHolder(mActor);

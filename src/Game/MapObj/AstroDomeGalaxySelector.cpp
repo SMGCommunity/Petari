@@ -32,12 +32,12 @@ namespace NrvAstroDomeGalaxySelector {
     NEW_NERVE(AstroDomeGalaxySelectorNrvDemoDomeLecture, AstroDomeGalaxySelector, DemoDomeLecture);
     NEW_NERVE(AstroDomeGalaxySelectorNrvGalaxyMoveLecture, AstroDomeGalaxySelector, GalaxyMoveLecture);
     NEW_NERVE(AstroDomeGalaxySelectorNrvWaitStartDemo, AstroDomeGalaxySelector, WaitStartDemo);
-}  // namespace NrvAstroDomeGalaxySelector
+};  // namespace NrvAstroDomeGalaxySelector
 
 namespace {
     const char* cDemoNameDomeLecture = "ドームレクチャー２";
     const char* cDemoNameJumpOut = "マリオ飛び出し";
-}  // namespace
+};  // namespace
 
 AstroDomeGalaxySelector::AstroDomeGalaxySelector(const char* pName) : LiveActor(pName) {
     pDomeCamCtrl = 0;

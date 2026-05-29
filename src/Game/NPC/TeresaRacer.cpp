@@ -15,7 +15,7 @@ namespace {
     static const s32 sRasterParamX = 300;
     static const s32 sRasterParamTime = 16;
     static const s32 sRasterParamY = 1000;
-}  // namespace
+};  // namespace
 
 namespace NrvTeresaRacer {
     NEW_NERVE(TeresaRacerNrvWait, TeresaRacer, Wait);
@@ -26,7 +26,7 @@ namespace NrvTeresaRacer {
     NEW_NERVE(TeresaRacerNrvPost, TeresaRacer, Post);
     NEW_NERVE(TeresaRacerNrvTalk, TeresaRacer, Talk);
     NEW_NERVE(TeresaRacerNrvTakeOutStar, TeresaRacer, TakeOutStar);
-}  // namespace NrvTeresaRacer
+};  // namespace NrvTeresaRacer
 
 TeresaRacer::TeresaRacer(const char* pName) : NPCActor(pName), mTakeOutStar(nullptr), mCameraInfo(nullptr), mIsGoal(false), mBgmState(0) {
 }

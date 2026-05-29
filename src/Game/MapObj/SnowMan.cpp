@@ -19,7 +19,7 @@ namespace NrvSnowMan {
     NEW_NERVE(SnowManNrvMeltBody, SnowMan, MeltBody);
     NEW_NERVE(SnowManNrvDownHead, SnowMan, DownHead);
     NEW_NERVE(SnowManNrvDownBody, SnowMan, DownBody);
-}  // namespace NrvSnowMan
+};  // namespace NrvSnowMan
 
 SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
     mHeadCollisionParts = nullptr;

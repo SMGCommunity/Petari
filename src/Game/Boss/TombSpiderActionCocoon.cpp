@@ -14,7 +14,7 @@ namespace {
 namespace NrvTombSpiderActionCocoon {
     NEW_NERVE(TombSpiderActionCocoonNrvWait, TombSpiderActionCocoon, Wait);
     NEW_NERVE(TombSpiderActionCocoonNrvBreak, TombSpiderActionCocoon, Break);
-}  // namespace NrvTombSpiderActionCocoon
+};  // namespace NrvTombSpiderActionCocoon
 
 TombSpiderActionCocoon::TombSpiderActionCocoon(TombSpider* pParent) : TombSpiderActionBase(pParent, "まゆ状態[トゥームスパイダー]") {
 }

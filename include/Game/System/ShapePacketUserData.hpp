@@ -20,4 +20,4 @@ public:
 namespace MR {
     ShapePacketUserData* getJ3DShapePacketUserData(const J3DShapePacket*);
     void initJ3DShapePacketUserData(J3DModel*);
-}  // namespace MR
+};  // namespace MR

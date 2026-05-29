@@ -10,7 +10,7 @@ namespace NrvTombSpiderStateSwoon {
     NEW_NERVE(TombSpiderStateSwoonNrvStart, TombSpiderStateSwoon, Start);
     NEW_NERVE(TombSpiderStateSwoonNrvLoop, TombSpiderStateSwoon, Loop);
     NEW_NERVE(TombSpiderStateSwoonNrvEnd, TombSpiderStateSwoon, End);
-}  // namespace NrvTombSpiderStateSwoon
+};  // namespace NrvTombSpiderStateSwoon
 
 TombSpiderStateSwoon::TombSpiderStateSwoon(TombSpider* pParent) : ActorStateBase< TombSpider >("State[気絶]", pParent) {
 }

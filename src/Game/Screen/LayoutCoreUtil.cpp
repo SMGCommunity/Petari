@@ -68,8 +68,7 @@ namespace LayoutCoreUtil {
     void reallocateTextBoxMessage(nw4r::lyt::TextBox* pTextBox, u32 allocSize) {
         pTextBox->AllocStringBuffer(allocSize + 1);
     }
-
-}  // namespace LayoutCoreUtil
+};  // namespace LayoutCoreUtil
 
 namespace MR {
     void convertScreenPosToLayoutPos(TVec2f* pLayoutPos, const TVec2f& rScreenPos) {
@@ -88,4 +87,4 @@ namespace MR {
         PSMTXMultVec(pPane->mGlbMtx, pos, layoutPos);
         convertLayoutPosToScreenPos(pScreenPos, layoutPos);
     }
-}  // namespace MR
+};  // namespace MR

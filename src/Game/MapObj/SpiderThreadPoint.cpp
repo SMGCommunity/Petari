@@ -14,7 +14,7 @@ namespace {
     static const f32 sSpeedMinToStop = 0.1f;
     static const f32 sDistanceToStop = 1.0f;
     // static const _32 sPushAccelRate =
-}  // namespace
+};  // namespace
 
 SpiderThreadPoint::SpiderThreadPoint(const TVec3f& rPos, f32 friction)
     : mBasePos(rPos), mPosition(rPos), mVelocity(0.0f, 0.0f, 0.0f), mFriction(friction), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f) {

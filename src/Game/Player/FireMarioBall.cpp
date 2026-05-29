@@ -23,7 +23,7 @@ namespace {
     f32 cForceKillDistance = 3000.0f;
     f32 cBoundReduction = 0.9f;
     f32 cGravityAcc = 2.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvFireMarioBall {
     NEW_NERVE(FireMarioBallNrvThrow, FireMarioBall, Throw);

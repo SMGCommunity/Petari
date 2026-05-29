@@ -22,7 +22,7 @@ namespace NrvAstroDomeSky {
     NEW_NERVE(AstroDomeNrvDisappear, AstroDomeSky, Disappear);
     NEW_NERVE(AstroDomeNrvReturnDemoWait, AstroDomeSky, ReturnDemoWait);
     NEW_NERVE(AstroDomeNrvJumpOutDemo, AstroDomeSky, JumpOutDemo);
-}  // namespace NrvAstroDomeSky
+};  // namespace NrvAstroDomeSky
 
 namespace {
     const char* cAstroDomeSkyTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};

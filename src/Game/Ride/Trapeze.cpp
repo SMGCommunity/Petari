@@ -27,7 +27,7 @@ namespace {
     static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
     static Color8 sColorPlusX(0xB4, 0xB4, 0xB4, 0xFF);
     static Color8 sColorMinusX(0x64, 0x64, 0x64, 0xFF);
-}  // namespace
+};  // namespace
 
 Trapeze::Trapeze(const char* pName)
     : LiveActor(pName), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRopeLength(0.0f), mSwingPoint(nullptr),

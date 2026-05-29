@@ -30,7 +30,7 @@ namespace {
     void waitDrawDoneAndSetAlarm();
 
     void handleGXAbortAlarm(OSAlarm*, OSContext*);
-}  // namespace
+};  // namespace
 
 void MainLoopFramework::ctor_subroutine(bool useAlpha) {
     mClearColor = (GXColor){0, 0, 0, 0};
@@ -148,7 +148,7 @@ namespace {
     s32 getDisplayingXfbIndex() {
         return JUTXfb::getManager()->getDisplayingXfbIndex();
     }
-}  // namespace
+};  // namespace
 
 void MainLoopFramework::exchangeXfb_triple() {
     JUTXfb* pXfbMgr = JUTXfb::sManager;
@@ -479,4 +479,4 @@ namespace {
         GXSetDrawDone();
         DrawSyncManager::prepareReset();
     }
-}  // namespace
+};  // namespace

@@ -15,7 +15,7 @@ namespace NrvCocoNutBall {
     NEW_NERVE(CocoNutBallNrvRebound, CocoNutBall, Rebound);
     NEW_NERVE(CocoNutBallNrvFreeze, CocoNutBall, Freeze);
     NEW_NERVE(CocoNutBallNrvFreezeRelease, CocoNutBall, FreezeRelease);
-}  // namespace NrvCocoNutBall
+};  // namespace NrvCocoNutBall
 
 CocoNutBall::CocoNutBall(const char* pName)
     : LiveActor(pName), _8C(nullptr), _90(0.0f, -1.0f, 0.0f), _9C(0), _A0(0), _A4(gZeroVec), _B0(gZeroVec), _BC(false), _BD(false), _BE(false),

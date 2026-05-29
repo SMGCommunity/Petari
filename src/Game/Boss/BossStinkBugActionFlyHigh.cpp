@@ -25,7 +25,7 @@ namespace NrvBossStinkBugActionFlyHigh {
     NEW_NERVE(BossStinkBugActionFlyHighNrvGroundRun, BossStinkBugActionFlyHigh, GroundRun);
     NEW_NERVE(BossStinkBugActionFlyHighNrvToFly, BossStinkBugActionFlyHigh, ToFly);
     NEW_NERVE(BossStinkBugActionFlyHighNrvDamage, BossStinkBugActionFlyHigh, Damage);
-}  // namespace NrvBossStinkBugActionFlyHigh
+};  // namespace NrvBossStinkBugActionFlyHigh
 
 BossStinkBugActionFlyHigh::BossStinkBugActionFlyHigh(BossStinkBug* pStinkBug)
     : BossStinkBugActionBase("ボスカメムシ高空戦", pStinkBug), _68(0), _6C(false), _70(0) {

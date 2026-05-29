@@ -13,7 +13,7 @@ namespace NrvTicoDomeLecture {
 namespace {
     const static Vec cMoveEndPos = {0.0f, -70.0f, 0.0f};
     const static Vec cMoveEndRotate = {30.0f, 130.0f, 0.0f};
-}  // namespace
+};  // namespace
 
 TicoDomeLecture::TicoDomeLecture(const char* pName) : LiveActor(pName), _8C(gZeroVec), _98(gZeroVec) {}
 

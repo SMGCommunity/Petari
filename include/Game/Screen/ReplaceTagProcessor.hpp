@@ -8,4 +8,4 @@ namespace ReplaceTagProcessor {
 
 namespace ReplaceTagFunction {
     u32 ReplaceArgs(wchar_t*, s32, const wchar_t*, ...);
-}  // namespace ReplaceTagFunction
+};  // namespace ReplaceTagFunction

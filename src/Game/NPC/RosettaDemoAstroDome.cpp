@@ -10,15 +10,15 @@
 
 namespace NrvRosettaDemoAstroDomeExplain {
     NEW_NERVE(RosettaDemoAstroDomeExplainNrvExplainDemo, RosettaDemoAstroDomeExplain, Demo);
-}  // namespace NrvRosettaDemoAstroDomeExplain
+};  // namespace NrvRosettaDemoAstroDomeExplain
 
 namespace NrvRosettaDemoAstroDomeFinalBattle {
     NEW_NERVE(RosettaDemoAstroDomeFinalBattleNrvFinalBattleDemo, RosettaDemoAstroDomeFinalBattle, Demo);
-}  // namespace NrvRosettaDemoAstroDomeFinalBattle
+};  // namespace NrvRosettaDemoAstroDomeFinalBattle
 
 namespace NrvRosettaDemoAstroDomeTalk {
     NEW_NERVE(RosettaDemoAstroDomeTalkNrvTalkDemo, RosettaDemoAstroDomeTalk, Demo);
-}  // namespace NrvRosettaDemoAstroDomeTalk
+};  // namespace NrvRosettaDemoAstroDomeTalk
 
 template < typename T >
 static void EntryDemo(T* caller, const char* pDemoName, const char* pRootName, const JMapInfoIter& rIter) {

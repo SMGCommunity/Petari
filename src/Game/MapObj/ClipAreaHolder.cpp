@@ -29,4 +29,4 @@ namespace MR {
     void activateClipArea() { getClipAreaHolder()->mIsActive = true; }
 
     void deactivateClipArea() { getClipAreaHolder()->mIsActive = false; }
-}  // namespace MR
+};  // namespace MR

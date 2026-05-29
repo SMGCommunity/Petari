@@ -28,7 +28,7 @@ namespace {
     NEW_NERVE(DodoryuStateLv2NrvChaseMoreStart, DodoryuStateLv2, ChaseMoreStart);
     NEW_NERVE_ONEND(DodoryuStateLv2NrvChaseMore, DodoryuStateLv2, ChaseMore, ChaseMore);
     NEW_NERVE(DodoryuStateLv2NrvChaseMoreEnd, DodoryuStateLv2, ChaseMoreEnd);
-}  // namespace
+};  // namespace
 
 DodoryuStateLv2::DodoryuStateLv2(Dodoryu* pDodoryu, DodoryuChaseParam* pParam, const char* pName)
     : DodoryuStateBase(pDodoryu, pName), _90(nullptr), _94(0.0f, 0.0f, 0.0f), _A0(0.0f, 0.0f, 0.0f), _AC(0.0f), _B0(1.0f), _B4(0.0f), _B8(0), _BC(0),

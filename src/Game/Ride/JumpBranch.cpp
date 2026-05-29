@@ -20,7 +20,7 @@ namespace NrvJumpBranch {
     NEW_NERVE(JumpBranchNrvWait, JumpBranch, Wait);
     NEW_NERVE(JumpBranchNrvWaitInvalid, JumpBranch, WaitInvalid);
     NEW_NERVE(JumpBranchNrvBind, JumpBranch, Bind);
-}  // namespace NrvJumpBranch
+};  // namespace NrvJumpBranch
 
 JumpBranch::JumpBranch(const char* pName)
     : LiveActor(pName), mCenter(0.0f, 0.0f, 0.0f), mSide(0.0f, 0.0f, 1.0f), mUp(0.0f, 0.0f, 1.0f), mFront(0.0f, 0.0f, 1.0f), mRider(nullptr),

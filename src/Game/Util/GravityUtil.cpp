@@ -30,7 +30,7 @@ namespace {
 
         return pPlanetGravityManager->calcTotalGravityVector(pDest, pInfo, rPosition, gravityType, host);
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     void registerGravity(PlanetGravity* pGravity) {
@@ -158,4 +158,4 @@ namespace MR {
             }
         }
     }
-}  // namespace MR
+};  // namespace MR

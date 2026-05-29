@@ -20,7 +20,7 @@ namespace {
     const char* gDefaultWaterSurfaceCameraName = "デフォルト水面カメラ";
     const char* gDefaultFooFighterCameraName = "デフォルトフーファイターカメラ";
     const char* gDefaultStartAnimCameraName = "スタートアニメカメラ";
-}  // namespace
+};  // namespace
 
 const char* CameraParamChunk::getClassName() const {
     return "Base";

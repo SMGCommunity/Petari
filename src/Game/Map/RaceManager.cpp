@@ -8,7 +8,7 @@
 namespace {
     // static const _32 sTimeOutSecond =
     static const s32 sBgmStartStep = 166;
-}  // namespace
+};  // namespace
 
 namespace {
     struct RaceStructData {

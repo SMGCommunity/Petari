@@ -55,4 +55,4 @@ public:
 namespace MR {
     NameObj* createBigBubbleMoveLimitterCylinder(const char*);
     NameObj* createBigBubbleMoveLimitterPlane(const char*);
-}  // namespace MR
+};  // namespace MR

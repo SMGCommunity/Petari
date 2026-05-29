@@ -24,7 +24,7 @@ namespace {
 
         return &sDataTable[0];
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     namespace Demo {
@@ -51,5 +51,5 @@ namespace MR {
         const char* getStartEffect(const char* pParamName) {
             return "Open";
         }
-    }  // namespace Demo
-}  // namespace MR
+    };  // namespace Demo
+};  // namespace MR

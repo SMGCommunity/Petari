@@ -13,7 +13,7 @@ namespace {
     static const s32 BLUR_POINT_NUM = 20;
     static const s32 sDrawMode = 2;
     static const f32 sEndThick = 0.0f;
-}  // namespace
+};  // namespace
 
 StarPointerBlur::~StarPointerBlur() {
 }

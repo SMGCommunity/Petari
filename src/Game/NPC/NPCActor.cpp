@@ -27,7 +27,7 @@ namespace {
     };
 
     static NPCParam sParam;
-}  // namespace
+};  // namespace
 
 NPCActorCaps::NPCActorCaps(const char* pName) {
     _0 = pName;
@@ -572,7 +572,7 @@ namespace {
         MR::extractMtxTrans(MR::getPlayerBaseMtx(), &playerTrans);
         MR::normalizeOrZero(playerTrans - pActor->mPosition, pOut);
     }
-}  // namespace
+};  // namespace
 
 bool NPCActor::turnToPlayer(f32 f1) {
     TVec3f zDir;

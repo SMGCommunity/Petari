@@ -11,7 +11,7 @@ namespace {
     static const s32 hRequestTime = 30;
     static const s32 hNotRequestEndTime = 30;
     static const s32 hEndTimeOutHide = 240;
-}  // namespace
+};  // namespace
 
 namespace NrvStarPointerGuidance {
     NEW_NERVE(HostTypeNrvAppear1P, StarPointerGuidance, Appear1P);

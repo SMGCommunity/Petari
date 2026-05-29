@@ -26,7 +26,7 @@ namespace NrvTombSpider {
     NEW_NERVE(TombSpiderNrvAction2nd, TombSpider, Action2nd);
     NEW_NERVE(TombSpiderNrvDemoDeath, TombSpider, DemoDeath);
     NEW_NERVE(TombSpiderNrvWaitDemo, TombSpider, WaitDemo);
-}  // namespace NrvTombSpider
+};  // namespace NrvTombSpider
 
 TombSpider::TombSpider(const char* pName)
     : LiveActor(pName), mSensorCtrl(nullptr), mParts(nullptr), mEnvironment(nullptr), mActionCocoon(nullptr), mAction1st(nullptr),

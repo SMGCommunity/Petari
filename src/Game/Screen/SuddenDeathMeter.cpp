@@ -18,7 +18,7 @@ namespace NrvSuddenDeathMeter {
     NEW_NERVE(SuddenDeathMeterNrvBreakMeter, SuddenDeathMeter, BreakMeter);
     NEW_NERVE(SuddenDeathMeterNrvZeroMeter, SuddenDeathMeter, ZeroMeter);
     NEW_NERVE(SuddenDeathMeterNrvZeroMeterBreak, SuddenDeathMeter, ZeroMeterBreak);
-}  // namespace NrvSuddenDeathMeter
+};  // namespace NrvSuddenDeathMeter
 
 SuddenDeathMeter::SuddenDeathMeter(const char* a1, const char* a2)
     : LayoutActor(a1, true), mCountUpPaneRumbler(nullptr), mFollowPosW(0.0f, 0.0f), _2C(0.0f, 0.0f), mCount(1), _38(0.0f), _3C(1.0f) {

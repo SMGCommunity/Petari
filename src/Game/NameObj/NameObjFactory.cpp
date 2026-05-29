@@ -20,7 +20,7 @@ namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait2, MorphItemObjNeo, Wait2);
     NEW_NERVE(MorphItemObjNeoNrvFly, MorphItemObjNeo, Fly);
     NEW_NERVE(MorphItemObjNeoNrvDemo, MorphItemObjNeo, Demo);
-}  // namespace NrvMorphItemObjNeo
+};  // namespace NrvMorphItemObjNeo
 
 namespace NrvBenefitItemObj {
     INIT_NERVE(HostTypeNrvWait);
@@ -29,7 +29,7 @@ namespace NrvBenefitItemObj {
     INIT_NERVE(HostTypeNrvAppearGround);
     INIT_NERVE(HostTypeNrvPreEscape);
     INIT_NERVE(HostTypeNrvEscape);
-}  // namespace NrvBenefitItemObj
+};  // namespace NrvBenefitItemObj
 
 namespace NrvMarioActor {
     INIT_NERVE(MarioActorNrvWait);
@@ -42,7 +42,7 @@ namespace NrvMarioActor {
     INIT_NERVE(MarioActorNrvGameOverSink);
     INIT_NERVE(MarioActorNrvTimeWait);
     INIT_NERVE(MarioActorNrvNoRush);
-}  // namespace NrvMarioActor
+};  // namespace NrvMarioActor
 
 volatile const Nerve* cNerveInitKeep[] = {
     &NrvBenefitItemObj::HostTypeNrvWait::sInstance,

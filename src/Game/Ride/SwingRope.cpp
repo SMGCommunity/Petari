@@ -32,13 +32,13 @@ namespace NrvSwingRope {
     NEW_NERVE(SwingRopeNrvBindStretch, SwingRope, BindStretch);
     NEW_NERVE(SwingRopeNrvBindLoose, SwingRope, BindLoose);
 
-}  // namespace NrvSwingRope
+};  // namespace NrvSwingRope
 
 namespace {
     static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
     static Color8 sColorPlusX(0xFF, 0xFF, 0xFF, 0xFF);
     static Color8 sColorMinusX(0xFF, 0xFF, 0xFF, 0xFF);
-}  // namespace
+};  // namespace
 
 SwingRope::SwingRope(const char* pName)
     : LiveActor(pName), mBasePos(0.0f, 0.0f, 0.0f), mRopeLength(0.0f), mIsStretched(false), mStretchTime(0), mAccelTime(0), mNumPoints(0),
@@ -688,7 +688,7 @@ namespace {
             sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.13f * (idx + 1));
         }
     }
-}  // namespace
+};  // namespace
 
 void SwingRope::drawStop() const {
     // FIXME: register swap

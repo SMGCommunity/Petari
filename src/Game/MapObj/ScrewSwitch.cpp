@@ -22,7 +22,7 @@ namespace NrvScrewSwitch {
     NEW_NERVE(ScrewSwitchNrvAdjust, ScrewSwitch, Adjust);
     NEW_NERVE(ScrewSwitchNrvScrew, ScrewSwitch, Screw);
     NEW_NERVE(ScrewSwitchNrvEnd, ScrewSwitch, End);
-}  // namespace NrvScrewSwitch
+};  // namespace NrvScrewSwitch
 
 ScrewSwitch::ScrewSwitch(const char* pName) : LiveActor(pName) {
     mCollisionParts = nullptr;

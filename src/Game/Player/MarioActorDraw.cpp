@@ -89,7 +89,7 @@ struct J3DModelDataForMarioActorDraw {
     J3DTexture* mTexture;
     JUTNameTab* mTextureName;
 };
-}  // namespace
+};  // namespace
 
 void MarioActor::initDrawAndModel() {
     DrawAdaptor* adaptor = nullptr;
@@ -1197,4 +1197,4 @@ INIT_NERVE(MarioActorNrvGameOverNonStop);
 INIT_NERVE(MarioActorNrvGameOverSink);
 INIT_NERVE(MarioActorNrvTimeWait);
 INIT_NERVE(MarioActorNrvNoRush);
-}  // namespace NrvMarioActor
+};  // namespace NrvMarioActor

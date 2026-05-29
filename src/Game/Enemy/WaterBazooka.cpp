@@ -50,14 +50,14 @@ namespace NrvWaterBazooka {
     NEW_NERVE(WaterBazookaNrvWaitForLaugh, WaterBazooka, WaitForLaugh);
     NEW_NERVE(WaterBazookaNrvPanic, WaterBazooka, Panic);
     NEW_NERVE_ONEND(WaterBazookaNrvStorm, WaterBazooka, Storm, Storm);
-}  // namespace NrvWaterBazooka
+};  // namespace NrvWaterBazooka
 
 namespace {
     static const f32 sElectricBulletSpeed = 12.0f;
     // FIXME: sDropPointStringTable should end up in .rodata
     const char* sDropPointStringTable[] = {"落下点1", "落下点2", "落下点3", "落下点4"};
 
-}  // namespace
+};  // namespace
 
 WaterBazooka::WaterBazooka(const char* pName)
     : LiveActor(pName), mShooter(nullptr), mCapsule(nullptr), mBreakModel(nullptr), mDemoActor(nullptr), mCameraInfo(nullptr), mAlreadyDoneFlag(-1),

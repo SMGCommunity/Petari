@@ -458,5 +458,4 @@ namespace MR {
         setCameraTargetToPlayer(&camTarget);
         camTarget.setTarget();
     }
-
 };  // namespace MR

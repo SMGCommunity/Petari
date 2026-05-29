@@ -19,7 +19,7 @@ namespace {
     static const s32 sStepToRecover = 120;
     static const f32 sEyeSensorInRadius = 1500.0f;
     static const f32 sEyeSensorOutRadius = 2000.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvKiraira {
     NEW_NERVE(KirairaNrvWait, Kiraira, Wait);

@@ -138,14 +138,3 @@ namespace MR {
 
     bool getRailArg0WithInit(const LiveActor*, s32*);
 };  // namespace MR
-
-namespace {
-    void updateBoundingBox(const RailRider*, TBox3f*);
-    bool getRailPointArgF32WithInit(const LiveActor* pActor, s32 argNum, s32 index, f32* pArg) NO_INLINE;
-    bool getRailCurrentPointArgF32WithInit(const LiveActor* pActor, s32 argNum, s32 index, f32* pArg) NO_INLINE;
-    bool getRailCurrentPointArgF32NoInit(const LiveActor* pActor, s32 argNum, f32* pArg) NO_INLINE;
-    bool getRailNextPointArgF32NoInit(const LiveActor* pActor, s32 argNum, f32* pArg) NO_INLINE;
-    bool getRailNextPointArgBoolNoInit(const LiveActor* pActor, s32 argNum, bool* pArg) NO_INLINE;
-
-    const char* getRailPointArgName(s32 argNum);
-}  // namespace

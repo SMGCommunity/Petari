@@ -6,7 +6,7 @@ namespace NrvBegomanSpringHead {
     NEW_NERVE(HostTypeNrvHopWait, BegomanSpringHead, HopWait);
     NEW_NERVE(HostTypeNrvHopEnd, BegomanSpringHead, HopEnd);
     NEW_NERVE(HostTypeNrvHopJump, BegomanSpringHead, HopJump);
-}  // namespace NrvBegomanSpringHead
+};  // namespace NrvBegomanSpringHead
 
 void BegomanHead::calcAndSetBaseMtx() {
     PartsModel::calcAndSetBaseMtx();

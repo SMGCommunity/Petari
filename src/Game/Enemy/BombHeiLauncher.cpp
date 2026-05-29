@@ -5,12 +5,12 @@ namespace {
     static const f32 hThrowVel = 35.0f;
     static const f32 hThrowFrontVel = 1.0f;
     static const s32 hCountTimer = 60;
-}  // namespace
+};  // namespace
 
 namespace NrvBombHeiLauncher {
     NEW_NERVE(HostTypeNrvLauncherWait, BombHeiLauncher, LauncherWait);
     NEW_NERVE(HostTypeNrvStop, BombHeiLauncher, Stop);
-}  // namespace NrvBombHeiLauncher
+};  // namespace NrvBombHeiLauncher
 
 BombHeiLauncher::BombHeiLauncher(const char* pName) : LiveActor(pName), mBomb(nullptr), mCountdown(0), mConnector(nullptr), mIsActive(true) {
     mConnector = new MapObjConnector(this);

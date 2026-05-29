@@ -19,7 +19,7 @@ namespace {
     static const f32 sChanceStartEndSignAnimRate2 = 2.0f;
     static const s32 sStepChanceEndDemo = 120;
     static const s32 sStepChanceEndAnim = 30;
-}  // namespace
+};  // namespace
 
 TombSpiderActionBase::TombSpiderActionBase(TombSpider* pParent, const char* pName)
     : ActorStateBase< TombSpider >(pName, pParent), mParent(pParent), mRotateAccel(0.0f), mRotateSpeed(0.0f), mHitStep(-1), mWaitTime(0),

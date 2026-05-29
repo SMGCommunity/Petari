@@ -30,7 +30,7 @@ namespace NrvTalkDirector {
     NEW_NERVE(TalkDirectorNrvSlct, TalkDirector, Slct);
     NEW_NERVE(TalkDirectorNrvNext, TalkDirector, Next);
     NEW_NERVE(TalkDirectorNrvTerm, TalkDirector, Term);
-}  // namespace NrvTalkDirector
+};  // namespace NrvTalkDirector
 
 TalkDirector::TalkDirector(const char* pArg)
     : LayoutActor(pArg, true), mMsgCtrl(nullptr), _3C(nullptr), _40(nullptr), _44(nullptr), mTalkState(nullptr), _4C(false), _4D(false), _4E(false),

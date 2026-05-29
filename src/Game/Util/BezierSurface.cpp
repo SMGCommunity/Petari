@@ -592,7 +592,7 @@ namespace {
         {sBezierTriangleCoef6, sBezierTriangleCoefTangentS6, sBezierTriangleCoefTangentT6, 36, sBezierTriangleStripOrder6,
          ARRAY_SIZE(sBezierTriangleStripOrder6), sBezierLineStripOrder6, ARRAY_SIZE(sBezierLineStripOrder6), sBezierTriangleST6},
     };
-}  // namespace
+};  // namespace
 
 BezierSurface::BezierSurface(s32 divideLevel, u32 a1)
     : mTrianglePatchVertices(nullptr), mTrianglePatchNormals(nullptr), mDivideLevel(divideLevel), _C0(divideLevel), _C4(a1) {

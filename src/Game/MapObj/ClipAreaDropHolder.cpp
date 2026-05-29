@@ -37,5 +37,5 @@ namespace MR {
         pClipArea->appear();
         return true;
     }
-}  // namespace MR
+};  // namespace MR
 ClipAreaDropHolder::~ClipAreaDropHolder() {}

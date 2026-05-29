@@ -48,11 +48,11 @@ namespace {
     static const s32 sSeStepMin = 36;
     static const s32 sSeStepMax = 66;
     static const s32 sRandomWaitTimeMin = 0;
-}  // namespace
+};  // namespace
 
 namespace {
     GXColor sStickColors[] = {{0x00, 0xC8, 0x00, 0x00}, {0x00, 0xDC, 0x00, 0x00}, {0x00, 0xB4, 0x00, 0x00}, {0x00, 0xC8, 0x00, 0x00}};
-}  // namespace
+};  // namespace
 
 Flag::~Flag() {
 }

@@ -12,7 +12,7 @@ namespace NrvQuarterRollGravityRoomArrow {
     NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOffA, QuarterRollGravityRoomArrow, RollOffA)
     NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOnB, QuarterRollGravityRoomArrow, RollOnB)
     NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOffB, QuarterRollGravityRoomArrow, RollOffB)
-}  // namespace NrvQuarterRollGravityRoomArrow
+};  // namespace NrvQuarterRollGravityRoomArrow
 
 QuarterRollGravityRoomArrow::QuarterRollGravityRoomArrow(const char* pName) : MapObjActor(pName) {}
 

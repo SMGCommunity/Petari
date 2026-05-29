@@ -51,7 +51,7 @@ namespace NrvStarPiece {
     NEW_NERVE_ONEND(HostTypeNrvThrowFall, StarPiece, ThrowFall, Throw);
     NEW_NERVE(HostTypeNrvFollowPlayer, StarPiece, FollowPlayer);
     NEW_NERVE(HostTypeNrvRailMove, StarPiece, RailMove);
-}  // namespace NrvStarPiece
+};  // namespace NrvStarPiece
 
 StarPiece::StarPiece(const char* pName)
     : LiveActor(pName), _8C(0, 0, 1), _98(0.02f), _9C(0.0f), _A0(0.0f), _A4(0.0f), _A8(0, 0, 0), _B4(0, 0, 0), mDelegator(nullptr),

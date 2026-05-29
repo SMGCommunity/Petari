@@ -15,7 +15,7 @@ namespace NrvFluff {
     NEW_NERVE(FluffNrvRideFlyOnWind, Fluff, RideFlyOnWind);
     NEW_NERVE(FluffNrvRideSpinUp, Fluff, RideSpinUp);
     NEW_NERVE(FluffNrvRideSpinUpOnWind, Fluff, RideSpinUp);
-}  // namespace NrvFluff
+};  // namespace NrvFluff
 
 Fluff::Fluff(const char* pName)
     : LiveActor(pName), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mTargetUpVec(0.0f, 1.0f, 0.0f),

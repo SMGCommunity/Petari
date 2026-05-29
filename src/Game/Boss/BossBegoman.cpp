@@ -28,7 +28,7 @@ namespace NrvBossBegoman {
     NEW_NERVE(HostTypeNrvElectricReturn, BossBegoman, ElectricReturn);
     NEW_NERVE(HostTypeNrvJumpToInitPos, BossBegoman, JumpToInitPos);
     NEW_NERVE(HostTypeNrvKeepDistance, BossBegoman, KeepDistance);
-}  // namespace NrvBossBegoman
+};  // namespace NrvBossBegoman
 
 namespace {
     const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
@@ -38,7 +38,7 @@ namespace {
     const MR::ActorMoveParam hHitReactionParam = {0.0f, 3.0f, 0.95f, 0.0f};
     const MR::ActorMoveParam hOnWeakParam = {-0.5f, 3.0f, 0.95f, 3.0f};
     const MR::ActorMoveParam hOnWeakNoMoveParam = {0.0f, 3.0f, 0.95f, 3.0f};
-}  // namespace
+};  // namespace
 
 BossBegoman::BossBegoman(const char* pName)
     : BegomanBase(pName), mBabyFollowers(nullptr), mSpikeFollowers(nullptr), mBabyFollowerNum(0), mSpikeFollowerNum(0), mFollowerKind(FollowerKind_BothFollower),

@@ -16,14 +16,14 @@ namespace {
     static const s32 sStepToDiveMax = 300;
     // static const _32 sDistanceDiveMessage =
     // static const _32 sDistanceDiveTalk =
-}  // namespace
+};  // namespace
 
 namespace NrvPenguin {
     NEW_NERVE(PenguinNrvWait, Penguin, Wait);
     NEW_NERVE(PenguinNrvReaction, Penguin, Reaction);
     NEW_NERVE(PenguinNrvDive, Penguin, Dive);
     NEW_NERVE(PenguinNrvFlow, Penguin, Flow);
-}  // namespace NrvPenguin
+};  // namespace NrvPenguin
 
 RemovableTurtle::RemovableTurtle(LiveActor* pHost, bool isGolden) {
     if (isGolden) {

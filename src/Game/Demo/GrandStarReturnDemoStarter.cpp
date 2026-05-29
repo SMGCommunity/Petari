@@ -9,7 +9,7 @@
 namespace {
     const char* cDemoMovePartName = "移動";
     const char* cDemoWaitPartName = "ウェイト→コア突入";
-}  // namespace
+};  // namespace
 
 GrandStarReturnDemoStarter::GrandStarReturnDemoStarter(const char* pName)
     : LiveActor(pName), mReturnDemoRailMove(), mStageResultInformer(), mPowerStar(), mDistanceToCore(0.0f, 0.0f, 1.0f), mPowerStarPosition(gZeroVec),
@@ -26,7 +26,7 @@ namespace NrvGrandStarReturnDemoStarter {
     NEW_NERVE(GrandStarReturnDemoStarterNrvStageResult, GrandStarReturnDemoStarter, StageResult);
     NEW_NERVE(GrandStarReturnDemoStarterNrvFadeOut, GrandStarReturnDemoStarter, FadeOut);
     NEW_NERVE(GrandStarReturnDemoStarterNrvWaitDemoEnd, GrandStarReturnDemoStarter, WaitDemoEnd);
-}  // namespace NrvGrandStarReturnDemoStarter
+};  // namespace NrvGrandStarReturnDemoStarter
 
 void GrandStarReturnDemoStarter::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

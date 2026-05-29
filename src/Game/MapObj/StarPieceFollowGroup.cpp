@@ -20,7 +20,7 @@
 namespace NrvStarPieceFollowGroup {
     NEW_NERVE(HostTypeNrvFollowToPlayer, StarPieceFollowGroup, FollowToPlayer);
     NEW_NERVE(HostTypeNrvFollowEnd, StarPieceFollowGroup, FollowEnd);
-}  // namespace NrvStarPieceFollowGroup
+};  // namespace NrvStarPieceFollowGroup
 
 StarPieceFollowGroup::StarPieceFollowGroup(const char* pName)
     : LiveActor(pName), mPieces(nullptr), _90(nullptr), mNumPiecesTotal(6), mNumPiecesUse(0), mRadius(350.0f), mAngle(0.0f), mTimeLimit(1200) {}

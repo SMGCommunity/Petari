@@ -9,7 +9,7 @@
 namespace NrvBossStinkBugBomb {
     NEW_NERVE(BossStinkBugBombNrvWait, BossStinkBugBomb, Wait);
     NEW_NERVE(BossStinkBugBombNrvExplosion, BossStinkBugBomb, Explosion);
-}  // namespace NrvBossStinkBugBomb
+};  // namespace NrvBossStinkBugBomb
 
 BossStinkBugBomb::BossStinkBugBomb(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f, 1.0f), _9C(0.0f, 0.0f, 0.0f) {
 }

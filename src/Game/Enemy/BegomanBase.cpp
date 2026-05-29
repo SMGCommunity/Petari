@@ -11,7 +11,7 @@ namespace NrvBegomanAttackPermitter {
     NEW_NERVE(HostTypeNrvReceive, BegomanAttackPermitter, Receive);
     NEW_NERVE(HostTypeNrvPermit, BegomanAttackPermitter, Permit);
 
-}  // namespace NrvBegomanAttackPermitter
+};  // namespace NrvBegomanAttackPermitter
 
 namespace {
     // unused
@@ -31,7 +31,7 @@ namespace {
     const f32 hTurnStartDegree = 3.0f;
     const f32 hTurnEndDegree = 10.0f;
     const f32 hIsFaceToPlayerDegree = 30.0f;
-}  // namespace
+};  // namespace
 
 BegomanBase::BegomanBase(const char* pName)
     : LiveActor(pName), mBaseDelegator(nullptr), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f),

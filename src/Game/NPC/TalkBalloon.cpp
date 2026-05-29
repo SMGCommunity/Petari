@@ -22,14 +22,14 @@ namespace NrvTalkBalloonShort {
     NEW_NERVE(TalkBalloonShortNrvOpen, TalkBalloonShort, Open);
     NEW_NERVE(TalkBalloonShortNrvTalk, TalkBalloonShort, Talk);
     NEW_NERVE(TalkBalloonShortNrvClose, TalkBalloonShort, Close);
-}  // namespace NrvTalkBalloonShort
+};  // namespace NrvTalkBalloonShort
 
 namespace NrvTalkBalloonEvent {
     NEW_NERVE(TalkBalloonEventNrvWait, TalkBalloonEvent, Wait);
     NEW_NERVE(TalkBalloonEventNrvOpen, TalkBalloonEvent, Open);
     NEW_NERVE(TalkBalloonEventNrvTalk, TalkBalloonEvent, Talk);
     NEW_NERVE(TalkBalloonEventNrvClose, TalkBalloonEvent, Close);
-}  // namespace NrvTalkBalloonEvent
+};  // namespace NrvTalkBalloonEvent
 
 TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName, true), mMessageCtrl(nullptr), mTextFormer(nullptr), _28(false), _29(false) {}
 

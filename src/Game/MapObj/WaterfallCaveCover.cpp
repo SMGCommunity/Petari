@@ -13,7 +13,7 @@
 namespace NrvWaterfallCaveCover {
     NEW_NERVE(HostTypeWait, WaterfallCaveCover, Wait);
     NEW_NERVE(HostTypeBreak, WaterfallCaveCover, Break);
-}  // namespace NrvWaterfallCaveCover
+};  // namespace NrvWaterfallCaveCover
 
 void WaterfallCaveCover::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);

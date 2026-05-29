@@ -12,7 +12,7 @@ namespace {
     const char* cDemoNameDomeLecture = "ドームレクチャー２";
 
     const TVec3f cNamePlateOffset = TVec3f(0.0f, 1500.0f, 0.0f);
-}  // namespace
+};  // namespace
 
 namespace NrvMiniatureGalaxy {
     NEW_NERVE(MiniatureGalaxyNrvWait, MiniatureGalaxy, Wait);
@@ -20,7 +20,7 @@ namespace NrvMiniatureGalaxy {
     NEW_NERVE(MiniatureGalaxyNrvNotSelected, MiniatureGalaxy, NotSelected);
     NEW_NERVE(MiniatureGalaxyNrvConfirmed, MiniatureGalaxy, Confirmed);
     NEW_NERVE(MiniatureGalaxyNrvOpen, MiniatureGalaxy, Open);
-}  // namespace NrvMiniatureGalaxy
+};  // namespace NrvMiniatureGalaxy
 
 MiniatureGalaxy::MiniatureGalaxy(const char* pName)
     : LiveActor(pName), mGalaxyType(-1), mState(3), mUnknownModel(), mShadowModel(), mSelectModel(), mStarPlateModel(), mProjmapEffectMtxSetter(),

@@ -28,7 +28,7 @@
 namespace {
     const f32 hThrowableSightParam[] = {900.0f, 10.0f, 90.0f};
     const f32 hCannonFleetSightParam[] = {1500.0f, 10.0f, 90.0f};
-}  // namespace
+};  // namespace
 
 namespace NrvMogu {
     NEW_NERVE(HostTypeNrvHideWait, Mogu, HideWait);
@@ -43,7 +43,7 @@ namespace NrvMogu {
     NEW_NERVE(HostTypeNrvHipDropReaction, Mogu, HipDropReaction);
     NEW_NERVE(HostTypeNrvStampDeath, Mogu, StampDeath);
     NEW_NERVE(HostTypeNrvHitBlow, Mogu, HitBlow);
-}  // namespace NrvMogu
+};  // namespace NrvMogu
 
 Mogu::Mogu(const char* pName)
     : LiveActor(pName), mAnimScaleController(nullptr), _90(nullptr), mStone(nullptr), mHole(nullptr), mSight(0, 0, 1), _A8(0, 1, 0), _B4(true),

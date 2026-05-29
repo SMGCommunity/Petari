@@ -8,7 +8,7 @@
 
 namespace {
     static const f32 sMeterUpSpeed = 0.05f;
-}  // namespace
+};  // namespace
 
 BigBubbleGoalArea::BigBubbleGoalArea(int type, const char* pName) : AreaObj(type, pName), mTranslation(0.0f, 0.0f, 0.0f) {
     mMeterCapacity = 1.0f;
@@ -82,4 +82,4 @@ namespace MR {
         }
         return false;
     }
-}  // namespace MR
+};  // namespace MR

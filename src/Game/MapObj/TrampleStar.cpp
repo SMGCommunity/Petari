@@ -11,13 +11,13 @@ namespace {
     f32 debug3 = 1.0f;
     f32 debug4 = 0.5f;
     f32 debug5 = 0.5f;
-}  // namespace
+};  // namespace
 
 namespace {
     NEW_NERVE(TrampleStarNrvWait, TrampleStar, Wait);
     NEW_NERVE(TrampleStarNrvBindingCapture, TrampleStar, BindingCapture);
     NEW_NERVE(TrampleStarNrvBindingShoot, TrampleStar, BindingShoot);
-}  // namespace
+};  // namespace
 
 TrampleStarShare::TrampleStarShare(TrampleStar* pTrampleStar) : LiveActor("TrampleStarShare"), mTrampleStar(pTrampleStar) {
     makeActorDead();

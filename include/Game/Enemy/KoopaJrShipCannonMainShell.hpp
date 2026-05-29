@@ -26,4 +26,4 @@ public:
 
 namespace CannonShellUtil {
     void registerKoopaJrShipCannonMainShell(CannonShellHolder* pHolder, int shellNum);
-}  // namespace CannonShellUtil
+};  // namespace CannonShellUtil

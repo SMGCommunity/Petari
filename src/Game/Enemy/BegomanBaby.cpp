@@ -23,7 +23,7 @@ namespace NrvBegomanBaby {
     NEW_NERVE(HostTypeNrvInWater, BegomanBaby, InWater);
     NEW_NERVE(HostTypeNrvKeepDistance, BegomanBaby, KeepDistance);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, BegomanBaby, BindStarPointer, BindStarPointer);
-}  // namespace NrvBegomanBaby
+};  // namespace NrvBegomanBaby
 
 namespace {
     const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
@@ -34,7 +34,7 @@ namespace {
     const MR::ActorMoveParam hHitReactionParam = {0.0f, 3.0f, 0.95f, 0.0f};
     const MR::ActorMoveParam hTiredParam = {0.2f, 1.0f, 0.95f, 3.0f};
 
-}  // namespace
+};  // namespace
 
 BegomanBaby::BegomanBaby(const char* pName) : BegomanBase(pName), mBabyDelegator(nullptr), _134(nullptr), mAppearThreeStarPiece(false) {
     mWaterColumnMatrix.identity();

@@ -73,4 +73,4 @@ namespace TombSpiderFunction {
     void validateGlandSensor(TombSpider*);
     void validateVitalSpotSensor(TombSpider*);
     void validateAttackSensor(TombSpider*);
-}  // namespace TombSpiderFunction
+};  // namespace TombSpiderFunction

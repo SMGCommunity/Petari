@@ -16,7 +16,7 @@ namespace NrvWoodBox {
     NEW_NERVE(WoodBoxNrvWait, WoodBox, Wait);
     NEW_NERVE(WoodBoxNrvKilled, WoodBox, Killed);
     NEW_NERVE(WoodBoxNrvHit, WoodBox, Hit);
-}  // namespace NrvWoodBox
+};  // namespace NrvWoodBox
 
 WoodBox::WoodBox(const char* pName) : LiveActor(pName) {}
 

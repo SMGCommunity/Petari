@@ -7,7 +7,7 @@
 namespace NrvTripodBossKinokoOneUp {
     NEW_NERVE(TripodBossKinokoOneUpNrvActive, TripodBossKinokoOneUp, Active);
     NEW_NERVE(TripodBossKinokoOneUpNrvEnd, TripodBossKinokoOneUp, End);
-}  // namespace NrvTripodBossKinokoOneUp
+};  // namespace NrvTripodBossKinokoOneUp
 
 TripodBossKinokoOneUp::TripodBossKinokoOneUp(const char* pName) : LiveActor(pName) {
     mOneUp = nullptr;

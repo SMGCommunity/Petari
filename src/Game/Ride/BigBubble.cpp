@@ -81,7 +81,7 @@ namespace {
     static const f32 sRadiusSubLevel4 = 15.0f;
     static const f32 sRadiusSubLevel5 = 30.0f;
     static const f32 sRadiusSubLevel6 = 50.0f;
-}  // namespace
+};  // namespace
 
 enum Side { Side_Top = 0, Side_Right = 1, Side_Back = 2, Side_Left = 3, Side_Front = 4, Side_Bottom = 5 };
 

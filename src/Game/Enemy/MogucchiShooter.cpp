@@ -26,12 +26,12 @@ namespace NrvMogucchiShooter {
     NEW_NERVE(MogucchiShooterNrvStormStart, MogucchiShooter, StormStart);
     NEW_NERVE(MogucchiShooterNrvStorm, MogucchiShooter, Storm);
 
-}  // namespace NrvMogucchiShooter
+};  // namespace NrvMogucchiShooter
 
 namespace {
     static f32 sAngerBlurOffset = 100.0f;
     static f32 sExplosionBlurOffset = 100.0f;
-}  // namespace
+};  // namespace
 
 MogucchiShooter::MogucchiShooter(LiveActor* pActor, const char* pName)
     : PartsModel(pActor, pName, "MogucchiShooter", nullptr, MR::DrawBufferType_Enemy, false), mFront(0.0f, 0.0f, 0.0f) {

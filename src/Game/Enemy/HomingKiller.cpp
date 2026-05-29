@@ -52,7 +52,7 @@ namespace {
     static const f32 cMagnamFlySeDistMax = 1400.0f;
     static const f32 cMagnamFlySePitchMin = 0.9f;
     static const f32 cMagnamFlySePitchMax = 1.8f;
-}  // namespace
+};  // namespace
 
 namespace NrvHomingKiller {
     NEW_NERVE(HomingKillerNrvAppear, HomingKiller, Appear);
@@ -66,7 +66,7 @@ namespace NrvHomingKiller {
 
     NEW_NERVE(HomingKillerLauncherNrvAppearKiller, HomingKillerLauncher, AppearKiller);
     NEW_NERVE(HomingKillerLauncherNrvDeadKiller, HomingKillerLauncher, DeadKiller);
-}  // namespace NrvHomingKiller
+};  // namespace NrvHomingKiller
 
 // TODO: this replace with something global
 f32 toRadian(f32 degree) {
@@ -83,7 +83,7 @@ namespace {
         }
         return false;
     }
-}  // namespace
+};  // namespace
 
 HomingKiller::HomingKiller(const char* pName)
     : LiveActor(pName), mType(Type_HomingKiller), mChaseStartDist(2000.0f), mChaseEndDist(cChaseEndDistance), mChaseRotateSpeed(0.9997f),

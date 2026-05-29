@@ -23,7 +23,7 @@ namespace {
     static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
     static Color8 sColorPlusX(0x64, 0x64, 0x64, 0xFF);
     static Color8 sColorMinusX(0x96, 0x96, 0x96, 0xFF);
-}  // namespace
+};  // namespace
 
 PlantStalk::PlantStalk()
     : LiveActor("茎"), mNumPlantPoints(0), mPlantPoints(nullptr), mRailInfo(nullptr), mStalkLength(0.0f), mGrowthPercent(0.0f),

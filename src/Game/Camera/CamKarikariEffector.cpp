@@ -10,7 +10,7 @@ namespace {
     static const f32 sKarikariViewRate = 0.8f;
     static const s32 sKarikariCounterMax = 30;
     static const f32 sPlayerRadius = 75.0f;
-}  // namespace
+};  // namespace
 
 // TODO: replace call with MR::clamp01
 inline f32 clamp01(f32 val) {

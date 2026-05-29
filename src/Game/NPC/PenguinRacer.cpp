@@ -21,7 +21,7 @@ namespace {
         WaterInfo waterInfo;
         return MR::getWaterAreaObj(&waterInfo, rPos);
     }
-}  // namespace
+};  // namespace
 
 namespace NrvPenguinRacer {
     NEW_NERVE(PenguinRacerNrvWait, PenguinRacer, Wait);
@@ -34,7 +34,7 @@ namespace NrvPenguinRacer {
     NEW_NERVE(PenguinRacerNrvRaceFall, PenguinRacer, RaceFall);
     NEW_NERVE(PenguinRacerNrvRaceGoal, PenguinRacer, RaceGoal);
     NEW_NERVE(PenguinRacerNrvRaceTurn, PenguinRacer, RaceTurn);
-}  // namespace NrvPenguinRacer
+};  // namespace NrvPenguinRacer
 
 PenguinRacer::PenguinRacer(const char* pName) : NPCActor(pName), mRaceDisabled(0), mMoveSpeed(0.0f), mSpeed(1.0f), mRailPointNo(0) {
 }

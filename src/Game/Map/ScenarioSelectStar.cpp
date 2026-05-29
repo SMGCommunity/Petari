@@ -19,7 +19,7 @@ namespace {
     static const f32 cSelectedRotateSpeedZ = 20.0f;
     static const f32 cSelectedRotateMoveRate = 6.0f;
     static const s32 cSelectedRotateAccelFrame = 180;
-}  // namespace
+};  // namespace
 
 namespace NrvScenarioSelectStar {
     NEW_NERVE(ScenarioSelectStarNrvAppear, ScenarioSelectStar, Appear);

@@ -24,7 +24,7 @@ namespace {
     NEW_NERVE(PetariNrvSpinOut, Petari, SpinOut);
     NEW_NERVE(PetariNrvKickOut, Petari, KickOut);
     NEW_NERVE_ONEND(PetariNrvFreeze, Petari, Freeze, Freeze);
-}  // namespace
+};  // namespace
 
 Petari::Petari(const char* pName)
     : LiveActor(pName), mAnimScaleCtrl(nullptr), mFootPrint(nullptr), mFootprintYOffs(0.0f), mRequestSmoke(true), mFront(0.0f, 0.0f, 1.0f),

@@ -26,7 +26,7 @@ namespace NrvBossStinkBugActionSequencer {
     NEW_NERVE(BossStinkBugActionSequencerNrvFlyHigh, BossStinkBugActionSequencer, FlyHigh);
     NEW_NERVE(BossStinkBugActionSequencerNrvFinishDemo, BossStinkBugActionSequencer, FinishDemo);
     NEW_NERVE(BossStinkBugActionSequencerNrvEnd, BossStinkBugActionSequencer, End);
-}  // namespace NrvBossStinkBugActionSequencer
+};  // namespace NrvBossStinkBugActionSequencer
 
 BossStinkBugActionSequencer::BossStinkBugActionSequencer(BossStinkBug* pStinkBug, const JMapInfoIter& rIter)
     : NerveExecutor("ボスカメムシアクション管理"), mStinkBug(pStinkBug), mCurrentAction(nullptr), mOpeningDemo(nullptr), mActionGround(nullptr),

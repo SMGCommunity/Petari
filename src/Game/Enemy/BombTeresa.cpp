@@ -49,7 +49,7 @@ namespace NrvBombTeresa {
     NEW_NERVE(BombTeresaNrvDisperse, BombTeresa, Disperse);
     NEW_NERVE(BombTeresaNrvShock, BombTeresa, Shock);
     NEW_NERVE(BombTeresaNrvReadyRestart, BombTeresa, ReadyRestart);
-}  // namespace NrvBombTeresa
+};  // namespace NrvBombTeresa
 
 BombTeresa::BombTeresa(const char* pName)
     : LiveActor(pName), mJointDelegator(nullptr), mJointDelegator2(nullptr), mScaleController(nullptr), mBindStarPointer(nullptr),

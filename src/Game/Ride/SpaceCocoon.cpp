@@ -44,7 +44,7 @@ namespace NrvSpaceCocoon {
     NEW_NERVE(SpaceCocoonNrvBindAim, SpaceCocoon, BindAim);
     NEW_NERVE(SpaceCocoonNrvBindAttack, SpaceCocoon, BindAttack);
     NEW_NERVE(SpaceCocoonNrvBindAttackSuccess, SpaceCocoon, BindAttackSuccess);
-}  // namespace NrvSpaceCocoon
+};  // namespace NrvSpaceCocoon
 
 namespace {
     static Color8 sColor(0xC8, 0xC8, 0xD7, 0xFF);
@@ -604,7 +604,7 @@ namespace {
         }
         return false;
     }
-}  // namespace
+};  // namespace
 
 bool SpaceCocoon::tryTouch() {
     if (mTouchTime > 0) {
@@ -807,7 +807,7 @@ namespace {
         GXColor1u32(color2);
         GXTexCoord2f32(texX2, texY);
     }
-}  // namespace
+};  // namespace
 
 void SpaceCocoon::drawPlane(f32 x1, f32 y1, f32 x2, f32 y2, Color8 color1, Color8 color2, f32 texX1, f32 texX2) const {
     s32 numPoints = mNumPoints + 2;

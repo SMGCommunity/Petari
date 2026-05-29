@@ -8,7 +8,7 @@
 namespace NrvPeachCastleGardenPlanet {
     NEW_NERVE(PeachCastleGardenPlanetNrvWait, PeachCastleGardenPlanet, Wait);
     NEW_NERVE(PeachCastleGardenPlanetNrvDamage, PeachCastleGardenPlanet, Damage);
-}  // namespace NrvPeachCastleGardenPlanet
+};  // namespace NrvPeachCastleGardenPlanet
 
 PeachCastleGardenPlanet::PeachCastleGardenPlanet(const char* pName) : MapObjActor(pName),
     _C4(nullptr) 

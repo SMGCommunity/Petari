@@ -21,7 +21,7 @@ namespace NrvAstroMapObj {
     NEW_NERVE(AstroMapObjNrvAliveAfterDemo, AstroMapObj, Wait);
     NEW_NERVE(AstroMapObjNrvRevival, AstroMapObj, Revival);
     NEW_NERVE(AstroMapObjNrvOpen, AstroMapObj, Open);
-}  // namespace NrvAstroMapObj
+};  // namespace NrvAstroMapObj
 
 namespace {
     s32 sAstroPathAppearStep = 90;

@@ -17,7 +17,7 @@
 namespace NrvStarPieceGroup {
     NEW_NERVE(HostTypeNrvGroup, StarPieceGroup, Group);
     NEW_NERVE(HostTypeNrvFlow, StarPieceGroup, Flow);
-}  // namespace NrvStarPieceGroup
+};  // namespace NrvStarPieceGroup
 
 StarPieceGroup::StarPieceGroup(const char* pName)
     : LiveActor(pName), mPieces(nullptr), mRailCoords(nullptr), _94(false), _95(false), mNumPieces(0), mCircleRadius(400.0f), mIsRail(false),

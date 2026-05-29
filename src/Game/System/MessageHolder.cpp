@@ -24,7 +24,7 @@ namespace {
 
         return nullptr;
     }
-}  // namespace
+};  // namespace
 
 bool MessageData::getMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) const {
     s32 messageIndex = findMessageIndex(pMessage);

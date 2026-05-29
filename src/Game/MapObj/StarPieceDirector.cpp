@@ -7,7 +7,7 @@
 namespace NrvStarPieceShooter {
     NEW_NERVE(HostTypeNrvWait, StarPieceShooter, Wait);
     NEW_NERVE(HostTypeNrvLockOn, StarPieceShooter, LockOn);
-}  // namespace NrvStarPieceShooter
+};  // namespace NrvStarPieceShooter
 
 StarPieceDirector* MR::getStarPieceDirector() {
     return MR::getSceneObj< StarPieceDirector >(SceneObj_StarPieceDirector);

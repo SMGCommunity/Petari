@@ -32,7 +32,7 @@ namespace NrvSlingShooter {
     NEW_NERVE(SlingShooterNrvAim, SlingShooter, Aim);
     NEW_NERVE(SlingShooterNrvAttack, SlingShooter, Attack);
     NEW_NERVE(SlingShooterNrvAttackSuccess, SlingShooter, AttackSuccess);
-}  // namespace NrvSlingShooter
+};  // namespace NrvSlingShooter
 
 SlingShooter::SlingShooter(const char* pName)
     : LiveActor(pName), mIsKinopioCameraFocused(false), mPlayerZ(0.0f), mIsKinopioAttached(false), mIsKinopioTalkEnabled(true), mIsLastDamage(false),
