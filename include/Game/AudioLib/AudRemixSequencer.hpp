@@ -1,6 +1,8 @@
 #pragma once
-#include "Game/GameAudio/AudTalkSoundData.hpp"
+
 #include <revolution/types.h>
+
+class JAISoundID;
 
 struct RemixNoteTrackData {
     u32 _0;

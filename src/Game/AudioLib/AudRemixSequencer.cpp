@@ -2,8 +2,8 @@
 #include "Game/AudioLib/AudSoundNameConverter.hpp"
 #include "Game/AudioLib/AudSoundObject.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
-#include "Game/GameAudio/AudTalkSoundData.hpp"
 #include "Game/SingletonHolder.hpp"
+#include "JSystem/JAudio2/JAISound.hpp"
 #include "JSystem/JAudio2/JAISoundHandles.hpp"
 
 namespace {
@@ -75,13 +75,15 @@ bool AudRmxSeqNoteOnTimer::update(f32 f1) {
 JAISoundID AudRmxSeqNoteOnTimer::getFreeSeID() {
     for (u32 i = 0; i < ARRAY_SIZE(cRemixNoteTrackSeId); i++) {
         JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(cRemixNoteTrackSeId[i]);
-        u32* handleID = AudWrap::getRemixSeqObject()->getHandleSoundID(id);
-        if (handleID == nullptr) {
+        JAISoundHandle* handle = AudWrap::getRemixSeqObject()->getHandleSoundID(id);
+        if (handle == nullptr) {
             return id;
         }
     }
+
     JAISoundID id;
-    id.mID = -1;
+    id.setAnonymous();
+
     return id;
 }
 

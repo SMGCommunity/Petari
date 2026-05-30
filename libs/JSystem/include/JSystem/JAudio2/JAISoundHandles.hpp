@@ -1,13 +1,16 @@
 #pragma once
-#include "Game/AudioLib/AudSoundObject.hpp"
-#include "Game/GameAudio/AudTalkSoundData.hpp"
+
+#include "JSystem/JGeometry/TVec.hpp"
 
 class JAISoundHandle;
+class JAISoundID;
 
 class JAISoundHandles {
 public:
-    u32* getHandleSoundID(JAISoundID);  // exact return type currently unknown
+    JAISoundHandle* getHandleSoundID(JAISoundID);
+    JAISoundHandle* getHandleUserData(u32);
+    void setPos(const TVec3f&);
 
-    /* 0x0 */ JAISoundHandle* mHandles;
-    u32 _4;
+    /* 0x00 */ JAISoundHandle* mHandles;
+    /* 0x04 */ u32 _4;
 };

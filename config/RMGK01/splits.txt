@@ -9246,11 +9246,11 @@ Game/Util/SequenceUtil.cpp:
 
 Game/Util/ShareUtil.cpp:
 	.text       start:0x803F9C18 end:0x803F9CD4
-	.data       start:0x805E2070 end:0x805E2240
+	.data       start:0x805E2070 end:0x805E2098
 
 Game/Util/SoundUtil.cpp:
 	.text       start:0x803F9CD4 end:0x803FBA80
-	.data       start:0x805E2240 end:0x805E22B8
+	.data       start:0x805E2098 end:0x805E22B8
 	.sdata2     start:0x806C18B8 end:0x806C18C0
 
 Game/Util/StarPointerUtil.cpp:

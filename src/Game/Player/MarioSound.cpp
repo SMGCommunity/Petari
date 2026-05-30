@@ -1,11 +1,11 @@
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
-#include "Game/GameAudio/AudTalkSoundData.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioWait.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include <JSystem/JAudio2/JAISound.hpp>
 #include <cstring>
 
 struct SoundList {

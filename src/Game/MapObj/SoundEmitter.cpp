@@ -1,5 +1,4 @@
 #include "Game/MapObj/SoundEmitter.hpp"
-#include "Game/GameAudio/AudTalkSoundData.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/RailRider.hpp"
@@ -11,6 +10,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JAudio2/JAISound.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
 namespace {

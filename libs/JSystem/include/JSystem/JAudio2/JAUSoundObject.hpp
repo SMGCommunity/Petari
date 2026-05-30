@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/GameAudio/AudTalkSoundData.hpp"
 #include "JSystem/JAudio2/JAISoundHandles.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
 class JAISoundHandle;
+class JAISoundID;
 
 class JAUSoundObject : public JAISoundHandles {
 public:

@@ -37,5 +37,5 @@ public:
     /* 0x14 */ u32 mPlayerMode;
     /* 0x18 */ u32 _18;
     /* 0x1C */ u8 _1C;
-    /* 0x1D */ u8 _1D;
+    /* 0x1D */ bool _1D;
 };
