@@ -1,5 +1,5 @@
 #include "Game/Enemy/IceMerameraKing.hpp"
-#include "Game/Camera/CameraTargetDemoActor.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Effect/SpinPullParticleCallBack.hpp"
 #include "Game/Enemy/Meramera.hpp"
 #include "Game/Enemy/MoguStone.hpp"

@@ -129,3 +129,23 @@ const TVec3f* CameraTargetPlayer::getGroundPos() const {
 const TVec3f* CameraTargetPlayer::getGravityVector() const {
     return &mGravity;
 }
+
+
+
+CameraTargetDemoActor::CameraTargetDemoActor(MtxPtr pMtx, const char* pName) : LiveActor(pName) {
+    mMtx.set(pMtx);
+}
+
+void CameraTargetDemoActor::init(const JMapInfoIter& rIter) {
+    LiveActor::init(rIter);
+    makeActorAppeared();
+}
+
+void CameraTargetDemoActor::setTargetMtx(MtxPtr pNewTargetMtx) {
+    mMtx.set(pNewTargetMtx);
+    MR::makeRTFromMtxPtr(&mPosition, &mRotation, pNewTargetMtx, true);
+}
+
+MtxPtr CameraTargetDemoActor::getBaseMtx() const {
+    return (const MtxPtr)mMtx.mMtx;
+}

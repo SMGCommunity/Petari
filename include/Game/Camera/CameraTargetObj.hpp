@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JGeometry.hpp"
 
 class CubeCameraArea;
@@ -117,4 +117,16 @@ public:
     u16 _58;
     bool _5A;
     u8 _5B;
+};
+
+class CameraTargetDemoActor : public LiveActor {
+public:
+    CameraTargetDemoActor(MtxPtr, const char*);
+
+    virtual void init(const JMapInfoIter& rIter);
+    virtual MtxPtr getBaseMtx() const;
+
+    void setTargetMtx(MtxPtr);
+
+    TPos3f mMtx;
 };

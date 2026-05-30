@@ -1,5 +1,5 @@
 #include "Game/Enemy/WaterBazooka.hpp"
-#include "Game/Camera/CameraTargetDemoActor.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Enemy/ElectricPressureBullet.hpp"
 #include "Game/Enemy/MogucchiShooter.hpp"
 #include "Game/Enemy/WaterBazookaCapsule.hpp"
