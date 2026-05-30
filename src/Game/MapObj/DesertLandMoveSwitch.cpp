@@ -177,7 +177,7 @@ void DesertLandMoveSwitch::updateTimerSE() {
             s32 s = _9C;
             if (lf <= s) {
                 if (step2 == s) {
-                    return MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
+                    MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
                 } else {
                     if (!(lf % 60)) {
                         if (lf < s - 600)

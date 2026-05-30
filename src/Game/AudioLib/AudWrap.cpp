@@ -7,9 +7,11 @@ namespace AudWrap {
     AudSystem* getSystem() {
         return AudSystem::msBasic;
     }
-
-    // getSoundInfo
-
+    /*
+    AudSoundInfo* getSoundInfo() {
+        return JASGlobalInstance< JAUSoundInfo >::sInstance;
+    }
+    */
     AudSceneMgr* getSceneMgr() {
         return getSystem()->mSceneMgr;
     }
@@ -26,20 +28,20 @@ namespace AudWrap {
         return getBgmMgr()->_0[1];
     }
 
-    void startStageBgm(u32 param1, bool param2) {
-        getBgmMgr()->start(0, param1, param2);
+    JAISoundHandle* startStageBgm(u32 param1, bool param2) {
+        return getBgmMgr()->start(0, param1, param2);
     }
 
-    void startSubBgm(u32 param1, bool param2) {
-        getBgmMgr()->start(1, param1, param2);
+    JAISoundHandle* startSubBgm(u32 param1, bool param2) {
+        return getBgmMgr()->start(1, param1, param2);
     }
 
     void setNextIdStageBgm(u32 param1) {
-        getBgmMgr()->setNextBGM(0, param1);;
+        getBgmMgr()->setNextBGM(0, param1);
     }
 
-    void startLastStageBgm() {
-        getBgmMgr()->startLastBGM(0);;
+    JAISoundHandle* startLastStageBgm() {
+        return getBgmMgr()->startLastBGM(0);
     }
 
     AudSoundObject* getSystemSeObject() {

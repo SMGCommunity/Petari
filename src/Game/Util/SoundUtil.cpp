@@ -1,14 +1,13 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/AudioLib/AudSoundObject.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
-#include "Game/GameAudio/AudTalkSoundData.hpp"
 
 namespace MR {
-    void startSystemSE(JAISoundID id, s32 a2, s32 a3) {
-        AudWrap::getSystemSeObject()->startSoundParam(id, a2, a3);
+    JAISoundHandle* startSystemSE(JAISoundID id, s32 param2, s32 param3) {
+        return AudWrap::getSystemSeObject()->startSoundParam(id, param2, param3);
     }
 
-    void startSystemLevelSE(const char* pSound, s32 a2, s32 a3) {
-        AudWrap::getSystemSeObject()->startLevelSoundParam(pSound, a2, a3);
+    JAISoundHandle* startSystemLevelSE(const char* pName, s32 param2, s32 param3) {
+        return AudWrap::getSystemSeObject()->startLevelSoundParam(pName, param2, param3);
     }
 };  // namespace MR
