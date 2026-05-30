@@ -123,7 +123,7 @@ bool DesertLandMoveSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSenso
 }
 
 void DesertLandMoveSwitch::initModelAndCollision(const JMapInfoIter& rIter) {
-    const char* pObjName = 0;
+    const char* pObjName = "";
     MR::getObjectName(&pObjName, rIter);
     _A0 = pObjName;
     initModelManagerWithAnm(pObjName, 0, 0);
