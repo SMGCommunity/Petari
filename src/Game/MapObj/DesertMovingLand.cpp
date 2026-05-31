@@ -180,7 +180,7 @@ void DesertMovingLand::exeMoveSign() {
         else {
             if (isNerve(&NrvDesertMovingLand::HostTypeMoveDownSign::sInstance)) {
                 if (MR::isDemoActive("砂ＵＦＯ下降"))
-                    MR::startEventBGM(0);
+                    MR::startEventBGM(MR::EventBgmID_Hurry);
 
                 setNerve(&NrvDesertMovingLand::HostTypeMoveDown::sInstance);
             }

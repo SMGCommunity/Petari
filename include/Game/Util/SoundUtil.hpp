@@ -9,6 +9,39 @@ class JAISoundID;
 class LiveActor;
 
 namespace MR {
+    enum BossBgmID {
+        BossBgmID_01_A,
+        BossBgmID_01_B,
+        BossBgmID_02_A,
+        BossBgmID_02_B,
+        BossBgmID_03_A,
+        BossBgmID_03_B,
+        BossBgmID_05_A,
+        BossBgmID_05_B,
+        BossBgmID_Begoman = BossBgmID_01_A,
+        BossBgmID_StinkBugA = BossBgmID_01_A,
+        BossBgmID_StinkBugB = BossBgmID_01_B,
+        BossBgmID_DinoPackunA = BossBgmID_03_A,
+        BossBgmID_DinoPackunB = BossBgmID_03_B,
+        BossBgmID_DodoryuA = BossBgmID_05_A,
+        BossBgmID_DodoryuB = BossBgmID_05_B,
+        BossBgmID_OtaKing = BossBgmID_01_A,
+        BossBgmID_TombSpiderA = BossBgmID_03_A,
+        BossBgmID_TombSpiderB = BossBgmID_03_B,
+        BossBgmID_TripodBossA = BossBgmID_02_A,
+        BossBgmID_TripodBossB = BossBgmID_02_B,
+    };
+
+    enum EventBgmID {
+        EventBgmID_Hurry,
+        EventBgmID_Chase,
+        EventBgmID_Race_01,
+        EventBgmID_Race_02,
+        EventBgmID_PenguinRace = EventBgmID_Race_01,
+        EventBgmID_TeresaRace = EventBgmID_Race_02,
+        EventBgmID_Surfing = EventBgmID_Race_01,
+    };
+
     JAISoundHandle* startSystemSE(const char*, s32, s32);
     JAISoundHandle* startSystemSE(JAISoundID, s32, s32);
     JAISoundHandle* startSystemLevelSE(const char*, s32, s32);

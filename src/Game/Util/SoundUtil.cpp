@@ -360,7 +360,7 @@ namespace MR {
         return isPlayingStageBgmID(id);
     }
 
-    bool isStopOrFadeoutStageBgmID(u32 id);
+    // isStopOrFadeoutStageBgmID
 
     bool isStopOrFadeoutBgmName(const char* pName) {
         JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(pName);
@@ -595,32 +595,32 @@ namespace MR {
         startStageBGMFromStageName("Game", getCurrentStageName(), getCurrentScenarioNo());
     }
 
-    JAISoundHandle* startBossBGM(s32 param1) {
+    JAISoundHandle* startBossBGM(s32 id) {
         JAISoundHandle* pSoundHandle = nullptr;
 
-        switch (param1) {
-        case 0:
+        switch (id) {
+        case BossBgmID_01_A:
             pSoundHandle = startStageBGM("MBGM_BOSS_01_A", 0);
             break;
-        case 1:
+        case BossBgmID_01_B:
             pSoundHandle = startStageBGM("MBGM_BOSS_01_B", 0);
             break;
-        case 2:
+        case BossBgmID_02_A:
             pSoundHandle = startStageBGM("MBGM_BOSS_02_A", 0);
             break;
-        case 3:
+        case BossBgmID_02_B:
             pSoundHandle = startStageBGM("MBGM_BOSS_02_B", 0);
             break;
-        case 4:
+        case BossBgmID_03_A:
             pSoundHandle = startStageBGM("MBGM_BOSS_03_A", 0);
             break;
-        case 5:
+        case BossBgmID_03_B:
             pSoundHandle = startStageBGM("MBGM_BOSS_03_B", 0);
             break;
-        case 6:
+        case BossBgmID_05_A:
             pSoundHandle = startStageBGM("MBGM_BOSS_05_A", 0);
             break;
-        case 7:
+        case BossBgmID_05_B:
             pSoundHandle = startStageBGM("MBGM_BOSS_05_B", 0);
             break;
         }
@@ -628,20 +628,20 @@ namespace MR {
         return pSoundHandle;
     }
 
-    JAISoundHandle* startEventBGM(s32 param1) {
+    JAISoundHandle* startEventBGM(s32 id) {
         JAISoundHandle* pSoundHandle = nullptr;
 
-        switch (param1) {
-        case 0:
+        switch (id) {
+        case EventBgmID_Hurry:
             pSoundHandle = startStageBGM("MBGM_GALAXY_02_HURRY", 0);
             break;
-        case 1:
+        case EventBgmID_Chase:
             pSoundHandle = startStageBGM("MBGM_GALAXY_02_CHASE", 0);
             break;
-        case 2:
+        case EventBgmID_Race_01:
             pSoundHandle = startStageBGM("MBGM_RACE_01", 0);
             break;
-        case 3:
+        case EventBgmID_Race_02:
             pSoundHandle = startStageBGM("MBGM_RACE_02", 0);
             break;
         }

@@ -282,7 +282,7 @@ void BossBegoman::exeFirstContactDemo() {
 }
 void BossBegoman::exeReady() {
     if (MR::isFirstStep(this)) {
-        MR::startBossBGM(0);
+        MR::startBossBGM(MR::BossBgmID_Begoman);
         mVelocity.zero();
     }
 

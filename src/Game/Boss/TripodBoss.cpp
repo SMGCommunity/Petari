@@ -594,7 +594,7 @@ void TripodBoss::exeStartDemo() {
     }
 
     if (MR::isStep(this, 120)) {
-        MR::startBossBGM(2);
+        MR::startBossBGM(MR::BossBgmID_TripodBossA);
     }
 
     if (MR::isGreaterStep(this, 120)) {
@@ -1081,7 +1081,7 @@ const TPos3f* TripodBoss::getLegMatrixPtr(PART_ID partID, SUB_PART_ID subPartID)
 void TripodBoss::changeBgmState() {
     if (_640 && !isDemo()) {
         if (!MR::isPlayingStageBgm()) {
-            MR::startBossBGM(3);
+            MR::startBossBGM(MR::BossBgmID_TripodBossB);
         }
 
         _640 = 0;

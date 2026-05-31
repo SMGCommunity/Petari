@@ -5,7 +5,6 @@
 #include "Game/Boss/DinoPackunSequencer.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/CameraUtil.hpp"
 
 namespace NrvDinoPackunDemo {
     NEW_NERVE(DinoPackunDemoNrvTryStartDemo, DinoPackunDemo, TryStartDemo);
@@ -126,7 +125,7 @@ void DinoPackunDemo::exeCryDemo() {
     }
 
     if (MR::isBckStopped(getHost())) {
-        MR::startBossBGM(4);
+        MR::startBossBGM(MR::BossBgmID_DinoPackunA);
         getHost()->endDemo("ディノパックン泣きデモ");
         MR::endAnimCamera(getHost(), getHost()->mCameraInfo, "CryDemo", -1, -1);
         getHost()->activateParts();
@@ -159,7 +158,7 @@ void DinoPackunDemo::exeAngryDemo() {
         }
     }
     if (MR::isBckStopped(getHost())) {
-        MR::startBossBGM(5);
+        MR::startBossBGM(MR::BossBgmID_DinoPackunB);
         getHost()->endDemo("ディノパックン怒りデモ");
         MR::endAnimCamera(getHost(), getHost()->mCameraInfo, "AngryDemo", -1, 1);
         getHost()->activateParts();

@@ -6,7 +6,7 @@
 // Bug with build system means .data and .rodata are not matching yet due to incorrect parsing of shift-jis strings
 
 namespace {
-    // static const _32 sTimeOutSecond =
+    // static const _ sTimeOutSecond = _;
     static const s32 sBgmStartStep = 166;
 };  // namespace
 
@@ -22,11 +22,11 @@ namespace {
     };
 
     static const RaceStructData sRaceStruct[] = {
-        {"ペンギンレース[オーシャンリング]", 2, 120, "RaceName_Penguin", "OceanRingGalaxy", 2, false},
-        {"テレサレース[ファントム]", 3, 120, "RaceName_TeresaPhantom", "PhantomGalaxy", 2, true},
-        {"テレサレース[デスプロムナード]", 3, 120, "RaceName_TeresaDeathPromenade", "TeresaMario2DGalaxy", 1, false},
-        {"サーフィン[トライアル]", 2, 0, "RaceName_SurfingTrial", "SurfingLv1Galaxy", 1, false},
-        {"サーフィン[チャレンジ]", 2, 180, "RaceName_SurfingChallenge", "SurfingLv2Galaxy", 1, false}};
+        {"ペンギンレース[オーシャンリング]", MR::EventBgmID_PenguinRace, 120, "RaceName_Penguin", "OceanRingGalaxy", 2, false},
+        {"テレサレース[ファントム]", MR::EventBgmID_TeresaRace, 120, "RaceName_TeresaPhantom", "PhantomGalaxy", 2, true},
+        {"テレサレース[デスプロムナード]", MR::EventBgmID_TeresaRace, 120, "RaceName_TeresaDeathPromenade", "TeresaMario2DGalaxy", 1, false},
+        {"サーフィン[トライアル]", MR::EventBgmID_Surfing, 0, "RaceName_SurfingTrial", "SurfingLv1Galaxy", 1, false},
+        {"サーフィン[チャレンジ]", MR::EventBgmID_Surfing, 180, "RaceName_SurfingChallenge", "SurfingLv2Galaxy", 1, false}};
 
     const RaceStructData& getRaceStruceData(s32 id) {
         return sRaceStruct[id];

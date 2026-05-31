@@ -264,7 +264,7 @@ bool TrickRabbit::requestCaught() {
 
 bool TrickRabbit::tryStartDemoRunnaway() {
     if (MR::tryStartDemoMarioPuppetable(this, "逃走")) {
-        MR::startEventBGM(1);
+        MR::startEventBGM(MR::EventBgmID_Chase);
         if (mMultiEventCamera != nullptr) {
             mMultiEventCamera->start(CameraTargetArg(this), 0);
         }
