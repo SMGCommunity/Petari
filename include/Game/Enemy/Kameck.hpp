@@ -10,3 +10,7 @@ public:
 
     u8 _8C[0xD0 - 0x8C];
 };
+
+namespace MR {
+    NameObj* createFireBallBeamKameck(const char*);
+};
