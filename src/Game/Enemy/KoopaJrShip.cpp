@@ -11,6 +11,8 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "math_types.hpp"
 #include "revolution/wpad.h"
+#include <algorithm>
+#include <functional.hpp>
 
 namespace {
     static const char* cJointNamePropellerBack0 = "Screw00";
@@ -315,12 +317,7 @@ void KoopaJrShip::shootKillersAfterDamage() {
 
 bool KoopaJrShip::isExistActiveKiller() const {
     bool (*isDeadFunc)(const LiveActor*) = &MR::isDead;
-    HomingKiller* const* pActor;
-
-    for (pActor = mKillers.begin(); pActor != mKillers.end() && isDeadFunc(*pActor); pActor++) {
-    }
-
-    return pActor != mKillers.end();
+    return find_if(mKillers.begin(), mKillers.end(), not1(std::ptr_fun(isDeadFunc))) != mKillers.end();
 }
 
 bool KoopaJrShip::isExistActiveKameck() const {
@@ -687,7 +684,7 @@ void KoopaJrShip::exeTurnFront() {
         }
 
         mKamecks[0]->makeActorDeadForce();
-        mKillers.callAllFunc(&HomingKiller::kill);
+        for_each(mKillers.begin(), mKillers.end(), std::mem_fun_t< void, HomingKiller >(&HomingKiller::kill));
     }
 
     MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_3RD_DEMO", -1, -1, -1);
