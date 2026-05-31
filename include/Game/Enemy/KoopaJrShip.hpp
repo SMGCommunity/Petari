@@ -60,16 +60,20 @@ public:
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
+    inline bool isNextStateDamage(s32& x) {
+        return --x <= 0;
+    }
+
+    inline bool isStateBreak() const;
+
     CannonShellHolder* mShellHolder;                      // 0x8C
     CannonShellHolder* mMainShellHolder;                  // 0x90
     KoopaJr* mJr;                                         // 0x94
     ModelObj* mShipBreakModel;                            // 0x98
     ModelObj* mPodModel;                                  // 0x9C
     MR::Vector< MR::FixedArray< Kameck*, 2 > > mKamecks;  // 0xA0
-    u32 _AC;
-    u32 _B0;
-    u32 _B4;
-    MR::FixedArray< HomingKiller*, 6 > mKillers;  // 0xB8
+    MR::Vector< MR::FixedArray< Kameck*, 2 > > _AC;       // 0xA0
+    MR::FixedArray< HomingKiller*, 6 > mKillers;          // 0xB8
     s32 _D0;
     TVec3f _D4;
     TVec3f _E0;

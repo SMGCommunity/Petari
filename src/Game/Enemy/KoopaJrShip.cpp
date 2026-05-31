@@ -3,6 +3,7 @@
 #include "Game/Enemy/Kameck.hpp"
 #include "Game/Enemy/KoopaJrShipCannonMainShell.hpp"
 #include "Game/Enemy/KoopaJrShipCannonShell.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/NPC/KoopaJr.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
@@ -22,11 +23,11 @@ namespace {
     static const char* cJointNameKoopaJrPos = "KoopaJrShip";
     static const char* cJointNamePodPos = "KoopaJrShipPod";
 
-    static TVec3f sKillerLauncherAngle[6] = {TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f),
-                                             TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f)};
+    const TVec3f sKillerLauncherAngle[6] = {TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f),
+                                            TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f)};
 
-    static TVec3f sKoopaJrPos = TVec3f(35.0f, 188.0f, 0.0f);
-    static TVec3f sKoopaJrPosFront = TVec3f(0.0f, 188.0f, 135.0f);
+    Vec sKoopaJrPos = {35.0f, 188.0f, 0.0f};
+    Vec sKoopaJrPosFront = {0.0f, 188.0f, 135.0f};
 
     static const char* cJointNameCannon[7] = {"FirePoint0", "FirePoint1", "FirePoint2", "FirePoint3", "FirePoint4", "FirePoint5", "FirePoint6"};
     static const char* cEffectNameShoot[7] = {"ShootJ0", "ShootJ1", "ShootJ2", "ShootJ3", "ShootJ4", "ShootJ5", "ShootJ6"};
@@ -48,7 +49,19 @@ namespace NrvKoopaJrShip {
     NEW_NERVE(HostTypeTurnFront, KoopaJrShip, TurnFront);
 };  // namespace NrvKoopaJrShip
 
-KoopaJrShip::KoopaJrShip(const char* pName) : LiveActor(pName) {
+KoopaJrShip::KoopaJrShip(const char* pName)
+    : LiveActor(pName), mShellHolder(nullptr), mMainShellHolder(nullptr), mJr(nullptr), mShipBreakModel(nullptr), mPodModel(nullptr), _D0(5),
+      _D4(gZeroVec), _E0(0.0f, 0.0f, 1.0f), _EC(0), mPropRotateSpeed(20.0f), _184(0.0f), _188(0), _1EC(sKoopaJrPos), _1F8(gZeroVec) {
+    mScrew00Mtx.identity();
+    mScrew01Mtx.identity();
+    mPropellerMtx.identity();
+    mShipMtx.identity();
+    mPodMtx.identity();
+}
+
+bool KoopaJrShip::isStateBreak(void) const {
+    return isNerve(&NrvKoopaJrShip::HostTypeBreakStart::sInstance) || isNerve(&NrvKoopaJrShip::HostTypeBreak::sInstance) ||
+           isNerve(&NrvKoopaJrShip::HostTypeBreakEnd::sInstance);
 }
 
 void KoopaJrShip::init(const JMapInfoIter& rIter) {
@@ -169,6 +182,43 @@ void KoopaJrShip::initKiller() {
         (*pActor)->initWithoutIter();
         (*pActor)->setChaseStartEndDistance(5500.0f, 6500.0f);
     }
+}
+
+bool KoopaJrShip::receiveMsgJetTurtleAttack(HitSensor* pSender, HitSensor* pReceiver) {
+    if (!MR::isSensorEnemy(pReceiver)) {
+        return false;
+    }
+
+    if (isNerve(&NrvKoopaJrShip::HostTypeDamage::sInstance)) {
+        return false;
+    }
+
+    if (isNerve(&NrvKoopaJrShip::HostTypePowerUp::sInstance)) {
+        return false;
+    }
+
+    if (isStateBreak()) {
+        return false;
+    }
+
+    _D4.set< f32 >(pSender->mPosition);
+    _E0.set< f32 >(pSender->mHost->mVelocity);
+    MR::normalizeOrZero(&_E0);
+    _D0 = _D0 - 1;
+
+    if (isNextStateDamage(_D0)) {
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_DAMAGE_L", -1, -1);
+        MR::startSound(mJr, "SE_BV_KOOPAJR_DAMAGE_L", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT", -1, -1);
+        setNerve(&NrvKoopaJrShip::HostTypeBreakStart::sInstance);
+    } else {
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_DAMAGE", -1, -1);
+        MR::startSound(mJr, "SE_BV_KOOPAJR_DAMAGE_S", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
+        setNerve(&NrvKoopaJrShip::HostTypeDamage::sInstance);
+    }
+
+    return true;
 }
 
 s32 KoopaJrShip::getNumShootShells() const {
@@ -680,7 +730,7 @@ void KoopaJrShip::exeTurnFront() {
         mMainShellHolder->killActiveShells();
 
         if (!MR::isDead(mKamecks.mArray[0])) {
-            mKamecks.push_back(mKamecks[0]);
+            _AC.push_back(mKamecks[0]);
         }
 
         mKamecks[0]->makeActorDeadForce();
@@ -702,7 +752,7 @@ void KoopaJrShip::exeTurnFront() {
         _188 = 60;
         MR::startStageBGM("MBGM_BOSS_06_B", false);
 
-        if (_B4) {
+        if (_AC[2] != nullptr) {
             mKamecks[0]->appear();
         }
 
