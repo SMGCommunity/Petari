@@ -1,4 +1,5 @@
 #include "Game/Enemy/KoopaJrShip.hpp"
+#include "Game/Enemy/HomingKiller.hpp"
 #include "Game/Enemy/Kameck.hpp"
 #include "Game/Enemy/KoopaJrShipCannonMainShell.hpp"
 #include "Game/Enemy/KoopaJrShipCannonShell.hpp"
@@ -9,6 +10,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "math_types.hpp"
+#include "revolution/wpad.h"
 
 namespace {
     static const char* cJointNamePropellerBack0 = "Screw00";
@@ -167,6 +169,236 @@ void KoopaJrShip::initKiller() {
     }
 }
 
+s32 KoopaJrShip::getNumShootShells() const {
+    if (isNerve(&NrvKoopaJrShip::HostTypeShoot1::sInstance)) {
+        return 1;
+    }
+
+    return isNerve(&NrvKoopaJrShip::HostTypeShoot2::sInstance) != 0 ? 5 : 0;
+}
+
+f32 KoopaJrShip::getPropellerRotSpeed() const {
+    if (isNerve(&NrvKoopaJrShip::HostTypeBreakStart::sInstance)) {
+        return (40.0f * (1.0f - MR::calcNerveRate(this, 60)));
+    }
+
+    if (isNerve(&NrvKoopaJrShip::HostTypeBreak::sInstance)) {
+        return 0.0f;
+    }
+
+    if (isNerve(&NrvKoopaJrShip::HostTypePowerUp::sInstance) || 2 >= _D0 && !isNerve(&NrvKoopaJrShip::HostTypeDamage::sInstance)) {
+        return 20.0f;
+    }
+
+    return 40.0f;
+}
+
+void KoopaJrShip::updateCoordSpeed() {
+    switch (_D0) {
+    case 2:
+        0.0f;
+    }
+    f32 rate = 0.0f;
+    MR::calcRailRateToNextPoint(&rate, this);
+
+    if (0.949f < rate) {
+        f32 v3;
+        if (_D0 <= 2) {
+            v3 = 2.0f;
+        } else {
+            v3 = 4.0f;
+        }
+
+        _184 = MR::getEaseInValue(rate, v3, 1.0f, 1.0f);
+    } else {
+        if (_188 >= 0) {
+            f32 v5;
+            if (_D0 <= 2) {
+                v5 = 2.0f;
+            } else {
+                v5 = 4.0f;
+            }
+
+            f32 ease = MR::getEaseInValue(_188, v5, 0.0f, 60.0f);
+            _184 = ease;
+            _188 = _188 - 1;
+            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_ACCEL", -1, -1, -1);
+        }
+
+        mPropRotateSpeed = getPropellerRotSpeed();
+    }
+}
+
+void KoopaJrShip::calcLauncherInfo(TVec3f* a1, TVec3f* a2, s32 idx) const NO_INLINE {
+    TPos3f mtx;
+    mtx.set(MR::getJointMtx(this, cJointNameCannon[idx]));
+    mtx.getTrans(*a1);
+    mtx.getXDir(*a2);
+    MR::normalize(a2);
+}
+
+void KoopaJrShip::calcLauncherInfoKiller(TVec3f* a1, TVec3f* a2, s32 idx) const {
+    TPos3f mtx;
+    TVec3f v16;
+    TVec3f v15;
+
+    mtx.set(MR::getJointMtx(this, cJointNameCannon[idx]));
+    mtx.getTrans(*a1);
+    mtx.getXDir(*a2);
+
+    f32 z = mtx.mMtx[2][1];
+    f32 y = mtx.mMtx[1][1];
+    f32 x = mtx.mMtx[0][1];
+
+    v16.set< f32 >(x, y, z);
+    MR::normalize(&v16);
+
+    mtx.getZDir(v15);
+    MR::normalize(&v15);
+    MR::rotateVecDegree(a2, v16, sKillerLauncherAngle[idx].y);
+    MR::rotateVecDegree(a2, v15, sKillerLauncherAngle[idx].z);
+    MR::normalize(a2);
+    JMathInlineVEC::PSVECAdd(a1, *a2 * -100.0f, a1);
+}
+
+void KoopaJrShip::shootShell(s32 idx) {
+    CannonShellBase* shell = mShellHolder->getValidShell();
+
+    if (shell != nullptr) {
+        TVec3f v8, v7;
+        calcLauncherInfo(&v8, &v7, idx);
+        shell->launch(v8, v7 * 15.0f);
+    }
+
+    MR::emitEffect(this, cEffectNameShoot[idx]);
+}
+
+bool KoopaJrShip::tryShootAllKillers() {
+    if (isExistActiveKiller()) {
+        return false;
+    }
+
+    if (isExistActiveKameck()) {
+        return false;
+    }
+
+    for (HomingKiller** pActor = mKillers.begin(); pActor != mKillers.end(); pActor++) {
+        TVec3f v6, v5;
+        s32 idx = mKillers.indexOf(pActor);
+        calcLauncherInfoKiller(&v6, &v5, idx);
+        (*pActor)->appear(v6, v5);
+        MR::emitEffect(this, cEffectNameShoot[idx]);
+    }
+
+    return true;
+}
+
+void KoopaJrShip::shootKiller(s32 idx) {
+    HomingKiller* killer = mKillers[idx];
+    if (MR::isDead(killer)) {
+        TVec3f v6, v5;
+        calcLauncherInfoKiller(&v6, &v5, idx);
+        killer->appear(v6, v5);
+        MR::emitEffect(this, cEffectNameShoot[idx]);
+    }
+}
+
+void KoopaJrShip::shootKillersAfterDamage() {
+    if (_D0 <= 2) {
+        tryShootAllKillers();
+    } else {
+        shootKiller(0);
+        shootKiller(1);
+        shootKiller(2);
+    }
+}
+
+bool KoopaJrShip::isExistActiveKiller() const {
+    bool (*isDeadFunc)(const LiveActor*) = &MR::isDead;
+    HomingKiller* const* pActor;
+
+    for (pActor = mKillers.begin(); pActor != mKillers.end() && isDeadFunc(*pActor); pActor++) {
+    }
+
+    return pActor != mKillers.end();
+}
+
+bool KoopaJrShip::isExistActiveKameck() const {
+    bool (*isDeadFunc)(const LiveActor*) = &MR::isDead;
+    Kameck* const* pActor;
+
+    for (pActor = mKamecks.begin(); pActor != mKamecks.end() && isDeadFunc(*pActor); pActor++) {
+    }
+
+    return pActor != mKamecks.end();
+}
+
+void KoopaJrShip::shootMainShells() {
+    TPos3f v16;
+    v16.set(MR::getJointMtx(this, cJointNameCannonMain));
+    TVec3f v15, v14;
+    v16.getTrans(v15);
+    v16.getZDir(v14);
+    MR::normalize(&v14);
+    mMainShellHolder->getValidShell()->launch(v15, v14 * 23.0f);
+    MR::rotateMtxLocalYDegree(v16, 15.0f);
+    TVec3f v13;
+    v16.getZDir(v13);
+    MR::normalize(&v13);
+    mMainShellHolder->getValidShell()->launch(v15, v13 * 23.0f);
+    MR::rotateMtxLocalYDegree(v16, -30.0f);
+    TVec3f v12;
+    v16.getZDir(v12);
+    MR::normalize(&v12);
+    mMainShellHolder->getValidShell()->launch(v15, v12 * 23.0f);
+}
+
+void KoopaJrShip::emitDamageSmokeEffect() {
+    if (_D0 == 3) {
+        MR::emitEffect(this, "DamageSmoke1");
+    } else if (_D0 == 1) {
+        MR::emitEffect(this, "DamageSmoke2");
+    }
+}
+
+void KoopaJrShip::emitDamageHitEffect() {
+    TPos3f v7;
+    v7.identity();
+    TVec3f up;
+    MR::calcUpVec(&up, this);
+    TVec3f v5;
+    JMathInlineVEC::PSVECNegate(&_E0, &v5);
+    MR::makeMtxSideUpPos(&v7, v5, up, _D4);
+    MR::emitEffectHit(this, v7, "DamageFire");
+    MR::startSound(this, "SE_BM_KOOPAJR_SHIP_IGNIT", -1, -1);
+}
+
+void KoopaJrShip::updateKoopaJrPos() {
+    if (isNerve(&NrvKoopaJrShip::HostTypeBreak::sInstance)) {
+        TMtx34f v8;
+        v8.set(MR::getJointMtx(mPodModel, cJointNamePodPos));
+        v8.mult(_1EC, mJr->mPosition);
+    } else {
+        TMtx34f v7;
+        v7.set(MR::getJointMtx(this, cJointNameKoopaJrPos));
+        MR::faceToPoint(v7, TVec3f(*MR::getPlayerPos()), 5.0f);
+        v7.mult(_1EC, mJr->mPosition);
+    }
+}
+
+void KoopaJrShip::updateKillerPos() {
+    for (HomingKiller** pActor = mKillers.begin(); pActor != mKillers.end(); pActor++) {
+        if (!MR::isDead(*pActor)) {
+            TVec3f v7;
+            TVec3f v6;
+            calcLauncherInfoKiller(&v7, &v6, mKillers.indexOf(pActor));
+            HomingKiller* killer = *pActor;
+            killer->mBasePos.set< f32 >(v7);
+            killer->mBaseFront.set< f32 >(v6);
+        }
+    }
+}
+
 void KoopaJrShip::killAllSubModels() {
     mJr->kill();
     mPodModel->makeActorDead();
@@ -181,6 +413,304 @@ void KoopaJrShip::setStateTurnFront() {
     _1EC.y = sKoopaJrPosFront.y;
     _1EC.z = sKoopaJrPosFront.z;
     setNerve(&NrvKoopaJrShip::HostTypeTurnFront::sInstance);
+}
+
+void KoopaJrShip::exeAppear() {
+    if (MR::isFirstStep(this)) {
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_ENTER", -1, -1);
+        MR::startBck(this, "Arrival", nullptr);
+        MR::hideModel(this);
+    }
+
+    if (MR::isStep(this, 1)) {
+        MR::showModel(this);
+        mJr->appear();
+        mJr->setStateShipBattleAppear();
+    }
+
+    if (MR::isDemoPartLastStep("")) {
+        mJr->endShipBattleTalk();
+        _188 = 60;
+        MR::startStageBGM("MBGM_BOSS_06_A", false);
+        setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+    }
+}
+
+void KoopaJrShip::exeMove() {
+    if (MR::isFirstStep(this)) {
+        f32 speed = _D0 <= 2 ? 2.0f : 4.0f;
+        MR::setRailCoordSpeed(this, speed);
+    }
+
+    updateCoordSpeed();
+    MR::moveCoordAndFollowTrans(this);
+
+    if (MR::isGreaterStep(this, 0)) {
+        if (!(getNerveStep() % 120) && !isExistActiveKiller()) {
+            switch (_D0) {
+            case 5:
+                setNerve(&NrvKoopaJrShip::HostTypeShoot1::sInstance);
+                break;
+            case 4:
+                setNerve(&NrvKoopaJrShip::HostTypeShoot2::sInstance);
+                break;
+            case 3:
+                setNerve(&NrvKoopaJrShip::HostTypeShoot2::sInstance);
+                break;
+            case 2:
+                setNerve(&NrvKoopaJrShip::HostTypeShoot2::sInstance);
+                break;
+            }
+        }
+    }
+
+    if (MR::isRailReachedEdge(this)) {
+        setNerve(&NrvKoopaJrShip::HostTypeStopAtEnd::sInstance);
+    }
+}
+
+void KoopaJrShip::exeMoveFrontAttack() {
+    if (MR::isFirstStep(this)) {
+        f32 speed = _D0 <= 2 ? 2.0f : 4.0f;
+        MR::setRailCoordSpeed(this, speed);
+        MR::emitEffect(this, "HeadShootSign");
+    }
+
+    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MAIN_PREP", -1, -1, -1);
+    updateCoordSpeed();
+    MR::moveCoordAndFollowTrans(this);
+
+    if (MR::isRailReachedGoal(this)) {
+        if (MR::isGreaterStep(this, 120)) {
+            MR::reverseRailDirection(this);
+            setNerve(&NrvKoopaJrShip::HostTypeShootMain::sInstance);
+        }
+    } else if (MR::isStep(this, 120)) {
+        setNerve(&NrvKoopaJrShip::HostTypeShootMain::sInstance);
+    }
+}
+
+void KoopaJrShip::exeShoot() {
+    MR::moveCoordAndFollowTrans(this);
+    updateCoordSpeed();
+
+    for (s32 i = 0; i < getNumShootShells(); i++) {
+        if (MR::isStep(this, 45 * i)) {
+            shootShell(1);
+
+            if (i == getNumShootShells() - 1) {
+                setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+                return;
+            }
+        }
+    }
+
+    if (MR::isRailReachedEdge(this)) {
+        setNerve(&NrvKoopaJrShip::HostTypeStopAtEnd::sInstance);
+    }
+}
+
+void KoopaJrShip::exeShootMain() {
+    if (MR::isFirstStep(this)) {
+        MR::emitEffect(this, "HeadShoot");
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_SHOOT_MAIN", -1, -1);
+        MR::shakeCameraNormal();
+
+        if (_D0 <= 1) {
+            tryShootAllKillers();
+        }
+    }
+
+    if (MR::isStep(this, 15)) {
+        shootMainShells();
+    }
+
+    MR::moveCoordAndFollowTrans(this);
+    updateCoordSpeed();
+
+    if (MR::isStep(this, 150)) {
+        setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
+    }
+}
+
+void KoopaJrShip::exeStopAtEnd() {
+    s32 step = (_D0 <= 2) ? 90 : 150;
+
+    if (MR::isStep(this, step)) {
+        MR::reverseRailDirection(this);
+        _188 = 60;
+
+        if (_D0 <= 2) {
+            setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
+        } else {
+            setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+        }
+    }
+}
+
+void KoopaJrShip::exePowerUp() {
+    if (MR::isStep(this, 90)) {
+        _188 = 60;
+        setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+    }
+}
+
+void KoopaJrShip::exeDamage() {
+    if (MR::isFirstStep(this)) {
+        _184 = 0.0f;
+        MR::startBck(this, "Damage", nullptr);
+        mJr->setStateShipBattleShipDamage();
+        emitDamageSmokeEffect();
+        emitDamageHitEffect();
+        MR::shakeCameraNormal();
+        MR::tryRumbleDefaultHit(this, WPAD_CHAN0);
+        MR::stopScene(12);
+    }
+
+    if (MR::isStep(this, 90)) {
+        if (_D0 == 2) {
+            MR::requestStartDemoRegistered(this, nullptr, nullptr, "旋廻");
+        } else {
+            shootKillersAfterDamage();
+            if (_D0 == 3) {
+                mKamecks.mArray[0]->appear();
+            }
+
+            if (_D0 == 1) {
+                mKamecks.mArray[1]->appear();
+            }
+
+            if (_D0 == 2) {
+                setNerve(&NrvKoopaJrShip::HostTypePowerUp::sInstance);
+            } else {
+                _188 = 60;
+
+                if (_D0 <= 2) {
+                    setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
+                } else {
+                    setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
+                }
+            }
+        }
+    }
+}
+
+void KoopaJrShip::exeBreakStart() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Damage", nullptr);
+        mJr->setStateShipBattleShipDamage();
+        emitDamageHitEffect();
+        MR::shakeCameraNormal();
+        MR::tryRumbleDefaultHit(this, WPAD_CHAN0);
+        MR::stopScene(12);
+    }
+
+    if (MR::isStep(this, 60)) {
+        mShellHolder->killActiveShells();
+        mMainShellHolder->killActiveShells();
+
+        Kameck* const* pActor;
+
+        for (pActor = mKamecks.begin(); pActor != mKamecks.end(); pActor++) {
+            if (!MR::isDead(*pActor)) {
+                (*pActor)->makeActorDeadForce();
+            }
+        }
+
+        for (HomingKiller** pActor = mKillers.begin(); pActor != mKillers.end(); pActor++) {
+            if (!MR::isDead(*pActor)) {
+                (*pActor)->kill();
+            }
+        }
+
+        MR::requestStartDemoRegistered(this, nullptr, nullptr, "破壊");
+        mShipMtx.set(getBaseMtx());
+        mShipBreakModel->appear();
+        MR::startBck(mShipBreakModel, "Break", nullptr);
+        mPodMtx.set(getBaseMtx());
+        mPodModel->appear();
+        MR::startBck(mPodModel, "Escape", nullptr);
+        setNerve(&NrvKoopaJrShip::HostTypeBreak::sInstance);
+    }
+}
+
+void KoopaJrShip::exeBreak() {
+    if (MR::isFirstStep(this)) {
+        MR::deleteEffect(this, "EyeLight");
+        MR::tryRumblePadStrong(this, 0);
+        MR::shakeCameraNormal();
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_S", -1, -1);
+        mJr->setStateShipBattleEscape();
+        MR::hideModel(this);
+        MR::deleteEffect(this, "DamageSmoke1");
+        MR::deleteEffect(this, "DamageSmoke2");
+    }
+
+    if (!MR::isHiddenModel(mPodModel) && MR::isBckStopped(mPodModel)) {
+        MR::hideModel(mPodModel);
+        MR::hideModel(mJr);
+    }
+
+    if (MR::isStep(this, 287)) {
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_S", -1, -1);
+    }
+
+    if (MR::isLessStep(this, 300)) {
+        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN1", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN2", -1, -1, -1);
+    }
+
+    if (MR::isStep(this, 300)) {
+        MR::shakeCameraNormal();
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_L", -1, -1);
+    }
+
+    if (!MR::isHiddenModel(mShipBreakModel) && (MR::isBckStopped(mShipBreakModel) || (MR::isStep(this, 320)) != 0)) {
+        mShipBreakModel->makeActorDead();
+    }
+
+    if (MR::isDemoLastStep()) {
+        killAllSubModels();
+        setNerve(&NrvKoopaJrShip::HostTypeBreakEnd::sInstance);
+    }
+}
+
+void KoopaJrShip::exeTurnFront() {
+    if (MR::isFirstStep(this)) {
+        MR::stopStageBGM(30);
+        mShellHolder->killActiveShells();
+        mMainShellHolder->killActiveShells();
+
+        if (!MR::isDead(mKamecks.mArray[0])) {
+            mKamecks.push_back(mKamecks[0]);
+        }
+
+        mKamecks[0]->makeActorDeadForce();
+        mKillers.callAllFunc(&HomingKiller::kill);
+    }
+
+    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_3RD_DEMO", -1, -1, -1);
+
+    if (MR::isLessEqualStep(this, 150)) {
+        mRotation.y += 0.60f;
+    }
+
+    if (MR::isStep(this, 150)) {
+        MR::emitEffect(this, "EyeLight");
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_EYE_BLINK", -1, -1);
+    }
+
+    if (MR::isDemoPartLastStep("旋廻")) {
+        _188 = 60;
+        MR::startStageBGM("MBGM_BOSS_06_B", false);
+
+        if (_B4) {
+            mKamecks[0]->appear();
+        }
+
+        setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
+    }
 }
 
 KoopaJrShip::~KoopaJrShip() {

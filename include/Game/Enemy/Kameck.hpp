@@ -8,6 +8,8 @@ public:
 
     void setBeamType(s32);
 
+    void makeActorDeadForce();
+
     u8 _8C[0xD0 - 0x8C];
 };
 

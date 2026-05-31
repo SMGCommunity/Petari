@@ -26,7 +26,7 @@ namespace {
     static const f32 sFreezeRumbleSpeed = 0.75f;
     static const f32 sFreezeRumbleWidth = 5.0f;
     static const s32 sWallHitInvalidTime = 10;
-}
+}  // namespace
 
 KoopaJrShipCannonShell::KoopaJrShipCannonShell(const char* pName) : CannonShellBase(pName), _9C(gZeroVec), _A8(gZeroVec), _B4(0), _B8(true) {
     f32 one = 1.0f;  // This makes Data match
@@ -50,7 +50,7 @@ void KoopaJrShipCannonShell::init(const JMapInfoIter& rIter) {
 
     MR::connectToSceneEnemy(this);
     MR::invalidateClipping(this);
-    MR::initStarPointerTarget(this, sStarWandRadius, TVec3f());
+    MR::initStarPointerTarget(this, sStarWandRadius, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initShadowVolumeSphere(this, sShadowRadius * getBaseScale());
     MR::offCalcGravity(this);
     MR::declareCoin(this, 1);
@@ -179,13 +179,12 @@ bool KoopaJrShipCannonShell::tryFreeze() {
 
 bool KoopaJrShipCannonShell::isStateEnableExplosion() const {
     return (isNerve(&NrvKoopaJrShipCannonShell::HostTypeFly::sInstance) && MR::isGreaterEqualStep(this, 0)) ||
-            isNerve(&NrvKoopaJrShipCannonShell::HostTypeFreeze::sInstance) ||
-            isNerve(&NrvKoopaJrShipCannonShell::HostTypeDown::sInstance) ||
-            isNerve(&NrvKoopaJrShipCannonShell::HostTypeHipDropDown::sInstance);
+           isNerve(&NrvKoopaJrShipCannonShell::HostTypeFreeze::sInstance) || isNerve(&NrvKoopaJrShipCannonShell::HostTypeDown::sInstance) ||
+           isNerve(&NrvKoopaJrShipCannonShell::HostTypeHipDropDown::sInstance);
 }
 
 void KoopaJrShipCannonShell::explosion() {
-    MR::startRumbleWithShakeCameraWeak(this, "強", "中", sCameraShakeDistance, sCameraShakeDistance*2);
+    MR::startRumbleWithShakeCameraWeak(this, "強", "中", sCameraShakeDistance, sCameraShakeDistance * 2);
     MR::emitEffect(this, "Explosion");
     MR::startSound(this, "SE_EM_KILLER_EXPLOSION", -1, -1);
     kill();
@@ -199,7 +198,8 @@ void KoopaJrShipCannonShell::misfire() {
     kill();
 }
 
-void KoopaJrShipCannonShell::exeWait() { }
+void KoopaJrShipCannonShell::exeWait() {
+}
 
 void KoopaJrShipCannonShell::exeFly() {
     if (MR::isFirstStep(this)) {
@@ -247,7 +247,8 @@ void KoopaJrShipCannonShell::exeFreeze() {
     _B4++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 scale = sFreezeRumbleWidth * JMath::sSinCosTable.cosLap(MR::repeatDegree(_B4 * sFreezeRumbleSpeed)) * static_cast< f32 >(sFreezeFrame - getNerveStep()) / sFreezeFrame;
+    f32 scale = sFreezeRumbleWidth * JMath::sSinCosTable.cosLap(MR::repeatDegree(_B4 * sFreezeRumbleSpeed)) *
+                static_cast< f32 >(sFreezeFrame - getNerveStep()) / sFreezeFrame;
     TVec3f vec14;
     vec14.set(MR::getCamXdir());
     vec14.scale(scale);
@@ -259,8 +260,8 @@ void KoopaJrShipCannonShell::exeFreeze() {
     }
 
     if (MR::isStep(this, sFreezeFrame)) {
-        mPosition.set<f32>(_9C);
-        mVelocity.set<f32>(_A8);
+        mPosition.set< f32 >(_9C);
+        mVelocity.set< f32 >(_A8);
         setNerve(&NrvKoopaJrShipCannonShell::HostTypeFly::sInstance);
     }
 }

@@ -30,8 +30,8 @@ public:
     s32 getNumShootShells() const;
     f32 getPropellerRotSpeed() const;
     void updateCoordSpeed();
-    void calcLauncherInfo(TVec3f*, TVec3f*, s32) const;
-    void calcLaucherInfoKiller(TVec3f*, TVec3f*, s32) const;
+    void calcLauncherInfo(TVec3f*, TVec3f*, s32) const NO_INLINE;
+    void calcLauncherInfoKiller(TVec3f*, TVec3f*, s32) const;
     void shootShell(s32);
     bool tryShootAllKillers();
     void shootKiller(s32);
