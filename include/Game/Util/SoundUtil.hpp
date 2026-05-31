@@ -76,7 +76,7 @@ namespace MR {
     void startTalkSound(u8, const LiveActor*);
     void startRemixSound(s32, s32, f32);
     s32 getRemixMelodyNoteNum(s32);
-    void limitedSound(const char*, s32);
+    void limitedSound(const char*, s32) NO_INLINE;
     JAISoundHandle* startStageBGM(const char*, bool);
     JAISoundHandle* startStageBGMFromStageName(const char*, const char*, s32);
     void stopStageBGM(u32);

@@ -1,12 +1,14 @@
 #include "Game/Util/SoundUtil.hpp"
-#include "Game/AudioLib/AudMeNameConverter.hpp"
-#include "Game/AudioLib/AudSoundNameConverter.hpp"
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
+#include "Game/AudioLib/AudMeNameConverter.hpp"
 #include "Game/AudioLib/AudMicWrap.hpp"
 #include "Game/AudioLib/AudRemixMgr.hpp"
 #include "Game/AudioLib/AudSceneMgr.hpp"
+#include "Game/AudioLib/AudSoundNameConverter.hpp"
+#include "Game/AudioLib/AudSpeakerWrap.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
+#include "Game/AudioLib/CSSoundNameConverter.hpp"
 #include "Game/GameAudio/AudBgmConductor.hpp"
 #include "Game/GameAudio/AudEffectDirector.hpp"
 #include "Game/GameAudio/AudSeKeeper.hpp"
@@ -256,7 +258,27 @@ namespace MR {
     }
 
     // startTalkSound
-    // startRemixSound
+
+    void startRemixSound(s32 melodyNo, s32 param2, f32 param3) {
+        AudWrap::getRemixMgr()->getRemixNoteGroupDataFromMelodyNo(melodyNo);
+
+        AudRemixSequencer* pRemixSequencer = AudWrap::getRemixSequencer();
+        f32 playerSpeed = getPlayerVelocity()->length();
+
+        if (playerSpeed < 3.0f) {
+            playerSpeed = 3.0f;
+        }
+
+        pRemixSequencer->setTempo((playerSpeed * 3600.0f) / param3);
+
+        RemixNoteGroupData* pRemixNoteGroupData = AudWrap::getRemixMgr()->getRemixNoteGroupDataFromMelodyNo(melodyNo);
+
+        for (s32 i = 0; i < pRemixNoteGroupData->mTrackCount; i++) {
+            RemixNoteTrackData* pRemixNoteTrackData = &pRemixNoteGroupData->mRemixTracks[i];
+
+            pRemixSequencer->addNoteData(pRemixNoteTrackData, &pRemixNoteTrackData->_4[param2]);
+        }
+    }
 
     s32 getRemixMelodyNoteNum(s32 melodyNo) {
         return AudWrap::getRemixMgr()->getRemixNoteGroupDataFromMelodyNo(melodyNo)->mNoteCount;
@@ -517,7 +539,17 @@ namespace MR {
         MR::getSceneObj<AudEffectDirector>(SceneObj_AudEffectDirector)->setEffectType(param1, param2);
     }
 
-    // startCSSound
+    void startCSSound(const char* pCSName, const char* pSEName, s32 param3) {
+        if (AudSpeakerWrap::isPlayable(-1)) {
+            s32 id = AudSingletonHolder< CSSoundNameConverter >::get()->getSoundID(pCSName);
+
+            if (id != -1) {
+                AudSpeakerWrap::start(id, param3);
+            }
+        } else if (pSEName != nullptr) {
+            startSystemSE(pSEName, -1, -1);
+        }
+    }
 
     void startCSSound2P(const char* pCSName, const char* pSEName) {
         if (isConnectedWPad(1)) {
