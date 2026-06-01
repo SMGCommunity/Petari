@@ -66,6 +66,10 @@ public:
 
     inline bool isStateBreak() const;
 
+    s32 get_D0() const {
+        return _D0;
+    }
+
     CannonShellHolder* mShellHolder;                      // 0x8C
     CannonShellHolder* mMainShellHolder;                  // 0x90
     KoopaJr* mJr;                                         // 0x94

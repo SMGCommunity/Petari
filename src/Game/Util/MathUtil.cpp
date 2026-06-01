@@ -962,3 +962,5 @@ namespace MR {
         PSMTXMultVec(mtx, &vec, pDst);
     }
 };  // namespace MR
+
+const Vec gZeroVec = {0.0f, 0.0f, 0.0f};

@@ -23,14 +23,14 @@ namespace {
     static const char* cJointNameKoopaJrPos = "KoopaJrShip";
     static const char* cJointNamePodPos = "KoopaJrShipPod";
 
-    const TVec3f sKillerLauncherAngle[6] = {TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f),
-                                            TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f)};
+    static const Vec sKillerLauncherAngle[6] = {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f},
+                                                {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}};
 
-    Vec sKoopaJrPos = {35.0f, 188.0f, 0.0f};
-    Vec sKoopaJrPosFront = {0.0f, 188.0f, 135.0f};
+    static const Vec sKoopaJrPos = {135.0f, 188.0f, 0.0f};
+    static const Vec sKoopaJrPosFront = {0.0f, 188.0f, 135.0f};
 
-    static const char* cJointNameCannon[7] = {"FirePoint0", "FirePoint1", "FirePoint2", "FirePoint3", "FirePoint4", "FirePoint5", "FirePoint6"};
-    static const char* cEffectNameShoot[7] = {"ShootJ0", "ShootJ1", "ShootJ2", "ShootJ3", "ShootJ4", "ShootJ5", "ShootJ6"};
+    static const char* const cJointNameCannon[6] = {"FirePoint0", "FirePoint1", "FirePoint2", "FirePoint4", "FirePoint5", "FirePoint6"};
+    static const char* const cEffectNameShoot[6] = {"ShootJ0", "ShootJ1", "ShootJ2", "ShootJ4", "ShootJ5", "ShootJ6"};
 };  // namespace
 
 namespace NrvKoopaJrShip {
@@ -48,6 +48,12 @@ namespace NrvKoopaJrShip {
     NEW_NERVE(HostTypeBreakEnd, KoopaJrShip, BreakEnd);
     NEW_NERVE(HostTypeTurnFront, KoopaJrShip, TurnFront);
 };  // namespace NrvKoopaJrShip
+
+void KoopaJrShip_float_ordering0() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
 
 KoopaJrShip::KoopaJrShip(const char* pName)
     : LiveActor(pName), mShellHolder(nullptr), mMainShellHolder(nullptr), mJr(nullptr), mShipBreakModel(nullptr), mPodModel(nullptr), _D0(5),
@@ -114,24 +120,35 @@ void KoopaJrShip::kill() {
     LiveActor::kill();
 }
 
-// seems close? kinda?
 void KoopaJrShip::control() {
     _EC = MR::repeat(_EC + mPropRotateSpeed, 0.0f, 360.0f);
-    mPropellerMtx.setRotateInline(_EC, _EC);
-    mScrew00Mtx.setEulerZ(PI_180 * _EC);
-    mScrew01Mtx.setEulerZ(PI_180 * _EC);
+
+    f32 angle = deg2rad(_EC);
+    f32 s = sin(angle);
+    f32 c = cos(angle);
+
+    mPropellerMtx[0][0] = c;
+    mPropellerMtx[1][1] = 1.0f;
+    mPropellerMtx[0][2] = s;
+    mPropellerMtx[2][0] = -s;
+    mPropellerMtx[2][2] = c;
+    mPropellerMtx[2][1] = 0.0f;
+    mPropellerMtx[1][2] = 0.0f;
+    mPropellerMtx[1][0] = 0.0f;
+    mPropellerMtx[0][1] = 0.0f;
+
+    mScrew00Mtx.setEulerZ(deg2rad(_EC));
+    mScrew01Mtx.setEulerZ(deg2rad(_EC));
     MR::setRailCoordSpeed(this, _184);
 
-    switch (_D0) {
-    case 0:
-        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE");
-        break;
-    case 1:
-        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN1");
-        break;
-    case 2:
-        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN2");
-        break;
+    if (_D0 > 0) {
+        if (_D0 <= 3) {
+            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN1", -1, -1, -1);
+        }
+        if (_D0 <= 1) {
+            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN2", -1, -1, -1);
+        }
+        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE", -1, -1, -1);
     }
 
     updateKoopaJrPos();
@@ -204,7 +221,6 @@ bool KoopaJrShip::receiveMsgJetTurtleAttack(HitSensor* pSender, HitSensor* pRece
     _D4.set< f32 >(pSender->mPosition);
     _E0.set< f32 >(pSender->mHost->mVelocity);
     MR::normalizeOrZero(&_E0);
-    _D0 = _D0 - 1;
 
     if (isNextStateDamage(_D0)) {
         MR::startSound(this, "SE_BM_KOOPAJR_SHIP_DAMAGE_L");
@@ -229,6 +245,10 @@ s32 KoopaJrShip::getNumShootShells() const {
     return isNerve(&NrvKoopaJrShip::HostTypeShoot2::sInstance) != 0 ? 5 : 0;
 }
 
+void KoopaJrShip_float_ordering1() {
+    (void)4.0f;
+}
+
 f32 KoopaJrShip::getPropellerRotSpeed() const {
     if (isNerve(&NrvKoopaJrShip::HostTypeBreakStart::sInstance)) {
         return (40.0f * (1.0f - MR::calcNerveRate(this, 60)));
@@ -239,10 +259,10 @@ f32 KoopaJrShip::getPropellerRotSpeed() const {
     }
 
     if (isNerve(&NrvKoopaJrShip::HostTypePowerUp::sInstance) || 2 >= _D0 && !isNerve(&NrvKoopaJrShip::HostTypeDamage::sInstance)) {
-        return 20.0f;
+        return 40.0f;
     }
 
-    return 40.0f;
+    return 20.0f;
 }
 
 void KoopaJrShip::updateCoordSpeed() {
@@ -253,7 +273,7 @@ void KoopaJrShip::updateCoordSpeed() {
     f32 rate = 0.0f;
     MR::calcRailRateToNextPoint(&rate, this);
 
-    if (0.949f < rate) {
+    if (0.95f < rate) {
         f32 v3;
         if (_D0 <= 2) {
             v3 = 2.0f;
@@ -310,7 +330,7 @@ void KoopaJrShip::calcLauncherInfoKiller(TVec3f* a1, TVec3f* a2, s32 idx) const 
     MR::rotateVecDegree(a2, v16, sKillerLauncherAngle[idx].y);
     MR::rotateVecDegree(a2, v15, sKillerLauncherAngle[idx].z);
     MR::normalize(a2);
-    JMathInlineVEC::PSVECAdd(a1, *a2 * -100.0f, a1);
+    a1->addInline(*a2 * 100.0f);
 }
 
 void KoopaJrShip::shootShell(s32 idx) {
@@ -372,16 +392,11 @@ bool KoopaJrShip::isExistActiveKiller() const {
 
 bool KoopaJrShip::isExistActiveKameck() const {
     bool (*isDeadFunc)(const LiveActor*) = &MR::isDead;
-    Kameck* const* pActor;
-
-    for (pActor = mKamecks.begin(); pActor != mKamecks.end() && isDeadFunc(*pActor); pActor++) {
-    }
-
-    return pActor != mKamecks.end();
+    return find_if(mKamecks.begin(), mKamecks.end(), not1(std::ptr_fun(isDeadFunc))) != mKamecks.end();
 }
 
 void KoopaJrShip::shootMainShells() {
-    TPos3f v16;
+    /*TPos3f v16;
     v16.set(MR::getJointMtx(this, cJointNameCannonMain));
     TVec3f v15, v14;
     v16.getTrans(v15);
@@ -397,7 +412,44 @@ void KoopaJrShip::shootMainShells() {
     TVec3f v12;
     v16.getZDir(v12);
     MR::normalize(&v12);
-    mMainShellHolder->getValidShell()->launch(v15, v12 * 23.0f);
+    mMainShellHolder->getValidShell()->launch(v15, v12 * 23.0f);*/
+
+    TPos3f m;
+    m.set(MR::getJointMtx(this, cJointNameCannonMain));
+
+    TVec3f pos;
+    m.getTrans(pos);
+
+    // Straight ahead
+    {
+        TVec3f forward;
+        m.getZDir(forward);
+        MR::normalize(&forward);
+        CannonShellBase* p = mMainShellHolder->getValidShell();
+        p->launch(pos, forward * 23.0f);
+    }
+
+    MR::rotateMtxLocalYDegree(m, 15.0f);
+
+    // Side
+    {
+        TVec3f forward;
+        m.getZDir(forward);
+        MR::normalize(&forward);
+        CannonShellBase* p = mMainShellHolder->getValidShell();
+        p->launch(pos, forward * 23.0f);
+    }
+
+    MR::rotateMtxLocalYDegree(m, -30.0f);
+
+    // Other side
+    {
+        TVec3f forward;
+        m.getZDir(forward);
+        MR::normalize(&forward);
+        CannonShellBase* p = mMainShellHolder->getValidShell();
+        p->launch(pos, forward * 23.0f);
+    }
 }
 
 void KoopaJrShip::emitDamageSmokeEffect() {
@@ -435,14 +487,14 @@ void KoopaJrShip::updateKoopaJrPos() {
 
 void KoopaJrShip::updateKillerPos() {
     for (HomingKiller** pActor = mKillers.begin(); pActor != mKillers.end(); pActor++) {
-        if (!MR::isDead(*pActor)) {
-            TVec3f v7;
-            TVec3f v6;
-            calcLauncherInfoKiller(&v7, &v6, mKillers.indexOf(pActor));
-            HomingKiller* killer = *pActor;
-            killer->mBasePos.set< f32 >(v7);
-            killer->mBaseFront.set< f32 >(v6);
+        if (MR::isDead(*pActor)) {
+            continue;
         }
+
+        TVec3f v7;
+        TVec3f v6;
+        calcLauncherInfoKiller(&v7, &v6, mKillers.indexOf(pActor));
+        (*pActor)->setBasePosAndFront(v7, v6);
     }
 }
 
@@ -475,7 +527,7 @@ void KoopaJrShip::exeAppear() {
         mJr->setStateShipBattleAppear();
     }
 
-    if (MR::isDemoPartLastStep("")) {
+    if (MR::isDemoPartLastStep("クッパJr会話")) {
         mJr->endShipBattleTalk();
         _188 = 60;
         MR::startStageBGM("MBGM_BOSS_06_A", false);
@@ -617,27 +669,30 @@ void KoopaJrShip::exeDamage() {
     if (MR::isStep(this, 90)) {
         if (_D0 == 2) {
             MR::requestStartDemoRegistered(this, nullptr, nullptr, "旋廻");
+            return;
+        }
+
+        shootKillersAfterDamage();
+        if (_D0 == 3) {
+            mKamecks.mArray[0]->appear();
+        }
+
+        if (_D0 == 1) {
+            mKamecks.mArray[1]->appear();
+        }
+
+        if (_D0 == 2) {
+            setNerve(&NrvKoopaJrShip::HostTypePowerUp::sInstance);
+            return;
+        }
+
+        _188 = 60;
+
+        // Needed to force another load and comparison
+        if (get_D0() <= 2) {
+            setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
         } else {
-            shootKillersAfterDamage();
-            if (_D0 == 3) {
-                mKamecks.mArray[0]->appear();
-            }
-
-            if (_D0 == 1) {
-                mKamecks.mArray[1]->appear();
-            }
-
-            if (_D0 == 2) {
-                setNerve(&NrvKoopaJrShip::HostTypePowerUp::sInstance);
-            } else {
-                _188 = 60;
-
-                if (_D0 <= 2) {
-                    setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
-                } else {
-                    setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
-                }
-            }
+            setNerve(&NrvKoopaJrShip::HostTypeMove::sInstance);
         }
     }
 }
@@ -734,7 +789,7 @@ void KoopaJrShip::exeTurnFront() {
         }
 
         mKamecks[0]->makeActorDeadForce();
-        for_each(mKillers.begin(), mKillers.end(), std::mem_fun_t< void, HomingKiller >(&HomingKiller::kill));
+        for_each(mKillers.begin(), mKillers.end(), std::mem_fun_t< void, HomingKiller >(&HomingKiller::makeActorDead));
     }
 
     MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_3RD_DEMO");

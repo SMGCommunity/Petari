@@ -2833,7 +2833,7 @@ Game/Enemy/KirairaChain.cpp:
 Game/Enemy/KoopaJrShip.cpp:
 	.text       start:0x801123BC end:0x8011479C
 	.ctors      start:0x8052EADC end:0x8052EAE0
-	.rodata     start:0x805321F8 end:0x805322B0
+	.rodata     start:0x805321F8 end:0x80532298
 	.data       start:0x8057FEA8 end:0x805803F8
 	.sdata      start:0x806B19B8 end:0x806B19D0
 	.sbss       start:0x806B42C0 end:0x806B42F8
@@ -2850,6 +2850,7 @@ Game/Enemy/KoopaJrShipCannonMainShell.cpp:
 Game/Enemy/KoopaJrShipCannonShell.cpp:
 	.text       start:0x80114EA8 end:0x80115C7C
 	.ctors      start:0x8052EAE4 end:0x8052EAE8
+	.rodata     start:0x80532298 end:0x805322A8
 	.data       start:0x805805C0 end:0x805807D0
 	.sdata      start:0x806B19D8 end:0x806B19E8
 	.sbss       start:0x806B4300 end:0x806B4318
@@ -2858,6 +2859,7 @@ Game/Enemy/KoopaJrShipCannonShell.cpp:
 Game/Enemy/KoteBug.cpp:
 	.text       start:0x80115C7C end:0x80117DA0
 	.ctors      start:0x8052EAE8 end:0x8052EAEC
+	.rodata     start:0x805322A8 end:0x805322B0
 	.data       start:0x805807D0 end:0x80580AC8
 	.sbss       start:0x806B4318 end:0x806B4360
 	.sdata2     start:0x806BAD18 end:0x806BADB0

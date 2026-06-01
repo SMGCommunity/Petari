@@ -222,7 +222,20 @@ namespace JGeometry {
         void getEuler(TVec3f& rDest) const;
         void getEulerXYZ(TVec3f& rDest) const;
         void setEulerY(f32 val);
-        void setEulerZ(f32 val);
+        void setEulerZ(f32 val) {
+            f32 s = sin(val);
+            f32 c = cos(val);
+
+            mMtx[1][0] = s;
+            mMtx[0][0] = c;
+            mMtx[0][1] = -s;
+            mMtx[1][1] = c;
+            mMtx[2][2] = 1.0f;
+            mMtx[2][1] = 0.0f;
+            mMtx[1][2] = 0.0f;
+            mMtx[2][0] = 0.0f;
+            mMtx[0][2] = 0.0f;
+        }
 
         void getQuat(TQuat4f& rDest) const;
         void setQuat(const TQuat4f& q) {
@@ -539,7 +552,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3(){};
+        TPosition3() {};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -558,7 +571,7 @@ namespace JGeometry {
         }
 
         void setTrans(f32 x, f32 y, f32 z);
-        
+
         void zeroTrans() {
             this->mMtx[0][3] = 0.0f;
             this->mMtx[1][3] = 0.0f;
@@ -575,7 +588,7 @@ namespace JGeometry {
         inline void makeQuatInline(const TQuat4f& rSrcQuat) {
             zeroTransInline();
             TRotation3< T >::setQuat(rSrcQuat);
-        }        
+        }
 
         void setPositionFromLookAt(const TPosition3< T >& rLookAt);
 
@@ -765,7 +778,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3(){};
+        TProjection3() {};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);
