@@ -9,7 +9,7 @@
 
 namespace {
     const char* sFileName = "ActorAnimCtrl";
-}
+};  // namespace
 
 ActorAnimKeeper::ActorAnimKeeper(LiveActor* pActor) : mActor(pActor), mNumInfo(0), mInfoArray(nullptr), mCurrentInfo(0) {
     if (!initAnimData()) {

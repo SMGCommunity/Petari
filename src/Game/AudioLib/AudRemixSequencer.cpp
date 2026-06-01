@@ -14,7 +14,7 @@ namespace {
         "SE_RS_REMIX_NOTE_GET_TRK8",  "SE_RS_REMIX_NOTE_GET_TRK9",  "SE_RS_REMIX_NOTE_GET_TRK10", "SE_RS_REMIX_NOTE_GET_TRK11",
         "SE_RS_REMIX_NOTE_GET_TRK12", "SE_RS_REMIX_NOTE_GET_TRK13", "SE_RS_REMIX_NOTE_GET_TRK14", "SE_RS_REMIX_NOTE_GET_TRK15",
     };
-}
+};  // namespace
 
 AudRmxSeqNoteOnTimer::AudRmxSeqNoteOnTimer() {
     _8 = nullptr;

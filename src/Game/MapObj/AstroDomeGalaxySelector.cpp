@@ -21,6 +21,11 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+namespace {
+    const char* cDemoNameDomeLecture = "ドームレクチャー２";
+    const char* cDemoNameJumpOut = "マリオ飛び出し";
+};  // namespace
+
 namespace NrvAstroDomeGalaxySelector {
     NEW_NERVE(AstroDomeGalaxySelectorNrvGalaxySelectStart, AstroDomeGalaxySelector, GalaxySelectStart);
     NEW_NERVE(AstroDomeGalaxySelectorNrvGalaxySelect, AstroDomeGalaxySelector, GalaxySelect);
@@ -33,11 +38,6 @@ namespace NrvAstroDomeGalaxySelector {
     NEW_NERVE(AstroDomeGalaxySelectorNrvGalaxyMoveLecture, AstroDomeGalaxySelector, GalaxyMoveLecture);
     NEW_NERVE(AstroDomeGalaxySelectorNrvWaitStartDemo, AstroDomeGalaxySelector, WaitStartDemo);
 };  // namespace NrvAstroDomeGalaxySelector
-
-namespace {
-    const char* cDemoNameDomeLecture = "ドームレクチャー２";
-    const char* cDemoNameJumpOut = "マリオ飛び出し";
-};  // namespace
 
 AstroDomeGalaxySelector::AstroDomeGalaxySelector(const char* pName) : LiveActor(pName) {
     pDomeCamCtrl = 0;

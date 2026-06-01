@@ -3,7 +3,7 @@
 
 namespace {
     WalkerStateStaggerParam sDefaultStaggerParam;
-}
+};  // namespace
 
 namespace NrvWalkerStateStagger {
     NEW_NERVE(WalkerStateStaggerNrvStagger, WalkerStateStagger, Stagger);

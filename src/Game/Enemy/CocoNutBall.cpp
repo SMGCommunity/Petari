@@ -6,7 +6,7 @@
 
 namespace {
     const f32 cReboundVelocity[] = {0.0f, 15.0f, 5.0f};
-}
+};  // namespace
 
 namespace NrvCocoNutBall {
     NEW_NERVE(CocoNutBallNrvThrow, CocoNutBall, Throw);

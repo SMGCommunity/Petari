@@ -25,7 +25,7 @@
 
 namespace {
     const char* cDemoNameMapLecture = "バトラーマップレクチャー";
-};
+};  // namespace
 
 namespace NrvButlerMap {
     NEW_NERVE(ButlerMapNrvTalk, ButlerMap, Talk);

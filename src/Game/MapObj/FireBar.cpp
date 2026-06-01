@@ -5,7 +5,7 @@
 
 namespace NrvFireBar {
     NEW_NERVE(FireBarNrvWait, FireBar, Wait);
-};
+};  // namespace NrvFireBar
 
 FireBarBall::~FireBarBall() {}
 

@@ -106,4 +106,4 @@ public:
 
 namespace MR {
     void separateMatrixRotateYZX(TPos3f*, TPos3f*, const TPos3f&, const TPos3f&);
-};
+};  // namespace MR

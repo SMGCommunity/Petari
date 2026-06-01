@@ -6,7 +6,7 @@ class PauseMenu;
 
 namespace MR {
     class FunctorBase;
-};
+};  // namespace MR
 
 class GamePauseSequence : public LayoutActor {
 public:

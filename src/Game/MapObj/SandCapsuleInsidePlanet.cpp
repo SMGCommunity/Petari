@@ -2,7 +2,7 @@
 
 namespace NrvSandCapsuleInsidePlanet {
     NEW_NERVE(SandCapsuleInsidePlanetNrvWait, SandCapsuleInsidePlanet, Wait);
-};
+};  // namespace NrvSandCapsuleInsidePlanet
 
 SandCapsuleInsidePlanet::SandCapsuleInsidePlanet(const char* pName) : MapObjActor(pName) {}
 

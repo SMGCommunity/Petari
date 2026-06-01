@@ -39,4 +39,4 @@ public:
 
 namespace MR {
     PlayerActionGuidance* getPlayerActionGuidance();
-};
+};  // namespace MR

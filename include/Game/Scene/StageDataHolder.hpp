@@ -87,4 +87,4 @@ public:
 
 namespace MR {
     StageDataHolder* getStageDataHolder();
-};
+};  // namespace MR

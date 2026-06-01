@@ -20,4 +20,4 @@ namespace BossStinkBugFunction {
     bool isHipDropableSensor(const BossStinkBug*, const HitSensor*);
     bool isExistPlayerBack(const BossStinkBug*, f32);
     void validateAttack(BossStinkBug*);
-}
+};  // namespace BossStinkBugFunction

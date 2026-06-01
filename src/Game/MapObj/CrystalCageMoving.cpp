@@ -4,6 +4,10 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
+namespace {
+    TVec3f sDummyModelOffset;
+};  // namespace
+
 namespace NrvCrystalCageMoving {
     NEW_NERVE(CrystalCageMovingNrvWaitBig, CrystalCageMoving, WaitBig);
     NEW_NERVE_ONEND(CrystalCageMovingNrvBreakBig, CrystalCageMoving, BreakBig, BreakBig);
@@ -14,10 +18,6 @@ namespace NrvCrystalCageMoving {
     NEW_NERVE(CrystalCageMovingNrvDemoTicoStop, CrystalCageMoving, DemoTicoStop);
     NEW_NERVE(CrystalCageMovingNrvDemoTicoChange, CrystalCageMoving, DemoTicoChange);
 };  // namespace NrvCrystalCageMoving
-
-namespace {
-    TVec3f sDummyModelOffset;
-};
 
 CrystalCageMoving::CrystalCageMoving(const char* pName) : MapObjActor(pName) {
     mTicoModel = nullptr;

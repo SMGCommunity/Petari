@@ -2,6 +2,10 @@
 
 /* it seems like this file was compiled with an earlier compiler version */
 
+namespace {
+    static f32 sCanBindTime = 90.0f;
+};  // namespace
+
 namespace NrvSuperSpinDriver {
     NEW_NERVE(SuperSpinDriverNrvTryDemo, SuperSpinDriver, TryDemo);
     NEW_NERVE(SuperSpinDriverNrvEmptyNonActive, SuperSpinDriver, EmptyNonActive);
@@ -15,10 +19,6 @@ namespace NrvSuperSpinDriver {
     NEW_NERVE_ONEND(SuperSpinDriverNrvShoot, SuperSpinDriver, Shoot, Shoot);
     NEW_NERVE(SuperSpinDriverNrvCoolDown, SuperSpinDriver, CoolDown);
 };  // namespace NrvSuperSpinDriver
-
-namespace {
-    static f32 sCanBindTime = 90.0f;
-};
 
 bool SuperSpinDriver::tryEndCapture() {
     if (MR::isGreaterStep(this, 60) && PSVECDistance(&_C4, &mPosition) < 15.0f) {

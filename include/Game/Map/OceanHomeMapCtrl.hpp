@@ -25,4 +25,4 @@ public:
 
 namespace OceanHomeMapFunction {
     void tryEntryOceanHomeMap(PlanetMap*);
-};
+};  // namespace OceanHomeMapFunction

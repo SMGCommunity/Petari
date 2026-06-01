@@ -2,7 +2,7 @@
 
 namespace NrvFirePressureBullet {
     NEW_NERVE(FirePressureBulletNrvFly, FirePressureBullet, Fly);
-};
+};  // namespace NrvFirePressureBullet
 
 FirePressureBullet::FirePressureBullet(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;

@@ -92,4 +92,4 @@ public:
 
 namespace MR {
     StageSwitchCtrl* createStageSwitchCtrl(NameObj*, const JMapInfoIter&);
-};
+};  // namespace MR

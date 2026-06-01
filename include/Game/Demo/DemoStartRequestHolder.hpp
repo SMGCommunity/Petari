@@ -30,7 +30,7 @@ public:
 
 namespace DemoStartRequestUtil {
     bool isEmpty(const DemoStartInfo*);
-};
+};  // namespace DemoStartRequestUtil
 
 class DemoStartRequestHolder {
 public:

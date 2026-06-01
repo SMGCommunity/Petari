@@ -5,7 +5,7 @@
 //
 namespace MR {
     bool enableGroupAttack(LiveActor*, f32, f32);
-};
+};  // namespace MR
 
 namespace NrvRingBeamer {
     NEW_NERVE(RingBeamerNrvWait, RingBeamer, Wait);

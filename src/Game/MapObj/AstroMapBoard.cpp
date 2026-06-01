@@ -4,11 +4,11 @@
 
 namespace {
     static const char* cDummyTexName = "MapDummy";
-};
+};  // namespace
 
 namespace NrvAstroMapBoard {
     NEW_NERVE(AstroMapBoardNrvWait, AstroMapBoard, Wait);
-};
+};  // namespace NrvAstroMapBoard
 
 AstroMapBoard::AstroMapBoard(const char* pName) : MapObjActor(pName) {}
 

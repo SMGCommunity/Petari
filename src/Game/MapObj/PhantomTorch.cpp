@@ -17,7 +17,7 @@ namespace NrvPhantomTorch {
     NEW_NERVE(HostTypeWait, PhantomTorch, Wait);
     NEW_NERVE(HostTypeAttack, PhantomTorch, Attack);
     NEW_NERVE(HostTypeExtinguish, PhantomTorch, Extinguish);
-};
+};  // namespace NrvPhantomTorch
 
 PhantomTorch::~PhantomTorch() {}
 

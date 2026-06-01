@@ -5,7 +5,7 @@
 
 namespace {
     static const s32 sDangerTransFrame = 600;
-};
+};  // namespace
 
 namespace NrvBombTimerLayout {
     NEW_NERVE(BombTimerLayoutNrvAppear, BombTimerLayout, Appear);

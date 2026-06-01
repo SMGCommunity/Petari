@@ -8,7 +8,7 @@ namespace {
     const f32 cHitSensorRadius = 120.f;
     const f32 cSwingRange = 120.0f;
     const f32 cShootStarSpeed = 24.0f;
-}
+};  // namespace
 
 namespace NrvItemBubble {
     NEW_NERVE(ItemBubbleNrvWait, ItemBubble, Wait);

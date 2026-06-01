@@ -56,7 +56,7 @@ void BeamGoRoundBeam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 namespace NrvBeamGoRoundPlanet {
     NEW_NERVE(BeamGoRoundPlanetNrvWait, BeamGoRoundPlanet, Wait);
-};
+};  // namespace NrvBeamGoRoundPlanet
 
 BeamGoRoundPlanet::BeamGoRoundPlanet(const char* pName) : MapObjActor(pName) {
     mBeams = nullptr;

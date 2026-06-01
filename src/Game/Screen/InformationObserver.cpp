@@ -32,7 +32,7 @@ static InformationObserverAttribute sAttr[] = {
 
 namespace {
     static s32 sDisplayFramesMin = 30;
-};
+};  // namespace
 
 namespace {
     InformationObserver* getInformationObserver() {

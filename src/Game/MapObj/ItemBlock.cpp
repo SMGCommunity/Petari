@@ -2,16 +2,16 @@
 #include "Game/Util.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
+namespace {
+    static Color8 hPointLight(0xFF, 0xE6, 0, 0xFF);
+};  // namespace
+
 namespace NrvItemBlock {
     NEW_NERVE(ItemBlockNrvStandby, ItemBlock, Standby);
     NEW_NERVE(ItemBlockNrvWait, ItemBlock, Wait);
     NEW_NERVE(ItemBlockNrvAppearItem, ItemBlock, AppearItem);
     NEW_NERVE(ItemBlockNrvAppearItemSplash, ItemBlock, AppearItemSplash);
 };  // namespace NrvItemBlock
-
-namespace {
-    static Color8 hPointLight(0xFF, 0xE6, 0, 0xFF);
-};
 
 ItemBlock::ItemBlock(const char* pName) : LiveActor(pName) {
     mKind = 0;

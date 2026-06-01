@@ -29,6 +29,10 @@
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 
+namespace {
+    static Color8 sColor(0xC8, 0xC8, 0xD7, 0xFF);
+};  // namespace
+
 namespace NrvSpaceCocoon {
     NEW_NERVE(SpaceCocoonNrvStop, SpaceCocoon, Stop);
     NEW_NERVE(SpaceCocoonNrvFree, SpaceCocoon, Free);
@@ -45,10 +49,6 @@ namespace NrvSpaceCocoon {
     NEW_NERVE(SpaceCocoonNrvBindAttack, SpaceCocoon, BindAttack);
     NEW_NERVE(SpaceCocoonNrvBindAttackSuccess, SpaceCocoon, BindAttackSuccess);
 };  // namespace NrvSpaceCocoon
-
-namespace {
-    static Color8 sColor(0xC8, 0xC8, 0xD7, 0xFF);
-}
 
 SpaceCocoon::SpaceCocoon(const char* pName)
     : LiveActor(pName), mIsKinopioCameraFocused(false), mNeutralPos(0.0f, 0.0f, 0.0f), mBasePos(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f),

@@ -9,7 +9,7 @@ namespace NrvElectricRail {
     NEW_NERVE(ElectricRailNrvWait, ElectricRail, Wait);
     NEW_NERVE(ElectricRailNrvDisappear, ElectricRail, Disappear);
     NEW_NERVE(ElectricRailNrvDisappeared, ElectricRail, Disappeared);
-}
+};  // namespace NrvElectricRail
 
 ElectricRailPoint::ElectricRailPoint(const char* pName) : LiveActor(pName) {
     _8C = 1;

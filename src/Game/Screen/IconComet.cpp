@@ -5,7 +5,7 @@
 
 namespace NrvIconComet {
     NEW_NERVE(IconCometNrvWait, IconComet, Wait);
-};
+};  // namespace NrvIconComet
 
 IconComet::IconComet() : LayoutActor("コメットアイコン", true) {}
 

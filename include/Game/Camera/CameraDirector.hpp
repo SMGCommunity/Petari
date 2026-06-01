@@ -31,7 +31,7 @@ class OnlyCamera;
 
 namespace MR {
     CameraDirector* getCameraDirector();
-}
+};  // namespace MR
 
 class CameraParamChunkID_Tmp : public CameraParamChunkID {
 public:

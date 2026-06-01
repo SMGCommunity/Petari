@@ -93,4 +93,4 @@ public:
 
 namespace MR {
     LiveActor* createNoItemKuriboActor(const char*);
-};
+};  // namespace MR

@@ -1,15 +1,15 @@
 #include "Game/MapObj/CapsuleCage.hpp"
 
+namespace {
+    const char* cDemoCameraName = "注目カメラ";
+};  // namespace
+
 namespace NrvCapsuleCage {
     NEW_NERVE(CapsuleCageNrvWait, CapsuleCage, Wait);
     NEW_NERVE(CapsuleCageNrvStartCamera, CapsuleCage, StartCamera);
     NEW_NERVE(CapsuleCageNrvOpen, CapsuleCage, Open);
     NEW_NERVE(CapsuleCageNrvEndCamera, CapsuleCage, EndCamera);
 };  // namespace NrvCapsuleCage
-
-namespace {
-    const char* cDemoCameraName = "注目カメラ";
-};  // namespace
 
 CapsuleCage::CapsuleCage(const char* pName) : MapObjActor(pName) {
     mInfo = nullptr;

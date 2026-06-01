@@ -111,7 +111,7 @@ namespace {
 
 namespace NrvStaffRollLine {
     NEW_NERVE(StaffRollLineNrvScroll, StaffRollLine, Scroll);
-};
+};  // namespace NrvStaffRollLine
 
 StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName, true), mPosition(0.0f, 0.0f) {
 }
@@ -144,7 +144,7 @@ void StaffRollLine::exeScroll() {
 
 namespace NrvStaffRollPicture {
     NEW_NERVE(StaffRollPictureNrvWork, StaffRollPicture, Work);
-};
+};  // namespace NrvStaffRollPicture
 
 StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture(nullptr) {
 }

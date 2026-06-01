@@ -10,7 +10,7 @@
 
 namespace NrvButlerStateStarPieceReaction {
     NEW_NERVE(ButlerStateStarPieceReactionNrvWait, ButlerStateStarPieceReaction, Wait);
-};
+};  // namespace NrvButlerStateStarPieceReaction
 
 ButlerStateStarPieceReaction::ButlerStateStarPieceReaction(LiveActor* pHost, const JMapInfoIter& rIter, const char* pName)
     : ActorStateBase< LiveActor >("バトラースターピース反応", pHost), mTalkMessage(nullptr), _14(false) {

@@ -24,4 +24,4 @@ private:
 
 namespace MR {
     GalaxyNamePlateDrawerEntry* registerToGalaxyNamePlateDrawer(const LayoutActor*);
-};
+};  // namespace MR

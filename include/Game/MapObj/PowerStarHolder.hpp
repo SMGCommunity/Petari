@@ -27,7 +27,7 @@ public:
 
 namespace MR {
     void registerPowerStar(PowerStar*, int);
-};
+};  // namespace MR
 
 class PowerStarFunction {
 public:

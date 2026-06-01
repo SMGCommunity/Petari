@@ -14,7 +14,7 @@ namespace {
     static const f32 sAttackSensorDistanceOffset = 100.0f;
     static const f32 sEyeSensorPosOffset = -100.0f;
     static const f32 sHipSensorPosOffset = -400.0f;
-}
+};  // namespace
 
 TombSpiderSensorCtrl::TombSpiderSensorCtrl(TombSpider* pOwner) : mParent(pOwner) { }
 
@@ -123,7 +123,7 @@ namespace {
         f32 Z = MR::getPlayerPos()->z;
         pSensor->mPosition.set< f32 >(pos.x, pos.y, Z);
     }
-}
+};  // namespace
 
 bool TombSpiderSensorCtrl::updateAttackSensor(HitSensor* pSensor) {
     if (pSensor->isType(ATYPE_ENEMY_ATTACK)) {

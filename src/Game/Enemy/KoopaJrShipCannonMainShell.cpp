@@ -1,10 +1,5 @@
 #include "Game/Enemy/KoopaJrShipCannonMainShell.hpp"
 
-namespace NrvKoopaJrShipCannonMainShell {
-    NEW_NERVE(HostTypeWait, KoopaJrShipCannonMainShell, Wait);
-    NEW_NERVE(HostTypeFly, KoopaJrShipCannonMainShell, Fly);
-}
-
 namespace {
     static const f32 sTmpScale = 1.2f;
     static const f32 sAttackSensorRadius = 75.0f;
@@ -13,7 +8,12 @@ namespace {
     static const s32 sLifeTime = 300;
     static const f32 sCameraShakeDistance = 1000.0f;
     static const s32 sWallHitInvalidTime = 60;
-}
+};  // namespace
+
+namespace NrvKoopaJrShipCannonMainShell {
+    NEW_NERVE(HostTypeWait, KoopaJrShipCannonMainShell, Wait);
+    NEW_NERVE(HostTypeFly, KoopaJrShipCannonMainShell, Fly);
+};  // namespace NrvKoopaJrShipCannonMainShell
 
 KoopaJrShipCannonMainShell::KoopaJrShipCannonMainShell(const char* pName) : CannonShellBase(pName) {
     f32 one = 1.0f; // This makes Data match

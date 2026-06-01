@@ -15,7 +15,7 @@
 
 namespace NrvRevolvingWay {
     NEW_NERVE(RevolvingWayNrvWait, RevolvingWay, Wait);
-};
+};  // namespace NrvRevolvingWay
 
 RevolvingWay::~RevolvingWay() {}
 

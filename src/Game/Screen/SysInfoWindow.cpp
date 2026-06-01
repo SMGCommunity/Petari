@@ -12,7 +12,7 @@ namespace {
         {MR::setTextBoxSystemMessageRecursive},
         {MR::setTextBoxGameMessageRecursive},
     };
-};
+};  // namespace
 
 namespace NrvSysInfoWindow {
     NEW_NERVE(SysInfoWindowNrvAppear, SysInfoWindow, Appear);

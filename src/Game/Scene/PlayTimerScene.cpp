@@ -9,7 +9,7 @@
 
 namespace {
     static const u32 sTimeUpWaitFrame = 36000;
-};
+};  // namespace
 
 namespace NrvPlayTimerScene {
     NEW_NERVE(PlayTimerSceneNormal, PlayTimerScene, Normal);

@@ -8,7 +8,7 @@
 
 namespace NrvButlerExplain {
     NEW_NERVE(ButlerExplainNrvDemo, ButlerExplain, Demo);
-};
+};  // namespace NrvButlerExplain
 
 ButlerExplain::ButlerExplain(const char* pName) : NPCActor(pName) {}
 

@@ -16,4 +16,4 @@ private:
 
 namespace MR {
     PlacementStateChecker* getPlacementStateChecker();
-};
+};  // namespace MR

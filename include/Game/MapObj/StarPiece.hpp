@@ -11,7 +11,7 @@ class HitSensor;
 // this function does not belong in this header, but will put here for now
 namespace MR {
     void repeatDegree(f32*);
-}
+};  // namespace MR
 
 struct StarPieceReceiverInfo {
 public:

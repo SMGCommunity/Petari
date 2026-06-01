@@ -31,4 +31,4 @@ public:
 
 namespace MR {
     s32 getScreenHeight();
-};
+};  // namespace MR

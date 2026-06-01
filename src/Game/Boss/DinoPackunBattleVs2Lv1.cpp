@@ -12,7 +12,7 @@
 
 namespace {
     static TVec3f sShotMouthFireOffset = TVec3f(150.0f, 150.0f, 0.0f);
-};
+};  // namespace
 
 namespace NrvDinoPackunBattleVs2Lv1 {
     NEW_NERVE(DinoPackunBattleVs2Lv1NrvTurn, DinoPackunBattleVs2Lv1, Turn);

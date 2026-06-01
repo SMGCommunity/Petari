@@ -6,7 +6,7 @@
 
 namespace NrvTicoReading {
     NEW_NERVE(TicoReadingNrvWait, TicoReading, Wait);
-};
+};  // namespace NrvTicoReading
 
 TicoReading::TicoReading(const char* pName) : LiveActor(pName) {}
 

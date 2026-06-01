@@ -18,7 +18,7 @@ namespace {
     NEW_NERVE(SaveDataBannerCreatorNoOperation, SaveDataBannerCreator, NoOperation);
     NEW_NERVE(SaveDataBannerCreatorCreateOnTemporary, SaveDataBannerCreator, CreateOnTemporary);
     NEW_NERVE(SaveDataBannerCreatorMoveToHomeDir, SaveDataBannerCreator, MoveToHomeDir);
-};  
+};  // namespace
 
 SaveDataBannerCreator::SaveDataBannerCreator() : NerveExecutor("BannerCreator") {
     mNANDRequestInfo = nullptr;

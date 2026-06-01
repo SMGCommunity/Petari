@@ -17,6 +17,12 @@
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 
+namespace {
+    static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
+    static Color8 sColorPlusX(0x96, 0x96, 0x96, 0xFF);
+    static Color8 sColorMinusX(0xC8, 0xC8, 0xC8, 0xFF);
+};  // namespace
+
 namespace NrvCreeper {
     NEW_NERVE(CreeperNrvFree, Creeper, Free);
     NEW_NERVE(CreeperNrvFreeInvalid, Creeper, FreeInvalid);
@@ -24,12 +30,6 @@ namespace NrvCreeper {
     NEW_NERVE(CreeperNrvHangUp, Creeper, HangUp);
     NEW_NERVE(CreeperNrvHangDown, Creeper, HangDown);
 };  // namespace NrvCreeper
-
-namespace {
-    static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
-    static Color8 sColorPlusX(0x96, 0x96, 0x96, 0xFF);
-    static Color8 sColorMinusX(0xC8, 0xC8, 0xC8, 0xFF);
-};  // namespace
 
 CreeperPoint::CreeperPoint(const TVec3f& rPos, const TVec3f& rUp, const CreeperPoint* pPrevPoint)
     : mPosition(rPos), mNeutralPos(rPos), mVelocity(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f), mUp(rUp), mFront(0.0f, 0.0f, 1.0f),

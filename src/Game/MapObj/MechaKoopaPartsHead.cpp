@@ -1,5 +1,12 @@
 #include "Game/MapObj/MechaKoopaPartsHead.hpp"
 
+namespace {
+    const char* sDemoPartNameBreak = "壊れ開始";
+    const char* sDemoPartNameFadeOut = "フェードアウト";
+    const char* sDemoPartNameWhite = "白画面";
+    const char* sDemoPartNameFadeIn = "フェードイン";
+};  // namespace
+
 namespace NrvMechaKoopaPartsHead {
     NEW_NERVE(MechaKoopaPartsHeadNrvWait, MechaKoopaPartsHead, Wait);
     NEW_NERVE(MechaKoopaPartsHeadNrvDemoBreak, MechaKoopaPartsHead, DemoBreak);
@@ -8,13 +15,6 @@ namespace NrvMechaKoopaPartsHead {
     NEW_NERVE(MechaKoopaPartsHeadNrvDemoWhiteFadeIn, MechaKoopaPartsHead, DemoWhiteFadeIn);
     NEW_NERVE(MechaKoopaPartsHeadNrvDemoAppearStar, MechaKoopaPartsHead, DemoAppearStar);
 };  // namespace NrvMechaKoopaPartsHead
-
-namespace {
-    const char* sDemoPartNameBreak = "壊れ開始";
-    const char* sDemoPartNameFadeOut = "フェードアウト";
-    const char* sDemoPartNameWhite = "白画面";
-    const char* sDemoPartNameFadeIn = "フェードイン";
-};  // namespace
 
 MechaKoopaPartsHead::MechaKoopaPartsHead(const char* pName) : MapObjActor(pName) {}
 

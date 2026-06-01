@@ -9,7 +9,7 @@
 
 namespace NrvRosettaDemoEpilogue {
     NEW_NERVE(RosettaDemoEpilogueNrvDemo, RosettaDemoEpilogue, Demo);
-};
+};  // namespace NrvRosettaDemoEpilogue
 
 RosettaDemoEpilogue::RosettaDemoEpilogue(Rosetta* pRosetta, const JMapInfoIter& rIter) :
     NerveExecutor("ロゼッタデモ実行者"),

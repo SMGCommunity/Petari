@@ -15,4 +15,4 @@ public:
 
 namespace MR {
     NameObj* createFireBallBeamKameck(const char*);
-};
+};  // namespace MR

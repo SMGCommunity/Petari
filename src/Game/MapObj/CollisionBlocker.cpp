@@ -2,7 +2,7 @@
 
 namespace {
     static f32 cRadius = 50.0f;
-};
+};  // namespace
 
 CollisionBlocker::CollisionBlocker(const char* pName) : LiveActor(pName) {}
 

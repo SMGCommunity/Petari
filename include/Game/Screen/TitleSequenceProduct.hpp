@@ -8,7 +8,7 @@ class TriggerChecker;
 
 namespace TitleSequenceProductSub {
     class LogoLayout;
-};
+};  // namespace TitleSequenceProductSub
 
 class TitleSequenceProduct : public NerveExecutor {
 public:

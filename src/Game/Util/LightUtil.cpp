@@ -26,4 +26,4 @@ namespace MR {
     */
 
     // requestPointLight
-};
+};  // namespace MR

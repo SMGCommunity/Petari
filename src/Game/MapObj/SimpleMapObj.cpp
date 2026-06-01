@@ -8,7 +8,7 @@ namespace {
         {"IceMountainSeesawSlipB", "SE_OJ_LV_ICE_M_SEESAW_M", 0.001f},   {"IceMountainSeesawSlipC", "SE_OJ_LV_ICE_M_SEESAW_L", 0.001f},
         {"IceMountainSeesawSlipD", "SE_OJ_LV_ICE_M_SEESAW_L", 0.001f},   {"IceMountainSeesawNoSlipA", "SE_OJ_LV_ICE_M_SEESAW_S", 0.001f},
     };
-};
+};  // namespace
 
 void SimpleMapObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);

@@ -1,15 +1,15 @@
 #include "Game/MapObj/KeySwitch.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace {
+    static const char* cDemoName = "カギ出現";
+};  // namespace
+
 namespace NrvKeySwitch {
     NEW_NERVE(KeySwitchNrvDemoStart, KeySwitch, DemoStart);
     NEW_NERVE(KeySwitchNrvAppear, KeySwitch, Appear);
     NEW_NERVE(KeySwitchNrvWait, KeySwitch, Wait);
 };  // namespace NrvKeySwitch
-
-namespace {
-    static const char* cDemoName = "カギ出現";
-};
 
 KeySwitch::~KeySwitch() {}
 

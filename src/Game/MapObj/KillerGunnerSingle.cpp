@@ -1,16 +1,16 @@
 #include "Game/MapObj/KillerGunnerSingle.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 
+namespace {
+    const Vec sShellPos = {0.0f, 0.0f, 700.0f};
+};  // namespace
+
 namespace NrvKillerGunnerSingle {
     NEW_NERVE(HostTypeWait, KillerGunnerSingle, Wait);
     NEW_NERVE(HostTypeCharge, KillerGunnerSingle, Charge);
     NEW_NERVE(HostTypeShoot, KillerGunnerSingle, Shoot);
     NEW_NERVE(HostTypeAttack, KillerGunnerSingle, Attack);
 };  // namespace NrvKillerGunnerSingle
-
-namespace {
-    const Vec sShellPos = {0.0f, 0.0f, 700.0f};
-};
 
 KillerGunnerSingle::KillerGunnerSingle(const char* pName) : LiveActor(pName) {}
 

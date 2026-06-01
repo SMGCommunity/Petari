@@ -10,7 +10,7 @@
 
 namespace NrvFileSelectSky {
     NEW_NERVE(FileSelectSkyNrvWait, FileSelectSky, Wait);
-};  
+};  // namespace NrvFileSelectSky
 
 FileSelectSky::FileSelectSky(const char* pName) : LiveActor(pName) {
     _8C = 0.0f;

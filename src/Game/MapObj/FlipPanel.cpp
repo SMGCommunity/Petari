@@ -5,6 +5,10 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace {
+    static u32 sBloomSyncStep;
+};  // namespace
+
 namespace NrvFlipPanel {
     NEW_NERVE(FlipPanelNrvFrontLand, FlipPanel, FrontLand);
     NEW_NERVE(FlipPanelNrvBackLand, FlipPanel, BackLand);
@@ -19,10 +23,6 @@ namespace NrvFlipPanelObserver {
     NEW_NERVE(FlipPanelObserverNrvComplete, FlipPanelObserver, Complete);
     NEW_NERVE(FlipPanelObserverNrvDemoWait, FlipPanelObserver, DemoWait);
 };  // namespace NrvFlipPanelObserver
-
-namespace {
-    static u32 sBloomSyncStep;
-};
 
 FlipPanel::FlipPanel(const char* pName) : MapObjActor(pName) {
     mDelegator = 0;

@@ -3,16 +3,16 @@
 #include "Game/MapObj/MapPartsRailRotator.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 
+namespace {
+    const char* cMoveBckName = "Move";
+};  // namespace
+
 namespace NrvRailMoveObj {
     NEW_NERVE(HostTypeWait, RailMoveObj, Wait);
     NEW_NERVE(HostTypeWaitForPlayerOn, RailMoveObj, Wait);
     NEW_NERVE(HostTypeMove, RailMoveObj, Move);
     NEW_NERVE(HostTypeDone, RailMoveObj, Wait);
 };  // namespace NrvRailMoveObj
-
-namespace {
-    const char* cMoveBckName = "Move";
-};  // namespace
 
 RailMoveObj::RailMoveObj(const char* pName) : MapObjActor(pName) {
     _C4.setPSZeroVec();

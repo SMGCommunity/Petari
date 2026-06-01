@@ -19,7 +19,7 @@
 
 namespace {
     static const f32 sTurnSpeed = 180.0f;
-}
+};  // namespace
 
 namespace NrvPenguinCoach {
     NEW_NERVE(PenguinCoachNrvTakeOutStar, PenguinCoach, TakeOutStar);

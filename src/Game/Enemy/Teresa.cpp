@@ -13,7 +13,7 @@
 
 namespace {
     static Color8 sPointLightColor(255, 255, 255, 255);
-};
+};  // namespace
 
 namespace NrvTeresa {
     NEW_NERVE(TeresaNrvAppearFromWall, Teresa, AppearFromWall);

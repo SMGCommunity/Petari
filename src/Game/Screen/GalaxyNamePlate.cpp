@@ -12,7 +12,7 @@
 
 namespace {
     const s32 cAppearReadyFrame = 40;
-};
+};  // namespace
 
 namespace NrvGalaxyNamePlate {
     NEW_NERVE(GalaxyNamePlateNrvAppearReady, GalaxyNamePlate, AppearReady);

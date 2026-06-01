@@ -9,7 +9,7 @@
 
 namespace {
     static const s32 sBookPageInfo[] = {0, 350, 700, 1050, 1400, 1748, -1};
-};
+};  // namespace
 
 namespace NrvProloguePictureBook {
     NEW_NERVE(ProloguePictureBookActive, ProloguePictureBook, Active);

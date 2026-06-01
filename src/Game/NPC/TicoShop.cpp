@@ -5,7 +5,7 @@
 
 namespace NrvTicoShop {
     NEW_NERVE(TicoShopNrvDemo, TicoShop, Demo);
-};
+};  // namespace NrvTicoShop
 
 TicoShop::TicoShop(const char* pName) : TicoComet(pName) {
     mOneUp = nullptr;

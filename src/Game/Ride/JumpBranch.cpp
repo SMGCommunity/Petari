@@ -14,7 +14,7 @@
 
 namespace {
     static Vec sStartPointVelocity = {0.0f, 0.0f, 0.0f};
-}
+};  // namespace
 
 namespace NrvJumpBranch {
     NEW_NERVE(JumpBranchNrvWait, JumpBranch, Wait);

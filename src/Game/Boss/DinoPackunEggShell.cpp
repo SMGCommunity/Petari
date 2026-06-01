@@ -2,7 +2,7 @@
 
 namespace NrvDinoPackunEggshell {
     NEW_NERVE(DinoPackunEggShellNrvWait, DinoPackunEggShell, Wait);
-};
+};  // namespace NrvDinoPackunEggshell
 
 DinoPackunEggShell::DinoPackunEggShell(const char* pName, HitSensor* pSensor, MtxPtr mtx) : LiveActor(pName) {
     _8C = pSensor;

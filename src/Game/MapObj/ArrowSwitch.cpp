@@ -2,15 +2,15 @@
 #include "math_types.hpp"
 #include <cmath>
 
+namespace {
+    const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
+};  // namespace
+
 namespace NrvArrowSwitch {
     NEW_NERVE(ArrowSwitchNrvRotate, ArrowSwitch, Rotate);
     NEW_NERVE(ArrowSwitchNrvLock, ArrowSwitch, Lock);
     NEW_NERVE(ArrowSwitchNrvWait, ArrowSwitch, Wait);
 };  // namespace NrvArrowSwitch
-
-namespace {
-    const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
-};
 
 ArrowSwitch::ArrowSwitch(const char* pName) : LiveActor(pName) {
     _8C = 0.0f;

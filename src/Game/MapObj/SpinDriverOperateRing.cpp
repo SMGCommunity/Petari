@@ -2,7 +2,7 @@
 
 namespace NrvSpinDriverOperateRing {
     NEW_NERVE(SpinDriverOperateRingNrvWait, SpinDriverOperateRing, Wait);
-};
+};  // namespace NrvSpinDriverOperateRing
 
 SpinDriverOperateRing::SpinDriverOperateRing(const char* pName)
     : LiveActor(pName), _8C(0, 0, 0), _98(0, 0, 0), _A4(0, 0, 0), mAccelerate(0, 0, 0), mDirection(0, 0, 0) {

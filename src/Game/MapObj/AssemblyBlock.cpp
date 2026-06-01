@@ -2,6 +2,10 @@
 #include "Game/LiveActor/PartsModel.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace {
+    static const char* sReturnPosName = "合体ブロック故郷点";
+};  // namespace
+
 namespace NrvAssemblyBlock {
     NEW_NERVE(AssemblyBlockNrvTimer, AssemblyBlock, Timer);
     NEW_NERVE(AssemblyBlockNrvReturn, AssemblyBlock, Return);
@@ -9,10 +13,6 @@ namespace NrvAssemblyBlock {
     NEW_NERVE(AssemblyBlockNrvAssemble, AssemblyBlock, Assemble);
     NEW_NERVE(AssemblyBlockNrvWait, AssemblyBlock, Wait);
 };  // namespace NrvAssemblyBlock
-
-namespace {
-    static const char* sReturnPosName = "合体ブロック故郷点";
-};
 
 AssemblyBlock::AssemblyBlock(const char* pName) : LiveActor(pName) {
     _11C = -1;

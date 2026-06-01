@@ -12,7 +12,7 @@
 
 namespace {
     static const s32 sPressABAppearFrame = 25;
-};
+};  // namespace
 
 namespace TitleSequenceProductSub {
     LogoLayout::LogoLayout() : SimpleLayout("ロゴ", "TitleLogo", 2, -1) {

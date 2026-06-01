@@ -5,7 +5,7 @@ class LiveActor;
 
 namespace MR {
     class FunctorBase;
-};
+};  // namespace MR
 
 namespace AstroDemoFunction {
     int getOpenedAstroDomeNum();

@@ -6,7 +6,7 @@
 
 namespace NrvDinoPackunStateAwake {
     NEW_NERVE(DinoPackunStateAwakeNrvFind, DinoPackunStateAwake, Find);
-};
+};  // namespace
 
 DinoPackunStateAwake::DinoPackunStateAwake(DinoPackun* pHost) : ActorStateBase< DinoPackun >("ディノパックン気付く", pHost) {
     initNerve(&NrvDinoPackunStateAwake::DinoPackunStateAwakeNrvFind::sInstance);

@@ -29,7 +29,7 @@ namespace {
     const f32 sWaveSpeed0 = -0.04f;
     const f32 sWaveSpeed1 = -0.06f;
     const f32 sClippingRadiusOffset = 200.0f;
-}
+};  // namespace
 
 OceanRing::OceanRing(const char* pName) : LiveActor(pName) {
     mWaterPointNum = 0;

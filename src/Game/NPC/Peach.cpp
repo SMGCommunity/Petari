@@ -2,7 +2,7 @@
 
 namespace NrvPeach {
     NEW_NERVE(PeachNrvWait, Peach, Wait);
-};
+};  // namespace NrvPeach
 
 Peach::Peach(const char* pName) : NPCActor(pName) {}
 

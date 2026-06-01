@@ -4,16 +4,16 @@
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 
+namespace {
+    Vec cHitSensorOffsetCage;
+    Vec cHitSensorOffsetFixation;
+};  // namespace
+
 namespace NrvBreakableCage {
     NEW_NERVE(BreakableCageNrvWait, BreakableCage, Wait);
     NEW_NERVE(BreakableCageNrvWaitStartDemoBreak, BreakableCage, WaitStartDemoBreak);
     NEW_NERVE(BreakableCageNrvBreak, BreakableCage, Break);
 };  // namespace NrvBreakableCage
-
-namespace {
-    Vec cHitSensorOffsetCage;
-    Vec cHitSensorOffsetFixation;
-};  // namespace
 
 BreakableCage::BreakableCage(const char* pName) : LiveActor(pName) {
     mBreakModel = nullptr;

@@ -37,4 +37,4 @@ private:
 
 namespace MR {
     AreaObjContainer* getAreaObjContainer();
-};
+};  // namespace MR

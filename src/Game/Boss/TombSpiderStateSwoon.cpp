@@ -4,7 +4,7 @@
 
 namespace {
     static const s32 sLoopStep = 180;
-}
+};  // namespace
 
 namespace NrvTombSpiderStateSwoon {
     NEW_NERVE(TombSpiderStateSwoonNrvStart, TombSpiderStateSwoon, Start);

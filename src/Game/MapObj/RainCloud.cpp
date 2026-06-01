@@ -11,6 +11,10 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "revolution/types.h"
 
+namespace {
+    static s32 sThunderStep = 140;
+};  // namespace
+
 namespace NrvRainCloud {
     NEW_NERVE(RainCloudNrvAppear, RainCloud, Appear);
     NEW_NERVE(RainCloudNrvWait, RainCloud, Wait);
@@ -19,10 +23,6 @@ namespace NrvRainCloud {
     NEW_NERVE(RainCloudNrvSoftTouch, RainCloud, SoftTouch);
     NEW_NERVE(RainCloudNrvHardTouch, RainCloud, HardTouch);
 };  // namespace NrvRainCloud
-
-namespace {
-    static s32 sThunderStep = 0x8C;
-}
 
 RainCloud::RainCloud(const char* pName) : LiveActor(pName) {
     mCloudCylinder = nullptr;

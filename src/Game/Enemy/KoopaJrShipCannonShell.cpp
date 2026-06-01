@@ -1,13 +1,5 @@
 #include "Game/Enemy/KoopaJrShipCannonShell.hpp"
 
-namespace NrvKoopaJrShipCannonShell {
-    NEW_NERVE(HostTypeWait, KoopaJrShipCannonShell, Wait);
-    NEW_NERVE(HostTypeFly, KoopaJrShipCannonShell, Fly);
-    NEW_NERVE(HostTypeDown, KoopaJrShipCannonShell, Down);
-    NEW_NERVE(HostTypeHipDropDown, KoopaJrShipCannonShell, Down);
-    NEW_NERVE(HostTypeFreeze, KoopaJrShipCannonShell, Freeze);
-};  // namespace NrvKoopaJrShipCannonShell
-
 namespace {
     static const f32 sBodySensorRadius = 75.0f;
     static const f32 sAttackSensorRadius = 60.0f;
@@ -26,7 +18,15 @@ namespace {
     static const f32 sFreezeRumbleSpeed = 0.75f;
     static const f32 sFreezeRumbleWidth = 5.0f;
     static const s32 sWallHitInvalidTime = 10;
-}  // namespace
+};  // namespace
+
+namespace NrvKoopaJrShipCannonShell {
+    NEW_NERVE(HostTypeWait, KoopaJrShipCannonShell, Wait);
+    NEW_NERVE(HostTypeFly, KoopaJrShipCannonShell, Fly);
+    NEW_NERVE(HostTypeDown, KoopaJrShipCannonShell, Down);
+    NEW_NERVE(HostTypeHipDropDown, KoopaJrShipCannonShell, Down);
+    NEW_NERVE(HostTypeFreeze, KoopaJrShipCannonShell, Freeze);
+};  // namespace NrvKoopaJrShipCannonShell
 
 KoopaJrShipCannonShell::KoopaJrShipCannonShell(const char* pName) : CannonShellBase(pName), _9C(gZeroVec), _A8(gZeroVec), _B4(0), _B8(true) {
     f32 one = 1.0f;  // This makes Data match

@@ -1,5 +1,12 @@
 #include "Game/MapObj/IronCannonShell.hpp"
 
+namespace {
+    static const s32 sDefaultShotInterval = 300;
+    static const f32 sDefaultBulletSpeed = 30.0f;
+    static const f32 sGunPointOffset = 75.0f;
+    static const f32 sGunPointModelOffset = 100.0f;
+};  // namespace
+
 namespace NrvIronCannonLauncherPoint {
     NEW_NERVE(IronCannonLauncherPointNrvWait, IronCannonLauncherPoint, Wait);
     NEW_NERVE(IronCannonLauncherPointNrvShot, IronCannonLauncherPoint, Shot);
@@ -10,13 +17,6 @@ namespace NrvIronCannonLauncher {
     NEW_NERVE(IronCannonLauncherNrvWait, IronCannonLauncher, Wait);
     NEW_NERVE(IronCannonLauncherNrvShot, IronCannonLauncher, Shot);
 };  // namespace NrvKoopaJrShipCannonShell
-
-namespace {
-    static const s32 sDefaultShotInterval = 300;
-    static const f32 sDefaultBulletSpeed = 30.0f;
-    static const f32 sGunPointOffset = 75.0f;
-    static const f32 sGunPointModelOffset = 100.0f;
-}
 
 IronCannonShell::IronCannonShell(const char* pName) : KoopaJrShipCannonShell(pName) {
 }

@@ -6,7 +6,7 @@
 
 namespace NrvSignBoard {
     NEW_NERVE(SignBoardNrvWait, SignBoard, Wait);
-};
+};  // namespace NrvSignBoard
 
 SignBoard::SignBoard(const char* pName) : NPCActor(pName) {}
 

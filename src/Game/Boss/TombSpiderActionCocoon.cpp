@@ -9,7 +9,7 @@
 
 namespace {
     static const s32 sBreakStep = 3;
-}
+};  // namespace
 
 namespace NrvTombSpiderActionCocoon {
     NEW_NERVE(TombSpiderActionCocoonNrvWait, TombSpiderActionCocoon, Wait);

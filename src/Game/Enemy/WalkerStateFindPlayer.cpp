@@ -3,7 +3,7 @@
 
 namespace {
     WalkerStateFindPlayerParam sDefaultParam;
-}
+};  // namespace
 
 namespace NrvWalkerStateFindPlayer {
     NEW_NERVE(WalkerStateFindPlayerNrvFind, WalkerStateFindPlayer, Find);

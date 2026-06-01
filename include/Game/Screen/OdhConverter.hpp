@@ -5,7 +5,7 @@
 
 namespace MR {
     class FunctorBase;
-};
+};  // namespace MR
 
 class OdhConverter : public LayoutActor {
 public:

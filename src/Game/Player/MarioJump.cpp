@@ -24,7 +24,7 @@ static TVec3f operator/(const TVec3f& rVec, f32 div) NO_INLINE {
 
 namespace {
     f32 cDropFrontSpeed = 2.0f;
-}
+};  // namespace
 
 bool Mario::isRising() const {
     if (getPlayerMode() == 4 || getPlayerMode() == 6) {

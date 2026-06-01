@@ -4,6 +4,11 @@
 #include <cstdio>
 #include <cstring>
 
+namespace {
+    static s32 cSpaceFlyStartFrame = 10;
+    static s32 cSpaceFlyEndFrame = 50;
+};  // namespace
+
 namespace NrvSpinDriver {
     NEW_NERVE(SpinDriverNrvTryDemo, SpinDriver, TryDemo);
     NEW_NERVE(SpinDriverNrvNonActive, SpinDriver, NonActive);
@@ -14,11 +19,6 @@ namespace NrvSpinDriver {
     NEW_NERVE(SpinDriverNrvShoot, SpinDriver, Shoot);
     NEW_NERVE(SpinDriverNrvCoolDown, SpinDriver, CoolDown);
 };  // namespace NrvSpinDriver
-
-namespace {
-    static s32 cSpaceFlyStartFrame = 0xA;
-    static s32 cSpaceFlyEndFrame = 0x32;
-};  // namespace
 
 SpinDriver::SpinDriver(const char* pName)
     : LiveActor(pName), _8C(nullptr), mShootPath(nullptr), mSpinDriverCamera(nullptr), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), _B8(0, 0, 0), _C4(0, 0, 0),

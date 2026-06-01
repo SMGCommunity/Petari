@@ -15,6 +15,10 @@
 #include "revolution/types.h"
 #include <cstddef>
 
+namespace {
+    s32 sAstroPathAppearStep = 90;
+};  // namespace
+
 namespace NrvAstroMapObj {
     NEW_NERVE(AstroMapObjNrvDead, AstroMapObj, Wait);
     NEW_NERVE(AstroMapObjNrvAlive, AstroMapObj, Wait);
@@ -22,10 +26,6 @@ namespace NrvAstroMapObj {
     NEW_NERVE(AstroMapObjNrvRevival, AstroMapObj, Revival);
     NEW_NERVE(AstroMapObjNrvOpen, AstroMapObj, Open);
 };  // namespace NrvAstroMapObj
-
-namespace {
-    s32 sAstroPathAppearStep = 90;
-}
 
 AstroMapObj::AstroMapObj(const char* pName) : MapObjActor(pName) {
     _C4 = 0;

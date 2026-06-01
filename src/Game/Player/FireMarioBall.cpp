@@ -27,7 +27,7 @@ namespace {
 
 namespace NrvFireMarioBall {
     NEW_NERVE(FireMarioBallNrvThrow, FireMarioBall, Throw);
-}
+};  // namespace NrvFireMarioBall
 
 FireMarioBall::~FireMarioBall() {}
 

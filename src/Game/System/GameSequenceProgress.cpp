@@ -26,7 +26,7 @@
 
 namespace {
     static const s32 sTimingPlayingTicoSE = 180;
-};
+};  // namespace
 
 namespace {
     NEW_NERVE(GameSequenceProgressBooting, GameSequenceProgress, Booting);

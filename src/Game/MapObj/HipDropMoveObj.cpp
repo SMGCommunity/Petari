@@ -3,17 +3,17 @@
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util.hpp"
 
-namespace NrvHipDropMoveObj {
-    NEW_NERVE(HostTypeWait, HipDropMoveObj, Wait);
-    NEW_NERVE(HostTypeMove, HipDropMoveObj, Move);
-    NEW_NERVE(HostTypeDone, HipDropMoveObj, Done);
-};  // namespace NrvHipDropMoveObj
-
 namespace {
     static const char* cMoveJointName = "Move";
     static const char* cSwitchJointName = "Switch";
     static const char* cMoveAnimName = "Move";
 };  // namespace
+
+namespace NrvHipDropMoveObj {
+    NEW_NERVE(HostTypeWait, HipDropMoveObj, Wait);
+    NEW_NERVE(HostTypeMove, HipDropMoveObj, Move);
+    NEW_NERVE(HostTypeDone, HipDropMoveObj, Done);
+};  // namespace NrvHipDropMoveObj
 
 HipDropDemoMoveObj::~HipDropDemoMoveObj() {}
 

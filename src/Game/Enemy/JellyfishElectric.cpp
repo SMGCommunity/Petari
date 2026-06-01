@@ -19,7 +19,7 @@ namespace NrvJellyfishElectric {
 
 namespace {
     static Color8 sPointLightColor(0x9C, 0xFF, 0xFF, 0xFF);
-};
+};  // namespace
 
 JellyfishElectric::JellyfishElectric(const char* pName) : LiveActor(pName) {
     mController = nullptr;

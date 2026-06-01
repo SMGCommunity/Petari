@@ -9,6 +9,10 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
+namespace {
+    static const char* cDemoName = "砂漠ＵＦＯ上昇";
+};  // namespace
+
 namespace NrvDesertMovingLand {
     NEW_NERVE(HostTypeWaitTop, DesertMovingLand, Wait);
     NEW_NERVE(HostTypeWaitBottom, DesertMovingLand, Wait);
@@ -18,10 +22,6 @@ namespace NrvDesertMovingLand {
     NEW_NERVE(HostTypeMoveUpSign, DesertMovingLand, MoveSign);
     NEW_NERVE(HostTypeStop, DesertMovingLand, Stop);
 };  // namespace NrvDesertMovingLand
-
-namespace {
-    static const char* cDemoName = "砂漠ＵＦＯ上昇";
-};
 
 DesertMovingLand::DesertMovingLand(const char* pName) : MapObjActor(pName), _C4(gZeroVec), _D0(gZeroVec) {
     _DC = 720;

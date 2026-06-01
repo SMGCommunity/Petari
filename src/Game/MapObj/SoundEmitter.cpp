@@ -15,7 +15,7 @@
 
 namespace {
     const JAISoundID sSeTable[33] = {JAISoundID(0x1)};
-}
+};  // namespace
 
 namespace NrvSoundEmitter {
     NEW_NERVE(SoundEmitterNrvStandBy, SoundEmitter, StandBy);

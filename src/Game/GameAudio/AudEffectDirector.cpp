@@ -17,7 +17,7 @@ namespace {
     const AudEffectData cAudEffectDataList[] = {
         {0.0f, 127, 1.0f, 90}, {1.0f, 127, 1.0f, 90}, {0.0f, 10, 1.0f, 90}, {1.0f, 127, 0.0f, 90}, {0.8f, 127, 1.0f, 90},
     };
-}
+};  // namespace
 
 AudEffectDirector::AudEffectDirector() : NameObj("オーディオエフェクトディレクター"), _C(0), _10(0), _14(0) {}
 

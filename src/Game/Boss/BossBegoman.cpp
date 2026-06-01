@@ -4,6 +4,16 @@
 #include "Game/MapObj/ElectricRailHolder.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
+    const MR::ActorMoveParam hSignAttackParam = {0.0f, 3.0f, 0.8f, 3.0f};
+    const MR::ActorMoveParam hPursueParam = {1.3f, 3.0f, 0.97f, 3.0f};
+    const MR::ActorMoveParam hTurnParam = {0.4f, 3.0f, 0.95f, 0.0f};
+    const MR::ActorMoveParam hHitReactionParam = {0.0f, 3.0f, 0.95f, 0.0f};
+    const MR::ActorMoveParam hOnWeakParam = {-0.5f, 3.0f, 0.95f, 3.0f};
+    const MR::ActorMoveParam hOnWeakNoMoveParam = {0.0f, 3.0f, 0.95f, 3.0f};
+};  // namespace
+
 namespace NrvBossBegoman {
     NEW_NERVE_ONEND(HostTypeNrvPreDemoWait, BossBegoman, PreDemoWait, PreDemoWait);
     NEW_NERVE(HostTypeNrvFirstContactDemo, BossBegoman, FirstContactDemo);
@@ -29,16 +39,6 @@ namespace NrvBossBegoman {
     NEW_NERVE(HostTypeNrvJumpToInitPos, BossBegoman, JumpToInitPos);
     NEW_NERVE(HostTypeNrvKeepDistance, BossBegoman, KeepDistance);
 };  // namespace NrvBossBegoman
-
-namespace {
-    const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
-    const MR::ActorMoveParam hSignAttackParam = {0.0f, 3.0f, 0.8f, 3.0f};
-    const MR::ActorMoveParam hPursueParam = {1.3f, 3.0f, 0.97f, 3.0f};
-    const MR::ActorMoveParam hTurnParam = {0.4f, 3.0f, 0.95f, 0.0f};
-    const MR::ActorMoveParam hHitReactionParam = {0.0f, 3.0f, 0.95f, 0.0f};
-    const MR::ActorMoveParam hOnWeakParam = {-0.5f, 3.0f, 0.95f, 3.0f};
-    const MR::ActorMoveParam hOnWeakNoMoveParam = {0.0f, 3.0f, 0.95f, 3.0f};
-};  // namespace
 
 BossBegoman::BossBegoman(const char* pName)
     : BegomanBase(pName), mBabyFollowers(nullptr), mSpikeFollowers(nullptr), mBabyFollowerNum(0), mSpikeFollowerNum(0), mFollowerKind(FollowerKind_BothFollower),
