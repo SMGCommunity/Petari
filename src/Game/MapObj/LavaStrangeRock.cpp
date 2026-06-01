@@ -120,11 +120,11 @@ void LavaStrangeRock::exeWait() {
         MR::emitEffect(this, "Break");
         switch (mRockType) {  // the lack of breaks here is intentional
         case 0:
-            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_S", -1, -1);
+            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_S");
         case 1:
-            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_L", -1, -1);
+            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_L");
         case 2:
-            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_M", -1, -1);
+            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_M");
         default:
             break;
         }

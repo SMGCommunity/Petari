@@ -298,7 +298,7 @@ void BegomanBase::exePursueCore(const MR::ActorMoveParam& rMoveParam, const Nerv
     }
 
     if (MR::isGreaterEqualStep(this, 10)) {
-        MR::startLevelSound(this, rSound.mSound, -1, -1, -1);
+        MR::startLevelSound(this, rSound.mSound);
     }
 
     if (MR::isStep(this, 18)) {
@@ -711,7 +711,7 @@ void BegomanBase::reboundWallAndGround(TVec3f* pOut, bool emitEffect) {
         mVelocity.add(wallNormal.scaleInline(5.0f));
 
         if (reboundWall) {
-            MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_COLLI_WALL", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_COLLI_WALL");
         }
 
         if (pOut != nullptr) {
@@ -909,7 +909,7 @@ void BegomanBase::calcBlowReaction(const TVec3f& rVec1, const TVec3f& rVec2, f32
     effectVec.add(getSensor("body")->mPosition);
 
     MR::emitEffectHit(this, effectVec, "Hit");
-    MR::startSound(this, "SE_EM_BEGOMAN_KNOCK_SUCCESS", -1, -1);
+    MR::startSound(this, "SE_EM_BEGOMAN_KNOCK_SUCCESS");
     MR::vecKillElement(blowDirection, mGravity, &blowDirection);
     MR::normalizeOrZero(&blowDirection);
 

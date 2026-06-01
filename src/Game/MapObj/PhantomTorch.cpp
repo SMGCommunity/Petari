@@ -94,7 +94,7 @@ void PhantomTorch::kill() {
             break;
         case 0:
             if (MR::appearStarPiece(this, mPosition, 1, 10.0f, 40.0f, false)) {
-                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
             }
             break;
     }        
@@ -145,20 +145,20 @@ void PhantomTorch::soundOrder() {
 
         switch (num) {
             case 1:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_5", -1, -1);            
+                MR::startSystemSE("SE_SY_CANDLE_COMBO_5");            
                 break;
             case 2:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_4", -1, -1);            
+                MR::startSystemSE("SE_SY_CANDLE_COMBO_4");            
                 break;                
             case 3:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_3", -1, -1);
+                MR::startSystemSE("SE_SY_CANDLE_COMBO_3");
                 break;
             case 4:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_2", -1, -1);                     
+                MR::startSystemSE("SE_SY_CANDLE_COMBO_2");                     
                 break;
             case 5:    
             default:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_1", -1, -1);
+                MR::startSystemSE("SE_SY_CANDLE_COMBO_1");
                 break;
         }
     }
@@ -166,10 +166,10 @@ void PhantomTorch::soundOrder() {
 
 void PhantomTorch::exeWait() {
     if (MR::isEqualString(mParticle, "PhantomBonfire")) {
-        MR::startLevelSound(this, "SE_OJ_LV_BONFIRE_BURN", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_BONFIRE_BURN");
     }
     else {
-        MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
     }
 }
 
@@ -178,10 +178,10 @@ void PhantomTorch::exeAttack() {
         setNerve(&NrvPhantomTorch::HostTypeWait::sInstance);
     }
     else if (MR::isEqualString(mParticle, "PhantomBonfire")) {
-        MR::startLevelSound(this, "SE_OJ_LV_BONFIRE_BURN", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_BONFIRE_BURN");
     }
     else {
-        MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
     }
 }
 
@@ -189,7 +189,7 @@ void PhantomTorch::exeExtinguish() {
     if (MR::isFirstStep(this)) {
         MR::deleteEffect(this, mParticle);
         MR::emitEffectWithParticleCallBack(this, "Extinguish", mPullParticle);
-        MR::startSound(this, "SE_OJ_PHANTOM_TOACH_OFF", -1, -1);
+        MR::startSound(this, "SE_OJ_PHANTOM_TOACH_OFF");
     }
     
     if (MR::isStep(this, 15)) {

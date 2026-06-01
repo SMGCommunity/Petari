@@ -174,7 +174,7 @@ void BlackHole::exeWait() {
         MR::startBtk(mBlackHoleModel, "BlackHole");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE");
     bool isOnSwitch = false;
     if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
         isOnSwitch = true;
@@ -186,12 +186,12 @@ void BlackHole::exeWait() {
 }
 
 void BlackHole::exeDemo() {
-    MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE");
 }
 
 void BlackHole::exeDisappear() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_BLACK_HOLE_DISAPPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_BLACK_HOLE_DISAPPEAR");
     }
 
     f32 nerveEaseIn = MR::calcNerveEaseInValue(this, 0x5A, _9C, 0.0f);

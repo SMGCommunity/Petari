@@ -69,7 +69,7 @@ bool PrizeRing::isReadyToKill() const {
 
 void PrizeRing::exeStart() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_PRIZE_RING_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_PRIZE_RING_APPEAR");
         MR::startBck(this, "Start", nullptr);
         MR::startBrk(this, "Loop");
         MR::setBrkFrameAndStop(this, 0.0f);
@@ -97,11 +97,11 @@ void PrizeRing::exeTimeout() {
     }
 
     if (PrizeRing::isOnTriggerTimeoutFlash()) {
-        MR::startSound(this, "SE_OJ_PRIZE_RING_BLINK", -1, -1);
+        MR::startSound(this, "SE_OJ_PRIZE_RING_BLINK");
     }
 
     if (MR::isBrkStopped(this)) {
-        MR::startSound(this, "SE_OJ_PRIZE_RING_DISAPPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_PRIZE_RING_DISAPPEAR");
         this->kill();
     }
 }

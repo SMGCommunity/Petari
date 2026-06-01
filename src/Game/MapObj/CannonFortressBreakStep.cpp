@@ -27,13 +27,13 @@ void CannonFortressBreakStep::init(const JMapInfoIter& rIter) {
 
 void CannonFortressBreakStep::exeWait() {
     if (!MR::isEqualString("CannonFortressBreakStep", mObjectName)) {
-        MR::startLevelSound(this, "SE_OJ_LV_CNFORT_BKSTEP_ROT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_CNFORT_BKSTEP_ROT");
     }
 }
 
 void CannonFortressBreakStep::exeFallStart() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_CNFORT_BKSTEP_FALL_ST", -1, -1);
+        MR::startSound(this, "SE_OJ_CNFORT_BKSTEP_FALL_ST");
     }
 
     setNerve(&NrvCannonFortressBreakStep::CannonFortressBreakStepNrvFall::sInstance);
@@ -43,7 +43,7 @@ void CannonFortressBreakStep::exeFall() {
     TVec3f up;
     MR::calcUpVec(&up, this);
     mVelocity.scale(-15.0f, up);
-    MR::startLevelSound(this, "SE_OJ_LV_CNFORT_BKSTEP_FALL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_CNFORT_BKSTEP_FALL");
 
     if (MR::isStep(this, 350)) {
         setNerve(&NrvCannonFortressBreakStep::CannonFortressBreakStepNrvBreak::sInstance);
@@ -52,7 +52,7 @@ void CannonFortressBreakStep::exeFall() {
 
 void CannonFortressBreakStep::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_CNFORT_BKSTEP_FALL_ED", -1, -1);
+        MR::startSound(this, "SE_OJ_CNFORT_BKSTEP_FALL_ED");
     }
 
     kill();

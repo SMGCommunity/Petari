@@ -93,16 +93,16 @@ void RosettaMonologue::control() {
     mIcon->term();
 
     if (mTextFormer.nextPage()) {
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         return;
     }
 
     mMsgID++;
     if (mMsgID == 4) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, WPAD_CHAN0);
     } else {
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         char buff[256];
         snprintf(buff, 256, "RosettaMonologue%03d", mMsgID);
         mTextFormer.formMessage(MR::getGameMessageDirect(buff), 1);

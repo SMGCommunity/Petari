@@ -157,7 +157,7 @@ void GalaxyNamePlate::exeWait() {
             MR::emitEffect(this, "GalaxyNamePlateNew");
 
             if (_30) {
-                MR::startSystemSE("SE_SY_ASTRO_GALAXY_NEW_EFF", -1, -1);
+                MR::startSystemSE("SE_SY_ASTRO_GALAXY_NEW_EFF");
             }
         }
 

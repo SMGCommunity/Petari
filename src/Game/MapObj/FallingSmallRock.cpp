@@ -38,7 +38,7 @@ void FallingSmallRock::exeMove() {
         MR::emitEffect(this, "FallingSmallRock");
     }
 
-    MR::startLevelSound(this, "SE_AT_LV_FALLING_ROCK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_FALLING_ROCK");
 
     if (MR::isBinded(this)) {
         makeActorDead();

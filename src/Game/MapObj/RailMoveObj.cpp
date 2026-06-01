@@ -235,10 +235,10 @@ bool RailDemoMoveObj::tryStartMove() {
 }
 
 void RailDemoMoveObj::startMoveInner() {
-    const char* start_sound = MR::StageEffect::getStartSe(mObjectName);
+    const char* pStartSe = MR::StageEffect::getStartSe(mObjectName);
 
-    if (start_sound) {
-        MR::startSound(this, start_sound, -1, -1);
+    if (pStartSe != nullptr) {
+        MR::startSound(this, pStartSe);
     }
 }
 
@@ -246,10 +246,10 @@ void RailDemoMoveObj::move() {
     mDemoControl->update();
 
     if (MapObjActorUtil::isRailMoverWorking(this)) {
-        const char* moving_sound = MR::StageEffect::getMovingSe(mObjectName);
+        const char* pMovingSe = MR::StageEffect::getMovingSe(mObjectName);
 
-        if (moving_sound) {
-            MR::startLevelSound(this, moving_sound, -1, -1, -1);
+        if (pMovingSe != nullptr) {
+            MR::startLevelSound(this, pMovingSe);
         }
     }
 }
@@ -261,9 +261,10 @@ bool RailDemoMoveObj::endMove() {
         mDemoControl->end();
     }
 
-    const char* stop_sound = MR::StageEffect::getStopSe(mObjectName);
-    if (stop_sound) {
-        MR::startSound(this, stop_sound, -1, -1);
+    const char* pStopSe = MR::StageEffect::getStopSe(mObjectName);
+
+    if (pStopSe != nullptr) {
+        MR::startSound(this, pStopSe);
     }
 
     return mDemoControl->isDone();

@@ -86,7 +86,7 @@ void IceStep::setOn(u32 stepIdx, const TVec3f &rPosition, const TVec3f &rRotatio
 
     MR::startBck(this, "Start", nullptr);
     MR::startBpk(this, "Start");
-    MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE", -1, -1);
+    MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE");
     mTimer = 0x4B0;
     MR::invalidateClipping(this);
     MR::resetPosition(this);
@@ -100,7 +100,7 @@ void IceStep::setOn(u32 stepIdx, const TVec3f &rPosition, const TVec3f &rRotatio
 void IceStep::destroy() {
     MR::startBck(this, "End", nullptr);
     MR::startBpk(this, "End");
-    MR::startSound(this, "SE_OJ_ICE_FLOOR_MELT", -1, -1);
+    MR::startSound(this, "SE_OJ_ICE_FLOOR_MELT");
     mTimer = 0;
 }
 
@@ -108,7 +108,7 @@ void IceStep::doHit() {
     MR::invalidateCollisionParts(this);
     setNerve(&NrvIceStep::IceStepNrvHit::sInstance);
     MR::emitEffect(this, "Break");
-    MR::startSound(this, "SE_OJ_ICE_FLOOR_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_ICE_FLOOR_BREAK");
     MR::startBck(this, "End", nullptr);
     mTimer = 0;
 }

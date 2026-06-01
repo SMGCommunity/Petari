@@ -76,7 +76,7 @@ void PlayerMissLeft::exeWait() {
     if (MR::isStep(this, hCountDownTime)) {
         MR::setTextBoxNumberRecursive(this, "CenterPlayerLeft", MR::getPlayerLeft());
         mPaneRumbler->start();
-        MR::startSystemSE("SE_SY_PLAYER_LEFT_DEC", -1, -1);
+        MR::startSystemSE("SE_SY_PLAYER_LEFT_DEC");
     }
 
     if (MR::isGreaterStep(this, hEndTime)) {

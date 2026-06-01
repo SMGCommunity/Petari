@@ -118,7 +118,7 @@ bool MapPartsFloatingForce::tryOn() {
     if (MR::isOnPlayer(MR::getBodySensor(mHost))) {
         const char* ground_sound = FloaterFunction::getSeGroundOn(mObjectName);
         if (ground_sound) {
-            MR::startSound(mHost, ground_sound, -1, -1);
+            MR::startSound(mHost, ground_sound);
         }
 
         setNerve(&NrvMapPartsFloatingForce::HostTypeMoveSpring::sInstance);

@@ -44,7 +44,7 @@ void SnowCapsulePlanet::exeOpen() {
     }
 
     if (MR::isBckStopped(this)) {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         setNerve(&NrvSnowCapsulePlanet::SnowCapsulePlanetNrvOpenWait::sInstance);
     }
 }

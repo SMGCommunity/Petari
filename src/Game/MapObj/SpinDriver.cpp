@@ -248,9 +248,9 @@ bool SpinDriver::tryStartShoot() {
     bool isSwingOrPointed = MR::isPadSwing(WPAD_CHAN0) || MR::isPlayerPointedBy2POnTriggerButton();
 
     if (isSwingOrPointed) {
-        MR::startSound(_8C, "SE_PM_SPIN_ATTACK", -1, -1);
+        MR::startSound(_8C, "SE_PM_SPIN_ATTACK");
         if (MR::isInAreaObj("Water", mPosition)) {
-            MR::startSound(this, "SE_PMSPIN_DRV_IN_WATER_1", -1, -1);
+            MR::startSound(this, "SE_PMSPIN_DRV_IN_WATER_1");
         }
 
         setNerve(&NrvSpinDriver::SpinDriverNrvShootStart::sInstance);
@@ -343,8 +343,8 @@ void SpinDriver::exeNonActive() {
 void SpinDriver::exeAppear() {
     if (MR::isFirstStep(this)) {
         if (!_142) {
-            MR::startSystemSE("SE_SY_SPIN_DRIVER_APPEAR", -1, -1);
-            MR::startSound(this, "SE_OJ_SPIN_DRV_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_SPIN_DRIVER_APPEAR");
+            MR::startSound(this, "SE_OJ_SPIN_DRV_APPEAR");
         }
 
         MR::startBck(this, "Appear", nullptr);
@@ -378,7 +378,7 @@ void SpinDriver::exeWait() {
 
     if (_13C > 0) {
         _108 += 0.008f;
-        MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_SHINE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_SHINE");
         if (!_140) {
             MR::emitEffect(this, "SpinDriverLight");
             MR::startCSSound("CS_SPIN_BIND", nullptr, 0);
@@ -402,8 +402,8 @@ void SpinDriver::exeCapture() {
             MR::emitEffect(this, "SpinDriverLight");
         }
 
-        MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_SHINE", -1, -1, -1);
-        MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_CAPTURE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_SHINE");
+        MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_CAPTURE");
         moveBindPosToCenter();
         _11C = MR::calcNerveRate(this, 40);
         updateBindActorMatrix(_11C);
@@ -463,14 +463,14 @@ void SpinDriver::exeShoot() {
             if (MR::hasME()) {
                 MR::startSystemME("ME_MAGIC");
             } else {
-                MR::startSystemSE("SE_SY_S_SPIN_DRV_ME_ALT", -1, -1);
+                MR::startSystemSE("SE_SY_S_SPIN_DRV_ME_ALT");
             }
 
-            MR::startSound(this, "SE_OJ_SPIN_DRV_JUMP", -1, -1);
-            MR::startSound(_8C, "SE_PV_JUMP_JOY", -1, -1);
+            MR::startSound(this, "SE_OJ_SPIN_DRV_JUMP");
+            MR::startSound(_8C, "SE_PV_JUMP_JOY");
 
             if (MR::isInAreaObj("Water", mPosition)) {
-                MR::startSound(this, "SE_PM_SIN_DIV_IN_WATER_2", -1, -1);
+                MR::startSound(this, "SE_PM_SIN_DIV_IN_WATER_2");
             }
 
             MR::startBckPlayer("SpaceFlyShortStart", "SpinDriverFlyStart");
@@ -492,7 +492,7 @@ void SpinDriver::exeShoot() {
             }
 
             if (MR::isLessStep(this, _130)) {
-                MR::startLevelSound(_8C, "SE_PM_LV_SPIN_DRV_FLY", -1, -1, -1);
+                MR::startLevelSound(_8C, "SE_PM_LV_SPIN_DRV_FLY");
             }
 
             if (MR::isStep(this, _130)) {
@@ -537,13 +537,13 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
             MR::startSystemME("ME_MAGIC");
         }
         else {
-            MR::startSystemSE("SE_SY_S_SPIN_DRV_ME_ALT", -1, -1);
+            MR::startSystemSE("SE_SY_S_SPIN_DRV_ME_ALT");
         }
 
-        MR::startSound(pSensor->mHost, "SE_PM_SPIN_ATTACK", -1, -1);
+        MR::startSound(pSensor->mHost, "SE_PM_SPIN_ATTACK");
 
         if (MR::isInAreaObj("Water", mPosition)) {
-            MR::startSound(this, "SE_PM_SPIN_DRV_IN_WATER_1", -1, -1);
+            MR::startSound(this, "SE_PM_SPIN_DRV_IN_WATER_1");
         }
 
         setNerve(&NrvSpinDriver::SpinDriverNrvShootStart::sInstance);

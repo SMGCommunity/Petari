@@ -124,13 +124,13 @@ void KoopaJrShip::control() {
 
     switch (_D0) {
     case 0:
-        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE");
         break;
     case 1:
-        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN1", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN1");
         break;
     case 2:
-        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN2", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN2");
         break;
     }
 
@@ -207,14 +207,14 @@ bool KoopaJrShip::receiveMsgJetTurtleAttack(HitSensor* pSender, HitSensor* pRece
     _D0 = _D0 - 1;
 
     if (isNextStateDamage(_D0)) {
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_DAMAGE_L", -1, -1);
-        MR::startSound(mJr, "SE_BV_KOOPAJR_DAMAGE_L", -1, -1);
-        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_DAMAGE_L");
+        MR::startSound(mJr, "SE_BV_KOOPAJR_DAMAGE_L");
+        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
         setNerve(&NrvKoopaJrShip::HostTypeBreakStart::sInstance);
     } else {
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_DAMAGE", -1, -1);
-        MR::startSound(mJr, "SE_BV_KOOPAJR_DAMAGE_S", -1, -1);
-        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_DAMAGE");
+        MR::startSound(mJr, "SE_BV_KOOPAJR_DAMAGE_S");
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
         setNerve(&NrvKoopaJrShip::HostTypeDamage::sInstance);
     }
 
@@ -274,7 +274,7 @@ void KoopaJrShip::updateCoordSpeed() {
             f32 ease = MR::getEaseInValue(_188, v5, 0.0f, 60.0f);
             _184 = ease;
             _188 = _188 - 1;
-            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_ACCEL", -1, -1, -1);
+            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_ACCEL");
         }
 
         mPropRotateSpeed = getPropellerRotSpeed();
@@ -417,7 +417,7 @@ void KoopaJrShip::emitDamageHitEffect() {
     JMathInlineVEC::PSVECNegate(&_E0, &v5);
     MR::makeMtxSideUpPos(&v7, v5, up, _D4);
     MR::emitEffectHit(this, v7, "DamageFire");
-    MR::startSound(this, "SE_BM_KOOPAJR_SHIP_IGNIT", -1, -1);
+    MR::startSound(this, "SE_BM_KOOPAJR_SHIP_IGNIT");
 }
 
 void KoopaJrShip::updateKoopaJrPos() {
@@ -464,7 +464,7 @@ void KoopaJrShip::setStateTurnFront() {
 
 void KoopaJrShip::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_ENTER", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_ENTER");
         MR::startBck(this, "Arrival", nullptr);
         MR::hideModel(this);
     }
@@ -523,7 +523,7 @@ void KoopaJrShip::exeMoveFrontAttack() {
         MR::emitEffect(this, "HeadShootSign");
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MAIN_PREP", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MAIN_PREP");
     updateCoordSpeed();
     MR::moveCoordAndFollowTrans(this);
 
@@ -560,7 +560,7 @@ void KoopaJrShip::exeShoot() {
 void KoopaJrShip::exeShootMain() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "HeadShoot");
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_SHOOT_MAIN", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_SHOOT_MAIN");
         MR::shakeCameraNormal();
 
         if (_D0 <= 1) {
@@ -686,7 +686,7 @@ void KoopaJrShip::exeBreak() {
         MR::deleteEffect(this, "EyeLight");
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraNormal();
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_S", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_S");
         mJr->setStateShipBattleEscape();
         MR::hideModel(this);
         MR::deleteEffect(this, "DamageSmoke1");
@@ -699,18 +699,18 @@ void KoopaJrShip::exeBreak() {
     }
 
     if (MR::isStep(this, 287)) {
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_S", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_S");
     }
 
     if (MR::isLessStep(this, 300)) {
-        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN1", -1, -1, -1);
-        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN2", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN1");
+        MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_BURN2");
     }
 
     if (MR::isStep(this, 300)) {
         MR::shakeCameraNormal();
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_L", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_L");
     }
 
     if (!MR::isHiddenModel(mShipBreakModel) && (MR::isBckStopped(mShipBreakModel) || (MR::isStep(this, 320)) != 0)) {
@@ -737,7 +737,7 @@ void KoopaJrShip::exeTurnFront() {
         for_each(mKillers.begin(), mKillers.end(), std::mem_fun_t< void, HomingKiller >(&HomingKiller::kill));
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_3RD_DEMO", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_3RD_DEMO");
 
     if (MR::isLessEqualStep(this, 150)) {
         mRotation.y += 0.60f;
@@ -745,7 +745,7 @@ void KoopaJrShip::exeTurnFront() {
 
     if (MR::isStep(this, 150)) {
         MR::emitEffect(this, "EyeLight");
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_EYE_BLINK", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_EYE_BLINK");
     }
 
     if (MR::isDemoPartLastStep("旋廻")) {

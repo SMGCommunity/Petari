@@ -110,7 +110,7 @@ f32 KoopaJrShipCannonMainShell::getBaseScale() const {
 void KoopaJrShipCannonMainShell::explosion() {
     MR::startRumbleWithShakeCameraWeak(this, "強", "中", sCameraShakeDistance, sCameraShakeDistance*2);
     MR::emitEffect(this, "Explosion");
-    MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_FIRE", -1, -1);
+    MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_FIRE");
     kill();
 }
 
@@ -122,7 +122,7 @@ void KoopaJrShipCannonMainShell::exeFly() {
         MR::emitEffect(this, "LocusFire");
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_FLY_FIRE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_FLY_FIRE");
 
     if (MR::isGreaterStep(this, sWallHitInvalidTime) && MR::isBindedWall(this))
         explosion();

@@ -261,7 +261,7 @@ void EarthenPipe::exeReady() {
 void EarthenPipe::exePlayerIn() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("EarthenPipeIn", (const char*)0);
-        MR::startSystemSE("SE_DM_DOKAN_WARP", -1, -1);
+        MR::startSystemSE("SE_DM_DOKAN_WARP");
         processBgmPlayerIn();
     }
 
@@ -290,7 +290,7 @@ void EarthenPipe::exeTargetPipeShowUp() {
 void EarthenPipe::exePlayerOut() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("EarthenPipeOut", (const char*)nullptr);
-        MR::startSystemSE("SE_DM_DOKAN_WARP", -1, -1);
+        MR::startSystemSE("SE_DM_DOKAN_WARP");
         processBgmPlayerOut();
     }
 
@@ -306,8 +306,8 @@ void EarthenPipe::exePlayerOut() {
             v4.add(v6);
         }
 
-        MR::startSound(mHostActor, "SE_PM_JUMP_M", -1, -1);
-        MR::startSound(mHostActor, "SE_PV_JUMP_JOY", -1, -1);
+        MR::startSound(mHostActor, "SE_PM_JUMP_M");
+        MR::startSound(mHostActor, "SE_PV_JUMP_JOY");
         MR::startBckPlayer("EarthenPipeJump", (const char*)nullptr);
         MR::endBindAndPlayerForceWeakGravityJumpInputOff(this, v4);
         mHostActor = nullptr;
@@ -359,14 +359,14 @@ void EarthenPipe::exeShowUp() {
         MR::showModel(this);
         MR::validateCollisionParts(this);
         MR::emitEffect(this, "LavaAppear");
-        MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
+        MR::startSystemSE("SE_SY_ITEM_APPEAR");
     }
 
     f32 easeIn = MR::getEaseInValue(getNerveStep() / 30.0f, 0.0f, 1.0f, 1.0f);
     calcTrans(easeIn);
 
     if (MR::isLessStep(this, 30)) {
-        MR::startLevelSound(this, "SE_OJ_LV_PIPE_APPEAR_MAGMA", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_PIPE_APPEAR_MAGMA");
     }
 
     if (MR::isStep(this, 30)) {
@@ -383,7 +383,7 @@ void EarthenPipe::exeHideDown() {
     f32 easeIn = MR::getEaseInValue((15 - getNerveStep()) / 15.0f, 0.0f, 1.0f, 1.0f);
     calcTrans(easeIn);
     if (MR::isLessStep(this, 15)) {
-        MR::startLevelSound(this, "SE_OJ_LV_PIPE_VANISH_MAGMA", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_PIPE_VANISH_MAGMA");
     }
 
     if (MR::isStep(this, 15)) {
@@ -398,7 +398,7 @@ void EarthenPipe::exeHideDown() {
 void EarthenPipe::control() {
     MR::updateMaterial(this);
     if (_19C) {
-        MR::startLevelSound(this, "SE_OJ_LV_PIPE_IN_WATER", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_PIPE_IN_WATER");
     }
 }
 

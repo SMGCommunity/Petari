@@ -189,7 +189,7 @@ void EyeBeamer::updateWaterSurfaceMtx() {
 void EyeBeamer::control() {
     updatePoseAndTrans();
     updateWaterSurfaceMtx();
-    MR::startLevelSound(this, "SE_OJ_LV_EYE_BEAMER_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_EYE_BEAMER_MOVE");
 }
 
 void EyeBeamer::startClipped() {
@@ -258,7 +258,7 @@ void EyeBeamer::exeDemoWait() {
 
 void EyeBeamer::exeDemoTurn() {
     if (MR::isFirstStep(this))
-        MR::startSound(this, "SE_OJ_EYE_BEAMER_TURN", -1, -1);
+        MR::startSound(this, "SE_OJ_EYE_BEAMER_TURN");
 
     f32 rate = MR::calcDemoPartStepRate("アイビーマー回転");
     f32 easeIn = MR::getEaseInOutValue(rate, 0.0f, 1.0f, 1.0f);
@@ -290,7 +290,7 @@ void EyeBeamer::exeWait() {}
 
 void EyeBeamer::exeTurn() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_EYE_BEAMER_TURN", -1, -1);
+        MR::startSound(this, "SE_OJ_EYE_BEAMER_TURN");
     }
     f32 easeInOut = MR::calcNerveEaseInOutRate(this, 0x12C);
     TQuat4f stack_14;

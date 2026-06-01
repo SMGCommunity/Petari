@@ -45,14 +45,14 @@ void BossStinkBugAngryDemo::exeDemo() {
     }
 
     if (MR::isGreaterStep(this, ::sFlySoundStartStep1) && MR::isLessStep(this, ::sFlySoundStartStep2 + 1)) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 550, 120, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", 250, 20, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 550, 120);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", 250, 20);
     }
 
     if (MR::isGreaterStep(this, ::sFlySoundStartStep2)) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 550, 126, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", 550, 126, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE2", 550, 126, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 550, 126);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", 550, 126);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE2", 550, 126);
     }
 
     mDemoPositionController->movement();

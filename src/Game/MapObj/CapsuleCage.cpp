@@ -44,7 +44,7 @@ void CapsuleCage::exeStartCamera() {
 void CapsuleCage::exeOpen() {
     if (MR::isFirstStep(this)) {
         MR::startAllAnim(this, "Move");
-        MR::startSound(this, "SE_OJ_CAPSULE_CAGE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_CAPSULE_CAGE_BREAK");
         MR::tryRumblePadWeak(this, 0);
         MR::shakeCameraWeak();
     }

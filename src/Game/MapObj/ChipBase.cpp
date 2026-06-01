@@ -287,9 +287,9 @@ void ChipBase::exeGot() {
         MR::tryRumblePadMiddle(this, 0);
 
         if (!mChipType) {
-            MR::startSystemSE("SE_SY_BLUECHIP_GET", MR::getGotChipCount(mChipType, mGroupID), -1);
+            MR::startSystemSE("SE_SY_BLUECHIP_GET", MR::getGotChipCount(mChipType, mGroupID));
         } else if (mChipType == 1) {
-            MR::startSystemSE("SE_SY_YELLOWCHIP_GET", MR::getGotChipCount(mChipType, mGroupID), -1);
+            MR::startSystemSE("SE_SY_YELLOWCHIP_GET", MR::getGotChipCount(mChipType, mGroupID));
         }
     }
 

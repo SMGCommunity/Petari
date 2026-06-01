@@ -82,7 +82,7 @@ void LotusLeaf::exeShake() {
     if (MR::isFirstStep(this)) {
         mShakeSpeed = sShakeInitSpeed;
         mShakePeriod = sShakePeriodStart;
-        MR::startSound(this, "SE_OJ_LOTUS_LEAF_WAVE", -1, -1);
+        MR::startSound(this, "SE_OJ_LOTUS_LEAF_WAVE");
         MR::emitEffect(this, "LotusLeafRipple");
     }
 

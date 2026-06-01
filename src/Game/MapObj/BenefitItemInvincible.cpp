@@ -14,7 +14,7 @@ BenefitItemInvincible::BenefitItemInvincible(const char* pName) : BenefitItemObj
 }
 
 void BenefitItemInvincible::exeCatch() {
-    MR::startSystemSE("SE_SY_POWER_UP_2", -1, -1);
+    MR::startSystemSE("SE_SY_POWER_UP_2");
     MR::hideModel(this);
     MR::changePlayerItemStatus(7);
     kill();
@@ -57,7 +57,7 @@ void BenefitItemInvincible::appearThrowUp() {
         BenefitItemObj::appearThrowUp();
     }
     else {
-        MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
+        MR::startSystemSE("SE_SY_ITEM_APPEAR");
         setNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance);
         f32 appear = cAppearThrowFwdSpd;
         mVelocity = MR::addTwoScalarVecs(_148, _13C, appear, cAppearThrowUpSpd);

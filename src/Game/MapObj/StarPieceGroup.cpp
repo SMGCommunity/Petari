@@ -42,7 +42,7 @@ void StarPieceGroup::forceReplaceStarPieceAll() {
     }
 
     if (_95) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 }
 
@@ -60,7 +60,7 @@ void StarPieceGroup::forceKillStarPieceAll(bool withEffect) {
 
         if (withEffect) {
             MR::emitEffect(mPieces[i], "Appear");
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BREAK");
         }
     }
 }
@@ -185,7 +185,7 @@ void StarPieceGroup::makeActorAppeared() {
 
 void StarPieceGroup::appear() {
     if (!_94) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
     LiveActor::appear();
 }

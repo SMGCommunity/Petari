@@ -69,7 +69,7 @@ void FileSelectButton::shiftSelect() {
 void FileSelectButton::exeSelect() {
     for (int i = 0; i < ARRAY_SIZE(mButtonCtrl); i++) {
         if (mButtonCtrl[i]->isPointingTrigger()) {
-            MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+            MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
         }
 
         if (mButtonCtrl[i]->trySelect()) {

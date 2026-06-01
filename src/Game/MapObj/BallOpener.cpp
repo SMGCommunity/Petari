@@ -73,7 +73,7 @@ void BallOpener::exeSetCenter() {
         MR::shakeCameraWeak();
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_BALL_OPN_SETTING", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BALL_OPN_SETTING");
     if (_C4 > 20 || MR::isGreaterStep(this, 180)) {
         setNerve(&NrvBallOpener::BallOpenerNrvOpen::sInstance);
     }
@@ -88,8 +88,8 @@ void BallOpener::exeOpen() {
         MR::zeroVelocity(mSensor->mHost);
         mSensor->receiveMessage(0xB3, getSensor("body"));
         mSensor = nullptr;
-        MR::startSound(this, "SE_OJ_BALL_OPN_OPEN", -1, -1);
-        MR::startSystemSE("SE_SY_TAMAKORO_GOAL", -1, -1);
+        MR::startSound(this, "SE_OJ_BALL_OPN_OPEN");
+        MR::startSystemSE("SE_SY_TAMAKORO_GOAL");
 
         if (MR::isValidSwitchA(this)) {
             MR::onSwitchA(this);

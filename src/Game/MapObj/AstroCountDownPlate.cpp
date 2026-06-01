@@ -54,7 +54,7 @@ void AstroCountDownPlate::exeWait() {
     }
 
     if (_1B4) {
-        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT");
     }
 }
 
@@ -68,7 +68,7 @@ void AstroCountDownPlate::exeRevival() {
     }
 
     if (_1B4) {
-        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT");
     }
 
     if (MR::isBrkStopped(this)) {
@@ -80,7 +80,7 @@ void AstroCountDownPlate::exeCountToZero() {
     if (MR::isFirstStep(this)) {
         MR::showMaterial(this, cMaterialName01);
         MR::showMaterial(this, cMaterialName10);
-        MR::startSound(this, "SE_OJ_CDN_PLATE_ONE_TO_ZERO", -1, -1);
+        MR::startSound(this, "SE_OJ_CDN_PLATE_ONE_TO_ZERO");
     }
 
     f32 v2 = MR::calcNerveRate(this, 50);
@@ -88,7 +88,7 @@ void AstroCountDownPlate::exeCountToZero() {
     _8C.getTexMtxInfo().mSRT.mTranslationY = v3;
 
     if (_1B4) {
-        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT");
     }
 
     if (MR::isStep(this, 50)) {

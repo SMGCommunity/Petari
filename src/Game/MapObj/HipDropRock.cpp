@@ -51,7 +51,7 @@ void HipDropRock::exeWait() {
 
 void HipDropRock::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_ROCK_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_ROCK_BREAK");
         MR::invalidateCollisionParts(this);
         MR::invalidateClipping(this);
         if (_C8) {
@@ -134,7 +134,7 @@ void HipDropRock::appearItem() {
             MR::appearCoinPop(this, mPosition, 1);
         } else if (_C0 == 1) {
             MR::appearStarPiece(this, mPosition, _C4, 10.0f, 40.0f, false);
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
     }
 }

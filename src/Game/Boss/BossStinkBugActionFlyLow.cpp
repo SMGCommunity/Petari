@@ -70,7 +70,7 @@ bool BossStinkBugActionFlyLow::receiveMsgPlayerAttack(u32 msg, HitSensor* pSende
         MR::emitEffectHit(getHost(), MR::getSensorPos(pSender), "Hit");
 
         if (BossStinkBugFunction::isHipDropableSensor(getHost(), pReceiver)) {
-            MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_2", -1, -1);
+            MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_2");
             setNerve(&NrvBossStinkBugActionFlyLow::BossStinkBugActionFlyLowNrvFall::sInstance);
             return true;
         }

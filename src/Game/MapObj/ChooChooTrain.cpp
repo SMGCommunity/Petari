@@ -120,10 +120,10 @@ void ChooChooTrain::control() {
 
     MR::reverseRailDirection(this);
     MR::setRailCoord(this, railCoord);
-    MR::startLevelSound(this, "SE_OJ_LV_TOY_SL_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_TOY_SL_MOVE");
 
     if (mWhistleTimer < 0) {
-        MR::startSound(this, "SE_OJ_TOY_SL_WHISTLE", -1, -1);
+        MR::startSound(this, "SE_OJ_TOY_SL_WHISTLE");
         mWhistleTimer = MR::getRandom((s32)0xB4, (s32)0x258);
     } else {
         mWhistleTimer--;

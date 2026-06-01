@@ -70,7 +70,7 @@ void Note::exeCountDown() {
 
     if (MR::isStep(this, mCounter)) {
         MR::emitEffect(this, "Vanish");
-        MR::startSound(this, "SE_OJ_MUSICAL_NOTE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_MUSICAL_NOTE_BREAK");
         MR::failureNoteCollection();
         kill();
     }

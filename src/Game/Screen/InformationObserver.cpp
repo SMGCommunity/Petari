@@ -112,7 +112,7 @@ void InformationObserver::exeDisp() {
         }
     }
 
-    MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+    MR::startSystemSE("SE_SY_TALK_OK");
     MR::disappearInformationMessage();
 
     switch (mType) {

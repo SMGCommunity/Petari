@@ -37,7 +37,7 @@ void PictureBookCloseButton::disappear() {
 
 bool PictureBookCloseButton::trySelect() {
     if (mPaneCtrl->trySelect()) {
-        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
+        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         setNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvSelected::sInstance);
 
@@ -46,7 +46,7 @@ bool PictureBookCloseButton::trySelect() {
 
     if (!mPaneCtrl->isAppearing() && MR::testCorePadTriggerB(WPAD_CHAN0) && mCanCloseWithPad) {
         mPaneCtrl->disappear();
-        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
+        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         setNerve(&NrvPictureBookCloseButton::PictureBookCloseButtonNrvSelected::sInstance);
 
@@ -64,7 +64,7 @@ void PictureBookCloseButton::control() {
     mPaneCtrl->update();
 
     if (mPaneCtrl->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
     }
 }
 

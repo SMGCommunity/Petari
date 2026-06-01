@@ -83,7 +83,7 @@ void ProloguePictureBook::exeKeyWait() {
     }
 
     if (MR::testCorePadTriggerA(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         mAButtonIcon->term();
 
         mPage++;

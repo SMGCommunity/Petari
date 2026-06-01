@@ -66,11 +66,11 @@ void BrosButton::exeSelect() {
     mIsSelectedMario = !mIsSelectedMario;
 
     if (mIsSelectedMario == true) {
-        MR::stopSystemSE("SE_SY_FILE_SEL_SW_LUIGI", 0);
-        MR::startSystemSE("SE_SY_FILE_SEL_SW_MARIO", -1, -1);
+        MR::stopSystemSE("SE_SY_FILE_SEL_SW_LUIGI");
+        MR::startSystemSE("SE_SY_FILE_SEL_SW_MARIO");
     } else {
-        MR::stopSystemSE("SE_SY_FILE_SEL_SW_MARIO", 0);
-        MR::startSystemSE("SE_SY_FILE_SEL_SW_LUIGI", -1, -1);
+        MR::stopSystemSE("SE_SY_FILE_SEL_SW_MARIO");
+        MR::startSystemSE("SE_SY_FILE_SEL_SW_LUIGI");
     }
 
     setNerve(&BrosButtonNrvDecide::sInstance);
@@ -96,6 +96,6 @@ void BrosButton::control() {
     mPaneCtrl->update();
 
     if (mPaneCtrl->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
     }
 }

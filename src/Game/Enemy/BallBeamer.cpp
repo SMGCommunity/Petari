@@ -124,7 +124,7 @@ void BallBeamer::exeAttack() {
         setNerve(&NrvBallBeamer::BallBeamerNrvInter::sInstance);
     } else {
         if (getNerveStep() % 120 >= 75 && getNerveStep() % 120 < 119) {
-            MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_CHARGE", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_CHARGE");
         }
 
         if (getNerveStep() % 120 == 75) {
@@ -133,7 +133,7 @@ void BallBeamer::exeAttack() {
 
         if (getNerveStep() % 120 == 119) {
             MR::startAction(this, "Sign");
-            MR::startSound(this, "SE_EM_BALLBEAMER_ROT_HEAD", -1, -1);
+            MR::startSound(this, "SE_EM_BALLBEAMER_ROT_HEAD");
             BallBeamer::tryAttack();
         }
     }

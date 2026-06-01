@@ -79,9 +79,9 @@ void UFOKinoko::exeWait() {}
 void UFOKinoko::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::StageEffect::tryStageEffectStart(this, mObjectName);
-        MR::startSound(this, "SE_OJ_UFO_KINOKO_MOVE_ST", -1, -1);
+        MR::startSound(this, "SE_OJ_UFO_KINOKO_MOVE_ST");
     }
-    MR::startLevelSound(this, "SE_OJ_LV_UFO_KINOKO_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_UFO_KINOKO_MOVE");
     if (mRailMover != nullptr && !MapObjActorUtil::isRailMoverWorking(this)) {
         setNerve(&NrvUFOKinoko::HostTypeStop::sInstance);
     }
@@ -89,7 +89,7 @@ void UFOKinoko::exeMove() {
 
 void UFOKinoko::exeStop() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_UFO_KINOKO_MOVE_ED", -1, -1);
+        MR::startSound(this, "SE_OJ_UFO_KINOKO_MOVE_ED");
         MR::StageEffect::tryStageEffectStop(this, mObjectName);
     }
 }

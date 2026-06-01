@@ -130,7 +130,7 @@ void SuddenDeathMeter::exeBreakMeter() {
         mFollowPosW.x = mFollowPosW.y = 0.0f;
     }
     if (MR::isStep(this, 40)) {
-        MR::startSystemSE("SE_SY_LIFE_PLATE_DEC", -1, -1);
+        MR::startSystemSE("SE_SY_LIFE_PLATE_DEC");
         MR::startAnim(this, "FontPosition2to1", 1);
         setCountAnimFrame();
         setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvWait::sInstance);

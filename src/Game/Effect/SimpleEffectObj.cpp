@@ -137,7 +137,7 @@ void SimpleEffectObj::exeMove() {
             Sound = nullptr;
         }
         if (Sound) {
-            MR::startSound(this, Sound, -1, -1);
+            MR::startSound(this, Sound);
         }
     }
     v1 = ::findDataElement(_8C);
@@ -148,7 +148,7 @@ void SimpleEffectObj::exeMove() {
         levelSound = nullptr;
     }
     if (levelSound) {
-        MR::startLevelSound(this, levelSound, -1, -1, -1);
+        MR::startLevelSound(this, levelSound);
     }
     v1 = ::findDataElement(_8C);
     s32 v13;

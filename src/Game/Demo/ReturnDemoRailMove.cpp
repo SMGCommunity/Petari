@@ -103,7 +103,7 @@ void ReturnDemoRailMove::update(s32 currentStep, s32 maxSteps) {
         }
     }
 
-    MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY", -1, -1, -1);
+    MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY");
 
     TVec3f position;
     TVec3f direction;

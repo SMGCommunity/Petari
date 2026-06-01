@@ -184,7 +184,7 @@ void ItemBubble::kill() {
             case 1:
                 StarPiece* piece = getStarPiece(i);
                 piece->launch(getRotPartsPosition(i), grav.negateInline().multInLine(cShootStarSpeed), false, false);
-                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
                 break;
             }
         }
@@ -268,7 +268,7 @@ void ItemBubble::exeWait() {
 
 void ItemBubble::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_ITEM_BUBBLE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_ITEM_BUBBLE_BREAK");
         MR::emitEffect(this, "BubbleBreak");
         kill();
     }

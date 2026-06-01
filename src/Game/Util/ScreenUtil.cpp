@@ -587,7 +587,7 @@ namespace MR {
     }
 
     void requestOneUp() {
-        startSystemSE("SE_SY_1UP", -1, -1);
+        startSystemSE("SE_SY_1UP");
         getGameSceneLayoutHolder()->requestOneUp(1);
     }
 };  // namespace MR

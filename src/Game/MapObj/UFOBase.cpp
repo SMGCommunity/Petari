@@ -104,7 +104,7 @@ void UFOBase::exeMove() {
         if (mRailMover) {
             mRailMover->start();
             if (MR::isEqualString("UFOBattleStageC", _B4)) {
-                MR::startSound(this, "SE_OJ_UFO_BTL_C_START", -1, -1);
+                MR::startSound(this, "SE_OJ_UFO_BTL_C_START");
             }
         }
     }
@@ -142,9 +142,9 @@ void UFOBase::control() {
     mLODCtrl->update();
 
     if (MR::isEqualString("UFONormalB", _B4)) {
-        MR::startLevelSound(this, "SE_OJ_LV_UFO_NORM_B_WORK", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_UFO_NORM_B_WORK");
     } else if (MR::isEqualString("UFOBattleStageD", _B4)) {
-        MR::startLevelSound(this, "SE_OJ_LV_UFO_BTL_D_ROTATE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_UFO_BTL_D_ROTATE");
     }
 
     if (mRailMover) {
@@ -154,18 +154,18 @@ void UFOBase::control() {
         mPosition.z = mRailMover->_28.z;
         if (mRailMover->isWorking()) {
             if (MR::isEqualString("UFOBattleStageC", _B4)) {
-                MR::startLevelSound(this, "SE_OJ_LV_UFO_BTL_C_MOVE", -1, -1, -1);
+                MR::startLevelSound(this, "SE_OJ_LV_UFO_BTL_C_MOVE");
             } else {
-                MR::startLevelSound(this, "SE_OJ_LV_UFO_MOVE", -1, -1, -1);
+                MR::startLevelSound(this, "SE_OJ_LV_UFO_MOVE");
             }
         }
         if (mRailMover->isDone() && !_B0) {
             MR::tryRumblePadMiddle(this, 0);
             MR::shakeCameraNormal();
             if (MR::isEqualString("UFOBattleStageC", _B4)) {
-                MR::startSound(this, "SE_OJ_UFO_BTL_C_STOP", -1, -1);
+                MR::startSound(this, "SE_OJ_UFO_BTL_C_STOP");
             } else {
-                MR::startSound(this, "SE_OJ_UFO_MOVE_END", -1, -1);
+                MR::startSound(this, "SE_OJ_UFO_MOVE_END");
             }
             _B0 = true;
         }

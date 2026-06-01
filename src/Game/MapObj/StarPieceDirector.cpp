@@ -190,7 +190,7 @@ bool StarPieceDirector::gotByPlayer() {
     }
 
     MR::addStarPiece(1);
-    MR::startSystemSE("SE_SY_STAR_PIECE_GET", -1, -1);
+    MR::startSystemSE("SE_SY_STAR_PIECE_GET");
 
     mQueueNewGetSound = true;
     MR::getStarPiecePlayer();

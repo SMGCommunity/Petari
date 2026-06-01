@@ -138,11 +138,11 @@ void RainCloud::exeAppear() {
         MR::startBpk(this, "Appear");
         MR::validateCollisionParts(this);
         mCloudCylinder->appear();
-        MR::startSound(this, "SE_OJ_RAIN_CLOUD_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_RAIN_CLOUD_APPEAR");
     }
 
     if (MR::isStep(this, sThunderStep)) {
-        MR::startSound(this, "SE_OJ_RAIN_CLOUD_THUNDER", -1, -1);
+        MR::startSound(this, "SE_OJ_RAIN_CLOUD_THUNDER");
     }
 
     if (MR::isBckStopped(this)) {
@@ -167,7 +167,7 @@ void RainCloud::exeDisappear() {
         MR::startBck(this, "Disappear", nullptr);
         MR::invalidateHitSensors(this);
         MR::invalidateCollisionParts(this);
-        MR::startSound(this, "SE_OJ_RAIN_CLOUD_DISAPPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_RAIN_CLOUD_DISAPPEAR");
     }
 
     if (MR::isBckStopped(this)) {

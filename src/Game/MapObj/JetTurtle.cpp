@@ -76,8 +76,8 @@ void JetTurtle::resetPosition() {
     MR::invalidateClipping(this);
     MR::invalidateHitSensors(this);
     MR::forceDeleteEffectAll(this);
-    MR::stopSound(this, "SE_OJ_TURTLE_JET_LAUNCH_W", 0);
-    MR::stopSound(this, "SE_OJ_TURTLE_JET_LANCH_L", 0);
+    MR::stopSound(this, "SE_OJ_TURTLE_JET_LAUNCH_W");
+    MR::stopSound(this, "SE_OJ_TURTLE_JET_LANCH_L");
     mVelocity.zero();
     mRotation.zero();
     _94 = nullptr;
@@ -162,11 +162,11 @@ void JetTurtle::exeThrowing() {
             MR::emitEffect(this, "Ignition");
 
             if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-                MR::startSound(this, "SE_OJ_TURTLE_JET_LAUNCH_W", -1, -1);
+                MR::startSound(this, "SE_OJ_TURTLE_JET_LAUNCH_W");
                 MR::startBck(this, "BulletWater", nullptr);
                 MR::emitEffect(this, "WaterBlur");
             } else {
-                MR::startSound(this, "SE_OJ_TURTLE_JET_LAUNCH_L", -1, -1);
+                MR::startSound(this, "SE_OJ_TURTLE_JET_LAUNCH_L");
                 MR::startSoundPlayer("SE_PV_THROW", -1);
                 MR::startBck(this, "Bullet", nullptr);
 
@@ -368,7 +368,7 @@ void JetTurtle::exeTakenReserve() {
 
 void JetTurtle::exeTakenStart() {
     if (MR::sendMsgTaken(_94, getSensor("body"))) {
-        MR::startSystemSE("SE_SY_GET_TURTLE_JET", -1, -1);
+        MR::startSystemSE("SE_SY_GET_TURTLE_JET");
         if (!MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
             MR::startSoundPlayer("SE_PV_CATCH", -1);
         }
@@ -409,7 +409,7 @@ void JetTurtle::exeRestart() {
 
     if (MR::isGreaterStep(this, 45)) {
         if (_E2) {
-            MR::startLevelSound(this, "SE_EM_LV_NOKOLAND_REVIVE_EFFECT", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_NOKOLAND_REVIVE_EFFECT");
         } else {
         }
 
@@ -430,7 +430,7 @@ void JetTurtle::exeRestart() {
             MR::showModel(this);
             setNerve(&NrvJetTurtle::JetTurtleNrvWait::sInstance);
             MR::emitEffect(this, "KouraRevival");
-            MR::startSound(this, "SE_EM_NOKOLAND_REVIVE_APPEAR", -1, -1);
+            MR::startSound(this, "SE_EM_NOKOLAND_REVIVE_APPEAR");
         }
     }
 }
@@ -583,7 +583,7 @@ bool JetTurtle::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
     }
 
     if (MR::isMsgPlayerTrample(msg)) {
-        MR::startSound(this, "SE_EM_TURTLE_SHELL_TRAMPLE", -1, -1);
+        MR::startSound(this, "SE_EM_TURTLE_SHELL_TRAMPLE");
         return true;
     } else {
         if (msg == ACTMES_FOO_ATTACK) {

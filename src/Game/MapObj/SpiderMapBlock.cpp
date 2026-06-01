@@ -38,7 +38,7 @@ void SpiderMapBlock::init(const JMapInfoIter& rIter) {
 }
 
 void SpiderMapBlock::kill() {
-    MR::startSound(this, "SE_OJ_ROCK_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_ROCK_BREAK");
     MR::emitEffect(this, "Break");
     MtxPtr baseMtx = getBaseMtx();
     TVec3f coinVel(baseMtx[0][1], baseMtx[1][1], 0.0f);

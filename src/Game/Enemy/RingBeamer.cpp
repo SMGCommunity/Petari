@@ -82,7 +82,7 @@ void RingBeamer::exeAttack() {
     }
 
     if (getNerveStep() % 80 >= 0 && getNerveStep() % 80 < 79) {
-        MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_CHARGE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_CHARGE");
     }
 
     if (getNerveStep() % 80 == 0) {

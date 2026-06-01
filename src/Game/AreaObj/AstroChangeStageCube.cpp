@@ -87,13 +87,13 @@ void AstroChangeStageCube::movement() {
         case 0:
         case 2:
         case 4:
-            MR::startSystemSE("SE_DM_ASTRO_WIPE_OUT", -1, -1);
+            MR::startSystemSE("SE_DM_ASTRO_WIPE_OUT");
             break;
         case 1:
         case 3:
         case 5:
         default:
-            MR::startSystemSE("SE_DM_ASTRO_WIPE_IN", -1, -1);
+            MR::startSystemSE("SE_DM_ASTRO_WIPE_IN");
             break;
         }
 

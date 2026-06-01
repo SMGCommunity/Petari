@@ -67,7 +67,7 @@ void TombSpiderVitalSpot::exeDamageStart() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "DamageStart", nullptr);
         MR::startBrk(this, "TombSpiderVitalSpot");
-        MR::startSound(this, "SE_BM_TSPIDER_DAMAGE_VITAL", -1, -1);
+        MR::startSound(this, "SE_BM_TSPIDER_DAMAGE_VITAL");
     }
 }
 

@@ -604,7 +604,7 @@ void MiniatureGalaxy::exeOpen() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(mUnknownModel, "Select");
         MR::emitEffect(mUnknownModel, "MiniatureGalaxyNewOpenSign");
-        MR::startSystemSE("SE_SY_NEW_GALAXY_OPEN_SIGN", -1, -1);
+        MR::startSystemSE("SE_SY_NEW_GALAXY_OPEN_SIGN");
 
         mCanZoomIn = 0;
         mZoomLevel = 20;
@@ -620,11 +620,11 @@ void MiniatureGalaxy::exeOpen() {
     }
 
     if (MR::isLessStep(this, 45)) {
-        MR::startSystemSE("SE_SY_LV_NEW_GALAXY_OPENING", -1, -1);
+        MR::startSystemSE("SE_SY_LV_NEW_GALAXY_OPENING");
     }
 
     if (MR::isStep(this, 45)) {
-        MR::startSystemSE("SE_SY_NEW_GALAXY_OPEN", -1, -1);
+        MR::startSystemSE("SE_SY_NEW_GALAXY_OPEN");
         MR::emitEffect(mUnknownModel, "MiniatureGalaxyNewOpen");
 
         MR::tryRumblePadWeak(this, 0);
@@ -664,7 +664,7 @@ void MiniatureGalaxy::exeOpen() {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(mName);
 
         if (accessor.isExistGrandStar()) {
-            MR::startSystemSE("SE_SY_KOOPA_LAUGH", -1, -1);
+            MR::startSystemSE("SE_SY_KOOPA_LAUGH");
         }
 
         setNerve(&NrvMiniatureGalaxy::MiniatureGalaxyNrvWait::sInstance);

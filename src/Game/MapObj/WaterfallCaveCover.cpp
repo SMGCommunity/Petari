@@ -46,11 +46,11 @@ void WaterfallCaveCover::exeBreak() {
         MR::invalidateCollisionParts(this);
         MapObjActorUtil::startBreak(this);
         MR::startRumbleWithShakeCameraStrong(this, "中", "弱", 1000.0, 3.4028235e38);
-        MR::startSound(this, "SE_OJ_WATERFALL_COVER_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_WATERFALL_COVER_BREAK");
     }
 
     if (MR::isStep(this, 90)) {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     }
 
     if (MapObjActorUtil::isBreakStopped(this)) {

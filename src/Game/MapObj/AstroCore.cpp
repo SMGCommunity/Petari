@@ -41,7 +41,7 @@ void AstroCore::exeGrow() {
     }
 
     if (MR::isStep(this, 40)) {
-        MR::startSound(this, "SE_OJ_ASTRO_CORE_GROW", -1, -1);
+        MR::startSound(this, "SE_OJ_ASTRO_CORE_GROW");
         MR::tryRumblePadMiddle(this, 0);
         MR::shakeCameraNormalWeak();
         startAnimGrow();

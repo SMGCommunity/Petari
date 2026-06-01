@@ -60,7 +60,7 @@ void HeavensDoorDemoObj::exeAppear() {
 
 void HeavensDoorDemoObj::exeWait() {
     if (MapObjActor::isObjectName("HeavensDoorInsidePlanetPartsA")) {
-        MR::startLevelSound(this, "SE_OJ_LV_HD_INSIDE_SUN_WORK", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_HD_INSIDE_SUN_WORK");
     }
 }
 

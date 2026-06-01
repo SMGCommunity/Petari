@@ -89,11 +89,11 @@ bool LuigiNPC::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
 bool LuigiNPC::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (_160 == 3) {
         if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
-            MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
+            MR::startSound(this, "SE_SM_NPC_TRAMPLED");
         }
 
         if (MR::isMsgStarPieceReflect(msg)) {
-            MR::startSound(this, "SE_SM_STAR_PIECE_HIT", -1, -1);
+            MR::startSound(this, "SE_SM_STAR_PIECE_HIT");
         }
 
         if ((MR::isMsgPlayerSpinAttack(msg) || MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg) || MR::isMsgStarPieceReflect(msg)) &&
@@ -256,21 +256,21 @@ void LuigiNPC::exeWait() {
 
 void LuigiNPC::exeReaction() {
     if (_D8) {
-        MR::startSound(this, "SE_SV_LUIGI_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SV_LUIGI_TRAMPLED");
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
     }
 
     if (NPCActor::isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_LUIGI_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_LUIGI_POINT");
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SV_LUIGI_SPIN", -1, -1);
+        MR::startSound(this, "SE_SV_LUIGI_SPIN");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_LUIGI_STAR_PIECE_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_LUIGI_STAR_PIECE_HIT");
     }
 
     if (MR::tryStartReactionAndPopNerve(this)) {
@@ -283,12 +283,12 @@ void LuigiNPC::exeTakeOutStar() {
     }
 
     if (MR::isStep(this, 87)) {
-        MR::startSound(this, "SE_SV_LUIGI_LIFT_UP", -1, -1);
+        MR::startSound(this, "SE_SV_LUIGI_LIFT_UP");
     }
 
     if (MR::isGreaterStep(this, 87)) {
         ModelObj* starModel = mTakeOutStar->mStarModel;
-        MR::startLevelSound(starModel, "SE_OJ_LV_POW_STAR_EXIST", -1, -1, -1);
+        MR::startLevelSound(starModel, "SE_OJ_LV_POW_STAR_EXIST");
     }
 }
 
@@ -341,7 +341,7 @@ void LuigiNPC::exeArrestedWait() {
 void LuigiNPC::exeArrestedJump() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Leave");
-        MR::startSound(this, "SE_SV_LUIGI_ESCAPE", -1, -1);
+        MR::startSound(this, "SE_SV_LUIGI_ESCAPE");
     }
 
     if (trySetNerveArrested()) {
@@ -355,14 +355,14 @@ void LuigiNPC::exeOnTreeWait() {
     }
 
     if (MR::calcDistanceToPlayer(mPosition) <= 600.0f) {
-        MR::startLevelSound(this, "SE_SV_LV_LUIGI_AFRAID", -1, -1, -1);
+        MR::startLevelSound(this, "SE_SV_LV_LUIGI_AFRAID");
     }
 }
 
 void LuigiNPC::exeOnTreeTouch() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "TreeTrampled");
-        MR::startSound(this, "SE_SV_LUIGI_AFRAID_TOUCH", -1, -1);
+        MR::startSound(this, "SE_SV_LUIGI_AFRAID_TOUCH");
     }
 
     if (MR::isActionEnd(this)) {
@@ -381,7 +381,7 @@ void LuigiNPC::exeOnTreeFall() {
         MR::addVelocityJump(this, 20.0f);
         TVec3f v2(0.0f, 0.0f, 0.0f);
         MR::setShadowDropPositionAtJoint(this, nullptr, "Center", &v2);
-        MR::startSound(this, "SE_SV_LUIGI_FALL", -1, -1);
+        MR::startSound(this, "SE_SV_LUIGI_FALL");
     }
 
     MR::addVelocityToGravity(this, 1.0f);
@@ -396,7 +396,7 @@ void LuigiNPC::exeOnTreeFall() {
 void LuigiNPC::exeOnTreeLand() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "TreeLand");
-        MR::startSound(this, "SE_SM_LUIGI_LAND", -1, -1);
+        MR::startSound(this, "SE_SM_LUIGI_LAND");
     }
 
     if (MR::isActionEnd(this)) {

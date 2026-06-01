@@ -46,7 +46,7 @@ void KameckFireBall::init(const JMapInfoIter& rIter) {
 }
 
 void KameckFireBall::kill() {
-    MR::startSound(this, "SE_BM_KAMECK_DISAPPEAR_FIRE", -1, -1);
+    MR::startSound(this, "SE_BM_KAMECK_DISAPPEAR_FIRE");
     MR::emitEffect(this, "BeamFireVanish");
     LiveActor::kill();
 }
@@ -121,14 +121,14 @@ void KameckFireBall::exeWait() {
         MR::startAction(this, "BossKameckFireBall");
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_KAMECK_FIRE_BALL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_KAMECK_FIRE_BALL");
     MR::rotateQuatRollBall(&_8C, mVelocity, -mGravity, 58.0f);
     MR::addVelocityToGravity(this, 0.5f);
     MR::attenuateVelocity(this, 0.995f);
 
     if (MR::reboundVelocityFromCollision(this, 0.40f, 0.0f, 1.0f)) {
         if (mVelocity.dot(-mGravity) >= 1.0f) {
-            MR::startSound(this, "SE_BM_KAMECK_FIRE_BOUND", -1, -1);
+            MR::startSound(this, "SE_BM_KAMECK_FIRE_BOUND");
         }
     }
 

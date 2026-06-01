@@ -60,7 +60,7 @@ void FireMarioBall::appear() {
 
 void FireMarioBall::kill() {
     MR::emitEffect(this, "Break");
-    MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BREAK");
     LiveActor::kill();
 }
 
@@ -140,16 +140,16 @@ void FireMarioBall::exeThrow() {
         MR::startBck(this, "Roll", 0);
         MR::startBtk(this, "Roll");
         MR::startBrk(this, "Roll");
-        MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_OUT", -1, -1);
-        MR::startCSSound("CS_FIRE_BALL", 0, 0);
+        MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_OUT");
+        MR::startCSSound("CS_FIRE_BALL", nullptr, 0);
     }
     if (MR::isBindedGround(this)) {
-        MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BOUND", -1, -1);
+        MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BOUND");
         const TVec3f* v1 = MR::getGroundNormal(this);
         mVelocity += -*v1 * MR::vecKillElement(mVelocity, *v1, &mVelocity) * cBoundReduction;
 
     } else if (MR::isBindedRoof(this)) {
-        MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BOUND", -1, -1);
+        MR::startSound(this, "SE_OJ_MARIO_FIRE_BALL_BOUND");
         const TVec3f* v2 = MR::getRoofNormal(this);
         mVelocity += -*v2 * MR::vecKillElement(mVelocity, *v2, &mVelocity) * cBoundReduction;
     } else {

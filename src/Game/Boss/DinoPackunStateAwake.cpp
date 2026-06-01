@@ -25,8 +25,8 @@ void DinoPackunStateAwake::kill() {
 void DinoPackunStateAwake::exeFind() {
     if (MR::isFirstStep(this)) {
         MR::startBck(getHost(), "Find", nullptr);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_FIND", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_FIND");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
 
     f32 rate = MR::calcNerveEaseOutRate(this, 30);

@@ -125,7 +125,7 @@ void PlayTimerScene::exeNormal() {
 
 void PlayTimerScene::exeTimeUp() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_E3_TIMER_TIME_UP", -1, -1);
+        MR::startSystemSE("SE_SY_E3_TIMER_TIME_UP");
         mTimeUpLayout->appear();
         MR::startAnim(mTimeUpLayout, "Appear", 0);
     }

@@ -50,7 +50,7 @@ bool TombSpiderActionCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSen
             }
         } else {
             MR::shakeCameraNormal();
-            MR::startSound(TombSpiderFunction::getCocoon(mParent), "SE_OJ_TSPIDER_COCOON_BOUND", -1, -1);
+            MR::startSound(TombSpiderFunction::getCocoon(mParent), "SE_OJ_TSPIDER_COCOON_BOUND");
             return true;
         }
     }
@@ -67,7 +67,7 @@ void TombSpiderActionCocoon::exeWait() {
 
 void TombSpiderActionCocoon::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(TombSpiderFunction::getCocoon(mParent), "SE_OJ_TSPIDER_COCOON_BREAK", -1, -1);
+        MR::startSound(TombSpiderFunction::getCocoon(mParent), "SE_OJ_TSPIDER_COCOON_BREAK");
     }
 
     if (MR::isStep(this, sBreakStep)) {

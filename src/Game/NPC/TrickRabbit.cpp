@@ -205,8 +205,8 @@ bool TrickRabbit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 
     if (MR::isMsgStarPieceAttack(msg)) {
         MR::limitedStarPieceHitSound();
-        MR::startSound(this, "SE_SM_RABBIT_STAR_PIECE_HIT", -1, -1);
-        MR::startSound(this, "SE_SV_RABBIT_STAR_PIECE_HIT", -1, -1);
+        MR::startSound(this, "SE_SM_RABBIT_STAR_PIECE_HIT");
+        MR::startSound(this, "SE_SV_RABBIT_STAR_PIECE_HIT");
         return receiveMsgTrample();
     }
 
@@ -214,8 +214,8 @@ bool TrickRabbit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
         return requestCaught();
 
     if (MR::isMsgPlayerTrample(msg)) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_RABBIT_STAR_PIECE_HIT", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_RABBIT_STAR_PIECE_HIT");
         return receiveMsgTrample();
     }
 
@@ -692,7 +692,7 @@ void TrickRabbit::exeGetUp() {
 void TrickRabbit::exeCaught() {
     if (MR::isFirstStep(this)) {
         MR::stopStageBGM(60);
-        MR::startSystemSE("SE_SY_TOTAL_COMPLETE", -1, -1);
+        MR::startSystemSE("SE_SY_TOTAL_COMPLETE");
     }
     MR::updateActorStateAndNextNerve(this, mRabbitStateCaught, &NrvTrickRabbit::TrickRabbitNrvWaitPowerStarDemo::sInstance);
 }
@@ -750,7 +750,7 @@ void TrickRabbit::doRunaway() {
         updateFootPrint();
 
     if (MR::checkPassBckFrame(this, 3.0f))
-        MR::startSound(this, "SE_SM_RABBIT_JUMP", -1, -1);
+        MR::startSound(this, "SE_SM_RABBIT_JUMP");
 
     TVec3f stack_14(*MR::getNextNodePosition(mRailGraphIter));
     f32 arg = MR::getSelectEdgeArg1(mRailGraphIter);
@@ -791,7 +791,7 @@ void TrickRabbit::doJumpStart() {
 void TrickRabbit::doJump() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Jump");
-        MR::startSound(this, "SE_SM_RABBIT_JUMP", -1, -1);
+        MR::startSound(this, "SE_SM_RABBIT_JUMP");
         MR::offBind(this);
     }
     MR::turnVecToVecCosOnPlane(&_9C, (*MR::getNextNodePosition(mRailGraphIter) - mPosition), mGravity, 0.9f);
@@ -823,7 +823,7 @@ bool TrickRabbit::checkDivingThicket(const TVec3f& rVec1, const TVec3f& rVec2) {
 
     MR::makeMtxUpNoSupportPos(&stack_14, *stack_44.getNormal(0), stack_8);
     MR::emitEffectHit(this, stack_14, "ThicketJump");
-    MR::startSound(this, "SE_SM_RABBIT_THICKET", -1, -1);
+    MR::startSound(this, "SE_SM_RABBIT_THICKET");
     return true;
 }
 
@@ -1069,15 +1069,15 @@ void TrickRabbit::updateTime() {
     if (v > 0) {
         if (v <= 120) {
             if (v % 60 == 0) {
-                MR::startSystemSE("SE_SY_E3_TIMER_COUNT_4", -1, -1);
+                MR::startSystemSE("SE_SY_E3_TIMER_COUNT_4");
             }
         } else if (v <= 360) {
             if (v % 60 == 0) {
-                MR::startSystemSE("SE_SY_E3_TIMER_COUNT_2", -1, -1);
+                MR::startSystemSE("SE_SY_E3_TIMER_COUNT_2");
             }
         } else if (v <= 1200) {
             if (v % 60 == 0) {
-                MR::startSystemSE("SE_SY_E3_TIMER_COUNT_1", -1, -1);
+                MR::startSystemSE("SE_SY_E3_TIMER_COUNT_1");
             }
         }
     }

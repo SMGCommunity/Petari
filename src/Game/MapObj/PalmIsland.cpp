@@ -63,7 +63,7 @@ void PalmIsland::exeFloat() {
     }
 
     if (temp != _9C) {
-        MR::startSound(this, "SE_OJ_PALM_ISLAND_WAVE", -1, -1);
+        MR::startSound(this, "SE_OJ_PALM_ISLAND_WAVE");
     }
     _9C = temp;
     mVelocity.scale(value, mGravity);

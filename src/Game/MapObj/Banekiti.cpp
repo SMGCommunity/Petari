@@ -40,7 +40,7 @@ void Banekiti::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Wait", nullptr);
     }
-    MR::startLevelSound(this, "SE_OJ_LV_BANEKITI_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BANEKITI_MOVE");
 }
 
 void Banekiti::exeRepel() {
@@ -48,7 +48,7 @@ void Banekiti::exeRepel() {
         MR::tryRumblePadWeak(this, 0);
         MR::shakeCameraWeak();
         MR::startBck(this, "Repel", nullptr);
-        MR::startSound(this, "SE_OJ_BANEKITI_REPEL", -1, -1);
+        MR::startSound(this, "SE_OJ_BANEKITI_REPEL");
     }
     if (MR::isBckStopped(this)) {
         setNerve(&NrvBanekiti::BanekitiNrvWait::sInstance);

@@ -74,7 +74,7 @@ void DesertMovingLand::control() {
     if (MR::isDemoActive(cDemoName))
         updateDemoPlayerPos();
 
-    MR::startLevelSound(this, "SE_AT_LV_WIND_MOVING_DESERT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_WIND_MOVING_DESERT");
     if (!isNerve(&NrvDesertMovingLand::HostTypeStop::sInstance) && MR::isPlayerOnPress())
         setNerve(&NrvDesertMovingLand::HostTypeStop::sInstance);
 }
@@ -114,9 +114,9 @@ void DesertMovingLand::exeMoveDown() {
         TVec3f stack_8(_D0 - _C4);
         stack_8.setLength(PSVECMag(&stack_8) / _DC);
         mVelocity.set(stack_8);
-        MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST", -1, -1);
+        MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST");
     }
-    MR::startAtmosphereLevelSE("SE_OJ_LV_DESERT_LAND_MOVE", -1, -1);
+    MR::startAtmosphereLevelSE("SE_OJ_LV_DESERT_LAND_MOVE");
     if (MR::isLessStep(this, 0x5A)) {
         MR::tryRumblePadWeak(this, 0);
     }
@@ -129,7 +129,7 @@ void DesertMovingLand::exeMoveDown() {
         MR::offSwitchB(this);
         mVelocity.zero();
         mPosition.set(_D0);
-        MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ED", -1, -1);
+        MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ED");
         setNerve(&NrvDesertMovingLand::HostTypeWaitBottom::sInstance);
     }
 }
@@ -139,9 +139,9 @@ void DesertMovingLand::exeMoveUp() {
         TVec3f stack_8(_C4 - _D0);
         stack_8.setLength(PSVECMag(&stack_8) / _E0);
         mVelocity.set(stack_8);
-        MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST", -1, -1);
+        MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST");
     }
-    MR::startAtmosphereLevelSE("SE_OJ_LV_DESERT_LAND_MOVE", -1, -1);
+    MR::startAtmosphereLevelSE("SE_OJ_LV_DESERT_LAND_MOVE");
 
     if (MR::isLessStep(this, 0x5A)) {
         MR::tryRumblePadWeak(this, 0);
@@ -157,7 +157,7 @@ void DesertMovingLand::exeMoveUp() {
 
         mVelocity.zero();
         mPosition.set(_C4);
-        MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ED", -1, -1);
+        MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ED");
         setNerve(&NrvDesertMovingLand::HostTypeWaitTop::sInstance);
     }
 }
@@ -172,7 +172,7 @@ void DesertMovingLand::exeMoveSign() {
         MR::shakeCameraInfinity(this, 0.15f, 1.2f);
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_DESERT_LAND_SIGN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_DESERT_LAND_SIGN");
     MR::tryRumblePadMiddle(this, 0);
     if (MR::isBckStopped(this)) {
         if (isNerve(&NrvDesertMovingLand::HostTypeMoveUpSign::sInstance))

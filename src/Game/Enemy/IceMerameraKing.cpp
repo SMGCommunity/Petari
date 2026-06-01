@@ -199,11 +199,11 @@ void IceMerameraKing::control() {
     }
 
     if (!isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance) && !isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)) {
-        MR::startLevelSound(this, "SE_BM_LV_ICEMERAKING_WAIT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_ICEMERAKING_WAIT");
     }
 
     if (MR::isDemoActive("メラキンオープニング")) {
-        MR::startSystemLevelSE("SE_DM_LV_MUTE_BGM", -1, -1);
+        MR::startSystemLevelSE("SE_DM_LV_MUTE_BGM");
         if (MR::isDemoPartLastStep("カメラ寄る")) {
             MR::playLevelMarioPinchBGM(_120);
             _120 = true;
@@ -271,7 +271,7 @@ void IceMerameraKing::exeThrow() {
         v12.add(v11);
         mThrowingIce->emitIce(ice->mPosition, v12, -5.0f, mGravity);
         mThrowingIce = nullptr;
-        MR::startSound(this, "SE_BM_ICEMERAKING_THROW", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_THROW");
     }
 
     if (MR::isActionEnd(this)) {
@@ -314,8 +314,8 @@ void IceMerameraKing::exeExtinguish() {
     f32 temp = hOnAirParam[1];  // it just exists
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "GoOut");
-        MR::startSound(this, "SE_BM_ICEMERAKING_BLOW", -1, -1);
-        MR::startSound(this, "SE_BM_ICEMERAKING_SMOKE", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_BLOW");
+        MR::startSound(this, "SE_BM_ICEMERAKING_SMOKE");
         MR::deleteEffect(this, "BodyIce");
         MR::emitEffectWithParticleCallBack(this, "BodyIceOff", mSpinParticle);
         TVec3f* v3 = MR::getPlayerCenterPos();
@@ -332,7 +332,7 @@ void IceMerameraKing::exeExtinguish() {
         MR::moveAndTurnToPlayer(this, &_B0, hExtinguishOnAirParam[0], hExtinguishOnAirParam[1], hExtinguishOnAirParam[2], hExtinguishOnAirParam[3]);
     } else if (MR::isOnGround(this) && MR::isActionEnd(this)) {
         MR::moveAndTurnToPlayer(this, &_B0, hOnGroundParam[0], hOnGroundParam[1], hOnGroundParam[2], hOnGroundParam[3]);
-        MR::startSound(this, "SE_BM_ICEMERAKING_LAND", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_LAND");
         _E8 = 0;
         setNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance);
     } else {
@@ -378,7 +378,7 @@ void IceMerameraKing::endEscape() {
 void IceMerameraKing::exeEscapeJump() {
     if (MR::isStep(this, 20)) {
         MR::addVelocitySeparateHV(this, _B0, 20.0f, 90.0f);
-        MR::startSound(this, "SE_BM_ICEMERAKING_JUMP", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_JUMP");
     }
     _E8++;
 
@@ -389,7 +389,7 @@ void IceMerameraKing::exeEscapeJump() {
 
         if (MR::isGreaterStep(this, 20)) {
             MR::emitEffect(this, "Land");
-            MR::startSound(this, "SE_BM_ICEMERAKING_LAND", -1, -1);
+            MR::startSound(this, "SE_BM_ICEMERAKING_LAND");
             setNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance);
         }
     } else {
@@ -404,7 +404,8 @@ void IceMerameraKing::exeDamage() {
         MR::startAction(this, "Damage");
         MR::emitEffect(this, "Damage");
         MR::startBlowHitSound(this);
-        MR::startSound(this, "SE_BM_ICEMERAKING_DAMAGE", -1, -1), MR::setVelocityJump(this, 80.0f);
+        MR::startSound(this, "SE_BM_ICEMERAKING_DAMAGE");
+        MR::setVelocityJump(this, 80.0f);
         MR::stopSceneForDefaultHit(4);
     }
 
@@ -432,7 +433,7 @@ void IceMerameraKing::exeDamage() {
 void IceMerameraKing::exePreRecover() {
     if (MR::isFirstStep(this)) {
         MR::setVelocityJump(this, 70.0f);
-        MR::startSound(this, "SE_BM_ICEMERAKING_JUMP", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_JUMP");
     }
     addVelocityToInitPos();
 
@@ -457,11 +458,11 @@ void IceMerameraKing::exeRecover() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Recover");
         MR::emitEffect(this, "BodyIce");
-        MR::startSound(this, "SE_BM_ICEMERAKING_PRE_RECOVER", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_PRE_RECOVER");
     }
 
     if (MR::isStep(this, 80)) {
-        MR::startSound(this, "SE_BM_ICEMERAKING_RECOVER", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_RECOVER");
     }
     addVelocityToInitPos();
     MR::moveAndTurnToPlayer(this, &_B0, hFlyParam[0], hFlyParam[1], hFlyParam[2], hFlyParam[3]);
@@ -489,7 +490,7 @@ void IceMerameraKing::exePreAttack() {
 void IceMerameraKing::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Attack");
-        MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ATTACK", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ATTACK");
     }
 
     if (!MR::isActionEnd(this)) {
@@ -511,7 +512,7 @@ void IceMerameraKing::exeAttackAfter() {
         _A8->mRotation.set< f32 >(_D4);
         MR::emitEffect(this, "Land");
         MR::startAction(this, "AttackEnd");
-        MR::startSound(this, "SE_BM_ICEMERAKING_HIP_DROP", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_HIP_DROP");
         MR::tryRumblePadAndCameraDistanceStrong(this, 800.0f, 1200.0f, 2000.0f);
     }
     MR::moveAndTurnToPlayer(this, &_B0, hOnAirParam[0], hOnAirParam[1], hOnAirParam[2], hOnAirParam[3]);
@@ -526,10 +527,10 @@ void IceMerameraKing::exeAngryDemo() {
         MR::emitEffect(this, "BodyIce");
         if (isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)) {
             MR::startAction(this, "Summon");
-            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY2", -1, -1);
+            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY2");
         } else {
             MR::startAction(this, "Recover");
-            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY1", -1, -1);
+            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY1");
         }
     }
 
@@ -546,9 +547,9 @@ void IceMerameraKing::exeAngryDemo() {
     }
 
     if (isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance) && MR::isStep(this, 85)) {
-        MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY2", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY2");
     } else if (MR::isStep(this, 85)) {
-        MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY1", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY1");
     }
     MR::playLevelMarioPinchBGM(true);
     
@@ -566,7 +567,7 @@ void IceMerameraKing::exeAngryDemo() {
             v6.sub(v5);
             MR::appearStarPiece(this, v6, 16, 15.0f, 70.0f, false);
         }
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
     }
 }
@@ -582,7 +583,7 @@ void IceMerameraKing::exeDeathDemoWait() {
 void IceMerameraKing::exeDeathDemo() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Death");
-        MR::startSound(this, "SE_BM_ICEMERAKING_DEAD", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_DEAD");
         mCameraTarget->mPosition.set< f32 >(mPosition);
         _AC->appear();
         _AC->mRotation.set< f32 >(_D4);

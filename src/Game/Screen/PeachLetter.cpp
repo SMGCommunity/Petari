@@ -42,11 +42,11 @@ void PeachLetter::appear() {
 void PeachLetter::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "Appear", 0);
-        MR::startSystemSE("SE_SY_LETTER_APPEAR", -1, -1);
+        MR::startSystemSE("SE_SY_LETTER_APPEAR");
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        MR::startSystemSE("SE_SV_PEACH_MAIL", -1, -1);
+        MR::startSystemSE("SE_SV_PEACH_MAIL");
         setNerve(&NrvPeachLetter::PeachLetterNrvWait::sInstance);
     }
 }
@@ -58,7 +58,7 @@ void PeachLetter::exeWait() {
     }
 
     if (mAButtonIcon->isWait() && MR::testCorePadTriggerA(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
         setNerve(&NrvPeachLetter::PeachLetterNrvEnd::sInstance);
     }
 }

@@ -194,7 +194,7 @@ void MogucchiShooter::exePanic() {
         }
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PANIC", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PANIC");
     faceToMario();
 
     if (!bazooka->isPanic() && MR::isOnGroundPlayer() && !bazooka->isBazookaLifeOut()) {
@@ -219,7 +219,7 @@ void MogucchiShooter::exeHitPanic() {
         MR::startAction(this, "Panic");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PANIC", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PANIC");
 
     if (!MR::isDemoActive()) {
         setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);

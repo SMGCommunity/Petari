@@ -276,7 +276,7 @@ void RaceManager::exeCount() {
     mLayout->movement();
 
     if (getNerveStep() % 60 == 0) {
-        MR::startSystemSE("SE_SY_RACE_COUNT_DOWN", -1, -1);
+        MR::startSystemSE("SE_SY_RACE_COUNT_DOWN");
     }
 
     if (MR::isStep(this, sBgmStartStep)) {
@@ -294,7 +294,7 @@ void RaceManager::exeCount() {
 
 void RaceManager::exeRace() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_RACE_START", -1, -1);
+        MR::startSystemSE("SE_SY_RACE_START");
     }
 
     s32 maxTime = getRaceStruceData(mCurrentRace).mMaxTime;

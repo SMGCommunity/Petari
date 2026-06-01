@@ -225,14 +225,14 @@ void Tico::control() {
         NPCActor::control();
     } else {
         if (!MR::isTimeKeepDemoActive()) {
-            MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT", -1, -1, -1);
+            MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
         }
 
         TVec3f v14(mPosition);
         JMathInlineVEC::PSVECSubtract(&v14, &_160, &v14);
         f32 v11 = PSVECMag(&v14);
         f32 v16 = (100.0f * MR::getLinerValueFromMinMax(v11, 1.0f, 11.0f, 0.2f, 1.0f));
-        MR::startLevelSound(this, "SE_SM_LV_TICO_FLOAT", v16, -1, -1);
+        MR::startLevelSound(this, "SE_SM_LV_TICO_FLOAT", v16);
         _160.set< f32 >(mPosition);
         _16C = MR::calcFloatOffset(this, _16C, 150.0f);
         NPCActor::control();
@@ -277,18 +277,18 @@ bool Tico::killFunc(u32) {
 
 void Tico::exeReaction() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_TICO_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_TICO_TRAMPLED");
     }
 
     if (isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_TICO_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_TICO_POINT");
     }
 
     if (_DB) {
         MR::limitedStarPieceHitSound();
-        MR::startSound(this, "SE_BM_BUTLER_ABSORB", -1, -1);
+        MR::startSound(this, "SE_BM_BUTLER_ABSORB");
     }
 
     MR::tryStartReactionAndPopNerve(this);
@@ -342,7 +342,7 @@ void Tico::exeMeta() {
     }
 
     if (MR::isBckStopped(this)) {
-        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE", -1, -1);
+        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE");
         kill();
     }
 }

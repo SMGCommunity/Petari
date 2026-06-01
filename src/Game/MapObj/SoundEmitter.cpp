@@ -92,7 +92,7 @@ void SoundEmitter::exePlaySound() {
         v3 = 5;
     } break;
     case 0x1E: {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         kill();
         return;
     } break;

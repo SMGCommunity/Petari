@@ -170,7 +170,7 @@ void StarReturnDemoStarter::exeAppearWait() {
 
     if (MR::isStep(this, 30)) {
         MR::emitEffect(mPowerStar, "DemoFlyLightDemo");
-        MR::startSound(mPowerStar, "SE_PM_DEMO_RETURN_LIGHT", -1, -1);
+        MR::startSound(mPowerStar, "SE_PM_DEMO_RETURN_LIGHT");
     }
 
     MR::setNerveAtStep(this, &NrvStarReturnDemoStarter::StarReturnDemoStarterNrvMove::sInstance, 45);
@@ -206,11 +206,11 @@ void StarReturnDemoStarter::exeFlyWaitPowerStar() {
 
     int brakeFrame = mReturnDemoRailMove->getDemoFlyBrakeFrame();
     if (MR::isLessStep(this, 115 - brakeFrame)) {
-        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY", -1, -1, -1);
+        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY");
     }
 
     if (MR::isStep(this, 115 - brakeFrame)) {
-        MR::startSound(mPowerStar, "SE_OJ_RET_POW_STAR_LEAVE", -1, -1);
+        MR::startSound(mPowerStar, "SE_OJ_RET_POW_STAR_LEAVE");
     }
 
     if (MR::isBckStoppedPlayer()) {
@@ -226,7 +226,7 @@ void StarReturnDemoStarter::exeFlyWaitGrandStar() {
     PowerStar::requestPointLightAtResultSequence(mPowerStar);
 
     if (MR::isLessStep(this, MR::getBckFrameMaxPlayer("ResultFlyGrandStarEnd") - mReturnDemoRailMove->getDemoFlyBrakeFrame())) {
-        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY", -1, -1, -1);
+        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY");
     }
 
     if (MR::isBckOneTimeAndStoppedPlayer()) {

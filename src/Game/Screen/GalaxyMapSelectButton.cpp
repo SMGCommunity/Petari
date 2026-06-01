@@ -59,7 +59,7 @@ void GalaxyMapSelectButton::exeAstroMapWait() {
     if (_20 != nullptr && _20 == &GalaxyMapSelectButtonStarListWait::sInstance) {
         setNerve(&GalaxyMapSelectButtonBetweenMapToListFadeout::sInstance);
     } else if (mPaneCtrl->trySelect()) {
-        MR::startSystemSE("SE_SY_GALAMAP_DECIDE", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_DECIDE");
     }
 }
 
@@ -124,6 +124,6 @@ void GalaxyMapSelectButton::control() {
     mPaneCtrl->update();
 
     if (mPaneCtrl->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_GALAMAP_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_CURSOR_ON");
     }
 }

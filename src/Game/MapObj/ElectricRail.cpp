@@ -380,7 +380,7 @@ void ElectricRail::calcGravity(JGeometry::TVec3< f32 >* pOut, const JGeometry::T
 
 void ElectricRail::exeDisappear() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_ELEC_RAIL_VANISH", -1, -1);
+        MR::startSound(this, "SE_OJ_ELEC_RAIL_VANISH");
         MR::invalidateHitSensors(this);
 
         s32 curPoint = 0;
@@ -401,7 +401,7 @@ void ElectricRail::exeDisappear() {
 
 void ElectricRail::exeWait() {
     updateHitSensorPos();
-    MR::startLevelSound(this, "SE_OJ_LV_ELEC_RAIL_HAM", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_ELEC_RAIL_HAM");
 }
 
 void ElectricRail::exeDisappeared() {

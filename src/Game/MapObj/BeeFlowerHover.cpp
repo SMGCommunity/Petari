@@ -84,7 +84,7 @@ void BeeFlowerHover::exeWait() {
 void BeeFlowerHover::exeSoftTouch() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "OnBee", 0);
-        MR::startSound(this, "SE_OJ_BEE_FLOWER_BEE_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_BEE_FLOWER_BEE_ON");
     }
 
     if (MR::isBckStopped(this)) {
@@ -109,7 +109,7 @@ void BeeFlowerHover::exeSoftTouchWait() {
 void BeeFlowerHover::exeHardTouch() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "ThroughMario", 0);
-        MR::startSound(this, "SE_OJ_BEE_FLOWER_DISAPPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_BEE_FLOWER_DISAPPEAR");
         MR::invalidateCollisionParts(this);
         MR::invalidateShadow(this, 0);
         MR::onCalcShadowOneTime(this, 0);
@@ -129,7 +129,7 @@ void BeeFlowerHover::exeRecover() {
         MR::onCalcShadowOneTime(this, 0);
         MR::showModel(this);
         MR::startBck(this, "Appear", 0);
-        MR::startSound(this, "SE_OJ_BEE_FLOWER_RECOVER", -1, -1);
+        MR::startSound(this, "SE_OJ_BEE_FLOWER_RECOVER");
     }
 
     if (MR::isGreaterEqualStep(this, 0x3C) && MR::isBckStopped(this) && !MR::isHiddenModel(this)) {

@@ -486,7 +486,7 @@ void TalkDirector::exeSlct() {
 
     if (MR::isFirstStep(this)) {
         appearYesNoSelector(control);
-        MR::startSystemSE("SE_SM_TALKBLN_OPEN", -1, -1);
+        MR::startSystemSE("SE_SM_TALKBLN_OPEN");
     }
 
     TalkFunction::onTalkStateTalking(control);

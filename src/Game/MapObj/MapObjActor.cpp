@@ -105,12 +105,12 @@ void MapObjActor::appear() {
         const char* startSound = MR::StageEffect::getStartSe(mObjectName);
 
         if (startSound) {
-            MR::startSound(this, startSound, -1, -1);
+            MR::startSound(this, startSound);
         }
     }
 
     if (_B6) {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     }
 }
 
@@ -198,7 +198,7 @@ void MapObjActor::control() {
             const char* startSound = MR::StageEffect::getStartSe(mObjectName);
 
             if (startSound) {
-                MR::startSound(this, startSound, -1, -1);
+                MR::startSound(this, startSound);
             }
         }
     }
@@ -210,7 +210,7 @@ void MapObjActor::control() {
     if (!mRailMover && !mRotator && !mRailRotator && !MR::isEqualString(mObjectName, "OceanRingRuinsMove")) {
         const char* movingSound = MR::StageEffect::getMovingSe(mObjectName);
         if (movingSound) {
-            MR::startLevelSound(this, movingSound, -1, -1, -1);
+            MR::startLevelSound(this, movingSound);
         }
     }
 
@@ -532,7 +532,7 @@ void MapObjActorUtil::startBreak(MapObjActor* pActor) {
 bool MapObjActorUtil::tryStartBreak(MapObjActor* pActor) {
     const char* stopSe = MR::StageEffect::getStopSe(pActor->mObjectName);
     if (stopSe) {
-        MR::startSound(pActor, stopSe, -1, -1);
+        MR::startSound(pActor, stopSe);
     }
 
     const char* breakEffect = cEffectNameBreak;

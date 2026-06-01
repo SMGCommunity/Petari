@@ -146,17 +146,17 @@ void PlayerActionGuidance::exeDisplay() {
         }
 
         if (mTamakoroLayout != nullptr && mGuidanceState == 0) {
-            MR::startSystemSE("SE_SY_CTRL_GUIDE_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_CTRL_GUIDE_APPEAR");
         }
     }
 
     if (mGuidanceState == 0) {
         if (!MR::isFirstStep(this) && MR::getAnimFrame(mCurrentLayout, 0) == 0.0f) {
-            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500, -1);
+            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500);
         }
 
         if (MR::getAnimFrame(mCurrentLayout, 0) == sChangeSoundFrame) {
-            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 1000, -1);
+            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 1000);
         }
     }
 

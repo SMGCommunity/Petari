@@ -62,7 +62,7 @@ void PrologueLetter::exeWait() {
     }
 
     if (MR::testSystemPadTriggerDecide()) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
         setNerve(&PrologueLetterNrvDisappear::sInstance);
     }
 }

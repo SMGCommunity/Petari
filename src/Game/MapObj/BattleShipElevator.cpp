@@ -29,12 +29,12 @@ void BattleShipElevator::exeWait() {}
 
 void BattleShipElevator::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_B_SHIP_ELEV_START", -1, -1);
+        MR::startSound(this, "SE_OJ_B_SHIP_ELEV_START");
         MapObjActor::startMapPartsFunctions();
     }
-    MR::startLevelSound(this, "SE_OJ_LV_B_SHIP_ELEV_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_B_SHIP_ELEV_MOVE");
     if (!MapObjActorUtil::isRailMoverWorking(this)) {
-        MR::startSound(this, "SE_OJ_B_SHIP_ELEV_STOP", -1, -1);
+        MR::startSound(this, "SE_OJ_B_SHIP_ELEV_STOP");
         setNerve(&NrvBattleShipElevator::BattleShipElevatorNrvEnd::sInstance);
     }
 }

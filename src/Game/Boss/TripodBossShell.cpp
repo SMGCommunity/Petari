@@ -69,7 +69,7 @@ void TripodBossShell::activateTripodBoss() {
 void TripodBossShell::exeBreak() {
     updateTripodMatrix();
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_TRIPOD_CORE_BREAK", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_CORE_BREAK");
         MR::offEntryDrawBuffer(this);
         getSensor("killer_terget")->invalidate();
         MR::invalidateCollisionParts(this);

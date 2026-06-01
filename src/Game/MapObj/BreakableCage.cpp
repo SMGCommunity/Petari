@@ -340,10 +340,10 @@ void BreakableCage::exeBreak() {
     if (MR::isFirstStep(this)) {
         switch (mCageType) {
         case CAGE_FIX:
-            MR::startSound(this, "SE_OJ_BREAK_FIXATION_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_BREAK_FIXATION_BREAK");
             break;
         default:
-            MR::startSound(this, "SE_OJ_IRON_CAGE_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_IRON_CAGE_BREAK");
             break;
         }
 

@@ -118,9 +118,9 @@ void CoinGroup::appear() {
 void CoinGroup::exeAppear() {
     if (MR::isStep(this, 3)) {
         if (mIsPurpleCoinGroup) {
-            MR::startSystemSE("SE_SY_PURPLE_COIN_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_PURPLE_COIN_APPEAR");
         } else {
-            MR::startSystemSE("SE_SY_COIN_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_COIN_APPEAR");
         }
 
         appearCoinAll();
@@ -134,7 +134,7 @@ void CoinGroup::exeTryStartDemo() {}
 void CoinGroup::exeDemoAppear() {
     if (MR::isFirstStep(this)) {
         MR::startActorCameraTargetSelf(this, mCameraInfo, 30);
-        MR::startSystemSE("SE_SY_COIN_APPEAR", -1, -1);
+        MR::startSystemSE("SE_SY_COIN_APPEAR");
         appearCoinAll();
     }
 

@@ -153,8 +153,8 @@ void SuperSpinDriver::exeEmptyAppear() {
         mSpinDriverCamera->startAppearCamera(this, _100, _E8, mPosition);
 
         if (!_17F) {
-            MR::startSystemSE("SE_SY_SPIN_DRIVER_APPEAR", -1, -1);
-            MR::startSound(this, "SE_OJ_S_SPIN_DRV_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_SPIN_DRIVER_APPEAR");
+            MR::startSound(this, "SE_OJ_S_SPIN_DRV_APPEAR");
         }
     }
 
@@ -197,8 +197,8 @@ void SuperSpinDriver::exeAppear() {
         mSpinDriverCamera->startAppearCamera(this, _100, _E8, mPosition);
 
         if (!_17F) {
-            MR::startSystemSE("SE_SY_SPIN_DRIVER_APPEAR", -1, -1);
-            MR::startSound(this, "SE_OJ_S_SPIN_DRV_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_SPIN_DRIVER_APPEAR");
+            MR::startSound(this, "SE_OJ_S_SPIN_DRV_APPEAR");
         }
 
         MR::startBck(this, "Appear", nullptr);
@@ -230,7 +230,7 @@ void SuperSpinDriver::exeWait() {
     }
 
     if (_178 > 0) {
-        MR::startLevelSound(this, "SE_OJ_LV_S_SPIN_DRV_SHINE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_S_SPIN_DRV_SHINE");
 
         if (!_17C) {
             MR::emitEffect(this, "SuperSpinDriverLight");
@@ -254,8 +254,8 @@ void SuperSpinDriver::exeCapture() {
             _144 = 0.0f;
         }
 
-        MR::startLevelSound(this, "SE_OJ_LV_S_SPIN_DRV_SHINE", -1, -1, -1);
-        MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_CAPTURE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_S_SPIN_DRV_SHINE");
+        MR::startLevelSound(this, "SE_OJ_LV_SPIN_DRV_CAPTURE");
         moveBindPosToCenter();
         f32 rate = MR::calcNerveRate(this, 60);
         _134 = rate;
@@ -293,13 +293,13 @@ void SuperSpinDriver::updateShootMotion() {
     }
 
     if (MR::isLessStep(this, _158)) {
-        MR::startLevelSound(_8C, "SE_PM_LV_S_SPIN_DRV_FLY", -1, -1, -1);
+        MR::startLevelSound(_8C, "SE_PM_LV_S_SPIN_DRV_FLY");
     }
 
     if (MR::isStep(this, _158)) {
         MR::startBckPlayer("SpaceFlyEnd", "SuperSpinDriverFlyEnd");
-        MR::startSound(_8C, "SE_PM_S_SPIN_DRV_COOL_DOWN", -1, -1);
-        MR::startSound(_8C, "SE_PV_JUMP_S", -1, -1);
+        MR::startSound(_8C, "SE_PM_S_SPIN_DRV_COOL_DOWN");
+        MR::startSound(_8C, "SE_PV_JUMP_S");
     }
 
     if (MR::isStep(this, _15C)) {

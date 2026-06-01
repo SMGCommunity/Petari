@@ -353,7 +353,7 @@ void BossStinkBug::appearStarPiece(s32 num) {
     TVec3f offsetVec;
     PSMTXMultVec(MR::getJointMtx(this, "Body"), ::sAppearStarPieceOffset, offsetVec);
     MR::appearStarPieceToDirection(this, offsetVec, -mGravity, num, 30.0f, 40.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
 void BossStinkBug::attackSensor(HitSensor* pSender, HitSensor* pReciever) {
@@ -409,7 +409,7 @@ bool BossStinkBug::throwBomb(f32 f1, f32 f2) {
 
     throwBomb->start(trans, yDir);
 
-    MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_EMIT", -1, -1);
+    MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_EMIT");
     MR::startBck(mBombLauncher, "Discharge", nullptr);
     return true;
 }

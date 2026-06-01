@@ -146,7 +146,7 @@ void AstroDomeGalaxySelector::exeGalaxySelect() {
         pGSBackButton->appear();
     }
     if (SphereSelectorFunction::isValidPointing() && MR::testCorePadTriggerB(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
+        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         if (pGSBackButton->isAppearing()) {
             pGSBackButton->kill();
         } else {
@@ -161,7 +161,7 @@ void AstroDomeGalaxySelector::exeGalaxySelect() {
         if (!SphereSelectorFunction::isHandleHolding() && pGSBackButton->isPointing()) {
             SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(2));
             if (!_9C) {
-                MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+                MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
             }
             _9C = true;
         } else {

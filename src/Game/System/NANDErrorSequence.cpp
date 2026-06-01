@@ -327,7 +327,7 @@ void NANDErrorSequence::resetParam() {
 bool NANDErrorSequence::tryConfirm(const char* pSystemMessageId, bool* pIsSelectedYes) {
     if (MR::isFirstStep(this)) {
         mSysInfoWindow->appear(pSystemMessageId, SysInfoWindow::Type_YesNo, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
-        MR::startSystemSE("SE_SY_SAVE_CONFIRM_INFO", -1, -1);
+        MR::startSystemSE("SE_SY_SAVE_CONFIRM_INFO");
     }
 
     if (MR::isDead(mSysInfoWindow)) {

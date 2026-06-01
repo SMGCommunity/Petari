@@ -200,9 +200,9 @@ bool CrystalCage::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 
             MR::setBvaFrameAndStop(this, 1.0f);
             if (mCrystalCageType == 2) {
-                MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_L_DAMAGE", -1, -1);
+                MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_L_DAMAGE");
             } else {
-                MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_S_DAMAGE", -1, -1);
+                MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_S_DAMAGE");
             }
 
             mRumbleCalc->start(0);
@@ -343,7 +343,7 @@ void CrystalCage::exeBreak() {
         MR::startBck(mBreakObj, "Break", nullptr);
 
         if (mCrystalCageType == 2) {
-            MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_L_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_L_BREAK");
             if (_108 == -1) {
                 MR::requestAppearPowerStar(this, mDisplayModel->mPosition);
             } else {
@@ -351,10 +351,10 @@ void CrystalCage::exeBreak() {
             }
         } else {
             MR::emitEffect(this, "Break");
-            MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_S_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_CRYSTAL_CAGE_S_BREAK");
 
             if (mPlayRiddleSFX) {
-                MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+                MR::startSystemSE("SE_SY_READ_RIDDLE_S");
             }
         }
 
@@ -363,11 +363,11 @@ void CrystalCage::exeBreak() {
         }
 
         if (mDisplayModel && MR::getDummyDisplayModelId(mDisplayModel) == 5) {
-            MR::startSound(this, "SE_OJ_CRY_CAGE_MV_TICO_APR", -1, -1);
+            MR::startSound(this, "SE_OJ_CRY_CAGE_MV_TICO_APR");
         }
 
         if (mDisplayModel && MR::getDummyDisplayModelId(mDisplayModel) == 1) {
-            MR::startSound(this, "SE_SV_KINOPIO_PUHA", -1, -1);
+            MR::startSound(this, "SE_SV_KINOPIO_PUHA");
         }
 
         if (mDisplayModel) {

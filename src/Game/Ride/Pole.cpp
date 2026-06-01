@@ -165,7 +165,7 @@ void Pole::exeDemoAppear() {
     updateTopPos(mPoleLength * MR::calcNerveRate(this, 60));
 
     if (MR::isDemoActive()) {
-        MR::startLevelSound(this, "SE_OJ_LV_POLE_APPEAR", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_POLE_APPEAR");
     }
 
     if (MR::isStep(this, 60)) {
@@ -364,7 +364,7 @@ void Pole::exeBindFallDown() {
 
     updateBindTrans();
     MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
-    MR::startLevelSound(mRider, "SE_PM_LV_POLE_SLIDE", -1, -1, -1);
+    MR::startLevelSound(mRider, "SE_PM_LV_POLE_SLIDE");
 
     if ((!mIsSquare && mClimbCoord <= 120.0f) || (mIsSquare && mClimbCoord <= 50.0f)) {
         TPos3f mtx;
@@ -398,8 +398,8 @@ void Pole::exeBindFallDown() {
 void Pole::exeBindHandstandStart() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("TreeHandstandStart", static_cast< const char* >(nullptr));
-        MR::startSound(mRider, "SE_PM_POLE_STAND", -1, -1);
-        MR::startSound(mRider, "SE_PV_LIFT_UP", -1, -1);
+        MR::startSound(mRider, "SE_PM_POLE_STAND");
+        MR::startSound(mRider, "SE_PV_LIFT_UP");
     }
 
     if (MR::isLessStep(this, 25)) {
@@ -556,8 +556,8 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         updateBindTrans();
 
         MR::invalidateClipping(this);
-        MR::startSound(mRider, "SE_PM_GRAB_OBJ", -1, -1);
-        MR::startSound(mRider, "SE_PV_LIFT_UP", -1, -1);
+        MR::startSound(mRider, "SE_PM_GRAB_OBJ");
+        MR::startSound(mRider, "SE_PV_LIFT_UP");
         MR::startActorCameraNoTarget(this, mCameraInfo, -1);
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
 
@@ -589,8 +589,8 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 
     if (MR::isMsgRushCancel(msg)) {
         if (!MR::isDemoActive()) {
-            MR::startSound(mRider, "SE_PM_JUMP_M", -1, -1);
-            MR::startSound(mRider, "SE_PV_JUMP_JOY", -1, -1);
+            MR::startSound(mRider, "SE_PM_JUMP_M");
+            MR::startSound(mRider, "SE_PV_JUMP_JOY");
         }
         mRider = nullptr;
         setNerve(&NrvPole::PoleNrvFree::sInstance);
@@ -628,8 +628,8 @@ bool Pole::tryJump(bool handstand, f32 angleOffset) {
             MR::startBckPlayer("WallJump", static_cast< const char* >(nullptr));
         }
 
-        MR::startSound(mRider, "SE_PM_JUMP_M", -1, -1);
-        MR::startSound(mRider, "SE_PV_JUMP_JOY", -1, -1);
+        MR::startSound(mRider, "SE_PM_JUMP_M");
+        MR::startSound(mRider, "SE_PV_JUMP_JOY");
         MR::endActorCamera(this, mCameraInfo, 1, -1);
 
         if (mIsSquare) {

@@ -113,7 +113,7 @@ void FirePressureRadiate::exePrepareToRadiate() {
 }
 
 void FirePressureRadiate::exeRadiate() {
-    MR::startLevelSound(this, "SE_OJ_LV_F_PRESSURE_RADIATE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_F_PRESSURE_RADIATE");
 
     if (MR::isBckOneTimeAndStopped(this)) {
         calcRadiateEffectMtx();

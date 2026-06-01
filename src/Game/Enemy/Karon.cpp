@@ -120,7 +120,7 @@ void Karon::kill() {
     }
 
     MR::emitEffect(this, "Death");
-    MR::startSoundSeVer(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSoundSeVer(this, "SE_EM_EXPLODE_S");
 }
 
 void Karon::exeFixWait() {
@@ -142,8 +142,8 @@ void Karon::exeFixWait() {
 void Karon::exeStepBroken() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "StepBreak");
-        MR::startSound(this, "SE_EM_KARON_BROKEN", -1, -1);
-        MR::startSound(this, "SE_EV_KARON_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EM_KARON_BROKEN");
+        MR::startSound(this, "SE_EV_KARON_DAMAGE");
         MR::offCalcGravity(this);
         MR::forceBindOnGround(this, 0.0f, 1.0f);
     }
@@ -169,7 +169,7 @@ void Karon::exeStepBroken() {
 void Karon::exeRecover() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Recovery");
-        MR::startSound(this, "SE_EM_KARON_RECOVER", -1, -1);
+        MR::startSound(this, "SE_EM_KARON_RECOVER");
     }
 
     if (MR::isOnGround(this)) {
@@ -194,7 +194,7 @@ void Karon::exeHitReaction() {
         }
     }
 
-    MR::startLevelSound(this, "SE_EV_LV_KARON_ATK_SUCCESS", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EV_LV_KARON_ATK_SUCCESS");
 
     if (isNerve(&NrvKaron::HostTypeNrvStarPieceHit::sInstance)) {
         if (MR::isOnGround(this)) {
@@ -222,8 +222,8 @@ void Karon::exeHitReaction() {
 void Karon::exeDeath() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Down");
-        MR::startSound(this, "SE_EM_KARON_BROKEN", -1, -1);
-        MR::startSound(this, "SE_EV_KARON_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EM_KARON_BROKEN");
+        MR::startSound(this, "SE_EV_KARON_DAMAGE");
     }
 
     moveAndTurn(&hNoMoveNoTurnParam);

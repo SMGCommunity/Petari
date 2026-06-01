@@ -98,7 +98,7 @@ void SurfingGuidance::exeFadeIn() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "Appear", 0);
         MR::startAnim(this, "Slope", 1);
-        MR::startSystemSE("SE_SY_CTRL_GUIDE_APPEAR", -1, -1);
+        MR::startSystemSE("SE_SY_CTRL_GUIDE_APPEAR");
     }
 }
 
@@ -109,12 +109,12 @@ void SurfingGuidance::exeLevelOffReady() {
 
     if (!MR::isFirstStep(this)) {
         if (MR::getAnimFrame(this, 1) == 0.0f) {
-            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 500, -1);
+            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 500);
         }
     }
 
     if (MR::getAnimFrame(this, 1) == 85.0f) {
-        MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 1000, -1);
+        MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 1000);
     }
 }
 
@@ -137,12 +137,12 @@ void SurfingGuidance::exeTurnLeftReady() {
 
     if (!MR::isFirstStep(this)) {
         if (MR::getAnimFrame(this, 1) == 0.0f) {
-            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500, -1);
+            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500);
         }
     }
 
     if (MR::getAnimFrame(this, 1) == 35.0f) {
-        MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 1000, -1);
+        MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 1000);
     }
 }
 
@@ -165,12 +165,12 @@ void SurfingGuidance::exeTurnRightReady() {
 
     if (!MR::isFirstStep(this)) {
         if (MR::getAnimFrame(this, 1) == 0.0f) {
-            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500, -1);
+            MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500);
         }
     }
 
     if (MR::getAnimFrame(this, 1) == 35.0f) {
-        MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 1000, -1);
+        MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 1000);
     }
 }
 

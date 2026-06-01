@@ -131,7 +131,7 @@ void Takobo::initSensor() {
 
 void Takobo::kill() {
     MR::emitEffect(this, "TakoboDeath");
-    MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_S");
 
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
@@ -181,7 +181,7 @@ void Takobo::generateCoin() {
 
 bool Takobo::tryPress() {
     if (!isNerve(&NrvTakobo::HostTypeNrvPress::sInstance)) {
-        MR::startSound(this, "SE_EM_TAKOBO_STOMPED", -1, -1);
+        MR::startSound(this, "SE_EM_TAKOBO_STOMPED");
         setNerve(&NrvTakobo::HostTypeNrvPress::sInstance);
         return true;
     }
@@ -283,7 +283,7 @@ void Takobo::exePress() {
 void Takobo::exeHitPunch() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "HitPunch");
-        MR::startSound(this, "SE_EM_TAKOBO_HITPUNCH", -1, -1);
+        MR::startSound(this, "SE_EM_TAKOBO_HITPUNCH");
         MR::startBlowHitSound(this);
         MR::clearHitSensors(this);
         MR::invalidateHitSensors(this);
@@ -292,7 +292,7 @@ void Takobo::exeHitPunch() {
     }
 
     if (mSpinController->execute(this)) {
-        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_S");
     }
 }
 
@@ -342,7 +342,7 @@ void Takobo::exeStunStart() {
         MR::startAction(this, "StunStart");
         MR::setBckRate(this, 2.0f);
         MR::emitEffect(this, "Hit");
-        MR::startSound(this, "SE_EM_TAKOBO_STARPIECE_HIT", -1, -1);
+        MR::startSound(this, "SE_EM_TAKOBO_STARPIECE_HIT");
         _A0 = 1;
         mVelocity.zero();
     }
@@ -358,7 +358,7 @@ void Takobo::exeStun() {
         _A0 = 1;
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
 
     if (MR::isGreaterStep(this, 120)) {
         _A0 = 0;
@@ -458,7 +458,7 @@ bool Takobo::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
         } else if (isNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance)) {
             return 0;
         } else {
-            MR::startSound(this, "SE_EM_TAKOBO_STOMPED", -1, -1);
+            MR::startSound(this, "SE_EM_TAKOBO_STOMPED");
             setNerve(&NrvTakobo::HostTypeNrvPress::sInstance);
             return 1;
         }

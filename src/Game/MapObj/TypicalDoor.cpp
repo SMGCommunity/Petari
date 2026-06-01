@@ -74,7 +74,7 @@ void TypicalDoor::exeClose() {
         if (MR::StageEffect::isExistStageEffectSeData(mObjectName)) {
             const char* stopSe = MR::StageEffect::getStopSe(mObjectName);
             if (stopSe != nullptr) {
-                MR::startSound(this, stopSe, -1, -1);
+                MR::startSound(this, stopSe);
             }
         }
     }
@@ -96,7 +96,7 @@ void TypicalDoor::exeOpen() {
         if (MR::StageEffect::isExistStageEffectSeData(mObjectName)) {
             const char* startSe = MR::StageEffect::getStartSe(mObjectName);
             if (startSe != nullptr) {
-                MR::startSound(this, startSe, -1, -1);
+                MR::startSound(this, startSe);
             }
         }
     }

@@ -167,13 +167,13 @@ void SlingShooter::exeWait() {
 void SlingShooter::exeAim() {
     if (MR::isFirstStep(this)) {
         if (!mIsKinopioAttached) {
-            MR::startSound(mRider, "SE_PV_CATCH", -1, -1);
+            MR::startSound(mRider, "SE_PV_CATCH");
         } else {
             MR::sendSimpleMsgToActor(ACTMES_NPC_EVENT_TALK_DISABLE, mRider);
         }
 
         MR::onBind(this);
-        MR::startSound(this, "SE_OJ_SPACE_COCOON_ATTACH", -1, -1);
+        MR::startSound(this, "SE_OJ_SPACE_COCOON_ATTACH");
         if (mPadChannel == WPAD_CHAN1) {
             MR::startCSSound2P("CS_DPD_HIT", nullptr);
         }
@@ -181,7 +181,7 @@ void SlingShooter::exeAim() {
 
     f32 dist = PSVECDistance(&mPosition, mNeutralPos);
     if (dist >= 100.0f) {
-        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG", ((dist - 100.0f) / 200.0f) * 100.0f, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG", ((dist - 100.0f) / 200.0f) * 100.0f);
     }
 
     if (tryRelease()) {
@@ -307,7 +307,7 @@ void SlingShooter::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         MR::emitEffectHit(this, vecBetween, "InvalidHitMark");
 
         if (!mIsKinopioAttached || !pReceiver->isType(ATYPE_TOMB_SPIDER_COCOON)) {
-            MR::startSound(this, "SE_BM_TSPIDER_BOUND", -1, -1);
+            MR::startSound(this, "SE_BM_TSPIDER_BOUND");
         }
 
         if (!mIsKinopioAttached) {
@@ -367,9 +367,9 @@ bool SlingShooter::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 
         if (mIsKinopioAttached) {
             if (MR::touchActorToSpiderThread(*MR::getPlayerPos(), *MR::getPlayerVelocity())) {
-                MR::startSound(this, "SE_OJ_SPIDER_THREAD_BOUND_L", -1, -1);
+                MR::startSound(this, "SE_OJ_SPIDER_THREAD_BOUND_L");
                 if (mRider != nullptr) {
-                    MR::startSound(mRider, "SE_SV_KINOPIO_POINTING", -1, -1);
+                    MR::startSound(mRider, "SE_SV_KINOPIO_POINTING");
                 }
             }
             return false;
@@ -588,8 +588,8 @@ bool SlingShooter::tryCancel() {
         MR::endEventCamera(mCameraInfo, "プレーヤー射出者[ウェイト]", true, -1);
         MR::startBckPlayer("Spin2nd", static_cast< const char* >(nullptr));
         MR::emitEffect(this, "Stick");
-        MR::startSound(mRider, "SE_PV_JUMP_S", -1, -1);
-        MR::startSound(mRider, "SE_PM_JUMP_M", -1, -1);
+        MR::startSound(mRider, "SE_PV_JUMP_S");
+        MR::startSound(mRider, "SE_PM_JUMP_M");
         startCancelWait();
         return true;
     }
@@ -643,16 +643,16 @@ bool SlingShooter::tryRelease() {
 
     MR::emitEffect(mRider, "SpaceCocoonBlur");
     MR::emitEffect(this, "Stick");
-    MR::startSound(this, "SE_OJ_SPACE_COCOON_LAUNCH", -1, -1);
+    MR::startSound(this, "SE_OJ_SPACE_COCOON_LAUNCH");
 
     if (!mIsKinopioAttached) {
         MR::startBckPlayer("CocoonFly", static_cast< const char* >(nullptr));
         MR::endEventCamera(mCameraInfo, "プレーヤー射出者[狙い中]", true, -1);
         MR::startEventCameraNoTarget(mCameraInfo, "プレーヤー射出者[攻撃中]", -1);
-        MR::startSound(mRider, "SE_PV_JUMP_JOY", -1, -1);
+        MR::startSound(mRider, "SE_PV_JUMP_JOY");
         MR::validatePlayerSensor();
     } else {
-        MR::startSound(mRider, "SE_SV_KINOPIO_TALK_GLAD_FLY", -1, -1);
+        MR::startSound(mRider, "SE_SV_KINOPIO_TALK_GLAD_FLY");
         if (mIsKinopioCameraFocused) {
             MR::endEventCamera(mCameraInfo, "キノピオ射出者[狙い中]", true, -1);
         }
@@ -687,11 +687,11 @@ bool SlingShooter::tryAttackMap() {
             if (!MR::sendMsgEnemyAttack(planeSensor, getSensor("attack"))) {
                 if (!planeSensor->receiveMessage(ACTMES_IS_BROKEN, getSensor("attack"))) {
                     if (mIsKinopioAttached) {
-                        MR::startSound(mRider, "SE_SV_KINOPIO_TRAMPLED", -1, -1);
+                        MR::startSound(mRider, "SE_SV_KINOPIO_TRAMPLED");
                     } else {
-                        MR::startSound(mRider, "SE_PV_DAMAGE_S", -1, -1);
+                        MR::startSound(mRider, "SE_PV_DAMAGE_S");
                     }
-                    MR::startSound(mRider, "SE_PM_LAND_HEAVY", -1, -1);
+                    MR::startSound(mRider, "SE_PM_LAND_HEAVY");
                     attackSuccess = false;
                     continue;
                 }
@@ -724,13 +724,13 @@ void SlingShooter::startBind(LiveActor* pRider) {
         mCameraTargetMtx->mMatrix.setInline(mtx);
         mCameraTargetMtx->mMatrix.setTrans(*mNeutralPos);
         getSensor("attack")->setType(ATYPE_SPRING_ATTACKER);
-        MR::startSound(mRider, "SE_PV_CATCH", -1, -1);
+        MR::startSound(mRider, "SE_PV_CATCH");
     } else {
         getSensor("attack")->setType(ATYPE_SPRING_ATTACKER_KINOPIO);
     }
 
     if (!mIsKinopioCameraFocused) {
-        MR::startSound(this, "SE_OJ_SPACE_COCOON_ATTACH", -1, -1);
+        MR::startSound(this, "SE_OJ_SPACE_COCOON_ATTACH");
     }
 
     updateActorMtx();

@@ -38,7 +38,7 @@ void TreasureSpot::exeSpout() {
 
         if (mIsCoinFlower) {
             MR::startBck(this, "Bloom", 0);
-            MR::startSound(this, "SE_OJ_COIN_FLOWER_BLOOM", -1, -1);
+            MR::startSound(this, "SE_OJ_COIN_FLOWER_BLOOM");
         } else {
             setNerve(&NrvTreasureSpot::TreasureSpotNrvEnd::sInstance);
             kill();

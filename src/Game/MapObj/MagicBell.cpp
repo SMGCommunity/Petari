@@ -63,10 +63,10 @@ void MagicBell::exeRing() {
     if (MR::isFirstStep(this)) {
         if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
             MR::onSwitchA(this);
-            MR::startSound(this, "SE_OJ_HAPPY_BELL_SWITCH_ON", -1, -1);
+            MR::startSound(this, "SE_OJ_HAPPY_BELL_SWITCH_ON");
         }
 
-        MR::startSound(this, "SE_OJ_HAPPY_BELL_RING", -1, -1);
+        MR::startSound(this, "SE_OJ_HAPPY_BELL_RING");
     }
 
     mBellSwinger->update();

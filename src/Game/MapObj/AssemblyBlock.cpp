@@ -122,9 +122,9 @@ void AssemblyBlock::exeAssemble() {
         MR::emitEffect(this, "Blur");
 
         if (_13C) {
-            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_ST_F_", -1, -1);
+            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_ST_F_");
         } else {
-            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_START", -1, -1);
+            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_START");
         }
 
         MR::invalidateCollisionParts(this);
@@ -135,9 +135,9 @@ void AssemblyBlock::exeAssemble() {
 
     if (MR::isStep(this, 10)) {
         if (_13C) {
-            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_ED_F", -1, -1);
+            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_ED_F");
         } else {
-            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_END", -1, -1);
+            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_END");
         }
 
         setNerve(&NrvAssemblyBlock::AssemblyBlockNrvWait::sInstance);
@@ -168,9 +168,9 @@ void AssemblyBlock::exeReturn() {
         MR::emitEffect(this, "Blur");
 
         if (_13C) {
-            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_RET_F", -1, -1);
+            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_RET_F");
         } else {
-            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_RETURN", -1, -1);
+            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_RETURN");
         }
 
         MR::invalidateCollisionParts(this);
@@ -191,9 +191,9 @@ void AssemblyBlock::exeTimer() {
 
     if (MR::isStep(this, mActivationTime)) {
         if (_13C) {
-            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_VAN_F", -1, -1);
+            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_VAN_F");
         } else {
-            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_VANISH", -1, -1);
+            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_VANISH");
         }
 
         if (mBloomModel) {

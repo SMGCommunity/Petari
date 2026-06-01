@@ -147,7 +147,7 @@ void ItemBlock::appear() {
 }
 
 void ItemBlock::kill() {
-    MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_S");
     MR::emitEffect(this, "Break");
     LiveActor::kill();
 }
@@ -238,7 +238,7 @@ void ItemBlock::exeWait() {
         position.subInline(mPosition, gravVec * 100.0f);
 
         if (mKind == 2) {
-            MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_ITEM_APPEAR");
         }
 
         if (mKind >= 1) {
@@ -253,7 +253,7 @@ void ItemBlock::exeWait() {
                 MR::hopStarPiece(this, position, -gravVec);
             }
 
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
     }
 
@@ -288,7 +288,7 @@ void ItemBlock::exeAppearItemSplash() {
         }
     } else if (mKind == 4) {
         MR::appearStarPiece(this, mPosition, mItemCount, 10.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     } else if (mKind == 5) {
         MR::onSwitchDead(this);
     }

@@ -261,7 +261,7 @@ void PressureBase::startRelax() {
     bool isRelax = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance) || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
 
     if (!isRelax) {
-        MR::startSound(this, "SE_OJ_W_PRESS_HEAD_OFF", -1, -1);
+        MR::startSound(this, "SE_OJ_W_PRESS_HEAD_OFF");
         setNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance);
     }
 }

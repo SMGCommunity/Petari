@@ -201,8 +201,8 @@ void SysInfoWindow::exeWait() {
 
     if (mType == Type_Key) {
         if (MR::testSystemPadTriggerDecide()) {
-            MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
-            MR::startCSSound("CS_CLICK_CLOSE", 0, 0);
+            MR::startSystemSE("SE_SY_TALK_OK");
+            MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
             setNerve(&NrvSysInfoWindow::SysInfoWindowNrvDisappear::sInstance);
         }
     } else if (mYesNoSelector != nullptr) {

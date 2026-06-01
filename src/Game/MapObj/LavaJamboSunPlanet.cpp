@@ -72,7 +72,7 @@ void LavaJamboSunPlanet::exeMove() {
     MR::getMapPartsArgMoveSpeed(&_94, this);
     _94 *= 0.1f;
     MR::moveCoordAndFollowTrans(this, _94);
-    MR::startLevelSound(this, "SE_AT_LV_JUMBO_SUN_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_JUMBO_SUN_MOVE");
     s32 v3 = -1;
     MR::getCurrentRailPointArg1NoInit(this, &v3);
     if (v3 == 1) {

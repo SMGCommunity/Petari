@@ -55,7 +55,7 @@ void FullnessMeter::requestAppear() {
         MR::showScreen(this);
         setNerve(&NrvFullnessMeter::FullnessMeterNrvAppear::sInstance);
         MR::startStarPointerModeStarPieceTarget(this);
-        MR::startSystemSE("SE_SY_TICOFAT_POINT", -1, -1);
+        MR::startSystemSE("SE_SY_TICOFAT_POINT");
     }
 }
 

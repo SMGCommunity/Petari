@@ -82,20 +82,20 @@ void DinoPackunDemo::exeOpeningDemo() {
     getHost()->mDemoPos->movement();
 
     if (MR::isStep(this, 28)) {
-        MR::startSystemSE("SE_DM_MEET_BOSS", -1, -1);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_CREAK", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_EGG_CREAK", -1, -1);
+        MR::startSystemSE("SE_DM_MEET_BOSS");
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_CREAK");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_EGG_CREAK");
     }
 
     if (MR::isStep(this, 118)) {
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_EGG_DIG_OUT", -1, -1);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_GROAN", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_EGG_DIG_OUT");
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_GROAN");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
 
     if (MR::isStep(this, 245)) {
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_TAIL_ATTACK", -1, -1);
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_TAIL_ATTACK");
     }
 
     if (MR::isBckStopped(getHost())) {
@@ -139,19 +139,19 @@ void DinoPackunDemo::exeAngryDemo() {
         getHost()->startDemoAndReset();
         MR::startAnimCameraTargetSelf(getHost(), getHost()->mCameraInfo, "AngryDemo", 0, 1.0);
         MR::startAction(getHost(), "AngryDemo");
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_GROAN", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_GROAN");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
         MR::startBckPlayer("BattleWait", static_cast< const char* >(0));
     }
     if ((getHost()->mSequence->getVsCount()) == 1) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_D_PAKKUN_ANGRY", -1, -1, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_D_PAKKUN_ANGRY");
         if (MR::isStep(this, 99)) {
             MR::startCenterScreenBlur(80, 18.0, 0x50u, 5, 30);
         }
     }
     if ((getHost()->mSequence->getVsCount()) == 2) {
         if (MR::isLessStep(this, 205)) {
-            MR::startLevelSound(getHost(), "SE_BM_LV_D_PAKKUN_ANGRY", -1, -1, -1);
+            MR::startLevelSound(getHost(), "SE_BM_LV_D_PAKKUN_ANGRY");
         }
         if (MR::isStep(this, 220)) {
             MR::startCenterScreenBlur(80, 18.0, 0x50u, 5, 30);
@@ -172,18 +172,18 @@ void DinoPackunDemo::exeDownDemo() {
         getHost()->startDemoAndReset();
         MR::startAction(getHost(), "DownDemo");
         MR::startAnimCameraTargetSelf(getHost(), getHost()->mCameraInfo, "DownDemo", 0, 1.0);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_DIE", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_DIE");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
         MR::startBckPlayer("BattleWait", static_cast< const char* >(0));
     }
     if (MR::isStep(this, 20)) {
         MR::startCenterScreenBlur(130, 18.0, 0x50u, 15, 40);
     }
     if (MR::isStep(this, 319)) {
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_FALL_DOWN", -1, -1);
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_FALL_DOWN");
     }
     if (MR::isBckStopped(getHost())) {
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_EXPLODE", -1, -1);
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_EXPLODE");
         MR::tryRumblePadVeryStrong(getHost(), 0);
         MR::hideModel(getHost());
         setNerve(&NrvDinoPackunDemo::DinoPackunDemoNrvAppearPowerStar::sInstance);

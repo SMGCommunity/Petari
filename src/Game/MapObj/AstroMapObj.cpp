@@ -145,9 +145,9 @@ void AstroMapObj::exeWait() {
     if (AstroMapObj::isPlayMachineSE() &&
         (isNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance) || isNerve(&NrvAstroMapObj::AstroMapObjNrvAliveAfterDemo::sInstance))) {
         if (MR::isEqualString(_CC, "AstroRotateStepA")) {
-            MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1");
         } else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
-            MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_2", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_2");
         }
     }
 }
@@ -156,7 +156,7 @@ void AstroMapObj::exeOpen() {
     if (MR::isFirstStep(this)) {
         tryStartAllAnimAndEffect("Open");
         if (MR::isEqualString(_CC, "AstroDomeEntrance")) {
-            MR::startSound(this, "SE_OJ_ASTRO_ENTRANCE_OPEN", -1, -1);
+            MR::startSound(this, "SE_OJ_ASTRO_ENTRANCE_OPEN");
         }
     }
     if (MR::isBtkStopped(this)) {
@@ -170,19 +170,19 @@ void AstroMapObj::exeRevival() {
     if (MR::isFirstStep(this)) {
         tryStartAllAnimAndEffect("Revival");
         if (MR::isEqualString(_CC, "AstroStarPlate")) {
-            MR::startSound(this, "SE_OJ_ASTRO_PLATE_REVIVAL", -1, -1);
+            MR::startSound(this, "SE_OJ_ASTRO_PLATE_REVIVAL");
         } else if (MR::isEqualString(mObjectName, "AstroRotateStepA")) {
-            MR::startSound(this, "SE_OJ_ASTRO_STEP_REVIVAL", -1, -1);
+            MR::startSound(this, "SE_OJ_ASTRO_STEP_REVIVAL");
         } else if (MR::isEqualString(mObjectName, "AstroRotateStepB")) {
-            MR::startSound(this, "SE_OJ_ASTRO_STEP_REVIVAL", -1, -1);
+            MR::startSound(this, "SE_OJ_ASTRO_STEP_REVIVAL");
         }
     }
     if (MR::isEqualString(_CC, "AstroRotateStepA")) {
-        MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1");
     } else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
-        MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_2", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_2");
     } else if (MR::isEqualString(_CC, "AstroStarPlate") && MR::isGreaterStep(this, sAstroPathAppearStep)) {
-        MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_PATH_APPEAR", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_PATH_APPEAR");
     }
     if (AstroMapObj::isEndRevival()) {
         setNerve(&NrvAstroMapObj::AstroMapObjNrvAlive::sInstance);

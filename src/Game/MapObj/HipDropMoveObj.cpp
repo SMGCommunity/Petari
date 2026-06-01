@@ -75,7 +75,7 @@ void HipDropMoveObj::exeMove() {
         const char* startSe = MR::StageEffect::getStartSe(mObjectName);
 
         if (startSe) {
-            MR::startSound(this, startSe, -1, -1);
+            MR::startSound(this, startSe);
         }
 
         MR::StageEffect::rumblePadStart(this, mObjectName);
@@ -90,10 +90,10 @@ void HipDropMoveObj::exeMove() {
     if (movingSe) {
         if (steps >= 0) {
             if (MR::isLessStep(this, steps)) {
-                MR::startLevelSound(this, movingSe, -1, -1, -1);
+                MR::startLevelSound(this, movingSe);
             }
         } else {
-            MR::startLevelSound(this, movingSe, -1, -1, -1);
+            MR::startLevelSound(this, movingSe);
         }
     }
 
@@ -102,11 +102,11 @@ void HipDropMoveObj::exeMove() {
             const char* stopSe = MR::StageEffect::getStopSe(mObjectName);
 
             if (stopSe) {
-                MR::startSound(this, stopSe, -1, -1);
+                MR::startSound(this, stopSe);
             }
 
             if (MR::StageEffect::isRiddleSeTypeStop(mObjectName)) {
-                MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+                MR::startSystemSE("SE_SY_READ_RIDDLE_S");
             }
         }
     }
@@ -125,7 +125,7 @@ void HipDropMoveObj::exeMove() {
             const char* stopSe = MR::StageEffect::getStopSe(mObjectName);
 
             if (stopSe) {
-                MR::startSound(this, stopSe, -1, -1);
+                MR::startSound(this, stopSe);
             }
         }
 

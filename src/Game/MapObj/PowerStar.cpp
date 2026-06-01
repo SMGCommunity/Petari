@@ -326,7 +326,7 @@ bool PowerStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         return true;
     case 0x92:
         if (isNerve(&NrvPowerStar::PowerStarNrvWait::sInstance)) {
-            MR::startSystemSE("SE_SY_STAR_GET", -1, -1);
+            MR::startSystemSE("SE_SY_STAR_GET");
             MR::stopSoundPlayer("SE_PV_BURN_RUN", 0);
             MR::stopSoundPlayer("SE_PV_NEEDLE_DAMAGE_RUN", 0);
             MR::makeMtxTR((MtxPtr)&_E8, *MR::getPlayerPos(), *MR::getPlayerRotate());
@@ -586,9 +586,9 @@ void PowerStar::processWait(f32 val) {
 
     if (!_164) {
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST_W", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST_W");
         } else {
-            MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST");
         }
     }
 }
@@ -610,9 +610,9 @@ void PowerStar::exeAppearDemoRise() {
 
     TVec3f stack_8(0.0f, 0.0f, 0.0f);
     if (MR::isInWater(this, stack_8)) {
-        MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST_W", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST_W");
     } else {
-        MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST");
     }
 
     f32 easeOut = MR::calcNerveEaseOutValue(this, 0x3C, 0.0f, 300.0f);

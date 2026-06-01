@@ -135,9 +135,9 @@ void BigFan::exeStart() {
         MR::startAction(mWindModel, "Appear");
 
         if (mIsTeresaGalaxy) {
-            MR::startSound(this, "SE_OJ_BIG_FAN_START_FAR", -1, -1);
+            MR::startSound(this, "SE_OJ_BIG_FAN_START_FAR");
         } else {
-            MR::startSound(this, "SE_OJ_BIG_FAN_START", -1, -1);
+            MR::startSound(this, "SE_OJ_BIG_FAN_START");
         }
     }
 
@@ -153,9 +153,9 @@ void BigFan::exeWait() {
     }
 
     if (mIsTeresaGalaxy) {
-        MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN_FAR", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN_FAR");
     } else {
-        MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN");
     }
 }
 

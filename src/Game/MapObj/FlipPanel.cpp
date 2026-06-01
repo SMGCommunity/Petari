@@ -74,7 +74,7 @@ void FlipPanel::exeFrontLand() {
         }
 
         MR::tryRumblePadMiddle(this, 0);
-        MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE", -1, -1);
+        MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE");
 
         if (_CD) {
             MR::sendMsgToGroupMember(ACTMES_FAILURE, this, getSensor(0), "body");
@@ -103,7 +103,7 @@ void FlipPanel::exeBackLand() {
         }
 
         MR::tryRumblePadMiddle(this, 0);
-        MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE", -1, -1);
+        MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE");
 
         if (!_CD) {
             MR::sendMsgToGroupMember(ACTMES_SUCCESS, this, getSensor(0), "body");
@@ -144,7 +144,7 @@ void FlipPanel::exeEndPrepare() {
 
 void FlipPanel::exeEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_OJ_FLIP_PANEL_COMPLETE", -1, -1);
+        MR::startSystemSE("SE_OJ_FLIP_PANEL_COMPLETE");
         MR::startBck(this, "PanelEnd", 0);
         MapObjActorUtil::killBloomModel(this);
         _CC = 0;
@@ -312,7 +312,7 @@ void FlipPanelObserver::init(const JMapInfoIter& rIter) {
 void FlipPanelObserver::exeWait() {
     if (MR::isFirstStep(this) && MR::isValidSwitchAppear(this)) {
         MR::callAppearAllGroupMember(this);
-        MR::startSound(this, "SE_OJ_FLIP_PANEL_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_FLIP_PANEL_APPEAR");
     }
 
     if (_90 == _8C->mObjectCount - 1 && MR::tryStartDemo(this, "FlipPanelComplete")) {

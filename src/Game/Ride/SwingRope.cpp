@@ -260,8 +260,8 @@ bool SwingRope::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         updateFootPos();
 
         MR::invalidateClipping(this);
-        MR::startSound(mRider, "SE_PV_CATCH", -1, -1);
-        MR::startSound(mRider, "SE_PM_GRAB_OBJ", -1, -1);
+        MR::startSound(mRider, "SE_PV_CATCH");
+        MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         MR::startActorCameraNoTarget(this, mCameraInfo, -1);
 
         setNerve(&NrvSwingRope::SwingRopeNrvBindSlideDownStart::sInstance);
@@ -387,8 +387,8 @@ bool SwingRope::tryJump() {
         jumpVec.add(proj);
 
         MR::endActorCameraAtLanding(this, mCameraInfo, -1);
-        MR::startSound(mRider, "SE_PV_JUMP_S", -1, -1);
-        MR::startSound(mRider, "SE_PM_JUMP_M", -1, -1);
+        MR::startSound(mRider, "SE_PV_JUMP_S");
+        MR::startSound(mRider, "SE_PM_JUMP_M");
         MR::startBckPlayer("SwingRopeSpin", static_cast< s32 >(0));
 
         MR::setPlayerFrontTargetVec(front, 1);
@@ -455,10 +455,10 @@ void SwingRope::updateHangPoint() {
     if (soundLvl < 0) {
         soundLvl = 0;
     }
-    MR::startLevelSound(this, "SE_OJ_LV_ROPE_SWING_WIND_1", soundLvl, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_ROPE_SWING_WIND_1", soundLvl);
 
     if (mPrevSoundLvl < 20 && 20 <= soundLvl) {
-        MR::startSound(this, "SE_OJ_ROPE_CREAK_H", -1, -1);
+        MR::startSound(this, "SE_OJ_ROPE_CREAK_H");
     }
     mPrevSoundLvl = soundLvl;
 }

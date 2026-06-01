@@ -164,7 +164,7 @@ void PowerStarList::control() {
     mCaptureButtonCtrl->update();
 
     if (mArrowUpButtonCtrl->isPointingTrigger() || mArrowDownButtonCtrl->isPointingTrigger() || mCaptureButtonCtrl->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_GALAMAP_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_CURSOR_ON");
     }
 }
 
@@ -287,7 +287,7 @@ void PowerStarList::exePageNext() {
     if (MR::isFirstStep(this)) {
         startScrollAnimNext(false);
         _30++;
-        MR::startSystemSE("SE_SY_GALAMAP_SCROLL", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_SCROLL");
     }
 
     if (MR::isPaneAnimStopped(this, "List1", 0) && MR::isPaneAnimStopped(this, "List2", 0)) {
@@ -300,7 +300,7 @@ void PowerStarList::exePagePrev() {
     if (MR::isFirstStep(this)) {
         updateList(_30 - 1, false);
         startScrollAnimPrev();
-        MR::startSystemSE("SE_SY_GALAMAP_SCROLL", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_SCROLL");
     }
 
     if (MR::isPaneAnimStopped(this, "List1", 0) && MR::isPaneAnimStopped(this, "List2", 0)) {
@@ -311,7 +311,7 @@ void PowerStarList::exePagePrev() {
 
 void PowerStarList::exeCaptureStart() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_GALAMAP_CAPTURE", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_CAPTURE");
     }
 
     if (mCaptureButtonCtrl->isDecidedWait()) {

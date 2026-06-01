@@ -31,8 +31,8 @@ void PoltaStateAttackGround::exeStart() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::requestStartControllArm(getHost());
         PoltaFunction::startAction(getHost(), "AttackFrontStart", mIsAffectBody);
-        MR::startSound(getHost(), "SE_BV_POLTA_PREP_ARM_DOWN", -1, -1);
-        MR::startSound(getHost(), "SE_BM_POLTA_ARM_LIFT_UP", -1, -1);
+        MR::startSound(getHost(), "SE_BV_POLTA_PREP_ARM_DOWN");
+        MR::startSound(getHost(), "SE_BM_POLTA_ARM_LIFT_UP");
     }
     if (MR::isLessStep(this, 60)) {
         getHost()->rotateToPlayer();
@@ -49,8 +49,8 @@ void PoltaStateAttackGround::exeStart() {
 void PoltaStateAttackGround::exeAttack() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::startAction(getHost(), "AttackFront", mIsAffectBody);
-        MR::startSound(getHost(), "SE_BV_POLTA_ARM_DOWN", -1, -1);
-        MR::startSound(getHost(), "SE_BM_POLTA_ARM_SWING_DOWN", -1, -1);
+        MR::startSound(getHost(), "SE_BV_POLTA_ARM_DOWN");
+        MR::startSound(getHost(), "SE_BM_POLTA_ARM_SWING_DOWN");
     }
     if (!PoltaFunction::isEnableAttackLeftArm(getHost()) && !PoltaFunction::isEnableAttackRightArm(getHost())) {
         kill();
@@ -58,7 +58,7 @@ void PoltaStateAttackGround::exeAttack() {
         if (MR::isGreaterStep(this, mAttackLength)) {
             setNerve(&NrvPoltaStateAttackGround::PoltaStateAttackGroundNrvToWait::sInstance);
             MR::tryRumblePadStrong(this, 0);
-            MR::startSound(getHost(), "SE_BM_POLTA_HIT_GROUND", -1, -1);
+            MR::startSound(getHost(), "SE_BM_POLTA_HIT_GROUND");
             MR::shakeCameraNormalStrong();
         }
     }

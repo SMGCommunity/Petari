@@ -352,7 +352,7 @@ bool ScenarioSelectLayout::tryCancel() {
     }
 
     if (MR::testCorePadTriggerB(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
+        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         mBackButton->disappear();
         setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvCancel::sInstance);
         return true;
@@ -411,7 +411,7 @@ void ScenarioSelectLayout::exeAppearStar() {
         }
     }
 
-    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SE_FLY", -1, -1);
+    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SE_FLY");
 
     if (isAppearStarEndAll()) {
         s32 scenarioNo;
@@ -445,7 +445,7 @@ void ScenarioSelectLayout::exeAppear() {
         setAnimRateAllNewPane(1.0f);
     }
 
-    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
+    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY");
     MR::setNerveAtPaneAnimStopped(this, "ScenarioSelect", &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvWaitScenarioSelect::sInstance, 0);
 }
 
@@ -457,7 +457,7 @@ void ScenarioSelectLayout::exeWaitScenarioSelect() {
 
     updateSelectedScenario();
     updateScenarioText();
-    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
+    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY");
 
     if (tryCancel()) {
         return;
@@ -465,7 +465,7 @@ void ScenarioSelectLayout::exeWaitScenarioSelect() {
 
     if (trySelect()) {
         _28 = true;
-        MR::startSystemSE("SE_SY_DECIDE_1", -1, -1);
+        MR::startSystemSE("SE_SY_DECIDE_1");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         mBackButton->disappear();
         setNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvDecide::sInstance);
@@ -490,14 +490,14 @@ void ScenarioSelectLayout::exeDecide() {
     }
 
     updateScenarioText();
-    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
+    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY");
     MR::setNerveAtStep(this, &NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance, cDecideFrame);
 }
 
 void ScenarioSelectLayout::exeAfterScenarioSelected() {
     MR::startPaneAnimAtStep(this, "ScenarioFrame", "End", cSelectedEndAnimStartStep, 0);
     updateScenarioText();
-    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY", -1, -1);
+    MR::startSystemLevelSE("SE_DM_LV_SENARIO_SEL_FLY");
 
     f32 rate = MR::calcNerveEaseInValue(this, cSelectedAccelStartStep, cSelectedAccelFrame, cSelectedEffectRateMin, cSelectedEffectRateMax);
     f32 directionalSpeed =
@@ -561,7 +561,7 @@ void ScenarioSelectLayout::exeAppearCometWarning() {
         MR::showPaneRecursive(this, "CometAppear");
         MR::startPaneAnim(this, "CometAppear", "CometAppear", 0);
         MR::setCometPaneAnimFromId(this, "CometAppear", id, 1);
-        MR::startSystemSE("SE_SY_COMET_WARNING_DISP", -1, -1);
+        MR::startSystemSE("SE_SY_COMET_WARNING_DISP");
     }
 
     if (MR::isGreaterStep(this, cCometWarningWaitFrame)) {
@@ -571,7 +571,7 @@ void ScenarioSelectLayout::exeAppearCometWarning() {
 
 void ScenarioSelectLayout::exeWaitCometWarning() {
     if (getNerveStep() % 80 == 25) {
-        MR::startSystemSE("SE_SY_COMET_WARNING", -1, -1);
+        MR::startSystemSE("SE_SY_COMET_WARNING");
     }
 
     MR::startPaneAnimAtFirstStep(this, "CometAppear", "CometWait", 0);

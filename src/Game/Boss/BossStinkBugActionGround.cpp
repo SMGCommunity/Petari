@@ -67,7 +67,7 @@ bool BossStinkBugActionGround::receiveMsgPlayerAttack(u32 msg, HitSensor* pSende
         MR::shakeCameraNormal();
         MR::emitEffectHit(getHost(), MR::getSensorPos(pSender), "Hit");
         BossStinkBugFunction::invalidateAttack(getHost());
-        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
         setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvDamage::sInstance);
 
         return true;

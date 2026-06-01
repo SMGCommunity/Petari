@@ -76,10 +76,10 @@ void AudEffectDirector::setAudioEffectParam(s32 a1) {
 void AudEffectDirector::playEffectSound(s32 a1) {
     switch (a1) {
     case 3:
-        MR::startAtmosphereLevelSE("SE_AT_LV_WATERFALL_CAVE", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_WATERFALL_CAVE");
         break;
     case 4:
-        MR::startAtmosphereLevelSE("SE_AT_LV_PHNCV_TERESA_ROOM", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_PHNCV_TERESA_ROOM");
         break;
     }
 }

@@ -334,7 +334,7 @@ void TripodBossLeg::exeLeaveOut() {
 }
 
 void TripodBossLeg::exeMove() {
-    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_MOVE", -1);
+    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_MOVE");
     addToTargetPower(_240, 1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;
@@ -350,7 +350,7 @@ void TripodBossLeg::exeMoveToLandingPos() {
         _240 = v14;
     }
 
-    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_MOVE", -1);
+    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_MOVE");
     addToTargetPower(_240, 1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;
@@ -375,7 +375,7 @@ void TripodBossLeg::exeStampSign() {
         _240 = v7;
     }
 
-    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_PREFALL", -1);
+    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_PREFALL");
     addToTargetPower(_240, 1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;

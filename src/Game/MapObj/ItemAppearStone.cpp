@@ -31,10 +31,10 @@ void ItemAppearStone::kill() {
 void ItemAppearStone::calcAndSetBaseMtx() {}
 
 void ItemAppearStone::exeWait() {
-    MR::startLevelSound(this, "SE_OJ_LV_ITEM_APR_STONE_MV", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_ITEM_APR_STONE_MV");
 
     if (MR::isOnSwitchB(this)) {
-        MR::startSound(this, "SE_OJ_ITEM_APR_STONE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_ITEM_APR_STONE_BREAK");
         kill();
     }
 }

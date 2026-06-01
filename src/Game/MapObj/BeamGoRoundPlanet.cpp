@@ -85,7 +85,7 @@ void BeamGoRoundPlanet::init(const JMapInfoIter& rIter) {
 void BeamGoRoundPlanet::exeWait() {
     _CC->setMtx();
     _C8->setMtx();
-    MR::startLevelSound(this, "SE_OJ_LV_BEAM_GO_ROUND", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BEAM_GO_ROUND");
 }
 
 void BeamGoRoundPlanet::connectToScene(const MapObjActorInitInfo&) {

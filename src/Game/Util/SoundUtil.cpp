@@ -16,15 +16,15 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/RhythmLib/AudChordInfo.hpp"
 #include "Game/RhythmLib/AudMeObject.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JAudio2/JAISound.hpp>
 
 namespace {
     AudBgmConductor* getAudBgmConductor() {
-        return MR::getSceneObj<AudBgmConductor>(SceneObj_AudBgmConductor);
+        return MR::getSceneObj< AudBgmConductor >(SceneObj_AudBgmConductor);
     }
 };  // namespace
 
@@ -113,7 +113,7 @@ namespace MR {
         if (param3 != -1) {
             JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(pName);
 
-            return  pActor->mSoundObject->startSoundParam(id, param3, param4);
+            return pActor->mSoundObject->startSoundParam(id, param3, param4);
         } else {
             JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(pName);
 
@@ -194,7 +194,7 @@ namespace MR {
         JAUSoundAnimation* pSoundAnimation = nullptr;
 
         if (pResourceHolder->mBasResTable->isExistRes(pName)) {
-            pSoundAnimation = static_cast<JAUSoundAnimation*>(pResourceHolder->mBasResTable->getRes(pName));
+            pSoundAnimation = static_cast< JAUSoundAnimation* >(pResourceHolder->mBasResTable->getRes(pName));
         }
 
         pActor->mSoundObject->setMapCode(getMapSoundCodeFoot(pActor));
@@ -536,7 +536,7 @@ namespace MR {
     }
 
     void setAudioEffectType(s32 param1, s32 param2) {
-        MR::getSceneObj<AudEffectDirector>(SceneObj_AudEffectDirector)->setEffectType(param1, param2);
+        MR::getSceneObj< AudEffectDirector >(SceneObj_AudEffectDirector)->setEffectType(param1, param2);
     }
 
     void startCSSound(const char* pCSName, const char* pSEName, s32 param3) {
@@ -547,7 +547,7 @@ namespace MR {
                 AudSpeakerWrap::start(id, param3);
             }
         } else if (pSEName != nullptr) {
-            startSystemSE(pSEName, -1, -1);
+            startSystemSE(pSEName);
         }
     }
 
@@ -572,28 +572,28 @@ namespace MR {
     }
 
     void startBlowHitSound(const LiveActor* pActor) {
-        startSound(pActor, "SE_PM_SPIN_HIT", -1, -1);
+        startSound(pActor, "SE_PM_SPIN_HIT");
     }
 
     void startDPDHitSound() {
         if (hasME()) {
             startSystemME("ME_DPD_HIT");
         } else {
-            startSystemSE("SE_SY_DPD_HIT", -1, -1);
+            startSystemSE("SE_SY_DPD_HIT");
         }
 
         startCSSound2P("CS_DPD_HIT", nullptr);
     }
 
     void startDPDFreezeLevelSound(const LiveActor* pActor) {
-        startLevelSound(pActor, "SE_EM_LV_DPD_POINT", -1, -1, -1);
+        startLevelSound(pActor, "SE_EM_LV_DPD_POINT");
     }
 
     void start2PJumpAssistSound() {
         if (hasME()) {
             startSystemME("ME_2P_ASSIST_JUMP");
         } else {
-            startSystemSE("SE_SY_2P_ASSIST_JUMP", -1, -1);
+            startSystemSE("SE_SY_2P_ASSIST_JUMP");
         }
 
         startCSSound2P("CS_DPD_JUMP", nullptr);
@@ -603,7 +603,7 @@ namespace MR {
         if (hasME()) {
             startSystemME("ME_2P_ASSIST_JUMP_L");
         } else {
-            startSystemSE("SE_SY_2P_ASSIST_JUMP_L", -1, -1);
+            startSystemSE("SE_SY_2P_ASSIST_JUMP_L");
         }
 
         startCSSound2P("CS_DPD_JUMP_HIGH", nullptr);
@@ -613,7 +613,7 @@ namespace MR {
         if (hasME()) {
             startSystemME("ME_2P_ASSIST_ATTACK");
         } else {
-            startSystemSE("SE_SY_2P_ASSIST_ATTACK", -1, -1);
+            startSystemSE("SE_SY_2P_ASSIST_ATTACK");
         }
 
         startCSSound2P("CS_DPD_PUNCH", nullptr);

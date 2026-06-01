@@ -108,7 +108,7 @@ void Fountain::exeMove() {
         MR::emitEffect(this, mFountainName);
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN");
 }
 
 Fountain::~Fountain() {}

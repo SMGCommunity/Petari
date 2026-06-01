@@ -33,7 +33,7 @@ void LavaShellTower::exeDemo() {
         MR::overlayWithPreviousScreen(2);
     }
 
-    MR::startSystemLevelSE("SE_DM_LV_SHELL_TOWER", -1, -1);
+    MR::startSystemLevelSE("SE_DM_LV_SHELL_TOWER");
     MR::tryRumblePadStrong(this, 0);
 
     if (MR::isGreaterStep(this, 1) && MR::isDemoLastStep()) {

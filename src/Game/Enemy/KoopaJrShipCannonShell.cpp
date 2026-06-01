@@ -159,7 +159,7 @@ void KoopaJrShipCannonShell::launch(const TVec3f& rStartPos, const TVec3f& rVelo
     MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, vec);
     mtx.getQuat(_8C);
     mVelocity.set< f32 >(rVelocity);
-    MR::startSound(this, "SE_BM_KOOPAJR_SHIP_SHOOT_NORMAL", -1, -1);
+    MR::startSound(this, "SE_BM_KOOPAJR_SHIP_SHOOT_NORMAL");
     setNerve(&NrvKoopaJrShipCannonShell::HostTypeFly::sInstance);
 }
 
@@ -186,7 +186,7 @@ bool KoopaJrShipCannonShell::isStateEnableExplosion() const {
 void KoopaJrShipCannonShell::explosion() {
     MR::startRumbleWithShakeCameraWeak(this, "強", "中", sCameraShakeDistance, sCameraShakeDistance * 2);
     MR::emitEffect(this, "Explosion");
-    MR::startSound(this, "SE_EM_KILLER_EXPLOSION", -1, -1);
+    MR::startSound(this, "SE_EM_KILLER_EXPLOSION");
     kill();
 }
 
@@ -194,7 +194,7 @@ void KoopaJrShipCannonShell::misfire() {
     MR::shakeCameraWeak();
     MR::tryRumblePad(this, "弱", WPAD_CHAN0);
     MR::emitEffect(this, "MisFire");
-    MR::startSound(this, "SE_EM_KILLER_MISS_FIRE", -1, -1);
+    MR::startSound(this, "SE_EM_KILLER_MISS_FIRE");
     kill();
 }
 
@@ -205,7 +205,7 @@ void KoopaJrShipCannonShell::exeFly() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "LocusSmoke");
     }
-    MR::startLevelSound(this, "SE_EM_LV_KILLER_FLY", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_KILLER_FLY");
 
     if (tryFreeze())
         return;
@@ -221,7 +221,7 @@ void KoopaJrShipCannonShell::exeFly() {
 void KoopaJrShipCannonShell::exeDown() {
     if (MR::isFirstStep(this)) {
         MR::onCalcGravity(this);
-        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
+        MR::startSound(this, "SE_EM_STOMPED_S");
         if (isNerve(&NrvKoopaJrShipCannonShell::HostTypeHipDropDown::sInstance)) {
             MR::jumpPlayer(mGravity.negateInline());
         }

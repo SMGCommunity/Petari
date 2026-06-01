@@ -10,7 +10,7 @@
 StarPieceSpot::StarPieceSpot(const char* pName) : LiveActor(pName) {}
 
 void StarPieceSpot::emit() {
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     MR::appearStarPiece(this, mPosition, MR::getDeclareRemnantStarPieceCount(this), 15.0f, 40.0f, false);
 }
 
@@ -35,7 +35,7 @@ void StarPieceSpot::init(const JMapInfoIter& rIter) {
 
 bool StarPieceSpot::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::appearStarPiece(this, mPosition, MR::getDeclareRemnantStarPieceCount(this), 15.0f, 40.0f, false);
         kill();
         return false;

@@ -82,8 +82,8 @@ void DinoPackunStateDamage::exePunched() {
         getHost()->startDamageCamera();
         MR::zeroVelocity(getHost());
         getHost()->mTail->lockNodePosition(1);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_SPIN_HIT", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_SPIN_HIT");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
 
     getHost()->adjustTailRootPosition(!_14 ? sEggOutPosition : sOutPosition, 0.1f);
@@ -135,10 +135,10 @@ void DinoPackunStateDamage::exeEggBroken() {
     if (MR::isFirstStep(this)) {
         MR::stopBck(getHost());
         getHost()->mTail->lockEndNodePosition();
-        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_EGG_BRK_HIT", -1, -1);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_BREAK", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_EGG_BRK_HIT");
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_BREAK");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
         MR::shakeCameraStrong();
         MR::tryRumblePadMiddle(getHost(), 0);
         MR::zeroVelocity(getHost());
@@ -156,7 +156,7 @@ void DinoPackunStateDamage::exeEggBroken() {
         MR::startBck(getHost()->getEggBrokenModel(), "Break", nullptr);
         MR::startBrk(getHost()->getEggBrokenModel(), "Break");
         MR::startBck(getHost(), "EggDamageTop", nullptr);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_HEAD_EGG_BRK", -1, -1);
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_HEAD_EGG_BRK");
         getHost()->mTail->unlockEndNodePosition();
         getHost()->mTail->unlockNodePosition(1);
         MR::shakeCameraStrong();
@@ -173,10 +173,10 @@ void DinoPackunStateDamage::exeEggBroken() {
 
 void DinoPackunStateDamage::exeDamage() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_DAMAGE", -1, -1);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_DAMAGE", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_DAMAGE");
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_DAMAGE");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
 
         switch (_10) {
         case 3:
@@ -196,10 +196,10 @@ void DinoPackunStateDamage::exeDamage() {
 
 void DinoPackunStateDamage::exeLastDamage() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_LAST_DAMAGE", -1, -1);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_LAST_DAMAGE", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_LAST_DAMAGE");
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_LAST_DAMAGE");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
 
         switch (_10) {
         case 3:

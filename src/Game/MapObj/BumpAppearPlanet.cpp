@@ -37,7 +37,7 @@ void BumpAppearPlanet::exeWait() {
 void BumpAppearPlanet::exeBumpOut() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "BumpAppearPlanetPush", nullptr);
-        MR::startSound(this, "SE_OJ_BUMP_APPEAR_PLN_OUT", -1, -1);
+        MR::startSound(this, "SE_OJ_BUMP_APPEAR_PLN_OUT");
         MR::validateCollisionParts(_C4);
     }
 }
@@ -45,7 +45,7 @@ void BumpAppearPlanet::exeBumpOut() {
 void BumpAppearPlanet::exeBumpIn() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "BumpAppearPlanetPull", nullptr);
-        MR::startSound(this, "SE_OJ_BUMP_APPEAR_PLN_IN", -1, -1);
+        MR::startSound(this, "SE_OJ_BUMP_APPEAR_PLN_IN");
     }
 
     if (MR::isBckStopped(this)) {

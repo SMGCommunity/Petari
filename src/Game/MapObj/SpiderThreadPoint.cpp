@@ -126,7 +126,7 @@ void SpiderThreadPoint::startThreadLevelSound() {
     if (mPrevStretchDist > 0.0f && stretchDist > 50.0f) {
         f32 diff = __fabsf(mPrevStretchDist - stretchDist);
         if (diff > 1.0f) {
-            MR::startSystemLevelSE("SE_OJ_LV_SPIDER_THREAD_PULL", systemLevelParam(stretchDist, diff * 100.0f), -1);
+            MR::startSystemLevelSE("SE_OJ_LV_SPIDER_THREAD_PULL", systemLevelParam(stretchDist, diff * 100.0f));
         }
     }
     mPrevStretchDist = stretchDist;

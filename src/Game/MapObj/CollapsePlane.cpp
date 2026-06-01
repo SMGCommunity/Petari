@@ -51,14 +51,14 @@ void CollapsePlane::exeWait() {
 
 void CollapsePlane::exeCollapse() {
     if (_D0 == 1) {
-        MR::startSound(this, "SE_OJ_COLLAPSE_PLANE_SHRINK", -1, -1);
+        MR::startSound(this, "SE_OJ_COLLAPSE_PLANE_SHRINK");
     }
 
     if (_D0 >= mTimer) {
         MR::hideMaterial(this, "PlaneMat_v");
         MR::invalidateCollisionParts(this);
         MR::emitEffect(this, "Vanish");
-        MR::startSound(this, "SE_OJ_COLLAPSE_PLANE_VANISH", -1, -1);
+        MR::startSound(this, "SE_OJ_COLLAPSE_PLANE_VANISH");
         _D0 = -1;
         setNerve(&NrvCollapsePlane::CollapsePlaneNrvEnd::sInstance);
     } else {

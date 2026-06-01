@@ -236,18 +236,18 @@ void PenguinSkater::blendBaseMatrixToMario(f32 blendRate) const {
 
 void PenguinSkater::exeReaction() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_PENGUIN_S_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED");
+        MR::startSound(this, "SE_SV_PENGUIN_S_TRAMPLED");
     }
     if (isPointingSe()) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_POINTED_2P", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_POINTED_2P");
         MR::startDPDHitSound();
     }
     if (_D9) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_SPIN_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_SPIN_HIT");
     }
     if (_DB) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_STAR_PIECE", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_STAR_PIECE");
     }
     if (MR::tryStartReactionAndPopNerve(this)) {
         return;
@@ -281,10 +281,10 @@ void PenguinSkater::exeDemo() {
         MR::tryStartAction(this, "IceSwim");
     }
     if (MR::isStep(this, sDemoSkateSeStartTiming)) {
-        MR::startSound(this, "SE_SM_PENGUIN_SKATE_START", -1, -1);
+        MR::startSound(this, "SE_SM_PENGUIN_SKATE_START");
     }
     if (MR::isGreaterEqualStep(this, sDemoSkateSeStartTiming)) {
-        MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SKATE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SKATE");
     }
     moveRail(sDemoSpeed, sBlendRatio);
     if (inProvokeRangeIn(calcLead())) {
@@ -298,7 +298,7 @@ void PenguinSkater::exeAway() {
     if (MR::isFirstStep(this)) {
         MR::tryStartAction(this, "IceSwim");
     }
-    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SKATE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SKATE");
     moveRail(sAwaySpeed, sBlendRatio);
     f32 lead = calcLead();
     if (lead < 0.0f) {
@@ -326,7 +326,7 @@ void PenguinSkater::exeTurn() {
 }
 
 void PenguinSkater::exeSwitch() {
-    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SKATE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SKATE");
     moveRail(sSwitchSpeed, sBlendRatio);
     if (MR::isRailReachedGoal(mRail)) {
         endSwitchRail();
@@ -350,7 +350,7 @@ void PenguinSkater::exeProvoke() {
                 MR::reverseRailDirection(mSwitchRail);
             }
             setNerve(&NrvPenguinSkater::PenguinSkaterNrvAway::sInstance);
-            MR::startSound(this, "SE_SM_PENGUIN_SKATE_START", -1, -1);
+            MR::startSound(this, "SE_SM_PENGUIN_SKATE_START");
         }
     }
 }
@@ -361,13 +361,13 @@ void PenguinSkater::exeCaught() {
         MR::startMultiActorCameraTargetPlayer(this, mCameraInfo, "終了", -1);
         MR::startAction(this, "Caught");
         MR::startBckPlayer("TossStart", static_cast< const char* >(nullptr));
-        MR::startSound(this, "SE_SM_PENGUIN_CAUGHT", -1, -1);
+        MR::startSound(this, "SE_SM_PENGUIN_CAUGHT");
         MR::zeroVelocity(this);
         setCaughtStartMarioPose();
     }
     if (MR::isStep(this, 20)) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_CAUGHT", -1, -1);
-        MR::startSystemSE("SE_SY_TOTAL_COMPLETE", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_CAUGHT");
+        MR::startSystemSE("SE_SY_TOTAL_COMPLETE");
     }
     blendBaseMatrixToMario(MR::calcNerveRate(this, sMarioPoseBlendTime));
     if (MR::isActionEnd(this)) {

@@ -30,7 +30,7 @@ void PoltaStateGenerateRock::exeSign() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::requestStartControllArm(getHost());
         PoltaFunction::startAction(getHost(), "GenerateRockStart", true);
-        MR::startSound(getHost(), "SE_BV_POLTA_GEN_ROCK", -1, -1);
+        MR::startSound(getHost(), "SE_BV_POLTA_GEN_ROCK");
     }
     getHost()->rotateToPlayer();
     if (MR::isActionEnd(getHost())) {

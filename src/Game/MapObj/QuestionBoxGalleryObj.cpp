@@ -133,11 +133,11 @@ void QuestionBoxGalleryObj::control() {
 }
 
 void QuestionBoxGalleryObj::startSwitchOn() {
-    MR::startSound(this, "SE_OJ_Q_BOX_LIGHT_ON", -1, -1);
+    MR::startSound(this, "SE_OJ_Q_BOX_LIGHT_ON");
     setNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOnStart::sInstance);
 }
 
 void QuestionBoxGalleryObj::startSwitchOff() {
-    MR::startSound(this, "SE_OJ_Q_BOX_LIGHT_OFF", -1, -1);
+    MR::startSound(this, "SE_OJ_Q_BOX_LIGHT_OFF");
     setNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOffStart::sInstance);
 }

@@ -74,7 +74,7 @@ bool BossStinkBugActionFlyHigh::receiveMsgPlayerAttack(u32 msg, HitSensor* pSend
                 setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFall::sInstance);
             }
 
-            MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT", -1, -1);
+            MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
             return true;
         }
     }

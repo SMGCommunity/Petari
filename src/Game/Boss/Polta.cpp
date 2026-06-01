@@ -120,7 +120,7 @@ void Polta::appearStarPiece(s32 starPieceAmount) {
     TVec3f head3JointPos;
     MR::copyJointPos(this, "Head3", &head3JointPos);
     MR::appearStarPieceToDirection(this, head3JointPos, -mGravity, starPieceAmount, 50.0f, 60.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
 void BombTeresaHolder::disperseAll() {

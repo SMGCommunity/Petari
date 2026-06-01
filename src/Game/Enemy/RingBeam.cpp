@@ -297,7 +297,7 @@ void RingBeam::exeSpread() {
     TVec3f temp3;
     if (MR::isFirstStep(this)) {
         if (!MR::isPowerStarGetDemoActive()) {
-            MR::startSound(this, "SE_EM_JUMPRING_APPEAR", -1, -1);
+            MR::startSound(this, "SE_EM_JUMPRING_APPEAR");
         }
         char* str = "Spread";
         MR::startBckNoInterpole(this, str);
@@ -356,7 +356,7 @@ void RingBeam::exeSpread() {
         } else {
             _cc = ec;
         }
-        MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_MOVE");
     }
     if (MR::isStep(this, mLife - (s32)MR::getBrkFrameMax(this))) {
         startBrk("Erase");

@@ -74,7 +74,7 @@ void GalaxyMapGalaxyDetail::startDisplay(const char* a1, bool a2) {
 void GalaxyMapGalaxyDetail::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "Appear", 0);
-        MR::startSystemSE("SE_SY_GALAMAP_WINDOW_OPEN", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_WINDOW_OPEN");
     }
 
     MR::setNerveAtAnimStopped(this, &GalaxyMapGalaxyDetailDisplay::sInstance, 0);
@@ -95,7 +95,7 @@ void GalaxyMapGalaxyDetail::exeDisappear() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "End", 0);
         mAButtonIcon->term();
-        MR::startSystemSE("SE_SY_GALAMAP_WINDOW_CLOSE", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_WINDOW_CLOSE");
     }
     
     if (MR::isAnimStopped(this, 0)) {

@@ -268,7 +268,7 @@ void Coin::exeMove() {
 
     if (MR::isGreaterEqualStep(this, mCannotTime) && MR::isBindedGroundDamageFire(this)) {
         MR::emitEffect(this, "LavaFall");
-        MR::startSound(this, "SE_OJ_FALL_IN_MAGMA_S", -1, -1);
+        MR::startSound(this, "SE_OJ_FALL_IN_MAGMA_S");
         kill();
     } else {
         if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
@@ -539,10 +539,10 @@ void Coin::noticeGetCoin() {
 
     if (mIsPurpleCoin) {
         MR::incPurpleCoin();
-        MR::startSystemSE("SE_SY_PURPLE_COIN", -1, -1);
+        MR::startSystemSE("SE_SY_PURPLE_COIN");
     } else {
         MR::incCoin(1);
-        MR::startSystemSE("SE_SY_COIN", -1, -1);
+        MR::startSystemSE("SE_SY_COIN");
         mHostInfo->_C++;
     }
 }
@@ -599,7 +599,7 @@ void Coin::calcRebouond() {
             int what = (100.0f * dot) / 30.0f;
 
             if (what > 5) {
-                MR::startSound(this, "SE_OJ_COIN_BOUND", what, -1);
+                MR::startSound(this, "SE_OJ_COIN_BOUND", what);
             }
 
             vel = 0.75f;

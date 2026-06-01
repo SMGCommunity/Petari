@@ -55,10 +55,10 @@ void AnmModelObj::exeMove() {
     if (movingSE != nullptr) {
         if (steps > 0) {
             if (MR::isLessStep(this, steps)) {
-                MR::startLevelSound(this, movingSE, -1, -1, -1);
+                MR::startLevelSound(this, movingSE);
             }
         } else {
-            MR::startLevelSound(this, movingSE, -1, -1, -1);
+            MR::startLevelSound(this, movingSE);
         }
     }
 
@@ -67,9 +67,9 @@ void AnmModelObj::exeMove() {
     if (stopSE != nullptr) {
         if (steps >= 0) {
             if (MR::isStep(this, steps)) {
-                MR::startSound(this, stopSE, -1, -1);
+                MR::startSound(this, stopSE);
                 if (MR::StageEffect::isRiddleSeTypeStop(mObjectName)) {
-                    MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+                    MR::startSystemSE("SE_SY_READ_RIDDLE_S");
                 }
             }
         }
@@ -108,7 +108,7 @@ void AnmModelObj::exeDone() {
         const char* movingSE = MR::StageEffect::getMovingSe(mObjectName);
 
         if (movingSE) {
-            MR::startLevelSound(this, movingSE, -1, -1, -1);
+            MR::startLevelSound(this, movingSE);
         }
     }
 }

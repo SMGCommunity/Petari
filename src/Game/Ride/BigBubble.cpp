@@ -496,7 +496,7 @@ bool BigBubble::requestAssimilate(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 
-    MR::startSound(this, "SE_OJ_BIG_BUBBLE_MERGE", -1, -1);
+    MR::startSound(this, "SE_OJ_BIG_BUBBLE_MERGE");
     return true;
 }
 
@@ -506,7 +506,7 @@ bool BigBubble::requestCancelBind() {
     }
     mWarningColor.a = 0;
     MR::emitEffect(this, "Break");
-    MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
     mIsBroken = true;
     mRiderBasePos = mRiderPos;
     mInterpolateTime = 0.0f;
@@ -593,7 +593,7 @@ bool BigBubble::tryEscapeEnd() {
             mRider = nullptr;
         }
         MR::emitEffect(this, "Break");
-        MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
         kill();
         return true;
     }
@@ -637,7 +637,7 @@ void BigBubble::exeAppear() {
         mSpawnPosition = mPosition;
         MR::invalidateHitSensors(this);
         MR::getRandomVector(&mMoment, 0.03f);
-        MR::startSound(this, "SE_OJ_BIG_BUBBLE_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_BIG_BUBBLE_APPEAR");
     }
 
     f32 scale = MR::calcNerveValue(this, 30, 0.01f, mAppearRadius);
@@ -674,7 +674,7 @@ void BigBubble::exeCapture() {
         MR::startBckPlayer("SpaceWait", "BigBubbleCapture");
         _1A4.zero();
         mReduceVolumeTimer = 0;
-        MR::startSound(this, "SE_OJ_BIG_BUBBLE_MARIO_IN", -1, -1);
+        MR::startSound(this, "SE_OJ_BIG_BUBBLE_MARIO_IN");
         mRiderBasePos = mRiderPos;
         MR::validateHitSensor(this, "ride");
     }
@@ -766,7 +766,7 @@ void BigBubble::exeBreak() {
         }
         mWarningColor.a = 0;
         MR::emitEffect(this, "Break");
-        MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
         mIsBroken = true;
         mRiderBasePos = mRiderPos;
         mInterpolateTime = 0.0f;
@@ -806,7 +806,7 @@ void BigBubble::exeEscape() {
 
 void BigBubble::exeGoal() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     }
 
     updateNormalVelocity();
@@ -939,7 +939,7 @@ bool BigBubble::addAccelPointing(s32 padChannel) {
 
     f32 maxDist = 1000.0f;
     mBlowForce = 1.0f - (pointerDist - 50.0f) / (maxDist - 50.0f);
-    MR::startSystemLevelSE("SE_SY_LV_BIG_BUBBLE_WIND", mBlowForce * 100.0f, -1);
+    MR::startSystemLevelSE("SE_SY_LV_BIG_BUBBLE_WIND", mBlowForce * 100.0f);
 
     TVec3f accelDir;
     MR::normalizeOrZero(mPosition - mPointerPos, &accelDir);
