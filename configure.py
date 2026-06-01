@@ -575,7 +575,7 @@ config.libs = [
     NWLib(
         "libnw4r_ut",
         [
-            Object(NonMatching, "nw4r/ut/ut_LinkList.cpp"),
+            Object(Matching, "nw4r/ut/ut_LinkList.cpp"),
             Object(Matching, "nw4r/ut/ut_binaryFileFormat.cpp"),
             Object(Matching, "nw4r/ut/ut_CharStrmReader.cpp"),
             Object(Matching, "nw4r/ut/ut_TagProcessorBase.cpp"),
@@ -646,7 +646,7 @@ config.libs = [
             Object(NonMatching, "Game/AreaObj/AreaObj.cpp"),
             Object(NonMatching, "Game/AreaObj/AreaObjContainer.cpp"),
             Object(Matching, "Game/AreaObj/AreaObjFollower.cpp"),
-            Object(NonMatching, "Game/AreaObj/AstroChangeStageCube.cpp"),
+            Object(Matching, "Game/AreaObj/AstroChangeStageCube.cpp"),
             Object(NonMatching, "Game/AreaObj/AudioEffectArea.cpp"),
             Object(NonMatching, "Game/AreaObj/BgmProhibitArea.cpp"),
             Object(NonMatching, "Game/AreaObj/BigBubbleCameraArea.cpp"),
