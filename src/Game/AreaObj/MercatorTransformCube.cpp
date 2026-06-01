@@ -3,7 +3,7 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-MercatorTransformCube::MercatorTransformCube(int type, const char* pName) : AreaObj(type, pName) {
+MercatorTransformCube::MercatorTransformCube(int formType, const char* pName) : AreaObj(formType, pName) {
     _3C.identity();
 }
 

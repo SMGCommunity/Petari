@@ -81,7 +81,7 @@ void AreaPolygon::validate() {
     MR::validateCollisionParts(mParts);
 }
 
-CollisionArea::CollisionArea(int type, const char* pName) : AreaObj(type, pName) {
+CollisionArea::CollisionArea(int formType, const char* pName) : AreaObj(formType, pName) {
     _3C = 0;
     _40 = 0.0f;
     _44.zero();

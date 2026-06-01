@@ -7,7 +7,7 @@ namespace {
                                      "SE_AT_LV_MAGMA_WIND_VOLCANO", "SE_AT_LV_KOOPA_FLOAT_SAND", "SE_AT_LV_WIND_RABBIT_MAZE"};
 };  // namespace
 
-SoundEmitterSphere::SoundEmitterSphere(int type, const char* pName) : AreaObj(type, pName) {
+SoundEmitterSphere::SoundEmitterSphere(int formType, const char* pName) : AreaObj(formType, pName) {
     mSoundObj = nullptr;
     _40.x = 0.0f;
     _40.y = 0.0f;

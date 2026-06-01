@@ -3,7 +3,7 @@
 #include "Game/Util.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-TripodBossStepStartArea::TripodBossStepStartArea(int a1, const char* pName) : AreaObj(a1, pName) {
+TripodBossStepStartArea::TripodBossStepStartArea(int formType, const char* pName) : AreaObj(formType, pName) {
     _3C = -1;
 }
 

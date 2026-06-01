@@ -15,7 +15,7 @@ namespace {
     const s32 cWipeFrame = 110;
 };  // namespace
 
-AstroChangeStageCube::AstroChangeStageCube(int type, const char* pName) : AreaObj(type, pName), _3C(1), mWaitFrame(0) {
+AstroChangeStageCube::AstroChangeStageCube(int formType, const char* pName) : AreaObj(formType, pName), _3C(1), mWaitFrame(0) {
 }
 
 void AstroChangeStageCube::init(const JMapInfoIter& rIter) {

@@ -6,7 +6,7 @@ namespace {
     const char* gSoundNameTable[] = {"SE_AT_LV_GRAVE", "SE_AT_LV_KOOPA_WIND", "SE_AT_LV_WIND_DESERT", "SE_AT_LV_WIND_ICE_MT_TOP"};
 };  // namespace
 
-SoundEmitterCube::SoundEmitterCube(int type, const char* pName) : AreaObj(type, pName) {
+SoundEmitterCube::SoundEmitterCube(int formType, const char* pName) : AreaObj(formType, pName) {
     mSoundObj = nullptr;
     _40.x = 0.0f;
     _40.y = 0.0f;

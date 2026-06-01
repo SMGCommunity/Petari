@@ -93,27 +93,27 @@ namespace {
 
     template < typename T >
     NameObj* createCenterOriginCube(const char* pName) {
-        return new T(0, pName);
+        return new T(AreaForm::Type_Cube1, pName);
     }
 
     template < typename T >
     NameObj* createBaseOriginCube(const char* pName) {
-        return new T(1, pName);
+        return new T(AreaForm::Type_Cube2, pName);
     }
 
     template < typename T >
     NameObj* createSphere(const char* pName) {
-        return new T(2, pName);
+        return new T(AreaForm::Type_Sphere, pName);
     }
 
     template < typename T >
     NameObj* createBaseOriginCylinder(const char* pName) {
-        return new T(3, pName);
+        return new T(AreaForm::Type_Cylinder, pName);
     }
 
     template < typename T >
     NameObj* createBowl(const char* pName) {
-        return new T(4, pName);
+        return new T(AreaForm::Type_Bowl, pName);
     }
 
     const char* cPlayerArchiveLoaderObjTable[] = {
