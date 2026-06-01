@@ -11,6 +11,7 @@ extern "C" {
 
 #define NWC24_MSG_RECIPIENT_MAX 8
 #define NWC24_MSG_ATTACHMENT_MAX 2
+#define NWC24i_WII_ID_LEN 16
 
 // Forward declarations
 typedef struct RFLCharData;
