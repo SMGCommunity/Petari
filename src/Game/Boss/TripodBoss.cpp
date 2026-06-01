@@ -95,7 +95,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     const char* objName;
     MR::getObjectName(&objName, rIter);
     initModelManagerWithAnm(objName, nullptr, false);
-    char lowName[0x20];
+    char lowName[32];
     sprintf(lowName, "%sLow", objName);
     mLowModel = new ModelObj("三脚ボスLODモデル", lowName, getBaseMtx(), MR::DrawBufferType_TripodBoss, -2, -2, false);
     mLowModel->initWithoutIter();
@@ -111,8 +111,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     initNerve(&NrvTripodBoss::TripodBossNrvNonActive::sInstance);
     MR::invalidateClipping(this);
     MR::needStageSwitchReadA(this, rIter);
-    MR::FunctorV0M< TripodBoss*, void (TripodBoss::*)() > demoFunc = MR::Functor_Inline< TripodBoss >(this, &TripodBoss::requestOpeningDemo);
-    MR::listenStageSwitchOnA(this, demoFunc);
+    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &TripodBoss::requestOpeningDemo));
     MR::useStageSwitchReadB(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
     MR::declareStarPiece(this, 24);

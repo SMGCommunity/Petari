@@ -92,7 +92,8 @@ void RailMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo& rInitInfo) {
     setNerve(&NrvRailMoveObj::HostTypeWait::sInstance);
 }
 
-void RailMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
+void RailMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+}
 
 void RailMoveObj::startMoveInner() {
     MR::StageEffect::tryStageEffectStart(this, mObjectName);
@@ -177,14 +178,16 @@ void RailMoveObj::exeMove() {
     }
 }
 
-RailMoveObjPress::RailMoveObjPress(const char* pName) : RailMoveObj(pName) {}
+RailMoveObjPress::RailMoveObjPress(const char* pName) : RailMoveObj(pName) {
+}
 
 void RailMoveObjPress::init(const JMapInfoIter& rIter) {
     RailMoveObj::init(rIter);
     MR::setBodySensorType(this, ATYPE_MAP_OBJ_PRESS);
 }
 
-RailMoveObjBreakAtEnd::RailMoveObjBreakAtEnd(const char* pName) : RailMoveObj(pName) {}
+RailMoveObjBreakAtEnd::RailMoveObjBreakAtEnd(const char* pName) : RailMoveObj(pName) {
+}
 
 void RailMoveObjBreakAtEnd::doAtEndPoint() {
     RailMoveObj::doAtEndPoint();
@@ -206,8 +209,7 @@ void RailMoveObjSwitchShadow::init(const JMapInfoIter& rIter) {
 }
 
 void RailMoveObjSwitchShadow::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    void (RailMoveObjSwitchShadow::*startFunc)(void) = &RailMoveObjSwitchShadow::startOnShadow;
-    MR::listenStageSwitchOnA(this, MR::Functor(this, startFunc));
+    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &RailMoveObjSwitchShadow::startOnShadow));
 }
 
 void RailMoveObjSwitchShadow::startOnShadow() {
@@ -270,7 +272,8 @@ bool RailDemoMoveObj::endMove() {
     return mDemoControl->isDone();
 }
 
-RailRotateMoveObj::RailRotateMoveObj(const char* pName) : RailMoveObj(pName) {}
+RailRotateMoveObj::RailRotateMoveObj(const char* pName) : RailMoveObj(pName) {
+}
 
 void RailRotateMoveObj::setupInitInfo(const JMapInfoIter& rIter, MapObjActorInitInfo* pInfo) {
     pInfo->setupRailRotator();
@@ -295,8 +298,7 @@ bool RailRotateMoveObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
 
 void RailRotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     setNerve(&NrvRailMoveObj::HostTypeWait::sInstance);
-    void (RailRotateMoveObj::*pauseFunc)(void) = &MapObjActor::pauseMapPartsFunctions;
-    MR::listenStageSwitchOffB(this, MR::Functor(this, pauseFunc));
+    MR::listenStageSwitchOffB(this, MR::Functor_Inline< MapObjActor >(this, &MapObjActor::pauseMapPartsFunctions));
 }
 
 bool RailRotateMoveObj::tryStartRotateAtPoint() {
@@ -329,14 +331,20 @@ bool RailRotateMoveObj::tryStartRotateBetweenPoints() {
     return true;
 }
 
-RailMoveObjPress::~RailMoveObjPress() {}
+RailMoveObjPress::~RailMoveObjPress() {
+}
 
-RailMoveObjBreakAtEnd::~RailMoveObjBreakAtEnd() {}
+RailMoveObjBreakAtEnd::~RailMoveObjBreakAtEnd() {
+}
 
-RailMoveIndirectObj::~RailMoveIndirectObj() {}
+RailMoveIndirectObj::~RailMoveIndirectObj() {
+}
 
-RailMoveObjSwitchShadow::~RailMoveObjSwitchShadow() {}
+RailMoveObjSwitchShadow::~RailMoveObjSwitchShadow() {
+}
 
-RailDemoMoveObj::~RailDemoMoveObj() {}
+RailDemoMoveObj::~RailDemoMoveObj() {
+}
 
-RailRotateMoveObj::~RailRotateMoveObj() {}
+RailRotateMoveObj::~RailRotateMoveObj() {
+}

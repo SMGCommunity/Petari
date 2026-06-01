@@ -158,12 +158,11 @@ void MapObjActor::initCaseUseSwitchA(const MapObjActorInitInfo&) {
     setNerve(mWaitNrv);
 }
 
-void MapObjActor::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
+void MapObjActor::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
+}
 
 void MapObjActor::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    void (MapObjActor::*end)(void) = &MapObjActor::endMapPartsFunctions;
-    void (MapObjActor::*start)(void) = &MapObjActor::startMapPartsFunctions;
-    MR::listenStageSwitchOnOffB(this, MR::Functor(this, end), MR::Functor(this, start));
+    MR::listenStageSwitchOnOffB(this, MR::Functor(this, &MapObjActor::startMapPartsFunctions), MR::Functor(this, &MapObjActor::endMapPartsFunctions));
 }
 
 void MapObjActor::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
@@ -413,7 +412,8 @@ void MapObjActor::exeMove() {
     }
 }
 
-void MapObjActor::exeDone() {}
+void MapObjActor::exeDone() {
+}
 
 void MapObjActorUtil::startAllMapPartsFunctions(const MapObjActor* pActor) {
     if (pActor->mRotator) {

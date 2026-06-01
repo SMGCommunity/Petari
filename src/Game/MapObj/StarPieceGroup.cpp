@@ -21,7 +21,8 @@ namespace NrvStarPieceGroup {
 
 StarPieceGroup::StarPieceGroup(const char* pName)
     : LiveActor(pName), mPieces(nullptr), mRailCoords(nullptr), _94(false), _95(false), mNumPieces(0), mCircleRadius(400.0f), mIsRail(false),
-      mPlaceAtPathPoints(false), _A4(-1), mRailSpeed(10.0f), _AC(0.0f, 0.0f, 0.0f) {}
+      mPlaceAtPathPoints(false), _A4(-1), mRailSpeed(10.0f), _AC(0.0f, 0.0f, 0.0f) {
+}
 
 bool StarPieceGroup::isExistAnyStarPiece() {
     for (int i = 0; i < mNumPieces; i++) {
@@ -114,11 +115,11 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchSleep(this, rIter);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &onSwitchA), MR::Functor(this, &offSwitchA));
+        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &StarPieceGroup::onSwitchA), MR::Functor(this, &StarPieceGroup::offSwitchA));
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor(this, &onSwitchB));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &StarPieceGroup::onSwitchB));
     }
 
     MR::useStageSwitchWriteDead(this, rIter);
@@ -336,4 +337,5 @@ void StarPieceGroup::exeFlow() {
     }
 }
 
-void StarPieceGroup::exeGroup() {}
+void StarPieceGroup::exeGroup() {
+}

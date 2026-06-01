@@ -194,9 +194,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
             MR::useStageSwitchWriteDead(this, rIter);
 
             if (MR::useStageSwitchReadAppear(this, rIter)) {
-                MR::FunctorV0M< BenefitItemObj*, void (BenefitItemObj::*)() > appearFunc =
-                    MR::Functor< BenefitItemObj >(this, &BenefitItemObj::appear);
-                MR::listenStageSwitchOnAppear(this, appearFunc);
+                MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &BenefitItemObj::appear));
                 _E1 = 1;
             }
         }

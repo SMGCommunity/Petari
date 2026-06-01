@@ -5,12 +5,9 @@
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/Functor.hpp"
 
-/*
-ShadowSurfaceDrawInit::ShadowSurfaceDrawInit(const char *pName) : NameObj(pName) {
-    MR::FunctorV0F functor(*ShadowSurfaceDrawInit::initDraw);
-    MR::registerPreDrawFunction(functor, MR::DrawType_ShadowSurface);
+ShadowSurfaceDrawInit::ShadowSurfaceDrawInit(const char* pName) : NameObj(pName) {
+    MR::registerPreDrawFunction(MR::Functor_Inline(&ShadowSurfaceDrawInit::initDraw), MR::DrawType_ShadowSurface);
 }
-*/
 
 void ShadowSurfaceDrawInit::initDraw() {
     TDDraw::setup(0, 1, 1);
@@ -34,4 +31,5 @@ ShadowSurfaceDrawer::ShadowSurfaceDrawer(const char* pName) : ShadowDrawer(pName
     MR::connectToScene(this, -1, -1, -1, MR::DrawType_ShadowSurface);
 }
 
-ShadowSurfaceDrawInit::~ShadowSurfaceDrawInit() {}
+ShadowSurfaceDrawInit::~ShadowSurfaceDrawInit() {
+}

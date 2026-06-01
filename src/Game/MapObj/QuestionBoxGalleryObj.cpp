@@ -21,7 +21,8 @@ namespace NrvQuestionBoxGalleryObj {
     NEW_NERVE(QuestionBoxGalleryObjNrvOffWait, QuestionBoxGalleryObj, OffWait);
 };  // namespace NrvQuestionBoxGalleryObj
 
-QuestionBoxGalleryObj::QuestionBoxGalleryObj(const char* pName) : MapObjActor(pName) {}
+QuestionBoxGalleryObj::QuestionBoxGalleryObj(const char* pName) : MapObjActor(pName) {
+}
 
 void QuestionBoxGalleryObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -103,15 +104,11 @@ void QuestionBoxGalleryObj::exeOffWait() {
 }
 
 void QuestionBoxGalleryObj::initCaseUseSwitchA(const MapObjActorInitInfo& pInitInfo) {
-    MR::FunctorV0M< QuestionBoxGalleryObj*, void (QuestionBoxGalleryObj::*)() > SwitchOnFunc =
-        MR::Functor< QuestionBoxGalleryObj >(this, &QuestionBoxGalleryObj::startSwitchOn);
-    MR::listenStageSwitchOnA(this, SwitchOnFunc);
+    MR::listenStageSwitchOnA(this, MR::Functor(this, &QuestionBoxGalleryObj::startSwitchOn));
 }
 
 void QuestionBoxGalleryObj::initCaseUseSwitchB(const MapObjActorInitInfo& pInitInfo) {
-    MR::FunctorV0M< QuestionBoxGalleryObj*, void (QuestionBoxGalleryObj::*)() > SwitchOnFunc =
-        MR::Functor< QuestionBoxGalleryObj >(this, &QuestionBoxGalleryObj::startSwitchOff);
-    MR::listenStageSwitchOnB(this, SwitchOnFunc);
+    MR::listenStageSwitchOnB(this, MR::Functor(this, &QuestionBoxGalleryObj::startSwitchOff));
 }
 
 void QuestionBoxGalleryObj::control() {

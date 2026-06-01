@@ -15,18 +15,18 @@ MapPartsAppearController::MapPartsAppearController(LiveActor* pActor) : MapParts
 }
 
 void MapPartsAppearController::init(const JMapInfoIter& rIter) {
-    MapPartsFunction::initNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
+    initNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
     initSwitchMessenger(rIter);
     MR::getMapPartsArgSignMotionType(&mSignMotionType, rIter);
     mPostureHolder = new PostureHolder(mHost);
 }
 
 void MapPartsAppearController::start() {
-    MapPartsFunction::setNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
+    setNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
 }
 
 void MapPartsAppearController::end() {
-    MapPartsFunction::setNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
+    setNerve(&NrvMapPartsAppearController::HostTypeWait::sInstance);
 }
 
 void MapPartsAppearController::storeCurrentPosture() {
@@ -35,9 +35,8 @@ void MapPartsAppearController::storeCurrentPosture() {
 
 void MapPartsAppearController::initSwitchMessenger(const JMapInfoIter& rIter) {
     if (MR::isExistStageSwitchAppear(rIter)) {
-        void (MapPartsAppearController::*k)(void) = &MapPartsAppearController::startKill;
-        void (MapPartsAppearController::*s)(void) = &MapPartsAppearController::startAppear;
-        MR::listenNameObjStageSwitchOnOffAppear(this, MR::createStageSwitchCtrl(this, rIter), MR::Functor(this, s), MR::Functor(this, k));
+        MR::listenNameObjStageSwitchOnOffAppear(this, MR::createStageSwitchCtrl(this, rIter), MR::Functor(this, &MapPartsAppearController::startKill),
+                                                MR::Functor(this, &MapPartsAppearController::startAppear));
     }
 }
 
@@ -109,7 +108,8 @@ void MapPartsAppearController::killHost() {
     }
 }
 
-void MapPartsAppearController::exeWait() {}
+void MapPartsAppearController::exeWait() {
+}
 
 void MapPartsAppearController::exeDisappear() {
     s32 div = getStep() < 218 ? 13 : 6;
@@ -129,4 +129,5 @@ void MapPartsAppearController::exeDisappear() {
     }
 }
 
-MapPartsAppearController::~MapPartsAppearController() {}
+MapPartsAppearController::~MapPartsAppearController() {
+}

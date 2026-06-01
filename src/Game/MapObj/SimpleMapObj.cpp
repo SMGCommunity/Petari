@@ -2,7 +2,7 @@
 #include "Game/Scene/SceneFunction.hpp"
 
 namespace {
-    static SoundEffectDataEntry sSeDataTable[] = {
+    static const SoundEffectDataEntry sSeDataTable[] = {
         {"KoopaShipSeesawStep", "SE_OJ_LV_KOOPA_SHIP_SEESAW", 0.001f},   {"IceVolcanoBalanceStepA", "SE_OJ_LV_VOL_BAL_STEP_ROT", 0.001f},
         {"IceVolcanoBalanceStepB", "SE_OJ_LV_VOL_BAL_STEP_ROT", 0.001f}, {"IceMountainSeesawSlipA", "SE_OJ_LV_ICE_M_SEESAW_S", 0.001f},
         {"IceMountainSeesawSlipB", "SE_OJ_LV_ICE_M_SEESAW_M", 0.001f},   {"IceMountainSeesawSlipC", "SE_OJ_LV_ICE_M_SEESAW_L", 0.001f},
@@ -51,9 +51,7 @@ void SimpleMapObjNoSilhouetted::connectToScene(const MapObjActorInitInfo& rInfo)
 }
 
 void SimpleTextureSwitchChangeObj::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    MR::FunctorV0M< SimpleTextureSwitchChangeObj*, void (SimpleTextureSwitchChangeObj::*)() > func =
-        MR::Functor< SimpleTextureSwitchChangeObj >(this, &SimpleTextureSwitchChangeObj::changeTexture);
-    MR::listenStageSwitchOnA(this, func);
+    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &SimpleTextureSwitchChangeObj::changeTexture));
 }
 
 void GlaringLight::connectToScene(const MapObjActorInitInfo& rInfo) {
@@ -204,20 +202,29 @@ s32 SimpleTextureSwitchChangeObj::getChangedTextureNo() const {
     return 1;
 }
 
-SimpleEnvironmentObj::~SimpleEnvironmentObj() {}
+SimpleEnvironmentObj::~SimpleEnvironmentObj() {
+}
 
-SimpleMapObjNoSilhouetted::~SimpleMapObjNoSilhouetted() {}
+SimpleMapObjNoSilhouetted::~SimpleMapObjNoSilhouetted() {
+}
 
-SimpleTextureSwitchChangeObj::~SimpleTextureSwitchChangeObj() {}
+SimpleTextureSwitchChangeObj::~SimpleTextureSwitchChangeObj() {
+}
 
-GlaringLight::~GlaringLight() {}
+GlaringLight::~GlaringLight() {
+}
 
-SimpleMirrorObj::~SimpleMirrorObj() {}
+SimpleMirrorObj::~SimpleMirrorObj() {
+}
 
-SimpleMirrorReflectionObj::~SimpleMirrorReflectionObj() {}
+SimpleMirrorReflectionObj::~SimpleMirrorReflectionObj() {
+}
 
-SimpleSeesawObj::~SimpleSeesawObj() {}
+SimpleSeesawObj::~SimpleSeesawObj() {
+}
 
-SimpleMapObjPush::~SimpleMapObjPush() {}
+SimpleMapObjPush::~SimpleMapObjPush() {
+}
 
-UFOKinokoUnderConstruction::~UFOKinokoUnderConstruction() {}
+UFOKinokoUnderConstruction::~UFOKinokoUnderConstruction() {
+}

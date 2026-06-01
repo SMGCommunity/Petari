@@ -119,16 +119,16 @@ void MechaKoopaPartsArm::exeBreak() {
 
 void MechaKoopaPartsArm::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     if (mIsRightArm) {
-        MR::FunctorV0M< MechaKoopaPartsArm*, void (MechaKoopaPartsArm::*)() > breakFunc =
-            MR::Functor< MechaKoopaPartsArm >(this, &MechaKoopaPartsArm::startBreak);
-        MR::listenStageSwitchOnB(this, breakFunc);
+        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &MechaKoopaPartsArm::startBreak));
     }
 }
 
-void MechaKoopaPartsArm::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
+void MechaKoopaPartsArm::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+}
 
 void MechaKoopaPartsArm::startBreak() {
     setNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvBreakStart::sInstance);
 }
 
-MechaKoopaPartsArm::~MechaKoopaPartsArm() {}
+MechaKoopaPartsArm::~MechaKoopaPartsArm() {
+}

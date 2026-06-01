@@ -70,9 +70,7 @@ void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::FunctorV0M< TripodBossGuardWall*, void (TripodBossGuardWall::*)() > validateFunc =
-            MR::Functor_Inline< TripodBossGuardWall >(this, &TripodBossGuardWall::requestStart);
-        MR::listenStageSwitchOnAppear(this, validateFunc);
+        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &TripodBossGuardWall::requestStart));
     }
 
     MR::invalidateClipping(this);

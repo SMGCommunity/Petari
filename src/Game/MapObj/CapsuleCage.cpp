@@ -77,7 +77,7 @@ void CapsuleCage::connectToScene(const MapObjActorInitInfo& rInfo) {
 }
 
 void CapsuleCage::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnB(this, MR::Functor_Inline< CapsuleCage >(this, &CapsuleCage::startOpen));
+    MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &CapsuleCage::startOpen));
 }
 
 void CapsuleCage::startOpen() {

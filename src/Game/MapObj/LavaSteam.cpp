@@ -27,15 +27,11 @@ LavaSteam::LavaSteam(const char* pName) : LiveActor(pName) {
 
 void LavaSteam::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm("LavaSteam", 0, 0);
-    initEffectKeeper(0, 0, false);
+    initModelManagerWithAnm("LavaSteam", nullptr, false);
+    initEffectKeeper(0, nullptr, false);
     MR::setEffectHostSRT(this, "Sign", &mPosition, &mRotation, &_98);
     initHitSensor(1);
-    TVec3f vec;
-    vec.x = 0.0f;
-    vec.y = 250.0f;
-    vec.z = 0.0f;
-    HitSensor* pSensor = MR::addHitSensorMapObj(this, "body", 8, 250.0f, vec);
+    HitSensor* pSensor = MR::addHitSensorMapObj(this, "body", 8, 250.0f, TVec3f(0.0f, 250.0f, 0.0f));
 
     MR::setClippingTypeSphere(this, 250.0f, &pSensor->mPosition);
     MR::setGroupClipping(this, rIter, 0x10);
@@ -46,10 +42,10 @@ void LavaSteam::init(const JMapInfoIter& rIter) {
         MR::listenStageSwitchOnA(this, MR::Functor(this, &LavaSteam::startSteam));
     } else if (MR::tryRegisterDemoCast(this, rIter)) {
         setNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance);
-        MR::registerDemoActionFunctor(this, MR::Functor(this, &LavaSteam::startSteam), 0);
+        MR::registerDemoActionFunctor(this, MR::Functor(this, &LavaSteam::startSteam), nullptr);
     }
     MR::useStageSwitchSleep(this, rIter);
-    initSound(4, 0);
+    initSound(4, false);
     MR::connectToSceneNoSilhouettedMapObj(this);
     makeActorAppeared();
 }
@@ -175,7 +171,8 @@ void LavaSteam::exeWait() {
         setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
 }
 
-void LavaSteam::exeWaitForSwitchOn() {}
+void LavaSteam::exeWaitForSwitchOn() {
+}
 
 void LavaSteam::exeSteam() {
     if (MR::isFirstStep(this)) {
@@ -197,4 +194,5 @@ void LavaSteam::exeSteamEnd() {
     }
 }
 
-LavaSteam::~LavaSteam() {}
+LavaSteam::~LavaSteam() {
+}

@@ -80,8 +80,7 @@ void Coin::init(const JMapInfoIter& rIter) {
         }
 
         if (MR::useStageSwitchReadB(this, rIter)) {
-            MR::FunctorV0M< Coin*, void (Coin::*)() > deadFunc = MR::Functor< Coin >(this, &Coin::makeActorDead);
-            MR::listenStageSwitchOnB(this, deadFunc);
+            MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &Coin::makeActorDead));
         }
     } else {
         makeActorDead();
@@ -237,7 +236,8 @@ void Coin::exeFix() {
     }
 }
 
-void Coin::exeFixHide() {}
+void Coin::exeFixHide() {
+}
 
 void Coin::exeFixTimer() {
     if (MR::isFirstStep(this)) {
@@ -675,4 +675,5 @@ namespace MR {
     }
 };  // namespace MR
 
-Coin::~Coin() {}
+Coin::~Coin() {
+}

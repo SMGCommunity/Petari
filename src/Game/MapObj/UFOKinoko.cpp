@@ -9,7 +9,8 @@ namespace NrvUFOKinoko {
     NEW_NERVE(HostTypeStop, UFOKinoko, Stop)
 };  // namespace NrvUFOKinoko
 
-UFOKinoko::UFOKinoko(const char* pName) : MapObjActor(pName) {}
+UFOKinoko::UFOKinoko(const char* pName) : MapObjActor(pName) {
+}
 
 void UFOKinoko::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
     bool arg7 = false;
@@ -19,7 +20,8 @@ void UFOKinoko::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const
     }
 }
 
-UFOKinoko::~UFOKinoko() {}
+UFOKinoko::~UFOKinoko() {
+}
 
 void UFOKinoko::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -50,8 +52,7 @@ void UFOKinoko::init(const JMapInfoIter& rIter) {
     initialize(rIter, info);
     MapObjActorUtil::startRotator(this);
     if (MR::isDemoCast(this, nullptr)) {
-        MR::FunctorV0M< UFOKinoko*, void (UFOKinoko::*)() > functor = MR::Functor< UFOKinoko >(this, &UFOKinoko::startMove);
-        MR::tryRegisterDemoActionFunctor(this, functor, "ＵＦＯキノコ登場");
+        MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &UFOKinoko::startMove), "ＵＦＯキノコ登場");
     }
 }
 
@@ -61,11 +62,11 @@ void UFOKinoko::control() {
 }
 
 void UFOKinoko::initCaseUseSwitchB(const MapObjActorInitInfo&) {
-    MR::FunctorV0M< UFOKinoko*, void (UFOKinoko::*)() > functor = MR::Functor< UFOKinoko >(this, &UFOKinoko::startMove);
-    MR::listenStageSwitchOnB(this, functor);
+    MR::listenStageSwitchOnB(this, MR::Functor(this, &UFOKinoko::startMove));
 }
 
-void UFOKinoko::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
+void UFOKinoko::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+}
 
 void UFOKinoko::startMove() {
     if (mRailMover != nullptr) {
@@ -74,7 +75,8 @@ void UFOKinoko::startMove() {
     setNerve(&NrvUFOKinoko::HostTypeMove::sInstance);
 }
 
-void UFOKinoko::exeWait() {}
+void UFOKinoko::exeWait() {
+}
 
 void UFOKinoko::exeMove() {
     if (MR::isFirstStep(this)) {

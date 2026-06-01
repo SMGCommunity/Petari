@@ -63,16 +63,15 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     MR::needStageSwitchWriteA(this, rIter);
 
     if (!_9C) {
-        void (ArrowSwitch::*switchOff)(void) = &ArrowSwitch::listenOffSwitch;
-        void (ArrowSwitch::*switchOn)(void) = &ArrowSwitch::listenOnSwitch;
-        MR::listenStageSwitchOnOffB(this, MR::Functor(this, switchOff), MR::Functor(this, switchOn));
+        MR::listenStageSwitchOnOffB(this, MR::Functor(this, &ArrowSwitch::listenOffSwitch), MR::Functor(this, &ArrowSwitch::listenOnSwitch));
     }
 
     makeActorAppeared();
 }
 */
 
-void ArrowSwitch::control() {}
+void ArrowSwitch::control() {
+}
 
 void ArrowSwitch::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
@@ -328,4 +327,5 @@ s32 ArrowSwitch::getOneStep() const {
 }
 */
 
-ArrowSwitch::~ArrowSwitch() {}
+ArrowSwitch::~ArrowSwitch() {
+}

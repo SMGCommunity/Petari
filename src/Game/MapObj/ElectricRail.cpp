@@ -16,7 +16,8 @@ ElectricRailPoint::ElectricRailPoint(const char* pName) : LiveActor(pName) {
     _8D = 1;
 }
 
-ElectricRailPoint::~ElectricRailPoint() {}
+ElectricRailPoint::~ElectricRailPoint() {
+}
 
 void ElectricRailPoint::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("ElectricRailPoint", 0, 0);
@@ -175,12 +176,7 @@ void ElectricRail::initMapToolInfo(const JMapInfoIter& iter) {
     MR::getJMapInfoArg0NoInit(iter, &mRailHeight);
 
     if (MR::useStageSwitchReadA(this, iter)) {
-        MR::FunctorV0M< ElectricRail*, void (ElectricRail::*)(void) > functor;
-        /* functor._4 = this;
-        functor._8 = 0;
-        functor._C = -1;
-        functor.mFuncPtr = (void)ElectricRail::disappear; */
-        MR::listenStageSwitchOnA(this, functor);
+        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &ElectricRail::disappear));
     }
 }
 
@@ -406,8 +402,9 @@ void ElectricRail::exeWait() {
 
 void ElectricRail::exeDisappeared() {
     if (MR::isFirstStep(this)) {
-            MR::hideModel(this);
-        }
+        MR::hideModel(this);
+    }
 }
 
-ElectricRail::~ElectricRail() {}
+ElectricRail::~ElectricRail() {
+}

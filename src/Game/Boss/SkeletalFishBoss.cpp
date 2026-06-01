@@ -683,7 +683,7 @@ void SkeletalFishBoss::initSwitch(const JMapInfoIter& rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
     } else if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::FunctorV0M< SkeletalFishBoss*, void (SkeletalFishBoss::*)(void) >(this, &SkeletalFishBoss::appear));
+        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &SkeletalFishBoss::appear));
     }
 }
 

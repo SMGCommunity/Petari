@@ -110,7 +110,7 @@ void BossStinkBug::init(const JMapInfoIter& rIter) {
     MR::startBrk(this, "Normal");
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &start));
+        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &BossStinkBug::start));
         makeActorDead();
     } else {
         makeActorAppeared();

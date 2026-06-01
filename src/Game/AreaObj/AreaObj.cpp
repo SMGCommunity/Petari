@@ -4,8 +4,8 @@
 #include "Game/Map/SleepControllerHolder.hpp"
 
 AreaObj::AreaObj(int type, const char* pName)
-    : NameObj(pName), mFormType(type), mIsValid(true), _15(true), mIsAwake(true), mObjArg0(-1), mObjArg1(-1), mObjArg2(-1), mObjArg3(-1), mObjArg4(-1),
-      mObjArg5(-1), mObjArg6(-1), mObjArg7(-1), mSwitchCtrl(nullptr) {
+    : NameObj(pName), mFormType(type), mIsValid(true), _15(true), mIsAwake(true), mObjArg0(-1), mObjArg1(-1), mObjArg2(-1), mObjArg3(-1),
+      mObjArg4(-1), mObjArg5(-1), mObjArg6(-1), mObjArg7(-1), mSwitchCtrl(nullptr) {
     switch (type) {
     case AreaForm::Type_Cube1:
         mForm = new AreaFormCube(0);
@@ -40,8 +40,8 @@ void AreaObj::init(const JMapInfoIter& rIter) {
     mSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);
 
     if (mSwitchCtrl->isValidSwitchAppear()) {
-        MR::listenNameObjStageSwitchOnOffAppear(this, mSwitchCtrl, MR::Functor_Inline(this, AreaObj::validate),
-                                                MR::Functor_Inline(this, AreaObj::invalidate));
+        MR::listenNameObjStageSwitchOnOffAppear(this, mSwitchCtrl, MR::Functor_Inline(this, &AreaObj::validate),
+                                                MR::Functor_Inline(this, &AreaObj::invalidate));
         mIsValid = false;
     }
 

@@ -31,7 +31,7 @@ void RotateMoveObj::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::isDemoCast(this, nullptr)) {
-        if (MR::tryRegisterDemoActionFunctor(this, MR::Functor< RotateMoveObj >(this, &RotateMoveObj::setStateMove), nullptr)) {
+        if (MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &RotateMoveObj::setStateMove), nullptr)) {
             v5 = false;
         }
     }
@@ -47,11 +47,12 @@ void RotateMoveObj::init(const JMapInfoIter& rIter) {
 }
 
 void RotateMoveObj::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnOffB(this, MR::Functor< RotateMoveObj >(this, &RotateMoveObj::setStateMove),
+    MR::listenStageSwitchOnOffB(this, MR::Functor(this, &RotateMoveObj::setStateMove),
                                 MR::Functor_Inline< MapObjActor >(this, &MapObjActor::pauseMapPartsFunctions));
 }
 
-void RotateMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {}
+void RotateMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
+}
 
 void RotateMoveObj::setStateMove() {
     if (MR::isRegisteredEffect(this, "Appear")) {
@@ -68,7 +69,8 @@ void RotateMoveObj::exeWaitForPlayerOn() {
     }
 }
 
-void RotateMoveObj::exeWait() {}
+void RotateMoveObj::exeWait() {
+}
 
 void RotateMoveObj::exeMove() {
     if (MR::isFirstStep(this)) {

@@ -46,7 +46,7 @@ void Polta::init(const JMapInfoIter& rIter) {
     MR::connectToSceneCollisionEnemy(this);
     MR::initLightCtrl(this);
     MR::makeQuatAndFrontFromRotate(&_B4, &_C4, this);
-    //_D0.set<f32>(_B4);
+    _D0.set< f32 >(_B4);
     _E0.set(mPosition);
     MR::addBaseMatrixFollowTarget(this, rIter, nullptr, nullptr);
     initArm();
@@ -134,7 +134,8 @@ void BombTeresaHolder::disperseAll() {
 Polta::Polta(const char* pName)
     : LiveActor(pName), mSensorCtrl(nullptr), mLeftArm(nullptr), mRightArm(nullptr), mSequencer(nullptr), mBombTeresaHolder(nullptr),
       mRockHolder(nullptr), mGroundRockHolder(nullptr), mCameraInfo(nullptr), mBreakModel(nullptr), mFormationModel(nullptr), _B4(0, 0, 0, 1),
-      _C4(0, 0, 1), _D0(0, 0, 0, 1), _E0(0, 0, 0), _EC(0.0f) {}
+      _C4(0, 0, 1), _D0(0, 0, 0, 1), _E0(0, 0, 0), _EC(0.0f) {
+}
 
 void Polta::initSensor() {
     mSensorCtrl = new PoltaSensorCtrl(this);

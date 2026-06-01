@@ -64,8 +64,7 @@ void BumpAppearPlanet::control() {
 }
 
 void BumpAppearPlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    MR::listenStageSwitchOnOffA(this, MR::Functor< BumpAppearPlanet >(this, &BumpAppearPlanet::startBumpIn),
-                                MR::Functor< BumpAppearPlanet >(this, &BumpAppearPlanet::startBumpOut));
+    MR::listenStageSwitchOnOffA(this, MR::Functor(this, &BumpAppearPlanet::startBumpIn), MR::Functor(this, &BumpAppearPlanet::startBumpOut));
 }
 
 void BumpAppearPlanet::startBumpOut() {
@@ -76,4 +75,5 @@ void BumpAppearPlanet::startBumpIn() {
     setNerve(&NrvBumpAppearPlanet::BumpAppearPlanetNrvBumpIn::sInstance);
 }
 
-BumpAppearPlanet::~BumpAppearPlanet() {}
+BumpAppearPlanet::~BumpAppearPlanet() {
+}

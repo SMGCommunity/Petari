@@ -48,34 +48,39 @@ void AstroMapObj::init(const JMapInfoIter& rIter) {  // Pain
     mapObjInitInfo.setupEffect(_CC);
     mapObjInitInfo.setupSound(1);
     mapObjInitInfo.setupNerve(&NrvAstroMapObj::AstroMapObjNrvDead::sInstance);
+
     if (checkOtherStrings(_CC)) {
         mapObjInitInfo.setupRotator();
     }
+
     if (checkStrings(_CC)) {
         mapObjInitInfo.setupHitSensor();
     }
+
     initialize(rIter, mapObjInitInfo);
     selectNrvWait();
 
-    // If somebody wants to finish this part then go ahead. It matches, but not sure what the Functors are pointing to.
+    if (MR::isDemoCast(this, nullptr)) {
+        MR::FunctorV0M< AstroMapObj*, void (AstroMapObj::*)() > functor = MR::Functor(this, &AstroMapObj::startDemo);
 
-    /* if (MR::isDemoCast(this, 0)) {
-        MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> demoFunctor = MR::Functor<AstroMapObj>(this, &AstroMapObj::startDemo); // Probably it's
-    not startDemo MR::registerDemoActionFunctor(this, demoFunctor, 0);
+        AstroMapObjFunction::tryRegisterMultiDemoAndFunction(_CC, this, rIter, functor);
+        MR::registerDemoActionFunctor(this, functor, nullptr);
     }
-    MR::FunctorV0M<AstroMapObj*, void (AstroMapObj::*)()> otherFunct = MR::Functor<AstroMapObj>(this, &AstroMapObj::control);   // Same
-    AstroMapObjFunction::tryRegisterMultiDemoAndFunction(_CC, this, rIter, otherFunct);
-    */
+
+    AstroMapObjFunction::tryRegisterMultiDemoAndFunction(_CC, this, rIter, MR::Functor(this, &AstroMapObj::startDemo));
     MR::registerDemoSimpleCastAll(this);
+
     if (moreInlines(_CC)) {
         _C4 = AstroMapObjFunction::createAstroNamePlateParser();
         _C8 = new GalaxyNamePlate(nullptr, true);
         _C8->initWithoutIter();
     }
+
     if (checkStrings(_CC)) {
         _D0 = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), MR::CollisionScaleType(2));
         _D4 = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), MR::CollisionScaleType(2));
     }
+
     AstroMapObjFunction::initilizePeculiar(_CC, this, rIter);
 }
 
@@ -233,13 +238,18 @@ bool AstroMapObj::isPlayMachineSE() const {
     return MR::isDemoActive("パワースター帰還") == 0;
 }
 
-AstroMapObj::~AstroMapObj() {}
+AstroMapObj::~AstroMapObj() {
+}
 
 // Unused?
-void AstroMapObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
-void AstroMapObj::initCaseUseSwitchB(const MapObjActorInitInfo&) {}
-void AstroMapObj::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
-void AstroMapObj::initCaseUseSwitchA(const MapObjActorInitInfo&) {}
+void AstroMapObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+}
+void AstroMapObj::initCaseUseSwitchB(const MapObjActorInitInfo&) {
+}
+void AstroMapObj::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
+}
+void AstroMapObj::initCaseUseSwitchA(const MapObjActorInitInfo&) {
+}
 
 AstroSimpleObj::AstroSimpleObj(const char* pName) : SimpleMapObjFarMax(pName) {
     _C4 = 0;
@@ -260,4 +270,5 @@ void AstroSimpleObj::control() {
     }
 }
 
-AstroSimpleObj::~AstroSimpleObj() {}
+AstroSimpleObj::~AstroSimpleObj() {
+}

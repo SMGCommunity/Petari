@@ -246,8 +246,7 @@ void CrystalCage::initMapToolInfo(const JMapInfoIter& rIter) {
         MR::useStageSwitchWriteDead(this, rIter);
 
         if (MR::useStageSwitchReadA(this, rIter)) {
-            MR::FunctorV0M< CrystalCage*, void (CrystalCage::*)() > forceFunc = MR::Functor_Inline< CrystalCage >(this, &CrystalCage::forceBreak);
-            MR::listenStageSwitchOnA(this, forceFunc);
+            MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &CrystalCage::forceBreak));
         }
 
         MR::getJMapInfoArg0NoInit(rIter, &mIsBreakObjVisible);
@@ -397,4 +396,5 @@ void CrystalCage::exeBreakAfter() {
     }
 }
 
-CrystalCage::~CrystalCage() {}
+CrystalCage::~CrystalCage() {
+}

@@ -66,7 +66,7 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     initSound(6, false);
     MR::initShadowVolumeSphere(this, 75.0f);
     MR::invalidateShadow(this, nullptr);
-    mJointController = MR::createJointDelegatorWithNullChildFunc< PressureBase >(this, &PressureBase::calcJointCannonV, "Cannon1");
+    mJointController = MR::createJointDelegatorWithNullChildFunc(this, &PressureBase::calcJointCannonV, "Cannon1");
     MR::initJointTransform(this);
     MR::getJMapInfoArg0NoInit(rIter, &mNozzleRotation);
     MR::getJMapInfoArg1NoInit(rIter, &mWaitTime);
@@ -81,7 +81,7 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     mGroup = MR::joinToGroupArray(this, rIter, "プレッシャー軍団", 32);
 
     if (mGroup != nullptr) {
-        PressureBase* actor = (PressureBase*)mGroup->getActor(0);
+        PressureBase* actor = static_cast< PressureBase* >(mGroup->getActor(0));
 
         if (this == actor) {
             mMessenger = new PressureMessenger(mGroup, "プレッシャー同期メッセンジャー");
@@ -93,9 +93,7 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchSleep(this, rIter);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        void (PressureBase::*relaxFunc)(void) = &PressureBase::startRelax;
-        void (PressureBase::*waitFunc)(void) = &PressureBase::startWait;
-        MR::listenStageSwitchOnOffA(this, MR::Functor(this, relaxFunc), MR::Functor(this, waitFunc));
+        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &PressureBase::startRelax), MR::Functor(this, &PressureBase::startWait));
         initNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
     } else {
         initNerve(&NrvPressureBase::PressureBaseNrvFirstWait::sInstance);
@@ -171,7 +169,8 @@ void PressureBase::exeRelax() {
     }
 }
 
-void PressureBase::exeSyncWait() {}
+void PressureBase::exeSyncWait() {
+}
 
 void PressureBase::exeFirstWait() {
     if (MR::isStep(this, mWaitTime)) {
@@ -266,7 +265,8 @@ void PressureBase::startRelax() {
     }
 }
 
-void PressureBase::initBullet(const JMapInfoIter&) {}
+void PressureBase::initBullet(const JMapInfoIter&) {
+}
 
 bool PressureBase::shotBullet(f32) {
     return false;
@@ -282,4 +282,5 @@ bool PressureBase::isShotTypeFollow() const {
     return mShotType == 2;
 }
 
-PressureMessenger::~PressureMessenger() {}
+PressureMessenger::~PressureMessenger() {
+}

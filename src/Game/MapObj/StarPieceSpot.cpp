@@ -7,7 +7,8 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-StarPieceSpot::StarPieceSpot(const char* pName) : LiveActor(pName) {}
+StarPieceSpot::StarPieceSpot(const char* pName) : LiveActor(pName) {
+}
 
 void StarPieceSpot::emit() {
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
@@ -20,11 +21,11 @@ void StarPieceSpot::init(const JMapInfoIter& rIter) {
     s32 arg0 = -1;
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
     MR::declareStarPiece(this, arg0);
-    
+
     initSound(1, false);
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &emit));
+        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &StarPieceSpot::emit));
         kill();
     } else {
         initHitSensor(1);

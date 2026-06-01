@@ -22,11 +22,7 @@ void RailBlock::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(objName, nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorMapObjPress(this, "body", 16, 0.0f, offs);
+    MR::addHitSensorMapObjPress(this, "body", 16, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, objName, getSensor("body"), nullptr);
     MR::setClippingTypeSphere(this, MR::getCollisionBoundingSphereRange(this));
     initSound(4, false);
@@ -51,8 +47,7 @@ void RailBlock::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnOffB(this, MR::Functor< RailBlock >(this, &RailBlock::stopMove),
-                                    MR::Functor< RailBlock >(this, &RailBlock::startMove));
+        MR::listenStageSwitchOnOffB(this, MR::Functor(this, &RailBlock::startMove), MR::Functor(this, &RailBlock::stopMove));
         setNerve(&NrvRailBlock::RailBlockNrvWait::sInstance);
     }
 
@@ -115,10 +110,12 @@ void RailBlock::exeTerminate() {
     }
 }
 
-void RailBlock::exeWait() {}
+void RailBlock::exeWait() {
+}
 
 void RailBlock::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
 }
 
-RailBlock::~RailBlock() {}
+RailBlock::~RailBlock() {
+}

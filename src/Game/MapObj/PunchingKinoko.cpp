@@ -47,8 +47,7 @@ void PunchingKinoko::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 
     if (MR::useStageSwitchReadB(this, rIter) != 0) {
-        MR::FunctorV0M< PunchingKinoko*, void (PunchingKinoko::*)() > functor = MR::Functor< PunchingKinoko >(this, &PunchingKinoko::kill);
-        MR::listenStageSwitchOnB(this, functor);
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &PunchingKinoko::kill));
     }
     MR::useStageSwitchSleep(this, rIter);
 }
@@ -595,4 +594,5 @@ bool PunchingKinoko::isCrushed() const {
     return isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushed::sInstance);
 }
 
-PunchingKinoko::~PunchingKinoko() {}
+PunchingKinoko::~PunchingKinoko() {
+}

@@ -12,9 +12,11 @@ namespace NrvSimpleClipPartsObj {
     NEW_NERVE(HostTypeWait, SimpleClipPartsObj, Wait);
 };  // namespace NrvSimpleClipPartsObj
 
-SimpleClipPartsObj::SimpleClipPartsObj(const char* pName) : MapObjActor(pName) {}
+SimpleClipPartsObj::SimpleClipPartsObj(const char* pName) : MapObjActor(pName) {
+}
 
-SimpleClipPartsObj::~SimpleClipPartsObj() {}
+SimpleClipPartsObj::~SimpleClipPartsObj() {
+}
 
 void SimpleClipPartsObj::init(const JMapInfoIter& rIfter) {
     MapObjActor::init(rIfter);
@@ -24,8 +26,7 @@ void SimpleClipPartsObj::init(const JMapInfoIter& rIfter) {
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     MapObjActorUtil::setupInitInfoTypical(&info, mObjectName);
     MapObjActor::initialize(rIfter, info);
-    HitSensor* sensor = getSensor("body");
-    sensor->setType(73);
+    getSensor("body")->setType(73);
 }
 
 void SimpleClipPartsObj::control() {
@@ -45,14 +46,15 @@ void SimpleClipPartsObj::connectToScene(const MapObjActorInitInfo& Ifter) {
     }
 }
 
-void SimpleClipPartsObj::initCaseUseSwitchA(const MapObjActorInitInfo& Ifter) {}
+void SimpleClipPartsObj::initCaseUseSwitchA(const MapObjActorInitInfo& Ifter) {
+}
 
-void SimpleClipPartsObj::initCaseNoUseSwitchA(const MapObjActorInitInfo& Ifter) {}
+void SimpleClipPartsObj::initCaseNoUseSwitchA(const MapObjActorInitInfo& Ifter) {
+}
 
 void SimpleClipPartsObj::initCaseUseSwitchB(const MapObjActorInitInfo& Ifter) {
-    void (MapObjActor::*start)(void) = &MapObjActor::startMapPartsFunctions;
-    void (MapObjActor::*end)(void) = &MapObjActor::endMapPartsFunctions;
-    MR::listenStageSwitchOnOffB(this, MR::Functor< MapObjActor >(this, start), MR::Functor< MapObjActor >(this, end));
+    MR::listenStageSwitchOnOffB(this, MR::Functor< MapObjActor >(this, &MapObjActor::startMapPartsFunctions),
+                                MR::Functor< MapObjActor >(this, &MapObjActor::endMapPartsFunctions));
     setStateWait();
 }
 
