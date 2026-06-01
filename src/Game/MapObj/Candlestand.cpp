@@ -21,7 +21,7 @@ struct Param {
 };
 
 namespace {
-    static Param sParams[] = {{
+    static const Param sParams[] = {{
                                   "PhantomCandlestand",
                                   500.0f,  // mClippingRadius
                                   50.0f,   // mSensorRange
@@ -48,12 +48,10 @@ namespace {
                                   true     // mCanUseSwitch
                               }};
 
-    Param* get(s32 idx) { return &sParams[idx]; }
-
-    Param* getParam(const char* pObjName) NO_INLINE {
-        for (s32 i = 0; i < 3; i++) {
-            if (MR::isEqualString(pObjName, get(i)->mObjName)) {
-                return get(i);
+    const Param* getParam(const char* pObjName) NO_INLINE {
+        for (u32 i = 0; i < ARRAY_SIZE(sParams); i++) {
+            if (MR::isEqualString(pObjName, sParams[i].mObjName)) {
+                return &sParams[i];
             }
         }
 
@@ -293,7 +291,7 @@ void Candlestand::exeFlicker() {
 }
 
 void Candlestand::exeAttack() {
-    if (MR::isStep(this, 0x1E)) {
+    if (MR::isStep(this, 30)) {
         setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
     } else {
         MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");

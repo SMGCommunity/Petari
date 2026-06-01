@@ -102,12 +102,12 @@ void CrystalCageMoving::exeDemoTicoMove() {
 
     TVec3f stack_14;
     stack_14.subInline2(_FC, mPosition);
-    f32 nerveRate = MR::calcNerveRate(this, 0x1E);
+    f32 nerveRate = MR::calcNerveRate(this, 30);
     TVec3f stack_8;
     JMAVECScaleAdd(&stack_14, &mPosition, &stack_8, nerveRate);
     _C8.setTrans(stack_8);
 
-    if (MR::isStep(this, 0x1E)) {
+    if (MR::isStep(this, 30)) {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoStop::sInstance);
     }
 }

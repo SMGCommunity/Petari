@@ -280,7 +280,7 @@ void PowerStar::control() {
         }
 
         bool cond = (isNerve(&NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance) && MR::isStageKoopaVs3()) ? true : false;
-        s32 val = cond ? 0x78 : -1;
+        s32 val = cond ? 120 : -1;
 
         MR::requestPointLight(this, TVec3f(jointPos), lightColor[mColorFrame], 1.0f, val);
     }
@@ -322,9 +322,9 @@ bool PowerStar::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
 
 bool PowerStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     switch (msg) {
-    case 0x98:
+    case ACTMES_IS_RUSH_TAKEOVER:
         return true;
-    case 0x92:
+    case ACTMES_AUTORUSH_BEGIN:
         if (isNerve(&NrvPowerStar::PowerStarNrvWait::sInstance)) {
             MR::startSystemSE("SE_SY_STAR_GET");
             MR::stopSoundPlayer("SE_PV_BURN_RUN", 0);
@@ -334,7 +334,7 @@ bool PowerStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
             return true;
         }
         break;
-    case 0xA1:
+    case ACTMES_UPDATE_BASEMTX:
         MR::setPlayerBaseMtx((MtxPtr)&_E8);
         return true;
     }
@@ -615,11 +615,11 @@ void PowerStar::exeAppearDemoRise() {
         MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST");
     }
 
-    f32 easeOut = MR::calcNerveEaseOutValue(this, 0x3C, 0.0f, 300.0f);
+    f32 easeOut = MR::calcNerveEaseOutValue(this, 60, 0.0f, 300.0f);
     calcAppearDemoRiseTrans(&mPosition, easeOut);
     mRotation.y = 0.0f + fmod((360.0f + ((10.0f + mRotation.y) - 0.0f)), 360.0f);
 
-    if (MR::isStep(this, 0x50)) {
+    if (MR::isStep(this, 80)) {
         setNerve(&NrvPowerStar::PowerStarNrvAppearDemoMove::sInstance);
     }
 }

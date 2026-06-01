@@ -181,7 +181,7 @@ RailMoveObjPress::RailMoveObjPress(const char* pName) : RailMoveObj(pName) {}
 
 void RailMoveObjPress::init(const JMapInfoIter& rIter) {
     RailMoveObj::init(rIter);
-    MR::setBodySensorType(this, 0x76);
+    MR::setBodySensorType(this, ATYPE_MAP_OBJ_PRESS);
 }
 
 RailMoveObjBreakAtEnd::RailMoveObjBreakAtEnd(const char* pName) : RailMoveObj(pName) {}

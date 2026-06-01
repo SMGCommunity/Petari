@@ -208,7 +208,7 @@ void RainCloud::exeHardTouch() {
         MR::shakeCameraNormal();
     }
 
-    if (MR::isStep(this, 0x3C)) {
+    if (MR::isStep(this, 60)) {
         MR::validateCollisionParts(this);
         setNerve(&NrvRainCloud::RainCloudNrvWait::sInstance);
     }

@@ -80,11 +80,11 @@ void MarblePlanet::exeScaleUpCore() {
         }
     }
 
-    f32 nerveRate = MR::calcNerveRate(this, 0x1E);
+    f32 nerveRate = MR::calcNerveRate(this, 30);
     f32 scale = MR::getScaleWithReactionValueZeroToOne(nerveRate, 0.5f, -0.5f);
     mCorePlanetModel->mScale.setAll< f32 >(MR::getLinerValue(scale, 1.3f, 1.0f, 1.0f));
 
-    if (MR::isStep(this, 0x1E)) {
+    if (MR::isStep(this, 30)) {
         setNerve(&NrvMarblePlanet::MarblePlanetNrvWait::sInstance);
     }
 }

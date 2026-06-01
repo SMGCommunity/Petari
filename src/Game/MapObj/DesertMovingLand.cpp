@@ -117,11 +117,11 @@ void DesertMovingLand::exeMoveDown() {
         MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST");
     }
     MR::startAtmosphereLevelSE("SE_OJ_LV_DESERT_LAND_MOVE");
-    if (MR::isLessStep(this, 0x5A)) {
+    if (MR::isLessStep(this, 90)) {
         MR::tryRumblePadWeak(this, 0);
     }
 
-    if (MR::isStep(this, 0x5A)) {
+    if (MR::isStep(this, 90)) {
         MR::stopShakingCamera(this);
     }
 
@@ -143,11 +143,11 @@ void DesertMovingLand::exeMoveUp() {
     }
     MR::startAtmosphereLevelSE("SE_OJ_LV_DESERT_LAND_MOVE");
 
-    if (MR::isLessStep(this, 0x5A)) {
+    if (MR::isLessStep(this, 90)) {
         MR::tryRumblePadWeak(this, 0);
     }
 
-    if (MR::isStep(this, 0x5A)) {
+    if (MR::isStep(this, 90)) {
         MR::stopShakingCamera(this);
     }
 
@@ -167,7 +167,7 @@ void DesertMovingLand::exeMoveSign() {
         MR::startBck(this, "Vibration", 0);
 
         if (MR::isDemoActive("砂ＵＦＯ下降"))
-            MR::stopStageBGM(0x3C);
+            MR::stopStageBGM(60);
 
         MR::shakeCameraInfinity(this, 0.15f, 1.2f);
     }
@@ -192,7 +192,7 @@ void DesertMovingLand::exeStop() {
     if (MR::isFirstStep(this))
         MR::invalidateHitSensors(this);
 
-    if (MR::isStep(this, 0x1E))
+    if (MR::isStep(this, 30))
         mVelocity.zero();
 }
 

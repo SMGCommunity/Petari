@@ -233,7 +233,7 @@ void EyeBeamer::requestStartPatrol() {
 }
 
 bool EyeBeamer::tryGotoPatrol() {
-    if (MR::isGreaterStep(this, 0x12C)) {
+    if (MR::isGreaterStep(this, 300)) {
         setNerve(&NrvEyeBeamer::EyeBeamerNrvGotoPatrol::sInstance);
         return true;
     }
@@ -241,7 +241,7 @@ bool EyeBeamer::tryGotoPatrol() {
 }
 
 bool EyeBeamer::tryPatrol() {
-    if (MR::isGreaterStep(this, 0x1F4)) {
+    if (MR::isGreaterStep(this, 500)) {
         setNerve(&NrvEyeBeamer::EyeBeamerNrvPatrol::sInstance);
         return true;
     }
@@ -292,7 +292,7 @@ void EyeBeamer::exeTurn() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_EYE_BEAMER_TURN");
     }
-    f32 easeInOut = MR::calcNerveEaseInOutRate(this, 0x12C);
+    f32 easeInOut = MR::calcNerveEaseInOutRate(this, 300);
     TQuat4f stack_14;
     TVec3f stack_8;
     _CC.getXDir(stack_8);
@@ -304,7 +304,7 @@ void EyeBeamer::exeTurn() {
 }
 
 void EyeBeamer::exeGotoPatrol() {
-    f32 easeInOut = MR::calcNerveEaseInOutRate(this, 0x1F4);
+    f32 easeInOut = MR::calcNerveEaseInOutRate(this, 500);
     MR::vecBlend(_F8, _104, &_EC, easeInOut);
 
     if (tryPatrol())

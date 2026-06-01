@@ -392,9 +392,9 @@ void ElectricRail::exeDisappear() {
         }
     }
 
-    mEaseIn = MR::calcNerveEaseInValue(this, 0x14, 30.0, 0.0);
+    mEaseIn = MR::calcNerveEaseInValue(this, 20, 30.0, 0.0);
 
-    if (MR::isStep(this, 0x14)) {
+    if (MR::isStep(this, 20)) {
         setNerve(&NrvElectricRail::ElectricRailNrvDisappeared::sInstance);
     }
 }

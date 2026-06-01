@@ -78,7 +78,7 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg3NoInit(rIter, &mShotType);
     MR::calcGravity(this);
     MR::setGroupClipping(this, rIter, 32);
-    mGroup = MR::joinToGroupArray(this, rIter, "プレッシャー軍団", 0x20);
+    mGroup = MR::joinToGroupArray(this, rIter, "プレッシャー軍団", 32);
 
     if (mGroup != nullptr) {
         PressureBase* actor = (PressureBase*)mGroup->getActor(0);
@@ -146,7 +146,7 @@ void PressureBase::exeBound() {
         }
     }
 
-    f32 rate = MR::calcNerveRate(this, 0x14);
+    f32 rate = MR::calcNerveRate(this, 20);
     f32 scale = MR::getScaleWithReactionValueZeroToOne(rate, 1.0f, -2.0f);
     scale *= (-45.0f - mNozzleRotation);
 
@@ -156,7 +156,7 @@ void PressureBase::exeBound() {
         _9C = -45.0f - scale;
     }
 
-    if (MR::isStep(this, 0x14)) {
+    if (MR::isStep(this, 20)) {
         if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)) {
             setNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
         } else {
@@ -207,11 +207,11 @@ void PressureBase::exeShot() {
     }
 
     if (_B0) {
-        if (MR::isStep(this, 0x36)) {
+        if (MR::isStep(this, 54)) {
             shotBullet(mBallSpeed);
         }
     } else {
-        if (MR::isStep(this, 0x10)) {
+        if (MR::isStep(this, 16)) {
             shotBullet(mBallSpeed);
         }
     }

@@ -2,6 +2,8 @@
 
 namespace {
     const char* cDemoCameraName = "注目カメラ";
+    static const s32 sStepForStartCamera = 50;
+    static const s32 sStepForEndCamera = 60;
 };  // namespace
 
 namespace NrvCapsuleCage {
@@ -11,8 +13,7 @@ namespace NrvCapsuleCage {
     NEW_NERVE(CapsuleCageNrvEndCamera, CapsuleCage, EndCamera);
 };  // namespace NrvCapsuleCage
 
-CapsuleCage::CapsuleCage(const char* pName) : MapObjActor(pName) {
-    mInfo = nullptr;
+CapsuleCage::CapsuleCage(const char* pName) : MapObjActor(pName), mInfo() {
 }
 
 void CapsuleCage::init(const JMapInfoIter& rIter) {
@@ -22,21 +23,22 @@ void CapsuleCage::init(const JMapInfoIter& rIter) {
     info.setupProjmapMtx(false);
     info.setupNerve(&NrvCapsuleCage::CapsuleCageNrvWait::sInstance);
     initialize(rIter, info);
-    MR::setBodySensorType(this, 88);
+    MR::setBodySensorType(this, ATYPE_KEY_SWITCH_AVOID);
 
     if (!MR::initActorCamera(this, rIter, &mInfo)) {
         mInfo = nullptr;
     }
 }
 
-void CapsuleCage::exeWait() {}
+void CapsuleCage::exeWait() {
+}
 
 void CapsuleCage::exeStartCamera() {
     if (MR::isFirstStep(this)) {
         MR::startActorCameraTargetSelf(this, mInfo, -1);
     }
 
-    if (MR::isStep(this, 50)) {
+    if (MR::isStep(this, ::sStepForStartCamera)) {
         setNerve(&NrvCapsuleCage::CapsuleCageNrvOpen::sInstance);
     }
 }
@@ -64,7 +66,7 @@ void CapsuleCage::exeOpen() {
 void CapsuleCage::kill() {
     if (mInfo != nullptr) {
         MR::endActorCamera(this, mInfo, false, -1);
-        MR::endDemo(this, cDemoCameraName);
+        MR::endDemo(this, ::cDemoCameraName);
     }
 
     MapObjActor::kill();
@@ -75,8 +77,7 @@ void CapsuleCage::connectToScene(const MapObjActorInitInfo& rInfo) {
 }
 
 void CapsuleCage::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    MR::FunctorV0M< CapsuleCage*, void (CapsuleCage::*)() > openFunc = MR::Functor_Inline< CapsuleCage >(this, &CapsuleCage::startOpen);
-    MR::listenStageSwitchOnB(this, openFunc);
+    MR::listenStageSwitchOnB(this, MR::Functor_Inline< CapsuleCage >(this, &CapsuleCage::startOpen));
 }
 
 void CapsuleCage::startOpen() {
@@ -90,15 +91,19 @@ void CapsuleCage::startOpen() {
 }
 
 void CapsuleCage::exeEndCamera() {
-    if (MR::isStep(this, 0x3C)) {
+    if (MR::isStep(this, ::sStepForEndCamera)) {
         kill();
     }
 }
 
-void CapsuleCage::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
+void CapsuleCage::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+}
 
-void CapsuleCage::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
+void CapsuleCage::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
+}
 
-void CapsuleCage::initCaseUseSwitchA(const MapObjActorInitInfo&) {}
+void CapsuleCage::initCaseUseSwitchA(const MapObjActorInitInfo&) {
+}
 
-CapsuleCage::~CapsuleCage() {}
+CapsuleCage::~CapsuleCage() {
+}

@@ -137,7 +137,7 @@ void FlipPanel::exeWait() {
 }
 
 void FlipPanel::exeEndPrepare() {
-    if (MR::isStep(this, 0x14)) {
+    if (MR::isStep(this, 20)) {
         setNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance);
     }
 }

@@ -182,7 +182,7 @@ bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         return true;
     }
 
-    if (isNerve(&NrvKeySwitch::KeySwitchNrvAppear::sInstance) && MR::isLessEqualStep(this, 0x3C)) {
+    if (isNerve(&NrvKeySwitch::KeySwitchNrvAppear::sInstance) && MR::isLessEqualStep(this, 60)) {
         return false;
     }
 
@@ -199,7 +199,7 @@ bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 /*
 bool KeySwitch::tryAvoid() {
     LiveActor* sensorActor;
-    HitSensor* sensor = 0;
+    HitSensor* sensor = nullptr;
 
     if (MR::isBindedGround(this)) {
         sensor = MR::getGroundSensor(this);
@@ -208,11 +208,11 @@ bool KeySwitch::tryAvoid() {
         sensor = MR::getWallSensor(this);
     }
 
-    if (!sensor) {
+    if (sensor == nullptr) {
         return false;
     }
 
-    if (sensor->mType != 0x58) {
+    if (sensor->mType != ATYPE_KEY_SWITCH_AVOID) {
         return false;
     }
 

@@ -328,8 +328,7 @@ inline bool isNear(const LiveActor* actor) {
 }
 
 void EarthenPipe::exeInvalid() {
-    bool near;
-    if (MR::isGreaterStep(this, 0x1E) && MR::isOnGroundPlayer() || mPipeMode == 4 && isNear(this) || MR::isPlayerSwimming() && isNear(this)) {
+    if (MR::isGreaterStep(this, 30) && MR::isOnGroundPlayer() || mPipeMode == 4 && isNear(this) || MR::isPlayerSwimming() && isNear(this)) {
         MR::validateClipping(this);
         MR::validateHitSensors(this);
         setNerve(&NrvEarthenPipe::EarthenPipeNrvWait::sInstance);
