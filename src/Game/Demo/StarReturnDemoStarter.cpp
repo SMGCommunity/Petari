@@ -139,7 +139,7 @@ void StarReturnDemoStarter::tryStartStageResult() {
 
 void StarReturnDemoStarter::tryStartResultWait() {
     if (MR::isBckOneTimeAndStoppedPlayer()) {
-        MR::startBckPlayer("ResultWait", reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer("ResultWait", static_cast< const char* >(nullptr));
     } else if (mHair != nullptr) {
         if (mFrame == 21) {
             MR::hidePlayerJoint("Cap0");
@@ -230,7 +230,7 @@ void StarReturnDemoStarter::exeFlyWaitGrandStar() {
     }
 
     if (MR::isBckOneTimeAndStoppedPlayer()) {
-        MR::startBckPlayer("ResultFlyGrandStarFlyAway", reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer("ResultFlyGrandStarFlyAway", static_cast< const char* >(nullptr));
         MR::startBck(mPowerStar, "ResultFlyGrandStarFlyAway", nullptr);
         MR::shakeCameraWeak();
         MR::tryRumblePadWeak(this, 0);
@@ -249,7 +249,7 @@ void StarReturnDemoStarter::exeFall() {
 
     if (MR::isFirstStep(this)) {
         MR::startSoundPlayer("SE_PV_DM_ASTRO_RET_LANDING", -1);
-        MR::startBckPlayer("Fall", reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer("Fall", static_cast< const char* >(nullptr));
         mPowerStar->kill();
 
         TVec3f scaled;
@@ -274,7 +274,7 @@ void StarReturnDemoStarter::exeFall() {
 
 void StarReturnDemoStarter::exeLand() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("Land", reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer("Land", static_cast< const char* >(nullptr));
     }
 
     if (MR::isBckStoppedPlayer()) {
@@ -294,7 +294,7 @@ void StarReturnDemoStarter::exeLand() {
 
 void StarReturnDemoStarter::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer(playerAnimName(), reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer(playerAnimName(), static_cast< const char* >(nullptr));
 
         mFrame = 0;
         if (MR::isEqualStageName("AstroGalaxy")) {

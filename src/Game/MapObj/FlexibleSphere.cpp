@@ -57,7 +57,7 @@ void FlexibleSphere::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, 3000.0f);
     MR::setClippingFarMax(this);
 
-    J3DModelX* model = reinterpret_cast< J3DModelX* >(MR::getJ3DModel(this));
+    J3DModelX* model = static_cast< J3DModelX* >(MR::getJ3DModel(this));
     model->mShapeCallback = shapeCallBack;
 
     if (MR::isValidInfo(rIter)) {
@@ -226,7 +226,7 @@ void FlexibleSphere::control() {
 
 void FlexibleSphere::draw() const {
     if (!MR::isDead(this)) {
-        J3DModelX* model = reinterpret_cast< J3DModelX* >(MR::getJ3DModel(this));
+        J3DModelX* model = static_cast< J3DModelX* >(MR::getJ3DModel(this));
         model->viewCalc2();
         GXInvalidateVtxCache();
         scale = 0.05f / mScale.x + 0.95f;

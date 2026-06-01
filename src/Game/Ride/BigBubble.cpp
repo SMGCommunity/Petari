@@ -332,7 +332,7 @@ void BigBubble::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             s32 mergeIndex = getMergeIndex(MR::getSensorPos(pReceiver));
             if (mergeIndex != -1 && pReceiver->receiveMessage(ACTMES_BIG_BUBBLE_MERGE, pSender)) {
                 mReduceVolumeTimer = 0;
-                mMergeBubbles[mergeIndex] = reinterpret_cast< BigBubble* >(pReceiver->mHost);
+                mMergeBubbles[mergeIndex] = static_cast< BigBubble* >(pReceiver->mHost);
             }
         }
     }
@@ -457,7 +457,7 @@ bool BigBubble::requestMerged(HitSensor* pSender, HitSensor* pReceiver) {
         mReduceVolumeTimer = 0;
         if (dist < (radius2 + radius1) * 0.9f) {
             setNerve(&NrvBigBubble::BigBubbleNrvMerged::sInstance);
-            mMergeBubble = reinterpret_cast< BigBubble* >(pReceiver->mHost);
+            mMergeBubble = static_cast< BigBubble* >(pReceiver->mHost);
             mMergeIndex = getNearAxisIndex(MR::getSensorPos(pReceiver));
             return true;
         }

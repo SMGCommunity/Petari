@@ -13,9 +13,9 @@ void BigFanHolder::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2, f32 *a3) {
     for (int i = 0; i < count; i++) {
         TVec3f stack_20;
         stack_20.zero();
-        BigFan* fan = reinterpret_cast<BigFan*>(getActor(i));
+        BigFan* fan = static_cast<BigFan*>(getActor(i));
         fan->calcWindInfo(&stack_20, a2);
-        f32 val = reinterpret_cast<BigFan*>(getActor(i))->_A0;
+        f32 val = static_cast<BigFan*>(getActor(i))->_A0;
         TVec3f stack_14 = stack_20 * (val / 100.0f);
         stack_2C.addInline3(stack_14);
     }

@@ -32,10 +32,10 @@ void Triangle::fillData(CollisionParts* pParts, u32 index, HitSensor* pSensor) {
 
     matrix = reinterpret_cast< MtxPtr >(&mParts->mBaseMatrix);
 
-    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[0]), reinterpret_cast< Vec* >(&mNormals[0]));
-    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[1]), reinterpret_cast< Vec* >(&mNormals[1]));
-    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[2]), reinterpret_cast< Vec* >(&mNormals[2]));
-    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[3]), reinterpret_cast< Vec* >(&mNormals[3]));
+    PSMTXMultVecSR(matrix, &mNormals[0], &mNormals[0]);
+    PSMTXMultVecSR(matrix, &mNormals[1], &mNormals[1]);
+    PSMTXMultVecSR(matrix, &mNormals[2], &mNormals[2]);
+    PSMTXMultVecSR(matrix, &mNormals[3], &mNormals[3]);
 
     MR::normalize(&mNormals[0]);
     MR::normalize(&mNormals[1]);
@@ -46,9 +46,9 @@ void Triangle::fillData(CollisionParts* pParts, u32 index, HitSensor* pSensor) {
     mPos[1].set< f32 >(server->getPos(prism, 1));
     mPos[2].set< f32 >(server->getPos(prism, 2));
 
-    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mPos[0]), reinterpret_cast< Vec* >(&mPos[0]));
-    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mPos[1]), reinterpret_cast< Vec* >(&mPos[1]));
-    PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mPos[2]), reinterpret_cast< Vec* >(&mPos[2]));
+    PSMTXMultVecSR(matrix, &mPos[0], &mPos[0]);
+    PSMTXMultVecSR(matrix, &mPos[1], &mPos[1]);
+    PSMTXMultVecSR(matrix, &mPos[2], &mPos[2]);
 }
 
 const char* Triangle::getHostName() const {
@@ -92,28 +92,28 @@ const TVec3f* Triangle::calcAndGetNormal(int index) {
     switch (index) {
     case 0: {
         mNormals[0].set< f32 >(*server->getFaceNormal(prism));
-        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[0]), reinterpret_cast< Vec* >(&mNormals[0]));
+        PSMTXMultVecSR(matrix, &mNormals[0], &mNormals[0]);
         MR::normalize(&mNormals[0]);
 
         return &mNormals[0];
     } break;
     case 1: {
         mNormals[1].set< f32 >(*server->getEdgeNormal1(prism));
-        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[1]), reinterpret_cast< Vec* >(&mNormals[1]));
+        PSMTXMultVecSR(matrix, &mNormals[1], &mNormals[1]);
         MR::normalize(&mNormals[1]);
 
         return &mNormals[1];
     } break;
     case 2: {
         mNormals[2].set< f32 >(*server->getEdgeNormal2(prism));
-        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[2]), reinterpret_cast< Vec* >(&mNormals[2]));
+        PSMTXMultVecSR(matrix, &mNormals[2], &mNormals[2]);
         MR::normalize(&mNormals[2]);
 
         return &mNormals[2];
     } break;
     case 3: {
         mNormals[3].set< f32 >(*server->getEdgeNormal3(prism));
-        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[3]), reinterpret_cast< Vec* >(&mNormals[3]));
+        PSMTXMultVecSR(matrix, &mNormals[3], &mNormals[3]);
         MR::normalize(&mNormals[3]);
 
         return &mNormals[3];
@@ -132,21 +132,21 @@ const TVec3f* Triangle::calcAndGetEdgeNormal(int index) {
     switch (index) {
     case 0: {
         mNormals[1].set< f32 >(*server->getEdgeNormal1(prism));
-        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[1]), reinterpret_cast< Vec* >(&mNormals[1]));
+        PSMTXMultVecSR(matrix, &mNormals[1], &mNormals[1]);
         MR::normalize(&mNormals[1]);
 
         return &mNormals[1];
     } break;
     case 1: {
         mNormals[2].set< f32 >(*server->getEdgeNormal2(prism));
-        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[2]), reinterpret_cast< Vec* >(&mNormals[2]));
+        PSMTXMultVecSR(matrix, &mNormals[2], &mNormals[2]);
         MR::normalize(&mNormals[2]);
 
         return &mNormals[2];
     } break;
     case 2: {
         mNormals[3].set< f32 >(*server->getEdgeNormal3(prism));
-        PSMTXMultVecSR(matrix, reinterpret_cast< Vec* >(&mNormals[3]), reinterpret_cast< Vec* >(&mNormals[3]));
+        PSMTXMultVecSR(matrix, &mNormals[3], &mNormals[3]);
         MR::normalize(&mNormals[3]);
 
         return &mNormals[3];

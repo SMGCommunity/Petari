@@ -42,7 +42,7 @@ void CameraTargetActor::movement() {
         matrix.getXDir(mSide);
     }
 
-    CubeCameraArea* area = reinterpret_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", mActor->mPosition));
+    CubeCameraArea* area = static_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", mActor->mPosition));
 
     if (area == nullptr) {
         mCameraArea = nullptr;

@@ -80,7 +80,7 @@ bool MogucchiShooter::isLaughed() const {
 }
 
 void MogucchiShooter::exeWait() {
-    WaterBazooka* bazooka = reinterpret_cast< WaterBazooka* >(mHost);
+    WaterBazooka* bazooka = static_cast< WaterBazooka* >(mHost);
 
     if (MR::isFirstStep(this)) {
         if (bazooka->isBazookaPinch()) {
@@ -134,7 +134,7 @@ void MogucchiShooter::exeTire() {
         MR::startAction(this, "Tire");
     }
 
-    WaterBazooka* bazooka = reinterpret_cast< WaterBazooka* >(mHost);
+    WaterBazooka* bazooka = static_cast< WaterBazooka* >(mHost);
 
     if (bazooka->isPanic()) {
         setNerve(&NrvMogucchiShooter::MogucchiShooterNrvShock::sInstance);
@@ -185,7 +185,7 @@ void MogucchiShooter::exeShock() {
 }
 
 void MogucchiShooter::exePanic() {
-    WaterBazooka* bazooka = reinterpret_cast< WaterBazooka* >(mHost);
+    WaterBazooka* bazooka = static_cast< WaterBazooka* >(mHost);
 
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Panic");

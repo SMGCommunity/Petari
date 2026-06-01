@@ -17,7 +17,7 @@ void AirBubbleHolder::init(const JMapInfoIter& rIter) {
 void AirBubbleHolder::appearAirBubble(const TVec3f& a1, s32 a2) {
     AirBubble* bubble;
     if (getDeadActor()) {
-        bubble = reinterpret_cast< AirBubble* >(getDeadActor());
+        bubble = static_cast< AirBubble* >(getDeadActor());
     } else {
         bubble = nullptr;
     }

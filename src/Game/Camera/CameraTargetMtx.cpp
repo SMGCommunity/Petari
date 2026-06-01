@@ -109,7 +109,7 @@ void CameraTargetMtx::movement() {
     if (area == nullptr) {
         mCameraArea = nullptr;
     } else {
-        mCameraArea = reinterpret_cast< CubeCameraArea* >(area);
+        mCameraArea = static_cast< CubeCameraArea* >(area);
     }
 
     MR::calcGravityVectorOrZero(this, mPosition, &mGravityVector, nullptr, 0);

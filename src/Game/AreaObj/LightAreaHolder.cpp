@@ -8,7 +8,7 @@ LightAreaHolder::LightAreaHolder(s32 maxNum, const char* pName) : AreaObjMgr(max
 
 // for some reason the register movement for isTargetArea are wrong
 bool LightAreaHolder::tryFindLightID(const TVec3f& rArea, ZoneLightID* pLightID) const {
-    const LightArea* lightArea = reinterpret_cast< LightArea* >(find_in(rArea));
+    const LightArea* lightArea = static_cast< LightArea* >(find_in(rArea));
 
     if (!lightArea) {
         if (pLightID->isOutOfArea()) {

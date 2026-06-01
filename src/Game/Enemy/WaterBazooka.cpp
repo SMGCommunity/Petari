@@ -946,9 +946,9 @@ bool WaterBazooka::tryShotBullet() {
     TPos3f posMtx;
     calcGunPointFromCannon(&posMtx);
     if (mIsElectric) {
-        reinterpret_cast< ElectricPressureBullet* >(bullet)->shotElectricBullet(this, posMtx, sElectricBulletSpeed);
+        static_cast< ElectricPressureBullet* >(bullet)->shotElectricBullet(this, posMtx, sElectricBulletSpeed);
     } else {
-        reinterpret_cast< WaterPressureBullet* >(bullet)->shotWaterBullet(this, posMtx, 40.0f, true, true, false, &mCameraInfo);
+        static_cast< WaterPressureBullet* >(bullet)->shotWaterBullet(this, posMtx, 40.0f, true, true, false, &mCameraInfo);
     }
 
     return true;

@@ -126,7 +126,7 @@ void Polta::appearStarPiece(s32 starPieceAmount) {
 void BombTeresaHolder::disperseAll() {
     s32 objectCount = mObjectCount;
     for (s32 i = 0; i < objectCount; i++) {
-        BombTeresa* curBombTeresa = reinterpret_cast< BombTeresa* >(getActor(i));
+        BombTeresa* curBombTeresa = static_cast< BombTeresa* >(getActor(i));
         curBombTeresa->requestDisperse();
     }
 }

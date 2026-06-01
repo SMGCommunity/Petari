@@ -80,7 +80,7 @@ void IronCannonLauncherPoint::initBullet() {
 }
 
 bool IronCannonLauncherPoint::tryShotBullet(f32 offset) {
-    IronCannonShell* pShell = reinterpret_cast<IronCannonShell*>(mShellHolder->getValidShell());
+    IronCannonShell* pShell = static_cast< IronCannonShell* >(mShellHolder->getValidShell());
     if (pShell == nullptr)
         return false;
 

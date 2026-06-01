@@ -75,7 +75,7 @@ void BigBubbleGoalArea::draw() const {
 
 namespace MR {
     bool checkBigBubbleGoal(BigBubble* pBubble) {
-        BigBubbleGoalArea* goalArea = reinterpret_cast< BigBubbleGoalArea* >(MR::getAreaObj("BigBubbleGoalArea", pBubble->mPosition));
+        BigBubbleGoalArea* goalArea = static_cast< BigBubbleGoalArea* >(MR::getAreaObj("BigBubbleGoalArea", pBubble->mPosition));
         if (goalArea != nullptr) {
             goalArea->addBubble(pBubble);
             return true;

@@ -65,7 +65,7 @@ void TrampleStar::init(const JMapInfoIter& rIter) {
 
         if (strcmp(actor->mName, "TrampleStarShare") == 0) {
             isShareStar = true;
-            reinterpret_cast< TrampleStarShare* >(actor)->copy(this);
+            static_cast< TrampleStarShare* >(actor)->copy(this);
             break;
         }
     }

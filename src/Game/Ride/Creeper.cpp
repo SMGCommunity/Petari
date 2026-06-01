@@ -151,13 +151,13 @@ void Creeper::init(const JMapInfoIter& rIter) {
 
     mTexture = new JUTTexture(MR::loadTexFromArc("Creeper.arc", "Stalk.bti"), 0);
 
-    mFlowerModel = MR::createPartsModelNoSilhouettedMapObj(this, "花（つる花）", "CreeperFlower", reinterpret_cast< MtxPtr >(&mTopMtx));
+    mFlowerModel = MR::createPartsModelNoSilhouettedMapObj(this, "花（つる花）", "CreeperFlower", mTopMtx.toMtxPtr());
     mLeafModel = MR::createPartsModelNoSilhouettedMapObj(this, "葉（つる花）", "CreeperLeaf", nullptr);
 
-    MR::registerDemoSimpleCastAll(reinterpret_cast< LiveActor* >(mFlowerModel));
-    MR::registerDemoSimpleCastAll(reinterpret_cast< LiveActor* >(mLeafModel));
-    MR::copyTransRotateScale(this, reinterpret_cast< LiveActor* >(mLeafModel));
-    MR::startBck(reinterpret_cast< LiveActor* >(mLeafModel), "Wait", static_cast< const char* >(nullptr));
+    MR::registerDemoSimpleCastAll(mFlowerModel);
+    MR::registerDemoSimpleCastAll(mLeafModel);
+    MR::copyTransRotateScale(this, mLeafModel);
+    MR::startBck(mLeafModel, "Wait", static_cast< const char* >(nullptr));
     mLeafModel->makeActorAppeared();
     makeActorAppeared();
 }

@@ -26,9 +26,9 @@ void CoinGroup::init(const JMapInfoIter& rIter) {
 
     for (u32 i = 0; i < mCoinCount; i++) {
         if (mIsPurpleCoinGroup) {
-            mCoinArray[i] = reinterpret_cast< Coin* >(MR::createPurpleCoin(this, getCoinName()));
+            mCoinArray[i] = static_cast< Coin* >(MR::createPurpleCoin(this, getCoinName()));
         } else {
-            mCoinArray[i] = reinterpret_cast< Coin* >(MR::createCoin(this, getCoinName()));
+            mCoinArray[i] = static_cast< Coin* >(MR::createCoin(this, getCoinName()));
         }
 
         mCoinArray[i]->setShadowAndPoseModeFromJMapIter(rIter);

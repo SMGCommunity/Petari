@@ -351,7 +351,7 @@ void CocoNut::setFrontVec(const TVec3f& a1) {
 }
 
 bool CocoNut::tryHit(HitSensor* pOtherSensor, HitSensor* pMySensor) {
-    CocoNut* nut = reinterpret_cast< CocoNut* >(pMySensor->mHost);
+    CocoNut* nut = static_cast< CocoNut* >(pMySensor->mHost);
     if (!isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)) {
         return false;
     }
