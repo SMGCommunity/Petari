@@ -1,4 +1,5 @@
 #include "Game/Map/FileSelector.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Screen/BackButton.hpp"
 #include "Game/Screen/BrosButton.hpp"
 #include "Game/Screen/FileSelectButton.hpp"
@@ -15,7 +16,7 @@
 void FileSelector::createBackButton() {
     mBackButton = new BackButton("戻るボタン", false);
     mBackButton->initWithoutIter();
-    MR::connectToScene(mBackButton, 0xE, 0xD, -1, 0x3D);
+    MR::connectToScene(mBackButton, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_LayoutDecoration);
 }
 
 void FileSelector::createBrosButton() {
@@ -53,7 +54,7 @@ void FileSelector::createMiiSelect() {
 void FileSelector::createMiiConfirmIcon() {
     mMiiConfirmIcon = new MiiConfirmIcon("Mii確認用アイコン");
     mMiiConfirmIcon->initWithoutIter();
-    MR::connectToScene(mMiiConfirmIcon, 0xE, 0xD, -1, 0x3D);
+    MR::connectToScene(mMiiConfirmIcon, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_LayoutDecoration);
 }
 
 void FileSelector::createMiiFont() {

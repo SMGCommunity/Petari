@@ -113,7 +113,7 @@ namespace MR {
     NameObjAdaptor* createAdaptorAndConnectToWiiMessageBoard(const char* pParam1, const FunctorBase& rFunc) {
         NameObjAdaptor* pDrawAdaptor = createDrawAdaptor(pParam1, rFunc);
 
-        connectToScene(pDrawAdaptor, -1, -1, -1, 78);
+        connectToScene(pDrawAdaptor, -1, -1, -1, MR::DrawType_MessageBoardCapture);
 
         return pDrawAdaptor;
     }
