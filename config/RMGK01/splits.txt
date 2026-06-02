@@ -3695,7 +3695,7 @@ Game/Map/FileSelectModel.cpp:
 Game/Map/FileSelector.cpp:
 	.text       start:0x8017AC3C end:0x8017F050
 	.ctors      start:0x8052EBB8 end:0x8052EBBC
-	.rodata     start:0x80532A68 end:0x80532AB0
+	.rodata     start:0x80532A68 end:0x80532AA8
 	.data       start:0x805896C0 end:0x80589EB8
 	.sdata      start:0x806B1BA8 end:0x806B1BE0
 	.sbss       start:0x806B4AB8 end:0x806B4B78
@@ -3704,6 +3704,7 @@ Game/Map/FileSelector.cpp:
 Game/Map/FileSelectSky.cpp:
 	.text       start:0x8017F050 end:0x8017F384
 	.ctors      start:0x8052EBBC end:0x8052EBC0
+	.rodata     start:0x80532AA8 end:0x80532AB0
 	.data       start:0x80589EB8 end:0x80589F58
 	.sbss       start:0x806B4B78 end:0x806B4B80
 	.sdata2     start:0x806BBF30 end:0x806BBF58
