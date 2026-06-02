@@ -16,7 +16,7 @@ public:
     virtual void init(Koopa*, const JMapInfoIter&);
     virtual void update();
     virtual void calcAndSetBaseMtx();
-    virtual bool attackSensor(HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
