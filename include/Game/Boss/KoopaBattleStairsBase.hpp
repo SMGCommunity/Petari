@@ -12,7 +12,7 @@ class KoopaBattleStairsBase : public NerveExecutor {
 public:
     KoopaBattleStairsBase(Koopa*);
 
-    virtual ~KoopaBattleStairsBase();
+    virtual ~KoopaBattleStairsBase() {};
 
     void calcFireStartPos(TVec3f*, const char*) const;
     void update();

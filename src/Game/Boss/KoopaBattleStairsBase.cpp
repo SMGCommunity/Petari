@@ -9,9 +9,6 @@ KoopaBattleStairsBase::KoopaBattleStairsBase(Koopa* pKoopa) : NerveExecutor("ク
     _C->initWithoutIter();
 }
 
-KoopaBattleStairsBase::~KoopaBattleStairsBase() {
-}
-
 void KoopaBattleStairsBase::calcFireStartPos(TVec3f* pVec, const char* pDemoName) const {
     if (pDemoName) {
         KoopaFunction::setKoopaPos(mKoopa, pDemoName);
