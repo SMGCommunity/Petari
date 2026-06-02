@@ -224,8 +224,8 @@ void KoopaFunction::emitKoopaFireLongTime(Koopa* pKoopa) {
     pKoopa->mParts->emitFireLongTime();
 }
 
-void KoopaFunction::emitFireStairsToTarget(Koopa* pKoopa, const KoopaBattleMapStair* pMapStair, const TVec3f& rPosition, bool useFront) {
-    pKoopa->mParts->emitFireStairsToPos(pMapStair, rPosition, useFront);
+KoopaFireStairs* KoopaFunction::emitFireStairsToTarget(Koopa* pKoopa, const KoopaBattleMapStair* pMapStair, const TVec3f& rPosition, bool useFront) {
+    return pKoopa->mParts->emitFireStairsToPos(pMapStair, rPosition, useFront);
 }
 
 void KoopaFunction::killKoopaFireStairsAll(Koopa* pKoopa) {

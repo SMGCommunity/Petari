@@ -9,6 +9,7 @@ class LiveActor;
 class KoopaBattleMapStair;
 class PartsModel;
 class KoopaRockBreak;
+class KoopaFireStairs;
 class KoopaBattleMapPlanet;
 class HitSensor;
 class KoopaPlanetShadow;
@@ -81,7 +82,7 @@ namespace KoopaFunction {
     void emitKoopaFireShortCurve(Koopa*);
     void emitKoopaFireLongTime(Koopa*);
 
-    void emitFireStairsToTarget(Koopa*, const KoopaBattleMapStair*, const TVec3f&, bool);
+    KoopaFireStairs* emitFireStairsToTarget(Koopa*, const KoopaBattleMapStair*, const TVec3f&, bool);
     void killKoopaFireStairsAll(Koopa*);
 
     void emitKoopaShockWave(Koopa*);
