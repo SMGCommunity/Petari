@@ -5,7 +5,7 @@
 
 namespace {
     MR::ActorMoveParam sFindParam = {0.0f, 1.0f, 0.98f, 3.0f};
-}
+}  // namespace
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) NO_INLINE {
@@ -123,7 +123,7 @@ bool KoopaBattleBase::updateRecover(const Nerve* pNerve) {
 
     if (MR::isActionEnd(mHost)) {
         setNerve(pNerve);
-        
+
         return true;
     }
 
