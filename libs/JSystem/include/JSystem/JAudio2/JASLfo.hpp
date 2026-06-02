@@ -2,16 +2,33 @@
 
 #include <revolution/types.h>
 
-class JASLfo {
-public:
-    void setDepth(f32) NO_INLINE;
-    void setPitch(f32) NO_INLINE;
+struct JASLfo {
+    JASLfo();
+    f32 getValue() const;
+    void incCounter(f32);
+    void resetCounter();
 
-    u32 _0;
-    u32 _4;
-    f32 _8;
-    f32 _C;
-    f32 _10;
-    u16 _14;
-    u16 _16;
+    void setDepth(f32 param_0) {
+        mDepth = param_0;
+    }
+    void setPitch(f32 param_0) {
+        mPitch = param_0;
+    }
+    void setDelay(u16 param_0) {
+        mDelay = param_0;
+    }
+
+    static void updateFreeRun(f32 param_0) {
+        sFreeRunLfo.incCounter(param_0);
+    }
+
+    static JASLfo sFreeRunLfo;
+
+    /* 0x00 */ u32 _0;
+    /* 0x04 */ u32 _4;
+    /* 0x08 */ f32 _8;
+    /* 0x0C */ f32 mDepth;
+    /* 0x10 */ f32 mPitch;
+    /* 0x14 */ u16 mDelay;
+    /* 0x16 */ u16 _16;
 };

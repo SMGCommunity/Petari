@@ -7,7 +7,8 @@ namespace JGadget {
         return self.curr;
     }
 
-    TNodeLinkList::~TNodeLinkList() {}
+    TNodeLinkList::~TNodeLinkList() {
+    }
 
     void TNodeLinkList::splice(iterator a, TNodeLinkList& list, iterator b) {
         TLinkListNode*& curr = b.curr;
@@ -19,11 +20,11 @@ namespace JGadget {
         if (!flag) {
             TLinkListNode* nodeB = b.curr;
             list.Erase(nodeB);
-            Insert(CALL_INLINE_FUNC(iterator, a.curr), nodeB);
+            Insert(iterator(a.curr), nodeB);
         }
     }
 
-    TLinkListNode* TNodeLinkList::Insert(iterator iter, TLinkListNode* node) {
+    TNodeLinkList::iterator TNodeLinkList::Insert(iterator iter, TLinkListNode* node) {
         TLinkListNode* next = iter.curr;
         TLinkListNode* prev = next->mPrev;
         node->mNext = next;
@@ -31,24 +32,19 @@ namespace JGadget {
         next->mPrev = node;
         prev->mNext = node;
         mLen++;
-        return node;
+        return iterator(node);
     }
 
-    TLinkListNode* TNodeLinkList::Erase(TLinkListNode* node) {
+    TNodeLinkList::iterator TNodeLinkList::Erase(TLinkListNode* node) {
         TLinkListNode *next = node->mNext, *prev = node->mPrev;
         next->mPrev = prev;
         prev->mNext = next;
         mLen--;
-        return next;
+        return iterator(next);
     }
 
     void TNodeLinkList::Remove(TLinkListNode* node) {
+        // FIXME: inline moment
         remove_if(TPRIsEqual_pointer_< TLinkListNode >(node));
-    }
-
-    void TNodeLinkList::Initialize_() {
-        mLen = 0;
-        mEnd.mNext = &mEnd;
-        mEnd.mPrev = &mEnd;
     }
 }  // namespace JGadget

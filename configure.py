@@ -247,16 +247,21 @@ cflags_jsys = [
     "-fp_contract off",
     "-str reuse",
     "-enc SJIS",
+    "-sdata 4",
+    "-sdata2 4",
     "-use_lmw_stmw off",
     "-i include",
     "-i libs/JSystem/include",
     "-i libs/RVL_SDK/include",
     "-i libs/MSL_C/include",
+    "-i libs/MSL_C++/include",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
 
 cflags_jsys_j3d = [*cflags_jsys, "-O4,p"]
+
+cflags_jsys_jastrack = [*cflags_jsys, "-inline off"]
 
 cflags_trk = [
     "-nodefaults",
@@ -3026,19 +3031,19 @@ config.libs = [
         [
             Object(NonMatching, "JSystem/JAudio2/JASCalc.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASTaskThread.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASDvdThread.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASDvdThread.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASCallback.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASResArcLoader.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASProbe.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASResArcLoader.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASProbe.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASReport.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASCmdStack.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASTrackPort.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASRegisterParam.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASSeqCtrl.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp", cflags=cflags_jsys_jastrack),
+            Object(Matching, "JSystem/JAudio2/JASTrackPort.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASRegisterParam.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASSeqCtrl.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASSeqParser.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASSeqReader.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASSeqReader.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASAramStream.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASBank.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASBasicBank.cpp"),

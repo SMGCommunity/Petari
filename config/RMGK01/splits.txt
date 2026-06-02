@@ -10193,7 +10193,7 @@ RVL_SDK/vf/pf_file.c:
 
 RVL_SDK/vf/pf_path.c:
 	.text       start:0x8047F0EC end:0x8048195C
-	.sdata      start:0x806B2988 end:0x806B29C8
+	.sdata      start:0x806B2988 end:0x806B29C0
 	.sdata2     start:0x806C1E80 end:0x806C1E90
 
 RVL_SDK/vf/pf_sector.c:
@@ -10204,7 +10204,7 @@ RVL_SDK/vf/pf_volume.c:
 
 RVL_SDK/vf/pf_cp932.c:
 	.text       start:0x804839DC end:0x80483EC0
-	.rodata     start:0x8055CA20 end:0x805610C8
+	.rodata     start:0x8055CA20 end:0x80560CB8
 
 RVL_SDK/vf/pf_api_util.c:
 	.text       start:0x80483EC0 end:0x8048401C
@@ -10282,12 +10282,12 @@ RVL_SDK/vf/sd_drv.c:
 
 JSystem/JAudio2/JASCalc.cpp:
 	.text       start:0x80489B00 end:0x80489E60
-	.rodata     start:0x805610C8 end:0x80561110
+	.rodata     start:0x80560CB8 end:0x805610F0
 	.sdata2     start:0x806C1E90 end:0x806C1EA0
 
 JSystem/JAudio2/JASTaskThread.cpp:
 	.text       start:0x80489E60 end:0x8048A3DC
-	.data       start:0x805EB2E0 end:0x805EB310
+	.data       start:0x805EB2E0 end:0x805EB2F0
 
 JSystem/JAudio2/JASDvdThread.cpp:
 	.text       start:0x8048A3DC end:0x8048A484
@@ -10299,6 +10299,7 @@ JSystem/JAudio2/JASCallback.cpp:
 JSystem/JAudio2/JASHeapCtrl.cpp:
 	.text       start:0x8048A600 end:0x8048AF7C
 	.ctors      start:0x8052F3F8 end:0x8052F3FC
+	.data       start:0x805EB2F0 end:0x805EB310
 	.bss        start:0x80662178 end:0x806621C8
 	.sbss       start:0x806B74D8 end:0x806B74E8
 
@@ -10307,6 +10308,7 @@ JSystem/JAudio2/JASResArcLoader.cpp:
 
 JSystem/JAudio2/JASProbe.cpp:
 	.text       start:0x8048B0E8 end:0x8048B2A8
+	.rodata     start:0x805610F0 end:0x805610F8
 	.bss        start:0x806621C8 end:0x80662208
 	.sdata2     start:0x806C1EA0 end:0x806C1EB0
 
@@ -10323,7 +10325,7 @@ JSystem/JAudio2/JASCmdStack.cpp:
 JSystem/JAudio2/JASTrack.cpp:
 	.text       start:0x8048B5B8 end:0x8048DD48
 	.ctors      start:0x8052F400 end:0x8052F404
-	.rodata     start:0x80561110 end:0x80561150
+	.rodata     start:0x805610F8 end:0x80561150
 	.data       start:0x805EB310 end:0x805EB338
 	.bss        start:0x80662250 end:0x806626C0
 	.sdata2     start:0x806C1EB0 end:0x806C1ED8
@@ -10346,6 +10348,7 @@ JSystem/JAudio2/JASSeqParser.cpp:
 	.ctors      start:0x8052F408 end:0x8052F40C
 	.rodata     start:0x80561150 end:0x80561168
 	.data       start:0x805EB388 end:0x805ECCB8
+	.sdata      start:0x806B29C0 end:0x806B29C8
 	.sbss       start:0x806B7500 end:0x806B7510
 	.sdata2     start:0x806C1ED8 end:0x806C1EF8
 
