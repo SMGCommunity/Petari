@@ -63,7 +63,7 @@ void Koopa::kill() {
 }
 
 void Koopa::control() {
-    mSequencer->updateNerve();
+    mSequencer->update();
     mJointCtrl->update();
 }
 
@@ -77,13 +77,33 @@ void Koopa::updateHitSensor(HitSensor* pSensor) {
 }
 
 void Koopa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    mSequencer->attackSensor(pSender, pReceiver);
 }
 
 bool Koopa::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    return mSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
 bool Koopa::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    return mSequencer->receiveMsgEnemyAttack(msg, pSender, pReceiver);
 }
 
 bool Koopa::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    return mSequencer->receiveOtherMsg(msg, pSender, pReceiver);
+}
+
+void KoopaSequencer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    return;
+}
+
+bool KoopaSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    return false;
+}
+
+bool KoopaSequencer::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    return false;
+}
+
+bool KoopaSequencer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    return false;
 }
