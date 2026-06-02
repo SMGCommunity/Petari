@@ -16,21 +16,28 @@ Koopa::~Koopa() {
 void Koopa::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Koopa", nullptr, false);
+
     MR::calcActorAxisZ(&mFront, this);
+
     MR::connectToSceneEnemy(this);
+
     MR::initLightCtrl(this);
     initHitSensor(32);
 
     mSensorCtrl = new KoopaSensorCtrl(this);
     mSensorCtrl->initSensor();
+
     initBinder(200.0f, 200.0f, 0);
     initEffectKeeper(0, nullptr, false);
     initSound(16, false);
 
     mJointCtrl = new ActorJointCtrl(this);
+
     KoopaFunction::endFaceCtrlDirect(this);
+
     MR::initShadowFromCSV(this, "Shadow");
     MR::invalidateShadowGroup(this, "デモ用");
+
     MR::onCalcGravity(this);
 
     mParts = new KoopaParts(this, rIter);
@@ -38,6 +45,7 @@ void Koopa::init(const JMapInfoIter& rIter) {
     mSequencer->init(this, rIter);
 
     MR::invalidateClipping(this);
+
     MR::declarePowerStar(this);
 
     BossAccess::setBossAccessorKoopa(this);
