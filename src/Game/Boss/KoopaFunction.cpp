@@ -390,8 +390,8 @@ bool KoopaFunction::tryStartKoopaAndMarioCameraDemo(Koopa* pKoopa, const char* p
     return tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, true);
 }
 
-void KoopaFunction::tryStartKoopaCameraDemo(Koopa* pKoopa, const char* pSmth, const char* pName, const char* pDemoName) {
-    tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, false);
+bool KoopaFunction::tryStartKoopaCameraDemo(Koopa* pKoopa, const char* pSmth, const char* pName, const char* pDemoName) {
+    return tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, false);
 }
 
 bool KoopaFunction::tryEndKoopaCameraDemo(Koopa* pKoopa, const char* pName, const char* pSmth) {

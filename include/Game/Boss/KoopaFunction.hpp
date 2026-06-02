@@ -115,7 +115,7 @@ namespace KoopaFunction {
     KoopaPowerUpSwitch* getKoopaPowerUpSwitch(Koopa*);
 
     bool tryStartKoopaAndMarioCameraDemo(Koopa*, const char*, const char*, const char*);
-    void tryStartKoopaCameraDemo(Koopa*, const char*, const char*, const char*);
+    bool tryStartKoopaCameraDemo(Koopa*, const char*, const char*, const char*);
     bool tryEndKoopaCameraDemo(Koopa*, const char*, const char*);
 
     ModelObjNpc* getKoopaDemoPeach(Koopa*);
