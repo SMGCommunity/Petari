@@ -56,7 +56,7 @@ void KoopaStateAttackRoll::appear() {
     MR::validateHitSensor(mHost, "AttackRollReceiver");
     MR::validateHitSensor(mHost, "AttackRollStarPiece");
 
-    _1C = 0;
+    _1C = false;
 
     if (KoopaFunction::isKoopaVs3(mHost)) {
         if (KoopaFunction::isKoopaLv2(mHost)) {
@@ -80,7 +80,7 @@ void KoopaStateAttackRoll::appear() {
                 _14 = 90;
             }
             if (_1D) {
-                _1D = 0;
+                _1D = false;
                 _14 = 0;
             }
         }
@@ -120,7 +120,7 @@ bool KoopaStateAttackRoll::tryCalcAndSetBaseMtx() {
 
 bool KoopaStateAttackRoll::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver) && MR::isSensor(pSender, "AttackRoll") && MR::sendMsgEnemyAttackMaximum(pReceiver, pSender)) {
-        _1C = 1;
+        _1C = true;
         return true;
     }
 

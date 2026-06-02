@@ -26,10 +26,9 @@ public:
     void exeEndAir();
     void exeEndLand();
 
-private:
     /* 0x10 */ KoopaFigureBall* mFigureBall;
     /* 0x14 */ s32 _14;
     /* 0x18 */ u32 _18;
-    /* 0x1C */ u8 _1C;
-    /* 0x1D */ u8 _1D;
+    /* 0x1C */ bool _1C;
+    /* 0x1D */ bool _1D;
 };
