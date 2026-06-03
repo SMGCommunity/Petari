@@ -381,7 +381,7 @@ namespace MR {
     } */
 
     void setClippingRangeIncludeShadow(LiveActor* pActor, TVec3f* a2, f32 a3) {
-        float stack_8(a3);
+        f32 stack_8(a3);
         if (calcClippingRangeIncludeShadow(a2, &stack_8, pActor, a3)) {
             setClippingTypeSphere(pActor, stack_8, a2);
         } else {
@@ -425,10 +425,10 @@ namespace MR {
 
     f32 getShadowNearProjectionLength(const LiveActor* pActor) {
         u32 count = ActorShadow::getShadowControllerCount(pActor);
-        float result = FLOAT_MAX;
+        f32 result = FLOAT_MAX;
         for (u32 i = 0; i < count; i++) {
             if (ActorShadow::getShadowController(pActor, i)->isProjected()) {
-                float length = ActorShadow::getShadowController(pActor, i)->getProjectionLength();
+                f32 length = ActorShadow::getShadowController(pActor, i)->getProjectionLength();
                 if (length < result) {
                     result = length;
                 }

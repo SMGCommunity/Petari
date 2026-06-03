@@ -59,7 +59,7 @@ namespace MR {
         KameckBeamHolder* beam = MR::getSceneObj< KameckBeamHolder >(SceneObj_KameckBeamHolder);
 
         if (beam->getDeadActor()) {
-            return reinterpret_cast< KameckBeam* >(beam->getDeadActor());
+            return static_cast< KameckBeam* >(beam->getDeadActor());
         }
 
         return nullptr;
@@ -69,7 +69,7 @@ namespace MR {
         KameckFireBallHolder* fire = MR::getSceneObj< KameckFireBallHolder >(SceneObj_KameckFireBallHolder);
 
         if (fire->getDeadActor()) {
-            return reinterpret_cast< KameckFireBall* >(fire->getDeadActor());
+            return static_cast< KameckFireBall* >(fire->getDeadActor());
         }
 
         return nullptr;
@@ -79,7 +79,7 @@ namespace MR {
         KameckBeamTurtleHolder* t = MR::getSceneObj< KameckBeamTurtleHolder >(SceneObj_KameckBeamTurtleHolder);
 
         if (t->getDeadActor()) {
-            return reinterpret_cast< KameckTurtle* >(t->getDeadActor());
+            return static_cast< KameckTurtle* >(t->getDeadActor());
         }
 
         return nullptr;

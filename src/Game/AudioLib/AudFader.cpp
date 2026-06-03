@@ -5,13 +5,13 @@ AudFader::AudFader() : mCurrentVolume(1.f), mFinalVolume(1.f), mStepVolume(0.f) 
 /// @brief Initializes AudFader
 /// @param desiredVolume Volume intensity to be reached at the end of fade
 /// @param fadeTime Time/Steps to reach desiredVolume intensity
-void AudFader::set(float desiredVolume, long fadeTime) {
+void AudFader::set(f32 desiredVolume, s32 fadeTime) {
     if (fadeTime == 0) {
         // Set desiredVolume instantly
         mCurrentVolume = desiredVolume;
         mStepVolume = 0.f;
     } else {
-        mStepVolume = (desiredVolume - mCurrentVolume) / (float)(fadeTime);
+        mStepVolume = (desiredVolume - mCurrentVolume) / (f32)(fadeTime);
     }
     mFinalVolume = desiredVolume;
 }

@@ -205,11 +205,11 @@ bool TalkStateNormal::prep(const TalkMessageCtrl* pArg1) {
             } else {
                 mAButton->openWithTalk();
             }
-            MR::startSystemSE("SE_SM_TALK_BUTTON_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SM_TALK_BUTTON_APPEAR");
         }
     } else {
         mAButton->term();
-        MR::startSystemSE("SE_SY_TALK_START", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_START");
         MR::startCSSound("CS_CLICK_OPEN", nullptr, 0);
     }
 

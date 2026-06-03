@@ -5,12 +5,12 @@ namespace {
     static const f32 sAirGravityAccel = 1.0f;
     static const f32 sDamageTurnLimit = 15.0f;
     static const s32 sDamageLandTime = 5;
-}  // namespace
+};  // namespace
 
 namespace NrvWalkerStateBlowDamage {
     NEW_NERVE(WalkerStateBlowDamageNrvBlow, WalkerStateBlowDamage, Blow);
     NEW_NERVE(WalkerStateBlowDamageNrvBlowLand, WalkerStateBlowDamage, BlowLand);
-}  // namespace NrvWalkerStateBlowDamage
+};  // namespace NrvWalkerStateBlowDamage
 
 WalkerStateBlowDamage::WalkerStateBlowDamage(LiveActor* pHost, TVec3f* pDirection, WalkerStateBlowDamageParam* pBlowDamageParam)
     : ActorStateBase< LiveActor >("吹き飛びダメージ状態", pHost), mDirection(pDirection), mBlowDamageParam(pBlowDamageParam) {

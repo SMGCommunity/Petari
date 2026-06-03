@@ -54,12 +54,9 @@ void BlackHole::init(const JMapInfoIter& rIter) {
 }
 
 void BlackHole::makeActorAppeared() {
-    bool isOnSwitch = false;
-    if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
-        isOnSwitch = true;
-    }
+    bool isOnSwitch = MR::isValidSwitchA(this) && MR::isOnSwitchA(this);
 
-    if (isOnSwitch) {
+    if (!isOnSwitch) {
         LiveActor::makeActorAppeared();
         mBlackHoleModel->makeActorAppeared();
     }
@@ -174,7 +171,7 @@ void BlackHole::exeWait() {
         MR::startBtk(mBlackHoleModel, "BlackHole");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE");
     bool isOnSwitch = false;
     if (MR::isValidSwitchA(this) && MR::isOnSwitchA(this)) {
         isOnSwitch = true;
@@ -186,20 +183,20 @@ void BlackHole::exeWait() {
 }
 
 void BlackHole::exeDemo() {
-    MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BLACK_HOLE");
 }
 
 void BlackHole::exeDisappear() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_BLACK_HOLE_DISAPPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_BLACK_HOLE_DISAPPEAR");
     }
 
-    f32 nerveEaseIn = MR::calcNerveEaseInValue(this, 0x5A, _9C, 0.0f);
-    f32 blackHoleEase = MR::calcNerveEaseInValue(this, 0x1E, 0x5A, _9C, 0.0f);
+    f32 nerveEaseIn = MR::calcNerveEaseInValue(this, 90, _9C, 0.0f);
+    f32 blackHoleEase = MR::calcNerveEaseInValue(this, 30, 90, _9C, 0.0f);
     mScale.setAll< f32 >(nerveEaseIn);
     mBlackHoleModel->mScale.setAll< f32 >(0.5f * blackHoleEase);
 
-    if (MR::isStep(this, 0x5A)) {
+    if (MR::isStep(this, 90)) {
         kill();
     }
 }

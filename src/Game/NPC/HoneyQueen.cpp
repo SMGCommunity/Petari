@@ -106,7 +106,7 @@ void HoneyQueen::init(const JMapInfoIter& rIter) {
 
 void HoneyQueen::control() {
     NPCActor::control();
-    MR::startLevelSound(this, "SE_SM_LV_HONEYQUEEN_FLY", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_HONEYQUEEN_FLY");
 }
 
 void HoneyQueen::calcAnim() {

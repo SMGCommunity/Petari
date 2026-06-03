@@ -19,7 +19,7 @@ namespace NrvSnowMan {
     NEW_NERVE(SnowManNrvMeltBody, SnowMan, MeltBody);
     NEW_NERVE(SnowManNrvDownHead, SnowMan, DownHead);
     NEW_NERVE(SnowManNrvDownBody, SnowMan, DownBody);
-}  // namespace NrvSnowMan
+};  // namespace NrvSnowMan
 
 SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
     mHeadCollisionParts = nullptr;
@@ -132,7 +132,7 @@ void SnowMan::exeMeltHead() {
     if (MR::isFirstStep(this)) {
         MR::invalidateCollisionParts(mHeadCollisionParts);
         MR::startBck(this, "MeltHead", nullptr);
-        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT", -1, -1);
+        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
         if (MR::isValidSwitchA(this)) {
             MR::onSwitchA(this);
@@ -149,7 +149,7 @@ void SnowMan::exeMeltBody() {
     if (MR::isFirstStep(this)) {
         MR::invalidateCollisionParts(mBodyCollisionParts);
         MR::startBck(this, "MeltBody", nullptr);
-        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT", -1, -1);
+        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
         if (MR::isValidSwitchA(this)) {
             MR::onSwitchA(this);
@@ -170,7 +170,7 @@ void SnowMan::exeDownHead() {
         MR::invalidateCollisionParts(mHeadCollisionParts);
         MR::invalidateCollisionParts(mBodyCollisionParts);
         MR::startBck(this, "DownHead", nullptr);
-        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT", -1, -1);
+        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
     }
 
@@ -184,7 +184,7 @@ void SnowMan::exeDownBody() {
         MR::invalidateCollisionParts(mHeadCollisionParts);
         MR::invalidateCollisionParts(mBodyCollisionParts);
         MR::startBck(this, "DownBody", nullptr);
-        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT", -1, -1);
+        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
         if (MR::isValidSwitchB(this)) {
             MR::onSwitchB(this);

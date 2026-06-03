@@ -131,12 +131,12 @@ void BossKameckBattleDemo::exeAppearVs1() {
     }
 
     if (MR::isLessStep(this, 270)) {
-        MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_DEMO_PRE_APPEAR", -1, -1, -1);
+        MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_DEMO_PRE_APPEAR");
     }
 
     if (MR::isStep(this, 270)) {
-        MR::startSound(mHost, "SE_BM_KAMECK_DEMO_SMOKE", -1, -1);
-        MR::startSound(mHost, "SE_BV_KAMECK_APPEAR", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_DEMO_SMOKE");
+        MR::startSound(mHost, "SE_BV_KAMECK_APPEAR");
         MR::validateShadowAll(mHost);
     }
 
@@ -178,15 +178,15 @@ void BossKameckBattleDemo::exeAppearVs2() {
     }
 
     if (MR::isStep(this, 60)) {
-        MR::startSound(mHost, "SE_BV_KAMECK_APPEAR", -1, -1);
+        MR::startSound(mHost, "SE_BV_KAMECK_APPEAR");
     }
 
     if (MR::isLessStep(this, 155)) {
-        MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_DEMO_APPEAR", -1, -1, -1);
+        MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_DEMO_APPEAR");
     }
 
     if (MR::isStep(this, 155)) {
-        MR::startSound(mHost, "SE_BM_KAMECK_DEMO_APPEA_END", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_DEMO_APPEA_END");
         MR::validateShadowAll(mHost);
     }
 
@@ -244,7 +244,7 @@ void BossKameckBattleDemo::exePowerUpVs2() {
         mHost->startDemo();
     }
 
-    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_DEMO_MOVE", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_DEMO_MOVE");
 
     if (MR::isStep(this, 200)) {
         mHost->startDemoAppearKameck();
@@ -281,11 +281,11 @@ void BossKameckBattleDemo::exeDownVs1() {
     updateCastPose();
 
     if (MR::isStep(this, 18)) {
-        MR::startSound(mHost, "SE_BV_KAMECK_DEAD", -1, -1);
+        MR::startSound(mHost, "SE_BV_KAMECK_DEAD");
     }
 
     if (MR::isStep(this, 150)) {
-        MR::startSound(mHost, "SE_BM_KAMECK_DEAD", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_DEAD");
     }
 
     if (MR::isStep(this, 285)) {
@@ -293,8 +293,8 @@ void BossKameckBattleDemo::exeDownVs1() {
     }
 
     if (MR::isStep(this, 345)) {
-        MR::startSound(mHost, "SE_BM_KAMECK_DEMO_STAFF_BREAK", -1, -1);
-        MR::startSystemSE("SE_SY_POW_STAR_APPEAR", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_DEMO_STAFF_BREAK");
+        MR::startSystemSE("SE_SY_POW_STAR_APPEAR");
     }
 
     if (MR::isActionEnd(mHost)) {
@@ -327,11 +327,11 @@ void BossKameckBattleDemo::exeDownVs2() {
     updateCastPose();
 
     if (MR::isStep(this, 18)) {
-        MR::startSound(mHost, "SE_BV_KAMECK_DEAD", -1, -1);
+        MR::startSound(mHost, "SE_BV_KAMECK_DEAD");
     }
 
     if (MR::isStep(this, 150)) {
-        MR::startSound(mHost, "SE_BM_KAMECK_DEAD", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_DEAD");
     }
 
     if (MR::isStep(this, 285)) {
@@ -339,8 +339,8 @@ void BossKameckBattleDemo::exeDownVs2() {
     }
 
     if (MR::isStep(this, 345)) {
-        MR::startSound(mHost, "SE_BM_KAMECK_DEMO_STAFF_BREAK", -1, -1);
-        MR::startSystemSE("SE_SY_POW_STAR_APPEAR", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_DEMO_STAFF_BREAK");
+        MR::startSystemSE("SE_SY_POW_STAR_APPEAR");
     }
 
     if (MR::isActionEnd(mHost)) {

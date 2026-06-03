@@ -19,8 +19,7 @@ namespace {
     inline StarPointerLayout* getStarPointerLayout(s32 channel) {
         return getStarPointerDirector()->getStarPointerLayout(channel);
     }
-
-}  // namespace
+};  // namespace
 
 StarPointerOnOffController::StarPointerOnOffController() : NerveExecutor("スターポインタON/OFF制御"), _8(false), mMode(-1) {
     for (s32 idx = 0; idx < 16; idx++) {

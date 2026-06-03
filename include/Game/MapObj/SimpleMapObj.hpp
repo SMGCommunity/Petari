@@ -112,4 +112,4 @@ public:
 
 namespace MR {
     void makeArchiveListUFOKinokoUnderConstruction(NameObjArchiveListCollector*, const JMapInfoIter&);
-};
+};  // namespace

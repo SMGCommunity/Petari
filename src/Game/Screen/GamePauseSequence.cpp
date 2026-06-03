@@ -39,7 +39,7 @@ void GamePauseSequence::startPause(MenuType type) {
     appear();
     MR::startStarPointerModePauseMenu(this);
     GameSystemFunction::onPauseBeginAllRumble();
-    MR::startSystemSE("SE_SY_PAUSE_ON", -1, -1);
+    MR::startSystemSE("SE_SY_PAUSE_ON");
     MR::startCSSound("CS_CLICK_OPEN", nullptr, 0);
 
     switch (mMenuType) {

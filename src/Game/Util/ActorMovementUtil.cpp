@@ -42,8 +42,8 @@ namespace {
         }
         MR::makeMtxUpFront(&stack_44, stack_20, a2);
         if (3.0f < a3) {
-            float f3 = stack_44[2][2];
-            float f2 = 1.0f;
+            f32 f3 = stack_44[2][2];
+            f32 f2 = 1.0f;
             if (f3 - f2 >= -0.0000038146973f) {
                 stack_14.x = JMath::sAtanTable.atan2_(-stack_44[0][1], stack_44[1][1]);
                 stack_14.y = -1.5707964f;
@@ -68,7 +68,7 @@ namespace {
         pActor->mRotation.multiplyOperatorInline(57.29578f);
     }
     */
-};
+};  // namespace
 
 namespace MR {
     f32 calcDistance(const HitSensor* pSensor1, const HitSensor* pSensor2, TVec3f* a3) {
@@ -172,7 +172,7 @@ namespace MR {
         TVec3f* playerPos = getPlayerPos();
         TVec3f stack_8(pActor->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)playerPos, (Vec*)&stack_8);
-        float f0 = __fabs(vecKillElement(stack_8, stack_20, &stack_14));
+        f32 f0 = __fabs(vecKillElement(stack_8, stack_20, &stack_14));
         if (a3 < f0) {
             return false;
         }
@@ -187,7 +187,7 @@ namespace MR {
         TVec3f* playerPos = getPlayerPos();
         TVec3f stack_8(pActor->mPosition);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_8, (Vec*)playerPos, (Vec*)&stack_8);
-        float f1 = vecKillElement(stack_8, pActor->mGravity, &stack_14);
+        f32 f1 = vecKillElement(stack_8, pActor->mGravity, &stack_14);
         return (stack_14.squared() < dist * dist);
     }
 
@@ -349,7 +349,7 @@ namespace MR {
         return isNearPlayerAnyTime(pActor, dist) && isFaceToPlayerDegreeHV(pActor, a2, a3, a4);
     }
 
-    bool isBindedWallFront(const LiveActor* pActor, const TVec3f& v1, float a3) {
+    bool isBindedWallFront(const LiveActor* pActor, const TVec3f& v1, f32 a3) {
         if (isBindedWall(pActor)) {
             TVec3f wallNormal(*getWallNormal(pActor));  // stack_8
             if (v1.dot(wallNormal) < -a3) {
@@ -374,7 +374,7 @@ namespace MR {
         stack_14.add(scaledUpVec);
         JMathInlineVEC::PSVECSubtract((Vec*)&stack_2c, (Vec*)&stack_14, (Vec*)&stack_2c);
         normalizeOrZero(&stack_2c);
-        float f1 = upVec.dot(stack_2c);
+        f32 f1 = upVec.dot(stack_2c);
         if (f1 < 0.0f) {
             f1 = -f1;
         }
@@ -386,7 +386,7 @@ namespace MR {
     } */
 
     // Minor mismatch: Stack positions of stack_8 (== scaledUpVec) and stack_14 are switched
-    /* bool isPlayerExistUp(const LiveActor *pActor, float a2, float a3) {
+    /* bool isPlayerExistUp(const LiveActor *pActor, f32 a2, f32 a3) {
         TVec3f stack_2c(*getPlayerCenterPos());
         TVec3f upVec; // stack_20
         calcUpVec(&upVec, pActor);
@@ -400,7 +400,7 @@ namespace MR {
     } */
 
     // Minor mismatch: Stack positions of stack_8 (== scaledDownVec) and stack_14 are switched
-    /* bool isExistPlayerDown(const LiveActor *pActor, float a2, float a3) {
+    /* bool isExistPlayerDown(const LiveActor *pActor, f32 a2, f32 a3) {
         TVec3f stack_38 = TVec3f(*getPlayerCenterPos());
         TVec3f stack_2c;
         calcUpVec(&stack_2c, pActor);
@@ -603,7 +603,7 @@ namespace MR {
     void calcVelocityMoveToDirectionHorizon(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
         TVec3f* pGravity = const_cast< TVec3f* >(&pActor->mGravity);
         a1->rejection(a3, *pGravity);
-        float stack_8;
+        f32 stack_8;
         separateScalarAndDirection(&stack_8, a1, *a1);
         a1->scale(getInterpolateValue(normalize(stack_8, a6, a7), a4, a5));
     }
@@ -699,16 +699,16 @@ namespace MR {
 
     bool addVelocityLimit(LiveActor* pActor, const TVec3f& a2) {
         TVec3f stack_18;
-        float stack_8;
+        f32 stack_8;
         separateScalarAndDirection(&stack_8, &stack_18, a2);
         if (isNearZero(stack_18)) {
             return false;
         }
-        float f1 = stack_18.dot(pActor->mVelocity);
+        f32 f1 = stack_18.dot(pActor->mVelocity);
         if (stack_8 <= f1) {
             return false;
         }
-        float f31 = stack_8 - f1;
+        f32 f31 = stack_8 - f1;
         TVec3f stack_c(stack_18);
         stack_c.scale(f31);
         pActor->mVelocity.add(stack_c);
@@ -771,7 +771,7 @@ namespace MR {
                 return false;
             }
         }
-        float shadowLength;
+        f32 shadowLength;
         if (pName != nullptr) {
             shadowLength = getShadowProjectionLength(pActor, pName);
         } else {
@@ -792,7 +792,7 @@ namespace MR {
                 return false;
             }
         }
-        float f1;
+        f32 f1;
         if (pName != nullptr) {
             f1 = getShadowProjectionLength(pActor, pName);
         } else {
@@ -848,7 +848,7 @@ namespace MR {
         TVec3f stack_8;
         stack_8.rejection(*pVelocity, a2);
         stack_8.scale(a3);
-        float f1 = a2.dot(*pVelocity);
+        f32 f1 = a2.dot(*pVelocity);
         pVelocity->scale(f1, a2);
         pVelocity->add(stack_8);
     } */
@@ -889,7 +889,7 @@ namespace MR {
             TVec3f stack_20;
             getShadowProjectionPos(pActor, nullptr, &stack_20);
             JMathInlineVEC::PSVECSubtract((Vec*)&stack_20, (Vec*)&pActor->mPosition, (Vec*)&stack_20);
-            float f1 = stack_20.dot(pActor->mGravity);
+            f32 f1 = stack_20.dot(pActor->mGravity);
             if (0.0f != a2) {
                 f1 -= a2;
             }
@@ -912,8 +912,8 @@ namespace MR {
             return false;
         }
         normalize(&bindedReactnVec);
-        float f31 = bindedReactnVec.dot(pActor->mGravity);
-        float f30 = 0.0f;
+        f32 f31 = bindedReactnVec.dot(pActor->mGravity);
+        f32 f30 = 0.0f;
         if (isFloorPolygon(f31)) {
             f30 = a2;
         }
@@ -924,7 +924,7 @@ namespace MR {
             f30 = a4;
         }
         f31 = bindedReactnVec.dot(pActor->mVelocity);
-        float f0 = -a5;
+        f32 f0 = -a5;
         if (f31 < f0) {
             TVec3f stack_14(bindedReactnVec);
             stack_14.scale(f31);
@@ -952,7 +952,7 @@ namespace MR {
             return false;
         }
         normalize(&stack_38);
-        float f31 = stack_38.dot(pActor->mVelocity);
+        f32 f31 = stack_38.dot(pActor->mVelocity);
         if (f31 < -a3) {
             TVec3f stack_2c(stack_38);
             stack_2c.scale(f31);
@@ -1193,8 +1193,8 @@ namespace MR {
         normalizeOrZero(&stack_20);
         TVec3f stack_14;
         a1->getZDir(stack_14);
-        float f31 = 0.0f;
-        float f30 = 1.0f;
+        f32 f31 = 0.0f;
+        f32 f30 = 1.0f;
         if (isNearZero(stack_20) == false) {
             turnVecToVecRadian(&stack_14, stack_14, stack_20, a4, pActor->mGravity);
         } else {
@@ -1211,9 +1211,9 @@ namespace MR {
     /* f32 turnDirectionAndGravityH(LiveActor *pActor, const TVec3f &a2, f32 a3, f32 a4) {
         TQuat4f stack_8;
         makeQuatRotateDegree(&stack_8, pActor->mRotation);
-        float ret = turnDirectionAndGravityH(&stack_8, pActor, a2, a3, a4);
+        f32 ret = turnDirectionAndGravityH(&stack_8, pActor, a2, a3, a4);
         stack_8.getEuler(pActor->mRotation);
-        float scalar = 57.29578f;
+        f32 scalar = 57.29578f;
         pActor->mRotation.mult(scalar);
         return ret;
     } */

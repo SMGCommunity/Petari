@@ -279,7 +279,7 @@ void TripodBossKillerGenerater::exeCoolDown() {
 void TripodBossKillerGenerater::exeStop() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "ExplosionS");
-        MR::startSound(this, "SE_BM_TRIPOD_CANNON_BREAK", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_CANNON_BREAK");
         if (mHasCollision) {
             MR::invalidateCollisionParts(this);
         }
@@ -299,7 +299,7 @@ void TripodBossKillerGenerater::exeRestart() {
     if (_121) {
         if (PSVECDistance(MR::getPlayerPos(), &mPosition) >= 230.0f) {
             MR::startBck(this, "2ndDemo", nullptr);
-            MR::startSound(this, "SE_BM_TRIPOD_CANNON_RESTART", -1, -1);
+            MR::startSound(this, "SE_BM_TRIPOD_CANNON_RESTART");
             if (mHasCollision) {
                 MR::validateCollisionParts(this);
             }

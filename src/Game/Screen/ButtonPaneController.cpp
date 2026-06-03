@@ -7,7 +7,7 @@
 
 namespace {
     const f32 cDecidedToDisappearAnimRate = 1.5f;
-};
+};  // namespace
 
 namespace NrvButtonPaneController {
     NEW_NERVE(ButtonPaneControllerNrvHidden, ButtonPaneController, Hidden);

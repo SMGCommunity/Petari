@@ -4,4 +4,4 @@
 
 namespace MR {
     void createScreenAlphaSceneObj(s32, f32);
-};
+};  // namespace MR

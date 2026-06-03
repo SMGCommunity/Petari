@@ -189,7 +189,7 @@ void MiiSelectIcon::exeWait() {
     }
 
     if (_20->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
     }
 
     if (_20->mIsSelected) {

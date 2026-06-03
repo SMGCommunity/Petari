@@ -94,11 +94,11 @@ void ValveSwitch::exeValve() {
     }
 
     if (MR::isLessStep(this, 30)) {
-        MR::startLevelSound(this, "SE_OJ_LV_VALVE_SWITCH_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_VALVE_SWITCH_MOVE");
     }
 
     if (MR::isStep(this, 30)) {
-        MR::startSound(this, "SE_OJ_VALVE_SWITCH_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_VALVE_SWITCH_ON");
         MR::tryRumblePadVeryStrong(this, 0);
         MR::shakeCameraNormal();
     }

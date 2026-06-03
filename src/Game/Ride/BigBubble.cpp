@@ -81,7 +81,7 @@ namespace {
     static const f32 sRadiusSubLevel4 = 15.0f;
     static const f32 sRadiusSubLevel5 = 30.0f;
     static const f32 sRadiusSubLevel6 = 50.0f;
-}  // namespace
+};  // namespace
 
 enum Side { Side_Top = 0, Side_Right = 1, Side_Back = 2, Side_Left = 3, Side_Front = 4, Side_Bottom = 5 };
 
@@ -99,8 +99,9 @@ BigBubble::BigBubble(const char* pName)
     : LiveActor(pName), mSurface(nullptr), mMoveLimitter(nullptr), mHost(nullptr), mRider(nullptr), mMergeBubble(nullptr), mBubbleQuat(0, 0, 0, 1),
       mRiderQuat(0, 0, 0, 1), mRiderPos(0.0f, 0.0f, 0.0f), mSpawnPosition(0.0f, 0.0f, 0.0f), _18C(0.0f, 0.0f, 0.0f), mPointerPos(0.0f, 0.0f, 0.0f),
       _1A4(0.0f, 0.0f, 0.0f), mMoment(0.0f, 0.0f, 0.0f), mCoriolisAccel(1.0f, 0.0f, 0.0f), mInterpolateTime(0), mBlowForce(0), _200(0),
-      mReduceVolumeTimer(0), _208(0), mMergeIndex(-1), mShapeType(-1), _214(0), mAppearRadius(1.0f), mVolume(1.0f), _220(0.0f), mBinderRadius(0.0f),
-      mWarningColor(255, 0, 0, 0), _22C(false), _22D(false), mIsHidden(false), _22F(false), mIsBroken(false), mIsShrinkable(true), mIsAttached(true) {
+      mReduceVolumeTimer(0), _208(0), mMergeIndex(-1), mShapeType(-1), _214(0), mAppearRadius(1.0f), mVolume(1.0f), mDrawZ(0.0f), mBinderRadius(0.0f),
+      mWarningColor(255, 0, 0, 0), mIsObstruct(false), _22D(false), mIsHidden(false), mIsExitLimitter(false), mIsBroken(false), mIsShrinkable(true),
+      mIsAttached(true) {
     mSurface = new OctahedronBezierSurface(3);
     mEffectMtx.identity();
     mBaseMtx.identity();
@@ -153,7 +154,7 @@ void BigBubble::makeActorAppeared() {
 
     mMergeIndex = -1;
     mMergeBubble = nullptr;
-    _22F = false;
+    mIsExitLimitter = false;
     mIsBroken = false;
 }
 
@@ -220,7 +221,7 @@ void BigBubble::calcAnim() {
     }
 
     f32 dot = MR::getCamZdir().dot(mPosition);
-    _220 = dot + mScale.x;
+    mDrawZ = dot + mScale.x;
 }
 
 void BigBubble::draw() const {
@@ -230,7 +231,7 @@ void BigBubble::draw() const {
     }
 }
 
-void BigBubble::generate(const TVec3f& rPos, const TVec3f& rUp, f32 volume, bool b, s32 actionType, s32 shapeType,
+void BigBubble::generate(const TVec3f& rPos, const TVec3f& rUp, f32 volume, bool isObstruct, s32 actionType, s32 shapeType,
                          const BigBubbleMoveLimitter* pLimitter) {
     setShapeType(shapeType);
     setActionType(actionType);
@@ -242,7 +243,7 @@ void BigBubble::generate(const TVec3f& rPos, const TVec3f& rUp, f32 volume, bool
         mMoveLimitter->limitPosition(&mPosition, getSize());
     }
 
-    _22C = b;
+    mIsObstruct = isObstruct;
     mAppearRadius = getRadius(volume);
 
     resetDeformVelocity();
@@ -331,7 +332,7 @@ void BigBubble::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             s32 mergeIndex = getMergeIndex(MR::getSensorPos(pReceiver));
             if (mergeIndex != -1 && pReceiver->receiveMessage(ACTMES_BIG_BUBBLE_MERGE, pSender)) {
                 mReduceVolumeTimer = 0;
-                mMergeBubbles[mergeIndex] = reinterpret_cast< BigBubble* >(pReceiver->mHost);
+                mMergeBubbles[mergeIndex] = static_cast< BigBubble* >(pReceiver->mHost);
             }
         }
     }
@@ -456,7 +457,7 @@ bool BigBubble::requestMerged(HitSensor* pSender, HitSensor* pReceiver) {
         mReduceVolumeTimer = 0;
         if (dist < (radius2 + radius1) * 0.9f) {
             setNerve(&NrvBigBubble::BigBubbleNrvMerged::sInstance);
-            mMergeBubble = reinterpret_cast< BigBubble* >(pReceiver->mHost);
+            mMergeBubble = static_cast< BigBubble* >(pReceiver->mHost);
             mMergeIndex = getNearAxisIndex(MR::getSensorPos(pReceiver));
             return true;
         }
@@ -495,7 +496,7 @@ bool BigBubble::requestAssimilate(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 
-    MR::startSound(this, "SE_OJ_BIG_BUBBLE_MERGE", -1, -1);
+    MR::startSound(this, "SE_OJ_BIG_BUBBLE_MERGE");
     return true;
 }
 
@@ -505,7 +506,7 @@ bool BigBubble::requestCancelBind() {
     }
     mWarningColor.a = 0;
     MR::emitEffect(this, "Break");
-    MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
     mIsBroken = true;
     mRiderBasePos = mRiderPos;
     mInterpolateTime = 0.0f;
@@ -548,7 +549,7 @@ bool BigBubble::tryBreak() {
         breakBubble = true;
     }
 
-    if (breakBubble || _22F) {
+    if (breakBubble || mIsExitLimitter) {
         setNerve(&NrvBigBubble::BigBubbleNrvBreak::sInstance);
         return true;
     }
@@ -557,7 +558,7 @@ bool BigBubble::tryBreak() {
 }
 
 bool BigBubble::tryAutoBreak() {
-    if (!_22C && MR::isGreaterStep(this, sAutoBreakTime) || _22F) {
+    if (!mIsObstruct && MR::isGreaterStep(this, sAutoBreakTime) || mIsExitLimitter) {
         if (mRider != nullptr) {
             MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
             mRider = nullptr;
@@ -592,7 +593,7 @@ bool BigBubble::tryEscapeEnd() {
             mRider = nullptr;
         }
         MR::emitEffect(this, "Break");
-        MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
         kill();
         return true;
     }
@@ -636,7 +637,7 @@ void BigBubble::exeAppear() {
         mSpawnPosition = mPosition;
         MR::invalidateHitSensors(this);
         MR::getRandomVector(&mMoment, 0.03f);
-        MR::startSound(this, "SE_OJ_BIG_BUBBLE_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_BIG_BUBBLE_APPEAR");
     }
 
     f32 scale = MR::calcNerveValue(this, 30, 0.01f, mAppearRadius);
@@ -657,7 +658,7 @@ void BigBubble::exeWait() {
 
     addCoriolisAccel();
 
-    if (_22C) {
+    if (mIsObstruct) {
         MR::zeroVelocity(this);
     } else {
         updateNormalVelocity();
@@ -673,7 +674,7 @@ void BigBubble::exeCapture() {
         MR::startBckPlayer("SpaceWait", "BigBubbleCapture");
         _1A4.zero();
         mReduceVolumeTimer = 0;
-        MR::startSound(this, "SE_OJ_BIG_BUBBLE_MARIO_IN", -1, -1);
+        MR::startSound(this, "SE_OJ_BIG_BUBBLE_MARIO_IN");
         mRiderBasePos = mRiderPos;
         MR::validateHitSensor(this, "ride");
     }
@@ -765,7 +766,7 @@ void BigBubble::exeBreak() {
         }
         mWarningColor.a = 0;
         MR::emitEffect(this, "Break");
-        MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_BIG_BUBBLE_BREAK");
         mIsBroken = true;
         mRiderBasePos = mRiderPos;
         mInterpolateTime = 0.0f;
@@ -805,7 +806,7 @@ void BigBubble::exeEscape() {
 
 void BigBubble::exeGoal() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     }
 
     updateNormalVelocity();
@@ -938,7 +939,7 @@ bool BigBubble::addAccelPointing(s32 padChannel) {
 
     f32 maxDist = 1000.0f;
     mBlowForce = 1.0f - (pointerDist - 50.0f) / (maxDist - 50.0f);
-    MR::startSystemLevelSE("SE_SY_LV_BIG_BUBBLE_WIND", mBlowForce * 100.0f, -1);
+    MR::startSystemLevelSE("SE_SY_LV_BIG_BUBBLE_WIND", mBlowForce * 100.0f);
 
     TVec3f accelDir;
     MR::normalizeOrZero(mPosition - mPointerPos, &accelDir);
@@ -950,10 +951,10 @@ bool BigBubble::addAccelPointing(s32 padChannel) {
 void BigBubble::doMoveLimit() {
     if (mMoveLimitter != nullptr) {
         if (mMoveLimitter->limitPosition(&mPosition, getSize())) {
-            _22F = true;
+            mIsExitLimitter = true;
         }
         if (mMoveLimitter->limitVelocity(&mVelocity, mPosition, getSize())) {
-            _22F = true;
+            mIsExitLimitter = true;
         }
     }
 }

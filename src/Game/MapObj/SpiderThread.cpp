@@ -29,11 +29,11 @@ namespace {
     static const s32 sHangActorNumMax = 8 * sMainRadialLinePointNum;
     static const f32 sIndirectScaleX = 0.035f;
     static const f32 sIndirectScaleY = 0.03f;
-}  // namespace
+};  // namespace
 
 inline SpiderThreadPart* connectPoints(SpiderThreadPoint* pPointA, SpiderThreadPoint* pPointB) {
-    SpiderThreadMainPoint* pointB = reinterpret_cast< SpiderThreadMainPoint* >(pPointB);
-    SpiderThreadMainPoint* pointA = reinterpret_cast< SpiderThreadMainPoint* >(pPointA);
+    SpiderThreadMainPoint* pointB = static_cast< SpiderThreadMainPoint* >(pPointB);
+    SpiderThreadMainPoint* pointA = static_cast< SpiderThreadMainPoint* >(pPointA);
 
     SpiderThreadPart* part = new SpiderThreadPart(pointA, pointB, sMainPointRadius);
 
@@ -413,7 +413,7 @@ namespace {
     SpiderThread* getSpiderThread() {
         return MR::getSceneObj< SpiderThread >(SceneObj_SpiderThread);
     }
-}  // namespace
+};  // namespace
 
 void MR::initSpiderThread(const TVec3f& rPos) {
     getSpiderThread()->initThread(rPos);

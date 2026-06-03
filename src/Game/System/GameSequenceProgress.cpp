@@ -26,7 +26,7 @@
 
 namespace {
     static const s32 sTimingPlayingTicoSE = 180;
-};
+};  // namespace
 
 namespace {
     NEW_NERVE(GameSequenceProgressBooting, GameSequenceProgress, Booting);
@@ -198,7 +198,7 @@ void GameSequenceProgress::exeNormal() {
 void GameSequenceProgress::exeGalaxyMove() {
     if (_24) {
         if (MR::isStep(this, sTimingPlayingTicoSE)) {
-            MR::startSystemSE("SE_SY_TICO_WAKE_PLAYER", -1, -1);
+            MR::startSystemSE("SE_SY_TICO_WAKE_PLAYER");
         }
     }
 
@@ -326,7 +326,7 @@ void GameSequenceProgress::countDownGameEventValueFromNewPowerStar() {
                 continue;
             }
 
-            u16 eventValue = GameDataFunction::getGameEventValue(accessor.getEventValueName());
+            u32 eventValue = GameDataFunction::getGameEventValue(accessor.getEventValueName());
 
             GameDataFunction::setGameEventValue(accessor.getEventValueName(), eventValue - 1);
         }

@@ -4,17 +4,25 @@
 #include "Game/AudioLib/AudSoundObject.hpp"
 
 class JKRHeap;
-struct RemixTrack {
+
+struct RemixNoteData {
     s32 _0;
-    u32* _4;
+    s32 _4;
+    s32 _8;
+    s32 _C;
+};
+
+struct RemixNoteTrackData {
+    s32 _0;
+    RemixNoteData* _4;
 };
 
 struct RemixNoteGroupData {
     /* 0x0  */ s32 mIndex;
     /* 0x4  */ s32 mTrackCount;
-    /* 0x8  */ u32 mNoteCount;
+    /* 0x8  */ s32 mNoteCount;
     u32* _C;
-    /* 0x10 */ RemixTrack* mRemixTracks;
+    /* 0x10 */ RemixNoteTrackData* mRemixTracks;
 };
 
 class AudRemixMgr {

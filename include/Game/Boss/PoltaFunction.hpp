@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.hpp"
+#include <revolution/types.h>
 
 class Polta;
 class PoltaArm;

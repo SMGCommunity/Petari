@@ -94,6 +94,10 @@ public:
         return pow(volume, 1.0f / 3.0f);
     }
 
+    inline f32 getDrawZ() const {
+        return mDrawZ;
+    }
+
     /* 0x8C */ OctahedronBezierSurface* mSurface;
     /* 0x90 */ const BigBubbleMoveLimitter* mMoveLimitter;
     /* 0x94 */ LiveActor* mHost;
@@ -125,13 +129,13 @@ public:
     /* 0x214 */ s32 _214;  // unused
     /* 0x218 */ f32 mAppearRadius;
     /* 0x21C */ f32 mVolume;
-    /* 0x220 */ f32 _220;  // ????????? camZ.dot(mPosition) + mScale.x
+    /* 0x220 */ f32 mDrawZ;
     /* 0x224 */ f32 mBinderRadius;
     /* 0x228 */ Color8 mWarningColor;
-    /* 0x22C */ bool _22C;  // detached?????
+    /* 0x22C */ bool mIsObstruct;
     /* 0x22D */ bool _22D;  // unused
     /* 0x22E */ bool mIsHidden;
-    /* 0x22F */ bool _22F;  // related to breaking?
+    /* 0x22F */ bool mIsExitLimitter;
     /* 0x230 */ bool mIsBroken;
     /* 0x231 */ bool mIsShrinkable;
     /* 0x232 */ bool mIsAttached;  // disables addCoriolisAccel

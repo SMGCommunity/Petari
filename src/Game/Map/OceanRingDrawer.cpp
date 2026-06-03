@@ -28,8 +28,7 @@ namespace {
     static GXColor color1 = {0x28, 0x28, 0x28, 0x14};
     static GXColor color2 = {0x76, 0xD7, 0xFF, 0xFF};
     static u8 unknownVal = 1;
-}
-
+};  // namespace
 
 OceanRingPartDrawer::OceanRingPartDrawer(const OceanRing* pRing, int a3, int a4, bool a5, f32* a6, f32* a7, f32* a8) : mPosition(0.0f, 0.0f, 0.0f) {
     mOceanRing = pRing;

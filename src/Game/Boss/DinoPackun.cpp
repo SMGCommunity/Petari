@@ -233,7 +233,7 @@ void DinoPackun::makeActorDead() {
 }
 
 void DinoPackun::startHitReaction() {
-    MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_STOP", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_STOP");
     if (_B8 != nullptr) {
         _B8->startHitReaction();
     }
@@ -456,7 +456,7 @@ void DinoPackun::appearStarPiece(s32 num) {
     TVec3f pos;
     MR::copyJointPos(this, "Head", &pos);
     MR::appearStarPieceToDirection(this, pos, -mGravity, num, 50.0f, 60.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
 bool DinoPackun::isSensorEgg(const HitSensor* pSensor) const {

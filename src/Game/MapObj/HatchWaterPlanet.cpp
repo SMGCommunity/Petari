@@ -48,14 +48,14 @@ void HatchWaterPlanet::exeOpen() {
         MR::startBtk(this, "HatchWaterPlanet");
         MR::startBck(mPlanetLODCtrl->_14, "HatchWaterPlanetLow", nullptr);
         MR::setBckFrameAndStop(mPlanetLODCtrl->_14, 1.0f);
-        MR::startSound(this, "SE_OJ_HATCH_WATER_PNT_ST", -1, -1);
+        MR::startSound(this, "SE_OJ_HATCH_WATER_PNT_ST");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_HATCH_WATER_PNT_OP", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_HATCH_WATER_PNT_OP");
 
     if (MR::isBckStopped(this)) {
-        MR::startSound(this, "SE_OJ_HATCH_WATER_PNT_ED", -1, -1);
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSound(this, "SE_OJ_HATCH_WATER_PNT_ED");
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         setNerve(&NrvHatchWaterPlanet::HatchWaterPlanetNrvWaitAfterOpen::sInstance);
     }
 }

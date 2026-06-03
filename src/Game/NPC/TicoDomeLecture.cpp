@@ -13,7 +13,7 @@ namespace NrvTicoDomeLecture {
 namespace {
     const static Vec cMoveEndPos = {0.0f, -70.0f, 0.0f};
     const static Vec cMoveEndRotate = {30.0f, 130.0f, 0.0f};
-}  // namespace
+};  // namespace
 
 TicoDomeLecture::TicoDomeLecture(const char* pName) : LiveActor(pName), _8C(gZeroVec), _98(gZeroVec) {}
 
@@ -48,7 +48,7 @@ void TicoDomeLecture::exeWait() {
         MR::startBck(this, "Wait", nullptr);
     }
 
-    MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
 }
 
 void TicoDomeLecture::exeMove() {
@@ -57,8 +57,8 @@ void TicoDomeLecture::exeMove() {
         MR::startBck(this, "Fly", nullptr);
     }
 
-    MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT", -1, -1, -1);
-    MR::startLevelSound(this, "SE_SM_LV_TICO_FLY_DEMO", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
+    MR::startLevelSound(this, "SE_SM_LV_TICO_FLY_DEMO");
     if (MR::isDemoPartActive(demoName)) {
         f32 easeOut = MR::calcNerveEaseOutRate(this, MR::getDemoPartTotalStep(demoName) - 1);
         TVec3f v5(cMoveEndPos);
@@ -74,7 +74,7 @@ void TicoDomeLecture::exeMove() {
 void TicoDomeLecture::exeMetamorphosis() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Metamorphosis", nullptr);
-        MR::startSound(this, "SE_SM_TICO_METAMORPHOSE", -1, -1);
+        MR::startSound(this, "SE_SM_TICO_METAMORPHOSE");
     }
 
     if (MR::isBckStopped(this)) {

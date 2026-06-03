@@ -11,7 +11,7 @@ class HitSensor;
 // this function does not belong in this header, but will put here for now
 namespace MR {
     void repeatDegree(f32*);
-}
+};  // namespace MR
 
 struct StarPieceReceiverInfo {
 public:
@@ -74,7 +74,7 @@ public:
     void exeRailMove();
     void setFollowPlayerAndAppear();
     bool tryCalcGravity();
-    bool trySetGravityAndFront(const TVec3f&);
+    void trySetGravityAndFront(const TVec3f&);
     bool throwToTarget(HitSensor*, const TVec3f&, const TVec3f&, f32);
     bool throwToTargetCore(const TVec3f&, const TVec3f&, const TVec3f&, f32, bool);
     void giftToTarget(StarPieceReceiverInfo*, u32, HitSensor*, const TVec3f&);

@@ -19,4 +19,4 @@ namespace MR {
     MarioHolder* getMarioHolder() {
         return MR::getSceneObj< MarioHolder >(SceneObj_MarioHolder);
     }
-}  // namespace MR
+};  // namespace MR

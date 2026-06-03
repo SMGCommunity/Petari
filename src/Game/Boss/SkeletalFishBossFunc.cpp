@@ -4,7 +4,7 @@
 
 namespace {
     static const char* sNamePosName = "ガード出現ポイント";
-};
+};  // namespace
 
 s32 SkeletalFishBossFunc::getNearestGuardPosID(const TVec3f& rVec) {
     f32 closest = 100000.0;

@@ -332,7 +332,7 @@ public:
     J3DModelX* getSimpleModel() const;
     void createTextureDL(DLholder*, u16, u16);
     void swapTexture(const char*, u8) const;
-    void copyMaterial(J3DModel*, u16, long);
+    void copyMaterial(J3DModel*, u16, s32);
     void rushDropThrowMemoSensor();
     void offTakingFlag();
 
@@ -788,4 +788,4 @@ namespace NrvMarioActor {
     NERVE_DECL_EXE(MarioActorNrvGameOverSink, MarioActor, GameOverSink);
     NERVE_DECL_EXE(MarioActorNrvTimeWait, MarioActor, TimeWait);
     NERVE_DECL_EXE(MarioActorNrvNoRush, MarioActor, Wait);
-}  // namespace NrvMarioActor
+};  // namespace NrvMarioActor

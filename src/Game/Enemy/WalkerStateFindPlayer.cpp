@@ -3,14 +3,14 @@
 
 namespace {
     WalkerStateFindPlayerParam sDefaultParam;
-}
+};  // namespace
 
 namespace NrvWalkerStateFindPlayer {
     NEW_NERVE(WalkerStateFindPlayerNrvFind, WalkerStateFindPlayer, Find);
     NEW_NERVE(WalkerStateFindPlayerNrvFindJumpStart, WalkerStateFindPlayer, FindJumpStart);
     NEW_NERVE(WalkerStateFindPlayerNrvFindJump, WalkerStateFindPlayer, FindJump);
     NEW_NERVE(WalkerStateFindPlayerNrvFindJumpEnd, WalkerStateFindPlayer, FindJumpEnd);
-}  // namespace NrvWalkerStateFindPlayer
+};  // namespace NrvWalkerStateFindPlayer
 
 WalkerStateFindPlayerParam::WalkerStateFindPlayerParam() : mJumpStartStep(30), mJumpVelocity(20.0f), mTurnMaxRateDegree(5.0f) {
 }

@@ -8,7 +8,7 @@ namespace NrvTombSpiderVitalSpot {
     NEW_NERVE(TombSpiderVitalSpotNrvDamageStart, TombSpiderVitalSpot, DamageStart);
     NEW_NERVE(TombSpiderVitalSpotNrvDamageWait, TombSpiderVitalSpot, DamageWait);
     NEW_NERVE(TombSpiderVitalSpotNrvRecover, TombSpiderVitalSpot, Recover);
-}  // namespace NrvTombSpiderVitalSpot
+};  // namespace NrvTombSpiderVitalSpot
 
 TombSpiderVitalSpot::TombSpiderVitalSpot(LiveActor* pActor, const char* pName, const TVec3f& rPos, const TVec3f& a1, const char* pJointName)
     : PartsModel(pActor, pName, "TombSpiderVitalSpot", nullptr, MR::DrawBufferType_Enemy, false) {
@@ -67,7 +67,7 @@ void TombSpiderVitalSpot::exeDamageStart() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "DamageStart", nullptr);
         MR::startBrk(this, "TombSpiderVitalSpot");
-        MR::startSound(this, "SE_BM_TSPIDER_DAMAGE_VITAL", -1, -1);
+        MR::startSound(this, "SE_BM_TSPIDER_DAMAGE_VITAL");
     }
 }
 

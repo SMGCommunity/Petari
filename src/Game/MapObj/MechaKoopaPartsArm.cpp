@@ -57,7 +57,7 @@ void MechaKoopaPartsArm::exeMoveStart() {
             MR::startBck(this, "Rear", nullptr);
         }
 
-        MR::startSound(this, "SE_OJ_M_KOOPA_ARM_START", -1, -1);
+        MR::startSound(this, "SE_OJ_M_KOOPA_ARM_START");
         if (MR::isOnPlayer(this)) {
             MR::shakeCameraNormal();
             MR::tryRumblePadMiddle(this, 0);
@@ -78,10 +78,10 @@ void MechaKoopaPartsArm::endMoveStart() {
 }
 
 void MechaKoopaPartsArm::exeMove() {
-    MR::startLevelSound(this, "SE_OJ_LV_M_KOOPA_ARM_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_M_KOOPA_ARM_MOVE");
 
     if (!MapObjActorUtil::isRotatorMoving(this)) {
-        MR::startSound(this, "SE_OJ_M_KOOPA_ARM_END", -1, -1);
+        MR::startSound(this, "SE_OJ_M_KOOPA_ARM_END");
 
         if (isNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvMoveFront::sInstance)) {
             setNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvWaitFront::sInstance);
@@ -94,7 +94,7 @@ void MechaKoopaPartsArm::exeMove() {
 void MechaKoopaPartsArm::exeBreakStart() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "BreakStart", nullptr);
-        MR::startSound(this, "SE_OJ_M_KOOPA_ARM_FALL_ST", -1, -1);
+        MR::startSound(this, "SE_OJ_M_KOOPA_ARM_FALL_ST");
         MapObjActorUtil::pauseRotator(this);
     }
 
@@ -110,25 +110,25 @@ void MechaKoopaPartsArm::exeBreak() {
         MapObjActorUtil::startRailMover(this);
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_M_KOOPA_ARM_FALL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_M_KOOPA_ARM_FALL");
     if (MapObjActorUtil::isRailMoverReachedEnd(this)) {
-        MR::startSound(this, "SE_OJ_M_KOOPA_ARM_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_M_KOOPA_ARM_BREAK");
         kill();
     }
 }
 
 void MechaKoopaPartsArm::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     if (mIsRightArm) {
-        MR::FunctorV0M< MechaKoopaPartsArm*, void (MechaKoopaPartsArm::*)() > breakFunc =
-            MR::Functor< MechaKoopaPartsArm >(this, &MechaKoopaPartsArm::startBreak);
-        MR::listenStageSwitchOnB(this, breakFunc);
+        MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &MechaKoopaPartsArm::startBreak));
     }
 }
 
-void MechaKoopaPartsArm::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
+void MechaKoopaPartsArm::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+}
 
 void MechaKoopaPartsArm::startBreak() {
     setNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvBreakStart::sInstance);
 }
 
-MechaKoopaPartsArm::~MechaKoopaPartsArm() {}
+MechaKoopaPartsArm::~MechaKoopaPartsArm() {
+}

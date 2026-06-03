@@ -85,9 +85,9 @@ void TakeOutStar::exeAnim() {
 
     if (MR::isGreaterStep(this, step)) {
         if (MR::isInWater(mStarModel, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startLevelSound(mStarModel, "SE_OJ_LV_POW_STAR_EXIST_W", -1, -1, -1);
+            MR::startLevelSound(mStarModel, "SE_OJ_LV_POW_STAR_EXIST_W");
         } else {
-            MR::startLevelSound(mStarModel, "SE_OJ_LV_POW_STAR_EXIST", -1, -1, -1);
+            MR::startLevelSound(mStarModel, "SE_OJ_LV_POW_STAR_EXIST");
         }
     }
 

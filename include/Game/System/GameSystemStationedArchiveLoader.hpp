@@ -9,7 +9,7 @@ class PlayerHeapHolder;
 
 namespace MR {
     class FunctorBase;
-};
+};  // namespace MR
 
 class GameSystemStationedArchiveLoader : public NerveExecutor {
 public:

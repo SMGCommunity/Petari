@@ -22,11 +22,7 @@ void RailBlock::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm(objName, nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorMapObjPress(this, "body", 16, 0.0f, offs);
+    MR::addHitSensorMapObjPress(this, "body", 16, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, objName, getSensor("body"), nullptr);
     MR::setClippingTypeSphere(this, MR::getCollisionBoundingSphereRange(this));
     initSound(4, false);
@@ -51,8 +47,7 @@ void RailBlock::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnOffB(this, MR::Functor< RailBlock >(this, &RailBlock::stopMove),
-                                    MR::Functor< RailBlock >(this, &RailBlock::startMove));
+        MR::listenStageSwitchOnOffB(this, MR::Functor(this, &RailBlock::startMove), MR::Functor(this, &RailBlock::stopMove));
         setNerve(&NrvRailBlock::RailBlockNrvWait::sInstance);
     }
 
@@ -79,9 +74,9 @@ void RailBlock::stopMove() {
 void RailBlock::exeMove() {
     if (_94) {
         MR::moveCoordAndFollowTrans(this, _8C);
-        MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_MOVE");
         if (MR::isRailReachedGoal(this)) {
-            MR::startLevelSound(this, "SE_OJ_TSUKIDASHI_STOP", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_TSUKIDASHI_STOP");
             setNerve(&NrvRailBlock::RailBlockNrvTerminate::sInstance);
         }
     }
@@ -105,20 +100,22 @@ void RailBlock::exeTerminate() {
         }
 
         MR::calcRailPosAtCoord(&mPosition, this, v3);
-        MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_VIB", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_VIB");
     }
 
     if (getNerveStep() >= _90) {
         MR::reverseRailDirection(this);
-        MR::startSound(this, "SE_OJ_TSUKIDASHI_START", -1, -1);
+        MR::startSound(this, "SE_OJ_TSUKIDASHI_START");
         setNerve(&NrvRailBlock::RailBlockNrvMove::sInstance);
     }
 }
 
-void RailBlock::exeWait() {}
+void RailBlock::exeWait() {
+}
 
 void RailBlock::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
 }
 
-RailBlock::~RailBlock() {}
+RailBlock::~RailBlock() {
+}

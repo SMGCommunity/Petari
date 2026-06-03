@@ -79,10 +79,10 @@ void Jiraira::exeStepped() {
         MR::startBck(this, "Stepped", nullptr);
         MR::startBrk(this, "Stepped");
         MR::tryRumblePadMiddle(this, 0);
-        MR::startSound(this, "SE_OJ_JIRAIRA_STEPPED", -1, -1);
+        MR::startSound(this, "SE_OJ_JIRAIRA_STEPPED");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_JIRAIRA_CHARGE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_JIRAIRA_CHARGE");
 
     if (MR::isGreaterStep(this, 30)) {
         setNerve(&NrvJiraira::HostTypeNrvSteppedExplode::sInstance);
@@ -92,7 +92,7 @@ void Jiraira::exeStepped() {
 void Jiraira::exeExplode() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "explosion");
-        MR::startSound(this, "SE_OJ_JIRAIRA_EXPLODE", -1, -1);
+        MR::startSound(this, "SE_OJ_JIRAIRA_EXPLODE");
         MR::startBck(this, "Down", nullptr);
         MR::startBrk(this, "Down");
         getSensor("explode")->validate();
@@ -116,7 +116,7 @@ void Jiraira::exePreRecover() {
         MR::startBrk(this, "RecoveryLoop");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_JIRAIRA_RECOVERING", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_JIRAIRA_RECOVERING");
 
     if (MR::isGreaterStep(this, 120)) {
         setNerve(&NrvJiraira::HostTypeNrvRecover::sInstance);
@@ -127,7 +127,7 @@ void Jiraira::exeRecover() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Recovery", 0);
         MR::startBrk(this, "Recovery");
-        MR::startSound(this, "SE_OJ_JIRAIRA_RECOVER", -1, -1);
+        MR::startSound(this, "SE_OJ_JIRAIRA_RECOVER");
     }
 
     if (MR::isBckStopped(this)) {

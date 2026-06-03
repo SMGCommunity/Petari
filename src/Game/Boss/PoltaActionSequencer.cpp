@@ -21,7 +21,7 @@ namespace NrvPoltaActionSequencer {
     NEW_NERVE(PoltaActionSequencerNrvPowerUpDemo, PoltaActionSequencer, PowerUpDemo);
     NEW_NERVE(PoltaActionSequencerNrvBattleLv2, PoltaActionSequencer, BattleLv2);
     NEW_NERVE(PoltaActionSequencerNrvDownDemo, PoltaActionSequencer, DownDemo);
-}  // namespace NrvPoltaActionSequencer
+};  // namespace NrvPoltaActionSequencer
 
 PoltaActionSequencer::PoltaActionSequencer(Polta* pPolta, const JMapInfoIter& rIter)
     : NerveExecutor("ポルタアクション管理"), mPoltaPtr(pPolta), mActionDemo(nullptr), mCurrentAction(nullptr), mActionWaitStart(nullptr),

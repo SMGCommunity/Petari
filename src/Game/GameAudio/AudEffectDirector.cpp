@@ -17,7 +17,7 @@ namespace {
     const AudEffectData cAudEffectDataList[] = {
         {0.0f, 127, 1.0f, 90}, {1.0f, 127, 1.0f, 90}, {0.0f, 10, 1.0f, 90}, {1.0f, 127, 0.0f, 90}, {0.8f, 127, 1.0f, 90},
     };
-}
+};  // namespace
 
 AudEffectDirector::AudEffectDirector() : NameObj("オーディオエフェクトディレクター"), _C(0), _10(0), _14(0) {}
 
@@ -62,19 +62,24 @@ void AudEffectDirector::setAudioEffectParam(s32 a1) {
 
     switch (a1) {
     case 1:
-        return pAudEffector->setSpecialFx(1);
+        pAudEffector->setSpecialFx(1);
+        break;
     case 3:
-        return pAudEffector->setSpecialFx(2);
+        pAudEffector->setSpecialFx(2);
+        break;
     default:
-        return pAudEffector->setSpecialFx(0);
+        pAudEffector->setSpecialFx(0);
+        break;
     }
 }
 
 void AudEffectDirector::playEffectSound(s32 a1) {
     switch (a1) {
     case 3:
-        return MR::startAtmosphereLevelSE("SE_AT_LV_WATERFALL_CAVE", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_WATERFALL_CAVE");
+        break;
     case 4:
-        return MR::startAtmosphereLevelSE("SE_AT_LV_PHNCV_TERESA_ROOM", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_PHNCV_TERESA_ROOM");
+        break;
     }
 }

@@ -46,7 +46,7 @@ namespace {
     const char* sLegJointNameList[] = {"RightFootA3", "LeftFootA3", "RightFootB3", "LeftFootB3", "RightFootC3", "LeftFootC3"};
 
     static TVec3f sAppearStarPieceOffset(0.0f, 200.0f, 0.0f);
-}  // namespace
+};  // namespace
 
 BossStinkBug::BossStinkBug(const char* pName)
     : LiveActor(pName), _8C(0), _94(nullptr), _98(nullptr), _CC(nullptr), mActionSequencer(nullptr), _D4(nullptr), mBombLauncher(nullptr),
@@ -110,7 +110,7 @@ void BossStinkBug::init(const JMapInfoIter& rIter) {
     MR::startBrk(this, "Normal");
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &start));
+        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &BossStinkBug::start));
         makeActorDead();
     } else {
         makeActorAppeared();
@@ -142,7 +142,7 @@ void BossStinkBug::initSensor() {
     MR::addHitSensorEnemyAttack(this, "attack_right", 8, 1000.0f, TVec3f(120.0f, 50.0f, 300.0f));
     MR::invalidateHitSensor(this, "attack_left");
     MR::invalidateHitSensor(this, "attack_right");
-    for (int i = 0; i < (s32)(sizeof(::sSensorNameList) / sizeof(char*)); i++) {
+    for (int i = 0; i < ARRAY_SIZE(::sSensorNameList); i++) {
         MR::addMessageSensorReceiver(this, ::sSensorNameList[i]);
     }
 }
@@ -353,7 +353,7 @@ void BossStinkBug::appearStarPiece(s32 num) {
     TVec3f offsetVec;
     PSMTXMultVec(MR::getJointMtx(this, "Body"), ::sAppearStarPieceOffset, offsetVec);
     MR::appearStarPieceToDirection(this, offsetVec, -mGravity, num, 30.0f, 40.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
 void BossStinkBug::attackSensor(HitSensor* pSender, HitSensor* pReciever) {
@@ -364,7 +364,7 @@ void BossStinkBug::attackSensor(HitSensor* pSender, HitSensor* pReciever) {
 
 bool BossStinkBug::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mActionSequencer != nullptr) {
-        mActionSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
+        return mActionSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     } else {
         return false;
     }
@@ -409,7 +409,7 @@ bool BossStinkBug::throwBomb(f32 f1, f32 f2) {
 
     throwBomb->start(trans, yDir);
 
-    MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_EMIT", -1, -1);
+    MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_EMIT");
     MR::startBck(mBombLauncher, "Discharge", nullptr);
     return true;
 }

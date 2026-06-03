@@ -12,7 +12,7 @@ namespace {
     static const s32 sTimeToStartWindMax = 120;
     static const s32 sWindTimeMin = 60;
     static const s32 sWindTimeMax = 120;
-}  // namespace
+};  // namespace
 
 SpiderThreadWindCtrl::SpiderThreadWindCtrl()
     : mWindTargetSpeed(sWindAccelBattle), mWindSpeed(sWindAccelBattle), mWindAccel(0.0f), mWindDirection(0.0f, 0.0f, -1.0f), mWind(mWindDirection) {

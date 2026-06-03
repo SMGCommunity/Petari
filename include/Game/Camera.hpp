@@ -106,7 +106,6 @@
 #include "Game/Camera/CameraSubjective.hpp"
 #include "Game/Camera/CameraTalk.hpp"
 #include "Game/Camera/CameraTargetArg.hpp"
-#include "Game/Camera/CameraTargetDemoActor.hpp"
 #include "Game/Camera/CameraTargetHolder.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"

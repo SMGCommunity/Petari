@@ -1,7 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TMatrix.hpp"
-#include <revolution.h>
+#include <revolution/types.h>
 
 class AutoEffectInfo;
 class EffectKeeper;
@@ -30,7 +30,7 @@ namespace MR {
         void forceDeleteAllEmitters(const EffectSystem*);
         bool isExistInResource(u16*, const char*);
         bool isEffect2D(const MultiEmitter*);
-        void initEffectSyncBck(EffectKeeper*, const ModelManager*, const char*, const char*, s32, float, float, bool);
+        void initEffectSyncBck(EffectKeeper*, const ModelManager*, const char*, const char*, s32, f32, f32, bool);
         void addEffectSyncBck(MultiEmitter*, const ModelManager*, const char*);
         int getAutoEffectNum(const char*);
         JMapInfo* getAutoEffectListBinary();

@@ -69,7 +69,7 @@ void BossKameck::appearStarPieceToPlayer(s32 num) {
     dir.sub(mGravity);
     MR::normalizeOrZero(&dir);
     MR::appearStarPieceToDirection(this, mPosition, dir, num, 30.0f, 65.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
 void BossKameck::makeActorDead() {
@@ -206,7 +206,7 @@ void BossKameck::init(const JMapInfoIter& rIter) {
     MR::startBrk(this, "Star");
     MR::setBrkFrameAndStop(this, hasPowerStar);
     MR::needStageSwitchReadA(this, rIter);
-    MR::listenStageSwitchOnA(this, MR::FunctorV0M< BossKameck*, void (BossKameck::*)(void) >(this, &BossKameck::startSequence));
+    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &BossKameck::startSequence));
     makeActorDead();
 }
 
@@ -272,7 +272,7 @@ void BossKameck::initMoveRail(const JMapInfoIter& rIter) {
 void BossKameck::appearStarPieceToUp(s32 num) {
     TVec3f neg = -mGravity;
     MR::appearStarPieceToDirection(this, mPosition, neg, num, 30.0f, 40.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
 void BossKameck::startDemo() {
@@ -290,12 +290,12 @@ void BossKameck::hitBeam(s32 beamType) {
 
     switch (beamType) {
     case 1:
-        MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
+        MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS");
         break;
     case 2:
     case 3:
     case 4:
-        MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS", -1, -1);
+        MR::startSound(this, "SE_BV_KAMECK_ATK_SUCCESS");
         break;
     }
 }
@@ -314,4 +314,5 @@ namespace MR {
     }
 };  // namespace MR
 
-BossKameck::~BossKameck() {}
+BossKameck::~BossKameck() {
+}

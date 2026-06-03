@@ -25,7 +25,7 @@ namespace NrvBossStinkBugActionFlyLow {
     NEW_NERVE(BossStinkBugActionFlyLowNrvDash, BossStinkBugActionFlyLow, Dash);
     NEW_NERVE(BossStinkBugActionFlyLowNrvTurnSign, BossStinkBugActionFlyLow, TurnSign);
     NEW_NERVE(BossStinkBugActionFlyLowNrvTurn, BossStinkBugActionFlyLow, Turn);
-}  // namespace NrvBossStinkBugActionFlyLow
+};  // namespace NrvBossStinkBugActionFlyLow
 
 BossStinkBugActionFlyLow::BossStinkBugActionFlyLow(BossStinkBug* pStinkBug) : BossStinkBugActionBase("ボスカメムシ低空戦", pStinkBug), _64(0.0f) {
     _38 = 14.0f;
@@ -70,7 +70,7 @@ bool BossStinkBugActionFlyLow::receiveMsgPlayerAttack(u32 msg, HitSensor* pSende
         MR::emitEffectHit(getHost(), MR::getSensorPos(pSender), "Hit");
 
         if (BossStinkBugFunction::isHipDropableSensor(getHost(), pReceiver)) {
-            MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_2", -1, -1);
+            MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_2");
             setNerve(&NrvBossStinkBugActionFlyLow::BossStinkBugActionFlyLowNrvFall::sInstance);
             return true;
         }

@@ -15,7 +15,7 @@
 NormalMapBase::NormalMapBase(const char* pName) : LiveActor(pName) {
     mBtkPlayer = nullptr;
     _150 = 0;
-    for (u32 i = 0; i < 0x10; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(_184); i++) {
         PSMTXIdentity(_184[i]);
     }
 
@@ -31,7 +31,7 @@ void NormalMapBase::setup(const char* pName) {
     _4C5 = 1;
     _4C4 = 1;
     initModelManagerWithAnm(pName, nullptr, false);
-    MR::connectToScene(this, MR::MovementType_MapObj, 5, -1, MR::DrawType_WarpPodPath);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, -1, MR::DrawType_WarpPodPath);
     MR::initLightCtrlNoDrawMapObj(this);
     setupLighting();
     setupTexture();
@@ -51,7 +51,8 @@ void NormalMapBase::initNormalMap() {
 
 // ...
 
-void NormalMapBase::control() {}
+void NormalMapBase::control() {
+}
 
 void NormalMapBase::calcAnim() {
     LiveActor::calcAnim();

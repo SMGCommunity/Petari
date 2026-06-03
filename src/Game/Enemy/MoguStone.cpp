@@ -109,11 +109,11 @@ void MoguStone::doBehavior() {
 }
 
 void MoguStone::startBreakSound() {
-    MR::startSound(this, "SE_EM_MOGU_SPANA_BREAK", -1, -1);
+    MR::startSound(this, "SE_EM_MOGU_SPANA_BREAK");
 }
 
 void MoguStone::startThrowLevelSound() {
-    MR::startLevelSound(this, "SE_EM_LV_MOGU_SPANA_FLY", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_MOGU_SPANA_FLY");
 }
 
 void MoguStone::exeThrow() {
@@ -153,7 +153,7 @@ bool MoguStone::isTaken() {
 void MoguStone::attackSensor(HitSensor* pSensor1, HitSensor* pSensor2) {
     if (pSensor1 == getSensor("body") && MR::isSensorPlayer(pSensor2) && MR::sendMsgEnemyAttack(pSensor2, pSensor1) == true) {
         MR::emitEffect(this, "Break");
-        MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK");
         kill();
     }
 }
@@ -172,7 +172,7 @@ bool MoguStone::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor* 
 
     if (MR::isMsgPlayerHitAll(msg) || MR::isMsgStarPieceAttack(msg)) {
         MR::emitEffect(this, "Break");
-        MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK");
         kill();
         return true;
     }
@@ -241,7 +241,7 @@ void ThrowingIce::attackSensor(HitSensor* pSensor1, HitSensor* pSensor2) {
     if (pSensor1 == getSensor("body") && MR::isSensorPlayer(pSensor2) &&
         (MR::isPlayerElementModeIce() ? MR::sendMsgEnemyAttackStrong(pSensor2, pSensor1) : MR::sendMsgEnemyAttackFreeze(pSensor2, pSensor1))) {
         MR::emitEffect(this, "Break");
-        MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK");
         MR::deleteEffect(this, "Smoke");
         kill();
     }
@@ -261,7 +261,7 @@ bool ThrowingIce::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor
 }
 
 void ThrowingIce::startBreakSound() {
-    MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK", -1, -1);
+    MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK");
 }
 
 void ThrowingIce::startThrowLevelSound() {

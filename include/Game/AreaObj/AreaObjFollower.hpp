@@ -16,4 +16,4 @@ public:
 
 namespace MR {
     bool addBaseMatrixFollowerAreaObj(AreaObj*, const JMapInfoIter&);
-};
+};  // namespace MR

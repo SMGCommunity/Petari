@@ -1,6 +1,6 @@
 #include "Game/AreaObj/SunLightArea.hpp"
 
-SunLightArea::SunLightArea(int type, const char* pName) : AreaObj(type, pName) {}
+SunLightArea::SunLightArea(int formType, const char* pName) : AreaObj(formType, pName) {}
 
 SunLightArea::~SunLightArea() {}
 

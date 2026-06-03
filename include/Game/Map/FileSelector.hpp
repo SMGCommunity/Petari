@@ -56,7 +56,7 @@ public:
     void createManual();
     void createSelectEffect();
     void appearAllItems();
-    void disappaerAllLayout();
+    void disappearAllLayout();
     bool isHiddenAllLayout() const;
     void updateFileInfo();
     void appearAllIndex();
@@ -77,17 +77,18 @@ public:
     void validateRotateAllItems();
     FileSelectIconID::EFellowID getUserFileFellowID(s32) const;
     bool isUserFileMiiidValid(s32) const;
-    s32 getUserFileMiiIndex(s32) const;
+    u16 getUserFileMiiIndex(s32) const;
     bool isUserFileCorrupted(s32) const;
     bool isUserFileAppearLuigi(s32) const;
     bool isUserFileLuigi(s32) const;
     void setUserFileMario(s32, bool);
     void storeSetMiiIdUserFile(s32, const FileSelectIconID&);
-    void getMiiId(RFLCreateID*, const FileSelectIconID&);
+    void getMiiId(RFLCreateID*, const FileSelectIconID&) const;
     void getIconId(FileSelectIconID*, s32) const;
     s32 getMissCount(s32) const;
     void playSelectedME();
     void updateBgm();
+    void exeWaitBind();
     void exeTitle();
     void exeTitleEnd();
     void exeRFLError();
@@ -134,30 +135,30 @@ public:
     void exeManualStart();
     void exeManual();
 
-    FileSelectCameraController* mCameraController;  // 0x8C
-    FileSelectSky* mSky;                            // 0x90
-    DeriveActorGroup< FileSelectItem >* mItems;     // 0x94
-    TVec3f* _98;
-    FileSelectButton* mSelectButton;    // 0x9C
-    BackButton* mBackButton;            // 0xA0
-    BrosButton* mBrosButton;            // 0xA4
-    InformationMessage* mInfoMessage;   // 0xA8
-    SysInfoWindow* mSysInfoWindow;      // 0xAC
-    SysInfoWindow* mSysInfoWindowMini;  // 0xB0
-    u32 _B4;
-    u32 _B8;
-    u32 _BC;
-    u32 _C0;
-    FileSelectInfo* mSelectInfo;  // 0xC4
-    UserFile* mFiles;             // 0xC8
-    void* _CC;
-    TitleSequenceProduct* mTitleSeq;  // 0xD0
-    MiiSelect* mMiiSelect;            // 0xD4
-    MiiConfirmIcon* mMiiConfirmIcon;  // 0xD8
-    void* _DC;
-    Manual2P* mManual2P;  // 0xE0
-    u32 _E4;
-    u32 _E8;
-    FileSelectEffect* mSelectEffects;  // 0xEC
-    nw4r::ut::ResFont* mFont;          // 0xF0
+    /* 0x8C */ FileSelectCameraController* mCameraController;
+    /* 0x90 */ FileSelectSky* mSky;
+    /* 0x94 */ DeriveActorGroup< FileSelectItem >* mItems;
+    /* 0x98 */ TVec3f* _98;
+    /* 0x9C */ FileSelectButton* mOperationButton;
+    /* 0xA0 */ BackButton* mBackButton;
+    /* 0xA4 */ BrosButton* mBrosButton;
+    /* 0xA8 */ InformationMessage* mInfoMessage;
+    /* 0xAC */ SysInfoWindow* mSysInfoWindow;
+    /* 0xB0 */ SysInfoWindow* mSysInfoWindowMini;
+    /* 0xB4 */ FileSelectItem* _B4;
+    /* 0xB8 */ FileSelectItem* _B8;
+    /* 0xBC */ FileSelectItem* _BC;
+    /* 0xC0 */ FileSelectItem* _C0;
+    /* 0xC4 */ FileSelectInfo* mFileInfo;
+    /* 0xC8 */ UserFile* mUserFile;
+    /* 0xCC */ bool* _CC;
+    /* 0xD0 */ TitleSequenceProduct* mTitle;
+    /* 0xD4 */ MiiSelect* mMiiSelect;
+    /* 0xD8 */ MiiConfirmIcon* mMiiConfirmIcon;
+    /* 0xDC */ RFLCreateID* mMiiId;
+    /* 0xE0 */ Manual2P* mManual;
+    /* 0xE4 */ bool mIsMiiSelectStartFirst;
+    /* 0xE8 */ s32 mBgmState;
+    /* 0xEC */ FileSelectEffect* mSelectEffect;
+    /* 0xF0 */ nw4r::ut::ResFont* mFont;
 };

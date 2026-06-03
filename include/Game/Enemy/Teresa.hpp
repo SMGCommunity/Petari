@@ -26,7 +26,7 @@ public:
     void initFromJMapParam(const JMapInfoIter&);
     void initSensor();
     void initBind();
-    void filterBind(const Triangle*);
+    bool filterBind(const Triangle*);
     bool requestAttack(HitSensor*, HitSensor*);
     bool requestDrift();
     bool requestLoveHit(HitSensor*, HitSensor*);

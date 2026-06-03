@@ -34,7 +34,7 @@ namespace {
     // static const f32 sIndirectTexEndU =
     static const f32 sIndirectTexRateV = 0.001f;
     static const f32 sIndirectTexSpeed = -0.002f;
-}  // namespace
+};  // namespace
 
 SpiderThreadPart::SpiderThreadPart(SpiderThreadMainPoint* pPointA, SpiderThreadMainPoint* pPointB, f32 boundBoxPadding)
     : mPointA(pPointA), mIsStill(true), mIsCut(false), mIsFree(false), _4(0), mNumHangingPoints(0), mStopTime(0), mTouchTimeout(0),
@@ -559,7 +559,7 @@ namespace {
         GXTexCoord2f32(1.0f, texY1);
         GXTexCoord2f32(1.0f, texY2);
     }
-}  // namespace
+};  // namespace
 
 void SpiderThreadPart::drawLine() const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);

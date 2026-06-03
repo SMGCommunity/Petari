@@ -359,7 +359,7 @@ AreaObjContainer::AreaObjContainer(const char* pName) : NameObj(pName) {
 }
 
 void AreaObjContainer::init(const JMapInfoIter& rIter) {
-    for (s32 i = 0; i < sizeof(cCreateTable) / sizeof(*cCreateTable); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(cCreateTable); i++) {
         const Name2CreateManagerFunc* pName2CreateManagerFunc = &cCreateTable[i];
         AreaObjMgr* mgr = pName2CreateManagerFunc->mCreateFunc(pName2CreateManagerFunc->_4, pName2CreateManagerFunc->mName);
         JMapInfoIter iter;
@@ -398,4 +398,5 @@ namespace MR {
     }
 };  // namespace MR
 
-AreaObjContainer::~AreaObjContainer() {}
+AreaObjContainer::~AreaObjContainer() {
+}

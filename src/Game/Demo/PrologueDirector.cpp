@@ -126,13 +126,13 @@ void PrologueDirector::exePeachLetterStart() {
 void PrologueDirector::exePeachLetter() {
     if (MR::isFirstStep(this)) {
         MR::startStageBGM("STM_PROLOGUE_02", false);
-        MR::startSystemSE("SE_SY_LETTER_APPEAR", -1, -1);
-        MR::startSystemSE("SE_SV_PEACH_OPENING_LETTER", -1, -1);
+        MR::startSystemSE("SE_SY_LETTER_APPEAR");
+        MR::startSystemSE("SE_SV_PEACH_OPENING_LETTER");
         mLetter->appear();
     }
 
     if (MR::isDead(mLetter)) {
-        MR::stopSystemSE("SE_SV_PEACH_OPENING_LETTER", 0);
+        MR::stopSystemSE("SE_SV_PEACH_OPENING_LETTER");
         setNerve(&PrologueDirectorNrvPeachLetterWait::sInstance);
     }
 }
@@ -201,7 +201,7 @@ void PrologueDirector::exeArrive() {
     MR::setPlayerBaseMtx(baseMtx);
 
     if (MR::isStep(this, sFallingStarStep)) {
-        MR::startAtmosphereSE("SE_DM_ARRIVE_CASTLE_STAR", -1, -1);
+        MR::startAtmosphereSE("SE_DM_ARRIVE_CASTLE_STAR");
     }
 
     if (MR::isStep(this, MR::getBckFrameMaxPlayer("DemoPeachCastleGate") - sArriveEndWipeFrame)) {

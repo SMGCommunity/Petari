@@ -39,10 +39,10 @@ void MeteoContainer::appear() {
 }
 
 void MeteoContainer::kill() {
-    MR::startSound(this, "SE_OJ_MTO_CONTAINER_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_MTO_CONTAINER_BREAK");
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     }
 
     LiveActor::kill();

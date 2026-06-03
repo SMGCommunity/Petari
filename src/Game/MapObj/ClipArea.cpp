@@ -19,7 +19,7 @@
 namespace {
     Color8 sShapeColor(0, 0, 0, 4);
     Color8 sDebugShapeColor(255, 0, 0, 128);
-}  // namespace
+};  // namespace
 
 ClipArea::ClipArea(const char* pName) : LiveActor(pName) {
     mShape = 0;
@@ -70,7 +70,7 @@ namespace MR {
     void setClipTopConeArea(ClipArea* mArea) { mArea->mShape = new ClipAreaShapeCone(0); }
 
     void setClipBottomConeArea(ClipArea* mArea) { mArea->mShape = new ClipAreaShapeCone(1); }
-}  // namespace MR
+};  // namespace MR
 
 MtxPtr ClipArea::getBaseMtx() const {
     return (MtxPtr)&mBaseMatrix;

@@ -1,10 +1,12 @@
 #pragma once
 
+#include "Game/AreaObj/AreaForm.hpp"
 #include "Game/AreaObj/AreaObj.hpp"
 
 class CameraRepulsiveArea : public AreaObj {
 public:
-    inline CameraRepulsiveArea(int type, const char* pName) : AreaObj(type, pName) {}
+    CameraRepulsiveArea(int formType, const char* pName) : AreaObj(formType, pName) {
+    }
 
     virtual ~CameraRepulsiveArea();
 
@@ -15,7 +17,8 @@ public:
 
 class CameraRepulsiveSphere : public CameraRepulsiveArea {
 public:
-    inline CameraRepulsiveSphere(const char* pName) : CameraRepulsiveArea(2, pName) {}
+    CameraRepulsiveSphere(const char* pName) : CameraRepulsiveArea(AreaForm::Type_Sphere, pName) {
+    }
 
     virtual ~CameraRepulsiveSphere();
 
@@ -24,7 +27,8 @@ public:
 
 class CameraRepulsiveCylinder : public CameraRepulsiveArea {
 public:
-    inline CameraRepulsiveCylinder(const char* pName) : CameraRepulsiveArea(3, pName) {}
+    CameraRepulsiveCylinder(const char* pName) : CameraRepulsiveArea(AreaForm::Type_Cylinder, pName) {
+    }
 
     virtual ~CameraRepulsiveCylinder();
 

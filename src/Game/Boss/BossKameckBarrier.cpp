@@ -2,7 +2,7 @@
 
 namespace NrvBossKameckBarrier {
     NEW_NERVE(BossKameckBarrierNrvWait, BossKameckBarrier, Wait);
-};
+};  // namespace NrvBossKameckBarrier
 
 BossKameckBarrier::BossKameckBarrier(const char* pName, const char* pBossName) : LiveActor(pName) {
     mBossName = pBossName;

@@ -52,7 +52,7 @@ namespace {
     static const f32 cMagnamFlySeDistMax = 1400.0f;
     static const f32 cMagnamFlySePitchMin = 0.9f;
     static const f32 cMagnamFlySePitchMax = 1.8f;
-}  // namespace
+};  // namespace
 
 namespace NrvHomingKiller {
     NEW_NERVE(HomingKillerNrvAppear, HomingKiller, Appear);
@@ -66,7 +66,7 @@ namespace NrvHomingKiller {
 
     NEW_NERVE(HomingKillerLauncherNrvAppearKiller, HomingKillerLauncher, AppearKiller);
     NEW_NERVE(HomingKillerLauncherNrvDeadKiller, HomingKillerLauncher, DeadKiller);
-}  // namespace NrvHomingKiller
+};  // namespace NrvHomingKiller
 
 // TODO: this replace with something global
 f32 toRadian(f32 degree) {
@@ -83,7 +83,7 @@ namespace {
         }
         return false;
     }
-}  // namespace
+};  // namespace
 
 HomingKiller::HomingKiller(const char* pName)
     : LiveActor(pName), mType(Type_HomingKiller), mChaseStartDist(2000.0f), mChaseEndDist(cChaseEndDistance), mChaseRotateSpeed(0.9997f),
@@ -550,21 +550,21 @@ bool HomingKiller::tryBindedBreak() {
     if (MR::isBinded(this)) {
         if (MR::isBindedGround(this)) {
             HitSensor* groundSensor = MR::getGroundSensor(this);
-            if (isSensorType(groundSensor, cSensorTableAttackIfBinded, ARRAY_SIZEU(cSensorTableAttackIfBinded))) {
+            if (isSensorType(groundSensor, cSensorTableAttackIfBinded, ARRAY_SIZE(cSensorTableAttackIfBinded))) {
                 MR::sendMsgEnemyAttackExplosion(groundSensor, getSensor("body"));
             }
         }
 
         if (MR::isBindedWall(this)) {
             HitSensor* wallSensor = MR::getWallSensor(this);
-            if (isSensorType(wallSensor, cSensorTableAttackIfBinded, ARRAY_SIZEU(cSensorTableAttackIfBinded))) {
+            if (isSensorType(wallSensor, cSensorTableAttackIfBinded, ARRAY_SIZE(cSensorTableAttackIfBinded))) {
                 MR::sendMsgEnemyAttackExplosion(wallSensor, getSensor("body"));
             }
         }
 
         if (MR::isBindedRoof(this)) {
             HitSensor* roofSensor = MR::getRoofSensor(this);
-            if (isSensorType(roofSensor, cSensorTableAttackIfBinded, ARRAY_SIZEU(cSensorTableAttackIfBinded))) {
+            if (isSensorType(roofSensor, cSensorTableAttackIfBinded, ARRAY_SIZE(cSensorTableAttackIfBinded))) {
                 MR::sendMsgEnemyAttackExplosion(roofSensor, getSensor("body"));
             }
         }
@@ -577,7 +577,7 @@ bool HomingKiller::tryBindedBreak() {
 }
 
 bool HomingKiller::tryToExplosion(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isSensorType(pReceiver, cSensorTableTryExplosion, ARRAY_SIZEU(cSensorTableTryExplosion)) || MR::isSensorEnemy(pReceiver)) {
+    if (isSensorType(pReceiver, cSensorTableTryExplosion, ARRAY_SIZE(cSensorTableTryExplosion)) || MR::isSensorEnemy(pReceiver)) {
         if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
             return true;
         }
@@ -655,16 +655,16 @@ void HomingKiller::updateBaseMtxNoRotateZ() {
 
 void HomingKiller::startMoveLevelSound(bool playAlarm) {
     if (mType == Type_Torpedo) {
-        MR::startLevelSound(this, "SE_EM_LV_TORPEDO_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_TORPEDO_MOVE");
         if (playAlarm) {
-            MR::startLevelSound(this, "SE_EM_LV_TORPEDO_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_TORPEDO_ALARM", MR::calcDistanceToPlayer(this));
         }
     } else if (mType == Type_MagnumKiller) {
         f32 pitch = MR::getLinerValueFromMinMax(MR::calcDistanceToPlayer(this), cMagnamFlySeDistMin, cMagnamFlySeDistMax, cMagnamFlySePitchMax,
                                                 cMagnamFlySePitchMin);
-        MR::startLevelSound(this, "SE_EM_LV_MAGKILLER_FLY", pitch * 100.0f, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_MAGKILLER_FLY", pitch * 100.0f);
     } else {
-        MR::startLevelSound(this, "SE_EM_LV_KILLER_FLY", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_KILLER_FLY");
     }
 }
 
@@ -721,11 +721,11 @@ void HomingKiller::exeAppear() {
     mPosition.add(mBasePos, mBaseFront.scaleInline(appearOffset));
 
     if (MR::isLessStep(this, cAppearMoveFrame)) {
-        MR::startLevelSound(this, "SE_EM_LV_KILLER_STANDBY", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_KILLER_STANDBY");
     }
 
     if (MR::isStep(this, cAppearMoveFrame)) {
-        MR::startSound(this, "SE_EM_KILLER_STANDBY_END", -1, -1);
+        MR::startSound(this, "SE_EM_KILLER_STANDBY_END");
     }
 
     if (MR::isGreaterStep(this, cAppearMoveFrame) && MR::isLessStep(this, cAppearMoveFrame + cAppearRumbleFrame)) {
@@ -743,10 +743,10 @@ void HomingKiller::exeAppear() {
         MR::emitEffect(this, "Shoot");
         MR::validateShadow(this, nullptr);
         if (mType == Type_MagnumKiller) {  // FIXME
-            MR::startSound(this, "SE_EM_MAGKILLER_FIRING", -1, -1);
+            MR::startSound(this, "SE_EM_MAGKILLER_FIRING");
             setNerve(&NrvHomingKiller::HomingKillerNrvMove::sInstance);
         } else {
-            MR::startSound(this, "SE_EM_KILLER_FIRING", -1, -1);
+            MR::startSound(this, "SE_EM_KILLER_FIRING");
             setNerve(&NrvHomingKiller::HomingKillerNrvMoveStart::sInstance);
         }
     }
@@ -772,7 +772,7 @@ void HomingKiller::exeChaseStart() {
     if (MR::isFirstStep(this) && MR::tryStartBck(this, "ChaseStart", nullptr)) {
         MR::startBpk(this, "Chase");
         MR::startBrk(this, "Chase");
-        MR::startSound(this, "SE_EM_KILLER_JET", -1, -1);
+        MR::startSound(this, "SE_EM_KILLER_JET");
     }
 
     if (processChase() && !tryFreeze(&NrvHomingKiller::HomingKillerNrvChaseStart::sInstance) && MR::isBckStopped(this)) {
@@ -880,10 +880,10 @@ void HomingKiller::exeBreak() {
         }
 
         if (mType == Type_Torpedo) {
-            MR::startSound(this, "SE_EM_TORPEDO_EXPLOSION", -1, -1);
+            MR::startSound(this, "SE_EM_TORPEDO_EXPLOSION");
             MR::releaseSoundHandle(this, "SE_EM_TORPEDO_EXPLOSION");
         } else {
-            MR::startSound(this, "SE_EM_KILLER_EXPLOSION", -1, -1);
+            MR::startSound(this, "SE_EM_KILLER_EXPLOSION");
             MR::releaseSoundHandle(this, "SE_EM_KILLER_EXPLOSION");
         }
         MR::startRumbleWithShakeCameraWeak(this, "強", "中", cCameraShakeDistance, cCameraShakeDistance * 2);

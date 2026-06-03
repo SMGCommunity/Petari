@@ -24,7 +24,7 @@ namespace {
     NEW_NERVE(PetariNrvSpinOut, Petari, SpinOut);
     NEW_NERVE(PetariNrvKickOut, Petari, KickOut);
     NEW_NERVE_ONEND(PetariNrvFreeze, Petari, Freeze, Freeze);
-}  // namespace
+};  // namespace
 
 Petari::Petari(const char* pName)
     : LiveActor(pName), mAnimScaleCtrl(nullptr), mFootPrint(nullptr), mFootprintYOffs(0.0f), mRequestSmoke(true), mFront(0.0f, 0.0f, 1.0f),
@@ -74,7 +74,7 @@ void Petari::makeActorAppeared() {
 }
 
 void Petari::kill() {
-    MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_S");
     MR::deleteEffect(this, "InnerLight");
     LiveActor::kill();
     mFootPrint->clear();
@@ -120,12 +120,12 @@ void Petari::exeWait() {
         } else {
             MR::startBckWithInterpole(this, "Wait", 30);
         }
-        MR::startSound(this, "SE_EM_PETARI_WAIT_APPEAR", -1, -1);
+        MR::startSound(this, "SE_EM_PETARI_WAIT_APPEAR");
     }
     if (!reflectStarPointer2P() && (tryShiftApproach() || tryShiftEscape()) && !MR::isHiddenModel(this)) {
         MR::emitEffect(this, "LeaveAppearanceSmoke");
         MR::forceDeleteEffect(this, "LeaveAppearanceInnerLight");
-        MR::startSound(this, "SE_EM_PETARI_WAIT_HIDE", -1, -1);
+        MR::startSound(this, "SE_EM_PETARI_WAIT_HIDE");
     }
 }
 
@@ -152,7 +152,7 @@ void Petari::exeApproach() {
         MR::emitEffect(this, "WalkSmoke");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_PETARI_RUN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_PETARI_RUN");
 
     if (!reflectStarPointer2P()) {
         if (tryApproachEnd()) {
@@ -186,7 +186,7 @@ void Petari::exeEscape() {
     f32 boost = calcBoost(0.45f, 0.5f, 4.0f);
     moveTowardTargetDirection(boost, 0.97f, v3);
     updateFootPrint();
-    MR::startLevelSound(this, "SE_EM_LV_PETARI_RUN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_PETARI_RUN");
 
     if (!reflectStarPointer2P()) {
         if (tryEscapeEnd()) {
@@ -201,7 +201,7 @@ void Petari::exeSwoonStart() {
         MR::showModel(this);
         MR::startBck(this, "Appearance", nullptr);
         MR::startBlowHitSound(this);
-        MR::startSound(this, "SE_EM_PETARI_APPEAR", -1, -1);
+        MR::startSound(this, "SE_EM_PETARI_APPEAR");
         mRequestSmoke = true;
     }
     calcCenter();
@@ -228,17 +228,17 @@ void Petari::exeSwoon() {
     }
     MR::moveAndTurnToDirection(this, &mFront, mTargetDir, v3, 1.3, 0.0f, 3.0f);
 
-    MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
     MR::setNerveAtStep(this, &PetariNrvSwoonEnd::sInstance, 180);
 }
 
 void Petari::exeSwoonEnd() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Hide", nullptr);
-        MR::startSound(this, "SE_EM_PETARI_WAKE_UP", -1, -1);
+        MR::startSound(this, "SE_EM_PETARI_WAKE_UP");
     }
     if (MR::checkPassBckFrame(this, 60.0f)) {
-        MR::startSound(this, "SE_EM_PETARI_JUMP", -1, -1);
+        MR::startSound(this, "SE_EM_PETARI_JUMP");
     }
     calcCenter();
 
@@ -249,7 +249,7 @@ void Petari::exeSwoonEnd() {
     MR::moveAndTurnToDirection(this, &mFront, mTargetDir, v3, 1.3, 0.0f, 3.0f);
 
     if (MR::isBckOneTimeAndStopped(this)) {
-        MR::startSound(this, "SE_EM_CHANGE_SMOKE", -1, -1);
+        MR::startSound(this, "SE_EM_CHANGE_SMOKE");
         MR::hideModel(this);
         setNerve(&PetariNrvLand::sInstance);
     }
@@ -278,8 +278,8 @@ void Petari::exeSmash() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::startBck(this, "Press", nullptr);
-        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_EM_STOMPED_S");
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 
     calcCenter();
@@ -298,7 +298,7 @@ void Petari::exeSpinOut() {
         MR::showModel(this);
         MR::startBck(this, "Damage", nullptr);
         MR::startBlowHitSound(this);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 
     MR::turnDirectionDegree(this, &mFront, mVelocity.negateOperatorInternal(), 180.0f);
@@ -736,7 +736,7 @@ void Petari::appearStarPieceGradually() {
     TVec3f mouthPos;
     calcMouthPos(&mouthPos);
     MR::appearStarPiece(this, mouthPos, numPieces, 20.0f, 40.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     mStarPieceRemaining -= numPieces;
 }
 
@@ -745,7 +745,7 @@ void Petari::appearStarPieceAll() {
         TVec3f mouthPos;
         calcMouthPos(&mouthPos);
         MR::appearStarPiece(this, mPosition, mStarPieceRemaining, 20.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 }
 

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Game/GameAudio/AudTalkSoundData.hpp"
-
 class JAISoundID;
 
 class AudSoundNameConverter {

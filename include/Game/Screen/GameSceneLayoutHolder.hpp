@@ -55,4 +55,4 @@ public:
 
 namespace MR {
     GameSceneLayoutHolder* getGameSceneLayoutHolder();
-};
+};  // namespace MR

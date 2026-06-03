@@ -12,12 +12,10 @@ namespace NrvPowerStarHalo {
 namespace {
     HaloParam sParams[] = {{"ZoneHalo", 70.0f, 20.0f, 4.0f}, {"PowerStarHalo", 80.0f, 20.0f, 30.0f}};
 
-    inline const HaloParam* getParam(const char* pName) {
-        for (u32 i = 0; i < sizeof(sParams) / sizeof(*sParams); i++) {
-            HaloParam* curParam = &sParams[i];
-
-            if (MR::isEqualString(pName, curParam->haloName)) {
-                return curParam;
+    const HaloParam* getParam(const char* pName) {
+        for (u32 i = 0; i < ARRAY_SIZE(sParams); i++) {
+            if (MR::isEqualString(pName, sParams[i].haloName)) {
+                return &sParams[i];
             }
         }
 
@@ -29,21 +27,19 @@ Halo::Halo(const char* pName) : MapObjActor(pName) {
     mDistance = 70.0f;
 }
 
-/*
-void Halo::init(const JMapInfoIter &rIter) {
+void Halo::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     info.setupHioNode("環境");
     info.setupDefaultPos();
     info.setupConnectToScene();
     info.setupNerve(&NrvHalo::HostTypeAppear::sInstance);
-    info.setupClippingRadius(100.0f * getParam(mObjectName)->clippingRadius);
+    info.setupClippingRadius(getParam(mObjectName)->clippingRadius * 100.0f);
     info.setupFarClipping(-1.0f);
     info.setupAffectedScale();
     initialize(rIter, info);
     MR::getJMapInfoArg0NoInit(rIter, &mDistance);
 }
-*/
 
 void Halo::appear() {
     MapObjActor::appear();
@@ -151,7 +147,8 @@ PowerStarHalo::PowerStarHalo(const char* pName) : Halo(pName) {
     _C8 = -1;
 }
 
-Halo::~Halo() {}
+Halo::~Halo() {
+}
 
 void PowerStarHalo::init(const JMapInfoIter& rIter) {
     Halo::init(rIter);
@@ -185,4 +182,5 @@ void PowerStarHalo::exeWaitScenarioOpeningEnd() {
     }
 }
 
-PowerStarHalo::~PowerStarHalo() {}
+PowerStarHalo::~PowerStarHalo() {
+}

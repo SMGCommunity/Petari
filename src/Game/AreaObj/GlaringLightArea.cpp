@@ -2,9 +2,9 @@
 #include "Game/AudioLib/AudSoundObject.hpp"
 #include "Game/Util.hpp"
 
-GlaringLightAreaMgr::GlaringLightAreaMgr(s32 type, const char* pName) : AreaObjMgr(type, pName) {}
+GlaringLightAreaMgr::GlaringLightAreaMgr(s32 maxNum, const char* pName) : AreaObjMgr(maxNum, pName) {}
 
-GlaringLightArea::GlaringLightArea(int type, const char* pName) : AreaObj(type, pName) {
+GlaringLightArea::GlaringLightArea(int formType, const char* pName) : AreaObj(formType, pName) {
     mSound = nullptr;
     mPos.x = 0.0f;
     mPos.y = 0.0f;

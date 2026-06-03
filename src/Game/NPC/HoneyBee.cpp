@@ -153,21 +153,21 @@ void HoneyBee::calcAndSetBaseMtx() {
 
 void HoneyBee::control() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_HONEYBEE_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_HONEYBEE_TRAMPLED");
     }
 
     if (NPCActor::isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_HONEYBEE_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_HONEYBEE_POINT");
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SV_HONEYBEE_SPIN", -1, -1);
+        MR::startSound(this, "SE_SV_HONEYBEE_SPIN");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_HONEYBEE_STAR_PIECE_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_HONEYBEE_STAR_PIECE_HIT");
     }
 
     NPCActor::control();
@@ -196,7 +196,7 @@ void HoneyBee::exeFly() {
         MR::onCalcShadow(this, nullptr);
     }
 
-    MR::startLevelSound(this, "SE_SM_LV_HONEYBEE_FLY", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_HONEYBEE_FLY");
     if (mMsgCtrl) {
         MR::tryTalkNearPlayer(mMsgCtrl);
     }
@@ -260,7 +260,7 @@ void HoneyBee::exeFlyLectureA() {
         MR::onCalcShadow(this, nullptr);
         MR::startBck(this, "FlyLectureA", nullptr);
     }
-    MR::startLevelSound(this, "SE_SM_LV_HONEYBEE_FLY_SOFT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_HONEYBEE_FLY_SOFT");
     MR::tryTalkNearPlayer(mMsgCtrl);
 }
 
@@ -269,6 +269,6 @@ void HoneyBee::exeFlyLectureB() {
         MR::onCalcShadow(this, nullptr);
         MR::startBck(this, "FlyLectureB", nullptr);
     }
-    MR::startLevelSound(this, "SE_SM_LV_HONEYBEE_FLY_SOFT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_HONEYBEE_FLY_SOFT");
     MR::tryTalkNearPlayer(mMsgCtrl);
 }

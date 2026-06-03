@@ -1,8 +1,25 @@
 #pragma once
 
-template < class T >
+#include <revolution.h>
+
+template < typename T >
 class JASGlobalInstance {
 public:
-    JASGlobalInstance(T* inst) { sInstance = inst; }
     static T* sInstance;
+
+    JASGlobalInstance(bool setInstance) {
+        if (setInstance) {
+            sInstance = (T*)this;
+        }
+    }
+
+    ~JASGlobalInstance() {
+        if (sInstance == (T*)this) {
+            sInstance = nullptr;
+        }
+    }
+
+    static T* getInstance() {
+        return sInstance;
+    }
 };

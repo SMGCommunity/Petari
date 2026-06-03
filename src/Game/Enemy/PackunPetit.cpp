@@ -106,7 +106,7 @@ void PackunPetit::exeThreat() {
         MR::startBck(this, "Threat", nullptr);
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_PACKUNPETIT_THREAT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_PACKUNPETIT_THREAT");
 
     if (!mDontTurn) {
         if (tryTurn()) {
@@ -192,7 +192,7 @@ void PackunPetit::exeHit() {
 void PackunPetit::exeTrampleDown() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Press", nullptr);
-        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
+        MR::startSound(this, "SE_EM_STOMPED_S");
         MR::invalidateHitSensors(this);
     }
 
@@ -217,7 +217,7 @@ void PackunPetit::exePunchDown() {
     if (!MR::isHiddenModel(mBlownModel) && (MR::isStep(this, 20) || MR::checkStrikeBallToMap(mBlownModel->mPosition, 50.0f))) {
         MR::emitEffect(mBlownModel, "Death");
         MR::appearStarPiece(this, mBlownModel->mPosition, 3, 10.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::hideModel(mBlownModel);
     }
 
@@ -241,7 +241,7 @@ void PackunPetit::exeSwoon() {
         MR::startBck(this, "Swoon", nullptr);
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
 
     if (MR::isStep(this, 250)) {
         selectNrvWait();
@@ -273,7 +273,7 @@ void PackunPetit::kill() {
         if (!MR::isHiddenModel(mBlownModel)) {
             MR::emitEffect(mBlownModel, "Death");
             MR::appearStarPiece(this, mBlownModel->mPosition, 3, 10.0f, 40.0f, false);
-            MR::startSound(mBlownModel, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+            MR::startSound(mBlownModel, "SE_OJ_STAR_PIECE_BURST");
         }
 
         mBlownModel->kill();
@@ -288,7 +288,7 @@ void PackunPetit::kill() {
     }
 
     MR::emitEffect(this, "Death");
-    MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_S");
     LiveActor::kill();
 }
 

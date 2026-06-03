@@ -26,7 +26,7 @@ public:
     virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
 
     virtual bool setNerveReturn() = 0;
-    virtual const Nerve* setNerveLaunch();
+    virtual void setNerveLaunch();
     virtual const Nerve* getNerveWait() = 0;
 
     virtual void addVelocityOnPushedFromElectricRail(const TVec3f&, const TVec3f&);

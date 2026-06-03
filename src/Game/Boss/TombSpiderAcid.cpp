@@ -9,7 +9,7 @@ namespace {
     static const s32 sStepToStartAcidGround = 30;
     static const f32 sDistanceCheckMap = 2500.0f;
     static const s32 sStepToEndAcidGround = 30;
-}  // namespace
+};  // namespace
 
 TombSpiderAcid::TombSpiderAcid(TombSpider* pParent)
     : mParent(pParent), mIsGlandReady(false), mIsEmitOn(false), mIsActive(false), mStateChangeTimer(0) {

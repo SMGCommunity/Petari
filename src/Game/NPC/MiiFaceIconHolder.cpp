@@ -8,9 +8,8 @@
 
 MiiFaceIconHolder::MiiFaceIconHolder(u32 iconNum, const char* pName)
     : NameObj(pName), mIconNumMax(iconNum), mIconNum(0), mIcon(new MiiFaceIcon*[iconNum]) {
-    MR::FunctorV0M< MiiFaceIconHolder*, void (MiiFaceIconHolder::*)() > drawFunc(this, &MiiFaceIconHolder::drawIcons);
-
-    MR::connectToScene(MR::createDrawAdaptor("Miiアイコン生成", drawFunc), -1, -1, -1, MR::DrawType_MiiFaceIcon);
+    MR::connectToScene(MR::createDrawAdaptor("Miiアイコン生成", MR::Functor_Inline(this, &MiiFaceIconHolder::drawIcons)), -1, -1, -1,
+                       MR::DrawType_MiiFaceIcon);
 }
 
 void MiiFaceIconHolder::drawIcons() {
@@ -27,7 +26,9 @@ void MiiFaceIconHolder::registerIcon(MiiFaceIcon* pIcon) {
 }
 
 namespace MR {
-    MiiFaceIconHolder* getMiiFaceIconHolder() { return MR::getSceneObj< MiiFaceIconHolder >(SceneObj_MiiFaceIconHolder); }
+    MiiFaceIconHolder* getMiiFaceIconHolder() {
+        return MR::getSceneObj< MiiFaceIconHolder >(SceneObj_MiiFaceIconHolder);
+    }
 
     void registerMiiFaceIcon(MiiFaceIcon* pIcon) {
         MR::createSceneObj(SceneObj_MiiFaceIconHolder);

@@ -23,7 +23,7 @@ namespace {
     }
 };  // namespace
 
-BgmProhibitArea::BgmProhibitArea(int a1, const char* pName) : AreaObj(a1, pName) {
+BgmProhibitArea::BgmProhibitArea(int formType, const char* pName) : AreaObj(formType, pName) {
     _3C = 0;
     _3D = 0;
     _40.x = 0.0f;

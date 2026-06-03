@@ -3,12 +3,12 @@
 
 namespace {
     WalkerStateStaggerParam sDefaultStaggerParam;
-}
+};  // namespace
 
 namespace NrvWalkerStateStagger {
     NEW_NERVE(WalkerStateStaggerNrvStagger, WalkerStateStagger, Stagger);
     NEW_NERVE(WalkerStateStaggerNrvStaggerEnd, WalkerStateStagger, StaggerEnd);
-}  // namespace NrvWalkerStateStagger
+};  // namespace NrvWalkerStateStagger
 
 WalkerStateStaggerParam::WalkerStateStaggerParam()
     : mPunchPowerH(10.0f), mPunchPowerV(10.0f), mPunchPowerSideH(10.0f), mStopSceneFrames(4), mKickEnableStep(15), mStaggerTime(180),

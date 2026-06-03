@@ -115,12 +115,12 @@ namespace {
     extern TVec3f sPosAxisX;
     extern TVec3f sPosAxisY;
     extern TVec3f sPosAxisZ;
-};
+};  // namespace
 
 namespace NrvOceanSphere {
     NEW_NERVE(OceanSphereNrvWait, OceanSphere, Wait);
     NEW_NERVE(OceanSphereNrvRiseUp, OceanSphere, RiseUp);
-};
+};  // namespace NrvOceanSphere
 
 class OceanSpherePlane {
 public:
@@ -172,7 +172,7 @@ namespace {
             GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, vtxCount);
         }
     }
-};
+};  // namespace
 
 OceanSpherePlane::OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2,
     const TVec2f& rTex1, const TVec2f& rTex2, const TVec2f& rTex3) {
@@ -1064,4 +1064,4 @@ namespace {
     TVec3f sPosAxisX(sAxisX);
     TVec3f sPosAxisY(sAxisY);
     TVec3f sPosAxisZ(sAxisZ);
-};
+};  // namespace

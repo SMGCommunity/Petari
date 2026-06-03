@@ -10,7 +10,7 @@ namespace NrvSandUpDownTriRock {
     NEW_NERVE(SandUpDownTriRockNrvRest, SandUpDownTriRock, Rest);
     NEW_NERVE(SandUpDownTriRockNrvUp, SandUpDownTriRock, Up);
     NEW_NERVE(SandUpDownTriRockNrvStop, SandUpDownTriRock, Stop);
-}  // namespace NrvSandUpDownTriRock
+};  // namespace NrvSandUpDownTriRock
 
 SandUpDownTriRock::SandUpDownTriRock(const char* pName) : MapObjActor(pName), mTimer(0) {
     for (s32 idx = 0; idx < 3; idx++) {

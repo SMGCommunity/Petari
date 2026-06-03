@@ -14,7 +14,6 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Ride.hpp"
 
-
 namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);
     NEW_NERVE(MorphItemObjNeoNrvAppear, MorphItemObjNeo, Appear);
@@ -72,10 +71,6 @@ volatile const Nerve* cNerveInitKeep[] = {
 };
 
 namespace MR {
-    NameObj* createBigBubbleMoveLimitterCylinder(const char*);
-    NameObj* createBigBubbleMoveLimitterPlane(const char*);
-    NameObj* createBigBubbleGenerator(const char*);
-    NameObj* createBigObstructBubbleGenerator(const char*);
     NameObj* createDinoPackunVs1(const char*);
     NameObj* createDinoPackunVs2(const char*);
     NameObj* createFallOutFieldDraw(const char*);
@@ -93,27 +88,27 @@ namespace {
 
     template < typename T >
     NameObj* createCenterOriginCube(const char* pName) {
-        return new T(0, pName);
+        return new T(AreaForm::Type_Cube1, pName);
     }
 
     template < typename T >
     NameObj* createBaseOriginCube(const char* pName) {
-        return new T(1, pName);
+        return new T(AreaForm::Type_Cube2, pName);
     }
 
     template < typename T >
     NameObj* createSphere(const char* pName) {
-        return new T(2, pName);
+        return new T(AreaForm::Type_Sphere, pName);
     }
 
     template < typename T >
     NameObj* createBaseOriginCylinder(const char* pName) {
-        return new T(3, pName);
+        return new T(AreaForm::Type_Cylinder, pName);
     }
 
     template < typename T >
     NameObj* createBowl(const char* pName) {
-        return new T(4, pName);
+        return new T(AreaForm::Type_Bowl, pName);
     }
 
     const char* cPlayerArchiveLoaderObjTable[] = {
@@ -8314,7 +8309,7 @@ namespace NameObjFactory {
     }
 
     bool isPlayerArchiveLoaderObj(const char* pArchive) {
-        for (s32 i = 0; i < sizeof(cPlayerArchiveLoaderObjTable) / sizeof(*cPlayerArchiveLoaderObjTable); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(cPlayerArchiveLoaderObjTable); i++) {
             if (MR::isEqualStringCase(cPlayerArchiveLoaderObjTable[i], pArchive)) {
                 return true;
             }
@@ -8328,8 +8323,7 @@ namespace NameObjFactory {
             pTable = cCreateTable;
         }
 
-        for (const Name2CreateFunc* pName2CreateFunc = pTable; pName2CreateFunc != cCreateTable + sizeof(cCreateTable) / sizeof(*cCreateTable);
-             pName2CreateFunc++) {
+        for (const Name2CreateFunc* pName2CreateFunc = pTable; pName2CreateFunc != cCreateTable + ARRAY_SIZE(cCreateTable); pName2CreateFunc++) {
             if (pName2CreateFunc->mName == nullptr) {
                 continue;
             }
@@ -8355,16 +8349,14 @@ namespace NameObjFactory {
             }
 
             for (const Name2Archive* pName2Archive = cName2ArchiveNamesTable;
-                 pName2Archive != cName2ArchiveNamesTable + sizeof(cName2ArchiveNamesTable) / sizeof(*cName2ArchiveNamesTable); pName2Archive++) {
+                 pName2Archive != cName2ArchiveNamesTable + ARRAY_SIZE(cName2ArchiveNamesTable); pName2Archive++) {
                 if (MR::isEqualString(pName2Archive->mObjectName, pName)) {
                     pArchiveList->addArchive(pName2Archive->mArchiveName);
                 }
             }
 
             for (const Name2MakeArchiveListFunc* pName2ArchiveFunc = cName2MakeArchiveListFuncTable;
-                 pName2ArchiveFunc !=
-                 cName2MakeArchiveListFuncTable + sizeof(cName2MakeArchiveListFuncTable) / sizeof(*cName2MakeArchiveListFuncTable);
-                 pName2ArchiveFunc++) {
+                 pName2ArchiveFunc != cName2MakeArchiveListFuncTable + ARRAY_SIZE(cName2MakeArchiveListFuncTable); pName2ArchiveFunc++) {
                 if (MR::isEqualString(pName2ArchiveFunc->mName, pName)) {
                     pName2ArchiveFunc->mArchiveFunc(pArchiveList, rIter);
                 }

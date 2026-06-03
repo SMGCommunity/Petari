@@ -7,7 +7,8 @@ class JMapIdInfo;
 
 class WarpCube : public AreaObj {
 public:
-    inline WarpCube(int type, const char* pName) : AreaObj(type, pName) { mMapIdInfo = nullptr; }
+    WarpCube(int formType, const char* pName) : AreaObj(formType, pName), mMapIdInfo() {
+    }
 
     virtual ~WarpCube();
 
@@ -24,7 +25,8 @@ public:
 
 class WarpCubeMgr : public AreaObjMgr {
 public:
-    inline WarpCubeMgr(s32 type, const char* pName) : AreaObjMgr(type, pName) { mWarpCube = 0; }
+    WarpCubeMgr(s32 formType, const char* pName) : AreaObjMgr(formType, pName), mWarpCube() {
+    }
 
     virtual ~WarpCubeMgr() {}
 

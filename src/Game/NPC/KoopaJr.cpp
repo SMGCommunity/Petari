@@ -127,7 +127,7 @@ void KoopaJr::startShipBattleTalk() {
 void KoopaJr::exeWait() {
     if (MR::tryStartReaction(this)) {
         if (!_E6) {
-            MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENM_F", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENM_F");
         }
 
         setNerve(&NrvKoopaJr::HostTypeReaction::sInstance);
@@ -139,10 +139,10 @@ void KoopaJr::exeWait() {
 void KoopaJr::exeReaction() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Damage", nullptr);
-        MR::startSound(this, "SE_BV_KOOPAJR_DAMAGE_S", -1, -1);
+        MR::startSound(this, "SE_BV_KOOPAJR_DAMAGE_S");
         if (!_15C) {
             if (MR::appearStarPiece(this, mPosition, 20, 10.0f, 40.0f, false)) {
-                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
             }
         }
     }

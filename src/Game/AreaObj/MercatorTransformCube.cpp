@@ -3,7 +3,7 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-MercatorTransformCube::MercatorTransformCube(int type, const char* pName) : AreaObj(type, pName) {
+MercatorTransformCube::MercatorTransformCube(int formType, const char* pName) : AreaObj(formType, pName) {
     _3C.identity();
 }
 
@@ -46,5 +46,5 @@ void MercatorTransformCube::calcLocalBoxSize(TVec3f* pPos) const {
     min.set< f32 >(box->i);
     max.set< f32 >(box->f);
 
-    JMathInlineVEC::PSVECSubtract(reinterpret_cast< Vec* >(&max), reinterpret_cast< Vec* >(&min), reinterpret_cast< Vec* >(pPos));
+    JMathInlineVEC::PSVECSubtract(&max, &min, pPos);
 }

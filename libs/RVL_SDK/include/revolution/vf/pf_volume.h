@@ -15,4 +15,8 @@ s32 VFiPFVOL_CheckForRead(PF_VOLUME* p_vol);
 
 void VFiPFVOL_LoadVolumeLabelFromBuf(const u8* buf, PF_VOLUME* p_vol);
 
+PF_VOLUME* VFiPFVOL_GetCurrentVolume();
+
+PF_VOLUME* VFiPFVOL_GetVolumeFromDrvChar(s8 drv_char);
+
 #endif  // PF_VOLUME_H

@@ -69,7 +69,7 @@ void DriftWood::exeWait() {
     tryVibrate();
 
     if (mWaveSoundTimer < 1) {
-        MR::startSound(this, "SE_OJ_DRIFT_WOOD_WAVE", -1, -1);
+        MR::startSound(this, "SE_OJ_DRIFT_WOOD_WAVE");
         mWaveSoundTimer = MR::getRandom(30l, 90l);
     } else {
         mWaveSoundTimer--;
@@ -78,7 +78,7 @@ void DriftWood::exeWait() {
 
 void DriftWood::exeVibrate() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_DRIFT_WOOD_PLAYER_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_DRIFT_WOOD_PLAYER_ON");
         mVibrateOffset.zero();
     }
 
@@ -140,16 +140,16 @@ void DriftWood::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         TVec3f result;
         JMAVECScaleAdd(&upVec, &delta, &result, -upVec.dot(delta));
 
-        float radius = pReceiver->mRadius;
-        float magnitude = PSVECMag(&result);
-        float threshold = 140.0f + radius;
+        f32 radius = pReceiver->mRadius;
+        f32 magnitude = PSVECMag(&result);
+        f32 threshold = 140.0f + radius;
 
         if (magnitude > threshold) {
         } else {
             LiveActor* mHost = pReceiver->mHost;
             if (!MR::isInWater(mHost, TVec3f(0.0f, 0.0f, 0.0f))) {
                 MR::sendMsgEnemyAttackFlip(pReceiver, pSender);
-                MR::startSound(this, "SE_OJ_DRIFT_WOOD_ATTACK", -1, -1);
+                MR::startSound(this, "SE_OJ_DRIFT_WOOD_ATTACK");
             }
         }
     } else if (MR::isSensorMapObj(pReceiver) && MR::sendMsgEnemyAttack(pReceiver, pSender) && MR::isOnPlayer(this)) {

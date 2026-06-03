@@ -1,15 +1,15 @@
 #include "Game/MapObj/KeySwitch.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace {
+    static const char* cDemoName = "カギ出現";
+};  // namespace
+
 namespace NrvKeySwitch {
     NEW_NERVE(KeySwitchNrvDemoStart, KeySwitch, DemoStart);
     NEW_NERVE(KeySwitchNrvAppear, KeySwitch, Appear);
     NEW_NERVE(KeySwitchNrvWait, KeySwitch, Wait);
 };  // namespace NrvKeySwitch
-
-namespace {
-    static const char* cDemoName = "カギ出現";
-};
 
 KeySwitch::~KeySwitch() {}
 
@@ -95,7 +95,7 @@ void KeySwitch::exeAppear() {
         MR::startBck(this, "Rotation", 0);
         mVelocity.scale(-40.0f, mGravity);
         MR::invalidateClipping(this);
-        MR::startSound(this, "SE_OJ_KEY_SWITCH_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_KEY_SWITCH_APPEAR");
     }
 
     MR::setBckRate(this, MR::calcNerveValue(this, 0xB4, 3.0f, 1.5f));
@@ -111,7 +111,7 @@ void KeySwitch::exeAppear() {
                 mag = 0x64;
             }
 
-            MR::startSound(this, "SE_OJ_KEY_SWITCH_BOUND", mag, -1);
+            MR::startSound(this, "SE_OJ_KEY_SWITCH_BOUND", mag);
             TVec3f neg;
             neg.negateInline_2(mGravity);
             MR::calcReboundVelocity(&mVelocity, neg, 0.60f, 0.7f);
@@ -147,7 +147,7 @@ void KeySwitch::appear() {
 
 void KeySwitch::kill() {
     MR::onSwitchA(this);
-    MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+    MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     MR::emitEffect(this, "Get");
     LiveActor::kill();
 }
@@ -182,12 +182,12 @@ bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         return true;
     }
 
-    if (isNerve(&NrvKeySwitch::KeySwitchNrvAppear::sInstance) && MR::isLessEqualStep(this, 0x3C)) {
+    if (isNerve(&NrvKeySwitch::KeySwitchNrvAppear::sInstance) && MR::isLessEqualStep(this, 60)) {
         return false;
     }
 
     if (MR::isMsgItemGet(msg)) {
-        MR::startSound(this, "SE_OJ_KEY_SWITCH_GET", -1, -1);
+        MR::startSound(this, "SE_OJ_KEY_SWITCH_GET");
         MR::tryRumblePadMiddle(this, 0);
         kill();
         return true;
@@ -199,7 +199,7 @@ bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 /*
 bool KeySwitch::tryAvoid() {
     LiveActor* sensorActor;
-    HitSensor* sensor = 0;
+    HitSensor* sensor = nullptr;
 
     if (MR::isBindedGround(this)) {
         sensor = MR::getGroundSensor(this);
@@ -208,11 +208,11 @@ bool KeySwitch::tryAvoid() {
         sensor = MR::getWallSensor(this);
     }
 
-    if (!sensor) {
+    if (sensor == nullptr) {
         return false;
     }
 
-    if (sensor->mType != 0x58) {
+    if (sensor->mType != ATYPE_KEY_SWITCH_AVOID) {
         return false;
     }
 

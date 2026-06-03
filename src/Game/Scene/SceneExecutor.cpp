@@ -286,7 +286,7 @@ void SceneFunction::executeDrawAfterIndirect() {
     CategoryList::execute(MR::DrawType_0x11);
     CategoryList::execute(MR::DrawType_GCapture);
     CategoryList::execute(MR::DrawType_WaterRoad);
-    CategoryList::execute(MR::DrawType_DrawType_BigBubble);
+    CategoryList::execute(MR::DrawType_BigBubble);
     CategoryList::execute(MR::DrawType_ElectricRailHolder);
     CategoryList::execute(MR::DrawType_OceanRing);
     CategoryList::execute(MR::DrawType_OceanBowl);

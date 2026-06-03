@@ -30,7 +30,7 @@ public:
 
 namespace MR {
     bool enableGroupAttack(LiveActor*, f32, f32);
-};
+};  // namespace MR
 
 class JumpGuarder : public NameObj {
 public:

@@ -116,5 +116,5 @@ public:
 };
 
 namespace MR {
-    void startTalkSound(unsigned char, const LiveActor*);
-};
+    void startTalkSound(u8, const LiveActor*);
+};  // namespace MR

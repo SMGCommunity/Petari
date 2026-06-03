@@ -47,9 +47,9 @@ void KoopaFireStairs::appear() {
     MR::emitEffect(this, "MeteorStrike");
 
     if (_8C) {
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_METEORSHOT_F", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_METEORSHOT_F");
     } else {
-        MR::startSound(this, "SE_OJ_KOOPA_FIRE_SHOT", -1, -1);
+        MR::startSound(this, "SE_OJ_KOOPA_FIRE_SHOT");
     }
 
     setNerve(&NrvKoopaFireStairs::KoopaFireStairsNrvFly::sInstance);
@@ -106,7 +106,7 @@ void KoopaFireStairs::exeFly() {
         MR::emitEffectHit(this, v15, "Hit");
         MR::emitEffect(this, "MeteorStrikeBreak");
         mVelocity.zero();
-        MR::startSound(this, "SE_OJ_KOOPA_FIRE_EXPLODE", -1, -1);
+        MR::startSound(this, "SE_OJ_KOOPA_FIRE_EXPLODE");
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraWeak();
         MR::hideModel(this);
@@ -139,7 +139,7 @@ void KoopaFireStairs::exeFly() {
                 _94.set< f32 >(v13);
             }
 
-            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_METEOR", -1, -1, -1);
+            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_METEOR");
         }
 
         mRotation.x += 15.0f;

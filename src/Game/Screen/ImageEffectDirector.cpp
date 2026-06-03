@@ -16,7 +16,7 @@
 namespace {
     static const s32 sIntensityCountMax = 60;
     static const f32 sDOFIntensity = 1.0f;
-}  // namespace
+};  // namespace
 
 ImageEffectDirector::ImageEffectDirector(const char* pName)
     : NameObj(pName), mIsAuto(true), mIsPlayerSync(false), _E(false), _F(false), mPlayerSyncIntensity(0), mDepthOfFieldIntensity(sDOFIntensity),

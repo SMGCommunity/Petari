@@ -15,7 +15,7 @@ namespace NrvFluff {
     NEW_NERVE(FluffNrvRideFlyOnWind, Fluff, RideFlyOnWind);
     NEW_NERVE(FluffNrvRideSpinUp, Fluff, RideSpinUp);
     NEW_NERVE(FluffNrvRideSpinUpOnWind, Fluff, RideSpinUp);
-}  // namespace NrvFluff
+};  // namespace NrvFluff
 
 Fluff::Fluff(const char* pName)
     : LiveActor(pName), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mTargetUpVec(0.0f, 1.0f, 0.0f),
@@ -103,7 +103,7 @@ void Fluff::exeFreeWaitAir() {
         MR::showModel(this);
         MR::startBck(this, "WaitAir", nullptr);
         MR::startBck(mModel, "Spin", 0);
-        MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_BLOW", -1, -1);
+        MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_BLOW");
         MR::onBind(this);
         MR::validateHitSensor(this, "bind");
     }
@@ -116,7 +116,7 @@ void Fluff::exeFreeWaitAir() {
 
     if (MR::isOnGround(this)) {
         MR::emitEffect(this, "Splash");
-        MR::startSound(this, "SE_OJ_FLUFF_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_FLUFF_BREAK");
         MR::releaseSoundHandle(this, "SE_OJ_FLUFF_BREAK");
         setNerve(&NrvFluff::FluffNrvFreeWaitInvalid::sInstance);
     }
@@ -201,9 +201,9 @@ void Fluff::exeRideFlyOnWind() {
 void Fluff::exeRideSpinUp() {
     if (MR::isFirstStep(this)) {
         if (isNerve(&NrvFluff::FluffNrvRideSpinUpOnWind::sInstance)) {
-            MR::startSound(mRider, "SE_PV_JUMP_JOY", -1, -1);
+            MR::startSound(mRider, "SE_PV_JUMP_JOY");
         } else {
-            MR::startSound(mRider, "SE_PV_TWIST_START", -1, -1);
+            MR::startSound(mRider, "SE_PV_TWIST_START");
         }
 
         MR::tryRumblePadMiddle(this, 0);
@@ -211,18 +211,18 @@ void Fluff::exeRideSpinUp() {
         MR::tryPlayerCoinPull();
         if (mSpinsRemaining > 0) {
             mSpinsRemaining--;
-            MR::startSound(this, "SE_OJ_FLUFF_LOSE", -1, -1);
+            MR::startSound(this, "SE_OJ_FLUFF_LOSE");
             MR::startSpinHitSound(this);
             if (mSpinsRemaining == 2) {
-                MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_1", -1, -1);
+                MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_1");
                 MR::startBck(this, "Spin1st", nullptr);
                 MR::startBrk(this, "Spin1st");
             } else if (mSpinsRemaining == 1) {
-                MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_2", -1, -1);
+                MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_2");
                 MR::startBck(this, "Spin2nd", nullptr);
                 MR::startBrk(this, "Spin2nd");
             } else {
-                MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_4", -1, -1);
+                MR::startSound(this, "SE_OJ_FLUFF_RISE_UP_4");
                 MR::startBck(this, "Spin3rd", nullptr);
                 MR::startBrk(this, "Spin3rd");
             }
@@ -331,8 +331,8 @@ bool Fluff::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         mCameraTargetMtx->setMtx(getBaseMtx());
         MR::setGameCameraTarget(CameraTargetArg(nullptr, mCameraTargetMtx, nullptr, nullptr));
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
-        MR::startSound(mRider, "SE_PV_CATCH", -1, -1);
-        MR::startSound(mRider, "SE_PM_GRAB_OBJ", -1, -1);
+        MR::startSound(mRider, "SE_PV_CATCH");
+        MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         MR::invalidateHitSensors(this);
         MR::validateHitSensor(this, "body");
         MR::validateHitSensor(this, "DamageMario");
@@ -362,7 +362,7 @@ bool Fluff::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 
     if (MR::isMsgRushCancel(msg)) {
         MR::emitEffect(this, "Splash");
-        MR::startSound(this, "SE_OJ_FLUFF_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_FLUFF_BREAK");
         mRider = nullptr;
         setNerve(&NrvFluff::FluffNrvFreeWaitInvalid::sInstance);
 
@@ -380,11 +380,11 @@ void Fluff::endBind(f32 ejectForce) {
         jumpImpulseVec.add(mVelocity);
         MR::startBckPlayer("Fall", (const char*)nullptr);
         MR::endBindAndPlayerJump(this, jumpImpulseVec, 0);
-        MR::startSound(mRider, "SE_PV_JUMP_S", -1, -1);
-        MR::startSound(mRider, "SE_PM_JUMP_M", -1, -1);
+        MR::startSound(mRider, "SE_PV_JUMP_S");
+        MR::startSound(mRider, "SE_PM_JUMP_M");
     } else {
         MR::endBindAndPlayerWait(this);
-        MR::startSound(mRider, "SE_PV_JUMP_S", -1, -1);
+        MR::startSound(mRider, "SE_PV_JUMP_S");
     }
 
     MR::setGameCameraTargetToPlayer();
@@ -398,7 +398,7 @@ void Fluff::endBind(f32 ejectForce) {
     MR::deleteEffect(this, "HardWind");
     MR::deleteEffect(this, "Blur");
     MR::emitEffect(this, "Splash");
-    MR::startSound(this, "SE_OJ_FLUFF_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_FLUFF_BREAK");
     MR::releaseSoundHandle(this, "SE_OJ_FLUFF_BREAK");
 
     setNerve(&NrvFluff::FluffNrvFreeWaitInvalid::sInstance);
@@ -439,7 +439,7 @@ bool Fluff::updateRide() {
         worldStickDirection.scale(0.2f);
         mVelocity.add(worldStickDirection);
         PSVECCrossProduct(&mUp, &mFront, &mSide);
-        MR::startLevelSound(this, "SE_OJ_LV_FLUFF_SIDE_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_FLUFF_SIDE_MOVE");
     }
 
     updateWind();
@@ -473,11 +473,11 @@ void Fluff::updateWind() {
         if (MR::getSubPadStickX(WPAD_CHAN0) == 0.0f || MR::getSubPadStickY(WPAD_CHAN0) == 0.0f) {
             MR::vecBlend(mFront, targetMoveDir, &mFront, 0.08f);
         }
-        MR::startLevelSound(this, "SE_OJ_LV_FLUFF_FLY", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_FLUFF_FLY");
     } else {
         MR::rotateVecDegree(&mSide, mUp, 10.0f);
         MR::rotateVecDegree(&mFront, mUp, 10.0f);
-        MR::startLevelSound(this, "SE_OJ_LV_FLUFF_FLY_FALL", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_FLUFF_FLY_FALL");
     }
 
     TVec3f gravityImpulse(mGravity);

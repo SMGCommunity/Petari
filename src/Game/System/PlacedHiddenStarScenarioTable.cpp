@@ -14,7 +14,7 @@ namespace {
 
 namespace MR {
     s32 getPlacedHiddenStarScenarioNoFromTable(const char* pStageName, s32 scenarioNo) {
-        for (s32 i = 0; i < sizeof(cPlacedHiddenStarInfoTable) / sizeof(*cPlacedHiddenStarInfoTable); i++) {
+        for (s32 i = 0; i < ARRAY_SIZE(cPlacedHiddenStarInfoTable); i++) {
             if (!MR::isEqualString(pStageName, cPlacedHiddenStarInfoTable[i].mStageName)) {
                 continue;
             }

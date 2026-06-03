@@ -9,7 +9,7 @@
 
 namespace {
     static const char* sInfoMessageID = "InformationGalaxy";
-};
+};  // namespace
 
 TicoGalaxy::TicoGalaxy(const char* pName) : TicoFat(pName) {
     mGalaxyName = nullptr;

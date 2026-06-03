@@ -50,7 +50,7 @@ bool GameEventFlagChecker::canOn(const char* pFlagName) const {
             return false;
         }
 
-        return mDataHolder->getGameEventValue(accessor2.getEventValueName()) == 0;
+        return static_cast< u16 >(mDataHolder->getGameEventValue(accessor2.getEventValueName())) == 0;
     case GameEventFlag::Type_10:
         return mDataHolder->isCompleteMarioAndLuigi();
     default:
@@ -133,8 +133,7 @@ bool GameEventFlagChecker::isOnGalaxy(const char* pGalaxyName) const {
 bool GameEventFlagChecker::isOnGalaxyDepended(const char* pGalaxyName) const {
     const char* galaxyDependedFlags[3];
 
-    s32 length =
-        GameEventFlagTable::getGalaxyDependedFlags(galaxyDependedFlags, sizeof(galaxyDependedFlags) / sizeof(*galaxyDependedFlags), pGalaxyName);
+    s32 length = GameEventFlagTable::getGalaxyDependedFlags(galaxyDependedFlags, ARRAY_SIZE(galaxyDependedFlags), pGalaxyName);
     bool isGalaxyDepended = true;
 
     for (s32 i = 0; i < length; i++) {

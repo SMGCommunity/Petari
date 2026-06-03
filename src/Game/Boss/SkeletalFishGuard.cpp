@@ -81,7 +81,7 @@ void SkeletalFishGuard::exeAppear() {
         MR::showModel(this);
         MR::startBck(this, "Swim", nullptr);
         MR::startBrk(this, "Base");
-        MR::startSound(this, "SE_BM_SKL_GUARD_APPEAR", -1, -1);
+        MR::startSound(this, "SE_BM_SKL_GUARD_APPEAR");
         MR::validateHitSensors(this);
         MR::clearHitSensors(this);
         MR::offBind(this);
@@ -131,7 +131,7 @@ void SkeletalFishGuard::exeAppear() {
     }
 
     MR::calcGravity(this);
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL");
     MR::setNerveAtStep(this, &::SkeletalFishGuardNrvNormal::sInstance, 300);
 }
 
@@ -142,7 +142,7 @@ void SkeletalFishGuard::exeNormal() {
 
     calcTransAndFront();
     MR::calcGravity(this);
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL");
     tryShiftApart();
 }
 
@@ -191,8 +191,8 @@ void SkeletalFishGuard::exeApart() {
     lookToPlayer((v3 * (v3 * 18.849556f)) / 180.0f, ((v3 * (v3 * 18.849556f)) / 180.0f));
     mPosition = (_A4 + (mGravity * v7)) + mPosition;
     MR::calcGravity(this);
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL");
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this));
     MR::setNerveAtStep(this, &::SkeletalFishGuardNrvFollow::sInstance, 80);
 }
 
@@ -201,12 +201,12 @@ void SkeletalFishGuard::exeFollow() {
         _C4 = 0.0f;
         MR::startBck(this, "Attack", nullptr);
         MR::startBrk(this, "Attack");
-        MR::startSound(this, "SE_BM_SKL_GUARD_ATTACK_START", -1, -1);
+        MR::startSound(this, "SE_BM_SKL_GUARD_ATTACK_START");
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_ATTACK", -1, -1, -1);
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_ATTACK");
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL");
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this));
     mPosition += _D0 * _C4;
     _C4 += 0.8f;
     if (_C4 >= 22.0f) {
@@ -238,9 +238,9 @@ void SkeletalFishGuard::exeStraight() {
         MR::startBrk(this, "AttackNear");
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_ATTACK", -1, -1, -1);
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL", -1, -1, -1);
-    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_ATTACK");
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL");
+    MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this));
     mPosition += _D0 * _C4;
 
     _C4 += 0.8f;
@@ -262,7 +262,7 @@ void SkeletalFishGuard::exeKill() {
         MR::invalidateHitSensors(this);
         MR::invalidateShadow(this, nullptr);
         MR::startBck(this, "Break", nullptr);
-        MR::startSound(this, "SE_BM_SKL_GUARD_EXPLODE", -1, -1);
+        MR::startSound(this, "SE_BM_SKL_GUARD_EXPLODE");
     }
 
     if (MR::isBckOneTimeAndStopped(this)) {
@@ -300,7 +300,7 @@ void SkeletalFishGuard::appearNaturally() {
 
 void SkeletalFishGuard::appearForce() {
     makeActorAppeared();
-    MR::startSound(this, "SE_BM_SKL_GUARD_APPEAR", -1, -1);
+    MR::startSound(this, "SE_BM_SKL_GUARD_APPEAR");
     setNerve(&::SkeletalFishGuardNrvNormal::sInstance);
     MR::showModel(this);
 }
@@ -404,7 +404,7 @@ bool SkeletalFishGuard::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitS
 
     if (MR::isMsgJetTurtleAttack(msg)) {
         MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F");
         setNerve(&::SkeletalFishGuardNrvKill::sInstance);
         return true;
     }

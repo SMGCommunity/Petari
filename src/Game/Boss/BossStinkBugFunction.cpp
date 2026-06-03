@@ -108,7 +108,7 @@ void BossStinkBugFunction::setFallVelocity(BossStinkBug* pStinkBug, const TVec3f
     pStinkBug->mVelocity.set(scaleAdd - pStinkBug->mPosition);
 }
 
-bool BossStinkBugFunction::throwBomb(BossStinkBug* pStinkBug) {
+void BossStinkBugFunction::throwBomb(BossStinkBug* pStinkBug) {
     pStinkBug->throwBomb(20.0f, 10.0f);
 }
 

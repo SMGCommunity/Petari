@@ -80,8 +80,7 @@ void Coin::init(const JMapInfoIter& rIter) {
         }
 
         if (MR::useStageSwitchReadB(this, rIter)) {
-            MR::FunctorV0M< Coin*, void (Coin::*)() > deadFunc = MR::Functor< Coin >(this, &Coin::makeActorDead);
-            MR::listenStageSwitchOnB(this, deadFunc);
+            MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &Coin::makeActorDead));
         }
     } else {
         makeActorDead();
@@ -237,7 +236,8 @@ void Coin::exeFix() {
     }
 }
 
-void Coin::exeFixHide() {}
+void Coin::exeFixHide() {
+}
 
 void Coin::exeFixTimer() {
     if (MR::isFirstStep(this)) {
@@ -268,7 +268,7 @@ void Coin::exeMove() {
 
     if (MR::isGreaterEqualStep(this, mCannotTime) && MR::isBindedGroundDamageFire(this)) {
         MR::emitEffect(this, "LavaFall");
-        MR::startSound(this, "SE_OJ_FALL_IN_MAGMA_S", -1, -1);
+        MR::startSound(this, "SE_OJ_FALL_IN_MAGMA_S");
         kill();
     } else {
         if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
@@ -539,10 +539,10 @@ void Coin::noticeGetCoin() {
 
     if (mIsPurpleCoin) {
         MR::incPurpleCoin();
-        MR::startSystemSE("SE_SY_PURPLE_COIN", -1, -1);
+        MR::startSystemSE("SE_SY_PURPLE_COIN");
     } else {
         MR::incCoin(1);
-        MR::startSystemSE("SE_SY_COIN", -1, -1);
+        MR::startSystemSE("SE_SY_COIN");
         mHostInfo->_C++;
     }
 }
@@ -599,7 +599,7 @@ void Coin::calcRebouond() {
             int what = (100.0f * dot) / 30.0f;
 
             if (what > 5) {
-                MR::startSound(this, "SE_OJ_COIN_BOUND", what, -1);
+                MR::startSound(this, "SE_OJ_COIN_BOUND", what);
             }
 
             vel = 0.75f;
@@ -675,4 +675,5 @@ namespace MR {
     }
 };  // namespace MR
 
-Coin::~Coin() {}
+Coin::~Coin() {
+}

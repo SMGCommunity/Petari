@@ -13,6 +13,7 @@ class AudSoundInfo;
 class AudSoundObjHolder;
 class AudSoundObject;
 class AudSystem;
+class JAISoundHandle;
 
 namespace AudWrap {
     AudSystem* getSystem();
@@ -21,10 +22,10 @@ namespace AudWrap {
     AudBgmMgr* getBgmMgr();
     AudBgm* getStageBgm();
     AudBgm* getSubBgm();
-    void startStageBgm(u32, bool);
-    void startSubBgm(u32, bool);
+    JAISoundHandle* startStageBgm(u32, bool);
+    JAISoundHandle* startSubBgm(u32, bool);
     void setNextIdStageBgm(u32);
-    void startLastStageBgm();
+    JAISoundHandle* startLastStageBgm();
     AudSoundObject* getSystemSeObject();
     AudSoundObject* getAtmosphereSeObject();
     AudSoundObjHolder* getSoundObjHolder();
@@ -33,4 +34,4 @@ namespace AudWrap {
     AudRemixMgr* getRemixMgr();
     AudRemixSequencer* getRemixSequencer();
     AudSoundObject* getRemixSeqObject();
-};
+};  // namespace AudWrap

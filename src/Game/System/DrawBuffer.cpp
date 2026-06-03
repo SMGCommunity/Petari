@@ -210,7 +210,7 @@ namespace {
         }
         return -1;
     }
-}  // namespace
+};  // namespace
 
 void DrawBuffer::initTable() {
     mNumMaterials = MR::getMaterialNum(mModel);

@@ -79,7 +79,7 @@ namespace {
     };
 
     const SubtitlesInfo* getSubtitlesInfo(const char* pMovieName) {
-        for (s32 i = 0; i < sizeof(sSubtitlesInfo) / sizeof(*sSubtitlesInfo); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(sSubtitlesInfo); i++) {
             if (MR::isEqualString(pMovieName, sSubtitlesInfo[i].mMovieName)) {
                 return &sSubtitlesInfo[i];
             }
@@ -129,7 +129,7 @@ namespace MovieSubtitlesUtil {
     }
 
     s32 getSubtitlesMessageNum(const char* pMovieName) {
-        s32 size = sizeof(sSubtitlesInfo->mMessageInfo) / sizeof(*sSubtitlesInfo->mMessageInfo);
+        s32 size = ARRAY_SIZE(sSubtitlesInfo->mMessageInfo);
 
         for (s32 i = 0; i < size; i++) {
             if (isExistSubtitles(pMovieName, i)) {

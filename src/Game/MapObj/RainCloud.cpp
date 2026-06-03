@@ -11,6 +11,10 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "revolution/types.h"
 
+namespace {
+    static s32 sThunderStep = 140;
+};  // namespace
+
 namespace NrvRainCloud {
     NEW_NERVE(RainCloudNrvAppear, RainCloud, Appear);
     NEW_NERVE(RainCloudNrvWait, RainCloud, Wait);
@@ -19,10 +23,6 @@ namespace NrvRainCloud {
     NEW_NERVE(RainCloudNrvSoftTouch, RainCloud, SoftTouch);
     NEW_NERVE(RainCloudNrvHardTouch, RainCloud, HardTouch);
 };  // namespace NrvRainCloud
-
-namespace {
-    static s32 sThunderStep = 0x8C;
-}
 
 RainCloud::RainCloud(const char* pName) : LiveActor(pName) {
     mCloudCylinder = nullptr;
@@ -138,11 +138,11 @@ void RainCloud::exeAppear() {
         MR::startBpk(this, "Appear");
         MR::validateCollisionParts(this);
         mCloudCylinder->appear();
-        MR::startSound(this, "SE_OJ_RAIN_CLOUD_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_RAIN_CLOUD_APPEAR");
     }
 
     if (MR::isStep(this, sThunderStep)) {
-        MR::startSound(this, "SE_OJ_RAIN_CLOUD_THUNDER", -1, -1);
+        MR::startSound(this, "SE_OJ_RAIN_CLOUD_THUNDER");
     }
 
     if (MR::isBckStopped(this)) {
@@ -167,7 +167,7 @@ void RainCloud::exeDisappear() {
         MR::startBck(this, "Disappear", nullptr);
         MR::invalidateHitSensors(this);
         MR::invalidateCollisionParts(this);
-        MR::startSound(this, "SE_OJ_RAIN_CLOUD_DISAPPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_RAIN_CLOUD_DISAPPEAR");
     }
 
     if (MR::isBckStopped(this)) {
@@ -208,7 +208,7 @@ void RainCloud::exeHardTouch() {
         MR::shakeCameraNormal();
     }
 
-    if (MR::isStep(this, 0x3C)) {
+    if (MR::isStep(this, 60)) {
         MR::validateCollisionParts(this);
         setNerve(&NrvRainCloud::RainCloudNrvWait::sInstance);
     }

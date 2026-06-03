@@ -75,7 +75,7 @@ void DinoPackunStateFire::requestFireSign() {
 
 void DinoPackunStateFire::requestCool() {
     if (isEnableCool()) {
-        MR::startSound(getHost()->getBallModel(), "SE_BM_D_PAKKUN_TAIL_FIRE_OFF", -1, -1);
+        MR::startSound(getHost()->getBallModel(), "SE_BM_D_PAKKUN_TAIL_FIRE_OFF");
         setNerve(&NrvDinoPackunStateFire::DinoPackunStateFireNrvCool::sInstance);
     }
 }
@@ -86,7 +86,7 @@ void DinoPackunStateFire::setFire() {
     MR::emitEffect(getHost(), "BodyFire");
     MR::startBrk(getHost(), "Awake");
     MR::startBrk(getHost()->getBallModel(), "Heat");
-    MR::startSound(getHost()->getBallModel(), "SE_BM_D_PAKKUN_TAIL_FIRE_ON", -1, -1);
+    MR::startSound(getHost()->getBallModel(), "SE_BM_D_PAKKUN_TAIL_FIRE_ON");
     getHost()->mBall->setDamageFire();
 }
 

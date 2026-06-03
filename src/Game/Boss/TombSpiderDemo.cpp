@@ -25,7 +25,7 @@ namespace {
     static const s32 sStepBattle2ndStartJumpStart = 150;
     static const s32 sStepBattle2ndStartJumpEnd = 190;
     static const s32 sStepBattleEndPlanetBreak = 15;
-}  // namespace
+};  // namespace
 
 TombSpiderDemo::TombSpiderDemo(TombSpider* pParent) : mParent(pParent), mRotateSpeed(0.0f) {
     mMtx.identity();
@@ -75,7 +75,7 @@ bool TombSpiderDemo::updateGateOpen() {
         MR::onCalcAnim(TombSpiderFunction::getPlanet(mParent));
         TombSpiderFunction::getCocoon(mParent)->appear();
         MR::deleteEffect(MR::getPlayerDemoActor(), "SpaceCocoonBlur");
-        MR::startSystemSE("SE_OJ_TSPIDER_PLANET_BREAK1", -1, -1);
+        MR::startSystemSE("SE_OJ_TSPIDER_PLANET_BREAK1");
     }
 
     if (MR::isStep(mParent, sStepGateBreak - 1)) {
@@ -88,8 +88,8 @@ bool TombSpiderDemo::updateGateOpen() {
     }
 
     if (MR::isStep(mParent, sStepDemoGateOpen)) {
-        MR::startSound(MR::getPlayerDemoActor(), "SE_PM_LAND_HEAVY", -1, -1);
-        MR::startSound(MR::getPlayerDemoActor(), "SE_PV_LAND", -1, -1);
+        MR::startSound(MR::getPlayerDemoActor(), "SE_PM_LAND_HEAVY");
+        MR::startSound(MR::getPlayerDemoActor(), "SE_PV_LAND");
         TombSpiderFunction::resetPlayerPosTombSpider(mParent, false);
         TombSpiderFunction::endTombSpiderDemo(mParent, "ゲートオープンデモ[トゥームスパイダー]", "マリオ着地デモ[トゥームスパイダー]");
         return true;
@@ -131,7 +131,7 @@ bool TombSpiderDemo::updateCocoonBreak() {
 bool TombSpiderDemo::updateBattle1stStart() {
     if (MR::isFirstStep(mParent)) {
         MR::startBck(mParent, "Appear", nullptr);
-        MR::startSound(mParent, "SE_BV_TSPIDER_APPEAR", -1, -1);
+        MR::startSound(mParent, "SE_BV_TSPIDER_APPEAR");
     }
 
     if (MR::isBckStopped(mParent)) {
@@ -150,7 +150,7 @@ bool TombSpiderDemo::updateBattle1stEnd() {
 
     if (MR::isStep(mParent, sStepChanceDamagePlanetBreak)) {
         MR::startBck(TombSpiderFunction::getPlanet(mParent), "BattleDamage", nullptr);
-        MR::startSystemSE("SE_OJ_TSPI_PLANET_BREAK_M", -1, -1);
+        MR::startSystemSE("SE_OJ_TSPI_PLANET_BREAK_M");
     }
 
     if (MR::isBckStopped(mParent)) {
@@ -185,7 +185,7 @@ bool TombSpiderDemo::updateBattle2ndStart() {
             TVec3f dir(1.0f, 0.0f, 0.0f);
             MR::rotateVecDegree(&dir, TVec3f(0.0f, 0.0f, 1.0f), MR::getRandom() * 360.0f);
             MR::appearStarPieceToDirection(mParent, mParent->mPosition, dir, 1, 0.0f, 40.0f, false);
-            MR::startSound(mParent, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+            MR::startSound(mParent, "SE_OJ_STAR_PIECE_BURST");
         }
         TombSpiderFunction::endTombSpiderAnimCameraDemo(mParent, "１回戦終了", "Battle2ndStart");
         return true;
@@ -198,7 +198,7 @@ bool TombSpiderDemo::updateDeath() {
     if (MR::isFirstStep(mParent)) {
         TombSpiderFunction::startTombSpiderAnimCameraDemo(mParent, "死亡", "Death", 0);
         TombSpiderFunction::resetPlayerPosTombSpider(mParent, true);
-        MR::startSystemSE("SE_BV_TSPIDER_DEATH", -1, -1);
+        MR::startSystemSE("SE_BV_TSPIDER_DEATH");
         MR::startBck(mParent, "Death", nullptr);
         MR::startSpiderThreadBattleEnd();
         TombSpiderFunction::killThreadAttacherAll(mParent);
@@ -211,7 +211,7 @@ bool TombSpiderDemo::updateDeath() {
 
     if (MR::isStep(mParent, sStepBattleEndPlanetBreak)) {
         MR::startBck(TombSpiderFunction::getPlanet(mParent), "BattleEnd", nullptr);
-        MR::startSystemSE("SE_OJ_TSPIDER_PLANET_BREAK2", -1, -1);
+        MR::startSystemSE("SE_OJ_TSPIDER_PLANET_BREAK2");
         MR::onCalcAnim(TombSpiderFunction::getPlanet(mParent));
         MR::onSpiderThreadBloom();
         MR::onSwitchB(mParent);
@@ -223,7 +223,7 @@ bool TombSpiderDemo::updateDeath() {
         mParent->calcAnim();
         MR::hideModel(mParent);
         MR::emitEffect(mParent, "Death");
-        MR::startSound(mParent, "SE_BM_TSPIDER_EXPLOSION", -1, -1);
+        MR::startSound(mParent, "SE_BM_TSPIDER_EXPLOSION");
         MR::startAfterBossBGM();
         TombSpiderFunction::endTombSpiderAnimCameraDemo(mParent, "死亡", "Death");
         MR::onSwitchA(mParent);
@@ -237,7 +237,7 @@ bool TombSpiderDemo::updateDeath() {
 void TombSpiderDemo::updateJumpRotateToPlayer() {
     if (MR::isFirstStep(mParent)) {
         MR::startBck(mParent, "Jump", nullptr);
-        MR::startSound(mParent, "SE_BM_TSPIDER_JUMP", -1, -1);
+        MR::startSound(mParent, "SE_BM_TSPIDER_JUMP");
         mRotateSpeed = TombSpiderFunction::calcRotateSpeedToPlayer(mParent, sStepJumpRotateToPlayerEnd - sStepJumpRotateToPlayerStart);
     }
 

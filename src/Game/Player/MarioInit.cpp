@@ -69,7 +69,7 @@ void Mario::initMember() {
     _8EC = 0;
     _8F4 = 0.0f;
 
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_A08); i++) {
         _A08[i] = 0;
     }
 
@@ -81,7 +81,7 @@ void Mario::initMember() {
     _A58.zero();
     _A64 = 0.0f;
 
-    for (int i = 0; i < 0x20; i++) {
+    for (int i = 0; i < ARRAY_SIZE(_A6C); i++) {
         _A6C[i] = 0;
     }
 }

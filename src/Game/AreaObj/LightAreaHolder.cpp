@@ -2,13 +2,13 @@
 #include "Game/Map/LightFunction.hpp"
 #include "Game/Map/LightZoneDataHolder.hpp"
 
-LightAreaHolder::LightAreaHolder(s32 type, const char* pName) : AreaObjMgr(type, pName) {
+LightAreaHolder::LightAreaHolder(s32 maxNum, const char* pName) : AreaObjMgr(maxNum, pName) {
     LightFunction::registerLightAreaHolder(this);
 }
 
 // for some reason the register movement for isTargetArea are wrong
 bool LightAreaHolder::tryFindLightID(const TVec3f& rArea, ZoneLightID* pLightID) const {
-    const LightArea* lightArea = reinterpret_cast< LightArea* >(find_in(rArea));
+    const LightArea* lightArea = static_cast< LightArea* >(find_in(rArea));
 
     if (!lightArea) {
         if (pLightID->isOutOfArea()) {

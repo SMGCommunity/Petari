@@ -19,7 +19,7 @@ namespace NrvJellyfishElectric {
 
 namespace {
     static Color8 sPointLightColor(0x9C, 0xFF, 0xFF, 0xFF);
-};
+};  // namespace
 
 JellyfishElectric::JellyfishElectric(const char* pName) : LiveActor(pName) {
     mController = nullptr;
@@ -128,7 +128,7 @@ void JellyfishElectric::exeWait() {
 
 void JellyfishElectric::exeDamage() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_EM_JELLYELEC_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EM_JELLYELEC_DAMAGE");
         MR::startAllAnim(this, "Damage");
     }
 
@@ -148,9 +148,9 @@ void JellyfishElectric::exeDeath() {
         MR::startAllAnim(this, "Death");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JELYELEC_PRE_DEAD", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_JELYELEC_PRE_DEAD");
     if (MR::isStep(this, 30) || MR::isBinded(this)) {
-        MR::startSound(this, "SE_EM_JELLYELEC_DEAD", -1, -1);
+        MR::startSound(this, "SE_EM_JELLYELEC_DEAD");
         kill();
     }
 }
@@ -160,7 +160,7 @@ void JellyfishElectric::exeAttack() {
         MR::startAllAnim(this, "Attack");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JELYELEC_ATTACK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_JELYELEC_ATTACK");
 
     if (MR::isBckStopped(this)) {
         setNerve(&NrvJellyfishElectric::JellyfishElectricNrvWait::sInstance);

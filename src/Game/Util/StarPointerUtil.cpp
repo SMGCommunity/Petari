@@ -129,8 +129,7 @@ namespace {
         pTargetInfo->mTarget->mLastPointedChannel = channel;
         return true;
     }
-
-}  // namespace
+};  // namespace
 
 namespace MR {
 
@@ -915,5 +914,4 @@ namespace MR {
     bool requestStarPieceLectureGuidance() {
         return getStarPointerDirector()->mGuidance->request1PGuidance("PointerGuidance_StarPieceLecture", false);
     }
-
-}  // namespace MR
+};  // namespace MR

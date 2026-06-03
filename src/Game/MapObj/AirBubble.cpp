@@ -67,7 +67,7 @@ void AirBubble::appearMove(const TVec3f& a1, s32 a2) {
 
 void AirBubble::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_AIR_BUBBLE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_AIR_BUBBLE_BREAK");
         MR::emitEffect(this, "RecoveryBubbleBreak");
         MR::incPlayerOxygen(8);
         MR::tryRumblePadMiddle(this, 0);

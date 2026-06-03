@@ -7,7 +7,7 @@
 namespace NrvStarPieceShooter {
     NEW_NERVE(HostTypeNrvWait, StarPieceShooter, Wait);
     NEW_NERVE(HostTypeNrvLockOn, StarPieceShooter, LockOn);
-}  // namespace NrvStarPieceShooter
+};  // namespace NrvStarPieceShooter
 
 StarPieceDirector* MR::getStarPieceDirector() {
     return MR::getSceneObj< StarPieceDirector >(SceneObj_StarPieceDirector);
@@ -60,16 +60,16 @@ StarPieceDirector::StarPieceDirector(const char* pName)
       mNewReceiverInfoIndex(0), mResetChasingStarPiece(false), mSoundIndex(0), mQueueNewGetSound(false) {
     MR::connectToSceneMapObjMovement(this);
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mStarPieceShooters); i++) {
         mStarPieceShooters[i] = new StarPieceShooter(i, "発射用アクター");
         mStarPieceShooters[i]->initWithoutIter();
     }
 
-    for (int i = 0; i < 0x200; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mHostInfoArray); i++) {
         mHostInfoArray[i] = new StarPieceHostInfo(nullptr, 0, 0, 0);
     }
 
-    for (int i = 0; i < 0x40; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mReceiverInfoArray); i++) {
         mReceiverInfoArray[i] = new StarPieceReceiverInfo(nullptr, 0, 0, 0);
     }
     initCSDelay();
@@ -190,7 +190,7 @@ bool StarPieceDirector::gotByPlayer() {
     }
 
     MR::addStarPiece(1);
-    MR::startSystemSE("SE_SY_STAR_PIECE_GET", -1, -1);
+    MR::startSystemSE("SE_SY_STAR_PIECE_GET");
 
     mQueueNewGetSound = true;
     MR::getStarPiecePlayer();
@@ -248,7 +248,7 @@ bool StarPieceDirector::giftToTarget(HitSensor* pGiftSensor, u32 numGift) {
     if (giftPiece == nullptr) {
         return false;
     }
-    
+
     MR::requestMovementOn(giftPiece);
     receiverInfo->_8 += numGift;
     MR::startCSSound("CS_FEED_SPIECE", "SE_SY_CS_FEED_PIECE", 0);
@@ -298,7 +298,7 @@ void StarPieceDirector::clearGotCountReceiver(const NameObj* pNameObj) {
 }
 
 StarPieceHostInfo* StarPieceDirector::findHostInfo(const NameObj* pNameObj) {
-    for (StarPieceHostInfo** current = mHostInfoArray; current < &mHostInfoArray[sizeof(mHostInfoArray) / sizeof(StarPieceHostInfo*)]; current++) {
+    for (StarPieceHostInfo** current = mHostInfoArray; current < &mHostInfoArray[ARRAY_SIZE(mHostInfoArray)]; current++) {
         if (pNameObj == (*current)->mObj) {
             return *current;
         }
@@ -307,8 +307,7 @@ StarPieceHostInfo* StarPieceDirector::findHostInfo(const NameObj* pNameObj) {
 }
 
 StarPieceReceiverInfo* StarPieceDirector::findReceiverInfo(const NameObj* pNameObj) {
-    for (StarPieceReceiverInfo** current = mReceiverInfoArray;
-         current < &mReceiverInfoArray[sizeof(mReceiverInfoArray) / sizeof(StarPieceReceiverInfo*)]; current++) {
+    for (StarPieceReceiverInfo** current = mReceiverInfoArray; current < &mReceiverInfoArray[ARRAY_SIZE(mReceiverInfoArray)]; current++) {
         if (pNameObj == (*current)->mObj) {
             return *current;
         }
@@ -317,7 +316,8 @@ StarPieceReceiverInfo* StarPieceDirector::findReceiverInfo(const NameObj* pNameO
 }
 
 StarPieceShooter::StarPieceShooter(s32 a1, const char* pName)
-    : LiveActor(pName), _90(nullptr), _8C(0.0f), _94(999999.0f), _98(0), _9C(999999.0f), _A0(a1), _A4(0), _A8(0, 0, 0), _B4(0, 0, 0) {}
+    : LiveActor(pName), _90(nullptr), _8C(0.0f), _94(999999.0f), _98(0), _9C(999999.0f), _A0(a1), _A4(0), _A8(0, 0, 0), _B4(0, 0, 0) {
+}
 
 void StarPieceShooter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovementCalcAnim(this);
@@ -520,7 +520,7 @@ void StarPieceShooter::calcShootGoalUsingPointingDepth() {
         starPointerWorldPos.set(playerPos);
         starPointerWorldPos.add(dir);
     }
-    
+
     mPosition.set(starPointerWorldPos);
     _8C = new_8C;
 }

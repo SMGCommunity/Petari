@@ -15,7 +15,7 @@ namespace {
     // getFirstPolyOnLineCategory
     // getFirstPolyOnLineCategoryExceptSensor
     // getFirstPolyOnLineCategoryExceptActor
-};
+};  // namespace
 
 namespace MR {
     const TVec3f* getNormal(const Triangle* pTriangle) {

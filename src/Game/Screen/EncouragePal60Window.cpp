@@ -49,7 +49,7 @@ void EncouragePal60Window::exeDisplay() {
     }
 
     if (MR::isGreaterStep(this, 120) && MR::testCorePadTriggerAnyWithoutHome(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         setNerve(&EncouragePal60WindowDisappear::sInstance);
     }
 }

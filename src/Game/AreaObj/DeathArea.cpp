@@ -2,7 +2,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-DeathArea::DeathArea(int type, const char* pName) : AreaObj(type, pName) {}
+DeathArea::DeathArea(int formType, const char* pName) : AreaObj(formType, pName) {}
 
 void DeathArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

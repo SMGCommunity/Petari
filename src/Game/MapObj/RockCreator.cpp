@@ -5,7 +5,7 @@
 namespace NrvRockCreator {
     NEW_NERVE(RockCreatorNrvActive, RockCreator, Active);
     NEW_NERVE(RockCreatorNrvDeactive, RockCreator, Deactive);
-}  // namespace NrvRockCreator
+};  // namespace NrvRockCreator
 
 RockCreator::RockCreator(const char* pName)
     : LiveActor(pName), mRocks(nullptr), mRockSpeed(10.0f), mBreakModelOnRailGoal(false), mSpawnDelay(-1), mNumRocks(0), mSpawnTimer(0),

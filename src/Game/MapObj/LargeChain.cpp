@@ -1,13 +1,13 @@
 #include "Game/MapObj/LargeChain.hpp"
 
+namespace {
+    static f32 sPartsLength = 200.0f;
+};  // namespace
+
 namespace NrvLargeChain {
     NEW_NERVE(LargeChainNrvWait, LargeChain, Wait);
     NEW_NERVE(LargeChainNrvBreak, LargeChain, Break);
 };  // namespace NrvLargeChain
-
-namespace {
-    static f32 sPartsLength = 200.0f;
-};
 
 LargeChain::LargeChain(const char* pName) : LiveActor(pName) {
     _8C = nullptr;

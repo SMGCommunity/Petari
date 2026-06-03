@@ -2,17 +2,17 @@
 
 #include "Game/Boss/BossStinkBugActionBase.hpp"
 
-
-class JMapInfoIter;
 class DemoPositionController;
+class JMapInfoIter;
+
 class BossStinkBugAngryDemo : public BossStinkBugActionBase {
 public:
-    BossStinkBugAngryDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter);
+    BossStinkBugAngryDemo(BossStinkBug* pHost, const JMapInfoIter& rIter);
 
     virtual void appear();
 
     void exeDemo();
     void exeTryStart();
 
-    /*0x64 */ DemoPositionController* mDemoPositionController;
+    /* 0x64 */ DemoPositionController* mDemoPositionController;
 };

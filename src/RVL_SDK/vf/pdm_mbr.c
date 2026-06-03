@@ -37,20 +37,21 @@ s32 VFipdm_mbr_get_table(u8* buf, u32 sector, PDM_MBR* p_mbr_tbl) {
     return 0;
 }
 
-s32 VFipdm_mbr_get_mbr_part_table(PDM_DISK* p_disk, PDM_MBR* p_mbr_tbl) {
+s32 VFipdm_mbr_get_mbr_part_table(struct PDM_DISK* p_disk, struct PDM_MBR* p_mbr_tbl) {
     s32 err;
+    u8 buf[512];
     u32 num_success;
     u32 is_master_boot;
-    u8 buf[512];
 
-    if (!p_disk || !p_mbr_tbl)
+    if (!p_disk || !p_mbr_tbl) {
         return 1;
+    }
     err = VFipdm_disk_check_disk_handle(p_disk);
     if (err) {
         return err;
     }
 
-    err = VFipdm_disk_physical_read(p_disk, buf, 0, 1, &num_success);
+    err = VFipdm_disk_physical_read(p_disk, buf, 0, 1, 512, &num_success);
     if (err) {
         return err;
     }
@@ -65,22 +66,23 @@ s32 VFipdm_mbr_get_mbr_part_table(PDM_DISK* p_disk, PDM_MBR* p_mbr_tbl) {
     return 0;
 }
 
-s32 VFipdm_mbr_get_epbr_part_table(PDM_DISK* p_disk, PDM_MBR* p_mbr_tbl) {
-    int err;
+s32 VFipdm_mbr_get_epbr_part_table(struct PDM_DISK* p_disk, struct PDM_MBR* p_mbr_tbl) {
+    s32 err;
+    u8 buf[512];
     u32 extend_start_sector;
     u16 tbl_index;
-    u16 lba_size;
     u32 num_success;
     u32 is_master_boot;
-    u8 buf[512];
+    struct PDM_DISK_INFO disk_info;
+    u32 extend_start_block;
 
-    if (!p_disk || !p_mbr_tbl)
+    if (!p_disk || !p_mbr_tbl) {
         return 1;
+    }
     err = VFipdm_disk_check_disk_handle(p_disk);
     if (err) {
         return err;
     }
-
     extend_start_sector = 0;
     for (tbl_index = 0; tbl_index < 4u; ++tbl_index) {
         if (p_mbr_tbl->partition_table[tbl_index].partition_type == 5 || p_mbr_tbl->partition_table[tbl_index].partition_type == 15) {
@@ -91,23 +93,21 @@ s32 VFipdm_mbr_get_epbr_part_table(PDM_DISK* p_disk, PDM_MBR* p_mbr_tbl) {
     if (tbl_index == 4) {
         return 7;
     } else {
-        err = VFipdm_disk_get_lba_size(p_disk, &lba_size);
+        err = VFipdm_disk_get_media_information(p_disk, &disk_info);
         if (err) {
             return err;
         }
-
-        err = VFipdm_disk_physical_read(p_disk, buf, extend_start_sector * (lba_size >> 9), 1, &num_success);
+        extend_start_block = extend_start_sector * (disk_info.bytes_per_sector >> 9);
+        err = VFipdm_disk_physical_read(p_disk, buf, extend_start_block, 1, 512, &num_success);
         if (err) {
             return err;
         }
-
         VFipdm_mbr_check_master_boot_record(p_disk, buf, &is_master_boot);
         if (is_master_boot) {
             VFipdm_mbr_get_table(buf, extend_start_sector, p_mbr_tbl);
         } else {
             return 6;
         }
-
         return 0;
     }
 }

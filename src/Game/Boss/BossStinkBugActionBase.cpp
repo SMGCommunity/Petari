@@ -243,7 +243,7 @@ bool BossStinkBugActionBase::updateGroundRegainRail(f32 f1) {
 
 bool BossStinkBugActionBase::updateGroundFind() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(getHost(), "SE_BV_BOSS_BUG_ATTACK_G", -1, -1);
+        MR::startSound(getHost(), "SE_BV_BOSS_BUG_ATTACK_G");
         MR::startBck(getHost(), "Find", nullptr);
         _48 = 0.0f;
     }
@@ -277,7 +277,7 @@ bool BossStinkBugActionBase::updateGroundRun(f32 f1) {
     }
 
     if (getHost()->isLegInWater()) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_RUN_ADD_WATER", -1, -1, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_RUN_ADD_WATER");
     }
 
     _48 = f1 * MR::calcNerveRate(this, 60);
@@ -296,7 +296,7 @@ bool BossStinkBugActionBase::updateGroundAttackSuccess() {
     }
 
     if (MR::isStep(this, 12)) {
-        MR::startSound(getHost(), "SE_BV_BOSS_BUG_GLAD", -1, -1);
+        MR::startSound(getHost(), "SE_BV_BOSS_BUG_GLAD");
     }
 
     _48 *= 0.75f;
@@ -314,10 +314,10 @@ bool BossStinkBugActionBase::updateGroundCoolDown() {
         MR::startBck(getHost(), "CoolDown", nullptr);
     }
 
-    MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_BRAKE", -1, -1, -1);
+    MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_BRAKE");
 
     if (getHost()->isLegInWater()) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_RUN_ADD_WATER", -1, -1, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_RUN_ADD_WATER");
     }
 
     _48 *= 0.95f;
@@ -356,7 +356,7 @@ bool BossStinkBugActionBase::updateGroundTurn() {
 bool BossStinkBugActionBase::updateGroundDamage() {
     if (MR::isFirstStep(this)) {
         MR::zeroVelocity(getHost());
-        MR::startSound(getHost(), "SE_BM_BOSS_BUG_PRESSED", -1, -1);
+        MR::startSound(getHost(), "SE_BM_BOSS_BUG_PRESSED");
         MR::startBck(getHost(), "GroundDamage", nullptr);
 
         MR::tryRumblePadStrong(getHost(), 0);
@@ -370,7 +370,7 @@ bool BossStinkBugActionBase::updateGroundDamage() {
     }
 
     if (MR::isStep(this, 9)) {
-        MR::startSound(getHost(), "SE_BV_BOSS_BUG_DAMAGE", -1, -1);
+        MR::startSound(getHost(), "SE_BV_BOSS_BUG_DAMAGE");
     }
 
     if (MR::isBckStopped(getHost())) {
@@ -473,7 +473,7 @@ bool BossStinkBugActionBase::updateFlyRollSign(s32 numSteps) {
     }
 
     if (MR::isStep(this, 10)) {
-        MR::startSound(getHost(), "SE_BV_BOSS_BUG_ROLL", -1, -1);
+        MR::startSound(getHost(), "SE_BV_BOSS_BUG_ROLL");
     }
 
     startSoundFly(0);
@@ -490,7 +490,7 @@ bool BossStinkBugActionBase::updateFlyRollSign(s32 numSteps) {
 
 bool BossStinkBugActionBase::updateFlyTurnSign() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(getHost(), "SE_BV_BOSS_BUG_TURN", -1, -1);
+        MR::startSound(getHost(), "SE_BV_BOSS_BUG_TURN");
         MR::startBck(getHost(), "FlyTurnSign", nullptr);
     }
 
@@ -536,7 +536,7 @@ bool BossStinkBugActionBase::updateFall() {
         getHost()->disposeBomb();
     }
 
-    MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 600, 126, -1);
+    MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 600, 126);
 
     BossStinkBugFunction::setFallVelocity(getHost(), _14, MR::calcNerveRate(this, 80), 0.3f, 1100.0f);
 
@@ -551,7 +551,7 @@ bool BossStinkBugActionBase::updateFall() {
 
 bool BossStinkBugActionBase::updateFallDamage() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(getHost(), "SE_BM_BOSS_BUG_PRESSED", -1, -1);
+        MR::startSound(getHost(), "SE_BM_BOSS_BUG_PRESSED");
         MR::startBck(getHost(), "FallDamage", nullptr);
         MR::startAction(getHost()->getWingModel(), "FallDamage");
         MR::tryRumblePadStrong(getHost(), 0);
@@ -564,7 +564,7 @@ bool BossStinkBugActionBase::updateFallDamage() {
     }
 
     if (MR::isStep(this, 9)) {
-        MR::startSound(getHost(), "SE_BV_BOSS_BUG_DAMAGE", -1, -1);
+        MR::startSound(getHost(), "SE_BV_BOSS_BUG_DAMAGE");
     }
 
     if (MR::isBckStopped(getHost())) {
@@ -578,7 +578,7 @@ bool BossStinkBugActionBase::updateFallDamage() {
 
 bool BossStinkBugActionBase::updateToGround() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(getHost(), "SE_BV_BOSS_BUG_ANGRY_LAND", -1, -1);
+        MR::startSound(getHost(), "SE_BV_BOSS_BUG_ANGRY_LAND");
         MR::startAction(getHost()->getWingModel(), "Ground");
         MR::tryStartBck(getHost(), "TurnDown", nullptr);
         getHost()->validateCollisionGround();
@@ -637,7 +637,7 @@ bool BossStinkBugActionBase::updateLand() {
 
 bool BossStinkBugActionBase::updateToFly() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(getHost(), "SE_BV_BOSS_BUG_ANGRY_TAKEOFF", -1, -1);
+        MR::startSound(getHost(), "SE_BV_BOSS_BUG_ANGRY_TAKEOFF");
         MR::startAction(getHost()->getWingModel(), "Fly");
         MR::tryStartBck(getHost(), "TakeOff", nullptr);
         _30 = _48;
@@ -675,31 +675,31 @@ void BossStinkBugActionBase::startSoundFly(s32 sound) {
     switch (sound) {
     case 0:
         if (isAngry()) {
-            MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE2", flySoundVol, iIRCCutoff, -1);
+            MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE2", flySoundVol, iIRCCutoff);
         } else {
-            MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE", flySoundVol, iIRCCutoff, -1);
+            MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE", flySoundVol, iIRCCutoff);
         }
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff);
         break;
     case 1:
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ROTATE", flySoundVol, iIRCCutoff, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ROTATE2", -1, -1, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ROTATE", flySoundVol, iIRCCutoff);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ROTATE2");
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff);
         break;
     case 2:
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ROLL", flySoundVol, iIRCCutoff, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ROLL", flySoundVol, iIRCCutoff);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff);
         break;
     case 3:
         if (isAngry()) {
-            MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_SHAKE2", flySoundVol, iIRCCutoff, -1);
+            MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_SHAKE2", flySoundVol, iIRCCutoff);
         } else {
-            MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_SHAKE", flySoundVol, iIRCCutoff, -1);
+            MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_SHAKE", flySoundVol, iIRCCutoff);
         }
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", flySoundVol, iIRCCutoff);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", flySoundVol, iIRCCutoff);
     }
 }

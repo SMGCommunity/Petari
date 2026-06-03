@@ -32,7 +32,7 @@ void PoltaStateGroundRockAttack::exeSign() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::requestStartControllArm(getHost());
         PoltaFunction::startAction(getHost(), "GenerateGroundRockSign", true);
-        MR::startSound(getHost(), "SE_BV_POLTA_PREP_GND_ROCK", -1, -1);
+        MR::startSound(getHost(), "SE_BV_POLTA_PREP_GND_ROCK");
     }
     getHost()->rotateToPlayer();
     if (MR::isActionEnd(getHost())) {
@@ -49,8 +49,8 @@ void PoltaStateGroundRockAttack::exeGenerate() {
 
     if (MR::isBckOneTimeAndStopped(getHost())) {
         PoltaFunction::startAction(getHost(), "GenerateGroundRock", true);
-        MR::startSound(getHost(), "SE_BV_POLTA_GEN_GND_ROCK", -1, -1);
-        MR::startSound(getHost(), "SE_BM_POLTA_GEN_GND_ROCK", -1, -1);
+        MR::startSound(getHost(), "SE_BV_POLTA_GEN_GND_ROCK");
+        MR::startSound(getHost(), "SE_BM_POLTA_GEN_GND_ROCK");
     }
     if (MR::isLessEqualStep(this, 15 * (_10 - 1)) && MR::isIntervalStep(this, 15)) {
         s32 v14 = getNerveStep() / 15;

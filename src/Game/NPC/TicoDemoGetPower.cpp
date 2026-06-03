@@ -32,15 +32,15 @@ void TicoDemoGetPower::exeDemo() {
         s32 partStep = MR::getDemoPartStep("スピンゲット[デモ3]");
 
         if (partStep == 110) {
-            MR::startSound(mTico, "SE_SM_TICO_OP_APPEAR", -1, -1);
+            MR::startSound(mTico, "SE_SM_TICO_OP_APPEAR");
         }
 
         if (partStep == 140) {
-            MR::startSound(mTico, "SE_SM_TICO_OP_APPEAR_END", -1, -1);
+            MR::startSound(mTico, "SE_SM_TICO_OP_APPEAR_END");
         }
 
         if (partStep == 180) {
-            MR::startSound(mTico, "SE_SV_TICO_OP_APPEAR", -1, -1);
+            MR::startSound(mTico, "SE_SV_TICO_OP_APPEAR");
         }
     }
 
@@ -52,19 +52,19 @@ void TicoDemoGetPower::exeDemo() {
         }
 
         if (partStep <= 65) {
-            MR::startLevelSound(mTico, "SE_SM_LV_TICO_WAIT", -1, -1, -1);
+            MR::startLevelSound(mTico, "SE_SM_LV_TICO_WAIT");
         }
 
         if (partStep == 72) {
-            MR::startSound(mTico, "SE_SM_TICO_FLASH_SPIN", -1, -1);
+            MR::startSound(mTico, "SE_SM_TICO_FLASH_SPIN");
         }
 
         if (partStep == 170) {
-            MR::startSound(mTico, "SE_SM_TICO_FLASH_LIGHT", -1, -1);
+            MR::startSound(mTico, "SE_SM_TICO_FLASH_LIGHT");
         }
 
         if (partStep == 255) {
-            MR::startSound(mTico, "SE_SM_TICO_FUSION", -1, -1);
+            MR::startSound(mTico, "SE_SM_TICO_FUSION");
         }
 
         if (partStep == 420) {

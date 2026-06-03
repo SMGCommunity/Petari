@@ -178,18 +178,33 @@ namespace JGeometry {
         void setXDir(const TVec3f& rSrc);
         void setXDir(f32 x, f32 y, f32 z);
 
+        inline void setXDirInline(f32 x, f32 y, f32 z) {
+            this->mMtx[0][0] = x;
+            this->mMtx[1][0] = y;
+            this->mMtx[2][0] = z;
+        }
         inline void setXDirInline(const TVec3f& rSrc) {
             this->mMtx[0][0] = rSrc.x;
             this->mMtx[1][0] = rSrc.y;
             this->mMtx[2][0] = rSrc.z;
         }
 
+        inline void setYDirInline(f32 x, f32 y, f32 z) {
+            this->mMtx[0][1] = x;
+            this->mMtx[1][1] = y;
+            this->mMtx[2][1] = z;
+        }
         inline void setYDirInline(const TVec3f& rSrc) {
             this->mMtx[0][1] = rSrc.x;
             this->mMtx[1][1] = rSrc.y;
             this->mMtx[2][1] = rSrc.z;
         }
 
+        inline void setZDirInline(f32 x, f32 y, f32 z) {
+            this->mMtx[0][2] = x;
+            this->mMtx[1][2] = y;
+            this->mMtx[2][2] = z;
+        }
         inline void setZDirInline(const TVec3f& rSrc) {
             this->mMtx[0][2] = rSrc.x;
             this->mMtx[1][2] = rSrc.y;
@@ -207,7 +222,20 @@ namespace JGeometry {
         void getEuler(TVec3f& rDest) const;
         void getEulerXYZ(TVec3f& rDest) const;
         void setEulerY(f32 val);
-        void setEulerZ(f32 val);
+        void setEulerZ(f32 val) {
+            f32 s = sin(val);
+            f32 c = cos(val);
+
+            mMtx[1][0] = s;
+            mMtx[0][0] = c;
+            mMtx[0][1] = -s;
+            mMtx[1][1] = c;
+            mMtx[2][2] = 1.0f;
+            mMtx[2][1] = 0.0f;
+            mMtx[1][2] = 0.0f;
+            mMtx[2][0] = 0.0f;
+            mMtx[0][2] = 0.0f;
+        }
 
         void getQuat(TQuat4f& rDest) const;
         void setQuat(const TQuat4f& q) {
@@ -524,7 +552,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3(){};
+        TPosition3() {};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -543,12 +571,22 @@ namespace JGeometry {
         }
 
         void setTrans(f32 x, f32 y, f32 z);
-        void zeroTrans();
+
+        void zeroTrans() {
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
+        }
 
         void makeRotate(const TVec3f&, f32);
 
         void makeQuat(const TQuat4f& rSrcQuat) {
             zeroTrans();
+            TRotation3< T >::setQuat(rSrcQuat);
+        }
+
+        inline void makeQuatInline(const TQuat4f& rSrcQuat) {
+            zeroTransInline();
             TRotation3< T >::setQuat(rSrcQuat);
         }
 
@@ -740,7 +778,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3(){};
+        TProjection3() {};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);

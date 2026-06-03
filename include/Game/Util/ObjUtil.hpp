@@ -19,7 +19,7 @@ class StageSwitchCtrl;
 
 namespace MR {
     class FunctorBase;
-};
+};  // namespace MR
 
 namespace MR {
     bool isJudgedToClipFrustum(const TVec3f&, f32);

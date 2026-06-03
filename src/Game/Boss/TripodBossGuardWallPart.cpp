@@ -87,7 +87,7 @@ bool TripodBossGuardWallPart::isEndDemo() const {
 
 void TripodBossGuardWallPart::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_TRIPOD_C_COVER_BREAK", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_C_COVER_BREAK");
         MR::invalidateCollisionParts(this);
     }
 
@@ -110,7 +110,7 @@ void TripodBossGuardWallPart::exeRepair() {
     }
 
     if (MR::isStep(this, 38)) {
-        MR::startSound(this, "SE_BM_TRIPOD_WALL_UP_STOP", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_WALL_UP_STOP");
     }
 
     if (MR::isBckStopped(this)) {

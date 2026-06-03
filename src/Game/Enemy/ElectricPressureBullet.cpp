@@ -12,7 +12,7 @@
 
 namespace NrvElectricPressureBullet {
     NEW_NERVE(ElectricPressureBulletNrvFly, ElectricPressureBullet, Fly);
-};
+};  // namespace NrvElectricPressureBullet
 
 ElectricPressureBullet::ElectricPressureBullet(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f), _98(nullptr), _9C(0.0f) {}
 
@@ -32,7 +32,7 @@ void ElectricPressureBullet::init(const JMapInfoIter& rIter) {
 
 void ElectricPressureBullet::kill() {
     MR::emitEffect(this, "Break");
-    MR::startSound(this, "SE_EM_ELECBUBLLET_BREAK", -1, -1);
+    MR::startSound(this, "SE_EM_ELECBUBLLET_BREAK");
     LiveActor::kill();
 }
 
@@ -60,7 +60,7 @@ void ElectricPressureBullet::exeFly() {
     if (MR::isBckOneTimeAndStopped(this)) {
         MR::startBck(this, "Move", nullptr);
     }
-    MR::startLevelSound(this, "SE_EM_LV_ELECBUBLLET_FLY", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_ELECBUBLLET_FLY");
     if (MR::isGreaterEqualStep(this, 10)) {
         if (MR::isLessStep(this, 150)) {
             s32 v2 = getNerveStep();

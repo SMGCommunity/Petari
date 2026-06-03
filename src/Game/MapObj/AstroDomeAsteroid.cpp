@@ -3,7 +3,7 @@
 
 namespace NrvAstroDomeAsteroid {
     NEW_NERVE(AstroDomeAsteroidNrvWait, AstroDomeAsteroid, Wait);
-};
+};  // namespace NrvAstroDomeAsteroid
 
 AstroDomeAsteroid::AstroDomeAsteroid(const char* pName) : LiveActor(pName) {
     mRotationMtx.identity();

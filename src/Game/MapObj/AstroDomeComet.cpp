@@ -9,7 +9,7 @@
 
 namespace {
     static const char* cCometBrkName[] = {"Red", "Blue", "White", "Yellow", "Purple"};
-};
+};  // namespace
 
 namespace NrvAstroDomeComet {
     NEW_NERVE(AstroDomeCometNrvSelect, AstroDomeComet, Select);

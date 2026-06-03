@@ -19,7 +19,7 @@ namespace {
             executor->mTalkAnimCtrls[i]->_38 = interpole;
         }
     }
-}
+};  // namespace
 
 DemoActionInfo::DemoActionInfo() {
     mPartName = nullptr;

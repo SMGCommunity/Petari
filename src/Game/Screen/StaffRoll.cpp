@@ -111,9 +111,10 @@ namespace {
 
 namespace NrvStaffRollLine {
     NEW_NERVE(StaffRollLineNrvScroll, StaffRollLine, Scroll);
-};
+};  // namespace NrvStaffRollLine
 
-StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName, true), mPosition(0.0f, 0.0f) {}
+StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName, true), mPosition(0.0f, 0.0f) {
+}
 
 void StaffRollLine::init(const JMapInfoIter& rIter) {
     initLayoutManager("StaffRoll", 1);
@@ -143,9 +144,10 @@ void StaffRollLine::exeScroll() {
 
 namespace NrvStaffRollPicture {
     NEW_NERVE(StaffRollPictureNrvWork, StaffRollPicture, Work);
-};
+};  // namespace NrvStaffRollPicture
 
-StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture(nullptr) {}
+StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture(nullptr) {
+}
 
 void StaffRollPicture::init(const JMapInfoIter& rIter) {
     initLayoutManager("StaffRollPicture", 1);
@@ -160,7 +162,7 @@ void StaffRollPicture::init(const JMapInfoIter& rIter) {
 }
 
 void StaffRollPicture::exeWork() {
-    for (s32 i = 0; i < sizeof(sPictureTimingTable) / sizeof(*sPictureTimingTable); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(sPictureTimingTable); i++) {
         const PictureTiming* pPictureTiming = &sPictureTimingTable[i];
 
         if (MR::isStep(this, pPictureTiming->mAppearStep)) {
@@ -242,7 +244,8 @@ namespace NrvStaffRoll {
 
 StaffRoll::StaffRoll(const char* pName)
     : LayoutActor(pName, true), mInfo(nullptr), mLine(nullptr), mPicture(nullptr), mMsg(nullptr), mMsgLineNum(0), mMsgLine(0),
-      mTitleLogoPos(0.0f, 0.0f), mEndLogoPos(0.0f, 0.0f), _48(-1), _4C(0) {}
+      mTitleLogoPos(0.0f, 0.0f), mEndLogoPos(0.0f, 0.0f), _48(-1), _4C(0) {
+}
 
 void StaffRoll::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -313,7 +316,7 @@ bool StaffRoll::isNextLineEmpty() const {
     }
 
     wchar_t message[256];
-    MR::getMessageLine(message, sizeof(message) / sizeof(*message), mMsg, mMsgLine);
+    MR::getMessageLine(message, ARRAY_SIZE(message), mMsg, mMsgLine);
 
     return message[0] == '\0';
 }
@@ -368,8 +371,8 @@ void StaffRoll::exeTitleLogoScroll() {
 
 /*
 void StaffRoll::exeLineScroll() {
-    float v1 = MR::mod(MR::getScreenHeight() - 220.0f, ::getStaffRollParam()->mScrollSpeed);
-    float v2 = 14211 - (v1 == 0.0f) + (MR::getScreenHeight() - 220.0f) / ::getStaffRollParam()->mScrollSpeed;
+    f32 v1 = MR::mod(MR::getScreenHeight() - 220.0f, ::getStaffRollParam()->mScrollSpeed);
+    f32 v2 = 14211 - (v1 == 0.0f) + (MR::getScreenHeight() - 220.0f) / ::getStaffRollParam()->mScrollSpeed;
 
     if (v2 > _4C) {
         return;
@@ -404,9 +407,9 @@ void StaffRoll::exeAllRights() {
 
     if (MR::isStep(this, sStepToThankYouVoice)) {
         if (MR::isPlayerLuigi()) {
-            MR::startSystemSE("SE_SY_THANK_YOU_LUIGI", -1, -1);
+            MR::startSystemSE("SE_SY_THANK_YOU_LUIGI");
         } else {
-            MR::startSystemSE("SE_SY_E3_THANK_YOU", -1, -1);
+            MR::startSystemSE("SE_SY_E3_THANK_YOU");
         }
     }
 
@@ -443,7 +446,7 @@ void StaffRoll::exeInfoAppear() {
         MR::startSubBGM("BGM_NEW_GALAXY", false);
 
         if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance) && !MR::isPlayerLuigi()) {
-            MR::startSystemSE("SE_SY_LUIGI_MODE_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_LUIGI_MODE_APPEAR");
         }
 
         mInfo->setMessage(pMessageId);
@@ -455,7 +458,7 @@ void StaffRoll::exeInfoAppear() {
         return;
     }
 
-    MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+    MR::startSystemSE("SE_SY_TALK_OK");
 
     if (isNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookAppear::sInstance)) {
         setNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookDisappear::sInstance);
@@ -516,7 +519,8 @@ void StaffRoll::exeSave() {
     setNerve(&NrvStaffRoll::StaffRollNrvEnd::sInstance);
 }
 
-void StaffRoll::exeEnd() {}
+void StaffRoll::exeEnd() {
+}
 
 void StaffRoll::movement() {
     if (!MR::isExecuteCalcAnimLayout(this)) {

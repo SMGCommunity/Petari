@@ -2,19 +2,16 @@
 
 namespace {
     static f32 cRadius = 50.0f;
-};
+};  // namespace
 
-CollisionBlocker::CollisionBlocker(const char* pName) : LiveActor(pName) {}
+CollisionBlocker::CollisionBlocker(const char* pName) : LiveActor(pName) {
+}
 
 void CollisionBlocker::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initHitSensor(1);
 
-    TVec3f sensor_radius;
-    sensor_radius.x = 0.0f;
-    sensor_radius.y = 0.0f;
-    sensor_radius.z = 0.0f;
-    MR::addHitSensorEye(this, "eye", 4, 50.0f * mScale.y, sensor_radius);
+    MR::addHitSensorEye(this, "eye", 4, ::cRadius * mScale.y, TVec3f(0.0f, 0.0f, 0.0f));
     MR::connectToSceneMapObjMovement(this);
     MR::setClippingFar50m(this);
     makeActorAppeared();
@@ -28,9 +25,7 @@ void CollisionBlocker::init(const JMapInfoIter& rIter) {
         }
 
         if (MR::useStageSwitchReadB(this, rIter)) {
-            MR::FunctorV0M< CollisionBlocker*, void (CollisionBlocker::*)() > breakFunc =
-                MR::Functor< CollisionBlocker >(this, &CollisionBlocker::forceBreak);
-            MR::listenStageSwitchOnB(this, breakFunc);
+            MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &CollisionBlocker::forceBreak));
         }
     }
 }
@@ -45,4 +40,5 @@ void CollisionBlocker::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-CollisionBlocker::~CollisionBlocker() {}
+CollisionBlocker::~CollisionBlocker() {
+}

@@ -12,7 +12,7 @@ namespace {
     u32 getLuigiEventState() {
         return GameDataFunction::getGameEventValue("LuigiEventState") & 0xFFFF;
     }
-}  // namespace
+};  // namespace
 
 FindingLuigiEventScheduler::FindingLuigiEventScheduler() : mLuigiLostStageName(nullptr), mLuigiLostStarID(-1), mLuigiMailDirector(nullptr) {
 }

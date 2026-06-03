@@ -9,7 +9,7 @@
 
 namespace NrvRosettaDemoEpilogue {
     NEW_NERVE(RosettaDemoEpilogueNrvDemo, RosettaDemoEpilogue, Demo);
-};
+};  // namespace NrvRosettaDemoEpilogue
 
 RosettaDemoEpilogue::RosettaDemoEpilogue(Rosetta* pRosetta, const JMapInfoIter& rIter) :
     NerveExecutor("ロゼッタデモ実行者"),
@@ -38,7 +38,7 @@ void RosettaDemoEpilogue::exeDemo() {
     }
 
     if (!mIsFadeOut) {
-        MR::startAtmosphereLevelSE("SE_DM_LV_EPILOGUE_BABY_CRY", -1, -1);
+        MR::startAtmosphereLevelSE("SE_DM_LV_EPILOGUE_BABY_CRY");
     }
 
     if (MR::isDemoLastStep()) {

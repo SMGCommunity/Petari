@@ -101,7 +101,7 @@ void SkeletalFishBaby::appear() {
 
 void SkeletalFishBaby::kill() {
     LiveActor::kill();
-    MR::startSound(this, "SE_EM_EXPLODE_UNDER_WATER", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_UNDER_WATER");
 
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
@@ -115,7 +115,7 @@ void SkeletalFishBaby::control() {
     mScaleController->updateNerve();
 
     if (isNerve(&::SkeletalFishBabyNrvSwim::sInstance)) {
-        MR::startLevelSound(this, "SE_EM_LV_SNAKEFISH_SWIM", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_SNAKEFISH_SWIM");
     }
 }
 
@@ -204,8 +204,8 @@ void SkeletalFishBaby::endBind() {
 void SkeletalFishBaby::exeBreak() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Death", nullptr);
-        MR::startSound(this, "SE_EM_EXPLODE_UNDER_WATER", -1, -1);
-        MR::startSound(this, "SE_EV_SNAKEHEAD_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_UNDER_WATER");
+        MR::startSound(this, "SE_EV_SNAKEHEAD_DAMAGE");
         MR::invalidateClipping(this);
     }
 
@@ -219,7 +219,7 @@ void SkeletalFishBaby::exeDead() {
         TVec3f jointPos;
         MR::copyJointPos(this, "Center", &jointPos);
         MR::appearStarPiece(this, jointPos, 10, 10.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F");
         kill();
     }
 }

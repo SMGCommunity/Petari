@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Game/Demo/DemoCastGroup.hpp"
 #include "Game/NameObj/NameObjGroup.hpp"
-#include "Game/Util.hpp"
+
+class DemoCastGroup;
+class JMapIdInfo;
+class LiveActor;
 
 class DemoCastGroupHolder : public NameObjGroup {
 public:

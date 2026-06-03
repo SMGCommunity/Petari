@@ -28,4 +28,6 @@ s32 VFipdm_part_release_permission(PDM_PARTITION* p_part, u32 mode);
 s32 VFipdm_part_open_partition(PDM_DISK* p_disk, u16 part_id, PDM_PARTITION** pp_part);
 s32 VFipdm_part_close_partition(PDM_PARTITION* p_part);
 
+void VFipdm_part_set_driver_error_code(PDM_PARTITION* p_part, s32 error_code);
+
 #endif  // PDM_PARTITION_H

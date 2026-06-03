@@ -1,8 +1,31 @@
 #pragma once
 
-#include <revolution.h>
+#include <JSystem/JAudio2/JASCallback.hpp>
+
+typedef s32 (*DriverCallback)(void*);
 
 namespace JASDriver {
-    typedef s32 (*SubFrameCallback)(void*);
-    bool registerSubFrameCallback(SubFrameCallback, void*);
-}  // namespace JASDriver
+    void setDSPLevel(f32);
+    u16 getChannelLevel_dsp();
+    f32 getChannelLevel();
+    f32 getDSPLevel();
+    void setOutputMode(u32);
+    u32 getOutputMode();
+    void waitSubFrame();
+    int rejectCallback(DriverCallback, void*);
+    bool registerDspSyncCallback(DriverCallback, void*);
+    bool registerSubFrameCallback(DriverCallback, void*);
+    void subframeCallback();
+    void DSPSyncCallback();
+    void updateDacCallback();
+
+    extern JASCallbackMgr sDspSyncCallback;
+    extern JASCallbackMgr sSubFrameCallback;
+    extern JASCallbackMgr sUpdateDacCallback;
+    extern u16 MAX_MIXERLEVEL;
+    extern u32 JAS_SYSTEM_OUTPUT_MODE;
+};  // namespace JASDriver
+
+inline void JAISetOutputMode(u32 mode) {
+    JASDriver::setOutputMode(mode);
+}

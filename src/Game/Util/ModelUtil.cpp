@@ -17,7 +17,7 @@ namespace {
         u8 useLightChan = (channelID >> 2 & 0xF | channelID >> 7 & 0xF0);
         return useLightChan & (1 << index);
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     u32 getMaterialNo(J3DModelData* pModelData, const char* pMaterialName) {

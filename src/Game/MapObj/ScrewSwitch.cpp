@@ -22,7 +22,7 @@ namespace NrvScrewSwitch {
     NEW_NERVE(ScrewSwitchNrvAdjust, ScrewSwitch, Adjust);
     NEW_NERVE(ScrewSwitchNrvScrew, ScrewSwitch, Screw);
     NEW_NERVE(ScrewSwitchNrvEnd, ScrewSwitch, End);
-}  // namespace NrvScrewSwitch
+};  // namespace NrvScrewSwitch
 
 ScrewSwitch::ScrewSwitch(const char* pName) : LiveActor(pName) {
     mCollisionParts = nullptr;
@@ -79,10 +79,10 @@ void ScrewSwitch::exeScrew() {
         MR::startBckPlayer("ScrewSwitchOn", (const char*)0);
     }
     if (MR::isLessStep(this, 30)) {
-        MR::startLevelSound(this, "SE_OJ_LV_SCREW_SWITCH_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_SCREW_SWITCH_MOVE");
     }
     if (MR::isStep(this, 30)) {
-        MR::startSound(this, "SE_OJ_SCREW_SWITCH_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_SCREW_SWITCH_ON");
         MR::tryRumblePadVeryStrong(this, 0);
         MR::shakeCameraNormal();
     }
@@ -118,8 +118,8 @@ void ScrewSwitch::control() {
 bool ScrewSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgRushBegin(msg) && MR::isSensorPlayer(pSender) && MR::isOnPlayer(getSensor("binder"))) {
         _90 = pSender->mHost;
-        MR::startSound(_90, "SE_PV_TWIST_START", -1, -1);
-        MR::startSound(_90, "SE_PM_SPIN_ATTACK", -1, -1);
+        MR::startSound(_90, "SE_PV_TWIST_START");
+        MR::startSound(_90, "SE_PM_SPIN_ATTACK");
         setNerve(&NrvScrewSwitch::ScrewSwitchNrvAdjust::sInstance);
         return true;
     }

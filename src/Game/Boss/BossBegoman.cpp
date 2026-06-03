@@ -4,6 +4,16 @@
 #include "Game/MapObj/ElectricRailHolder.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
+    const MR::ActorMoveParam hSignAttackParam = {0.0f, 3.0f, 0.8f, 3.0f};
+    const MR::ActorMoveParam hPursueParam = {1.3f, 3.0f, 0.97f, 3.0f};
+    const MR::ActorMoveParam hTurnParam = {0.4f, 3.0f, 0.95f, 0.0f};
+    const MR::ActorMoveParam hHitReactionParam = {0.0f, 3.0f, 0.95f, 0.0f};
+    const MR::ActorMoveParam hOnWeakParam = {-0.5f, 3.0f, 0.95f, 3.0f};
+    const MR::ActorMoveParam hOnWeakNoMoveParam = {0.0f, 3.0f, 0.95f, 3.0f};
+};  // namespace
+
 namespace NrvBossBegoman {
     NEW_NERVE_ONEND(HostTypeNrvPreDemoWait, BossBegoman, PreDemoWait, PreDemoWait);
     NEW_NERVE(HostTypeNrvFirstContactDemo, BossBegoman, FirstContactDemo);
@@ -28,17 +38,7 @@ namespace NrvBossBegoman {
     NEW_NERVE(HostTypeNrvElectricReturn, BossBegoman, ElectricReturn);
     NEW_NERVE(HostTypeNrvJumpToInitPos, BossBegoman, JumpToInitPos);
     NEW_NERVE(HostTypeNrvKeepDistance, BossBegoman, KeepDistance);
-}  // namespace NrvBossBegoman
-
-namespace {
-    const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
-    const MR::ActorMoveParam hSignAttackParam = {0.0f, 3.0f, 0.8f, 3.0f};
-    const MR::ActorMoveParam hPursueParam = {1.3f, 3.0f, 0.97f, 3.0f};
-    const MR::ActorMoveParam hTurnParam = {0.4f, 3.0f, 0.95f, 0.0f};
-    const MR::ActorMoveParam hHitReactionParam = {0.0f, 3.0f, 0.95f, 0.0f};
-    const MR::ActorMoveParam hOnWeakParam = {-0.5f, 3.0f, 0.95f, 3.0f};
-    const MR::ActorMoveParam hOnWeakNoMoveParam = {0.0f, 3.0f, 0.95f, 3.0f};
-}  // namespace
+};  // namespace NrvBossBegoman
 
 BossBegoman::BossBegoman(const char* pName)
     : BegomanBase(pName), mBabyFollowers(nullptr), mSpikeFollowers(nullptr), mBabyFollowerNum(0), mSpikeFollowerNum(0), mFollowerKind(FollowerKind_BothFollower),
@@ -253,7 +253,7 @@ void BossBegoman::exePreDemoWait() {
         MR::startAction(this, "PreDemoWait");
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_BBEGO_PRE_DEMO_FLY", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_BBEGO_PRE_DEMO_FLY");
     exeNoCalcWaitCore(0.005f, nullptr);
 }
 
@@ -282,7 +282,7 @@ void BossBegoman::exeFirstContactDemo() {
 }
 void BossBegoman::exeReady() {
     if (MR::isFirstStep(this)) {
-        MR::startBossBGM(0);
+        MR::startBossBGM(MR::BossBgmID_Begoman);
         mVelocity.zero();
     }
 
@@ -316,7 +316,7 @@ void BossBegoman::exeWait() {
 void BossBegoman::exeSignAttack() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Attack");
-        MR::startSound(this, "SE_BM_BBEGO_PRE_PURSUE", -1, -1);
+        MR::startSound(this, "SE_BM_BBEGO_PRE_PURSUE");
     }
 
     updateRotateY(0.5f, 0.005f);
@@ -325,7 +325,7 @@ void BossBegoman::exeSignAttack() {
 
 void BossBegoman::exePursue() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_BBEGO_PURSUE_START", -1, -1);
+        MR::startSound(this, "SE_BM_BBEGO_PURSUE_START");
     }
 
     updateRotateY(0.5f, 0.005f);
@@ -342,7 +342,7 @@ void BossBegoman::exeTurn() {
     }
 
     updateRotateY(0.4f, 0.005f);
-    MR::startLevelSound(this, "SE_BM_LV_BBEGO_TURN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_BBEGO_TURN");
     exeTurnCore(::hTurnParam, &NrvBossBegoman::HostTypeNrvBrake::sInstance, &NrvBossBegoman::HostTypeNrvPursue::sInstance, false);
 }
 
@@ -381,9 +381,9 @@ void BossBegoman::exeOnWeak() {
         }
 
         if (MR::isGreaterEqualStep(this, 360)) {
-            MR::startLevelSound(this, "SE_BM_LV_BBEGO_ALARM_FAST", -1, -1, -1);
+            MR::startLevelSound(this, "SE_BM_LV_BBEGO_ALARM_FAST");
         } else if (MR::isGreaterEqualStep(this, 240)) {
-            MR::startLevelSound(this, "SE_BM_LV_BBEGO_ALARM", -1, -1, -1);
+            MR::startLevelSound(this, "SE_BM_LV_BBEGO_ALARM");
         }
     }
 }
@@ -394,7 +394,7 @@ void BossBegoman::endOnWeak() {
 
 void BossBegoman::exeBrake() {
     updateRotateY(0.2f, 0.005f);
-    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK");
     exeBrakeCore(&NrvBossBegoman::HostTypeNrvTurn::sInstance);
 }
 
@@ -432,11 +432,11 @@ void BossBegoman::exeTrampleReaction() {
 
         if (!mHead->isSwitchOn()) {
             MR::startAction(this, "TrampleReaction");
-            MR::startSound(this, "SE_BM_BBEGO_NEEDLE_ON", -1, -1);
+            MR::startSound(this, "SE_BM_BBEGO_NEEDLE_ON");
         } else {
             MR::startAction(this, "HopEnd");
-            MR::startSound(this, "SE_BM_BBEGO_STOMPED", -1, -1);
-            MR::startSound(this, "SE_BM_BBEGO_NEEDLE_OFF", -1, -1);
+            MR::startSound(this, "SE_BM_BBEGO_STOMPED");
+            MR::startSound(this, "SE_BM_BBEGO_NEEDLE_OFF");
         }
     }
     updateRotateY(0.25f, 0.005f);
@@ -473,12 +473,12 @@ void BossBegoman::exeHitReaction() {
 
 void BossBegoman::exeBlow() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_EM_BEGOMAN_ROT_STOP", -1, -1);
+        MR::startSound(this, "SE_EM_BEGOMAN_ROT_STOP");
         MR::startAction(this, "Damage");
         MR::stopScene(2);
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK");
 
     MR::moveAndTurnToDirection(this, &mFaceVec, mTargetVec, ::hHitReactionParam._0, ::hHitReactionParam._4, ::hHitReactionParam._8,
                                ::hHitReactionParam._C);
@@ -502,7 +502,7 @@ void BossBegoman::exeElectricDeath() {
         mVelocity.zero();
 
         getSensor("body")->invalidate();
-        MR::startSound(this, "SE_EM_BEGOMAN_ELEC_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EM_BEGOMAN_ELEC_DAMAGE");
         MR::invalidateClipping(this);
         mHealth--;
     }
@@ -517,10 +517,10 @@ void BossBegoman::exeElectricDeath() {
 
         if (mHealth == 2) {
             MR::appearStarPieceToDirection(this, mPosition.subOperatorInLine(mGravity.scaleInline(200.0f)), vec, 8, 20.0f, 40.0f, false);
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         } else if (mHealth == 1) {
             MR::appearStarPieceToDirection(this, mPosition.subOperatorInLine(mGravity.scaleInline(200.0f)), vec, 16, 20.0f, 40.0f, false);
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
     }
 
@@ -529,7 +529,7 @@ void BossBegoman::exeElectricDeath() {
         MR::shakeCameraWeak();
         
         if (mHealth == 0) {
-            MR::startSound(this, "SE_BM_BBEGO_DEAD", -1, -1);
+            MR::startSound(this, "SE_BM_BBEGO_DEAD");
             kill();
             MR::emitEffect(this, "Death");
         } else {
@@ -551,7 +551,7 @@ void BossBegoman::edgeRecoverCore() {
     }
 
     if (MR::isStep(this, 55)) {
-        MR::startSound(this, "SE_BM_BBEGO_NEEDLE_ON", -1, -1);
+        MR::startSound(this, "SE_BM_BBEGO_NEEDLE_ON");
         mHead->tryForceRecover();
         MR::tryRumblePadAndCameraDistanceMiddle(this, 800.0f, 1200.0f, 2000.0f);
     }
@@ -592,7 +592,7 @@ void BossBegoman::exeElectricReturn() {
 void BossBegoman::exeJumpToInitPos() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Shake");
-        MR::startSound(this, "SE_BM_BBEGO_BIG_JUMP", -1, -1);
+        MR::startSound(this, "SE_BM_BBEGO_BIG_JUMP");
         // vec1 goes completely unused
         TVec3f vec1(mInitPos);
         vec1.sub(mPosition);
@@ -611,7 +611,7 @@ void BossBegoman::exeJumpToInitPos() {
     if (MR::isGreaterStep(this, 60)) {
         setNerve(&NrvBossBegoman::HostTypeNrvSignAttack::sInstance);
         tryLaunchFollower();
-        MR::startSound(this, "SE_BM_BBEGO_NEEDLE_ON", -1, -1);
+        MR::startSound(this, "SE_BM_BBEGO_NEEDLE_ON");
         mHead->tryForceRecover();
         MR::tryRumblePadAndCameraDistanceMiddle(this, 800.0f, 1200.0f, 2000.0f);
     }
@@ -729,7 +729,7 @@ void BossBegoman::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             mVelocity.add(dirReceiverToSender.scaleInline(2.0f));
 
             if (rebounded) {
-                MR::startSound(this, "SE_EM_BEGOMAN_COLLI", -1, -1);
+                MR::startSound(this, "SE_EM_BEGOMAN_COLLI");
             }
         }
 
@@ -778,7 +778,7 @@ bool BossBegoman::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
         MR::addVelocityLimit(this, vec2.scaleInline(6.0f).scaleInline(pSender->mRadius / getSensor("body")->mRadius));
         
         if (rebounded) {
-            MR::startSound(this, "SE_EM_BEGOMAN_COLLI_BEGOMAN", -1, -1);
+            MR::startSound(this, "SE_EM_BEGOMAN_COLLI_BEGOMAN");
         }
         return true;
     }
@@ -901,18 +901,18 @@ void BossBegoman::calcAnim() {
 }
 void BossBegoman::startRotationLevelSound() {
     if (isNerve(&NrvBossBegoman::HostTypeNrvWait::sInstance)) {
-        MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_SLOW", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_SLOW");
     } else if (isNerve(&NrvBossBegoman::HostTypeNrvPursue::sInstance)) {
-        MR::startLevelSound(this, "SE_BM_LV_BBEGO_PURSUE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_BBEGO_PURSUE");
     } else if (isNerve(&NrvBossBegoman::HostTypeNrvTrampleReaction::sInstance) || isNerve(&NrvBossBegoman::HostTypeNrvOnWeak::sInstance)) {
-        MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_WEAK", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_WEAK");
     } else {
-        MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_MIDDLE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_MIDDLE");
     }
     
     if (!mHead->isSwitchOn()) {
         f32 f1 = mVelocity.length();
         f1 *= f1;
-        MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_NEEDLE", MR::getLinerValueFromMinMax(f1, 0.0f, 121.0f, 70.0f, 100.0f), -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_NEEDLE", MR::getLinerValueFromMinMax(f1, 0.0f, 121.0f, 70.0f, 100.0f));
     }
 }

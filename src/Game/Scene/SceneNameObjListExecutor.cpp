@@ -746,7 +746,7 @@ namespace {
             1,
         },
         {
-            MR::DrawType_DrawType_BigBubble,
+            MR::DrawType_BigBubble,
             1,
         },
         {
@@ -882,20 +882,18 @@ namespace {
 };  // namespace
 
 void SceneNameObjListExecutor::initMovementList() {
-    mMovementList = new NameObjCategoryList(sizeof(cMovementListInitTable) / sizeof(*cMovementListInitTable) - 1, cMovementListInitTable,
-                                            &NameObj::executeMovement, sVar, "");
+    mMovementList = new NameObjCategoryList(ARRAY_SIZE(cMovementListInitTable) - 1, cMovementListInitTable, &NameObj::executeMovement, sVar, "");
 }
 
 void SceneNameObjListExecutor::initCalcAnimList() {
-    mCalcAnimList = new NameObjCategoryList(sizeof(cCalcAnimListInitTable) / sizeof(*cCalcAnimListInitTable) - 1, cCalcAnimListInitTable,
-                                            &NameObj::calcAnim, sVar, "");
+    mCalcAnimList = new NameObjCategoryList(ARRAY_SIZE(cCalcAnimListInitTable) - 1, cCalcAnimListInitTable, &NameObj::calcAnim, sVar, "");
 }
 
 void SceneNameObjListExecutor::initCalcViewAndEntryList() {
     mBufferHolder = new DrawBufferHolder();
-    mBufferHolder->initTable(cDrawBufferListInitTable, sizeof(cDrawBufferListInitTable) / sizeof(*cDrawBufferListInitTable) - 1);
+    mBufferHolder->initTable(cDrawBufferListInitTable, ARRAY_SIZE(cDrawBufferListInitTable) - 1);
 }
 
 void SceneNameObjListExecutor::initDrawList() {
-    mDrawList = new NameObjCategoryList(sizeof(cDrawListInitTable) / sizeof(*cDrawListInitTable) - 1, cDrawListInitTable, &NameObj::draw, sVar, "");
+    mDrawList = new NameObjCategoryList(ARRAY_SIZE(cDrawListInitTable) - 1, cDrawListInitTable, &NameObj::draw, sVar, "");
 }

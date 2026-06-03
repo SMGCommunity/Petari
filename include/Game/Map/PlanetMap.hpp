@@ -18,7 +18,7 @@ public:
     virtual void startClipped();
     virtual void endClipped();
     virtual void control();
-    virtual float getFarClipDistance() const;
+    virtual f32 getFarClipDistance() const;
     virtual s32 getLowMovementType() const;
 
     void initClipping(const JMapInfoIter&);

@@ -119,10 +119,10 @@ void SwitchBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
     _8e = 30;
 
     if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-        MR::startSound(this, "SE_OJ_S_BLOCK_BREAK_W", -1, -1);
+        MR::startSound(this, "SE_OJ_S_BLOCK_BREAK_W");
         MR::emitEffect(this, "BreakWater");
     } else {
-        MR::startSound(this, "SE_OJ_S_BLOCK_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_S_BLOCK_BREAK");
         MR::emitEffect(this, "Break");
     }
 }

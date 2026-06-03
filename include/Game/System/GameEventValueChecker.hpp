@@ -17,7 +17,7 @@ public:
     virtual s32 deserialize(const u8*, u32);
     virtual void initializeData();
 
-    u16 getValue(const char*) const;
+    u32 getValue(const char*) const;
     void setValue(const char*, u16);
 
     s32 findIndex(const char*) const;

@@ -15,7 +15,7 @@
 namespace NrvBossStinkBugOpeningDemo {
     NEW_NERVE(BossStinkBugOpeningDemoNrvTryStart, BossStinkBugOpeningDemo, TryStart);
     NEW_NERVE(BossStinkBugOpeningDemoNrvDemo, BossStinkBugOpeningDemo, Demo);
-}  // namespace NrvBossStinkBugOpeningDemo
+};  // namespace NrvBossStinkBugOpeningDemo
 
 BossStinkBugOpeningDemo::BossStinkBugOpeningDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter)
     : BossStinkBugActionBase("オープニングデモ", pStinkBug), mDemoPositionController(nullptr) {

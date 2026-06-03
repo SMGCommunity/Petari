@@ -12,7 +12,7 @@
 
 namespace {
     static TVec3f sShotMouthFireOffset = TVec3f(150.0f, 150.0f, 0.0f);
-};
+};  // namespace
 
 namespace NrvDinoPackunBattleVs2Lv1 {
     NEW_NERVE(DinoPackunBattleVs2Lv1NrvTurn, DinoPackunBattleVs2Lv1, Turn);
@@ -222,8 +222,8 @@ void DinoPackunBattleVs2Lv1::exeTurn() {
             MR::startAction(getHost(), "TurnLeft");
         }
 
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_WALK", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_WALK");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
 
     emitFireTail();
@@ -238,8 +238,8 @@ void DinoPackunBattleVs2Lv1::exeTurn() {
 void DinoPackunBattleVs2Lv1::exeFindCrazy() {
     if (MR::isFirstStep(this)) {
         MR::startAction(getHost(), "FindCrazy");
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
         mStateFire->requestFire();
     }
 
@@ -255,8 +255,8 @@ void DinoPackunBattleVs2Lv1::exeFindCrazy() {
 void DinoPackunBattleVs2Lv1::exeCrazy() {
     if (MR::isFirstStep(this)) {
         MR::startAction(getHost(), _39 ? "FireChase" : "Chase");
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
         mStateFire->requestFire();
     }
 
@@ -304,8 +304,8 @@ void DinoPackunBattleVs2Lv1::exeChase() {
     if (MR::isFirstStep(this)) {
         const char* action = (_39) ? "FireChase" : "Chase";
         MR::startAction(getHost(), action);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
         mStateFire->requestFire();
     }
 

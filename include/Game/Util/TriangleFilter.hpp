@@ -26,7 +26,7 @@ public:
 
 namespace MR {
     TriangleFilterFunc* createTriangleFilterFunc(TriangleFunc);
-};
+};  // namespace MR
 
 template < typename T >
 class TriangleFilterDelegator : public TriangleFilterBase {

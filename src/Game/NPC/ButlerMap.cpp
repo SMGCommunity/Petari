@@ -25,7 +25,7 @@
 
 namespace {
     const char* cDemoNameMapLecture = "バトラーマップレクチャー";
-};
+};  // namespace
 
 namespace NrvButlerMap {
     NEW_NERVE(ButlerMapNrvTalk, ButlerMap, Talk);
@@ -122,13 +122,13 @@ void ButlerMap::resetStatus() {
 
 void ButlerMap::control() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_BUTLER_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_BUTLER_TRAMPLED");
     }
 
     if (NPCActor::isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_BUTLER_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_BUTLER_POINT");
     }
     NPCActor::control();
 }

@@ -3,7 +3,7 @@
 #include "Game/GameAudio/AudStageBgmTable.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-ChangeBgmCube::ChangeBgmCube(int a1, const char* pName) : AreaObj(a1, pName) {
+ChangeBgmCube::ChangeBgmCube(int formType, const char* pName) : AreaObj(formType, pName) {
     _3C = 0;
 }
 

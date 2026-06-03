@@ -1,9 +1,9 @@
 #include "Game/MapObj/CutBushModelObj.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
-CutBushModelObj::CutBushModelObj(const char* pName, const char* pObjName, bool useLight, MtxPtr mtx) : LiveActor(pName) {
-    mMtx = mtx;
-    initModelManagerWithAnm(pObjName, nullptr, false);
+CutBushModelObj::CutBushModelObj(const char* pName, const char* pModelName, bool useLight, MtxPtr pMtx) : LiveActor(pName), mMtx(pMtx) {
+    initModelManagerWithAnm(pModelName, nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjWeakLightNoMovement(this);
 
     if (useLight) {
@@ -12,8 +12,8 @@ CutBushModelObj::CutBushModelObj(const char* pName, const char* pObjName, bool u
 
     initSound(8, false);
 
-    if (mMtx) {
-        mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+    if (mMtx != nullptr) {
+        mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     }
 }
 
@@ -28,12 +28,13 @@ void CutBushModelObj::initAfterPlacement() {
 }
 
 void CutBushModelObj::calcAndSetBaseMtx() {
-    if (mMtx) {
-        mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
+    if (mMtx != nullptr) {
+        mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
     } else {
         LiveActor::calcAndSetBaseMtx();
     }
 }
 
-CutBushModelObj::~CutBushModelObj() {}
+CutBushModelObj::~CutBushModelObj() {
+}

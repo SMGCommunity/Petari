@@ -39,9 +39,8 @@ void GeneralMapParts::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteDead(this, rIter);
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        void (GeneralMapParts::*switchOff)(void) = &GeneralMapParts::receiveMsgSwitchBOff;
-        void (GeneralMapParts::*switchOn)(void) = &GeneralMapParts::receiveMsgSwitchBOn;
-        MR::listenStageSwitchOnOffB(this, MR::Functor(this, switchOff), MR::Functor(this, switchOn));
+        MR::listenStageSwitchOnOffB(this, MR::Functor(this, &GeneralMapParts::receiveMsgSwitchBOn),
+                                    MR::Functor(this, &GeneralMapParts::receiveMsgSwitchBOff));
     }
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {

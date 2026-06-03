@@ -3,7 +3,7 @@
 #include "Game/Screen/PlayerActionGuidance.hpp"
 #include "Game/Util.hpp"
 
-SpinGuidanceArea::SpinGuidanceArea(int type, const char* pName) : AreaObj(type, pName) {}
+SpinGuidanceArea::SpinGuidanceArea(int formType, const char* pName) : AreaObj(formType, pName) {}
 
 SpinGuidanceArea::~SpinGuidanceArea() {}
 

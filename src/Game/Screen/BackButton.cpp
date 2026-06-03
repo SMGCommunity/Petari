@@ -48,12 +48,12 @@ void BackButton::init(const JMapInfoIter& rIter) {
 
 void BackButton::control() {
     if (mPaneCtrl->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
     }
 
     if (_25 && mPaneCtrl->trySelect()) {
         if (!_24) {
-            MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
+            MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         }
 
         _24 = true;

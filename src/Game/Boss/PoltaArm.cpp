@@ -22,7 +22,7 @@ namespace NrvPoltaArm {
     NEW_NERVE_ONEND(PoltaArmNrvRepair, PoltaArm, Repair, Repair);
     NEW_NERVE(PoltaArmNrvWaitDamageEnd, PoltaArm, WaitDamageEnd);
     NEW_NERVE(PoltaArmNrvWaitRepairEnd, PoltaArm, WaitRepairEnd);
-}  // namespace NrvPoltaArm
+};  // namespace NrvPoltaArm
 
 PoltaArm::PoltaArm(const char* pName, const char* pModelName, MtxPtr pMtx)
     : ModelObj(pName, pModelName, pMtx, 18, -2, -2, false), mFormationModel(nullptr), mBreakModel(nullptr), _C8(2), _CC(2), mBrokenCounter(0), _D4(0),
@@ -86,7 +86,7 @@ void PoltaArm::exeDamage() {
         f32 ratio = c8 / cc;
         f32 bvaFrame = (1.0f - ratio) * 2.0f;
         MR::setBvaFrameAndStop(this, bvaFrame);
-        MR::startSound(this, "SE_BM_POLTA_ROCK_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_BM_POLTA_ROCK_DAMAGE");
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(5);
@@ -102,7 +102,7 @@ void PoltaArm::exeDamage() {
 void PoltaArm::exeBreak() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Break");
-        MR::startSound(this, "SE_BM_POLTA_ROCK_BREAK", -1, -1);
+        MR::startSound(this, "SE_BM_POLTA_ROCK_BREAK");
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(5);

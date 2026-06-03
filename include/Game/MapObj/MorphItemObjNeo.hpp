@@ -8,7 +8,7 @@ class JMapInfoIter;
 
 class MorphItemObjNeo : public NameObj {
 public:
-    MorphItemObjNeo(const char*, long);
+    MorphItemObjNeo(const char*, s32);
     virtual ~MorphItemObjNeo();
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
     void exeWait();

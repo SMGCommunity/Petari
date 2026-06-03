@@ -58,7 +58,7 @@ namespace {
     static const f32 hEndAnimRate = 2.0f;
     static const s32 sBeginHideTime = 0;
     static const f32 sDegreeMin = 0.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvStarPointerLayout {
     NEW_NERVE(HostTypeNrvWait, StarPointerLayout, Wait);
@@ -73,7 +73,7 @@ namespace NrvStarPointerLayout {
     NEW_NERVE(HostTypeNrvHideImmediately, StarPointerLayout, Hide);
     NEW_NERVE_ONEND(HostTypeNrvInvalidate, StarPointerLayout, Hide, Hide);
     NEW_NERVE_ONEND(HostTypeNrvInvalidateWait, StarPointerLayout, Hide, Hide);
-}  // namespace NrvStarPointerLayout
+};  // namespace NrvStarPointerLayout
 
 StarPointerLayout::StarPointerLayout(const char* pName)
     : LayoutActor(pName, true), mPosition(0.0f, 0.0f), mPointerKind(StarPointerKind_NULL), mAnimType(AnimType_HandPaa), mTouchTimer(0),
@@ -191,7 +191,7 @@ void StarPointerLayout::exeWait() {
 void StarPointerLayout::exeGrip() {
     if (MR::isFirstStep(this)) {
         if (mPadChannel == WPAD_CHAN1 && isAppear()) {
-            MR::startSystemSE("SE_SY_DPD_B_TRIG", -1, -1);
+            MR::startSystemSE("SE_SY_DPD_B_TRIG");
         }
 
         if (mPointerKind == StarPointerKind_StarPointer) {
@@ -329,7 +329,7 @@ void StarPointerLayout::exeRelease() {
 
     if (MR::isFirstStep(this)) {
         if (mPadChannel == WPAD_CHAN1 && isAppear()) {
-            MR::startSystemSE("SE_SY_DPD_B_RELEASE", -1, -1);
+            MR::startSystemSE("SE_SY_DPD_B_RELEASE");
         }
 
         if (mPointerKind == StarPointerKind_StarPointer) {

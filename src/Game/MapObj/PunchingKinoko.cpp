@@ -47,8 +47,7 @@ void PunchingKinoko::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 
     if (MR::useStageSwitchReadB(this, rIter) != 0) {
-        MR::FunctorV0M< PunchingKinoko*, void (PunchingKinoko::*)() > functor = MR::Functor< PunchingKinoko >(this, &PunchingKinoko::kill);
-        MR::listenStageSwitchOnB(this, functor);
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &PunchingKinoko::kill));
     }
     MR::useStageSwitchSleep(this, rIter);
 }
@@ -236,7 +235,7 @@ bool PunchingKinoko::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSens
             mGroundChecker->mVelocity.add(stack_8);
         }
 
-        MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND", -1, -1);
+        MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND");
         return true;
     }
 
@@ -338,7 +337,7 @@ bool PunchingKinoko::requestEnemyBlow(HitSensor* pOtherSensor, HitSensor* pMySen
     TVec3f stack_8(stack_14);
     stack_8.scale(25.0f);
     mGroundChecker->mVelocity.add(stack_8);
-    MR::startSound(this, "SE_OJ_PNC_KINOKO_HIT_SELF", -1, -1);
+    MR::startSound(this, "SE_OJ_PNC_KINOKO_HIT_SELF");
     setNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance);
 
     return true;
@@ -428,7 +427,7 @@ void PunchingKinoko::exeSwing() {
 
     const f32 f0 = 20.0f;
     if (var2 < f0 && var3 >= f0) {
-        MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND", -1, -1);
+        MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND");
     }
 
     MR::vecBlend(_9C, mPosition, &_9C, 0.05f);
@@ -439,7 +438,7 @@ void PunchingKinoko::exeSwing() {
 }
 
 void PunchingKinoko::exePointSnaped() {
-    MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED");
     addVelocityKeepHeight();
     MR::attenuateVelocity(mGroundChecker, 0.99f);
     if (MR::isGreaterStep(this, 6)) {
@@ -451,7 +450,7 @@ void PunchingKinoko::exePunched() {
     if (MR::isFirstStep(this)) {
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED");
     addVelocityKeepHeight();
     MR::attenuateVelocity(mGroundChecker, 0.99f);
     HitSensor* sensor = getSensor("Head");
@@ -466,7 +465,7 @@ void PunchingKinoko::exePunched() {
 void PunchingKinoko::exePunchedBrake() {
     addVelocityKeepHeight();
     MR::attenuateVelocity(mGroundChecker, 0.9f);
-    MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_PNC_KINOKO_PUNCHED");
     _9C.set< f32 >(mGroundChecker->mPosition);
     if (!MR::isGreaterStep(this, 40)) {
         HitSensor* sensor = getSensor("Head");
@@ -474,13 +473,13 @@ void PunchingKinoko::exePunchedBrake() {
             return;
         }
     }
-    MR::startSound(this, "SE_OJ_PNC_KINOKO_RETURN", -1, -1);
+    MR::startSound(this, "SE_OJ_PNC_KINOKO_RETURN");
     setNerve(&NrvPunchingKinoko::PunchingKinokoNrvSwing::sInstance);
 }
 
 void PunchingKinoko::exeHitted() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_PNC_KINOKO_HIT_SELF", -1, -1);
+        MR::startSound(this, "SE_OJ_PNC_KINOKO_HIT_SELF");
     }
     addVelocityKeepHeight();
     MR::attenuateVelocity(mGroundChecker, 0.99f);
@@ -505,7 +504,7 @@ void PunchingKinoko::exeCrushed() {
 
         MR::offBind(mGroundChecker);
         mScaleController->startCrush();
-        MR::startSound(this, "SE_OJ_PNC_KINOKO_CRASH", -1, -1);
+        MR::startSound(this, "SE_OJ_PNC_KINOKO_CRASH");
     }
 
     MR::zeroVelocity(mGroundChecker);
@@ -522,7 +521,7 @@ void PunchingKinoko::exeCrushedEnd() {
     if (MR::isStep(this, 10)) {
         MR::startBrk(this, "Revival");
         mScaleController->startAnim();
-        MR::startSound(this, "SE_OJ_PNC_KINOKO_RECOVER", -1, -1);
+        MR::startSound(this, "SE_OJ_PNC_KINOKO_RECOVER");
     }
 
     TVec3f stack_20;
@@ -595,4 +594,5 @@ bool PunchingKinoko::isCrushed() const {
     return isNerve(&NrvPunchingKinoko::PunchingKinokoNrvCrushed::sInstance);
 }
 
-PunchingKinoko::~PunchingKinoko() {}
+PunchingKinoko::~PunchingKinoko() {
+}

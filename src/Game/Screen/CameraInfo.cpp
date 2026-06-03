@@ -7,7 +7,7 @@
 
 namespace {
     static const s32 sLifeTime = 120;
-};
+};  // namespace
 
 namespace NrvCameraInfo {
     NEW_NERVE(CameraInfoNrvHide, CameraInfo, Hide);

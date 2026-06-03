@@ -32,7 +32,7 @@ void TimeAppearObj::exeEnd() {
         }
 
         if (MR::isEqualString(mObjectName, "KoopaBattleMapStairTurn")) {
-            MR::startSound(this, "SE_OJ_KP_BTL_ST_TURN_APPEAR", -1, -1);
+            MR::startSound(this, "SE_OJ_KP_BTL_ST_TURN_APPEAR");
         }
 
         MR::showModel(this);

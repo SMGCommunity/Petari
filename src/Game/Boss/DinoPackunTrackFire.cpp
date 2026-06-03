@@ -63,7 +63,7 @@ bool DinoPackunTrackFire::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hi
 void DinoPackunTrackFire::appearAndSetPos(const TVec3f& rPos) {
     mPosition.set(rPos);
     MR::zeroVelocity(this);
-    MR::startSound(this, "SE_BM_D_PAKKUN_FIREBALL_S_ON", -1, -1);
+    MR::startSound(this, "SE_BM_D_PAKKUN_FIREBALL_S_ON");
     setNerve(&NrvDinoPackunFire::DinoPackunTrackFireNrvWait::sInstance);
     appear();
 }

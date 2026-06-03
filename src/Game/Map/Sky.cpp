@@ -2,14 +2,14 @@
 #include "Game/LiveActor/MirrorReflectionModel.hpp"
 #include "Game/Map/SpaceInner.hpp"
 
+namespace {
+    const char* cChangeAnimName = "Change";
+};  // namespace
+
 namespace NrvSky {
     NEW_NERVE(HostTypeWait, Sky, Wait);
     NEW_NERVE(HostTypeChange, Sky, Change);
 };  // namespace NrvSky
-
-namespace {
-    const char* cChangeAnimName = "Change";
-}
 
 Sky::Sky(const char* pSkyName) : LiveActor(pSkyName) {
     mSpaceInner = 0;

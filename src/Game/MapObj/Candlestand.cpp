@@ -21,7 +21,7 @@ struct Param {
 };
 
 namespace {
-    static Param sParams[] = {{
+    static const Param sParams[] = {{
                                   "PhantomCandlestand",
                                   500.0f,  // mClippingRadius
                                   50.0f,   // mSensorRange
@@ -48,12 +48,10 @@ namespace {
                                   true     // mCanUseSwitch
                               }};
 
-    Param* get(s32 idx) { return &sParams[idx]; }
-
-    Param* getParam(const char* pObjName) NO_INLINE {
-        for (s32 i = 0; i < 3; i++) {
-            if (MR::isEqualString(pObjName, get(i)->mObjName)) {
-                return get(i);
+    const Param* getParam(const char* pObjName) NO_INLINE {
+        for (u32 i = 0; i < ARRAY_SIZE(sParams); i++) {
+            if (MR::isEqualString(pObjName, sParams[i].mObjName)) {
+                return &sParams[i];
             }
         }
 
@@ -238,10 +236,10 @@ void Candlestand::exeWaitFire() {}
 void Candlestand::exeFire() {
     if (MR::isFirstStep(this)) {
         emitEffectFire();
-        MR::startSound(this, "SE_OJ_FIRE_STAND_IGNIT", -1, -1);
+        MR::startSound(this, "SE_OJ_FIRE_STAND_IGNIT");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
 
     if (MR::isStep(this, 60)) {
         if (MR::isValidSwitchA(this)) {
@@ -256,7 +254,7 @@ void Candlestand::exeExtinguish() {
     if (MR::isFirstStep(this)) {
         deleteEffectFire();
         emitEffectExtinguishFire();
-        MR::startSound(this, "SE_OJ_PHANTOM_TOACH_OFF", -1, -1);
+        MR::startSound(this, "SE_OJ_PHANTOM_TOACH_OFF");
     }
 
     if (MR::isStep(this, 15)) {
@@ -283,7 +281,7 @@ void Candlestand::exeFlicker() {
             MR::emitEffect(this, "Extinguish");
         }
 
-        MR::startSound(this, "SE_OJ_PHANTOM_TOACH_OFF", -1, -1);
+        MR::startSound(this, "SE_OJ_PHANTOM_TOACH_OFF");
     }
 
     if (MR::isStep(this, 30)) {
@@ -293,15 +291,15 @@ void Candlestand::exeFlicker() {
 }
 
 void Candlestand::exeAttack() {
-    if (MR::isStep(this, 0x1E)) {
+    if (MR::isStep(this, 30)) {
         setNerve(&NrvCandlestand::HostTypeBurn::sInstance);
     } else {
-        MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
     }
 }
 
 void Candlestand::exeBurn() {
-    MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
 }
 
 Candlestand::~Candlestand() {}

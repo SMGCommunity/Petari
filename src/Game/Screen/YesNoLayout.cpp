@@ -7,7 +7,7 @@
 
 namespace NrvYesNoLayout {
     NEW_NERVE(YesNoLayoutNrvSelecting, YesNoLayout, Selecting);
-};
+};  // namespace NrvYesNoLayout
 
 YesNoLayout::YesNoLayout() : SimpleLayout("Yes/Noレイアウト", "SelectButton", 1, 68), mController(nullptr), _24(false) {}
 

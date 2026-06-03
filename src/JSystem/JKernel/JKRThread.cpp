@@ -18,39 +18,39 @@ void JKRThread::TLoad::clear() {
 }
 
 JKRThread::~JKRThread() {
-    sThreadList.remove(&mDisposerList);
+    sThreadList.remove(&mThreadListLink);
 
-    if (_28) {
+    if (mHeap) {
         if (!OSIsThreadTerminated(mThread)) {
             OSDetachThread(mThread);
             OSCancelThread(mThread);
         }
 
-        JKRHeap::free(_58, _28);
-        JKRHeap::free(mThread, _28);
+        JKRHeap::free(mStackMemory, mHeap);
+        JKRHeap::free(mThread, mHeap);
     }
 
-    JKRHeap::free(mMessage, 0);
+    JKRHeap::free(mMesgBuffer, 0);
 }
 
 void JKRThread::setCommon_mesgQueue(JKRHeap* pHeap, int msgCount) {
-    mMsgCount = msgCount;
-    mMessage = reinterpret_cast< OSMessage* >(JKRHeap::alloc(mMsgCount * 4, 0, pHeap));
-    OSInitMessageQueue(&mQueue, mMessage, mMsgCount);
-    sThreadList.append(&mDisposerList);
-    _74 = 0;
-    _78 = 0;
+    mMessageCount = msgCount;
+    mMesgBuffer = reinterpret_cast< OSMessage* >(JKRHeap::alloc(mMessageCount * 4, 0, pHeap));
+    OSInitMessageQueue(&mMessageQueue, mMesgBuffer, mMessageCount);
+    sThreadList.append(&mThreadListLink);
+    mCurrentHeap = nullptr;
+    mCurrentHeapError = 0;
 }
 
 /*
 void JKRThread::setCommon_heapSpecified(JKRHeap *pHeap, u32 a2, int a3) {
-    _28 = pHeap;
+    mHeap = pHeap;
     _5C = (void*)(a3 & 0xFFFFFFE0);
-    _58 = JKRHeap::alloc(*(u32*)_5C, 32, pHeap);
-    OSThread* thread = reinterpret_cast<OSThread*>(JKRHeap::alloc(0x318, 0x20, _28));
-    mThread = thread;
+    mStackMemory = JKRHeap::alloc(*(u32*)_5C, 32, pHeap);
+    OSThread* thread = reinterpret_cast<OSThread*>(JKRHeap::alloc(0x318, 0x20, mHeap));
+    mThreadRecord = thread;
     OSCreateThread(thread, JKRThread::start, this, 0, 0, 0, 0);
-    //OSCreateThread(thread, JKRThread::start, this, (u8*)_5C + _58, _5C, a3, 1);
+    //OSCreateThread(thread, JKRThread::start, this, (u8*)_5C + mStackMemory, _5C, a3, 1);
 }
 */
 
@@ -83,7 +83,7 @@ JKRThread* JKRThreadSwitch::enter(JKRThread* pThread, int a2) {
         thread = foundThread;
     }
 
-    JKRThread::TLoad* inf = &thread->_60;
+    JKRThread::TLoad* inf = &thread->mLoadInfo;
 
     inf->clear();
     inf->_10 = a2;

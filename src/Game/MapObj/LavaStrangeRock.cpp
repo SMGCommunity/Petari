@@ -3,7 +3,7 @@
 
 namespace NrvLavaStrangeRock {
     NEW_NERVE(LavaStrangeRockNrvWait, LavaStrangeRock, Wait);
-}
+};  // namespace NrvLavaStrangeRock
 
 LavaStrangeRock::LavaStrangeRock(const char* pName) : LiveActor(pName), mRockType(3), _90(0), mLodCtrlPlanet(nullptr) {}
 
@@ -12,7 +12,7 @@ void LavaStrangeRock::init(const JMapInfoIter& rIter) {
     s32 v1 = -1;
     MR::getJMapInfoArg0NoInit(rIter, &v1);
 
-    if ((unsigned)v1 + 1 <= 1) {
+    if (v1 + 1 <= 1U) {
         _90 = 0;
     } else if (v1 == 1) {
         _90 = 1;
@@ -118,13 +118,13 @@ void LavaStrangeRock::exeWait() {
             return;
         }
         MR::emitEffect(this, "Break");
-        switch ((unsigned)mRockType) {  // the lack of breaks here is intentional
+        switch (mRockType) {  // the lack of breaks here is intentional
         case 0:
-            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_S", -1, -1);
+            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_S");
         case 1:
-            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_L", -1, -1);
+            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_L");
         case 2:
-            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_M", -1, -1);
+            MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_M");
         default:
             break;
         }

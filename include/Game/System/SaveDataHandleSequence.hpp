@@ -12,7 +12,7 @@ class UserFile;
 
 namespace MR {
     class FunctorBase;
-};
+};  // namespace MR
 
 class SaveDataHandleSequence : public NerveExecutor {
 public:

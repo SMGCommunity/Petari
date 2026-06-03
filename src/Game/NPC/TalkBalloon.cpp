@@ -22,14 +22,14 @@ namespace NrvTalkBalloonShort {
     NEW_NERVE(TalkBalloonShortNrvOpen, TalkBalloonShort, Open);
     NEW_NERVE(TalkBalloonShortNrvTalk, TalkBalloonShort, Talk);
     NEW_NERVE(TalkBalloonShortNrvClose, TalkBalloonShort, Close);
-}  // namespace NrvTalkBalloonShort
+};  // namespace NrvTalkBalloonShort
 
 namespace NrvTalkBalloonEvent {
     NEW_NERVE(TalkBalloonEventNrvWait, TalkBalloonEvent, Wait);
     NEW_NERVE(TalkBalloonEventNrvOpen, TalkBalloonEvent, Open);
     NEW_NERVE(TalkBalloonEventNrvTalk, TalkBalloonEvent, Talk);
     NEW_NERVE(TalkBalloonEventNrvClose, TalkBalloonEvent, Close);
-}  // namespace NrvTalkBalloonEvent
+};  // namespace NrvTalkBalloonEvent
 
 TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName, true), mMessageCtrl(nullptr), mTextFormer(nullptr), _28(false), _29(false) {}
 
@@ -265,7 +265,7 @@ void TalkBalloonEvent::close() {
     MR::startAnim(this, "End", 0);
 
     if (!TalkFunction::isSelectTalk(mMessageCtrl)) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
     }
 
     if (!MR::isDead(mAButton)) {
@@ -281,7 +281,7 @@ void TalkBalloonEvent::close() {
 bool TalkBalloonEvent::turnPage() {
     if (mTextFormer->nextPage()) {
         mTextFormer->setArg(mMessageCtrl->mTagArg, 0);
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         mAButton->term();
 
         return true;
@@ -313,7 +313,7 @@ void TalkBalloonEvent::exeOpen() {
         updateBeak();
         MR::showScreen(this);
         TalkBalloon::open(mMessageCtrl);
-        MR::startSystemSE("SE_SM_TALKBLN_OPEN", -1, -1);
+        MR::startSystemSE("SE_SM_TALKBLN_OPEN");
         MR::setSoundVolumeSetting(3, 30);
 
         if (!MR::isPlayingStageBgmName("STM_KINOPIO_TANKEN_B")) {
@@ -381,7 +381,7 @@ void TalkBalloonInfo::open(TalkMessageCtrl* pCtrl) {
 }
 
 void TalkBalloonInfo::close() {
-    MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+    MR::startSystemSE("SE_SY_TALK_OK");
     MR::disappearInformationMessage();
 }
 

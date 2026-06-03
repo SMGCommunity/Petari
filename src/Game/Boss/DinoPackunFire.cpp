@@ -72,7 +72,7 @@ void DinoPackunFire::appearShot(const TVec3f& rPos, const TVec3f& rVelocity) {
 
 void DinoPackunFire::exeShot() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_D_PAKKUN_FIREBALL_L_SHOOT", -1, -1);
+        MR::startSound(this, "SE_BM_D_PAKKUN_FIREBALL_L_SHOOT");
         MR::startAction(this, "Move");
     }
 
@@ -86,10 +86,10 @@ void DinoPackunFire::exeShot() {
         setNerve(&NrvDinoPackunFire::DinoPackunFireNrvGround::sInstance);
         MR::zeroVelocity(this);
     } else {
-        MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_FIREBALL_L", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_FIREBALL_L");
         MR::sendMsgEnemyAttackToBindedSensor(this, getSensor(nullptr));
         if (MR::isGreaterStep(this, 450)) {
-            MR::startSound(this, "SE_BM_D_PAKKUN_FIREBALL_L_END", -1, -1);
+            MR::startSound(this, "SE_BM_D_PAKKUN_FIREBALL_L_END");
             kill();
         }
     }
@@ -97,10 +97,10 @@ void DinoPackunFire::exeShot() {
 
 void DinoPackunFire::exeGround() {
     MR::zeroVelocity(this);
-    MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_FIREBALL_L", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_FIREBALL_L");
     MR::sendMsgEnemyAttackToBindedSensor(this, getSensor(nullptr));
     if (MR::isGreaterStep(this, 20)) {
-        MR::startSound(this, "SE_BM_D_PAKKUN_FIREBALL_L_END", -1, -1);
+        MR::startSound(this, "SE_BM_D_PAKKUN_FIREBALL_L_END");
         kill();
     }
 }

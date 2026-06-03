@@ -65,21 +65,21 @@ void PenguinMaster::exeWait() {
 
 void PenguinMaster::exeReaction() {
     if (_D8) {
-        MR::startSound(this, "SE_SV_PENGUIN_OLD_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_OLD_TRAMPLED");
+        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED");
     }
 
     if (isPointingSe()) {
-        MR::startSound(this, "SE_SV_PENGUIN_OLD_POINTED_2P", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_OLD_POINTED_2P");
         MR::startDPDHitSound();
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SV_PENGUIN_OLD_SPIN_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_OLD_SPIN_HIT");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_PENGUIN_OLD_STAR_PIECE", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_OLD_STAR_PIECE");
     }
 
     if (!MR::tryStartReactionAndPopNerve(this)) {

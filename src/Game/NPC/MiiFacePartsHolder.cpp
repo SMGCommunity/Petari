@@ -14,7 +14,8 @@
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 
 MiiFacePartsHolder::MiiFacePartsHolder(int numParts)
-    : LiveActorGroup("Mii顔モデル保持", numParts), JKRDisposer(), mRFLWorkBuffer(nullptr), _34(nullptr) {}
+    : LiveActorGroup("Mii顔モデル保持", numParts), JKRDisposer(), mRFLWorkBuffer(nullptr), _34(nullptr) {
+}
 
 MiiFacePartsHolder::~MiiFacePartsHolder() {
     RFLExit();
@@ -31,10 +32,7 @@ void MiiFacePartsHolder::init(const JMapInfoIter& rIter) {
     _38 = RFLInitResAsync(mRFLWorkBuffer, pResBuffer, resSize, false);
 
     MR::connectToScene(this, -1, MR::CalcAnimType_NPC, -1, MR::DrawType_MiiFacePartsHolder);
-
-    MR::FunctorV0M< MiiFacePartsHolder*, void (MiiFacePartsHolder::*)() > initFunc(this, &MiiFacePartsHolder::reinitCharModel);
-
-    MR::connectToScene(MR::createDrawAdaptor("Miiモデル再作成", initFunc), -1, -1, -1, 80);
+    MR::connectToScene(MR::createDrawAdaptor("Miiモデル再作成", MR::Functor_Inline(this, &MiiFacePartsHolder::reinitCharModel)), -1, -1, -1, 80);
 }
 
 void MiiFacePartsHolder::calcAnim() {
@@ -132,9 +130,7 @@ MiiFaceParts* MiiFacePartsHolder::createPartsFromReceipe(const char* pName, cons
 
     MR::getSceneObj< MiiFacePartsHolder >(SceneObj_MiiFacePartsHolder)->registerActor(pParts);
 
-    MR::FunctorV0M< NameObj*, void (NameObj::*)() > initFunc(pParts, &NameObj::initWithoutIter);
-
-    if (MR::startFunctionAsyncExecuteOnMainThread(initFunc, "initNameObjOnMainThread")) {
+    if (MR::startFunctionAsyncExecuteOnMainThread(MR::Functor_Inline< NameObj >(pParts, &NameObj::initWithoutIter), "initNameObjOnMainThread")) {
         MR::waitForEndFunctionAsyncExecute("initNameObjOnMainThread");
     }
 

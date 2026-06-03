@@ -44,7 +44,7 @@ void PoltaRock::init(const JMapInfoIter& rIter) {
 }
 
 void PoltaRock::kill() {
-    MR::startSound(this, "SE_OJ_POLTA_ROCK_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_POLTA_ROCK_BREAK");
     LiveActor::kill();
     switch (mType) {
     case 2:
@@ -134,11 +134,11 @@ void PoltaRock::exeFloat() {
     TVec3f v3;
 
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_POLTA_ROCK_FLOAT_ST", -1, -1);
+        MR::startSound(this, "SE_OJ_POLTA_ROCK_FLOAT_ST");
         MR::startAction(this, "Froat");
         MR::emitEffect(this, "Appear");
     }
-    MR::startLevelSound(this, "SE_OJ_LV_POLTA_ROCK_FLOAT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_POLTA_ROCK_FLOAT");
     PSMTXMultVec(getOwner()->getBaseMtx(), &_AC, v3);
     MR::addVelocityMoveToTarget(this, v3, 0.0f, 1.2f, 0.0f, 200.0f);
     MR::addVelocityKeepHeightUseShadow(this, 800.0f, 1.5f, 300.0f, nullptr);
@@ -169,7 +169,7 @@ void PoltaRock::exeMove() {
     if (MR::isFirstStep(this)) {
         _A0.set(*MR::getPlayerCenterPos() - mPosition);
         MR::normalizeOrZero(&_A0);
-        MR::startSound(this, "SE_OJ_POLTA_ROCK_FLY", -1, -1);
+        MR::startSound(this, "SE_OJ_POLTA_ROCK_FLY");
         MR::zeroVelocity(this);
     }
 

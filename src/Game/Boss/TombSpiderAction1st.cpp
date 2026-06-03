@@ -13,7 +13,7 @@ namespace {
     static const f32 sAttackRotateSpeedMax = 0.35f;
     static const s32 sStepChanceWait = 900;
     static const s32 sChanceDamageLastStep = 5;
-}  // namespace
+};  // namespace
 
 namespace NrvTombSpiderAction1st {
     NEW_NERVE(TombSpiderAction1stNrvWait, TombSpiderAction1st, Wait);
@@ -30,7 +30,7 @@ namespace NrvTombSpiderAction1st {
     NEW_NERVE(TombSpiderAction1stNrvChanceDamageLast, TombSpiderAction1st, ChanceDamageLast);
     NEW_NERVE(TombSpiderAction1stNrvChanceEnd, TombSpiderAction1st, ChanceEnd);
     NEW_NERVE(TombSpiderAction1stNrvWaitDemo, TombSpiderAction1st, WaitDemo);
-}  // namespace NrvTombSpiderAction1st
+};  // namespace NrvTombSpiderAction1st
 
 TombSpiderAction1st::TombSpiderAction1st(TombSpider* pParent) : TombSpiderActionBase(pParent, "戦闘１回戦[トゥームスパイダー]") {
 }

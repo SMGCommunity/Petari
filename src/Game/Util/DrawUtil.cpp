@@ -10,7 +10,7 @@ TVec3f mShadowVec;
 
 namespace {
     GXTexObj clear_z_tobj;
-};
+};  // namespace
 
 namespace MR {
     void fillScreenArea(const TVec2s& rMin, const TVec2s& rMax) {

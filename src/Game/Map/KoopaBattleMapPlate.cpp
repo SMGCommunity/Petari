@@ -43,9 +43,9 @@ bool KoopaBattleMapPlate::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
     }
 
     MR::emitEffectHit(this, MR::getSensorHost(pSender)->mPosition, "Hit");
-    MR::startSound(this, "SE_OJ_KOOPA_PLATE_PLN_BRK", -1, -1);
+    MR::startSound(this, "SE_OJ_KOOPA_PLATE_PLN_BRK");
     MR::appearStarPiece(this, mPosition, 5, 30.0f, 50.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_F", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_F");
     MR::emitEffect(this, "Break");
     kill();
 

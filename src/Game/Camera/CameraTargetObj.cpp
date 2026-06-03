@@ -42,7 +42,7 @@ void CameraTargetActor::movement() {
         matrix.getXDir(mSide);
     }
 
-    CubeCameraArea* area = reinterpret_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", mActor->mPosition));
+    CubeCameraArea* area = static_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", mActor->mPosition));
 
     if (area == nullptr) {
         mCameraArea = nullptr;
@@ -128,4 +128,24 @@ const TVec3f* CameraTargetPlayer::getGroundPos() const {
 
 const TVec3f* CameraTargetPlayer::getGravityVector() const {
     return &mGravity;
+}
+
+
+
+CameraTargetDemoActor::CameraTargetDemoActor(MtxPtr pMtx, const char* pName) : LiveActor(pName) {
+    mMtx.set(pMtx);
+}
+
+void CameraTargetDemoActor::init(const JMapInfoIter& rIter) {
+    LiveActor::init(rIter);
+    makeActorAppeared();
+}
+
+void CameraTargetDemoActor::setTargetMtx(MtxPtr pNewTargetMtx) {
+    mMtx.set(pNewTargetMtx);
+    MR::makeRTFromMtxPtr(&mPosition, &mRotation, pNewTargetMtx, true);
+}
+
+MtxPtr CameraTargetDemoActor::getBaseMtx() const {
+    return (const MtxPtr)mMtx.mMtx;
 }

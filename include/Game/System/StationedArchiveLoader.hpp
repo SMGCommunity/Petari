@@ -4,7 +4,7 @@ class JKRHeap;
 
 namespace MR {
     struct StationedFileInfo;
-};
+};  // namespace MR
 
 class StationedArchiveLoader {
 public:

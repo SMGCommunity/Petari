@@ -74,11 +74,11 @@ void RosettaReading::makeArchiveList(NameObjArchiveListCollector* pCollector, co
 
 void RosettaReading::exePictureBookBefore() {
     if (MR::isDemoPartActive("朗読開始") || MR::isDemoPartActive("ロゼッタ会話[開始]") || MR::isDemoPartLessEqualStep("絵本デモ開始", 60)) {
-        MR::startSystemLevelSE("SE_SM_LV_TICO_WAIT_LIBRARY", -1, -1);
+        MR::startSystemLevelSE("SE_SM_LV_TICO_WAIT_LIBRARY");
     }
 
     if (MR::isDemoPartStep("絵本デモ開始", 100)) {
-        MR::startSound(this, "SE_SM_ROSETTA_BOOK_OPEN", -1, -1);
+        MR::startSound(this, "SE_SM_ROSETTA_BOOK_OPEN");
     }
 
     if (MR::isDemoPartFirstStep("絵本デモ開始")) {
@@ -110,7 +110,7 @@ void RosettaReading::exePictureBook() {
 
 void RosettaReading::exePictureBookAfter() {
     if (MR::isDemoPartGreaterStep("絵本デモ終了", 30) || MR::isDemoPartActive("ロゼッタ会話[終了]")) {
-        MR::startSystemLevelSE("SE_SM_LV_TICO_WAIT_LIBRARY", -1, -1);
+        MR::startSystemLevelSE("SE_SM_LV_TICO_WAIT_LIBRARY");
     }
 
     if (MR::isDemoPartStep("絵本デモ終了", cOverlayStartStep)) {

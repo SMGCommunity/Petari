@@ -229,7 +229,8 @@ namespace {
     static const char* sArcName = "PlanetMapDataTable.arc";
     static const char* sFileName = "PlanetMapDataTable.bcsv";
 
-    void makeSubModelName(const char**, const JMapInfo*, s32, const char*, const char*) {}
+    void makeSubModelName(const char**, const JMapInfo*, s32, const char*, const char*) {
+    }
 
     static bool isDataForceLow(const PlanetMapData* pMapData) {
         for (int i = 0; i < 8; i++) {
@@ -258,7 +259,7 @@ CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
 
     const PlanetEntry* pEntry = nullptr;
 
-    for (u32 i = 0; i < sizeof(sUniquePlanetCreateFuncTable) / sizeof(*sUniquePlanetCreateFuncTable); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(sUniquePlanetCreateFuncTable); i++) {
         pEntry = &sUniquePlanetCreateFuncTable[i];
 
         if (!MR::isEqualString(pParam1, sUniquePlanetCreateFuncTable[i].mName)) {
@@ -277,8 +278,7 @@ void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pArchi
     PlanetMapData* pTableData = getTableData(pName);
     if (isScenarioForceLow(pTableData)) {
         pArchiveList->addArchive(pTableData->mData[0]);
-    }
-    else {
+    } else {
         pArchiveList->addArchive(pTableData->mPlanetName);
 
         const char* pData0 = pTableData->mData[0];
@@ -307,7 +307,7 @@ void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pArchi
         }
 
         const char* pPlanetName = pTableData->mPlanetName;
-        for (u32 i = 0; i < sizeof(sUniquePlanetUniqueArchiveName) / sizeof(*sUniquePlanetUniqueArchiveName); i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(sUniquePlanetUniqueArchiveName); i++) {
             const UniqueEntry* pUniqueEntry = &sUniquePlanetUniqueArchiveName[i];
             if (MR::isEqualString(pPlanetName, pUniqueEntry->_0)) {
                 pArchiveList->addArchive(pUniqueEntry->_4);

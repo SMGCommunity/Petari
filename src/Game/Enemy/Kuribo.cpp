@@ -182,7 +182,7 @@ void Kuribo::kill() {
     }
 
     MR::emitEffect(this, "DeathSmokeKuribo");
-    MR::startSoundSeVer(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSoundSeVer(this, "SE_EM_EXPLODE_S");
     if (_C5) {
         mItemGenerator->generate(this);
     }
@@ -342,7 +342,7 @@ bool Kuribo::requestFlatDown(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    MR::startSoundSeVer(this, "SE_EM_STOMPED_S", -1, -1);
+    MR::startSoundSeVer(this, "SE_EM_STOMPED_S");
     if (isUpsideDown()) {
         MR::startAction(this, "FlatDownReverse");
     } else {
@@ -364,7 +364,7 @@ bool Kuribo::requestHipDropDown(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    MR::startSoundSeVer(this, "SE_EM_STOMPED_S", -1, -1);
+    MR::startSoundSeVer(this, "SE_EM_STOMPED_S");
     if (isUpsideDown()) {
         MR::startAction(this, "HipDropDownReverse");
     } else {
@@ -382,7 +382,7 @@ bool Kuribo::requestPressDown() {
         return false;
     }
 
-    MR::startSoundSeVer(this, "SE_EM_STOMPED_S", -1, -1);
+    MR::startSoundSeVer(this, "SE_EM_STOMPED_S");
     if (isUpsideDown()) {
         MR::startAction(this, "HipDropDownReverse");
     } else {
@@ -548,7 +548,7 @@ void Kuribo::exeWander() {
 void Kuribo::exeFindPlayer() {
     if (!MR::updateActorStateAndNextNerve(this, mStateFindPlayer, &NrvKuribo::KuriboNrvChase::sInstance)) {
         if (mStateFindPlayer->isFindJumpBegin()) {
-            MR::startSoundSeVer(this, "SE_EM_KURIBO_FIND", -1, -1);
+            MR::startSoundSeVer(this, "SE_EM_KURIBO_FIND");
         }
     }
 }
@@ -559,23 +559,23 @@ void Kuribo::exeChase() {
     }
 
     if (mStateChase->isRunning()) {
-        MR::startLevelSoundSeVer(this, "SE_EM_LV_KURIBO_DASH1", -1, -1, -1);
+        MR::startLevelSoundSeVer(this, "SE_EM_LV_KURIBO_DASH1");
     }
 }
 
 void Kuribo::exeStagger() {
     if (!MR::updateActorStateAndNextNerve(this, mStateStagger, &NrvKuribo::KuriboNrvWander::sInstance)) {
         if (mStateStagger->isStaggerStart()) {
-            MR::startSoundSeVer(this, "SE_EM_CRASH_S", -1, -1);
+            MR::startSoundSeVer(this, "SE_EM_CRASH_S");
             MR::startBlowHitSound(this);
         }
 
         if (mStateStagger->isSwooning(15)) {
-            MR::startLevelSoundSeVer(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+            MR::startLevelSoundSeVer(this, "SE_EM_LV_SWOON_S");
         }
 
         if (mStateStagger->isRecoverStart()) {
-            MR::startSoundSeVer(this, "SE_EM_KURIBO_SWOON_RECOVER", -1, -1);
+            MR::startSoundSeVer(this, "SE_EM_KURIBO_SWOON_RECOVER");
         }
     }
 }
@@ -644,7 +644,7 @@ void Kuribo::endBindStarPointer() {
 
 void Kuribo::exeHipDropDown() {
     if (MR::isFirstStep(this)) {
-        MR::startSoundSeVer(this, "SE_EM_CRASH_S", -1, -1);
+        MR::startSoundSeVer(this, "SE_EM_CRASH_S");
         MR::zeroVelocity(this);
     }
 
@@ -655,7 +655,7 @@ void Kuribo::exeHipDropDown() {
 
 void Kuribo::exeFlatDown() {
     if (MR::isFirstStep(this)) {
-        MR::startSoundSeVer(this, "SE_EM_CRASH_S", -1, -1);
+        MR::startSoundSeVer(this, "SE_EM_CRASH_S");
         MR::zeroVelocity(this);
     }
 
@@ -666,7 +666,7 @@ void Kuribo::exeFlatDown() {
 
 void Kuribo::exePressDown() {
     if (MR::isFirstStep(this)) {
-        MR::startSoundSeVer(this, "SE_EM_CRASH_S", -1, -1);
+        MR::startSoundSeVer(this, "SE_EM_CRASH_S");
         MR::zeroVelocity(this);
     }
 
@@ -678,7 +678,7 @@ void Kuribo::exePressDown() {
 void Kuribo::exeBlowDown() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Blow");
-        MR::startSoundSeVer(this, "SE_EM_CRASH_S", -1, -1);
+        MR::startSoundSeVer(this, "SE_EM_CRASH_S");
         MR::startBlowHitSound(this);
     }
 

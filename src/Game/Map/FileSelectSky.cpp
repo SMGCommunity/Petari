@@ -1,24 +1,23 @@
-#include "Game\Map\FileSelectSky.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/FileSelectSky.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "revolution/types.h"
+
+namespace {
+    const f32 cAngleIncY = 0.001f;
+    const f32 cCycleX = 3000.0f;
+};  // namespace
 
 namespace NrvFileSelectSky {
     NEW_NERVE(FileSelectSkyNrvWait, FileSelectSky, Wait);
-};  
+};  // namespace NrvFileSelectSky
 
-FileSelectSky::FileSelectSky(const char* pName) : LiveActor(pName) {
-    _8C = 0.0f;
-    _90 = 0.0f;
-    mProjmapEffectMtxSetter = nullptr;
+FileSelectSky::~FileSelectSky() {
 }
 
-FileSelectSky::~FileSelectSky() {}
+FileSelectSky::FileSelectSky(const char* pName) : LiveActor(pName), mAngleX(), mAngleY(), mProjmapEffectMtxSetter() {
+}
 
 void FileSelectSky::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("CometNearOrbitSky", nullptr, false);
@@ -39,7 +38,7 @@ void FileSelectSky::calcAnim() {
 }
 
 void FileSelectSky::calcAndSetBaseMtx() {
-    MR::setBaseTRMtx(this, _94);
+    MR::setBaseTRMtx(this, mBaseMtx);
 }
 
 bool FileSelectSky::receiveOtherMsg(u32,HitSensor* pSender, HitSensor* pReceiver) {
@@ -53,21 +52,21 @@ void FileSelectSky::exeWait() {
     }
 
     if (MR::isFirstStep(this)) {
-        _8C = 0.0f;
-        _90 = 0.0f;
+        mAngleX = 0.0f;
+        mAngleY = 0.0f;
     }
 
-    TPos3f a1, a2;
-    a2.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), _90);
-    a1.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), _8C);
-    _94.concat(a2, a1);
-    _94.invert(_94);
-    f32 steps = (3.1415927f * getNerveStep()) / 3000.0f;
-    if (steps < 0.0f) {
-        steps = -steps;
+    TPos3f rotateX, rotateY;
+    rotateY.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), mAngleY);
+    rotateX.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), mAngleX);
+    mBaseMtx.concat(rotateY, rotateX);
+    mBaseMtx.invert(mBaseMtx);
+    f32 step = (getNerveStep() * PI) / ::cCycleX;
+
+    if (step < 0.0f) {
+        step = -step;
     }
-    f32 value = _90 + 0.001f;
-    f32 temp = 1.0f - JMath::sSinCosTable.cosShort(8 * steps);
-    _90 = value;
-    _8C = (3.0f * ((temp * 0.5f) * 3.1415927f)) * 0.25f;
+
+    mAngleX = (1.0f - JMACosShort(step * 8)) * 3.0f / 2.0f * PI / 4.0f;
+    mAngleY += ::cAngleIncY;
 }

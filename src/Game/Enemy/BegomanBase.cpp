@@ -11,7 +11,7 @@ namespace NrvBegomanAttackPermitter {
     NEW_NERVE(HostTypeNrvReceive, BegomanAttackPermitter, Receive);
     NEW_NERVE(HostTypeNrvPermit, BegomanAttackPermitter, Permit);
 
-}  // namespace NrvBegomanAttackPermitter
+};  // namespace NrvBegomanAttackPermitter
 
 namespace {
     // unused
@@ -31,7 +31,7 @@ namespace {
     const f32 hTurnStartDegree = 3.0f;
     const f32 hTurnEndDegree = 10.0f;
     const f32 hIsFaceToPlayerDegree = 30.0f;
-}  // namespace
+};  // namespace
 
 BegomanBase::BegomanBase(const char* pName)
     : LiveActor(pName), mBaseDelegator(nullptr), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f),
@@ -52,7 +52,7 @@ const BegomanSound* BegomanBase::getSoundBoss() {
 }
 
 void BegomanBase::initCore(const JMapInfoIter& rIter, const char* pModelArcName, bool a1) {
-    MR::createSceneObj(0x3D);
+    MR::createSceneObj(SceneObj_BegomanAttackPermitter);
     MR::useStageSwitchWriteDead(this, rIter);
     MR::useStageSwitchReadA(this, rIter);
     initModelManagerWithAnm(pModelArcName, nullptr, false);
@@ -298,7 +298,7 @@ void BegomanBase::exePursueCore(const MR::ActorMoveParam& rMoveParam, const Nerv
     }
 
     if (MR::isGreaterEqualStep(this, 10)) {
-        MR::startLevelSound(this, rSound.mSound, -1, -1, -1);
+        MR::startLevelSound(this, rSound.mSound);
     }
 
     if (MR::isStep(this, 18)) {
@@ -648,7 +648,7 @@ void BegomanBase::launchBegomanBabyLauncher(LiveActor* pActor, BegomanBaby** bab
     }
 }
 
-const Nerve* BegomanBase::setNerveLaunch() {}
+void BegomanBase::setNerveLaunch() {}
 
 void BegomanBase::updateRotateY(f32 newRotationTarget, f32 rotationLimit) {
     f32 newYRotation = 0.0f;
@@ -711,7 +711,7 @@ void BegomanBase::reboundWallAndGround(TVec3f* pOut, bool emitEffect) {
         mVelocity.add(wallNormal.scaleInline(5.0f));
 
         if (reboundWall) {
-            MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_COLLI_WALL", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_COLLI_WALL");
         }
 
         if (pOut != nullptr) {
@@ -909,7 +909,7 @@ void BegomanBase::calcBlowReaction(const TVec3f& rVec1, const TVec3f& rVec2, f32
     effectVec.add(getSensor("body")->mPosition);
 
     MR::emitEffectHit(this, effectVec, "Hit");
-    MR::startSound(this, "SE_EM_BEGOMAN_KNOCK_SUCCESS", -1, -1);
+    MR::startSound(this, "SE_EM_BEGOMAN_KNOCK_SUCCESS");
     MR::vecKillElement(blowDirection, mGravity, &blowDirection);
     MR::normalizeOrZero(&blowDirection);
 

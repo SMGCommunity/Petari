@@ -15,7 +15,7 @@ namespace {
     static const s32 sRasterParamX = 300;
     static const s32 sRasterParamTime = 16;
     static const s32 sRasterParamY = 1000;
-}  // namespace
+};  // namespace
 
 namespace NrvTeresaRacer {
     NEW_NERVE(TeresaRacerNrvWait, TeresaRacer, Wait);
@@ -26,7 +26,7 @@ namespace NrvTeresaRacer {
     NEW_NERVE(TeresaRacerNrvPost, TeresaRacer, Post);
     NEW_NERVE(TeresaRacerNrvTalk, TeresaRacer, Talk);
     NEW_NERVE(TeresaRacerNrvTakeOutStar, TeresaRacer, TakeOutStar);
-}  // namespace NrvTeresaRacer
+};  // namespace NrvTeresaRacer
 
 TeresaRacer::TeresaRacer(const char* pName) : NPCActor(pName), mTakeOutStar(nullptr), mCameraInfo(nullptr), mIsGoal(false), mBgmState(0) {
 }
@@ -77,7 +77,7 @@ void TeresaRacer::init(const JMapInfoIter& rIter) {
 
 void TeresaRacer::control() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_TERERACER_TRAMPLE", -1, -1);
+        MR::startSound(this, "SE_SM_TERERACER_TRAMPLE");
     }
     NPCActor::control();
 }
@@ -193,7 +193,7 @@ void TeresaRacer::exeMove() {
 
     if (mRacerId != -1 && MR::calcDistanceToPlayer(this) < sRasterParamMax) {
         MR::setRasterScroll(sRasterParamTime, sRasterParamX, sRasterParamY);
-        MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER");
     }
     changeBgmState();
 }
@@ -213,7 +213,7 @@ void TeresaRacer::exeGoal() {
 
     if (mRacerId != -1 && MR::calcDistanceToPlayer(this) < sRasterParamMax) {
         MR::setRasterScroll(sRasterParamTime, sRasterParamX, sRasterParamY);
-        MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER");
     }
     changeBgmState();
 }

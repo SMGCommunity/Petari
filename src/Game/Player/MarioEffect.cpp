@@ -107,7 +107,7 @@ void addMarioEffectAtJoint(LiveActor* pActor, const char* pEffectName, const cha
 }
 #pragma dont_inline reset
 
-}  // namespace
+};  // namespace
 
 void MarioEffect::execute(JPABaseEmitter* pEmitter) {
     s32 idx = 0;

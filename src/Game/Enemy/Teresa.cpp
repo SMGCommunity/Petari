@@ -1,12 +1,21 @@
 #include "Game/Enemy/Teresa.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Map/HitInfo.hpp"
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+
+namespace {
+    static Color8 sPointLightColor(255, 255, 255, 255);
+};  // namespace
 
 namespace NrvTeresa {
-    static Color8 sPointLightColor(255, 255, 255, 255);
     NEW_NERVE(TeresaNrvAppearFromWall, Teresa, AppearFromWall);
     NEW_NERVE(TeresaNrvAppearFromGround, Teresa, AppearFromGround);
     NEW_NERVE(TeresaNrvWait, Teresa, Wait);
@@ -118,12 +127,211 @@ void Teresa::initFromJMapParam(const JMapInfoIter& rIter) {
     }
 }
 
+void Teresa::initSensor() {
+    f32 scale_x = mScale.x;
+    initHitSensor(2);
+    MR::addHitSensorEnemyAttack(this, "attack", 8, (70.0f * scale_x), TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemy(this, "body", 8, (85.0f * scale_x), TVec3f(0.0f, 0.0f, 0.0f));
+    MR::initStarPointerTarget(this, (85.0f * scale_x), TVec3f(0.0f, 0.0f, 0.0f));
+}
+
 // ...
 
 void Teresa::makeActorAppeared() {
     LiveActor::makeActorAppeared();
     MR::onCalcGravity(this);
 }
+
+void Teresa::appear() {
+    LiveActor::appear();
+    setTransparency(0.0f);
+
+    switch (mAppearanceType) {
+    case 0:
+        MR::invalidateClipping(this);
+        MR::onBind(this);
+        _B0.set< f32 >(mPosition);
+        setNerve(&NrvTeresa::TeresaNrvAppearFromGround::sInstance);
+        break;
+    case 1:
+        MR::invalidateClipping(this);
+        MR::onBind(this);
+        _B0.set< f32 >(mPosition);
+        setNerve(&NrvTeresa::TeresaNrvAppearFromWall::sInstance);
+        break;
+    default:
+        setStartNerve();
+        break;
+    }
+}
+
+void Teresa::kill() {
+    LiveActor::kill();
+    MR::emitEffect(this, "Death");
+
+    if (mKeySwitch != nullptr) {
+        mKeySwitch->appearKeySwitch(mPosition);
+    }
+
+    if (_FD) {
+        MR::startAfterBossBGM();
+        MR::requestAppearPowerStar(this, mPosition);
+    }
+
+    if (_FC) {
+        MR::appearCoinPop(this, mPosition, 1);
+    }
+
+    if (MR::isValidSwitchDead(this)) {
+        MR::onSwitchDead(this);
+    }
+}
+
+void Teresa::control() {
+    if (!isNerve(&NrvTeresa::TeresaNrvDrift::sInstance) && !isNerve(&NrvTeresa::TeresaNrvAscension::sInstance)) {
+        f32 v2 = (1.0f / (1.0f + (0.949f) * (_D4.x - 1.0f)));
+        _D4.x = 1.0f + (0.949f * (_D4.x - 1.0f));
+        _D4.z = v2;
+    }
+
+    tryHideWater();
+    MR::blendQuatUpFront(&_94, -mGravity, _A4, 0.1f, 0.2f);
+    _FE = 0;
+
+    if (_F4 > 0.89f) {
+        MR::requestPointLight(this, TVec3f(mPosition), sPointLightColor, 1.0f, -1);
+    }
+}
+
+void Teresa::calcAndSetBaseMtx() {
+    MR::setBaseTRMtx(this, _94);
+
+    TVec3f scale;
+    // regswap
+    JMathInlineVEC::PSVECMultiply(&_D4, &mScale, &scale);
+    MR::setBaseScale(this, scale);
+}
+
+void Teresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (!MR::isSensorPlayer(pReceiver)) {
+        if (MR::isSensorEnemy(pSender)) {
+            MR::sendMsgPush(pReceiver, pSender);
+            return;
+        }
+        return;
+    }
+
+    if (requestAttack(pSender, pReceiver)) {
+        return;
+    }
+}
+
+// ...
+
+bool Teresa::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgSpinStormRange(msg)) {
+        return requestDrift();
+    }
+
+    if (msg == ACTMES_TERESA_PLAYER_TOUCH) {
+        return requestLoveHit(pSender, pReceiver);
+    }
+
+    return false;
+}
+
+bool Teresa::filterBind(const Triangle* pTriangle) {
+    if (pTriangle->mSensor->isType(73)) {
+        return true;
+    }
+
+    if (MR::isWallCodeGhostThrough(pTriangle)) {
+        _FE = 1;
+        _BC.set< f32 >(*pTriangle->getNormal(0));
+        return isNerve(&NrvTeresa::TeresaNrvDrift::sInstance);
+    }
+
+    return false;
+}
+
+// ...
+
+bool Teresa::requestDrift() {
+    if (canDrift()) {
+        setNerve(&NrvTeresa::TeresaNrvDrift::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool Teresa::requestLoveHit(HitSensor* pSender, HitSensor* pReceiver) {
+    if (isNerve(&NrvTeresa::TeresaNrvLoveChase::sInstance)) {
+        MR::addVelocitySeparateHV(this, pSender, pReceiver, 20.0f, 0.0f);
+        setNerve(&NrvTeresa::TeresaNrvLoveHit::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool Teresa::requestSearchLightDead() {
+    if (canSearchLightDead()) {
+        setNerve(&NrvTeresa::TeresaNrvAscension::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+void Teresa::setStartNerve() {
+    if (MR::isExistRail(this)) {
+        setNerve(&NrvTeresa::TeresaNrvRailWalk::sInstance);
+        setTransparency(1.0f);
+        MR::startAction(this, "Wait");
+        MR::moveCoordToNearestPos(this, mPosition);
+    } else {
+        setNerve(&NrvTeresa::TeresaNrvWait::sInstance);
+    }
+}
+
+bool Teresa::tryAppearFromWallEnd() {
+    if (MR::isBckStopped(this)) {
+        setStartNerve();
+        return true;
+    }
+
+    return false;
+}
+
+bool Teresa::tryAppearFromGroundEnd() {
+    if (MR::isBckStopped(this)) {
+        setStartNerve();
+        return true;
+    }
+
+    return false;
+}
+
+bool Teresa::tryRailTurn() {
+    if (MR::isRailReachedGoal(this)) {
+        MR::reverseRailDirection(this);
+        setNerve(&NrvTeresa::TeresaNrvRailTurn::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool Teresa::tryRailTurnEnd() {
+    if (MR::isGreaterStep(this, 150)) {
+        setNerve(&NrvTeresa::TeresaNrvRailWalk::sInstance);
+        return true;
+    }
+    return false;
+}
+
+// ...
 
 Teresa::~Teresa() {
 }

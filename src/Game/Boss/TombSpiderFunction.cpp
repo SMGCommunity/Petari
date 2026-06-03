@@ -21,7 +21,7 @@
 
 namespace {
     static const f32 sPlanetInsideRadius = 1800.0f;
-}
+};  // namespace
 
 TombSpiderGland* TombSpiderFunction::getGlandFrontL(const TombSpider* pParent) {
     return pParent->mParts->mGlandFrontL;
@@ -190,8 +190,7 @@ namespace {
         }
         return false;
     }
-
-}  // namespace
+};  // namespace
 
 bool TombSpiderFunction::tryDamageGland(TombSpider* pParent, HitSensor* pSender, HitSensor* pReceiver) {
     if (tryDamageGlandFrontL(pParent, pSender, pReceiver) || tryDamageGlandFrontR(pParent, pSender, pReceiver) ||
@@ -211,7 +210,7 @@ namespace {
         pReceiver->invalidate();
         return true;
     }
-}  // namespace
+};  // namespace
 
 bool TombSpiderFunction::tryDamageVitalSpot(TombSpider* pParent, HitSensor* pSender, HitSensor* pReceiver) {
     if (tryDamageVitalSpotEach(getVitalSpotC(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_C, pSender, pReceiver)) {

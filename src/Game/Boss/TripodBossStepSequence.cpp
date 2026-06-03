@@ -6,7 +6,7 @@ TripodBossStepSequence::TripodBossStepSequence() {
     mPointNum = 0;
     _88 = 1;
 
-    for (s32 i = 0; i < 0x20; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mStepPoints); i++) {
         mStepPoints[i] = nullptr;
     }
 }

@@ -112,7 +112,7 @@ void TripodBossCore::exeWarning() {
 void TripodBossCore::exeBreak() {
     updateTripodMatrix();
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_TRIPOD_CORE_BREAK", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_CORE_BREAK");
         MR::emitEffect(this, "BlackSmoke");
         MR::hideModelAndOnCalcAnim(this);
         getSensor("body")->invalidate();

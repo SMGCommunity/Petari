@@ -6,7 +6,7 @@
 namespace nw4r {
     namespace lyt {
         class TexMap;
-    };
+    };  // namespace lyt
 };  // namespace nw4r
 
 class BatteryLayout;

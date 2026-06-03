@@ -8,7 +8,7 @@
 
 namespace {
     const s32 cInvalidCountUpInterval = 3;
-};
+};  // namespace
 
 namespace NrvPurpleCoinCounter {
     NEW_NERVE(PurpleCoinCounterNrvAppear, PurpleCoinCounter, Appear);

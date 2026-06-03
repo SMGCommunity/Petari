@@ -21,16 +21,16 @@ namespace {
     static const f32 hDefaultLength = 80.0f;
     static const f32 hDefaultWidth = 30.0f;
     // static const _32 h16x9ScaleX =
-}  // namespace
+};  // namespace
 
 namespace NrvStarPointerCommandStream {
     NEW_NERVE(HostTypeNrvWait, StarPointerCommandStream, Wait);
     NEW_NERVE(HostTypeNrvSignal, StarPointerCommandStream, Signal);
-}  // namespace NrvStarPointerCommandStream
+};  // namespace NrvStarPointerCommandStream
 
 namespace {
     static Color8 hOutColor = Color8((GXColor){0xFF, 0x00, 0x00, 0xFF});
-}  // namespace
+};  // namespace
 
 // TODO: probably an MR function
 inline f32 toRadian(f32 angle) {
@@ -88,7 +88,7 @@ void StarPointerCommandStream::control() {
     } else {
         mOffScreenTime++;
         if ((mOffScreenTime & 0x10) != 0 && (mOffScreenTime & 0x0F) == 0) {
-            MR::startSystemSE("SE_SY_DPD_DRAG_RANGE_OUT", -1, -1);
+            MR::startSystemSE("SE_SY_DPD_DRAG_RANGE_OUT");
         }
     }
 

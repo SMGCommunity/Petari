@@ -32,7 +32,7 @@ static InformationObserverAttribute sAttr[] = {
 
 namespace {
     static s32 sDisplayFramesMin = 30;
-};
+};  // namespace
 
 namespace {
     InformationObserver* getInformationObserver() {
@@ -112,7 +112,7 @@ void InformationObserver::exeDisp() {
         }
     }
 
-    MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+    MR::startSystemSE("SE_SY_TALK_OK");
     MR::disappearInformationMessage();
 
     switch (mType) {

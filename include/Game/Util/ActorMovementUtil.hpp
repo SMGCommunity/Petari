@@ -69,8 +69,8 @@ namespace MR {
     void calcActorAxisY(TVec3f*, const LiveActor*);
     void calcActorAxisZ(TVec3f*, const LiveActor*);
     bool faceToVector(TQuat4f*, TVec3f, f32);
-    bool faceToVector(float (*)[4], TVec3f, f32);
-    bool faceToPoint(float (*)[4], TVec3f, f32);
+    bool faceToVector(MtxPtr, TVec3f, f32);
+    bool faceToPoint(MtxPtr, TVec3f, f32);
     void makeQuatFromRotate(TQuat4f*, const LiveActor*);
     void makeQuatAndFrontFromRotate(TQuat4f*, TVec3f*, const LiveActor*);
     void turnQuatUpToGravity(TQuat4f*, const TQuat4f&, const LiveActor*);

@@ -4,6 +4,10 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
+namespace {
+    TVec3f sDummyModelOffset;
+};  // namespace
+
 namespace NrvCrystalCageMoving {
     NEW_NERVE(CrystalCageMovingNrvWaitBig, CrystalCageMoving, WaitBig);
     NEW_NERVE_ONEND(CrystalCageMovingNrvBreakBig, CrystalCageMoving, BreakBig, BreakBig);
@@ -14,10 +18,6 @@ namespace NrvCrystalCageMoving {
     NEW_NERVE(CrystalCageMovingNrvDemoTicoStop, CrystalCageMoving, DemoTicoStop);
     NEW_NERVE(CrystalCageMovingNrvDemoTicoChange, CrystalCageMoving, DemoTicoChange);
 };  // namespace NrvCrystalCageMoving
-
-namespace {
-    TVec3f sDummyModelOffset;
-};
 
 CrystalCageMoving::CrystalCageMoving(const char* pName) : MapObjActor(pName) {
     mTicoModel = nullptr;
@@ -66,7 +66,7 @@ void CrystalCageMoving::exeBreakBig() {
         MR::setSensorRadius(this, "body", 30.0f);
         _108 = 1;
         MR::emitEffect(this, "BreakOutside");
-        MR::startSound(this, "SE_OJ_CRY_CAGE_MV_BREAK_EDG", -1, -1);
+        MR::startSound(this, "SE_OJ_CRY_CAGE_MV_BREAK_EDG");
     }
 
     if (MR::isStep(this, 10)) {
@@ -80,7 +80,7 @@ void CrystalCageMoving::exeBreakSmall() {
     if (MR::isFirstStep(this)) {
         startBreakDemo();
         MR::emitEffect(this, "BreakInside");
-        MR::startSound(this, "SE_OJ_CRY_CAGE_MV_BREAK_OUT", -1, -1);
+        MR::startSound(this, "SE_OJ_CRY_CAGE_MV_BREAK_OUT");
     }
 }
 
@@ -89,7 +89,7 @@ void CrystalCageMoving::exeBreakAll() {
         startBreakDemo();
         MR::emitEffect(this, "BreakOutside");
         MR::emitEffect(this, "BreakInside");
-        MR::startSound(this, "SE_OJ_CRY_CAGE_MV_BREAK_ALL", -1, -1);
+        MR::startSound(this, "SE_OJ_CRY_CAGE_MV_BREAK_ALL");
     }
 }
 
@@ -97,17 +97,17 @@ void CrystalCageMoving::exeBreakAll() {
 void CrystalCageMoving::exeDemoTicoMove() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mTicoModel, "Fly", nullptr);
-        MR::startSound(mTicoModel, "SE_SM_TICO_SPIN", -1, -1);
+        MR::startSound(mTicoModel, "SE_SM_TICO_SPIN");
     }
 
     TVec3f stack_14;
     stack_14.subInline2(_FC, mPosition);
-    f32 nerveRate = MR::calcNerveRate(this, 0x1E);
+    f32 nerveRate = MR::calcNerveRate(this, 30);
     TVec3f stack_8;
     JMAVECScaleAdd(&stack_14, &mPosition, &stack_8, nerveRate);
     _C8.setTrans(stack_8);
 
-    if (MR::isStep(this, 0x1E)) {
+    if (MR::isStep(this, 30)) {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoStop::sInstance);
     }
 }
@@ -128,7 +128,7 @@ void CrystalCageMoving::exeDemoTicoStop() {
 void CrystalCageMoving::exeDemoTicoChange() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mTicoModel, "Metamorphosis", nullptr);
-        MR::startSound(mTicoModel, "SE_SM_TICO_METAMORPHOSE", -1, -1);
+        MR::startSound(mTicoModel, "SE_SM_TICO_METAMORPHOSE");
         MR::setBckRate(mTicoModel, 1.5f);
     }
 
@@ -237,7 +237,7 @@ void CrystalCageMoving::initDummyModel(const JMapInfoIter& rIter) {
 }
 
 void CrystalCageMoving::startBreakDemo() {
-    MR::startSound(this, "SE_OJ_CRY_CAGE_MV_TICO_APR", -1, -1);
+    MR::startSound(this, "SE_OJ_CRY_CAGE_MV_TICO_APR");
     MR::requestStartTimeKeepDemo(this, "脱出スピドラ出現", nullptr, nullptr, "クリスタル破壊");
     MR::hideModel(this);
     ModelObj* tico = mTicoModel;

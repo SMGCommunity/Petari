@@ -8,14 +8,13 @@
 namespace NrvPeachCastleGardenPlanet {
     NEW_NERVE(PeachCastleGardenPlanetNrvWait, PeachCastleGardenPlanet, Wait);
     NEW_NERVE(PeachCastleGardenPlanetNrvDamage, PeachCastleGardenPlanet, Damage);
-}  // namespace NrvPeachCastleGardenPlanet
+};  // namespace NrvPeachCastleGardenPlanet
 
-PeachCastleGardenPlanet::PeachCastleGardenPlanet(const char* pName) : MapObjActor(pName),
-    _C4(nullptr) 
-{
+PeachCastleGardenPlanet::PeachCastleGardenPlanet(const char* pName) : MapObjActor(pName), _C4(nullptr) {
 }
 
-PeachCastleGardenPlanet::~PeachCastleGardenPlanet() {}
+PeachCastleGardenPlanet::~PeachCastleGardenPlanet() {
+}
 
 void PeachCastleGardenPlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -47,6 +46,5 @@ void PeachCastleGardenPlanet::exeDamage() {
 }
 
 void PeachCastleGardenPlanet::initCaseUseSwitchA(const MapObjActorInitInfo& Ifter) {
-    MR::listenStageSwitchOnA(
-        this, MR::FunctorV0M< PeachCastleGardenPlanet*, void (PeachCastleGardenPlanet::*)(void) >(this, &PeachCastleGardenPlanet::startDamage));
+    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &PeachCastleGardenPlanet::startDamage));
 }

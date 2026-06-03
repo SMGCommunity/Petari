@@ -235,11 +235,11 @@ void FileSelectItem::exeFormat() {
     MR::isFirstStep(this);
 
     if (MR::isLessStep(this, 40)) {
-        MR::startSystemLevelSE("SE_SY_LV_FILE_SE_MORPHBLUR", -1, -1);
+        MR::startSystemLevelSE("SE_SY_LV_FILE_SE_MORPHBLUR");
     }
 
     if (MR::isStep(this, 40)) {
-        MR::startSystemSE("SE_SY_FILE_SEL_MORPH_DUMMY", -1, -1);
+        MR::startSystemSE("SE_SY_FILE_SEL_MORPH_DUMMY");
         emitVanish();
         killAllModels();
         mPlanetMapObj->makeActorAppeared();
@@ -261,11 +261,11 @@ void FileSelectItem::exeChangeFellow() {
     MR::isFirstStep(this);
 
     if (MR::isLessStep(this, 40)) {
-        MR::startSystemLevelSE("SE_SY_FILE_SEL_MORPHBLR", -1, -1);
+        MR::startSystemLevelSE("SE_SY_FILE_SEL_MORPHBLR");
     }
 
     if (MR::isStep(this, 40)) {
-        MR::startSystemSE("SE_SY_FILE_SEL_MORPH_MARIO", -1, -1);
+        MR::startSystemSE("SE_SY_FILE_SEL_MORPH_MARIO");
         appearFellowModel();
         emitCompleteEffect();
 
@@ -293,7 +293,7 @@ void FileSelectItem::exeChangeMii() {
     MR::isFirstStep(this);
 
     if (MR::isLessStep(this, 40)) {
-        MR::startSystemLevelSE("SE_SY_LV_FILE_SEL_MORPHBLUR", -1, -1);
+        MR::startSystemLevelSE("SE_SY_LV_FILE_SEL_MORPHBLUR");
     }
 
     if (MR::isStep(this, 39)) {
@@ -301,7 +301,7 @@ void FileSelectItem::exeChangeMii() {
     }
 
     if (MR::isStep(this, 40)) {
-        MR::startSystemSE("SE_SY_FILE_SE_MORPH_MARIO", -1, -1);
+        MR::startSystemSE("SE_SY_FILE_SE_MORPH_MARIO");
         killAllModels();
         mFaceParts->makeActorAppeared();
         emitCompleteEffect();

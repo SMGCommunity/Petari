@@ -1,22 +1,22 @@
 #include "Game/MapObj/IronCannonShell.hpp"
 
-namespace NrvIronCannonLauncherPoint {
-    NEW_NERVE(IronCannonLauncherPointNrvWait, IronCannonLauncherPoint, Wait);
-    NEW_NERVE(IronCannonLauncherPointNrvShot, IronCannonLauncherPoint, Shot);
-}  // namespace NrvKoopaJrShipCannonShell
-
-namespace NrvIronCannonLauncher {
-    NEW_NERVE(IronCannonLauncherNrvRelax, IronCannonLauncher, Relax);
-    NEW_NERVE(IronCannonLauncherNrvWait, IronCannonLauncher, Wait);
-    NEW_NERVE(IronCannonLauncherNrvShot, IronCannonLauncher, Shot);
-}  // namespace NrvKoopaJrShipCannonShell
-
 namespace {
     static const s32 sDefaultShotInterval = 300;
     static const f32 sDefaultBulletSpeed = 30.0f;
     static const f32 sGunPointOffset = 75.0f;
     static const f32 sGunPointModelOffset = 100.0f;
-}
+};  // namespace
+
+namespace NrvIronCannonLauncherPoint {
+    NEW_NERVE(IronCannonLauncherPointNrvWait, IronCannonLauncherPoint, Wait);
+    NEW_NERVE(IronCannonLauncherPointNrvShot, IronCannonLauncherPoint, Shot);
+};  // namespace NrvKoopaJrShipCannonShell
+
+namespace NrvIronCannonLauncher {
+    NEW_NERVE(IronCannonLauncherNrvRelax, IronCannonLauncher, Relax);
+    NEW_NERVE(IronCannonLauncherNrvWait, IronCannonLauncher, Wait);
+    NEW_NERVE(IronCannonLauncherNrvShot, IronCannonLauncher, Shot);
+};  // namespace NrvKoopaJrShipCannonShell
 
 IronCannonShell::IronCannonShell(const char* pName) : KoopaJrShipCannonShell(pName) {
 }
@@ -80,7 +80,7 @@ void IronCannonLauncherPoint::initBullet() {
 }
 
 bool IronCannonLauncherPoint::tryShotBullet(f32 offset) {
-    IronCannonShell* pShell = reinterpret_cast<IronCannonShell*>(mShellHolder->getValidShell());
+    IronCannonShell* pShell = static_cast< IronCannonShell* >(mShellHolder->getValidShell());
     if (pShell == nullptr)
         return false;
 

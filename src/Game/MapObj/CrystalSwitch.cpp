@@ -103,7 +103,7 @@ void CrystalSwitch::exeOn() {
     if (MR::isFirstStep(this)) {
         MR::onSwitchA(this);
         MR::shakeCameraNormal();
-        MR::startSound(this, "SE_OJ_CRYSTAL_SWITCH_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_CRYSTAL_SWITCH_ON");
         mRotateSpeed = 10.0f;
         MR::setBckRate(this, 10.0f);
     }

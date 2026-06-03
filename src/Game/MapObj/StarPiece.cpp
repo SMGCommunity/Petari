@@ -51,7 +51,7 @@ namespace NrvStarPiece {
     NEW_NERVE_ONEND(HostTypeNrvThrowFall, StarPiece, ThrowFall, Throw);
     NEW_NERVE(HostTypeNrvFollowPlayer, StarPiece, FollowPlayer);
     NEW_NERVE(HostTypeNrvRailMove, StarPiece, RailMove);
-}  // namespace NrvStarPiece
+};  // namespace NrvStarPiece
 
 StarPiece::StarPiece(const char* pName)
     : LiveActor(pName), _8C(0, 0, 1), _98(0.02f), _9C(0.0f), _A0(0.0f), _A4(0.0f), _A8(0, 0, 0), _B4(0, 0, 0), mDelegator(nullptr),
@@ -100,11 +100,10 @@ void StarPiece::init(const JMapInfoIter& rIter) {
         MR::getObjectName(&objName, rIter);
     }
 
-    s32 numInitColors = sizeof(initColors) / sizeof(initColors[0]);
-    if (arg3 >= 0 && arg3 < numInitColors) {
+    if (arg3 >= 0 && arg3 < getNumColor()) {
         mColor = initColors[arg3];
     } else {
-        mColor = initColors[MR::getRandom(0, numInitColors)];
+        mColor = initColors[MR::getRandom(0, getNumColor())];
     }
 
     initModelManagerWithAnm("StarPiece", nullptr, true);
@@ -189,7 +188,7 @@ void StarPiece::setColor(s32 colorIndex) {
 }
 
 s32 StarPiece::getNumColor() {
-    return sizeof(initColors) / sizeof(initColors[0]);
+    return ARRAY_SIZE(initColors);
 }
 
 void StarPiece::appearFromGroup() {
@@ -222,9 +221,9 @@ void StarPiece::kill() {
     }
 
     if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BREAK_W", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BREAK_W");
     } else {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BREAK");
     }
 
     LiveActor::kill();
@@ -405,9 +404,9 @@ void StarPiece::exeFall() {
 
         if (!MR::isDemoActive()) {
             if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-                MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_W", -1, -1);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_W");
             } else {
-                MR::startSound(this, "SE_OJ_STAR_PIECE_HIT", -1, -1);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_HIT");
             }
         }
 
@@ -480,9 +479,9 @@ void StarPiece::exeToTarget() {
     if (MR::isFirstStep(this)) {
         if (mFlags.isGoToPlayer) {
             if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-                MR::startSound(this, "SE_OJ_STAR_PIECE_FLY_W", -1, -1);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_FLY_W");
             } else {
-                MR::startSound(this, "SE_OJ_STAR_PIECE_FLY", -1, -1);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_FLY");
             }
         }
 
@@ -591,9 +590,9 @@ void StarPiece::exeSpinDrained() {
         MR::emitEffect(this, "StarPieceFlyingBlur");
 
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startSound(this, "SE_OJ_STAR_PIECE_FLY_W", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_FLY_W");
         } else {
-            MR::startSound(this, "SE_OJ_STAR_PIECE_FLY", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_FLY");
         }
     }
 
@@ -690,7 +689,7 @@ void StarPiece::exeThrow() {
         }
 
         if (MR::sendMsgToBindedSensor(ACTMES_STAR_PIECE_ATTACK, this, getSensor("attack"))) {
-            MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENEMY", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENEMY");
         }
         kill();
         return;
@@ -730,7 +729,7 @@ void StarPiece::exeThrowFall() {
         }
 
         if (MR::sendMsgToBindedSensor(ACTMES_STAR_PIECE_ATTACK, this, getSensor("attack"))) {
-            MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENEMY", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENEMY");
         }
         kill();
         return;
@@ -793,7 +792,7 @@ bool StarPiece::tryCalcGravity() {
     return false;
 }
 
-bool StarPiece::trySetGravityAndFront(const TVec3f& rVec1) {
+void StarPiece::trySetGravityAndFront(const TVec3f& rVec1) {
     if (!tryCalcGravity()) {
         mGravity.set(rVec1);
         MR::normalizeOrZero(&mGravity);
@@ -1112,7 +1111,7 @@ void StarPiece::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::sendMsgStarPieceAttack(pReceiver, pSender)) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENEMY", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_ENEMY");
         kill();
     }
 }
@@ -1128,9 +1127,9 @@ void StarPiece::setReflect(const TVec3f& rVec1, const TVec3f& rVec2) {
     }
 
     if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_REFLECT_W", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_REFLECT_W");
     } else {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_REFLECT", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_REFLECT");
     }
 
     setNerve(&NrvStarPiece::HostTypeNrvFallAfterReflect::sInstance);
@@ -1213,8 +1212,8 @@ bool StarPiece::touchPlayer() {
         }
         MR::tryRumblePadMiddle(this, 0);
     }
-    MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY_W", 0);
-    MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY", 0);
+    MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY_W");
+    MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY");
 
     MR::forceDeleteEffect(this, "StarPieceFlyingBlur");
     setNerve(&NrvStarPiece::HostTypeNrvToPlayerEnd::sInstance);

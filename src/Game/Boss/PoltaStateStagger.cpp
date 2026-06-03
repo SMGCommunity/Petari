@@ -12,7 +12,7 @@
 
 namespace NrvPoltaStateStagger {
     NEW_NERVE(PoltaStateStaggerNrvWait, PoltaStateStagger, Wait);
-};
+};  // namespace NrvPoltaStateStagger
 
 PoltaStateStagger::PoltaStateStagger(Polta* pPolta) : ActorStateBase< Polta >("[state]ポルタ弱り状態", pPolta) {
     mActionName = "Stagger";
@@ -30,7 +30,7 @@ void PoltaStateStagger::exeWait() {
     }
     TVec3f v2;
 
-    float v17;
+    f32 v17;
     MR::separateScalarAndDirection(&v17, &v2, getHost()->_E0 - getHost()->mPosition);
 
     if (v17 >= 1800.0f) {
@@ -47,7 +47,7 @@ void PoltaStateStagger::exeWait() {
     MR::addVelocityKeepHeight(getHost(), getHost()->_E0, 0.5f, 50.0f);
     getHost()->rotateToPlayer();
     if (MR::isIntervalStep(this, 210) && PoltaFunction::appearBombTeresaFromRoot(getHost(), 20.0f, 15.0f, 1)) {
-        MR::startSound(getHost(), "SE_BM_POLTA_GEN_BOMB_TERESA", -1, -1);
+        MR::startSound(getHost(), "SE_BM_POLTA_GEN_BOMB_TERESA");
     }
 }
 void PoltaStateStagger::appear() {

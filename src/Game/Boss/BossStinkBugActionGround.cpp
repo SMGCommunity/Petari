@@ -1,9 +1,7 @@
 #include "Game/Boss/BossStinkBugActionGround.hpp"
 #include "Game/Boss/BossStinkBug.hpp"
-#include "Game/Boss/BossStinkBugActionBase.hpp"
 #include "Game/Boss/BossStinkBugFunction.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -11,8 +9,16 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+
+namespace {
+    static const f32 sWalkSpeed = 5.0f;
+    static const f32 sFindDegreeH = 45.0f;
+    static const f32 sFindDegreeV = 15.0f;
+    static const f32 sFindMinDistance = 500.0f;
+    static const f32 sFindMaxDistance = 1900.0f;
+    static const f32 sRunSpeed = 20.0f;
+    static const f32 sTurnStartDistance = 2500.0f;
+};  // namespace
 
 namespace NrvBossStinkBugGroundBattle {
     NEW_NERVE(BossStinkBugActionGroundNrvStart, BossStinkBugActionGround, Start);
@@ -61,18 +67,20 @@ bool BossStinkBugActionGround::receiveMsgPlayerAttack(u32 msg, HitSensor* pSende
         MR::shakeCameraNormal();
         MR::emitEffectHit(getHost(), MR::getSensorPos(pSender), "Hit");
         BossStinkBugFunction::invalidateAttack(getHost());
-        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
         setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvDamage::sInstance);
+
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 bool BossStinkBugActionGround::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (getHost()->isSensorBody(pReceiver)) {
         if (isEnableShakeStart() && MR::isMsgFloorTouch(msg)) {
             setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvShakeOff::sInstance);
+
             return true;
         }
     } else if (MR::isMsgWallTouch(msg) || MR::isMsgCeilTouch(msg)) {
@@ -81,29 +89,35 @@ bool BossStinkBugActionGround::receiveOtherMsg(u32 msg, HitSensor* pSender, HitS
             if (MR::isFaceToTargetDegree(getHost(), MR::getSensorPos(pSender), getHost()->_EC, 45.0f)) {
                 TVec3f railPosFrontCoord;
                 MR::calcRailPosFrontCoord(&railPosFrontCoord, getHost(), 2000.0f);
+
                 if (MR::sendMsgEnemyAttackMaximumToDir(pSender, pReceiver, railPosFrontCoord - getHost()->mPosition)) {
                     getHost()->invalidateCollision();
                     setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvAttackSuccess::sInstance);
+
                     return true;
                 }
             }
         }
     }
+
     return false;
 }
 
 void BossStinkBugActionGround::exeStart() {
-    if (updateGroundRegainRail(5.0f)) {
+    if (updateGroundRegainRail(::sWalkSpeed)) {
         setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance);
     }
 }
 
 void BossStinkBugActionGround::exeWalk() {
-    updateGroundWalk(5.0f);
-    f32 distToPlayer = MR::calcDistanceToPlayer(getHost());
-    if (500.0f <= distToPlayer && distToPlayer <= 1900.0f && MR::isFaceToPlayerDegreeHV(getHost(), getHost()->_EC, 45.0f, 15.0f)) {
+    updateGroundWalk(::sWalkSpeed);
+
+    f32 findDistance = MR::calcDistanceToPlayer(getHost());
+
+    if (::sFindMinDistance <= findDistance && findDistance <= ::sFindMaxDistance &&
+        MR::isFaceToPlayerDegreeHV(getHost(), getHost()->_EC, ::sFindDegreeH, ::sFindDegreeV)) {
         setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvFind::sInstance);
-    } else if (BossStinkBugFunction::isExistPlayerBack(getHost(), 2500.0f)) {
+    } else if (BossStinkBugFunction::isExistPlayerBack(getHost(), ::sTurnStartDistance)) {
         setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvTurn::sInstance);
     }
 }
@@ -127,13 +141,13 @@ void BossStinkBugActionGround::exeShakeOff() {
 }
 
 void BossStinkBugActionGround::exeShakeOffRun() {
-    if (updateGroundRun(20.0f)) {
+    if (updateGroundRun(::sRunSpeed)) {
         setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvCoolDown::sInstance);
     }
 }
 
 void BossStinkBugActionGround::exeRun() {
-    if (updateGroundRun(20.0f)) {
+    if (updateGroundRun(::sRunSpeed)) {
         setNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvCoolDown::sInstance);
     }
 }
@@ -173,16 +187,16 @@ bool BossStinkBugActionGround::isEnableHipDrop() const {
         isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvTurn::sInstance) ||
         isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvCoolDown::sInstance)) {
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 bool BossStinkBugActionGround::isEnableShakeStart() const {
     if (isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvWalk::sInstance) ||
         isNerve(&NrvBossStinkBugGroundBattle::BossStinkBugActionGroundNrvRun::sInstance)) {
         return true;
-    } else {
-        return false;
     }
+
+    return false;
 }

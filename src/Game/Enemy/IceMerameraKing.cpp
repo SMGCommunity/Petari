@@ -1,42 +1,43 @@
 #include "Game/Enemy/IceMerameraKing.hpp"
-#include "Game/Camera/CameraTargetDemoActor.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Effect/SpinPullParticleCallBack.hpp"
 #include "Game/Enemy/Meramera.hpp"
 #include "Game/Enemy/MoguStone.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/FixedPosition.hpp"
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
 #include "revolution/types.h"
 
 namespace {
-    static const char* hScaleJointName[] = {"WideInSide", "WideOutSide", "Hirgh1"};
+    static const char* hScaleJointName[4] = {"WideInSide", "WideOutSide", "Hirgh1"};
 
-    static const f32 hOnAirParam[] = {0.0f, 3.0f, 0.96f, 0.0f};
+    static const f32 hOnAirParam[4] = {0.0f, 3.0f, 0.96f, 0.0f};
 
-    static const f32 hOnGroundParam[] = {0.0f, 1.0f, 0.8f, 0.0f};
+    static const f32 hOnGroundParam[4] = {0.0f, 1.0f, 0.8f, 0.0f};
 
-    static const f32 hFlyParam[] = {0.0f, 0.5f, 0.9f, 1.0f};
+    static const f32 hFlyParam[4] = {0.0f, 0.5f, 0.9f, 1.0f};
 
-    static const f32 hAngryDemoParam[] = {0.0f, 0.5f, 0.9f, 1.5f};
+    static const f32 hAngryDemoParam[4] = {0.0f, 0.5f, 0.9f, 1.5f};
 
-    static const f32 hEscapeOnGroundParam[] = {-0.7f, 1.0f, 0.96f, 180.0f};
+    static const f32 hEscapeOnGroundParam[4] = {-0.7f, 1.0f, 0.96f, 180.0f};
 
-    static const f32 hEscapeOnAirParam[] = {0.0f, 3.0f, 0.96f, 0.0f};
+    static const f32 hEscapeOnAirParam[4] = {0.0f, 3.0f, 0.96f, 0.0f};
 
-    static const f32 hPreRecoverJumpParam[] = {0.0f, 1.0f, 0.96f, 0.0f};
+    static const f32 hPreRecoverJumpParam[4] = {0.0f, 1.0f, 0.96f, 0.0f};
 
-    static const f32 hDamageJumpParam[] = {0.0f, 1.9f, 0.98f, 0.0f};
+    static const f32 hDamageJumpParam[4] = {0.0f, 1.9f, 0.98f, 0.0f};
 
-    static const f32 hAttackParam[] = {0.0f, 6.0f, 0.98f, 0.0f};
+    static const f32 hAttackParam[4] = {0.0f, 6.0f, 0.98f, 0.0f};
 
-    static f32 hExtinguishOnAirParam[] = {0.0f, 0.125f, 0.96f, 0.0f};
+    static const f32 hExtinguishOnAirParam[4] = {0.0f, 0.125f, 0.96f, 0.0f};
 
-    static f32 hExtinguishFallOnAirParam[] = {0.0f, 4.0f, 0.96f, 0.0f};
+    static const f32 hExtinguishFallOnAirParam[4] = {0.0f, 4.0f, 0.96f, 0.0f};
 };  // namespace
 
 namespace NrvIceMerameraKing {
@@ -63,8 +64,8 @@ namespace NrvIceMerameraKing {
 };  // namespace NrvIceMerameraKing
 
 IceMerameraKing::IceMerameraKing(const char* pName)
-    : LiveActor(pName), mFixedPos(nullptr), _90(nullptr), _94(nullptr), mActor(), _A8(nullptr), _AC(nullptr), _B0(0, 0, 1), _BC(0, 1, 0),
-      _C8(0, 0, 0), _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(nullptr), _F8(nullptr), mJointController(nullptr), _100(0, 0, 0, 1),
+    : LiveActor(pName), mFixedPos(nullptr), mThrowingIce(nullptr), mMeramera(nullptr), mIce(), _A8(nullptr), _AC(nullptr), _B0(0, 0, 1), _BC(0, 1, 0),
+      _C8(0, 0, 0), _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(nullptr), mCameraTarget(nullptr), mJointController(nullptr), _100(0, 0, 0, 1),
       _110(0.0f, 0.0f, 0.0f), _11C(0.0f), _120(false), _121(false) {
 }
 
@@ -99,14 +100,12 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     MR::declareStarPiece(this, 24);
     mFixedPos = new FixedPosition(this, "Top", TVec3f(0, 0, 0), TVec3f(0.0f, 0.0f, 0.0f));
     MR::tryRegisterDemoCast(this, rIter);
-    mActor.mArray.mArr = new ThrowingIce*[0x6];
-    mActor.mArray.mMaxSize = 6;
-
-    for (int i = 0; i < 6; i++) {
-        mActor[i] = new ThrowingIce("投擲用の氷");
-        mActor[i]->initWithoutIter();
-        mActor.mCount += 1;
-        MR::tryRegisterDemoCast(mActor[i], rIter);
+    mIce.init(6);
+    for (s32 i = 0; i < 6; i++) {
+        ThrowingIce* newIce = new ThrowingIce("投擲用の氷");
+        newIce->initWithoutIter();        
+        mIce.push_back(newIce);
+        MR::tryRegisterDemoCast(newIce, rIter);
     }
 
     MR::initLightCtrl(this);
@@ -120,28 +119,27 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     _AC->makeActorDead();
     s32 childNum = MR::getChildObjNum(rIter);
     _F0 = childNum;
-    mModelArray = new ThrowingIce*[childNum];
+    mModelArray = new Meramera*[childNum];
 
     for (s32 i = 0; i < _F0; i++) {
-        mModelArray[i] = new ThrowingIce("メラメラ");  // wrong
+        mModelArray[i] = new Meramera("メラメラ");
         MR::initChildObj(mModelArray[i], rIter, i);
-        mModelArray[i]->appear();
+        mModelArray[i]->makeActorDead();
         MR::tryRegisterDemoCast(mModelArray[i], rIter);
     }
 
     MR::tryRegisterDemoCast(_AC, rIter);
     MR::registerDemoActionNerve(this, &NrvIceMerameraKing::HostTypeNrvBeginDemo::sInstance, nullptr);
-    mSpinParticle = new SpinPullParticleCallBack();
+    mSpinParticle = new MerameraParticleCallBack();
     mJointController = MR::createJointDelegatorWithNullChildFunc(this, &IceMerameraKing::calcJoint, "JointRoot");
     makeActorAppeared();
     MR::emitEffect(this, "BodyIce");
-    _F8 = new CameraTargetDemoActor(getBaseMtx(), "アクター注目");
-    _F8->initWithoutIter();
-    _F8->mPosition.set< f32 >(_C8);
-    _F8->mRotation.set< f32 >(_D4);
-    _F8->setName("メラキン注目ターゲット");
-    MR::tryRegisterDemoCast(_F8, rIter);
-    // major
+    mCameraTarget = new CameraTargetDemoActor(getBaseMtx(), "アクター注目");
+    mCameraTarget->initWithoutIter();
+    mCameraTarget->mPosition.set< f32 >(_C8);
+    mCameraTarget->mRotation.set< f32 >(_D4);
+    mCameraTarget->setName("メラキン注目ターゲット");
+    MR::tryRegisterDemoCast(mCameraTarget, rIter);
 }
 
 void IceMerameraKing::initAfterPlacement() {
@@ -158,7 +156,6 @@ void IceMerameraKing::initAfterPlacement() {
             binder->_1EC._2 = true;
         }
     }
-    // major
 }
 
 void IceMerameraKing::kill() {
@@ -168,11 +165,11 @@ void IceMerameraKing::kill() {
         MR::onSwitchDead(this);
     }
     MR::startAfterBossBGM();
-    s32 temp = mActor.mCount;
+    s32 temp = mIce.mCount;
 
     for (s32 i = 0; i < temp; i++) {
-        if (!MR::isDead(mActor[i])) {
-            mActor[i]->kill();
+        if (!MR::isDead(mIce[i])) {
+            mIce[i]->kill();
         }
     }
 }
@@ -202,11 +199,11 @@ void IceMerameraKing::control() {
     }
 
     if (!isNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance) && !isNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance)) {
-        MR::startLevelSound(this, "SE_BM_LV_ICEMERAKING_WAIT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_ICEMERAKING_WAIT");
     }
 
     if (MR::isDemoActive("メラキンオープニング")) {
-        MR::startSystemLevelSE("SE_DM_LV_MUTE_BGM", -1, -1);
+        MR::startSystemLevelSE("SE_DM_LV_MUTE_BGM");
         if (MR::isDemoPartLastStep("カメラ寄る")) {
             MR::playLevelMarioPinchBGM(_120);
             _120 = true;
@@ -234,11 +231,11 @@ void IceMerameraKing::exeSearch() {
         } else {
             if (isEnableThrow()) {
                 if (!(_EC > 2)) {
-                    if (MR::isGreaterStep(this, 200) && isDeadAllIce()) {
+                    if (MR::isGreaterStep(this, 100) && isDeadAllIce()) {
                         _E0 = 0;
                         setNerve(&NrvIceMerameraKing::HostTypeNrvThrow2nd::sInstance);
                     }
-                } else if (MR::isGreaterStep(this, 100) && isDeadAllIce()) {
+                } else if (MR::isGreaterStep(this, 200) && isDeadAllIce()) {
                     _E0 = 0;
                     setNerve(&NrvIceMerameraKing::HostTypeNrvThrow::sInstance);
                 }
@@ -251,7 +248,7 @@ void IceMerameraKing::exeThrow() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "AttackThrow");
         if (isNerve(&NrvIceMerameraKing::HostTypeNrvBeginDemo::sInstance)) {
-            MR::calcFrontVec(&_B0, _F8);
+            MR::calcFrontVec(&_B0, mCameraTarget);
         }
     }
     MR::moveAndTurnToPlayer(this, &_B0, hFlyParam[0], hFlyParam[1], hFlyParam[2], hFlyParam[3]);
@@ -259,20 +256,22 @@ void IceMerameraKing::exeThrow() {
     addVelocityToInitPos();
 
     if (MR::isStep(this, 22)) {
-        _90 = getDeadWeaponAndAppear();
-        mFixedPos->mMtx.getTrans(_90->mPosition);
-        if (!_90) {
+        mThrowingIce = getDeadWeaponAndAppear();
+        mFixedPos->mMtx.getTrans(mThrowingIce->mPosition);
+        ThrowingIce *ice = mThrowingIce;
+        if (!ice) {
             setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
             return;
         }
-        _E0++;
+        
+        _E0 += 1;
         TVec3f v11(*MR::getPlayerVelocity());
         v11.scale(35.0f);
         TVec3f v12(*MR::getPlayerCenterPos());
         v12.add(v11);
-        _90->emitIce(mPosition, v12, -5.0f, mGravity);
-        _90 = nullptr;
-        MR::startSound(this, "SE_BM_ICEMERAKING_THROW", -1, -1);
+        mThrowingIce->emitIce(ice->mPosition, v12, -5.0f, mGravity);
+        mThrowingIce = nullptr;
+        MR::startSound(this, "SE_BM_ICEMERAKING_THROW");
     }
 
     if (MR::isActionEnd(this)) {
@@ -293,7 +292,6 @@ void IceMerameraKing::exeThrow() {
             }
         }
     }
-    // minor
 }
 
 void IceMerameraKing::endThrow() {
@@ -301,23 +299,23 @@ void IceMerameraKing::endThrow() {
 }
 
 void IceMerameraKing::tearDownThrow() {
-    if (_90) {
-        _90->kill();
-        _90 = nullptr;
+    if (mThrowingIce) {
+        mThrowingIce->kill();
+        mThrowingIce = nullptr;
     }
 
-    if (_94) {
-        _94->kill();
-        _94 = nullptr;
+    if (mMeramera) {
+        mMeramera->kill();
+        mMeramera = nullptr;
     }
 }
 
 void IceMerameraKing::exeExtinguish() {
-    f32 temp = hOnAirParam[1];  // I have no idea how it's loaded
+    f32 temp = hOnAirParam[1];  // it just exists
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "GoOut");
-        MR::startSound(this, "SE_BM_ICEMERAKING_BLOW", -1, -1);
-        MR::startSound(this, "SE_BM_ICEMERAKING_SMOKE", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_BLOW");
+        MR::startSound(this, "SE_BM_ICEMERAKING_SMOKE");
         MR::deleteEffect(this, "BodyIce");
         MR::emitEffectWithParticleCallBack(this, "BodyIceOff", mSpinParticle);
         TVec3f* v3 = MR::getPlayerCenterPos();
@@ -325,7 +323,7 @@ void IceMerameraKing::exeExtinguish() {
         v4.sub(*v3);
         MR::vecKillElement(v4, mGravity, &v4);
         MR::normalizeOrZero(&v4);
-        MR::setVelocitySeparateHV(this, v4, 20.0f, temp);
+        MR::setVelocitySeparateHV(this, v4, 20.0f, 0.0f);
         _11C = 200.0f + MR::getShadowNearProjectionLength(this);
     }
 
@@ -334,14 +332,13 @@ void IceMerameraKing::exeExtinguish() {
         MR::moveAndTurnToPlayer(this, &_B0, hExtinguishOnAirParam[0], hExtinguishOnAirParam[1], hExtinguishOnAirParam[2], hExtinguishOnAirParam[3]);
     } else if (MR::isOnGround(this) && MR::isActionEnd(this)) {
         MR::moveAndTurnToPlayer(this, &_B0, hOnGroundParam[0], hOnGroundParam[1], hOnGroundParam[2], hOnGroundParam[3]);
-        MR::startSound(this, "SE_BM_ICEMERAKING_LAND", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_LAND");
         _E8 = 0;
         setNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance);
     } else {
         MR::moveAndTurnToPlayer(this, &_B0, hExtinguishFallOnAirParam[0], hExtinguishFallOnAirParam[1], hExtinguishFallOnAirParam[2],
                                 hExtinguishFallOnAirParam[3]);
     }
-    // minor. problems on the params
 }
 
 void IceMerameraKing::exeEscape() {
@@ -381,7 +378,7 @@ void IceMerameraKing::endEscape() {
 void IceMerameraKing::exeEscapeJump() {
     if (MR::isStep(this, 20)) {
         MR::addVelocitySeparateHV(this, _B0, 20.0f, 90.0f);
-        MR::startSound(this, "SE_BM_ICEMERAKING_JUMP", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_JUMP");
     }
     _E8++;
 
@@ -392,7 +389,7 @@ void IceMerameraKing::exeEscapeJump() {
 
         if (MR::isGreaterStep(this, 20)) {
             MR::emitEffect(this, "Land");
-            MR::startSound(this, "SE_BM_ICEMERAKING_LAND", -1, -1);
+            MR::startSound(this, "SE_BM_ICEMERAKING_LAND");
             setNerve(&NrvIceMerameraKing::HostTypeNrvEscape::sInstance);
         }
     } else {
@@ -407,7 +404,8 @@ void IceMerameraKing::exeDamage() {
         MR::startAction(this, "Damage");
         MR::emitEffect(this, "Damage");
         MR::startBlowHitSound(this);
-        MR::startSound(this, "SE_BM_ICEMERAKING_DAMAGE", -1, -1), MR::setVelocityJump(this, 80.0f);
+        MR::startSound(this, "SE_BM_ICEMERAKING_DAMAGE");
+        MR::setVelocityJump(this, 80.0f);
         MR::stopSceneForDefaultHit(4);
     }
 
@@ -435,7 +433,7 @@ void IceMerameraKing::exeDamage() {
 void IceMerameraKing::exePreRecover() {
     if (MR::isFirstStep(this)) {
         MR::setVelocityJump(this, 70.0f);
-        MR::startSound(this, "SE_BM_ICEMERAKING_JUMP", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_JUMP");
     }
     addVelocityToInitPos();
 
@@ -460,11 +458,11 @@ void IceMerameraKing::exeRecover() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Recover");
         MR::emitEffect(this, "BodyIce");
-        MR::startSound(this, "SE_BM_ICEMERAKING_PRE_RECOVER", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_PRE_RECOVER");
     }
 
     if (MR::isStep(this, 80)) {
-        MR::startSound(this, "SE_BM_ICEMERAKING_RECOVER", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_RECOVER");
     }
     addVelocityToInitPos();
     MR::moveAndTurnToPlayer(this, &_B0, hFlyParam[0], hFlyParam[1], hFlyParam[2], hFlyParam[3]);
@@ -492,7 +490,7 @@ void IceMerameraKing::exePreAttack() {
 void IceMerameraKing::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Attack");
-        MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ATTACK", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ATTACK");
     }
 
     if (!MR::isActionEnd(this)) {
@@ -502,7 +500,7 @@ void IceMerameraKing::exeAttack() {
         MR::moveAndTurnToPlayer(this, &_B0, hAttackParam[0], hAttackParam[1], hAttackParam[2], hAttackParam[3]);
     }
 
-    if (MR::isOnGround(this)) {
+    if (MR::isOnGround(this)) { 
         setNerve(&NrvIceMerameraKing::HostTypeNrvAttackAfter::sInstance);
     }
 }
@@ -511,10 +509,10 @@ void IceMerameraKing::exeAttackAfter() {
     if (MR::isFirstStep(this)) {
         _A8->appear();
         _A8->mPosition.set< f32 >(mPosition);
-        _A8->mPosition.set< f32 >(_D4);
+        _A8->mRotation.set< f32 >(_D4);
         MR::emitEffect(this, "Land");
         MR::startAction(this, "AttackEnd");
-        MR::startSound(this, "SE_BM_ICEMERAKING_HIP_DROP", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_HIP_DROP");
         MR::tryRumblePadAndCameraDistanceStrong(this, 800.0f, 1200.0f, 2000.0f);
     }
     MR::moveAndTurnToPlayer(this, &_B0, hOnAirParam[0], hOnAirParam[1], hOnAirParam[2], hOnAirParam[3]);
@@ -529,10 +527,10 @@ void IceMerameraKing::exeAngryDemo() {
         MR::emitEffect(this, "BodyIce");
         if (isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance)) {
             MR::startAction(this, "Summon");
-            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY2", -1, -1);
+            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY2");
         } else {
             MR::startAction(this, "Recover");
-            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY1", -1, -1);
+            MR::startSound(this, "SE_BM_ICEMERAKING_PRE_ANGRY1");
         }
     }
 
@@ -549,27 +547,27 @@ void IceMerameraKing::exeAngryDemo() {
     }
 
     if (isNerve(&NrvIceMerameraKing::HostTypeNrvAngryDemo2nd::sInstance) && MR::isStep(this, 85)) {
-        MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY2", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY2");
     } else if (MR::isStep(this, 85)) {
-        MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY1", -1, -1);
+        MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY1");
     }
     MR::playLevelMarioPinchBGM(true);
-
+    
     if (MR::isDemoPartLastStep("怒りデモ")) {
         if (!(_EC > 2)) {
             TVec3f v7(mGravity);
             v7.scale(200.0f);
             TVec3f v8(mPosition);
-            v7.sub(v8);
-            MR::appearStarPiece(this, v7, 8, 15.0f, 70.0f, false);
+            v8.sub(v7);
+            MR::appearStarPiece(this, v8, 8, 15.0f, 70.0f, false);
         } else {
             TVec3f v5(mGravity);
             v5.scale(200.0f);
             TVec3f v6(mPosition);
-            v5.sub(v6);
-            MR::appearStarPiece(this, v5, 16, 15.0f, 70.0f, false);
+            v6.sub(v5);
+            MR::appearStarPiece(this, v6, 16, 15.0f, 70.0f, false);
         }
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
     }
 }
@@ -585,8 +583,8 @@ void IceMerameraKing::exeDeathDemoWait() {
 void IceMerameraKing::exeDeathDemo() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Death");
-        MR::startSound(this, "SE_BM_ICEMERAKING_DEAD", -1, -1);
-        _F8->mPosition.set< f32 >(mPosition);
+        MR::startSound(this, "SE_BM_ICEMERAKING_DEAD");
+        mCameraTarget->mPosition.set< f32 >(mPosition);
         _AC->appear();
         _AC->mRotation.set< f32 >(_D4);
         MR::resetPosition(_AC, mPosition);
@@ -741,9 +739,9 @@ void IceMerameraKing::calcAndSetBaseMtx() {
 }
 
 bool IceMerameraKing::isDeadAllIce() {
-    s32 temp = mActor.mCount;
-    for (s32 i = 0; i < temp; i++) {
-        if (!MR::isDead(mActor[i])) {
+    s32 count = mIce.mCount;
+    for (s32 i = 0; i < count; i++) {
+        if (!MR::isDead(mIce[i])) {
             return false;
         }
     }
@@ -771,57 +769,33 @@ bool IceMerameraKing::isEnableThrow() {
 ThrowingIce* IceMerameraKing::getDeadWeaponAndAppear() {
     ThrowingIce* v7;
     s32 tempE4 = _E4;
-    s32 temp = mActor.mCount;
-    for (s32 i = 0; i < temp; i++) {
-        if (MR::isDead(mActor[tempE4])) {
-            MR::resetPosition(mActor[tempE4], mPosition);
-            mActor[tempE4]->appear();
-            _E4 += temp + 1 - ((_E4 + temp + 1) / (temp * temp));
-            v7 = mActor[tempE4];
+    s32 count = mIce.mCount;
+    for (s32 i = 0; i < count; i++) {
+        if (MR::isDead(mIce[tempE4])) {
+            MR::resetPosition(mIce[tempE4], mPosition);
+            LiveActor* weapon = mIce[tempE4];
+            weapon->appear();
+            mIce.begin();
+            _E4 += count;
+            _E4++;
+            _E4 %= count;
+            v7 = mIce[tempE4];
             return v7;
         }
-        tempE4 += temp + 1 - ((tempE4 + temp + 1) / (temp * temp));
+
+        tempE4 = (tempE4 + count + 1) % count;
     }
-    v7 = nullptr;
-    return v7;
-    // major
+    return nullptr;
 }
 
-bool IceMerameraKing::calcJoint(TPos3f* vec, const JointControllerInfo& info) {
-    TMtx34f v16;
-    TVec3f v15;
-    v16.mMtx[0][3] = 0.0f;
-    v16.mMtx[1][3] = 0.0f;
-    v16.mMtx[2][3] = 0.0f;
-    f32 v3 = _100.y;
-    f32 v4 = _100.x;
-    f32 v5 = 2.0f * _100.y;
-    f32 v6 = _100.z;
-
-    f32 v7 = 2.0f * _100.x;
-    f32 v8 = 2.0f * _100.w;
-    f32 v9 = ((1.0f - ((2.0f * _100.x) * _100.x)) - ((2.0f * _100.z) * _100.z));
-    f32 v10 = (((2.0f * _100.x) * _100.y) + ((2.0f * _100.w) * _100.z));
-    v16.mMtx[0][0] = (1.0f - ((2.0f * _100.y) * _100.y)) - ((2.0f * _100.z) * _100.z);
-    f32 v11 = ((1.0f - (v7 * v4)) - (v5 * v3));
-    v16.mMtx[0][1] = (v7 * v3) - (v8 * v6);
-    f32 v12 = (v8 * v3);
-    v16.mMtx[1][1] = v9;
-    f32 v13 = (v8 * v4);
-    v16.mMtx[1][0] = v10;
-    v16.mMtx[2][2] = v11;
-    v16.mMtx[0][2] = (v7 * v6) + v12;
-    v16.mMtx[1][2] = (v5 * v6) - v13;
-    v16.mMtx[2][0] = (v7 * v6) - v12;
-    v16.mMtx[2][1] = (v5 * v6) + v13;
-    vec->getTrans(v15);
-    mPosition.x = 0.0f;
-    mRotation.y = 0.0f;
-    mScale.z = 0.0f;
-    vec->concat(v16, *vec);
-    mPosition.x = v15.x;
-    mRotation.y = v15.y;
-    mScale.z = v15.z;
+bool IceMerameraKing::calcJoint(TPos3f* a2, const JointControllerInfo& info) {
+    TPos3f mtx;
+    TVec3f v3;
+    mtx.makeQuatInline(_100);
+    a2->getTrans(v3);
+    a2->zeroTransInline2();
+    a2->concat(mtx, *a2);
+    a2->setTransInline(v3);  
     return true;
 }
 

@@ -59,4 +59,4 @@ namespace AudParams {
     f32 micSonicSpeed = 800.0f;
     f32 micPitchDeltaRatioRange = 1.5f;
     s32 micPriorityDownRange = 255;
-};
+};  // namespace AudParams

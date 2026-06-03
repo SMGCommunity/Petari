@@ -7,7 +7,7 @@
 namespace nw4r {
     namespace lyt {
         class Pane;
-    };
+    };  // namespace lyt
 };  // namespace nw4r
 
 class J3DFrameCtrl;

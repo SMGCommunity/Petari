@@ -4,4 +4,4 @@
 
 namespace MR {
     LiveActor* initMultiFur(LiveActor*, s32);
-}
+};  // namespace MR

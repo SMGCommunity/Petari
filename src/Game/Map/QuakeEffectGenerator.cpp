@@ -35,7 +35,7 @@ void QuakeEffectGenerator::exeQuaking() {
         MR::shakeCameraInfinity(this, 0.05f, 1.5f);
     }
 
-    MR::startAtmosphereLevelSE("SE_AT_LV_EARTHQUAKE", -1, -1);
+    MR::startAtmosphereLevelSE("SE_AT_LV_EARTHQUAKE");
 
     if (MR::isStep(this, 120)) {
         MR::stopShakingCamera(this);

@@ -3,7 +3,7 @@
 
 namespace {
     static const s32 sHoldCounterMax = 12;
-};
+};  // namespace
 
 PauseButtonCheckerInGame::PauseButtonCheckerInGame() : mPlusHoldFrame(0), mMinusHoldFrame(0) {}
 

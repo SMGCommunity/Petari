@@ -23,7 +23,8 @@ void FunctionAsyncExecInfo::execute() {
 }
 
 FunctionAsyncExecutorThread::FunctionAsyncExecutorThread(JKRHeap* pHeap)
-    : OSThreadWrapper(0x10000, 4, 1, pHeap), mIsSuspended(false), mName(nullptr) {}
+    : OSThreadWrapper(0x10000, 4, 1, pHeap), mIsSuspended(false), mName(nullptr) {
+}
 
 void* FunctionAsyncExecutorThread::run() {
     OSInitFastCast();
@@ -45,7 +46,7 @@ void* FunctionAsyncExecutorThread::run() {
 }
 
 FunctionAsyncExecutorOnMainThread::FunctionAsyncExecutorOnMainThread(OSThread* pThread) : mThread(pThread), _0(false) {
-    OSInitMessageQueue(&mQueue, mMsgArray, sizeof(mMsgArray) / sizeof(*mMsgArray));
+    OSInitMessageQueue(&mQueue, mMsgArray, ARRAY_SIZE(mMsgArray));
 }
 
 void FunctionAsyncExecutorOnMainThread::update() {
@@ -66,9 +67,7 @@ void FunctionAsyncExecutorOnMainThread::update() {
 }
 
 FunctionAsyncExecutor::FunctionAsyncExecutor() : mMainThreadExec(nullptr), mHolders(), _410(nullptr), _414(nullptr) {
-    s32 size = sizeof(mThreads) / sizeof(*mThreads);
-
-    for (s32 i = 0; i < size; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mThreads); i++) {
         FunctionAsyncExecutorThread* thread = new FunctionAsyncExecutorThread(MR::getStationedHeapNapa());
         mThreads[i] = thread;
         OSResumeThread(thread->mThread);
@@ -151,9 +150,7 @@ bool FunctionAsyncExecutor::isEnd(const char* pName) const {
 }
 
 OSThread* FunctionAsyncExecutor::getOSThread(const char* pName) {
-    s32 size = sizeof(mThreads) / sizeof(*mThreads);
-
-    for (s32 i = 0; i < size; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mThreads); i++) {
         FunctionAsyncExecutorThread* pThread = mThreads[i];
 
         if (pThread->mIsSuspended && MR::isEqualString(pThread->mName, pName)) {
@@ -175,9 +172,7 @@ FunctionAsyncExecInfo* FunctionAsyncExecutor::createAndAddExecInfo(const MR::Fun
 }
 
 FunctionAsyncExecutorThread* FunctionAsyncExecutor::getSuspendThread() {
-    s32 size = sizeof(mThreads) / sizeof(*mThreads);
-
-    for (s32 i = 0; i < size; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mThreads); i++) {
         if (!mThreads[i]->mIsSuspended) {
             return mThreads[i];
         }

@@ -26,12 +26,12 @@ namespace NrvMogucchiShooter {
     NEW_NERVE(MogucchiShooterNrvStormStart, MogucchiShooter, StormStart);
     NEW_NERVE(MogucchiShooterNrvStorm, MogucchiShooter, Storm);
 
-}  // namespace NrvMogucchiShooter
+};  // namespace NrvMogucchiShooter
 
 namespace {
     static f32 sAngerBlurOffset = 100.0f;
     static f32 sExplosionBlurOffset = 100.0f;
-}  // namespace
+};  // namespace
 
 MogucchiShooter::MogucchiShooter(LiveActor* pActor, const char* pName)
     : PartsModel(pActor, pName, "MogucchiShooter", nullptr, MR::DrawBufferType_Enemy, false), mFront(0.0f, 0.0f, 0.0f) {
@@ -80,7 +80,7 @@ bool MogucchiShooter::isLaughed() const {
 }
 
 void MogucchiShooter::exeWait() {
-    WaterBazooka* bazooka = reinterpret_cast< WaterBazooka* >(mHost);
+    WaterBazooka* bazooka = static_cast< WaterBazooka* >(mHost);
 
     if (MR::isFirstStep(this)) {
         if (bazooka->isBazookaPinch()) {
@@ -134,7 +134,7 @@ void MogucchiShooter::exeTire() {
         MR::startAction(this, "Tire");
     }
 
-    WaterBazooka* bazooka = reinterpret_cast< WaterBazooka* >(mHost);
+    WaterBazooka* bazooka = static_cast< WaterBazooka* >(mHost);
 
     if (bazooka->isPanic()) {
         setNerve(&NrvMogucchiShooter::MogucchiShooterNrvShock::sInstance);
@@ -185,7 +185,7 @@ void MogucchiShooter::exeShock() {
 }
 
 void MogucchiShooter::exePanic() {
-    WaterBazooka* bazooka = reinterpret_cast< WaterBazooka* >(mHost);
+    WaterBazooka* bazooka = static_cast< WaterBazooka* >(mHost);
 
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Panic");
@@ -194,7 +194,7 @@ void MogucchiShooter::exePanic() {
         }
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PANIC", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PANIC");
     faceToMario();
 
     if (!bazooka->isPanic() && MR::isOnGroundPlayer() && !bazooka->isBazookaLifeOut()) {
@@ -219,7 +219,7 @@ void MogucchiShooter::exeHitPanic() {
         MR::startAction(this, "Panic");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PANIC", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PANIC");
 
     if (!MR::isDemoActive()) {
         setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);

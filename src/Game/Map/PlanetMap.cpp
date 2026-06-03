@@ -35,7 +35,7 @@ void PlanetMap::init(const JMapInfoIter& rIter) {
         MR::getJMapInfoArg0NoInit(rIter, &v11);
         f32 v12 = -1.0f;
         MR::getJMapInfoArg2NoInit(rIter, &v12);
-        float unknownUse = -1.0f > v11 ? 1.0f : -1.0f;
+        f32 unknownUse = -1.0f > v11 ? 1.0f : -1.0f;
     }
     MR::initDefaultPos(this, rIter);
     initModel(mModelName, rIter);

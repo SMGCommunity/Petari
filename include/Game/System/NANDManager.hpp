@@ -71,4 +71,4 @@ private:
 
 namespace MR {
     void addRequestToNANDManager(NANDRequestInfo*);
-};
+};  // namespace MR

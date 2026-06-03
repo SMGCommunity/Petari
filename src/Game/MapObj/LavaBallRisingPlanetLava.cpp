@@ -22,7 +22,7 @@ void LavaBallRisingPlanetLava::init(const JMapInfoIter& rIter) {
 }
 
 void LavaBallRisingPlanetLava::exeWait() {
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND_RISING", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND_RISING");
 
     if (!MR::isLessStep(this, 120)) {
         if (isNerve(&NrvLavaBallRisingPlanetLava::LavaBallRisingPlanetLavaNrvWaitSmall::sInstance)) {
@@ -34,8 +34,8 @@ void LavaBallRisingPlanetLava::exeWait() {
 }
 
 void LavaBallRisingPlanetLava::exeScaleUp() {
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND_RISING", -1, -1, -1);
-    MR::startLevelSound(this, "SE_OJ_LV_LAVA_MOVE_RISING", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND_RISING");
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_MOVE_RISING");
     mScale.setAll< f32 >(MR::calcNerveValue(this, 240, 1.0f, 1.1f));
 
     if (MR::isStep(this, 240)) {
@@ -44,8 +44,8 @@ void LavaBallRisingPlanetLava::exeScaleUp() {
 }
 
 void LavaBallRisingPlanetLava::exeScaleDown() {
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND_RISING", -1, -1, -1);
-    MR::startLevelSound(this, "SE_OJ_LV_LAVA_MOVE_RISING", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND_RISING");
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_MOVE_RISING");
     mScale.setAll< f32 >(MR::calcNerveValue(this, 240, 1.1f, 1.0f));
 
     if (MR::isStep(this, 240)) {

@@ -83,7 +83,7 @@ namespace GameDataFunction {
         return getCurrentGameDataHolder()->getPictureBookChapterCanRead();
     }
 
-    u16 getPictureBookChapterAlreadyRead() {
+    u32 getPictureBookChapterAlreadyRead() {
         return getCurrentGameDataHolder()->getPictureBookChapterAlreadyRead();
     }
 
@@ -107,7 +107,7 @@ namespace GameDataFunction {
         return getCurrentGameDataHolder()->isOnGameEventFlag(pName);
     }
 
-    u16 getGameEventValue(const char* pName) {
+    u32 getGameEventValue(const char* pName) {
         return getCurrentGameDataHolder()->getGameEventValue(pName);
     }
 
@@ -171,11 +171,11 @@ namespace GameDataFunction {
         getCurrentGameDataHolder()->updateSpinDriverPathStorage(pGalaxyName, scenarioNo, param3, param4);
     }
 
-    s32 getStarPieceNumGivingToTicoSeed(int index) {
+    u32 getStarPieceNumGivingToTicoSeed(int index) {
         return getCurrentGameDataHolder()->getStarPieceNumGivingToTicoSeed(index);
     }
 
-    s32 getStarPieceNumMaxGivingToTicoSeed(int index) {
+    u32 getStarPieceNumMaxGivingToTicoSeed(int index) {
         return getCurrentGameDataHolder()->getStarPieceNumMaxGivingToTicoSeed(index);
     }
 

@@ -100,7 +100,7 @@ void SurfRayTutorial::exeTutorialStraightUpkeep() {
         mChangeStep = 0;
 
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK", -1, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK");
         mSurfingGuidance->levelOffHold();
     }
 
@@ -110,7 +110,7 @@ void SurfRayTutorial::exeTutorialStraightUpkeep() {
         mChangeStep = 0;
 
         if (MR::isStep(this, sStepToSuccess)) {
-            MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT", _28, -1);
+            MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT", _28);
 
             _28++;
 
@@ -119,7 +119,7 @@ void SurfRayTutorial::exeTutorialStraightUpkeep() {
         }
     } else if (mChangeStep++ == sStepToOK) {
         prevTutorial();
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG", -1, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG");
         mSurfingGuidance->levelOffReady();
     }
 
@@ -173,7 +173,7 @@ void SurfRayTutorial::exeTutorialTurnLeftUpkeep() {
         mChangeStep = 0;
 
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK", -1, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK");
         mSurfingGuidance->turnLeftHold();
     }
 
@@ -183,7 +183,7 @@ void SurfRayTutorial::exeTutorialTurnLeftUpkeep() {
         mChangeStep = 0;
 
         if (MR::isStep(this, sStepToSuccess)) {
-            MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT", _28, -1);
+            MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT", _28);
 
             _28++;
 
@@ -192,7 +192,7 @@ void SurfRayTutorial::exeTutorialTurnLeftUpkeep() {
         }
     } else if (mChangeStep++ == sStepToOK) {
         prevTutorial();
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG", -1, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG");
         mSurfingGuidance->turnLeftReady();
     }
 
@@ -246,7 +246,7 @@ void SurfRayTutorial::exeTutorialTurnRightUpkeep() {
         mChangeStep = 0;
 
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK", -1, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK");
         mSurfingGuidance->turnRightHold();
     }
 
@@ -256,7 +256,7 @@ void SurfRayTutorial::exeTutorialTurnRightUpkeep() {
         mChangeStep = 0;
 
         if (MR::isStep(this, sStepToSuccess)) {
-            MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT2", _28, -1);
+            MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT2", _28);
 
             _28++;
 
@@ -265,7 +265,7 @@ void SurfRayTutorial::exeTutorialTurnRightUpkeep() {
         }
     } else if (mChangeStep++ == sStepToOK) {
         prevTutorial();
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG", -1, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG");
         mSurfingGuidance->turnRightReady();
     }
 
@@ -384,14 +384,14 @@ void SurfRayTutorial::prevTutorial() {
 
 void SurfRayTutorial::startTimerSound(s32 step, s32 param2) {
     if (step == 20) {
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER", param2, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER", param2);
     }
 
     if (step == 43) {
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER2", param2, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER2", param2);
     }
 
     if (step == 66) {
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER3", param2, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER3", param2);
     }
 }

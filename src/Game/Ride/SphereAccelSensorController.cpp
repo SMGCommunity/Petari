@@ -24,7 +24,7 @@ namespace {
     static const f32 sSubAccelDegreMargine = 10.0f * PI_180;
     static const f32 sSubAccelDegreeRange = 40.0f * PI_180;
     static const f32 sSubAccelDegreeRangeY = 22.5f * PI_180;
-}  // namespace
+};  // namespace
 
 inline TVec2f getTrig(f32 angle) {
     return TVec2f(JMath::sSinCosTable.cosLapRad(angle), JMath::sSinCosTable.sinLapRad(angle));

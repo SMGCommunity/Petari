@@ -23,4 +23,4 @@ public:
 
 namespace MR {
     bool checkBigBubbleGoal(BigBubble*);
-}
+};  // namespace MR

@@ -29,33 +29,32 @@ void CoinReplica::removeCoin() {
 }
 
 void CoinReplica::init(const JMapInfoIter& rIter) {
-    mCoin = reinterpret_cast< Coin* >(MR::createCoin(this, "コイン(レプリカ用)"));
+    mCoin = static_cast< Coin* >(MR::createCoin(this, "コイン(レプリカ用)"));
     MR::initDefaultPos(mCoin, rIter);
     mCoin->initWithoutIter();
     mCoin->appearNonActive();
+
     s32 arg0;
-    MR::getJMapInfoArg0NoInit(rIter, &arg0);
+    MR::getJMapInfoArg0WithInit(rIter, &arg0);
 
     if (MR::isExistStageSwitchA(rIter) || MR::isExistStageSwitchB(rIter)) {
         StageSwitchCtrl* switchCtrl = MR::createStageSwitchCtrl(this, rIter);
 
         if (switchCtrl->isValidSwitchA()) {
             if (arg0 == -1) {
-                void (CoinReplica::*d)(void) = &CoinReplica::deactiveCoin;
-                void (CoinReplica::*a)(void) = &CoinReplica::activeCoin;
-                MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, d), MR::Functor(this, a));
+                MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, &CoinReplica::deactiveCoin),
+                                                   MR::Functor(this, &CoinReplica::activeCoin));
             } else {
-                void (CoinReplica::*d)(void) = &CoinReplica::deactiveCoin;
-                void (CoinReplica::*a)(void) = &CoinReplica::activeCoinWithGravity;
-                MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, d), MR::Functor(this, a));
+                MR::listenNameObjStageSwitchOnOffA(this, switchCtrl, MR::Functor(this, &CoinReplica::deactiveCoin),
+                                                   MR::Functor(this, &CoinReplica::activeCoinWithGravity));
             }
         }
 
         if (switchCtrl->isValidSwitchB()) {
-            void (CoinReplica::*d)(void) = &CoinReplica::removeCoin;
-            MR::listenNameObjStageSwitchOnB(this, switchCtrl, MR::Functor(this, d));
+            MR::listenNameObjStageSwitchOnB(this, switchCtrl, MR::Functor(this, &CoinReplica::removeCoin));
         }
     }
 }
 
-CoinReplica::~CoinReplica() {}
+CoinReplica::~CoinReplica() {
+}

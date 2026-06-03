@@ -348,8 +348,8 @@ namespace MR {
         createSceneObj(SceneObj_CenterScreenBlur);
     }
 
-    void startCenterScreenBlur(s32 param1, f32 param2, u8 param3, s32 param4, s32 param5) {
-        getSceneObj< CenterScreenBlur >(SceneObj_CenterScreenBlur)->start(param1, param2, param3, param4, param5);
+    void startCenterScreenBlur(s32 time, f32 offset, u8 alpha, s32 fadeIn, s32 fadeOut) {
+        getSceneObj< CenterScreenBlur >(SceneObj_CenterScreenBlur)->start(time, offset, alpha, fadeIn, fadeOut);
     }
 
     void startGlobalTimer() {}
@@ -587,7 +587,7 @@ namespace MR {
     }
 
     void requestOneUp() {
-        startSystemSE("SE_SY_1UP", -1, -1);
+        startSystemSE("SE_SY_1UP");
         getGameSceneLayoutHolder()->requestOneUp(1);
     }
 };  // namespace MR

@@ -96,7 +96,7 @@ void Manual2P::exeWait() {
         mLeftPaneCtrl->trySelect();
 
         if (mLeftPaneCtrl->mIsSelected) {
-            MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE", -1, -1);
+            MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE");
             setNerve(&Manual2PNrvScrollLeft::sInstance);
             return;
         }
@@ -104,7 +104,7 @@ void Manual2P::exeWait() {
         if (MR::testSubPadStickTriggerLeft(WPAD_CHAN0) || MR::testCorePadTriggerLeft(WPAD_CHAN0)) {
             mLeftPaneCtrl->_24 = false;
 
-            MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE", -1, -1);
+            MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE");
             setNerve(&Manual2PNrvScrollLeft::sInstance);
             return;
         }
@@ -114,7 +114,7 @@ void Manual2P::exeWait() {
         mRightPaneCtrl->trySelect();
 
         if (mRightPaneCtrl->mIsSelected) {
-            MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE", -1, -1);
+            MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE");
             setNerve(&Manual2PNrvScrollRight::sInstance);
             return;
         }
@@ -122,7 +122,7 @@ void Manual2P::exeWait() {
         if (MR::testSubPadStickTriggerRight(WPAD_CHAN0) || MR::testCorePadTriggerRight(WPAD_CHAN0)) {
             mRightPaneCtrl->_24 = false;
 
-            MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE", -1, -1);
+            MR::startSystemSE("SE_SY_FILE_SEL_TIPS_PAGE");
             setNerve(&Manual2PNrvScrollRight::sInstance);
             return;
         }
@@ -205,11 +205,11 @@ void Manual2P::control() {
     mRightPaneCtrl->update();
 
     if (mLeftPaneCtrl->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
     }
 
     if (mRightPaneCtrl->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
     }
 }
 
@@ -221,7 +221,7 @@ bool Manual2P::checkSelectedBackButton() {
     }
 
     if (MR::testSystemTriggerB()) {
-        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
+        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         mBackButton->disappear();
 
         return true;

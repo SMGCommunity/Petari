@@ -100,7 +100,7 @@ void ClipAreaDropLaser::exeMove() {
         MR::getRailPointArg0NoInit(this, railPoint, &arg);
         if (arg > 0.0f) {
             MR::emitEffectHit(this, pos, "Splash");
-            MR::startSound(this, "SE_OJ_DROP_LASER_SPLASH", -1, -1);
+            MR::startSound(this, "SE_OJ_DROP_LASER_SPLASH");
             MR::appearClipAreaDrop(pos, arg);
         }
     }

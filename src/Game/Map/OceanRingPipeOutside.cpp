@@ -13,7 +13,7 @@ namespace {
 
 
     static GXColor sTevReg0 = {0x14, 0x65, 0xFF, 0xB9};
-}  // namespace
+};  // namespace
 
 OceanRingPipeOutside::OceanRingPipeOutside(const OceanRingPipe* pPipe) : LiveActor("オーシャンリングの内側"),
     mRingPipe(pPipe), mTexU(0.0f), mWaterPipeIndirectTex(nullptr), mWaterPipeHighLightTex(nullptr), mDispListLength(0), mDispList(nullptr) {

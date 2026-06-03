@@ -12,7 +12,7 @@ namespace NrvCenterScreenBlur {
     NEW_NERVE(CenterScreenBlurNrvFadeOut, CenterScreenBlur, FadeOut);
 };  // namespace NrvCenterScreenBlur
 
-CenterScreenBlur::CenterScreenBlur() : LiveActor("画面中心ブラー"), mTotalFrame(0), mFadeInFrame(0), mFadeOutFrame(0), _98(0.0f), _9C(0), _A0(0.0f) {}
+CenterScreenBlur::CenterScreenBlur() : LiveActor("画面中心ブラー"), mTotalFrame(0), mFadeInFrame(0), mFadeOutFrame(0), mOffset(0.0f), mAlpha(0), _A0(0.0f) {}
 
 void CenterScreenBlur::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, MR::MovementType_ImageEffect, -1, -1, MR::DrawType_CenterScreenBlur);
@@ -35,18 +35,18 @@ void CenterScreenBlur::draw() const {
         return;
     }
 
-    f32 a = _98 * _A0;
-    u8 b = _9C * _A0;
+    f32 a = mOffset * _A0;
+    u8 b = mAlpha * _A0;
 
     MR::drawFullScreenBlur(a, a, b, b);
 }
 
-void CenterScreenBlur::start(s32 totalFrame, f32 a2, u8 a3, s32 fadeInFrame, s32 fadeOutFrame) {
+void CenterScreenBlur::start(s32 totalFrame, f32 offset, u8 alpha, s32 fadeInFrame, s32 fadeOutFrame) {
     mTotalFrame = totalFrame;
     mFadeInFrame = fadeInFrame;
     mFadeOutFrame = fadeOutFrame;
-    _98 = a2;
-    _9C = a3;
+    mOffset = offset;
+    mAlpha = alpha;
 
     appear();
 }

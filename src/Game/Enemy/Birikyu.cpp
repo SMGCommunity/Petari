@@ -181,7 +181,7 @@ void Birikyu::goMove() {
 }
 
 void Birikyu::exeMove() {
-    MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE");
 
     if (!tryStopPointing()) {
         if (MR::isRailReachedGoal(this)) {
@@ -202,7 +202,7 @@ void Birikyu::exeMove() {
 
 /*
 void Birikyu::exeMoveCircle() {
-    MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE");
     if (!tryStopPointing()) {
         f32 divis = _C8 / 400.0f;
         f32 sub = MR::subtractFromSum(divis, _C4, 0.0f);
@@ -219,7 +219,7 @@ void Birikyu::exeMoveCircle() {
 */
 
 void Birikyu::exeWaitAtEdge() {
-    MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE");
     s32 arg = 0;
     MR::getCurrentRailPointArg0NoInit(this, &arg);
 
@@ -236,7 +236,7 @@ void Birikyu::exeAttack() {
         MR::emitEffect(this, "Hit");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_BIRIKYU_MOVE");
 
     if (MR::isStep(this, 90)) {
         MR::sendMsgToGroupMember(ACTMES_GROUP_MOVE_START, this, getSensor("body"), "body");

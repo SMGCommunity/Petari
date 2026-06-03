@@ -3,7 +3,7 @@
 
 namespace {
     static const char* sDefaultAreaLightName = "デフォルト";
-};
+};  // namespace
 
 LightDataHolder::LightDataHolder() {
     mLightCount = 0;
