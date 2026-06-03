@@ -105,6 +105,11 @@ namespace MR {
         return FunctorV0M< T*, void (T::*)() const >(a1, a2);
     }
 
+    template < class T >
+    inline static FunctorV0M< const T*, void (T::*)() const > Functor_InlineC(T* a1, void (T::*a2)() const) {
+        return FunctorV0M< const T*, void (T::*)() const >(a1, a2);
+    }
+
     template < class T, typename U >
     static FunctorV1M< T*, void (T::*)(U), U > Functor(T* a1, void (T::*a2)(U), U arg_0) NO_INLINE {
         return FunctorV1M< T*, void (T::*)(U), U >(a1, a2, arg_0);
