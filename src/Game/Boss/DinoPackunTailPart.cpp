@@ -21,11 +21,7 @@ void DinoPackunTailPart::init(const JMapInfoIter& rIter) {
     initBinder(_D4, 0.0f, 0);
     MR::connectToSceneEnemyDecorationMovement(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorEnemy(this, "body", 8, (1.25f + _D4), offs);
+    MR::addHitSensorEnemy(this, "body", 8, (1.25f + _D4), TVec3f(0.0f, 0.0f, 0.0f));
     MR::invalidateClipping(this);
     makeActorAppeared();
 }

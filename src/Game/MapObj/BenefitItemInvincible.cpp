@@ -43,11 +43,7 @@ void BenefitItemInvincible::initModelAndEfx() {
     initEffectKeeper(5, "BenefitItemObj", false);
     initBinder(60.0f, 60.0f, 0);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 60.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 4, 60.0f, offs);
+    MR::addHitSensorMapObj(this, "body", 4, 60.0f, TVec3f(0.0f, 60.0f, 0.0f));
     MR::startBrk(this, "PowerupInvincible");
 }
 

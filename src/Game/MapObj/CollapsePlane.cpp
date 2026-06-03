@@ -28,11 +28,7 @@ void CollapsePlane::init(const JMapInfoIter& rIter) {
     info.setupNerve(&NrvCollapsePlane::CollapsePlaneNrvWait::sInstance);
     initialize(rIter, info);
     initEffectKeeper(1, nullptr, false);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::initStarPointerTarget(this, (200.0f * mScale.x), offs);
+    MR::initStarPointerTarget(this, mScale.x * 200.0f, TVec3f(0.0f, 0.0f, 0.0f));
     mScaleController = new AnimScaleController(nullptr);
     mScaleController->setParamTight();
     mStarPointerBind = new WalkerStateBindStarPointer(this, mScaleController);

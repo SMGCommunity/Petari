@@ -25,9 +25,7 @@ void KoopaFireStairs::init(const JMapInfoIter& rIteR) {
     MR::startBrk(this, "MeteorStrike");
     MR::connectToSceneEnemy(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.set(0.0f);
-    MR::addHitSensorEnemyAttack(this, "Fire", 8, 100.0f, offs);
+    MR::addHitSensorEnemyAttack(this, "Fire", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(1, nullptr, false);
     MR::addEffectHitNormal(this, "Hit");
     MR::setEffectBaseScale(this, "Hit", 2.0f);
