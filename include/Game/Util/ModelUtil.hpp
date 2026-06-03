@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Animation/XanimePlayer.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 #include "JSystem/JGeometry/TBox.hpp"
 #include <revolution.h>
@@ -11,6 +12,8 @@ struct ResTIMG;
 class XanimePlayer;
 
 namespace MR {
+
+    void updateModelAnimPlayer(LiveActor *);
     bool isExistModel(const char*);
 
     J3DModel* getJ3DModel(const LiveActor*);
