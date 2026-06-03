@@ -27,7 +27,7 @@ namespace {
 };  // namespace
 
 inline TVec2f getTrig(f32 angle) {
-    return TVec2f(JMath::sSinCosTable.cosLapRad(angle), JMath::sSinCosTable.sinLapRad(angle));
+    return TVec2f(MR::cos(angle), MR::sin(angle));
 }
 
 inline f32 diffAngleAbs(const TVec2f& v1, const TVec2f& v2) {

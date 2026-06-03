@@ -122,7 +122,7 @@ void KoopaFireStairs::exeFly() {
             mPosition.setPS2(v12);
 
             f32 v5 = (100.0f * mStair->calcTimeRate());
-            f32 v6 = JMath::sSinCosTable.sinLap(v5);
+            f32 v6 = MR::sinDegree(v5);
 
             TVec3f v8(_AC);
             v8.scale(v6);

@@ -276,7 +276,7 @@ void JASTrack::setLatestKey(u8 key) {
     mPitch += getTransposeTotal();
 }
 
-bool JASTrack::noteOn(u32 channelNum, u32 pitch, u32 c) {
+bool JASTrack::noteOn(u32 channelNum, u32 pitch, u32 velocity) {
     if (isMute())
         return false;
     bool ret = true;
@@ -285,7 +285,7 @@ bool JASTrack::noteOn(u32 channelNum, u32 pitch, u32 c) {
         if (mChannelMgrs[i]) {
             mChannelMgrs[i]->noteOff(channelNum, 0);
             JASChannel* channel;
-            if (!(channel = channelStart(mChannelMgrs[i], pitch, c, 0)))
+            if (!(channel = channelStart(mChannelMgrs[i], pitch, velocity, 0)))
                 ret = false;
             mChannelMgrs[i]->mChannels[channelNum] = channel;
         }
@@ -322,7 +322,7 @@ bool JASTrack::gateOn(u32 transposedPitch, u32 velocity, f32 seqTime, u32 flags)
             } else {
                 JASChannel* channel = mgr->mChannels[0];
                 if (channel) {
-                    channel->setKey(pitch - channel->_DC._4._1);
+                    channel->setKey(pitch - channel->_DC.mWaveInfo._1);
                     channel->setVelocity(velocity);
                     channel->setUpdateTimer(updateTimer);
                 }

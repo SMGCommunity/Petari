@@ -105,7 +105,7 @@ void DiskGravity::updateLocalParam() {
     bool artifact = false;
     bool& rArtifact = artifact;
 
-    mValidCos = JMath::sSinCosTable.cosLap(0.5f * mValidDegree);
+    mValidCos = MR::cosDegree(0.5f * mValidDegree);
     if (MR::isNearZero(mLocalNormal)) {
         rArtifact = true;
         mOppositeSideVecOrtho.zero();

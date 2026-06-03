@@ -4,11 +4,11 @@
 
 class JASMutexLock {
 public:
-    JASMutexLock(OSMutex* mutex) {
+    inline JASMutexLock(OSMutex* mutex) {
         mMutex = mutex;
         OSLockMutex(mMutex);
     }
-    ~JASMutexLock() {
+    inline ~JASMutexLock() {
         OSUnlockMutex(mMutex);
     }
 

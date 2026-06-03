@@ -68,7 +68,7 @@ void SegmentGravity::updateLocalParam() {
     bool artifact = true;
     bool& rArtifact = artifact;
 
-    mValidSideCos = JMath::sSinCosTable.cosLap(0.5f * mValidSideDegree);
+    mValidSideCos = MR::cosDegree(0.5f * mValidSideDegree);
 
     TVec3f localAxis = mGravityPoints[1] - mGravityPoints[0];
     MR::normalizeOrZero(&localAxis);

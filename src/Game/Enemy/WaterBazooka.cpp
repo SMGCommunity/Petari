@@ -716,7 +716,7 @@ bool WaterBazooka::aimAtMario() {
     TVec3f aim;
     aim.sub(aimPos, cannonPos);
     MR::normalize(&aim);
-    MR::turnVecToVecCos(&side, side, aim, JMath::sSinCosTable.cosLap(1.2f), mGravity, 0.02f);
+    MR::turnVecToVecCos(&side, side, aim, MR::cosDegree(1.2f), mGravity, 0.02f);
 
     TVec3f v1;
     MR::turnVecToPlane(&v1, side, mGravity.negateOperatorInternal());

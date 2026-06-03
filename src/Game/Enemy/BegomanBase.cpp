@@ -609,9 +609,9 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
             continue;
         }
         TVec3f directionFromLauncher(vec2);
-        directionFromLauncher.scale(JMath::sSinCosTable.cosLapRad(angle));
+        directionFromLauncher.scale(MR::cos(angle));
 
-        directionFromLauncher.add(vec1.scaleInline(JMath::sSinCosTable.sinLapRad(angle)));
+        directionFromLauncher.add(vec1.scaleInline(MR::sin(angle)));
 
         begomanArray[i]->mPosition.set(pActor->mPosition.addOperatorInLine(directionFromLauncher.scaleInline(distFromLauncher)));
         begomanArray[i]->mVelocity.set(directionFromLauncher.scaleInline(f2).subOperatorInLine(pActor->mGravity.scaleInline(f3)));

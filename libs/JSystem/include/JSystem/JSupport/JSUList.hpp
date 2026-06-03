@@ -205,8 +205,12 @@ public:
         return this->remove(child);
     }
 
+    bool insertChild(JSUTree< T >* before, JSUTree< T >* child) {
+        return this->insert(before, child);
+    }
+
     JSUTree< T >* getEndChild() const {
-        return NULL;
+        return nullptr;
     }
 
     JSUTree< T >* getFirstChild() const {
@@ -219,6 +223,10 @@ public:
 
     JSUTree< T >* getNextChild() const {
         return (JSUTree< T >*)this->getNext();
+    }
+
+    JSUTree< T >* getPrevChild() const {
+        return (JSUTree< T >*)this->mPrev;
     }
 
     u32 getNumChildren() const {

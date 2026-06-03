@@ -148,7 +148,7 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
     v11 *= PI;
     v11 *= 0.5f;
 
-    pInfo->_4 = JMath::sSinCosTable.cosLapRad(v11) * v9;
+    pInfo->_4 = MR::cos(v11) * v9;
     pInfo->_4 += v10;
 
     pInfo->mCamWaterDepth = -v10;

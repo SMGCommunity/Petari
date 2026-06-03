@@ -247,8 +247,8 @@ void KoopaJrShipCannonShell::exeFreeze() {
     _B4++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 scale = sFreezeRumbleWidth * JMath::sSinCosTable.cosLap(MR::repeatDegree(_B4 * sFreezeRumbleSpeed)) *
-                static_cast< f32 >(sFreezeFrame - getNerveStep()) / sFreezeFrame;
+    f32 scale = sFreezeRumbleWidth * MR::cosDegree(MR::repeatDegree(_B4 * sFreezeRumbleSpeed)) * static_cast< f32 >(sFreezeFrame - getNerveStep()) /
+                sFreezeFrame;
     TVec3f vec14;
     vec14.set(MR::getCamXdir());
     vec14.scale(scale);

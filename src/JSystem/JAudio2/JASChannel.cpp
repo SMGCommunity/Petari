@@ -206,7 +206,7 @@ s32 JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* i_channel) {
         mCallback(CB_START, this, i_channel, mCallbackData);
     }
 
-    if (_DC._4._20[0] == 0) {
+    if (_DC.mWaveInfo._24[0] == 0) {
         mDspCh->free();
         mDspCh = NULL;
         delete this;
@@ -222,7 +222,7 @@ s32 JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* i_channel) {
 
     switch (_DC._0) {
     case 0:
-        i_channel->setWaveInfo(_DC._4, _104, mSkipSamples);
+        i_channel->setWaveInfo(_DC.mWaveInfo, _104, mSkipSamples);
         break;
     case 2:
         i_channel->setOscInfo(_104);
@@ -279,7 +279,7 @@ s32 JASChannel::updateDSPChannel(JASDsp::TChannel* i_channel) {
         mCallback(CB_PLAY, this, i_channel, mCallbackData);
     }
 
-    if (_DC._4._20[0] == 0) {
+    if (_DC.mWaveInfo._24[0] == 0) {
         mDspCh->free();
         mDspCh = NULL;
         delete this;

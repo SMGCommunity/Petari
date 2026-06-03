@@ -98,7 +98,7 @@ bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterI
     fb *= PI;
     fb *= 0.5f;
 
-    pInfo->_4 = JMath::sSinCosTable.cosLapRad(fb) * B0;
+    pInfo->_4 = MR::cos(fb) * B0;
     pInfo->_4 += fa;
 
     pInfo->mCamWaterDepth = -fa;

@@ -17,6 +17,7 @@
 #include <revolution/mtx.h>
 #include <revolution/os/OSCache.h>
 
+
 extern const u8 sOceanSphereTevReg0FaceR;
 extern const u8 sOceanSphereTevReg0FaceG;
 extern const u8 sOceanSphereTevReg0FaceB;
@@ -390,7 +391,7 @@ bool OceanSphere::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, Wate
     theta *= PI;
     theta *= 0.5f;
 
-    f32 cosv = JMath::sSinCosTable.cosLapRad(theta);
+    f32 cosv = MR::cos(theta);
     pInfo->mCamWaterDepth = B0 * cosv;
     pInfo->mCamWaterDepth -= f30;
     pInfo->_4 = B0 * cosv;

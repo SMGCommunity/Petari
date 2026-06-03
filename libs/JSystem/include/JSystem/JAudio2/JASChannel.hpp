@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JAudio2/JASHeapCtrl.hpp"
 #include "JSystem/JAudio2/JASLfo.hpp"
 #include "JSystem/JAudio2/JASOscillator.hpp"
 #include "JSystem/JAudio2/JASSoundParams.hpp"
@@ -39,7 +40,7 @@ public:
     /* 0x14 */ f32 mDolby;
 };
 
-class JASChannel {
+class JASChannel : public JASPoolAllocObject_MultiThreaded< JASChannel > {
 public:
     typedef void (*Callback)(u32, JASChannel*, JASDsp::TChannel*, void*);
     static const int BUSOUT_CPUCH = 6;
@@ -177,9 +178,9 @@ public:
     /* 0xD8 */ u32 mSkipSamples;
     struct {
         u32 _0;
-        JASWaveInfo _4;
+        JASWaveInfo mWaveInfo;
     } _DC;
-    int _104;
+    /* 0x104 */ int _104;
 
     static OSMessageQueue sBankDisposeMsgQ;
     static OSMessage sBankDisposeMsg[16];

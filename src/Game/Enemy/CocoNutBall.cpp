@@ -495,7 +495,7 @@ void CocoNutBall::exeFreeze() {
     _A0++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 cos = JMath::sSinCosTable.cosLap(MR::repeatDegree(_A0 * 75.0f));
+    f32 cos = MR::cosDegree(MR::repeatDegree(_A0 * 75.0f));
 
     f32 scaleFactor = ((7.5f * cos) * (20 - getNerveStep())) / 20.0f;
 

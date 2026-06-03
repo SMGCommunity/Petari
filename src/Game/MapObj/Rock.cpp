@@ -944,7 +944,7 @@ void Rock::exeFreeze() {
     mFreezeTime++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 f1 = JMath::sSinCosTable.cosLap(MR::repeatDegree(mFreezeTime * cFreezeRumbleSpeed));
+    f32 f1 = MR::cosDegree(MR::repeatDegree(mFreezeTime * cFreezeRumbleSpeed));
     s32 step = cFreezeFrame - getNerveStep();
     f32 f2 = step * (f1 * cFreezeRumbleWidth) / cFreezeFrame;
     TVec3f v1;

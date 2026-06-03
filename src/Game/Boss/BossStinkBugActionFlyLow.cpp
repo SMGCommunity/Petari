@@ -93,7 +93,7 @@ bool BossStinkBugActionFlyLow::receiveOtherMsg(u32 msg, HitSensor* pSender, HitS
 void BossStinkBugActionFlyLow::exeFly() {
     _64 += 0.05235988f;
     MR::repeatDegree(&_64);
-    _3C = 900.0f + JMath::sSinCosTable.sinLapRad(_64) * 100.0f;
+    _3C = 900.0f + MR::sin(_64) * 100.0f;
     throwBomb(60);
     updateFly();
     if (BossStinkBugFunction::isExistPlayerBack(getHost(), 2000.0f)) {

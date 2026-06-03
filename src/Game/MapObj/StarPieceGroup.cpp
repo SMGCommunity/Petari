@@ -238,8 +238,8 @@ void StarPieceGroup::placementPieceOnCircle() {
     f32 currentAngle = 0.0f;
     f32 angleBetweenPieces = TWO_PI / mNumPieces;
     for (u32 i = 0; i < mNumPieces; i++) {
-        f32 cos = mCircleRadius * JMath::sSinCosTable.cosLapRad(currentAngle);
-        f32 sin = mCircleRadius * JMath::sSinCosTable.sinLapRad(currentAngle);
+        f32 cos = mCircleRadius * MR::cos(currentAngle);
+        f32 sin = mCircleRadius * MR::sin(currentAngle);
         mPieces[i]->mPosition.setPS2(zDir * cos + xDir * sin + center);
         currentAngle += angleBetweenPieces;
     }

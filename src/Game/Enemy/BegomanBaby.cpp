@@ -295,7 +295,7 @@ void BegomanBaby::exeAfterLaunch() {
     }
 
     if (MR::isLessStep(this, 80)) {
-        f32 f1 = 5.0f * JMath::sSinCosTable.cosLapRad(getNerveStep() * (16 * PI) / 80.0f);
+        f32 f1 = 5.0f * MR::cos(getNerveStep() * (16 * PI) / 80.0f);
         // TODO: fix vector math
         TVec3f scaledGravity(mGravity);
         scaledGravity.scale(f1);
