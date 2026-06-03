@@ -3,7 +3,6 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Util/JMapInfo.hpp"
 
 class SmallStone : public LiveActor {
 public:
