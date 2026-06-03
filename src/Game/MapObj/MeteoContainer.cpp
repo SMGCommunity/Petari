@@ -6,7 +6,8 @@ namespace NrvMeteoContainer {
     NEW_NERVE(MeteoContainerNrvDestroy, MeteoContainer, Destroy);
 };  // namespace NrvMeteoContainer
 
-MeteoContainer::MeteoContainer(const char* pName) : LiveActor(pName) {}
+MeteoContainer::MeteoContainer(const char* pName) : LiveActor(pName) {
+}
 
 void MeteoContainer::init(const JMapInfoIter& rIter) {
     const char* objName = nullptr;
@@ -48,7 +49,8 @@ void MeteoContainer::kill() {
     LiveActor::kill();
 }
 
-void MeteoContainer::control() {}
+void MeteoContainer::control() {
+}
 
 void MeteoContainer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
@@ -70,7 +72,8 @@ bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     return false;
 }
 
-void MeteoContainer::exeWait() {}
+void MeteoContainer::exeWait() {
+}
 
 void MeteoContainer::exeDestroy() {
     if (MR::isStep(this, 2)) {
@@ -83,4 +86,5 @@ void MeteoContainer::exeDestroy() {
     }
 }
 
-MeteoContainer::~MeteoContainer() {}
+MeteoContainer::~MeteoContainer() {
+}

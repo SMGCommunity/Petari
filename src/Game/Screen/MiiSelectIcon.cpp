@@ -197,7 +197,8 @@ void MiiSelectIcon::exeWait() {
     }
 }
 
-void MiiSelectIcon::exeSelected() {}
+void MiiSelectIcon::exeSelected() {
+}
 
 void MiiSelectIcon::exeDisappear() {
     if (_20->isHidden()) {
@@ -211,7 +212,8 @@ void MiiSelectIcon::exeDisappear() {
     }
 }
 
-void MiiSelectIcon::exeInvalid() {}
+void MiiSelectIcon::exeInvalid() {
+}
 
 void MiiSelectIcon::appear() {
     LayoutActor::appear();

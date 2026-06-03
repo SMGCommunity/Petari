@@ -17,7 +17,8 @@
 #define MODE_NEW_GALAXY_DISCOVER 1
 
 GalaxyMapIcon::GalaxyMapIcon(const char* pName, LayoutActor* pHost, const char* pPaneName)
-    : LayoutActor(pName, true), mButtonPaneController(nullptr), mGalaxyName(pName), mHost(pHost), mPaneName(pPaneName), mMode(MODE_NORMAL) {}
+    : LayoutActor(pName, true), mButtonPaneController(nullptr), mGalaxyName(pName), mHost(pHost), mPaneName(pPaneName), mMode(MODE_NORMAL) {
+}
 
 void GalaxyMapIcon::appear() {
     LayoutActor::appear();

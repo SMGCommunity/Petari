@@ -16,7 +16,9 @@ public:
     bool isCameraHopping() const;
     void copyCamera();
 
-    inline s32 getThing() { return _3C; }
+    inline s32 getThing() {
+        return _3C;
+    }
 
     TMtx34f _C;
     volatile s32 _3C;

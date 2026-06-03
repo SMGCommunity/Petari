@@ -11,7 +11,9 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void movement();
     virtual void draw() const;
-    virtual const char* getManagerName() const { return "BigBubbleGoalArea"; };
+    virtual const char* getManagerName() const {
+        return "BigBubbleGoalArea";
+    };
 
     void addBubble(BigBubble*);
 

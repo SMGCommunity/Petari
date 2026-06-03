@@ -6,36 +6,41 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
-NPCParameterEdit::NPCParameterEdit(const char* pName, const char** ppChar, bool a3) : NPCParameterBase(pName), _8(ppChar), _C(a3) {}
+NPCParameterEdit::NPCParameterEdit(const char* pName, const char** ppChar, bool a3) : NPCParameterBase(pName), _8(ppChar), _C(a3) {
+}
 
 void NPCParameterEdit::read(JMapInfo* pInfo, s32 a2) {
     pInfo->getValue(a2, mName, _8);
 }
 
-NPCParameterBool::NPCParameterBool(const char* pName, bool* pBool) : NPCParameterBase(pName), _8(pBool) {}
-
-void NPCParameterBool::read(JMapInfo* pInfo, s32 a2) {
-   pInfo->getValue(a2, mName, _8);
+NPCParameterBool::NPCParameterBool(const char* pName, bool* pBool) : NPCParameterBase(pName), _8(pBool) {
 }
 
-NPCParameterV3f::NPCParameterV3f(const char* pName, TVec3f* pVec, f32 f1, f32 f2) : NPCParameterBase(pName), _8(pVec), _C(f1), _10(f2) {}
+void NPCParameterBool::read(JMapInfo* pInfo, s32 a2) {
+    pInfo->getValue(a2, mName, _8);
+}
+
+NPCParameterV3f::NPCParameterV3f(const char* pName, TVec3f* pVec, f32 f1, f32 f2) : NPCParameterBase(pName), _8(pVec), _C(f1), _10(f2) {
+}
 
 void NPCParameterV3f::read(JMapInfo* pInfo, s32 a2) {
     char str[255];
     MR::copyString(str, mName, sizeof(str));
     *(str + strlen(mName) + 1) = '\0';
-    *(str + strlen(mName)) = 'X';  
+    *(str + strlen(mName)) = 'X';
     pInfo->getValue(a2, str, &_8->x);
-    *(str + strlen(mName)) = 'Y';  
+    *(str + strlen(mName)) = 'Y';
     pInfo->getValue(a2, str, &_8->y);
     *(str + strlen(mName)) = 'Z';
     pInfo->getValue(a2, str, &_8->z);
 }
 
 NPCParameterJoint::NPCParameterJoint(const char* pName, const char* pChar, const char** ppChar)
-    : NPCParameterBase(pName), _8(ppChar), _C(pChar), _10(-1) {}
+    : NPCParameterBase(pName), _8(ppChar), _C(pChar), _10(-1) {
+}
 
-NPCParameterReader::NPCParameterReader(const char* pName) : NPCParameterBase(pName), mVector() {}
+NPCParameterReader::NPCParameterReader(const char* pName) : NPCParameterBase(pName), mVector() {
+}
 
 void NPCParameterReader::read(JMapInfo* pInfo, s32 a2) {
     if (a2 <= -1 || a2 >= pInfo->getNumEntries()) {
@@ -63,7 +68,8 @@ void NPCItemParameterReader::copy(const NPCActorItem* pItem) {
 }
 
 template <>
-NPCParameterRange< s32 >::NPCParameterRange(const char* pName, s32* pLong, s32 a3, s32 a4) : NPCParameterBase(pName), _8(pLong), _C(a3), _10(a4) {}
+NPCParameterRange< s32 >::NPCParameterRange(const char* pName, s32* pLong, s32 a3, s32 a4) : NPCParameterBase(pName), _8(pLong), _C(a3), _10(a4) {
+}
 
 template <>
 void NPCParameterRange< s32 >::read(JMapInfo* pInfo, s32 a2) {
@@ -71,7 +77,8 @@ void NPCParameterRange< s32 >::read(JMapInfo* pInfo, s32 a2) {
 }
 
 template <>
-NPCParameterRange< f32 >::NPCParameterRange(const char* pName, f32* pLong, f32 a3, f32 a4) : NPCParameterBase(pName), _8(pLong), _C(a3), _10(a4) {}
+NPCParameterRange< f32 >::NPCParameterRange(const char* pName, f32* pLong, f32 a3, f32 a4) : NPCParameterBase(pName), _8(pLong), _C(a3), _10(a4) {
+}
 
 template <>
 void NPCParameterRange< f32 >::read(JMapInfo* pInfo, s32 a2) {

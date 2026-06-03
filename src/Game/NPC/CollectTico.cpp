@@ -139,6 +139,8 @@ void CollectTico::startAppearPowerStar() {
     setNerve(&NrvCollectTico::CollectTicoNrvAppearPowerStar::sInstance);
 }
 
-void CollectTico::exeTryStartDemo() {}
+void CollectTico::exeTryStartDemo() {
+}
 
-CollectTico::~CollectTico() {}
+CollectTico::~CollectTico() {
+}

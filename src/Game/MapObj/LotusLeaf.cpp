@@ -35,7 +35,8 @@ namespace NrvLotusLeaf {
     NEW_NERVE(HostTypeWaitPlayerOn, LotusLeaf, WaitPlayerOn);
 };  // namespace NrvLotusLeaf
 
-LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(0.0f), mShakePeriod(0.0f) {}
+LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(0.0f), mShakePeriod(0.0f) {
+}
 
 void LotusLeaf::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

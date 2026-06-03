@@ -7,9 +7,11 @@ namespace NrvPicketSwitch {
     NEW_NERVE(PicketSwitchNrvLastDrop, PicketSwitch, LastDrop);
 };  // namespace NrvPicketSwitch
 
-PicketSwitch::PicketSwitch(const char* pName) : LiveActor(pName) {}
+PicketSwitch::PicketSwitch(const char* pName) : LiveActor(pName) {
+}
 
-PicketSwitch::~PicketSwitch() {}
+PicketSwitch::~PicketSwitch() {
+}
 
 void PicketSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

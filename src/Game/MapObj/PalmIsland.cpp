@@ -24,7 +24,8 @@ PalmIsland::PalmIsland(const char* pName) : LiveActor(pName) {
     _9C = 0;
 }
 
-PalmIsland::~PalmIsland() {}
+PalmIsland::~PalmIsland() {
+}
 
 void PalmIsland::init(const JMapInfoIter& rIter) {
     HitSensor* sensor;

@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/Effect/AstroEffectObj.hpp"
+#include "Game/Effect/EffectObjGravityDust.hpp"
 #include "Game/Effect/EffectSystem.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
-#include "Game/Effect/EffectObjGravityDust.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/Effect/MultiEmitterParticleCallBack.hpp"
 #include "Game/Effect/ParticleEmitter.hpp"

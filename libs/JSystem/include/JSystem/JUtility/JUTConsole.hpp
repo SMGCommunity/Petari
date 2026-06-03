@@ -20,7 +20,9 @@ public:
     };
 
     void doDraw(EConsoleType) const;
-    u32 getOutput() const { return mOutput; }
+    u32 getOutput() const {
+        return mOutput;
+    }
 
     void print(char const*);
 
@@ -71,7 +73,9 @@ public:
     JUTConsole* mActiveConsole;  // 0xC
     JUTConsole* mDirectConsole;  // 0x10
 
-    static JUTConsoleManager* const getManager() { return sManager; }
+    static JUTConsoleManager* const getManager() {
+        return sManager;
+    }
 
     static JUTConsoleManager* sManager;
 };

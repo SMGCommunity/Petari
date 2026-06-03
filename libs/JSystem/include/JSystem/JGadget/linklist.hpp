@@ -55,8 +55,8 @@ namespace JGadget {
     class TNodeLinkList {
     public:
         struct iterator {
-            iterator(){};
-            explicit iterator(TLinkListNode* node) : curr(node){};
+            iterator() {};
+            explicit iterator(TLinkListNode* node) : curr(node) {};
             iterator& operator=(const iterator& other) {
                 curr = other.curr;
                 return *this;
@@ -133,11 +133,11 @@ namespace JGadget {
     class TLinkList : public TNodeLinkList {
     public:
         struct iterator : public TIterator< std::bidirectional_iterator_tag, T >, public TNodeLinkList::iterator {
-            iterator(){};
+            iterator() {};
 
-            iterator(TLinkListNode* iter) : TNodeLinkList::iterator(iter){};
+            iterator(TLinkListNode* iter) : TNodeLinkList::iterator(iter) {};
 
-            explicit iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter){};
+            explicit iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter) {};
 
             const iterator& operator=(const iterator& rOther) {
                 TIterator< std::bidirectional_iterator_tag, T >::operator=(rOther);

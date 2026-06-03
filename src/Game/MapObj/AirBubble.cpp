@@ -53,7 +53,8 @@ void AirBubble::kill() {
     LiveActor::kill();
 }
 
-void AirBubble::control() {}
+void AirBubble::control() {
+}
 
 void AirBubble::appearMove(const TVec3f& a1, s32 a2) {
     _8C.set< f32 >(a1);
@@ -136,4 +137,5 @@ bool AirBubble::canSpinGet() const {
     return false;
 }
 
-AirBubble::~AirBubble() {}
+AirBubble::~AirBubble() {
+}

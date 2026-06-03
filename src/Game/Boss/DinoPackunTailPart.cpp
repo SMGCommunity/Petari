@@ -26,7 +26,8 @@ void DinoPackunTailPart::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void DinoPackunTailPart::control() {}
+void DinoPackunTailPart::control() {
+}
 
 JointController* DinoPackunTailPart::createJointControllerOwn(LiveActor* pActor, const char* pJointName) {
     // we only do this because we already know it's a tail node type since it inherits
@@ -79,7 +80,8 @@ void DinoPackunTailPart::requestUnLockPosition() {
     MR::onBind(this);
 }
 
-void DinoPackunTailPart::exeLockPosition() {}
+void DinoPackunTailPart::exeLockPosition() {
+}
 
 void DinoPackunTailPart::exeWait() {
     MR::addVelocityToGravity(this, 0.69f);
@@ -87,4 +89,5 @@ void DinoPackunTailPart::exeWait() {
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
 }
 
-DinoPackunTailPart::~DinoPackunTailPart() {}
+DinoPackunTailPart::~DinoPackunTailPart() {
+}

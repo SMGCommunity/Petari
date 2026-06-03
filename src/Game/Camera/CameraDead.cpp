@@ -13,7 +13,8 @@ CameraDead::CameraDead(const char* pName) : Camera(pName) {
     _5C = 0;
 }
 
-CameraDead::~CameraDead() {}
+CameraDead::~CameraDead() {
+}
 
 CamTranslatorBase* CameraDead::createTranslator() {
     return new CamTranslatorDead(this);

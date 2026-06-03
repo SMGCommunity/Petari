@@ -28,7 +28,8 @@ SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
     mAnimScaleParam = nullptr;
 }
 
-SnowMan::~SnowMan() {}
+SnowMan::~SnowMan() {
+}
 
 void SnowMan::init(const JMapInfoIter& rIfter) {
     MR::initDefaultPos(this, rIfter);
@@ -122,11 +123,14 @@ void SnowMan::calcAndSetBaseMtx() {
     MR::setBaseScale(this, mtx);
 }
 
-void SnowMan::exeWait() {}
+void SnowMan::exeWait() {
+}
 
-void SnowMan::exeWaitBody() {}
+void SnowMan::exeWaitBody() {
+}
 
-void SnowMan::exeWaitHead() {}
+void SnowMan::exeWaitHead() {
+}
 
 void SnowMan::exeMeltHead() {
     if (MR::isFirstStep(this)) {

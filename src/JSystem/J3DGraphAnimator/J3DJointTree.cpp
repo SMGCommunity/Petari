@@ -15,7 +15,8 @@ enum {
 
 J3DJointTree::J3DJointTree()
     : mHierarchy(NULL), mFlags(0), mModelDataType(0), mRootNode(NULL), mBasicMtxCalc(NULL), mJointNodePointer(NULL), mJointNum(0), mWEvlpMtxNum(0),
-      mWEvlpMixMtxNum(0), mWEvlpMixMtxIndex(0), mWEvlpMixWeight(0), mInvJointMtx(NULL), mWEvlpImportantMtxIdx(0), field_0x40(0), mJointName(NULL) {}
+      mWEvlpMixMtxNum(0), mWEvlpMixMtxIndex(0), mWEvlpMixWeight(0), mInvJointMtx(NULL), mWEvlpImportantMtxIdx(0), field_0x40(0), mJointName(NULL) {
+}
 
 void J3DJointTree::makeHierarchy(J3DJoint* pJoint, const J3DModelHierarchy** pHierarchy, J3DMaterialTable* pMaterialTable,
                                  J3DShapeTable* pShapeTable) {
@@ -109,4 +110,5 @@ void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer* mtxBuffer) {
     J3DMtxCalc::mMtxBuffer = mtxBuffer;
 }
 
-J3DJointTree::~J3DJointTree() {}
+J3DJointTree::~J3DJointTree() {
+}

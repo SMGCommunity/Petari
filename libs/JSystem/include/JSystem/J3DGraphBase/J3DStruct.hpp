@@ -5,10 +5,14 @@
 #include <revolution.h>
 
 struct J3DGXColor : public GXColor {
-    J3DGXColor() {}
-    J3DGXColor(const J3DGXColor& other) { __memcpy(this, &other, sizeof(J3DGXColor)); }
+    J3DGXColor() {
+    }
+    J3DGXColor(const J3DGXColor& other) {
+        __memcpy(this, &other, sizeof(J3DGXColor));
+    }
 
-    J3DGXColor(const GXColor color) : GXColor(color) {}
+    J3DGXColor(const GXColor color) : GXColor(color) {
+    }
 
     J3DGXColor& operator=(const GXColor color) {
         *(GXColor*)this = color;
@@ -42,7 +46,9 @@ struct J3DFogInfo {
 };  // Size: 0x2C
 
 struct J3DBlendInfo {
-    void operator=(J3DBlendInfo const& other) { __memcpy(this, &other, sizeof(J3DBlendInfo)); }
+    void operator=(J3DBlendInfo const& other) {
+        __memcpy(this, &other, sizeof(J3DBlendInfo));
+    }
     /* 0x0 */ u8 mType;
     /* 0x1 */ u8 mSrcFactor;
     /* 0x2 */ u8 mDstFactor;
@@ -148,7 +154,9 @@ struct J3DNBTScaleInfo {
 };  // Size: 0x10
 
 struct J3DTevOrderInfo {
-    void operator=(const J3DTevOrderInfo& other) { *(u32*)this = *(u32*)&other; }
+    void operator=(const J3DTevOrderInfo& other) {
+        *(u32*)this = *(u32*)&other;
+    }
 
     /* 0x0 */ u8 mTexCoord;
     /* 0x1 */ u8 mTexMap;
@@ -212,7 +220,9 @@ struct J3DIndTexOrderInfo {
     /* 0x2 */ u8 field_0x2;
     /* 0x3 */ u8 field_0x3;
 
-    void operator=(J3DIndTexOrderInfo const& other) { __memcpy(this, &other, sizeof(J3DIndTexOrderInfo)); }
+    void operator=(J3DIndTexOrderInfo const& other) {
+        __memcpy(this, &other, sizeof(J3DIndTexOrderInfo));
+    }
 };  // Size: 0x04
 
 struct J3DIndTexMtxInfo {

@@ -38,7 +38,8 @@ namespace NrvBasaBasa {
 
 BasaBasa::BasaBasa(const char* pName)
     : LiveActor(pName), mHangModel(nullptr), mScaleController(nullptr), mStampController(nullptr), mSpinHitController(nullptr), _9C(0.0f, 0.0f, 1.0f),
-      _A8(2000.0f), _AC(0.0f), _B4(0), _B8(0.0f), _BC(0.0f, 0.0f, 0.0f), mIsIceModel(false), _CC(0.0f, 0.0f, 0.0f), _E4(-1.0f), _E8(0), _EC(0) {}
+      _A8(2000.0f), _AC(0.0f), _B4(0), _B8(0.0f), _BC(0.0f, 0.0f, 0.0f), mIsIceModel(false), _CC(0.0f, 0.0f, 0.0f), _E4(-1.0f), _E8(0), _EC(0) {
+}
 
 void BasaBasa::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -812,4 +813,5 @@ bool BasaBasa::isNrvEnableStun() const {
     return v1;
 }
 
-BasaBasa::~BasaBasa() {}
+BasaBasa::~BasaBasa() {
+}

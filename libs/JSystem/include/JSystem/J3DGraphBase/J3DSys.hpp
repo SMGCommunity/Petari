@@ -74,23 +74,47 @@ public:
     void reinitIndStages();
     void reinitPixelProc();
 
-    MtxPtr getViewMtx() { return mViewMtx; }
+    MtxPtr getViewMtx() {
+        return mViewMtx;
+    }
 
-    void onFlag(u32 flag) { mFlags |= flag; }
-    void offFlag(u32 flag) { mFlags &= ~flag; }
-    bool checkFlag(u32 flag) { return mFlags & flag ? true : false; }
+    void onFlag(u32 flag) {
+        mFlags |= flag;
+    }
+    void offFlag(u32 flag) {
+        mFlags &= ~flag;
+    }
+    bool checkFlag(u32 flag) {
+        return mFlags & flag ? true : false;
+    }
 
-    J3DMatPacket* getMatPacket() { return mMatPacket; }
-    void setMaterialMode(u32 mode) { mMaterialMode = mode; }
+    J3DMatPacket* getMatPacket() {
+        return mMatPacket;
+    }
+    void setMaterialMode(u32 mode) {
+        mMaterialMode = mode;
+    }
 
-    void* getVtxPos() { return mVtxPos; }
-    void setVtxPos(void* pVtxPos) { mVtxPos = pVtxPos; }
+    void* getVtxPos() {
+        return mVtxPos;
+    }
+    void setVtxPos(void* pVtxPos) {
+        mVtxPos = pVtxPos;
+    }
 
-    void* getVtxNrm() { return mVtxNrm; }
-    void setVtxNrm(void* pVtxNrm) { mVtxNrm = pVtxNrm; }
+    void* getVtxNrm() {
+        return mVtxNrm;
+    }
+    void setVtxNrm(void* pVtxNrm) {
+        mVtxNrm = pVtxNrm;
+    }
 
-    void* getVtxCol() { return mVtxCol; }
-    void setVtxCol(GXColor* pVtxCol) { mVtxCol = pVtxCol; }
+    void* getVtxCol() {
+        return mVtxCol;
+    }
+    void setVtxCol(GXColor* pVtxCol) {
+        mVtxCol = pVtxCol;
+    }
 
     void setModelDrawMtx(Mtx* pMtxArr) {
         mModelDrawMtx = pMtxArr;
@@ -102,22 +126,44 @@ public:
         GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx));
     }
 
-    void setNBTScale(Vec* scale) { mNBTScale = scale; }
-    Vec* getNBTScale() { return mNBTScale; }
+    void setNBTScale(Vec* scale) {
+        mNBTScale = scale;
+    }
+    Vec* getNBTScale() {
+        return mNBTScale;
+    }
 
-    void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
+    void setMatPacket(J3DMatPacket* pPacket) {
+        mMatPacket = pPacket;
+    }
 
-    void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
+    void setShapePacket(J3DShapePacket* pPacket) {
+        mShapePacket = pPacket;
+    }
 
-    J3DModel* getModel() { return mModel; }
-    void setModel(J3DModel* pModel) { mModel = pModel; }
+    J3DModel* getModel() {
+        return mModel;
+    }
+    void setModel(J3DModel* pModel) {
+        mModel = pModel;
+    }
 
-    J3DShapePacket* getShapePacket() { return mShapePacket; }
-    Mtx& getModelDrawMtx(u16 no) { return mModelDrawMtx[no]; }
-    void setTexture(J3DTexture* pTex) { mTexture = pTex; }
-    J3DTexture* getTexture() { return mTexture; }
+    J3DShapePacket* getShapePacket() {
+        return mShapePacket;
+    }
+    Mtx& getModelDrawMtx(u16 no) {
+        return mModelDrawMtx[no];
+    }
+    void setTexture(J3DTexture* pTex) {
+        mTexture = pTex;
+    }
+    J3DTexture* getTexture() {
+        return mTexture;
+    }
 
-    J3DDrawBuffer* getDrawBuffer(int type) { return mDrawBuffer[type]; }
+    J3DDrawBuffer* getDrawBuffer(int type) {
+        return mDrawBuffer[type];
+    }
 
     static Mtx mCurrentMtx;
     static Vec mCurrentS;

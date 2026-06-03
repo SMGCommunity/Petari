@@ -40,7 +40,8 @@ void HatchWaterPlanet::control() {
     mPlanetLODCtrl->update();
 }
 
-void HatchWaterPlanet::exeWait() {}
+void HatchWaterPlanet::exeWait() {
+}
 
 void HatchWaterPlanet::exeOpen() {
     if (MR::isFirstStep(this)) {
@@ -67,4 +68,5 @@ void HatchWaterPlanet::exeWaitAfterOpen() {
     }
 }
 
-HatchWaterPlanet::~HatchWaterPlanet() {}
+HatchWaterPlanet::~HatchWaterPlanet() {
+}

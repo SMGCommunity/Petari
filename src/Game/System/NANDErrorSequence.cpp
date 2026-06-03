@@ -154,7 +154,8 @@ void NANDErrorSequence::restoreFromReset() {
     kill();
 }
 
-void NANDErrorSequence::exeIdle() {}
+void NANDErrorSequence::exeIdle() {
+}
 
 void NANDErrorSequence::exeError() {
     if (MR::isFirstStep(this)) {
@@ -314,7 +315,8 @@ bool NANDErrorSequence::isResultFileCorrupted() const {
     return mResult == 3;
 }
 
-void NANDErrorSequence::control() {}
+void NANDErrorSequence::control() {
+}
 
 void NANDErrorSequence::resetParam() {
     mSystemMessageId = nullptr;

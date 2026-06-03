@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Enemy/KoopaJrShipCannonShell.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class IronCannonShell : public KoopaJrShipCannonShell {
 public:
@@ -28,9 +28,9 @@ public:
     void initBullet();
     bool tryShotBullet(f32);
 
-    CannonShellHolder* mShellHolder; // 0x8C
-    s32 mShotInterval; // 0x90 : Delay between cannon shots [ObjArg0]
-    f32 mBulletSpeed; // 0x94 : Speed of each bullet [ObjArg1]
+    CannonShellHolder* mShellHolder;  // 0x8C
+    s32 mShotInterval;                // 0x90 : Delay between cannon shots [ObjArg0]
+    f32 mBulletSpeed;                 // 0x94 : Speed of each bullet [ObjArg1]
 };
 
 class IronCannonLauncher : public IronCannonLauncherPoint {
@@ -45,7 +45,6 @@ public:
     void exeRelax();
     void exeWait();
     void exeShot();
-
 
     TVec3f mEffectMtx;  // 0x98
 };

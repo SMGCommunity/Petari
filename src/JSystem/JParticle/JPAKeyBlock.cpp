@@ -1,7 +1,8 @@
 #include "JSystem/JParticle/JPAKeyBlock.hpp"
 #include "JSystem/JParticle/JPAMath.hpp"
 
-JPAKeyBlock::JPAKeyBlock(const u8* data) : mDataStart(data), field_0x4(reinterpret_cast< const float* >(&data[0xC])) {}
+JPAKeyBlock::JPAKeyBlock(const u8* data) : mDataStart(data), field_0x4(reinterpret_cast< const float* >(&data[0xC])) {
+}
 
 f32 JPAKeyBlock::calc(float p1) {
     if (mDataStart[0xB] != '\0') {

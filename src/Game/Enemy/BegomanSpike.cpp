@@ -1,7 +1,9 @@
 #include "Game/Enemy/BegomanSpike.hpp"
 
-BegomanSpike::BegomanSpike(const char* pName) : BegomanBase(pName) {}
-BegomanSpike::~BegomanSpike() {}
+BegomanSpike::BegomanSpike(const char* pName) : BegomanBase(pName) {
+}
+BegomanSpike::~BegomanSpike() {
+}
 
 u32 BegomanSpike::getKind() const {
     return 0;

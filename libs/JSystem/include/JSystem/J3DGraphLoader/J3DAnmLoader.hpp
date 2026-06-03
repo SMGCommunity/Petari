@@ -13,14 +13,17 @@ struct J3DAnmLoaderDataBase {
     static J3DAnmBase* load(void const*, J3DAnmLoaderDataBaseFlag);
     static void setResource(J3DAnmBase*, void const*);
 
-    static J3DAnmBase* load(void const* param_0) { return load(param_0, J3DLOADER_UNK_FLAG0); }
+    static J3DAnmBase* load(void const* param_0) {
+        return load(param_0, J3DLOADER_UNK_FLAG0);
+    }
 };
 
 class J3DAnmLoader {
 public:
     virtual J3DAnmBase* load(const void*) = 0;
     virtual void setResource(J3DAnmBase*, const void*) = 0;
-    virtual ~J3DAnmLoader() {}
+    virtual ~J3DAnmLoader() {
+    }
 };
 
 class J3DAnmKeyLoader_v15 : public J3DAnmLoader {

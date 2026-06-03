@@ -352,7 +352,8 @@ namespace MR {
         getSceneObj< CenterScreenBlur >(SceneObj_CenterScreenBlur)->start(time, offset, alpha, fadeIn, fadeOut);
     }
 
-    void startGlobalTimer() {}
+    void startGlobalTimer() {
+    }
 
     void resetGlobalTimer() {
         getPlayTimerScene()->stop();

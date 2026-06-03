@@ -17,7 +17,8 @@ namespace NrvRevolvingWay {
     NEW_NERVE(RevolvingWayNrvWait, RevolvingWay, Wait);
 };  // namespace NrvRevolvingWay
 
-RevolvingWay::~RevolvingWay() {}
+RevolvingWay::~RevolvingWay() {
+}
 
 RevolvingWay::RevolvingWay(const char* pName) : LiveActor(pName), _8C(0.0f, 1.0f) {
     _9C.x = 0.0f;
@@ -39,7 +40,8 @@ void RevolvingWay::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void RevolvingWay::control() {}
+void RevolvingWay::control() {
+}
 
 void RevolvingWay::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _8C);

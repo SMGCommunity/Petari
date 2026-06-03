@@ -47,7 +47,8 @@ namespace NrvGameScene {
 };  // namespace NrvGameScene
 
 GameScene::GameScene()
-    : Scene("GameScene"), _14(0), mScenarioCamera(nullptr), mPauseCtrl(nullptr), mPauseSeq(nullptr), mStageClearSeq(nullptr), mDraw3D(true), _29(1) {}
+    : Scene("GameScene"), _14(0), mScenarioCamera(nullptr), mPauseCtrl(nullptr), mPauseSeq(nullptr), mStageClearSeq(nullptr), mDraw3D(true), _29(1) {
+}
 
 GameScene::~GameScene() {
     MR::destroySceneMessage();

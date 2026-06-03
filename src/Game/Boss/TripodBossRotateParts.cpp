@@ -36,7 +36,8 @@ void TripodBossRotateParts::calcTripodLocalMatrix(TPos3f* pMtx) {
     }
 }
 
-TripodBossRotateParts::~TripodBossRotateParts() {}
+TripodBossRotateParts::~TripodBossRotateParts() {
+}
 
 void TripodBossRotateParts::exeWaitOwn() {
     mRotator->movement();

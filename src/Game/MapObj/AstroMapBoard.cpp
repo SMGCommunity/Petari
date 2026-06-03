@@ -10,7 +10,8 @@ namespace NrvAstroMapBoard {
     NEW_NERVE(AstroMapBoardNrvWait, AstroMapBoard, Wait);
 };  // namespace NrvAstroMapBoard
 
-AstroMapBoard::AstroMapBoard(const char* pName) : MapObjActor(pName) {}
+AstroMapBoard::AstroMapBoard(const char* pName) : MapObjActor(pName) {
+}
 
 void AstroMapBoard::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -42,6 +43,8 @@ void AstroMapBoard::initAfterPlacement() {
     }
 }
 
-void AstroMapBoard::exeWait() {}
+void AstroMapBoard::exeWait() {
+}
 
-AstroMapBoard::~AstroMapBoard() {}
+AstroMapBoard::~AstroMapBoard() {
+}

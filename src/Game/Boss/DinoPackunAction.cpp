@@ -98,7 +98,8 @@ void DinoPackunAction::selectTurnDirection() {
     }
 }
 
-DinoPackunAction::~DinoPackunAction() {}
+DinoPackunAction::~DinoPackunAction() {
+}
 
 bool DinoPackunAction::updateStart() {
     mHost->updateNormalVelocity();

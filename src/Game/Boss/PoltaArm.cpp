@@ -269,12 +269,15 @@ void PoltaArm::appearBreakModel() {
     MR::startAction(mBreakModel, "Break");
 }
 
-inline void PoltaArm::exeWaitRepairEnd() {}
+inline void PoltaArm::exeWaitRepairEnd() {
+}
 
-inline void PoltaArm::exeWaitDamageEnd() {}
+inline void PoltaArm::exeWaitDamageEnd() {
+}
 
 inline void PoltaArm::endRepair() {
     mFormationModel->kill();
 }
 
-inline void PoltaArm::exeControlled() {}
+inline void PoltaArm::exeControlled() {
+}

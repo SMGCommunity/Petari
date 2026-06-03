@@ -15,7 +15,8 @@ namespace NrvLavaHomeVolcanoFlow {
     NEW_NERVE(HostTypeDone, LavaHomeVolcanoFlow, Wait);
 };  // namespace NrvLavaHomeVolcanoFlow
 
-LavaHomeVolcanoFlow::LavaHomeVolcanoFlow(const char* pName) : LiveActor(pName) {}
+LavaHomeVolcanoFlow::LavaHomeVolcanoFlow(const char* pName) : LiveActor(pName) {
+}
 
 void LavaHomeVolcanoFlow::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -68,4 +69,5 @@ void LavaHomeVolcanoFlow::exeMove() {
     }
 }
 
-LavaHomeVolcanoFlow::~LavaHomeVolcanoFlow() {}
+LavaHomeVolcanoFlow::~LavaHomeVolcanoFlow() {
+}

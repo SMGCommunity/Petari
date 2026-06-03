@@ -9,7 +9,8 @@ bool MercatorFixParts::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* p
     return mAppearController->receiveMsg(msg);
 }
 
-MercatorFixParts::~MercatorFixParts() {}
+MercatorFixParts::~MercatorFixParts() {
+}
 
 void MercatorFixParts::init(const JMapInfoIter& rIter) {
     char name[0x100];

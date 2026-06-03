@@ -1,7 +1,7 @@
 #include "Game/Screen/ImageEffectSystemHolder.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/ImageEffectDirector.hpp"
 #include "Game/Screen/ImageEffectResource.hpp"
-#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 ImageEffectSystemHolder::ImageEffectSystemHolder() : NameObj("画像効果管理") {
@@ -22,7 +22,7 @@ namespace MR {
     }
 
     ImageEffectSystemHolder* getImageEffectSystemHolder() {
-        return getSceneObj<ImageEffectSystemHolder>(SceneObj_ImageEffectSystemHolder);
+        return getSceneObj< ImageEffectSystemHolder >(SceneObj_ImageEffectSystemHolder);
     }
 
     bool isExistImageEffectDirector() {

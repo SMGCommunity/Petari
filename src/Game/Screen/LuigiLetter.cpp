@@ -16,7 +16,8 @@ namespace NrvLuigiLetter {
 };  // namespace NrvLuigiLetter
 
 LuigiLetter::LuigiLetter(bool param1, const char* pParam2)
-    : LayoutActor("ルイージの手紙", true), mTexture(nullptr), mAButtonIcon(nullptr), _28(pParam2), _2C(param1) {}
+    : LayoutActor("ルイージの手紙", true), mTexture(nullptr), mAButtonIcon(nullptr), _28(pParam2), _2C(param1) {
+}
 
 void LuigiLetter::init(const JMapInfoIter& rIter) {
     char archiveName[256];

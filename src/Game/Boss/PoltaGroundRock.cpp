@@ -16,7 +16,8 @@ namespace NrvPoltaGroundRock {
     NEW_NERVE(PoltaGroundRockNrvBreak, PoltaGroundRock, Break);
 };  // namespace NrvPoltaGroundRock
 PoltaGroundRock::PoltaGroundRock(const char* pName)
-    : LiveActor(pName), mOwner(nullptr), mBreakModel(nullptr), _94(0.0f, 0.0f, 0.0f, 1.0f), _A4(0.0f, 0.0f, 0.0f) {}
+    : LiveActor(pName), mOwner(nullptr), mBreakModel(nullptr), _94(0.0f, 0.0f, 0.0f, 1.0f), _A4(0.0f, 0.0f, 0.0f) {
+}
 
 void PoltaGroundRock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -44,7 +45,8 @@ void PoltaGroundRock::initBreakModel() {
     mBreakModel->makeActorDead();
 }
 
-void PoltaGroundRock::control() {}
+void PoltaGroundRock::control() {
+}
 
 void PoltaGroundRock::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _94);

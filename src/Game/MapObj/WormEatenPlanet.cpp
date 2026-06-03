@@ -60,7 +60,8 @@ void WormEatenPlanet::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void WormEatenPlanet::exeFirstWait() {}
+void WormEatenPlanet::exeFirstWait() {
+}
 
 void WormEatenPlanet::exeSecondWait() {
     if (MR::isFirstStep(this)) {

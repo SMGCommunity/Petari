@@ -70,4 +70,5 @@ bool BaseMatrixFollowTarget::isValid(s32 followId) const {
     return true;
 }
 
-BaseMatrixFollowTargetHolder::~BaseMatrixFollowTargetHolder() {}
+BaseMatrixFollowTargetHolder::~BaseMatrixFollowTargetHolder() {
+}

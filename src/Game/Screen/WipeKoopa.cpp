@@ -9,14 +9,16 @@ namespace {
     NEW_NERVE(WipeKoopaNrvClose, WipeKoopa, Close);
 };  // namespace
 
-WipeKoopa::WipeKoopa() : WipeLayoutBase("クッパ"), mStepNum(90) {}
+WipeKoopa::WipeKoopa() : WipeLayoutBase("クッパ"), mStepNum(90) {
+}
 
 void WipeKoopa::init(const JMapInfoIter& rIter) {
     initNerve(&WipeKoopaNrvWait::sInstance);
     initLayoutManager("WipeKoopa", 1);
 }
 
-void WipeKoopa::exeWait() {}
+void WipeKoopa::exeWait() {
+}
 
 void WipeKoopa::exeWipeOut() {
     f32 animRate;
@@ -38,7 +40,8 @@ void WipeKoopa::exeWipeOut() {
     }
 }
 
-void WipeKoopa::exeClose() {}
+void WipeKoopa::exeClose() {
+}
 
 void WipeKoopa::wipe(s32 step) {
     setNerve(&WipeKoopaNrvWipeOut::sInstance);

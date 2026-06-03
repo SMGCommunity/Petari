@@ -371,25 +371,33 @@ void J2DPane::makeMatrix(f32 a, f32 b) {
     makeMatrix(a, b, -mBounds.i.x, -mBounds.i.y);
 }
 
-void J2DPane::rewriteAlpha() {}
+void J2DPane::rewriteAlpha() {
+}
 
-void J2DPane::drawSelf(f32, f32, f32 (*)[3][4]) {}
+void J2DPane::drawSelf(f32, f32, f32 (*)[3][4]) {
+}
 
 void J2DPane::setAlpha(u8 alpha) {
     mAlpha = alpha;
 }
 
-void J2DPane::setAnimation(J2DAnmColor* anm) {}
+void J2DPane::setAnimation(J2DAnmColor* anm) {
+}
 
-void J2DPane::setAnimation(J2DAnmVtxColor* anm) {}
+void J2DPane::setAnimation(J2DAnmVtxColor* anm) {
+}
 
-void J2DPane::setAnimation(J2DAnmTextureSRTKey* anm) {}
+void J2DPane::setAnimation(J2DAnmTextureSRTKey* anm) {
+}
 
-void J2DPane::setAnimation(J2DAnmTexPattern* anm) {}
+void J2DPane::setAnimation(J2DAnmTexPattern* anm) {
+}
 
-void J2DPane::setAnimation(J2DAnmVisibilityFull* anm) {}
+void J2DPane::setAnimation(J2DAnmVisibilityFull* anm) {
+}
 
-void J2DPane::setAnimation(J2DAnmTevRegKey* anm) {}
+void J2DPane::setAnimation(J2DAnmTevRegKey* anm) {
+}
 
 void J2DPane::setAnimationVF(J2DAnmVisibilityFull* p_visibility) {
     setAnimation(p_visibility);
@@ -399,9 +407,11 @@ void J2DPane::setAnimationVC(J2DAnmVtxColor* p_vtxColor) {
     setAnimation(p_vtxColor);
 }
 
-void J2DPane::drawSelf(f32, f32) {}
+void J2DPane::drawSelf(f32, f32) {
+}
 
-void J2DPane::update() {}
+void J2DPane::update() {
+}
 
 bool J2DPane::setConnectParent(bool connected) {
     mConnected = false;

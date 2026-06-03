@@ -353,13 +353,22 @@ public:
         mFrame = 0.0f;
     }
 
-    virtual ~J3DAnmBase() {}
+    virtual ~J3DAnmBase() {
+    }
     virtual s32 getKind() const = 0;
 
-    u8 getAttribute() const { return mAttribute; }
-    s16 getFrameMax() const { return mFrameMax; }
-    f32 getFrame() const { return mFrame; }
-    void setFrame(f32 frame) { mFrame = frame; }
+    u8 getAttribute() const {
+        return mAttribute;
+    }
+    s16 getFrameMax() const {
+        return mFrameMax;
+    }
+    f32 getFrame() const {
+        return mFrame;
+    }
+    void setFrame(f32 frame) {
+        mFrame = frame;
+    }
 
     /* 0x4 */ u8 mAttribute;
     /* 0x5 */ u8 field_0x5;
@@ -371,8 +380,11 @@ class J3DAnmTransform : public J3DAnmBase {
 public:
     J3DAnmTransform(s16, f32*, s16*, f32*);
 
-    virtual ~J3DAnmTransform() {}
-    virtual s32 getKind() const { return 0; }
+    virtual ~J3DAnmTransform() {
+    }
+    virtual s32 getKind() const {
+        return 0;
+    }
     virtual void getTransform(u16, J3DTransformInfo*) const = 0;
 
     /* 0x0C */ f32* mScaleData;
@@ -393,9 +405,14 @@ public:
 
     void calcTransform(f32, u16, J3DTransformInfo*) const;
 
-    virtual ~J3DAnmTransformKey() {}
-    virtual s32 getKind() const { return 8; }
-    virtual void getTransform(u16 jointNo, J3DTransformInfo* pTransform) const { calcTransform(mFrame, jointNo, pTransform); }
+    virtual ~J3DAnmTransformKey() {
+    }
+    virtual s32 getKind() const {
+        return 8;
+    }
+    virtual void getTransform(u16 jointNo, J3DTransformInfo* pTransform) const {
+        calcTransform(mFrame, jointNo, pTransform);
+    }
 
     /* 0x20 */ int mDecShift;
     /* 0x24 */ J3DAnmTransformKeyTable* mAnmTable;
@@ -403,10 +420,14 @@ public:
 
 class J3DAnmTransformFull : public J3DAnmTransform {
 public:
-    J3DAnmTransformFull() : J3DAnmTransform(0, NULL, NULL, NULL) { mAnmTable = NULL; }
+    J3DAnmTransformFull() : J3DAnmTransform(0, NULL, NULL, NULL) {
+        mAnmTable = NULL;
+    }
 
     virtual ~J3DAnmTransformFull();
-    virtual s32 getKind() const { return 9; }
+    virtual s32 getKind() const {
+        return 9;
+    }
     virtual void getTransform(u16, J3DTransformInfo*) const;
 
     /* 0x20 */ J3DAnmTransformFullTable* mAnmTable;
@@ -414,8 +435,11 @@ public:
 
 class J3DAnmTransformFullWithLerp : public J3DAnmTransformFull {
 public:
-    virtual ~J3DAnmTransformFullWithLerp() {}
-    virtual s32 getKind() const { return 16; }
+    virtual ~J3DAnmTransformFullWithLerp() {
+    }
+    virtual s32 getKind() const {
+        return 16;
+    }
     virtual void getTransform(u16, J3DTransformInfo*) const;
 };  // Size: 0x24
 
@@ -430,19 +454,38 @@ public:
     void searchUpdateMaterialID(J3DMaterialTable*);
     void searchUpdateMaterialID(J3DModelData*);
 
-    virtual ~J3DAnmTextureSRTKey() {}
-    virtual s32 getKind() const { return 4; }
+    virtual ~J3DAnmTextureSRTKey() {
+    }
+    virtual s32 getKind() const {
+        return 4;
+    }
 
-    void getTransform(u16 jointNo, J3DTextureSRTInfo* pSRTInfo) const { calcTransform(getFrame(), jointNo, pSRTInfo); }
+    void getTransform(u16 jointNo, J3DTextureSRTInfo* pSRTInfo) const {
+        calcTransform(getFrame(), jointNo, pSRTInfo);
+    }
 
-    u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
-    u16 getUpdateMaterialNum() const { return mTrackNum / 3; }
-    u16 getPostUpdateMaterialNum() const { return field_0x4a / 3; }
+    u16 getUpdateMaterialID(u16 idx) const {
+        return mUpdateMaterialID[idx];
+    }
+    u16 getUpdateMaterialNum() const {
+        return mTrackNum / 3;
+    }
+    u16 getPostUpdateMaterialNum() const {
+        return field_0x4a / 3;
+    }
 
-    int getUpdateTexMtxID(u16 idx) const { return mUpdateTexMtxID[idx]; }
-    bool isValidUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx] != 0xffff; }
-    u32 getTexMtxCalcType() { return mTexMtxCalcType; }
-    Vec* getSRTCenter(u16 idx) { return &mSRTCenter[idx]; }
+    int getUpdateTexMtxID(u16 idx) const {
+        return mUpdateTexMtxID[idx];
+    }
+    bool isValidUpdateMaterialID(u16 idx) const {
+        return mUpdateMaterialID[idx] != 0xffff;
+    }
+    u32 getTexMtxCalcType() {
+        return mTexMtxCalcType;
+    }
+    Vec* getSRTCenter(u16 idx) {
+        return &mSRTCenter[idx];
+    }
 
     /* 0x0C */ int mDecShift;
     /* 0x10 */ J3DAnmTransformKeyTable* mAnmTable;
@@ -479,13 +522,24 @@ public:
     void searchUpdateMaterialID(J3DMaterialTable*);
     void searchUpdateMaterialID(J3DModelData*);
 
-    virtual ~J3DAnmTexPattern() {}
-    virtual s32 getKind() const { return 2; }
+    virtual ~J3DAnmTexPattern() {
+    }
+    virtual s32 getKind() const {
+        return 2;
+    }
 
-    u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
-    u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
-    bool isValidUpdateMaterialID(u16 id) const { return mUpdateMaterialID[id] != 0xFFFF; }
-    J3DAnmTexPatternFullTable* getAnmTable() { return mAnmTable; }
+    u16 getUpdateMaterialID(u16 idx) const {
+        return mUpdateMaterialID[idx];
+    }
+    u16 getUpdateMaterialNum() const {
+        return mUpdateMaterialNum;
+    }
+    bool isValidUpdateMaterialID(u16 id) const {
+        return mUpdateMaterialID[id] != 0xFFFF;
+    }
+    J3DAnmTexPatternFullTable* getAnmTable() {
+        return mAnmTable;
+    }
 
     /* 0x0C */ u16* mTextureIndex;
     /* 0x10 */ J3DAnmTexPatternFullTable* mAnmTable;
@@ -503,20 +557,39 @@ public:
     void searchUpdateMaterialID(J3DMaterialTable*);
     void searchUpdateMaterialID(J3DModelData*);
 
-    virtual ~J3DAnmTevRegKey() {}
-    virtual s32 getKind() const { return 5; }
+    virtual ~J3DAnmTevRegKey() {
+    }
+    virtual s32 getKind() const {
+        return 5;
+    }
 
-    u16 getCRegUpdateMaterialNum() const { return mCRegUpdateMaterialNum; }
-    u16 getKRegUpdateMaterialNum() const { return mKRegUpdateMaterialNum; }
+    u16 getCRegUpdateMaterialNum() const {
+        return mCRegUpdateMaterialNum;
+    }
+    u16 getKRegUpdateMaterialNum() const {
+        return mKRegUpdateMaterialNum;
+    }
 
-    u16 getCRegUpdateMaterialID(u16 idx) const { return mCRegUpdateMaterialID[idx]; }
-    u16 getKRegUpdateMaterialID(u16 idx) const { return mKRegUpdateMaterialID[idx]; }
+    u16 getCRegUpdateMaterialID(u16 idx) const {
+        return mCRegUpdateMaterialID[idx];
+    }
+    u16 getKRegUpdateMaterialID(u16 idx) const {
+        return mKRegUpdateMaterialID[idx];
+    }
 
-    const J3DAnmCRegKeyTable* getAnmCRegKeyTable() { return mAnmCRegKeyTable; }
-    const J3DAnmKRegKeyTable* getAnmKRegKeyTable() { return mAnmKRegKeyTable; }
+    const J3DAnmCRegKeyTable* getAnmCRegKeyTable() {
+        return mAnmCRegKeyTable;
+    }
+    const J3DAnmKRegKeyTable* getAnmKRegKeyTable() {
+        return mAnmKRegKeyTable;
+    }
 
-    bool isValidCRegUpdateMaterialID(u16 idx) const { return mCRegUpdateMaterialID[idx] != 0xffff; }
-    bool isValidKRegUpdateMaterialID(u16 idx) const { return mKRegUpdateMaterialID[idx] != 0xffff; }
+    bool isValidCRegUpdateMaterialID(u16 idx) const {
+        return mCRegUpdateMaterialID[idx] != 0xffff;
+    }
+    bool isValidKRegUpdateMaterialID(u16 idx) const {
+        return mKRegUpdateMaterialID[idx] != 0xffff;
+    }
 
     /* 0x0C */ u16 mCRegUpdateMaterialNum;
     /* 0x0E */ u16 mKRegUpdateMaterialNum;
@@ -549,13 +622,23 @@ public:
     J3DAnmColor();
     void searchUpdateMaterialID(J3DMaterialTable*);
 
-    virtual ~J3DAnmColor() {}
-    virtual s32 getKind() const { return 1; }
-    virtual void getColor(u16, GXColor*) const {}
+    virtual ~J3DAnmColor() {
+    }
+    virtual s32 getKind() const {
+        return 1;
+    }
+    virtual void getColor(u16, GXColor*) const {
+    }
 
-    u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
-    bool isValidUpdateMaterialID(u16 id) const { return mUpdateMaterialID[id] != 0xFFFF; }
-    u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
+    u16 getUpdateMaterialNum() const {
+        return mUpdateMaterialNum;
+    }
+    bool isValidUpdateMaterialID(u16 id) const {
+        return mUpdateMaterialID[id] != 0xFFFF;
+    }
+    u16 getUpdateMaterialID(u16 idx) const {
+        return mUpdateMaterialID[idx];
+    }
 
     /* 0x0C */ u16 field_0xc;
     /* 0x0E */ u16 field_0xe;
@@ -570,8 +653,11 @@ class J3DAnmColorKey : public J3DAnmColor {
 public:
     J3DAnmColorKey();
 
-    virtual ~J3DAnmColorKey() {}
-    virtual s32 getKind() const { return 11; }
+    virtual ~J3DAnmColorKey() {
+    }
+    virtual s32 getKind() const {
+        return 11;
+    }
     virtual void getColor(u16, GXColor*) const;
 
     /* 0x2C */ s16* mColorR;
@@ -585,8 +671,11 @@ class J3DAnmColorFull : public J3DAnmColor {
 public:
     J3DAnmColorFull();
 
-    virtual ~J3DAnmColorFull() {}
-    virtual s32 getKind() const { return 10; }
+    virtual ~J3DAnmColorFull() {
+    }
+    virtual s32 getKind() const {
+        return 10;
+    }
     virtual void getColor(u16, GXColor*) const;
 
     /* 0x2C */ u8* mColorR;
@@ -600,9 +689,13 @@ class J3DAnmVtxColor : public J3DAnmBase {
 public:
     J3DAnmVtxColor();
 
-    virtual ~J3DAnmVtxColor() {}
-    virtual s32 getKind() const { return 7; }
-    virtual void getColor(u8, u16, GXColor*) const {}
+    virtual ~J3DAnmVtxColor() {
+    }
+    virtual s32 getKind() const {
+        return 7;
+    }
+    virtual void getColor(u8, u16, GXColor*) const {
+    }
 
     /* 0x0C */ u16 mAnmTableNum[2];
     /* 0x10 */ J3DAnmVtxColorIndexData* mAnmVtxColorIndexData[2];
@@ -612,8 +705,11 @@ class J3DAnmVtxColorKey : public J3DAnmVtxColor {
 public:
     J3DAnmVtxColorKey();
 
-    virtual ~J3DAnmVtxColorKey() {}
-    virtual s32 getKind() const { return 15; }
+    virtual ~J3DAnmVtxColorKey() {
+    }
+    virtual s32 getKind() const {
+        return 15;
+    }
     virtual void getColor(u8, u16, GXColor*) const;
 
     /* 0x18 */ J3DAnmColorKeyTable* mpTable[2];
@@ -627,8 +723,11 @@ class J3DAnmVtxColorFull : public J3DAnmVtxColor {
 public:
     J3DAnmVtxColorFull();
 
-    virtual ~J3DAnmVtxColorFull() {}
-    virtual s32 getKind() const { return 14; }
+    virtual ~J3DAnmVtxColorFull() {
+    }
+    virtual s32 getKind() const {
+        return 14;
+    }
     virtual void getColor(u8, u16, GXColor*) const;
 
     /* 0x18 */ J3DAnmColorFullTable* mpTable[2];
@@ -640,21 +739,33 @@ public:
 
 class J3DAnmCluster : public J3DAnmBase {
 public:
-    J3DAnmCluster(s16 frameMax, f32* pWeight) : J3DAnmBase(frameMax) { mWeight = pWeight; }
+    J3DAnmCluster(s16 frameMax, f32* pWeight) : J3DAnmBase(frameMax) {
+        mWeight = pWeight;
+    }
 
-    virtual ~J3DAnmCluster() {}
-    virtual s32 getKind() const { return 3; }
-    virtual f32 getWeight(u16) const { return 1.0f; }
+    virtual ~J3DAnmCluster() {
+    }
+    virtual s32 getKind() const {
+        return 3;
+    }
+    virtual f32 getWeight(u16) const {
+        return 1.0f;
+    }
 
     /* 0x0C */ f32* mWeight;
 };  // Size: 0x10
 
 class J3DAnmClusterFull : public J3DAnmCluster {
 public:
-    J3DAnmClusterFull() : J3DAnmCluster(0, NULL) { mAnmTable = NULL; }
+    J3DAnmClusterFull() : J3DAnmCluster(0, NULL) {
+        mAnmTable = NULL;
+    }
 
-    virtual ~J3DAnmClusterFull() {}
-    virtual s32 getKind() const { return 12; }
+    virtual ~J3DAnmClusterFull() {
+    }
+    virtual s32 getKind() const {
+        return 12;
+    }
     virtual f32 getWeight(u16) const;
 
     /* 0x10 */ J3DAnmClusterFullTable* mAnmTable;
@@ -662,10 +773,15 @@ public:
 
 class J3DAnmClusterKey : public J3DAnmCluster {
 public:
-    J3DAnmClusterKey() : J3DAnmCluster(0, NULL) { mAnmTable = NULL; }
+    J3DAnmClusterKey() : J3DAnmCluster(0, NULL) {
+        mAnmTable = NULL;
+    }
 
-    virtual ~J3DAnmClusterKey() {}
-    virtual s32 getKind() const { return 13; }
+    virtual ~J3DAnmClusterKey() {
+    }
+    virtual s32 getKind() const {
+        return 13;
+    }
     virtual f32 getWeight(u16) const;
 
     /* 0x10 */ J3DAnmClusterKeyTable* mAnmTable;
@@ -680,8 +796,11 @@ public:
         mVisibility = NULL;
     }
 
-    virtual ~J3DAnmVisibilityFull() {}
-    virtual s32 getKind() const { return 6; }
+    virtual ~J3DAnmVisibilityFull() {
+    }
+    virtual s32 getKind() const {
+        return 6;
+    }
 
     /* 0x0C */ u16 mUpdateMaterialNum;
     /* 0x0E */ u16 field_0xe;
@@ -700,32 +819,65 @@ public:
         /* 0x4 */ EMode_LOOP_REVERSE,
     };
 
-    inline J3DFrameCtrl(s16 endFrame) { init(endFrame); }
+    inline J3DFrameCtrl(s16 endFrame) {
+        init(endFrame);
+    }
 
-    J3DFrameCtrl() { this->init(0); }
+    J3DFrameCtrl() {
+        this->init(0);
+    }
     void init(s16);
-    void init(int endFrame) { init((s16)endFrame); }
+    void init(int endFrame) {
+        init((s16)endFrame);
+    }
     BOOL checkPass(f32);
     void update();
-    virtual ~J3DFrameCtrl() {}
+    virtual ~J3DFrameCtrl() {
+    }
 
-    u8 getAttribute() const { return mAttribute; }
-    void setAttribute(u8 attr) { mAttribute = attr; }
-    u8 getState() const { return mState; }
-    bool checkState(u8 state) const { return mState & state ? true : false; }
-    s16 getStart() const { return mStart; }
+    u8 getAttribute() const {
+        return mAttribute;
+    }
+    void setAttribute(u8 attr) {
+        mAttribute = attr;
+    }
+    u8 getState() const {
+        return mState;
+    }
+    bool checkState(u8 state) const {
+        return mState & state ? true : false;
+    }
+    s16 getStart() const {
+        return mStart;
+    }
     void setStart(s16 start) {
         mStart = start;
         mFrame = start;
     }
-    s16 getEnd() const { return mEnd; }
-    void setEnd(s16 end) { mEnd = end; }
-    s16 getLoop() const { return mLoop; }
-    void setLoop(s16 loop) { mLoop = loop; }
-    f32 getRate() const { return mRate; }
-    void setRate(f32 rate) { mRate = rate; }
-    f32 getFrame() const { return mFrame; }
-    void setFrame(f32 frame) { mFrame = frame; }
+    s16 getEnd() const {
+        return mEnd;
+    }
+    void setEnd(s16 end) {
+        mEnd = end;
+    }
+    s16 getLoop() const {
+        return mLoop;
+    }
+    void setLoop(s16 loop) {
+        mLoop = loop;
+    }
+    f32 getRate() const {
+        return mRate;
+    }
+    void setRate(f32 rate) {
+        mRate = rate;
+    }
+    f32 getFrame() const {
+        return mFrame;
+    }
+    void setFrame(f32 frame) {
+        mFrame = frame;
+    }
     void reset() {
         mFrame = mStart;
         mRate = 1.0f;

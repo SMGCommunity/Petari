@@ -65,11 +65,17 @@ public:
         MR::startBtp(this, pBtp);
     }
 
-    inline void getCurrentRailPointPos(TVec3f* pOut) { MR::calcRailPointPos(pOut, this, MR::getCurrentRailPointNo(this)); }
+    inline void getCurrentRailPointPos(TVec3f* pOut) {
+        MR::calcRailPointPos(pOut, this, MR::getCurrentRailPointNo(this));
+    }
 
-    inline void getNextRailPointPos(TVec3f* pOut) { MR::calcRailPointPos(pOut, this, MR::getNextRailPointNo(this)); }
+    inline void getNextRailPointPos(TVec3f* pOut) {
+        MR::calcRailPointPos(pOut, this, MR::getNextRailPointNo(this));
+    }
 
-    inline void exeMoveWaterAfterJumpAfterPointing() { updateMoveWaterAfterJump(); }
+    inline void exeMoveWaterAfterJumpAfterPointing() {
+        updateMoveWaterAfterJump();
+    }
 
     PukupukuStateLanding* mStateLanding;  // 0x8C
     TVec3f _90;

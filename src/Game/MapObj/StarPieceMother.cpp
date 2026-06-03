@@ -80,7 +80,7 @@ void StarPieceMother::init(const JMapInfoIter& rIter) {
         if (arg != -1 && arg != 0) {
             _A0 = static_cast< f32 >(arg);
         }
-        
+
         makeActorDead();
     }
 
@@ -107,9 +107,9 @@ void StarPieceMother::exeMoveOnRail() {
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_STAR_PIECE_MO_MV");
-    MR::moveCoordAndFollowTrans(this, _A0); 
+    MR::moveCoordAndFollowTrans(this, _A0);
 
-    f32 railCoord = MR::getRailCoord(this); // Necessary to match
+    f32 railCoord = MR::getRailCoord(this);  // Necessary to match
     if (_90[_98] <= railCoord) {
         mStarPieceArray[_98]->appear();
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");

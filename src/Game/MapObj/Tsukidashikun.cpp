@@ -24,7 +24,8 @@ namespace NrvTsukidashikun {
     NEW_NERVE(TsukidashikunNrvMoveForward, Tsukidashikun, Move);
 };  // namespace NrvTsukidashikun
 
-Tsukidashikun::Tsukidashikun(const char* pName) : MapObjActor(pName), _C4(10.0f), mTimer(120) {}
+Tsukidashikun::Tsukidashikun(const char* pName) : MapObjActor(pName), _C4(10.0f), mTimer(120) {
+}
 
 void Tsukidashikun::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);

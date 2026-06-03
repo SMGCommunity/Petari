@@ -46,7 +46,8 @@ void ClipAreaDropLaser::init(const JMapInfoIter& rIter) {
     }
     makeActorAppeared();
 }
-void ClipAreaDropLaser::control() {}
+void ClipAreaDropLaser::control() {
+}
 
 void ClipAreaDropLaser::draw() const {
     TDDraw::cameraInit3D();
@@ -119,4 +120,5 @@ void ClipAreaDropLaser::incrementDrawCount() {
     }
 }
 
-ClipAreaDropLaser::~ClipAreaDropLaser() {}
+ClipAreaDropLaser::~ClipAreaDropLaser() {
+}

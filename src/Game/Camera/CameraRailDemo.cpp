@@ -1,7 +1,8 @@
 #include "Game/Camera/CameraRailDemo.hpp"
 #include "Game/Camera/CamTranslatorRailDemo.hpp"
 
-CameraRailDemo::CameraRailDemo(const char* pName) : Camera(pName) {}
+CameraRailDemo::CameraRailDemo(const char* pName) : Camera(pName) {
+}
 
 void CameraRailDemo::reset() {
     _58 = 0;
@@ -25,7 +26,8 @@ CameraTargetObj* CameraRailDemo::calc() {
     return nullptr;
 }
 
-CameraRailDemo::~CameraRailDemo() {}
+CameraRailDemo::~CameraRailDemo() {
+}
 
 CamTranslatorBase* CameraRailDemo::createTranslator() {
     return new CamTranslatorRailDemo(this);

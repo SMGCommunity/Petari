@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/Enemy/FireBall.hpp"
 #include "Game/Enemy/CocoNutBall.hpp"
+#include "Game/Enemy/FireBall.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/FixedPosition.hpp"
 

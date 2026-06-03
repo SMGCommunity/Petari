@@ -1,7 +1,8 @@
 #include "Game/Camera/CameraAnim.hpp"
 #include "Game/Camera/CamTranslatorAnim.hpp"
 
-KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {}
+KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {
+}
 
 void KeyCamAnmDataAccessor::set(void* pInfo, void* pValues) {
     mInfo = reinterpret_cast< CanmKeyFrameInfo* >(pInfo);
@@ -104,7 +105,8 @@ f32 KeyCamAnmDataAccessor::calcHermite(f32 key, f32 a2, f32 a3, f32 a4, f32 a5, 
     return -(key - a2) * (fVar2 * fVar1 - a7 / 30.0f * fVar3 + fVar1 * fVar3 + fVar1) - (((fVar2 + fVar2) * fVar3 - fVar2 * fVar2) * (a3 - a6) + a3);
 }
 
-CamAnmDataAccessor::~CamAnmDataAccessor() {}
+CamAnmDataAccessor::~CamAnmDataAccessor() {
+}
 
 void CamAnmDataAccessor::set(void* pInfo, void* pValues) {
     mInfo = reinterpret_cast< CanmFrameInfo* >(pInfo);
@@ -181,7 +183,8 @@ CameraAnim::CameraAnim(const char* pName) : Camera(pName) {
     _7C = 0;
 }
 
-CameraAnim::~CameraAnim() {}
+CameraAnim::~CameraAnim() {
+}
 
 bool CameraAnim::isZeroFrameMoveOff() const {
     return true;

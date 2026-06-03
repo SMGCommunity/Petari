@@ -4,7 +4,9 @@
 
 class CamTranslatorRailFollow : public CamTranslatorBase {
 public:
-    inline CamTranslatorRailFollow(CameraRailFollow* pCamera) { mCamera = pCamera; }
+    inline CamTranslatorRailFollow(CameraRailFollow* pCamera) {
+        mCamera = pCamera;
+    }
 
     virtual void setParam(const CameraParamChunk*);
     virtual Camera* getCamera() const;

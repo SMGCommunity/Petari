@@ -882,4 +882,5 @@ s16* THPSimplePlayerStaticAudio::audioCallback(s32 audio) {
     return player->audioCallback(audio);
 }
 
-THPSimplePlayerStaticAudio::THPSimplePlayerStaticAudio() {}
+THPSimplePlayerStaticAudio::THPSimplePlayerStaticAudio() {
+}

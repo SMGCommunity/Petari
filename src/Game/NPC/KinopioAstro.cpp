@@ -1,10 +1,10 @@
 #include "Game/NPC/KinopioAstro.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/NPC/NPCActor.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
-#include "Game/Util.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/LuigiLetter.hpp"
 #include "Game/Screen/PeachLetter.hpp"
-#include "Game/NPC/NPCActor.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JKernel/JKRArchive.hpp"
 
 s32 JKRArchive::getExpandedResSize(const void* pResource) const {
@@ -25,15 +25,13 @@ void KinopioAstro::makeArchiveList(NameObjArchiveListCollector* pArchiveList, co
             if (MR::isLuigiLetterArrivalAtMessenger()) {
                 LuigiLetter::makeArchiveListForNPC(pArchiveList, rIter);
             }
-        }
-        else {
+        } else {
             pArchiveList->addArchive("AllCompleteImage");
         }
 
         MR::getNPCItemData(&item, 3);
         NPCActor::addArchive(pArchiveList, item);
-    }
-    else {
+    } else {
         s32 arg7 = -1;
         MR::getJMapInfoArg7NoInit(rIter, &arg7);
 
@@ -43,5 +41,7 @@ void KinopioAstro::makeArchiveList(NameObjArchiveListCollector* pArchiveList, co
     }
 }
 
-KinopioAstro::KinopioAstro(const char* pName) : NameObj(pName) {}
-KinopioAstro::~KinopioAstro() {}
+KinopioAstro::KinopioAstro(const char* pName) : NameObj(pName) {
+}
+KinopioAstro::~KinopioAstro() {
+}

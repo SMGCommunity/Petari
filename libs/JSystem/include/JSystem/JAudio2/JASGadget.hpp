@@ -3,7 +3,6 @@
 #include <mem.h>
 #include <revolution/types.h>
 
-
 template < typename T >
 class JASPtrTable {
 public:

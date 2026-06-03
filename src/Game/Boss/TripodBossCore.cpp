@@ -134,6 +134,8 @@ void TripodBossCore::exeBreak() {
     }
 }
 
-void TripodBossCore::exeNonActive() {}
+void TripodBossCore::exeNonActive() {
+}
 
-TripodBossCore::~TripodBossCore() {}
+TripodBossCore::~TripodBossCore() {
+}

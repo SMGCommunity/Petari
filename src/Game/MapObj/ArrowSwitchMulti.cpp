@@ -89,7 +89,8 @@ void ArrowSwitchMulti::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void ArrowSwitchMulti::control() {}
+void ArrowSwitchMulti::control() {
+}
 
 void ArrowSwitchMulti::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
@@ -160,6 +161,8 @@ void ArrowSwitchMulti::exeWait() {
 
 // ArrowSwitchMulti::exeRotate
 
-ArrowSwitchMulti::~ArrowSwitchMulti() {}
+ArrowSwitchMulti::~ArrowSwitchMulti() {
+}
 
-ArrowSwitchTarget::~ArrowSwitchTarget() {}
+ArrowSwitchTarget::~ArrowSwitchTarget() {
+}

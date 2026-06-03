@@ -17,7 +17,8 @@ namespace NrvPurpleCoinCounter {
 
 PurpleCoinCounter::PurpleCoinCounter(const char* pName)
     : LayoutActor(pName, true), mPurpleCoinNum(0), mPurpleCoinDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
-      mIsValid(false) {}
+      mIsValid(false) {
+}
 
 void PurpleCoinCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("PurpleCoinCounter", 2);
@@ -102,4 +103,5 @@ void PurpleCoinCounter::exeAppear() {
     }
 }
 
-void PurpleCoinCounter::exeWait() {}
+void PurpleCoinCounter::exeWait() {
+}

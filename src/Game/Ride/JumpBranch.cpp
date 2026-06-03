@@ -24,7 +24,8 @@ namespace NrvJumpBranch {
 
 JumpBranch::JumpBranch(const char* pName)
     : LiveActor(pName), mCenter(0.0f, 0.0f, 0.0f), mSide(0.0f, 0.0f, 1.0f), mUp(0.0f, 0.0f, 1.0f), mFront(0.0f, 0.0f, 1.0f), mRider(nullptr),
-      mSwingPoint(nullptr), mSwingReverse(false) {}
+      mSwingPoint(nullptr), mSwingReverse(false) {
+}
 
 void JumpBranch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

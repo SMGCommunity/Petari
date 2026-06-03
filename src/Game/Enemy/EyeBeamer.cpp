@@ -217,7 +217,7 @@ void EyeBeamer::calcAnim() {
     MR::preScaleMtx(_9C, TVec3f(one, temp, one));
 }
 
-void EyeBeamer::calcAndSetBaseMtx(){};
+void EyeBeamer::calcAndSetBaseMtx() {};
 
 void EyeBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isOnBeam() && MR::isSensorPlayer(pReceiver) && isInBeamRange(*MR::getPlayerPos())) {
@@ -248,7 +248,8 @@ bool EyeBeamer::tryPatrol() {
     return false;
 }
 
-void EyeBeamer::exeDemoStartWait() {}
+void EyeBeamer::exeDemoStartWait() {
+}
 
 void EyeBeamer::exeDemoWait() {
     if (MR::isDemoLastStep()) {
@@ -286,7 +287,8 @@ void EyeBeamer::exeDemoGotoPatrol() {
         setNerve(&NrvEyeBeamer::EyeBeamerNrvDemoWait::sInstance);
 }
 
-void EyeBeamer::exeWait() {}
+void EyeBeamer::exeWait() {
+}
 
 void EyeBeamer::exeTurn() {
     if (MR::isFirstStep(this)) {
@@ -364,4 +366,4 @@ bool EyeBeamer::isOnBeam() const {
     return false;
 }
 
-EyeBeamer::~EyeBeamer(){};
+EyeBeamer::~EyeBeamer() {};

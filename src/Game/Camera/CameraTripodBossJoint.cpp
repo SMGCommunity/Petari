@@ -1,8 +1,8 @@
 #include "Game/Camera/CameraTripodBossJoint.hpp"
-#include "Game/Camera/CamTranslatorTripodBossJoint.hpp"
-#include "Game/Camera/CameraLocalUtil.hpp"
-#include "Game/Camera/CameraCalc.hpp"
 #include "Game/Boss/TripodBossAccesser.hpp"
+#include "Game/Camera/CamTranslatorTripodBossJoint.hpp"
+#include "Game/Camera/CameraCalc.hpp"
+#include "Game/Camera/CameraLocalUtil.hpp"
 
 CameraTripodBossJoint::CameraTripodBossJoint(const char* pName) : Camera(pName) {
     mAngleB = 0.0f;
@@ -28,12 +28,12 @@ CameraTargetObj* CameraTripodBossJoint::calc() {
     return CameraLocalUtil::getTarget(this);
 }
 
-CameraTripodBossJoint::~CameraTripodBossJoint() {}
+CameraTripodBossJoint::~CameraTripodBossJoint() {
+}
 
 CamTranslatorBase* CameraTripodBossJoint::createTranslator() {
     return new CamTranslatorTripodBossJoint(this);
 }
-
 
 void CameraTripodBossJoint::calcIdealPose() {
     if (mDist < 300.0f) {
@@ -138,7 +138,6 @@ void CameraTripodBossJoint::calcIdealPose() {
     CameraLocalUtil::setWatchPos(this, watchpoint);
     CameraLocalUtil::setWatchUpVec(this, axis);
 }
-
 
 bool CameraTripodBossJoint::isEnableToReset() const {
     return true;

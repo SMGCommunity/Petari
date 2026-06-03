@@ -26,7 +26,8 @@ namespace NrvTripodBossLeg {
     NEW_NERVE(TripodBossLegNrvBreak, TripodBossLeg, Break);
 };  // namespace NrvTripodBossLeg
 
-TripodBossLeg::~TripodBossLeg() {}
+TripodBossLeg::~TripodBossLeg() {
+}
 
 TripodBossLeg::TripodBossLeg(const char* pName)
     : LiveActor(pName), mBoss(nullptr), mMoveArea(nullptr), _94(0), _98(0), mJoint(new IKJoint()), _1F0(0, 0, 0, 1), _200(0, 0, 0, 1), _210(0, 0, 0),

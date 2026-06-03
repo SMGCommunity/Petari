@@ -4,7 +4,8 @@ CameraContext::CameraContext() : NameObj("カメラコンテキスト") {
     initParams();
 }
 
-CameraContext::~CameraContext() {}
+CameraContext::~CameraContext() {
+}
 
 const TPos3f* CameraContext::getViewMtx() const {
     return &mView;

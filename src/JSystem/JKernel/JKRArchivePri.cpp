@@ -75,7 +75,8 @@ JKRArchive::JKRArchive(long entryNum, EMountMode mountMode) {
     }
 }
 
-JKRArchive::~JKRArchive() {}
+JKRArchive::~JKRArchive() {
+}
 
 void JKRArchive::setExpandSize(SDIFileEntry* pFile, unsigned long size) {
     u32 fileIndex = static_cast< u32 >(pFile - mFiles);

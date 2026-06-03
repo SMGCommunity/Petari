@@ -6,7 +6,8 @@
 #include <JSystem/JParticle/JPAEmitter.hpp>
 #include <JSystem/JParticle/JPAEmitterManager.hpp>
 
-void EffectSystem::init(const JMapInfoIter& rIter) {}
+void EffectSystem::init(const JMapInfoIter& rIter) {
+}
 
 void EffectSystem::forceDeleteEmitter(ParticleEmitter* pEmitter) const {
     if (pEmitter->mEmitter != nullptr) {

@@ -1,6 +1,6 @@
+#include "Game/Map/FileSelectSky.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Map/FileSelectSky.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
@@ -41,7 +41,7 @@ void FileSelectSky::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mBaseMtx);
 }
 
-bool FileSelectSky::receiveOtherMsg(u32,HitSensor* pSender, HitSensor* pReceiver) {
+bool FileSelectSky::receiveOtherMsg(u32, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 

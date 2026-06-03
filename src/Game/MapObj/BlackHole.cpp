@@ -201,4 +201,5 @@ void BlackHole::exeDisappear() {
     }
 }
 
-BlackHole::~BlackHole() {}
+BlackHole::~BlackHole() {
+}

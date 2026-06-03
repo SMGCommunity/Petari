@@ -197,4 +197,5 @@ f32 AstroDomeOrbit::calcRepeatedRotateCoord(f32 coord) const {
     return MR::repeat(coord, 0.0f, 360.0f);
 }
 
-AstroDomeOrbit::~AstroDomeOrbit() {}
+AstroDomeOrbit::~AstroDomeOrbit() {
+}

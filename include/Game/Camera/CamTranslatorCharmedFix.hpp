@@ -4,7 +4,9 @@
 
 class CamTranslatorCharmedFix : public CamTranslatorBase {
 public:
-    inline CamTranslatorCharmedFix(CameraCharmedFix* pCamera) { mCamera = pCamera; }
+    inline CamTranslatorCharmedFix(CameraCharmedFix* pCamera) {
+        mCamera = pCamera;
+    }
 
     virtual void setParam(const CameraParamChunk*);
     virtual Camera* getCamera() const;

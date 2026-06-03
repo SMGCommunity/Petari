@@ -29,7 +29,8 @@ CocoNut::CocoNut(const char* pName)
     _108.identity();
 }
 
-CocoNut::~CocoNut() {}
+CocoNut::~CocoNut() {
+}
 
 void CocoNut::init(const JMapInfoIter& rIter) {
     initMapToolInfo(rIter);

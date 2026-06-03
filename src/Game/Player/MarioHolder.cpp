@@ -5,7 +5,8 @@ MarioHolder::MarioHolder() : NameObj("マリオ保持") {
     mActor = nullptr;
 }
 
-MarioHolder::~MarioHolder() {}
+MarioHolder::~MarioHolder() {
+}
 
 void MarioHolder::setMarioActor(MarioActor* pActor) {
     mActor = pActor;

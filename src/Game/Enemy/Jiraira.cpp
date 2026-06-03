@@ -11,7 +11,8 @@ namespace NrvJiraira {
     NEW_NERVE(HostTypeNrvExplode, Jiraira, Explode);
 };  // namespace NrvJiraira
 
-Jiraira::Jiraira(const char* pName) : LiveActor(pName), _8C(nullptr), _90(500.0f) {}
+Jiraira::Jiraira(const char* pName) : LiveActor(pName), _8C(nullptr), _90(500.0f) {
+}
 
 void Jiraira::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -189,4 +190,5 @@ bool Jiraira::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
     return false;
 }
 
-Jiraira::~Jiraira() {}
+Jiraira::~Jiraira() {
+}

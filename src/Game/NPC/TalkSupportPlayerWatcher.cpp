@@ -4,7 +4,8 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-TalkSupportPlayerWatcher::TalkSupportPlayerWatcher() : _00(0), _04(0) {}
+TalkSupportPlayerWatcher::TalkSupportPlayerWatcher() : _00(0), _04(0) {
+}
 
 void TalkSupportPlayerWatcher::update() {
     if (isEnableTalkPlayerSpeed()) {

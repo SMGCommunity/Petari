@@ -40,4 +40,5 @@ void BenefitItemLifeUp::stopEfx(const char* pName) {
     MR::emitEffect(this, str);
 }
 
-BenefitItemLifeUp::~BenefitItemLifeUp() {}
+BenefitItemLifeUp::~BenefitItemLifeUp() {
+}

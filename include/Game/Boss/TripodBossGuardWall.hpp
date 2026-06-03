@@ -24,7 +24,8 @@ public:
     void updateCameraTarget();
     void exeDemo();
     inline void exeTryDemo();
-    void exeWait() {}
+    void exeWait() {
+    }
 
     CameraTargetMtx* mCameraTargetMtx;      // 0x8C
     TripodBossGuardWallPart mWallParts[8];  // 0x90

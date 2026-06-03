@@ -58,9 +58,13 @@ public:
 
 class BossKameckBeamEventListener : public KameckBeamEventListener {
 public:
-    inline BossKameckBeamEventListener(BossKameck* pBoss) : KameckBeamEventListener() { mBossKameck = pBoss; }
+    inline BossKameckBeamEventListener(BossKameck* pBoss) : KameckBeamEventListener() {
+        mBossKameck = pBoss;
+    }
 
-    virtual void hitBeam(s32 type) { mBossKameck->hitBeam(type); }
+    virtual void hitBeam(s32 type) {
+        mBossKameck->hitBeam(type);
+    }
 
     BossKameck* mBossKameck;  // 0x4
 };

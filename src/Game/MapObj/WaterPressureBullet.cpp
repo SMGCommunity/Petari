@@ -298,4 +298,5 @@ void WaterPressureBullet::updateSuffererMtx() {
     MR::setBaseTRMtx(mHostActor, pos);
 }
 
-WaterPressureBullet::~WaterPressureBullet() {}
+WaterPressureBullet::~WaterPressureBullet() {
+}

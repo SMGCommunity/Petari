@@ -320,4 +320,5 @@ void RainCloud::switchEffect() {
     }
 }
 
-RainCloud::~RainCloud() {}
+RainCloud::~RainCloud() {
+}

@@ -36,7 +36,8 @@ namespace NrvTicoRail {
     NEW_NERVE(TicoRailNrvGoodBye, TicoRail, GoodBye);
 };  // namespace NrvTicoRail
 
-TicoRail::TicoRail(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 1.0f), _98(nullptr), mLodCtrl(nullptr) {}
+TicoRail::TicoRail(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 1.0f), _98(nullptr), mLodCtrl(nullptr) {
+}
 
 void TicoRail::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

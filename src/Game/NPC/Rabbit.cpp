@@ -2,8 +2,10 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
 
-Rabbit::Rabbit(const char* pName) : NPCActor(pName) {}
-Rabbit::~Rabbit() {}
+Rabbit::Rabbit(const char* pName) : NPCActor(pName) {
+}
+Rabbit::~Rabbit() {
+}
 
 void Rabbit::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
     const char* pObjectName = nullptr;

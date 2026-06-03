@@ -3,7 +3,6 @@
 #include <cstddef>
 #include <revolution.h>
 
-
 struct JASWaveInfo;
 
 namespace JASDsp {

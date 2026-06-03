@@ -4,7 +4,8 @@ PlanetGravityManager::PlanetGravityManager(const char* pName) : NameObj(pName) {
     mNumGravities = 0;
 }
 
-void PlanetGravityManager::init(const JMapInfoIter& rIter) {}
+void PlanetGravityManager::init(const JMapInfoIter& rIter) {
+}
 
 bool PlanetGravityManager::calcTotalGravityVector(TVec3f* pGravity, GravityInfo* pInfo, const TVec3f& rPosition, u32 gravityType, u32 host) const {
     TVec3f totalGravity;

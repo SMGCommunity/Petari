@@ -12,7 +12,8 @@ RestartCube::RestartCube(int formType, const char* pName) : AreaObj(formType, pN
     _48 = false;
 }
 
-RestartCube::~RestartCube() {}
+RestartCube::~RestartCube() {
+}
 
 void RestartCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

@@ -460,4 +460,5 @@ bool BossKameckStateBattle::isEnableGuard() const {
     return ret;
 }
 
-BossKameckStateBattle::~BossKameckStateBattle() {}
+BossKameckStateBattle::~BossKameckStateBattle() {
+}

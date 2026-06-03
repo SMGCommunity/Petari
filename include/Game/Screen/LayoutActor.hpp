@@ -15,7 +15,8 @@ class LayoutActor : public NameObj {
 public:
     LayoutActor(const char*, bool);
 
-    virtual ~LayoutActor() {}
+    virtual ~LayoutActor() {
+    }
 
     virtual void movement();
     virtual void draw() const;
@@ -23,7 +24,8 @@ public:
     virtual void appear();
     virtual void kill();
 
-    virtual void control() {}
+    virtual void control() {
+    }
 
     void setNerve(const Nerve*) const;
     bool isNerve(const Nerve*) const;

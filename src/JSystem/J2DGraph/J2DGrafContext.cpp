@@ -134,7 +134,8 @@ void J2DGrafContext::fillBox(JGeometry::TBox2< f32 > const& box) {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
 }
 
-void J2DGrafContext::setLookat() {}
+void J2DGrafContext::setLookat() {
+}
 
 J2DGrafType J2DGrafContext::getGrafType() const {
     return J2DGraf_Base;

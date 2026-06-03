@@ -11,11 +11,14 @@ namespace NrvWaterLeakPipe {
     NEW_NERVE(WaterLeakPipeNrvFreeze, WaterLeakPipe, Freeze);
 };  // namespace NrvWaterLeakPipe
 
-IceStepNoSlip::~IceStepNoSlip() {}
+IceStepNoSlip::~IceStepNoSlip() {
+}
 
-WaterLeakPipe::~WaterLeakPipe() {}
+WaterLeakPipe::~WaterLeakPipe() {
+}
 
-IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, MR::DrawBufferType_IndirectMapObjStrongLight, -2, -2, false) {}
+IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, MR::DrawBufferType_IndirectMapObjStrongLight, -2, -2, false) {
+}
 
 void IceStepNoSlip::init(const JMapInfoIter& rIter) {
     ModelObj::init(rIter);
@@ -146,4 +149,5 @@ void WaterLeakPipe::initPipeHeight() {
     calcAndSetBaseMtx();
 }
 
-void WaterLeakPipe::calcAnim() {}
+void WaterLeakPipe::calcAnim() {
+}

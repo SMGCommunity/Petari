@@ -30,7 +30,8 @@ void shapeCallBack(J3DShape* pShape) {
     GXSetTexCoordGen2(GX_TEXCOORD2, GX_TG_MTX2x4, GX_TG_TEX0, 30, GX_FALSE, 125);
 }
 
-FlexibleSphere::FlexibleSphere(const char* pName) : LiveActor(pName), mTimer(0) {}
+FlexibleSphere::FlexibleSphere(const char* pName) : LiveActor(pName), mTimer(0) {
+}
 
 void FlexibleSphere::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

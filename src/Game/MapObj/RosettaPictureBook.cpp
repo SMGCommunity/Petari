@@ -26,7 +26,8 @@ namespace NrvRosettaPictureBook {
 };  // namespace NrvRosettaPictureBook
 
 RosettaPictureBook::RosettaPictureBook(const char* pName)
-    : LiveActor(pName), mLayout(nullptr), mIconAButton(nullptr), mIsValidOpenIconAButton(false) {}
+    : LiveActor(pName), mLayout(nullptr), mIconAButton(nullptr), mIsValidOpenIconAButton(false) {
+}
 
 void RosettaPictureBook::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -98,7 +99,8 @@ void RosettaPictureBook::exeWait() {
                                                           &NrvRosettaPictureBook::HostTypeNrvDemoWait::sInstance);
 }
 
-void RosettaPictureBook::exeDemoWait() {}
+void RosettaPictureBook::exeDemoWait() {
+}
 
 void RosettaPictureBook::exeFadeOut() {
     if (MR::isFirstStep(this)) {

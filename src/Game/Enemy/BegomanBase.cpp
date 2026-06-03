@@ -36,7 +36,8 @@ namespace {
 BegomanBase::BegomanBase(const char* pName)
     : LiveActor(pName), mBaseDelegator(nullptr), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f),
       _B4(1.0f, 1.0f, 1.0f), _C0(0, 0, 0, 1), _D0(0, 0, 0, 1), mTiredCounter(0), mElectricCounter(0), mInitPos(0.0f, 0.0f, 0.0f),
-      mScaleControler(nullptr), mStarPointBind(nullptr), mCanTrySetReturn(false) {}
+      mScaleControler(nullptr), mStarPointBind(nullptr), mCanTrySetReturn(false) {
+}
 
 // needed to get a string to show up in .data, should be deadstripped.
 const BegomanSound* BegomanBase::getSoundBaby() {
@@ -633,7 +634,7 @@ void BegomanBase::launchBegoman(LiveActor* pActor, BegomanBase** begomanArray, s
 void BegomanBase::launchBegomanBabyFromGuarder(LiveActor* pActor, BegomanBaby** babyArray, s32 numBegoman, f32 distFromLauncher, f32 f2, f32 f3,
                                                const TVec3f* pVec) {
     launchBegomanCore(pActor, (BegomanBase**)babyArray, numBegoman, distFromLauncher, f2, f3, pVec);
-    
+
     for (int i = 0; i < numBegoman; i++) {
         babyArray[i]->appearFromGuarder();
     }
@@ -642,13 +643,14 @@ void BegomanBase::launchBegomanBabyFromGuarder(LiveActor* pActor, BegomanBaby** 
 void BegomanBase::launchBegomanBabyLauncher(LiveActor* pActor, BegomanBaby** babyArray, s32 numBegoman, f32 distFromLauncher, f32 f2, f32 f3,
                                             const TVec3f* pVec) {
     launchBegomanCore(pActor, (BegomanBase**)babyArray, numBegoman, distFromLauncher, f2, f3, pVec);
-    
+
     for (int i = 0; i < numBegoman; i++) {
         babyArray[i]->appearFromLaunch(pActor->mPosition, -pActor->mGravity);
     }
 }
 
-void BegomanBase::setNerveLaunch() {}
+void BegomanBase::setNerveLaunch() {
+}
 
 void BegomanBase::updateRotateY(f32 newRotationTarget, f32 rotationLimit) {
     f32 newYRotation = 0.0f;
@@ -964,7 +966,8 @@ bool BegomanBase::requestAttack() {
 }
 
 BegomanAttackPermitter::BegomanAttackPermitter(const char* pName)
-    : LiveActor(pName), _8C(nullptr), mBegoman(nullptr), mDistToPlayer(99999.0f), _98(false) {}
+    : LiveActor(pName), _8C(nullptr), mBegoman(nullptr), mDistToPlayer(99999.0f), _98(false) {
+}
 
 void BegomanAttackPermitter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemyDecorationMovement(this);

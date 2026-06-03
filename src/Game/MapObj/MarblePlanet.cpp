@@ -43,7 +43,8 @@ void MarblePlanet::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void MarblePlanet::exeWait() {}
+void MarblePlanet::exeWait() {
+}
 
 void MarblePlanet::exeScaleUpCore() {
     if (MR::isFirstStep(this)) {
@@ -324,8 +325,11 @@ void MarblePlanetElectronShadow::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, up_mtx);
 }
 
-MarblePlanet::~MarblePlanet() {}
+MarblePlanet::~MarblePlanet() {
+}
 
-MarblePlanetElectron::~MarblePlanetElectron() {}
+MarblePlanetElectron::~MarblePlanetElectron() {
+}
 
-MarblePlanetElectronShadow::~MarblePlanetElectronShadow() {}
+MarblePlanetElectronShadow::~MarblePlanetElectronShadow() {
+}

@@ -1,7 +1,8 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 
-PointGravity::PointGravity() : PlanetGravity(), mOrigPosition(0, 0, 0), mTranslation(0, 0, 0) {}
+PointGravity::PointGravity() : PlanetGravity(), mOrigPosition(0, 0, 0), mTranslation(0, 0, 0) {
+}
 
 bool PointGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const {
     TVec3f direction = mTranslation - rPosition;

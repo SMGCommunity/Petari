@@ -19,7 +19,8 @@ namespace NrvPhantomTorch {
     NEW_NERVE(HostTypeExtinguish, PhantomTorch, Extinguish);
 };  // namespace NrvPhantomTorch
 
-PhantomTorch::~PhantomTorch() {}
+PhantomTorch::~PhantomTorch() {
+}
 
 PhantomTorch::PhantomTorch(const char* pName) : LiveActor(pName) {
     mParticle = nullptr;
@@ -46,7 +47,7 @@ void PhantomTorch::init(const JMapInfoIter& rIter) {
     }
 
     initEffectKeeper(0, mParticle, false);
-    mPullParticle = new SpinPullParticleCallBack();    
+    mPullParticle = new SpinPullParticleCallBack();
     initSound(4, false);
     initHitSensor(1);
     TVec3f vec;
@@ -85,19 +86,19 @@ void PhantomTorch::makeActorDead() {
 
 void PhantomTorch::kill() {
     switch (mItem) {
-        case -1:
-            MR::appearCoinPop(this, mPosition, 1);
-            break;     
-        case 1:  
-            break;
-        case 2:        
-            break;
-        case 0:
-            if (MR::appearStarPiece(this, mPosition, 1, 10.0f, 40.0f, false)) {
-                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
-            }
-            break;
-    }        
+    case -1:
+        MR::appearCoinPop(this, mPosition, 1);
+        break;
+    case 1:
+        break;
+    case 2:
+        break;
+    case 0:
+        if (MR::appearStarPiece(this, mPosition, 1, 10.0f, 40.0f, false)) {
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
+        }
+        break;
+    }
     soundOrder();
     LiveActor::kill();
 }
@@ -122,11 +123,11 @@ bool PhantomTorch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
     if (mIsDecorative) {
         return false;
     }
-    
+
     if (MR::isInSpinStormRange(msg, pSender, pReceiver, 350.0f) && isNerve(&NrvPhantomTorch::HostTypeWait::sInstance)) {
         setNerve(&NrvPhantomTorch::HostTypeExtinguish::sInstance);
         return true;
-    }    
+    }
     return false;
 }
 
@@ -144,22 +145,22 @@ void PhantomTorch::soundOrder() {
         }
 
         switch (num) {
-            case 1:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_5");            
-                break;
-            case 2:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_4");            
-                break;                
-            case 3:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_3");
-                break;
-            case 4:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_2");                     
-                break;
-            case 5:    
-            default:
-                MR::startSystemSE("SE_SY_CANDLE_COMBO_1");
-                break;
+        case 1:
+            MR::startSystemSE("SE_SY_CANDLE_COMBO_5");
+            break;
+        case 2:
+            MR::startSystemSE("SE_SY_CANDLE_COMBO_4");
+            break;
+        case 3:
+            MR::startSystemSE("SE_SY_CANDLE_COMBO_3");
+            break;
+        case 4:
+            MR::startSystemSE("SE_SY_CANDLE_COMBO_2");
+            break;
+        case 5:
+        default:
+            MR::startSystemSE("SE_SY_CANDLE_COMBO_1");
+            break;
         }
     }
 }
@@ -167,8 +168,7 @@ void PhantomTorch::soundOrder() {
 void PhantomTorch::exeWait() {
     if (MR::isEqualString(mParticle, "PhantomBonfire")) {
         MR::startLevelSound(this, "SE_OJ_LV_BONFIRE_BURN");
-    }
-    else {
+    } else {
         MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
     }
 }
@@ -176,11 +176,9 @@ void PhantomTorch::exeWait() {
 void PhantomTorch::exeAttack() {
     if (MR::isStep(this, 30)) {
         setNerve(&NrvPhantomTorch::HostTypeWait::sInstance);
-    }
-    else if (MR::isEqualString(mParticle, "PhantomBonfire")) {
+    } else if (MR::isEqualString(mParticle, "PhantomBonfire")) {
         MR::startLevelSound(this, "SE_OJ_LV_BONFIRE_BURN");
-    }
-    else {
+    } else {
         MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
     }
 }
@@ -191,7 +189,7 @@ void PhantomTorch::exeExtinguish() {
         MR::emitEffectWithParticleCallBack(this, "Extinguish", mPullParticle);
         MR::startSound(this, "SE_OJ_PHANTOM_TOACH_OFF");
     }
-    
+
     if (MR::isStep(this, 15)) {
         kill();
     }

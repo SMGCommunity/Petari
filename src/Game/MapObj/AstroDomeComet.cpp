@@ -145,4 +145,5 @@ void AstroDomeComet::exeConfirm() {
     }
 }
 
-AstroDomeComet::~AstroDomeComet() {}
+AstroDomeComet::~AstroDomeComet() {
+}

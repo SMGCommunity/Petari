@@ -17,7 +17,7 @@ MiniatureGalaxyHolder::MiniatureGalaxyHolder() : LiveActor("ミニチュアギ�
 
 void MiniatureGalaxyHolder::registerActor(LiveActor* pActor, const JMapInfoIter& rIter) {
     _8C->registerActor(pActor);
-    
+
     if (!_90) {
         MR::tryRegisterDemoCast(this, rIter);
         MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &MiniatureGalaxyHolder::killAllMiniatureGalaxy), "飛び出す");

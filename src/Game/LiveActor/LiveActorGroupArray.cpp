@@ -50,7 +50,8 @@ LiveActorGroupArray::LiveActorGroupArray(const char* pName) : NameObj(pName) {
     mNumGroups = 0;
 }
 
-void LiveActorGroupArray::init(const JMapInfoIter& rIter) {}
+void LiveActorGroupArray::init(const JMapInfoIter& rIter) {
+}
 
 LiveActorGroup* LiveActorGroupArray::getLiveActorGroup(const LiveActor* pActor) const {
     return findGroup(pActor);

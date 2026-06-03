@@ -37,8 +37,12 @@ public:
         return *this;
     }
 
-    u32 getMtxIdxRegA() const { return mMtxIdxRegA; }
-    u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
+    u32 getMtxIdxRegA() const {
+        return mMtxIdxRegA;
+    }
+    u32 getMtxIdxRegB() const {
+        return mMtxIdxRegB;
+    }
 
     void load() const {
         J3DFifoLoadCPCmd(0x30, mMtxIdxRegA);
@@ -58,17 +62,25 @@ typedef void (J3DShapeMtx::*J3DShapeMtx_LoadFunc)(int, u16) const;
 
 class J3DShapeMtx {
 public:
-    J3DShapeMtx(u16 useMtxIndex) : mUseMtxIndex(useMtxIndex) {}
+    J3DShapeMtx(u16 useMtxIndex) : mUseMtxIndex(useMtxIndex) {
+    }
 
     void loadMtxIndx_PNGP(int, u16) const;
     void loadMtxIndx_PCPU(int, u16) const;
     void loadMtxIndx_NCPU(int, u16) const;
     void loadMtxIndx_PNCPU(int, u16) const;
 
-    virtual ~J3DShapeMtx() {}
-    virtual u32 getType() const { return 'SMTX'; }
-    virtual u16 getUseMtxNum() const { return 1; }
-    virtual u16 getUseMtxIndex(u16) const { return mUseMtxIndex; }
+    virtual ~J3DShapeMtx() {
+    }
+    virtual u32 getType() const {
+        return 'SMTX';
+    }
+    virtual u16 getUseMtxNum() const {
+        return 1;
+    }
+    virtual u16 getUseMtxIndex(u16) const {
+        return mUseMtxIndex;
+    }
     virtual void load() const;
     virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 
@@ -80,10 +92,16 @@ public:
     static bool sLODFlag;
     static u32 sTexMtxLoadType;
 
-    static void setCurrentPipeline(u32 pipeline) { sCurrentPipeline = pipeline; }
+    static void setCurrentPipeline(u32 pipeline) {
+        sCurrentPipeline = pipeline;
+    }
 
-    static void setLODFlag(bool flag) { sLODFlag = flag; }
-    static u32 getLODFlag() { return sLODFlag; }
+    static void setLODFlag(bool flag) {
+        sLODFlag = flag;
+    }
+    static u32 getLODFlag() {
+        return sLODFlag;
+    }
     static void resetMtxLoadCache();
 
 protected:
@@ -92,7 +110,9 @@ protected:
 
 class J3DShape {
 public:
-    J3DShape() { initialize(); }
+    J3DShape() {
+        initialize();
+    }
 
     static const int kVcdVatDLSize = 0xC0;
 
@@ -115,45 +135,103 @@ public:
 
     void loadCurrentMtx() const;
 
-    void onFlag(u32 flag) { mFlags |= flag; }
-    void offFlag(u32 flag) { mFlags &= ~flag; }
-    bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
+    void onFlag(u32 flag) {
+        mFlags |= flag;
+    }
+    void offFlag(u32 flag) {
+        mFlags &= ~flag;
+    }
+    bool checkFlag(u32 flag) const {
+        return (mFlags & flag) ? true : false;
+    }
 
-    void setMaterial(J3DMaterial* pMaterial) { mMaterial = pMaterial; }
+    void setMaterial(J3DMaterial* pMaterial) {
+        mMaterial = pMaterial;
+    }
 
-    void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) { mDrawMtxData = pMtxData; }
+    void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) {
+        mDrawMtxData = pMtxData;
+    }
 
-    void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
+    void setVertexDataPointer(J3DVertexData* pVtxData) {
+        mVertexData = pVtxData;
+    }
 
-    void* getVcdVatCmd() { return mVcdVatCmd; }
-    void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = (u8*)pVatCmd; }
-    void show() { offFlag(J3DShpFlag_Visible); }
-    void hide() { onFlag(J3DShpFlag_Visible); }
+    void* getVcdVatCmd() {
+        return mVcdVatCmd;
+    }
+    void setVcdVatCmd(void* pVatCmd) {
+        mVcdVatCmd = (u8*)pVatCmd;
+    }
+    void show() {
+        offFlag(J3DShpFlag_Visible);
+    }
+    void hide() {
+        onFlag(J3DShpFlag_Visible);
+    }
 
-    void setCurrentViewNoPtr(u32* pViewNoPtr) { mCurrentViewNo = pViewNoPtr; }
+    void setCurrentViewNoPtr(u32* pViewNoPtr) {
+        mCurrentViewNo = pViewNoPtr;
+    }
 
-    void setCurrentMtx(J3DCurrentMtx& mtx) { mCurrentMtx = mtx; }
+    void setCurrentMtx(J3DCurrentMtx& mtx) {
+        mCurrentMtx = mtx;
+    }
 
-    void setScaleFlagArray(u8* pScaleFlagArray) { mScaleFlagArray = pScaleFlagArray; }
+    void setScaleFlagArray(u8* pScaleFlagArray) {
+        mScaleFlagArray = pScaleFlagArray;
+    }
 
-    void setDrawMtx(Mtx** pDrawMtx) { mDrawMtx = pDrawMtx; }
-    void setNrmMtx(Mtx33** pNrmMtx) { mNrmMtx = pNrmMtx; }
-    void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }
-    bool getNBTFlag() const { return mHasNBT; }
-    u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
-    void setBumpMtxOffset(u32 offset) { mBumpMtxOffset = offset; }
-    GXVtxDescList* getVtxDesc() { return mVtxDesc; }
+    void setDrawMtx(Mtx** pDrawMtx) {
+        mDrawMtx = pDrawMtx;
+    }
+    void setNrmMtx(Mtx33** pNrmMtx) {
+        mNrmMtx = pNrmMtx;
+    }
+    void setTexMtxLoadType(u32 type) {
+        mFlags = (mFlags & 0xFFFF0FFF) | type;
+    }
+    bool getNBTFlag() const {
+        return mHasNBT;
+    }
+    u32 getBumpMtxOffset() const {
+        return mBumpMtxOffset;
+    }
+    void setBumpMtxOffset(u32 offset) {
+        mBumpMtxOffset = offset;
+    }
+    GXVtxDescList* getVtxDesc() {
+        return mVtxDesc;
+    }
 
-    J3DMaterial* getMaterial() const { return mMaterial; }
-    u16 getIndex() const { return mIndex; }
-    u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
-    u32 getMtxGroupNum() const { return mMtxGroupNum; }
-    J3DShapeDraw* getShapeDraw(u16 idx) { return mShapeDraw[idx]; }
-    J3DShapeMtx* getShapeMtx(u16 idx) { return mShapeMtx[idx]; }
-    Vec* getMin() { return &mMin; }
-    Vec* getMax() { return &mMax; }
+    J3DMaterial* getMaterial() const {
+        return mMaterial;
+    }
+    u16 getIndex() const {
+        return mIndex;
+    }
+    u32 getTexMtxLoadType() const {
+        return mFlags & 0xF000;
+    }
+    u32 getMtxGroupNum() const {
+        return mMtxGroupNum;
+    }
+    J3DShapeDraw* getShapeDraw(u16 idx) {
+        return mShapeDraw[idx];
+    }
+    J3DShapeMtx* getShapeMtx(u16 idx) {
+        return mShapeMtx[idx];
+    }
+    Vec* getMin() {
+        return &mMin;
+    }
+    Vec* getMax() {
+        return &mMax;
+    }
 
-    static void resetVcdVatCache() { sOldVcdVatCmd = NULL; }
+    static void resetVcdVatCache() {
+        sOldVcdVatCmd = NULL;
+    }
 
     static void* sOldVcdVatCmd;
     static bool sEnvelopeFlag;

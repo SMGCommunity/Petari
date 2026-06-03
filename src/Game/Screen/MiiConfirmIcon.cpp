@@ -8,7 +8,8 @@ namespace {
     NEW_NERVE(MiiConfirmIconNrvDisappear, MiiConfirmIcon, Disappear);
 };  // namespace
 
-MiiConfirmIcon::MiiConfirmIcon(const char* pName) : LayoutActor(pName, true) {}
+MiiConfirmIcon::MiiConfirmIcon(const char* pName) : LayoutActor(pName, true) {
+}
 
 void MiiConfirmIcon::init(const JMapInfoIter& rIter) {
     initLayoutManager("MiiConfirmIcon", 1);

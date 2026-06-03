@@ -41,7 +41,8 @@ ButlerMap::ButlerMap(const char* pName) : NPCActor(pName) {
     _160 = false;
 }
 
-ButlerMap::~ButlerMap() {}
+ButlerMap::~ButlerMap() {
+}
 
 void ButlerMap::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &_160);

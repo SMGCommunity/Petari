@@ -28,7 +28,8 @@ public:
     LiveActor(const char* pName);
 
     /// @brief Destroys the `LiveActor`.
-    virtual ~LiveActor() {}
+    virtual ~LiveActor() {
+    }
 
     /// @brief Intializes the `LiveActor` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.

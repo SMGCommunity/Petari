@@ -16,7 +16,8 @@ namespace NrvMechaKoopaPartsHead {
     NEW_NERVE(MechaKoopaPartsHeadNrvDemoAppearStar, MechaKoopaPartsHead, DemoAppearStar);
 };  // namespace NrvMechaKoopaPartsHead
 
-MechaKoopaPartsHead::MechaKoopaPartsHead(const char* pName) : MapObjActor(pName) {}
+MechaKoopaPartsHead::MechaKoopaPartsHead(const char* pName) : MapObjActor(pName) {
+}
 
 void MechaKoopaPartsHead::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -39,7 +40,8 @@ void MechaKoopaPartsHead::init(const JMapInfoIter& rIter) {
     }
 }
 
-void MechaKoopaPartsHead::exeWait() {}
+void MechaKoopaPartsHead::exeWait() {
+}
 
 void MechaKoopaPartsHead::exeDemoBreak() {
     if (MR::isFirstStep(this)) {
@@ -113,12 +115,17 @@ void MechaKoopaPartsHead::exeDemoAppearStar() {
     }
 }
 
-MechaKoopaPartsHead::~MechaKoopaPartsHead() {}
+MechaKoopaPartsHead::~MechaKoopaPartsHead() {
+}
 
-void MechaKoopaPartsHead::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
+void MechaKoopaPartsHead::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+}
 
-void MechaKoopaPartsHead::initCaseUseSwitchB(const MapObjActorInitInfo&) {}
+void MechaKoopaPartsHead::initCaseUseSwitchB(const MapObjActorInitInfo&) {
+}
 
-void MechaKoopaPartsHead::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
+void MechaKoopaPartsHead::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
+}
 
-void MechaKoopaPartsHead::initCaseUseSwitchA(const MapObjActorInitInfo&) {}
+void MechaKoopaPartsHead::initCaseUseSwitchA(const MapObjActorInitInfo&) {
+}

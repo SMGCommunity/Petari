@@ -15,7 +15,8 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
-TalkState::TalkState() : _04(nullptr), mBalloon(nullptr) {}
+TalkState::TalkState() : _04(nullptr), mBalloon(nullptr) {
+}
 
 void TalkState::init(TalkMessageCtrl* pArg1, TalkBalloon* pBalloon) {
     _04 = pArg1;
@@ -55,7 +56,8 @@ bool TalkState::isSelfInterrupt(const TalkMessageCtrl* pArg1) const {
     return _04->getMessageID() != mMessageID;
 }
 
-TalkStateShort::TalkStateShort() : TalkState() {}
+TalkStateShort::TalkStateShort() : TalkState() {
+}
 
 bool TalkStateShort::prep(const TalkMessageCtrl* pArg1) {
     return !TalkState::isLostMessage(pArg1);
@@ -159,7 +161,8 @@ u32 TalkStateEvent::getPageCount() const {
     return mPageCount;
 }
 
-TalkStateNormal::TalkStateNormal() : TalkStateEvent() {}
+TalkStateNormal::TalkStateNormal() : TalkStateEvent() {
+}
 
 bool TalkStateNormal::test() {
     if (!_18->isEnableTalkPlayerStateNormal() || !MR::testCorePadTriggerA(0)) {
@@ -249,7 +252,8 @@ void TalkStateNormal::updateButton() {
     mAButton->setTrans(playerScreenPos);
 }
 
-TalkStateCompose::TalkStateCompose() : TalkStateNormal() {}
+TalkStateCompose::TalkStateCompose() : TalkStateNormal() {
+}
 
 void TalkStateCompose::init(TalkMessageCtrl* pArg1, TalkBalloon* pArg2) {
     TalkState::init(pArg1, pArg2);

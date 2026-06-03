@@ -3,9 +3,11 @@
 #include "Game/Screen/PlayerActionGuidance.hpp"
 #include "Game/Util.hpp"
 
-SpinGuidanceArea::SpinGuidanceArea(int formType, const char* pName) : AreaObj(formType, pName) {}
+SpinGuidanceArea::SpinGuidanceArea(int formType, const char* pName) : AreaObj(formType, pName) {
+}
 
-SpinGuidanceArea::~SpinGuidanceArea() {}
+SpinGuidanceArea::~SpinGuidanceArea() {
+}
 
 void SpinGuidanceArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

@@ -265,7 +265,7 @@ public:
         return memPool_.alloc(size);
     }
 #endif
-    static void operator delete(void* addr, u32 size)NO_INLINE {
+    static void operator delete(void* addr, u32 size) NO_INLINE {
         memPool_.free(addr, size);
     }
 };

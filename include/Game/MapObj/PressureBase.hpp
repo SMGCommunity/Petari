@@ -21,7 +21,8 @@ class PressureBase : public LiveActor {
 public:
     PressureBase(const char*);
 
-    virtual ~PressureBase() {}
+    virtual ~PressureBase() {
+    }
 
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();

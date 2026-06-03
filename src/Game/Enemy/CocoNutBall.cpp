@@ -30,7 +30,7 @@ void CocoNutBall::init(const JMapInfoIter& rIter) {
 
     MR::addHitSensor(this, "body", ATYPE_COCO_NUT, 8, 40.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::addHitSensor(this, "bind", ATYPE_COCO_NUT, 8, 500.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    
+
     initBinder(40.0f, 0.0f, 0);
     initEffectKeeper(0, "CocoNut", false);
     // some weirdness with this TVec here

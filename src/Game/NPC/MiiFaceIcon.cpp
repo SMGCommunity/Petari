@@ -12,9 +12,11 @@ MiiFaceIcon::MiiFaceIcon(u16 width, u16 height, const MiiFaceRecipe& rRecipe, co
     MR::registerMiiFaceIcon(this);
 }
 
-void MiiFaceIcon::init(const JMapInfoIter& rIter) {}
+void MiiFaceIcon::init(const JMapInfoIter& rIter) {
+}
 
-void MiiFaceIcon::movement() {}
+void MiiFaceIcon::movement() {
+}
 
 // FIXME: Stack accesses are ordered incorrectly.
 void MiiFaceIcon::drawIcon() {

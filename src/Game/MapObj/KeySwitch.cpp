@@ -11,7 +11,8 @@ namespace NrvKeySwitch {
     NEW_NERVE(KeySwitchNrvWait, KeySwitch, Wait);
 };  // namespace NrvKeySwitch
 
-KeySwitch::~KeySwitch() {}
+KeySwitch::~KeySwitch() {
+}
 
 KeySwitch::KeySwitch(const char* pName) : LiveActor(pName) {
     mCameraInfo = 0;

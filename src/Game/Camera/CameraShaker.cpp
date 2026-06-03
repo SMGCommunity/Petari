@@ -13,7 +13,8 @@ CameraShaker::CameraShaker(const char* pName) : NameObj(pName) {
     createInfinityTask();
 }
 
-CameraShaker::~CameraShaker() {}
+CameraShaker::~CameraShaker() {
+}
 
 void CameraShaker::movement() {
     updateSinglyVerticalTask();

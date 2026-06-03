@@ -7,9 +7,9 @@ public:
     ElectricBall(const char*);
 
     virtual ~ElectricBall();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter&);
 
-    void initBalls(const JMapInfoIter &);
+    void initBalls(const JMapInfoIter&);
     void startMove();
     void exeWait();
 
@@ -25,9 +25,9 @@ public:
     };
 
     TMtx34f _8C;
-    MR::AssignableArray<Ball> _BC;
+    MR::AssignableArray< Ball > _BC;
     TVec3f _C4;
     MapPartsRailMover* _4C;
-    f32 mArg1; // _D0
-    f32 mArg2; // _D4
+    f32 mArg1;  // _D0
+    f32 mArg2;  // _D4
 };

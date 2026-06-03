@@ -4,7 +4,9 @@
 
 class CamTranslatorTower : public CamTranslatorBase {
 public:
-    inline CamTranslatorTower(CameraTower* pCamera) { mCamera = pCamera; }
+    inline CamTranslatorTower(CameraTower* pCamera) {
+        mCamera = pCamera;
+    }
 
     virtual void setParam(const CameraParamChunk*);
     virtual Camera* getCamera() const;

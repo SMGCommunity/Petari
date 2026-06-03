@@ -17,7 +17,9 @@ public:
     void registTex(JPATexture*);
     u32 getResUserWork(u16) const;
 
-    void load(u16 idx, GXTexMapID texMapID) NO_INLINE { mpTexArr[idx]->load(texMapID); }
+    void load(u16 idx, GXTexMapID texMapID) NO_INLINE {
+        mpTexArr[idx]->load(texMapID);
+    }
 
 public:
     /* 0x00 */ JKRHeap* mpHeap;

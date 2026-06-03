@@ -55,7 +55,9 @@ public:
     /// @brief Resets the current frame based on the direction of progression.
     void resetFrame();
 
-    inline bool isFrameMaxFrame() { return mFrame == mMaxFrame; }
+    inline bool isFrameMaxFrame() {
+        return mFrame == mMaxFrame;
+    }
 
     /// @brief The current frame.
     /* 0x0 */ s32 mFrame;
@@ -70,5 +72,7 @@ private:
     /// @brief Determines if the given direction of progression suggests approaching `0.0`.
     /// @param direction The sign of the direction of progression to test.
     /// @return `true` if the direction suggests approaching `0.0`, `false` otherwise.
-    static bool isDirToZero(s32 direction) { return (u32)(-direction & ~direction) >> 31 == 0; }
+    static bool isDirToZero(s32 direction) {
+        return (u32)(-direction & ~direction) >> 31 == 0;
+    }
 };

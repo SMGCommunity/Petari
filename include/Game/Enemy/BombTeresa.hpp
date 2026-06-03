@@ -72,7 +72,9 @@ public:
     bool isEnableShockWave() const NO_INLINE;
     void addTeresaSpinPullVelocity(f32);
 
-    inline bool isOutOfRange(f32 dist) { return !MR::isNearPlayer(this, dist); }
+    inline bool isOutOfRange(f32 dist) {
+        return !MR::isNearPlayer(this, dist);
+    }
 
     /*0x8C*/ JointControlDelegator< BombTeresa >* mJointDelegator;
     /*0x90*/ JointControlDelegator< BombTeresa >* mJointDelegator2;

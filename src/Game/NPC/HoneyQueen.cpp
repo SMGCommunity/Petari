@@ -33,7 +33,8 @@ HoneyQueen::HoneyQueen(const char* pName) : NPCActor(pName) {
     mNpcModel = nullptr;
 }
 
-HoneyQueen::~HoneyQueen() {}
+HoneyQueen::~HoneyQueen() {
+}
 
 void HoneyQueen::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps = "HoneyQueen";

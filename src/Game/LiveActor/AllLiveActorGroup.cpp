@@ -49,4 +49,5 @@ namespace MR {
     }
 };  // namespace MR
 
-AllLiveActorGroup::~AllLiveActorGroup() {}
+AllLiveActorGroup::~AllLiveActorGroup() {
+}

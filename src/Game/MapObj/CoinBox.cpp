@@ -6,9 +6,11 @@ namespace NrvCoinBox {
     NEW_NERVE(CoinBoxNrvHit, CoinBox, Hit);
 };  // namespace NrvCoinBox
 
-CoinBox::CoinBox(const char* pName) : LiveActor(pName) {}
+CoinBox::CoinBox(const char* pName) : LiveActor(pName) {
+}
 
-CoinBox::~CoinBox() {}
+CoinBox::~CoinBox() {
+}
 
 void CoinBox::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -28,7 +30,8 @@ void CoinBox::init(const JMapInfoIter& rIter) {
     initEffectKeeper(1, "Coin", false);
 }
 
-void CoinBox::exeWait() {}
+void CoinBox::exeWait() {
+}
 
 // https://decomp.me/scratch/2bcHZ
 void CoinBox::exeHit() {

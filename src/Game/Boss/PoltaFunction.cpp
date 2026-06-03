@@ -28,7 +28,8 @@ namespace PoltaFunction {
         MR::requestMovementOn(pPolta->mRightArm->mFormationModel);
     }
 
-    void emitEffectShadow(Polta* pPolta) {}
+    void emitEffectShadow(Polta* pPolta) {
+    }
 
     PoltaArm* getLeftArmActor(Polta* pPolta) {
         return pPolta->mLeftArm;

@@ -3,7 +3,8 @@
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/GravityUtil.hpp"
 
-void CameraTargetObj::init(const JMapInfoIter& rIter) {}
+void CameraTargetObj::init(const JMapInfoIter& rIter) {
+}
 
 bool CameraTargetObj::isTurning() const {
     return false;
@@ -41,7 +42,8 @@ bool CameraTargetObj::isDebugMode() const {
     return false;
 }
 
-void CameraTargetObj::resetStatus() {}
+void CameraTargetObj::resetStatus() {
+}
 
 CameraTargetMtx::CameraTargetMtx(const char* pName) : CameraTargetObj(pName) {
     mPosition.x = 0.0f;
@@ -67,7 +69,8 @@ CameraTargetMtx::CameraTargetMtx(const char* pName) : CameraTargetObj(pName) {
     mMatrix.identity();
 }
 
-CameraTargetMtx::~CameraTargetMtx() {}
+CameraTargetMtx::~CameraTargetMtx() {
+}
 
 // Wrong instruction order for the first 4 TVec3f.set(), register mismatch
 void CameraTargetMtx::movement() {

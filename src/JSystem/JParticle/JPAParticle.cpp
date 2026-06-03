@@ -5,7 +5,8 @@
 #include "JSystem/JParticle/JPAEmitterManager.hpp"
 #include "JSystem/JParticle/JPAExtraShape.hpp"
 
-JPAParticleCallBack::~JPAParticleCallBack() {}
+JPAParticleCallBack::~JPAParticleCallBack() {
+}
 
 void JPABaseParticle::init_p(JPAEmitterWorkData* work) {
     JPABaseEmitter* emtr = work->mpEmtr;

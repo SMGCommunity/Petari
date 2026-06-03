@@ -11,7 +11,8 @@ class CoinHolder : public DeriveActorGroup< Coin > {
 public:
     CoinHolder(const char*);
 
-    virtual ~CoinHolder() {}
+    virtual ~CoinHolder() {
+    }
 
     virtual void init(const JMapInfoIter&);
 

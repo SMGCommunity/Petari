@@ -19,6 +19,8 @@ void WaterArea::init(const JMapInfoIter& rIter) {
 WaterAreaMgr::WaterAreaMgr(s32 maxNum, const char* pName) : AreaObjMgr(maxNum, pName) {
 }
 
-WaterArea::~WaterArea() {}
+WaterArea::~WaterArea() {
+}
 
-WaterAreaMgr::~WaterAreaMgr() {}
+WaterAreaMgr::~WaterAreaMgr() {
+}

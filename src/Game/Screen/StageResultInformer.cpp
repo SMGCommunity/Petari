@@ -103,7 +103,8 @@ void DisplayInformationForResult::exeDisappear() {
     }
 }
 
-void DisplayInformationForResult::exeIdle() {}
+void DisplayInformationForResult::exeIdle() {
+}
 
 StageResultInformer::StageResultInformer()
     : LayoutActor("リザルト通知", true), mInformationDisplayer(nullptr), mSequenceChecker(nullptr), mIconAButton(nullptr), _30(false), _31(false) {

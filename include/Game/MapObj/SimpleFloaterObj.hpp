@@ -11,7 +11,9 @@ public:
     virtual void init(const JMapInfoIter&);
 
     void exeWait();
-    inline bool isVelocityClose() { return PSVECMag(&_90->_50) < 0.3f; }
+    inline bool isVelocityClose() {
+        return PSVECMag(&_90->_50) < 0.3f;
+    }
 
     const char* _8C;
     MapPartsFloatingForce* _90;

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/NPC/Tico.hpp"
+#include "Game/NameObj/NameObj.hpp"
 
 class NameObjArchiveListCollector;
 class JMapInfoIter;

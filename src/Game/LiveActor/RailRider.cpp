@@ -226,7 +226,7 @@ void RailRider::initBezierRail(const JMapInfoIter& rIter, const JMapInfo* pInfo)
 
 bool RailRider::getPointArgS32NoInit(const char* pStr, s32* pOut, s32 pointNum) const {
     s32 val;
-    JMapInfoIter iter(nullptr,-1);
+    JMapInfoIter iter(nullptr, -1);
 
     mBezierRail->calcRailCtrlPointIter(&iter, pointNum);
     val = -1;

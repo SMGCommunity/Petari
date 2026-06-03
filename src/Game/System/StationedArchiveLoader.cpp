@@ -6,7 +6,8 @@
 #include "Game/Util/MemoryUtil.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 
-StationedArchiveLoader::Condition::~Condition() {}
+StationedArchiveLoader::Condition::~Condition() {
+}
 
 JKRHeap* StationedArchiveLoader::Condition::getProperHeap(const MR::StationedFileInfo* pInfo) const {
     return nullptr;

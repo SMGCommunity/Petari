@@ -35,4 +35,5 @@ void SwitchSynchronizer::movement() {
     }
 }
 
-SwitchSynchronizer::~SwitchSynchronizer() {}
+SwitchSynchronizer::~SwitchSynchronizer() {
+}

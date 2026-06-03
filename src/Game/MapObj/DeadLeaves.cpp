@@ -31,7 +31,8 @@ void DeadLeaves::init(const JMapInfoIter& rIter) {
     }
 }
 
-void DeadLeaves::exeWait() {}
+void DeadLeaves::exeWait() {
+}
 
 void DeadLeaves::exeSpin() {
     if (MR::isFirstStep(this)) {
@@ -62,4 +63,5 @@ bool DeadLeaves::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
     return false;
 }
 
-DeadLeaves::~DeadLeaves() {}
+DeadLeaves::~DeadLeaves() {
+}

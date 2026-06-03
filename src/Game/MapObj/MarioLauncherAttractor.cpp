@@ -37,7 +37,8 @@ void MarioLauncherAttractor::init(const JMapInfoIter& rIter) {
 }
 
 namespace NrvMarioLauncherAttractor {
-    void MarioLauncherAttractorNrvWait::execute(Spine* pSpine) const {}
+    void MarioLauncherAttractorNrvWait::execute(Spine* pSpine) const {
+    }
 
     MarioLauncherAttractorNrvWait(MarioLauncherAttractorNrvWait::sInstance);
 };  // namespace NrvMarioLauncherAttractor

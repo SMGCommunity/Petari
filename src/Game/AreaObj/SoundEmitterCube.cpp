@@ -14,7 +14,8 @@ SoundEmitterCube::SoundEmitterCube(int formType, const char* pName) : AreaObj(fo
     mSoundName = nullptr;
 }
 
-SoundEmitterCube::~SoundEmitterCube() {}
+SoundEmitterCube::~SoundEmitterCube() {
+}
 
 void SoundEmitterCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

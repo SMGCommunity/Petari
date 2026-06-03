@@ -7,7 +7,6 @@
 #include "Game/Screen/PrologueLetter.hpp"
 #include "Game/Screen/ProloguePictureBook.hpp"
 
-
 namespace {
     static const char* sPictureBookDemoName = "プロローグデモ";
     static const char* sArriveDemoName = "主人公ピーチ城に到着";
@@ -273,7 +272,8 @@ void PrologueDirector::createCameraTarget() {
     mCameraTarget->mMatrix.identity();
 }
 
-void PrologueDirector::control() {}
+void PrologueDirector::control() {
+}
 
 void PrologueDirector::pauseOff() {
     MR::requestMovementOn(mPictureBook);
@@ -282,7 +282,8 @@ void PrologueDirector::pauseOff() {
     MR::requestMovementOn(mMarioPosDummyModel);
 }
 
-PrologueHolder::PrologueHolder(const char* pName) : NameObj(pName), mDirector(nullptr) {}
+PrologueHolder::PrologueHolder(const char* pName) : NameObj(pName), mDirector(nullptr) {
+}
 
 void PrologueHolder::registerPrologueObj(PrologueDirector* pDirector) {
     mDirector = pDirector;
@@ -293,7 +294,11 @@ void PrologueHolder::start() {
 }
 
 namespace MR {
-    PrologueHolder* getPrologueHolder() { return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder); }
+    PrologueHolder* getPrologueHolder() {
+        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
+    }
 
-    void startPrologue() { getPrologueHolder()->start(); }
+    void startPrologue() {
+        getPrologueHolder()->start();
+    }
 };  // namespace MR

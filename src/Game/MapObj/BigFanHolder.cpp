@@ -2,7 +2,8 @@
 #include "Game/MapObj/BigFan.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-BigFanHolder::BigFanHolder() : DeriveActorGroup("大型扇風機管理", 0x20) {}
+BigFanHolder::BigFanHolder() : DeriveActorGroup("大型扇風機管理", 0x20) {
+}
 
 /*
 void BigFanHolder::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2, f32 *a3) {
@@ -61,4 +62,5 @@ void BigFanFunction::registerBigFan(BigFan* pFan) {
     MR::getSceneObj< BigFanHolder >(SceneObj_BigFanHolder)->registerActor(pFan);
 }
 
-BigFanHolder::~BigFanHolder() {}
+BigFanHolder::~BigFanHolder() {
+}

@@ -113,9 +113,11 @@ ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter& rIter) {
     return 0;
 }
 
-ClippingInfoGroup::~ClippingInfoGroup() {}
+ClippingInfoGroup::~ClippingInfoGroup() {
+}
 
-ClippingGroupHolder::~ClippingGroupHolder() {}
+ClippingGroupHolder::~ClippingGroupHolder() {
+}
 
 ClippingGroupHolder::ClippingGroupHolder() : NameObj("クリッピングアクター保持") {
     mNumGroups = 0;

@@ -18,9 +18,11 @@ namespace NrvWoodBox {
     NEW_NERVE(WoodBoxNrvHit, WoodBox, Hit);
 };  // namespace NrvWoodBox
 
-WoodBox::WoodBox(const char* pName) : LiveActor(pName) {}
+WoodBox::WoodBox(const char* pName) : LiveActor(pName) {
+}
 
-WoodBox::~WoodBox() {}
+WoodBox::~WoodBox() {
+}
 
 void WoodBox::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -212,7 +214,8 @@ void WoodBox::kill() {
     }
 }
 
-void WoodBox::exeWait() {}
+void WoodBox::exeWait() {
+}
 void WoodBox::exeHit() {
     if (LiveActor::getNerveStep() == 0) {
         LiveActor::getSensor("body")->invalidate();
@@ -258,7 +261,8 @@ void WoodBox::exeHit() {
         kill();
     }
 }
-void WoodBox::exeKilled() {}
+void WoodBox::exeKilled() {
+}
 
 void WoodBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
     if (mHitPoint == 0) {

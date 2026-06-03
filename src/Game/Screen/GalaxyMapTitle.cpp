@@ -10,7 +10,8 @@ namespace {
     NEW_NERVE(GalaxyMapTitleDisappearToAnother, GalaxyMapTitle, DisappearToAnother);
 };  // namespace
 
-GalaxyMapTitle::GalaxyMapTitle() : LayoutActor("MapTitle", true), mMessageID(nullptr) {}
+GalaxyMapTitle::GalaxyMapTitle() : LayoutActor("MapTitle", true), mMessageID(nullptr) {
+}
 
 void GalaxyMapTitle::init(const JMapInfoIter& rIter) {
     initLayoutManager("MapTitle", 1);

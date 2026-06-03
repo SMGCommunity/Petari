@@ -17,7 +17,9 @@ public:
 
     struct LevelStatus {
     public:
-        inline GuardStatus* getGuardStatus(u32 idx) const { return &mStatusArray[idx]; }
+        inline GuardStatus* getGuardStatus(u32 idx) const {
+            return &mStatusArray[idx];
+        }
 
         s32 mEnergyLevel;                                 // 0x0
         f32 mSpeedLevel;                                  // 0x4

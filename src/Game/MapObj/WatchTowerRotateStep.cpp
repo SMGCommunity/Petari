@@ -80,7 +80,8 @@ void WatchTowerRotateStep::initLift(const JMapInfoIter &rIter) {
 
 // WatchTowerRotateStep::attachLift();
 
-void WatchTowerRotateStep::exeWait() {}
+void WatchTowerRotateStep::exeWait() {
+}
 
 void WatchTowerRotateStep::exeMoveStart() {
     TVec3f upVec;

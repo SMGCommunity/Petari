@@ -13,7 +13,8 @@ PrizeRing::PrizeRing() : ModelObj("PrizeRing", "PrizeRing", nullptr, -2, -2, -2,
     _90 = 800;
 }
 
-PrizeRing::~PrizeRing() {}
+PrizeRing::~PrizeRing() {
+}
 
 void PrizeRing::init(const JMapInfoIter& rIter) {
     initNerve(&NrvPrizeRing::PrizeRingStart::sInstance);
@@ -106,7 +107,8 @@ void PrizeRing::exeTimeout() {
     }
 }
 
-void PrizeRing::exeReadyToPass() {}
+void PrizeRing::exeReadyToPass() {
+}
 
 void PrizeRing::exePass() {
     if (MR::isFirstStep(this)) {

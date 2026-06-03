@@ -73,7 +73,6 @@ public:
     static void launchBegomanBabyFromGuarder(LiveActor*, BegomanBaby**, s32, f32, f32, f32, const TVec3f*);
     static void launchBegomanBabyLauncher(LiveActor*, BegomanBaby**, s32, f32, f32, f32, const TVec3f*);
 
-
     void updateTargetVec();
     void updateRotateY(f32, f32);
     void addVelocityEscapeToSide(f32);
@@ -96,9 +95,9 @@ public:
     bool incAndCheckTiredCounter();
     bool isInWaterAndSetWaterNerve(const Nerve*, TPos3f*);
 
-    JointControlDelegator< BegomanBase >* mBaseDelegator; // _8C
+    JointControlDelegator< BegomanBase >* mBaseDelegator;  // _8C
 
-    TVec3f mFaceVec; //0x90
+    TVec3f mFaceVec;    // 0x90
     TVec3f mTargetVec;  // 0x9C
 
     TVec3f _A8;
@@ -107,10 +106,10 @@ public:
     TQuat4f _C0;
     TQuat4f _D0;
 
-    s32 mTiredCounter; // _E0
-    s32 mElectricCounter; //_E4
+    s32 mTiredCounter;     // _E0
+    s32 mElectricCounter;  //_E4
 
-    TVec3f mInitPos; //_E8
+    TVec3f mInitPos;  //_E8
 
     AnimScaleController* mScaleControler;
     WalkerStateBindStarPointer* mStarPointBind;
@@ -121,7 +120,7 @@ public:
 };
 
 class BegomanAttackPermitter : public LiveActor {
-public: 
+public:
     BegomanAttackPermitter(const char*);
 
     virtual void init(const JMapInfoIter&);
@@ -139,5 +138,4 @@ public:
     f32 mDistToPlayer;
 
     bool _98;
-
 };

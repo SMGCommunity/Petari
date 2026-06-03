@@ -9,7 +9,9 @@ class ActiveActorList {
 public:
     ActiveActorList(int);
 
-    bool hasTooMany() const { return (mCurCount >= mMaxCount); }
+    bool hasTooMany() const {
+        return (mCurCount >= mMaxCount);
+    }
 
     bool isFull() const;
     void addActor(LiveActor*);

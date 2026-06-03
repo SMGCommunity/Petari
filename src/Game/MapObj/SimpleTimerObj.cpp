@@ -52,4 +52,5 @@ void SimpleTimerObj::control() {
     }
 }
 
-SimpleTimerObj::~SimpleTimerObj() {}
+SimpleTimerObj::~SimpleTimerObj() {
+}

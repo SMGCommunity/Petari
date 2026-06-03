@@ -63,4 +63,5 @@ void CameraCover::copyCamera() {
     _C.setInline(*MR::getCameraInvViewMtx());
 }
 
-CameraCover::~CameraCover() {}
+CameraCover::~CameraCover() {
+}

@@ -322,7 +322,8 @@ void BreakableCage::exeWait() {
     }
 }
 
-void BreakableCage::exeWaitStartDemoBreak() {}
+void BreakableCage::exeWaitStartDemoBreak() {
+}
 
 void BreakableCage::exeBreak() {
     u32 v2 = 1;
@@ -424,4 +425,5 @@ void BreakableCage::exeBreak() {
     }
 }
 
-BreakableCage::~BreakableCage() {}
+BreakableCage::~BreakableCage() {
+}

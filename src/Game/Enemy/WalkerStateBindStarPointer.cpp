@@ -7,7 +7,7 @@ namespace {
 
 namespace NrvWalkerStateBindStarPointer {
     NEW_NERVE(WalkerStateBindStarPointerNrvBind, WalkerStateBindStarPointer, Bind);
-};  // namespace
+};  // namespace NrvWalkerStateBindStarPointer
 
 WalkerStateBindStarPointer::WalkerStateBindStarPointer(LiveActor* pHost, AnimScaleController* pController)
     : ActorStateBase("歩行型スターポインタ拘束", pHost), mScaleController(pController), mUpdateCounter(0), mHasEffect(false) {

@@ -127,7 +127,8 @@ void NeedlePlant::connectToScene(const MapObjActorInitInfo&) {
     MR::connectToSceneNoShadowedMapObj(this);
 }
 
-NeedlePlant::~NeedlePlant() {}
+NeedlePlant::~NeedlePlant() {
+}
 
 inline void NeedlePlant::exeWait() {
     if (MR::isFirstStep(this)) {

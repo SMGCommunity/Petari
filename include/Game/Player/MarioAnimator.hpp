@@ -71,7 +71,9 @@ public:
         mXanimePlayer->setDefaultAnimation(name);
     }
 
-    inline bool isTeresaClear() const { return !isPlayerModeTeresa(); }
+    inline bool isTeresaClear() const {
+        return !isPlayerModeTeresa();
+    }
 
     XanimeResourceTable* mResourceTable;  // 0x8
     XanimePlayer* mXanimePlayer;          // 0xC

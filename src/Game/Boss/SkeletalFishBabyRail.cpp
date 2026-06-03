@@ -13,4 +13,5 @@ void SkeletalFishBabyRail::init(const JMapInfoIter& rIter) {
     makeActorDead();
 }
 
-SkeletalFishBabyRail::~SkeletalFishBabyRail() {}
+SkeletalFishBabyRail::~SkeletalFishBabyRail() {
+}

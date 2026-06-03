@@ -20,4 +20,5 @@ void LightDirector::movement() {
     mPointCtrl->update();
 }
 
-LightDirector::~LightDirector() {}
+LightDirector::~LightDirector() {
+}

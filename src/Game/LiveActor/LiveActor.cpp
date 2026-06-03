@@ -24,7 +24,8 @@ LiveActor::LiveActor(const char* pName)
     MR::getClippingDirector()->registerActor(this);
 }
 
-void LiveActor::init(const JMapInfoIter& rIter) {}
+void LiveActor::init(const JMapInfoIter& rIter) {
+}
 
 void LiveActor::appear() {
     makeActorAppeared();
@@ -390,7 +391,8 @@ void LiveActor::initActorLightCtrl() {
     mActorLightCtrl = new ActorLightCtrl(this);
 }
 
-void LiveActor::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {}
+void LiveActor::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+}
 
 bool LiveActor::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return false;

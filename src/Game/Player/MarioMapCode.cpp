@@ -2,7 +2,8 @@
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Util/MapUtil.hpp"
 
-FloorCode::FloorCode() {}
+FloorCode::FloorCode() {
+}
 
 u32 FloorCode::getCode(const Triangle* triangle) {
     u32 code;

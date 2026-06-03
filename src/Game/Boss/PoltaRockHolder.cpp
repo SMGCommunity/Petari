@@ -9,4 +9,5 @@ PoltaRockHolder::PoltaRockHolder() : DeriveActorGroup< PoltaRock >("ポルタの
     }
 }
 
-PoltaRockHolder::~PoltaRockHolder() {}
+PoltaRockHolder::~PoltaRockHolder() {
+}

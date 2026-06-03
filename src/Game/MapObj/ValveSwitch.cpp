@@ -131,4 +131,5 @@ void ValveSwitch::updateBindActorMtx() {
     MR::setBaseTRMtx(_8C, posMtx);
 }
 
-ValveSwitch::~ValveSwitch() {}
+ValveSwitch::~ValveSwitch() {
+}

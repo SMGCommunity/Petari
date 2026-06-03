@@ -32,7 +32,8 @@ void TripodBossBaseJointPosition::control() {
     }
 }
 
-TripodBossBaseJointPosition::~TripodBossBaseJointPosition() {}
+TripodBossBaseJointPosition::~TripodBossBaseJointPosition() {
+}
 
 MtxPtr TripodBossBaseJointPosition::getBaseMtx() const {
     return (MtxPtr)&_90;

@@ -459,4 +459,5 @@ bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
     return false;
 }
 
-NoteFairy::~NoteFairy() {}
+NoteFairy::~NoteFairy() {
+}

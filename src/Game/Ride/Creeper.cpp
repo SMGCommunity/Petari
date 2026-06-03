@@ -162,7 +162,8 @@ void Creeper::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-inline void Creeper::exeFree() {}
+inline void Creeper::exeFree() {
+}
 
 inline void Creeper::exeFreeInvalid() {
     if (MR::isNearPlayer(this, 200.0f) && MR::isGreaterStep(this, 20)) {

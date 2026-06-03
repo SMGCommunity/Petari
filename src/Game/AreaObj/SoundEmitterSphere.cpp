@@ -16,7 +16,8 @@ SoundEmitterSphere::SoundEmitterSphere(int formType, const char* pName) : AreaOb
     mSoundIndex = 0;
 }
 
-SoundEmitterSphere::~SoundEmitterSphere() {}
+SoundEmitterSphere::~SoundEmitterSphere() {
+}
 
 void SoundEmitterSphere::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
@@ -28,4 +29,5 @@ void SoundEmitterSphere::init(const JMapInfoIter& rIter) {
     MR::registerDemoSimpleCastAll(this);
 }
 
-void SoundEmitterSphere::movement() {}
+void SoundEmitterSphere::movement() {
+}

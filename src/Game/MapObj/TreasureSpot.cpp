@@ -25,9 +25,11 @@ void TreasureSpot::init(const JMapInfoIter& rIter) {
     MR::declareCoin(this, 1);
 }
 
-void TreasureSpot::exeWait() {}
+void TreasureSpot::exeWait() {
+}
 
-void TreasureSpot::exeEnd() {}
+void TreasureSpot::exeEnd() {
+}
 
 void TreasureSpot::exeSpout() {
     if (MR::isFirstStep(this)) {
@@ -96,4 +98,5 @@ void TreasureSpot::switchEmitGlow() {
     }
 }
 
-TreasureSpot::~TreasureSpot() {}
+TreasureSpot::~TreasureSpot() {
+}

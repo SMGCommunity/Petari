@@ -33,4 +33,5 @@ void LightAreaHolder::initAfterPlacement() {
     sort();
 }
 
-LightAreaHolder::~LightAreaHolder() {}
+LightAreaHolder::~LightAreaHolder() {
+}

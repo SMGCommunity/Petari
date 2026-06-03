@@ -76,7 +76,8 @@ void CollapsePlane::exeDPDStop() {
     }
 }
 
-void CollapsePlane::exeEnd() {}
+void CollapsePlane::exeEnd() {
+}
 
 void CollapsePlane::calcAndSetBaseMtx() {
     MapObjActor::calcAndSetBaseMtx();
@@ -126,4 +127,5 @@ bool CollapsePlane::tryDPDStop() {
     return true;
 }
 
-CollapsePlane::~CollapsePlane() {}
+CollapsePlane::~CollapsePlane() {
+}

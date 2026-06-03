@@ -29,7 +29,8 @@ namespace NrvFireMarioBall {
     NEW_NERVE(FireMarioBallNrvThrow, FireMarioBall, Throw);
 };  // namespace NrvFireMarioBall
 
-FireMarioBall::~FireMarioBall() {}
+FireMarioBall::~FireMarioBall() {
+}
 
 FireMarioBall::FireMarioBall(const char* pName) : LiveActor(pName) {
     _8C = 0;

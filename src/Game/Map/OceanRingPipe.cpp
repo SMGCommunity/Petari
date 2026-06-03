@@ -1,19 +1,19 @@
-#include "Game/Map/OceanRing.hpp"
 #include "Game/Map/OceanRingPipe.hpp"
+#include "Game/Map/OceanRing.hpp"
 #include "Game/Map/OceanRingPipeInside.hpp"
 #include "Game/Map/OceanRingPipeOutside.hpp"
 
+#include "Game/Map/Flag.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
 #include "Game/Map/WaterInfo.hpp"
 #include "Game/Util/RailUtil.hpp"
-#include "Game/Map/Flag.hpp"
 
 OceanRingPipe::~OceanRingPipe() {
 }
 
-OceanRingPipe::OceanRingPipe(const OceanRing* ring, f32 a, f32 b) : LiveActor("オーシャンリングの側面"),
-	mOceanRing(ring), _90(0), _94(0), _98(0), _9C(8), _A0(0), _A4(0), _A8(a), _AC(b), mPipeInside(0), mPipeOutside(0) {
-
+OceanRingPipe::OceanRingPipe(const OceanRing* ring, f32 a, f32 b)
+    : LiveActor("オーシャンリングの側面"), mOceanRing(ring), _90(0), _94(0), _98(0), _9C(8), _A0(0), _A4(0), _A8(a), _AC(b), mPipeInside(0),
+      mPipeOutside(0) {
 }
 
 void OceanRingPipe::init(const JMapInfoIter& rIter) {
@@ -135,7 +135,7 @@ void OceanRingPipe::initPoints() {
             // w h a t
             // (TODO: look into how its actually supposed to convert these values into
             // their s16 components instead of writing the multiply directly)
-            //JGeometry::TVec3< s64 >(v1.x * 32768.0f, v1.y * 32768.0f, v1.z * 32768.0f);
+            // JGeometry::TVec3< s64 >(v1.x * 32768.0f, v1.y * 32768.0f, v1.z * 32768.0f);
             _A4[idx].set(v1.x * 32768.0f, v1.y * 32768.0f, v1.z * 32768.0f);
             idx++;
 

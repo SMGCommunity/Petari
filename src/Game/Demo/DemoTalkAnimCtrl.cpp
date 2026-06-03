@@ -14,9 +14,11 @@
 DemoTalkAnimCtrl::DemoTalkAnimCtrl(LiveActor* pActor, const char* a3, const char* a4)
     : NerveExecutor(a3), mActor(pActor), _C(a3), _10(a4), _14(nullptr), _18(""), _1C(""), mCameraInfo(nullptr), _24(0), _28(0), _2C(0), _30(0),
       _34(true), _35(false), _36(false), _38(0), _3C(0), _40(0), _44(0), _48(false), mHaveCamera(false), _4A(false), mHaveBtk(false), mHaveBpk(false),
-      mHaveBtp(false), mHaveBrk(false), mHaveBva(false) {}
+      mHaveBtp(false), mHaveBrk(false), mHaveBva(false) {
+}
 
-DemoTalkAnimCtrl::~DemoTalkAnimCtrl() {}
+DemoTalkAnimCtrl::~DemoTalkAnimCtrl() {
+}
 
 void DemoTalkAnimCtrl::initForScene(const char* a1, const char* a2, const JMapInfoIter& rIter) {
     char buf[0x100];

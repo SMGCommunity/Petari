@@ -223,4 +223,5 @@ void KoopaJr::exeShipBattleDemoTalkWait() {
     }
 }
 
-KoopaJr::~KoopaJr() {}
+KoopaJr::~KoopaJr() {
+}

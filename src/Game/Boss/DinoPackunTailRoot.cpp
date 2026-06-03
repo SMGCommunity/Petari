@@ -6,7 +6,8 @@ typedef JointControlDelegator< DinoPackunTailRoot > Delegator;
 
 typedef bool (DinoPackunTailRoot::*func)(TPos3f*, const JointControllerInfo&);
 
-DinoPackunTailRoot::DinoPackunTailRoot(const char* name, DinoPackun* pPackun) : DinoPackunTailNode(name, pPackun) {}
+DinoPackunTailRoot::DinoPackunTailRoot(const char* name, DinoPackun* pPackun) : DinoPackunTailNode(name, pPackun) {
+}
 
 void DinoPackunTailRoot::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
@@ -37,4 +38,5 @@ void DinoPackunTailRoot::addNodeVelocity(const TVec3f& rVel) {
     return;
 }
 
-DinoPackunTailRoot::~DinoPackunTailRoot() {}
+DinoPackunTailRoot::~DinoPackunTailRoot() {
+}

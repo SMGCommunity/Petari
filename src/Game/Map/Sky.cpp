@@ -115,7 +115,8 @@ ProjectionMapSky::ProjectionMapSky(const char* pSkyName) : Sky(pSkyName) {
     mMtxSetter = 0;
 }
 
-Sky::~Sky() {}
+Sky::~Sky() {
+}
 
 void ProjectionMapSky::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
@@ -132,4 +133,5 @@ void ProjectionMapSky::initModel(const char* pName) {
     mMtxSetter->updateMtxUseBaseMtx();
 }
 
-ProjectionMapSky::~ProjectionMapSky() {}
+ProjectionMapSky::~ProjectionMapSky() {
+}
