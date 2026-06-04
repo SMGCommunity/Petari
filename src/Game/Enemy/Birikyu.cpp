@@ -158,7 +158,7 @@ void Birikyu::initShadow() {
         MR::onCalcShadowDropPrivateGravity(this, nullptr);
         MR::onCalcShadow(this, nullptr);
         MR::onCalcGravity(this);
-        MR::setShadowDropDirectionPtr(this, nullptr, &getSensor("body")->mPosition);
+        MR::setShadowDropPositionPtr(this, nullptr, &getSensor("body")->mPosition);
     }
 }
 
