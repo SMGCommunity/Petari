@@ -67,7 +67,6 @@ void Koopa::init(const JMapInfoIter& rIter) {
     initSound(16, false);
 
     mJointCtrl = new ActorJointCtrl(this);
-
     KoopaFunction::endFaceCtrlDirect(this);
 
     MR::initShadowFromCSV(this, "Shadow");
@@ -101,7 +100,6 @@ void Koopa::init(const JMapInfoIter& rIter) {
 }
 
 void KoopaSequencer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    return;
 }
 
 bool KoopaSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
