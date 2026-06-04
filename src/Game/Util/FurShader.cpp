@@ -49,39 +49,31 @@ CShader::CLengthMap::CLengthMap(const ResTIMG* pTimg) {
     setLengthMap(pTimg);
 }
 
-// https://decomp.me/scratch/Ft3ZG
 s32 CShader::CLengthMap::getTexelOrder(u16 a1, f32 a2, _GXTexWrapMode mode) const {
     if (a2 > 1.0f) {
         switch (mode) {
-        case GX_MIRROR:
+        case GX_CLAMP:
             a2 = 1.0f;
             break;
-        case GX_REPEAT: {
+        case GX_REPEAT:
             while (a2 > 1.0f) {
-                a2 = (a2 - 1.0f);
+                a2 -= 1.0f;
             }
 
             while (a2 < 0.0f) {
-                a2 = (a2 + 1.0f);
+                a2 += 1.0f;
             }
 
             break;
-        }
-
-        case GX_CLAMP: {
+        case GX_MIRROR:
             while (a2 > 1.0f) {
-                a2 = (a2 - 1.0f);
+                a2 -= 1.0f;
             }
 
             while (a2 < 0.0f) {
-                a2 = (a2 + 1.0f);
+                a2 += 1.0f;
             }
-
-            break;
         }
-        }
-    } else {
-        a2 = a2;
     }
 
     return (a1 - 1) * a2;
