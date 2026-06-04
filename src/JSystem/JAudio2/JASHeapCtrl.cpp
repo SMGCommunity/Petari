@@ -201,18 +201,18 @@ JASGenericMemPool::~JASGenericMemPool() {
 
 JKRSolidHeap* JASDram;
 
-void JASGenericMemPool::newMemPool(u32 n, int param_1) {
+void JASGenericMemPool::newMemPool(u32 size, int n) {
     void* runner;
-    for (int i = 0; i < param_1; i++) {
-        runner = new (JASDram, 0) u8[n];
+    for (int i = 0; i < n; i++) {
+        runner = new (JASDram, 0) u8[size];
         *(void**)runner = _0;
         _0 = runner;
     }
-    mFreeMemCount += param_1;
-    mTotalMemCount += param_1;
+    mFreeMemCount += n;
+    mTotalMemCount += n;
 }
 
-void* JASGenericMemPool::alloc(u32 param_0) {
+void* JASGenericMemPool::alloc(u32 size) {
     if (_0 == nullptr) {
         return nullptr;
     }

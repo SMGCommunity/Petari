@@ -261,11 +261,8 @@ cflags_jsys = [
 
 cflags_jsys_j3d = [*cflags_jsys, "-O4,p"]
 
-cflags_jsys_jastrack = [*cflags_jsys, "-inline off"]
-cflags_jsys_jaslfo = [*["-O4" if flag == "-O4,s" else flag for flag in cflags_jsys], "-inline noauto"]
-cflags_jsys_jasdsp = [*cflags_jsys, "-func_align 32", "-ipa file"]
-cflags_jsys_jasdsp2 = [*cflags_jsys, "-func_align 32", "-ipa file", "-inline off", "-str readonly"]
-cflags_jsys_jasbnkparse = [*cflags_jsys]
+cflags_jsys_jaudio = [*cflags_jsys, "-ipa file"]
+cflags_jsys_jasdsp = [*cflags_jsys_jaudio, "-func_align 32"]
 
 cflags_trk = [
     "-nodefaults",
@@ -550,6 +547,15 @@ def JSys_J3DLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "mw_version": "GC/3.0a3.3",
         "cflags": cflags_jsys_j3d,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
+
+def JSys_JAudioLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_jsys_jaudio,
         "progress_category": "jsys",
         "objects": objects,
     }
@@ -3030,10 +3036,10 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphLoader/J3DAnmLoader.cpp"),
         ],
     ),
-    JSysLib(
+    JSys_JAudioLib(
         "JAudio2",
         [
-            Object(NonMatching, "JSystem/JAudio2/JASCalc.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASCalc.cpp", cflags=cflags_jsys),
             Object(NonMatching, "JSystem/JAudio2/JASTaskThread.cpp"),
             Object(Matching, "JSystem/JAudio2/JASDvdThread.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASCallback.cpp"),
@@ -3041,8 +3047,8 @@ config.libs = [
             Object(Matching, "JSystem/JAudio2/JASResArcLoader.cpp"),
             Object(Matching, "JSystem/JAudio2/JASProbe.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASReport.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASCmdStack.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp", cflags=cflags_jsys_jastrack),
+            Object(Matching, "JSystem/JAudio2/JASCmdStack.cpp"),
+            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp", cflags=[*cflags_jsys_jaudio, "-inline off"]),
             Object(Matching, "JSystem/JAudio2/JASTrackPort.cpp"),
             Object(Matching, "JSystem/JAudio2/JASRegisterParam.cpp"),
             Object(Matching, "JSystem/JAudio2/JASSeqCtrl.cpp"),
@@ -3059,18 +3065,18 @@ config.libs = [
             Object(Matching, "JSystem/JAudio2/JASInstSense.cpp"),
             Object(Matching, "JSystem/JAudio2/JASInstRand.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASWSParser.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp", cflags=cflags_jsys_jasbnkparse),
+            Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASWaveArcLoader.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASChannel.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASLfo.cpp", cflags=cflags_jsys_jaslfo),
+            Object(NonMatching, "JSystem/JAudio2/JASLfo.cpp"),
             Object(Matching, "JSystem/JAudio2/JASOscillator.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASAiCtrl.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASAudioThread.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASAudioReseter.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASDSPChannel.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASDSPChannel.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASDSPInterface.cpp"),
             Object(NonMatching, "JSystem/JAudio2/dspproc.cpp", cflags=cflags_jsys_jasdsp),
-            Object(NonMatching, "JSystem/JAudio2/dsptask.cpp", cflags=cflags_jsys_jasdsp2),
+            Object(NonMatching, "JSystem/JAudio2/dsptask.cpp", cflags=cflags_jsys_jasdsp),
             Object(NonMatching, "JSystem/JAudio2/osdsp.cpp", cflags=cflags_jsys_jasdsp),
             Object(NonMatching, "JSystem/JAudio2/osdsp_task.cpp", cflags=cflags_jsys_jasdsp),
             Object(NonMatching, "JSystem/JAudio2/JASDriverIF.cpp"),

@@ -516,7 +516,7 @@ Game/AudioLib/AudSpeakerWrap.cpp:
 	.ctors      start:0x8052E83C end:0x8052E840
 	.rodata     start:0x80530E38 end:0x80530E58
 	.bss        start:0x8060A510 end:0x8060A548
-	.sbss       start:0x806B2F18 end:0x806B2F28
+	.sbss       start:0x806B2F18 end:0x806B2F20
 	.sdata2     start:0x806B80C0 end:0x806B80C8
 
 Game/AudioLib/AudTrackController.cpp:
@@ -532,6 +532,7 @@ Game/AudioLib/OverwriteJAudio.cpp:
 	.text       start:0x8003359C end:0x80033CF4
 	.ctors      start:0x8052E840 end:0x8052E844
 	.bss        start:0x8060A548 end:0x8060A568
+	.sbss       start:0x806B2F20 end:0x806B2F28
 	.sdata2     start:0x806B80D8 end:0x806B80E8
 
 Game/AudioLib/CSSoundNameConverter.cpp:
@@ -10455,7 +10456,7 @@ JSystem/JAudio2/JASOscillator.cpp:
 
 JSystem/JAudio2/JASAiCtrl.cpp:
 	.text       start:0x8049643C end:0x80496CF0
-	.rodata     start:0x80561338 end:0x805618C8
+	.rodata     start:0x80561338 end:0x80561350
 	.data       start:0x805ECEE0 end:0x805ECF50
 	.bss        start:0x806627D0 end:0x806627E0
 	.sdata      start:0x806B29D0 end:0x806B29E0
@@ -10465,12 +10466,13 @@ JSystem/JAudio2/JASAiCtrl.cpp:
 JSystem/JAudio2/JASAudioThread.cpp:
 	.text       start:0x80496CF0 end:0x80497034
 	.ctors      start:0x8052F41C end:0x8052F420
-	.data       start:0x805ECF50 end:0x805ECFA0
+	.data       start:0x805ECF50 end:0x805ECF78
 	.bss        start:0x806627E0 end:0x806627F0
 	.sbss       start:0x806B7588 end:0x806B7590
 
 JSystem/JAudio2/JASAudioReseter.cpp:
 	.text       start:0x80497034 end:0x80497240
+	.rodata     start:0x80561350 end:0x80561360
 
 JSystem/JAudio2/JASDSPChannel.cpp:
 	.text       start:0x80497240 end:0x8049789C
@@ -10478,6 +10480,8 @@ JSystem/JAudio2/JASDSPChannel.cpp:
 
 JSystem/JAudio2/JASDSPInterface.cpp:
 	.text       start:0x8049789C end:0x80497EDC
+	.rodata     start:0x80561360 end:0x805618C8
+	.data       start:0x805ECF78 end:0x805ECFA0
 	.sdata      start:0x806B29E0 end:0x806B29E8
 	.sbss       start:0x806B7598 end:0x806B75A8
 	.sdata2     start:0x806C1FD0 end:0x806C1FD8

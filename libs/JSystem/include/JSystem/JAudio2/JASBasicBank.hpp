@@ -10,11 +10,11 @@ class JASBasicBank : public JASBank {
 public:
     JASBasicBank();
 
+    virtual ~JASBasicBank(){};
+    virtual bool getInstParam(int, int, int, JASInstParam*) const;
     virtual u32 getType() const {
         return 'BSIC';
     }
-    virtual ~JASBasicBank(){};
-    virtual bool getInstParam(int, int, int, JASInstParam*) const;
 
     void newInstTable(u8, JKRHeap*);
     void setInst(int, JASInst*);

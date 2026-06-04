@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JAudio2/JASList.hpp"
+#include "JSystem/JAudio2/JASGadget.hpp"
 #include "JSystem/JAudio2/JASOscillator.hpp"
 #include "JSystem/JAudio2/JASSoundParams.hpp"
 

@@ -1,8 +1,9 @@
 #include "JSystem/JAudio2/JASBasicInst.hpp"
 #include "JSystem/JAudio2/JASCalc.hpp"
+#include "JSystem/JAudio2/JASGadget.hpp"
 #include "JSystem/JAudio2/JASInstEffect.hpp"
-#include "JSystem/JAudio2/JASList.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
+
 
 JASBasicInst::JASBasicInst() : mVolume(1.0f), mPitch(1.0f), mEffects(nullptr), mKeymapCount(0), mKeymap(nullptr) {
     JASCalc::bzero(mOscillatorData, sizeof(mOscillatorData));
