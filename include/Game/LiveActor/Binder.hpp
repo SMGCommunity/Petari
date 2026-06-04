@@ -30,6 +30,18 @@ public:
     u32 copyPlaneArrayAndSortingSensor(HitInfo**, u32);
     const TVec3f bind(const TVec3f&);
 
+    inline bool isBindedGround() const {
+        return 0.0f <= _C8;
+    }
+
+    inline bool isBindedWall() const {
+        return 0.0f <= _158;
+    }
+
+    inline bool isBindedRoof() const {
+        return 0.0f <= _1E8;
+    }
+
     const TVec3f* _10;
     const TVec3f* _14;
     f32 mRadius;  // 0x18
