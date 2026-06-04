@@ -9,7 +9,7 @@ class KoopaStateAttackSpin;
 
 class KoopaBattleMain : public KoopaBattleBase {
 public:
-    KoopaBattleMain(const char*, Koopa*);
+    KoopaBattleMain(const char* pName, Koopa* pKoopa);
 
     virtual ~KoopaBattleMain();
     virtual void init();
@@ -28,18 +28,18 @@ public:
     void exeDamageEscape();
 
     bool tryCalcAndSetBaseMtx();
-    bool attackSensor(HitSensor*, HitSensor*);
-    bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     void startMainAttack();
     bool tryJumpAway();
 
     void exeFind();
     void exeAttackFireLong();
 
-    /* 0x1C */ KoopaStateAttackHipDrop* _1C;
-    /* 0x20 */ KoopaStateAttackShockWave* _20;
-    /* 0x24 */ KoopaStateAttackRoll* _24;
-    /* 0x28 */ KoopaStateAttackSpin* _28;
+    /* 0x1C */ KoopaStateAttackHipDrop* mStateAttackHipDrop;
+    /* 0x20 */ KoopaStateAttackShockWave* mStateAttackShockWave;
+    /* 0x24 */ KoopaStateAttackRoll* mStateAttackRoll;
+    /* 0x28 */ KoopaStateAttackSpin* mStateAttackSpin;
     /* 0x2C */ bool _2C;
 };
