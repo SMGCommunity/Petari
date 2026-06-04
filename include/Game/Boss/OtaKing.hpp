@@ -1,12 +1,12 @@
 #pragma once
 
 #include "Game/Boss/OtaKing.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
+class ActorCameraInfo;
 class AudAnmSoundObject;
 class AnimScaleController;
 class CocoNutBall;
@@ -16,7 +16,6 @@ class FixedPosition;
 class NameObjArchiveListCollector;
 class OtaKingMagma;
 class OtaKingLongFoot;
-
 
 class OtaKing : public LiveActor {
 public:
@@ -80,6 +79,20 @@ public:
     bool isSensorBodyOrFace(HitSensor*);
     bool isDamageNerve();
 
+    void invalidateClippingAndStartDemo(const char* demoStr, const Nerve* pNerve1, const Nerve* pNerve2) {
+        MR::invalidateClipping(this);
+        MR::requestStartDemo(this, demoStr, pNerve1, pNerve2);
+    }
+
+    void validateClippingAndEndDemo(const char* demoStr) {
+        MR::validateClipping(this);
+        MR::endDemo(this, demoStr);
+    }
+
+    bool isOneHP() const{
+        return _E8 + 1 >= 3;
+    }
+
     PartsModel* _8C[2];
     OtaKingLongFoot* _94[4];
     OtaKingMagma* _A4;
@@ -88,7 +101,7 @@ public:
     CocoNutBall* _D8;
     FireBall* _DC;
     FireBubble* _E0;
-    
+
     FixedPosition* _E4;
     s32 _E8;
     s32 _EC;

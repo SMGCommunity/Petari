@@ -147,7 +147,17 @@ namespace JGeometry {
     template < class T >
     struct TRotation3 : public T {
     public:
-        void identity33();
+        void identity33() {
+            this->mMtx[0][0] = 1.0f;
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[0][1] = 0.0f;
+            this->mMtx[1][1] = 1.0f;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[2][2] = 1.0f;
+        };
 
         void getXDir(TVec3f& rDest) const NO_INLINE {
             rDest.set(this->mMtx[0][0], this->mMtx[1][0], this->mMtx[2][0]);

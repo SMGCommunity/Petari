@@ -7,17 +7,10 @@
 #include "Game/Enemy/FireBall.hpp"
 #include "Game/Enemy/FireBubble.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "math_types.hpp"
-#include "revolution/types.h"
 
 #include <cstdio>
 
@@ -62,12 +55,6 @@ OtaKing::OtaKing(const char* pName)
     MR::zeroMemory(_110, sizeof(_110) + sizeof(_130));
 }
 
-void OtaKing::movement() {
-    LiveActor::movement();
-    MR::copyJointPos(this, "Crown", &_f8);
-    _f4->process();
-}
-
 void OtaKing::init(const JMapInfoIter& rIter) {
     initMapToolInfo(rIter);
     initModel(rIter);
@@ -95,6 +82,12 @@ void OtaKing::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
+void OtaKing::movement() {
+    LiveActor::movement();
+    MR::copyJointPos(this, "Crown", &_f8);
+    _f4->process();
+}
+
 void OtaKing::makeActorAppeared() {
     _E8 = 0;
     LiveActor::makeActorAppeared();
@@ -111,8 +104,7 @@ void OtaKing::makeActorAppeared() {
 
 void OtaKing::startAppearDemo() {
     if (isNerve(&NrvOtaKing::OtaKingNrvWaitOnSwitch::sInstance)) {
-        MR::invalidateClipping(this);
-        MR::requestStartDemo(this, "出現", &NrvOtaKing::OtaKingNrvAppearDemo::sInstance, &NrvOtaKing::OtaKingNrvWaitStartDemo::sInstance);
+        invalidateClippingAndStartDemo("出現", &NrvOtaKing::OtaKingNrvAppearDemo::sInstance, &NrvOtaKing::OtaKingNrvWaitStartDemo::sInstance);
     }
 }
 
@@ -185,7 +177,12 @@ bool OtaKing::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
 
     CocoNutBall* rallyBall = reinterpret_cast< CocoNutBall* >(pSender->mHost);
 
-    bool b1 = _150;
+    s32 a1 = _E8;
+
+    if (_150) {
+        a1 = MR::max(_E8, 1);
+    }
+    bool b1 = rallyBall->_9C <= a1;
 
     bool isReceiverBody = pReceiver == getSensor("body");
 
@@ -214,25 +211,25 @@ bool OtaKing::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
 }
 
 bool OtaKing::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (msg == ACTMES_RUSH_END && pSender->isType(ATYPE_COCO_NUT)) {
-        if (!isDamageNerve()) {
-            if (isNerve(&NrvOtaKing::OtaKingNrvWait::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvThrowCocoNutWait::sInstance) ||
-                isNerve(&NrvOtaKing::OtaKingNrvHitBackStart::sInstance)) {
-                if (isValidBubbleAttack()) {
-                    setNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
-                } else {
-                    if (_E8 > 0) {
-                        isValidThrowFireBall() ? setNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance) :
-                                                 setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
+    switch (msg)
+    case ACTMES_RUSH_END:
+        if (pSender->isType(ATYPE_COCO_NUT)) {
+            if (!isDamageNerve()) {
+                if (isNerve(&NrvOtaKing::OtaKingNrvWait::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvThrowCocoNutWait::sInstance) ||
+                    isNerve(&NrvOtaKing::OtaKingNrvHitBackStart::sInstance)) {
+                    if (isValidBubbleAttack()) {
+                        setNerve(&NrvOtaKing::OtaKingNrvBubbleAttack::sInstance);
+                    } else {
+                        _E8 > 0 && isValidThrowFireBall() ? setNerve(&NrvOtaKing::OtaKingNrvThrowFireBall::sInstance) :
+                                                            setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
                     }
                     return true;
+                } else if (isNerve(&NrvOtaKing::OtaKingNrvThrowCocoNut::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvHitBack::sInstance)) {
+                    _EC = 2;
+                    return true;
                 }
-            } else if (isNerve(&NrvOtaKing::OtaKingNrvThrowCocoNut::sInstance) || isNerve(&NrvOtaKing::OtaKingNrvHitBack::sInstance)) {
-                _EC = 2;
-                return true;
             }
         }
-    }
     return false;
 }
 
@@ -257,6 +254,7 @@ void OtaKing::initModel(const JMapInfoIter& rIter) {
         _8C[i]->initWithoutIter();
         MR::initLightCtrl(_8C[i]);
     }
+
     _8C[0]->initFixedPosition(TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), nullptr);
     _8C[1]->initFixedPosition(TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), nullptr);
 
@@ -314,12 +312,30 @@ void OtaKing::dirToPlayer() {
     TVec3f vec;
     vec.sub(*MR::getPlayerPos(), mPosition);
 
-    f32 angle = JMath::sAtanTable.atan2_(vec.x, vec.z);
+    f32 angle = JMAATan2(vec.x, vec.z);
 
-    angle = MR::repeat(angle * 57.295776f, mRotation.y - 180.0f, 360.0f) - 180.0f;
+    angle = MR::repeat(MR::toDegree(angle), mRotation.y - 180.0f, 360.0f);
 
-    if (0.0f < angle && angle < _f0) {
+    f32 angleminroty = angle - mRotation.y;
+
+    if ((0.0f < angleminroty && _f0 < angleminroty) || (angleminroty < 0.0f && angleminroty < _f0)) {
+        if (angleminroty * _f0 < 0.0f) {
+            _f0 = 0.0f;
+        }
+        mRotation.y += _f0;
+
+        if (0.0f < angleminroty) {
+            _f0 = MR::max(_f0 + 0.03f, 1.0f);
+        } else {
+            _f0 = MR::min(_f0 - 0.03f, -1.0f);
+        }
+
+    } else {
+        mRotation.y = angle;
+        _f0 = 0.0f;
     }
+
+    MR::repeatDegree(&mRotation.y);
 }
 
 CocoNutBall* OtaKing::getDisappearedCocoNut() {
@@ -411,7 +427,7 @@ bool OtaKing::isValidBubbleAttack() const {
     if (_150) {
         return _E8 > 0;
     } else {
-        return _E8 + 1 >= 3;
+        return isOneHP();
     }
 }
 
@@ -442,7 +458,7 @@ void OtaKing::damage() {
                 MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_2", -1, -1);
             }
 
-            if (_E8 + 1 >= 3) {
+            if (isOneHP()) {
                 setNerve(&NrvOtaKing::OtaKingNrvPowerUp::sInstance);
             } else {
                 setNerve(&NrvOtaKing::OtaKingNrvDamage::sInstance);
@@ -463,14 +479,13 @@ void OtaKing::throwCocoNut() {
     TVec3f vec;
     vec.sub(*MR::getPlayerPos(), mPosition);
 
-    f32 angle = JMath::sAtanTable.atan2_(vec.x, vec.z);
+    f32 angle = JMAATan2(vec.x, vec.z);
 
-    angle = mRotation.y - MR::repeat(angle * 57.295776f, mRotation.y - 180.0f, 360.0f) - 180.0f;
+    angle = mRotation.y - MR::repeat(MR::toDegree(angle), mRotation.y - 180.0f, 360.0f);
     f32 random = MR::getRandom(2.5f, 5.0f);
 
     cocoNut->appearAndThrow(trans, angle + (_EC % 2 == _E8 % 2 ? random : -random));
     _EC++;
-    
 }
 
 void OtaKing::throwFireBall() {
@@ -482,15 +497,24 @@ void OtaKing::throwFireBall() {
     TVec3f vec;
     vec.sub(*MR::getPlayerPos(), mPosition);
 
-    f32 angle = JMath::sAtanTable.atan2_(vec.x, vec.z);
-    angle = mRotation.y - MR::repeat(angle * 57.295776f, mRotation.y - 180.0f, 360.0f) - 180.0f;
+    f32 angle = JMAATan2(vec.x, vec.z);
+    angle = mRotation.y - MR::repeat(MR::toDegree(angle), mRotation.y - 180.0f, 360.0f);
 
-    for(int i = 0; i < cFireBallThrowNum; i++) {
+    for (int i = 0; i < cFireBallThrowNum; i++) {
         FireBall* currentFireBall = getDisappearedFireBall();
-        if(i != 0) {
 
+        f32 throwAngle = angle;
+        if (i != 0) {
+            f32 angleOffset;
+            if ((i % 2) == 0) {
+                angleOffset = 30.0f * ((i + 1) / 2);
+            } else {
+                angleOffset = -30.0f * ((i + 1) / 2);
+            }
+            throwAngle += angleOffset;
         }
-        currentFireBall->appearAndThrow(trans, 15.0f, 0.0f);
+
+        currentFireBall->appearAndThrow(trans, 15.0f, throwAngle);
     }
 }
 
@@ -536,7 +560,7 @@ void OtaKing::appearBubble() {
 
             TPos3f rotate;
 
-            rotate.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), PI_180 * (((i + 0.5f) * 60.0f) + MR::getRandom(-30.0f, 30.0f)));
+            rotate.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(((i + 0.5f) * 60.0f) + MR::getRandom(-30.0f, 30.0f)));
 
             rotate.mult33Inline(vec1, vec1);
             currentBubble->appear(trans, vec1, cBubbleAppearVelocity);
@@ -574,7 +598,7 @@ void OtaKing::initLongFoot(const JMapInfoIter& rIter) {
             _94[i]->mScale.set(cLongFootScale);
         }
 
-        _A8.identity();
+        _A8.identity33();
         _A8.setTrans(mPosition);
         _94[0]->initFixedPosition(_A8, TVec3f(735.0f, 80.0f, -55.0f), TVec3f(-9.0f, 266.0f, 0.0f));
         _94[1]->initFixedPosition(_A8, TVec3f(-959.0f, 130.0f, 0.0f), TVec3f(0.0f, 107.0f, 14.0f));
@@ -624,6 +648,7 @@ void OtaKing::exeAppearDemo() {
         startDemo();
         startBckWithFrontFoot("Appear");
         mScale.set(1.0f);
+
         MR::showModel(_8C[0]);
         MR::showModel(_8C[1]);
 
@@ -699,8 +724,7 @@ void OtaKing::exeAppearDemo() {
 
     if (MR::isBckStopped(this)) {
         MR::validateHitSensors(this);
-        MR::validateClipping(this);
-        MR::endDemo(this, "出現");
+        validateClippingAndEndDemo("出現");
         MR::showPlayer();
         MR::endAnimCamera(this, _10C, "Appear", 0, true);
 
@@ -709,6 +733,12 @@ void OtaKing::exeAppearDemo() {
                 _94[i]->endDemo();
             }
         }
+
+        TVec3f vec;
+        vec.sub(*MR::getPlayerPos(), mPosition);
+
+        f32 angle = JMAATan2(vec.x, vec.z);
+        mRotation.y = MR::repeatDegree(MR::toDegree(angle));
 
         setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
     }
@@ -961,15 +991,13 @@ void OtaKing::exeDown() {
     }
 
     if (MR::isStep(this, 3)) {
-        MR::invalidateClipping(this);
-        MR::requestStartDemo(this, "ダウン", &NrvOtaKing::OtaKingNrvDownDemo::sInstance, &NrvOtaKing::OtaKingNrvWaitStartDemo::sInstance);
+        invalidateClippingAndStartDemo("ダウン", &NrvOtaKing::OtaKingNrvDownDemo::sInstance, &NrvOtaKing::OtaKingNrvWaitStartDemo::sInstance);
     }
 }
 
 void OtaKing::exeDownDemo() {
     TPos3f rotate;
-    f32 downDemoRotatey = cDownDemoRotate.y * 0.017453292f;
-    rotate.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), downDemoRotatey);
+    rotate.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(cDownDemoRotate.y));
     rotate.setTransInline(mPosition);
 
     if (MR::isFirstStep(this)) {
@@ -1021,8 +1049,7 @@ void OtaKing::exeDownDemo() {
     }
 
     if (MR::isStep(this, 300)) {
-        MR::validateClipping(this);
-        MR::endDemo(this, "ダウン");
+        validateClippingAndEndDemo("ダウン");
         setNerve(&NrvOtaKing::OtaKingNrvAppearStar::sInstance);
     }
 }
@@ -1042,6 +1069,7 @@ void OtaKing::exeAppearStar() {
 
         getSensor("body")->invalidate();
         getSensor("search")->invalidate();
+        
         MR::validateClipping(this);
         MR::pauseOffEffectAll(_A4);
     } else if (MR::isEndPowerStarAppearDemo(this)) {
