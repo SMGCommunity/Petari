@@ -13,15 +13,16 @@ namespace MR {
     }
 }  // namespace MR
 
-KoopaBattleBase::KoopaBattleBase(const char* pName, Koopa* pKoopa) : ActorStateBase< Koopa >(pName, pKoopa), _10(), _14(), _18(-1) {
+KoopaBattleBase::KoopaBattleBase(const char* pName, Koopa* pKoopa)
+    : ActorStateBase< Koopa >(pName, pKoopa), mStateDamageEscape(), mStateGuard(), _18(-1) {
 }
 
 KoopaBattleBase::~KoopaBattleBase() {
 }
 
 void KoopaBattleBase::init() {
-    _10 = new KoopaStateDamageEscape(mHost);
-    _14 = new KoopaStateGuard(mHost);
+    mStateDamageEscape = new KoopaStateDamageEscape(mHost);
+    mStateGuard = new KoopaStateGuard(mHost);
 }
 
 void KoopaBattleBase::kill() {

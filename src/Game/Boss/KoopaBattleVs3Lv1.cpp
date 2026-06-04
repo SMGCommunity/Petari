@@ -34,9 +34,9 @@ void KoopaBattleVs3Lv1::init() {
     MR::initActorState(this, _1C, &NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvChaseRoll::sInstance, "ChaseRoll");
     MR::initActorState(this, new KoopaStateAttackFireShort(mHost), &NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvAttackFire::sInstance, "AttackFire");
     MR::initActorState(this, _20, &NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvAttackShockWave::sInstance, "AttackShockWave");
-    MR::initActorState(this, _10, &NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvDamageReverse::sInstance, "Damage");
+    MR::initActorState(this, mStateDamageEscape, &NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvDamageReverse::sInstance, "Damage");
     MR::initActorState(this, new KoopaStateJumpAway(mHost), &NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvJumpAway::sInstance, "JumpAway");
-    MR::initActorState(this, _14, &NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvGuard::sInstance, "Guard");
+    MR::initActorState(this, mStateGuard, &NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvGuard::sInstance, "Guard");
 }
 
 void KoopaBattleVs3Lv1::appear() {
@@ -71,16 +71,16 @@ void KoopaBattleVs3Lv1::exeAttackShockWave() {
 
 void KoopaBattleVs3Lv1::exeDamageReverse() {
     if (MR::isFirstStep(this)) {
-        _10->appear();
-        _10->startDamageReverse();
+        mStateDamageEscape->appear();
+        mStateDamageEscape->startDamageReverse();
     }
 
-    if (_10->update()) {
+    if (mStateDamageEscape->update()) {
         setNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvAttackShockWave::sInstance);
         return;
     }
 
-    if (!_10->isDownEnd()) {
+    if (!mStateDamageEscape->isDownEnd()) {
         return;
     }
 
@@ -113,7 +113,7 @@ bool KoopaBattleVs3Lv1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
         if (!isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvJumpAway::sInstance) || !KoopaFunction::tryKoopaAttackMapObj(pSender, pReceiver)) {
             if (isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvDamageReverse::sInstance)) {
-                return _10->attackSensor(pSender, pReceiver);
+                return mStateDamageEscape->attackSensor(pSender, pReceiver);
             } else {
                 if (!KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver)) {
                     return KoopaFunction::tryKoopaBodyAttackPlayer(pSender, pReceiver);
@@ -133,7 +133,7 @@ bool KoopaBattleVs3Lv1::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitS
     }
 
     if (isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvDamageReverse::sInstance)) {
-        return _10->tryDamage(msg, pSender, pReceiver);
+        return mStateDamageEscape->tryDamage(msg, pSender, pReceiver);
     }
 
     if ((isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvAttackFire::sInstance) ||
@@ -141,7 +141,7 @@ bool KoopaBattleVs3Lv1::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitS
          (isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvChaseRoll::sInstance) && _1C->isEnableGuard()) ||
          isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvJumpAway::sInstance) ||
          isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvRecover::sInstance)) &&
-        _14->tryStart(msg, pSender, pReceiver)) {
+        mStateGuard->tryStart(msg, pSender, pReceiver)) {
         setNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvGuard::sInstance);
 
         return true;

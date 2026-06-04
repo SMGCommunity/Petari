@@ -48,12 +48,12 @@ void KoopaBattleMain::init() {
     _1C = new KoopaStateAttackHipDrop(mHost);
     _20 = new KoopaStateAttackShockWave(mHost);
 
-    MR::initActorState(this, _14, &NrvKoopaBattleMain::KoopaBattleMainNrvGuard::sInstance, "Guard");
+    MR::initActorState(this, mStateGuard, &NrvKoopaBattleMain::KoopaBattleMainNrvGuard::sInstance, "Guard");
     MR::initActorState(this, _1C, &NrvKoopaBattleMain::KoopaBattleMainNrvAttackHipDrop::sInstance, "AttackHipDrop");
     MR::initActorState(this, _20, &NrvKoopaBattleMain::KoopaBattleMainNrvAttackShockWave::sInstance, "AttackShockWave");
     MR::initActorState(this, new KoopaStateAttackFireShort(mHost), &NrvKoopaBattleMain::KoopaBattleMainNrvAttackFireShort::sInstance,
                        "AttackFireShort");
-    MR::initActorState(this, _10, &NrvKoopaBattleMain::KoopaBattleMainNrvDamageEscape::sInstance, "DamageEscape");
+    MR::initActorState(this, mStateDamageEscape, &NrvKoopaBattleMain::KoopaBattleMainNrvDamageEscape::sInstance, "DamageEscape");
     MR::initActorState(this, new KoopaStateJumpAway(mHost), &NrvKoopaBattleMain::KoopaBattleMainNrvJumpAway::sInstance, "JumpAway");
 
     if (KoopaFunction::isKoopaVs2(mHost) || KoopaFunction::isKoopaVs3(mHost)) {
@@ -242,7 +242,7 @@ void KoopaBattleMain::exeAttackRoll() {
 void KoopaBattleMain::exeDamageEscape() {
     MR::updateActorStateAndNextNerve(this, &NrvKoopaBattleMain::KoopaBattleMainNrvSearch::sInstance);
 
-    if (_10->isDownEnd()) {
+    if (mStateDamageEscape->isDownEnd()) {
         kill();
     }
 }
@@ -278,7 +278,7 @@ bool KoopaBattleMain::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
 
         if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvDamageEscape::sInstance)) {
-            return _10->attackSensor(pSender, pReceiver);
+            return mStateDamageEscape->attackSensor(pSender, pReceiver);
         }
 
         if (!KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver) && KoopaFunction::tryKoopaBodyAttackPlayer(pSender, pReceiver)) {
@@ -289,7 +289,7 @@ bool KoopaBattleMain::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool KoopaBattleMain::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvDamageEscape::sInstance)) {
-        return _10->tryDamage(msg, pSender, pReceiver);
+        return mStateDamageEscape->tryDamage(msg, pSender, pReceiver);
     }
 
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackSpin::sInstance)) {
@@ -312,7 +312,7 @@ bool KoopaBattleMain::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
          (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackRoll::sInstance) && _24->isEnableGuard()) ||
          (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackHipDrop::sInstance) && _1C->isEnableGuard()) ||
          isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackShockWave::sInstance)) &&
-        _14->tryStart(msg, pSender, pReceiver)) {
+        mStateGuard->tryStart(msg, pSender, pReceiver)) {
         setNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvGuard::sInstance);
         return true;
     }
