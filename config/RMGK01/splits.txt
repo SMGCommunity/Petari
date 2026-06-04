@@ -922,13 +922,13 @@ Game/Boss/KoopaBattleMain.cpp:
 
 Game/Boss/KoopaBattleStairsBase.cpp:
 	.text       start:0x8005A1F8 end:0x8005A450
-	.data       start:0x8056C100 end:0x8056C238
+	.data       start:0x8056C100 end:0x8056C138
 	.sdata2     start:0x806B8800 end:0x806B8808
 
 Game/Boss/KoopaBattleStairsVs1.cpp:
 	.text       start:0x8005A450 end:0x8005B120
 	.ctors      start:0x8052E8E8 end:0x8052E8EC
-	.data       start:0x8056C238 end:0x8056C380
+	.data       start:0x8056C138 end:0x8056C2B8
 	.sdata      start:0x806B1730 end:0x806B1780
 	.sbss       start:0x806B33A8 end:0x806B33C8
 	.sdata2     start:0x806B8808 end:0x806B8830
@@ -936,7 +936,7 @@ Game/Boss/KoopaBattleStairsVs1.cpp:
 Game/Boss/KoopaBattleStairsVs3.cpp:
 	.text       start:0x8005B120 end:0x8005B5CC
 	.ctors      start:0x8052E8EC end:0x8052E8F0
-	.data       start:0x8056C380 end:0x8056C3C0
+	.data       start:0x8056C2B8 end:0x8056C3C0
 	.sbss       start:0x806B33C8 end:0x806B33D8
 	.sdata2     start:0x806B8830 end:0x806B8838
 
