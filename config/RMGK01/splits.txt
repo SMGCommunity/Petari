@@ -3126,7 +3126,7 @@ Game/Enemy/TakoHeiInkHolder.cpp:
 Game/Enemy/Teresa.cpp:
 	.text       start:0x80149710 end:0x8014C790
 	.ctors      start:0x8052EB60 end:0x8052EB64
-	.data       start:0x805856C0 end:0x80585AF8
+	.data       start:0x805856C0 end:0x80585A70
 	.sbss       start:0x806B48E8 end:0x806B4938
 	.sdata2     start:0x806BB830 end:0x806BB8D8
 
@@ -3134,7 +3134,7 @@ Game/Enemy/TeresaWater.cpp:
 	.text       start:0x8014C790 end:0x8014CFE0
 	.ctors      start:0x8052EB64 end:0x8052EB68
 	.rodata     start:0x80532588 end:0x805325B8
-	.data       start:0x80585AF8 end:0x80585BB0
+	.data       start:0x80585A70 end:0x80585BB0
 	.sbss       start:0x806B4938 end:0x806B4948
 	.sdata2     start:0x806BB8D8 end:0x806BB8F8
 

@@ -658,7 +658,8 @@ namespace JGeometry {
         }
 
         inline void rejection(const TVec3& rVec, const TVec3& rNormal) {
-            JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec));
+            const TVec3& norm = rNormal;
+            JMAVECScaleAdd(&norm, &rVec, this, -norm.dot(rVec));
         }
         inline void rejection(const TVec3& rNormal) {
             const TVec3& norm = rNormal;
