@@ -7,7 +7,7 @@
 namespace NrvTripodBossKinokoOneUp {
     NEW_NERVE(TripodBossKinokoOneUpNrvActive, TripodBossKinokoOneUp, Active);
     NEW_NERVE(TripodBossKinokoOneUpNrvEnd, TripodBossKinokoOneUp, End);
-}  // namespace NrvTripodBossKinokoOneUp
+};  // namespace NrvTripodBossKinokoOneUp
 
 TripodBossKinokoOneUp::TripodBossKinokoOneUp(const char* pName) : LiveActor(pName) {
     mOneUp = nullptr;
@@ -30,7 +30,8 @@ void TripodBossKinokoOneUp::init(const JMapInfoIter& rIter) {
     MR::addTripodBossParts(this);
 }
 
-void TripodBossKinokoOneUp::control() {}
+void TripodBossKinokoOneUp::control() {
+}
 
 void TripodBossKinokoOneUp::exeActive() {
     _BC.setInline(_8C);
@@ -49,9 +50,11 @@ void TripodBossKinokoOneUp::exeActive() {
     }
 }
 
-TripodBossKinokoOneUp::~TripodBossKinokoOneUp() {}
+TripodBossKinokoOneUp::~TripodBossKinokoOneUp() {
+}
 
-void TripodBossKinokoOneUp::exeEnd() {}
+void TripodBossKinokoOneUp::exeEnd() {
+}
 
 MtxPtr TripodBossKinokoOneUp::getBaseMtx() const {
     return (MtxPtr)_BC.mMtx;

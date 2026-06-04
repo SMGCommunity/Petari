@@ -19,13 +19,14 @@ void PoltaActionBase::updateScreamSensor() {
     }
 }
 
-PoltaActionBase::~PoltaActionBase() {}
+PoltaActionBase::~PoltaActionBase() {
+}
 
 bool PoltaActionBase::updateWait() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::startAction(getHost(), "Wait", true);
     }
-    MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_IN_BATTLE_ROCK", -1, -1, -1);
+    MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_IN_BATTLE_ROCK");
     getHost()->rotateToPlayer();
     PoltaFunction::requestStartControllArm(getHost());
     return false;
@@ -34,9 +35,9 @@ bool PoltaActionBase::updateWait() {
 bool PoltaActionBase::updateDamageBody(bool isFirst) {
     if (MR::isFirstStep(this)) {
         PoltaFunction::startAction(getHost(), "Damage", true);
-        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
-        MR::startSound(getHost(), "SE_BM_POLTA_ROCK_DAMAGE", -1, -1);
-        MR::startSound(getHost(), "SE_BV_POLTA_DAMAGE_BODY", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
+        MR::startSound(getHost(), "SE_BM_POLTA_ROCK_DAMAGE");
+        MR::startSound(getHost(), "SE_BV_POLTA_DAMAGE_BODY");
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
@@ -47,7 +48,7 @@ bool PoltaActionBase::updateDamageBody(bool isFirst) {
             getHost()->appearBreakModelMiddle(getHost()->mPosition);
         }
     }
-    MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_IN_BATTLE_ROCK", -1, -1, -1);
+    MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_IN_BATTLE_ROCK");
     if (getHost()->isEndBreakModel()) {
         getHost()->killBreakModel();
     }
@@ -62,9 +63,9 @@ bool PoltaActionBase::updateDamageBody(bool isFirst) {
 bool PoltaActionBase::updateBreakBody() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::startAction(getHost(), "BreakBody", true);
-        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
-        MR::startSound(getHost(), "SE_BM_POLTA_ROCK_BREAK", -1, -1);
-        MR::startSound(getHost(), "SE_BV_POLTA_LOSE_SHELL", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
+        MR::startSound(getHost(), "SE_BM_POLTA_ROCK_BREAK");
+        MR::startSound(getHost(), "SE_BV_POLTA_LOSE_SHELL");
         PoltaFunction::breakLeftArm(getHost());
         PoltaFunction::breakRightArm(getHost());
         PoltaFunction::killPoltaRock(getHost());
@@ -106,7 +107,7 @@ bool PoltaActionBase::updateDamageCore() {
         PoltaFunction::disperseBombTeresa(getHost());
     }
     if (MR::isActionEnd(getHost())) {
-        MR::startSound(getHost(), "SE_BM_POLTA_CORE_DOWN", -1, -1);
+        MR::startSound(getHost(), "SE_BM_POLTA_CORE_DOWN");
         PoltaFunction::killBombTeresa(getHost());
         MR::zeroVelocity(getHost());
         return true;
@@ -126,4 +127,5 @@ bool PoltaActionBase::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
     return false;
 }
 
-void PoltaActionBase::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {}
+void PoltaActionBase::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+}

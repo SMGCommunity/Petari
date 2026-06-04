@@ -23,13 +23,13 @@ namespace {
     static const f32 sModelOffset = 50.0f;
     static const f32 sCocoonOffsetY = 20.0f;
     static const f32 sCocoonOffsetZ = 20.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvSpiderCoin {
     NEW_NERVE(SpiderCoinNrvWait, SpiderCoin, Wait);
     NEW_NERVE(SpiderCoinNrvTouch, SpiderCoin, Touch);
     NEW_NERVE(SpiderCoinNrvTouchAndApart, SpiderCoin, TouchAndApart);
-}  // namespace NrvSpiderCoin
+};  // namespace NrvSpiderCoin
 
 SpiderCoin::SpiderCoin(const char* pName)
     : LiveActor(pName), mPointPos(nullptr), mNeutralPos(nullptr), mUp(nullptr), mThreadZ(0.0f), mPad0Velocity(0.0f, 0.0f), mPad1Velocity(0.0f, 0.0f),

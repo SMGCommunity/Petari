@@ -4,16 +4,16 @@
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 
+namespace {
+    const s32 sRockPattern[] = {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
+                                1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0};
+};  // namespace
+
 namespace NrvPoltaStateGenerateRock {
     NEW_NERVE(PoltaStateGenerateRockNrvSign, PoltaStateGenerateRock, Sign);
     NEW_NERVE(PoltaStateGenerateRockNrvGenerate, PoltaStateGenerateRock, Generate);
     NEW_NERVE(PoltaStateGenerateRockNrvEnd, PoltaStateGenerateRock, End);
 };  // namespace NrvPoltaStateGenerateRock
-
-namespace {
-    const s32 sRockPattern[] = {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
-                                  1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0};
-};
 
 PoltaStateGenerateRock::PoltaStateGenerateRock(Polta* pPolta)
     : ActorStateBase< Polta >("ポルタ岩生成", pPolta), mPatternIndex(0), mIndexIntoPattern(0), mMaxIndexIntoPattern(5), mEndDelayStep(180) {
@@ -30,7 +30,7 @@ void PoltaStateGenerateRock::exeSign() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::requestStartControllArm(getHost());
         PoltaFunction::startAction(getHost(), "GenerateRockStart", true);
-        MR::startSound(getHost(), "SE_BV_POLTA_GEN_ROCK", -1, -1);
+        MR::startSound(getHost(), "SE_BV_POLTA_GEN_ROCK");
     }
     getHost()->rotateToPlayer();
     if (MR::isActionEnd(getHost())) {
@@ -75,4 +75,5 @@ void PoltaStateGenerateRock::exeEnd() {
     }
 }
 
-PoltaStateGenerateRock::~PoltaStateGenerateRock() {}
+PoltaStateGenerateRock::~PoltaStateGenerateRock() {
+}

@@ -31,19 +31,20 @@ void DeadLeaves::init(const JMapInfoIter& rIter) {
     }
 }
 
-void DeadLeaves::exeWait() {}
+void DeadLeaves::exeWait() {
+}
 
 void DeadLeaves::exeSpin() {
     if (MR::isFirstStep(this)) {
         MR::startAllAnim(this, "Spin");
-        MR::startSound(this, "SE_OJ_LEAVES_SWING", -1, -1);
+        MR::startSound(this, "SE_OJ_LEAVES_SWING");
 
         if (mItemType == 0) {
             MR::appearCoinPop(this, mPosition, 1);
         } else if (mItemType == 1) {
             bool appear = MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
             if (appear) {
-                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
             }
         }
     }
@@ -62,4 +63,5 @@ bool DeadLeaves::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
     return false;
 }
 
-DeadLeaves::~DeadLeaves() {}
+DeadLeaves::~DeadLeaves() {
+}

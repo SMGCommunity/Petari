@@ -5,7 +5,7 @@
 
 namespace {
     const f32 sAngleThreshold = (JGeometry::TUtil< f32 >::PI() * 60.0f) / 180.0f;
-};
+};  // namespace
 
 CameraCover::CameraCover(const char* pName) : NameObj(pName) {
     _3C = 0;
@@ -63,4 +63,5 @@ void CameraCover::copyCamera() {
     _C.setInline(*MR::getCameraInvViewMtx());
 }
 
-CameraCover::~CameraCover() {}
+CameraCover::~CameraCover() {
+}

@@ -351,7 +351,7 @@ namespace MR {
     u32 getRequiredExternalFrameBufferSize() {
         return 0xA9600;
     }
-}  // namespace MR
+};  // namespace MR
 
 u32 RenderModeObj::getViWidthMax() {
     switch (VIGetTvFormat()) {

@@ -34,12 +34,12 @@ namespace {
     NEW_NERVE(MogucchiNrvDive, Mogucchi, Dive);
     NEW_NERVE(MogucchiNrvScatter, Mogucchi, Scatter);
     NEW_NERVE(MogucchiNrvDie, Mogucchi, Die);
-}  // namespace
+};  // namespace
 
 namespace {
     Vec sBodyOffset;
     Vec sHeadOffset;
-}  // namespace
+};  // namespace
 
 Mogucchi::Mogucchi(const char* pName)
     : LiveActor(pName), mHill(nullptr), mHole(nullptr), mGrounded(false), mScatterPropulsionSpeed(0.0f), mScatterNormal(0.0f, 0.0f, 1.0f), _E4(0.0f),
@@ -130,7 +130,7 @@ void Mogucchi::exeStroll() {
         mIsStoppedByP2 = false;
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_MOGHILL_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_MOGHILL_MOVE");
     updateStrollSpeed();
     reflectStarPointer2P();
     MR::moveCoord(this, mStrollSpeed);
@@ -149,15 +149,15 @@ void Mogucchi::exeAppearDown() {
         MR::startBck(this, "SwoonStart", nullptr);
         MR::startBtp(this, "EyeClose");
         MR::startBck(mHole, "SwoonStart", nullptr);
-        MR::startSound(this, "SE_EM_MOGUCCHI_APPEAR", -1, -1);
-        MR::startSound(this, "SE_EV_MOGUCCHI_SWOON", -1, -1);
+        MR::startSound(this, "SE_EM_MOGUCCHI_APPEAR");
+        MR::startSound(this, "SE_EV_MOGUCCHI_SWOON");
 
         // stack swap with the inner TVec3f
         MR::setSensorOffset(this, "body", TVec3f(0.0f, 0.0f, 0.0f));
         MR::setSensorOffset(this, "spin", TVec3f(0.0f, 0.0f, 0.0f));
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
     MR::setNerveAtBckStopped(this, &MogucchiNrvDown::sInstance);
 }
 
@@ -167,7 +167,7 @@ void Mogucchi::exeDown() {
         MR::startBtp(this, "EyeClose");
         MR::startBck(mHole, "Swoon", nullptr);
     }
-    MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
     MR::setNerveAtStep(this, &MogucchiNrvDive::sInstance, 30);
 }
 
@@ -176,7 +176,7 @@ void Mogucchi::exeDive() {
         MR::startBck(this, "Hide", nullptr);
         MR::startBtp(this, "EyeOpen");
         MR::startBck(mHole, "Hide", nullptr);
-        MR::startSound(this, "SE_EM_MOGUCCHI_HIDE", -1, -1);
+        MR::startSound(this, "SE_EM_MOGUCCHI_HIDE");
     }
 
     if (MR::isBckStopped(this)) {
@@ -223,7 +223,7 @@ void Mogucchi::exeScatter() {
 void Mogucchi::exeDie() {
     if (MR::isFirstStep(this)) {
         MR::appearCoinPop(this, mPosition, 1);
-        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_S");
         MR::emitEffect(this, "Death");
         MR::hideModel(this);
         MR::hideModel(mHole);
@@ -374,7 +374,7 @@ bool Mogucchi::receiveAttackBySpinSensor(u32 msg, HitSensor* pSender, HitSensor*
     }
 
     if (isNerve(&MogucchiNrvStroll::sInstance)) {
-        MR::startSound(this, "SE_EM_MOGUCCHI_REFRECT", -1, -1);
+        MR::startSound(this, "SE_EM_MOGUCCHI_REFRECT");
         MR::sendMsgEnemyAttackCounterSpin(pSender, pReceiver);
         return true;
     }
@@ -411,7 +411,7 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
 
     if (!isDown) {
         if (MR::isMsgPlayerTrample(msg)) {
-            MR::startSound(this, "SE_EM_MOGUCCHI_REFRECT", -1, -1);
+            MR::startSound(this, "SE_EM_MOGUCCHI_REFRECT");
             return true;
         }
 

@@ -3,8 +3,10 @@
 #include "Game/Util.hpp"
 #include <cstring>
 
-GhostPlayer::GhostPlayer(const char* pName) : LiveActor(pName) {}
-GhostPlayer::~GhostPlayer() {}
+GhostPlayer::GhostPlayer(const char* pName) : LiveActor(pName) {
+}
+GhostPlayer::~GhostPlayer() {
+}
 
 void GhostPlayer::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter&) {
     char archiveName[0x100];
@@ -14,8 +16,7 @@ void GhostPlayer::makeArchiveList(NameObjArchiveListCollector* pArchiveList, con
 
     if (MR::isPlayerLuigi()) {
         pArchiveList->addArchive("GhostLuigi");
-    }
-    else {
+    } else {
         pArchiveList->addArchive("GhostMario");
     }
 }

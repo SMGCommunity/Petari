@@ -12,7 +12,7 @@
 
 namespace NrvClipAreaDrop {
     NEW_NERVE(ClipAreaDropNrvWait, ClipAreaDrop, Wait);
-}
+};  // namespace NrvClipAreaDrop
 
 ClipAreaDrop::ClipAreaDrop(const char* pName) : ClipArea(pName) {
     _C0 = 0;
@@ -60,4 +60,5 @@ void ClipAreaDrop::exeWait() {
     }
 }
 
-ClipAreaDrop::~ClipAreaDrop() {}
+ClipAreaDrop::~ClipAreaDrop() {
+}

@@ -35,17 +35,17 @@ public:
     WaterPoint* getPoint(int) const;
     WaterPoint* getPoint(int, int) const NO_INLINE;
 
-    s32 mWaterPointNum;         // 0x8C
-    s32 mSegCount;              // 0x90
-    s32 mStride;                // 0x94
-    WaterPoint** mWaterPoints;  // 0x98
-    f32 mWidthMax;              // 0x9C
-    s32 mObjArg1;               // 0xA0
-    f32 mWaveTheta0;            // 0xA4
-    f32 mWaveTheta1;            // 0xA8
-    f32 mWaveHeight1;           // 0xAC
-    f32 mWaveHeight2;           // 0xB0
-    bool mIsClipped;            // 0xB4
+    s32 mWaterPointNum;            // 0x8C
+    s32 mSegCount;                 // 0x90
+    s32 mStride;                   // 0x94
+    WaterPoint** mWaterPoints;     // 0x98
+    f32 mWidthMax;                 // 0x9C
+    s32 mObjArg1;                  // 0xA0
+    f32 mWaveTheta0;               // 0xA4
+    f32 mWaveTheta1;               // 0xA8
+    f32 mWaveHeight1;              // 0xAC
+    f32 mWaveHeight2;              // 0xB0
+    bool mIsClipped;               // 0xB4
     f32 mNearPosToPlayer;          // 0xB8
     TVec3f mNearestPos;            // 0xBC
     TVec3f mNearestDir;            // 0xC8

@@ -9,7 +9,7 @@ namespace NrvAnimScaleController {
     NEW_NERVE(AnimScaleControllerNrvDpdVibration, AnimScaleController, DpdVibration);
     NEW_NERVE(AnimScaleControllerNrvHitReaction, AnimScaleController, HitReaction);
     NEW_NERVE(AnimScaleControllerNrvCrush, AnimScaleController, Crush);
-}  // namespace NrvAnimScaleController
+};  // namespace NrvAnimScaleController
 
 namespace {
 
@@ -30,7 +30,7 @@ namespace {
     };
 
     AnimScaleDefaultParam sStaticAnimParam;
-}  // namespace
+};  // namespace
 
 AnimScaleParam::AnimScaleParam() {
     _0 = 0.2f;
@@ -103,7 +103,8 @@ void AnimScaleController::exeAnim() {
     }
 }
 
-void AnimScaleController::exeStop() {}
+void AnimScaleController::exeStop() {
+}
 
 void AnimScaleController::exeHitReaction() {
     if (MR::isFirstStep(this)) {

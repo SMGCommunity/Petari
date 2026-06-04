@@ -17,7 +17,8 @@ JKRArcFinder::JKRArcFinder(JKRArchive* pArchive, long firstFileIndex, long nrFil
 }
 
 // Looks identical to base destructor, does not call ~JKRFileFinder()
-JKRArcFinder::~JKRArcFinder() {}
+JKRArcFinder::~JKRArcFinder() {
+}
 
 bool JKRArcFinder::findNextFile() {
     if (mHasMoreFiles) {

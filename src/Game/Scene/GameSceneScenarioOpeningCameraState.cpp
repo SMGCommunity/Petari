@@ -62,7 +62,8 @@ void GameSceneScenarioOpeningCameraState::end() {
     MR::setPlayerBaseMtx(mBaseMtx);
 }
 
-void GameSceneScenarioOpeningCameraState::exeWait() {}
+void GameSceneScenarioOpeningCameraState::exeWait() {
+}
 
 void GameSceneScenarioOpeningCameraState::exePlay() {
     if (MR::isFirstStep(this)) {

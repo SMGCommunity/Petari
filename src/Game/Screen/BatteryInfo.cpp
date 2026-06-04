@@ -53,7 +53,7 @@ void BatteryInfo::exeEnought() {
 void BatteryInfo::exeLowAppear() {
     if (MR::isFirstStep(this)) {
         MR::showPane(mHost, mPaneName);
-        MR::startSystemSE("SE_SY_BATTERY_LOW", -1, -1);
+        MR::startSystemSE("SE_SY_BATTERY_LOW");
     }
 
     exeStartAnimAndSetNerveIfStopped("AppearLow", &BatteryInfoLow::sInstance);
@@ -102,7 +102,7 @@ void BatteryInfo::exeDisappear() {
 void BatteryInfo::exeCriticalAppear() {
     if (MR::isFirstStep(this)) {
         MR::showPane(mHost, mPaneName);
-        MR::startSystemSE("SE_SY_BATTERY_CRITICAL", -1, -1);
+        MR::startSystemSE("SE_SY_BATTERY_CRITICAL");
     }
 
     exeStartAnimAndSetNerveIfStopped("AppearCritical", &BatteryInfoCritical::sInstance);
@@ -119,7 +119,7 @@ void BatteryInfo::exeCritical() {
 void BatteryInfo::exeNoneAppear() {
     if (MR::isFirstStep(this)) {
         MR::showPane(mHost, mPaneName);
-        MR::startSystemSE("SE_SY_BATTERY_CRITICAL", -1, -1);
+        MR::startSystemSE("SE_SY_BATTERY_CRITICAL");
     }
 
     exeStartAnimAndSetNerveIfStopped("AppearNone", &BatteryInfoNone::sInstance);
@@ -194,7 +194,8 @@ bool BatteryInfo::tryChangeNerveWithBatteryLeftAlreadyAppear() {
     return false;
 }
 
-BatteryLayout::BatteryLayout() : LayoutActor("BatteryLayout", true), mInfo1P(nullptr), mInfo2P(nullptr) {}
+BatteryLayout::BatteryLayout() : LayoutActor("BatteryLayout", true), mInfo1P(nullptr), mInfo2P(nullptr) {
+}
 
 void BatteryLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("BatteryInfo", 1);

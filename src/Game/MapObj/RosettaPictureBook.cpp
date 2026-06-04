@@ -26,7 +26,8 @@ namespace NrvRosettaPictureBook {
 };  // namespace NrvRosettaPictureBook
 
 RosettaPictureBook::RosettaPictureBook(const char* pName)
-    : LiveActor(pName), mLayout(nullptr), mIconAButton(nullptr), mIsValidOpenIconAButton(false) {}
+    : LiveActor(pName), mLayout(nullptr), mIconAButton(nullptr), mIsValidOpenIconAButton(false) {
+}
 
 void RosettaPictureBook::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -75,7 +76,7 @@ void RosettaPictureBook::attackSensor(HitSensor* pSender, HitSensor* pReceiver) 
 void RosettaPictureBook::exeWait() {
     if (mIsValidOpenIconAButton) {
         if (!mIconAButton->isOpen()) {
-            MR::startSystemSE("SE_SY_TALK_BUTTON_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_TALK_BUTTON_APPEAR");
             mIconAButton->openWithRead();
         }
     } else if (mIconAButton->isOpen()) {
@@ -98,11 +99,12 @@ void RosettaPictureBook::exeWait() {
                                                           &NrvRosettaPictureBook::HostTypeNrvDemoWait::sInstance);
 }
 
-void RosettaPictureBook::exeDemoWait() {}
+void RosettaPictureBook::exeDemoWait() {
+}
 
 void RosettaPictureBook::exeFadeOut() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_TALK_START", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_START");
         MR::requestMovementOn(mIconAButton);
         mIconAButton->term();
         MR::closeWipeCircle(hFadeOutFrame);

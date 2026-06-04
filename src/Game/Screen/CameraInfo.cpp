@@ -7,7 +7,7 @@
 
 namespace {
     static const s32 sLifeTime = 120;
-};
+};  // namespace
 
 namespace NrvCameraInfo {
     NEW_NERVE(CameraInfoNrvHide, CameraInfo, Hide);
@@ -17,7 +17,8 @@ namespace NrvCameraInfo {
     NEW_NERVE(CameraInfoNrvEnd, CameraInfo, End);
 };  // namespace NrvCameraInfo
 
-CameraInfo::CameraInfo(const char* pName) : LayoutActor(pName, true), mStep(-1), mIsActive(true) {}
+CameraInfo::CameraInfo(const char* pName) : LayoutActor(pName, true), mStep(-1), mIsActive(true) {
+}
 
 void CameraInfo::init(const JMapInfoIter& rIter) {
     initLayoutManager("CameraInfo", 2);

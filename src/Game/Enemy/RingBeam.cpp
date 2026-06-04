@@ -12,7 +12,7 @@ void GXPosition3f32(f32, f32, f32);
 
 namespace NrvRingBeam {
     NEW_NERVE(RingBeamNrvSpread, RingBeam, Spread);
-}
+};  // namespace NrvRingBeam
 
 RingBeamShadowDrawer::RingBeamShadowDrawer(const LiveActor* unk0) : ShadowVolumeDrawer("影描画[リングビーム]") {
     _1c = unk0;
@@ -35,7 +35,7 @@ void RingBeamShadowDrawer::drawShape() const {
     TVec3f Trans;
     TVec3f listXDir;
     TVec3f listYDir;
-    float f1 = 0.2026834f;
+    f32 f1 = 0.2026834f;
 
     baseMtxCopy.setInline(_1c->getBaseMtx());
     baseMtxCopy.getXDir(XDir);
@@ -43,7 +43,7 @@ void RingBeamShadowDrawer::drawShape() const {
     baseMtxCopy.getTrans(Trans);
     PSMTXRotAxisRad(mtx, &YDir, f1);
     XDirScaled.scale(_20, XDir);
-    float f2 = 0.0f;
+    f32 f2 = 0.0f;
     for (int i = 0; i < 32; i++) {
         JMathInlineVEC::PSVECAdd(&Trans, &XDirScaled, &temp);
         MR::calcGravityVector(_1c, temp, &temp2, nullptr, 0);
@@ -297,7 +297,7 @@ void RingBeam::exeSpread() {
     TVec3f temp3;
     if (MR::isFirstStep(this)) {
         if (!MR::isPowerStarGetDemoActive()) {
-            MR::startSound(this, "SE_EM_JUMPRING_APPEAR", -1, -1);
+            MR::startSound(this, "SE_EM_JUMPRING_APPEAR");
         }
         char* str = "Spread";
         MR::startBckNoInterpole(this, str);
@@ -356,7 +356,7 @@ void RingBeam::exeSpread() {
         } else {
             _cc = ec;
         }
-        MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_RINGBEAM_MOVE");
     }
     if (MR::isStep(this, mLife - (s32)MR::getBrkFrameMax(this))) {
         startBrk("Erase");

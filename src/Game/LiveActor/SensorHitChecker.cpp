@@ -132,7 +132,8 @@ namespace MR {
     }
 };  // namespace MR
 
-SensorHitChecker::~SensorHitChecker() {}
+SensorHitChecker::~SensorHitChecker() {
+}
 
 SensorHitChecker::SensorHitChecker(const char* pName) : NameObj(pName) {
     mPlayerGroup = nullptr;

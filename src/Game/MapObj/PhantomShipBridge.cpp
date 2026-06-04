@@ -71,7 +71,7 @@ void PhantomShipBridge::setStateMoveA() {
 void PhantomShipBridge::exeMoveA() {
     if (MR::isFirstStep(this)) {
         if (!MR::isPlayerDead()) {
-            MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+            MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         }
 
         MR::startBck(this, "MoveA", nullptr);
@@ -79,17 +79,17 @@ void PhantomShipBridge::exeMoveA() {
 
     if (MR::isLessStep(this, 55)) {
         if (mIsNutShipBridge == 1) {
-            MR::startLevelSound(this, "SE_OJ_LV_NUT_SHIP_BRIDGE_MV", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_NUT_SHIP_BRIDGE_MV");
         } else {
-            MR::startLevelSound(this, "SE_OJ_LV_FALL_BRIDGE_FALL", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_FALL_BRIDGE_FALL");
         }
     }
 
     if (MR::isStep(this, 55)) {
         if (mIsNutShipBridge == 1) {
-            MR::startSound(this, "SE_OJ_NUT_SHIP_BRIDGE_ED", -1, -1);
+            MR::startSound(this, "SE_OJ_NUT_SHIP_BRIDGE_ED");
         } else {
-            MR::startSound(this, "SE_OJ_FALL_BRIDGE_LAND", -1, -1);
+            MR::startSound(this, "SE_OJ_FALL_BRIDGE_LAND");
         }
 
         MR::shakeCameraNormal();
@@ -99,9 +99,9 @@ void PhantomShipBridge::exeMoveA() {
 void PhantomShipBridge::exeMoveB() {
     if (MR::isFirstStep(this)) {
         if (mIsNutShipBridge == 1) {
-            MR::startSound(this, "SE_OJ_NUT_SHIP_BRIDGE_ST", -1, -1);
+            MR::startSound(this, "SE_OJ_NUT_SHIP_BRIDGE_ST");
         } else {
-            MR::startSound(this, "SE_OJ_PTM_SHIP_BRIDGE_FALL", -1, -1);
+            MR::startSound(this, "SE_OJ_PTM_SHIP_BRIDGE_FALL");
         }
 
         MR::startBck(this, "MoveB", nullptr);
@@ -109,23 +109,25 @@ void PhantomShipBridge::exeMoveB() {
 
     if (MR::isLessStep(this, 55)) {
         if (mIsNutShipBridge == 1) {
-            MR::startLevelSound(this, "SE_OJ_LV_NUT_SHIP_BRIDGE_MV", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_NUT_SHIP_BRIDGE_MV");
         } else {
-            MR::startLevelSound(this, "SE_OJ_LV_FALL_BRIDGE_FALL", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_FALL_BRIDGE_FALL");
         }
     }
 
     if (MR::isStep(this, 55)) {
         if (mIsNutShipBridge == 1) {
-            MR::startSound(this, "SE_OJ_NUT_SHIP_BRIDGE_ED", -1, -1);
+            MR::startSound(this, "SE_OJ_NUT_SHIP_BRIDGE_ED");
         } else {
-            MR::startSound(this, "SE_OJ_FALL_BRIDGE_LAND", -1, -1);
+            MR::startSound(this, "SE_OJ_FALL_BRIDGE_LAND");
         }
 
         MR::shakeCameraNormal();
     }
 }
 
-void PhantomShipBridge::exeWait() {}
+void PhantomShipBridge::exeWait() {
+}
 
-PhantomShipBridge::~PhantomShipBridge() {}
+PhantomShipBridge::~PhantomShipBridge() {
+}

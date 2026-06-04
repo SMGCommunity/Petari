@@ -13,6 +13,11 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+namespace {
+    static Color8 hPointLight[] = {Color8(0xFF, 0xFF, 0, 0xFF), Color8(0, 0x64, 0xFF, 0xFF), Color8(0, 0xFF, 0x32, 0xFF),
+                                   Color8(0xFF, 0, 0, 0xFF),    Color8(0x78, 0, 0xFF, 0xFF), Color8(0xFF, 0x64, 0x64, 0xFF)};
+};  // namespace
+
 namespace NrvTico {
     NEW_NERVE(TicoNrvNoReaction, Tico, NoReaction);
     NEW_NERVE(TicoNrvReaction, Tico, Reaction);
@@ -34,14 +39,10 @@ namespace NrvTico {
     NEW_NERVE(TicoNrvLead0, Tico, Lead0);
 };  // namespace NrvTico
 
-namespace {
-    static Color8 hPointLight[] = {Color8(0xFF, 0xFF, 0, 0xFF), Color8(0, 0x64, 0xFF, 0xFF), Color8(0, 0xFF, 0x32, 0xFF),
-                                   Color8(0xFF, 0, 0, 0xFF),    Color8(0x78, 0, 0xFF, 0xFF), Color8(0xFF, 0x64, 0x64, 0xFF)};
-};
-
 Tico::Tico(const char* pName)
     : NPCActor(pName), _15C(0), _160(0.0f, 0.0f, 0.0f), _16C(0.0f), mDemoGetPower(nullptr), _174(0), _178(0), _17C(255, 255, 255, 255), _180(0),
-      mDemoStarter(this) {}
+      mDemoStarter(this) {
+}
 
 void Tico::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (MR::isObjectName(rIter, "TicoBaby")) {
@@ -225,14 +226,14 @@ void Tico::control() {
         NPCActor::control();
     } else {
         if (!MR::isTimeKeepDemoActive()) {
-            MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT", -1, -1, -1);
+            MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
         }
 
         TVec3f v14(mPosition);
         JMathInlineVEC::PSVECSubtract(&v14, &_160, &v14);
         f32 v11 = PSVECMag(&v14);
         f32 v16 = (100.0f * MR::getLinerValueFromMinMax(v11, 1.0f, 11.0f, 0.2f, 1.0f));
-        MR::startLevelSound(this, "SE_SM_LV_TICO_FLOAT", v16, -1, -1);
+        MR::startLevelSound(this, "SE_SM_LV_TICO_FLOAT", v16);
         _160.set< f32 >(mPosition);
         _16C = MR::calcFloatOffset(this, _16C, 150.0f);
         NPCActor::control();
@@ -277,18 +278,18 @@ bool Tico::killFunc(u32) {
 
 void Tico::exeReaction() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_TICO_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_TICO_TRAMPLED");
     }
 
     if (isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_TICO_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_TICO_POINT");
     }
 
     if (_DB) {
         MR::limitedStarPieceHitSound();
-        MR::startSound(this, "SE_BM_BUTLER_ABSORB", -1, -1);
+        MR::startSound(this, "SE_BM_BUTLER_ABSORB");
     }
 
     MR::tryStartReactionAndPopNerve(this);
@@ -342,7 +343,7 @@ void Tico::exeMeta() {
     }
 
     if (MR::isBckStopped(this)) {
-        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE", -1, -1);
+        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE");
         kill();
     }
 }

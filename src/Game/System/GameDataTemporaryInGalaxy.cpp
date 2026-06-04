@@ -1,14 +1,11 @@
-#include "Game/System/AlreadyDoneFlagInGalaxy.hpp"
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
+#include "Game/System/AlreadyDoneFlagInGalaxy.hpp"
 #include "Game/Util/JMapIdInfo.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include <cstdio>
 
-GameDataTemporaryInGalaxy::GameDataTemporaryInGalaxy() :
-    mPlayerRestartIdInfo(nullptr),
-    mAlreadyDoneFlag(nullptr)
-{
+GameDataTemporaryInGalaxy::GameDataTemporaryInGalaxy() : mPlayerRestartIdInfo(nullptr), mAlreadyDoneFlag(nullptr) {
     mPlayerRestartIdInfo = new JMapIdInfo(MR::getInitializeStartIdInfo());
     mAlreadyDoneFlag = new AlreadyDoneFlagInGalaxy(64);
 
@@ -60,7 +57,7 @@ void GameDataTemporaryInGalaxy::setLast1upStarPieceNum(int num) {
 }
 
 s32 GameDataTemporaryInGalaxy::getStarPieceNum() const {
-    return MR::clamp(static_cast<s32>(mStarPieceNum), 0, 999);
+    return MR::clamp(static_cast< s32 >(mStarPieceNum), 0, 999);
 }
 
 void GameDataTemporaryInGalaxy::resetStageResultParam() {

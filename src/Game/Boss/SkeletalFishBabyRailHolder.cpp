@@ -125,7 +125,8 @@ namespace MR {
     }
 };  // namespace MR
 
-SkeletalFishBabyRailHolder::~SkeletalFishBabyRailHolder() {}
+SkeletalFishBabyRailHolder::~SkeletalFishBabyRailHolder() {
+}
 
 SkeletalFishBabyRailSetLinkNode::SkeletalFishBabyRailSetLinkNode() {
     _0 = 0;

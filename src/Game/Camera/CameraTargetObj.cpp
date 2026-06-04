@@ -22,7 +22,8 @@ CameraTargetActor::CameraTargetActor(const char* pName) : CameraTargetObj(pName)
     mCameraArea = nullptr;
 }
 
-CameraTargetActor::~CameraTargetActor() {}
+CameraTargetActor::~CameraTargetActor() {
+}
 
 void CameraTargetActor::movement() {
     if (MR::isDead(mActor) || MR::isClipped(mActor)) {
@@ -42,7 +43,7 @@ void CameraTargetActor::movement() {
         matrix.getXDir(mSide);
     }
 
-    CubeCameraArea* area = reinterpret_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", mActor->mPosition));
+    CubeCameraArea* area = static_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", mActor->mPosition));
 
     if (area == nullptr) {
         mCameraArea = nullptr;
@@ -108,7 +109,8 @@ CameraTargetPlayer::CameraTargetPlayer(const char* pName) : CameraTargetObj(pNam
     _5A = true;
 }
 
-CameraTargetPlayer::~CameraTargetPlayer() {}
+CameraTargetPlayer::~CameraTargetPlayer() {
+}
 
 const TVec3f* CameraTargetPlayer::getUpVec() const {
     return &mUp;
@@ -128,4 +130,22 @@ const TVec3f* CameraTargetPlayer::getGroundPos() const {
 
 const TVec3f* CameraTargetPlayer::getGravityVector() const {
     return &mGravity;
+}
+
+CameraTargetDemoActor::CameraTargetDemoActor(MtxPtr pMtx, const char* pName) : LiveActor(pName) {
+    mMtx.set(pMtx);
+}
+
+void CameraTargetDemoActor::init(const JMapInfoIter& rIter) {
+    LiveActor::init(rIter);
+    makeActorAppeared();
+}
+
+void CameraTargetDemoActor::setTargetMtx(MtxPtr pNewTargetMtx) {
+    mMtx.set(pNewTargetMtx);
+    MR::makeRTFromMtxPtr(&mPosition, &mRotation, pNewTargetMtx, true);
+}
+
+MtxPtr CameraTargetDemoActor::getBaseMtx() const {
+    return (const MtxPtr)mMtx.mMtx;
 }

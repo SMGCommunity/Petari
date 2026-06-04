@@ -3,7 +3,7 @@
 
 namespace NrvAstroDomeAsteroid {
     NEW_NERVE(AstroDomeAsteroidNrvWait, AstroDomeAsteroid, Wait);
-};
+};  // namespace NrvAstroDomeAsteroid
 
 AstroDomeAsteroid::AstroDomeAsteroid(const char* pName) : LiveActor(pName) {
     mRotationMtx.identity();
@@ -51,4 +51,5 @@ bool AstroDomeAsteroid::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
     return SphereSelectorFunction::trySyncAppearMsgSelectStart(this, msg);
 }
 
-AstroDomeAsteroid::~AstroDomeAsteroid() {}
+AstroDomeAsteroid::~AstroDomeAsteroid() {
+}

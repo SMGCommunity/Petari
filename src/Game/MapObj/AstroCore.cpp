@@ -3,16 +3,17 @@
 #include "Game/MapObj/AstroDemoFunction.hpp"
 #include <cstdio>
 
+namespace {
+    static const f32 sSensorSizeTable[] = {100.0f, 300.0f, 350.0f, 420.0f, 480.0f, 540.0f, 600.0f, 0.0f};
+};  // namespace
+
 namespace NrvAstroCore {
     NEW_NERVE(AstroCoreNrvWait, AstroCore, Wait);
     NEW_NERVE(AstroCoreNrvGrow, AstroCore, Grow);
 };  // namespace NrvAstroCore
 
-namespace {
-    static f32 sSensorSizeTable[] = {100.0f, 300.0f, 350.0f, 420.0f, 480.0f, 540.0f, 600.0f, 0.0f};
-};
-
-AstroCore::AstroCore(const char* pName) : MapObjActor(pName) {}
+AstroCore::AstroCore(const char* pName) : MapObjActor(pName) {
+}
 
 void AstroCore::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -20,17 +21,12 @@ void AstroCore::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupNerve(&NrvAstroCore::AstroCoreNrvWait::sInstance);
     info.setupHitSensor();
-    TVec3f offset;
-    offset.x = 0.0f;
-    offset.y = 0.0f;
-    offset.z = 0.0f;
-    info.setupHitSensorParam(8, sSensorSizeTable[0], offset);
+    info.setupHitSensorParam(8, sSensorSizeTable[0], TVec3f(0.0f, 0.0f, 0.0f));
     info.setupFarClipping(-1.0f);
     info.setupSound(4);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);
-    AstroDemoFunction::tryRegisterGrandStarReturnWithFunctionAndSimpleCast(
-        this, rIter, MR::FunctorV0M< AstroCore*, void (AstroCore::*)(void) >(this, &AstroCore::startDemo));
+    AstroDemoFunction::tryRegisterGrandStarReturnWithFunctionAndSimpleCast(this, rIter, MR::Functor_Inline(this, &AstroCore::startDemo));
 }
 
 void AstroCore::exeGrow() {
@@ -41,7 +37,7 @@ void AstroCore::exeGrow() {
     }
 
     if (MR::isStep(this, 40)) {
-        MR::startSound(this, "SE_OJ_ASTRO_CORE_GROW", -1, -1);
+        MR::startSound(this, "SE_OJ_ASTRO_CORE_GROW");
         MR::tryRumblePadMiddle(this, 0);
         MR::shakeCameraNormalWeak();
         startAnimGrow();
@@ -81,4 +77,5 @@ void AstroCore::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-AstroCore::~AstroCore() {}
+AstroCore::~AstroCore() {
+}

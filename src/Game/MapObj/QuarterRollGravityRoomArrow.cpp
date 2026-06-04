@@ -12,9 +12,10 @@ namespace NrvQuarterRollGravityRoomArrow {
     NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOffA, QuarterRollGravityRoomArrow, RollOffA)
     NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOnB, QuarterRollGravityRoomArrow, RollOnB)
     NEW_NERVE(QuarterRollGravityRoomArrowNrvRollOffB, QuarterRollGravityRoomArrow, RollOffB)
-}  // namespace NrvQuarterRollGravityRoomArrow
+};  // namespace NrvQuarterRollGravityRoomArrow
 
-QuarterRollGravityRoomArrow::QuarterRollGravityRoomArrow(const char* pName) : MapObjActor(pName) {}
+QuarterRollGravityRoomArrow::QuarterRollGravityRoomArrow(const char* pName) : MapObjActor(pName) {
+}
 
 void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -24,7 +25,8 @@ void QuarterRollGravityRoomArrow::init(const JMapInfoIter& rIter) {
     initialize(rIter, info);
 }
 
-void QuarterRollGravityRoomArrow::exeWait() {}
+void QuarterRollGravityRoomArrow::exeWait() {
+}
 
 void QuarterRollGravityRoomArrow::exeRollOnA() {
     if (MR::isFirstStep(this)) {
@@ -58,13 +60,15 @@ void QuarterRollGravityRoomArrow::initCaseUseSwitchA(const MapObjActorInitInfo& 
                                 MR::Functor(this, &QuarterRollGravityRoomArrow::offRollA));
 }
 
-void QuarterRollGravityRoomArrow::initCaseNoUseSwitchA(const MapObjActorInitInfo& rInfo) {}
+void QuarterRollGravityRoomArrow::initCaseNoUseSwitchA(const MapObjActorInitInfo& rInfo) {
+}
 
 void QuarterRollGravityRoomArrow::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     MR::listenStageSwitchOnOffB(this, MR::Functor(this, &QuarterRollGravityRoomArrow::onRollB),
                                 MR::Functor(this, &QuarterRollGravityRoomArrow::offRollB));
 }
-void QuarterRollGravityRoomArrow::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {}
+void QuarterRollGravityRoomArrow::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
+}
 
 void QuarterRollGravityRoomArrow::onRollA() {
     setNerve(&NrvQuarterRollGravityRoomArrow::QuarterRollGravityRoomArrowNrvRollOnA::sInstance);

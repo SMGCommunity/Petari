@@ -36,7 +36,8 @@ namespace {
     NEW_NERVE(DemoKoopaJrShipNrvFlyAway, DemoKoopaJrShip, FlyAway);
 };  // namespace
 
-DemoKoopaJrShip::DemoKoopaJrShip(const char* pName) : LiveActor(pName), mKoopaJrObj(nullptr), mAnimCameraIndex(-1) {}
+DemoKoopaJrShip::DemoKoopaJrShip(const char* pName) : LiveActor(pName), mKoopaJrObj(nullptr), mAnimCameraIndex(-1) {
+}
 
 void DemoKoopaJrShip::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -64,7 +65,7 @@ void DemoKoopaJrShip::exeAppear() {
         mKoopaJrObj->setStateShipBattleAppear();
         startEntryAnim();
         MR::stopStageBGM(60);
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_ENTER", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_ENTER");
         MR::hideModel(this);
     }
 
@@ -76,7 +77,7 @@ void DemoKoopaJrShip::exeAppear() {
         MR::startSubBGM("BGM_KOOPA_JR_APPEAR", false);
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE");
 
     if (MR::isBckStopped(this)) {
         setNerve(&::DemoKoopaJrShipNrvTalk::sInstance);
@@ -91,7 +92,7 @@ void DemoKoopaJrShip::exeTalk() {
         MR::startBck(this, "Wait", nullptr);
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE");
 
     if (!DemoFunction::isPauseTimeKeepDemo(this)) {
         setNerve(&::DemoKoopaJrShipNrvFlyAway::sInstance);
@@ -102,12 +103,12 @@ void DemoKoopaJrShip::exeTalk() {
 
 void DemoKoopaJrShip::exeFlyAway() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(mKoopaJrObj, "SE_BV_KOOPAJR_LAUGH_LEAVE", -1, -1);
+        MR::startSound(mKoopaJrObj, "SE_BV_KOOPAJR_LAUGH_LEAVE");
         MR::stopSubBGM(120);
         startLeaveAnim();
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_MOVE");
 
     if (tryDemoEnd()) {
         if (mAnimCameraIndex >= 0) {
@@ -134,7 +135,7 @@ void DemoKoopaJrShip::control() {
 void DemoKoopaJrShip::initAnimID(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mAnimCameraIndex);
 
-    if (mAnimCameraIndex >= sizeof(sAnim) / sizeof(*sAnim)) {
+    if (mAnimCameraIndex >= ARRAY_SIZEU(sAnim)) {
         mAnimCameraIndex = -1;
     }
 

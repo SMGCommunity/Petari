@@ -8,7 +8,8 @@
 
 EventDirector::EventDirector()
     : NameObj("イベント指揮"), mPowerStarEventKeeper(nullptr), mStageStateKeeper(nullptr), mPowerStarHolder(nullptr), mCometEventKeeper(nullptr),
-      mTimeAttackEventKeeper(nullptr) {}
+      mTimeAttackEventKeeper(nullptr) {
+}
 
 void EventDirector::init(const JMapInfoIter& rIter) {
     mPowerStarEventKeeper = new PowerStarEventKeeper();

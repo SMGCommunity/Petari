@@ -288,7 +288,7 @@ void TicoFat::control() {
         isNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance) ||
         isNerve(&NrvTicoFat::TicoFatNrvChem::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvFullness::sInstance) ||
         isNerve(&NrvTicoFat::TicoFatNrvDemo::sInstance)) {
-        MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
     }
 
     updateGoods();
@@ -506,7 +506,8 @@ void TicoFat::initStarPieceSaveData(const JMapInfoIter& rIter) {
     }
 }
 
-void TicoFat::addStarPieceSaveData(s32) {}
+void TicoFat::addStarPieceSaveData(s32) {
+}
 
 void TicoFat::appearInformation() const {
     MR::appearInformationMessage(MR::getGameMessageDirect(sInfoMessageID), true);
@@ -580,7 +581,7 @@ s32 TicoFat::getDanceSeTranspose() const {
 
 void TicoFat::startAbsorbSound() {
     if (_204 <= 0) {
-        MR::startSound(this, "SE_SM_TICOFAT_ABSORB", -1, -1);
+        MR::startSound(this, "SE_SM_TICOFAT_ABSORB");
         _204 = 5;
     }
 }
@@ -644,21 +645,21 @@ void TicoFat::exeReaction() {
     }
 
     if (_D8) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_TICOFAT_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_TICOFAT_TRAMPLED");
     }
 
     if (isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_TICOFAT_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_TICOFAT_POINT");
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SM_TICOFAT_SPIN", -1, -1);
+        MR::startSound(this, "SE_SM_TICOFAT_SPIN");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_TICOFAT_STAR_PIECE_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_TICOFAT_STAR_PIECE_HIT");
     }
 
     if (MR::tryStartReactionAndPopNerve(this)) {
@@ -729,7 +730,7 @@ void TicoFat::exeEat() {
         }
     }
 
-    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING", getDanceSeTranspose(), -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING", getDanceSeTranspose());
     if (!mCurrentFed) {
         setNerve(&NrvTicoFat::TicoFatNrvChem::sInstance);
     }
@@ -743,7 +744,7 @@ void TicoFat::exeChem() {
 
     if (_200 > 0) {
         _200--;
-        MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING", getDanceSeTranspose(), -1, -1);
+        MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING", getDanceSeTranspose());
     }
 
     if (MR::isBckLooped(this)) {
@@ -782,10 +783,10 @@ void TicoFat::exeTest() {
 void TicoFat::exeFullness() {
     if (MR::isFirstStep(this)) {
         MR::tryStartAction(this, getActionName("Joy"));
-        MR::startSound(this, "SE_SM_TICOFAT_MAX", -1, -1);
+        MR::startSound(this, "SE_SM_TICOFAT_MAX");
     }
 
-    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_GLAD", getDanceSeTranspose(), -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_GLAD", getDanceSeTranspose());
     if (MR::tryTalkForceWithoutDemoAtEnd(_16C)) {
         tryMetamorphosis();
     }
@@ -794,12 +795,12 @@ void TicoFat::exeFullness() {
 void TicoFat::exeMeta() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, getActionName("Metamorphosis"));
-        MR::startSound(this, "SE_SM_TICOFAT_META", -1, -1);
-        MR::startSound(this, "SE_SM_TICOFAT_META_ITEM", -1, -1);
+        MR::startSound(this, "SE_SM_TICOFAT_META");
+        MR::startSound(this, "SE_SM_TICOFAT_META_ITEM");
     }
 
     if (MR::isBckStopped(this)) {
-        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE", -1, -1);
+        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE");
         disappear(true);
         kill();
     }
@@ -809,7 +810,7 @@ void TicoFat::exeDemo() {
     if (MR::isFirstStep(this)) {
         MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "変身", -1);
         MR::startAction(this, getActionName("Demo"));
-        MR::startSound(this, "SE_SM_TICOFAT_META", -1, -1);
+        MR::startSound(this, "SE_SM_TICOFAT_META");
     }
 
     MR::turnPlayerToActor(this, 10.0f);
@@ -819,7 +820,7 @@ void TicoFat::exeDemo() {
     }
 
     if (MR::isStep(this, 90)) {
-        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE", -1, -1);
+        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE");
         MR::hideModelAndOnCalcAnim(this);
         if (_94) {
             MR::hideModelAndOnCalcAnim(_94);
@@ -846,7 +847,7 @@ void TicoFat::exeFly() {
         _1F8 = 0.0f;
         MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "飛行", -1);
         MR::startAction(this, getActionName("Fly"));
-        MR::startSound(this, "SE_DM_TICOFAT_MORPH_FLY", -1, -1);
+        MR::startSound(this, "SE_DM_TICOFAT_MORPH_FLY");
         MR::tryRumblePadWeak(this, 0);
     }
 
@@ -883,7 +884,7 @@ void TicoFat::exeFly() {
 void TicoFat::exeWipeOut() {
     if (MR::isFirstStep(this)) {
         MR::stopBck(this);
-        MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_OUT", -1, -1);
+        MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_OUT");
         emitScreenEffect();
         MR::closeWipeWhiteFade(60);
         MR::tryRumblePadMiddle(this, 0);
@@ -901,7 +902,7 @@ void TicoFat::exeWipeOut() {
 
 void TicoFat::exeWipeIn() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_IN", -1, -1);
+        MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_IN");
     }
 
     if (!MR::isLessStep(this, 60)) {
@@ -939,7 +940,7 @@ void TicoFat::exeInfo() {
     }
 
     if (MR::testCorePadTriggerA(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
         MR::disappearInformationMessage();
         setNerve(&NrvTicoFat::TicoFatNrvAfter::sInstance);
     }
@@ -957,4 +958,5 @@ void TicoFat::exeAfter() {
     }
 }
 
-TicoFat::~TicoFat() {}
+TicoFat::~TicoFat() {
+}

@@ -19,7 +19,7 @@ namespace {
     static const f32 cSelectedRotateSpeedZ = 20.0f;
     static const f32 cSelectedRotateMoveRate = 6.0f;
     static const s32 cSelectedRotateAccelFrame = 180;
-}  // namespace
+};  // namespace
 
 namespace NrvScenarioSelectStar {
     NEW_NERVE(ScenarioSelectStarNrvAppear, ScenarioSelectStar, Appear);
@@ -130,7 +130,7 @@ void ScenarioSelectStar::updatePos() {
 void ScenarioSelectStar::exeAppear() {
     if (MultiScene::isStep(this, mAppearFrame)) {
         MultiScene::startBck(this, "ScenarioAppear");
-        MR::startSystemSE("SE_OJ_SCEN_SEL_STAR_APPEAR", -1, -1);
+        MR::startSystemSE("SE_OJ_SCEN_SEL_STAR_APPEAR");
     }
 
     if (MultiScene::isStep(this, mAppearFrame + 1)) {
@@ -157,7 +157,7 @@ void ScenarioSelectStar::exeNotPointing() {
 
 void ScenarioSelectStar::exePointing() {
     if (MultiScene::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_CURSOR_1", -1, -1);
+        MR::startSystemSE("SE_SY_CURSOR_1");
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
         mRotateSpeed = cPointingRotateSpeedZ;
     }
@@ -206,7 +206,7 @@ void ScenarioSelectStar::exeSelectedMove() {
     }
 
     if (MultiScene::isStep(this, cSelectedMoveFrame)) {
-        MR::startSystemSE("SE_DM_SENARIO_SEL_ACCEL", -1, -1);
+        MR::startSystemSE("SE_DM_SENARIO_SEL_ACCEL");
     }
 
     if (MultiScene::isLessStep(this, cSelectedMoveFrame)) {

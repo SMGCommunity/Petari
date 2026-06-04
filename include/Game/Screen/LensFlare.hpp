@@ -16,8 +16,10 @@ public:
 
     virtual void appear();
     virtual void control();
-    virtual void appearAnim() {}
-    virtual void controlAnim() {}
+    virtual void appearAnim() {
+    }
+    virtual void controlAnim() {
+    }
 
     void update(bool, bool);
     void exeKill();

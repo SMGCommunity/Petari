@@ -540,7 +540,7 @@ TalkMessageCtrl::TalkMessageCtrl(LiveActor* pHost, const TVec3f& arg2, MtxPtr pA
       mAnimeFunc(nullptr), mKillFunc(nullptr), mMtx(pArg3), mIsOnRootNodeAuto(false), _18(false), mTagArg(nullptr, CustomTagArg::Type_Uninitialized) {
     mTagArg.mArgType = CustomTagArg::Type_Uninitialized;
     mTagArg.mIntArg = 0;
-    MR::createSceneObj(0x19);
+    MR::createSceneObj(SceneObj_TalkDirector);
     TalkFunction::registerTalkSystem(this);
     mZoneID = MR::getCurrentPlacementZoneId();
 }

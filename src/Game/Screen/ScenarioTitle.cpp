@@ -10,7 +10,8 @@ namespace {
     NEW_NERVE(ScenarioTitleEnd, ScenarioTitle, End);
 };  // namespace
 
-ScenarioTitle::ScenarioTitle() : LayoutActor("シナリオ名表示", true) {}
+ScenarioTitle::ScenarioTitle() : LayoutActor("シナリオ名表示", true) {
+}
 
 void ScenarioTitle::init(const JMapInfoIter& rInfo) {
     initNerve(&ScenarioTitleAppear::sInstance);
@@ -38,7 +39,8 @@ void ScenarioTitle::exeAppear() {
     MR::setNerveAtAnimStopped(this, &ScenarioTitleWait::sInstance, 0);
 }
 
-void ScenarioTitle::exeWait() {}
+void ScenarioTitle::exeWait() {
+}
 
 void ScenarioTitle::exeEnd() {
     if (MR::isFirstStep(this)) {

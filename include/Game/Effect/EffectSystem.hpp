@@ -35,4 +35,4 @@ public:
 
 namespace MR {
     EffectSystem* getEffectSystem();
-};
+};  // namespace MR

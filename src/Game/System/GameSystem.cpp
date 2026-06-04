@@ -74,7 +74,8 @@ void main(void) {
 GameSystem::GameSystem()
     : NerveExecutor("GameSystem"), mFifoBase(nullptr), mSequenceDirector(nullptr), mErrorWatcher(nullptr), mFontHolder(nullptr),
       mFrameControl(nullptr), mObjHolder(nullptr), mSceneController(nullptr), mStationedArchiveLoader(nullptr), mHomeButtonLayout(nullptr),
-      mSystemWipeHolder(nullptr), mHomeButtonStateNotifier(nullptr), mIsExecuteLoadSystemArchive(false) {}
+      mSystemWipeHolder(nullptr), mHomeButtonStateNotifier(nullptr), mIsExecuteLoadSystemArchive(false) {
+}
 
 void GameSystem::init() {
     JKRAram::create(0xE00000, 0xFFFFFFFF, 8, 7, 3);
@@ -148,7 +149,8 @@ void GameSystem::exeLoadStationedArchive() {
     }
 }
 
-void GameSystem::exeWaitForReboot() {}
+void GameSystem::exeWaitForReboot() {
+}
 
 void GameSystem::exeNormal() {
     updateSceneController();

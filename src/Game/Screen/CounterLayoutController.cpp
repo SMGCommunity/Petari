@@ -25,7 +25,8 @@ namespace NrvCounterLayoutController {
 
 CounterLayoutController::CounterLayoutController()
     : LayoutActor("カウンタ系レイアウト制御", true), mPlayerNotMovingFrame(0), _24(false), mCoinCounter(nullptr), mStarPieceCounter(nullptr),
-      mPlayerLeft(nullptr), mStarCounter(nullptr), mHPMeter(nullptr) {}
+      mPlayerLeft(nullptr), mStarCounter(nullptr), mHPMeter(nullptr) {
+}
 
 void CounterLayoutController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);

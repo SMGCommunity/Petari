@@ -564,7 +564,7 @@ bool SaveDataHandleSequence::trySave() {
     }
 
     if (MR::isGreaterStep(this, 20)) {
-        MR::startSystemLevelSE("SE_SY_LV_SAVING", -1, -1);
+        MR::startSystemLevelSE("SE_SY_LV_SAVING");
     }
 
     if (MR::isGreaterStep(this, 120) && mSaveDataHandler->isDone()) {
@@ -604,7 +604,7 @@ bool SaveDataHandleSequence::tryConfirm(const char* pSystemMessageId, bool* pIsS
         _24 = 1;
 
         mSysInfoWindowConfirm->appear(pSystemMessageId, SysInfoWindow::Type_YesNo, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
-        MR::startSystemSE("SE_SY_SAVE_CONFIRM_INFO", -1, -1);
+        MR::startSystemSE("SE_SY_SAVE_CONFIRM_INFO");
     }
 
     if (MR::isDead(mSysInfoWindowConfirm)) {
@@ -663,7 +663,7 @@ bool SaveDataHandleSequence::executeSaveFinish(bool* pIsErr, const Nerve* pNerve
     }
 
     if (resultCode.isSuccess()) {
-        MR::startSystemSE("SE_SY_SAVE_SUCCESS", -1, -1);
+        MR::startSystemSE("SE_SY_SAVE_SUCCESS");
 
         *pIsErr = false;
         _2A = false;
@@ -673,7 +673,7 @@ bool SaveDataHandleSequence::executeSaveFinish(bool* pIsErr, const Nerve* pNerve
 
     *pIsErr = true;
 
-    MR::startSystemSE("SE_SY_SAVE_FAILURE", -1, -1);
+    MR::startSystemSE("SE_SY_SAVE_FAILURE");
 
     if (resultCode.isSaveDataCorrupted()) {
         mNerveForError = pNerveForError;

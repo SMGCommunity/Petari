@@ -4,10 +4,12 @@
 
 class PowerStarAppearPoint : public LiveActor {
 public:
-    PowerStarAppearPoint(const char*);
+    /// @brief Creates a new `PowerStarAppearPoint`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    PowerStarAppearPoint(const char* pName);
 
     virtual ~PowerStarAppearPoint();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
 
-    ActorCameraInfo* mCameraInfo;  // 0x8C
+    /* 0x8C */ ActorCameraInfo* mCameraInfo;
 };

@@ -8,7 +8,8 @@ public:
 
     CubeCameraArea(int, const char*);
 
-    virtual ~CubeCameraArea() {}
+    virtual ~CubeCameraArea() {
+    }
 
     virtual void init(const JMapInfoIter&);
     virtual void movement();

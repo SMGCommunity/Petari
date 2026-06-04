@@ -3,7 +3,8 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
 
-TalkTextFormer::TalkTextFormer(LayoutActor* actor, const char* paneName) : mHostActor(actor), mMsg(nullptr), _8(0), mPaneName(paneName) {}
+TalkTextFormer::TalkTextFormer(LayoutActor* actor, const char* paneName) : mHostActor(actor), mMsg(nullptr), _8(0), mPaneName(paneName) {
+}
 
 bool TalkTextFormer::nextPage() {
     const wchar_t* message = MR::getNextMessagePage(mMsg);

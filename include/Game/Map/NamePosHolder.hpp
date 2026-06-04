@@ -34,4 +34,4 @@ public:
 
 namespace MR {
     NamePosHolder* getNamePosHolder();
-};
+};  // namespace MR

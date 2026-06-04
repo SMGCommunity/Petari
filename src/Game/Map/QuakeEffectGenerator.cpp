@@ -9,7 +9,8 @@ namespace NrvQuakeEffectGenerator {
     NEW_NERVE(HostTypeQuaking, QuakeEffectGenerator, Quaking);
 };  // namespace NrvQuakeEffectGenerator
 
-QuakeEffectGenerator::QuakeEffectGenerator() : LiveActor("地震効果生成") {}
+QuakeEffectGenerator::QuakeEffectGenerator() : LiveActor("地震効果生成") {
+}
 
 void QuakeEffectGenerator::init(const JMapInfoIter& rIter) {
     initNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
@@ -35,7 +36,7 @@ void QuakeEffectGenerator::exeQuaking() {
         MR::shakeCameraInfinity(this, 0.05f, 1.5f);
     }
 
-    MR::startAtmosphereLevelSE("SE_AT_LV_EARTHQUAKE", -1, -1);
+    MR::startAtmosphereLevelSE("SE_AT_LV_EARTHQUAKE");
 
     if (MR::isStep(this, 120)) {
         MR::stopShakingCamera(this);
@@ -53,4 +54,5 @@ void QuakeEffectGenerator::exeWait() {
     }
 }
 
-QuakeEffectGenerator::~QuakeEffectGenerator() {}
+QuakeEffectGenerator::~QuakeEffectGenerator() {
+}

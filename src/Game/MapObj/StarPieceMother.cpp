@@ -4,7 +4,7 @@
 namespace NrvStarPieceMother {
     NEW_NERVE(HostTypeNrvMoveOnRail, StarPieceMother, MoveOnRail);
     NEW_NERVE(HostTypeNrvWait, StarPieceMother, Wait);
-}  // namespace NrvStarPieceMother
+};  // namespace NrvStarPieceMother
 
 StarPieceMother::StarPieceMother(const char* pName) : LiveActor(pName), mStarPieceArray(), _90(), _94(6), _98(), _9C(), _A0() {
 }
@@ -80,7 +80,7 @@ void StarPieceMother::init(const JMapInfoIter& rIter) {
         if (arg != -1 && arg != 0) {
             _A0 = static_cast< f32 >(arg);
         }
-        
+
         makeActorDead();
     }
 
@@ -88,8 +88,8 @@ void StarPieceMother::init(const JMapInfoIter& rIter) {
 }
 
 void StarPieceMother::kill() {
-    MR::stopSound(this, "SE_OJ_STAR_PIECE_MO_ST", 0);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_MO_ED", -1, -1);
+    MR::stopSound(this, "SE_OJ_STAR_PIECE_MO_ST");
+    MR::startSound(this, "SE_OJ_STAR_PIECE_MO_ED");
     LiveActor::kill();
 
     if (MR::isValidSwitchDead(this)) {
@@ -103,16 +103,16 @@ void StarPieceMother::control() {
 
 void StarPieceMother::exeMoveOnRail() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_MO_ST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_MO_ST");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_STAR_PIECE_MO_MV", -1, -1, -1);
-    MR::moveCoordAndFollowTrans(this, _A0); 
+    MR::startLevelSound(this, "SE_OJ_LV_STAR_PIECE_MO_MV");
+    MR::moveCoordAndFollowTrans(this, _A0);
 
-    f32 railCoord = MR::getRailCoord(this); // Necessary to match
+    f32 railCoord = MR::getRailCoord(this);  // Necessary to match
     if (_90[_98] <= railCoord) {
         mStarPieceArray[_98]->appear();
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         _98++;
     }
 

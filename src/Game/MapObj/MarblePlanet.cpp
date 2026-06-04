@@ -43,7 +43,8 @@ void MarblePlanet::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void MarblePlanet::exeWait() {}
+void MarblePlanet::exeWait() {
+}
 
 void MarblePlanet::exeScaleUpCore() {
     if (MR::isFirstStep(this)) {
@@ -53,19 +54,19 @@ void MarblePlanet::exeScaleUpCore() {
         switch (mRemainingElectrons) {
         case 0:
             MR::emitEffect(this, "Break");
-            MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_3", -1, -1);
-            MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_3", -1, -1);
+            MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_3");
+            MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_3");
             break;
         case 1:
             MR::emitEffect(mCorePlanetModel, "Smoke6f");
-            MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_2", -1, -1);
-            MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_2", -1, -1);
+            MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_2");
+            MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_2");
             break;
         case 2:
         default:
             MR::emitEffect(mCorePlanetModel, "Smoke3f");
-            MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_1", -1, -1);
-            MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_1", -1, -1);
+            MR::startSound(this, "SE_OJ_MARBLE_HIT_CORE_1");
+            MR::startSystemSE("SE_SY_MARBLE_HIT_CORE_1");
             break;
         }
 
@@ -80,11 +81,11 @@ void MarblePlanet::exeScaleUpCore() {
         }
     }
 
-    f32 nerveRate = MR::calcNerveRate(this, 0x1E);
+    f32 nerveRate = MR::calcNerveRate(this, 30);
     f32 scale = MR::getScaleWithReactionValueZeroToOne(nerveRate, 0.5f, -0.5f);
     mCorePlanetModel->mScale.setAll< f32 >(MR::getLinerValue(scale, 1.3f, 1.0f, 1.0f));
 
-    if (MR::isStep(this, 0x1E)) {
+    if (MR::isStep(this, 30)) {
         setNerve(&NrvMarblePlanet::MarblePlanetNrvWait::sInstance);
     }
 }
@@ -221,12 +222,12 @@ void MarblePlanetElectron::exeMove() {
     f32 mag = PSVECMag(&mVelocity);
     f32 scale = (mag >= 13.0f ? mag : 13.0f);
     mVelocity.scale(scale, _94);
-    MR::startLevelSound(this, "SE_OJ_LV_MARBLE_ROTATE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_MARBLE_ROTATE");
 }
 
 void MarblePlanetElectron::exeAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_MARBLE_FLIP", -1, -1);
+        MR::startSound(this, "SE_OJ_MARBLE_FLIP");
     }
 
     TVec3f velocity;
@@ -299,7 +300,7 @@ void MarblePlanetElectron::crashElectron(HitSensor* pSensor) {
     mVelocity.x *= 1.2f;
     mVelocity.y *= 1.2f;
     mVelocity.z *= 1.2f;
-    MR::startSound(this, "SE_OJ_MARBLE_HIT_EACH", -1, -1);
+    MR::startSound(this, "SE_OJ_MARBLE_HIT_EACH");
 }
 
 MarblePlanetElectronShadow::MarblePlanetElectronShadow(LiveActor* pElectronPtr, const TVec3f& rVec, const char* pName) : LiveActor(pName) {
@@ -324,8 +325,11 @@ void MarblePlanetElectronShadow::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, up_mtx);
 }
 
-MarblePlanet::~MarblePlanet() {}
+MarblePlanet::~MarblePlanet() {
+}
 
-MarblePlanetElectron::~MarblePlanetElectron() {}
+MarblePlanetElectron::~MarblePlanetElectron() {
+}
 
-MarblePlanetElectronShadow::~MarblePlanetElectronShadow() {}
+MarblePlanetElectronShadow::~MarblePlanetElectronShadow() {
+}

@@ -36,12 +36,10 @@ void Air::init(const JMapInfoIter& rIter) {
     if (registered) {
         bool val = true;
 
-        void (Air::*fadeOut)(void) = &Air::appearFadeOut;
-        bool ret = MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, fadeOut), "消滅");
+        bool ret = MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &Air::appearFadeOut), "消滅");
 
         if (!ret) {
-            void (Air::*fadeIn)(void) = &Air::appearFadeIn;
-            ret = MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, fadeIn), 0);
+            ret = MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &Air::appearFadeIn), nullptr);
 
             if (!ret) {
                 val = false;
@@ -149,9 +147,11 @@ void Air::exeOut() {
     }
 }
 
-Air::~Air() {}
+Air::~Air() {
+}
 
-ProjectionMapAir::ProjectionMapAir(const char* pName) : Air(pName) {}
+ProjectionMapAir::ProjectionMapAir(const char* pName) : Air(pName) {
+}
 
 void ProjectionMapAir::initModel(const char* pModelName) {
     initModelManagerWithAnm(pModelName, nullptr, true);
@@ -164,7 +164,8 @@ void Air::setFarClipping() {
     MR::setClippingFarMax(this);
 }
 
-AirFar100m::AirFar100m(const char* pName) : Air(pName) {}
+AirFar100m::AirFar100m(const char* pName) : Air(pName) {
+}
 
 void AirFar100m::setFarClipping() {
     MR::setClippingFar100m(this);
@@ -206,10 +207,14 @@ namespace MR {
     }
 };  // namespace MR
 
-AirFar100m::~AirFar100m() {}
+AirFar100m::~AirFar100m() {
+}
 
-ProjectionMapAir::~ProjectionMapAir() {}
+ProjectionMapAir::~ProjectionMapAir() {
+}
 
-PriorDrawAir::~PriorDrawAir() {}
+PriorDrawAir::~PriorDrawAir() {
+}
 
-PriorDrawAirHolder::~PriorDrawAirHolder() {}
+PriorDrawAirHolder::~PriorDrawAirHolder() {
+}

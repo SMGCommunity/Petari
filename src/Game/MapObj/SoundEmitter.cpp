@@ -1,5 +1,4 @@
 #include "Game/MapObj/SoundEmitter.hpp"
-#include "Game/GameAudio/AudTalkSoundData.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/RailRider.hpp"
@@ -11,21 +10,23 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JAudio2/JAISound.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
 namespace {
     const JAISoundID sSeTable[33] = {JAISoundID(0x1)};
-}
+};  // namespace
 
 namespace NrvSoundEmitter {
     NEW_NERVE(SoundEmitterNrvStandBy, SoundEmitter, StandBy);
     NEW_NERVE(SoundEmitterNrvPlaySound, SoundEmitter, PlaySound);
-}  // namespace NrvSoundEmitter
+};  // namespace NrvSoundEmitter
 
 SoundEmitter::SoundEmitter(const char* pName) : LiveActor(pName) {
     _8C = -1;
 }
-SoundEmitter::~SoundEmitter() {}
+SoundEmitter::~SoundEmitter() {
+}
 
 void SoundEmitter::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -92,7 +93,7 @@ void SoundEmitter::exePlaySound() {
         v3 = 5;
     } break;
     case 0x1E: {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         kill();
         return;
     } break;

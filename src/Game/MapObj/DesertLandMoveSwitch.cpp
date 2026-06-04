@@ -123,7 +123,7 @@ bool DesertLandMoveSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSenso
 }
 
 void DesertLandMoveSwitch::initModelAndCollision(const JMapInfoIter& rIter) {
-    const char* pObjName = 0;
+    const char* pObjName = "";
     MR::getObjectName(&pObjName, rIter);
     _A0 = pObjName;
     initModelManagerWithAnm(pObjName, 0, 0);
@@ -137,7 +137,7 @@ void DesertLandMoveSwitch::initModelAndCollision(const JMapInfoIter& rIter) {
 
 bool DesertLandMoveSwitch::tryOn() {
     if (MR::isGreaterStep(this, 6) && MR::isBckStopped(this)) {
-        MR::startSound(this, "SE_OJ_HIPDROP_SWITCH_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_HIPDROP_SWITCH_ON");
         MR::shakeCameraNormal();
         setNerve(&NrvDesertLandMoveSwitch::HostTypeOn::sInstance);
         return true;
@@ -177,15 +177,15 @@ void DesertLandMoveSwitch::updateTimerSE() {
             s32 s = _9C;
             if (lf <= s) {
                 if (step2 == s) {
-                    return MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
+                    MR::startSystemSE("SE_SY_TIMER_A_0");
                 } else {
                     if (!(lf % 60)) {
                         if (lf < s - 600)
-                            MR::startSystemSE("SE_SY_TIMER_A_2", -1, -1);
+                            MR::startSystemSE("SE_SY_TIMER_A_2");
                         else if (lf < s - 120)
-                            MR::startSystemSE("SE_SY_TIMER_A_1", -1, -1);
+                            MR::startSystemSE("SE_SY_TIMER_A_1");
                         else if (lf < s)
-                            MR::startSystemSE("SE_SY_TIMER_A_QUASI_0", -1, -1);
+                            MR::startSystemSE("SE_SY_TIMER_A_QUASI_0");
                     }
                 }
             }

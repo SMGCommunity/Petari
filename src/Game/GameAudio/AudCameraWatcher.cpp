@@ -11,7 +11,7 @@ AudCameraWatcher::AudCameraWatcher() : NameObj("AudCameraWatcher"), _C(0) {
 
 void AudCameraWatcher::playAtmosphereSE() {
     if (MR::isCameraInWater()) {
-        MR::startAtmosphereLevelSE("SE_AT_LV_UNDER_WATER", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_UNDER_WATER");
         AudWrap::getSystem()->mAudEffector->setCutoff(3);
         MR::setStageBGMStateBit(2);
         return;

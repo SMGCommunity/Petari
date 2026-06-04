@@ -156,7 +156,8 @@ void MoviePlayerSimple::setUnpauseHomeButtonFlag() {
     mPlayerWrapper->setUnpauseFrameFlag();
 }
 
-void MoviePlayerSimple::exeSimpleOff() {}
+void MoviePlayerSimple::exeSimpleOff() {
+}
 
 void MoviePlayerSimple::exeOpen() {
     if (MR::isFirstStep(this)) {
@@ -220,7 +221,8 @@ void MoviePlayerSimple::exePlaying() {
     }
 }
 
-void MoviePlayerSimple::exeSimpleSuspend() {}
+void MoviePlayerSimple::exeSimpleSuspend() {
+}
 
 void MoviePlayerSimple::control() {
     mPlayerWrapper->updateNerve();

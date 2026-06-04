@@ -5,4 +5,5 @@ JPATexture::JPATexture(u8 const* pData) {
     mTexture.storeTIMG(&mpData->mResTIMG, (u8)0);
 }
 
-JPATexture::~JPATexture() {}
+JPATexture::~JPATexture() {
+}

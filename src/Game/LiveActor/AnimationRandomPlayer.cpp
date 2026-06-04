@@ -47,4 +47,5 @@ void AnimationRandomPlayer::exePlay() {
     }
 }
 
-AnimationRandomPlayer::~AnimationRandomPlayer() {}
+AnimationRandomPlayer::~AnimationRandomPlayer() {
+}

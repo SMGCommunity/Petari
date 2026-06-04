@@ -12,13 +12,9 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
-#include "revolution/types.h"
-
 
 namespace PoltaFunction {
-
     void onMovement(Polta* pPolta) {
         MR::forceDeleteEffectAll(pPolta);
         MR::requestMovementOn(pPolta);
@@ -32,7 +28,8 @@ namespace PoltaFunction {
         MR::requestMovementOn(pPolta->mRightArm->mFormationModel);
     }
 
-    void emitEffectShadow(Polta* pPolta) {}
+    void emitEffectShadow(Polta* pPolta) {
+    }
 
     PoltaArm* getLeftArmActor(Polta* pPolta) {
         return pPolta->mLeftArm;
@@ -150,7 +147,7 @@ namespace PoltaFunction {
         return pPolta->mGroundRockHolder->getObjectCount() - pPolta->mGroundRockHolder->getLivingActorNum();
     }
 
-    bool appearGroundRock(Polta* pPolta, float param2, float param3) {
+    bool appearGroundRock(Polta* pPolta, f32 param2, f32 param3) {
         PoltaGroundRockHolder* groundRockHolder = pPolta->mGroundRockHolder;
         PoltaGroundRock* deadMember = groundRockHolder->getDeadActor() ? (PoltaGroundRock*)groundRockHolder->getDeadActor() : nullptr;
 
@@ -173,19 +170,19 @@ namespace PoltaFunction {
     // bool appearRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5, s32 rockType)
 
     bool appearWhiteRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
-        appearRockCircle(pPolta, rVec, param3, param4, param5, 0);
+        return appearRockCircle(pPolta, rVec, param3, param4, param5, 0);
     }
 
     bool appearBlackRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
-        appearRockCircle(pPolta, rVec, param3, param4, param5, 1);
+        return appearRockCircle(pPolta, rVec, param3, param4, param5, 1);
     }
 
     bool appearYellowRockCircle(Polta* pPolta, const TVec3f& rVec, f32 param3, s32 param4, s32 param5) {
-        appearRockCircle(pPolta, rVec, param3, param4, param5, 2);
+        return appearRockCircle(pPolta, rVec, param3, param4, param5, 2);
     }
 
     // All the params besides pPolta go unused.
-    bool appearBombTeresaFromRoot(Polta* pPolta, float param2, float param3, s32 param4) {
+    bool appearBombTeresaFromRoot(Polta* pPolta, f32 param2, f32 param3, s32 param4) {
         TVec3f v8;
         JMAVECScaleAdd(pPolta->mGravity, pPolta->mPosition, &v8, -120.0f);
         BombTeresa* deadMember = pPolta->mBombTeresaHolder->getDeadMember();
@@ -249,5 +246,4 @@ namespace PoltaFunction {
             break;
         }
     }
-
 };  // namespace PoltaFunction

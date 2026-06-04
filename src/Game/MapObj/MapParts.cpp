@@ -4,10 +4,11 @@
 #include "math_types.hpp"
 
 namespace {
-    const char* cFollowjointName = "Move";
-};
+    const char* cFollowJointName = "Move";
+};  // namespace
 
-MapParts::~MapParts() {}
+MapParts::~MapParts() {
+}
 
 MapParts::MapParts(const char* pName) : LiveActor(pName) {
     _8C.zero();
@@ -56,8 +57,8 @@ void MapParts::initModelAndCollision(const JMapInfoIter& rIter) {
     sensor_offs.z = 0.0f;
     u32 sensorNum = getSensorNumMax();
     HitSensor* sensor = MR::addHitSensorMapObj(this, "body", sensorNum, 100.0f, sensor_offs);
-    if (MR::isExistJoint(this, cFollowjointName)) {
-        MtxPtr jointMtx = MR::getJointMtx(this, cFollowjointName);
+    if (MR::isExistJoint(this, ::cFollowJointName)) {
+        MtxPtr jointMtx = MR::getJointMtx(this, ::cFollowJointName);
         MR::initCollisionParts(this, name, sensor, jointMtx);
         MR::tryCreateCollisionAllOtherCategory(this, jointMtx, sensor, nullptr, nullptr, nullptr);
     } else {

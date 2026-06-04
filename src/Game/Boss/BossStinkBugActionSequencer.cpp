@@ -14,7 +14,7 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
 
 namespace NrvBossStinkBugActionSequencer {
     NEW_NERVE(BossStinkBugActionSequencerNrvWaitStart, BossStinkBugActionSequencer, WaitStart);
@@ -26,7 +26,7 @@ namespace NrvBossStinkBugActionSequencer {
     NEW_NERVE(BossStinkBugActionSequencerNrvFlyHigh, BossStinkBugActionSequencer, FlyHigh);
     NEW_NERVE(BossStinkBugActionSequencerNrvFinishDemo, BossStinkBugActionSequencer, FinishDemo);
     NEW_NERVE(BossStinkBugActionSequencerNrvEnd, BossStinkBugActionSequencer, End);
-}  // namespace NrvBossStinkBugActionSequencer
+};  // namespace NrvBossStinkBugActionSequencer
 
 BossStinkBugActionSequencer::BossStinkBugActionSequencer(BossStinkBug* pStinkBug, const JMapInfoIter& rIter)
     : NerveExecutor("ボスカメムシアクション管理"), mStinkBug(pStinkBug), mCurrentAction(nullptr), mOpeningDemo(nullptr), mActionGround(nullptr),
@@ -97,7 +97,7 @@ void BossStinkBugActionSequencer::exeOpeningDemo() {
 
 void BossStinkBugActionSequencer::exeGround() {
     if (MR::isFirstStep(this)) {
-        MR::startBossBGM(0);
+        MR::startBossBGM(MR::BossBgmID_StinkBugA);
         mCurrentAction = mActionGround;
     }
     MR::updateActorStateAndNextNerve(this, mActionGround, &NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvFlyDemo::sInstance);
@@ -113,7 +113,7 @@ void BossStinkBugActionSequencer::exeFlyDemo() {
 void BossStinkBugActionSequencer::exeFlyLow() {
     if (MR::isFirstStep(this)) {
         mStinkBug->appearStarPiece(8);
-        MR::startBossBGM(1);
+        MR::startBossBGM(MR::BossBgmID_StinkBugB);
         mCurrentAction = mActionFlyLow;
     }
     MR::updateActorStateAndNextNerve(this, mActionFlyLow, &NrvBossStinkBugActionSequencer::BossStinkBugActionSequencerNrvAngryDemo::sInstance);

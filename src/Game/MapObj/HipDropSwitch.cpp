@@ -129,7 +129,7 @@ void HipDropSwitch::exeOff() {
 
     if (!_CD && _CE) {
         mSpringValue->mVelocity += -10.0f;
-        MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND", -1, -1);
+        MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND");
     }
 
     mSpringValue->update();
@@ -158,9 +158,10 @@ void HipDropSwitch::exeOn() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
         MR::onSwitchA(this);
-        MR::startSound(this, "SE_OJ_HIPDROP_SWITCH_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_HIPDROP_SWITCH_ON");
         MR::shakeCameraNormal();
     }
 }
 
-HipDropSwitch::~HipDropSwitch() {}
+HipDropSwitch::~HipDropSwitch() {
+}

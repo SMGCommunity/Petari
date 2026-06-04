@@ -14,7 +14,9 @@ public:
     void calcPosAndAxisY(TVec3f*, TVec3f*, f32) const;
     void calcNearestPointPos(TVec3f*, const TVec3f&, s32) const;
 
-    inline PlantPoint* getPlantPoint(s32 idx) { return mPlantPoints[idx]; }
+    inline PlantPoint* getPlantPoint(s32 idx) {
+        return mPlantPoints[idx];
+    }
 
     /* 0x00 */ s32 mNumPlantPoints;
     /* 0x04 */ PlantPoint** mPlantPoints;

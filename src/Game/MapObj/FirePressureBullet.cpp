@@ -2,7 +2,7 @@
 
 namespace NrvFirePressureBullet {
     NEW_NERVE(FirePressureBulletNrvFly, FirePressureBullet, Fly);
-};
+};  // namespace NrvFirePressureBullet
 
 FirePressureBullet::FirePressureBullet(const char* pName) : LiveActor(pName) {
     _8C.x = 0.0f;
@@ -29,7 +29,7 @@ void FirePressureBullet::init(const JMapInfoIter& rIter) {
 }
 
 void FirePressureBullet::kill() {
-    MR::startSound(this, "SE_OJ_F_PRESSURE_FIRE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_F_PRESSURE_FIRE_BURST");
     LiveActor::kill();
 }
 
@@ -72,7 +72,7 @@ void FirePressureBullet::exeFly() {
         MR::startBck(this, "Move", nullptr);
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_F_PRESSURE_BULLET", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_F_PRESSURE_BULLET");
 
     if (_A0 && !(getNerveStep() % 5)) {
         MR::turnDirectionToTargetDegree(this, &_8C, *MR::getPlayerPos(), 3.0f);
@@ -102,4 +102,5 @@ bool FirePressureBullet::isCrash() const {
     return MR::isBinded(this);
 }
 
-FirePressureBullet::~FirePressureBullet() {}
+FirePressureBullet::~FirePressureBullet() {
+}

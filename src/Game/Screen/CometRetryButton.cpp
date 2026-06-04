@@ -18,7 +18,8 @@ namespace NrvCometRetryButton {
 };  // namespace NrvCometRetryButton
 
 CometRetryButton::CometRetryButton(const char* pName)
-    : LayoutActor(pName, true), mButtonYesPaneCtrl(nullptr), mButtonNoPaneCtrl(nullptr), mPlayerMissLeft(nullptr) {}
+    : LayoutActor(pName, true), mButtonYesPaneCtrl(nullptr), mButtonNoPaneCtrl(nullptr), mPlayerMissLeft(nullptr) {
+}
 
 // FIXME: There are a lot of register swaps.
 void CometRetryButton::init(const JMapInfoIter& rIter) {
@@ -69,7 +70,7 @@ void CometRetryButton::control() {
     mButtonNoPaneCtrl->update();
 
     if (mButtonYesPaneCtrl->isPointingTrigger() || mButtonNoPaneCtrl->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
     }
 
     if (mPlayerMissLeft != nullptr) {
@@ -95,9 +96,9 @@ void CometRetryButton::exeWait() {
 
     if (mButtonYesPaneCtrl->trySelect() || mButtonNoPaneCtrl->trySelect()) {
         if (mButtonYesPaneCtrl->mIsSelected) {
-            MR::startSystemSE("SE_SY_TALK_SELECT_YES", -1, -1);
+            MR::startSystemSE("SE_SY_TALK_SELECT_YES");
         } else if (mButtonNoPaneCtrl->mIsSelected) {
-            MR::startSystemSE("SE_SY_TALK_SELECT_NO", -1, -1);
+            MR::startSystemSE("SE_SY_TALK_SELECT_NO");
         }
 
         setNerve(&NrvCometRetryButton::HostTypeNrvDecided::sInstance);

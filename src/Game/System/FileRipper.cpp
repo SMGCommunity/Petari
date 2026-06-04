@@ -12,7 +12,7 @@ namespace {
     s32 sReadDvdOffset;
     u32 sReadDvdLeftSize;
     DVDFileInfo* sSrcFileInfo;
-}  // namespace
+};  // namespace
 
 void FileRipper::setup(u32 size, JKRHeap* pHeap) {
     sReadBuffer = new (pHeap, 0x40) u8[size];

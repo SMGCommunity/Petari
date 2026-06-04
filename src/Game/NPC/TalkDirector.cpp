@@ -23,6 +23,12 @@
 #include "revolution/types.h"
 #include <cstdio>
 
+namespace {
+    TalkDirector* getTalkDirector() {
+        return MR::getSceneObj< TalkDirector >(SceneObj_TalkDirector);
+    }
+};  // namespace
+
 namespace NrvTalkDirector {
     NEW_NERVE(TalkDirectorNrvWait, TalkDirector, Wait);
     NEW_NERVE(TalkDirectorNrvPrep, TalkDirector, Prep);
@@ -30,19 +36,21 @@ namespace NrvTalkDirector {
     NEW_NERVE(TalkDirectorNrvSlct, TalkDirector, Slct);
     NEW_NERVE(TalkDirectorNrvNext, TalkDirector, Next);
     NEW_NERVE(TalkDirectorNrvTerm, TalkDirector, Term);
-}  // namespace NrvTalkDirector
+};  // namespace NrvTalkDirector
 
 TalkDirector::TalkDirector(const char* pArg)
     : LayoutActor(pArg, true), mMsgCtrl(nullptr), _3C(nullptr), _40(nullptr), _44(nullptr), mTalkState(nullptr), _4C(false), _4D(false), _4E(false),
-      mIsInvalidClipping(false), mDemoType(0), _58(false), _59(false) {}
+      mIsInvalidClipping(false), mDemoType(0), _58(false), _59(false) {
+}
 
-TalkDirector::~TalkDirector() {}
+TalkDirector::~TalkDirector() {
+}
 
 void TalkDirector::init(const JMapInfoIter& pArg) {
     MR::connectToScene(this, MR::MovementType_TalkDirector, -1, -1, -1);
     mBalloonHolder = new TalkBalloonHolder();
     mStateHolder = new TalkStateHolder();
-    mMsgControls.init(0x80);
+    mMsgControls.init(128);
     mPeekZ = new TalkPeekZ();
     initNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
     initBranchResult();
@@ -192,19 +200,19 @@ bool TalkDirector::isInvalidTalk() const {
 void TalkDirector::appearYesNoSelector(const TalkMessageCtrl* pArg) const {
     const char* branchID = pArg->getBranchID();
 
-    char buff[0x100];
-    snprintf(buff, 0x100, "Select_%s_Yes", branchID);
+    char buff[256];
+    snprintf(buff, sizeof(buff), "Select_%s_Yes", branchID);
 
-    char buff2[0x100];
-    snprintf(buff2, 0x100, "Select_%s_No", branchID);
+    char buff2[256];
+    snprintf(buff2, sizeof(buff2), "Select_%s_No", branchID);
 
     if (pArg->isSelectYesNo()) {
         MR::resetYesNoSelectorSE();
     } else {
         MR::setYesNoSelectorSE("SE_SY_TALK_FOCUS_ITEM", "SE_SY_TALK_SELECT_YES", "SE_SY_TALK_SELECT_YES");
     }
-    MR::requestMovementOn((LayoutActor*)MR::getGameSceneLayoutHolder()->mYesNoLayout);
 
+    MR::requestMovementOn((LayoutActor*)MR::getGameSceneLayoutHolder()->mYesNoLayout);
     MR::appearYesNoSelector(buff, buff2, nullptr);
 }
 
@@ -212,9 +220,9 @@ void TalkDirector::updateMessage() {
     mBalloonHolder->update();
     mStateHolder->update();
 
-    for (TalkMessageCtrl** i = mMsgControls.mArray.mArr; i != &mMsgControls[mMsgControls.mCount]; i = i + 1) {
-        if (MR::isTalkEntry(*i)) {
-            TalkFunction::onTalkStateNone(*i);
+    for (TalkMessageCtrl** pIter = mMsgControls.begin(); pIter != mMsgControls.end(); pIter++) {
+        if (MR::isTalkEntry(*pIter)) {
+            TalkFunction::onTalkStateNone(*pIter);
         }
     }
 
@@ -313,6 +321,7 @@ TalkState* TalkDirector::initState(TalkMessageCtrl* pArg) {
     state->init(pArg, balloon);
 
     TalkMessageInfo* info = TalkFunction::getMessageInfo(pArg);
+
     if (info->isCameraNormal() || info->isCameraEvent()) {
         info = TalkFunction::getMessageInfo(pArg);
         mMessageInfo = *info;
@@ -325,6 +334,7 @@ TalkState* TalkDirector::initState(TalkMessageCtrl* pArg) {
 
 s32 TalkDirector::getDemoType(const TalkMessageCtrl* pArg, bool arg2) const {
     s32 demoType;
+
     if (TalkFunction::isShortTalk(pArg)) {
         demoType = 0;
     } else if (MR::isTimeKeepDemoActive()) {
@@ -390,7 +400,9 @@ void TalkDirector::initBranchResult() {
 }
 
 void TalkDirector::exePrep() {
-    MR::isLessStep(this, 4);
+    if (MR::isLessStep(this, 4)) {
+    }
+
     if (mTalkState->prep(mMsgCtrl)) {
         TalkFunction::onTalkStateEnableStart(mTalkState->_04);
         return;
@@ -435,7 +447,8 @@ LiveActor* TalkDirector::getTalkingActor() const {
     return nullptr;
 }
 
-void TalkDirector::exeWait() {}
+void TalkDirector::exeWait() {
+}
 
 void TalkDirector::exeTalk() {
     TalkMessageCtrl* control = mTalkState->_04;
@@ -473,9 +486,10 @@ void TalkDirector::exeTalk() {
 
 void TalkDirector::exeSlct() {
     TalkMessageCtrl* control = mTalkState->_04;
+
     if (MR::isFirstStep(this)) {
         appearYesNoSelector(control);
-        MR::startSystemSE("SE_SM_TALKBLN_OPEN", -1, -1);
+        MR::startSystemSE("SE_SM_TALKBLN_OPEN");
     }
 
     TalkFunction::onTalkStateTalking(control);
@@ -502,6 +516,7 @@ void TalkDirector::exeNext() {
 
     if (control->rootNodeEve()) {
         _50 |= cond;
+
         if (_50) {
             if (TalkFunction::isShortTalk(control)) {
                 termTalk();
@@ -533,64 +548,60 @@ void TalkDirector::exeTerm() {
 }
 
 void MR::pauseOffTalkDirector() {
-    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->pauseOff();
+    ::getTalkDirector()->pauseOff();
 }
 
 void MR::balloonOffTalkDirector() {
-    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->balloonOff();
+    ::getTalkDirector()->balloonOff();
 }
 
 void MR::invalidateTalkDirector() {
-    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
-    director->_4E = true;
+    ::getTalkDirector()->_4E = true;
 }
 
 void MR::setTalkDirectorDrawSyncToken() {
-    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
-    if (director) {
-        ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->mPeekZ->setDrawSyncToken();
+    if (::getTalkDirector() != nullptr) {
+        ::getTalkDirector()->mPeekZ->setDrawSyncToken();
     }
 }
 
 bool MR::isActiveTalkBalloonShort() {
-    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
-    if (director) {
-        return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->mBalloonHolder->isActiveBalloonShort();
+    if (::getTalkDirector() != nullptr) {
+        return ::getTalkDirector()->mBalloonHolder->isActiveBalloonShort();
     }
 
     return false;
 }
 
 bool TalkFunction::requestTalkSystem(TalkMessageCtrl* pCtrl, bool force) {
-    return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->request(pCtrl, force);
+    return ::getTalkDirector()->request(pCtrl, force);
 }
 
 void TalkFunction::startTalkSystem(TalkMessageCtrl* pCtrl, bool force, bool demo, bool notPuppetable) {
-    ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->start(pCtrl, force, demo, notPuppetable);
+    ::getTalkDirector()->start(pCtrl, force, demo, notPuppetable);
 }
 
 void TalkFunction::endTalkSystem(TalkMessageCtrl* pCtrl) {
-    MR::getSceneObjHolder()->getObj(0x19);
+    ::getTalkDirector();
     MR::isTalkEnableEnd(pCtrl);
 }
 
 bool TalkFunction::isTalkSystemStart(const TalkMessageCtrl* pCtrl) {
-    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+    TalkDirector* pDirector = ::getTalkDirector();
 
-    return director->mMsgCtrl == pCtrl && director->_4C;
+    return pDirector->mMsgCtrl == pCtrl && pDirector->_4C;
 }
 
 bool TalkFunction::isTalkSystemEnd(const TalkMessageCtrl* pCtrl) {
-    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
+    TalkDirector* pDirector = ::getTalkDirector();
 
-    return director->mMsgCtrl == pCtrl && director->_4D;
+    return pDirector->mMsgCtrl == pCtrl && pDirector->_4D;
 }
 
 bool TalkFunction::getBranchAstroGalaxyResult(u16 arg) {
-    return ((TalkDirector*)MR::getSceneObjHolder()->getObj(0x19))->getBranchResult(arg);
+    return ::getTalkDirector()->getBranchResult(arg);
 }
 
 void TalkFunction::registerTalkSystem(TalkMessageCtrl* pCtrl) {
-    TalkDirector* director = (TalkDirector*)MR::getSceneObjHolder()->getObj(0x19);
-    director->mMsgControls.push_back(pCtrl);
+    ::getTalkDirector()->mMsgControls.push_back(pCtrl);
 }

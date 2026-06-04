@@ -12,4 +12,5 @@ void ShadowDrawer::setShadowController(ShadowController* pController) {
     mController = pController;
 }
 
-ShadowDrawer::~ShadowDrawer() {}
+ShadowDrawer::~ShadowDrawer() {
+}

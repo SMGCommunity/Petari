@@ -26,7 +26,8 @@ namespace NrvTripodBossLeg {
     NEW_NERVE(TripodBossLegNrvBreak, TripodBossLeg, Break);
 };  // namespace NrvTripodBossLeg
 
-TripodBossLeg::~TripodBossLeg() {}
+TripodBossLeg::~TripodBossLeg() {
+}
 
 TripodBossLeg::TripodBossLeg(const char* pName)
     : LiveActor(pName), mBoss(nullptr), mMoveArea(nullptr), _94(0), _98(0), mJoint(new IKJoint()), _1F0(0, 0, 0, 1), _200(0, 0, 0, 1), _210(0, 0, 0),
@@ -334,7 +335,7 @@ void TripodBossLeg::exeLeaveOut() {
 }
 
 void TripodBossLeg::exeMove() {
-    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_MOVE", -1);
+    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_MOVE");
     addToTargetPower(_240, 1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;
@@ -350,7 +351,7 @@ void TripodBossLeg::exeMoveToLandingPos() {
         _240 = v14;
     }
 
-    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_MOVE", -1);
+    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_MOVE");
     addToTargetPower(_240, 1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;
@@ -375,7 +376,7 @@ void TripodBossLeg::exeStampSign() {
         _240 = v7;
     }
 
-    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_PREFALL", -1);
+    MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_PREFALL");
     addToTargetPower(_240, 1.0f);
     addIKLimitPower();
     mForceEndPoint += _234;

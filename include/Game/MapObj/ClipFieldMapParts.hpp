@@ -4,10 +4,12 @@
 
 class ClipFieldMapParts : public GeneralMapParts {
 public:
-    ClipFieldMapParts(const char*);
+    /// @brief Creates a new `ClipFieldMapParts`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    ClipFieldMapParts(const char* pName);
 
     virtual ~ClipFieldMapParts();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void control();
     virtual void connectToScene();
 };

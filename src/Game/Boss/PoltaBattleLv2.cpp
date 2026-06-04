@@ -56,10 +56,10 @@ void PoltaBattleLv2::control() {
         isNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvGenerateGroundRock::sInstance) ||
         isNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvGenerateRock::sInstance) ||
         isNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvDamageBody::sInstance) || isNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvBreakBody::sInstance)) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_IN_BATTLE_ROCK", -1, -1, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_IN_BATTLE_ROCK");
     } else if (isNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvStagger::sInstance) ||
                isNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvDamageCore::sInstance)) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_CORE_ESCAPE", -1, -1, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_POLTA_CORE_ESCAPE");
     }
 }
 
@@ -188,16 +188,16 @@ void PoltaBattleLv2::exeStagger() {
     if (MR::isFirstStep(this)) {
         mStateStagger->setActionName("StaggerLv2");
         MR::setStageBGMState(2, 60);
-        MR::startSound(getHost(), "SE_BV_POLTA_RUN_AWAY", -1, -1);
+        MR::startSound(getHost(), "SE_BV_POLTA_RUN_AWAY");
     }
     MR::updateActorState(this, mStateStagger);
 }
 
 void PoltaBattleLv2::exeDamageCore() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT", -1, -1);
-        MR::startSound(getHost(), "SE_BV_POLTA_DAMAGE_LAST", -1, -1);
-        MR::startSound(getHost(), "SE_BM_POLTA_LAST_DAMAGE", -1, -1);
+        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
+        MR::startSound(getHost(), "SE_BV_POLTA_DAMAGE_LAST");
+        MR::startSound(getHost(), "SE_BM_POLTA_LAST_DAMAGE");
         MR::stopStageBGM(60);
     }
     if (updateDamageCore()) {

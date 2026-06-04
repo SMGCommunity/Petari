@@ -94,7 +94,7 @@ SkeletalFishBoss::SkeletalFishBoss(const char* pName) : LiveActor(pName) {
     _1B0 = 0;
     _1B4 = -1;
 
-    for (u32 i = 0; i < 0xD; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mControllers); i++) {
         mControllers[i] = nullptr;
     }
 
@@ -270,7 +270,7 @@ void SkeletalFishBoss::damage(const HitSensor* pSensor, const TVec3f& rStarPiece
         } else {
             u32 numStarPiece = (_110 + 1 == _1A0) ? 15 : 10;
             MR::appearStarPiece(this, rStarPieceOffs, numStarPiece, 10.0f, 14.0f, false);
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F");
             setNerve(&::SkeletalFishBossNrvDamage::sInstance);
         }
     }
@@ -286,8 +286,8 @@ void SkeletalFishBoss::exeSwim() {
         mGuardHolder->validate();
     }
 
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
     TVec3f mouthPos;
     getMouthSensorCenterPos(mouthPos, 5000.0f);
 
@@ -301,11 +301,11 @@ void SkeletalFishBoss::exeSwim() {
 void SkeletalFishBoss::exeOpen() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mBossHead, "Open", nullptr);
-        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_OPEN", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_OPEN");
     }
 
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isBckStopped(mBossHead)) {
         MR::startBck(mBossHead, "OpenWait", nullptr);
@@ -321,19 +321,19 @@ void SkeletalFishBoss::exeOpenWait() {
     if (!isClose) {
         setNerve(&::SkeletalFishBossNrvClose::sInstance);
     } else {
-        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
-        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
+        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
     }
 }
 
 void SkeletalFishBoss::exeClose() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mBossHead, "Close", nullptr);
-        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_CLOSE", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_CLOSE");
     }
 
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isBckStopped(mBossHead)) {
         MR::startBck(mBossHead, "Wait", nullptr);
@@ -346,8 +346,8 @@ void SkeletalFishBoss::exeBite() {
         MR::startBck(mBossHead, "Bite", nullptr);
     }
 
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isBckStopped(mBossHead)) {
         MR::startBck(mBossHead, "Wait", nullptr);
@@ -358,13 +358,13 @@ void SkeletalFishBoss::exeBite() {
 void SkeletalFishBoss::exeDamage() {
     if (MR::isFirstStep(this)) {
         startDamageAnim();
-        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_DAMAGE_S", -1, -1);
-        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_DAMAGE_S");
+        MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
         mGuardHolder->invalidate();
     }
 
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isBckStopped(this)) {
         if (_114 == 2) {
@@ -377,15 +377,15 @@ void SkeletalFishBoss::exeDamage() {
 
         setNerve(&::SkeletalFishBossNrvSwim::sInstance);
         MR::appearStarPiece(this, mPosition, 6, 10.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W_F");
     }
 }
 
 void SkeletalFishBoss::exeDown() {
     if (MR::isFirstStep(this)) {
         startDamageAnim();
-        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_DAMAGE_L", -1, -1);
-        MR::startSystemSE("SE_SY_BOSS_DAMAGE_3", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_DAMAGE_L");
+        MR::startSystemSE("SE_SY_BOSS_DAMAGE_3");
         mGuardHolder->invalidate();
 
         if (_110 == 1) {
@@ -394,8 +394,8 @@ void SkeletalFishBoss::exeDown() {
         }
     }
 
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isStep(this, 120)) {
         stopScene("スカルシャークパワーアップ", &::SkeletalFishBossNrvPowerUpDemo::sInstance, &SkeletalFishBoss::startPowerUpDemo);
@@ -405,15 +405,15 @@ void SkeletalFishBoss::exeDown() {
 void SkeletalFishBoss::exeDeadDamage() {
     if (MR::isFirstStep(this)) {
         startDamageAnim();
-        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_DAMAGE_LAST", -1, -1);
-        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_DAMAGE_LAST");
+        MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
         mGuardHolder->invalidate();
         mGuardHolder->killAll();
         mBossHead->_114 = 0;
     }
 
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR", -1, -1, -1);
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_FAR");
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_NEAR");
 
     if (MR::isStep(this, 120)) {
         MR::stopStageBGM(30);
@@ -458,7 +458,7 @@ void SkeletalFishBoss::exeAppearDemo() {
         MR::startStageBGM("MBGM_BOSS_09_A", false);
     }
 
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_APPEAR", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_APPEAR");
 
     if (MR::isBckStopped(this)) {
         if (!MR::isPlayingStageBgm()) {
@@ -497,10 +497,10 @@ void SkeletalFishBoss::exePowerUpDemo() {
     }
 
     if (_110 == 2 && MR::isStep(this, 240)) {
-        MR::startAtmosphereSE("SE_BM_SKL_GUARD_COME_FRONT", -1, -1);
+        MR::startAtmosphereSE("SE_BM_SKL_GUARD_COME_FRONT");
     }
 
-    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_POW_UP", -1, -1, -1);
+    MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_POW_UP");
 
     if (MR::isBckStopped(this)) {
         if (_110 > 1) {
@@ -519,18 +519,18 @@ void SkeletalFishBoss::exeDeadDemo() {
         MR::startBrk(this, "Down");
         MR::startBck(mBossHead, "Down", nullptr);
         MR::startBrk(mBossHead, "Down");
-        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_OPEN", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_MOUTH_OPEN");
         MR::setImageEffectControlAuto();
         mGuardHolder->invalidate();
         mBossDirector->appearBirdLouse();
     }
 
     if (MR::isStep(this, 30)) {
-        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_BODY_SOLID", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_BODY_SOLID");
     }
 
     if (MR::isLessStep(this, 218)) {
-        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_DIE", -1, -1, -1);
+        MR::startLevelSound(mBossHead, "SE_BM_LV_SKL_BOSS_SWIM_DIE");
     }
 
     if (MR::isBckStopped(this)) {
@@ -548,7 +548,7 @@ void SkeletalFishBoss::exeBreakDemo() {
         MR::requestMovementOn(mBreakModel);
         MR::startBck(mBreakModel, "Break", nullptr);
         MR::startBrk(mBreakModel, "Break");
-        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_EXPLODE", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_EXPLODE");
         mGuardHolder->invalidate();
         mBossDirector->appearBirdLouse();
         MR::tryRumblePadMiddle(this, 0);
@@ -559,7 +559,7 @@ void SkeletalFishBoss::exeBreakDemo() {
     }
 
     if (MR::isStep(this, 206)) {
-        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_EXPLODE_2", -1, -1);
+        MR::startSound(mBossHead, "SE_BM_SKL_BOSS_EXPLODE_2");
     }
 
     if (MR::isStep(this, 0)) {
@@ -606,17 +606,13 @@ SkeletalFishBossHead* SkeletalFishBoss::getHeadActor() const {
 }
 
 void SkeletalFishBoss::calcAndSetBaseMtx() {
-    bool isInDemo = false;
-
-    if (isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
-        isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
-        isInDemo = true;
-    }
+    bool isInDemo = isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) || isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) ||
+                    isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
 
     if (isInDemo) {
-        MR::setBaseTRMtx(this, _150.toMtxPtr());
+        MR::setBaseTRMtx(this, _150);
     } else {
-        for (u32 i = 0; i < 0xD; i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(mControllers); i++) {
             mControllers[i]->registerCallBack();
         }
 
@@ -646,7 +642,7 @@ void SkeletalFishBoss::initJoint() {
         mJointIndicies[i] = -1;
     }
 
-    for (s32 i = 0; i < 0xD; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mControllers); i++) {
         char buf[16];
         snprintf(buf, sizeof(buf), "Joint%02d", i);
         mControllers[i] = MR::createJointDelegatorWithNullChildFunc(this, &SkeletalFishBoss::calcJoint, buf);
@@ -687,7 +683,7 @@ void SkeletalFishBoss::initSwitch(const JMapInfoIter& rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
     } else if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnA(this, MR::FunctorV0M< SkeletalFishBoss*, void (SkeletalFishBoss::*)(void) >(this, &SkeletalFishBoss::appear));
+        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &SkeletalFishBoss::appear));
     }
 }
 
@@ -1016,7 +1012,7 @@ SkeletalFishBossHead::SkeletalFishBossHead(LiveActor* pActor)
     initHitSensor(17);
     MR::addHitSensorAtJointEnemy(this, "body", "Head", 8, 400.0f, TVec3f(0.0f, -120.0f, 320.0f));
 
-    for (u32 i = 0; i < 0xD; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(sHitPosData); i++) {
         // SkeletalFishBoss::HitPos* data = &sHitPosData[i];
         TVec3f offset(sHitPosData[i].mOffset);
         // offset.setInlinePS((TVec3f)data->mOffset);

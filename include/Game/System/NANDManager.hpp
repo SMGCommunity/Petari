@@ -53,7 +53,8 @@ private:
 
 class NANDResultCode {
 public:
-    NANDResultCode(s32 code) : mCode(code) {}
+    NANDResultCode(s32 code) : mCode(code) {
+    }
 
     s32 getCode() const;
     bool isSuccess() const;
@@ -71,4 +72,4 @@ private:
 
 namespace MR {
     void addRequestToNANDManager(NANDRequestInfo*);
-};
+};  // namespace MR

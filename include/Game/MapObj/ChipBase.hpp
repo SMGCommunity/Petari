@@ -11,7 +11,8 @@ class ChipBase : public LiveActor {
 public:
     ChipBase(const char*, s32, const char*);
 
-    virtual ~ChipBase() {}
+    virtual ~ChipBase() {
+    }
 
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();

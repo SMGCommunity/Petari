@@ -13,7 +13,8 @@ CameraShaker::CameraShaker(const char* pName) : NameObj(pName) {
     createInfinityTask();
 }
 
-CameraShaker::~CameraShaker() {}
+CameraShaker::~CameraShaker() {
+}
 
 void CameraShaker::movement() {
     updateSinglyVerticalTask();
@@ -155,7 +156,7 @@ void CameraShaker::addInfinityTaskOffset(TVec2f* pOffset) {
 }
 
 void CameraShaker::startInfinity(u32 index, f32 a2, f32 a3) {
-    CameraShakePatternVerticalSin* sin = reinterpret_cast< CameraShakePatternVerticalSin* >(mInfinityTasks[index]->mPattern);
+    CameraShakePatternVerticalSin* sin = static_cast< CameraShakePatternVerticalSin* >(mInfinityTasks[index]->mPattern);
 
     sin->_8 = a2;
     sin->_C = a3;

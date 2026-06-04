@@ -200,7 +200,7 @@ void BossKameckStateBattle::exeMove() {
     }
 
     f32 mag = (100.0f * PSVECMag(&mHost->mVelocity));
-    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_FLOAT", mag, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_FLOAT", mag);
 
     s32 v2 = (_3C) ? 40 : 90;
 
@@ -223,14 +223,14 @@ void BossKameckStateBattle::exeMove() {
 void BossKameckStateBattle::exeHideMoveStart() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "Hide");
-        MR::startSound(mHost, "SE_BM_KAMECK_HIDE_SPIN", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_HIDE_SPIN");
     }
 
     MR::zeroVelocity(mHost);
     MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, 6.0f);
 
     if (MR::isActionEnd(mHost)) {
-        MR::startSound(mHost, "SE_BM_KAMECK_HIDE_SMOKE", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_HIDE_SMOKE");
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMove::sInstance);
     }
 }
@@ -243,7 +243,7 @@ void BossKameckStateBattle::exeHideMove() {
         _34 = 0;
     }
 
-    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_HIDE_MOVE", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_HIDE_MOVE");
 
     f32 v2;
 
@@ -279,8 +279,8 @@ void BossKameckStateBattle::exeHideMoveEnd() {
     if (MR::isFirstStep(this)) {
         MR::showModel(mHost);
         MR::startAction(mHost, "Appear");
-        MR::startSound(mHost, "SE_BM_KAMECK_APPEAR_SMOKE", -1, -1);
-        MR::startSound(mHost, "SE_BM_KAMECK_APPEAR_SPIN", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_APPEAR_SMOKE");
+        MR::startSound(mHost, "SE_BM_KAMECK_APPEAR_SPIN");
     }
 
     MR::zeroVelocity(mHost);
@@ -326,7 +326,7 @@ void BossKameckStateBattle::exeAttackWait() {
         MR::startAction(mHost, "AttackWait");
     }
 
-    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_STAFF_TURN", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_STAFF_TURN");
     MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, 6.0f);
     MR::addVelocityMoveToTarget(mHost, _20, 0.09f, 0.9f, 0.0f, 400.0f);
     MR::addVelocityKeepHeight(mHost, _20, 0.0f, 0.2f, 50.0f);
@@ -343,15 +343,15 @@ void BossKameckStateBattle::exeAttack() {
     }
 
     if (MR::isStep(this, 12)) {
-        MR::startSound(mHost, "SE_BM_KAMECK_STAFF_SWING", -1, -1);
-        MR::startSound(mHost, "SE_BV_KAMECK_STAFF_SWING", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_STAFF_SWING");
+        MR::startSound(mHost, "SE_BV_KAMECK_STAFF_SWING");
     }
 
     if (MR::isStep(this, 23)) {
         mBeam->requestShootToPlayerGround(20.0f);
         mHost->mActorList->addActor(mBeam);
         mBeam = nullptr;
-        MR::startSound(mHost, "SE_BM_KAMECK_STAFF_EFFECT", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_STAFF_EFFECT");
     }
 
     MR::attenuateVelocity(mHost, 0.96f);
@@ -368,12 +368,12 @@ void BossKameckStateBattle::exeDamage() {
         if (_3C) {
             MR::stopStageBGM(30);
             MR::startAction(mHost, "Down");
-            MR::startSound(mHost, "SE_BV_KAMECK_LAST_DAMAGE", -1, -1);
-            MR::startSound(mHost, "SE_BM_KAMECK_LAST_DAMAGE", -1, -1);
+            MR::startSound(mHost, "SE_BV_KAMECK_LAST_DAMAGE");
+            MR::startSound(mHost, "SE_BM_KAMECK_LAST_DAMAGE");
         } else {
             MR::startAction(mHost, "Damage");
-            MR::startSound(mHost, "SE_BV_KAMECK_DAMAGE", -1, -1);
-            MR::startSound(mHost, "SE_BM_KAMECK_DAMAGE", -1, -1);
+            MR::startSound(mHost, "SE_BV_KAMECK_DAMAGE");
+            MR::startSound(mHost, "SE_BM_KAMECK_DAMAGE");
         }
     }
 
@@ -385,7 +385,7 @@ void BossKameckStateBattle::exeDamage() {
 void BossKameckStateBattle::exeRecover() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "Recover");
-        MR::startSound(mHost, "SE_BM_KAMECK_RECOVER", -1, -1);
+        MR::startSound(mHost, "SE_BM_KAMECK_RECOVER");
     }
 
     if (MR::isGreaterStep(this, 60)) {
@@ -460,4 +460,5 @@ bool BossKameckStateBattle::isEnableGuard() const {
     return ret;
 }
 
-BossKameckStateBattle::~BossKameckStateBattle() {}
+BossKameckStateBattle::~BossKameckStateBattle() {
+}

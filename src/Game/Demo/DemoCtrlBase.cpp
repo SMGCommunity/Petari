@@ -73,7 +73,7 @@ bool DemoCtrlBase::tryStart() {
         MR::shakeCameraInfinity(mActor, shakeIntensity, shakeSpeed);
     }
 
-    MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+    MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     MR::emitEffect(mActor, MR::Demo::getStartEffect(mDemoName));
     return true;
 }

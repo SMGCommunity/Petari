@@ -27,4 +27,4 @@ namespace MR {
     NameObj* createClipAreaBottomBox(const char* pModel);
     NameObj* createClipAreaTopCone(const char* pModel);
     NameObj* createClipAreaBottomCone(const char* pModel);
-}  // namespace MR
+};  // namespace MR

@@ -7,7 +7,8 @@ class MarioLauncherAttractor : public LiveActor {
 public:
     MarioLauncherAttractor(const char* pName);
 
-    virtual ~MarioLauncherAttractor() {}
+    virtual ~MarioLauncherAttractor() {
+    }
     virtual void init(const JMapInfoIter& rIter);
 
     PointGravityCreator* mGravityCreator;  // 0x8C

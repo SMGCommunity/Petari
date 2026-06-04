@@ -9,7 +9,8 @@ class DynamicCollisionObj : public LiveActor {
 public:
     class TriangleIndexing {
     public:
-        inline TriangleIndexing() {}
+        inline TriangleIndexing() {
+        }
 
         u16 mIndex[3];
     };

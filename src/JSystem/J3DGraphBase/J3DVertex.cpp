@@ -6,4 +6,5 @@ J3DDrawMtxData::J3DDrawMtxData() {
     mDrawMtxIndex = NULL;
 }
 
-J3DDrawMtxData::~J3DDrawMtxData() {}
+J3DDrawMtxData::~J3DDrawMtxData() {
+}

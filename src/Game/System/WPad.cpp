@@ -75,7 +75,8 @@ s32 WPad::getBattery() const {
     return mInfoChecker->getBattery();
 }
 
-void WPad::resetPad() {}
+void WPad::resetPad() {
+}
 
 void WPad::connected() {
     mIsConnected = true;
@@ -149,11 +150,11 @@ namespace MR {
     void getPadDataForExceptionNoInit(u32 chan, u32* pHold, u32* pTrigger) {
         KPADStatus status[1];
 
-        if (KPADRead(chan, status, sizeof(status) / sizeof(*status)) <= 0) {
+        if (KPADRead(chan, status, ARRAY_SIZE(status)) <= 0) {
             return;
         }
 
-        for (s32 i = 0; i < sizeof(status) / sizeof(*status); i++) {
+        for (s32 i = 0; i < ARRAY_SIZE(status); i++) {
             bool isDevTypeCore = status[i].dev_type == WPAD_DEV_CORE;
             bool isDevTypeFreestyle = status[i].dev_type == WPAD_DEV_FREESTYLE;
 

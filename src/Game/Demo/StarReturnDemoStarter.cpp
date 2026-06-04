@@ -10,7 +10,7 @@
 namespace {
     const char* cDemoMovePartName = "移動";
     const char* cDemoWaitPartName = "ウェイト";
-}  // namespace
+};  // namespace
 
 StarReturnDemoStarter::StarReturnDemoStarter(const char* pName)
     : LiveActor(pName), mReturnDemoRailMove(), mStageResultInformer(), mPosition(gZeroVec), mPowerStar(), mLuma(), mHair(), mFrame() {
@@ -28,7 +28,7 @@ namespace NrvStarReturnDemoStarter {
     NEW_NERVE(StarReturnDemoStarterNrvStageResult, StarReturnDemoStarter, StageResult);
     NEW_NERVE(StarReturnDemoStarterNrvFadeOut, StarReturnDemoStarter, FadeOut);
     NEW_NERVE(StarReturnDemoStarterNrvStageResultAfter, StarReturnDemoStarter, StageResultAfter);
-}  // namespace NrvStarReturnDemoStarter
+};  // namespace NrvStarReturnDemoStarter
 
 StarReturnDemoStarter::~StarReturnDemoStarter() {
 }
@@ -139,7 +139,7 @@ void StarReturnDemoStarter::tryStartStageResult() {
 
 void StarReturnDemoStarter::tryStartResultWait() {
     if (MR::isBckOneTimeAndStoppedPlayer()) {
-        MR::startBckPlayer("ResultWait", reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer("ResultWait", static_cast< const char* >(nullptr));
     } else if (mHair != nullptr) {
         if (mFrame == 21) {
             MR::hidePlayerJoint("Cap0");
@@ -170,7 +170,7 @@ void StarReturnDemoStarter::exeAppearWait() {
 
     if (MR::isStep(this, 30)) {
         MR::emitEffect(mPowerStar, "DemoFlyLightDemo");
-        MR::startSound(mPowerStar, "SE_PM_DEMO_RETURN_LIGHT", -1, -1);
+        MR::startSound(mPowerStar, "SE_PM_DEMO_RETURN_LIGHT");
     }
 
     MR::setNerveAtStep(this, &NrvStarReturnDemoStarter::StarReturnDemoStarterNrvMove::sInstance, 45);
@@ -206,11 +206,11 @@ void StarReturnDemoStarter::exeFlyWaitPowerStar() {
 
     int brakeFrame = mReturnDemoRailMove->getDemoFlyBrakeFrame();
     if (MR::isLessStep(this, 115 - brakeFrame)) {
-        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY", -1, -1, -1);
+        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY");
     }
 
     if (MR::isStep(this, 115 - brakeFrame)) {
-        MR::startSound(mPowerStar, "SE_OJ_RET_POW_STAR_LEAVE", -1, -1);
+        MR::startSound(mPowerStar, "SE_OJ_RET_POW_STAR_LEAVE");
     }
 
     if (MR::isBckStoppedPlayer()) {
@@ -226,11 +226,11 @@ void StarReturnDemoStarter::exeFlyWaitGrandStar() {
     PowerStar::requestPointLightAtResultSequence(mPowerStar);
 
     if (MR::isLessStep(this, MR::getBckFrameMaxPlayer("ResultFlyGrandStarEnd") - mReturnDemoRailMove->getDemoFlyBrakeFrame())) {
-        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY", -1, -1, -1);
+        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY");
     }
 
     if (MR::isBckOneTimeAndStoppedPlayer()) {
-        MR::startBckPlayer("ResultFlyGrandStarFlyAway", reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer("ResultFlyGrandStarFlyAway", static_cast< const char* >(nullptr));
         MR::startBck(mPowerStar, "ResultFlyGrandStarFlyAway", nullptr);
         MR::shakeCameraWeak();
         MR::tryRumblePadWeak(this, 0);
@@ -249,7 +249,7 @@ void StarReturnDemoStarter::exeFall() {
 
     if (MR::isFirstStep(this)) {
         MR::startSoundPlayer("SE_PV_DM_ASTRO_RET_LANDING", -1);
-        MR::startBckPlayer("Fall", reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer("Fall", static_cast< const char* >(nullptr));
         mPowerStar->kill();
 
         TVec3f scaled;
@@ -274,7 +274,7 @@ void StarReturnDemoStarter::exeFall() {
 
 void StarReturnDemoStarter::exeLand() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("Land", reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer("Land", static_cast< const char* >(nullptr));
     }
 
     if (MR::isBckStoppedPlayer()) {
@@ -294,7 +294,7 @@ void StarReturnDemoStarter::exeLand() {
 
 void StarReturnDemoStarter::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer(playerAnimName(), reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer(playerAnimName(), static_cast< const char* >(nullptr));
 
         mFrame = 0;
         if (MR::isEqualStageName("AstroGalaxy")) {

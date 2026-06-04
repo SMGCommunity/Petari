@@ -33,7 +33,8 @@ HoneyQueen::HoneyQueen(const char* pName) : NPCActor(pName) {
     mNpcModel = nullptr;
 }
 
-HoneyQueen::~HoneyQueen() {}
+HoneyQueen::~HoneyQueen() {
+}
 
 void HoneyQueen::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps = "HoneyQueen";
@@ -106,7 +107,7 @@ void HoneyQueen::init(const JMapInfoIter& rIter) {
 
 void HoneyQueen::control() {
     NPCActor::control();
-    MR::startLevelSound(this, "SE_SM_LV_HONEYQUEEN_FLY", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_HONEYQUEEN_FLY");
 }
 
 void HoneyQueen::calcAnim() {

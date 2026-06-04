@@ -5,7 +5,8 @@ MarioHolder::MarioHolder() : NameObj("マリオ保持") {
     mActor = nullptr;
 }
 
-MarioHolder::~MarioHolder() {}
+MarioHolder::~MarioHolder() {
+}
 
 void MarioHolder::setMarioActor(MarioActor* pActor) {
     mActor = pActor;
@@ -19,4 +20,4 @@ namespace MR {
     MarioHolder* getMarioHolder() {
         return MR::getSceneObj< MarioHolder >(SceneObj_MarioHolder);
     }
-}  // namespace MR
+};  // namespace MR

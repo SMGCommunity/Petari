@@ -29,7 +29,8 @@ namespace NrvStarPieceCounter {
 
 StarPieceCounter::StarPieceCounter(const char* pName)
     : LayoutActor(pName, true), mStarPieceNum(0), mStarPieceDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
-      mFollowPos(0.0f, 0.0f), _3C(0), mMode(0) {}
+      mFollowPos(0.0f, 0.0f), _3C(0), mMode(0) {
+}
 
 void StarPieceCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("StarPieceCounter", 3);

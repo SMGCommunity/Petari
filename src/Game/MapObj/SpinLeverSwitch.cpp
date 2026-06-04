@@ -11,7 +11,8 @@ SpinLeverSwitch::SpinLeverSwitch(const char* pName) : LiveActor(pName) {
     mConnector = new MapObjConnector(this);
 }
 
-SpinLeverSwitch::~SpinLeverSwitch() {}
+SpinLeverSwitch::~SpinLeverSwitch() {
+}
 
 void SpinLeverSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -87,18 +88,18 @@ void SpinLeverSwitch::exeSwitchOn() {
         MR::startBck(this, "On", 0);
         MR::startBrk(this, "On");
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_HIT_W", -1, -1);
+            MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_HIT_W");
         } else {
-            MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_HIT", -1, -1);
+            MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_HIT");
         }
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraNormal();
     }
     if (MR::isStep(this, 8)) {
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_ON_W", -1, -1);
+            MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_ON_W");
         } else {
-            MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_ON", -1, -1);
+            MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_ON");
         }
     }
     if (MR::isStep(this, 15)) {
@@ -109,4 +110,5 @@ void SpinLeverSwitch::exeSwitchOn() {
     }
 }
 
-void SpinLeverSwitch::exeEnd() {}
+void SpinLeverSwitch::exeEnd() {
+}

@@ -23,7 +23,8 @@ JKRDecomp::JKRDecomp(long a1) : JKRThread(0x4000, 0x10, a1) {
     OSResumeThread(mThread);
 }
 
-JKRDecomp::~JKRDecomp() {}
+JKRDecomp::~JKRDecomp() {
+}
 
 void* JKRDecomp::run() {
     OSInitMessageQueue(&gMessageQueue, &gMessage[0], NR_MESSAGES);

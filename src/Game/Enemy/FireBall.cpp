@@ -27,7 +27,8 @@ namespace NrvFireBall {
     NEW_NERVE(FireBallNrvReflect, FireBall, Reflect);
 };  // namespace NrvFireBall
 
-FireBall::FireBall(const char* pName) : LiveActor(pName), _8C(nullptr), _90(0.0f, 1.0f, 0.0f) {}
+FireBall::FireBall(const char* pName) : LiveActor(pName), _8C(nullptr), _90(0.0f, 1.0f, 0.0f) {
+}
 
 void FireBall::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("FireBall", nullptr, false);
@@ -52,7 +53,7 @@ void FireBall::appear() {
 void FireBall::kill() {
     MR::forceDeleteEffect(this, "FireBall");
     MR::emitEffect(this, "FireBallBreak");
-    MR::startSound(this, "SE_OJ_FIRE_BALL_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_FIRE_BALL_BREAK");
     LiveActor::kill();
 }
 
@@ -186,7 +187,7 @@ void FireBall::exeThrow() {
 void FireBall::exeReflect() {
     if (MR::isFirstStep(this)) {
         MR::start2PAttackAssistSound();
-        MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT", -1, -1);
+        MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT");
     }
     mVelocity.mult(0.96f);
 

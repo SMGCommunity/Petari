@@ -40,11 +40,21 @@ public:
     void deformVtxNrm_F32(J3DVertexBuffer*) const;
     void deformVtxNrm_S16(J3DVertexBuffer*) const;
     void deform(J3DModel*);
-    void setNrmMtx(int i, MtxPtr mtx) { J3DPSMtx33CopyFrom34(mtx, (Mtx3P)mNrmMtx[i]); }
-    Mtx3P getNrmMtx(int i) { return mNrmMtx[i]; }
-    void onFlag(u32 flag) { mFlags |= flag; }
-    void offFlag(u32 flag) { mFlags &= ~flag; }
-    bool checkFlag(u32 flag) { return mFlags & flag ? true : false; }
+    void setNrmMtx(int i, MtxPtr mtx) {
+        J3DPSMtx33CopyFrom34(mtx, (Mtx3P)mNrmMtx[i]);
+    }
+    Mtx3P getNrmMtx(int i) {
+        return mNrmMtx[i];
+    }
+    void onFlag(u32 flag) {
+        mFlags |= flag;
+    }
+    void offFlag(u32 flag) {
+        mFlags &= ~flag;
+    }
+    bool checkFlag(u32 flag) {
+        return mFlags & flag ? true : false;
+    }
 
     virtual void deform(J3DVertexBuffer*, J3DMtxBuffer*);
     virtual ~J3DSkinDeform();
@@ -75,10 +85,18 @@ public:
     void deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*, f32*);
     void normalizeWeight(int, f32*);
 
-    void offFlag(u32 i_flag) { mFlags &= ~i_flag; }
-    bool checkFlag(u32 i_flag) { return mFlags & i_flag ? true : false; }
-    void setAnmCluster(J3DAnmCluster* anm) { mAnmCluster = anm; }
-    void normalize(f32* i_vec) { PSVECNormalize((Vec*)i_vec, (Vec*)i_vec); }
+    void offFlag(u32 i_flag) {
+        mFlags &= ~i_flag;
+    }
+    bool checkFlag(u32 i_flag) {
+        return mFlags & i_flag ? true : false;
+    }
+    void setAnmCluster(J3DAnmCluster* anm) {
+        mAnmCluster = anm;
+    }
+    void normalize(f32* i_vec) {
+        PSVECNormalize((Vec*)i_vec, (Vec*)i_vec);
+    }
 
     /* 0x00 */ J3DDeformData* mDeformData;
     /* 0x04 */ J3DAnmCluster* mAnmCluster;

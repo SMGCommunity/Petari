@@ -33,7 +33,9 @@ public:
     void setStateDoorOpenOrClose();
     void startDemo();
 
-    inline bool checkStrings(const char* arg1) { return MR::isEqualString(arg1, "AstroDomeEntrance") || MR::isEqualString(arg1, "AstroLibrary"); }
+    inline bool checkStrings(const char* arg1) {
+        return MR::isEqualString(arg1, "AstroDomeEntrance") || MR::isEqualString(arg1, "AstroLibrary");
+    }
     inline bool checkOtherStrings(const char* arg1) {
         return MR::isEqualString(arg1, "AstroRotateStepA") || MR::isEqualString(arg1, "AstroRotateStepB") ||
                MR::isEqualString(arg1, "AstroDecoratePartsA");

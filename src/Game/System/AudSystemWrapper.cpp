@@ -12,21 +12,9 @@
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 
-AudSystemWrapper::AudSystemWrapper(JKRSolidHeap* pParam1, JKRHeap* pParam2) :
-    mAudSystem(nullptr),
-    _4(pParam1),
-    _8(pParam2),
-    mSmrRes(nullptr),
-    mJaiSeqRes(nullptr),
-    mJaiCordRes(nullptr),
-    mJaiMeRes(nullptr),
-    mJaiRemixSeqRes(nullptr),
-    mSpkHeap(nullptr),
-    mSpkRes(nullptr),
-    _28(false),
-    _29(false),
-    _2A(false)
-{
+AudSystemWrapper::AudSystemWrapper(JKRSolidHeap* pParam1, JKRHeap* pParam2)
+    : mAudSystem(nullptr), _4(pParam1), _8(pParam2), mSmrRes(nullptr), mJaiSeqRes(nullptr), mJaiCordRes(nullptr), mJaiMeRes(nullptr),
+      mJaiRemixSeqRes(nullptr), mSpkHeap(nullptr), mSpkRes(nullptr), _28(false), _29(false), _2A(false) {
     mSpkHeap = JKRExpHeap::create(AudSpeakerWrap::getRequiredHeapSize(), pParam1, false);
 }
 

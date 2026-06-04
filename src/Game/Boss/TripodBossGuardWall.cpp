@@ -70,9 +70,7 @@ void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
 
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::FunctorV0M< TripodBossGuardWall*, void (TripodBossGuardWall::*)() > validateFunc =
-            MR::Functor_Inline< TripodBossGuardWall >(this, &TripodBossGuardWall::requestStart);
-        MR::listenStageSwitchOnAppear(this, validateFunc);
+        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &TripodBossGuardWall::requestStart));
     }
 
     MR::invalidateClipping(this);
@@ -145,7 +143,7 @@ void TripodBossGuardWall::exeDemo() {
         }
 
         if (MR::isLessStep(this, sMoveSeLength + 0xB4)) {
-            MR::startLevelSound(this, "SE_BM_LV_TRIPOD_WALL_UP", -1, -1, -1);
+            MR::startLevelSound(this, "SE_BM_LV_TRIPOD_WALL_UP");
         }
 
         if (isDemoEndAny) {
@@ -159,7 +157,7 @@ void TripodBossGuardWall::exeDemo() {
 void TripodBossGuardWall::exeRotate() {
     mRotation.y += -0.2f;
     MR::repeatDegree(&mRotation.y);
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_C_WALL_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_C_WALL_MOVE");
     if (MR::isEndBreakDownDemoTripodBoss()) {
         kill();
     }

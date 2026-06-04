@@ -5,6 +5,10 @@
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+namespace {
+    static u32 sBloomSyncStep;
+};  // namespace
+
 namespace NrvFlipPanel {
     NEW_NERVE(FlipPanelNrvFrontLand, FlipPanel, FrontLand);
     NEW_NERVE(FlipPanelNrvBackLand, FlipPanel, BackLand);
@@ -19,10 +23,6 @@ namespace NrvFlipPanelObserver {
     NEW_NERVE(FlipPanelObserverNrvComplete, FlipPanelObserver, Complete);
     NEW_NERVE(FlipPanelObserverNrvDemoWait, FlipPanelObserver, DemoWait);
 };  // namespace NrvFlipPanelObserver
-
-namespace {
-    static u32 sBloomSyncStep;
-};
 
 FlipPanel::FlipPanel(const char* pName) : MapObjActor(pName) {
     mDelegator = 0;
@@ -74,7 +74,7 @@ void FlipPanel::exeFrontLand() {
         }
 
         MR::tryRumblePadMiddle(this, 0);
-        MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE", -1, -1);
+        MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE");
 
         if (_CD) {
             MR::sendMsgToGroupMember(ACTMES_FAILURE, this, getSensor(0), "body");
@@ -103,7 +103,7 @@ void FlipPanel::exeBackLand() {
         }
 
         MR::tryRumblePadMiddle(this, 0);
-        MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE", -1, -1);
+        MR::startSound(this, "SE_OJ_FLIP_PANEL_CHANGE");
 
         if (!_CD) {
             MR::sendMsgToGroupMember(ACTMES_SUCCESS, this, getSensor(0), "body");
@@ -137,14 +137,14 @@ void FlipPanel::exeWait() {
 }
 
 void FlipPanel::exeEndPrepare() {
-    if (MR::isStep(this, 0x14)) {
+    if (MR::isStep(this, 20)) {
         setNerve(&NrvFlipPanel::FlipPanelNrvEnd::sInstance);
     }
 }
 
 void FlipPanel::exeEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_OJ_FLIP_PANEL_COMPLETE", -1, -1);
+        MR::startSystemSE("SE_OJ_FLIP_PANEL_COMPLETE");
         MR::startBck(this, "PanelEnd", 0);
         MapObjActorUtil::killBloomModel(this);
         _CC = 0;
@@ -312,7 +312,7 @@ void FlipPanelObserver::init(const JMapInfoIter& rIter) {
 void FlipPanelObserver::exeWait() {
     if (MR::isFirstStep(this) && MR::isValidSwitchAppear(this)) {
         MR::callAppearAllGroupMember(this);
-        MR::startSound(this, "SE_OJ_FLIP_PANEL_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_FLIP_PANEL_APPEAR");
     }
 
     if (_90 == _8C->mObjectCount - 1 && MR::tryStartDemo(this, "FlipPanelComplete")) {
@@ -394,6 +394,8 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
     return false;
 }
 
-FlipPanel::~FlipPanel() {}
+FlipPanel::~FlipPanel() {
+}
 
-FlipPanelObserver::~FlipPanelObserver() {}
+FlipPanelObserver::~FlipPanelObserver() {
+}

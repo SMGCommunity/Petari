@@ -1,7 +1,7 @@
 #pragma once
 
-#include <JSystem/JGeometry/TMatrix.hpp>
 #include "Game/NameObj/NameObj.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class BrightInfo {
 public:

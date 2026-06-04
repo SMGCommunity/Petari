@@ -286,7 +286,7 @@ namespace GameEventFlagTable {
     }
 
     s32 getTableSize() {
-        return sizeof(sGameEventFlagStatic) / sizeof(*sGameEventFlagStatic);
+        return ARRAY_SIZE(sGameEventFlagStatic);
     }
 
     const GameEventFlag* getFlag(int index) {
@@ -392,7 +392,7 @@ namespace GameEventFlagTable {
             }
         } else if (pFlag1->mType == GameEventFlag::Type_Galaxy) {
             const char* galaxyDependedFlags[3];
-            s32 length = getGalaxyDependedFlags(galaxyDependedFlags, sizeof(galaxyDependedFlags) / sizeof(*galaxyDependedFlags), pFlagName1);
+            s32 length = getGalaxyDependedFlags(galaxyDependedFlags, ARRAY_SIZE(galaxyDependedFlags), pFlagName1);
 
             for (s32 i = 0; i < length; i++) {
                 if (MR::isEqualString(galaxyDependedFlags[i], pFlagName2)) {

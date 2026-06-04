@@ -83,4 +83,4 @@ public:
 namespace MR {
     // should this be in MathUtil?
     void clampMax(f32*, f32);
-}  // namespace MR
+};  // namespace MR

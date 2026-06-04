@@ -4,7 +4,7 @@
 #include "Game/Util/JMapInfo.hpp"
 
 class StarPieceSpot : public LiveActor {
-public: 
+public:
     StarPieceSpot(const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);

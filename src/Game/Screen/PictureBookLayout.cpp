@@ -520,7 +520,7 @@ void PictureBookLayout::exeOpen() {
     }
 
     if (MR::isStep(this, 140)) {
-        MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ST", -1, -1);
+        MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ST");
     }
 
     s32 animFrameMax = MR::getAnimFrameMax(this, (u32)0);
@@ -556,11 +556,11 @@ void PictureBookLayout::exeContentsSelect() {
     } else {
         for (s32 i = 0; i < mChapterMax; i++) {
             if (mContentsButtonPaneController[i]->isPointingTrigger()) {
-                MR::startSystemSE("SE_SY_PICBOOK_CONTENTS_CUR", -1, -1);
+                MR::startSystemSE("SE_SY_PICBOOK_CONTENTS_CUR");
             }
 
             if (mContentsButtonPaneController[i]->trySelect()) {
-                MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+                MR::startSystemSE("SE_SY_TALK_OK");
                 mChapterNo = i + 1;
                 mCloseButton->disappear();
                 setNerve(&NrvPictureBookLayout::PictureBookLayoutNrvContentsFadeOut::sInstance);
@@ -738,7 +738,7 @@ void PictureBookLayout::exeWaitWithText() {
             MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testCorePadTriggerRight(WPAD_CHAN0) || MR::testSubPadStickTriggerRight(WPAD_CHAN0);
 
         if (isTriggerNextPage) {
-            MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+            MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
 
             if (mNextItemDir > 0 && !isReadedCurrentText()) {
                 mNotReadedChapterNo = mChapterNo;
@@ -758,7 +758,7 @@ void PictureBookLayout::exeWaitWithText() {
 
             if (isTriggerPrevPage) {
                 if (mChapterMin < mChapterNo || mPageNo > 0 || mTextIndex > 0) {
-                    MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+                    MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
 
                     if (isValidCloseButton()) {
                         mCloseButton->disappear();
@@ -828,9 +828,9 @@ void PictureBookLayout::exePageNext() {
         }
 
         if (mIsNextItemFast) {
-            MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_F_ST", -1, -1);
+            MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_F_ST");
         } else {
-            MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ST", -1, -1);
+            MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ST");
         }
 
         MR::setAnimRate(this, mNextItemDir * getReadSpeed(), 0);
@@ -838,10 +838,10 @@ void PictureBookLayout::exePageNext() {
 
     if (mIsNextItemFast) {
         if (MR::isStep(this, cPageNextEndFastSeStep)) {
-            MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_F_ED", -1, -1);
+            MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_F_ED");
         }
     } else if (MR::isStep(this, cPageNextEndNormalSeStep)) {
-        MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ED", -1, -1);
+        MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ED");
     }
 
     MR::setNerveAtAnimStopped(this, &NrvPictureBookLayout::PictureBookLayoutNrvWaitNoText::sInstance, 0);
@@ -902,7 +902,7 @@ void PictureBookLayout::exeClose() {
     }
 
     if (MR::isStep(this, 150)) {
-        MR::startSystemSE("SE_SY_PICTUREBOOK_END", -1, -1);
+        MR::startSystemSE("SE_SY_PICTUREBOOK_END");
     }
 
     if (MR::isGreaterStep(this, step)) {

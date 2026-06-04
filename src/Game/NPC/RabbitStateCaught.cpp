@@ -65,7 +65,7 @@ void RabbitStateCaught::exeCaught() {
         MR::startAction(mHost, "Caught");
         MR::startBckPlayer("Catch", static_cast< const char* >(nullptr));
         MR::zeroVelocity(mHost);
-        MR::startSound(mHost, "SE_SM_RABBIT_CAUGHT", -1, -1);
+        MR::startSound(mHost, "SE_SM_RABBIT_CAUGHT");
         setCaughtStartMarioPose();
     }
 
@@ -104,7 +104,7 @@ void RabbitStateCaught::exeCaughtLand() {
         MR::startBckPlayer("CatchLand", static_cast< const char* >(nullptr));
     }
 
-    MR::startLevelSound(mHost, "SE_SM_LV_RABBIT_STRUGGLE", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_SM_LV_RABBIT_STRUGGLE");
 
     if (MR::isBckStopped(mHost)) {
         if (mTalkMessageCtrl == nullptr) {
@@ -126,7 +126,7 @@ void RabbitStateCaught::exeCaughtEvent() {
         }
     }
 
-    MR::startLevelSound(mHost, "SE_SM_LV_RABBIT_STRUGGLE", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_SM_LV_RABBIT_STRUGGLE");
 
     if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(mTalkMessageCtrl)) {
         if (mPowerStarModel != nullptr) {

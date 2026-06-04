@@ -8,7 +8,7 @@ namespace NrvPenguinRacerLeader {
     NEW_NERVE(PenguinRacerLeaderNrvPost, PenguinRacerLeader, Post);
     NEW_NERVE(PenguinRacerLeaderNrvTalk, PenguinRacerLeader, Talk);
     NEW_NERVE(PenguinRacerLeaderNrvTakeOutStar, PenguinRacerLeader, TakeOutStar);
-}  // namespace NrvPenguinRacerLeader
+};  // namespace NrvPenguinRacerLeader
 
 PenguinRacerLeader::PenguinRacerLeader(const char* pName) : PenguinRacer(pName), mTakeOutStar(nullptr), mCameraInfo(nullptr) {
 }

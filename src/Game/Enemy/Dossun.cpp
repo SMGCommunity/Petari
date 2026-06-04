@@ -137,7 +137,7 @@ void Dossun::exeFallSign() {
             MR::setBvaRate(this, 2.5f);
         }
 
-        MR::startSound(this, "SE_OJ_DOSSUN_FALL_SIGN", -1, -1);
+        MR::startSound(this, "SE_OJ_DOSSUN_FALL_SIGN");
     }
 
     if (MR::isBckStopped(this)) {
@@ -148,7 +148,7 @@ void Dossun::exeFallSign() {
 void Dossun::exeFalling() {
     f32 ease = MR::getEaseInValue(getNerveStep(), 0.0f, 1.0f, mFallingTime);
     JMAVECLerp(&_8C, &_98, &mPosition, ease);
-    MR::startLevelSound(this, "SE_OJ_LV_DOSSUN_FALL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_DOSSUN_FALL");
     if (MR::isStep(this, mFallingTime)) {
         setNerve(&NrvDossun::DossunNrvOnGround::sInstance);
     }
@@ -158,7 +158,7 @@ void Dossun::exeOnGround() {
     if (MR::isFirstStep(this)) {
         mPosition.set< f32 >(_98);
         MR::startRumbleWithShakeCameraNormalWeak(this, "中", "弱", 2000.0f, 3500.0f);
-        MR::startSound(this, "SE_OJ_DOSSUN_LAND", -1, -1);
+        MR::startSound(this, "SE_OJ_DOSSUN_LAND");
         MR::emitEffect(this, "Land");
     }
 
@@ -175,9 +175,9 @@ void Dossun::exeRising() {
 
     f32 ease = MR::getEaseInOutValue(getNerveStep(), 0.0f, 1.0f, mHoldTime);
     JMAVECLerp(&_98, &_8C, &mPosition, ease);
-    MR::startLevelSound(this, "SE_OJ_LV_DOSSUN_UPPER", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_DOSSUN_UPPER");
     if (MR::isStep(this, mHoldTime)) {
-        MR::startSound(this, "SE_OJ_DOSSUN_STOP", -1, -1);
+        MR::startSound(this, "SE_OJ_DOSSUN_STOP");
         setNerve(&NrvDossun::DossunNrvUpper::sInstance);
     }
 }

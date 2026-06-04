@@ -9,7 +9,7 @@
 namespace NrvBossStinkBugBomb {
     NEW_NERVE(BossStinkBugBombNrvWait, BossStinkBugBomb, Wait);
     NEW_NERVE(BossStinkBugBombNrvExplosion, BossStinkBugBomb, Explosion);
-}  // namespace NrvBossStinkBugBomb
+};  // namespace NrvBossStinkBugBomb
 
 BossStinkBugBomb::BossStinkBugBomb(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f, 1.0f), _9C(0.0f, 0.0f, 0.0f) {
 }
@@ -95,16 +95,16 @@ void BossStinkBugBomb::exeWait() {
 
     if (MR::reboundVelocityFromCollision(this, 0.8f, 5.0f, 1.0f) && dot >= 9.5f) {
         f32 liner = MR::getLinerValueFromMinMax(dot, 10.5f, 30.0f, 0.3f, 1.0f);
-        MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_GROUND", 100.0f * liner, -1);
+        MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_GROUND", 100.0f * liner);
         if (MR::isBindedGroundWater(this)) {
-            MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_GROUND_WATER", 100.0f * liner, -1);
+            MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_GROUND_WATER", 100.0f * liner);
         }
     }
 
     if (MR::isLessStep(this, 112)) {
-        MR::startLevelSound(this, "SE_BM_BOSS_BUG_BOMB_COUNT1", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_BOSS_BUG_BOMB_COUNT1");
     } else {
-        MR::startLevelSound(this, "SE_BM_BOSS_BUG_BOMB_COUNT2", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_BOSS_BUG_BOMB_COUNT2");
     }
 
     MR::attenuateVelocity(this, MR::isBinded(this) ? 0.9f : 0.98f);
@@ -122,10 +122,10 @@ void BossStinkBugBomb::exeExplosion() {
         MR::invalidateHitSensor(this, "body");
 
         MR::emitEffect(this, "Explosion");
-        MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_BANG", -1, -1);
+        MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_BANG");
 
         if (MR::isBindedGroundWater(this)) {
-            MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_BANG_WATER", -1, -1);
+            MR::startSound(this, "SE_BM_BOSS_BUG_BOMB_BANG_WATER");
         }
 
         MR::tryRumblePadAndCameraDistanceStrong(this, 800.0f, 1200.0f, 2000.0f);

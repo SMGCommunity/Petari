@@ -9,7 +9,7 @@
 namespace {
     const char* cDemoMovePartName = "移動";
     const char* cDemoWaitPartName = "ウェイト→コア突入";
-}  // namespace
+};  // namespace
 
 GrandStarReturnDemoStarter::GrandStarReturnDemoStarter(const char* pName)
     : LiveActor(pName), mReturnDemoRailMove(), mStageResultInformer(), mPowerStar(), mDistanceToCore(0.0f, 0.0f, 1.0f), mPowerStarPosition(gZeroVec),
@@ -26,7 +26,7 @@ namespace NrvGrandStarReturnDemoStarter {
     NEW_NERVE(GrandStarReturnDemoStarterNrvStageResult, GrandStarReturnDemoStarter, StageResult);
     NEW_NERVE(GrandStarReturnDemoStarterNrvFadeOut, GrandStarReturnDemoStarter, FadeOut);
     NEW_NERVE(GrandStarReturnDemoStarterNrvWaitDemoEnd, GrandStarReturnDemoStarter, WaitDemoEnd);
-}  // namespace NrvGrandStarReturnDemoStarter
+};  // namespace NrvGrandStarReturnDemoStarter
 
 void GrandStarReturnDemoStarter::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -189,7 +189,7 @@ void GrandStarReturnDemoStarter::exeFlyWait() {
     }
 
     if (MR::isLessStep(this, 60)) {
-        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY", -1, -1, -1);
+        MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY");
     }
 
     if (MR::isBckOneTimeAndStoppedPlayer()) {
@@ -204,7 +204,7 @@ void GrandStarReturnDemoStarter::exeRushToCore() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("ResultFlyGrandStarRush", reinterpret_cast< char* >(nullptr));
         MR::startBck(mPowerStar, "ResultFlyGrandStarRush", nullptr);
-        MR::startSound(mPowerStar, "SE_OJ_GND_STAR_RUSH", -1, -1);
+        MR::startSound(mPowerStar, "SE_OJ_GND_STAR_RUSH");
 
         MR::hideJointAndChildren(mPowerStar, "PowerStar");
         calcOffsetStarToCore(&mDistanceToCore);
@@ -213,7 +213,7 @@ void GrandStarReturnDemoStarter::exeRushToCore() {
     }
 
     updateRushStarPos(position, getNerveStep());
-    MR::startLevelSound(mPowerStar, "SE_OJ_LV_GND_STAR_RUSH", -1, -1, -1);
+    MR::startLevelSound(mPowerStar, "SE_OJ_LV_GND_STAR_RUSH");
 
     if (MR::isDemoPartLastStep(cDemoWaitPartName)) {
         setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvRevival::sInstance);
@@ -238,11 +238,11 @@ void GrandStarReturnDemoStarter::exeRevival() {
 
     if (MR::isLessStep(this, 40)) {
         updateRushStarPos(mPowerStarPosition, -(40 - getNerveStep()));
-        MR::startLevelSound(mPowerStar, "SE_OJ_LV_GND_STAR_RUSH", -1, -1, -1);
+        MR::startLevelSound(mPowerStar, "SE_OJ_LV_GND_STAR_RUSH");
     }
 
     if (MR::isStep(this, 40)) {
-        MR::startSound(mPowerStar, "SE_OJ_GND_STAR_ENTER_CORE", -1, -1);
+        MR::startSound(mPowerStar, "SE_OJ_GND_STAR_ENTER_CORE");
         MR::forceDeleteEffect(mPowerStar, "DemoKoopaGrandStarVs3");
         mPowerStar->kill();
     }

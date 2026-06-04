@@ -26,34 +26,78 @@ public:
     void makeHierarchy(J3DJoint*, J3DModelHierarchy const**, J3DMaterialTable*, J3DShapeTable*);
     void findImportantMtxIndex();
 
-    J3DModelHierarchy const* getHierarchy() { return mHierarchy; }
-    void setHierarchy(J3DModelHierarchy* hierarchy) { mHierarchy = hierarchy; }
-    void setBasicMtxCalc(J3DMtxCalc* calc) { mBasicMtxCalc = calc; }
+    J3DModelHierarchy const* getHierarchy() {
+        return mHierarchy;
+    }
+    void setHierarchy(J3DModelHierarchy* hierarchy) {
+        mHierarchy = hierarchy;
+    }
+    void setBasicMtxCalc(J3DMtxCalc* calc) {
+        mBasicMtxCalc = calc;
+    }
 
-    u16 getJointNum() const { return mJointNum; }
-    u16 getDrawMtxNum() const { return mDrawMtxData.mEntryNum; }
-    Mtx& getInvJointMtx(int idx) { return mInvJointMtx[idx]; }
+    u16 getJointNum() const {
+        return mJointNum;
+    }
+    u16 getDrawMtxNum() const {
+        return mDrawMtxData.mEntryNum;
+    }
+    Mtx& getInvJointMtx(int idx) {
+        return mInvJointMtx[idx];
+    }
 
-    u8 getDrawMtxFlag(u16 idx) const { return mDrawMtxData.mDrawMtxFlag[idx]; }
+    u8 getDrawMtxFlag(u16 idx) const {
+        return mDrawMtxData.mDrawMtxFlag[idx];
+    }
 
-    u16 getDrawMtxIndex(u16 idx) const { return mDrawMtxData.mDrawMtxIndex[idx]; }
-    u16 getWEvlpMtxNum() const { return mWEvlpMtxNum; }
-    u16* getWEvlpImportantMtxIndex() const { return mWEvlpImportantMtxIdx; }
-    u16* getWEvlpMixMtxIndex() const { return mWEvlpMixMtxIndex; }
-    f32* getWEvlpMixWeight() const { return mWEvlpMixWeight; }
-    u16 getDrawFullWgtMtxNum() const { return mDrawMtxData.mDrawFullWgtMtxNum; }
-    u8 getWEvlpMixMtxNum(u16 idx) const { return mWEvlpMixMtxNum[idx]; }
+    u16 getDrawMtxIndex(u16 idx) const {
+        return mDrawMtxData.mDrawMtxIndex[idx];
+    }
+    u16 getWEvlpMtxNum() const {
+        return mWEvlpMtxNum;
+    }
+    u16* getWEvlpImportantMtxIndex() const {
+        return mWEvlpImportantMtxIdx;
+    }
+    u16* getWEvlpMixMtxIndex() const {
+        return mWEvlpMixMtxIndex;
+    }
+    f32* getWEvlpMixWeight() const {
+        return mWEvlpMixWeight;
+    }
+    u16 getDrawFullWgtMtxNum() const {
+        return mDrawMtxData.mDrawFullWgtMtxNum;
+    }
+    u8 getWEvlpMixMtxNum(u16 idx) const {
+        return mWEvlpMixMtxNum[idx];
+    }
 
-    J3DDrawMtxData* getDrawMtxData() { return &mDrawMtxData; }
-    JUTNameTab* getJointName() const { return mJointName; }
-    u32 getModelDataType() const { return mModelDataType; }
-    void setModelDataType(u32 type) { mModelDataType = type; }
-    J3DJoint* getRootNode() { return mRootNode; }
-    J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
+    J3DDrawMtxData* getDrawMtxData() {
+        return &mDrawMtxData;
+    }
+    JUTNameTab* getJointName() const {
+        return mJointName;
+    }
+    u32 getModelDataType() const {
+        return mModelDataType;
+    }
+    void setModelDataType(u32 type) {
+        mModelDataType = type;
+    }
+    J3DJoint* getRootNode() {
+        return mRootNode;
+    }
+    J3DJoint* getJointNodePointer(u16 idx) const {
+        return mJointNodePointer[idx];
+    }
 
-    J3DMtxCalc* getBasicMtxCalc() { return mBasicMtxCalc; }
+    J3DMtxCalc* getBasicMtxCalc() {
+        return mBasicMtxCalc;
+    }
 
-    void setFlag(u32 flag) { mFlags = flag; }
+    void setFlag(u32 flag) {
+        mFlags = flag;
+    }
 
     /* 0x04 */ J3DModelHierarchy* mHierarchy;
     /* 0x08 */ u32 mFlags;

@@ -1,4 +1,5 @@
 #include "Game/Screen/GalaxyMapGalaxyDetail.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/GalaxyInfoLayoutSetter.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Screen/IconComet.hpp"
@@ -6,7 +7,6 @@
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include <cstddef>
 
 namespace {
@@ -65,7 +65,7 @@ void GalaxyMapGalaxyDetail::startDisplay(const char* a1, bool a2) {
         STATE3 = 3,
     };
 
-    u32 state = (a2) ? STATE2 : STATE3; //the enum is needed to prevent the ternary from optimizing itself 
+    u32 state = (a2) ? STATE2 : STATE3;  // the enum is needed to prevent the ternary from optimizing itself
     mInfoLayoutSetter->updateInfo(a1, GalaxyInfoLayoutSetter::GalaxyState(state));
     MR::setTextBoxNumberRecursive(this, "ShaCoinNum", MR::getCoinBestScore(a1));
     appear();
@@ -74,7 +74,7 @@ void GalaxyMapGalaxyDetail::startDisplay(const char* a1, bool a2) {
 void GalaxyMapGalaxyDetail::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "Appear", 0);
-        MR::startSystemSE("SE_SY_GALAMAP_WINDOW_OPEN", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_WINDOW_OPEN");
     }
 
     MR::setNerveAtAnimStopped(this, &GalaxyMapGalaxyDetailDisplay::sInstance, 0);
@@ -95,14 +95,13 @@ void GalaxyMapGalaxyDetail::exeDisappear() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "End", 0);
         mAButtonIcon->term();
-        MR::startSystemSE("SE_SY_GALAMAP_WINDOW_CLOSE", -1, -1);
+        MR::startSystemSE("SE_SY_GALAMAP_WINDOW_CLOSE");
     }
-    
+
     if (MR::isAnimStopped(this, 0)) {
         kill();
     }
 }
 
 void GalaxyMapGalaxyDetail::control() {
-
 }

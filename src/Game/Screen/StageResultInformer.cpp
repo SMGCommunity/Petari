@@ -87,7 +87,7 @@ void DisplayInformationForResult::exeAppear() {
 
 void DisplayInformationForResult::exeDisplay() {
     if (MR::testSystemPadTriggerDecide()) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         setNerve(&::DisplayInformationForResultDisappear::sInstance);
     }
@@ -103,7 +103,8 @@ void DisplayInformationForResult::exeDisappear() {
     }
 }
 
-void DisplayInformationForResult::exeIdle() {}
+void DisplayInformationForResult::exeIdle() {
+}
 
 StageResultInformer::StageResultInformer()
     : LayoutActor("リザルト通知", true), mInformationDisplayer(nullptr), mSequenceChecker(nullptr), mIconAButton(nullptr), _30(false), _31(false) {
@@ -178,7 +179,7 @@ void StageResultInformer::exeCountUpPowerStar() {
     if (MR::isFirstStep(this)) {
         MR::setTextBoxNumberRecursive(this, cNamePowerStarNum, mSequenceChecker->getAfterPowerStarNum());
         MR::startAnim(this, "Flash", 0);
-        MR::startSystemSE("SE_SY_RESULT_POW_STAR_INC", -1, -1);
+        MR::startSystemSE("SE_SY_RESULT_POW_STAR_INC");
         MR::emitEffect(this, "ResultStarCounter");
     }
 
@@ -272,9 +273,9 @@ void StageResultInformer::exeDisplayGetStarPiece() {
         MR::addStockedStarPiece(1);
 
         if (mClearedStarPieceNum == 0) {
-            MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP", -1, -1);
+            MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP");
         } else if (mClearedStarPieceNum == 0) {
-            MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP_END", -1, -1);
+            MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP_END");
         }
     }
 
@@ -292,7 +293,7 @@ void StageResultInformer::exeDisplayGetStarPiece() {
     }
 
     if (MR::testSystemPadTriggerDecide()) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
 
         if (hasStarPiece) {
             setNerve(&::StageResultInformerDisappearGetStarPiece::sInstance);
@@ -306,7 +307,7 @@ void StageResultInformer::exeWaitBeforeDisappearGetStarPiece() {
     if (MR::isFirstStep(this)) {
         mIconAButton->term();
         MR::addStockedStarPiece(mClearedStarPieceNum);
-        MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP_END", -1, -1);
+        MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP_END");
         mClearedStarPieceNum = 0;
         MR::setTextBoxNumberRecursive(this, cNameGalaxyStarPieceNum, 0);
         MR::setTextBoxNumberRecursive(this, cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
@@ -401,7 +402,7 @@ bool StageResultInformer::tryWaitSystemPadTriggerDecide(const Nerve* pNerve) {
         _30 = false;
 
         setNerve(pNerve);
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
 
         return true;
     }

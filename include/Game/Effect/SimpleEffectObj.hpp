@@ -13,9 +13,13 @@ public:
     virtual void startClipped();
     virtual void endClipped();
 
-    virtual f32 getClippingRadius() const { return 500.0f; };
+    virtual f32 getClippingRadius() const {
+        return 500.0f;
+    };
 
-    virtual f32 getFarClipDistance() const { return 50.0f; };
+    virtual f32 getFarClipDistance() const {
+        return 50.0f;
+    };
 
     virtual TVec3f* getClippingCenterOffset() const {
         TVec3f vec;
@@ -23,7 +27,9 @@ public:
         return &vec;
     };
 
-    virtual bool isSyncClipping() const { return false; };
+    virtual bool isSyncClipping() const {
+        return false;
+    };
 
     virtual void setStateWait();
     virtual void setStateMove();

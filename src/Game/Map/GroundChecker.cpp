@@ -12,4 +12,5 @@ void GroundChecker::bringFriction(f32 a1, f32 a2) {
     _8C = (_8C * (1.0f - a2)) + (a1 * a2);
 }
 
-GroundChecker::~GroundChecker() {}
+GroundChecker::~GroundChecker() {
+}

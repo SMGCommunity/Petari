@@ -17,4 +17,4 @@ public:
 
 namespace MR {
     bool addBaseMatrixFollowerGravity(GlobalGravityObj* pGravityObj, const JMapInfoIter& rIter);
-};
+};  // namespace MR

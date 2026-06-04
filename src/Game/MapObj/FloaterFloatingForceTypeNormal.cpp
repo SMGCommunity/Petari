@@ -38,7 +38,7 @@ void FloaterFloatingForceTypeNormal::soundMoveSE() {
         if (mVelocity.y > 0.1f) {
             const char* soundDown = FloaterFunction::getSeMoveDown(_18);
             if (soundDown) {
-                MR::startLevelSound(mHost, soundDown, -1, -1, -1);
+                MR::startLevelSound(mHost, soundDown);
             }
 
             return;
@@ -47,7 +47,7 @@ void FloaterFloatingForceTypeNormal::soundMoveSE() {
         if (mVelocity.y < -0.1f) {
             const char* soundUp = FloaterFunction::getSeMoveUp(_18);
             if (soundUp) {
-                MR::startLevelSound(mHost, soundUp, -1, -1, -1);
+                MR::startLevelSound(mHost, soundUp);
             }
         }
     }
@@ -71,7 +71,7 @@ void FloaterFloatingForceTypeNormal::exeMoveFirst() {
     if (isFirstStep()) {
         const char* soundOn = FloaterFunction::getSeGroundOn(_18);
         if (soundOn) {
-            MR::startSound(mHost, soundOn, -1, -1);
+            MR::startSound(mHost, soundOn);
         }
 
         if (FloaterFunction::isExistImpactOnRide(_18)) {
@@ -102,7 +102,8 @@ void FloaterFloatingForceTypeNormal::exeMove() {
     }
 }
 
-FloaterFloatingForceTypeNormal::~FloaterFloatingForceTypeNormal() {}
+FloaterFloatingForceTypeNormal::~FloaterFloatingForceTypeNormal() {
+}
 
 const TVec3f& FloaterFloatingForceTypeNormal::getCurrentVelocity() const {
     return mVelocity;

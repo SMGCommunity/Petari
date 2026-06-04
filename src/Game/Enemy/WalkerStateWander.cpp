@@ -5,12 +5,12 @@
 
 namespace {
     WalkerStateWanderParam sDefaultParam;
-}
+};  // namespace
 
 namespace NrvWalkerStateWander {
     NEW_NERVE(WalkerStateWanderNrvWait, WalkerStateWander, Wait);
     NEW_NERVE(WalkerStateWanderNrvWalk, WalkerStateWander, Walk);
-}  // namespace NrvWalkerStateWander
+};  // namespace NrvWalkerStateWander
 
 WalkerStateWanderParam::WalkerStateWanderParam() : mWaitTime(120), mWalkTime(120), mSpeed(0.2f), mTurnMaxRateDegree(3.0f), mTargetDistance(20.0f) {
 }

@@ -8,9 +8,9 @@
 
 namespace {
     static const f32 sMeterUpSpeed = 0.05f;
-}  // namespace
+};  // namespace
 
-BigBubbleGoalArea::BigBubbleGoalArea(int type, const char* pName) : AreaObj(type, pName), mTranslation(0.0f, 0.0f, 0.0f) {
+BigBubbleGoalArea::BigBubbleGoalArea(int formType, const char* pName) : AreaObj(formType, pName), mTranslation(0.0f, 0.0f, 0.0f) {
     mMeterCapacity = 1.0f;
     mMeterDisplayAmount = 0.0f;
     mMeterAmount = 0.0f;
@@ -75,11 +75,11 @@ void BigBubbleGoalArea::draw() const {
 
 namespace MR {
     bool checkBigBubbleGoal(BigBubble* pBubble) {
-        BigBubbleGoalArea* goalArea = reinterpret_cast< BigBubbleGoalArea* >(MR::getAreaObj("BigBubbleGoalArea", pBubble->mPosition));
+        BigBubbleGoalArea* goalArea = static_cast< BigBubbleGoalArea* >(MR::getAreaObj("BigBubbleGoalArea", pBubble->mPosition));
         if (goalArea != nullptr) {
             goalArea->addBubble(pBubble);
             return true;
         }
         return false;
     }
-}  // namespace MR
+};  // namespace MR

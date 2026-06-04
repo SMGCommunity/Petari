@@ -32,13 +32,13 @@ namespace NrvSwingRope {
     NEW_NERVE(SwingRopeNrvBindStretch, SwingRope, BindStretch);
     NEW_NERVE(SwingRopeNrvBindLoose, SwingRope, BindLoose);
 
-}  // namespace NrvSwingRope
+};  // namespace NrvSwingRope
 
 namespace {
     static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
     static Color8 sColorPlusX(0xFF, 0xFF, 0xFF, 0xFF);
     static Color8 sColorMinusX(0xFF, 0xFF, 0xFF, 0xFF);
-}  // namespace
+};  // namespace
 
 SwingRope::SwingRope(const char* pName)
     : LiveActor(pName), mBasePos(0.0f, 0.0f, 0.0f), mRopeLength(0.0f), mIsStretched(false), mStretchTime(0), mAccelTime(0), mNumPoints(0),
@@ -260,8 +260,8 @@ bool SwingRope::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         updateFootPos();
 
         MR::invalidateClipping(this);
-        MR::startSound(mRider, "SE_PV_CATCH", -1, -1);
-        MR::startSound(mRider, "SE_PM_GRAB_OBJ", -1, -1);
+        MR::startSound(mRider, "SE_PV_CATCH");
+        MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         MR::startActorCameraNoTarget(this, mCameraInfo, -1);
 
         setNerve(&NrvSwingRope::SwingRopeNrvBindSlideDownStart::sInstance);
@@ -387,8 +387,8 @@ bool SwingRope::tryJump() {
         jumpVec.add(proj);
 
         MR::endActorCameraAtLanding(this, mCameraInfo, -1);
-        MR::startSound(mRider, "SE_PV_JUMP_S", -1, -1);
-        MR::startSound(mRider, "SE_PM_JUMP_M", -1, -1);
+        MR::startSound(mRider, "SE_PV_JUMP_S");
+        MR::startSound(mRider, "SE_PM_JUMP_M");
         MR::startBckPlayer("SwingRopeSpin", static_cast< s32 >(0));
 
         MR::setPlayerFrontTargetVec(front, 1);
@@ -455,10 +455,10 @@ void SwingRope::updateHangPoint() {
     if (soundLvl < 0) {
         soundLvl = 0;
     }
-    MR::startLevelSound(this, "SE_OJ_LV_ROPE_SWING_WIND_1", soundLvl, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_ROPE_SWING_WIND_1", soundLvl);
 
     if (mPrevSoundLvl < 20 && 20 <= soundLvl) {
-        MR::startSound(this, "SE_OJ_ROPE_CREAK_H", -1, -1);
+        MR::startSound(this, "SE_OJ_ROPE_CREAK_H");
     }
     mPrevSoundLvl = soundLvl;
 }
@@ -688,7 +688,7 @@ namespace {
             sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.13f * (idx + 1));
         }
     }
-}  // namespace
+};  // namespace
 
 void SwingRope::drawStop() const {
     // FIXME: register swap

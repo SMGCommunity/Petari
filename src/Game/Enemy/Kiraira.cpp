@@ -19,7 +19,7 @@ namespace {
     static const s32 sStepToRecover = 120;
     static const f32 sEyeSensorInRadius = 1500.0f;
     static const f32 sEyeSensorOutRadius = 2000.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvKiraira {
     NEW_NERVE(KirairaNrvWait, Kiraira, Wait);
@@ -183,7 +183,7 @@ void Kiraira::exeRecover() {
             MR::startBck(this, "RailRevival", static_cast< const char* >(nullptr));
         }
         MR::startBrk(this, "Revival");
-        MR::startSound(this, "SE_OJ_KIRAIRA_RECOVER", -1, -1);
+        MR::startSound(this, "SE_OJ_KIRAIRA_RECOVER");
 
         if (MR::isNearPlayer(this, sEyeSensorOutRadius)) {
             openEyes();
@@ -283,7 +283,7 @@ void Kiraira::openEyes() {
     if (!mEyesOpen) {
         MR::startBtp(this, "EyeOpen");
         MR::emitEffect(this, "SearchLight");
-        MR::startSound(this, "SE_OJ_KIRAIRA_STARE", -1, -1);
+        MR::startSound(this, "SE_OJ_KIRAIRA_STARE");
     }
     mEyesOpen = true;
 }
@@ -331,7 +331,7 @@ void Kiraira::driftOnRail() {
     if (MR::isRailReachedNearGoal(this, sRailGoalOffset)) {
         MR::reverseRailDirection(this);
     }
-    MR::startLevelSound(this, "SE_OJ_LV_KIRAIRA_CHAIN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_KIRAIRA_CHAIN");
 }
 
 void Kiraira::explode() {
@@ -341,7 +341,7 @@ void Kiraira::explode() {
         MR::sendMsgExplosionToNearActor(getSensor("eye"), -1.0f);
     }
     MR::emitEffect(this, "Explosion");
-    MR::startSound(this, "SE_OJ_KIRAIRA_EXPLODE", -1, -1);
+    MR::startSound(this, "SE_OJ_KIRAIRA_EXPLODE");
     if (mChain != nullptr) {
         mChain->_90 = true;
     }

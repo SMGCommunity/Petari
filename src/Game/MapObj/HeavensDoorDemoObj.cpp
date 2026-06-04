@@ -13,7 +13,8 @@ HeavensDoorDemoObj::HeavensDoorDemoObj(const char* pName) : MapObjActor(pName) {
     _C4 = false;
 }
 
-HeavensDoorDemoObj::~HeavensDoorDemoObj() {}
+HeavensDoorDemoObj::~HeavensDoorDemoObj() {
+}
 
 void HeavensDoorDemoObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -60,7 +61,7 @@ void HeavensDoorDemoObj::exeAppear() {
 
 void HeavensDoorDemoObj::exeWait() {
     if (MapObjActor::isObjectName("HeavensDoorInsidePlanetPartsA")) {
-        MR::startLevelSound(this, "SE_OJ_LV_HD_INSIDE_SUN_WORK", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_HD_INSIDE_SUN_WORK");
     }
 }
 

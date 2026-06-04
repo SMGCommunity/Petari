@@ -118,22 +118,22 @@ void TripodBossFixParts::kill() {
     switch (_E4) {
     case 0:
         MR::emitEffect(this, "ExplosionS");
-        MR::startSound(this, "SE_BM_TRIPOD_KILL_S", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_KILL_S");
         break;
     case 1:
         MR::emitEffect(this, "ExplosionM");
-        MR::startSound(this, "SE_BM_TRIPOD_KILL_M", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_KILL_M");
         MR::tryRumblePadVeryWeak(this, 0);
         break;
     case 2:
         MR::emitEffect(this, "ExplosionM");
-        MR::startSound(this, "SE_BM_TRIPOD_KILL_M", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_KILL_M");
         MR::shakeCameraVeryWeak();
         MR::tryRumblePadMiddle(this, 0);
         break;
     case 3:
         MR::emitEffect(this, "ExplosionL");
-        MR::startSound(this, "SE_BM_TRIPOD_KILL_L", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_KILL_L");
         MR::shakeCameraStrong();
         MR::tryRumblePadVeryStrong(this, 0);
         break;
@@ -184,7 +184,7 @@ void TripodBossFixParts::exeWait() {
         MR::tryStartAllAnim(this, "Warning");
         _EE = 1;
         if (MR::isExistAnim(this, "Warning") && !mIsPlayingWarning) {
-            MR::startSound(this, "SE_BM_TRIPOD_MARKER", -1, -1);
+            MR::startSound(this, "SE_BM_TRIPOD_MARKER");
             mIsPlayingWarning = 1;
         }
     }
@@ -222,8 +222,11 @@ void TripodBossFixParts::exeBreak() {
     }
 }
 
-void TripodBossFixParts::exeNonActive() {}
+void TripodBossFixParts::exeNonActive() {
+}
 
-TripodBossFixParts::~TripodBossFixParts() {}
+TripodBossFixParts::~TripodBossFixParts() {
+}
 
-void TripodBossFixParts::exeWaitOwn() {}
+void TripodBossFixParts::exeWaitOwn() {
+}

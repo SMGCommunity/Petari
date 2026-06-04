@@ -1,19 +1,19 @@
 #include "Game/MapObj/ItemBubble.hpp"
 #include "Game/MapObj/StarPiece.hpp"
-#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
 namespace {
     const f32 cHitSensorRadius = 120.f;
     const f32 cSwingRange = 120.0f;
     const f32 cShootStarSpeed = 24.0f;
-}
+};  // namespace
 
 namespace NrvItemBubble {
     NEW_NERVE(ItemBubbleNrvWait, ItemBubble, Wait);
     NEW_NERVE(ItemBubbleNrvBreak, ItemBubble, Break);
-}
+}  // namespace NrvItemBubble
 
 ItemBubble::ItemBubble(const char* pName) : LiveActor(pName), _90(nullptr), _94(nullptr) {
     _8C = 0.0f;
@@ -95,7 +95,6 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
             MR::newDifferedDLBuffer(_90[i]);
             _90[i]->initWithoutIter();
 
-            
             switch (itemCount) {
             case 1:
                 _90[i]->initFixedPosition(_CC, TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
@@ -184,7 +183,7 @@ void ItemBubble::kill() {
             case 1:
                 StarPiece* piece = getStarPiece(i);
                 piece->launch(getRotPartsPosition(i), grav.negateInline().multInLine(cShootStarSpeed), false, false);
-                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+                MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
                 break;
             }
         }
@@ -192,7 +191,6 @@ void ItemBubble::kill() {
 
     LiveActor::kill();
 }
-
 
 void ItemBubble::calcAndSetBaseMtx() {
     TVec3f camPos = MR::getCamPos();
@@ -268,7 +266,7 @@ void ItemBubble::exeWait() {
 
 void ItemBubble::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_ITEM_BUBBLE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_ITEM_BUBBLE_BREAK");
         MR::emitEffect(this, "BubbleBreak");
         kill();
     }
@@ -290,5 +288,5 @@ bool ItemBubble::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
     return false;
 }
 
-ItemBubble::~ItemBubble() {}
-
+ItemBubble::~ItemBubble() {
+}

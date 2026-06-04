@@ -24,7 +24,8 @@ public:
 
 class LinearRailPart {
 public:
-    inline LinearRailPart() {}
+    inline LinearRailPart() {
+    }
 
     void set(const TVec3f&, const TVec3f&);
 

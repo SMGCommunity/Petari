@@ -25,6 +25,6 @@ public:
     u32 setupFlag(const char*, const JMapInfoIter&, u32*);
     void updateValue(int, u32);
 
-    MR::AssignableArray<AlreadyDoneInfo> mDoneInfos;
-    u32 _8;                       // 0x8
+    MR::AssignableArray< AlreadyDoneInfo > mDoneInfos;
+    u32 _8;  // 0x8
 };

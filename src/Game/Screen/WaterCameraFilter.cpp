@@ -256,4 +256,5 @@ void WaterCameraFilter::exeAir() {
     }
 }
 
-WaterCameraFilter::~WaterCameraFilter() {}
+WaterCameraFilter::~WaterCameraFilter() {
+}

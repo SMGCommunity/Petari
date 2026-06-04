@@ -48,7 +48,7 @@ bool MarioStick::startJump() {
 }
 
 bool MarioStick::postureCtrl(MtxPtr mtx) {
-    MR::makeMtxFrontUp(reinterpret_cast<TPos3f*>(mtx), _6C, _78);
+    MR::makeMtxFrontUp(reinterpret_cast< TPos3f* >(mtx), _6C, _78);
     return true;
 }
 
@@ -142,9 +142,9 @@ bool MarioStick::update() {
     PSMTXMultVec(rotMtx, &stack_2C, &stack_2C);
 
     if (getStickP() > 0.0f) {
-        changeAnimation("ハチ壁移動", static_cast<const char*>(nullptr));
+        changeAnimation("ハチ壁移動", static_cast< const char* >(nullptr));
     } else {
-        stopAnimation("ハチ壁移動", static_cast<const char*>(nullptr));
+        stopAnimation("ハチ壁移動", static_cast< const char* >(nullptr));
     }
 
     if (MR::diffAngleAbs(stack_2C, _2C) < 1.308997f) {

@@ -11,16 +11,19 @@ struct SoundEffectDataEntry {
 
 class SimpleMapObj : public MapObjActor {
 public:
-    SimpleMapObj(const char* pName) : MapObjActor(pName) {}
+    SimpleMapObj(const char* pName) : MapObjActor(pName) {
+    }
 
-    virtual ~SimpleMapObj() {}
+    virtual ~SimpleMapObj() {
+    }
 
     virtual void init(const JMapInfoIter&);
 };
 
 class SimpleEnvironmentObj : public MapObjActor {
 public:
-    inline SimpleEnvironmentObj(const char* pName) : MapObjActor(pName) {}
+    inline SimpleEnvironmentObj(const char* pName) : MapObjActor(pName) {
+    }
 
     virtual ~SimpleEnvironmentObj();
     virtual void init(const JMapInfoIter&);
@@ -29,16 +32,19 @@ public:
 
 class SimpleMapObjFarMax : public SimpleMapObj {
 public:
-    inline SimpleMapObjFarMax(const char* pName) : SimpleMapObj(pName) {}
+    inline SimpleMapObjFarMax(const char* pName) : SimpleMapObj(pName) {
+    }
 
-    virtual ~SimpleMapObjFarMax() {}
+    virtual ~SimpleMapObjFarMax() {
+    }
 
     virtual void init(const JMapInfoIter&);
 };
 
 class SimpleMapObjPush : public SimpleMapObj {
 public:
-    inline SimpleMapObjPush(const char* pName) : SimpleMapObj(pName) {}
+    inline SimpleMapObjPush(const char* pName) : SimpleMapObj(pName) {
+    }
 
     virtual ~SimpleMapObjPush();
     virtual void attackSensor(HitSensor*, HitSensor*);
@@ -46,7 +52,8 @@ public:
 
 class SimpleMapObjNoSilhouetted : public SimpleMapObj {
 public:
-    inline SimpleMapObjNoSilhouetted(const char* pName) : SimpleMapObj(pName) {}
+    inline SimpleMapObjNoSilhouetted(const char* pName) : SimpleMapObj(pName) {
+    }
 
     virtual ~SimpleMapObjNoSilhouetted();
     virtual void connectToScene(const MapObjActorInitInfo&);
@@ -76,7 +83,8 @@ public:
 
 class SimpleMirrorReflectionObj : public SimpleMapObj {
 public:
-    inline SimpleMirrorReflectionObj(const char* pName) : SimpleMapObj(pName) {}
+    inline SimpleMirrorReflectionObj(const char* pName) : SimpleMapObj(pName) {
+    }
 
     virtual ~SimpleMirrorReflectionObj();
     virtual void init(const JMapInfoIter&);
@@ -85,7 +93,8 @@ public:
 
 class SimpleTextureSwitchChangeObj : public SimpleMapObj {
 public:
-    inline SimpleTextureSwitchChangeObj(const char* pName) : SimpleMapObj(pName) {}
+    inline SimpleTextureSwitchChangeObj(const char* pName) : SimpleMapObj(pName) {
+    }
 
     virtual ~SimpleTextureSwitchChangeObj();
     virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
@@ -96,7 +105,8 @@ public:
 
 class UFOKinokoUnderConstruction : public MapObjActor {
 public:
-    inline UFOKinokoUnderConstruction(const char* pName) : MapObjActor(pName) {}
+    inline UFOKinokoUnderConstruction(const char* pName) : MapObjActor(pName) {
+    }
 
     virtual ~UFOKinokoUnderConstruction();
     virtual void init(const JMapInfoIter&);
@@ -104,7 +114,8 @@ public:
 
 class GlaringLight : public SimpleMapObj {
 public:
-    inline GlaringLight(const char* pName) : SimpleMapObj(pName) {}
+    inline GlaringLight(const char* pName) : SimpleMapObj(pName) {
+    }
 
     virtual ~GlaringLight();
     virtual void connectToScene(const MapObjActorInitInfo&);
@@ -112,4 +123,4 @@ public:
 
 namespace MR {
     void makeArchiveListUFOKinokoUnderConstruction(NameObjArchiveListCollector*, const JMapInfoIter&);
-};
+};  // namespace MR

@@ -33,9 +33,9 @@ void ItemGenerator::generate(const LiveActor* pActor) {
         case 2:
             MR::appearStarPieceToDirection(pActor, pActor->mPosition, -pActor->mGravity, mNumType, 10.0f, 40.0f, false);
             if (ItemGenerator::isUseFarSE()) {
-                MR::startSound(pActor, "SE_OJ_STAR_PIECE_BURST_F", -1, -1);
+                MR::startSound(pActor, "SE_OJ_STAR_PIECE_BURST_F");
             } else {
-                MR::startSound(pActor, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+                MR::startSound(pActor, "SE_OJ_STAR_PIECE_BURST");
             }
             break;
         }

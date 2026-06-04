@@ -11,7 +11,7 @@ namespace {
     BigBubbleHolder* getBigBubbleHolder() {
         return MR::getSceneObj< BigBubbleHolder >(SceneObj_BigBubbleHolder);
     }
-}  // namespace
+};  // namespace
 
 BigBubbleHolder::BigBubbleHolder(const char* pName) : NameObj(pName), mDrawer(nullptr), mNumLimitters(0), mNumBubbles(0), mIsMarioBinded(false) {
     for (s32 idx = 0; idx < 16; idx++) {

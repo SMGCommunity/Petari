@@ -194,9 +194,7 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
             MR::useStageSwitchWriteDead(this, rIter);
 
             if (MR::useStageSwitchReadAppear(this, rIter)) {
-                MR::FunctorV0M< BenefitItemObj*, void (BenefitItemObj::*)() > appearFunc =
-                    MR::Functor< BenefitItemObj >(this, &BenefitItemObj::appear);
-                MR::listenStageSwitchOnAppear(this, appearFunc);
+                MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &BenefitItemObj::appear));
                 _E1 = 1;
             }
         }
@@ -310,7 +308,7 @@ void BenefitItemObj::appear() {
 }
 
 void BenefitItemObj::appearGround() {
-    MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
+    MR::startSystemSE("SE_SY_ITEM_APPEAR");
     setNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance);
     MR::hideModel(this);
     MR::invalidateClipping(this);
@@ -318,7 +316,7 @@ void BenefitItemObj::appearGround() {
 
 /*
 void BenefitItemObj::appearThrowUp() {
-    MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
+    MR::startSystemSE("SE_SY_ITEM_APPEAR");
     runBck("Appear");
     TVec3f rotated_axis;
     MR::getRotatedAxisY(&rotated_axis, mRotation);
@@ -545,7 +543,7 @@ void BenefitItemObj::exeAppearGround() {
         if (getNerveStep() == 60) {
             MR::showModel(this);
             runBck("Appear");
-            MR::startSound(this, "SE_OJ_KINOKO_1UP_GROW", -1, -1);
+            MR::startSound(this, "SE_OJ_KINOKO_1UP_GROW");
         }
 
         if (MR::isBckStopped(this)) {
@@ -577,12 +575,12 @@ void BenefitItemObj::initEscape() {
     TVec3f stack_8(axis_z);
     stack_8.scale(7.0f);
     _BC = stack_8;
-    MR::startSound(this, "SE_OJ_KINOKO_1UP_RUN_START", -1, -1);
+    MR::startSound(this, "SE_OJ_KINOKO_1UP_RUN_START");
 }
 
 /*
 void BenefitItemObj::doEscape() {
-    MR::startLevelSound(this, "SE_OJ_LV_KINOKO_1UP_RUN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_KINOKO_1UP_RUN");
     bool cond = false;
     if (_DA == 2) {
         cond = true;

@@ -209,7 +209,7 @@ void NoteFairy::exeHide() {
 
     if (MR::isOnSwitchAppear(this)) {
         if (!_D0) {
-            MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+            MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         }
 
         MR::invalidateClipping(this);
@@ -285,7 +285,7 @@ void NoteFairy::exeDemoAppear() {
         mPosition.z = (_98.z * (1.0f - ease)) + (ease * MR::getRailPos(this).z);
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_FLOWER_FAIRY_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_FLOWER_FAIRY_MOVE");
     mRotation.y = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
 
     if (MR::isStep(this, 130)) {
@@ -304,7 +304,7 @@ void NoteFairy::exeAppearNoteBloom() {
         MR::endActorCamera(this, mCameraInfo, false, -1);
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_FLOWER_FAIRY_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_FLOWER_FAIRY_MOVE");
     MR::moveCoordAndFollowTrans(this, mAppearanceSpeed);
     mRotation.y = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
 
@@ -352,16 +352,15 @@ void NoteFairy::exeEndWait() {
         }
     }
 
-    MR::startLevelSound(this, "SE_SY_NO_SOUND_FANFARE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SY_NO_SOUND_FANFARE");
     s32 timeLeft = mTimeLimit - getNerveStep();
+
     if (timeLeft <= 170) {
-        MR::startSystemLevelSE("SE_RS_LV_NOTE_TIMER_FAST", 0, -1);
+        MR::startSystemLevelSE("SE_RS_LV_NOTE_TIMER_FAST", 0);
+    } else if (timeLeft <= mTimeLimit / 2) {
+        MR::startSystemLevelSE("SE_RS_LV_NOTE_TIMER_MIDDLE", 30);
     } else {
-        if (timeLeft <= mTimeLimit / 2) {
-            MR::startSystemLevelSE("SE_RS_LV_NOTE_TIMER_MIDDLE", 30, -1);
-        } else {
-            MR::startSystemLevelSE("SE_RS_LV_NOTE_TIMER_SLOW", 85, -1);
-        }
+        MR::startSystemLevelSE("SE_RS_LV_NOTE_TIMER_SLOW", 85);
     }
 
     if (isDeadAllNotes()) {
@@ -444,7 +443,7 @@ bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         case -1:
             break;
         case 0:
-            MR::startSound(this, "SE_SY_TOTAL_COMPLETE", -1, -1);
+            MR::startSound(this, "SE_SY_TOTAL_COMPLETE");
             break;
         }
 
@@ -460,4 +459,5 @@ bool NoteFairy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
     return false;
 }
 
-NoteFairy::~NoteFairy() {}
+NoteFairy::~NoteFairy() {
+}

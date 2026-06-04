@@ -6,7 +6,8 @@ namespace NrvMeteoContainer {
     NEW_NERVE(MeteoContainerNrvDestroy, MeteoContainer, Destroy);
 };  // namespace NrvMeteoContainer
 
-MeteoContainer::MeteoContainer(const char* pName) : LiveActor(pName) {}
+MeteoContainer::MeteoContainer(const char* pName) : LiveActor(pName) {
+}
 
 void MeteoContainer::init(const JMapInfoIter& rIter) {
     const char* objName = nullptr;
@@ -39,16 +40,17 @@ void MeteoContainer::appear() {
 }
 
 void MeteoContainer::kill() {
-    MR::startSound(this, "SE_OJ_MTO_CONTAINER_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_MTO_CONTAINER_BREAK");
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     }
 
     LiveActor::kill();
 }
 
-void MeteoContainer::control() {}
+void MeteoContainer::control() {
+}
 
 void MeteoContainer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
@@ -70,7 +72,8 @@ bool MeteoContainer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     return false;
 }
 
-void MeteoContainer::exeWait() {}
+void MeteoContainer::exeWait() {
+}
 
 void MeteoContainer::exeDestroy() {
     if (MR::isStep(this, 2)) {
@@ -83,4 +86,5 @@ void MeteoContainer::exeDestroy() {
     }
 }
 
-MeteoContainer::~MeteoContainer() {}
+MeteoContainer::~MeteoContainer() {
+}

@@ -11,11 +11,14 @@ namespace NrvWaterLeakPipe {
     NEW_NERVE(WaterLeakPipeNrvFreeze, WaterLeakPipe, Freeze);
 };  // namespace NrvWaterLeakPipe
 
-IceStepNoSlip::~IceStepNoSlip() {}
+IceStepNoSlip::~IceStepNoSlip() {
+}
 
-WaterLeakPipe::~WaterLeakPipe() {}
+WaterLeakPipe::~WaterLeakPipe() {
+}
 
-IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, MR::DrawBufferType_IndirectMapObjStrongLight, -2, -2, false) {}
+IceStepNoSlip::IceStepNoSlip(MtxPtr mtx) : ModelObj("アイス床", "IceStepNoSlip", mtx, MR::DrawBufferType_IndirectMapObjStrongLight, -2, -2, false) {
+}
 
 void IceStepNoSlip::init(const JMapInfoIter& rIter) {
     ModelObj::init(rIter);
@@ -81,20 +84,20 @@ void WaterLeakPipe::exeWait() {
         MR::emitEffect(this, "Splash");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_WATER_LEAK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_WATER_LEAK");
 }
 
 void WaterLeakPipe::exeFreeze() {
     if (MR::isFirstStep(this) && MR::isDead(mIceStep)) {
         MR::forceDeleteEffect(this, "Splash");
         mIceStep->appear();
-        MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE", -1, -1);
+        MR::startSound(this, "SE_OJ_ICE_FLOOR_FREEZE");
         MR::invalidateClipping(this);
     } else if (MR::isOnPlayer(mIceStep) && MR::isPlayerElementModeIce()) {
         setNerve(&NrvWaterLeakPipe::WaterLeakPipeNrvFreeze::sInstance);
     } else if (MR::isStep(this, 15)) {
         mIceStep->setNerve(&NrvIceStepNoSlip::IceStepNoSlipNrvBreak::sInstance);
-        MR::startSound(this, "SE_OJ_ICE_FLOOR_MELT", -1, -1);
+        MR::startSound(this, "SE_OJ_ICE_FLOOR_MELT");
         MR::validateClipping(this);
         setNerve(&NrvWaterLeakPipe::WaterLeakPipeNrvWait::sInstance);
     }
@@ -146,4 +149,5 @@ void WaterLeakPipe::initPipeHeight() {
     calcAndSetBaseMtx();
 }
 
-void WaterLeakPipe::calcAnim() {}
+void WaterLeakPipe::calcAnim() {
+}

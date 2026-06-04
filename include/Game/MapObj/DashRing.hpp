@@ -4,7 +4,8 @@
 
 class DashRing : public LiveActor {
 public:
-    DashRing(const char* pName) : LiveActor(pName) {}
+    DashRing(const char* pName) : LiveActor(pName) {
+    }
 
     virtual ~DashRing();
     virtual void init(const JMapInfoIter&);

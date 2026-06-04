@@ -2,21 +2,28 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
 
-MorphItemObjNeo::MorphItemObjNeo(const char* pName, long a2) : NameObj(pName) {}
-MorphItemObjNeo::~MorphItemObjNeo() {}
-void MorphItemObjNeo::exeWait() {}
-void MorphItemObjNeo::exeAppear() {}
-void MorphItemObjNeo::exeSwitchAppear() {}
-void MorphItemObjNeo::exeWait2() {}
-void MorphItemObjNeo::exeFly() {}
-void MorphItemObjNeo::exeDemo() {}
+MorphItemObjNeo::MorphItemObjNeo(const char* pName, s32 a2) : NameObj(pName) {
+}
+MorphItemObjNeo::~MorphItemObjNeo() {
+}
+void MorphItemObjNeo::exeWait() {
+}
+void MorphItemObjNeo::exeAppear() {
+}
+void MorphItemObjNeo::exeSwitchAppear() {
+}
+void MorphItemObjNeo::exeWait2() {
+}
+void MorphItemObjNeo::exeFly() {
+}
+void MorphItemObjNeo::exeDemo() {
+}
 
 void MorphItemObjNeo::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
     if (MR::isEqualObjectName(rIter, "MorphItemNeoHopper") || MR::isEqualObjectName(rIter, "BenefitItemInvincible")) {
         if (MR::isPlayerLuigi()) {
             pArchiveList->addArchive("HopperLuigi");
-        }
-        else {
+        } else {
             pArchiveList->addArchive("HopperMario");
         }
     }
@@ -26,8 +33,7 @@ void MorphItemObjNeo::makeArchiveList(NameObjArchiveListCollector* pArchiveList,
 
         if (MR::isPlayerLuigi()) {
             pArchiveList->addArchive("BeeLuigi");
-        }
-        else {
+        } else {
             pArchiveList->addArchive("BeeMario");
         }
     }
@@ -35,8 +41,7 @@ void MorphItemObjNeo::makeArchiveList(NameObjArchiveListCollector* pArchiveList,
     if (MR::isEqualObjectName(rIter, "MorphItemNeoTeresa")) {
         if (MR::isPlayerLuigi()) {
             pArchiveList->addArchive("TeresaLuigi");
-        }
-        else {
+        } else {
             pArchiveList->addArchive("TeresaMario");
         }
     }
@@ -47,8 +52,7 @@ void MorphItemObjNeo::makeArchiveList(NameObjArchiveListCollector* pArchiveList,
 
         if (MR::isPlayerLuigi()) {
             pArchiveList->addArchive("IceLuigi");
-        }
-        else {
+        } else {
             pArchiveList->addArchive("IceMario");
         }
     }
@@ -59,8 +63,7 @@ void MorphItemObjNeo::makeArchiveList(NameObjArchiveListCollector* pArchiveList,
 
         if (MR::isPlayerLuigi()) {
             pArchiveList->addArchive("InvincibleLuigi");
-        }
-        else {
+        } else {
             pArchiveList->addArchive("InvincibleMario");
         }
     }
@@ -74,8 +77,7 @@ void MorphItemObjNeo::makeArchiveList(NameObjArchiveListCollector* pArchiveList,
     if (!MR::isEqualObjectName(rIter, "BenefitItemInvincible")) {
         if (arg3 == 0) {
             pArchiveList->addArchive("ItemBubble");
-        }
-        else if (arg3 == -1) {
+        } else if (arg3 == -1) {
             pArchiveList->addArchive("MorphItemNeoBee");
             pArchiveList->addArchive("MorphItemNeoHopper");
         }

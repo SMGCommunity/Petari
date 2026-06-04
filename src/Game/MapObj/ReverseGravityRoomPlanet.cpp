@@ -7,7 +7,8 @@ namespace NrvReverseGravityRoomPlanet {
     NEW_NERVE(ReverseGravityRoomPlanetNrvUpWait, ReverseGravityRoomPlanet, UpWait);
 };  // namespace NrvReverseGravityRoomPlanet
 
-ReverseGravityRoomPlanet::ReverseGravityRoomPlanet(const char* pName) : MapObjActor(pName) {}
+ReverseGravityRoomPlanet::ReverseGravityRoomPlanet(const char* pName) : MapObjActor(pName) {
+}
 
 void ReverseGravityRoomPlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -31,7 +32,8 @@ void ReverseGravityRoomPlanet::exeDownStart() {
     }
 }
 
-void ReverseGravityRoomPlanet::exeDownWait() {}
+void ReverseGravityRoomPlanet::exeDownWait() {
+}
 
 void ReverseGravityRoomPlanet::exeUpStart() {
     if (MR::isFirstStep(this)) {
@@ -43,12 +45,12 @@ void ReverseGravityRoomPlanet::exeUpStart() {
     }
 }
 
-void ReverseGravityRoomPlanet::exeUpWait() {}
+void ReverseGravityRoomPlanet::exeUpWait() {
+}
 
 void ReverseGravityRoomPlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rIter) {
-    void (ReverseGravityRoomPlanet::*startOff)(void) = &ReverseGravityRoomPlanet::startSwitchOff;
-    void (ReverseGravityRoomPlanet::*startOn)(void) = &ReverseGravityRoomPlanet::startSwitchOn;
-    MR::listenStageSwitchOnOffA(this, MR::Functor(this, startOff), MR::Functor(this, startOn));
+    MR::listenStageSwitchOnOffA(this, MR::Functor(this, &ReverseGravityRoomPlanet::startSwitchOn),
+                                MR::Functor(this, &ReverseGravityRoomPlanet::startSwitchOff));
 }
 
 void ReverseGravityRoomPlanet::startSwitchOn() {
@@ -59,4 +61,5 @@ void ReverseGravityRoomPlanet::startSwitchOff() {
     setNerve(&NrvReverseGravityRoomPlanet::ReverseGravityRoomPlanetNrvDownStart::sInstance);
 }
 
-ReverseGravityRoomPlanet::~ReverseGravityRoomPlanet() {}
+ReverseGravityRoomPlanet::~ReverseGravityRoomPlanet() {
+}

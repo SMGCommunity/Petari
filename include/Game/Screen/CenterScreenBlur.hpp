@@ -24,7 +24,7 @@ public:
     s32 mTotalFrame;
     s32 mFadeInFrame;
     s32 mFadeOutFrame;
-    f32 _98;
-    u8 _9C;
+    f32 mOffset;
+    u8 mAlpha;
     f32 _A0;
 };

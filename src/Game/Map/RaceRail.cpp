@@ -3,7 +3,7 @@
 namespace {
     static const f32 sRaceJudgeLength = 10000.0f;
     // static const f32 sWaterSurface = ;
-}  // namespace
+};  // namespace
 
 RaceRail::RaceRail(const char* pName) : NameObj(pName) {
 }

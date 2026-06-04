@@ -1,8 +1,8 @@
 #include "Game/RhythmLib/AudChordInfo.hpp"
 #include <JSystem/JKernel/JKRArchive.hpp>
 
-template<>
-AudChordInfo* JASGlobalInstance<AudChordInfo>::sInstance = nullptr;
+template <>
+AudChordInfo* JASGlobalInstance< AudChordInfo >::sInstance = nullptr;
 
 void AudScaleData::initScaleData(u32 base) {
     up = (const u8*)((u32)up + base);
@@ -33,16 +33,13 @@ bool AudChordTable::setChordTable(s32 id, JKRArchive* pArchive) {
 bool AudChordTable::setChordTableResource(void* pRes) {
     u32 relocFlag = *(u32*)pRes;
     bool alreadyRelocated = false;
-    
+
     if (relocFlag != 0) {
         alreadyRelocated = true;
     }
 
     // Check for 'CITS' signature
-    if (((u8*)pRes)[4] != 'C' ||
-        ((u8*)pRes)[5] != 'I' ||
-        ((u8*)pRes)[6] != 'T' ||
-        ((u8*)pRes)[7] != 'S') {
+    if (((u8*)pRes)[4] != 'C' || ((u8*)pRes)[5] != 'I' || ((u8*)pRes)[6] != 'T' || ((u8*)pRes)[7] != 'S') {
         return false;
     }
 
@@ -70,7 +67,7 @@ bool AudChordTable::setChordTableResource(void* pRes) {
     return true;
 }
 
-AudChordInfo::AudChordInfo() : JASGlobalInstance<AudChordInfo>(this), mArchive(nullptr), mTable() {
+AudChordInfo::AudChordInfo() : JASGlobalInstance< AudChordInfo >(this), mArchive(nullptr), mTable() {
     mCurChord = nullptr;
     mCurScale = nullptr;
     mFlags = 0;
@@ -98,8 +95,7 @@ bool AudChordInfo::loadChordInfo(s16 id, bool keepCurrent) {
         if (keepCurrent) {
             setCurChord(mCurChordIndex);
             setCurScale(mCurScaleIndex);
-        }
-        else {
+        } else {
             setCurChord(0);
             setCurScale(0);
         }
@@ -406,8 +402,7 @@ u8 AudChordInfo::getNearestChordNoteDir(u8 note, bool up) {
                 nearest = n;
             }
         }
-    }
-    else {
+    } else {
         for (s32 i = 0; i < 8; i++) {
             s32 n = mChordNoteList[i];
 
@@ -541,8 +536,7 @@ u8 AudChordInfo::getNearestScaleNoteDir(u8 note, bool up) {
         if (getOnScaleType(note) == 1) {
             return note;
         }
-    }
-    else {
+    } else {
         if (getOnScaleType(note) == 2) {
             return note;
         }
@@ -572,8 +566,7 @@ u8 AudChordInfo::getNearestScaleNoteDir(u8 note, bool up) {
                 nearest = n;
             }
         }
-    }
-    else {
+    } else {
         for (s32 i = 0; i < 12; i++) {
             s32 n = getScaleNoteDown(i);
 
@@ -796,8 +789,7 @@ s32 AudChordInfo::getScaleNoteIndex(u8 pClass, bool up) {
                 return i;
             }
         }
-    }
-    else {
+    } else {
         for (s32 i = 0; i < 12; i++) {
             if (pitchClass == (s32)getScaleNoteDown(i)) {
                 return i;

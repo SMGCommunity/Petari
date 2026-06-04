@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JGeometry.hpp"
 
 class CubeCameraArea;
@@ -13,7 +13,8 @@ class CameraTargetObj : public NameObj {
 public:
     CameraTargetObj(const char*);
 
-    virtual inline ~CameraTargetObj() {}
+    virtual inline ~CameraTargetObj() {
+    }
 
     virtual void init(const JMapInfoIter&);
 
@@ -36,7 +37,9 @@ public:
     virtual bool isBeeMode() const;
     virtual bool isFooFighterMode() const;
     virtual u32 getSpecialMode() const;
-    virtual bool isCameraStateOn(u32) const { return false; };
+    virtual bool isCameraStateOn(u32) const {
+        return false;
+    };
     virtual CubeCameraArea* getCubeCameraArea() const;
     virtual Triangle* getGroundTriangle() const;
     virtual GravityInfo* getGravityInfo() const;
@@ -117,4 +120,16 @@ public:
     u16 _58;
     bool _5A;
     u8 _5B;
+};
+
+class CameraTargetDemoActor : public LiveActor {
+public:
+    CameraTargetDemoActor(MtxPtr, const char*);
+
+    virtual void init(const JMapInfoIter& rIter);
+    virtual MtxPtr getBaseMtx() const;
+
+    void setTargetMtx(MtxPtr);
+
+    TPos3f mMtx;
 };

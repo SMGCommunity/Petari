@@ -13,19 +13,35 @@ class J3DMtxCalc {
 public:
     static void setMtxBuffer(J3DMtxBuffer*);
 
-    virtual ~J3DMtxCalc() {}
-    virtual void setAnmTransform(J3DAnmTransform*) {}
-    virtual J3DAnmTransform* getAnmTransform() { return NULL; }
-    virtual void setAnmTransform(u8, J3DAnmTransform*) {}
-    virtual J3DAnmTransform* getAnmTransform(u8) { return NULL; }
-    virtual void setWeight(u8, f32) {}
-    virtual f32 getWeight(u8) const { return 0.0f; }
+    virtual ~J3DMtxCalc() {
+    }
+    virtual void setAnmTransform(J3DAnmTransform*) {
+    }
+    virtual J3DAnmTransform* getAnmTransform() {
+        return NULL;
+    }
+    virtual void setAnmTransform(u8, J3DAnmTransform*) {
+    }
+    virtual J3DAnmTransform* getAnmTransform(u8) {
+        return NULL;
+    }
+    virtual void setWeight(u8, f32) {
+    }
+    virtual f32 getWeight(u8) const {
+        return 0.0f;
+    }
     virtual void init(const Vec& param_0, const Mtx&) = 0;
     virtual void calc() = 0;
 
-    static J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
-    static J3DJoint* getJoint() { return mJoint; }
-    static void setJoint(J3DJoint* joint) { mJoint = joint; }
+    static J3DMtxBuffer* getMtxBuffer() {
+        return mMtxBuffer;
+    }
+    static J3DJoint* getJoint() {
+        return mJoint;
+    }
+    static void setJoint(J3DJoint* joint) {
+        mJoint = joint;
+    }
 
     static J3DMtxBuffer* mMtxBuffer;
     static J3DJoint* mJoint;
@@ -40,9 +56,13 @@ public:
     void entryIn();
     void recursiveCalc();
 
-    u32 getType() const { return 'NJNT'; }
+    u32 getType() const {
+        return 'NJNT';
+    }
 
-    J3DMaterial* getMesh() { return mMesh; }
+    J3DMaterial* getMesh() {
+        return mMesh;
+    }
 
     inline void addMesh(J3DMaterial* pMesh) {
         if (mMesh != NULL) {
@@ -52,28 +72,66 @@ public:
         mMesh = pMesh;
     }
 
-    u16 getJntNo() const { return mJntNo; }
-    u8 getScaleCompensate() const { return mScaleCompensate; }
-    J3DJoint* getYounger() { return mYounger; }
-    void setYounger(J3DJoint* pYounger) { mYounger = pYounger; }
-    void setCurrentMtxCalc(J3DMtxCalc* pMtxCalc) { mCurrentMtxCalc = pMtxCalc; }
-    J3DTransformInfo& getTransformInfo() { return mTransformInfo; }
-    void setTransformInfo(const J3DTransformInfo& i_info) { mTransformInfo = i_info; }
-    Vec* getMax() { return &mMax; }
-    Vec* getMin() { return &mMin; }
-    void setCallBack(J3DJointCallBack callback) { mCallBack = callback; }
-    J3DJointCallBack getCallBack() { return mCallBack; }
-    void setMtxCalc(J3DMtxCalc* i_mtxCalc) { mMtxCalc = i_mtxCalc; }
-    J3DMtxCalc* getMtxCalc() { return mMtxCalc; }
-    J3DMtxCalc* getCurrentMtxCalc() { return mCurrentMtxCalc; };
-    J3DJoint* getChild() { return mChild; }
-    u8 getMtxType() const { return (mKind & 0xf0) >> 4; }
-    void setMtxType(u8 type) { mKind = (mKind & ~0xf0) | (type << 4); }
-    f32 getRadius() const { return mBoundingSphereRadius; }
+    u16 getJntNo() const {
+        return mJntNo;
+    }
+    u8 getScaleCompensate() const {
+        return mScaleCompensate;
+    }
+    J3DJoint* getYounger() {
+        return mYounger;
+    }
+    void setYounger(J3DJoint* pYounger) {
+        mYounger = pYounger;
+    }
+    void setCurrentMtxCalc(J3DMtxCalc* pMtxCalc) {
+        mCurrentMtxCalc = pMtxCalc;
+    }
+    J3DTransformInfo& getTransformInfo() {
+        return mTransformInfo;
+    }
+    void setTransformInfo(const J3DTransformInfo& i_info) {
+        mTransformInfo = i_info;
+    }
+    Vec* getMax() {
+        return &mMax;
+    }
+    Vec* getMin() {
+        return &mMin;
+    }
+    void setCallBack(J3DJointCallBack callback) {
+        mCallBack = callback;
+    }
+    J3DJointCallBack getCallBack() {
+        return mCallBack;
+    }
+    void setMtxCalc(J3DMtxCalc* i_mtxCalc) {
+        mMtxCalc = i_mtxCalc;
+    }
+    J3DMtxCalc* getMtxCalc() {
+        return mMtxCalc;
+    }
+    J3DMtxCalc* getCurrentMtxCalc() {
+        return mCurrentMtxCalc;
+    };
+    J3DJoint* getChild() {
+        return mChild;
+    }
+    u8 getMtxType() const {
+        return (mKind & 0xf0) >> 4;
+    }
+    void setMtxType(u8 type) {
+        mKind = (mKind & ~0xf0) | (type << 4);
+    }
+    f32 getRadius() const {
+        return mBoundingSphereRadius;
+    }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 
-    u8 getKind() const { return mKind & 15; }
+    u8 getKind() const {
+        return mKind & 15;
+    }
 
     friend struct J3DJointFactory;
     friend class J3DJointTree;
@@ -96,15 +154,20 @@ public:
 
 class J3DMtxCalcNoAnmBase : public J3DMtxCalc {
 public:
-    virtual ~J3DMtxCalcNoAnmBase() {}
+    virtual ~J3DMtxCalcNoAnmBase() {
+    }
 };
 
 template < class A, class B >
 class J3DMtxCalcNoAnm : public J3DMtxCalcNoAnmBase {
 public:
-    J3DMtxCalcNoAnm() {}
-    virtual ~J3DMtxCalcNoAnm() {}
-    virtual void init(const Vec& param_0, const Mtx& param_1) { B::init(param_0, param_1); }
+    J3DMtxCalcNoAnm() {
+    }
+    virtual ~J3DMtxCalcNoAnm() {
+    }
+    virtual void init(const Vec& param_0, const Mtx& param_1) {
+        B::init(param_0, param_1);
+    }
     virtual void calc() {
         J3DTransformInfo& transInfo = getJoint()->getTransformInfo();
         A::calcTransform(transInfo);

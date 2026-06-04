@@ -115,7 +115,8 @@ void JUTTexture::storeTIMG(ResTIMG const* pTIMG, JUTPalette* pPalette, GXTlut a1
         if (pPalette != nullptr) {
             mTlutName = a1;
             if (a1 != pPalette->mName) {
-                pPalette->storeTLUT(a1, (GXTlutFmt)pPalette->mFormat, (JUTTransparency)pPalette->mTransparency, pPalette->mLutNum, pPalette->mColorTable);
+                pPalette->storeTLUT(a1, (GXTlutFmt)pPalette->mFormat, (JUTTransparency)pPalette->mTransparency, pPalette->mLutNum,
+                                    pPalette->mColorTable);
             }
         }
 
@@ -163,26 +164,10 @@ void JUTTexture::initTexObj() {
     }
     u8* image = ((u8*)mTIMG);
     image += (mTIMG->mImageDataOffset ? mTIMG->mImageDataOffset : 0x20);
-    GXInitTexObj(
-        &mObj,
-        image,
-        mTIMG->mWidth,
-        mTIMG->mHeight,
-        (GXTexFmt)mTIMG->mFormat,
-        (GXTexWrapMode)mWrapS,
-        (GXTexWrapMode)mWrapT,
-        mipmapEnabled);
+    GXInitTexObj(&mObj, image, mTIMG->mWidth, mTIMG->mHeight, (GXTexFmt)mTIMG->mFormat, (GXTexWrapMode)mWrapS, (GXTexWrapMode)mWrapT, mipmapEnabled);
 
-    GXInitTexObjLOD(
-        &mObj,
-        (GXTexFilter)mMinType,
-        (GXTexFilter)mMagType,
-        mMinLod / 8.0f,
-        mMaxLod / 8.0f,
-        mLodBias / 100.0f,
-        mTIMG->mBiasClamp,
-        mTIMG->mDoEdgeLod,
-        (GXAnisotropy)mTIMG->mMaxAnisotropy);
+    GXInitTexObjLOD(&mObj, (GXTexFilter)mMinType, (GXTexFilter)mMagType, mMinLod / 8.0f, mMaxLod / 8.0f, mLodBias / 100.0f, mTIMG->mBiasClamp,
+                    mTIMG->mDoEdgeLod, (GXAnisotropy)mTIMG->mMaxAnisotropy);
 }
 
 void JUTTexture::initTexObj(GXTlut lut) {

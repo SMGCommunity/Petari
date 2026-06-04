@@ -76,7 +76,8 @@ void XanimeCore::setWeight(u8 idx, f32 weight) {
     mTrackList[idx].mWeight = weight;
 }
 
-XanimeCore::~XanimeCore() {}
+XanimeCore::~XanimeCore() {
+}
 
 XtransformInfo::XtransformInfo() {
     _0.zero();

@@ -67,7 +67,7 @@ void ReturnDemoRailMove::setupPathDrawForGraneStarReturnDemo() {
 
 void ReturnDemoRailMove::start() {
     const char* pBckName = (mIsGrandStar) ? "ResultFlyGrandStar" : "ResultFly";
-    MR::startBckPlayer(pBckName, reinterpret_cast< char* >(nullptr));
+    MR::startBckPlayer(pBckName, static_cast< const char* >(nullptr));
 
     MR::startBck(mPowerStar, pBckName, nullptr);
     mPathDrawer->_B0 = 0.0f;
@@ -84,7 +84,7 @@ void ReturnDemoRailMove::update(s32 currentStep, s32 maxSteps) {
     if ((startStepFirstDemo < 0 && MR::isFirstStep(mDemoStarter)) || MR::isStep(mDemoStarter, startStepFirstDemo)) {
         const char* pBckName = (mIsGrandStar) ? "ResultFlyGrandStarEnd" : "ResultFlyEnd";
 
-        MR::startBckPlayer(pBckName, reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer(pBckName, static_cast< const char* >(nullptr));
         MR::startBck(mPowerStar, pBckName, nullptr);
 
         if (!mIsGrandStar) {
@@ -103,7 +103,7 @@ void ReturnDemoRailMove::update(s32 currentStep, s32 maxSteps) {
         }
     }
 
-    MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY", -1, -1, -1);
+    MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY");
 
     TVec3f position;
     TVec3f direction;

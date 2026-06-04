@@ -279,4 +279,4 @@ namespace MR {
 
 namespace WPadFunction {
     WPadRumble* getWPadRumble(s32 channel);
-};
+};  // namespace WPadFunction

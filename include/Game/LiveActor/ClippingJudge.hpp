@@ -23,4 +23,4 @@ public:
 
 namespace MR {
     ClippingJudge* getClippingJudge();
-};
+};  // namespace MR

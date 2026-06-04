@@ -6,7 +6,7 @@
 
 namespace NrvTicoStarRing {
     NEW_NERVE(TicoStarRingNrvWait, TicoStarRing, Wait);
-};
+};  // namespace NrvTicoStarRing
 
 TicoStarRing::TicoStarRing(const char* pName) : Tico(pName) {
     mGalaxy = nullptr;
@@ -83,4 +83,5 @@ void TicoStarRing::exeWait() {
     }
 }
 
-TicoStarRing::~TicoStarRing() {}
+TicoStarRing::~TicoStarRing() {
+}

@@ -6,7 +6,8 @@ namespace NrvSpaceMine {
     NEW_NERVE(HostTypeAppear, SpaceMine, Appear);
 };  // namespace NrvSpaceMine
 
-SpaceMine::SpaceMine(const char* pName) : MapObjActor(pName), _C4(1.0f), mClippingRange(gZeroVec), _D4(-1), _D8(0) {}
+SpaceMine::SpaceMine(const char* pName) : MapObjActor(pName), _C4(1.0f), mClippingRange(gZeroVec), _D4(-1), _D8(0) {
+}
 
 void SpaceMine::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -65,7 +66,7 @@ bool SpaceMine::isCalcShadowAlways() const {
 
 void SpaceMine::kill() {
     MR::emitEffect(this, "Explosion");
-    MR::startSound(this, "SE_OJ_SPACEMINE_EXPLOSION", -1, -1);
+    MR::startSound(this, "SE_OJ_SPACEMINE_EXPLOSION");
     MR::tryRumblePad(this, "中", 0);
     MapObjActor::kill();
 }
@@ -148,12 +149,12 @@ void SpaceMine::exeAppear() {
         MR::setClippingRangeIncludeShadow(this, &mClippingRange, 100.0f);
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_SPACEMINE_APPEAR", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_SPACEMINE_APPEAR");
 
     if (MR::isStep(this, 120)) {
         MR::startBck(this, "Appear", nullptr);
         MR::showModel(this);
-        MR::startSound(this, "SE_OJ_SPACEMINE_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_SPACEMINE_APPEAR");
     }
 
     if (MR::isGreaterStep(this, 120)) {
@@ -163,4 +164,5 @@ void SpaceMine::exeAppear() {
     }
 }
 
-SpaceMine::~SpaceMine() {}
+SpaceMine::~SpaceMine() {
+}

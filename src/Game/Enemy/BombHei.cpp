@@ -57,7 +57,7 @@ namespace {
     // const BombHeiParam hPursueNearParam =
     // const BombHeiParam hPursueWaitParam =
     static s32 hCountTimer = hStartBrkTime;
-}  // namespace
+};  // namespace
 
 namespace NrvBombHei {
     NEW_NERVE(HostTypeNrvLaunch, BombHei, Launch);
@@ -76,7 +76,7 @@ namespace NrvBombHei {
     NEW_NERVE(HostTypeNrvExplode, BombHei, Explode);
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, BombHei, BindStarPointer, BindStarPointer);
 
-}  // namespace NrvBombHei
+};  // namespace NrvBombHei
 
 BombHei::BombHei(const char* pName)
     : LiveActor(pName), mScaleController(nullptr), mBindStarPointerState(nullptr), mRotQuat(0.0f, 0.0f, 0.0f, 1.0f), mFront(0, 0, 1),
@@ -350,7 +350,7 @@ void BombHei::exePursue() {
 void BombHei::exePursueHit() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Hit", nullptr);
-        MR::startSound(this, "SE_EM_BOMBHEI_HIT", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBHEI_HIT");
     }
 
     MR::moveAndTurnToPlayer(this, &mFront, hNoMoveNoTurnParam.mSpeedH, hNoMoveNoTurnParam.mGravAccel, hNoMoveNoTurnParam.mFriction,
@@ -399,7 +399,7 @@ void BombHei::endSpinHit() {
 void BombHei::exeTrample() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Pressed");
-        MR::startSound(this, "SE_EM_BOMBHEI_TRAMPLE", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBHEI_TRAMPLE");
     }
 
     MR::addVelocityToGravityOrGround(this, hGravity);
@@ -472,7 +472,7 @@ void BombHei::exeThrown() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Stop", nullptr);
         MR::startSoundPlayer("SE_PV_THROW", -1);
-        MR::startSound(this, "SE_EM_BOMB_THROW", -1, -1);
+        MR::startSound(this, "SE_EM_BOMB_THROW");
         MR::invalidateExCollisionParts(this);
         MR::offCalcGravity(this);
     }
@@ -516,7 +516,7 @@ void BombHei::exeTaken() {
         if (MR::sendMsgTaken(mCarrySensor, getSensor("body"))) {
             getSensor("body")->invalidate();
             MR::startSoundPlayer("SE_PV_LIFT_UP", -1);
-            MR::startSound(this, "SE_EM_BOMB_LIFT", -1, -1);
+            MR::startSound(this, "SE_EM_BOMB_LIFT");
         } else {
             setNerve(&NrvBombHei::HostTypeNrvPhysics::sInstance);
             return;
@@ -533,7 +533,7 @@ void BombHei::endTaken() {
 void BombHei::exeExplode() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Explosion");
-        MR::startSound(this, "SE_EM_BOMB_EXPLOSION", -1, -1);
+        MR::startSound(this, "SE_EM_BOMB_EXPLOSION");
         MR::hideModel(this);
         getSensor("explode")->validate();
         getSensor("body")->invalidate();
@@ -614,14 +614,14 @@ void BombHei::control() {
             MR::setBrkRate(this, hBrkFastRate);
         }
 
-        MR::startLevelSound(this, "SE_EM_LV_BOMB_FUSE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_BOMB_FUSE");
 
         if (mCountdown <= hBrkRateUpTime) {
-            MR::startLevelSound(this, "SE_EM_LV_BOMB_ALARM_FAST", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_BOMB_ALARM_FAST");
         } else if (mCountdown <= hStartBrkTime / 2) {
-            MR::startLevelSound(this, "SE_EM_LV_BOMB_ALARM_MIDDLE", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_BOMB_ALARM_MIDDLE");
         } else {
-            MR::startLevelSound(this, "SE_EM_LV_BOMB_ALARM_SLOW", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_BOMB_ALARM_SLOW");
         }
 
         if (--mCountdown == 0) {
@@ -811,5 +811,5 @@ bool BombHei::receiveMsgThrow(HitSensor* pSender, HitSensor* pReceiver) {
 
 void BombHei::startBoundSound() {
     s32 level = mGravity.dot(mVelocity) * 100.0f;
-    MR::startSound(this, "SE_EM_BOMB_BOUND", level, -1);
+    MR::startSound(this, "SE_EM_BOMB_BOUND", level);
 }

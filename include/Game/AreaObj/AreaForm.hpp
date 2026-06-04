@@ -6,6 +6,14 @@
 
 class AreaForm {
 public:
+    enum Type {
+        Type_Cube1,
+        Type_Cube2,
+        Type_Sphere,
+        Type_Cylinder,
+        Type_Bowl,
+    };
+
     virtual void init(const JMapInfoIter&);
     virtual bool isInVolume(const TVec3f&) const;
 

@@ -84,4 +84,4 @@ namespace NrvTrapeze {
     NEW_NERVE(TrapezeNrvSlowSwingFrontEnd, Trapeze, SwingFrontEnd);
     NEW_NERVE(TrapezeNrvSlowSwingBackStart, Trapeze, SwingBackStart);
     NEW_NERVE(TrapezeNrvSlowSwingBackEnd, Trapeze, SwingBackEnd);
-}  // namespace NrvTrapeze
+};  // namespace NrvTrapeze

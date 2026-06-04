@@ -39,9 +39,3 @@ public:
     s32 _9C;
     const char* _A0;
 };
-
-namespace MR {
-    bool isMsgHipDropFloor(u32);
-}
-
-const char* gDesertLandMoveSwitchvar = 0;

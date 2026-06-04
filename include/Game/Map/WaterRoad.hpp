@@ -39,6 +39,6 @@ public:
     TVec3f* _10;
     TVec3s* _14;
     f32* _18;
-    u32 mDispListLength;      // 0x1C
-    u8* mDispList;  // 0x20
+    u32 mDispListLength;  // 0x1C
+    u8* mDispList;        // 0x20
 };

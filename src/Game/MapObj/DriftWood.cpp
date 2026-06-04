@@ -22,12 +22,9 @@ struct SinCosPair {
 
 extern SinCosPair lbl_8060FC80[];
 
-DriftWood::DriftWood(const char* pName) : MapObjActor(pName), 
-mRailDirection(0.0f, 0.0f, 1.0f),
-mRailClipping(0.0f, 0.0f, 0.0f),
-mVibrateOffset(0.0f, 0.0f, 0.0f),
-mWaveSoundTimer(0l)
-{}
+DriftWood::DriftWood(const char* pName)
+    : MapObjActor(pName), mRailDirection(0.0f, 0.0f, 1.0f), mRailClipping(0.0f, 0.0f, 0.0f), mVibrateOffset(0.0f, 0.0f, 0.0f), mWaveSoundTimer(0l) {
+}
 
 namespace NrvDriftWood {
     NEW_NERVE(DriftWoodNrvWait, DriftWood, Wait);
@@ -69,7 +66,7 @@ void DriftWood::exeWait() {
     tryVibrate();
 
     if (mWaveSoundTimer < 1) {
-        MR::startSound(this, "SE_OJ_DRIFT_WOOD_WAVE", -1, -1);
+        MR::startSound(this, "SE_OJ_DRIFT_WOOD_WAVE");
         mWaveSoundTimer = MR::getRandom(30l, 90l);
     } else {
         mWaveSoundTimer--;
@@ -78,7 +75,7 @@ void DriftWood::exeWait() {
 
 void DriftWood::exeVibrate() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_DRIFT_WOOD_PLAYER_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_DRIFT_WOOD_PLAYER_ON");
         mVibrateOffset.zero();
     }
 
@@ -97,19 +94,19 @@ void DriftWood::exeVibrate() {
     }
 
     step = 30.0f * step;
-    
+
     f32 nerveValue = MR::calcNerveValue(this, 45, 0.1f, 1.0f);
-    
+
     step = (1.0f - nerveValue) * step;
-    
+
     mVibrateOffset.scale(step, mGravity);
 
     JMathInlineVEC::PSVECAdd(&MR::getRailPos(this), &mVibrateOffset, &mPosition);
 
-     if (!tryVibrate()) {
+    if (!tryVibrate()) {
         if (MR::isGreaterEqualStep(this, 45)) {
             mVibrateOffset.zero();
-            
+
             if (MR::isOnPlayer(this)) {
                 setNerve(&NrvDriftWood::DriftWoodNrvWaitLand::sInstance);
             } else {
@@ -133,23 +130,23 @@ void DriftWood::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         TVec3f delta;
         JMathInlineVEC::PSVECSubtract2(&pSender->mPosition, &pReceiver->mPosition, &delta);
-        
+
         TVec3f upVec;
         MR::calcUpVec(&upVec, this);
 
         TVec3f result;
         JMAVECScaleAdd(&upVec, &delta, &result, -upVec.dot(delta));
 
-        float radius = pReceiver->mRadius;
-        float magnitude = PSVECMag(&result);
-        float threshold = 140.0f + radius;
+        f32 radius = pReceiver->mRadius;
+        f32 magnitude = PSVECMag(&result);
+        f32 threshold = 140.0f + radius;
 
         if (magnitude > threshold) {
         } else {
             LiveActor* mHost = pReceiver->mHost;
             if (!MR::isInWater(mHost, TVec3f(0.0f, 0.0f, 0.0f))) {
                 MR::sendMsgEnemyAttackFlip(pReceiver, pSender);
-                MR::startSound(this, "SE_OJ_DRIFT_WOOD_ATTACK", -1, -1);
+                MR::startSound(this, "SE_OJ_DRIFT_WOOD_ATTACK");
             }
         }
     } else if (MR::isSensorMapObj(pReceiver) && MR::sendMsgEnemyAttack(pReceiver, pSender) && MR::isOnPlayer(this)) {
@@ -159,14 +156,12 @@ void DriftWood::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool DriftWood::tryVibrate() {
     if (MR::isOnPlayer(this)) {
-        if (isNerve(&NrvDriftWood::DriftWoodNrvVibrateTakeOff::sInstance) ||
-            isNerve(&NrvDriftWood::DriftWoodNrvWait::sInstance)) {
+        if (isNerve(&NrvDriftWood::DriftWoodNrvVibrateTakeOff::sInstance) || isNerve(&NrvDriftWood::DriftWoodNrvWait::sInstance)) {
             setNerve(&NrvDriftWood::DriftWoodNrvVibrateLand::sInstance);
             return true;
         }
     } else {
-        if (isNerve(&NrvDriftWood::DriftWoodNrvWaitLand::sInstance) ||
-            isNerve(&NrvDriftWood::DriftWoodNrvWaitLand::sInstance)) {
+        if (isNerve(&NrvDriftWood::DriftWoodNrvWaitLand::sInstance) || isNerve(&NrvDriftWood::DriftWoodNrvWaitLand::sInstance)) {
             setNerve(&NrvDriftWood::DriftWoodNrvVibrateTakeOff::sInstance);
             return true;
         }

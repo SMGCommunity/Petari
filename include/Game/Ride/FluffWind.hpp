@@ -43,4 +43,4 @@ public:
 
 namespace FluffFunction {
     bool calcFluffWindInfo(const TVec3f& rPosition, TVec3f* pWindDirection, f32* pWindStrength);
-};
+};  // namespace FluffFunction

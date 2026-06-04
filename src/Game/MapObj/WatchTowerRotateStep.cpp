@@ -80,17 +80,18 @@ void WatchTowerRotateStep::initLift(const JMapInfoIter &rIter) {
 
 // WatchTowerRotateStep::attachLift();
 
-void WatchTowerRotateStep::exeWait() {}
+void WatchTowerRotateStep::exeWait() {
+}
 
 void WatchTowerRotateStep::exeMoveStart() {
     TVec3f upVec;
 
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
-        MR::startSound(this, "SE_OJ_WATCH_TOWER_START", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
+        MR::startSound(this, "SE_OJ_WATCH_TOWER_START");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_WATCH_TOWER_ROTATE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_WATCH_TOWER_ROTATE");
     f32 easeIn = MR::getEaseInValue((s32)getNerveStep(), 0.0f, 0.3f, 180.0f);
     MR::calcFrontVec(&upVec, this);
     MR::rotateVecDegree(&mRotDeg, upVec, easeIn);
@@ -107,5 +108,5 @@ void WatchTowerRotateStep::exeMove() {
     MR::calcFrontVec(&frontVec, this);
     MR::rotateVecDegree(&mRotDeg, frontVec, 0.3f);
     attachLift();
-    MR::startLevelSound(this, "SE_OJ_LV_WATCH_TOWER_ROTATE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_WATCH_TOWER_ROTATE");
 }

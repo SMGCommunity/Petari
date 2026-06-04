@@ -105,9 +105,9 @@ void YesNoController::exeSelecting() {
 
     if (mButtonYesPaneCtrl->isPointingTrigger()) {
         if (mCursorSE != nullptr) {
-            MR::startSystemSE(mCursorSE, -1, -1);
+            MR::startSystemSE(mCursorSE);
         } else {
-            MR::startSystemSE(sDefaultCursorSE, -1, -1);
+            MR::startSystemSE(sDefaultCursorSE);
         }
 
         forceDeleteEffectAllIfExist();
@@ -116,9 +116,9 @@ void YesNoController::exeSelecting() {
 
     if (mButtonNoPaneCtrl->isPointingTrigger()) {
         if (mCursorSE != nullptr) {
-            MR::startSystemSE(mCursorSE, -1, -1);
+            MR::startSystemSE(mCursorSE);
         } else {
-            MR::startSystemSE(sDefaultCursorSE, -1, -1);
+            MR::startSystemSE(sDefaultCursorSE);
         }
 
         forceDeleteEffectAllIfExist();
@@ -149,15 +149,15 @@ void YesNoController::exeDecided() {
 
         if (isSelectedYes) {
             if (mYesSE != nullptr) {
-                MR::startSystemSE(mYesSE, -1, -1);
+                MR::startSystemSE(mYesSE);
             } else {
-                MR::startSystemSE(sDefaultYesSE, -1, -1);
+                MR::startSystemSE(sDefaultYesSE);
             }
         } else {
             if (mNoSE != nullptr) {
-                MR::startSystemSE(mNoSE, -1, -1);
+                MR::startSystemSE(mNoSE);
             } else {
-                MR::startSystemSE(sDefaultNoSE, -1, -1);
+                MR::startSystemSE(sDefaultNoSE);
             }
         }
     }

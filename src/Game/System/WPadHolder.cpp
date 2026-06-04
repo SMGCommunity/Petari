@@ -34,7 +34,7 @@ WPadHolder::WPadHolder() : mReadDataInfoArray(nullptr), mMode(WPAD_SENSOR_BAR_PO
 
     mReadDataInfoArray = new WPadReadDataInfo[WPAD_MAX_CONTROLLERS];
 
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + sizeof(mPad) / sizeof(*mPad); chan++) {
+    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + ARRAY_SIZEU(mPad); chan++) {
         mPad[chan] = new WPad(chan);
         mPad[chan]->setReadInfo(&mReadDataInfoArray[chan]);
     }
@@ -53,7 +53,7 @@ void WPadHolder::updateReadDataOnly() {
 }
 
 void WPadHolder::updateProjectPadData() {
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + sizeof(mPad) / sizeof(*mPad); chan++) {
+    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + ARRAY_SIZEU(mPad); chan++) {
         mPad[chan]->update();
     }
 }
@@ -100,7 +100,7 @@ void WPadHolder::initSensorBarPosition() {
         break;
     }
 
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + sizeof(mPad) / sizeof(*mPad); chan++) {
+    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + ARRAY_SIZEU(mPad); chan++) {
         mPad[chan]->mPointer->setSensorBarLevel(level);
     }
 }
@@ -108,13 +108,13 @@ void WPadHolder::initSensorBarPosition() {
 void WPadHolder::resetPad() {
     KPADReset();
 
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + sizeof(mPad) / sizeof(*mPad); chan++) {
+    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + ARRAY_SIZEU(mPad); chan++) {
         mPad[chan]->resetPad();
     }
 }
 
 WPad* WPadHolder::getWPad(s32 channel) {
-    if (channel < WPAD_CHAN0 + sizeof(mPad) / sizeof(*mPad)) {
+    if (channel < WPAD_CHAN0 + ARRAY_SIZEU(mPad)) {
         return mPad[channel];
     }
 

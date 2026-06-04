@@ -7,7 +7,8 @@ JMapInfo::JMapInfo() {
     mName = "Undifined";
 }
 
-JMapInfo::~JMapInfo() {}
+JMapInfo::~JMapInfo() {
+}
 
 bool JMapInfo::attach(const void* pData) {
     if (pData == nullptr) {

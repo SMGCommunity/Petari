@@ -37,7 +37,8 @@ CameraGeneralParam& CameraGeneralParam::operator=(const CameraGeneralParam& rOth
     return *this;
 }
 
-CameraParamChunk::ExParam::ExParam() {}
+CameraParamChunk::ExParam::ExParam() {
+}
 
 void CameraParamChunk::ExParam::init() {
     mWOffset.set(0.0f, 100.0f, 0.0f);

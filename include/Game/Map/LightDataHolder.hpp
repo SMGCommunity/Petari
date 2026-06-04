@@ -12,7 +12,8 @@ public:
 
 class LightInfoCoin : public LightInfo {
 public:
-    inline LightInfoCoin() {}
+    inline LightInfoCoin() {
+    }
 
     u8 _14;
     u8 _15;
@@ -23,7 +24,8 @@ public:
 
 class ActorLightInfo {
 public:
-    inline ActorLightInfo() {}
+    inline ActorLightInfo() {
+    }
 
     void operator=(const ActorLightInfo&);
 

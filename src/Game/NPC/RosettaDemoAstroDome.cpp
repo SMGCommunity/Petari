@@ -1,7 +1,7 @@
 #include "Game/NPC/RosettaDemoAstroDome.hpp"
 #include "Game/Demo/DemoFunction.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/NPC/Rosetta.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Util.hpp"
 #include <cstdio>
@@ -10,15 +10,15 @@
 
 namespace NrvRosettaDemoAstroDomeExplain {
     NEW_NERVE(RosettaDemoAstroDomeExplainNrvExplainDemo, RosettaDemoAstroDomeExplain, Demo);
-}  // namespace NrvRosettaDemoAstroDomeExplain
+};  // namespace NrvRosettaDemoAstroDomeExplain
 
 namespace NrvRosettaDemoAstroDomeFinalBattle {
     NEW_NERVE(RosettaDemoAstroDomeFinalBattleNrvFinalBattleDemo, RosettaDemoAstroDomeFinalBattle, Demo);
-}  // namespace NrvRosettaDemoAstroDomeFinalBattle
+};  // namespace NrvRosettaDemoAstroDomeFinalBattle
 
 namespace NrvRosettaDemoAstroDomeTalk {
     NEW_NERVE(RosettaDemoAstroDomeTalkNrvTalkDemo, RosettaDemoAstroDomeTalk, Demo);
-}  // namespace NrvRosettaDemoAstroDomeTalk
+};  // namespace NrvRosettaDemoAstroDomeTalk
 
 template < typename T >
 static void EntryDemo(T* caller, const char* pDemoName, const char* pRootName, const JMapInfoIter& rIter) {
@@ -93,16 +93,16 @@ void RosettaMonologue::control() {
     mIcon->term();
 
     if (mTextFormer.nextPage()) {
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         return;
     }
 
     mMsgID++;
     if (mMsgID == 4) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, WPAD_CHAN0);
     } else {
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         char buff[256];
         snprintf(buff, 256, "RosettaMonologue%03d", mMsgID);
         mTextFormer.formMessage(MR::getGameMessageDirect(buff), 1);

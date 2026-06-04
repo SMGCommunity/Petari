@@ -13,7 +13,7 @@ namespace {
     static const f32 sNearMainPointAccelRate = 0.1f;
     static const f32 sNearHangPointAccelRate = 0.02f;
     static const f32 sNearPointDiffMin = 1.0f;
-}  // namespace
+};  // namespace
 
 SpiderThreadPointNearInfo::SpiderThreadPointNearInfo()
     : mMainPoint(nullptr), mPartPoint(nullptr), mDistToPoint(0.0f), mSpringFactor(0.0f), mThreadPart(nullptr) {

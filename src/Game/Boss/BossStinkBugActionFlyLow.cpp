@@ -25,7 +25,7 @@ namespace NrvBossStinkBugActionFlyLow {
     NEW_NERVE(BossStinkBugActionFlyLowNrvDash, BossStinkBugActionFlyLow, Dash);
     NEW_NERVE(BossStinkBugActionFlyLowNrvTurnSign, BossStinkBugActionFlyLow, TurnSign);
     NEW_NERVE(BossStinkBugActionFlyLowNrvTurn, BossStinkBugActionFlyLow, Turn);
-}  // namespace NrvBossStinkBugActionFlyLow
+};  // namespace NrvBossStinkBugActionFlyLow
 
 BossStinkBugActionFlyLow::BossStinkBugActionFlyLow(BossStinkBug* pStinkBug) : BossStinkBugActionBase("ボスカメムシ低空戦", pStinkBug), _64(0.0f) {
     _38 = 14.0f;
@@ -70,7 +70,7 @@ bool BossStinkBugActionFlyLow::receiveMsgPlayerAttack(u32 msg, HitSensor* pSende
         MR::emitEffectHit(getHost(), MR::getSensorPos(pSender), "Hit");
 
         if (BossStinkBugFunction::isHipDropableSensor(getHost(), pReceiver)) {
-            MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_2", -1, -1);
+            MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_2");
             setNerve(&NrvBossStinkBugActionFlyLow::BossStinkBugActionFlyLowNrvFall::sInstance);
             return true;
         }
@@ -93,7 +93,7 @@ bool BossStinkBugActionFlyLow::receiveOtherMsg(u32 msg, HitSensor* pSender, HitS
 void BossStinkBugActionFlyLow::exeFly() {
     _64 += 0.05235988f;
     MR::repeatDegree(&_64);
-    _3C = 900.0f + JMath::sSinCosTable.sinLapRad(_64) * 100.0f;
+    _3C = 900.0f + MR::sin(_64) * 100.0f;
     throwBomb(60);
     updateFly();
     if (BossStinkBugFunction::isExistPlayerBack(getHost(), 2000.0f)) {

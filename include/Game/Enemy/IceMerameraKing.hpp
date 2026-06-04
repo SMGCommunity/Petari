@@ -48,11 +48,11 @@ public:
     ThrowingIce* getDeadWeaponAndAppear();
     bool calcJoint(TPos3f*, const JointControllerInfo&);
 
-    FixedPosition* mFixedPos;  //_8C
-    ThrowingIce* _90;
-    Meramera* _94;
-    SpinPullParticleCallBack* mSpinParticle;  //_98
-    MR::Vector< MR::AssignableArray< ThrowingIce* > > mActor;  //_9C
+    FixedPosition* mFixedPos;                                //_8C
+    ThrowingIce* mThrowingIce;                               //_90
+    Meramera* mMeramera;                                     // _94
+    SpinPullParticleCallBack* mSpinParticle;                 //_98
+    MR::Vector< MR::AssignableArray< ThrowingIce* > > mIce;  //_9C
     LiveActor* _A8;
     LiveActor* _AC;
     TVec3f _B0;
@@ -64,9 +64,9 @@ public:
     u32 _E8;
     s32 _EC;
     s32 _F0;
-    Meramera** mModelArray;                                  //_F4
-    CameraTargetDemoActor* _F8;                                 //_F8
-    JointControlDelegator< IceMerameraKing >* mJointController; //_FC
+    Meramera** mModelArray;                                      //_F4
+    CameraTargetDemoActor* mCameraTarget;                        //_F8
+    JointControlDelegator< IceMerameraKing >* mJointController;  //_FC
     TQuat4f _100;
     TVec3f _110;
     f32 _11C;

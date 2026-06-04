@@ -87,7 +87,7 @@ void MercatorRailMoveParts::updatePose() {
 }
 
 void MercatorRailMoveParts::init(const JMapInfoIter& rIter) {
-    char objName[0x100];
+    char objName[256];
     MR::getMapPartsObjectName(objName, sizeof(objName), rIter);
     MR::initDefaultPosForMercator(this, rIter, false);
     MR::getJMapInfoTrans(rIter, &mLocalTrans);
@@ -96,21 +96,15 @@ void MercatorRailMoveParts::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
 
-    TVec3f what;
-    TVec3f sensorOffs;
-    sensorOffs.x = 0.0f;
-    sensorOffs.y = 0.0f;
-    sensorOffs.z = 0.0f;
-    MR::addHitSensorMapObj(this, "body", 4, 0.0f, sensorOffs);
+    MR::addHitSensorMapObj(this, "body", 4, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, "body", getSensor("body"), nullptr);
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        void (MercatorRailMoveParts::*e)(void) = &MercatorRailMoveParts::startMove;
-        void (MercatorRailMoveParts::*s)(void) = &MercatorRailMoveParts::endMove;
-        MR::listenStageSwitchOnOffB(this, MR::Functor< MercatorRailMoveParts >(this, e), MR::Functor< MercatorRailMoveParts >(this, s));
+        MR::listenStageSwitchOnOffB(this, MR::Functor(this, &MercatorRailMoveParts::startMove), MR::Functor(this, &MercatorRailMoveParts::endMove));
     }
 
     initRailRider(rIter);
+    TVec3f what;
     what.setPS(mPosition);
     mRailMover = MR::createMapPartsRailMoverForMercator(this, rIter, true);
     mRailMover->start();
@@ -133,4 +127,5 @@ void MercatorRailMoveParts::init(const JMapInfoIter& rIter) {
     updatePose();
 }
 
-MercatorRailMoveParts::~MercatorRailMoveParts() {}
+MercatorRailMoveParts::~MercatorRailMoveParts() {
+}

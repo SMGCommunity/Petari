@@ -6,7 +6,8 @@
 
 class BezierRailPart {
 public:
-    inline BezierRailPart() {}
+    inline BezierRailPart() {
+    }
 
     void set(const TVec3f&, const TVec3f&, const TVec3f&, const TVec3f&);
     void calcPos(TVec3f*, f32) const;
@@ -49,7 +50,9 @@ public:
 
     f32 getTotalLength() const;
 
-    inline RailPart* getRailPart(s32 idx) const { return &mRailParts[idx]; }
+    inline RailPart* getRailPart(s32 idx) const {
+        return &mRailParts[idx];
+    }
 
     /* 0x00 */ bool mIsClosed;
     /* 0x04 */ s32 mPointNum;

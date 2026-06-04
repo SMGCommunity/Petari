@@ -13,7 +13,8 @@ class GeneralMapParts : public MapParts {
 public:
     GeneralMapParts(const char*);
 
-    virtual ~GeneralMapParts() {}
+    virtual ~GeneralMapParts() {
+    }
 
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();

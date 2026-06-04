@@ -26,8 +26,12 @@ public:
         mDeformer = other.mDeformer;
     }
 
-    J3DDeformer* getDeformer() { return mDeformer; }
-    void setDeformer(J3DDeformer* deformer) { mDeformer = deformer; }
+    J3DDeformer* getDeformer() {
+        return mDeformer;
+    }
+    void setDeformer(J3DDeformer* deformer) {
+        mDeformer = deformer;
+    }
 
     /* 0x00 */ f32 mMaxAngle;
     /* 0x04 */ f32 mMinAngle;
@@ -66,12 +70,24 @@ public:
     void deform(J3DModel*);
     void setAnm(J3DAnmCluster*);
 
-    J3DCluster* getClusterPointer(u16 index) { return &mClusterPointer[index]; }
-    u16 getClusterNum() const { return mClusterNum; }
-    u16 getClusterKeyNum() const { return mClusterKeyNum; }
-    J3DClusterKey* getClusterKeyPointer(u16 i) { return &mClusterKeyPointer[i]; }
-    f32* getVtxPos() { return mVtxPos; }
-    f32* getVtxNrm() { return mVtxNrm; }
+    J3DCluster* getClusterPointer(u16 index) {
+        return &mClusterPointer[index];
+    }
+    u16 getClusterNum() const {
+        return mClusterNum;
+    }
+    u16 getClusterKeyNum() const {
+        return mClusterKeyNum;
+    }
+    J3DClusterKey* getClusterKeyPointer(u16 i) {
+        return &mClusterKeyPointer[i];
+    }
+    f32* getVtxPos() {
+        return mVtxPos;
+    }
+    f32* getVtxNrm() {
+        return mVtxNrm;
+    }
 
     /* 0x00 */ u16 mClusterNum;
     /* 0x02 */ u16 mClusterKeyNum;

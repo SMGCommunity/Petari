@@ -50,7 +50,8 @@ namespace {
 
 ScenarioSelectScene::ScenarioSelectScene()
     : Scene("シナリオ選択シーン"), _14(0), _15(0), _16(0), mScenarioLayout(nullptr), mCinemaFrame(nullptr), _28(0), mEffectSystem(nullptr),
-      mCameraContext(nullptr) {}
+      mCameraContext(nullptr) {
+}
 
 void ScenarioSelectScene::init() {
     _20 = createDrawBuffer();
@@ -212,7 +213,8 @@ void ScenarioSelectScene::exeDeactive() {
     }
 }
 
-void ScenarioSelectScene::exeInvalidScenarioSelect() {}
+void ScenarioSelectScene::exeInvalidScenarioSelect() {
+}
 
 void ScenarioSelectScene::exeStartScenarioSelect() {
     if (MR::isFirstStep(this)) {
@@ -311,4 +313,5 @@ void ScenarioSelectScene::exeWaitResumeInitializeThreadIfCanceledSelect() {
     }
 }
 
-ScenarioSelectScene::~ScenarioSelectScene() {}
+ScenarioSelectScene::~ScenarioSelectScene() {
+}

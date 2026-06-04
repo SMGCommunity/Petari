@@ -22,7 +22,8 @@ namespace NrvCoinCounter {
 
 CoinCounter::CoinCounter(const char* pName)
     : LayoutActor(pName, true), mCoinNum(0), mCoinDisplayNum(0), mInvalidCountUpFrame(0), mLayoutAppearer(nullptr), mPaneRumbler(nullptr),
-      mIsForceAppear(false), mFollowPos(0.0f, 0.0f) {}
+      mIsForceAppear(false), mFollowPos(0.0f, 0.0f) {
+}
 
 void CoinCounter::init(const JMapInfoIter& rIter) {
     initLayoutManager("CoinCounter", 2);

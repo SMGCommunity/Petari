@@ -339,7 +339,7 @@ namespace MR {
 
         sscanf(pSrc, "\t{%d,%d,%d,%d}", &temp[0], &temp[1], &temp[2], &temp[3]);
 
-        for (int i = 0; i < sizeof(temp) / sizeof(*temp); i++) {
+        for (int i = 0; i < ARRAY_SIZE(temp); i++) {
             pDst[i] = temp[i];
         }
     }
@@ -353,7 +353,7 @@ namespace MR {
 
         sscanf(pSrc, "\t{%d,%d,%d,%d}", &temp[0], &temp[1], &temp[2], &temp[3]);
 
-        for (int i = 0; i < sizeof(temp) / sizeof(*temp); i++) {
+        for (int i = 0; i < ARRAY_SIZE(temp); i++) {
             pDst[i] = temp[i];
         }
     }

@@ -6,7 +6,6 @@
 #include "JSystem/JSupport/JSUList.hpp"
 #include <revolution/types.h>
 
-
 class JPAEmitterCallBack;
 class JPAParticleCallBack;
 class JPABaseEmitter;
@@ -27,9 +26,15 @@ public:
     void entryResourceManager(JPAResourceManager*, u8);
     void clearResourceManager(u8);
     void calcYBBCam();
-    JPAResourceManager* getResourceManager(u16 idx) const { return pResMgrAry[idx]; }
-    JPAResourceManager* getResourceManager(u8 res_mgr_id) const { return pResMgrAry[res_mgr_id]; }
-    int getEmitterNumber() const { return emtrNum - mFreeEmtrList.getNumLinks(); }
+    JPAResourceManager* getResourceManager(u16 idx) const {
+        return pResMgrAry[idx];
+    }
+    JPAResourceManager* getResourceManager(u8 res_mgr_id) const {
+        return pResMgrAry[res_mgr_id];
+    }
+    int getEmitterNumber() const {
+        return emtrNum - mFreeEmtrList.getNumLinks();
+    }
 
 public:
     /* 0x00 */ JSUList< JPABaseEmitter >* pEmtrUseList;

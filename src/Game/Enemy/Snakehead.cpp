@@ -76,7 +76,7 @@ void Snakehead::initAfterPlacement() {
 }
 
 void Snakehead::kill() {
-    MR::startSound(this, "SE_EM_EXPLODE_UNDER_WATER", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_UNDER_WATER");
     MR::emitEffect(this, "Death");
 
     bool v3 = true;
@@ -92,7 +92,7 @@ void Snakehead::kill() {
         TVec3f headPos;
         MR::copyJointPos(this, "Head", &headPos);
         MR::appearStarPiece(this, headPos, 9, 10.0f, 40.0f, 0);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_FIRST_W", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_FIRST_W");
     } else {
         TVec3f attPos;
         MR::copyJointPos(this, "Antenna", &attPos);
@@ -197,7 +197,7 @@ void Snakehead::exeMoveForward() {
     if (MR::isFirstStep(this)) {
         choiceAndStartBck("Forward");
         MR::setRailDirectionToEnd(this);
-        MR::startSound(this, "SE_EM_SNAKEHEAD_FORWARD", -1, -1);
+        MR::startSound(this, "SE_EM_SNAKEHEAD_FORWARD");
     }
 
     bool v3 = true;
@@ -231,7 +231,7 @@ void Snakehead::exeMoveBack() {
     if (MR::isFirstStep(this)) {
         choiceAndStartBck("Back");
         MR::setRailDirectionToStart(this);
-        MR::startSound(this, "SE_EM_SNAKEHEAD_BACKWARD", -1, -1);
+        MR::startSound(this, "SE_EM_SNAKEHEAD_BACKWARD");
     }
 
     MR::moveCoordAndFollowTrans(this, _D4);
@@ -247,7 +247,7 @@ void Snakehead::exeTurtleDown() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Damage", nullptr);
         MR::setRailDirectionToStart(this);
-        MR::startSound(this, "SE_EV_SNAKEHEAD_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EV_SNAKEHEAD_DAMAGE");
     }
 
     f32 coord = *sSnakeheadDataTable[_E8]._8;

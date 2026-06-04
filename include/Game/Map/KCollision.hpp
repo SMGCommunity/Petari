@@ -16,7 +16,8 @@ struct KC_PrismData {
 
 class Fxyz {
 public:
-    inline Fxyz() {}
+    inline Fxyz() {
+    }
 
     Fxyz& operator=(const Fxyz&);
 
@@ -54,7 +55,8 @@ class KCollisionServer {
 public:
     class V3u {
     public:
-        inline V3u() {}
+        inline V3u() {
+        }
 
         void setUsingCast(const TVec3f&);
 

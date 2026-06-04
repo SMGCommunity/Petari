@@ -105,12 +105,12 @@ void MapObjActor::appear() {
         const char* startSound = MR::StageEffect::getStartSe(mObjectName);
 
         if (startSound) {
-            MR::startSound(this, startSound, -1, -1);
+            MR::startSound(this, startSound);
         }
     }
 
     if (_B6) {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     }
 }
 
@@ -158,12 +158,11 @@ void MapObjActor::initCaseUseSwitchA(const MapObjActorInitInfo&) {
     setNerve(mWaitNrv);
 }
 
-void MapObjActor::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {}
+void MapObjActor::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
+}
 
 void MapObjActor::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    void (MapObjActor::*end)(void) = &MapObjActor::endMapPartsFunctions;
-    void (MapObjActor::*start)(void) = &MapObjActor::startMapPartsFunctions;
-    MR::listenStageSwitchOnOffB(this, MR::Functor(this, end), MR::Functor(this, start));
+    MR::listenStageSwitchOnOffB(this, MR::Functor(this, &MapObjActor::startMapPartsFunctions), MR::Functor(this, &MapObjActor::endMapPartsFunctions));
 }
 
 void MapObjActor::initCaseNoUseSwitchB(const MapObjActorInitInfo& rInfo) {
@@ -198,7 +197,7 @@ void MapObjActor::control() {
             const char* startSound = MR::StageEffect::getStartSe(mObjectName);
 
             if (startSound) {
-                MR::startSound(this, startSound, -1, -1);
+                MR::startSound(this, startSound);
             }
         }
     }
@@ -210,7 +209,7 @@ void MapObjActor::control() {
     if (!mRailMover && !mRotator && !mRailRotator && !MR::isEqualString(mObjectName, "OceanRingRuinsMove")) {
         const char* movingSound = MR::StageEffect::getMovingSe(mObjectName);
         if (movingSound) {
-            MR::startLevelSound(this, movingSound, -1, -1, -1);
+            MR::startLevelSound(this, movingSound);
         }
     }
 
@@ -413,7 +412,8 @@ void MapObjActor::exeMove() {
     }
 }
 
-void MapObjActor::exeDone() {}
+void MapObjActor::exeDone() {
+}
 
 void MapObjActorUtil::startAllMapPartsFunctions(const MapObjActor* pActor) {
     if (pActor->mRotator) {
@@ -532,7 +532,7 @@ void MapObjActorUtil::startBreak(MapObjActor* pActor) {
 bool MapObjActorUtil::tryStartBreak(MapObjActor* pActor) {
     const char* stopSe = MR::StageEffect::getStopSe(pActor->mObjectName);
     if (stopSe) {
-        MR::startSound(pActor, stopSe, -1, -1);
+        MR::startSound(pActor, stopSe);
     }
 
     const char* breakEffect = cEffectNameBreak;

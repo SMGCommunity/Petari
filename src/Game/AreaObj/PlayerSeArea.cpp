@@ -1,9 +1,11 @@
 #include "Game/AreaObj/PlayerSeArea.hpp"
 #include "Game/Util.hpp"
 
-PlayerSeArea::PlayerSeArea(int type, const char* pName) : AreaObj(type, pName) {}
+PlayerSeArea::PlayerSeArea(int formType, const char* pName) : AreaObj(formType, pName) {
+}
 
-PlayerSeArea::~PlayerSeArea() {}
+PlayerSeArea::~PlayerSeArea() {
+}
 
 void PlayerSeArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

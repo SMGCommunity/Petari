@@ -122,4 +122,4 @@ namespace MR {
         ret->mGravityCreator = new WireGravityCreator();
         return ret;
     }
-}  // namespace MR
+};  // namespace MR

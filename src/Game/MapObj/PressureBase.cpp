@@ -66,7 +66,7 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     initSound(6, false);
     MR::initShadowVolumeSphere(this, 75.0f);
     MR::invalidateShadow(this, nullptr);
-    mJointController = MR::createJointDelegatorWithNullChildFunc< PressureBase >(this, &PressureBase::calcJointCannonV, "Cannon1");
+    mJointController = MR::createJointDelegatorWithNullChildFunc(this, &PressureBase::calcJointCannonV, "Cannon1");
     MR::initJointTransform(this);
     MR::getJMapInfoArg0NoInit(rIter, &mNozzleRotation);
     MR::getJMapInfoArg1NoInit(rIter, &mWaitTime);
@@ -78,10 +78,10 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg3NoInit(rIter, &mShotType);
     MR::calcGravity(this);
     MR::setGroupClipping(this, rIter, 32);
-    mGroup = MR::joinToGroupArray(this, rIter, "プレッシャー軍団", 0x20);
+    mGroup = MR::joinToGroupArray(this, rIter, "プレッシャー軍団", 32);
 
     if (mGroup != nullptr) {
-        PressureBase* actor = (PressureBase*)mGroup->getActor(0);
+        PressureBase* actor = static_cast< PressureBase* >(mGroup->getActor(0));
 
         if (this == actor) {
             mMessenger = new PressureMessenger(mGroup, "プレッシャー同期メッセンジャー");
@@ -93,9 +93,7 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchSleep(this, rIter);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        void (PressureBase::*relaxFunc)(void) = &PressureBase::startRelax;
-        void (PressureBase::*waitFunc)(void) = &PressureBase::startWait;
-        MR::listenStageSwitchOnOffA(this, MR::Functor(this, relaxFunc), MR::Functor(this, waitFunc));
+        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &PressureBase::startRelax), MR::Functor(this, &PressureBase::startWait));
         initNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
     } else {
         initNerve(&NrvPressureBase::PressureBaseNrvFirstWait::sInstance);
@@ -146,7 +144,7 @@ void PressureBase::exeBound() {
         }
     }
 
-    f32 rate = MR::calcNerveRate(this, 0x14);
+    f32 rate = MR::calcNerveRate(this, 20);
     f32 scale = MR::getScaleWithReactionValueZeroToOne(rate, 1.0f, -2.0f);
     scale *= (-45.0f - mNozzleRotation);
 
@@ -156,7 +154,7 @@ void PressureBase::exeBound() {
         _9C = -45.0f - scale;
     }
 
-    if (MR::isStep(this, 0x14)) {
+    if (MR::isStep(this, 20)) {
         if (isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance)) {
             setNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
         } else {
@@ -171,7 +169,8 @@ void PressureBase::exeRelax() {
     }
 }
 
-void PressureBase::exeSyncWait() {}
+void PressureBase::exeSyncWait() {
+}
 
 void PressureBase::exeFirstWait() {
     if (MR::isStep(this, mWaitTime)) {
@@ -207,11 +206,11 @@ void PressureBase::exeShot() {
     }
 
     if (_B0) {
-        if (MR::isStep(this, 0x36)) {
+        if (MR::isStep(this, 54)) {
             shotBullet(mBallSpeed);
         }
     } else {
-        if (MR::isStep(this, 0x10)) {
+        if (MR::isStep(this, 16)) {
             shotBullet(mBallSpeed);
         }
     }
@@ -261,12 +260,13 @@ void PressureBase::startRelax() {
     bool isRelax = isNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance) || isNerve(&NrvPressureBase::PressureBaseNrvRelax::sInstance);
 
     if (!isRelax) {
-        MR::startSound(this, "SE_OJ_W_PRESS_HEAD_OFF", -1, -1);
+        MR::startSound(this, "SE_OJ_W_PRESS_HEAD_OFF");
         setNerve(&NrvPressureBase::PressureBaseNrvRelaxStart::sInstance);
     }
 }
 
-void PressureBase::initBullet(const JMapInfoIter&) {}
+void PressureBase::initBullet(const JMapInfoIter&) {
+}
 
 bool PressureBase::shotBullet(f32) {
     return false;
@@ -282,4 +282,5 @@ bool PressureBase::isShotTypeFollow() const {
     return mShotType == 2;
 }
 
-PressureMessenger::~PressureMessenger() {}
+PressureMessenger::~PressureMessenger() {
+}

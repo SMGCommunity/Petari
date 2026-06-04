@@ -32,7 +32,7 @@ static InformationObserverAttribute sAttr[] = {
 
 namespace {
     static s32 sDisplayFramesMin = 30;
-};
+};  // namespace
 
 namespace {
     InformationObserver* getInformationObserver() {
@@ -45,7 +45,8 @@ namespace NrvInformationObserver {
     NEW_NERVE(InformationObserverNrvDisp, InformationObserver, Disp);
 };  // namespace NrvInformationObserver
 
-InformationObserver::InformationObserver() : LiveActor("初出監視"), mType(Type_Bee), _90(false), mDisplayFrame(-1) {}
+InformationObserver::InformationObserver() : LiveActor("初出監視"), mType(Type_Bee), _90(false), mDisplayFrame(-1) {
+}
 
 void InformationObserver::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayoutMovement(this);
@@ -71,7 +72,8 @@ void InformationObserver::entry(TYPE type, LiveActor* pParam2) {
     makeActorAppeared();
 }
 
-void InformationObserver::exeWait() {}
+void InformationObserver::exeWait() {
+}
 
 void InformationObserver::exeDisp() {
     if (MR::isFirstStep(this)) {
@@ -112,7 +114,7 @@ void InformationObserver::exeDisp() {
         }
     }
 
-    MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+    MR::startSystemSE("SE_SY_TALK_OK");
     MR::disappearInformationMessage();
 
     switch (mType) {

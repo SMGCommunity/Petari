@@ -1,13 +1,15 @@
 #pragma once
 
+#include <revolution/types.h>
+
 class AudFader {
 public:
     AudFader();
 
-    void set(float desiredVolume, long fadeTime);
+    void set(f32 desiredVolume, s32 fadeTime);
     void update();
 
-    /* 0x00 */ float mCurrentVolume;
-    /* 0x04 */ float mFinalVolume;
-    /* 0x08 */ float mStepVolume;    ///< Volume intensity increase/decrease per AudFader::update() call until mCurrentVolume reaches mFinalVolume value
+    /* 0x00 */ f32 mCurrentVolume;
+    /* 0x04 */ f32 mFinalVolume;
+    /* 0x08 */ f32 mStepVolume;  ///< Volume intensity increase/decrease per AudFader::update() call until mCurrentVolume reaches mFinalVolume value
 };

@@ -5,7 +5,8 @@ DepthOfFieldArea::DepthOfFieldArea(int type, const char* pName) : ImageEffectAre
     mIsPlayerSync = false;
 }
 
-DepthOfFieldArea::~DepthOfFieldArea() {}
+DepthOfFieldArea::~DepthOfFieldArea() {
+}
 
 void DepthOfFieldArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

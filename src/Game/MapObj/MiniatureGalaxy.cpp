@@ -12,7 +12,7 @@ namespace {
     const char* cDemoNameDomeLecture = "ドームレクチャー２";
 
     const TVec3f cNamePlateOffset = TVec3f(0.0f, 1500.0f, 0.0f);
-}  // namespace
+};  // namespace
 
 namespace NrvMiniatureGalaxy {
     NEW_NERVE(MiniatureGalaxyNrvWait, MiniatureGalaxy, Wait);
@@ -20,12 +20,11 @@ namespace NrvMiniatureGalaxy {
     NEW_NERVE(MiniatureGalaxyNrvNotSelected, MiniatureGalaxy, NotSelected);
     NEW_NERVE(MiniatureGalaxyNrvConfirmed, MiniatureGalaxy, Confirmed);
     NEW_NERVE(MiniatureGalaxyNrvOpen, MiniatureGalaxy, Open);
-}  // namespace NrvMiniatureGalaxy
+};  // namespace NrvMiniatureGalaxy
 
 MiniatureGalaxy::MiniatureGalaxy(const char* pName)
     : LiveActor(pName), mGalaxyType(-1), mState(3), mUnknownModel(), mShadowModel(), mSelectModel(), mStarPlateModel(), mProjmapEffectMtxSetter(),
-      _108(), mMiniatureName(), mName(), mCanZoomIn(1), mZoomLevel(20), _124(), _1B8(), mOrbit(),
-      mNamePlate() {
+      _108(), mMiniatureName(), mName(), mCanZoomIn(1), mZoomLevel(20), _124(), _1B8(), mOrbit(), mNamePlate() {
     _D4.identity();
     _A4.identity();
 }
@@ -604,7 +603,7 @@ void MiniatureGalaxy::exeOpen() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(mUnknownModel, "Select");
         MR::emitEffect(mUnknownModel, "MiniatureGalaxyNewOpenSign");
-        MR::startSystemSE("SE_SY_NEW_GALAXY_OPEN_SIGN", -1, -1);
+        MR::startSystemSE("SE_SY_NEW_GALAXY_OPEN_SIGN");
 
         mCanZoomIn = 0;
         mZoomLevel = 20;
@@ -620,11 +619,11 @@ void MiniatureGalaxy::exeOpen() {
     }
 
     if (MR::isLessStep(this, 45)) {
-        MR::startSystemSE("SE_SY_LV_NEW_GALAXY_OPENING", -1, -1);
+        MR::startSystemSE("SE_SY_LV_NEW_GALAXY_OPENING");
     }
 
     if (MR::isStep(this, 45)) {
-        MR::startSystemSE("SE_SY_NEW_GALAXY_OPEN", -1, -1);
+        MR::startSystemSE("SE_SY_NEW_GALAXY_OPEN");
         MR::emitEffect(mUnknownModel, "MiniatureGalaxyNewOpen");
 
         MR::tryRumblePadWeak(this, 0);
@@ -664,7 +663,7 @@ void MiniatureGalaxy::exeOpen() {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(mName);
 
         if (accessor.isExistGrandStar()) {
-            MR::startSystemSE("SE_SY_KOOPA_LAUGH", -1, -1);
+            MR::startSystemSE("SE_SY_KOOPA_LAUGH");
         }
 
         setNerve(&NrvMiniatureGalaxy::MiniatureGalaxyNrvWait::sInstance);
@@ -675,4 +674,5 @@ void MiniatureGalaxy::exeSelected() {
     tryZoomIn(true);
 }
 
-void MiniatureGalaxy::exeConfirmed() {}
+void MiniatureGalaxy::exeConfirmed() {
+}

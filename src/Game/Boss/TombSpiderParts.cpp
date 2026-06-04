@@ -13,7 +13,7 @@ namespace {
     static const f32 sAttachBodyBackOffset = 100.0f;
     static const f32 sAttachFootRadius = 300.0f;
     static const f32 sAttachFootOffset = 100.0f;
-}  // namespace
+};  // namespace
 
 TombSpiderParts::TombSpiderParts(TombSpider* pParent)
     : mParent(pParent), mGlandFrontL(nullptr), mGlandFrontR(nullptr), mGlandRearL(nullptr), mGlandRearR(nullptr), mVitalSpotC(nullptr),
@@ -79,7 +79,7 @@ namespace {
         threadAttacherFoot->initWithoutIter();
         return threadAttacherFoot;
     }
-}  // namespace
+};  // namespace
 
 void TombSpiderParts::initParts() {
     mGlandFrontL = createGland(mParent, "毒腺[左前]", TVec3f(30.0f, 0.0f, -10.0f), TVec3f(-35.0f, -5.0f, 0.0f), "FrontL");

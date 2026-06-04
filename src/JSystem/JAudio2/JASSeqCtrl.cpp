@@ -4,7 +4,6 @@
 JASSeqParser JASSeqCtrl::sDefaultParser = JASSeqParser();
 
 JASSeqCtrl::JASSeqCtrl() {
-    JASSeqReader::init();
     mParser = &sDefaultParser;
     mTimer = 0;
     mCursorSwap = nullptr;
@@ -15,11 +14,11 @@ JASSeqCtrl::JASSeqCtrl() {
     _51 = false;
     _54 = 0;
     _58 = 0;
-    JASSeqReader::init();
+    mReader.init();
 }
 
 void JASSeqCtrl::init() {
-    JASSeqReader::init();
+    mReader.init();
     mParser = &sDefaultParser;
     mTimer = 0;
     mCursorSwap = nullptr;
@@ -32,15 +31,15 @@ void JASSeqCtrl::init() {
     _51 = false;
 }
 
-void JASSeqCtrl::start(void*, u32 offset) {
-    JASSeqReader::init();
-    mSeqCursor = (void*)((u8*)mSeqBuff + offset);
+void JASSeqCtrl::start(void* buffer, u32 offset) {
+    mReader.init(buffer);
+    mReader.mSeqCursor = (u8*)(mReader.mSeqBuff) + offset;
 }
 
 int JASSeqCtrl::tickProc(JASTrack* track) {
-    if (!mSeqBuff)
+    if (!mReader.mSeqBuff)
         return 0;
-    interrupt(JASSeqCtrl::INTR_6);
+    interrupt(JASSeqCtrl::INTRTYPE_VALUE_6);
     timerProcess();
     if (_51) {
         if (!track->checkNoteStop(0))
@@ -77,7 +76,7 @@ void JASSeqCtrl::clrIntrMask(u32 mask) {
 bool JASSeqCtrl::retIntr() {
     if (!mCursorSwap)
         return false;
-    mSeqCursor = mCursorSwap;
+    mReader.mSeqCursor = (u8*)mCursorSwap;
     mCursorSwap = nullptr;
     return true;
 }
@@ -98,16 +97,16 @@ void JASSeqCtrl::checkIntr() {
     s32 intr;
     if (!mCursorSwap && (intr = findIntr()) >= 0) {
         intr = intr * 3 + _48;
-        u32 offset = calcSeekAmt(intr);
-        mCursorSwap = mSeqCursor;
-        mSeqCursor = (void*)((u8*)mSeqBuff + offset);
+        u32 offset = get24(intr);
+        mCursorSwap = mReader.mSeqCursor;
+        mReader.mSeqCursor = (u8*)mReader.mSeqBuff + offset;
     }
 }
 
 void JASSeqCtrl::timerProcess() {
     if (_54 != 0) {
         if (!--_54) {
-            interrupt(INTR_5);
+            interrupt(INTRTYPE_VALUE_5);
             if (mIntTimer) {
                 if (--mIntTimer) {
                     _54 = _58;
@@ -117,5 +116,3 @@ void JASSeqCtrl::timerProcess() {
         }
     }
 }
-
-JASSeqParser::JASSeqParser() {}

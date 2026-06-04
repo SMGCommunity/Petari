@@ -245,13 +245,13 @@ void Butler::control() {
     }
 
     if (_D8) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_BUTLER_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_BUTLER_TRAMPLED");
     }
 
     if (NPCActor::isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_BUTLER_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_BUTLER_POINT");
     }
 
     if (_160) {
@@ -263,7 +263,7 @@ void Butler::control() {
         }
 
         if (!temp && _171 == 1) {
-            MR::startSystemSE("SE_SY_TICOFAT_POINT", -1, -1);
+            MR::startSystemSE("SE_SY_TICOFAT_POINT");
         }
     }
     NPCActor::control();
@@ -279,7 +279,7 @@ bool Butler::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
             if (_160) {
                 _164++;
                 if (tryStartStarPieceReaction()) {
-                    MR::startSystemSE("SE_SY_STAR_PIECE_STOCK_MAX", -1, -1);
+                    MR::startSystemSE("SE_SY_STAR_PIECE_STOCK_MAX");
                 }
             } else {
                 bool v1 = isNerve(mWaitNerve) || isNerve(&NrvButler::ButlerNrvStarPieceReaction::sInstance);
@@ -403,7 +403,7 @@ void Butler::tryReplaceStarPieceIfExecLecture() {
 
     static_cast< StarPieceGroup* >(MR::getPairedGroupMember(this))->forceReplaceStarPieceAll();
 
-    MR::startSystemSE("SE_SY_LECT_STAR_PIECE_APR", -1, -1);
+    MR::startSystemSE("SE_SY_LECT_STAR_PIECE_APR");
 
     _168 = 0;
 }

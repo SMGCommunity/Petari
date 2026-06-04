@@ -1,11 +1,11 @@
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
-#include "Game/GameAudio/AudTalkSoundData.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioWait.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include <JSystem/JAudio2/JAISound.hpp>
 #include <cstring>
 
 struct SoundList {
@@ -1765,25 +1765,25 @@ bool Mario::playSoundJ(const char* pSoundName, s32 timing) {
 
     actorSound: {
         JAISoundID soundID(soundlist[index]._14);
-        MR::startSound(mActor, soundID, timing, -1);
+        MR::startSound(mActor, soundID, timing);
     }
         goto typeEnd;
 
     systemSound: {
         JAISoundID soundID(soundlist[index]._14);
-        MR::startSystemSE(soundID, timing, -1);
+        MR::startSystemSE(soundID, timing);
     }
         goto typeEnd;
 
     levelSound: {
         JAISoundID soundID(soundlist[index]._14);
-        MR::startLevelSound(mActor, soundID, timing, -1, -1);
+        MR::startLevelSound(mActor, soundID, timing);
     }
         goto typeEnd;
 
     systemLevelSound: {
         JAISoundID soundID(soundlist[index]._14);
-        MR::startSystemLevelSE(soundID, timing, -1);
+        MR::startSystemLevelSE(soundID, timing);
     }
 
     typeEnd:
@@ -1814,7 +1814,7 @@ bool Mario::playSoundJ(const char* pSoundName, s32 timing) {
     bool isFound = _96C->search("声", pSoundName, &index);
     if (isFound) {
         JAISoundID soundID(soundlist[index]._14);
-        return MR::startSound(mActor, soundID, timing, -1);
+        return MR::startSound(mActor, soundID, timing);
     }
 
     return isFound;
@@ -1905,7 +1905,7 @@ void Mario::playSoundTrampleCombo(u8 combo) {
     if (combo >= 7) {
         return;
     }
-    MR::startSystemSE("SE_SY_TRAMPLE_COMBO", combo, -1);
+    MR::startSystemSE("SE_SY_TRAMPLE_COMBO", combo);
 }
 
 void Mario::setSeVersion(u32 version) {

@@ -187,4 +187,5 @@ void JUTVideo::setRenderMode(GXRenderModeObj const* pObj) {
     }
 }
 
-void JUTVideo::waitRetraceIfNeed() {}
+void JUTVideo::waitRetraceIfNeed() {
+}

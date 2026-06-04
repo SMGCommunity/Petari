@@ -2,7 +2,8 @@
 #include "Game/MapObj/AirBubble.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-AirBubbleHolder::AirBubbleHolder(const char* pName) : LiveActorGroup(pName, 64) {}
+AirBubbleHolder::AirBubbleHolder(const char* pName) : LiveActorGroup(pName, 64) {
+}
 
 // AirBubble isn't finished so the size is wrong
 void AirBubbleHolder::init(const JMapInfoIter& rIter) {
@@ -17,7 +18,7 @@ void AirBubbleHolder::init(const JMapInfoIter& rIter) {
 void AirBubbleHolder::appearAirBubble(const TVec3f& a1, s32 a2) {
     AirBubble* bubble;
     if (getDeadActor()) {
-        bubble = reinterpret_cast< AirBubble* >(getDeadActor());
+        bubble = static_cast< AirBubble* >(getDeadActor());
     } else {
         bubble = nullptr;
     }

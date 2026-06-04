@@ -32,7 +32,7 @@ namespace MR {
 
     void startEventCamera(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32);
     void startEventCameraNoTarget(const ActorCameraInfo*, const char*, s32);
-    void startEventCameraTargetPlayer(const ActorCameraInfo*, const char*, long);
+    void startEventCameraTargetPlayer(const ActorCameraInfo*, const char*, s32);
 
     f32 getAspect();
     f32 getNearZ();
@@ -124,7 +124,7 @@ namespace MR {
     void startStartAnimCamera();
     s32 getStartAnimCameraFrame();
 
-    void startEventCameraAnim(const ActorCameraInfo*, const char*, const CameraTargetArg&, long, float);
+    void startEventCameraAnim(const ActorCameraInfo*, const char*, const CameraTargetArg&, s32, f32);
 
     s32 getAnimCameraFrame(const ActorCameraInfo*, const char*);
 

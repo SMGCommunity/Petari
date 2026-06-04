@@ -42,7 +42,6 @@ namespace NrvPlant {
     NEW_NERVE(PlantNrvHangStart, Plant, HangStart);
     NEW_NERVE(PlantNrvHangUp, Plant, HangUp);
     NEW_NERVE(PlantNrvHangDown, Plant, HangDown);
-
 };  // namespace NrvPlant
 
 Plant::Plant(const char* pName)
@@ -57,7 +56,7 @@ void Plant::init(const JMapInfoIter& pMapInfoIter) {
     MR::createSceneObj(SceneObj_PlantStalkDrawInit);
     MR::createSceneObj(SceneObj_PlantLeafDrawInit);
 
-    mShapeDraw = ((PlantLeafDrawInit*)MR::getSceneObjHolder()->getObj(SceneObj_PlantLeafDrawInit))->mShapeDraw;
+    mShapeDraw = MR::getSceneObj< PlantLeafDrawInit >(SceneObj_PlantLeafDrawInit)->mShapeDraw;
 
     MR::connectToScene(this, MR::MovementType_Ride, MR::CalcAnimType_Ride, -1, MR::DrawType_Plant);
 
@@ -129,7 +128,7 @@ void Plant::exeWaitFar() {
 void Plant::exeSeedWait() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mSeedPartsModel, "Bud", 0);
-        MR::startSound(this, "SE_OJ_PLANT_BUD", -1, -1);
+        MR::startSound(this, "SE_OJ_PLANT_BUD");
         mTopPartsModel->kill();
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }
@@ -146,7 +145,7 @@ void Plant::exeWaitDemoWaitGrowUp() {
 void Plant::exeDemoWaitGrowUp() {
     if (MR::isStep(this, 60)) {
         MR::startBck(mSeedPartsModel, "Bud", 0);
-        MR::startSound(this, "SE_OJ_PLANT_BUD", -1, -1);
+        MR::startSound(this, "SE_OJ_PLANT_BUD");
     }
 
     if (MR::isStep(this, 90)) {
@@ -157,9 +156,9 @@ void Plant::exeDemoWaitGrowUp() {
 void Plant::exeGrowUp() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mSeedPartsModel, "GrowUp", 0);
-        MR::startSound(this, "SE_OJ_PLANT_SEED_BREAK", -1, -1);
-        MR::startSystemSE("SE_SY_ITEM_APPEAR", -1, -1);
-        MR::startSound(this, "SE_OJ_PLANT_GROW_START", -1, -1);
+        MR::startSound(this, "SE_OJ_PLANT_SEED_BREAK");
+        MR::startSystemSE("SE_SY_ITEM_APPEAR");
+        MR::startSound(this, "SE_OJ_PLANT_GROW_START");
     }
 
     // interesting...
@@ -219,7 +218,7 @@ void Plant::exeHangUpGrowUp() {
     MR::rotateVecDegree(&mFront, mUp, f1);
 
     if (z < 0.0f && mFront.z >= 0.0f) {
-        MR::startSound(mRider, "SE_OJ_PLANT_MARIO_UP", -1, -1);
+        MR::startSound(mRider, "SE_OJ_PLANT_MARIO_UP");
     }
 
     updateBindLeaf();
@@ -230,7 +229,8 @@ void Plant::exeHangUpGrowUp() {
     }
 }
 
-void Plant::exeGrowthStop() {}
+void Plant::exeGrowthStop() {
+}
 
 void Plant::exeGrowthWait() {
     if (MR::isFirstStep(this)) {
@@ -319,7 +319,7 @@ void Plant::exeHangDown() {
     MR::rotateVecDegree(&mFront, MR::getRailDirection(this), f1);
 
     if (z < 0.0f && mFront.z >= 0.0f) {
-        MR::startSound(mRider, "SE_OJ_PLANT_MARIO_DOWN", -1, -1);
+        MR::startSound(mRider, "SE_OJ_PLANT_MARIO_DOWN");
     }
 }
 
@@ -485,8 +485,8 @@ bool Plant::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         }
 
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-        MR::startSound(mRider, "SE_PM_GRAB_OBJ", -1, -1);
-        MR::startSound(mRider, "SE_PV_CATCH", -1, -1);
+        MR::startSound(mRider, "SE_PM_GRAB_OBJ");
+        MR::startSound(mRider, "SE_PV_CATCH");
         MR::startMultiActorCameraNoTarget(this, mCameraInfo, "掴まり", -1);
         return true;
     }
@@ -532,7 +532,7 @@ bool Plant::updateGrowUp() {
     }
 
     MR::tryRumblePadWeak(this, WPAD_CHAN0);
-    MR::startLevelSound(this, "SE_OJ_LV_PLANT_GROW", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_PLANT_GROW");
 
     if (growStalk) {
         if (mPlayAppearDemo) {
@@ -575,7 +575,7 @@ bool Plant::updateHangUp(f32 angleRate) {
     f32 frontZ = mFront.z;
     MR::rotateVecDegree(&mFront, MR::getRailDirection(this), angleRate);
     if (frontZ < 0.0f && mFront.z >= 0.0f) {
-        MR::startSound(mRider, "SE_OJ_PLANT_MARIO_UP", -1, -1);
+        MR::startSound(mRider, "SE_OJ_PLANT_MARIO_UP");
     }
 
     return false;
@@ -654,9 +654,9 @@ bool Plant::tryReachGoal() {
     endUp.add(up);
 
     MR::startBckPlayer("GrowPlantJump", (const char*)0);
-    MR::stopSound(mRider, "SE_OJ_PLANT_MARIO_UP_START", 0);
-    MR::startSound(mRider, "SE_PM_JUMP_L", -1, -1);
-    MR::startSound(mRider, "SE_PV_JUMP_JOY", -1, -1);
+    MR::stopSound(mRider, "SE_OJ_PLANT_MARIO_UP_START");
+    MR::startSound(mRider, "SE_PM_JUMP_L");
+    MR::startSound(mRider, "SE_PV_JUMP_JOY");
 
     MR::endMultiActorCameraAtLanding(this, mCameraInfo, "掴まり", -1);
     MR::endBindAndPlayerForceWeakGravityJump(this, endUp);

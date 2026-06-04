@@ -201,7 +201,8 @@ namespace MR {
     }
 };  // namespace MR
 
-StageSwitchContainer::~StageSwitchContainer() {}
+StageSwitchContainer::~StageSwitchContainer() {
+}
 
 StageSwitchContainer::StageSwitchContainer() : NameObj("ステージスイッチ"), mSwitches(), mGlobalSwitches() {
     mGlobalSwitches = new ZoneSwitch();

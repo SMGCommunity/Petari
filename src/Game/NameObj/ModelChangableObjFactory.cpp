@@ -80,8 +80,8 @@ namespace {
     };
 
     const Model2CreateFunc* getModel2CreateFunc(const char* pName) {
-        for (s32 i = 0; i < sizeof(cModelChangableObjCreatorTable) / sizeof(*cModelChangableObjCreatorTable); i++) {
-            const Model2CreateFunc* pModel2CreateFunc = &cModelChangableObjCreatorTable[i];
+        for (u32 i = 0; i < ARRAY_SIZE(::cModelChangableObjCreatorTable); i++) {
+            const Model2CreateFunc* pModel2CreateFunc = &::cModelChangableObjCreatorTable[i];
             bool v7;
 
             if (pModel2CreateFunc->_0 != nullptr) {

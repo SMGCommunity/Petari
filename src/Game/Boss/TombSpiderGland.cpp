@@ -6,7 +6,7 @@ namespace NrvTombSpiderGland {
     NEW_NERVE(TombSpiderGlandNrvActiveWait, TombSpiderGland, ActiveWait);
     NEW_NERVE(TombSpiderGlandNrvDamageStart, TombSpiderGland, DamageStart);
     NEW_NERVE(TombSpiderGlandNrvDamageWait, TombSpiderGland, DamageWait);
-}  // namespace NrvTombSpiderGland
+};  // namespace NrvTombSpiderGland
 
 TombSpiderGland::TombSpiderGland(LiveActor* pActor, const char* pName, const TVec3f& rPos, const TVec3f& a1, const char* pJointName)
     : PartsModel(pActor, pName, "TombSpiderGland", nullptr, MR::DrawBufferType_Enemy, false) {

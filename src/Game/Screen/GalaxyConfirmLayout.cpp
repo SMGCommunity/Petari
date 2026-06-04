@@ -12,7 +12,8 @@ namespace NrvGalaxyConfirmLayout {
     NEW_NERVE(GalaxyConfirmLayoutNrvSelected, GalaxyConfirmLayout, Selected);
 };  // namespace NrvGalaxyConfirmLayout
 
-GalaxyConfirmLayout::GalaxyConfirmLayout() : LayoutActor("ギャラクシー確認レイアウト", true), mPaneCtrl(nullptr), mBackButton(nullptr) {}
+GalaxyConfirmLayout::GalaxyConfirmLayout() : LayoutActor("ギャラクシー確認レイアウト", true), mPaneCtrl(nullptr), mBackButton(nullptr) {
+}
 
 void GalaxyConfirmLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("GalaxySelect", 1);
@@ -55,15 +56,15 @@ void GalaxyConfirmLayout::exeSelecting() {
         setNerve(&NrvGalaxyConfirmLayout::GalaxyConfirmLayoutNrvSelectedBackButton::sInstance);
     } else {
         if (mPaneCtrl->isPointingTrigger()) {
-            MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+            MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
         }
 
         if (mPaneCtrl->trySelect()) {
-            MR::startSystemSE("SE_SY_GALAXY_DECIDE_OK", -1, -1);
+            MR::startSystemSE("SE_SY_GALAXY_DECIDE_OK");
             mBackButton->disappear();
             setNerve(&NrvGalaxyConfirmLayout::GalaxyConfirmLayoutNrvSelected::sInstance);
         } else if (!mBackButton->isAppearing() && !mPaneCtrl->isAppearing() && MR::testCorePadTriggerB(WPAD_CHAN0)) {
-            MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
+            MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
             mPaneCtrl->disappear();
             mBackButton->disappear();
             setNerve(&NrvGalaxyConfirmLayout::GalaxyConfirmLayoutNrvSelected::sInstance);

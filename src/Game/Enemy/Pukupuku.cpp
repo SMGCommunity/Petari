@@ -75,7 +75,7 @@ void PukupukuStateLanding::exeLandingJumpFromWater() {
         setupJumping(500.0f, 15.0f);
         mHost->rotatePoseByLocalZ();
         mHost->startAnim("FlyStart", "OpenEye");
-        MR::startSound(mHost, "SE_EM_PUKUPUKU_WATER_OUT", -1, -1);
+        MR::startSound(mHost, "SE_EM_PUKUPUKU_WATER_OUT");
     }
 
     mValueCtrl->update();
@@ -106,7 +106,7 @@ void PukupukuStateLanding::exeLandingJumpFromLand() {
         _18 = 0;
         setupJumping(500.0f, 15.0f);
         mHost->startAnim("FlyEnd", "OpenEye");
-        MR::startSound(mHost, "SE_EM_PUKUPUKU_WING", -1, -1);
+        MR::startSound(mHost, "SE_EM_PUKUPUKU_WING");
         emitGroundHitEffect();
     }
 
@@ -217,7 +217,7 @@ void PukupukuStateLanding::emitGroundHitEffect() {
     TPos3f hitMtx;
     mHost->calcGroundHitMtx(&hitMtx);
     MR::emitEffectHit(mHost, hitMtx, "Land");
-    MR::startSound(mHost, "SE_EM_PUKUPUKU_LAND", -1, -1);
+    MR::startSound(mHost, "SE_EM_PUKUPUKU_LAND");
 }
 
 Pukupuku::Pukupuku(const char* pName) : LiveActor(pName) {
@@ -274,10 +274,10 @@ void Pukupuku::init(const JMapInfoIter& rIter) {
 void Pukupuku::kill() {
     if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
         MR::emitEffect(this, "DeathWater");
-        MR::startSound(this, "SE_EM_EXPLODE_UNDER_WATER", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_UNDER_WATER");
     } else {
         MR::emitEffect(this, "Death");
-        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_S");
     }
 
     if (MR::isValidSwitchDead(this)) {
@@ -289,9 +289,9 @@ void Pukupuku::kill() {
     } else {
         MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_W");
         } else {
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
     }
 
@@ -361,7 +361,7 @@ void Pukupuku::exeMoveWater() {
             startAnim("Swim", "OpenEye");
         }
 
-        MR::startLevelSound(this, "SE_EM_LV_PUKUPUKU_SWIM", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_PUKUPUKU_SWIM");
         if (MR::isEqualStringCase(MR::getPlayingBckName(this), "BodyAttack")) {
             if (MR::isBckStopped(this)) {
                 startAnim("Swim", "OpenEye");
@@ -376,7 +376,7 @@ void Pukupuku::exeMoveWaterAfterJump() {
     if (MR::isFirstStep(this)) {
         startAnim("SwimStart", "OpenEye");
         rotatePoseByLocalZ();
-        MR::startSound(this, "SE_EM_PUKUPUKU_WATER_IN", -1, -1);
+        MR::startSound(this, "SE_EM_PUKUPUKU_WATER_IN");
     }
 
     updateMoveWaterAfterJump();
@@ -400,7 +400,7 @@ void Pukupuku::exeTrampled() {
         v4.scale(10.0f);
         mVelocity.set< f32 >(v4);
         startAnim("Flat", "CloseEye");
-        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
+        MR::startSound(this, "SE_EM_STOMPED_S");
     } else if (!MR::isBinded(this)) {
         mVelocity.x *= 0.88999999f;
         mVelocity.y *= 0.88999999f;
@@ -556,6 +556,8 @@ void Pukupuku::calcAndSetBaseMtx() {
     MR::setBaseScale(this, v7);
 }
 
-PukupukuStateLanding::~PukupukuStateLanding() {}
+PukupukuStateLanding::~PukupukuStateLanding() {
+}
 
-Pukupuku::~Pukupuku() {}
+Pukupuku::~Pukupuku() {
+}

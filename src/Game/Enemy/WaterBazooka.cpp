@@ -1,11 +1,12 @@
 #include "Game/Enemy/WaterBazooka.hpp"
-#include "Game/Camera/CameraTargetDemoActor.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Enemy/ElectricPressureBullet.hpp"
 #include "Game/Enemy/MogucchiShooter.hpp"
 #include "Game/Enemy/WaterBazookaCapsule.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/MapObj/WaterPressureBullet.hpp"
 #include "Game/MapObj/WaterPressureBulletHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -49,14 +50,14 @@ namespace NrvWaterBazooka {
     NEW_NERVE(WaterBazookaNrvWaitForLaugh, WaterBazooka, WaitForLaugh);
     NEW_NERVE(WaterBazookaNrvPanic, WaterBazooka, Panic);
     NEW_NERVE_ONEND(WaterBazookaNrvStorm, WaterBazooka, Storm, Storm);
-}  // namespace NrvWaterBazooka
+};  // namespace NrvWaterBazooka
 
 namespace {
     static const f32 sElectricBulletSpeed = 12.0f;
     // FIXME: sDropPointStringTable should end up in .rodata
     const char* sDropPointStringTable[] = {"落下点1", "落下点2", "落下点3", "落下点4"};
 
-}  // namespace
+};  // namespace
 
 WaterBazooka::WaterBazooka(const char* pName)
     : LiveActor(pName), mShooter(nullptr), mCapsule(nullptr), mBreakModel(nullptr), mDemoActor(nullptr), mCameraInfo(nullptr), mAlreadyDoneFlag(-1),
@@ -292,10 +293,10 @@ void WaterBazooka::exeAim() {
         MR::tryStartBck(this, "ShotStart", nullptr);
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_TURN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_TURN");
 
     if (mIsElectric && MR::isGreaterEqualStep(this, 10)) {
-        MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_SHOOT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_SHOOT");
     }
 
     if (aimAtMario()) {
@@ -311,11 +312,11 @@ void WaterBazooka::exeAim() {
 void WaterBazooka::exeAimEnd() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "SwingStop", nullptr);
-        MR::startSound(this, "SE_EM_WATERBAZ_TURN_END", -1, -1);
+        MR::startSound(this, "SE_EM_WATERBAZ_TURN_END");
     }
 
     if (mIsElectric) {
-        MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_SHOOT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_SHOOT");
     }
 
     if (MR::isBckStopped(this)) {
@@ -334,11 +335,11 @@ void WaterBazooka::exeShot() {
     }
 
     if (mIsElectric) {
-        MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_SHOOT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_SHOOT");
     }
 
     if (MR::isStep(this, 30)) {
-        MR::startSound(this, "SE_EM_WATERBAZ_SHOT", -1, -1);
+        MR::startSound(this, "SE_EM_WATERBAZ_SHOT");
         tryShotBullet();
     }
 
@@ -361,7 +362,7 @@ void WaterBazooka::exeShotNoMotion() {
     if (MR::isFirstStep(this)) {
         mShotNum++;
         MR::startBck(this, "ShortShot", nullptr);
-        MR::startSound(this, "SE_EM_WATERBAZ_SHOT", -1, -1);
+        MR::startSound(this, "SE_EM_WATERBAZ_SHOT");
         tryShotBullet();
     }
 
@@ -406,7 +407,7 @@ void WaterBazooka::exeDemoCrackCapsule() {
     }
 
     if (MR::isStep(this, 27)) {
-        MR::startSound(this, "SE_EV_MOGUBAZ_ANGRY1", -1, -1);
+        MR::startSound(this, "SE_EV_MOGUBAZ_ANGRY1");
     }
 
     if (!MR::isDemoActiveRegistered(this)) {
@@ -415,7 +416,7 @@ void WaterBazooka::exeDemoCrackCapsule() {
         MR::calcUpVec(&up, this);
         JMAVECScaleAdd(&up, &mPosition, &starPieceSpawnPos, 600.0f);
         MR::appearStarPiece(this, starPieceSpawnPos, 8, 25.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::validateCollisionParts(mCapsule);
         setNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
     }
@@ -430,7 +431,7 @@ void WaterBazooka::exeDemoAnger() {
     }
 
     if (MR::isStep(this, 20)) {
-        MR::startSound(this, "SE_EV_MOGUBAZ_ANGRY2", -1, -1);
+        MR::startSound(this, "SE_EV_MOGUBAZ_ANGRY2");
     }
 
     if (mIsElectric) {
@@ -443,9 +444,9 @@ void WaterBazooka::exeDemoAnger() {
         }
 
         if (MR::isLessStep(this, 60)) {
-            MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_ELEC_LEAK", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_ELEC_LEAK");
         } else if (MR::isGreaterEqualStep(this, 90)) {
-            MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_ELEC_LEAK", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_ELEC_LEAK");
         }
     }
 
@@ -460,7 +461,7 @@ void WaterBazooka::exeDemoAnger() {
         MR::calcUpVec(&up, this);
         JMAVECScaleAdd(&up, &mPosition, &starPieceSpawnPos, 600.0f);
         MR::appearStarPiece(this, starPieceSpawnPos, 16, 25.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::validateCollisionParts(mCapsule);
         setNerve(&NrvWaterBazooka::WaterBazookaNrvWait::sInstance);
     }
@@ -490,9 +491,9 @@ void WaterBazooka::exeDemoBreakSign() {
     }
 
     MR::tryRumblePadWeak(this, WPAD_CHAN0);
-    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PRE_EXPLODE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PRE_EXPLODE");
     if (MR::isGreaterEqualStep(this, 120)) {
-        MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_BREAK_FLASH", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_BREAK_FLASH");
     }
 
     if (MR::isBckStopped(this)) {
@@ -519,8 +520,8 @@ void WaterBazooka::exeDemoBreakExplosion() {
         MR::startBrk(mBreakModel, "Break");
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
-        MR::startSound(this, "SE_EM_WATERBAZ_EXPLODE", -1, -1);
-        MR::startSound(this, "SE_EV_MOGUBAZ_DEAD", -1, -1);
+        MR::startSound(this, "SE_EM_WATERBAZ_EXPLODE");
+        MR::startSound(this, "SE_EV_MOGUBAZ_DEAD");
     }
 
     if (MR::isStep(this, 53)) {
@@ -530,7 +531,7 @@ void WaterBazooka::exeDemoBreakExplosion() {
             MR::startAfterBossBGM();
             MR::requestAppearPowerStar(this, spawnPos);
         } else {
-            MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+            MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         }
     }
 
@@ -580,11 +581,11 @@ void WaterBazooka::exePanic() {
     if (MR::isStep(this, 180)) {
         mShooter->stormStart();
         startBrk("Spin");
-        MR::startSound(this, "SE_EV_MOGUBAZ_PRE_STORM", -1, -1);
+        MR::startSound(this, "SE_EV_MOGUBAZ_PRE_STORM");
     }
 
     if (MR::isGreaterEqualStep(this, 180)) {
-        MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PRE_STORM", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_PRE_STORM");
     }
 
     if (MR::isStep(this, 300)) {
@@ -609,7 +610,7 @@ void WaterBazooka::exeStorm() {
     JGeometry::negateInternal(&mGravity.x, &up.x);
     MR::makeMtxSideUpPos(&mBaseMtx, side, up, pos);
 
-    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_STORM", (deg * 100.0f) / 25.0f, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_STORM", (deg * 100.0f) / 25.0f);
 
     if (MR::isStep(this, 90)) {
         MR::deleteEffect(this, "Spin");
@@ -663,7 +664,7 @@ void WaterBazooka::control() {
 
     updateElectricLeak();
     if (getSmokeLevel() != -1) {
-        MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_SMOKE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_SMOKE");
     }
     tryPanic();
 }
@@ -715,7 +716,7 @@ bool WaterBazooka::aimAtMario() {
     TVec3f aim;
     aim.sub(aimPos, cannonPos);
     MR::normalize(&aim);
-    MR::turnVecToVecCos(&side, side, aim, JMath::sSinCosTable.cosLap(1.2f), mGravity, 0.02f);
+    MR::turnVecToVecCos(&side, side, aim, MR::cosDegree(1.2f), mGravity, 0.02f);
 
     TVec3f v1;
     MR::turnVecToPlane(&v1, side, mGravity.negateOperatorInternal());
@@ -762,9 +763,9 @@ void WaterBazooka::updateElectricLeak() {
         }
 
         if (isElectricLeakSign()) {
-            MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_ELEC_LEAK", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_PRE_ELEC_LEAK");
         } else if (isElectricLeak()) {
-            MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_ELEC_LEAK", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_ELECBAZ_ELEC_LEAK");
         }
 
         if (mElectricTime < 600) {
@@ -935,8 +936,7 @@ bool WaterBazooka::tryShotBullet() {
     if (mIsElectric) {
         bullet = selectBulletElectric();
     } else {
-        bullet =
-            reinterpret_cast< WaterPressureBulletHolder* >(MR::getSceneObjHolder()->getObj(SceneObj_WaterPressureBulletHolder))->callEmptyBullet();
+        bullet = MR::getSceneObj< WaterPressureBulletHolder >(SceneObj_WaterPressureBulletHolder)->callEmptyBullet();
     }
 
     if (bullet == nullptr) {
@@ -946,9 +946,9 @@ bool WaterBazooka::tryShotBullet() {
     TPos3f posMtx;
     calcGunPointFromCannon(&posMtx);
     if (mIsElectric) {
-        reinterpret_cast< ElectricPressureBullet* >(bullet)->shotElectricBullet(this, posMtx, sElectricBulletSpeed);
+        static_cast< ElectricPressureBullet* >(bullet)->shotElectricBullet(this, posMtx, sElectricBulletSpeed);
     } else {
-        reinterpret_cast< WaterPressureBullet* >(bullet)->shotWaterBullet(this, posMtx, 40.0f, true, true, false, &mCameraInfo);
+        static_cast< WaterPressureBullet* >(bullet)->shotWaterBullet(this, posMtx, 40.0f, true, true, false, &mCameraInfo);
     }
 
     return true;

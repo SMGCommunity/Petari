@@ -4,7 +4,9 @@
 
 class FileSelectEffect : public LiveActor {
 public:
-    FileSelectEffect(const char*);
+    /// @brief Creates a new `FileSelectEffect`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    FileSelectEffect(const char* pName = "選択時エフェクト");
 
     virtual ~FileSelectEffect();
     virtual void init(const JMapInfoIter&);

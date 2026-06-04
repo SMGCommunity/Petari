@@ -62,4 +62,4 @@ public:
 
 namespace MR {
     bool isExistPriorDrawAir();
-};
+};  // namespace MR

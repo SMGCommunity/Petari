@@ -3,9 +3,11 @@
 #include "revolution/types.h"
 #include <cstddef>
 
-NPCSupportRail::NPCSupportRail(const char* pName) : LiveActor(pName) {}
+NPCSupportRail::NPCSupportRail(const char* pName) : LiveActor(pName) {
+}
 
-NPCSupportRail::~NPCSupportRail() {}
+NPCSupportRail::~NPCSupportRail() {
+}
 
 void NPCSupportRail::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

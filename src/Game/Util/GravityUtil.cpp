@@ -6,14 +6,15 @@
 #include <cstring>
 
 namespace {
-    void getJMapInfoArgPlus(const JMapInfoIter& rIter, const char* pFieldName, f32* pDest) {}
+    void getJMapInfoArgPlus(const JMapInfoIter& rIter, const char* pFieldName, f32* pDest) {
+    }
 
     void getJMapInfoArgPlus(const JMapInfoIter& rIter, const char* pFieldName, s32* pDest) {
         // Get row and column of data
 
         // Try to read value
         s32 result;
-        bool read = rIter.getValue( pFieldName, &result);
+        bool read = rIter.getValue(pFieldName, &result);
 
         // Set result if applicable
         if (read && result >= 0.0f) {
@@ -30,7 +31,7 @@ namespace {
 
         return pPlanetGravityManager->calcTotalGravityVector(pDest, pInfo, rPosition, gravityType, host);
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     void registerGravity(PlanetGravity* pGravity) {
@@ -158,4 +159,4 @@ namespace MR {
             }
         }
     }
-}  // namespace MR
+};  // namespace MR

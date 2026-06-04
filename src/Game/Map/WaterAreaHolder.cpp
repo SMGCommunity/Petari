@@ -18,7 +18,7 @@ namespace {
     WaterAreaHolder* getWaterAreaHolder() {
         return MR::getSceneObj< WaterAreaHolder >(SceneObj_WaterAreaHolder);
     }
-}  // namespace
+};  // namespace
 
 WaterAreaHolder::WaterAreaHolder()
     : NameObj("水エリア保持"), mNumOceanBowls(0), mOceanBowls(nullptr), mNumOceanRings(0), mOceanRings(nullptr), mNumOceanSpheres(0),

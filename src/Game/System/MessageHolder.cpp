@@ -24,7 +24,7 @@ namespace {
 
         return nullptr;
     }
-}  // namespace
+};  // namespace
 
 bool MessageData::getMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessage) const {
     s32 messageIndex = findMessageIndex(pMessage);
@@ -82,7 +82,8 @@ u8* MessageData::getMessageInfoTool(int index) const {
     return reinterpret_cast< u8* >(mInfoBlock + 1) + mInfoBlock->mItemSize * index;
 }
 
-MessageHolder::MessageHolder() : mSystemMessageData(nullptr), mGameMessageData(nullptr), mSceneMessageData(nullptr) {}
+MessageHolder::MessageHolder() : mSystemMessageData(nullptr), mGameMessageData(nullptr), mSceneMessageData(nullptr) {
+}
 
 void MessageHolder::initSceneData() {
     mSceneMessageData = mGameMessageData;

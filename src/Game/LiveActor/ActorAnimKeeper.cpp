@@ -9,7 +9,7 @@
 
 namespace {
     const char* sFileName = "ActorAnimCtrl";
-}
+};  // namespace
 
 ActorAnimKeeper::ActorAnimKeeper(LiveActor* pActor) : mActor(pActor), mNumInfo(0), mInfoArray(nullptr), mCurrentInfo(0) {
     if (!initAnimData()) {
@@ -41,7 +41,7 @@ namespace {
         }
         return name;
     };
-}  // namespace
+};  // namespace
 
 bool ActorAnimKeeper::start(const char* pName) {
     ActorAnimKeeperInfo* info = findAnimInfo(pName);
@@ -88,7 +88,8 @@ bool ActorAnimKeeper::start(const char* pName) {
     return true;
 }
 
-void ActorAnimKeeper::update() {}
+void ActorAnimKeeper::update() {
+}
 
 bool ActorAnimKeeper::isPlaying(const char* pName) const {
     ActorAnimKeeperInfo* info = findAnimInfo(pName);
@@ -112,7 +113,7 @@ namespace {
         snprintf(pOut, sizeof(pOut), "%sIsKeepAnim", pAnimType);
         MR::getCsvDataU8(&pDataInfo->mIsKeepAnim, pInfo, pOut, index);
     }
-}  // namespace
+};  // namespace
 
 bool ActorAnimKeeper::initAnimData() {
     const ResourceHolder* pResourceHolder = MR::getResourceHolder(mActor);

@@ -143,7 +143,7 @@ void PTimerSwitch::exeOn() {
     if (MR::isFirstStep(this)) {
         MR::onSwitchA(this);
         MR::shakeCameraNormal();
-        MR::startSound(this, "SE_OJ_SWITCH_1", -1, -1);
+        MR::startSound(this, "SE_OJ_SWITCH_1");
     }
 
     if (MR::isGreaterStep(this, 25)) {

@@ -70,7 +70,7 @@ void Note::exeCountDown() {
 
     if (MR::isStep(this, mCounter)) {
         MR::emitEffect(this, "Vanish");
-        MR::startSound(this, "SE_OJ_MUSICAL_NOTE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_MUSICAL_NOTE_BREAK");
         MR::failureNoteCollection();
         kill();
     }
@@ -102,7 +102,7 @@ void Note::calcAndSetBaseMtx() {
     TPos3f stack_44;
     MR::makeMtxUpFront(&stack_44, stack_8, mRailDirection);
     Mtx mtxRotateY;
-    f32 val = MR::getSceneObj<NoteGroup>(SceneObj_NoteGroup)->mRotation;
+    f32 val = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
     MR::makeMtxRotateY(mtxRotateY, val);
     PSMTXConcat(stack_44.toMtxPtr(), mtxRotateY, stack_44.toMtxPtr());
     stack_44.mMtx[0][3] = mPosition.x;
@@ -139,6 +139,8 @@ void NoteGroup::movement() {
 }
 */
 
-Note::~Note() {}
+Note::~Note() {
+}
 
-NoteGroup::~NoteGroup() {}
+NoteGroup::~NoteGroup() {
+}

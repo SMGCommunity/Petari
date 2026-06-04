@@ -10,7 +10,7 @@ namespace NrvLavaGeyser {
     NEW_NERVE(LavaGeyserNerveShootUp, LavaGeyser, ShootUp);
     NEW_NERVE(LavaGeyserNerveShootKeep, LavaGeyser, ShootKeep);
     NEW_NERVE(LavaGeyserNerveShootDown, LavaGeyser, ShootDown);
-}  // namespace NrvLavaGeyser
+};  // namespace NrvLavaGeyser
 
 LavaGeyser::LavaGeyser(const char* pName) : LiveActor(pName) {
     mArg0 = 180;
@@ -122,7 +122,7 @@ void LavaGeyser::exeSign() {
         _94.set(*pos);
         MR::emitEffect(this, "Sign");
     }
-    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN");
     if (MR::isStep(this, 90)) {
         MR::deleteEffect(this, "Sign");
         setNerve(&NrvLavaGeyser::LavaGeyserNerveShootUp::sInstance);
@@ -133,12 +133,12 @@ void LavaGeyser::exeShootUp() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::validateHitSensors(this);
-        MR::startSound(this, "SE_OJ_LAVA_GEYSER_SHOOT", -1, -1);
+        MR::startSound(this, "SE_OJ_LAVA_GEYSER_SHOOT");
         MR::startBck(this, "LavaGeyserAppear", nullptr);
     }
     MR::copyJointPos(this, "Top", &_94);
-    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
-    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN");
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP");
     if (MR::isBckStopped(this)) {
         setNerve(&NrvLavaGeyser::LavaGeyserNerveShootKeep::sInstance);
     }
@@ -149,8 +149,8 @@ void LavaGeyser::exeShootKeep() {
         MR::startBck(this, "LavaGeyserWait", nullptr);
     }
     MR::copyJointPos(this, "Top", &_94);
-    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN", -1, -1, -1);
-    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_SIGN");
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP");
     if (MR::isStep(this, mArg1)) {
         setNerve(&NrvLavaGeyser::LavaGeyserNerveShootDown::sInstance);
     }
@@ -161,7 +161,7 @@ void LavaGeyser::exeShootDown() {
         MR::startBck(this, "LavaGeyserDisappear", nullptr);
     }
     MR::copyJointPos(this, "Top", &_94);
-    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_LAVA_GEYSER_KEEP");
     if (MR::isBckStopped(this)) {
         MR::hideModel(this);
         setNerve(&NrvLavaGeyser::LavaGeyserNrvWait::sInstance);

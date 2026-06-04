@@ -73,8 +73,12 @@ public:
     bool isAlreadyPlayingSoundNear(JAISoundID, const TVec3f*, f32);
     void setVolumeZeroForce(s32);
 
-    inline AudEffector* getAudEffector() const { return mAudEffector; }
-    inline void setVar(u32 var) { _830 = var; }
+    inline AudEffector* getAudEffector() const {
+        return mAudEffector;
+    }
+    inline void setVar(u32 var) {
+        _830 = var;
+    }
 
     static AudSystem* msBasic;
 

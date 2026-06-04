@@ -7,6 +7,10 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <revolution/mtx.h>
 
+namespace {
+    const char* getRailPointArgName(s32 argNum);
+};  // namespace
+
 namespace MR {
     void moveTransToOtherActorRailPos(LiveActor* pActor, const LiveActor* pOtherActor) {
         pActor->mPosition.set(getRailPos(pOtherActor));
@@ -248,7 +252,7 @@ namespace MR {
     f32 calcRailPosNearestPlayer(TVec3f* pOutPos, const LiveActor* pActor) {
         return calcNearestRailPos(pOutPos, pActor, *MR::getPlayerPos());
     }
-}  // namespace MR
+};  // namespace MR
 
 namespace {
     void updateBoundingBox(const RailRider* pRailRider, TBox3f* pBox) {
@@ -262,7 +266,7 @@ namespace {
         pBox->f.y = MR::max(pBox->f.y, pos.y);
         pBox->f.z = MR::max(pBox->f.z, pos.z);
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     void calcBoundingBox(RailRider* pRailRider, TBox3f* pBox, f32 delta) {
@@ -623,8 +627,7 @@ namespace MR {
     bool getRailArg1WithInit(const RailRider* pRailRider, s32* pArg) {
         return pRailRider->getRailArgWithInit("path_arg1", pArg);
     }
-
-}  // namespace MR
+};  // namespace MR
 
 namespace {
     bool getRailPointArgF32WithInit(const LiveActor* pActor, s32 argNum, s32 index, f32* pArg) NO_INLINE {
@@ -681,7 +684,7 @@ namespace {
         }
         return true;
     }
-}  // namespace
+};  // namespace
 
 namespace MR {
     bool getRailPointArg0WithInit(const LiveActor* pActor, s32 index, s32* pArg) {
@@ -804,7 +807,7 @@ namespace MR {
         RailRider* railRider = pActor->mRailRider;
         return railRider->getRailArgWithInit("path_arg0", pArg);
     }
-}  // namespace MR
+};  // namespace MR
 
 namespace {
     const char* getRailPointArgName(s32 argNum) {
@@ -834,4 +837,4 @@ namespace {
         }
         return nullptr;
     }
-}  // namespace
+};  // namespace

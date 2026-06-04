@@ -1,22 +1,23 @@
 #include "Game/Boss/TombSpiderSensorCtrl.hpp"
+#include "Game/Boss/TombSpider.hpp"
+#include "Game/Boss/TombSpiderFunction.hpp"
 #include "Game/Boss/TombSpiderGland.hpp"
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
-#include "Game/Boss/TombSpiderFunction.hpp"
-#include "Game/Boss/TombSpider.hpp"
 
-#include "revolution.h"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "revolution.h"
 
 namespace {
     static const f32 sAttackSensorDistanceOffset = 100.0f;
     static const f32 sEyeSensorPosOffset = -100.0f;
     static const f32 sHipSensorPosOffset = -400.0f;
-}
+};  // namespace
 
-TombSpiderSensorCtrl::TombSpiderSensorCtrl(TombSpider* pOwner) : mParent(pOwner) { }
+TombSpiderSensorCtrl::TombSpiderSensorCtrl(TombSpider* pOwner) : mParent(pOwner) {
+}
 
 void TombSpiderSensorCtrl::update(HitSensor* pSensor) {
     if (!updateMainParts(pSensor) && !updateGland(pSensor) && !updateVitalSpot(pSensor) && !updateAttackSensor(pSensor)) {
@@ -123,7 +124,7 @@ namespace {
         f32 Z = MR::getPlayerPos()->z;
         pSensor->mPosition.set< f32 >(pos.x, pos.y, Z);
     }
-}
+};  // namespace
 
 bool TombSpiderSensorCtrl::updateAttackSensor(HitSensor* pSensor) {
     if (pSensor->isType(ATYPE_ENEMY_ATTACK)) {

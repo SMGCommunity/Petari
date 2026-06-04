@@ -9,7 +9,7 @@ class NameObj;
 namespace MR {
     void connectToSceneImageEffect(NameObj*);
     void connectToSceneImageEffectMovement(NameObj*);
-};
+};  // namespace MR
 
 namespace ImageEffectLocalUtil {
     enum ETexDrawType { UNK_0, UNK_1, UNK_2 };

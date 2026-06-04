@@ -8,11 +8,13 @@
 
 namespace NrvButlerExplain {
     NEW_NERVE(ButlerExplainNrvDemo, ButlerExplain, Demo);
-};
+};  // namespace NrvButlerExplain
 
-ButlerExplain::ButlerExplain(const char* pName) : NPCActor(pName) {}
+ButlerExplain::ButlerExplain(const char* pName) : NPCActor(pName) {
+}
 
-ButlerExplain::~ButlerExplain() {}
+ButlerExplain::~ButlerExplain() {
+}
 
 void ButlerExplain::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("ButlerExplain");
@@ -29,8 +31,8 @@ void ButlerExplain::init(const JMapInfoIter& rIter) {
 
 void ButlerExplain::control() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_BUTLER_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_BUTLER_TRAMPLED");
     }
     NPCActor::control();
 }
@@ -39,4 +41,5 @@ void ButlerExplain::startDemo() {
     setNerve(&NrvButlerExplain::ButlerExplainNrvDemo::sInstance);
 }
 
-void ButlerExplain::exeDemo() {}
+void ButlerExplain::exeDemo() {
+}

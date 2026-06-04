@@ -25,7 +25,7 @@ namespace {
         pHandle1->set(rPointB + v3 * (diagonalRate * v1.dot(v3)));
         pHandle2->set(rPointB + v3 * (diagonalRate * v2.dot(v3)));
     }
-}  // namespace
+};  // namespace
 
 OctahedronBezierSurface::OctahedronBezierSurface(u32 a1) : mDiagonalRate(0.6f) {
     mVertices[0].set(0.0f, 1000.0f, 0.0f);

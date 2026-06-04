@@ -35,7 +35,8 @@ namespace NrvPauseMenu {
 
 PauseMenu::PauseMenu()
     : LayoutActor("ポーズメニュー", true), _20(nullptr), _24(nullptr), _28(0.0f, 50.0f), _30(nullptr), mLuigiLetter(nullptr), _38(nullptr),
-      mStageTitleOffset(0.0f, 39.0f), mCoinNumPos(0.0f, 0.0f), mStarPieceNumPos(0.0f, 0.0f), _54(true) {}
+      mStageTitleOffset(0.0f, 39.0f), mCoinNumPos(0.0f, 0.0f), mStarPieceNumPos(0.0f, 0.0f), _54(true) {
+}
 
 void PauseMenu::init(const JMapInfoIter& rIter) {
     initLayoutManager("PauseMenu", 1);

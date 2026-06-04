@@ -62,7 +62,8 @@ public:
     bool isPreLoading() const;
     void setUnpauseFrameFlag();
 
-    void exeWait() {}
+    void exeWait() {
+    }
 
     static THPSimplePlayerStaticAudio mStaticAudioPlayer;
 

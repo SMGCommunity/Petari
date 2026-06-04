@@ -20,9 +20,11 @@ namespace nw4r {
         NW4R_UT_RUNTIME_TYPEINFO_ROOT_DEFINITION(Pane);
 
         namespace detail {
-            PaneBase::PaneBase() {}
+            PaneBase::PaneBase() {
+            }
 
-            PaneBase::~PaneBase() {}
+            PaneBase::~PaneBase() {
+            }
         }  // namespace detail
 
         Pane::Pane(const res::Pane* pRes) {
@@ -93,7 +95,8 @@ namespace nw4r {
             return -1;
         }
 
-        void Pane::SetVtxColor(u32 idx, ut::Color color) {}
+        void Pane::SetVtxColor(u32 idx, ut::Color color) {
+        }
 
         u8 Pane::GetColorElement(u32 idx) const {
             switch (idx) {
@@ -125,7 +128,8 @@ namespace nw4r {
             return 0xFF;
         }
 
-        void Pane::SetVtxColorElement(u32 idx, u8 value) {}
+        void Pane::SetVtxColorElement(u32 idx, u8 value) {
+        }
 
         Pane* Pane::FindPaneByName(const char* pName, bool recursive) {
             if (detail::EqualsResName(mName, pName)) {
@@ -236,7 +240,8 @@ namespace nw4r {
             }
         }
 
-        void Pane::DrawSelf(const DrawInfo& rInfo) {}
+        void Pane::DrawSelf(const DrawInfo& rInfo) {
+        }
 
         void Pane::Animate(u32 option) {
             AnimateSelf(option);

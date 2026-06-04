@@ -5,7 +5,7 @@
 
 namespace NrvTicoShop {
     NEW_NERVE(TicoShopNrvDemo, TicoShop, Demo);
-};
+};  // namespace NrvTicoShop
 
 TicoShop::TicoShop(const char* pName) : TicoComet(pName) {
     mOneUp = nullptr;
@@ -55,11 +55,8 @@ void TicoShop::init(const JMapInfoIter& rIter) {
     initStarPiece(starbits);
     initMessage("Common_TicoShop000");
     MR::setMessageArg(mMsgCtrl, _194);
-    TalkMessageFuncM< TicoShop*, bool (TicoShop::*)(u32) > branchFunc = TalkMessageFunc(this, &TicoShop::branchFunc);
-    TalkMessageCtrl* pMsgCtrl = mMsgCtrl;
-    MR::registerBranchFunc(pMsgCtrl, branchFunc);
-    TalkMessageFuncM< TicoShop*, bool (TicoShop::*)(u32) > eventFunc = TalkMessageFunc(this, &TicoShop::eventFunc);
-    MR::registerEventFunc(mMsgCtrl, eventFunc);
+    MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &TicoShop::branchFunc));
+    MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &TicoShop::eventFunc));
     MR::setDistanceToTalk(mMsgCtrl, 350.0f);
     _180 = &NrvTicoShop::TicoShopNrvDemo::sInstance;
     mOneUp = MR::createKinokoOneUp();
@@ -96,35 +93,36 @@ bool TicoShop::eventFunc(u32 var) {
 
 void TicoShop::startReactionSound() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_TICOSHOP_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_TICOSHOP_TRAMPLED");
     }
 
     if (isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_TICOSHOP_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_TICOSHOP_POINT");
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SM_TICOSHOP_SPIN", -1, -1);
+        MR::startSound(this, "SE_SM_TICOSHOP_SPIN");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_TICOSHOP_STAR_PIECE_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_TICOSHOP_STAR_PIECE_HIT");
     }
 }
 
 void TicoShop::exeDemo() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Demo");
-        MR::startSound(this, "SE_SM_TICOFAT_META_ITEM", -1, -1);
-        MR::startSound(this, "SE_SM_TICOFAT_META", -1, -1);
+        MR::startSound(this, "SE_SM_TICOFAT_META_ITEM");
+        MR::startSound(this, "SE_SM_TICOFAT_META");
     }
 
     if (MR::isBckStopped(this)) {
-        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE", -1, -1);
+        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE");
         kill();
     }
 }
 
-TicoShop::~TicoShop() {}
+TicoShop::~TicoShop() {
+}

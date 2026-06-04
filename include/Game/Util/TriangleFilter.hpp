@@ -26,13 +26,14 @@ public:
 
 namespace MR {
     TriangleFilterFunc* createTriangleFilterFunc(TriangleFunc);
-};
+};  // namespace MR
 
 template < typename T >
 class TriangleFilterDelegator : public TriangleFilterBase {
 public:
     typedef bool (T::*DelegateFilter)(const Triangle*);
-    TriangleFilterDelegator(T* parent, DelegateFilter filter) : mParent(parent), mFunc(filter) {}
+    TriangleFilterDelegator(T* parent, DelegateFilter filter) : mParent(parent), mFunc(filter) {
+    }
 
     virtual bool isInvalidTriangle(const Triangle*) const;
 

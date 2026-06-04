@@ -36,7 +36,8 @@ void FileSelectEffect::exeAppear() {
     }
 }
 
-void FileSelectEffect::exeWait() {}
+void FileSelectEffect::exeWait() {
+}
 
 void FileSelectEffect::exeDisappear() {
     if (MR::isFirstStep(this)) {
@@ -52,4 +53,5 @@ void FileSelectEffect::exeDisappear() {
 
 // FileSelectEffect::calcAndSetBaseMtx
 
-FileSelectEffect::~FileSelectEffect() {}
+FileSelectEffect::~FileSelectEffect() {
+}

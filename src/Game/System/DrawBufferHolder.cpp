@@ -8,7 +8,7 @@ namespace {
     // static const char* sPermitMultiCategoryArciveName = ;
 
     bool isExcludedCheckMultiRegistCategory(s32);
-}  // namespace
+};  // namespace
 
 DrawBufferHolder::DrawBufferHolder() : mBufferGroups(nullptr), mBufferGroupCount(0), mTableInitialized(false) {
 }

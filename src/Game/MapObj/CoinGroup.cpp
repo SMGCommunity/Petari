@@ -26,9 +26,9 @@ void CoinGroup::init(const JMapInfoIter& rIter) {
 
     for (u32 i = 0; i < mCoinCount; i++) {
         if (mIsPurpleCoinGroup) {
-            mCoinArray[i] = reinterpret_cast< Coin* >(MR::createPurpleCoin(this, getCoinName()));
+            mCoinArray[i] = static_cast< Coin* >(MR::createPurpleCoin(this, getCoinName()));
         } else {
-            mCoinArray[i] = reinterpret_cast< Coin* >(MR::createCoin(this, getCoinName()));
+            mCoinArray[i] = static_cast< Coin* >(MR::createCoin(this, getCoinName()));
         }
 
         mCoinArray[i]->setShadowAndPoseModeFromJMapIter(rIter);
@@ -49,8 +49,7 @@ void CoinGroup::init(const JMapInfoIter& rIter) {
     placementCoin();
 
     if (MR::tryRegisterDemoCast(this, rIter)) {
-        MR::FunctorV0M< CoinGroup*, void (CoinGroup::*)() > demoFunc = MR::Functor< CoinGroup >(this, &CoinGroup::appearCoinAll);
-        MR::registerDemoActionFunctor(this, demoFunc, "コイン出現");
+        MR::registerDemoActionFunctor(this, MR::Functor(this, &CoinGroup::appearCoinAll), "コイン出現");
     } else if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::connectToSceneMapObjMovement(this);
         MR::syncStageSwitchAppear(this);
@@ -66,8 +65,7 @@ void CoinGroup::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::FunctorV0M< CoinGroup*, void (CoinGroup::*)() > killFunc = MR::Functor< CoinGroup >(this, &CoinGroup::killCoinAll);
-        MR::listenStageSwitchOnB(this, killFunc);
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &CoinGroup::killCoinAll));
     }
 
     MR::invalidateClipping(this);
@@ -118,9 +116,9 @@ void CoinGroup::appear() {
 void CoinGroup::exeAppear() {
     if (MR::isStep(this, 3)) {
         if (mIsPurpleCoinGroup) {
-            MR::startSystemSE("SE_SY_PURPLE_COIN_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_PURPLE_COIN_APPEAR");
         } else {
-            MR::startSystemSE("SE_SY_COIN_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_COIN_APPEAR");
         }
 
         appearCoinAll();
@@ -129,12 +127,13 @@ void CoinGroup::exeAppear() {
     }
 }
 
-void CoinGroup::exeTryStartDemo() {}
+void CoinGroup::exeTryStartDemo() {
+}
 
 void CoinGroup::exeDemoAppear() {
     if (MR::isFirstStep(this)) {
         MR::startActorCameraTargetSelf(this, mCameraInfo, 30);
-        MR::startSystemSE("SE_SY_COIN_APPEAR", -1, -1);
+        MR::startSystemSE("SE_SY_COIN_APPEAR");
         appearCoinAll();
     }
 
@@ -154,4 +153,5 @@ const char* CoinGroup::getCoinName() const {
     return "コイン(グループ配置)";
 }
 
-void CoinGroup::placementCoin() {}
+void CoinGroup::placementCoin() {
+}

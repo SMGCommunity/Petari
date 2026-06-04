@@ -38,7 +38,8 @@ namespace NrvBasaBasa {
 
 BasaBasa::BasaBasa(const char* pName)
     : LiveActor(pName), mHangModel(nullptr), mScaleController(nullptr), mStampController(nullptr), mSpinHitController(nullptr), _9C(0.0f, 0.0f, 1.0f),
-      _A8(2000.0f), _AC(0.0f), _B4(0), _B8(0.0f), _BC(0.0f, 0.0f, 0.0f), mIsIceModel(false), _CC(0.0f, 0.0f, 0.0f), _E4(-1.0f), _E8(0), _EC(0) {}
+      _A8(2000.0f), _AC(0.0f), _B4(0), _B8(0.0f), _BC(0.0f, 0.0f, 0.0f), mIsIceModel(false), _CC(0.0f, 0.0f, 0.0f), _E4(-1.0f), _E8(0), _EC(0) {
+}
 
 void BasaBasa::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -130,7 +131,7 @@ void BasaBasa::exeAirWait() {
 void BasaBasa::exeChaseStart() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "FlyStart", nullptr);
-        MR::startSound(this, "SE_EV_BASABASA_FIND", -1, -1);
+        MR::startSound(this, "SE_EV_BASABASA_FIND");
     }
 
     if (MR::isLessStep(this, 15)) {
@@ -209,8 +210,8 @@ void BasaBasa::exeTrampleDown() {
         mVelocity.zero();
         mStampController->startAnim(mGravity);
         MR::invalidateHitSensors(this);
-        MR::startSound(this, "SE_EV_BASABASA_DAMAGE", -1, -1);
-        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
+        MR::startSound(this, "SE_EV_BASABASA_DAMAGE");
+        MR::startSound(this, "SE_EM_STOMPED_S");
     }
 
     mStampController->updateNerve();
@@ -226,7 +227,7 @@ void BasaBasa::exePunchDown() {
         MR::startBck(this, "Blow", nullptr);
         MR::invalidateClipping(this);
         MR::invalidateHitSensors(this);
-        MR::startSound(this, "SE_EV_BASABASA_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EV_BASABASA_DAMAGE");
         MR::startBlowHitSound(this);
         MR::onBind(this);
     }
@@ -261,13 +262,13 @@ void BasaBasa::exeAttackStart() {
 void BasaBasa::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Attack", nullptr);
-        MR::startSound(this, "SE_EV_BASABASA_ATTACK", -1, -1);
+        MR::startSound(this, "SE_EV_BASABASA_ATTACK");
         TVec3f playerUp;
         MR::getPlayerUpVec(&playerUp);
         JMAVECScaleAdd(&playerUp, MR::getPlayerPos(), &_BC, 100.0f);
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_BASABASA_ATTACK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BASABASA_ATTACK");
     TVec3f v9;
     v9.sub(_BC, mPosition);
     if (mIsIceModel) {
@@ -331,7 +332,7 @@ void BasaBasa::exeHitBack() {
         MR::startBck(this, "Reaction", nullptr);
         MR::onBind(this);
         MR::turnDirectionToPlayerDegree(this, &_9C, 180.0f);
-        MR::startSound(this, "SE_EM_ICEBASA_SPIN_BLOW", -1, -1);
+        MR::startSound(this, "SE_EM_ICEBASA_SPIN_BLOW");
     }
 
     if (MR::isLessEqualStep(this, 5)) {
@@ -440,7 +441,7 @@ void BasaBasa::endDPDSwoon() {
 void BasaBasa::exeStun() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Swoon", nullptr);
-        MR::startSound(this, "SE_EV_BASABASA_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EV_BASABASA_DAMAGE");
     }
 
     JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 1.0f);
@@ -468,13 +469,13 @@ void BasaBasa::initAfterPlacement() {
 
 void BasaBasa::kill() {
     MR::emitEffect(this, "Death");
-    MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_S");
     mHangModel->kill();
     LiveActor::kill();
 }
 
 void BasaBasa::control() {
-    MR::startLevelSound(this, "SE_EM_LV_ICEBASA_CHILL", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_ICEBASA_CHILL");
     mScaleController->updateNerve();
     if (!tryClippingAndResetPos()) {
         controlVelocity();
@@ -812,4 +813,5 @@ bool BasaBasa::isNrvEnableStun() const {
     return v1;
 }
 
-BasaBasa::~BasaBasa() {}
+BasaBasa::~BasaBasa() {
+}

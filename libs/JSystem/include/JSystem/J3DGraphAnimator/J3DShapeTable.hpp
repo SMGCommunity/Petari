@@ -18,10 +18,15 @@ public:
     void initShapeNodes(J3DDrawMtxData*, J3DVertexData*);
     void sortVcdVatCmd();
 
-    virtual ~J3DShapeTable() {}
+    virtual ~J3DShapeTable() {
+    }
 
-    u16 getShapeNum() const { return mShapeNum; }
-    J3DShape* getShapeNodePointer(u16 idx) const { return mShapeNodePointer[idx]; }
+    u16 getShapeNum() const {
+        return mShapeNum;
+    }
+    J3DShape* getShapeNodePointer(u16 idx) const {
+        return mShapeNodePointer[idx];
+    }
 
 private:
     friend class J3DModelLoader;

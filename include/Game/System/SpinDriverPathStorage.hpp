@@ -67,7 +67,7 @@ public:
 // different classes. What actually is the class that takes this role?
 class Dummy {
 public:
-    Dummy(){};
+    Dummy() {};
 };
 
 class SpinDriverPathStorage : public Dummy, public BinaryDataChunkBase {

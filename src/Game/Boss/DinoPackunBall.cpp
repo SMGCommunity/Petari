@@ -40,11 +40,7 @@ void DinoPackunBall::init(const JMapInfoIter& rIter) {
     MR::onCalcGravity(this);
     MR::invalidateClipping(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorEnemy(this, "body", 8, 135.0f, offs);
+    MR::addHitSensorEnemy(this, "body", 8, 135.0f, TVec3f(0.0f, 0.0f, 0.0f));
     makeActorAppeared();
 }
 
@@ -56,14 +52,14 @@ void DinoPackunBall::control() {
     _D4.setPos(v4);
 
     if (_128 > 0) {
-        MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_TAIL_DRAG", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_TAIL_DRAG");
         _128--;
     } else {
         _128 = -1;
     }
 
     if (_125) {
-        MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_TAIL_FIRE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_TAIL_FIRE");
     }
 }
 
@@ -261,13 +257,13 @@ void DinoPackunBall::exeShoot() {
 void DinoPackunBall::exeCharge() {
     if (MR::isFirstStep(this)) {
         MR::sendArbitraryMsg(185, mWeakSensor, getSensor(nullptr));
-        MR::startSound(this, "SE_BM_D_PAKKUN_TAIL_CRG_ST", -1, -1);
+        MR::startSound(this, "SE_BM_D_PAKKUN_TAIL_CRG_ST");
     }
 
     addDodgeTargetVelocity();
     MR::attenuateVelocity(this, 0.88f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
-    MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_TAIL_CRG", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_TAIL_CRG");
 
     if (MR::isGreaterStep(this, 35)) {
         setNerve(&NrvDinoPackunBall::DinoPackunBallNrvReverse::sInstance);
@@ -276,7 +272,7 @@ void DinoPackunBall::exeCharge() {
 
 void DinoPackunBall::exeReverse() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_D_PAKKUN_TAIL_REV", -1, -1);
+        MR::startSound(this, "SE_BM_D_PAKKUN_TAIL_REV");
     }
 
     TVec3f v5(MR::getSensorPos(mWeakSensor));

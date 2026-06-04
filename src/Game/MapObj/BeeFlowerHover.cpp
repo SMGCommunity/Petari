@@ -1,6 +1,11 @@
 #include "Game/MapObj/BeeFlowerHover.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 
+namespace {
+    static const f32 sDefaultRotateSpeed = 50.0f;
+    static const s32 sStepToRecoverStart = 60;
+};  // namespace
+
 namespace NrvBeeFlowerHover {
     NEW_NERVE(BeeFlowerHoverNrvWait, BeeFlowerHover, Wait);
     NEW_NERVE(BeeFlowerHoverNrvSoftTouch, BeeFlowerHover, SoftTouch);
@@ -9,14 +14,8 @@ namespace NrvBeeFlowerHover {
     NEW_NERVE(BeeFlowerHoverNrvRecover, BeeFlowerHover, Recover);
 };  // namespace NrvBeeFlowerHover
 
-BeeFlowerHover::BeeFlowerHover(const char* pName) : LiveActor(pName) {
-    mLodCtrlPlanet = 0;
-    _BC = 50.0f;
-    mRailMover = 0;
-    mRailPosture = 0;
-    _CC.x = 0.0f;
-    _CC.y = 0.0f;
-    _CC.z = 0.0f;
+BeeFlowerHover::BeeFlowerHover(const char* pName)
+    : LiveActor(pName), mLodCtrlPlanet(), _BC(::sDefaultRotateSpeed), mRailMover(), mRailPosture(), _CC(0.0f, 0.0f, 0.0f) {
     _8C.identity();
 }
 
@@ -26,8 +25,8 @@ void BeeFlowerHover::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
-    MR::initCollisionPartsAutoEqualScale(this, "BeeFlowerHover", getSensor(0), 0);
-    initEffectKeeper(0, 0, false);
+    MR::initCollisionPartsAutoEqualScale(this, "BeeFlowerHover", getSensor(nullptr), 0);
+    initEffectKeeper(0, nullptr, false);
     initSound(4, false);
 
     if (MR::isConnectedWithRail(rIter)) {
@@ -84,7 +83,7 @@ void BeeFlowerHover::exeWait() {
 void BeeFlowerHover::exeSoftTouch() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "OnBee", 0);
-        MR::startSound(this, "SE_OJ_BEE_FLOWER_BEE_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_BEE_FLOWER_BEE_ON");
     }
 
     if (MR::isBckStopped(this)) {
@@ -99,17 +98,15 @@ void BeeFlowerHover::exeSoftTouchWait() {
 
     if (!MR::isPlayerElementModeBee()) {
         setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvHardTouch::sInstance);
-    } else {
-        if (MR::isOnPlayer(getSensor(0))) {
-            setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);
-        }
+    } else if (!MR::isOnPlayer(getSensor(nullptr))) {
+        setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);
     }
 }
 
 void BeeFlowerHover::exeHardTouch() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "ThroughMario", 0);
-        MR::startSound(this, "SE_OJ_BEE_FLOWER_DISAPPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_BEE_FLOWER_DISAPPEAR");
         MR::invalidateCollisionParts(this);
         MR::invalidateShadow(this, 0);
         MR::onCalcShadowOneTime(this, 0);
@@ -124,15 +121,15 @@ void BeeFlowerHover::exeHardTouch() {
 }
 
 void BeeFlowerHover::exeRecover() {
-    if (MR::isStep(this, 0x3C)) {
+    if (MR::isStep(this, ::sStepToRecoverStart)) {
         MR::validateShadow(this, 0);
         MR::onCalcShadowOneTime(this, 0);
         MR::showModel(this);
         MR::startBck(this, "Appear", 0);
-        MR::startSound(this, "SE_OJ_BEE_FLOWER_RECOVER", -1, -1);
+        MR::startSound(this, "SE_OJ_BEE_FLOWER_RECOVER");
     }
 
-    if (MR::isGreaterEqualStep(this, 0x3C) && MR::isBckStopped(this) && !MR::isHiddenModel(this)) {
+    if (MR::isGreaterEqualStep(this, ::sStepToRecoverStart) && MR::isBckStopped(this) && !MR::isHiddenModel(this)) {
         MR::validateCollisionParts(this);
         setNerve(&NrvBeeFlowerHover::BeeFlowerHoverNrvWait::sInstance);
     }
@@ -222,4 +219,5 @@ bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     return false;
 }
 
-BeeFlowerHover::~BeeFlowerHover() {}
+BeeFlowerHover::~BeeFlowerHover() {
+}

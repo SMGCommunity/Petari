@@ -71,7 +71,7 @@ namespace {
     static const f32 sTutorialAccel = 0.5f;
     static const f32 sTutorialFric = 0.95f;
     static const s32 sBgmStateChangeFrames = 30;
-}  // namespace
+};  // namespace
 
 namespace NrvTamakoro {
     NEW_NERVE(TamakoroNrvStandByTutorial, Tamakoro, StandByTutorial);
@@ -94,7 +94,7 @@ namespace NrvTamakoro {
     NEW_NERVE(TamakoroNrvRideRailFast, Tamakoro, RideRailFast);
     NEW_NERVE(TamakoroNrvRideRailFastEnd, Tamakoro, RideRailFastEnd);
     NEW_NERVE(TamakoroNrvBindEnd, Tamakoro, BindEnd);
-}  // namespace NrvTamakoro
+};  // namespace NrvTamakoro
 
 Tamakoro::Tamakoro(const char* pName)
     : LiveActor(pName), mAccelSensorCtrl(nullptr), mTutorial(nullptr), mJointCtrl(nullptr), mBallRotateQuat(0, 0, 0, 1), mMarioRotateQuat(0, 0, 0, 1),
@@ -492,7 +492,7 @@ void Tamakoro::reactionCollision() {
     }
 
     if (wallHitPower > sCollisionWeakPower) {
-        MR::startSound(this, "SE_SM_IRONSPH_HIT", -1, -1);
+        MR::startSound(this, "SE_SM_IRONSPH_HIT");
         MR::startSoundPlayer("SE_PV_GUARD", -1);
     }
 
@@ -574,7 +574,7 @@ void Tamakoro::exeBindStartLand() {
 
         MR::emitEffectHit(this, mMarioPos, mMarioPos - mPosition, "TamakoroLand");
         MR::startSoundPlayer("SE_PV_CATCH", -1);
-        MR::startSound(this, "SE_SM_RIDE_START", -1, -1);
+        MR::startSound(this, "SE_SM_RIDE_START");
 
         if (MR::isValidSwitchA(this)) {
             MR::onSwitchA(this);
@@ -654,7 +654,7 @@ void Tamakoro::exeJump() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("BallJump", "BallJump");
         MR::startSoundPlayer("SE_PV_JUMP_M", -1);
-        MR::startSound(this, "SE_SM_BALLOONSPH_JUMP", -1, -1);
+        MR::startSound(this, "SE_SM_BALLOONSPH_JUMP");
         MR::addVelocityToGravity(this, (-sJumpPowerV - mVelocity.dot(mGravity)));
         MR::addVelocityMoveToDirection(this, mAccelDir, mAccelRate * sJumpPowerH);
     }
@@ -697,7 +697,7 @@ void Tamakoro::exeLand() {
         MR::startBckPlayer("Land", static_cast< const char* >(nullptr));
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormalWeak();
-        MR::startSound(this, "SE_SM_IRONSPH_LAND", -1, -1);
+        MR::startSound(this, "SE_SM_IRONSPH_LAND");
     }
 
     reactionCollision();
@@ -760,7 +760,7 @@ void Tamakoro::exeDashRail() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("BallRoll", static_cast< const char* >(nullptr));
         MR::startSoundPlayer("SE_PV_JUMP_JOY", -1);
-        MR::startSound(this, "SE_SM_IRONSPH_RAILDASH", -1, -1);
+        MR::startSound(this, "SE_SM_IRONSPH_RAILDASH");
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         mAccelDir.zero();
         mAccelRate = 0.0f;
@@ -856,7 +856,7 @@ void Tamakoro::exeBindEnd() {
             MR::offSwitchA(this);
         }
         MR::emitEffect(this, "Break");
-        MR::startSound(this, "SE_SM_RIDE_END", -1, -1);
+        MR::startSound(this, "SE_SM_RIDE_END");
         MR::startSoundPlayer("SE_PV_JUMP_S", -1);
         MR::stopStageBGM(10);
     }
@@ -1105,9 +1105,9 @@ void Tamakoro::startRotateLevelSound() {
 
     s32 lvl = ((mag * 10000.0f) / TWO_PI);
     if (isNerve(&NrvTamakoro::TamakoroNrvRideRail::sInstance)) {
-        MR::startLevelSound(this, "SE_SM_LV_IRONSPH_ROLL_RAIL", lvl, -1, -1);
+        MR::startLevelSound(this, "SE_SM_LV_IRONSPH_ROLL_RAIL", lvl);
     } else {
-        MR::startLevelSound(this, "SE_SM_LV_IRONSPH_ROLL1", lvl, -1, -1);
+        MR::startLevelSound(this, "SE_SM_LV_IRONSPH_ROLL1", lvl);
     }
 }
 

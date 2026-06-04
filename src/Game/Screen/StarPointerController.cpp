@@ -14,7 +14,7 @@ namespace {
     static const s32 hIsOutScreenCounter = 35;
     // static const _32 hNearValue =
     // static const _32 hDrawDebugRadius =
-}  // namespace
+};  // namespace
 
 DpdInfo::DpdInfo() : mPos(0.0f, 0.0f), mInScreen(false), mDrawReady(false), mZDepth(0), mViewDistZ(0.0f) {
 }

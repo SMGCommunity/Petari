@@ -5,7 +5,7 @@
 namespace nw4r {
     namespace lyt {
         class TexMap;
-    };
+    };  // namespace lyt
 };  // namespace nw4r
 
 class InformationMessage;
@@ -93,4 +93,4 @@ private:
 
 namespace MR {
     StaffRoll* getStaffRoll();
-};
+};  // namespace MR

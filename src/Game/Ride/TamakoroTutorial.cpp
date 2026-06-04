@@ -183,7 +183,7 @@ void TamakoroTutorial::exeWaitRaiseTalk() {
 
     if (MR::isGreaterStep(this, 90)) {
         if (MR::isNearAngleDegree(::hRaiseAcc, mPadAccel, hRaiseCheckDegree)) {
-            MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK", -1, -1);
+            MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK");
             setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRaiseStable::sInstance);
         }
     }
@@ -199,12 +199,12 @@ void TamakoroTutorial::exeWaitRaiseStable() {
 
     if (!MR::isNearAngleDegree(::hRaiseAcc, mPadAccel, hRaiseCheckDegree)) {
         setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRaiseTalk::sInstance);
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG", -1, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG");
     } else {
         startTimerSound(getNerveStep(), 1);
 
         if (MR::isGreaterStep(this, 60)) {
-            MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT", -1, -1);
+            MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT");
             setNerve(&NrvTamakoroTutorial::HostTypeNrvRaiseOk::sInstance);
         }
     }
@@ -269,7 +269,7 @@ void TamakoroTutorial::exeWait() {
 
 void TamakoroTutorial::exeTrample() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_SIGN_BOARD_TRAMP_BALL", -1, -1);
+        MR::startSound(this, "SE_OJ_SIGN_BOARD_TRAMP_BALL");
 
         if (isNerve(&NrvTamakoroTutorial::HostTypeNrvTrampleFront::sInstance)) {
             MR::startAction(this, "DownFront");
@@ -291,7 +291,7 @@ void TamakoroTutorial::exeTrample() {
 
 void TamakoroTutorial::exeRecover() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_SIGN_BOARD_RECOVER", -1, -1);
+        MR::startSound(this, "SE_OJ_SIGN_BOARD_RECOVER");
 
         if (isNerve(&NrvTamakoroTutorial::HostTypeNrvRecoverFront::sInstance)) {
             MR::startAction(this, "RevivalFront");
@@ -318,7 +318,7 @@ void TamakoroTutorial::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 bool TamakoroTutorial::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerTrample(msg)) {
         if (!MR::isSensorRide(pSender)) {
-            MR::startSound(this, "SE_OJ_SIGN_BOARD_TRAMP_PLR", -1, -1);
+            MR::startSound(this, "SE_OJ_SIGN_BOARD_TRAMP_PLR");
 
             return true;
         }
@@ -370,10 +370,10 @@ void TamakoroTutorial::updateHitSensor(HitSensor* pSensor) {
 
 void TamakoroTutorial::startTimerSound(s32 step, s32 param2) {
     if (step == 20) {
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER", param2, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER", param2);
     }
 
     if (step == 40) {
-        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER2", param2, -1);
+        MR::startSystemSE("SE_SY_SURF_TUTORIAL_TIMER2", param2);
     }
 }

@@ -55,7 +55,8 @@ void MarioMeter::deactivate() {
     mUseSuddenDeath ? mSuddenDeathMeter->requestDeactivate() : mHitPointMeter->requestDeactivate();
 }
 
-MarioMeter::~MarioMeter() {}
+MarioMeter::~MarioMeter() {
+}
 
 void MarioMeter::init(const JMapInfoIter& rIter) {
     mHitPointMeter = new MeterLayout("通常HPメーター", "HitPointMeter");

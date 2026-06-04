@@ -4,7 +4,9 @@
 namespace {
     class RailCoinMercatorDivInfo : public DivideMercatorRailPosInfo {
     public:
-        inline RailCoinMercatorDivInfo(CoinGroup* pGroup) { mGroup = pGroup; }
+        inline RailCoinMercatorDivInfo(CoinGroup* pGroup) {
+            mGroup = pGroup;
+        }
 
         virtual void setPosition(s32, const TVec3f&);
 
@@ -12,7 +14,8 @@ namespace {
     };
 };  // namespace
 
-RailCoin::RailCoin(const char* pName) : CoinGroup(pName) {}
+RailCoin::RailCoin(const char* pName) : CoinGroup(pName) {
+}
 
 void RailCoin::initCoinArray(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -66,7 +69,8 @@ namespace {
     }
 };  // namespace
 
-RailCoin::~RailCoin() {}
+RailCoin::~RailCoin() {
+}
 
 void RailCoin::placementCoin() {
     if (MR::isInAreaObj("MercatorCube", mPosition)) {

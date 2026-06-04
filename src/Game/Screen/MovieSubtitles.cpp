@@ -30,7 +30,8 @@ void MovieSubtitles::appear() {
     setNerve(&NrvMovieSubtitles::HostTypeTalk::sInstance);
 }
 
-void MovieSubtitles::exeWait() {}
+void MovieSubtitles::exeWait() {
+}
 
 void MovieSubtitles::exeTalk() {
     mFormerText->updateTalking();

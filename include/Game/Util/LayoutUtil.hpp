@@ -28,7 +28,8 @@ namespace nw4r {
 class TextBoxRecursiveOperation {
 public:
     /// @brief Destroys the `TextBoxRecursiveOperation`.
-    virtual ~TextBoxRecursiveOperation() {}
+    virtual ~TextBoxRecursiveOperation() {
+    }
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const = 0;
 };
@@ -36,7 +37,8 @@ public:
 class TextBoxRecursiveSetMessage : public TextBoxRecursiveOperation {
 public:
     /// @brief Creates a new `TextBoxRecursiveSetMessage`.
-    TextBoxRecursiveSetMessage(const wchar_t* pMessage) : mMessage(pMessage) {}
+    TextBoxRecursiveSetMessage(const wchar_t* pMessage) : mMessage(pMessage) {
+    }
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
@@ -47,7 +49,8 @@ private:
 class TextBoxRecursiveSetArgNumber : public TextBoxRecursiveOperation {
 public:
     /// @brief Creates a new `TextBoxRecursiveSetArgNumber`.
-    TextBoxRecursiveSetArgNumber(s32 arg, s32 param2) : mArg(arg), _8(param2) {}
+    TextBoxRecursiveSetArgNumber(s32 arg, s32 param2) : mArg(arg), _8(param2) {
+    }
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
@@ -59,7 +62,8 @@ private:
 class TextBoxRecursiveSetArgString : public TextBoxRecursiveOperation {
 public:
     /// @brief Creates a new `TextBoxRecursiveSetArgString`.
-    TextBoxRecursiveSetArgString(const wchar_t* pArg, s32 param2) : mArg(pArg), _8(param2) {}
+    TextBoxRecursiveSetArgString(const wchar_t* pArg, s32 param2) : mArg(pArg), _8(param2) {
+    }
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
@@ -71,7 +75,8 @@ private:
 class TextBoxRecursiveSetVerticalPosition : public TextBoxRecursiveOperation {
 public:
     /// @brief Creates a new `TextBoxRecursiveSetVerticalPosition`.
-    TextBoxRecursiveSetVerticalPosition(u8 position) : mPosition(position) {}
+    TextBoxRecursiveSetVerticalPosition(u8 position) : mPosition(position) {
+    }
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
@@ -82,7 +87,8 @@ private:
 class TextBoxRecursiveSetHorizontalPosition : public TextBoxRecursiveOperation {
 public:
     /// @brief Creates a new `TextBoxRecursiveSetHorizontalPosition`.
-    TextBoxRecursiveSetHorizontalPosition(u8 position) : mPosition(position) {}
+    TextBoxRecursiveSetHorizontalPosition(u8 position) : mPosition(position) {
+    }
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
@@ -93,7 +99,8 @@ private:
 class TextBoxRecursiveSetFont : public TextBoxRecursiveOperation {
 public:
     /// @brief Creates a new `TextBoxRecursiveSetFont`.
-    TextBoxRecursiveSetFont(nw4r::ut::Font* pFont) : mFont(pFont) {}
+    TextBoxRecursiveSetFont(nw4r::ut::Font* pFont) : mFont(pFont) {
+    }
 
     virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 

@@ -48,11 +48,11 @@ namespace {
     static const s32 sSeStepMin = 36;
     static const s32 sSeStepMax = 66;
     static const s32 sRandomWaitTimeMin = 0;
-}  // namespace
+};  // namespace
 
 namespace {
     GXColor sStickColors[] = {{0x00, 0xC8, 0x00, 0x00}, {0x00, 0xDC, 0x00, 0x00}, {0x00, 0xB4, 0x00, 0x00}, {0x00, 0xC8, 0x00, 0x00}};
-}  // namespace
+};  // namespace
 
 Flag::~Flag() {
 }
@@ -202,7 +202,7 @@ void Flag::appear() {
         }
     }
 
-    MR::startSound(this, "SE_OJ_FLAG_APPEAR", -1, -1);
+    MR::startSound(this, "SE_OJ_FLAG_APPEAR");
 }
 
 void Flag::setInfoPos(const char* pObjName, const TVec3f* pPos, const TVec3f& rSide, f32 stickLength, f32 width, f32 height, s32 numPointsU,
@@ -231,7 +231,7 @@ void Flag::setInfoPos(const char* pObjName, const TVec3f* pPos, const TVec3f& rS
 void Flag::movement() {
     if (!mDisableSound) {
         if (mSeStep <= 0) {
-            MR::startSound(this, "SE_OJ_FLAG", -1, -1);
+            MR::startSound(this, "SE_OJ_FLAG");
             mSeStep = MR::getRandom(sSeStepMin, sSeStepMax);
         } else {
             mSeStep--;
@@ -419,7 +419,7 @@ void Flag::draw() const {
 
         const Vec2 stickCoords[] = {{1.0f, 0.0f}, {0.0f, 1.0f}, {-1.0f, 0.0f}, {1.0f, 0.0f}};
 
-        GXSetArray(GX_VA_CLR0, &sStickColors, ARRAY_SIZEU(sStickColors));
+        GXSetArray(GX_VA_CLR0, &sStickColors, ARRAY_SIZE(sStickColors));
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 8);
 
         f32 length = mStickLength + mPointIntervalV * (mNumPointsV - 1);

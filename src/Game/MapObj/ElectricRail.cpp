@@ -9,14 +9,15 @@ namespace NrvElectricRail {
     NEW_NERVE(ElectricRailNrvWait, ElectricRail, Wait);
     NEW_NERVE(ElectricRailNrvDisappear, ElectricRail, Disappear);
     NEW_NERVE(ElectricRailNrvDisappeared, ElectricRail, Disappeared);
-}
+};  // namespace NrvElectricRail
 
 ElectricRailPoint::ElectricRailPoint(const char* pName) : LiveActor(pName) {
     _8C = 1;
     _8D = 1;
 }
 
-ElectricRailPoint::~ElectricRailPoint() {}
+ElectricRailPoint::~ElectricRailPoint() {
+}
 
 void ElectricRailPoint::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("ElectricRailPoint", 0, 0);
@@ -175,12 +176,7 @@ void ElectricRail::initMapToolInfo(const JMapInfoIter& iter) {
     MR::getJMapInfoArg0NoInit(iter, &mRailHeight);
 
     if (MR::useStageSwitchReadA(this, iter)) {
-        MR::FunctorV0M< ElectricRail*, void (ElectricRail::*)(void) > functor;
-        /* functor._4 = this;
-        functor._8 = 0;
-        functor._C = -1;
-        functor.mFuncPtr = (void)ElectricRail::disappear; */
-        MR::listenStageSwitchOnA(this, functor);
+        MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &ElectricRail::disappear));
     }
 }
 
@@ -380,7 +376,7 @@ void ElectricRail::calcGravity(JGeometry::TVec3< f32 >* pOut, const JGeometry::T
 
 void ElectricRail::exeDisappear() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_ELEC_RAIL_VANISH", -1, -1);
+        MR::startSound(this, "SE_OJ_ELEC_RAIL_VANISH");
         MR::invalidateHitSensors(this);
 
         s32 curPoint = 0;
@@ -392,22 +388,23 @@ void ElectricRail::exeDisappear() {
         }
     }
 
-    mEaseIn = MR::calcNerveEaseInValue(this, 0x14, 30.0, 0.0);
+    mEaseIn = MR::calcNerveEaseInValue(this, 20, 30.0, 0.0);
 
-    if (MR::isStep(this, 0x14)) {
+    if (MR::isStep(this, 20)) {
         setNerve(&NrvElectricRail::ElectricRailNrvDisappeared::sInstance);
     }
 }
 
 void ElectricRail::exeWait() {
     updateHitSensorPos();
-    MR::startLevelSound(this, "SE_OJ_LV_ELEC_RAIL_HAM", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_ELEC_RAIL_HAM");
 }
 
 void ElectricRail::exeDisappeared() {
     if (MR::isFirstStep(this)) {
-            MR::hideModel(this);
-        }
+        MR::hideModel(this);
+    }
 }
 
-ElectricRail::~ElectricRail() {}
+ElectricRail::~ElectricRail() {
+}

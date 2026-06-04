@@ -1,7 +1,8 @@
 #include "Game/NameObj/NameObjAdaptor.hpp"
 
 NameObjAdaptor::NameObjAdaptor(const char* pName)
-    : NameObj(pName), mMovementFunc(nullptr), mCalcAnimFunc(nullptr), mCalcViewFunc(nullptr), mDrawAnimFunc(nullptr) {}
+    : NameObj(pName), mMovementFunc(nullptr), mCalcAnimFunc(nullptr), mCalcViewFunc(nullptr), mDrawAnimFunc(nullptr) {
+}
 
 NameObjAdaptor::~NameObjAdaptor() {
     delete mMovementFunc;

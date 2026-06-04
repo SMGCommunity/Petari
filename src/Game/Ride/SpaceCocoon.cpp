@@ -29,6 +29,10 @@
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 
+namespace {
+    static Color8 sColor(0xC8, 0xC8, 0xD7, 0xFF);
+};  // namespace
+
 namespace NrvSpaceCocoon {
     NEW_NERVE(SpaceCocoonNrvStop, SpaceCocoon, Stop);
     NEW_NERVE(SpaceCocoonNrvFree, SpaceCocoon, Free);
@@ -44,11 +48,7 @@ namespace NrvSpaceCocoon {
     NEW_NERVE(SpaceCocoonNrvBindAim, SpaceCocoon, BindAim);
     NEW_NERVE(SpaceCocoonNrvBindAttack, SpaceCocoon, BindAttack);
     NEW_NERVE(SpaceCocoonNrvBindAttackSuccess, SpaceCocoon, BindAttackSuccess);
-}  // namespace NrvSpaceCocoon
-
-namespace {
-    static Color8 sColor(0xC8, 0xC8, 0xD7, 0xFF);
-}
+};  // namespace NrvSpaceCocoon
 
 SpaceCocoon::SpaceCocoon(const char* pName)
     : LiveActor(pName), mIsKinopioCameraFocused(false), mNeutralPos(0.0f, 0.0f, 0.0f), mBasePos(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f),
@@ -195,13 +195,13 @@ void SpaceCocoon::exeBindLand() {
         if (!isKinopioAttached()) {
             MR::startBckPlayer("CocoonLand", 1);
             MR::startMultiActorCameraTargetOther(this, mCameraInfo, "ウェイト", CameraTargetArg(mCameraTargetMtx), -1);
-            MR::startSound(mRider, "SE_PV_CATCH", -1, -1);
+            MR::startSound(mRider, "SE_PV_CATCH");
         } else {
             MR::startBckWithInterpole(mRider, "CocoonLand", 1);
             setNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioWait::sInstance);
             return;
         }
-        MR::startSound(this, "SE_OJ_SPACE_COCOON_ATTACH", -1, -1);
+        MR::startSound(this, "SE_OJ_SPACE_COCOON_ATTACH");
     }
 
     if (isKinopioAttached()) {
@@ -258,16 +258,16 @@ void SpaceCocoon::exeBindAim() {
             MR::sendSimpleMsgToActor(ACTMES_NPC_EVENT_TALK_DISABLE, mRider);
         }
 
-        MR::startSound(this, "SE_OJ_SPACE_COCOON_DRAG_ST", -1, -1);
+        MR::startSound(this, "SE_OJ_SPACE_COCOON_DRAG_ST");
 
         if (mPadChannel == WPAD_CHAN1) {
-            MR::startCSSound2P("CS_DPD_HIT", 0);
+            MR::startCSSound2P("CS_DPD_HIT", nullptr);
         }
     }
 
     f32 dist = PSVECDistance(&mPosition, &mNeutralPos);
     if (dist >= 100.0f) {
-        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG", ((dist - 100.0f) / 400.0f) * 100.0f, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG", ((dist - 100.0f) / 400.0f) * 100.0f);
     }
 
     if (!tryRelease()) {
@@ -279,14 +279,14 @@ void SpaceCocoon::exeBindAttack() {
     if (MR::isFirstStep(this)) {
         if (!isKinopioAttached()) {
             MR::startBckPlayer("CocoonFly", static_cast< const char* >(0));
-            MR::startSound(mRider, "SE_PV_JUMP_JOY", -1, -1);
+            MR::startSound(mRider, "SE_PV_JUMP_JOY");
         } else {
             MR::startBck(mRider, "CocoonFly", static_cast< const char* >(0));
             MR::invalidateClipping(this);
             MR::invalidateClipping(mRider);
-            MR::startSound(mRider, "SE_SV_KINOPIO_TALK_GLAD_FLY", -1, -1);
+            MR::startSound(mRider, "SE_SV_KINOPIO_TALK_GLAD_FLY");
         }
-        MR::startSound(this, "SE_OJ_SPACE_COCOON_LAUNCH", -1, -1);
+        MR::startSound(this, "SE_OJ_SPACE_COCOON_LAUNCH");
         MR::onBind(this);
     }
 
@@ -491,9 +491,9 @@ void SpaceCocoon::updateHang() {
     }
 
     if (dist >= 500.0f) {
-        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG3", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG3");
     } else if (dist >= 100.0f) {
-        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG2", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG2");
     }
 
     if (MR::isStarPointerInScreen(mPadChannel)) {
@@ -604,7 +604,7 @@ namespace {
         }
         return false;
     }
-}  // namespace
+};  // namespace
 
 bool SpaceCocoon::tryTouch() {
     if (mTouchTime > 0) {
@@ -625,7 +625,7 @@ bool SpaceCocoon::tryTouch() {
         pointerVel.scale(5.0f);
         mSpringVel.add(pointerVel);
 
-        MR::startSound(this, "SE_OJ_SPACE_COCOON_BOUND", -1, -1);
+        MR::startSound(this, "SE_OJ_SPACE_COCOON_BOUND");
 
         if (isNerve(&NrvSpaceCocoon::SpaceCocoonNrvStop::sInstance)) {
             setNerve(&NrvSpaceCocoon::SpaceCocoonNrvFree::sInstance);
@@ -807,7 +807,7 @@ namespace {
         GXColor1u32(color2);
         GXTexCoord2f32(texX2, texY);
     }
-}  // namespace
+};  // namespace
 
 void SpaceCocoon::drawPlane(f32 x1, f32 y1, f32 x2, f32 y2, Color8 color1, Color8 color2, f32 texX1, f32 texX2) const {
     s32 numPoints = mNumPoints + 2;

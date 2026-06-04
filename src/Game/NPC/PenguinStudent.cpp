@@ -130,7 +130,7 @@ void PenguinStudent::exeLead() {
         _120 = "SwimTurtle";
         _10C = 7.0f;
     }
-    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SWIM_JET", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SWIM_JET");
     MR::tryStartMoveTalkAction(this);
     if (MR::getRailCoordSpeed(this) <= 7.0f) {
         MR::tryTalkNearPlayer(mMsgCtrl);

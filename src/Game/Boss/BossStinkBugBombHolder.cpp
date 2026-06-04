@@ -2,11 +2,19 @@
 #include "Game/Boss/BossStinkBugBomb.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-BossStinkBugBombHolder::BossStinkBugBombHolder(LiveActor* pActor) : DeriveActorGroup< BossStinkBugBomb >("ボスカメムシ爆弾管理", 16) {
-    for (int i = 0; i < 16; i++) {
-        BossStinkBugBomb* newBomb = new BossStinkBugBomb("ボスカメムシ爆弾");
-        newBomb->initWithoutIter();
-        MR::setBinderExceptActor(newBomb, pActor);
-        registerActor(newBomb);
+namespace {
+    static const s32 sMaxBossStinkBugBomb = 16;
+};  // namespace
+
+BossStinkBugBombHolder::BossStinkBugBombHolder(LiveActor* pHost)
+    : DeriveActorGroup< BossStinkBugBomb >("ボスカメムシ爆弾管理", ::sMaxBossStinkBugBomb) {
+    BossStinkBugBomb* pBomb;
+
+    for (s32 i = 0; i < ::sMaxBossStinkBugBomb; i++) {
+        pBomb = new BossStinkBugBomb("ボスカメムシ爆弾");
+        pBomb->initWithoutIter();
+
+        MR::setBinderExceptActor(pBomb, pHost);
+        registerActor(pBomb);
     }
 }

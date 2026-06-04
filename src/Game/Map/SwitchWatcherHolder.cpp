@@ -53,9 +53,14 @@ void SwitchWatcherHolder::addSwitchWatcher(SwitchWatcher* pWatcher) {
 }
 
 namespace MR {
-    SwitchWatcherHolder* getSwitchWatcherHolder() { return MR::getSceneObj< SwitchWatcherHolder >(SceneObj_SwitchWatcherHolder); }
+    SwitchWatcherHolder* getSwitchWatcherHolder() {
+        return MR::getSceneObj< SwitchWatcherHolder >(SceneObj_SwitchWatcherHolder);
+    }
 
-    void requestMovementOnSwitchWatcher() { MR::requestMovementOn(getSwitchWatcherHolder()); }
+    void requestMovementOnSwitchWatcher() {
+        MR::requestMovementOn(getSwitchWatcherHolder());
+    }
 };  // namespace MR
 
-SwitchWatcherHolder::~SwitchWatcherHolder() {}
+SwitchWatcherHolder::~SwitchWatcherHolder() {
+}

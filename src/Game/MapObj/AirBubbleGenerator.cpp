@@ -6,7 +6,8 @@ namespace NrvAirBubbleGenerator {
     NEW_NERVE(AirBubbleGeneratorNrvGenerate, AirBubbleGenerator, Generate);
 };  // namespace NrvAirBubbleGenerator
 
-AirBubbleGenerator::~AirBubbleGenerator() {}
+AirBubbleGenerator::~AirBubbleGenerator() {
+}
 
 AirBubbleGenerator::AirBubbleGenerator(const char* pName) : LiveActor(pName) {
     _8C = 0;
@@ -36,7 +37,8 @@ void AirBubbleGenerator::init(const JMapInfoIter& rIter) {
     }
 }
 
-void AirBubbleGenerator::control() {}
+void AirBubbleGenerator::control() {
+}
 
 void AirBubbleGenerator::exeWait() {
     s32 spawnDelay = mSpawnDelay;
@@ -51,7 +53,7 @@ void AirBubbleGenerator::exeGenerate() {
     TVec3f axisY;
 
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_AIR_BUBBLE_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_AIR_BUBBLE_APPEAR");
         MR::startBck(this, "Generate", nullptr);
     }
 

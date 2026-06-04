@@ -18,8 +18,8 @@ namespace {
     // we will define the creation funcs later
     static const ExterminationEntry sCreateTable[] = {{"ChildKuribo", nullptr}, {"ChildSkeletalFishBaby", nullptr}, {"ChildMeramera", nullptr}};
 
-    inline CreationFunc findEntry(const char* pName) {
-        for (s32 j = 0; j < sizeof(sCreateTable) / sizeof(*sCreateTable); j++) {
+    CreationFunc findEntry(const char* pName) {
+        for (s32 j = 0; j < ARRAY_SIZE(sCreateTable); j++) {
             if (sCreateTable[j].mChildName && MR::isEqualStringCase(sCreateTable[j].mChildName, pName)) {
                 return sCreateTable[j].mCreationFunc;
             }
@@ -74,7 +74,8 @@ void ExterminationChecker::init(const JMapInfoIter& rIter) {
     }
 }
 
-void ExterminationChecker::control() {}
+void ExterminationChecker::control() {
+}
 
 void ExterminationChecker::exeWatching() {
     for (s32 i = 0; i < mGroup->mObjectCount; i++) {
@@ -108,7 +109,7 @@ void ExterminationChecker::exeTryStartDemoAppear() {
 
 void ExterminationChecker::exeAppearStar() {
     if (MR::isStep(this, 0)) {
-        MR::startSystemSE("SE_SY_TOTAL_COMPLETE", -1, -1);
+        MR::startSystemSE("SE_SY_TOTAL_COMPLETE");
     }
 
     if (MR::isStep(this, 120)) {
@@ -142,4 +143,5 @@ namespace MR {
     }
 };  // namespace MR
 
-ExterminationChecker::~ExterminationChecker() {}
+ExterminationChecker::~ExterminationChecker() {
+}

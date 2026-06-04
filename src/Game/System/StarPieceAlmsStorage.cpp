@@ -5,7 +5,7 @@
 
 namespace {
     const static u32 sMaxValueArray[] = {32767, 32767, 32767, 32767, 32767, 32767, 32767, 32767, 400, 400, 600, 1200, 1600, 1000, 800, 32767};
-}
+};  // namespace
 
 StarPieceAlmsStorage::StarPieceAlmsStorage() : mRequirements() {
     mRequirements = new u16[16];

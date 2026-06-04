@@ -59,4 +59,5 @@ void SwitchWatcher::addSwitchListener(SwitchEventListener* pListener, u32 type) 
     }
 }
 
-SwitchWatcher::~SwitchWatcher() {}
+SwitchWatcher::~SwitchWatcher() {
+}

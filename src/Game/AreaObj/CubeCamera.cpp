@@ -6,7 +6,8 @@
 
 #include <cstring>
 
-CubeCameraArea::CubeCameraArea(int type, const char* pName) : AreaObj(type, pName), _3C(0), mZoneID(0) {}
+CubeCameraArea::CubeCameraArea(int formType, const char* pName) : AreaObj(formType, pName), _3C(0), mZoneID(0) {
+}
 
 // needed to get sCubeCategory emitted in sbss;
 s32 CubeCameraArea::sCubeCategory = 0;
@@ -83,7 +84,7 @@ s32 CubeCameraArea::getCategoryArg() const {
     return mObjArg3;
 }
 
-CubeCameraMgr::CubeCameraMgr(s32 type, const char* pName) : AreaObjMgr(type, pName) {
+CubeCameraMgr::CubeCameraMgr(s32 maxNum, const char* pName) : AreaObjMgr(maxNum, pName) {
     CubeCameraArea::sCubeCategory = 1;
 }
 
@@ -95,16 +96,16 @@ void CubeCameraMgr::sort() {
     if (mArray.size() != 0) {
         for (u32 i = 0; i < mArray.size() - 1; i++) {
             int swapIndex = i;
-            AreaObj* swapObj = getArray(i);
+            AreaObj* swapObj = getAreaObj(i);
             AreaObj* curObj = swapObj;
             for (u32 j = i + 1; j < mArray.size(); j++) {
-                AreaObj* nextObj = getArray(j);
+                AreaObj* nextObj = getAreaObj(j);
                 if (swapObj->mObjArg2 > nextObj->mObjArg2) {
                     swapIndex = j;
                     swapObj = nextObj;
                 }
             }
-            
+
             if (swapIndex != i) {
                 mArray[i] = swapObj;
                 mArray[swapIndex] = curObj;
@@ -113,4 +114,5 @@ void CubeCameraMgr::sort() {
     }
 }
 
-CubeCameraMgr::~CubeCameraMgr() {}
+CubeCameraMgr::~CubeCameraMgr() {
+}

@@ -1,7 +1,8 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 
-WireGravity::WireGravity() {}
+WireGravity::WireGravity() {
+}
 
 void WireGravity::setPointListSize(u32 numPoints) {
     mPoints.init(numPoints);

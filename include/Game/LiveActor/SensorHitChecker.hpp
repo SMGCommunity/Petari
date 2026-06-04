@@ -45,4 +45,4 @@ public:
 
 namespace MR {
     void initHitSensorGroup(HitSensor*);
-};
+};  // namespace MR

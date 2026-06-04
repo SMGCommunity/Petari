@@ -6,7 +6,7 @@ namespace NrvBegomanSpringHead {
     NEW_NERVE(HostTypeNrvHopWait, BegomanSpringHead, HopWait);
     NEW_NERVE(HostTypeNrvHopEnd, BegomanSpringHead, HopEnd);
     NEW_NERVE(HostTypeNrvHopJump, BegomanSpringHead, HopJump);
-}  // namespace NrvBegomanSpringHead
+};  // namespace NrvBegomanSpringHead
 
 void BegomanHead::calcAndSetBaseMtx() {
     PartsModel::calcAndSetBaseMtx();
@@ -87,7 +87,7 @@ void BegomanSpringHead::exeHopWait() {
 
 void BegomanSpringHead::exeHopEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_EM_BEGOMAN_CLOSE_SPRING", -1, -1);
+        MR::startSound(this, "SE_EM_BEGOMAN_CLOSE_SPRING");
     }
     MR::startBckAtFirstStep(this, "HopEnd");
     MR::setNerveAtBckStopped(this, &NrvBegomanSpringHead::HostTypeNrvWait::sInstance);

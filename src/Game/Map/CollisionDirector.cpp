@@ -21,11 +21,14 @@ CollisionDirector::CollisionDirector() : NameObj("地形コリジョン") {
     MR::connectToScene(this, MR::MovementType_CollisionDirector, -1, -1, -1);
 }
 
-CollisionDirector::~CollisionDirector() {}
+CollisionDirector::~CollisionDirector() {
+}
 
-void CollisionDirector::init(const JMapInfoIter& rIter) {}
+void CollisionDirector::init(const JMapInfoIter& rIter) {
+}
 
-void CollisionDirector::initAfterPlacement() {}
+void CollisionDirector::initAfterPlacement() {
+}
 
 void CollisionDirector::movement() {
     for (s32 i = 0; i < NR_CATEGORIZED_KEEPERS; i++) {

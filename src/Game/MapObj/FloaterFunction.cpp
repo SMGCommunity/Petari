@@ -30,9 +30,7 @@ namespace {
 
 namespace {
     const SeName* getSeNameTable(const char* pObjName) {
-        u32 size = sizeof(sSeNameTable) / sizeof(*sSeNameTable);
-
-        for (u32 i = 0; i < size; i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(sSeNameTable); i++) {
             if (MR::isEqualString(pObjName, sSeNameTable[i].mObjName)) {
                 return &sSeNameTable[i];
             }

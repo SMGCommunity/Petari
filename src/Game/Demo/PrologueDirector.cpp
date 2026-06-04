@@ -7,7 +7,6 @@
 #include "Game/Screen/PrologueLetter.hpp"
 #include "Game/Screen/ProloguePictureBook.hpp"
 
-
 namespace {
     static const char* sPictureBookDemoName = "プロローグデモ";
     static const char* sArriveDemoName = "主人公ピーチ城に到着";
@@ -126,13 +125,13 @@ void PrologueDirector::exePeachLetterStart() {
 void PrologueDirector::exePeachLetter() {
     if (MR::isFirstStep(this)) {
         MR::startStageBGM("STM_PROLOGUE_02", false);
-        MR::startSystemSE("SE_SY_LETTER_APPEAR", -1, -1);
-        MR::startSystemSE("SE_SV_PEACH_OPENING_LETTER", -1, -1);
+        MR::startSystemSE("SE_SY_LETTER_APPEAR");
+        MR::startSystemSE("SE_SV_PEACH_OPENING_LETTER");
         mLetter->appear();
     }
 
     if (MR::isDead(mLetter)) {
-        MR::stopSystemSE("SE_SV_PEACH_OPENING_LETTER", 0);
+        MR::stopSystemSE("SE_SV_PEACH_OPENING_LETTER");
         setNerve(&PrologueDirectorNrvPeachLetterWait::sInstance);
     }
 }
@@ -201,7 +200,7 @@ void PrologueDirector::exeArrive() {
     MR::setPlayerBaseMtx(baseMtx);
 
     if (MR::isStep(this, sFallingStarStep)) {
-        MR::startAtmosphereSE("SE_DM_ARRIVE_CASTLE_STAR", -1, -1);
+        MR::startAtmosphereSE("SE_DM_ARRIVE_CASTLE_STAR");
     }
 
     if (MR::isStep(this, MR::getBckFrameMaxPlayer("DemoPeachCastleGate") - sArriveEndWipeFrame)) {
@@ -273,7 +272,8 @@ void PrologueDirector::createCameraTarget() {
     mCameraTarget->mMatrix.identity();
 }
 
-void PrologueDirector::control() {}
+void PrologueDirector::control() {
+}
 
 void PrologueDirector::pauseOff() {
     MR::requestMovementOn(mPictureBook);
@@ -282,7 +282,8 @@ void PrologueDirector::pauseOff() {
     MR::requestMovementOn(mMarioPosDummyModel);
 }
 
-PrologueHolder::PrologueHolder(const char* pName) : NameObj(pName), mDirector(nullptr) {}
+PrologueHolder::PrologueHolder(const char* pName) : NameObj(pName), mDirector(nullptr) {
+}
 
 void PrologueHolder::registerPrologueObj(PrologueDirector* pDirector) {
     mDirector = pDirector;
@@ -293,7 +294,11 @@ void PrologueHolder::start() {
 }
 
 namespace MR {
-    PrologueHolder* getPrologueHolder() { return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder); }
+    PrologueHolder* getPrologueHolder() {
+        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
+    }
 
-    void startPrologue() { getPrologueHolder()->start(); }
+    void startPrologue() {
+        getPrologueHolder()->start();
+    }
 };  // namespace MR

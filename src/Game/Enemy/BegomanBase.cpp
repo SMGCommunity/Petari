@@ -11,7 +11,7 @@ namespace NrvBegomanAttackPermitter {
     NEW_NERVE(HostTypeNrvReceive, BegomanAttackPermitter, Receive);
     NEW_NERVE(HostTypeNrvPermit, BegomanAttackPermitter, Permit);
 
-}  // namespace NrvBegomanAttackPermitter
+};  // namespace NrvBegomanAttackPermitter
 
 namespace {
     // unused
@@ -31,12 +31,13 @@ namespace {
     const f32 hTurnStartDegree = 3.0f;
     const f32 hTurnEndDegree = 10.0f;
     const f32 hIsFaceToPlayerDegree = 30.0f;
-}  // namespace
+};  // namespace
 
 BegomanBase::BegomanBase(const char* pName)
     : LiveActor(pName), mBaseDelegator(nullptr), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f),
       _B4(1.0f, 1.0f, 1.0f), _C0(0, 0, 0, 1), _D0(0, 0, 0, 1), mTiredCounter(0), mElectricCounter(0), mInitPos(0.0f, 0.0f, 0.0f),
-      mScaleControler(nullptr), mStarPointBind(nullptr), mCanTrySetReturn(false) {}
+      mScaleControler(nullptr), mStarPointBind(nullptr), mCanTrySetReturn(false) {
+}
 
 // needed to get a string to show up in .data, should be deadstripped.
 const BegomanSound* BegomanBase::getSoundBaby() {
@@ -52,7 +53,7 @@ const BegomanSound* BegomanBase::getSoundBoss() {
 }
 
 void BegomanBase::initCore(const JMapInfoIter& rIter, const char* pModelArcName, bool a1) {
-    MR::createSceneObj(0x3D);
+    MR::createSceneObj(SceneObj_BegomanAttackPermitter);
     MR::useStageSwitchWriteDead(this, rIter);
     MR::useStageSwitchReadA(this, rIter);
     initModelManagerWithAnm(pModelArcName, nullptr, false);
@@ -298,7 +299,7 @@ void BegomanBase::exePursueCore(const MR::ActorMoveParam& rMoveParam, const Nerv
     }
 
     if (MR::isGreaterEqualStep(this, 10)) {
-        MR::startLevelSound(this, rSound.mSound, -1, -1, -1);
+        MR::startLevelSound(this, rSound.mSound);
     }
 
     if (MR::isStep(this, 18)) {
@@ -608,9 +609,9 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
             continue;
         }
         TVec3f directionFromLauncher(vec2);
-        directionFromLauncher.scale(JMath::sSinCosTable.cosLapRad(angle));
+        directionFromLauncher.scale(MR::cos(angle));
 
-        directionFromLauncher.add(vec1.scaleInline(JMath::sSinCosTable.sinLapRad(angle)));
+        directionFromLauncher.add(vec1.scaleInline(MR::sin(angle)));
 
         begomanArray[i]->mPosition.set(pActor->mPosition.addOperatorInLine(directionFromLauncher.scaleInline(distFromLauncher)));
         begomanArray[i]->mVelocity.set(directionFromLauncher.scaleInline(f2).subOperatorInLine(pActor->mGravity.scaleInline(f3)));
@@ -633,7 +634,7 @@ void BegomanBase::launchBegoman(LiveActor* pActor, BegomanBase** begomanArray, s
 void BegomanBase::launchBegomanBabyFromGuarder(LiveActor* pActor, BegomanBaby** babyArray, s32 numBegoman, f32 distFromLauncher, f32 f2, f32 f3,
                                                const TVec3f* pVec) {
     launchBegomanCore(pActor, (BegomanBase**)babyArray, numBegoman, distFromLauncher, f2, f3, pVec);
-    
+
     for (int i = 0; i < numBegoman; i++) {
         babyArray[i]->appearFromGuarder();
     }
@@ -642,13 +643,14 @@ void BegomanBase::launchBegomanBabyFromGuarder(LiveActor* pActor, BegomanBaby** 
 void BegomanBase::launchBegomanBabyLauncher(LiveActor* pActor, BegomanBaby** babyArray, s32 numBegoman, f32 distFromLauncher, f32 f2, f32 f3,
                                             const TVec3f* pVec) {
     launchBegomanCore(pActor, (BegomanBase**)babyArray, numBegoman, distFromLauncher, f2, f3, pVec);
-    
+
     for (int i = 0; i < numBegoman; i++) {
         babyArray[i]->appearFromLaunch(pActor->mPosition, -pActor->mGravity);
     }
 }
 
-const Nerve* BegomanBase::setNerveLaunch() {}
+void BegomanBase::setNerveLaunch() {
+}
 
 void BegomanBase::updateRotateY(f32 newRotationTarget, f32 rotationLimit) {
     f32 newYRotation = 0.0f;
@@ -711,7 +713,7 @@ void BegomanBase::reboundWallAndGround(TVec3f* pOut, bool emitEffect) {
         mVelocity.add(wallNormal.scaleInline(5.0f));
 
         if (reboundWall) {
-            MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_COLLI_WALL", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_COLLI_WALL");
         }
 
         if (pOut != nullptr) {
@@ -909,7 +911,7 @@ void BegomanBase::calcBlowReaction(const TVec3f& rVec1, const TVec3f& rVec2, f32
     effectVec.add(getSensor("body")->mPosition);
 
     MR::emitEffectHit(this, effectVec, "Hit");
-    MR::startSound(this, "SE_EM_BEGOMAN_KNOCK_SUCCESS", -1, -1);
+    MR::startSound(this, "SE_EM_BEGOMAN_KNOCK_SUCCESS");
     MR::vecKillElement(blowDirection, mGravity, &blowDirection);
     MR::normalizeOrZero(&blowDirection);
 
@@ -964,7 +966,8 @@ bool BegomanBase::requestAttack() {
 }
 
 BegomanAttackPermitter::BegomanAttackPermitter(const char* pName)
-    : LiveActor(pName), _8C(nullptr), mBegoman(nullptr), mDistToPlayer(99999.0f), _98(false) {}
+    : LiveActor(pName), _8C(nullptr), mBegoman(nullptr), mDistToPlayer(99999.0f), _98(false) {
+}
 
 void BegomanAttackPermitter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemyDecorationMovement(this);

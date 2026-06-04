@@ -52,7 +52,7 @@ WPadRumble::WPadRumble(WPad* pPad) : mPad(pPad), _8(false), _C(1), _B0(0), _B4(0
         RumbleData::checkHashCollision();
     }
 
-    for (u8 i = 0; i < sizeof(mChannel) / sizeof(*mChannel); i++) {
+    for (u8 i = 0; i < ARRAY_SIZE(mChannel); i++) {
         mChannel[i].clear();
     }
 }
@@ -88,7 +88,7 @@ void WPadRumble::stop() {
 
     pause();
 
-    for (u8 i = 0; i < sizeof(mChannel) / sizeof(*mChannel); i++) {
+    for (u8 i = 0; i < ARRAY_SIZE(mChannel); i++) {
         mChannel[i].clear();
     }
 }
@@ -110,7 +110,7 @@ void WPadRumble::update() {
 void WPadRumble::updateRumble() {
     bool b = false;
 
-    for (u8 i = 0; i < sizeof(mChannel) / sizeof(*mChannel); i++) {
+    for (u8 i = 0; i < ARRAY_SIZE(mChannel); i++) {
         mChannel[i].update();
 
         b |= mChannel[i]._E;

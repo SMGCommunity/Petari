@@ -20,10 +20,11 @@
 namespace NrvStarPieceFollowGroup {
     NEW_NERVE(HostTypeNrvFollowToPlayer, StarPieceFollowGroup, FollowToPlayer);
     NEW_NERVE(HostTypeNrvFollowEnd, StarPieceFollowGroup, FollowEnd);
-}  // namespace NrvStarPieceFollowGroup
+};  // namespace NrvStarPieceFollowGroup
 
 StarPieceFollowGroup::StarPieceFollowGroup(const char* pName)
-    : LiveActor(pName), mPieces(nullptr), _90(nullptr), mNumPiecesTotal(6), mNumPiecesUse(0), mRadius(350.0f), mAngle(0.0f), mTimeLimit(1200) {}
+    : LiveActor(pName), mPieces(nullptr), _90(nullptr), mNumPiecesTotal(6), mNumPiecesUse(0), mRadius(350.0f), mAngle(0.0f), mTimeLimit(1200) {
+}
 
 void StarPieceFollowGroup::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -47,7 +48,7 @@ void StarPieceFollowGroup::init(const JMapInfoIter& rIter) {
     }
 
     MR::needStageSwitchWriteA(this, rIter);
-    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &onSwitchA));
+    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &StarPieceFollowGroup::onSwitchA));
     MR::useStageSwitchReadB(this, rIter);
 
     MR::connectToSceneMapObjMovement(this);
@@ -230,7 +231,7 @@ void StarPieceFollowGroup::exeFollowEnd() {
         MR::normalizeOrZero(&vec2);
         currentPiece->mVelocity.add(vec2.multiplyOperatorInline(10.0f));
     }
-    
+
     if (MR::isGreaterStep(this, 120)) {
         kill();
         MR::offSwitchA(this);

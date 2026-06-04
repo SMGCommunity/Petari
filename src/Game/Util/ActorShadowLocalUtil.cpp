@@ -54,33 +54,31 @@ namespace ActorShadow {
         return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
-     void setUpShadowControlIsFollowScaleFromCSV(ShadowController *pController, const JMapInfoIter &rIter) {
+    void setUpShadowControlIsFollowScaleFromCSV(ShadowController* pController, const JMapInfoIter& rIter) {
         bool stack_8(true);
         rIter.getValue("FollowScale", &stack_8);
         if (stack_8) {
             pController->onFollowHostScale();
-        }
-        else {
+        } else {
             pController->offFollowHostScale();
         }
     }
 
-    void setUpShadowControlIsSyncShowFromCSV(ShadowController *pController, const JMapInfoIter &rIter) {
+    void setUpShadowControlIsSyncShowFromCSV(ShadowController* pController, const JMapInfoIter& rIter) {
         bool stack_8(true);
         rIter.getValue("SyncShow", &stack_8);
         if (stack_8) {
             pController->onVisibleSyncHost();
-        }
-        else {
+        } else {
             pController->offVisibleSyncHost();
         }
-    } 
+    }
 
     void setUpShadowControlFromCSV(ShadowController* pController, LiveActor* pActor, const JMapInfoIter& rIter) {
-        float dropLength(1000.0f);
+        f32 dropLength(1000.0f);
         rIter.getValue("DropLength", &dropLength);
         pController->setDropLength(dropLength);
-        float dropOffset(0.0f);
+        f32 dropOffset(0.0f);
         rIter.getValue("DropStart", &dropOffset);
         pController->setDropStartOffset(dropOffset);
         setUpShadowControlBaseMtxFromCSV(pController, pActor, rIter);
@@ -109,7 +107,7 @@ namespace ActorShadow {
         pController->setDropTypeSurface();
         ShadowSurfaceCircle* pSurfaceCircle = new ShadowSurfaceCircle();
         pController->setShadowDrawer(pSurfaceCircle);
-        float radius(100.0f);
+        f32 radius(100.0f);
         rIter.getValue("Radius", &radius);
         pSurfaceCircle->setRadius(radius);
         return pSurfaceCircle;

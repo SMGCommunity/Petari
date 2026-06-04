@@ -1,9 +1,13 @@
 #include "Game/Boss/DinoPackunDemoPosition.hpp"
-#include "Game/Boss/DinoPackun.hpp"
+
+namespace {
+    static const s32 sLandMotionStartTime = 28;
+    static const s32 sJumpBackTime = 56;
+};  // namespace
 
 namespace NrvDinoPackunDemo {
     NEW_NERVE(DinoPackunDemoPositionNrvOpeningDemo, DinoPackunDemoPosition, OpeningDemo);
-};
+};  // namespace NrvDinoPackunDemo
 
 DinoPackunDemoPosition::DinoPackunDemoPosition(const char* pName) : LiveActor(pName) {
 }
@@ -35,15 +39,15 @@ void DinoPackunDemoPosition::exeOpeningDemo() {
     }
 
     if (MR::isStep(this, 0)) {
-        MR::startBckPlayer("CocoonFly", static_cast< const char* >(0));
+        MR::startBckPlayer("CocoonFly", static_cast< const char* >(nullptr));
     }
 
-    if (MR::isStep(this, 28)) {
-        MR::startBckPlayer("LandStiffen", static_cast< const char* >(0));
+    if (MR::isStep(this, ::sLandMotionStartTime)) {
+        MR::startBckPlayer("LandStiffen", static_cast< const char* >(nullptr));
     }
 
-    if (MR::isStep(this, 56)) {
-        MR::startBckPlayer("JumpBack", static_cast< const char* >(0));
+    if (MR::isStep(this, ::sJumpBackTime)) {
+        MR::startBckPlayer("JumpBack", static_cast< const char* >(nullptr));
     }
 
     calcAnim();
@@ -51,5 +55,4 @@ void DinoPackunDemoPosition::exeOpeningDemo() {
 }
 
 DinoPackunDemoPosition::~DinoPackunDemoPosition() {
-    return;
 }

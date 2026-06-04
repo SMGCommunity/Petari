@@ -46,7 +46,8 @@ void ClipAreaDropLaser::init(const JMapInfoIter& rIter) {
     }
     makeActorAppeared();
 }
-void ClipAreaDropLaser::control() {}
+void ClipAreaDropLaser::control() {
+}
 
 void ClipAreaDropLaser::draw() const {
     TDDraw::cameraInit3D();
@@ -100,7 +101,7 @@ void ClipAreaDropLaser::exeMove() {
         MR::getRailPointArg0NoInit(this, railPoint, &arg);
         if (arg > 0.0f) {
             MR::emitEffectHit(this, pos, "Splash");
-            MR::startSound(this, "SE_OJ_DROP_LASER_SPLASH", -1, -1);
+            MR::startSound(this, "SE_OJ_DROP_LASER_SPLASH");
             MR::appearClipAreaDrop(pos, arg);
         }
     }
@@ -119,4 +120,5 @@ void ClipAreaDropLaser::incrementDrawCount() {
     }
 }
 
-ClipAreaDropLaser::~ClipAreaDropLaser() {}
+ClipAreaDropLaser::~ClipAreaDropLaser() {
+}

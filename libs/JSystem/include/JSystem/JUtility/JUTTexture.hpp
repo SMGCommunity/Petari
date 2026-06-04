@@ -66,16 +66,36 @@ public:
     void load(_GXTexMapID);
     void capture(int, int, GXTexFmt, bool, u8);
 
-    const ResTIMG* getTexInfo() const { return mTIMG; }
-    s32 getFormat() const { return mTIMG->mFormat; }
-    s32 getTransparency() const { return mTIMG->mTransparency; }
-    s32 getWidth() const { return mTIMG->mWidth; }
-    s32 getHeight() const { return mTIMG->mHeight; }
-    void setCaptureFlag(bool flag) { mFlag &= 2 | flag; }
-    bool getCaptureFlag() const { return mFlag & 1; }
-    bool getEmbPaletteDelFlag() const { return mFlag & 2; }
-    void setEmbPaletteDelFlag(bool flag) { mFlag = (mFlag & 1) | (flag << 1); }
-    int getTlutName() const { return mTlutName; }
+    const ResTIMG* getTexInfo() const {
+        return mTIMG;
+    }
+    s32 getFormat() const {
+        return mTIMG->mFormat;
+    }
+    s32 getTransparency() const {
+        return mTIMG->mTransparency;
+    }
+    s32 getWidth() const {
+        return mTIMG->mWidth;
+    }
+    s32 getHeight() const {
+        return mTIMG->mHeight;
+    }
+    void setCaptureFlag(bool flag) {
+        mFlag &= 2 | flag;
+    }
+    bool getCaptureFlag() const {
+        return mFlag & 1;
+    }
+    bool getEmbPaletteDelFlag() const {
+        return mFlag & 2;
+    }
+    void setEmbPaletteDelFlag(bool flag) {
+        mFlag = (mFlag & 1) | (flag << 1);
+    }
+    int getTlutName() const {
+        return mTlutName;
+    }
 
     /* 0x00 */ GXTexObj mObj;
     /* 0x20 */ const ResTIMG* mTIMG;

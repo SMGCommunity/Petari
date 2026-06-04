@@ -3,7 +3,7 @@
 
 namespace {
     static const char* sDefaultPlayDataName = "_default";
-};
+};  // namespace
 
 void BckCtrl::overWrite(const BckCtrlData& rNew) {
     if (MR::isEqualStringCase(rNew._0, sDefaultPlayDataName)) {

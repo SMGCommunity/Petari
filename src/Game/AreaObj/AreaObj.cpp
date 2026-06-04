@@ -4,28 +4,27 @@
 #include "Game/Map/SleepControllerHolder.hpp"
 
 AreaObj::AreaObj(int type, const char* pName)
-    : NameObj(pName), mType(type), mIsValid(true), _15(true), mIsAwake(true), mObjArg0(-1), mObjArg1(-1), mObjArg2(-1), mObjArg3(-1), mObjArg4(-1),
-      mObjArg5(-1), mObjArg6(-1), mObjArg7(-1), mSwitchCtrl(nullptr) {
+    : NameObj(pName), mFormType(type), mIsValid(true), _15(true), mIsAwake(true), mObjArg0(-1), mObjArg1(-1), mObjArg2(-1), mObjArg3(-1),
+      mObjArg4(-1), mObjArg5(-1), mObjArg6(-1), mObjArg7(-1), mSwitchCtrl(nullptr) {
     switch (type) {
-    case 0:
+    case AreaForm::Type_Cube1:
         mForm = new AreaFormCube(0);
         break;
-    case 1:
+    case AreaForm::Type_Cube2:
         mForm = new AreaFormCube(1);
         break;
-    case 2:
+    case AreaForm::Type_Sphere:
         mForm = new AreaFormSphere();
         break;
-    case 4:
+    case AreaForm::Type_Bowl:
         mForm = new AreaFormBowl();
         break;
-    case 3:
+    case AreaForm::Type_Cylinder:
         mForm = new AreaFormCylinder();
         break;
     }
 }
 
-// Issues with functors
 void AreaObj::init(const JMapInfoIter& rIter) {
     mForm->init(rIter);
     MR::addBaseMatrixFollowerAreaObj(this, rIter);
@@ -41,9 +40,8 @@ void AreaObj::init(const JMapInfoIter& rIter) {
     mSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);
 
     if (mSwitchCtrl->isValidSwitchAppear()) {
-        MR::FunctorV0M< AreaObj*, void (AreaObj::*)() > validateFunc = MR::Functor< AreaObj >(this, &AreaObj::validate);
-        MR::FunctorV0M< AreaObj*, void (AreaObj::*)() > invalidateFunc = MR::Functor< AreaObj >(this, &AreaObj::invalidate);
-        MR::listenNameObjStageSwitchOnOffAppear(this, mSwitchCtrl, validateFunc, invalidateFunc);
+        MR::listenNameObjStageSwitchOnOffAppear(this, mSwitchCtrl, MR::Functor_Inline(this, &AreaObj::validate),
+                                                MR::Functor_Inline(this, &AreaObj::invalidate));
         mIsValid = false;
     }
 
@@ -94,7 +92,8 @@ TPos3f* AreaObj::getFollowMtx() const {
     return mForm->_4;
 }
 
-AreaObjMgr::AreaObjMgr(s32 count, const char* pName) : NameObj(pName), mArray(), _18(count) {}
+AreaObjMgr::AreaObjMgr(s32 count, const char* pName) : NameObj(pName), mArray(), _18(count) {
+}
 
 void AreaObjMgr::entry(AreaObj* pAreaObj) {
     if (mArray.capacity() == 0) {

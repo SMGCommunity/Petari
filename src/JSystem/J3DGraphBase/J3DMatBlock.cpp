@@ -772,7 +772,8 @@ void J3DTevBlock1::patchTexNo() {
     DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
-void J3DTevBlock1::patchTevReg() {}
+void J3DTevBlock1::patchTevReg() {
+}
 
 void J3DTevBlock1::patchTexNoAndTexCoordScale() {
     GDSetCurrOffset(mTexNoOffset);
@@ -1044,7 +1045,8 @@ void J3DTevBlock1::diffTexNo() {
     }
 }
 
-void J3DTevBlock1::diffTevReg() {}
+void J3DTevBlock1::diffTevReg() {
+}
 
 void J3DTevBlock1::diffTevStage() {
     mTevStage[0].load(0);

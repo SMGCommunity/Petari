@@ -28,4 +28,5 @@ namespace MR {
     }
 };  // namespace MR
 
-SunshadeMapHolder::~SunshadeMapHolder() {}
+SunshadeMapHolder::~SunshadeMapHolder() {
+}

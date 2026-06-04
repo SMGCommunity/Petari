@@ -46,14 +46,14 @@ namespace {
 
     static f32 cSwimWeightTable[] = {0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f};
     static f32 cWeightTableSP[] = {0.0f, 0.0f, 0.75f, 0.25f};
-    static f32 cLimitAngleSink = JGeometry::TUtil< float >::PI() / 1.0001f;
-    static f32 cNeutralAngleWait = (JGeometry::TUtil< float >::PI() / 2.0f) - (JGeometry::TUtil< float >::PI() / 6.0f);
-    static f32 cLimitAngleWait = JGeometry::TUtil< float >::PI() / 1.5f;
-    static f32 cUpperAngleWait = JGeometry::TUtil< float >::PI() / 100.0f;
+    static f32 cLimitAngleSink = JGeometry::TUtil< f32 >::PI() / 1.0001f;
+    static f32 cNeutralAngleWait = (JGeometry::TUtil< f32 >::PI() / 2.0f) - (JGeometry::TUtil< f32 >::PI() / 6.0f);
+    static f32 cLimitAngleWait = JGeometry::TUtil< f32 >::PI() / 1.5f;
+    static f32 cUpperAngleWait = JGeometry::TUtil< f32 >::PI() / 100.0f;
     static f32 cWaterSurfaceRange = 160.0f;
     static f32 cTurnMotionSpeed = 5.0f;
 
-}  // namespace
+};  // namespace
 
 inline f32 get100Deg() {
     return DEG_TO_RAD(100);
@@ -1529,11 +1529,11 @@ void MarioSwim::decideEffect(bool isReset) {
     u8 oldState = mEffectState;
     if (mIsOnSurface) {
         if (isAnimationRun("水泳水面初期移動") || mForwardSpeed > 2.5f) {
-                mEffectState = 1;
-            } else {
-                mEffectState = 0;
-            }
-        
+            mEffectState = 1;
+        } else {
+            mEffectState = 0;
+        }
+
     } else {
         if (checkLvlZ() || checkLvlA() || mActionLockTimer != 0 || isAnimationRun(nullptr)) {
             mEffectState = 2;

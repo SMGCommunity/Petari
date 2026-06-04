@@ -26,16 +26,17 @@ namespace {
     static const f32 sShakePeriodStart = 17.0f;
     static const f32 sShakePeriodSlowPitch = 0.65f;
     static const f32 sSinkDepthMax = 25.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvLotusLeaf {
     NEW_NERVE(HostTypeWait, LotusLeaf, Wait);
     NEW_NERVE(HostTypeShakeOnPlayer, LotusLeaf, Shake);
     NEW_NERVE(HostTypeShake, LotusLeaf, Shake);
     NEW_NERVE(HostTypeWaitPlayerOn, LotusLeaf, WaitPlayerOn);
-}  // namespace NrvLotusLeaf
+};  // namespace NrvLotusLeaf
 
-LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(0.0f), mShakePeriod(0.0f) {}
+LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(0.0f), mShakePeriod(0.0f) {
+}
 
 void LotusLeaf::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -82,12 +83,12 @@ void LotusLeaf::exeShake() {
     if (MR::isFirstStep(this)) {
         mShakeSpeed = sShakeInitSpeed;
         mShakePeriod = sShakePeriodStart;
-        MR::startSound(this, "SE_OJ_LOTUS_LEAF_WAVE", -1, -1);
+        MR::startSound(this, "SE_OJ_LOTUS_LEAF_WAVE");
         MR::emitEffect(this, "LotusLeafRipple");
     }
 
     f32 f1 = TWO_PI / mShakePeriod;
-    f32 vel = -mShakeSpeed * JMath::sSinCosTable.cosLapRad(getNerveStep() * f1);
+    f32 vel = -mShakeSpeed * MR::cos(getNerveStep() * f1);
     mShakePeriod += sShakePeriodSlowPitch;
     mShakeSpeed *= sShakeSpeedAtten;
 

@@ -12,7 +12,7 @@ class TalkMessageCtrl;
 
 namespace MR {
     class FunctorBase;
-};
+};  // namespace MR
 
 namespace MR {
     bool tryRegisterDemoCast(LiveActor*, const JMapInfoIter&);

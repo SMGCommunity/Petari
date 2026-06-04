@@ -23,4 +23,4 @@ namespace MR {
     void calcWatchEdgeDirection(const RailGraphIter* pRailGraphIter, TVec3f* pVec);
 
     s32 getNearNodeIndex(const RailGraph*, const TVec3f&, f32, RailGraphNodeSelecter*);
-}  // namespace MR
+};  // namespace MR

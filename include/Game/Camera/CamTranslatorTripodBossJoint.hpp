@@ -4,7 +4,9 @@
 
 class CamTranslatorTripodBossJoint : public CamTranslatorBase {
 public:
-    inline CamTranslatorTripodBossJoint(CameraTripodBossJoint* pCamera) { mCamera = pCamera; }
+    inline CamTranslatorTripodBossJoint(CameraTripodBossJoint* pCamera) {
+        mCamera = pCamera;
+    }
 
     virtual void setParam(const CameraParamChunk*);
     virtual Camera* getCamera() const;

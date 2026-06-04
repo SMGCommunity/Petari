@@ -25,7 +25,7 @@ namespace NrvBossStinkBugActionFlyHigh {
     NEW_NERVE(BossStinkBugActionFlyHighNrvGroundRun, BossStinkBugActionFlyHigh, GroundRun);
     NEW_NERVE(BossStinkBugActionFlyHighNrvToFly, BossStinkBugActionFlyHigh, ToFly);
     NEW_NERVE(BossStinkBugActionFlyHighNrvDamage, BossStinkBugActionFlyHigh, Damage);
-}  // namespace NrvBossStinkBugActionFlyHigh
+};  // namespace NrvBossStinkBugActionFlyHigh
 
 BossStinkBugActionFlyHigh::BossStinkBugActionFlyHigh(BossStinkBug* pStinkBug)
     : BossStinkBugActionBase("ボスカメムシ高空戦", pStinkBug), _68(0), _6C(false), _70(0) {
@@ -74,7 +74,7 @@ bool BossStinkBugActionFlyHigh::receiveMsgPlayerAttack(u32 msg, HitSensor* pSend
                 setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvFall::sInstance);
             }
 
-            MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT", -1, -1);
+            MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
             return true;
         }
     }

@@ -4,7 +4,9 @@
 
 class DinoPackunDemoPosition : public LiveActor {
 public:
-    DinoPackunDemoPosition(const char*);
+    /// @brief Creates a new `DinoPackunDemoPosition`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    DinoPackunDemoPosition(const char* pName);
 
     virtual ~DinoPackunDemoPosition();
     virtual void init(const JMapInfoIter&);

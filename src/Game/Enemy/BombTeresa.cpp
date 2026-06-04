@@ -49,14 +49,16 @@ namespace NrvBombTeresa {
     NEW_NERVE(BombTeresaNrvDisperse, BombTeresa, Disperse);
     NEW_NERVE(BombTeresaNrvShock, BombTeresa, Shock);
     NEW_NERVE(BombTeresaNrvReadyRestart, BombTeresa, ReadyRestart);
-}  // namespace NrvBombTeresa
+};  // namespace NrvBombTeresa
 
 BombTeresa::BombTeresa(const char* pName)
     : LiveActor(pName), mJointDelegator(nullptr), mJointDelegator2(nullptr), mScaleController(nullptr), mBindStarPointer(nullptr),
       _9C(0.0f, 0.0f, 0.0f, 1.0f), _AC(0, 0, 1), _B8(0, 0, 0), _C4(0, 0, 0), _D0(0, 0, 0), _DC(1.0f), _E0(1.0f), _E4(1.0f), _E8(0), _EC(false),
-      mDisableRespawning(false), _EE(true), _EF(false) {}
+      mDisableRespawning(false), _EE(true), _EF(false) {
+}
 
-BombTeresa::~BombTeresa() {}
+BombTeresa::~BombTeresa() {
+}
 
 void BombTeresa::init(const JMapInfoIter& rIter) {
     initFromJMapParam(rIter);
@@ -133,7 +135,7 @@ void BombTeresa::makeActorAppeared() {
 void BombTeresa::control() {
     if (isNerve(&NrvBombTeresa::BombTeresaNrvWait::sInstance) || isNerve(&NrvBombTeresa::BombTeresaNrvWander::sInstance) ||
         isNerve(&NrvBombTeresa::BombTeresaNrvChase::sInstance)) {
-        MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_MOVE");
     }
     mScaleController->updateNerve();
     if (isEnablePointBind()) {
@@ -406,7 +408,7 @@ void BombTeresa::exeAppear() {
         MR::showModel(this);
         MR::startAction(this, "Appear");
         MR::emitEffect(this, "Appear");
-        MR::startSound(this, "SE_EM_BOMBTERE_APPEAR", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBTERE_APPEAR");
         _DC = 0.0f;
     }
     _C4 = mPosition;
@@ -455,7 +457,7 @@ void BombTeresa::exeBallAppear() {
     bool v2 = MR::reboundVelocityFromCollision(this, 0.95f, 2.0f, 1.0f);
     MR::attenuateVelocity(this, 0.99f);
     if (v2) {
-        MR::startSound(this, "SE_EM_BOMBTERE_BOUND", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBTERE_BOUND");
     }
     if (MR::isLessStep(this, 160)) {
         MR::rotateQuatRollBall(&_9C, mVelocity, -mGravity, 70.0f);
@@ -471,7 +473,7 @@ void BombTeresa::exeBallAppear() {
     if (MR::isGreaterStep(this, 70)) {
         MR::deleteEffect(this, "Ball");
         MR::emitEffect(this, "Appear");
-        MR::startSound(this, "SE_EM_BOMBTERE_APPEAR", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBTERE_APPEAR");
         MR::showModel(this);
         setNerve(&NrvBombTeresa::BombTeresaNrvDirectTackleSign::sInstance);
     }
@@ -518,7 +520,7 @@ void BombTeresa::exeWander() {
 void BombTeresa::exeChase() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Wait");
-        MR::startSound(this, "SE_EV_BOMBTERE_LAUGH", -1, -1);
+        MR::startSound(this, "SE_EV_BOMBTERE_LAUGH");
         _DC = 0.0f;
     }
     MR::turnDirectionToPlayerDegree(this, &_AC, 1.4f);
@@ -533,7 +535,7 @@ void BombTeresa::exeAttackTongueFailed() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Return");
     }
-    MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_TONGUE_BACK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_TONGUE_BACK");
     _DC = MR::calcNerveEaseInOutValue(this, 0, 1.0f, 0.0f);
     updateNormalVelocity();
     if (MR::isGreaterStep(this, 40)) {
@@ -543,7 +545,7 @@ void BombTeresa::exeAttackTongueFailed() {
 
 void BombTeresa::exeDirectTackleSign() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_EV_BOMBTERE_TACKLE", -1, -1);
+        MR::startSound(this, "SE_EV_BOMBTERE_TACKLE");
         MR::startAction(this, "TackleSign");
         _DC = 0.0f;
     }
@@ -561,7 +563,7 @@ void BombTeresa::exeDirectTackle() {
         MR::startAction(this, "Tackle");
         _DC = 0.0f;
     }
-    MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_TACKLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_TACKLE");
     MR::turnDirectionToPlayerDegree(this, &_AC, 0.8f);
     MR::addVelocityMoveToDirection(this, _AC, (1.5f * MR::calcNerveRate(this, 50)));
     MR::addVelocityKeepHeight(this, *MR::getPlayerCenterPos(), 100.0f, 6.0f, 100.0f);
@@ -580,7 +582,7 @@ void BombTeresa::exeDrift() {
         MR::startAction(this, "Spin");
         MR::startBrk(this, "Normal");
         MR::emitEffect(this, "SpinBlur");
-        MR::startSound(this, "SE_EM_BOMBTERE_TONGUE_CATCH", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBTERE_TONGUE_CATCH");
         _EE = MR::isLeftSideFromPlayer(this) == false;
         _E8 = 40;
         _EC = false;
@@ -599,7 +601,7 @@ void BombTeresa::exeDrift() {
     MR::normalize(&v14);
     MR::normalize(&v15);
     if (v14.dot(v15) >= 0.8f) {
-        MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_SWING", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_BOMBTERE_SWING");
     }
 
     MR::calcPlayerJointMtx(&v16, "HandR");
@@ -646,7 +648,7 @@ void BombTeresa::exeDriftRelease() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Drift");
         MR::tryRumblePadStrong(this, 0);
-        MR::startSound(this, "SE_EM_BOMBTERE_THROW", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBTERE_THROW");
     }
     _DC = MR::calcNerveEaseInOutValue(this, 12, 1.0f, 0.0f);
     if (MR::isLessStep(this, 0)) {
@@ -674,7 +676,7 @@ void BombTeresa::exeExplosion() {
         MR::deleteEffect(this, "SpinBlur");
         MR::emitEffect(this, "Explosion");
         MR::hideModel(this);
-        MR::startSound(this, "SE_EM_BOMBTERE_EXPLOSION", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBTERE_EXPLOSION");
         _DC = 0.0f;
         MR::zeroVelocity(this);
     }
@@ -694,7 +696,7 @@ void BombTeresa::exeShock() {
     if (MR::isGreaterStep(this, 20)) {
         MR::deleteEffect(this, "SpinBlur");
         MR::emitEffect(this, "MisFire");
-        MR::startSound(this, "SE_EM_BOMBTERE_HIDE", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBTERE_HIDE");
         MR::hideModel(this);
         tryRevival();
     }
@@ -704,7 +706,7 @@ void BombTeresa::exeDisperse() {
     if (MR::isFirstStep(this)) {
         MR::deleteEffect(this, "SpinBlur");
         MR::emitEffect(this, "MisFire");
-        MR::startSound(this, "SE_EM_BOMBTERE_HIDE", -1, -1);
+        MR::startSound(this, "SE_EM_BOMBTERE_HIDE");
         MR::hideModel(this);
         _DC = 0.0f;
         MR::zeroVelocity(this);

@@ -19,9 +19,12 @@ class PlanetGravity {
 public:
     PlanetGravity();
 
-    virtual void updateMtx(const TPos3f& rMtx) {}
+    virtual void updateMtx(const TPos3f& rMtx) {
+    }
 
-    virtual bool calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const { return false; }
+    virtual bool calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const {
+        return false;
+    }
 
     bool calcGravity(TVec3f* pDest, const TVec3f& rPosition) const;
     bool calcGravityFromMassPosition(TVec3f* pDirection, f32* pScalar, const TVec3f& rPosition, const TVec3f& rMassPosition) const;

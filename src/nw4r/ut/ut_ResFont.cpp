@@ -11,9 +11,11 @@ namespace nw4r {
 
         }  // namespace
 
-        ResFont::ResFont() {}
+        ResFont::ResFont() {
+        }
 
-        ResFont::~ResFont() {}
+        ResFont::~ResFont() {
+        }
 
         bool ResFont::SetResource(void* brfnt) {
             FontInformation* pFontInfo = NULL;

@@ -13,7 +13,8 @@ CameraFrontAndBack::CameraFrontAndBack(const char* pName) : Camera(pName) {
     mDist = 1200.0f;
 }
 
-CameraFrontAndBack::~CameraFrontAndBack() {}
+CameraFrontAndBack::~CameraFrontAndBack() {
+}
 
 CamTranslatorBase* CameraFrontAndBack::createTranslator() {
     return new CamTranslatorFrontAndBack(this);

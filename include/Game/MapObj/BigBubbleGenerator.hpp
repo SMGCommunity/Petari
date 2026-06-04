@@ -38,4 +38,4 @@ public:
 namespace MR {
     NameObj* createBigBubbleGenerator(const char*);
     NameObj* createBigObstructBubbleGenerator(const char*);
-}  // namespace MR
+};  // namespace MR

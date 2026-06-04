@@ -13,9 +13,12 @@
 namespace {
     class GDCurrentRestorer {
     public:
-        GDCurrentRestorer() : mObj(__GDCurrentDL) {}
+        GDCurrentRestorer() : mObj(__GDCurrentDL) {
+        }
 
-        ~GDCurrentRestorer() { __GDCurrentDL = mObj; }
+        ~GDCurrentRestorer() {
+            __GDCurrentDL = mObj;
+        }
 
     private:
         /* 0x0 */ GDLObj* mObj;
@@ -180,7 +183,8 @@ ResourceHolderManagerName2Resource* ResourceHolderManager::find(const char* pPar
     return pIter;
 }
 
-ResourceHolderManagerName2Resource::ResourceHolderManagerName2Resource() : mResourceHolder(nullptr), mLayoutHolder(nullptr), mHeap(nullptr) {}
+ResourceHolderManagerName2Resource::ResourceHolderManagerName2Resource() : mResourceHolder(nullptr), mLayoutHolder(nullptr), mHeap(nullptr) {
+}
 
 ResourceHolderManagerName2Resource& ResourceHolderManagerName2Resource::operator=(const ResourceHolderManagerName2Resource& other) {
     mResourceHolder = other.mResourceHolder;
@@ -191,4 +195,5 @@ ResourceHolderManagerName2Resource& ResourceHolderManagerName2Resource::operator
     return *this;
 }
 
-CreateResourceHolderArgs::CreateResourceHolderArgs() : mResourceHolder(nullptr), mLayoutHolder(nullptr), mHeap(nullptr) {}
+CreateResourceHolderArgs::CreateResourceHolderArgs() : mResourceHolder(nullptr), mLayoutHolder(nullptr), mHeap(nullptr) {
+}

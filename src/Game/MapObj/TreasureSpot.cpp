@@ -25,9 +25,11 @@ void TreasureSpot::init(const JMapInfoIter& rIter) {
     MR::declareCoin(this, 1);
 }
 
-void TreasureSpot::exeWait() {}
+void TreasureSpot::exeWait() {
+}
 
-void TreasureSpot::exeEnd() {}
+void TreasureSpot::exeEnd() {
+}
 
 void TreasureSpot::exeSpout() {
     if (MR::isFirstStep(this)) {
@@ -38,7 +40,7 @@ void TreasureSpot::exeSpout() {
 
         if (mIsCoinFlower) {
             MR::startBck(this, "Bloom", 0);
-            MR::startSound(this, "SE_OJ_COIN_FLOWER_BLOOM", -1, -1);
+            MR::startSound(this, "SE_OJ_COIN_FLOWER_BLOOM");
         } else {
             setNerve(&NrvTreasureSpot::TreasureSpotNrvEnd::sInstance);
             kill();
@@ -96,4 +98,5 @@ void TreasureSpot::switchEmitGlow() {
     }
 }
 
-TreasureSpot::~TreasureSpot() {}
+TreasureSpot::~TreasureSpot() {
+}

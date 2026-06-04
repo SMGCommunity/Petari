@@ -27,7 +27,8 @@ bool ConditionIfIsNotPlayer::isExecute(const MR::StationedFileInfo* pInfo) const
     return pInfo->mLoadType != 2 && pInfo->mLoadType != 3;
 }
 
-ConditionUsePlayerHeap::ConditionUsePlayerHeap() : mNapaHeap(nullptr), mGDDRHeap(nullptr), mIsDataMario(true) {}
+ConditionUsePlayerHeap::ConditionUsePlayerHeap() : mNapaHeap(nullptr), mGDDRHeap(nullptr), mIsDataMario(true) {
+}
 
 bool ConditionUsePlayerHeap::isExecute(const MR::StationedFileInfo* pInfo) const {
     s32 type = 3;
@@ -221,9 +222,11 @@ void GameSystemStationedArchiveLoader::exeInitializeGameData() {
     setNerve(&::GameSystemStationedArchiveLoaderEnd::sInstance);
 }
 
-void GameSystemStationedArchiveLoader::exeEnd() {}
+void GameSystemStationedArchiveLoader::exeEnd() {
+}
 
-void GameSystemStationedArchiveLoader::exeSuspended() {}
+void GameSystemStationedArchiveLoader::exeSuspended() {
+}
 
 void GameSystemStationedArchiveLoader::exeChangeArchivePlayer() {
     if (MR::isFirstStep(this)) {

@@ -8,7 +8,7 @@ class J3DShapeDraw;
 
 namespace MR {
     class FunctorBase;
-}
+};  // namespace MR
 
 class PlantLeaf : public LiveActor {
 public:

@@ -9,7 +9,7 @@ class DodoryuStateBase : public LiveActor {
 public:
     DodoryuStateBase(Dodoryu* pDodoryu, const char* pName) : LiveActor(pName), mDodoryu(pDodoryu) {
     }
-    
+
     virtual void start();
     virtual void end();
     virtual void catchAttackSensor(HitSensor*, HitSensor*);

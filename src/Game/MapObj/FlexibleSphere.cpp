@@ -30,7 +30,8 @@ void shapeCallBack(J3DShape* pShape) {
     GXSetTexCoordGen2(GX_TEXCOORD2, GX_TG_MTX2x4, GX_TG_TEX0, 30, GX_FALSE, 125);
 }
 
-FlexibleSphere::FlexibleSphere(const char* pName) : LiveActor(pName), mTimer(0) {}
+FlexibleSphere::FlexibleSphere(const char* pName) : LiveActor(pName), mTimer(0) {
+}
 
 void FlexibleSphere::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -57,7 +58,7 @@ void FlexibleSphere::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, 3000.0f);
     MR::setClippingFarMax(this);
 
-    J3DModelX* model = reinterpret_cast< J3DModelX* >(MR::getJ3DModel(this));
+    J3DModelX* model = static_cast< J3DModelX* >(MR::getJ3DModel(this));
     model->mShapeCallback = shapeCallBack;
 
     if (MR::isValidInfo(rIter)) {
@@ -131,7 +132,7 @@ void FlexibleSphere::kill() {
 void FlexibleSphere::control() {
     if (mShakeTimer != 0) {
         if (MR::calcDistanceToPlayer(mPosition) < 4000.0f) {
-            MR::startLevelSound(this, "SE_AT_LV_EARTHQUAKE", -1, -1, -1);
+            MR::startLevelSound(this, "SE_AT_LV_EARTHQUAKE");
         }
 
         if (--mShakeTimer == 0) {
@@ -160,7 +161,7 @@ void FlexibleSphere::control() {
         }
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_FLEX_SPHERE_MOVE", ((mScale.x - mMinScale) / (mMaxScale - mMinScale)) * 100.0f, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_FLEX_SPHERE_MOVE", ((mScale.x - mMinScale) / (mMaxScale - mMinScale)) * 100.0f);
 
     bool quake = false;
     if (mGrowDirection != SHRINK) {
@@ -188,11 +189,11 @@ void FlexibleSphere::control() {
                 if (!MR::isPlayerDead()) {
                     if (!MR::isPowerStarGetDemoActive() && mTimer % 60 == 0) {
                         if (mTimer <= 120) {
-                            MR::startSystemSE("SE_SY_TIMER_A_QUASI_0", -1, -1);
+                            MR::startSystemSE("SE_SY_TIMER_A_QUASI_0");
                         } else if (mTimer <= 600) {
-                            MR::startSystemSE("SE_SY_TIMER_A_1", -1, -1);
+                            MR::startSystemSE("SE_SY_TIMER_A_1");
                         } else {
-                            MR::startSystemSE("SE_SY_TIMER_A_2", -1, -1);
+                            MR::startSystemSE("SE_SY_TIMER_A_2");
                         }
                     }
                 }
@@ -201,8 +202,8 @@ void FlexibleSphere::control() {
 
         } else {
             if (mVanishOnShrinkEnd) {
-                MR::startSystemSE("SE_SY_TIMER_A_0", -1, -1);
-                MR::startSound(this, "SE_OJ_FLEX_SPHERE_VANISH", -1, -1);
+                MR::startSystemSE("SE_SY_TIMER_A_0");
+                MR::startSound(this, "SE_OJ_FLEX_SPHERE_VANISH");
                 kill();
             } else {
                 mGrowDirection = GROW;
@@ -226,7 +227,7 @@ void FlexibleSphere::control() {
 
 void FlexibleSphere::draw() const {
     if (!MR::isDead(this)) {
-        J3DModelX* model = reinterpret_cast< J3DModelX* >(MR::getJ3DModel(this));
+        J3DModelX* model = static_cast< J3DModelX* >(MR::getJ3DModel(this));
         model->viewCalc2();
         GXInvalidateVtxCache();
         scale = 0.05f / mScale.x + 0.95f;

@@ -18,11 +18,15 @@ public:
     u32* getFreeHandle(const JAUSoundAnimationSound*);
     void skip(f32);
     void setStartPos(f32);
-    void setLoopFrame(f32 a1, f32 a2) { JAUSoundAnimator::setLoopFrame(a1, a2); }
-    bool hasAnimHandles() const { return JAUSoundAnimator::mHandles != nullptr; }
+    void setLoopFrame(f32 a1, f32 a2) {
+        JAUSoundAnimator::setLoopFrame(a1, a2);
+    }
+    bool hasAnimHandles() const {
+        return JAUSoundAnimator::mHandles != nullptr;
+    }
     void updateAnimSound(f32, const TVec3f&, JAISoundStarter*);
     void startAnimSound(const TVec3f&, f32, JAISoundStarter*);
     void releaseHandleIfNecessary(JAISoundHandle*, u32);
 
-    s32 _70; // 0x70
+    s32 _70;  // 0x70
 };
