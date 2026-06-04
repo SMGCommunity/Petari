@@ -119,7 +119,7 @@ namespace MR {
     void scaleVelocity(LiveActor*, f32);
     f32 calcVelocityLength(const LiveActor*);
     f32 calcGravitySpeed(const LiveActor*);
-    void applyVelocityDampAndGravity(LiveActor*, f32, f32, f32, f32, f32);
+    void applyVelocityDampAndGravity(LiveActor*, f32 gravity, f32 groundDampH, f32 airDampH, f32 dampVUp, f32 velHMin);
     void setVelocityJumpAwayFromPlayer(LiveActor*, f32, f32);
     bool sendMsgPushAndKillVelocityToTarget(LiveActor*, HitSensor*, HitSensor*);
     void addVelocityFromPush(LiveActor*, f32, HitSensor*, HitSensor*);

@@ -5744,7 +5744,7 @@ Game/MapObj/SpinLeverSwitch.cpp:
 Game/MapObj/SpinningBox.cpp:
 	.text       start:0x802398DC end:0x8023B194
 	.ctors      start:0x8052EECC end:0x8052EED0
-	.data       start:0x805A1020 end:0x805A11F8
+	.data       start:0x805A1020 end:0x805A1190
 	.sdata      start:0x806B2030 end:0x806B2038
 	.sbss       start:0x806B58F8 end:0x806B5910
 	.sdata2     start:0x806BE2D0 end:0x806BE348
@@ -5752,7 +5752,7 @@ Game/MapObj/SpinningBox.cpp:
 Game/MapObj/SpringJetWater.cpp:
 	.text       start:0x8023B194 end:0x8023B98C
 	.ctors      start:0x8052EED0 end:0x8052EED4
-	.data       start:0x805A11F8 end:0x805A12A0
+	.data       start:0x805A1190 end:0x805A12A0
 	.sdata      start:0x806B2038 end:0x806B2040
 	.sbss       start:0x806B5910 end:0x806B5920
 	.sdata2     start:0x806BE348 end:0x806BE370
