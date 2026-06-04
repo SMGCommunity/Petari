@@ -340,8 +340,7 @@ namespace MR {
             return false;
         }
 
-        bool isGround = (0.0f <= binder->_C8);
-        if (!isGround) {
+        if (!binder->isBindedGround()) {
             return false;
         }
 
@@ -367,7 +366,7 @@ namespace MR {
             return false;
         }
 
-        return 0.0f <= binder->_C8;
+        return binder->isBindedGround();
     }
 
     bool isBindedGround(const LiveActor* pActor, HitSensor* pSensor) {
@@ -384,7 +383,7 @@ namespace MR {
             return false;
         }
 
-        return 0.0f <= binder->_158;
+        return binder->isBindedWall();
     }
 
     bool isBindedWall(const LiveActor* pActor, HitSensor* pSensor) {
@@ -450,7 +449,7 @@ namespace MR {
             return false;
         }
 
-        return 0.0f <= binder->_1E8;
+        return binder->isBindedRoof();
     }
 
     bool isBindedRoof(const LiveActor* pActor, HitSensor* pSensor) {
