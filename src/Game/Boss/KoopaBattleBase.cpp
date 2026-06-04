@@ -7,17 +7,8 @@ namespace {
     MR::ActorMoveParam sFindParam = {0.0f, 1.0f, 0.98f, 3.0f};
 }  // namespace
 
-namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) NO_INLINE {
-        moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    }
-}  // namespace MR
-
 KoopaBattleBase::KoopaBattleBase(const char* pName, Koopa* pKoopa)
-    : ActorStateBase< Koopa >(pName, pKoopa), mStateDamageEscape(), mStateGuard(), _18(-1) {
-}
-
-KoopaBattleBase::~KoopaBattleBase() {
+    : ActorStateBase< Koopa >(pName, pKoopa), mStateDamageEscape(), mStateGuard(), mWanderTime(-1) {
 }
 
 void KoopaBattleBase::init() {
@@ -64,7 +55,7 @@ bool KoopaBattleBase::updateWander(const MR::ActorMoveParam& rMoveParam) {
 
         KoopaFunction::endFaceCtrl(mHost, -1);
 
-        _18 = MR::getRandom(60l, 120l);
+        mWanderTime = MR::getRandom(60l, 120l);
     }
 
     if (MR::isBindedWall(mHost)) {
@@ -80,7 +71,7 @@ bool KoopaBattleBase::updateWander(const MR::ActorMoveParam& rMoveParam) {
     Koopa* pKoopa = mHost;
     MR::setBckRate(pKoopa, MR::calcVelocityLength(pKoopa) * 0.18f);
 
-    return MR::isStep(this, _18);
+    return MR::isStep(this, mWanderTime);
 }
 
 bool KoopaBattleBase::updateSearch() {
@@ -130,3 +121,12 @@ bool KoopaBattleBase::updateRecover(const Nerve* pNerve) {
 
     return false;
 }
+
+KoopaBattleBase::~KoopaBattleBase() {
+}
+
+namespace MR {
+    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) {
+        moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
+    }
+}  // namespace MR
