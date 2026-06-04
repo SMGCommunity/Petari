@@ -1,11 +1,18 @@
 #include "Game/MapObj/SmallStone.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+#include "math_types.hpp"
 
-SmallStone::SmallStone(const char* pName) : LiveActor(pName), _8C(0), _90(0), _94(0.0f), mMemberType(0), _9C(true){};
+SmallStone::SmallStone(const char* pName) : LiveActor(pName), mArray(0), mArrayCount(0), _94(0.0f), mMemberType(0), _9C(true){};
 
 void SmallStone::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     MR::initDefaultPos(this, rIter);
-    _90 = 8;
+    mArrayCount = 8;
     s32 v1 = -1;
     MR::getJMapInfoArg0NoInit(rIter, &v1);
     if(v1 == -1) {
@@ -52,15 +59,78 @@ void SmallStone::init(const JMapInfoIter& rIter) {
     
 }
 
-// void SmallStone::control() {
-//     if(_90 < 0) {
-
-//     }
-// }
+void SmallStone::initMember(const char* pChar, bool pBool) {
+    mArray = new SmallStoneMember*[mArrayCount];
+    MR::declareStarPiece(this, mArrayCount);
+    for(int i = 0; i < mArrayCount; i++) {
+        SmallStoneMember* member = new SmallStoneMember(pChar);
+        member->_90 = 1.0f;
+        member->_94 = false;
+        member->_A0 = false;
+        member->_95 = false;
+        MR::onCalcAnim(member);
+        MR::invalidateClipping(member); 
+        member->appear();
+        if(mMemberType == 1) {
+            //do something random with rotation, idk
+            member->mRotation.x = 0.0f;
+            member->mRotation.y = MR::getRandom(-360.0f, 360.0f);
+            member->mRotation.z = 0.0f;
+            f32 randScale = MR::getRandom(0.75f, 1.25f);
+            member->mScale.x = randScale;
+            member->mScale.y = randScale;
+            member->mScale.z = randScale;
+            MR::startBva(member, "Kind");
+            MR::stopBva(member);
+            s16 frameMax = MR::getBvaFrameMax(member, "Kind");
+            u32 frame = (i + frameMax) % frameMax;
+            MR::setBvaFrameAndStop(member, (float)frame);
+            switch (frame) {
+                case 0:
+                    member->mBreakStr = "Break2";
+                    break;
+                case 1:
+                    member->mBreakStr = "Break1";
+                    break;
+                case 2:
+                    member->mBreakStr = "Break3";
+                    break;
+                case 3:
+                    member->mBreakStr = "Break1";
+                    break;
+                case 4:
+                    member->mBreakStr = "Break3";
+                    break;
+            }
+        } else {
+            mRotation.set(0.0f, 0.0f, 0.0f);
+            mScale.set(1.0f, 1.0f, 1.0f);
+            member->mBreakStr = "Break";
+        }
+        mArray[i] = member;
+    }
+    if(mMemberType == 1 || mMemberType == 2) {
+        for(int i = 0; i < mArrayCount; i++) {
+            SmallStoneMember* curr = mArray[i];
+            SmallStoneMember* rand = mArray[(MR::getRandom(0l, i + 1))];
+            f32 currBVA = MR::getBvaFrame(curr);
+            f32 randBVA = MR::getBvaFrame(rand);
+            MR::setBvaFrame(curr, randBVA);
+            MR::setBvaFrame(rand, currBVA);
+            const char* currBreakStr = curr->mBreakStr;
+            const char* randBreakStr = rand->mBreakStr;
+            curr->mBreakStr = randBreakStr;
+            rand->mBreakStr = currBreakStr;
+        }
+    }
+    initHitSensor(1);
+    MR::addHitSensorMapObjSimple(this, "Range", 16, 100.0f, gZeroVec);
+        
+}
 
 
 SmallStoneMember::SmallStoneMember(const char* pName)
-    : ModelObj("SmallStoneMember", pName, nullptr, 10, -1, -2, false), _90(1.0f), _94(false), _95(false), _98(-1), _9C(0), _A0(true) {}
+    : ModelObj("SmallStoneMember", pName, nullptr, 10, -1, -2, false), _90(1.0f), _94(false), _95(false), _98(-1), mBreakStr(nullptr), _A0(true) {}
 
 void SmallStoneMember::movementByHost(SmallStone* pParent) {
     animControl();

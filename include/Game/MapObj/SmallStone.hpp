@@ -4,6 +4,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 
+class SmallStoneMember;
 class SmallStone : public LiveActor {
 public:
     SmallStone(const char*);
@@ -19,8 +20,8 @@ public:
 
     void initMember(const char*, bool);
 
-    /* 0x8C */ s32 _8C;
-    /* 0x90*/ s32 _90;
+    /* 0x8C */ SmallStoneMember** mArray;
+    /* 0x90*/ u32 mArrayCount;
     /* 0x94 */ f32 _94;
     /* 0x98 */ s32 mMemberType;
     /* 0x9C */ bool _9C;
@@ -28,6 +29,7 @@ public:
 };
 
 class SmallStoneMember : public ModelObj {
+public:
     SmallStoneMember(const char*);
 
     void movementByHost(SmallStone*);
@@ -38,6 +40,6 @@ class SmallStoneMember : public ModelObj {
     /* 0x94 */ bool _94;
     /* 0x95 */ bool _95;
     /* 0x98 */ s32 _98;
-    /* 0x9C */ s32 _9C;
+    /* 0x9C */ const char* mBreakStr;
     /* 0xA0 */ bool _A0;  
 };
