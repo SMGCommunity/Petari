@@ -2,8 +2,6 @@
 
 #include "Game/Boss/DodoryuStateBase.hpp"
 
-class Dodoryu;
-
 struct DodoryuAnimSet {
     /* 0x00 */ const char* mBckName;
     /* 0x04 */ const char* mBtkName;

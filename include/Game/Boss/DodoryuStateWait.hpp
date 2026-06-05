@@ -2,8 +2,6 @@
 
 #include "Game/Boss/DodoryuStateBase.hpp"
 
-class Dodoryu;
-
 class DodoryuStateWait : public DodoryuStateBase {
 public:
     DodoryuStateWait(Dodoryu* pHost, const char* pName);
