@@ -53,10 +53,10 @@ void KoopaStateChaseRoll::appear() {
     MR::validateHitSensor(mHost, "ChaseRollStarPiece");
 
     if (KoopaFunction::isKoopaAngry(mHost)) {
-        mKoopaFigureBall->_D4 = &sChaseRollParamFast;
+        mKoopaFigureBall->mMoveParam = &sChaseRollParamFast;
         _14 = 60;
     } else {
-        mKoopaFigureBall->_D4 = &sChaseRollParam;
+        mKoopaFigureBall->mMoveParam = &sChaseRollParam;
         _14 = 60;
     }
 
@@ -188,7 +188,7 @@ void KoopaStateChaseRoll::exeRollAir() {
         MR::startAction(KoopaFunction::getKoopaRock(mHost), "AttackRoll");
     }
 
-    mKoopaFigureBall->_A0 += 5.0f;
+    mKoopaFigureBall->mAngle += 5.0f;
     mKoopaFigureBall->appear();
 
     mHost->mPosition.set(mKoopaFigureBall->mPosition);

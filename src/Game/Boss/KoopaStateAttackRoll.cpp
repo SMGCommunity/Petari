@@ -63,19 +63,19 @@ void KoopaStateAttackRoll::appear() {
             _14 = 30;
 
             if (KoopaFunction::isKoopaAngry(mHost)) {
-                mFigureBall->_D4 = &sAttackRollParamLv2Fast;
+                mFigureBall->mMoveParam = &sAttackRollParamLv2Fast;
                 _18 = 300;
             } else {
-                mFigureBall->_D4 = &sAttackRollParamLv2Slow;
+                mFigureBall->mMoveParam = &sAttackRollParamLv2Slow;
                 _18 = 600;
             }
         } else {
             if (KoopaFunction::isKoopaAngry(mHost)) {
-                mFigureBall->_D4 = &sAttackRollParamLv3Fast;
+                mFigureBall->mMoveParam = &sAttackRollParamLv3Fast;
                 _18 = 320;
                 _14 = 75;
             } else {
-                mFigureBall->_D4 = &sAttackRollParamLv3Slow;
+                mFigureBall->mMoveParam = &sAttackRollParamLv3Slow;
                 _18 = 280;
                 _14 = 90;
             }
@@ -85,7 +85,7 @@ void KoopaStateAttackRoll::appear() {
             }
         }
     } else {
-        mFigureBall->_D4 = &sAttackRollParamLv3Slow;
+        mFigureBall->mMoveParam = &sAttackRollParamLv3Slow;
         _18 = 280;
         _14 = 90;
     }
@@ -188,7 +188,7 @@ void KoopaStateAttackRoll::exeRollAir() {
         MR::startAction(KoopaFunction::getKoopaRollBall(mHost), "AttackRoll");
     }
 
-    mFigureBall->_A0 += 5.0f;
+    mFigureBall->mAngle += 5.0f;
     mFigureBall->movement();
     mHost->mPosition.set(mFigureBall->mPosition);
 
