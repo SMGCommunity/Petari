@@ -1,5 +1,6 @@
 #include "Game/Boss/Dodoryu.hpp"
 #include "Game/Boss/DodoryuDemo.hpp"
+#include "Game/Boss/DodoryuHill.hpp"
 // #include "Game/Boss/DodoryuStateLv2.hpp"
 #include "Game/Boss/DodoryuStateBase.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
@@ -132,19 +133,19 @@ void Dodoryu::endClipped() {
 
 void Dodoryu::notifyOnSwitchA() {
     MR::invalidateClipping(this);
-    // MR::invalidateClipping(mHill);
+    MR::invalidateClipping(mHill);
     // MR::invalidateClipping(mLeadHill);
     // MR::invalidateClipping(mBank);
     // MR::invalidateClipping(mRabbit);
     _144 = 1;
-    // mHill->setAppearNum(mHill->_94);
+    mHill->setAppearNum(mHill->_94);
 }
 
 // Dodoryu::nextState
 
 void Dodoryu::pauseOff() {
     MR::requestMovementOn(this);
-    // mHill->pauseOff();
+    mHill->pauseOff();
     // MR::requestMovementOn(mLeadHill);
     // MR::requestMovementOn(mBank);
     // MR::requestMovementOn(mRabbit);
@@ -237,17 +238,13 @@ void Dodoryu::shiftMoveStateNull() {
 void Dodoryu::setMoveRailSpeed(f32 railSpeed) {
     mMoveStateHolder->setRailSpeed(railSpeed);
 }
-
+*/
 void Dodoryu::startHill() {
     mHill->startNaturally();
 }
 
 void Dodoryu::stopHill() {
     mHill->endNaturally();
-}
-
-void Dodoryu::startHill() {
-    mHill->startNaturally();
 }
 
 void Dodoryu::stopHillForce() {
@@ -265,7 +262,7 @@ void Dodoryu::setHillAppearNumHalf() {
 void Dodoryu::setHillAppearNumMax() {
     mHill->setAppearNum(mHill->_94 - 10);
 }
-
+/*
 void Dodoryu::startLeadHillBck(const char* pBckName) {
     if (MR::isDead(mLeadHill)) {
         mLeadHill->appear();
@@ -358,12 +355,12 @@ void Dodoryu::initSwitch(const JMapInfoIter& rIter) {
 
     MR::useStageSwitchWriteB(this, rIter);
 }
-/*
+
 void Dodoryu::createMogucchiHill() {
     mHill = new DodoryuHill(this);
     mHill->setAppearNum(5);
 }
-
+/*
 void Dodoryu::createDodoryuBank() {
     mBank = new DodoryuBank();
     mBank->initWithoutIter();
