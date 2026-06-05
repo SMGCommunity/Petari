@@ -4,6 +4,7 @@
 #include "Game/Boss/DodoryuMove.hpp"
 // #include "Game/Boss/DodoryuStateLv2.hpp"
 #include "Game/Boss/DodoryuStateBase.hpp"
+#include "Game/Boss/DodoryuStateWait.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include <cstdio>
@@ -376,7 +377,7 @@ void Dodoryu::checkHipDrop() {
 }
 
 void Dodoryu::initState() {
-    // mState.push_back(new DodoryuStateWait(this, "DodoryuStateWait"));
+    mState.push_back(new DodoryuStateWait(this, "DodoryuStateWait"));
     mState.push_back(new DodoryuDemoOpening(this, "DodoryuDemoOpening"));
     // mState.push_back(new DodoryuStateLv1(this, "DodoryuStateLv1"));
     mState.push_back(new DodoryuDemoAppear(this, "DodoryuDemoAppear"));
