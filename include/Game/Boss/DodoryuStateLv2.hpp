@@ -5,11 +5,11 @@
 class Dodoryu;
 
 struct DodoryuAnimSet {
-    const char* mBck;
-    const char* mBtk;
-    const char* mBrk;
-    const char* mBva;
-    const char* mLeadHillBck;
+    /* 0x00 */ const char* mBckName;
+    /* 0x04 */ const char* mBtkName;
+    /* 0x08 */ const char* mBrkName;
+    /* 0x0C */ const char* mBvaName;
+    /* 0x10 */ const char* mLeadHillBckName;
 };
 
 struct DodoryuChaseParam {
@@ -104,6 +104,7 @@ public:
     virtual void catchSendPlayerFlying(HitSensor*, HitSensor*);
 
     void exeStart();
+    void endStart();
     void exeReadyChase();
     void endReadyChase();
     void exeChaseHide();

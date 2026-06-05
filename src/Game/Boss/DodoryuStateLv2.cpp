@@ -8,7 +8,7 @@
 #include <cmath>
 
 namespace {
-    NEW_NERVE(DodoryuStateLv2NrvStart, DodoryuStateLv2, Start);
+    NEW_NERVE_ONEND(DodoryuStateLv2NrvStart, DodoryuStateLv2, Start, Start);
     NEW_NERVE_ONEND(DodoryuStateLv2NrvReadyChase, DodoryuStateLv2, ReadyChase, ReadyChase);
     NEW_NERVE_ONEND(DodoryuStateLv2NrvChaseHide, DodoryuStateLv2, ChaseHide, ChaseHide);
     NEW_NERVE_ONEND(DodoryuStateLv2NrvReadyAppear, DodoryuStateLv2, ReadyAppear, ReadyAppear);
@@ -31,10 +31,9 @@ namespace {
     NEW_NERVE(DodoryuStateLv2NrvChaseMoreEnd, DodoryuStateLv2, ChaseMoreEnd);
 };  // namespace
 
-DodoryuStateLv2::DodoryuStateLv2(Dodoryu* pDodoryu, DodoryuChaseParam* pParam, const char* pName)
-    : DodoryuStateBase(pDodoryu, pName), _90(nullptr), _94(0.0f, 0.0f, 0.0f), _A0(0.0f, 0.0f, 0.0f), _AC(0.0f), _B0(1.0f), _B4(0.0f), _B8(0), _BC(0),
-      mAppearCount(0), _C4(0), _C8(0), _CC(0), _D0(0.0f), _D4(0.0f), _D8(0.0f), mFindPosCounter(0), _E0(0), _E4(true), mChaseParam(pParam),
-      mPlayerStaggering(false) {
+DodoryuStateLv2::DodoryuStateLv2(Dodoryu* pHost, DodoryuChaseParam* pChaseParam, const char* pName)
+    : DodoryuStateBase(pHost, pName), _90(), _94(0.0f, 0.0f, 0.0f), _A0(0.0f, 0.0f, 0.0f), _AC(), _B0(1.0f), _B4(), _B8(), _BC(), mAppearCount(),
+      _C4(), _C8(), _CC(), _D0(), _D4(), _D8(), mFindPosCounter(), _E0(), _E4(true), mChaseParam(pChaseParam), mPlayerStaggering() {
     initWithoutIter();
 }
 
@@ -42,7 +41,7 @@ void DodoryuStateLv2::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     initNerve(&DodoryuStateLv2NrvStart::sInstance);
     MR::declareEventCameraProgrammable("DodoryuMini");
-    makeActorDead();
+    makeActorAppeared();
 }
 
 void DodoryuStateLv2::control() {
@@ -70,6 +69,9 @@ void DodoryuStateLv2::exeStart() {
     if (MR::isBckOneTimeAndStopped(mDodoryu)) {
         setNerve(&DodoryuStateLv2NrvFindPos::sInstance);
     }
+}
+
+void DodoryuStateLv2::endStart() {
 }
 
 void DodoryuStateLv2::exeReadyChase() {
@@ -132,8 +134,8 @@ void DodoryuStateLv2::exeReadyAppear() {
         mDodoryu->stopHill();
         startAnim(mChaseParam->_130);
         setNerve(&DodoryuStateLv2NrvChaseHide::sInstance);
-    } else {
-        tryToShiftAppearSign();
+    } else if (tryToShiftAppearSign()) {
+        return;
     }
 }
 
@@ -561,24 +563,25 @@ void DodoryuStateLv2::catchAttackSensor(HitSensor* pSender, HitSensor* pReceiver
     if (!MR::isSensorPlayerOrRide(pReceiver)) {
         return;
     }
+
     if (isNerve(&DodoryuStateLv2NrvDive::sInstance)) {
         if (MR::isSensor(pSender, "RightHand") || MR::isSensor(pSender, "LeftHand") || MR::isSensor(pSender, "RightLeg") ||
             MR::isSensor(pSender, "LeftLeg") || MR::isSensor(pSender, "Head")) {
             return;
         }
     }
-    if (isAttackableNerve()) {
-        if (!mPlayerStaggering) {
-            attackStrongToDir(pSender, pReceiver);
-            return;
+
+    if (!isAttackableNerve() || mPlayerStaggering) {
+        if (mDodoryu->isHeadNeedle(pSender, pReceiver)) {
+            if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
+                return;
+            }
         }
+
+        MR::sendMsgPush(pReceiver, pSender);
+    } else {
+        attackStrongToDir(pSender, pReceiver);
     }
-    if (mDodoryu->isHeadNeedle(pSender, pReceiver)) {
-        if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
-            return;
-        }
-    }
-    MR::sendMsgPush(pReceiver, pSender);
 }
 
 bool DodoryuStateLv2::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -912,8 +915,8 @@ void DodoryuStateLv2::shiftHideAttack() {
 }
 
 void DodoryuStateLv2::startAnim(const DodoryuAnimSet& rAnim) {
-    if (rAnim.mBck != nullptr) {
-        MR::startBck(mDodoryu, rAnim.mBck, nullptr);
+    if (rAnim.mBckName != nullptr) {
+        MR::startBck(mDodoryu, rAnim.mBckName, nullptr);
     }
     startBtk(rAnim);
     startBrk(rAnim);
@@ -922,27 +925,27 @@ void DodoryuStateLv2::startAnim(const DodoryuAnimSet& rAnim) {
 }
 
 void DodoryuStateLv2::startBtk(const DodoryuAnimSet& rAnim) {
-    if (rAnim.mBtk != nullptr) {
-        MR::startBtk(mDodoryu, rAnim.mBtk);
+    if (rAnim.mBtkName != nullptr) {
+        MR::startBtk(mDodoryu, rAnim.mBtkName);
     }
 }
 
 void DodoryuStateLv2::startBrk(const DodoryuAnimSet& rAnim) {
-    if (rAnim.mBrk != nullptr) {
-        MR::startBrk(mDodoryu, rAnim.mBrk);
+    if (rAnim.mBrkName != nullptr) {
+        MR::startBrk(mDodoryu, rAnim.mBrkName);
     }
 }
 
 void DodoryuStateLv2::startBva(const DodoryuAnimSet& rAnim) {
-    if (rAnim.mBva != nullptr) {
-        MR::startBva(mDodoryu, rAnim.mBva);
+    if (rAnim.mBvaName != nullptr) {
+        MR::startBva(mDodoryu, rAnim.mBvaName);
     }
 }
 
 void DodoryuStateLv2::startLeadHillBck(const DodoryuAnimSet& rAnim) {
-    if (rAnim.mLeadHillBck != nullptr) {
-        mDodoryu->startLeadHillBck(rAnim.mLeadHillBck);
-    } else {
+    if (rAnim.mLeadHillBckName == nullptr) {
         mDodoryu->killLeadHill();
+    } else {
+        mDodoryu->startLeadHillBck(rAnim.mLeadHillBckName);
     }
 }
