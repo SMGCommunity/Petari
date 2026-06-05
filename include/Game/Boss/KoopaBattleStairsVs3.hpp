@@ -4,10 +4,10 @@
 
 class KoopaBattleStairsVs3 : public KoopaBattleStairsBase {
 public:
-    KoopaBattleStairsVs3(Koopa*);
+    KoopaBattleStairsVs3(Koopa* pKoopa);
 
     virtual ~KoopaBattleStairsVs3();
-    virtual void registerStair(KoopaBattleMapStair*);
+    virtual void registerStair(KoopaBattleMapStair* pBattleMapStair);
 
     void exeWaitDemo();
     void exeDemo();
