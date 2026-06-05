@@ -10,46 +10,7 @@
 #include "Game/Boss/KoopaViewSwitchKeeper.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
-
-ModelObjNpc* KoopaFunction::getKoopaDemoPeach(Koopa* pKoopa) {
-    return pKoopa->mParts->mPeach;
-}
-
-ModelObjNpc* KoopaFunction::getKoopaDemoKoopaJr(Koopa* pKoopa) {
-    return pKoopa->mParts->mKoopaJr;
-}
-
-ModelObjNpc* KoopaFunction::getKoopaDemoKoopaJrShip(Koopa* pKoopa) {
-    return pKoopa->mParts->mKoopaJrShip;
-}
-
-ModelObj* KoopaFunction::getKoopaDemoMeteor1(Koopa* pKoopa) {
-    return pKoopa->mParts->mMeteor1;
-}
-
-ModelObj* KoopaFunction::getKoopaDemoMeteor2(Koopa* pKoopa) {
-    return pKoopa->mParts->mMeteor2;
-}
-
-ModelObj* KoopaFunction::getKoopaDemoMeteor3(Koopa* pKoopa) {
-    return pKoopa->mParts->mMeteor3;
-}
-
-void KoopaFunction::endKoopaDemoMeetPeach(Koopa* pKoopa) {
-    MR::startAction(pKoopa->mParts->mPeach, "DemoKoopaVs3Wait");
-    MR::startAction(pKoopa->mParts->mKoopaJr, "DemoKoopaVs3Wait");
-    MR::startAction(pKoopa->mParts->mKoopaJrShip, "DemoKoopaVs3Wait");
-
-    KoopaParts* pParts = pKoopa->mParts;
-    pParts->mPeach->mLodCtrl->validate();
-    pParts->mKoopaJr->mLodCtrl->validate();
-    pParts->mKoopaJrShip->mLodCtrl->validate();
-
-    pParts->mPeach->mJointCtrl->startFaceCtrl(-1);
-    pParts->mKoopaJr->mJointCtrl->startFaceCtrl(-1);
-}
 
 NameObj* KoopaFunction::createKoopaVs1(const char* pName) {
     KoopaSequencerVs1* pSequencer = new KoopaSequencerVs1();
@@ -345,7 +306,7 @@ KoopaViewSwitchKeeper* KoopaFunction::getKoopaViewSwitchKeeper(Koopa* pKoopa) {
 }
 
 void KoopaFunction::registerKoopaPowerUpSwitch(LiveActor* pActor) {
-    BossAccess::getBossAccessorKoopa()->mParts->mKoopaPowerUpSwitch = static_cast< KoopaPowerUpSwitch *>(pActor);
+    BossAccess::getBossAccessorKoopa()->mParts->mKoopaPowerUpSwitch = static_cast< KoopaPowerUpSwitch* >(pActor);
 }
 
 KoopaPowerUpSwitch* KoopaFunction::getKoopaPowerUpSwitch(Koopa* pKoopa) {
@@ -404,6 +365,44 @@ bool KoopaFunction::tryEndKoopaCameraDemo(Koopa* pKoopa, const char* pName, cons
     MR::onCalcGravity(pKoopa);
 
     return true;
+}
+
+ModelObjNpc* KoopaFunction::getKoopaDemoPeach(Koopa* pKoopa) {
+    return pKoopa->mParts->mPeach;
+}
+
+ModelObjNpc* KoopaFunction::getKoopaDemoKoopaJr(Koopa* pKoopa) {
+    return pKoopa->mParts->mKoopaJr;
+}
+
+ModelObjNpc* KoopaFunction::getKoopaDemoKoopaJrShip(Koopa* pKoopa) {
+    return pKoopa->mParts->mKoopaJrShip;
+}
+
+ModelObj* KoopaFunction::getKoopaDemoMeteor1(Koopa* pKoopa) {
+    return pKoopa->mParts->mMeteor1;
+}
+
+ModelObj* KoopaFunction::getKoopaDemoMeteor2(Koopa* pKoopa) {
+    return pKoopa->mParts->mMeteor2;
+}
+
+ModelObj* KoopaFunction::getKoopaDemoMeteor3(Koopa* pKoopa) {
+    return pKoopa->mParts->mMeteor3;
+}
+
+void KoopaFunction::endKoopaDemoMeetPeach(Koopa* pKoopa) {
+    MR::startAction(pKoopa->mParts->mPeach, "DemoKoopaVs3Wait");
+    MR::startAction(pKoopa->mParts->mKoopaJr, "DemoKoopaVs3Wait");
+    MR::startAction(pKoopa->mParts->mKoopaJrShip, "DemoKoopaVs3Wait");
+
+    KoopaParts* pParts = pKoopa->mParts;
+    pParts->mPeach->mLodCtrl->validate();
+    pParts->mKoopaJr->mLodCtrl->validate();
+    pParts->mKoopaJrShip->mLodCtrl->validate();
+
+    pParts->mPeach->mJointCtrl->startFaceCtrl(-1);
+    pParts->mKoopaJr->mJointCtrl->startFaceCtrl(-1);
 }
 
 void KoopaFunction::invalidateKoopaNpcLod(Koopa* pKoopa) {
@@ -477,9 +476,10 @@ void KoopaFunction::tryRestartKoopa() {
         MR::startAction(pKoopa->mParts->mKoopaJr, "DemoKoopaVs3Wait");
         MR::startAction(pKoopa->mParts->mKoopaJrShip, "DemoKoopaVs3Wait");
 
-        KoopaParts* pParts = pKoopa->mParts;
-        pParts->mPeach->mJointCtrl->startFaceCtrl(-1);
-        pParts->mKoopaJr->mJointCtrl->startFaceCtrl(-1);
+        // This is super ugly but idk how to fix the register issue
+        pKoopa = (Koopa *)pKoopa->mParts;
+        ((KoopaParts*)pKoopa)->mPeach->mJointCtrl->startFaceCtrl(-1);
+        ((KoopaParts*)pKoopa)->mKoopaJr->mJointCtrl->startFaceCtrl(-1);
     }
 }
 

@@ -20,7 +20,7 @@ class ModelObjNpc;
 class ModelObj;
 
 namespace {
-    bool tryStartCameraDemo(Koopa*, const char*, const char*, const char*, bool);
+    bool tryStartCameraDemo(Koopa*, const char*, const char* pName, const char* pDemoName, bool isMario);
 }  // namespace
 
 namespace MR {
@@ -34,109 +34,109 @@ namespace MR {
 }  // namespace MR
 
 namespace KoopaFunction {
-    NameObj* createKoopaVs1(const char*);
-    NameObj* createKoopaVs2(const char*);
-    NameObj* createKoopaVs3(const char*);
-    void initKoopaPartsVs1(Koopa*);
-    void initKoopaPartsVs2(Koopa*);
-    void initKoopaVs3(Koopa*);
+    NameObj* createKoopaVs1(const char* pName);
+    NameObj* createKoopaVs2(const char* pName);
+    NameObj* createKoopaVs3(const char* pName);
+    void initKoopaPartsVs1(Koopa* pKoopa);
+    void initKoopaPartsVs2(Koopa* pKoopa);
+    void initKoopaVs3(Koopa* pKoopa);
 
-    void createKoopaRock(Koopa*);
-    void createKoopaRollBall(Koopa*);
+    void createKoopaRock(Koopa* pKoopa);
+    void createKoopaRollBall(Koopa* pKoopa);
 
-    s32 registerBattleMapStair(KoopaBattleMapStair*);
+    s32 registerBattleMapStair(KoopaBattleMapStair* pBattleMapStair);
 
-    void setKoopaPos(Koopa*, const char*);
-    TVec3f& getPlanetCenterPos(const Koopa*);
-    f32 getPlanetRadius(const Koopa*);
+    void setKoopaPos(Koopa* pKoopa, const char* pDemoName);
+    TVec3f& getPlanetCenterPos(const Koopa* pKoopa);
+    f32 getPlanetRadius(const Koopa* pKoopa);
 
-    const TVec3f& getKoopaFront(const Koopa*);
-    TVec3f* getKoopaFrontPtr(Koopa*);
+    const TVec3f& getKoopaFront(const Koopa* pKoopa);
+    TVec3f* getKoopaFrontPtr(Koopa* pKoopa);
 
-    bool isKoopaSightPlayer(const Koopa*, const MR::ActorSightParam&);
-    bool escapeKoopaFromPlayer(Koopa*, const MR::ActorMoveParam&);
+    bool isKoopaSightPlayer(const Koopa* pKoopa, const MR::ActorSightParam& rSightParam);
+    bool escapeKoopaFromPlayer(Koopa* pKoopa, const MR::ActorMoveParam& rMoveParam);
 
-    bool isKoopaVs1(const Koopa*);
-    bool isKoopaVs2(const Koopa*);
-    bool isKoopaVs3(const Koopa*);
-    bool isKoopaLv1(const Koopa*);
-    bool isKoopaLv2(const Koopa*);
-    bool isKoopaLv3(const Koopa*);
+    bool isKoopaVs1(const Koopa* pKoopa);
+    bool isKoopaVs2(const Koopa* pKoopa);
+    bool isKoopaVs3(const Koopa* pKoopa) NO_INLINE; // otherwise inlines in startKoopaPlateDamageAnimPowerStarAppear
+    bool isKoopaLv1(const Koopa* pKoopa);
+    bool isKoopaLv2(const Koopa* pKoopa);
+    bool isKoopaLv3(const Koopa* pKoopa);
 
-    bool isKoopaAngry(const Koopa*);
-    void startKoopaAngry(Koopa*);
-    void startFaceCtrl(Koopa*);
-    void endFaceCtrl(Koopa*, s32);
-    void endFaceCtrlDirect(Koopa*);
+    bool isKoopaAngry(const Koopa* pKoopa);
+    void startKoopaAngry(Koopa* pKoopa);
+    void startFaceCtrl(Koopa* pKoopa);
+    void endFaceCtrl(Koopa* pKoopa, s32 val);
+    void endFaceCtrlDirect(Koopa* pKoopa);
 
-    void startRecoverKoopaArmor(Koopa*);
-    void startBreakKoopaTailThorn(Koopa*);
-    void startRecoverKoopaTailThorn(Koopa*);
+    void startRecoverKoopaArmor(Koopa* pKoopa);
+    void startBreakKoopaTailThorn(Koopa* pKoopa);
+    void startRecoverKoopaTailThorn(Koopa* pKoopa);
 
-    PartsModel* getKoopaRock(Koopa*);
-    KoopaRockBreak* getKoopaRockBreak(Koopa*);
-    PartsModel* getKoopaRollBall(Koopa*);
+    PartsModel* getKoopaRock(Koopa* pKoopa);
+    KoopaRockBreak* getKoopaRockBreak(Koopa* pKoopa);
+    PartsModel* getKoopaRollBall(Koopa* pKoopa);
 
-    void emitKoopaFireShortSlow(Koopa*);
-    void emitKoopaFireShortFast(Koopa*);
-    void emitKoopaFireShortCurve(Koopa*);
-    void emitKoopaFireLongTime(Koopa*);
+    void emitKoopaFireShortSlow(Koopa* pKoopa);
+    void emitKoopaFireShortFast(Koopa* pKoopa);
+    void emitKoopaFireShortCurve(Koopa* pKoopa);
+    void emitKoopaFireLongTime(Koopa* pKoopa);
 
-    KoopaFireStairs* emitFireStairsToTarget(Koopa*, const KoopaBattleMapStair*, const TVec3f&, bool);
-    void killKoopaFireStairsAll(Koopa*);
+    KoopaFireStairs* emitFireStairsToTarget(Koopa* pKoopa, const KoopaBattleMapStair* pMapStair, const TVec3f& rPosition, bool useFront);
+    void killKoopaFireStairsAll(Koopa* pKoopa);
 
-    void emitKoopaShockWave(Koopa*);
+    void emitKoopaShockWave(Koopa* pKoopa);
 
-    KoopaBattleMapPlanet* getKoopaPlanet(Koopa*);
-    KoopaBattleMapPlanet* getKoopaPlanetLv2(Koopa*);
-    KoopaBattleMapPlanet* getKoopaPlanetLv3(Koopa*);
+    KoopaBattleMapPlanet* getKoopaPlanet(Koopa* pKoopa);
+    KoopaBattleMapPlanet* getKoopaPlanetLv2(Koopa* pKoopa);
+    KoopaBattleMapPlanet* getKoopaPlanetLv3(Koopa* pKoopa);
 
-    void appearKoopaHoleSunPlanetInside(Koopa*);
-    void appearKoopaHoleSunPlanetOutside(Koopa*);
-    void killKoopaHoleSunPlanetOutside(Koopa*);
-    KoopaPlanetShadow* getKoopaPlanetShadow(Koopa*);
+    void appearKoopaHoleSunPlanetInside(Koopa* pKoopa);
+    void appearKoopaHoleSunPlanetOutside(Koopa* pKoopa);
+    void killKoopaHoleSunPlanetOutside(Koopa* pKoopa);
+    KoopaPlanetShadow* getKoopaPlanetShadow(Koopa* pKoopa);
 
-    bool tryKoopaPushPlayer(HitSensor*, HitSensor*);
-    bool tryKoopaBodyAttackPlayer(HitSensor*, HitSensor*);
-    bool tryKoopaAttackPlayerMaximum(HitSensor*, HitSensor*);
-    bool tryKoopaBodyAttackPlayerMaximum(HitSensor*, HitSensor*);
-    bool tryKoopaAttackMapObj(HitSensor*, HitSensor*);
-    bool tryKoopaReflectStarPiece(u32, HitSensor*, HitSensor*);
+    bool tryKoopaPushPlayer(HitSensor* pSender, HitSensor* pReceiver);
+    bool tryKoopaBodyAttackPlayer(HitSensor* pSender, HitSensor* pReceiver);
+    bool tryKoopaAttackPlayerMaximum(HitSensor* pSender, HitSensor* pReceiver);
+    bool tryKoopaBodyAttackPlayerMaximum(HitSensor* pSender, HitSensor* pReceiver);
+    bool tryKoopaAttackMapObj(HitSensor* pSender, HitSensor* pReceiver);
+    bool tryKoopaReflectStarPiece(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
-    HitSensor* getKoopaMessageSensor(Koopa*);
+    HitSensor* getKoopaMessageSensor(Koopa* pKoopa);
 
-    void registerKoopaSwitchKeeper(LiveActor*);
-    KoopaSwitchKeeper* getKoopaSwitchKeeper(Koopa*);
+    void registerKoopaSwitchKeeper(LiveActor* pActor);
+    KoopaSwitchKeeper* getKoopaSwitchKeeper(Koopa* pKoopa);
 
-    void registerKoopaViewSwitchKeeper(LiveActor*);
-    KoopaViewSwitchKeeper* getKoopaViewSwitchKeeper(Koopa*);
+    void registerKoopaViewSwitchKeeper(LiveActor* pActor);
+    KoopaViewSwitchKeeper* getKoopaViewSwitchKeeper(Koopa* pKoopa);
 
-    void registerKoopaPowerUpSwitch(LiveActor*);
-    KoopaPowerUpSwitch* getKoopaPowerUpSwitch(Koopa*);
+    void registerKoopaPowerUpSwitch(LiveActor* pActor);
+    KoopaPowerUpSwitch* getKoopaPowerUpSwitch(Koopa* pKoopa);
 
-    bool tryStartKoopaAndMarioCameraDemo(Koopa*, const char*, const char*, const char*);
-    bool tryStartKoopaCameraDemo(Koopa*, const char*, const char*, const char*);
-    bool tryEndKoopaCameraDemo(Koopa*, const char*, const char*);
+    bool tryStartKoopaAndMarioCameraDemo(Koopa* pKoopa, const char*, const char*, const char*);
+    bool tryStartKoopaCameraDemo(Koopa* pKoopa, const char*, const char*, const char*);
+    bool tryEndKoopaCameraDemo(Koopa* pKoopa, const char*, const char*);
 
-    ModelObjNpc* getKoopaDemoPeach(Koopa*);
-    ModelObjNpc* getKoopaDemoKoopaJr(Koopa*);
-    ModelObjNpc* getKoopaDemoKoopaJrShip(Koopa*);
-    ModelObj* getKoopaDemoMeteor1(Koopa*);
-    ModelObj* getKoopaDemoMeteor2(Koopa*);
-    ModelObj* getKoopaDemoMeteor3(Koopa*);
-    void endKoopaDemoMeetPeach(Koopa*);
+    ModelObjNpc* getKoopaDemoPeach(Koopa* pKoopa);
+    ModelObjNpc* getKoopaDemoKoopaJr(Koopa* pKoopa);
+    ModelObjNpc* getKoopaDemoKoopaJrShip(Koopa* pKoopa);
+    ModelObj* getKoopaDemoMeteor1(Koopa* pKoopa);
+    ModelObj* getKoopaDemoMeteor2(Koopa* pKoopa);
+    ModelObj* getKoopaDemoMeteor3(Koopa* pKoopa);
+    void endKoopaDemoMeetPeach(Koopa* pKoopa);
 
-    void invalidateKoopaNpcLod(Koopa*);
+    void invalidateKoopaNpcLod(Koopa* pKoopa);
 
-    void initKoopaCamera(Koopa*, const char*);
-    void initKoopaAnimCamera(Koopa*, const char*);
-    void startKoopaCamera(Koopa*, const char*);
-    void startKoopaTargetCamera(Koopa*, const char*);
-    void startKoopaAnimCamera(Koopa*, const char*, s32);
-    void endKoopaCamera(Koopa*, const char*, bool, s32);
-    void endKoopaAnimCamera(Koopa*, const char*, s32);
+    void initKoopaCamera(Koopa* pKoopa, const char* pName);
+    void initKoopaAnimCamera(Koopa* pKoopa, const char* pName);
+    void startKoopaCamera(Koopa* pKoopa, const char* pName);
+    void startKoopaTargetCamera(Koopa* pKoopa, const char* pName);
+    void startKoopaAnimCamera(Koopa* pKoopa, const char* pName, s32);
+    void endKoopaCamera(Koopa* pKoopa, const char* pName, bool, s32);
+    void endKoopaAnimCamera(Koopa* pKoopa, const char* pName, s32);
 
-    void startKoopaPlateDamageAnimPowerStarAppear(Koopa*);
+    void startKoopaPlateDamageAnimPowerStarAppear(Koopa* pKoopa);
 
     void changeBgmStateNormal(u32);
     void changeBgmStateEscape();
@@ -145,8 +145,8 @@ namespace KoopaFunction {
 
     void tryRestartKoopa();
 
-    bool moveAndTurnKoopaToPlayer(Koopa*, const MR::ActorMoveParam&);
-    void startBreakKoopaArmor(Koopa*);
-    bool tryKoopaShellAttackPlayer(HitSensor*, HitSensor*);
-    void startKoopaSpinHitBlow(Koopa*);
+    bool moveAndTurnKoopaToPlayer(Koopa* pKoopa, const MR::ActorMoveParam& rMoveParam);
+    void startBreakKoopaArmor(Koopa* pKoopa);
+    bool tryKoopaShellAttackPlayer(HitSensor* pSender, HitSensor* pReceiver);
+    void startKoopaSpinHitBlow(Koopa* pKoopa);
 };  // namespace KoopaFunction
