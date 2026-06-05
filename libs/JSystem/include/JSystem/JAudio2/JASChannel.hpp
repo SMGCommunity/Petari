@@ -59,6 +59,11 @@ public:
         /* 2 */ STATUS_RELEASE,
     };
 
+    enum ChannelType {
+        /* 0 */ CH_WAVE = 0,
+        /* 2 */ CH_OSC = 2,
+    };
+
     struct PanVector {
         /* 0x0 */ f32 mSound;
         /* 0x4 */ f32 mEffect;
@@ -96,68 +101,68 @@ public:
     static void receiveBankDisposeMsg();
     bool checkBankDispose() const;
 
-    void setPauseFlag(bool param_0) {
-        mPauseFlag = param_0;
+    void setPauseFlag(bool flag) {
+        mPauseFlag = flag;
     }
-    void setUpdateTimer(u32 param_0) {
-        mUpdateTimer = param_0;
+    void setUpdateTimer(u32 timer) {
+        mUpdateTimer = timer;
     }
-    void setBankDisposeID(const void* param_0) {
-        mBankDisposeID = param_0;
+    void setBankDisposeID(const void* id) {
+        mBankDisposeID = id;
     }
-    void setDirectRelease(u16 param_0) {
-        mOscillators[0].setDirectRelease(param_0);
+    void setDirectRelease(u16 release) {
+        mOscillators[0].setDirectRelease(release);
     }
-    void setVibrate(f32 param_0, f32 param_1) {
-        mVibrate.setDepth(param_0);
-        mVibrate.setPitch(param_1);
+    void setVibrate(f32 depth, f32 pitch) {
+        mVibrate.setDepth(depth);
+        mVibrate.setPitch(pitch);
     }
-    void setVibrateDelay(u16 param_0) {
-        mVibrate.setDelay(param_0);
+    void setVibrateDelay(u16 delay) {
+        mVibrate.setDelay(delay);
     }
-    void setTremolo(f32 param_0, f32 param_1) {
-        mTremolo.setDepth(param_0);
-        mTremolo.setPitch(param_1);
+    void setTremolo(f32 depth, f32 pitch) {
+        mTremolo.setDepth(depth);
+        mTremolo.setPitch(pitch);
     }
-    void setTremoloDelay(u16 param_0) {
-        mTremolo.setDelay(param_0);
+    void setTremoloDelay(u16 delay) {
+        mTremolo.setDelay(delay);
     }
-    void setPriority(u16 param_0) {
-        mPriority = param_0;
+    void setPriority(u16 prio) {
+        mPriority = prio;
     }
-    void setParams(const JASChannelParams& param_0) {
-        mParams = param_0;
+    void setParams(const JASChannelParams& params) {
+        mParams = params;
     }
-    void setInitVolume(f32 param_0) {
-        mSoundParams.mVolume = param_0;
+    void setInitVolume(f32 volume) {
+        mSoundParams.mVolume = volume;
     }
-    void setInitFxmix(f32 param_0) {
-        mSoundParams.mFxMix = param_0;
+    void setInitFxmix(f32 fxMix) {
+        mSoundParams.mFxMix = fxMix;
     }
-    void setInitPitch(f32 param_0) {
-        mSoundParams.mPitch = param_0;
+    void setInitPitch(f32 pitch) {
+        mSoundParams.mPitch = pitch;
     }
-    void setInitPan(f32 param_0) {
-        mSoundParams.mPan = param_0;
+    void setInitPan(f32 pan) {
+        mSoundParams.mPan = pan;
     }
-    void setInitDolby(f32 param_0) {
-        mSoundParams.mDolby = param_0;
+    void setInitDolby(f32 dolby) {
+        mSoundParams.mDolby = dolby;
     }
-    void setKey(s32 param_0) {
-        mKey = param_0;
+    void setKey(s32 key) {
+        mKey = key;
     }
-    void setVelocity(u32 param_0) {
-        mVelocity = param_0;
+    void setVelocity(u32 velocity) {
+        mVelocity = velocity;
     }
-    void setSkipSamples(u32 param_0) {
-        mSkipSamples = param_0;
+    void setSkipSamples(u32 skipSamples) {
+        mSkipSamples = skipSamples;
     }
     bool isDolbyMode() const {
         return mMixConfig[0].whole == 0xffff;
     }
 
     /* 0x00 */ int mStatus;
-    /* 0x04 */ bool mPauseFlag;
+    /* 0x04 */ u8 mPauseFlag;
     /* 0x08 */ JASDSPChannel* mDspCh;
     /* 0x0C */ Callback mCallback;
     /* 0x10 */ void* mCallbackData;
@@ -176,11 +181,12 @@ public:
     /* 0xD0 */ f32 mKeySweepTarget;
     /* 0xD4 */ u32 mKeySweepCount;
     /* 0xD8 */ u32 mSkipSamples;
-    struct {
-        u32 _0;
-        JASWaveInfo mWaveInfo;
-    } _DC;
-    /* 0x104 */ int _104;
+    /* 0xDC */ u32 mChannelType;
+    /* 0xE0 */ JASWaveInfo mWaveInfo;
+    union {
+        /* 0x104 */ int mWavePtr;
+        /* 0x104 */ int mProgNo;
+    };
 
     static OSMessageQueue sBankDisposeMsgQ;
     static OSMessage sBankDisposeMsg[16];

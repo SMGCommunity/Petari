@@ -2,6 +2,7 @@
 #include "Game/Util/FileUtil.hpp"
 #include "JSystem/JAudio2/JASAiCtrl.hpp"
 #include "JSystem/JAudio2/JASBasicInst.hpp"
+#include "JSystem/JAudio2/JASChannel.hpp"
 #include "JSystem/JAudio2/JASMutex.hpp"
 #include "JSystem/JAudio2/JASWaveArcLoader.hpp"
 #include "JSystem/JSupport/JSupport.hpp"
@@ -15,47 +16,47 @@ JASChannel* JASBank::noteOn(JASBank const* pBank, int progNo, u8 pitch, u8 veloc
     }
 
     if (pBank == nullptr) {
-        return NULL;
+        return nullptr;
     }
 
     JASInstParam params;
     if (!pBank->getInstParam(progNo, pitch, velocity, &params)) {
-        return NULL;
+        return nullptr;
     }
 
     JASWaveBank* waveBank = pBank->getWaveBank();
     if (!waveBank) {
-        return NULL;
+        return nullptr;
     }
 
     JASWaveHandle* waveHandle = waveBank->getWaveHandle(params._18);
     if (!waveHandle) {
-        return NULL;
+        return nullptr;
     }
 
     const JASWaveInfo* waveInfo = waveHandle->getWaveInfo();
     if (!waveInfo) {
-        return NULL;
+        return nullptr;
     }
 
     int wavePtr = waveHandle->getWavePtr();
     if (!wavePtr) {
-        return NULL;
+        return nullptr;
     }
 
     JASChannel* channel = new JASChannel(pCallback, pChannelMgr);
     if (!channel) {
-        return NULL;
+        return nullptr;
     }
 
     channel->setPriority(priority);
-    channel->_DC.mWaveInfo = *waveInfo;
-    channel->_104 = wavePtr;
-    channel->_DC._0 = params._14;
+    channel->mWaveInfo = *waveInfo;
+    channel->mWavePtr = wavePtr;
+    channel->mChannelType = params.mChannelType;
     channel->setBankDisposeID(pBank);
-    channel->setInitPitch(params.mPitch * (waveInfo->_4 / JASDriver::getDacRate()));
+    channel->setInitPitch(params.mPitch * (waveInfo->mSampleRate / JASDriver::getDacRate()));
     if (params._24 == 0) {
-        channel->setKey(pitch - waveInfo->_1);
+        channel->setKey(pitch - waveInfo->mBaseKey);
     }
     channel->setInitVolume(params.mVolume);
     channel->setVelocity(velocity);
@@ -67,7 +68,7 @@ JASChannel* JASBank::noteOn(JASBank const* pBank, int progNo, u8 pitch, u8 veloc
     }
     channel->setDirectRelease(params.mDirectRelease);
     if (!channel->play()) {
-        return NULL;
+        return nullptr;
     }
     return channel;
 }
@@ -165,5 +166,6 @@ bool JASWaveArc::load(JASHeap* pHeap) {
     return sendLoadCmd();
 }
 
-JASInstParam::JASInstParam() : _14(0), _18(0), mOscillatorData(nullptr), mNumOscillators(0), _24(false), mDirectRelease(0) {
+JASInstParam::JASInstParam()
+    : mChannelType(JASChannel::CH_WAVE), _18(0), mOscillatorData(nullptr), mNumOscillators(0), _24(false), mDirectRelease(0) {
 }

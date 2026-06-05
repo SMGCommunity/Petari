@@ -322,7 +322,7 @@ bool JASTrack::gateOn(u32 transposedPitch, u32 velocity, f32 seqTime, u32 flags)
             } else {
                 JASChannel* channel = mgr->mChannels[0];
                 if (channel) {
-                    channel->setKey(pitch - channel->_DC.mWaveInfo._1);
+                    channel->setKey(pitch - channel->mWaveInfo.mBaseKey);
                     channel->setVelocity(velocity);
                     channel->setUpdateTimer(updateTimer);
                 }
@@ -451,8 +451,8 @@ u32 JASTrack::seqTimeToDspTime(f32 seqTime) {
     if (mIsDirectlyPlayed)
         seqTime /= mSampleInterval;
     else {
-        seqTime *= 120f / mTimebase;
-        seqTime *= JASDriver::getSubFrames() / 10f;
+        seqTime *= 120.0f / mTimebase;
+        seqTime *= JASDriver::getSubFrames() / 10.0f;
     }
     return seqTime;
 }

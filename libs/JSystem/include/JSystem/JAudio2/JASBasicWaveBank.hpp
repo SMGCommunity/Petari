@@ -63,7 +63,10 @@ struct JASBasicWaveBank : public JASWaveBank {
     void incWaveTable(JASBasicWaveBank::TWaveGroup const*);
     void decWaveTable(JASBasicWaveBank::TWaveGroup const*);
     JASWaveHandle* getWaveHandle(u32) const;
-    void setWaveInfo(JASBasicWaveBank::TWaveGroup*, int, u16, JASWaveInfo const&);
+
+    void setWaveInfo(JASBasicWaveBank::TWaveGroup* waveGroup, int index, u16 waveId, JASWaveInfo const& waveInfo) {
+        waveGroup->setWaveInfo(index, waveId, waveInfo);
+    }
     JASWaveArc* getWaveArc(u32 param_0) {
         return getWaveGroup(param_0);
     }

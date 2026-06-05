@@ -138,5 +138,5 @@ int JASBasicWaveBank::TWaveHandle::getWavePtr() const {
     if (base == 0) {
         return 0;
     }
-    return (intptr_t)base + mWaveInfo._8;
+    return (intptr_t)base + mWaveInfo.mAWStartOffs;
 }
