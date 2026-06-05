@@ -1,24 +1,21 @@
 #pragma once
 
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
 #include "Game/MapObj/SpinDriverShootPath.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "revolution/mtx.h"
 
 
 class AstroDomeDemoStarter : public LiveActor {
 public:
     AstroDomeDemoStarter(const char*);
+    
     virtual void init(const JMapInfoIter&);
     virtual void calcAndSetBaseMtx();
     virtual MtxPtr getBaseMtx() const;
     virtual ~AstroDomeDemoStarter();
 
-    void movePlayer();
     void startJumpOut();
+    void movePlayer();
     void exeSpinDriverAppear();
     void exeSpinDriverStart();
     void exeSpinDriverShoot();

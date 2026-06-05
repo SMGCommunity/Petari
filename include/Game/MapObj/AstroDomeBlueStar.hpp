@@ -64,10 +64,10 @@ public:
         return v;
     }
 
-    GCaptureRibbon* mCaptureRibbon;  // 0x8C
+    /* 0x8C */ GCaptureRibbon* mCaptureRibbon;
     TPos3f _90;
     TPos3f _C0;
     ActorCameraInfo* _F0;
-    TVec3f mZoomPos;              // 0xF4
-    CaptureActor* mCaptureActor;  // 0x100
+    /* 0xF4 */ TVec3f mZoomPos;
+    /* 0x100*/ CaptureActor* mCaptureActor;
 };

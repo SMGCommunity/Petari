@@ -24,7 +24,7 @@ namespace NrvAstroDomeDemoStarter {
     NEW_NERVE(AstroDomeDemoStarterNrvSpinDriverShoot, AstroDomeDemoStarter, SpinDriverShoot);
     NEW_NERVE(AstroDomeDemoStarterNrvJumpOut, AstroDomeDemoStarter, JumpOut);
     NEW_NERVE(AstroDomeDemoStarterNrvWhiteOut, AstroDomeDemoStarter, WhiteOut);
-}
+};  // namespace NrvAstroDomeDemoStarter
 
 AstroDomeDemoStarter::AstroDomeDemoStarter(const char* pName) : LiveActor(pName) {
     mSpinDriverShootPath = nullptr;
@@ -33,7 +33,8 @@ AstroDomeDemoStarter::AstroDomeDemoStarter(const char* pName) : LiveActor(pName)
     _94.identity();
     _C4.identity();
 }
-AstroDomeDemoStarter::~AstroDomeDemoStarter() {}
+AstroDomeDemoStarter::~AstroDomeDemoStarter() {
+}
 
 void AstroDomeDemoStarter::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("SuperSpinDriver", nullptr, false);
@@ -44,7 +45,7 @@ void AstroDomeDemoStarter::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     MR::initActorCamera(this, rIter, &mCameraInfo);
     MR::initAnimCamera(this, mCameraInfo, "AstroDomeDemoCamera.arc", "AstroDomeDemoCamera");
-    mSpinDriverShootPath = new SpinDriverShootPath;
+    mSpinDriverShootPath = new SpinDriverShootPath();
     mSpinDriverShootPath->init(rIter);
     mSpinDriverPathDrawer = new SpinDriverPathDrawer(mSpinDriverShootPath);
     mSpinDriverPathDrawer->initWithoutIter();
@@ -62,11 +63,12 @@ void AstroDomeDemoStarter::init(const JMapInfoIter& rIter) {
 
 void AstroDomeDemoStarter::startJumpOut() {
     MR::onSwitchA(this);
-    mPosition.z = 0;
-    mPosition.y = 0;    // a TVec3f.set() here but inverted
-    mPosition.x = 0;
+    mPosition.z = 0.0f;
+    mPosition.y = 0.0f;  // a TVec3f.set() here but inverted
+    mPosition.x = 0.0f;
     _94.identity();
-    MR::startAnimCameraTargetSelf(this, mCameraInfo, "AstroDomeDemoCamera", 0, MR::getAnimCameraFrame(this, mCameraInfo, "AstroDomeDemoCamera") / 180.0f);
+    MR::startAnimCameraTargetSelf(this, mCameraInfo, "AstroDomeDemoCamera", 0,
+                                  MR::getAnimCameraFrame(this, mCameraInfo, "AstroDomeDemoCamera") / 180.0f);
     MR::overlayWithPreviousScreen(2);
 }
 
@@ -77,7 +79,7 @@ void AstroDomeDemoStarter::calcAndSetBaseMtx() {
 void AstroDomeDemoStarter::exeSpinDriverStart() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Start", nullptr);
-        MR::startBckPlayer("SuperSpinDriverStart", (const char*)nullptr);
+        MR::startBckPlayer("SuperSpinDriverStart", static_cast<const char*>(nullptr));
         MR::setPlayerBaseMtx(_94);
         MR::tryRumblePadMiddle(this, 0);
         MR::startCSSound("CS_SPIN_DRIVE_LONG", "SE_SY_CS_S_SPIN_DRV_START", 0);
@@ -85,8 +87,7 @@ void AstroDomeDemoStarter::exeSpinDriverStart() {
     }
     if (MR::isLessStep(this, 43)) {
         MR::tryRumblePadMiddle(this, 0);
-    }
-    else {
+    } else {
         MR::setBckRate(this, 0.0f);
         MR::setBckRate(MR::getPlayerDemoActor(), 0.0f);
     }
@@ -110,7 +111,7 @@ void AstroDomeDemoStarter::exeSpinDriverStart() {
         MR::startSoundPlayer("SE_PV_JUMP_JOY", -1);
     }
     for (int i = 6; i > 0; i--) {
-        
+
     }
 } */
 
@@ -118,7 +119,7 @@ void AstroDomeDemoStarter::exeJumpOut() {
     if (MR::isFirstStep(this)) {
         MR::hideModel(this);
         MR::resetPlayerEffect();
-        MR::startBckPlayer("SpaceFlyLoop", (const char*)nullptr);
+        MR::startBckPlayer("SpaceFlyLoop", static_cast<const char*>(nullptr));
         MR::emitEffect(MR::getPlayerDemoActor(), "SuperSpinDriverFlyGlow");
         mSpinDriverPathDrawer->appear();
     }
