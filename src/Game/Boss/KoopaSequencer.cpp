@@ -6,9 +6,6 @@ KoopaSequencer::KoopaSequencer(const char* pName, s32 vs)
     : NerveExecutor(pName), mKoopa(), mPowerUp(), _10(), mJumpToPlanet(), mLv(1), mVs(vs), mIsAngry() {
 }
 
-KoopaSequencer::~KoopaSequencer() {
-}
-
 void KoopaSequencer::init(Koopa* pKoopa, const JMapInfoIter& rIter) {
     mKoopa = pKoopa;
 
@@ -35,4 +32,7 @@ void KoopaSequencer::startBattleLevel2() {
 void KoopaSequencer::startBattleLevel3() {
     mLv = 3;
     mIsAngry = false;
+}
+
+KoopaSequencer::~KoopaSequencer() {
 }

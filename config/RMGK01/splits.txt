@@ -1025,11 +1025,12 @@ Game/Boss/KoopaRockBreak.cpp:
 
 Game/Boss/KoopaSensorCtrl.cpp:
 	.text       start:0x80061294 end:0x80061898
+	.data       start:0x8056D4F0 end:0x8056D650
 	.sdata2     start:0x806B88E8 end:0x806B8938
 
 Game/Boss/KoopaSequencer.cpp:
 	.text       start:0x80061898 end:0x80061A18
-	.data       start:0x8056D4F0 end:0x8056D678
+	.data       start:0x8056D650 end:0x8056D678
 
 Game/Boss/KoopaSubSequenceBattle.cpp:
 	.text       start:0x80061A18 end:0x80061CFC
