@@ -14,7 +14,7 @@ namespace {
     };
     static const f32 sPieceSensorRadius = 120.0f;
     // static const f32 sPieceLargeSensorRadius = _;
-    // static const f32 sMinScale = _;
+    static const f32 sMinScale = 0.6f;
     static const s32 sCrumbleFrame = 40;
     // static const s32 sPieceInterval = _;
     static const f32 sAppearDist = 300.0f;
@@ -32,21 +32,21 @@ namespace {
     NEW_NERVE(MogucchiHillNrvWait, MogucchiHill, Wait);
 };  // namespace
 
-MogucchiHillPiece::MogucchiHillPiece(const char* pName) : LiveActor(pName), mHost(), _90(), _94(), _98(), _CC(), _CD() {
+MogucchiHillPiece::MogucchiHillPiece(const char* pName) : LiveActor(pName), mHost(), mModelName(), mJointName(), mAutoEffectName(), _CC(), _CD() {
     _9C.identity();
 }
 
 void MogucchiHillPiece::init(const JMapInfoIter& rIter) {
-    initModelManagerWithAnm(_90, nullptr, false);
+    initModelManagerWithAnm(mModelName, nullptr, false);
     MR::connectToSceneMapObjDecorationStrongLight(this);
     initHitSensor(1);
-    MR::addHitSensorAtJointMapObj(this, "body", _94, 8, mScale.x * ::sPieceSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorAtJointMapObj(this, "body", mJointName, 8, mScale.x * ::sPieceSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 
-    if (_98 != nullptr) {
-        initEffectKeeper(0, _98, false);
+    if (mAutoEffectName != nullptr) {
+        initEffectKeeper(0, mAutoEffectName, false);
     }
 
-    if (_CE) {
+    if (mHasLightCtrl) {
         MR::initLightCtrl(this);
     }
 
@@ -77,11 +77,11 @@ void MogucchiHillPiece::appear() {
     MR::validateClipping(this);
 }
 
-void MogucchiHillPiece::initWithModelName(const char* pParam1, const char* pParam2, const char* pParam3, bool param4) {
-    _90 = pParam1;
-    _94 = pParam2;
-    _98 = pParam3;
-    _CE = param4;
+void MogucchiHillPiece::initWithModelName(const char* pModelName, const char* pJointName, const char* pAutoEffectName, bool hasLightCtrl) {
+    mModelName = pModelName;
+    mJointName = pJointName;
+    mAutoEffectName = pAutoEffectName;
+    mHasLightCtrl = hasLightCtrl;
 
     initWithoutIter();
 }
@@ -261,8 +261,8 @@ bool MogucchiHillPiece::isTargetGoingAway(HitSensor* pSensor1, HitSensor* pSenso
 }
 
 MogucchiHill::MogucchiHill(LiveActor* pHost, s32 param2, const char* pName)
-    : LiveActor(pName), mHost(pHost), _90(), _94(param2), _98(), _CC(), _D0(100.0f), _D4(150.0f), _D8(3), _DC(::sPieceModelTable), _E0("MogucchiHil"),
-      _E4("MogucchiHil"), _E8(), _EC(), _F0(), mAppearNum() {
+    : LiveActor(pName), mHost(pHost), _90(), _94(param2), _98(), _CC(), _D0(100.0f), _D4(150.0f), _D8(3), mModelNameTable(::sPieceModelTable),
+      mJointName("MogucchiHill"), mAutoEffectName("MogucchiHill"), mHasLightCtrl(), _EC(), _F0(), mAppearNum() {
     if (param2 > 100) {
         _94 = 100;
     }
@@ -357,14 +357,53 @@ void MogucchiHill::exeWait() {
 void MogucchiHill::createPieces() {
     _90 = new MogucchiHillPiece[_94]();
 
+    s32 idk = MR::getRandom((s32)0, _D8);
+
     for (u32 i = 0; i < _94; i++) {
+        s32 idk2 = MR::getRandom((s32)0, _D8 - 1);
+
         _90[i].mHost = this;
         _90[i].mScale.setAll< f32 >(mPosition.x);
-        // _90[i].initWithModelName(_DC[..], _E0, _E4, _E8);
+        _90[i].initWithModelName(mModelNameTable[i], mJointName, mAutoEffectName, mHasLightCtrl);
     }
 }
 
-// MogucchiHill::appearPiece
+void MogucchiHill::appearPiece() {
+    killPieceOverAppear();
+    killPieceIfAlive();
+
+    switch (_EC) {
+    case 0:
+        break;
+    case 1:
+        _F0++;
+
+        if (_F0 >= 3) {
+            _F0 = 3;
+            _EC = 0;
+        }
+        break;
+    case 2:
+        _F0--;
+
+        if (_F0 <= 0) {
+            _F0 = 0;
+            setNerve(&::MogucchiHillNrvWait::sInstance);
+            _EC = 0;
+            return;
+        }
+        break;
+    }
+
+    if (_F0 != 0) {
+        _90[_98].setSize(::sMinScale + 0.4f * (_F0 - 1) / 2.0f);
+        _90[_98]._9C.setInline(mReserveMtx);
+        _90[_98]._9C.getTrans(mPosition);
+        _90[_98].appear();
+        _CC = false;
+        _98 = _94 + 1 % _94;
+    }
+}
 
 void MogucchiHill::killPieceOverAppear() {
     s32 index = (_94 + (_98 - mAppearNum)) % _94;
@@ -388,6 +427,6 @@ f32 MogucchiHill::getDistanceFromReserveMtx() const {
 }
 
 void MogucchiHill::reserveCurrentMtx() {
-    mReserveMtx.setInline(getBaseMtx());
+    mReserveMtx.setInline(mHost->getBaseMtx());
     _CC = true;
 }

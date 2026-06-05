@@ -2933,7 +2933,7 @@ Game/Enemy/Mogu.cpp:
 Game/Enemy/Mogucchi.cpp:
 	.text       start:0x801265D8 end:0x80127C74
 	.ctors      start:0x8052EB08 end:0x8052EB0C
-	.rodata     start:0x80532400 end:0x80532428
+	.rodata     start:0x80532400 end:0x80532418
 	.data       start:0x80581F28 end:0x80582130
 	.sbss       start:0x806B44F0 end:0x806B4508
 	.sdata2     start:0x806BB0D0 end:0x806BB120
@@ -2941,6 +2941,7 @@ Game/Enemy/Mogucchi.cpp:
 Game/Enemy/MogucchiHill.cpp:
 	.text       start:0x80127C74 end:0x80128EE4
 	.ctors      start:0x8052EB0C end:0x8052EB10
+	.rodata     start:0x80532418 end:0x80532420
 	.data       start:0x80582130 end:0x80582338
 	.sbss       start:0x806B4508 end:0x806B4520
 	.sdata2     start:0x806BB120 end:0x806BB140
@@ -2960,6 +2961,7 @@ Game/Enemy/MogucchiShooter.cpp:
 Game/Enemy/MoguStone.cpp:
 	.text       start:0x80129BDC end:0x8012A98C
 	.ctors      start:0x8052EB14 end:0x8052EB18
+	.rodata     start:0x80532420 end:0x80532428
 	.data       start:0x80582590 end:0x80582730
 	.sbss       start:0x806B4558 end:0x806B4568
 	.sdata2     start:0x806BB160 end:0x806BB198
