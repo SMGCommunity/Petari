@@ -99,7 +99,7 @@ public:
     JSUList(bool thing) : JSUPtrList(thing) {
     }
 
-    ~JSUList() {
+    ~JSUList(){
 
     };
 
@@ -274,7 +274,7 @@ public:
         return prev;
     }
 
-    JSUTreeIterator< T >& operator++() NO_INLINE {
+    JSUTreeIterator< T >& operator++() {
         this->mTree = this->mTree->getNextChild();
         return *this;
     }

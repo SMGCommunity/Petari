@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JAudio2/JASChannel.hpp"
 #include "JSystem/JAudio2/JASGadget.hpp"
 #include "JSystem/JAudio2/JASOscillator.hpp"
 #include "JSystem/JAudio2/JASSoundParams.hpp"
@@ -13,8 +14,8 @@ const int OSC_MAX = 2;
 struct JASInstParam : public JASSoundParams {
     JASInstParam();  // gets overwritten in OverwriteJAudio
 
-    void init_14() {
-        _14 = 0;
+    void initChannelType() {
+        mChannelType = JASChannel::CH_WAVE;
     }
 
     void init_18() {
@@ -35,14 +36,14 @@ struct JASInstParam : public JASSoundParams {
     }
 
     void init() {
-        init_14();
+        initChannelType();
         init_18();
         initOscillators();
         init_24();
         initRelease();
     }
 
-    /* 0x14 */ u32 _14;
+    /* 0x14 */ u32 mChannelType;
     /* 0x18 */ u32 _18;
     /* 0x1C */ JASOscillator::Data** mOscillatorData;
     /* 0x20 */ u32 mNumOscillators;

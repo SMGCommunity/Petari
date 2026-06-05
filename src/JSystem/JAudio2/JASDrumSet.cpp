@@ -20,7 +20,7 @@ bool JASDrumSet::getParam(int key, int velocity, JASInstParam* pParams) const {
         return false;
     }
 
-    pParams->_14 = 0;
+    pParams->mChannelType = JASChannel::CH_WAVE;
     pParams->_24 = true;
     pParams->mVolume = perc->mVolume;
     pParams->mPitch = perc->mPitch;

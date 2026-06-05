@@ -5,7 +5,7 @@
 class JKRDvdFile;
 class JKRHeap;
 
-enum JKRExpandSwitch { JKR_EXPAND_SWITCH_1 = 1 };
+enum JKRExpandSwitch { JKR_EXPAND_SWITCH_0 = 0, JKR_EXPAND_SWITCH_1 = 1 };
 
 class JKRDvdRipper {
 public:
