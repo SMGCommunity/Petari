@@ -787,7 +787,7 @@ config.libs = [
             Object(NonMatching, "Game/Boss/Koopa.cpp"),
             Object(NonMatching, "Game/Boss/KoopaBattleBase.cpp"),
             Object(NonMatching, "Game/Boss/KoopaBattleMain.cpp"),
-            Object(NonMatching, "Game/Boss/KoopaBattleStairsBase.cpp"),
+            Object(Matching, "Game/Boss/KoopaBattleStairsBase.cpp"),
             Object(NonMatching, "Game/Boss/KoopaBattleStairsVs1.cpp"),
             Object(NonMatching, "Game/Boss/KoopaBattleStairsVs3.cpp"),
             Object(NonMatching, "Game/Boss/KoopaBattleVs3Lv1.cpp"),

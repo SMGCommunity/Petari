@@ -36,8 +36,10 @@ bool KoopaBattleStairsBase::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, 
 s32 KoopaBattleStairsBase::calcFireAttackStep(KoopaBattleMapStair* pBattleMapStair, f32 myFloat, s32 myInt, const TVec3f& rVec) const {
     TVec3f zeroVec = TVec3f(0.0f, 0.0f, 0.0f);
 
-    s32 target = static_cast< s32 >(90.0f / myFloat) - static_cast< s32 >(pBattleMapStair->calcAndSetTargetPos(&zeroVec, rVec) / myFloat);
-    pBattleMapStair->_A8 = target;
+    f32 targetPos = pBattleMapStair->calcAndSetTargetPos(&zeroVec, rVec);
 
-    return pBattleMapStair->mFireTimer - target - myInt;
+    s32 castTargetPos = static_cast< s32 >(targetPos / myFloat) - static_cast< s32 >(90.0f / myFloat);
+    pBattleMapStair->_A8 = castTargetPos;
+
+    return pBattleMapStair->mFireTimer - castTargetPos - myInt;
 }
