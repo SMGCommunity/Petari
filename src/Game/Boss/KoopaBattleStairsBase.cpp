@@ -4,9 +4,9 @@
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Map/KoopaBattleMapStair.hpp"
 
-KoopaBattleStairsBase::KoopaBattleStairsBase(Koopa* pKoopa) : NerveExecutor("クッパ戦（階段の戦い）"), mKoopa(pKoopa), _C() {
-    _C = new LiveActorGroup("階段保持", 128);
-    _C->initWithoutIter();
+KoopaBattleStairsBase::KoopaBattleStairsBase(Koopa* pKoopa) : NerveExecutor("クッパ戦（階段の戦い）"), mKoopa(pKoopa), mStairsGroup() {
+    mStairsGroup = new LiveActorGroup("階段保持", 128);
+    mStairsGroup->initWithoutIter();
 }
 
 void KoopaBattleStairsBase::calcFireStartPos(TVec3f* pVec, const char* pDemoName) const {
@@ -22,8 +22,8 @@ void KoopaBattleStairsBase::update() {
 }
 
 void KoopaBattleStairsBase::end() {
-    for (int idx = 0; idx < _C->mObjectCount; idx++) {
-        _C->getActor(idx)->makeActorDead();
+    for (int idx = 0; idx < mStairsGroup->mObjectCount; idx++) {
+        mStairsGroup->getActor(idx)->makeActorDead();
     }
 
     KoopaFunction::killKoopaFireStairsAll(mKoopa);
@@ -34,9 +34,9 @@ bool KoopaBattleStairsBase::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, 
 }
 
 s32 KoopaBattleStairsBase::calcFireAttackStep(KoopaBattleMapStair* pBattleMapStair, f32 myFloat, s32 myInt, const TVec3f& rVec) const {
-    TVec3f vec = TVec3f(0.0f, 0.0f, 0.0f);
+    TVec3f zeroVec = TVec3f(0.0f, 0.0f, 0.0f);
 
-    s32 target = static_cast< s32 >(90.0f / myFloat) - static_cast< s32 >(pBattleMapStair->calcAndSetTargetPos(&vec, rVec) / myFloat);
+    s32 target = static_cast< s32 >(90.0f / myFloat) - static_cast< s32 >(pBattleMapStair->calcAndSetTargetPos(&zeroVec, rVec) / myFloat);
     pBattleMapStair->_A8 = target;
 
     return pBattleMapStair->mFireTimer - target - myInt;
