@@ -21,7 +21,7 @@ KoopaBattleStairsVs3::~KoopaBattleStairsVs3() {
 }
 
 void KoopaBattleStairsVs3::registerStair(KoopaBattleMapStair* pBattleMapStair) {
-    _C->registerActor(pBattleMapStair);
+    mStairsGroup->registerActor(pBattleMapStair);
     calcFireAttackStep(pBattleMapStair, 30.0f, 0, mNamePos);
 }
 
@@ -78,8 +78,8 @@ void KoopaBattleStairsVs3::exeWait() {
 void KoopaBattleStairsVs3::tryAttack() {
     KoopaBattleMapStair* pBattleMapStair;
 
-    for (int idx = 0; idx < _C->mObjectCount; idx++) {
-        pBattleMapStair = static_cast< KoopaBattleMapStair* >(_C->getActor(idx));
+    for (int idx = 0; idx < mStairsGroup->mObjectCount; idx++) {
+        pBattleMapStair = static_cast< KoopaBattleMapStair* >(mStairsGroup->getActor(idx));
 
         if (pBattleMapStair->isRequestAttackVs3()) {
             pBattleMapStair->_A6 = 1;
