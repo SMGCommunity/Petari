@@ -929,7 +929,7 @@ Game/Boss/KoopaBattleStairsVs1.cpp:
 	.text       start:0x8005A450 end:0x8005B120
 	.ctors      start:0x8052E8E8 end:0x8052E8EC
 	.data       start:0x8056C138 end:0x8056C2B8
-	.sdata      start:0x806B1730 end:0x806B1780
+	.sdata      start:0x806B1730 end:0x806B1740
 	.sbss       start:0x806B33A8 end:0x806B33C8
 	.sdata2     start:0x806B8808 end:0x806B8830
 
@@ -1308,7 +1308,7 @@ Game/Boss/SkeletalFishBossBattleDirector.cpp:
 
 Game/Boss/SkeletalFishBossFunc.cpp:
 	.text       start:0x8007B4A8 end:0x8007B5B0
-	.sdata      start:0x806B1780 end:0x806B1788
+	.sdata      start:0x806B1740 end:0x806B1788
 	.sdata2     start:0x806B8D18 end:0x806B8D20
 
 Game/Boss/SkeletalFishBossInfo.cpp:

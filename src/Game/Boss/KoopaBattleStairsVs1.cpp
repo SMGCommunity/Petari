@@ -24,40 +24,38 @@ namespace NrvKoopaBattleStairsVs1 {
 }  // namespace NrvKoopaBattleStairsVs1
 
 KoopaBattleStairsVs1::KoopaBattleStairsVs1(Koopa* pKoopa)
-    : KoopaBattleStairsBase(pKoopa), _10(), _14(), _18(), _1C(), _20(), _24(), _28(0.0f, 0.0f, 0.0f), _34(0.0f, 0.0f, 0.0f), _40(0.0f, 0.0f, 0.0f),
-      _4C(), _50(), _54(), _58(), _5C(), _60(0.0f, 0.0f, 0.0f), _6C(0.0f, 0.0f, 0.0f), _78(0.0f, 0.0f, 1.0f) {
+    : KoopaBattleStairsBase(pKoopa), mFarBattleMapStair(), mNearBattleMapStair(), mFarFireStairs(), mNearFireStairs(), _20(), mCanJump(),
+      mJumpPos0(0.0f, 0.0f, 0.0f), mJumpPos1(0.0f, 0.0f, 0.0f), mJumpPos2(0.0f, 0.0f, 0.0f), _4C(), _50(), _54(), _58(), mJumpIdx(),
+      mOldPosition(0.0f, 0.0f, 0.0f), mNewPosition(0.0f, 0.0f, 0.0f), mNewDirection(0.0f, 0.0f, 1.0f) {
     initNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvWaitDemo::sInstance);
 
-    calcFireStartPos(&_28, ::sKoopaPosName0);
-    calcFireStartPos(&_34, ::sKoopaPosName1);
-    calcFireStartPos(&_40, ::sKoopaPosName2);
+    calcFireStartPos(&mJumpPos0, ::sKoopaPosName0);
+    calcFireStartPos(&mJumpPos1, ::sKoopaPosName1);
+    calcFireStartPos(&mJumpPos2, ::sKoopaPosName2);
 
     KoopaFunction::initKoopaAnimCamera(mKoopa, "DemoBattleStairsStart");
 }
 
-KoopaBattleStairsVs1::~KoopaBattleStairsVs1() {
-}
-
 void KoopaBattleStairsVs1::registerStair(KoopaBattleMapStair* pBattleMapStair) {
     if (pBattleMapStair->isTypeDemoFar()) {
-        _10 = pBattleMapStair;
+        mFarBattleMapStair = pBattleMapStair;
     }
 
     if (pBattleMapStair->isTypeDemoNear()) {
-        _14 = pBattleMapStair;
+        mNearBattleMapStair = pBattleMapStair;
     }
 
-    _C->registerActor(pBattleMapStair);
+    mStairsGroup->registerActor(pBattleMapStair);
 
-    TVec3f* vec = &_28;
+    const TVec3f* vec = &mJumpPos0;
 
     if (pBattleMapStair->_94 == 1) {
-        vec = &_34;
+        vec = &mJumpPos1;
         if (pBattleMapStair->isTypeNormal()) {
             _50++;
         }
     } else if (pBattleMapStair->_94 == 2) {
-        vec = &_40;
+        vec = &mJumpPos2;
         if (pBattleMapStair->isTypeNormal()) {
             _54++;
         }
@@ -84,31 +82,31 @@ void KoopaBattleStairsVs1::exeWaitDemo() {
 
 void KoopaBattleStairsVs1::exeDemo() {
     if (MR::isStep(this, 264)) {
-        KoopaBattleMapStair* pBattleMapStair = _10;
+        KoopaBattleMapStair* pBattleMapStair = mFarBattleMapStair;
         Koopa* pKoopa = mKoopa;
         TVec3f jointPos = TVec3f(0.0f, 0.0f, 0.0f);
         MR::copyJointPos(pKoopa, "Tongue2", &jointPos);
 
-        _18 = KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
+        mFarFireStairs = KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
 
         MR::startSound(mKoopa, "SE_OJ_KOOPA_BULLET_SHOOT", -1, -1);
 
-        MR::requestMovementOn(_18);
-        MR::requestMovementOn(_10);
+        MR::requestMovementOn(mFarFireStairs);
+        MR::requestMovementOn(mFarBattleMapStair);
     }
 
     if (MR::isStep(this, 292)) {
-        KoopaBattleMapStair* pBattleMapStair = _14;
+        KoopaBattleMapStair* pBattleMapStair = mNearBattleMapStair;
         Koopa* pKoopa = mKoopa;
         TVec3f jointPos = TVec3f(0.0f, 0.0f, 0.0f);
         MR::copyJointPos(pKoopa, "Tongue2", &jointPos);
 
-        _1C = KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
+        mNearFireStairs = KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
 
         MR::startSound(mKoopa, "SE_OJ_KOOPA_BULLET_SHOOT", -1, -1);
 
-        MR::requestMovementOn(_1C);
-        MR::requestMovementOn(_14);
+        MR::requestMovementOn(mNearFireStairs);
+        MR::requestMovementOn(mNearBattleMapStair);
     }
 
     if (MR::isBckStopped(mKoopa)) {
@@ -169,8 +167,8 @@ void KoopaBattleStairsVs1::exeAttackFire() {
     }
 
     if (MR::isGreaterStep(this, 33)) {
-        if (_24 || (_5C == 0 && _58 >= _4C) || (_5C == 1 && _58 >= _4C + _50) || (_5C == 2 && _58 >= _4C + _50 + _54)) {
-            _20 = 0;
+        if (mCanJump || (mJumpIdx == 0 && _58 >= _4C) || (mJumpIdx == 1 && _58 >= _4C + _50) || (mJumpIdx == 2 && _58 >= _4C + _50 + _54)) {
+            _20 = nullptr;
             setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvJumpToNextPosStart::sInstance);
             return;
         }
@@ -183,7 +181,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosStart() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mKoopa, "JumpStartFast");
         MR::startSound(mKoopa, "SE_BM_KOOPA_JUMP", -1, -1);
-        _24 = false;
+        mCanJump = false;
     }
 
     if (MR::isBckStopped(mKoopa)) {
@@ -195,27 +193,27 @@ void KoopaBattleStairsVs1::exeJumpToNextPosLoop() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mKoopa, "JumpFast");
 
-        _60.set(mKoopa->mPosition);
-        _5C++;
+        mOldPosition.set(mKoopa->mPosition);
+        mJumpIdx++;
         TVec3f namePos = TVec3f(0.0f, 0.0f, 0.0f);
 
-        if (_5C == 1) {
-            MR::findNamePos(sKoopaPosName1, &_6C, &namePos);
-        } else if (_5C == 2) {
-            MR::findNamePos(sKoopaPosName2, &_6C, &namePos);
+        if (mJumpIdx == 1) {
+            MR::findNamePos(sKoopaPosName1, &mNewPosition, &namePos);
+        } else if (mJumpIdx == 2) {
+            MR::findNamePos(sKoopaPosName2, &mNewPosition, &namePos);
         } else {
-            MR::findNamePos(sKoopaPosNameEnd, &_6C, &namePos);
+            MR::findNamePos(sKoopaPosNameEnd, &mNewPosition, &namePos);
         }
 
-        MR::getRotatedAxisZ(&_78, namePos);
+        MR::getRotatedAxisZ(&mNewDirection, namePos);
     }
 
     f32 step = getNerveStep() / 60.0f;
     f32 val = MR::getEaseInOutValue(step, 0.0f, 1.0f, 1.0f);
-    mKoopa->mPosition.set(_60 * (1.0f - val) + _6C * val);
+    mKoopa->mPosition.set(mOldPosition * (1.0f - val) + mNewPosition * val);
 
     mKoopa->mPosition.y += 1000.0f * JMASinDegree(180.0f * step);
-    MR::turnDirectionDegree(mKoopa, &mKoopa->mFront, _78, 2.0f);
+    MR::turnDirectionDegree(mKoopa, &mKoopa->mFront, mNewDirection, 2.0f);
 
     if (MR::isStep(this, 60)) {
         MR::tryRumblePadStrong(mKoopa, 0);
@@ -231,56 +229,63 @@ void KoopaBattleStairsVs1::exeJumpToNextPosEnd() {
     }
 
     if (tryAttackRequest()) {
-        if (_5C == 1) {
+        if (mJumpIdx == 1) {
             KoopaFunction::setKoopaPos(mKoopa, sKoopaPosName1);
         } else {
             KoopaFunction::setKoopaPos(mKoopa, sKoopaPosName2);
         }
+
         setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvAttackFire::sInstance);
         return;
     }
 
     if (MR::isBckStopped(mKoopa)) {
-        if (_5C == 1) {
+        if (mJumpIdx == 1) {
             KoopaFunction::setKoopaPos(mKoopa, sKoopaPosName1);
-        } else if (_5C == 2) {
+        } else if (mJumpIdx == 2) {
             KoopaFunction::setKoopaPos(mKoopa, sKoopaPosName2);
         } else {
             KoopaFunction::setKoopaPos(mKoopa, sKoopaPosNameEnd);
         }
+
         setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvWait::sInstance);
     }
 }
 
 bool KoopaBattleStairsVs1::tryAttackRequest() {
-    bool out = false;
-    for (int idx = 0; idx < _C->mObjectCount; idx++) {
-        KoopaBattleMapStair* pBattleMapStair = static_cast< KoopaBattleMapStair* >(_C->getActor(idx));
+    KoopaBattleMapStair* pBattleMapStair;
+    bool success = false;
+    for (int idx = 0; idx < mStairsGroup->mObjectCount; idx++) {
+        pBattleMapStair = static_cast< KoopaBattleMapStair* >(mStairsGroup->getActor(idx));
 
         if (pBattleMapStair->isRequestAttackVs1()) {
-            out = true;
+            success = true;
             _20 = pBattleMapStair;
             _58++;
         }
     }
 
-    return out;
+    return success;
 }
 
 bool KoopaBattleStairsVs1::tryRequestedToMoveNextPos() {
-    for (int idx = 0; idx < _C->mObjectCount; idx++) {
-        KoopaBattleMapStair* pBattleMapStair = static_cast< KoopaBattleMapStair* >(_C->getActor(idx));
+    KoopaBattleMapStair* pBattleMapStair;
+    for (int idx = 0; idx < mStairsGroup->mObjectCount; idx++) {
+        pBattleMapStair = static_cast< KoopaBattleMapStair* >(mStairsGroup->getActor(idx));
 
         if (pBattleMapStair->isRequestAttackVs1()) {
-            if (pBattleMapStair->_94 > _5C) {
+            if (pBattleMapStair->_94 > mJumpIdx) {
                 return true;
             }
 
             if (pBattleMapStair->_9C) {
-                _24 = true;
+                mCanJump = true;
             }
         }
     }
 
     return false;
+}
+
+KoopaBattleStairsVs1::~KoopaBattleStairsVs1() {
 }
