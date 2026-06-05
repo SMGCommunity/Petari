@@ -6,8 +6,8 @@ class KoopaStateChaseRoll;
 class KoopaStateAttackShockWave;
 
 class KoopaBattleVs3Lv1 : public KoopaBattleBase {
-public :
-    KoopaBattleVs3Lv1(Koopa*);
+public:
+    KoopaBattleVs3Lv1(Koopa* pKoopa);
 
     virtual ~KoopaBattleVs3Lv1();
     virtual void init();
@@ -16,10 +16,10 @@ public :
     void exeChaseRoll();
     void exeAttackShockWave();
     void exeDamageReverse();
-    
+
     bool tryCalcAndSetBaseMtx();
-    bool attackSensor(HitSensor*, HitSensor*);
-    bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeAttackFire();
     void exeJumpAway();
