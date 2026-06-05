@@ -9,6 +9,15 @@
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
 
+KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
+    : mKoopa(pKoopa), mPlanetRadius(1300.0f), mThornBig(), mThornSmall(), mArmorBreak(), mThornBreak(), mPlanetLv1(), mPlanetShadow(), mShockWave(),
+      mFireShort(), mFireStairs(), mKoopaSwitchKeeper(), mKoopaViewSwitchKeeper(), mKoopaPowerUpSwitch(), mRock(), mRockBreak(), mRollBall(),
+      mPlanetLv2(), mPlanetLv3(), mHoleSunPlanetOutside(), mHoleSunPlanetOutsideBloom(), mHoleSunPlanetInside(), mHoleSunPlanetInsideBloom(),
+      mPeach(), mKoopaJr(), mKoopaJrShip(), mMeteor1(), mMeteor2(), mMeteor3(), mActorCameraInfo() {
+    mActorCameraInfo = new ActorCameraInfo(rIter);
+    MR::declareCameraRegisterVec(mKoopa, 0, &mKoopa->mPosition);
+}
+
 namespace {
     PartsModel* createKoopaBodyParts(LiveActor* pActor, const char* pName, const char* pModelName, const char* pJointName) {
         PartsModel* pPartsModel = new PartsModel(pActor, pName, pModelName, nullptr, 18, false);
@@ -31,29 +40,24 @@ namespace {
     };
 }  // namespace
 
-KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
-    : mKoopa(pKoopa), mPlanetRadius(1300.0f), mThornBig(), mThornSmall(), mArmorBreak(), mThornBreak(), mPlanetLv1(), mPlanetShadow(), mShockWave(),
-      mFireShort(), mFireStairs(), mKoopaSwitchKeeper(), mKoopaViewSwitchKeeper(), mKoopaPowerUpSwitch(), mRock(), mRockBreak(), mRollBall(),
-      mPlanetLv2(), mPlanetLv3(), mHoleSunPlanetOutside(), mHoleSunPlanetOutsideBloom(), mHoleSunPlanetInside(), mHoleSunPlanetInsideBloom(),
-      mPeach(), mKoopaJr(), mKoopaJrShip(), mMeteor1(), mMeteor2(), mMeteor3(), mActorCameraInfo() {
-    mActorCameraInfo = new ActorCameraInfo(rIter);
-    MR::declareCameraRegisterVec(mKoopa, 0, &mKoopa->mPosition);
-}
+KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pBattleMapStair, const TVec3f& rPosition, bool useFront) {
+    KoopaFireStairs* pFireStairs = static_cast< KoopaFireStairs* >(mFireStairs->getDeadActor());
 
-KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pMapStair, const TVec3f& rPosition, bool useFront) {
-    KoopaFireStairs* pMapStairs = static_cast< KoopaFireStairs* >(mFireStairs->getDeadActor());
-
-    if (pMapStairs == nullptr) {
+    if (pFireStairs == nullptr) {
         return nullptr;
     }
 
-    pMapStairs->mPosition.set(rPosition);
+    pFireStairs->mPosition.set(rPosition);
 
-    useFront ? pMapStairs->setInfo(pMapStair, KoopaFunction::getKoopaFrontPtr(mKoopa)) : pMapStairs->setInfo(pMapStair, nullptr);
+    if (useFront) {
+        pFireStairs->setInfo(pBattleMapStair, KoopaFunction::getKoopaFrontPtr(mKoopa));
+    } else {
+        pFireStairs->setInfo(pBattleMapStair, nullptr);
+    }
 
-    pMapStairs->appear();
+    pFireStairs->appear();
 
-    return pMapStairs;
+    return pFireStairs;
 }
 
 void KoopaParts::killFireStairsAll() {
@@ -69,31 +73,37 @@ void KoopaParts::killFireStairsAll() {
 void KoopaParts::emitFireShort(bool isFast, bool isCurve) {
     KoopaFireShort* pFireShort = static_cast< KoopaFireShort* >(mFireShort->getDeadActor());
 
-    if (pFireShort != nullptr) {
-        if (isCurve) {
-            pFireShort->emitCurve();
-        } else if (isFast) {
-            pFireShort->emitFast();
-        } else {
-            pFireShort->emitNormal();
-        }
+    if (pFireShort == nullptr) {
+        return;
+    }
+
+    if (isCurve) {
+        pFireShort->emitCurve();
+    } else if (isFast) {
+        pFireShort->emitFast();
+    } else {
+        pFireShort->emitNormal();
     }
 }
 
 void KoopaParts::emitFireLongTime() {
     KoopaFireShort* pFireShort = static_cast< KoopaFireShort* >(mFireShort->getDeadActor());
 
-    if (pFireShort != nullptr) {
-        pFireShort->emitLongTime();
+    if (pFireShort == nullptr) {
+        return;
     }
+
+    pFireShort->emitLongTime();
 }
 
 void KoopaParts::emitShockWave() {
     LiveActor* pActor = mShockWave->getDeadActor();
 
-    if (pActor != nullptr) {
-        pActor->appear();
+    if (pActor == nullptr) {
+        return;
     }
+
+    pActor->appear();
 }
 
 TVec3f& KoopaParts::getPlanetPos() const {
@@ -221,20 +231,24 @@ void KoopaParts::initVs3() {
 }
 
 void KoopaParts::createRock() {
-    if (mRock == nullptr) {
-        mRock = createKoopaBodyParts(mKoopa, "クッパ岩", "KoopaRock", "RockFixPos");
-        mRock->kill();
-
-        mRockBreak = new KoopaRockBreak(mKoopa);
-        mRockBreak->initWithoutIter();
+    if (mRock != nullptr) {
+        return;
     }
+
+    mRock = createKoopaBodyParts(mKoopa, "クッパ岩", "KoopaRock", "RockFixPos");
+    mRock->kill();
+
+    mRockBreak = new KoopaRockBreak(mKoopa);
+    mRockBreak->initWithoutIter();
 }
 
 void KoopaParts::createRollBall() {
-    if (mRollBall == nullptr) {
-        mRollBall = createKoopaBodyParts(mKoopa, "回転攻撃ボール", "KoopaRollBall", "RollBallFixPos");
-        mRollBall->kill();
+    if (mRollBall != nullptr) {
+        return;
     }
+
+    mRollBall = createKoopaBodyParts(mKoopa, "回転攻撃ボール", "KoopaRollBall", "RollBallFixPos");
+    mRollBall->kill();
 }
 
 void KoopaParts::createCommonParts() {

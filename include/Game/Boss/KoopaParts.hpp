@@ -1,7 +1,6 @@
 #pragma once
 
 #include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 
 class Koopa;
 class JMapInfoIter;
@@ -22,11 +21,11 @@ class ActorCameraInfo;
 
 class KoopaParts {
 public:
-    KoopaParts(Koopa*, const JMapInfoIter&);
+    KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter);
 
-    KoopaFireStairs* emitFireStairsToPos(const KoopaBattleMapStair*, const TVec3f&, bool);
+    KoopaFireStairs* emitFireStairsToPos(const KoopaBattleMapStair* pMapStair, const TVec3f& rPosition, bool useFront);
     void killFireStairsAll();
-    void emitFireShort(bool, bool);
+    void emitFireShort(bool isFast, bool isCurve);
     void emitFireLongTime();
     void emitShockWave();
     TVec3f& getPlanetPos() const;
