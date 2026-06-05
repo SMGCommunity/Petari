@@ -15,4 +15,4 @@ public:
 
 namespace MR {
     NameObj* createSunshadeMapParts(const char*);
-};
+};  // namespace MR

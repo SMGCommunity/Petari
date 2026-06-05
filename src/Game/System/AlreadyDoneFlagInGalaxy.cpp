@@ -59,29 +59,29 @@ u32 AlreadyDoneFlagInGalaxy::setupFlag(const char* pName, const JMapInfoIter& rI
 
     // There may be a function that got inlined here, because in SMG2 there is a function call here with the
     // contents below this comment
-    
-     AlreadyDoneInfo info;
-     info.init(pName, zoneID, linkID);
 
-     AlreadyDoneInfo* infs = mDoneInfos.begin();
-     AlreadyDoneInfo* lastInfs = &mDoneInfos[_8];
+    AlreadyDoneInfo info;
+    info.init(pName, zoneID, linkID);
 
-     while (infs != lastInfs && !infs->isEqual(info)) {
-     infs++;
-     }
+    AlreadyDoneInfo* infs = mDoneInfos.begin();
+    AlreadyDoneInfo* lastInfs = &mDoneInfos[_8];
 
-     AlreadyDoneInfo* new_infs = &mDoneInfos[_8];
+    while (infs != lastInfs && !infs->isEqual(info)) {
+        infs++;
+    }
 
-     if (infs != new_infs) {
-         result = infs - mDoneInfos.begin();
-         *a3 = (infs->_0 >> 15) & 0x1;
-     } else {
-         result = _8++;
-         new_infs->_0 = info._0;
-         new_infs->_2 = info._2;
-         new_infs->_4 = info._4;
-         *a3 = 0;
-     }
+    AlreadyDoneInfo* new_infs = &mDoneInfos[_8];
+
+    if (infs != new_infs) {
+        result = infs - mDoneInfos.begin();
+        *a3 = (infs->_0 >> 15) & 0x1;
+    } else {
+        result = _8++;
+        new_infs->_0 = info._0;
+        new_infs->_2 = info._2;
+        new_infs->_4 = info._4;
+        *a3 = 0;
+    }
 
     return result;
 }

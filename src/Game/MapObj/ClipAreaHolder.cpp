@@ -25,10 +25,10 @@ bool ClipAreaHolder::isInArea(const TVec3f& rParam1, f32 param2) const {
     }
     s32 count = getObjectCount();
     for (s32 i = 0; i < count; i++) {
-        LiveActor* pActor = getActor(i);
-        if (!MR::isDead(pActor)) {
-            ClipArea* pArea = static_cast< ClipArea* >(getActor(i));
-            if (pArea->isInArea(rParam1, param2)) {
+        LiveActor* actor = getActor(i);
+        if (!MR::isDead(actor)) {
+            ClipArea* area = static_cast< ClipArea* >(getActor(i));
+            if (area->isInArea(rParam1, param2)) {
                 return true;
             }
         }
@@ -81,8 +81,8 @@ namespace MR {
         getClipAreaHolder()->mIsActive = false;
     }
 
-    void setBinderExceptSensorType(LiveActor* actor, const TVec3f* pParam1, f32 param2) {
-        ClipAreaCollisionFilter* pFilter = new ClipAreaCollisionFilter(pParam1, param2);
-        setBinderCollisionPartsFilter(actor, pFilter);
+    void setBinderExceptSensorType(LiveActor* pActor, const TVec3f* pParam1, f32 param2) {
+        ClipAreaCollisionFilter* filter = new ClipAreaCollisionFilter(pParam1, param2);
+        setBinderCollisionPartsFilter(pActor, filter);
     }
 };  // namespace MR

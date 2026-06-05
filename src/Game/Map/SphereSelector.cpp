@@ -19,7 +19,8 @@ void SphereSelector::exeSelectStart() {
     MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance, 60);
 }
 
-void SphereSelector::exeConfirmWait() {}
+void SphereSelector::exeConfirmWait() {
+}
 
 void SphereSelector::exeConfirm() {
     if (MR::isFirstStep(this)) {

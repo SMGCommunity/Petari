@@ -121,7 +121,7 @@ void FlameGun::exeRadiate() {
         MR::validateHitSensor(this, "attack");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_FLAMEGUN_FIRE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_FLAMEGUN_FIRE");
 
     if (MR::isGreaterStep(this, 120)) {
         setNerve(&NrvFlameGun::HostTypeNrvWait::sInstance);
@@ -137,7 +137,7 @@ void FlameGun::exeRotate() {
     }
 
     mRotation.y += 0.9f;
-    MR::startLevelSound(this, "SE_EM_LV_FLAMEGUN_FIRE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_FLAMEGUN_FIRE");
 
     if (!MR::isValidHitSensor(this, "attack")) {
         MR::validateHitSensor(this, "attack");
@@ -150,7 +150,7 @@ void FlameGun::exeRadiateOnly() {
         MR::validateHitSensor(this, "attack");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_FLAMEGUN_FIRE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_FLAMEGUN_FIRE");
 }
 
 // FlameGun::updateHitSensor
@@ -161,4 +161,5 @@ void FlameGun::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-FlameGun::~FlameGun() {}
+FlameGun::~FlameGun() {
+}

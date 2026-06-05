@@ -81,13 +81,17 @@ J3DAnmBase* J3DAnmLoaderDataBase::load(const void* i_data, J3DAnmLoaderDataBaseF
     return NULL;
 }
 
-J3DAnmFullLoader_v15::J3DAnmFullLoader_v15() {}
+J3DAnmFullLoader_v15::J3DAnmFullLoader_v15() {
+}
 
-J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15() {}
+J3DAnmFullLoader_v15::~J3DAnmFullLoader_v15() {
+}
 
-J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15() {}
+J3DAnmKeyLoader_v15::J3DAnmKeyLoader_v15() {
+}
 
-J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15() {}
+J3DAnmKeyLoader_v15::~J3DAnmKeyLoader_v15() {
+}
 
 J3DAnmBase* J3DAnmFullLoader_v15::load(const void* param_1) {
     const JUTDataFileHeader* header = (const JUTDataFileHeader*)param_1;

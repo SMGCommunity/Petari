@@ -2,15 +2,15 @@
 #include "math_types.hpp"
 #include <cmath>
 
+namespace {
+    const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
+};  // namespace
+
 namespace NrvArrowSwitch {
     NEW_NERVE(ArrowSwitchNrvRotate, ArrowSwitch, Rotate);
     NEW_NERVE(ArrowSwitchNrvLock, ArrowSwitch, Lock);
     NEW_NERVE(ArrowSwitchNrvWait, ArrowSwitch, Wait);
 };  // namespace NrvArrowSwitch
-
-namespace {
-    const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
-};
 
 ArrowSwitch::ArrowSwitch(const char* pName) : LiveActor(pName) {
     _8C = 0.0f;
@@ -63,16 +63,15 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     MR::needStageSwitchWriteA(this, rIter);
 
     if (!_9C) {
-        void (ArrowSwitch::*switchOff)(void) = &ArrowSwitch::listenOffSwitch;
-        void (ArrowSwitch::*switchOn)(void) = &ArrowSwitch::listenOnSwitch;
-        MR::listenStageSwitchOnOffB(this, MR::Functor(this, switchOff), MR::Functor(this, switchOn));
+        MR::listenStageSwitchOnOffB(this, MR::Functor(this, &ArrowSwitch::listenOffSwitch), MR::Functor(this, &ArrowSwitch::listenOnSwitch));
     }
 
     makeActorAppeared();
 }
 */
 
-void ArrowSwitch::control() {}
+void ArrowSwitch::control() {
+}
 
 void ArrowSwitch::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
@@ -227,7 +226,7 @@ void ArrowSwitch::exeWait() {
 
 void ArrowSwitch::exeRotate() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_ARROW_SWITCH_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_ARROW_SWITCH_ON");
         MR::onCalcShadow(this, nullptr);
 
         if (_9C) {
@@ -238,7 +237,7 @@ void ArrowSwitch::exeRotate() {
         }
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_ARROW_SWITCH_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_ARROW_SWITCH_MOVE");
     f32 v2 = (_8C + _94) - -180.0f;
     _8C += _94;
     f32 v3 = fmod(360.0 + v2, 360.0);
@@ -258,10 +257,10 @@ void ArrowSwitch::exeRotate() {
                 MR::offSwitchA(this);
             }
 
-            MR::startSystemSE("SE_SY_GRAVITY_SWITCHED", -1, -1);
+            MR::startSystemSE("SE_SY_GRAVITY_SWITCHED");
         }
 
-        MR::startSound(this, "SE_OJ_ARROW_SWITCH_STOP", -1, -1);
+        MR::startSound(this, "SE_OJ_ARROW_SWITCH_STOP");
         _9F = 0;
         if (_9C) {
             setNerve(&NrvArrowSwitch::ArrowSwitchNrvLock::sInstance);
@@ -328,4 +327,5 @@ s32 ArrowSwitch::getOneStep() const {
 }
 */
 
-ArrowSwitch::~ArrowSwitch() {}
+ArrowSwitch::~ArrowSwitch() {
+}

@@ -1,5 +1,6 @@
 #include "Game/NPC/TrickRabbitSnowCollect.hpp"
 
-TrickRabbitSnowCollect::TrickRabbitSnowCollect(const char* pName) : LiveActor(pName) {}
-TrickRabbitSnowCollect::~TrickRabbitSnowCollect() {}
-
+TrickRabbitSnowCollect::TrickRabbitSnowCollect(const char* pName) : LiveActor(pName) {
+}
+TrickRabbitSnowCollect::~TrickRabbitSnowCollect() {
+}

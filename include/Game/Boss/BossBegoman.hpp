@@ -30,7 +30,9 @@ public:
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual u32 getKind() const { return 0; };
+    virtual u32 getKind() const {
+        return 0;
+    };
     virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
     virtual bool setNerveReturn();
     virtual const Nerve* getNerveWait();

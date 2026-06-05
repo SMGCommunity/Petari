@@ -2,9 +2,10 @@
 
 namespace NrvSandCapsuleInsidePlanet {
     NEW_NERVE(SandCapsuleInsidePlanetNrvWait, SandCapsuleInsidePlanet, Wait);
-};
+};  // namespace NrvSandCapsuleInsidePlanet
 
-SandCapsuleInsidePlanet::SandCapsuleInsidePlanet(const char* pName) : MapObjActor(pName) {}
+SandCapsuleInsidePlanet::SandCapsuleInsidePlanet(const char* pName) : MapObjActor(pName) {
+}
 
 void SandCapsuleInsidePlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -17,12 +18,11 @@ void SandCapsuleInsidePlanet::init(const JMapInfoIter& rIter) {
 }
 
 void SandCapsuleInsidePlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
-    void (SandCapsuleInsidePlanet::*offFunc)(void) = &SandCapsuleInsidePlanet::startOff;
-    void (SandCapsuleInsidePlanet::*onFunc)(void) = &SandCapsuleInsidePlanet::startOn;
-    MR::listenStageSwitchOnOffA(this, MR::Functor(this, onFunc), MR::Functor(this, offFunc));
+    MR::listenStageSwitchOnOffA(this, MR::Functor(this, &SandCapsuleInsidePlanet::startOn), MR::Functor(this, &SandCapsuleInsidePlanet::startOff));
 }
 
-void SandCapsuleInsidePlanet::exeWait() {}
+void SandCapsuleInsidePlanet::exeWait() {
+}
 
 void SandCapsuleInsidePlanet::startOn() {
     MR::startBrk(this, "On");
@@ -32,4 +32,5 @@ void SandCapsuleInsidePlanet::startOff() {
     MR::startBrk(this, "Off");
 }
 
-SandCapsuleInsidePlanet::~SandCapsuleInsidePlanet() {}
+SandCapsuleInsidePlanet::~SandCapsuleInsidePlanet() {
+}

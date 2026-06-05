@@ -895,7 +895,7 @@ void MarioActor::control() {
             MR::stopAnimFrame(this);
             MR::requestPowerUpHPMeter();
             mMario->startPadVib("マリオ[変身]");
-            MR::startSystemSE("SE_SY_SUPER_KINOKO_GET", -1, -1);
+            MR::startSystemSE("SE_SY_SUPER_KINOKO_GET");
             _3DA = 0x5a;
         }
     } else if (mPowerupCollected) {

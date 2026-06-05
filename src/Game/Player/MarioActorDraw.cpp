@@ -6,13 +6,13 @@
 #include "Game/Player/MarioParts.hpp"
 #include "Game/Player/ModelHolder.hpp"
 #include "Game/Player/TornadoMario.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/FixedPosition.hpp"
 #include "Game/Util/FootPrint.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/ActorShadowUtil.hpp"
-#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -28,10 +28,10 @@
 #include <revolution/gd/GDBase.h>
 
 namespace MR {
-void showMaterial(J3DModel*, const char*);
-template < class T >
-FunctorV0M< const T*, void (T::*)() const > Functor(const T*, void (T::*)() const) NO_INLINE;
-}
+    void showMaterial(J3DModel*, const char*);
+    template < class T >
+    FunctorV0M< const T*, void (T::*)() const > Functor(const T*, void (T::*)() const) NO_INLINE;
+}  // namespace MR
 
 extern "C" {
 void GDSetTexImgPtr(GXTexMapID, void*);
@@ -54,41 +54,41 @@ public:
 };
 
 namespace {
-struct DLBufferInfoForAddDL {
-    u8* mDL;
-    u16 mSize;
-    u16 _6;
-};
+    struct DLBufferInfoForAddDL {
+        u8* mDL;
+        u16 mSize;
+        u16 _6;
+    };
 
-struct DLchangerForAddDL : public DLchanger {
-    DLBufferInfoForAddDL* mBuffers;
-    u8 _4;
-    u8 mCurrentBuffer;
-};
+    struct DLchangerForAddDL : public DLchanger {
+        DLBufferInfoForAddDL* mBuffers;
+        u8 _4;
+        u8 mCurrentBuffer;
+    };
 
-struct DisplayListMakerForModelSwap {
-    u32 _0[5];
-    J3DModel* mModel;
-};
+    struct DisplayListMakerForModelSwap {
+        u32 _0[5];
+        J3DModel* mModel;
+    };
 
-struct J3DMaterialForMarioActorDraw {
-    u8 _0[0x14];
-    u16 mIndex;
-    u8 _16[0x32];
-    J3DDisplayListObj* mSharedDLObj;
-    u8 _4C[0xC];
-    J3DMaterialForMarioActorDraw* mpOrigMaterial;
-};
+    struct J3DMaterialForMarioActorDraw {
+        u8 _0[0x14];
+        u16 mIndex;
+        u8 _16[0x32];
+        J3DDisplayListObj* mSharedDLObj;
+        u8 _4C[0xC];
+        J3DMaterialForMarioActorDraw* mpOrigMaterial;
+    };
 
-struct J3DModelDataForMarioActorDraw {
-    u8 _0[0x28];
-    J3DMaterialForMarioActorDraw** mMaterialNodePointer;
-    u8 _2C[0x34];
-    J3DMaterialForMarioActorDraw** mMaterialRemapTable;
-    u8 _64[0x8];
-    J3DTexture* mTexture;
-    JUTNameTab* mTextureName;
-};
+    struct J3DModelDataForMarioActorDraw {
+        u8 _0[0x28];
+        J3DMaterialForMarioActorDraw** mMaterialNodePointer;
+        u8 _2C[0x34];
+        J3DMaterialForMarioActorDraw** mMaterialRemapTable;
+        u8 _64[0x8];
+        J3DTexture* mTexture;
+        JUTNameTab* mTextureName;
+    };
 };  // namespace
 
 void MarioActor::initDrawAndModel() {
@@ -837,7 +837,7 @@ void MarioActor::drawIndirect() const {
     }
 
     if (_1E4 != 0.0f) {
-        drawRasterScroll(_1E4, static_cast<s16>(_1E8), _1EC);
+        drawRasterScroll(_1E4, static_cast< s16 >(_1E8), _1EC);
     }
 
     if (_390) {
@@ -1137,12 +1137,11 @@ bool MarioActor::isAllHidden() const {
 }
 
 namespace MR {
-template <>
-FunctorV0M< const MarioActor*, void (MarioActor::*)() const >
-Functor< MarioActor >(const MarioActor* pActor, void (MarioActor::*pFunc)() const) {
-    return FunctorV0M< const MarioActor*, void (MarioActor::*)() const >(pActor, pFunc);
-}
-}
+    template <>
+    FunctorV0M< const MarioActor*, void (MarioActor::*)() const > Functor< MarioActor >(const MarioActor* pActor, void (MarioActor::*pFunc)() const) {
+        return FunctorV0M< const MarioActor*, void (MarioActor::*)() const >(pActor, pFunc);
+    }
+};  // namespace MR
 
 template <>
 void MR::FunctorV0M< const MarioActor*, void (MarioActor::*)() const >::operator()() const {
@@ -1187,14 +1186,14 @@ void J3DModelX::setDynamicDL(u8* pDL, u32 dlSize) {
 }
 
 namespace NrvMarioActor {
-INIT_NERVE(MarioActorNrvWait);
-INIT_NERVE(MarioActorNrvGameOver);
-INIT_NERVE(MarioActorNrvGameOverAbyss);
-INIT_NERVE(MarioActorNrvGameOverAbyss2);
-INIT_NERVE(MarioActorNrvGameOverFire);
-INIT_NERVE(MarioActorNrvGameOverBlackHole);
-INIT_NERVE(MarioActorNrvGameOverNonStop);
-INIT_NERVE(MarioActorNrvGameOverSink);
-INIT_NERVE(MarioActorNrvTimeWait);
-INIT_NERVE(MarioActorNrvNoRush);
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
 };  // namespace NrvMarioActor

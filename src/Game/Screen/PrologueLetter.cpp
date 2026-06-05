@@ -12,7 +12,8 @@ namespace {
     NEW_NERVE(PrologueLetterNrvDisappear, PrologueLetter, Disappear);
 };  // namespace
 
-PrologueLetter::PrologueLetter(const char* pName) : LayoutActor(pName, true), mAButtonIcon(nullptr) {}
+PrologueLetter::PrologueLetter(const char* pName) : LayoutActor(pName, true), mAButtonIcon(nullptr) {
+}
 
 void PrologueLetter::init(const JMapInfoIter& rIter) {
     initLayoutManager("PeachLetterMini", 1);
@@ -62,7 +63,7 @@ void PrologueLetter::exeWait() {
     }
 
     if (MR::testSystemPadTriggerDecide()) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
         setNerve(&PrologueLetterNrvDisappear::sInstance);
     }
 }

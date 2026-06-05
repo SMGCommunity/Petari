@@ -2,11 +2,11 @@
 
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JParticle/JPADynamicsBlock.hpp"
+#include "JSystem/JParticle/JPAEmitterCallBack.hpp"
 #include "JSystem/JParticle/JPAList.hpp"
 #include "JSystem/JParticle/JPAMath.hpp"
 #include "JSystem/JParticle/JPARandom.hpp"
 #include "JSystem/JParticle/JPAResource.hpp"
-#include "JSystem/JParticle/JPAEmitterCallBack.hpp"
 #include "JSystem/JSupport/JSUList.hpp"
 #include <revolution/types.h>
 #include <stdint.h>
@@ -23,7 +23,8 @@ struct JPAEmitterWorkData {
         /* 0x18 */ JGeometry::TVec3< f32 > mVelAxis;
     };
 
-    JPAEmitterWorkData() : mRndm(0) {}
+    JPAEmitterWorkData() : mRndm(0) {
+    }
 
     /* 0x00 */ JPABaseEmitter* mpEmtr;
     /* 0x04 */ JPAResource* mpRes;
@@ -78,8 +79,10 @@ enum {
 
 class JPABaseEmitter {
 public:
-    ~JPABaseEmitter() {}
-    JPABaseEmitter() : mLink(this), mRndm(0) {}
+    ~JPABaseEmitter() {
+    }
+    JPABaseEmitter() : mLink(this), mRndm(0) {
+    }
     void init(JPAEmitterManager*, JPAResource*);
     bool processTillStartFrame();
     bool processTermination();
@@ -91,37 +94,89 @@ public:
     u8 getDrawCount() const;
     bool loadTexture(u8, GXTexMapID);
 
-    void initStatus(u32 status) { mStatus = status; }
-    void setStatus(u32 status) { mStatus |= status; }
-    void clearStatus(u32 status) { mStatus &= ~status; }
-    u32 checkStatus(u32 status) const { return (mStatus & status); }
+    void initStatus(u32 status) {
+        mStatus = status;
+    }
+    void setStatus(u32 status) {
+        mStatus |= status;
+    }
+    void clearStatus(u32 status) {
+        mStatus &= ~status;
+    }
+    u32 checkStatus(u32 status) const {
+        return (mStatus & status);
+    }
     /* SMG1 change -- returns u32 instead of bool */
-    u32 checkFlag(u32 flag) const NO_INLINE { return (mpRes->getDyn()->getFlag() & flag); }
-    u8 getResourceManagerID() const { return mResMgrID; }
-    u8 getGroupID() const { return mGroupID; }
-    u8 getDrawTimes() const { return mDrawTimes; }
-    f32 getRate() const { return mRate; }
-    void setRate(f32 rate) { mRate = rate; }
-    void setDirectionalSpeed(f32 i_speed) { mDirSpeed = i_speed; }
-    void setRandomDirectionSpeed(f32 i_speed) { mRndmDirSpeed = i_speed; }
-    void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) { mpEmtrCallBack = ptr; }
-    void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
+    u32 checkFlag(u32 flag) const NO_INLINE {
+        return (mpRes->getDyn()->getFlag() & flag);
+    }
+    u8 getResourceManagerID() const {
+        return mResMgrID;
+    }
+    u8 getGroupID() const {
+        return mGroupID;
+    }
+    u8 getDrawTimes() const {
+        return mDrawTimes;
+    }
+    f32 getRate() const {
+        return mRate;
+    }
+    void setRate(f32 rate) {
+        mRate = rate;
+    }
+    void setDirectionalSpeed(f32 i_speed) {
+        mDirSpeed = i_speed;
+    }
+    void setRandomDirectionSpeed(f32 i_speed) {
+        mRndmDirSpeed = i_speed;
+    }
+    void setEmitterCallBackPtr(JPAEmitterCallBack* ptr) {
+        mpEmtrCallBack = ptr;
+    }
+    void setGlobalRTMatrix(const Mtx m) {
+        JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs);
+    }
     void setGlobalSRTMatrix(const Mtx m) {
         JPASetRMtxSTVecfromMtx(m, mGlobalRot, &mGlobalScl, &mGlobalTrs);
         mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
     }
-    void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
-    void setGlobalTranslation(const JGeometry::TVec3< f32 >& trs) { mGlobalTrs.set(trs); }
-    void getLocalTranslation(JGeometry::TVec3< f32 >& vec) { vec.set(mLocalTrs); }
-    void getLocalTranslation(JGeometry::TVec3< f32 >* vec) const { vec->set(mLocalTrs); }
-    void setGlobalRotation(const JGeometry::TVec3< s16 >& rot) { JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot); }
-    void getGlobalTranslation(JGeometry::TVec3< f32 >* out) const { out->set(mGlobalTrs); }
-    void setGlobalDynamicsScale(const JGeometry::TVec3< f32 >& i_scale) { mGlobalScl.set(i_scale); }
-    void getGlobalDynamicsScale(JGeometry::TVec3< f32 >* i_scale) const { i_scale->set(mGlobalScl); }
-    void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
-    u8 getGlobalAlpha() const { return mGlobalPrmClr.a; }
-    void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }
-    void getGlobalPrmColor(_GXColor* color) const { *color = mGlobalPrmClr; }
+    void setGlobalTranslation(f32 x, f32 y, f32 z) {
+        mGlobalTrs.set(x, y, z);
+    }
+    void setGlobalTranslation(const JGeometry::TVec3< f32 >& trs) {
+        mGlobalTrs.set(trs);
+    }
+    void getLocalTranslation(JGeometry::TVec3< f32 >& vec) {
+        vec.set(mLocalTrs);
+    }
+    void getLocalTranslation(JGeometry::TVec3< f32 >* vec) const {
+        vec->set(mLocalTrs);
+    }
+    void setGlobalRotation(const JGeometry::TVec3< s16 >& rot) {
+        JPAGetXYZRotateMtx(rot.x, rot.y, rot.z, mGlobalRot);
+    }
+    void getGlobalTranslation(JGeometry::TVec3< f32 >* out) const {
+        out->set(mGlobalTrs);
+    }
+    void setGlobalDynamicsScale(const JGeometry::TVec3< f32 >& i_scale) {
+        mGlobalScl.set(i_scale);
+    }
+    void getGlobalDynamicsScale(JGeometry::TVec3< f32 >* i_scale) const {
+        i_scale->set(mGlobalScl);
+    }
+    void setGlobalAlpha(u8 alpha) {
+        mGlobalPrmClr.a = alpha;
+    }
+    u8 getGlobalAlpha() const {
+        return mGlobalPrmClr.a;
+    }
+    void getGlobalPrmColor(GXColor& color) {
+        color = mGlobalPrmClr;
+    }
+    void getGlobalPrmColor(_GXColor* color) const {
+        *color = mGlobalPrmClr;
+    }
     void setGlobalPrmColor(u8 r, u8 g, u8 b) {
         mGlobalPrmClr.r = r;
         mGlobalPrmClr.g = g;
@@ -132,20 +187,40 @@ public:
         mGlobalEnvClr.g = g;
         mGlobalEnvClr.b = b;
     }
-    void setVolumeSize(u16 size) { mVolumeSize = size; }
-    void setLifeTime(s16 lifetime) { mLifeTime = lifetime; }
-    void setAwayFromCenterSpeed(f32 i_speed) { mAwayFromCenterSpeed = i_speed; }
-    void setAwayFromAxisSpeed(f32 i_speed) { mAwayFromAxisSpeed = i_speed; }
-    void setSpread(f32 i_spread) { mSpread = i_spread; }
-    void setLocalTranslation(const JGeometry::TVec3< f32 >& i_trans) { mLocalTrs.set(i_trans); }
+    void setVolumeSize(u16 size) {
+        mVolumeSize = size;
+    }
+    void setLifeTime(s16 lifetime) {
+        mLifeTime = lifetime;
+    }
+    void setAwayFromCenterSpeed(f32 i_speed) {
+        mAwayFromCenterSpeed = i_speed;
+    }
+    void setAwayFromAxisSpeed(f32 i_speed) {
+        mAwayFromAxisSpeed = i_speed;
+    }
+    void setSpread(f32 i_spread) {
+        mSpread = i_spread;
+    }
+    void setLocalTranslation(const JGeometry::TVec3< f32 >& i_trans) {
+        mLocalTrs.set(i_trans);
+    }
     void setLocalRotation(const JGeometry::TVec3< s16 >& i_rot) {
         mLocalRot.set(i_rot.x * 0.005493248f, i_rot.y * 0.005493248f, i_rot.z * 0.005493248f);
     }
-    void setRateStep(u8 i_step) { mRateStep = i_step; }
+    void setRateStep(u8 i_step) {
+        mRateStep = i_step;
+    }
 
-    void setGlobalParticleHeightScale(f32 height) { mGlobalPScl.y = height; }
-    void setGlobalParticleScale(const JGeometry::TVec3< f32 >& scale) { mGlobalPScl.set(scale.x, scale.y); }
-    void setGlobalParticleScale(f32 scaleX, f32 scaleY) { mGlobalPScl.set(scaleX, scaleY); }
+    void setGlobalParticleHeightScale(f32 height) {
+        mGlobalPScl.y = height;
+    }
+    void setGlobalParticleScale(const JGeometry::TVec3< f32 >& scale) {
+        mGlobalPScl.set(scale.x, scale.y);
+    }
+    void setGlobalParticleScale(f32 scaleX, f32 scaleY) {
+        mGlobalPScl.set(scaleX, scaleY);
+    }
     void getGlobalParticleScale(JGeometry::TVec3< f32 >& scale) const {
         // TODO: Possible fakematch. Debug and Wii indicate TVec3::set, but using it breaks regalloc
         //       in dPa_gen_b_light8PcallBack::draw on GCN (where the call to set would normally be
@@ -174,44 +249,98 @@ public:
         mGlobalScl.set(scale);
         mGlobalPScl.set(scale.x, scale.y);
     }
-    void setDirection(const JGeometry::TVec3< f32 >& direction) { mLocalDir.set(direction); }
+    void setDirection(const JGeometry::TVec3< f32 >& direction) {
+        mLocalDir.set(direction);
+    }
 
-    void setLocalScale(const JGeometry::TVec3< f32 >& scale) { mLocalScl.set(scale); }
+    void setLocalScale(const JGeometry::TVec3< f32 >& scale) {
+        mLocalScl.set(scale);
+    }
 
-    f32 get_r_f() { return mRndm.get_rndm_f(); }
-    f32 get_r_zp() NO_INLINE { return mRndm.get_rndm_zp(); }
-    f32 get_r_zh() NO_INLINE { return mRndm.get_rndm_zh(); }
-    s16 get_r_ss() NO_INLINE { return mRndm.get_rndm_ss(); }
+    f32 get_r_f() {
+        return mRndm.get_rndm_f();
+    }
+    f32 get_r_zp() NO_INLINE {
+        return mRndm.get_rndm_zp();
+    }
+    f32 get_r_zh() NO_INLINE {
+        return mRndm.get_rndm_zh();
+    }
+    s16 get_r_ss() NO_INLINE {
+        return mRndm.get_rndm_ss();
+    }
 
-    void stopCreateParticle() { setStatus(JPAEmtrStts_StopEmit); }
-    void playCreateParticle() { clearStatus(JPAEmtrStts_StopEmit); }
-    void becomeImmortalEmitter() { setStatus(JPAEmtrStts_Immortal); }
-    void becomeContinuousParticle() { mMaxFrame = 0; }
-    void becomeDeleteEmitter() { setStatus(JPAEmtrStts_Delete); }
+    void stopCreateParticle() {
+        setStatus(JPAEmtrStts_StopEmit);
+    }
+    void playCreateParticle() {
+        clearStatus(JPAEmtrStts_StopEmit);
+    }
+    void becomeImmortalEmitter() {
+        setStatus(JPAEmtrStts_Immortal);
+    }
+    void becomeContinuousParticle() {
+        mMaxFrame = 0;
+    }
+    void becomeDeleteEmitter() {
+        setStatus(JPAEmtrStts_Delete);
+    }
     void becomeInvalidEmitter() {
         stopCreateParticle();
         mMaxFrame = 1;
     }
 
-    void quitImmortalEmitter() { clearStatus(JPAEmtrStts_Immortal); }
-    void stopCalcEmitter() { setStatus(JPAEmtrStts_StopCalc); }
-    void playCalcEmitter() { clearStatus(JPAEmtrStts_StopCalc); }
-    void stopDrawParticle() { setStatus(JPAEmtrStts_StopDraw); }
-    void playDrawParticle() { clearStatus(JPAEmtrStts_StopDraw); }
+    void quitImmortalEmitter() {
+        clearStatus(JPAEmtrStts_Immortal);
+    }
+    void stopCalcEmitter() {
+        setStatus(JPAEmtrStts_StopCalc);
+    }
+    void playCalcEmitter() {
+        clearStatus(JPAEmtrStts_StopCalc);
+    }
+    void stopDrawParticle() {
+        setStatus(JPAEmtrStts_StopDraw);
+    }
+    void playDrawParticle() {
+        clearStatus(JPAEmtrStts_StopDraw);
+    }
 
-    uintptr_t getUserWork() const { return mpUserWork; }
-    void setUserWork(uintptr_t userWork) { mpUserWork = userWork; }
-    u32 getParticleNumber() const { return mAlivePtclBase.getNum() + mAlivePtclChld.getNum(); }
-    bool isEnableDeleteEmitter() const { return checkStatus(JPAEmtrStts_EnableDeleteEmitter) && getParticleNumber() == 0; }
-    void setDrawTimes(u8 drawTimes) { mDrawTimes = drawTimes; }
-    void setParticleCallBackPtr(JPAParticleCallBack* cb) { mpPtclCallBack = cb; }
-    JPAParticleCallBack* getParticleCallBackPtr() const { return mpPtclCallBack; }
-    JPAEmitterCallBack* getEmitterCallBackPtr() const { return mpEmtrCallBack; }
-    u32 getAge() const { return mTick; }
+    uintptr_t getUserWork() const {
+        return mpUserWork;
+    }
+    void setUserWork(uintptr_t userWork) {
+        mpUserWork = userWork;
+    }
+    u32 getParticleNumber() const {
+        return mAlivePtclBase.getNum() + mAlivePtclChld.getNum();
+    }
+    bool isEnableDeleteEmitter() const {
+        return checkStatus(JPAEmtrStts_EnableDeleteEmitter) && getParticleNumber() == 0;
+    }
+    void setDrawTimes(u8 drawTimes) {
+        mDrawTimes = drawTimes;
+    }
+    void setParticleCallBackPtr(JPAParticleCallBack* cb) {
+        mpPtclCallBack = cb;
+    }
+    JPAParticleCallBack* getParticleCallBackPtr() const {
+        return mpPtclCallBack;
+    }
+    JPAEmitterCallBack* getEmitterCallBackPtr() const {
+        return mpEmtrCallBack;
+    }
+    u32 getAge() const {
+        return mTick;
+    }
 
-    void setVolumeMiniRadius(f32 param_1) { mVolumeMinRad = param_1; }
+    void setVolumeMiniRadius(f32 param_1) {
+        mVolumeMinRad = param_1;
+    }
 
-    void setMaxFrame(s32 maxFrame) { mMaxFrame = maxFrame; }
+    void setMaxFrame(s32 maxFrame) {
+        mMaxFrame = maxFrame;
+    }
 
 public:
     /* 0x00 */ JGeometry::TVec3< f32 > mLocalScl;

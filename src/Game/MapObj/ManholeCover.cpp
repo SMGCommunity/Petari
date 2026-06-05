@@ -65,7 +65,7 @@ void ManholeCover::exeOpen() {
 void ManholeCover::exeRattle() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Vibration", nullptr);
-        MR::startSound(this, "SE_OJ_MANHOLE_RATTLE", -1, -1);
+        MR::startSound(this, "SE_OJ_MANHOLE_RATTLE");
     }
 
     if (MR::isGreaterStep(this, ::sRattleTime) && MR::isBckStopped(this)) {

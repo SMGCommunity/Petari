@@ -7,7 +7,8 @@ class PartsModel : public LiveActor {
 public:
     PartsModel(LiveActor*, const char*, const char*, MtxPtr, int, bool);
 
-    virtual ~PartsModel() {}
+    virtual ~PartsModel() {
+    }
     virtual void init(const JMapInfoIter&) override;
     virtual void movement() override;
     virtual void calcAnim() override;

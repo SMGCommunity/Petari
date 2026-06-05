@@ -20,9 +20,11 @@ void GroupCheckManager::add(const NameObj *pObj, s32 idx) {
 }
 */
 
-GroupChecker::~GroupChecker() {}
+GroupChecker::~GroupChecker() {
+}
 
-GroupCheckManager::~GroupCheckManager() {}
+GroupCheckManager::~GroupCheckManager() {
+}
 
 GroupCheckManager::GroupCheckManager(const char* pName) : NameObj(pName) {
     mShellSearchGroup = new GroupChecker("カメサーチ対象物グループ", 0x20);

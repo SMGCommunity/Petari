@@ -77,7 +77,7 @@ void TeresaRacer::init(const JMapInfoIter& rIter) {
 
 void TeresaRacer::control() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_TERERACER_TRAMPLE", -1, -1);
+        MR::startSound(this, "SE_SM_TERERACER_TRAMPLE");
     }
     NPCActor::control();
 }
@@ -193,7 +193,7 @@ void TeresaRacer::exeMove() {
 
     if (mRacerId != -1 && MR::calcDistanceToPlayer(this) < sRasterParamMax) {
         MR::setRasterScroll(sRasterParamTime, sRasterParamX, sRasterParamY);
-        MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER");
     }
     changeBgmState();
 }
@@ -213,7 +213,7 @@ void TeresaRacer::exeGoal() {
 
     if (mRacerId != -1 && MR::calcDistanceToPlayer(this) < sRasterParamMax) {
         MR::setRasterScroll(sRasterParamTime, sRasterParamX, sRasterParamY);
-        MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER");
     }
     changeBgmState();
 }

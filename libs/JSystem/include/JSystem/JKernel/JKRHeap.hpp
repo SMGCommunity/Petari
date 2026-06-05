@@ -47,8 +47,6 @@ public:
     bool dispose(void*, u32);
     void dispose(void*, void*);
     void dispose();
-    static void copyMemory(void*, void*, u32);
-    static JKRErrorHandler setErrorHandler(JKRErrorHandler);
 
     void freeAll();
     void freeTail();
@@ -76,21 +74,58 @@ public:
         return mEnd;
     }
 
-    static JKRHeap* findFromRoot(void*);
-
-    static void* alloc(u32, int, JKRHeap*);
-    static void free(void*, JKRHeap*) NO_INLINE;
-
     static void destroy(JKRHeap*);
 
+    static bool initArena(char** memory, u32* size, int maxHeaps);
+    static bool initArena2(char** memory, u32* size, int maxHeaps);
+    static void* alloc(u32 size, int alignment, JKRHeap* heap);
+    static void free(void* ptr, JKRHeap* heap);
+    static s32 resize(void* ptr, u32 size, JKRHeap* heap);
+    static s32 getSize(void* ptr, JKRHeap* heap);
+    static JKRHeap* findFromRoot(void* ptr);
+
+    static void copyMemory(void* dst, void* src, u32 size);
+    static void fillMemory(void* dst, u32 size, u8 value);
+    static bool checkMemoryFilled(void* src, u32 size, u8 value);
+
+    static JKRErrorHandler setErrorHandler(JKRErrorHandler errorHandler);
+    static void fillMemory(u8*, u32, u8);
+    static bool checkMemoryFilled(u8*, u32, u8);
+
+    static void* getCodeStart(void) {
+        return mCodeStart;
+    }
+    static void* getCodeEnd(void) {
+        return mCodeEnd;
+    }
+    static void* getUserRamStart(void) {
+        return mUserRamStart;
+    }
+    static void* getUserRamEnd(void) {
+        return mUserRamEnd;
+    }
+    static u32 getMemorySize(void) {
+        return mMemorySize;
+    }
+    static JKRHeap* getRootHeap() {
+        return sRootHeap;
+    }
+
+    static JKRHeap* getSystemHeap() {
+        return sSystemHeap;
+    }
     static JKRHeap* getCurrentHeap() {
         return sCurrentHeap;
+    }
+    static void setSystemHeap(JKRHeap* heap) {
+        sSystemHeap = heap;
+    }
+    static void setCurrentHeap(JKRHeap* heap) {
+        sCurrentHeap = heap;
     }
 
     static void setAltAramStartAdr(u32);
     static u32 getAltAramStartAdr();
-
-    static bool initArena(char**, u32*, int);
 
     static JKRHeap* sGameHeap;     // 0x806B70A8
     static JKRHeap* sCurrentHeap;  // 0x806B70AC
@@ -144,14 +179,62 @@ inline void* JKRAllocFromHeap(JKRHeap* heap, u32 size, int alignment) {
     return JKRHeap::alloc(size, alignment, heap);
 }
 
-inline JKRHeap* JKRGetCurrentHeap() {
-    return JKRHeap::getCurrentHeap();
+inline void* JKRAllocFromSysHeap(u32 size, int alignment) {
+    return JKRHeap::getSystemHeap()->alloc(size, alignment);
 }
 
 inline void JKRFreeToHeap(JKRHeap* heap, void* ptr) {
     JKRHeap::free(ptr, heap);
 }
 
+inline void JKRFreeToSysHeap(void* ptr) {
+    JKRHeap::getSystemHeap()->free(ptr);
+}
+
 inline void JKRFree(void* ptr) {
     JKRHeap::free(ptr, NULL);
+}
+
+inline void JKRFillMemory(u8* dst, u32 size, u8 val) {
+    JKRHeap::fillMemory(dst, size, val);
+}
+
+inline JKRHeap* JKRGetSystemHeap() {
+    return JKRHeap::getSystemHeap();
+}
+
+inline JKRHeap* JKRGetCurrentHeap() {
+    return JKRHeap::getCurrentHeap();
+}
+
+inline JKRHeap* JKRSetCurrentHeap(JKRHeap* heap) {
+    return heap->becomeCurrentHeap();
+}
+
+inline u32 JKRGetMemBlockSize(JKRHeap* heap, void* block) {
+    return JKRHeap::getSize(block, heap);
+}
+
+inline u32 JKRGetFreeSize(JKRHeap* heap) {
+    return heap->getFreeSize();
+}
+
+inline void* JKRAlloc(u32 size, int alignment) {
+    return JKRHeap::alloc(size, alignment, NULL);
+}
+
+inline s32 JKRResizeMemBlock(JKRHeap* heap, void* ptr, u32 size) {
+    return JKRHeap::resize(ptr, size, heap);
+}
+
+inline JKRHeap* JKRFindHeap(void* ptr) {
+    return JKRHeap::findFromRoot(ptr);
+}
+
+inline JKRHeap* JKRGetRootHeap() {
+    return JKRHeap::getRootHeap();
+}
+
+inline JKRErrorHandler JKRSetErrorHandler(JKRErrorHandler errorHandler) {
+    return JKRHeap::setErrorHandler(errorHandler);
 }

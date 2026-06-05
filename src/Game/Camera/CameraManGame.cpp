@@ -62,9 +62,11 @@ CameraManGame::CameraManGame(CameraHolder* pHolder, CameraParamChunkHolder* pChu
     CameraLocalUtil::setWatchPos(this, TVec3f(0.0f, 0.0f, 300.0f));
 }
 
-CameraManGame::~CameraManGame() {}
+CameraManGame::~CameraManGame() {
+}
 
-void CameraManGame::init(const JMapInfoIter& rIter) {}
+void CameraManGame::init(const JMapInfoIter& rIter) {
+}
 
 void CameraManGame::calc() {
     selectCameraChunk();
@@ -80,7 +82,8 @@ void CameraManGame::notifyActivate() {
     _58 = 1;
 }
 
-void CameraManGame::notifyDeactivate() {}
+void CameraManGame::notifyDeactivate() {
+}
 
 bool CameraManGame::isInterpolationOff() const {
     if (mCamera != nullptr && mCamera->isInterpolationOff()) {
@@ -437,7 +440,7 @@ void CameraManGame::setSafePose() {
 // Stack issues
 void CameraManGame::keepAwayWatchPos(TVec3f* watchPos, const TVec3f& pos) {
     TVec3f dir = *watchPos - pos;
-    f32 length = PSVECMag(reinterpret_cast< Vec* >(&dir));
+    f32 length = dir.length();
 
     if (length < 300.0f) {
         if (length < 1.0f) {
@@ -449,8 +452,8 @@ void CameraManGame::keepAwayWatchPos(TVec3f* watchPos, const TVec3f& pos) {
 
             watchPos->set(newWatchPos2);
         } else {
-            f32 length2 = PSVECMag(reinterpret_cast< Vec* >(&dir));
-            PSVECNormalize(reinterpret_cast< Vec* >(&dir), reinterpret_cast< Vec* >(&dir));
+            f32 length2 = dir.length();
+            PSVECNormalize(&dir, &dir);
 
             TVec3f dirCopy = TVec3f(dir);
             dirCopy.x *= 300.0f;

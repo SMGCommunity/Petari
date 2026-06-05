@@ -16,7 +16,8 @@ namespace NrvOneUpBoard {
     NEW_NERVE(HostTypeAppear, OneUpBoard, Appear);
 };  // namespace NrvOneUpBoard
 
-OneUpBoard::OneUpBoard() : LayoutActor("1UPボード", true) {}
+OneUpBoard::OneUpBoard() : LayoutActor("1UPボード", true) {
+}
 
 void OneUpBoard::init(const JMapInfoIter& rIter) {
     initLayoutManager("OneUp", 2);
@@ -48,9 +49,11 @@ void OneUpBoard::calcPos() {
     setTrans(pos);
 }
 
-void OneUpBoard::control() {}
+void OneUpBoard::control() {
+}
 
-void OneUpBoard::exeWait() {}
+void OneUpBoard::exeWait() {
+}
 
 void OneUpBoard::exeAppear() {
     if (MR::isFirstStep(this)) {

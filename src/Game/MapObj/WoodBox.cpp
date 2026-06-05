@@ -18,9 +18,11 @@ namespace NrvWoodBox {
     NEW_NERVE(WoodBoxNrvHit, WoodBox, Hit);
 };  // namespace NrvWoodBox
 
-WoodBox::WoodBox(const char* pName) : LiveActor(pName) {}
+WoodBox::WoodBox(const char* pName) : LiveActor(pName) {
+}
 
-WoodBox::~WoodBox() {}
+WoodBox::~WoodBox() {
+}
 
 void WoodBox::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -212,7 +214,8 @@ void WoodBox::kill() {
     }
 }
 
-void WoodBox::exeWait() {}
+void WoodBox::exeWait() {
+}
 void WoodBox::exeHit() {
     if (LiveActor::getNerveStep() == 0) {
         LiveActor::getSensor("body")->invalidate();
@@ -228,7 +231,7 @@ void WoodBox::exeHit() {
 
         if (mStarBitCount != 0) {
             MR::appearStarPiece(this, mPosition, mStarBitCount, 10.0f, 40.0f, false);
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
 
         if (mOneUp) {
@@ -250,7 +253,7 @@ void WoodBox::exeHit() {
         }
 
         if (mPlaySolveSE) {
-            MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+            MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         }
     }
 
@@ -258,7 +261,8 @@ void WoodBox::exeHit() {
         kill();
     }
 }
-void WoodBox::exeKilled() {}
+void WoodBox::exeKilled() {
+}
 
 void WoodBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
     if (mHitPoint == 0) {
@@ -269,12 +273,12 @@ void WoodBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-        MR::startSound(this, "SE_OJ_WOOD_BOX_BREAK_W", -1, -1);
+        MR::startSound(this, "SE_OJ_WOOD_BOX_BREAK_W");
     } else {
-        MR::startSound(this, "SE_OJ_WOOD_BOX_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_WOOD_BOX_BREAK");
     }
     if (!MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_S");
     }
 
     mBreakModel->appear();

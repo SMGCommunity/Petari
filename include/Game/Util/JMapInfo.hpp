@@ -166,4 +166,4 @@ JMapInfoIter JMapInfo::end() const {
 
 namespace MR {
     JMapInfoIter findJMapInfoElementNoCase(const JMapInfo*, const char*, const char*, int);
-}
+};  // namespace MR

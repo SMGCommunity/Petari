@@ -83,15 +83,19 @@ public:
 
 class BenefitItemOneUp : public BenefitItemObj {
 public:
-    inline BenefitItemOneUp(const char* a1) : BenefitItemObj(a1, "KinokoOneUp") {}
-    inline BenefitItemOneUp(const char* a1, const char* a2) : BenefitItemObj(a1, a2) {}
+    inline BenefitItemOneUp(const char* a1) : BenefitItemObj(a1, "KinokoOneUp") {
+    }
+    inline BenefitItemOneUp(const char* a1, const char* a2) : BenefitItemObj(a1, a2) {
+    }
 
-    virtual ~BenefitItemOneUp() {}
+    virtual ~BenefitItemOneUp() {
+    }
 };
 
 class ShadowClipActor : public LiveActor {
 public:
-    virtual ~ShadowClipActor() {}
+    virtual ~ShadowClipActor() {
+    }
 
     virtual void endClipped();
     virtual void control();

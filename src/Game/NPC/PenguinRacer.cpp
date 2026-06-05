@@ -118,21 +118,21 @@ bool PenguinRacer::tryReaction() {
 
 void PenguinRacer::exeReaction() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_PENGUIN_S_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED");
+        MR::startSound(this, "SE_SV_PENGUIN_S_TRAMPLED");
     }
 
     if (isPointingSe()) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_POINTED_2P", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_POINTED_2P");
         MR::startDPDHitSound();
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_SPIN_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_SPIN_HIT");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_STAR_PIECE", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_STAR_PIECE");
     }
 
     if (MR::tryStartReactionAndPopNerve(this)) {
@@ -183,7 +183,7 @@ void PenguinRacer::control() {
 }
 
 void PenguinRacer::exeWait() {
-    MR::startLevelSound(this, "SE_SV_LV_PENGUIN_S_CHAT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SV_LV_PENGUIN_S_CHAT");
 
     if (!tryReaction()) {
         MR::tryTalkNearPlayerAndStartTalkAction(this);
@@ -210,10 +210,10 @@ void PenguinRacer::exeRaceWalk() {
         }
     }
 
-    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SLIDE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SLIDE");
 
     if (MR::isNearPlayer(this, sSwimSoundPlayDistance)) {
-        MR::startLevelSound(this, "SE_SV_LV_PENGUIN_S_RACE_SWIM", -1, -1, -1);
+        MR::startLevelSound(this, "SE_SV_LV_PENGUIN_S_RACE_SWIM");
     }
 
     updateMove();
@@ -228,7 +228,7 @@ void PenguinRacer::exeRaceSwim() {
     }
 
     if (MR::isNearPlayer(this, sSwimSoundPlayDistance)) {
-        MR::startLevelSound(this, "SE_SV_LV_PENGUIN_S_RACE_SWIM", -1, -1, -1);
+        MR::startLevelSound(this, "SE_SV_LV_PENGUIN_S_RACE_SWIM");
     }
 
     updateMove();
@@ -237,7 +237,7 @@ void PenguinRacer::exeRaceSwim() {
 void PenguinRacer::exeRaceStoW() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "RacerLandSwimSlow");
-        MR::startSound(this, "SE_SM_PENGUIN_WATER_OUT", -1, -1);
+        MR::startSound(this, "SE_SM_PENGUIN_WATER_OUT");
     }
 
     updateMove();
@@ -250,7 +250,7 @@ void PenguinRacer::exeRaceStoW() {
 void PenguinRacer::exeRaceWtoS() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "RacerSwimSlow");
-        MR::startSound(this, "SE_SM_PENGUIN_WATER_IN", -1, -1);
+        MR::startSound(this, "SE_SM_PENGUIN_WATER_IN");
     }
 
     updateMove();
@@ -265,10 +265,10 @@ void PenguinRacer::exeRaceFall() {
         if (MR::isActionStart(this, "RacerSwim")) {
         }
         MR::startAction(this, "RacerSwimDamage");
-        MR::startSound(this, "SE_SV_PENGUIN_S_DAMAGE_SHELL", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_DAMAGE_SHELL");
     }
 
-    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_S_SWOON", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_PENGUIN_S_SWOON");
 
     mSpeed -= sFallBrake;
     if (mSpeed < 0.0f) {
@@ -281,7 +281,7 @@ void PenguinRacer::exeRaceFall() {
     if (getNerveStep() >= sFallFrame) {
         mRailPointNo = MR::getCurrentRailPointNo(this);
         mMoveSpeed = getMoveSpeed();
-        MR::startSound(this, "SE_SV_PENGUIN_S_HEAT_UP", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_HEAT_UP");
         setNerve(getMoveNerve());
     }
 }

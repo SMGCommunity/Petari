@@ -168,7 +168,7 @@ void JumpBeamer::exeHide() {
 void JumpBeamer::exeUp() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Up", nullptr);
-        MR::startSound(this, "SE_EM_JGUARDER_APPEAR", -1, -1);
+        MR::startSound(this, "SE_EM_JGUARDER_APPEAR");
         MR::validateShadow(this, nullptr);
     }
 
@@ -203,7 +203,7 @@ void JumpBeamer::exeWait() {
 void JumpBeamer::exeDown() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Down", nullptr);
-        MR::startSound(this, "SE_EM_JGUARDER_HIDE", -1, -1);
+        MR::startSound(this, "SE_EM_JGUARDER_HIDE");
     }
 
     s16 end = MR::getBckCtrl(this)->mEnd;
@@ -220,12 +220,12 @@ void JumpBeamer::exeHopStart() {
         MR::startBrk(mHeadModel, "OnAndOff");
         MR::startBck(this, "Damage", nullptr);
         MR::deleteEffect(this, "Charge");
-        MR::startSound(this, "SE_EM_JGUARDER_HIT", -1, -1);
+        MR::startSound(this, "SE_EM_JGUARDER_HIT");
         HitSensor* bodySensor = getSensor("Body");
         bodySensor->mRadius = 120.0f;
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHAKE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHAKE");
 
     if (MR::isBckStopped(mHeadModel)) {
         setNerve(&NrvJumpBeamer::JumpBeamerNrvHopWait::sInstance);
@@ -239,7 +239,7 @@ void JumpBeamer::exeHopWait() {
         getSensor("Jump")->validate();
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHAKE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHAKE");
 
     if (MR::isStep(this, 300)) {
         setNerve(&NrvJumpBeamer::JumpBeamerNrvHopEnd::sInstance);
@@ -249,7 +249,7 @@ void JumpBeamer::exeHopWait() {
 void JumpBeamer::exeHopJump() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mHeadModel, "HopJump", nullptr);
-        MR::startSound(this, "SE_EM_JGUARDER_TRAMPLE", -1, -1);
+        MR::startSound(this, "SE_EM_JGUARDER_TRAMPLE");
     }
 
     if (MR::isBckStopped(mHeadModel)) {
@@ -262,7 +262,7 @@ void JumpBeamer::exeHopEnd() {
         MR::startBck(this, "HopEnd", nullptr);
         MR::startBck(mHeadModel, "HopEnd", nullptr);
         MR::startBrk(mHeadModel, "Green");
-        MR::startSound(this, "SE_EM_JGUARDER_CLOSE_SPRING", -1, -1);
+        MR::startSound(this, "SE_EM_JGUARDER_CLOSE_SPRING");
     }
 
     if (MR::isBckStopped(this)) {
@@ -312,7 +312,7 @@ void JumpBeamer::exeOpen() {
 
 void JumpBeamer::exeClose() {
     MR::isFirstStep(this);
-    MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHUTTER_CLOSE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHUTTER_CLOSE");
     if (MR::isBckStopped(this)) {
         setNerve(&NrvJumpBeamer::JumpBeamerNrvInter::sInstance);
     }

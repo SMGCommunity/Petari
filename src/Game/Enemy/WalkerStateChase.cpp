@@ -3,7 +3,7 @@
 
 namespace {
     WalkerStateChaseParam sDefaultParam;
-};
+};  // namespace
 
 namespace NrvWalkerStateChase {
     NEW_NERVE(WalkerStateChaseNrvStart, WalkerStateChase, Start);

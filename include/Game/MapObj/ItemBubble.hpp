@@ -8,9 +8,11 @@ class StarPiece;
 // This class may not belong in this file
 class RotPartsModel : public PartsModel {
 public:
-    RotPartsModel(LiveActor* a1, const char* a2, const char* a3, MtxPtr a4, int a5, bool a6) : PartsModel(a1, a2, a3, a4, a5, a6) {}
+    RotPartsModel(LiveActor* a1, const char* a2, const char* a3, MtxPtr a4, int a5, bool a6) : PartsModel(a1, a2, a3, a4, a5, a6) {
+    }
 
-    virtual ~RotPartsModel() {}
+    virtual ~RotPartsModel() {
+    }
     virtual void calcAndSetBaseMtx() {
         PartsModel::calcAndSetBaseMtx();
         TRot3f mtx;
@@ -64,16 +66,15 @@ public:
         return _94[index];
     }
 
-
-    f32 _8C; // 0x8C
+    f32 _8C;              // 0x8C
     RotPartsModel** _90;  // 0x90
-    StarPiece** _94; // 0x94
-    u16 mItemCount; // 0x98
-    u16 mItemType; // 0x9A
-    TPos3f _9C; // 0x9C
-    TPos3f _CC; // 0xCC
-    TVec3f _FC; // 0xFC
-    TVec3f _108; // 0x108
-    f32 mRailSpeed; // 0x114
-    bool mUseRail; // 0x118
+    StarPiece** _94;      // 0x94
+    u16 mItemCount;       // 0x98
+    u16 mItemType;        // 0x9A
+    TPos3f _9C;           // 0x9C
+    TPos3f _CC;           // 0xCC
+    TVec3f _FC;           // 0xFC
+    TVec3f _108;          // 0x108
+    f32 mRailSpeed;       // 0x114
+    bool mUseRail;        // 0x118
 };

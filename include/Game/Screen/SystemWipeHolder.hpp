@@ -30,4 +30,4 @@ private:
 
 namespace MR {
     SystemWipeHolder* createSystemWipeHolder();
-};
+};  // namespace MR

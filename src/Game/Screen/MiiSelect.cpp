@@ -126,7 +126,7 @@ void MiiSelect::validateAllSpecialMii() {
 void MiiSelect::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "Appear", 0);
-        MR::startSystemSE("SE_SY_FILE_SEL_MIISEL_OPEN", -1, -1);
+        MR::startSystemSE("SE_SY_FILE_SEL_MIISEL_OPEN");
         setCurrentPageNum();
     }
 
@@ -271,14 +271,14 @@ void MiiSelect::createButtons() {
 void MiiSelect::callbackLeft() {
     _20[0]->_24 = false;
 
-    MR::startSystemSE("SE_SY_FILE_SEL_MIISEL_SCRL", -1, -1);
+    MR::startSystemSE("SE_SY_FILE_SEL_MIISEL_SCRL");
     setNerve(&MiiSelectNrvScrollLeft::sInstance);
 }
 
 void MiiSelect::callbackRight() {
     _20[1]->_24 = false;
 
-    MR::startSystemSE("SE_SY_FILE_SEL_MIISEL_SCRL", -1, -1);
+    MR::startSystemSE("SE_SY_FILE_SEL_MIISEL_SCRL");
     setNerve(&MiiSelectNrvScrollRight::sInstance);
 }
 

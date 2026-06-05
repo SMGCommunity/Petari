@@ -5,9 +5,11 @@
 
 namespace nw4r {
     namespace lyt {
-        AnimTransform::AnimTransform() : mpRes(nullptr), mFrame(0) {}
+        AnimTransform::AnimTransform() : mpRes(nullptr), mFrame(0) {
+        }
 
-        AnimTransform::~AnimTransform() {}
+        AnimTransform::~AnimTransform() {
+        }
 
         u16 AnimTransform::GetFrameSize() const {
             return mpRes->frameSize;
@@ -17,7 +19,8 @@ namespace nw4r {
             return mpRes->loop != 0;
         }
 
-        AnimTransformBasic::AnimTransformBasic() : mpFileResAry(nullptr), mAnimLinkAry(nullptr), mAnimLinkNum(0) {}
+        AnimTransformBasic::AnimTransformBasic() : mpFileResAry(nullptr), mAnimLinkAry(nullptr), mAnimLinkNum(0) {
+        }
 
         AnimTransformBasic::~AnimTransformBasic() {
             Layout::DeleteArray(mAnimLinkAry, mAnimLinkNum);

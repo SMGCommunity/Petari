@@ -17,9 +17,10 @@ namespace {
     const AudEffectData cAudEffectDataList[] = {
         {0.0f, 127, 1.0f, 90}, {1.0f, 127, 1.0f, 90}, {0.0f, 10, 1.0f, 90}, {1.0f, 127, 0.0f, 90}, {0.8f, 127, 1.0f, 90},
     };
-}
+};  // namespace
 
-AudEffectDirector::AudEffectDirector() : NameObj("オーディオエフェクトディレクター"), _C(0), _10(0), _14(0) {}
+AudEffectDirector::AudEffectDirector() : NameObj("オーディオエフェクトディレクター"), _C(0), _10(0), _14(0) {
+}
 
 void AudEffectDirector::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, MR::MovementType_AudEffectDirector, -1, -1, -1);
@@ -76,10 +77,10 @@ void AudEffectDirector::setAudioEffectParam(s32 a1) {
 void AudEffectDirector::playEffectSound(s32 a1) {
     switch (a1) {
     case 3:
-        MR::startAtmosphereLevelSE("SE_AT_LV_WATERFALL_CAVE", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_WATERFALL_CAVE");
         break;
     case 4:
-        MR::startAtmosphereLevelSE("SE_AT_LV_PHNCV_TERESA_ROOM", -1, -1);
+        MR::startAtmosphereLevelSE("SE_AT_LV_PHNCV_TERESA_ROOM");
         break;
     }
 }

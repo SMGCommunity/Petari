@@ -30,7 +30,8 @@ namespace NrvRabbitStateWaitStart {
 
 RabbitStateWaitStart::RabbitStateWaitStart(LiveActor* pHost, TVec3f* pHostRotateFront, TalkMessageCtrl* pTalkMessageCtrl)
     : ActorStateBaseInterface("うさぎ会話待ち状態"), mHost(pHost), mTalkActionName("Wait"), mHostRotateFront(pHostRotateFront),
-      mTalkMessageCtrl(pTalkMessageCtrl), _1C(false), _1D(true) {}
+      mTalkMessageCtrl(pTalkMessageCtrl), _1C(false), _1D(true) {
+}
 
 void RabbitStateWaitStart::setTalkActionName(const char* pName) {
     mTalkActionName = pName;
@@ -196,8 +197,8 @@ void RabbitStateWaitStart::exeHitReaction() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "Reaction");
         MR::limitedStarPieceHitSound();
-        MR::startSound(mHost, "SE_SM_RABBIT_STAR_PIECE_HIT", -1, -1);
-        MR::startSound(mHost, "SE_SV_RABBIT_STAR_PIECE_HIT", -1, -1);
+        MR::startSound(mHost, "SE_SM_RABBIT_STAR_PIECE_HIT");
+        MR::startSound(mHost, "SE_SV_RABBIT_STAR_PIECE_HIT");
     }
 
     MR::zeroVelocity(mHost);
@@ -210,8 +211,8 @@ void RabbitStateWaitStart::exeHitReaction() {
 void RabbitStateWaitStart::exeTrample() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "Press");
-        MR::startSound(mHost, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(mHost, "SE_SV_RABBIT_TRAMPLED", -1, -1);
+        MR::startSound(mHost, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(mHost, "SE_SV_RABBIT_TRAMPLED");
     }
 
     MR::zeroVelocity(mHost);
@@ -224,8 +225,8 @@ void RabbitStateWaitStart::exeTrample() {
 void RabbitStateWaitStart::exeSpin() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "Spin");
-        MR::startSound(mHost, "SE_SV_RABBIT_SPIN", -1, -1);
-        MR::startSound(mHost, "SE_SM_RABBIT_SPIN", -1, -1);
+        MR::startSound(mHost, "SE_SV_RABBIT_SPIN");
+        MR::startSound(mHost, "SE_SM_RABBIT_SPIN");
     }
 
     MR::turnDirectionToPlayerDegree(mHost, mHostRotateFront, sSpinDegree);
@@ -242,7 +243,7 @@ void RabbitStateWaitStart::exePointing() {
         MR::startDPDHitSound();
     }
 
-    MR::startLevelSound(mHost, "SE_SM_LV_RABBIT_POINT", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_SM_LV_RABBIT_POINT");
     MR::zeroVelocity(mHost);
 
     if ((MR::isShortTalk(mTalkMessageCtrl) || !tryTalk()) && MR::isActionEnd(mHost)) {

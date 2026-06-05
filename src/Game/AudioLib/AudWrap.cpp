@@ -75,4 +75,4 @@ namespace AudWrap {
     AudSoundObject* getRemixSeqObject() {
         return getRemixMgr()->mSoundObj;
     }
-};
+};  // namespace AudWrap

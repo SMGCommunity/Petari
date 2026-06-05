@@ -189,7 +189,7 @@ void MiiSelectIcon::exeWait() {
     }
 
     if (_20->isPointingTrigger()) {
-        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+        MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
     }
 
     if (_20->mIsSelected) {
@@ -197,7 +197,8 @@ void MiiSelectIcon::exeWait() {
     }
 }
 
-void MiiSelectIcon::exeSelected() {}
+void MiiSelectIcon::exeSelected() {
+}
 
 void MiiSelectIcon::exeDisappear() {
     if (_20->isHidden()) {
@@ -211,7 +212,8 @@ void MiiSelectIcon::exeDisappear() {
     }
 }
 
-void MiiSelectIcon::exeInvalid() {}
+void MiiSelectIcon::exeInvalid() {
+}
 
 void MiiSelectIcon::appear() {
     LayoutActor::appear();

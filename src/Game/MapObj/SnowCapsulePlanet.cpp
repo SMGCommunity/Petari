@@ -12,7 +12,8 @@ SnowCapsulePlanet::SnowCapsulePlanet(const char* pName) : MapObjActor(pName) {
     mDoor2 = nullptr;
 }
 
-SnowCapsulePlanet::~SnowCapsulePlanet() {}
+SnowCapsulePlanet::~SnowCapsulePlanet() {
+}
 
 void SnowCapsulePlanet::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -30,9 +31,11 @@ void SnowCapsulePlanet::init(const JMapInfoIter& rIter) {
     }
 }
 
-void SnowCapsulePlanet::exeCloseWait() {}
+void SnowCapsulePlanet::exeCloseWait() {
+}
 
-void SnowCapsulePlanet::exeOpenWait() {}
+void SnowCapsulePlanet::exeOpenWait() {
+}
 
 void SnowCapsulePlanet::exeOpen() {
     if (MR::isFirstStep(this)) {
@@ -44,7 +47,7 @@ void SnowCapsulePlanet::exeOpen() {
     }
 
     if (MR::isBckStopped(this)) {
-        MR::startSystemSE("SE_SY_READ_RIDDLE_S", -1, -1);
+        MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         setNerve(&NrvSnowCapsulePlanet::SnowCapsulePlanetNrvOpenWait::sInstance);
     }
 }

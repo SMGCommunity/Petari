@@ -49,7 +49,7 @@ namespace JMath {
             return table[static_cast< u16 >(v) >> (16U - Bits)].b1;
         }
 
-        inline f32 sinLapRad(f32 v) {
+        inline f32 sinRadian(f32 v) {
             if (v < 0.0f) {
                 f32 tmp = v;
                 tmp *= -(LEN / TWO_PI);
@@ -61,7 +61,7 @@ namespace JMath {
             }
         }
 
-        inline f32 sinLap(f32 v) {
+        inline f32 sinDegree(f32 v) {
             if (v < 0.0f) {
                 f32 tmp = v * -45.511112f;
                 return -table[(u16)tmp & LEN - 1].a1;
@@ -71,7 +71,17 @@ namespace JMath {
             }
         }
 
-        inline f32 cosLapRad(f32 v) {
+        inline f32 sinLap(f32 v) {
+            if (v < 0.0f) {
+                f32 tmp = v * -(f32)LEN;
+                return -table[(u16)tmp & LEN - 1].a1;
+            } else {
+                f32 tmp = v * LEN;
+                return table[(u16)tmp & LEN - 1].a1;
+            }
+        }
+
+        inline f32 cosRadian(f32 v) {
             if (v < 0.0f) {
                 v = -v;
             }
@@ -81,7 +91,7 @@ namespace JMath {
             return table[(u16)tmp & LEN - 1].b1;
         }
 
-        inline f32 cosLap(f32 v) {
+        inline f32 cosDegree(f32 v) {
             if (v < 0.0f) {
                 v = -v;
             }
@@ -89,6 +99,16 @@ namespace JMath {
             v = 45.511112f * v;
 
             return table[(u16)v & LEN - 1].b1;
+        }
+
+        inline f32 cosLap(f32 v) {
+            if (v < 0.0f) {
+                v = -v;
+            }
+
+            f32 tmp = v;
+            tmp *= LEN;
+            return table[(u16)tmp & LEN - 1].b1;
         }
 
         inline f32 get(f32 v) {
@@ -168,19 +188,27 @@ f32 JMAAcosRadian(f32 v);
 f32 JMAAsinRadian(f32 v);
 
 inline f32 JMACosDegree(f32 angle) {
-    return JMath::sSinCosTable.cosLap(angle);
+    return JMath::sSinCosTable.cosDegree(angle);
 }
 
 inline f32 JMACosRadian(f32 angle) {
-    return JMath::sSinCosTable.cosLapRad(angle);
+    return JMath::sSinCosTable.cosRadian(angle);
+}
+
+inline f32 JMACosLap(f32 angle) {
+    return JMath::sSinCosTable.cosLap(angle);
 }
 
 inline f32 JMASinDegree(f32 angle) {
-    return JMath::sSinCosTable.sinLap(angle);
+    return JMath::sSinCosTable.sinDegree(angle);
 }
 
 inline f32 JMASinRadian(f32 angle) {
-    return JMath::sSinCosTable.sinLapRad(angle);
+    return JMath::sSinCosTable.sinRadian(angle);
+}
+
+inline f32 JMASinLap(f32 angle) {
+    return JMath::sSinCosTable.sinLap(angle);
 }
 
 inline f32 JMAATan2(f32 x, f32 y) {

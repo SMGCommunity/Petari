@@ -50,6 +50,8 @@ bool StopSceneController::isSceneStopped() const {
     return _10 > 0;
 }
 
-StopSceneDelayRequest::~StopSceneDelayRequest() {}
+StopSceneDelayRequest::~StopSceneDelayRequest() {
+}
 
-StopSceneController::~StopSceneController() {}
+StopSceneController::~StopSceneController() {
+}

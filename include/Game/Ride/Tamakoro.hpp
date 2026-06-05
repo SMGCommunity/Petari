@@ -131,4 +131,4 @@ private:
 
 namespace MR {
     NameObj* createTamakoroWithTutorial(const char*);
-};
+};  // namespace MR

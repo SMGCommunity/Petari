@@ -17,7 +17,8 @@ namespace {
     const char* cStartCountDownDemoName = "ロゼッタカウントダウン開始デモ";
 };  // namespace
 
-AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName), _1B4(0) {}
+AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName), _1B4(0) {
+}
 
 void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -30,15 +31,12 @@ void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
 
     if (MR::tryRegisterDemoCast(this, cStartCountDownDemoName, rIter)) {
-        MR::FunctorV0M< AstroCountDownPlate*, void (AstroCountDownPlate::*)() > startDemoFunc =
-            MR::Functor< AstroCountDownPlate >(this, &AstroCountDownPlate::startDemoStartCountDown);
-        MR::tryRegisterDemoActionFunctorDirect(this, startDemoFunc, cStartCountDownDemoName, nullptr);
+        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &AstroCountDownPlate::startDemoStartCountDown), cStartCountDownDemoName,
+                                               nullptr);
     }
 
     if (MR::tryRegisterDemoCast(this, cLastBattleDemoName, rIter)) {
-        MR::FunctorV0M< AstroCountDownPlate*, void (AstroCountDownPlate::*)() > lastBattleFunc =
-            MR::Functor< AstroCountDownPlate >(this, &AstroCountDownPlate::startDemoLastBattle);
-        MR::tryRegisterDemoActionFunctorDirect(this, lastBattleFunc, cLastBattleDemoName, nullptr);
+        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &AstroCountDownPlate::startDemoLastBattle), cLastBattleDemoName, nullptr);
     }
 
     MR::registerDemoSimpleCastAll(this);
@@ -54,7 +52,7 @@ void AstroCountDownPlate::exeWait() {
     }
 
     if (_1B4) {
-        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT");
     }
 }
 
@@ -68,7 +66,7 @@ void AstroCountDownPlate::exeRevival() {
     }
 
     if (_1B4) {
-        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT");
     }
 
     if (MR::isBrkStopped(this)) {
@@ -80,7 +78,7 @@ void AstroCountDownPlate::exeCountToZero() {
     if (MR::isFirstStep(this)) {
         MR::showMaterial(this, cMaterialName01);
         MR::showMaterial(this, cMaterialName10);
-        MR::startSound(this, "SE_OJ_CDN_PLATE_ONE_TO_ZERO", -1, -1);
+        MR::startSound(this, "SE_OJ_CDN_PLATE_ONE_TO_ZERO");
     }
 
     f32 v2 = MR::calcNerveRate(this, 50);
@@ -88,7 +86,7 @@ void AstroCountDownPlate::exeCountToZero() {
     _8C.getTexMtxInfo().mSRT.mTranslationY = v3;
 
     if (_1B4) {
-        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT");
     }
 
     if (MR::isStep(this, 50)) {
@@ -142,4 +140,5 @@ void AstroCountDownPlate::startDemoLastBattle() {
     setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvCountToZero::sInstance);
 }
 
-AstroCountDownPlate::~AstroCountDownPlate() {}
+AstroCountDownPlate::~AstroCountDownPlate() {
+}

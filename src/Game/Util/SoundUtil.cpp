@@ -1,12 +1,14 @@
 #include "Game/Util/SoundUtil.hpp"
-#include "Game/AudioLib/AudMeNameConverter.hpp"
-#include "Game/AudioLib/AudSoundNameConverter.hpp"
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
+#include "Game/AudioLib/AudMeNameConverter.hpp"
 #include "Game/AudioLib/AudMicWrap.hpp"
 #include "Game/AudioLib/AudRemixMgr.hpp"
 #include "Game/AudioLib/AudSceneMgr.hpp"
+#include "Game/AudioLib/AudSoundNameConverter.hpp"
+#include "Game/AudioLib/AudSpeakerWrap.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
+#include "Game/AudioLib/CSSoundNameConverter.hpp"
 #include "Game/GameAudio/AudBgmConductor.hpp"
 #include "Game/GameAudio/AudEffectDirector.hpp"
 #include "Game/GameAudio/AudSeKeeper.hpp"
@@ -14,15 +16,15 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/RhythmLib/AudChordInfo.hpp"
 #include "Game/RhythmLib/AudMeObject.hpp"
+#include "Game/SingletonHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include <JSystem/JAudio2/JAISound.hpp>
 
 namespace {
     AudBgmConductor* getAudBgmConductor() {
-        return MR::getSceneObj<AudBgmConductor>(SceneObj_AudBgmConductor);
+        return MR::getSceneObj< AudBgmConductor >(SceneObj_AudBgmConductor);
     }
 };  // namespace
 
@@ -111,7 +113,7 @@ namespace MR {
         if (param3 != -1) {
             JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(pName);
 
-            return  pActor->mSoundObject->startSoundParam(id, param3, param4);
+            return pActor->mSoundObject->startSoundParam(id, param3, param4);
         } else {
             JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(pName);
 
@@ -192,7 +194,7 @@ namespace MR {
         JAUSoundAnimation* pSoundAnimation = nullptr;
 
         if (pResourceHolder->mBasResTable->isExistRes(pName)) {
-            pSoundAnimation = static_cast<JAUSoundAnimation*>(pResourceHolder->mBasResTable->getRes(pName));
+            pSoundAnimation = static_cast< JAUSoundAnimation* >(pResourceHolder->mBasResTable->getRes(pName));
         }
 
         pActor->mSoundObject->setMapCode(getMapSoundCodeFoot(pActor));
@@ -256,7 +258,27 @@ namespace MR {
     }
 
     // startTalkSound
-    // startRemixSound
+
+    void startRemixSound(s32 melodyNo, s32 param2, f32 param3) {
+        AudWrap::getRemixMgr()->getRemixNoteGroupDataFromMelodyNo(melodyNo);
+
+        AudRemixSequencer* pRemixSequencer = AudWrap::getRemixSequencer();
+        f32 playerSpeed = getPlayerVelocity()->length();
+
+        if (playerSpeed < 3.0f) {
+            playerSpeed = 3.0f;
+        }
+
+        pRemixSequencer->setTempo((playerSpeed * 3600.0f) / param3);
+
+        RemixNoteGroupData* pRemixNoteGroupData = AudWrap::getRemixMgr()->getRemixNoteGroupDataFromMelodyNo(melodyNo);
+
+        for (s32 i = 0; i < pRemixNoteGroupData->mTrackCount; i++) {
+            RemixNoteTrackData* pRemixNoteTrackData = &pRemixNoteGroupData->mRemixTracks[i];
+
+            pRemixSequencer->addNoteData(pRemixNoteTrackData, &pRemixNoteTrackData->_4[param2]);
+        }
+    }
 
     s32 getRemixMelodyNoteNum(s32 melodyNo) {
         return AudWrap::getRemixMgr()->getRemixNoteGroupDataFromMelodyNo(melodyNo)->mNoteCount;
@@ -360,7 +382,7 @@ namespace MR {
         return isPlayingStageBgmID(id);
     }
 
-    bool isStopOrFadeoutStageBgmID(u32 id);
+    // isStopOrFadeoutStageBgmID
 
     bool isStopOrFadeoutBgmName(const char* pName) {
         JAISoundID id = AudSingletonHolder< AudSoundNameConverter >::get()->getSoundID(pName);
@@ -514,10 +536,20 @@ namespace MR {
     }
 
     void setAudioEffectType(s32 param1, s32 param2) {
-        MR::getSceneObj<AudEffectDirector>(SceneObj_AudEffectDirector)->setEffectType(param1, param2);
+        MR::getSceneObj< AudEffectDirector >(SceneObj_AudEffectDirector)->setEffectType(param1, param2);
     }
 
-    // startCSSound
+    void startCSSound(const char* pCSName, const char* pSEName, s32 param3) {
+        if (AudSpeakerWrap::isPlayable(-1)) {
+            s32 id = AudSingletonHolder< CSSoundNameConverter >::get()->getSoundID(pCSName);
+
+            if (id != -1) {
+                AudSpeakerWrap::start(id, param3);
+            }
+        } else if (pSEName != nullptr) {
+            startSystemSE(pSEName);
+        }
+    }
 
     void startCSSound2P(const char* pCSName, const char* pSEName) {
         if (isConnectedWPad(1)) {
@@ -540,28 +572,28 @@ namespace MR {
     }
 
     void startBlowHitSound(const LiveActor* pActor) {
-        startSound(pActor, "SE_PM_SPIN_HIT", -1, -1);
+        startSound(pActor, "SE_PM_SPIN_HIT");
     }
 
     void startDPDHitSound() {
         if (hasME()) {
             startSystemME("ME_DPD_HIT");
         } else {
-            startSystemSE("SE_SY_DPD_HIT", -1, -1);
+            startSystemSE("SE_SY_DPD_HIT");
         }
 
         startCSSound2P("CS_DPD_HIT", nullptr);
     }
 
     void startDPDFreezeLevelSound(const LiveActor* pActor) {
-        startLevelSound(pActor, "SE_EM_LV_DPD_POINT", -1, -1, -1);
+        startLevelSound(pActor, "SE_EM_LV_DPD_POINT");
     }
 
     void start2PJumpAssistSound() {
         if (hasME()) {
             startSystemME("ME_2P_ASSIST_JUMP");
         } else {
-            startSystemSE("SE_SY_2P_ASSIST_JUMP", -1, -1);
+            startSystemSE("SE_SY_2P_ASSIST_JUMP");
         }
 
         startCSSound2P("CS_DPD_JUMP", nullptr);
@@ -571,7 +603,7 @@ namespace MR {
         if (hasME()) {
             startSystemME("ME_2P_ASSIST_JUMP_L");
         } else {
-            startSystemSE("SE_SY_2P_ASSIST_JUMP_L", -1, -1);
+            startSystemSE("SE_SY_2P_ASSIST_JUMP_L");
         }
 
         startCSSound2P("CS_DPD_JUMP_HIGH", nullptr);
@@ -581,7 +613,7 @@ namespace MR {
         if (hasME()) {
             startSystemME("ME_2P_ASSIST_ATTACK");
         } else {
-            startSystemSE("SE_SY_2P_ASSIST_ATTACK", -1, -1);
+            startSystemSE("SE_SY_2P_ASSIST_ATTACK");
         }
 
         startCSSound2P("CS_DPD_PUNCH", nullptr);
@@ -595,32 +627,32 @@ namespace MR {
         startStageBGMFromStageName("Game", getCurrentStageName(), getCurrentScenarioNo());
     }
 
-    JAISoundHandle* startBossBGM(s32 param1) {
+    JAISoundHandle* startBossBGM(s32 id) {
         JAISoundHandle* pSoundHandle = nullptr;
 
-        switch (param1) {
-        case 0:
+        switch (id) {
+        case BossBgmID_01_A:
             pSoundHandle = startStageBGM("MBGM_BOSS_01_A", 0);
             break;
-        case 1:
+        case BossBgmID_01_B:
             pSoundHandle = startStageBGM("MBGM_BOSS_01_B", 0);
             break;
-        case 2:
+        case BossBgmID_02_A:
             pSoundHandle = startStageBGM("MBGM_BOSS_02_A", 0);
             break;
-        case 3:
+        case BossBgmID_02_B:
             pSoundHandle = startStageBGM("MBGM_BOSS_02_B", 0);
             break;
-        case 4:
+        case BossBgmID_03_A:
             pSoundHandle = startStageBGM("MBGM_BOSS_03_A", 0);
             break;
-        case 5:
+        case BossBgmID_03_B:
             pSoundHandle = startStageBGM("MBGM_BOSS_03_B", 0);
             break;
-        case 6:
+        case BossBgmID_05_A:
             pSoundHandle = startStageBGM("MBGM_BOSS_05_A", 0);
             break;
-        case 7:
+        case BossBgmID_05_B:
             pSoundHandle = startStageBGM("MBGM_BOSS_05_B", 0);
             break;
         }
@@ -628,20 +660,20 @@ namespace MR {
         return pSoundHandle;
     }
 
-    JAISoundHandle* startEventBGM(s32 param1) {
+    JAISoundHandle* startEventBGM(s32 id) {
         JAISoundHandle* pSoundHandle = nullptr;
 
-        switch (param1) {
-        case 0:
+        switch (id) {
+        case EventBgmID_Hurry:
             pSoundHandle = startStageBGM("MBGM_GALAXY_02_HURRY", 0);
             break;
-        case 1:
+        case EventBgmID_Chase:
             pSoundHandle = startStageBGM("MBGM_GALAXY_02_CHASE", 0);
             break;
-        case 2:
+        case EventBgmID_Race_01:
             pSoundHandle = startStageBGM("MBGM_RACE_01", 0);
             break;
-        case 3:
+        case EventBgmID_Race_02:
             pSoundHandle = startStageBGM("MBGM_RACE_02", 0);
             break;
         }

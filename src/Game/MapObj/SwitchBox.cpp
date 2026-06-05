@@ -8,7 +8,8 @@ namespace NrvSwitchBox {
     NEW_NERVE(SwitchBoxNrvHit, SwitchBox, Hit);
 };  // namespace NrvSwitchBox
 
-SwitchBox::SwitchBox(const char* pName) : LiveActor(pName) {}
+SwitchBox::SwitchBox(const char* pName) : LiveActor(pName) {
+}
 
 void SwitchBox::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -57,7 +58,8 @@ void SwitchBox::init(const JMapInfoIter& rIter) {
     appear();
 }
 
-void SwitchBox::initAfterPlacement() {}
+void SwitchBox::initAfterPlacement() {
+}
 
 void SwitchBox::exeWait() {
     if (_8c != 0) {
@@ -119,10 +121,10 @@ void SwitchBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
     _8e = 30;
 
     if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-        MR::startSound(this, "SE_OJ_S_BLOCK_BREAK_W", -1, -1);
+        MR::startSound(this, "SE_OJ_S_BLOCK_BREAK_W");
         MR::emitEffect(this, "BreakWater");
     } else {
-        MR::startSound(this, "SE_OJ_S_BLOCK_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_S_BLOCK_BREAK");
         MR::emitEffect(this, "Break");
     }
 }

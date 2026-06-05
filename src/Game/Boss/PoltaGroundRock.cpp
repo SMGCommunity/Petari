@@ -16,7 +16,8 @@ namespace NrvPoltaGroundRock {
     NEW_NERVE(PoltaGroundRockNrvBreak, PoltaGroundRock, Break);
 };  // namespace NrvPoltaGroundRock
 PoltaGroundRock::PoltaGroundRock(const char* pName)
-    : LiveActor(pName), mOwner(nullptr), mBreakModel(nullptr), _94(0.0f, 0.0f, 0.0f, 1.0f), _A4(0.0f, 0.0f, 0.0f) {}
+    : LiveActor(pName), mOwner(nullptr), mBreakModel(nullptr), _94(0.0f, 0.0f, 0.0f, 1.0f), _A4(0.0f, 0.0f, 0.0f) {
+}
 
 void PoltaGroundRock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -44,7 +45,8 @@ void PoltaGroundRock::initBreakModel() {
     mBreakModel->makeActorDead();
 }
 
-void PoltaGroundRock::control() {}
+void PoltaGroundRock::control() {
+}
 
 void PoltaGroundRock::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _94);
@@ -119,7 +121,7 @@ void PoltaGroundRock::exeSign() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Shadow");
     }
-    MR::startLevelSound(this, "SE_OJ_LV_POLTA_G_ROCK_SIGN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_POLTA_G_ROCK_SIGN");
     if (MR::isGreaterStep(this, 60)) {
         setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvJut::sInstance);
     }
@@ -127,7 +129,7 @@ void PoltaGroundRock::exeSign() {
 
 void PoltaGroundRock::exeJut() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_POLTA_G_ROCK_JUT", -1, -1);
+        MR::startSound(this, "SE_OJ_POLTA_G_ROCK_JUT");
     }
     JMAVECScaleAdd(&mGravity, &_A4, &mPosition, MR::calcNerveEaseOutValue(this, 20, 500.0f, 0.0f));
     if (MR::isGreaterStep(this, 20)) {
@@ -149,7 +151,7 @@ void PoltaGroundRock::exeBreak() {
         mBreakModel->makeActorAppeared();
         MR::startAction(mBreakModel, "Break");
         MR::deleteEffect(this, "Rock");
-        MR::startSound(this, "SE_OJ_POLTA_G_ROCK_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_POLTA_G_ROCK_BREAK");
         MR::hideModel(this);
         MR::invalidateCollisionParts(this);
         MR::tryRumblePadAndCameraDistanceStrong(this, 800.0f, 1200.0f, 2000.0f);

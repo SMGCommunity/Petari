@@ -21,10 +21,10 @@ public:
     void exeKeep();
     void exeFadeOut();
 
-    s32 mTotalFrame;
-    s32 mFadeInFrame;
-    s32 mFadeOutFrame;
-    f32 _98;
-    u8 _9C;
-    f32 _A0;
+    /* 0x8C */ s32 mTime;
+    /* 0x90 */ s32 mFadeIn;
+    /* 0x94 */ s32 mFadeOut;
+    /* 0x98 */ f32 mOffset;
+    /* 0x9C */ u8 mAlpha;
+    /* 0xA0 */ f32 mBlendRate;
 };

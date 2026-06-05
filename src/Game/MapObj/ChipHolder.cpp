@@ -118,7 +118,8 @@ void MR::deactivateChipLayout() {
     }
 }
 
-ChipHolder::~ChipHolder() {}
+ChipHolder::~ChipHolder() {
+}
 
 void ChipHolder::init(const JMapInfoIter& rIter) {
     mChipGroups = new ChipGroup*[0x40];

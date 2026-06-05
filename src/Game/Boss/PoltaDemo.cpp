@@ -8,7 +8,23 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "revolution/types.h"
+#include <revolution/types.h>
+
+namespace {
+    static const s32 sBgmStartStep = 60;
+    static const s32 sOpeningBlurStart = 300;
+    static const s32 sOpeningBlurTime = 70;
+    static const f32 sOpeningBlurOffset = 18.0f;
+    static const u8 sOpeningBlurAlpha = 80;
+    static const s32 sOpeningBlurFadeIn = 5;
+    static const s32 sOpeningBlurFadeOut = 30;
+    static const s32 sPowerUpBlurStart = 530;
+    static const s32 sPowerUpBlurTime = 80;
+    static const f32 sPowerUpBlurOffset = 20.0f;
+    static const u8 sPowerUpBlurAlpha = 80;
+    static const s32 sPowerUpBlurFadeIn = 5;
+    static const s32 sPowerUpBlurFadeOut = 40;
+};  // namespace
 
 namespace NrvPoltaDemo {
     NEW_NERVE(PoltaDemoNrvTryStartDemo, PoltaDemo, TryStartDemo);
@@ -17,13 +33,15 @@ namespace NrvPoltaDemo {
     NEW_NERVE(PoltaDemoNrvDownDemo, PoltaDemo, DownDemo);
 };  // namespace NrvPoltaDemo
 
-PoltaDemo::PoltaDemo(Polta* pPolta) : PoltaActionBase("ポルタデモ", pPolta), mCurDemoNerve(nullptr), mCurDemoName(nullptr) {}
+PoltaDemo::PoltaDemo(Polta* pPolta) : PoltaActionBase("ポルタデモ", pPolta), mCurDemoNerve(), mCurDemoName() {
+}
 
 void PoltaDemo::init() {
     initNerve(&NrvPoltaDemo::PoltaDemoNrvOpeningDemo::sInstance);
 }
 
-void PoltaDemo::control() {}
+void PoltaDemo::control() {
+}
 
 void PoltaDemo::startOpeningDemo() {
     startTryDemo("ポルタ開始デモ", &NrvPoltaDemo::PoltaDemoNrvOpeningDemo::sInstance);
@@ -77,8 +95,8 @@ void PoltaDemo::exeOpeningDemo() {
         MR::startAction(getHost()->mFormationModel, "OpeningDemo");
     }
 
-    if (MR::isStep(this, 300)) {
-        MR::startCenterScreenBlur(70, 18.0f, 80, 5, 30);
+    if (MR::isStep(this, ::sOpeningBlurStart)) {
+        MR::startCenterScreenBlur(::sOpeningBlurTime, ::sOpeningBlurOffset, ::sOpeningBlurAlpha, ::sOpeningBlurFadeIn, ::sOpeningBlurFadeOut);
     }
 
     if (MR::isStep(this, 60)) {
@@ -116,8 +134,8 @@ void PoltaDemo::exePowerUpDemo() {
         MR::startAction(getHost()->mRightArm->mFormationModel, "PowerUpDemoArmR");
     }
 
-    if (MR::isStep(this, 530)) {
-        MR::startCenterScreenBlur(80, 20.0f, 80, 5, 40);
+    if (MR::isStep(this, ::sPowerUpBlurStart)) {
+        MR::startCenterScreenBlur(::sPowerUpBlurTime, ::sPowerUpBlurOffset, ::sPowerUpBlurAlpha, ::sPowerUpBlurFadeIn, ::sPowerUpBlurFadeOut);
     }
     if (MR::isActionEnd(getHost())) {
         MR::endDemo(getHost(), "ポルタパワーアップデモ");
@@ -151,4 +169,5 @@ void PoltaDemo::exeDownDemo() {
     }
 }
 
-PoltaDemo::~PoltaDemo() {}
+PoltaDemo::~PoltaDemo() {
+}

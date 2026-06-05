@@ -11,7 +11,7 @@ public:
     virtual bool isValidFollowId(s32 id) const;
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    
+
     void exeFly();
     void exeShakeOffSign();
     void exeShakeOff();
@@ -24,6 +24,6 @@ public:
     void exeTurn();
     bool isEnableHipDrop() const;
     bool isEnableAttack() const;
-    
+
     f32 _64;
 };

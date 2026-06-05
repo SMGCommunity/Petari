@@ -138,4 +138,5 @@ namespace MR {
     }
 };  // namespace MR
 
-CameraTargetArg::CameraTargetArg() : mTargetObj(nullptr), mTargetMtx(nullptr), mLiveActor(nullptr), mMarioActor(nullptr) {}
+CameraTargetArg::CameraTargetArg() : mTargetObj(nullptr), mTargetMtx(nullptr), mLiveActor(nullptr), mMarioActor(nullptr) {
+}

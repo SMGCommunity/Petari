@@ -4,16 +4,16 @@
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 
+namespace {
+    Vec cHitSensorOffsetCage;
+    Vec cHitSensorOffsetFixation;
+};  // namespace
+
 namespace NrvBreakableCage {
     NEW_NERVE(BreakableCageNrvWait, BreakableCage, Wait);
     NEW_NERVE(BreakableCageNrvWaitStartDemoBreak, BreakableCage, WaitStartDemoBreak);
     NEW_NERVE(BreakableCageNrvBreak, BreakableCage, Break);
 };  // namespace NrvBreakableCage
-
-namespace {
-    Vec cHitSensorOffsetCage;
-    Vec cHitSensorOffsetFixation;
-};  // namespace
 
 BreakableCage::BreakableCage(const char* pName) : LiveActor(pName) {
     mBreakModel = nullptr;
@@ -322,7 +322,8 @@ void BreakableCage::exeWait() {
     }
 }
 
-void BreakableCage::exeWaitStartDemoBreak() {}
+void BreakableCage::exeWaitStartDemoBreak() {
+}
 
 void BreakableCage::exeBreak() {
     u32 v2 = 1;
@@ -340,10 +341,10 @@ void BreakableCage::exeBreak() {
     if (MR::isFirstStep(this)) {
         switch (mCageType) {
         case CAGE_FIX:
-            MR::startSound(this, "SE_OJ_BREAK_FIXATION_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_BREAK_FIXATION_BREAK");
             break;
         default:
-            MR::startSound(this, "SE_OJ_IRON_CAGE_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_IRON_CAGE_BREAK");
             break;
         }
 
@@ -424,4 +425,5 @@ void BreakableCage::exeBreak() {
     }
 }
 
-BreakableCage::~BreakableCage() {}
+BreakableCage::~BreakableCage() {
+}

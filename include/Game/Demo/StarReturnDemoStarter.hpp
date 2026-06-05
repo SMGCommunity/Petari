@@ -10,7 +10,7 @@ class PowerStar;
 class StarReturnDemoStarter : public LiveActor {
 public:
     StarReturnDemoStarter(const char*);
-    
+
     virtual ~StarReturnDemoStarter();
     virtual void init(const JMapInfoIter&);
     virtual void appear();

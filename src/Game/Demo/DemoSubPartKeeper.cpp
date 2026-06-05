@@ -16,7 +16,8 @@ DemoSubPartKeeper::DemoSubPartKeeper(const DemoExecutor* pExecutor) : mExecutor(
     }
 }
 
-DemoSubPartInfo::DemoSubPartInfo() : mSubPartName(nullptr), mSubPartTotalStep(1), mMainPartName(nullptr), mMainPartStep(1), _10(-1) {}
+DemoSubPartInfo::DemoSubPartInfo() : mSubPartName(nullptr), mSubPartTotalStep(1), mMainPartName(nullptr), mMainPartStep(1), _10(-1) {
+}
 
 void DemoSubPartKeeper::update() {
     if (mNumSubPartInfos > 0) {

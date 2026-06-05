@@ -103,7 +103,8 @@ void AnimScaleController::exeAnim() {
     }
 }
 
-void AnimScaleController::exeStop() {}
+void AnimScaleController::exeStop() {
+}
 
 void AnimScaleController::exeHitReaction() {
     if (MR::isFirstStep(this)) {

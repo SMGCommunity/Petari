@@ -14,7 +14,7 @@
 
 namespace {
     static Vec sStartPointVelocity = {0.0f, 0.0f, 0.0f};
-}
+};  // namespace
 
 namespace NrvJumpBranch {
     NEW_NERVE(JumpBranchNrvWait, JumpBranch, Wait);
@@ -24,7 +24,8 @@ namespace NrvJumpBranch {
 
 JumpBranch::JumpBranch(const char* pName)
     : LiveActor(pName), mCenter(0.0f, 0.0f, 0.0f), mSide(0.0f, 0.0f, 1.0f), mUp(0.0f, 0.0f, 1.0f), mFront(0.0f, 0.0f, 1.0f), mRider(nullptr),
-      mSwingPoint(nullptr), mSwingReverse(false) {}
+      mSwingPoint(nullptr), mSwingReverse(false) {
+}
 
 void JumpBranch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -188,8 +189,8 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         mSwingPoint->setInfo(diff, swingVelocity, mPosition, 30.0f);
 
         MR::startBckPlayer("JumpBranchWait", static_cast< const char* >(nullptr));
-        MR::startSound(mRider, "SE_PM_GRAB_OBJ", -1, -1);
-        MR::startSound(mRider, "SE_PM_SPIN", -1, -1);
+        MR::startSound(mRider, "SE_PM_GRAB_OBJ");
+        MR::startSound(mRider, "SE_PM_SPIN");
         setNerve(&NrvJumpBranch::JumpBranchNrvBind::sInstance);
         return true;
     }
@@ -240,8 +241,8 @@ bool JumpBranch::updateBind() {
             jumpDir.y = proj * (mFront.y * 10.0f) + 16.0f;
             jumpDir.z = proj * (mFront.z * 10.0f);
 
-            MR::startSound(mRider, "SE_PM_JUMP_M", -1, -1);
-            MR::startSound(mRider, "SE_PV_JUMP_S", -1, -1);
+            MR::startSound(mRider, "SE_PM_JUMP_M");
+            MR::startSound(mRider, "SE_PV_JUMP_S");
 
             if (front.dot(jumpDir) >= 0.0f) {
                 MR::startBckPlayer("JumpBranchFrontSpin", static_cast< const char* >(nullptr));
@@ -253,7 +254,7 @@ bool JumpBranch::updateBind() {
             MR::startBckPlayer("Fall", static_cast< const char* >(nullptr));
         }
 
-        MR::stopSound(mRider, "SE_PM_SPIN", 0);
+        MR::stopSound(mRider, "SE_PM_SPIN");
         MR::endBindAndPlayerJump(this, jumpDir, 0);
         mRider = nullptr;
         return true;

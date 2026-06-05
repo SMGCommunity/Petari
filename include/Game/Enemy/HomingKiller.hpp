@@ -58,6 +58,11 @@ public:
         return mType == Type_MagnumKiller ? 4.0f : 1.0f;
     }
 
+    void setBasePosAndFront(const TVec3f& pos, const TVec3f& front) {
+        mBasePos.set(pos);
+        mBaseFront.set(front);
+    }
+
     bool isInactive() const;
     bool isMoveNormal() const;
     bool isGravityIgnored() const;

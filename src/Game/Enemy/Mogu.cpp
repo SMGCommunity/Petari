@@ -168,7 +168,7 @@ void Mogu::exeHide() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Hide");
         MR::startAction(mHole, "Hide");
-        MR::startSound(this, "SE_EM_MOGU_HIDE", -1, -1);
+        MR::startSound(this, "SE_EM_MOGU_HIDE");
 
         TVec3f v1(mPosition);
         v1 -= *MR::getPlayerCenterPos();
@@ -183,7 +183,7 @@ void Mogu::exeHide() {
         }
     }
     if (MR::isActionEnd(this)) {
-        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE", -1, -1);
+        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE");
         setNerve(&NrvMogu::HostTypeNrvHideWait::sInstance);
     }
 }
@@ -192,8 +192,8 @@ void Mogu::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Appear");
         MR::startAction(mHole, "Open");
-        MR::startSound(this, "SE_EM_MOGUHOLE_OPEN", -1, -1);
-        MR::startSound(this, "SE_EM_MOGU_APPEAR", -1, -1);
+        MR::startSound(this, "SE_EM_MOGUHOLE_OPEN");
+        MR::startSound(this, "SE_EM_MOGU_APPEAR");
         TVec3f v1;
         MR::calcVecToPlayerH(&v1, this, nullptr);
         MR::turnVecToVecRadian(&mSight, mSight, v1, PI, _A8);
@@ -297,7 +297,7 @@ void Mogu::exeThrow() {
         MR::startAction(this, "Throw");
         mStone->appear();
         MR::startAction(mStone, "Rotate");
-        MR::startSound(this, "SE_EM_MOGU_TAKE_ITEM", -1, -1);
+        MR::startSound(this, "SE_EM_MOGU_TAKE_ITEM");
     }
 
     // "Strong"
@@ -342,7 +342,7 @@ void Mogu::exeThrow() {
         v7 += v4;
 
         mStone->emit(_B4, *stonePos, v7, 15.0f);
-        MR::startSound(this, "SE_EM_MOGU_THROW", -1, -1);
+        MR::startSound(this, "SE_EM_MOGU_THROW");
     }
 
     f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
@@ -367,8 +367,8 @@ void Mogu::endThrow() {
 
 void Mogu::exeSwoonStart() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_EM_MOGU_TURNOVER", -1, -1);
-        MR::startSound(this, "SE_EV_MOGU_TURNOVER", -1, -1);
+        MR::startSound(this, "SE_EM_MOGU_TURNOVER");
+        MR::startSound(this, "SE_EV_MOGU_TURNOVER");
         MR::startAction(this, "SwoonStart");
 
         if (!MR::isBckPlaying(mHole, "Open")) {
@@ -376,7 +376,7 @@ void Mogu::exeSwoonStart() {
         }
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
 
     if (MR::isActionEnd(this)) {
         setNerve(&NrvMogu::HostTypeNrvSwoon::sInstance);
@@ -388,7 +388,7 @@ void Mogu::exeSwoon() {
         MR::startAction(this, "Swoon");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
 
     if (isNearPlayerHipDrop()) {
         setNerve(&NrvMogu::HostTypeNrvHipDropReaction::sInstance);
@@ -415,11 +415,11 @@ void Mogu::exeSwoonEnd() {
         MR::startAction(this, "SwoonEnd");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_MOGU_SWOON_RECOVER", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_MOGU_SWOON_RECOVER");
 
     if (MR::isActionEnd(this)) {
         MR::startAction(mHole, "Close");
-        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE", -1, -1);
+        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE");
         setNerve(&NrvMogu::HostTypeNrvHideWait::sInstance);
     }
 }
@@ -428,17 +428,17 @@ void Mogu::exeStampDeath() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Down");
         MR::startAction(mHole, "Close");
-        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
+        MR::startSound(this, "SE_EM_STOMPED_S");
     }
 
     if (MR::isGreaterStep(this, 60)) {
         kill();
         MR::emitEffect(this, "Death");
-        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_S");
         MR::startAction(mHole, "Down");
         TVec3f coinPos(mPosition);
         MR::appearCoinPop(this, coinPos, 1);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 }
 
@@ -446,7 +446,7 @@ void Mogu::exeHitBlow() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "PunchDown");
         MR::startAction(mHole, "Close");
-        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE", -1, -1);
+        MR::startSound(this, "SE_EM_MOGUHOLE_CLOSE");
         MR::startBlowHitSound(this);
         MR::validateShadow(this, nullptr);
         TVec3f vecToPlayerH;
@@ -456,11 +456,11 @@ void Mogu::exeHitBlow() {
     MR::applyVelocityDampAndGravity(this, 2.0f, 0.8f, 0.98f, 0.98f, 1.0f);
 
     if (MR::isGreaterStep(this, 20)) {
-        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_S");
         kill();
         MR::startAction(mHole, "Down");
         MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 }
 

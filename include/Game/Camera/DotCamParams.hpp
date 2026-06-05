@@ -6,7 +6,8 @@
 
 class DotCamReader {
 public:
-    inline DotCamReader() {}
+    inline DotCamReader() {
+    }
 
     virtual ~DotCamReader();
 

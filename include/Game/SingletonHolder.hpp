@@ -11,7 +11,9 @@ public:
         }
     }
 
-    static T* get() { return sInstance; }
+    static T* get() {
+        return sInstance;
+    }
 
 private:
     static T* sInstance;
@@ -29,7 +31,9 @@ public:
         }
     }
 
-    static T* get() { return sInstance; }
+    static T* get() {
+        return sInstance;
+    }
 
 private:
     static T* sInstance;

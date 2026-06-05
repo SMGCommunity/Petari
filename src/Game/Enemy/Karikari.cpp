@@ -151,8 +151,8 @@ void Karikari::applyEnvironmentInfluenceToVelocity() {
 void Karikari::killedInFrozenState() {
     MR::deleteEffect(this, "KarikariCrystalLight");
     MR::emitEffect(this, "KarikariCrystalBreak");
-    MR::startSound(this, "SE_EM_KARIKARI_BLOW", -1, -1);
-    MR::startSound(this, "SE_EM_KARIKARI_CRUSH_CRYSTAL_L", -1, -1);
+    MR::startSound(this, "SE_EM_KARIKARI_BLOW");
+    MR::startSound(this, "SE_EM_KARIKARI_CRUSH_CRYSTAL_L");
     generateItem(3);
     makeActorDead();
     MR::stopScene(sStopSceneTime);
@@ -284,7 +284,7 @@ void Karikari::exePrePursue() {
         MR::onCalcShadow(this, nullptr);
         MR::onCalcGravity(this);
         MR::validateHitSensors(this);
-        MR::startSound(this, "SE_EM_KARIKARI_FIND", -1, -1);
+        MR::startSound(this, "SE_EM_KARIKARI_FIND");
         MR::startBck(this, "Search", nullptr);
         MR::startBtp(this, "Bite");
         MR::setBtpFrameAndStop(this, 0.0f);
@@ -350,7 +350,7 @@ void Karikari::exePursue() {
     }
 
     if (MR::isStep(this, sJumpAgainTime)) {
-        MR::startSound(this, "SE_EM_KARIKARI_JUMP2", -1, -1);
+        MR::startSound(this, "SE_EM_KARIKARI_JUMP2");
         mVelocity.sub(mGravity.scaleInline(sJumpToPursueVel));
         toPlayerH.scale(sPursueVel);
         mVelocity += toPlayerH;
@@ -443,7 +443,7 @@ void Karikari::exePreCling() {
     mClingPosition->copyTrans(&toClingPos);
     toClingPos.sub(mPosition);
     mVelocity = mVelocity.scaleInline(1.0f - t).translate(toClingPos.scaleInline(t));
-    MR::startLevelSound(this, "SE_EM_LV_KARIKARI_CLING", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_KARIKARI_CLING");
 
     if (MR::isGreaterStep(this, sPreClingTime)) {
         MR::onBind(this);
@@ -463,7 +463,7 @@ void Karikari::exeCling() {
         MR::setBckRate(this, 1.0f);
         MR::startBck(this, "Bite", nullptr);
         MR::startBtp(this, "Bite");
-        MR::startSound(this, "SE_EM_KARIKARI_TOUCH", -1, -1);
+        MR::startSound(this, "SE_EM_KARIKARI_TOUCH");
         mVelocity.zero();
     }
 
@@ -472,7 +472,7 @@ void Karikari::exeCling() {
     }
 
     mClingPosition->copyTrans(&mPosition);
-    MR::startLevelSound(this, "SE_EM_LV_KARIKARI_CLING", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_KARIKARI_CLING");
 }
 
 void Karikari::exeRelease() {
@@ -529,7 +529,7 @@ void Karikari::exeDPDAttacked() {
         _9E = false;
         mIsPushable = true;
         _A4 = 0;
-        MR::startSound(this, "SE_EM_KARIKARI_RELEASE", -1, -1);
+        MR::startSound(this, "SE_EM_KARIKARI_RELEASE");
         MR::emitEffect(this, "Touch");
     }
 
@@ -561,7 +561,7 @@ void Karikari::exeFrozen() {
 
     if (MR::isStep(this, sIceAppearTime)) {
         MR::invalidateShadow(this, nullptr);
-        MR::startSound(this, "SE_EM_KARIKARI_FREEZE_CRYSTAL", -1, -1);
+        MR::startSound(this, "SE_EM_KARIKARI_FREEZE_CRYSTAL");
     }
 
     if (--mFrozenTime <= 0) {
@@ -584,7 +584,7 @@ void Karikari::exeFrozenRecover() {
 
         MR::deleteEffect(this, "KarikariCrystalLight");
         MR::emitEffect(this, "KarikariCrystalBreak");
-        MR::startSound(this, "SE_EM_KARIKARI_CRUSH_CRYSTAL_M", -1, -1);
+        MR::startSound(this, "SE_EM_KARIKARI_CRUSH_CRYSTAL_M");
         MR::startBck(this, "SpinX", nullptr);
         MR::setBckRate(this, sSpinXAnimRate);
         MR::startBtp(this, "Bite");
@@ -609,7 +609,7 @@ void Karikari::exeBlowOut() {
         MR::validateHitSensors(this);
         _9E = false;
         mIsPushable = true;
-        MR::startSound(this, "SE_EM_KARIKARI_BLOW", -1, -1);
+        MR::startSound(this, "SE_EM_KARIKARI_BLOW");
         MR::startBck(this, "SpinX", nullptr);
         MR::setBckRate(this, sSpinXAnimRate);
         MR::startBtp(this, "Bite");
@@ -647,7 +647,7 @@ void Karikari::exeInTornado() {
     applyEnvironmentInfluenceToVelocity();
     mVelocity += mGravity.scaleInline(sGravity);
 
-    MR::startLevelSound(this, "SE_EM_LV_KARIKARI_TORNADO", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_KARIKARI_TORNADO");
 
     if (!mIsReadyToLandTornado && MR::isOnGround(this)) {
         setNerve(&NrvKarikari::HostTypeNrvWait::sInstance);
@@ -667,7 +667,7 @@ void Karikari::exePress() {
         MR::startBck(this, "Press", nullptr);
         MR::startBtp(this, "Bite");
         MR::setBtpFrameAndStop(this, 0.0f);
-        MR::startSound(this, "SE_EM_KARIKARI_STOMPED", -1, -1);
+        MR::startSound(this, "SE_EM_KARIKARI_STOMPED");
     }
 
     applyEnvironmentInfluenceToVelocity();
@@ -794,7 +794,7 @@ void Karikari::makeActorDead() {
 
 void Karikari::kill() {
     MR::emitEffect(this, "Death");
-    MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_S");
     LiveActor::kill();
 }
 
@@ -804,7 +804,7 @@ void Karikari::generateItem(s32 numStarPieces) {
 
     TVec3f pos = (-mGravity).scaleInline(80.0f);
     pos += mPosition;
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     MR::appearStarPiece(this, pos, numStarPieces, 10.0f, 40.0f, false);
 }
 

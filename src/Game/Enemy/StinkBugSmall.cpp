@@ -93,9 +93,9 @@ void StinkBugSmall::exeSearch() {
 void StinkBugSmall::exeDashSign() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "RushStart", nullptr);
-        MR::startSound(this, "SE_EV_STINKBUG_S_FIND", -1, -1);
+        MR::startSound(this, "SE_EV_STINKBUG_S_FIND");
     }
-    MR::startLevelSound(this, "SE_EM_STINKBUG_S_DASH_SIGN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_STINKBUG_S_DASH_SIGN");
     fixInitPos();
     tryTurnDashSign(3.0f);
     if (MR::isBckStopped(this)) {
@@ -112,7 +112,7 @@ void StinkBugSmall::exeDash() {
         MR::startBck(this, "Rush", nullptr);
         MR::validateHitSensors(this);
     }
-    MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_DASH", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_DASH");
     if (MR::isNear(this, _98, mRadius)) {
         if (!MR::isBindedWall(this)) {
             return;
@@ -120,7 +120,7 @@ void StinkBugSmall::exeDash() {
     }
     mVelocity.zero();
     setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashEnd::sInstance);
-    MR::startSound(this, "SE_EM_STINKBUG_S_DASH_END", -1, -1);
+    MR::startSound(this, "SE_EM_STINKBUG_S_DASH_END");
     setDashVelocity(20.0f);
 }
 void StinkBugSmall::exeDashEnd() {
@@ -137,7 +137,7 @@ void StinkBugSmall::exeBack() {
         MR::startBck(this, "Back", nullptr);
         MR::invalidateHitSensor(this, "head");
     }
-    MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_BACK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_BACK");
     if (MR::isNear(this, _98, 10.0f)) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvWait::sInstance);
         return;
@@ -157,8 +157,8 @@ void StinkBugSmall::exeHipDropDown() {
         }
         MR::invalidateHitSensors(this);
         MR::invalidateClipping(this);
-        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
-        MR::startSound(this, "SE_EV_STINKBUG_S_STOMPED", -1, -1);
+        MR::startSound(this, "SE_EM_STOMPED_S");
+        MR::startSound(this, "SE_EV_STINKBUG_S_STOMPED");
     }
     mVelocity.zero();
     if (MR::isBckStopped(this)) {
@@ -179,7 +179,7 @@ void StinkBugSmall::exeSpinReaction() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "SpinAction", nullptr);
     }
-    MR::startSound(this, "SE_EM_GUARD_S", -1, -1);
+    MR::startSound(this, "SE_EM_GUARD_S");
     mVelocity.zero();
     if (MR::isBckStopped(this)) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
@@ -204,7 +204,7 @@ void StinkBugSmall::exePanic() {
         MR::invalidateHitSensor(this, "head");
     }
     MR::startLevelSound(this, "SE_EV_LV_STINKBUG_S_PANIC", -1, -1, 15);
-    MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_PANIC", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_PANIC");
     mVelocity.zero();
     if (!MR::isOnPlayer(getSensor("body"))) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvRecover::sInstance);
@@ -218,7 +218,7 @@ void StinkBugSmall::exePanic() {
 
 void StinkBugSmall::exeRecover() {
     mVelocity.zero();
-    MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_PANID", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_PANID");
     if (MR::isStep(this, 60)) {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
     }
@@ -250,10 +250,10 @@ void StinkBugSmall::kill() {
     }
     if (!MR::isValidSwitchDead(this)) {
         MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
     MR::emitEffect(this, "Death");
-    MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_S");
     LiveActor::kill();
 }
 

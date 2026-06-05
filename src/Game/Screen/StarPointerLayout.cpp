@@ -191,7 +191,7 @@ void StarPointerLayout::exeWait() {
 void StarPointerLayout::exeGrip() {
     if (MR::isFirstStep(this)) {
         if (mPadChannel == WPAD_CHAN1 && isAppear()) {
-            MR::startSystemSE("SE_SY_DPD_B_TRIG", -1, -1);
+            MR::startSystemSE("SE_SY_DPD_B_TRIG");
         }
 
         if (mPointerKind == StarPointerKind_StarPointer) {
@@ -329,7 +329,7 @@ void StarPointerLayout::exeRelease() {
 
     if (MR::isFirstStep(this)) {
         if (mPadChannel == WPAD_CHAN1 && isAppear()) {
-            MR::startSystemSE("SE_SY_DPD_B_RELEASE", -1, -1);
+            MR::startSystemSE("SE_SY_DPD_B_RELEASE");
         }
 
         if (mPointerKind == StarPointerKind_StarPointer) {

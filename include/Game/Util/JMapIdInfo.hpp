@@ -5,7 +5,8 @@
 
 class JMapIdInfo {
 public:
-    inline JMapIdInfo() {}
+    inline JMapIdInfo() {
+    }
 
     JMapIdInfo(s32, s32);
     JMapIdInfo(s32, const JMapInfoIter&);
@@ -37,4 +38,4 @@ public:
 
 namespace MR {
     JMapIdInfo& createJMapIdInfoFromClippingGroupId(const JMapInfoIter&);
-};
+};  // namespace MR

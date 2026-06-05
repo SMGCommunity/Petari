@@ -11,4 +11,5 @@ CameraTowerBase::CameraTowerBase(const char* pName) : Camera(pName) {
     _68 = 2000.0f;
 }
 
-CameraTowerBase::~CameraTowerBase() {}
+CameraTowerBase::~CameraTowerBase() {
+}

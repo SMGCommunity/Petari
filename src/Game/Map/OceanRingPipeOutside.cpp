@@ -1,5 +1,5 @@
-#include "Game/Map/OceanRingPipe.hpp"
 #include "Game/Map/OceanRingPipeOutside.hpp"
+#include "Game/Map/OceanRingPipe.hpp"
 
 #include "Game/Scene/SceneFunction.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
@@ -11,12 +11,12 @@ namespace {
     const f32 sIndirectScale = 0.15f;
     const f32 sEnvMapScale = 0.6f;
 
-
     static GXColor sTevReg0 = {0x14, 0x65, 0xFF, 0xB9};
 };  // namespace
 
-OceanRingPipeOutside::OceanRingPipeOutside(const OceanRingPipe* pPipe) : LiveActor("オーシャンリングの内側"),
-    mRingPipe(pPipe), mTexU(0.0f), mWaterPipeIndirectTex(nullptr), mWaterPipeHighLightTex(nullptr), mDispListLength(0), mDispList(nullptr) {
+OceanRingPipeOutside::OceanRingPipeOutside(const OceanRingPipe* pPipe)
+    : LiveActor("オーシャンリングの内側"), mRingPipe(pPipe), mTexU(0.0f), mWaterPipeIndirectTex(nullptr), mWaterPipeHighLightTex(nullptr),
+      mDispListLength(0), mDispList(nullptr) {
 }
 
 void OceanRingPipeOutside::init(const JMapInfoIter& rIter) {
@@ -58,9 +58,8 @@ void OceanRingPipeOutside::draw() const {
 }
 
 const GXColor sFogCol = {0xFF, 0xFF, 0xFF, 0xFF};
-const Mtx sMtx = { 0.5f,  0.0f, 0.0f, 0.5f,
-                   0.0f, -0.5f, 0.0f, 0.5f,
-                   0.0f,  0.0f, 1.0f, 0.0f }; // this is being put into .rodata and not .data as intended
+const Mtx sMtx = {0.5f, 0.0f, 0.0f, 0.5f, 0.0f, -0.5f,
+                  0.0f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f};  // this is being put into .rodata and not .data as intended
 void OceanRingPipeOutside::loadMaterial() const {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_S16, 0x10);

@@ -14,7 +14,11 @@ const f32 DEGREE_TO_S16 = 182.04445f;
 const f32 FLOAT_MAX = 3.4028235e38;
 const f32 FLOAT_ZERO = 0.0f;
 
-const static Vec gZeroVec = {0.0f, 0.0f, 0.0f};
+extern const Vec gZeroVec;
+
+inline f32 deg2rad(f32 x) {
+    return x * PI_180;
+}
 
 namespace std {
     f32 atan2(f32, f32);

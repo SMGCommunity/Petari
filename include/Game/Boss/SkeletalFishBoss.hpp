@@ -102,7 +102,9 @@ public:
     void endBreakDemo();
     bool isEnableToBeDamaged() const;
 
-    SkeletalFishBossInfo::LevelStatus* getLevelStatus() const { return mBossInfo->getLevelStatus(_110); }
+    SkeletalFishBossInfo::LevelStatus* getLevelStatus() const {
+        return mBossInfo->getLevelStatus(_110);
+    }
 
     JointController* mControllers[0xD];
     s32* mJointIndicies;                    // 0xC0

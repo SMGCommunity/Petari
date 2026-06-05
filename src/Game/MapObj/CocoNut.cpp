@@ -29,7 +29,8 @@ CocoNut::CocoNut(const char* pName)
     _108.identity();
 }
 
-CocoNut::~CocoNut() {}
+CocoNut::~CocoNut() {
+}
 
 void CocoNut::init(const JMapInfoIter& rIter) {
     initMapToolInfo(rIter);
@@ -262,9 +263,9 @@ void CocoNut::processMove() {
                 }
                 if (var_r5 > 0) {
                     if (temp_r31) {
-                        MR::startSound(this, "SE_OJ_COCONUT_BOUND_WATER", var_r5, -1);
+                        MR::startSound(this, "SE_OJ_COCONUT_BOUND_WATER", var_r5);
                     } else {
-                        MR::startSound(this, "SE_OJ_COCONUT_BOUND", var_r5, -1);
+                        MR::startSound(this, "SE_OJ_COCONUT_BOUND", var_r5);
                     }
                 }
             }
@@ -281,9 +282,9 @@ void CocoNut::processMove() {
         }
         if (var_r5_2 >= 10) {
             if (temp_r31) {
-                MR::startLevelSound(this, "SE_OJ_LV_COCONUT_ROLL_WATER", var_r5_2, -1, -1);
+                MR::startLevelSound(this, "SE_OJ_LV_COCONUT_ROLL_WATER", var_r5_2);
             } else {
-                MR::startLevelSound(this, "SE_OJ_LV_COCONUT_ROLL", var_r5_2, -1, -1);
+                MR::startLevelSound(this, "SE_OJ_LV_COCONUT_ROLL", var_r5_2);
             }
         }
         _8C *= 0.925f;
@@ -323,7 +324,7 @@ void CocoNut::processMove() {
 
         _8C *= 0.8f;
 
-        MR::startSound(this, "SE_OJ_COCONUT_BOUND", 100.0f * (calcMoveSpeed() / 35.0f), -1);
+        MR::startSound(this, "SE_OJ_COCONUT_BOUND", 100.0f * (calcMoveSpeed() / 35.0f));
     }
     setFrontVec(_94);
     mVelocity.set(_94);
@@ -351,7 +352,7 @@ void CocoNut::setFrontVec(const TVec3f& a1) {
 }
 
 bool CocoNut::tryHit(HitSensor* pOtherSensor, HitSensor* pMySensor) {
-    CocoNut* nut = reinterpret_cast< CocoNut* >(pMySensor->mHost);
+    CocoNut* nut = static_cast< CocoNut* >(pMySensor->mHost);
     if (!isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance)) {
         return false;
     }
@@ -674,10 +675,10 @@ void CocoNut::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     } else if (pReceiver->isType(0x17)) {
         if (MR::sendMsgPush(pReceiver, pSender)) {
-            MR::startSound(this, "SE_OJ_COCONUT_HIT", -1, -1);
+            MR::startSound(this, "SE_OJ_COCONUT_HIT");
         }
     } else if (_13C && isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) && MR::sendMsgToEnemyAttackBlow(pReceiver, pSender)) {
-        MR::startSound(this, "SE_OJ_COCONUT_HIT", -1, -1);
+        MR::startSound(this, "SE_OJ_COCONUT_HIT");
         setNerve(&NrvCocoNut::CocoNutNrvBreak::sInstance);
     } else {
         MR::sendMsgPush(pReceiver, pSender);
@@ -711,14 +712,14 @@ bool CocoNut::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
     if (MR::isMsgPlayerSpinAttack(msg)) {
         var_f31 = 35.0f;
         var_f30 = -20.0f;
-        MR::startSound(this, "SE_PM_SPIN_HIT", -1, -1);
-        MR::startSound(this, "SE_OJ_COCONUT_LAUNCH", -1, -1);
+        MR::startSound(this, "SE_PM_SPIN_HIT");
+        MR::startSound(this, "SE_OJ_COCONUT_LAUNCH");
         emitEffectSpinHit(pSender, pReceiver);
         _13C = true;
     } else if (MR::isMsgPlayerHipDrop(msg) || MR::isMsgInvincibleAttack(msg)) {
         var_f31 = 25.0f;
         var_f30 = -15.0f;
-        MR::startSound(this, "SE_OJ_COCONUT_FLIP_M", -1, -1);
+        MR::startSound(this, "SE_OJ_COCONUT_FLIP_M");
 
         if (MR::isMsgPlayerHipDrop(msg)) {
             MR::sendMsgAwayJump(pSender, pReceiver);
@@ -726,7 +727,7 @@ bool CocoNut::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
     } else {
         var_f31 = 10.0f;
         var_f30 = -5.0f;
-        MR::startSound(this, "SE_OJ_COCONUT_FLIP_S", -1, -1);
+        MR::startSound(this, "SE_OJ_COCONUT_FLIP_S");
     }
 
     _8C = var_f31;
@@ -773,7 +774,7 @@ bool CocoNut::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 
             _8C = MR::max(var_f2, temp_f0);
             _90 = -(0.7f * temp_f1);
-            MR::startSound(this, "SE_OJ_COCONUT_FLIP_S", -1, -1);
+            MR::startSound(this, "SE_OJ_COCONUT_FLIP_S");
             setNerve(&NrvCocoNut::CocoNutNrvMove::sInstance);
             return true;
         }
@@ -891,7 +892,7 @@ void CocoNut::exeInWater() {
         negateInternalInline(mGravity, &gravityNegated);
         MR::makeMtxUpNoSupportPos(&_D8, gravityNegated, mPosition);
         MR::emitEffect(this, "WaterColumn");
-        MR::startSound(this, "SE_OJ_FALL_IN_WATER_M", -1, -1);
+        MR::startSound(this, "SE_OJ_FALL_IN_WATER_M");
         MR::releaseSoundHandle(this, "SE_OJ_FALL_IN_WATER_M");
     }
     if (!MR::isEffectValid(this, "WaterColumn")) {

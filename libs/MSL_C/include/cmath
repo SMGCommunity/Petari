@@ -49,9 +49,11 @@ int __ieee754_rem_pio2(double, double*);
 #ifdef __MWERKS__
 int __float_huge[];
 int __float_nan[];
+int __float_max[];
 int __double_huge[];
 int __float_epsilon[];
 
+#define FLT_MAX (*(float*)__float_max)
 #define INFINITY (*(float*)__float_huge)
 #define NAN (*(float*)__float_nan)
 #define HUGE_VAL (*(double*)__double_huge)

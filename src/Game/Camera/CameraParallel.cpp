@@ -14,7 +14,8 @@ CameraParallel::CameraParallel(const char* pName) : Camera(pName) {
     createVPanObj();
 }
 
-CameraParallel::~CameraParallel() {}
+CameraParallel::~CameraParallel() {
+}
 
 CamTranslatorBase* CameraParallel::createTranslator() {
     return new CamTranslatorParallel(this);

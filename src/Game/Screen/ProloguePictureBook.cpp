@@ -9,7 +9,7 @@
 
 namespace {
     static const s32 sBookPageInfo[] = {0, 350, 700, 1050, 1400, 1748, -1};
-};
+};  // namespace
 
 namespace NrvProloguePictureBook {
     NEW_NERVE(ProloguePictureBookActive, ProloguePictureBook, Active);
@@ -18,7 +18,8 @@ namespace NrvProloguePictureBook {
     NEW_NERVE(ProloguePictureBookEnd, ProloguePictureBook, End);
 };  // namespace NrvProloguePictureBook
 
-ProloguePictureBook::ProloguePictureBook() : LayoutActor("プロローグの絵本", true), mAButtonIcon(nullptr), mPage(0) {}
+ProloguePictureBook::ProloguePictureBook() : LayoutActor("プロローグの絵本", true), mAButtonIcon(nullptr), mPage(0) {
+}
 
 void ProloguePictureBook::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
@@ -83,7 +84,7 @@ void ProloguePictureBook::exeKeyWait() {
     }
 
     if (MR::testCorePadTriggerA(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         mAButtonIcon->term();
 
         mPage++;
@@ -93,7 +94,8 @@ void ProloguePictureBook::exeKeyWait() {
     }
 }
 
-void ProloguePictureBook::exeEnd() {}
+void ProloguePictureBook::exeEnd() {
+}
 
 bool ProloguePictureBook::isEnd() const {
     return isNerve(&NrvProloguePictureBook::ProloguePictureBookEnd::sInstance);

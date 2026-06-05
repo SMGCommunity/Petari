@@ -6,8 +6,7 @@
 SpinDriverPathDrawInit::SpinDriverPathDrawInit()
     : NameObj("スピンドライバーレール描画初期化"), mOrangeTexture(nullptr), mGreenTexture(nullptr), mPinkTexture(nullptr), mMaskTexture(nullptr),
       mIsPathAtOpa(false) {
-    void (SpinDriverPathDrawInit::*drawFunc)(void) = &SpinDriverPathDrawInit::initDraw;
-    MR::registerPreDrawFunction(MR::Functor(this, drawFunc), MR::DrawType_SpinDriverPathDrawer);
+    MR::registerPreDrawFunction(MR::Functor_Inline(this, &SpinDriverPathDrawInit::initDraw), MR::DrawType_SpinDriverPathDrawer);
     mOrangeTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "NormalColor.bti"), 0);
     mGreenTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "Green.bti"), 0);
     mPinkTexture = new JUTTexture(MR::loadTexFromArc("SpinDriverPath.arc", "Pink.bti"), 0);
@@ -194,6 +193,8 @@ void SpinDriverPathDrawer::sendPoint(const TVec3f& a1, f32 a2, f32 a3) {
     GXWGFifo.f32 = a3;
 }
 
-SpinDriverPathDrawer::~SpinDriverPathDrawer() {}
+SpinDriverPathDrawer::~SpinDriverPathDrawer() {
+}
 
-SpinDriverPathDrawInit::~SpinDriverPathDrawInit() {}
+SpinDriverPathDrawInit::~SpinDriverPathDrawInit() {
+}

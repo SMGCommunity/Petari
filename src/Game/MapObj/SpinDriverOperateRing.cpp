@@ -2,7 +2,7 @@
 
 namespace NrvSpinDriverOperateRing {
     NEW_NERVE(SpinDriverOperateRingNrvWait, SpinDriverOperateRing, Wait);
-};
+};  // namespace NrvSpinDriverOperateRing
 
 SpinDriverOperateRing::SpinDriverOperateRing(const char* pName)
     : LiveActor(pName), _8C(0, 0, 0), _98(0, 0, 0), _A4(0, 0, 0), mAccelerate(0, 0, 0), mDirection(0, 0, 0) {
@@ -20,9 +20,11 @@ void SpinDriverOperateRing::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
 }
 
-void SpinDriverOperateRing::control() {}
+void SpinDriverOperateRing::control() {
+}
 
-void SpinDriverOperateRing::exeWait() {}
+void SpinDriverOperateRing::exeWait() {
+}
 
 void SpinDriverOperateRing::setRadiusRate(f32 rate) {
     mRadiusRate = MR::normalize(rate, 0.0f, 1.0f);
@@ -92,4 +94,5 @@ void SpinDriverOperateRing::attenuateVelocity() {
     mAccelerate.z *= 0.94f;
 }
 
-SpinDriverOperateRing::~SpinDriverOperateRing() {}
+SpinDriverOperateRing::~SpinDriverOperateRing() {
+}

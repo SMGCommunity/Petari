@@ -32,7 +32,7 @@ void SceneDataInitializer::startStageFileLoadAfterScenarioSelected() {
 
 void SceneDataInitializer::waitDoneStageFileLoad() {
     mFileLoader->waitLoadedStageFile();
-    mDataHolder = reinterpret_cast< StageDataHolder* >(MR::createSceneObj(SceneObj_StageDataHolder));
+    mDataHolder = static_cast< StageDataHolder* >(MR::createSceneObj(SceneObj_StageDataHolder));
 }
 
 void SceneDataInitializer::startActorFileLoadCommon() {
@@ -51,4 +51,5 @@ void SceneDataInitializer::initAfterScenarioSelected() {
     mDataHolder->initAfterScenarioSelected();
 }
 
-SceneDataInitializer::~SceneDataInitializer() {}
+SceneDataInitializer::~SceneDataInitializer() {
+}

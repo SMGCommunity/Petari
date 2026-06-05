@@ -92,8 +92,12 @@ public:
     void beginPatch();
     u32 endPatch();
 
-    u8* getDisplayList(int idx) { return (u8*)mpDisplayList[idx]; }
-    u32 getDisplayListSize() { return mSize; }
+    u8* getDisplayList(int idx) {
+        return (u8*)mpDisplayList[idx];
+    }
+    u32 getDisplayListSize() {
+        return mSize;
+    }
 
     static GDLObj sGDLObj;
     static s32 sInterruptFlag;
@@ -113,20 +117,29 @@ public:
 
     virtual int entry(J3DDrawBuffer*);
     virtual void draw();
-    virtual ~J3DPacket() {}
+    virtual ~J3DPacket() {
+    }
 
     void addChildPacket(J3DPacket*);
 
-    J3DPacket* getNextPacket() const { return mpNextPacket; }
-    void setNextPacket(J3DPacket* i_packet) { mpNextPacket = i_packet; }
+    J3DPacket* getNextPacket() const {
+        return mpNextPacket;
+    }
+    void setNextPacket(J3DPacket* i_packet) {
+        mpNextPacket = i_packet;
+    }
 
     void drawClear() {
         mpNextPacket = NULL;
         mpFirstChild = NULL;
     }
 
-    void* getUserArea() const { return mpUserArea; }
-    void setUserArea(uintptr_t area) { mpUserArea = (void*)area; }
+    void* getUserArea() const {
+        return mpUserArea;
+    }
+    void setUserArea(uintptr_t area) {
+        mpUserArea = (void*)area;
+    }
 
 public:
     /* 0x04 */ J3DPacket* mpNextPacket;
@@ -142,30 +155,62 @@ public:
     J3DError newSingleDisplayList(u32);
     virtual void draw();
 
-    J3DDisplayListObj* getDisplayListObj() { return mpDisplayListObj; }
-    void setDisplayListObj(J3DDisplayListObj* pObj) { mpDisplayListObj = pObj; }
+    J3DDisplayListObj* getDisplayListObj() {
+        return mpDisplayListObj;
+    }
+    void setDisplayListObj(J3DDisplayListObj* pObj) {
+        mpDisplayListObj = pObj;
+    }
 
-    void beginPatch() { mpDisplayListObj->beginPatch(); }
-    void endPatch() { mpDisplayListObj->endPatch(); }
+    void beginPatch() {
+        mpDisplayListObj->beginPatch();
+    }
+    void endPatch() {
+        mpDisplayListObj->endPatch();
+    }
 
-    void callDL() const { mpDisplayListObj->callDL(); }
-    void beginDL() { mpDisplayListObj->beginDL(); }
-    void endDL() { mpDisplayListObj->endDL(); }
+    void callDL() const {
+        mpDisplayListObj->callDL();
+    }
+    void beginDL() {
+        mpDisplayListObj->beginDL();
+    }
+    void endDL() {
+        mpDisplayListObj->endDL();
+    }
 
-    void* getDisplayList(int i) { return mpDisplayListObj->mpDisplayList[i]; }
-    u32 getDisplayListSize() const { return mpDisplayListObj->mSize; }
+    void* getDisplayList(int i) {
+        return mpDisplayListObj->mpDisplayList[i];
+    }
+    u32 getDisplayListSize() const {
+        return mpDisplayListObj->mSize;
+    }
 
     enum {
         LOCKED = 0x01,
     };
 
-    bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
-    void onFlag(u32 flag) { mFlags |= flag; }
-    void offFlag(u32 flag) { mFlags &= ~flag; }
-    void lock() { onFlag(LOCKED); }
-    void unlock() { offFlag(LOCKED); }
-    J3DTexMtxObj* getTexMtxObj() { return mpTexMtxObj; }
-    bool isLocked() const { return checkFlag(1); }
+    bool checkFlag(u32 flag) const {
+        return (mFlags & flag) ? true : false;
+    }
+    void onFlag(u32 flag) {
+        mFlags |= flag;
+    }
+    void offFlag(u32 flag) {
+        mFlags &= ~flag;
+    }
+    void lock() {
+        onFlag(LOCKED);
+    }
+    void unlock() {
+        offFlag(LOCKED);
+    }
+    J3DTexMtxObj* getTexMtxObj() {
+        return mpTexMtxObj;
+    }
+    bool isLocked() const {
+        return checkFlag(1);
+    }
 
 public:
     /* 0x10 */ u32 mFlags;
@@ -185,16 +230,30 @@ public:
     virtual ~J3DShapePacket();
     virtual void draw();
 
-    void setShape(J3DShape* pShape) { mpShape = pShape; }
+    void setShape(J3DShape* pShape) {
+        mpShape = pShape;
+    }
 
-    void setModel(J3DModel* pModel) { mpModel = pModel; }
+    void setModel(J3DModel* pModel) {
+        mpModel = pModel;
+    }
 
-    void setMtxBuffer(J3DMtxBuffer* pMtxBuffer) { mpMtxBuffer = pMtxBuffer; }
-    void setBaseMtxPtr(Mtx* pMtx) { mpBaseMtxPtr = pMtx; }
+    void setMtxBuffer(J3DMtxBuffer* pMtxBuffer) {
+        mpMtxBuffer = pMtxBuffer;
+    }
+    void setBaseMtxPtr(Mtx* pMtx) {
+        mpBaseMtxPtr = pMtx;
+    }
 
-    J3DShape* getShape() const { return mpShape; }
-    J3DModel* getModel() const { return mpModel; }
-    Mtx* getBaseMtxPtr() const { return mpBaseMtxPtr; }
+    J3DShape* getShape() const {
+        return mpShape;
+    }
+    J3DModel* getModel() const {
+        return mpModel;
+    }
+    Mtx* getBaseMtxPtr() const {
+        return mpBaseMtxPtr;
+    }
 
 public:
     /* 0x28 */ J3DShape* mpShape;
@@ -212,19 +271,39 @@ public:
     void endDiff();
     bool isSame(J3DMatPacket*) const;
 
-    J3DMaterial* getMaterial() const { return mpMaterial; }
-    J3DShapePacket* getShapePacket() const { return mpShapePacket; }
-    void setShapePacket(J3DShapePacket* packet) { mpShapePacket = packet; }
+    J3DMaterial* getMaterial() const {
+        return mpMaterial;
+    }
+    J3DShapePacket* getShapePacket() const {
+        return mpShapePacket;
+    }
+    void setShapePacket(J3DShapePacket* packet) {
+        mpShapePacket = packet;
+    }
 
-    void setMaterial(J3DMaterial* pMaterial) { mpMaterial = pMaterial; }
+    void setMaterial(J3DMaterial* pMaterial) {
+        mpMaterial = pMaterial;
+    }
 
-    void setTexture(J3DTexture* pTexture) { mpTexture = pTexture; }
+    void setTexture(J3DTexture* pTexture) {
+        mpTexture = pTexture;
+    }
 
-    void setInitShapePacket(J3DShapePacket* packet) { mpInitShapePacket = packet; }
-    void setMaterialID(u32 id) { mDiffFlag = id; }
-    void setMaterialAnmID(J3DMaterialAnm* materialAnm) { mpMaterialAnm = materialAnm; }
-    BOOL isChanged() { return mDiffFlag & J3DDiffFlag_Changed; }
-    bool isEnabled_Diff() { return mpInitShapePacket->getDisplayListObj() != NULL; }
+    void setInitShapePacket(J3DShapePacket* packet) {
+        mpInitShapePacket = packet;
+    }
+    void setMaterialID(u32 id) {
+        mDiffFlag = id;
+    }
+    void setMaterialAnmID(J3DMaterialAnm* materialAnm) {
+        mpMaterialAnm = materialAnm;
+    }
+    BOOL isChanged() {
+        return mDiffFlag & J3DDiffFlag_Changed;
+    }
+    bool isEnabled_Diff() {
+        return mpInitShapePacket->getDisplayListObj() != NULL;
+    }
 
     virtual ~J3DMatPacket();
     virtual int entry(J3DDrawBuffer*);

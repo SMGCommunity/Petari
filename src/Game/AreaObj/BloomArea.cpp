@@ -8,7 +8,8 @@ BloomArea::BloomArea(int type, const char* pName) : ImageEffectArea(IMAGE_EFFECT
     _48 = -1;
 }
 
-BloomArea::~BloomArea() {}
+BloomArea::~BloomArea() {
+}
 
 void BloomArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

@@ -27,12 +27,24 @@ public:
     int entryTexMtxAnimator(J3DAnmTextureSRTKey*);
     int entryTevRegAnimator(J3DAnmTevRegKey*);
 
-    u16 getMaterialNum() const { return mMaterialNum; }
-    J3DTexture* getTexture() const { return mTexture; }
-    JUTNameTab* getTextureName() const { return mTextureName; }
-    JUTNameTab* getMaterialName() const { return mMaterialName; }
-    bool isLocked() const { return field_0x1c == 1; }
-    J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterialNodePointer[idx]; }
+    u16 getMaterialNum() const {
+        return mMaterialNum;
+    }
+    J3DTexture* getTexture() const {
+        return mTexture;
+    }
+    JUTNameTab* getTextureName() const {
+        return mTextureName;
+    }
+    JUTNameTab* getMaterialName() const {
+        return mMaterialName;
+    }
+    bool isLocked() const {
+        return field_0x1c == 1;
+    }
+    J3DMaterial* getMaterialNodePointer(u16 idx) const {
+        return mMaterialNodePointer[idx];
+    }
 
     /* 0x04 */ u16 mMaterialNum;
     /* 0x06 */ u16 mUniqueMatNum;

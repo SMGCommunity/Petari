@@ -31,7 +31,8 @@ namespace NrvTalkBalloonEvent {
     NEW_NERVE(TalkBalloonEventNrvClose, TalkBalloonEvent, Close);
 };  // namespace NrvTalkBalloonEvent
 
-TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName, true), mMessageCtrl(nullptr), mTextFormer(nullptr), _28(false), _29(false) {}
+TalkBalloon::TalkBalloon(const char* pName) : LayoutActor(pName, true), mMessageCtrl(nullptr), mTextFormer(nullptr), _28(false), _29(false) {
+}
 
 void TalkBalloon::create(const char* pLayoutName, bool arg2, bool isTalkLayout) {
     _28 = arg2;
@@ -92,7 +93,8 @@ bool TalkBalloon::hasNextPage() {
     return mTextFormer->hasNextPage();
 }
 
-void TalkBalloon::skipMessage() {}
+void TalkBalloon::skipMessage() {
+}
 
 void TalkBalloon::pauseOff() {
     MR::requestMovementOn(this);
@@ -265,7 +267,7 @@ void TalkBalloonEvent::close() {
     MR::startAnim(this, "End", 0);
 
     if (!TalkFunction::isSelectTalk(mMessageCtrl)) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
     }
 
     if (!MR::isDead(mAButton)) {
@@ -281,7 +283,7 @@ void TalkBalloonEvent::close() {
 bool TalkBalloonEvent::turnPage() {
     if (mTextFormer->nextPage()) {
         mTextFormer->setArg(mMessageCtrl->mTagArg, 0);
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         mAButton->term();
 
         return true;
@@ -313,7 +315,7 @@ void TalkBalloonEvent::exeOpen() {
         updateBeak();
         MR::showScreen(this);
         TalkBalloon::open(mMessageCtrl);
-        MR::startSystemSE("SE_SM_TALKBLN_OPEN", -1, -1);
+        MR::startSystemSE("SE_SM_TALKBLN_OPEN");
         MR::setSoundVolumeSetting(3, 30);
 
         if (!MR::isPlayingStageBgmName("STM_KINOPIO_TANKEN_B")) {
@@ -373,7 +375,8 @@ void TalkBalloonSign::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "AButtonPosition", 1);
 }
 
-TalkBalloonInfo::TalkBalloonInfo(const char* pName) : TalkBalloon(pName) {}
+TalkBalloonInfo::TalkBalloonInfo(const char* pName) : TalkBalloon(pName) {
+}
 
 void TalkBalloonInfo::open(TalkMessageCtrl* pCtrl) {
     TalkMessageInfo* info = TalkFunction::getMessageInfo(pCtrl);
@@ -381,19 +384,22 @@ void TalkBalloonInfo::open(TalkMessageCtrl* pCtrl) {
 }
 
 void TalkBalloonInfo::close() {
-    MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+    MR::startSystemSE("SE_SY_TALK_OK");
     MR::disappearInformationMessage();
 }
 
-void TalkBalloonInfo::updateTalking() {}
+void TalkBalloonInfo::updateTalking() {
+}
 
-void TalkBalloonInfo::updateBalloon() {}
+void TalkBalloonInfo::updateBalloon() {
+}
 
 bool TalkBalloonInfo::isTextAppearedAll() {
     return true;
 }
 
-TalkBalloonIcon::TalkBalloonIcon(const char* pName) : TalkBalloonShort(pName) {}
+TalkBalloonIcon::TalkBalloonIcon(const char* pName) : TalkBalloonShort(pName) {
+}
 
 void TalkBalloonIcon::init(const JMapInfoIter& rIter) {
     TalkBalloon::create("TalkBalloonLetter", false, false);
@@ -454,7 +460,8 @@ void TalkBalloonHolder::balloonOff() {
     mAButton->kill();
 }
 
-void TalkBalloonHolder::update() {}
+void TalkBalloonHolder::update() {
+}
 
 bool TalkBalloonHolder::isActiveBalloonShort() const {
     for (int i = 0; i < 4; i++) {

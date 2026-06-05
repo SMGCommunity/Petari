@@ -5,9 +5,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-TransparentWall::TransparentWall(const char* pName) : InvisiblePolygonObj(pName) {}
+TransparentWall::TransparentWall(const char* pName) : InvisiblePolygonObj(pName) {
+}
 
-TransparentWall::~TransparentWall() {}
+TransparentWall::~TransparentWall() {
+}
 
 void TransparentWall::init(const JMapInfoIter& rIfter) {
     InvisiblePolygonObj::init(rIfter);

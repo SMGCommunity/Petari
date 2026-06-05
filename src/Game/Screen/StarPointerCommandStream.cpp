@@ -88,7 +88,7 @@ void StarPointerCommandStream::control() {
     } else {
         mOffScreenTime++;
         if ((mOffScreenTime & 0x10) != 0 && (mOffScreenTime & 0x0F) == 0) {
-            MR::startSystemSE("SE_SY_DPD_DRAG_RANGE_OUT", -1, -1);
+            MR::startSystemSE("SE_SY_DPD_DRAG_RANGE_OUT");
         }
     }
 

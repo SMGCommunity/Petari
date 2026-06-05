@@ -31,7 +31,7 @@ void NormalMapBase::setup(const char* pName) {
     _4C5 = 1;
     _4C4 = 1;
     initModelManagerWithAnm(pName, nullptr, false);
-    MR::connectToScene(this, MR::MovementType_MapObj, 5, -1, MR::DrawType_WarpPodPath);
+    MR::connectToScene(this, MR::MovementType_MapObj, MR::CalcAnimType_MapObj, -1, MR::DrawType_WarpPodPath);
     MR::initLightCtrlNoDrawMapObj(this);
     setupLighting();
     setupTexture();

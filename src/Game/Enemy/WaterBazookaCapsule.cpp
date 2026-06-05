@@ -10,7 +10,8 @@ namespace NrvWaterBazookaCapsule {
 };  // namespace NrvWaterBazookaCapsule
 
 WaterBazookaCapsule::WaterBazookaCapsule(LiveActor* pActor, const char* pName)
-    : PartsModel(pActor, pName, "WaterBazookaCapsule", nullptr, MR::DrawBufferType_Enemy, false) {}
+    : PartsModel(pActor, pName, "WaterBazookaCapsule", nullptr, MR::DrawBufferType_Enemy, false) {
+}
 
 void WaterBazookaCapsule::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
@@ -50,7 +51,7 @@ void WaterBazookaCapsule::exeCrack() {
         MR::stopScene(12);
         MR::startBva(this, "Crack");
         MR::emitEffect(this, "Crack");
-        MR::startSound(this, "SE_EM_WATERBAZ_CAPSULE_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EM_WATERBAZ_CAPSULE_DAMAGE");
     }
 }
 
@@ -59,7 +60,7 @@ void WaterBazookaCapsule::exeBreak() {
         MR::stopScene(12);
         MR::startBva(this, "Break");
         MR::emitEffect(this, "Break");
-        MR::startSound(this, "SE_EM_WATERBAZ_CAPSULE_BREAK", -1, -1);
+        MR::startSound(this, "SE_EM_WATERBAZ_CAPSULE_BREAK");
         MR::invalidateCollisionParts(this);
     }
 }

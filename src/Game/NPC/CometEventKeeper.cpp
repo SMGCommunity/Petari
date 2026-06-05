@@ -15,7 +15,7 @@ namespace {
         {"CannonFleetGalaxy", 4, 360},  {"StarDustGalaxy", 5, 120}, {"PhantomGalaxy", 5, 60},
         {"CosmosGardenGalaxy", 5, 150}, {"FactoryGalaxy", 5, 180},  {"ReverseKingdomGalaxy", 5, 210},
     };
-};
+};  // namespace
 
 CometEventKeeper::CometEventKeeper() : mExecutorTimeLimit(nullptr), mScreenFilter(nullptr), mCometName(nullptr), mCometStateIndex(0) {
 }

@@ -63,10 +63,10 @@ void MagicBell::exeRing() {
     if (MR::isFirstStep(this)) {
         if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
             MR::onSwitchA(this);
-            MR::startSound(this, "SE_OJ_HAPPY_BELL_SWITCH_ON", -1, -1);
+            MR::startSound(this, "SE_OJ_HAPPY_BELL_SWITCH_ON");
         }
 
-        MR::startSound(this, "SE_OJ_HAPPY_BELL_RING", -1, -1);
+        MR::startSound(this, "SE_OJ_HAPPY_BELL_RING");
     }
 
     mBellSwinger->update();
@@ -184,7 +184,8 @@ void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
     setNerve(&NrvMagicBell::MagicBellNrvRing::sInstance);
 }
 
-MagicBell::~MagicBell() {}
+MagicBell::~MagicBell() {
+}
 
 MtxPtr MagicBell::getBaseMtx() const {
     return mSurface2Mtx;

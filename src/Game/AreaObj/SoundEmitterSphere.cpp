@@ -5,9 +5,9 @@
 namespace {
     const char* gSoundNameTable[] = {"SE_AT_LV_MAGMA_AMBIENT",      "SE_OJ_LV_FLOATING_SAND",    "SE_AT_LV_WIND_DESERT",
                                      "SE_AT_LV_MAGMA_WIND_VOLCANO", "SE_AT_LV_KOOPA_FLOAT_SAND", "SE_AT_LV_WIND_RABBIT_MAZE"};
-}
+};  // namespace
 
-SoundEmitterSphere::SoundEmitterSphere(int type, const char* pName) : AreaObj(type, pName) {
+SoundEmitterSphere::SoundEmitterSphere(int formType, const char* pName) : AreaObj(formType, pName) {
     mSoundObj = nullptr;
     _40.x = 0.0f;
     _40.y = 0.0f;
@@ -16,7 +16,8 @@ SoundEmitterSphere::SoundEmitterSphere(int type, const char* pName) : AreaObj(ty
     mSoundIndex = 0;
 }
 
-SoundEmitterSphere::~SoundEmitterSphere() {}
+SoundEmitterSphere::~SoundEmitterSphere() {
+}
 
 void SoundEmitterSphere::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
@@ -28,4 +29,5 @@ void SoundEmitterSphere::init(const JMapInfoIter& rIter) {
     MR::registerDemoSimpleCastAll(this);
 }
 
-void SoundEmitterSphere::movement() {}
+void SoundEmitterSphere::movement() {
+}

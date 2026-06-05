@@ -5,14 +5,15 @@
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
 #include "Game/Util.hpp"
 
-RestartCube::RestartCube(int type, const char* pName) : AreaObj(type, pName) {
+RestartCube::RestartCube(int formType, const char* pName) : AreaObj(formType, pName) {
     mIdInfo = nullptr;
     _40 = -1;
     _44 = -1;
     _48 = false;
 }
 
-RestartCube::~RestartCube() {}
+RestartCube::~RestartCube() {
+}
 
 void RestartCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

@@ -74,7 +74,7 @@ void OtaRock::appear() {
 
 void OtaRock::kill() {
     MR::emitEffect(this, "OtaRockDeath");
-    MR::startSound(this, "SE_EM_OTAROCK_DIE", -1, -1);
+    MR::startSound(this, "SE_EM_OTAROCK_DIE");
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
     }
@@ -203,7 +203,7 @@ bool OtaRock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
     return true;
 }
 
-//void OtaRock::initModel() {}
+// void OtaRock::initModel() {}
 
 void OtaRock::exeWait() {
     if (MR::isFirstStep(this)) {
@@ -232,7 +232,7 @@ void OtaRock::exeWait() {
 void OtaRock::exeThrowCocoNut() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Attack", nullptr);
-        MR::startSound(this, "SE_EM_OTAROCK_ATTACK", -1, -1);
+        MR::startSound(this, "SE_EM_OTAROCK_ATTACK");
     }
     OtaRock::updateBaseMtx();
     if (MR::isStep(this, 40)) {
@@ -246,11 +246,11 @@ void OtaRock::exeThrowCocoNut() {
 void OtaRock::exeThrowFireBall() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Attack", nullptr);
-        MR::startSound(this, "SE_EM_OTAROCK_ATTACK", -1, -1);
+        MR::startSound(this, "SE_EM_OTAROCK_ATTACK");
     }
     OtaRock::updateBaseMtx();
     if (MR::isStep(this, 40)) {
-        MR::startSound(this, "SE_EM_OTAROCK_ATTAC", -1, -1);
+        MR::startSound(this, "SE_EM_OTAROCK_ATTAC");
         throwFireBall();
     }
     if (MR::isBckStopped(this)) {
@@ -261,8 +261,8 @@ void OtaRock::exeThrowFireBall() {
 void OtaRock::exeDown() {
     if (MR::isFirstStep(this)) {
         MR::startBckNoInterpole(this, "OtaRockDeath");
-        MR::startSound(this, "SE_EM_OTAROCK_DIE", -1, -1);
-        MR::startSound(this, "SE_EM_OTAROCK_DIE", -1, -1);
+        MR::startSound(this, "SE_EM_OTAROCK_DIE");
+        MR::startSound(this, "SE_EM_OTAROCK_DIE");
         MR::invalidateHitSensors(this);
         MR::tryRumblePadVeryStrong(this, 0);
 
@@ -304,7 +304,7 @@ void OtaRock::exeHideWait() {
 void OtaRock::exeHide() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Hide", nullptr);
-        MR::startSound(this, "SE_EM_OTAROCK_HIDE", -1, -1);
+        MR::startSound(this, "SE_EM_OTAROCK_HIDE");
     }
     updateBaseMtx();
     MR::setNerveAtBckStopped(this, &NrvOtaRock::OtaRockNrvHideWait::sInstance);
@@ -313,7 +313,7 @@ void OtaRock::exeHide() {
 void OtaRock::exeShow() {
     if (MR::isFirstStep(this)) {
         MR::startBckNoInterpole(this, "Show");
-        MR::startSound(this, "SE_EM_OTAROCK_APPEAR", -1, -1);
+        MR::startSound(this, "SE_EM_OTAROCK_APPEAR");
     }
     updateBaseMtx();
     MR::setNerveAtBckStopped(this, &NrvOtaRock::OtaRockNrvWait::sInstance);

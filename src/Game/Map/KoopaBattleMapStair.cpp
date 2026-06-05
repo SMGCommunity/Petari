@@ -191,11 +191,11 @@ void KoopaBattleMapStair::exeWaitKoopaFire() {
 
 void KoopaBattleMapStair::exeWaitFall() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_STAIR_BREAK_START", -1, -1);
+        MR::startSound(this, "SE_OJ_STAIR_BREAK_START");
         MR::startAllAnim(this, "WaitFall");
     }
 
-    MR::startLevelSound(this, "SE_OJ_LV_STAIR_BREAK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_STAIR_BREAK");
     if (MR::isStep(this, _B8)) {
         mVelocity.x = mVelocity.y = mVelocity.z = 0.0f;
         setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvFall::sInstance);
@@ -210,9 +210,9 @@ void KoopaBattleMapStair::exeFall() {
 
     MR::addVelocityToGravity(this, 0.03f);
     MR::restrictVelocity(this, 1.5f);
-    MR::startLevelSound(this, "SE_OJ_LV_STAIR_BREAK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_STAIR_BREAK");
     if (MR::isStep(this, _BC)) {
-        MR::startSound(this, "SE_OJ_STAIR_BREAK_END", -1, -1);
+        MR::startSound(this, "SE_OJ_STAIR_BREAK_END");
         setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvDisappear::sInstance);
     }
 }

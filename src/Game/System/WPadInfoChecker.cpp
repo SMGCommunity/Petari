@@ -3,7 +3,7 @@
 
 namespace {
     static const s32 sCheckInfoInterval = 18000;
-};
+};  // namespace
 
 WPadInfoChecker::WPadInfoChecker(WPad* pPad) : mPad(pPad) {
     reset();

@@ -19,5 +19,4 @@ public:
 
     TQuat4f _8C;
     TVec3f _9C;
-
 };

@@ -8,8 +8,7 @@ namespace {
 };  // namespace
 
 ShadowVolumeDrawInit::ShadowVolumeDrawInit() : NameObj("シャドウボリューム描画初期化") {
-    MR::FunctorV0F func(*MR::setupShadowVolumeDraw);
-    MR::registerPreDrawFunction(func, MR::DrawType_ShadowVolume);
+    MR::registerPreDrawFunction(MR::Functor_Inline(&MR::setupShadowVolumeDraw), MR::DrawType_ShadowVolume);
 }
 
 ShadowVolumeDrawer::ShadowVolumeDrawer(const char* pName) : ShadowDrawer(pName) {
@@ -59,9 +58,11 @@ f32 ShadowVolumeDrawer::calcBaseDropLength(const ShadowController* pController) 
     return length;
 }
 
-void ShadowVolumeDrawer::loadModelDrawMtx() const {}
+void ShadowVolumeDrawer::loadModelDrawMtx() const {
+}
 
-void ShadowVolumeDrawer::drawShape() const {}
+void ShadowVolumeDrawer::drawShape() const {
+}
 
 bool ShadowVolumeDrawer::isDraw() const {
     return getController()->isDraw();
@@ -86,4 +87,5 @@ void ShadowVolumeDrawer::draw() const {
     }
 }
 
-ShadowVolumeDrawInit::~ShadowVolumeDrawInit() {}
+ShadowVolumeDrawInit::~ShadowVolumeDrawInit() {
+}

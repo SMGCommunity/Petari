@@ -13,7 +13,8 @@ class J2DOrthoGraphSimple : public J2DOrthoGraph {
 public:
     J2DOrthoGraphSimple();
 
-    ~J2DOrthoGraphSimple() {}
+    ~J2DOrthoGraphSimple() {
+    }
 
     void setPort();
 };

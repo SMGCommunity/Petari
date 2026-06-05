@@ -79,7 +79,7 @@ void BegomanBaby::appear() {
 void BegomanBaby::appearFromLaunch(const TVec3f& rVec1, const TVec3f& rVec2) {
     BegomanBase::appear();
     MR::emitEffect(this, "Death");
-    MR::startSound(this, "SE_EM_BEGOMAN_APPEAR", -1, -1);
+    MR::startSound(this, "SE_EM_BEGOMAN_APPEAR");
     setNerve(&NrvBegomanBaby::HostTypeNrvAfterLaunch::sInstance);
 
     TVec3f vec(mPosition);
@@ -101,7 +101,7 @@ void BegomanBaby::kill() {
     BegomanBase::kill();
 
     MR::emitEffect(this, "Death");
-    MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+    MR::startSound(this, "SE_EM_EXPLODE_S");
 }
 
 void BegomanBaby::killWithGenItem() {
@@ -117,7 +117,7 @@ void BegomanBaby::killWithGenItem() {
     }
 
     if (appearedStarPiece) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
     kill();
 }
@@ -188,7 +188,7 @@ void BegomanBaby::endNoCalcWait() {
 
 void BegomanBaby::exeWait() {
     updateRotateY(0.15f, 0.5f);
-    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_SLOW", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_SLOW");
     exeWaitCore(::hWaitParam, &NrvBegomanBaby::HostTypeNrvSignAttack::sInstance, &NrvBegomanBaby::HostTypeNrvKeepDistance::sInstance,
                 &NrvBegomanBaby::HostTypeNrvNoCalcWait::sInstance);
 }
@@ -196,34 +196,34 @@ void BegomanBaby::exeWait() {
 void BegomanBaby::exeSignAttack() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "SignAttack", 0);
-        MR::startSound(this, "SE_EM_BABYBEGO_PRE_PURSUE", -1, -1);
+        MR::startSound(this, "SE_EM_BABYBEGO_PRE_PURSUE");
     }
 
     updateRotateY(0.5f, 0.5f);
-    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
     return exeSignAttackCore(::hSignAttackParam, &NrvBegomanBaby::HostTypeNrvPursue::sInstance);
 }
 
 void BegomanBaby::exePursue() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_EM_BABYBEGO_PURSUE_START", -1, -1);
+        MR::startSound(this, "SE_EM_BABYBEGO_PURSUE_START");
     }
     updateRotateY(0.5f, 0.5f);
-    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_PURSUE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_PURSUE");
     exePursueCore(::hPursueParam, &NrvBegomanBaby::HostTypeNrvBrake::sInstance, &NrvBegomanBaby::HostTypeNrvTurn::sInstance, *getSoundNormal(), 1.0f);
 }
 
 void BegomanBaby::exeTurn() {
     updateRotateY(0.4f, 0.5f);
-    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_TURN", -1, -1, -1);
-    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_TURN");
+    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
     exeTurnCore(::hTurnParam, &NrvBegomanBaby::HostTypeNrvBrake::sInstance, &NrvBegomanBaby::HostTypeNrvPursue::sInstance, false);
 }
 
 void BegomanBaby::exeBrake() {
     updateRotateY(0.2f, 0.5f);
-    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK", -1, -1, -1);
-    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK");
+    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
     exeBrakeCore(&NrvBegomanBaby::HostTypeNrvTurn::sInstance);
 }
 
@@ -239,14 +239,14 @@ void BegomanBaby::exeReturn() {
 
 void BegomanBaby::exeProvoke() {
     updateRotateY(0.3f, 0.5f);
-    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
     exeProvokeCore(::hWaitParam, &NrvBegomanBaby::HostTypeNrvSignAttack::sInstance);
 }
 
 void BegomanBaby::exeTrample() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Trample", nullptr);
-        MR::startSound(this, "SE_EM_BABYBEGO_STOMPED", -1, -1);
+        MR::startSound(this, "SE_EM_BABYBEGO_STOMPED");
     }
 
     updateRotateY(0.25f, 0.5f);
@@ -266,21 +266,21 @@ void BegomanBaby::exeTired() {
     if (MR::isFirstStep(this)) {
     }
     updateRotateY(0.2f, 0.5f);
-    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_TURN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_TURN");
     exeTiredCore(::hTiredParam, &NrvBegomanBaby::HostTypeNrvWait::sInstance);
 }
 
 void BegomanBaby::exeBlow() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_EM_BEGOMAN_ROT_STOP", -1, -1);
+        MR::startSound(this, "SE_EM_BEGOMAN_ROT_STOP");
         MR::startBck(this, "Stop", nullptr);
         MR::stopScene(2);
         MR::invalidateExCollisionParts(this);
     }
 
     updateRotateY(0.3f, 0.5f);
-    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK", -1, -1, -1);
-    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_SPARK");
+    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
     MR::moveAndTurnToDirection(this, &mFaceVec, mTargetVec, ::hHitReactionParam._0, hHitReactionParam._4, hHitReactionParam._8, hHitReactionParam._C);
     reboundWallAndGround(&mFaceVec, false);
 
@@ -295,7 +295,7 @@ void BegomanBaby::exeAfterLaunch() {
     }
 
     if (MR::isLessStep(this, 80)) {
-        f32 f1 = 5.0f * JMath::sSinCosTable.cosLapRad(getNerveStep() * (16 * PI) / 80.0f);
+        f32 f1 = 5.0f * MR::cos(getNerveStep() * (16 * PI) / 80.0f);
         // TODO: fix vector math
         TVec3f scaledGravity(mGravity);
         scaledGravity.scale(f1);
@@ -338,7 +338,7 @@ void BegomanBaby::exeLaunchTurn() {
     }
 
     updateRotateY(0.4f, 0.5f);
-    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_BABYBEGO_ROT_MIDDLE");
     exeTurnCore(::hTurnParam, &NrvBegomanBaby::HostTypeNrvBrake::sInstance, &NrvBegomanBaby::HostTypeNrvPursue::sInstance, false);
 }
 
@@ -346,13 +346,13 @@ void BegomanBaby::exeInWater() {
     if (MR::isFirstStep(this)) {
         mVelocity += mGravity;
         mVelocity.setLength(10.0f);
-        MR::startSound(this, "SE_EM_FALL_INTO_WATER_S", -1, -1);
+        MR::startSound(this, "SE_EM_FALL_INTO_WATER_S");
     }
 
     if (MR::isGreaterStep(this, 60)) {
         killWithGenItem();
         MR::emitEffect(this, "DeathWater");
-        MR::startSound(this, "SE_EM_BEGOMAN_DEAD_IN_WATER", -1, -1);
+        MR::startSound(this, "SE_EM_BEGOMAN_DEAD_IN_WATER");
     }
 }
 
@@ -398,7 +398,7 @@ void BegomanBaby::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             mVelocity += dirFromSenderToReceiver.scaleInline(2.0f);
 
             if (reflected) {
-                MR::startSound(this, "SE_EM_BABYBEGO_COLLI", -1, -1);
+                MR::startSound(this, "SE_EM_BABYBEGO_COLLI");
             }
         }
         setNerve(&NrvBegomanBaby::HostTypeNrvHitReaction::sInstance);
@@ -423,7 +423,6 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
     }
 
     if (MR::isMsgExplosionAttack(msg)) {
-
         if (!isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance)) {
             mAppearThreeStarPiece = false;
             calcBlowReaction(pSender->mPosition, pReceiver->mPosition, 35.0f, 15.0f);
@@ -465,7 +464,7 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
         MR::addVelocityLimit(this, vec2);
 
         if (reflected) {
-            MR::startSound(this, "SE_EM_BABYBEGO_COLLI_BEGOMAN", -1, -1);
+            MR::startSound(this, "SE_EM_BABYBEGO_COLLI_BEGOMAN");
         }
 
         if (!isNerve(&NrvBegomanBaby::HostTypeNrvTrample::sInstance) && !isNerve(&NrvBegomanBaby::HostTypeNrvProvoke::sInstance) &&
@@ -577,7 +576,7 @@ bool BegomanBaby::calcHeadJoint(TPos3f* pPos, const JointControllerInfo& rInfo) 
     if (!MR::isSameDirection(yDir, mTargetVec, 0.01f)) {
         MR::makeMtxUpFront(pPos, yDir, mTargetVec);
     }
-    
+
     return true;
 }
 

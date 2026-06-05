@@ -10,11 +10,12 @@
 
 namespace {
     static const f32 sIsOnValue = 0.2f;
-};
+};  // namespace
 
 WPadStick::WPadStick(const WPad* pPad)
     : mPad(pPad), mStick(0.0f, 0.0f), mSpeed(0.0f), mHold(STICK_FLAG_NONE), mTrigger(STICK_FLAG_NONE), mRelease(STICK_FLAG_NONE), mIsTriggerUp(false),
-      mIsTriggerDown(false), mIsHoldUp(false), mIsHoldDown(false) {}
+      mIsTriggerDown(false), mIsHoldUp(false), mIsHoldDown(false) {
+}
 
 void WPadStick::update() {
     KPADStatus* pStatus = mPad->getKPadStatus(0);

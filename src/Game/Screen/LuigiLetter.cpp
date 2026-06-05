@@ -16,7 +16,8 @@ namespace NrvLuigiLetter {
 };  // namespace NrvLuigiLetter
 
 LuigiLetter::LuigiLetter(bool param1, const char* pParam2)
-    : LayoutActor("ルイージの手紙", true), mTexture(nullptr), mAButtonIcon(nullptr), _28(pParam2), _2C(param1) {}
+    : LayoutActor("ルイージの手紙", true), mTexture(nullptr), mAButtonIcon(nullptr), _28(pParam2), _2C(param1) {
+}
 
 void LuigiLetter::init(const JMapInfoIter& rIter) {
     char archiveName[256];
@@ -59,11 +60,11 @@ void LuigiLetter::movement() {
 void LuigiLetter::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "Appear", 0);
-        MR::startSystemSE("SE_SY_LETTER_APPEAR", -1, -1);
+        MR::startSystemSE("SE_SY_LETTER_APPEAR");
     }
 
     if (MR::isAnimStopped(this, 0)) {
-        MR::startSystemSE("SE_SV_LUIGI_MAIL", -1, -1);
+        MR::startSystemSE("SE_SV_LUIGI_MAIL");
         setNerve(&NrvLuigiLetter::HostTypeNrvWait::sInstance);
     }
 }
@@ -75,7 +76,7 @@ void LuigiLetter::exeWait() {
     }
 
     if (mAButtonIcon->isWait() && MR::testCorePadButtonA(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_OK");
         setNerve(&NrvLuigiLetter::HostTypeNrvEnd::sInstance);
     }
 }

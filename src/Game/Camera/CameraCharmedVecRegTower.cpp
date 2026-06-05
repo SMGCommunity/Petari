@@ -5,7 +5,8 @@ CameraCharmedVecRegTower::CameraCharmedVecRegTower(const char* pName) : Camera(p
     _70 = false;
 }
 
-CameraCharmedVecRegTower::~CameraCharmedVecRegTower() {}
+CameraCharmedVecRegTower::~CameraCharmedVecRegTower() {
+}
 
 CamTranslatorBase* CameraCharmedVecRegTower::createTranslator() {
     return new CamTranslatorCharmedVecRegTower(this);

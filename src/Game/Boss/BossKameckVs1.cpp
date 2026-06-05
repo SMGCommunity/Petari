@@ -122,4 +122,5 @@ bool BossKameckVs1::isBattle() const {
     return false;
 }
 
-BossKameckVs1::~BossKameckVs1() {}
+BossKameckVs1::~BossKameckVs1() {
+}

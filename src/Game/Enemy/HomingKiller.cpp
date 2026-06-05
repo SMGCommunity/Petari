@@ -655,16 +655,16 @@ void HomingKiller::updateBaseMtxNoRotateZ() {
 
 void HomingKiller::startMoveLevelSound(bool playAlarm) {
     if (mType == Type_Torpedo) {
-        MR::startLevelSound(this, "SE_EM_LV_TORPEDO_MOVE", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_TORPEDO_MOVE");
         if (playAlarm) {
-            MR::startLevelSound(this, "SE_EM_LV_TORPEDO_ALARM", MR::calcDistanceToPlayer(this), -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_TORPEDO_ALARM", MR::calcDistanceToPlayer(this));
         }
     } else if (mType == Type_MagnumKiller) {
         f32 pitch = MR::getLinerValueFromMinMax(MR::calcDistanceToPlayer(this), cMagnamFlySeDistMin, cMagnamFlySeDistMax, cMagnamFlySePitchMax,
                                                 cMagnamFlySePitchMin);
-        MR::startLevelSound(this, "SE_EM_LV_MAGKILLER_FLY", pitch * 100.0f, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_MAGKILLER_FLY", pitch * 100.0f);
     } else {
-        MR::startLevelSound(this, "SE_EM_LV_KILLER_FLY", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_KILLER_FLY");
     }
 }
 
@@ -721,11 +721,11 @@ void HomingKiller::exeAppear() {
     mPosition.add(mBasePos, mBaseFront.scaleInline(appearOffset));
 
     if (MR::isLessStep(this, cAppearMoveFrame)) {
-        MR::startLevelSound(this, "SE_EM_LV_KILLER_STANDBY", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_KILLER_STANDBY");
     }
 
     if (MR::isStep(this, cAppearMoveFrame)) {
-        MR::startSound(this, "SE_EM_KILLER_STANDBY_END", -1, -1);
+        MR::startSound(this, "SE_EM_KILLER_STANDBY_END");
     }
 
     if (MR::isGreaterStep(this, cAppearMoveFrame) && MR::isLessStep(this, cAppearMoveFrame + cAppearRumbleFrame)) {
@@ -743,10 +743,10 @@ void HomingKiller::exeAppear() {
         MR::emitEffect(this, "Shoot");
         MR::validateShadow(this, nullptr);
         if (mType == Type_MagnumKiller) {  // FIXME
-            MR::startSound(this, "SE_EM_MAGKILLER_FIRING", -1, -1);
+            MR::startSound(this, "SE_EM_MAGKILLER_FIRING");
             setNerve(&NrvHomingKiller::HomingKillerNrvMove::sInstance);
         } else {
-            MR::startSound(this, "SE_EM_KILLER_FIRING", -1, -1);
+            MR::startSound(this, "SE_EM_KILLER_FIRING");
             setNerve(&NrvHomingKiller::HomingKillerNrvMoveStart::sInstance);
         }
     }
@@ -772,7 +772,7 @@ void HomingKiller::exeChaseStart() {
     if (MR::isFirstStep(this) && MR::tryStartBck(this, "ChaseStart", nullptr)) {
         MR::startBpk(this, "Chase");
         MR::startBrk(this, "Chase");
-        MR::startSound(this, "SE_EM_KILLER_JET", -1, -1);
+        MR::startSound(this, "SE_EM_KILLER_JET");
     }
 
     if (processChase() && !tryFreeze(&NrvHomingKiller::HomingKillerNrvChaseStart::sInstance) && MR::isBckStopped(this)) {
@@ -880,10 +880,10 @@ void HomingKiller::exeBreak() {
         }
 
         if (mType == Type_Torpedo) {
-            MR::startSound(this, "SE_EM_TORPEDO_EXPLOSION", -1, -1);
+            MR::startSound(this, "SE_EM_TORPEDO_EXPLOSION");
             MR::releaseSoundHandle(this, "SE_EM_TORPEDO_EXPLOSION");
         } else {
-            MR::startSound(this, "SE_EM_KILLER_EXPLOSION", -1, -1);
+            MR::startSound(this, "SE_EM_KILLER_EXPLOSION");
             MR::releaseSoundHandle(this, "SE_EM_KILLER_EXPLOSION");
         }
         MR::startRumbleWithShakeCameraWeak(this, "強", "中", cCameraShakeDistance, cCameraShakeDistance * 2);

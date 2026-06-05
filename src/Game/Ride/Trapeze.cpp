@@ -426,8 +426,8 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         getSensor("body")->validate();
         getSensor("bind")->invalidate();
 
-        MR::startSound(mRider, "SE_PV_CATCH", -1, -1);
-        MR::startSound(mRider, "SE_PM_GRAB_OBJ", -1, -1);
+        MR::startSound(mRider, "SE_PV_CATCH");
+        MR::startSound(mRider, "SE_PM_GRAB_OBJ");
 
         if (!MR::isActiveActorCamera(this, mCameraInfo) || MR::isActiveActorCamera(this, mCameraInfo)) {
             MR::startActorCameraNoTarget(this, mCameraInfo, -1);
@@ -502,8 +502,8 @@ bool Trapeze::tryJump() {
         getSensor("body")->invalidate();
         getSensor("bind")->validate();
 
-        MR::startSound(mRider, "SE_PV_JUMP_JOY", -1, -1);
-        MR::startSound(mRider, "SE_PM_JUMP_M", -1, -1);
+        MR::startSound(mRider, "SE_PV_JUMP_JOY");
+        MR::startSound(mRider, "SE_PM_JUMP_M");
 
         MR::endBindAndPlayerWeakGravityJump(this, jumpVel);
         mRider = nullptr;
@@ -584,11 +584,11 @@ void Trapeze::updateHangPoint() {
     if (soundLvl < 0) {
         soundLvl = 0;
     }
-    MR::startLevelSound(this, "SE_OJ_LV_ROPE_SWING_WIND_1", soundLvl, -1, -1);
-    MR::startLevelSound(this, "SE_OJ_LV_ROPE_SWING_WIND_2", soundLvl, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_ROPE_SWING_WIND_1", soundLvl);
+    MR::startLevelSound(this, "SE_OJ_LV_ROPE_SWING_WIND_2", soundLvl);
 
     if (mPrevSoundLvl < 20 && 20 <= soundLvl) {
-        MR::startSound(this, "SE_OJ_ROPE_CREAK_H", -1, -1);
+        MR::startSound(this, "SE_OJ_ROPE_CREAK_H");
     }
     mPrevSoundLvl = soundLvl;
 }
@@ -631,11 +631,11 @@ bool Trapeze::updateSlideDown() {
         return true;
     }
 
-    MR::startLevelSound(mRider, "SE_OJ_LV_SLIDE_ROPE_SLIDE", -1, -1, -1);
+    MR::startLevelSound(mRider, "SE_OJ_LV_SLIDE_ROPE_SLIDE");
 
     if (mGrabCoord == mRopeLength) {
         if (MR::isGreaterStep(this, 20)) {
-            MR::startSound(mRider, "SE_PM_GRAB_OBJ", -1, -1);
+            MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         }
 
         if (mSwingVel > 0) {

@@ -121,4 +121,5 @@ void TripodBossBreakMovement::exeBreak() {
     _D8 *= _F8;
 }
 
-TripodBossBreakMovement::~TripodBossBreakMovement() {}
+TripodBossBreakMovement::~TripodBossBreakMovement() {
+}

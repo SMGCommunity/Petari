@@ -8,7 +8,8 @@ namespace {
     static const s32 sRandWidth = 180;
 };  // namespace
 
-RandomEffectObj::RandomEffectObj(const char* pName) : SimpleEffectObj(pName), mStep(0), mSeStep(-1), mLifeTime(sLifeTime), mRandWidth(sRandWidth) {}
+RandomEffectObj::RandomEffectObj(const char* pName) : SimpleEffectObj(pName), mStep(0), mSeStep(-1), mLifeTime(sLifeTime), mRandWidth(sRandWidth) {
+}
 
 void RandomEffectObj::init(const JMapInfoIter& rIter) {
     SimpleEffectObj::init(rIter);
@@ -40,7 +41,7 @@ void RandomEffectObj::control() {
 
         if (MR::isEqualString(_8C, "FireworksA")) {
             if (mSeStep == 40) {
-                MR::startSound(this, "SE_OJ_FIREWORK_SEA_EXPLODE", -1, -1);
+                MR::startSound(this, "SE_OJ_FIREWORK_SEA_EXPLODE");
             }
         }
     }
@@ -54,7 +55,7 @@ void RandomEffectObj::control() {
     MR::emitEffect(this, _8C);
 
     if (MR::isEqualString(_8C, "FireworksA")) {
-        MR::startSound(this, "SE_OJ_FIREWORK_SEA_SHOOT", -1, -1);
+        MR::startSound(this, "SE_OJ_FIREWORK_SEA_SHOOT");
     }
 
     mStep = MR::getRandom(mLifeTime - mRandWidth, mLifeTime + mRandWidth);

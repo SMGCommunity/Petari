@@ -45,4 +45,5 @@ void TripodBossStepPoint::setStepFront(const TVec3f& rFront) {
     MR::normalizeOrZero(&mStepFront);
 }
 
-TripodBossStepPoint::~TripodBossStepPoint() {}
+TripodBossStepPoint::~TripodBossStepPoint() {
+}

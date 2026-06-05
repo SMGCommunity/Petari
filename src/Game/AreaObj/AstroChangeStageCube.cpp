@@ -15,7 +15,7 @@ namespace {
     const s32 cWipeFrame = 110;
 };  // namespace
 
-AstroChangeStageCube::AstroChangeStageCube(int type, const char* pName) : AreaObj(type, pName), _3C(1), mWaitFrame(0) {
+AstroChangeStageCube::AstroChangeStageCube(int formType, const char* pName) : AreaObj(formType, pName), _3C(1), mWaitFrame(0) {
 }
 
 void AstroChangeStageCube::init(const JMapInfoIter& rIter) {
@@ -87,13 +87,13 @@ void AstroChangeStageCube::movement() {
         case 0:
         case 2:
         case 4:
-            MR::startSystemSE("SE_DM_ASTRO_WIPE_OUT", -1, -1);
+            MR::startSystemSE("SE_DM_ASTRO_WIPE_OUT");
             break;
         case 1:
         case 3:
         case 5:
         default:
-            MR::startSystemSE("SE_DM_ASTRO_WIPE_IN", -1, -1);
+            MR::startSystemSE("SE_DM_ASTRO_WIPE_IN");
             break;
         }
 

@@ -38,7 +38,8 @@ bool MapPartsRailPointPassChecker::isPassedEndPoint() const {
     return MR::getCurrentRailPointNo(host) != mRailPointNo;
 }
 
-MapPartsRailPointPassChecker::~MapPartsRailPointPassChecker() {}
+MapPartsRailPointPassChecker::~MapPartsRailPointPassChecker() {
+}
 
 bool MapPartsRailPointPassChecker::isWorking() const {
     return true;

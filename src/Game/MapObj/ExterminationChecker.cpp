@@ -109,7 +109,7 @@ void ExterminationChecker::exeTryStartDemoAppear() {
 
 void ExterminationChecker::exeAppearStar() {
     if (MR::isStep(this, 0)) {
-        MR::startSystemSE("SE_SY_TOTAL_COMPLETE", -1, -1);
+        MR::startSystemSE("SE_SY_TOTAL_COMPLETE");
     }
 
     if (MR::isStep(this, 120)) {

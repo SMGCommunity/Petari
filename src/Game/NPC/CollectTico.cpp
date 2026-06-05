@@ -74,7 +74,7 @@ void CollectTico::exeCompleteDemo() {
         }
     }
 
-    MR::startLevelSound(this, "SE_SM_LV_STRAYTICO_COMPLETE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_STRAYTICO_COMPLETE");
     bool needFlash = true;
     for (s32 i = 0; i < mTicoNum; i++) {
         if (!mStrayTicos[i]->isCompleteDemoEnd()) {
@@ -91,7 +91,7 @@ void CollectTico::exeCompleteDemo() {
 void CollectTico::exeFlash() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "CollectTicoLight");
-        MR::startSound(this, "SE_SM_STRAYTICO_FUSION", -1, -1);
+        MR::startSound(this, "SE_SM_STRAYTICO_FUSION");
     }
 
     if (MR::isStep(this, 10)) {
@@ -139,6 +139,8 @@ void CollectTico::startAppearPowerStar() {
     setNerve(&NrvCollectTico::CollectTicoNrvAppearPowerStar::sInstance);
 }
 
-void CollectTico::exeTryStartDemo() {}
+void CollectTico::exeTryStartDemo() {
+}
 
-CollectTico::~CollectTico() {}
+CollectTico::~CollectTico() {
+}

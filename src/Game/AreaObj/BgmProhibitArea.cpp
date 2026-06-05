@@ -5,7 +5,8 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-BgmProhibitArea::~BgmProhibitArea() {}
+BgmProhibitArea::~BgmProhibitArea() {
+}
 
 namespace {
     static BgmMuteSet sBgmMuteSet[] = {{"OceanPhantomCaveGalaxy", 7, 1}, {"SoundMapCodeTest", 7, 1}};
@@ -23,7 +24,7 @@ namespace {
     }
 };  // namespace
 
-BgmProhibitArea::BgmProhibitArea(int a1, const char* pName) : AreaObj(a1, pName) {
+BgmProhibitArea::BgmProhibitArea(int formType, const char* pName) : AreaObj(formType, pName) {
     _3C = 0;
     _3D = 0;
     _40.x = 0.0f;

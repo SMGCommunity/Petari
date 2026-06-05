@@ -54,27 +54,25 @@ namespace ActorShadow {
         return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
     }
 
-     void setUpShadowControlIsFollowScaleFromCSV(ShadowController *pController, const JMapInfoIter &rIter) {
+    void setUpShadowControlIsFollowScaleFromCSV(ShadowController* pController, const JMapInfoIter& rIter) {
         bool stack_8(true);
         rIter.getValue("FollowScale", &stack_8);
         if (stack_8) {
             pController->onFollowHostScale();
-        }
-        else {
+        } else {
             pController->offFollowHostScale();
         }
     }
 
-    void setUpShadowControlIsSyncShowFromCSV(ShadowController *pController, const JMapInfoIter &rIter) {
+    void setUpShadowControlIsSyncShowFromCSV(ShadowController* pController, const JMapInfoIter& rIter) {
         bool stack_8(true);
         rIter.getValue("SyncShow", &stack_8);
         if (stack_8) {
             pController->onVisibleSyncHost();
-        }
-        else {
+        } else {
             pController->offVisibleSyncHost();
         }
-    } 
+    }
 
     void setUpShadowControlFromCSV(ShadowController* pController, LiveActor* pActor, const JMapInfoIter& rIter) {
         f32 dropLength(1000.0f);

@@ -9,8 +9,7 @@
 #include <cstdio>
 
 VolumeModelDrawInit::VolumeModelDrawInit() : NameObj("ボリュームモデル描画初期化") {
-    MR::FunctorV0F func(*MR::setupShadowVolumeDraw);
-    MR::registerPreDrawFunction(func, MR::DrawType_VolumeModel);
+    MR::registerPreDrawFunction(MR::Functor_Inline(&MR::setupShadowVolumeDraw), MR::DrawType_VolumeModel);
 }
 
 VolumeModelDrawer::VolumeModelDrawer(const char* pName, const char* pFileName, MtxPtr mtx) : NameObj(pName) {
@@ -65,6 +64,8 @@ void VolumeModelDrawer::loadModelDrawMtx() const {
     GXLoadPosMtxImm(dest, 0);
 }
 
-VolumeModelDrawer::~VolumeModelDrawer() {}
+VolumeModelDrawer::~VolumeModelDrawer() {
+}
 
-VolumeModelDrawInit::~VolumeModelDrawInit() {}
+VolumeModelDrawInit::~VolumeModelDrawInit() {
+}

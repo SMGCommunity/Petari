@@ -8,9 +8,13 @@ namespace {
     template < typename T >
     class NameObjRealDelegator {
     public:
-        inline NameObjRealDelegator(T in_func) { mNameObjFunc = in_func; }
+        inline NameObjRealDelegator(T in_func) {
+            mNameObjFunc = in_func;
+        }
 
-        virtual void operator()(NameObj* pNameObj) { (pNameObj->*mNameObjFunc)(); }
+        virtual void operator()(NameObj* pNameObj) {
+            (pNameObj->*mNameObjFunc)();
+        }
 
         T mNameObjFunc;  // 0x4
     };

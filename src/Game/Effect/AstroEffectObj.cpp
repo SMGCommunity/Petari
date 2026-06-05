@@ -36,4 +36,5 @@ void AstroEffectObj::selectNrvWait() {
     SimpleEffectObj::setStateWait();
 }
 
-AstroEffectObj::~AstroEffectObj() {}
+AstroEffectObj::~AstroEffectObj() {
+}

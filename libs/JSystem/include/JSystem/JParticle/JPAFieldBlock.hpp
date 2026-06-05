@@ -10,13 +10,16 @@ class JPAFieldBlock;
 
 class JPAFieldBase {
 public:
-    inline JPAFieldBase() {}
+    inline JPAFieldBase() {
+    }
 
     void calcAffect(JPAFieldBlock*, JPABaseParticle*);
     f32 calcFadeAffect(JPAFieldBlock*, f32) const;
 
-    virtual ~JPAFieldBase() {}
-    virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*) {}
+    virtual ~JPAFieldBase() {
+    }
+    virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*) {
+    }
     virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*) = 0;
 
     /* 0x04 */ JGeometry::TVec3< f32 > mAccel;
@@ -24,11 +27,13 @@ public:
 
 class JPAFieldVortex : public JPAFieldBase {
 public:
-    inline JPAFieldVortex() {}
+    inline JPAFieldVortex() {
+    }
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldVortex() {}
+    ~JPAFieldVortex() {
+    }
 
     /* 0x10 */ JGeometry::TVec3< f32 > field_0x10;
     /* 0x1C */ f32 field_0x1c;
@@ -37,11 +42,13 @@ public:
 
 class JPAFieldSpin : public JPAFieldBase {
 public:
-    inline JPAFieldSpin() {}
+    inline JPAFieldSpin() {
+    }
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldSpin() {}
+    ~JPAFieldSpin() {
+    }
 
     /* 0x10 */ JGeometry::TVec3< f32 > field_0x10;
     /* 0x1C */ JGeometry::TVec3< f32 > field_0x1c;
@@ -50,19 +57,23 @@ public:
 
 class JPAFieldRandom : public JPAFieldBase {
 public:
-    inline JPAFieldRandom() {}
+    inline JPAFieldRandom() {
+    }
 
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldRandom() {}
+    ~JPAFieldRandom() {
+    }
 };
 
 class JPAFieldNewton : public JPAFieldBase {
 public:
-    inline JPAFieldNewton() {}
+    inline JPAFieldNewton() {
+    }
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldNewton() {}
+    ~JPAFieldNewton() {
+    }
 
     /* 0x10 */ JGeometry::TVec3< f32 > mDir;
     /* 0x1C */ f32 mCutoff;
@@ -70,39 +81,47 @@ public:
 
 class JPAFieldMagnet : public JPAFieldBase {
 public:
-    inline JPAFieldMagnet() {}
+    inline JPAFieldMagnet() {
+    }
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldMagnet() {}
+    ~JPAFieldMagnet() {
+    }
 
     /* 0x10 */ JGeometry::TVec3< f32 > mDir;
 };
 
 class JPAFieldGravity : public JPAFieldBase {
 public:
-    inline JPAFieldGravity() {}
+    inline JPAFieldGravity() {
+    }
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldGravity() {}
+    ~JPAFieldGravity() {
+    }
 };
 
 class JPAFieldDrag : public JPAFieldBase {
 public:
-    inline JPAFieldDrag() {}
+    inline JPAFieldDrag() {
+    }
 
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldDrag() {}
+    ~JPAFieldDrag() {
+    }
 };
 
 class JPAFieldConvection : public JPAFieldBase {
 public:
-    inline JPAFieldConvection() {}
+    inline JPAFieldConvection() {
+    }
 
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldConvection() {}
+    ~JPAFieldConvection() {
+    }
 
     /* 0x10 */ JGeometry::TVec3< f32 > field_0x10;
     /* 0x1C */ JGeometry::TVec3< f32 > field_0x1c;
@@ -113,8 +132,10 @@ class JPAFieldAir : public JPAFieldBase {
 public:
     void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*);
-    ~JPAFieldAir() {}
-    inline JPAFieldAir() {}
+    ~JPAFieldAir() {
+    }
+    inline JPAFieldAir() {
+    }
 };
 
 // unknown name
@@ -140,32 +161,74 @@ public:
     JPAFieldBlock(u8 const*, JKRHeap*);
     void init(JKRHeap*);
 
-    u32 getType() { return mpData->mFlags & 0xF; }
-    u32 getAddType() { return (mpData->mFlags >> 8) & 3; }
-    u32 getSttFlag() { return mpData->mFlags >> 16; }
-    bool checkStatus(u16 flag) { return flag & getSttFlag(); }
-    f32 getMagRndm() const { return mpData->mMagRndm; }
-    f32 getVal1() const { return mpData->mVal1; }
-    f32 getFadeInTime() { return mpData->mFadeInTime; }
-    f32 getFadeOutTime() { return mpData->mFadeOutTime; }
-    f32 getEnTime() { return mpData->mEnTime; }
-    f32 getDisTime() { return mpData->mDisTime; }
-    u8 getCycle() { return mpData->mCycle; }
-    f32 getFadeInRate() { return mFadeInRate; }
-    f32 getFadeOutRate() { return mFadeOutRate; }
-    JGeometry::TVec3< f32 >& getPos() { return mPos; }
-    JGeometry::TVec3< f32 >& getDir() { return mDir; }
-    f32 getMag() const { return mMag; }
-    void getPosOrig(JGeometry::TVec3< f32 >* pos) { pos->set(mpData->mPos); }
-    void getDirOrig(JGeometry::TVec3< f32 >* dir) { dir->set(mpData->mDir); }
-    f32 getMagOrig() { return mpData->mMag; }
+    u32 getType() {
+        return mpData->mFlags & 0xF;
+    }
+    u32 getAddType() {
+        return (mpData->mFlags >> 8) & 3;
+    }
+    u32 getSttFlag() {
+        return mpData->mFlags >> 16;
+    }
+    bool checkStatus(u16 flag) {
+        return flag & getSttFlag();
+    }
+    f32 getMagRndm() const {
+        return mpData->mMagRndm;
+    }
+    f32 getVal1() const {
+        return mpData->mVal1;
+    }
+    f32 getFadeInTime() {
+        return mpData->mFadeInTime;
+    }
+    f32 getFadeOutTime() {
+        return mpData->mFadeOutTime;
+    }
+    f32 getEnTime() {
+        return mpData->mEnTime;
+    }
+    f32 getDisTime() {
+        return mpData->mDisTime;
+    }
+    u8 getCycle() {
+        return mpData->mCycle;
+    }
+    f32 getFadeInRate() {
+        return mFadeInRate;
+    }
+    f32 getFadeOutRate() {
+        return mFadeOutRate;
+    }
+    JGeometry::TVec3< f32 >& getPos() {
+        return mPos;
+    }
+    JGeometry::TVec3< f32 >& getDir() {
+        return mDir;
+    }
+    f32 getMag() const {
+        return mMag;
+    }
+    void getPosOrig(JGeometry::TVec3< f32 >* pos) {
+        pos->set(mpData->mPos);
+    }
+    void getDirOrig(JGeometry::TVec3< f32 >* dir) {
+        dir->set(mpData->mDir);
+    }
+    f32 getMagOrig() {
+        return mpData->mMag;
+    }
     void initOpParam() {
         getPosOrig(&mPos);
         getDirOrig(&mDir);
         mMag = getMagOrig();
     }
-    void prepare(JPAEmitterWorkData* work) { mpField->prepare(work, this); }
-    void calc(JPAEmitterWorkData* work, JPABaseParticle* ptcl) { mpField->calc(work, this, ptcl); }
+    void prepare(JPAEmitterWorkData* work) {
+        mpField->prepare(work, this);
+    }
+    void calc(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
+        mpField->calc(work, this, ptcl);
+    }
 
 private:
     /* 0x00 */ const JPAFieldBlockData* mpData;

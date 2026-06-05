@@ -121,8 +121,8 @@ void DinoPackunBattleVs1Lv1::exeTurn() {
             MR::startBck(getHost(), "TurnLeft", nullptr);
         }
 
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_WALK", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_WALK");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
 
     if (updateTurn(60, 1.0f)) {
@@ -151,8 +151,8 @@ void DinoPackunBattleVs1Lv1::exeWalk() {
 void DinoPackunBattleVs1Lv1::exeChase() {
     if (MR::isFirstStep(this)) {
         MR::startBck(getHost(), "Chase", nullptr);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_CHASE");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
 
     bool isHit = getHost()->isHitReaction(15);

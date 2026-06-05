@@ -13,6 +13,10 @@
 #include "revolution/gx/GXStruct.h"
 #include "revolution/types.h"
 
+namespace {
+    const char* cAstroDomeSkyTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
+};  // namespace
+
 namespace NrvAstroDomeSky {
     NEW_NERVE(AstroDomeNrvHide, AstroDomeSky, Hide);
     NEW_NERVE(AstroDomeNrvAppear, AstroDomeSky, Appear);
@@ -23,10 +27,6 @@ namespace NrvAstroDomeSky {
     NEW_NERVE(AstroDomeNrvReturnDemoWait, AstroDomeSky, ReturnDemoWait);
     NEW_NERVE(AstroDomeNrvJumpOutDemo, AstroDomeSky, JumpOutDemo);
 };  // namespace NrvAstroDomeSky
-
-namespace {
-    const char* cAstroDomeSkyTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
-}
 
 AstroDomeSky::AstroDomeSky(const char* pName) : LiveActor(pName) {
     _8C = 0.0f;

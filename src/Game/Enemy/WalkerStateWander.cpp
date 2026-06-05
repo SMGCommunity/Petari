@@ -5,7 +5,7 @@
 
 namespace {
     WalkerStateWanderParam sDefaultParam;
-}
+};  // namespace
 
 namespace NrvWalkerStateWander {
     NEW_NERVE(WalkerStateWanderNrvWait, WalkerStateWander, Wait);

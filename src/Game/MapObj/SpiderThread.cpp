@@ -32,8 +32,8 @@ namespace {
 };  // namespace
 
 inline SpiderThreadPart* connectPoints(SpiderThreadPoint* pPointA, SpiderThreadPoint* pPointB) {
-    SpiderThreadMainPoint* pointB = reinterpret_cast< SpiderThreadMainPoint* >(pPointB);
-    SpiderThreadMainPoint* pointA = reinterpret_cast< SpiderThreadMainPoint* >(pPointA);
+    SpiderThreadMainPoint* pointB = static_cast< SpiderThreadMainPoint* >(pPointB);
+    SpiderThreadMainPoint* pointA = static_cast< SpiderThreadMainPoint* >(pPointA);
 
     SpiderThreadPart* part = new SpiderThreadPart(pointA, pointB, sMainPointRadius);
 

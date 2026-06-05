@@ -1,6 +1,7 @@
 #include "Game/Util/ValueControl.hpp"
 
-ValueControl::ValueControl(int maxFrame) : mFrame(0), mMaxFrame(maxFrame), mDirection(Direction_Forward) {}
+ValueControl::ValueControl(int maxFrame) : mFrame(0), mMaxFrame(maxFrame), mDirection(Direction_Forward) {
+}
 
 void ValueControl::setDirToOne() {
     mDirection = Direction_Forward;

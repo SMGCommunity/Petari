@@ -105,7 +105,7 @@ void GreenCaterpillarBig::startWriggle() {
 }
 
 void GreenCaterpillarBig::exeHide() {
-    MR::startLevelSound(this, "SE_OJ_LV_GRN_CATERP_EAT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_GRN_CATERP_EAT");
 }
 
 void GreenCaterpillarBig::exeWriggle() {
@@ -118,7 +118,7 @@ void GreenCaterpillarBig::exeWriggle() {
     }
 
     MR::moveCoordAndFollowTrans(this, 50.0f);
-    MR::startLevelSound(this, "SE_OJ_LV_GRN_CATERP_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_GRN_CATERP_MOVE");
 
     if (MR::isRailReachedGoal(this)) {
         setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvEndAdjust::sInstance);
@@ -137,7 +137,7 @@ void GreenCaterpillarBig::exeWriggle() {
                 _9C = 1;
                 MR::tryRumblePadStrong(this, 0);
                 MR::shakeCameraNormal();
-                MR::startSound(this, "SE_OJ_GRN_CATERP_IN", -1, -1);
+                MR::startSound(this, "SE_OJ_GRN_CATERP_IN");
             } else if (point_arg == 1.0f) {
                 setNerve(&NrvGreenCaterpillarBig::GreenCaterpillarBigNrvRest::sInstance);
             } else if (point_arg == 2.0f) {
@@ -148,7 +148,7 @@ void GreenCaterpillarBig::exeWriggle() {
 }
 
 void GreenCaterpillarBig::exeRest() {
-    MR::startLevelSound(this, "SE_OJ_LV_GRN_CATERP_EAT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_GRN_CATERP_EAT");
 }
 
 void GreenCaterpillarBig::exeEndAdjust() {
@@ -236,10 +236,12 @@ void GreenCaterpillarBig::leaveApple() {
     _9D = 1;
     MR::tryRumblePadStrong(this, 0);
     MR::shakeCameraNormal();
-    MR::startSound(this, "SE_OJ_GRN_CATERP_DAMAGE", -1, -1);
-    MR::startSound(this, "SE_OJ_GRN_CATERP_OUT", -1, -1);
+    MR::startSound(this, "SE_OJ_GRN_CATERP_DAMAGE");
+    MR::startSound(this, "SE_OJ_GRN_CATERP_OUT");
 }
 
-GreenCaterpillarBigBody::~GreenCaterpillarBigBody() {}
+GreenCaterpillarBigBody::~GreenCaterpillarBigBody() {
+}
 
-GreenCaterpillarBig::~GreenCaterpillarBig() {}
+GreenCaterpillarBig::~GreenCaterpillarBig() {
+}

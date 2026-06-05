@@ -21,6 +21,11 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+namespace {
+    const char* cDemoNameDomeLecture = "ドームレクチャー２";
+    const char* cDemoNameJumpOut = "マリオ飛び出し";
+};  // namespace
+
 namespace NrvAstroDomeGalaxySelector {
     NEW_NERVE(AstroDomeGalaxySelectorNrvGalaxySelectStart, AstroDomeGalaxySelector, GalaxySelectStart);
     NEW_NERVE(AstroDomeGalaxySelectorNrvGalaxySelect, AstroDomeGalaxySelector, GalaxySelect);
@@ -33,11 +38,6 @@ namespace NrvAstroDomeGalaxySelector {
     NEW_NERVE(AstroDomeGalaxySelectorNrvGalaxyMoveLecture, AstroDomeGalaxySelector, GalaxyMoveLecture);
     NEW_NERVE(AstroDomeGalaxySelectorNrvWaitStartDemo, AstroDomeGalaxySelector, WaitStartDemo);
 };  // namespace NrvAstroDomeGalaxySelector
-
-namespace {
-    const char* cDemoNameDomeLecture = "ドームレクチャー２";
-    const char* cDemoNameJumpOut = "マリオ飛び出し";
-};  // namespace
 
 AstroDomeGalaxySelector::AstroDomeGalaxySelector(const char* pName) : LiveActor(pName) {
     pDomeCamCtrl = 0;
@@ -146,7 +146,7 @@ void AstroDomeGalaxySelector::exeGalaxySelect() {
         pGSBackButton->appear();
     }
     if (SphereSelectorFunction::isValidPointing() && MR::testCorePadTriggerB(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL", -1, -1);
+        MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
         if (pGSBackButton->isAppearing()) {
             pGSBackButton->kill();
         } else {
@@ -161,7 +161,7 @@ void AstroDomeGalaxySelector::exeGalaxySelect() {
         if (!SphereSelectorFunction::isHandleHolding() && pGSBackButton->isPointing()) {
             SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(2));
             if (!_9C) {
-                MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON", -1, -1);
+                MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
             }
             _9C = true;
         } else {

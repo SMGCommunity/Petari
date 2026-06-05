@@ -76,7 +76,7 @@ void DemoStartRequestHolder::popRequest() {
     goto check;
     do {
         pIter++;
-check:
+    check:
         if (pIter == pEnd) {
             break;
         }
@@ -169,15 +169,15 @@ DemoStartRequestHolder::DemoStartRequestHolder() : mNumInfos(0), mRequestBuffer(
     }
 }
 
-template<>
-MR::FixedRingBuffer<const DemoStartInfo*, 16>::iterator::iterator(const DemoStartInfo** head, const DemoStartInfo** tail) {
+template <>
+MR::FixedRingBuffer< const DemoStartInfo*, 16 >::iterator::iterator(const DemoStartInfo** head, const DemoStartInfo** tail) {
     mHead = head;
     mTail = tail;
     mEnd = tail + 16;
 }
 
-template<>
-void MR::FixedRingBuffer<const DemoStartInfo*, 16>::push_back(const DemoStartInfo* const& val) {
+template <>
+void MR::FixedRingBuffer< const DemoStartInfo*, 16 >::push_back(const DemoStartInfo* const& val) {
     if ((u32)mCount >= 16) {
         return;
     }
@@ -187,8 +187,8 @@ void MR::FixedRingBuffer<const DemoStartInfo*, 16>::push_back(const DemoStartInf
     mCount++;
 }
 
-template<>
-void MR::FixedRingBuffer<const DemoStartInfo*, 16>::iterator::operator++() {
+template <>
+void MR::FixedRingBuffer< const DemoStartInfo*, 16 >::iterator::operator++() {
     const DemoStartInfo** pEnd = mEnd;
     mHead++;
 

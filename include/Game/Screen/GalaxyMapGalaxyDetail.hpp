@@ -17,7 +17,7 @@ public:
     virtual void kill();
     virtual void control();
 
-    void startDisplay(const char*, bool); 
+    void startDisplay(const char*, bool);
     void exeAppear();
     void exeDisplay();
     void exeDisappear();

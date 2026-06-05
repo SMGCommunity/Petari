@@ -30,7 +30,8 @@ namespace NrvBombBird {
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, BombBird, BindStarPointer, BindStarPointer);
 };  // namespace NrvBombBird
 
-BombBird::~BombBird() {}
+BombBird::~BombBird() {
+}
 
 void BombBird::makeActorDead() {
     LiveActor::makeActorDead();
@@ -86,7 +87,7 @@ void BombBird::exeFlyWithAttack() {
         }
 
         if (MR::isStep(this, 130)) {
-            MR::startSound(mBombs[3], "SE_EM_BOMBBIRD_DROP_BOMB", -1, -1);
+            MR::startSound(mBombs[3], "SE_EM_BOMBBIRD_DROP_BOMB");
             TVec3f v3(mGravity * -10.0f);
             TVec3f v4(_9C * 0.0f);
             TVec3f v5(v4);
@@ -109,14 +110,14 @@ void BombBird::exeFlyWithAttack() {
 void BombBird::exeBlow() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "DownSpin");
-        MR::startSound(this, "SE_EV_BOMBBIRD_DEAD", -1, -1);
-        MR::startSound(this, "SE_EM_BOMBBIRD_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EV_BOMBBIRD_DEAD");
+        MR::startSound(this, "SE_EM_BOMBBIRD_DAMAGE");
         MR::startBlowHitSound(this);
         MR::invalidateClipping(this);
     }
 
     if (mSpinHitController->execute(this)) {
-        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_S");
         MR::emitEffect(this, "Death");
     }
 }
@@ -150,8 +151,8 @@ void BombBird::exeEscape() {
 void BombBird::exeDamage() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Damage");
-        MR::startSound(this, "SE_EV_BOMBBIRD_DAMAGE", -1, -1);
-        MR::startSound(this, "SE_EM_BOMBBIRD_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_EV_BOMBBIRD_DAMAGE");
+        MR::startSound(this, "SE_EM_BOMBBIRD_DAMAGE");
         MR::invalidateClipping(this);
     }
 
@@ -183,7 +184,7 @@ void BombBird::exeSwoonStart() {
         MR::invalidateClipping(this);
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
     if (MR::isOnGround(this)) {
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
     }
@@ -206,7 +207,7 @@ void BombBird::exeSwoon() {
         MR::invalidateClipping(this);
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_SWOON_S", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SWOON_S");
 
     if (MR::isOnGround(this)) {
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
@@ -226,7 +227,7 @@ void BombBird::exeSwoon() {
 void BombBird::exeSwoonEnd() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "SwoonEnd");
-        MR::startSound(this, "SE_EV_BOMBBIRD_RECOVER", -1, -1);
+        MR::startSound(this, "SE_EV_BOMBBIRD_RECOVER");
         MR::invalidateClipping(this);
     }
 
@@ -259,7 +260,7 @@ void BombBird::exeSwoonEnd() {
 void BombBird::exeTrample() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "DownStep");
-        MR::startSound(this, "SE_EM_STOMPED_S", -1, -1);
+        MR::startSound(this, "SE_EM_STOMPED_S");
         MR::invalidateClipping(this);
     }
 
@@ -276,7 +277,7 @@ void BombBird::exeTrample() {
         // TVec3f pos(mGravity * getSensor("body")->mRadius);
         // pos -= mPosition;
         MR::appearCoinPop(this, pos, 1);
-        MR::startSound(this, "SE_EM_EXPLODE_S", -1, -1);
+        MR::startSound(this, "SE_EM_EXPLODE_S");
         MR::emitEffect(this, "Death");
         kill();
     }
@@ -289,8 +290,8 @@ void BombBird::exeSinkDown() {
         MR::invalidateClipping(this);
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_SINK", -1, -1, -1);
-    MR::startLevelSound(this, "SE_EV_LV_BOMBBIRD_SINK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_SINK");
+    MR::startLevelSound(this, "SE_EV_LV_BOMBBIRD_SINK");
     BombBirdParam* param = &hOnGroundParam;
     MR::moveAndTurnToPlayer(this, &_9C, param->_0, param->_4, param->_8, param->_C);
 

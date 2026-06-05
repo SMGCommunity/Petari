@@ -12,7 +12,7 @@
 
 namespace {
     static const s32 sPressABAppearFrame = 25;
-};
+};  // namespace
 
 namespace TitleSequenceProductSub {
     LogoLayout::LogoLayout() : SimpleLayout("ロゴ", "TitleLogo", 2, -1) {
@@ -124,8 +124,8 @@ void TitleSequenceProduct::exeLogoDisplay() {
 
     if (mAButtonChecker->getLevel() && mBButtonChecker->getLevel()) {
         MR::stopStageBGM(75);
-        MR::startSystemSE("SE_SY_GAME_START", -1, -1);
-        MR::startCSSound("CS_CLICK_CLOSE", 0, 0);
+        MR::startSystemSE("SE_SY_GAME_START");
+        MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
         MR::tryRumblePadMiddle(this, 0);
         setNerve(&TitleSequenceProductDecide::sInstance);
     } else {

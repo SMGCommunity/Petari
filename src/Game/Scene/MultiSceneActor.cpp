@@ -15,7 +15,8 @@ MultiSceneActor::MultiSceneActor(const char* pName, const char* pModelName, bool
     mModelManager->init(pModelName, nullptr, param3);
 }
 
-void MultiSceneActor::init(const JMapInfoIter& rIter) {}
+void MultiSceneActor::init(const JMapInfoIter& rIter) {
+}
 
 void MultiSceneActor::movement() {
     if (_30) {
@@ -218,4 +219,5 @@ namespace MultiScene {
     }
 };  // namespace MultiScene
 
-void MultiSceneActor::control() {}
+void MultiSceneActor::control() {
+}

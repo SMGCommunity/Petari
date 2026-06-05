@@ -172,8 +172,8 @@ void Rock::kill() {
     if (mRockType == WanwanRollingMini) {
         appearStarPiece();
         MR::emitEffect(this, "MiniBreak");
-        MR::startSound(this, "SE_EM_WANWANROLLMINI_EXPLOSION", -1, -1);
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_EM_WANWANROLLMINI_EXPLOSION");
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 }
 
@@ -540,9 +540,9 @@ void Rock::startSoundWanwanVoice() {
         if (mWanwanVoiceTimer >= cSeWanwanVoiceInterval) {
             if (MR::calcDistanceToPlayer(this) <= cSeWanwanVoiceDistance) {
                 if (mRockType == WanwanRollingMini) {
-                    MR::startSound(this, "SE_EV_WANWANROLLMINI_WANWAN", -1, -1);
+                    MR::startSound(this, "SE_EV_WANWANROLLMINI_WANWAN");
                 } else {
-                    MR::startSound(this, "SE_EV_WANWANROLL_WANWAN", -1, -1);
+                    MR::startSound(this, "SE_EV_WANWANROLL_WANWAN");
                 }
 
                 mWanwanVoiceTimer = 0;
@@ -560,21 +560,21 @@ void Rock::startRollLevelSound(bool resetTimer) {
 
     if (mRollSoundTimer > 0) {
         if (mRockType == NormalRock) {
-            MR::startLevelSound(this, "SE_OJ_LV_ROCK_MOVE", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_ROCK_MOVE");
         } else if (mRockType == WanwanRollingMini) {
-            MR::startLevelSound(this, "SE_EM_LV_WANWANROLLMINI_MOVE", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_WANWANROLLMINI_MOVE");
         } else {
-            MR::startLevelSound(this, "SE_EM_LV_WANWANROLL_MOVE", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_WANWANROLL_MOVE");
         }
 
         if (MR::isBindedGroundBrake(this)) {
-            MR::startLevelSound(this, "SE_OJ_LV_ROCK_MOVE_MUD", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_ROCK_MOVE_MUD");
         }
         mRollSoundTimer--;
     }
 
     if (mRockType == WanwanRollingGold) {
-        MR::startLevelSound(this, "SE_EM_LV_WANWANROLLGOLD_GLITTER", -1, -1, -1);
+        MR::startLevelSound(this, "SE_EM_LV_WANWANROLLGOLD_GLITTER");
     }
 }
 
@@ -640,7 +640,7 @@ void Rock::appearStarPiece() {
     TVec3f pieceDir(mGravity);
     pieceDir.negateInternal();
     if (MR::appearStarPieceToDirection(mCreator, mPosition, pieceDir, getAppearStarPieceNum(mRockType), 10.0f, 40.0f, false)) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 }
 
@@ -701,12 +701,12 @@ void Rock::exeAppear() {
     if (MR::isLessStep(this, mAppearTime)) {
         moveOnRail(cAppearMoveSpeed, rotateSpeed, false);
         if (mRockType != NormalRock) {
-            MR::startLevelSound(this, "SE_EM_LV_WANWANROLL_STANDBY", -1, -1, -1);
+            MR::startLevelSound(this, "SE_EM_LV_WANWANROLL_STANDBY");
         }
     }
 
     if (MR::isStep(this, mAppearTime) && mRockType != NormalRock) {
-        MR::startSound(this, "SE_EM_WANWANROLL_STANDBY_END", -1, -1);
+        MR::startSound(this, "SE_EM_WANWANROLL_STANDBY_END");
     }
 
     if (MR::isGreaterStep(this, mAppearTime) && MR::isLessStep(this, mAppearTime + cAppearRumbleFrame)) {
@@ -771,9 +771,9 @@ void Rock::exeMove() {
             }
 
             if (mRockType == NormalRock) {
-                MR::startSound(this, "SE_OJ_ROCK_BOUND", -1, -1);
+                MR::startSound(this, "SE_OJ_ROCK_BOUND");
             } else {
-                MR::startSound(this, "SE_EM_WANWANROLL_BOUND", -1, -1);
+                MR::startSound(this, "SE_EM_WANWANROLL_BOUND");
             }
         }
         mAirTime = 0;
@@ -858,7 +858,7 @@ void Rock::exeBreak() {
             makeActorDead();
             if (!clipped && mRockType == WanwanRollingMini) {
                 MR::emitEffect(this, "MiniBreak");
-                MR::startSound(this, "SE_EM_WANWANROLLMINI_EXPLOSION", -1, -1);
+                MR::startSound(this, "SE_EM_WANWANROLLMINI_EXPLOSION");
             }
             return;
         }
@@ -904,9 +904,9 @@ void Rock::exeBreak() {
         MR::startBck(mBreakModel, "Break", nullptr);
 
         if (mRockType == NormalRock) {
-            MR::startSound(this, "SE_OJ_ROCK_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_ROCK_BREAK");
         } else {
-            MR::startSound(this, "SE_EM_WANWANROLL_EXPLOSION", -1, -1);
+            MR::startSound(this, "SE_EM_WANWANROLL_EXPLOSION");
             if (mRockType == WanwanRolling) {
                 setBtkForEnvironmentMap(mBreakModel, "WanwanRollingBreak");
             }
@@ -944,7 +944,7 @@ void Rock::exeFreeze() {
     mFreezeTime++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 f1 = JMath::sSinCosTable.cosLap(MR::repeatDegree(mFreezeTime * cFreezeRumbleSpeed));
+    f32 f1 = MR::cosDegree(MR::repeatDegree(mFreezeTime * cFreezeRumbleSpeed));
     s32 step = cFreezeFrame - getNerveStep();
     f32 f2 = step * (f1 * cFreezeRumbleWidth) / cFreezeFrame;
     TVec3f v1;

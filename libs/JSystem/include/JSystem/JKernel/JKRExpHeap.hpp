@@ -11,7 +11,9 @@ public:
         CMemBlock* allocBack(u32, u8, u8, u8, u8);
         static CMemBlock* getHeapBlock(void*);
 
-        void* getContent() const { return (void*)(this + 1); }
+        void* getContent() const {
+            return (void*)(this + 1);
+        }
 
         u16 mMagic;        // 0x0
         u8 mFlags;         // 0x2

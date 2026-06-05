@@ -11,7 +11,9 @@ class NPCActorItem;
 
 class NPCParameterBase {
 public:
-    NPCParameterBase(const char* pName) { mName = pName; };
+    NPCParameterBase(const char* pName) {
+        mName = pName;
+    };
 
     const char* mName;
 

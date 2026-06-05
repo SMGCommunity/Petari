@@ -19,4 +19,5 @@ void OceanRingBloomDrawer::draw() const {
     mRing->mRingDrawer->drawBloom();
 }
 
-OceanRingBloomDrawer::~OceanRingBloomDrawer() {}
+OceanRingBloomDrawer::~OceanRingBloomDrawer() {
+}

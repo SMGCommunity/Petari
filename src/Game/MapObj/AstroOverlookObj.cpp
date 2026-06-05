@@ -19,4 +19,5 @@ void AstroOverlookObj::control() {
     }
 }
 
-AstroOverlookObj::~AstroOverlookObj() {}
+AstroOverlookObj::~AstroOverlookObj() {
+}

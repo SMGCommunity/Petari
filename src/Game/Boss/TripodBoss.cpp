@@ -95,7 +95,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     const char* objName;
     MR::getObjectName(&objName, rIter);
     initModelManagerWithAnm(objName, nullptr, false);
-    char lowName[0x20];
+    char lowName[32];
     sprintf(lowName, "%sLow", objName);
     mLowModel = new ModelObj("三脚ボスLODモデル", lowName, getBaseMtx(), MR::DrawBufferType_TripodBoss, -2, -2, false);
     mLowModel->initWithoutIter();
@@ -111,8 +111,7 @@ void TripodBoss::init(const JMapInfoIter& rIter) {
     initNerve(&NrvTripodBoss::TripodBossNrvNonActive::sInstance);
     MR::invalidateClipping(this);
     MR::needStageSwitchReadA(this, rIter);
-    MR::FunctorV0M< TripodBoss*, void (TripodBoss::*)() > demoFunc = MR::Functor_Inline< TripodBoss >(this, &TripodBoss::requestOpeningDemo);
-    MR::listenStageSwitchOnA(this, demoFunc);
+    MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &TripodBoss::requestOpeningDemo));
     MR::useStageSwitchReadB(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
     MR::declareStarPiece(this, 24);
@@ -180,8 +179,8 @@ void TripodBoss::initLegIKPlacement() {
         u32& rI = i;
         f32 cur = -(f32)i * ONEPOINTFIVEPI;
         f32 initAngle = ((0.5f * ONEPOINTFIVEPI) + cur);
-        f32 x = JMath::sSinCosTable.sinLapRad(initAngle);
-        f32 z = JMath::sSinCosTable.cosLapRad(initAngle);
+        f32 x = MR::sin(initAngle);
+        f32 z = MR::cos(initAngle);
 
         TVec3f legDirShadow;
         legDirShadow.x = x;
@@ -488,11 +487,11 @@ void TripodBoss::requestEndDamageDemo() {
     TVec3f yDir;
     mBodyMtx.getYDir(yDir);
     MR::appearStarPieceToDirection(this, appearOffs, yDir, 24, 50.0f, 60.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_F", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST_F");
 }
 
 void TripodBoss::exeWait() {
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE");
     calcBodyMovement();
     calcLegMovement();
     if (!tryBreak()) {
@@ -515,7 +514,7 @@ void TripodBoss::exeStep() {
 
     calcBodyMovement();
     calcLegMovement();
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE");
     if (!tryBreak() && !tryDamage() && !tryChangeSequence()) {
         if (tryWaitStep()) {
             return;
@@ -524,7 +523,7 @@ void TripodBoss::exeStep() {
 }
 
 void TripodBoss::exeWaitStep() {
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE");
     calcBodyMovement();
     calcLegMovement();
     if (!tryBreak() && !tryLeaveLegOutOfPlayer() && !tryChangeSequence() && !tryEndSequence()) {
@@ -535,7 +534,7 @@ void TripodBoss::exeWaitStep() {
 }
 
 void TripodBoss::exeChangeSequence() {
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE");
     calcBodyMovement();
     calcLegMovement();
     if (!tryBreak()) {
@@ -546,7 +545,7 @@ void TripodBoss::exeChangeSequence() {
 }
 
 void TripodBoss::exeLeaveLegOutOfPlayer() {
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE");
     calcBodyMovement();
     calcLegMovement();
     if (tryEndLeaveLegOutOfPlayer()) {
@@ -573,7 +572,7 @@ void TripodBoss::exeDamage() {
 
     calcBodyMovement();
     calcLegMovement();
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BOTTOM_MOVE");
     if (tryEndDamage()) {
         return;
     }
@@ -590,15 +589,15 @@ void TripodBoss::exeStartDemo() {
     }
 
     if (MR::isLessStep(this, 120)) {
-        MR::startLevelSound(this, "SE_BM_LV_TRIPOD_SIREN", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_TRIPOD_SIREN");
     }
 
     if (MR::isStep(this, 120)) {
-        MR::startBossBGM(2);
+        MR::startBossBGM(MR::BossBgmID_TripodBossA);
     }
 
     if (MR::isGreaterStep(this, 120)) {
-        MR::startLevelSound(this, "SE_BM_LV_TRIPOD_START_DEMO", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_TRIPOD_START_DEMO");
     }
 
     calcDemoMovement();
@@ -617,10 +616,10 @@ void TripodBoss::exeDamageDemo() {
         startDemo();
     }
 
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_SIREN", -1, -1, -1);
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_MID_DEMO", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_SIREN");
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_MID_DEMO");
     if (MR::isStep(this, sKillerGeneraterIncreaseSeTiming)) {
-        MR::startSound(this, "SE_BM_TRIPOD_CANNON_APPEAR", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_CANNON_APPEAR");
     }
 
     _640 = 1;
@@ -629,7 +628,7 @@ void TripodBoss::exeDamageDemo() {
 void TripodBoss::exePainDemo() {
     if (MR::isFirstStep(this)) {
         bool isOnGround = MR::isOnGroundPlayer();
-        MR::startSound(this, "SE_BM_TRIPOD_HALT", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_HALT");
         MR::stopStageBGM(30);
         startDemo();
         if (isOnGround) {
@@ -661,8 +660,8 @@ void TripodBoss::exePainDemo() {
     }
 
     if (MR::isGreaterStep(this, 90)) {
-        MR::startLevelSound(this, "SE_BM_LV_TRIPOD_END_DEMO", -1, -1, -1);
-        MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BREAK_LIGHT", -1, -1, -1);
+        MR::startLevelSound(this, "SE_BM_LV_TRIPOD_END_DEMO");
+        MR::startLevelSound(this, "SE_BM_LV_TRIPOD_BREAK_LIGHT");
         calcDemoMovement();
         _600 += 0.033333335f;
         if (_600 > 1.0f) {
@@ -680,7 +679,7 @@ void TripodBoss::exeBreakDownDemo() {
     if (MR::isFirstStep(this)) {
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraStrong();
-        MR::startSound(this, "SE_BM_TRIPOD_ALL_BREAK", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_ALL_BREAK");
     }
 
     if (MR::isGreaterStep(this, 240)) {
@@ -694,7 +693,7 @@ void TripodBoss::exeExplosionDemo() {
     }
 
     if (MR::isStep(this, sHeadExplodeSeTiming)) {
-        MR::startSound(this, "SE_BM_TRIPOD_KILL_HEAD", -1, -1);
+        MR::startSound(this, "SE_BM_TRIPOD_KILL_HEAD");
     }
 
     if (MR::isGreaterStep(this, 150)) {
@@ -1081,7 +1080,7 @@ const TPos3f* TripodBoss::getLegMatrixPtr(PART_ID partID, SUB_PART_ID subPartID)
 void TripodBoss::changeBgmState() {
     if (_640 && !isDemo()) {
         if (!MR::isPlayingStageBgm()) {
-            MR::startBossBGM(3);
+            MR::startBossBGM(MR::BossBgmID_TripodBossB);
         }
 
         _640 = 0;

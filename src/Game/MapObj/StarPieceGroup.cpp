@@ -21,7 +21,8 @@ namespace NrvStarPieceGroup {
 
 StarPieceGroup::StarPieceGroup(const char* pName)
     : LiveActor(pName), mPieces(nullptr), mRailCoords(nullptr), _94(false), _95(false), mNumPieces(0), mCircleRadius(400.0f), mIsRail(false),
-      mPlaceAtPathPoints(false), _A4(-1), mRailSpeed(10.0f), _AC(0.0f, 0.0f, 0.0f) {}
+      mPlaceAtPathPoints(false), _A4(-1), mRailSpeed(10.0f), _AC(0.0f, 0.0f, 0.0f) {
+}
 
 bool StarPieceGroup::isExistAnyStarPiece() {
     for (int i = 0; i < mNumPieces; i++) {
@@ -42,7 +43,7 @@ void StarPieceGroup::forceReplaceStarPieceAll() {
     }
 
     if (_95) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 }
 
@@ -60,7 +61,7 @@ void StarPieceGroup::forceKillStarPieceAll(bool withEffect) {
 
         if (withEffect) {
             MR::emitEffect(mPieces[i], "Appear");
-            MR::startSound(this, "SE_OJ_STAR_PIECE_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_STAR_PIECE_BREAK");
         }
     }
 }
@@ -114,11 +115,11 @@ void StarPieceGroup::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchSleep(this, rIter);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
-        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &onSwitchA), MR::Functor(this, &offSwitchA));
+        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &StarPieceGroup::onSwitchA), MR::Functor(this, &StarPieceGroup::offSwitchA));
     }
 
     if (MR::useStageSwitchReadB(this, rIter)) {
-        MR::listenStageSwitchOnB(this, MR::Functor(this, &onSwitchB));
+        MR::listenStageSwitchOnB(this, MR::Functor(this, &StarPieceGroup::onSwitchB));
     }
 
     MR::useStageSwitchWriteDead(this, rIter);
@@ -185,7 +186,7 @@ void StarPieceGroup::makeActorAppeared() {
 
 void StarPieceGroup::appear() {
     if (!_94) {
-        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+        MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
     LiveActor::appear();
 }
@@ -237,8 +238,8 @@ void StarPieceGroup::placementPieceOnCircle() {
     f32 currentAngle = 0.0f;
     f32 angleBetweenPieces = TWO_PI / mNumPieces;
     for (u32 i = 0; i < mNumPieces; i++) {
-        f32 cos = mCircleRadius * JMath::sSinCosTable.cosLapRad(currentAngle);
-        f32 sin = mCircleRadius * JMath::sSinCosTable.sinLapRad(currentAngle);
+        f32 cos = mCircleRadius * MR::cos(currentAngle);
+        f32 sin = mCircleRadius * MR::sin(currentAngle);
         mPieces[i]->mPosition.setPS2(zDir * cos + xDir * sin + center);
         currentAngle += angleBetweenPieces;
     }
@@ -336,4 +337,5 @@ void StarPieceGroup::exeFlow() {
     }
 }
 
-void StarPieceGroup::exeGroup() {}
+void StarPieceGroup::exeGroup() {
+}

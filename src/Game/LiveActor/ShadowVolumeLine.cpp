@@ -31,4 +31,5 @@ void ShadowVolumeLine::setToWidth(f32 width) {
     mToWidth = width;
 }
 
-ShadowVolumeLine::~ShadowVolumeLine() {}
+ShadowVolumeLine::~ShadowVolumeLine() {
+}

@@ -27,7 +27,8 @@ namespace {
 
 OdhConverter::OdhConverter()
     : LayoutActor("ODH-jpeg変換", true), mCaptureWidth(cCaptureWidth), mCaptureHeight(cCaptureHeight), mLimitSize(cLimitSize),
-      mIsRequestedCapture(false), mImage(nullptr), mCaptureImage(nullptr) {}
+      mIsRequestedCapture(false), mImage(nullptr), mCaptureImage(nullptr) {
+}
 
 void OdhConverter::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, -1, -1, -1, MR::DrawType_LayoutOnPause);
@@ -37,7 +38,8 @@ void OdhConverter::init(const JMapInfoIter& rIter) {
     mCaptureImage = new (32) u8[mCaptureWidth * mCaptureHeight * 3];
 }
 
-void OdhConverter::draw() const {}
+void OdhConverter::draw() const {
+}
 
 void OdhConverter::convert() {
     const GXRenderModeObj* pRenderModeObj;
@@ -113,7 +115,7 @@ namespace MR {
     NameObjAdaptor* createAdaptorAndConnectToWiiMessageBoard(const char* pParam1, const FunctorBase& rFunc) {
         NameObjAdaptor* pDrawAdaptor = createDrawAdaptor(pParam1, rFunc);
 
-        connectToScene(pDrawAdaptor, -1, -1, -1, 78);
+        connectToScene(pDrawAdaptor, -1, -1, -1, MR::DrawType_MessageBoardCapture);
 
         return pDrawAdaptor;
     }

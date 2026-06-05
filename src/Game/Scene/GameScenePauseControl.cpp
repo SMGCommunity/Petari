@@ -8,7 +8,7 @@
 
 namespace {
     NEW_NERVE(GameScenePauseControlNormal, GameScenePauseControl, Normal);
-};
+};  // namespace
 
 GameScenePauseControl::GameScenePauseControl(GameScene* pScene) : NerveExecutor("GameSceneポーズ制御") {
     mScene = pScene;
@@ -58,4 +58,5 @@ bool GameScenePauseControl::tryStartPauseMenu() {
     return false;
 }
 
-GameScenePauseControl::~GameScenePauseControl() {}
+GameScenePauseControl::~GameScenePauseControl() {
+}

@@ -30,7 +30,7 @@ public:
 
 namespace DemoStartRequestUtil {
     bool isEmpty(const DemoStartInfo*);
-};
+};  // namespace DemoStartRequestUtil
 
 class DemoStartRequestHolder {
 public:
@@ -50,8 +50,8 @@ public:
     DemoStartInfo* find(const NameObj*, const char*) const;
     DemoStartInfo* findEmpty() const;
 
-    DemoStartInfo* mStartInfos[0x10];                                       // 0x0
-    s32 mNumInfos;                                                          // 0x40
-    MR::FixedRingBuffer<const DemoStartInfo*, 16> mRequestBuffer;           // 0x44
-    NameObj* mProxyObj;                                                     // 0xA0
+    DemoStartInfo* mStartInfos[0x10];                                // 0x0
+    s32 mNumInfos;                                                   // 0x40
+    MR::FixedRingBuffer< const DemoStartInfo*, 16 > mRequestBuffer;  // 0x44
+    NameObj* mProxyObj;                                              // 0xA0
 };

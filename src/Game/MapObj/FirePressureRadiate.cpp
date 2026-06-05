@@ -66,10 +66,10 @@ void FirePressureRadiate::init(const JMapInfoIter& rIter) {
 
 void FirePressureRadiate::initAfterPlacement() {
     if (mGroup != nullptr) {
-        FirePressureRadiate* first = reinterpret_cast< FirePressureRadiate* >(MR::getGroupFromArray(this)->getActor(0));
+        FirePressureRadiate* first = static_cast< FirePressureRadiate* >(MR::getGroupFromArray(this)->getActor(0));
 
         for (u16 i = 1; i < MR::getGroupFromArray(this)->getObjectCount(); i++) {
-            FirePressureRadiate* cur = reinterpret_cast< FirePressureRadiate* >(MR::getGroupFromArray(this)->getActor(i));
+            FirePressureRadiate* cur = static_cast< FirePressureRadiate* >(MR::getGroupFromArray(this)->getActor(i));
 
             if (first->mWaitTime <= cur->mWaitTime) {
                 first = cur;
@@ -113,7 +113,7 @@ void FirePressureRadiate::exePrepareToRadiate() {
 }
 
 void FirePressureRadiate::exeRadiate() {
-    MR::startLevelSound(this, "SE_OJ_LV_F_PRESSURE_RADIATE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_F_PRESSURE_RADIATE");
 
     if (MR::isBckOneTimeAndStopped(this)) {
         calcRadiateEffectMtx();

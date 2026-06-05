@@ -36,9 +36,10 @@ void TripodBossRotateParts::calcTripodLocalMatrix(TPos3f* pMtx) {
     }
 }
 
-TripodBossRotateParts::~TripodBossRotateParts() {}
+TripodBossRotateParts::~TripodBossRotateParts() {
+}
 
 void TripodBossRotateParts::exeWaitOwn() {
     mRotator->movement();
-    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_PARTS_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_BM_LV_TRIPOD_PARTS_MOVE");
 }

@@ -17,6 +17,12 @@
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 
+namespace {
+    static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
+    static Color8 sColorPlusX(0x96, 0x96, 0x96, 0xFF);
+    static Color8 sColorMinusX(0xC8, 0xC8, 0xC8, 0xFF);
+};  // namespace
+
 namespace NrvCreeper {
     NEW_NERVE(CreeperNrvFree, Creeper, Free);
     NEW_NERVE(CreeperNrvFreeInvalid, Creeper, FreeInvalid);
@@ -24,12 +30,6 @@ namespace NrvCreeper {
     NEW_NERVE(CreeperNrvHangUp, Creeper, HangUp);
     NEW_NERVE(CreeperNrvHangDown, Creeper, HangDown);
 };  // namespace NrvCreeper
-
-namespace {
-    static Color8 sColorPlusZ(0xFF, 0xFF, 0xFF, 0xFF);
-    static Color8 sColorPlusX(0x96, 0x96, 0x96, 0xFF);
-    static Color8 sColorMinusX(0xC8, 0xC8, 0xC8, 0xFF);
-};  // namespace
 
 CreeperPoint::CreeperPoint(const TVec3f& rPos, const TVec3f& rUp, const CreeperPoint* pPrevPoint)
     : mPosition(rPos), mNeutralPos(rPos), mVelocity(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f), mUp(rUp), mFront(0.0f, 0.0f, 1.0f),
@@ -151,18 +151,19 @@ void Creeper::init(const JMapInfoIter& rIter) {
 
     mTexture = new JUTTexture(MR::loadTexFromArc("Creeper.arc", "Stalk.bti"), 0);
 
-    mFlowerModel = MR::createPartsModelNoSilhouettedMapObj(this, "花（つる花）", "CreeperFlower", reinterpret_cast< MtxPtr >(&mTopMtx));
+    mFlowerModel = MR::createPartsModelNoSilhouettedMapObj(this, "花（つる花）", "CreeperFlower", mTopMtx.toMtxPtr());
     mLeafModel = MR::createPartsModelNoSilhouettedMapObj(this, "葉（つる花）", "CreeperLeaf", nullptr);
 
-    MR::registerDemoSimpleCastAll(reinterpret_cast< LiveActor* >(mFlowerModel));
-    MR::registerDemoSimpleCastAll(reinterpret_cast< LiveActor* >(mLeafModel));
-    MR::copyTransRotateScale(this, reinterpret_cast< LiveActor* >(mLeafModel));
-    MR::startBck(reinterpret_cast< LiveActor* >(mLeafModel), "Wait", static_cast< const char* >(nullptr));
+    MR::registerDemoSimpleCastAll(mFlowerModel);
+    MR::registerDemoSimpleCastAll(mLeafModel);
+    MR::copyTransRotateScale(this, mLeafModel);
+    MR::startBck(mLeafModel, "Wait", static_cast< const char* >(nullptr));
     mLeafModel->makeActorAppeared();
     makeActorAppeared();
 }
 
-inline void Creeper::exeFree() {}
+inline void Creeper::exeFree() {
+}
 
 inline void Creeper::exeFreeInvalid() {
     if (MR::isNearPlayer(this, 200.0f) && MR::isGreaterStep(this, 20)) {
@@ -206,13 +207,13 @@ void Creeper::exeHangDown() {
     if (MR::isRailReachedNearGoal(this, 80.0f)) {
         MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
         MR::endBindAndPlayerJump(this, TVec3f(0.0f, 0.0f, 0.0f), 0);
-        MR::startSound(mRider, "SE_PV_JUMP_S", -1, -1);
-        MR::startSound(this, "SE_OJ_CREEPER_SWING", -1, -1);
+        MR::startSound(mRider, "SE_PV_JUMP_S");
+        MR::startSound(this, "SE_OJ_CREEPER_SWING");
         mRider = nullptr;
         setNerve(&NrvCreeper::CreeperNrvFreeInvalid::sInstance);
     } else {
         MR::moveCoord(this, mClimbSpeed);
-        MR::startLevelSound(mRider, "SE_OJ_LV_CREEPER_DOWN", -1, -1, -1);
+        MR::startLevelSound(mRider, "SE_OJ_LV_CREEPER_DOWN");
         calcAndGetCurrentInfo(&mPosition, &mUp);
         MR::rotateVecDegree(&mFront, mUp, mClimbSpeed * 1.5f);
     }
@@ -268,8 +269,8 @@ bool Creeper::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         }
 
         mRider = MR::getSensorHost(pSender);
-        MR::startSound(mRider, "SE_PV_CATCH", -1, -1);
-        MR::startSound(mRider, "SE_PM_GRAB_OBJ", -1, -1);
+        MR::startSound(mRider, "SE_PV_CATCH");
+        MR::startSound(mRider, "SE_PM_GRAB_OBJ");
         MR::invalidateClipping(this);
         MR::moveCoordAndTransToNearestRailPos(this, *MR::getPlayerPos());
 
@@ -388,10 +389,10 @@ bool Creeper::tryJump() {
     MR::endBindAndPlayerForceWeakGravityJump(this, launch);
 
     MR::setPlayerSwingInhibitTimer(60);
-    MR::stopSound(mRider, "SE_OJ_CREEPER_UP_START", 0);
-    MR::startSound(mRider, "SE_PV_JUMP_JOY", -1, -1);
-    MR::startSound(mRider, "SE_PM_JUMP_L", -1, -1);
-    MR::startSound(this, "SE_OJ_CREEPER_FLIP", -1, -1);
+    MR::stopSound(mRider, "SE_OJ_CREEPER_UP_START");
+    MR::startSound(mRider, "SE_PV_JUMP_JOY");
+    MR::startSound(mRider, "SE_PM_JUMP_L");
+    MR::startSound(this, "SE_OJ_CREEPER_FLIP");
     mRider = nullptr;
     setNerve(&NrvCreeper::CreeperNrvFreeInvalid::sInstance);
 
@@ -405,7 +406,7 @@ bool Creeper::updateHangUp(f32 angleVel) {
     }
 
     if (MR::isFirstStep(this) && mClimbSpeed >= 5.0f) {
-        MR::startSound(mRider, "SE_OJ_CREEPER_UP_START", -1, -1);
+        MR::startSound(mRider, "SE_OJ_CREEPER_UP_START");
     }
 
     mClimbSpeed -= 0.4f;
@@ -420,7 +421,7 @@ bool Creeper::updateHangUp(f32 angleVel) {
     }
 
     MR::moveCoord(this, mClimbSpeed);
-    MR::startLevelSound(mRider, "SE_OJ_LV_CREEPER_UP", -1, -1, -1);
+    MR::startLevelSound(mRider, "SE_OJ_LV_CREEPER_UP");
 
     if (tryJump()) {
         return true;

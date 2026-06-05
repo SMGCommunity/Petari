@@ -41,9 +41,9 @@ public:
     DemoSubPartKeeper* mSubPartKeeper;  // 0x1C
     void* _20;
     void* _24;
-    DemoActionKeeper* mActionKeeper;    // 0x28
-    u8 _2C[0x32C];                      // padding to 0x358
+    DemoActionKeeper* mActionKeeper;      // 0x28
+    u8 _2C[0x32C];                        // padding to 0x358
     DemoTalkAnimCtrl* mTalkAnimCtrls[8];  // 0x358 (inline array)
-    s32 mNumTalkAnimCtrls;              // 0x378
+    s32 mNumTalkAnimCtrls;                // 0x378
     u8 _37C[0x44];
 };

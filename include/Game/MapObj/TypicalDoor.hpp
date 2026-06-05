@@ -25,7 +25,8 @@ public:
 
 class TypicalDoorOpen : public TypicalDoor {
 public:
-    inline TypicalDoorOpen(const char* pName) : TypicalDoor(pName) {}
+    inline TypicalDoorOpen(const char* pName) : TypicalDoor(pName) {
+    }
 
     virtual ~TypicalDoorOpen();
     virtual void init(const JMapInfoIter&) override;

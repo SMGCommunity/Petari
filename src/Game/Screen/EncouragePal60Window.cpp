@@ -12,7 +12,8 @@ namespace {
     NEW_NERVE(EncouragePal60WindowDisappear, EncouragePal60Window, Disappear);
 };  // namespace
 
-EncouragePal60Window::EncouragePal60Window() : LayoutActor("PAL60推奨画面", true) {}
+EncouragePal60Window::EncouragePal60Window() : LayoutActor("PAL60推奨画面", true) {
+}
 
 void EncouragePal60Window::init(const JMapInfoIter& rIter) {
     initLayoutManager("SysPALInfo", 1);
@@ -49,7 +50,7 @@ void EncouragePal60Window::exeDisplay() {
     }
 
     if (MR::isGreaterStep(this, 120) && MR::testCorePadTriggerAnyWithoutHome(WPAD_CHAN0)) {
-        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM", -1, -1);
+        MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         setNerve(&EncouragePal60WindowDisappear::sInstance);
     }
 }

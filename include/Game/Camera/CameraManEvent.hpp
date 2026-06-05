@@ -29,7 +29,8 @@ public:
 
     class ChunkFIFOItemPair {
     public:
-        inline ChunkFIFOItemPair() {}
+        inline ChunkFIFOItemPair() {
+        }
 
         ChunkFIFOItem mFirst;   // 0x0
         ChunkFIFOItem mSecond;  // 0x18

@@ -36,4 +36,5 @@ namespace MR {
     }
 };  // namespace MR
 
-PurpleCoinHolder::~PurpleCoinHolder() {}
+PurpleCoinHolder::~PurpleCoinHolder() {
+}

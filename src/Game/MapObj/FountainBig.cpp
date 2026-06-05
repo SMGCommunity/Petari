@@ -16,7 +16,8 @@ FountainBig::FountainBig(const char* pName) : LiveActor(pName) {
     mSpoutTimer = -1;
 }
 
-FountainBig::~FountainBig() {}
+FountainBig::~FountainBig() {
+}
 
 void FountainBig::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -52,7 +53,7 @@ void FountainBig::exeSign() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "FountainBigSign");
     }
-    MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN_BIG_SIGN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN_BIG_SIGN");
     if (MR::isStep(this, 80)) {
         setNerve(&NrvFountainBig::FountainBigNrvSignStop::sInstance);
     }
@@ -72,7 +73,7 @@ void FountainBig::exeSpout() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::emitEffect(this, "FountainBig");
-        MR::startSound(this, "SE_OJ_FOUNTAIN_BIG_START", -1, -1);
+        MR::startSound(this, "SE_OJ_FOUNTAIN_BIG_START");
         MR::validateHitSensors(this);
     }
     s32 spoutTimer = mSpoutTimer;
@@ -91,7 +92,7 @@ void FountainBig::exeSpout() {
         mScale.z = 1.0f;
         MR::clamp(calcNerve, 0.01f, 1.0f);
     }
-    MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN_BIG_SPOUT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN_BIG_SPOUT");
     if (MR::isStep(this, 180)) {
         MR::invalidateHitSensors(this);
         MR::deleteEffect(this, "FountainBig");

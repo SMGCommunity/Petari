@@ -13,7 +13,7 @@ namespace MR {
         MovementControlType_4,
         MovementControlType_5,
     };
-};
+};  // namespace MR
 
 class StopSceneStateControl : public NerveExecutor {
 public:

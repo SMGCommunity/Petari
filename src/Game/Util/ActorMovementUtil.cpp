@@ -68,7 +68,7 @@ namespace {
         pActor->mRotation.multiplyOperatorInline(57.29578f);
     }
     */
-};
+};  // namespace
 
 namespace MR {
     f32 calcDistance(const HitSensor* pSensor1, const HitSensor* pSensor2, TVec3f* a3) {

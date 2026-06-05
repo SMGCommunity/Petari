@@ -8,9 +8,11 @@ namespace NrvBattleShipElevator {
     NEW_NERVE(BattleShipElevatorNrvEnd, BattleShipElevator, End);
 };  // namespace NrvBattleShipElevator
 
-BattleShipElevator::BattleShipElevator(const char* pName) : MapObjActor(pName) {}
+BattleShipElevator::BattleShipElevator(const char* pName) : MapObjActor(pName) {
+}
 
-BattleShipElevator::~BattleShipElevator() {}
+BattleShipElevator::~BattleShipElevator() {
+}
 
 void BattleShipElevator::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -25,21 +27,23 @@ void BattleShipElevator::init(const JMapInfoIter& rIter) {
     MapObjActor::initialize(rIter, info);
 }
 
-void BattleShipElevator::exeWait() {}
+void BattleShipElevator::exeWait() {
+}
 
 void BattleShipElevator::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_B_SHIP_ELEV_START", -1, -1);
+        MR::startSound(this, "SE_OJ_B_SHIP_ELEV_START");
         MapObjActor::startMapPartsFunctions();
     }
-    MR::startLevelSound(this, "SE_OJ_LV_B_SHIP_ELEV_MOVE", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_B_SHIP_ELEV_MOVE");
     if (!MapObjActorUtil::isRailMoverWorking(this)) {
-        MR::startSound(this, "SE_OJ_B_SHIP_ELEV_STOP", -1, -1);
+        MR::startSound(this, "SE_OJ_B_SHIP_ELEV_STOP");
         setNerve(&NrvBattleShipElevator::BattleShipElevatorNrvEnd::sInstance);
     }
 }
 
-void BattleShipElevator::exeEnd() {}
+void BattleShipElevator::exeEnd() {
+}
 
 void BattleShipElevator::control() {
     if (!isNerve(&NrvBattleShipElevator::BattleShipElevatorNrvWait::sInstance)) {

@@ -98,7 +98,8 @@ void DinoPackunAction::selectTurnDirection() {
     }
 }
 
-DinoPackunAction::~DinoPackunAction() {}
+DinoPackunAction::~DinoPackunAction() {
+}
 
 bool DinoPackunAction::updateStart() {
     mHost->updateNormalVelocity();
@@ -117,12 +118,12 @@ bool DinoPackunAction::updateStart() {
 bool DinoPackunAction::updateFind(s32 a1, f32 a2) {
     if (MR::isFirstStep(this)) {
         MR::startBck(mHost, "Find", nullptr);
-        MR::startSound(mHost, "SE_BV_PAKKUN_FIND", -1, -1);
-        MR::startSound(mHost, "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(mHost, "SE_BV_PAKKUN_FIND");
+        MR::startSound(mHost, "SE_BM_D_PAKKUN_SLAVER");
     }
 
     if (MR::isStep(this, a1)) {
-        MR::startSound(mHost, "SE_BM_D_PAKKUN_LAND", -1, -1);
+        MR::startSound(mHost, "SE_BM_D_PAKKUN_LAND");
     }
 
     MR::turnDirectionToPlayerDegree(mHost, &mHost->_E8, a2);
@@ -152,8 +153,8 @@ bool DinoPackunAction::updateCoolDown(s32 a1) {
 bool DinoPackunAction::updateAttackHit() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "AttackHit");
-        MR::startSound(mHost, "SE_BV_D_PAKKUN_GLAD", -1, -1);
-        MR::startSound(mHost, "SE_BM_D_PAKKUN_SLAVER", -1, -1);
+        MR::startSound(mHost, "SE_BV_D_PAKKUN_GLAD");
+        MR::startSound(mHost, "SE_BM_D_PAKKUN_SLAVER");
     }
 
     mHost->updateNormalVelocity();

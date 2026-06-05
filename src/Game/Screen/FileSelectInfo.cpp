@@ -9,7 +9,7 @@
 
 namespace {
     static const f32 sDisappearAnimRate = 0.25f;
-};
+};  // namespace
 
 namespace {
     NEW_NERVE(FileSelectInfoNrvAppear, FileSelectInfo, Appear);

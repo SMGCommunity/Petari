@@ -2,7 +2,7 @@
 
 namespace NrvSimpleTimerObj {
     NEW_NERVE(SimpleTimerObjNrvTimer, SimpleTimerObj, Timer);
-};
+};  // namespace NrvSimpleTimerObj
 
 SimpleTimerObj::SimpleTimerObj(const char* pName) : MapObjActor(pName) {
     mFlashingCtrl = 0;
@@ -52,4 +52,5 @@ void SimpleTimerObj::control() {
     }
 }
 
-SimpleTimerObj::~SimpleTimerObj() {}
+SimpleTimerObj::~SimpleTimerObj() {
+}

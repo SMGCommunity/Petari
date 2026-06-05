@@ -16,10 +16,13 @@ void SunshadeMapParts::calcAnim() {
 }
 
 namespace MR {
-    NameObj* createSunshadeMapParts(const char* pName) { return new SunshadeMapParts(pName); }
+    NameObj* createSunshadeMapParts(const char* pName) {
+        return new SunshadeMapParts(pName);
+    }
 };  // namespace MR
 
-SunshadeMapParts::~SunshadeMapParts() {}
+SunshadeMapParts::~SunshadeMapParts() {
+}
 
 void SunshadeMapParts::init(const JMapInfoIter& rIter) {
     GeneralMapParts::init(rIter);

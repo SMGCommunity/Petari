@@ -2,7 +2,6 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 
-
 class QuestionBoxGalleryObj : public MapObjActor {
 public:
     QuestionBoxGalleryObj(const char*);
@@ -19,5 +18,4 @@ public:
     void exeOnStart();
     void exeOffWait();
     void exeOffStart();
-
 };

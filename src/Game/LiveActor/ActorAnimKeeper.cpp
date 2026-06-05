@@ -9,7 +9,7 @@
 
 namespace {
     const char* sFileName = "ActorAnimCtrl";
-}
+};  // namespace
 
 ActorAnimKeeper::ActorAnimKeeper(LiveActor* pActor) : mActor(pActor), mNumInfo(0), mInfoArray(nullptr), mCurrentInfo(0) {
     if (!initAnimData()) {
@@ -88,7 +88,8 @@ bool ActorAnimKeeper::start(const char* pName) {
     return true;
 }
 
-void ActorAnimKeeper::update() {}
+void ActorAnimKeeper::update() {
+}
 
 bool ActorAnimKeeper::isPlaying(const char* pName) const {
     ActorAnimKeeperInfo* info = findAnimInfo(pName);

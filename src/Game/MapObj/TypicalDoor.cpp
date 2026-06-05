@@ -74,7 +74,7 @@ void TypicalDoor::exeClose() {
         if (MR::StageEffect::isExistStageEffectSeData(mObjectName)) {
             const char* stopSe = MR::StageEffect::getStopSe(mObjectName);
             if (stopSe != nullptr) {
-                MR::startSound(this, stopSe, -1, -1);
+                MR::startSound(this, stopSe);
             }
         }
     }
@@ -96,7 +96,7 @@ void TypicalDoor::exeOpen() {
         if (MR::StageEffect::isExistStageEffectSeData(mObjectName)) {
             const char* startSe = MR::StageEffect::getStartSe(mObjectName);
             if (startSe != nullptr) {
-                MR::startSound(this, startSe, -1, -1);
+                MR::startSound(this, startSe);
             }
         }
     }
@@ -125,7 +125,8 @@ DarknessRoomDoor::DarknessRoomDoor(const char* pName) : TypicalDoor(pName) {
     _CC = false;
 }
 
-TypicalDoor::~TypicalDoor() {}
+TypicalDoor::~TypicalDoor() {
+}
 
 void DarknessRoomDoor::init(const JMapInfoIter& rIter) {
     s32 arg0 = -1;
@@ -190,6 +191,8 @@ void DarknessRoomDoor::invalidateCollision() {
     }
 }
 
-TypicalDoorOpen::~TypicalDoorOpen() {}
+TypicalDoorOpen::~TypicalDoorOpen() {
+}
 
-DarknessRoomDoor::~DarknessRoomDoor() {}
+DarknessRoomDoor::~DarknessRoomDoor() {
+}

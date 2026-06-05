@@ -59,9 +59,12 @@ BrightCamInfo::BrightCamInfo() {
     }
 }
 
+BrightObj::BrightObj(const char* pName) : NameObj(pName) {
+}
+BrightObj::~BrightObj() {
+}
 
-BrightObj::BrightObj(const char* pName) : NameObj(pName) {}
-BrightObj::~BrightObj() {}
-
-BrightSun::BrightSun(const char* pName) : NameObj(pName) {}
-BrightSun::~BrightSun() {}
+BrightSun::BrightSun(const char* pName) : NameObj(pName) {
+}
+BrightSun::~BrightSun() {
+}

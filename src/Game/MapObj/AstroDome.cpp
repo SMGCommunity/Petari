@@ -8,7 +8,8 @@ namespace NrvAstroDome {
     NEW_NERVE(AstroDomeNrvAppear, AstroDome, Appear);
 };  // namespace NrvAstroDome
 
-AstroDome::AstroDome(const char* pName) : MapObjActor(pName) {}
+AstroDome::AstroDome(const char* pName) : MapObjActor(pName) {
+}
 
 void AstroDome::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
@@ -81,4 +82,5 @@ bool AstroDome::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
     return false;
 }
 
-AstroDome::~AstroDome() {}
+AstroDome::~AstroDome() {
+}

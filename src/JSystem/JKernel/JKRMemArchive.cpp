@@ -7,7 +7,8 @@
 #include "revolution.h"
 #include <cstring>
 
-JKRMemArchive::JKRMemArchive() {}
+JKRMemArchive::JKRMemArchive() {
+}
 
 JKRMemArchive::JKRMemArchive(long entryNum, EMountDirection mountDir) : JKRArchive(entryNum, MOUNT_MODE_MEM) {
     mIsMounted = false;

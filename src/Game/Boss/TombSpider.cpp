@@ -11,7 +11,7 @@
 
 namespace {
     static s32 sSecondBgmStartStep = 180;
-}
+};  // namespace
 
 namespace NrvTombSpider {
     NEW_NERVE(TombSpiderNrvWaitPlayer, TombSpider, WaitPlayer);
@@ -124,7 +124,7 @@ void TombSpider::exeDemoCocoonBreak() {
 void TombSpider::exeDemoBattle1stStart() {
     if (MR::isFirstStep(this)) {
         MR::stopStageBGM(0);
-        MR::startBossBGM(4);  // TODO: this is a magic number
+        MR::startBossBGM(MR::BossBgmID_TombSpiderA);
     }
 
     if (mDemo->updateBattle1stStart()) {
@@ -156,8 +156,8 @@ void TombSpider::exeDemoBattle2ndStart() {
         MR::stopStageBGM(30);
     }
 
-    if (MR::isStep(this, sSecondBgmStartStep)) {
-        MR::startBossBGM(5);  // TODO: this is a magic number
+    if (MR::isStep(this, ::sSecondBgmStartStep)) {
+        MR::startBossBGM(MR::BossBgmID_TombSpiderB);
     }
 
     if (mDemo->updateBattle2ndStart()) {

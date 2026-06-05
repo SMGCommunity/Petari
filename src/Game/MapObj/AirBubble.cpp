@@ -53,7 +53,8 @@ void AirBubble::kill() {
     LiveActor::kill();
 }
 
-void AirBubble::control() {}
+void AirBubble::control() {
+}
 
 void AirBubble::appearMove(const TVec3f& a1, s32 a2) {
     _8C.set< f32 >(a1);
@@ -67,7 +68,7 @@ void AirBubble::appearMove(const TVec3f& a1, s32 a2) {
 
 void AirBubble::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_OJ_AIR_BUBBLE_BREAK", -1, -1);
+        MR::startSound(this, "SE_OJ_AIR_BUBBLE_BREAK");
         MR::emitEffect(this, "RecoveryBubbleBreak");
         MR::incPlayerOxygen(8);
         MR::tryRumblePadMiddle(this, 0);
@@ -136,4 +137,5 @@ bool AirBubble::canSpinGet() const {
     return false;
 }
 
-AirBubble::~AirBubble() {}
+AirBubble::~AirBubble() {
+}

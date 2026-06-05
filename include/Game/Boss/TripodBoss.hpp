@@ -120,11 +120,17 @@ public:
     static s32 getPartIDFromBoneID(s32);
     void setAttachBaseMatrix(const TPos3f&);
 
-    inline TripodBossLeg* getLeg(s32 idx) const { return mLegs[idx]; }
+    inline TripodBossLeg* getLeg(s32 idx) const {
+        return mLegs[idx];
+    }
 
-    inline TripodBossStepPoint* getStepPoint(int idx) { return mStepPoints[idx]; }
+    inline TripodBossStepPoint* getStepPoint(int idx) {
+        return mStepPoints[idx];
+    }
 
-    inline bool isStateSomething() { return (_634 == 0) || (_634 == 1); }
+    inline bool isStateSomething() {
+        return (_634 == 0) || (_634 == 1);
+    }
 
     TPos3f mBodyMtx;  // 0x8C
     TPos3f _BC;

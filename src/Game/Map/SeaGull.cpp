@@ -152,7 +152,7 @@ void SeaGull::control() {
     }
 
     if (_E0 <= 0) {
-        MR::startSound(this, "SE_OJ_SEAGULL_CHIRP", -1, -1);
+        MR::startSound(this, "SE_OJ_SEAGULL_CHIRP");
         _E0 = MR::getRandom((s32)0x3C, (s32)0x1E0);
     } else {
         _E0--;
@@ -210,6 +210,8 @@ TVec3f* SeaGullGroup::updatePosInfo(s32* a1, bool a2) const {
     return &_90[*a1];
 }
 
-SeaGull::~SeaGull() {}
+SeaGull::~SeaGull() {
+}
 
-SeaGullGroup::~SeaGullGroup() {}
+SeaGullGroup::~SeaGullGroup() {
+}

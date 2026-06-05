@@ -12,7 +12,7 @@
 
 namespace {
     const s32 cAppearReadyFrame = 40;
-};
+};  // namespace
 
 namespace NrvGalaxyNamePlate {
     NEW_NERVE(GalaxyNamePlateNrvAppearReady, GalaxyNamePlate, AppearReady);
@@ -65,7 +65,7 @@ void GalaxyNamePlate::setPos3D(const TVec3f& a1) {
     MR::calcScreenPosition(&vec, a1);
     setTrans(vec);
     mDrawerEntry->mZ = __cvt_fp2unsigned(-vec.y * MR::getFarZ());
-    //the vec is a TVec3f, but I currently can't use it on SetTrans()
+    // the vec is a TVec3f, but I currently can't use it on SetTrans()
 }
 
 void GalaxyNamePlate::setShowBalloonNozzle(bool showBalloonNozzle) {
@@ -81,18 +81,15 @@ void GalaxyNamePlate::show(const wchar_t* pName, s32 a2, bool a3, bool a4) {
         appear();
         if (a4) {
             setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppearReady::sInstance);
         }
-    }
-    else {
+    } else {
         if (a4) {
             if (isNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppearReady::sInstance)) {
                 setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance);
             }
-        }
-        else if (_25) {
+        } else if (_25) {
             setNerve(&NrvGalaxyNamePlate::GalaxyNamePlateNrvAppearReady::sInstance);
         }
 
@@ -101,11 +98,11 @@ void GalaxyNamePlate::show(const wchar_t* pName, s32 a2, bool a3, bool a4) {
         }
     }
 
-    const char* ShowNamePlate, *HideNamePlate, *shaBeak, *picBeak, *galaxyName, *txtGaxyName;
+    const char *ShowNamePlate, *HideNamePlate, *shaBeak, *picBeak, *galaxyName, *txtGaxyName;
     ShowNamePlate = (a3) ? "GalaxyNamePlate" : "GalaxyNamePlateU";
     MR::showPaneRecursive(this, ShowNamePlate);
     HideNamePlate = (a3) ? "GalaxyNamePlateU" : "GalaxyNamePlate";
-    MR::hidePaneRecursive(this, HideNamePlate);    
+    MR::hidePaneRecursive(this, HideNamePlate);
     if (!mShowBalloonNozzle) {
         shaBeak = (a3) ? "ShaBeak" : "ShaBeakU";
         picBeak = (a3) ? "PicBeak" : "PicBeakU";
@@ -157,7 +154,7 @@ void GalaxyNamePlate::exeWait() {
             MR::emitEffect(this, "GalaxyNamePlateNew");
 
             if (_30) {
-                MR::startSystemSE("SE_SY_ASTRO_GALAXY_NEW_EFF", -1, -1);
+                MR::startSystemSE("SE_SY_ASTRO_GALAXY_NEW_EFF");
             }
         }
 

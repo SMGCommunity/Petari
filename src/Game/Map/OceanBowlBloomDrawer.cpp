@@ -1,12 +1,11 @@
 #include "Game/Map/OceanBowlBloomDrawer.hpp"
-#include "Game/Map/OceanBowlPoint.hpp"
 #include "Game/Map/OceanBowl.hpp"
+#include "Game/Map/OceanBowlPoint.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 
 #include <revolution/gx/GXVert.h>
 
 OceanBowlBloomDrawer::OceanBowlBloomDrawer(OceanBowl* pOwner) : NameObj("オーシャンボウル[ブルーム描画]"), mOwner(pOwner) {
-
 }
 
 void OceanBowlBloomDrawer::init(const JMapInfoIter&) {
@@ -41,4 +40,5 @@ void OceanBowlBloomDrawer::draw() const {
     }
 }
 
-OceanBowlBloomDrawer::~OceanBowlBloomDrawer() {}
+OceanBowlBloomDrawer::~OceanBowlBloomDrawer() {
+}

@@ -15,7 +15,8 @@ CameraFix::CameraFix(const char* pName) : Camera(pName) {
     mTarget = new CameraTargetMtx("カメラターゲットダミー");
 }
 
-CameraFix::~CameraFix() {}
+CameraFix::~CameraFix() {
+}
 
 CamTranslatorBase* CameraFix::createTranslator() {
     return new CamTranslatorFix(this);

@@ -49,4 +49,5 @@ void ShadowVolumeBox::drawShape() const {
     TDDraw::sendPoint(_34);
 }
 
-ShadowVolumeBox::~ShadowVolumeBox() {}
+ShadowVolumeBox::~ShadowVolumeBox() {
+}

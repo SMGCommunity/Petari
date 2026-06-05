@@ -25,9 +25,7 @@ void KoopaFireStairs::init(const JMapInfoIter& rIteR) {
     MR::startBrk(this, "MeteorStrike");
     MR::connectToSceneEnemy(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.set(0.0f);
-    MR::addHitSensorEnemyAttack(this, "Fire", 8, 100.0f, offs);
+    MR::addHitSensorEnemyAttack(this, "Fire", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(1, nullptr, false);
     MR::addEffectHitNormal(this, "Hit");
     MR::setEffectBaseScale(this, "Hit", 2.0f);
@@ -47,9 +45,9 @@ void KoopaFireStairs::appear() {
     MR::emitEffect(this, "MeteorStrike");
 
     if (_8C) {
-        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_METEORSHOT_F", -1, -1);
+        MR::startSound(this, "SE_BM_KOOPAJR_SHIP_METEORSHOT_F");
     } else {
-        MR::startSound(this, "SE_OJ_KOOPA_FIRE_SHOT", -1, -1);
+        MR::startSound(this, "SE_OJ_KOOPA_FIRE_SHOT");
     }
 
     setNerve(&NrvKoopaFireStairs::KoopaFireStairsNrvFly::sInstance);
@@ -106,7 +104,7 @@ void KoopaFireStairs::exeFly() {
         MR::emitEffectHit(this, v15, "Hit");
         MR::emitEffect(this, "MeteorStrikeBreak");
         mVelocity.zero();
-        MR::startSound(this, "SE_OJ_KOOPA_FIRE_EXPLODE", -1, -1);
+        MR::startSound(this, "SE_OJ_KOOPA_FIRE_EXPLODE");
         MR::tryRumblePadStrong(this, 0);
         MR::shakeCameraWeak();
         MR::hideModel(this);
@@ -124,7 +122,7 @@ void KoopaFireStairs::exeFly() {
             mPosition.setPS2(v12);
 
             f32 v5 = (100.0f * mStair->calcTimeRate());
-            f32 v6 = JMath::sSinCosTable.sinLap(v5);
+            f32 v6 = MR::sinDegree(v5);
 
             TVec3f v8(_AC);
             v8.scale(v6);
@@ -139,7 +137,7 @@ void KoopaFireStairs::exeFly() {
                 _94.set< f32 >(v13);
             }
 
-            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_METEOR", -1, -1, -1);
+            MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_METEOR");
         }
 
         mRotation.x += 15.0f;

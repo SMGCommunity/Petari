@@ -24,7 +24,7 @@ namespace NrvJellyfish {
 
 namespace {
     static Color8 sPointLightColor(0xFF, 0x32, 0xCA, 0xFF);
-};
+};  // namespace
 
 Jellyfish::Jellyfish(const char* pName) : LiveActor(pName) {
     mController = nullptr;
@@ -98,7 +98,7 @@ void Jellyfish::control() {
             }
         }
 
-        mVelocity.scale(JMath::sSinCosTable.sinLapRad(_94 + 0x2D), mGravity);
+        mVelocity.scale(MR::sin(_94 + 0x2D), mGravity);
         _94++;
     }
 
@@ -123,7 +123,7 @@ void Jellyfish::exeWait() {
         MR::startBrk(this, "Wait");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JELYFISH_WAIT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_JELYFISH_WAIT");
     selectNerveAfterWait();
 }
 
@@ -131,7 +131,7 @@ void Jellyfish::exeFind() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "SearchOn", nullptr);
         MR::startBrk(this, "SearchOn");
-        MR::startSound(this, "SE_EM_JELYFISH_FIND", -1, -1);
+        MR::startSound(this, "SE_EM_JELYFISH_FIND");
     }
 
     faceToMario();
@@ -147,7 +147,7 @@ void Jellyfish::exeThreat() {
         MR::startBrk(this, "SearchWait");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JELLYFISH_WAIT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_JELLYFISH_WAIT");
     faceToMario();
 
     if (selectNerveThreat()) {
@@ -164,11 +164,11 @@ void Jellyfish::exeDeath() {
         MR::startBck(this, "Death", nullptr);
         MR::startBrk(this, "Death");
         MR::startBlowHitSound(this);
-        MR::startSound(this, "SE_EM_JELLYFISH_HIT_PUNCH", -1, -1);
+        MR::startSound(this, "SE_EM_JELLYFISH_HIT_PUNCH");
     }
 
     if (MR::isStep(this, 30) || MR::isBinded(this)) {
-        MR::startSound(this, "SE_EM_JELLYFISH_DEAD", -1, -1);
+        MR::startSound(this, "SE_EM_JELLYFISH_DEAD");
         kill();
     }
 }
@@ -177,7 +177,7 @@ void Jellyfish::exeAttack() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Attack", nullptr);
         MR::startBrk(this, "Attack");
-        MR::startSound(this, "SE_EM_JELLYFISH_ATTACK", -1, -1);
+        MR::startSound(this, "SE_EM_JELLYFISH_ATTACK");
     }
 
     if (MR::isBckStopped(this)) {
@@ -260,7 +260,7 @@ void Jellyfish::threatTurn() {
         MR::startBrk(this, "SearchRotate");
     }
 
-    MR::startLevelSound(this, "SE_EM_LV_JELLYFISH_WAIT", -1, -1, -1);
+    MR::startLevelSound(this, "SE_EM_LV_JELLYFISH_WAIT");
     faceToMario();
 
     if (MR::isBckStopped(this)) {

@@ -1,9 +1,16 @@
 #pragma once
 
-#include "Game/Boss/Dodoryu.hpp"
 #include "Game/Boss/DodoryuStateBase.hpp"
 
-class JMapInfoIter;
+class Dodoryu;
+
+struct DodoryuAnimSet {
+    /* 0x00 */ const char* mBckName;
+    /* 0x04 */ const char* mBtkName;
+    /* 0x08 */ const char* mBrkName;
+    /* 0x0C */ const char* mBvaName;
+    /* 0x10 */ const char* mLeadHillBckName;
+};
 
 struct DodoryuChaseParam {
     /* 0x00 */ s32 _0;
@@ -97,6 +104,7 @@ public:
     virtual void catchSendPlayerFlying(HitSensor*, HitSensor*);
 
     void exeStart();
+    void endStart();
     void exeReadyChase();
     void endReadyChase();
     void exeChaseHide();

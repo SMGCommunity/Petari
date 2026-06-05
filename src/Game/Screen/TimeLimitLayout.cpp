@@ -100,7 +100,7 @@ void TimeLimitLayout::updateTextBox() {
 
 void TimeLimitLayout::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startSystemSE("SE_SY_E3_TIMER_SCALE_UP", -1, -1);
+        MR::startSystemSE("SE_SY_E3_TIMER_SCALE_UP");
         MR::startAnim(this, "Appear", 0);
     }
 
@@ -117,7 +117,7 @@ void TimeLimitLayout::exeCountDown() {
     if (pTiming != nullptr) {
         mCurrentTiming = pTiming;
 
-        MR::startSystemSE("SE_SY_E3_TIMER_SCALE_UP", -1, -1);
+        MR::startSystemSE("SE_SY_E3_TIMER_SCALE_UP");
         setNerve(&NrvTimeLimitLayout::TimeLimitLayoutScaleUp::sInstance);
     }
 }
@@ -235,15 +235,15 @@ bool TimeLimitLayout::updateNormal() {
 
     if (timeLeft <= 120) {
         if (timeLeft % 60 == 0 && timeLeft != 0) {
-            MR::startSystemSE("SE_SY_E3_TIMER_COUNT_4", -1, -1);
+            MR::startSystemSE("SE_SY_E3_TIMER_COUNT_4");
         }
     } else if (timeLeft <= 360) {
         if (timeLeft % 60 == 0) {
-            MR::startSystemSE("SE_SY_E3_TIMER_COUNT_2", -1, -1);
+            MR::startSystemSE("SE_SY_E3_TIMER_COUNT_2");
         }
     } else if (timeLeft <= 600) {
         if (timeLeft % 60 == 0) {
-            MR::startSystemSE("SE_SY_E3_TIMER_COUNT_1", -1, -1);
+            MR::startSystemSE("SE_SY_E3_TIMER_COUNT_1");
         }
     }
 

@@ -13,10 +13,16 @@ public:
     JPATexture(u8 const*);
     virtual ~JPATexture();
 
-    void load(GXTexMapID texMapID) { mTexture.load(texMapID); }
+    void load(GXTexMapID texMapID) {
+        mTexture.load(texMapID);
+    }
 
-    JUTTexture* getJUTTexture() { return &mTexture; }
-    const char* getName() const { return mpData->mName; }
+    JUTTexture* getJUTTexture() {
+        return &mTexture;
+    }
+    const char* getName() const {
+        return mpData->mName;
+    }
 
 public:
     JUTTexture mTexture;

@@ -15,7 +15,8 @@ namespace NrvTrickRabbitFreeRun {
 
 TrickRabbitFreeRun::TrickRabbitFreeRun(const char* pName)
     : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f, 1.0f), _9C(0.0f, 0.0f, 1.0f), _A8(0), _AC(0), _B0(0), _B4(0), mTalkMessageCtrl(nullptr),
-      mFootPrint(nullptr), mSpotMarkLight(nullptr) {}
+      mFootPrint(nullptr), mSpotMarkLight(nullptr) {
+}
 
 void TrickRabbitFreeRun::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

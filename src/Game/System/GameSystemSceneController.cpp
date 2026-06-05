@@ -299,7 +299,8 @@ void GameSystemSceneController::exeNotInitialized() {
     }
 }
 
-void GameSystemSceneController::exeNormal() {}
+void GameSystemSceneController::exeNormal() {
+}
 
 void GameSystemSceneController::exeWaitDrawDoneScene() {
     const Nerve* pNerve;

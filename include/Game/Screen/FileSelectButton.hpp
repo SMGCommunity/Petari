@@ -7,7 +7,7 @@ class GalaxyMapGalaxyPlain;
 
 namespace MR {
     class FunctorBase;
-};
+};  // namespace MR
 
 class FileSelectButton : public LayoutActor {
 public:

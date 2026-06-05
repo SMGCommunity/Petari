@@ -3,14 +3,14 @@
 #include "Game/MapObj/AirBubbleHolder.hpp"
 #include <cstdio>
 
+namespace {
+    static f32 sShakeDistance = 800.0f;
+};  // namespace
+
 namespace NrvSubmarineVolcanoBigColumn {
     NEW_NERVE(SubmarineVolcanoBigColumnNrvWait, SubmarineVolcanoBigColumn, Wait);
     NEW_NERVE(SubmarineVolcanoBigColumnNrvBreak, SubmarineVolcanoBigColumn, Break);
 };  // namespace NrvSubmarineVolcanoBigColumn
-
-namespace {
-    static f32 sShakeDistance = 800.0f;
-};
 
 SubmarineVolcanoBigColumn::SubmarineVolcanoBigColumn(const char* pName) : LiveActor(pName) {
     mBreakModel = nullptr;
@@ -76,9 +76,9 @@ void SubmarineVolcanoBigColumn::exeBreak() {
         MR::startBck(mBreakModel, "Break", nullptr);
 
         if (mIsSmallColumn) {
-            MR::startSound(this, "SE_OJ_SMN_VOLC_COL_S_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_SMN_VOLC_COL_S_BREAK");
         } else {
-            MR::startSound(this, "SE_OJ_SMN_VOLC_COL_L_BREAK", -1, -1);
+            MR::startSound(this, "SE_OJ_SMN_VOLC_COL_L_BREAK");
         }
     }
 

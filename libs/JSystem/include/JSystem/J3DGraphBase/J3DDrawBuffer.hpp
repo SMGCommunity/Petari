@@ -56,7 +56,9 @@ public:
     typedef int (J3DDrawBuffer::*sortFunc)(J3DMatPacket*);
     typedef void (J3DDrawBuffer::*drawFunc)() const;
 
-    J3DDrawBuffer() { initialize(); }
+    J3DDrawBuffer() {
+        initialize();
+    }
     inline J3DDrawBuffer(u32 bufferSize) {
         initialize();
         allocBuffer(bufferSize);
@@ -76,13 +78,23 @@ public:
     void drawHead() const;
     void drawTail() const;
 
-    u32 getEntryTableSize() { return mEntryTableSize; }
-    int getSortMode() { return mSortMode; }
+    u32 getEntryTableSize() {
+        return mEntryTableSize;
+    }
+    int getSortMode() {
+        return mSortMode;
+    }
 
     inline void calcZRatio();
-    void setNonSort() { mSortMode = J3DDrawBufSortMode_Non; }
-    void setZSort() { mSortMode = J3DDrawBufSortMode_Z; }
-    void setZMtx(MtxPtr mtx) { mpZMtx = mtx; }
+    void setNonSort() {
+        mSortMode = J3DDrawBufSortMode_Non;
+    }
+    void setZSort() {
+        mSortMode = J3DDrawBufSortMode_Z;
+    }
+    void setZMtx(MtxPtr mtx) {
+        mpZMtx = mtx;
+    }
 
     /* 0x00 */ J3DPacket** mpBuffer;
     /* 0x04 */ u32 mEntryTableSize;

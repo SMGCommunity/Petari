@@ -8,7 +8,7 @@ public:
         setBuffer(pBuffer, size);
     }
 
-    virtual ~JSUMemoryInputStream(){};
+    virtual ~JSUMemoryInputStream() {};
     virtual u32 readData(void*, s32);
     virtual s32 getLength() const;
     virtual s32 getPosition() const;

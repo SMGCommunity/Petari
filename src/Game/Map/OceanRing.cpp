@@ -17,10 +17,10 @@
 namespace {
     const f32 sPointIntervalLine = 200.0f;
     const f32 sDefaultWidth = 1200.0f;
-    const f32 sWingPointNum = 0.0f; // couldn't figure out what value this became
+    const f32 sWingPointNum = 0.0f;  // couldn't figure out what value this became
     const f32 sEdgePointNum = 2.0f;
-    const f32 sTotalDistMin = 0.0f;  // couldn't figure out what value this became
-    const f32 sCalcNrmDiff = 0.0f;   // couldn't figure out what value this became
+    const f32 sTotalDistMin = 0.0f;                    // couldn't figure out what value this became
+    const f32 sCalcNrmDiff = 0.0f;                     // couldn't figure out what value this became
     const f32 sDefaultUpdateLinePointNumFront = 0.0f;  // couldn't figure out what value this became
     const f32 sUpdateLinePointNumBack = 0.0f;          // couldn't figure out what value this became
     const f32 sUpdateDistanceMax = 5000.0f;
@@ -29,7 +29,7 @@ namespace {
     const f32 sWaveSpeed0 = -0.04f;
     const f32 sWaveSpeed1 = -0.06f;
     const f32 sClippingRadiusOffset = 200.0f;
-}
+};  // namespace
 
 OceanRing::OceanRing(const char* pName) : LiveActor(pName) {
     mWaterPointNum = 0;
@@ -148,7 +148,7 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
     v11 *= PI;
     v11 *= 0.5f;
 
-    pInfo->_4 = JMath::sSinCosTable.cosLapRad(v11) * v9;
+    pInfo->_4 = MR::cos(v11) * v9;
     pInfo->_4 += v10;
 
     pInfo->mCamWaterDepth = -v10;
@@ -308,11 +308,11 @@ void OceanRing::movement() {
 
     TVec3f nearPos;
     calcNearestPos(*MR::getCameraWatchPos(), &nearPos, nullptr, &mNearestToWatchCam);
-    MR::startSoundObjectLevel(mSoundObj1, "SE_AT_LV_OCEAN_RING", -1);
+    MR::startSoundObjectLevel(mSoundObj1, "SE_AT_LV_OCEAN_RING");
     mSoundObj1->process();
 
     calcNearestPos(MR::getCamPos(), &nearPos, nullptr, &mNerarestToCam);
-    MR::startSoundObjectLevel(mSoundObj2, "SE_AT_LV_OCEAN_RING_SUB", -1);
+    MR::startSoundObjectLevel(mSoundObj2, "SE_AT_LV_OCEAN_RING_SUB");
     mSoundObj2->process();
 }
 
@@ -356,7 +356,6 @@ void OceanRing::initPoints() {
         railCoord = MR::getRailCoord(this);
         f32 currentFlowSpeed = calcCurrentFlowSpeedRate(railCoord);
         s32 v15 = v7;
-        
 
         for (s32 j = -7; j <= 7; j++) {
             TVec3f v21(v22);
@@ -429,7 +428,7 @@ void OceanRing::updatePoints() {
         updatePointsInLine((v13 + v8) % v13, mSegCount - 1, 3, 0);
         return;
     }
-    
+
     v13 = mSegCount - 1;
     if (v9 > v13) {
         updatePointsInLine(v8, v13, 3, 0);
@@ -543,7 +542,8 @@ void OceanRing::draw() const {
     }
 }
 
-OceanRing::~OceanRing() {}
+OceanRing::~OceanRing() {
+}
 
 WaterPoint* OceanRing::getPoint(int a1) const {
     return mWaterPoints[a1];

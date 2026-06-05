@@ -2,4 +2,4 @@
 
 namespace MR {
     bool isActiveGalaxyMapLayout();
-};
+};  // namespace MR

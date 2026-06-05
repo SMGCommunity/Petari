@@ -61,7 +61,7 @@ void TicoEat::init(const JMapInfoIter& rIter) {
 
 void TicoEat::control() {
     if (MR::isBckPlaying(this, "Joy2")) {
-        MR::startLevelSound(this, "SE_SM_LV_TICOFAT_GLAD", -1, -1, -1);
+        MR::startLevelSound(this, "SE_SM_LV_TICOFAT_GLAD");
     }
 
     Tico::control();
@@ -173,9 +173,9 @@ void TicoEat::exeEatNow() {
         MR::giftStarPieceToTarget(getSensor("Mouth"), 1);
     }
 
-    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_ABSORB", -1, -1, -1);
-    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING", -1, -1, -1);
-    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING", 0, -1, -1);
+    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_ABSORB");
+    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING");
+    MR::startLevelSound(this, "SE_SM_LV_TICOFAT_EATING", 0);
 
     if (_198 == 0) {
         popAndPushNerve(&NrvTicoEat::TicoEatNrvEatPst::sInstance);
@@ -190,9 +190,11 @@ void TicoEat::exeEatPst() {
     }
 }
 
-void TicoEat::exeEatEnd() {}
+void TicoEat::exeEatEnd() {
+}
 
-TicoComet::TicoComet(const char* pName) : TicoEat(pName) {}
+TicoComet::TicoComet(const char* pName) : TicoEat(pName) {
+}
 
 void TicoComet::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoComet");
@@ -268,34 +270,34 @@ bool TicoComet::eventFunc(u32 event) {
 
 void TicoComet::startReactionSound() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_NPC_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_TICOCOMET_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_NPC_TRAMPLED");
+        MR::startSound(this, "SE_SV_TICOCOMET_TRAMPLED");
     }
 
     if (isPointingSe()) {
         MR::startDPDHitSound();
-        MR::startSound(this, "SE_SV_TICOCOMET_POINT", -1, -1);
+        MR::startSound(this, "SE_SV_TICOCOMET_POINT");
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SM_TICOCOMET_SPIN", -1, -1);
+        MR::startSound(this, "SE_SM_TICOCOMET_SPIN");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_TICOCOMET_STAR_PIECE_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_TICOCOMET_STAR_PIECE_HIT");
     }
 }
 
 void TicoComet::exeDemoAnim() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Demo");
-        MR::startSound(this, "SE_SM_TICOFAT_META_ITEM", -1, -1);
-        MR::startSound(this, "SE_SM_TICOFAT_META", -1, -1);
+        MR::startSound(this, "SE_SM_TICOFAT_META_ITEM");
+        MR::startSound(this, "SE_SM_TICOFAT_META");
     }
 
     if (MR::isGreaterEqualStep(this, 90)) {
-        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE", -1, -1);
-        MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_IN", -1, -1);
+        MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE");
+        MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_IN");
         popAndPushNerve(&NrvTicoComet::TicoCometNrvDemoFade::sInstance);
     }
 }
@@ -303,7 +305,7 @@ void TicoComet::exeDemoAnim() {
 void TicoComet::exeDemoFade() {
     if (MR::isFirstStep(this)) {
         MR::closeWipeWhiteFade(30);
-        MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_OUT", -1, -1);
+        MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_OUT");
     }
 
     if (!MR::isWipeActive()) {
@@ -321,6 +323,8 @@ void TicoComet::exeDemoFade() {
     }
 }
 
-void TicoComet::exeDemoEnd() {}
+void TicoComet::exeDemoEnd() {
+}
 
-void TicoEat::startReactionSound() {}
+void TicoEat::startReactionSound() {
+}

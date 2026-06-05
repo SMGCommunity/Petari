@@ -24,4 +24,5 @@ CameraRailHolder::RailSet& CameraRailHolder::RailSet::operator=(const RailSet& r
     }
 }*/
 
-CameraRailHolder::~CameraRailHolder() {}
+CameraRailHolder::~CameraRailHolder() {
+}

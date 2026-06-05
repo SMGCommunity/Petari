@@ -2,7 +2,6 @@
 
 #include "Game/Enemy/BegomanBase.hpp"
 
-
 class BegomanSpring : public BegomanBase {
 public:
     BegomanSpring(const char*);

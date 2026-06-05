@@ -46,7 +46,7 @@ void Polta::init(const JMapInfoIter& rIter) {
     MR::connectToSceneCollisionEnemy(this);
     MR::initLightCtrl(this);
     MR::makeQuatAndFrontFromRotate(&_B4, &_C4, this);
-    //_D0.set<f32>(_B4);
+    _D0.set< f32 >(_B4);
     _E0.set(mPosition);
     MR::addBaseMatrixFollowTarget(this, rIter, nullptr, nullptr);
     initArm();
@@ -120,13 +120,13 @@ void Polta::appearStarPiece(s32 starPieceAmount) {
     TVec3f head3JointPos;
     MR::copyJointPos(this, "Head3", &head3JointPos);
     MR::appearStarPieceToDirection(this, head3JointPos, -mGravity, starPieceAmount, 50.0f, 60.0f, false);
-    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
 void BombTeresaHolder::disperseAll() {
     s32 objectCount = mObjectCount;
     for (s32 i = 0; i < objectCount; i++) {
-        BombTeresa* curBombTeresa = reinterpret_cast< BombTeresa* >(getActor(i));
+        BombTeresa* curBombTeresa = static_cast< BombTeresa* >(getActor(i));
         curBombTeresa->requestDisperse();
     }
 }
@@ -134,7 +134,8 @@ void BombTeresaHolder::disperseAll() {
 Polta::Polta(const char* pName)
     : LiveActor(pName), mSensorCtrl(nullptr), mLeftArm(nullptr), mRightArm(nullptr), mSequencer(nullptr), mBombTeresaHolder(nullptr),
       mRockHolder(nullptr), mGroundRockHolder(nullptr), mCameraInfo(nullptr), mBreakModel(nullptr), mFormationModel(nullptr), _B4(0, 0, 0, 1),
-      _C4(0, 0, 1), _D0(0, 0, 0, 1), _E0(0, 0, 0), _EC(0.0f) {}
+      _C4(0, 0, 1), _D0(0, 0, 0, 1), _E0(0, 0, 0), _EC(0.0f) {
+}
 
 void Polta::initSensor() {
     mSensorCtrl = new PoltaSensorCtrl(this);

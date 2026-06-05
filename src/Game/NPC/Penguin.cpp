@@ -191,21 +191,21 @@ void Penguin::initAfterPlacement() {
 
 void Penguin::exeReaction() {
     if (_D8) {
-        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_PENGUIN_S_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED");
+        MR::startSound(this, "SE_SV_PENGUIN_S_TRAMPLED");
     }
 
     if (isPointingSe()) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_POINTED_2P", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_POINTED_2P");
         MR::startDPDHitSound();
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_SPIN_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_SPIN_HIT");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_PENGUIN_S_STAR_PIECE", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_STAR_PIECE");
     }
 
     if (MR::tryStartReactionAndPopNerve(this)) {
@@ -237,7 +237,7 @@ void Penguin::exeWait() {
     MR::tryTalkNearPlayerAndStartMoveTalkAction(this);
 
     if (mBehavior == Behavior_SwimTurtle) {
-        MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SWIM_JET", -1, -1, -1);
+        MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SWIM_JET");
     }
 
     if (mBehavior == Behavior_Dive && MR::isStep(this, mStepToDive)) {
@@ -248,7 +248,7 @@ void Penguin::exeWait() {
 void Penguin::exeDive() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "SwimDive", static_cast< const char* >(nullptr));
-        MR::startSound(this, "SE_SV_PENGUIN_S_DIVE", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_S_DIVE");
     }
 
     if (MR::isBckStopped(this)) {

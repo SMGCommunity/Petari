@@ -1,6 +1,7 @@
 #include "Game/LiveActor/ShadowVolumeOvalPole.hpp"
 
-ShadowVolumeOvalPole::~ShadowVolumeOvalPole() {}
+ShadowVolumeOvalPole::~ShadowVolumeOvalPole() {
+}
 
 ShadowVolumeOvalPole::ShadowVolumeOvalPole() : ShadowVolumeModel("影描画[ボリューム楕円柱]") {
     mSize.x = 100.0f;

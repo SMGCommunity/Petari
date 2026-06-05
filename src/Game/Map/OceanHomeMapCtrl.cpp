@@ -54,7 +54,7 @@ void OceanHomeMapCtrl::movement() {
     if (WaterAreaFunction::getCameraWaterInfo()->mOceanBowl) {
         if (MR::isDead(mOceanRingPlanetLowInWater)) {
             mOceanRingPlanetLowInWater->makeActorAppeared();
-        } else if (!MR::isHiddenModel(mOceanRingPlanet)){
+        } else if (!MR::isHiddenModel(mOceanRingPlanet)) {
             MR::hideModel(mOceanRingPlanet);
             mOceanRingPlanet->mLODCtrl->invalidate();
         }

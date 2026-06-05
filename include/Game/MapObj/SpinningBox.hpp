@@ -6,26 +6,39 @@ class SpinningBox : public LiveActor {
 public:
     SpinningBox(const char*);
 
-    virtual ~SpinningBox();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgPEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
-    void generateIceBox(HitSensor*, HitSensor*);
+    void exeFall();
+    void exeWait();
+    void endWait();
+    void exeSliding();
+    void endSliding();
+    void exeSpinning();
+    void endSpinning();
+    void exePointed();
+    void endPointed();
 
-    TVec4f _8C;
-    f32 _9C;
-    f32 _A0;
-    f32 _A4;
-    f32 _A8;
-    f32 _AC;
-    u8 _B0;
-    u8 _B1;
-    u8 _B2;
-    u8 _B3;
-    f32 _B4;
+    void calcPlanarProjectedVec(TVec3f*, const TVec3f&, const TVec3f&);
+    void calcHitDirection(const TVec3f&);
+    void generateIceBox(HitSensor* pSender, HitSensor* pReceiver);
+    void hitReflection(HitSensor* pSender, HitSensor* pReceiver);
+
+    f32 getScale() const {
+        return 1.0f;
+    }
+
+    /* 0x8C */ TQuat4f mRotate;
+    /* 0x9C */ f32 mRotateSpeed;
+    /* 0xA0 */ f32 mSlideSpeed;
+    /* 0xA4 */ TVec3f mSlideDir;
+    /* 0xB0 */ bool mIsOnGround;
+    /* 0xB1 */ bool mIsIceBox;
+    /* 0xB4 */ f32 mSpinAngle;  // NOTE: This keeps track of when the spin sfx should be emitted again
 };

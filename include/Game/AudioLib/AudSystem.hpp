@@ -1,9 +1,10 @@
 #pragma once
 
+#include "Game/AudioLib/AudAudience.hpp"
 #include "Game/AudioLib/AudBgmMgr.hpp"
 #include <JSystem/JAudio2/JASAudioReseter.hpp>
 #include <JSystem/JAudio2/JAUSoundMgr.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class AudChordInfo;
 class AudEffector;
@@ -24,6 +25,13 @@ class SpkSystem;
 
 class AudSystem : public JAUSoundMgr {
 public:
+    struct MicData {
+        /* 0x00 */ TPos3f _0;
+        /* 0x30 */ TVec3f _30;
+        /* 0x3C */ TVec3f mPos;
+        /* 0x48 */ TVec3f _48;
+    };
+
     AudSystem(JAUSectionHeap*, JKRArchive*, JKRArchive*, JKRArchive*);
 
     AudChordInfo* getChordInfo();
@@ -73,8 +81,13 @@ public:
     bool isAlreadyPlayingSoundNear(JAISoundID, const TVec3f*, f32);
     void setVolumeZeroForce(s32);
 
-    inline AudEffector* getAudEffector() const { return mAudEffector; }
-    inline void setVar(u32 var) { _830 = var; }
+    void set830(u32 var) {
+        _830 = var;
+    }
+
+    AudEffector* getAudEffector() const {
+        return mAudEffector;
+    }
 
     static AudSystem* msBasic;
 
@@ -91,7 +104,10 @@ public:
     /* 0x0834 */ u32 _834;
     /* 0x0838 */ u32 _838;
     /* 0x083C */ u32 _83C;
-    /* 0x0840 */ u8 _840[0x1AC];
+    /* 0x0840 */ AudAudience_withSetting mAudience;
+    /* 0x0894 */ u8 _894[0x4];
+    /* 0x0898 */ MicData _898[WPAD_MAX_CONTROLLERS];
+    /* 0x09E8 */ u8 _9E8[0x4];
     /* 0x09EC */ AudSoundObject* mSystemSeObject;
     /* 0x09F0 */ AudSoundObject* mAtmosphereSeObject;
     /* 0x09F4 */ AudMeObject* mSystemMeObject;

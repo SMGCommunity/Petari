@@ -9,7 +9,7 @@
 
 namespace {
     const char* getRailPointArgName(s32 argNum);
-};
+};  // namespace
 
 namespace MR {
     void moveTransToOtherActorRailPos(LiveActor* pActor, const LiveActor* pOtherActor) {

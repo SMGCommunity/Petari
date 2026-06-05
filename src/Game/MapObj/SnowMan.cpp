@@ -28,7 +28,8 @@ SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
     mAnimScaleParam = nullptr;
 }
 
-SnowMan::~SnowMan() {}
+SnowMan::~SnowMan() {
+}
 
 void SnowMan::init(const JMapInfoIter& rIfter) {
     MR::initDefaultPos(this, rIfter);
@@ -122,17 +123,20 @@ void SnowMan::calcAndSetBaseMtx() {
     MR::setBaseScale(this, mtx);
 }
 
-void SnowMan::exeWait() {}
+void SnowMan::exeWait() {
+}
 
-void SnowMan::exeWaitBody() {}
+void SnowMan::exeWaitBody() {
+}
 
-void SnowMan::exeWaitHead() {}
+void SnowMan::exeWaitHead() {
+}
 
 void SnowMan::exeMeltHead() {
     if (MR::isFirstStep(this)) {
         MR::invalidateCollisionParts(mHeadCollisionParts);
         MR::startBck(this, "MeltHead", nullptr);
-        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT", -1, -1);
+        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
         if (MR::isValidSwitchA(this)) {
             MR::onSwitchA(this);
@@ -149,7 +153,7 @@ void SnowMan::exeMeltBody() {
     if (MR::isFirstStep(this)) {
         MR::invalidateCollisionParts(mBodyCollisionParts);
         MR::startBck(this, "MeltBody", nullptr);
-        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT", -1, -1);
+        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
         if (MR::isValidSwitchA(this)) {
             MR::onSwitchA(this);
@@ -170,7 +174,7 @@ void SnowMan::exeDownHead() {
         MR::invalidateCollisionParts(mHeadCollisionParts);
         MR::invalidateCollisionParts(mBodyCollisionParts);
         MR::startBck(this, "DownHead", nullptr);
-        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT", -1, -1);
+        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
     }
 
@@ -184,7 +188,7 @@ void SnowMan::exeDownBody() {
         MR::invalidateCollisionParts(mHeadCollisionParts);
         MR::invalidateCollisionParts(mBodyCollisionParts);
         MR::startBck(this, "DownBody", nullptr);
-        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT", -1, -1);
+        MR::startSound(this, "SE_OJ_SNOW_MAN_MELT");
         MR::shakeCameraWeak();
         if (MR::isValidSwitchB(this)) {
             MR::onSwitchB(this);

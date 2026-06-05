@@ -1,7 +1,8 @@
 #include "Game/Effect/ParticleEmitter.hpp"
 #include <JSystem/JParticle/JPAEmitter.hpp>
 
-ParticleEmitter::ParticleEmitter() : mEmitter(nullptr), mPaused(false), mStopped(false) {}
+ParticleEmitter::ParticleEmitter() : mEmitter(nullptr), mPaused(false), mStopped(false) {
+}
 
 void ParticleEmitter::invalidate() {
     mEmitter = nullptr;

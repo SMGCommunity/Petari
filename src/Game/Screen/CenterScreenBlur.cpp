@@ -12,7 +12,8 @@ namespace NrvCenterScreenBlur {
     NEW_NERVE(CenterScreenBlurNrvFadeOut, CenterScreenBlur, FadeOut);
 };  // namespace NrvCenterScreenBlur
 
-CenterScreenBlur::CenterScreenBlur() : LiveActor("画面中心ブラー"), mTotalFrame(0), mFadeInFrame(0), mFadeOutFrame(0), _98(0.0f), _9C(0), _A0(0.0f) {}
+CenterScreenBlur::CenterScreenBlur() : LiveActor("画面中心ブラー"), mTime(), mFadeIn(), mFadeOut(), mOffset(), mAlpha(), mBlendRate() {
+}
 
 void CenterScreenBlur::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, MR::MovementType_ImageEffect, -1, -1, MR::DrawType_CenterScreenBlur);
@@ -25,7 +26,7 @@ void CenterScreenBlur::init(const JMapInfoIter& rIter) {
 void CenterScreenBlur::appear() {
     LiveActor::appear();
 
-    _A0 = 0.0f;
+    mBlendRate = 0.0f;
 
     setNerve(&NrvCenterScreenBlur::CenterScreenBlurNrvFadeIn::sInstance);
 }
@@ -35,42 +36,42 @@ void CenterScreenBlur::draw() const {
         return;
     }
 
-    f32 a = _98 * _A0;
-    u8 b = _9C * _A0;
+    f32 a = mOffset * mBlendRate;
+    u8 b = mAlpha * mBlendRate;
 
     MR::drawFullScreenBlur(a, a, b, b);
 }
 
-void CenterScreenBlur::start(s32 totalFrame, f32 a2, u8 a3, s32 fadeInFrame, s32 fadeOutFrame) {
-    mTotalFrame = totalFrame;
-    mFadeInFrame = fadeInFrame;
-    mFadeOutFrame = fadeOutFrame;
-    _98 = a2;
-    _9C = a3;
+void CenterScreenBlur::start(s32 time, f32 offset, u8 alpha, s32 fadeIn, s32 fadeOut) {
+    mTime = time;
+    mFadeIn = fadeIn;
+    mFadeOut = fadeOut;
+    mOffset = offset;
+    mAlpha = alpha;
 
     appear();
 }
 
 void CenterScreenBlur::exeFadeIn() {
-    _A0 = MR::calcNerveRate(this, mFadeInFrame);
+    mBlendRate = MR::calcNerveRate(this, mFadeIn);
 
-    MR::setNerveAtStep(this, &NrvCenterScreenBlur::CenterScreenBlurNrvKeep::sInstance, mFadeInFrame);
+    MR::setNerveAtStep(this, &NrvCenterScreenBlur::CenterScreenBlurNrvKeep::sInstance, mFadeIn);
 }
 
 void CenterScreenBlur::exeKeep() {
     if (MR::isFirstStep(this)) {
-        _A0 = 1.0f;
+        mBlendRate = 1.0f;
     }
 
-    if (MR::isGreaterEqualStep(this, mTotalFrame - (mFadeInFrame + mFadeOutFrame))) {
+    if (MR::isGreaterEqualStep(this, mTime - (mFadeIn + mFadeOut))) {
         setNerve(&NrvCenterScreenBlur::CenterScreenBlurNrvFadeOut::sInstance);
     }
 }
 
 void CenterScreenBlur::exeFadeOut() {
-    _A0 = 1.0f - MR::calcNerveRate(this, mFadeOutFrame);
+    mBlendRate = 1.0f - MR::calcNerveRate(this, mFadeOut);
 
-    if (MR::isStep(this, mFadeOutFrame)) {
+    if (MR::isStep(this, mFadeOut)) {
         kill();
     }
 }

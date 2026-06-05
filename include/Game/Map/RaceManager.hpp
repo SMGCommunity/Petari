@@ -2,7 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/Util/NPCUtil.hpp"
 
 class PlayerRacer;
 class RaceManager;

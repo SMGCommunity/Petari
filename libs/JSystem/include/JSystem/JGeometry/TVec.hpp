@@ -4,6 +4,7 @@
 #include <revolution.h>
 // #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 #include "math_types.hpp"
 #include "revolution/mtx.h"
 #include "revolution/types.h"
@@ -657,7 +658,8 @@ namespace JGeometry {
         }
 
         inline void rejection(const TVec3& rVec, const TVec3& rNormal) {
-            JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec));
+            const TVec3& norm = rNormal;
+            JMAVECScaleAdd(&norm, &rVec, this, -norm.dot(rVec));
         }
         inline void rejection(const TVec3& rNormal) {
             const TVec3& norm = rNormal;
@@ -860,6 +862,13 @@ namespace JGeometry {
         inline TVec3< T >* toTVec3() {
             return (TVec3< T >*)this;
         }
+
+        operator Quaternion*() {
+            return (Quaternion*)&x;
+        }
+        operator const Quaternion*() const {
+            return (Quaternion*)&x;
+        }
     };
 
     template < typename T >
@@ -915,7 +924,16 @@ namespace JGeometry {
 #endif
 
         /* General operations */
-        void normalize();
+        void normalize() {
+            f32 length = squared();
+            if (length <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
+                set< T >(0.0f, 0.0f, 0.0f, 1.0f);
+                return;
+            }
+            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(length);
+            TVec4< T >::scale(lengthinv);
+        }
+
         void normalize(const TQuat4< T >& rSrc);
 
         void getXDir(TVec3< T >& rDest) const {
@@ -947,7 +965,7 @@ namespace JGeometry {
                 set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
             } else {
                 f32 dotPart = rA.dot(rB);
-                f32 halfAngle = ratio * (JMath::sAtanTable.atan2_(crossPart, dotPart) * 0.5f);
+                f32 halfAngle = ratio * (JMAATan2(crossPart, dotPart) * 0.5f);
                 toTvec()->scale((f32)sin(halfAngle) / crossPart, dir);
                 this->w = cos(halfAngle);
             }
@@ -1005,6 +1023,18 @@ namespace JGeometry {
 
         void transform(TVec3< T >& v) const {
             transform(v, v);
+        }
+
+        void mult(const TQuat4& q) {
+            PSQUATMultiply(&q, this, this);
+        }
+
+        f32 dot(const TQuat4& q) const {
+            return PSQUATDotProduct(this, &q);
+        }
+
+        f32 squared() const {
+            return PSQUATDotProduct(this, this);
         }
 
         void makeMtx(MtxPtr pMtx) const {

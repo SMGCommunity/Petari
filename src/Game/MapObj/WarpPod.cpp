@@ -274,7 +274,7 @@ void WarpPod::appear() {
 
         _CB = false;
 
-        MR::startSound(this, "SE_OJ_WARP_POD_PATH_APPEAR", -1, -1);
+        MR::startSound(this, "SE_OJ_WARP_POD_PATH_APPEAR");
         MR::startBck(this, "Active", nullptr);
         MR::startBrk(this, "Active");
         glowEffect();
@@ -312,7 +312,7 @@ void WarpPod::control() {
     _A6 = mArg5;
 
     MR::startEventCameraNoTarget(_94, _9C, -1);
-    MR::startSound(this, "SE_OJ_WARP_POD_PATH_APPEAR", -1, -1);
+    MR::startSound(this, "SE_OJ_WARP_POD_PATH_APPEAR");
     MR::requestMovementOn(this);
     MR::pauseOffCameraDirector();
 
@@ -353,7 +353,7 @@ void WarpPod::movement() {
                 MR::startBrk(this, "Active");
 
                 if (mArg1 != 0) {
-                    MR::startSound(this, "SE_OJ_WARP_POD_ACTIVE", -1, -1);
+                    MR::startSound(this, "SE_OJ_WARP_POD_ACTIVE");
                 }
             }
         }

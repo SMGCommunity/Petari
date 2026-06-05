@@ -10,7 +10,7 @@
 
 namespace NrvButlerStateStarPieceReaction {
     NEW_NERVE(ButlerStateStarPieceReactionNrvWait, ButlerStateStarPieceReaction, Wait);
-};
+};  // namespace NrvButlerStateStarPieceReaction
 
 ButlerStateStarPieceReaction::ButlerStateStarPieceReaction(LiveActor* pHost, const JMapInfoIter& rIter, const char* pName)
     : ActorStateBase< LiveActor >("バトラースターピース反応", pHost), mTalkMessage(nullptr), _14(false) {
@@ -32,7 +32,7 @@ void ButlerStateStarPieceReaction::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mHost, "StarPieceReaction", nullptr);
         MR::limitedStarPieceHitSound();
-        MR::startSound(mHost, "SE_SM_BUTLER_ABSORB", -1, -1);
+        MR::startSound(mHost, "SE_SM_BUTLER_ABSORB");
     }
 
     if (_14) {

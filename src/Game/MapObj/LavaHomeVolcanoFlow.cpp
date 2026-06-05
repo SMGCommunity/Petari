@@ -15,7 +15,8 @@ namespace NrvLavaHomeVolcanoFlow {
     NEW_NERVE(HostTypeDone, LavaHomeVolcanoFlow, Wait);
 };  // namespace NrvLavaHomeVolcanoFlow
 
-LavaHomeVolcanoFlow::LavaHomeVolcanoFlow(const char* pName) : LiveActor(pName) {}
+LavaHomeVolcanoFlow::LavaHomeVolcanoFlow(const char* pName) : LiveActor(pName) {
+}
 
 void LavaHomeVolcanoFlow::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -50,7 +51,7 @@ void LavaHomeVolcanoFlow::exeWait() {
         return;
     }
     if (isNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance)) {
-        MR::startLevelSound(this, "SE_OJ_LV_VOLCANO_ERUPTION", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_VOLCANO_ERUPTION");
     }
 }
 
@@ -58,14 +59,15 @@ void LavaHomeVolcanoFlow::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "LavaHomeVolcanoFlow", nullptr);
     }
-    MR::startLevelSound(this, "SE_OJ_LV_VOLCANO_EXPL_SIGN", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_VOLCANO_EXPL_SIGN");
     if (MR::isStep(this, 60)) {
         MR::emitEffect(this, "Active");
         MR::emitEffect(this, "Loop");
-        MR::startSound(this, "SE_OJ_VOLCANO_EXPLODE", -1, -1);
+        MR::startSound(this, "SE_OJ_VOLCANO_EXPLODE");
         MR::tryRumblePadVeryStrong(this, 0);
         setNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance);
     }
 }
 
-LavaHomeVolcanoFlow::~LavaHomeVolcanoFlow() {}
+LavaHomeVolcanoFlow::~LavaHomeVolcanoFlow() {
+}

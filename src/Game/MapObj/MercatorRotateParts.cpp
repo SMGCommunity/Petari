@@ -68,4 +68,5 @@ void MercatorRotateParts::init(const JMapInfoIter& rIter) {
     MR::initMapPartsClipping(this, rIter, nullptr, false);
 }
 
-MercatorRotateParts::~MercatorRotateParts() {}
+MercatorRotateParts::~MercatorRotateParts() {
+}

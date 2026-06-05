@@ -15,7 +15,7 @@ namespace {
     // getFirstPolyOnLineCategory
     // getFirstPolyOnLineCategoryExceptSensor
     // getFirstPolyOnLineCategoryExceptActor
-};
+};  // namespace
 
 namespace MR {
     const TVec3f* getNormal(const Triangle* pTriangle) {
@@ -185,11 +185,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeIce(&pActor->mBinder->mGroundInfo.mParentTriangle);
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeIce(&pActor->mBinder->mGroundInfo.mParentTriangle);
     }
 
     bool isBindedGroundSand(const LiveActor* pActor) {
@@ -197,11 +197,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeSand(&pActor->mBinder->mGroundInfo.mParentTriangle);
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeSand(&pActor->mBinder->mGroundInfo.mParentTriangle);
     }
 
     bool isBindedGroundDamageFire(const LiveActor* pActor) {
@@ -209,11 +209,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeDamageFire(&pActor->mBinder->mGroundInfo.mParentTriangle);
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeDamageFire(&pActor->mBinder->mGroundInfo.mParentTriangle);
     }
 
     bool isBindedGroundWaterBottomH(const LiveActor* pActor) {
@@ -221,11 +221,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeWaterBottomH(&pActor->mBinder->mGroundInfo.mParentTriangle);
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeWaterBottomH(&pActor->mBinder->mGroundInfo.mParentTriangle);
     }
 
     bool isBindedGroundWaterBottomM(const LiveActor* pActor) {
@@ -233,11 +233,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeWaterBottomM(&pActor->mBinder->mGroundInfo.mParentTriangle);
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeWaterBottomM(&pActor->mBinder->mGroundInfo.mParentTriangle);
     }
 
     bool isBindedGroundWater(const LiveActor* pActor) {
@@ -245,11 +245,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeWaterIter(pActor->mBinder->mGroundInfo.mParentTriangle.getAttributes());
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeWaterIter(pActor->mBinder->mGroundInfo.mParentTriangle.getAttributes());
     }
 
     bool isBindedGroundSinkDeath(const LiveActor* pActor) {
@@ -257,11 +257,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeSinkDeath(&pActor->mBinder->mGroundInfo.mParentTriangle);
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeSinkDeath(&pActor->mBinder->mGroundInfo.mParentTriangle);
     }
 
     bool isBindedGroundAreaMove(const LiveActor* pActor) {
@@ -269,11 +269,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeAreaMove(&pActor->mBinder->mGroundInfo.mParentTriangle);
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeAreaMove(&pActor->mBinder->mGroundInfo.mParentTriangle);
     }
 
     bool isBindedGroundRailMove(const LiveActor* pActor) {
@@ -281,11 +281,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeRailMove(&pActor->mBinder->mGroundInfo.mParentTriangle);
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeRailMove(&pActor->mBinder->mGroundInfo.mParentTriangle);
     }
 
     bool isBindedGroundBrake(const LiveActor* pActor) {
@@ -293,11 +293,11 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f) {
-            return isGroundCodeBrake(&pActor->mBinder->mGroundInfo.mParentTriangle);
+        if (!pActor->mBinder->isBindedGround()) {
+            return false;
         }
 
-        return false;
+        return isGroundCodeBrake(&pActor->mBinder->mGroundInfo.mParentTriangle);
     }
 
     bool isBindedDamageFire(const LiveActor* pActor) {
@@ -305,15 +305,15 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f || isGroundCodeDamageFire(&pActor->mBinder->mGroundInfo.mParentTriangle)) {
+        if (pActor->mBinder->isBindedGround() && isGroundCodeDamageFire(&pActor->mBinder->mGroundInfo.mParentTriangle)) {
             return true;
         }
 
-        if (pActor->mBinder->_158 <= 0.0f || isGroundCodeDamageFire(&pActor->mBinder->mWallInfo.mParentTriangle)) {
+        if (pActor->mBinder->isBindedWall() && isGroundCodeDamageFire(&pActor->mBinder->mWallInfo.mParentTriangle)) {
             return true;
         }
 
-        if (pActor->mBinder->_1E8 <= 0.0f || isGroundCodeDamageFire(&pActor->mBinder->mRoofInfo.mParentTriangle)) {
+        if (pActor->mBinder->isBindedRoof() && isGroundCodeDamageFire(&pActor->mBinder->mRoofInfo.mParentTriangle)) {
             return true;
         }
 
@@ -325,15 +325,15 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mBinder->_C8 <= 0.0f || isGroundCodeDamageElectric(&pActor->mBinder->mGroundInfo.mParentTriangle)) {
+        if (pActor->mBinder->isBindedGround() && isGroundCodeDamageElectric(&pActor->mBinder->mGroundInfo.mParentTriangle)) {
             return true;
         }
 
-        if (pActor->mBinder->_158 <= 0.0f || isGroundCodeDamageElectric(&pActor->mBinder->mWallInfo.mParentTriangle)) {
+        if (pActor->mBinder->isBindedWall() && isGroundCodeDamageElectric(&pActor->mBinder->mWallInfo.mParentTriangle)) {
             return true;
         }
 
-        if (pActor->mBinder->_1E8 <= 0.0f || isGroundCodeDamageElectric(&pActor->mBinder->mRoofInfo.mParentTriangle)) {
+        if (pActor->mBinder->isBindedRoof() && isGroundCodeDamageElectric(&pActor->mBinder->mRoofInfo.mParentTriangle)) {
             return true;
         }
 

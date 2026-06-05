@@ -19,7 +19,7 @@
 
 namespace {
     static const f32 sTurnSpeed = 180.0f;
-}
+};  // namespace
 
 namespace NrvPenguinCoach {
     NEW_NERVE(PenguinCoachNrvTakeOutStar, PenguinCoach, TakeOutStar);
@@ -275,23 +275,23 @@ void PenguinCoach::exeReaction() {
     }
 
     if (_D8) {
-        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED", -1, -1);
-        MR::startSound(this, "SE_SV_PENGUIN_L_TRAMPLED", -1, -1);
+        MR::startSound(this, "SE_SM_PENGUIN_TRAMPLED");
+        MR::startSound(this, "SE_SV_PENGUIN_L_TRAMPLED");
     }
 
     if (isPointingSe()) {
-        MR::startSound(this, "SE_SV_PENGUIN_L_POINTED_2P", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_L_POINTED_2P");
         MR::startDPDHitSound();
     }
 
     if (_D9) {
-        MR::startSound(this, "SE_SV_PENGUIN_L_SPIN_HIT", -1, -1);
-        MR::startSound(this, "SE_SM_PENGUIN_L_SPIN_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_L_SPIN_HIT");
+        MR::startSound(this, "SE_SM_PENGUIN_L_SPIN_HIT");
     }
 
     if (_DB) {
-        MR::startSound(this, "SE_SV_PENGUIN_L_STAR_PIECE", -1, -1);
-        MR::startSound(this, "SE_SM_PENGUIN_L_SPIN_HIT", -1, -1);
+        MR::startSound(this, "SE_SV_PENGUIN_L_STAR_PIECE");
+        MR::startSound(this, "SE_SM_PENGUIN_L_SPIN_HIT");
     }
 
     if (MR::tryStartReactionAndPopNerve(this)) {

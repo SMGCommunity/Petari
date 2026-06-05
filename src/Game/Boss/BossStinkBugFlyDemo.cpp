@@ -54,24 +54,24 @@ void BossStinkBugFlyDemo::exeDemo() {
     }
 
     if (MR::isGreaterStep(this, ::sFlySoundStartStep1)) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 500, 126, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ADD", 500, 126);
     }
 
     if (MR::isGreaterStep(this, ::sFlySoundStartStep2)) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE", 500, 126, -1);
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", 500, 126, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_BASE", 500, 126);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_ALARM", 500, 126);
     }
 
     if (MR::isGreaterStep(this, ::sShakeSoundStartStep) && MR::isLessStep(this, ::sShakeSoundEndStep)) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_SHAKE_BODY", -1, -1, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_SHAKE_BODY");
     }
 
     if (MR::isStep(this, ::sCloseFeetSoundStartStep)) {
-        MR::startSound(getHost(), "SE_BM_BOSS_BUG_CLOSE_FEET", -1, -1);
+        MR::startSound(getHost(), "SE_BM_BOSS_BUG_CLOSE_FEET");
     }
 
     if (MR::isGreaterStep(this, ::sFlyStartSoundStartStep) && MR::isLessStep(this, ::sFlyStartSoundEndStep)) {
-        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_START", -1, -1, -1);
+        MR::startLevelSound(getHost(), "SE_BM_LV_BOSS_BUG_FLY_START");
     }
 
     mDemoPositionController->movement();

@@ -5,7 +5,8 @@ namespace NrvFallingSmallRock {
     NEW_NERVE(HostTypeMove, FallingSmallRock, Move);
 };  // namespace NrvFallingSmallRock
 
-FallingSmallRock::FallingSmallRock(const char* pName) : LiveActor(pName) {}
+FallingSmallRock::FallingSmallRock(const char* pName) : LiveActor(pName) {
+}
 
 void FallingSmallRock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -38,7 +39,7 @@ void FallingSmallRock::exeMove() {
         MR::emitEffect(this, "FallingSmallRock");
     }
 
-    MR::startLevelSound(this, "SE_AT_LV_FALLING_ROCK", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_FALLING_ROCK");
 
     if (MR::isBinded(this)) {
         makeActorDead();
@@ -51,4 +52,5 @@ void FallingSmallRock::exeWait() {
     }
 }
 
-FallingSmallRock::~FallingSmallRock() {}
+FallingSmallRock::~FallingSmallRock() {
+}

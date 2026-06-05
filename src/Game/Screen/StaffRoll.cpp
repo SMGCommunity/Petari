@@ -111,7 +111,7 @@ namespace {
 
 namespace NrvStaffRollLine {
     NEW_NERVE(StaffRollLineNrvScroll, StaffRollLine, Scroll);
-};
+};  // namespace NrvStaffRollLine
 
 StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName, true), mPosition(0.0f, 0.0f) {
 }
@@ -144,7 +144,7 @@ void StaffRollLine::exeScroll() {
 
 namespace NrvStaffRollPicture {
     NEW_NERVE(StaffRollPictureNrvWork, StaffRollPicture, Work);
-};
+};  // namespace NrvStaffRollPicture
 
 StaffRollPicture::StaffRollPicture(const char* pName) : LayoutActor(pName, true), mReplaceTexture(nullptr) {
 }
@@ -407,9 +407,9 @@ void StaffRoll::exeAllRights() {
 
     if (MR::isStep(this, sStepToThankYouVoice)) {
         if (MR::isPlayerLuigi()) {
-            MR::startSystemSE("SE_SY_THANK_YOU_LUIGI", -1, -1);
+            MR::startSystemSE("SE_SY_THANK_YOU_LUIGI");
         } else {
-            MR::startSystemSE("SE_SY_E3_THANK_YOU", -1, -1);
+            MR::startSystemSE("SE_SY_E3_THANK_YOU");
         }
     }
 
@@ -446,7 +446,7 @@ void StaffRoll::exeInfoAppear() {
         MR::startSubBGM("BGM_NEW_GALAXY", false);
 
         if (isNerve(&NrvStaffRoll::StaffRollNrvInfoLuigiAppear::sInstance) && !MR::isPlayerLuigi()) {
-            MR::startSystemSE("SE_SY_LUIGI_MODE_APPEAR", -1, -1);
+            MR::startSystemSE("SE_SY_LUIGI_MODE_APPEAR");
         }
 
         mInfo->setMessage(pMessageId);
@@ -458,7 +458,7 @@ void StaffRoll::exeInfoAppear() {
         return;
     }
 
-    MR::startSystemSE("SE_SY_TALK_OK", -1, -1);
+    MR::startSystemSE("SE_SY_TALK_OK");
 
     if (isNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookAppear::sInstance)) {
         setNerve(&NrvStaffRoll::StaffRollNrvInfoPictureBookDisappear::sInstance);

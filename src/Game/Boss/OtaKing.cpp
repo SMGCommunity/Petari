@@ -1,10 +1,12 @@
 #include "Game/Boss/OtaKing.hpp"
+#include "Game/MapObj/CocoNut.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
-#include "Game/MapObj/CocoNut.hpp"
 
-OtaKing::OtaKing(const char* pName) : NameObj(pName) {}
-OtaKing::~OtaKing() {}
+OtaKing::OtaKing(const char* pName) : NameObj(pName) {
+}
+OtaKing::~OtaKing() {
+}
 
 void OtaKing::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
     NameObjArchiveListCollector* pList = pArchiveList;
@@ -22,8 +24,7 @@ void OtaKing::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const J
         pList->addArchive("OtaKing");
         pList->addArchive("OtaKingFoot");
         pList->addArchive("OtaKingLongFoot");
-    }
-    else {
+    } else {
         pList->addArchive("OtaKingLv2");
         pList->addArchive("OtaKingFootLv2");
     }

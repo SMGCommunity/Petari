@@ -70,7 +70,7 @@ bool TombSpiderActionBase::updateDamageEye() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mParent, "EyeDamage");
         TombSpiderFunction::endAcid(mParent);
-        MR::startSound(mParent, "SE_BM_TSPIDER_DAMAGE_EYE", -1, -1);
+        MR::startSound(mParent, "SE_BM_TSPIDER_DAMAGE_EYE");
         MR::shakeCameraNormal();
     }
 
@@ -85,7 +85,7 @@ bool TombSpiderActionBase::updateDamageHip() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mParent, "HipDamage");
         TombSpiderFunction::endAcid(mParent);
-        MR::startSound(mParent, "SE_BM_TSPIDER_DAMAGE_HIP", -1, -1);
+        MR::startSound(mParent, "SE_BM_TSPIDER_DAMAGE_HIP");
         MR::shakeCameraNormal();
     }
 
@@ -102,7 +102,7 @@ bool TombSpiderActionBase::updateDamageGland() {
         MR::shakeCameraNormal();
         TombSpiderFunction::endAcid(mParent);
         TombSpiderFunction::invalidateAttackSensor(mParent);
-        MR::startSound(mParent, "SE_BM_TSPIDER_DAMAGE_GLAND", -1, -1);
+        MR::startSound(mParent, "SE_BM_TSPIDER_DAMAGE_GLAND");
     }
 
     if (MR::isBckStopped(mParent)) {
@@ -132,14 +132,14 @@ bool TombSpiderActionBase::updateAttackStart() {
             MR::startAction(TombSpiderFunction::getGlandRearR(mParent), "AttackStart");
         }
 
-        MR::startSound(mParent, "SE_BM_TSPIDER_PRE_ACID", -1, -1);
+        MR::startSound(mParent, "SE_BM_TSPIDER_PRE_ACID");
     }
 
     if (MR::isBckStopped(mParent)) {
         return true;
     }
 
-    MR::startLevelSound(mParent, "SE_BM_LV_TSPIDER_PRE_ACID", -1, -1, -1);
+    MR::startLevelSound(mParent, "SE_BM_LV_TSPIDER_PRE_ACID");
     return false;
 }
 
@@ -185,7 +185,7 @@ bool TombSpiderActionBase::updateAttackLoop(s32 minAttackTime, s32 maxAttackTime
     mParent->mRotation.z += mRotateSpeed;
     mParent->mRotation.z = MR::repeat(mParent->mRotation.z, 0.0f, 360.0f);
 
-    MR::startLevelSound(mParent, "SE_BM_LV_TSPIDER_ACID", -1, -1, -1);
+    MR::startLevelSound(mParent, "SE_BM_LV_TSPIDER_ACID");
 
     if (mHitStep >= 0 && MR::isStep(this, mHitStep + sStepAttackLoopMin)) {
         TombSpiderFunction::endAcid(mParent);
@@ -203,7 +203,7 @@ bool TombSpiderActionBase::updateAttackLoop(s32 minAttackTime, s32 maxAttackTime
 bool TombSpiderActionBase::updateAttackEnd() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mParent, "AttackEnd");
-        MR::startSound(mParent, "SE_BM_TSPIDER_ACID_END", -1, -1);
+        MR::startSound(mParent, "SE_BM_TSPIDER_ACID_END");
     }
 
     if (MR::isBckStopped(mParent)) {

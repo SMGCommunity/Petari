@@ -51,8 +51,7 @@ void BigFan::init(const JMapInfoIter& rIter) {
 
     initNerve(&NrvBigFan::BigFanNrvWait::sInstance);
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        void (BigFan::*startFunc)(void) = &BigFan::start;
-        MR::listenStageSwitchOnAppear(this, MR::Functor(this, startFunc));
+        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &BigFan::start));
         setNerve(&NrvBigFan::BigFanNrvStop::sInstance);
         mWindModel->kill();
     }
@@ -113,7 +112,8 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
 }
 */
 
-void BigFan::control() {}
+void BigFan::control() {
+}
 
 void BigFan::start() {
     if (isNerve(&NrvBigFan::BigFanNrvStop::sInstance)) {
@@ -135,9 +135,9 @@ void BigFan::exeStart() {
         MR::startAction(mWindModel, "Appear");
 
         if (mIsTeresaGalaxy) {
-            MR::startSound(this, "SE_OJ_BIG_FAN_START_FAR", -1, -1);
+            MR::startSound(this, "SE_OJ_BIG_FAN_START_FAR");
         } else {
-            MR::startSound(this, "SE_OJ_BIG_FAN_START", -1, -1);
+            MR::startSound(this, "SE_OJ_BIG_FAN_START");
         }
     }
 
@@ -153,9 +153,9 @@ void BigFan::exeWait() {
     }
 
     if (mIsTeresaGalaxy) {
-        MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN_FAR", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN_FAR");
     } else {
-        MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN", -1, -1, -1);
+        MR::startLevelSound(this, "SE_OJ_LV_BIG_FAN");
     }
 }
 
@@ -168,4 +168,5 @@ inline bool BigFan::isStartOrWait() {
     return flag;
 }
 
-BigFan::~BigFan() {}
+BigFan::~BigFan() {
+}

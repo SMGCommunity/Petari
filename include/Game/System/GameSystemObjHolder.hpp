@@ -5,7 +5,7 @@
 
 namespace JMath {
     struct TRandom_fast_;
-};
+};  // namespace JMath
 
 class AudSystemWrapper;
 class CaptureScreenDirector;

@@ -31,4 +31,5 @@ void DemoPositionController::endDemo(const char* pCameraName) {
     kill();
 }
 
-DemoPositionController::~DemoPositionController() {}
+DemoPositionController::~DemoPositionController() {
+}

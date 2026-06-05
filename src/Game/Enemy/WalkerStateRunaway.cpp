@@ -2,7 +2,7 @@
 
 namespace {
     static WalkerStateRunawayParam sDefaultParam;
-};
+};  // namespace
 
 namespace NrvWalkerStateRunaway {
     NEW_NERVE(WalkerStateRunawayNrvWait, WalkerStateRunaway, Wait);

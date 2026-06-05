@@ -77,4 +77,5 @@ void MirrorReflectionModel::calcAndSetBaseMtx() {
     }
 }
 
-MirrorReflectionModel::~MirrorReflectionModel() {}
+MirrorReflectionModel::~MirrorReflectionModel() {
+}

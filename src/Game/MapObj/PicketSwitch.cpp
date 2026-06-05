@@ -7,9 +7,11 @@ namespace NrvPicketSwitch {
     NEW_NERVE(PicketSwitchNrvLastDrop, PicketSwitch, LastDrop);
 };  // namespace NrvPicketSwitch
 
-PicketSwitch::PicketSwitch(const char* pName) : LiveActor(pName) {}
+PicketSwitch::PicketSwitch(const char* pName) : LiveActor(pName) {
+}
 
-PicketSwitch::~PicketSwitch() {}
+PicketSwitch::~PicketSwitch() {
+}
 
 void PicketSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -38,7 +40,7 @@ void PicketSwitch::exeFirstDrop() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "First", nullptr);
         MR::tryRumblePadStrong(this, 0);
-        MR::startSound(this, "SE_OJ_PICKET_SWITCH_DROP", -1, -1);
+        MR::startSound(this, "SE_OJ_PICKET_SWITCH_DROP");
     }
 }
 
@@ -47,8 +49,8 @@ void PicketSwitch::exeLastDrop() {
         MR::startBck(this, "Second", nullptr);
         MR::startBrk(this, "Second");
         MR::tryRumblePadVeryStrong(this, 0);
-        MR::startSound(this, "SE_OJ_PICKET_SWITCH_DROP", -1, -1);
-        MR::startSound(this, "SE_OJ_PICKET_SWITCH_ON", -1, -1);
+        MR::startSound(this, "SE_OJ_PICKET_SWITCH_DROP");
+        MR::startSound(this, "SE_OJ_PICKET_SWITCH_ON");
     }
 
     if (MR::isBckStopped(this)) {

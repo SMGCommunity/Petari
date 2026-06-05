@@ -4,7 +4,7 @@
 void CamTranslatorBlackHole::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    TVec3f vecs[2] = { general->mAxis, general->mWPoint };
+    TVec3f vecs[2] = {general->mAxis, general->mWPoint};
 
     CameraBlackHole* camera = mCamera;
 

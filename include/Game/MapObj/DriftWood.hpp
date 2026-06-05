@@ -12,7 +12,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void connectToScene(const MapObjActorInitInfo&);
     virtual void calcAndSetBaseMtx();
-    
+
     void attackSensor(HitSensor*, HitSensor*);
     bool tryVibrate();
     void exeWait();

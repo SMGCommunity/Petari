@@ -62,7 +62,8 @@ void SkeletalFishBossInfo::createLevelStatus() {
     }
 }
 
-SkeletalFishBossInfo::GuardStatus::GuardStatus() {}
+SkeletalFishBossInfo::GuardStatus::GuardStatus() {
+}
 
 void SkeletalFishBossInfo::loadLevelStatus(const JMapInfoIter& rIter) {
     s32 levelNum;
@@ -101,4 +102,5 @@ void SkeletalFishBossInfo::loadGuardStatus(const JMapInfoIter& rIter, s32 levelI
     }
 }
 
-SkeletalFishBossInfo::~SkeletalFishBossInfo() {}
+SkeletalFishBossInfo::~SkeletalFishBossInfo() {
+}

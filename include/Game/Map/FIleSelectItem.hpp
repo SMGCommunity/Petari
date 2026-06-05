@@ -103,7 +103,7 @@ public:
     TMtx34f _D4;
     TMtx34f _104;
     TVec3f _134;
-    u32 _140;
+    s32 _140;
     u8 _144;
     bool mIsInvalidateSelect;  // 0x145
     u8 _146;

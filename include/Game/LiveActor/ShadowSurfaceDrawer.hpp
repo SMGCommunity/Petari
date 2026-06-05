@@ -8,7 +8,7 @@ public:
 
     virtual ~ShadowSurfaceDrawInit();
 
-    void initDraw();
+    static void initDraw();
 };
 
 class ShadowSurfaceDrawer : public ShadowDrawer {

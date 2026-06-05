@@ -81,7 +81,7 @@ void SpinHitController::emitItem(LiveActor* pActor) {
         } else {
             MR::appearStarPiece(pActor, pActor->mPosition, _1C, 10.0f, 40.0f, false);
             if (pActor->mSoundObject != nullptr) {
-                MR::startSound(pActor, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+                MR::startSound(pActor, "SE_OJ_STAR_PIECE_BURST");
             }
         }
 

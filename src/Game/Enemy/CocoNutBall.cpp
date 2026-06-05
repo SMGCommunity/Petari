@@ -6,7 +6,7 @@
 
 namespace {
     const f32 cReboundVelocity[] = {0.0f, 15.0f, 5.0f};
-}
+};  // namespace
 
 namespace NrvCocoNutBall {
     NEW_NERVE(CocoNutBallNrvThrow, CocoNutBall, Throw);
@@ -30,7 +30,7 @@ void CocoNutBall::init(const JMapInfoIter& rIter) {
 
     MR::addHitSensor(this, "body", ATYPE_COCO_NUT, 8, 40.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::addHitSensor(this, "bind", ATYPE_COCO_NUT, 8, 500.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    
+
     initBinder(40.0f, 0.0f, 0);
     initEffectKeeper(0, "CocoNut", false);
     // some weirdness with this TVec here
@@ -52,7 +52,7 @@ void CocoNutBall::appear() {
 void CocoNutBall::kill() {
     MR::forceDeleteEffect(this, "CocoNutBlur");
     MR::forceDeleteEffect(this, "CocoNutLight");
-    MR::startSound(this, "SE_OJ_COCONUT_BALL_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_COCONUT_BALL_BREAK");
 
     if (_9C > 0) {
         MR::sendArbitraryMsg(ACTMES_RUSH_END, _8C->getSensor("body"), getSensor("body"));
@@ -95,7 +95,7 @@ void CocoNutBall::demoBreak(const TVec3f& pos) {
     MR::setBaseTRMtx(this, TRMtx);
 
     MR::emitEffect(this, "Hit");
-    MR::startSound(this, "SE_OJ_COCONUT_BALL_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_COCONUT_BALL_BREAK");
     MR::emitEffect(this, CocoNut::getBreakEffectName());
 }
 
@@ -387,9 +387,9 @@ void CocoNutBall::exeThrow() {
     }
 
     if (_D8) {
-        MR::startSound(this, "SE_BM_OTAKING_SPIT_RALLY_BALL", -1, -1);
+        MR::startSound(this, "SE_BM_OTAKING_SPIT_RALLY_BALL");
     } else {
-        MR::startSound(this, "SE_OJ_COCONUT_BALL_SPIT_OUT", -1, -1);
+        MR::startSound(this, "SE_OJ_COCONUT_BALL_SPIT_OUT");
     }
 
     processApproachToPlayer();
@@ -403,7 +403,7 @@ void CocoNutBall::exeHitBackToHost() {
         MR::emitEffect(this, "CocoNutLight");
         MR::emitEffect(this, "SpinHitMark");
         MR::offBind(this);
-        MR::startSound(this, "SE_OJ_COCONUT_BALL_VOLLEY", -1, -1);
+        MR::startSound(this, "SE_OJ_COCONUT_BALL_VOLLEY");
         MR::startSpinHitSound(this);
 
         if (_D8 && MR::isPlayingStageBgm()) {
@@ -438,7 +438,7 @@ void CocoNutBall::exeHitBackToHost() {
 void CocoNutBall::exeHitBackToPlayer() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Hit");
-        MR::startSound(this, "SE_OJ_COCONUT_BALL_VOLLEY", -1, -1);
+        MR::startSound(this, "SE_OJ_COCONUT_BALL_VOLLEY");
 
         if (_D8 && MR::isPlayingStageBgm()) {
             MR::startSystemME("ME_RALLY_COMBO_SECOND");
@@ -495,7 +495,7 @@ void CocoNutBall::exeFreeze() {
     _A0++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 cos = JMath::sSinCosTable.cosLap(MR::repeatDegree(_A0 * 75.0f));
+    f32 cos = MR::cosDegree(MR::repeatDegree(_A0 * 75.0f));
 
     f32 scaleFactor = ((7.5f * cos) * (20 - getNerveStep())) / 20.0f;
 

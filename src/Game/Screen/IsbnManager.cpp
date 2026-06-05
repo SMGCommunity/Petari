@@ -17,9 +17,11 @@ const char* IsbnManager::cOtherNumberPaneName[] = {
 
 IsbnManager::IsbnManager(MEMAllocator* pAllocator)
     : _0(true), mpAllocator(pAllocator), mpLayout(nullptr), mpResAccessor(nullptr), mDrawInfo(), _68(0), _64(180), _66(180), mpIsbnBuffer(nullptr),
-      mpLayoutBuffer(nullptr), mpResAccBuffer(nullptr) {}
+      mpLayoutBuffer(nullptr), mpResAccBuffer(nullptr) {
+}
 
-IsbnManager::~IsbnManager() {}
+IsbnManager::~IsbnManager() {
+}
 
 void IsbnManager::setAdjustRate(f32 x, f32 y) {
     // TODO: Should be `mDrawInfo.SetLocationAdjustScale(nw4r::math::VEC2(x, y))`

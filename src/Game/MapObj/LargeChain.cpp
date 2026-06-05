@@ -1,13 +1,13 @@
 #include "Game/MapObj/LargeChain.hpp"
 
+namespace {
+    static f32 sPartsLength = 200.0f;
+};  // namespace
+
 namespace NrvLargeChain {
     NEW_NERVE(LargeChainNrvWait, LargeChain, Wait);
     NEW_NERVE(LargeChainNrvBreak, LargeChain, Break);
 };  // namespace NrvLargeChain
-
-namespace {
-    static f32 sPartsLength = 200.0f;
-};
 
 LargeChain::LargeChain(const char* pName) : LiveActor(pName) {
     _8C = nullptr;
@@ -53,7 +53,8 @@ void LargeChain::makeActorDead() {
     LiveActor::makeActorDead();
 }
 
-void LargeChain::exeWait() {}
+void LargeChain::exeWait() {
+}
 
 void LargeChain::exeBreak() {
     if (MR::isFirstStep(this)) {
@@ -79,7 +80,8 @@ void LargeChain::exeBreak() {
     }
 }
 
-LargeChainParts::~LargeChainParts() {}
+LargeChainParts::~LargeChainParts() {
+}
 
 void LargeChain::invalidateClippingAllChainParts() {
     for (s32 i = 0; i < (u32)mChainCount; i++) {
@@ -87,4 +89,5 @@ void LargeChain::invalidateClippingAllChainParts() {
     }
 }
 
-LargeChain::~LargeChain() {}
+LargeChain::~LargeChain() {
+}

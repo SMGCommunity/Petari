@@ -1,6 +1,7 @@
 #include "Game/MapObj/LargeChainParts.hpp"
 
-LargeChainParts::LargeChainParts(const char* pName) : LiveActor(pName) {}
+LargeChainParts::LargeChainParts(const char* pName) : LiveActor(pName) {
+}
 
 void LargeChainParts::breakChainParts() {
     kill();
@@ -33,6 +34,6 @@ void LargeChainParts::initChainParts(TVec3f* pPos, TVec3f* pRot, TVec3f* pScale,
 
 void LargeChainParts::kill() {
     MR::emitEffect(this, "Break");
-    MR::startSound(this, "SE_OJ_LARGE_CHAIN_BREAK", -1, -1);
+    MR::startSound(this, "SE_OJ_LARGE_CHAIN_BREAK");
     LiveActor::kill();
 }

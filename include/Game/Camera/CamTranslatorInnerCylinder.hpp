@@ -4,7 +4,9 @@
 
 class CamTranslatorInnerCylinder : public CamTranslatorBase {
 public:
-    inline CamTranslatorInnerCylinder(CameraInnerCylinder* pCamera) { mCamera = pCamera; }
+    inline CamTranslatorInnerCylinder(CameraInnerCylinder* pCamera) {
+        mCamera = pCamera;
+    }
 
     virtual void setParam(const CameraParamChunk*);
     virtual Camera* getCamera() const;

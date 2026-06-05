@@ -4,11 +4,19 @@
 
 template < class T >
 struct JPANode {
-    JPANode() : mpPrev(NULL), mpNext(NULL) {}
-    ~JPANode() {}
-    JPANode< T >* getPrev() { return mpPrev; }
-    JPANode< T >* getNext() { return mpNext; }
-    T* getObject() { return &mData; }
+    JPANode() : mpPrev(NULL), mpNext(NULL) {
+    }
+    ~JPANode() {
+    }
+    JPANode< T >* getPrev() {
+        return mpPrev;
+    }
+    JPANode< T >* getNext() {
+        return mpNext;
+    }
+    T* getObject() {
+        return &mData;
+    }
 
     /* 0x00 */ JPANode< T >* mpPrev;
     /* 0x04 */ JPANode< T >* mpNext;
@@ -21,13 +29,23 @@ struct JPAList {
     /* 0x04 */ JPANode< T >* mpLast;
     /* 0x08 */ u32 mNum;
 
-    JPAList() : mpFirst(NULL), mpLast(NULL), mNum() {}
-    ~JPAList() {}
+    JPAList() : mpFirst(NULL), mpLast(NULL), mNum() {
+    }
+    ~JPAList() {
+    }
 
-    JPANode< T >* getEnd() { return NULL; }
-    JPANode< T >* getFirst() const { return mpFirst; }
-    JPANode< T >* getLast() const { return mpLast; }
-    u32 getNum() const { return mNum; }
+    JPANode< T >* getEnd() {
+        return NULL;
+    }
+    JPANode< T >* getFirst() const {
+        return mpFirst;
+    }
+    JPANode< T >* getLast() const {
+        return mpLast;
+    }
+    u32 getNum() const {
+        return mNum;
+    }
 
     void push_front(JPANode< T >* node) {
         if (mpFirst != NULL) {

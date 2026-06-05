@@ -8,7 +8,7 @@
 
 namespace {
     static TVec3f sEggOutPosition = TVec3f(0.0f, 60.0f, -320.0f);
-};
+};  // namespace
 
 namespace NrvDinoPackunBattleEgg {
     NEW_NERVE(DinoPackunBattleEggVs2NrvTurn, DinoPackunBattleEggVs2, Turn);
@@ -88,8 +88,8 @@ bool DinoPackunBattleEggVs2::receiveOtherMsg(u32 msg, HitSensor* a2, HitSensor* 
 void DinoPackunBattleEggVs2::exeTurn() {
     if (MR::isFirstStep(this)) {
         MR::startBck(getHost(), "EggWalk", nullptr);
-        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_WALK", -1, -1);
-        MR::startSound(getHost(), "SE_BM_D_PAKKUN_LAVER", -1, -1);
+        MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_WALK");
+        MR::startSound(getHost(), "SE_BM_D_PAKKUN_LAVER");
     }
 
     getHost()->adjustTailRootPosition(sEggOutPosition, 1.0f);

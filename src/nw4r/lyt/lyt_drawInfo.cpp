@@ -9,6 +9,7 @@ namespace nw4r {
             MTX34Identity(&mViewMtx);
         }
 
-        DrawInfo::~DrawInfo() {}
+        DrawInfo::~DrawInfo() {
+        }
     };  // namespace lyt
 };  // namespace nw4r

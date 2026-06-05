@@ -36,4 +36,5 @@ void MapPartsRailGuideDrawer::initGuidePoints(const JMapInfoIter& rIter) {
     }
 }
 
-MapPartsRailGuideDrawer::~MapPartsRailGuideDrawer() {}
+MapPartsRailGuideDrawer::~MapPartsRailGuideDrawer() {
+}

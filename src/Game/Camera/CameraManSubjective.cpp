@@ -7,9 +7,11 @@ CameraManSubjective::CameraManSubjective(const char* pName) : CameraMan(pName) {
     mCamera->mCameraMan = this;
 }
 
-CameraManSubjective::~CameraManSubjective() {}
+CameraManSubjective::~CameraManSubjective() {
+}
 
-void CameraManSubjective::init(const JMapInfoIter& rIter) {}
+void CameraManSubjective::init(const JMapInfoIter& rIter) {
+}
 
 void CameraManSubjective::calc() {
     mCamera->calc();
@@ -20,4 +22,5 @@ void CameraManSubjective::notifyActivate() {
     mCamera->reset();
 }
 
-void CameraManSubjective::notifyDeactivate() {}
+void CameraManSubjective::notifyDeactivate() {
+}

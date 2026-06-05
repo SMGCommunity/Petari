@@ -1,6 +1,6 @@
 #include "Game/System/SaveDataBannerCreator.hpp"
-#include "Game/System/NANDManager.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/System/NANDManager.hpp"
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
@@ -9,16 +9,16 @@
 #include "JSystem/JUtility/JUTTexture.hpp"
 #include "revolution/nand.h"
 #include "revolution/types.h"
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <cstddef>
 #include <cstdio>
 #include <cstring>
-#include <JSystem/JKernel/JKRHeap.hpp>
 
 namespace {
     NEW_NERVE(SaveDataBannerCreatorNoOperation, SaveDataBannerCreator, NoOperation);
     NEW_NERVE(SaveDataBannerCreatorCreateOnTemporary, SaveDataBannerCreator, CreateOnTemporary);
     NEW_NERVE(SaveDataBannerCreatorMoveToHomeDir, SaveDataBannerCreator, MoveToHomeDir);
-};  
+};  // namespace
 
 SaveDataBannerCreator::SaveDataBannerCreator() : NerveExecutor("BannerCreator") {
     mNANDRequestInfo = nullptr;
@@ -50,8 +50,7 @@ void SaveDataBannerCreator::exeCreateOnTemporary() {
         NANDResultCode resultCode = mNANDRequestInfo->mResult;
         if (resultCode.isSuccess()) {
             setNerve(&SaveDataBannerCreatorMoveToHomeDir::sInstance);
-        }
-        else {
+        } else {
             setNerve(&SaveDataBannerCreatorNoOperation::sInstance);
         }
     }
@@ -67,8 +66,7 @@ void SaveDataBannerCreator::exeMoveToHomeDir() {
         NANDResultCode resultCode = mNANDRequestInfo->mResult;
         if (resultCode.isSuccess()) {
             setNerve(&SaveDataBannerCreatorNoOperation::sInstance);
-        }
-        else {
+        } else {
             setNerve(&SaveDataBannerCreatorNoOperation::sInstance);
             return;
         }
@@ -90,4 +88,5 @@ void SaveDataBannerCreator::setupBannerInfo() {
     */
 }
 
-void SaveDataBannerCreator::exeNoOperation() {}
+void SaveDataBannerCreator::exeNoOperation() {
+}

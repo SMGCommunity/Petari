@@ -6,16 +6,17 @@
 #include "Game/Util.hpp"
 #include <JSystem/JGeometry.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JMath/JMath.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
+#include <JSystem/JMath/JMath.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
+#include <cmath>
 #include <math_types.hpp>
 #include <revolution/gd/GDBase.h>
 #include <revolution/gx.h>
 #include <revolution/gx/GXVert.h>
 #include <revolution/mtx.h>
 #include <revolution/os/OSCache.h>
-#include <cmath>
+
 
 extern const u8 sOceanSphereTevReg0FaceR;
 extern const u8 sOceanSphereTevReg0FaceG;
@@ -115,17 +116,17 @@ namespace {
     extern TVec3f sPosAxisX;
     extern TVec3f sPosAxisY;
     extern TVec3f sPosAxisZ;
-};
+};  // namespace
 
 namespace NrvOceanSphere {
     NEW_NERVE(OceanSphereNrvWait, OceanSphere, Wait);
     NEW_NERVE(OceanSphereNrvRiseUp, OceanSphere, RiseUp);
-};
+};  // namespace NrvOceanSphere
 
 class OceanSpherePlane {
 public:
-    OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1,
-        const TVec2f& rTex2, const TVec2f& rTex3);
+    OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1, const TVec2f& rTex2,
+                     const TVec2f& rTex3);
 
     void update(f32, f32, f32);
     OceanSpherePoint* getPoint(int, int) const;
@@ -137,8 +138,7 @@ public:
 
 class OceanSpherePlaneEdge {
 public:
-    OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1,
-        const TVec2f& rTex2);
+    OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1, const TVec2f& rTex2);
 
     void update(f32, f32, f32);
 
@@ -172,10 +172,10 @@ namespace {
             GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, vtxCount);
         }
     }
-};
+};  // namespace
 
-OceanSpherePlane::OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2,
-    const TVec2f& rTex1, const TVec2f& rTex2, const TVec2f& rTex3) {
+OceanSpherePlane::OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1,
+                                   const TVec2f& rTex2, const TVec2f& rTex3) {
     mAxisPointCount = pointCount - 2;
     mGridPointCount = mAxisPointCount * mAxisPointCount;
     mPoints = nullptr;
@@ -242,8 +242,8 @@ OceanSpherePoint* OceanSpherePlane::getPoint(int row, int col) const {
     return mPoints[(row * mAxisPointCount) + col];
 }
 
-OceanSpherePlaneEdge::OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2,
-    const TVec2f& rTex1, const TVec2f& rTex2) {
+OceanSpherePlaneEdge::OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1,
+                                           const TVec2f& rTex2) {
     s32 pointCountMinus2 = pointCount - 2;
     s32 pointCountMinus1 = pointCount - 1;
     mPointCount = pointCountMinus2;
@@ -280,36 +280,11 @@ void OceanSpherePlaneEdge::update(f32 radius, f32 wave1Time, f32 wave2Time) {
 }
 
 OceanSphere::OceanSphere(const char* pName)
-    : LiveActor(pName),
-      mRadius(0.0f),
-      mRadiusTarget(0.0f),
-      mPointCount(0),
-      mAxisPointPX(nullptr),
-      mAxisPointNX(nullptr),
-      mAxisPointPY(nullptr),
-      mAxisPointNY(nullptr),
-      mAxisPointPZ(nullptr),
-      mAxisPointNZ(nullptr),
-      mPlaneLeftUpper(nullptr),
-      mPlaneRightUpper(nullptr),
-      mPlaneLeftLower(nullptr),
-      mPlaneRightLower(nullptr),
-      mEdge0(nullptr),
-      mEdge1(nullptr),
-      mEdge2(nullptr),
-      mEdge3(nullptr),
-      mEdge4(nullptr),
-      mEdge5(nullptr),
-      mEdge6(nullptr),
-      mEdge7(nullptr),
-      mWaveTime1(0.0f),
-      mWaveTime2(0.0f),
-      mTexOffs0X(0.0f),
-      mTexOffs0Y(0.0f),
-      mTexOffs1X(0.0f),
-      mTexOffs1Y(0.0f),
-      mWaterTex(nullptr),
-      mWaterEnvTex(nullptr) {
+    : LiveActor(pName), mRadius(0.0f), mRadiusTarget(0.0f), mPointCount(0), mAxisPointPX(nullptr), mAxisPointNX(nullptr), mAxisPointPY(nullptr),
+      mAxisPointNY(nullptr), mAxisPointPZ(nullptr), mAxisPointNZ(nullptr), mPlaneLeftUpper(nullptr), mPlaneRightUpper(nullptr),
+      mPlaneLeftLower(nullptr), mPlaneRightLower(nullptr), mEdge0(nullptr), mEdge1(nullptr), mEdge2(nullptr), mEdge3(nullptr), mEdge4(nullptr),
+      mEdge5(nullptr), mEdge6(nullptr), mEdge7(nullptr), mWaveTime1(0.0f), mWaveTime2(0.0f), mTexOffs0X(0.0f), mTexOffs0Y(0.0f), mTexOffs1X(0.0f),
+      mTexOffs1Y(0.0f), mWaterTex(nullptr), mWaterEnvTex(nullptr) {
     GXColor front;
     front.r = sOceanSphereTevReg1FrontDefaultR;
     front.g = sOceanSphereTevReg1FrontDefaultG;
@@ -384,7 +359,8 @@ void OceanSphere::appear() {
     setNerve(&NrvOceanSphere::OceanSphereNrvRiseUp::sInstance);
 }
 
-void OceanSphere::exeWait() {}
+void OceanSphere::exeWait() {
+}
 
 void OceanSphere::exeRiseUp() {
     f32 rate = MR::calcDemoPartStepRate(sDemoPartName);
@@ -415,7 +391,7 @@ bool OceanSphere::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, Wate
     theta *= PI;
     theta *= 0.5f;
 
-    f32 cosv = JMath::sSinCosTable.cosLapRad(theta);
+    f32 cosv = MR::cos(theta);
     pInfo->mCamWaterDepth = B0 * cosv;
     pInfo->mCamWaterDepth -= f30;
     pInfo->_4 = B0 * cosv;
@@ -471,56 +447,44 @@ void OceanSphere::initPoints() {
     OceanSpherePlane* plane;
 
     // mPlaneLeftUpper: tex1=(1.0f, 0.0f), tex2=(1.0f, 1.0f), tex3=(0.0f, 0.0f), axis1=Y, axis2=-X
-    plane = new OceanSpherePlane(mPointCount, &mPosition, axisBase[1], -axisBase[0],
-        TVec2f(1.0f, 0.0f), TVec2f(1.0f, 1.0f), TVec2f(0.0f, 0.0f));
+    plane = new OceanSpherePlane(mPointCount, &mPosition, axisBase[1], -axisBase[0], TVec2f(1.0f, 0.0f), TVec2f(1.0f, 1.0f), TVec2f(0.0f, 0.0f));
     mPlaneLeftUpper = plane;
 
     // mPlaneRightUpper: tex1=(0.0f, 1.0f), tex2=(0.0f, 0.0f), tex3=(1.0f, 1.0f), axis1=Y, axis2=X
-    plane = new OceanSpherePlane(mPointCount, &mPosition, axisBase[1], axisBase[0],
-        TVec2f(0.0f, 1.0f), TVec2f(0.0f, 0.0f), TVec2f(1.0f, 1.0f));
+    plane = new OceanSpherePlane(mPointCount, &mPosition, axisBase[1], axisBase[0], TVec2f(0.0f, 1.0f), TVec2f(0.0f, 0.0f), TVec2f(1.0f, 1.0f));
     mPlaneRightUpper = plane;
 
     // mPlaneLeftLower: tex1=(1.0f, 0.0f), tex2=(0.0f, 0.0f), tex3=(1.0f, 1.0f), axis1=-X, axis2=-Y
-    plane = new OceanSpherePlane(mPointCount, &mPosition, -axisBase[0], -axisBase[1],
-        TVec2f(1.0f, 0.0f), TVec2f(0.0f, 0.0f), TVec2f(1.0f, 1.0f));
+    plane = new OceanSpherePlane(mPointCount, &mPosition, -axisBase[0], -axisBase[1], TVec2f(1.0f, 0.0f), TVec2f(0.0f, 0.0f), TVec2f(1.0f, 1.0f));
     mPlaneLeftLower = plane;
 
     // mPlaneRightLower: tex1=(0.0f, 1.0f), tex2=(1.0f, 1.0f), tex3=(0.0f, 0.0f), axis1=-Y, axis2=X
-    plane = new OceanSpherePlane(mPointCount, &mPosition, -axisBase[1], axisBase[0],
-        TVec2f(0.0f, 1.0f), TVec2f(1.0f, 1.0f), TVec2f(0.0f, 0.0f));
+    plane = new OceanSpherePlane(mPointCount, &mPosition, -axisBase[1], axisBase[0], TVec2f(0.0f, 1.0f), TVec2f(1.0f, 1.0f), TVec2f(0.0f, 0.0f));
     mPlaneRightLower = plane;
 
     // mEdge0: tex1=(0.5f, 0.5f), tex2=(0.0f, 0.0f), axis1=Y, axis2=Z
-    mEdge0 = new OceanSpherePlaneEdge(mPointCount, &mPosition, axisBase[1], axisBase[2],
-        TVec2f(0.5f, 0.5f), TVec2f(0.0f, 0.0f));
+    mEdge0 = new OceanSpherePlaneEdge(mPointCount, &mPosition, axisBase[1], axisBase[2], TVec2f(0.5f, 0.5f), TVec2f(0.0f, 0.0f));
 
     // mEdge1: tex1=(0.5f, 0.5f), tex2=(1.0f, 1.0f), axis1=Y, axis2=-Z
-    mEdge1 = new OceanSpherePlaneEdge(mPointCount, &mPosition, axisBase[1], -axisBase[2],
-        TVec2f(0.5f, 0.5f), TVec2f(1.0f, 1.0f));
+    mEdge1 = new OceanSpherePlaneEdge(mPointCount, &mPosition, axisBase[1], -axisBase[2], TVec2f(0.5f, 0.5f), TVec2f(1.0f, 1.0f));
 
     // mEdge2: tex1=(0.5f, 0.5f), tex2=(0.0f, 0.0f), axis1=-Y, axis2=Z
-    mEdge2 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -axisBase[1], axisBase[2],
-        TVec2f(0.5f, 0.5f), TVec2f(0.0f, 0.0f));
+    mEdge2 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -axisBase[1], axisBase[2], TVec2f(0.5f, 0.5f), TVec2f(0.0f, 0.0f));
 
     // mEdge3: tex1=(0.5f, 0.5f), tex2=(1.0f, 1.0f), axis1=-Z, axis2=-Y
-    mEdge3 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -axisBase[2], -axisBase[1],
-        TVec2f(0.5f, 0.5f), TVec2f(1.0f, 1.0f));
+    mEdge3 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -axisBase[2], -axisBase[1], TVec2f(0.5f, 0.5f), TVec2f(1.0f, 1.0f));
 
     // mEdge4: tex1=(0.0f, 0.0f), tex2=(1.0f, 0.0f), axis1=Z, axis2=-X
-    mEdge4 = new OceanSpherePlaneEdge(mPointCount, &mPosition, axisBase[2], -axisBase[0],
-        TVec2f(0.0f, 0.0f), TVec2f(1.0f, 0.0f));
+    mEdge4 = new OceanSpherePlaneEdge(mPointCount, &mPosition, axisBase[2], -axisBase[0], TVec2f(0.0f, 0.0f), TVec2f(1.0f, 0.0f));
 
     // mEdge5: tex1=(0.0f, 0.0f), tex2=(0.0f, 1.0f), axis1=Z, axis2=X
-    mEdge5 = new OceanSpherePlaneEdge(mPointCount, &mPosition, axisBase[2], axisBase[0],
-        TVec2f(0.0f, 0.0f), TVec2f(0.0f, 1.0f));
+    mEdge5 = new OceanSpherePlaneEdge(mPointCount, &mPosition, axisBase[2], axisBase[0], TVec2f(0.0f, 0.0f), TVec2f(0.0f, 1.0f));
 
     // mEdge6: tex1=(1.0f, 1.0f), tex2=(1.0f, 0.0f), axis1=-X, axis2=-Z
-    mEdge6 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -axisBase[0], -axisBase[2],
-        TVec2f(1.0f, 1.0f), TVec2f(1.0f, 0.0f));
+    mEdge6 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -axisBase[0], -axisBase[2], TVec2f(1.0f, 1.0f), TVec2f(1.0f, 0.0f));
 
     // mEdge7: tex1=(1.0f, 1.0f), tex2=(0.0f, 1.0f), axis1=-Z, axis2=X
-    mEdge7 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -axisBase[2], axisBase[0],
-        TVec2f(1.0f, 1.0f), TVec2f(0.0f, 1.0f));
+    mEdge7 = new OceanSpherePlaneEdge(mPointCount, &mPosition, -axisBase[2], axisBase[0], TVec2f(1.0f, 1.0f), TVec2f(0.0f, 1.0f));
 }
 
 void OceanSphere::initDisplayList() {
@@ -878,8 +842,7 @@ void OceanSphere::loadMaterialFace() const {
     GXSetZCompLoc(GX_TRUE);
     GXSetCullMode(GX_CULL_BACK);
     GXSetClipMode(GX_CLIP_ENABLE);
-    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f,
-        (GXColor){sOceanSphereFogFaceR, sOceanSphereFogFaceG, sOceanSphereFogFaceB, sOceanSphereFogFaceA});
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, (GXColor){sOceanSphereFogFaceR, sOceanSphereFogFaceG, sOceanSphereFogFaceB, sOceanSphereFogFaceA});
 }
 
 void OceanSphere::loadMaterialBack() const {
@@ -932,8 +895,7 @@ void OceanSphere::loadMaterialBack() const {
     GXSetZCompLoc(GX_TRUE);
     GXSetCullMode(GX_CULL_FRONT);
     GXSetClipMode(GX_CLIP_ENABLE);
-    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f,
-        (GXColor){sOceanSphereFogBackR, sOceanSphereFogBackG, sOceanSphereFogBackB, sOceanSphereFogBackA});
+    GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, (GXColor){sOceanSphereFogBackR, sOceanSphereFogBackG, sOceanSphereFogBackB, sOceanSphereFogBackA});
 }
 
 void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
@@ -1064,4 +1026,4 @@ namespace {
     TVec3f sPosAxisX(sAxisX);
     TVec3f sPosAxisY(sAxisY);
     TVec3f sPosAxisZ(sAxisZ);
-};
+};  // namespace
