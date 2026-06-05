@@ -6,12 +6,12 @@ class Koopa;
 
 class KoopaPlanetShadow : public LiveActor {
 public:
-    KoopaPlanetShadow(const Koopa*);
+    KoopaPlanetShadow(const Koopa* pKoopa);
 
     virtual ~KoopaPlanetShadow();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void calcAndSetBaseMtx();
 
-    const Koopa* mKoopa;  // 0x8C
-    MtxPtr mHipMtx;       // 0x90
+    /* 0x8C */ const Koopa* mKoopa;
+    /* 0x90 */ MtxPtr mHipMtx;
 };
