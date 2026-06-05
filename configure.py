@@ -804,7 +804,7 @@ config.libs = [
             Object(Matching, "Game/Boss/KoopaPowerUpSwitch.cpp"),
             Object(Matching, "Game/Boss/KoopaPlanetShadow.cpp"),
             Object(Matching, "Game/Boss/KoopaRestarterVs3.cpp"),
-            Object(NonMatching, "Game/Boss/KoopaRockBreak.cpp"),
+            Object(Matching, "Game/Boss/KoopaRockBreak.cpp"),
             Object(NonMatching, "Game/Boss/KoopaSensorCtrl.cpp"),
             Object(NonMatching, "Game/Boss/KoopaSequencer.cpp"),
             Object(NonMatching, "Game/Boss/KoopaSubSequenceBattle.cpp"),

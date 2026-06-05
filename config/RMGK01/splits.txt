@@ -1021,7 +1021,7 @@ Game/Boss/KoopaRestarterVs3.cpp:
 
 Game/Boss/KoopaRockBreak.cpp:
 	.text       start:0x8006113C end:0x80061294
-	.data       start:0x8056D448 end:0x8056D650
+	.data       start:0x8056D448 end:0x8056D4F0
 
 Game/Boss/KoopaSensorCtrl.cpp:
 	.text       start:0x80061294 end:0x80061898
@@ -1029,7 +1029,7 @@ Game/Boss/KoopaSensorCtrl.cpp:
 
 Game/Boss/KoopaSequencer.cpp:
 	.text       start:0x80061898 end:0x80061A18
-	.data       start:0x8056D650 end:0x8056D678
+	.data       start:0x8056D4F0 end:0x8056D678
 
 Game/Boss/KoopaSubSequenceBattle.cpp:
 	.text       start:0x80061A18 end:0x80061CFC
