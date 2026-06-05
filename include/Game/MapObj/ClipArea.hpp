@@ -12,12 +12,12 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual MtxPtr getBaseMtx() const;
+	virtual bool isInArea(const TVec3f&, f32) const;
     virtual ~ClipArea();
 
     void initBaseMatrix(const JMapInfoIter&);
     void setShape(ClipAreaShape*);
-    bool isInArea(const TVec3f&, f32) const;
-
+    
     TPos3f mBaseMatrix;     // 0x8C
     ClipAreaShape* mShape;  // 0xBC
 };
