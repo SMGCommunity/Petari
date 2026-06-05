@@ -24,13 +24,9 @@ namespace NrvKoopaDemoFallToPlanetVs3Lv2 {
 KoopaDemoFallToPlanetVs3Lv2::KoopaDemoFallToPlanetVs3Lv2(Koopa* pKoopa) : ActorStateBase< Koopa >("Demo[Ｌｖ２惑星まで落下]", pKoopa) {
 }
 
-KoopaDemoFallToPlanetVs3Lv2::~KoopaDemoFallToPlanetVs3Lv2() {
-}
-
 void KoopaDemoFallToPlanetVs3Lv2::init() {
     KoopaFunction::initKoopaCamera(mHost, "惑星Ｌｖ２まで落下（後半）");
     KoopaFunction::initKoopaAnimCamera(mHost, "DemoKoopaFall");
-
     initNerve(&NrvKoopaDemoFallToPlanetVs3Lv2::KoopaDemoFallToPlanetVs3Lv2NrvWaitFall::sInstance);
 }
 
@@ -115,4 +111,7 @@ void KoopaDemoFallToPlanetVs3Lv2::exeWaitPlayer() {
         KoopaFunction::startFaceCtrl(mHost);
         kill();
     }
+}
+
+KoopaDemoFallToPlanetVs3Lv2::~KoopaDemoFallToPlanetVs3Lv2() {
 }

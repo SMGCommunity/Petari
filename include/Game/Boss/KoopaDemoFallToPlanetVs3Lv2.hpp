@@ -5,7 +5,7 @@
 
 class KoopaDemoFallToPlanetVs3Lv2 : public ActorStateBase< Koopa > {
 public:
-    KoopaDemoFallToPlanetVs3Lv2(Koopa*);
+    KoopaDemoFallToPlanetVs3Lv2(Koopa* pKoopa);
 
     virtual ~KoopaDemoFallToPlanetVs3Lv2();
     virtual void init();
