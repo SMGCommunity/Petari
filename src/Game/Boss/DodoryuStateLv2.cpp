@@ -54,19 +54,19 @@ void DodoryuStateLv2::control() {
 
 void DodoryuStateLv2::start() {
     setNerve(&DodoryuStateLv2NrvStart::sInstance);
-    MR::invalidateShadowAll(mDodoryu);
-    mDodoryu->setHillAppearNumMax();
-    mDodoryu->shiftMoveStateNull();
+    MR::invalidateShadowAll(mHost);
+    mHost->setHillAppearNumMax();
+    mHost->shiftMoveStateNull();
     mAppearCount = 0;
 }
 
 void DodoryuStateLv2::exeStart() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_CC);
-        mDodoryu->stopHillForce();
-        mDodoryu->shiftMoveStateNull();
+        mHost->stopHillForce();
+        mHost->shiftMoveStateNull();
     }
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         setNerve(&DodoryuStateLv2NrvFindPos::sInstance);
     }
 }
@@ -77,15 +77,15 @@ void DodoryuStateLv2::endStart() {
 void DodoryuStateLv2::exeReadyChase() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_E0);
-        MR::showModel(mDodoryu);
-        mDodoryu->stopHill();
-        MR::invalidateHitSensors(mDodoryu);
-        MR::stopBck(mDodoryu);
-        MR::emitEffect(mDodoryu, "AttackSign");
-        MR::startSound(mDodoryu, "SE_BM_DODORYU_SAND_SPLASH");
+        MR::showModel(mHost);
+        mHost->stopHill();
+        MR::invalidateHitSensors(mHost);
+        MR::stopBck(mHost);
+        MR::emitEffect(mHost, "AttackSign");
+        MR::startSound(mHost, "SE_BM_DODORYU_SAND_SPLASH");
         MR::tryRumblePadMiddle(this, 0);
         MR::shakeCameraNormal();
-        mDodoryu->shiftMoveStateNull();
+        mHost->shiftMoveStateNull();
     }
     updateReadyChaseShake();
     if (MR::isGreaterEqualStep(this, mChaseParam->_0)) {
@@ -101,14 +101,14 @@ void DodoryuStateLv2::endReadyChase() {
 void DodoryuStateLv2::exeChaseHide() {
     if (MR::isFirstStep(this)) {
         shiftChaseUnderground();
-        MR::validateHitSensors(mDodoryu);
-        mDodoryu->invalidateStarPieceSensor();
+        MR::validateHitSensors(mHost);
+        mHost->invalidateStarPieceSensor();
     }
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         startAnim(mChaseParam->_F4);
-        mDodoryu->stopHill();
+        mHost->stopHill();
     }
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_MOVE_U_DEEP");
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_MOVE_U_DEEP");
     updateChaseHideShake();
     tryShiftToChaseAppear();
 }
@@ -120,18 +120,18 @@ void DodoryuStateLv2::endChaseHide() {
 void DodoryuStateLv2::exeReadyAppear() {
     if (MR::isFirstStep(this)) {
         MR::shakeCameraInfinity(this, 0.2f, 2.0f);
-        mDodoryu->startHill();
+        mHost->startHill();
         _B8 = MR::getRandom(mChaseParam->_2C, mChaseParam->_30);
         shiftChaseExposingHead();
     }
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         startAnim(mChaseParam->_11C);
     }
-    mDodoryu->tryRumblePad();
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_MOVE_U_SHALLOW");
-    f32 dist = MR::calcDistanceToPlayer(mDodoryu);
+    mHost->tryRumblePad();
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_MOVE_U_SHALLOW");
+    f32 dist = MR::calcDistanceToPlayer(mHost);
     if (dist >= mChaseParam->_34) {
-        mDodoryu->stopHill();
+        mHost->stopHill();
         startAnim(mChaseParam->_130);
         setNerve(&DodoryuStateLv2NrvChaseHide::sInstance);
     } else if (tryToShiftAppearSign()) {
@@ -146,13 +146,13 @@ void DodoryuStateLv2::endReadyAppear() {
 void DodoryuStateLv2::exeAppearSign() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_130);
-        mDodoryu->stopHill();
+        mHost->stopHill();
         shiftChaseExposingHead();
     }
     if (MR::isStep(this, 15)) {
-        MR::emitEffect(mDodoryu, "AttackSign");
+        MR::emitEffect(mHost, "AttackSign");
     }
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         startAnim(mChaseParam->_F4);
     }
     if (MR::isGreaterEqualStep(this, mChaseParam->_18)) {
@@ -163,33 +163,33 @@ void DodoryuStateLv2::exeAppearSign() {
 void DodoryuStateLv2::exeChaseAppearStart() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_144);
-        mDodoryu->startHill();
-        MR::startSound(mDodoryu, "SE_BM_DODORYU_APPEAR_HEAD");
-        MR::startSound(mDodoryu, "SE_BV_DODORYU_APPEAR_2");
+        mHost->startHill();
+        MR::startSound(mHost, "SE_BM_DODORYU_APPEAR_HEAD");
+        MR::startSound(mHost, "SE_BV_DODORYU_APPEAR_2");
         shiftChaseExposingBust();
-        mDodoryu->validateStarPieceSensor();
+        mHost->validateStarPieceSensor();
     }
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_MOVE_GROUND");
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_MOVE_GROUND");
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         setNerve(&DodoryuStateLv2NrvChaseAppear::sInstance);
     }
 }
 
 void DodoryuStateLv2::endChaseAppearStart() {
-    mDodoryu->invalidateStarPieceSensor();
+    mHost->invalidateStarPieceSensor();
 }
 
 void DodoryuStateLv2::exeChaseAppear() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_158);
-        mDodoryu->validateStarPieceSensor();
+        mHost->validateStarPieceSensor();
     }
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_SHOUT");
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_SHOUT");
     tryShiftToChaseAppearEnd();
 }
 
 void DodoryuStateLv2::endChaseAppear() {
-    mDodoryu->invalidateStarPieceSensor();
+    mHost->invalidateStarPieceSensor();
 }
 
 void DodoryuStateLv2::exeChaseAppearEnd() {
@@ -198,7 +198,7 @@ void DodoryuStateLv2::exeChaseAppearEnd() {
         mAppearCount++;
     }
     updateHideShake();
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         startAnim(mChaseParam->_E0);
         s32 maxAppear = mChaseParam->_54;
         if (mAppearCount >= maxAppear) {
@@ -211,22 +211,22 @@ void DodoryuStateLv2::exeChaseAppearEnd() {
 
 void DodoryuStateLv2::endChaseAppearEnd() {
     MR::stopShakingCamera(this);
-    mDodoryu->stopHill();
+    mHost->stopHill();
 }
 
 void DodoryuStateLv2::exeJumpOut() {
     if (MR::isFirstStep(this)) {
-        mDodoryu->stopHillForce();
-        mDodoryu->mBaseMtx.getTrans(_94);
-        mDodoryu->mVelocity.zero();
+        mHost->stopHillForce();
+        mHost->mBaseMtx.getTrans(_94);
+        mHost->mVelocity.zero();
         startAnim(mChaseParam->_180);
-        MR::startSound(mDodoryu, "SE_BM_DODORYU_JUMP_OUT");
-        MR::startSound(mDodoryu, "SE_BV_DODORYU_CRY");
-        MR::validateShadowAll(mDodoryu);
+        MR::startSound(mHost, "SE_BM_DODORYU_JUMP_OUT");
+        MR::startSound(mHost, "SE_BV_DODORYU_CRY");
+        MR::validateShadowAll(mHost);
         f32 jumpHeight = mChaseParam->_8C;
-        mDodoryu->shiftMoveStateJumpOut(jumpHeight, 50.0f);
+        mHost->shiftMoveStateJumpOut(jumpHeight, 50.0f);
     }
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         _C8 = mChaseParam->_58;
         _CC = mChaseParam->_74;
         setNerve(&DodoryuStateLv2NrvEscape::sInstance);
@@ -241,11 +241,11 @@ void DodoryuStateLv2::exeEscape() {
         f32 brake = mChaseParam->_70;
         s32 turnMax = mChaseParam->_60;
         s32 turnMin = mChaseParam->_64;
-        mDodoryu->shiftMoveStateEscape(speed, turnMax, turnMin, accel, brake);
-        mDodoryu->validateStarPieceSensor();
+        mHost->shiftMoveStateEscape(speed, turnMax, turnMin, accel, brake);
+        mHost->validateStarPieceSensor();
     }
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_RUN");
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_PANT");
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_RUN");
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_PANT");
     if (_C8 > 0) {
         --_C8;
     }
@@ -258,15 +258,15 @@ void DodoryuStateLv2::exeEscape() {
 }
 
 void DodoryuStateLv2::endEscape() {
-    mDodoryu->invalidateStarPieceSensor();
+    mHost->invalidateStarPieceSensor();
 }
 
 void DodoryuStateLv2::exeEscapeJump() {
     if (MR::isFirstStep(this)) {
-        TVec3f gravity(mDodoryu->mGravity);
+        TVec3f gravity(mHost->mGravity);
         gravity.scale(-10.0f);
-        mDodoryu->mVelocity.set(gravity);
-        mDodoryu->shiftMoveStateNull();
+        mHost->mVelocity.set(gravity);
+        mHost->shiftMoveStateNull();
     }
     addVelocity(false);
     if (_CC > 0) {
@@ -274,26 +274,26 @@ void DodoryuStateLv2::exeEscapeJump() {
     }
     if (MR::isGreaterEqualStep(this, 49)) {
         setNerve(&DodoryuStateLv2NrvEscape::sInstance);
-        mDodoryu->snapToGround();
+        mHost->snapToGround();
     } else {
-        TVec3f gravity(mDodoryu->mGravity);
+        TVec3f gravity(mHost->mGravity);
         gravity.scale(0.5f);
-        mDodoryu->mVelocity.add(gravity);
+        mHost->mVelocity.add(gravity);
     }
 }
 
 void DodoryuStateLv2::endEscapeJump() {
-    mDodoryu->mVelocity.zero();
+    mHost->mVelocity.zero();
 }
 
 void DodoryuStateLv2::exeRecover() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_1A8);
-        mDodoryu->mVelocity.zero();
-        mDodoryu->shiftMoveStateNull();
-        MR::startSound(mDodoryu, "SE_BV_DODORYU_GET_UP");
+        mHost->mVelocity.zero();
+        mHost->shiftMoveStateNull();
+        MR::startSound(mHost, "SE_BV_DODORYU_GET_UP");
     }
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         setNerve(&DodoryuStateLv2NrvDive::sInstance);
     }
 }
@@ -304,9 +304,9 @@ void DodoryuStateLv2::exeDive() {
     }
     updateDiveShake();
     if (MR::isStep(this, 50)) {
-        MR::invalidateShadowAll(mDodoryu);
+        MR::invalidateShadowAll(mHost);
     }
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         setNerve(&DodoryuStateLv2NrvFindPos::sInstance);
     }
 }
@@ -318,37 +318,37 @@ void DodoryuStateLv2::endDive() {
 void DodoryuStateLv2::exeKnockDown() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_1D0);
-        MR::startBlowHitSound(mDodoryu);
-        MR::startSound(mDodoryu, "SE_BV_DODORYU_DAMAGED");
-        mDodoryu->shiftMoveStateNull();
-        mDodoryu->startSpinOutCamera();
+        MR::startBlowHitSound(mHost);
+        MR::startSound(mHost, "SE_BV_DODORYU_DAMAGED");
+        mHost->shiftMoveStateNull();
+        mHost->startSpinOutCamera();
     }
     s32 stopFrame = mChaseParam->_90;
     if (stopFrame >= 0 && MR::isGreaterEqualStep(this, stopFrame)) {
-        mDodoryu->mVelocity.zero();
+        mHost->mVelocity.zero();
     } else {
         knockOver();
     }
     s32 endFrame = mChaseParam->_94;
     if (endFrame >= 0 && MR::isGreaterEqualStep(this, endFrame)) {
-        mDodoryu->endSpinOutCamera();
-        mDodoryu->nextState();
-    } else if (endFrame < 0 && MR::isBckOneTimeAndStopped(mDodoryu)) {
-        mDodoryu->endSpinOutCamera();
-        mDodoryu->nextState();
+        mHost->endSpinOutCamera();
+        mHost->nextState();
+    } else if (endFrame < 0 && MR::isBckOneTimeAndStopped(mHost)) {
+        mHost->endSpinOutCamera();
+        mHost->nextState();
     }
 }
 
 void DodoryuStateLv2::exeLaugh() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_1E4);
-        mDodoryu->mVelocity.zero();
-        mDodoryu->shiftMoveStateNull();
+        mHost->mVelocity.zero();
+        mHost->shiftMoveStateNull();
     }
     if (MR::isStep(this, 30)) {
-        MR::startSound(mDodoryu, "SE_BV_DODORYU_LAUGH");
+        MR::startSound(mHost, "SE_BV_DODORYU_LAUGH");
     }
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_SHOUT");
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_SHOUT");
     s32 laughTime = mChaseParam->_78;
     if (MR::isGreaterEqualStep(this, laughTime)) {
         setNerve(&DodoryuStateLv2NrvLaughEnd::sInstance);
@@ -360,7 +360,7 @@ void DodoryuStateLv2::exeLaughEnd() {
         startAnim(mChaseParam->_1F8);
     }
     updateHideShake();
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         setNerve(&DodoryuStateLv2NrvFindPos::sInstance);
     }
 }
@@ -374,13 +374,13 @@ void DodoryuStateLv2::exeFindPos() {
         s32 minTime = mChaseParam->_7C;
         s32 maxTime = mChaseParam->_80;
         mFindPosCounter = MR::getRandom(minTime, maxTime);
-        MR::stopBck(mDodoryu);
-        MR::invalidateHitSensors(mDodoryu);
-        mDodoryu->stopHillForce();
-        mDodoryu->startPlayerCenterCamera();
-        MR::invalidateShadowAll(mDodoryu);
-        MR::hideModel(mDodoryu);
-        mDodoryu->shiftMoveStateNull();
+        MR::stopBck(mHost);
+        MR::invalidateHitSensors(mHost);
+        mHost->stopHillForce();
+        mHost->startPlayerCenterCamera();
+        MR::invalidateShadowAll(mHost);
+        MR::hideModel(mHost);
+        mHost->shiftMoveStateNull();
         mAppearCount = 0;
     }
     if (MR::isStep(this, 1)) {
@@ -390,10 +390,10 @@ void DodoryuStateLv2::exeFindPos() {
         keepVerticalizedVelocity();
         addVelocity(false);
         TVec3f offset;
-        if (mDodoryu->keepOffFromClosedArea(&offset)) {
+        if (mHost->keepOffFromClosedArea(&offset)) {
             TPos3f mtx;
             u64* dst = reinterpret_cast< u64* >(&mtx);
-            const u64* src = reinterpret_cast< const u64* >(&mDodoryu->mBaseMtx);
+            const u64* src = reinterpret_cast< const u64* >(&mHost->mBaseMtx);
             for (int i = 0; i < 6; ++i) {
                 dst[i] = src[i];
             }
@@ -403,16 +403,16 @@ void DodoryuStateLv2::exeFindPos() {
             scaledOffset.scale(0.2f);
             trans.add(scaledOffset);
             mtx.setTrans(trans);
-            mDodoryu->setMtx(mtx);
+            mHost->setMtx(mtx);
         }
-        mDodoryu->snapToGround();
+        mHost->snapToGround();
     }
     if (MR::isGreaterEqualStep(this, mFindPosCounter + 1)) {
         TVec3f toPlayer;
-        MR::calcVecToPlayerH(&toPlayer, mDodoryu, nullptr);
+        MR::calcVecToPlayerH(&toPlayer, mHost, nullptr);
         turnToward(toPlayer, 1.0f);
-        mDodoryu->mVelocity.zero();
-        mDodoryu->endPlayerCenterCamera();
+        mHost->mVelocity.zero();
+        mHost->endPlayerCenterCamera();
         setNerve(&DodoryuStateLv2NrvReadyChase::sInstance);
     }
 }
@@ -421,25 +421,25 @@ void DodoryuStateLv2::exeHideAttack() {
     if (MR::isFirstStep(this)) {
         shiftHideAttack();
     }
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         startAnim(mChaseParam->_11C);
     }
-    if (MR::calcDistanceToPlayer(mDodoryu) > 1500.0f) {
-        mDodoryu->stopHill();
+    if (MR::calcDistanceToPlayer(mHost) > 1500.0f) {
+        mHost->stopHill();
         startAnim(mChaseParam->_130);
         setNerve(&DodoryuStateLv2NrvChaseHide::sInstance);
-        mDodoryu->shiftMoveStateNull();
+        mHost->shiftMoveStateNull();
     }
 }
 
 void DodoryuStateLv2::exeChaseMoreStart() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_220);
-        mDodoryu->stopHillForce();
-        mDodoryu->shiftMoveStateNull();
-        MR::startSound(mDodoryu, "SE_BM_DODORYU_JUMP_OUT");
+        mHost->stopHillForce();
+        mHost->shiftMoveStateNull();
+        MR::startSound(mHost, "SE_BM_DODORYU_JUMP_OUT");
         TVec3f* playerPos = MR::getPlayerPos();
-        TVec3f toPlayer(mDodoryu->mPosition);
+        TVec3f toPlayer(mHost->mPosition);
         toPlayer.sub(*playerPos);
         if (MR::isNearZero(toPlayer)) {
             MR::getPlayerFrontVec(&toPlayer);
@@ -447,21 +447,21 @@ void DodoryuStateLv2::exeChaseMoreStart() {
             MR::normalize(&toPlayer);
         }
         TVec3f vel(toPlayer);
-        s16 bckFrames = MR::getBckCtrl(mDodoryu)->mEnd;
+        s16 bckFrames = MR::getBckCtrl(mHost)->mEnd;
         vel.scale(1500.0f / bckFrames);
-        mDodoryu->mVelocity.set(vel);
+        mHost->mVelocity.set(vel);
     }
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_SHOUT");
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_SHOUT");
     if (MR::isStep(this, 40)) {
-        MR::startSound(mDodoryu, "SE_BM_DODORYU_LAND");
+        MR::startSound(mHost, "SE_BM_DODORYU_LAND");
     }
     keepVerticalizedVelocity();
     addVelocity(true);
     TVec3f toPlayer;
-    MR::calcVecToPlayerH(&toPlayer, mDodoryu, nullptr);
+    MR::calcVecToPlayerH(&toPlayer, mHost, nullptr);
     turnToward(toPlayer, 1.0f);
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
-        mDodoryu->mVelocity.zero();
+    if (MR::isBckOneTimeAndStopped(mHost)) {
+        mHost->mVelocity.zero();
         setNerve(&DodoryuStateLv2NrvChaseMore::sInstance);
     }
 }
@@ -471,17 +471,17 @@ void DodoryuStateLv2::exeChaseMore() {
         startAnim(mChaseParam->_234);
         determinChaseMoreAccelCounter();
         _E4 = true;
-        mDodoryu->startHill();
+        mHost->startHill();
         shiftChaseInAnger();
         MR::shakeCameraInfinity(this, 0.3f, 0.1f);
-        MR::startSound(mDodoryu, "SE_BM_DODORYU_SAND_APPEAR");
+        MR::startSound(mHost, "SE_BM_DODORYU_SAND_APPEAR");
     }
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_PANT");
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_RUN");
-    MR::startLevelSound(mDodoryu, "SE_BM_LV_DODORYU_CHASE");
-    mDodoryu->tryRumblePad();
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_PANT");
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_RUN");
+    MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_CHASE");
+    mHost->tryRumblePad();
     if (!_E4) {
-        f32 velocityMag = mDodoryu->mVelocity.length();
+        f32 velocityMag = mHost->mVelocity.length();
         f32 speedLimit = mChaseParam->_B8;
         if (velocityMag <= speedLimit) {
         }
@@ -508,9 +508,9 @@ void DodoryuStateLv2::endChaseMore() {
 void DodoryuStateLv2::exeChaseMoreEnd() {
     if (MR::isFirstStep(this)) {
         startAnim(mChaseParam->_248);
-        MR::startSound(mDodoryu, "SE_BM_DODORYU_SAND_HIDE");
+        MR::startSound(mHost, "SE_BM_DODORYU_SAND_HIDE");
     }
-    if (MR::isBckOneTimeAndStopped(mDodoryu)) {
+    if (MR::isBckOneTimeAndStopped(mHost)) {
         setNerve(&DodoryuStateLv2NrvFindPos::sInstance);
     }
 }
@@ -519,10 +519,10 @@ void DodoryuStateLv2::catchHipDrop() {
     if (!isEnableToCatchHipDrop()) {
         return;
     }
-    mDodoryu->mVelocity.zero();
+    mHost->mVelocity.zero();
     if (isNerve(&DodoryuStateLv2NrvChaseHide::sInstance)) {
-        MR::emitEffect(mDodoryu, "HipDropHit");
-        MR::startSound(mDodoryu, "SE_OJ_S_HIPDROP_HIT");
+        MR::emitEffect(mHost, "HipDropHit");
+        MR::startSound(mHost, "SE_OJ_S_HIPDROP_HIT");
         return;
     }
     if (isNerve(&DodoryuStateLv2NrvReadyAppear::sInstance)) {
@@ -550,12 +550,12 @@ void DodoryuStateLv2::catchHipDrop() {
         !isNerve(&DodoryuStateLv2NrvChaseMoreEnd::sInstance)) {
         bool useChaseMore = mChaseParam->_9C;
         if (useChaseMore) {
-            mDodoryu->reactJumpOutCommon();
+            mHost->reactJumpOutCommon();
             setNerve(&DodoryuStateLv2NrvChaseMoreStart::sInstance);
             return;
         }
     }
-    mDodoryu->reactJumpOutCommon();
+    mHost->reactJumpOutCommon();
     setNerve(&DodoryuStateLv2NrvJumpOut::sInstance);
 }
 
@@ -572,7 +572,7 @@ void DodoryuStateLv2::catchAttackSensor(HitSensor* pSender, HitSensor* pReceiver
     }
 
     if (!isAttackableNerve() || mPlayerStaggering) {
-        if (mDodoryu->isHeadNeedle(pSender, pReceiver)) {
+        if (mHost->isHeadNeedle(pSender, pReceiver)) {
             if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
                 return;
             }
@@ -596,7 +596,7 @@ bool DodoryuStateLv2::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
     if (!isDown()) {
         return false;
     }
-    if (mDodoryu->isHeadNeedle(pReceiver, pSender)) {
+    if (mHost->isHeadNeedle(pReceiver, pSender)) {
         return false;
     }
     if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
@@ -609,7 +609,7 @@ bool DodoryuStateLv2::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
         _A0.set(attackDir);
         if (!calcVerticalizedDir(&_A0, _A0)) {
             TVec3f zDir;
-            mDodoryu->mBaseMtx.getZDir(zDir);
+            mHost->mBaseMtx.getZDir(zDir);
             _A0.negate();
         }
         TVec3f negDir(_A0);
@@ -624,7 +624,7 @@ bool DodoryuStateLv2::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
 }
 
 void DodoryuStateLv2::catchStartClipped() {
-    MR::stopShakingCamera(mDodoryu);
+    MR::stopShakingCamera(mHost);
 }
 
 void DodoryuStateLv2::catchSendPlayerFlying(HitSensor* pSender, HitSensor* pReceiver) {
@@ -636,16 +636,16 @@ void DodoryuStateLv2::catchSendPlayerFlying(HitSensor* pSender, HitSensor* pRece
 }
 
 void DodoryuStateLv2::knockOver() {
-    TPos3f mtx(mDodoryu->mBaseMtx);
+    TPos3f mtx(mHost->mBaseMtx);
     TVec3f trans;
     mtx.getTrans(trans);
     TVec3f knockDir(_A0);
     knockDir.scale(10.0f);
     trans.add(knockDir);
     mtx.setTrans(trans);
-    mDodoryu->setMtx(mtx);
-    mDodoryu->keepOffFromClosedArea(nullptr);
-    mDodoryu->snapToGround();
+    mHost->setMtx(mtx);
+    mHost->keepOffFromClosedArea(nullptr);
+    mHost->snapToGround();
     calcVerticalizedDir(&_A0, _A0);
 }
 
@@ -673,7 +673,7 @@ bool DodoryuStateLv2::isAttackableNerve() const {
 
 bool DodoryuStateLv2::tryShiftToChaseAppear() {
     DodoryuChaseParam* pParam = mChaseParam;
-    f32 dist = MR::calcDistanceToPlayer(mDodoryu);
+    f32 dist = MR::calcDistanceToPlayer(mHost);
     f32 threshold = pParam->_14;
     if (dist < threshold) {
         startAnim(pParam->_108);
@@ -699,7 +699,7 @@ bool DodoryuStateLv2::tryShiftToChaseAppearEnd() {
 bool DodoryuStateLv2::isEscapeEnd() const {
     bool result = false;
     if (_CC <= 0) {
-        f32 dist = MR::calcDistanceToPlayer(mDodoryu);
+        f32 dist = MR::calcDistanceToPlayer(mHost);
         f32 threshold = mChaseParam->_5C;
         if (dist >= threshold || _C8 <= 0) {
             result = true;
@@ -713,7 +713,7 @@ void DodoryuStateLv2::updateReadyChaseShake() {
         MR::shakeCameraInfinity(this, 0.3f, 0.1f);
     }
     if (MR::isGreaterEqualStep(this, 0)) {
-        mDodoryu->tryRumblePad();
+        mHost->tryRumblePad();
     }
 }
 
@@ -722,7 +722,7 @@ void DodoryuStateLv2::updateChaseHideShake() {
         MR::shakeCameraInfinity(this, 0.2f, 0.1f);
     }
     if (MR::isGreaterEqualStep(this, 0)) {
-        mDodoryu->tryRumblePad();
+        mHost->tryRumblePad();
     }
     if (MR::isStep(this, 180)) {
         MR::stopShakingCamera(this);
@@ -734,7 +734,7 @@ void DodoryuStateLv2::updateHideShake() {
         MR::shakeCameraInfinity(this, 0.3f, 0.05f);
     }
     if (MR::isGreaterEqualStep(this, 0)) {
-        mDodoryu->tryRumblePad();
+        mHost->tryRumblePad();
     }
 }
 
@@ -743,7 +743,7 @@ void DodoryuStateLv2::updateDiveShake() {
         MR::shakeCameraInfinity(this, 0.3f, 0.05f);
     }
     if (MR::isGreaterEqualStep(this, 40)) {
-        mDodoryu->tryRumblePad();
+        mHost->tryRumblePad();
     }
 }
 void DodoryuStateLv2::calcRandomVelocity(s32 time) {
@@ -758,20 +758,20 @@ void DodoryuStateLv2::calcRandomVelocity(s32 time) {
     f32 maxDist = mChaseParam->_88;
     f32 dist = MR::getRandom(minDist, maxDist);
     f32 speed = dist / time;
-    mDodoryu->setMtx(MR::getPlayerBaseMtx());
+    mHost->setMtx(MR::getPlayerBaseMtx());
     TVec3f vel(frontVec);
     vel.scale(speed);
-    mDodoryu->mVelocity.set(vel);
+    mHost->mVelocity.set(vel);
 }
 void DodoryuStateLv2::keepVerticalizedVelocity() {
-    f32 velMag = mDodoryu->mVelocity.length();
-    TVec3f* pVel = &mDodoryu->mVelocity;
-    TVec3f* pGrav = &mDodoryu->mGravity;
+    f32 velMag = mHost->mVelocity.length();
+    TVec3f* pVel = &mHost->mVelocity;
+    TVec3f* pGrav = &mHost->mGravity;
     f32 dotResult = pGrav->dot(*pVel);
     TVec3f newVel;
     JMAVECScaleAdd(pGrav, pVel, &newVel, -dotResult);
     newVel.setLength(velMag);
-    mDodoryu->mVelocity.set(newVel);
+    mHost->mVelocity.set(newVel);
 }
 
 void DodoryuStateLv2::attackStrongToDir(HitSensor* pSender, HitSensor* pReceiver) {
@@ -796,7 +796,7 @@ void DodoryuStateLv2::attackStrongToDir(HitSensor* pSender, HitSensor* pReceiver
 
 void DodoryuStateLv2::hideJump() {
     startAnim(mChaseParam->_20C);
-    MR::startSound(mDodoryu, "SE_OJ_S_HIPDROP_HIT");
+    MR::startSound(mHost, "SE_OJ_S_HIPDROP_HIT");
 }
 
 bool DodoryuStateLv2::tryToShiftAppearSign() {
@@ -804,11 +804,11 @@ bool DodoryuStateLv2::tryToShiftAppearSign() {
         setNerve(&DodoryuStateLv2NrvAppearSign::sInstance);
         return true;
     }
-    TPos3f mtx(mDodoryu->mBaseMtx);
+    TPos3f mtx(mHost->mBaseMtx);
     TVec3f zDir;
     mtx.getZDir(zDir);
     f32 angle = mChaseParam->_38;
-    if (!MR::isFaceToPlayerHorizontalDegree(mDodoryu, zDir, angle)) {
+    if (!MR::isFaceToPlayerHorizontalDegree(mHost, zDir, angle)) {
         setNerve(&DodoryuStateLv2NrvAppearSign::sInstance);
         return true;
     }
@@ -828,27 +828,27 @@ void DodoryuStateLv2::determinChaseMoreBrakeCounter() {
 }
 void DodoryuStateLv2::turnToward(const TVec3f& rDir, f32 rate) {
     TVec3f yDir;
-    mDodoryu->mBaseMtx.getYDir(yDir);
+    mHost->mBaseMtx.getYDir(yDir);
     TVec3f zDir;
-    mDodoryu->mBaseMtx.getZDir(zDir);
+    mHost->mBaseMtx.getZDir(zDir);
     TVec3f trans;
-    mDodoryu->mBaseMtx.getTrans(trans);
+    mHost->mBaseMtx.getTrans(trans);
     TPos3f mtx;
     calcLimitedRotateMtx(&mtx, zDir, rDir, rate);
-    mtx.concat(mDodoryu->mBaseMtx);
+    mtx.concat(mHost->mBaseMtx);
     mtx.setTrans(trans);
-    mDodoryu->setMtx(mtx);
+    mHost->setMtx(mtx);
 }
 
 void DodoryuStateLv2::addVelocity(bool snapToGround) {
-    TPos3f mtx(mDodoryu->mBaseMtx);
+    TPos3f mtx(mHost->mBaseMtx);
     TVec3f trans;
     mtx.getTrans(trans);
-    trans.add(mDodoryu->mVelocity);
+    trans.add(mHost->mVelocity);
     mtx.setTrans(trans);
-    mDodoryu->setMtx(mtx);
+    mHost->setMtx(mtx);
     if (snapToGround) {
-        mDodoryu->snapToGround();
+        mHost->snapToGround();
     }
 }
 
@@ -880,7 +880,7 @@ void DodoryuStateLv2::shiftChaseUnderground() {
     f32 maxTurn = mChaseParam->_10;
     f32 accel = mChaseParam->_4;
     f32 brake = mChaseParam->_C;
-    mDodoryu->shiftMoveStateChase(speed, maxTurn, accel, brake);
+    mHost->shiftMoveStateChase(speed, maxTurn, accel, brake);
 }
 
 void DodoryuStateLv2::shiftChaseExposingHead() {
@@ -888,7 +888,7 @@ void DodoryuStateLv2::shiftChaseExposingHead() {
     f32 maxTurn = mChaseParam->_28;
     f32 accel = mChaseParam->_1C;
     f32 brake = mChaseParam->_24;
-    mDodoryu->shiftMoveStateChase(speed, maxTurn, accel, brake);
+    mHost->shiftMoveStateChase(speed, maxTurn, accel, brake);
 }
 
 void DodoryuStateLv2::shiftChaseExposingBust() {
@@ -896,7 +896,7 @@ void DodoryuStateLv2::shiftChaseExposingBust() {
     f32 maxTurn = mChaseParam->_48;
     f32 accel = mChaseParam->_3C;
     f32 brake = mChaseParam->_44;
-    mDodoryu->shiftMoveStateChase(speed, maxTurn, accel, brake);
+    mHost->shiftMoveStateChase(speed, maxTurn, accel, brake);
 }
 
 void DodoryuStateLv2::shiftChaseInAnger() {
@@ -904,19 +904,19 @@ void DodoryuStateLv2::shiftChaseInAnger() {
     f32 maxTurn = mChaseParam->_AC;
     f32 accel = mChaseParam->_A0;
     f32 brake = mChaseParam->_A8;
-    mDodoryu->shiftMoveStateChase(speed, maxTurn, accel, brake);
+    mHost->shiftMoveStateChase(speed, maxTurn, accel, brake);
 }
 
 void DodoryuStateLv2::shiftHideAttack() {
     f32 speed = mChaseParam->_8;
     f32 maxTurn = mChaseParam->_10;
     f32 accel = mChaseParam->_4;
-    mDodoryu->shiftMoveStateChase(speed, maxTurn, accel, 0.0f);
+    mHost->shiftMoveStateChase(speed, maxTurn, accel, 0.0f);
 }
 
 void DodoryuStateLv2::startAnim(const DodoryuAnimSet& rAnim) {
     if (rAnim.mBckName != nullptr) {
-        MR::startBck(mDodoryu, rAnim.mBckName, nullptr);
+        MR::startBck(mHost, rAnim.mBckName, nullptr);
     }
     startBtk(rAnim);
     startBrk(rAnim);
@@ -926,26 +926,26 @@ void DodoryuStateLv2::startAnim(const DodoryuAnimSet& rAnim) {
 
 void DodoryuStateLv2::startBtk(const DodoryuAnimSet& rAnim) {
     if (rAnim.mBtkName != nullptr) {
-        MR::startBtk(mDodoryu, rAnim.mBtkName);
+        MR::startBtk(mHost, rAnim.mBtkName);
     }
 }
 
 void DodoryuStateLv2::startBrk(const DodoryuAnimSet& rAnim) {
     if (rAnim.mBrkName != nullptr) {
-        MR::startBrk(mDodoryu, rAnim.mBrkName);
+        MR::startBrk(mHost, rAnim.mBrkName);
     }
 }
 
 void DodoryuStateLv2::startBva(const DodoryuAnimSet& rAnim) {
     if (rAnim.mBvaName != nullptr) {
-        MR::startBva(mDodoryu, rAnim.mBvaName);
+        MR::startBva(mHost, rAnim.mBvaName);
     }
 }
 
 void DodoryuStateLv2::startLeadHillBck(const DodoryuAnimSet& rAnim) {
     if (rAnim.mLeadHillBckName == nullptr) {
-        mDodoryu->killLeadHill();
+        mHost->killLeadHill();
     } else {
-        mDodoryu->startLeadHillBck(rAnim.mLeadHillBckName);
+        mHost->startLeadHillBck(rAnim.mLeadHillBckName);
     }
 }
