@@ -24,9 +24,6 @@ namespace NrvKoopaDemoFallToPlanetVs3Lv3 {
 KoopaDemoFallToPlanetVs3Lv3::KoopaDemoFallToPlanetVs3Lv3(Koopa* pKoopa) : ActorStateBase< Koopa >("Demo[Ｌｖ３惑星まで落下]", pKoopa) {
 }
 
-KoopaDemoFallToPlanetVs3Lv3::~KoopaDemoFallToPlanetVs3Lv3() {
-}
-
 void KoopaDemoFallToPlanetVs3Lv3::init() {
     KoopaFunction::initKoopaCamera(mHost, "惑星Ｌｖ３内側を落下");
     KoopaFunction::initKoopaAnimCamera(mHost, "DemoKoopaFallSun");
@@ -138,4 +135,7 @@ void KoopaDemoFallToPlanetVs3Lv3::exeWaitPlayer() {
     if (MR::isOnGroundPlayer()) {
         kill();
     }
+}
+
+KoopaDemoFallToPlanetVs3Lv3::~KoopaDemoFallToPlanetVs3Lv3() {
 }
