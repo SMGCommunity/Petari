@@ -6,13 +6,13 @@ class Koopa;
 
 class KoopaFireShort : public LiveActor {
 public:
-    KoopaFireShort(const Koopa*);
+    KoopaFireShort(const Koopa* pKoopa);
 
     virtual ~KoopaFireShort();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
     void emitNormal();
     void emitFast();

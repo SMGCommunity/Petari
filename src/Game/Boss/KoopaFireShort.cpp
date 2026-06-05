@@ -2,16 +2,13 @@
 #include "Game/Boss/Koopa.hpp"
 
 namespace NrvKoopaFireShort {
-    NEW_NERVE(KoopaFireShortNrvErase2P, KoopaFireShort, Erase2P);
-    NEW_NERVE(KoopaFireShortNrvDisappear, KoopaFireShort, Disappear);
     NEW_NERVE(KoopaFireShortNrvFly, KoopaFireShort, Fly);
+    NEW_NERVE(KoopaFireShortNrvDisappear, KoopaFireShort, Disappear);
+    NEW_NERVE(KoopaFireShortNrvErase2P, KoopaFireShort, Erase2P);
 }  // namespace NrvKoopaFireShort
 
 KoopaFireShort::KoopaFireShort(const Koopa* pKoopa)
     : LiveActor("クッパの炎（ショート）"), mKoopa(pKoopa), mFront(0.0f, 0.0f, 1.0f), mSpeed(), mOffset() {
-}
-
-KoopaFireShort::~KoopaFireShort() {
 }
 
 void KoopaFireShort::init(const JMapInfoIter& rIter) {
@@ -23,21 +20,23 @@ void KoopaFireShort::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
     initHitSensor(1);
 
-    MR::addHitSensor(this, "Attack", ATYPE_KOOPA_FIRE, 8, 130.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    // smth wrong here
+    TVec3f zeroVec = TVec3f(0.0f, 0.0f, 0.0f);
+    MR::addHitSensor(this, "Attack", ATYPE_KOOPA_FIRE, 8, 130.0f, zeroVec);
     initBinder(50.0f, 0.0f, 0);
 
     MR::offBind(this);
     MR::onCalcGravity(this);
 
     initEffectKeeper(1, nullptr, false);
+
     MR::addEffectHitNormal(this, "Hit");
 
     initSound(4, false);
-
     initNerve(&NrvKoopaFireShort::KoopaFireShortNrvFly::sInstance);
 
-    MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
-
+    zeroVec.set(0.0f);
+    MR::initStarPointerTarget(this, 100.0f, zeroVec);
     MR::initShadowVolumeSphere(this, 200.0f);
 
     MR::invalidateClipping(this);
@@ -54,15 +53,17 @@ void KoopaFireShort::appear() {
 
     TPos3f transform;
     transform.setInline(MR::getJointMtx(mKoopa, "Tongue2"));
-    transform.setPos(mPosition);
+    transform.getTransInline(mPosition);
     transform.getYDir(mVelocity);
 
     MR::vecKillElement(mVelocity, mGravity, &mVelocity);
 
     MR::isNearZero(mVelocity) ? transform.getYDir(mVelocity) : MR::normalize(&mVelocity);
 
-    f32 radius = mScale.x;
-    mVelocity.scale(15.0f);
+    f32 radius = 80.0f * mScale.x;
+    mVelocity.x *= 15.0f;
+    mVelocity.y *= 15.0f;
+    mVelocity.z *= 15.0f;
 
     MR::setBinderRadius(this, radius);
     MR::setSensorRadius(this, "Attack", radius);
@@ -165,7 +166,7 @@ void KoopaFireShort::exeErase2P() {
 
         MR::startBck(this, "Disappear", nullptr);
         MR::start2PAttackAssistSound();
-        MR::startSound(this, "SE_OJ_KOOPA_BULLET_EXPLODE", -1, -1);
+        MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT", -1, -1);
 
         MR::setBckRate(this, 3.0f);
     }
@@ -182,18 +183,21 @@ void KoopaFireShort::calcAndSetBaseMtx() {
 }
 
 void KoopaFireShort::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (isNerve(&NrvKoopaFireShort::KoopaFireShortNrvFly::sInstance)) {
-        if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+    if (!isNerve(&NrvKoopaFireShort::KoopaFireShortNrvFly::sInstance)) {
+        return;
+    }
+
+    if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+        mSpeed = 0.0f;
+        MR::zeroVelocity(this);
+        setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
+    } else {
+        if (!MR::isSensorPlayer(pReceiver) && !MR::sendMsgPush(pReceiver, pSender) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_FIRE) &&
+            !MR::isSensorType(pReceiver, ATYPE_KOOPA_DAMAGE_PLATE) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_COIN_PLATE) &&
+            !MR::isSensorType(pReceiver, ATYPE_KOOPA_PLATE)) {
             mSpeed = 0.0f;
             MR::zeroVelocity(this);
             setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
-        } else {
-            if (!MR::isSensorPlayer(pReceiver) && !MR::sendMsgPush(pReceiver, pSender) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_FIRE) &&
-                !MR::isSensorType(pReceiver, ATYPE_KOOPA_DAMAGE_PLATE) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_COIN_PLATE) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_PLATE)) {
-                mSpeed = 0.0f;
-                MR::zeroVelocity(this);
-                setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
-            }
         }
     }
 }
@@ -219,4 +223,7 @@ void KoopaFireShort::updateFrontAndVelocity() {
     }
 
     mVelocity.scale(mSpeed);
+}
+
+KoopaFireShort::~KoopaFireShort() {
 }
