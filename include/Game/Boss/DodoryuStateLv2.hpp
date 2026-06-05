@@ -1,9 +1,16 @@
 #pragma once
 
-#include "Game/Boss/Dodoryu.hpp"
 #include "Game/Boss/DodoryuStateBase.hpp"
 
-class JMapInfoIter;
+class Dodoryu;
+
+struct DodoryuAnimSet {
+    const char* mBck;
+    const char* mBtk;
+    const char* mBrk;
+    const char* mBva;
+    const char* mLeadHillBck;
+};
 
 struct DodoryuChaseParam {
     /* 0x00 */ s32 _0;
