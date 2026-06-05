@@ -5,7 +5,7 @@
 
 class KoopaDemoJumpToPlanet : public ActorStateBase< Koopa > {
 public:
-    KoopaDemoJumpToPlanet(Koopa*);
+    KoopaDemoJumpToPlanet(Koopa* pKoopa);
 
     virtual ~KoopaDemoJumpToPlanet();
     virtual void init();

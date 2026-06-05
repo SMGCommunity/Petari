@@ -8,9 +8,7 @@ namespace {
 }  // namespace
 
 namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) {
-        moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    }
+    void moveAndTurnToPlayer(LiveActor*, TVec3f*, const MR::ActorMoveParam&);
 }  // namespace MR
 
 namespace NrvKoopaDemoJumpToPlanet {
@@ -23,14 +21,10 @@ namespace NrvKoopaDemoJumpToPlanet {
 KoopaDemoJumpToPlanet::KoopaDemoJumpToPlanet(Koopa* pKoopa) : ActorStateBase< Koopa >("Demo[惑星までジャンプ]", pKoopa) {
 }
 
-KoopaDemoJumpToPlanet::~KoopaDemoJumpToPlanet() {
-}
-
 void KoopaDemoJumpToPlanet::init() {
     KoopaFunction::initKoopaCamera(mHost, "ウェイト（惑星までジャンプ）");
     KoopaFunction::initKoopaCamera(mHost, "落下（惑星までジャンプ）");
     KoopaFunction::initKoopaCamera(mHost, "ワープ後（惑星までジャンプ）");
-
     initNerve(&NrvKoopaDemoJumpToPlanet::KoopaDemoJumpToPlanetNrvStart::sInstance);
 }
 
@@ -110,4 +104,7 @@ void KoopaDemoJumpToPlanet::exeWaitPlayer() {
 
         kill();
     }
+}
+
+KoopaDemoJumpToPlanet::~KoopaDemoJumpToPlanet() {
 }
