@@ -6,19 +6,19 @@ class Koopa;
 
 class KoopaFigureBall : public LiveActor {
 public:
-    KoopaFigureBall(const char*, Koopa*, f32, const MR::ActorMoveParam*);
+    KoopaFigureBall(const char* pName, Koopa* pKoopa, f32, const MR::ActorMoveParam* pMoveParam);
 
     virtual ~KoopaFigureBall();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void makeActorAppeared();
     virtual void makeActorDead();
     virtual MtxPtr getBaseMtx() const;
     virtual void control();
 
     /* 0x8C */ Koopa* mKoopa;
-    /* 0x90 */ TVec3f _90;
-    /* 0x9C */ f32 _9C;
-    /* 0xA0 */ f32 _A0;
-    /* 0xA4 */ TPos3f _A4;
-    /* 0xD4 */ const MR::ActorMoveParam* _D4;
+    /* 0x90 */ TVec3f mFront;
+    /* 0x9C */ f32 mRadius;
+    /* 0xA0 */ f32 mAngle;
+    /* 0xA4 */ TPos3f mBaseMtx;
+    /* 0xD4 */ const MR::ActorMoveParam* mMoveParam;
 };

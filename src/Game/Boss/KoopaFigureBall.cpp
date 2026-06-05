@@ -2,16 +2,16 @@
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 
-KoopaFigureBall::KoopaFigureBall(const char* pName, Koopa* pKoopa, f32 myFloat, const MR::ActorMoveParam* pMoveParam)
-    : LiveActor(pName), mKoopa(pKoopa), _90(0.0f, 0.0f, 1.0f), _9C(myFloat), _A0(), _D4(pMoveParam) {
-    _A4.identity();
-}
-
 KoopaFigureBall::~KoopaFigureBall() {
 }
 
+KoopaFigureBall::KoopaFigureBall(const char* pName, Koopa* pKoopa, f32 myFloat, const MR::ActorMoveParam* pMoveParam)
+    : LiveActor(pName), mKoopa(pKoopa), mFront(0.0f, 0.0f, 1.0f), mRadius(myFloat), mAngle(), mMoveParam(pMoveParam) {
+    mBaseMtx.identity();
+}
+
 void KoopaFigureBall::init(const JMapInfoIter& rIter) {
-    initBinder(_9C, 0.0f, 0);
+    initBinder(mRadius, 0.0f, 0);
 
     MR::onCalcGravity(this);
 
@@ -23,43 +23,52 @@ void KoopaFigureBall::init(const JMapInfoIter& rIter) {
 void KoopaFigureBall::makeActorAppeared() {
     mPosition.set(mKoopa->mPosition);
     mVelocity.set(mKoopa->mVelocity);
-    _90.set(KoopaFunction::getKoopaFront(mKoopa));
+    mFront.set(KoopaFunction::getKoopaFront(mKoopa));
 
     MR::calcGravity(this);
 
-    _A4.identity();
+    mBaseMtx.identity();
 
-    MR::makeMtxFrontUpPos(&_A4, _90, -mGravity, mPosition);
+    MR::makeMtxFrontUpPos(&mBaseMtx, mFront, -mGravity, mPosition);
 
-    _A0 = 0.0f;
+    mAngle = 0.0f;
 
     LiveActor::makeActorAppeared();
 }
 
 void KoopaFigureBall::makeActorDead() {
-    KoopaFunction::getKoopaFrontPtr(mKoopa)->set(_90);
+    KoopaFunction::getKoopaFrontPtr(mKoopa)->set(mFront);
 
     LiveActor::makeActorDead();
 }
 
+// 89% and a big mess
 void KoopaFigureBall::control() {
-    MR::moveAndTurnToPlayer(this, &_90, _D4->_0, _D4->_4, _D4->_8, _D4->_C);
+    MR::moveAndTurnToPlayer(this, &mFront, mMoveParam->_0, mMoveParam->_4, mMoveParam->_8, mMoveParam->_C);
 
     if (MR::isBindedWall(this)) {
         MR::addVelocityJump(this, 15.0f);
     }
-
-    _A0 += (180.0f * mVelocity.dot(_90)) / (_9C * PI);
-
-    MR::makeMtxUpFrontPos(&_A4, -mGravity, _90, mPosition + mGravity * _9C);
+    
+    f32 angle = MR::toDegree(mVelocity.dot(mFront) / mRadius);
+    mAngle += angle;
+    TVec3f direction = mGravity * angle;
+    TVec3f vec = mPosition;
+    vec += direction;
+    MR::makeMtxUpFrontPos(&mBaseMtx, -mGravity, mFront, vec);
 
     TVec3f vec1;
     TVec3f vec2;
-    _A4.getYDirInline(vec1);
-    _A4.getZDirInline(vec2);
-    _A4.setTrans(vec1 + vec2 * _9C);
+    mBaseMtx.getYDirInline(vec1);
+    mBaseMtx.getTransInline(vec2);
+    vec2 += vec1 * mRadius;
+    mBaseMtx.setTrans(vec2);
+
+    TPos3f mtx;
+    mtx.setRotateInlineZeroTrans(TVec3f(1.0f, 0.0f, 0.0f), MR::toRadian(mAngle));
+    mBaseMtx.concat(mBaseMtx, mtx);
 }
 
 MtxPtr KoopaFigureBall::getBaseMtx() const {
-    return (MtxPtr)&_A4;
+    return (MtxPtr)&mBaseMtx;
 }
