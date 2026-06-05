@@ -1,19 +1,8 @@
 #include "Game/MapObj/AstroDomeBlueStar.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/GCapture.hpp"
 #include "Game/MapObj/GCaptureRibbon.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
-#include <cstddef>
 
 namespace {
     const Vec cZoomInOffset = {400.0f, 2550.0f, -7600.0f};
