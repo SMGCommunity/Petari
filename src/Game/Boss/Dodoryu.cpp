@@ -1,6 +1,7 @@
 #include "Game/Boss/Dodoryu.hpp"
 #include "Game/Boss/DodoryuDemo.hpp"
 #include "Game/Boss/DodoryuHill.hpp"
+#include "Game/Boss/DodoryuMove.hpp"
 // #include "Game/Boss/DodoryuStateLv2.hpp"
 #include "Game/Boss/DodoryuStateBase.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
@@ -66,7 +67,7 @@ void Dodoryu::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("Dodoryu", nullptr, false);
 
-    // mMoveStateHolder = new DodoryuSub::MoveStateHolder(this);
+    mMoveStateHolder = new DodoryuSub::MoveStateHolder(this);
 
     initState();
     MR::connectToSceneEnemy(this);
@@ -107,7 +108,7 @@ void Dodoryu::initAfterPlacement() {
 }
 
 void Dodoryu::control() {
-    // mMovestateHolder->execute();
+    mMoveStateHolder->execute();
     checkHipDrop();
     mState[_CC]->control();
     updateRumblePad();
@@ -214,12 +215,12 @@ void Dodoryu::validateStarPieceSensor() {
 }
 
 // Dodoryu::isHeadNeedle
-/*
+
 void Dodoryu::shiftMoveStateRail(f32 param1) {
     mMoveStateHolder->shiftRail(param1);
 }
 
-void Dodoryu::shiftMoveStateChase(f32 param1, f32 param2, f32 param3, f32 param4)
+void Dodoryu::shiftMoveStateChase(f32 param1, f32 param2, f32 param3, f32 param4) {
     mMoveStateHolder->shiftChase(param1, param2, param3, param4);
 }
 
@@ -238,7 +239,7 @@ void Dodoryu::shiftMoveStateNull() {
 void Dodoryu::setMoveRailSpeed(f32 railSpeed) {
     mMoveStateHolder->setRailSpeed(railSpeed);
 }
-*/
+
 void Dodoryu::startHill() {
     mHill->startNaturally();
 }
@@ -315,7 +316,7 @@ bool Dodoryu::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
         if (MR::isMsgStarPieceAttack(msg)) {
             MR::startSound(this, "SE_OJ_STAR_PIECE_HIT_STOP");
             mAnimScaleCtrl->startHitReaction();
-            // mMoveStateHolder->brake();
+            mMoveStateHolder->brake();
 
             return true;
         }
