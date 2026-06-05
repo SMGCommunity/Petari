@@ -89,9 +89,9 @@ struct DodoryuChaseParam {
 
 class DodoryuStateLv2 : public DodoryuStateBase {
 public:
-    DodoryuStateLv2(Dodoryu*, DodoryuChaseParam*, const char*);
+    DodoryuStateLv2(Dodoryu* pHost, DodoryuChaseParam* pChaseParam, const char* pName);
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void control();
 
     virtual void start();
@@ -100,6 +100,39 @@ public:
     virtual bool catchPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual void catchStartClipped();
     virtual void catchSendPlayerFlying(HitSensor*, HitSensor*);
+
+    void knockOver();
+    bool isEnableToCatchHipDrop() const;
+    bool isDown() const;
+    bool isAttackableNerve() const;
+    bool tryShiftToChaseAppear();
+    bool tryShiftToChaseAppearEnd();
+    bool isEscapeEnd() const;
+    void updateReadyChaseShake();
+    void updateChaseHideShake();
+    void updateHideShake();
+    void updateDiveShake();
+    void calcRandomVelocity(s32);
+    void keepVerticalizedVelocity();
+    void attackStrongToDir(HitSensor*, HitSensor*);
+    void hideJump();
+    bool tryToShiftAppearSign();
+    void determinChaseMoreAccelCounter();
+    void determinChaseMoreBrakeCounter();
+    void turnToward(const TVec3f&, f32);
+    void addVelocity(bool);
+    void calcLimitedRotateMtx(TPos3f*, const TVec3f&, const TVec3f&, f32);
+    bool isReflectSpinAttack() const;
+    void shiftChaseUnderground();
+    void shiftChaseExposingHead();
+    void shiftChaseExposingBust();
+    void shiftChaseInAnger();
+    void shiftHideAttack();
+    void startAnim(const DodoryuAnimSet&);
+    void startBtk(const DodoryuAnimSet&);
+    void startBrk(const DodoryuAnimSet&);
+    void startBva(const DodoryuAnimSet&);
+    void startLeadHillBck(const DodoryuAnimSet&);
 
     void exeStart();
     void endStart();
@@ -135,57 +168,20 @@ public:
     void endChaseMore();
     void exeChaseMoreEnd();
 
-    void knockOver();
-    bool isEnableToCatchHipDrop() const;
-    bool isDown() const;
-    bool isAttackableNerve() const;
-    bool tryShiftToChaseAppear();
-    bool tryShiftToChaseAppearEnd();
-    bool isEscapeEnd() const;
-    void updateReadyChaseShake();
-    void updateChaseHideShake();
-    void updateHideShake();
-    void updateDiveShake();
-    void calcRandomVelocity(s32);
-    void keepVerticalizedVelocity();
-    void attackStrongToDir(HitSensor*, HitSensor*);
-    void hideJump();
-    bool tryToShiftAppearSign();
-    void determinChaseMoreAccelCounter();
-    void determinChaseMoreBrakeCounter();
-    void turnToward(const TVec3f&, f32);
-    void addVelocity(bool);
-    void calcLimitedRotateMtx(TPos3f*, const TVec3f&, const TVec3f&, f32);
-    bool isReflectSpinAttack() const;
-    void shiftChaseUnderground();
-    void shiftChaseExposingHead();
-    void shiftChaseExposingBust();
-    void shiftChaseInAnger();
-    void shiftHideAttack();
-    void startAnim(const DodoryuAnimSet&);
-    void startBtk(const DodoryuAnimSet&);
-    void startBrk(const DodoryuAnimSet&);
-    void startBva(const DodoryuAnimSet&);
-    void startLeadHillBck(const DodoryuAnimSet&);
-
-    /* 0x90 */ void* _90;
+    /* 0x90 */ u32 _90;
     /* 0x94 */ TVec3f _94;
     /* 0xA0 */ TVec3f _A0;
-    /* 0xAC */ f32 _AC;
-    /* 0xB0 */ f32 _B0;
-    /* 0xB4 */ f32 _B4;
+    /* 0xAC */ TVec3f _AC;
     /* 0xB8 */ s32 _B8;
     /* 0xBC */ s32 _BC;
     /* 0xC0 */ s32 mAppearCount;
-    /* 0xC4 */ s32 _C4;
+    /* 0xC4 */ u32 _C4;
     /* 0xC8 */ s32 _C8;
     /* 0xCC */ s32 _CC;
-    /* 0xD0 */ f32 _D0;
-    /* 0xD4 */ f32 _D4;
-    /* 0xD8 */ f32 _D8;
+    /* 0xD0 */ TVec3f _D0;
     /* 0xDC */ s32 mFindPosCounter;
     /* 0xE0 */ s32 _E0;
     /* 0xE4 */ bool _E4;
     /* 0xE8 */ DodoryuChaseParam* mChaseParam;
-    /* 0xEC */ bool mPlayerStaggering;
+    /* 0xEC */ bool mIsPlayerStaggering;
 };
