@@ -15,6 +15,7 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "revolution/mtx.h"
 #include "revolution/types.h"
 
 namespace NrvAstroDomeDemoStarter {
@@ -137,4 +138,8 @@ void AstroDomeDemoStarter::exeWhiteOut() {
         MR::closeSystemWipeWhiteFade(-1);
     }
     movePlayer();
+}
+
+MtxPtr AstroDomeDemoStarter::getBaseMtx() const {
+    return (MtxPtr)&_94;
 }

@@ -14,6 +14,7 @@ public:
     AstroDomeDemoStarter(const char*);
     virtual void init(const JMapInfoIter&);
     virtual void calcAndSetBaseMtx();
+    virtual MtxPtr getBaseMtx() const;
     virtual ~AstroDomeDemoStarter();
 
     void movePlayer();
