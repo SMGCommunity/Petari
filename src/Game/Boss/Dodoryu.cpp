@@ -1,4 +1,6 @@
 #include "Game/Boss/Dodoryu.hpp"
+#include "Game/Boss/DodoryuDemo.hpp"
+// #include "Game/Boss/DodoryuStateLv2.hpp"
 #include "Game/Boss/DodoryuStateBase.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
@@ -374,19 +376,19 @@ void Dodoryu::checkHipDrop() {
         mState[_CC]->catchHipDrop();
     }
 }
-/*
+
 void Dodoryu::initState() {
-    mState.push_back(new DodoryuStateWait(this, "DodoryuStateWait"));
+    // mState.push_back(new DodoryuStateWait(this, "DodoryuStateWait"));
     mState.push_back(new DodoryuDemoOpening(this, "DodoryuDemoOpening"));
-    mState.push_back(new DodoryuStateLv1(this, "DodoryuStateLv1"));
+    // mState.push_back(new DodoryuStateLv1(this, "DodoryuStateLv1"));
     mState.push_back(new DodoryuDemoAppear(this, "DodoryuDemoAppear"));
-    mState.push_back(new DodoryuStateLv2(this, &::sDodoryuChaseDataLv2, "DodoryuStateLv2"));
+    // mState.push_back(new DodoryuStateLv2(this, &::sDodoryuChaseDataLv2, "DodoryuStateLv2"));
     mState.push_back(new DodoryuDemoAngry(this, "DodoryuDemoAngry"));
-    mState.push_back(new DodoryuStateLv2(this, &::sDodoryuChaseDataLv3, "DodoryuStateLv3"));
+    // mState.push_back(new DodoryuStateLv2(this, &::sDodoryuChaseDataLv3, "DodoryuStateLv3"));
     mState.push_back(new DodoryuDemoDown(this, "DodoryuDemoDown"));
     _CC = 0;
 }
-*/
+
 void Dodoryu::updateRumblePad() {
     if (!_150) {
         return;
