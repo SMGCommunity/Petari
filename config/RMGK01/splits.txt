@@ -388,7 +388,7 @@ Game/AudioLib/AudSystem.cpp:
 	.sdata2     start:0x806B7E98 end:0x806B7EC8
 
 Game/AudioLib/AudParams.cpp:
-	.rodata     start:0x8052F820 end:0x8052FA48
+	.rodata     start:0x8052F820 end:0x8052FA20
 	.sdata2     start:0x806B7EC8 end:0x806B7F98
 
 Game/AudioLib/AudSystemVolumeController.cpp:
@@ -396,6 +396,7 @@ Game/AudioLib/AudSystemVolumeController.cpp:
 
 Game/AudioLib/AudAudience.cpp:
 	.text       start:0x8002A45C end:0x8002A540
+	.rodata     start:0x8052FA20 end:0x8052FA28
 	.data       start:0x80565F90 end:0x80565FB0
 	.sdata2     start:0x806B7F98 end:0x806B7FA0
 
@@ -416,14 +417,17 @@ Game/AudioLib/AudSoundObject.cpp:
 
 Game/AudioLib/AudSoundObject_Kawamura.cpp:
 	.text       start:0x8002BB5C end:0x8002C6D4
+	.rodata     start:0x8052FA28 end:0x8052FA30
 	.sdata2     start:0x806B7FA8 end:0x806B8008
 
 Game/AudioLib/AudSoundObject_Takezawa.cpp:
 	.text       start:0x8002C6D4 end:0x8002D9F0
+	.rodata     start:0x8052FA30 end:0x8052FA38
 	.sdata2     start:0x806B8008 end:0x806B8068
 
 Game/AudioLib/AudSoundObject_Gohara.cpp:
 	.text       start:0x8002D9F0 end:0x8002DC60
+	.rodata     start:0x8052FA38 end:0x8052FA40
 	.sdata2     start:0x806B8068 end:0x806B8078
 
 Game/AudioLib/AudAnmSoundObject.cpp:
@@ -435,6 +439,7 @@ Game/AudioLib/AudAnmSoundObject.cpp:
 Game/AudioLib/AudBgm.cpp:
 	.text       start:0x8002E874 end:0x8002FD00
 	.ctors      start:0x8052E828 end:0x8052E82C
+	.rodata     start:0x8052FA40 end:0x8052FA48
 	.data       start:0x80566048 end:0x80566160
 	.bss        start:0x8060A4A0 end:0x8060A4B8
 	.sbss       start:0x806B2F08 end:0x806B2F10
