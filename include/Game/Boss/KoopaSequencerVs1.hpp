@@ -3,17 +3,19 @@
 #include "Game/Boss/KoopaSequencer.hpp"
 
 class HitSensor;
+class KoopaSubSequenceBattle;
+class KoopaBattleMain;
 
 class KoopaSequencerVs1 : public KoopaSequencer {
 public:
     KoopaSequencerVs1();
 
     virtual ~KoopaSequencerVs1();
-    virtual void init(Koopa*, const JMapInfoIter&);
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual void init(Koopa* pKoopa, const JMapInfoIter& rIter);
+    virtual bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeBattleStairs();
     void exeDemoBattleStart();
@@ -24,6 +26,6 @@ public:
     void exeWaitDemo();
 
 private:
-    /* 0x24 */ u32 _24;
-    /* 0x28 */ u32 _28;
+    /* 0x24 */ KoopaSubSequenceBattle* mSubSequenceBattle;
+    /* 0x28 */ KoopaBattleMain* mBattleMain;
 };

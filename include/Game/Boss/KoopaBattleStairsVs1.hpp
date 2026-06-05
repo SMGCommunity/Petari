@@ -9,7 +9,7 @@ public:
     KoopaBattleStairsVs1(Koopa* pKoopa);
 
     virtual ~KoopaBattleStairsVs1();
-    virtual void registerStair(KoopaBattleMapStair* pBattleMapStair);
+    virtual s32 registerStair(KoopaBattleMapStair* pBattleMapStair);
 
     void exeWaitDemo();
     void exeDemo();

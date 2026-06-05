@@ -36,7 +36,7 @@ KoopaBattleStairsVs1::KoopaBattleStairsVs1(Koopa* pKoopa)
     KoopaFunction::initKoopaAnimCamera(mKoopa, "DemoBattleStairsStart");
 }
 
-void KoopaBattleStairsVs1::registerStair(KoopaBattleMapStair* pBattleMapStair) {
+s32 KoopaBattleStairsVs1::registerStair(KoopaBattleMapStair* pBattleMapStair) {
     if (pBattleMapStair->isTypeDemoFar()) {
         mFarBattleMapStair = pBattleMapStair;
     }
@@ -65,7 +65,7 @@ void KoopaBattleStairsVs1::registerStair(KoopaBattleMapStair* pBattleMapStair) {
         }
     }
 
-    calcFireAttackStep(pBattleMapStair, 20.0f, 15, *vec);
+    return calcFireAttackStep(pBattleMapStair, 20.0f, 15, *vec);
 }
 
 void KoopaBattleStairsVs1::exeWaitDemo() {

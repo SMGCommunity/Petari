@@ -1,6 +1,8 @@
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/BossAccessor.hpp"
 #include "Game/Boss/Koopa.hpp"
+#include "Game/Boss/KoopaBattleStairsBase.hpp"
+#include "Game/Boss/KoopaBattleStairsVs1.hpp"
 #include "Game/Boss/KoopaParts.hpp"
 #include "Game/Boss/KoopaPowerUpSwitch.hpp"
 #include "Game/Boss/KoopaSequencerVs1.hpp"
@@ -48,9 +50,8 @@ void KoopaFunction::createKoopaRollBall(Koopa* pKoopa) {
 }
 
 s32 KoopaFunction::registerBattleMapStair(KoopaBattleMapStair* pMapStair) {
-    u32 temp = BossAccess::getBossAccessorKoopa()->mSequencer->_10;  // TODO
-    // TODO
-    return temp;
+    KoopaBattleStairsVs1* pBattleStairsBase = static_cast< KoopaBattleStairsVs1* >(BossAccess::getBossAccessorKoopa()->mSequencer->mBattleStairs);
+    return pBattleStairsBase->registerStair(pMapStair);
 }
 
 void KoopaFunction::setKoopaPos(Koopa* pKoopa, const char* pDemoName) {
@@ -477,7 +478,7 @@ void KoopaFunction::tryRestartKoopa() {
         MR::startAction(pKoopa->mParts->mKoopaJrShip, "DemoKoopaVs3Wait");
 
         // This is super ugly but idk how to fix the register issue
-        pKoopa = (Koopa *)pKoopa->mParts;
+        pKoopa = (Koopa*)pKoopa->mParts;
         ((KoopaParts*)pKoopa)->mPeach->mJointCtrl->startFaceCtrl(-1);
         ((KoopaParts*)pKoopa)->mKoopaJr->mJointCtrl->startFaceCtrl(-1);
     }

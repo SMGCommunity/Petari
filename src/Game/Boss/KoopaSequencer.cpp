@@ -3,7 +3,7 @@
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
 
 KoopaSequencer::KoopaSequencer(const char* pName, s32 vs)
-    : NerveExecutor(pName), mKoopa(), mPowerUp(), _10(), mJumpToPlanet(), mLv(1), mVs(vs), mIsAngry() {
+    : NerveExecutor(pName), mKoopa(), mPowerUp(), mBattleStairs(), mJumpToPlanet(), mLv(1), mVs(vs), mIsAngry() {
 }
 
 void KoopaSequencer::init(Koopa* pKoopa, const JMapInfoIter& rIter) {
@@ -32,7 +32,4 @@ void KoopaSequencer::startBattleLevel2() {
 void KoopaSequencer::startBattleLevel3() {
     mLv = 3;
     mIsAngry = false;
-}
-
-KoopaSequencer::~KoopaSequencer() {
 }

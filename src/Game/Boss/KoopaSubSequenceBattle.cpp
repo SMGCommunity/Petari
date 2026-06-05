@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaSubSequenceBattle.hpp"
+#include "Game/Boss/KoopaBattleBase.hpp"
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
 #include "Game/Boss/KoopaSequencer.hpp"
 
@@ -15,15 +16,13 @@ KoopaSubSequenceBattle::KoopaSubSequenceBattle(Koopa* pKoopa, KoopaSequencer* pS
     initNerve(&NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvBattleLv1::sInstance);
 }
 
-KoopaSubSequenceBattle::~KoopaSubSequenceBattle() {
-}
-
 void KoopaSubSequenceBattle::kill() {
     mIsDead = true;
+    
     MR::offSwitchB(mHost);
 }
 
-bool KoopaSubSequenceBattle::isDemo() {
+bool KoopaSubSequenceBattle::isDemo() const {
     if (isNerve(&NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvDemoStartLv2::sInstance) ||
         isNerve(&NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvDemoStartLv3::sInstance)) {
         return true;
@@ -33,6 +32,7 @@ bool KoopaSubSequenceBattle::isDemo() {
 }
 
 void KoopaSubSequenceBattle::exeBattleLv1() {
+    MR::updateActorStateAndNextNerve(this, mBattleBase, &NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvDemoStartLv2::sInstance);
 }
 
 void KoopaSubSequenceBattle::exeDemoStartLv2() {
@@ -44,6 +44,7 @@ void KoopaSubSequenceBattle::exeDemoStartLv2() {
 }
 
 void KoopaSubSequenceBattle::exeBattleLv2() {
+    MR::updateActorStateAndNextNerve(this, mBattleBase, &NrvKoopaSubSequenceBattle::KoopaSubSequenceBattleNrvDemoStartLv3::sInstance);
 }
 
 void KoopaSubSequenceBattle::exeDemoStartLv3() {
@@ -55,4 +56,10 @@ void KoopaSubSequenceBattle::exeDemoStartLv3() {
 }
 
 void KoopaSubSequenceBattle::exeBattleLv3() {
+    if (MR::updateActorState(this, mBattleBase)) {
+        kill();
+    }
+}
+
+KoopaSubSequenceBattle::~KoopaSubSequenceBattle() {
 }

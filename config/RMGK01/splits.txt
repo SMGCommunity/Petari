@@ -1041,13 +1041,13 @@ Game/Boss/KoopaSubSequenceBattle.cpp:
 Game/Boss/KoopaSequencerVs1.cpp:
 	.text       start:0x80061CFC end:0x80062424
 	.ctors      start:0x8052E914 end:0x8052E918
-	.data       start:0x8056D6F8 end:0x8056D960
+	.data       start:0x8056D6F8 end:0x8056D878
 	.sbss       start:0x806B3488 end:0x806B34A8
 
 Game/Boss/KoopaSequencerVs2.cpp:
 	.text       start:0x80062424 end:0x80062A88
 	.ctors      start:0x8052E918 end:0x8052E91C
-	.data       start:0x8056D960 end:0x8056D9F8
+	.data       start:0x8056D878 end:0x8056D9F8
 	.sbss       start:0x806B34A8 end:0x806B34C8
 
 Game/Boss/KoopaSequencerVs3.cpp:
