@@ -96,7 +96,7 @@ public:
     /* 0x124 */ DodoryuRabbit* mRabbit;
     /* 0x128 */ TVec3f _128;
     /* 0x134 */ TVec3f _134;
-    /* 0x140 */ AreaObj* _140;
+    /* 0x140 */ AreaObj* mClosedAreaObj;
     /* 0x144 */ u8 _144;
     /* 0x148 */ CameraTargetMtx* _148;
     /* 0x14C */ CameraTargetMtx* _14C;
@@ -119,7 +119,7 @@ public:
 
 class DodoryuRabbit : public ModelObj {
 public:
-    DodoryuRabbit(Dodoryu* pHost, const JMapInfoIter& rIter);
+    DodoryuRabbit(Dodoryu* pDodoryu, const JMapInfoIter& rIter);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
@@ -144,8 +144,8 @@ public:
     /* 0x94 */ TMtx34f _94;
     /* 0xC4 */ f32 _C4;
     /* 0xC8 */ TalkMessageCtrl* mTalkCtrl;
-    /* 0xCC */ u32 _CC;
-    /* 0xD0 */ u32 _D0;
+    /* 0xCC */ s32 _CC;
+    /* 0xD0 */ s32 _D0;
     /* 0xD4 */ JointRumbler* _D4;
     /* 0xD8 */ JointRumbler* _D8;
     /* 0xDC */ bool mIsDisplayMessage;
