@@ -1,6 +1,6 @@
 #pragma once
 
-#include <revolution/types.h>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class Dodoryu;
 
@@ -15,7 +15,7 @@ namespace DodoryuSub {
 
         /* 0x04 */ MoveStateHolder* mHolder;
         /* 0x08 */ Dodoryu* mHost;
-        /* 0x0C */ u32 _C;
+        /* 0x0C */ s32 mStep;
     };
 
     class MoveStateRail : public MoveState {
@@ -30,7 +30,8 @@ namespace DodoryuSub {
 
     class MoveStateChase : public MoveState {
     public:
-        MoveStateChase(MoveStateHolder* pHolder);
+        MoveStateChase(MoveStateHolder* pHolder) : MoveState(pHolder), _10(), _14(), _18(), _1C() {
+        }
 
         virtual void execute();
 
@@ -60,16 +61,14 @@ namespace DodoryuSub {
 
         virtual void execute();
 
-        /* 0x10 */ u32 _10;
+        /* 0x10 */ s32 _10;
         /* 0x14 */ s32 _14;
         /* 0x18 */ s32 _18;
         /* 0x1C */ f32 _1C;
         /* 0x20 */ f32 _20;
         /* 0x24 */ f32 _24;
         /* 0x28 */ f32 _28;
-        /* 0x2C */ f32 _2C;
-        /* 0x20 */ f32 _30;
-        /* 0x34 */ f32 _34;
+        /* 0x2C */ TVec3f _2C;
     };
 
     class MoveStateJumpOut : public MoveState {
@@ -103,8 +102,8 @@ namespace DodoryuSub {
         void setRailSpeed(f32);
 
         /* 0x00 */ Dodoryu* mHost;
-        /* 0x04 */ MoveState* _4;
-        /* 0x08 */ MoveState* _8;
+        /* 0x04 */ MoveState* mNextState;
+        /* 0x08 */ MoveState* mCurrentState;
         /* 0x0C */ MoveStateRail* mRailState;
         /* 0x10 */ MoveStateChase* mChaseState;
         /* 0x14 */ MoveStateDetour* mDetourState;
