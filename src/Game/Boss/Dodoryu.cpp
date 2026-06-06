@@ -58,6 +58,21 @@ namespace {
     // static const TVec3f sRotateVel = _;
 };  // namespace
 
+namespace {
+    NEW_NERVE(DodoryuBankNrvBankAppear, DodoryuBank, Appear);
+};  // namespace
+
+namespace {
+    NEW_NERVE(DodoryuRabbitNrvRabbitEscapeWaiting, DodoryuRabbit, EscapeWaiting);
+    NEW_NERVE(DodoryuRabbitNrvRabbitEscape, DodoryuRabbit, Escape);
+    NEW_NERVE(DodoryuRabbitNrvRabbitEscapeSlow, DodoryuRabbit, EscapeSlow);
+    NEW_NERVE(DodoryuRabbitNrvRabbitRest, DodoryuRabbit, Rest);
+    NEW_NERVE(DodoryuRabbitNrvRabbitJump, DodoryuRabbit, Jump);
+    NEW_NERVE(DodoryuRabbitNrvRabbitWait, DodoryuRabbit, Wait);
+    NEW_NERVE(DodoryuRabbitNrvRabbitReturn, DodoryuRabbit, Return);
+    NEW_NERVE(DodoryuRabbitNrvRabbitPleasure, DodoryuRabbit, Pleasure);
+};  // namespace
+
 Dodoryu::Dodoryu(const char* pName)
     : LiveActor(pName), _BC(0.0f, 0.0f, 0.0f), _C8(), _CC(), mState(), mMoveStateHolder(), mHill(), mLeadHill(), mBank(), mRabbit(),
       _128(0.0f, 1.0f, 0.0f), _134(1.0f, 0.0f, 0.0f), _140(), _144(), _148(new CameraTargetMtx("カメラターゲットダミー")),
@@ -85,9 +100,9 @@ void Dodoryu::init(const JMapInfoIter& rIter) {
     MR::declareCameraRegisterVec(this, 0, &_BC);
     MR::declareGlobalEventCameraFixedThere(::sSpinOutCamera, true, 0.0f);
     createMogucchiHill();
-    // mLeadHill = new DodoryuLeadHill(this);
+    mLeadHill = new DodoryuLeadHill(this);
     createDodoryuBank();
-    // mRabbit = new DodoryuRabbit(this, rIter);
+    mRabbit = new DodoryuRabbit(this, rIter);
     MR::declarePowerStar(this);
     MR::createDepthOfFieldBlur();
     MR::declareStarPiece(this, 24);
@@ -112,7 +127,7 @@ void Dodoryu::initAfterPlacement() {
 void Dodoryu::control() {
     mMoveStateHolder->execute();
     checkHipDrop();
-    mState[_CC]->control();
+    mState[_CC]->movement();
     updateRumblePad();
     updateCameraTarget();
     mAnimScaleCtrl->updateNerve();
@@ -120,13 +135,13 @@ void Dodoryu::control() {
 
 void Dodoryu::startClipped() {
     LiveActor::startClipped();
-    // MR::validateClipping(mRabbit);
+    MR::validateClipping(mRabbit);
     mState[_CC]->catchStartClipped();
 }
 
 void Dodoryu::endClipped() {
     LiveActor::endClipped();
-    // MR::invalidateClipping(mRabbit);
+    MR::invalidateClipping(mRabbit);
     mState[_CC]->catchEndClipped();
 }
 
@@ -137,9 +152,9 @@ void Dodoryu::endClipped() {
 void Dodoryu::notifyOnSwitchA() {
     MR::invalidateClipping(this);
     MR::invalidateClipping(mHill);
-    // MR::invalidateClipping(mLeadHill);
-    // MR::invalidateClipping(mBank);
-    // MR::invalidateClipping(mRabbit);
+    MR::invalidateClipping(mLeadHill);
+    MR::invalidateClipping(mBank);
+    MR::invalidateClipping(mRabbit);
     _144 = 1;
     mHill->setAppearNum(mHill->_94);
 }
@@ -149,9 +164,9 @@ void Dodoryu::notifyOnSwitchA() {
 void Dodoryu::pauseOff() {
     MR::requestMovementOn(this);
     mHill->pauseOff();
-    // MR::requestMovementOn(mLeadHill);
-    // MR::requestMovementOn(mBank);
-    // MR::requestMovementOn(mRabbit);
+    MR::requestMovementOn(mLeadHill);
+    MR::requestMovementOn(mBank);
+    MR::requestMovementOn(mRabbit);
     MR::requestEffectStopSceneEnd();
 }
 
@@ -265,7 +280,7 @@ void Dodoryu::setHillAppearNumHalf() {
 void Dodoryu::setHillAppearNumMax() {
     mHill->setAppearNum(mHill->_94 - 10);
 }
-/*
+
 void Dodoryu::startLeadHillBck(const char* pBckName) {
     if (MR::isDead(mLeadHill)) {
         mLeadHill->appear();
@@ -284,17 +299,19 @@ void Dodoryu::appearBank() {
 }
 
 void Dodoryu::leaveRabbit() {
-    if (MR::isDead(mRabbit)) {
+    DodoryuRabbit* rabbit = mRabbit;
+
+    if (MR::isDead(rabbit)) {
         return;
     }
 
-    setNerve(&::DodoryuRabbitNrvRabbitJump::sInstance);
+    rabbit->setNerve(&::DodoryuRabbitNrvRabbitJump::sInstance);
 }
 
 void Dodoryu::resetRabbit() {
     mRabbit->reset(true);
 }
-*/
+
 // Dodoryu::calcRabbitDir
 // Dodoryu::displayRabbitMessage
 // Dodoryu::calcAndSetBaseMtx

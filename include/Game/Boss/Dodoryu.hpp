@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Util/Array.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
@@ -15,6 +15,10 @@ class DodoryuStateBase;
 namespace DodoryuSub {
     class MoveStateHolder;
 };  // namespace DodoryuSub
+
+class JointController;
+class JointRumbler;
+class TalkMessageCtrl;
 
 class Dodoryu : public LiveActor {
 public:
@@ -99,4 +103,67 @@ public:
     /* 0x150 */ u8 _150;
     /* 0x154 */ u32 _154;
     /* 0x158 */ AnimScaleController* mAnimScaleCtrl;
+};
+
+class DodoryuBank : public ModelObj {
+public:
+    /// @brief Creates a new `DodoryuBank`.
+    DodoryuBank();
+
+    virtual void init(const JMapInfoIter& rIter);
+
+    void exeAppear();
+
+    /* 0x90 */ TMtx34f _90;
+};
+
+class DodoryuRabbit : public ModelObj {
+public:
+    DodoryuRabbit(Dodoryu* pHost, const JMapInfoIter& rIter);
+
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void control();
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+
+    void reset(bool);
+    void updatePos(f32);
+    f32 calcCoordDiff() const;
+    bool tryTalk();
+
+    void exeEscapeWaiting();
+    void exeEscape();
+    void exeEscapeSlow();
+    void exeRest();
+    void exeJump();
+    void exeWait();
+    void exeReturn();
+    void exePleasure();
+
+    /* 0x90 */ Dodoryu* mDodoryu;
+    /* 0x94 */ TMtx34f _94;
+    /* 0xC4 */ f32 _C4;
+    /* 0xC8 */ TalkMessageCtrl* mTalkCtrl;
+    /* 0xCC */ u32 _CC;
+    /* 0xD0 */ u32 _D0;
+    /* 0xD4 */ JointRumbler* _D4;
+    /* 0xD8 */ JointRumbler* _D8;
+    /* 0xDC */ bool mIsDisplayMessage;
+    /* 0xE0 */ TPos3f _E0;
+};
+
+class DodoryuLeadHill : public LiveActor {
+public:
+    DodoryuLeadHill(Dodoryu* pHost);
+
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+
+    void initJoint();
+    bool calcJoint(TPos3f*, const JointControllerInfo&);
+
+    /* 0x8C */ MtxPtr mHostBaseMtx;
+    /* 0x90 */ f32 _90;
+    /* 0x94 */ JointController* _94[17];
 };
