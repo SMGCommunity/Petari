@@ -1,4 +1,5 @@
 #include "Game/Map/OceanHomeMapCtrl.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/PlanetMap.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"

@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/ActorJointCtrl.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
+
+class ActorJointCtrl;
+class LodCtrl;
 
 class ModelObj : public LiveActor {
 public:
@@ -24,6 +25,6 @@ public:
     virtual void calcAndSetBaseMtx() override;
 
     /* 0x8C */ MtxPtr mMtx;
-    /* 0x8C */ LodCtrl* mLodCtrl;
-    /* 0x8C */ ActorJointCtrl* mJointCtrl;
+    /* 0x90 */ LodCtrl* mLodCtrl;
+    /* 0x94 */ ActorJointCtrl* mJointCtrl;
 };
