@@ -42,7 +42,7 @@ void TripodBossGuardWall::makeActorAppeared() {
 }
 
 void TripodBossGuardWall::makeActorDead() {
-    for (s32 i = 0; i < 8; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
         mWallParts[i].makeActorDead();
     }
 
@@ -50,7 +50,7 @@ void TripodBossGuardWall::makeActorDead() {
 }
 
 void TripodBossGuardWall::kill() {
-    for (s32 i = 0; i < 8; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
         mWallParts[i].kill();
     }
 
@@ -81,7 +81,7 @@ void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
 }
 
 void TripodBossGuardWall::initParts() {
-    for (s32 i = 0; i < 8; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
         mWallParts[i].setHostMatrix(&mBaseMtx);
         mWallParts[i].setPlacementAngle(sWallPartPlacementAngleTable[i].angle);
         mWallParts[i].setStartTiming(sWallPartPlacementAngleTable[i].partNo);
@@ -99,7 +99,7 @@ void TripodBossGuardWall::calcAndSetBaseMtx() {
 
 bool TripodBossGuardWall::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_TRIPODBOSS_STARTED) {
-        for (s32 i = 0; i < 8; i++) {
+        for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
             mWallParts[i].makeActorAppeared();
         }
 
@@ -111,6 +111,15 @@ bool TripodBossGuardWall::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
 
 void TripodBossGuardWall::requestStart() {
     setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvTryDemo::sInstance);
+    if (MR::tryDamageDemoTripodBoss()) {
+        setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvDemo::sInstance);
+    }
+}
+
+void TripodBossGuardWall::exeWait() {
+}
+
+void TripodBossGuardWall::exeTryDemo() {
     if (MR::tryDamageDemoTripodBoss()) {
         setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvDemo::sInstance);
     }
@@ -135,7 +144,7 @@ void TripodBossGuardWall::exeDemo() {
 
     if (MR::isGreaterStep(this, 180)) {
         bool isDemoEndAny = true;
-        for (s32 i = 0; i < 8; i++) {
+        for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
             if (!mWallParts[i].isEndDemo()) {
                 isDemoEndAny = false;
                 break;
@@ -160,12 +169,6 @@ void TripodBossGuardWall::exeRotate() {
     MR::startLevelSound(this, "SE_BM_LV_TRIPOD_C_WALL_MOVE");
     if (MR::isEndBreakDownDemoTripodBoss()) {
         kill();
-    }
-}
-
-void TripodBossGuardWall::exeTryDemo() {
-    if (MR::tryDamageDemoTripodBoss()) {
-        setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvDemo::sInstance);
     }
 }
 

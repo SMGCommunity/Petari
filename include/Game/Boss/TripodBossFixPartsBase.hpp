@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Game/Boss/TripodBossBreakMovement.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+
+class TripodBossBreakMovement;
 
 class TripodBossFixPartsBase : public LiveActor {
 public:
@@ -25,12 +24,12 @@ public:
     void updateTripodMatrix();
     void initBreakMovement(s32);
 
-    TPos3f _8C;
-    TVec3f _BC;
-    TripodBossBreakMovement* mBreakMovement;  // 0xC8
-    s32 _CC;
-    TVec3f _D0;
-    f32 mClippingDistance;  // 0xDC
-    u8 _E0;
-    u8 _E1;
+    /* 0x8C */ TPos3f _8C;
+    /* 0xBC */ TVec3f _BC;
+    /* 0xC8 */ TripodBossBreakMovement* mBreakMovement;
+    /* 0xCC */ s32 _CC;
+    /* 0xD0 */ TVec3f _D0;
+    /* 0xDC */ f32 mClippingDistance;
+    /* 0xE0 */ u8 _E0;
+    /* 0xE1 */ u8 _E1;
 };

@@ -4,6 +4,7 @@
 #include "Game/Boss/BossKameckMoveRail.hpp"
 #include "Game/Enemy/KameckBeam.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
+#include "Game/LiveActor/ActiveActorList.hpp"
 
 namespace NrvBossKameckStateBattle {
     NEW_NERVE(BossKameckStateBattleNrvWait, BossKameckStateBattle, Wait);

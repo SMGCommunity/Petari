@@ -77,6 +77,9 @@ void PoltaArm::control() {
     }
 }
 
+void PoltaArm::exeControlled() {
+}
+
 void PoltaArm::exeDamage() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Damage");
@@ -143,6 +146,10 @@ void PoltaArm::exeRepair() {
     }
 }
 
+void PoltaArm::endRepair() {
+    mFormationModel->kill();
+}
+
 void PoltaArm::exeBroken() {
     if (!_D4) {
         mBrokenCounter++;
@@ -150,6 +157,12 @@ void PoltaArm::exeBroken() {
     if (mBrokenCounter > 1200) {
         setNerve(&NrvPoltaArm::PoltaArmNrvRepair::sInstance);
     }
+}
+
+void PoltaArm::exeWaitDamageEnd() {
+}
+
+void PoltaArm::exeWaitRepairEnd() {
 }
 
 bool PoltaArm::isEnableHitSensor() const {
@@ -267,17 +280,4 @@ void PoltaArm::appearBreakModel() {
     mBreakModel->makeActorAppeared();
     MR::invalidateClipping(mBreakModel);
     MR::startAction(mBreakModel, "Break");
-}
-
-inline void PoltaArm::exeWaitRepairEnd() {
-}
-
-inline void PoltaArm::exeWaitDamageEnd() {
-}
-
-inline void PoltaArm::endRepair() {
-    mFormationModel->kill();
-}
-
-inline void PoltaArm::exeControlled() {
 }
