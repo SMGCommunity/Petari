@@ -862,15 +862,16 @@ Game/Boss/Dodoryu.cpp:
 	.text       start:0x8004ED54 end:0x80051C54
 	.ctors      start:0x8052E8D0 end:0x8052E8D4
 	.rodata     start:0x80530F60 end:0x80530FC8
-	.data       start:0x8056A3B8 end:0x8056AFB0
-	.sdata      start:0x806B16E0 end:0x806B1730
+	.data       start:0x8056A3B8 end:0x8056ADD8
+	.sdata      start:0x806B16E0 end:0x806B1720
 	.sbss       start:0x806B3288 end:0x806B32B0
 	.sdata2     start:0x806B8660 end:0x806B86E0
 
 Game/Boss/DodoryuDemo.cpp:
 	.text       start:0x80051C54 end:0x80053060
 	.ctors      start:0x8052E8D4 end:0x8052E8D8
-	.data       start:0x8056AFB0 end:0x8056B378
+	.data       start:0x8056ADD8 end:0x8056B378
+	.sdata      start:0x806B1720 end:0x806B1728
 	.sbss       start:0x806B32B0 end:0x806B32E8
 	.sdata2     start:0x806B86E0 end:0x806B86F8
 
@@ -891,6 +892,7 @@ Game/Boss/DodoryuStateLv1.cpp:
 	.text       start:0x80053CB4 end:0x800550D8
 	.ctors      start:0x8052E8D8 end:0x8052E8DC
 	.data       start:0x8056B4B0 end:0x8056B828
+	.sdata      start:0x806B1728 end:0x806B1730
 	.sbss       start:0x806B32E8 end:0x806B3310
 	.sdata2     start:0x806B8728 end:0x806B8750
 
