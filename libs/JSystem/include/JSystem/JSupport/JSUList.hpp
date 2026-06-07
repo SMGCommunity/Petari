@@ -37,7 +37,7 @@ public:
     JSULink(void* pData) : JSUPtrLink(pData) {
     }
 
-    ~JSULink() NO_INLINE {
+    ~JSULink() {
     }
 
     T* getObject() const {

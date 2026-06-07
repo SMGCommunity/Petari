@@ -10526,7 +10526,7 @@ JSystem/JAudio2/osdsp.cpp:
 
 JSystem/JAudio2/osdsp_task.cpp:
 	.text       start:0x804987E0 end:0x80498CCC
-	.rodata     start:0x80561A80 end:0x80561B30
+	.rodata     start:0x80561A80 end:0x80561B08
 	.bss        start:0x80664BE0 end:0x80664BF8
 	.sbss       start:0x806B75C0 end:0x806B75C0
 
@@ -10546,7 +10546,7 @@ JSystem/JAudio2/JAISeMgr.cpp:
 	.ctors      start:0x8052F424 end:0x8052F428
 	.data       start:0x805EEEF8 end:0x805EEF48
 	.bss        start:0x80664BF8 end:0x80664C18
-	.sbss       start:0x806B75C0 end:0x806B75E8
+	.sbss       start:0x806B75C0 end:0x806B75D0
 	.sdata2     start:0x806C1FF8 end:0x806C2000
 
 JSystem/JAudio2/JAISeq.cpp:
@@ -10564,9 +10564,11 @@ JSystem/JAudio2/JAISeqMgr.cpp:
 	.ctors      start:0x8052F42C end:0x8052F430
 	.data       start:0x805EEF98 end:0x805EEFC0
 	.bss        start:0x80664C40 end:0x80664C60
+	.sbss       start:0x806B75D0 end:0x806B75D8
 
 JSystem/JAudio2/JAISound.cpp:
 	.text       start:0x8049BA70 end:0x8049C194
+	.rodata     start:0x80561B08 end:0x80561B10
 	.data       start:0x805EEFC0 end:0x805EF030
 	.sdata2     start:0x806C2008 end:0x806C2018
 
@@ -10582,6 +10584,7 @@ JSystem/JAudio2/JAISoundInfo.cpp:
 
 JSystem/JAudio2/JAISoundParams.cpp:
 	.text       start:0x8049C464 end:0x8049C518
+	.rodata     start:0x80561B10 end:0x80561B18
 
 JSystem/JAudio2/JAISoundStarter.cpp:
 	.text       start:0x8049C518 end:0x8049C6BC
@@ -10602,11 +10605,13 @@ JSystem/JAudio2/JAIStreamMgr.cpp:
 	.text       start:0x8049D0A0 end:0x8049D688
 	.ctors      start:0x8052F434 end:0x8052F438
 	.bss        start:0x80664C70 end:0x80664C90
+	.sbss       start:0x806B75D8 end:0x806B75E0
 
 JSystem/JAudio2/JAUAudience.cpp:
 	.text       start:0x8049D688 end:0x8049DB94
 	.ctors      start:0x8052F438 end:0x8052F43C
 	.bss        start:0x80664C90 end:0x80664D38
+	.sbss       start:0x806B75E0 end:0x806B75E8
 	.sdata2     start:0x806C2020 end:0x806C2050
 
 JSystem/JAudio2/JAUAudioArcInterpreter.cpp:
@@ -10641,6 +10646,7 @@ JSystem/JAudio2/JAUSeqDataBlockMgr.cpp:
 
 JSystem/JAudio2/JAUSoundAnimator.cpp:
 	.text       start:0x804A0ABC end:0x804A11D0
+	.rodata     start:0x80561B18 end:0x80561B28
 	.data       start:0x805EF230 end:0x805EF248
 	.sdata2     start:0x806C2058 end:0x806C2070
 
@@ -10657,6 +10663,7 @@ JSystem/JAudio2/JAUSoundTable.cpp:
 
 JSystem/JAudio2/JAUStdSoundInfo.cpp:
 	.text       start:0x804A215C end:0x804A2628
+	.rodata     start:0x80561B28 end:0x80561B30
 	.data       start:0x805EF290 end:0x805EF2E0
 	.sdata2     start:0x806C2070 end:0x806C2080
 

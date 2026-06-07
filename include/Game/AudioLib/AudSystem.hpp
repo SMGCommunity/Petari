@@ -2,6 +2,8 @@
 
 #include "Game/AudioLib/AudAudience.hpp"
 #include "Game/AudioLib/AudBgmMgr.hpp"
+#include "JSystem/JAudio2/JAIAudible.hpp"
+#include "JSystem/JAudio2/JAIAudience.hpp"
 #include <JSystem/JAudio2/JASAudioReseter.hpp>
 #include <JSystem/JAudio2/JAUSoundMgr.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
@@ -130,3 +132,12 @@ public:
 
 AudSystem* AudNewAudSystem(JKRSolidHeap*, void*, JKRArchive*, JKRArchive*, JKRArchive*, JKRArchive*);
 AudSystem* AudNewAudSystem_(JAUSectionHeap*, JKRArchive*, JKRArchive*, JKRArchive*, int);
+
+template < int SIZE, class T, class U >
+class AudGenericAudible : public JAIAudible {
+public:
+    // todo: finish, and properly classify template parameters
+    virtual ~AudGenericAudible();
+    virtual JASSoundParams* getOuterParams(int);
+    virtual void calc();
+};
