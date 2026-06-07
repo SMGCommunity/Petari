@@ -11,7 +11,7 @@ namespace {
 };  // namespace
 
 ClipAreaHolder::ClipAreaHolder(const char* pName) : DeriveActorGroup< ClipArea >(pName, 64), mIsActive(true) {
-    MR::registerPreDrawFunction(MR::FunctorV0F(&MR::setupShadowVolumeDraw), MR::DrawType_ClipArea);
+    MR::registerPreDrawFunction(MR::Functor_Inline(&MR::setupShadowVolumeDraw), MR::DrawType_ClipArea);
 }
 
 void ClipAreaHolder::init(const JMapInfoIter& rIter) {
