@@ -11,9 +11,7 @@ namespace {
 };  // namespace
 
 ClipAreaHolder::ClipAreaHolder(const char* pName) : DeriveActorGroup< ClipArea >(pName, 64), mIsActive(true) {
-    const MR::FunctorV0F func(*MR::setupShadowVolumeDraw);
-
-    MR::registerPreDrawFunction(func, MR::DrawType_ClipArea);
+    MR::registerPreDrawFunction(MR::FunctorV0F(&MR::setupShadowVolumeDraw), MR::DrawType_ClipArea);
 }
 
 void ClipAreaHolder::init(const JMapInfoIter& rIter) {
@@ -25,13 +23,14 @@ bool ClipAreaHolder::isInArea(const TVec3f& rParam1, f32 param2) const {
     }
     s32 count = getObjectCount();
     for (s32 i = 0; i < count; i++) {
-        LiveActor* actor = getActor(i);
-        if (!MR::isDead(actor)) {
-            ClipArea* area = static_cast< ClipArea* >(getActor(i));
-            if (area->isInArea(rParam1, param2)) {
-                return true;
-            }
+        if (MR::isDead(getActor(i))) {
+            continue;
         }
+        ClipArea* area = static_cast< ClipArea* >(getActor(i));
+        if (!area->isInArea(rParam1, param2)) {
+            continue;
+        }
+        return true;
     }
     return false;
 }
@@ -81,8 +80,8 @@ namespace MR {
         getClipAreaHolder()->mIsActive = false;
     }
 
-    void setBinderExceptSensorType(LiveActor* pActor, const TVec3f* pParam1, f32 param2) {
-        ClipAreaCollisionFilter* filter = new ClipAreaCollisionFilter(pParam1, param2);
-        setBinderCollisionPartsFilter(pActor, filter);
+    void setBinderExceptSensorType(LiveActor* actor, const TVec3f* pParam1, f32 param2) {
+        ClipAreaCollisionFilter* pFilter = new ClipAreaCollisionFilter(pParam1, param2);
+        setBinderCollisionPartsFilter(actor, pFilter);
     }
 };  // namespace MR
