@@ -587,9 +587,9 @@ void DodoryuBank::exeAppear() {
     }
 }
 
-DodoryuRabbit::DodoryuRabbit(Dodoryu* pDodoryu, const JMapInfoIter& rIter)
-    : ModelObj("ドドリュウに追われるウサギ", "DodoryuRabbit", _94, MR::DrawBufferType_NPC, -2, -2, false), mDodoryu(pDodoryu), _C4(), mTalkCtrl(),
-      _CC(300), _D0(), _D4(), _D8(), mIsDisplayMessage() {
+DodoryuRabbit::DodoryuRabbit(Dodoryu* pHost, const JMapInfoIter& rIter)
+    : ModelObj("ドドリュウに追われるウサギ", "DodoryuRabbit", _94, MR::DrawBufferType_NPC, -2, -2, false), mHost(pHost), _C4(), mTalkCtrl(), _CC(300),
+      _D0(), _D4(), _D8(), mIsDisplayMessage() {
     _94.identity();
 
     initWithoutIter();
@@ -718,7 +718,7 @@ void DodoryuRabbit::exeJump() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Jump", nullptr);
         MR::startBtp(this, "Blink");
-        _94.setInline(mDodoryu->_148->mMatrix);
+        _94.setInline(mHost->_148->mMatrix);
     }
 
     MR::setNerveAtBckStopped(this, &::DodoryuRabbitNrvRabbitWait::sInstance);
@@ -787,7 +787,7 @@ bool DodoryuRabbit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSenso
 }
 
 void DodoryuRabbit::reset(bool param1) {
-    _C4 = MR::getRailCoord(mDodoryu) + 1075.0f;
+    _C4 = MR::getRailCoord(mHost) + 1075.0f;
 
     setNerve(&::DodoryuRabbitNrvRabbitEscape::sInstance);
 
@@ -799,10 +799,10 @@ void DodoryuRabbit::reset(bool param1) {
 // DodoryuRabbit::updatePos
 
 f32 DodoryuRabbit::calcCoordDiff() const {
-    f32 coord = MR::getRailCoord(mDodoryu);
+    f32 coord = MR::getRailCoord(mHost);
 
     if (_C4 < coord) {
-        return (_C4 + MR::getRailTotalLength(mDodoryu)) - coord;
+        return (_C4 + MR::getRailTotalLength(mHost)) - coord;
     }
 
     return _C4 - coord;
