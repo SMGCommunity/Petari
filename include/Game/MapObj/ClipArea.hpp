@@ -9,15 +9,16 @@ class ClipAreaShape;
 class ClipArea : public LiveActor {
 public:
     ClipArea(const char*);
+	
+	virtual ~ClipArea();
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual MtxPtr getBaseMtx() const;
-    virtual ~ClipArea();
+	virtual bool isInArea(const TVec3f&, f32) const;
 
     void initBaseMatrix(const JMapInfoIter&);
     void setShape(ClipAreaShape*);
-    bool isInArea(const TVec3f&, f32) const;
-
-    TPos3f mBaseMatrix;     // 0x8C
-    ClipAreaShape* mShape;  // 0xBC
+    
+    /* 0x8C */ TPos3f mBaseMatrix;
+    /* 0xBC */ ClipAreaShape* mShape;
 };
