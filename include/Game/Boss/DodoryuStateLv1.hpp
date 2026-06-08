@@ -31,22 +31,25 @@ public:
     void startAnimEffectWalkHide();
 
     void exeHide();
+    void endHide();
     void exeAppearSign();
     void exeAppearStart();
+    void endAppearStart();
     void exeAppear();
+    void endAppear();
     void exeAppearEnd();
     void exeJumpOut();
     void exeDamage();
     void exeDive();
     void exeSpinOut();
 
-    /* 0x90 */ s32 _90;
-    /* 0x94 */ s32 _94;
+    /* 0x90 */ s32 mHideStep;
+    /* 0x94 */ s32 mAppearStep;
     /* 0x98 */ TVec3f _98;
     /* 0xA4 */ bool _A4;
-    /* 0xA5 */ bool _A5;
-    /* 0xA8 */ f32 _A8;
-    /* 0xAC */ f32 _AC;
-    /* 0xB0 */ f32 _B0;
-    /* 0xB4 */ f32 _B4;
+    /* 0xA5 */ bool mIsValidPop;
+    /* 0xA8 */ f32 mPopAccel;
+    /* 0xAC */ f32 mPopSpeed;
+    /* 0xB0 */ f32 mRailSpeed;
+    /* 0xB4 */ f32 mRailSpeedMax;
 };
