@@ -11,6 +11,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/JointController.hpp"
 #include "Game/Util/JointRumbler.hpp"
 #include <cstdio>
 
@@ -955,4 +956,55 @@ bool DodoryuRabbit::tryTalk() {
     }
 
     return false;
+}
+
+DodoryuLeadHill::DodoryuLeadHill(Dodoryu* pHost) : LiveActor("ドドリュウ塚先頭"), mHostBaseMtx(getBaseMtx()), _90() {
+    for (int i = 0; i < ARRAY_SIZE(_94); i++) {
+        _94[i] = nullptr;
+    }
+
+    initWithoutIter();
+}
+
+void DodoryuLeadHill::init(const JMapInfoIter& rIter) {
+    initModelManagerWithAnm("DodoryuLeadHill", nullptr, false);
+    MR::connectToSceneMapObjDecorationStrongLight(this);
+    MR::initLightCtrl(this);
+    initSound(8, false);
+    initEffectKeeper(8, nullptr, false);
+    mPosition.setTrans(mHostBaseMtx);
+    initJoint();
+    makeActorAppeared();
+}
+
+void DodoryuLeadHill::control() {
+    _90 += 0.07f;
+}
+
+// DodoryuLeadHill::calcJoint
+
+void DodoryuLeadHill::calcAndSetBaseMtx() {
+    for (int i = 0; i < ARRAY_SIZE(_94); i++) {
+        _94[i]->registerCallBack();
+    }
+
+    if (mHostBaseMtx != nullptr) {
+        mPosition.setTrans(mHostBaseMtx);
+        MR::setBaseTRMtx(this, mHostBaseMtx);
+    } else {
+        LiveActor::calcAndSetBaseMtx();
+    }
+}
+
+void DodoryuLeadHill::initJoint() {
+    for (int i = 0; i < ARRAY_SIZE(_94); i++) {
+        char buf[64];
+        snprintf(buf, sizeof(buf), "DodoryuLeadHill%d", i + 1);
+
+        JointControlDelegator< DodoryuLeadHill >* pJointDelegator = new JointControlDelegator< DodoryuLeadHill >(this, &DodoryuLeadHill::calcJoint, nullptr);
+
+        MR::setJointControllerParam(pJointDelegator, this, buf);
+
+        _94[i] = pJointDelegator;
+    }
 }
