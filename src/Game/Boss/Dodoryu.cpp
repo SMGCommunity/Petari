@@ -11,7 +11,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-// #include "Game/Util/JointRumbler.hpp"
+#include "Game/Util/JointRumbler.hpp"
 #include <cstdio>
 
 namespace {
@@ -607,8 +607,8 @@ void DodoryuRabbit::init(const JMapInfoIter& rIter) {
     MR::addHitSensorAtJointEnemy(this, "body", "Spine", 8, 50.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initShadowFromCSV(this, "Shadow");
 
-    // _D4 = new JointRumbler(this, "Spine", 4.0f, 0.2f, 60, true, 0);
-    // _D8 = new JointRumbler(this, "Spine", 4.0f, 0.2f, 30, true, 0);
+    _D4 = new JointRumbler(this, "Spine", 4.0f, 0.2f, 60, true, 0);
+    _D8 = new JointRumbler(this, "Spine", 4.0f, 0.2f, 30, true, 0);
 
     MR::initLightCtrl(this);
     reset(false);
@@ -630,7 +630,7 @@ void DodoryuRabbit::control() {
             MR::resetAndForwardNode(mTalkCtrl, _D0);
         }
     }
-    /*
+
     if (_D4->isRumbling()) {
         _D4->update();
     }
@@ -638,7 +638,7 @@ void DodoryuRabbit::control() {
     if (_D8->isRumbling()) {
         _D8->update();
     }
-    */
+
     if (isNerve(&::DodoryuRabbitNrvRabbitPleasure::sInstance) && getNerveStep() > 30) {
         return;
     }
@@ -761,24 +761,21 @@ void DodoryuRabbit::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool DodoryuRabbit::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerTrample(msg)) {
-        /*
         if (_D8->isRumbling()) {
             _D8->reset();
         }
 
         _D8->start();
-        */
+
         return true;
     }
 
     if (MR::isMsgStarPieceReflect(msg)) {
-        /*
         if (_D4->isRumbling()) {
             _D4->reset();
         }
 
         _D4->start();
-        */
 
         return false;
     }
