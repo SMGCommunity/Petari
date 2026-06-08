@@ -3,7 +3,7 @@
 #include "Game/Boss/DodoryuHill.hpp"
 #include "Game/Boss/DodoryuMove.hpp"
 #include "Game/Boss/DodoryuStateLv1.hpp"
-// #include "Game/Boss/DodoryuStateLv2.hpp"
+#include "Game/Boss/DodoryuStateLv2.hpp"
 #include "Game/Boss/DodoryuStateBase.hpp"
 #include "Game/Boss/DodoryuStateWait.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
@@ -21,8 +21,6 @@ namespace {
     static const Vec sArmOffset = {0.0f, 0.0f, 0.0f};
     static const Vec sTailOffset = {50.0f, 0.0f, 0.0f};
     static const Vec sStarPieceSensorOffset = {-150.0f, 0.0f, 0.0f};
-    // static _ sDodoryuChaseDataLv2 = _;
-    // static _ sDodoryuChaseDataLv3 = _;
     static const char* sHeadSensorName = "head";
     static const char* sHeadJointName = "Head";
     static const f32 sHeadRadius = 210.0f;
@@ -60,6 +58,152 @@ namespace {
     // static const f32 sTalkDistanceLong = _;
     // static const f32 sTalkDistanceShort = _;
     // static const TVec3f sRotateVel = _;
+    static DodoryuChaseParam sDodoryuChaseDataLv2 = {
+        60,
+        16.0f,
+        0.1f,
+        1.5f,
+        0.0f,
+        600.0f,
+        30,
+        9.0f,
+        0.1f,
+        1.0f,
+        0.0f,
+        45,
+        55,
+        800.0f,
+        180.0f,
+        5.0f,
+        0.2f,
+        2.0f,
+        0.0f,
+        120,
+        150,
+        5,
+        250,
+        1500.0f,
+        50,
+        70,
+        8.0f,
+        50.0f,
+        1.5f,
+        60,
+        120,
+        60,
+        90,
+        1200.0f,
+        1500.0f,
+        5.0f,
+        80,
+        -1,
+        51,
+        false,
+        10.0f,
+        1.0f,
+        3.0f,
+        0.92f,
+        360,
+        0.01f,
+        7.0f,
+        50,
+        60,
+        10,
+        20,
+        {"Burrow", nullptr, "Normal", "Normal", nullptr},
+        {"UnderGroundWalk", nullptr, "Normal", "Normal", nullptr},
+        {"UnderGroundWalk", nullptr, nullptr, "Normal", nullptr},
+        {"EffectWalkAppear", nullptr, "Normal", nullptr, "EffectWalkAppear"},
+        {"EffectWalk", nullptr, nullptr, nullptr, "EffectWalk"},
+        {"EffectWalkHide", nullptr, nullptr, nullptr, "EffectWalkHide"},
+        {"Appear", nullptr, nullptr, "Careless", "Appear"},
+        {"Walk", nullptr, nullptr, "Normal", "Walk"},
+        {"Hide", nullptr, nullptr, nullptr, "Hide"},
+        {"SwoonWalkStart", nullptr, nullptr, "Cry", nullptr},
+        {"SwoonWalk", nullptr, nullptr, nullptr, nullptr},
+        {"SwoonWalkEnd", nullptr, nullptr, nullptr, nullptr},
+        {"Dive", nullptr, nullptr, "Normal", nullptr},
+        {"AngryPunchDamage", nullptr, nullptr, nullptr, nullptr},
+        {"AttackHit", nullptr, nullptr, nullptr, "AttackHit"},
+        {"Hide", nullptr, nullptr, nullptr, "Hide"},
+        {"Jump", nullptr, nullptr, "Careless", "Jump"},
+        {},
+        {},
+        {},
+    };
+    static DodoryuChaseParam sDodoryuChaseDataLv3 = {
+        60,
+        20.0f,
+        0.2f,
+        1.0f,
+        0.0f,
+        500.0f,
+        30,
+        9.0f,
+        0.1f,
+        1.0f,
+        0.0f,
+        55,
+        65,
+        750.0f,
+        180.0f,
+        6.0f,
+        0.2f,
+        2.0f,
+        0.99f,
+        60,
+        75,
+        5,
+        140,
+        1500.0f,
+        40,
+        60,
+        9.0f,
+        70.0f,
+        2.0f,
+        60,
+        120,
+        60,
+        90,
+        1500.0f,
+        1600.0f,
+        5.0f,
+        -1,
+        45,
+        -1,
+        true,
+        18.0f,
+        0.5f,
+        0.1f,
+        0.96f,
+        240,
+        0.1f,
+        7.0f,
+        50,
+        60,
+        10,
+        20,
+        {"Burrow", nullptr, "Angry", "Angry", nullptr},
+        {"UnderGroundWalk", nullptr, "Angry", "Angry", nullptr},
+        {"UnderGroundWalk", nullptr, "Angry", "Angry", nullptr},
+        {"AngryEffectWalkAppear", nullptr, nullptr, nullptr, "EffectWalkAppear"},
+        {"AngryEffectWalk", nullptr, nullptr, nullptr, "EffectWalk"},
+        {"AngryEffectWalkHide", nullptr, nullptr, nullptr, "EffectWalkHide"},
+        {"AngryAppear", nullptr, nullptr, nullptr, "Appear"},
+        {"AngryWalk", nullptr, nullptr, nullptr, "Walk"},
+        {"AngryHide", nullptr, nullptr, nullptr, "Hide"},
+        {"SwoonWalkStart", nullptr, "CoolDown", "Cry", nullptr},
+        {"SwoonWalk", nullptr, "Normal", nullptr, nullptr},
+        {"SwoonWalkEnd", nullptr, nullptr, nullptr, nullptr},
+        {"AngryDive", nullptr, "AngryStart", "Angry", nullptr},
+        {"AngryPunchDamage", nullptr, nullptr, nullptr, nullptr},
+        {"AngryAttackHit", nullptr, nullptr, nullptr, "AttackHit"},
+        {"AngryHide", nullptr, nullptr, nullptr, "Hide"},
+        {"AngryJump", nullptr, nullptr, "Cry", "Jump"},
+        {"AngryChaseStart", nullptr, nullptr, "Cry", "AngryChaseStart"},
+        {"AngryChase", nullptr, nullptr, "Angry", "AngryChase"},
+        {"AngryChaseEnd", nullptr, nullptr, nullptr, "AngryChaseEnd"},
+    };
 };  // namespace
 
 namespace {
@@ -540,9 +684,9 @@ void Dodoryu::initState() {
     mState.push_back(new DodoryuDemoOpening(this, "DodoryuDemoOpening"));
     mState.push_back(new DodoryuStateLv1(this, "DodoryuStateLv1"));
     mState.push_back(new DodoryuDemoAppear(this, "DodoryuDemoAppear"));
-    // mState.push_back(new DodoryuStateLv2(this, &::sDodoryuChaseDataLv2, "DodoryuStateLv2"));
+    mState.push_back(new DodoryuStateLv2(this, &::sDodoryuChaseDataLv2, "DodoryuStateLv2"));
     mState.push_back(new DodoryuDemoAngry(this, "DodoryuDemoAngry"));
-    // mState.push_back(new DodoryuStateLv2(this, &::sDodoryuChaseDataLv3, "DodoryuStateLv3"));
+    mState.push_back(new DodoryuStateLv2(this, &::sDodoryuChaseDataLv3, "DodoryuStateLv3"));
     mState.push_back(new DodoryuDemoDown(this, "DodoryuDemoDown"));
     _CC = 0;
 }

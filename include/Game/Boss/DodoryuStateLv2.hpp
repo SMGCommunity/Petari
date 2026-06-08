@@ -56,7 +56,7 @@ struct DodoryuChaseParam {
     /* 0x0A8 */ f32 _A8;
     /* 0x0AC */ f32 _AC;
     /* 0x0B0 */ s32 mChaseMoreStep;
-    /* 0x0B4 */ s32 _B4;
+    /* 0x0B4 */ f32 _B4;
     /* 0x0B8 */ f32 _B8;
     /* 0x0BC */ s32 mChaseMoreAccelCounterMin;
     /* 0x0C0 */ s32 mChaseMoreAccelCounterMax;
