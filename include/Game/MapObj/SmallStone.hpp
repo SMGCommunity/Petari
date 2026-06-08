@@ -20,9 +20,9 @@ public:
 
     void initMember(const char*, bool);
 
-    /* 0x8C */ SmallStoneMember** mArray;
-    /* 0x90*/ u32 mArrayCount;
-    /* 0x94 */ f32 _94;
+    /* 0x8C */ SmallStoneMember** mMembers;
+    /* 0x90*/ u32 mMemberCount;
+    /* 0x94 */ f32 mVecScale;
     /* 0x98 */ s32 mMemberType;
     /* 0x9C */ bool _9C;
     /* 0x9D */ bool _9D;
@@ -41,5 +41,5 @@ public:
     /* 0x95 */ bool _95;
     /* 0x98 */ s32 _98;
     /* 0x9C */ const char* mBreakStr;
-    /* 0xA0 */ bool _A0;  
+    /* 0xA0 */ bool _A0;
 };
