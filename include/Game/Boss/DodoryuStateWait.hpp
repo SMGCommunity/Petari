@@ -11,5 +11,5 @@ public:
     void exeWait();
 
 private:
-    /* 0x90 */ s32 _90;
+    /* 0x90 */ s32 mNextStateCounter;
 };
