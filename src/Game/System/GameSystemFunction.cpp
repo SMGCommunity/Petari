@@ -3,7 +3,6 @@
 #include "Game/Scene/LogoScene.hpp"
 #include "Game/Screen/HomeButtonLayout.hpp"
 #include "Game/Screen/ScreenPreserver.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/GameSequenceDirector.hpp"
 #include "Game/System/GameSystem.hpp"
@@ -18,6 +17,7 @@
 #include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPadRumble.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 namespace {
     LogoScene* getLogoScene() {

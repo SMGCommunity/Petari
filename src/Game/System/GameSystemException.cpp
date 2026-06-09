@@ -1,8 +1,8 @@
 #include "Game/System/GameSystemException.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JUtility/JUTAssert.hpp>
 #include <JSystem/JUtility/JUTConsole.hpp>
 #include <JSystem/JUtility/JUTDirectPrint.hpp>

@@ -3,13 +3,13 @@
 #include "Game/NWC24/NWC24Function.hpp"
 #include "Game/NWC24/NWC24System.hpp"
 #include "Game/Screen/SysInfoWindow.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSequenceDirector.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 

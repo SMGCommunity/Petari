@@ -1,6 +1,5 @@
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/NWC24/NWC24Messenger.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/FindingLuigiEventScheduler.hpp"
 #include "Game/System/GalaxyCometScheduler.hpp"
 #include "Game/System/GameDataConst.hpp"
@@ -14,6 +13,7 @@
 #include "Game/System/SaveDataHandleSequence.hpp"
 #include "Game/System/StorySequenceExecutor.hpp"
 #include "Game/System/UserFile.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 
 namespace {

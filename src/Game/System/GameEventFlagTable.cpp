@@ -1,7 +1,7 @@
 #include "Game/System/GameEventFlagTable.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <algorithm>
 #include <cstdio>

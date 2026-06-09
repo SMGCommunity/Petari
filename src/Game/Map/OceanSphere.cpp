@@ -17,7 +17,6 @@
 #include <revolution/mtx.h>
 #include <revolution/os/OSCache.h>
 
-
 extern const u8 sOceanSphereTevReg0FaceR;
 extern const u8 sOceanSphereTevReg0FaceG;
 extern const u8 sOceanSphereTevReg0FaceB;

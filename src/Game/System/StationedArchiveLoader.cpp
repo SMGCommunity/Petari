@@ -1,9 +1,9 @@
 #include "Game/System/StationedArchiveLoader.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/StationedFileInfo.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 
 StationedArchiveLoader::Condition::~Condition() {

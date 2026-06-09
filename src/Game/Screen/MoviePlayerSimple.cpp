@@ -1,12 +1,12 @@
 #include "Game/Screen/MoviePlayerSimple.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Screen/THPSimplePlayerWrapper.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/HomeButtonStateNotifier.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRDisposer.hpp>

@@ -23,11 +23,11 @@
 #include "Game/Screen/SystemWipeHolder.hpp"
 #include "Game/Screen/YesNoController.hpp"
 #include "Game/Screen/YesNoLayout.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/RenderMode.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 

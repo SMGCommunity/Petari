@@ -118,7 +118,7 @@
 // #include "Game/Util/FurCtrl.hpp"
 #include "Game/Util/SceneUtil.hpp"
 // #include "Game/Util/ShareUtil.hpp"
-#include "Game/SingletonHolder.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 SceneObjHolder::SceneObjHolder() {
     for (int i = 0; i < SceneObj_NumMax; i++) {

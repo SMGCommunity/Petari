@@ -1,11 +1,11 @@
 #include "Game/System/ResourceHolderManager.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/LayoutHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include <revolution/gd/GDBase.h>

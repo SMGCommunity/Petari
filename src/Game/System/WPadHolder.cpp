@@ -1,10 +1,10 @@
 #include "Game/System/WPadHolder.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/WPad.hpp"
 #include "Game/System/WPadPointer.hpp"
 #include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <revolution/kpad.h>
 #include <revolution/wpad.h>
 
