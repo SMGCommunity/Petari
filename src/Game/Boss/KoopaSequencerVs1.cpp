@@ -4,20 +4,9 @@
 #include "Game/Boss/KoopaDemoJumpToPlanet.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPlanetShadow.hpp"
-#include "Game/Boss/KoopaSequencer.hpp"
 #include "Game/Boss/KoopaSubSequenceBattle.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
-#include "Game/Util/ActorShadowUtil.hpp"
-#include "Game/Util/ActorStateUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/LayoutUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
+
 
 namespace NrvKoopaSequencerVs1 {
     NEW_NERVE(KoopaSequencerVs1NrvBattleStairs, KoopaSequencerVs1, BattleStairs);
@@ -109,7 +98,8 @@ void KoopaSequencerVs1::exeWaitDemoBattleEnd() {
 
         setNerve(&NrvKoopaSequencerVs1::KoopaSequencerVs1NrvWaitDemo::sInstance);
 
-        MR::requestStartTimeKeepDemoMarioPuppetable(this, mKoopa, "クッパＶｓ１ダウン", &NrvKoopaSequencerVs1::KoopaSequencerVs1NrvDemoBattleEnd::sInstance, nullptr, nullptr);
+        MR::requestStartTimeKeepDemoMarioPuppetable(this, mKoopa, "クッパＶｓ１ダウン",
+                                                    &NrvKoopaSequencerVs1::KoopaSequencerVs1NrvDemoBattleEnd::sInstance, nullptr, nullptr);
     }
 }
 
@@ -119,7 +109,7 @@ void KoopaSequencerVs1::exeDemoBattleEnd() {
         MR::stopStageBGM(180);
 
         KoopaFunction::endFaceCtrl(mKoopa, -1);
-        
+
         MR::startBrk(KoopaFunction::getKoopaPlanet(mKoopa), "Death");
     }
 
