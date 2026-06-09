@@ -130,7 +130,7 @@ void GameStageClearSequence::exeGrandStarGetDemo() {
         }
     } else {
         if (MR::isStep(this, sClearDemoWipeStepGrandStar)) {
-            MR::closeWipeCircle(-1);
+            MR::closeWipeCircle();
         }
 
         bool isWipeActive = MR::isWipeActive();

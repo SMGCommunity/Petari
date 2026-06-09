@@ -179,7 +179,7 @@ void DemoStarter::exeFade() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(mActor);
         MR::offPlayerControl();
-        MR::closeWipeFade(-1);
+        MR::closeWipeFade();
     }
 
     if (MR::isWipeActive()) {

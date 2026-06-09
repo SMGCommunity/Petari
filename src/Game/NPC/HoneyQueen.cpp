@@ -136,11 +136,11 @@ bool HoneyQueen::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
 void HoneyQueen::fadeOut() {
     MR::setPlayerStateWait();
-    MR::closeWipeFade(-1);
+    MR::closeWipeFade();
 }
 
 void HoneyQueen::fadeIn() {
-    MR::openWipeFade(-1);
+    MR::openWipeFade();
     setNerve(&NrvHoneyQueen::HoneyQueenNrvFade::sInstance);
 }
 

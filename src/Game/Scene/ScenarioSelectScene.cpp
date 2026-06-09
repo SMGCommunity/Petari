@@ -221,9 +221,9 @@ void ScenarioSelectScene::exeStartScenarioSelect() {
         bool isSpecificStage = MR::isStageKoopaVs3() || MR::isEqualStageName("HeavensDoorGalaxy");
 
         if (isSpecificStage) {
-            MR::openSystemWipeFade(-1);
+            MR::openSystemWipeFade();
         } else {
-            MR::openSystemWipeWhiteFade(-1);
+            MR::openSystemWipeWhiteFade();
         }
 
         mCinemaFrame->forceToFrame();

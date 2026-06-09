@@ -394,7 +394,7 @@ void SurfRay::exeTutorial() {
 
 void SurfRay::exeWipeOut() {
     if (MR::isFirstStep(this)) {
-        MR::closeWipeCircle(-1);
+        MR::closeWipeCircle();
     }
 
     if (!updateRide() && !MR::isWipeActive()) {
@@ -408,7 +408,7 @@ void SurfRay::exeWipeOut() {
 
 void SurfRay::exeWipeIn() {
     if (MR::isFirstStep(this)) {
-        MR::openWipeCircle(-1);
+        MR::openWipeCircle();
     }
 
     if (!MR::isWipeActive()) {

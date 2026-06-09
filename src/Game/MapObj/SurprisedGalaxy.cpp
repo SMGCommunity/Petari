@@ -63,7 +63,7 @@ void SurprisedGalaxy::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 void SurprisedGalaxy::exeExit() {
     if (MR::isFirstStep(this)) {
         MR::submitTrigSE();
-        MR::closeSystemWipeWhiteFade(-1);
+        MR::closeSystemWipeWhiteFade();
         MR::stopStageBGM(90);
         MR::stopSubBGM(90);
         MR::tryStartDemo(this, "ギャラクシー移動");

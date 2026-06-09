@@ -39,7 +39,7 @@ void DodoryuStateWait::exeWait() {
 
     if (mNextStateCounter > 30) {
         if (MR::isStageSuddenDeathDodoryu() && MR::hasRetryGalaxySequence()) {
-            MR::openWipeCircle(-1);
+            MR::openWipeCircle();
         }
 
         mHost->nextState();

@@ -197,7 +197,7 @@ void RaceManager::exeWipeOut() {
             MR::stopStageBGM(90);
         }
 
-        MR::closeWipeFade(-1);
+        MR::closeWipeFade();
     }
 
     if (MR::isWipeActive()) {
@@ -233,7 +233,7 @@ void RaceManager::exeWipeIn() {
             MR::startCurrentStageBGM();
         }
 
-        MR::openWipeFade(-1);
+        MR::openWipeFade();
     }
 
     if (MR::isWipeActive()) {
