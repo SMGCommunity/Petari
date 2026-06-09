@@ -6,9 +6,7 @@ namespace {
 }  // namespace
 
 namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) {
-        MR::moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    }
+    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
 }  // namespace MR
 
 namespace NrvKoopaStateAttackFireShort {
@@ -17,14 +15,11 @@ namespace NrvKoopaStateAttackFireShort {
 }  // namespace NrvKoopaStateAttackFireShort
 
 KoopaStateAttackFireShort::KoopaStateAttackFireShort(Koopa* pKoopa)
-    : ActorStateBase< Koopa >("State[ショート炎攻撃]", pKoopa), _10(-1), _14(3), _18(45) {
-}
-
-KoopaStateAttackFireShort::~KoopaStateAttackFireShort() {
+    : ActorStateBase< Koopa >("State[ショート炎攻撃]", pKoopa), mFireEmitted(-1), mMaxFire(3), mFireDelay(45) {
 }
 
 void KoopaStateAttackFireShort::init() {
-    initNerve(&NrvKoopaStateAttackFireShort::KoopaStateAttackFireShortNrvEmit::sInstance);
+    initNerve(&NrvKoopaStateAttackFireShort::KoopaStateAttackFireShortNrvStart::sInstance);
 }
 
 void KoopaStateAttackFireShort::appear() {
@@ -32,29 +27,29 @@ void KoopaStateAttackFireShort::appear() {
 
     KoopaFunction::startFaceCtrl(mHost);
 
-    _10 = 0;
+    mFireEmitted = 0;
 
     if (KoopaFunction::isKoopaVs1(mHost)) {
-        KoopaFunction::isKoopaLv2(mHost) ? _14 = 3 : _14 = 5;
+        KoopaFunction::isKoopaLv2(mHost) ? mMaxFire = 3 : mMaxFire = 5;
 
-        _18 = 45;
+        mFireDelay = 45;
     } else if (KoopaFunction::isKoopaVs2(mHost)) {
-        _14 = 5;
-        _18 = 30;
+        mMaxFire = 5;
+        mFireDelay = 30;
     } else if (KoopaFunction::isKoopaLv2(mHost)) {
         if (KoopaFunction::isKoopaAngry(mHost)) {
-            _14 = 5;
-            _18 = 15;
+            mMaxFire = 5;
+            mFireDelay = 15;
         } else {
-            _14 = 3;
-            _18 = 30;
+            mMaxFire = 3;
+            mFireDelay = 30;
         }
     } else if (KoopaFunction::isKoopaLv3(mHost)) {
-        KoopaFunction::isKoopaAngry(mHost) ? _14 = 10 : _14 = 5;
-        _18 = 15;
+        KoopaFunction::isKoopaAngry(mHost) ? mMaxFire = 10 : mMaxFire = 5;
+        mFireDelay = 15;
     } else {
-        _14 = 3;
-        _18 = 30;
+        mMaxFire = 3;
+        mFireDelay = 30;
     }
 
     setNerve(&NrvKoopaStateAttackFireShort::KoopaStateAttackFireShortNrvStart::sInstance);
@@ -76,8 +71,9 @@ void KoopaStateAttackFireShort::exeStart() {
 
 void KoopaStateAttackFireShort::exeEmit() {
     if (MR::isFirstStep(this)) {
-        _10++;
+        mFireEmitted++;
     }
+
     Koopa* pKoopa = mHost;
     MR::turnDirectionToPlayerDegree(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), 2.0f);
     MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sFallParam);
@@ -85,13 +81,15 @@ void KoopaStateAttackFireShort::exeEmit() {
     if (MR::isStep(this, 1)) {
         if (KoopaFunction::isKoopaVs1(mHost) && !KoopaFunction::isKoopaLv3(mHost)) {
             KoopaFunction::emitKoopaFireShortSlow(mHost);
+        } else if (KoopaFunction::isKoopaVs2(mHost)) {
+            KoopaFunction::emitKoopaFireShortCurve(mHost);
         } else {
-            KoopaFunction::isKoopaVs2(mHost) ? KoopaFunction::emitKoopaFireShortCurve(mHost) : KoopaFunction::emitKoopaFireShortFast(mHost);
+            KoopaFunction::emitKoopaFireShortFast(mHost);
         }
     }
 
-    if (_10 < _14) {
-        if (MR::isStep(this, _18)) {
+    if (mFireEmitted < mMaxFire) {
+        if (MR::isStep(this, mFireDelay)) {
             setNerve(&NrvKoopaStateAttackFireShort::KoopaStateAttackFireShortNrvEmit::sInstance);
         }
     } else {
@@ -99,4 +97,7 @@ void KoopaStateAttackFireShort::exeEmit() {
             kill();
         }
     }
+}
+
+KoopaStateAttackFireShort::~KoopaStateAttackFireShort() {
 }
