@@ -4,9 +4,7 @@
 #include "Game/LiveActor/PartsModel.hpp"
 
 namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) {
-        MR::moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    }
+    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
 }  // namespace MR
 
 namespace {
@@ -28,14 +26,12 @@ namespace NrvKoopaStateAttackRoll {
 }  // namespace NrvKoopaStateAttackRoll
 
 KoopaStateAttackRoll::KoopaStateAttackRoll(Koopa* pKoopa)
-    : ActorStateBase< Koopa >("State[ローリング攻撃]", pKoopa), mFigureBall(), _14(90), _18(600), _1C(), _1D() {
-}
-
-KoopaStateAttackRoll::~KoopaStateAttackRoll() {
+    : ActorStateBase< Koopa >("State[ローリング攻撃]", pKoopa), mFigureBall(), mRollDelay(90), mRollTime(600), _1C(), _1D() {
 }
 
 void KoopaStateAttackRoll::init() {
     initNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvStart::sInstance);
+
     KoopaFunction::initKoopaCamera(mHost, "ローリング攻撃開始");
     KoopaFunction::initKoopaCamera(mHost, "ローリング攻撃");
 
@@ -60,38 +56,41 @@ void KoopaStateAttackRoll::appear() {
 
     if (KoopaFunction::isKoopaVs3(mHost)) {
         if (KoopaFunction::isKoopaLv2(mHost)) {
-            _14 = 30;
+            mRollDelay = 30;
 
             if (KoopaFunction::isKoopaAngry(mHost)) {
                 mFigureBall->mMoveParam = &sAttackRollParamLv2Fast;
-                _18 = 300;
+                mRollTime = 300;
             } else {
                 mFigureBall->mMoveParam = &sAttackRollParamLv2Slow;
-                _18 = 600;
+                mRollTime = 600;
             }
         } else {
             if (KoopaFunction::isKoopaAngry(mHost)) {
                 mFigureBall->mMoveParam = &sAttackRollParamLv3Fast;
-                _18 = 320;
-                _14 = 75;
+                mRollTime = 320;
+                mRollDelay = 75;
             } else {
                 mFigureBall->mMoveParam = &sAttackRollParamLv3Slow;
-                _18 = 280;
-                _14 = 90;
+                mRollTime = 280;
+                mRollDelay = 90;
             }
             if (_1D) {
                 _1D = false;
-                _14 = 0;
+                mRollDelay = 0;
             }
         }
     } else {
         mFigureBall->mMoveParam = &sAttackRollParamLv3Slow;
-        _18 = 280;
-        _14 = 90;
+        mRollTime = 280;
+        mRollDelay = 90;
     }
 
-    _14 >= 0 ? setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvWaitToStart::sInstance) :
-               setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvStart::sInstance);
+    if (mRollDelay >= 0) {
+        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvWaitToStart::sInstance);
+    } else {
+        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvStart::sInstance);
+    }
 }
 
 void KoopaStateAttackRoll::kill() {
@@ -112,6 +111,7 @@ bool KoopaStateAttackRoll::tryCalcAndSetBaseMtx() {
         isNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvRollGround::sInstance)) {
         Koopa* pKoopa = mHost;
         MR::setBaseTRMtx(pKoopa, mFigureBall->getBaseMtx());
+
         return true;
     }
 
@@ -154,7 +154,7 @@ void KoopaStateAttackRoll::exeWaitToStart() {
         MR::startAction(mHost, "Wait");
     }
 
-    if (MR::isStep(this, _14)) {
+    if (MR::isStep(this, mRollDelay)) {
         setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvStart::sInstance);
     }
 }
@@ -162,8 +162,10 @@ void KoopaStateAttackRoll::exeWaitToStart() {
 void KoopaStateAttackRoll::exeStart() {
     if (MR::isFirstStep(this)) {
         KoopaFunction::getKoopaRollBall(mHost)->appear();
+
         MR::startAction(mHost, "AttackRollStart");
         MR::startAction(KoopaFunction::getKoopaRollBall(mHost), "AttackRollStart");
+
         KoopaFunction::startKoopaCamera(mHost, "ローリング攻撃開始");
     }
 
@@ -196,10 +198,8 @@ void KoopaStateAttackRoll::exeRollAir() {
 
     if (MR::isBindedGround(mFigureBall)) {
         setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvRollGround::sInstance);
-    } else {
-        if (MR::isPlayerDamaging()) {
-            setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvEndAir::sInstance);
-        }
+    } else if (MR::isPlayerDamaging()) {
+        setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvEndAir::sInstance);
     }
 }
 
@@ -216,7 +216,7 @@ void KoopaStateAttackRoll::exeRollGround() {
     MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_ATTACK_ROLL", -1, -1, -1);
     MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_CHACE_ROLL", -1, -1, -1);
 
-    if (MR::isGreaterStep(this, _18) || MR::isPlayerDamaging()) {
+    if (MR::isGreaterStep(this, mRollTime) || MR::isPlayerDamaging()) {
         mFigureBall->kill();
 
         if (!MR::isPlayerDamaging() && KoopaFunction::isKoopaVs3(mHost) && KoopaFunction::isKoopaLv3(mHost)) {
@@ -233,6 +233,7 @@ void KoopaStateAttackRoll::exeEndAir() {
         MR::startAction(KoopaFunction::getKoopaRollBall(mHost), "AttackRollEnd");
 
         KoopaFunction::endKoopaCamera(mHost, "ローリング攻撃", false, -1);
+
         MR::setVelocityJump(mHost, 30.0f);
     }
 
@@ -253,4 +254,7 @@ void KoopaStateAttackRoll::exeEndLand() {
     if (MR::isActionEnd(mHost)) {
         kill();
     }
+}
+
+KoopaStateAttackRoll::~KoopaStateAttackRoll() {
 }

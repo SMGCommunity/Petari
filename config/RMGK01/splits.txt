@@ -1087,14 +1087,14 @@ Game/Boss/KoopaStateAttackHipDrop.cpp:
 Game/Boss/KoopaStateAttackRoll.cpp:
 	.text       start:0x800655E8 end:0x80066124
 	.ctors      start:0x8052E930 end:0x8052E934
-	.data       start:0x8056E118 end:0x8056E388
+	.data       start:0x8056E118 end:0x8056E2F8
 	.sbss       start:0x806B3540 end:0x806B3558
 	.sdata2     start:0x806B89A8 end:0x806B89B8
 
 Game/Boss/KoopaStateAttackShockWave.cpp:
 	.text       start:0x80066124 end:0x80066840
 	.ctors      start:0x8052E934 end:0x8052E938
-	.data       start:0x8056E388 end:0x8056E408
+	.data       start:0x8056E2F8 end:0x8056E408
 	.sbss       start:0x806B3558 end:0x806B3568
 	.sdata2     start:0x806B89B8 end:0x806B89E0
 

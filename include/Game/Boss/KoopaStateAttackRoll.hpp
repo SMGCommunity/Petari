@@ -27,8 +27,8 @@ public:
     void exeEndLand();
 
     /* 0x10 */ KoopaFigureBall* mFigureBall;
-    /* 0x14 */ s32 _14;
-    /* 0x18 */ u32 _18;
+    /* 0x14 */ s32 mRollDelay;
+    /* 0x18 */ s32 mRollTime;
     /* 0x1C */ bool _1C;
     /* 0x1D */ bool _1D;
 };
