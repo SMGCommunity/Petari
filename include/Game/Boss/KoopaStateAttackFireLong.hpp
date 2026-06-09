@@ -14,6 +14,6 @@ public:
     void exeStart();
     void exeEmit();
 
-    /* 0x10 */ s32 _10;
-    /* 0x14 */ s32 _14;
+    /* 0x10 */ s32 mMaxFire;
+    /* 0x14 */ s32 mFireEmitted;
 };
