@@ -1,57 +1,64 @@
 #include "Game/Scene/StopSceneController.hpp"
-#include "Game/Util.hpp"
+#include "Game/NameObj/NameObjGroup.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
-StopSceneDelayRequest::StopSceneDelayRequest() : NameObj("シーン硬直遅延発行") {
-    _C = 0;
-    _10 = 0;
+StopSceneDelayRequest::StopSceneDelayRequest() : NameObj("シーン硬直遅延発行"), mFrame(), mDelay() {
     MR::connectToScene(this, 1, -1, -1, -1);
 }
 
-StopSceneController::StopSceneController() : NameObj("StopSceneController") {
-    mDelayRequests = nullptr;
-    _10 = 0;
-
-    mDelayRequests = new NameObjGroup("シーン硬直遅延発行者の管理", 16);
+StopSceneController::StopSceneController() : NameObj("StopSceneController"), mDelayRequestArray(), mFrame() {
+    mDelayRequestArray = new NameObjGroup("シーン硬直遅延発行者の管理", 16);
 
     for (s32 i = 0; i < 16; i++) {
-        StopSceneDelayRequest* req = new StopSceneDelayRequest();
-        req->initWithoutIter();
-        mDelayRequests->registerObj(req);
+        StopSceneDelayRequest* delayRequest = new StopSceneDelayRequest();
+        delayRequest->initWithoutIter();
+        mDelayRequestArray->registerObj(delayRequest);
     }
 }
 
 void StopSceneDelayRequest::movement() {
-    if (_10 != 0 && --_10 == 0) {
-        MR::stopScene(_C);
+    if (mDelay == 0) {
+        return;
+    }
+
+    mDelay--;
+
+    if (mDelay != 0) {
+        return;
+    }
+
+    MR::stopScene(mFrame);
+}
+
+void StopSceneController::requestStopScene(s32 frame) {
+    if (isSceneStopped()) {
+        if (mFrame < frame) {
+            mFrame = frame;
+        }
+    } else {
+        mFrame = frame;
     }
 }
 
-void StopSceneController::requestStopScene(s32 a1) {
-    if (_10 > 0) {
-        if (_10 < a1) {
-            return;
+void StopSceneController::requestStopSceneDelay(s32 frame, s32 delay) {
+    for (s32 i = 0; i < mDelayRequestArray->mObjectCount; i++) {
+        StopSceneDelayRequest* delayRequest = static_cast< StopSceneDelayRequest* >(mDelayRequestArray->mObjects[i]);
+
+        if (delayRequest->mDelay != 0) {
+            continue;
         }
 
-        _10 = a1;
-    } else {
-        _10 = a1;
+        delayRequest->mFrame = frame;
+        delayRequest->mDelay = delay;
     }
 }
 
-// void StopSceneController::requestStopSceneDelay(s32 a1, s32 a2)
-
 void StopSceneController::movement() {
-    if (_10 > 0) {
-        _10--;
+    if (mFrame > 0) {
+        mFrame--;
     }
 }
 
 bool StopSceneController::isSceneStopped() const {
-    return _10 > 0;
-}
-
-StopSceneDelayRequest::~StopSceneDelayRequest() {
-}
-
-StopSceneController::~StopSceneController() {
+    return mFrame > 0;
 }

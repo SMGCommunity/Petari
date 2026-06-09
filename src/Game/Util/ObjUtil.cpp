@@ -737,6 +737,7 @@ namespace MR {
 
     void initStarPieceGetCSSound() {
         StarPieceDirector* director = getStarPieceDirector();
+
         if (director != nullptr) {
             director->initCSSound();
         }
@@ -793,12 +794,12 @@ namespace MR {
         appearKinokoOneUpPop(pKinokoSuper, pMtx, param3);
     }
 
-    void stopScene(s32 param1) {
-        MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopScene(param1);
+    void stopScene(s32 frame) {
+        MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopScene(frame);
     }
 
-    void stopSceneForDefaultHit(s32 param1) {
-        MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopSceneDelay(param1, 2);
+    void stopSceneForDefaultHit(s32 frame) {
+        MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopSceneDelay(frame, 2);
     }
 
     bool tryRumblePad(const void* pParam1, const char* pPatternName, s32 channel) {
