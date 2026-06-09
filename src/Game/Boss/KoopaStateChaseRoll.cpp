@@ -11,9 +11,7 @@ namespace {
 }  // namespace
 
 namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) {
-        MR::moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    }
+    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
 }  // namespace MR
 
 namespace NrvKoopaStateChaseRoll {
@@ -25,20 +23,18 @@ namespace NrvKoopaStateChaseRoll {
     NEW_NERVE(KoopaStateChaseRollNrvEndLand, KoopaStateChaseRoll, EndLand);
 }  // namespace NrvKoopaStateChaseRoll
 
-KoopaStateChaseRoll::KoopaStateChaseRoll(Koopa* pKoopa) : ActorStateBase< Koopa >("State[転がり追跡攻撃]", pKoopa), mKoopaFigureBall(), _14(60) {
-}
-
-KoopaStateChaseRoll::~KoopaStateChaseRoll() {
+KoopaStateChaseRoll::KoopaStateChaseRoll(Koopa* pKoopa) : ActorStateBase< Koopa >("State[転がり追跡攻撃]", pKoopa), mFigureBall(), mRollDelay(60) {
 }
 
 void KoopaStateChaseRoll::init() {
     initNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvStart::sInstance);
+
     KoopaFunction::initKoopaCamera(mHost, "ロール追跡開始");
 
     KoopaFunction::createKoopaRock(mHost);
 
-    mKoopaFigureBall = new KoopaFigureBall("追跡ボール", mHost, 260.0f, &sChaseRollParam);
-    mKoopaFigureBall->initWithoutIter();
+    mFigureBall = new KoopaFigureBall("追跡ボール", mHost, 260.0f, &sChaseRollParam);
+    mFigureBall->initWithoutIter();
 
     kill();
 }
@@ -53,14 +49,14 @@ void KoopaStateChaseRoll::appear() {
     MR::validateHitSensor(mHost, "ChaseRollStarPiece");
 
     if (KoopaFunction::isKoopaAngry(mHost)) {
-        mKoopaFigureBall->mMoveParam = &sChaseRollParamFast;
-        _14 = 60;
+        mFigureBall->mMoveParam = &sChaseRollParamFast;
+        mRollDelay = 60;
     } else {
-        mKoopaFigureBall->mMoveParam = &sChaseRollParam;
-        _14 = 60;
+        mFigureBall->mMoveParam = &sChaseRollParam;
+        mRollDelay = 60;
     }
 
-    if (_14 >= 0) {
+    if (mRollDelay >= 0) {
         setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvWaitToStart::sInstance);
     } else {
         setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvStart::sInstance);
@@ -86,7 +82,8 @@ bool KoopaStateChaseRoll::tryCalcAndSetBaseMtx() {
     if (isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollAir::sInstance) ||
         isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollGround::sInstance)) {
         Koopa* pKoopa = mHost;
-        MR::setBaseTRMtx(pKoopa, mKoopaFigureBall->getBaseMtx());
+        MR::setBaseTRMtx(pKoopa, mFigureBall->getBaseMtx());
+
         return true;
     }
 
@@ -143,7 +140,7 @@ void KoopaStateChaseRoll::exeWaitToStart() {
         MR::startAction(mHost, "Wait");
     }
 
-    if (MR::isStep(this, _14)) {
+    if (MR::isStep(this, mRollDelay)) {
         setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvStart::sInstance);
     }
 }
@@ -175,7 +172,7 @@ void KoopaStateChaseRoll::exeStart() {
     }
 
     if (MR::isActionEnd(mHost)) {
-        mKoopaFigureBall->appear();
+        mFigureBall->appear();
         setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollAir::sInstance);
     } else if (MR::isPlayerDamaging()) {
         setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvEndAir::sInstance);
@@ -188,12 +185,12 @@ void KoopaStateChaseRoll::exeRollAir() {
         MR::startAction(KoopaFunction::getKoopaRock(mHost), "AttackRoll");
     }
 
-    mKoopaFigureBall->mAngle += 5.0f;
-    mKoopaFigureBall->appear();
+    mFigureBall->mAngle += 5.0f;
+    mFigureBall->appear();
 
-    mHost->mPosition.set(mKoopaFigureBall->mPosition);
+    mHost->mPosition.set(mFigureBall->mPosition);
 
-    if (MR::isBindedGround(mKoopaFigureBall)) {
+    if (MR::isBindedGround(mFigureBall)) {
         setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollGround::sInstance);
     } else if (MR::isPlayerDamaging()) {
         setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvEndAir::sInstance);
@@ -206,18 +203,18 @@ void KoopaStateChaseRoll::exeRollGround() {
         MR::emitEffect(KoopaFunction::getKoopaRock(mHost), "RollingSmoke");
     }
 
-    mKoopaFigureBall->movement();
+    mFigureBall->movement();
 
-    mHost->mPosition.set(mKoopaFigureBall->mPosition);
+    mHost->mPosition.set(mFigureBall->mPosition);
 
-    MR::sendMsgEnemyAttackToBindedSensor(mKoopaFigureBall, mHost->getSensor("ChaseRollFace"));
+    MR::sendMsgEnemyAttackToBindedSensor(mFigureBall, mHost->getSensor("ChaseRollFace"));
 
     MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_CHACE_ROLL", -1, -1, -1);
 
     if (MR::isPlayerDamaging() || MR::isGreaterStep(this, 900)) {
         MR::deleteEffect(KoopaFunction::getKoopaRock(mHost), "RollingSmoke");
 
-        mKoopaFigureBall->kill();
+        mFigureBall->kill();
 
         setNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvEndAir::sInstance);
     }
@@ -235,7 +232,6 @@ void KoopaStateChaseRoll::exeEndAir() {
 
         KoopaFunction::getKoopaRockBreak(mHost)->appear();
         MR::calcAnimDirect(KoopaFunction::getKoopaRockBreak(mHost));
-
         MR::startAction(KoopaFunction::getKoopaRockBreak(mHost), "AttackRollEnd");
 
         pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
@@ -260,4 +256,7 @@ void KoopaStateChaseRoll::exeEndLand() {
     if (MR::isBckStopped(mHost)) {
         kill();
     }
+}
+
+KoopaStateChaseRoll::~KoopaStateChaseRoll() {
 }
