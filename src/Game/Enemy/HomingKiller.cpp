@@ -621,7 +621,7 @@ void HomingKiller::calcFrontVecToTarget(TVec3f* pFront) const {
     MR::normalize(&playerUp);
     playerUp.scale(mType == Type_Torpedo ? cChaseTargetHeightTorpedo : cChaseTargetHeight);
     TVec3f target;
-    target.sub(MR::getPlayerPos()->addOtherInline(playerUp), mPosition);
+    target.sub(*MR::getPlayerPos() + playerUp, mPosition);
     MR::normalize(target, pFront);
 }
 
