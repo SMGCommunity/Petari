@@ -5,14 +5,14 @@
 
 class KoopaStateAttackHipDrop : public ActorStateBase< Koopa > {
 public:
-    KoopaStateAttackHipDrop(Koopa*);
+    KoopaStateAttackHipDrop(Koopa* pKoopa);
 
     virtual ~KoopaStateAttackHipDrop();
     virtual void init();
     virtual void appear();
     virtual void kill();
     
-    bool attackSensor(HitSensor*, HitSensor*);
+    bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     bool isDamage() const;
     bool isEnableGuard() const;
 

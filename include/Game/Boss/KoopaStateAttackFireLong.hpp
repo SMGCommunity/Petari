@@ -5,7 +5,7 @@
 
 class KoopaStateAttackFireLong : public ActorStateBase< Koopa > {
 public:
-    KoopaStateAttackFireLong(Koopa*);
+    KoopaStateAttackFireLong(Koopa* pKoopa);
 
     virtual ~KoopaStateAttackFireLong();
     virtual void init();

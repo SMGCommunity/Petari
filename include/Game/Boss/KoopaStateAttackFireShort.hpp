@@ -5,7 +5,7 @@
 
 class KoopaStateAttackFireShort : public ActorStateBase< Koopa > {
 public:
-    KoopaStateAttackFireShort(Koopa*);
+    KoopaStateAttackFireShort(Koopa* pKoopa);
 
     virtual ~KoopaStateAttackFireShort();
     virtual void init();
@@ -16,5 +16,5 @@ public:
 
     /* 0x10 */ s32 mFireEmitted;
     /* 0x14 */ s32 mMaxFire;
-    /* 0x18 */ u32 mFireDelay;
+    /* 0x18 */ s32 mFireDelay;
 };

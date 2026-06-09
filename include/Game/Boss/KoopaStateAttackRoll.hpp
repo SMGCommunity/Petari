@@ -7,7 +7,7 @@ class KoopaFigureBall;
 
 class KoopaStateAttackRoll : public ActorStateBase< Koopa > {
 public:
-    KoopaStateAttackRoll(Koopa*);
+    KoopaStateAttackRoll(Koopa* pKoopa);
 
     virtual ~KoopaStateAttackRoll();
     virtual void init();
@@ -15,8 +15,8 @@ public:
     virtual void kill();
 
     bool tryCalcAndSetBaseMtx();
-    bool attackSensor(HitSensor*, HitSensor*);
-    bool isDamage(u32, HitSensor*, HitSensor*) const;
+    bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    bool isDamage(u32 msg, HitSensor* pSender, HitSensor* pReceiver) const;
     bool isEnableGuard() const;
 
     void exeWaitToStart();
