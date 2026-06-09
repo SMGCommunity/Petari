@@ -43,7 +43,7 @@ namespace {
     }
 };  // namespace
 
-DodoryuDemoOpening::DodoryuDemoOpening(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mActorCameraInfo(-1, 0) {
+DodoryuDemoOpening::DodoryuDemoOpening(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mActorCameraInfo() {
     initWithoutIter();
 }
 
@@ -211,7 +211,7 @@ bool DodoryuDemoOpening::tryFinish() {
 
 // DodoryuDemoOpening::turnToRabbit
 
-DodoryuDemoAppear::DodoryuDemoAppear(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mActorCameraInfo(-1, 0) {
+DodoryuDemoAppear::DodoryuDemoAppear(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mActorCameraInfo() {
     initWithoutIter();
 }
 
@@ -271,7 +271,7 @@ void DodoryuDemoAppear::exePlay() {
     }
 }
 
-DodoryuDemoAngry::DodoryuDemoAngry(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mActorCameraInfo(-1, 0) {
+DodoryuDemoAngry::DodoryuDemoAngry(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mActorCameraInfo() {
     initWithoutIter();
 }
 
@@ -331,7 +331,7 @@ void DodoryuDemoAngry::exePlay() {
     }
 }
 
-DodoryuDemoDown::DodoryuDemoDown(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mActorCameraInfo(-1, 0) {
+DodoryuDemoDown::DodoryuDemoDown(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mActorCameraInfo() {
     initWithoutIter();
 }
 

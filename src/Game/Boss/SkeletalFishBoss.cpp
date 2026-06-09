@@ -177,7 +177,7 @@ void SkeletalFishBoss::kill() {
 }
 
 void SkeletalFishBoss::control() {
-    ActorCameraInfo info(-1, 0);
+    ActorCameraInfo info = ActorCameraInfo();
 
     if (MR::isEventCameraActive(&info, "デモ終了後カメラ") && MR::isGreaterEqualStep(this, 60)) {
         MR::endGlobalEventCamera("デモ終了後カメラ", -1, true);
@@ -430,7 +430,7 @@ void SkeletalFishBoss::exeDead() {
 
         resetCamera();
     } else {
-        ActorCameraInfo info(-1, 0);
+        ActorCameraInfo info = ActorCameraInfo();
         bool isCameraActive = MR::isEventCameraActive(&info, "デモ終了後カメラ") == false;
         if (isCameraActive) {
             kill();
@@ -704,7 +704,7 @@ void SkeletalFishBoss::initShadow() {
 }
 
 void SkeletalFishBoss::initCamera() {
-    ActorCameraInfo cameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
     const char* fileName = "SkeletalFishBossBattleStart.canm";
     MR::declareEventCameraAnim(&cameraInfo, "スカルシャーク出現", MR::getResourceHolder(this)->mFileInfoTable->getRes(fileName));
     fileName = "SkeletalFishBossPowerUp1.canm";
@@ -848,7 +848,7 @@ void SkeletalFishBoss::stopScene(const char* pName, const Nerve* pNerve, SceneFu
 }
 
 void SkeletalFishBoss::startCamera(const char* pCameraName) {
-    ActorCameraInfo cameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
     CameraTargetArg target(nullptr, mCameraTargetMtx, nullptr, nullptr);
     MR::startEventCamera(&cameraInfo, pCameraName, target, 0);
 }
@@ -907,7 +907,7 @@ void SkeletalFishBoss::endAppearDemo() {
 
     MR::showPlayer();
     const char* cameraName = "スカルシャーク出現";
-    ActorCameraInfo cameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
     MR::endEventCamera(&cameraInfo, cameraName, false, 0);
     resetCamera();
 
@@ -945,13 +945,13 @@ void SkeletalFishBoss::endPowerUpDemo() {
 
     if (_110 == 1) {
         eventCameraName = "スカルシャークパワーアップ";
-        ActorCameraInfo cameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
         MR::endEventCamera(&cameraInfo, eventCameraName, false, 0);
         resetCamera();
         mBossDirector->endPowerUpDemo1();
     } else {
         eventCameraName = "スカルシャークパワーアップ２";
-        ActorCameraInfo cameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
         MR::endEventCamera(&cameraInfo, eventCameraName, false, 0);
         resetCamera();
         mBossDirector->endPowerUpDemo2();
@@ -977,7 +977,7 @@ void SkeletalFishBoss::startDeadDemo() {
 
 void SkeletalFishBoss::endBreakDemo() {
     const char* cameraName = "スカルシャーク死亡";
-    ActorCameraInfo info(-1, 0);
+    ActorCameraInfo info = ActorCameraInfo();
     MR::endEventCamera(&info, cameraName, false, 0);
     resetCamera();
 

@@ -112,7 +112,7 @@ void DemoKoopaJrShip::exeFlyAway() {
 
     if (tryDemoEnd()) {
         if (mAnimCameraIndex >= 0) {
-            ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+            ActorCameraInfo cameraInfo = ActorCameraInfo();
         }
 
         mKoopaJrObj->kill();
@@ -140,7 +140,7 @@ void DemoKoopaJrShip::initAnimID(const JMapInfoIter& rIter) {
     }
 
     if (mAnimCameraIndex >= 0) {
-        ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
 
         MR::initAnimCamera(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mEntryAnimName);
         MR::initAnimCamera(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mLeaveAnimName);
@@ -163,7 +163,7 @@ void DemoKoopaJrShip::startEntryAnim() {
     } else {
         MR::startBck(this, ::sAnim[mAnimCameraIndex].mEntryAnimName, nullptr);
 
-        ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
         MR::startAnimCameraTargetSelf(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mEntryAnimName, 0, 1.0f);
     }
 }
@@ -176,7 +176,7 @@ void DemoKoopaJrShip::startLeaveAnim() {
     } else {
         MR::startBck(this, ::sAnim[mAnimCameraIndex].mLeaveAnimName, nullptr);
 
-        ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
         MR::startAnimCameraTargetSelf(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mLeaveAnimName, 0, 1.0f);
     }
 }
