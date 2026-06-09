@@ -1,7 +1,8 @@
 #include "Game/System/DrawBuffer.hpp"
 #include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/System/ShapePacketUserData.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 #include <cstring>
 
 DrawBufferShapeDrawer::DrawBufferShapeDrawer(J3DMaterial* pMaterial, J3DMatPacket* pMatPacket)

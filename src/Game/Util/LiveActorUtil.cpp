@@ -15,6 +15,7 @@
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/MirrorActor.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/CollisionParts.hpp"

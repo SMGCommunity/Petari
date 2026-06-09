@@ -2,6 +2,7 @@
 #include "Game/AreaObj/AreaForm.hpp"
 #include "Game/AreaObj/AreaObjFollower.hpp"
 #include "Game/Map/SleepControllerHolder.hpp"
+#include "Game/Map/StageSwitch.hpp"
 
 AreaObj::AreaObj(int type, const char* pName)
     : NameObj(pName), mFormType(type), mIsValid(true), _15(true), mIsAwake(true), mObjArg0(-1), mObjArg1(-1), mObjArg2(-1), mObjArg3(-1),

@@ -1,5 +1,6 @@
 #include "Game/LiveActor/MirrorActor.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
