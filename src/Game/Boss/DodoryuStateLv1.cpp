@@ -33,7 +33,9 @@ namespace {
     NEW_NERVE(DodoryuStateLv1NrvSpinOut, DodoryuStateLv1, SpinOut);
 };  // namespace
 
-DodoryuStateLv1::DodoryuStateLv1(Dodoryu* pHost, const char* pName) : DodoryuStateBase(pHost, pName), mHideStep(), mAppearStep(), _A4(), mIsValidPop(), mPopAccel(), mPopSpeed(), mRailSpeed(::sSpeed), mRailSpeedMax(::sSpeed) {
+DodoryuStateLv1::DodoryuStateLv1(Dodoryu* pHost, const char* pName)
+    : DodoryuStateBase(pHost, pName), mHideStep(), mAppearStep(), _A4(), mIsValidPop(), mPopAccel(), mPopSpeed(), mRailSpeed(::sSpeed),
+      mRailSpeedMax(::sSpeed) {
     initWithoutIter();
 }
 
@@ -147,7 +149,7 @@ void DodoryuStateLv1::exeAppearEnd() {
         MR::startBva(mHost, "Normal");
     }
 
-    if (MR::isBckStopped(mHost)) {  
+    if (MR::isBckStopped(mHost)) {
         startAnimEffectWalkAppear();
         setNerve(&::DodoryuStateLv1NrvHide::sInstance);
     }
@@ -304,7 +306,8 @@ void DodoryuStateLv1::catchHipDrop() {
 }
 
 bool DodoryuStateLv1::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    bool isAppear = isNerve(&::DodoryuStateLv1NrvAppearStart::sInstance) || isNerve(&::DodoryuStateLv1NrvAppear::sInstance) || isNerve(&::DodoryuStateLv1NrvAppearEnd::sInstance);
+    bool isAppear = isNerve(&::DodoryuStateLv1NrvAppearStart::sInstance) || isNerve(&::DodoryuStateLv1NrvAppear::sInstance) ||
+                    isNerve(&::DodoryuStateLv1NrvAppearEnd::sInstance);
 
     if (isAppear && MR::isMsgPlayerSpinAttack(msg)) {
         if (MR::sendMsgEnemyAttackCounterSpin(pSender, pReceiver)) {
@@ -352,7 +355,10 @@ void DodoryuStateLv1::catchStartClipped() {
 }
 
 bool DodoryuStateLv1::isAttackable() const {
-    return isNerve(&::DodoryuStateLv1NrvHide::sInstance) || (isNerve(&::DodoryuStateLv1NrvAppearStart::sInstance) && MR::isGreaterStep(this, ::sAppearStartAttackFrame)) || isNerve(&::DodoryuStateLv1NrvAppear::sInstance) || isNerve(&::DodoryuStateLv1NrvAppearEnd::sInstance) || (isNerve(&::DodoryuStateLv1NrvDive::sInstance) && MR::isGreaterStep(this, ::sDiveAttackInvalidFrame));
+    return isNerve(&::DodoryuStateLv1NrvHide::sInstance) ||
+           (isNerve(&::DodoryuStateLv1NrvAppearStart::sInstance) && MR::isGreaterStep(this, ::sAppearStartAttackFrame)) ||
+           isNerve(&::DodoryuStateLv1NrvAppear::sInstance) || isNerve(&::DodoryuStateLv1NrvAppearEnd::sInstance) ||
+           (isNerve(&::DodoryuStateLv1NrvDive::sInstance) && MR::isGreaterStep(this, ::sDiveAttackInvalidFrame));
 }
 
 void DodoryuStateLv1::executeHideJump() {
@@ -403,7 +409,8 @@ bool DodoryuStateLv1::isHipDropReactionJumpOut() const {
         return false;
     }
 
-    return isNerve(&::DodoryuStateLv1NrvAppearStart::sInstance) || isNerve(&::DodoryuStateLv1NrvAppear::sInstance) || isNerve(&::DodoryuStateLv1NrvAppearEnd::sInstance);
+    return isNerve(&::DodoryuStateLv1NrvAppearStart::sInstance) || isNerve(&::DodoryuStateLv1NrvAppear::sInstance) ||
+           isNerve(&::DodoryuStateLv1NrvAppearEnd::sInstance);
 }
 
 bool DodoryuStateLv1::isHipDropReactionPop() const {
@@ -423,7 +430,8 @@ bool DodoryuStateLv1::isHipDropReactionNothing() const {
         return true;
     }
 
-    return isNerve(&::DodoryuStateLv1NrvJumpOut::sInstance) || isNerve(&::DodoryuStateLv1NrvDamage::sInstance) || isNerve(&::DodoryuStateLv1NrvDive::sInstance) || isNerve(&::DodoryuStateLv1NrvSpinOut::sInstance);
+    return isNerve(&::DodoryuStateLv1NrvJumpOut::sInstance) || isNerve(&::DodoryuStateLv1NrvDamage::sInstance) ||
+           isNerve(&::DodoryuStateLv1NrvDive::sInstance) || isNerve(&::DodoryuStateLv1NrvSpinOut::sInstance);
 }
 
 void DodoryuStateLv1::setRailSpeed(f32 railSpeed) {

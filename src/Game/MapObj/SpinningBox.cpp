@@ -219,7 +219,8 @@ void SpinningBox::exeWait() {
     mGravity.set(originalGravity);  // "gravity" was only used to update velocity, revert to initial
 }
 
-void SpinningBox::endWait(){};
+void SpinningBox::endWait() {
+}
 
 void SpinningBox::exeSliding() {
     if (MR::isFirstStep(this)) {

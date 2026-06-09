@@ -11,7 +11,6 @@
 #include "JSystem/JKernel/JKRSolidHeap.hpp"
 #include "JSystem/JSupport/JSupport.hpp"
 
-
 // FIXME: chase down that rogue sdata2 mismatch
 
 template < typename T >

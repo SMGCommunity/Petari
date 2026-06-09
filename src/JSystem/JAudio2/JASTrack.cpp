@@ -8,7 +8,6 @@
 #include "JSystem/JAudio2/JASLfo.hpp"
 #include "JSystem/JAudio2/JASSoundParams.hpp"
 
-
 #include <cstring>
 #include <revolution/os.h>
 

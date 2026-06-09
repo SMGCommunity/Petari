@@ -2,9 +2,9 @@
 #include "Game/Boss/DodoryuDemo.hpp"
 #include "Game/Boss/DodoryuHill.hpp"
 #include "Game/Boss/DodoryuMove.hpp"
+#include "Game/Boss/DodoryuStateBase.hpp"
 #include "Game/Boss/DodoryuStateLv1.hpp"
 #include "Game/Boss/DodoryuStateLv2.hpp"
-#include "Game/Boss/DodoryuStateBase.hpp"
 #include "Game/Boss/DodoryuStateWait.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
@@ -1001,7 +1001,8 @@ void DodoryuLeadHill::initJoint() {
         char buf[64];
         snprintf(buf, sizeof(buf), "DodoryuLeadHill%d", i + 1);
 
-        JointControlDelegator< DodoryuLeadHill >* pJointDelegator = new JointControlDelegator< DodoryuLeadHill >(this, &DodoryuLeadHill::calcJoint, nullptr);
+        JointControlDelegator< DodoryuLeadHill >* pJointDelegator =
+            new JointControlDelegator< DodoryuLeadHill >(this, &DodoryuLeadHill::calcJoint, nullptr);
 
         MR::setJointControllerParam(pJointDelegator, this, buf);
 
