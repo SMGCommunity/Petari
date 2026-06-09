@@ -25,9 +25,9 @@ public:
     void exeDamage();
 
 private:
-    /* 0x10 */ TVec3f _10;
-    /* 0x1C */ s32 _1C;
-    /* 0x20 */ s32 _20;
-    /* 0x24 */ u32 _24;
-    /* 0x28 */ u32 _28;
+    /* 0x10 */ TVec3f mGroundPosition;
+    /* 0x1C */ s32 mMaxAttacks;
+    /* 0x20 */ s32 mAttacks;
+    /* 0x24 */ s32 mAttackDelay;
+    /* 0x28 */ s32 mJumpTime;
 };

@@ -8,9 +8,7 @@ namespace {
 }  // namespace
 
 namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) {
-        MR::moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    }
+    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
 }  // namespace MR
 
 namespace NrvKoopaStateAttackHipDrop {
@@ -24,10 +22,8 @@ namespace NrvKoopaStateAttackHipDrop {
 }  // namespace NrvKoopaStateAttackHipDrop
 
 KoopaStateAttackHipDrop::KoopaStateAttackHipDrop(Koopa* pKoopa)
-    : ActorStateBase< Koopa >("State[ヒップドロップ攻撃]", pKoopa), _10(0.0f, 0.0f, 0.0f), _1C(1), _20(), _24(30), _28() {
-}
-
-KoopaStateAttackHipDrop::~KoopaStateAttackHipDrop() {
+    : ActorStateBase< Koopa >("State[ヒップドロップ攻撃]", pKoopa), mGroundPosition(0.0f, 0.0f, 0.0f), mMaxAttacks(1), mAttacks(), mAttackDelay(30),
+      mJumpTime() {
 }
 
 void KoopaStateAttackHipDrop::init() {
@@ -48,25 +44,28 @@ void KoopaStateAttackHipDrop::appear() {
 
     MR::validateHitSensor(mHost, "AttackHipDrop");
 
-    _20 = 0;
+    mAttacks = 0;
 
     if (KoopaFunction::isKoopaVs1(mHost)) {
-        _1C = 3;
-        _24 = 30;
+        mMaxAttacks = 3;
+        mAttackDelay = 30;
 
         setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance);
     } else if (KoopaFunction::isKoopaVs2(mHost)) {
-        _1C = 2;
-        _24 = 15;
+        mMaxAttacks = 2;
+        mAttackDelay = 15;
 
         setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance);
     } else {
-        _24 = 15;
+        mAttackDelay = 15;
 
-        KoopaFunction::isKoopaAngry(mHost) ? _1C = 2 : _1C = 3;
+        KoopaFunction::isKoopaAngry(mHost) ? mMaxAttacks = 2 : mMaxAttacks = 3;
 
-        MR::isNearPlayer(mHost, 2000.0f) ? setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance) :
-                                           setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvDamage::sInstance);
+        if (MR::isNearPlayer(mHost, 2000.0f)) {
+            setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance);
+        } else {
+            setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance);
+        }
     }
 }
 
@@ -103,7 +102,7 @@ bool KoopaStateAttackHipDrop::isDamage() const {
 }
 
 bool KoopaStateAttackHipDrop::isEnableGuard() const {
-    if (isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvDamage::sInstance) ||
+    if (isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance) ||
         isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpStart::sInstance) ||
         isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance) ||
         isNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvLand::sInstance)) {
@@ -177,10 +176,10 @@ void KoopaStateAttackHipDrop::exeJumpWaitAir() {
     MR::turnDirectionToPlayerDegree(mHost, &mHost->mFront, 2.0f);
 
     if (MR::isStep(this, 0)) {
-        MR::getPlayerGroundPos(&_10);
+        MR::getPlayerGroundPos(&mGroundPosition);
     }
 
-    if (MR::isStep(this, _24)) {
+    if (MR::isStep(this, mAttackDelay)) {
         setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpAttackDown::sInstance);
     }
 }
@@ -189,20 +188,23 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "HipDropAttackDown");
 
-        TVec3f difference = *_10;
+        TVec3f difference = *mGroundPosition;
         difference.subInline(mHost->mPosition);
 
-        _28 = (difference.length() / 35.0f) + 10;
+        mJumpTime = static_cast< s32 >(difference.length() / 35.0f) + 10l;
 
         MR::normalizeOrZero(&difference);
-        difference.scaleInline(35.0f);
+
+        difference.x *= 35.0f;
+        difference.y *= 35.0f;
+        difference.z *= 35.0f;
 
         MR::setVelocity(mHost, difference);
 
         MR::startSound(mHost, "SE_BV_KOOPA_HIPDROP", -1, -1);
     }
 
-    if (!MR::isBindedGround(mHost) && !MR::isGreaterStep(this, _28)) {
+    if (!MR::isBindedGround(mHost) && !MR::isGreaterStep(this, mJumpTime)) {
         return;
     }
 
@@ -213,7 +215,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
 
     if (MR::isBindedGround(mHost)) {
         pKoopa = mHost;
-        if (MR::sendMsgToBindedSensor(192, pKoopa, pKoopa->getSensor("Body"))) {
+        if (MR::sendMsgToBindedSensor(ACTMES_KOOPA_HIP_DROP_ATTACK, pKoopa, pKoopa->getSensor("Body"))) {
             MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
             MR::stopScene(15);
 
@@ -252,9 +254,9 @@ void KoopaStateAttackHipDrop::exeLand() {
     MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sFallParam);
 
     if (MR::isBckStopped(mHost)) {
-        _20++;
+        mAttacks++;
 
-        if (_20 < _1C && MR::isPlayerDamaging()) {
+        if (mAttacks >= mMaxAttacks || MR::isPlayerDamaging()) {
             kill();
         } else {
             setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance);
@@ -263,4 +265,7 @@ void KoopaStateAttackHipDrop::exeLand() {
 }
 
 void KoopaStateAttackHipDrop::exeDamage() {
+}
+
+KoopaStateAttackHipDrop::~KoopaStateAttackHipDrop() {
 }
