@@ -9,9 +9,7 @@ namespace {
     MR::ActorMoveParam sEndParam = {0.0f, 1.0f, 0.9f, 0.0f};
     MR::ActorMoveParam sEvenParam = {0.0f, 1.0f, 0.95f, 0.5f};
 
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) {
-        MR::moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    }
+    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
 }  // namespace
 
 namespace NrvKoopaStateAttackSpin {
@@ -24,10 +22,7 @@ namespace NrvKoopaStateAttackSpin {
 }  // namespace NrvKoopaStateAttackSpin
 
 KoopaStateAttackSpin::KoopaStateAttackSpin(Koopa* pKoopa)
-    : ActorStateBase< Koopa >("State[スピン攻撃]", pKoopa), _10(1), _14(), _18(&sParamAttackSpin1st), _1C(30) {
-}
-
-KoopaStateAttackSpin::~KoopaStateAttackSpin() {
+    : ActorStateBase< Koopa >("State[スピン攻撃]", pKoopa), mMaxAttacks(1), mAttacks(), mMoveParam(&sParamAttackSpin1st), mSpinDelay(30) {
 }
 
 void KoopaStateAttackSpin::init() {
@@ -43,17 +38,17 @@ void KoopaStateAttackSpin::appear() {
 
     MR::validateHitSensor(mHost, "AttackSpin");
 
-    _14 = 0;
+    mAttacks = 0;
 
     if (KoopaFunction::isKoopaLv1(mHost)) {
-        _10 = 1;
+        mMaxAttacks = 1;
     } else if (KoopaFunction::isKoopaLv2(mHost)) {
-        _10 = 2;
+        mMaxAttacks = 2;
     } else {
-        _10 = 3;
+        mMaxAttacks = 3;
     }
 
-    _18 = &sParamAttackSpin1st;
+    mMoveParam = &sParamAttackSpin1st;
 
     setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvWaitToStart::sInstance);
 }
@@ -94,8 +89,8 @@ bool KoopaStateAttackSpin::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRe
 
     MR::stopSceneForDefaultHit(15);
 
-    _14++;
-    if (_10 >= 2 && _14 >= _10) {
+    mAttacks++;
+    if (mMaxAttacks >= 2 && mAttacks >= mMaxAttacks) {
         kill();
         return true;
     }
@@ -110,7 +105,7 @@ void KoopaStateAttackSpin::exeWaitToStart() {
         MR::zeroVelocity(mHost);
     }
 
-    if (MR::isStep(this, _1C)) {
+    if (MR::isStep(this, mSpinDelay)) {
         setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvStart::sInstance);
     }
 }
@@ -155,7 +150,7 @@ void KoopaStateAttackSpin::exeSpin() {
     }
 
     if (MR::isLessStep(this, 60)) {
-        KoopaFunction::moveAndTurnKoopaToPlayer(mHost, *_18);
+        KoopaFunction::moveAndTurnKoopaToPlayer(mHost, *mMoveParam);
     } else {
         KoopaFunction::moveAndTurnKoopaToPlayer(mHost, sParamAttackSpinBrake);
     }
@@ -165,10 +160,10 @@ void KoopaStateAttackSpin::exeSpin() {
     }
 
     if (MR::isActionEnd(mHost)) {
-        _14++;
+        mAttacks++;
 
-        if (!MR::isPlayerDamaging() && _14 < _10) {
-            _18 = &sParamAttackSpin2nd;
+        if (!MR::isPlayerDamaging() && mAttacks < mMaxAttacks) {
+            mMoveParam = &sParamAttackSpin2nd;
             setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvStart::sInstance);
         } else {
             setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvEnd::sInstance);
@@ -199,11 +194,14 @@ void KoopaStateAttackSpin::exeEven() {
     KoopaFunction::moveAndTurnKoopaToPlayer(mHost, sEvenParam);
 
     if (MR::isActionEnd(mHost)) {
-        if (!MR::isPlayerDamaging() && _14 < _10) {
-            _18 = &sParamAttackSpin2nd;
+        if (!MR::isPlayerDamaging() && mAttacks < mMaxAttacks) {
+            mMoveParam = &sParamAttackSpin2nd;
             setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance);
         } else {
             kill();
         }
     }
+}
+
+KoopaStateAttackSpin::~KoopaStateAttackSpin() {
 }
