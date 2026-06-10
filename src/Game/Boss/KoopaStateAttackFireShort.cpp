@@ -93,10 +93,8 @@ void KoopaStateAttackFireShort::exeEmit() {
         if (MR::isStep(this, mFireDelay)) {
             setNerve(&NrvKoopaStateAttackFireShort::KoopaStateAttackFireShortNrvEmit::sInstance);
         }
-    } else {
-        if (MR::isGreaterStep(this, 30)) {
-            kill();
-        }
+    } else if (MR::isGreaterStep(this, 30)) {
+        kill();
     }
 }
 

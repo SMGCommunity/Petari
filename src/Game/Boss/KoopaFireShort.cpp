@@ -191,14 +191,12 @@ void KoopaFireShort::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         mSpeed = 0.0f;
         MR::zeroVelocity(this);
         setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
-    } else {
-        if (!MR::isSensorPlayer(pReceiver) && !MR::sendMsgPush(pReceiver, pSender) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_FIRE) &&
-            !MR::isSensorType(pReceiver, ATYPE_KOOPA_DAMAGE_PLATE) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_COIN_PLATE) &&
-            !MR::isSensorType(pReceiver, ATYPE_KOOPA_PLATE)) {
-            mSpeed = 0.0f;
-            MR::zeroVelocity(this);
-            setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
-        }
+    } else if (!MR::isSensorPlayer(pReceiver) && !MR::sendMsgPush(pReceiver, pSender) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_FIRE) &&
+               !MR::isSensorType(pReceiver, ATYPE_KOOPA_DAMAGE_PLATE) && !MR::isSensorType(pReceiver, ATYPE_KOOPA_COIN_PLATE) &&
+               !MR::isSensorType(pReceiver, ATYPE_KOOPA_PLATE)) {
+        mSpeed = 0.0f;
+        MR::zeroVelocity(this);
+        setNerve(&NrvKoopaFireShort::KoopaFireShortNrvDisappear::sInstance);
     }
 }
 
