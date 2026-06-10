@@ -4,17 +4,18 @@
 KoopaSwitchKeeper::KoopaSwitchKeeper(const char* pName) : LiveActor(pName) {
 }
 
-KoopaSwitchKeeper::~KoopaSwitchKeeper() {
-}
-
 void KoopaSwitchKeeper::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadAppear(this, rIter);
     MR::useStageSwitchWriteA(this, rIter);
     MR::useStageSwitchWriteB(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
+
     makeActorDead();
 }
 
 void KoopaSwitchKeeper::initAfterPlacement() {
     KoopaFunction::registerKoopaSwitchKeeper(this);
+}
+
+KoopaSwitchKeeper::~KoopaSwitchKeeper() {
 }
