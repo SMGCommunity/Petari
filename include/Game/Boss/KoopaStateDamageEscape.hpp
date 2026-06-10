@@ -5,7 +5,7 @@
 
 class KoopaStateDamageEscape : public ActorStateBase< Koopa > {
 public:
-    KoopaStateDamageEscape(Koopa*);
+    KoopaStateDamageEscape(Koopa* pKoopa);
 
     virtual ~KoopaStateDamageEscape();
     virtual void init();
@@ -14,8 +14,8 @@ public:
 
     void startDamageReverse();
     bool isDownEnd() const;
-    bool tryDamage(u32, HitSensor*, HitSensor*);
-    bool attackSensor(HitSensor*, HitSensor*);
+    bool tryDamage(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
     void exeEscapeStart();
     void exeEscapeStartLoop();
@@ -32,7 +32,8 @@ public:
     void exeDamageTailRunStartFinal();
     void exeDamageTailRunFinal();
     void exeDamageTailRunEndFinal();
-    void exeDownEnd() {}
+    void exeDownEnd() {
+    }
 
 private:
     /* 0x10 */ s32 mEscapeTime;

@@ -39,9 +39,6 @@ KoopaStateDamageEscape::KoopaStateDamageEscape(Koopa* pKoopa)
       mDamageTailRunParam(&sDamageTailRunParam), mMaxRunFrames(600), mRotateVelocity(40.0f), mJumpAwayVelocity(40.0f) {
 }
 
-KoopaStateDamageEscape::~KoopaStateDamageEscape() {
-}
-
 void KoopaStateDamageEscape::init() {
     initNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeStart::sInstance);
 
@@ -343,13 +340,12 @@ void KoopaStateDamageEscape::exeDamageTailRunStart() {
 
         MR::calcVecFromPlayerH(KoopaFunction::getKoopaFrontPtr(mHost), mHost);
 
-        TVec3f vec;
-        vec.set(KoopaFunction::getKoopaFront(mHost));
-        vec.x *= mRotateVelocity;
-        vec.y *= mRotateVelocity;
-        vec.z *= mRotateVelocity;
+        f32 scale = mRotateVelocity;
+        Koopa* pKoopa = mHost;
+        TVec3f vec = *KoopaFunction::getKoopaFront(pKoopa);
+        vec.mult(scale);
 
-        MR::setVelocity(mHost, vec);
+        MR::setVelocity(pKoopa, vec);
 
         KoopaFunction::startKoopaCamera(mHost, "逃走（尻尾ダメージ）");
 
@@ -454,15 +450,16 @@ void KoopaStateDamageEscape::exeDown() {
 
     MR::addVelocityToGravity(mHost, 2.0f);
 
-    TVec3f velocity;
-    MR::vecKillElement(mHost->mVelocity, mHost->mGravity, &velocity);
+    Koopa* pKoopa = mHost;
+    TVec3f velocity = pKoopa->mVelocity;
+    MR::vecKillElement(*velocity, pKoopa->mGravity, &velocity);
 
     if (!MR::isNearZero(*velocity)) {
         MR::normalize(&velocity);
         KoopaFunction::getKoopaFrontPtr(mHost)->set(-velocity);
     }
 
-    Koopa* pKoopa = mHost;
+    pKoopa = mHost;
     if (!MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body")) && !MR::isFirstStep(this) && MR::isBindedGround(mHost)) {
         MR::tryRumblePadAndCameraDistanceStrong(mHost, 1500.0f, 2000.0f, 2000.0f);
         MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
@@ -496,4 +493,7 @@ void KoopaStateDamageEscape::exeDownLand() {
     if (MR::isActionEnd(mHost)) {
         setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDownEnd::sInstance);
     }
+}
+
+KoopaStateDamageEscape::~KoopaStateDamageEscape() {
 }
