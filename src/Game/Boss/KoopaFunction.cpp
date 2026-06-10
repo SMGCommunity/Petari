@@ -10,6 +10,7 @@
 #include "Game/Boss/KoopaSequencerVs3.hpp"
 #include "Game/Boss/KoopaSwitchKeeper.hpp"
 #include "Game/Boss/KoopaViewSwitchKeeper.hpp"
+#include "Game/LiveActor/ActorJointCtrl.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
