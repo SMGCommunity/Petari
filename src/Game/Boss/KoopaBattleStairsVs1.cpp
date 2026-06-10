@@ -5,6 +5,7 @@
 #include "Game/Boss/KoopaSwitchKeeper.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Map/KoopaBattleMapStair.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 namespace {
     static const char* sKoopaPosName0 = "階段の戦い０（クッパ）";
@@ -211,7 +212,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosLoop() {
     f32 val = MR::getEaseInOutValue(step, 0.0f, 1.0f, 1.0f);
     mKoopa->mPosition.set(mOldPosition * (1.0f - val) + mNewPosition * val);
 
-    mKoopa->mPosition.y += 1000.0f * JMASinDegree(180.0f * step);
+    mKoopa->mPosition.y += 1000.0f * MR::sinDegree(180.0f * step);
     MR::turnDirectionDegree(mKoopa, &mKoopa->mFront, mNewDirection, 2.0f);
 
     if (MR::isStep(this, 60)) {
