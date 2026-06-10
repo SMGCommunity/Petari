@@ -77,15 +77,15 @@ void KoopaDemoFallToPlanetVs3Lv3::exeFallOutside() {
     }
 
     if (MR::isLessStep(this, 214)) {
-        MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_1", -1, -1);
+        MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_1");
     } else if (MR::isLessStep(this, 328)) {
-        MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_2", -1, -1);
+        MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_2");
     } else {
-        MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_3", -1, -1);
+        MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_3");
     }
 
     if (MR::isStep(this, 328)) {
-        MR::startAtmosphereSE("SE_BM_KOOPA_FALL_SUN_3_WIND", -1, -1);
+        MR::startAtmosphereSE("SE_BM_KOOPA_FALL_SUN_3_WIND");
     }
 
     if (KoopaFunction::tryEndKoopaCameraDemo(mHost, "クッパＶｓ３惑星移動（Ｌｖ２からＬｖ３）", "DemoKoopaFallSun")) {
@@ -102,7 +102,7 @@ void KoopaDemoFallToPlanetVs3Lv3::exeFallOutside() {
 }
 
 void KoopaDemoFallToPlanetVs3Lv3::exeFallInside() {
-    MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_1", -1, -1);
+    MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_1");
     MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sFallParam);
 
     if (MR::isBindedGround(mHost)) {

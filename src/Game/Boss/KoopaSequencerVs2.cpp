@@ -83,7 +83,7 @@ void KoopaSequencerVs2::exeWaitDemoDown() {
 
 void KoopaSequencerVs2::exeDemoDown() {
     if (MR::isFirstStep(this)) {
-        MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1", -1, -1);
+        MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1");
 
         MR::stopStageBGM(180);
 

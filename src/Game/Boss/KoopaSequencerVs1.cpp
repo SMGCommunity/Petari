@@ -105,7 +105,7 @@ void KoopaSequencerVs1::exeWaitDemoBattleEnd() {
 
 void KoopaSequencerVs1::exeDemoBattleEnd() {
     if (MR::isFirstStep(this)) {
-        MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1", -1, -1);
+        MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1");
         MR::stopStageBGM(180);
 
         KoopaFunction::endFaceCtrl(mKoopa, -1);
