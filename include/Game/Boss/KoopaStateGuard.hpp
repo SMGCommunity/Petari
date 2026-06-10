@@ -5,12 +5,12 @@
 
 class KoopaStateGuard : public ActorStateBase< Koopa > {
 public:
-    KoopaStateGuard(Koopa*);
+    KoopaStateGuard(Koopa* pKoopa);
 
     virtual ~KoopaStateGuard();
     virtual void init();
 
-    bool tryStart(u32, HitSensor*, HitSensor*);
+    bool tryStart(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeGuardFace();
     void exeGuardBody();

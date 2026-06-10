@@ -1,15 +1,13 @@
 #include "Game/Boss/KoopaStateGuard.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 
-namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) NO_INLINE {
-        MR::moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
-    }
-}  // namespace MR
-
 namespace {
     MR::ActorMoveParam sGuardFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
-}
+}  // namespace
+
+namespace MR {
+    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
+}  // namespace MR
 
 namespace NrvKoopaStateGuard {
     NEW_NERVE(KoopaStateGuardNrvGuardFace, KoopaStateGuard, GuardFace);
@@ -20,11 +18,9 @@ namespace NrvKoopaStateGuard {
 KoopaStateGuard::KoopaStateGuard(Koopa* pKoopa) : ActorStateBase< Koopa >("State[ガード攻撃]", pKoopa) {
 }
 
-KoopaStateGuard::~KoopaStateGuard() {
-}
-
 void KoopaStateGuard::init() {
     initNerve(&NrvKoopaStateGuard::KoopaStateGuardNrvGuardFace::sInstance);
+
     kill();
 }
 
@@ -35,6 +31,7 @@ bool KoopaStateGuard::tryStart(u32 msg, HitSensor* pReceiver, HitSensor* pSender
 
     if (MR::isSensor(pSender, "Face")) {
         MR::sendMsgEnemyAttackFlip(pReceiver, pSender);
+
         setNerve(&NrvKoopaStateGuard::KoopaStateGuardNrvGuardFace::sInstance);
 
         return true;
@@ -42,6 +39,7 @@ bool KoopaStateGuard::tryStart(u32 msg, HitSensor* pReceiver, HitSensor* pSender
 
     if (MR::isSensor(pSender, "GuardBody")) {
         MR::sendMsgEnemyAttackFlip(pReceiver, pSender);
+
         setNerve(&NrvKoopaStateGuard::KoopaStateGuardNrvGuardBody::sInstance);
 
         return true;
@@ -49,6 +47,7 @@ bool KoopaStateGuard::tryStart(u32 msg, HitSensor* pReceiver, HitSensor* pSender
 
     if (MR::isSensor(pSender, "Tail") || MR::isSensor(pSender, "TailTop")) {
         MR::sendMsgEnemyAttackFlipMaximum(pReceiver, pSender);
+
         setNerve(&NrvKoopaStateGuard::KoopaStateGuardNrvGuardTail::sInstance);
 
         return true;
@@ -61,6 +60,7 @@ void KoopaStateGuard::exeGuardFace() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "GuardFace");
         MR::startSound(mHost, "SE_BV_KOOPA_GUARD", -1, -1);
+
         MR::zeroVelocity(mHost);
     }
 
@@ -76,6 +76,7 @@ void KoopaStateGuard::exeGuardBody() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "GuardBody");
         MR::startSound(mHost, "SE_BV_KOOPA_GUARD", -1, -1);
+
         MR::zeroVelocity(mHost);
     }
 
@@ -90,6 +91,7 @@ void KoopaStateGuard::exeGuardBody() {
 void KoopaStateGuard::exeGuardTail() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "AttackTail");
+        
         MR::zeroVelocity(mHost);
     }
 
@@ -99,4 +101,7 @@ void KoopaStateGuard::exeGuardTail() {
     if (MR::isActionEnd(mHost)) {
         kill();
     }
+}
+
+KoopaStateGuard::~KoopaStateGuard() {
 }
