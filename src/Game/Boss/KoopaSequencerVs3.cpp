@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaSequencerVs3.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaBattleMain.hpp"
 #include "Game/Boss/KoopaBattleStairsVs3.hpp"
 #include "Game/Boss/KoopaBattleVs3Lv1.hpp"
@@ -13,6 +14,7 @@
 #include "Game/Boss/KoopaViewSwitchKeeper.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
+
 
 namespace NrvKoopaSequencerVs3 {
     NEW_NERVE(KoopaSequencerVs3NrvWaitPlayer, KoopaSequencerVs3, WaitPlayer);

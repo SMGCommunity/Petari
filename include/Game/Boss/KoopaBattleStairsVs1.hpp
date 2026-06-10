@@ -36,7 +36,7 @@ public:
     /* 0x4C */ s32 _4C;
     /* 0x50 */ s32 _50;
     /* 0x54 */ s32 _54;
-    /* 0x58 */ s32 _58;
+    /* 0x58 */ s32 mAvailableStairs;
     /* 0x5C */ s32 mJumpIdx;
     /* 0x60 */ TVec3f mOldPosition;
     /* 0x6C */ TVec3f mNewPosition;

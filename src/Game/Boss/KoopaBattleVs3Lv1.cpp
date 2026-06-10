@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaBattleVs3Lv1.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaStateAttackFireShort.hpp"
 #include "Game/Boss/KoopaStateAttackShockWave.hpp"
@@ -6,6 +7,7 @@
 #include "Game/Boss/KoopaStateDamageEscape.hpp"
 #include "Game/Boss/KoopaStateGuard.hpp"
 #include "Game/Boss/KoopaStateJumpAway.hpp"
+
 
 namespace NrvKoopaBattleVs3Lv1 {
     NEW_NERVE(KoopaBattleVs3Lv1NrvChaseRoll, KoopaBattleVs3Lv1, ChaseRoll);

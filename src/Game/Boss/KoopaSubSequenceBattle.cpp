@@ -1,7 +1,9 @@
 #include "Game/Boss/KoopaSubSequenceBattle.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaBattleBase.hpp"
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
 #include "Game/Boss/KoopaSequencer.hpp"
+
 
 namespace NrvKoopaSubSequenceBattle {
     NEW_NERVE(KoopaSubSequenceBattleNrvBattleLv1, KoopaSubSequenceBattle, BattleLv1);
@@ -18,7 +20,7 @@ KoopaSubSequenceBattle::KoopaSubSequenceBattle(Koopa* pKoopa, KoopaSequencer* pS
 
 void KoopaSubSequenceBattle::kill() {
     mIsDead = true;
-    
+
     MR::offSwitchB(mHost);
 }
 

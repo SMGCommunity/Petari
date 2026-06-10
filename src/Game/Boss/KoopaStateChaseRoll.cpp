@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaStateChaseRoll.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFigureBall.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaRockBreak.hpp"

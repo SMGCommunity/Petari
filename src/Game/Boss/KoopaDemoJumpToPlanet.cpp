@@ -1,6 +1,8 @@
 #include "Game/Boss//KoopaDemoJumpToPlanet.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPlanetShadow.hpp"
+
 
 namespace {
     MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};

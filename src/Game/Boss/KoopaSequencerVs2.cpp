@@ -1,9 +1,11 @@
 #include "Game/Boss/KoopaSequencerVs2.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaBattleMain.hpp"
 #include "Game/Boss/KoopaDemoJumpToPlanet.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaSubSequenceBattle.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
+
 
 namespace NrvKoopaSequencerVs2 {
     NEW_NERVE(KoopaSequencerVs2NrvWaitDemoBattleStart, KoopaSequencerVs2, WaitDemoBattleStart);

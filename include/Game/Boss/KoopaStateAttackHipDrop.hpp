@@ -1,7 +1,10 @@
 #pragma once
 
-#include "Game/Boss/Koopa.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+
+class Koopa;
+class HitSensor;
 
 class KoopaStateAttackHipDrop : public ActorStateBase< Koopa > {
 public:

@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaSequencer.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaDemoJumpToPlanet.hpp"
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
 

@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaDemoFallToPlanetVs3Lv2.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/KoopaSwitchKeeper.hpp"

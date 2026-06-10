@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaStateAttackFireLong.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 
 namespace {

@@ -1,10 +1,12 @@
 #include "Game/Boss/KoopaBattleVs3Lv2.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaStateAttackFireShort.hpp"
 #include "Game/Boss/KoopaStateAttackRoll.hpp"
 #include "Game/Boss/KoopaStateDamageEscape.hpp"
 #include "Game/Boss/KoopaStateGuard.hpp"
 #include "Game/Boss/KoopaStateJumpAway.hpp"
+
 
 namespace NrvKoopaBattleVs3Lv2 {
     NEW_NERVE(KoopaBattleVs3Lv2NrvAttackRoll, KoopaBattleVs3Lv2, AttackRoll);

@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaSequencerVs1.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaBattleMain.hpp"
 #include "Game/Boss/KoopaBattleStairsVs1.hpp"
 #include "Game/Boss/KoopaDemoJumpToPlanet.hpp"
@@ -6,7 +7,6 @@
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/KoopaSubSequenceBattle.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
-
 
 namespace NrvKoopaSequencerVs1 {
     NEW_NERVE(KoopaSequencerVs1NrvBattleStairs, KoopaSequencerVs1, BattleStairs);

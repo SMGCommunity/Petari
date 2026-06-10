@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaStateAttackShockWave.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 
 namespace NrvKoopaStateAttackShockWave {

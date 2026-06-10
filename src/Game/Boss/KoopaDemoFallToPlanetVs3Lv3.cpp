@@ -1,8 +1,10 @@
 #include "Game/Boss/KoopaDemoFallToPlanetVs3Lv3.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/KoopaSwitchKeeper.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
+
 
 namespace {
     MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};

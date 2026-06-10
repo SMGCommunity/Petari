@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Game/Boss/Koopa.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
 
+class Koopa;
+class HitSensor;
 class KoopaFigureBall;
 
 class KoopaStateChaseRoll : public ActorStateBase< Koopa > {

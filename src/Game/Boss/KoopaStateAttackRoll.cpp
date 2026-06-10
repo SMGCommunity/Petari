@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaStateAttackRoll.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFigureBall.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/LiveActor/PartsModel.hpp"

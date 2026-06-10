@@ -1,6 +1,8 @@
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
+#include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPowerUpSwitch.hpp"
+
 
 namespace NrvKoopaDemoPowerUp {
     NEW_NERVE(KoopaDemoPowerUpNrvWaitDemo, KoopaDemoPowerUp, WaitDemo);
@@ -99,7 +101,7 @@ void KoopaDemoPowerUp::exeDemo() {
     TVec3f gravity;
     gravity.negate(mHost->mGravity);
     MR::appearStarPieceToDirection(mHost, mHost->mPosition, gravity, 10, 50.0f, 60.0f, false);
-    
+
     MR::startSound(mHost, "SE_OJ_STAR_PIECE_BURST", -1, -1);
 
     kill();
