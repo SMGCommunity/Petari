@@ -6,7 +6,9 @@
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/KoopaRockBreak.hpp"
 #include "Game/Boss/KoopaShockWave.hpp"
+#include "Game/LiveActor/ActorJointCtrl.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
 
 KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
@@ -167,7 +169,7 @@ namespace {
 
         pModelObjNpc->mLodCtrl->invalidateClipping();
         pModelObjNpc->mLodCtrl->invalidate();
-
+        
         pModelObjNpc->mJointCtrl->endFaceCtrl(-1);
 
         MR::initLightCtrl(pModelObjNpc);
