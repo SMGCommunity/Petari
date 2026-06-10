@@ -192,7 +192,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
         TVec3f difference = *mGroundPosition;
         difference.subInline(mHost->mPosition);
 
-        mJumpTime = static_cast< s32 >(difference.length() / 35.0f) + 10l;
+        mJumpTime = static_cast< s32 >(difference.length() / 35.0f) + 10;
 
         MR::normalizeOrZero(&difference);
 
