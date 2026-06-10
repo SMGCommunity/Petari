@@ -10,11 +10,9 @@ namespace NrvKoopaStateJumpAway {
 KoopaStateJumpAway::KoopaStateJumpAway(Koopa* pKoopa) : ActorStateBase< Koopa >("State[ジャンプで離れる]", pKoopa) {
 }
 
-KoopaStateJumpAway::~KoopaStateJumpAway() {
-}
-
 void KoopaStateJumpAway::init() {
     initNerve(&NrvKoopaStateJumpAway::KoopaStateJumpAwayNrvJumpStart::sInstance);
+
     kill();
 }
 
@@ -27,6 +25,7 @@ void KoopaStateJumpAway::appear() {
 void KoopaStateJumpAway::exeJumpStart() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "JumpAwayStart");
+
         MR::zeroVelocity(mHost);
     }
 
@@ -40,12 +39,10 @@ void KoopaStateJumpAway::exeJump() {
         MR::startAction(mHost, "JumpAway");
 
         Koopa* pKoopa = mHost;
-        TVec3f velocity = KoopaFunction::getKoopaFront(pKoopa);
-        velocity.x *= -20.0f;
-        velocity.y *= -20.0f;
-        velocity.z *= -20.0f;
+        TVec3f front = KoopaFunction::getKoopaFront(pKoopa);
+        front.mult(-20.0f);
 
-        MR::setVelocity(pKoopa, velocity);
+        MR::setVelocity(pKoopa, front);
         MR::addVelocityJump(mHost, 35.0f);
 
         MR::startSound(mHost, "SE_BM_KOOPA_JUMP", -1, -1);
@@ -53,12 +50,13 @@ void KoopaStateJumpAway::exeJump() {
     }
 
     MR::addVelocityToGravity(mHost, 1.0f);
-    TVec3f vec = mHost->mVelocity;
-    MR::vecKillElement(vec, mHost->mGravity, &vec);
+    TVec3f newFront = mHost->mVelocity;
+    MR::vecKillElement(newFront, mHost->mGravity, &newFront);
 
-    if (!MR::isNearZero(vec)) {
-        vec.normalize();
-        KoopaFunction::getKoopaFrontPtr(mHost)->set(vec);
+    if (!MR::isNearZero(newFront)) {
+        MR::normalize(&newFront);
+
+        KoopaFunction::getKoopaFrontPtr(mHost)->set(newFront.negateInline());
     }
 
     Koopa* pKoopa = mHost;
@@ -83,4 +81,7 @@ void KoopaStateJumpAway::exeLand() {
     } else if (MR::isActionEnd(mHost)) {
         kill();
     }
+}
+
+KoopaStateJumpAway::~KoopaStateJumpAway() {
 }
