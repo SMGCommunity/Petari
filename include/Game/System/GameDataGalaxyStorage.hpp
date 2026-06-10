@@ -64,7 +64,7 @@ public:
 // different classes. What actually is the class that takes this role?
 class Dummy1 {
 public:
-    Dummy1(){};
+    Dummy1() {};
 };
 
 class GameDataAllGalaxyStorage : public Dummy1, public BinaryDataChunkBase {

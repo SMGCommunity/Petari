@@ -5,7 +5,8 @@ MessageArea::MessageArea(int formType, const char* pName) : AreaObj(formType, pN
     mZoneID = -1;
 }
 
-MessageArea::~MessageArea() {}
+MessageArea::~MessageArea() {
+}
 
 void MessageArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

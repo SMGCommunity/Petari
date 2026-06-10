@@ -382,7 +382,7 @@ void PenguinSkater::exeFadeOut() {
         pos.set(getBaseMtx());
         MR::setPlayerBaseMtx(pos);
         MR::startAction(this, "CaughtWait");
-        MR::closeWipeCircle(-1);
+        MR::closeWipeCircle();
     }
     if (!MR::isWipeActive()) {
         setNerve(&NrvPenguinSkater::PenguinSkaterNrvFadeIn::sInstance);
@@ -401,7 +401,7 @@ void PenguinSkater::exeFadeIn() {
         MR::startNPCTalkCamera(getMsgCtrl(), getBaseMtx(), pos, 1.0f, 0);
         MR::forwardNode(getMsgCtrl());
         MR::startBckPlayer("Watch", static_cast< const char* >(nullptr));
-        MR::openWipeCircle(-1);
+        MR::openWipeCircle();
         mParam.setMoveTalkNoTurnAction("SitDown", "SitDownTalk");
     }
     MR::tryStartTurnAction(this);

@@ -62,7 +62,8 @@ void GameSceneScenarioOpeningCameraState::end() {
     MR::setPlayerBaseMtx(mBaseMtx);
 }
 
-void GameSceneScenarioOpeningCameraState::exeWait() {}
+void GameSceneScenarioOpeningCameraState::exeWait() {
+}
 
 void GameSceneScenarioOpeningCameraState::exePlay() {
     if (MR::isFirstStep(this)) {
@@ -82,7 +83,7 @@ void GameSceneScenarioOpeningCameraState::exePlay() {
         }
 
         if (MR::isStep(this, MR::getStartAnimCameraFrame() - 20)) {
-            AudWrap::getSystem()->setVar(30);
+            AudWrap::getSystem()->set830(30);
         }
 
         if (MR::isStartAnimCameraEnd() && MR::isStopCinemaFrame()) {

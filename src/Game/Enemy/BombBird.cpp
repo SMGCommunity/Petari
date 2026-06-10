@@ -30,7 +30,8 @@ namespace NrvBombBird {
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, BombBird, BindStarPointer, BindStarPointer);
 };  // namespace NrvBombBird
 
-BombBird::~BombBird() {}
+BombBird::~BombBird() {
+}
 
 void BombBird::makeActorDead() {
     LiveActor::makeActorDead();

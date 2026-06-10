@@ -65,6 +65,7 @@ void JumpEmitter::endEventCamera() {
 
 // JumpEmitter::updateRotate
 
-
-JumpGuarder::JumpGuarder(const char* pName) : NameObj(pName) {}
-JumpGuarder::~JumpGuarder() {}
+JumpGuarder::JumpGuarder(const char* pName) : NameObj(pName) {
+}
+JumpGuarder::~JumpGuarder() {
+}

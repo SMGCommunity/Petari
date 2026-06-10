@@ -1,5 +1,6 @@
 #include "Game/Enemy/Gesso.hpp"
 
-Gesso::Gesso(const char* pName) : LiveActor(pName) {}
-Gesso::~Gesso() {}
-
+Gesso::Gesso(const char* pName) : LiveActor(pName) {
+}
+Gesso::~Gesso() {
+}

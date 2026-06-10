@@ -3,7 +3,6 @@
 #include "Game/Boss/TombSpider.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-
 class ActorCameraInfo;
 
 class TombSpiderDemo {
@@ -20,7 +19,9 @@ public:
     bool isStartDemoGateOpen() const;
     bool updateBattle1stStartJumpToPlayer();
 
-    inline ActorCameraInfo* getCameraInfo() { return mParent->mCameraInfo; }
+    inline ActorCameraInfo* getCameraInfo() {
+        return mParent->mCameraInfo;
+    }
 
     /* 0x00 */ TombSpider* mParent;
     /* 0x04 */ TPos3f mMtx;

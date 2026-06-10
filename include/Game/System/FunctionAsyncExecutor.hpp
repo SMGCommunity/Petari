@@ -14,7 +14,9 @@ public:
 
     void execute();
 
-    bool isSame(const char* pStr) { return MR::strcasecmp(mName, pStr) == 0; }
+    bool isSame(const char* pStr) {
+        return MR::strcasecmp(mName, pStr) == 0;
+    }
 
     /* 0x00 */ MR::FunctorBase* mFunc;
     /* 0x04 */ int mPriority;

@@ -111,7 +111,8 @@ void TakeOutStar::exeDemo() {
     }
 }
 
-void TakeOutStar::exeTerm() {}
+void TakeOutStar::exeTerm() {
+}
 
 FadeStarter::FadeStarter(NPCActor* pActor, s32 a2) : NerveExecutor("フェード開始制御"), mActor(pActor), _C(nullptr), _10(a2) {
     initNerve(&NrvFadeStarter::FadeStarterNrvFade::sInstance);
@@ -152,7 +153,8 @@ void FadeStarter::exeFade() {
     setNerve(&NrvFadeStarter::FadeStarterNrvTerm::sInstance);
 }
 
-void FadeStarter::exeTerm() {}
+void FadeStarter::exeTerm() {
+}
 
 DemoStarter::DemoStarter(NPCActor* pActor) : NerveExecutor("デモ開始制御"), mActor(pActor) {
     initNerve(&NrvDemoStarter::DemoStarterNrvInit::sInstance);
@@ -170,13 +172,14 @@ void DemoStarter::start() {
     }
 }
 
-void DemoStarter::exeInit() {}
+void DemoStarter::exeInit() {
+}
 
 void DemoStarter::exeFade() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(mActor);
         MR::offPlayerControl();
-        MR::closeWipeFade(-1);
+        MR::closeWipeFade();
     }
 
     if (MR::isWipeActive()) {
@@ -196,4 +199,5 @@ void DemoStarter::exeWait() {
     }
 }
 
-void DemoStarter::exeTerm() {}
+void DemoStarter::exeTerm() {
+}

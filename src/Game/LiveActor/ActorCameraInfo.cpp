@@ -12,4 +12,5 @@ ActorCameraInfo::ActorCameraInfo(const JMapInfoIter& rIter) : mCameraSetID(-1), 
     mZoneID = MR::getPlacedZoneId(rIter);
 }
 
-ActorCameraInfo::ActorCameraInfo(s32 cameraSetID, s32 zoneID) : mCameraSetID(cameraSetID), mZoneID(zoneID) {}
+ActorCameraInfo::ActorCameraInfo(s32 cameraSetID, s32 zoneID) : mCameraSetID(cameraSetID), mZoneID(zoneID) {
+}

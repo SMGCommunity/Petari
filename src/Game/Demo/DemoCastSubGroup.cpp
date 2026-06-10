@@ -30,4 +30,5 @@ bool DemoCastSubGroup::tryRegisterDemoActor(LiveActor* pActor, const JMapInfoIte
     return true;
 }
 
-DemoCastSubGroup::~DemoCastSubGroup() {}
+DemoCastSubGroup::~DemoCastSubGroup() {
+}

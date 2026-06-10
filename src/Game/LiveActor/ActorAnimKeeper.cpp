@@ -88,7 +88,8 @@ bool ActorAnimKeeper::start(const char* pName) {
     return true;
 }
 
-void ActorAnimKeeper::update() {}
+void ActorAnimKeeper::update() {
+}
 
 bool ActorAnimKeeper::isPlaying(const char* pName) const {
     ActorAnimKeeperInfo* info = findAnimInfo(pName);

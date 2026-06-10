@@ -1,19 +1,22 @@
 #pragma once
 
-#include "Game/Boss/BossKameckAction.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/System/NerveExecutor.hpp"
 
 class BossKameck;
+class BossKameckAction;
 class BossKameckBattleDemo;
+class HitSensor;
+class JMapInfoIter;
 
 class BossKameckSequencer : public NerveExecutor {
 public:
     BossKameckSequencer(const char*);
 
-    inline virtual ~BossKameckSequencer() {}
+    virtual ~BossKameckSequencer() {
+    }
 
-    virtual void start() {}
+    virtual void start() {
+    }
 
     virtual void init(BossKameck*, const JMapInfoIter&);
     virtual void update();
@@ -23,7 +26,7 @@ public:
     virtual bool receiveMsgPush(HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    BossKameck* mBossKameck;            // 0x8
-    BossKameckAction* _C;               // not really sure what this is.
-    BossKameckBattleDemo* mBattleDemo;  // 0x10
+    /* 0x08 */ BossKameck* mBossKameck;
+    /* 0x0C */ BossKameckAction* _C;
+    /* 0x10 */ BossKameckBattleDemo* mBattleDemo;
 };

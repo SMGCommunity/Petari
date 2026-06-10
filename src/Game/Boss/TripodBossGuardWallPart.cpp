@@ -118,7 +118,8 @@ void TripodBossGuardWallPart::exeRepair() {
     }
 }
 
-void TripodBossGuardWallPart::exeActive() {}
+void TripodBossGuardWallPart::exeActive() {
+}
 
 void TripodBossGuardWallPart::exeDemo() {
     if (MR::isGreaterStep(this, mStartTiming)) {
@@ -126,7 +127,8 @@ void TripodBossGuardWallPart::exeDemo() {
     }
 }
 
-void TripodBossGuardWallPart::exeNonActive() {}
+void TripodBossGuardWallPart::exeNonActive() {
+}
 
 void TripodBossGuardWallPart::setHostMatrix(const TPos3f* pPos) {
     mHostMtx = pPos;

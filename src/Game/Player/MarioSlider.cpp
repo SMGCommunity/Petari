@@ -1,7 +1,7 @@
 #include "Game/Player/MarioSlider.hpp"
 #include "Game/Enemy/KariKariDirector.hpp"
-#include "Game/Player/Mario.hpp"
 #include "Game/Map/HitInfo.hpp"
+#include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioConst.hpp"
 #include "Game/Player/MarioModule.hpp"
@@ -50,8 +50,7 @@ bool MarioSlider::postureCtrl(MtxPtr) {
 
     MarioConst* pConst = mActor->mConst;
     Mario* pPlayer = getPlayer();
-    MR::vecBlendSphere(getPlayer()->_1FC, newHeadVec, &pPlayer->_1FC,
-                       pConst->mTable[pConst->mCurrentTable]->mSliderHeadRotateRatio);
+    MR::vecBlendSphere(getPlayer()->_1FC, newHeadVec, &pPlayer->_1FC, pConst->mTable[pConst->mCurrentTable]->mSliderHeadRotateRatio);
     return false;
 }
 
@@ -232,7 +231,7 @@ bool MarioSlider::update() {
 
 bool MarioSlider::close() {
     if (getPlayer()->isSwimming()) {
-        stopAnimation("スライダー尻", static_cast<const char*>(nullptr));
+        stopAnimation("スライダー尻", static_cast< const char* >(nullptr));
     } else if (getPlayer()->mMovementStates.jumping == 0) {
         stopAnimation("スライダー尻", "基本");
     } else {

@@ -15,6 +15,7 @@
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/MirrorActor.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/CollisionParts.hpp"
@@ -340,8 +341,7 @@ namespace MR {
             return false;
         }
 
-        bool isGround = (0.0f <= binder->_C8);
-        if (!isGround) {
+        if (!binder->isBindedGround()) {
             return false;
         }
 
@@ -367,7 +367,7 @@ namespace MR {
             return false;
         }
 
-        return 0.0f <= binder->_C8;
+        return binder->isBindedGround();
     }
 
     bool isBindedGround(const LiveActor* pActor, HitSensor* pSensor) {
@@ -384,7 +384,7 @@ namespace MR {
             return false;
         }
 
-        return 0.0f <= binder->_158;
+        return binder->isBindedWall();
     }
 
     bool isBindedWall(const LiveActor* pActor, HitSensor* pSensor) {
@@ -450,7 +450,7 @@ namespace MR {
             return false;
         }
 
-        return 0.0f <= binder->_1E8;
+        return binder->isBindedRoof();
     }
 
     bool isBindedRoof(const LiveActor* pActor, HitSensor* pSensor) {
@@ -1808,7 +1808,7 @@ namespace MR {
         BckCtrlFunction::reflectBckCtrlData(rBck, pActor->mModelManager->mXanimePlayer);
 
         AudAnmSoundObject* pSoundObj = pActor->mSoundObject;
-        if (pSoundObj != nullptr && pSoundObj->hasAnimHandles()) {
+        if (pSoundObj != nullptr && pSoundObj->hasAnim()) {
             if (rBck.mRepeatFrame < 0) {
                 pSoundObj->setLoopFrame((f32)rBck.mStartFrame, (f32)rBck.mEndFrame);
             } else {
@@ -2800,10 +2800,3 @@ namespace MR {
         return pActor->mCollisionParts != nullptr;
     }
 };  // namespace MR
-
-void JAUSoundAnimator::setLoopFrame(f32 start, f32 end) {
-    mLoopStartFrame = start;
-    mLoopStartSoundIndex = mSoundAnimation->getStartSoundIndex(start);
-    mLoopEndFrame = end;
-    mLoopEndSoundIndex = mSoundAnimation->getEndSoundIndex(end);
-}

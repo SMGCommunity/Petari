@@ -2,8 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
-#include "Game/Util/MultiEventCamera.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/MultiEventCamera.hpp"
 class JMapInfoIter;
 
 class JumpEmitter : public LiveActor {

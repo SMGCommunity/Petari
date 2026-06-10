@@ -222,8 +222,11 @@ void TripodBossFixParts::exeBreak() {
     }
 }
 
-void TripodBossFixParts::exeNonActive() {}
+void TripodBossFixParts::exeNonActive() {
+}
 
-TripodBossFixParts::~TripodBossFixParts() {}
+TripodBossFixParts::~TripodBossFixParts() {
+}
 
-void TripodBossFixParts::exeWaitOwn() {}
+void TripodBossFixParts::exeWaitOwn() {
+}

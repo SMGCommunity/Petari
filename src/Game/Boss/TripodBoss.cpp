@@ -179,8 +179,8 @@ void TripodBoss::initLegIKPlacement() {
         u32& rI = i;
         f32 cur = -(f32)i * ONEPOINTFIVEPI;
         f32 initAngle = ((0.5f * ONEPOINTFIVEPI) + cur);
-        f32 x = JMath::sSinCosTable.sinLapRad(initAngle);
-        f32 z = JMath::sSinCosTable.cosLapRad(initAngle);
+        f32 x = MR::sin(initAngle);
+        f32 z = MR::cos(initAngle);
 
         TVec3f legDirShadow;
         legDirShadow.x = x;

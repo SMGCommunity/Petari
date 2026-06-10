@@ -1,22 +1,22 @@
 #include "Game/Map/OceanBowl.hpp"
-#include "Game/Map/OceanBowlPoint.hpp"
 #include "Game/Map/OceanBowlBloomDrawer.hpp"
+#include "Game/Map/OceanBowlPoint.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
 #include "Game/Map/WaterInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include <JSystem/JGeometry.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JMath/JMath.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
+#include <JSystem/JMath/JMath.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
+#include <cmath>
 #include <math_types.hpp>
 #include <revolution/gd/GDBase.h>
 #include <revolution/gx.h>
 #include <revolution/gx/GXVert.h>
 #include <revolution/mtx.h>
 #include <revolution/os/OSCache.h>
-#include <cmath>
 
 // These are from the debug symbol map
 namespace {
@@ -41,11 +41,11 @@ namespace {
     static GXColor sOceanBowlTevReg1 = {0xC8, 0xE6, 0xD2, 0xFF};
     static u8 sOceanBowlBloomTevReg0V = 0x5F;
     static u8 sOceanBowlBloomTevReg1V = 0x32;
-} // namespace
+}  // namespace
 
-OceanBowl::OceanBowl(const char* pName) : LiveActor(pName),
-    mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRadius(0.0f), mWaveX(0.0f), mWaveZ(0.0f),
-    mTexU0(0.0f), mTexV0(0.0f), mTexU1(0.0f), mTexV1(0.0f), mTexU2(0.0f), mTexV2(0.0f), _A98(0.041666667f) {
+OceanBowl::OceanBowl(const char* pName)
+    : LiveActor(pName), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRadius(0.0f), mWaveX(0.0f), mWaveZ(0.0f),
+      mTexU0(0.0f), mTexV0(0.0f), mTexU1(0.0f), mTexV1(0.0f), mTexU2(0.0f), mTexV2(0.0f), _A98(0.041666667f) {
     mVtxTex0Array = nullptr;
     mVtxTex1Array = nullptr;
     mVtxTex2Array = nullptr;
@@ -98,7 +98,7 @@ bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterI
     fb *= PI;
     fb *= 0.5f;
 
-    pInfo->_4 = JMath::sSinCosTable.cosLapRad(fb) * B0;
+    pInfo->_4 = MR::cos(fb) * B0;
     pInfo->_4 += fa;
 
     pInfo->mCamWaterDepth = -fa;
@@ -178,8 +178,8 @@ void OceanBowl::initPoints() {
         for (s32 y = 0; y < 25; y++) {
             TVec3f vecA(mSide);
             TVec3f vecB(mFront);
-            vecA.scale(((static_cast<f32>(y) * sPointInterval) - 2500.0f) + sPointIntervalHalf);
-            vecB.scale(((static_cast<f32>(x) * sPointInterval) - 2500.0f) + sPointIntervalHalf);
+            vecA.scale(((static_cast< f32 >(y) * sPointInterval) - 2500.0f) + sPointIntervalHalf);
+            vecB.scale(((static_cast< f32 >(x) * sPointInterval) - 2500.0f) + sPointIntervalHalf);
             TVec3f finalpos(mPosition);
             finalpos.add(vecA);
             finalpos.add(vecB);
@@ -549,4 +549,5 @@ void OceanBowl::loadMaterialBloom() const {
     GXSetClipMode(GX_CLIP_ENABLE);
 }
 
-OceanBowl::~OceanBowl() {}
+OceanBowl::~OceanBowl() {
+}

@@ -126,6 +126,8 @@ void PhantomShipBridge::exeMoveB() {
     }
 }
 
-void PhantomShipBridge::exeWait() {}
+void PhantomShipBridge::exeWait() {
+}
 
-PhantomShipBridge::~PhantomShipBridge() {}
+PhantomShipBridge::~PhantomShipBridge() {
+}

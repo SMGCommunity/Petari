@@ -10,7 +10,8 @@ namespace NrvWaterBazookaCapsule {
 };  // namespace NrvWaterBazookaCapsule
 
 WaterBazookaCapsule::WaterBazookaCapsule(LiveActor* pActor, const char* pName)
-    : PartsModel(pActor, pName, "WaterBazookaCapsule", nullptr, MR::DrawBufferType_Enemy, false) {}
+    : PartsModel(pActor, pName, "WaterBazookaCapsule", nullptr, MR::DrawBufferType_Enemy, false) {
+}
 
 void WaterBazookaCapsule::init(const JMapInfoIter& rIter) {
     initHitSensor(1);

@@ -4,6 +4,7 @@
 #include <revolution.h>
 // #include "math_types.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 #include "math_types.hpp"
 #include "revolution/mtx.h"
 #include "revolution/types.h"
@@ -354,10 +355,13 @@ namespace JGeometry {
 
         TVec3 operator+(const TVec3& op) const {
             TVec3 ret(*this);
-            JMathInlineVEC::PSVECAdd(&ret, &op, &ret);
+            ret += op;
             return ret;
         }
-        TVec3& operator+=(const TVec3& op);
+
+        void operator+=(const TVec3& op) {
+            JMathInlineVEC::PSVECAdd(this, &op, this);
+        }
 
         // Needs to be part of TVec to schedule instructions correctly in CubeGravity
         // Also, this seems like it should be merged with operator+(), but then how is
@@ -387,6 +391,12 @@ namespace JGeometry {
             return ret;
         }
 
+        inline TVec3 addOtherInline2(const TVec3& op) const {
+            TVec3 ret(*this);
+            JMathInlineVEC::PSVECAdd(&ret, &op, &ret);
+            return ret;
+        }
+
         TVec3 operator*(f32 scalar) const NO_INLINE {
             TVec3 ret(*this);
             ret.x *= scalar;
@@ -396,6 +406,10 @@ namespace JGeometry {
         }
 
         TVec3& operator*=(f32);
+
+        void operator*=(const TVec3& op) {
+            mulInternal(&this->x, &op.x, &this->x);
+        }
 
         // Same reason to expect to merge as translate()
         TVec3 multiplyOperatorInline(f32 scalar) const {
@@ -663,7 +677,8 @@ namespace JGeometry {
         }
 
         inline void rejection(const TVec3& rVec, const TVec3& rNormal) {
-            JMAVECScaleAdd(&rNormal, &rVec, this, -rNormal.dot(rVec));
+            const TVec3& norm = rNormal;
+            JMAVECScaleAdd(&norm, &rVec, this, -norm.dot(rVec));
         }
         inline void rejection(const TVec3& rNormal) {
             const TVec3& norm = rNormal;
@@ -751,6 +766,10 @@ namespace JGeometry {
 #endif
 
         void zero();
+
+        inline void zeroInline() {
+            x = y = z = 0;
+        }
 
         bool isZero() const {
             return squared() <= 0.0000038146973f;
@@ -866,6 +885,13 @@ namespace JGeometry {
         inline TVec3< T >* toTVec3() {
             return (TVec3< T >*)this;
         }
+
+        operator Quaternion*() {
+            return (Quaternion*)&x;
+        }
+        operator const Quaternion*() const {
+            return (Quaternion*)&x;
+        }
     };
 
     template < typename T >
@@ -921,7 +947,16 @@ namespace JGeometry {
 #endif
 
         /* General operations */
-        void normalize();
+        void normalize() {
+            f32 length = squared();
+            if (length <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
+                set< T >(0.0f, 0.0f, 0.0f, 1.0f);
+                return;
+            }
+            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(length);
+            TVec4< T >::scale(lengthinv);
+        }
+
         void normalize(const TQuat4< T >& rSrc);
 
         void getXDir(TVec3< T >& rDest) const {
@@ -953,7 +988,7 @@ namespace JGeometry {
                 set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
             } else {
                 f32 dotPart = rA.dot(rB);
-                f32 halfAngle = ratio * (JMath::sAtanTable.atan2_(crossPart, dotPart) * 0.5f);
+                f32 halfAngle = ratio * (JMAATan2(crossPart, dotPart) * 0.5f);
                 toTvec()->scale((f32)sin(halfAngle) / crossPart, dir);
                 this->w = cos(halfAngle);
             }
@@ -1011,6 +1046,18 @@ namespace JGeometry {
 
         void transform(TVec3< T >& v) const {
             transform(v, v);
+        }
+
+        void mult(const TQuat4& q) {
+            PSQUATMultiply(&q, this, this);
+        }
+
+        f32 dot(const TQuat4& q) const {
+            return PSQUATDotProduct(this, &q);
+        }
+
+        f32 squared() const {
+            return PSQUATDotProduct(this, this);
         }
 
         void makeMtx(MtxPtr pMtx) const {

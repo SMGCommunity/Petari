@@ -140,4 +140,5 @@ void CrystalSwitch::calcRotSpeed() {
     }
 }
 
-CrystalSwitch::~CrystalSwitch() {}
+CrystalSwitch::~CrystalSwitch() {
+}

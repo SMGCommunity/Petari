@@ -20,7 +20,8 @@ void BossKameckBarrier::init(const JMapInfoIter& rIter) {
     makeActorDead();
 }
 
-void BossKameckBarrier::control() {}
+void BossKameckBarrier::control() {
+}
 
 void BossKameckBarrier::exeWait() {
     if (MR::isFirstStep(this)) {
@@ -29,4 +30,5 @@ void BossKameckBarrier::exeWait() {
     }
 }
 
-BossKameckBarrier::~BossKameckBarrier() {}
+BossKameckBarrier::~BossKameckBarrier() {
+}

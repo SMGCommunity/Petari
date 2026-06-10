@@ -16,10 +16,10 @@ OSMessage JASChannel::sBankDisposeList[16];
 int JASChannel::sBankDisposeListSize;
 
 JASChannel::JASChannel(Callback i_callback, void* i_callbackData)
-    : mStatus(STATUS_STOP), mDspCh(NULL), mCallback(i_callback), mCallbackData(i_callbackData), mUpdateTimer(0), mBankDisposeID(NULL), mKey(0),
+    : mStatus(STATUS_STOP), mDspCh(nullptr), mCallback(i_callback), mCallbackData(i_callbackData), mUpdateTimer(0), mBankDisposeID(nullptr), mKey(0),
       mVelocity(0x7f), mKeySweep(0.0f), mKeySweepTarget(0.0f), mKeySweepCount(0), mSkipSamples(0) {
-    _DC._0 = 0;
-    _104 = 0;
+    mChannelType = JASChannel::CH_WAVE;
+    mWavePtr = 0;
     mMixConfig[0].whole = 0x150;
     mMixConfig[1].whole = 0x210;
     mMixConfig[2].whole = 0x352;
@@ -31,17 +31,17 @@ JASChannel::JASChannel(Callback i_callback, void* i_callbackData)
 }
 
 JASChannel::~JASChannel() {
-    if (mDspCh != NULL) {
+    if (mDspCh != nullptr) {
         mDspCh->drop();
     }
-    if (mCallback != NULL) {
-        mCallback(CB_STOP, this, NULL, mCallbackData);
+    if (mCallback != nullptr) {
+        mCallback(CB_STOP, this, nullptr, mCallbackData);
     }
 }
 
 int JASChannel::play() {
     JASDSPChannel* channel = JASDSPChannel::alloc(JSULoByte(mPriority), dspUpdateCallback, this);
-    if (channel == NULL) {
+    if (channel == nullptr) {
         delete this;
         return 0;
     }
@@ -53,7 +53,7 @@ int JASChannel::play() {
 
 int JASChannel::playForce() {
     JASDSPChannel* channel = JASDSPChannel::allocForce(JSULoByte(mPriority), dspUpdateCallback, this);
-    if (channel == NULL) {
+    if (channel == nullptr) {
         delete this;
         return 0;
     }
@@ -188,7 +188,7 @@ s32 JASChannel::dspUpdateCallback(u32 i_type, JASDsp::TChannel* i_channel, void*
     case JASDSPChannel::CB_STOP:
     case JASDSPChannel::CB_DROP:
         _this->mDspCh->free();
-        _this->mDspCh = NULL;
+        _this->mDspCh = nullptr;
         delete _this;
         return -1;
     default:
@@ -202,30 +202,30 @@ s32 JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* i_channel) {
         i_channel->initAutoMixer();
     }
 
-    if (mCallback != NULL) {
+    if (mCallback != nullptr) {
         mCallback(CB_START, this, i_channel, mCallbackData);
     }
 
-    if (_DC._4._20[0] == 0) {
+    if (*mWaveInfo._24 == 0) {
         mDspCh->free();
-        mDspCh = NULL;
+        mDspCh = nullptr;
         delete this;
         return -1;
     }
 
     if (checkBankDispose()) {
         mDspCh->free();
-        mDspCh = NULL;
+        mDspCh = nullptr;
         delete this;
         return -1;
     }
 
-    switch (_DC._0) {
+    switch (mChannelType) {
     case 0:
-        i_channel->setWaveInfo(_DC._4, _104, mSkipSamples);
+        i_channel->setWaveInfo(mWaveInfo, mWavePtr, mSkipSamples);
         break;
     case 2:
-        i_channel->setOscInfo(_104);
+        i_channel->setOscInfo(mProgNo);
         break;
     }
 
@@ -275,20 +275,20 @@ s32 JASChannel::initialUpdateDSPChannel(JASDsp::TChannel* i_channel) {
 }
 
 s32 JASChannel::updateDSPChannel(JASDsp::TChannel* i_channel) {
-    if (mCallback != NULL) {
+    if (mCallback != nullptr) {
         mCallback(CB_PLAY, this, i_channel, mCallbackData);
     }
 
-    if (_DC._4._20[0] == 0) {
+    if (*mWaveInfo._24 == 0) {
         mDspCh->free();
-        mDspCh = NULL;
+        mDspCh = nullptr;
         delete this;
         return -1;
     }
 
     if (checkBankDispose()) {
         mDspCh->free();
-        mDspCh = NULL;
+        mDspCh = nullptr;
         delete this;
         return -1;
     }
@@ -298,7 +298,7 @@ s32 JASChannel::updateDSPChannel(JASDsp::TChannel* i_channel) {
     if (mPauseFlag) {
         if (mOscillators[0].isRelease()) {
             mDspCh->free();
-            mDspCh = NULL;
+            mDspCh = nullptr;
             delete this;
             return -1;
         }
@@ -308,7 +308,7 @@ s32 JASChannel::updateDSPChannel(JASDsp::TChannel* i_channel) {
         mTremolo.incCounter(inc);
         if (mUpdateTimer != 0) {
             mUpdateTimer--;
-            if (mUpdateTimer == 0 && mCallback != NULL) {
+            if (mUpdateTimer == 0 && mCallback != nullptr) {
                 mCallback(CB_TIMER, this, i_channel, mCallbackData);
             }
         }
@@ -319,7 +319,7 @@ s32 JASChannel::updateDSPChannel(JASDsp::TChannel* i_channel) {
                 effectOsc(i, &effect_params);
                 if (i == 0 && mOscillators[i].isStop()) {
                     mDspCh->free();
-                    mDspCh = NULL;
+                    mDspCh = nullptr;
                     delete this;
                     return -1;
                 }
@@ -340,7 +340,7 @@ s32 JASChannel::updateDSPChannel(JASDsp::TChannel* i_channel) {
     }
     i_channel->setPitch(pitch);
 
-    if (!mPauseFlag && mKeySweepCount != 0) {
+    if (mPauseFlag == 0 && mKeySweepCount != 0) {
         mKeySweep += (mKeySweepTarget - mKeySweep) / mKeySweepCount;
         mKeySweepCount--;
     }
@@ -454,8 +454,8 @@ void JASChannel::updateMixer(f32 i_volume, f32 i_pan, f32 i_fxmix, f32 i_dolby, 
 }
 
 void JASChannel::free() {
-    mCallback = NULL;
-    mCallbackData = NULL;
+    mCallback = nullptr;
+    mCallbackData = nullptr;
 }
 
 void JASChannel::initBankDisposeMsgQueue() {
@@ -471,7 +471,7 @@ void JASChannel::receiveBankDisposeMsg() {
 }
 
 bool JASChannel::checkBankDispose() const {
-    if (mBankDisposeID == NULL) {
+    if (mBankDisposeID == nullptr) {
         return false;
     }
     for (int i = 0; i < sBankDisposeListSize; i++) {

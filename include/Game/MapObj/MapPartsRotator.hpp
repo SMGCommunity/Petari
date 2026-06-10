@@ -6,17 +6,24 @@
 
 class MapPartsRotatorBase : public MapPartsFunction {
 public:
-    inline MapPartsRotatorBase(LiveActor* pActor, const char* pName) : MapPartsFunction(pActor, pName) {}
+    inline MapPartsRotatorBase(LiveActor* pActor, const char* pName) : MapPartsFunction(pActor, pName) {
+    }
 
     virtual ~MapPartsRotatorBase();
 
     virtual const TMtx34f& getRotateMtx() const = 0;
 
-    virtual bool isMoving() const { return false; }
+    virtual bool isMoving() const {
+        return false;
+    }
 
-    virtual bool isOnReverse() const { return false; }
+    virtual bool isOnReverse() const {
+        return false;
+    }
 
-    virtual f32 getRotateSpeed() const { return 1.0f; }
+    virtual f32 getRotateSpeed() const {
+        return 1.0f;
+    }
 };
 
 class MapPartsRotator : public MapPartsRotatorBase {
@@ -32,7 +39,9 @@ public:
     virtual bool isWorking() const;
     virtual void start();
     virtual void end();
-    virtual const TMtx34f& getRotateMtx() const { return _70; }
+    virtual const TMtx34f& getRotateMtx() const {
+        return _70;
+    }
     virtual bool isMoving() const;
     virtual bool isOnReverse() const;
     virtual f32 getRotateSpeed() const;

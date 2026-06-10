@@ -649,6 +649,8 @@ void GoldenTurtle::reset(u32 a1) {
     getSensor("body")->setType(0x10);
 }
 
-JetTurtle::~JetTurtle() {}
+JetTurtle::~JetTurtle() {
+}
 
-GoldenTurtle::~GoldenTurtle() {}
+GoldenTurtle::~GoldenTurtle() {
+}

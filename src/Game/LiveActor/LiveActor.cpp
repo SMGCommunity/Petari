@@ -7,7 +7,10 @@
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/LiveActor/RailRider.hpp"
+#include "Game/LiveActor/Spine.hpp"
+#include "Game/Map/StageSwitch.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -24,7 +27,8 @@ LiveActor::LiveActor(const char* pName)
     MR::getClippingDirector()->registerActor(this);
 }
 
-void LiveActor::init(const JMapInfoIter& rIter) {}
+void LiveActor::init(const JMapInfoIter& rIter) {
+}
 
 void LiveActor::appear() {
     makeActorAppeared();
@@ -390,7 +394,8 @@ void LiveActor::initActorLightCtrl() {
     mActorLightCtrl = new ActorLightCtrl(this);
 }
 
-void LiveActor::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {}
+void LiveActor::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+}
 
 bool LiveActor::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return false;

@@ -1529,11 +1529,11 @@ void MarioSwim::decideEffect(bool isReset) {
     u8 oldState = mEffectState;
     if (mIsOnSurface) {
         if (isAnimationRun("水泳水面初期移動") || mForwardSpeed > 2.5f) {
-                mEffectState = 1;
-            } else {
-                mEffectState = 0;
-            }
-        
+            mEffectState = 1;
+        } else {
+            mEffectState = 0;
+        }
+
     } else {
         if (checkLvlZ() || checkLvlA() || mActionLockTimer != 0 || isAnimationRun(nullptr)) {
             mEffectState = 2;

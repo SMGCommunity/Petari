@@ -7,7 +7,8 @@ ChangeBgmCube::ChangeBgmCube(int formType, const char* pName) : AreaObj(formType
     _3C = 0;
 }
 
-ChangeBgmCube::~ChangeBgmCube() {}
+ChangeBgmCube::~ChangeBgmCube() {
+}
 
 void ChangeBgmCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

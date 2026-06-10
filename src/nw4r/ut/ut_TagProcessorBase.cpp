@@ -5,10 +5,12 @@
 namespace nw4r {
     namespace ut {
         template < typename CharType >
-        TagProcessorBase< CharType >::TagProcessorBase() {}
+        TagProcessorBase< CharType >::TagProcessorBase() {
+        }
 
         template < typename CharType >
-        TagProcessorBase< CharType >::~TagProcessorBase() {}
+        TagProcessorBase< CharType >::~TagProcessorBase() {
+        }
 
         template < typename CharType >
         typename TagProcessorBase< CharType >::Operation TagProcessorBase< CharType >::Process(u16 code, ContextType* context) {

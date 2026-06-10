@@ -1,9 +1,9 @@
-#include "JSystem/JParticle/MultiEmitterCallBack.hpp"
 #include "Game/Player/MarioEffect.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/Effect/ParticleEmitter.hpp"
 #include "Game/LiveActor/EffectKeeper.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/Map/HitInfo.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioSwim.hpp"
@@ -18,9 +18,9 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "Game/Map/HitInfo.hpp"
 #include "JSystem/JParticle/JPAEmitter.hpp"
 #include "JSystem/JParticle/JPAMath.hpp"
+#include "JSystem/JParticle/MultiEmitterCallBack.hpp"
 #include <cstdio>
 #include <cstring>
 
@@ -67,44 +67,49 @@ struct SmokeEffectEntry {
 };
 
 MaterialEffectEntry cMaterialEffectTable[] = {
-    { "属性尻ドロップ", 0x00000000, { "HipDropSmoke", "HipDropWater", "HipDropFlower", "HipDropSand", "HipDropSnow", "MudCircle", "HoneyCircle" }, nullptr, nullptr },
-    { "属性ハチ風", 0x03000000, { "Hovering", "HoveringWater", "Hovering", "Hovering", "Hovering", "Hovering", "Hovering" }, nullptr, nullptr },
-    { "属性スピン", 0x00000000, { nullptr, "WaterSpin", "FlowerSpin", "SandSpin", "SnowSpin", "MudCircle", "HoneyCircle" }, nullptr, nullptr },
-    { "属性ステージイン", 0x00000000, { "StageStartGroundSmoke", nullptr, nullptr, "StageStartGroundSand", nullptr, nullptr, nullptr }, nullptr, nullptr },
-    { nullptr, 0, { nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr }, nullptr, nullptr }
-};
+    {"属性尻ドロップ",
+     0x00000000,
+     {"HipDropSmoke", "HipDropWater", "HipDropFlower", "HipDropSand", "HipDropSnow", "MudCircle", "HoneyCircle"},
+     nullptr,
+     nullptr},
+    {"属性ハチ風", 0x03000000, {"Hovering", "HoveringWater", "Hovering", "Hovering", "Hovering", "Hovering", "Hovering"}, nullptr, nullptr},
+    {"属性スピン", 0x00000000, {nullptr, "WaterSpin", "FlowerSpin", "SandSpin", "SnowSpin", "MudCircle", "HoneyCircle"}, nullptr, nullptr},
+    {"属性ステージイン",
+     0x00000000,
+     {"StageStartGroundSmoke", nullptr, nullptr, "StageStartGroundSand", nullptr, nullptr, nullptr},
+     nullptr,
+     nullptr},
+    {nullptr, 0, {nullptr, nullptr, nullptr, nullptr, nullptr, nullptr, nullptr}, nullptr, nullptr}};
 
-SmokeEffectEntry cSmokeTable[] = {
-    { "共通着地普通", 0x08000000, 1.0f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通着地大", 0x03000000, 1.5f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通壁ジャンプ", 0x03000000, 1.0f, 1.0f, 0x00000300, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通砂煙レベル", 0x07000000, 0.65f, 1.0f, 0x00000000, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通壁手擦り", 0x01000000, 0.35f, 1.0f, 0x02010000, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通壁上昇", 0x01000000, 1.0f, 1.0f, 0x00000200, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通スリップ坂", 0x02000000, 0.35f, 1.0f, 0x00010000, 2, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通スリップ空転", 0x00000000, 1.0f, 1.0f, 0x00000000, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通スリップ坂制動", 0x02000000, 0.5f, 1.0f, 0x00000000, 2, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通壁ヒット着地", 0x03000000, 1.0f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通ダメージ着地", 0x03000000, 1.0f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通地上スピン", 0x03000000, 0.9f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通ブレーキ", 0x02000000, 0.65f, 1.0f, 0x00010000, 15, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通ハイジャンプ", 0x02000000, 0.65f, 1.0f, 0x00010000, 6, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通ブラックホール", 0x01000000, 0.65f, 1.0f, 0x03030000, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通引き戻し着地", 0x03000000, 1.2f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通水底接触", 0x01000000, 6.0f, 0.5f, 0x00000400, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通跳躍", 0x08000000, 1.0f, 1.0f, 0x00000C00, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通ひこうき雲", 0x03000000, 0.3f, 0.2f, 0x00010000, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { "共通ひこうきブースト", 0x00000000, 2.0f, 1.0f, 0x00000000, 0, 0, 0, nullptr, 0, { 0, 0, 0 } },
-    { nullptr, 0, 0.0f, 0.0f, 0, 0, 0, 0, nullptr, 0, { 0, 0, 0 } }
-};
+SmokeEffectEntry cSmokeTable[] = {{"共通着地普通", 0x08000000, 1.0f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通着地大", 0x03000000, 1.5f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通壁ジャンプ", 0x03000000, 1.0f, 1.0f, 0x00000300, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通砂煙レベル", 0x07000000, 0.65f, 1.0f, 0x00000000, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通壁手擦り", 0x01000000, 0.35f, 1.0f, 0x02010000, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通壁上昇", 0x01000000, 1.0f, 1.0f, 0x00000200, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通スリップ坂", 0x02000000, 0.35f, 1.0f, 0x00010000, 2, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通スリップ空転", 0x00000000, 1.0f, 1.0f, 0x00000000, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通スリップ坂制動", 0x02000000, 0.5f, 1.0f, 0x00000000, 2, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通壁ヒット着地", 0x03000000, 1.0f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通ダメージ着地", 0x03000000, 1.0f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通地上スピン", 0x03000000, 0.9f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通ブレーキ", 0x02000000, 0.65f, 1.0f, 0x00010000, 15, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通ハイジャンプ", 0x02000000, 0.65f, 1.0f, 0x00010000, 6, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通ブラックホール", 0x01000000, 0.65f, 1.0f, 0x03030000, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通引き戻し着地", 0x03000000, 1.2f, 1.0f, 0x00000400, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通水底接触", 0x01000000, 6.0f, 0.5f, 0x00000400, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通跳躍", 0x08000000, 1.0f, 1.0f, 0x00000C00, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通ひこうき雲", 0x03000000, 0.3f, 0.2f, 0x00010000, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {"共通ひこうきブースト", 0x00000000, 2.0f, 1.0f, 0x00000000, 0, 0, 0, nullptr, 0, {0, 0, 0}},
+                                  {nullptr, 0, 0.0f, 0.0f, 0, 0, 0, 0, nullptr, 0, {0, 0, 0}}};
 
 namespace {
 
 #pragma dont_inline on
-void addMarioEffectAtJoint(LiveActor* pActor, const char* pEffectName, const char* pJointName, const char* pGroupName) {
-    MtxPtr mtx = pJointName ? MR::getJointMtx(pActor, pJointName) : pActor->getBaseMtx();
-    pActor->mEffectKeeper->registerEffect(pEffectName, mtx, &pActor->mScale, pGroupName, pJointName);
-}
+    void addMarioEffectAtJoint(LiveActor* pActor, const char* pEffectName, const char* pJointName, const char* pGroupName) {
+        MtxPtr mtx = pJointName ? MR::getJointMtx(pActor, pJointName) : pActor->getBaseMtx();
+        pActor->mEffectKeeper->registerEffect(pEffectName, mtx, &pActor->mScale, pGroupName, pJointName);
+    }
 #pragma dont_inline reset
 
 };  // namespace
@@ -229,7 +234,7 @@ void MarioActor::initMaterialEffect() {
     _BA4 = new HashSortTable(entryCount);
     entry = cMaterialEffectTable;
     while (entry->mName) {
-        _BA4->add(entry->mName, reinterpret_cast<u32>(entry), false);
+        _BA4->add(entry->mName, reinterpret_cast< u32 >(entry), false);
         entry++;
     }
 
@@ -395,21 +400,20 @@ void MarioActor::stopMaterialEffect(const char* pName) {
 }
 
 void MarioActor::initCommonEffect() {
-
     _B9C = 0;
     _B9E = 0;
     _BA0 = new SmokeEffectEntry*[8];
 
     SmokeEffectEntry* entry = cSmokeTable;
     while (entry->mName) {
-        const char* smokeEffects[] = { "SmokeSphere", "SmokeSphereLoop", "SmokeCircle", "SmokeCircleLoop" };
-        const char* waterEffects[] = { "WaterSphere", "WaterSphereLoop", "WaterCircle", "WaterCircleLoop" };
-        const char* flowerEffects[] = { "FlowerCircle", "FlowerSphereLoop", "FlowerCircle", "FlowerSphereLoop" };
-        const char* sandEffects[] = { "SandCircle", "SandSphereLoop", "SandCircle", "SandSphereLoop" };
-        const char* snowEffects[] = { "SnowSphere", "SnowSphereLoop", "SnowCircle", "SnowCircleLoop" };
-        const char* smokeFollowEffects[] = { "SmokeSphereFollow", "SmokeSphereFollow1Time", "SmokeCircleFollow", "SmokeCircleLoopFollow" };
-        const char* mudEffects[] = { "MudSphere", "MudSphereLoop", "MudCircle", "MudCircleLoop" };
-        const char* honeyEffects[] = { "HoneySphere", "HoneySphereLoop", "HoneyCircle", "HoneyCircleLoop" };
+        const char* smokeEffects[] = {"SmokeSphere", "SmokeSphereLoop", "SmokeCircle", "SmokeCircleLoop"};
+        const char* waterEffects[] = {"WaterSphere", "WaterSphereLoop", "WaterCircle", "WaterCircleLoop"};
+        const char* flowerEffects[] = {"FlowerCircle", "FlowerSphereLoop", "FlowerCircle", "FlowerSphereLoop"};
+        const char* sandEffects[] = {"SandCircle", "SandSphereLoop", "SandCircle", "SandSphereLoop"};
+        const char* snowEffects[] = {"SnowSphere", "SnowSphereLoop", "SnowCircle", "SnowCircleLoop"};
+        const char* smokeFollowEffects[] = {"SmokeSphereFollow", "SmokeSphereFollow1Time", "SmokeCircleFollow", "SmokeCircleLoopFollow"};
+        const char* mudEffects[] = {"MudSphere", "MudSphereLoop", "MudCircle", "MudCircleLoop"};
+        const char* honeyEffects[] = {"HoneySphere", "HoneySphereLoop", "HoneyCircle", "HoneyCircleLoop"};
 
         s32 variant = 0;
         s32 useFollow = 0;
@@ -953,8 +957,7 @@ void MarioActor::updateEffect() {
         }
     }
 
-    _B98 = (_B98 & 0x1FFFFFFF) | (static_cast< u32 >(effectA) << 31) | (static_cast< u32 >(effectB) << 30) |
-           (static_cast< u32 >(effectC) << 29);
+    _B98 = (_B98 & 0x1FFFFFFF) | (static_cast< u32 >(effectA) << 31) | (static_cast< u32 >(effectB) << 30) | (static_cast< u32 >(effectC) << 29);
 
     effectA = 0;
     if (mMario->mMovementStates._3B && !mMario->mMovementStates._6 && mMario->mMovementStates._1D) {
@@ -971,8 +974,8 @@ void MarioActor::updateEffect() {
 
     _B98 = (_B98 & ~0x10000000) | (static_cast< u32 >(effectA) << 28);
 
-    if ((mHealth <= 1 || mWaterLife <= 1) && !MR::isDemoActive() && !MR::isPowerStarGetDemoActive() &&
-        !MR::isGalaxyDarkCometAppearInCurrentStage() && MR::isPermitSE() && isEnableNerveChange()) {
+    if ((mHealth <= 1 || mWaterLife <= 1) && !MR::isDemoActive() && !MR::isPowerStarGetDemoActive() && !MR::isGalaxyDarkCometAppearInCurrentStage() &&
+        MR::isPermitSE() && isEnableNerveChange()) {
         playSound("ライフ警告", -1);
     }
 
@@ -1307,16 +1310,16 @@ void MarioActor::stopSpinTicoEffect(bool force) {
 }
 
 namespace NrvMarioActor {
-INIT_NERVE(MarioActorNrvWait);
-INIT_NERVE(MarioActorNrvGameOver);
-INIT_NERVE(MarioActorNrvGameOverAbyss);
-INIT_NERVE(MarioActorNrvGameOverAbyss2);
-INIT_NERVE(MarioActorNrvGameOverFire);
-INIT_NERVE(MarioActorNrvGameOverBlackHole);
-INIT_NERVE(MarioActorNrvGameOverNonStop);
-INIT_NERVE(MarioActorNrvGameOverSink);
-INIT_NERVE(MarioActorNrvTimeWait);
-INIT_NERVE(MarioActorNrvNoRush);
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
 };  // namespace NrvMarioActor
 
 MarioEffect::~MarioEffect() {

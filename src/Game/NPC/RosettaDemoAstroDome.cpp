@@ -1,7 +1,7 @@
 #include "Game/NPC/RosettaDemoAstroDome.hpp"
 #include "Game/Demo/DemoFunction.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/NPC/Rosetta.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Util.hpp"
 #include <cstdio>

@@ -1,6 +1,7 @@
 #include "Game/AudioLib/AudFader.hpp"
 
-AudFader::AudFader() : mCurrentVolume(1.f), mFinalVolume(1.f), mStepVolume(0.f) {}
+AudFader::AudFader() : mCurrentVolume(1.f), mFinalVolume(1.f), mStepVolume(0.f) {
+}
 
 /// @brief Initializes AudFader
 /// @param desiredVolume Volume intensity to be reached at the end of fade

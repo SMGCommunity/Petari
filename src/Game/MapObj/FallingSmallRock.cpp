@@ -5,7 +5,8 @@ namespace NrvFallingSmallRock {
     NEW_NERVE(HostTypeMove, FallingSmallRock, Move);
 };  // namespace NrvFallingSmallRock
 
-FallingSmallRock::FallingSmallRock(const char* pName) : LiveActor(pName) {}
+FallingSmallRock::FallingSmallRock(const char* pName) : LiveActor(pName) {
+}
 
 void FallingSmallRock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -51,4 +52,5 @@ void FallingSmallRock::exeWait() {
     }
 }
 
-FallingSmallRock::~FallingSmallRock() {}
+FallingSmallRock::~FallingSmallRock() {
+}

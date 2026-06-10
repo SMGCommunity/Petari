@@ -24,23 +24,45 @@ public:
     static void postRetraceProc(u32);
     static void drawDoneCallback();
 
-    u16 getFbWidth() const { return mRenderObj->fbWidth; }
-    u16 getEfbHeight() const { return mRenderObj->efbHeight; }
+    u16 getFbWidth() const {
+        return mRenderObj->fbWidth;
+    }
+    u16 getEfbHeight() const {
+        return mRenderObj->efbHeight;
+    }
     void getBounds(u16& width, u16& height) const {
         width = (u16)getFbWidth();
         height = (u16)getEfbHeight();
     }
-    u16 getXfbHeight() const { return mRenderObj->xfbHeight; }
-    u32 isAntiAliasing() const { return mRenderObj->aa; }
-    Pattern getSamplePattern() const { return mRenderObj->sample_pattern; }
-    u8* getVFilter() const { return mRenderObj->vfilter; }
-    OSMessageQueue* getMessageQueue() { return &mMessageQueue; }
+    u16 getXfbHeight() const {
+        return mRenderObj->xfbHeight;
+    }
+    u32 isAntiAliasing() const {
+        return mRenderObj->aa;
+    }
+    Pattern getSamplePattern() const {
+        return mRenderObj->sample_pattern;
+    }
+    u8* getVFilter() const {
+        return mRenderObj->vfilter;
+    }
+    OSMessageQueue* getMessageQueue() {
+        return &mMessageQueue;
+    }
 
-    static JUTVideo* getManager() { return sManager; }
-    static OSTick getVideoInterval() { return sVideoInterval; }
-    static OSTick getVideoLastTick() { return sVideoLastTick; }
+    static JUTVideo* getManager() {
+        return sManager;
+    }
+    static OSTick getVideoInterval() {
+        return sVideoInterval;
+    }
+    static OSTick getVideoLastTick() {
+        return sVideoLastTick;
+    }
 
-    GXRenderModeObj* getRenderMode() const { return mRenderObj; }
+    GXRenderModeObj* getRenderMode() const {
+        return mRenderObj;
+    }
 
 private:
     static JUTVideo* sManager;

@@ -17,12 +17,13 @@ namespace NrvRevolvingWay {
     NEW_NERVE(RevolvingWayNrvWait, RevolvingWay, Wait);
 };  // namespace NrvRevolvingWay
 
-RevolvingWay::~RevolvingWay() {}
+RevolvingWay::~RevolvingWay() {
+}
 
 RevolvingWay::RevolvingWay(const char* pName) : LiveActor(pName), _8C(0.0f, 1.0f) {
-    _9C.x = 0.0f;
-    _9C.y = 0.0f;
-    _9C.z = 0.0f;
+    mFriction.x = 0.0f;
+    mFriction.y = 0.0f;
+    mFriction.z = 0.0f;
     _A8 = 500.0f;
 }
 
@@ -39,7 +40,8 @@ void RevolvingWay::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void RevolvingWay::control() {}
+void RevolvingWay::control() {
+}
 
 void RevolvingWay::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _8C);
@@ -47,14 +49,14 @@ void RevolvingWay::calcAndSetBaseMtx() {
 
 void RevolvingWay::exeWait() {
     addAccelMoment();
-    MR::rotateQuatMoment(&_8C, _9C);
-    f32 v2;
+    MR::rotateQuatMoment(&_8C, mFriction);
+    f32 friction;
     if (MR::testCorePadButtonB(WPAD_CHAN0)) {
-        v2 = 0.98f;
+        friction = 0.98f;
     } else {
-        v2 = 0.9f;
+        friction = 0.9f;
     }
-    _9C *= v2;
+    mFriction *= friction;
 }
 
 void RevolvingWay::addAccelMoment() {
@@ -65,10 +67,10 @@ void RevolvingWay::addAccelMoment() {
         stack_8.setPS(stack_14);
         f32 temp = 0.04f;
         stack_8 *= temp;
-        JMathInlineVEC::PSVECAdd(&_9C, &stack_8, &_9C);
-        f32 mag = PSVECMag(&_9C);
+        JMathInlineVEC::PSVECAdd(&mFriction, &stack_8, &mFriction);
+        f32 mag = PSVECMag(&mFriction);
         if (mag > 0.15f) {
-            _9C *= (0.15f / mag);
+            mFriction *= (0.15f / mag);
         }
     }
 }

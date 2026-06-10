@@ -13,7 +13,8 @@ class CameraTargetObj : public NameObj {
 public:
     CameraTargetObj(const char*);
 
-    virtual inline ~CameraTargetObj() {}
+    virtual inline ~CameraTargetObj() {
+    }
 
     virtual void init(const JMapInfoIter&);
 
@@ -36,7 +37,9 @@ public:
     virtual bool isBeeMode() const;
     virtual bool isFooFighterMode() const;
     virtual u32 getSpecialMode() const;
-    virtual bool isCameraStateOn(u32) const { return false; };
+    virtual bool isCameraStateOn(u32) const {
+        return false;
+    };
     virtual CubeCameraArea* getCubeCameraArea() const;
     virtual Triangle* getGroundTriangle() const;
     virtual GravityInfo* getGravityInfo() const;

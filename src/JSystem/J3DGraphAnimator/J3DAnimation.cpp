@@ -4,7 +4,6 @@
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-
 void J3DFrameCtrl::init(s16 endFrame) {
     mAttribute = EMode_LOOP;
     mState = 0;
@@ -939,7 +938,8 @@ void J3DAnmVtxColorKey::getColor(u8 tableNo, u16 index, GXColor* pColor) const {
     }
 }
 
-J3DAnmColor::J3DAnmColor() : field_0xc(0), field_0xe(0), field_0x10(0), field_0x12(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {}
+J3DAnmColor::J3DAnmColor() : field_0xc(0), field_0xe(0), field_0x10(0), field_0x12(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {
+}
 
 void J3DAnmColor::searchUpdateMaterialID(J3DMaterialTable* pMatTable) {
     for (u16 i = 0; i < mUpdateMaterialNum; i++) {
@@ -1101,7 +1101,8 @@ J3DAnmTevRegKey::J3DAnmTevRegKey() {
     mAnmKRegDataR = mAnmKRegDataG = mAnmKRegDataB = mAnmKRegDataA = NULL;
 }
 
-J3DAnmTexPattern::J3DAnmTexPattern() : mTextureIndex(NULL), mAnmTable(NULL), field_0x14(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {}
+J3DAnmTexPattern::J3DAnmTexPattern() : mTextureIndex(NULL), mAnmTable(NULL), field_0x14(0), mUpdateMaterialNum(0), mUpdateMaterialID(NULL) {
+}
 
 void J3DAnmTexPattern::getTexNo(u16 index, u16* pTexNo) const {
     u32 maxFrame = mAnmTable[index].mMaxFrame;

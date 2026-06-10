@@ -21,7 +21,8 @@ void TicoDemoGetPower::startDemo() {
     exeDemo();
 }
 
-void TicoDemoGetPower::exeWait() {}
+void TicoDemoGetPower::exeWait() {
+}
 
 void TicoDemoGetPower::exeDemo() {
     if (MR::isDemoPartFirstStep("スピンゲット[デモ5]")) {

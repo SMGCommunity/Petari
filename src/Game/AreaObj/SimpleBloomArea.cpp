@@ -7,7 +7,8 @@ SimpleBloomArea::SimpleBloomArea(int type, const char* pName) : ImageEffectArea(
     _45 = 76;
 }
 
-SimpleBloomArea::~SimpleBloomArea() {}
+SimpleBloomArea::~SimpleBloomArea() {
+}
 
 void SimpleBloomArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

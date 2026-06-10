@@ -556,6 +556,8 @@ void Pukupuku::calcAndSetBaseMtx() {
     MR::setBaseScale(this, v7);
 }
 
-PukupukuStateLanding::~PukupukuStateLanding() {}
+PukupukuStateLanding::~PukupukuStateLanding() {
+}
 
-Pukupuku::~Pukupuku() {}
+Pukupuku::~Pukupuku() {
+}

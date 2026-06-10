@@ -32,6 +32,6 @@ public:
     TVec3s* _A4;
     f32 _A8;
     f32 _AC;
-    OceanRingPipeInside* mPipeInside; // 0xB0
-    OceanRingPipeOutside* mPipeOutside; // 0xB4
+    OceanRingPipeInside* mPipeInside;    // 0xB0
+    OceanRingPipeOutside* mPipeOutside;  // 0xB4
 };

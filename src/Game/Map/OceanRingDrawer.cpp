@@ -24,7 +24,6 @@ namespace {
     const f32 sBloomCameraDepthMin = 0.0f;
     const f32 sBloomCameraDepthMax = 0.0f;
 
-
     static GXColor color1 = {0x28, 0x28, 0x28, 0x14};
     static GXColor color2 = {0x76, 0xD7, 0xFF, 0xFF};
     static u8 unknownVal = 1;
@@ -287,7 +286,6 @@ void OceanRingPartDrawer::drawDynamicBloom() const {
     }
 }
 
-
 OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
     mRing = pOceanRing;
     mDrawerCount = 0;
@@ -310,7 +308,7 @@ OceanRingDrawer::OceanRingDrawer(const OceanRing* pOceanRing) {
 }
 
 void OceanRingDrawer::update() {
-    _C  = MR::repeat(_C  + sTexSpeed0U, 0.0f, 1.0f);
+    _C = MR::repeat(_C + sTexSpeed0U, 0.0f, 1.0f);
     _10 = MR::repeat(_10 + sTexSpeed0V, 0.0f, 1.0f);
     _14 = MR::repeat(_14 + sTexSpeed1U, 0.0f, 1.0f);
     _18 = MR::repeat(_18 + sTexSpeed1V, 0.0f, 1.0f);

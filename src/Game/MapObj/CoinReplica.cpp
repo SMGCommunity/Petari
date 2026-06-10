@@ -1,4 +1,5 @@
 #include "Game/MapObj/CoinReplica.hpp"
+#include "Game/Map/StageSwitch.hpp"
 
 CoinReplica::CoinReplica(const char* pName) : NameObj(pName) {
     mCoin = nullptr;

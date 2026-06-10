@@ -209,7 +209,8 @@ bool SpkSpeakerCtrl::isEnable(s32 idx) {
     return WPADIsSpeakerEnabled(idx) && sSpeakerInfo[idx]._1 != 0 && sSpeakerInfo[idx]._24 == 0 && sMixingBuffer != nullptr;
 }
 
-void SpkSpeakerCtrl::extensionProcess(s32, s32) {}
+void SpkSpeakerCtrl::extensionProcess(s32, s32) {
+}
 
 f32 SpkSpeakerCtrl::getDeviceVolume(s32 channel) {
     if (channel >= WPAD_CHAN0 && !WPADIsSpeakerEnabled(channel)) {

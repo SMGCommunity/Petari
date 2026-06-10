@@ -103,6 +103,8 @@ void BeamGoRoundPlanet::initBeam() {
     }
 }
 
-BeamGoRoundBeam::~BeamGoRoundBeam() {}
+BeamGoRoundBeam::~BeamGoRoundBeam() {
+}
 
-BeamGoRoundPlanet::~BeamGoRoundPlanet() {}
+BeamGoRoundPlanet::~BeamGoRoundPlanet() {
+}

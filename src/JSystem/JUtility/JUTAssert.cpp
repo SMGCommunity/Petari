@@ -20,7 +20,8 @@ namespace JUTAssertion {
 
     };  // namespace
 
-    void create() {}
+    void create() {
+    }
 
     u32 flush_subroutine() {
         if (sMessageLife == 0) {

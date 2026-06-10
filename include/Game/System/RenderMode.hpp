@@ -1,12 +1,12 @@
 #pragma once
 
-#include <revolution/types.h>
 #include <revolution/gx/GXStruct.h>
+#include <revolution/types.h>
 
 namespace MR {
     /// @brief Returns the most suitable render mode object based on the console's settings.
     /// @return The pointer to the render mode object.
-    const GXRenderModeObj *getSuitableRenderMode();
+    const GXRenderModeObj* getSuitableRenderMode();
 
     /// @brief Checks if the progressive mode is enabled.
     /// @return `true` if progressive mode is enabled, `false` otherwise.

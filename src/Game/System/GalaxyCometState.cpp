@@ -13,7 +13,8 @@ GalaxyCometState::GalaxyCometState() : NerveExecutor("GalaxyCometState"), mIsUpd
     initNerve(&GalaxyCometStateLand::sInstance);
 }
 
-GalaxyCometState::~GalaxyCometState() {}
+GalaxyCometState::~GalaxyCometState() {
+}
 
 void GalaxyCometState::update() {
     if (!mIsUpdateNerve) {
@@ -60,6 +61,8 @@ void GalaxyCometState::setStateAndPastSecond(int state, u16 pastSecond) {
     }
 }
 
-void GalaxyCometState::exeHide() {}
+void GalaxyCometState::exeHide() {
+}
 
-void GalaxyCometState::exeLand() {}
+void GalaxyCometState::exeLand() {
+}

@@ -125,7 +125,8 @@ DarknessRoomDoor::DarknessRoomDoor(const char* pName) : TypicalDoor(pName) {
     _CC = false;
 }
 
-TypicalDoor::~TypicalDoor() {}
+TypicalDoor::~TypicalDoor() {
+}
 
 void DarknessRoomDoor::init(const JMapInfoIter& rIter) {
     s32 arg0 = -1;
@@ -190,6 +191,8 @@ void DarknessRoomDoor::invalidateCollision() {
     }
 }
 
-TypicalDoorOpen::~TypicalDoorOpen() {}
+TypicalDoorOpen::~TypicalDoorOpen() {
+}
 
-DarknessRoomDoor::~DarknessRoomDoor() {}
+DarknessRoomDoor::~DarknessRoomDoor() {
+}

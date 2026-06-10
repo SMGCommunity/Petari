@@ -210,4 +210,5 @@ namespace MR {
     }
 };  // namespace MR
 
-TripodBossAccesser::~TripodBossAccesser() {}
+TripodBossAccesser::~TripodBossAccesser() {
+}

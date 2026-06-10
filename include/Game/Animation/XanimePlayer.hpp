@@ -65,7 +65,9 @@ public:
     void duplicateSimpleGroup();
     void changeCurrentAnimation(const XanimeGroupInfo*);
 
-    inline XanimeCore* getCore() { return mCore; }
+    inline XanimeCore* getCore() {
+        return mCore;
+    }
 
     /* 0x00 */ J3DModel* mModel;
     /* 0x04 */ J3DModelData* mModelData;

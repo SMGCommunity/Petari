@@ -1,7 +1,9 @@
 #pragma once
 
+#include "JSystem/JAudio2/JASCriticalSection.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JSupport/JSUList.hpp"
+#include "revolution/os/OSInterrupt.h"
 #include <revolution/os.h>
 #include <revolution/types.h>
 
@@ -24,6 +26,27 @@ public:
     u32 getTailOffset();
     u32 getCurOffset();
 
+    void* getBase() {
+        return mBase;
+    }
+    bool isAllocated() const {
+        return mBase != nullptr;
+    }
+    u32 getSize() const {
+        return mSize;
+    }
+
+    JSUTree< JASHeap >* getFirstChild() {
+        return mTree.getFirstChild();
+    }
+    JSUTree< JASHeap >* getEndChild() {
+        return mTree.getEndChild();
+    }
+
+    OSMutex& getMutex() {
+        return mMutex;
+    }
+
     /* 0x00 */ JSUTree< JASHeap > mTree;
     /* 0x1C */ OSMutex mMutex;
     /* 0x34 */ JASDisposer* mDisposer;
@@ -42,6 +65,18 @@ public:
 
     void free(void*, u32);
 
+    u32 getFreeMemCount() const {
+        return mFreeMemCount;
+    }
+
+    u32 getTotalMemCount() const {
+        return mTotalMemCount;
+    }
+
+    u32 getUsedMemCount() const {
+        return mUsedMemCount;
+    }
+
     /* 0x0 */ void* _0;
     /* 0x4 */ u32 mFreeMemCount;
     /* 0x8 */ u32 mTotalMemCount;
@@ -53,10 +88,12 @@ namespace JASThreadingModel {
     class InterruptsDisable {
     public:
         struct Lock {
-            Lock(const T&) NO_INLINE {
+            Lock(const T&) {
                 mInterruptState = OSDisableInterrupts();
             }
-            ~Lock() NO_INLINE;
+            ~Lock() {
+                OSRestoreInterrupts(mInterruptState);
+            }
 
             /* 0x00 */ u32 mInterruptState;
         };
@@ -94,10 +131,30 @@ namespace JASThreadingModel {
 template < typename T >
 class JASMemPool : public JASGenericMemPool {
 public:
-    JASMemPool() : JASGenericMemPool() {
+    void newMemPool(int n) {
+        typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
+        JASGenericMemPool::newMemPool(sizeof(T), n);
     }
 
-    ~JASMemPool();
+    void* alloc(u32 n) {
+        typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
+        return JASGenericMemPool::alloc(n);
+    }
+
+    void free(void* ptr, u32 n) {
+        typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
+        JASGenericMemPool::free(ptr, n);
+    }
+
+    u32 getFreeMemCount() const {
+        typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
+        return JASGenericMemPool::getFreeMemCount();
+    }
+
+    u32 getTotalMemCount() const {
+        typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
+        return JASGenericMemPool::getTotalMemCount();
+    }
 };
 
 namespace JASKernel {
@@ -161,7 +218,6 @@ public:
     }
 
     bool createNewChunk() {
-        bool b = 0;
         if (mChunk != nullptr && mChunk->isEmpty()) {
             mChunk->revive();
             return true;
@@ -176,6 +232,7 @@ public:
         if (mChunk != nullptr) {
             return true;
         }
+
         mChunk = pMVar4;
         return false;
     }
@@ -233,42 +290,61 @@ namespace JASKernel {
 };  // namespace JASKernel
 
 template < typename T >
-class JASPoolAllocObject : public JASMemPool< T > {
+class JASPoolAllocObject {
 public:
-    static JASPoolAllocObject< T > memPool_;
+    static void* operator new(u32 size) {
+        return memPool_.alloc(size);
+    }
+
+    static void operator delete(void* addr, u32 size) {
+        memPool_.free(addr, size);
+    }
+
+    static void newMemPool(int n) {
+        memPool_.newMemPool(n);
+    }
+
+    static JASMemPool< T > memPool_;
 };
+
+template < typename T >
+JASMemPool< T > JASPoolAllocObject< T >::memPool_;
 
 template < typename T >
 class JASMemPool_MultiThreaded : public JASGenericMemPool {
 public:
-    void* alloc(u32 size) NO_INLINE {
-        {
-            JASThreadingModel::InterruptsDisable< JASMemPool_MultiThreaded >::Lock lock(*this);
-            return JASGenericMemPool::alloc(size);
-        }
+    void newMemPool(int n) {
+        typename JASThreadingModel::InterruptsDisable< JASMemPool_MultiThreaded< T > >::Lock lock(*this);
+        JASGenericMemPool::newMemPool(sizeof(T), n);
     }
-    void free(void* addr, u32 size) NO_INLINE {
-        {
-            JASThreadingModel::InterruptsDisable< JASMemPool_MultiThreaded >::Lock lock(*this);
-            JASGenericMemPool::free(addr, size);
-        }
+
+    void* alloc(u32 size) {
+        typename JASThreadingModel::InterruptsDisable< JASMemPool_MultiThreaded >::Lock lock(*this);
+        return JASGenericMemPool::alloc(size);
+    }
+    void free(void* addr, u32 size) {
+        typename JASThreadingModel::InterruptsDisable< JASMemPool_MultiThreaded >::Lock lock(*this);
+        JASGenericMemPool::free(addr, size);
     }
 };
 
 template < typename T >
 class JASPoolAllocObject_MultiThreaded {
 public:
-    static JASMemPool_MultiThreaded< T > memPool_;
-
-#ifdef __MWERKS__
-    static void* operator new(u32 size) NO_INLINE {
+    static void* operator new(u32 size) {
         return memPool_.alloc(size);
     }
-#endif
-    static void operator delete(void* addr, u32 size)NO_INLINE {
+
+    static void operator delete(void* addr, u32 size) {
         memPool_.free(addr, size);
     }
+
+    static void newMemPool(int n) {
+        memPool_.newMemPool(n);
+    }
+
+    static JASMemPool_MultiThreaded< T > memPool_;
 };
 
 template < typename T >
-JASMemPool_MultiThreaded< T > JASPoolAllocObject_MultiThreaded< T >::memPool_ = JASMemPool_MultiThreaded< T >();
+JASMemPool_MultiThreaded< T > JASPoolAllocObject_MultiThreaded< T >::memPool_;

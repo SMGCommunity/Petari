@@ -8,7 +8,8 @@ namespace NrvBallOpener {
     NEW_NERVE(BallOpenerNrvOpen, BallOpener, Open);
 };  // namespace NrvBallOpener
 
-BallOpener::~BallOpener() {}
+BallOpener::~BallOpener() {
+}
 
 BallOpener::BallOpener(const char* pName) : LiveActor(pName) {
     mSensor = nullptr;
@@ -40,7 +41,8 @@ void BallOpener::initAfterPlacement() {
     _8C->setDirection(_94);
 }
 
-void BallOpener::control() {}
+void BallOpener::control() {
+}
 
 // BallOpener::receiveOtherMsg
 

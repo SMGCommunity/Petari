@@ -7,7 +7,8 @@ namespace NrvLavaBallRisingPlanetLava {
     NEW_NERVE(LavaBallRisingPlanetLavaNrvScaleDown, LavaBallRisingPlanetLava, ScaleDown);
 };  // namespace NrvLavaBallRisingPlanetLava
 
-LavaBallRisingPlanetLava::LavaBallRisingPlanetLava(const char* pName) : MapObjActor(pName) {}
+LavaBallRisingPlanetLava::LavaBallRisingPlanetLava(const char* pName) : MapObjActor(pName) {
+}
 
 void LavaBallRisingPlanetLava::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -53,4 +54,5 @@ void LavaBallRisingPlanetLava::exeScaleDown() {
     }
 }
 
-LavaBallRisingPlanetLava::~LavaBallRisingPlanetLava() {}
+LavaBallRisingPlanetLava::~LavaBallRisingPlanetLava() {
+}

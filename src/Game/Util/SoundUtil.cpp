@@ -16,9 +16,9 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/RhythmLib/AudChordInfo.hpp"
 #include "Game/RhythmLib/AudMeObject.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/JAudio2/JAISound.hpp>
 

@@ -175,6 +175,40 @@ bool PoltaBattleLv2::tryGenerateRock() {
     return false;
 }
 
+void PoltaBattleLv2::exeWait() {
+    updateWait();
+
+    if (!tryGenerateRock()) {
+        tryAttackGround();
+    }
+}
+
+void PoltaBattleLv2::exePunch() {
+    if (MR::updateActorState(this, mStatePunch)) {
+        setNerveGenerateRock();
+    }
+}
+
+void PoltaBattleLv2::exeAttackGround() {
+    if (MR::updateActorState(this, mStateAttackGround)) {
+        setNerveGenerateRock();
+    }
+}
+
+void PoltaBattleLv2::exeGenerateGroundRock() {
+    MR::updateActorStateAndNextNerve(this, mStateGroundRockAttack, &NrvPoltaBattleLv2::PoltaBattleLv2NrvWait::sInstance);
+}
+
+void PoltaBattleLv2::exeGenerateRock() {
+    MR::updateActorStateAndNextNerve(this, mStateGenerateRock, &NrvPoltaBattleLv2::PoltaBattleLv2NrvWait::sInstance);
+}
+
+void PoltaBattleLv2::exeDamageBody() {
+    if (updateDamageBody(mPoltaHealth == 2)) {
+        setNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvWait::sInstance);
+    }
+}
+
 void PoltaBattleLv2::exeBreakBody() {
     if (MR::isFirstStep(this)) {
         getHost()->appearStarPiece(10);
@@ -190,7 +224,12 @@ void PoltaBattleLv2::exeStagger() {
         MR::setStageBGMState(2, 60);
         MR::startSound(getHost(), "SE_BV_POLTA_RUN_AWAY");
     }
+
     MR::updateActorState(this, mStateStagger);
+}
+
+void PoltaBattleLv2::endStagger() {
+    MR::setStageBGMState(1, 90);
 }
 
 void PoltaBattleLv2::exeDamageCore() {
@@ -263,42 +302,5 @@ void PoltaBattleLv2::addDamageBody() {
     if (mPoltaHealth > 0) {
         mPoltaHealth--;
         PoltaFunction::setBodyHP(getHost(), mPoltaHealth);
-    }
-}
-
-inline void PoltaBattleLv2::endStagger() {
-    MR::setStageBGMState(1, 90);
-}
-
-inline void PoltaBattleLv2::exeDamageBody() {
-    if (updateDamageBody(mPoltaHealth == 2)) {
-        setNerve(&NrvPoltaBattleLv2::PoltaBattleLv2NrvWait::sInstance);
-    }
-}
-
-inline void PoltaBattleLv2::exeGenerateRock() {
-    MR::updateActorStateAndNextNerve(this, mStateGenerateRock, &NrvPoltaBattleLv2::PoltaBattleLv2NrvWait::sInstance);
-}
-
-inline void PoltaBattleLv2::exeGenerateGroundRock() {
-    MR::updateActorStateAndNextNerve(this, mStateGroundRockAttack, &NrvPoltaBattleLv2::PoltaBattleLv2NrvWait::sInstance);
-}
-
-inline void PoltaBattleLv2::exeAttackGround() {
-    if (MR::updateActorState(this, mStateAttackGround)) {
-        setNerveGenerateRock();
-    }
-}
-
-inline void PoltaBattleLv2::exePunch() {
-    if (MR::updateActorState(this, mStatePunch)) {
-        setNerveGenerateRock();
-    }
-}
-
-inline void PoltaBattleLv2::exeWait() {
-    updateWait();
-    if (!tryGenerateRock()) {
-        tryAttackGround();
     }
 }

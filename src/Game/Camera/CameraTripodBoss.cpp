@@ -5,7 +5,8 @@ CameraTripodBoss::CameraTripodBoss(const char* pName) : CameraTower(pName) {
     upZ = 0.0f;
 }
 
-CameraTripodBoss::~CameraTripodBoss() {}
+CameraTripodBoss::~CameraTripodBoss() {
+}
 
 CamTranslatorBase* CameraTripodBoss::createTranslator() {
     return new CamTranslatorTripodBoss(this);

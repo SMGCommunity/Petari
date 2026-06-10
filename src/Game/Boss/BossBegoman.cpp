@@ -41,8 +41,8 @@ namespace NrvBossBegoman {
 };  // namespace NrvBossBegoman
 
 BossBegoman::BossBegoman(const char* pName)
-    : BegomanBase(pName), mBabyFollowers(nullptr), mSpikeFollowers(nullptr), mBabyFollowerNum(0), mSpikeFollowerNum(0), mFollowerKind(FollowerKind_BothFollower),
-      mPath(nullptr), mHead(nullptr), mHealth(3), _150(0.2f), mOpeningDemoInfo(nullptr) {
+    : BegomanBase(pName), mBabyFollowers(nullptr), mSpikeFollowers(nullptr), mBabyFollowerNum(0), mSpikeFollowerNum(0),
+      mFollowerKind(FollowerKind_BothFollower), mPath(nullptr), mHead(nullptr), mHealth(3), _150(0.2f), mOpeningDemoInfo(nullptr) {
     mHeadMtx.identity();
 }
 
@@ -112,7 +112,7 @@ void BossBegoman::init(const JMapInfoIter& rIter) {
         for (int i = 0; i < mBabyFollowerNum; i++) {
             MR::tryRegisterDemoCast(mBabyFollowers[i], rIter);
         }
-        //i is stored in the wrong register
+        // i is stored in the wrong register
         for (int i = 0; i < mSpikeFollowerNum; i++) {
             MR::tryRegisterDemoCast(mSpikeFollowers[i], rIter);
         }
@@ -399,7 +399,7 @@ void BossBegoman::exeBrake() {
 }
 
 void BossBegoman::exeStepBack() {
-    //result of call is unused
+    // result of call is unused
     if (MR::isFirstStep(this)) {
     }
 
@@ -418,7 +418,7 @@ void BossBegoman::exeReturn() {
 }
 
 void BossBegoman::exeProvoke() {
-    //result of call is unused
+    // result of call is unused
     if (MR::isFirstStep(this)) {
     }
 
@@ -527,7 +527,7 @@ void BossBegoman::exeElectricDeath() {
     if (MR::isGreaterStep(this, 60)) {
         MR::stopScene(5);
         MR::shakeCameraWeak();
-        
+
         if (mHealth == 0) {
             MR::startSound(this, "SE_BM_BBEGO_DEAD");
             kill();
@@ -776,7 +776,7 @@ bool BossBegoman::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
         bool rebounded = reboundPlaneWithEffect(vec2, 0.0f, 0.0f, "Spark");
         // float regswap
         MR::addVelocityLimit(this, vec2.scaleInline(6.0f).scaleInline(pSender->mRadius / getSensor("body")->mRadius));
-        
+
         if (rebounded) {
             MR::startSound(this, "SE_EM_BEGOMAN_COLLI_BEGOMAN");
         }
@@ -909,7 +909,7 @@ void BossBegoman::startRotationLevelSound() {
     } else {
         MR::startLevelSound(this, "SE_BM_LV_BBEGO_ROT_MIDDLE");
     }
-    
+
     if (!mHead->isSwitchOn()) {
         f32 f1 = mVelocity.length();
         f1 *= f1;

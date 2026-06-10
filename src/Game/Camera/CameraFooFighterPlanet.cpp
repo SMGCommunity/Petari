@@ -7,7 +7,8 @@ CameraFooFighterPlanet::CameraFooFighterPlanet(const char* pName) : Camera(pName
     mAngleA = 0.7853982f;
 }
 
-CameraFooFighterPlanet::~CameraFooFighterPlanet() {}
+CameraFooFighterPlanet::~CameraFooFighterPlanet() {
+}
 
 CamTranslatorBase* CameraFooFighterPlanet::createTranslator() {
     return new CamTranslatorFooFighterPlanet(this);

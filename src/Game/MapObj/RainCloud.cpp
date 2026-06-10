@@ -1,5 +1,6 @@
 #include "Game/MapObj/RainCloud.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
@@ -9,7 +10,6 @@
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "revolution/types.h"
 
 namespace {
     static s32 sThunderStep = 140;
@@ -320,4 +320,5 @@ void RainCloud::switchEffect() {
     }
 }
 
-RainCloud::~RainCloud() {}
+RainCloud::~RainCloud() {
+}

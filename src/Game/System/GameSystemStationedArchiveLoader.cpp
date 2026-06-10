@@ -1,6 +1,5 @@
 #include "Game/System/GameSystemStationedArchiveLoader.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ResourceHolder.hpp"
@@ -10,6 +9,7 @@
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 
@@ -27,7 +27,8 @@ bool ConditionIfIsNotPlayer::isExecute(const MR::StationedFileInfo* pInfo) const
     return pInfo->mLoadType != 2 && pInfo->mLoadType != 3;
 }
 
-ConditionUsePlayerHeap::ConditionUsePlayerHeap() : mNapaHeap(nullptr), mGDDRHeap(nullptr), mIsDataMario(true) {}
+ConditionUsePlayerHeap::ConditionUsePlayerHeap() : mNapaHeap(nullptr), mGDDRHeap(nullptr), mIsDataMario(true) {
+}
 
 bool ConditionUsePlayerHeap::isExecute(const MR::StationedFileInfo* pInfo) const {
     s32 type = 3;
@@ -221,9 +222,11 @@ void GameSystemStationedArchiveLoader::exeInitializeGameData() {
     setNerve(&::GameSystemStationedArchiveLoaderEnd::sInstance);
 }
 
-void GameSystemStationedArchiveLoader::exeEnd() {}
+void GameSystemStationedArchiveLoader::exeEnd() {
+}
 
-void GameSystemStationedArchiveLoader::exeSuspended() {}
+void GameSystemStationedArchiveLoader::exeSuspended() {
+}
 
 void GameSystemStationedArchiveLoader::exeChangeArchivePlayer() {
     if (MR::isFirstStep(this)) {

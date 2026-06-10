@@ -28,7 +28,8 @@ public:
     WarpCubeMgr(s32 formType, const char* pName) : AreaObjMgr(formType, pName), mWarpCube() {
     }
 
-    virtual ~WarpCubeMgr() {}
+    virtual ~WarpCubeMgr() {
+    }
 
     void setInvalidateTimer(AreaObj*, u16);
     void startEventCamera(const AreaObj*);

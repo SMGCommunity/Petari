@@ -11,7 +11,8 @@ void ScreenBlurArea::init(const JMapInfoIter& rIter) {
     MR::createScreenBlur();
 }
 
-ScreenBlurArea::~ScreenBlurArea() {}
+ScreenBlurArea::~ScreenBlurArea() {
+}
 
 bool ScreenBlurArea::isSyncWithPlayer() const {
     return mIsPlayerSync;

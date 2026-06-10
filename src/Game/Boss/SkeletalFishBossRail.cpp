@@ -62,4 +62,5 @@ void SkeletalFishBossRail::linkFillUpNamePosID() {
     }
 }
 
-SkeletalFishBossRail::~SkeletalFishBossRail() {}
+SkeletalFishBossRail::~SkeletalFishBossRail() {
+}

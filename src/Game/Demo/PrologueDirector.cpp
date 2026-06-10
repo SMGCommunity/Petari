@@ -7,7 +7,6 @@
 #include "Game/Screen/PrologueLetter.hpp"
 #include "Game/Screen/ProloguePictureBook.hpp"
 
-
 namespace {
     static const char* sPictureBookDemoName = "プロローグデモ";
     static const char* sArriveDemoName = "主人公ピーチ城に到着";
@@ -93,7 +92,7 @@ void PrologueDirector::exeWait() {
 }
 
 void PrologueDirector::exePictureBook() {
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     if (MR::isFirstStep(this)) {
         mPictureBook->appear();
@@ -152,7 +151,7 @@ void PrologueDirector::exePeachLetterEnd() {
         return;
     }
 
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     MR::endAnimCamera(mScenery, &cameraInfo, "DemoLetter", 0, true);
     mScenery->kill();
@@ -169,7 +168,7 @@ void PrologueDirector::exeBindWait() {
         mMarioPosDummyModel->appear();
         MR::startBck(mMarioPosDummyModel, "DemoPeachCastleGate", 0);
 
-        ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
         CameraTargetArg cameraTarget = CameraTargetArg(nullptr, mCameraTarget, nullptr, nullptr);
 
         MR::startAnimCameraTargetOther(mMarioPosDummyModel, &cameraInfo, "DemoPeachCastleGate", cameraTarget, 0, 1.0f);
@@ -178,7 +177,7 @@ void PrologueDirector::exeBindWait() {
 }
 
 void PrologueDirector::exeArrive() {
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     if (MR::isFirstStep(this)) {
         MR::permitLevelSE();
@@ -248,7 +247,7 @@ void PrologueDirector::createScenery() {
     MR::initLightCtrl(mScenery);
     mScenery->kill();
 
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     MR::initAnimCamera(mScenery, &cameraInfo, "DemoLetter");
 }
@@ -263,7 +262,7 @@ void PrologueDirector::createMarioPosDummyModel() {
     // FIXME: Order of store instructions is swapped.
     mMarioPosDummyModel->mPosition.set(0.0f, 0.0f, 0.0f);
 
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     MR::initAnimCamera(mMarioPosDummyModel, &cameraInfo, "DemoPeachCastleGate");
 }
@@ -273,7 +272,8 @@ void PrologueDirector::createCameraTarget() {
     mCameraTarget->mMatrix.identity();
 }
 
-void PrologueDirector::control() {}
+void PrologueDirector::control() {
+}
 
 void PrologueDirector::pauseOff() {
     MR::requestMovementOn(mPictureBook);
@@ -282,7 +282,8 @@ void PrologueDirector::pauseOff() {
     MR::requestMovementOn(mMarioPosDummyModel);
 }
 
-PrologueHolder::PrologueHolder(const char* pName) : NameObj(pName), mDirector(nullptr) {}
+PrologueHolder::PrologueHolder(const char* pName) : NameObj(pName), mDirector(nullptr) {
+}
 
 void PrologueHolder::registerPrologueObj(PrologueDirector* pDirector) {
     mDirector = pDirector;
@@ -293,7 +294,11 @@ void PrologueHolder::start() {
 }
 
 namespace MR {
-    PrologueHolder* getPrologueHolder() { return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder); }
+    PrologueHolder* getPrologueHolder() {
+        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
+    }
 
-    void startPrologue() { getPrologueHolder()->start(); }
+    void startPrologue() {
+        getPrologueHolder()->start();
+    }
 };  // namespace MR

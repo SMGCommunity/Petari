@@ -3,7 +3,7 @@
 #include "Game/AudioLib/AudSoundNameConverter.hpp"
 #include "Game/AudioLib/AudSoundObject.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
-#include "Game/SingletonHolder.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JAudio2/JAISound.hpp>
 #include <JSystem/JAudio2/JAISoundHandles.hpp>
 

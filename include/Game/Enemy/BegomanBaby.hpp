@@ -24,7 +24,9 @@ public:
 
     bool receiveMsgTrample(HitSensor*, HitSensor*);
 
-    virtual u32 getKind() const {return 3;}
+    virtual u32 getKind() const {
+        return 3;
+    }
 
     virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
 

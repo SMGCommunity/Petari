@@ -7,7 +7,8 @@ namespace NrvWipeGameOver {
     NEW_NERVE(WipeGameOverActive, WipeGameOver, Active);
 };  // namespace NrvWipeGameOver
 
-WipeGameOver::WipeGameOver() : WipeLayoutBase("ゲームオーバー") {}
+WipeGameOver::WipeGameOver() : WipeLayoutBase("ゲームオーバー") {
+}
 
 void WipeGameOver::init(const JMapInfoIter& rIter) {
     initNerve(&NrvWipeGameOver::WipeGameOverWait::sInstance);
@@ -19,7 +20,7 @@ void WipeGameOver::kill() {
     setNerve(&NrvWipeGameOver::WipeGameOverWait::sInstance);
 }
 
-void WipeGameOver::wipe(s32 step) {
+void WipeGameOver::wipe(s32 frame) {
     if (isNerve(&NrvWipeGameOver::WipeGameOverActive::sInstance)) {
         return;
     }
@@ -54,7 +55,8 @@ bool WipeGameOver::isWipeOut() const {
     return isNerve(&NrvWipeGameOver::WipeGameOverActive::sInstance) && !MR::isAnimStopped(this, 0);
 }
 
-void WipeGameOver::exeWait() {}
+void WipeGameOver::exeWait() {
+}
 
 void WipeGameOver::exeActive() {
     if (MR::isFirstStep(this)) {

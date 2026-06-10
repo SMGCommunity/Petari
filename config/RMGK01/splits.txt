@@ -388,7 +388,7 @@ Game/AudioLib/AudSystem.cpp:
 	.sdata2     start:0x806B7E98 end:0x806B7EC8
 
 Game/AudioLib/AudParams.cpp:
-	.rodata     start:0x8052F820 end:0x8052FA48
+	.rodata     start:0x8052F820 end:0x8052FA20
 	.sdata2     start:0x806B7EC8 end:0x806B7F98
 
 Game/AudioLib/AudSystemVolumeController.cpp:
@@ -396,6 +396,7 @@ Game/AudioLib/AudSystemVolumeController.cpp:
 
 Game/AudioLib/AudAudience.cpp:
 	.text       start:0x8002A45C end:0x8002A540
+	.rodata     start:0x8052FA20 end:0x8052FA28
 	.data       start:0x80565F90 end:0x80565FB0
 	.sdata2     start:0x806B7F98 end:0x806B7FA0
 
@@ -416,14 +417,17 @@ Game/AudioLib/AudSoundObject.cpp:
 
 Game/AudioLib/AudSoundObject_Kawamura.cpp:
 	.text       start:0x8002BB5C end:0x8002C6D4
+	.rodata     start:0x8052FA28 end:0x8052FA30
 	.sdata2     start:0x806B7FA8 end:0x806B8008
 
 Game/AudioLib/AudSoundObject_Takezawa.cpp:
 	.text       start:0x8002C6D4 end:0x8002D9F0
+	.rodata     start:0x8052FA30 end:0x8052FA38
 	.sdata2     start:0x806B8008 end:0x806B8068
 
 Game/AudioLib/AudSoundObject_Gohara.cpp:
 	.text       start:0x8002D9F0 end:0x8002DC60
+	.rodata     start:0x8052FA38 end:0x8052FA40
 	.sdata2     start:0x806B8068 end:0x806B8078
 
 Game/AudioLib/AudAnmSoundObject.cpp:
@@ -435,6 +439,7 @@ Game/AudioLib/AudAnmSoundObject.cpp:
 Game/AudioLib/AudBgm.cpp:
 	.text       start:0x8002E874 end:0x8002FD00
 	.ctors      start:0x8052E828 end:0x8052E82C
+	.rodata     start:0x8052FA40 end:0x8052FA48
 	.data       start:0x80566048 end:0x80566160
 	.bss        start:0x8060A4A0 end:0x8060A4B8
 	.sbss       start:0x806B2F08 end:0x806B2F10
@@ -454,7 +459,7 @@ Game/AudioLib/AudBgmRhythmStrategy.cpp:
 
 Game/AudioLib/AudBgmSetting.cpp:
 	.text       start:0x80030A74 end:0x80030BA0
-	.rodata     start:0x8052FA48 end:0x80530A60
+	.rodata     start:0x8052FA48 end:0x80530A58
 
 Game/AudioLib/AudBgmVolumeController.cpp:
 	.text       start:0x80030BA0 end:0x80030E0C
@@ -467,6 +472,7 @@ Game/AudioLib/AudEffector.cpp:
 
 Game/AudioLib/AudFader.cpp:
 	.text       start:0x80030F24 end:0x80030FF0
+	.rodata     start:0x80530A58 end:0x80530A60
 	.sdata2     start:0x806B80A0 end:0x806B80A8
 
 Game/AudioLib/AudLimitedSound.cpp:
@@ -492,7 +498,7 @@ Game/AudioLib/AudRemixSequencer.cpp:
 Game/AudioLib/AudSceneMgr.cpp:
 	.text       start:0x80031A30 end:0x80032454
 	.ctors      start:0x8052E834 end:0x8052E838
-	.rodata     start:0x80530A68 end:0x80530E60
+	.rodata     start:0x80530A68 end:0x80530E38
 	.bss        start:0x8060A4E8 end:0x8060A500
 
 Game/AudioLib/AudSeStrategy.cpp:
@@ -514,8 +520,9 @@ Game/AudioLib/AudSoundObjHolder.cpp:
 Game/AudioLib/AudSpeakerWrap.cpp:
 	.text       start:0x80032F04 end:0x80033124
 	.ctors      start:0x8052E83C end:0x8052E840
+	.rodata     start:0x80530E38 end:0x80530E58
 	.bss        start:0x8060A510 end:0x8060A548
-	.sbss       start:0x806B2F18 end:0x806B2F28
+	.sbss       start:0x806B2F18 end:0x806B2F20
 	.sdata2     start:0x806B80C0 end:0x806B80C8
 
 Game/AudioLib/AudTrackController.cpp:
@@ -524,12 +531,14 @@ Game/AudioLib/AudTrackController.cpp:
 
 Game/AudioLib/AudUtil.cpp:
 	.text       start:0x800334A0 end:0x8003359C
+	.rodata     start:0x80530E58 end:0x80530E60
 	.sdata2     start:0x806B80D0 end:0x806B80D8
 
 Game/AudioLib/OverwriteJAudio.cpp:
 	.text       start:0x8003359C end:0x80033CF4
 	.ctors      start:0x8052E840 end:0x8052E844
 	.bss        start:0x8060A548 end:0x8060A568
+	.sbss       start:0x806B2F20 end:0x806B2F28
 	.sdata2     start:0x806B80D8 end:0x806B80E8
 
 Game/AudioLib/CSSoundNameConverter.cpp:
@@ -846,28 +855,29 @@ Game/Boss/DinoPackunVs1.cpp:
 Game/Boss/DinoPackunVs2.cpp:
 	.text       start:0x8004E614 end:0x8004ED54
 	.ctors      start:0x8052E8CC end:0x8052E8D0
-	.data       start:0x8056A1B8 end:0x8056A3B8
+	.data       start:0x8056A1B8 end:0x8056A2B8
 	.sbss       start:0x806B3260 end:0x806B3288
 
 Game/Boss/Dodoryu.cpp:
 	.text       start:0x8004ED54 end:0x80051C54
 	.ctors      start:0x8052E8D0 end:0x8052E8D4
 	.rodata     start:0x80530F60 end:0x80530FC8
-	.data       start:0x8056A3B8 end:0x8056AFB0
-	.sdata      start:0x806B16E0 end:0x806B1730
+	.data       start:0x8056A2B8 end:0x8056ADD8
+	.sdata      start:0x806B16E0 end:0x806B1720
 	.sbss       start:0x806B3288 end:0x806B32B0
 	.sdata2     start:0x806B8660 end:0x806B86E0
 
 Game/Boss/DodoryuDemo.cpp:
 	.text       start:0x80051C54 end:0x80053060
 	.ctors      start:0x8052E8D4 end:0x8052E8D8
-	.data       start:0x8056AFB0 end:0x8056B3A0
+	.data       start:0x8056ADD8 end:0x8056B378
+	.sdata      start:0x806B1720 end:0x806B1728
 	.sbss       start:0x806B32B0 end:0x806B32E8
 	.sdata2     start:0x806B86E0 end:0x806B86F8
 
 Game/Boss/DodoryuHill.cpp:
 	.text       start:0x80053060 end:0x800531B0
-	.data       start:0x8056B3A0 end:0x8056B458
+	.data       start:0x8056B378 end:0x8056B458
 
 Game/Boss/DodoryuMove.cpp:
 	.text       start:0x800531B0 end:0x80053B44
@@ -882,20 +892,21 @@ Game/Boss/DodoryuStateLv1.cpp:
 	.text       start:0x80053CB4 end:0x800550D8
 	.ctors      start:0x8052E8D8 end:0x8052E8DC
 	.data       start:0x8056B4B0 end:0x8056B828
+	.sdata      start:0x806B1728 end:0x806B1730
 	.sbss       start:0x806B32E8 end:0x806B3310
 	.sdata2     start:0x806B8728 end:0x806B8750
 
 Game/Boss/DodoryuStateLv2.cpp:
 	.text       start:0x800550D8 end:0x80057E04
 	.ctors      start:0x8052E8DC end:0x8052E8E0
-	.data       start:0x8056B828 end:0x8056BD38
+	.data       start:0x8056B828 end:0x8056BD00
 	.sbss       start:0x806B3310 end:0x806B3368
 	.sdata2     start:0x806B8750 end:0x806B8798
 
 Game/Boss/DodoryuStateWait.cpp:
 	.text       start:0x80057E04 end:0x80058048
 	.ctors      start:0x8052E8E0 end:0x8052E8E4
-	.data       start:0x8056BD38 end:0x8056BE78
+	.data       start:0x8056BD00 end:0x8056BE78
 	.sbss       start:0x806B3368 end:0x806B3370
 	.sdata2     start:0x806B8798 end:0x806B87A0
 
@@ -2927,7 +2938,7 @@ Game/Enemy/Mogu.cpp:
 Game/Enemy/Mogucchi.cpp:
 	.text       start:0x801265D8 end:0x80127C74
 	.ctors      start:0x8052EB08 end:0x8052EB0C
-	.rodata     start:0x80532400 end:0x80532428
+	.rodata     start:0x80532400 end:0x80532418
 	.data       start:0x80581F28 end:0x80582130
 	.sbss       start:0x806B44F0 end:0x806B4508
 	.sdata2     start:0x806BB0D0 end:0x806BB120
@@ -2935,6 +2946,7 @@ Game/Enemy/Mogucchi.cpp:
 Game/Enemy/MogucchiHill.cpp:
 	.text       start:0x80127C74 end:0x80128EE4
 	.ctors      start:0x8052EB0C end:0x8052EB10
+	.rodata     start:0x80532418 end:0x80532420
 	.data       start:0x80582130 end:0x80582338
 	.sbss       start:0x806B4508 end:0x806B4520
 	.sdata2     start:0x806BB120 end:0x806BB140
@@ -2954,6 +2966,7 @@ Game/Enemy/MogucchiShooter.cpp:
 Game/Enemy/MoguStone.cpp:
 	.text       start:0x80129BDC end:0x8012A98C
 	.ctors      start:0x8052EB14 end:0x8052EB18
+	.rodata     start:0x80532420 end:0x80532428
 	.data       start:0x80582590 end:0x80582730
 	.sbss       start:0x806B4558 end:0x806B4568
 	.sdata2     start:0x806BB160 end:0x806BB198
@@ -3126,7 +3139,7 @@ Game/Enemy/TakoHeiInkHolder.cpp:
 Game/Enemy/Teresa.cpp:
 	.text       start:0x80149710 end:0x8014C790
 	.ctors      start:0x8052EB60 end:0x8052EB64
-	.data       start:0x805856C0 end:0x80585AF8
+	.data       start:0x805856C0 end:0x80585A70
 	.sbss       start:0x806B48E8 end:0x806B4938
 	.sdata2     start:0x806BB830 end:0x806BB8D8
 
@@ -3134,7 +3147,7 @@ Game/Enemy/TeresaWater.cpp:
 	.text       start:0x8014C790 end:0x8014CFE0
 	.ctors      start:0x8052EB64 end:0x8052EB68
 	.rodata     start:0x80532588 end:0x805325B8
-	.data       start:0x80585AF8 end:0x80585BB0
+	.data       start:0x80585A70 end:0x80585BB0
 	.sbss       start:0x806B4938 end:0x806B4948
 	.sdata2     start:0x806BB8D8 end:0x806BB8F8
 
@@ -5745,7 +5758,7 @@ Game/MapObj/SpinLeverSwitch.cpp:
 Game/MapObj/SpinningBox.cpp:
 	.text       start:0x802398DC end:0x8023B194
 	.ctors      start:0x8052EECC end:0x8052EED0
-	.data       start:0x805A1020 end:0x805A11F8
+	.data       start:0x805A1020 end:0x805A1190
 	.sdata      start:0x806B2030 end:0x806B2038
 	.sbss       start:0x806B58F8 end:0x806B5910
 	.sdata2     start:0x806BE2D0 end:0x806BE348
@@ -5753,7 +5766,7 @@ Game/MapObj/SpinningBox.cpp:
 Game/MapObj/SpringJetWater.cpp:
 	.text       start:0x8023B194 end:0x8023B98C
 	.ctors      start:0x8052EED0 end:0x8052EED4
-	.data       start:0x805A11F8 end:0x805A12A0
+	.data       start:0x805A1190 end:0x805A12A0
 	.sdata      start:0x806B2038 end:0x806B2040
 	.sbss       start:0x806B5910 end:0x806B5920
 	.sdata2     start:0x806BE348 end:0x806BE370
@@ -10350,7 +10363,7 @@ JSystem/JAudio2/JASSeqCtrl.cpp:
 JSystem/JAudio2/JASSeqParser.cpp:
 	.text       start:0x8048E45C end:0x80490188
 	.ctors      start:0x8052F408 end:0x8052F40C
-	.rodata     start:0x80561150 end:0x80561168
+	.rodata     start:0x80561150 end:0x80561160
 	.data       start:0x805EB388 end:0x805ECCB8
 	.sdata      start:0x806B29C0 end:0x806B29C8
 	.sbss       start:0x806B7500 end:0x806B7510
@@ -10362,7 +10375,7 @@ JSystem/JAudio2/JASSeqReader.cpp:
 JSystem/JAudio2/JASAramStream.cpp:
 	.text       start:0x804903BC end:0x80491948
 	.ctors      start:0x8052F40C end:0x8052F410
-	.rodata     start:0x80561168 end:0x80561198
+	.rodata     start:0x80561160 end:0x80561190
 	.data       start:0x805ECCB8 end:0x805ECCF0
 	.bss        start:0x806626D0 end:0x806626E0
 	.sbss       start:0x806B7510 end:0x806B7528
@@ -10371,7 +10384,7 @@ JSystem/JAudio2/JASAramStream.cpp:
 JSystem/JAudio2/JASBank.cpp:
 	.text       start:0x80491948 end:0x80491AD4
 	.ctors      start:0x8052F410 end:0x8052F414
-	.rodata     start:0x80561198 end:0x805611B8
+	.rodata     start:0x80561190 end:0x805611B8
 	.bss        start:0x806626E0 end:0x806626F0
 	.sdata2     start:0x806C1F10 end:0x806C1F18
 
@@ -10381,7 +10394,7 @@ JSystem/JAudio2/JASBasicBank.cpp:
 
 JSystem/JAudio2/JASVoiceBank.cpp:
 	.text       start:0x80491C14 end:0x80491C98
-	.rodata     start:0x805611B8 end:0x80561218
+	.rodata     start:0x805611B8 end:0x805611D0
 	.data       start:0x805ECD08 end:0x805ECD20
 	.sbss       start:0x806B7528 end:0x806B7530
 
@@ -10407,12 +10420,14 @@ JSystem/JAudio2/JASSimpleWaveBank.cpp:
 
 JSystem/JAudio2/JASInstSense.cpp:
 	.text       start:0x80492E10 end:0x80492FD4
+	.rodata     start:0x805611D0 end:0x805611E8
 	.data       start:0x805ECDF8 end:0x805ECE08
 	.sdata2     start:0x806C1F30 end:0x806C1F38
 
 JSystem/JAudio2/JASInstRand.cpp:
 	.text       start:0x80492FD4 end:0x80493108
-	.data       start:0x805ECE08 end:0x805ECE58
+	.rodata     start:0x805611E8 end:0x805611F0
+	.data       start:0x805ECE08 end:0x805ECE18
 	.sbss       start:0x806B7530 end:0x806B7538
 	.sdata2     start:0x806C1F38 end:0x806C1F48
 
@@ -10422,17 +10437,19 @@ JSystem/JAudio2/JASWSParser.cpp:
 
 JSystem/JAudio2/JASBNKParser.cpp:
 	.text       start:0x80493688 end:0x80494614
+	.rodata     start:0x805611F0 end:0x80561200
 	.sbss       start:0x806B7540 end:0x806B7548
 	.sdata2     start:0x806C1F48 end:0x806C1F58
 
 JSystem/JAudio2/JASWaveArcLoader.cpp:
 	.text       start:0x80494614 end:0x80494A8C
-	.data       start:0x805ECE58 end:0x805ECE70
+	.data       start:0x805ECE18 end:0x805ECE70
 	.sbss       start:0x806B7548 end:0x806B7550
 
 JSystem/JAudio2/JASChannel.cpp:
 	.text       start:0x80494A8C end:0x80495E28
 	.ctors      start:0x8052F414 end:0x8052F418
+	.rodata     start:0x80561200 end:0x80561218
 	.data       start:0x805ECE70 end:0x805ECED0
 	.bss        start:0x80662708 end:0x806627B8
 	.sbss       start:0x806B7550 end:0x806B7558
@@ -10452,7 +10469,7 @@ JSystem/JAudio2/JASOscillator.cpp:
 
 JSystem/JAudio2/JASAiCtrl.cpp:
 	.text       start:0x8049643C end:0x80496CF0
-	.rodata     start:0x80561338 end:0x805618C8
+	.rodata     start:0x80561338 end:0x80561350
 	.data       start:0x805ECEE0 end:0x805ECF50
 	.bss        start:0x806627D0 end:0x806627E0
 	.sdata      start:0x806B29D0 end:0x806B29E0
@@ -10462,12 +10479,13 @@ JSystem/JAudio2/JASAiCtrl.cpp:
 JSystem/JAudio2/JASAudioThread.cpp:
 	.text       start:0x80496CF0 end:0x80497034
 	.ctors      start:0x8052F41C end:0x8052F420
-	.data       start:0x805ECF50 end:0x805ECFA0
+	.data       start:0x805ECF50 end:0x805ECF78
 	.bss        start:0x806627E0 end:0x806627F0
 	.sbss       start:0x806B7588 end:0x806B7590
 
 JSystem/JAudio2/JASAudioReseter.cpp:
 	.text       start:0x80497034 end:0x80497240
+	.rodata     start:0x80561350 end:0x80561360
 
 JSystem/JAudio2/JASDSPChannel.cpp:
 	.text       start:0x80497240 end:0x8049789C
@@ -10475,6 +10493,8 @@ JSystem/JAudio2/JASDSPChannel.cpp:
 
 JSystem/JAudio2/JASDSPInterface.cpp:
 	.text       start:0x8049789C end:0x80497EDC
+	.rodata     start:0x80561360 end:0x805618C8
+	.data       start:0x805ECF78 end:0x805ECFA0
 	.sdata      start:0x806B29E0 end:0x806B29E8
 	.sbss       start:0x806B7598 end:0x806B75A8
 	.sdata2     start:0x806C1FD0 end:0x806C1FD8
@@ -10482,7 +10502,7 @@ JSystem/JAudio2/JASDSPInterface.cpp:
 JSystem/JAudio2/JASDriverIF.cpp:
 	.text       start:0x80497EDC end:0x8049806C
 	.ctors      start:0x8052F420 end:0x8052F424
-	.bss        start:0x806627F0 end:0x80664B60
+	.bss        start:0x806627F0 end:0x80662B00
 	.sdata      start:0x806B29E8 end:0x806B29F0
 
 JSystem/JAudio2/JASSoundParams.cpp:
@@ -10500,7 +10520,7 @@ JSystem/JAudio2/dsptask.cpp:
 	.text       start:0x804983A0 end:0x80498760
 	.rodata     start:0x805618F0 end:0x80561A60
 	.data       start:0x805ECFA0 end:0x805EEEA0
-	.bss        start:0x80664B60 end:0x80664BE0
+	.bss        start:0x80662B00 end:0x80664BE0
 	.sbss       start:0x806B75B0 end:0x806B75C0
 
 JSystem/JAudio2/osdsp.cpp:
@@ -10509,7 +10529,7 @@ JSystem/JAudio2/osdsp.cpp:
 
 JSystem/JAudio2/osdsp_task.cpp:
 	.text       start:0x804987E0 end:0x80498CCC
-	.rodata     start:0x80561A80 end:0x80561B30
+	.rodata     start:0x80561A80 end:0x80561B08
 	.bss        start:0x80664BE0 end:0x80664BF8
 	.sbss       start:0x806B75C0 end:0x806B75C0
 
@@ -10529,7 +10549,7 @@ JSystem/JAudio2/JAISeMgr.cpp:
 	.ctors      start:0x8052F424 end:0x8052F428
 	.data       start:0x805EEEF8 end:0x805EEF48
 	.bss        start:0x80664BF8 end:0x80664C18
-	.sbss       start:0x806B75C0 end:0x806B75E8
+	.sbss       start:0x806B75C0 end:0x806B75D0
 	.sdata2     start:0x806C1FF8 end:0x806C2000
 
 JSystem/JAudio2/JAISeq.cpp:
@@ -10547,9 +10567,11 @@ JSystem/JAudio2/JAISeqMgr.cpp:
 	.ctors      start:0x8052F42C end:0x8052F430
 	.data       start:0x805EEF98 end:0x805EEFC0
 	.bss        start:0x80664C40 end:0x80664C60
+	.sbss       start:0x806B75D0 end:0x806B75D8
 
 JSystem/JAudio2/JAISound.cpp:
 	.text       start:0x8049BA70 end:0x8049C194
+	.rodata     start:0x80561B08 end:0x80561B10
 	.data       start:0x805EEFC0 end:0x805EF030
 	.sdata2     start:0x806C2008 end:0x806C2018
 
@@ -10565,6 +10587,7 @@ JSystem/JAudio2/JAISoundInfo.cpp:
 
 JSystem/JAudio2/JAISoundParams.cpp:
 	.text       start:0x8049C464 end:0x8049C518
+	.rodata     start:0x80561B10 end:0x80561B18
 
 JSystem/JAudio2/JAISoundStarter.cpp:
 	.text       start:0x8049C518 end:0x8049C6BC
@@ -10585,11 +10608,13 @@ JSystem/JAudio2/JAIStreamMgr.cpp:
 	.text       start:0x8049D0A0 end:0x8049D688
 	.ctors      start:0x8052F434 end:0x8052F438
 	.bss        start:0x80664C70 end:0x80664C90
+	.sbss       start:0x806B75D8 end:0x806B75E0
 
 JSystem/JAudio2/JAUAudience.cpp:
 	.text       start:0x8049D688 end:0x8049DB94
 	.ctors      start:0x8052F438 end:0x8052F43C
 	.bss        start:0x80664C90 end:0x80664D38
+	.sbss       start:0x806B75E0 end:0x806B75E8
 	.sdata2     start:0x806C2020 end:0x806C2050
 
 JSystem/JAudio2/JAUAudioArcInterpreter.cpp:
@@ -10612,7 +10637,7 @@ JSystem/JAudio2/JAUInitializer.cpp:
 JSystem/JAudio2/JAUSectionHeap.cpp:
 	.text       start:0x8049E4E8 end:0x804A030C
 	.data       start:0x805EF138 end:0x805EF218
-	.sdata      start:0x806B29F8 end:0x806B2A08
+	.sdata      start:0x806B29F8 end:0x806B2A00
 	.sbss       start:0x806B75E8 end:0x806B75F0
 
 JSystem/JAudio2/JAUSeqCollection.cpp:
@@ -10624,6 +10649,7 @@ JSystem/JAudio2/JAUSeqDataBlockMgr.cpp:
 
 JSystem/JAudio2/JAUSoundAnimator.cpp:
 	.text       start:0x804A0ABC end:0x804A11D0
+	.rodata     start:0x80561B18 end:0x80561B28
 	.data       start:0x805EF230 end:0x805EF248
 	.sdata2     start:0x806C2058 end:0x806C2070
 
@@ -10633,22 +10659,26 @@ JSystem/JAudio2/JAUSoundMgr.cpp:
 
 JSystem/JAudio2/JAUSoundObject.cpp:
 	.text       start:0x804A15D0 end:0x804A1C54
-	.data       start:0x805EF258 end:0x805EF290
+	.data       start:0x805EF258 end:0x805EF280
 
 JSystem/JAudio2/JAUSoundTable.cpp:
 	.text       start:0x804A1C54 end:0x804A215C
+	.data       start:0x805EF280 end:0x805EF290
+	.sdata      start:0x806B2A00 end:0x806B2A08
 
 JSystem/JAudio2/JAUStdSoundInfo.cpp:
 	.text       start:0x804A215C end:0x804A2628
+	.rodata     start:0x80561B28 end:0x80561B30
 	.data       start:0x805EF290 end:0x805EF2E0
 	.sdata2     start:0x806C2070 end:0x806C2080
 
 JSystem/JAudio2/JAUStreamFileTable.cpp:
 	.text       start:0x804A2628 end:0x804A2748
-	.data       start:0x805EF2E0 end:0x805EF330
+	.data       start:0x805EF2E0 end:0x805EF2F0
 
 RVL_SDK/aralt/aralt.c:
 	.text       start:0x804A2748 end:0x804A2B6C
+	.data       start:0x805EF2F0 end:0x805EF330
 	.sdata      start:0x806B2A08 end:0x806B2A10
 	.sbss       start:0x806B75F0 end:0x806B7628
 

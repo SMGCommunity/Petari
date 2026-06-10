@@ -88,4 +88,5 @@ void RSO::HBMStartBlackOut() {
     (*HBMStartBlackOutRSO)();
 }
 
-void _unresolved(void) {}
+void _unresolved(void) {
+}

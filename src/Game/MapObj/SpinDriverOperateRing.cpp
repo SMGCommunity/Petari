@@ -20,9 +20,11 @@ void SpinDriverOperateRing::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
 }
 
-void SpinDriverOperateRing::control() {}
+void SpinDriverOperateRing::control() {
+}
 
-void SpinDriverOperateRing::exeWait() {}
+void SpinDriverOperateRing::exeWait() {
+}
 
 void SpinDriverOperateRing::setRadiusRate(f32 rate) {
     mRadiusRate = MR::normalize(rate, 0.0f, 1.0f);
@@ -92,4 +94,5 @@ void SpinDriverOperateRing::attenuateVelocity() {
     mAccelerate.z *= 0.94f;
 }
 
-SpinDriverOperateRing::~SpinDriverOperateRing() {}
+SpinDriverOperateRing::~SpinDriverOperateRing() {
+}

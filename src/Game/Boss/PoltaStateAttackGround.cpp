@@ -10,8 +10,7 @@ namespace NrvPoltaStateAttackGround {
     NEW_NERVE(PoltaStateAttackGroundNrvToWait, PoltaStateAttackGround, ToWait);
 };  // namespace NrvPoltaStateAttackGround
 
-PoltaStateAttackGround::PoltaStateAttackGround(Polta* pPolta)
-    : ActorStateBase< Polta >("[state]地面叩き攻撃", pPolta), mIsAffectBody(true) {
+PoltaStateAttackGround::PoltaStateAttackGround(Polta* pPolta) : ActorStateBase< Polta >("[state]地面叩き攻撃", pPolta), mIsAffectBody(true) {
     initNerve(&NrvPoltaStateAttackGround::PoltaStateAttackGroundNrvStart::sInstance);
     mAttackStartLength = MR::getBckFrameMax(getHost(), "AttackFrontStart");
     mAttackLength = MR::getBckFrameMax(getHost(), "AttackFront");
@@ -81,4 +80,5 @@ bool PoltaStateAttackGround::isEnableAttack(const HitSensor* pSensor) const {
     }
 }
 
-PoltaStateAttackGround::~PoltaStateAttackGround() {}
+PoltaStateAttackGround::~PoltaStateAttackGround() {
+}

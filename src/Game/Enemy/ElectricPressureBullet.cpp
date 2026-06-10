@@ -14,7 +14,8 @@ namespace NrvElectricPressureBullet {
     NEW_NERVE(ElectricPressureBulletNrvFly, ElectricPressureBullet, Fly);
 };  // namespace NrvElectricPressureBullet
 
-ElectricPressureBullet::ElectricPressureBullet(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f), _98(nullptr), _9C(0.0f) {}
+ElectricPressureBullet::ElectricPressureBullet(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f), _98(nullptr), _9C(0.0f) {
+}
 
 void ElectricPressureBullet::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("ElectricBullet", nullptr, false);

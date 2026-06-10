@@ -1,7 +1,8 @@
 #include "Game/System/HomeButtonStateNotifier.hpp"
 #include "Game/Screen/MoviePlayerSimple.hpp"
 
-HomeButtonStateNotifier::HomeButtonStateNotifier() : _0(false), mMoviePlayer(nullptr) {}
+HomeButtonStateNotifier::HomeButtonStateNotifier() : _0(false), mMoviePlayer(nullptr) {
+}
 
 void HomeButtonStateNotifier::update(bool param1) {
     if ((_0 || !param1) && _0 && !param1) {

@@ -8,7 +8,8 @@ class LiveActorGroup : public NameObjGroup {
 public:
     LiveActorGroup(const char*, int);
 
-    virtual ~LiveActorGroup() {}
+    virtual ~LiveActorGroup() {
+    }
 
     void registerActor(LiveActor*);
     LiveActor* getActor(int) const;
@@ -21,9 +22,10 @@ public:
 template < typename T >
 class DeriveActorGroup : public LiveActorGroup {
 public:
-    inline DeriveActorGroup(const char* pName, int maxCount) : LiveActorGroup(pName, maxCount) {}
+    inline DeriveActorGroup(const char* pName, int maxCount) : LiveActorGroup(pName, maxCount) {
+    }
 
-    //inlined in BossStinkBug
+    // inlined in BossStinkBug
     T* getDeadMember() const {
         if (getDeadActor()) {
             return reinterpret_cast< T* >(getDeadActor());
@@ -32,5 +34,6 @@ public:
         return nullptr;
     }
 
-    ~DeriveActorGroup() NO_INLINE {}
+    ~DeriveActorGroup() NO_INLINE {
+    }
 };

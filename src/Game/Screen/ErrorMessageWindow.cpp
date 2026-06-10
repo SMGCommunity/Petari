@@ -12,7 +12,8 @@ namespace {
     NEW_NERVE(ErrorMessageWindowDisappearBeforeAppear, ErrorMessageWindow, DisappearBeforeAppear);
 };  // namespace
 
-ErrorMessageWindow::ErrorMessageWindow() : LayoutActor("エラーメッセージ表示", false), mMessageId(nullptr), mTexture(nullptr) {}
+ErrorMessageWindow::ErrorMessageWindow() : LayoutActor("エラーメッセージ表示", false), mMessageId(nullptr), mTexture(nullptr) {
+}
 
 void ErrorMessageWindow::init(const JMapInfoIter& rIter) {
     initLayoutManagerNoConvertFilename("ErrorMessageWindow", 1);

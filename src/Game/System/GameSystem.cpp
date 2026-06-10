@@ -3,7 +3,6 @@
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Screen/HomeButtonLayout.hpp"
 #include "Game/Screen/SystemWipeHolder.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/System/FileRipper.hpp"
@@ -28,6 +27,7 @@
 #include "Game/Util/MutexHolder.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRAram.hpp>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
@@ -74,7 +74,8 @@ void main(void) {
 GameSystem::GameSystem()
     : NerveExecutor("GameSystem"), mFifoBase(nullptr), mSequenceDirector(nullptr), mErrorWatcher(nullptr), mFontHolder(nullptr),
       mFrameControl(nullptr), mObjHolder(nullptr), mSceneController(nullptr), mStationedArchiveLoader(nullptr), mHomeButtonLayout(nullptr),
-      mSystemWipeHolder(nullptr), mHomeButtonStateNotifier(nullptr), mIsExecuteLoadSystemArchive(false) {}
+      mSystemWipeHolder(nullptr), mHomeButtonStateNotifier(nullptr), mIsExecuteLoadSystemArchive(false) {
+}
 
 void GameSystem::init() {
     JKRAram::create(0xE00000, 0xFFFFFFFF, 8, 7, 3);
@@ -148,7 +149,8 @@ void GameSystem::exeLoadStationedArchive() {
     }
 }
 
-void GameSystem::exeWaitForReboot() {}
+void GameSystem::exeWaitForReboot() {
+}
 
 void GameSystem::exeNormal() {
     updateSceneController();

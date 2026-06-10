@@ -7,7 +7,8 @@ class RailMoveObj : public MapObjActor {
 public:
     RailMoveObj(const char*);
 
-    virtual ~RailMoveObj() {}
+    virtual ~RailMoveObj() {
+    }
 
     virtual void init(const JMapInfoIter&);
     virtual void startClipped();
@@ -49,7 +50,8 @@ public:
 
 class RailMoveIndirectObj : public RailMoveObj {
 public:
-    inline RailMoveIndirectObj(const char* pName) : RailMoveObj(pName) {}
+    inline RailMoveIndirectObj(const char* pName) : RailMoveObj(pName) {
+    }
 
     virtual ~RailMoveIndirectObj();
 
@@ -58,7 +60,8 @@ public:
 
 class RailMoveObjSwitchShadow : public RailMoveObj {
 public:
-    inline RailMoveObjSwitchShadow(const char* pName) : RailMoveObj(pName) {}
+    inline RailMoveObjSwitchShadow(const char* pName) : RailMoveObj(pName) {
+    }
 
     virtual ~RailMoveObjSwitchShadow();
     virtual void init(const JMapInfoIter&);

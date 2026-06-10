@@ -18,7 +18,8 @@ namespace {
     NEW_NERVE(GamePauseSequenceSceneInformation, GamePauseSequence, SceneInformation);
 };  // namespace
 
-GamePauseSequence::GamePauseSequence() : LayoutActor("ポーズ画面管理", true), mMenuType(ActivePause), mPauseMenu(nullptr), mWindowMenuFunc(nullptr) {}
+GamePauseSequence::GamePauseSequence() : LayoutActor("ポーズ画面管理", true), mMenuType(ActivePause), mPauseMenu(nullptr), mWindowMenuFunc(nullptr) {
+}
 
 void GamePauseSequence::init(const JMapInfoIter& rIter) {
     if (!MR::isStageDisablePauseMenu()) {
@@ -60,7 +61,8 @@ void GamePauseSequence::deactivate() {
     setNerve(&GamePauseSequenceDeactive::sInstance);
 }
 
-void GamePauseSequence::exeDeactive() {}
+void GamePauseSequence::exeDeactive() {
+}
 
 void GamePauseSequence::exeActivePauseMenu() {
     if (MR::isDead(mPauseMenu)) {
@@ -77,4 +79,5 @@ void GamePauseSequence::exeActivePowerStarList() {
     }
 }
 
-void GamePauseSequence::exeSceneInformation() {}
+void GamePauseSequence::exeSceneInformation() {
+}

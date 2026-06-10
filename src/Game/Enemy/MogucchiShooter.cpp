@@ -11,6 +11,17 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sStepForLaugh = 120;
+    static const s32 sStepToAngerBlur = 40;
+    static const s32 sAngerBlurTime = 60;
+    static const f32 sAngerBlurOffset = 100.0f;
+    static const s32 sExplosionBlurTime = 50;
+    static const f32 sExplosionBlurOffset = 100.0f;
+    static const f32 sTurnRate = 1.0f;
+    static const f32 sLimitAngleOfTurn = 30.0f;
+};  // namespace
+
 namespace NrvMogucchiShooter {
     NEW_NERVE(MogucchiShooterNrvWait, MogucchiShooter, Wait);
     NEW_NERVE(MogucchiShooterNrvShot, MogucchiShooter, Shot);
@@ -25,13 +36,7 @@ namespace NrvMogucchiShooter {
     NEW_NERVE(MogucchiShooterNrvAnger, MogucchiShooter, Anger);
     NEW_NERVE(MogucchiShooterNrvStormStart, MogucchiShooter, StormStart);
     NEW_NERVE(MogucchiShooterNrvStorm, MogucchiShooter, Storm);
-
 };  // namespace NrvMogucchiShooter
-
-namespace {
-    static f32 sAngerBlurOffset = 100.0f;
-    static f32 sExplosionBlurOffset = 100.0f;
-};  // namespace
 
 MogucchiShooter::MogucchiShooter(LiveActor* pActor, const char* pName)
     : PartsModel(pActor, pName, "MogucchiShooter", nullptr, MR::DrawBufferType_Enemy, false), mFront(0.0f, 0.0f, 0.0f) {
@@ -138,10 +143,7 @@ void MogucchiShooter::exeTire() {
 
     if (bazooka->isPanic()) {
         setNerve(&NrvMogucchiShooter::MogucchiShooterNrvShock::sInstance);
-        return;
-    }
-
-    if (!bazooka->isTired()) {
+    } else if (!bazooka->isTired()) {
         setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
     }
 }
@@ -156,7 +158,7 @@ void MogucchiShooter::exeDeathPanic() {
 void MogucchiShooter::exeExplosion() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Down");
-        MR::startCenterScreenBlur(50, sExplosionBlurOffset, 0x50, 5, 30);
+        MR::startCenterScreenBlur(::sExplosionBlurTime, ::sExplosionBlurOffset, 80, 5, 30);
     }
 
     if (MR::isActionEnd(this)) {
@@ -169,7 +171,7 @@ void MogucchiShooter::exeLaugh() {
         MR::startAction(this, "Laugh");
     }
 
-    if (MR::isStep(this, 120)) {
+    if (MR::isStep(this, ::sStepForLaugh)) {
         setNerve(&NrvMogucchiShooter::MogucchiShooterNrvWait::sInstance);
     }
 }
@@ -189,6 +191,7 @@ void MogucchiShooter::exePanic() {
 
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Panic");
+
         if (bazooka->isBazookaLifeOut()) {
             MR::setBckRate(this, 2.0f);
         }
@@ -231,8 +234,8 @@ void MogucchiShooter::exeAnger() {
         MR::startAction(this, "Angry");
     }
 
-    if (MR::isStep(this, 40)) {
-        MR::startCenterScreenBlur(60, sAngerBlurOffset, 0x50, 5, 30);
+    if (MR::isStep(this, ::sStepToAngerBlur)) {
+        MR::startCenterScreenBlur(::sAngerBlurTime, ::sAngerBlurOffset, 80, 5, 30);
     }
 
     faceToMario();
@@ -246,6 +249,7 @@ void MogucchiShooter::exeStormStart() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "SpinAttackStart");
     }
+
     faceToMario();
 }
 
@@ -286,12 +290,22 @@ void MogucchiShooter::resetDirection() {
 }
 
 void MogucchiShooter::faceToMario() {
-    if (!MR::isPlayerHidden() && !MR::isStageStateScenarioOpeningCamera() && !MR::isDemoActive()) {
-        TPos3f mtx;
-        mtx.setInline(mFixedPos->mMtx);
-        MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), 1.0f);
-        TVec3f front;
-        mtx.getZDir(front);
-        MR::clampVecAngleDeg(&mFront, front, 30.0f);
+    if (MR::isPlayerHidden()) {
+        return;
     }
+
+    if (MR::isStageStateScenarioOpeningCamera()) {
+        return;
+    }
+
+    if (MR::isDemoActive()) {
+        return;
+    }
+
+    TPos3f mtx;
+    mtx.setInline(mFixedPos->mMtx);
+    MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), ::sTurnRate);
+    TVec3f front;
+    mtx.getZDir(front);
+    MR::clampVecAngleDeg(&mFront, front, ::sLimitAngleOfTurn);
 }

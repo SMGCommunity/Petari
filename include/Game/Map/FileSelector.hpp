@@ -1,10 +1,15 @@
 #pragma once
 
-#include "Game/LiveActor/AllLiveActorGroup.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/FileSelectIconID.hpp"
-#include <RFLi_Types.h>
-#include <nw4r/ut/ResFont.h>
+
+struct RFLCreateID;
+
+namespace nw4r {
+    namespace ut {
+        class ResFont;
+    };  // namespace ut
+};  // namespace nw4r
 
 class BackButton;
 class BrosButton;
@@ -21,6 +26,9 @@ class MiiSelect;
 class TitleSequenceProduct;
 class UserFile;
 class SysInfoWindow;
+
+template < typename T >
+class DeriveActorGroup;
 
 class FileSelector : public LiveActor {
 public:
@@ -76,12 +84,12 @@ public:
     void initAllItems();
     void validateRotateAllItems();
     FileSelectIconID::EFellowID getUserFileFellowID(s32) const;
-    bool isUserFileMiiidValid(s32) const;
+    bool isUserFileMiiIdValid(s32) const;
     u16 getUserFileMiiIndex(s32) const;
     bool isUserFileCorrupted(s32) const;
     bool isUserFileAppearLuigi(s32) const;
     bool isUserFileLuigi(s32) const;
-    void setUserFileMario(s32, bool);
+    void setUserFileMario(s32, bool) NO_INLINE;
     void storeSetMiiIdUserFile(s32, const FileSelectIconID&);
     void getMiiId(RFLCreateID*, const FileSelectIconID&) const;
     void getIconId(FileSelectIconID*, s32) const;

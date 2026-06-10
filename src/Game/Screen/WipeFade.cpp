@@ -2,7 +2,11 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
-WipeFade::WipeFade(const char* pName, const Color8& rFillColor) : WipeLayoutBase(pName), mIsWipeIn(false), mStepNum(30), mStep(30) {
+namespace {
+    static const s32 sFadeFrame = 30;
+};  // namespace
+
+WipeFade::WipeFade(const char* pName, const Color8& rFillColor) : WipeLayoutBase(pName), mIsWipeIn(false), mFrame(::sFadeFrame), mStep(::sFadeFrame) {
     mFillColor = rFillColor;
 }
 
@@ -23,10 +27,11 @@ void WipeFade::draw() const {
         return;
     }
 
-    f32 stepRate = (f32)mStep / mStepNum;
-    f32 progress = (stepRate < 0f) ? 0f : (stepRate > 1f) ? 1 : stepRate;
+    f32 rate = static_cast< f32 >(mStep) / mFrame;
+    f32 alpha = (rate < 0.0f) ? 0.0f : (rate > 1.0f) ? 1.0f : rate;
+
     if (mIsWipeIn) {
-        progress = 1f - progress;
+        alpha = 1.0f - alpha;
     }
 
     GXSetColorUpdate(GX_TRUE);
@@ -36,19 +41,19 @@ void WipeFade::draw() const {
     fillColor.r = mFillColor.r;
     fillColor.g = mFillColor.g;
     fillColor.b = mFillColor.b;
-    fillColor.a = 255f * progress;
+    fillColor.a = 255.0f * alpha;
     MR::fillScreen(fillColor);
 }
 
-void WipeFade::wipe(s32 step) {
+void WipeFade::wipe(s32 frame) {
     mIsWipeIn = !mIsWipeIn;
 
-    if (step < 0) {
-        mStepNum = 30;
-    } else if (step == 0) {
-        mStepNum = 1;
+    if (frame < 0) {
+        mFrame = ::sFadeFrame;
+    } else if (frame == 0) {
+        mFrame = 1;
     } else {
-        mStepNum = step;
+        mFrame = frame;
     }
 
     mStep = 0;
@@ -60,7 +65,7 @@ void WipeFade::wipe(s32 step) {
 
 void WipeFade::forceClose() {
     mIsWipeIn = false;
-    mStep = mStepNum;
+    mStep = mFrame;
 
     if (MR::isDead(this)) {
         appear();
@@ -69,23 +74,23 @@ void WipeFade::forceClose() {
 
 void WipeFade::forceOpen() {
     mIsWipeIn = true;
-    mStep = mStepNum;
+    mStep = mFrame;
 
     kill();
 }
 
 bool WipeFade::isOpen() const {
-    return mIsWipeIn && mStep >= mStepNum;
+    return mIsWipeIn && mStep >= mFrame;
 }
 
 bool WipeFade::isClose() const {
-    return !mIsWipeIn && mStep >= mStepNum;
+    return !mIsWipeIn && mStep >= mFrame;
 }
 
 bool WipeFade::isWipeIn() const {
-    return mIsWipeIn && mStep < mStepNum;
+    return mIsWipeIn && mStep < mFrame;
 }
 
 bool WipeFade::isWipeOut() const {
-    return !mIsWipeIn && mStep < mStepNum;
+    return !mIsWipeIn && mStep < mFrame;
 }

@@ -18,8 +18,12 @@ public:
     void setCharColor(u8, u8, u8);
     void setCharColor(JUtility::TColor);
 
-    static JUTDirectPrint* getManager() { return sDirectPrint; }
-    JUtility::TColor getCharColor() const { return mCharColor; }
+    static JUTDirectPrint* getManager() {
+        return sDirectPrint;
+    }
+    JUtility::TColor getCharColor() const {
+        return mCharColor;
+    }
 
     void* field_0x00;
     u16 mFrameBufferWidth;

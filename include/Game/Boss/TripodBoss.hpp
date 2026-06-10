@@ -1,26 +1,24 @@
 #pragma once
 
-#include "Game/Boss/TripodBossStepPoint.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
 
+class ActorCameraInfo;
+class DummyDisplayModel;
 class TripodBossLeg;
 class TripodBossMovableArea;
+class TripodBossStepPoint;
 class TripodBossStepSequence;
-class DummyDisplayModel;
 
 class TripodBossBone {
 public:
-    inline TripodBossBone() {
-        _30 = nullptr;
+    TripodBossBone() : _30() {
         _0.identity();
     }
 
     void setAttachBaseMatrix(const TPos3f&);
 
-    TMtx34f _0;
-    const TPos3f* _30;
+    /* 0x00 */ TMtx34f _0;
+    /* 0x30 */ const TPos3f* _30;
 };
 
 class TripodBoss : public LiveActor {
@@ -71,19 +69,6 @@ public:
     void requestOpeningDemo();
     bool tryDamageDemo();
     void requestEndDamageDemo();
-    void exeWait();
-    void exeStep();
-    void exeWaitStep();
-    void exeChangeSequence();
-    void exeLeaveLegOutOfPlayer();
-    void exeDamage();
-    void exeStartDemo();
-    void exeDamageDemo();
-    void exePainDemo();
-    void exeBreakDownDemo();
-    void exeExplosionDemo();
-    inline void exeNonActive();
-    inline void exeTryStartDemo();
     bool isStopLeg(s32) const;
     bool isStopAllLeg() const;
     bool isStarted() const;
@@ -120,11 +105,31 @@ public:
     static s32 getPartIDFromBoneID(s32);
     void setAttachBaseMatrix(const TPos3f&);
 
-    inline TripodBossLeg* getLeg(s32 idx) const { return mLegs[idx]; }
+    void exeTryStartDemo();
+    void exeNonActive();
+    void exeWait();
+    void exeStep();
+    void exeWaitStep();
+    void exeDamage();
+    void exeChangeSequence();
+    void exeLeaveLegOutOfPlayer();
+    void exeStartDemo();
+    void exeDamageDemo();
+    void exePainDemo();
+    void exeBreakDownDemo();
+    void exeExplosionDemo();
 
-    inline TripodBossStepPoint* getStepPoint(int idx) { return mStepPoints[idx]; }
+    inline TripodBossLeg* getLeg(s32 idx) const {
+        return mLegs[idx];
+    }
 
-    inline bool isStateSomething() { return (_634 == 0) || (_634 == 1); }
+    inline TripodBossStepPoint* getStepPoint(int idx) {
+        return mStepPoints[idx];
+    }
+
+    inline bool isStateSomething() {
+        return (_634 == 0) || (_634 == 1);
+    }
 
     TPos3f mBodyMtx;  // 0x8C
     TPos3f _BC;

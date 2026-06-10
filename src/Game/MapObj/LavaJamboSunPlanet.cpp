@@ -82,4 +82,5 @@ void LavaJamboSunPlanet::exeMove() {
     }
 }
 
-LavaJamboSunPlanet::~LavaJamboSunPlanet() {}
+LavaJamboSunPlanet::~LavaJamboSunPlanet() {
+}

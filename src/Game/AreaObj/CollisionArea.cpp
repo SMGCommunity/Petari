@@ -5,7 +5,8 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Inline.hpp"
 
-DynamicCollisionObj::~DynamicCollisionObj() {}
+DynamicCollisionObj::~DynamicCollisionObj() {
+}
 
 bool AreaObj::isValid() const {
     return mIsValid && _15 && mIsAwake;
@@ -17,7 +18,8 @@ AreaPolygon::AreaPolygon() : DynamicCollisionObj("エリアポリゴン") {
     _12C.zero();
 }
 
-AreaPolygon::~AreaPolygon() {}
+AreaPolygon::~AreaPolygon() {
+}
 
 /*void AreaPolygon::init(const JMapInfoIter &rIter) {
     if (MR::isValidInfo(rIter)) {
@@ -94,7 +96,8 @@ CollisionArea::CollisionArea(int formType, const char* pName) : AreaObj(formType
     mIsValid = false;
 }
 
-CollisionArea::~CollisionArea() {}
+CollisionArea::~CollisionArea() {
+}
 
 void CollisionArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);

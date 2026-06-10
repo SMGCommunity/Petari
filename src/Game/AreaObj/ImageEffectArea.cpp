@@ -4,7 +4,8 @@ ImageEffectArea::ImageEffectArea(EImageEffectType effectType, int formType, cons
     mEffectType = effectType;
 }
 
-ImageEffectAreaMgr::ImageEffectAreaMgr(s32 maxNum, const char* pName) : AreaObjMgr(maxNum, pName) {}
+ImageEffectAreaMgr::ImageEffectAreaMgr(s32 maxNum, const char* pName) : AreaObjMgr(maxNum, pName) {
+}
 
 void ImageEffectAreaMgr::initAfterPlacement() {
     sort();
@@ -12,4 +13,5 @@ void ImageEffectAreaMgr::initAfterPlacement() {
 
 // ImageEffectAreaMgr::sort()
 
-ImageEffectAreaMgr::~ImageEffectAreaMgr() {}
+ImageEffectAreaMgr::~ImageEffectAreaMgr() {
+}

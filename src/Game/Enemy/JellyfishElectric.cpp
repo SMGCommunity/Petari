@@ -96,7 +96,7 @@ void JellyfishElectric::control() {
             }
         }
 
-        mVelocity.scale(JMath::sSinCosTable.sinLapRad(_94 + 0x2D), mGravity);
+        mVelocity.scale(MR::sin(_94 + 0x2D), mGravity);
         _94++;
     }
 }

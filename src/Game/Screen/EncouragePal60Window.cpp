@@ -12,7 +12,8 @@ namespace {
     NEW_NERVE(EncouragePal60WindowDisappear, EncouragePal60Window, Disappear);
 };  // namespace
 
-EncouragePal60Window::EncouragePal60Window() : LayoutActor("PAL60推奨画面", true) {}
+EncouragePal60Window::EncouragePal60Window() : LayoutActor("PAL60推奨画面", true) {
+}
 
 void EncouragePal60Window::init(const JMapInfoIter& rIter) {
     initLayoutManager("SysPALInfo", 1);

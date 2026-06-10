@@ -3,7 +3,6 @@
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <revolution/types.h>
 
-
 class BpkPlayer;
 class BrkPlayer;
 class BtkPlayer;

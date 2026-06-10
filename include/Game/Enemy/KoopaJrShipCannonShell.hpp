@@ -30,7 +30,7 @@ public:
     TQuat4f _8C;
     TVec3f _9C;
     TVec3f _A8;
-    s32 _B4; // 0xB4 : Freeze timing?
+    s32 _B4;  // 0xB4 : Freeze timing?
     bool _B8;
 };
 

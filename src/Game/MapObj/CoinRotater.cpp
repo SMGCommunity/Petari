@@ -53,4 +53,5 @@ namespace MR {
     }
 };  // namespace MR
 
-CoinRotater::~CoinRotater() {}
+CoinRotater::~CoinRotater() {
+}

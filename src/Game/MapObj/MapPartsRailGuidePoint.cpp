@@ -28,4 +28,5 @@ void MapPartsRailGuidePoint::init(const JMapInfoIter& rIter) {
     kill();
 }
 
-MapPartsRailGuidePoint::~MapPartsRailGuidePoint() {}
+MapPartsRailGuidePoint::~MapPartsRailGuidePoint() {
+}

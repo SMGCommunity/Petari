@@ -175,9 +175,11 @@ void StopSceneStateControl::executeStopCategories(MR::MovementControlType param1
     }
 }
 
-void StopSceneStateControl::exeNone() {}
+void StopSceneStateControl::exeNone() {
+}
 
-void StopSceneStateControl::exeStopped() {}
+void StopSceneStateControl::exeStopped() {
+}
 
 SceneNameObjMovementController::SceneNameObjMovementController()
     : NameObj("SceneNameObjMovementController"), _C(false), mStopSceneStateControl(nullptr) {

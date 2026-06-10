@@ -7,7 +7,6 @@
 #include "JSystem/JSupport/JSupport.hpp"
 #include <cstdio>
 
-
 u16 J3DModelLoader::countMaterialNum(const void* stream) {
     const J3DModelFileData* header = (const J3DModelFileData*)stream;
     const J3DModelBlock* block = header->mBlocks;

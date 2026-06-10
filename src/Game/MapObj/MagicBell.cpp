@@ -184,7 +184,8 @@ void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
     setNerve(&NrvMagicBell::MagicBellNrvRing::sInstance);
 }
 
-MagicBell::~MagicBell() {}
+MagicBell::~MagicBell() {
+}
 
 MtxPtr MagicBell::getBaseMtx() const {
     return mSurface2Mtx;

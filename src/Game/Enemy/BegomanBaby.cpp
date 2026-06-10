@@ -295,7 +295,7 @@ void BegomanBaby::exeAfterLaunch() {
     }
 
     if (MR::isLessStep(this, 80)) {
-        f32 f1 = 5.0f * JMath::sSinCosTable.cosLapRad(getNerveStep() * (16 * PI) / 80.0f);
+        f32 f1 = 5.0f * MR::cos(getNerveStep() * (16 * PI) / 80.0f);
         // TODO: fix vector math
         TVec3f scaledGravity(mGravity);
         scaledGravity.scale(f1);
@@ -423,7 +423,6 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
     }
 
     if (MR::isMsgExplosionAttack(msg)) {
-
         if (!isNerve(&NrvBegomanBaby::HostTypeNrvBlow::sInstance)) {
             mAppearThreeStarPiece = false;
             calcBlowReaction(pSender->mPosition, pReceiver->mPosition, 35.0f, 15.0f);
@@ -577,7 +576,7 @@ bool BegomanBaby::calcHeadJoint(TPos3f* pPos, const JointControllerInfo& rInfo) 
     if (!MR::isSameDirection(yDir, mTargetVec, 0.01f)) {
         MR::makeMtxUpFront(pPos, yDir, mTargetVec);
     }
-    
+
     return true;
 }
 

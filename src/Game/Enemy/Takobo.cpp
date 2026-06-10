@@ -109,7 +109,7 @@ void Takobo::init(const JMapInfoIter& rIter) {
     appear();
     getSensor("attack")->invalidate();
     mBox = new SpinningBox("スピニングボックス");
-    mBox->_B1 = 1;
+    mBox->mIsIceBox = true;
     mBox->initWithoutIter();
 }
 

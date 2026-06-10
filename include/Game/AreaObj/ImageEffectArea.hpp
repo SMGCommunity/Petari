@@ -8,9 +8,12 @@ public:
 
     ImageEffectArea(EImageEffectType, int, const char*);
 
-    virtual ~ImageEffectArea() {}
+    virtual ~ImageEffectArea() {
+    }
 
-    virtual bool isSyncWithPlayer() const { return false; }
+    virtual bool isSyncWithPlayer() const {
+        return false;
+    }
 
     s32 mEffectType;  // 0x3C
 };

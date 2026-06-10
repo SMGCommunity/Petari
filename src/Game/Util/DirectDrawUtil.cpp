@@ -53,8 +53,8 @@ namespace MR {
                 GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
             } else {
                 GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
-                GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);  
-            }  
+                GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);
+            }
         } else {
             if ((mVtxMode & 8) != 0) {
                 GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_NRM, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
@@ -65,19 +65,19 @@ namespace MR {
                     GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
                 } else {
                     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
-                    GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);   
-                }    
+                    GXSetTevOp(GX_TEVSTAGE0, GX_REPLACE);
+                }
             } else {
                 GXSetNumTexGens(0);
                 GXSetNumTevStages(1);
                 GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
                 GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-            }    
+            }
         }
     }
 
     void ddSendVtxData(const TVec3f& rVec1, const TVec3f& rVec2, const TVec2f& rVec3) {
-        GXPosition3f32(rVec1.x,rVec1.y, rVec1.z);
+        GXPosition3f32(rVec1.x, rVec1.y, rVec1.z);
         if ((mVtxMode & 1) != 0) {
             GXNormal3f32(rVec2.x, rVec2.y, rVec2.z);
         }
@@ -87,7 +87,7 @@ namespace MR {
     }
 
     void ddSendVtxData(const TVec3f& rVec1, const TVec2f& rVec2) {
-        GXPosition3f32(rVec1.x,rVec1.y, rVec1.z);
+        GXPosition3f32(rVec1.x, rVec1.y, rVec1.z);
         if ((mVtxMode & 2) != 0) {
             GXTexCoord2f32(rVec2.x, rVec2.y);
         }

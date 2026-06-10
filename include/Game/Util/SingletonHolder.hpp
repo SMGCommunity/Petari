@@ -1,7 +1,5 @@
 #pragma once
 
-#include "revolution/types.h"
-
 template < typename T >
 class SingletonHolder {
 public:
@@ -11,7 +9,9 @@ public:
         }
     }
 
-    static T* get() { return sInstance; }
+    static T* get() {
+        return sInstance;
+    }
 
 private:
     static T* sInstance;
@@ -29,7 +29,9 @@ public:
         }
     }
 
-    static T* get() { return sInstance; }
+    static T* get() {
+        return sInstance;
+    }
 
 private:
     static T* sInstance;

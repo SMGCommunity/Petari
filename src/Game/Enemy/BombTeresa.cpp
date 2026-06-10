@@ -54,9 +54,11 @@ namespace NrvBombTeresa {
 BombTeresa::BombTeresa(const char* pName)
     : LiveActor(pName), mJointDelegator(nullptr), mJointDelegator2(nullptr), mScaleController(nullptr), mBindStarPointer(nullptr),
       _9C(0.0f, 0.0f, 0.0f, 1.0f), _AC(0, 0, 1), _B8(0, 0, 0), _C4(0, 0, 0), _D0(0, 0, 0), _DC(1.0f), _E0(1.0f), _E4(1.0f), _E8(0), _EC(false),
-      mDisableRespawning(false), _EE(true), _EF(false) {}
+      mDisableRespawning(false), _EE(true), _EF(false) {
+}
 
-BombTeresa::~BombTeresa() {}
+BombTeresa::~BombTeresa() {
+}
 
 void BombTeresa::init(const JMapInfoIter& rIter) {
     initFromJMapParam(rIter);

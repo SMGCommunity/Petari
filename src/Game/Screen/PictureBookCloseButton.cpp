@@ -12,7 +12,8 @@ namespace NrvPictureBookCloseButton {
 };  // namespace NrvPictureBookCloseButton
 
 PictureBookCloseButton::PictureBookCloseButton(bool canCloseWithPad)
-    : LayoutActor("絵本閉じるボタン", true), mPaneCtrl(nullptr), mCanCloseWithPad(canCloseWithPad) {}
+    : LayoutActor("絵本閉じるボタン", true), mPaneCtrl(nullptr), mCanCloseWithPad(canCloseWithPad) {
+}
 
 void PictureBookCloseButton::init(const JMapInfoIter& rIter) {
     initLayoutManager("BackButton", 1);
@@ -68,7 +69,8 @@ void PictureBookCloseButton::control() {
     }
 }
 
-void PictureBookCloseButton::exeSelect() {}
+void PictureBookCloseButton::exeSelect() {
+}
 
 void PictureBookCloseButton::exeSelected() {
     if (mPaneCtrl->isHidden()) {

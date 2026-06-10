@@ -4,7 +4,8 @@
 #include "JSystem/JParticle/JPAParticle.hpp"
 #include "JSystem/JParticle/JPAResourceManager.hpp"
 
-JPAEmitterCallBack::~JPAEmitterCallBack() {}
+JPAEmitterCallBack::~JPAEmitterCallBack() {
+}
 
 JPABaseParticle* JPABaseEmitter::createParticle() {
     if (mpPtclPool->getNum() != 0) {

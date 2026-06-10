@@ -190,9 +190,11 @@ void TicoEat::exeEatPst() {
     }
 }
 
-void TicoEat::exeEatEnd() {}
+void TicoEat::exeEatEnd() {
+}
 
-TicoComet::TicoComet(const char* pName) : TicoEat(pName) {}
+TicoComet::TicoComet(const char* pName) : TicoEat(pName) {
+}
 
 void TicoComet::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoComet");
@@ -321,6 +323,8 @@ void TicoComet::exeDemoFade() {
     }
 }
 
-void TicoComet::exeDemoEnd() {}
+void TicoComet::exeDemoEnd() {
+}
 
-void TicoEat::startReactionSound() {}
+void TicoEat::startReactionSound() {
+}

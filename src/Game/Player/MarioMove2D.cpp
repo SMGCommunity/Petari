@@ -6,7 +6,6 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "revolution/mtx.h"
 
-
 void Mario::check2DMode() {
     mMovementStates._37 = false;
     _10._15 = false;

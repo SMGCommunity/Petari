@@ -28,7 +28,7 @@ public:
 
 private:
     /* 0x20 */ TVec2f _20;
-    /* 0x28 */ s32 mStepNum;
+    /* 0x28 */ s32 mFrame;
     /* 0x2C */ f32 _2C;
     /* 0x30 */ f32 _30;
     /* 0x24 */ bool _34;

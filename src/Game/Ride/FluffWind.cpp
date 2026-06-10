@@ -55,7 +55,8 @@ void FluffWindEffect::startClipped() {
     LiveActor::startClipped();
 }
 
-FluffWind::FluffWind(const char* pName) : LiveActor(pName), mNumEffects(0), mEffects(nullptr) {}
+FluffWind::FluffWind(const char* pName) : LiveActor(pName), mNumEffects(0), mEffects(nullptr) {
+}
 
 void FluffWind::init(const JMapInfoIter& rIter) {
     initRailRider(rIter);
@@ -95,7 +96,8 @@ void FluffWind::makeActorDead() {
     LiveActor::makeActorDead();
 }
 
-FluffWindHolder::FluffWindHolder() : LiveActorGroup("わたげ風", 8) {}
+FluffWindHolder::FluffWindHolder() : LiveActorGroup("わたげ風", 8) {
+}
 
 void FluffWindHolder::calcWindInfo(const TVec3f& rPosition, TVec3f* pWindDirection, f32* pWindStrength) const {
     pWindDirection->zero();

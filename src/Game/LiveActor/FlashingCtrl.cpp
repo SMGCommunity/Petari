@@ -75,4 +75,5 @@ void FlashingCtrl::updateFlashing() {
     }
 }
 
-FlashingCtrl::~FlashingCtrl() {}
+FlashingCtrl::~FlashingCtrl() {
+}

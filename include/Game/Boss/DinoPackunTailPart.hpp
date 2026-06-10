@@ -11,16 +11,17 @@ public:
     virtual void control();
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+
     virtual void requestLockPosition();
     virtual void requestUnLockPosition();
     virtual JointController* createJointControllerOwn(LiveActor*, const char*);
 
-    inline void exeLockPosition();
-    inline void exeWait();
+    void exeWait();
+    void exeLockPosition();
 
-    f32 _D4;
-    u8 _D8;
-    u8 _D9;
-    u8 _DA;
-    u8 _DB;
+    /* 0xD4 */ f32 _D4;
+    /* 0xD8 */ u8 _D8;
+    /* 0xD9 */ u8 _D9;
+    /* 0xDA */ u8 _DA;
+    /* 0xDB */ u8 _DB;
 };

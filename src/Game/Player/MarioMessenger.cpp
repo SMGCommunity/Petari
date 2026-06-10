@@ -31,4 +31,5 @@ void MarioMessenger::addRequest(HitSensor* pReceiver, u32 msg) {
     mArraySize++;
 }
 
-MarioMessenger::~MarioMessenger() {}
+MarioMessenger::~MarioMessenger() {
+}

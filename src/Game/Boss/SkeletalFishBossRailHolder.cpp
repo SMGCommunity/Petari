@@ -39,4 +39,5 @@ namespace MR {
     }
 };  // namespace MR
 
-SkeletalFishBossRailHolder::~SkeletalFishBossRailHolder() {}
+SkeletalFishBossRailHolder::~SkeletalFishBossRailHolder() {
+}

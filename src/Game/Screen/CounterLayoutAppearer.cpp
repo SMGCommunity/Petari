@@ -60,7 +60,8 @@ void CounterLayoutAppearer::updateLayoutOffset(f32 offset) {
     mFollowPos.y = mAppearOffset.y + offset * vec.y + _1C.y;
 }
 
-void CounterLayoutAppearer::exeHide() {}
+void CounterLayoutAppearer::exeHide() {
+}
 
 void CounterLayoutAppearer::exeAppear() {
     updateLayoutOffset(MR::calcNerveEaseOutRate(this, MR::getAnimFrameMax(mLayout, (u32)0)));

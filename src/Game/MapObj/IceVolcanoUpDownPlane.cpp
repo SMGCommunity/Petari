@@ -8,7 +8,8 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-IceVolcanoUpDownPlane::IceVolcanoUpDownPlane(const char* pName) : RailMoveObj(pName), mNearestPosToPlayer(0.0f, 0.0f, 0.0f) {}
+IceVolcanoUpDownPlane::IceVolcanoUpDownPlane(const char* pName) : RailMoveObj(pName), mNearestPosToPlayer(0.0f, 0.0f, 0.0f) {
+}
 
 void IceVolcanoUpDownPlane::move() {
     bool success = tryCalcNearestPosToPlayer(&mNearestPosToPlayer);
@@ -51,4 +52,5 @@ TVec3f* IceVolcanoUpDownPlane::getSoundCalcPos() {
     return &mNearestPosToPlayer;
 }
 
-void RailMoveObj::setupInitInfo(const JMapInfoIter& rIter, MapObjActorInitInfo* pActorInitInfo) {}
+void RailMoveObj::setupInitInfo(const JMapInfoIter& rIter, MapObjActorInitInfo* pActorInitInfo) {
+}

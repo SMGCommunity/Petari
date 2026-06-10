@@ -102,7 +102,8 @@ void FloaterFloatingForceTypeNormal::exeMove() {
     }
 }
 
-FloaterFloatingForceTypeNormal::~FloaterFloatingForceTypeNormal() {}
+FloaterFloatingForceTypeNormal::~FloaterFloatingForceTypeNormal() {
+}
 
 const TVec3f& FloaterFloatingForceTypeNormal::getCurrentVelocity() const {
     return mVelocity;

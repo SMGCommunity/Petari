@@ -9,7 +9,8 @@ namespace NrvCannonFortressBreakStep {
     NEW_NERVE(CannonFortressBreakStepNrvBreak, CannonFortressBreakStep, Break);
 };  // namespace NrvCannonFortressBreakStep
 
-CannonFortressBreakStep::CannonFortressBreakStep(const char* pName) : MapObjActor(pName) {}
+CannonFortressBreakStep::CannonFortressBreakStep(const char* pName) : MapObjActor(pName) {
+}
 
 void CannonFortressBreakStep::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -66,6 +67,8 @@ void CannonFortressBreakStep::initCaseUseSwitchB(const MapObjActorInitInfo& rInf
     MR::listenStageSwitchOnB(this, MR::Functor_Inline(this, &CannonFortressBreakStep::startFall));
 }
 
-void CannonFortressBreakStep::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {}
+void CannonFortressBreakStep::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+}
 
-CannonFortressBreakStep::~CannonFortressBreakStep() {}
+CannonFortressBreakStep::~CannonFortressBreakStep() {
+}

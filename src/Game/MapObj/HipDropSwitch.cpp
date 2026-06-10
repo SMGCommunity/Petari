@@ -163,4 +163,5 @@ void HipDropSwitch::exeOn() {
     }
 }
 
-HipDropSwitch::~HipDropSwitch() {}
+HipDropSwitch::~HipDropSwitch() {
+}

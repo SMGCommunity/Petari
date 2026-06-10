@@ -345,9 +345,11 @@ void J3DPatchedMaterial::initialize() {
     J3DMaterial::initialize();
 }
 
-void J3DPatchedMaterial::makeDisplayList() {}
+void J3DPatchedMaterial::makeDisplayList() {
+}
 
-void J3DPatchedMaterial::makeSharedDisplayList() {}
+void J3DPatchedMaterial::makeSharedDisplayList() {
+}
 
 void J3DPatchedMaterial::load() {
     j3dSys.setMaterialMode(mMaterialMode);
@@ -362,17 +364,21 @@ void J3DPatchedMaterial::loadSharedDL() {
         mSharedDLObj->callDL();
 }
 
-void J3DPatchedMaterial::reset() {}
+void J3DPatchedMaterial::reset() {
+}
 
-void J3DPatchedMaterial::change() {}
+void J3DPatchedMaterial::change() {
+}
 
 void J3DLockedMaterial::initialize() {
     J3DMaterial::initialize();
 }
 
-void J3DLockedMaterial::makeDisplayList() {}
+void J3DLockedMaterial::makeDisplayList() {
+}
 
-void J3DLockedMaterial::makeSharedDisplayList() {}
+void J3DLockedMaterial::makeSharedDisplayList() {
+}
 
 void J3DLockedMaterial::load() {
     j3dSys.setMaterialMode(mMaterialMode);
@@ -387,12 +393,17 @@ void J3DLockedMaterial::loadSharedDL() {
         mSharedDLObj->callDL();
 }
 
-void J3DLockedMaterial::patch() {}
+void J3DLockedMaterial::patch() {
+}
 
-void J3DLockedMaterial::diff(u32 diffFlags) {}
+void J3DLockedMaterial::diff(u32 diffFlags) {
+}
 
-void J3DLockedMaterial::calc(const Mtx param_0) {}
+void J3DLockedMaterial::calc(const Mtx param_0) {
+}
 
-void J3DLockedMaterial::reset() {}
+void J3DLockedMaterial::reset() {
+}
 
-void J3DLockedMaterial::change() {}
+void J3DLockedMaterial::change() {
+}

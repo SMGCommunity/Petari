@@ -4,7 +4,8 @@ namespace {
     static const s32 sLeaveLongTime = 3600;
 };  // namespace
 
-WPadLeaveWatcher::WPadLeaveWatcher(WPad* pPad) : mPad(pPad), mStep(0), mIsSuspend(false) {}
+WPadLeaveWatcher::WPadLeaveWatcher(WPad* pPad) : mPad(pPad), mStep(0), mIsSuspend(false) {
+}
 
 // WPadLeaveWatcher::update
 

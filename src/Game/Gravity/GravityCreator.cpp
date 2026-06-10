@@ -1,7 +1,8 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 
-GravityCreator::GravityCreator() {}
+GravityCreator::GravityCreator() {
+}
 
 PlanetGravity* GravityCreator::createFromJMap(const JMapInfoIter& rIter) {
     PlanetGravity* instance = createInstance();

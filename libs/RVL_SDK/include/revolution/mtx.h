@@ -67,6 +67,7 @@ void PSMTX44Copy(const Mtx44 m, Mtx44 dst);
 /* Paired Single Quaternion */
 void PSQUATMultiply(const Quaternion*, const Quaternion*, Quaternion*);
 void PSMTXQuat(Mtx dst, const Quaternion* quat);
+f32 PSQUATDotProduct(const Quaternion*, const Quaternion*);
 
 /* C Quaternion */
 void C_QUATMtx(Quaternion* r, const Mtx m);

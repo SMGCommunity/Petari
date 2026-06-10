@@ -11,8 +11,8 @@ public:
     virtual void control();
     virtual void calcAndSetBaseMtx();
 
-    inline void exeWait();
+    void exeWait();
 
-    HitSensor* _8C;
-    MtxPtr _90;
+    /* 0x8C */ HitSensor* _8C;
+    /* 0x90 */ MtxPtr _90;
 };

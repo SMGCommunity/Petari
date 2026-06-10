@@ -39,7 +39,7 @@ public:
     bool tryWalk();
     bool tryWalkEnd();
     bool tryChase();
-    bool tryChaseEnd();
+    bool tryCheseEnd();
     bool tryShay();
     bool tryShayEnd();
     bool tryLoveFind();
@@ -86,12 +86,20 @@ public:
     bool isEnableStarPieceStop() const;
     bool isCheckWater() const;
     bool isShay() const;
+    void endDrift();
+    void endAppearFromGround();
+    void endAppearFromWall();
+
+    inline bool isNotNear() const {
+        bool isNearPlayer = MR::isNearPlayer(this, 2000.0f) == false;
+        return isNearPlayer;
+    }
 
     PartsModel* mDisplayModel;  // 0x8C
     KeySwitch* mKeySwitch;      // 0x90
     TQuat4f _94;
-    TVec3f _A4;
-    TVec3f _B0;
+    TVec3f mWallNormal;  // _A4
+    TVec3f mWallHitPos;  // _B0
     TVec3f _BC;
     TVec3f _C8;
     TVec3f _D4;

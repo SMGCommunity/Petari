@@ -14,7 +14,8 @@ namespace NrvBeeFlowerHover {
     NEW_NERVE(BeeFlowerHoverNrvRecover, BeeFlowerHover, Recover);
 };  // namespace NrvBeeFlowerHover
 
-BeeFlowerHover::BeeFlowerHover(const char* pName) : LiveActor(pName), mLodCtrlPlanet(), _BC(::sDefaultRotateSpeed), mRailMover(), mRailPosture(), _CC(0.0f, 0.0f, 0.0f) {
+BeeFlowerHover::BeeFlowerHover(const char* pName)
+    : LiveActor(pName), mLodCtrlPlanet(), _BC(::sDefaultRotateSpeed), mRailMover(), mRailPosture(), _CC(0.0f, 0.0f, 0.0f) {
     _8C.identity();
 }
 
@@ -218,4 +219,5 @@ bool BeeFlowerHover::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     return false;
 }
 
-BeeFlowerHover::~BeeFlowerHover() {}
+BeeFlowerHover::~BeeFlowerHover() {
+}

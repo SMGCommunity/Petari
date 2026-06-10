@@ -4,19 +4,27 @@
 
 class ActorStateBaseInterface : public NerveExecutor {
 public:
-    ActorStateBaseInterface(const char* pName) : NerveExecutor(pName) {}
+    ActorStateBaseInterface(const char* pName) : NerveExecutor(pName) {
+    }
 
-    virtual ~ActorStateBaseInterface() {}
+    virtual ~ActorStateBaseInterface() {
+    }
 
-    virtual void init() {}
+    virtual void init() {
+    }
 
-    virtual void appear() { mIsDead = false; }
+    virtual void appear() {
+        mIsDead = false;
+    }
 
-    virtual void kill() { mIsDead = true; }
+    virtual void kill() {
+        mIsDead = true;
+    }
 
     virtual bool update();
 
-    virtual void control() {}
+    virtual void control() {
+    }
 
     /* 0x8 */ bool mIsDead;
 };
@@ -24,11 +32,15 @@ public:
 template < typename T >
 class ActorStateBase : public ActorStateBaseInterface {
 public:
-    ActorStateBase(const char* pName, T* pActor) : ActorStateBaseInterface(pName), mHost(pActor) {}
+    ActorStateBase(const char* pName, T* pActor) : ActorStateBaseInterface(pName), mHost(pActor) {
+    }
 
-    virtual ~ActorStateBase() {}
+    virtual ~ActorStateBase() {
+    }
 
-    inline T* getHost() const { return mHost; }
-    
+    inline T* getHost() const {
+        return mHost;
+    }
+
     /* 0xC */ T* mHost;
 };

@@ -8,9 +8,11 @@ namespace NrvBattleShipElevator {
     NEW_NERVE(BattleShipElevatorNrvEnd, BattleShipElevator, End);
 };  // namespace NrvBattleShipElevator
 
-BattleShipElevator::BattleShipElevator(const char* pName) : MapObjActor(pName) {}
+BattleShipElevator::BattleShipElevator(const char* pName) : MapObjActor(pName) {
+}
 
-BattleShipElevator::~BattleShipElevator() {}
+BattleShipElevator::~BattleShipElevator() {
+}
 
 void BattleShipElevator::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
@@ -25,7 +27,8 @@ void BattleShipElevator::init(const JMapInfoIter& rIter) {
     MapObjActor::initialize(rIter, info);
 }
 
-void BattleShipElevator::exeWait() {}
+void BattleShipElevator::exeWait() {
+}
 
 void BattleShipElevator::exeMove() {
     if (MR::isFirstStep(this)) {
@@ -39,7 +42,8 @@ void BattleShipElevator::exeMove() {
     }
 }
 
-void BattleShipElevator::exeEnd() {}
+void BattleShipElevator::exeEnd() {
+}
 
 void BattleShipElevator::control() {
     if (!isNerve(&NrvBattleShipElevator::BattleShipElevatorNrvWait::sInstance)) {

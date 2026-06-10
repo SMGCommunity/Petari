@@ -13,7 +13,8 @@ ResFileInfo::ResFileInfo() {
     _C = 0;
 }
 
-ResTable::ResTable() : mFileInfoTable(0), mCount(0) {}
+ResTable::ResTable() : mFileInfoTable(0), mCount(0) {
+}
 
 void ResTable::newFileInfoTable(u32 count) {
     mFileInfoTable = new ResFileInfo[count];

@@ -37,7 +37,8 @@ bool BackButton::isPointing() const {
     return mPaneCtrl->isPointing();
 }
 
-BackButton::~BackButton() {}
+BackButton::~BackButton() {
+}
 
 void BackButton::init(const JMapInfoIter& rIter) {
     initLayoutManager("BackButton", 1);

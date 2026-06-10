@@ -10,7 +10,8 @@ CameraMan::CameraMan(const char* pName) : NameObj(pName) {
     mMatrix.identity();
 }
 
-void CameraMan::init(const JMapInfoIter& rIter) {}
+void CameraMan::init(const JMapInfoIter& rIter) {
+}
 
 void CameraMan::movement() {
     if (mIsActivated) {
@@ -19,11 +20,14 @@ void CameraMan::movement() {
     }
 }
 
-void CameraMan::calc() {}
+void CameraMan::calc() {
+}
 
-void CameraMan::notifyActivate() {}
+void CameraMan::notifyActivate() {
+}
 
-void CameraMan::notifyDeactivate() {}
+void CameraMan::notifyDeactivate() {
+}
 
 void CameraMan::owned(CameraDirector* pDirector) {
     mDirector = pDirector;

@@ -83,4 +83,5 @@ void TicoStarRing::exeWait() {
     }
 }
 
-TicoStarRing::~TicoStarRing() {}
+TicoStarRing::~TicoStarRing() {
+}

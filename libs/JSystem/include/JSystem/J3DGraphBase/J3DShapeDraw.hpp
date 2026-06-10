@@ -11,9 +11,15 @@ public:
 
     virtual ~J3DShapeDraw();
 
-    u8* getDisplayList() const { return (u8*)mDisplayList; }
-    u32 getDisplayListSize() const { return mDisplayListSize; }
-    void setDisplayListSize(u32 size) { mDisplayListSize = size; }
+    u8* getDisplayList() const {
+        return (u8*)mDisplayList;
+    }
+    u32 getDisplayListSize() const {
+        return mDisplayListSize;
+    }
+    void setDisplayListSize(u32 size) {
+        mDisplayListSize = size;
+    }
 
 private:
     /* 0x04 */ u32 mDisplayListSize;

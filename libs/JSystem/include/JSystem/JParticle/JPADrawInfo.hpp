@@ -17,7 +17,13 @@ public:
     Mtx mCamMtx;
     Mtx mPrjMtx;
 
-    void getCamMtx(Mtx dst) const { PSMTXCopy(mCamMtx, dst); }
-    void getPrjMtx(Mtx dst) const { PSMTXCopy(mPrjMtx, dst); }
-    void setPrjMtx(const Mtx src) { PSMTXCopy(src, mPrjMtx); }
+    void getCamMtx(Mtx dst) const {
+        PSMTXCopy(mCamMtx, dst);
+    }
+    void getPrjMtx(Mtx dst) const {
+        PSMTXCopy(mPrjMtx, dst);
+    }
+    void setPrjMtx(const Mtx src) {
+        PSMTXCopy(src, mPrjMtx);
+    }
 };

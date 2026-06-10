@@ -7,7 +7,7 @@
 // different classes. What actually is the class that takes this role?
 class Dummy2 {
 public:
-    Dummy2(){};
+    Dummy2() {};
 };
 
 class StarPieceAlmsStorage : public Dummy2, public BinaryDataChunkBase {

@@ -4,7 +4,8 @@ namespace {
     static const f32 sSensorRadius = 70.0f;
 };  // namespace
 
-SnowplowSwitch::SnowplowSwitch(const char* pName) : LiveActor(pName), mIsDiscovered() {}
+SnowplowSwitch::SnowplowSwitch(const char* pName) : LiveActor(pName), mIsDiscovered() {
+}
 
 bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_ASK_HIDDEN_BY_SNOW) {
@@ -22,7 +23,8 @@ bool SnowplowSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     return false;
 }
 
-SnowplowSwitch::~SnowplowSwitch() {}
+SnowplowSwitch::~SnowplowSwitch() {
+}
 
 void SnowplowSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

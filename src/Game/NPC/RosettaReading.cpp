@@ -30,7 +30,8 @@ namespace NrvRosettaReading {
     NEW_NERVE(RosettaReadingNrvPictureBookAfter, RosettaReading, PictureBookAfter);
 };  // namespace NrvRosettaReading
 
-RosettaReading::RosettaReading(const char* pName) : LiveActor(pName), mPictureBookLayout(nullptr) {}
+RosettaReading::RosettaReading(const char* pName) : LiveActor(pName), mPictureBookLayout(nullptr) {
+}
 
 void RosettaReading::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

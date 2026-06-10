@@ -159,7 +159,8 @@ LensFlareLine::LensFlareLine() : LensFlareModel("グレア（ライン）", "Gla
     _94 = 0.05f;
 }
 
-void LensFlareLine::appearAnim() {}
+void LensFlareLine::appearAnim() {
+}
 
 void LensFlareLine::controlAnim() {
     MR::startBrk(this, "GlareLine");

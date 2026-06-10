@@ -78,7 +78,8 @@ void TripodBossFixPartsBase::calcTripodLocalMatrix(TPos3f* pPos) {
     MR::makeMtxTR(*pPos, _BC, mRotation);
 }
 
-void TripodBossFixPartsBase::activateTripodBoss() {}
+void TripodBossFixPartsBase::activateTripodBoss() {
+}
 
 void TripodBossFixPartsBase::startBreakMovement() {
     TPos3f mtx;

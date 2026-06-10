@@ -30,7 +30,8 @@ class BaseMatrixFollower {
 public:
     BaseMatrixFollower(NameObj*, const JMapInfoIter&);
 
-    virtual void setGravityFollowHost(const NameObj*) {}
+    virtual void setGravityFollowHost(const NameObj*) {
+    }
 
     virtual void update();
 

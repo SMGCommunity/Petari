@@ -196,9 +196,11 @@ void UFOBase::initSubModel(const JMapInfoIter& rIter, const char* name) {
     }
 }
 
-UFOSolid::UFOSolid(const char* pName) : UFOBase(pName) {}
+UFOSolid::UFOSolid(const char* pName) : UFOBase(pName) {
+}
 
-UFOBreakable::UFOBreakable(const char* pName) : UFOBase(pName) {}
+UFOBreakable::UFOBreakable(const char* pName) : UFOBase(pName) {
+}
 
 void UFOBreakable::initSensorType() {
     MR::addHitSensor(this, "body", ATYPE_KILLER_TARGET_MAPOBJ, 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));

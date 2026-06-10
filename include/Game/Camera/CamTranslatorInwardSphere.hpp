@@ -4,7 +4,9 @@
 
 class CamTranslatorInwardSphere : public CamTranslatorBase {
 public:
-    inline CamTranslatorInwardSphere(CameraInwardSphere* pCamera) { mCamera = pCamera; }
+    inline CamTranslatorInwardSphere(CameraInwardSphere* pCamera) {
+        mCamera = pCamera;
+    }
 
     virtual void setParam(const CameraParamChunk*);
     virtual Camera* getCamera() const;

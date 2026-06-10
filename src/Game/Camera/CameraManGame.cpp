@@ -62,9 +62,11 @@ CameraManGame::CameraManGame(CameraHolder* pHolder, CameraParamChunkHolder* pChu
     CameraLocalUtil::setWatchPos(this, TVec3f(0.0f, 0.0f, 300.0f));
 }
 
-CameraManGame::~CameraManGame() {}
+CameraManGame::~CameraManGame() {
+}
 
-void CameraManGame::init(const JMapInfoIter& rIter) {}
+void CameraManGame::init(const JMapInfoIter& rIter) {
+}
 
 void CameraManGame::calc() {
     selectCameraChunk();
@@ -80,7 +82,8 @@ void CameraManGame::notifyActivate() {
     _58 = 1;
 }
 
-void CameraManGame::notifyDeactivate() {}
+void CameraManGame::notifyDeactivate() {
+}
 
 bool CameraManGame::isInterpolationOff() const {
     if (mCamera != nullptr && mCamera->isInterpolationOff()) {

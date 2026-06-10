@@ -785,7 +785,7 @@ void StorySequenceExecutor::exeStaffRollSequence() {
     if (MR::isFirstStep(this)) {
         MR::deactivateDefaultGameLayout();
         MR::offPlayerControl();
-        MR::openWipeFade(-1);
+        MR::openWipeFade();
 
         const StorySequenceExecutorType::DemoSequenceInfo* pDemoInfo = getCurrentDemoInfo();
 
@@ -800,7 +800,7 @@ void StorySequenceExecutor::exeStaffRollSequence() {
         return;
     }
 
-    MR::closeWipeFade(-1);
+    MR::closeWipeFade();
 
     _48[0]++;
 
@@ -1131,7 +1131,7 @@ bool StorySequenceExecutor::tryWaitSaveEnd() {
 
 bool StorySequenceExecutor::tryStartFadein() {
     if (MR::isFirstStep(this)) {
-        MR::openWipeFade(-1);
+        MR::openWipeFade();
     } else if (!MR::isWipeActive()) {
         return true;
     }

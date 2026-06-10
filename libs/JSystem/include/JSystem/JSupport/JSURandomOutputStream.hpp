@@ -4,7 +4,8 @@
 
 class JSURandomOutputStream : public JSUOutputStream {
 public:
-    JSURandomOutputStream() {}
+    JSURandomOutputStream() {
+    }
 
     virtual s32 writeData(const void*, s32) = 0;
     virtual s32 getLength() const = 0;

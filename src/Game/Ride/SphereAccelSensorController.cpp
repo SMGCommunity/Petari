@@ -27,7 +27,7 @@ namespace {
 };  // namespace
 
 inline TVec2f getTrig(f32 angle) {
-    return TVec2f(JMath::sSinCosTable.cosLapRad(angle), JMath::sSinCosTable.sinLapRad(angle));
+    return TVec2f(MR::cos(angle), MR::sin(angle));
 }
 
 inline f32 diffAngleAbs(const TVec2f& v1, const TVec2f& v2) {
@@ -41,7 +41,8 @@ inline f32 diffAngleAbs(const TVec2f& v1, const TVec2f& v2) {
 
 SphereAccelSensorController::SphereAccelSensorController()
     : _58(0), _5C(0), _74(0), _78(0), _7C(0.15f), _80(1.0f), _84(1.7f), _88(2.5f), _8C(0), _90(0), _94(1.0f), _98(0.0f), _9C(0.0f), _A0(0.0f),
-      _A4(-1.0f), _A8(0.0f), _AC(1.0f), _B0(0), _B4(0.0f), _B8(0) {}
+      _A4(-1.0f), _A8(0.0f), _AC(1.0f), _B0(0), _B4(0.0f), _B8(0) {
+}
 
 void SphereAccelSensorController::getPadAcceleration(TVec3f* pAccel) {
     if (_B8 == 0) {
@@ -67,7 +68,8 @@ bool SphereAccelSensorController::doBrake() const {
     return testBrake();
 }
 
-void SphereAccelSensorController::update(const TVec3f&) {}
+void SphereAccelSensorController::update(const TVec3f&) {
+}
 
 void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
     // FIXME: regswaps and inlines
@@ -124,6 +126,8 @@ void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
     *pY = y;
 }
 
-void SphereController::notifyDeactivate() {}
+void SphereController::notifyDeactivate() {
+}
 
-void SphereController::notifyActivate() {}
+void SphereController::notifyActivate() {
+}

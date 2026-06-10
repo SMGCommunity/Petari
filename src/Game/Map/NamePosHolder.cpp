@@ -16,7 +16,8 @@ NamePosHolder::NamePosHolder() : NameObj("位置テーブル保持") {
     }
 }
 
-NamePosInfo::NamePosInfo() {}
+NamePosInfo::NamePosInfo() {
+}
 
 namespace MR {
     NamePosHolder* getNamePosHolder() {
@@ -24,4 +25,5 @@ namespace MR {
     }
 };  // namespace MR
 
-NamePosHolder::~NamePosHolder() {}
+NamePosHolder::~NamePosHolder() {
+}

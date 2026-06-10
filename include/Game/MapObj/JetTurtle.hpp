@@ -66,7 +66,8 @@ public:
 
 class GoldenTurtle : public JetTurtle {
 public:
-    GoldenTurtle(const char* pName) : JetTurtle(pName) {}
+    GoldenTurtle(const char* pName) : JetTurtle(pName) {
+    }
 
     virtual ~GoldenTurtle();
     virtual void init(const JMapInfoIter&);

@@ -317,4 +317,5 @@ bool SkeletalFishBaby::isStarPointerPointing() const {
     return false;
 }
 
-SkeletalFishBaby::~SkeletalFishBaby() {}
+SkeletalFishBaby::~SkeletalFishBaby() {
+}

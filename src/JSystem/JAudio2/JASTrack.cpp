@@ -1,7 +1,9 @@
 #include "JSystem/JAudio2/JASTrack.hpp"
 #include "JSystem/JAudio2/JASAiCtrl.hpp"
+#include "JSystem/JAudio2/JASBankTable.hpp"
 #include "JSystem/JAudio2/JASChannel.hpp"
 #include "JSystem/JAudio2/JASCriticalSection.hpp"
+#include "JSystem/JAudio2/JASDSPInterface.hpp"
 #include "JSystem/JAudio2/JASDriverIF.hpp"
 #include "JSystem/JAudio2/JASLfo.hpp"
 #include "JSystem/JAudio2/JASSoundParams.hpp"
@@ -276,7 +278,7 @@ void JASTrack::setLatestKey(u8 key) {
     mPitch += getTransposeTotal();
 }
 
-bool JASTrack::noteOn(u32 channelNum, u32 pitch, u32 c) {
+bool JASTrack::noteOn(u32 channelNum, u32 pitch, u32 velocity) {
     if (isMute())
         return false;
     bool ret = true;
@@ -285,7 +287,7 @@ bool JASTrack::noteOn(u32 channelNum, u32 pitch, u32 c) {
         if (mChannelMgrs[i]) {
             mChannelMgrs[i]->noteOff(channelNum, 0);
             JASChannel* channel;
-            if (!(channel = channelStart(mChannelMgrs[i], pitch, c, 0)))
+            if (!(channel = channelStart(mChannelMgrs[i], pitch, velocity, 0)))
                 ret = false;
             mChannelMgrs[i]->mChannels[channelNum] = channel;
         }
@@ -322,7 +324,7 @@ bool JASTrack::gateOn(u32 transposedPitch, u32 velocity, f32 seqTime, u32 flags)
             } else {
                 JASChannel* channel = mgr->mChannels[0];
                 if (channel) {
-                    channel->setKey(pitch - channel->_DC._4._1);
+                    channel->setKey(pitch - channel->mWaveInfo.mBaseKey);
                     channel->setVelocity(velocity);
                     channel->setUpdateTimer(updateTimer);
                 }
@@ -451,8 +453,8 @@ u32 JASTrack::seqTimeToDspTime(f32 seqTime) {
     if (mIsDirectlyPlayed)
         seqTime /= mSampleInterval;
     else {
-        seqTime *= 120f / mTimebase;
-        seqTime *= JASDriver::getSubFrames() / 10f;
+        seqTime *= 120.0f / mTimebase;
+        seqTime *= JASDriver::getSubFrames() / 10.0f;
     }
     return seqTime;
 }

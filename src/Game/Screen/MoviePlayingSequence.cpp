@@ -255,7 +255,8 @@ void MoviePlayingSequence::kill() {
     LayoutActor::kill();
 }
 
-void MoviePlayingSequence::exeWait() {}
+void MoviePlayingSequence::exeWait() {
+}
 
 void MoviePlayingSequence::exePlayWait() {
     if (MR::isFirstStep(this)) {

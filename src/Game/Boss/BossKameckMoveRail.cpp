@@ -75,4 +75,5 @@ s32 BossKameckMoveRail::calcRandomStoppableIndex(s32 idx) const {
     return 0;
 }
 
-BossKameckMoveRail::~BossKameckMoveRail() {}
+BossKameckMoveRail::~BossKameckMoveRail() {
+}

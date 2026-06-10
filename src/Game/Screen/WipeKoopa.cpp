@@ -4,28 +4,32 @@
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 
 namespace {
+    static const s32 sAnimFrame = 90;
+};  // namespace
+
+namespace {
     NEW_NERVE(WipeKoopaNrvWait, WipeKoopa, Wait);
     NEW_NERVE(WipeKoopaNrvWipeOut, WipeKoopa, WipeOut);
     NEW_NERVE(WipeKoopaNrvClose, WipeKoopa, Close);
 };  // namespace
 
-WipeKoopa::WipeKoopa() : WipeLayoutBase("クッパ"), mStepNum(90) {}
+WipeKoopa::WipeKoopa() : WipeLayoutBase("クッパ"), mFrame(::sAnimFrame) {
+}
 
 void WipeKoopa::init(const JMapInfoIter& rIter) {
     initNerve(&WipeKoopaNrvWait::sInstance);
     initLayoutManager("WipeKoopa", 1);
 }
 
-void WipeKoopa::exeWait() {}
+void WipeKoopa::exeWait() {
+}
 
 void WipeKoopa::exeWipeOut() {
-    f32 animRate;
-
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "out", 0);
 
-        if (mStepNum > 0) {
-            animRate = static_cast< f32 >(MR::getAnimCtrl(this, 0)->mEnd) / mStepNum;
+        if (mFrame > 0) {
+            f32 animRate = static_cast< f32 >(MR::getAnimCtrl(this, 0)->mEnd) / mFrame;
 
             MR::setAnimRate(this, animRate, 0);
         }
@@ -38,16 +42,17 @@ void WipeKoopa::exeWipeOut() {
     }
 }
 
-void WipeKoopa::exeClose() {}
+void WipeKoopa::exeClose() {
+}
 
-void WipeKoopa::wipe(s32 step) {
+void WipeKoopa::wipe(s32 frame) {
     setNerve(&WipeKoopaNrvWipeOut::sInstance);
     MR::hideLayout(this);
 
-    if (step > 0) {
-        mStepNum = step;
+    if (frame > 0) {
+        mFrame = frame;
     } else {
-        mStepNum = 90;
+        mFrame = ::sAnimFrame;
     }
 }
 

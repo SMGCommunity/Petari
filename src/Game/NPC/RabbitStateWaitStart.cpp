@@ -30,7 +30,8 @@ namespace NrvRabbitStateWaitStart {
 
 RabbitStateWaitStart::RabbitStateWaitStart(LiveActor* pHost, TVec3f* pHostRotateFront, TalkMessageCtrl* pTalkMessageCtrl)
     : ActorStateBaseInterface("うさぎ会話待ち状態"), mHost(pHost), mTalkActionName("Wait"), mHostRotateFront(pHostRotateFront),
-      mTalkMessageCtrl(pTalkMessageCtrl), _1C(false), _1D(true) {}
+      mTalkMessageCtrl(pTalkMessageCtrl), _1C(false), _1D(true) {
+}
 
 void RabbitStateWaitStart::setTalkActionName(const char* pName) {
     mTalkActionName = pName;

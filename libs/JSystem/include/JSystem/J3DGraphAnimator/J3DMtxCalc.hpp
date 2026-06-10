@@ -6,7 +6,8 @@ class J3DAnmTransform;
 
 class J3DMtxCalc {
 public:
-    inline J3DMtxCalc() {}
+    inline J3DMtxCalc() {
+    }
 
     virtual ~J3DMtxCalc();
     virtual void setAnmTransForm(J3DAnmTransform*);

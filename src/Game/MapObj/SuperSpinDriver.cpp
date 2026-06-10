@@ -135,7 +135,8 @@ void SuperSpinDriver::requestShow() {
     }
 }
 
-void SuperSpinDriver::exeTryDemo() {}
+void SuperSpinDriver::exeTryDemo() {
+}
 
 void SuperSpinDriver::exeEmptyNonActive() {
     if (MR::isFirstStep(this)) {
@@ -397,9 +398,15 @@ bool SuperSpinDriver::isRightToUse() const {
 */
 
 namespace MR {
-    NameObj* createSuperSpinDriverYellow(const char* pName) { return new SuperSpinDriver(pName, 0); }
+    NameObj* createSuperSpinDriverYellow(const char* pName) {
+        return new SuperSpinDriver(pName, 0);
+    }
 
-    NameObj* createSuperSpinDriverGreen(const char* pName) { return new SuperSpinDriver(pName, 1); }
+    NameObj* createSuperSpinDriverGreen(const char* pName) {
+        return new SuperSpinDriver(pName, 1);
+    }
 
-    NameObj* createSuperSpinDriverPink(const char* pName) { return new SuperSpinDriver(pName, 2); }
+    NameObj* createSuperSpinDriverPink(const char* pName) {
+        return new SuperSpinDriver(pName, 2);
+    }
 };  // namespace MR

@@ -4,7 +4,6 @@
 #include "Game/Screen/StarPointerController.hpp"
 #include "Game/Screen/StarPointerGuidance.hpp"
 #include "Game/Screen/StarPointerLayout.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
@@ -14,6 +13,7 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JMath/JMath.hpp>
@@ -21,9 +21,7 @@
 
 StarPointerDirector::StarPointerDirector()
     : mIsUpdateTransHolder(false), mIsAllowP1StarPieceShot(false), mIsAllowP2StarPieceShot(false), mControllers(nullptr),
-      mStarPointerLayouts(nullptr),
-      mTransHolder(nullptr), mPeekZ(nullptr),
-      mGuidance(nullptr), mNozzleAimPos(0.0f, 0.0f, 0.0f) {
+      mStarPointerLayouts(nullptr), mTransHolder(nullptr), mPeekZ(nullptr), mGuidance(nullptr), mNozzleAimPos(0.0f, 0.0f, 0.0f) {
     mPeekZ = new StarPointerPeekZ();
     mTransHolder = new StarPointerTransformHolder();
     mControllers = new StarPointerController[StarPointerFunction::getNumStarPointer()];

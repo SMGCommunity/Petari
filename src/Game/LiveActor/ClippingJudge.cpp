@@ -16,7 +16,8 @@ ClippingJudge::ClippingJudge(const char* pName) : NameObj(pName), mFrustum() {
     mClipDistances[7] = 5000.0f;
 }
 
-void ClippingJudge::init(const JMapInfoIter& rIter) {}
+void ClippingJudge::init(const JMapInfoIter& rIter) {
+}
 
 void ClippingJudge::movement() {
     calcViewingVolume(&mFrustum, MR::getFarZ());
@@ -36,4 +37,5 @@ bool ClippingJudge::isJudgedToClipFrustum(const TVec3f& rVec, f32 a2, s32 index)
 
 // ClippingJudge::calcViewingVolume
 
-ClippingJudge::~ClippingJudge() {}
+ClippingJudge::~ClippingJudge() {
+}

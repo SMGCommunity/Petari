@@ -1,3 +1,4 @@
+#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/MapObj/IceStep.hpp"
 #include "Game/Player/DLchanger.hpp"
 #include "Game/Player/J3DModelX.hpp"

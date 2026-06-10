@@ -12,7 +12,8 @@ namespace NrvKillerGunnerSingle {
     NEW_NERVE(HostTypeAttack, KillerGunnerSingle, Attack);
 };  // namespace NrvKillerGunnerSingle
 
-KillerGunnerSingle::KillerGunnerSingle(const char* pName) : LiveActor(pName) {}
+KillerGunnerSingle::KillerGunnerSingle(const char* pName) : LiveActor(pName) {
+}
 
 void KillerGunnerSingle::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -90,4 +91,5 @@ inline void KillerGunnerSingle::exeAttack() {
     }
 }
 
-KillerGunnerSingle::~KillerGunnerSingle() {}
+KillerGunnerSingle::~KillerGunnerSingle() {
+}

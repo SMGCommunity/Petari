@@ -1,12 +1,12 @@
 #include "Game/System/GameSystemResetAndPowerProcess.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/MainLoopFramework.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/TriggerChecker.hpp"
 #include "Game/Util/ValueControl.hpp"
 

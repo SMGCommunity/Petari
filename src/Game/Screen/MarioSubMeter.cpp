@@ -55,7 +55,8 @@ void MarioSubMeter::deactivate() {
     mAirMeter->requestDeactivate();
 }
 
-MarioSubMeter::~MarioSubMeter() {}
+MarioSubMeter::~MarioSubMeter() {
+}
 
 void MarioSubMeter::init(const JMapInfoIter& rIter) {
     mFlyMeter = new SubMeterLayout("ハチメーター", "FlyMeter");

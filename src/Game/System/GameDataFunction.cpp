@@ -1,5 +1,4 @@
 #include "Game/System/GameDataFunction.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataGalaxyStorage.hpp"
 #include "Game/System/GameDataHolder.hpp"
@@ -12,6 +11,7 @@
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/System/SysConfigFile.hpp"
 #include "Game/System/UserFile.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <cstdio>
 
 namespace {
