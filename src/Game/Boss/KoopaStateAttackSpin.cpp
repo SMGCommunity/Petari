@@ -64,8 +64,9 @@ bool KoopaStateAttackSpin::attackSensor(HitSensor* pSender, HitSensor* pReceiver
         return true;
     }
 
-    if (isNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance) && MR::isGreaterStep(this, 5) && MR::isLessStep(this, 65)) {
-        return KoopaFunction::tryKoopaAttackPlayerMaximum(pSender, pReceiver);
+    if (isNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance) && MR::isGreaterStep(this, 5) && MR::isLessStep(this, 65) &&
+        KoopaFunction::tryKoopaAttackPlayerMaximum(pSender, pReceiver)) {
+        return true;
     }
 
     return false;
