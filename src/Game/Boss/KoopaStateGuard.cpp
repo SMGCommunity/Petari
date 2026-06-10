@@ -60,7 +60,7 @@ bool KoopaStateGuard::tryStart(u32 msg, HitSensor* pReceiver, HitSensor* pSender
 void KoopaStateGuard::exeGuardFace() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "GuardFace");
-        MR::startSound(mHost, "SE_BV_KOOPA_GUARD", -1, -1);
+        MR::startSound(mHost, "SE_BV_KOOPA_GUARD");
 
         MR::zeroVelocity(mHost);
     }
@@ -76,7 +76,7 @@ void KoopaStateGuard::exeGuardFace() {
 void KoopaStateGuard::exeGuardBody() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "GuardBody");
-        MR::startSound(mHost, "SE_BV_KOOPA_GUARD", -1, -1);
+        MR::startSound(mHost, "SE_BV_KOOPA_GUARD");
 
         MR::zeroVelocity(mHost);
     }

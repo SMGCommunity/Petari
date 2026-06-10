@@ -86,8 +86,8 @@ bool KoopaStateAttackSpin::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRe
 
     MR::tryRumblePadStrong(this, 0);
 
-    MR::startSound(mHost, "SE_BM_KOOPA_SPIN_EVEN", -1, -1);
-    MR::startSound(mHost, "SE_BV_KOOPA_GUARD", -1, -1);
+    MR::startSound(mHost, "SE_BM_KOOPA_SPIN_EVEN");
+    MR::startSound(mHost, "SE_BV_KOOPA_GUARD");
 
     MR::stopSceneForDefaultHit(15);
 

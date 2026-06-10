@@ -512,7 +512,7 @@ void KoopaFunction::startKoopaSpinHitBlow(Koopa* pKoopa) {
     MR::startSpinHitSound(pKoopa);
     MR::startBlowHitSound(pKoopa);
 
-    MR::startSound(pKoopa, "SE_BM_KOOPA_DAMAGE_S", -1, -1);
-    MR::startSound(pKoopa, "SE_BV_KOOPA_TAIL_RUN_START", -1, -1);
-    MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1", -1, -1);
+    MR::startSound(pKoopa, "SE_BM_KOOPA_DAMAGE_S");
+    MR::startSound(pKoopa, "SE_BV_KOOPA_TAIL_RUN_START");
+    MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
 }

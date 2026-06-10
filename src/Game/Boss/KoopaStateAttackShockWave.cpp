@@ -118,7 +118,7 @@ void KoopaStateAttackShockWave::exeJump() {
             MR::startAction(mHost, "ShockWaveJump");
         }
 
-        MR::startSound(mHost, "SE_BM_KOOPA_JUMP", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_JUMP");
 
         mAttacks == 0 ? MR::setVelocityJump(mHost, 50.0f) : MR::setVelocityJump(mHost, mJumpVelocity);
     }
@@ -135,7 +135,7 @@ void KoopaStateAttackShockWave::exeJump() {
         MR::tryRumblePadAndCameraDistanceMiddle(mHost, 1500.0f, 2500.0f, 2000.0f);
         MR::shakeCameraWeak();
 
-        MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_LAND");
 
         KoopaFunction::emitKoopaShockWave(mHost);
 

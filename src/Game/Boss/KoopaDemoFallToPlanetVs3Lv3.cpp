@@ -114,8 +114,8 @@ void KoopaDemoFallToPlanetVs3Lv3::exeFallInside() {
 void KoopaDemoFallToPlanetVs3Lv3::exeLand() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "Land");
-        MR::startSound(mHost, "SE_BM_KOOPA_FLIP_RECOVER_END", -1, -1);
-        MR::startSound(mHost, "SE_BV_KOOPA_LAND_HEAVY", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_FLIP_RECOVER_END");
+        MR::startSound(mHost, "SE_BV_KOOPA_LAND_HEAVY");
 
         MR::tryRumblePadStrong(mHost, 0);
         MR::shakeCameraNormalStrong();

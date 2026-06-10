@@ -112,7 +112,7 @@ void KoopaFireShort::emitLongTime() {
 void KoopaFireShort::exeFly() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Wait", nullptr);
-        MR::startSound(this, "SE_OJ_KOOPA_BULLET_SHOOT", -1, -1);
+        MR::startSound(this, "SE_OJ_KOOPA_BULLET_SHOOT");
     }
 
     if (MR::isStep(this, 30)) {
@@ -150,7 +150,7 @@ void KoopaFireShort::exeFly() {
 void KoopaFireShort::exeDisappear() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Disappear", nullptr);
-        MR::startSound(this, "SE_OJ_KOOPA_BULLET_EXPLODE", -1, -1);
+        MR::startSound(this, "SE_OJ_KOOPA_BULLET_EXPLODE");
     }
 
     updateFly();
@@ -166,7 +166,7 @@ void KoopaFireShort::exeErase2P() {
 
         MR::startBck(this, "Disappear", nullptr);
         MR::start2PAttackAssistSound();
-        MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT", -1, -1);
+        MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT");
 
         MR::setBckRate(this, 3.0f);
     }

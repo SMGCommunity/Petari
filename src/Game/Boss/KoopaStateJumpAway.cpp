@@ -46,8 +46,8 @@ void KoopaStateJumpAway::exeJump() {
         MR::setVelocity(pKoopa, front);
         MR::addVelocityJump(mHost, 35.0f);
 
-        MR::startSound(mHost, "SE_BM_KOOPA_JUMP", -1, -1);
-        MR::startSound(mHost, "SE_BV_KOOPA_JUMP", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_JUMP");
+        MR::startSound(mHost, "SE_BV_KOOPA_JUMP");
     }
 
     MR::addVelocityToGravity(mHost, 1.0f);
@@ -64,7 +64,7 @@ void KoopaStateJumpAway::exeJump() {
     if (!MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body")) && !MR::isFirstStep(this) &&
         mHost->mVelocity.dot(mHost->mGravity) >= 0.0f && MR::isBindedGround(mHost)) {
         MR::tryRumblePadAndCameraDistanceStrong(mHost, 1500.0f, 2000.0f, 2000.0f);
-        MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_LAND");
 
         MR::zeroVelocity(mHost);
 

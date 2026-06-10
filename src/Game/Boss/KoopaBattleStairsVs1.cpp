@@ -87,7 +87,7 @@ void KoopaBattleStairsVs1::exeDemo() {
 
         mFarFireStairs = KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
 
-        MR::startSound(mKoopa, "SE_OJ_KOOPA_BULLET_SHOOT", -1, -1);
+        MR::startSound(mKoopa, "SE_OJ_KOOPA_BULLET_SHOOT");
 
         MR::requestMovementOn(mFarFireStairs);
         MR::requestMovementOn(mFarBattleMapStair);
@@ -101,7 +101,7 @@ void KoopaBattleStairsVs1::exeDemo() {
 
         mNearFireStairs = KoopaFunction::emitFireStairsToTarget(pKoopa, pBattleMapStair, jointPos, false);
 
-        MR::startSound(mKoopa, "SE_OJ_KOOPA_BULLET_SHOOT", -1, -1);
+        MR::startSound(mKoopa, "SE_OJ_KOOPA_BULLET_SHOOT");
 
         MR::requestMovementOn(mNearFireStairs);
         MR::requestMovementOn(mNearBattleMapStair);
@@ -179,7 +179,7 @@ void KoopaBattleStairsVs1::exeAttackFire() {
 void KoopaBattleStairsVs1::exeJumpToNextPosStart() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mKoopa, "JumpStartFast");
-        MR::startSound(mKoopa, "SE_BM_KOOPA_JUMP", -1, -1);
+        MR::startSound(mKoopa, "SE_BM_KOOPA_JUMP");
         mCanJump = false;
     }
 
@@ -224,7 +224,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosLoop() {
 void KoopaBattleStairsVs1::exeJumpToNextPosEnd() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mKoopa, "LandFast");
-        MR::startSound(mKoopa, "SE_BM_KOOPA_LAND", -1, -1);
+        MR::startSound(mKoopa, "SE_BM_KOOPA_LAND");
     }
 
     if (tryAttackRequest()) {

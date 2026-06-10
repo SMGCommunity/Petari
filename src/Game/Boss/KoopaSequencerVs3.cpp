@@ -160,11 +160,11 @@ void KoopaSequencerVs3::exeBattleVs3Lv1() {
 
 void KoopaSequencerVs3::exeFallToPlanetLv2() {
     if (MR::isFirstStep(this)) {
-        MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1", -1, -1);
+        MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1");
     }
 
     if (MR::isStep(this, 20)) {
-        MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL", -1, -1);
+        MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL");
     }
 
     MR::updateActorStateAndNextNerve(this, mDemoFallToPlanetLv2, &NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv2::sInstance);
@@ -183,11 +183,11 @@ void KoopaSequencerVs3::exeBattleVs3Lv2() {
 
 void KoopaSequencerVs3::exeFallToPlanetLv3() {
     if (MR::isFirstStep(this)) {
-        MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1", -1, -1);
+        MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1");
     }
 
     if (MR::isStep(this, 20)) {
-        MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL", -1, -1);
+        MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL");
     }
 
     MR::updateActorStateAndNextNerve(this, mDemoFallToPlanetLv3, &NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv3::sInstance);
@@ -238,27 +238,27 @@ void KoopaSequencerVs3::exeDemoDown() {
     }
 
     if (MR::isStep(this, 70)) {
-        MR::startSound(mKoopa, "SE_BM_KOOPA_DOWN_LAST_IMPACT", -1, -1);
+        MR::startSound(mKoopa, "SE_BM_KOOPA_DOWN_LAST_IMPACT");
     }
 
     if (MR::isStep(this, 471)) {
-        MR::startSound(mKoopa, "SE_BM_KOOPA_DOWN_TO_SUN_TRG", -1, -1);
+        MR::startSound(mKoopa, "SE_BM_KOOPA_DOWN_TO_SUN_TRG");
     }
 
     if (MR::isGreaterStep(this, 471) && MR::isLessStep(this, 1049)) {
-        MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_DOWN_TO_SUN", -1, -1);
+        MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_DOWN_TO_SUN");
 
         if (MR::isGreaterStep(this, 544)) {
-            MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_DOWN_LAVA", -1, -1);
+            MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_DOWN_LAVA");
         }
     }
 
     if (MR::isGreaterStep(this, 930) && MR::isLessStep(this, 1049)) {
-        MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_FALL_BURN", -1, -1, -1);
+        MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_FALL_BURN");
     }
 
     if (MR::isStep(this, 1049)) {
-        MR::startSound(mKoopa, "SE_BM_KOOPA_DOWN_INTO_SUN", -1, -1);
+        MR::startSound(mKoopa, "SE_BM_KOOPA_DOWN_INTO_SUN");
     }
 
     if (MR::isStep(this, 640)) {

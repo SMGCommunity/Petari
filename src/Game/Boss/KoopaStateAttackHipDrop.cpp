@@ -150,7 +150,7 @@ void KoopaStateAttackHipDrop::exeJumpStart() {
 void KoopaStateAttackHipDrop::exeJumpUp() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "HipDropJump");
-        MR::startSound(mHost, "SE_BM_KOOPA_JUMP", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_JUMP");
 
         MR::vecKillElement(mHost->mVelocity, mHost->mGravity, &mHost->mVelocity);
         MR::restrictVelocity(mHost, 20.0f);
@@ -202,7 +202,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
 
         MR::setVelocity(mHost, difference);
 
-        MR::startSound(mHost, "SE_BV_KOOPA_HIPDROP", -1, -1);
+        MR::startSound(mHost, "SE_BV_KOOPA_HIPDROP");
     }
 
     if (!MR::isBindedGround(mHost) && !MR::isGreaterStep(this, mJumpTime)) {
@@ -217,7 +217,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
     if (MR::isBindedGround(mHost)) {
         pKoopa = mHost;
         if (MR::sendMsgToBindedSensor(ACTMES_KOOPA_HIP_DROP_ATTACK, pKoopa, pKoopa->getSensor("Body"))) {
-            MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
+            MR::startSound(mHost, "SE_BM_KOOPA_LAND");
             MR::stopScene(15);
 
             if (MR::sendMsgToBindedSensor(194, KoopaFunction::getKoopaMessageSensor(mHost))) {
@@ -225,7 +225,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
 
                 MR::tryRumblePadAndCameraDistanceVeryStrong(mHost, 1500.0f, 3000.0f, 2000.0f);
 
-                MR::startSound(mHost, "SE_OJ_KOOPA_PLATE_LAVA_ST", -1, -1);
+                MR::startSound(mHost, "SE_OJ_KOOPA_PLATE_LAVA_ST");
 
                 setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvDamage::sInstance);
             } else {
@@ -242,7 +242,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
     KoopaFunction::emitKoopaShockWave(mHost);
 
     KoopaFunction::startKoopaCamera(mHost, "ヒップドロップ着地");
-    MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
+    MR::startSound(mHost, "SE_BM_KOOPA_LAND");
 
     setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvLand::sInstance);
 }

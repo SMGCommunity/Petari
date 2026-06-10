@@ -115,7 +115,7 @@ bool KoopaStateChaseRoll::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRec
         MR::calcAnimDirect(KoopaFunction::getKoopaRockBreak(mHost));
 
         MR::startAction(KoopaFunction::getKoopaRockBreak(mHost), "Break");
-        MR::startSound(mHost, "SE_BM_KOOPA_ROCK_BREAK", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_ROCK_BREAK");
 
         pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
         pKoopaRockBreak->mCalcOwnMtx = false;
@@ -238,7 +238,7 @@ void KoopaStateChaseRoll::exeEndAir() {
         pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
         pKoopaRockBreak->mCalcOwnMtx = false;
 
-        MR::startSound(mHost, "SE_BM_KOOPA_ROCK_BREAK", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_ROCK_BREAK");
     }
 
     MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sEndParam);

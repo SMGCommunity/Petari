@@ -101,7 +101,7 @@ void KoopaDemoPowerUp::exeDemo() {
     gravity.negate(mHost->mGravity);
     MR::appearStarPieceToDirection(mHost, mHost->mPosition, gravity, 10, 50.0f, 60.0f, false);
 
-    MR::startSound(mHost, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+    MR::startSound(mHost, "SE_OJ_STAR_PIECE_BURST");
 
     kill();
 }

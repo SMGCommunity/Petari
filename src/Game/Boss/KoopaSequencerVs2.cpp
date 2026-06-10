@@ -92,7 +92,7 @@ void KoopaSequencerVs2::exeDemoDown() {
     }
 
     if (MR::isStep(this, 20)) {
-        MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL", -1, -1);
+        MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL");
     }
 
     if (MR::isDemoLastStep()) {

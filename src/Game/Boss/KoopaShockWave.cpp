@@ -109,7 +109,7 @@ void KoopaShockWave::exeWaveAttack() {
 
         MR::makeMtxUpFrontPos(&_94, mKoopa->mGravity.negateInline(), mKoopa->mFront, vec2);
 
-        MR::startSound(mKoopa, "SE_BM_KOOPA_SWAVE_SHOOT", -1, -1);
+        MR::startSound(mKoopa, "SE_BM_KOOPA_SWAVE_SHOOT");
 
         MR::validateHitSensors(this);
     }

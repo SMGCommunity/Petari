@@ -164,7 +164,7 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
             MR::tryRumblePadVeryStrong(this, 0);
             MR::startSpinHitSound(mHost);
             MR::startBlowHitSound(mHost);
-            MR::startSound(mHost, "SE_BM_KOOPA_DAMAGE_L", -1, -1);
+            MR::startSound(mHost, "SE_BM_KOOPA_DAMAGE_L");
 
             if (mIsLastHit && (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance) ||
                         isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance) ||
@@ -172,8 +172,8 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
                 mDamageTailRunParam = &sDamageTailRunFinalParam;
                 mMaxRunFrames = 480;
 
-                MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_2", -1, -1);
-                MR::startSound(mHost, "SE_BV_KOOPA_FLIP_DAMAGE_M", -1, -1);
+                MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_2");
+                MR::startSound(mHost, "SE_BV_KOOPA_FLIP_DAMAGE_M");
                 MR::stopSceneForDefaultHit(10);
 
                 setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStartFinal::sInstance);
@@ -185,12 +185,12 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
 
             if (mIsLastHit && (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunFinal::sInstance) ||
                         isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEndFinal::sInstance))) {
-                MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT", -1, -1);
-                MR::startSystemSE("SE_SY_VS_KOOPA_LAST_HIT", -1, -1);
-                MR::startSound(mHost, "SE_BV_KOOPA_FLIP_DAMAGE_L", -1, -1);
+                MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
+                MR::startSystemSE("SE_SY_VS_KOOPA_LAST_HIT");
+                MR::startSound(mHost, "SE_BV_KOOPA_FLIP_DAMAGE_L");
             } else {
-                MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_3", -1, -1);
-                MR::startSound(mHost, "SE_BV_KOOPA_FLIP_DAMAGE_M", -1, -1);
+                MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_3");
+                MR::startSound(mHost, "SE_BV_KOOPA_FLIP_DAMAGE_M");
             }
 
             MR::stopSceneForDefaultHit(20);
@@ -238,8 +238,8 @@ void KoopaStateDamageEscape::exeEscapeStart() {
         KoopaFunction::startKoopaCamera(mHost, "逃走開始");
         KoopaFunction::startBreakKoopaTailThorn(mHost);
 
-        MR::startSound(mHost, "SE_BM_KOOPA_BURN", -1, -1);
-        MR::startSound(mHost, "SE_BV_KOOPA_BURN_START", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_BURN");
+        MR::startSound(mHost, "SE_BV_KOOPA_BURN_START");
     }
 
     KoopaFunction::escapeKoopaFromPlayer(mHost, sEscapeStartParam);
@@ -256,7 +256,7 @@ void KoopaStateDamageEscape::exeEscapeStartLoop() {
 
     if (!KoopaFunction::escapeKoopaFromPlayer(mHost, sEscapeStartParam) && MR::isBindedGround(mHost)) {
         MR::tryRumblePadAndCameraDistanceStrong(mHost, 800.0f, 1200.0f, 2000.0f);
-        MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_LAND");
 
         setNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvEscapeStartLand::sInstance);
     }
@@ -463,7 +463,7 @@ void KoopaStateDamageEscape::exeDown() {
     pKoopa = mHost;
     if (!MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body")) && !MR::isFirstStep(this) && MR::isBindedGround(mHost)) {
         MR::tryRumblePadAndCameraDistanceStrong(mHost, 1500.0f, 2000.0f, 2000.0f);
-        MR::startSound(mHost, "SE_BM_KOOPA_LAND", -1, -1);
+        MR::startSound(mHost, "SE_BM_KOOPA_LAND");
 
         if (!MR::sendMsgToBindedSensor(ACTMES_KOOPA_PLATE_DAMAGE, KoopaFunction::getKoopaMessageSensor(mHost))) {
             pKoopa = mHost;
@@ -487,7 +487,7 @@ void KoopaStateDamageEscape::exeDownLand() {
 
         if (KoopaFunction::isKoopaVs3(mHost) && !KoopaFunction::isKoopaLv3(mHost) && !KoopaFunction::isKoopaAngry(mHost)) {
             MR::appearStarPieceToDirection(mHost, mHost->mPosition, -mHost->mGravity, 10, 50.0f, 60.0f, false);
-            MR::startSound(mHost, "SE_OJ_STAR_PIECE_BURST", -1, -1);
+            MR::startSound(mHost, "SE_OJ_STAR_PIECE_BURST");
         }
     }
 
