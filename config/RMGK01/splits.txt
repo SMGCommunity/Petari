@@ -10634,7 +10634,7 @@ JSystem/JAudio2/JAUInitializer.cpp:
 JSystem/JAudio2/JAUSectionHeap.cpp:
 	.text       start:0x8049E4E8 end:0x804A030C
 	.data       start:0x805EF138 end:0x805EF218
-	.sdata      start:0x806B29F8 end:0x806B2A08
+	.sdata      start:0x806B29F8 end:0x806B2A00
 	.sbss       start:0x806B75E8 end:0x806B75F0
 
 JSystem/JAudio2/JAUSeqCollection.cpp:
@@ -10656,10 +10656,12 @@ JSystem/JAudio2/JAUSoundMgr.cpp:
 
 JSystem/JAudio2/JAUSoundObject.cpp:
 	.text       start:0x804A15D0 end:0x804A1C54
-	.data       start:0x805EF258 end:0x805EF290
+	.data       start:0x805EF258 end:0x805EF280
 
 JSystem/JAudio2/JAUSoundTable.cpp:
 	.text       start:0x804A1C54 end:0x804A215C
+	.data       start:0x805EF280 end:0x805EF290
+	.sdata      start:0x806B2A00 end:0x806B2A08
 
 JSystem/JAudio2/JAUStdSoundInfo.cpp:
 	.text       start:0x804A215C end:0x804A2628
@@ -10669,10 +10671,11 @@ JSystem/JAudio2/JAUStdSoundInfo.cpp:
 
 JSystem/JAudio2/JAUStreamFileTable.cpp:
 	.text       start:0x804A2628 end:0x804A2748
-	.data       start:0x805EF2E0 end:0x805EF330
+	.data       start:0x805EF2E0 end:0x805EF2F0
 
 RVL_SDK/aralt/aralt.c:
 	.text       start:0x804A2748 end:0x804A2B6C
+	.data       start:0x805EF2F0 end:0x805EF330
 	.sdata      start:0x806B2A08 end:0x806B2A10
 	.sbss       start:0x806B75F0 end:0x806B7628
 

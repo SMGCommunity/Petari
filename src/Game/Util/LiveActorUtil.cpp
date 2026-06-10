@@ -1808,7 +1808,7 @@ namespace MR {
         BckCtrlFunction::reflectBckCtrlData(rBck, pActor->mModelManager->mXanimePlayer);
 
         AudAnmSoundObject* pSoundObj = pActor->mSoundObject;
-        if (pSoundObj != nullptr && pSoundObj->hasAnimHandles()) {
+        if (pSoundObj != nullptr && pSoundObj->hasAnim()) {
             if (rBck.mRepeatFrame < 0) {
                 pSoundObj->setLoopFrame((f32)rBck.mStartFrame, (f32)rBck.mEndFrame);
             } else {
@@ -2800,10 +2800,3 @@ namespace MR {
         return pActor->mCollisionParts != nullptr;
     }
 };  // namespace MR
-
-void JAUSoundAnimator::setLoopFrame(f32 start, f32 end) {
-    mLoopStartFrame = start;
-    mLoopStartSoundIndex = mSoundAnimation->getStartSoundIndex(start);
-    mLoopEndFrame = end;
-    mLoopEndSoundIndex = mSoundAnimation->getEndSoundIndex(end);
-}

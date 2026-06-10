@@ -4,14 +4,14 @@
 
 struct JAISoundParamsProperty {
     void init() {
-        _0 = 1.0f;
-        _4 = 0.0f;
-        _8 = 1.0f;
+        mVolume = 1.0f;
+        mFxMix = 0.0f;
+        mPitch = 1.0f;
     }
 
-    /* 0x00 */ f32 _0;
-    /* 0x04 */ f32 _4;
-    /* 0x08 */ f32 _8;
+    /* 0x00 */ f32 mVolume;
+    /* 0x04 */ f32 mFxMix;
+    /* 0x08 */ f32 mPitch;
 };
 
 struct JAISoundParamsTransition {
@@ -100,6 +100,10 @@ struct JAISoundParams {
     void init() {
         mMove.init();
         mProperty.init();
+    }
+
+    JASSoundParams& getMoveParams() {
+        return mMove.mParams;
     }
 
     /* 0x0 */ JAISoundParamsProperty mProperty;

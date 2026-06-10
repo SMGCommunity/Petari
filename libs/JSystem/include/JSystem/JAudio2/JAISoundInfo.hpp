@@ -5,6 +5,7 @@
 
 struct JAISoundInfo : public JASGlobalInstance< JAISoundInfo > {
     JAISoundInfo(bool);
+
     virtual int getSoundType(JAISoundID) const = 0;
     virtual int getCategory(JAISoundID) const = 0;
     virtual u32 getPriority(JAISoundID) const = 0;

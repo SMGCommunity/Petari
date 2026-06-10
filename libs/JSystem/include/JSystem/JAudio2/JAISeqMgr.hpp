@@ -21,6 +21,10 @@ public:
     void mixOut();
     JAISeq* beginStartSeq_() NO_INLINE;
 
+    void initParams() {
+        mMove.init();
+    }
+
     bool endStartSeq_(JAISeq* seq, JAISoundHandle* handle);
 
     virtual bool isUsingSeqData(const JAISeqDataRegion& seqDataRegion);

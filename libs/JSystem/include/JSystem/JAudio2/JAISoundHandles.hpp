@@ -20,6 +20,10 @@ public:
         return &mHandles[n];
     }
 
+    JAISound* getSound(int n) {
+        return getHandle(n)->getSound();
+    }
+
     JAISoundHandle* getHandleSoundID(JAISoundID);
     JAISoundHandle* getFreeHandle();
     JAISoundHandle* getHandleUserData(u32);

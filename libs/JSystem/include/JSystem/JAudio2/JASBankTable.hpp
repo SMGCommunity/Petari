@@ -15,6 +15,10 @@ public:
         return mBanks.get(idx);
     }
 
+    void registBank(u32 idx, JASBank* bank) {
+        mBanks.set(idx, bank);
+    }
+
     JASPtrArray< JASBank, LEN > mBanks;
 };
 

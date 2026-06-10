@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JAudio2/JAIAudience.hpp"
 #include "JSystem/JAudio2/JAIStream.hpp"
 #include "JSystem/JAudio2/JASGlobal.hpp"
 
@@ -24,6 +25,10 @@ public:
     JAIAudience* getAudience() {
         return mAudience;
     }
+
+    void setAudience(JAIAudience* audience) {
+        mAudience = audience;
+    }
     JAISoundParamsMove* getParams() {
         return &mParams;
     }
@@ -44,6 +49,14 @@ public:
 
     void pause(bool paused) {
         mActivity.pause(paused);
+    }
+
+    void initParams() {
+        mParams.init();
+    }
+
+    int getNumActiveStreams() const {
+        return mStreamList.getNumLinks();
     }
 
 private:

@@ -9,6 +9,12 @@ class JASTrack;
 
 class JAISoundID {
 public:
+    enum SoundType {
+        SOUND_SE = 0,
+        SOUND_SEQ = 1,
+        SOUND_STREAM = 2,
+    };
+
     /// @brief Creates a new `JAISoundID`.
     JAISoundID() {
     }
@@ -36,6 +42,30 @@ public:
 
     void setAnonymous() {
         mID.mComposite = -1;
+    }
+
+    u8 getSectionID() const {
+        return mID.info.type.parts.sectionID;
+    }
+
+    void setSectionID(u8 id) {
+        mID.info.type.parts.sectionID = id;
+    }
+
+    u8 getGroupID() const {
+        return mID.info.type.parts.groupID;
+    }
+
+    void setGroupID(u8 id) {
+        mID.info.type.parts.groupID = id;
+    }
+
+    u16 getWaveID() const {
+        return mID.info.waveID;
+    }
+
+    void getWaveID(u16 id) {
+        mID.info.waveID = id;
     }
 
     /* 0x00 */ union {
@@ -174,6 +204,19 @@ struct JAISoundStatus_ {
     }
     void setCalcedOnce(bool calcedOnce) {
         mState.flags.calcedOnce = calcedOnce;
+    }
+
+    // TODO: states context is in JAUSoundAnimator::ageSounds_
+    s32 getAnimationState() const {
+        return mState.flags.animationState;
+    }
+
+    void setAnimationState(u32 state) {
+        mState.flags.animationState = state;
+    }
+
+    uintptr_t getUserData() const {
+        return mUserData;
     }
 
     /* 0x0 */ union {  // TODO: is this just JAISoundActivity?
@@ -387,16 +430,16 @@ public:
         return mSoundID;
     }
     u32 getAnimationState() const {
-        return mStatus.mState.flags.animationState;
+        return mStatus.getAnimationState();
     }
     bool isAnimated() const {
         return getAnimationState() != 0;
     }
     void setAnimationState(u32 state) {
-        mStatus.mState.flags.animationState = state;
+        mStatus.setAnimationState(state);
     }
     uintptr_t getUserData() const {
-        return mStatus.mUserData;
+        return mStatus.getUserData();
     }
     void setUserData(uintptr_t userData) {
         mStatus.mUserData = userData;
@@ -472,6 +515,10 @@ public:
 
     bool isPaused() const {
         return mStatus.isPaused();
+    }
+
+    void pauseWhenOut() {
+        mStatus.pauseWhenOut();
     }
 
     void updateLifeTime(u32 lifeTime) {

@@ -50,9 +50,9 @@ s32 JAISoundStatus_::unlockIfLocked() {
 }
 
 void JAISoundParams::mixOutAll(const JASSoundParams& inParams, JASSoundParams* outParams, f32 param_2) {
-    outParams->mVolume = mMove.mParams.mVolume * (inParams.mVolume * mProperty._0) * param_2;
-    outParams->mFxMix = mMove.mParams.mFxMix + (inParams.mFxMix + mProperty._4);
-    outParams->mPitch = mMove.mParams.mPitch * (inParams.mPitch * mProperty._8);
+    outParams->mVolume = mMove.mParams.mVolume * (inParams.mVolume * mProperty.mVolume) * param_2;
+    outParams->mFxMix = mMove.mParams.mFxMix + (inParams.mFxMix + mProperty.mFxMix);
+    outParams->mPitch = mMove.mParams.mPitch * (inParams.mPitch * mProperty.mPitch);
     outParams->mPan = (inParams.mPan + mMove.mParams.mPan) - 0.5f;
     outParams->mDolby = inParams.mDolby + mMove.mParams.mDolby;
 }

@@ -106,4 +106,10 @@ public:
 class JKRThreadSwitch {
 public:
     JKRThread* enter(JKRThread*, int);
+
+    static JKRThreadSwitch* getManager() {
+        return sManager;
+    }
+
+    static JKRThreadSwitch* sManager;
 };
