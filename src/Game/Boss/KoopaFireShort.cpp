@@ -209,7 +209,7 @@ void KoopaFireShort::updateFly() {
 
     MR::rotateVecDegree(&mVelocity, -mGravity, mOffset);
 
-    MR::startLevelSound(this, "SE_OJ_LV_KOOPA_BULLET_FLY", -1, -1, -1);
+    MR::startLevelSound(this, "SE_OJ_LV_KOOPA_BULLET_FLY");
 }
 
 void KoopaFireShort::updateFrontAndVelocity() {

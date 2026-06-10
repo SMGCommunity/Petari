@@ -69,7 +69,7 @@ void KoopaDemoJumpToPlanet::exeFall() {
         KoopaFunction::startKoopaCamera(mHost, "ワープ後（惑星までジャンプ）");
     }
 
-    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_FALL_TO_PLANET", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_FALL_TO_PLANET");
 
     if (MR::isBindedGround(mHost)) {
         MR::zeroVelocity(mHost);

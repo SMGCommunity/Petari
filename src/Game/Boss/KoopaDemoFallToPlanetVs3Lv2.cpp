@@ -78,7 +78,7 @@ void KoopaDemoFallToPlanetVs3Lv2::exeFallToLand() {
 
     MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sFallParam);
 
-    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_FALL_TO_PLANET", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_FALL_TO_PLANET");
 
     if (MR::isBindedGround(mHost)) {
         MR::zeroVelocity(mHost);

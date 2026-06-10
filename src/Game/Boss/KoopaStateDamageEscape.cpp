@@ -361,12 +361,12 @@ void KoopaStateDamageEscape::exeDamageTailRunStart() {
     }
 
     KoopaFunction::escapeKoopaFromPlayer(mHost, *mDamageTailRunParam);
-    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_SWOON", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_SWOON");
 
     if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance)) {
-        MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN", -1, -1, -1);
+        MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN");
     } else {
-        MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN_FAST", -1, -1, -1);
+        MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN_FAST");
     }
 
     if (MR::isStep(this, 40)) {
@@ -398,12 +398,12 @@ void KoopaStateDamageEscape::exeDamageTailRun() {
     }
 
     KoopaFunction::escapeKoopaFromPlayer(mHost, *mDamageTailRunParam);
-    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_SWOON", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_SWOON");
 
     if (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance)) {
-        MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN", -1, -1, -1);
+        MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN");
     } else {
-        MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN_FAST", -1, -1, -1);
+        MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_TAIL_RUN_FAST");
     }
 
     if (mIsTurnClockwise) {

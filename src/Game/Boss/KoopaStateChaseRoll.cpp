@@ -162,7 +162,7 @@ void KoopaStateChaseRoll::exeStart() {
         KoopaFunction::endFaceCtrl(mHost, -1);
     }
 
-    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_ROCK_GATHER", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_ROCK_GATHER");
 
     if (MR::isStep(this, 24)) {
         MR::setVelocityJump(mHost, 30.0f);
@@ -210,7 +210,7 @@ void KoopaStateChaseRoll::exeRollGround() {
 
     MR::sendMsgEnemyAttackToBindedSensor(mFigureBall, mHost->getSensor("ChaseRollFace"));
 
-    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_CHACE_ROLL", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_CHACE_ROLL");
 
     if (MR::isPlayerDamaging() || MR::isGreaterStep(this, 900)) {
         MR::deleteEffect(KoopaFunction::getKoopaRock(mHost), "RollingSmoke");

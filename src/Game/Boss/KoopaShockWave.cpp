@@ -127,7 +127,7 @@ void KoopaShockWave::exeWaveAttack() {
     MR::setBckFrameAndStop(mShadow, frame);
 
     f32 f1 = mAngle <= 90.0f ? mAngle / 90.0f : 1.0f - (mAngle - 90.0f) / 90.0f;
-    MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_SWAVE_MOVE", 100.0f * f1, -1, -1);
+    MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_SWAVE_MOVE", 100.0f * f1);
 
     if (MR::isStep(this, 350)) {
         MR::startBrk(this, "Erase");

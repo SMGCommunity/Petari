@@ -195,7 +195,7 @@ void KoopaStateAttackRoll::exeRollAir() {
     mFigureBall->movement();
     mHost->mPosition.set(mFigureBall->mPosition);
 
-    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_ATTACK_ROLL", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_ATTACK_ROLL");
 
     if (MR::isBindedGround(mFigureBall)) {
         setNerve(&NrvKoopaStateAttackRoll::KoopaStateAttackRollNrvRollGround::sInstance);
@@ -214,8 +214,8 @@ void KoopaStateAttackRoll::exeRollGround() {
 
     MR::sendMsgEnemyAttackToBindedSensor(mFigureBall, mHost->getSensor("AttackRoll"));
 
-    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_ATTACK_ROLL", -1, -1, -1);
-    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_CHACE_ROLL", -1, -1, -1);
+    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_ATTACK_ROLL");
+    MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_CHACE_ROLL");
 
     if (MR::isGreaterStep(this, mRollTime) || MR::isPlayerDamaging()) {
         mFigureBall->kill();
