@@ -11,7 +11,7 @@ namespace {
     MR::ActorMoveParam sEvenParam = {0.0f, 1.0f, 0.95f, 0.5f};
 
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-}  // namespace
+};  // namespace
 
 namespace NrvKoopaStateAttackSpin {
     NEW_NERVE(KoopaStateAttackSpinNrvWaitToStart, KoopaStateAttackSpin, WaitToStart);
@@ -20,7 +20,7 @@ namespace NrvKoopaStateAttackSpin {
     NEW_NERVE(KoopaStateAttackSpinNrvSpin, KoopaStateAttackSpin, Spin);
     NEW_NERVE(KoopaStateAttackSpinNrvEnd, KoopaStateAttackSpin, End);
     NEW_NERVE(KoopaStateAttackSpinNrvEven, KoopaStateAttackSpin, Even);
-}  // namespace NrvKoopaStateAttackSpin
+};  // namespace NrvKoopaStateAttackSpin
 
 KoopaStateAttackSpin::KoopaStateAttackSpin(Koopa* pKoopa)
     : ActorStateBase< Koopa >("State[スピン攻撃]", pKoopa), mMaxAttacks(1), mAttacks(), mMoveParam(&sParamAttackSpin1st), mSpinDelay(30) {

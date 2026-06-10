@@ -6,7 +6,7 @@
 
 namespace NrvKoopaShockWave {
     NEW_NERVE(KoopaShockWaveNrvWaveAttack, KoopaShockWave, WaveAttack);
-}  // namespace NrvKoopaShockWave
+};  // namespace NrvKoopaShockWave
 
 KoopaShockWave::KoopaShockWave(Koopa* pKoopa)
     : LiveActor("球状衝撃波"), mKoopa(pKoopa), mAngle(), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mPartsModel(), mShadow() {
@@ -76,7 +76,7 @@ namespace {
         localVec3.add(r6);
         MR::makeMtxUpFrontPos(pDest, rUp, rFront, localVec3);
     }
-}  // namespace
+};  // namespace
 
 void KoopaShockWave::exeWaveAttack() {
     if (MR::isFirstStep(this)) {

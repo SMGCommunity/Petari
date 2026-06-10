@@ -3,22 +3,21 @@
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 
-
 namespace {
     MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
     MR::ActorMoveParam sWaitParam = {0.0f, 1.0f, 0.9f, 1.0f};
-}  // namespace
+};  // namespace
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor*, TVec3f*, const MR::ActorMoveParam&);
-}  // namespace MR
+};  // namespace MR
 
 namespace NrvKoopaDemoJumpToPlanet {
     NEW_NERVE(KoopaDemoJumpToPlanetNrvStart, KoopaDemoJumpToPlanet, Start);
     NEW_NERVE(KoopaDemoJumpToPlanetNrvFall, KoopaDemoJumpToPlanet, Fall);
     NEW_NERVE(KoopaDemoJumpToPlanetNrvLand, KoopaDemoJumpToPlanet, Land);
     NEW_NERVE(KoopaDemoJumpToPlanetNrvWaitPlayer, KoopaDemoJumpToPlanet, WaitPlayer);
-}  // namespace NrvKoopaDemoJumpToPlanet
+};  // namespace NrvKoopaDemoJumpToPlanet
 
 KoopaDemoJumpToPlanet::KoopaDemoJumpToPlanet(Koopa* pKoopa) : ActorStateBase< Koopa >("Demo[惑星までジャンプ]", pKoopa) {
 }

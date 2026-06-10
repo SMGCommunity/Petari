@@ -17,7 +17,7 @@ namespace {
     MR::ActorSightParam sChasePlayerStartSight = {1800.0f, 120.0f, 50.0f};
     MR::ActorSightParam sChasePlayerKeepSight = {2200.0f, 125.0f, 50.0f};
     MR::ActorSightParam sAttackHipDropSight = {1000.0f, 90.0f, 30.0f};
-}  // namespace
+};  // namespace
 
 namespace NrvKoopaBattleMain {
     NEW_NERVE(KoopaBattleMainNrvChasePlayer, KoopaBattleMain, ChasePlayer);
@@ -33,7 +33,7 @@ namespace NrvKoopaBattleMain {
     NEW_NERVE(KoopaBattleMainNrvAttackSpin, KoopaBattleMain, AttackSpin);
     NEW_NERVE(KoopaBattleMainNrvAttackRoll, KoopaBattleMain, AttackRoll);
     NEW_NERVE(KoopaBattleMainNrvDamageEscape, KoopaBattleMain, DamageEscape);
-}  // namespace NrvKoopaBattleMain
+};  // namespace NrvKoopaBattleMain
 
 KoopaBattleMain::KoopaBattleMain(const char* pName, Koopa* pKoopa)
     : KoopaBattleBase(pName, pKoopa), mStateAttackHipDrop(), mStateAttackShockWave(), mStateAttackRoll(), mStateAttackSpin(), _2C(true) {

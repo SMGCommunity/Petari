@@ -7,7 +7,7 @@ KoopaViewSwitchKeeper::KoopaViewSwitchKeeper(const char* pName) : LiveActor(pNam
 void KoopaViewSwitchKeeper::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchReadAppear(this, rIter);
     MR::useStageSwitchReadA(this, rIter);
-    
+
     makeActorDead();
 }
 

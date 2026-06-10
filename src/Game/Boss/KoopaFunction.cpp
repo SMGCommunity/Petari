@@ -348,7 +348,7 @@ namespace {
 
         return true;
     }
-}  // namespace
+};  // namespace
 
 bool KoopaFunction::tryStartKoopaAndMarioCameraDemo(Koopa* pKoopa, const char* pSmth, const char* pName, const char* pDemoName) {
     return tryStartCameraDemo(pKoopa, pSmth, pName, pDemoName, true);

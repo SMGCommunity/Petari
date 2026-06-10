@@ -15,7 +15,6 @@
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
 
-
 namespace NrvKoopaSequencerVs3 {
     NEW_NERVE(KoopaSequencerVs3NrvWaitPlayer, KoopaSequencerVs3, WaitPlayer);
     NEW_NERVE(KoopaSequencerVs3NrvBattleStairs, KoopaSequencerVs3, BattleStairs);
@@ -32,7 +31,7 @@ namespace NrvKoopaSequencerVs3 {
     NEW_NERVE(KoopaSequencerVs3NrvDemoDown, KoopaSequencerVs3, DemoDown);
     NEW_NERVE(KoopaSequencerVs3NrvDead, KoopaSequencerVs3, Dead);
     NEW_NERVE(KoopaSequencerVs3NrvWaitDemo, KoopaSequencerVs3, WaitDemo);
-}  // namespace NrvKoopaSequencerVs3
+};  // namespace NrvKoopaSequencerVs3
 
 KoopaSequencerVs3::KoopaSequencerVs3()
     : KoopaSequencer("クッパ戦（Ｖｓ３進行役）", 3), mBattleLv1(), mBattleLv2(), mBattleMain(), mDemoFallToPlanetLv2(), mDemoFallToPlanetLv3() {

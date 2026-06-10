@@ -5,7 +5,7 @@ namespace NrvKoopaFireShort {
     NEW_NERVE(KoopaFireShortNrvFly, KoopaFireShort, Fly);
     NEW_NERVE(KoopaFireShortNrvDisappear, KoopaFireShort, Disappear);
     NEW_NERVE(KoopaFireShortNrvErase2P, KoopaFireShort, Erase2P);
-}  // namespace NrvKoopaFireShort
+};  // namespace NrvKoopaFireShort
 
 KoopaFireShort::KoopaFireShort(const Koopa* pKoopa)
     : LiveActor("クッパの炎（ショート）"), mKoopa(pKoopa), mFront(0.0f, 0.0f, 1.0f), mSpeed(), mOffset() {

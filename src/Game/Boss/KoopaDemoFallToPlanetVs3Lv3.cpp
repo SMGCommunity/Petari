@@ -5,15 +5,14 @@
 #include "Game/Boss/KoopaSwitchKeeper.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
 
-
 namespace {
     MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
     MR::ActorMoveParam sWaitParam = {0.0f, 1.0f, 0.9f, 1.0f};
-}  // namespace
+};  // namespace
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor*, TVec3f*, const MR::ActorMoveParam&);
-}  // namespace MR
+};  // namespace MR
 
 namespace NrvKoopaDemoFallToPlanetVs3Lv3 {
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv3NrvWaitFallDemo, KoopaDemoFallToPlanetVs3Lv3, WaitFallDemo);
@@ -21,7 +20,7 @@ namespace NrvKoopaDemoFallToPlanetVs3Lv3 {
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv3NrvFallInside, KoopaDemoFallToPlanetVs3Lv3, FallInside);
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv3NrvLand, KoopaDemoFallToPlanetVs3Lv3, Land);
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv3NrvWaitPlayer, KoopaDemoFallToPlanetVs3Lv3, WaitPlayer);
-}  // namespace NrvKoopaDemoFallToPlanetVs3Lv3
+};  // namespace NrvKoopaDemoFallToPlanetVs3Lv3
 
 KoopaDemoFallToPlanetVs3Lv3::KoopaDemoFallToPlanetVs3Lv3(Koopa* pKoopa) : ActorStateBase< Koopa >("Demo[Ｌｖ３惑星まで落下]", pKoopa) {
 }

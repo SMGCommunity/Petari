@@ -15,7 +15,7 @@ namespace {
     MR::ActorMoveParam sDamageTailRunParamLv3 = {8.0f, 1.5f, 0.8f, 0.0f};
     MR::ActorMoveParam sDamageTailRunFinalParam = {13.0f, 3.0f, 0.8f, 0.0f};
     MR::ActorMoveParam sDamageTailRunEndParam = {0.0f, 1.0f, 0.98f, 0.0f};
-}  // namespace
+};  // namespace
 
 namespace NrvKoopaStateDamageEscape {
     NEW_NERVE(KoopaStateDamageEscapeNrvEscapeStart, KoopaStateDamageEscape, EscapeStart);
@@ -33,7 +33,7 @@ namespace NrvKoopaStateDamageEscape {
     NEW_NERVE(KoopaStateDamageEscapeNrvDown, KoopaStateDamageEscape, Down);
     NEW_NERVE(KoopaStateDamageEscapeNrvDownLand, KoopaStateDamageEscape, DownLand);
     NEW_NERVE(KoopaStateDamageEscapeNrvDownEnd, KoopaStateDamageEscape, DownEnd);
-}  // namespace NrvKoopaStateDamageEscape
+};  // namespace NrvKoopaStateDamageEscape
 
 KoopaStateDamageEscape::KoopaStateDamageEscape(Koopa* pKoopa)
     : ActorStateBase< Koopa >("State[逃走]", pKoopa), mEscapeTime(-1), mMaxEscapeTime(-1), _18(-1), mIsTurnClockwise(), mIsLastHit(), mEscapeRunParam(&sEscapeRunParamLv1),

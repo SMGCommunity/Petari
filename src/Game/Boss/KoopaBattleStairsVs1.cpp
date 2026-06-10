@@ -11,7 +11,7 @@ namespace {
     static const char* sKoopaPosName1 = "階段の戦い１（クッパ）";
     static const char* sKoopaPosName2 = "階段の戦い２（クッパ）";
     static const char* sKoopaPosNameEnd = "デモ中心";
-}  // namespace
+};  // namespace
 
 namespace NrvKoopaBattleStairsVs1 {
     NEW_NERVE(KoopaBattleStairsVs1NrvWaitDemo, KoopaBattleStairsVs1, WaitDemo);
@@ -21,7 +21,7 @@ namespace NrvKoopaBattleStairsVs1 {
     NEW_NERVE(KoopaBattleStairsVs1NrvJumpToNextPosStart, KoopaBattleStairsVs1, JumpToNextPosStart);
     NEW_NERVE(KoopaBattleStairsVs1NrvJumpToNextPosLoop, KoopaBattleStairsVs1, JumpToNextPosLoop);
     NEW_NERVE(KoopaBattleStairsVs1NrvJumpToNextPosEnd, KoopaBattleStairsVs1, JumpToNextPosEnd);
-}  // namespace NrvKoopaBattleStairsVs1
+};  // namespace NrvKoopaBattleStairsVs1
 
 KoopaBattleStairsVs1::KoopaBattleStairsVs1(Koopa* pKoopa)
     : KoopaBattleStairsBase(pKoopa), mFarBattleMapStair(), mNearBattleMapStair(), mFarFireStairs(), mNearFireStairs(), _20(), mCanJump(),

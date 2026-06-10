@@ -4,16 +4,16 @@
 
 namespace {
     MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 1.0f, 0.0f};
-}  // namespace
+};  // namespace
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-}  // namespace MR
+};  // namespace MR
 
 namespace NrvKoopaStateAttackFireShort {
     NEW_NERVE(KoopaStateAttackFireShortNrvStart, KoopaStateAttackFireShort, Start);
     NEW_NERVE(KoopaStateAttackFireShortNrvEmit, KoopaStateAttackFireShort, Emit);
-}  // namespace NrvKoopaStateAttackFireShort
+};  // namespace NrvKoopaStateAttackFireShort
 
 KoopaStateAttackFireShort::KoopaStateAttackFireShort(Koopa* pKoopa)
     : ActorStateBase< Koopa >("State[ショート炎攻撃]", pKoopa), mFireEmitted(-1), mMaxFire(3), mFireDelay(45) {

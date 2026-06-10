@@ -17,7 +17,7 @@ namespace NrvKoopaBattleVs3Lv1 {
     NEW_NERVE(KoopaBattleVs3Lv1NrvJumpAway, KoopaBattleVs3Lv1, JumpAway);
     NEW_NERVE(KoopaBattleVs3Lv1NrvGuard, KoopaBattleVs3Lv1, Guard);
     NEW_NERVE(KoopaBattleVs3Lv1NrvRecover, KoopaBattleVs3Lv1, Recover);
-}  // namespace NrvKoopaBattleVs3Lv1
+};  // namespace NrvKoopaBattleVs3Lv1
 
 KoopaBattleVs3Lv1::KoopaBattleVs3Lv1(Koopa* pKoopa)
     : KoopaBattleBase("クッパ戦闘（Ｖｓ３Ｌｖ１）", pKoopa), mStateChaseRoll(), mStateAttackShockWave() {

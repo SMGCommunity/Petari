@@ -4,14 +4,13 @@
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
 #include "Game/Boss/KoopaSequencer.hpp"
 
-
 namespace NrvKoopaSubSequenceBattle {
     NEW_NERVE(KoopaSubSequenceBattleNrvBattleLv1, KoopaSubSequenceBattle, BattleLv1);
     NEW_NERVE(KoopaSubSequenceBattleNrvDemoStartLv2, KoopaSubSequenceBattle, DemoStartLv2);
     NEW_NERVE(KoopaSubSequenceBattleNrvBattleLv2, KoopaSubSequenceBattle, BattleLv2);
     NEW_NERVE(KoopaSubSequenceBattleNrvDemoStartLv3, KoopaSubSequenceBattle, DemoStartLv3);
     NEW_NERVE(KoopaSubSequenceBattleNrvBattleLv3, KoopaSubSequenceBattle, BattleLv3);
-}  // namespace NrvKoopaSubSequenceBattle
+};  // namespace NrvKoopaSubSequenceBattle
 
 KoopaSubSequenceBattle::KoopaSubSequenceBattle(Koopa* pKoopa, KoopaSequencer* pSequencer, KoopaBattleBase* pBattleBase)
     : ActorStateBase< Koopa >("Sequence[戦闘]", pKoopa), mSequencer(pSequencer), mBattleBase(pBattleBase) {

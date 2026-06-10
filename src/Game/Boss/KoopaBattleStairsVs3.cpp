@@ -9,7 +9,7 @@ namespace NrvKoopaBattleStairsVs3 {
     NEW_NERVE(KoopaBattleStairsVs3NrvWaitDemo, KoopaBattleStairsVs3, WaitDemo);
     NEW_NERVE(KoopaBattleStairsVs3NrvDemo, KoopaBattleStairsVs3, Demo);
     NEW_NERVE(KoopaBattleStairsVs3NrvWait, KoopaBattleStairsVs3, Wait);
-}  // namespace NrvKoopaBattleStairsVs3
+};  // namespace NrvKoopaBattleStairsVs3
 
 KoopaBattleStairsVs3::KoopaBattleStairsVs3(Koopa* pKoopa) : KoopaBattleStairsBase(pKoopa), mNamePos(0.0f, 0.0f, 0.0f) {
     initNerve(&NrvKoopaBattleStairsVs3::KoopaBattleStairsVs3NrvWaitDemo::sInstance);

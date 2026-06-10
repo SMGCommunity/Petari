@@ -6,7 +6,7 @@
 
 namespace {
     MR::ActorMoveParam sFindParam = {0.0f, 1.0f, 0.98f, 3.0f};
-}  // namespace
+};  // namespace
 
 KoopaBattleBase::KoopaBattleBase(const char* pName, Koopa* pKoopa)
     : ActorStateBase< Koopa >(pName, pKoopa), mStateDamageEscape(), mStateGuard(), mWanderTime(-1) {
@@ -130,4 +130,4 @@ namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) {
         moveAndTurnToPlayer(pActor, pVec, rMoveParam._0, rMoveParam._4, rMoveParam._8, rMoveParam._C);
     }
-}  // namespace MR
+};  // namespace MR

@@ -6,7 +6,6 @@
 #include "Game/Boss/KoopaSubSequenceBattle.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
 
-
 namespace NrvKoopaSequencerVs2 {
     NEW_NERVE(KoopaSequencerVs2NrvWaitDemoBattleStart, KoopaSequencerVs2, WaitDemoBattleStart);
     NEW_NERVE(KoopaSequencerVs2NrvDemoBattleStart, KoopaSequencerVs2, DemoBattleStart);
@@ -15,7 +14,7 @@ namespace NrvKoopaSequencerVs2 {
     NEW_NERVE(KoopaSequencerVs2NrvWaitDemoDown, KoopaSequencerVs2, WaitDemoDown);
     NEW_NERVE(KoopaSequencerVs2NrvDemoDown, KoopaSequencerVs2, DemoDown);
     NEW_NERVE(KoopaSequencerVs2NrvWaitDemo, KoopaSequencerVs2, WaitDemo);
-}  // namespace NrvKoopaSequencerVs2
+};  // namespace NrvKoopaSequencerVs2
 
 KoopaSequencerVs2::KoopaSequencerVs2() : KoopaSequencer("クッパ戦（Ｖｓ２進行役）", 2), mSubSequenceBattle(), mBattleMain() {
 }

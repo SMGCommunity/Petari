@@ -16,7 +16,7 @@ namespace NrvKoopaSequencerVs1 {
     NEW_NERVE(KoopaSequencerVs1NrvWaitDemoBattleEnd, KoopaSequencerVs1, WaitDemoBattleEnd);
     NEW_NERVE(KoopaSequencerVs1NrvDemoBattleEnd, KoopaSequencerVs1, DemoBattleEnd);
     NEW_NERVE(KoopaSequencerVs1NrvWaitDemo, KoopaSequencerVs1, WaitDemo);
-}  // namespace NrvKoopaSequencerVs1
+};  // namespace NrvKoopaSequencerVs1
 
 KoopaSequencerVs1::KoopaSequencerVs1() : KoopaSequencer("クッパ戦（Ｖｓ１進行役）", 1), mSubSequenceBattle(), mBattleMain() {
 }

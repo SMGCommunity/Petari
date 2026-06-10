@@ -6,11 +6,11 @@ namespace {
     MR::ActorMoveParam sParamRunStart = {3.0f, 1.0f, 0.9f, 3.0f};
     MR::ActorMoveParam sParamJumpStart = {0.0f, 1.0f, 0.95f, 0.0f};
     MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 1.0f, 0.0f};
-}  // namespace
+};  // namespace
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-}  // namespace MR
+};  // namespace MR
 
 namespace NrvKoopaStateAttackHipDrop {
     NEW_NERVE(KoopaStateAttackHipDropNrvRun, KoopaStateAttackHipDrop, Run);
@@ -20,7 +20,7 @@ namespace NrvKoopaStateAttackHipDrop {
     NEW_NERVE(KoopaStateAttackHipDropNrvJumpAttackDown, KoopaStateAttackHipDrop, JumpAttackDown);
     NEW_NERVE(KoopaStateAttackHipDropNrvLand, KoopaStateAttackHipDrop, Land);
     NEW_NERVE(KoopaStateAttackHipDropNrvDamage, KoopaStateAttackHipDrop, Damage);
-}  // namespace NrvKoopaStateAttackHipDrop
+};  // namespace NrvKoopaStateAttackHipDrop
 
 KoopaStateAttackHipDrop::KoopaStateAttackHipDrop(Koopa* pKoopa)
     : ActorStateBase< Koopa >("State[ヒップドロップ攻撃]", pKoopa), mGroundPosition(0.0f, 0.0f, 0.0f), mMaxAttacks(1), mAttacks(), mAttackDelay(30),

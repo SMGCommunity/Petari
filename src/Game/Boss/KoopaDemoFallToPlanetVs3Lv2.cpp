@@ -8,11 +8,11 @@
 namespace {
     MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
     MR::ActorMoveParam sWaitParam = {0.0f, 1.0f, 0.9f, 1.0f};
-}  // namespace
+};  // namespace
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor*, TVec3f*, const MR::ActorMoveParam&);
-}  // namespace MR
+};  // namespace MR
 
 namespace NrvKoopaDemoFallToPlanetVs3Lv2 {
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv2NrvWaitFall, KoopaDemoFallToPlanetVs3Lv2, WaitFall);
@@ -20,7 +20,7 @@ namespace NrvKoopaDemoFallToPlanetVs3Lv2 {
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv2NrvFallToLand, KoopaDemoFallToPlanetVs3Lv2, FallToLand);
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv2NrvLand, KoopaDemoFallToPlanetVs3Lv2, Land);
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv2NrvWaitPlayer, KoopaDemoFallToPlanetVs3Lv2, WaitPlayer);
-}  // namespace NrvKoopaDemoFallToPlanetVs3Lv2
+};  // namespace NrvKoopaDemoFallToPlanetVs3Lv2
 
 KoopaDemoFallToPlanetVs3Lv2::KoopaDemoFallToPlanetVs3Lv2(Koopa* pKoopa) : ActorStateBase< Koopa >("Demo[Ｌｖ２惑星まで落下]", pKoopa) {
 }

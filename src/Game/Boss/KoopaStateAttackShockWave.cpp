@@ -7,7 +7,7 @@ namespace NrvKoopaStateAttackShockWave {
     NEW_NERVE(KoopaStateAttackShockWaveNrvJump, KoopaStateAttackShockWave, Jump);
     NEW_NERVE(KoopaStateAttackShockWaveNrvJumpFast, KoopaStateAttackShockWave, Jump);
     NEW_NERVE(KoopaStateAttackShockWaveNrvLand, KoopaStateAttackShockWave, Land);
-}  // namespace NrvKoopaStateAttackShockWave
+};  // namespace NrvKoopaStateAttackShockWave
 
 KoopaStateAttackShockWave::KoopaStateAttackShockWave(Koopa* pKoopa)
     : ActorStateBase< Koopa >("State[衝撃波攻撃]", pKoopa), mMaxAttacks(1), mAttacks(), mJumpVelocity(40.0f), mGravity(1.5f), mJumpDelay(15) {

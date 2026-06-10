@@ -40,7 +40,7 @@ namespace {
         pBattleMapPlanet->initWithoutIter();
         return pBattleMapPlanet;
     };
-}  // namespace
+};  // namespace
 
 KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pBattleMapStair, const TVec3f& rPosition, bool useFront) {
     KoopaFireStairs* pFireStairs = static_cast< KoopaFireStairs* >(mFireStairs->getDeadActor());
@@ -186,7 +186,7 @@ namespace {
         pModelObj->kill();
         return pModelObj;
     };
-}  // namespace
+};  // namespace
 
 void KoopaParts::initVs3() {
     createFireStairs(true);

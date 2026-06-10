@@ -6,7 +6,7 @@
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-}  // namespace MR
+};  // namespace MR
 
 namespace {
     MR::ActorMoveParam sStartParam = {0.0f, 0.5f, 1.0f, 3.0f};
@@ -15,7 +15,7 @@ namespace {
     MR::ActorMoveParam sAttackRollParamLv3Slow = {8.0f, 2.0f, 0.8f, 0.5f};
     MR::ActorMoveParam sAttackRollParamLv3Fast = {10.0f, 2.0f, 0.8f, 1.0f};
     MR::ActorMoveParam sEndParam = {0.0f, 1.0f, 0.95f, 1.0f};
-}  // namespace
+};  // namespace
 
 namespace NrvKoopaStateAttackRoll {
     NEW_NERVE(KoopaStateAttackRollNrvWaitToStart, KoopaStateAttackRoll, WaitToStart);
@@ -24,7 +24,7 @@ namespace NrvKoopaStateAttackRoll {
     NEW_NERVE(KoopaStateAttackRollNrvRollGround, KoopaStateAttackRoll, RollGround);
     NEW_NERVE(KoopaStateAttackRollNrvEndAir, KoopaStateAttackRoll, EndAir);
     NEW_NERVE(KoopaStateAttackRollNrvEndLand, KoopaStateAttackRoll, EndLand);
-}  // namespace NrvKoopaStateAttackRoll
+};  // namespace NrvKoopaStateAttackRoll
 
 KoopaStateAttackRoll::KoopaStateAttackRoll(Koopa* pKoopa)
     : ActorStateBase< Koopa >("State[ローリング攻撃]", pKoopa), mFigureBall(), mRollDelay(90), mRollTime(600), _1C(), _1D() {

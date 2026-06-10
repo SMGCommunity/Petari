@@ -4,18 +4,19 @@
 
 namespace {
     MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 1.0f, 0.0f};
-}
+};  // namespace
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-}  // namespace MR
+};  // namespace MR
 
 namespace NrvKoopaStateAttackFireLong {
     NEW_NERVE(KoopaStateAttackFireLongNrvStart, KoopaStateAttackFireLong, Start);
     NEW_NERVE(KoopaStateAttackFireLongNrvEmit, KoopaStateAttackFireLong, Emit);
-}  // namespace NrvKoopaStateAttackFireLong
+};  // namespace NrvKoopaStateAttackFireLong
 
-KoopaStateAttackFireLong::KoopaStateAttackFireLong(Koopa* pKoopa) : ActorStateBase< Koopa >("State[炎連弾攻撃]", pKoopa), mMaxFire(16), mFireEmitted(-1) {
+KoopaStateAttackFireLong::KoopaStateAttackFireLong(Koopa* pKoopa)
+    : ActorStateBase< Koopa >("State[炎連弾攻撃]", pKoopa), mMaxFire(16), mFireEmitted(-1) {
 }
 
 void KoopaStateAttackFireLong::init() {

@@ -6,7 +6,7 @@ namespace NrvKoopaStateJumpAway {
     NEW_NERVE(KoopaStateJumpAwayNrvJumpStart, KoopaStateJumpAway, JumpStart);
     NEW_NERVE(KoopaStateJumpAwayNrvJump, KoopaStateJumpAway, Jump);
     NEW_NERVE(KoopaStateJumpAwayNrvLand, KoopaStateJumpAway, Land);
-}  // namespace NrvKoopaStateJumpAway
+};  // namespace NrvKoopaStateJumpAway
 
 KoopaStateJumpAway::KoopaStateJumpAway(Koopa* pKoopa) : ActorStateBase< Koopa >("State[ジャンプで離れる]", pKoopa) {
 }

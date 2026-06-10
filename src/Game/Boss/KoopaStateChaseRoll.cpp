@@ -9,11 +9,11 @@ namespace {
     MR::ActorMoveParam sChaseRollParam = {1.1f, 2.0f, 0.95f, 1.5f};
     MR::ActorMoveParam sChaseRollParamFast = {1.5f, 2.0f, 0.95f, 1.5f};
     MR::ActorMoveParam sEndParam = {0.0f, 1.0f, 0.98f, 1.0f};
-}  // namespace
+};  // namespace
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-}  // namespace MR
+};  // namespace MR
 
 namespace NrvKoopaStateChaseRoll {
     NEW_NERVE(KoopaStateChaseRollNrvWaitToStart, KoopaStateChaseRoll, WaitToStart);

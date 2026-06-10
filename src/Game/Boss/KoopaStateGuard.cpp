@@ -4,17 +4,17 @@
 
 namespace {
     MR::ActorMoveParam sGuardFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
-}  // namespace
+};  // namespace
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-}  // namespace MR
+};  // namespace MR
 
 namespace NrvKoopaStateGuard {
     NEW_NERVE(KoopaStateGuardNrvGuardFace, KoopaStateGuard, GuardFace);
     NEW_NERVE(KoopaStateGuardNrvGuardBody, KoopaStateGuard, GuardBody);
     NEW_NERVE(KoopaStateGuardNrvGuardTail, KoopaStateGuard, GuardTail);
-}  // namespace NrvKoopaStateGuard
+};  // namespace NrvKoopaStateGuard
 
 KoopaStateGuard::KoopaStateGuard(Koopa* pKoopa) : ActorStateBase< Koopa >("State[ガード攻撃]", pKoopa) {
 }
