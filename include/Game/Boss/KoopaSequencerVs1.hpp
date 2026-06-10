@@ -2,7 +2,6 @@
 
 #include "Game/Boss/KoopaSequencer.hpp"
 
-class HitSensor;
 class KoopaSubSequenceBattle;
 class KoopaBattleMain;
 
