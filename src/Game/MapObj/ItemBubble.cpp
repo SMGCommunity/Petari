@@ -1,8 +1,8 @@
 #include "Game/MapObj/ItemBubble.hpp"
 #include "Game/MapObj/StarPiece.hpp"
-#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
 namespace {
     const f32 cHitSensorRadius = 120.f;
@@ -13,7 +13,7 @@ namespace {
 namespace NrvItemBubble {
     NEW_NERVE(ItemBubbleNrvWait, ItemBubble, Wait);
     NEW_NERVE(ItemBubbleNrvBreak, ItemBubble, Break);
-}
+}  // namespace NrvItemBubble
 
 ItemBubble::ItemBubble(const char* pName) : LiveActor(pName), _90(nullptr), _94(nullptr) {
     _8C = 0.0f;
@@ -95,7 +95,6 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
             MR::newDifferedDLBuffer(_90[i]);
             _90[i]->initWithoutIter();
 
-            
             switch (itemCount) {
             case 1:
                 _90[i]->initFixedPosition(_CC, TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
@@ -193,7 +192,6 @@ void ItemBubble::kill() {
     LiveActor::kill();
 }
 
-
 void ItemBubble::calcAndSetBaseMtx() {
     TVec3f camPos = MR::getCamPos();
     TVec3f* pCamPos = &camPos;
@@ -290,5 +288,5 @@ bool ItemBubble::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
     return false;
 }
 
-ItemBubble::~ItemBubble() {}
-
+ItemBubble::~ItemBubble() {
+}

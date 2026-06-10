@@ -1,6 +1,5 @@
 #include "Game/Util/SystemUtil.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/FunctionAsyncExecutor.hpp"
 #include "Game/System/GameDataFunction.hpp"
@@ -14,6 +13,7 @@
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <nw4r/lyt/layout.h>
 #include <nw4r/ut/ResFont.h>
 

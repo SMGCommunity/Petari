@@ -67,8 +67,12 @@ public:
     const u8 newDither(int) const;
     J3DNBTScale newNBTScale(int) const;
 
-    u16 getMaterialID(u16 idx) { return mpMaterialID[idx]; }
-    u8 getMaterialMode(int idx) const { return mpMaterialInitData[mpMaterialID[idx]].mMaterialMode; }
+    u16 getMaterialID(u16 idx) {
+        return mpMaterialID[idx];
+    }
+    u8 getMaterialMode(int idx) const {
+        return mpMaterialInitData[mpMaterialID[idx]].mMaterialMode;
+    }
 
     /* 0x00 */ u16 mMaterialNum;
     /* 0x04 */ J3DMaterialInitData_v21* mpMaterialInitData;

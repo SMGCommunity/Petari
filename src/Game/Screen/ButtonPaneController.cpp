@@ -306,7 +306,8 @@ void ButtonPaneController::exeDecided() {
     }
 }
 
-void ButtonPaneController::exeDecidedWait() {}
+void ButtonPaneController::exeDecidedWait() {
+}
 
 void ButtonPaneController::exeDecidedToDisappear() {
     if (startAnimAtFirstStep(mNotPointingAnimName)) {

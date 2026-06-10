@@ -23,12 +23,20 @@ public:
     void flush();
     void drawString(int, int, int, u8 const*);
 
-    static JUTDbPrint* getManager() { return sDebugPrint; }
+    static JUTDbPrint* getManager() {
+        return sDebugPrint;
+    }
 
-    void setVisible(bool visible) { mVisible = visible; }
-    JUTFont* getFont() const { return mFont; }
+    void setVisible(bool visible) {
+        mVisible = visible;
+    }
+    JUTFont* getFont() const {
+        return mFont;
+    }
 
-    void setCharColor(JUtility::TColor color) { mColor = color; };
+    void setCharColor(JUtility::TColor color) {
+        mColor = color;
+    };
 
     static JUTDbPrint* sDebugPrint;
 

@@ -30,7 +30,8 @@ namespace NrvGameStageClearSequence {
 };  // namespace NrvGameStageClearSequence
 
 GameStageClearSequence::GameStageClearSequence()
-    : LayoutActor("ステージクリアシーケンス", true), mEffectLayout(nullptr), mEffectFollowPos(0.0f, 0.0f) {}
+    : LayoutActor("ステージクリアシーケンス", true), mEffectLayout(nullptr), mEffectFollowPos(0.0f, 0.0f) {
+}
 
 void GameStageClearSequence::init(const JMapInfoIter& rIter) {
     mEffectLayout = new SimpleEffectLayout("スター取得", "GetStar", 1, -1);
@@ -129,7 +130,7 @@ void GameStageClearSequence::exeGrandStarGetDemo() {
         }
     } else {
         if (MR::isStep(this, sClearDemoWipeStepGrandStar)) {
-            MR::closeWipeCircle(-1);
+            MR::closeWipeCircle();
         }
 
         bool isWipeActive = MR::isWipeActive();

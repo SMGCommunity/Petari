@@ -18,7 +18,8 @@ CameraParamChunkHolder::CameraParamChunkHolder(CameraHolder* pCameraHolder, cons
     mIsSorted = 0;
 }
 
-CameraParamChunkHolder::~CameraParamChunkHolder() {}
+CameraParamChunkHolder::~CameraParamChunkHolder() {
+}
 
 CameraParamChunk* CameraParamChunkHolder::createChunk(const CameraParamChunkID& rID, JKRHeap* pHeap) {
     if (isNewAttribute(rID)) {

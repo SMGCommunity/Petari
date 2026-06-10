@@ -4,12 +4,21 @@
 
 struct JPARandom {
 public:
-    JPARandom() { mSeed = 0; }
-    JPARandom(u32 seed) { mSeed = seed; }
-    ~JPARandom() {}
-    void set_seed(u32 seed) { mSeed = seed; }
+    JPARandom() {
+        mSeed = 0;
+    }
+    JPARandom(u32 seed) {
+        mSeed = seed;
+    }
+    ~JPARandom() {
+    }
+    void set_seed(u32 seed) {
+        mSeed = seed;
+    }
 
-    u32 get_rndm_u() { return mSeed = mSeed * 0x19660du + 0x3c6ef35fu; }
+    u32 get_rndm_u() {
+        return mSeed = mSeed * 0x19660du + 0x3c6ef35fu;
+    }
 
     f32 get_rndm_f() {
         union {
@@ -25,9 +34,13 @@ public:
         return (f + f) - 1.0f;
     }
 
-    f32 get_rndm_zh() { return get_rndm_f() - 0.5f; }
+    f32 get_rndm_zh() {
+        return get_rndm_f() - 0.5f;
+    }
 
-    s16 get_rndm_ss() { return (s16)(get_rndm_u() >> 16); }
+    s16 get_rndm_ss() {
+        return (s16)(get_rndm_u() >> 16);
+    }
 
 public:
     u32 mSeed;

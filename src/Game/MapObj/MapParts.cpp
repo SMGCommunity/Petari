@@ -7,7 +7,8 @@ namespace {
     const char* cFollowJointName = "Move";
 };  // namespace
 
-MapParts::~MapParts() {}
+MapParts::~MapParts() {
+}
 
 MapParts::MapParts(const char* pName) : LiveActor(pName) {
     _8C.zero();

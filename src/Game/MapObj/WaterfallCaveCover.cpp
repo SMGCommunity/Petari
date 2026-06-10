@@ -38,7 +38,8 @@ bool WaterfallCaveCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hit
     return false;
 }
 
-inline void WaterfallCaveCover::exeWait() {}
+inline void WaterfallCaveCover::exeWait() {
+}
 
 void WaterfallCaveCover::exeBreak() {
     if (MR::isFirstStep(this)) {

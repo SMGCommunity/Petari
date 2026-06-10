@@ -193,7 +193,7 @@ void J3DSys::drawInit() {
         GXSetTevIndirect((GXTevStageID)i, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF, GX_ITW_OFF, GX_ITW_OFF, GX_FALSE, GX_FALSE,
                          GX_ITBA_OFF);
 
-        // OSInitFastCast();
+    // OSInitFastCast();
 
 #ifdef __MWERKS__
     asm

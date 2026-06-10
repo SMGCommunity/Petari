@@ -28,6 +28,6 @@ namespace JASCalc {
         if (x >= std::numeric_limits< T >::max())
             return std::numeric_limits< T >::max();
         return x;
-    }  // <s16, s32> in JASAiCtrl
+    }
 
 };  // namespace JASCalc

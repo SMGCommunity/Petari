@@ -41,7 +41,8 @@ namespace NrvTico {
 
 Tico::Tico(const char* pName)
     : NPCActor(pName), _15C(0), _160(0.0f, 0.0f, 0.0f), _16C(0.0f), mDemoGetPower(nullptr), _174(0), _178(0), _17C(255, 255, 255, 255), _180(0),
-      mDemoStarter(this) {}
+      mDemoStarter(this) {
+}
 
 void Tico::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (MR::isObjectName(rIter, "TicoBaby")) {

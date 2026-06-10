@@ -25,7 +25,8 @@ namespace NrvSoundEmitter {
 SoundEmitter::SoundEmitter(const char* pName) : LiveActor(pName) {
     _8C = -1;
 }
-SoundEmitter::~SoundEmitter() {}
+SoundEmitter::~SoundEmitter() {
+}
 
 void SoundEmitter::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

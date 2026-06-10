@@ -23,11 +23,11 @@
 #include "Game/Screen/SystemWipeHolder.hpp"
 #include "Game/Screen/YesNoController.hpp"
 #include "Game/Screen/YesNoLayout.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/RenderMode.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 
@@ -147,8 +147,8 @@ namespace MR {
         return getCaptureScreenDirector()->getTexImage();
     }
 
-    void closeWipeCircle(s32 param1) {
-        SceneWipeHolderFunction::closeWipe("円ワイプ", param1);
+    void closeWipeCircle(s32 frame) {
+        SceneWipeHolderFunction::closeWipe("円ワイプ", frame);
     }
 
     void forceOpenWipeCircle() {
@@ -159,8 +159,8 @@ namespace MR {
         SceneWipeHolderFunction::forceCloseWipe("円ワイプ");
     }
 
-    void closeWipeFade(s32 param1) {
-        SceneWipeHolderFunction::closeWipe("フェードワイプ", param1);
+    void closeWipeFade(s32 frame) {
+        SceneWipeHolderFunction::closeWipe("フェードワイプ", frame);
     }
 
     void forceOpenWipeFade() {
@@ -171,8 +171,8 @@ namespace MR {
         SceneWipeHolderFunction::forceCloseWipe("フェードワイプ");
     }
 
-    void closeWipeWhiteFade(s32 param1) {
-        SceneWipeHolderFunction::closeWipe("白フェードワイプ", param1);
+    void closeWipeWhiteFade(s32 frame) {
+        SceneWipeHolderFunction::closeWipe("白フェードワイプ", frame);
     }
 
     void forceOpenWipeWhiteFade() {
@@ -195,33 +195,33 @@ namespace MR {
         return SceneWipeHolderFunction::getSceneWipeHolder()->isOpen();
     }
 
-    void closeSystemWipeCircle(s32 param1) {
+    void closeSystemWipeCircle(s32 frame) {
         getSystemWipeHolder()->forceOpen("円ワイプ");
-        getSystemWipeHolder()->wipe(nullptr, param1);
+        getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
-    void openSystemWipeFade(s32 param1) {
+    void openSystemWipeFade(s32 frame) {
         getSystemWipeHolder()->forceClose("フェードワイプ");
-        getSystemWipeHolder()->wipe(nullptr, param1);
+        getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
-    void closeSystemWipeFade(s32 param1) {
+    void closeSystemWipeFade(s32 frame) {
         getSystemWipeHolder()->forceOpen("フェードワイプ");
-        getSystemWipeHolder()->wipe(nullptr, param1);
+        getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void forceOpenSystemWipeFade() {
         getSystemWipeHolder()->forceOpen("フェードワイプ");
     }
 
-    void openSystemWipeWhiteFade(s32 param1) {
+    void openSystemWipeWhiteFade(s32 frame) {
         getSystemWipeHolder()->forceClose("白フェードワイプ");
-        getSystemWipeHolder()->wipe(nullptr, param1);
+        getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
-    void closeSystemWipeWhiteFade(s32 param1) {
+    void closeSystemWipeWhiteFade(s32 frame) {
         getSystemWipeHolder()->forceOpen("白フェードワイプ");
-        getSystemWipeHolder()->wipe(nullptr, param1);
+        getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void forceCloseSystemWipeWhiteFade() {
@@ -232,13 +232,13 @@ namespace MR {
         return getSystemWipeHolder()->isWipeIn() || getSystemWipeHolder()->isWipeOut();
     }
 
-    void closeSystemWipeCircleWithCaptureScreen(s32 param1) {
-        closeSystemWipeCircle(param1);
+    void closeSystemWipeCircleWithCaptureScreen(s32 frame) {
+        closeSystemWipeCircle(frame);
         getSystemWipeHolder()->startGameScreenCapture();
     }
 
-    void closeSystemWipeFadeWithCaptureScreen(s32 param1) {
-        closeSystemWipeFade(param1);
+    void closeSystemWipeFadeWithCaptureScreen(s32 frame) {
+        closeSystemWipeFade(frame);
         getSystemWipeHolder()->startGameScreenCapture();
     }
 
@@ -352,7 +352,8 @@ namespace MR {
         getSceneObj< CenterScreenBlur >(SceneObj_CenterScreenBlur)->start(time, offset, alpha, fadeIn, fadeOut);
     }
 
-    void startGlobalTimer() {}
+    void startGlobalTimer() {
+    }
 
     void resetGlobalTimer() {
         getPlayTimerScene()->stop();
@@ -566,16 +567,16 @@ namespace MR {
         getGameSceneLayoutHolder()->mCounterLayoutCtrl->requestedTicoEat(param1);
     }
 
-    void openWipeCircle(s32 param1) {
-        SceneWipeHolderFunction::openWipe("円ワイプ", param1);
+    void openWipeCircle(s32 frame) {
+        SceneWipeHolderFunction::openWipe("円ワイプ", frame);
     }
 
-    void openWipeFade(s32 param1) {
-        SceneWipeHolderFunction::openWipe("フェードワイプ", param1);
+    void openWipeFade(s32 frame) {
+        SceneWipeHolderFunction::openWipe("フェードワイプ", frame);
     }
 
-    void openWipeWhiteFade(s32 param1) {
-        SceneWipeHolderFunction::openWipe("白フェードワイプ", param1);
+    void openWipeWhiteFade(s32 frame) {
+        SceneWipeHolderFunction::openWipe("白フェードワイプ", frame);
     }
 
     void startGameOverWipe() {

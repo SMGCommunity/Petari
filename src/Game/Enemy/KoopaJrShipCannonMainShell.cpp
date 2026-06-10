@@ -16,7 +16,7 @@ namespace NrvKoopaJrShipCannonMainShell {
 };  // namespace NrvKoopaJrShipCannonMainShell
 
 KoopaJrShipCannonMainShell::KoopaJrShipCannonMainShell(const char* pName) : CannonShellBase(pName) {
-    f32 one = 1.0f; // This makes Data match
+    f32 one = 1.0f;  // This makes Data match
     _8C.set< f32 >(0.0f, 0.0f, 0.0f, one);
 }
 
@@ -67,7 +67,7 @@ void KoopaJrShipCannonMainShell::attackSensor(HitSensor* pSender, HitSensor* pRe
 
     if (!MR::isSensorEnemy(pReceiver))
         return;
-    
+
     bool x = false;
     if (isNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance) && MR::isGreaterEqualStep(this, 0)) {
         x = true;
@@ -108,13 +108,14 @@ f32 KoopaJrShipCannonMainShell::getBaseScale() const {
 }
 
 void KoopaJrShipCannonMainShell::explosion() {
-    MR::startRumbleWithShakeCameraWeak(this, "強", "中", sCameraShakeDistance, sCameraShakeDistance*2);
+    MR::startRumbleWithShakeCameraWeak(this, "強", "中", sCameraShakeDistance, sCameraShakeDistance * 2);
     MR::emitEffect(this, "Explosion");
     MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_FIRE");
     kill();
 }
 
-void KoopaJrShipCannonMainShell::exeWait() { }
+void KoopaJrShipCannonMainShell::exeWait() {
+}
 
 void KoopaJrShipCannonMainShell::exeFly() {
     if (MR::isFirstStep(this)) {
@@ -139,4 +140,4 @@ namespace CannonShellUtil {
             pHolder->registerCannonShell(pShell);
         }
     }
-}
+}  // namespace CannonShellUtil

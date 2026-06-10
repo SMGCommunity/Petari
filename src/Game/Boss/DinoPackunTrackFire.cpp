@@ -93,9 +93,11 @@ void DinoPackunTrackFire::exeGround() {
     }
 }
 
-DinoPackunTrackFire::~DinoPackunTrackFire() {}
+DinoPackunTrackFire::~DinoPackunTrackFire() {
+}
 
-DinoPackunTrackFireHolder::~DinoPackunTrackFireHolder() {}
+DinoPackunTrackFireHolder::~DinoPackunTrackFireHolder() {
+}
 
 MtxPtr DinoPackunTrackFire::getBaseMtx() const {
     return (MtxPtr)&_8C;

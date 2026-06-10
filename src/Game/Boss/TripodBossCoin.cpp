@@ -56,4 +56,5 @@ void TripodBossCoin::exeActive() {
     }
 }
 
-void TripodBossCoin::exeEnd() {}
+void TripodBossCoin::exeEnd() {
+}

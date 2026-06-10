@@ -16,15 +16,20 @@ Scene::~Scene() {
     }
 }
 
-void Scene::init() {}
+void Scene::init() {
+}
 
-void Scene::start() {}
+void Scene::start() {
+}
 
-void Scene::update() {}
+void Scene::update() {
+}
 
-void Scene::draw() const {}
+void Scene::draw() const {
+}
 
-void Scene::calcAnim() {}
+void Scene::calcAnim() {
+}
 
 void Scene::initNameObjListExecutor() {
     SceneNameObjListExecutor* exec = new SceneNameObjListExecutor();

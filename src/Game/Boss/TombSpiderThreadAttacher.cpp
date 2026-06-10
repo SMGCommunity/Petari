@@ -27,4 +27,5 @@ void TombSpiderThreadAttacher::exeFree() {
     MR::tryPushSpiderThread(pos, mRadius);
 }
 
-void TombSpiderThreadAttacher::exeAttach() {}
+void TombSpiderThreadAttacher::exeAttach() {
+}

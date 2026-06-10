@@ -6,7 +6,8 @@ PowerStarHolder::PowerStarHolder(const char* pName) : NameObj(pName) {
     MR::zeroMemory(mInfos, sizeof(mInfos));
 }
 
-void PowerStarHolder::init(const JMapInfoIter&) {}
+void PowerStarHolder::init(const JMapInfoIter&) {
+}
 
 void PowerStarHolder::registerPowerStar(PowerStar* pStar, int starNum) {
     PowerStarRequestInfo* info = new PowerStarRequestInfo();
@@ -80,4 +81,5 @@ PowerStar* PowerStarFunction::findPowerStar(int starNum) {
     return EventFunction::getPowerStarHolder()->findPowerStarRequestInfo(starNum)->mStar;
 }
 
-PowerStarHolder::~PowerStarHolder() {}
+PowerStarHolder::~PowerStarHolder() {
+}

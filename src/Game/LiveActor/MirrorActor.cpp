@@ -1,9 +1,11 @@
 #include "Game/LiveActor/MirrorActor.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-MirrorActor::~MirrorActor() {}
+MirrorActor::~MirrorActor() {
+}
 
 MirrorActor::MirrorActor(LiveActor* pActor, const char* a2, const char* a3) : LiveActor(a2) {
     _8C = pActor;

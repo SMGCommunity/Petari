@@ -18,8 +18,7 @@ void KoopaFireStairs::init(const JMapInfoIter& rIteR) {
 
     MR::connectToSceneEnemy(this);
 
-    initHitSensor(1);
-    
+    initHitSensor(1);    
     MR::addHitSensorEnemyAttack(this, "Fire", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(1, nullptr, false);
     
@@ -122,7 +121,7 @@ void KoopaFireStairs::exeFly() {
             mPosition.setPS2(v12);
 
             f32 v5 = (100.0f * mStair->calcTimeRate());
-            f32 v6 = JMath::sSinCosTable.sinLap(v5);
+            f32 v6 = MR::sinDegree(v5);
 
             TVec3f v8(_AC);
             v8.scale(v6);

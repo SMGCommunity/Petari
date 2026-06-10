@@ -15,14 +15,15 @@ public:
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     bool tryFind();
+
     void exeStart();
     void exeTurn();
     void exeWalk();
+    void exeFind();
     void exeChase();
-    inline void exeDamage();
-    inline void exeAttackHit();
-    inline void exeCoolDown();
-    inline void exeFind();
+    void exeCoolDown();
+    void exeAttackHit();
+    void exeDamage();
 
-    DinoPackunStateDamage* mStateDamage;  // 0x14
+    /* 0x14 */ DinoPackunStateDamage* mStateDamage;
 };

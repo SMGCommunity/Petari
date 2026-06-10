@@ -5,7 +5,7 @@
 class BossStinkBugActionGround : public BossStinkBugActionBase {
 public:
     BossStinkBugActionGround(BossStinkBug*);
-    
+
     virtual void appear();
     virtual void control();
     virtual bool isValidFollowId(s32 id) const;

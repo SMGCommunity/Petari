@@ -1071,7 +1071,7 @@ void BigBubble::updateCaptureWarningColor() {
         // disgusting mess
         f32 flashPhase = (static_cast< f32 >(mReduceVolumeTimer % flashTime) / static_cast< f32 >(flashTime - 1)) * TWO_PI;
 
-        mWarningColor.a = (JMath::sSinCosTable.cosLapRad(flashPhase) + 1.0f) * 0.5f * 128.0f;
+        mWarningColor.a = (MR::cos(flashPhase) + 1.0f) * 0.5f * 128.0f;
     } else {
         mWarningColor.a = 0;
     }

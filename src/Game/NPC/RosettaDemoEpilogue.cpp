@@ -1,8 +1,8 @@
+#include "Game/NPC/RosettaDemoEpilogue.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/Rosetta.hpp"
-#include "Game/NPC/RosettaDemoEpilogue.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -11,17 +11,11 @@ namespace NrvRosettaDemoEpilogue {
     NEW_NERVE(RosettaDemoEpilogueNrvDemo, RosettaDemoEpilogue, Demo);
 };  // namespace NrvRosettaDemoEpilogue
 
-RosettaDemoEpilogue::RosettaDemoEpilogue(Rosetta* pRosetta, const JMapInfoIter& rIter) :
-    NerveExecutor("ロゼッタデモ実行者"),
-    mRosetta(pRosetta),
-    mIsFadeOut(false)
-{
+RosettaDemoEpilogue::RosettaDemoEpilogue(Rosetta* pRosetta, const JMapInfoIter& rIter)
+    : NerveExecutor("ロゼッタデモ実行者"), mRosetta(pRosetta), mIsFadeOut(false) {
     DemoFunction::tryCreateDemoTalkAnimCtrlForScene(pRosetta, rIter, "DemoEpilogueB", nullptr, 0, 0);
     DemoFunction::registerDemoTalkMessageCtrl(mRosetta, mRosetta->mMsgCtrl);
-    MR::registerDemoActionFunctor(
-        mRosetta,
-        MR::Functor_Inline(this, &RosettaDemoEpilogue::startDemo),
-        "エピローグ[開始]");
+    MR::registerDemoActionFunctor(mRosetta, MR::Functor_Inline(this, &RosettaDemoEpilogue::startDemo), "エピローグ[開始]");
     mRosetta->mLodCtrl->invalidate();
     initNerve(&NrvRosettaDemoEpilogue::RosettaDemoEpilogueNrvDemo::sInstance);
 }

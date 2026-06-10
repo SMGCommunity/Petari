@@ -8,7 +8,7 @@ class TrampleStar : public LiveActor {
 public:
     class Surface {
     public:
-        Surface(){};
+        Surface() {};
 
         void set(u16 vtx1, u16 vtx2, u16 vtx3) {
             mVtxs[0] = vtx1;

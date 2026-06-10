@@ -68,13 +68,25 @@ public:
     void animationTransform();
     void updateTransform(const J2DAnmTransform*);
 
-    f32 getHeight() const { return mBounds.getHeight(); }
-    f32 getWidth() const { return mBounds.getWidth(); }
-    JSUTree< J2DPane >* getFirstChild() { return mPaneTree.getFirstChild(); }
-    JSUTree< J2DPane >* getEndChild() { return mPaneTree.getEndChild(); }
-    const JSUTree< J2DPane >* getPaneTree() { return &mPaneTree; }
+    f32 getHeight() const {
+        return mBounds.getHeight();
+    }
+    f32 getWidth() const {
+        return mBounds.getWidth();
+    }
+    JSUTree< J2DPane >* getFirstChild() {
+        return mPaneTree.getFirstChild();
+    }
+    JSUTree< J2DPane >* getEndChild() {
+        return mPaneTree.getEndChild();
+    }
+    const JSUTree< J2DPane >* getPaneTree() {
+        return &mPaneTree;
+    }
 
-    bool isVisible() const { return mVisible; }
+    bool isVisible() const {
+        return mVisible;
+    }
 
     static JGeometry::TBox2< f32 > static_mBounds;
 

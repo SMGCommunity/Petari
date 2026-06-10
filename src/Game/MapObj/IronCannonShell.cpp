@@ -10,13 +10,13 @@ namespace {
 namespace NrvIronCannonLauncherPoint {
     NEW_NERVE(IronCannonLauncherPointNrvWait, IronCannonLauncherPoint, Wait);
     NEW_NERVE(IronCannonLauncherPointNrvShot, IronCannonLauncherPoint, Shot);
-};  // namespace NrvKoopaJrShipCannonShell
+};  // namespace NrvIronCannonLauncherPoint
 
 namespace NrvIronCannonLauncher {
     NEW_NERVE(IronCannonLauncherNrvRelax, IronCannonLauncher, Relax);
     NEW_NERVE(IronCannonLauncherNrvWait, IronCannonLauncher, Wait);
     NEW_NERVE(IronCannonLauncherNrvShot, IronCannonLauncher, Shot);
-};  // namespace NrvKoopaJrShipCannonShell
+};  // namespace NrvIronCannonLauncher
 
 IronCannonShell::IronCannonShell(const char* pName) : KoopaJrShipCannonShell(pName) {
 }
@@ -102,7 +102,7 @@ bool IronCannonLauncherPoint::tryShotBullet(f32 offset) {
     return true;
 }
 
-IronCannonLauncher::IronCannonLauncher(const char* pName) : IronCannonLauncherPoint(pName), mEffectMtx(0.0f, 0.0f, 0.0f){
+IronCannonLauncher::IronCannonLauncher(const char* pName) : IronCannonLauncherPoint(pName), mEffectMtx(0.0f, 0.0f, 0.0f) {
 }
 
 // weird function ordering bro
@@ -144,9 +144,11 @@ void IronCannonLauncher::initModelAndConnectToScene() {
     MR::connectToSceneMapObj(this);
 }
 
-IronCannonShell::~IronCannonShell() {}
+IronCannonShell::~IronCannonShell() {
+}
 
-IronCannonLauncher::~IronCannonLauncher() {}
+IronCannonLauncher::~IronCannonLauncher() {
+}
 
 s32 IronCannonShell::getLifeTime() const {
     return sDefaultShotInterval;

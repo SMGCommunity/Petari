@@ -37,7 +37,8 @@ namespace {
     }
 };  // namespace
 
-TripodBossKillerGeneraterCircle::~TripodBossKillerGeneraterCircle() {}
+TripodBossKillerGeneraterCircle::~TripodBossKillerGeneraterCircle() {
+}
 
 TripodBossKillerGeneraterCircle::TripodBossKillerGeneraterCircle(const char* pName) : NameObj(pName) {
     mGenerators = nullptr;

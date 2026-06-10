@@ -5,7 +5,6 @@
 #include "Game/Screen/StarPointerTarget.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 
-
 LayoutActor::LayoutActor(const char* pName, bool)
     : NameObj(pName), mManager(nullptr), mSpine(nullptr), mPaneEffectKeeper(nullptr), mStarPointerTargetKeeper(nullptr) {
 }

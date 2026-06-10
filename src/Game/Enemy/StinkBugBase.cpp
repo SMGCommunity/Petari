@@ -16,7 +16,8 @@
 #include "JSystem/JMath/JMath.hpp"
 
 StinkBugBase::StinkBugBase(const char* pName)
-    : LiveActor(pName), _8C(0.0f, 0.0f, 1.0f), _98(0.0f, 0.0f, 0.0f), _A4(0.0f, 0.0f, 1.0f), _B0(180.0f), mRadius(1000.0f), _B8(false) {}
+    : LiveActor(pName), _8C(0.0f, 0.0f, 1.0f), _98(0.0f, 0.0f, 0.0f), _A4(0.0f, 0.0f, 1.0f), _B0(180.0f), mRadius(1000.0f), _B8(false) {
+}
 
 void StinkBugBase::setDashVelocity(f32 velocity) {
     TVec3f result;
@@ -94,7 +95,7 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
         return true;
     }
 
-    f32 f1 = __fabsf(JMath::sSinCosTable.sinLapRad(_B0));
+    f32 f1 = __fabsf(MR::sin(_B0));
 
     TVec3f scaledAdded;
     // r3 and r4's assembly are in the wrong order

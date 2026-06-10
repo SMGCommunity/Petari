@@ -10,7 +10,7 @@ public:
     virtual void startClipped();
     virtual void updateHitSensor(HitSensor*);
     virtual void attackSensor(HitSensor*, HitSensor*);
-    
+
     void exeWait();
     void exeWaitSwitch();
     void exeSign();

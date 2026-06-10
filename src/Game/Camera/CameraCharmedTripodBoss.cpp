@@ -89,7 +89,8 @@ void CameraCharmedTripodBoss::setParam(s32 a1, TVec3f a2, const TVec3f& a3, cons
     _4C = a1;
 }
 
-CameraCharmedTripodBoss::~CameraCharmedTripodBoss() {}
+CameraCharmedTripodBoss::~CameraCharmedTripodBoss() {
+}
 
 CamTranslatorBase* CameraCharmedTripodBoss::createTranslator() {
     return new CamTranslatorCharmedTripodBoss(this);

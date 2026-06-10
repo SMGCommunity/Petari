@@ -161,4 +161,5 @@ void FlameGun::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-FlameGun::~FlameGun() {}
+FlameGun::~FlameGun() {
+}

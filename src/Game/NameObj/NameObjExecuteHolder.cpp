@@ -1,16 +1,19 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 namespace {
-    NameObjExecuteHolder* getNameObjExecuteHolder() { return MR::getSceneObj< NameObjExecuteHolder >(SceneObj_NameObjExecuteHolder); }
+    NameObjExecuteHolder* getNameObjExecuteHolder() {
+        return MR::getSceneObj< NameObjExecuteHolder >(SceneObj_NameObjExecuteHolder);
+    }
 };  // namespace
 
 NameObjExecuteInfo::NameObjExecuteInfo()
-    : mExecutedObj(nullptr), _4(0), _5(0), mMovementType(-1), mCalcAnimType(-1), mDrawType(-1), mDrawBufferType(-1), _A(-1) {}
+    : mExecutedObj(nullptr), _4(0), _5(0), mMovementType(-1), mCalcAnimType(-1), mDrawType(-1), mDrawBufferType(-1), _A(-1) {
+}
 
 void NameObjExecuteInfo::setConnectInfo(NameObj* pObj, int movementType, int calcAnimType, int drawBufferType, int drawType) {
     _4 = 2;
@@ -354,33 +357,61 @@ namespace MR {
         getNameObjExecuteHolder()->registerActor(pObj, movementType, calcAnimType, drawBufferType, drawType);
     }
 
-    void initConnectting() { getNameObjExecuteHolder()->initConnectting(); }
+    void initConnectting() {
+        getNameObjExecuteHolder()->initConnectting();
+    }
 
-    void connectToSceneTemporarily(NameObj* pObj) { getNameObjExecuteHolder()->connectToScene(pObj); }
+    void connectToSceneTemporarily(NameObj* pObj) {
+        getNameObjExecuteHolder()->connectToScene(pObj);
+    }
 
-    void disconnectToSceneTemporarily(NameObj* pObj) { getNameObjExecuteHolder()->disconnectToScene(pObj); }
+    void disconnectToSceneTemporarily(NameObj* pObj) {
+        getNameObjExecuteHolder()->disconnectToScene(pObj);
+    }
 
-    void connectToDrawTemporarily(NameObj* pObj) { getNameObjExecuteHolder()->connectToDraw(pObj); }
+    void connectToDrawTemporarily(NameObj* pObj) {
+        getNameObjExecuteHolder()->connectToDraw(pObj);
+    }
 
-    void disconnectToDrawTemporarily(NameObj* pObj) { getNameObjExecuteHolder()->disconnectToDraw(pObj); }
+    void disconnectToDrawTemporarily(NameObj* pObj) {
+        getNameObjExecuteHolder()->disconnectToDraw(pObj);
+    }
 
-    bool isConnectToDrawTemporarily(const NameObj* pObj) { return getNameObjExecuteHolder()->isConnectToDraw(pObj); }
+    bool isConnectToDrawTemporarily(const NameObj* pObj) {
+        return getNameObjExecuteHolder()->isConnectToDraw(pObj);
+    }
 
-    void executeRequirementConnectMovement() { getNameObjExecuteHolder()->executeRequirementConnectMovement(); }
+    void executeRequirementConnectMovement() {
+        getNameObjExecuteHolder()->executeRequirementConnectMovement();
+    }
 
-    void executeRequirementDisconnectMovement() { getNameObjExecuteHolder()->executeRequirementDisconnectMovement(); }
+    void executeRequirementDisconnectMovement() {
+        getNameObjExecuteHolder()->executeRequirementDisconnectMovement();
+    }
 
-    void executeRequirementConnectDraw() { getNameObjExecuteHolder()->executeRequirementConnectDraw(); }
+    void executeRequirementConnectDraw() {
+        getNameObjExecuteHolder()->executeRequirementConnectDraw();
+    }
 
-    void executeRequirementDisconnectDraw() { getNameObjExecuteHolder()->executeRequirementDisconnectDraw(); }
+    void executeRequirementDisconnectDraw() {
+        getNameObjExecuteHolder()->executeRequirementDisconnectDraw();
+    }
 
-    void executeRequirementDisconnectDrawDelay() { getNameObjExecuteHolder()->executeRequirementDisconnectDrawDelay(); }
+    void executeRequirementDisconnectDrawDelay() {
+        getNameObjExecuteHolder()->executeRequirementDisconnectDrawDelay();
+    }
 
-    void requestMovementOnWithCategory(int category) { getNameObjExecuteHolder()->requestMovementOn(category); }
+    void requestMovementOnWithCategory(int category) {
+        getNameObjExecuteHolder()->requestMovementOn(category);
+    }
 
-    void requestMovementOffWithCategory(int category) { getNameObjExecuteHolder()->requestMovementOff(category); }
+    void requestMovementOffWithCategory(int category) {
+        getNameObjExecuteHolder()->requestMovementOff(category);
+    }
 
-    void findActorLightInfo(const LiveActor* pActor) { getNameObjExecuteHolder()->getConnectToSceneInfo(pActor)->findLightInfo(); }
+    void findActorLightInfo(const LiveActor* pActor) {
+        getNameObjExecuteHolder()->getConnectToSceneInfo(pActor)->findLightInfo();
+    }
 };  // namespace MR
 
 NameObjExecuteHolder::NameObjExecuteHolder(int size)

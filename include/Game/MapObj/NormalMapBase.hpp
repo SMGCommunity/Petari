@@ -5,6 +5,8 @@
 #include "JSystem/JUtility/JUTTexture.hpp"
 #include "revolution/gx/GXEnum.h"
 
+class BtkPlayer;
+
 class NormalMapBase : public LiveActor {
 public:
     NormalMapBase(const char*);

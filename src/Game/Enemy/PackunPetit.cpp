@@ -24,7 +24,8 @@ namespace NrvPackunPetit {
 };  // namespace NrvPackunPetit
 
 PackunPetit::PackunPetit(const char* pName)
-    : LiveActor(pName), mScaleController(nullptr), mStarPointerState(nullptr), _94(0.0f, 0.0f, 1.0f), mBlownModel(nullptr), mDontTurn(false) {}
+    : LiveActor(pName), mScaleController(nullptr), mStarPointerState(nullptr), _94(0.0f, 0.0f, 1.0f), mBlownModel(nullptr), mDontTurn(false) {
+}
 
 void PackunPetit::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -509,4 +510,5 @@ bool PackunPetit::tryDPDSwoon() {
     return true;
 }
 
-PackunPetit::~PackunPetit() {}
+PackunPetit::~PackunPetit() {
+}

@@ -31,7 +31,8 @@ namespace NrvAstroDomeCameraController {
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirmCancel, AstroDomeCameraController, GalaxyConfirmCancel);
 };  // namespace NrvAstroDomeCameraController
 
-AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), _8C(gZeroVec), _104(0.0f), _108(gZeroVec) {}
+AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), _8C(gZeroVec), _104(0.0f), _108(gZeroVec) {
+}
 
 void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);

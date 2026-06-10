@@ -5,7 +5,8 @@
 
 class DivideMercatorRailPosInfo {
 public:
-    inline DivideMercatorRailPosInfo() {}
+    inline DivideMercatorRailPosInfo() {
+    }
 
     virtual void setPosition(s32, const TVec3f&) = 0;
 };

@@ -38,7 +38,8 @@ namespace nw4r {
 
         MEMAllocator* Layout::mspAllocator = nullptr;
 
-        Layout::Layout() : mpRootPane(nullptr), mpGroupContainer(nullptr), mLayoutSize(0.0f, 0.0f), _20(0) {}
+        Layout::Layout() : mpRootPane(nullptr), mpGroupContainer(nullptr), mLayoutSize(0.0f, 0.0f), _20(0) {
+        }
 
         Layout::~Layout() {
             DeleteObj(mpGroupContainer);

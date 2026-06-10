@@ -27,7 +27,8 @@ namespace NrvFireBall {
     NEW_NERVE(FireBallNrvReflect, FireBall, Reflect);
 };  // namespace NrvFireBall
 
-FireBall::FireBall(const char* pName) : LiveActor(pName), _8C(nullptr), _90(0.0f, 1.0f, 0.0f) {}
+FireBall::FireBall(const char* pName) : LiveActor(pName), _8C(nullptr), _90(0.0f, 1.0f, 0.0f) {
+}
 
 void FireBall::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("FireBall", nullptr, false);

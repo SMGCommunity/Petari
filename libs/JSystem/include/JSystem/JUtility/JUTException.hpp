@@ -42,7 +42,9 @@ public:
 
     class JUTExMapFile {
     public:
-        JUTExMapFile(char* path) : mLink(this) { mPath = path; }
+        JUTExMapFile(char* path) : mLink(this) {
+            mPath = path;
+        }
 
     public:
         /* 0x00 */ char* mPath;
@@ -82,19 +84,31 @@ public:
     static void createConsole(void*, u32);
     static void waitTime(s32);
 
-    static JUTException* getManager() { return sErrorManager; }
-    static JUTConsole* getConsole() NO_INLINE { return sConsole; }
+    static JUTException* getManager() {
+        return sErrorManager;
+    }
+    static JUTConsole* getConsole() NO_INLINE {
+        return sConsole;
+    }
 
-    JUTExternalFB* getFrameMemory() const { return mFrameMemory; }
+    JUTExternalFB* getFrameMemory() const {
+        return mFrameMemory;
+    }
 
-    void setTraceSuppress(u32 param_0) { mTraceSuppress = param_0; }
+    void setTraceSuppress(u32 param_0) {
+        mTraceSuppress = param_0;
+    }
     void setGamePad(JUTGamePad* gamePad) {
         mGamePad = gamePad;
         mGamePadPort = JUTGamePad::Port_Unknown;
     }
 
-    static void setMapFile(const char* map) { appendMapFile(map); }
-    static void panic(const char* file, int line, const char* msg) { panic_f(file, line, "%s", msg); }
+    static void setMapFile(const char* map) {
+        appendMapFile(map);
+    }
+    static void panic(const char* file, int line, const char* msg) {
+        panic_f(file, line, "%s", msg);
+    }
 
     static OSMessageQueue sMessageQueue;
     static const char* sCpuExpName[17];
@@ -126,6 +140,10 @@ public:
  *
  */
 struct JUTWarn {
-    JUTWarn& operator<<(const char*) { return *this; }
-    JUTWarn& operator<<(s32) { return *this; }
+    JUTWarn& operator<<(const char*) {
+        return *this;
+    }
+    JUTWarn& operator<<(s32) {
+        return *this;
+    }
 };

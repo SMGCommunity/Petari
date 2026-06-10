@@ -1,5 +1,6 @@
 #include "Game/MapObj/MapPartsAppearController.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/StageSwitch.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/PostureHolder.hpp"
 

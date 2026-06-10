@@ -31,9 +31,11 @@ CameraManEvent::CameraManEvent(CameraHolder* pHolder, CameraParamChunkHolder* pC
     }
 }
 
-CameraManEvent::~CameraManEvent() {}
+CameraManEvent::~CameraManEvent() {
+}
 
-void CameraManEvent::init(const JMapInfoIter& rIter) {}
+void CameraManEvent::init(const JMapInfoIter& rIter) {
+}
 
 void CameraManEvent::calc() {
     updateChunkFIFO();

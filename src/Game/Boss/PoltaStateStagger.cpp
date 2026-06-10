@@ -59,4 +59,5 @@ bool PoltaStateStagger::isEnableSensor() const {
     return isNerve(&NrvPoltaStateStagger::PoltaStateStaggerNrvWait::sInstance);
 }
 
-PoltaStateStagger::~PoltaStateStagger() {}
+PoltaStateStagger::~PoltaStateStagger() {
+}

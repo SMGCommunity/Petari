@@ -479,7 +479,7 @@ f32 CameraDirector::getDefaultFovy() const {
 
 void CameraDirector::startStartAnimCamera() {
     if (mStartCameraCreated) {
-        ActorCameraInfo info = ActorCameraInfo(-1, 0);
+        ActorCameraInfo info = ActorCameraInfo();
         CameraTargetArg targetArg = CALL_INLINE_FUNC(CameraTargetArg, mTargetMatrix);
 
         MR::startEventCamera(&info, sStartAnimCameraName, targetArg, 0);
@@ -503,7 +503,7 @@ u32 CameraDirector::getStartAnimCameraFrame() const {
 }
 
 void CameraDirector::endStartAnimCamera() {
-    ActorCameraInfo info = ActorCameraInfo(-1, 0);
+    ActorCameraInfo info = ActorCameraInfo();
     MR::endEventCamera(&info, sStartAnimCameraName, true, 0);
 }
 
@@ -697,7 +697,7 @@ void CameraDirector::createStartAnimCamera() {
     MR::getCurrentScenarioStartAnimCameraData(&data, &size);
 
     if (size > 0) {
-        ActorCameraInfo info = ActorCameraInfo(-1, 0);
+        ActorCameraInfo info = ActorCameraInfo();
         MR::declareEventCameraAnim(&info, sStartAnimCameraName, data);
         mStartCameraCreated = true;
     }

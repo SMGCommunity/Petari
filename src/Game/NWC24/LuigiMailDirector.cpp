@@ -14,7 +14,8 @@ namespace {
 };  // namespace
 
 LuigiMailDirector::LuigiMailDirector()
-    : mLostMessageLength(0), mLostMessage(nullptr), mFoundMessageLength(0), mFoundMessage(nullptr), mLostMessageNum(0), mFoundMessageNum(0) {}
+    : mLostMessageLength(0), mLostMessage(nullptr), mFoundMessageLength(0), mFoundMessage(nullptr), mLostMessageNum(0), mFoundMessageNum(0) {
+}
 
 void LuigiMailDirector::initAfterResourceLoaded() {
     u32 lostMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(cLostMessageID)) + FileSelectFunc::getMiiNameBufferSize();

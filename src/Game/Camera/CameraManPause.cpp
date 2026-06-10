@@ -18,9 +18,11 @@ CameraManPause::CameraManPause(const char* pName) : CameraMan(pName) {
     CameraLocalUtil::setFovy(this, 45.0f);
 }
 
-CameraManPause::~CameraManPause() {}
+CameraManPause::~CameraManPause() {
+}
 
-void CameraManPause::init(const JMapInfoIter& rIter) {}
+void CameraManPause::init(const JMapInfoIter& rIter) {
+}
 
 /*void CameraManPause::calc() {
 
@@ -40,7 +42,8 @@ void CameraManPause::init(const JMapInfoIter& rIter) {}
     }
 }*/
 
-void CameraManPause::notifyDeactivate() {}
+void CameraManPause::notifyDeactivate() {
+}
 
 bool CameraManPause::isCollisionOff() const {
     return true;

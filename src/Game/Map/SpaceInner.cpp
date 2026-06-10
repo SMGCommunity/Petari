@@ -6,7 +6,8 @@ namespace NrvSpaceInner {
     NEW_NERVE(HostTypeDisappear, SpaceInner, Disappear);
 };  // namespace NrvSpaceInner
 
-SpaceInner::SpaceInner(const char* pName) : LiveActor(pName) {}
+SpaceInner::SpaceInner(const char* pName) : LiveActor(pName) {
+}
 
 void SpaceInner::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -26,7 +27,8 @@ void SpaceInner::calcAnim() {
     LiveActor::calcAnim();
 }
 
-void SpaceInner::exeAppear() {}
+void SpaceInner::exeAppear() {
+}
 
 void SpaceInner::exeDisappear() {
     if (MR::isBrkStopped(this)) {
@@ -53,4 +55,5 @@ bool SpaceInner::isAppeared() const {
     return false;
 }
 
-SpaceInner::~SpaceInner() {}
+SpaceInner::~SpaceInner() {
+}

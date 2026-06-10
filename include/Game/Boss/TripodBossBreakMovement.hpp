@@ -14,7 +14,8 @@ public:
     void setBreakDownLevel(s32);
     void exeStartBreak();
     void exeBreak();
-    void exeWait() {}
+    void exeWait() {
+    }
 
     TPos3f _8C;
     SpringValue* mSpring;  // 0xBC

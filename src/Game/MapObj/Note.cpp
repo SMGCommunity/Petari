@@ -139,6 +139,8 @@ void NoteGroup::movement() {
 }
 */
 
-Note::~Note() {}
+Note::~Note() {
+}
 
-NoteGroup::~NoteGroup() {}
+NoteGroup::~NoteGroup() {
+}

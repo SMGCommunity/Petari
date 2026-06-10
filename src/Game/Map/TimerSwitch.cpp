@@ -30,4 +30,5 @@ void TimerSwitch::control() {
     }
 }
 
-TimerSwitch::~TimerSwitch() {}
+TimerSwitch::~TimerSwitch() {
+}

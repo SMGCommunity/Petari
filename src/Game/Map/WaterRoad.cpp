@@ -1,7 +1,8 @@
 #include "Game/Map/WaterRoad.hpp"
 #include "Game/Util.hpp"
 
-WaterRoadModelInfo::WaterRoadModelInfo(WaterRoad* road, bool b) : mIsLow(b), _4(0), _8(0), _C(0x0C), _10(0), _14(0), _18(0), mDispListLength(0), mDispList(nullptr) {
+WaterRoadModelInfo::WaterRoadModelInfo(WaterRoad* road, bool b)
+    : mIsLow(b), _4(0), _8(0), _C(0x0C), _10(0), _14(0), _18(0), mDispListLength(0), mDispList(nullptr) {
     initPoints(road);
     initDisplayList();
 }

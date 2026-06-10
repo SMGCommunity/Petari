@@ -2,7 +2,6 @@
 
 #include "Game/Boss/BossStinkBugActionBase.hpp"
 
-
 class JMapInfoIter;
 class DemoPositionController;
 class BossStinkBugOpeningDemo : public BossStinkBugActionBase {

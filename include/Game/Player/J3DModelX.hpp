@@ -28,7 +28,9 @@ public:
     void directDraw(J3DModel*);
 
     struct Flags {
-        inline void clear() { *(u32*)this = 0; }
+        inline void clear() {
+            *(u32*)this = 0;
+        }
 
         unsigned _0 : 1;
         unsigned _1 : 1;

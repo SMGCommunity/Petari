@@ -1,7 +1,8 @@
 #include "Game/MapObj/DashRing.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 
-DashRing::~DashRing() {}
+DashRing::~DashRing() {
+}
 
 void DashRing::initCommon(const JMapInfoIter& rIter, const char* pName) {
     MR::initDefaultPos(this, rIter);

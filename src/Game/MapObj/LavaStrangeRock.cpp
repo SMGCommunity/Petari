@@ -5,7 +5,8 @@ namespace NrvLavaStrangeRock {
     NEW_NERVE(LavaStrangeRockNrvWait, LavaStrangeRock, Wait);
 };  // namespace NrvLavaStrangeRock
 
-LavaStrangeRock::LavaStrangeRock(const char* pName) : LiveActor(pName), mRockType(3), _90(0), mLodCtrlPlanet(nullptr) {}
+LavaStrangeRock::LavaStrangeRock(const char* pName) : LiveActor(pName), mRockType(3), _90(0), mLodCtrlPlanet(nullptr) {
+}
 
 void LavaStrangeRock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

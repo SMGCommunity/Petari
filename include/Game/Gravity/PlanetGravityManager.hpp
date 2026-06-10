@@ -12,7 +12,8 @@ public:
     /// @param pName The new name assigned to the object.
     PlanetGravityManager(const char* pName);
 
-    virtual ~PlanetGravityManager() {}
+    virtual ~PlanetGravityManager() {
+    }
 
     /// @brief Effectively does nothing.
     /// @param rIter Reference to the JMapInfoIter that supplies BCSV information.

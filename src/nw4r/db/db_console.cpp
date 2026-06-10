@@ -4,7 +4,8 @@
 namespace nw4r {
     namespace db {
         // does nothing
-        void Console_VFPrintf(ConsoleOutputType type, ConsoleHandle console, const char* format, va_list vlist) {}
+        void Console_VFPrintf(ConsoleOutputType type, ConsoleHandle console, const char* format, va_list vlist) {
+        }
 
         void Console_Printf(ConsoleHandle console, const char* format, ...) {
             va_list vlist;

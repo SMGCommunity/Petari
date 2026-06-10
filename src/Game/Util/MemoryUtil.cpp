@@ -1,7 +1,7 @@
 #include "Game/Util/MemoryUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/Util/MutexHolder.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <mem.h>
 

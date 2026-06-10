@@ -35,7 +35,8 @@ namespace NrvLotusLeaf {
     NEW_NERVE(HostTypeWaitPlayerOn, LotusLeaf, WaitPlayerOn);
 };  // namespace NrvLotusLeaf
 
-LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(0.0f), mShakePeriod(0.0f) {}
+LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(0.0f), mShakePeriod(0.0f) {
+}
 
 void LotusLeaf::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -87,7 +88,7 @@ void LotusLeaf::exeShake() {
     }
 
     f32 f1 = TWO_PI / mShakePeriod;
-    f32 vel = -mShakeSpeed * JMath::sSinCosTable.cosLapRad(getNerveStep() * f1);
+    f32 vel = -mShakeSpeed * MR::cos(getNerveStep() * f1);
     mShakePeriod += sShakePeriodSlowPitch;
     mShakeSpeed *= sShakeSpeedAtten;
 

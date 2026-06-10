@@ -13,8 +13,7 @@ public:
 
     ~BossStinkBugActionBase();
 
-
-    virtual bool isValidFollowId(s32 id) const{
+    virtual bool isValidFollowId(s32 id) const {
         return false;
     };
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver) {};

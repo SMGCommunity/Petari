@@ -1,5 +1,6 @@
 #include "Game/MapObj/SnowFloorTile.hpp"
 
-SnowFloorTile::SnowFloorTile(const char* pName) : LiveActor(pName) {}
-SnowFloorTile::~SnowFloorTile() {}
-
+SnowFloorTile::SnowFloorTile(const char* pName) : LiveActor(pName) {
+}
+SnowFloorTile::~SnowFloorTile() {
+}

@@ -394,6 +394,8 @@ bool FlipPanelObserver::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
     return false;
 }
 
-FlipPanel::~FlipPanel() {}
+FlipPanel::~FlipPanel() {
+}
 
-FlipPanelObserver::~FlipPanelObserver() {}
+FlipPanelObserver::~FlipPanelObserver() {
+}

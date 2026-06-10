@@ -30,7 +30,8 @@ namespace {
 
 PlayerActionGuidance::PlayerActionGuidance()
     : LayoutActor("プレイヤーアクションガイダンス", true), mSpinLayout(nullptr), mTamakoroLayout(nullptr), mCurrentLayout(nullptr), mGuidanceState(3),
-      mGuidancePrevState(3), _34(false), _35(false), _36(false), _37(false) {}
+      mGuidancePrevState(3), _34(false), _35(false), _36(false), _37(false) {
+}
 
 void PlayerActionGuidance::control() {
     mGuidancePrevState = mGuidanceState;

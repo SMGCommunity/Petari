@@ -181,7 +181,8 @@ void DinoPackunDemo::exeAngryDemo() {
     if (getHost()->mSequence->getVsCount() == 1) {
         MR::startLevelSound(getHost(), "SE_BM_LV_D_PAKKUN_ANGRY");
         if (MR::isStep(this, ::sAngryLv1BlurStart)) {
-            MR::startCenterScreenBlur(::sAngryLv1BlurTime, ::sAngryLv1BlurOffset, ::sAngryLv1BlurAlpha, ::sAngryLv1BlurFadeIn, ::sAngryLv1BlurFadeOut);
+            MR::startCenterScreenBlur(::sAngryLv1BlurTime, ::sAngryLv1BlurOffset, ::sAngryLv1BlurAlpha, ::sAngryLv1BlurFadeIn,
+                                      ::sAngryLv1BlurFadeOut);
         }
     }
     if (getHost()->mSequence->getVsCount() == 2) {
@@ -190,7 +191,8 @@ void DinoPackunDemo::exeAngryDemo() {
         }
 
         if (MR::isStep(this, ::sAngryLv2BlurStart)) {
-            MR::startCenterScreenBlur(::sAngryLv2BlurTime, ::sAngryLv1BlurOffset, ::sAngryLv2BlurAlpha, ::sAngryLv1BlurFadeIn, ::sAngryLv1BlurFadeOut);
+            MR::startCenterScreenBlur(::sAngryLv2BlurTime, ::sAngryLv1BlurOffset, ::sAngryLv2BlurAlpha, ::sAngryLv1BlurFadeIn,
+                                      ::sAngryLv1BlurFadeOut);
         }
     }
 

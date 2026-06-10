@@ -7,7 +7,6 @@
 #include "Game/Screen/StarPointerDirector.hpp"
 #include "Game/Screen/StarPointerLayout.hpp"
 #include "Game/Screen/StarPointerTarget.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSequenceDirector.hpp"
 #include "Game/System/GameSequenceProgress.hpp"
 #include "Game/System/GameSystem.hpp"
@@ -20,6 +19,7 @@
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 #include <revolution/wpad.h>
 

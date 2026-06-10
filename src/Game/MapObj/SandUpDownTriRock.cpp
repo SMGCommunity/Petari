@@ -3,7 +3,6 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include <cstdio>
 
-
 namespace NrvSandUpDownTriRock {
     NEW_NERVE(SandUpDownTriRockNrvWait, SandUpDownTriRock, Wait);
     NEW_NERVE(SandUpDownTriRockNrvDown, SandUpDownTriRock, Down);
@@ -42,7 +41,8 @@ void SandUpDownTriRock::init(const JMapInfoIter& rIter) {
     }
 }
 
-void SandUpDownTriRock::exeWait() {}
+void SandUpDownTriRock::exeWait() {
+}
 
 void SandUpDownTriRock::exeDown() {
     if (MR::isFirstStep(this)) {
@@ -75,7 +75,8 @@ void SandUpDownTriRock::exeUp() {
     }
 }
 
-void SandUpDownTriRock::exeStop() {}
+void SandUpDownTriRock::exeStop() {
+}
 
 bool SandUpDownTriRock::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStartPowerStarGet(msg)) {

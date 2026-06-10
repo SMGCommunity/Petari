@@ -27,7 +27,8 @@ namespace {
 
 PlantStalk::PlantStalk()
     : LiveActor("茎"), mNumPlantPoints(0), mPlantPoints(nullptr), mRailInfo(nullptr), mStalkLength(0.0f), mGrowthPercent(0.0f),
-      mGrowthRate(MR::getRandom(15.0f, 100.0f)), mGrowthTimer(MR::getRandom(static_cast< s32 >(5), static_cast< s32 >(30))), mGrownPlantPoints(0) {}
+      mGrowthRate(MR::getRandom(15.0f, 100.0f)), mGrowthTimer(MR::getRandom(static_cast< s32 >(5), static_cast< s32 >(30))), mGrownPlantPoints(0) {
+}
 
 void PlantStalk::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, -1, -1, -1, 4);

@@ -4,7 +4,7 @@
 
 class JASCriticalSection {
 public:
-    JASCriticalSection() : mInterruptState(OSDisableInterrupts()){};
+    JASCriticalSection() : mInterruptState(OSDisableInterrupts()) {};
     ~JASCriticalSection() {
         OSRestoreInterrupts(mInterruptState);
     }

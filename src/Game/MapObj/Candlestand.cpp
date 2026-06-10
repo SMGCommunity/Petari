@@ -22,31 +22,31 @@ struct Param {
 
 namespace {
     static const Param sParams[] = {{
-                                  "PhantomCandlestand",
-                                  500.0f,  // mClippingRadius
-                                  50.0f,   // mSensorRange
-                                  220.0f,  // 0xC
-                                  0.0f,    // 0x14
-                                  false    // mCanUseSwitch
-                              },
-                              {
-                                  "TeresaMansionCandlestand",
-                                  800.0f,  // mClippingRadius
-                                  70.0f,   // mSensorRange
-                                  300.0f,  // 0xC
-                                  220.0f,  // 0x10
-                                  -5.0f,   // 0x14
-                                  false    // mCanUseSwitch
-                              },
-                              {
-                                  "CandlestandIceVolcano",
-                                  500.0f,  // mClippingRadius
-                                  150.0f,  // mSensorRange
-                                  220.0f,  // 0xC
-                                  0.0f,    // 0x10
-                                  0.0f,    // 0x14
-                                  true     // mCanUseSwitch
-                              }};
+                                        "PhantomCandlestand",
+                                        500.0f,  // mClippingRadius
+                                        50.0f,   // mSensorRange
+                                        220.0f,  // 0xC
+                                        0.0f,    // 0x14
+                                        false    // mCanUseSwitch
+                                    },
+                                    {
+                                        "TeresaMansionCandlestand",
+                                        800.0f,  // mClippingRadius
+                                        70.0f,   // mSensorRange
+                                        300.0f,  // 0xC
+                                        220.0f,  // 0x10
+                                        -5.0f,   // 0x14
+                                        false    // mCanUseSwitch
+                                    },
+                                    {
+                                        "CandlestandIceVolcano",
+                                        500.0f,  // mClippingRadius
+                                        150.0f,  // mSensorRange
+                                        220.0f,  // 0xC
+                                        0.0f,    // 0x10
+                                        0.0f,    // 0x14
+                                        true     // mCanUseSwitch
+                                    }};
 
     const Param* getParam(const char* pObjName) NO_INLINE {
         for (u32 i = 0; i < ARRAY_SIZE(sParams); i++) {
@@ -231,7 +231,8 @@ void Candlestand::emitEffectExtinguishFire() {
 
 // appearItem
 
-void Candlestand::exeWaitFire() {}
+void Candlestand::exeWaitFire() {
+}
 
 void Candlestand::exeFire() {
     if (MR::isFirstStep(this)) {
@@ -302,4 +303,5 @@ void Candlestand::exeBurn() {
     MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
 }
 
-Candlestand::~Candlestand() {}
+Candlestand::~Candlestand() {
+}

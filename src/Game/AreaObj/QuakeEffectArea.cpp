@@ -7,4 +7,5 @@ QuakeEffectArea::QuakeEffectArea(int formType, const char* pName) : AreaObj(form
     }
 }
 
-QuakeEffectArea::~QuakeEffectArea() {}
+QuakeEffectArea::~QuakeEffectArea() {
+}

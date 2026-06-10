@@ -2,7 +2,8 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioStun.hpp"
 
-MarioStun::MarioStun(MarioActor* pActor) : MarioState(pActor, 0xe), _12(0), _14(0) {}
+MarioStun::MarioStun(MarioActor* pActor) : MarioState(pActor, 0xe), _12(0), _14(0) {
+}
 
 bool MarioStun::close() {
     stopAnimation("しびれ", static_cast< const char* >(nullptr));  // "hesitation"

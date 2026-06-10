@@ -7,10 +7,12 @@ namespace nw4r {
         template < typename CharType >
         TextWriterBase< CharType >::TextWriterBase()
             : CharWriter(), mWidthLimit(nw4r::math::F_MAX), mCharSpace(0), mLineSpace(0), mTabWidth(4), mDrawFlag(DEFAULT_DRAWFLAG),
-              mTagProcessor(&mDefaultTagProcessor) {}
+              mTagProcessor(&mDefaultTagProcessor) {
+        }
 
         template < typename CharType >
-        TextWriterBase< CharType >::~TextWriterBase() {}
+        TextWriterBase< CharType >::~TextWriterBase() {
+        }
 
         template < typename CharType >
         f32 TextWriterBase< CharType >::GetLineHeight() const {

@@ -581,7 +581,7 @@ bool SkeletalFishGuard::isPlayerInAttackRange() const {
     }
 
     MR::normalize(&v7);
-    f32 lap = JMath::sSinCosTable.cosLap(180.0f);
+    f32 lap = MR::cosDegree(180.0f);
     f32 dot = v7.dot(_D0);
     if (dot < lap) {
         return false;

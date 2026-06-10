@@ -1,8 +1,8 @@
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/Scene/GameScene.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 namespace {
     GameScene* getGameScene() NO_INLINE {

@@ -27,16 +27,26 @@ public:
     void delXfb(int);
     void initiate(void*, void*, void*, JUTXfb::EXfbNumber);
 
-    s16 getDisplayingXfbIndex() const NO_INLINE { return mDisplayingXfbIndex; }
+    s16 getDisplayingXfbIndex() const NO_INLINE {
+        return mDisplayingXfbIndex;
+    }
 
-    static JUTXfb* getManager() NO_INLINE { return sManager; }
+    static JUTXfb* getManager() NO_INLINE {
+        return sManager;
+    }
 
     static JUTXfb* createManager(void*, void*, void*);
     static void destroyManager();
 
-    s32 getBufferNum() const { return mBufferNum; }
-    s16 getDrawnXfbIndex() const { return mDrawnXfbIndex; }
-    s32 getSDrawingFlag() const { return mSDrawingFlag; }
+    s32 getBufferNum() const {
+        return mBufferNum;
+    }
+    s16 getDrawnXfbIndex() const {
+        return mDrawnXfbIndex;
+    }
+    s32 getSDrawingFlag() const {
+        return mSDrawingFlag;
+    }
 
     void* getDrawnXfb() const {
         if (mDrawnXfbIndex >= 0)
@@ -50,10 +60,18 @@ public:
         return NULL;
     }
 
-    void setDisplayingXfbIndex(s16 index) { mDisplayingXfbIndex = index; }
-    void setSDrawingFlag(s32 flag) { mSDrawingFlag = flag; }
-    void setDrawnXfbIndex(s16 index) { mDrawnXfbIndex = index; }
-    void setDrawingXfbIndex(s16 index) { mDrawingXfbIndex = index; }
+    void setDisplayingXfbIndex(s16 index) {
+        mDisplayingXfbIndex = index;
+    }
+    void setSDrawingFlag(s32 flag) {
+        mSDrawingFlag = flag;
+    }
+    void setDrawnXfbIndex(s16 index) {
+        mDrawnXfbIndex = index;
+    }
+    void setDrawingXfbIndex(s16 index) {
+        mDrawingXfbIndex = index;
+    }
 
     void* mXfbs[3];
     bool mXfbAllocated[3];

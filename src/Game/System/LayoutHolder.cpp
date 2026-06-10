@@ -16,7 +16,8 @@ LayoutHolder::LayoutHolder(JKRArchive& rArchive) : nw4r::lyt::ResourceAccessor()
     initializeArc();
 }
 
-LayoutHolder::~LayoutHolder() {}
+LayoutHolder::~LayoutHolder() {
+}
 
 /*
 void LayoutHolder::initializeArc() {

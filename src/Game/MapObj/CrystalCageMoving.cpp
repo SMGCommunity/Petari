@@ -57,7 +57,8 @@ void CrystalCageMoving::init(const JMapInfoIter& rIter) {
     }
 }
 
-void CrystalCageMoving::exeWaitBig() {}
+void CrystalCageMoving::exeWaitBig() {
+}
 
 void CrystalCageMoving::exeBreakBig() {
     if (MR::isFirstStep(this)) {
@@ -74,7 +75,8 @@ void CrystalCageMoving::exeBreakBig() {
     }
 }
 
-void CrystalCageMoving::exeWaitSmall() {}
+void CrystalCageMoving::exeWaitSmall() {
+}
 
 void CrystalCageMoving::exeBreakSmall() {
     if (MR::isFirstStep(this)) {
@@ -261,4 +263,5 @@ bool CrystalCageMoving::isNerveTypeEnd() const {
     return ret;
 }
 
-CrystalCageMoving::~CrystalCageMoving() {}
+CrystalCageMoving::~CrystalCageMoving() {
+}

@@ -54,7 +54,9 @@ public:
     void exeWeakToWait();
     void exeStageClearDemo();
 
-    inline bool isGrandStar() { return mIsGrandStar; }
+    inline bool isGrandStar() {
+        return mIsGrandStar;
+    }
 
     s32 mPowerStarId;        // 0x8C
     bool mIsInDemo;          // 0x90

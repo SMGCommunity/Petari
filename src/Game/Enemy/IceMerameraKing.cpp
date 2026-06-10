@@ -65,8 +65,8 @@ namespace NrvIceMerameraKing {
 
 IceMerameraKing::IceMerameraKing(const char* pName)
     : LiveActor(pName), mFixedPos(nullptr), mThrowingIce(nullptr), mMeramera(nullptr), mIce(), _A8(nullptr), _AC(nullptr), _B0(0, 0, 1), _BC(0, 1, 0),
-      _C8(0, 0, 0), _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(nullptr), mCameraTarget(nullptr), mJointController(nullptr), _100(0, 0, 0, 1),
-      _110(0.0f, 0.0f, 0.0f), _11C(0.0f), _120(false), _121(false) {
+      _C8(0, 0, 0), _D4(0, 0, 0), _E0(0), _E4(0), _EC(3), _F0(0), mModelArray(nullptr), mCameraTarget(nullptr), mJointController(nullptr),
+      _100(0, 0, 0, 1), _110(0.0f, 0.0f, 0.0f), _11C(0.0f), _120(false), _121(false) {
 }
 
 void IceMerameraKing::init(const JMapInfoIter& rIter) {
@@ -103,7 +103,7 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     mIce.init(6);
     for (s32 i = 0; i < 6; i++) {
         ThrowingIce* newIce = new ThrowingIce("投擲用の氷");
-        newIce->initWithoutIter();        
+        newIce->initWithoutIter();
         mIce.push_back(newIce);
         MR::tryRegisterDemoCast(newIce, rIter);
     }
@@ -258,12 +258,12 @@ void IceMerameraKing::exeThrow() {
     if (MR::isStep(this, 22)) {
         mThrowingIce = getDeadWeaponAndAppear();
         mFixedPos->mMtx.getTrans(mThrowingIce->mPosition);
-        ThrowingIce *ice = mThrowingIce;
+        ThrowingIce* ice = mThrowingIce;
         if (!ice) {
             setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
             return;
         }
-        
+
         _E0 += 1;
         TVec3f v11(*MR::getPlayerVelocity());
         v11.scale(35.0f);
@@ -500,7 +500,7 @@ void IceMerameraKing::exeAttack() {
         MR::moveAndTurnToPlayer(this, &_B0, hAttackParam[0], hAttackParam[1], hAttackParam[2], hAttackParam[3]);
     }
 
-    if (MR::isOnGround(this)) { 
+    if (MR::isOnGround(this)) {
         setNerve(&NrvIceMerameraKing::HostTypeNrvAttackAfter::sInstance);
     }
 }
@@ -552,7 +552,7 @@ void IceMerameraKing::exeAngryDemo() {
         MR::startSound(this, "SE_BM_ICEMERAKING_ANGRY1");
     }
     MR::playLevelMarioPinchBGM(true);
-    
+
     if (MR::isDemoPartLastStep("怒りデモ")) {
         if (!(_EC > 2)) {
             TVec3f v7(mGravity);
@@ -795,7 +795,7 @@ bool IceMerameraKing::calcJoint(TPos3f* a2, const JointControllerInfo& info) {
     a2->getTrans(v3);
     a2->zeroTransInline2();
     a2->concat(mtx, *a2);
-    a2->setTransInline(v3);  
+    a2->setTransInline(v3);
     return true;
 }
 

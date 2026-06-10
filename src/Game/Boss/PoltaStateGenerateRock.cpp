@@ -6,7 +6,7 @@
 
 namespace {
     const s32 sRockPattern[] = {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
-                                  1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0};
+                                1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0};
 };  // namespace
 
 namespace NrvPoltaStateGenerateRock {
@@ -75,4 +75,5 @@ void PoltaStateGenerateRock::exeEnd() {
     }
 }
 
-PoltaStateGenerateRock::~PoltaStateGenerateRock() {}
+PoltaStateGenerateRock::~PoltaStateGenerateRock() {
+}

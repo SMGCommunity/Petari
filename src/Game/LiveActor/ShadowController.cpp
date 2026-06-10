@@ -335,4 +335,5 @@ void ShadowController::invalidate() {
     _71 = 0;
 }
 
-ShadowControllerHolder::~ShadowControllerHolder() {}
+ShadowControllerHolder::~ShadowControllerHolder() {
+}

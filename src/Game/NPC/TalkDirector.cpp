@@ -40,9 +40,11 @@ namespace NrvTalkDirector {
 
 TalkDirector::TalkDirector(const char* pArg)
     : LayoutActor(pArg, true), mMsgCtrl(nullptr), _3C(nullptr), _40(nullptr), _44(nullptr), mTalkState(nullptr), _4C(false), _4D(false), _4E(false),
-      mIsInvalidClipping(false), mDemoType(0), _58(false), _59(false) {}
+      mIsInvalidClipping(false), mDemoType(0), _58(false), _59(false) {
+}
 
-TalkDirector::~TalkDirector() {}
+TalkDirector::~TalkDirector() {
+}
 
 void TalkDirector::init(const JMapInfoIter& pArg) {
     MR::connectToScene(this, MR::MovementType_TalkDirector, -1, -1, -1);
@@ -445,7 +447,8 @@ LiveActor* TalkDirector::getTalkingActor() const {
     return nullptr;
 }
 
-void TalkDirector::exeWait() {}
+void TalkDirector::exeWait() {
+}
 
 void TalkDirector::exeTalk() {
     TalkMessageCtrl* control = mTalkState->_04;

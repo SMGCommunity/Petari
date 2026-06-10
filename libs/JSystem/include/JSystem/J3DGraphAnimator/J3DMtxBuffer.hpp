@@ -9,7 +9,9 @@ class J3DJointTree;
 
 class J3DMtxBuffer {
 public:
-    J3DMtxBuffer() { initialize(); }
+    J3DMtxBuffer() {
+        initialize();
+    }
 
     void initialize();
     s32 create(J3DModelData*, u32);
@@ -23,27 +25,65 @@ public:
     void calcNrmMtx();
     void calcBBoardMtx();
 
-    MtxPtr getAnmMtx(int idx) { return mpAnmMtx[idx]; }
-    void setAnmMtx(int i, Mtx m) { PSMTXCopy(m, (MtxPtr)mpAnmMtx[i]); }
-    MtxPtr getWeightAnmMtx(int idx) { return mpWeightEvlpMtx[idx]; }
-    MtxPtr getUserAnmMtx(int idx) { return mpUserAnmMtx[idx]; }
+    MtxPtr getAnmMtx(int idx) {
+        return mpAnmMtx[idx];
+    }
+    void setAnmMtx(int i, Mtx m) {
+        PSMTXCopy(m, (MtxPtr)mpAnmMtx[i]);
+    }
+    MtxPtr getWeightAnmMtx(int idx) {
+        return mpWeightEvlpMtx[idx];
+    }
+    MtxPtr getUserAnmMtx(int idx) {
+        return mpUserAnmMtx[idx];
+    }
 
-    void setScaleFlag(int idx, u8 flag) { mpScaleFlagArr[idx] = flag; }
-    u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }
-    u8* getScaleFlagArray() const { return mpScaleFlagArr; }
-    u8 getScaleFlag(int idx) const { return mpScaleFlagArr[idx]; }
-    u8 getEnvScaleFlag(int idx) const { return mpEvlpScaleFlagArr[idx]; }
-    Mtx** getDrawMtxPtrPtr() { return mpDrawMtxArr[1]; }
-    Mtx* getDrawMtxPtr() { return mpDrawMtxArr[1][mCurrentViewNo]; }
-    Mtx* getDrawMtx(int idx) { return &mpDrawMtxArr[1][mCurrentViewNo][idx]; }
-    Mtx33** getNrmMtxPtrPtr() { return mpNrmMtxArr[1]; }
-    Mtx33* getNrmMtxPtr() { return mpNrmMtxArr[1][mCurrentViewNo]; }
-    Mtx33* getNrmMtx(int idx) { return &mpNrmMtxArr[1][mCurrentViewNo][idx]; }
-    Mtx33*** getBumpMtxPtrPtr() const { return mpBumpMtxArr[1]; }
-    Mtx33* getBumpMtxPtr(int idx) { return mpBumpMtxArr[1][idx][mCurrentViewNo]; }
-    J3DJointTree* getJointTree() const { return mJointTree; }
+    void setScaleFlag(int idx, u8 flag) {
+        mpScaleFlagArr[idx] = flag;
+    }
+    u32* getCurrentViewNoPtr() {
+        return &mCurrentViewNo;
+    }
+    u8* getScaleFlagArray() const {
+        return mpScaleFlagArr;
+    }
+    u8 getScaleFlag(int idx) const {
+        return mpScaleFlagArr[idx];
+    }
+    u8 getEnvScaleFlag(int idx) const {
+        return mpEvlpScaleFlagArr[idx];
+    }
+    Mtx** getDrawMtxPtrPtr() {
+        return mpDrawMtxArr[1];
+    }
+    Mtx* getDrawMtxPtr() {
+        return mpDrawMtxArr[1][mCurrentViewNo];
+    }
+    Mtx* getDrawMtx(int idx) {
+        return &mpDrawMtxArr[1][mCurrentViewNo][idx];
+    }
+    Mtx33** getNrmMtxPtrPtr() {
+        return mpNrmMtxArr[1];
+    }
+    Mtx33* getNrmMtxPtr() {
+        return mpNrmMtxArr[1][mCurrentViewNo];
+    }
+    Mtx33* getNrmMtx(int idx) {
+        return &mpNrmMtxArr[1][mCurrentViewNo][idx];
+    }
+    Mtx33*** getBumpMtxPtrPtr() const {
+        return mpBumpMtxArr[1];
+    }
+    Mtx33* getBumpMtxPtr(int idx) {
+        return mpBumpMtxArr[1][idx][mCurrentViewNo];
+    }
+    J3DJointTree* getJointTree() const {
+        return mJointTree;
+    }
 
-    void setNrmMtx(int idx, Mtx mtx) { J3DPSMtx33CopyFrom34(mtx, mpNrmMtxArr[1][mCurrentViewNo][idx]); }
+    void setNrmMtx(int idx, Mtx mtx) {
+        J3DPSMtx33CopyFrom34(mtx, mpNrmMtxArr[1][mCurrentViewNo][idx]);
+    }
 
     void swapDrawMtx() {
         Mtx* tmp = mpDrawMtxArr[0][mCurrentViewNo];
@@ -74,7 +114,8 @@ public:
     /* 0x30 */ u32 mCurrentViewNo;
     /* 0x34 */ Mtx* mpUserAnmMtx;
 
-    virtual ~J3DMtxBuffer() {}
+    virtual ~J3DMtxBuffer() {
+    }
 };
 
 void J3DCalcViewBaseMtx(f32 (*param_0)[4], Vec const& param_1, f32 const (&param_2)[3][4], f32 (*param_3)[4]);

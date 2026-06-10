@@ -8,7 +8,8 @@ namespace NrvSwitchBox {
     NEW_NERVE(SwitchBoxNrvHit, SwitchBox, Hit);
 };  // namespace NrvSwitchBox
 
-SwitchBox::SwitchBox(const char* pName) : LiveActor(pName) {}
+SwitchBox::SwitchBox(const char* pName) : LiveActor(pName) {
+}
 
 void SwitchBox::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -57,7 +58,8 @@ void SwitchBox::init(const JMapInfoIter& rIter) {
     appear();
 }
 
-void SwitchBox::initAfterPlacement() {}
+void SwitchBox::initAfterPlacement() {
+}
 
 void SwitchBox::exeWait() {
     if (_8c != 0) {

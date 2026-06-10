@@ -77,7 +77,7 @@ u32 GameDataConst::getIncludedGrandGalaxyId(const char* pGalaxy) {
 bool GameDataConst::isPowerStarSpecial(const char* pGalaxy, s32 starId, const char* pSpecial) {
     for (GameEventFlagIter iter = GameEventFlagTable::getBeginIter(); !iter.isEnd(); iter.goNext()) {
         GameEventFlagAccessor accessor(iter.getFlag());
-        
+
         if (accessor.isTypeSpecialStar() && accessor.getStarId() == starId) {
             if (MR::isEqualString(accessor.getGalaxyName(), pGalaxy) && strstr(accessor.getName(), pSpecial) != nullptr) {
                 return true;

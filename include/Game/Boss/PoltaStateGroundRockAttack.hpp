@@ -15,7 +15,6 @@ public:
     void exeGenerate();
     void exeEnd();
 
-
     s32 _10;
     bool _14;
 };

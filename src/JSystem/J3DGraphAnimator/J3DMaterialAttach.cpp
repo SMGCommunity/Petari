@@ -25,7 +25,8 @@ J3DMaterialTable::J3DMaterialTable() {
     field_0x1c = 0;
 }
 
-J3DMaterialTable::~J3DMaterialTable() {}
+J3DMaterialTable::~J3DMaterialTable() {
+}
 
 int J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* pAnmColor) {
     int ret = false;

@@ -1,4 +1,5 @@
 #include "Game/MapObj/WormEatenPlanet.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/GreenCaterpillarBig.hpp"
@@ -28,9 +29,9 @@ void WormEatenPlanet::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
     MR::initCollisionParts(this, "First", getSensor(nullptr), nullptr);
-    mSecondHill = MR::createCollisionPartsFromLiveActor(this, "Second", getSensor(nullptr), (MR::CollisionScaleType)2);
-    mThirdHill = MR::createCollisionPartsFromLiveActor(this, "Third", getSensor(nullptr), (MR::CollisionScaleType)2);
-    mFourthHill = MR::createCollisionPartsFromLiveActor(this, "Fourth", getSensor(nullptr), (MR::CollisionScaleType)2);
+    mSecondHill = MR::createCollisionPartsFromLiveActor(this, "Second", getSensor(nullptr), MR::UNKNOWN_2);
+    mThirdHill = MR::createCollisionPartsFromLiveActor(this, "Third", getSensor(nullptr), MR::UNKNOWN_2);
+    mFourthHill = MR::createCollisionPartsFromLiveActor(this, "Fourth", getSensor(nullptr), MR::UNKNOWN_2);
     MR::invalidateCollisionParts(mSecondHill);
     MR::invalidateCollisionParts(mThirdHill);
     MR::invalidateCollisionParts(mFourthHill);
@@ -60,7 +61,8 @@ void WormEatenPlanet::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void WormEatenPlanet::exeFirstWait() {}
+void WormEatenPlanet::exeFirstWait() {
+}
 
 void WormEatenPlanet::exeSecondWait() {
     if (MR::isFirstStep(this)) {
@@ -124,7 +126,7 @@ void WormEatenPlanet::initWormEatenHill() {
     mEatenHills = new PartsModel*[5];
     for (s32 i = 0; i < 5; i++) {
         char jointName[256];
-        snprintf(jointName, sizeof(jointName), "ConnectParts%c", i + 0x41);
+        snprintf(jointName, sizeof(jointName), "ConnectParts%c", i + 'A');
         MtxPtr jointMtx = MR::getJointMtx(this, jointName);
         mEatenHills[i] = new PartsModel(this, "食い破り塚", "WormEatenHill", jointMtx, -1, false);
         mEatenHills[i]->initWithoutIter();

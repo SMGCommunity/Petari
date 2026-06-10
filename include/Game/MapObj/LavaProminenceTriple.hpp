@@ -2,7 +2,6 @@
 
 #include "Game/NameObj/NameObj.hpp"
 
-
 class LavaProminenceTriple : public NameObj {
 public:
     LavaProminenceTriple(const char*);

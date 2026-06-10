@@ -88,9 +88,11 @@ void NameObjCategoryList::initTable(u32 count, const CategoryListInitialTable* p
     }
 }
 
-NameObjCategoryList::CategoryInfo::CategoryInfo() : mNameObjArr() {}
+NameObjCategoryList::CategoryInfo::CategoryInfo() : mNameObjArr() {
+}
 
-NameObjCategoryList::CategoryInfo::~CategoryInfo() {}
+NameObjCategoryList::CategoryInfo::~CategoryInfo() {
+}
 
 NameObjCategoryList::~NameObjCategoryList() {
     delete mDelegator;

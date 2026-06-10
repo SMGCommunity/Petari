@@ -21,7 +21,8 @@ SimpleFloaterObj::SimpleFloaterObj(const char* pName) : LiveActor(pName) {
     _94.set(0.0f, 0.0f, 0.0f);
 }
 
-SimpleFloaterObj::~SimpleFloaterObj() {}
+SimpleFloaterObj::~SimpleFloaterObj() {
+}
 
 void SimpleFloaterObj::init(const JMapInfoIter& rIfter) {
     MR::initDefaultPos(this, rIfter);

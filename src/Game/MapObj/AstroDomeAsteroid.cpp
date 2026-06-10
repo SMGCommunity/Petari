@@ -51,4 +51,5 @@ bool AstroDomeAsteroid::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
     return SphereSelectorFunction::trySyncAppearMsgSelectStart(this, msg);
 }
 
-AstroDomeAsteroid::~AstroDomeAsteroid() {}
+AstroDomeAsteroid::~AstroDomeAsteroid() {
+}

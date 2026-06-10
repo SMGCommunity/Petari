@@ -22,7 +22,7 @@ void WaveFloatingForce::update() {
 */
 
 f32 WaveFloatingForce::getCurrentValue() const {
-    return _8 * JMath::sSinCosTable.sinLapRad(_C);
+    return _8 * MR::sin(_C);
 }
 
 #define TWO_PI 6.2831855f

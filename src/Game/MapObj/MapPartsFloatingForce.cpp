@@ -170,4 +170,5 @@ void MapPartsFloatingForce::exeMoveSpring() {
 
 // MapPartsFloatingForce::exeMoveReturn
 
-MapPartsFloatingForce::~MapPartsFloatingForce() {}
+MapPartsFloatingForce::~MapPartsFloatingForce() {
+}

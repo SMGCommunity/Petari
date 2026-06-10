@@ -32,7 +32,8 @@ void CameraWaterFollow::reset() {
     CameraLocalUtil::setUpVecAndWatchUpVec(this, CameraLocalUtil::getUpVec(mCameraMan));
 }
 
-CameraWaterFollow::~CameraWaterFollow() {}
+CameraWaterFollow::~CameraWaterFollow() {
+}
 
 CamTranslatorBase* CameraWaterFollow::createTranslator() {
     return new CamTranslatorWaterFollow(this);

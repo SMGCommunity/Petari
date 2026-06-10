@@ -1,6 +1,7 @@
 #include "Game/MapObj/LavaGalaxyParts.hpp"
 
-LavaGalaxyParts::~LavaGalaxyParts() {}
+LavaGalaxyParts::~LavaGalaxyParts() {
+}
 
 LavaGalaxyParts::LavaGalaxyParts(const char* pName) : LiveActor(pName) {
     mLodCtrl = nullptr;

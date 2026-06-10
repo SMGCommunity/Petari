@@ -21,16 +21,13 @@ void DinoPackunTailPart::init(const JMapInfoIter& rIter) {
     initBinder(_D4, 0.0f, 0);
     MR::connectToSceneEnemyDecorationMovement(this);
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorEnemy(this, "body", 8, (1.25f + _D4), offs);
+    MR::addHitSensorEnemy(this, "body", 8, (1.25f + _D4), TVec3f(0.0f, 0.0f, 0.0f));
     MR::invalidateClipping(this);
     makeActorAppeared();
 }
 
-void DinoPackunTailPart::control() {}
+void DinoPackunTailPart::control() {
+}
 
 JointController* DinoPackunTailPart::createJointControllerOwn(LiveActor* pActor, const char* pJointName) {
     // we only do this because we already know it's a tail node type since it inherits
@@ -83,7 +80,8 @@ void DinoPackunTailPart::requestUnLockPosition() {
     MR::onBind(this);
 }
 
-void DinoPackunTailPart::exeLockPosition() {}
+void DinoPackunTailPart::exeLockPosition() {
+}
 
 void DinoPackunTailPart::exeWait() {
     MR::addVelocityToGravity(this, 0.69f);
@@ -91,4 +89,5 @@ void DinoPackunTailPart::exeWait() {
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
 }
 
-DinoPackunTailPart::~DinoPackunTailPart() {}
+DinoPackunTailPart::~DinoPackunTailPart() {
+}

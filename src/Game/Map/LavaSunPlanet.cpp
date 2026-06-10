@@ -66,4 +66,5 @@ void LavaSunPlanet::init(const JMapInfoIter& rIter) {
     lodEffect->updateMtxUseBaseMtx();
 }
 
-LavaSunPlanet::~LavaSunPlanet() {}
+LavaSunPlanet::~LavaSunPlanet() {
+}

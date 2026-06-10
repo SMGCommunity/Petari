@@ -7,8 +7,8 @@
 #include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
 
 extern "C" {
-    extern u8 lbl_805BA740[];
-    extern char lbl_805BA74A[];
+extern u8 lbl_805BA740[];
+extern char lbl_805BA74A[];
 }
 
 void MarioActor::initBlink() {
@@ -21,13 +21,11 @@ void MarioActor::initBlink() {
 void MarioActor::setBlink(const char* pName) {
     if (pName == nullptr) {
         mEyeRes = nullptr;
-    }
-    else if (MR::getResourceHolder(this)->mBtpResTable->isExistRes(pName)) {
-        J3DAnmTexPattern* pPattern = static_cast<J3DAnmTexPattern*>(MR::getResourceHolder(this)->mBtpResTable->getRes(pName));
+    } else if (MR::getResourceHolder(this)->mBtpResTable->isExistRes(pName)) {
+        J3DAnmTexPattern* pPattern = static_cast< J3DAnmTexPattern* >(MR::getResourceHolder(this)->mBtpResTable->getRes(pName));
         mEyeRes = pPattern;
         mEyeRes->mFrame = 0.0f;
-    }
-    else {
+    } else {
         mEyeRes = nullptr;
     }
 }
@@ -44,17 +42,16 @@ void MarioActor::updateBlink() {
         if (pPattern->mAttribute == 2) {
             frame = pPattern->mFrame + 1.0f;
 
-            if (frame >= static_cast<f32>(pPattern->mFrameMax) - 1.0f) {
+            if (frame >= static_cast< f32 >(pPattern->mFrameMax) - 1.0f) {
                 frame = 0.0f;
             }
-        }
-        else {
+        } else {
             frame = mMarioAnim->getFrame();
         }
 
         mEyeRes->mFrame = frame;
 
-        u16 eyeLidMaterial = static_cast<u16>(MR::getMaterialNo(MR::getJ3DModelData(this), lbl_805BA74A));
+        u16 eyeLidMaterial = static_cast< u16 >(MR::getMaterialNo(MR::getJ3DModelData(this), lbl_805BA74A));
 
         for (u16 i = 0; i < mEyeRes->mUpdateMaterialNum; i++) {
             u16 texNo;
@@ -71,8 +68,7 @@ void MarioActor::updateBlink() {
     if (isNerve(&NrvMarioActor::MarioActorNrvGameOver::sInstance) && !mEyeRes) {
         if (mMario->isAnimationTerminate(nullptr)) {
             _B6A = 2;
-        }
-        else {
+        } else {
             _B6A = 1;
         }
         return;
@@ -88,7 +84,7 @@ void MarioActor::updateBlink() {
     if (_B72) {
         s32 blinkStep = _B72 - 1;
         _B72 = blinkStep;
-        _B6A = lbl_805BA740[9 - static_cast<u8>(blinkStep)];
+        _B6A = lbl_805BA740[9 - static_cast< u8 >(blinkStep)];
         _B74 = MR::getRandom(60L, 360L);
         return;
     }

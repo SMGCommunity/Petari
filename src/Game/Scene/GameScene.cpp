@@ -47,7 +47,8 @@ namespace NrvGameScene {
 };  // namespace NrvGameScene
 
 GameScene::GameScene()
-    : Scene("GameScene"), _14(0), mScenarioCamera(nullptr), mPauseCtrl(nullptr), mPauseSeq(nullptr), mStageClearSeq(nullptr), mDraw3D(true), _29(1) {}
+    : Scene("GameScene"), _14(0), mScenarioCamera(nullptr), mPauseCtrl(nullptr), mPauseSeq(nullptr), mStageClearSeq(nullptr), mDraw3D(true), _29(1) {
+}
 
 GameScene::~GameScene() {
     MR::destroySceneMessage();
@@ -460,7 +461,7 @@ void GameScene::startStagePlayFirst() {
         } else if (MR::isStageBeginWithoutWipe()) {
             MR::forceOpenWipeFade();
         } else {
-            MR::openWipeCircle(-1);
+            MR::openWipeCircle();
         }
 
         MR::stopSubBGM(0);
@@ -472,7 +473,7 @@ void GameScene::startStagePlayFirst() {
 }
 
 void GameScene::startStagePlayRetry() {
-    MR::openWipeCircle(-1);
+    MR::openWipeCircle();
 
     if (MR::isEqualStageName("SurfingLv1Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
         MR::stopSubBGM(0);

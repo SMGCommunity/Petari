@@ -30,7 +30,8 @@ namespace nw4r {
             EnableLinearFilter(true, true);
         }
 
-        CharWriter::~CharWriter() {}
+        CharWriter::~CharWriter() {
+        }
 
         void CharWriter::SetColorMapping(Color min, Color max) {
             mColorMapping.min = min;

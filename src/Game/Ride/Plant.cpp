@@ -229,7 +229,8 @@ void Plant::exeHangUpGrowUp() {
     }
 }
 
-void Plant::exeGrowthStop() {}
+void Plant::exeGrowthStop() {
+}
 
 void Plant::exeGrowthWait() {
     if (MR::isFirstStep(this)) {

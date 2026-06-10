@@ -4,9 +4,12 @@
 
 class CameraShakePattern {
 public:
-    inline CameraShakePattern() { _4 = 0; }
+    inline CameraShakePattern() {
+        _4 = 0;
+    }
 
-    virtual inline ~CameraShakePattern() {}
+    virtual inline ~CameraShakePattern() {
+    }
 
     virtual bool isEnd() const = 0;
     virtual void getOffset(TVec2f*) const = 0;

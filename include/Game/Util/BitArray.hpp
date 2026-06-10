@@ -22,7 +22,9 @@ namespace MR {
 
         /// @brief Returns the number of bits.
         /// @return The number of bits.
-        int size() const { return mArraySize; }
+        int size() const {
+            return mArraySize;
+        }
 
     private:
         /// @brief The pointer to the array of bytes.

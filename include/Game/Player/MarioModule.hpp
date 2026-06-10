@@ -11,7 +11,8 @@ class Triangle;
 
 class MarioModule {
 public:
-    inline MarioModule(MarioActor* actor) : mActor(actor) {}
+    inline MarioModule(MarioActor* actor) : mActor(actor) {
+    }
 
     virtual f32 getStickY() const;
     virtual void addVelocity(const TVec3f&);

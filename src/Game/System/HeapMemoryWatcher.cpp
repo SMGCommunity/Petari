@@ -165,4 +165,5 @@ void HeapMemoryWatcher::memoryErrorCallback(void*, u32, int) {
     OSPanic(__FILE__, 0x219, "");
 }
 
-void HeapMemoryWatcher::checkRestMemory() {}
+void HeapMemoryWatcher::checkRestMemory() {
+}

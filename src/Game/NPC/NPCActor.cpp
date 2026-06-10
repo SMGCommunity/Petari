@@ -834,4 +834,5 @@ void NPCActor::exeTalk() {
     }
 }
 
-void NPCActor::exeNull() {}
+void NPCActor::exeNull() {
+}

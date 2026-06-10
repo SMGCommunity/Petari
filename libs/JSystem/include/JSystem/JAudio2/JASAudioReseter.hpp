@@ -2,12 +2,17 @@
 
 #include <revolution.h>
 
-class JASAudioReseter {
-public:
+struct JASAudioReseter {
     JASAudioReseter();
+    ~JASAudioReseter();
+    bool start(u32, bool);
+    void resume();
+    s32 checkDone() const;
+    s32 calc();
+    static s32 callback(void*);
 
-    u32 _0;
-    f32 mDSPLevel;  // 0x04
-    u32 _8;
-    u8 _C;
+    /* 0x0 */ u32 mTime;
+    /* 0x4 */ f32 mDSPLevel;
+    /* 0x8 */ s32 mDoneFlag;
+    /* 0xC */ bool mThreadStopFlag;
 };

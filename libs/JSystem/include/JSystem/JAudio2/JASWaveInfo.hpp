@@ -6,22 +6,37 @@ class JASWaveArc;
 
 struct JASWaveInfo {
     JASWaveInfo() {
-        _1 = 0x3c;
-        _20 = &one;
+        mBaseKey = 60;
+        _24 = &one;
     }
 
-    /* 0x00 */ u8 _0;
-    /* 0x01 */ u8 _1;
-    /* 0x02 */ u8 _2;
-    /* 0x04 */ f32 _4;
-    /* 0x08 */ int _8;
-    /* 0x0C */ int _C;
-    /* 0x10 */ u32 _10;
-    /* 0x14 */ int _14;
-    /* 0x18 */ int _18;
-    /* 0x1C */ s16 _1C;
-    /* 0x1E */ s16 _1E;
-    /* 0x20 */ const u32* _20;
+    void copy(const JASWaveInfo& other) {
+        mFormat = other.mFormat;
+        mBaseKey = other.mBaseKey;
+        mSampleRate = other.mSampleRate;
+        mAWStartOffs = other.mAWStartOffs;
+        mAWLength = other.mAWLength;
+        mLoopFlags = other.mLoopFlags;
+        mSampleLoopStart = other.mSampleLoopStart;
+        mSampleLoopEnd = other.mSampleLoopEnd;
+        mSampleCount = other.mSampleCount;
+        mpLastSample = other.mpLastSample;
+        mpPenultSample = other.mpPenultSample;
+        _24 = other._24;
+    }
+
+    /* 0x00 */ u8 mFormat;
+    /* 0x01 */ u8 mBaseKey;
+    /* 0x04 */ f32 mSampleRate;
+    /* 0x08 */ int mAWStartOffs;
+    /* 0x0C */ int mAWLength;
+    /* 0x10 */ u32 mLoopFlags;
+    /* 0x14 */ int mSampleLoopStart;
+    /* 0x18 */ int mSampleLoopEnd;
+    /* 0x1C */ int mSampleCount;
+    /* 0x20 */ s16 mpLastSample;
+    /* 0x22 */ s16 mpPenultSample;
+    /* 0x24 */ const u32* _24;
 
     static u32 one;
 };

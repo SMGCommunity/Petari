@@ -3,9 +3,9 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 namespace {
     SceneDataInitializer* getSceneDataInitializer() {
@@ -132,4 +132,5 @@ void CategoryList::requestMovementOff(MR::MovementType type) {
     MR::requestMovementOffWithCategory(type);
 }
 
-void SceneFunction::createHioBasicNode(Scene*) {}
+void SceneFunction::createHioBasicNode(Scene*) {
+}

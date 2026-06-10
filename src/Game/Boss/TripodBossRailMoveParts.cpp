@@ -35,4 +35,5 @@ void TripodBossRailMoveParts::exeWaitOwn() {
     mRailMover->movement();
 }
 
-TripodBossRailMoveParts::~TripodBossRailMoveParts() {}
+TripodBossRailMoveParts::~TripodBossRailMoveParts() {
+}

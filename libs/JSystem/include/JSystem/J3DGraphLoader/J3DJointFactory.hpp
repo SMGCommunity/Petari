@@ -21,10 +21,22 @@ struct J3DJointFactory {
     J3DJointInitData* mJointInitData;
     u16* mIndexTable;
 
-    u16 getKind(int no) const { return mJointInitData[mIndexTable[no]].mKind; }
-    u8 getScaleCompensate(int no) const { return mJointInitData[mIndexTable[no]].mScaleCompensate; }
-    const J3DTransformInfo& getTransformInfo(int no) const { return mJointInitData[mIndexTable[no]].mTransformInfo; }
-    f32 getRadius(int no) const { return mJointInitData[mIndexTable[no]].mRadius; }
-    Vec& getMin(int no) const { return mJointInitData[mIndexTable[no]].mMin; }
-    Vec& getMax(int no) const { return mJointInitData[mIndexTable[no]].mMax; }
+    u16 getKind(int no) const {
+        return mJointInitData[mIndexTable[no]].mKind;
+    }
+    u8 getScaleCompensate(int no) const {
+        return mJointInitData[mIndexTable[no]].mScaleCompensate;
+    }
+    const J3DTransformInfo& getTransformInfo(int no) const {
+        return mJointInitData[mIndexTable[no]].mTransformInfo;
+    }
+    f32 getRadius(int no) const {
+        return mJointInitData[mIndexTable[no]].mRadius;
+    }
+    Vec& getMin(int no) const {
+        return mJointInitData[mIndexTable[no]].mMin;
+    }
+    Vec& getMax(int no) const {
+        return mJointInitData[mIndexTable[no]].mMax;
+    }
 };

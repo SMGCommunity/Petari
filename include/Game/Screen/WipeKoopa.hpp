@@ -15,12 +15,14 @@ public:
     virtual bool isWipeIn() const;
     virtual bool isWipeOut() const;
 
-    virtual s32 getWipeType() const { return 2; }
+    virtual s32 getWipeType() const {
+        return 2;
+    }
 
     void exeWait();
     void exeWipeOut();
     void exeClose();
 
 private:
-    /* 0x20 */ s32 mStepNum;
+    /* 0x20 */ s32 mFrame;
 };

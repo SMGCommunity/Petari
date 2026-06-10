@@ -7,9 +7,11 @@ namespace NrvFireBar {
     NEW_NERVE(FireBarNrvWait, FireBar, Wait);
 };  // namespace NrvFireBar
 
-FireBarBall::~FireBarBall() {}
+FireBarBall::~FireBarBall() {
+}
 
-FireBar::~FireBar() {}
+FireBar::~FireBar() {
+}
 
 FireBarBall::FireBarBall(LiveActor* pParent) : ModelObj("ファイアバー玉", "FireBarBall", 0, MR::DrawBufferType_NoShadowedMapObj, -2, -2, false) {
     mFireBarParent = pParent;

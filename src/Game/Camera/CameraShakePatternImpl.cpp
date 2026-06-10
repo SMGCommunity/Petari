@@ -8,7 +8,8 @@ CameraShakePatternSingly::CameraShakePatternSingly(f32 a1) : CameraShakePattern(
     mDirection.y = 1.0f;
 }
 
-CameraShakePatternSingly::~CameraShakePatternSingly() {}
+CameraShakePatternSingly::~CameraShakePatternSingly() {
+}
 
 bool CameraShakePatternSingly::isEnd() const {
     return _4 >= 25;
@@ -62,7 +63,8 @@ CameraShakePatternVerticalSin::CameraShakePatternVerticalSin(f32 a1, f32 a2) {
     mOffset.y = 0.0f;
 }
 
-CameraShakePatternVerticalSin::~CameraShakePatternVerticalSin() {}
+CameraShakePatternVerticalSin::~CameraShakePatternVerticalSin() {
+}
 
 bool CameraShakePatternVerticalSin::isEnd() const {
     f32 var = static_cast< f32 >(_4);

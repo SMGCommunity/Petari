@@ -11,7 +11,8 @@ namespace {
     NEW_NERVE(FileSelectNumberNrvEnd, FileSelectNumber, End);
 };  // namespace
 
-FileSelectNumber::FileSelectNumber(const char* pName) : LayoutActor(pName, true), mNumber(-1), mSelectAnimCtrl(nullptr) {}
+FileSelectNumber::FileSelectNumber(const char* pName) : LayoutActor(pName, true), mNumber(-1), mSelectAnimCtrl(nullptr) {
+}
 
 void FileSelectNumber::init(const JMapInfoIter& rIter) {
     initLayoutManager("FileNumber", 2);
@@ -88,7 +89,8 @@ void FileSelectNumber::exeAppear() {
     }
 }
 
-void FileSelectNumber::exeWait() {}
+void FileSelectNumber::exeWait() {
+}
 
 void FileSelectNumber::exeEnd() {
     if (MR::isFirstStep(this)) {
@@ -156,7 +158,8 @@ namespace FileSelectNumberSub {
         }
     }
 
-    void SelectAnimController::exeSelectIn() {}
+    void SelectAnimController::exeSelectIn() {
+    }
 
     void SelectAnimController::exeSelectOutStart() {
         if (MR::isFirstStep(this)) {
@@ -174,5 +177,6 @@ namespace FileSelectNumberSub {
         }
     }
 
-    void SelectAnimController::exeSelectOut() {}
+    void SelectAnimController::exeSelectOut() {
+    }
 };  // namespace FileSelectNumberSub

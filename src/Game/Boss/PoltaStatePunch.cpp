@@ -99,4 +99,5 @@ bool PoltaStatePunch::isEnablePunchArm() const {
     return mIsLeftArmActor ? PoltaFunction::isEnableAttackLeftArm(getHost()) : PoltaFunction::isEnableAttackRightArm(getHost());
 }
 
-PoltaStatePunch::~PoltaStatePunch() {}
+PoltaStatePunch::~PoltaStatePunch() {
+}

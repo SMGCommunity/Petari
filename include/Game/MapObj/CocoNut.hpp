@@ -67,7 +67,9 @@ public:
     void exeBreak();
     void exeReplaceReady();
 
-    inline f32 getSize() { return _D0; }
+    inline f32 getSize() {
+        return _D0;
+    }
 
 private:
     f32 _8C;

@@ -1,10 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
 
-class AudAnmSoundObject;
 class IKJoint;
 class TripodBoss;
 class TripodBossMovableArea;
@@ -49,17 +46,6 @@ public:
     bool canStep() const;
     bool canCancelStep() const;
     bool canWeighting() const;
-    void exeDemo();
-    void exeUp();
-    void exeLeaveOut();
-    void exeMove();
-    void exeMoveToLandingPos();
-    void exeStampSign();
-    void exeLanding();
-    void exeDamageVibration();
-    void exeBreak();
-    inline void exeDamage();
-    inline void exeHold();
     void addToTargetPower(const TVec3f&, f32);
     void addIKLimitPower();
     void addAccelUpLeg(TripodBossStepPoint*, f32);
@@ -74,34 +60,46 @@ public:
     void updateAnkleLanding();
     void updateAnkleShadowMatrix();
 
-    TripodBoss* mBoss;                 // 0x8C
-    TripodBossMovableArea* mMoveArea;  // 0x90
-    TripodBossStepPoint* _94;
-    TripodBossStepPoint* _98;
-    IKJoint* mJoint;  // 0x9C
-    TPos3f _A0;
-    TPos3f mRootLocalYMtx;    // 0xD0
-    TPos3f mRootLocalYZMtx;   // 0x100
-    TPos3f mAnkleLocalXMtx;   // 0x130
-    TPos3f mAnkleLocalXZMtx;  // 0x160
-    TPos3f mEndJointMtx;      // 0x190
-    TPos3f _1C0;
-    TQuat4f _1F0;
-    TQuat4f _200;
-    TVec3f _210;
-    TVec3f _21C;
-    TVec3f mForceEndPoint;  // 0x228
-    TVec3f _234;
-    TVec3f _240;
-    u32 _24C;
-    f32 _250;
-    u8 _254;
-    bool mIsPressPlayer;  // 0x255
-    u8 _256;
-    u8 _257;
-    s32 mDemoTiming;  // 0x258
-    AudAnmSoundObject* _25C;
-    AudAnmSoundObject* _260;
+    void exeHold();
+    void exeDemo();
+    void exeMove();
+    void exeUp();
+    void exeLeaveOut();
+    void exeMoveToLandingPos();
+    void exeStampSign();
+    void exeLanding();
+    void exeDamageVibration();
+    void exeDamage();
+    void exeBreak();
+
+    /* 0x08C */ TripodBoss* mBoss;
+    /* 0x090 */ TripodBossMovableArea* mMoveArea;
+    /* 0x094 */ TripodBossStepPoint* _94;
+    /* 0x098 */ TripodBossStepPoint* _98;
+    /* 0x09C */ IKJoint* mJoint;
+    /* 0x0A0 */ TPos3f _A0;
+    /* 0x0D0 */ TPos3f mRootLocalYMtx;
+    /* 0x100 */ TPos3f mRootLocalYZMtx;
+    /* 0x130 */ TPos3f mAnkleLocalXMtx;
+    /* 0x160 */ TPos3f mAnkleLocalXZMtx;
+    /* 0x190 */ TPos3f mEndJointMtx;
+    /* 0x1C0 */ TPos3f _1C0;
+    /* 0x1F0 */ TQuat4f _1F0;
+    /* 0x200 */ TQuat4f _200;
+    /* 0x210 */ TVec3f _210;
+    /* 0x21C */ TVec3f _21C;
+    /* 0x228 */ TVec3f mForceEndPoint;
+    /* 0x234 */ TVec3f _234;
+    /* 0x240 */ TVec3f _240;
+    /* 0x24C */ u32 _24C;
+    /* 0x250 */ f32 _250;
+    /* 0x254 */ u8 _254;
+    /* 0x255 */ bool mIsPressPlayer;
+    /* 0x256 */ u8 _256;
+    /* 0x257 */ u8 _257;
+    /* 0x258 */ s32 mDemoTiming;
+    /* 0x25C */ AudAnmSoundObject* _25C;
+    /* 0x260 */ AudAnmSoundObject* _260;
 };
 
 namespace MR {

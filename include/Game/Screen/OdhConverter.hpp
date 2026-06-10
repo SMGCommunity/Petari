@@ -25,13 +25,21 @@ public:
         mIsRequestedCapture = false;
     }
 
-    void requestCapture() { mIsRequestedCapture = true; }
+    void requestCapture() {
+        mIsRequestedCapture = true;
+    }
 
-    bool isRequestedCapture() const { return mIsRequestedCapture; }
+    bool isRequestedCapture() const {
+        return mIsRequestedCapture;
+    }
 
-    u8* getImage() const { return mImage; }
+    u8* getImage() const {
+        return mImage;
+    }
 
-    u32 getImageSize() const { return mImageSize; }
+    u32 getImageSize() const {
+        return mImageSize;
+    }
 
     void convert();
 

@@ -100,7 +100,8 @@ J3DDrawPacket::J3DDrawPacket() {
     mpTexMtxObj = NULL;
 }
 
-J3DDrawPacket::~J3DDrawPacket() {}
+J3DDrawPacket::~J3DDrawPacket() {
+}
 
 J3DError J3DDrawPacket::newDisplayList(u32 size) {
     mpDisplayListObj = new J3DDisplayListObj();
@@ -140,7 +141,8 @@ J3DMatPacket::J3DMatPacket() {
     mpMaterialAnm = NULL;
 }
 
-J3DMatPacket::~J3DMatPacket() {}
+J3DMatPacket::~J3DMatPacket() {
+}
 
 void J3DMatPacket::addShapePacket(J3DShapePacket* pShape) {
     if (mpShapePacket == NULL) {
@@ -199,7 +201,8 @@ J3DShapePacket::J3DShapePacket() {
     mpModel = NULL;
 }
 
-J3DShapePacket::~J3DShapePacket() {}
+J3DShapePacket::~J3DShapePacket() {
+}
 
 u32 J3DShapePacket::calcDifferedBufferSize(u32 diffFlags) {
     u32 bufferSize = 0;

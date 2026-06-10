@@ -146,9 +146,11 @@ void MapPartsRotator::calcRotateAxisDir(AxisType type, TVec3f* pDir) const {
     }
 }
 
-void MapPartsRotator::exeNeverMove() {}
+void MapPartsRotator::exeNeverMove() {
+}
 
-void MapPartsRotator::exeWait() {}
+void MapPartsRotator::exeWait() {
+}
 
 // void MapPartsRotator::exeRotateStart() {}
 
@@ -160,7 +162,8 @@ void MapPartsRotator::exeStopAtEnd() {
     }
 }
 
-MapPartsRotator::~MapPartsRotator() {}
+MapPartsRotator::~MapPartsRotator() {
+}
 
 bool MapPartsRotator::isOnReverse() const {
     return mIsOnReverse;

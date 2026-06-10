@@ -31,7 +31,7 @@ public:
     void exeStormStart();
     void exeStorm();
 
-    void resetDirection() NO_INLINE;
+    void resetDirection();
     void faceToMario();
 
     /* 0x9C */ TVec3f mFront;

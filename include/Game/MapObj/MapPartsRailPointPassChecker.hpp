@@ -10,7 +10,8 @@ public:
     virtual void movement();
     virtual bool isWorking() const;
     virtual void start();
-    virtual void end() {}
+    virtual void end() {
+    }
 
     bool isPassed() const;
     bool isReachedEnd() const;

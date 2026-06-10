@@ -79,4 +79,5 @@ void TicoGalaxy::appearInformation() const {
     MR::setInformationMessageReplaceString(MR::getGalaxyNameShortOnCurrentLanguage(mGalaxyName), 0);
 }
 
-TicoGalaxy::~TicoGalaxy() {}
+TicoGalaxy::~TicoGalaxy() {
+}

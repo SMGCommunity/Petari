@@ -1,6 +1,7 @@
 #include "Game/MapObj/LargeChainParts.hpp"
 
-LargeChainParts::LargeChainParts(const char* pName) : LiveActor(pName) {}
+LargeChainParts::LargeChainParts(const char* pName) : LiveActor(pName) {
+}
 
 void LargeChainParts::breakChainParts() {
     kill();

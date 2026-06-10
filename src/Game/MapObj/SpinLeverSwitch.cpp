@@ -11,7 +11,8 @@ SpinLeverSwitch::SpinLeverSwitch(const char* pName) : LiveActor(pName) {
     mConnector = new MapObjConnector(this);
 }
 
-SpinLeverSwitch::~SpinLeverSwitch() {}
+SpinLeverSwitch::~SpinLeverSwitch() {
+}
 
 void SpinLeverSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -109,4 +110,5 @@ void SpinLeverSwitch::exeSwitchOn() {
     }
 }
 
-void SpinLeverSwitch::exeEnd() {}
+void SpinLeverSwitch::exeEnd() {
+}

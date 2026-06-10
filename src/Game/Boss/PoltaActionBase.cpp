@@ -19,7 +19,8 @@ void PoltaActionBase::updateScreamSensor() {
     }
 }
 
-PoltaActionBase::~PoltaActionBase() {}
+PoltaActionBase::~PoltaActionBase() {
+}
 
 bool PoltaActionBase::updateWait() {
     if (MR::isFirstStep(this)) {
@@ -126,4 +127,5 @@ bool PoltaActionBase::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
     return false;
 }
 
-void PoltaActionBase::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {}
+void PoltaActionBase::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+}

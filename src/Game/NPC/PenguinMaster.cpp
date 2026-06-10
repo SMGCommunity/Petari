@@ -13,9 +13,11 @@ namespace NrvPenguinMaster {
     NEW_NERVE(PenguinMasterNrvReaction, PenguinMaster, Reaction);
 };  // namespace NrvPenguinMaster
 
-PenguinMaster::PenguinMaster(const char* pName) : NPCActor(pName) {}
+PenguinMaster::PenguinMaster(const char* pName) : NPCActor(pName) {
+}
 
-PenguinMaster::~PenguinMaster() {}
+PenguinMaster::~PenguinMaster() {
+}
 
 void PenguinMaster::init(const JMapInfoIter& rIter) {
     f32 stack = 0.0f;

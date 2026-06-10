@@ -14,7 +14,8 @@
 
 ModelManager::ModelManager()
     : mBtkPlayer(nullptr), mBrkPlayer(nullptr), mBtpPlayer(nullptr), mBpkPlayer(nullptr), mBvaPlayer(nullptr), mXanimeResourceTable(nullptr),
-      mXanimePlayer(nullptr), mModel(nullptr), mModelResourceHolder(nullptr), mDisplayListMaker(nullptr) {}
+      mXanimePlayer(nullptr), mModel(nullptr), mModelResourceHolder(nullptr), mDisplayListMaker(nullptr) {
+}
 
 void ModelManager::update() {
     XanimePlayer* pXanimePlayer = mXanimePlayer;

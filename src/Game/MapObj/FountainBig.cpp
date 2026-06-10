@@ -16,7 +16,8 @@ FountainBig::FountainBig(const char* pName) : LiveActor(pName) {
     mSpoutTimer = -1;
 }
 
-FountainBig::~FountainBig() {}
+FountainBig::~FountainBig() {
+}
 
 void FountainBig::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

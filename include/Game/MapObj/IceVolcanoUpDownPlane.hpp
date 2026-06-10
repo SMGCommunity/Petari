@@ -2,7 +2,6 @@
 
 #include "Game/MapObj/RailMoveObj.hpp"
 
-
 class IceVolcanoUpDownPlane : public RailMoveObj {
 public:
     IceVolcanoUpDownPlane(const char*);
@@ -12,5 +11,4 @@ public:
     TVec3f* getSoundCalcPos();
 
     /* 0xD4 */ TVec3f mNearestPosToPlayer;
-
 };

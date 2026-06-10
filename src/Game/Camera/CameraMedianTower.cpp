@@ -28,7 +28,8 @@ void CameraMedianTower::reset() {
     _84 = 1;
 }
 
-CameraMedianTower::~CameraMedianTower() {}
+CameraMedianTower::~CameraMedianTower() {
+}
 
 CamTranslatorBase* CameraMedianTower::createTranslator() {
     return new CamTranslatorMedianTower(this);

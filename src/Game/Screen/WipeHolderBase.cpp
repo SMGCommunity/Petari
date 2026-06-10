@@ -17,9 +17,9 @@ void WipeHolderBase::setCurrent(const char* pWipeName) {
     mCurrentWipeLayout->forceOpen();
 }
 
-void WipeHolderBase::wipe(const char* pWipeName, s32 step) {
+void WipeHolderBase::wipe(const char* pWipeName, s32 frame) {
     updateWipe(pWipeName);
-    mCurrentWipeLayout->wipe(step);
+    mCurrentWipeLayout->wipe(frame);
 }
 
 void WipeHolderBase::forceClose(const char* pWipeName) {

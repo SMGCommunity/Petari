@@ -16,7 +16,8 @@ namespace NrvChipBase {
 
 ChipBase::ChipBase(const char* pName, s32 chipType, const char* pChipName)
     : LiveActor(pName), mFlashingCtrl(nullptr), mRailMover(nullptr), mAirBubble(nullptr), mChipName(pChipName), mHost(nullptr),
-      mClippingRange(0.0f, 0.0f, 0.0f), mGroupID(-1), mChipType(chipType), _B5(false) {}
+      mClippingRange(0.0f, 0.0f, 0.0f), mGroupID(-1), mChipType(chipType), _B5(false) {
+}
 
 void ChipBase::init(const JMapInfoIter& rIter) {
     MR::createChipHolder(mChipType);
@@ -247,7 +248,8 @@ bool ChipBase::requestEndControl() {
     return false;
 }
 
-void ChipBase::exeDeactive() {}
+void ChipBase::exeDeactive() {
+}
 
 void ChipBase::exeWait() {
     if (MR::isFirstStep(this)) {
@@ -271,7 +273,8 @@ void ChipBase::exeFlashing() {
     }
 }
 
-void ChipBase::exeHide() {}
+void ChipBase::exeHide() {
+}
 
 // mAirBubble load isn't loading twice
 void ChipBase::exeGot() {

@@ -10,7 +10,8 @@ void LightArea::init(const JMapInfoIter& rIter) {
     mPlacedZoneID = MR::getPlacedZoneId(rIter);
 }
 
-LightArea::~LightArea() {}
+LightArea::~LightArea() {
+}
 
 const char* LightArea::getManagerName() const {
     return "LightArea";

@@ -44,9 +44,13 @@ public:
     void loadMaterial() const;
     void loadMaterialBloom() const;
 
-    OceanRingPartDrawer* getDrawer(int idx) const { return mPartDrawers[idx]; }
+    OceanRingPartDrawer* getDrawer(int idx) const {
+        return mPartDrawers[idx];
+    }
 
-    inline f32 someInline(f32 a1, f32 a2, f32 a3) const { return (a1 - a2) / a3; }
+    inline f32 someInline(f32 a1, f32 a2, f32 a3) const {
+        return (a1 - a2) / a3;
+    }
 
     const OceanRing* mRing;              // 0x0
     s32 mDrawerCount;                    // 0x4

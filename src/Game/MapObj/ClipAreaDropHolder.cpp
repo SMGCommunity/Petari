@@ -26,7 +26,7 @@ namespace MR {
         ClipAreaDropHolder* pHolder = MR::getSceneObj< ClipAreaDropHolder >(SceneObj_ClipAreaDropHolder);
 
         if (pHolder->getDeadActor() != nullptr) {
-            return static_cast<ClipAreaDrop*>(pHolder->getDeadActor());
+            return static_cast< ClipAreaDrop* >(pHolder->getDeadActor());
         }
 
         return nullptr;

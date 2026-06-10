@@ -45,7 +45,8 @@ LuigiNPC::LuigiNPC(const char* pName) : NPCActor(pName) {
     _160 = -1;
 }
 
-LuigiNPC::~LuigiNPC() {}
+LuigiNPC::~LuigiNPC() {
+}
 
 void LuigiNPC::makeArchiveList(NameObjArchiveListCollector* pArchive, const JMapInfoIter& rIter) {
     pArchive->addArchive("LuigiNPC");

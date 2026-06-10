@@ -13,7 +13,8 @@ class CameraTargetObj;
 
 class CamTranslatorBase {
 public:
-    inline CamTranslatorBase() {}
+    inline CamTranslatorBase() {
+    }
 
     virtual void setParam(const CameraParamChunk*) = 0;
     virtual Camera* getCamera() const = 0;
@@ -21,7 +22,9 @@ public:
 
 class CamTranslatorDummy : public CamTranslatorBase {
 public:
-    inline CamTranslatorDummy(Camera* pCamera) { mCamera = pCamera; }
+    inline CamTranslatorDummy(Camera* pCamera) {
+        mCamera = pCamera;
+    }
 
     virtual void setParam(const CameraParamChunk*);
     virtual Camera* getCamera() const;
@@ -33,7 +36,8 @@ class Camera : public NameObj {
 public:
     Camera(const char*);
 
-    virtual inline ~Camera() {}
+    virtual inline ~Camera() {
+    }
 
     virtual void reset();
     virtual CameraTargetObj* calc() = 0;

@@ -15,7 +15,8 @@ namespace NrvHipDropMoveObj {
     NEW_NERVE(HostTypeDone, HipDropMoveObj, Done);
 };  // namespace NrvHipDropMoveObj
 
-HipDropDemoMoveObj::~HipDropDemoMoveObj() {}
+HipDropDemoMoveObj::~HipDropDemoMoveObj() {
+}
 
 HipDropMoveObj::HipDropMoveObj(const char* pName) : LiveActor(pName) {
     mObjectName = 0;
@@ -67,7 +68,8 @@ bool HipDropMoveObj::isEndMove() const {
     return MR::isBckStopped(this);
 }
 
-void HipDropMoveObj::exeWait() {}
+void HipDropMoveObj::exeWait() {
+}
 
 void HipDropMoveObj::exeMove() {
     if (MR::isFirstStep(this)) {
@@ -134,13 +136,15 @@ void HipDropMoveObj::exeMove() {
     }
 }
 
-void HipDropMoveObj::exeDone() {}
+void HipDropMoveObj::exeDone() {
+}
 
 HipDropDemoMoveObj::HipDropDemoMoveObj(const char* pName) : HipDropMoveObj(pName) {
     mMtx.identity();
 }
 
-HipDropMoveObj::~HipDropMoveObj() {}
+HipDropMoveObj::~HipDropMoveObj() {
+}
 
 void HipDropDemoMoveObj::moveStart() {
     MR::startBckPlayer("Wait", (char*)nullptr);
@@ -170,8 +174,11 @@ void HipDropDemoMoveObj::moving() {
     }
 }
 
-void HipDropMoveObj::moveStart() {}
+void HipDropMoveObj::moveStart() {
+}
 
-void HipDropMoveObj::moving() {}
+void HipDropMoveObj::moving() {
+}
 
-void HipDropMoveObj::moveEnd() {}
+void HipDropMoveObj::moveEnd() {
+}

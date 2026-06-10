@@ -6,7 +6,8 @@ namespace NrvAirBubbleGenerator {
     NEW_NERVE(AirBubbleGeneratorNrvGenerate, AirBubbleGenerator, Generate);
 };  // namespace NrvAirBubbleGenerator
 
-AirBubbleGenerator::~AirBubbleGenerator() {}
+AirBubbleGenerator::~AirBubbleGenerator() {
+}
 
 AirBubbleGenerator::AirBubbleGenerator(const char* pName) : LiveActor(pName) {
     _8C = 0;
@@ -36,7 +37,8 @@ void AirBubbleGenerator::init(const JMapInfoIter& rIter) {
     }
 }
 
-void AirBubbleGenerator::control() {}
+void AirBubbleGenerator::control() {
+}
 
 void AirBubbleGenerator::exeWait() {
     s32 spawnDelay = mSpawnDelay;

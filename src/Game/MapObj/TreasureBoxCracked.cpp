@@ -11,4 +11,5 @@ namespace {
     const Vec sAirBubbleOffset = {0.0f, 220.0f, 0.0f};
 };  // namespace
 
-TreasureBoxCracked::TreasureBoxCracked(const char* pName) : LiveActor(pName) {}
+TreasureBoxCracked::TreasureBoxCracked(const char* pName) : LiveActor(pName) {
+}

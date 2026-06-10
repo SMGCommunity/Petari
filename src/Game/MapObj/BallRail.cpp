@@ -44,7 +44,8 @@ void BallRail::init(const JMapInfoIter& rIter) {
     appear();
 }
 
-void BallRail::control() {}
+void BallRail::control() {
+}
 
 bool BallRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_SPHERE_PLAYER_BINDED && isNerve(&NrvBallRail::BallRailNrvWait::sInstance)) {
@@ -199,6 +200,8 @@ void BallRail::exeNoBind() {
     }
 }
 
-BallRailPoint::BallRailPoint() : _0(0, 0, 0), _C(1, 0, 0), _18(0, 1, 0), _24(0, 0, 1) {}
+BallRailPoint::BallRailPoint() : _0(0, 0, 0), _C(1, 0, 0), _18(0, 1, 0), _24(0, 0, 1) {
+}
 
-BallRail::~BallRail() {}
+BallRail::~BallRail() {
+}

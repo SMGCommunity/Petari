@@ -19,4 +19,5 @@ OnlyCamera::OnlyCamera(const char* pName) : NameObj(pName) {
     _3D = false;
 }
 
-OnlyCamera::~OnlyCamera() {}
+OnlyCamera::~OnlyCamera() {
+}

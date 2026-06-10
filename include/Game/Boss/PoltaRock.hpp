@@ -29,7 +29,9 @@ public:
     bool isEnableAttack() const NO_INLINE;
     bool isEnableExplosion() const;
 
-    inline Polta* getOwner() { return mOwner; }  // required to match instruction order in generateKill
+    inline Polta* getOwner() {
+        return mOwner;
+    }  // required to match instruction order in generateKill
 
     /* 0x8C */ Polta* mOwner;
     TQuat4f _90;

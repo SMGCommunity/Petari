@@ -1,7 +1,7 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Scene/SceneNameObjMovementController.hpp"
-#include "Game/SingletonHolder.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 #define FLAG_MOVEMENT_OFF 1u
 #define FLAG_SUSPEND 2u
@@ -11,19 +11,26 @@ NameObj::NameObj(const char* pName) : mName(pName), mFlag(0), mExecutorIdx(-1) {
     SingletonHolder< NameObjRegister >::get()->add(this);
 }
 
-NameObj::~NameObj() {}
+NameObj::~NameObj() {
+}
 
-void NameObj::init(const JMapInfoIter& rIter) {}
+void NameObj::init(const JMapInfoIter& rIter) {
+}
 
-void NameObj::initAfterPlacement() {}
+void NameObj::initAfterPlacement() {
+}
 
-void NameObj::movement() {}
+void NameObj::movement() {
+}
 
-void NameObj::draw() const {}
+void NameObj::draw() const {
+}
 
-void NameObj::calcAnim() {}
+void NameObj::calcAnim() {
+}
 
-void NameObj::calcViewAndEntry() {}
+void NameObj::calcViewAndEntry() {
+}
 
 void NameObj::initWithoutIter() {
     JMapInfoIter iter;

@@ -51,4 +51,5 @@ void SceneDataInitializer::initAfterScenarioSelected() {
     mDataHolder->initAfterScenarioSelected();
 }
 
-SceneDataInitializer::~SceneDataInitializer() {}
+SceneDataInitializer::~SceneDataInitializer() {
+}

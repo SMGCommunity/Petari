@@ -5,7 +5,6 @@
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.hpp"
 #include "JSystem/J3DGraphBase/J3DSys.hpp"
 
-
 void J3DMtxCalcJ3DSysInitBasic::init(Vec const& scale, Mtx const& mtx) {
     J3DSys::mCurrentS = scale;
     J3DSys::mParentS = (Vec){1.0f, 1.0f, 1.0f};

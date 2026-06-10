@@ -13,7 +13,8 @@ namespace NrvBirikyu {
 
 Birikyu::Birikyu(const char* pName)
     : LiveActor(pName), _8C(nullptr), _90(gZeroVec), _9C(gZeroVec), _A8(false), _A9(false), _AC(0.0f, 1.0f, 0.0f), _B8(0.0f, 0.0f, 1.0f), _C4(0.0f),
-      _C8(10.0f) {}
+      _C8(10.0f) {
+}
 
 void Birikyu::init(const JMapInfoIter& rIter) {
     MR::getObjectName(&_8C, rIter);
@@ -157,7 +158,7 @@ void Birikyu::initShadow() {
         MR::onCalcShadowDropPrivateGravity(this, nullptr);
         MR::onCalcShadow(this, nullptr);
         MR::onCalcGravity(this);
-        MR::setShadowDropDirectionPtr(this, nullptr, &getSensor("body")->mPosition);
+        MR::setShadowDropPositionPtr(this, nullptr, &getSensor("body")->mPosition);
     }
 }
 
@@ -244,7 +245,8 @@ void Birikyu::exeAttack() {
     }
 }
 
-void Birikyu::exeAttackWait() {}
+void Birikyu::exeAttackWait() {
+}
 
 void Birikyu::exeStopPointing() {
     if (MR::isFirstStep(this)) {

@@ -1,4 +1,5 @@
 #include "Game/MapObj/GreenCaterpillarBig.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 
 namespace NrvGreenCaterpillarBig {
     NEW_NERVE(GreenCaterpillarBigNrvHide, GreenCaterpillarBig, Hide);
@@ -240,6 +241,8 @@ void GreenCaterpillarBig::leaveApple() {
     MR::startSound(this, "SE_OJ_GRN_CATERP_OUT");
 }
 
-GreenCaterpillarBigBody::~GreenCaterpillarBigBody() {}
+GreenCaterpillarBigBody::~GreenCaterpillarBigBody() {
+}
 
-GreenCaterpillarBig::~GreenCaterpillarBig() {}
+GreenCaterpillarBig::~GreenCaterpillarBig() {
+}

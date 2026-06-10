@@ -35,6 +35,12 @@ class HashSortTable;
 class DrawAdaptor;
 struct SmokeEffectEntry;
 
+template < int SIZE, class T, class U >
+class AudGenericAudible;
+class JAUDopplerAudibleChannel;
+class JAUDopplerAudibleAbsPos;
+typedef AudGenericAudible< 4, JAUDopplerAudibleChannel, JAUDopplerAudibleAbsPos > AudGeneric;
+
 extern bool gIsLuigi;  // (cc68 - 10000)(r13)
 
 class MarioActor : public LiveActor {
@@ -746,7 +752,7 @@ public:
     u8 _F38;
     // padding
     union {
-        JAIAudible* _F3C;
+        AudGeneric* _F3C;
         TVec3f* _F3C_vec;
     };
     u16 _F40;

@@ -77,4 +77,5 @@ void J3DShapeDraw::draw() const {
     GXCallDisplayList(mDisplayList, mDisplayListSize);
 }
 
-J3DShapeDraw::~J3DShapeDraw() {}
+J3DShapeDraw::~J3DShapeDraw() {
+}

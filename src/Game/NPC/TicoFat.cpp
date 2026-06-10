@@ -506,7 +506,8 @@ void TicoFat::initStarPieceSaveData(const JMapInfoIter& rIter) {
     }
 }
 
-void TicoFat::addStarPieceSaveData(s32) {}
+void TicoFat::addStarPieceSaveData(s32) {
+}
 
 void TicoFat::appearInformation() const {
     MR::appearInformationMessage(MR::getGameMessageDirect(sInfoMessageID), true);
@@ -957,4 +958,5 @@ void TicoFat::exeAfter() {
     }
 }
 
-TicoFat::~TicoFat() {}
+TicoFat::~TicoFat() {
+}

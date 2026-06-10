@@ -83,7 +83,7 @@ void WaterPressureBullet::control() {
             stack_8.set(mVelocity);
         }
 
-        MR::turnVecToVecCosOnPlane(&_8C, stack_8, _98, JMath::sSinCosTable.cosLap(-2.5f));
+        MR::turnVecToVecCosOnPlane(&_8C, stack_8, _98, MR::cosDegree(-2.5f));
     }
 }
 
@@ -298,4 +298,5 @@ void WaterPressureBullet::updateSuffererMtx() {
     MR::setBaseTRMtx(mHostActor, pos);
 }
 
-WaterPressureBullet::~WaterPressureBullet() {}
+WaterPressureBullet::~WaterPressureBullet() {
+}

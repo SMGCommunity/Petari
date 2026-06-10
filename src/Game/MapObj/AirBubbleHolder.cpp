@@ -2,7 +2,8 @@
 #include "Game/MapObj/AirBubble.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-AirBubbleHolder::AirBubbleHolder(const char* pName) : LiveActorGroup(pName, 64) {}
+AirBubbleHolder::AirBubbleHolder(const char* pName) : LiveActorGroup(pName, 64) {
+}
 
 // AirBubble isn't finished so the size is wrong
 void AirBubbleHolder::init(const JMapInfoIter& rIter) {

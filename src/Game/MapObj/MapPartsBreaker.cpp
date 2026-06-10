@@ -7,7 +7,8 @@ namespace NrvMapPartsBreaker {
     NEW_NERVE(HostTypeBreak, MapPartsBreaker, Break);
 };  // namespace NrvMapPartsBreaker
 
-void MapPartsBreaker::exeWait() {}
+void MapPartsBreaker::exeWait() {
+}
 
 void MapPartsBreaker::exeReactToTornado() {
     if (isFirstStep()) {

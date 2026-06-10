@@ -24,8 +24,7 @@ namespace NrvMiniatureGalaxy {
 
 MiniatureGalaxy::MiniatureGalaxy(const char* pName)
     : LiveActor(pName), mGalaxyType(-1), mState(3), mUnknownModel(), mShadowModel(), mSelectModel(), mStarPlateModel(), mProjmapEffectMtxSetter(),
-      _108(), mMiniatureName(), mName(), mCanZoomIn(1), mZoomLevel(20), _124(), _1B8(), mOrbit(),
-      mNamePlate() {
+      _108(), mMiniatureName(), mName(), mCanZoomIn(1), mZoomLevel(20), _124(), _1B8(), mOrbit(), mNamePlate() {
     _D4.identity();
     _A4.identity();
 }
@@ -675,4 +674,5 @@ void MiniatureGalaxy::exeSelected() {
     tryZoomIn(true);
 }
 
-void MiniatureGalaxy::exeConfirmed() {}
+void MiniatureGalaxy::exeConfirmed() {
+}

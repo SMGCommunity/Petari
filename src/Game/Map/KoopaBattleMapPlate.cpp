@@ -14,7 +14,8 @@ void KoopaBattleMapPlate::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _8C);
 }
 
-KoopaBattleMapPlate::~KoopaBattleMapPlate() {}
+KoopaBattleMapPlate::~KoopaBattleMapPlate() {
+}
 
 void KoopaBattleMapPlate::init(const JMapInfoIter& rIter) {
     TVec3f v1;

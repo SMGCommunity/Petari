@@ -312,4 +312,5 @@ void ItemBlock::calcAnim() {
     mNoCalcAnim = false;
 }
 
-ItemBlock::~ItemBlock() {}
+ItemBlock::~ItemBlock() {
+}

@@ -6,7 +6,8 @@ namespace NrvTimeAppearObj {
     NEW_NERVE(TimeAppearObjNrvEnd, TimeAppearObj, End);
 };  // namespace NrvTimeAppearObj
 
-TimeAppearObj::TimeAppearObj(const char* pName) : MapObjActor(pName), mTimer(0x1E) {}
+TimeAppearObj::TimeAppearObj(const char* pName) : MapObjActor(pName), mTimer(0x1E) {
+}
 
 void TimeAppearObj::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
@@ -47,4 +48,5 @@ void TimeAppearObj::appear() {
     setNerve(&NrvTimeAppearObj::TimeAppearObjNrvHide::sInstance);
 }
 
-TimeAppearObj::~TimeAppearObj() {}
+TimeAppearObj::~TimeAppearObj() {
+}

@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-
+#include "Game/NameObj/NameObj.hpp"
 
 class PhantomShipHandle : public LiveActor {
 public:

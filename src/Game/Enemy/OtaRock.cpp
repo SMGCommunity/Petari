@@ -203,7 +203,7 @@ bool OtaRock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
     return true;
 }
 
-//void OtaRock::initModel() {}
+// void OtaRock::initModel() {}
 
 void OtaRock::exeWait() {
     if (MR::isFirstStep(this)) {

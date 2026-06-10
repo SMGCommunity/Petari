@@ -210,6 +210,8 @@ TVec3f* SeaGullGroup::updatePosInfo(s32* a1, bool a2) const {
     return &_90[*a1];
 }
 
-SeaGull::~SeaGull() {}
+SeaGull::~SeaGull() {
+}
 
-SeaGullGroup::~SeaGullGroup() {}
+SeaGullGroup::~SeaGullGroup() {
+}

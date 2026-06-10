@@ -4,7 +4,8 @@ namespace NrvItemAppearStone {
     NEW_NERVE(HostTypeWait, ItemAppearStone, Wait);
 };
 
-ItemAppearStone::ItemAppearStone(const char* pName) : LiveActor(pName) {}
+ItemAppearStone::ItemAppearStone(const char* pName) : LiveActor(pName) {
+}
 
 void ItemAppearStone::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -28,7 +29,8 @@ void ItemAppearStone::kill() {
     LiveActor::kill();
 }
 
-void ItemAppearStone::calcAndSetBaseMtx() {}
+void ItemAppearStone::calcAndSetBaseMtx() {
+}
 
 void ItemAppearStone::exeWait() {
     MR::startLevelSound(this, "SE_OJ_LV_ITEM_APR_STONE_MV");
@@ -39,4 +41,5 @@ void ItemAppearStone::exeWait() {
     }
 }
 
-ItemAppearStone::~ItemAppearStone() {}
+ItemAppearStone::~ItemAppearStone() {
+}

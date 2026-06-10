@@ -6,7 +6,8 @@
 
 #include <cstring>
 
-CubeCameraArea::CubeCameraArea(int formType, const char* pName) : AreaObj(formType, pName), _3C(0), mZoneID(0) {}
+CubeCameraArea::CubeCameraArea(int formType, const char* pName) : AreaObj(formType, pName), _3C(0), mZoneID(0) {
+}
 
 // needed to get sCubeCategory emitted in sbss;
 s32 CubeCameraArea::sCubeCategory = 0;
@@ -104,7 +105,7 @@ void CubeCameraMgr::sort() {
                     swapObj = nextObj;
                 }
             }
-            
+
             if (swapIndex != i) {
                 mArray[i] = swapObj;
                 mArray[swapIndex] = curObj;
@@ -113,4 +114,5 @@ void CubeCameraMgr::sort() {
     }
 }
 
-CubeCameraMgr::~CubeCameraMgr() {}
+CubeCameraMgr::~CubeCameraMgr() {
+}

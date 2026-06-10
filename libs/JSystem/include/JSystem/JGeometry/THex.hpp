@@ -6,7 +6,8 @@ namespace JGeometry {
     template < typename T >
     class THexahedron3 {
     public:
-        THexahedron3() {}
+        THexahedron3() {
+        }
 
         bool mayIntersectBall3(const TVec3f& rVec, f32 a2) const; /*{
             f32 neg = -a2;

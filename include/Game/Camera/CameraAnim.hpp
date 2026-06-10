@@ -49,9 +49,11 @@ struct CanmFrameInfo {
 
 class BaseCamAnmDataAccessor {
 public:
-    inline BaseCamAnmDataAccessor() {}
+    inline BaseCamAnmDataAccessor() {
+    }
 
-    virtual inline ~BaseCamAnmDataAccessor() {}
+    virtual inline ~BaseCamAnmDataAccessor() {
+    }
 
     virtual void set(void*, void*) = 0;
     virtual void getPos(TVec3f*, f32) const = 0;

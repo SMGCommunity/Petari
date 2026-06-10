@@ -60,4 +60,5 @@ void ClipAreaDrop::exeWait() {
     }
 }
 
-ClipAreaDrop::~ClipAreaDrop() {}
+ClipAreaDrop::~ClipAreaDrop() {
+}

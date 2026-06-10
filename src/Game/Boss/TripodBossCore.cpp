@@ -28,11 +28,7 @@ void TripodBossCore::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
     initClippingSphere();
     initHitSensor(1);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensor(this, "body", ATYPE_BREAKABLE_CAGE, 8, 300.0f * mScale.x, offs);
+    MR::addHitSensor(this, "body", ATYPE_BREAKABLE_CAGE, 8, 300.0f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, "TripodBossCore", getSensor("body"), nullptr);
     initSound(4, false);
     mBreakModel = MR::createModelObjMapObjStrongLight("壊れモデル", "TripodBossCoreBreak", getBaseMtx());
@@ -138,6 +134,8 @@ void TripodBossCore::exeBreak() {
     }
 }
 
-void TripodBossCore::exeNonActive() {}
+void TripodBossCore::exeNonActive() {
+}
 
-TripodBossCore::~TripodBossCore() {}
+TripodBossCore::~TripodBossCore() {
+}

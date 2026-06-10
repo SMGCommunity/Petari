@@ -10,9 +10,11 @@ public:
     virtual ~FloaterFloatingForce();
     virtual void init(const JMapInfoIter&);
     virtual void start();
-    virtual void updateHostTrans(TVec3f*) const {}
+    virtual void updateHostTrans(TVec3f*) const {
+    }
 
-    virtual void updateHostVelocity(TVec3f*) const {}
+    virtual void updateHostVelocity(TVec3f*) const {
+    }
 
     virtual const TVec3f& getCurrentVelocity() const;
 

@@ -218,7 +218,7 @@ void PenguinCoach::exePrep() {
         MR::tryTalkNearPlayerAtEndAndStartTalkAction(this)) {
         if (mBehavior == Behavior_Tutorial || (mBehavior == Behavior_Race && MR::tryTalkSelectLeft(mMsgCtrl))) {
             MR::startTalkingSequenceWithoutCinemaFrame(this);
-            MR::closeWipeFade(-1);
+            MR::closeWipeFade();
             setNerve(&NrvPenguinCoach::PenguinCoachNrvFade::sInstance);
         } else if (mBehavior == Behavior_Race && MR::tryTalkSelectRight(mMsgCtrl)) {
             MR::endMultiActorCamera(this, mCameraInfo, "会話", false, -1);
@@ -237,7 +237,7 @@ void PenguinCoach::exeFade() {
         return;
     }
 
-    MR::openWipeFade(-1);
+    MR::openWipeFade();
     MR::endTalkingSequence(this);
 
     if (mBehavior == Behavior_Tutorial) {

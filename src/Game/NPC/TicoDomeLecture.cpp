@@ -15,7 +15,8 @@ namespace {
     const static Vec cMoveEndRotate = {30.0f, 130.0f, 0.0f};
 };  // namespace
 
-TicoDomeLecture::TicoDomeLecture(const char* pName) : LiveActor(pName), _8C(gZeroVec), _98(gZeroVec) {}
+TicoDomeLecture::TicoDomeLecture(const char* pName) : LiveActor(pName), _8C(gZeroVec), _98(gZeroVec) {
+}
 
 void TicoDomeLecture::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
@@ -83,4 +84,5 @@ void TicoDomeLecture::exeMetamorphosis() {
     }
 }
 
-TicoDomeLecture::~TicoDomeLecture() {}
+TicoDomeLecture::~TicoDomeLecture() {
+}
