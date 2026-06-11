@@ -3042,7 +3042,7 @@ config.libs = [
             Object(NonMatching, "JSystem/JAudio2/JASCalc.cpp", cflags=cflags_jsys),
             Object(NonMatching, "JSystem/JAudio2/JASTaskThread.cpp"),
             Object(Matching, "JSystem/JAudio2/JASDvdThread.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASCallback.cpp"),
+            Object(Matching, "JSystem/JAudio2/JASCallback.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASHeapCtrl.cpp"),
             Object(Matching, "JSystem/JAudio2/JASResArcLoader.cpp"),
             Object(Matching, "JSystem/JAudio2/JASProbe.cpp"),
