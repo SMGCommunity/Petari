@@ -9,7 +9,7 @@ class KoopaStateGuard;
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) NO_INLINE;
-}  // namespace MR
+};  // namespace MR
 
 class KoopaBattleBase : public ActorStateBase< Koopa > {
 public:

@@ -21,7 +21,7 @@ class ModelObj;
 
 namespace {
     bool tryStartCameraDemo(Koopa*, const char*, const char* pName, const char* pDemoName, bool isMario);
-}  // namespace
+};  // namespace
 
 namespace MR {
     struct ActorSightParam {
@@ -31,7 +31,7 @@ namespace MR {
     };
 
     struct ActorMoveParam;
-}  // namespace MR
+};  // namespace MR
 
 namespace KoopaFunction {
     NameObj* createKoopaVs1(const char* pName);
@@ -58,7 +58,7 @@ namespace KoopaFunction {
 
     bool isKoopaVs1(const Koopa* pKoopa);
     bool isKoopaVs2(const Koopa* pKoopa);
-    bool isKoopaVs3(const Koopa* pKoopa) NO_INLINE; // otherwise inlines in startKoopaPlateDamageAnimPowerStarAppear
+    bool isKoopaVs3(const Koopa* pKoopa) NO_INLINE;  // otherwise inlines in startKoopaPlateDamageAnimPowerStarAppear
     bool isKoopaLv1(const Koopa* pKoopa);
     bool isKoopaLv2(const Koopa* pKoopa);
     bool isKoopaLv3(const Koopa* pKoopa);
