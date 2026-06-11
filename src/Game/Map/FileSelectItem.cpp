@@ -336,7 +336,7 @@ void FileSelectItem::createNew() {
 
 void FileSelectItem::createFellows() {
     for (u32 i = 0; i < 5; i++) {
-        mModels[i] = new FileSelectModel(sFellowModel[i], _D4, "キャラフェイス");
+        mModels[i] = new FileSelectModel(::sFellowModel[i], _D4, "キャラフェイス");
     }
 }
 

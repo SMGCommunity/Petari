@@ -136,11 +136,11 @@ void Kuribo::initAfterPlacement() {
 }
 
 void Kuribo::initState() {
-    mStateFindPlayer = new WalkerStateFindPlayer(this, &_B8, &sParam.mStateParam, &sParam.mFindPlayerParam);
+    mStateFindPlayer = new WalkerStateFindPlayer(this, &_B8, &::sParam.mStateParam, &::sParam.mFindPlayerParam);
     mBindStarPointer = new WalkerStateBindStarPointer(this, mScaleController);
-    mStateStagger = new WalkerStateStagger(this, &_B8, &sParam.mStateParam, &sParam.mStaggerParam);
-    mStateWander = new WalkerStateWander(this, &_B8, &sParam.mStateParam, &sParam.mWanderParam);
-    mStateChase = new WalkerStateChase(this, &_B8, &sParam.mStateParam, &sParam.mChaseParam);
+    mStateStagger = new WalkerStateStagger(this, &_B8, &::sParam.mStateParam, &::sParam.mStaggerParam);
+    mStateWander = new WalkerStateWander(this, &_B8, &::sParam.mStateParam, &::sParam.mWanderParam);
+    mStateChase = new WalkerStateChase(this, &_B8, &::sParam.mStateParam, &::sParam.mChaseParam);
 }
 
 void Kuribo::initSensor() {

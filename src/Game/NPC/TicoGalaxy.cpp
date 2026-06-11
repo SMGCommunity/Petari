@@ -75,7 +75,7 @@ void TicoGalaxy::disappear(bool a1) {
 }
 
 void TicoGalaxy::appearInformation() const {
-    MR::appearInformationMessage(MR::getGameMessageDirect(sInfoMessageID), true);
+    MR::appearInformationMessage(MR::getGameMessageDirect(::sInfoMessageID), true);
     MR::setInformationMessageReplaceString(MR::getGalaxyNameShortOnCurrentLanguage(mGalaxyName), 0);
 }
 

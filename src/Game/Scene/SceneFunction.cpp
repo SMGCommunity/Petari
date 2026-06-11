@@ -15,28 +15,28 @@ namespace {
 
 void SceneFunction::startStageFileLoad() {
     MR::createSceneObj(SceneObj_SceneDataInitializer);
-    getSceneDataInitializer()->startStageFileLoad();
+    ::getSceneDataInitializer()->startStageFileLoad();
 }
 
 void SceneFunction::waitDoneStageFileLoad() {
-    getSceneDataInitializer()->waitDoneStageFileLoad();
+    ::getSceneDataInitializer()->waitDoneStageFileLoad();
 }
 
 void SceneFunction::startActorFileLoadCommon() {
-    getSceneDataInitializer()->startActorFileLoadCommon();
+    ::getSceneDataInitializer()->startActorFileLoadCommon();
 }
 
 void SceneFunction::startActorFileLoadScenario() {
-    getSceneDataInitializer()->startActorFileLoadScenario();
+    ::getSceneDataInitializer()->startActorFileLoadScenario();
 }
 
 void SceneFunction::startActorPlacement() {
-    getSceneDataInitializer()->startActorPlacement();
+    ::getSceneDataInitializer()->startActorPlacement();
 }
 
 void SceneFunction::initAfterScenarioSelected() {
-    getSceneDataInitializer()->startStageFileLoadAfterScenarioSelected();
-    getSceneDataInitializer()->initAfterScenarioSelected();
+    ::getSceneDataInitializer()->startStageFileLoadAfterScenarioSelected();
+    ::getSceneDataInitializer()->initAfterScenarioSelected();
 }
 
 void SceneFunction::initForNameObj() {

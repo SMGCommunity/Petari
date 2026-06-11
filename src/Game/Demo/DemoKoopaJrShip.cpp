@@ -56,7 +56,7 @@ void DemoKoopaJrShip::init(const JMapInfoIter& rIter) {
 void DemoKoopaJrShip::appear() {
     LiveActor::appear();
     setNerve(&::DemoKoopaJrShipNrvAppear::sInstance);
-    mKoopaJrObj->mPosition.set(sKoopaJrPos);
+    mKoopaJrObj->mPosition.set(::sKoopaJrPos);
 }
 
 void DemoKoopaJrShip::exeAppear() {
@@ -135,7 +135,7 @@ void DemoKoopaJrShip::control() {
 void DemoKoopaJrShip::initAnimID(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mAnimCameraIndex);
 
-    if (mAnimCameraIndex >= ARRAY_SIZEU(sAnim)) {
+    if (mAnimCameraIndex >= ARRAY_SIZEU(::sAnim)) {
         mAnimCameraIndex = -1;
     }
 

@@ -21,7 +21,7 @@ WalkerStateFindPlayer::WalkerStateFindPlayer(LiveActor* pHost, TVec3f* pDirectio
       mFindPlayerParam(pFindPlayerParam) {
     initNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFind::sInstance);
     if (mFindPlayerParam == nullptr) {
-        mFindPlayerParam = &sDefaultParam;
+        mFindPlayerParam = &::sDefaultParam;
     }
 }
 

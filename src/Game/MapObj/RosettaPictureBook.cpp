@@ -107,12 +107,12 @@ void RosettaPictureBook::exeFadeOut() {
         MR::startSystemSE("SE_SY_TALK_START");
         MR::requestMovementOn(mIconAButton);
         mIconAButton->term();
-        MR::closeWipeCircle(hFadeOutFrame);
-        MR::stopStageBGM(hFadeOutFrame);
+        MR::closeWipeCircle(::hFadeOutFrame);
+        MR::stopStageBGM(::hFadeOutFrame);
         MR::startBckPlayer("Wait", (const char*)nullptr);
     }
 
-    if (MR::isGreaterStep(this, hFadeOutFrame)) {
+    if (MR::isGreaterStep(this, ::hFadeOutFrame)) {
         mLayout->appear();
         setNerve(&NrvRosettaPictureBook::HostTypeNrvReading::sInstance);
     }
@@ -131,10 +131,10 @@ void RosettaPictureBook::exeReading() {
 
 void RosettaPictureBook::exeFadeIn() {
     if (MR::isFirstStep(this)) {
-        MR::openWipeCircle(hFadeInFrame);
+        MR::openWipeCircle(::hFadeInFrame);
     }
 
-    if (MR::isGreaterStep(this, hFadeInFrame)) {
+    if (MR::isGreaterStep(this, ::hFadeInFrame)) {
         setNerve(&NrvRosettaPictureBook::HostTypeNrvWait::sInstance);
     }
 }

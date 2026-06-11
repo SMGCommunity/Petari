@@ -88,7 +88,7 @@ void InformationObserver::exeDisp() {
             MR::startSubBGM(sAttr[mType].mFirstMorphBgmName, false);
         }
 
-        mDisplayFrame = sDisplayFramesMin;
+        mDisplayFrame = ::sDisplayFramesMin;
     }
 
     if (mDisplayFrame >= 0) {
@@ -155,42 +155,42 @@ void InformationObserver::exeDisp() {
 
 namespace InformationObserverFunction {
     void explainBee() {
-        getInformationObserver()->entry(InformationObserver::Type_Bee, nullptr);
+        ::getInformationObserver()->entry(InformationObserver::Type_Bee, nullptr);
     }
 
     void explainTeresa() {
-        getInformationObserver()->entry(InformationObserver::Type_Teresa, nullptr);
+        ::getInformationObserver()->entry(InformationObserver::Type_Teresa, nullptr);
     }
 
     void explainHopper() {
-        getInformationObserver()->entry(InformationObserver::Type_Hopper, nullptr);
+        ::getInformationObserver()->entry(InformationObserver::Type_Hopper, nullptr);
     }
 
     void explainFire() {
-        getInformationObserver()->entry(InformationObserver::Type_Fire, nullptr);
+        ::getInformationObserver()->entry(InformationObserver::Type_Fire, nullptr);
     }
 
     void explainIce() {
-        getInformationObserver()->entry(InformationObserver::Type_Ice, nullptr);
+        ::getInformationObserver()->entry(InformationObserver::Type_Ice, nullptr);
     }
 
     void explainFlying() {
-        getInformationObserver()->entry(InformationObserver::Type_Flying, nullptr);
+        ::getInformationObserver()->entry(InformationObserver::Type_Flying, nullptr);
     }
 
     void explainInvincible() {
-        getInformationObserver()->entry(InformationObserver::Type_Invincible, nullptr);
+        ::getInformationObserver()->entry(InformationObserver::Type_Invincible, nullptr);
     }
 
     void explainLifeUp() {
-        getInformationObserver()->entry(InformationObserver::Type_LifeUp, nullptr);
+        ::getInformationObserver()->entry(InformationObserver::Type_LifeUp, nullptr);
     }
 
     void explainOneUp() {
-        getInformationObserver()->entry(InformationObserver::Type_OneUp, nullptr);
+        ::getInformationObserver()->entry(InformationObserver::Type_OneUp, nullptr);
     }
 
     void explainSpin(LiveActor* pParam1) {
-        getInformationObserver()->entry(InformationObserver::Type_Spin, pParam1);
+        ::getInformationObserver()->entry(InformationObserver::Type_Spin, pParam1);
     }
 };  // namespace InformationObserverFunction

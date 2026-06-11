@@ -946,7 +946,7 @@ bool WaterBazooka::tryShotBullet() {
     TPos3f posMtx;
     calcGunPointFromCannon(&posMtx);
     if (mIsElectric) {
-        static_cast< ElectricPressureBullet* >(bullet)->shotElectricBullet(this, posMtx, sElectricBulletSpeed);
+        static_cast< ElectricPressureBullet* >(bullet)->shotElectricBullet(this, posMtx, ::sElectricBulletSpeed);
     } else {
         static_cast< WaterPressureBullet* >(bullet)->shotWaterBullet(this, posMtx, 40.0f, true, true, false, &mCameraInfo);
     }
@@ -996,7 +996,7 @@ void WaterBazooka::calcNearDropPoint(TVec3f* pPos) const {
     TVec3f nearestPoint;
     for (u32 idx = 0; idx < 4; idx++) {
         TVec3f pos;
-        if (MR::tryFindNamePos(sDropPointStringTable[idx], &pos, nullptr) && MR::isNearPlayer(pos, nearestDistance)) {
+        if (MR::tryFindNamePos(::sDropPointStringTable[idx], &pos, nullptr) && MR::isNearPlayer(pos, nearestDistance)) {
             nearestPoint.set(pos);
             nearestDistance = MR::calcDistanceToPlayer(nearestPoint);
         }

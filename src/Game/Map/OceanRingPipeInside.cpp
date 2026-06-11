@@ -33,10 +33,10 @@ void OceanRingPipeInside::init(const JMapInfoIter& rIter) {
 }
 
 void OceanRingPipeInside::movement() {
-    mTexU0 = MR::repeat(mTexU0 + sTexSpeedU0, 0.0f, 1.0f);
-    mTexV0 = MR::repeat(mTexV0 + sTexSpeedV0, 0.0f, 1.0f);
-    mTexU1 = MR::repeat(mTexU1 + sTexSpeedU1, 0.0f, 1.0f);
-    mTexV1 = MR::repeat(mTexV1 + sTexSpeedV1, 0.0f, 1.0f);
+    mTexU0 = MR::repeat(mTexU0 + ::sTexSpeedU0, 0.0f, 1.0f);
+    mTexV0 = MR::repeat(mTexV0 + ::sTexSpeedV0, 0.0f, 1.0f);
+    mTexU1 = MR::repeat(mTexU1 + ::sTexSpeedU1, 0.0f, 1.0f);
+    mTexV1 = MR::repeat(mTexV1 + ::sTexSpeedV1, 0.0f, 1.0f);
 }
 
 void OceanRingPipeInside::initDisplayList() {
@@ -95,16 +95,16 @@ void OceanRingPipeInside::loadMaterial() const {
     GXSetIndTexOrder(GX_INDTEXSTAGE0, GX_TEXCOORD1, GX_TEXMAP0);
     GXSetTevIndWarp(GX_TEVSTAGE0, GX_INDTEXSTAGE0, 1, 0, GX_ITM_0);
     Mtx23 new_mtx;
-    new_mtx[0][0] = sIndirectScale;
+    new_mtx[0][0] = ::sIndirectScale;
     new_mtx[0][1] = 0.0f;
     new_mtx[0][2] = 0.0f;
     new_mtx[1][0] = 0.0f;
-    new_mtx[1][1] = sIndirectScale;
+    new_mtx[1][1] = ::sIndirectScale;
     new_mtx[1][2] = 0.0f;
     GXSetIndTexMtx(GX_ITM_0, new_mtx, 0);
 
-    GXSetTevColor(GX_TEVREG0, sTevReg0);
-    GXSetTevColor(GX_TEVREG1, sTevReg1);
+    GXSetTevColor(GX_TEVREG0, ::sTevReg0);
+    GXSetTevColor(GX_TEVREG1, ::sTevReg1);
     GXSetNumTevStages(1);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C1, GX_CC_TEXC, GX_CC_ZERO);
@@ -131,12 +131,12 @@ void OceanRingPipeInside::sendGD() const {
     f32 f27;
     f32 f26;
     f32 f25;
-    f29 = sTexRateU0;
-    f30 = sTexRateU1;
+    f29 = ::sTexRateU0;
+    f30 = ::sTexRateU1;
     f26 = 0.0f;
     f25 = 0.0f;
-    f28 = sTexRateV0;
-    f27 = sTexRateV1;
+    f28 = ::sTexRateV0;
+    f27 = ::sTexRateV1;
 
     for (s32 i = 0; i < mRingPipe->_9C - 1; i++) {
         f32 f24 = 0.0f;
@@ -163,8 +163,8 @@ void OceanRingPipeInside::sendGD() const {
         }
         f26 = f28;
         f25 = f27;
-        f28 += sTexRateV0;
-        f27 += sTexRateV1;
+        f28 += ::sTexRateV0;
+        f27 += ::sTexRateV1;
     }
 }
 

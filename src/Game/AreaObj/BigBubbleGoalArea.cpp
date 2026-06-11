@@ -43,7 +43,7 @@ void BigBubbleGoalArea::movement() {
         return;
     }
 
-    mMeterDisplayAmount += sMeterUpSpeed;
+    mMeterDisplayAmount += ::sMeterUpSpeed;
 
     if (mMeterDisplayAmount >= mMeterCapacity) {
         mMeterDisplayAmount = mMeterCapacity;

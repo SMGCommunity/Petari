@@ -187,20 +187,20 @@ namespace MR {
     // getCurrentScenarioStartAnimCameraData
 
     void incCoin(int term) {
-        getScenePlayingResult()->incCoin(term);
+        ::getScenePlayingResult()->incCoin(term);
         incPlayerLife(term);
     }
 
     void incPurpleCoin() {
-        getScenePlayingResult()->incPurpleCoin();
+        ::getScenePlayingResult()->incPurpleCoin();
     }
 
     s32 getCoinNum() {
-        return getScenePlayingResult()->getCoinNum();
+        return ::getScenePlayingResult()->getCoinNum();
     }
 
     s32 getPurpleCoinNum() {
-        return getScenePlayingResult()->mPurpleCoinNum;
+        return ::getScenePlayingResult()->mPurpleCoinNum;
     }
 
     s32 getPowerStarNum() {

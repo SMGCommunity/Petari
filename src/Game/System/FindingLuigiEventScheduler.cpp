@@ -46,12 +46,12 @@ void FindingLuigiEventScheduler::update(const GalaxyMoveArgument& rMoveArg) {
 }
 
 void FindingLuigiEventScheduler::updateOnStageResult(const char* pClearedStageName, s32 clearedStarID) {
-    if (getLuigiEventState() == STATE_NULL && GameDataFunction::isOnGameEventFlag("SpecialStarLuigiRescued")) {
+    if (::getLuigiEventState() == STATE_NULL && GameDataFunction::isOnGameEventFlag("SpecialStarLuigiRescued")) {
         // if luigi in null state but has been rescued from Ghostly Galaxy
         // force into rescued state by default
         GameDataFunction::setGameEventValue("LuigiEventState", STATE_RESCUED);
     } else {
-        if (getLuigiEventState() == STATE_RESCUED) {
+        if (::getLuigiEventState() == STATE_RESCUED) {
             if (!GameSequenceFunction::hasPowerStarYetAtResultSequence()) {
                 // if new star collected while luigi is in rescued state
                 if (GameDataFunction::calcCurrentPowerStarNum() > 108 || GameDataFunction::isOnGameEventFlag("LuigiTalkAfterRescued")) {
@@ -65,7 +65,7 @@ void FindingLuigiEventScheduler::updateOnStageResult(const char* pClearedStageNa
             }
         }
 
-        if (getLuigiEventState() == STATE_HIDING && MR::isEqualString(mLuigiLostStageName, pClearedStageName) && mLuigiLostStarID == clearedStarID) {
+        if (::getLuigiEventState() == STATE_HIDING && MR::isEqualString(mLuigiLostStageName, pClearedStageName) && mLuigiLostStarID == clearedStarID) {
             // if Luigi was hiding and just rescued him
             mLuigiMailDirector->found();
             if (calcPowerStarIndexLuigiHas() == 4) {
@@ -80,7 +80,7 @@ void FindingLuigiEventScheduler::updateOnStageResult(const char* pClearedStageNa
 
         if (isState(0)) {
             // if in countdown state
-            u32 countdown = getLuigiEventState();
+            u32 countdown = ::getLuigiEventState();
 
             if (countdown != 0 && --countdown == 0) {
                 // if just counted down to 0
@@ -121,27 +121,27 @@ void FindingLuigiEventScheduler::getHidingGalaxyNameAndStarId(const char** pStag
 }
 
 bool FindingLuigiEventScheduler::isActive() const {
-    bool luigiIsActive = getLuigiEventState() != STATE_NULL;
+    bool luigiIsActive = ::getLuigiEventState() != STATE_NULL;
     if (luigiIsActive) {
         // If luigi not in null state, return if luigi is not rescued
-        luigiIsActive = getLuigiEventState() != STATE_RESCUED;
+        luigiIsActive = ::getLuigiEventState() != STATE_RESCUED;
     }
     return luigiIsActive;
 }
 
 bool FindingLuigiEventScheduler::isDisappear() const {
     // return if luigi is in the "Disappear"/"Lost" state
-    return getLuigiEventState() == STATE_DISAPPEAR;
+    return ::getLuigiEventState() == STATE_DISAPPEAR;
 }
 
 bool FindingLuigiEventScheduler::isHiding() const {
     // return if luigi is in the "Hiding" state (after getting the letter)
-    return getLuigiEventState() == STATE_HIDING;
+    return ::getLuigiEventState() == STATE_HIDING;
 }
 
 bool FindingLuigiEventScheduler::isEnd() const {
     // return if all luigi is in state where all luigi stars have been completed
-    return getLuigiEventState() == STATE_END;
+    return ::getLuigiEventState() == STATE_END;
 }
 
 void FindingLuigiEventScheduler::sendMail() {
@@ -159,7 +159,7 @@ void FindingLuigiEventScheduler::clearLostAndFoundCount() {
 }
 
 void FindingLuigiEventScheduler::syncWithGameEventFlag() {
-    if (getLuigiEventState() == STATE_HIDING) {
+    if (::getLuigiEventState() == STATE_HIDING) {
         GameDataFunction::setGameEventValue("LuigiEventState", STATE_HIDING);
         getHidingGalaxyNameAndStarId(&mLuigiLostStageName, &mLuigiLostStarID);
     }
@@ -186,11 +186,11 @@ bool FindingLuigiEventScheduler::isState(u32 state) const {
     if (state == 0) {
         // check if in countdown state
         // luigiEventState = GameDataFunction::getGameEventValue("LuigiEventState");
-        return getLuigiEventState() <= 5;
+        return ::getLuigiEventState() <= 5;
     }
 
     // check if state matches value exactly
-    return state == getLuigiEventState();
+    return state == ::getLuigiEventState();
 }
 
 void FindingLuigiEventScheduler::setStateReturnAstroGalaxy(int state) {

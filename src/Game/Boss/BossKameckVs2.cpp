@@ -73,7 +73,7 @@ void BossKameckVs2::exeOpeningDemo() {
 void BossKameckVs2::exeBattleLv1() {
     if (MR::isFirstStep(this)) {
         mStateBattle->setMoveRail(mBossKameck->getMoveRail(0));
-        mStateBattle->setBattlePattarn(&sPatternLv1);
+        mStateBattle->setBattlePattarn(&::sPatternLv1);
         mStateBattle->_3C = 0;
         mStateBattle->_30 = 3;
     }
@@ -85,7 +85,7 @@ void BossKameckVs2::exeBattleLv2() {
     if (MR::isFirstStep(this)) {
         mBossKameck->appearStarPieceToPlayer(8);
         mStateBattle->setMoveRail(mBossKameck->getMoveRail(1));
-        mStateBattle->setBattlePattarn(&sPatternLv2);
+        mStateBattle->setBattlePattarn(&::sPatternLv2);
         mStateBattle->_3C = 0;
         mStateBattle->_30 = 3;
     }
@@ -106,7 +106,7 @@ void BossKameckVs2::exePowerUpDemo() {
 void BossKameckVs2::exeBattleLv3() {
     if (MR::isFirstStep(this)) {
         mStateBattle->setMoveRail(mBossKameck->getMoveRail(2));
-        mStateBattle->setBattlePattarn(&sPatternLv3);
+        mStateBattle->setBattlePattarn(&::sPatternLv3);
         mStateBattle->_3C = 0;
         mStateBattle->_30 = 3;
     }
@@ -118,7 +118,7 @@ void BossKameckVs2::exeBattleLv4() {
     if (MR::isFirstStep(this)) {
         mBossKameck->appearStarPieceToPlayer(16);
         mStateBattle->setMoveRail(mBossKameck->getMoveRail(3));
-        mStateBattle->setBattlePattarn(&sPatternLv3);
+        mStateBattle->setBattlePattarn(&::sPatternLv3);
         mStateBattle->_3C = 1;
         mStateBattle->_30 = 4;
     }

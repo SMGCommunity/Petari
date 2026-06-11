@@ -40,7 +40,7 @@ void TombSpiderStateSwoon::exeLoop() {
         MR::startAction(getHost(), "Swoon");
     }
 
-    if (MR::isGreaterStep(this, sLoopStep)) {
+    if (MR::isGreaterStep(this, ::sLoopStep)) {
         setNerve(&NrvTombSpiderStateSwoon::TombSpiderStateSwoonNrvEnd::sInstance);
     }
 }

@@ -26,14 +26,14 @@ void WalkerStateBlowDamage::exeBlow() {
     if (MR::isFirstStep(this)) {
         MR::startAction(getHost(), "Damage");
     }
-    MR::attenuateVelocity(getHost(), sAirFric);
-    MR::addVelocityToGravity(getHost(), sAirGravityAccel);
+    MR::attenuateVelocity(getHost(), ::sAirFric);
+    MR::addVelocityToGravity(getHost(), ::sAirGravityAccel);
 
     TVec3f mVelocityNegate;
     JMathInlineVEC::PSVECNegate(&getHost()->mVelocity, &mVelocityNegate);
-    MR::turnDirectionDegree(getHost(), mDirection, mVelocityNegate, sDamageTurnLimit);
+    MR::turnDirectionDegree(getHost(), mDirection, mVelocityNegate, ::sDamageTurnLimit);
 
-    if (MR::isGreaterStep(this, sDamageLandTime)) {
+    if (MR::isGreaterStep(this, ::sDamageLandTime)) {
         if (MR::isBindedGround(getHost())) {
             MR::startAction(getHost(), "DamageLand");
             MR::zeroVelocity(getHost());

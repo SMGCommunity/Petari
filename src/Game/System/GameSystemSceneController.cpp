@@ -286,11 +286,11 @@ void GameSystemSceneController::resetCurrentScenarioNo() {
 // GameSystemSceneController::isScenarioDecided
 
 void GameSystemSceneController::loadScenarioWaveData() {
-    getAudioSystemWrapper()->loadScenarioWaveData(_0.mScene, _0.mStage, _0.mCurrentScenarioNo);
+    ::getAudioSystemWrapper()->loadScenarioWaveData(_0.mScene, _0.mStage, _0.mCurrentScenarioNo);
 }
 
 bool GameSystemSceneController::isLoadDoneScenarioWaveData() const {
-    return getAudioSystemWrapper()->isLoadDoneScenarioWaveData();
+    return ::getAudioSystemWrapper()->isLoadDoneScenarioWaveData();
 }
 
 void GameSystemSceneController::exeNotInitialized() {
@@ -346,10 +346,10 @@ void GameSystemSceneController::exeChangeWaveBank() {
 
         bool isPlayerLuigi = GameSystemFunction::isCreatedGameDataHolder() ? MR::isPlayerLuigi() : false;
 
-        getAudioSystemWrapper()->loadStageWaveData(_4C.mScene, _4C.mStage, isPlayerLuigi);
+        ::getAudioSystemWrapper()->loadStageWaveData(_4C.mScene, _4C.mStage, isPlayerLuigi);
     }
 
-    if (getAudioSystemWrapper()->isLoadDoneStageWaveData()) {
+    if (::getAudioSystemWrapper()->isLoadDoneStageWaveData()) {
         requestChangeNerve(&NrvGameSystemSceneController::GameSystemSceneControllerInitializeScene::sInstance);
     }
 }

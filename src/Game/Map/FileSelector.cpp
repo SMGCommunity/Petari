@@ -258,7 +258,7 @@ void FileSelector::createFileItems() {
 
     for (int i = 0; i < USER_FILE_NUM; i++) {
         FileSelectIconID iconId = FileSelectIconID();
-        FileSelectItem* pItem = new FileSelectItem(sIndexOrder[i], true, iconId, "ファイルセレクトアイテム");
+        FileSelectItem* pItem = new FileSelectItem(::sIndexOrder[i], true, iconId, "ファイルセレクトアイテム");
 
         pItem->initWithoutIter();
         pItem->setSelectDelegator(pDelegator);
@@ -579,7 +579,7 @@ void FileSelector::initAllItems() {
         if (mUserFile[index].getIconId(&tempIconId)) {
             iconId.setFellowID(getUserFileFellowID(id));
         } else if (mUserFile[index].getMiiId(&tempMiiId)) {
-            if (getMiiFacePartsHolder()->isError()) {
+            if (::getMiiFacePartsHolder()->isError()) {
                 pItem->_146 = true;
             } else if (isUserFileMiiIdValid(id)) {
                 u32 miiIndex = getUserFileMiiIndex(id);
@@ -761,8 +761,8 @@ void FileSelector::exeTitle() {
         return;
     }
 
-    if (getMiiFacePartsHolder()->isInitEnd()) {
-        if (getMiiFacePartsHolder()->isError()) {
+    if (::getMiiFacePartsHolder()->isInitEnd()) {
+        if (::getMiiFacePartsHolder()->isError()) {
             setNerve(&NrvFileSelector::FileSelectorNrvRFLError::sInstance);
         } else {
             setNerve(&NrvFileSelector::FileSelectorNrvTitleEnd::sInstance);
@@ -805,7 +805,7 @@ void FileSelector::exeRFLWait() {
         mSysInfoWindowMini->appear("RFL_01", SysInfoWindow::Type_Blocking, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
     }
 
-    if (!getMiiFacePartsHolder()->isInitEnd()) {
+    if (!::getMiiFacePartsHolder()->isInitEnd()) {
         return;
     }
 

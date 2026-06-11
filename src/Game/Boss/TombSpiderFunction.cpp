@@ -193,8 +193,8 @@ namespace {
 };  // namespace
 
 bool TombSpiderFunction::tryDamageGland(TombSpider* pParent, HitSensor* pSender, HitSensor* pReceiver) {
-    if (tryDamageGlandFrontL(pParent, pSender, pReceiver) || tryDamageGlandFrontR(pParent, pSender, pReceiver) ||
-        tryDamageGlandRearL(pParent, pSender, pReceiver) || tryDamageGlandRearR(pParent, pSender, pReceiver)) {
+    if (::tryDamageGlandFrontL(pParent, pSender, pReceiver) || ::tryDamageGlandFrontR(pParent, pSender, pReceiver) ||
+        ::tryDamageGlandRearL(pParent, pSender, pReceiver) || ::tryDamageGlandRearR(pParent, pSender, pReceiver)) {
         return true;
     }
     return false;
@@ -213,15 +213,15 @@ namespace {
 };  // namespace
 
 bool TombSpiderFunction::tryDamageVitalSpot(TombSpider* pParent, HitSensor* pSender, HitSensor* pReceiver) {
-    if (tryDamageVitalSpotEach(getVitalSpotC(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_C, pSender, pReceiver)) {
+    if (::tryDamageVitalSpotEach(getVitalSpotC(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_C, pSender, pReceiver)) {
         return true;
     }
 
-    if (tryDamageVitalSpotEach(getVitalSpotL(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_L, pSender, pReceiver)) {
+    if (::tryDamageVitalSpotEach(getVitalSpotL(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_L, pSender, pReceiver)) {
         return true;
     }
 
-    if (tryDamageVitalSpotEach(getVitalSpotR(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_R, pSender, pReceiver)) {
+    if (::tryDamageVitalSpotEach(getVitalSpotR(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_R, pSender, pReceiver)) {
         return true;
     }
 
@@ -348,13 +348,13 @@ void TombSpiderFunction::pauseOffTombSpiderParts(const TombSpider* pParent) {
 void TombSpiderFunction::resetPlayerPosTombSpider(const TombSpider* pParent, bool useCurrentPos) {
     TPos3f mtx;
     mtx.identity();
-    TVec3f pos(pParent->mPosition.x, pParent->mPosition.y - sPlanetInsideRadius, pParent->mPosition.z);
+    TVec3f pos(pParent->mPosition.x, pParent->mPosition.y - ::sPlanetInsideRadius, pParent->mPosition.z);
     TVec3f dirOut(*MR::getPlayerPos());
     dirOut.sub(pParent->mPosition);
 
     if (useCurrentPos && !MR::isNearZero(dirOut)) {
         MR::normalize(&dirOut);
-        pos.set(pParent->mPosition.addOtherInline2(dirOut.scaleInline(sPlanetInsideRadius - 200.0f)));
+        pos.set(pParent->mPosition.addOtherInline2(dirOut.scaleInline(::sPlanetInsideRadius - 200.0f)));
     }
 
     TVec3f up;

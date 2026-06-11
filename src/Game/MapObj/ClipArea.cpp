@@ -40,7 +40,7 @@ void ClipArea::initBaseMatrix(const JMapInfoIter& rIter) {
 
 void ClipArea::draw() const {
     if (MR::isActiveClipArea()) {
-        GXSetTevColor(GX_TEVREG0, sShapeColor);
+        GXSetTevColor(GX_TEVREG0, ::sShapeColor);
         GXSetColorUpdate(false);
         GXSetDstAlpha(false, 0);
         GXSetCullMode(GX_CULL_FRONT);

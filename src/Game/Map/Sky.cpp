@@ -107,7 +107,7 @@ void Sky::exeWait() {
 
 void Sky::exeChange() {
     if (MR::isFirstStep(this)) {
-        MR::startAllAnim(this, cChangeAnimName);
+        MR::startAllAnim(this, ::cChangeAnimName);
     }
 }
 

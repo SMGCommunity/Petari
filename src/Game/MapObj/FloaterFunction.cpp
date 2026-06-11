@@ -42,15 +42,15 @@ namespace {
 
 namespace FloaterFunction {
     const char* getSeGroundOn(const char* pObjName) {
-        return getSeNameTable(pObjName)->mSeGroundOn;
+        return ::getSeNameTable(pObjName)->mSeGroundOn;
     }
 
     const char* getSeMoveDown(const char* pObjName) {
-        return getSeNameTable(pObjName)->mSeMoveDown;
+        return ::getSeNameTable(pObjName)->mSeMoveDown;
     }
 
     const char* getSeMoveUp(const char* pObjName) {
-        return getSeNameTable(pObjName)->mSeMoveUp;
+        return ::getSeNameTable(pObjName)->mSeMoveUp;
     }
 
     bool isExistImpactOnRide(const char* pObjName) {

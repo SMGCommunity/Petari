@@ -109,9 +109,9 @@ void SimpleSeesawObj::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
-    const SoundEffectDataEntry* entry = getSeParam(mObjectName);
+    const SoundEffectDataEntry* entry = ::getSeParam(mObjectName);
     const char* sound_name = entry != nullptr ? entry->soundName : nullptr;
-    entry = getSeParam(mObjectName);
+    entry = ::getSeParam(mObjectName);
     MapObjActorUtil::setupInitInfoSeesaw(&info, rIter, sound_name, entry != nullptr ? entry->_8 : 0.0f);
     initialize(rIter, info);
 }

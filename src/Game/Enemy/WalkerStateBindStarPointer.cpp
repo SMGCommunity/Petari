@@ -62,7 +62,7 @@ void WalkerStateBindStarPointer::exeBind() {
         mUpdateCounter++;
     }
 
-    if (mUpdateCounter > sPointCanceBindTime) {
+    if (mUpdateCounter > ::sPointCanceBindTime) {
         kill();
     }
 }

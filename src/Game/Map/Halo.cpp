@@ -34,7 +34,7 @@ void Halo::init(const JMapInfoIter& rIter) {
     info.setupDefaultPos();
     info.setupConnectToScene();
     info.setupNerve(&NrvHalo::HostTypeAppear::sInstance);
-    info.setupClippingRadius(getParam(mObjectName)->clippingRadius * 100.0f);
+    info.setupClippingRadius(::getParam(mObjectName)->clippingRadius * 100.0f);
     info.setupFarClipping(-1.0f);
     info.setupAffectedScale();
     initialize(rIter, info);

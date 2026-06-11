@@ -58,13 +58,13 @@ Flag::~Flag() {
 }
 
 Flag::Flag(const char* pName)
-    : LiveActor(pName), mObjName(nullptr), mDisableLighting(false), mNumPointsV(10), mNumPointsU(10), mPointIntervalU(sDefaultPointIntervalU),
-      mPointIntervalV(sDefaultPointIntervalV), mFixPoints(nullptr), mUp(0.0f, 1.0f, 0.0f), mClipCenter(0.0f, 0.0f, 0.0f), mBasePos(nullptr),
+    : LiveActor(pName), mObjName(nullptr), mDisableLighting(false), mNumPointsV(10), mNumPointsU(10), mPointIntervalU(::sDefaultPointIntervalU),
+      mPointIntervalV(::sDefaultPointIntervalV), mFixPoints(nullptr), mUp(0.0f, 1.0f, 0.0f), mClipCenter(0.0f, 0.0f, 0.0f), mBasePos(nullptr),
       mBaseMtx(nullptr), mStickLength(0.0f), mWavePhase(0.0f), mSide(0.0f, 0.0f, 1.0f), mFront(0.0f, 0.0f, 0.0f), mIsVerticalFlag(false),
-      mWaitTime(0), mGravityScale(sDefaultGravity), mFrictionRateMin(sDefaultFrictionRateMin), mFrictionRateMax(sDefaultFrictionRateMax),
-      mWindAccelRate(sDefaultWindAccelRate), mWindAccelMin(sDefaultWindAccelMin), mRandomWindAccelMin(sDefaultRandomWindAccelMin),
-      mRandomWindAccelMax(sDefaultRandomWindAccelMax), mLightColorMin(sLightColorMinFar), mColors(nullptr), mTexST(nullptr), mTexture(nullptr),
-      mUseAlpha(false), mAlpha(0xFF), mAlphaDistanceNear(sDefaultAlphaDistanceNear), mAlphaDistanceFar(sDefaultAlphaDistanceFar), mSeStep(0),
+      mWaitTime(0), mGravityScale(::sDefaultGravity), mFrictionRateMin(::sDefaultFrictionRateMin), mFrictionRateMax(::sDefaultFrictionRateMax),
+      mWindAccelRate(::sDefaultWindAccelRate), mWindAccelMin(::sDefaultWindAccelMin), mRandomWindAccelMin(::sDefaultRandomWindAccelMin),
+      mRandomWindAccelMax(::sDefaultRandomWindAccelMax), mLightColorMin(::sLightColorMinFar), mColors(nullptr), mTexST(nullptr), mTexture(nullptr),
+      mUseAlpha(false), mAlpha(0xFF), mAlphaDistanceNear(::sDefaultAlphaDistanceNear), mAlphaDistanceFar(::sDefaultAlphaDistanceFar), mSeStep(0),
       mDisableSound(false) {
 }
 
@@ -173,14 +173,14 @@ void Flag::init(const JMapInfoIter& rIter) {
 
     if (MR::isEqualString(mObjName, "FlagKoopaCastle")) {
         mClipCenter = mUp.scaleInline(500.0f).addOperatorInLine(mPosition);
-        MR::setClippingTypeSphere(this, 500.0f + sClippingRadiusOffset, &mClipCenter);
+        MR::setClippingTypeSphere(this, 500.0f + ::sClippingRadiusOffset, &mClipCenter);
     } else if (mStickLength > 0.0f) {
         if (mBasePos == nullptr && mBaseMtx == nullptr) {
             // TODO: I dont think they use both "* 0.5f" and "/ 2"
             mClipCenter = mUp.scaleInline(mStickLength * 0.5f).addOperatorInLine(mPosition);
-            MR::setClippingTypeSphere(this, mStickLength / 2 + sClippingRadiusOffset, &mClipCenter);
+            MR::setClippingTypeSphere(this, mStickLength / 2 + ::sClippingRadiusOffset, &mClipCenter);
         } else {
-            MR::setClippingTypeSphere(this, mStickLength + sClippingRadiusOffset);
+            MR::setClippingTypeSphere(this, mStickLength + ::sClippingRadiusOffset);
         }
     }
 
@@ -232,12 +232,12 @@ void Flag::movement() {
     if (!mDisableSound) {
         if (mSeStep <= 0) {
             MR::startSound(this, "SE_OJ_FLAG");
-            mSeStep = MR::getRandom(sSeStepMin, sSeStepMax);
+            mSeStep = MR::getRandom(::sSeStepMin, ::sSeStepMax);
         } else {
             mSeStep--;
         }
     }
-    mWavePhase += sWindTimeSpeed;
+    mWavePhase += ::sWindTimeSpeed;
     updateFlag();
 }
 
@@ -254,14 +254,14 @@ void Flag::updateFlag() {
 
     f32 camDist = mPosition.distance(MR::getCamPos());
     if (!mDisableLighting) {
-        if (camDist < sLightDistanceNear) {
-            mLightColorMin = sLightColorMinNear;
-        } else if (camDist >= sLightDistanceFar) {
-            mLightColorMin = sLightColorMinFar;
+        if (camDist < ::sLightDistanceNear) {
+            mLightColorMin = ::sLightColorMinNear;
+        } else if (camDist >= ::sLightDistanceFar) {
+            mLightColorMin = ::sLightColorMinFar;
 
         } else {
-            f32 d = (camDist - sLightDistanceNear) / (sLightDistanceFar - sLightDistanceNear);
-            mLightColorMin = d * sLightColorMinFar + (1.0f - d) * sLightColorMinNear;
+            f32 d = (camDist - ::sLightDistanceNear) / (::sLightDistanceFar - ::sLightDistanceNear);
+            mLightColorMin = d * ::sLightColorMinFar + (1.0f - d) * ::sLightColorMinNear;
         }
     }
 
@@ -306,7 +306,7 @@ void Flag::updateFlag() {
             point->addAccel(grav);
 
             TVec3f side = mSide;
-            f32 wave = JMASinDegree(mWavePhase + sWindPosRateU * idxU + sWindPosRateV * idxV);
+            f32 wave = JMASinDegree(mWavePhase + ::sWindPosRateU * idxU + ::sWindPosRateV * idxV);
             if (wave < 0.0f) {
                 wave *= -1.0f;
             }
@@ -324,7 +324,7 @@ void Flag::updateFlag() {
             MR::vecKillElement(wind, mUp, &wind);
             wind.scale(MR::getRandom(mRandomWindAccelMin, mRandomWindAccelMax));
             mFixPoints[pointV].mPoints[pointU]->addAccel(wind);
-            mWaitTime = MR::getRandom(sRandomWaitTimeMin, sRandomWaitTimeMax);
+            mWaitTime = MR::getRandom(::sRandomWaitTimeMin, ::sRandomWaitTimeMax);
         } else {
             mWaitTime--;
         }
@@ -369,7 +369,7 @@ void Flag::updateFlag() {
             point->updatePos(friction);
 
             if (!mDisableLighting) {
-                f32 lightColor = 255.0f * ((point->mUp.dot(mFront) - sLightBorderMin) / (sLightBorderMax - sLightBorderMin));
+                f32 lightColor = 255.0f * ((point->mUp.dot(mFront) - ::sLightBorderMin) / (::sLightBorderMax - ::sLightBorderMin));
                 u8 color = MR::clamp(lightColor, mLightColorMin, 255.0f);
                 mColors[idxV * (mNumPointsU + 1) + idxU + 1].set(color, color, color, 0xFF);
             }
@@ -419,15 +419,15 @@ void Flag::draw() const {
 
         const Vec2 stickCoords[] = {{1.0f, 0.0f}, {0.0f, 1.0f}, {-1.0f, 0.0f}, {1.0f, 0.0f}};
 
-        GXSetArray(GX_VA_CLR0, &sStickColors, ARRAY_SIZE(sStickColors));
+        GXSetArray(GX_VA_CLR0, &::sStickColors, ARRAY_SIZE(::sStickColors));
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 8);
 
         f32 length = mStickLength + mPointIntervalV * (mNumPointsV - 1);
         for (s32 idx = 0; idx < 4; idx++) {
             TVec3f v1(stickCoords[idx].x, 0.0f, stickCoords[idx].y);
             TVec3f v2(stickCoords[idx].x, 0.0f, stickCoords[idx].y);
-            v1.scale(sStickWidth);
-            v2.scale(sStickWidth);
+            v1.scale(::sStickWidth);
+            v2.scale(::sStickWidth);
             TVec3f posA = mUp.scaleInline(length);
             posA.add(v1);
             posA.add(v2);

@@ -1090,7 +1090,7 @@ void Mario::tryDrop() {
     TVec3f dropVec(mFrontVec);
     dropVec.scale(frontSpd);
     TVec3f dropVecScale(dropVec);
-    dropVecScale.scale(cDropFrontSpeed);
+    dropVecScale.scale(::cDropFrontSpeed);
     mJumpVec = dropVecScale;
 
     if (MR::isNearZero(_8F8) && (mMovementStates._23)) {

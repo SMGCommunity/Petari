@@ -20,7 +20,7 @@ WalkerStateStagger::WalkerStateStagger(LiveActor* pHost, TVec3f* pDirection, Wal
     : ActorStateBase< LiveActor >("歩行型よろめき状態", pHost), mStateParam(pStateParam), mStaggerParam(pStaggerParam), mVelH(0.0f, 0.0f, 1.0f),
       mDirection(pDirection) {
     if (mStaggerParam == nullptr) {
-        mStaggerParam = &sDefaultStaggerParam;
+        mStaggerParam = &::sDefaultStaggerParam;
     }
 
     initNerve(&NrvWalkerStateStagger::WalkerStateStaggerNrvStagger::sInstance);

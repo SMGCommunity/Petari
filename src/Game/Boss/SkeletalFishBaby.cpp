@@ -83,8 +83,9 @@ void SkeletalFishBaby::init(const JMapInfoIter& rIter) {
         mStarPieceTargets[i] = new LiveActor("StarPointerTargetDummy");
         mStarPieceTargets[i]->makeActorDead();
 
-        TVec3f ptrTarget(sStarPointerTargetOffset[i]);
-        MR::initStarPointerTargetAtMtx(mStarPieceTargets[i], sStarPointerTargetSize[i], MR::getJointMtx(this, sStarPointerTargetJoint[i]), ptrTarget);
+        TVec3f ptrTarget(::sStarPointerTargetOffset[i]);
+        MR::initStarPointerTargetAtMtx(mStarPieceTargets[i], ::sStarPointerTargetSize[i], MR::getJointMtx(this, ::sStarPointerTargetJoint[i]),
+                                       ptrTarget);
     }
 }
 

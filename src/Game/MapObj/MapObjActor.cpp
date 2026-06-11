@@ -95,7 +95,7 @@ void MapObjActor::appear() {
     }
 
     if (MR::isExistEffectKeeper(this)) {
-        const char* appearEffectName = cEffectNameAppear;
+        const char* appearEffectName = ::cEffectNameAppear;
         if (MR::isRegisteredEffect(this, appearEffectName)) {
             MR::emitEffect(this, appearEffectName);
         }
@@ -401,13 +401,13 @@ void MapObjActor::exeWait() {
 
 void MapObjActor::exeMove() {
     if (MR::isFirstStep(this)) {
-        const char* moveName = cBckNameMove;
+        const char* moveName = ::cBckNameMove;
         if (MR::isExistBck(this, moveName)) {
             MR::startBck(this, moveName, 0);
         }
     }
 
-    if (MR::isExistBck(this, cBckNameMove) && MR::isBckStopped(this)) {
+    if (MR::isExistBck(this, ::cBckNameMove) && MR::isBckStopped(this)) {
         setNerve(mDoneNrv);
     }
 }
@@ -535,7 +535,7 @@ bool MapObjActorUtil::tryStartBreak(MapObjActor* pActor) {
         MR::startSound(pActor, stopSe);
     }
 
-    const char* breakEffect = cEffectNameBreak;
+    const char* breakEffect = ::cEffectNameBreak;
     if (MR::isRegisteredEffect(pActor, breakEffect)) {
         MR::emitEffect(pActor, breakEffect);
     }
@@ -543,7 +543,7 @@ bool MapObjActorUtil::tryStartBreak(MapObjActor* pActor) {
     ModelObj* modelObj = pActor->mModelObj;
     if (modelObj) {
         pActor->mModelObj->appear();
-        const char* breakName = (const char*)cBckNameBreak;
+        const char* breakName = (const char*)::cBckNameBreak;
         MR::startAllAnim(modelObj, breakName);
 
         if (MR::isExistBva(pActor, breakName)) {
@@ -556,7 +556,7 @@ bool MapObjActorUtil::tryStartBreak(MapObjActor* pActor) {
         MR::invalidateClipping(modelObj);
         return true;
     } else {
-        const char* breakName = cBckNameBreak;
+        const char* breakName = ::cBckNameBreak;
         if (MR::isExistBck(pActor, breakName)) {
             MR::startAllAnim(pActor, breakName);
             MR::invalidateClipping(pActor);
@@ -570,7 +570,7 @@ bool MapObjActorUtil::tryStartBreak(MapObjActor* pActor) {
 bool MapObjActorUtil::isBreakStopped(const MapObjActor* pActor) {
     const LiveActor* actor = pActor->mModelObj;
 
-    if (!pActor->mModelObj && MR::isExistBck(pActor, cBckNameBreak)) {
+    if (!pActor->mModelObj && MR::isExistBck(pActor, ::cBckNameBreak)) {
         actor = pActor;
     }
 

@@ -171,7 +171,7 @@ void SpkSpeakerCtrl::continuousUsingProcess(s32 idx) {
 void SpkSpeakerCtrl::updateSpeaker(OSAlarm*, OSContext*) {
     for (s32 i = 0; i < WPAD_MAX_CONTROLLERS; i++) {
         if (sMixingBuffer != nullptr) {
-            SpeakerInfo& inf = getSpeakerInfo(i);
+            SpeakerInfo& inf = ::getSpeakerInfo(i);
 
             if (inf._1) {
                 if (!inf._23) {

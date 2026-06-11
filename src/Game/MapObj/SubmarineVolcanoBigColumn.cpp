@@ -68,7 +68,7 @@ void SubmarineVolcanoBigColumn::exeWait() {
 
 void SubmarineVolcanoBigColumn::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startRumbleWithShakeCameraWeak(this, "強", "弱", sShakeDistance, 3.4028235e38f);
+        MR::startRumbleWithShakeCameraWeak(this, "強", "弱", ::sShakeDistance, 3.4028235e38f);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
         MR::invalidateCollisionParts(this);

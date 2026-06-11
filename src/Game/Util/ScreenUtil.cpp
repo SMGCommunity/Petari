@@ -128,23 +128,23 @@ namespace MR {
     }
 
     void startToCaptureScreen(const char* pParam1) {
-        getCaptureScreenDirector()->requestCaptureTiming(pParam1);
+        ::getCaptureScreenDirector()->requestCaptureTiming(pParam1);
     }
 
     void endToCaptureScreen(const char* pParam1) {
-        getCaptureScreenDirector()->invalidateCaptureTiming(pParam1);
+        ::getCaptureScreenDirector()->invalidateCaptureTiming(pParam1);
     }
 
     void captureScreenIfAllow(const char* pParam1) {
-        getCaptureScreenDirector()->captureIfAllow(pParam1);
+        ::getCaptureScreenDirector()->captureIfAllow(pParam1);
     }
 
     const ResTIMG* getScreenResTIMG() {
-        return getCaptureScreenDirector()->getResTIMG();
+        return ::getCaptureScreenDirector()->getResTIMG();
     }
 
     u8* getScreenTexImage() {
-        return getCaptureScreenDirector()->getTexImage();
+        return ::getCaptureScreenDirector()->getTexImage();
     }
 
     void closeWipeCircle(s32 frame) {
@@ -196,54 +196,54 @@ namespace MR {
     }
 
     void closeSystemWipeCircle(s32 frame) {
-        getSystemWipeHolder()->forceOpen("円ワイプ");
-        getSystemWipeHolder()->wipe(nullptr, frame);
+        ::getSystemWipeHolder()->forceOpen("円ワイプ");
+        ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void openSystemWipeFade(s32 frame) {
-        getSystemWipeHolder()->forceClose("フェードワイプ");
-        getSystemWipeHolder()->wipe(nullptr, frame);
+        ::getSystemWipeHolder()->forceClose("フェードワイプ");
+        ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void closeSystemWipeFade(s32 frame) {
-        getSystemWipeHolder()->forceOpen("フェードワイプ");
-        getSystemWipeHolder()->wipe(nullptr, frame);
+        ::getSystemWipeHolder()->forceOpen("フェードワイプ");
+        ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void forceOpenSystemWipeFade() {
-        getSystemWipeHolder()->forceOpen("フェードワイプ");
+        ::getSystemWipeHolder()->forceOpen("フェードワイプ");
     }
 
     void openSystemWipeWhiteFade(s32 frame) {
-        getSystemWipeHolder()->forceClose("白フェードワイプ");
-        getSystemWipeHolder()->wipe(nullptr, frame);
+        ::getSystemWipeHolder()->forceClose("白フェードワイプ");
+        ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void closeSystemWipeWhiteFade(s32 frame) {
-        getSystemWipeHolder()->forceOpen("白フェードワイプ");
-        getSystemWipeHolder()->wipe(nullptr, frame);
+        ::getSystemWipeHolder()->forceOpen("白フェードワイプ");
+        ::getSystemWipeHolder()->wipe(nullptr, frame);
     }
 
     void forceCloseSystemWipeWhiteFade() {
-        getSystemWipeHolder()->forceClose("白フェードワイプ");
+        ::getSystemWipeHolder()->forceClose("白フェードワイプ");
     }
 
     bool isSystemWipeActive() {
-        return getSystemWipeHolder()->isWipeIn() || getSystemWipeHolder()->isWipeOut();
+        return ::getSystemWipeHolder()->isWipeIn() || ::getSystemWipeHolder()->isWipeOut();
     }
 
     void closeSystemWipeCircleWithCaptureScreen(s32 frame) {
         closeSystemWipeCircle(frame);
-        getSystemWipeHolder()->startGameScreenCapture();
+        ::getSystemWipeHolder()->startGameScreenCapture();
     }
 
     void closeSystemWipeFadeWithCaptureScreen(s32 frame) {
         closeSystemWipeFade(frame);
-        getSystemWipeHolder()->startGameScreenCapture();
+        ::getSystemWipeHolder()->startGameScreenCapture();
     }
 
     void setWipeCircleCenterPos(const TVec3f& rCenterPos) {
-        getSystemWipeHolder()->setWipeRingCenter(rCenterPos);
+        ::getSystemWipeHolder()->setWipeRingCenter(rCenterPos);
     }
 
     void requestMovementOnImageEffect() {
@@ -252,7 +252,7 @@ namespace MR {
         }
 
         if (isExistSceneObj(SceneObj_BloomEffect)) {
-            requestMovementOn(getNormalBloom());
+            requestMovementOn(::getNormalBloom());
         }
 
         if (isExistSceneObj(SceneObj_BloomEffectSimple)) {
@@ -305,11 +305,11 @@ namespace MR {
     }
 
     bool isNormalBloomOn() {
-        return isExistSceneObj(SceneObj_BloomEffect) && getNormalBloom()->isSomething();
+        return isExistSceneObj(SceneObj_BloomEffect) && ::getNormalBloom()->isSomething();
     }
 
     bool isNormalBloomForEachModel() {
-        return isExistSceneObj(SceneObj_BloomEffect) && getNormalBloom()->isForEachModel();
+        return isExistSceneObj(SceneObj_BloomEffect) && ::getNormalBloom()->isForEachModel();
     }
 
     void setNormalBloomIntensity(u8 intensity) {
@@ -356,15 +356,15 @@ namespace MR {
     }
 
     void resetGlobalTimer() {
-        getPlayTimerScene()->stop();
+        ::getPlayTimerScene()->stop();
     }
 
     bool isGlobalTimerEnd() {
-        return getPlayTimerScene()->isEndGlobalTimer();
+        return ::getPlayTimerScene()->isEndGlobalTimer();
     }
 
     void startGlobalTimerTimeUp() {
-        getPlayTimerScene()->startTimeUp();
+        ::getPlayTimerScene()->startTimeUp();
     }
 
     void requestPowerUpHPMeter() {
@@ -409,35 +409,35 @@ namespace MR {
     }
 
     void tryScreenToFrameCinemaFrame() {
-        getCinemaFrame()->tryScreenToFrame();
+        ::getCinemaFrame()->tryScreenToFrame();
     }
 
     void tryFrameToBlankCinemaFrame() {
-        getCinemaFrame()->tryFrameToBlank();
+        ::getCinemaFrame()->tryFrameToBlank();
     }
 
     void tryBlankToFrameCinemaFrame() {
-        getCinemaFrame()->tryBlankToFrame();
+        ::getCinemaFrame()->tryBlankToFrame();
     }
 
     void tryFrameToScreenCinemaFrame() {
-        getCinemaFrame()->tryFrameToScreen();
+        ::getCinemaFrame()->tryFrameToScreen();
     }
 
     void forceToScreenCinemaFrame() {
-        getCinemaFrame()->forceToScreen();
+        ::getCinemaFrame()->forceToScreen();
     }
 
     void forceToFrameCinemaFrame() {
-        getCinemaFrame()->forceToFrame();
+        ::getCinemaFrame()->forceToFrame();
     }
 
     void forceToBlankCinemaFrame() {
-        getCinemaFrame()->forceToBlank();
+        ::getCinemaFrame()->forceToBlank();
     }
 
     bool isStopCinemaFrame() {
-        return getCinemaFrame()->isStop();
+        return ::getCinemaFrame()->isStop();
     }
 
     void appearInformationMessage(const char* pMessageId, bool hasButtonLayout) {
@@ -495,12 +495,12 @@ namespace MR {
     }
 
     void startMoviePlayer(const char* pName) {
-        getMoviePlayer()->startMovie(pName, false);
+        ::getMoviePlayer()->startMovie(pName, false);
         GameSceneFunction::requestPlayMovieDemo();
     }
 
     void stopMoviePlayer() {
-        getMoviePlayer()->stopMovie();
+        ::getMoviePlayer()->stopMovie();
     }
 
     bool isActiveMoviePlayer() {
@@ -508,7 +508,7 @@ namespace MR {
             return false;
         }
 
-        return getMoviePlayer()->isMovieActive();
+        return ::getMoviePlayer()->isMovieActive();
     }
 
     bool isMoviePlayerPlaying() {
@@ -516,7 +516,7 @@ namespace MR {
             return false;
         }
 
-        return getMoviePlayer()->isMoviePlaying();
+        return ::getMoviePlayer()->isMoviePlaying();
     }
 
     s32 getMovieCurrentFrame() {
@@ -524,35 +524,35 @@ namespace MR {
             return -1;
         }
 
-        return getMoviePlayer()->getCurrentFrame();
+        return ::getMoviePlayer()->getCurrentFrame();
     }
 
     u32 getMovieTotalFrame() {
-        return getMoviePlayer()->getTotalFrame();
+        return ::getMoviePlayer()->getTotalFrame();
     }
 
     void setMovieVolume(f32 volume, s32 step) {
-        getMoviePlayer()->setVolume(volume, step);
+        ::getMoviePlayer()->setVolume(volume, step);
     }
 
     void appearStarCounter() {
-        getStarCounter()->appear();
+        ::getStarCounter()->appear();
     }
 
     void disappearStarCounter() {
-        getStarCounter()->disappear();
+        ::getStarCounter()->disappear();
     }
 
     void forceSyncStarPieceCounter() {
-        getStarPieceCounter()->forceSync();
+        ::getStarPieceCounter()->forceSync();
     }
 
     void forceAppearStarPieceCounterForTicoFat() {
-        getStarPieceCounter()->forceAppear(true);
+        ::getStarPieceCounter()->forceAppear(true);
     }
 
     void disappearStarPieceCounterForTicoFat() {
-        getStarPieceCounter()->disappear(true);
+        ::getStarPieceCounter()->disappear(true);
     }
 
     void createPurpleCoinCounter() {

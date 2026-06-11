@@ -74,17 +74,17 @@ void Candlestand::init(const JMapInfoIter& rIter) {
     offs.y = ::getParam(mObjectName)->_C;
     offs.x = 0.0f;
     offs.z = 0.0f;
-    f32 sensorRange = getParam(mObjectName)->mSensorRange;
+    f32 sensorRange = ::getParam(mObjectName)->mSensorRange;
     info.setupHitSensorParam(8, sensorRange, offs);
-    f32 clippingRadius = getParam(mObjectName)->mClippingRadius;
+    f32 clippingRadius = ::getParam(mObjectName)->mClippingRadius;
     info.setupClippingRadius(clippingRadius);
     info.setupNerve(&NrvCandlestand::HostTypeBurn::sInstance);
     info.setupAffectedScale();
     initialize(rIter, info);
 
     const char* objName = mObjectName;
-    getParam(objName);
-    getParam(objName);
+    ::getParam(objName);
+    ::getParam(objName);
     MR::getJMapInfoArg0NoInit(rIter, &mItem);
     if (mItem == -1) {
         MR::declareCoin(this, 1);
@@ -94,7 +94,7 @@ void Candlestand::init(const JMapInfoIter& rIter) {
         MR::declareStarPiece(this, 1);
     }
 
-    if (getParam(mObjectName)->mCanUseSwitch) {
+    if (::getParam(mObjectName)->mCanUseSwitch) {
         if (MR::isValidSwitchA(this)) {
             setNerve(&NrvCandlestand::HostTypeWaitFire::sInstance);
         } else {
@@ -108,7 +108,7 @@ void Candlestand::init(const JMapInfoIter& rIter) {
 void Candlestand::makeActorAppeared() {
     LiveActor::makeActorAppeared();
 
-    if (!getParam(mObjectName)->mCanUseSwitch && !MR::isClipped(this)) {
+    if (!::getParam(mObjectName)->mCanUseSwitch && !MR::isClipped(this)) {
         emitEffectFire();
     }
 }
@@ -190,7 +190,7 @@ bool Candlestand::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
 bool Candlestand::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isInSpinStormRange(msg, pSender, pReceiver, (350.0f * mScale.x)) && isNerve(&NrvCandlestand::HostTypeBurn::sInstance)) {
-        if (getParam(mObjectName)->mCanUseSwitch) {
+        if (::getParam(mObjectName)->mCanUseSwitch) {
             setNerve(&NrvCandlestand::HostTypeFlicker::sInstance);
             return true;
         } else {
@@ -265,7 +265,7 @@ void Candlestand::exeExtinguish() {
 
         appearItem();
 
-        if (getParam(mObjectName)->mCanUseSwitch) {
+        if (::getParam(mObjectName)->mCanUseSwitch) {
             setNerve(&NrvCandlestand::HostTypeWaitFire::sInstance);
         }
     }

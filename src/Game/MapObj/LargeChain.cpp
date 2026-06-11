@@ -20,7 +20,7 @@ void LargeChain::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     s32 chainLen;
     MR::getJMapInfoArg0NoInit(rIter, &chainLen);
-    mChainCount = chainLen / sPartsLength;
+    mChainCount = chainLen / ::sPartsLength;
     createChainParts();
     MR::connectToSceneMapObjMovement(this);
 

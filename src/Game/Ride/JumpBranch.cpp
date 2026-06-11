@@ -165,9 +165,9 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         }
 
         // interesting...
-        sStartPointVelocity.x = grabFront.x;
-        sStartPointVelocity.y = grabFront.y;
-        sStartPointVelocity.z = grabFront.z;
+        ::sStartPointVelocity.x = grabFront.x;
+        ::sStartPointVelocity.y = grabFront.y;
+        ::sStartPointVelocity.z = grabFront.z;
 
         swingVelocity.set(grabFront);
         swingVelocity.scale(speed);

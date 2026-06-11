@@ -144,7 +144,7 @@ void GameSystemResetAndPowerProcess::exeReset() {
         }
     }
 
-    MR::setNerveAtStep(this, &NrvGameSystemResetAndPowerProcess::GameSystemResetAndPowerProcessWaitPrepareFadein::sInstance, sResetWaitFrame);
+    MR::setNerveAtStep(this, &NrvGameSystemResetAndPowerProcess::GameSystemResetAndPowerProcessWaitPrepareFadein::sInstance, ::sResetWaitFrame);
 }
 
 void GameSystemResetAndPowerProcess::exeWaitPrepareFadein() {
@@ -245,6 +245,6 @@ GameSystemResetAndPowerProcess::GameSystemResetAndPowerProcess()
       mIsValidPowerOff(false), _5E(false) {
     mResetTriggerChecker = new TriggerChecker();
 
-    mFadeinValueControl = new ValueControl(sFadeinoutFrame);
+    mFadeinValueControl = new ValueControl(::sFadeinoutFrame);
     mFadeinValueControl->setOne();
 }

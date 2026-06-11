@@ -99,7 +99,7 @@ void SoundEmitter::exePlaySound() {
     } break;
     }
     if (_8C >= 0) {
-        MR::startLevelSound(this, sSeTable[_8C], -1, -1, v3);
+        MR::startLevelSound(this, ::sSeTable[_8C], -1, -1, v3);
     }
 }
 

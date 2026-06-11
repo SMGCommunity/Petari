@@ -230,16 +230,16 @@ namespace MR {
             MR::createSceneObj(SceneObj_LensFlareDirector);
         }
 
-        getLensFlareDirector()->mBrightObjArray.push_back(pBrightObj);
+        ::getLensFlareDirector()->mBrightObjArray.push_back(pBrightObj);
     }
 
     void setLensFlareDrawSyncToken() {
         if (MR::isExistSceneObj(SceneObj_LensFlareDirector)) {
-            getLensFlareDirector()->setDrawSyncToken();
+            ::getLensFlareDirector()->setDrawSyncToken();
         }
     }
 
     u16 getLensFlareDrawSyncTokenIndex() {
-        return getLensFlareDirector()->mDrawSyncTokenIndex;
+        return ::getLensFlareDirector()->mDrawSyncTokenIndex;
     }
 };  // namespace MR

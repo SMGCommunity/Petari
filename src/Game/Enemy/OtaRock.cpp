@@ -94,7 +94,7 @@ void OtaRock::calcAndSetBaseMtx() {
 
 void OtaRock::initSensor() {
     initHitSensor(1);
-    MR::addHitSensorMtxEnemy(this, "body", 8, 300.0f, MR::getJointMtx(this, "body"), static_cast< TVec3f >(cSensorOffset));
+    MR::addHitSensorMtxEnemy(this, "body", 8, 300.0f, MR::getJointMtx(this, "body"), static_cast< TVec3f >(::cSensorOffset));
 }
 
 // void OtaRock::updateBaseMtx() {

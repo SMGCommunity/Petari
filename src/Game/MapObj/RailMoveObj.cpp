@@ -98,8 +98,8 @@ void RailMoveObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
 void RailMoveObj::startMoveInner() {
     MR::StageEffect::tryStageEffectStart(this, mObjectName);
 
-    if (MR::isExistBck(this, cMoveBckName)) {
-        MR::startBck(this, cMoveBckName, 0);
+    if (MR::isExistBck(this, ::cMoveBckName)) {
+        MR::startBck(this, ::cMoveBckName, 0);
     }
 
     if (MR::StageEffect::isExistStageEffectData(mObjectName)) {
@@ -116,7 +116,7 @@ void RailMoveObj::move() {
 void RailMoveObj::doAtEndPoint() {
     MR::StageEffect::tryStageEffectStop(this, mObjectName);
 
-    if (MR::isExistBck(this, cMoveBckName) && MR::isBckPlaying(this, cMoveBckName)) {
+    if (MR::isExistBck(this, ::cMoveBckName) && MR::isBckPlaying(this, ::cMoveBckName)) {
         MR::stopBck(this);
     }
 

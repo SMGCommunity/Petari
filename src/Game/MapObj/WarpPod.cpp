@@ -174,7 +174,7 @@ void WarpPod::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
 
     f32 sensorRadiusCoef = mScale.x;
-    f32 sensorRadius = mArg1 == 0 ? sensorRadiusCoef * cSensorRadius1 : sensorRadiusCoef * cSensorRadius0;
+    f32 sensorRadius = mArg1 == 0 ? sensorRadiusCoef * ::cSensorRadius1 : sensorRadiusCoef * ::cSensorRadius0;
 
     MR::addHitSensorEye(this, "eye", 8, sensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 

@@ -226,7 +226,7 @@ void SuperSpinDriver::exeWait() {
         MR::validateClipping(this);
     }
 
-    if (MR::isGreaterStep(this, sCanBindTime)) {
+    if (MR::isGreaterStep(this, ::sCanBindTime)) {
         addSwingSignRotateY();
     }
 

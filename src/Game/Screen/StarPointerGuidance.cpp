@@ -105,7 +105,7 @@ void StarPointerGuidance::checkRequest1P() {
 
         mPrevGuidanceMessage = mGuidanceMessage;
         mGuidanceMessage = nullptr;
-        if (mRequestTime1P > -hNotRequestEndTime) {
+        if (mRequestTime1P > -::hNotRequestEndTime) {
             return;
         }
 
@@ -127,7 +127,7 @@ void StarPointerGuidance::checkRequest1P() {
     mRequestTime1P++;
 
     if (!MR::isStarPointerInScreen(WPAD_CHAN0)) {
-        if (mOutScreenTime > hOutScreenTime || mRequestTime1P == 1) {
+        if (mOutScreenTime > ::hOutScreenTime || mRequestTime1P == 1) {
             if (mSpineGuidance->isCurrentNerve(&NrvStarPointerGuidance::HostTypeNrvWaitBlueStarGuide::sInstance)) {
                 mSpineGuidance->setNerve(&NrvStarPointerGuidance::HostTypeNrvEndBlueStarGuide::sInstance);
             }
@@ -147,7 +147,7 @@ void StarPointerGuidance::checkRequest1P() {
                 mRequestTime1P = 0;
             }
 
-            if (mRequestTime1P > hRequestTime) {
+            if (mRequestTime1P > ::hRequestTime) {
                 if (mSpineGuidance->isCurrentNerve(&NrvStarPointerGuidance::HostTypeNrvEndWait::sInstance)) {
                     mTextLineNumGuidance = MR::countMessageLine(mGuidanceMessage);
                     MR::setTextBoxMessageRecursive(this, "NPointerGuide", mGuidanceMessage);
@@ -243,7 +243,7 @@ s32 StarPointerGuidance::exeWaitCore(Spine* pSpine, const char* pPaneName, u32 n
         return 1;
     }
 
-    if (mIsTimeOutEnabled && pSpine == mSpineGuidance && mSpineGuidance->mStep == hEndTimeOutHide) {
+    if (mIsTimeOutEnabled && pSpine == mSpineGuidance && mSpineGuidance->mStep == ::hEndTimeOutHide) {
         mIsGuidanceDisabled = true;
 
         if (numLines >= 2) {

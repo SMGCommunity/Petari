@@ -250,10 +250,10 @@ void GameScene::exeScenarioOpeningCamera() {
 }
 
 void GameScene::exeCometRetryAfterMiss() {
-    CometRetryButton* pCometRetryButton = getCometRetryButton();
+    CometRetryButton* pCometRetryButton = ::getCometRetryButton();
 
     if (MR::isFirstStep(this)) {
-        getCometRetryButton()->appear();
+        ::getCometRetryButton()->appear();
         MR::forceOpenWipeCircle();
     }
 

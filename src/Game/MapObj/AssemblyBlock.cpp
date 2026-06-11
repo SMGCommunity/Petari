@@ -39,7 +39,7 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::tryRegisterNamePosLinkObj(this, rIter);
 
-    if (!MR::tryFindLinkNamePos(this, sReturnPosName, _EC.toMtxPtr())) {
+    if (!MR::tryFindLinkNamePos(this, ::sReturnPosName, _EC.toMtxPtr())) {
         stack_18.x = 0.0f;
         stack_18.y = 1000.0f;
         stack_18.z = 1000.0f;

@@ -177,7 +177,7 @@ void Snakehead::exeWait() {
         choiceAndStartBck("Wait");
     }
 
-    if (MR::isGreaterEqualStep(this, *sSnakeheadDataTable[_E8]._0)) {
+    if (MR::isGreaterEqualStep(this, *::sSnakeheadDataTable[_E8]._0)) {
         bool v3 = true;
         s32 val = _E8;
 
@@ -222,7 +222,7 @@ void Snakehead::exeMoveForward() {
 }
 
 void Snakehead::exeRest() {
-    if (MR::isStep(this, *sSnakeheadDataTable[_E8]._4)) {
+    if (MR::isStep(this, *::sSnakeheadDataTable[_E8]._4)) {
         setNerve(&NrvSnakehead::SnakeheadNrvMoveBack::sInstance);
     }
 }
@@ -250,7 +250,7 @@ void Snakehead::exeTurtleDown() {
         MR::startSound(this, "SE_EV_SNAKEHEAD_DAMAGE");
     }
 
-    f32 coord = *sSnakeheadDataTable[_E8]._8;
+    f32 coord = *::sSnakeheadDataTable[_E8]._8;
 
     if (MR::isRailReachedNearGoal(this, (300.0f + coord))) {
         MR::setRailCoord(this, 300.0f);
@@ -267,13 +267,13 @@ void Snakehead::exeTurtleDown() {
 void Snakehead::choiceAndStartBck(const char* pBck) {
     const char* v1 = nullptr;
     if (MR::isEqualString(pBck, "Forward")) {
-        v1 = sSnakeheadDataTable[_E8]._14;
+        v1 = ::sSnakeheadDataTable[_E8]._14;
     } else if (MR::isEqualString(pBck, "Back")) {
-        v1 = sSnakeheadDataTable[_E8]._1C;
+        v1 = ::sSnakeheadDataTable[_E8]._1C;
     } else if (MR::isEqualString(pBck, "Waylay")) {
-        v1 = sSnakeheadDataTable[_E8]._C;
+        v1 = ::sSnakeheadDataTable[_E8]._C;
     } else if (MR::isEqualString(pBck, "Wait")) {
-        v1 = sSnakeheadDataTable[_E8]._10;
+        v1 = ::sSnakeheadDataTable[_E8]._10;
     }
 
     if (v1 != nullptr) {

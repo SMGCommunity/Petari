@@ -92,7 +92,7 @@ void DinoPackunBattleEggVs2::exeTurn() {
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_LAVER");
     }
 
-    getHost()->adjustTailRootPosition(sEggOutPosition, 1.0f);
+    getHost()->adjustTailRootPosition(::sEggOutPosition, 1.0f);
 
     if (updateTurn(30, 1.5f)) {
         setNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvWalk::sInstance);
@@ -105,7 +105,7 @@ void DinoPackunBattleEggVs2::exeWalk() {
         getHost()->mTail->_C = 1.5f;
     }
 
-    getHost()->adjustTailRootPosition(sEggOutPosition, 1.0f);
+    getHost()->adjustTailRootPosition(::sEggOutPosition, 1.0f);
 
     s32 step = getNerveStep();
     f32 v3;

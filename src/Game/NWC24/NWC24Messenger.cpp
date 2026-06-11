@@ -304,7 +304,7 @@ namespace NWC24MessengerSub {
             if (isRestorableError()) {
                 mTask->mRetryNo++;
 
-                if (mTask->mRetryNo >= sRetryMax) {
+                if (mTask->mRetryNo >= ::sRetryMax) {
                     mHost->clearBackgroundTask();
                     setNerve(&SendStateNrvWait::sInstance);
                 } else {
@@ -359,7 +359,7 @@ namespace NWC24MessengerSub {
             if (isRestorableError()) {
                 mTask->mRetryNo++;
 
-                if (mTask->mRetryNo >= sRetryMax) {
+                if (mTask->mRetryNo >= ::sRetryMax) {
                     setNerveAfterSysInfoWindowMiniDisappear(&SendStateNrvRetryErrorFG::sInstance);
                 } else {
                     setNerve(&SendStateNrvRetry::sInstance);
@@ -718,18 +718,18 @@ namespace MR {
     }
 
     void SendMailObj::send() {
-        getNWC24Messenger()->send(mTaskName, mMessage, mSenderID, mImage, mImageSize, mIsBG, mIsLed, mTag, mDelay);
+        ::getNWC24Messenger()->send(mTaskName, mMessage, mSenderID, mImage, mImageSize, mIsBG, mIsLed, mTag, mDelay);
     }
 
     void termMail(const char* pTaskName) {
-        getNWC24Messenger()->term(pTaskName);
+        ::getNWC24Messenger()->term(pTaskName);
     }
 
     bool isMailSent(const char* pTaskName) {
-        return getNWC24Messenger()->isSent(pTaskName);
+        return ::getNWC24Messenger()->isSent(pTaskName);
     }
 
     bool isMailErrorHappened(const char* pTaskName) {
-        return getNWC24Messenger()->isError(pTaskName);
+        return ::getNWC24Messenger()->isError(pTaskName);
     }
 };  // namespace MR

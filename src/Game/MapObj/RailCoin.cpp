@@ -47,7 +47,7 @@ void RailCoin::placementNormalRail() {
 }
 
 void RailCoin::placementMercatorRail() {
-    RailCoinMercatorDivInfo info(this);
+    ::RailCoinMercatorDivInfo info(this);
     MR::getDivideMercatorRailPosition(&info, this, mCoinCount, 10.0f, 10);
 }
 

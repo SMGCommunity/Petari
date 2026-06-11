@@ -141,7 +141,7 @@ void RainCloud::exeAppear() {
         MR::startSound(this, "SE_OJ_RAIN_CLOUD_APPEAR");
     }
 
-    if (MR::isStep(this, sThunderStep)) {
+    if (MR::isStep(this, ::sThunderStep)) {
         MR::startSound(this, "SE_OJ_RAIN_CLOUD_THUNDER");
     }
 

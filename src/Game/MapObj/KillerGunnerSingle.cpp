@@ -21,7 +21,7 @@ void KillerGunnerSingle::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnvironment(this);
     initHitSensor(2);
     MR::addHitSensorMapObj(this, "body", 16, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensorEnemy(this, "shell", 16, 250.0f, TVec3f(sShellPos));
+    MR::addHitSensorEnemy(this, "shell", 16, 250.0f, TVec3f(::sShellPos));
     MR::initCollisionParts(this, "KillerGunnerSingle", getSensor("body"), nullptr);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);

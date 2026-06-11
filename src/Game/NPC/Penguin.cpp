@@ -116,7 +116,7 @@ void Penguin::init(const JMapInfoIter& rIter) {
 
     setDefaults();
     _128 = false;
-    _12C = sDistanceCall;
+    _12C = ::sDistanceCall;
 
     switch (mBehavior) {
     case Behavior_Default:
@@ -124,7 +124,7 @@ void Penguin::init(const JMapInfoIter& rIter) {
         mParam.setMoveAction("Wait", "Turn");
         mParam.setTalkAction("Talk", "TalkTurn");
         setTalkAction("Walk");
-        _10C = sSpeedWalk;
+        _10C = ::sSpeedWalk;
         _118 = 2.0f;  // talkBckRate?
         _124 = true;  // follow rail on ground
         _128 = true;
@@ -135,12 +135,12 @@ void Penguin::init(const JMapInfoIter& rIter) {
     case Behavior_Swim:
         mParam.setMoveAction("SwimWait", "SwimWaitTalk");
         setTalkAction("Swim");
-        _10C = sSpeedSwim;
+        _10C = ::sSpeedSwim;
         break;
     case Behavior_SwimSurface:
         mParam.setMoveAction("SwimWaitSurface", "SwimSurfaceTalk");
         setTalkAction("SwimSurface");
-        _10C = sSpeedSwim;
+        _10C = ::sSpeedSwim;
         break;
     case Behavior_Dive:
         mParam.setSingleAction("SwimWaitSurface");
@@ -148,14 +148,14 @@ void Penguin::init(const JMapInfoIter& rIter) {
     case Behavior_SwimTurtle:
         mParam.setSingleAction("SwimTurtleTalk");
         setTalkAction("SwimTurtle");
-        _10C = sSpeedSwimTurtle;
+        _10C = ::sSpeedSwimTurtle;
         break;
     case Behavior_Dash:
         mParam.setMoveAction("Wait", "Turn");
         mParam.setTalkAction("Talk", "TalkTurn");
         setTalkAction("DashA");
-        _10C = sSpeedDash;
-        _114 = sBlendDash;
+        _10C = ::sSpeedDash;
+        _114 = ::sBlendDash;
         _124 = true;  // follow rail on ground
         _128 = true;
         break;
@@ -215,7 +215,7 @@ void Penguin::exeReaction() {
 
 void Penguin::exeWait() {
     if (MR::isFirstStep(this)) {
-        mStepToDive = MR::getRandom(sStepToDiveMin, sStepToDiveMax);
+        mStepToDive = MR::getRandom(::sStepToDiveMin, ::sStepToDiveMax);
         if (MR::isExistRail(this)) {
             MR::onCalcShadow(this, nullptr);
         }
@@ -260,7 +260,7 @@ void Penguin::exeFlow() {
     if (MR::isFirstStep(this)) {
         _11C = "Swim";
         _120 = "Swim";
-        _10C = sSpeedSwim;
+        _10C = ::sSpeedSwim;
     }
 
     MR::tryTalkNearPlayerAndStartMoveTalkAction(this);
@@ -269,7 +269,7 @@ void Penguin::exeFlow() {
         mParam.setSingleAction("SwimTurtleTalk");
         _11C = "SwimTurtle";
         _120 = "SwimTurtle";
-        _10C = sSpeedSwimTurtle;
+        _10C = ::sSpeedSwimTurtle;
         setNerve(&NrvPenguin::PenguinNrvWait::sInstance);
     }
 }

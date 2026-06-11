@@ -91,7 +91,7 @@ namespace {
 
 namespace MovieSubtitlesUtil {
     const SubtitlesMessageInfo* getSubtitlesMessageInfo(const char* pMovieName, s32 idx) {
-        return &getSubtitlesInfo(pMovieName)->mMessageInfo[idx];
+        return &::getSubtitlesInfo(pMovieName)->mMessageInfo[idx];
     }
 
     bool isExistSubtitles(const char* pMovieName, s32 idx) {
@@ -129,7 +129,7 @@ namespace MovieSubtitlesUtil {
     }
 
     s32 getSubtitlesMessageNum(const char* pMovieName) {
-        s32 size = ARRAY_SIZE(sSubtitlesInfo->mMessageInfo);
+        s32 size = ARRAY_SIZE(::sSubtitlesInfo->mMessageInfo);
 
         for (s32 i = 0; i < size; i++) {
             if (isExistSubtitles(pMovieName, i)) {

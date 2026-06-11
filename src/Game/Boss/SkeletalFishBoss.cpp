@@ -207,7 +207,7 @@ void SkeletalFishBoss::calcAnim() {
     zDir.negate();
 
     if (!MR::isNoCalcAnim(this)) {
-        SkeletalFishBoss::JointToShadow* shadow = &sShadowInfo;
+        SkeletalFishBoss::JointToShadow* shadow = &::sShadowInfo;
         f32 idx_mult;
         f32 val = MR::getZero();
         idx_mult = 2607.5945f;
@@ -654,8 +654,8 @@ void SkeletalFishBoss::initCollision() {
     mPartsArray = new CollisionParts*[0xE];
 
     for (u32 i = 0; i < 0xE; i++) {
-        mPartsArray[i] = MR::createCollisionPartsFromLiveActor(this, sColInfo[i].mColliderName, mBossHead->getSensor("body"),
-                                                               MR::getJointMtx(this, sColInfo[i].mJointName), (MR::CollisionScaleType)2);
+        mPartsArray[i] = MR::createCollisionPartsFromLiveActor(this, ::sColInfo[i].mColliderName, mBossHead->getSensor("body"),
+                                                               MR::getJointMtx(this, ::sColInfo[i].mJointName), (MR::CollisionScaleType)2);
         MR::validateCollisionParts(mPartsArray[i]);
     }
 }
@@ -693,12 +693,12 @@ void SkeletalFishBoss::createGuards() {
 
 void SkeletalFishBoss::initShadow() {
     MR::initShadowController(this, 1);
-    SkeletalFishBoss::JointToShadow& shadow = testInline();
-    const char** bruh = (const char**)test;
+    SkeletalFishBoss::JointToShadow& shadow = ::testInline();
+    const char** bruh = (const char**)::test;
     const char* name = bruh[0];
     MtxPtr mtx = MR::getJointMtx(this, bruh[1]);
-    // SkeletalFishBoss::JointToShadow* shadow = &sShadowInfo;
-    MR::addShadowVolumeFlatModel(this, name, test[2], mtx);
+    // SkeletalFishBoss::JointToShadow* shadow = &::sShadowInfo;
+    MR::addShadowVolumeFlatModel(this, name, ::test[2], mtx);
     MR::setShadowDropLength(this, name, 4000.0f);
     MR::excludeCalcShadowToSensorAll(this, mBossHead->getSensor("body"));
 }
@@ -1012,12 +1012,12 @@ SkeletalFishBossHead::SkeletalFishBossHead(LiveActor* pActor)
     initHitSensor(17);
     MR::addHitSensorAtJointEnemy(this, "body", "Head", 8, 400.0f, TVec3f(0.0f, -120.0f, 320.0f));
 
-    for (u32 i = 0; i < ARRAY_SIZE(sHitPosData); i++) {
-        // SkeletalFishBoss::HitPos* data = &sHitPosData[i];
-        TVec3f offset(sHitPosData[i].mOffset);
+    for (u32 i = 0; i < ARRAY_SIZE(::sHitPosData); i++) {
+        // SkeletalFishBoss::HitPos* data = &::sHitPosData[i];
+        TVec3f offset(::sHitPosData[i].mOffset);
         // offset.setInlinePS((TVec3f)data->mOffset);
         offset.scale(9.0f / 10.0f);
-        MR::addHitSensorAtJointEnemyAttack(this, sHitPosData[i].mName, sHitPosData[i].mSensorName, 8, 270.0f, offset);
+        MR::addHitSensorAtJointEnemyAttack(this, ::sHitPosData[i].mName, ::sHitPosData[i].mSensorName, 8, 270.0f, offset);
     }
 
     MR::initLightCtrl(this);

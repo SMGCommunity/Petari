@@ -445,8 +445,8 @@ void Pukupuku::exeBindStarPointer() {
         u32 v4 = 0;
 
         do {
-            if (MR::isEqualStringCase(cBck2BtpTable[v4], val)) {
-                btp = cBck2BtpTable[v4 + 1];
+            if (MR::isEqualStringCase(::cBck2BtpTable[v4], val)) {
+                btp = ::cBck2BtpTable[v4 + 1];
                 break;
             }
 

@@ -175,7 +175,7 @@ namespace ScenarioDataFunction {
     }
 
     u32 getCurrentCommonLayers(const char* pParam1) {
-        getCurrentScenarioData();
+        ::getCurrentScenarioData();
 
         return 1;
     }
@@ -183,7 +183,7 @@ namespace ScenarioDataFunction {
     u32 getCurrentScenarioLayers(const char* pParam1, s32 param2) {
         u32 layerNum;
 
-        if (getCurrentScenarioData()->getValueU32(pParam1, param2, &layerNum)) {
+        if (::getCurrentScenarioData()->getValueU32(pParam1, param2, &layerNum)) {
             return layerNum * 2;
         }
 

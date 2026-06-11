@@ -28,7 +28,7 @@ StarPointerBlur::StarPointerBlur(JUTTexture* pTexture)
     f32 interval = 1.0f / BLUR_POINT_NUM;
     for (s32 idx = 0; idx < BLUR_POINT_NUM; idx++) {
         f32 t = idx * interval;
-        mBlurThicks[idx] = (1.0f - t) * sBeginThick + t * sEndThick;
+        mBlurThicks[idx] = (1.0f - t) * ::sBeginThick + t * ::sEndThick;
         mBlurTexCoords[idx] = t;
     }
 }
@@ -136,7 +136,7 @@ void StarPointerBlur::draw() const {
     }
 
     initDraw();
-    switch (sDrawMode) {
+    switch (::sDrawMode) {
     case 0:
         draw0((GXColor){0, 0, 0, 0});  // NOTE: indicated by debug symbols, color is a dummy
         break;

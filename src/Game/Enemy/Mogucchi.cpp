@@ -65,7 +65,7 @@ void Mogucchi::init(const JMapInfoIter& rIter) {
     initNerve(&MogucchiNrvStroll::sInstance);
     MR::useStageSwitchWriteDead(this, rIter);
 
-    MR::initStarPointerTargetAtJoint(this, "Head", 83.0f, TVec3f(sHeadOffset));
+    MR::initStarPointerTargetAtJoint(this, "Head", 83.0f, TVec3f(::sHeadOffset));
     createMogucchiHill();
     createHole();
     MR::startBck(this, "Walk", nullptr);
@@ -265,8 +265,8 @@ bool Mogucchi::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
 
 void Mogucchi::initSensor() {
     LiveActor::initHitSensor(3);
-    MR::addHitSensorAtJointEnemy(this, "head", "Head", 32, 83.0f, TVec3f(sHeadOffset));
-    MR::addHitSensorAtJointEnemy(this, "body", "Spine", 32, 83.0f, TVec3f(sBodyOffset));
+    MR::addHitSensorAtJointEnemy(this, "head", "Head", 32, 83.0f, TVec3f(::sHeadOffset));
+    MR::addHitSensorAtJointEnemy(this, "body", "Spine", 32, 83.0f, TVec3f(::sBodyOffset));
     MR::addHitSensorEnemy(this, "spin", 16, 180.0f, TVec3f(0.0f, 0.0f, 0.0f));
 }
 

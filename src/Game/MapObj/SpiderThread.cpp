@@ -35,7 +35,7 @@ inline SpiderThreadPart* connectPoints(SpiderThreadPoint* pPointA, SpiderThreadP
     SpiderThreadMainPoint* pointB = static_cast< SpiderThreadMainPoint* >(pPointB);
     SpiderThreadMainPoint* pointA = static_cast< SpiderThreadMainPoint* >(pPointA);
 
-    SpiderThreadPart* part = new SpiderThreadPart(pointA, pointB, sMainPointRadius);
+    SpiderThreadPart* part = new SpiderThreadPart(pointA, pointB, ::sMainPointRadius);
 
     pointA->addNearMainPoint(pointB, part);
     pointB->addNearMainPoint(pointA, part);
@@ -48,8 +48,8 @@ SpiderThread::SpiderThread(const char* pName)
       mNumRadialLines(8), mRadialLines(nullptr), mAnchorPoints(nullptr), mNumRadialParts(0), mRadialParts(nullptr), mNumCircleParts(0),
       mCircleParts(nullptr), mCutPointsBufferSize(0), mNumCutPoints(0), mCutPoints(nullptr), mFront(0.0f, 0.0f, 1.0f), mWindCtrl(nullptr),
       mIsBloomOn(false), mThreadTexture(nullptr), mIndirectTexture(nullptr) {
-    mRadialPartsBufferSize = mNumRadialLines * (sMainRadialLinePointNum + 1);
-    mCirclePartsBufferSize = mNumRadialLines * sMainRadialLinePointNum;
+    mRadialPartsBufferSize = mNumRadialLines * (::sMainRadialLinePointNum + 1);
+    mCirclePartsBufferSize = mNumRadialLines * ::sMainRadialLinePointNum;
     mRadialParts = new SpiderThreadPart*[mRadialPartsBufferSize];
     mCircleParts = new SpiderThreadPart*[mCirclePartsBufferSize];
 
@@ -77,8 +77,8 @@ void SpiderThread::initThread(const TVec3f& rPos) {
     mThreadTexture = new JUTTexture(MR::loadTexFromArc("SpiderThread.arc", "SpiderThread.bti"), 0);
     mIndirectTexture = new JUTTexture(MR::loadTexFromArc("SpiderThread.arc", "Indirect.bti"), 0);
 
-    mHangInfos = new SpiderThreadHangInfo*[sHangActorNumMax];
-    for (s32 idx = 0; idx < sHangActorNumMax; idx++) {
+    mHangInfos = new SpiderThreadHangInfo*[::sHangActorNumMax];
+    for (s32 idx = 0; idx < ::sHangActorNumMax; idx++) {
         mHangInfos[idx] = new SpiderThreadHangInfo();
     }
 
@@ -176,8 +176,8 @@ void SpiderThread::stopAllPartsPoint() {
 void SpiderThread::cutSpiderThread() {
     mMainPoint->cutNearPoints(&mNumCutPoints, mCutPoints);
 
-    for (s32 idx = 0; idx < ARRAY_SIZE(sCutPointNoTable); idx++) {
-        getMainRadialLine(sCutPointNoTable[idx].mRadialIdx)->getPoint(sCutPointNoTable[idx].mPointIdx)->cutNearPoints(&mNumCutPoints, mCutPoints);
+    for (s32 idx = 0; idx < ARRAY_SIZE(::sCutPointNoTable); idx++) {
+        getMainRadialLine(::sCutPointNoTable[idx].mRadialIdx)->getPoint(::sCutPointNoTable[idx].mPointIdx)->cutNearPoints(&mNumCutPoints, mCutPoints);
     }
 }
 
@@ -193,7 +193,7 @@ void SpiderThread::initMainThreads() {
         mAnchorPoints[idx] = nullptr;
     }
 
-    mCutPointsBufferSize = mNumRadialLines + ARRAY_SIZE(sCutPointNoTable) * 4;
+    mCutPointsBufferSize = mNumRadialLines + ARRAY_SIZE(::sCutPointNoTable) * 4;
     mCutPoints = new SpiderThreadMainPoint*[mCutPointsBufferSize];
     for (s32 idx = 0; idx < mCutPointsBufferSize; idx++) {
         mCutPoints[idx] = new SpiderThreadMainPoint(mPosition, 5);
@@ -201,12 +201,12 @@ void SpiderThread::initMainThreads() {
 
     mRadialLines = new SpiderThreadRadialLine*[mNumRadialLines];
     for (s32 radialIdx = 0; radialIdx < mNumRadialLines; radialIdx++) {
-        mRadialLines[radialIdx] = new SpiderThreadRadialLine(sMainRadialLinePointNum);
+        mRadialLines[radialIdx] = new SpiderThreadRadialLine(::sMainRadialLinePointNum);
 
         // main axial points
-        for (s32 idx = 0; idx < sMainRadialLinePointNum; idx++) {
+        for (s32 idx = 0; idx < ::sMainRadialLinePointNum; idx++) {
             TVec3f pos(down);
-            pos.scale(sMainRadialLineInterval * (idx + 1));
+            pos.scale(::sMainRadialLineInterval * (idx + 1));
             pos.add(mMainPoint->mPosition);
 
             SpiderThreadMainPoint* point = new SpiderThreadMainPoint(pos, 5);
@@ -216,7 +216,7 @@ void SpiderThread::initMainThreads() {
 
         // anchor point
         TVec3f pos(down);
-        pos.scale(sMainRadialLineLength);
+        pos.scale(::sMainRadialLineLength);
         pos.add(mMainPoint->mPosition);
         mAnchorPoints[radialIdx] = new SpiderThreadMainPoint(pos, 5);
         mAnchorPoints[radialIdx]->mRadialLine = getMainRadialLine(radialIdx);
@@ -225,7 +225,7 @@ void SpiderThread::initMainThreads() {
         SpiderThreadMainPoint* point = getMainRadialLine(radialIdx)->getPoint(0);
         SpiderThreadMainPoint* nextPoint;
         connectMainPoint(point, mMainPoint, true);
-        for (s32 idx = 0; idx < sMainRadialLinePointNum - 1; idx++) {
+        for (s32 idx = 0; idx < ::sMainRadialLinePointNum - 1; idx++) {
             nextPoint = getMainRadialLine(radialIdx)->getPoint(idx + 1);
             connectMainPoint(point, nextPoint, true);
             point = nextPoint;
@@ -236,7 +236,7 @@ void SpiderThread::initMainThreads() {
     }
 
     for (s32 radialIdx = 0; radialIdx < mNumRadialLines; radialIdx++) {
-        for (s32 idx = 0; idx < sMainRadialLinePointNum; idx++) {
+        for (s32 idx = 0; idx < ::sMainRadialLinePointNum; idx++) {
             connectMainPoint(getMainRadialLine(radialIdx)->getPoint(idx),
                              getMainRadialLine((radialIdx + mNumRadialLines + 1) % mNumRadialLines)->getPoint(idx), false);
         }
@@ -306,27 +306,27 @@ void SpiderThread::updateHangedPoint() {
 }
 
 void SpiderThread::tryTouchPoint(s32 padChannel) {
-    if (!MR::isStarPointerInScreen(padChannel) || MR::getStarPointerScreenSpeed(padChannel) < sTouchPointerSpeedMin) {
+    if (!MR::isStarPointerInScreen(padChannel) || MR::getStarPointerScreenSpeed(padChannel) < ::sTouchPointerSpeedMin) {
         return;
     }
 
     TVec3f vel(0.0f, 0.0f, 0.0f);
     MR::calcStarPointerWorldVelocityDirectionOnPlane(&vel, mMainPoint->mPosition, mFront, padChannel);
 
-    f32 speed = MR::getStarPointerScreenSpeed(padChannel) * sTouchPointerSpeedAccelRate;
-    speed = speed >= sTouchSpeedMax ? sTouchSpeedMax : speed;
+    f32 speed = MR::getStarPointerScreenSpeed(padChannel) * ::sTouchPointerSpeedAccelRate;
+    speed = speed >= ::sTouchSpeedMax ? ::sTouchSpeedMax : speed;
 
     vel.scale(speed);
 
     for (s32 idx = 0; idx < mNumCircleParts; idx++) {
-        getCirclePart(idx)->tryTouch(sPartPointRadius, vel, padChannel);
+        getCirclePart(idx)->tryTouch(::sPartPointRadius, vel, padChannel);
     }
 }
 
 void SpiderThread::findNearestPointPos(const TVec3f** pPointPos, const TVec3f** pNeutralPos, s32* nearestIndex, s32* pointNum,
                                        const TVec3f& rPos) const {
     TVec3f pos(rPos);
-    f32 minDistance = sMainRadialLineLength;
+    f32 minDistance = ::sMainRadialLineLength;
     *pPointPos = nullptr;
     *pNeutralPos = nullptr;
 
@@ -386,11 +386,11 @@ void SpiderThread::initDraw() const {
     GXSetTevIndWarp(GX_TEVSTAGE0, GX_INDTEXSTAGE0, GX_TRUE, GX_FALSE, GX_ITM_0);
 
     Mtx23 mtx;
-    mtx[0][0] = sIndirectScaleX;
+    mtx[0][0] = ::sIndirectScaleX;
     mtx[0][1] = 0.0;
     mtx[0][2] = 0.0;
     mtx[1][0] = 0.0;
-    mtx[1][1] = sIndirectScaleY;
+    mtx[1][1] = ::sIndirectScaleY;
     mtx[1][2] = 0.0;
     GXSetIndTexMtx(GX_ITM_0, mtx, 0);
 
@@ -416,31 +416,31 @@ namespace {
 };  // namespace
 
 void MR::initSpiderThread(const TVec3f& rPos) {
-    getSpiderThread()->initThread(rPos);
+    ::getSpiderThread()->initThread(rPos);
 }
 
 void MR::appearSpiderThread() {
-    getSpiderThread()->appear();
+    ::getSpiderThread()->appear();
 }
 
 void MR::startSpiderThreadBattle() {
-    getSpiderThread()->stopAllPartsPoint();
-    getSpiderThread()->mWindCtrl->startWindBattle();
+    ::getSpiderThread()->stopAllPartsPoint();
+    ::getSpiderThread()->mWindCtrl->startWindBattle();
 }
 
 void MR::startSpiderThreadChance() {
-    getSpiderThread()->stopAllPartsPoint();
-    getSpiderThread()->mWindCtrl->startWindChance();
+    ::getSpiderThread()->stopAllPartsPoint();
+    ::getSpiderThread()->mWindCtrl->startWindChance();
 }
 
 void MR::startSpiderThreadBattleEnd() {
-    getSpiderThread()->stopAllPartsPoint();
-    getSpiderThread()->cutSpiderThread();
-    getSpiderThread()->mWindCtrl->startWindBattleEnd();
+    ::getSpiderThread()->stopAllPartsPoint();
+    ::getSpiderThread()->cutSpiderThread();
+    ::getSpiderThread()->mWindCtrl->startWindBattleEnd();
 }
 
 void MR::pauseOffSpiderThread() {
-    MR::requestMovementOn(getSpiderThread());
+    MR::requestMovementOn(::getSpiderThread());
 }
 
 f32 MR::getSpiderThreadPosZ() {
@@ -448,28 +448,28 @@ f32 MR::getSpiderThreadPosZ() {
         return 0.0f;
     }
 
-    return getSpiderThread()->mPosition.z;
+    return ::getSpiderThread()->mPosition.z;
 }
 
 void MR::startActorBindToSpiderThread(LiveActor* pActor, const TVec3f** pPointPos, const TVec3f** pNeutralPos, const TVec3f** pUp, const TVec3f& rPos,
                                       const TVec3f& rVel) {
-    getSpiderThread()->startActorBind(pActor, pPointPos, pNeutralPos, pUp, rPos, rVel, 1);
+    ::getSpiderThread()->startActorBind(pActor, pPointPos, pNeutralPos, pUp, rPos, rVel, 1);
 }
 
 bool MR::sendMsgToSpiderThread(u32 msg, HitSensor* pSender) {
-    return getSpiderThread()->receiveMessage(msg, pSender, MR::getMessageSensor());
+    return ::getSpiderThread()->receiveMessage(msg, pSender, MR::getMessageSensor());
 }
 
 bool MR::touchActorToSpiderThread(const TVec3f& rPos, const TVec3f& rVel) {
-    return getSpiderThread()->touchActor(rPos, rVel);
+    return ::getSpiderThread()->touchActor(rPos, rVel);
 }
 
 void MR::tryPushSpiderThread(const TVec3f& rPos, f32 radius) {
-    getSpiderThread()->tryPush(rPos, radius);
+    ::getSpiderThread()->tryPush(rPos, radius);
 }
 
 void MR::onSpiderThreadBloom() {
-    getSpiderThread()->mIsBloomOn = true;
+    ::getSpiderThread()->mIsBloomOn = true;
 }
 
 void MR::drawSpiderThreadBloom() {
@@ -477,8 +477,8 @@ void MR::drawSpiderThreadBloom() {
         return;
     }
 
-    if (getSpiderThread()->mIsBloomOn) {
-        getSpiderThread()->draw();
+    if (::getSpiderThread()->mIsBloomOn) {
+        ::getSpiderThread()->draw();
         CategoryList::drawOpa(MR::DrawBufferType_Ride);
     }
 }

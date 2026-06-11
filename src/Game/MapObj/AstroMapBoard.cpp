@@ -17,7 +17,7 @@ void AstroMapBoard::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo info;
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
-    info.setupPrepareChangeDummyTexture(cDummyTexName);
+    info.setupPrepareChangeDummyTexture(::cDummyTexName);
     info.setupNerve(&NrvAstroMapBoard::AstroMapBoardNrvWait::sInstance);
     info.setupFarClipping(-1.0f);
     info.setupNoAppearRiddleSE();
@@ -39,7 +39,7 @@ void AstroMapBoard::connectToScene(const MapObjActorInitInfo& rInfo) {
 
 void AstroMapBoard::initAfterPlacement() {
     if (MR::isButlerMapAppear()) {
-        MR::changeModelDataTexAll(this, cDummyTexName, *MR::getGalaxyMapResTIMG());
+        MR::changeModelDataTexAll(this, ::cDummyTexName, *MR::getGalaxyMapResTIMG());
     }
 }
 

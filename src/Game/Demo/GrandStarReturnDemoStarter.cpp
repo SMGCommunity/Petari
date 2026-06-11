@@ -161,12 +161,12 @@ void GrandStarReturnDemoStarter::exeMove() {
             MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "移動", -1);
         }
 
-        if (MR::isDemoPartStep(cDemoMovePartName, 300)) {
+        if (MR::isDemoPartStep(::cDemoMovePartName, 300)) {
             MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "ウェイト", -1);
         }
     }
 
-    const char* pDemoName = cDemoMovePartName;
+    const char* pDemoName = ::cDemoMovePartName;
     mReturnDemoRailMove->update(MR::getDemoPartStep(pDemoName) + 1, MR::getDemoPartTotalStep(pDemoName));
 
     MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY", -1);
@@ -215,7 +215,7 @@ void GrandStarReturnDemoStarter::exeRushToCore() {
     updateRushStarPos(position, getNerveStep());
     MR::startLevelSound(mPowerStar, "SE_OJ_LV_GND_STAR_RUSH");
 
-    if (MR::isDemoPartLastStep(cDemoWaitPartName)) {
+    if (MR::isDemoPartLastStep(::cDemoWaitPartName)) {
         setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvRevival::sInstance);
     }
 }

@@ -83,7 +83,7 @@ void Jellyfish::kill() {
 }
 
 void Jellyfish::control() {
-    Color8 clr = sPointLightColor;
+    Color8 clr = ::sPointLightColor;
     MR::requestPointLight(this, TVec3f(mPosition), clr, 0.0998f, -1);
     mController->updateNerve();
 

@@ -31,13 +31,13 @@ WaterAreaHolder::WaterAreaHolder()
         mUseBloom = true;
     }
 
-    mOceanBowls = new OceanBowl*[sAreaNumMax];
-    mOceanRings = new OceanRing*[sAreaNumMax];
-    mOceanSpheres = new OceanSphere*[sAreaNumMax];
-    mWhirlPools = new WhirlPool*[sAreaNumMax];
-    mWhirlPoolAccelerators = new WhirlPoolAccelerator*[sAreaNumMax];
+    mOceanBowls = new OceanBowl*[::sAreaNumMax];
+    mOceanRings = new OceanRing*[::sAreaNumMax];
+    mOceanSpheres = new OceanSphere*[::sAreaNumMax];
+    mWhirlPools = new WhirlPool*[::sAreaNumMax];
+    mWhirlPoolAccelerators = new WhirlPoolAccelerator*[::sAreaNumMax];
 
-    for (s32 idx = 0; idx < sAreaNumMax; idx++) {
+    for (s32 idx = 0; idx < ::sAreaNumMax; idx++) {
         mOceanBowls[idx] = nullptr;
         mOceanRings[idx] = nullptr;
         mOceanSpheres[idx] = nullptr;
@@ -100,27 +100,27 @@ void WaterAreaHolder::movement() {
 
 void WaterAreaFunction::entryOceanBowl(OceanBowl* pOceanBowl) {
     createWaterAreaHolder();
-    getWaterAreaHolder()->entryOceanBowl(pOceanBowl);
+    ::getWaterAreaHolder()->entryOceanBowl(pOceanBowl);
 }
 
 void WaterAreaFunction::entryOceanRing(OceanRing* pOceanRing) {
     createWaterAreaHolder();
-    getWaterAreaHolder()->entryOceanRing(pOceanRing);
+    ::getWaterAreaHolder()->entryOceanRing(pOceanRing);
 }
 
 void WaterAreaFunction::entryOceanSphere(OceanSphere* pOceanSphere) {
     createWaterAreaHolder();
-    getWaterAreaHolder()->entryOceanSphere(pOceanSphere);
+    ::getWaterAreaHolder()->entryOceanSphere(pOceanSphere);
 }
 
 void WaterAreaFunction::entryWhirlPool(WhirlPool* pWhirlPool) {
     createWaterAreaHolder();
-    getWaterAreaHolder()->entryWhirlPool(pWhirlPool);
+    ::getWaterAreaHolder()->entryWhirlPool(pWhirlPool);
 }
 
 void WaterAreaFunction::entryWhirlPoolAccelerator(WhirlPoolAccelerator* pWhirlPoolAccelerator) {
     createWaterAreaHolder();
-    getWaterAreaHolder()->entryWhirlPoolAccelerator(pWhirlPoolAccelerator);
+    ::getWaterAreaHolder()->entryWhirlPoolAccelerator(pWhirlPoolAccelerator);
 }
 
 void WaterAreaFunction::createWaterAreaHolder() {
@@ -136,24 +136,24 @@ bool WaterAreaFunction::tryInOceanArea(const TVec3f& rPos, WaterInfo* pWaterInfo
     OceanRing* ring;
     OceanSphere* sphere;
 
-    for (s32 idx = 0; idx < getWaterAreaHolder()->mNumOceanBowls; idx++) {
-        bowl = getWaterAreaHolder()->mOceanBowls[idx];
+    for (s32 idx = 0; idx < ::getWaterAreaHolder()->mNumOceanBowls; idx++) {
+        bowl = ::getWaterAreaHolder()->mOceanBowls[idx];
         if (bowl->isInWater(rPos)) {
             pWaterInfo->mOceanBowl = bowl;
             return true;
         }
     }
 
-    for (s32 idx = 0; idx < getWaterAreaHolder()->mNumOceanRings; idx++) {
-        ring = getWaterAreaHolder()->mOceanRings[idx];
+    for (s32 idx = 0; idx < ::getWaterAreaHolder()->mNumOceanRings; idx++) {
+        ring = ::getWaterAreaHolder()->mOceanRings[idx];
         if (ring->isInWater(rPos)) {
             pWaterInfo->mOceanRing = ring;
             return true;
         }
     }
 
-    for (s32 idx = 0; idx < getWaterAreaHolder()->mNumOceanSpheres; idx++) {
-        sphere = getWaterAreaHolder()->mOceanSpheres[idx];
+    for (s32 idx = 0; idx < ::getWaterAreaHolder()->mNumOceanSpheres; idx++) {
+        sphere = ::getWaterAreaHolder()->mOceanSpheres[idx];
         if (sphere->isInWater(rPos)) {
             pWaterInfo->mOceanSphere = sphere;
             return true;
@@ -168,8 +168,8 @@ bool WaterAreaFunction::tryInWhirlPoolAccelerator(const TVec3f& rPos, TVec3f* pV
         return false;
     }
 
-    for (s32 idx = 0; idx < getWaterAreaHolder()->mNumWhirlPoolAccelerators; idx++) {
-        if (getWaterAreaHolder()->mWhirlPoolAccelerators[idx]->calcInfo(rPos, pVel)) {
+    for (s32 idx = 0; idx < ::getWaterAreaHolder()->mNumWhirlPoolAccelerators; idx++) {
+        if (::getWaterAreaHolder()->mWhirlPoolAccelerators[idx]->calcInfo(rPos, pVel)) {
             return true;
         }
     }
@@ -179,7 +179,7 @@ bool WaterAreaFunction::tryInWhirlPoolAccelerator(const TVec3f& rPos, TVec3f* pV
 
 bool WaterAreaFunction::isCameraInWaterForCameraUtil() {
     if (MR::isExistSceneObj(SceneObj_WaterAreaHolder)) {
-        if (getWaterAreaHolder()->mCamInWater) {
+        if (::getWaterAreaHolder()->mCamInWater) {
             return true;
         }
     }
@@ -189,7 +189,7 @@ bool WaterAreaFunction::isCameraInWaterForCameraUtil() {
 
 f32 WaterAreaFunction::getCameraWaterDepth() {
     if (MR::isExistSceneObj(SceneObj_WaterAreaHolder)) {
-        return getWaterAreaHolder()->mWaterInfo.mCamWaterDepth;
+        return ::getWaterAreaHolder()->mWaterInfo.mCamWaterDepth;
     }
 
     return 0.0f;
@@ -197,7 +197,7 @@ f32 WaterAreaFunction::getCameraWaterDepth() {
 
 WaterInfo* WaterAreaFunction::getCameraWaterInfo() {
     if (MR::isExistSceneObj(SceneObj_WaterAreaHolder)) {
-        return &getWaterAreaHolder()->mWaterInfo;
+        return &::getWaterAreaHolder()->mWaterInfo;
     }
 
     return nullptr;
@@ -205,7 +205,7 @@ WaterInfo* WaterAreaFunction::getCameraWaterInfo() {
 
 void WaterAreaFunction::pauseOffWaterArea() {
     if (MR::isExistSceneObj(SceneObj_WaterAreaHolder)) {
-        MR::requestMovementOn(getWaterAreaHolder());
-        MR::requestMovementOn(getWaterAreaHolder()->mCameraFilter);
+        MR::requestMovementOn(::getWaterAreaHolder());
+        MR::requestMovementOn(::getWaterAreaHolder()->mCameraFilter);
     }
 }

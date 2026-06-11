@@ -70,19 +70,19 @@ namespace MR {
     }
 
     void callMethodAllSceneNameObj(NameObjMethod pMethod) {
-        getSceneNameObjHolder()->callMethodAllObj(pMethod);
+        ::getSceneNameObjHolder()->callMethodAllObj(pMethod);
     }
 
     void suspendAllSceneNameObj() {
-        getSceneNameObjHolder()->suspendAllObj();
+        ::getSceneNameObjHolder()->suspendAllObj();
     }
 
     void resumeAllSceneNameObj() {
-        getSceneNameObjHolder()->resumeAllObj();
+        ::getSceneNameObjHolder()->resumeAllObj();
     }
 
     void syncWithFlagsAllSceneNameObj() {
-        getSceneNameObjHolder()->syncWithFlags();
+        ::getSceneNameObjHolder()->syncWithFlags();
     }
 
     void setRandomSeedFromStageName() {
@@ -96,19 +96,19 @@ namespace MR {
     }
 
     void startFunctionAsyncExecute(const MR::FunctorBase& rFunc, int threadPriority, const char* pThreadName) {
-        getFunctionAsyncExecutor()->start(rFunc, threadPriority, pThreadName);
+        ::getFunctionAsyncExecutor()->start(rFunc, threadPriority, pThreadName);
     }
 
     bool startFunctionAsyncExecuteOnMainThread(const MR::FunctorBase& rFunc, const char* pThreadName) {
-        return getFunctionAsyncExecutor()->startOnMainThread(rFunc, pThreadName);
+        return ::getFunctionAsyncExecutor()->startOnMainThread(rFunc, pThreadName);
     }
 
     void waitForEndFunctionAsyncExecute(const char* pThreadName) {
-        getFunctionAsyncExecutor()->waitForEnd(pThreadName);
+        ::getFunctionAsyncExecutor()->waitForEnd(pThreadName);
     }
 
     bool isEndFunctionAsyncExecute(const char* pThreadName) {
-        return getFunctionAsyncExecutor()->isEnd(pThreadName);
+        return ::getFunctionAsyncExecutor()->isEnd(pThreadName);
     }
 
     bool tryEndFunctionAsyncExecute(const char* pThreadName) {
@@ -122,17 +122,17 @@ namespace MR {
     }
 
     void suspendAsyncExecuteThread(const char* pThreadName) {
-        OSSuspendThread(getFunctionAsyncExecutor()->getOSThread(pThreadName));
+        OSSuspendThread(::getFunctionAsyncExecutor()->getOSThread(pThreadName));
     }
 
     void resumeAsyncExecuteThread(const char* pThreadName) {
-        OSThread* pThread = getFunctionAsyncExecutor()->getOSThread(pThreadName);
+        OSThread* pThread = ::getFunctionAsyncExecutor()->getOSThread(pThreadName);
 
-        OSResumeThread(getFunctionAsyncExecutor()->getOSThread(pThreadName));
+        OSResumeThread(::getFunctionAsyncExecutor()->getOSThread(pThreadName));
     }
 
     bool isSuspendedAsyncExecuteThread(const char* pThreadName) {
-        OSThread* pThread = getFunctionAsyncExecutor()->getOSThread(pThreadName);
+        OSThread* pThread = ::getFunctionAsyncExecutor()->getOSThread(pThreadName);
 
         if (pThread == nullptr) {
             return false;

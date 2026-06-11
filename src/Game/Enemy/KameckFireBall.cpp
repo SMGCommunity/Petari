@@ -63,7 +63,7 @@ void KameckFireBall::makeActorDead() {
 }
 
 void KameckFireBall::control() {
-    MR::requestPointLight(this, TVec3f(mPosition), sPointLightColor, 1.0f, -1);
+    MR::requestPointLight(this, TVec3f(mPosition), ::sPointLightColor, 1.0f, -1);
 }
 
 void KameckFireBall::calcAndSetBaseMtx() {

@@ -400,7 +400,7 @@ bool DinoPackunBattleVs2Lv1::emitFireMouth() {
     TPos3f v17;
     v17.setInline(mouthMtx);
     TVec3f v16;
-    v17.mult(sShotMouthFireOffset, v16);
+    v17.mult(::sShotMouthFireOffset, v16);
     TVec3f v15;
     v15.set< f32 >(v17(0, 0), v17(1, 0), v17(2, 0));
     MR::normalizeOrZero(&v15);

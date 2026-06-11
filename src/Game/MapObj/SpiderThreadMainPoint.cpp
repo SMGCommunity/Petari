@@ -53,13 +53,13 @@ const TVec3f* SpiderThreadPointNearInfo::getPos() const {
 }
 
 SpiderThreadMainPoint::SpiderThreadMainPoint(const TVec3f& rPos, int nearInfoBufferSize)
-    : SpiderThreadPoint(rPos, sFrictionRate), mRadialLine(nullptr), mNearInfoBufferSize(nearInfoBufferSize), mNumNearInfos(0), mNearInfos(nullptr) {
+    : SpiderThreadPoint(rPos, ::sFrictionRate), mRadialLine(nullptr), mNearInfoBufferSize(nearInfoBufferSize), mNumNearInfos(0), mNearInfos(nullptr) {
     mNearInfos = new SpiderThreadPointNearInfo[nearInfoBufferSize];
 }
 
 void SpiderThreadMainPoint::addNearMainPoint(SpiderThreadMainPoint* pMainPoint, SpiderThreadPart* pThreadPart) {
     getNearPointInfo(mNumNearInfos)->mMainPoint = pMainPoint;
-    getNearPointInfo(mNumNearInfos)->setInfo(sNearMainPointAccelRate, pThreadPart, mPosition);
+    getNearPointInfo(mNumNearInfos)->setInfo(::sNearMainPointAccelRate, pThreadPart, mPosition);
     mNumNearInfos++;
 }
 
@@ -84,9 +84,9 @@ void SpiderThreadMainPoint::addNearPointToRadial(SpiderThreadPoint* pThreadPoint
     if (mRadialLine != nullptr) {
         for (s32 idx = 0; idx < mRadialLine->mNumPoints; idx++) {
             if (mRadialLine->getPoint(idx) == this) {
-                addNearPartPoint(pThreadPoint, sNearMainPointAccelRate);
+                addNearPartPoint(pThreadPoint, ::sNearMainPointAccelRate);
             } else {
-                mRadialLine->getPoint(idx)->addNearPartPoint(pThreadPoint, sNearHangPointAccelRate);
+                mRadialLine->getPoint(idx)->addNearPartPoint(pThreadPoint, ::sNearHangPointAccelRate);
             }
         }
     }
@@ -123,16 +123,16 @@ void SpiderThreadMainPoint::cutNearPoints(s32* numCutPoints, SpiderThreadMainPoi
 }
 
 void SpiderThreadMainPoint::updateVelocity() {
-    updateWind(sWindFrictionRate);
+    updateWind(::sWindFrictionRate);
 
     TVec3f springBack(mBasePos);
     springBack.sub(mPosition);
 
     TVec3f diff(springBack);
 
-    if (springBack.length() > sBasePosDiffMin) {
+    if (springBack.length() > ::sBasePosDiffMin) {
         MR::normalizeOrZero(&springBack);
-        springBack.scale(sBasePosAccelRate);
+        springBack.scale(::sBasePosAccelRate);
         mVelocity.add(springBack);
     }
 
@@ -147,7 +147,7 @@ void SpiderThreadMainPoint::closeToNearPoint(const SpiderThreadPointNearInfo* pN
         springBack.sub(mPosition);
         f32 dist = springBack.length();
 
-        if (dist < sNearPointDiffMin) {
+        if (dist < ::sNearPointDiffMin) {
             return;
         }
 

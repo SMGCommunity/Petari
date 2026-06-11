@@ -86,11 +86,11 @@ void BigBubbleGenerator::offActive() {
 }
 
 bool BigBubbleGenerator::isActiveRange() {
-    return MR::isNearPlayerAnyTime(this, sActiveDistance);
+    return MR::isNearPlayerAnyTime(this, ::sActiveDistance);
 }
 
 bool BigBubbleGenerator::isNonActiveRange() {
-    return !MR::isNearPlayerAnyTime(this, sNonActiveDistance);
+    return !MR::isNearPlayerAnyTime(this, ::sNonActiveDistance);
 }
 
 bool BigBubbleGenerator::tryActive() {
@@ -133,7 +133,7 @@ void BigBubbleGenerator::exeActive() {
     if (spawn) {
         TVec3f up;
         MR::calcActorAxisY(&up, this);
-        TVec3f pos = mPosition + up.multInLine(sGenerateOffsetY);
+        TVec3f pos = mPosition + up.multInLine(::sGenerateOffsetY);
         MR::startBck(this, "Generate", nullptr);
         BigBubble* bubble = MR::generateBigBubble(this, pos, up, MR::getRandom(mMinSize, mMaxSize), attach, mIsObstruct, mShape, mLimitterID);
 

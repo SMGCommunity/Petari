@@ -32,7 +32,7 @@ void ItemBubble::init(const JMapInfoIter& rIter) {
     PSMTXCopy(_9C, _CC);
     _108 = mPosition;
     initHitSensor(1);
-    MR::addHitSensorMapObj(this, "body", 8, mScale.x * cHitSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorMapObj(this, "body", 8, mScale.x * ::cHitSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initNerve(&NrvItemBubble::ItemBubbleNrvWait::sInstance);
@@ -182,7 +182,7 @@ void ItemBubble::kill() {
                 break;
             case 1:
                 StarPiece* piece = getStarPiece(i);
-                piece->launch(getRotPartsPosition(i), grav.negateInline().multInLine(cShootStarSpeed), false, false);
+                piece->launch(getRotPartsPosition(i), grav.negateInline().multInLine(::cShootStarSpeed), false, false);
                 MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
                 break;
             }
@@ -230,7 +230,7 @@ void ItemBubble::exeWait() {
         // Useless...
     }
 
-    _8C = MR::sin(2.0f * ((static_cast< f32 >(getNerveStep()) / cSwingRange) * PI));
+    _8C = MR::sin(2.0f * ((static_cast< f32 >(getNerveStep()) / ::cSwingRange) * PI));
 
     if (mUseRail) {
         if (MR::isRailReachedGoal(this))

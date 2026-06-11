@@ -91,7 +91,7 @@ void BombHeiLauncher::startCountdown() {
         return;
     }
 
-    mCountdown = hCountTimer;
+    mCountdown = ::hCountTimer;
 }
 
 void BombHeiLauncher::onSwitchA() {
@@ -133,8 +133,8 @@ void BombHeiLauncher::exeLauncherWait() {
         TVec3f up, front;
         MR::calcUpVec(&up, this);
         MR::calcFrontVec(&front, this);
-        getBombVelocity()->set(up * hThrowVel);
-        getBombVelocity()->add(front * hThrowFrontVel);
+        getBombVelocity()->set(up * ::hThrowVel);
+        getBombVelocity()->add(front * ::hThrowFrontVel);
         setNerve(&NrvBombHeiLauncher::HostTypeNrvStop::sInstance);
         return;
     }

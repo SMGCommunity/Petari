@@ -40,8 +40,8 @@ void Petari::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     initHitSensor(2);
-    MR::addHitSensorEnemy(this, sBodySensorName, 32, 60.0f, TVec3f(sBodySensorOffset));
-    MR::addHitSensorEnemy(this, sSpinSensorName, 32, 100.0f, TVec3f(sSpinSensorOffset));
+    MR::addHitSensorEnemy(this, ::sBodySensorName, 32, 60.0f, TVec3f(::sBodySensorOffset));
+    MR::addHitSensorEnemy(this, ::sSpinSensorName, 32, 100.0f, TVec3f(::sSpinSensorOffset));
     initBinder(60.0f, 60.0f, 0);
     initEffectKeeper(1, nullptr, false);
     MR::addEffect(this, "PointerTouchManual");
@@ -391,17 +391,17 @@ void Petari::calcAndSetBaseMtx() {
 }
 
 void Petari::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensor(pSender, sBodySensorName) && isSolidBody()) {
+    if (MR::isSensor(pSender, ::sBodySensorName) && isSolidBody()) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
 bool Petari::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensor(pReceiver, sBodySensorName)) {
+    if (MR::isSensor(pReceiver, ::sBodySensorName)) {
         return receivePlayerAttackAtBody(msg, pSender, pReceiver);
     }
 
-    if (MR::isSensor(pReceiver, sSpinSensorName)) {
+    if (MR::isSensor(pReceiver, ::sSpinSensorName)) {
         return receivePlayerAttackAtSpin(msg, pSender, pReceiver);
     }
 
@@ -409,7 +409,7 @@ bool Petari::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
 }
 
 bool Petari::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!MR::isSensor(pReceiver, sBodySensorName)) {
+    if (!MR::isSensor(pReceiver, ::sBodySensorName)) {
         return false;
     }
 
@@ -423,7 +423,7 @@ bool Petari::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
 }
 
 bool Petari::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensor(pReceiver, sBodySensorName) && isSolidBody()) {
+    if (MR::isSensor(pReceiver, ::sBodySensorName) && isSolidBody()) {
         MR::addVelocityFromPush(this, 3.0f, pSender, pReceiver);
         return true;
     }
@@ -432,7 +432,7 @@ bool Petari::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool Petari::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensor(pReceiver, sBodySensorName) && isNerve(&PetariNrvSwoon::sInstance) && MR::isMsgPlayerKick(msg)) {
+    if (MR::isSensor(pReceiver, ::sBodySensorName) && isNerve(&PetariNrvSwoon::sInstance) && MR::isMsgPlayerKick(msg)) {
         MR::setVelocityBlowAttack(this, pSender, pReceiver, 10.0f, 0.0f, 4);
         setNerve(&PetariNrvKickOut::sInstance);
         return true;

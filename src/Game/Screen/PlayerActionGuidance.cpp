@@ -156,7 +156,7 @@ void PlayerActionGuidance::exeDisplay() {
             MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE", 500);
         }
 
-        if (MR::getAnimFrame(mCurrentLayout, 0) == sChangeSoundFrame) {
+        if (MR::getAnimFrame(mCurrentLayout, 0) == ::sChangeSoundFrame) {
             MR::startSystemSE("SE_SY_CTRL_GUIDE_CHANGE2", 1000);
         }
     }
@@ -171,7 +171,7 @@ void PlayerActionGuidance::exeDisplay() {
 }
 
 void PlayerActionGuidance::exeSuspend() {
-    if (MR::isStep(this, sSuspendFrame)) {
+    if (MR::isStep(this, ::sSuspendFrame)) {
         if (!_35) {
             hideAllLayout();
             setNerve(&PlayerActionGuidanceWaitFocusIn::sInstance);

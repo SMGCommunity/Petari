@@ -35,7 +35,7 @@ void SimpleFloaterObj::init(const JMapInfoIter& rIfter) {
     MR::initCollisionParts(this, _8C, mSensor, nullptr);
     initEffectKeeper(0, nullptr, false);
     _94.set(mPosition);
-    MR::setEffectHostSRT(this, cEffectName, &_94, &mRotation, nullptr);
+    MR::setEffectHostSRT(this, ::cEffectName, &_94, &mRotation, nullptr);
     initSound(4, false);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     _90 = new MapPartsFloatingForce(this);
@@ -50,10 +50,10 @@ void SimpleFloaterObj::exeWait() {
     if (MR::isFirstStep(this)) {
     }
 
-    if (!isVelocityClose() && !MR::isEffectValid(this, cEffectName)) {
-        MR::emitEffect(this, cEffectName);
-    } else if (isVelocityClose() && MR::isEffectValid(this, cEffectName)) {
-        MR::deleteEffect(this, cEffectName);
+    if (!isVelocityClose() && !MR::isEffectValid(this, ::cEffectName)) {
+        MR::emitEffect(this, ::cEffectName);
+    } else if (isVelocityClose() && MR::isEffectValid(this, ::cEffectName)) {
+        MR::deleteEffect(this, ::cEffectName);
     }
 
     _90->movement();

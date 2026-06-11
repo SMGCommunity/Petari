@@ -197,7 +197,7 @@ void GameSequenceProgress::exeNormal() {
 
 void GameSequenceProgress::exeGalaxyMove() {
     if (_24) {
-        if (MR::isStep(this, sTimingPlayingTicoSE)) {
+        if (MR::isStep(this, ::sTimingPlayingTicoSE)) {
             MR::startSystemSE("SE_SY_TICO_WAKE_PLAYER");
         }
     }

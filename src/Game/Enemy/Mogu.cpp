@@ -253,9 +253,9 @@ void Mogu::exeSearch() {
 
     f32 sightParam;
     if (mIsCannonFleet) {
-        sightParam = hCannonFleetSightParam[0];
+        sightParam = ::hCannonFleetSightParam[0];
     } else {
-        sightParam = hThrowableSightParam[0];
+        sightParam = ::hThrowableSightParam[0];
     }
 
     if (distanceToPlayer < 400.0f || isPlayerExistUp()) {
@@ -281,9 +281,9 @@ void Mogu::exeSearch() {
     }
 
     if (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this)) {
-        const f32* sight2 = hThrowableSightParam;
+        const f32* sight2 = ::hThrowableSightParam;
         if (mIsCannonFleet) {
-            sight2 = hCannonFleetSightParam;
+            sight2 = ::hCannonFleetSightParam;
         }
 
         if (MR::isInSightFanPlayer(this, mSight, sight2[0], sight2[1], sight2[2]) && MR::isGreaterStep(this, 45) && MR::isDead(mStone)) {

@@ -80,7 +80,7 @@ void JellyfishElectric::kill() {
 }
 
 void JellyfishElectric::control() {
-    Color8 clr = sPointLightColor;
+    Color8 clr = ::sPointLightColor;
     MR::requestPointLight(this, TVec3f(mPosition), clr, 0.0998f, -1);
     MR::changeShowModelFlagSyncNearClipping(this, 700.0f);
     mController->updateNerve();

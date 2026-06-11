@@ -33,9 +33,9 @@ void ChipCounter::init(const JMapInfoIter& rIter) {
 
     initNerve(&NrvChipCounter::ChipCounterNrvHide::sInstance);
 
-    for (s32 i = 0; i < sChipPainCount; i++) {
-        MR::createAndAddPaneCtrl(this, sChipPainName[i], 2);
-        MR::startPaneAnim(this, sChipPainName[i], "ChipGet", 0);
+    for (s32 i = 0; i < ::sChipPainCount; i++) {
+        MR::createAndAddPaneCtrl(this, ::sChipPainName[i], 2);
+        MR::startPaneAnim(this, ::sChipPainName[i], "ChipGet", 0);
     }
 
     MR::startAnim(this, "ShowHide", 1);
@@ -67,21 +67,21 @@ void ChipCounter::setCount(s32 count) {
     mCollectCounter->setCount(count);
     mCount = count;
 
-    for (s32 i = 0; i < sChipPainCount; i++) {
+    for (s32 i = 0; i < ::sChipPainCount; i++) {
         if (i < mCount - 1) {
-            MR::setPaneAnimFrameAndStop(this, sChipPainName[i], 1.0f, 0);
+            MR::setPaneAnimFrameAndStop(this, ::sChipPainName[i], 1.0f, 0);
             continue;
         }
 
         if (i == mCount - 1) {
-            if (i == sChipPainCount - 1) {
-                MR::setPaneAnimFrameAndStop(this, sChipPainName[i], 1.0f, 0);
+            if (i == ::sChipPainCount - 1) {
+                MR::setPaneAnimFrameAndStop(this, ::sChipPainName[i], 1.0f, 0);
                 continue;
             }
 
-            MR::startPaneAnim(this, sChipPainName[i], "ChipGet", 0);
+            MR::startPaneAnim(this, ::sChipPainName[i], "ChipGet", 0);
         } else {
-            MR::setPaneAnimFrameAndStop(this, sChipPainName[i], 0.0f, 0);
+            MR::setPaneAnimFrameAndStop(this, ::sChipPainName[i], 0.0f, 0);
         }
     }
 }

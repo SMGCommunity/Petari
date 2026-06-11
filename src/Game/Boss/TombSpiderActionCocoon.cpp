@@ -70,7 +70,7 @@ void TombSpiderActionCocoon::exeBreak() {
         MR::startSound(TombSpiderFunction::getCocoon(mParent), "SE_OJ_TSPIDER_COCOON_BREAK");
     }
 
-    if (MR::isStep(this, sBreakStep)) {
+    if (MR::isStep(this, ::sBreakStep)) {
         kill();
     }
 }

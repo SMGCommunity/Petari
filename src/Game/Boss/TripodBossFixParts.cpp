@@ -53,7 +53,7 @@ void TripodBossFixParts::init(const JMapInfoIter& rIter) {
     setName(objName);
     TripodBossFixPartsBase::init(rIter);
     bool val = false;
-    TripodBossSetting* setting = getSetting(objName);
+    TripodBossSetting* setting = ::getSetting(objName);
 
     if (setting != nullptr) {
         val = (setting->mType & 0x1);

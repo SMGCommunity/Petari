@@ -98,9 +98,9 @@ void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
     if (color != -1) {
         MR::startBrk(this, "ColorChange");
         MR::setBrkFrameAndStop(this, color);
-        _17C = hPointLight[color];
+        _17C = ::hPointLight[color];
     } else {
-        _17C = hPointLight[5];
+        _17C = ::hPointLight[5];
     }
 
     _180 = &NrvTico::TicoNrvMeta::sInstance;

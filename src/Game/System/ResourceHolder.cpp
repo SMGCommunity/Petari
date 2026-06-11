@@ -80,17 +80,17 @@ Mtx44& ResourceHolder::getInitEffectMtx(int materialIndex, int mtxIndex) const {
 
 void ResourceHolder::initializeArc(JKRArchive& rArchive) {
     u32 fileInfoSize = rArchive.countResource();
-    fileInfoSize -= initEachResTable(&mModelResTable, &rArchive, sModelExt);
-    fileInfoSize -= initEachResTable(&mMotionResTable, &rArchive, sMotionExt);
-    fileInfoSize -= initEachResTable(&mBlkResTable, &rArchive, sBlkExt);
-    fileInfoSize -= initEachResTable(&mBtkResTable, &rArchive, sBtkExt);
-    fileInfoSize -= initEachResTable(&mBpkResTable, &rArchive, sBpkExt);
-    fileInfoSize -= initEachResTable(&mBtpResTable, &rArchive, sBtpExt);
-    fileInfoSize -= initEachResTable(&mBrkResTable, &rArchive, sBrkExt);
-    fileInfoSize -= initEachResTable(&mBasResTable, &rArchive, sBasExt);
-    fileInfoSize -= initEachResTable(&mBmtResTable, &rArchive, sBmtExt);
-    fileInfoSize -= initEachResTable(&mBvaResTable, &rArchive, sBvaExt);
-    fileInfoSize -= initEachResTable(&mBanmtResTable, &rArchive, sBanmtExt);
+    fileInfoSize -= initEachResTable(&mModelResTable, &rArchive, ::sModelExt);
+    fileInfoSize -= initEachResTable(&mMotionResTable, &rArchive, ::sMotionExt);
+    fileInfoSize -= initEachResTable(&mBlkResTable, &rArchive, ::sBlkExt);
+    fileInfoSize -= initEachResTable(&mBtkResTable, &rArchive, ::sBtkExt);
+    fileInfoSize -= initEachResTable(&mBpkResTable, &rArchive, ::sBpkExt);
+    fileInfoSize -= initEachResTable(&mBtpResTable, &rArchive, ::sBtpExt);
+    fileInfoSize -= initEachResTable(&mBrkResTable, &rArchive, ::sBrkExt);
+    fileInfoSize -= initEachResTable(&mBasResTable, &rArchive, ::sBasExt);
+    fileInfoSize -= initEachResTable(&mBmtResTable, &rArchive, ::sBmtExt);
+    fileInfoSize -= initEachResTable(&mBvaResTable, &rArchive, ::sBvaExt);
+    fileInfoSize -= initEachResTable(&mBanmtResTable, &rArchive, ::sBanmtExt);
 
     if (fileInfoSize > 0) {
         mFileInfoTable = new (mHeap, 0) ResTable();

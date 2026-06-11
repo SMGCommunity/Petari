@@ -86,7 +86,7 @@ void PenguinRacer::initModel() {
 
 void PenguinRacer::initSensor() {
     initHitSensor(1);
-    MR::addHitSensorPush(this, "push", 8, sSensorRadius, TVec3f(0.0f, sSensorRadius, 0.0f));
+    MR::addHitSensorPush(this, "push", 8, ::sSensorRadius, TVec3f(0.0f, ::sSensorRadius, 0.0f));
 }
 
 void PenguinRacer::initShadow() {
@@ -94,7 +94,7 @@ void PenguinRacer::initShadow() {
 }
 
 void PenguinRacer::initBind() {
-    initBinder(sSensorRadius, sSensorRadius, 0);
+    initBinder(::sSensorRadius, ::sSensorRadius, 0);
 }
 
 void PenguinRacer::initColor(const JMapInfoIter& rIter) {
@@ -155,7 +155,7 @@ bool PenguinRacer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
 
 void PenguinRacer::control() {
     if (mLodCtrl != nullptr) {
-        if (MR::calcCameraDistanceZ(mPosition) < sNearClipping) {
+        if (MR::calcCameraDistanceZ(mPosition) < ::sNearClipping) {
             if (!MR::isHiddenModel(this)) {
                 mLodCtrl->invalidate();
                 MR::hideModelAndOnCalcAnim(this);
@@ -192,7 +192,7 @@ void PenguinRacer::exeWait() {
 
 void PenguinRacer::exeRaceWait() {
     if (MR::isFirstStep(this)) {
-        if (isInWater(mPosition)) {
+        if (::isInWater(mPosition)) {
             MR::startAction(this, "RacerSwimWaitSurface");
         } else {
             MR::startAction(this, "RacerWait");
@@ -212,7 +212,7 @@ void PenguinRacer::exeRaceWalk() {
 
     MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SLIDE");
 
-    if (MR::isNearPlayer(this, sSwimSoundPlayDistance)) {
+    if (MR::isNearPlayer(this, ::sSwimSoundPlayDistance)) {
         MR::startLevelSound(this, "SE_SV_LV_PENGUIN_S_RACE_SWIM");
     }
 
@@ -227,7 +227,7 @@ void PenguinRacer::exeRaceSwim() {
         }
     }
 
-    if (MR::isNearPlayer(this, sSwimSoundPlayDistance)) {
+    if (MR::isNearPlayer(this, ::sSwimSoundPlayDistance)) {
         MR::startLevelSound(this, "SE_SV_LV_PENGUIN_S_RACE_SWIM");
     }
 
@@ -270,7 +270,7 @@ void PenguinRacer::exeRaceFall() {
 
     MR::startLevelSound(this, "SE_SM_LV_PENGUIN_S_SWOON");
 
-    mSpeed -= sFallBrake;
+    mSpeed -= ::sFallBrake;
     if (mSpeed < 0.0f) {
         mSpeed = 0.0f;
     }
@@ -278,7 +278,7 @@ void PenguinRacer::exeRaceFall() {
 
     updateMove();
 
-    if (getNerveStep() >= sFallFrame) {
+    if (getNerveStep() >= ::sFallFrame) {
         mRailPointNo = MR::getCurrentRailPointNo(this);
         mMoveSpeed = getMoveSpeed();
         MR::startSound(this, "SE_SV_PENGUIN_S_HEAT_UP");
@@ -287,7 +287,7 @@ void PenguinRacer::exeRaceFall() {
 }
 
 void PenguinRacer::exeRaceGoal() {
-    mSpeed -= sGoalBrake;
+    mSpeed -= ::sGoalBrake;
     if (mSpeed < 0.0f) {
         mSpeed = 0.0f;
     }
@@ -314,14 +314,14 @@ void PenguinRacer::exeRaceGoal() {
 
 void PenguinRacer::exeRaceTurn() {
     if (MR::isFirstStep(this)) {
-        if (isInWater(mPosition)) {
+        if (::isInWater(mPosition)) {
             MR::startAction(this, "RacerSwimWaitSurface");
         } else {
             MR::startAction(this, "RacerWait");
         }
     }
 
-    if (getNerveStep() < sTurnFrame) {
+    if (getNerveStep() < ::sTurnFrame) {
         mRotation.y = MR::repeatDegree(mRotation.y + 3.0f);
     }
 }
@@ -454,7 +454,7 @@ void PenguinRacer::prepRacer(const RaceManager* pRaceManager) {
 
     MR::decidePose(this, -mGravity, MR::getRailDirection(this), mPosition, 1.0f, 1.0f, 1.0f);
 
-    if (isInWater(mPosition)) {
+    if (::isInWater(mPosition)) {
         MR::startAction(this, "RacerSwimSurfaceSoon");
     } else {
         TVec3f pos;
@@ -514,7 +514,7 @@ void PenguinRacer::resetRacer(const RaceManager* pRaceManager) {
     mVelocity.zero();
     MR::calcGravity(this);
 
-    if (isInWater(mPosition)) {
+    if (::isInWater(mPosition)) {
         MR::startAction(this, "RacerSwimWaitSoon");
     } else {
         MR::startAction(this, "RacerWaitSoon");

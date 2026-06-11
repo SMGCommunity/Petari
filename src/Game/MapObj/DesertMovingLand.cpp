@@ -71,7 +71,7 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
 
 void DesertMovingLand::control() {
     MapObjActor::control();
-    if (MR::isDemoActive(cDemoName))
+    if (MR::isDemoActive(::cDemoName))
         updateDemoPlayerPos();
 
     MR::startLevelSound(this, "SE_AT_LV_WIND_MOVING_DESERT");

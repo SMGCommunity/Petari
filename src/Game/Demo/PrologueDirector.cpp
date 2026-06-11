@@ -83,7 +83,7 @@ void PrologueDirector::kill() {
 }
 
 void PrologueDirector::exeWait() {
-    if (MR::tryStartDemoWithoutCinemaFrame(this, sPictureBookDemoName)) {
+    if (MR::tryStartDemoWithoutCinemaFrame(this, ::sPictureBookDemoName)) {
         MR::submitLevelSE();
         setNerve(&PrologueDirectorNrvPictureBook::sInstance);
         pauseOff();
@@ -96,7 +96,7 @@ void PrologueDirector::exePictureBook() {
 
     if (MR::isFirstStep(this)) {
         mPictureBook->appear();
-        MR::openWipeFade(sPicBookStartWipeFrame);
+        MR::openWipeFade(::sPicBookStartWipeFrame);
         mScenery->appear();
         MR::startAnimCameraTargetSelf(mScenery, &cameraInfo, "DemoLetter", 0, 1.0f);
         MR::startStageBGM("STM_PROLOGUE_01", false);
@@ -114,7 +114,7 @@ void PrologueDirector::exePictureBook() {
 
 void PrologueDirector::exePeachLetterStart() {
     if (MR::isFirstStep(this)) {
-        MR::openWipeFade(sPeachLetterStartWipeFrame);
+        MR::openWipeFade(::sPeachLetterStartWipeFrame);
     }
 
     if (MR::isStep(this, 90)) {
@@ -137,14 +137,14 @@ void PrologueDirector::exePeachLetter() {
 }
 
 void PrologueDirector::exePeachLetterWait() {
-    if (MR::isGreaterEqualStep(this, sPeachLetterWait)) {
+    if (MR::isGreaterEqualStep(this, ::sPeachLetterWait)) {
         setNerve(&PrologueDirectorNrvPeachLetterEnd::sInstance);
     }
 }
 
 void PrologueDirector::exePeachLetterEnd() {
     if (MR::isFirstStep(this)) {
-        MR::closeWipeFade(sPeachLetterEndWipeFrame);
+        MR::closeWipeFade(::sPeachLetterEndWipeFrame);
     }
 
     if (MR::isWipeActive()) {
@@ -160,10 +160,10 @@ void PrologueDirector::exePeachLetterEnd() {
 
 void PrologueDirector::exeBindWait() {
     if (MR::isFirstStep(this)) {
-        MR::endDemo(this, sPictureBookDemoName);
+        MR::endDemo(this, ::sPictureBookDemoName);
     }
 
-    if (MR::tryStartDemoMarioPuppetable(this, sArriveDemoName)) {
+    if (MR::tryStartDemoMarioPuppetable(this, ::sArriveDemoName)) {
         pauseOff();
         mMarioPosDummyModel->appear();
         MR::startBck(mMarioPosDummyModel, "DemoPeachCastleGate", 0);
@@ -190,7 +190,7 @@ void PrologueDirector::exeArrive() {
 
         MR::setPlayerBaseMtx(baseMtx);
         MR::startBckPlayer("DemoPeachCastleGate", (const char*)nullptr);
-        MR::openWipeFade(sArriveStartWipeFrame);
+        MR::openWipeFade(::sArriveStartWipeFrame);
         MR::setImageEffectControlAuto();
     }
 
@@ -199,12 +199,12 @@ void PrologueDirector::exeArrive() {
 
     MR::setPlayerBaseMtx(baseMtx);
 
-    if (MR::isStep(this, sFallingStarStep)) {
+    if (MR::isStep(this, ::sFallingStarStep)) {
         MR::startAtmosphereSE("SE_DM_ARRIVE_CASTLE_STAR");
     }
 
-    if (MR::isStep(this, MR::getBckFrameMaxPlayer("DemoPeachCastleGate") - sArriveEndWipeFrame)) {
-        MR::closeWipeFade(sArriveEndWipeFrame);
+    if (MR::isStep(this, MR::getBckFrameMaxPlayer("DemoPeachCastleGate") - ::sArriveEndWipeFrame)) {
+        MR::closeWipeFade(::sArriveEndWipeFrame);
     }
 
     if (MR::isBckStoppedPlayer()) {
@@ -220,9 +220,9 @@ void PrologueDirector::exeGameStart() {
         MR::forceCloseWipeFade();
     }
 
-    if (MR::isStep(this, sGameStartFrame)) {
-        MR::openWipeFade(sGameStartWipeFrame);
-        MR::endDemo(this, sArriveDemoName);
+    if (MR::isStep(this, ::sGameStartFrame)) {
+        MR::openWipeFade(::sGameStartWipeFrame);
+        MR::endDemo(this, ::sArriveDemoName);
         MR::initPlayerAfterOpeningDemo();
         kill();
     }

@@ -69,12 +69,12 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     MR::tryRegisterDemoCast(this, "バトラー報告", rIter);
     TVec3f vec;
-    const char* demoNameMapLecture = cDemoNameMapLecture;
+    const char* demoNameMapLecture = ::cDemoNameMapLecture;
     vec.setPSZeroVec();
     TalkMessageCtrl* talkMessage =
         MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
     if (MR::tryInitDemoSheetTalkAnim(this, rIter, demoNameMapLecture, "DemoButlerMapLecture", talkMessage)) {
-        const char* demoNameMapLecture = cDemoNameMapLecture;
+        const char* demoNameMapLecture = ::cDemoNameMapLecture;
         const MR::FunctorBase& func = MR::Functor(this, &ButlerMap::startLectureDemo);
         MR::registerDemoActionFunctorDirect(this, func, demoNameMapLecture, "開始");
         MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::resetStatus), demoNameMapLecture, "バトラーリセット");

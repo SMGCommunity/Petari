@@ -156,7 +156,7 @@ void BombBird::exeDamage() {
         MR::invalidateClipping(this);
     }
 
-    BombBirdParam* param = &hFallParam;
+    BombBirdParam* param = &::hFallParam;
     MR::moveAndTurnToPlayer(this, &_9C, param->_0, param->_4, param->_8, param->_C);
 
     if (MR::isActionEnd(this)) {
@@ -170,7 +170,7 @@ void BombBird::exeFall() {
         MR::invalidateClipping(this);
     }
 
-    BombBirdParam* param = &hFallParam;
+    BombBirdParam* param = &::hFallParam;
     MR::moveAndTurnToPlayer(this, &_9C, param->_0, param->_4, param->_8, param->_C);
 
     if (MR::isOnGround(this)) {
@@ -189,7 +189,7 @@ void BombBird::exeSwoonStart() {
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
     }
 
-    BombBirdParam* param = &hOnGroundParam;
+    BombBirdParam* param = &::hOnGroundParam;
     MR::moveAndTurnToPlayer(this, &_9C, param->_0, param->_4, param->_8, param->_C);
     TVec3f area(0, 0, 0);
     if (MR::calcVelocityAreaOrRailMoveOnGround(&area, this)) {
@@ -213,7 +213,7 @@ void BombBird::exeSwoon() {
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
     }
 
-    MR::moveAndTurnToPlayer(this, &_9C, hOnGroundParam._0, hOnGroundParam._4, hOnGroundParam._8, hOnGroundParam._C);
+    MR::moveAndTurnToPlayer(this, &_9C, ::hOnGroundParam._0, ::hOnGroundParam._4, ::hOnGroundParam._8, ::hOnGroundParam._C);
     TVec3f area(0, 0, 0);
     if (MR::calcVelocityAreaOrRailMoveOnGround(&area, this)) {
         mVelocity.set< f32 >(area * 1.0f);
@@ -235,7 +235,7 @@ void BombBird::exeSwoonEnd() {
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
     }
 
-    BombBirdParam* param = &hOnGroundParam;
+    BombBirdParam* param = &::hOnGroundParam;
     MR::moveAndTurnToPlayer(this, &_9C, param->_0, param->_4, param->_8, param->_C);
 
     TVec3f area(0, 0, 0);
@@ -268,7 +268,7 @@ void BombBird::exeTrample() {
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
     }
 
-    BombBirdParam* param = &hOnGroundParam;
+    BombBirdParam* param = &::hOnGroundParam;
     MR::moveAndTurnToPlayer(this, &_9C, param->_0, param->_4, param->_8, param->_C);
 
     if (MR::isStep(this, 36)) {
@@ -292,7 +292,7 @@ void BombBird::exeSinkDown() {
 
     MR::startLevelSound(this, "SE_EM_LV_SINK");
     MR::startLevelSound(this, "SE_EV_LV_BOMBBIRD_SINK");
-    BombBirdParam* param = &hOnGroundParam;
+    BombBirdParam* param = &::hOnGroundParam;
     MR::moveAndTurnToPlayer(this, &_9C, param->_0, param->_4, param->_8, param->_C);
 
     if (MR::isActionEnd(this)) {

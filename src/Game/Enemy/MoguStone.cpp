@@ -211,7 +211,7 @@ void ThrowingIce::init(const JMapInfoIter& rIter) {
 }
 
 void ThrowingIce::emitIce(const TVec3f& arg1, const TVec3f& arg2, f32 arg3, const TVec3f& arg4) {
-    mPath->initFromUpVectorAddHeight(arg1, arg2, -arg4, hAddHeight);
+    mPath->initFromUpVectorAddHeight(arg1, arg2, -arg4, ::hAddHeight);
     _BC = arg3;
 
     TVec3f v2(arg2);

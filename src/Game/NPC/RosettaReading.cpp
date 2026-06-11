@@ -45,12 +45,12 @@ void RosettaReading::init(const JMapInfoIter& rIter) {
     DemoFunction::registerDemoTalkMessageCtrl(
         this, MR::createTalkCtrlDirectOnRootNodeAutomatic(
                   this, rIter,
-                  getChapterNumberMax() == PictureBookLayout::getChapterMax() ? "LibraryRoom_RosettaReading003" : "LibraryRoom_RosettaReading000",
+                  ::getChapterNumberMax() == PictureBookLayout::getChapterMax() ? "LibraryRoom_RosettaReading003" : "LibraryRoom_RosettaReading000",
                   // FIXME: Vector is not initialized correctly.
                   TVec3f(0.0f, 0.0f, 0.0f), MR::getJointMtx(this, "Chin")));
 
-    if (getChapterNumberMin() <= getChapterNumberMax()) {
-        mPictureBookLayout = new PictureBookLayout(getChapterNumberMin(), getChapterNumberMax(), true);
+    if (::getChapterNumberMin() <= ::getChapterNumberMax()) {
+        mPictureBookLayout = new PictureBookLayout(::getChapterNumberMin(), ::getChapterNumberMax(), true);
         mPictureBookLayout->initWithoutIter();
     }
 
@@ -68,8 +68,8 @@ void RosettaReading::kill() {
 }
 
 void RosettaReading::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
-    if (getChapterNumberMin() <= getChapterNumberMax()) {
-        PictureBookLayout::makeArchiveList(pCollector, getChapterNumberMin(), getChapterNumberMax(), true);
+    if (::getChapterNumberMin() <= ::getChapterNumberMax()) {
+        PictureBookLayout::makeArchiveList(pCollector, ::getChapterNumberMin(), ::getChapterNumberMax(), true);
     }
 }
 
@@ -99,7 +99,7 @@ void RosettaReading::exePictureBook() {
     }
 
     if (MR::isDead(mPictureBookLayout)) {
-        for (int c = getChapterNumberMin(); c <= getChapterNumberMax(); c++) {
+        for (int c = ::getChapterNumberMin(); c <= ::getChapterNumberMax(); c++) {
             MR::setPictureBookChapterAlreadyRead(c);
         }
 
@@ -114,7 +114,7 @@ void RosettaReading::exePictureBookAfter() {
         MR::startSystemLevelSE("SE_SM_LV_TICO_WAIT_LIBRARY");
     }
 
-    if (MR::isDemoPartStep("絵本デモ終了", cOverlayStartStep)) {
+    if (MR::isDemoPartStep("絵本デモ終了", ::cOverlayStartStep)) {
         MR::overlayWithPreviousScreen(1);
     }
 

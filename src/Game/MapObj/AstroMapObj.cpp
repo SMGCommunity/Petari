@@ -186,7 +186,7 @@ void AstroMapObj::exeRevival() {
         MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1");
     } else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
         MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_2");
-    } else if (MR::isEqualString(_CC, "AstroStarPlate") && MR::isGreaterStep(this, sAstroPathAppearStep)) {
+    } else if (MR::isEqualString(_CC, "AstroStarPlate") && MR::isGreaterStep(this, ::sAstroPathAppearStep)) {
         MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_PATH_APPEAR");
     }
     if (AstroMapObj::isEndRevival()) {

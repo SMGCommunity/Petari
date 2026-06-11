@@ -107,7 +107,7 @@ bool TombSpiderAction2nd::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
 }
 
 void TombSpiderAction2nd::exeWait() {
-    if (updateWait(sStepWaitMin, sStepWaitMax)) {
+    if (updateWait(::sStepWaitMin, ::sStepWaitMax)) {
         setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvAttackStart::sInstance);
     }
 }
@@ -119,7 +119,7 @@ void TombSpiderAction2nd::exeAttackStart() {
 }
 
 void TombSpiderAction2nd::exeAttackLoop() {
-    if (updateAttackLoop(sStepAttackLoopMin, sStepAttackLoopMax, sAttackRotateAccel, sAttackRotateSpeedMax)) {
+    if (updateAttackLoop(::sStepAttackLoopMin, ::sStepAttackLoopMax, ::sAttackRotateAccel, ::sAttackRotateSpeedMax)) {
         setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvAttackEnd::sInstance);
     }
 }
@@ -162,7 +162,7 @@ void TombSpiderAction2nd::exeChanceStart() {
 }
 
 void TombSpiderAction2nd::exeChanceWait() {
-    if (updateChanceWait(sStepChanceWait)) {
+    if (updateChanceWait(::sStepChanceWait)) {
         setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvWaitDemo::sInstance);
         if (!tryWaitChanceEndDemo(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceEnd::sInstance)) {
             setNerve(&NrvTombSpiderAction2nd::TombSpiderAction2ndNrvChanceEnd::sInstance);
@@ -177,7 +177,7 @@ void TombSpiderAction2nd::exeChanceDamage() {
 }
 
 void TombSpiderAction2nd::exeChanceDamageLast() {
-    if (MR::isStep(this, sChanceDamageLastStep)) {
+    if (MR::isStep(this, ::sChanceDamageLastStep)) {
         kill();
     }
 }

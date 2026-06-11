@@ -49,7 +49,7 @@ void LotusLeaf::init(const JMapInfoIter& rIter) {
     initNerve(&NrvLotusLeaf::HostTypeWait::sInstance);
     initEffectKeeper(0, nullptr, false);
     MR::setEffectHostSRT(this, "LotusLeafRipple", &mInitPos, nullptr, nullptr);
-    MR::initShadowVolumeCylinder(this, sShadowRadius);
+    MR::initShadowVolumeCylinder(this, ::sShadowRadius);
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
@@ -81,21 +81,21 @@ void LotusLeaf::exeShake() {
     // https://decomp.me/scratch/oDDPt
 
     if (MR::isFirstStep(this)) {
-        mShakeSpeed = sShakeInitSpeed;
-        mShakePeriod = sShakePeriodStart;
+        mShakeSpeed = ::sShakeInitSpeed;
+        mShakePeriod = ::sShakePeriodStart;
         MR::startSound(this, "SE_OJ_LOTUS_LEAF_WAVE");
         MR::emitEffect(this, "LotusLeafRipple");
     }
 
     f32 f1 = TWO_PI / mShakePeriod;
     f32 vel = -mShakeSpeed * MR::cos(getNerveStep() * f1);
-    mShakePeriod += sShakePeriodSlowPitch;
-    mShakeSpeed *= sShakeSpeedAtten;
+    mShakePeriod += ::sShakePeriodSlowPitch;
+    mShakeSpeed *= ::sShakeSpeedAtten;
 
     f32 accel = vel - mVelocity.y;
     mVelocity.y = vel;
 
-    if (mPosition.y + mVelocity.y <= mInitPos.y - sSinkDepthMax) {
+    if (mPosition.y + mVelocity.y <= mInitPos.y - ::sSinkDepthMax) {
         mVelocity.zero();
     }
 
@@ -111,7 +111,7 @@ void LotusLeaf::exeShake() {
         }
     }
 
-    if (MR::isNearZero(accel, sShakeAccelMin) && MR::isNearZero(vel, sShakeSpeedMin)) {
+    if (MR::isNearZero(accel, ::sShakeAccelMin) && MR::isNearZero(vel, ::sShakeSpeedMin)) {
         mVelocity.zero();
         if (isNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance)) {
             setNerve(&NrvLotusLeaf::HostTypeWaitPlayerOn::sInstance);

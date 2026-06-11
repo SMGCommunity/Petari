@@ -505,13 +505,13 @@ void MarioActor::initCommonEffect() {
                     break;
                 }
                 case 1:
-                    addMarioEffectAtJoint(this, effectName, "FootR", name + materialIndex);
+                    ::addMarioEffectAtJoint(this, effectName, "FootR", name + materialIndex);
                     break;
                 case 2:
-                    addMarioEffectAtJoint(this, effectName, "HandR", name + materialIndex);
+                    ::addMarioEffectAtJoint(this, effectName, "HandR", name + materialIndex);
                     break;
                 case 3:
-                    addMarioEffectAtJoint(this, effectName, "Spine1", name + materialIndex);
+                    ::addMarioEffectAtJoint(this, effectName, "Spine1", name + materialIndex);
                     break;
                 default:
                     break;

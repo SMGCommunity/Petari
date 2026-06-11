@@ -613,9 +613,9 @@ bool SpaceCocoon::tryTouch() {
     }
 
     s32 touchChannel = -1;
-    if (tryTouchPointer(this, WPAD_CHAN0)) {
+    if (::tryTouchPointer(this, WPAD_CHAN0)) {
         touchChannel = WPAD_CHAN0;
-    } else if (tryTouchPointer(this, WPAD_CHAN1)) {
+    } else if (::tryTouchPointer(this, WPAD_CHAN1)) {
         touchChannel = WPAD_CHAN1;
     }
 
@@ -773,22 +773,22 @@ void SpaceCocoon::draw() const {
     f32 f1 = -0.5f;
     f32 f2 = 0.0f;
 
-    drawPlane(25.0f, -10.0f, 0.0f, -25.0f, sColor, sColor, f1, f2);  // -0.5f, 0.0f
+    drawPlane(25.0f, -10.0f, 0.0f, -25.0f, ::sColor, ::sColor, f1, f2);  // -0.5f, 0.0f
     f2 = f1;
     f1 += -0.5f;
-    drawPlane(25.0f, 10.0f, 25.0f, -10.0f, sColor, sColor, f1, f2);  // -1.0f, -0.5f
+    drawPlane(25.0f, 10.0f, 25.0f, -10.0f, ::sColor, ::sColor, f1, f2);  // -1.0f, -0.5f
     f2 = f1;
     f1 += -0.5f;
-    drawPlane(0.0f, 25.0f, 25.0f, 10.0f, sColor, sColor, f1, f2);  // -1.5f, -1.0f
+    drawPlane(0.0f, 25.0f, 25.0f, 10.0f, ::sColor, ::sColor, f1, f2);  // -1.5f, -1.0f
     f2 = f1;
     f1 += -0.5f;
-    drawPlane(-25.0f, 10.0f, 0.0f, 25.0f, sColor, sColor, f1, f2);  // -2.0f, -1.5f
+    drawPlane(-25.0f, 10.0f, 0.0f, 25.0f, ::sColor, ::sColor, f1, f2);  // -2.0f, -1.5f
     f2 = f1;
     f1 += -0.5f;
-    drawPlane(-25.0f, -10.0f, -25.0f, 10.0f, sColor, sColor, f1, f2);  // -2.5f, -2.0f
+    drawPlane(-25.0f, -10.0f, -25.0f, 10.0f, ::sColor, ::sColor, f1, f2);  // -2.5f, -2.0f
     f2 = f1;
     f1 += -0.5f;
-    drawPlane(0.0f, -25.0f, -25.0f, -10.0f, sColor, sColor, f1, f2);  // -3.0f, -2.5f
+    drawPlane(0.0f, -25.0f, -25.0f, -10.0f, ::sColor, ::sColor, f1, f2);  // -3.0f, -2.5f
 }
 
 namespace {
@@ -815,16 +815,16 @@ void SpaceCocoon::drawPlane(f32 x1, f32 y1, f32 x2, f32 y2, Color8 color1, Color
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, numPoints * 2);
 
-    drawPoints(mCocoonPos, mSide, mFront, 1.0f, x1, y1, x2, y2, color1, color2, texX1, texX2, 0.0f);
+    ::drawPoints(mCocoonPos, mSide, mFront, 1.0f, x1, y1, x2, y2, color1, color2, texX1, texX2, 0.0f);
 
     for (s32 idx = 0; idx < mNumPoints; idx++) {
         f32 thickness = mPlantPoints[idx]->mThickness;
 
-        drawPoints(mPlantPoints[idx]->mPosition, mPlantPoints[idx]->mSide, mPlantPoints[idx]->mFront, thickness, x1, y1, x2, y2, color1, color2,
+        ::drawPoints(mPlantPoints[idx]->mPosition, mPlantPoints[idx]->mSide, mPlantPoints[idx]->mFront, thickness, x1, y1, x2, y2, color1, color2,
                    texX1, texX2, (idx + 1) * delta);
     }
 
-    drawPoints(mBasePos, mSide, mFront, 2.0f, x1, y1, x2, y2, color1, color2, texX1, texX2, 1.0f);
+    ::drawPoints(mBasePos, mSide, mFront, 2.0f, x1, y1, x2, y2, color1, color2, texX1, texX2, 1.0f);
 }
 
 void SpaceCocoon::initDraw() const {

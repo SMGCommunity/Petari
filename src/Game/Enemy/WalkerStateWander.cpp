@@ -21,7 +21,7 @@ WalkerStateWander::WalkerStateWander(LiveActor* pHost, TVec3f* pDirection, Walke
     initNerve(&NrvWalkerStateWander::WalkerStateWanderNrvWait::sInstance);
 
     if (mWanderParam == nullptr) {
-        mWanderParam = &sDefaultParam;
+        mWanderParam = &::sDefaultParam;
     }
 
     mTerritoryMover = new TerritoryMover(500.0f);

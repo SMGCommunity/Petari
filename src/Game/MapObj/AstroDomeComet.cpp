@@ -55,7 +55,7 @@ void AstroDomeComet::appear() {
 
     if (mMiniGalaxy != nullptr) {
         LiveActor::appear();
-        const char* cometName = cCometBrkName[MiniatureGalaxyFunction::getCometNameId()];
+        const char* cometName = ::cCometBrkName[MiniatureGalaxyFunction::getCometNameId()];
         MR::startBck(this, "AstroDomeComet", nullptr);
         MR::startBtk(this, "AstroDomeComet");
         MR::startBrk(this, cometName);

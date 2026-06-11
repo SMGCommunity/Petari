@@ -192,7 +192,7 @@ void PenguinCoach::resetAudience() {
         setFinishPos();
     }
 
-    turnToPlayer(sTurnSpeed);
+    turnToPlayer(::sTurnSpeed);
 }
 
 void PenguinCoach::prepAudience() {

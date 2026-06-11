@@ -69,7 +69,7 @@ void DemoActionInfo::registerNerve(const LiveActor* pActor, const Nerve* pNerve)
 
 void DemoActionInfo::executeActionFirst() const {
     if (mCastCount > 0) {
-        setTalkAnimCtrlInterpole(mCastList[0], 0);
+        ::setTalkAnimCtrlInterpole(mCastList[0], 0);
     }
 
     for (s32 i = 0; i < mCastCount; i++) {
@@ -91,11 +91,11 @@ void DemoActionInfo::executeActionFirst() const {
         } else if (mActionType == 7) {
             MR::hideModel(actor);
         } else if (mActionType == 8) {
-            MR::tryTalkTimeKeepDemoMarioPuppetable(findTalkMessageCtrl(actor));
+            MR::tryTalkTimeKeepDemoMarioPuppetable(::findTalkMessageCtrl(actor));
         } else if (mActionType == 9) {
-            MR::tryTalkTimeKeepDemoWithoutPauseMarioPuppetable(findTalkMessageCtrl(actor));
+            MR::tryTalkTimeKeepDemoWithoutPauseMarioPuppetable(::findTalkMessageCtrl(actor));
         } else if (mActionType == 10) {
-            MR::tryTalkTimeKeepDemoWithoutPauseMarioPuppetable(findTalkMessageCtrl(actor));
+            MR::tryTalkTimeKeepDemoWithoutPauseMarioPuppetable(::findTalkMessageCtrl(actor));
         } else if (mActionType == 11) {
             // noop
         } else if (mActionType == 12) {
@@ -116,13 +116,13 @@ void DemoActionInfo::executeActionFirst() const {
 
 void DemoActionInfo::executeActionLast() const {
     if (mCastCount > 0) {
-        setTalkAnimCtrlInterpole(mCastList[0], 0);
+        ::setTalkAnimCtrlInterpole(mCastList[0], 0);
     }
 
     for (s32 i = 0; i < mCastCount; i++) {
         LiveActor* actor = mCastList[i];
         if (mActionType == 9) {
-            setTalkAnimCtrlInterpole(actor, -1);
+            ::setTalkAnimCtrlInterpole(actor, -1);
         }
     }
 }

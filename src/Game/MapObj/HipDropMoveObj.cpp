@@ -34,8 +34,8 @@ void HipDropMoveObj::init(const JMapInfoIter& rIter) {
     sensor.x = 0.0f;
     sensor.y = 0.0f;
     sensor.z = 0.0f;
-    HitSensor* jointSensor = MR::addHitSensorAtJointMapObj(this, "body", cSwitchJointName, 0, 225.0f, sensor);
-    MtxPtr mtx = MR::getJointMtx(this, cMoveJointName);
+    HitSensor* jointSensor = MR::addHitSensorAtJointMapObj(this, "body", ::cSwitchJointName, 0, 225.0f, sensor);
+    MtxPtr mtx = MR::getJointMtx(this, ::cMoveJointName);
     MR::initCollisionParts(this, mObjectName, jointSensor, mtx);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     MR::setGroupClipping(this, rIter, 8);
@@ -73,7 +73,7 @@ void HipDropMoveObj::exeWait() {
 
 void HipDropMoveObj::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::startAllAnim(this, cMoveAnimName);
+        MR::startAllAnim(this, ::cMoveAnimName);
         const char* startSe = MR::StageEffect::getStartSe(mObjectName);
 
         if (startSe) {
@@ -151,7 +151,7 @@ void HipDropDemoMoveObj::moveStart() {
     MtxPtr mtx = MR::getPlayerDemoActor()->getBaseMtx();
     TMtx34f stack_38;
     stack_38.set(mtx);
-    MtxPtr jointMtx = MR::getJointMtx(this, cMoveJointName);
+    MtxPtr jointMtx = MR::getJointMtx(this, ::cMoveJointName);
     TMtx34f stack_8;
     stack_8.set(jointMtx);
     stack_8.invert(stack_8);
@@ -160,7 +160,7 @@ void HipDropDemoMoveObj::moveStart() {
 
 void HipDropDemoMoveObj::moving() {
     if (MR::isDemoActive()) {
-        MtxPtr jointMtx = MR::getJointMtx(this, cMoveJointName);
+        MtxPtr jointMtx = MR::getJointMtx(this, ::cMoveJointName);
         TMtx34f stack_8;
         stack_8.set(jointMtx);
         stack_8.concat(stack_8, mMtx);

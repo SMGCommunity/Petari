@@ -56,7 +56,7 @@ void MiniatureGalaxy::init(const JMapInfoIter& rIter) {
 
     MR::tryRegisterDemoCast(this, rIter);
 
-    const char* pDemoName = cDemoNameDomeLecture;
+    const char* pDemoName = ::cDemoNameDomeLecture;
     MR::registerDemoCast(this, pDemoName, rIter);
     MR::registerDemoCast(mShadowModel, pDemoName, rIter);
     MR::registerDemoCast(mUnknownModel, pDemoName, rIter);
@@ -395,7 +395,7 @@ void MiniatureGalaxy::updateZoomInOut() {
 void MiniatureGalaxy::updateNamePlate() {
     if (!MR::isDead(mNamePlate)) {
         TVec3f newPosition;
-        newPosition.add(mPosition, cNamePlateOffset);
+        newPosition.add(mPosition, ::cNamePlateOffset);
         mNamePlate->setPos3D(newPosition);
     }
 }

@@ -19,7 +19,7 @@ namespace {
     static WallPart2Angle sWallPartPlacementAngleTable[] = {{0.0f, 4},      {45.0f, 8},     {90.0f, 0xC},   {135.0f, 0x10},
                                                             {180.0f, 0x14}, {225.0f, 0x18}, {270.0f, 0x1C}, {315.0f, 0x20}};
 
-    static s32 sMoveSeLength = 0x3A;
+    static s32 sMoveSeLength = 58;
 };  // namespace
 
 namespace NrvTriPodBossGuardWall {
@@ -83,8 +83,8 @@ void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
 void TripodBossGuardWall::initParts() {
     for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
         mWallParts[i].setHostMatrix(&mBaseMtx);
-        mWallParts[i].setPlacementAngle(sWallPartPlacementAngleTable[i].angle);
-        mWallParts[i].setStartTiming(sWallPartPlacementAngleTable[i].partNo);
+        mWallParts[i].setPlacementAngle(::sWallPartPlacementAngleTable[i].angle);
+        mWallParts[i].setStartTiming(::sWallPartPlacementAngleTable[i].partNo);
         mWallParts[i].initWithoutIter();
     }
 }
@@ -151,7 +151,7 @@ void TripodBossGuardWall::exeDemo() {
             }
         }
 
-        if (MR::isLessStep(this, sMoveSeLength + 0xB4)) {
+        if (MR::isLessStep(this, ::sMoveSeLength + 180)) {
             MR::startLevelSound(this, "SE_BM_LV_TRIPOD_WALL_UP");
         }
 

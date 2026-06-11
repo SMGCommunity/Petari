@@ -82,7 +82,7 @@ void GameSystemException::handleException(OSError error, OSContext* pContext, u3
         u32 padCommandTrigger = 0;
         u32 padCommandHold = 0;
 
-        while (cDispExceptionCommand[padCommandSuccessCounter]) {
+        while (::cDispExceptionCommand[padCommandSuccessCounter]) {
             JUTException::waitTime(100);
             JUTException::sErrorManager->readPad(&padCommandTrigger, &padCommandHold);
 
@@ -90,7 +90,7 @@ void GameSystemException::handleException(OSError error, OSContext* pContext, u3
                 continue;
             }
 
-            if ((cDispExceptionCommand[padCommandSuccessCounter] & padCommandTrigger) == cDispExceptionCommand[padCommandSuccessCounter]) {
+            if ((::cDispExceptionCommand[padCommandSuccessCounter] & padCommandTrigger) == ::cDispExceptionCommand[padCommandSuccessCounter]) {
                 padCommandSuccessCounter++;
             } else {
                 padCommandSuccessCounter = 0;

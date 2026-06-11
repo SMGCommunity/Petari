@@ -71,16 +71,16 @@ void TakeOutStar::exeAnim() {
         MR::startAction(mActor, mActionName);
     }
 
-    s32 step = sStarAppearSeStep;
+    s32 step = ::sStarAppearSeStep;
 
     if (MR::isEqualString(mAnimName, "TakeOutStarCaretaker")) {
-        step = sStarAppearSeStepCaretaker;
+        step = ::sStarAppearSeStepCaretaker;
     } else if (MR::isEqualString(mAnimName, "TakeOutStarTeresaRacer")) {
-        step = sStarAppearSeStepTeresaRacer;
+        step = ::sStarAppearSeStepTeresaRacer;
     } else if (MR::isEqualString(mAnimName, "TakeOutStarPenguinCoach")) {
-        step = sStarAppearSeStepPenguinCoach;
+        step = ::sStarAppearSeStepPenguinCoach;
     } else if (MR::isEqualString(mAnimName, "TakeOutStarTrickRabbit")) {
-        step = sStarAppearSeStepTrickRabbit;
+        step = ::sStarAppearSeStepTrickRabbit;
     }
 
     if (MR::isGreaterStep(this, step)) {

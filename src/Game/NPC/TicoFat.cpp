@@ -153,7 +153,7 @@ void TicoFat::init(const JMapInfoIter& rIter) {
     _174 = 0;
     mStartEat = false;
     _1F4 = -1;
-    mScaleController = new AnimScaleController(&sParam);
+    mScaleController = new AnimScaleController(&::sParam);
     NPCActor::initialize(rIter, caps);
     s32 itemType = _1DC;
     MR::getJMapInfoArg0NoInit(rIter, &itemType);
@@ -283,7 +283,7 @@ void TicoFat::control() {
     NPCActor::control();
     TVec3f trans;
     MR::extractMtxTrans(MR::getJointMtx(this, "Center"), &trans);
-    MR::requestPointLight(this, TVec3f(trans), hPointLight, 0.99864602f, -1);
+    MR::requestPointLight(this, TVec3f(trans), ::hPointLight, 0.99864602f, -1);
     if (isNerve(&NrvTicoFat::TicoFatNrvPrep::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvWait::sInstance) ||
         isNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance) ||
         isNerve(&NrvTicoFat::TicoFatNrvChem::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvFullness::sInstance) ||
@@ -510,7 +510,7 @@ void TicoFat::addStarPieceSaveData(s32) {
 }
 
 void TicoFat::appearInformation() const {
-    MR::appearInformationMessage(MR::getGameMessageDirect(sInfoMessageID), true);
+    MR::appearInformationMessage(MR::getGameMessageDirect(::sInfoMessageID), true);
 }
 
 void TicoFat::disappear(bool a1) {

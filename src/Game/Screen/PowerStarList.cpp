@@ -92,10 +92,10 @@ void PowerStarList::init(const JMapInfoIter& rIter) {
     MR::createAndAddPaneCtrl(this, "Title", 1);
     MR::createAndAddPaneCtrl(this, "Belt", 1);
 
-    for (u32 i = 0; i < ARRAY_SIZE(cSeparatorPaneTable); i++) {
-        MR::createAndAddPaneCtrl(this, cSeparatorPaneTable[i], 1);
-        MR::setFollowPos(&mSeparatorArray[i]._4, this, cSeparatorPaneTable[i]);
-        MR::setFollowTypeAdd(this, cSeparatorPaneTable[i]);
+    for (u32 i = 0; i < ARRAY_SIZE(::cSeparatorPaneTable); i++) {
+        MR::createAndAddPaneCtrl(this, ::cSeparatorPaneTable[i], 1);
+        MR::setFollowPos(&mSeparatorArray[i]._4, this, ::cSeparatorPaneTable[i]);
+        MR::setFollowTypeAdd(this, ::cSeparatorPaneTable[i]);
     }
 
     MR::createAdaptorAndConnectToWiiMessageBoard("全パワースターリスト(伝言板用描画)",
@@ -116,7 +116,7 @@ void PowerStarList::init(const JMapInfoIter& rIter) {
     MR::createOdhConverter();
     initNerve(&NrvPowerStarList::PowerStarListNrvWait::sInstance);
 
-    mMailMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(cMailMessageID)) + FileSelectFunc::getMiiNameBufferSize();
+    mMailMessageLength = MR::getStringLengthWithMessageTag(MR::getGameMessageDirect(::cMailMessageID)) + FileSelectFunc::getMiiNameBufferSize();
     mMailMessage = new wchar_t[mMailMessageLength];
 }
 
@@ -350,7 +350,8 @@ void PowerStarList::exeCaptureWait() {
 
 void PowerStarList::exeCaptureSend() {
     if (MR::isFirstStep(this)) {
-        ReplaceTagFunction::ReplaceArgs(mMailMessage, mMailMessageLength, MR::getGameMessageDirect(cMailMessageID), GameDataFunction::getUserName());
+        ReplaceTagFunction::ReplaceArgs(mMailMessage, mMailMessageLength, MR::getGameMessageDirect(::cMailMessageID),
+                                        GameDataFunction::getUserName());
 
         MR::SendMailObj sendMailObj = MR::SendMailObj("スターリスト");
 

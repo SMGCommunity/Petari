@@ -38,7 +38,7 @@ WalkerStateRunawayParam::WalkerStateRunawayParam() {
 WalkerStateRunaway::WalkerStateRunaway(LiveActor* pHost, TVec3f* pDirection, WalkerStateRunawayParam* pRunawayParam)
     : ActorStateBase< LiveActor >("歩行型アクター逃げ", pHost), mRunawayParam(pRunawayParam), mDirection(pDirection), _18(0), mRunawaySpeed(1.0f) {
     if (mRunawayParam == nullptr) {
-        mRunawayParam = &sDefaultParam;
+        mRunawayParam = &::sDefaultParam;
     }
 
     initNerve(&NrvWalkerStateRunaway::WalkerStateRunawayNrvWait::sInstance);

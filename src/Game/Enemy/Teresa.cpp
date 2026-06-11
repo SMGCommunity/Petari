@@ -205,7 +205,7 @@ void Teresa::control() {
     _FE = 0;
 
     if (_F4 > 0.89f) {
-        MR::requestPointLight(this, TVec3f(mPosition), sPointLightColor, 1.0f, -1);
+        MR::requestPointLight(this, TVec3f(mPosition), ::sPointLightColor, 1.0f, -1);
     }
 }
 

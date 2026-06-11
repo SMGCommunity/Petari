@@ -139,29 +139,29 @@ f32 PenguinSkater::calcLead() const {
 }
 
 void PenguinSkater::moveRail(f32 speed, f32 blendRate) {
-    MR::adjustmentRailCoordSpeed(mRail, speed, sAwayAccele);
+    MR::adjustmentRailCoordSpeed(mRail, speed, ::sAwayAccele);
     mCrossPoint = MR::moveCoordAndFollowTransAndCheckPassPointNo(mRail);
     MR::followRailPoseOnGround(this, mRail, blendRate);
 }
 
 void PenguinSkater::stopRail(f32 blendRate) {
-    MR::adjustmentRailCoordSpeed(mRail, 0.0f, sAwayBrake);
+    MR::adjustmentRailCoordSpeed(mRail, 0.0f, ::sAwayBrake);
     mCrossPoint = MR::moveCoordAndFollowTransAndCheckPassPointNo(mRail);
     MR::followRailPoseOnGround(this, mRail, blendRate);
 }
 
 bool PenguinSkater::inProvokeRangeIn(f32 dist) const {
     f32 absDist = __fabsf(dist);
-    return (__fabsf((MR::getRailTotalLength(mRail) / 2) - absDist) < sProvokeRangeIn);
+    return (__fabsf((MR::getRailTotalLength(mRail) / 2) - absDist) < ::sProvokeRangeIn);
 }
 
 bool PenguinSkater::inProvokeRangeOut(f32 dist) const {
     f32 absDist = __fabsf(dist);
-    return (__fabsf((MR::getRailTotalLength(mRail) / 2) - absDist) < sProvokeRangeOut);
+    return (__fabsf((MR::getRailTotalLength(mRail) / 2) - absDist) < ::sProvokeRangeOut);
 }
 
 bool PenguinSkater::inSwitchRange(f32 dist) const {
-    if (__fabsf(dist) > sSwitchRange) {
+    if (__fabsf(dist) > ::sSwitchRange) {
         return false;
     }
     return mCrossPoint != -1;
@@ -182,7 +182,7 @@ bool PenguinSkater::trySwitchRail() {
         MR::calcRailStartPointPos(&pos, rail);
         MR::calcRailStartPointDirection(&dir, rail);
 
-        if ((crossPos - pos).length() < sSamePosition && railDir.dot(dir) > sSameDirection) {
+        if ((crossPos - pos).length() < ::sSamePosition && railDir.dot(dir) > ::sSameDirection) {
             MR::setRailDirectionToEnd(rail);
             MR::setRailCoord(rail, 0.0f);
             MR::setRailCoordSpeed(rail, speed);
@@ -193,7 +193,7 @@ bool PenguinSkater::trySwitchRail() {
         MR::calcRailEndPointPos(&pos, rail);
         MR::calcRailEndPointDirection(&dir, rail);
 
-        if ((crossPos - pos).length() < sSamePosition && railDir.dot(dir) < -sSameDirection) {
+        if ((crossPos - pos).length() < ::sSamePosition && railDir.dot(dir) < -::sSameDirection) {
             MR::setRailDirectionToStart(rail);
             MR::setRailCoord(rail, MR::getRailTotalLength(rail));
             MR::setRailCoordSpeed(rail, speed);
@@ -280,13 +280,13 @@ void PenguinSkater::exeDemo() {
     if (MR::isBckOneTimeAndStopped(this)) {
         MR::tryStartAction(this, "IceSwim");
     }
-    if (MR::isStep(this, sDemoSkateSeStartTiming)) {
+    if (MR::isStep(this, ::sDemoSkateSeStartTiming)) {
         MR::startSound(this, "SE_SM_PENGUIN_SKATE_START");
     }
-    if (MR::isGreaterEqualStep(this, sDemoSkateSeStartTiming)) {
+    if (MR::isGreaterEqualStep(this, ::sDemoSkateSeStartTiming)) {
         MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SKATE");
     }
-    moveRail(sDemoSpeed, sBlendRatio);
+    moveRail(::sDemoSpeed, ::sBlendRatio);
     if (inProvokeRangeIn(calcLead())) {
         MR::endMultiActorCamera(this, mCameraInfo, "開始", false, -1);
         MR::endDemo(this, "ペンギンスケート開始");
@@ -299,7 +299,7 @@ void PenguinSkater::exeAway() {
         MR::tryStartAction(this, "IceSwim");
     }
     MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SKATE");
-    moveRail(sAwaySpeed, sBlendRatio);
+    moveRail(::sAwaySpeed, ::sBlendRatio);
     f32 lead = calcLead();
     if (lead < 0.0f) {
         setNerve(&NrvPenguinSkater::PenguinSkaterNrvTurn::sInstance);
@@ -327,7 +327,7 @@ void PenguinSkater::exeTurn() {
 
 void PenguinSkater::exeSwitch() {
     MR::startLevelSound(this, "SE_SM_LV_PENGUIN_SKATE");
-    moveRail(sSwitchSpeed, sBlendRatio);
+    moveRail(::sSwitchSpeed, ::sBlendRatio);
     if (MR::isRailReachedGoal(mRail)) {
         endSwitchRail();
         setNerve(&NrvPenguinSkater::PenguinSkaterNrvAway::sInstance);
@@ -369,7 +369,7 @@ void PenguinSkater::exeCaught() {
         MR::startSound(this, "SE_SV_PENGUIN_S_CAUGHT");
         MR::startSystemSE("SE_SY_TOTAL_COMPLETE");
     }
-    blendBaseMatrixToMario(MR::calcNerveRate(this, sMarioPoseBlendTime));
+    blendBaseMatrixToMario(MR::calcNerveRate(this, ::sMarioPoseBlendTime));
     if (MR::isActionEnd(this)) {
         setNerve(&NrvPenguinSkater::PenguinSkaterNrvFadeOut::sInstance);
         MR::startBckPlayer("TossWait", static_cast< const char* >(nullptr));

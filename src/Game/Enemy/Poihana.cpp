@@ -69,7 +69,7 @@ Poihana::~Poihana() {
 
     // Initialize sensors
     initHitSensor(2);
-    MR::addHitSensorPriorBinder(this, "binder", 8, 125.0f, sNormalBinderPos);
+    MR::addHitSensorPriorBinder(this, "binder", 8, 125.0f, ::sNormalBinderPos);
     MR::addHitSensorAtJoint(this, "body", "Body", ATYPE_KILLER_TARGET_ENEMY, 8, 70.0f, TVec3f(0.0f, 0.0f, 0.0f));
 
     // Initialize binder
@@ -263,7 +263,7 @@ bool Poihana::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRe
             return true;
         }
 
-        MR::setSensorOffset(this, "binder", sTrampleBinderPos);
+        MR::setSensorOffset(this, "binder", ::sTrampleBinderPos);
         MR::setSensorRadius(this, "binder", 125.0f);
         MR::validateHitSensor(this, "binder");
     }
@@ -347,7 +347,7 @@ void Poihana::endNonActive() {
 
     mIsActive = true;
 
-    MR::setSensorOffset(this, "binder", sNormalBinderPos);
+    MR::setSensorOffset(this, "binder", ::sNormalBinderPos);
     MR::setSensorRadius(this, "binder", 125.0f);
     MR::validateHitSensor(this, "binder");
     MR::validateHitSensors(this);
@@ -356,7 +356,7 @@ void Poihana::endNonActive() {
 void Poihana::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBckNoInterpole(this, "Wait");
-        MR::setSensorOffset(this, "binder", sNormalBinderPos);
+        MR::setSensorOffset(this, "binder", ::sNormalBinderPos);
         MR::setSensorRadius(this, "binder", 125.0f);
         MR::validateHitSensor(this, "binder");
     }
@@ -428,7 +428,7 @@ void Poihana::exeGetUp() {
     }
 
     if (MR::isBckStopped(this)) {
-        MR::setSensorOffset(this, "binder", sNormalBinderPos);
+        MR::setSensorOffset(this, "binder", ::sNormalBinderPos);
         MR::setSensorRadius(this, "binder", 125.0f);
         MR::validateHitSensor(this, "binder");
         setNerve(&NrvPoihana::PoihanaNrvWait::sInstance);
@@ -451,7 +451,7 @@ void Poihana::exeSearch() {
 void Poihana::exeChasePlayer() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Run", nullptr);
-        MR::setSensorOffset(this, "binder", sNormalBinderPos);
+        MR::setSensorOffset(this, "binder", ::sNormalBinderPos);
         MR::setSensorRadius(this, "binder", 125.0f);
         MR::validateHitSensor(this, "binder");
     }
@@ -494,7 +494,7 @@ void Poihana::exeShootUpCharge() {
     }
 
     if (MR::isStep(this, 30)) {
-        MR::setSensorOffset(this, "binder", sNormalBinderPos);
+        MR::setSensorOffset(this, "binder", ::sNormalBinderPos);
         MR::setSensorRadius(this, "binder", 125.0f);
         MR::validateHitSensor(this, "binder");
     }
@@ -513,7 +513,7 @@ void Poihana::exeShootUpCharge() {
 void Poihana::endShootUp() {
     endBind();
 
-    MR::setSensorOffset(this, "binder", sNormalBinderPos);
+    MR::setSensorOffset(this, "binder", ::sNormalBinderPos);
     MR::setSensorRadius(this, "binder", 125.0f);
     MR::validateHitSensor(this, "binder");
 
@@ -579,7 +579,7 @@ void Poihana::exeRecover() {
     }
 
     if (MR::isBckStopped(this)) {
-        MR::setSensorOffset(this, "binder", sNormalBinderPos);
+        MR::setSensorOffset(this, "binder", ::sNormalBinderPos);
         MR::setSensorRadius(this, "binder", 125.0f);
         MR::validateHitSensor(this, "binder");
         setNerve(&NrvPoihana::PoihanaNrvWait::sInstance);
@@ -643,7 +643,7 @@ void Poihana::exeAppear() {
     } else if (MR::isBckStopped(this) && MR::isGreaterStep(this, 60)) {
         MR::validateClipping(this);
         MR::validateHitSensors(this);
-        MR::setSensorOffset(this, "binder", sNormalBinderPos);
+        MR::setSensorOffset(this, "binder", ::sNormalBinderPos);
         MR::setSensorRadius(this, "binder", 125.0f);
         MR::validateHitSensor(this, "binder");
         setNerve(&NrvPoihana::PoihanaNrvWait::sInstance);
@@ -661,7 +661,7 @@ void Poihana::exeDPDSwoon() {
 void Poihana::endDPDSwoon() {
     mBindStarPointer->kill();
 
-    MR::setSensorOffset(this, "binder", sNormalBinderPos);
+    MR::setSensorOffset(this, "binder", ::sNormalBinderPos);
     MR::setSensorRadius(this, "binder", 125.0f);
     MR::validateHitSensor(this, "binder");
 }

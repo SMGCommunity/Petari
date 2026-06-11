@@ -700,43 +700,43 @@ void SwingRope::drawStop() const {
     f32 texY = (mRopeLength / 50.0f) * 0.13f;
     u32 color1, color2;
 
-    color1 = sColorPlusX;
-    color2 = sColorPlusZ;
+    color1 = ::sColorPlusX;
+    color2 = ::sColorPlusZ;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    sendPoint(mBasePos, side, front, -30.0f, 43.0f, color1, 0.0f, 0.0f);
-    sendPoint(mBasePos, side, front, 33.0f, -43.0f, color2, 1.0f, 0.0f);
-    sendPoint(bottom, side, front, -30.0f, 43.0f, color1, 0.0f, texY);
-    sendPoint(bottom, side, front, 33.0f, -43.0f, color2, 1.0f, texY);
+    ::sendPoint(mBasePos, side, front, -30.0f, 43.0f, color1, 0.0f, 0.0f);
+    ::sendPoint(mBasePos, side, front, 33.0f, -43.0f, color2, 1.0f, 0.0f);
+    ::sendPoint(bottom, side, front, -30.0f, 43.0f, color1, 0.0f, texY);
+    ::sendPoint(bottom, side, front, 33.0f, -43.0f, color2, 1.0f, texY);
 
-    color1 = sColorPlusZ;
-    color2 = sColorMinusX;
+    color1 = ::sColorPlusZ;
+    color2 = ::sColorMinusX;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    sendPoint(mBasePos, side, front, -33.0f, -43.0f, color1, 0.0f, 0.0f);
-    sendPoint(mBasePos, side, front, 30.0f, 43.0f, color2, 1.0f, 0.0f);
-    sendPoint(bottom, side, front, -33.0f, -43.0f, color1, 0.0f, texY);
-    sendPoint(bottom, side, front, 30.0f, 43.0f, color2, 1.0f, texY);
+    ::sendPoint(mBasePos, side, front, -33.0f, -43.0f, color1, 0.0f, 0.0f);
+    ::sendPoint(mBasePos, side, front, 30.0f, 43.0f, color2, 1.0f, 0.0f);
+    ::sendPoint(bottom, side, front, -33.0f, -43.0f, color1, 0.0f, texY);
+    ::sendPoint(bottom, side, front, 30.0f, 43.0f, color2, 1.0f, texY);
 
-    color1 = sColorMinusX;
-    color2 = sColorPlusX;
+    color1 = ::sColorMinusX;
+    color2 = ::sColorPlusX;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    sendPoint(mBasePos, side, front, 43.0f, -3.0f, color1, 0.0f, 0.0f);
-    sendPoint(mBasePos, side, front, -43.0f, -3.0f, color2, 1.0f, 0.0f);
-    sendPoint(bottom, side, front, 43.0f, -3.0f, color1, 0.0f, texY);
-    sendPoint(bottom, side, front, -43.0f, -3.0f, color2, 1.0f, texY);
+    ::sendPoint(mBasePos, side, front, 43.0f, -3.0f, color1, 0.0f, 0.0f);
+    ::sendPoint(mBasePos, side, front, -43.0f, -3.0f, color2, 1.0f, 0.0f);
+    ::sendPoint(bottom, side, front, 43.0f, -3.0f, color1, 0.0f, texY);
+    ::sendPoint(bottom, side, front, -43.0f, -3.0f, color2, 1.0f, texY);
 }
 
 void SwingRope::drawFree() const {
-    drawLine(this, sColorPlusZ, sColorPlusX, -30.0f, 43.0f, 33.0f, -43.0f);
-    drawLine(this, sColorMinusX, sColorPlusZ, -33.0f, -43.0f, 30.0f, 43.0f);
-    drawLine(this, sColorMinusX, sColorPlusZ, 43.0f, -3.0f, -43.0f, -3.0f);
+    ::drawLine(this, ::sColorPlusZ, ::sColorPlusX, -30.0f, 43.0f, 33.0f, -43.0f);
+    ::drawLine(this, ::sColorMinusX, ::sColorPlusZ, -33.0f, -43.0f, 30.0f, 43.0f);
+    ::drawLine(this, ::sColorMinusX, ::sColorPlusZ, 43.0f, -3.0f, -43.0f, -3.0f);
 }
 
 void SwingRope::drawBind() const {
     f32 texYGrab = (mGrabPointNum + 1.0f) * 0.13f;
     f32 texYFoot = (calcPointNo(mFootCoord) + 1.0f) * 0.13f;
-    drawLineAtHanging(this, sColorPlusZ, sColorPlusX, texYGrab, texYFoot, -30.0f, 43.0f, 33.0f, -43.0f);
-    drawLineAtHanging(this, sColorMinusX, sColorPlusZ, texYGrab, texYFoot, -33.0f, -43.0f, 30.0f, 43.0f);
-    drawLineAtHanging(this, sColorMinusX, sColorPlusZ, texYGrab, texYFoot, 43.0f, -3.0f, -43.0f, -3.0f);
+    ::drawLineAtHanging(this, ::sColorPlusZ, ::sColorPlusX, texYGrab, texYFoot, -30.0f, 43.0f, 33.0f, -43.0f);
+    ::drawLineAtHanging(this, ::sColorMinusX, ::sColorPlusZ, texYGrab, texYFoot, -33.0f, -43.0f, 30.0f, 43.0f);
+    ::drawLineAtHanging(this, ::sColorMinusX, ::sColorPlusZ, texYGrab, texYFoot, 43.0f, -3.0f, -43.0f, -3.0f);
 }
 
 SwingRopeGroup::SwingRopeGroup(const char* pName) : NameObj(pName) {

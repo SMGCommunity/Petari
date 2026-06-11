@@ -596,7 +596,7 @@ namespace {
 
 BezierSurface::BezierSurface(s32 divideLevel, u32 a1)
     : mTrianglePatchVertices(nullptr), mTrianglePatchNormals(nullptr), mDivideLevel(divideLevel), _C0(divideLevel), _C4(a1) {
-    s32 numPoints = sTrianglePatchTableGroup[mDivideLevel].mNumPoints;
+    s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumPoints;
     if ((a1 & 4) != 0) {
         mTrianglePatchVertices = new TVec3f[numPoints];
         if ((a1 & 1) != 0) {
@@ -669,8 +669,8 @@ void BezierSurface::calcTrianglePatchVertix(TVec3f* pVertexPatch) const {
 
     s32 i;
     s32 idx;
-    s32 numPoints = sTrianglePatchTableGroup[mDivideLevel].mNumPoints;
-    TrianglePatchCoefs* coefTable = sTrianglePatchTableGroup[mDivideLevel].mCoefTable;
+    s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumPoints;
+    TrianglePatchCoefs* coefTable = ::sTrianglePatchTableGroup[mDivideLevel].mCoefTable;
     for (idx = 0; idx < numPoints; idx++) {
         pVertexPatch[idx].zero();
         for (i = 0; i < 13; i++) {
@@ -688,9 +688,9 @@ void BezierSurface::calcTrianglePatchNormal(TVec3f* pNormalPatch) const {
 
     s32 i;
     s32 idx;
-    s32 numPoints = sTrianglePatchTableGroup[mDivideLevel].mNumPoints;
-    TrianglePatchCoefs* tangentSTable = sTrianglePatchTableGroup[mDivideLevel].mCoefTangentSTable;
-    TrianglePatchCoefs* tangentTTable = sTrianglePatchTableGroup[mDivideLevel].mCoefTangentTTable;
+    s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumPoints;
+    TrianglePatchCoefs* tangentSTable = ::sTrianglePatchTableGroup[mDivideLevel].mCoefTangentSTable;
+    TrianglePatchCoefs* tangentTTable = ::sTrianglePatchTableGroup[mDivideLevel].mCoefTangentTTable;
     for (idx = 0; idx < numPoints; idx++) {
         TVec3f tangentT(0.0f, 0.0f, 0.0f);
         TVec3f tangentS(0.0f, 0.0f, 0.0f);
@@ -712,8 +712,8 @@ void BezierSurface::calcTrianglePatchNormal(TVec3f* pNormalPatch) const {
 void BezierSurface::drawTrianglePatchPos() const {
     TVec3f vertexBuffer[36];
 
-    const u16* vertexOrder = sTrianglePatchTableGroup[mDivideLevel].mTriangleStripOrder;
-    s32 numPoints = sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
+    const u16* vertexOrder = ::sTrianglePatchTableGroup[mDivideLevel].mTriangleStripOrder;
+    s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
 
     TVec3f* vertices = mTrianglePatchVertices;
     if (vertices == nullptr) {
@@ -732,8 +732,8 @@ void BezierSurface::drawTrianglePatchPosNorm() const {
     TVec3f vertexBuffer[36];
     TVec3f normalBuffer[36];
 
-    const u16* vertexOrder = sTrianglePatchTableGroup[mDivideLevel].mTriangleStripOrder;
-    s32 numPoints = sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
+    const u16* vertexOrder = ::sTrianglePatchTableGroup[mDivideLevel].mTriangleStripOrder;
+    s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
 
     TVec3f* vertices = mTrianglePatchVertices;
     if (vertices == nullptr) {
@@ -761,9 +761,9 @@ void BezierSurface::drawTrianglePatchPosST() const {
 
     TVec3f vertexBuffer[36];
 
-    const u16* vertexOrder = sTrianglePatchTableGroup[mDivideLevel].mTriangleStripOrder;
-    s32 numPoints = sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
-    const Vec* triangleST = sTrianglePatchTableGroup[mDivideLevel].mTriangleST;
+    const u16* vertexOrder = ::sTrianglePatchTableGroup[mDivideLevel].mTriangleStripOrder;
+    s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
+    const Vec* triangleST = ::sTrianglePatchTableGroup[mDivideLevel].mTriangleST;
 
     TVec3f* vertices = mTrianglePatchVertices;
     if (vertices == nullptr) {
@@ -789,9 +789,9 @@ void BezierSurface::drawTrianglePatchPosNormST() const {
     TVec3f vertexBuffer[36];
     TVec3f normalBuffer[36];
 
-    const u16* vertexOrder = sTrianglePatchTableGroup[mDivideLevel].mTriangleStripOrder;
-    s32 numPoints = sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
-    const Vec* triangleST = sTrianglePatchTableGroup[mDivideLevel].mTriangleST;
+    const u16* vertexOrder = ::sTrianglePatchTableGroup[mDivideLevel].mTriangleStripOrder;
+    s32 numPoints = ::sTrianglePatchTableGroup[mDivideLevel].mNumTriangleStripPoints;
+    const Vec* triangleST = ::sTrianglePatchTableGroup[mDivideLevel].mTriangleST;
 
     TVec3f* vertices = mTrianglePatchVertices;
     if (vertices == nullptr) {

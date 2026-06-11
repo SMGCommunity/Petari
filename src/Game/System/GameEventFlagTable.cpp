@@ -286,14 +286,14 @@ namespace GameEventFlagTable {
     }
 
     s32 getTableSize() {
-        return ARRAY_SIZE(sGameEventFlagStatic);
+        return ARRAY_SIZE(::sGameEventFlagStatic);
     }
 
     const GameEventFlag* getFlag(int index) {
         if (index < 0 || index >= getTableSize()) {
             return nullptr;
         } else {
-            return &sGameEventFlagStatic[index];
+            return &::sGameEventFlagStatic[index];
         }
     }
 
@@ -376,7 +376,7 @@ namespace GameEventFlagTable {
     }
 
     int getIndex(const GameEventFlag* pFlag) {
-        return pFlag - &sGameEventFlagStatic[0];
+        return pFlag - &::sGameEventFlagStatic[0];
     }
 
     bool isDependedAnother(const char* pFlagName1, const char* pFlagName2) {

@@ -571,8 +571,8 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
     rotation.setInline(mtx);
     rotation.getQuat(_98);
     _A8 = _98;
-    cSpaceFlyStartFrame = MR::getBckFrameMax(_8C, "SpaceFlyStart");
-    cSpaceFlyEndFrame = MR::getBckFrameMax(_8C, "SpaceFlyEnd");
+    ::cSpaceFlyStartFrame = MR::getBckFrameMax(_8C, "SpaceFlyStart");
+    ::cSpaceFlyEndFrame = MR::getBckFrameMax(_8C, "SpaceFlyEnd");
     MR::validateClipping(this);
     return true;
 }
@@ -657,7 +657,7 @@ void SpinDriver::calcBindActorMatrix() {
 /*
 void SpinDriver::calcShootMotionTime() {
     s32 v1 = _124;
-    if (v1 < cSpaceFlyEndFrame) {
+    if (v1 < ::cSpaceFlyEndFrame) {
         _128 = -1;
         _12C = 0;
         _130 = v1;

@@ -57,7 +57,7 @@ TripodBossKillerGeneraterCircle::TripodBossKillerGeneraterCircle(const char* pNa
 void TripodBossKillerGeneraterCircle::init(const JMapInfoIter& rIter) {
     const char* objName;
     MR::getObjectName(&objName, rIter);
-    const GeneratorCircleData* dataPtr = getCirlceData(objName);
+    const GeneratorCircleData* dataPtr = ::getCirlceData(objName);
 
     MR::getJMapInfoTrans(rIter, &mPosition);
     MR::getJMapInfoRotate(rIter, &mRotation);

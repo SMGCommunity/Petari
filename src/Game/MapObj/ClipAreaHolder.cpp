@@ -61,23 +61,23 @@ namespace MR {
     }
 
     void addClipArea(ClipArea* pClipArea) {
-        getClipAreaHolder()->registerActor(pClipArea);
+        ::getClipAreaHolder()->registerActor(pClipArea);
     }
 
     bool isInClipArea(const TVec3f& rParam1, f32 param2) {
-        return getClipAreaHolder()->isInArea(rParam1, param2);
+        return ::getClipAreaHolder()->isInArea(rParam1, param2);
     }
 
     bool isActiveClipArea() {
-        return getClipAreaHolder()->mIsActive != false;
+        return ::getClipAreaHolder()->mIsActive != false;
     }
 
     void activateClipArea() {
-        getClipAreaHolder()->mIsActive = true;
+        ::getClipAreaHolder()->mIsActive = true;
     }
 
     void deactivateClipArea() {
-        getClipAreaHolder()->mIsActive = false;
+        ::getClipAreaHolder()->mIsActive = false;
     }
 
     void setBinderExceptSensorType(LiveActor* actor, const TVec3f* pParam1, f32 param2) {

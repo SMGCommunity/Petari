@@ -109,7 +109,7 @@ void SpinningBox::init(const JMapInfoIter& rIter) {
     initSound(6, false);
 
     MR::onCalcGravity(this);
-    MR::initShadowVolumeBox(this, TVec3f(sShadowSize, -70.0f, sShadowSize).scaleInline(scale), getBaseMtx());
+    MR::initShadowVolumeBox(this, TVec3f(::sShadowSize, -70.0f, ::sShadowSize).scaleInline(scale), getBaseMtx());
     MR::excludeCalcShadowToMyCollision(this, nullptr);
 
     if (MR::isValidInfo(rIter)) {
@@ -165,7 +165,7 @@ void SpinningBox::control() {
     TVec3f up;
     mRotate.getYDir(up);
     TQuat4f rotY;
-    rotY.setRotate(up, norm, hTurnYDirRatio);
+    rotY.setRotate(up, norm, ::hTurnYDirRatio);
     mRotate.mult(rotY);
     mRotate.getYDir(up);
     rotY.setRotate(up, -mRotateSpeed);
@@ -183,9 +183,9 @@ void SpinningBox::exeFall() {
     }
 
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
-    MR::applyVelocityDampAndGravity(this, hGravityVel, hDampVelHWait, hDampVelHWait, hDampVelVWait, hVelHMin);
+    MR::applyVelocityDampAndGravity(this, ::hGravityVel, ::hDampVelHWait, ::hDampVelHWait, ::hDampVelVWait, ::hVelHMin);
 
-    if (MR::isOnGround(this) && MR::isGreaterStep(this, hWaitTime)) {
+    if (MR::isOnGround(this) && MR::isGreaterStep(this, ::hWaitTime)) {
         setNerve(&NrvSpinningBox::HostTypeNrvWait::sInstance);
     }
 }
@@ -211,9 +211,9 @@ void SpinningBox::exeWait() {
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
 
     if (mIsOnGround) {
-        MR::applyVelocityDampAndGravity(this, hGravityVel, 0.0f, 0.0f, hDampVelVWait, hVelHMin);
+        MR::applyVelocityDampAndGravity(this, ::hGravityVel, 0.0f, 0.0f, ::hDampVelVWait, ::hVelHMin);
     } else {
-        MR::applyVelocityDampAndGravity(this, hGravityVel, hDampVelHWait, hDampVelHWait, hDampVelVWait, hVelHMin);
+        MR::applyVelocityDampAndGravity(this, ::hGravityVel, ::hDampVelHWait, ::hDampVelHWait, ::hDampVelVWait, ::hVelHMin);
     }
 
     mGravity.set(originalGravity);  // "gravity" was only used to update velocity, revert to initial
@@ -224,7 +224,7 @@ void SpinningBox::endWait() {
 
 void SpinningBox::exeSliding() {
     if (MR::isFirstStep(this)) {
-        mRotateSpeed = hSlidingRotVelMax;
+        mRotateSpeed = ::hSlidingRotVelMax;
         MR::invalidateClipping(this);
     }
 
@@ -233,15 +233,15 @@ void SpinningBox::exeSliding() {
         return;
     }
 
-    mRotateSpeed = MR::clamp(mRotateSpeed - hSlidingRotateSub, hSlidingRotVelMin, hSlidingRotVelMax);
-    mSlideSpeed = MR::clamp(mSlideSpeed - hSlidingVelocitySub, 0.0f, hSlidingVelMax);
-    f32 slideSoundLvl = (mSlideSpeed / hSlidingVelMax) * 100.0f;
+    mRotateSpeed = MR::clamp(mRotateSpeed - ::hSlidingRotateSub, ::hSlidingRotVelMin, ::hSlidingRotVelMax);
+    mSlideSpeed = MR::clamp(mSlideSpeed - ::hSlidingVelocitySub, 0.0f, ::hSlidingVelMax);
+    f32 slideSoundLvl = (mSlideSpeed / ::hSlidingVelMax) * 100.0f;
     if (slideSoundLvl > 100.0f) {
         slideSoundLvl = 100.0f;
     }
     MR::startLevelSound(this, "SE_OJ_LV_SPIN_BOX_SLIDE", slideSoundLvl);
 
-    if (mSlideSpeed <= hStopCheckVel) {
+    if (mSlideSpeed <= ::hStopCheckVel) {
         setNerve(&NrvSpinningBox::HostTypeNrvWait::sInstance);
         return;
     }
@@ -252,14 +252,14 @@ void SpinningBox::exeSliding() {
     mVelocity = mSlideDir.scaleInline(mSlideSpeed);
 
     if (!MR::isOnGround(this)) {
-        MR::forceBindOnGround(this, hForceBindOffset, hForceBindMul);
+        MR::forceBindOnGround(this, ::hForceBindOffset, ::hForceBindMul);
     }
 
     TVec3f norm;
-    if (MR::isBindedWallOrSlopeGround(this, hGroundCosine, &norm)) {
+    if (MR::isBindedWallOrSlopeGround(this, ::hGroundCosine, &norm)) {
         MR::startSound(this, "SE_OJ_SPIN_BOX_BOUND");
         MR::calcReflectionVector(&mSlideDir, norm, 1.0f, 0.0f);
-        mSlideSpeed *= hReflectRate;
+        mSlideSpeed *= ::hReflectRate;
         MR::normalizeOrZero(&mSlideDir);
     }
 }
@@ -280,29 +280,29 @@ void SpinningBox::exeSpinning() {
         return;
     }
 
-    mRotateSpeed = MR::clamp(mRotateSpeed - hSpinningRotateSub, hSpinningRotVelMin, hSpinningRotVelMax);
-    mSlideSpeed = MR::clamp(mSlideSpeed - hSpinningVelocitySub, hSpinningVelMin, hSpinningVelMax);
+    mRotateSpeed = MR::clamp(mRotateSpeed - ::hSpinningRotateSub, ::hSpinningRotVelMin, ::hSpinningRotVelMax);
+    mSlideSpeed = MR::clamp(mSlideSpeed - ::hSpinningVelocitySub, ::hSpinningVelMin, ::hSpinningVelMax);
     mSpinAngle += mRotateSpeed;
 
-    if (mSpinAngle > hSpinningAngle) {
-        while (mSpinAngle > hSpinningAngle) {
-            mSpinAngle -= hSpinningAngle;
+    if (mSpinAngle > ::hSpinningAngle) {
+        while (mSpinAngle > ::hSpinningAngle) {
+            mSpinAngle -= ::hSpinningAngle;
         }
 
-        f32 spinSoundLvl = (mRotateSpeed / hSpinningRotVelMax) * 100.0f;
+        f32 spinSoundLvl = (mRotateSpeed / ::hSpinningRotVelMax) * 100.0f;
         if (spinSoundLvl > 100.0f) {
             spinSoundLvl = 100.0f;
         }
         MR::startSound(this, "SE_OJ_SPIN_BOX_SPIN", spinSoundLvl);
     }
 
-    f32 slideSoundLvl = (mSlideSpeed / hSlidingVelMax) * 100.0f;
+    f32 slideSoundLvl = (mSlideSpeed / ::hSlidingVelMax) * 100.0f;
     if (slideSoundLvl > 100.0f) {
         slideSoundLvl = 100.0f;
     }
     MR::startLevelSound(this, "SE_OJ_LV_SPIN_BOX_SLIDE", slideSoundLvl);
 
-    if (mSlideSpeed <= hStopCheckVel) {
+    if (mSlideSpeed <= ::hStopCheckVel) {
         setNerve(&NrvSpinningBox::HostTypeNrvWait::sInstance);
         return;
     }
@@ -313,10 +313,10 @@ void SpinningBox::exeSpinning() {
     mVelocity = mSlideDir.scaleInline(mSlideSpeed);
 
     if (!MR::isOnGround(this)) {
-        MR::forceBindOnGround(this, hForceBindOffset, hForceBindMul);
+        MR::forceBindOnGround(this, ::hForceBindOffset, ::hForceBindMul);
     }
 
-    if (MR::isBindedWallOrSlopeGround(this, hGroundCosine, nullptr)) {
+    if (MR::isBindedWallOrSlopeGround(this, ::hGroundCosine, nullptr)) {
         kill();
     }
 }
@@ -336,7 +336,7 @@ void SpinningBox::exePointed() {
         MR::invalidateClipping(this);
     }
 
-    mRotateSpeed *= hPointedRotDamp;
+    mRotateSpeed *= ::hPointedRotDamp;
     MR::startDPDFreezeLevelSound(this);
 
     if (!MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
@@ -385,11 +385,11 @@ void SpinningBox::generateIceBox(HitSensor* pSender, HitSensor* pReceiver) {
     TVec3f grav = pReceiver->mHost->mGravity;
     TVec3f dir = pReceiver->mPosition.subOperatorInLine(pSender->mPosition);
     MR::vecKillElement(dir, grav, &dir);
-    dir.setLength(hIceInitBlowVelH);
-    dir.add((-grav).scaleInline(hIceInitBlowVelV));
+    dir.setLength(::hIceInitBlowVelH);
+    dir.add((-grav).scaleInline(::hIceInitBlowVelV));
     mVelocity.set(dir);
 
-    if (hPlayerVelocityCheck < MR::getPlayerVelocity()->length()) {
+    if (::hPlayerVelocityCheck < MR::getPlayerVelocity()->length()) {
         calcHitDirection(pSender->mPosition);
         setNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance);
     } else {
@@ -404,14 +404,14 @@ void SpinningBox::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isSensorPlayer(pReceiver)) {
-        if (MR::isPlayerExistSide(this, hKickCheckOffsetUp, hPlayerIsSideDotCheck) && !MR::isOnPlayer(pSender)) {
+        if (MR::isPlayerExistSide(this, ::hKickCheckOffsetUp, ::hPlayerIsSideDotCheck) && !MR::isOnPlayer(pSender)) {
             if (isNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance)) {
                 if (MR::isPlayerSwingAction() || !MR::isOnGroundPlayer()) {
                     return;
                 }
 
                 bool hit;
-                if (hSpinningAttackStrongVel < mSlideSpeed) {
+                if (::hSpinningAttackStrongVel < mSlideSpeed) {
                     hit = MR::sendMsgEnemyAttackStrong(pReceiver, pSender);
                 } else {
                     hit = MR::sendMsgEnemyAttackFlipWeak(pReceiver, pSender);
@@ -452,7 +452,7 @@ bool SpinningBox::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
             return false;
         }
 
-        if (isNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance) && MR::isLessStep(this, hKickableTime)) {
+        if (isNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance) && MR::isLessStep(this, ::hKickableTime)) {
             return false;
         }
 
@@ -460,13 +460,13 @@ bool SpinningBox::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
             return false;
         }
 
-        if (MR::isPlayerExistSide(this, hKickCheckOffsetUp, hPlayerIsSideDotCheck)) {
+        if (MR::isPlayerExistSide(this, ::hKickCheckOffsetUp, ::hPlayerIsSideDotCheck)) {
             if (isNerve(&NrvSpinningBox::HostTypeNrvPointed::sInstance)) {
                 return false;
             }
 
             MR::getPlayerFrontVec(&mSlideDir);
-            mSlideSpeed = hSlidingVelMax;
+            mSlideSpeed = ::hSlidingVelMax;
             setNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance);
             return true;
         }
@@ -493,8 +493,8 @@ bool SpinningBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
         MR::getPlayerFrontVec(&mSlideDir);
         MR::vecKillElement(mSlideDir, mGravity, &mSlideDir);
         MR::normalizeOrZero(&mSlideDir);
-        mRotateSpeed = hSpinningRotVelMax;
-        mSlideSpeed = hSpinningVelMax;
+        mRotateSpeed = ::hSpinningRotVelMax;
+        mSlideSpeed = ::hSpinningVelMax;
         MR::startSpinHitSound(this);
         MR::startBlowHitSound(this);
         setNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance);
@@ -511,7 +511,7 @@ bool SpinningBox::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
             MR::normalizeOrZero(&dir);
             MR::vecKillElement(pSender->mHost->mVelocity, dir, &dir);
             MR::separateScalarAndDirection(&mSlideSpeed, &mSlideDir, dir);
-            mSlideSpeed *= hReflectRate;
+            mSlideSpeed *= ::hReflectRate;
             setNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance);
         } else {
             hitReflection(pSender, pReceiver);
@@ -530,7 +530,7 @@ void SpinningBox::hitReflection(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     MR::calcReflectionVector(&mSlideDir, dir, 1.0f, 0.0f);
-    mSlideSpeed = hReflectRate;  // BUG, this should be *=, not =
+    mSlideSpeed = ::hReflectRate;  // BUG, this should be *=, not =
     MR::normalizeOrZero(&mSlideDir);
 }
 

@@ -36,67 +36,67 @@ namespace {
 
 namespace GameSequenceFunction {
     void activateGalaxyCometScheduler() {
-        getGameSequenceProgress()->getGalaxyCometScheduler()->activate();
+        ::getGameSequenceProgress()->getGalaxyCometScheduler()->activate();
     }
 
     void deactivateGalaxyCometScheduler() {
-        getGameSequenceProgress()->getGalaxyCometScheduler()->deactivate();
+        ::getGameSequenceProgress()->getGalaxyCometScheduler()->deactivate();
     }
 
     void forceToNextStateGalaxyCometScheduler() {
-        getGameSequenceProgress()->getGalaxyCometScheduler()->forceToNextState();
+        ::getGameSequenceProgress()->getGalaxyCometScheduler()->forceToNextState();
     }
 
     bool isGalaxyCometLand(const char* pGalaxyName) {
-        return getGameSequenceProgress()->getGalaxyCometScheduler()->isCometLand(pGalaxyName);
+        return ::getGameSequenceProgress()->getGalaxyCometScheduler()->isCometLand(pGalaxyName);
     }
 
     s32 getEncounterGalaxyCometPowerStarId(const char* pGalaxyName) {
-        return getGameSequenceProgress()->getGalaxyCometScheduler()->getEncounterCometPowerStarId(pGalaxyName);
+        return ::getGameSequenceProgress()->getGalaxyCometScheduler()->getEncounterCometPowerStarId(pGalaxyName);
     }
 
     const char* getEncounterGalaxyCometName(const char* pGalaxyName) {
-        return getGameSequenceProgress()->getGalaxyCometScheduler()->getEncounterCometName(pGalaxyName);
+        return ::getGameSequenceProgress()->getGalaxyCometScheduler()->getEncounterCometName(pGalaxyName);
     }
 
     s32 getGalaxyCometState(const char* pGalaxyName) {
-        return getGameSequenceProgress()->getGalaxyCometScheduler()->getStateValueIncluded(pGalaxyName);
+        return ::getGameSequenceProgress()->getGalaxyCometScheduler()->getStateValueIncluded(pGalaxyName);
     }
 
     bool isNeedMoviePlayerForStorySequenceEvent() {
-        return getGameSequenceProgress()->mStorySequenceExecutor->isNeedMoviePlayerExecutingEventEnum();
+        return ::getGameSequenceProgress()->mStorySequenceExecutor->isNeedMoviePlayerExecutingEventEnum();
     }
 
     bool hasNextDemoForStorySequenceEvent() {
-        return getGameSequenceProgress()->mStorySequenceExecutor->hasNextDemo();
+        return ::getGameSequenceProgress()->mStorySequenceExecutor->hasNextDemo();
     }
 
     s32 getExecutingStorySequenceEventNum() {
-        return getGameSequenceProgress()->mStorySequenceExecutor->getExecutingEventEnum();
+        return ::getGameSequenceProgress()->mStorySequenceExecutor->getExecutingEventEnum();
     }
 
     bool isLuigiDisappearFromAstroGalaxy() {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->isDisappear();
+        return ::getGameSequenceProgress()->mFindingLuigiEventScheduler->isDisappear();
     }
 
     bool isLuigiHidingAnyGalaxy() {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->isHiding();
+        return ::getGameSequenceProgress()->mFindingLuigiEventScheduler->isHiding();
     }
 
     bool isActiveLuigiHideAndSeekEvent() {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->isActive();
+        return ::getGameSequenceProgress()->mFindingLuigiEventScheduler->isActive();
     }
 
     bool isEndLuigiHideAndSeekEvent() {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->isEnd();
+        return ::getGameSequenceProgress()->mFindingLuigiEventScheduler->isEnd();
     }
 
     void getLuigiHidingGalaxyNameAndStarId(const char** ppGalaxyName, s32* pStarId) {
-        return getGameSequenceProgress()->mFindingLuigiEventScheduler->getHidingGalaxyNameAndStarId(ppGalaxyName, pStarId);
+        return ::getGameSequenceProgress()->mFindingLuigiEventScheduler->getHidingGalaxyNameAndStarId(ppGalaxyName, pStarId);
     }
 
     void onGameEventFlagGetLuigiLetter() {
-        getGameSequenceProgress()->mFindingLuigiEventScheduler->setStateHiding();
+        ::getGameSequenceProgress()->mFindingLuigiEventScheduler->setStateHiding();
     }
 
     bool isReadyToStartScene() {
@@ -108,43 +108,43 @@ namespace GameSequenceFunction {
     }
 
     void notifyToGameSequenceProgressToEndScene() {
-        getGameSequenceProgress()->endScene();
+        ::getGameSequenceProgress()->endScene();
     }
 
     void requestChangeScene(const char* pSceneName) {
-        getGameSequenceProgress()->requestChangeScene(pSceneName);
+        ::getGameSequenceProgress()->requestChangeScene(pSceneName);
     }
 
     void requestGalaxyMove(const GalaxyMoveArgument& rArgument) {
-        getGameSequenceProgress()->requestGalaxyMove(rArgument);
+        ::getGameSequenceProgress()->requestGalaxyMove(rArgument);
     }
 
     void requestCancelScenarioSelect() {
-        getGameSequenceProgress()->requestCancelScenarioSelect();
+        ::getGameSequenceProgress()->requestCancelScenarioSelect();
     }
 
     void sendStageResultSequenceParam(const char* pStageName, s32 powerStarId, int starPieceNum, int coinNum) {
-        getGameDataTemporaryInGalaxy()->receiveStageResultParam(pStageName, powerStarId, starPieceNum, coinNum);
+        ::getGameDataTemporaryInGalaxy()->receiveStageResultParam(pStageName, powerStarId, starPieceNum, coinNum);
     }
 
     bool hasStageResultSequence() {
-        return getGameDataTemporaryInGalaxy()->isStageCleared();
+        return ::getGameDataTemporaryInGalaxy()->isStageCleared();
     }
 
     const char* getClearedStageName() {
-        return getGameDataTemporaryInGalaxy()->mStageName;
+        return ::getGameDataTemporaryInGalaxy()->mStageName;
     }
 
     s32 getClearedPowerStarId() {
-        return getGameDataTemporaryInGalaxy()->mPowerStarId;
+        return ::getGameDataTemporaryInGalaxy()->mPowerStarId;
     }
 
     int getClearedStarPieceNum() {
-        return getGameDataTemporaryInGalaxy()->mStarPieceNum;
+        return ::getGameDataTemporaryInGalaxy()->mStarPieceNum;
     }
 
     int getClearedCoinNum() {
-        return getGameDataTemporaryInGalaxy()->mCoinNum;
+        return ::getGameDataTemporaryInGalaxy()->mCoinNum;
     }
 
     bool hasPowerStarYetAtResultSequence() {
@@ -178,7 +178,7 @@ namespace GameSequenceFunction {
     }
 
     bool hasRetryGalaxySequence() {
-        return getGameDataTemporaryInGalaxy()->_4;
+        return ::getGameDataTemporaryInGalaxy()->_4;
     }
 
     bool isNeedToReflectStageResultSequenceStarPiece() {
@@ -197,27 +197,27 @@ namespace GameSequenceFunction {
     */
 
     void resetStageResultSequenceParam() {
-        getGameDataTemporaryInGalaxy()->resetStageResultParam();
+        ::getGameDataTemporaryInGalaxy()->resetStageResultParam();
     }
 
     void startPreLoadSaveDataSequence() {
-        getSaveDataHandleSequence()->startPreLoad();
+        ::getSaveDataHandleSequence()->startPreLoad();
     }
 
     void startTotalMailSizeSaveSequence() {
-        getSaveDataHandleSequence()->startSaveTotalMailSize();
+        ::getSaveDataHandleSequence()->startSaveTotalMailSize();
     }
 
     void startGameDataLoadSequence(int userFileIndex, bool isPlayerMario) {
-        getSaveDataHandleSequence()->startLoad(userFileIndex, isPlayerMario);
+        ::getSaveDataHandleSequence()->startLoad(userFileIndex, isPlayerMario);
     }
 
     void startCreateUserFileSequence(int userFileIndex) {
-        getSaveDataHandleSequence()->startCreateUserFile(userFileIndex);
+        ::getSaveDataHandleSequence()->startCreateUserFile(userFileIndex);
     }
 
     void startDeleteUserFileSequence(int userFileIndex) {
-        getSaveDataHandleSequence()->startDeleteUserFile(userFileIndex);
+        ::getSaveDataHandleSequence()->startDeleteUserFile(userFileIndex);
     }
 
     void startCopyUserFileSequence(int userFileIndexDst, int userFileIndexSrc) {
@@ -231,56 +231,56 @@ namespace GameSequenceFunction {
     }
 
     void storeMiiOrIconIdUserFileSequence(int userFileIndex, const void* pMiiId, const u32* pIconId) {
-        getSaveDataHandleSequence()->storeMiiOrIconId(userFileIndex, pMiiId, pIconId);
+        ::getSaveDataHandleSequence()->storeMiiOrIconId(userFileIndex, pMiiId, pIconId);
     }
 
     void storeCopyUserFileSequence(int userFileIndexDst, int userFileIndexSrc) {
-        getSaveDataHandleSequence()->storeCopyUserFile(userFileIndexDst, userFileIndexSrc);
+        ::getSaveDataHandleSequence()->storeCopyUserFile(userFileIndexDst, userFileIndexSrc);
     }
 
     void startSaveAllUserFileSequence() {
-        getSaveDataHandleSequence()->startSaveAll();
+        ::getSaveDataHandleSequence()->startSaveAll();
     }
 
     bool isActiveSaveDataHandleSequence() {
-        return getSaveDataHandleSequence()->isActive();
+        return ::getSaveDataHandleSequence()->isActive();
     }
 
     bool isSuccessSaveDataHandleSequence() {
-        return getSaveDataHandleSequence()->_24 == 2;
+        return ::getSaveDataHandleSequence()->_24 == 2;
     }
 
     void restoreUserFile(UserFile* pUserFile, int userFileIndex) {
-        getSaveDataHandleSequence()->restoreUserFile(pUserFile, userFileIndex);
+        ::getSaveDataHandleSequence()->restoreUserFile(pUserFile, userFileIndex);
     }
 
     void restoreUserFile(UserFile* pUserFile, int userFileIndex, bool isPlayerMario) {
-        getSaveDataHandleSequence()->restoreUserFile(pUserFile, userFileIndex, isPlayerMario);
+        ::getSaveDataHandleSequence()->restoreUserFile(pUserFile, userFileIndex, isPlayerMario);
     }
 
     void tryNANDErrorSequence(s32 code) {
-        getSaveDataHandleSequence()->tryNANDErrorSequence(code);
+        ::getSaveDataHandleSequence()->tryNANDErrorSequence(code);
     }
 
     void reserveUserName(const wchar_t* pUserName) {
-        getSaveDataHandleSequence()->getCurrentUserFile()->setUserName(pUserName);
+        ::getSaveDataHandleSequence()->getCurrentUserFile()->setUserName(pUserName);
     }
 
     void requestPrepareResetNWC24() {
-        getNWC24Messenger()->prepareReset();
+        ::getNWC24Messenger()->prepareReset();
     }
 
     bool isEnableToResetNWC24() {
-        return !getNWC24Messenger()->isRunning();
+        return !::getNWC24Messenger()->isRunning();
     }
 
     void resetNWC24() {
-        getNWC24Messenger()->reset();
+        ::getNWC24Messenger()->reset();
     }
 
     void storeSceneStartGameDataHolder() {
         if (!GameDataFunction::isPassedStoryEvent("チコガイドデモ終了") || GameDataFunction::hasGrandStar(1)) {
-            getSaveDataHandleSequence()->backupCurrentUserFile();
+            ::getSaveDataHandleSequence()->backupCurrentUserFile();
         }
     }
 
@@ -289,17 +289,17 @@ namespace GameSequenceFunction {
             GameDataFunction::setGameFlagPowerStarSuccess(getClearedStageName(), getClearedPowerStarId(), true);
         }
 
-        getGameSequenceProgress()->getGalaxyCometScheduler()->syncWithFlags();
-        getGameSequenceProgress()->getGalaxyCometScheduler()->forceToNextState();
+        ::getGameSequenceProgress()->getGalaxyCometScheduler()->syncWithFlags();
+        ::getGameSequenceProgress()->getGalaxyCometScheduler()->forceToNextState();
     }
 
     void startGameDataSaveSequence(bool isConfirmRemind, bool isSaveAndQuitMsg) {
-        getGameSequenceProgress()->getGalaxyCometScheduler()->updateStateToGameData();
+        ::getGameSequenceProgress()->getGalaxyCometScheduler()->updateStateToGameData();
 
         if (GameDataFunction::isPassedStoryEvent("ピーチ城浮上後") && !GameDataFunction::hasGrandStar(1)) {
-            getSaveDataHandleSequence()->startSaveBackup(isConfirmRemind, isSaveAndQuitMsg);
+            ::getSaveDataHandleSequence()->startSaveBackup(isConfirmRemind, isSaveAndQuitMsg);
         } else {
-            getSaveDataHandleSequence()->startSave(isConfirmRemind, isSaveAndQuitMsg);
+            ::getSaveDataHandleSequence()->startSave(isConfirmRemind, isSaveAndQuitMsg);
         }
     }
 };  // namespace GameSequenceFunction

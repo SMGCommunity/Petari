@@ -155,7 +155,7 @@ void ItemBlock::kill() {
 /*void ItemBlock::control() {
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
-    MR::requestPointLight(this, TVec3f(upVec * 100.0f), hPointLight, 0.998646f, -1);
+    MR::requestPointLight(this, TVec3f(upVec * 100.0f), ::hPointLight, 0.998646f, -1);
 }*/
 
 bool ItemBlock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {

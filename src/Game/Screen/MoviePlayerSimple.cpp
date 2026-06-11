@@ -258,13 +258,13 @@ u32 MoviePlayerSimple::calcNeedMemoryForMovieWorks() {
 }
 
 void MoviePlayerSimple::drawCinemaFrame() const {
-    MR::fillScreenSetup(sCinemaFrameColor);
+    MR::fillScreenSetup(::sCinemaFrameColor);
 
     s16 width = MR::getFrameBufferWidth();
-    TBox2s top(0, 0, width, sCinemaFrameHeightTop);
+    TBox2s top(0, 0, width, ::sCinemaFrameHeightTop);
     MR::fillScreenArea(top.i, top.f);
 
     s16 height = MR::getFrameBufferHeight();
-    TBox2s bottom(0, sCinemaFrameHeightBottom, width, height);
+    TBox2s bottom(0, ::sCinemaFrameHeightBottom, width, height);
     MR::fillScreenArea(bottom.i, bottom.f);
 }

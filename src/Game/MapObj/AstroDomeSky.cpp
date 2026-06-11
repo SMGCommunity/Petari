@@ -40,7 +40,7 @@ AstroDomeSky::AstroDomeSky(const char* pName) : LiveActor(pName) {
 void AstroDomeSky::init(const JMapInfoIter& rIter) {
     s32 arg = -1;
     MR::getJMapInfoArg0NoInit(rIter, &arg);
-    const char* arg2 = cAstroDomeSkyTable[arg - 1];
+    const char* arg2 = ::cAstroDomeSkyTable[arg - 1];
     initModelManagerWithAnm(arg2, 0, true);
     _94 = MR::initDLMakerProjmapEffectMtxSetter(this);
     MR::newDifferedDLBuffer(this);

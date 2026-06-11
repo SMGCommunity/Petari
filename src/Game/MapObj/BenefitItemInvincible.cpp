@@ -55,8 +55,8 @@ void BenefitItemInvincible::appearThrowUp() {
     else {
         MR::startSystemSE("SE_SY_ITEM_APPEAR");
         setNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance);
-        f32 appear = cAppearThrowFwdSpd;
-        mVelocity = MR::addTwoScalarVecs(_148, _13C, appear, cAppearThrowUpSpd);
+        f32 appear = ::cAppearThrowFwdSpd;
+        mVelocity = MR::addTwoScalarVecs(_148, _13C, appear, ::cAppearThrowUpSpd);
         MR::invalidateClipping(this);
     }
 }

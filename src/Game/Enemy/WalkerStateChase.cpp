@@ -16,7 +16,7 @@ WalkerStateChaseParam::WalkerStateChaseParam() : mChaseTime(130), mForceChaseEnd
 WalkerStateChase::WalkerStateChase(LiveActor* pHost, TVec3f* pDirection, WalkerStateParam* pStateParam, WalkerStateChaseParam* pChaseParam)
     : ActorStateBase< LiveActor >("クリボー追いかけ状態", pHost), mStateParam(pStateParam), mChaseParam(pChaseParam), mDirection(pDirection) {
     if (mChaseParam == nullptr) {
-        mChaseParam = &sDefaultParam;
+        mChaseParam = &::sDefaultParam;
     }
 
     initNerve(&NrvWalkerStateChase::WalkerStateChaseNrvStart::sInstance);

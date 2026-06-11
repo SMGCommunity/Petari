@@ -156,7 +156,7 @@ s32 CameraHolder::getIndexOfDefault() const {
 }
 
 const char* CameraHolder::getNameStrOfDefault() const {
-    return sDefaultCamera;
+    return ::sDefaultCamera;
 }
 
 s32 CameraHolder::getIndexOf(Camera* pCamera) const {
@@ -174,7 +174,7 @@ void CameraHolder::createCameras() {
     mTranslators = new CamTranslatorBase*[getNum()];
 
     for (s32 i = 0; i < getNum(); i++) {
-        mCameras[i] = sCameraTable[i].mCreateFunc();
+        mCameras[i] = ::sCameraTable[i].mCreateFunc();
         mTranslators[i] = mCameras[i]->createTranslator();
     }
 }

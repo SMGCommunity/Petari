@@ -24,7 +24,7 @@ void CometEventKeeper::init() {
     initCometStatus();
 
     if (isStartEvent("Red") || isStartEvent("Black")) {
-        mExecutorTimeLimit = new CometEventExecutorTimeLimit(getTimeLimitFromTable(sTimeLimitInfoTable, ARRAY_SIZE(sTimeLimitInfoTable)) / 60);
+        mExecutorTimeLimit = new CometEventExecutorTimeLimit(getTimeLimitFromTable(::sTimeLimitInfoTable, ARRAY_SIZE(::sTimeLimitInfoTable)) / 60);
         mExecutorTimeLimit->initWithoutIter();
         mExecutorTimeLimit->kill();
     }

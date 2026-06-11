@@ -46,10 +46,10 @@ bool PlayerRacer::updateRacer(const RaceManager* pRaceManager) {
     TVec3f railPos;
     MR::calcNearestRailPos(&railPos, racer, *MR::getPlayerCenterPos());
 
-    if (railPos.subOtherInline(*MR::getPlayerCenterPos()).length() > sRaceJudgeLength) {
+    if (railPos.subOtherInline(*MR::getPlayerCenterPos()).length() > ::sRaceJudgeLength) {
         return false;
     }
-    if ((f32)__fabs(mRailCoord - railCoord) < sRaceJudgeLength) {
+    if ((f32)__fabs(mRailCoord - railCoord) < ::sRaceJudgeLength) {
         mRailCoord = railCoord;
     }
 

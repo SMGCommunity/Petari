@@ -75,7 +75,7 @@ void TicoRail::exeWait() {
         MR::startBck(this, "Turn", nullptr);
     }
 
-    if (isGreaterEqualStepAndRandom(sStepForWait)) {
+    if (isGreaterEqualStepAndRandom(::sStepForWait)) {
         setNerve(&NrvTicoRail::TicoRailNrvLookAround::sInstance);
     }
 }
@@ -90,12 +90,12 @@ void TicoRail::exeLookAround() {
 
     f32 rotate = 0.0f;
 
-    if (MR::isLessStep(this, sStepForLookAroundL)) {
-        rotate = sTurnRate;
-    } else if (MR::isLessStep(this, sStepForLookAroundLR)) {
-        rotate = -sTurnRate;
-    } else if (MR::isLessStep(this, sStepForLookAroundLRL)) {
-        rotate = sTurnRate;
+    if (MR::isLessStep(this, ::sStepForLookAroundL)) {
+        rotate = ::sTurnRate;
+    } else if (MR::isLessStep(this, ::sStepForLookAroundLR)) {
+        rotate = -::sTurnRate;
+    } else if (MR::isLessStep(this, ::sStepForLookAroundLRL)) {
+        rotate = ::sTurnRate;
     }
 
     MR::rotateVecDegree(&_8C, up, rotate);
@@ -137,7 +137,7 @@ void TicoRail::exeMove() {
     MR::moveCoordAndFollowTrans(this, MR::calcNerveValue(this, 0, 200.0f, 15.0f));
     _8C.set< f32 >(MR::getRailDirection(this));
 
-    if (isGreaterEqualStepAndRandom(sStepForMove)) {
+    if (isGreaterEqualStepAndRandom(::sStepForMove)) {
         setNerve(&NrvTicoRail::TicoRailNrvStop::sInstance);
     }
 }
@@ -189,7 +189,7 @@ void TicoRail::exeTalk() {
         MR::startBck(this, "Talk", nullptr);
     }
 
-    if (MR::isStep(this, sStepForTalk)) {
+    if (MR::isStep(this, ::sStepForTalk)) {
         setNerve(&NrvTicoRail::TicoRailNrvGoodBye::sInstance);
     }
 }
@@ -218,7 +218,7 @@ void TicoRail::exeGoodBye() {
         }
     }
 
-    MR::moveCoordAndFollowTrans(this, sRailSpeedGoodBye);
+    MR::moveCoordAndFollowTrans(this, ::sRailSpeedGoodBye);
 
     if (MR::isBckLooped(this)) {
         _98 = nullptr;
@@ -289,7 +289,7 @@ bool TicoRail::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
         return false;
     }
 
-    if (MR::calcDistanceVertical(this, pSender->mHost->mPosition) > sTalkTerritoryY) {
+    if (MR::calcDistanceVertical(this, pSender->mHost->mPosition) > ::sTalkTerritoryY) {
         return false;
     }
 

@@ -125,25 +125,25 @@ namespace DemoFunction {
         if (!MR::isTimeKeepDemoActive()) {
             return false;
         }
-        if (isCurrentMainPart(pPartName)) {
+        if (::isCurrentMainPart(pPartName)) {
             return true;
         }
-        return getCurrentSubPartKeeper()->isDemoPartActive(pPartName);
+        return ::getCurrentSubPartKeeper()->isDemoPartActive(pPartName);
     }
 
     s32 getDemoPartStepFunction(const char* pPartName) {
-        if (isCurrentMainPart(pPartName)) {
-            return getCurrentTimeKeeper()->mCurrentStep;
+        if (::isCurrentMainPart(pPartName)) {
+            return ::getCurrentTimeKeeper()->mCurrentStep;
         } else {
-            return getCurrentSubPartKeeper()->getDemoPartStep(pPartName);
+            return ::getCurrentSubPartKeeper()->getDemoPartStep(pPartName);
         }
     }
 
     s32 getDemoPartTotalStepFunction(const char* pPartName) {
-        if (isCurrentMainPart(pPartName)) {
-            return getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
+        if (::isCurrentMainPart(pPartName)) {
+            return ::getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
         } else {
-            return getCurrentSubPartKeeper()->getDemoPartTotalStep(pPartName);
+            return ::getCurrentSubPartKeeper()->getDemoPartTotalStep(pPartName);
         }
     }
 
@@ -151,12 +151,12 @@ namespace DemoFunction {
         if (!MR::isTimeKeepDemoActive()) {
             return false;
         }
-        s32 total = getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
-        s32 current = getCurrentTimeKeeper()->mCurrentStep;
+        s32 total = ::getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
+        s32 current = ::getCurrentTimeKeeper()->mCurrentStep;
         if (current != total - 1) {
             return false;
         } else {
-            return getCurrentTimeKeeper()->isPartLast();
+            return ::getCurrentTimeKeeper()->isPartLast();
         }
     }
 
