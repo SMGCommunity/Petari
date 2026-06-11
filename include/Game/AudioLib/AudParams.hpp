@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JAudio2/JAISeMgr.hpp"
 #include <revolution/types.h>
 
 namespace AudParams {
@@ -32,10 +33,13 @@ namespace AudParams {
     f32 outputGain = 0.9f;
     int maxSeqDataSize = 0xDAC0;
     s32 numInspectableSoundObj = 8;
-    s32 masterVolBgm = 1.2f;
-    s32 masterVolSe = 1.2f;
-    s32 masterVolStream = 1.6f;
-    // ...
+    f32 masterVolBgm = 1.2f;
+    f32 masterVolSe = 1.2f;
+    f32 masterVolStream = 1.6f;
+
+    const JAISeCategoryArrangement arrangement = {
+        {{8, 16}, {2, 4}, {10, 18}, {8, 12}, {20, 24}, {10, 16}, {24, 28}, {10, 20}, {24, 32}, {32, 36}, {16, 20}, {8, 12}, {16, 20}, {8, 16}}};
+
     s32 streamAramBlocks_perChunk = 36;
     f32 streamSampleRate = 32000.0f;
     f32 faderVolZeroVolume = 0.0f;

@@ -13,12 +13,6 @@ public:
 };
 
 struct JAUStdSoundInfo : public JAISoundInfo, public JAUSoundInfo, public dummy {
-    enum DataType {
-        DATA_SE = 0x50,
-        DATA_BGM = 0x60,
-        DATA_STREAM = 0x70,
-    };
-
     virtual int getSoundType(JAISoundID) const;
     virtual int getCategory(JAISoundID) const;
     virtual u32 getPriority(JAISoundID) const;

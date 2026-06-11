@@ -17,7 +17,7 @@ struct SpeakerInfo {
     s32 _30;
     u32 _34;
     u32 _38;
-    u32 _3C;
+    // u32 _3C;
 };
 
 class SpkSpeakerCtrl {

@@ -1,10 +1,10 @@
 #include "Game/Speaker/SpkSystem.hpp"
 #include "Game/Speaker/SpkSpeakerCtrl.hpp"
 
-SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(this) {
+SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(true) {
     mData = nullptr;
 
-    if (!pHeap) {
+    if (pHeap == nullptr) {
         pHeap = JKRHeap::sCurrentHeap;
     }
 
@@ -15,10 +15,10 @@ SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(this) {
     SpkSpeakerCtrl::setMixingBuffer(mMixBuffer);
 }
 
-void SpkSystem::setResource(JKRArchive* pArchive, u16 a2, u16 a3) {
+void SpkSystem::setResource(JKRArchive* pArchive, u16 tableOffset, u16 waveOffset) {
     mData = new (mHeap, 0) SpkData(pArchive);
-    mData->loadTable(a2);
-    mData->loadWave(a3);
+    mData->loadTable(tableOffset);
+    mData->loadWave(waveOffset);
 }
 
 void SpkSystem::framework() {

@@ -9,6 +9,12 @@ class SpkSound;
 
 class SpkSoundHandle {
 public:
+    SpkSoundHandle() : mSound(nullptr) {
+    }
+
+    ~SpkSoundHandle() {
+        releaseSound();
+    };
     void releaseSound();
 
     SpkSound* mSound;  // 0x0

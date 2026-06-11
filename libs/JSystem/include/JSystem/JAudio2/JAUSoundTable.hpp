@@ -3,12 +3,33 @@
 #include "JSystem/JAudio2/JAISound.hpp"
 #include "JSystem/JAudio2/JASGlobal.hpp"
 
-// TODO: this is supposed to be 6 bytes for SMG?
 struct JAUSoundTableItem {
     /* 0x00 */ u8 mPriority;
     /* 0x01 */ u8 mVolume;
     /* 0x02 */ u16 mResourceId;
-    /* 0x04 */ u32 _4;
+    /* 0x04 */ u8 _4[0];
+};
+
+struct JAUSoundTableSe {
+    /* 0x00 */ u8 mPriority;
+    /* 0x01 */ u8 mVolume;
+    /* 0x02 */ u16 mAudibleSw;
+    /* 0x04 */ u16 mSoundSw;
+};
+
+struct JAUSoundTableBgm {
+    /* 0x00 */ u8 mPriority;
+    /* 0x01 */ u8 mVolume;
+    /* 0x02 */ u16 mResourceId;
+    /* 0x04 */ u16 mChordResId;
+    /* 0x06 */ u16 mSoundSw;
+};
+
+struct JAUSoundTableStream {
+    /* 0x00 */ u8 mPriority;
+    /* 0x01 */ u8 mVolume;
+    /* 0x02 */ u16 mChannelCtrl;
+    /* 0x04 */ u32 mStreamFileNameOffset;
 };
 
 template < typename Root, typename Section, typename Group, typename Item >
@@ -183,7 +204,7 @@ struct JAUSoundNameTableGroup {
     }
 
     /* 0x00 */ u32 mNumItems;
-    /* 0x04 */ u32 mGlobalOffset;
+    /* 0x04 */ u32 mCategoryNameOffset;
     /* 0x08 */ u32 mItemOffsets[0];
 };
 

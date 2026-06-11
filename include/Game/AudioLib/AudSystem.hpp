@@ -108,7 +108,7 @@ public:
     /* 0x083C */ u32 _83C;
     /* 0x0840 */ AudAudience_withSetting mAudience;
     /* 0x0894 */ u8 _894[0x4];
-    /* 0x0898 */ MicData _898[WPAD_MAX_CONTROLLERS];
+    /* 0x0898 */ MicData mMicData[WPAD_MAX_CONTROLLERS];
     /* 0x09E8 */ u8 _9E8[0x4];
     /* 0x09EC */ AudSoundObject* mSystemSeObject;
     /* 0x09F0 */ AudSoundObject* mAtmosphereSeObject;
