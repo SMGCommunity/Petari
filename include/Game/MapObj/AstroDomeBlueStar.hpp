@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
 
 class GCaptureRibbon;
 
@@ -15,6 +13,18 @@ public:
         virtual ~CaptureActor();
         virtual void init(const JMapInfoIter&);
         virtual void kill();
+
+        void updateTransTraction(const TVec3f&, const TVec3f&, s32);
+
+        inline void forceKill() {
+            MR::forceDeleteEffectAll(this);
+            LiveActor::kill();
+        };
+
+        inline void setPosAll(TVec3f& mPos) {
+            mPosition.set(mPos);
+            _8C.setTrans(mPosition);
+        }
 
         TPos3f _8C;
     };
@@ -47,10 +57,17 @@ public:
     void exeGalaxyConfirmCancel();
     void exeGalaxyConfirm();
 
-    GCaptureRibbon* mCaptureRibbon;  // 0x8C
+    // Okay this thing shouldn't probably be here
+    inline TVec3f makeZeroVec() {
+        TVec3f v;
+        v.set(0.0f, 0.0f, 0.0f);
+        return v;
+    }
+
+    /* 0x8C */ GCaptureRibbon* mCaptureRibbon;
     TPos3f _90;
     TPos3f _C0;
-    u32 _F0;
-    TVec3f mZoomPos;              // 0xF4
-    CaptureActor* mCaptureActor;  // 0x100
+    ActorCameraInfo* _F0;
+    /* 0xF4 */ TVec3f mZoomPos;
+    /* 0x100*/ CaptureActor* mCaptureActor;
 };
