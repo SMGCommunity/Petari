@@ -220,7 +220,7 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
             MR::startSound(mHost, "SE_BM_KOOPA_LAND");
             MR::stopScene(15);
 
-            if (MR::sendMsgToBindedSensor(194, KoopaFunction::getKoopaMessageSensor(mHost))) {
+            if (MR::sendMsgToBindedSensor(ACTMES_KOOPA_PLATE_DAMAGE, KoopaFunction::getKoopaMessageSensor(mHost))) {
                 MR::zeroVelocity(mHost);
 
                 MR::tryRumblePadAndCameraDistanceVeryStrong(mHost, 1500.0f, 3000.0f, 2000.0f);
