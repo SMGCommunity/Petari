@@ -1,6 +1,7 @@
 #include "Game/NameObj/NameObjFactory.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
+#include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Demo.hpp"
 #include "Game/Effect.hpp"
 #include "Game/Enemy.hpp"
@@ -78,12 +79,6 @@ namespace MR {
     NameObj* createFireBallBeamKameck(const char*);
     NameObj* createTurtleBeamKameck(const char*);
 };  // namespace MR
-
-namespace KoopaFunction {
-    NameObj* createKoopaVs1(const char*);
-    NameObj* createKoopaVs2(const char*);
-    NameObj* createKoopaVs3(const char*);
-};  // namespace KoopaFunction
 
 namespace {
     // FIXME: Polta is being worked on in #1867

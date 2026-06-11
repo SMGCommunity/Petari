@@ -1,7 +1,5 @@
 #include "Game/Boss/KoopaSwitchKeeper.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 
 KoopaSwitchKeeper::KoopaSwitchKeeper(const char* pName) : LiveActor(pName) {
 }
@@ -11,6 +9,7 @@ void KoopaSwitchKeeper::init(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteA(this, rIter);
     MR::useStageSwitchWriteB(this, rIter);
     MR::useStageSwitchWriteDead(this, rIter);
+
     makeActorDead();
 }
 

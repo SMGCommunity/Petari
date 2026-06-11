@@ -544,6 +544,12 @@ namespace JGeometry {
             z = val;
         }
 
+        inline void set2(f32 val) {
+            z = val;
+            y = val;
+            x = val;
+        }
+
 #ifdef __MWERKS__
         inline void mulInternal(register const f32* vec1, register const f32* vec2, register f32* dst) {
             register f32 xy1, xy2, res;
