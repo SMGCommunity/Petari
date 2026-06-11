@@ -8363,4 +8363,4 @@ namespace NameObjFactory {
             }
         }
     }
-};  //   NameObjFactory
+};  // namespace NameObjFactory
