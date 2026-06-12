@@ -93,7 +93,7 @@ SpkSound::~SpkSound() {
     releaseHandle();
 }
 
-void SpkSound::update(f32 f1) {
+void SpkSound::update(f32 baseVolume) {
     if (mState != State_UNLOCK && mState != State_STOP) {
         return;
     }
@@ -105,7 +105,7 @@ void SpkSound::update(f32 f1) {
     if (kill) {
         mState = State_DEAD;
     }
-    volume *= f1;
+    volume *= baseVolume;
 
     if (!isLoopValid()) {
         s32 readSize = 40;
@@ -120,13 +120,12 @@ void SpkSound::update(f32 f1) {
         return;
     }
 
-    // TODO: name these better
     s32 readAmount;
-    s32 a1 = 0;
+    s32 readOffset = 0;
     s32 readSize = 40;
 
     if (mLoopEndPos - mWavePtr >= readSize) {
-        mix->mix(mPadChannel, mWave + mWavePtr, readSize, volume, a1);
+        mix->mix(mPadChannel, mWave + mWavePtr, readSize, volume, readOffset);
         mWavePtr += 40;
         if (mWavePtr >= mLoopEndPos) {
             mWavePtr = mLoopStartPos;
@@ -140,8 +139,8 @@ void SpkSound::update(f32 f1) {
             readAmount = readSize;
         }
         readSize -= readAmount;
-        mix->mix(mPadChannel, mWave + mWavePtr, readAmount, volume, a1);
-        a1 += readAmount;
+        mix->mix(mPadChannel, mWave + mWavePtr, readAmount, volume, readOffset);
+        readOffset += readAmount;
         mWavePtr += readAmount;
         if (mWavePtr >= mLoopEndPos) {
             mWavePtr = mLoopStartPos;
@@ -229,7 +228,7 @@ SpkSoundHolder::SpkSoundHolder() : JASGlobalInstance(true) {
     _40 = 1.0f;
 
     for (int i = 0; i < 4; i++) {
-        _30[i] = 1.0f;
+        mVolume[i] = 1.0f;
     }
 }
 
@@ -287,12 +286,12 @@ bool SpkSoundHolder::updateEachSound(s32 padChannel) {
     bool updated = false;
 
     JSULink< SpkSound >* sound = mSoundList[padChannel].getFirst();
-    f32 f1 = _40 * (_44 / 15.0f);
+    f32 volume = _40 * (_44 / 15.0f);
 
     if (sound != nullptr) {
         updated = true;
         for (; sound != mSoundList[padChannel].getEnd(); sound = sound->getNext()) {
-            sound->getObject()->update(f1 * _30[padChannel]);
+            sound->getObject()->update(volume * mVolume[padChannel]);
         }
     }
     return updated;

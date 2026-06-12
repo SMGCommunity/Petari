@@ -94,7 +94,7 @@ public:
     void framework();
 
     /* 0x00 */ JSUList< SpkSound > mSoundList[4];
-    /* 0x30 */ f32 _30[4];  // volume?
+    /* 0x30 */ f32 mVolume[4];
     /* 0x40 */ f32 _40;
     /* 0x44 */ s32 _44;
 };
