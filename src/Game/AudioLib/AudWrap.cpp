@@ -2,6 +2,7 @@
 #include "Game/AudioLib/AudBgmMgr.hpp"
 #include "Game/AudioLib/AudRemixMgr.hpp"
 #include "Game/AudioLib/AudSoundInfo.hpp"
+#include "Game/AudioLib/AudSoundNameConverter.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 
 namespace AudWrap {
