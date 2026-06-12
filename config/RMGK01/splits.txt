@@ -3280,7 +3280,8 @@ Game/GameAudio/AudStageBgmTable.cpp:
 
 Game/GameAudio/AudTamakoroBgmCtrl.cpp:
 	.text       start:0x801567FC end:0x80156AD0
-	.sdata      start:0x806B1AC0 end:0x806B1B00
+	.rodata     start:0x80532990 end:0x80532998
+	.sdata      start:0x806B1AC0 end:0x806B1AFC
 
 Game/Gravity/ConeGravity.cpp:
 	.text       start:0x80156AD0 end:0x80157120
@@ -3312,6 +3313,7 @@ Game/Gravity/GraviryFollower.cpp:
 
 Game/Gravity/GravityCreator.cpp:
 	.text       start:0x801591C4 end:0x8015A02C
+	.rodata     start:0x80532998 end:0x805329A8
 	.data       start:0x805875A0 end:0x805876D8
 	.sdata2     start:0x806BBB48 end:0x806BBB58
 
