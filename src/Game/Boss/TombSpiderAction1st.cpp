@@ -3,6 +3,10 @@
 #include "Game/Boss/TombSpiderActionBase.hpp"
 #include "Game/Boss/TombSpiderFunction.hpp"
 #include "Game/Boss/TombSpiderStateSwoon.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace {
     static const s32 sStepWaitMin = 60;
@@ -107,7 +111,7 @@ bool TombSpiderAction1st::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
 }
 
 void TombSpiderAction1st::exeWait() {
-    if (updateWait(sStepWaitMin, sStepWaitMax)) {
+    if (updateWait(::sStepWaitMin, ::sStepWaitMax)) {
         setNerve(&NrvTombSpiderAction1st::TombSpiderAction1stNrvAttackStart::sInstance);
     }
 }
@@ -119,7 +123,7 @@ void TombSpiderAction1st::exeAttackStart() {
 }
 
 void TombSpiderAction1st::exeAttackLoop() {
-    if (updateAttackLoop(sStepAttackLoopMin, sStepAttackLoopMax, sAttackRotateAccel, sAttackRotateSpeedMax)) {
+    if (updateAttackLoop(::sStepAttackLoopMin, ::sStepAttackLoopMax, ::sAttackRotateAccel, ::sAttackRotateSpeedMax)) {
         setNerve(&NrvTombSpiderAction1st::TombSpiderAction1stNrvAttackEnd::sInstance);
     }
 }
@@ -162,7 +166,7 @@ void TombSpiderAction1st::exeChanceStart() {
 }
 
 void TombSpiderAction1st::exeChanceWait() {
-    if (updateChanceWait(sStepChanceWait)) {
+    if (updateChanceWait(::sStepChanceWait)) {
         setNerve(&NrvTombSpiderAction1st::TombSpiderAction1stNrvWaitDemo::sInstance);
         if (!tryWaitChanceEndDemo(&NrvTombSpiderAction1st::TombSpiderAction1stNrvChanceEnd::sInstance)) {
             setNerve(&NrvTombSpiderAction1st::TombSpiderAction1stNrvChanceEnd::sInstance);
@@ -177,7 +181,7 @@ void TombSpiderAction1st::exeChanceDamage() {
 }
 
 void TombSpiderAction1st::exeChanceDamageLast() {
-    if (MR::isStep(this, sChanceDamageLastStep)) {
+    if (MR::isStep(this, ::sChanceDamageLastStep)) {
         kill();
     }
 }

@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class ActorCameraInfo;
+class CameraTargetMtx;
 
 class SlingShooter : public LiveActor {
 public:

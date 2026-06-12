@@ -1,5 +1,10 @@
 #include "Game/NPC/CometEventExecutorTimeLimit.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/TimeLimitLayout.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace NrvCometEventExecutorTimeLimit {
     NEW_NERVE(CometEventExecutorTimeLimitStartEvent, CometEventExecutorTimeLimit, StartEvent);

@@ -19,15 +19,16 @@ public:
     void setStartFromDemo();
     void setStartContinueBattle();
     bool tryFind();
+
     void exeStart();
     void exeTurn();
     void exeWalk();
+    void exeFind();
     void exeChase();
-    inline void exeDamage();
-    inline void exeAttackHit();
-    inline void exeCoolDown();
-    inline void exeFind();
+    void exeCoolDown();
+    void exeAttackHit();
+    void exeDamage();
 
-    DinoPackunStateDamage* mStateDamage;  // 0x14
-    bool _18;
+    /* 0x14 */ DinoPackunStateDamage* mStateDamage;
+    /* 0x18 */ bool _18;
 };

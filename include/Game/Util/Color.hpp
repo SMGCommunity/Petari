@@ -1,10 +1,15 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/gx.h>
+#include <revolution/types.h>
 
 class Color8 {
 public:
     Color8() : mColor(-1) {
+    }
+
+    Color8(const Color8& rOther) {
+        set(rOther.r, rOther.g, rOther.b, rOther.a);
     }
 
     Color8(GXColor color) {

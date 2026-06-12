@@ -6,6 +6,7 @@
 #include "Game/Enemy/Kameck.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 #include "Game/Enemy/KameckHolder.hpp"
+#include "Game/LiveActor/ActiveActorList.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 
 BossKameck::BossKameck(const char* pName, const char* pType)

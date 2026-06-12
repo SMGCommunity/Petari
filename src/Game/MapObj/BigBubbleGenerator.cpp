@@ -1,7 +1,8 @@
 #include "Game/MapObj/BigBubbleGenerator.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigBubbleHolder.hpp"
 #include "Game/Ride/BigBubble.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -86,11 +87,11 @@ void BigBubbleGenerator::offActive() {
 }
 
 bool BigBubbleGenerator::isActiveRange() {
-    return MR::isNearPlayerAnyTime(this, sActiveDistance);
+    return MR::isNearPlayerAnyTime(this, ::sActiveDistance);
 }
 
 bool BigBubbleGenerator::isNonActiveRange() {
-    return !MR::isNearPlayerAnyTime(this, sNonActiveDistance);
+    return !MR::isNearPlayerAnyTime(this, ::sNonActiveDistance);
 }
 
 bool BigBubbleGenerator::tryActive() {
@@ -133,7 +134,7 @@ void BigBubbleGenerator::exeActive() {
     if (spawn) {
         TVec3f up;
         MR::calcActorAxisY(&up, this);
-        TVec3f pos = mPosition + up.multInLine(sGenerateOffsetY);
+        TVec3f pos = mPosition + up.multInLine(::sGenerateOffsetY);
         MR::startBck(this, "Generate", nullptr);
         BigBubble* bubble = MR::generateBigBubble(this, pos, up, MR::getRandom(mMinSize, mMaxSize), attach, mIsObstruct, mShape, mLimitterID);
 

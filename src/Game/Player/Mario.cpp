@@ -6,6 +6,7 @@
 #include "Game/Player/MarioBlown.hpp"
 #include "Game/Player/MarioBump.hpp"
 #include "Game/Player/MarioClimb.hpp"
+#include "Game/Player/MarioConst.hpp"
 #include "Game/Player/MarioCrush.hpp"
 #include "Game/Player/MarioDamage.hpp"
 #include "Game/Player/MarioDarkDamage.hpp"
@@ -39,7 +40,7 @@
 #include "Game/Player/MarioWait.hpp"
 #include "Game/Player/MarioWall.hpp"
 #include "Game/Player/MarioWarp.hpp"
-#include "Game/Util/DirectDraw.hpp"
+#include "Game/Util.hpp"
 #include "revolution/mtx.h"
 
 Mario::Mario(MarioActor* actor) : MarioModule(actor) {

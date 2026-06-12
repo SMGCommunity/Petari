@@ -1,10 +1,12 @@
 #include "Game/Map/OceanHomeMapCtrl.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/PlanetMap.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
 #include "Game/Map/WaterInfo.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 // Not entirely sure if the createSceneObj would've been here or not. There's no evidence for or against it being here.
 namespace {

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Enemy/Onimasu.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class OnimasuPivot : public Onimasu {
 public:

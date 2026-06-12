@@ -5,8 +5,8 @@
 class MessageArea : public AreaObj {
 public:
     MessageArea(int, const char*);
-    ~MessageArea();
 
+    virtual ~MessageArea();
     virtual void init(const JMapInfoIter&);
 
     s32 mZoneID;  // 0x3C

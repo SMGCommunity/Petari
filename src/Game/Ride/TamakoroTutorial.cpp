@@ -2,12 +2,17 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/Tamakoro.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/PlayerActionGuidance.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -80,9 +85,9 @@ void TamakoroTutorial::init(const JMapInfoIter& rIter) {
     mTalkCtrlAutomatic = MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "Common_TamakoroTutorial007", TVec3f(0.0f, 0.0f, 0.0f), nullptr);
 
     MR::setMessageBalloonFollowOffset(mTalkCtrl, TVec3f(0.0f, 180.0f, 0.0f));
-    MR::setDistanceToTalk(mTalkCtrl, hDistToStartTutorial);
+    MR::setDistanceToTalk(mTalkCtrl, ::hDistToStartTutorial);
     MR::setMessageBalloonFollowOffset(mTalkCtrlAutomatic, TVec3f(0.0f, 180.0f, 0.0f));
-    MR::setDistanceToTalk(mTalkCtrlAutomatic, hDistToStartTutorial);
+    MR::setDistanceToTalk(mTalkCtrlAutomatic, ::hDistToStartTutorial);
     MR::calcGravity(this);
 }
 
@@ -116,7 +121,7 @@ void TamakoroTutorial::exeFirst() {
         f32 distPlayerToTamakoro = MR::calcDistanceToPlayer(mHost->mPosition);
 
         if (MR::isOnGroundPlayer() && !MR::isExecScenarioStarter() &&
-            (distPlayerToTutorial < hDistToStartTutorial || distPlayerToTamakoro < hDistToStartTutorial)) {
+            (distPlayerToTutorial < ::hDistToStartTutorial || distPlayerToTamakoro < ::hDistToStartTutorial)) {
             setNerve(&NrvTamakoroTutorial::HostTypeNrvFirstForceTalk::sInstance);
         }
     } else {
@@ -182,7 +187,7 @@ void TamakoroTutorial::exeWaitRaiseTalk() {
     MR::tryTalkForceWithoutDemo(mTalkCtrl);
 
     if (MR::isGreaterStep(this, 90)) {
-        if (MR::isNearAngleDegree(::hRaiseAcc, mPadAccel, hRaiseCheckDegree)) {
+        if (MR::isNearAngleDegree(::hRaiseAcc, mPadAccel, ::hRaiseCheckDegree)) {
             MR::startSystemSE("SE_SY_SURF_TUTORIAL_OK");
             setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRaiseStable::sInstance);
         }
@@ -197,7 +202,7 @@ void TamakoroTutorial::exeWaitRaiseStable() {
 
     MR::tryTalkForceWithoutDemoAtEnd(mTalkCtrl);
 
-    if (!MR::isNearAngleDegree(::hRaiseAcc, mPadAccel, hRaiseCheckDegree)) {
+    if (!MR::isNearAngleDegree(::hRaiseAcc, mPadAccel, ::hRaiseCheckDegree)) {
         setNerve(&NrvTamakoroTutorial::HostTypeNrvWaitRaiseTalk::sInstance);
         MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG");
     } else {

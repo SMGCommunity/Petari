@@ -26,33 +26,34 @@ public:
     void setMiddleBattle();
     void setLastBattle();
     bool tryAwake();
+    void updateOnOffFireTail(s32, s32, s32);
+    bool emitFireMouth();
+    bool emitFireTail();
+
+    void exeTurn();
     void exeWalk();
     void endWalk() NO_INLINE;
-    void exeTurn();
     void exeFindCrazy();
     void exeCrazy();
     void endCrazy() NO_INLINE;
     void exeChase();
     void endChase() NO_INLINE;
-    void exeAttackHit();
-    void updateOnOffFireTail(s32, s32, s32);
-    bool emitFireMouth();
-    bool emitFireTail();
-    inline void exeDamage();
     void exeAwake();
     void endAwake();
+    void exeAttackHit();
+    void exeDamage();
 
-    DinoPackunStateDamage* mStateDamage;          // 0x14
-    DinoPackunStateAwake* mStateAwake;            // 0x18
-    DinoPackunTrackFireHolder* mTrackFireHolder;  // 0x1C
-    DinoPackunFireHolder* mFireHolder;            // 0x20
-    DinoPackunStateFire* mStateFire;              // 0x24
-    TVec3f _28;
-    s32 _34;
-    u8 _38;
-    u8 _39;
-    u8 _3A;
-    u8 _3B;
-    u8 _3C;
-    u8 _3D;
+    /* 0x14 */ DinoPackunStateDamage* mStateDamage;
+    /* 0x18 */ DinoPackunStateAwake* mStateAwake;
+    /* 0x1C */ DinoPackunTrackFireHolder* mTrackFireHolder;
+    /* 0x20 */ DinoPackunFireHolder* mFireHolder;
+    /* 0x24 */ DinoPackunStateFire* mStateFire;
+    /* 0x28 */ TVec3f _28;
+    /* 0x34 */ s32 _34;
+    /* 0x38 */ u8 _38;
+    /* 0x39 */ u8 _39;
+    /* 0x3A */ u8 _3A;
+    /* 0x3B */ u8 _3B;
+    /* 0x3C */ u8 _3C;
+    /* 0x3D */ u8 _3D;
 };

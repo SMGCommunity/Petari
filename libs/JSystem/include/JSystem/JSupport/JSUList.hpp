@@ -37,7 +37,7 @@ public:
     JSULink(void* pData) : JSUPtrLink(pData) {
     }
 
-    ~JSULink() NO_INLINE {
+    ~JSULink() {
     }
 
     T* getObject() const {
@@ -99,9 +99,7 @@ public:
     JSUList(bool thing) : JSUPtrList(thing) {
     }
 
-    ~JSUList() {
-
-    };
+    ~JSUList() {};
 
     JSULink< T >* getFirst() const {
         return (JSULink< T >*)getFirstLink();

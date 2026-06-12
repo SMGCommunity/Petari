@@ -1,6 +1,14 @@
 #include "Game/MapObj/MapPartsAppearController.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/StageSwitch.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PostureHolder.hpp"
 
 namespace NrvMapPartsAppearController {

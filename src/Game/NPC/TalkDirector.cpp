@@ -1,4 +1,5 @@
 #include "Game/NPC/TalkDirector.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkBalloon.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
@@ -13,6 +14,7 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
@@ -20,7 +22,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "revolution/types.h"
 #include <cstdio>
 
 namespace {

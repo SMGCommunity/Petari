@@ -2,6 +2,11 @@
 #include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/Enemy/WalkerStateFunction.hpp"
 #include "Game/Enemy/WalkerStateParam.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace {
     WalkerStateWanderParam sDefaultParam;
@@ -21,7 +26,7 @@ WalkerStateWander::WalkerStateWander(LiveActor* pHost, TVec3f* pDirection, Walke
     initNerve(&NrvWalkerStateWander::WalkerStateWanderNrvWait::sInstance);
 
     if (mWanderParam == nullptr) {
-        mWanderParam = &sDefaultParam;
+        mWanderParam = &::sDefaultParam;
     }
 
     mTerritoryMover = new TerritoryMover(500.0f);

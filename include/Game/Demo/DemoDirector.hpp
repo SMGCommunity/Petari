@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Game/Demo/DemoExecutor.hpp"
-#include "Game/Demo/DemoSubPartKeeper.hpp"
-#include "Game/Demo/DemoTimeKeeper.hpp"
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/Util/ObjUtil.hpp"
 
 class DemoCastGroupHolder;
+class DemoExecutor;
 class DemoSimpleCastHolder;
 class DemoStartRequestHolder;
+class LayoutActor;
+class LiveActor;
+class ResourceHolder;
 
 class DemoDirector : public NameObj {
 public:

@@ -1,5 +1,8 @@
 #include "Game/NPC/TicoStarRing.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TicoGalaxy.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"

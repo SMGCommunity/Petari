@@ -1,7 +1,16 @@
 #include "Game/NPC/TicoShop.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/MapObj/BenefitItemLifeUp.hpp"
+#include "Game/MapObj/BenefitItemObj.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvTicoShop {
     NEW_NERVE(TicoShopNrvDemo, TicoShop, Demo);

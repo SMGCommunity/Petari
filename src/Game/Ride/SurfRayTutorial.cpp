@@ -74,7 +74,7 @@ void SurfRayTutorial::exeTutorialStraightStart() {
 
     MR::tryTalkForceWithoutDemoMarioPuppetable(mTalkCtrl);
 
-    if (MR::isGreaterStep(this, sStepTalk)) {
+    if (MR::isGreaterStep(this, ::sStepTalk)) {
         nextTutorial();
     }
 }
@@ -85,7 +85,7 @@ void SurfRayTutorial::exeTutorialStraightFailure() {
     }
 
     if (isSuccessStraight()) {
-        if (mChangeStep++ == sStepToOK) {
+        if (mChangeStep++ == ::sStepToOK) {
             nextTutorial();
         }
     } else {
@@ -109,7 +109,7 @@ void SurfRayTutorial::exeTutorialStraightUpkeep() {
     if (isSuccessStraight()) {
         mChangeStep = 0;
 
-        if (MR::isStep(this, sStepToSuccess)) {
+        if (MR::isStep(this, ::sStepToSuccess)) {
             MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT", _28);
 
             _28++;
@@ -117,7 +117,7 @@ void SurfRayTutorial::exeTutorialStraightUpkeep() {
             nextTutorial();
             return;
         }
-    } else if (mChangeStep++ == sStepToOK) {
+    } else if (mChangeStep++ == ::sStepToOK) {
         prevTutorial();
         MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG");
         mSurfingGuidance->levelOffReady();
@@ -147,7 +147,7 @@ void SurfRayTutorial::exeTutorialTurnLeftStart() {
 
     MR::tryTalkForceWithoutDemoMarioPuppetable(mTalkCtrl);
 
-    if (MR::isGreaterStep(this, sStepTalk)) {
+    if (MR::isGreaterStep(this, ::sStepTalk)) {
         nextTutorial();
     }
 }
@@ -158,7 +158,7 @@ void SurfRayTutorial::exeTutorialTurnLeftFailure() {
     }
 
     if (isSuccessTurnLeft()) {
-        if (mChangeStep++ == sStepToOK) {
+        if (mChangeStep++ == ::sStepToOK) {
             nextTutorial();
         }
     } else {
@@ -182,7 +182,7 @@ void SurfRayTutorial::exeTutorialTurnLeftUpkeep() {
     if (isSuccessTurnLeft()) {
         mChangeStep = 0;
 
-        if (MR::isStep(this, sStepToSuccess)) {
+        if (MR::isStep(this, ::sStepToSuccess)) {
             MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT", _28);
 
             _28++;
@@ -190,7 +190,7 @@ void SurfRayTutorial::exeTutorialTurnLeftUpkeep() {
             nextTutorial();
             return;
         }
-    } else if (mChangeStep++ == sStepToOK) {
+    } else if (mChangeStep++ == ::sStepToOK) {
         prevTutorial();
         MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG");
         mSurfingGuidance->turnLeftReady();
@@ -220,7 +220,7 @@ void SurfRayTutorial::exeTutorialTurnRightStart() {
 
     MR::tryTalkForceWithoutDemoMarioPuppetable(mTalkCtrl);
 
-    if (MR::isGreaterStep(this, sStepTalk)) {
+    if (MR::isGreaterStep(this, ::sStepTalk)) {
         nextTutorial();
     }
 }
@@ -231,7 +231,7 @@ void SurfRayTutorial::exeTutorialTurnRightFailure() {
     }
 
     if (isSuccessTurnRight()) {
-        if (mChangeStep++ == sStepToOK) {
+        if (mChangeStep++ == ::sStepToOK) {
             nextTutorial();
         }
     } else {
@@ -255,7 +255,7 @@ void SurfRayTutorial::exeTutorialTurnRightUpkeep() {
     if (isSuccessTurnRight()) {
         mChangeStep = 0;
 
-        if (MR::isStep(this, sStepToSuccess)) {
+        if (MR::isStep(this, ::sStepToSuccess)) {
             MR::startSystemSE("SE_SY_SURF_TUTORIAL_GONEXT2", _28);
 
             _28++;
@@ -263,7 +263,7 @@ void SurfRayTutorial::exeTutorialTurnRightUpkeep() {
             nextTutorial();
             return;
         }
-    } else if (mChangeStep++ == sStepToOK) {
+    } else if (mChangeStep++ == ::sStepToOK) {
         prevTutorial();
         MR::startSystemSE("SE_SY_SURF_TUTORIAL_NG");
         mSurfingGuidance->turnRightReady();
@@ -299,7 +299,7 @@ void SurfRayTutorial::exeTutorialAllEnd() {
 }
 
 bool SurfRayTutorial::isSuccessStraight() const {
-    if (__fabsf(mPadAccel.x) < sPadAccelStraightMinX && __fabsf(mPadAccel.y) < sPadAccelStraightMinY) {
+    if (__fabsf(mPadAccel.x) < ::sPadAccelStraightMinX && __fabsf(mPadAccel.y) < ::sPadAccelStraightMinY) {
         return true;
     }
 

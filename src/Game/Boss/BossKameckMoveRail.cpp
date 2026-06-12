@@ -1,4 +1,7 @@
 #include "Game/Boss/BossKameckMoveRail.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
 
 BossKameckMoveRail::BossKameckMoveRail(const char* pName) : LiveActor(pName) {
     _8C = 0;

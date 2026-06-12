@@ -107,7 +107,7 @@ void YesNoController::exeSelecting() {
         if (mCursorSE != nullptr) {
             MR::startSystemSE(mCursorSE);
         } else {
-            MR::startSystemSE(sDefaultCursorSE);
+            MR::startSystemSE(::sDefaultCursorSE);
         }
 
         forceDeleteEffectAllIfExist();
@@ -118,7 +118,7 @@ void YesNoController::exeSelecting() {
         if (mCursorSE != nullptr) {
             MR::startSystemSE(mCursorSE);
         } else {
-            MR::startSystemSE(sDefaultCursorSE);
+            MR::startSystemSE(::sDefaultCursorSE);
         }
 
         forceDeleteEffectAllIfExist();
@@ -151,13 +151,13 @@ void YesNoController::exeDecided() {
             if (mYesSE != nullptr) {
                 MR::startSystemSE(mYesSE);
             } else {
-                MR::startSystemSE(sDefaultYesSE);
+                MR::startSystemSE(::sDefaultYesSE);
             }
         } else {
             if (mNoSE != nullptr) {
                 MR::startSystemSE(mNoSE);
             } else {
-                MR::startSystemSE(sDefaultNoSE);
+                MR::startSystemSE(::sDefaultNoSE);
             }
         }
     }

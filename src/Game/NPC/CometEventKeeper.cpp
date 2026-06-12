@@ -1,7 +1,11 @@
 #include "Game/NPC/CometEventKeeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/CometEventExecutorTimeLimit.hpp"
 #include "Game/Screen/GalaxyCometScreenFilter.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 struct GalaxyTimeLimitInfo {
     /* 0x0 */ const char* mGalaxyName;
@@ -24,7 +28,7 @@ void CometEventKeeper::init() {
     initCometStatus();
 
     if (isStartEvent("Red") || isStartEvent("Black")) {
-        mExecutorTimeLimit = new CometEventExecutorTimeLimit(getTimeLimitFromTable(sTimeLimitInfoTable, ARRAY_SIZE(sTimeLimitInfoTable)) / 60);
+        mExecutorTimeLimit = new CometEventExecutorTimeLimit(getTimeLimitFromTable(::sTimeLimitInfoTable, ARRAY_SIZE(::sTimeLimitInfoTable)) / 60);
         mExecutorTimeLimit->initWithoutIter();
         mExecutorTimeLimit->kill();
     }

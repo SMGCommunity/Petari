@@ -6,14 +6,24 @@
 #include "Game/Boss/TripodBossStepSequence.hpp"
 #include "Game/Gravity/GravityInfo.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
@@ -23,7 +33,7 @@
 namespace {
     static const char* sLegBoneNameTable[] = {"LeftLeg", "RightLeg", "BackLeg"};
 
-    static s32 sKillerGeneraterIncreaseSeTiming = 0x5A;
+    static s32 sKillerGeneraterIncreaseSeTiming = 90;
     static s32 sHeadExplodeSeTiming;
 
     static TVec3f sPowerStarOffset(0.0f, 3200.0f, 0.0f);
@@ -483,7 +493,7 @@ void TripodBoss::requestEndDamageDemo() {
     endDemo("ダメージ");
     setNerve(&NrvTripodBoss::TripodBossNrvWait::sInstance);
     TVec3f appearOffs;
-    mBodyMtx.mult(sAppearStarPieceOffset, appearOffs);
+    mBodyMtx.mult(::sAppearStarPieceOffset, appearOffs);
     TVec3f yDir;
     mBodyMtx.getYDir(yDir);
     MR::appearStarPieceToDirection(this, appearOffs, yDir, 24, 50.0f, 60.0f, false);
@@ -618,7 +628,7 @@ void TripodBoss::exeDamageDemo() {
 
     MR::startLevelSound(this, "SE_BM_LV_TRIPOD_SIREN");
     MR::startLevelSound(this, "SE_BM_LV_TRIPOD_MID_DEMO");
-    if (MR::isStep(this, sKillerGeneraterIncreaseSeTiming)) {
+    if (MR::isStep(this, ::sKillerGeneraterIncreaseSeTiming)) {
         MR::startSound(this, "SE_BM_TRIPOD_CANNON_APPEAR");
     }
 
@@ -643,7 +653,7 @@ void TripodBoss::exePainDemo() {
     if (MR::isStep(this, 90)) {
         TPos3f mtx(getBaseMtx());
         TVec3f v5;
-        mtx.mult(sEndMarioPosition, v5);
+        mtx.mult(::sEndMarioPosition, v5);
         mtx.mMtx[0][3] = v5.x;
         mtx.mMtx[1][3] = v5.y;
         mtx.mMtx[2][3] = v5.z;
@@ -692,7 +702,7 @@ void TripodBoss::exeExplosionDemo() {
         MR::tryRumblePadVeryStrongLong(this, 0);
     }
 
-    if (MR::isStep(this, sHeadExplodeSeTiming)) {
+    if (MR::isStep(this, ::sHeadExplodeSeTiming)) {
         MR::startSound(this, "SE_BM_TRIPOD_KILL_HEAD");
     }
 
@@ -864,7 +874,7 @@ void TripodBoss::calcDemoMovement() {
     mBodyMtx.getTrans(_5D4);
 
     for (u32 i = 0; i < 3; i++) {
-        MtxPtr jointMtx = MR::getJointMtx(this, sLegBoneNameTable[i]);
+        MtxPtr jointMtx = MR::getJointMtx(this, ::sLegBoneNameTable[i]);
         TPos3f v8(jointMtx);
         TVec3f v7;
         v8.getTrans(v7);

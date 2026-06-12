@@ -2,7 +2,11 @@
 #include "Game/Boss/TripodBossAccesser.hpp"
 #include "Game/Boss/TripodBossBreakMovement.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include <JSystem/JMath.hpp>
 

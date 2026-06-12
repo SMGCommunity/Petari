@@ -1,7 +1,7 @@
 #include "Game/Enemy/MoguStone.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
@@ -13,7 +13,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
 namespace {
@@ -211,7 +210,7 @@ void ThrowingIce::init(const JMapInfoIter& rIter) {
 }
 
 void ThrowingIce::emitIce(const TVec3f& arg1, const TVec3f& arg2, f32 arg3, const TVec3f& arg4) {
-    mPath->initFromUpVectorAddHeight(arg1, arg2, -arg4, hAddHeight);
+    mPath->initFromUpVectorAddHeight(arg1, arg2, -arg4, ::hAddHeight);
     _BC = arg3;
 
     TVec3f v2(arg2);

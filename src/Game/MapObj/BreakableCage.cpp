@@ -1,8 +1,10 @@
 #include "Game/MapObj/BreakableCage.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/PowerStar.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     Vec cHitSensorOffsetCage;
@@ -29,7 +31,7 @@ BreakableCage::BreakableCage(const char* pName) : LiveActor(pName) {
 /*
 void BreakableCage::init(const JMapInfoIter &rIter) {
     TVec3f stack_C;
-    stack_C.setInlinePS(cHitSensorOffsetCage);
+    stack_C.setInlinePS(::cHitSensorOffsetCage);
     const char* name;
     f32 v7 = 300.0f;
     stack_C.z = 0.0f;
@@ -46,7 +48,7 @@ void BreakableCage::init(const JMapInfoIter &rIter) {
     }
     else if (MR::isEqualString(name, "BreakableFixation")) {
         mCageType = CAGE_FIX;
-        stack_C.setInline(cHitSensorOffsetFixation);
+        stack_C.setInline(::cHitSensorOffsetFixation);
         v7 = 425.0f;
     }
     else if (MR::isEqualString(name, "BreakableTrash")) {

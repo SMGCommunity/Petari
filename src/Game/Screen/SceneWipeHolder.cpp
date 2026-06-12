@@ -40,14 +40,14 @@ namespace SceneWipeHolderFunction {
         return MR::getSceneObj< SceneWipeHolder >(SceneObj_SceneWipeHolder);
     }
 
-    void openWipe(const char* pWipeName, s32 step) {
+    void openWipe(const char* pWipeName, s32 frame) {
         getSceneWipeHolder()->forceClose(pWipeName);
-        getSceneWipeHolder()->wipe(nullptr, step);
+        getSceneWipeHolder()->wipe(nullptr, frame);
     }
 
-    void closeWipe(const char* pWipeName, s32 step) {
+    void closeWipe(const char* pWipeName, s32 frame) {
         getSceneWipeHolder()->forceOpen(pWipeName);
-        getSceneWipeHolder()->wipe(nullptr, step);
+        getSceneWipeHolder()->wipe(nullptr, frame);
     }
 
     void forceOpenWipe(const char* pWipeName) {

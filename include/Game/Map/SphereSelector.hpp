@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/LiveActorGroup.hpp"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class LiveActorGroup;
 class SphereSelectorHandle;

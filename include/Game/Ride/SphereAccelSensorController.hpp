@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Ride/SpherePadController.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 
 class SphereAccelSensorController : SpherePadController {
 public:

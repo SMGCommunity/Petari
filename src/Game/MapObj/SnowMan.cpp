@@ -1,8 +1,8 @@
 #include "Game/MapObj/SnowMan.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
@@ -31,8 +31,8 @@ SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
 SnowMan::~SnowMan() {
 }
 
-void SnowMan::init(const JMapInfoIter& rIfter) {
-    MR::initDefaultPos(this, rIfter);
+void SnowMan::init(const JMapInfoIter& rrIter) {
+    MR::initDefaultPos(this, rrIter);
     initModelManagerWithAnm("SnowMan", nullptr, false);
     MR::connectToSceneMapObjStrongLight(this);
     initHitSensor(2);
@@ -52,9 +52,9 @@ void SnowMan::init(const JMapInfoIter& rIfter) {
     mAnimScaleCtrl = new AnimScaleController(mAnimScaleParam);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
-    MR::useStageSwitchWriteA(this, rIfter);
-    MR::useStageSwitchWriteB(this, rIfter);
-    MR::useStageSwitchWriteDead(this, rIfter);
+    MR::useStageSwitchWriteA(this, rrIter);
+    MR::useStageSwitchWriteB(this, rrIter);
+    MR::useStageSwitchWriteDead(this, rrIter);
     initNerve(&NrvSnowMan::SnowManNrvWait::sInstance);
     makeActorAppeared();
 }

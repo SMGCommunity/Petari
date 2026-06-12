@@ -2,6 +2,8 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 
+class ActorCameraInfo;
+
 class CapsuleCage : public MapObjActor {
 public:
     CapsuleCage(const char*);

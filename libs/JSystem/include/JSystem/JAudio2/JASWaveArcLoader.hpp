@@ -31,11 +31,11 @@ struct JASWaveArc : JASDisposer {
     bool eraseSetup();
     static void loadToAramCallback(void*);
     bool sendLoadCmd();
-    bool load(JASHeap*);
+    inline bool load(JASHeap*) NO_INLINE; /* overwritten in OverwriteJAudio */
     bool loadTail(JASHeap*);
     bool erase();
     void setEntryNum(s32);
-    void setFileName(char const*);
+    inline void setFileName(char const*) NO_INLINE; /* overwritten in OverwriteJAudio */
 
     virtual ~JASWaveArc();
     virtual void onDispose();
@@ -59,7 +59,7 @@ struct JASWaveArc : JASDisposer {
         /* 0x0 */ JASWaveArc* mWavArc;
         /* 0x4 */ s32 mEntryNum;
         /* 0x8 */ u32 mBase;
-        /* 0xC */ u32 _c;
+        /* 0xC */ u32 _C;
     };
 
     /* 0x04 */ mutable JASHeap mHeap;
@@ -68,6 +68,6 @@ struct JASWaveArc : JASDisposer {
     /* 0x50 */ int mEntryNum;
     /* 0x54 */ u32 mFileLength;
     /* 0x58 */ u16 _58;
-    /* 0x5A */ u16 _5a;
+    /* 0x5A */ u16 _5A;
     /* 0x5C */ OSMutex mMutex;
 };

@@ -10,7 +10,7 @@ namespace {
 };  // namespace
 
 CountUpPaneRumbler::CountUpPaneRumbler(LayoutActor* pHost, const char* pPaneName) : mRumbleCalculator(nullptr), mPosition(0.0f, 0.0f) {
-    mRumbleCalculator = new RumbleCalculatorCosMultLinear(cRumbleFreq, HALF_PI, cRumbleAmp, cRumbleFrame);
+    mRumbleCalculator = new RumbleCalculatorCosMultLinear(::cRumbleFreq, HALF_PI, ::cRumbleAmp, ::cRumbleFrame);
 
     connectPane(pHost, pPaneName);
 }

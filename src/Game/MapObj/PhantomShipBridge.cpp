@@ -1,6 +1,8 @@
 #include "Game/MapObj/PhantomShipBridge.hpp"
 #include "Game/Animation/BckCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 namespace NrvPhantomShipBridge {

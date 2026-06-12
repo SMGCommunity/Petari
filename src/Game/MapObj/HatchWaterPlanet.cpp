@@ -1,6 +1,8 @@
 #include "Game/MapObj/HatchWaterPlanet.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvHatchWaterPlanet {
     NEW_NERVE(HatchWaterPlanetNrvWait, HatchWaterPlanet, Wait);

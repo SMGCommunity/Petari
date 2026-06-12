@@ -1,9 +1,14 @@
 #include "Game/Map/KoopaBattleMapStair.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace NrvKoopaBattleMapStair {
     NEW_NERVE(KoopaBattleMapStairNrvWaitSwitch, KoopaBattleMapStair, WaitSwitch);
@@ -128,19 +133,19 @@ f32 KoopaBattleMapStair::calcAndSetTargetPos(TVec3f* pPos, const TVec3f& a2) {
         val = _98;
         for (s32 i = 0; i < 8; i++) {
             TVec3f v31 = (v38 + (v39 * 600.0f) * offset_table[i]._0) + (v41 * 400.0f * offset_table[i]._4);
-            updateNearestPos(pPos, &v20, v31, a2, val, i);
+            ::updateNearestPos(pPos, &v20, v31, a2, val, i);
         }
     } else if (mIsStairTurn) {
         TVec3f v30 = v39 * 140.0f;
         TVec3f tmp = v38 + (v41 * 300.0f);
         TVec3f v27(tmp);
         JMathInlineVEC::PSVECSubtract(&v27, &v30, &v27);
-        updateNearestPos(pPos, &v20, v27, a2, -1, -1);
+        ::updateNearestPos(pPos, &v20, v27, a2, -1, -1);
     } else {
         val = _98;
         for (s32 i = 0; i < 8; i++) {
             TVec3f v21 = (v38 + (v39 * 300.0f) * offset_table[i]._0) + (v41 * 200.0f * offset_table[i]._4);
-            updateNearestPos(pPos, &v20, v21, a2, val, i);
+            ::updateNearestPos(pPos, &v20, v21, a2, val, i);
         }
     }
 

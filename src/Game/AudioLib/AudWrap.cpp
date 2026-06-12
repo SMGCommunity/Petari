@@ -1,17 +1,19 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/AudioLib/AudBgmMgr.hpp"
 #include "Game/AudioLib/AudRemixMgr.hpp"
+#include "Game/AudioLib/AudSoundInfo.hpp"
+#include "Game/AudioLib/AudSoundNameConverter.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 
 namespace AudWrap {
     AudSystem* getSystem() {
         return AudSystem::msBasic;
     }
-    /*
+
     AudSoundInfo* getSoundInfo() {
-        return JASGlobalInstance< JAUSoundInfo >::sInstance;
+        return static_cast< AudSoundInfo* >(JASGlobalInstance< JAUSoundInfo >::getInstance());
     }
-    */
+
     AudSceneMgr* getSceneMgr() {
         return getSystem()->mSceneMgr;
     }
@@ -21,11 +23,11 @@ namespace AudWrap {
     }
 
     AudBgm* getStageBgm() {
-        return getBgmMgr()->_0[0];
+        return getBgmMgr()->mCurrentBgm[0];
     }
 
     AudBgm* getSubBgm() {
-        return getBgmMgr()->_0[1];
+        return getBgmMgr()->mCurrentBgm[1];
     }
 
     JAISoundHandle* startStageBgm(u32 param1, bool param2) {

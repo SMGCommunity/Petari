@@ -9,15 +9,33 @@
 #include "Game/Boss/DinoPackunTailRoot.hpp"
 #include "Game/Boss/DinoPackunVs1.hpp"
 #include "Game/Boss/DinoPackunVs2.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/FootPrint.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static TVec3f sHeadHitOffset = TVec3f(140.0f, -110.0f, 0.0f);
@@ -82,11 +100,11 @@ void DinoPackun::init(const JMapInfoIter& rIter) {
     initSound(8, false);
     MR::onCalcGravity(this);
     initHitSensor(3);
-    MR::addHitSensorAtJointEnemy(this, "head", "Head", 8, 270.0f, sHeadHitOffset);
-    MR::addHitSensorEnemy(this, "body", 8, 200.f, sBodyHitOffset);
+    MR::addHitSensorAtJointEnemy(this, "head", "Head", 8, 270.0f, ::sHeadHitOffset);
+    MR::addHitSensorEnemy(this, "body", 8, 200.f, ::sBodyHitOffset);
 
     if (mSequence->isUseEggShell()) {
-        MR::addHitSensorEnemy(this, "egg", 8, 400.0f, sEggHitOffset);
+        MR::addHitSensorEnemy(this, "egg", 8, 400.0f, ::sEggHitOffset);
     }
 
     initBinder(150.0f, 150.0f, 0);
@@ -209,7 +227,7 @@ void DinoPackun::initCamera(const JMapInfoIter& rIter) {
     MR::initAnimCamera(this, mCameraInfo, "CryDemo");
     MR::initAnimCamera(this, mCameraInfo, "AngryDemo");
     MR::initAnimCamera(this, mCameraInfo, "DownDemo");
-    MR::initMultiActorCamera(this, rIter, &mCameraInfo, sEventCameraName);
+    MR::initMultiActorCamera(this, rIter, &mCameraInfo, ::sEventCameraName);
     MR::getJMapInfoArg7WithInit(rIter, &_F4);
 
     if (_F4 != -1) {
@@ -472,7 +490,7 @@ void DinoPackun::resetPosition() {
     TPos3f v28;
     v28.setQT(_BC, mPosition);
     TVec3f v27;
-    v28.mult(sMarioSetLocalPos, v27);
+    v28.mult(::sMarioSetLocalPos, v27);
     TVec3f v26;
     MR::calcGravityVector(this, v27, &v26, nullptr, 0);
 
@@ -554,13 +572,13 @@ void DinoPackun::endDemo(const char* pName) {
 
 void DinoPackun::startDamageCamera() {
     CameraTargetArg arg(nullptr, mCamTargetMtx, nullptr, nullptr);
-    MR::startMultiActorCameraTargetOther(this, mCameraInfo, sEventCameraName, arg, -1);
+    MR::startMultiActorCameraTargetOther(this, mCameraInfo, ::sEventCameraName, arg, -1);
     _10C = 0;
 }
 
 void DinoPackun::endDamageCamera() {
     if (_10C != -1) {
-        MR::endMultiActorCamera(this, mCameraInfo, sEventCameraName, false, -1);
+        MR::endMultiActorCamera(this, mCameraInfo, ::sEventCameraName, false, -1);
         _10C = -1;
     }
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Enemy/CannonShellBase.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 class KoopaJrShipCannonMainShell : public CannonShellBase {
 public:

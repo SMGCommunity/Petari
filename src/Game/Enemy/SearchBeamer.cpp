@@ -1,6 +1,8 @@
 #include "Game/Enemy/SearchBeamer.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 namespace NrvSearchBeamer {
     NEW_NERVE(SearchBeamerNrvNonActive, SearchBeamer, NonActive);

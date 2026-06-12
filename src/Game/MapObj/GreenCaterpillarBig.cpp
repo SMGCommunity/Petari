@@ -1,4 +1,7 @@
 #include "Game/MapObj/GreenCaterpillarBig.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvGreenCaterpillarBig {
     NEW_NERVE(GreenCaterpillarBigNrvHide, GreenCaterpillarBig, Hide);

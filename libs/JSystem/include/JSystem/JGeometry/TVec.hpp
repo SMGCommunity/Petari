@@ -355,10 +355,13 @@ namespace JGeometry {
 
         TVec3 operator+(const TVec3& op) const {
             TVec3 ret(*this);
-            JMathInlineVEC::PSVECAdd(&ret, &op, &ret);
+            ret += op;
             return ret;
         }
-        TVec3& operator+=(const TVec3& op);
+
+        void operator+=(const TVec3& op) {
+            JMathInlineVEC::PSVECAdd(this, &op, this);
+        }
 
         // Needs to be part of TVec to schedule instructions correctly in CubeGravity
         // Also, this seems like it should be merged with operator+(), but then how is
@@ -388,6 +391,12 @@ namespace JGeometry {
             return ret;
         }
 
+        inline TVec3 addOtherInline2(const TVec3& op) const {
+            TVec3 ret(*this);
+            JMathInlineVEC::PSVECAdd(&ret, &op, &ret);
+            return ret;
+        }
+
         TVec3 operator*(f32 scalar) const NO_INLINE {
             TVec3 ret(*this);
             ret.x *= scalar;
@@ -397,6 +406,10 @@ namespace JGeometry {
         }
 
         TVec3& operator*=(f32);
+
+        void operator*=(const TVec3& op) {
+            mulInternal(&this->x, &op.x, &this->x);
+        }
 
         // Same reason to expect to merge as translate()
         TVec3 multiplyOperatorInline(f32 scalar) const {
@@ -529,6 +542,12 @@ namespace JGeometry {
             x = val;
             y = val;
             z = val;
+        }
+
+        inline void set2(f32 val) {
+            z = val;
+            y = val;
+            x = val;
         }
 
 #ifdef __MWERKS__
@@ -747,6 +766,10 @@ namespace JGeometry {
 #endif
 
         void zero();
+
+        inline void zeroInline() {
+            x = y = z = 0;
+        }
 
         bool isZero() const {
             return squared() <= 0.0000038146973f;

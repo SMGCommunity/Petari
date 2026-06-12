@@ -1,5 +1,7 @@
 #include "Game/MapObj/SpiderThreadRadialLine.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/SpiderThreadMainPoint.hpp"
+#include "Game/Util.hpp"
 
 SpiderThreadRadialLine::SpiderThreadRadialLine(int bufferSize) : mBufferSize(bufferSize), mNumPoints(0), mPoints(nullptr) {
     mPoints = new SpiderThreadMainPoint*[mBufferSize];

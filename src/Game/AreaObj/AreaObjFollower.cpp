@@ -1,4 +1,5 @@
 #include "Game/AreaObj/AreaObjFollower.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 AreaObjFollower::AreaObjFollower(AreaObj* pAreaObj, const JMapInfoIter& rIter) : BaseMatrixFollower(pAreaObj, rIter) {
     mObj = pAreaObj;

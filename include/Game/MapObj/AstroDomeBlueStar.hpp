@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class GCaptureRibbon;
 

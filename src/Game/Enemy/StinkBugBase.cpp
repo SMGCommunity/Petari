@@ -1,6 +1,5 @@
 #include "Game/Enemy/StinkBugBase.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -11,7 +10,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JMath/JMath.hpp"
 

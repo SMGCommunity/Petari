@@ -1,8 +1,12 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Demo/DemoDirector.hpp"
+#include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace MR {
     bool tryRegisterDemoCast(LiveActor* pActor, const JMapInfoIter& rIter) {
@@ -263,7 +267,7 @@ namespace MR {
     }
 
     bool isSystemTalking() {
-        if (isExistSceneObj(0x19) == false) {
+        if (isExistSceneObj(SceneObj_TalkDirector) == false) {
             return false;
         } else {
             return getSceneObj< TalkDirector >(SceneObj_TalkDirector)->isSystemTalking();
@@ -271,7 +275,7 @@ namespace MR {
     }
 
     bool isNormalTalking() {
-        if (isExistSceneObj(0x19) == false) {
+        if (isExistSceneObj(SceneObj_TalkDirector) == false) {
             return false;
         } else {
             return getSceneObj< TalkDirector >(SceneObj_TalkDirector)->isNormalTalking();
@@ -279,7 +283,7 @@ namespace MR {
     }
 
     LiveActor* getTalkingActor() {
-        if (isExistSceneObj(0x19) == false) {
+        if (isExistSceneObj(SceneObj_TalkDirector) == false) {
             return false;
         } else {
             return getSceneObj< TalkDirector >(SceneObj_TalkDirector)->getTalkingActor();

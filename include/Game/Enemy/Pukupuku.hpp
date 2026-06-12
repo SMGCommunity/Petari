@@ -2,6 +2,9 @@
 
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class ParabolicPath;
 class ValueControl;

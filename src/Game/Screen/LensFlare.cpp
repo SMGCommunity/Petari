@@ -3,8 +3,10 @@
 #include "Game/MapObj/BrightObj.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/DrawSyncManager.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/TriggerChecker.hpp"
 
 namespace {
@@ -230,16 +232,16 @@ namespace MR {
             MR::createSceneObj(SceneObj_LensFlareDirector);
         }
 
-        getLensFlareDirector()->mBrightObjArray.push_back(pBrightObj);
+        ::getLensFlareDirector()->mBrightObjArray.push_back(pBrightObj);
     }
 
     void setLensFlareDrawSyncToken() {
         if (MR::isExistSceneObj(SceneObj_LensFlareDirector)) {
-            getLensFlareDirector()->setDrawSyncToken();
+            ::getLensFlareDirector()->setDrawSyncToken();
         }
     }
 
     u16 getLensFlareDrawSyncTokenIndex() {
-        return getLensFlareDirector()->mDrawSyncTokenIndex;
+        return ::getLensFlareDirector()->mDrawSyncTokenIndex;
     }
 };  // namespace MR

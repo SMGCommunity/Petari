@@ -4,6 +4,10 @@
 #include "Game/Map/PlanetMap.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 TombSpiderEnvironment::TombSpiderEnvironment(LiveActor* pActor) : mActor(pActor), mPlanet(nullptr), mCocoon(nullptr) {
     MR::setEffectHostSRT(mActor, "Noctiluca", MR::getPlayerPos(), nullptr, nullptr);

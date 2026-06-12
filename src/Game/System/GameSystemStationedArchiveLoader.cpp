@@ -1,6 +1,5 @@
 #include "Game/System/GameSystemStationedArchiveLoader.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ResourceHolder.hpp"
@@ -10,6 +9,7 @@
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 

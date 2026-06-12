@@ -1,5 +1,15 @@
 #include "Game/Boss/KoopaFireStairs.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/KoopaBattleMapStair.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
 namespace NrvKoopaFireStairs {
@@ -8,34 +18,35 @@ namespace NrvKoopaFireStairs {
 };  // namespace NrvKoopaFireStairs
 
 KoopaFireStairs::~KoopaFireStairs() {
-    return;
 }
 
-KoopaFireStairs::KoopaFireStairs(const char* pName, bool a2) : LiveActor(pName) {
-    _8C = a2;
-    mStair = nullptr;
-    _94.set(0.0f, 0.0f, 1.0f);
-    _A0.set(0.0f);
-    _AC.set(0.0f, 1.0f, 0.0f);
-    mBreakModel = nullptr;
+KoopaFireStairs::KoopaFireStairs(const char* pName, bool a2)
+    : LiveActor(pName), mIsKoopaJr(a2), mStair(), _94(0.0f, 0.0f, 1.0f), _A0(0.0f, 0.0f, 0.0f), _AC(0.0f, 1.0f, 0.0f), mBreakModel() {
 }
 
 void KoopaFireStairs::init(const JMapInfoIter& rIteR) {
     initModelManagerWithAnm("MeteorStrike", nullptr, false);
     MR::startBrk(this, "MeteorStrike");
+
     MR::connectToSceneEnemy(this);
+
     initHitSensor(1);
     MR::addHitSensorEnemyAttack(this, "Fire", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(1, nullptr, false);
+
     MR::addEffectHitNormal(this, "Hit");
     MR::setEffectBaseScale(this, "Hit", 2.0f);
+
     initSound(4, false);
     MR::initShadowVolumeSphere(this, 60.0f);
     initNerve(&NrvKoopaFireStairs::KoopaFireStairsNrvFly::sInstance);
+
     MR::invalidateClipping(this);
+
     mBreakModel = MR::createModelObjEnemy("クッパメテオ（壊れ）", "MeteorStrikeBreak", getBaseMtx());
     mBreakModel->kill();
     MR::invalidateClipping(mBreakModel);
+
     makeActorDead();
 }
 
@@ -44,7 +55,7 @@ void KoopaFireStairs::appear() {
     MR::showModel(this);
     MR::emitEffect(this, "MeteorStrike");
 
-    if (_8C) {
+    if (mIsKoopaJr) {
         MR::startSound(this, "SE_BM_KOOPAJR_SHIP_METEORSHOT_F");
     } else {
         MR::startSound(this, "SE_OJ_KOOPA_FIRE_SHOT");
@@ -60,38 +71,38 @@ void KoopaFireStairs::makeActorDead() {
 
 void KoopaFireStairs::setInfo(const KoopaBattleMapStair* pStair, const TVec3f* a2) {
     mStair = pStair;
-    _A0.set< f32 >(mPosition);
+
+    _A0.set(mPosition);
+
     MR::calcGravity(this);
 
     if (a2 != nullptr) {
-        TVec3f v13 = mStair->mPosition - _A0;
-        TVec3f v12 = mStair->_AC - _A0;
-        TVec3f v11;
-        PSVECCrossProduct(&v13, &v12, &v11);
+        TVec3f vec1 = mStair->mPosition - _A0;
+        TVec3f vec2 = mStair->_AC - _A0;
+        TVec3f vec;
+        vec.cross(vec1, vec2);
 
-        f32 deg;
-
-        if (v11.dot(mGravity) > 0.0f) {
-            deg = MR::getRandom(0.0f, 45.0f);
-            MR::rotateVecDegree(&_AC, *a2, deg);
+        if (vec.dot(pStair->mGravity) > 0.0f) {
+            MR::rotateVecDegree(&_AC, *a2, MR::getRandom(0.0f, 45.0f));
         } else {
-            deg = MR::getRandom(-45.0f, 0.0f);
-            MR::rotateVecDegree(&_AC, *a2, deg);
+            MR::rotateVecDegree(&_AC, *a2, MR::getRandom(-45.0f, 0.0f));
         }
     }
 
-    if (_8C) {
+    if (mIsKoopaJr) {
         mVelocity.zero();
-        _94.set< f32 >(mStair->_AC - _A0);
+
+        _94.set(mStair->_AC - _A0);
         MR::normalize(&_94);
     } else {
         s32 breakTime = mStair->calcRemainTimeToBreak();
         TVec3f v10 = mStair->_AC - mPosition;
-        f32 v8 = v10.length();
-        mVelocity.set< f32 >(v10);
+        f32 length = v10.length();
+
+        mVelocity.set(v10);
         MR::normalize(&mVelocity);
-        _94.set< f32 >(mVelocity);
-        mVelocity.scale(v8 / (breakTime - 1));
+        _94.set(mVelocity);
+        mVelocity.scale(length / (breakTime - 1));
     }
 }
 
@@ -110,7 +121,7 @@ void KoopaFireStairs::exeFly() {
         MR::hideModel(this);
         setNerve(&NrvKoopaFireStairs::KoopaFireStairsNrvBreak::sInstance);
     } else {
-        if (_8C) {
+        if (mIsKoopaJr) {
             TVec3f v14(mPosition);
             f32 rate = mStair->calcTimeRate();
             TVec3f v10(mStair->_AC);

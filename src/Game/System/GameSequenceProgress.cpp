@@ -1,7 +1,6 @@
 #include "Game/System/GameSequenceProgress.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/PlayerMissLeft.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/FindingLuigiEventScheduler.hpp"
 #include "Game/System/GalaxyCometScheduler.hpp"
 #include "Game/System/GalaxyMoveArgument.hpp"
@@ -20,6 +19,7 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
@@ -197,7 +197,7 @@ void GameSequenceProgress::exeNormal() {
 
 void GameSequenceProgress::exeGalaxyMove() {
     if (_24) {
-        if (MR::isStep(this, sTimingPlayingTicoSE)) {
+        if (MR::isStep(this, ::sTimingPlayingTicoSE)) {
             MR::startSystemSE("SE_SY_TICO_WAKE_PLAYER");
         }
     }

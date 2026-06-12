@@ -1,7 +1,10 @@
 #pragma once
 
-#include "Game/LiveActor/FlashingCtrl.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+
+class ActorCameraInfo;
+class FlashingCtrl;
 
 class BenefitItemObj : public LiveActor {
 public:

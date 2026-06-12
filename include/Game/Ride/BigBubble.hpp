@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/Color.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
 
 class OctahedronBezierSurface;
 class BigBubbleMoveLimitter;

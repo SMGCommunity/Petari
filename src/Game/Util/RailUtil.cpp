@@ -280,11 +280,11 @@ namespace MR {
 
         for (s32 idx = 1; idx < numPoints; idx++) {
             pRailRider->setCoord(delta * idx);
-            updateBoundingBox(pRailRider, pBox);
+            ::updateBoundingBox(pRailRider, pBox);
         }
 
         pRailRider->setCoord(pRailRider->getTotalLength());
-        updateBoundingBox(pRailRider, pBox);
+        ::updateBoundingBox(pRailRider, pBox);
         pRailRider->setCoord(coord);
     }
 
@@ -689,118 +689,118 @@ namespace {
 namespace MR {
     bool getRailPointArg0WithInit(const LiveActor* pActor, s32 index, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getPointArgS32WithInit(getRailPointArgName(0), pArg, index);
+        return railRider->getPointArgS32WithInit(::getRailPointArgName(0), pArg, index);
     }
 
     bool getRailPointArg2WithInit(const LiveActor* pActor, s32 index, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getPointArgS32WithInit(getRailPointArgName(2), pArg, index);
+        return railRider->getPointArgS32WithInit(::getRailPointArgName(2), pArg, index);
     }
 
     bool getRailPointArg0NoInit(const LiveActor* pActor, s32 index, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getPointArgS32NoInit(getRailPointArgName(0), pArg, index);
+        return railRider->getPointArgS32NoInit(::getRailPointArgName(0), pArg, index);
     }
 
     bool getRailPointArg1NoInit(const LiveActor* pActor, s32 index, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getPointArgS32NoInit(getRailPointArgName(1), pArg, index);
+        return railRider->getPointArgS32NoInit(::getRailPointArgName(1), pArg, index);
     }
 
     bool getRailPointArg4NoInit(const LiveActor* pActor, s32 index, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getPointArgS32NoInit(getRailPointArgName(4), pArg, index);
+        return railRider->getPointArgS32NoInit(::getRailPointArgName(4), pArg, index);
     }
 
     bool getRailPointArg6NoInit(const LiveActor* pActor, s32 index, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getPointArgS32NoInit(getRailPointArgName(6), pArg, index);
+        return railRider->getPointArgS32NoInit(::getRailPointArgName(6), pArg, index);
     }
 
     bool getRailPointArg7NoInit(const LiveActor* pActor, s32 index, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getPointArgS32NoInit(getRailPointArgName(7), pArg, index);
+        return railRider->getPointArgS32NoInit(::getRailPointArgName(7), pArg, index);
     }
 
     bool getRailPointArg2WithInit(const LiveActor* pActor, s32 index, f32* pArg) {
-        return getRailPointArgF32WithInit(pActor, 2, index, pArg);
+        return ::getRailPointArgF32WithInit(pActor, 2, index, pArg);
     }
 
     bool getRailPointArg3WithInit(const LiveActor* pActor, s32 index, f32* pArg) {
-        return getRailPointArgF32WithInit(pActor, 3, index, pArg);
+        return ::getRailPointArgF32WithInit(pActor, 3, index, pArg);
     }
 
     bool getRailPointArg0NoInit(const LiveActor* pActor, s32 index, f32* pArg) {
-        return getRailPointArgF32NoInit(pActor, 0, index, pArg);
+        return ::getRailPointArgF32NoInit(pActor, 0, index, pArg);
     }
 
     bool getRailPointArg1NoInit(const LiveActor* pActor, s32 index, f32* pArg) {
-        return getRailPointArgF32NoInit(pActor, 1, index, pArg);
+        return ::getRailPointArgF32NoInit(pActor, 1, index, pArg);
     }
 
     bool getCurrentRailPointArg0WithInit(const LiveActor* pActor, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getCurrentPointArgS32WithInit(getRailPointArgName(0), pArg);
+        return railRider->getCurrentPointArgS32WithInit(::getRailPointArgName(0), pArg);
     }
 
     bool getCurrentRailPointArg1WithInit(const LiveActor* pActor, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getCurrentPointArgS32WithInit(getRailPointArgName(1), pArg);
+        return railRider->getCurrentPointArgS32WithInit(::getRailPointArgName(1), pArg);
     }
 
     bool getCurrentRailPointArg0NoInit(const LiveActor* pActor, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getCurrentPointArgS32NoInit(getRailPointArgName(0), pArg);
+        return railRider->getCurrentPointArgS32NoInit(::getRailPointArgName(0), pArg);
     }
 
     bool getCurrentRailPointArg1NoInit(const LiveActor* pActor, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getCurrentPointArgS32NoInit(getRailPointArgName(1), pArg);
+        return railRider->getCurrentPointArgS32NoInit(::getRailPointArgName(1), pArg);
     }
 
     bool getCurrentRailPointArg5NoInit(const LiveActor* pActor, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getCurrentPointArgS32NoInit(getRailPointArgName(5), pArg);
+        return railRider->getCurrentPointArgS32NoInit(::getRailPointArgName(5), pArg);
     }
 
     bool getCurrentRailPointArg7NoInit(const LiveActor* pActor, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getCurrentPointArgS32NoInit(getRailPointArgName(7), pArg);
+        return railRider->getCurrentPointArgS32NoInit(::getRailPointArgName(7), pArg);
     }
 
     bool getCurrentRailPointArg0WithInit(const LiveActor* pActor, f32* pArg) {
-        return getRailCurrentPointArgF32WithInit(pActor, 0, pArg);
+        return ::getRailCurrentPointArgF32WithInit(pActor, 0, pArg);
     }
 
     bool getCurrentRailPointArg0NoInit(const LiveActor* pActor, f32* pArg) {
-        return getRailCurrentPointArgF32NoInit(pActor, 0, pArg);
+        return ::getRailCurrentPointArgF32NoInit(pActor, 0, pArg);
     }
 
     bool getCurrentRailPointArg1NoInit(const LiveActor* pActor, f32* pArg) {
-        return getRailCurrentPointArgF32NoInit(pActor, 1, pArg);
+        return ::getRailCurrentPointArgF32NoInit(pActor, 1, pArg);
     }
 
     bool getNextRailPointArg0WithInit(const LiveActor* pActor, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getNextPointArgS32WithInit(getRailPointArgName(0), pArg);
+        return railRider->getNextPointArgS32WithInit(::getRailPointArgName(0), pArg);
     }
 
     bool getNextRailPointArg1NoInit(const LiveActor* pActor, s32* pArg) {
         RailRider* railRider = pActor->mRailRider;
-        return railRider->getNextPointArgS32NoInit(getRailPointArgName(1), pArg);
+        return railRider->getNextPointArgS32NoInit(::getRailPointArgName(1), pArg);
     }
 
     bool getNextRailPointArg0NoInit(const LiveActor* pActor, f32* pArg) {
-        return getRailNextPointArgF32NoInit(pActor, 0, pArg);
+        return ::getRailNextPointArgF32NoInit(pActor, 0, pArg);
     }
 
     bool getNextRailPointArg1NoInit(const LiveActor* pActor, f32* pArg) {
-        return getRailNextPointArgF32NoInit(pActor, 1, pArg);
+        return ::getRailNextPointArgF32NoInit(pActor, 1, pArg);
     }
 
     bool getNextRailPointArg2WithInit(const LiveActor* pActor, bool* pArg) {
         *pArg = false;
-        return getRailNextPointArgBoolNoInit(pActor, 2, pArg);
+        return ::getRailNextPointArgBoolNoInit(pActor, 2, pArg);
     }
 
     bool getRailArg0WithInit(const LiveActor* pActor, s32* pArg) {

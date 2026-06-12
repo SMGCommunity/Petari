@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class JMapIdInfo;
+
 class ArrowSwitchTarget : public NameObj {
 public:
     ArrowSwitchTarget(const char*);

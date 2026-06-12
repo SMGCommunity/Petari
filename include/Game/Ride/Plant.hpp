@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Ride/PlantLeaf.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
+class ActorCameraInfo;
+class J3DShapeDraw;
+class PartsModel;
 class PlantStalk;
 class PlantLeaf;
 
@@ -29,7 +30,7 @@ public:
     void exeGrowUp();
     void exeHangWaitGrowUp();
     void exeHangUpGrowUp();
-    void exeGrowthStop();  /// ookay
+    void exeGrowthStop();
     void exeGrowthWait();
     void exeGrowthWaitInvalid();
     void exeHangStart();
@@ -59,7 +60,7 @@ public:
     /* 0xC8 */ TPos3f mTopMtx;
 
     /* 0xF8 */ s32 mNumLeaves;
-    /* 0xF8 */ PlantLeaf** mLeaves;
+    /* 0xFC */ PlantLeaf** mLeaves;
     /* 0x100 */ J3DShapeDraw* mShapeDraw;
     /* 0x104 */ LiveActor* mRider;
     /* 0x108 */ f32 mRailCoord;

@@ -3,7 +3,7 @@
 
 BossKameckSequencer::BossKameckSequencer(const char* pName) : NerveExecutor(pName) {
     mBossKameck = nullptr;
-    _C = 0;
+    _C = nullptr;
     mBattleDemo = nullptr;
 }
 

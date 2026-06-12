@@ -7,13 +7,21 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include "revolution/mtx.h"
-#include "revolution/types.h"
 
 namespace NrvBasaBasa {
     NEW_NERVE(BasaBasaNrvWait, BasaBasa, Wait);

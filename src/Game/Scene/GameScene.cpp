@@ -2,6 +2,7 @@
 #include "Game/AudioLib/AudSceneMgr.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/LightFunction.hpp"
 #include "Game/Map/SleepControllerHolder.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
@@ -250,10 +251,10 @@ void GameScene::exeScenarioOpeningCamera() {
 }
 
 void GameScene::exeCometRetryAfterMiss() {
-    CometRetryButton* pCometRetryButton = getCometRetryButton();
+    CometRetryButton* pCometRetryButton = ::getCometRetryButton();
 
     if (MR::isFirstStep(this)) {
-        getCometRetryButton()->appear();
+        ::getCometRetryButton()->appear();
         MR::forceOpenWipeCircle();
     }
 
@@ -461,7 +462,7 @@ void GameScene::startStagePlayFirst() {
         } else if (MR::isStageBeginWithoutWipe()) {
             MR::forceOpenWipeFade();
         } else {
-            MR::openWipeCircle(-1);
+            MR::openWipeCircle();
         }
 
         MR::stopSubBGM(0);
@@ -473,7 +474,7 @@ void GameScene::startStagePlayFirst() {
 }
 
 void GameScene::startStagePlayRetry() {
-    MR::openWipeCircle(-1);
+    MR::openWipeCircle();
 
     if (MR::isEqualStageName("SurfingLv1Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
         MR::stopSubBGM(0);

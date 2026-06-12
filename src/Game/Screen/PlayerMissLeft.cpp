@@ -74,13 +74,13 @@ void PlayerMissLeft::exeAppear() {
 }
 
 void PlayerMissLeft::exeWait() {
-    if (MR::isStep(this, hCountDownTime)) {
+    if (MR::isStep(this, ::hCountDownTime)) {
         MR::setTextBoxNumberRecursive(this, "CenterPlayerLeft", MR::getPlayerLeft());
         mPaneRumbler->start();
         MR::startSystemSE("SE_SY_PLAYER_LEFT_DEC");
     }
 
-    if (MR::isGreaterStep(this, hEndTime)) {
+    if (MR::isGreaterStep(this, ::hEndTime)) {
         setNerve(&NrvPlayerMissLeft::HostTypeNrvEnd::sInstance);
     }
 }

@@ -2,8 +2,6 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 
-class MapObjActorInitInfo;
-
 class LavaShellTower : public MapObjActor {
 public:
     LavaShellTower(const char*);

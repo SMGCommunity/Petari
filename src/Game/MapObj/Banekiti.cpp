@@ -1,4 +1,9 @@
 #include "Game/MapObj/Banekiti.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvBanekiti {
     NEW_NERVE(BanekitiNrvWait, Banekiti, Wait);

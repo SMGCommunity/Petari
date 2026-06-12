@@ -3,11 +3,14 @@
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/KoopaJr.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
@@ -56,7 +59,7 @@ void DemoKoopaJrShip::init(const JMapInfoIter& rIter) {
 void DemoKoopaJrShip::appear() {
     LiveActor::appear();
     setNerve(&::DemoKoopaJrShipNrvAppear::sInstance);
-    mKoopaJrObj->mPosition.set(sKoopaJrPos);
+    mKoopaJrObj->mPosition.set(::sKoopaJrPos);
 }
 
 void DemoKoopaJrShip::exeAppear() {
@@ -112,7 +115,7 @@ void DemoKoopaJrShip::exeFlyAway() {
 
     if (tryDemoEnd()) {
         if (mAnimCameraIndex >= 0) {
-            ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+            ActorCameraInfo cameraInfo = ActorCameraInfo();
         }
 
         mKoopaJrObj->kill();
@@ -135,12 +138,12 @@ void DemoKoopaJrShip::control() {
 void DemoKoopaJrShip::initAnimID(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mAnimCameraIndex);
 
-    if (mAnimCameraIndex >= ARRAY_SIZEU(sAnim)) {
+    if (mAnimCameraIndex >= ARRAY_SIZEU(::sAnim)) {
         mAnimCameraIndex = -1;
     }
 
     if (mAnimCameraIndex >= 0) {
-        ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
 
         MR::initAnimCamera(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mEntryAnimName);
         MR::initAnimCamera(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mLeaveAnimName);
@@ -163,7 +166,7 @@ void DemoKoopaJrShip::startEntryAnim() {
     } else {
         MR::startBck(this, ::sAnim[mAnimCameraIndex].mEntryAnimName, nullptr);
 
-        ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
         MR::startAnimCameraTargetSelf(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mEntryAnimName, 0, 1.0f);
     }
 }
@@ -176,7 +179,7 @@ void DemoKoopaJrShip::startLeaveAnim() {
     } else {
         MR::startBck(this, ::sAnim[mAnimCameraIndex].mLeaveAnimName, nullptr);
 
-        ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
         MR::startAnimCameraTargetSelf(this, &cameraInfo, ::sAnim[mAnimCameraIndex].mLeaveAnimName, 0, 1.0f);
     }
 }

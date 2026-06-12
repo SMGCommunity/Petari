@@ -2,8 +2,19 @@
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 // GX function that is included as a local symbol for some reason
 extern "C" {

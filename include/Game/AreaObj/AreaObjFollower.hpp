@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/AreaObj/AreaObj.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 
 class AreaObjFollower : public BaseMatrixFollower {

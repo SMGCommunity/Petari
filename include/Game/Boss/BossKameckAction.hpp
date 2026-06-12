@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 
 class BossKameck;
+class HitSensor;
 
 class BossKameckAction : public ActorStateBase< BossKameck > {
 public:

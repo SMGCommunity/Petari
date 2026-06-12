@@ -1,14 +1,16 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Map/FileSelectIconID.hpp"
 #include "Game/System/NerveExecutor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class FileSelectIconID;
 class FileSelectItem;
-class FileSelectModel;
-class MiiFaceParts;
-class FileSelectNumber;
 class FileSelectItemDelegatorBase;
+class FileSelectModel;
+class FileSelectNumber;
+class MiiFaceParts;
+class PartsModel;
 
 namespace FileSelectItemSub {
     class ScaleController : public NerveExecutor {

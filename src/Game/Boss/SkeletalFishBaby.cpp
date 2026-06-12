@@ -3,8 +3,20 @@
 #include "Game/Boss/SkeletalFishRailControl.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include <cstdio>
 
 namespace {
@@ -83,8 +95,9 @@ void SkeletalFishBaby::init(const JMapInfoIter& rIter) {
         mStarPieceTargets[i] = new LiveActor("StarPointerTargetDummy");
         mStarPieceTargets[i]->makeActorDead();
 
-        TVec3f ptrTarget(sStarPointerTargetOffset[i]);
-        MR::initStarPointerTargetAtMtx(mStarPieceTargets[i], sStarPointerTargetSize[i], MR::getJointMtx(this, sStarPointerTargetJoint[i]), ptrTarget);
+        TVec3f ptrTarget(::sStarPointerTargetOffset[i]);
+        MR::initStarPointerTargetAtMtx(mStarPieceTargets[i], ::sStarPointerTargetSize[i], MR::getJointMtx(this, ::sStarPointerTargetJoint[i]),
+                                       ptrTarget);
     }
 }
 

@@ -26,7 +26,7 @@ namespace {
 };  // namespace
 
 OdhConverter::OdhConverter()
-    : LayoutActor("ODH-jpeg変換", true), mCaptureWidth(cCaptureWidth), mCaptureHeight(cCaptureHeight), mLimitSize(cLimitSize),
+    : LayoutActor("ODH-jpeg変換", true), mCaptureWidth(::cCaptureWidth), mCaptureHeight(::cCaptureHeight), mLimitSize(::cLimitSize),
       mIsRequestedCapture(false), mImage(nullptr), mCaptureImage(nullptr) {
 }
 
@@ -49,14 +49,14 @@ void OdhConverter::convert() {
     pRenderModeObj = JUTVideo::getManager()->getRenderMode();
 
     GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, GX_FALSE, pRenderModeObj->vfilter);
-    GXSetTexCopySrc(cTexPosX, cTexPosY, mCaptureWidth, mCaptureHeight);
+    GXSetTexCopySrc(::cTexPosX, ::cTexPosY, mCaptureWidth, mCaptureHeight);
     GXSetTexCopyDst(mCaptureWidth, mCaptureHeight, GX_TF_RGB565, GX_FALSE);
     GXCopyTex(pScreenTexImage, GX_FALSE);
     GXDrawDone();
     GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, GX_TRUE, pRenderModeObj->vfilter);
     DCStoreRange(pScreenTexImage, mCaptureWidth * mCaptureHeight * 2);
 
-    mImageSize = ODHEncodeRGB565(pScreenTexImage, mImage, mCaptureWidth, mCaptureHeight, mLimitSize, cQuality, mCaptureImage);
+    mImageSize = ODHEncodeRGB565(pScreenTexImage, mImage, mCaptureWidth, mCaptureHeight, mLimitSize, ::cQuality, mCaptureImage);
 }
 
 namespace MR {
@@ -65,7 +65,7 @@ namespace MR {
     }
 
     void requestCaptureOdhImage() {
-        return getConverter()->requestCapture();
+        return ::getConverter()->requestCapture();
     }
 
     bool isRequestedCaptureOdhImage() {
@@ -73,11 +73,11 @@ namespace MR {
             return false;
         }
 
-        return getConverter()->isRequestedCapture();
+        return ::getConverter()->isRequestedCapture();
     }
 
     void captureOdhImage() {
-        getConverter()->capture();
+        ::getConverter()->capture();
     }
 
     void setPortCaptureOdhImage() {
@@ -87,8 +87,8 @@ namespace MR {
         f32 top;
         f32 left;
 
-        top = getFrameBufferHeight() * 0.5f - cCaptureOffsetX;
-        left = -getFrameBufferWidth() * 0.5f + cCaptureOffsetY;
+        top = getFrameBufferHeight() * 0.5f - ::cCaptureOffsetX;
+        left = -getFrameBufferWidth() * 0.5f + ::cCaptureOffsetY;
         right = getFrameBufferWidth() + left;
         bottom = top - getFrameBufferHeight();
 
@@ -101,7 +101,7 @@ namespace MR {
             return nullptr;
         }
 
-        return getConverter()->getImage();
+        return ::getConverter()->getImage();
     }
 
     u32 getOdhImageSize() {
@@ -109,7 +109,7 @@ namespace MR {
             return nullptr;
         }
 
-        return getConverter()->getImageSize();
+        return ::getConverter()->getImageSize();
     }
 
     NameObjAdaptor* createAdaptorAndConnectToWiiMessageBoard(const char* pParam1, const FunctorBase& rFunc) {

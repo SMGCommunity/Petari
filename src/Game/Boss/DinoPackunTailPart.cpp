@@ -1,7 +1,12 @@
 #include "Game/Boss/DinoPackunTailPart.hpp"
 #include "Game/Boss/DinoPackun.hpp"
 #include "Game/Boss/DinoPackunAction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 namespace NrvDinoPackunTailPart {

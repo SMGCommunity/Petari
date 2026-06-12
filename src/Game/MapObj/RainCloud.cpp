@@ -1,15 +1,17 @@
 #include "Game/MapObj/RainCloud.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "revolution/types.h"
 
 namespace {
     static s32 sThunderStep = 140;
@@ -141,7 +143,7 @@ void RainCloud::exeAppear() {
         MR::startSound(this, "SE_OJ_RAIN_CLOUD_APPEAR");
     }
 
-    if (MR::isStep(this, sThunderStep)) {
+    if (MR::isStep(this, ::sThunderStep)) {
         MR::startSound(this, "SE_OJ_RAIN_CLOUD_THUNDER");
     }
 

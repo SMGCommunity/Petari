@@ -4,7 +4,7 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioConst.hpp"
-#include "Game/Player/MarioModule.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 bool Mario::isSliderFloor() const {
     return _960 == 9;
@@ -50,7 +50,7 @@ bool MarioSlider::postureCtrl(MtxPtr) {
 
     MarioConst* pConst = mActor->mConst;
     Mario* pPlayer = getPlayer();
-    MR::vecBlendSphere(getPlayer()->_1FC, newHeadVec, &pPlayer->_1FC, pConst->mTable[pConst->mCurrentTable]->mSliderHeadRotateRatio);
+    MR::vecBlendSphere(getPlayer()->_1FC, newHeadVec, &pPlayer->_1FC, pConst->getTable()->mSliderHeadRotateRatio);
     return false;
 }
 

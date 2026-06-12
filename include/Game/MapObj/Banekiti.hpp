@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/MapPartsRailMover.hpp"
+
+class AnimScaleController;
+class MapPartsRailMover;
+class WalkerStateBindStarPointer;
 
 class Banekiti : public LiveActor {
 public:

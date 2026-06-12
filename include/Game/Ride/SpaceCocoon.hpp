@@ -1,7 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/Color.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class ActorCameraInfo;
+class CameraTargetMtx;
+class JUTTexture;
+class PartsModel;
 class PlantPoint;
 
 class SpaceCocoon : public LiveActor {

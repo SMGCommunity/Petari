@@ -5,6 +5,14 @@
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 // NOTE: this function order is how it appears in the debug symbol map, because that order lets the .data section match.
 // Writing directly as the release symbol map produces incorrect .data order.
@@ -23,7 +31,7 @@ namespace {
 
 TombSpiderActionBase::TombSpiderActionBase(TombSpider* pParent, const char* pName)
     : ActorStateBase< TombSpider >(pName, pParent), mParent(pParent), mRotateAccel(0.0f), mRotateSpeed(0.0f), mHitStep(-1), mWaitTime(0),
-      mAttackTime(0), mEnergy(sEnergyMax), mPosZ(0.0f), mInDemo(true) {
+      mAttackTime(0), mEnergy(::sEnergyMax), mPosZ(0.0f), mInDemo(true) {
 }
 
 void TombSpiderActionBase::init() {
@@ -32,7 +40,7 @@ void TombSpiderActionBase::init() {
 
 void TombSpiderActionBase::appear() {
     mPosZ = mParent->mPosition.z;
-    mEnergy = sEnergyMax;
+    mEnergy = ::sEnergyMax;
     mIsDead = false;
 }
 
@@ -176,7 +184,7 @@ bool TombSpiderActionBase::updateAttackLoop(s32 minAttackTime, s32 maxAttackTime
         mAttackTime = MR::getRandom(minAttackTime, maxAttackTime);
     }
 
-    if (MR::isStep(this, sStepAttackLoopSensorValidate)) {
+    if (MR::isStep(this, ::sStepAttackLoopSensorValidate)) {
         TombSpiderFunction::validateAttackSensor(mParent);
     }
 
@@ -187,7 +195,7 @@ bool TombSpiderActionBase::updateAttackLoop(s32 minAttackTime, s32 maxAttackTime
 
     MR::startLevelSound(mParent, "SE_BM_LV_TSPIDER_ACID");
 
-    if (mHitStep >= 0 && MR::isStep(this, mHitStep + sStepAttackLoopMin)) {
+    if (mHitStep >= 0 && MR::isStep(this, mHitStep + ::sStepAttackLoopMin)) {
         TombSpiderFunction::endAcid(mParent);
         return true;
     }
@@ -276,17 +284,17 @@ bool TombSpiderActionBase::updateChanceWait(s32 waitEndTime) {
         MR::startSpiderThreadChance();
     }
 
-    if (MR::isStep(this, waitEndTime + sStepChanceStartEndSign1)) {
+    if (MR::isStep(this, waitEndTime + ::sStepChanceStartEndSign1)) {
         MR::startAction(mParent, "ChanceWaitEndSign");
-        MR::setBckRate(mParent, sChanceStartEndSignAnimRate1);
+        MR::setBckRate(mParent, ::sChanceStartEndSignAnimRate1);
     }
 
     if (MR::isBckOneTimeAndStopped(mParent)) {
         MR::startAction(mParent, "ChanceWaitEndSign");
-        if (MR::isGreaterStep(this, waitEndTime + sStepChanceStartEndSign2)) {
-            MR::setBckRate(mParent, sChanceStartEndSignAnimRate2);
-        } else if (MR::isGreaterStep(this, waitEndTime + sStepChanceStartEndSign1)) {
-            MR::setBckRate(mParent, sChanceStartEndSignAnimRate1);
+        if (MR::isGreaterStep(this, waitEndTime + ::sStepChanceStartEndSign2)) {
+            MR::setBckRate(mParent, ::sChanceStartEndSignAnimRate2);
+        } else if (MR::isGreaterStep(this, waitEndTime + ::sStepChanceStartEndSign1)) {
+            MR::setBckRate(mParent, ::sChanceStartEndSignAnimRate1);
         }
     }
 
@@ -354,14 +362,14 @@ bool TombSpiderActionBase::updateChanceEndDemo() {
         MR::sendMsgToAllLiveActor(ACTMES_TOMB_SPIDER_DEMO_START, nullptr);
     }
 
-    if (MR::isStep(this, sStepChanceEndAnim)) {
+    if (MR::isStep(this, ::sStepChanceEndAnim)) {
         MR::startAction(mParent, "ChanceEnd");
         TombSpiderFunction::getVitalSpotC(mParent)->endChance();
         TombSpiderFunction::getVitalSpotL(mParent)->endChance();
         TombSpiderFunction::getVitalSpotR(mParent)->endChance();
     }
 
-    if (MR::isStep(this, sStepChanceEndDemo)) {
+    if (MR::isStep(this, ::sStepChanceEndDemo)) {
         mInDemo = false;
         TombSpiderFunction::endTombSpiderDemo(mParent, "チャンス終了", "チャンス開始[トゥームスパイダー]");
         return true;

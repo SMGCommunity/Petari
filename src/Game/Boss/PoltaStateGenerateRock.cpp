@@ -3,6 +3,12 @@
 #include "Game/Boss/PoltaFunction.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     const s32 sRockPattern[] = {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,

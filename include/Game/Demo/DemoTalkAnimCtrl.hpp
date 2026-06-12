@@ -1,11 +1,14 @@
 #pragma once
 
-#include "Game/Animation/BckCtrl.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/System/NerveExecutor.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include <revolution/types.h>
 
-class DemoTalkAnimCtrl : NerveExecutor {
+class ActorCameraInfo;
+class BckCtrlData;
+class JMapInfoIter;
+class LiveActor;
+
+class DemoTalkAnimCtrl : public NerveExecutor {
 public:
     DemoTalkAnimCtrl(LiveActor*, const char*, const char*);
     virtual ~DemoTalkAnimCtrl();

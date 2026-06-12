@@ -1,6 +1,16 @@
 #include "Game/Map/Sky.hpp"
+#include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/LiveActor/MirrorReflectionModel.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SpaceInner.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace {
     const char* cChangeAnimName = "Change";
@@ -107,7 +117,7 @@ void Sky::exeWait() {
 
 void Sky::exeChange() {
     if (MR::isFirstStep(this)) {
-        MR::startAllAnim(this, cChangeAnimName);
+        MR::startAllAnim(this, ::cChangeAnimName);
     }
 }
 

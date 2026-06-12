@@ -54,8 +54,8 @@ ScenarioSelectScene::ScenarioSelectScene()
 }
 
 void ScenarioSelectScene::init() {
-    _20 = createDrawBuffer();
-    _24 = createDrawBuffer();
+    _20 = ::createDrawBuffer();
+    _24 = ::createDrawBuffer();
     mEffectSystem = new EffectSystem("エフェクトシステム", false);
     mEffectSystem->initWithoutIter();
     mEffectSystem->entry(MR::getParticleResourceHolder(), 0x300, 0x20);
@@ -221,9 +221,9 @@ void ScenarioSelectScene::exeStartScenarioSelect() {
         bool isSpecificStage = MR::isStageKoopaVs3() || MR::isEqualStageName("HeavensDoorGalaxy");
 
         if (isSpecificStage) {
-            MR::openSystemWipeFade(-1);
+            MR::openSystemWipeFade();
         } else {
-            MR::openSystemWipeWhiteFade(-1);
+            MR::openSystemWipeWhiteFade();
         }
 
         mCinemaFrame->forceToFrame();

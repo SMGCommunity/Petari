@@ -1,11 +1,11 @@
 #include "Game/System/ScenarioDataParser.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GalaxyNameSortTable.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <algorithm>
@@ -175,7 +175,7 @@ namespace ScenarioDataFunction {
     }
 
     u32 getCurrentCommonLayers(const char* pParam1) {
-        getCurrentScenarioData();
+        ::getCurrentScenarioData();
 
         return 1;
     }
@@ -183,7 +183,7 @@ namespace ScenarioDataFunction {
     u32 getCurrentScenarioLayers(const char* pParam1, s32 param2) {
         u32 layerNum;
 
-        if (getCurrentScenarioData()->getValueU32(pParam1, param2, &layerNum)) {
+        if (::getCurrentScenarioData()->getValueU32(pParam1, param2, &layerNum)) {
             return layerNum * 2;
         }
 

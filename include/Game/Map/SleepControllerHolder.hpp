@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Game/Util.hpp"
+#include <revolution/types.h>
 
 class AreaObj;
+class JMapInfoIter;
+class LiveActor;
 
 class SleepControlFunc {
 public:

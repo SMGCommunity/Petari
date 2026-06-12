@@ -1,5 +1,18 @@
 #include "Game/MapObj/AnmModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace {
     const char* cFollowjointName = "Move";
@@ -27,8 +40,8 @@ void AnmModelObj::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoTypical(&info, mObjectName);
     initialize(rIter, info);
 
-    if (MR::isExistJoint(this, cFollowjointName)) {
-        MR::copyJointPos(this, cFollowjointName, &mJointPos);
+    if (MR::isExistJoint(this, ::cFollowjointName)) {
+        MR::copyJointPos(this, ::cFollowjointName, &mJointPos);
     } else {
         mJointPos.set< f32 >(mPosition);
     }
@@ -44,7 +57,7 @@ bool AnmModelObj::isDone() const {
 
 void AnmModelObj::exeMove() {
     if (MR::isFirstStep(this)) {
-        MR::tryStartAllAnim(this, cAnimFileName);
+        MR::tryStartAllAnim(this, ::cAnimFileName);
         MR::StageEffect::tryStageEffectStart(this, mObjectName);
         MR::StageEffect::shakeCameraMoving(this, mObjectName);
         startInner();
@@ -77,8 +90,8 @@ void AnmModelObj::exeMove() {
 
     MR::StageEffect::rumblePadMoving(this, mObjectName);
     moveInner();
-    if (MR::isExistJoint(this, cFollowjointName)) {
-        MR::copyJointPos(this, cFollowjointName, &mJointPos);
+    if (MR::isExistJoint(this, ::cFollowjointName)) {
+        MR::copyJointPos(this, ::cFollowjointName, &mJointPos);
     } else {
         mJointPos.set< f32 >(mPosition);
     }
@@ -100,8 +113,8 @@ void AnmModelObj::exeMove() {
 }
 
 void AnmModelObj::exeDone() {
-    if (MR::isFirstStep(this) && MR::isRegisteredEffect(this, cEndLoopEffectName)) {
-        MR::emitEffect(this, cEndLoopEffectName);
+    if (MR::isFirstStep(this) && MR::isRegisteredEffect(this, ::cEndLoopEffectName)) {
+        MR::emitEffect(this, ::cEndLoopEffectName);
     }
 
     if (MR::isEqualString(mObjectName, "HeavenlyBeachUnderRock")) {

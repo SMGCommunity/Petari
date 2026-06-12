@@ -1,5 +1,14 @@
 #include "Game/MapObj/AirBubble.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvAirBubble {
     NEW_NERVE(AirBubbleNrvWait, AirBubble, Wait);

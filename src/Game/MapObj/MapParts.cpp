@@ -1,5 +1,7 @@
 #include "Game/MapObj/MapParts.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"
 

@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/MapPartsAppearController.hpp"
+
+class MapPartsAppearController;
 
 class MercatorFixParts : public LiveActor {
 public:

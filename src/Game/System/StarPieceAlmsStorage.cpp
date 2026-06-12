@@ -20,11 +20,11 @@ u16 StarPieceAlmsStorage::getValue(int idx) const {
 }
 
 u32 StarPieceAlmsStorage::getMaxValue(int idx) const {
-    return sMaxValueArray[idx];
+    return ::sMaxValueArray[idx];
 }
 
 void StarPieceAlmsStorage::addValue(int idx, int value) {
-    mRequirements[idx] = MR::clamp(mRequirements[idx] + value, 0l, sMaxValueArray[idx]);
+    mRequirements[idx] = MR::clamp(mRequirements[idx] + value, 0l, ::sMaxValueArray[idx]);
 }
 
 u32 StarPieceAlmsStorage::makeHeaderHashCode() const {

@@ -2,15 +2,16 @@
 
 class LiveActorFlag {
 public:
+    /// @brief Creates a new `LiveActorFlag`.
     LiveActorFlag();
 
-    bool mIsDead;             // 0x0
-    bool mIsStoppedAnim;      // 0x1
-    bool mIsNoCalcAnim;       // 0x2
-    bool mIsNoCalcView;       // 0x3
-    bool mIsHiddenModel;      // 0x4
-    bool mIsNoBind;           // 0x5
-    bool mIsCalcGravity;      // 0x6
-    bool mIsClipped;          // 0x7
-    bool mIsInvalidClipping;  // 0x8
+    /* 0x00 */ bool mIsDead;
+    /* 0x01 */ bool mIsStoppedAnim;
+    /* 0x02 */ bool mIsNoCalcAnim;
+    /* 0x03 */ bool mIsNoCalcView;
+    /* 0x04 */ bool mIsHiddenModel;
+    /* 0x05 */ bool mIsNoBind;
+    /* 0x06 */ bool mIsCalcGravity;
+    /* 0x07 */ bool mIsClipped;
+    /* 0x08 */ bool mIsInvalidClipping;
 };

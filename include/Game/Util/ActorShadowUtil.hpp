@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include <revolution.h>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class CollisionParts;
 class Color8;

@@ -1,4 +1,5 @@
 #include "Game/NPC/PowerStarEventKeeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
 PowerStarEventKeeper::PowerStarEventKeeper() {

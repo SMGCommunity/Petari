@@ -1,4 +1,5 @@
 #include "Game/Demo/DemoStartRequestHolder.hpp"
+#include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/StringUtil.hpp"
 
 DemoStartInfo::DemoStartInfo() {

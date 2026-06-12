@@ -18,7 +18,7 @@ namespace NrvPlayTimerScene {
 };  // namespace NrvPlayTimerScene
 
 PlayTimerScene::PlayTimerScene()
-    : Scene("PlayTimerScene"), mTimeLimitLayout(nullptr), mTimeUpLayout(nullptr), mTimeUpWaitFrame(sTimeUpWaitFrame), _20(nullptr) {
+    : Scene("PlayTimerScene"), mTimeLimitLayout(nullptr), mTimeUpLayout(nullptr), mTimeUpWaitFrame(::sTimeUpWaitFrame), _20(nullptr) {
     initNerve(&NrvPlayTimerScene::PlayTimerSceneNormal::sInstance);
 
     _20 = new ValueControl(30);
@@ -26,7 +26,7 @@ PlayTimerScene::PlayTimerScene()
 }
 
 void PlayTimerScene::init() {
-    mTimeLimitLayout = new TimeLimitLayout(sTimeUpWaitFrame);
+    mTimeLimitLayout = new TimeLimitLayout(::sTimeUpWaitFrame);
     mTimeLimitLayout->initWithoutIter();
     mTimeLimitLayout->kill();
 

@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Game/Gravity/GravityInfo.hpp"
-#include "Game/Gravity/PlanetGravity.hpp"
 #include "Game/NameObj/NameObj.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+
+class GravityInfo;
+class PlanetGravity;
 
 /// @brief Registers and holds individual PlanetGravity instances. Also provides the main function for calculating the
 /// gravity vector at a specified position in a stage's space.

@@ -1,12 +1,13 @@
 #include "Game/MapObj/AstroDomeGalaxySelector.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
+#include "Game/MapObj/AstroDomeCameraController.hpp"
 #include "Game/MapObj/MiniatureGalaxy.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
 #include "Game/Screen/GalaxyConfirmLayout.hpp"
 #include "Game/Screen/GalaxySelectBackButton.hpp"
+#include "Game/Screen/GalaxySelectInfo.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
@@ -118,13 +119,13 @@ void AstroDomeGalaxySelector::showGalaxyInfo(const MiniatureGalaxy* pMiniGalaxy)
 bool AstroDomeGalaxySelector::tryStartLectureDemo(const Nerve* pNerve) {
     if (isNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelectStart::sInstance)) {
         if (!MR::isOnGameEventFlagEndButlerDomeLecture()) {
-            MR::requestStartTimeKeepDemoWithoutCinemaFrame(this, cDemoNameDomeLecture, pNerve,
+            MR::requestStartTimeKeepDemoWithoutCinemaFrame(this, ::cDemoNameDomeLecture, pNerve,
                                                            &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
             return true;
         }
     } else if (isNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirmStart::sInstance)) {
         if (!MR::isOnGameEventFlagEndButlerGalaxyMoveLecture()) {
-            MR::requestStartTimeKeepDemoWithoutCinemaFrame(this, cDemoNameDomeLecture, pNerve,
+            MR::requestStartTimeKeepDemoWithoutCinemaFrame(this, ::cDemoNameDomeLecture, pNerve,
                                                            &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
             return true;
         }
@@ -203,7 +204,7 @@ void AstroDomeGalaxySelector::exeGalaxyConfirm() {
     if (pGConfirmLayout->isSelected()) {
         if (pGConfirmLayout->isSelectedYes()) {
             SphereSelectorFunction::confirmed();
-            MR::requestStartTimeKeepDemoMarioPuppetable(this, cDemoNameJumpOut,
+            MR::requestStartTimeKeepDemoMarioPuppetable(this, ::cDemoNameJumpOut,
                                                         &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvDemoJumpOut::sInstance,
                                                         &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
         } else {
@@ -226,7 +227,7 @@ void AstroDomeGalaxySelector::exeDemoJumpOut() {
         MR::requestMovementOn(pGSInfo);
     }
 
-    if (!MR::isDemoActive(cDemoNameJumpOut)) {
+    if (!MR::isDemoActive(::cDemoNameJumpOut)) {
         MiniatureGalaxy* pMiniGalaxy = static_cast< MiniatureGalaxy* >(SphereSelectorFunction::getSelectedTarget());
         const char* pGalaxyName = pMiniGalaxy->mName;
 
@@ -260,4 +261,7 @@ void AstroDomeGalaxySelector::exeGalaxyMoveLecture() {
         MR::onGameEventFlagEndButlerGalaxyMoveLecture();
         setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirm::sInstance);
     }
+}
+
+void AstroDomeGalaxySelector::exeWaitStartDemo() {
 }

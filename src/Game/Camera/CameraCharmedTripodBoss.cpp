@@ -3,6 +3,7 @@
 #include "Game/Camera/CamTranslatorCharmedTripodBoss.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char* pName) : Camera(pName) {
     _4C = -1;

@@ -1,5 +1,7 @@
 #include "Game/MapObj/ClipFieldMapParts.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"

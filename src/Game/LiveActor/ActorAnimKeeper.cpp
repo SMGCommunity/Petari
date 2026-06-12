@@ -95,7 +95,7 @@ bool ActorAnimKeeper::isPlaying(const char* pName) const {
     ActorAnimKeeperInfo* info = findAnimInfo(pName);
 
     if (info != nullptr) {
-        return MR::isBckPlaying(mActor, getAnimName(info, info->mBckInfo));
+        return MR::isBckPlaying(mActor, ::getAnimName(info, info->mBckInfo));
     }
 
     return MR::isBckPlaying(mActor, pName);

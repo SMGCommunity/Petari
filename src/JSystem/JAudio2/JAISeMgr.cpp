@@ -1,0 +1,320 @@
+#include "JSystem/JAudio2/JAISeMgr.hpp"
+#include "JSystem/JAudio2/JAISoundHandles.hpp"
+#include "JSystem/JAudio2/JAISoundInfo.hpp"
+#include "JSystem/JAudio2/JASReport.hpp"
+
+bool JAISeCategoryMgr::isUsingSeqData(const JAISeqDataRegion& seqDataRegion) {
+    for (JSULink< JAISe >* i = mSeList.getFirst(); i != mSeList.getEnd(); i = i->getNext()) {
+        if (seqDataRegion.intersects(*i->getObject()->getSeqData())) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int JAISeCategoryMgr::releaseSeqData(const JAISeqDataRegion& seqDataRegion) {
+    bool found = false;
+    for (JSULink< JAISe >* i = mSeList.getFirst(); i != mSeList.getEnd(); i = i->getNext()) {
+        if (seqDataRegion.intersects(*i->getObject()->getSeqData())) {
+            i->getObject()->stop();
+            found = true;
+        }
+    }
+
+    return found ? SeqDataStatus_SUCCESS : SeqDataStatus_NONE;
+}
+
+void JAISeCategoryMgr::JAISeMgr_calc_() {
+    mParams.calc();
+
+    for (JSULink< JAISe >* i = mSeList.getFirst(); i != mSeList.getEnd(); i = i->getNext()) {
+        i->getObject()->JAISeCategoryMgr_calc_();
+    }
+
+    sortByPriority_();
+}
+
+void JAISeCategoryMgr::JAISeMgr_freeDeadSe_() {
+    JSULink< JAISe >* i = mSeList.getFirst();
+    while (i != mSeList.getEnd()) {
+        JSULink< JAISe >* link_next = i->getNext();
+        if (i->getObject()->isDead()) {
+            mSeList.remove(i);
+            delete i->getObject();
+        }
+        i = link_next;
+    }
+}
+
+bool JAISeCategoryMgr::JAISeMgr_acceptsNewSe_(u32 priority) const {
+    int maxSe = getMaxSe();
+    if (maxSe <= 0) {
+        return true;
+    }
+
+    int stopCount = 0;
+    for (JSULink< JAISe >* i = mSeList.getFirst(); i != mSeList.getEnd(); i = i->getNext()) {
+        if (priority < i->getObject()->JAISeCategoryMgr_getProperPriority_()) {
+            return true;
+        }
+        if (!i->getObject()->isStopping()) {
+            stopCount++;
+        }
+    }
+
+    if (stopCount < maxSe) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+void JAISeCategoryMgr::sortByPriority_() {
+    for (u32 i = mSeList.getNumLinks(); i != 0; i--) {
+        JSULink< JAISe >* link = mSeList.getFirst();
+        u32 lowestPriority = link->getObject()->JAISeCategoryMgr_getPriority_();
+        JSULink< JAISe >* current = link->getNext();
+
+        for (int j = 1; j < i; j++) {
+            u32 itemPriority = current->getObject()->JAISeCategoryMgr_getPriority_();
+            if (itemPriority < lowestPriority) {
+                lowestPriority = itemPriority;
+                link = current;
+            }
+            current = current->getNext();
+        }
+
+        bool result = mSeList.remove(link);
+
+        result = mSeList.append(link);
+    }
+}
+
+void JAISeCategoryMgr::stop(u32 fadeTime) {
+    for (JSULink< JAISe >* i = mSeList.getFirst(); i != mSeList.getEnd(); i = i->getNext()) {
+        i->getObject()->stop(fadeTime);
+    }
+}
+
+void JAISeCategoryMgr::stop() {
+    for (JSULink< JAISe >* i = mSeList.getFirst(); i != mSeList.getEnd(); i = i->getNext()) {
+        i->getObject()->stop();
+    }
+}
+
+void JAISeCategoryMgr::stopSoundID(JAISoundID id) {
+    if (!id.isAnonymous()) {
+        for (JSULink< JAISe >* i = mSeList.getFirst(); i != mSeList.getEnd(); i = i->getNext()) {
+            if ((u32)i->getObject()->getID() == (u32)id) {
+                i->getObject()->stop();
+            }
+        }
+    }
+}
+
+void JAISeCategoryMgr::pause(bool param_0) {
+    for (JSULink< JAISe >* i = mSeList.getFirst(); i != mSeList.getEnd(); i = i->getNext()) {
+        i->getObject()->pause(param_0);
+    }
+}
+
+void JAISeCategoryMgr::JAISeMgr_mixOut_(const JAISoundParamsMove& params, JAISoundActivity activity) {
+    JASSoundParams mixParams;
+    mixParams.combine(params.mParams, mParams.mParams);
+    JSULink< JAISe >* i = mSeList.getFirst();
+    int maxActiveSe = getMaxActiveSe();
+    int sp28;
+
+    if (maxActiveSe > 0) {
+        while (i != mSeList.getEnd() && maxActiveSe > 0 && !i->getObject()->isFarAway()) {
+            i->getObject()->JAISeCategoryMgr_mixOut_(true, mixParams, activity);
+            i = i->getNext();
+            maxActiveSe--;
+            sp28 = maxActiveSe;
+        }
+        for (; i != mSeList.getEnd(); i = i->getNext()) {
+            i->getObject()->JAISeCategoryMgr_mixOut_(false, mixParams, activity);
+        }
+    } else {
+        while (i != mSeList.getEnd() && !i->getObject()->isFarAway()) {
+            i->getObject()->JAISeCategoryMgr_mixOut_(true, mixParams, activity);
+            i = i->getNext();
+        }
+        for (; i != mSeList.getEnd(); i = i->getNext()) {
+            i->getObject()->JAISeCategoryMgr_mixOut_(false, mixParams, activity);
+        }
+    }
+}
+
+JAISeMgr::JAISeMgr(bool setInstance) : JASGlobalInstance< JAISeMgr >(setInstance) {
+    mAudience = nullptr;
+    mSeqDataMgr = nullptr;
+    mStrategyMgr = nullptr;
+    mParams.init();
+    mSoundActivity.init();
+}
+
+bool JAISeMgr::isUsingSeqData(const JAISeqDataRegion& seqDataRegion) {
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        if (mCategoryMgrs[i].JAISeCategoryMgr::isUsingSeqData(seqDataRegion)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int JAISeMgr::releaseSeqData(const JAISeqDataRegion& seqDataRegion) {
+    bool success = false;
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        switch (mCategoryMgrs[i].JAISeCategoryMgr::releaseSeqData(seqDataRegion)) {
+        case SeqDataStatus_FAIL:
+            return SeqDataStatus_FAIL;
+        case SeqDataStatus_SUCCESS:
+            success = true;
+            break;
+        }
+    }
+
+    return (success != false) ? SeqDataStatus_SUCCESS : SeqDataStatus_FAIL;
+}
+
+void JAISeMgr::setCategoryArrangement(const JAISeCategoryArrangement& arrangement) {
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        mCategoryMgrs[i].setMaxActiveSe(arrangement.mItems[i].mMaxActiveSe);
+        mCategoryMgrs[i].setMaxInactiveSe(arrangement.mItems[i].mMaxInactiveSe);
+    }
+}
+
+void JAISeMgr::getCategoryArrangement(JAISeCategoryArrangement* arrangement) {
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        int active = mCategoryMgrs[i].getMaxActiveSe();
+        arrangement->mItems[i].mMaxActiveSe = active;
+        int inactive = mCategoryMgrs[i].getMaxInactiveSe();
+        arrangement->mItems[i].mMaxInactiveSe = inactive;
+    }
+}
+
+void JAISeMgr::stop() {
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        mCategoryMgrs[i].stop();
+    }
+}
+
+void JAISeMgr::stop(u32 fadeTime) {
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        mCategoryMgrs[i].stop(fadeTime);
+    }
+}
+
+void JAISeMgr::stopSoundID(JAISoundID id) {
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        mCategoryMgrs[i].stopSoundID(id);
+    }
+}
+
+void JAISeMgr::initParams() {
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        mCategoryMgrs[i].getParams()->init();
+    }
+}
+
+void JAISeMgr::setAudience(JAIAudience* audience) {
+    mAudience = audience;
+}
+
+void JAISeMgr::setStrategyMgr(JAISoundStrategyMgr< JAISe >* soundStrategyMgr) {
+    mStrategyMgr = soundStrategyMgr;
+}
+
+void JAISeMgr::setSeqDataMgr(JAISeqDataMgr* seqDataMgr) {
+    resetSeqDataMgr();
+    mSeqDataMgr = seqDataMgr;
+    mSeqDataMgr->setSeqDataUser(this);
+}
+
+void JAISeMgr::resetSeqDataMgr() {
+    if (mSeqDataMgr) {
+        mSeqDataMgr->setSeqDataUser(nullptr);
+        mSeqDataMgr = nullptr;
+    }
+}
+
+JAISe* JAISeMgr::newSe_(int category, u32 priority) {
+    if (category < 0) {
+        category = 0;
+    }
+
+    JAISeCategoryMgr* categoryMgr = &mCategoryMgrs[category];
+    if (!categoryMgr->JAISeMgr_acceptsNewSe_(priority)) {
+        return nullptr;
+    }
+
+    JAISe* se = new JAISe(this, mStrategyMgr, priority);
+    if (se == nullptr) {
+        return nullptr;
+    }
+
+    categoryMgr->JAISeMgr_appendSe_(se);
+    return se;
+}
+
+void JAISeMgr::calc() {
+    mParams.calc();
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        mCategoryMgrs[i].JAISeMgr_calc_();
+    }
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        mCategoryMgrs[i].JAISeMgr_freeDeadSe_();
+    }
+}
+
+void JAISeMgr::mixOut() {
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        mCategoryMgrs[i].JAISeMgr_mixOut_(mParams, mSoundActivity);
+    }
+}
+
+bool JAISeMgr::startSound(JAISoundID id, JAISoundHandle* handle, const TVec3f* posPtr) {
+    if (handle != nullptr && handle->isSoundAttached()) {
+        (*handle)->stop();
+    }
+
+    JAISoundInfo* soundInfoPtr = JASGlobalInstance< JAISoundInfo >::getInstance();
+    u32 priority;
+    u32 category;
+    if (soundInfoPtr != nullptr) {
+        category = soundInfoPtr->getCategory(id);
+        priority = soundInfoPtr->getPriority(id);
+    } else {
+        category = id.mID.info.type.parts.groupID;
+        priority = 0;
+    }
+
+    JAISe* se = newSe_(category, priority);
+    if (se == nullptr) {
+        JASReport("cannot new Se %08x.", id.mID.mComposite);
+        return false;
+    }
+
+    JAIAudience* audiencePtr = getAudience(category);
+    se->JAISeMgr_startID_(id, posPtr, audiencePtr);
+
+    if (soundInfoPtr != nullptr) {
+        soundInfoPtr->getSeInfo(id, se);
+    }
+
+    if (handle != nullptr) {
+        se->attachHandle(handle);
+    }
+
+    return true;
+}
+
+int JAISeMgr::getNumActiveSe() const {
+    int num = 0;
+    for (int i = 0; i < NUM_CATEGORIES; i++) {
+        num += mCategoryMgrs[i].getNumSe();
+    }
+    return num;
+}

@@ -10,6 +10,6 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
-    inline void exeWait();
+    void exeWait();
     void exeReaction();
 };

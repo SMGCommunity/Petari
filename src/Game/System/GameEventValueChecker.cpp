@@ -36,8 +36,8 @@ namespace {
 };  // namespace
 
 GameEventValueChecker::GameEventValueChecker() : mValues(nullptr), mNumValues(0) {
-    mValues = new u16[ARRAY_SIZE(cGameEventValueTable)];
-    mNumValues = ARRAY_SIZE(cGameEventValueTable);
+    mValues = new u16[ARRAY_SIZE(::cGameEventValueTable)];
+    mNumValues = ARRAY_SIZE(::cGameEventValueTable);
     initializeData();
 }
 
@@ -67,7 +67,7 @@ s32 GameEventValueChecker::serialize(u8* pData, u32 maxBufferSize) const {
     u16 value;
 
     for (s32 idx = 0; idx < mNumValues; idx++) {
-        hash = MR::getHashCode(cGameEventValueTable[idx].mName);
+        hash = MR::getHashCode(::cGameEventValueTable[idx].mName);
         value = mValues[idx];
 
         stream.writeU16(hash);
@@ -104,13 +104,13 @@ s32 GameEventValueChecker::deserialize(const u8* pData, u32 maxBufferSize) {
 
 void GameEventValueChecker::initializeData() {
     for (s32 idx = 0; idx < mNumValues; idx++) {
-        mValues[idx] = cGameEventValueTable[idx].mDefaultValue;
+        mValues[idx] = ::cGameEventValueTable[idx].mDefaultValue;
     }
 }
 
 s32 GameEventValueChecker::findIndex(const char* pName) const {
     for (s32 idx = 0; idx < mNumValues; idx++) {
-        if (MR::isEqualString(pName, cGameEventValueTable[idx].mName)) {
+        if (MR::isEqualString(pName, ::cGameEventValueTable[idx].mName)) {
             return idx;
         }
     }
@@ -119,7 +119,7 @@ s32 GameEventValueChecker::findIndex(const char* pName) const {
 
 s32 GameEventValueChecker::findIndexFromHashCode(u16 hash) const {
     for (s32 idx = 0; idx < mNumValues; idx++) {
-        if (hash == static_cast< u16 >(MR::getHashCode(cGameEventValueTable[idx].mName))) {
+        if (hash == static_cast< u16 >(MR::getHashCode(::cGameEventValueTable[idx].mName))) {
             return idx;
         }
     }

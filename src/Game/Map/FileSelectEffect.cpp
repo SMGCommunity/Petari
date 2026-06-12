@@ -1,4 +1,7 @@
 #include "Game/Map/FileSelectEffect.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace {
     NEW_NERVE(FileSelectEffectNrvAppear, FileSelectEffect, Appear);

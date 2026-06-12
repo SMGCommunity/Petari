@@ -1,11 +1,12 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/Array.hpp"
 
+class AnimScaleController;
+class BombBirdBomb;
 class FixedPosition;
 class SpinHitController;
-class BombBirdBomb;
-class AnimScaleController;
 class WalkerStateBindStarPointer;
 
 struct BombBirdParam {

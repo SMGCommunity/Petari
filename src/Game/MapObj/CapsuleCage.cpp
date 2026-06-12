@@ -1,4 +1,7 @@
 #include "Game/MapObj/CapsuleCage.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     const char* cDemoCameraName = "注目カメラ";
@@ -84,7 +87,7 @@ void CapsuleCage::startOpen() {
     MR::invalidateClipping(this);
 
     if (mInfo != nullptr) {
-        MR::requestStartDemoWithoutCinemaFrame(this, cDemoCameraName, &NrvCapsuleCage::CapsuleCageNrvStartCamera::sInstance, nullptr);
+        MR::requestStartDemoWithoutCinemaFrame(this, ::cDemoCameraName, &NrvCapsuleCage::CapsuleCageNrvStartCamera::sInstance, nullptr);
     } else {
         setNerve(&NrvCapsuleCage::CapsuleCageNrvOpen::sInstance);
     }

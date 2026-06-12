@@ -1,4 +1,6 @@
 #include "Game/MapObj/PlantPoint.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/mtx.h>

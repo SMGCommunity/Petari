@@ -1,9 +1,11 @@
 #include "Game/MapObj/BeamGoRoundPlanet.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/LiveActor/VolumeModelDrawer.hpp"
+#include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 BeamGoRoundBeam::BeamGoRoundBeam(MtxPtr mtx) : LiveActor("ビームゴーラウンドビーム") {

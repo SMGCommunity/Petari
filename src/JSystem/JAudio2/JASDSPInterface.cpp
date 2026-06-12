@@ -200,26 +200,26 @@ void JASDsp::TChannel::setWaveInfo(JASWaveInfo const& waveInfo, u32 param_1, u32
     int i;
     _118 = param_1;
     static const u8 COMP_BLOCKSAMPLES[8] = {0x10, 0x10, 0x01, 0x01, 0x01, 0x10, 0x10, 0x01};
-    _64 = COMP_BLOCKSAMPLES[waveInfo._0];
+    _64 = COMP_BLOCKSAMPLES[waveInfo.mFormat];
     static const u8 COMP_BLOCKBYTES[8] = {0x09, 0x05, 0x08, 0x10, 0x01, 0x01, 0x01, 0x01};
-    _100 = COMP_BLOCKBYTES[waveInfo._0];
+    _100 = COMP_BLOCKBYTES[waveInfo.mFormat];
     _68 = 0;
     if (_100 >= 4) {
-        _11C = waveInfo._1C;
-        _102 = waveInfo._10;
-        if (_102) {
+        _11C = waveInfo.mSampleCount;
+        _102 = waveInfo.mLoopFlags;
+        if (_102 != 0) {
             if (param_2 == 1) {
-                param_2 = waveInfo._14;
+                param_2 = waveInfo.mSampleLoopStart;
             }
-            _110 = waveInfo._14;
-            _114 = waveInfo._18;
-            _104 = waveInfo._20;
-            _106 = waveInfo._22;
+            _110 = waveInfo.mSampleLoopStart;
+            _114 = waveInfo.mSampleLoopEnd;
+            _104 = waveInfo.mpLastSample;
+            _106 = waveInfo.mpPenultSample;
         } else {
             _114 = _11C;
         }
         if (param_2 && _114 > param_2) {
-            switch (waveInfo._0) {
+            switch (waveInfo.mFormat) {
             case 0:
             case 1:
                 _68 = param_2;

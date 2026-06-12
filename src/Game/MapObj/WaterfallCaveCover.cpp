@@ -4,10 +4,10 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
 namespace NrvWaterfallCaveCover {

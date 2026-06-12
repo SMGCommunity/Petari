@@ -1,9 +1,10 @@
 #include "Game/MapObj/PeachCastleGardenPlanet.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include <cstddef>
 
 namespace NrvPeachCastleGardenPlanet {
     NEW_NERVE(PeachCastleGardenPlanetNrvWait, PeachCastleGardenPlanet, Wait);
@@ -29,7 +30,7 @@ void PeachCastleGardenPlanet::startDamage() {
     setNerve(&NrvPeachCastleGardenPlanet::PeachCastleGardenPlanetNrvDamage::sInstance);
 }
 
-void PeachCastleGardenPlanet::connectToScene(const MapObjActorInitInfo& Ifter) {
+void PeachCastleGardenPlanet::connectToScene(const MapObjActorInitInfo& rIter) {
     MR::connectToScenePlanet(this);
 }
 
@@ -45,6 +46,6 @@ void PeachCastleGardenPlanet::exeDamage() {
     }
 }
 
-void PeachCastleGardenPlanet::initCaseUseSwitchA(const MapObjActorInitInfo& Ifter) {
+void PeachCastleGardenPlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rIter) {
     MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &PeachCastleGardenPlanet::startDamage));
 }

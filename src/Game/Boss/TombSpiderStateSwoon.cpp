@@ -1,6 +1,8 @@
 #include "Game/Boss/TombSpiderStateSwoon.hpp"
 #include "Game/Boss/TombSpider.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace {
     static const s32 sLoopStep = 180;
@@ -40,7 +42,7 @@ void TombSpiderStateSwoon::exeLoop() {
         MR::startAction(getHost(), "Swoon");
     }
 
-    if (MR::isGreaterStep(this, sLoopStep)) {
+    if (MR::isGreaterStep(this, ::sLoopStep)) {
         setNerve(&NrvTombSpiderStateSwoon::TombSpiderStateSwoonNrvEnd::sInstance);
     }
 }

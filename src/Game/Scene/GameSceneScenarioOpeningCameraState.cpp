@@ -83,7 +83,7 @@ void GameSceneScenarioOpeningCameraState::exePlay() {
         }
 
         if (MR::isStep(this, MR::getStartAnimCameraFrame() - 20)) {
-            AudWrap::getSystem()->setVar(30);
+            AudWrap::getSystem()->set830(30);
         }
 
         if (MR::isStartAnimCameraEnd() && MR::isStopCinemaFrame()) {

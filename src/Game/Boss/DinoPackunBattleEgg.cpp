@@ -110,7 +110,7 @@ void DinoPackunBattleEgg::exeTurn() {
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
 
-    getHost()->adjustTailRootPosition(sEggOutPosition, 1.0f);
+    getHost()->adjustTailRootPosition(::sEggOutPosition, 1.0f);
 
     if (updateTurn(120, 0.30f)) {
         setNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvWalk::sInstance);
@@ -122,7 +122,7 @@ void DinoPackunBattleEgg::exeWalk() {
         MR::startBck(getHost(), "EggWalk", nullptr);
     }
 
-    getHost()->adjustTailRootPosition(sEggOutPosition, 1.0f);
+    getHost()->adjustTailRootPosition(::sEggOutPosition, 1.0f);
 
     if (updateWalk(300, 0.5f, 91)) {
         setNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvTurn::sInstance);

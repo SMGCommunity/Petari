@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class Kinopio : public NPCActor {
 public:
