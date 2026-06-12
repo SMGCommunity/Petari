@@ -20,25 +20,24 @@ struct SpeakerInfo {
     // u32 _3C;
 };
 
-class SpkSpeakerCtrl {
-public:
-    static void setMixingBuffer(SpkMixingBuffer*);
-    static void setup();
-    static void connect(s32);
-    static void disconnect(s32);
-    static void setSpeakerOn(s32);
-    static void setSpeakerOnCallback(s32, s32);
-    static void setSpeakerPlay(s32);
-    static void startPlayCallback(s32, s32);
-    static void setSpeakerOff(s32);
-    static void retryConnection(s32);
-    static void reconnect(s32);
-    static void framework();
-    static void reconnectProcess(s32);
-    static void initReconnect(s32);
-    static void continuousUsingProcess(s32);
-    static void updateSpeaker(OSAlarm*, OSContext*);
-    static bool isEnable(s32);
-    static void extensionProcess(s32, s32);
-    static f32 getDeviceVolume(s32);
-};
+namespace SpkSpeakerCtrl {
+    void setMixingBuffer(SpkMixingBuffer*);
+    void setup();
+    void connect(s32);
+    void disconnect(s32);
+    void setSpeakerOn(s32);
+    void setSpeakerOnCallback(s32, s32);
+    void setSpeakerPlay(s32);
+    void startPlayCallback(s32, s32);
+    void setSpeakerOff(s32);
+    void retryConnection(s32);
+    void reconnect(s32);
+    void framework();
+    void reconnectProcess(s32);
+    void initReconnect(s32);
+    void continuousUsingProcess(s32);
+    void updateSpeaker(OSAlarm*, OSContext*);
+    bool isEnable(s32);
+    void extensionProcess(s32, s32);
+    f32 getDeviceVolume(s32);
+};  // namespace SpkSpeakerCtrl

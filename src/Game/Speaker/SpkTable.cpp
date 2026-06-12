@@ -3,30 +3,31 @@
 SpkTable::SpkTable() {
     mInitialized = false;
     mResourceCount = 0;
-    mParameterOffsets = nullptr;
-    mNameOffsets = nullptr;
+    mParameters = nullptr;
+    mNames = nullptr;
 }
 
 void SpkTable::setResource(void* pRes) {
+    /* FIXME: regswap */
     mInitialized = false;
 
     SpkFile* file = reinterpret_cast< SpkFile* >(pRes);
     u32 parameterOffset = file->parametersOffset;
 
-    u32* nameOffsets = (u32*)((u8*)pRes + file->namesOffset);
+    const char** names = (const char**)((u8*)file + file->namesOffset);
 
     u32 initialized = file->initialized;
 
     mResourceCount = file->count;
-    mParameterOffsets = (u32*)((u8*)pRes + parameterOffset);
+    mParameters = (SpkParameters*)((u8*)file + parameterOffset);
 
     if (initialized == 0) {
         for (s32 idx = 0; idx < mResourceCount; idx++) {
-            nameOffsets[idx] += (u32)pRes;
+            names[idx] += reinterpret_cast< u32 >(file);
         }
     }
 
-    mNameOffsets = nameOffsets;
+    mNames = names;
 
     file->initialized = 1;
     mInitialized = true;
