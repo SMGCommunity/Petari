@@ -1,9 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
 
+class HitSensor;
 class Koopa;
+
+namespace MR {
+    struct ActorMoveParam;
+};  // namespace MR
 
 class KoopaStateAttackSpin : public ActorStateBase< Koopa > {
 public:

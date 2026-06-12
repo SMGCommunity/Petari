@@ -1,9 +1,12 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class SwingRopePoint;
+class ActorCameraInfo;
+class JUTTexture;
 class SledRopePoint;
+class SwingRopePoint;
 
 class SwingRope : public LiveActor {
 public:

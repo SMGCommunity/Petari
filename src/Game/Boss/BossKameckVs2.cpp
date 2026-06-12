@@ -4,6 +4,10 @@
 #include "Game/Boss/BossKameckBattleDemo.hpp"
 #include "Game/Boss/BossKameckBattlePattarn.hpp"
 #include "Game/Boss/BossKameckStateBattle.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace {
     s32 sBeamPatternLv1[] = {2, 1, -1};

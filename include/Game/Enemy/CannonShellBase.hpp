@@ -2,7 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/Array.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
 
 class CannonShellBase : public LiveActor {
 public:

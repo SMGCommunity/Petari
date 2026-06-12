@@ -2,9 +2,9 @@
 
 #include "Game/Boss/KoopaSequencer.hpp"
 
+class KoopaBattleMain;
 class KoopaBattleVs3Lv1;
 class KoopaBattleVs3Lv2;
-class KoopaBattleMain;
 class KoopaDemoFallToPlanetVs3Lv2;
 class KoopaDemoFallToPlanetVs3Lv3;
 

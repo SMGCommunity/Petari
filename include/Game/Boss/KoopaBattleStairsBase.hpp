@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Game/System/NerveExecutor.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
-class Koopa;
 class HitSensor;
+class Koopa;
 class KoopaBattleMapStair;
 class LiveActorGroup;
 

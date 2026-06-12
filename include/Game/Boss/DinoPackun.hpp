@@ -1,16 +1,22 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JointController.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class DinoPackunTail;
+class ActorCameraInfo;
+class AnimScaleController;
+class CameraTargetMtx;
 class DinoPackunBall;
-class FootPrint;
 class DinoPackunDemoPosition;
 class DinoPackunEggShell;
-class PartsModel;
-class AnimScaleController;
 class DinoPackunSequencer;
+class DinoPackunTail;
+class JointControllerInfo;
+class FootPrint;
+class PartsModel;
+
+template < typename T >
+class JointControlDelegator;
 
 class DinoPackun : public LiveActor {
 public:

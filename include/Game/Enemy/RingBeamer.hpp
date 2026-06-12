@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class ModelObj;
 class RingBeam;
 
 class RingBeamer : public LiveActor {

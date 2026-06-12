@@ -1,4 +1,5 @@
 #include "Game/MapObj/ChipCounter.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/Util.hpp"
 

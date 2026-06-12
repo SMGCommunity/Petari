@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
 
 class KoopaBattleMapStair;
+class ModelObj;
 
 class KoopaFireStairs : public LiveActor {
 public:

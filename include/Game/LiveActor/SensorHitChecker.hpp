@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/NameObj/NameObj.hpp"
-#include <revolution.h>
 
 class SensorGroup;
 class HitSensor;

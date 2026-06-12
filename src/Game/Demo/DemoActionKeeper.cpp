@@ -1,8 +1,15 @@
 #include "Game/Demo/DemoActionKeeper.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
+#include "Game/Demo/DemoExecutor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/TalkUtil.hpp"
 
 namespace {
     TalkMessageCtrl* findTalkMessageCtrl(LiveActor* pActor) {

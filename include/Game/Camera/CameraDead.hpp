@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Camera/Camera.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class CameraDead : public Camera {
 public:

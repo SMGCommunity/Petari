@@ -1,4 +1,6 @@
 #include "Game/MapObj/FloaterFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/StringUtil.hpp"
 
 namespace {

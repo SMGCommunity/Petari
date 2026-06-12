@@ -1,4 +1,5 @@
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Animation/XanimeCore.hpp"
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/Enemy/KariKariDirector.hpp"

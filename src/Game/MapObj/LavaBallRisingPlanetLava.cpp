@@ -1,4 +1,9 @@
 #include "Game/MapObj/LavaBallRisingPlanetLava.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvLavaBallRisingPlanetLava {
     NEW_NERVE(LavaBallRisingPlanetLavaNrvWaitSmall, LavaBallRisingPlanetLava, Wait);

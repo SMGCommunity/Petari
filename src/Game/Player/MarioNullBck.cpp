@@ -1,4 +1,7 @@
 #include "Game/Player/MarioNullBck.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
 MarioNullBck::MarioNullBck(const char* pName) : LiveActor(pName) {

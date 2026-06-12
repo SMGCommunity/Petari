@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/MapPartsRailMover.hpp"
-#include "Game/MapObj/MapPartsRailPosture.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class LodCtrl;
+class MapPartsRailMover;
+class MapPartsRailPosture;
 
 class BeeFlowerHover : public LiveActor {
 public:

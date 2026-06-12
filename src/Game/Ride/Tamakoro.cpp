@@ -1,12 +1,23 @@
 #include "Game/Ride/Tamakoro.hpp"
 #include "Game/GameAudio/AudTamakoroBgmCtrl.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/SphereAccelSensorController.hpp"
 #include "Game/Ride/TamakoroTutorial.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 

@@ -2,10 +2,16 @@
 #include "Game/Demo/DemoCastGroup.hpp"
 #include "Game/Demo/DemoCastGroupHolder.hpp"
 #include "Game/Demo/DemoDirector.hpp"
+#include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoExecutorFunction.hpp"
 #include "Game/Demo/DemoSubPartKeeper.hpp"
 #include "Game/Demo/DemoTimeKeeper.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 #include <cstring>
 

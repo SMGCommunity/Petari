@@ -1,6 +1,10 @@
 #include "Game/Boss/KoopaFigureBall.hpp"
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
 KoopaFigureBall::~KoopaFigureBall() {
 }

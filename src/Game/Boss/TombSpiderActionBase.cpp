@@ -5,6 +5,14 @@
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 // NOTE: this function order is how it appears in the debug symbol map, because that order lets the .data section match.
 // Writing directly as the release symbol map produces incorrect .data order.

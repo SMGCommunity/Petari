@@ -5,6 +5,7 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class AnimScaleController;
+class AreaObj;
 class CameraTargetMtx;
 class DodoryuBank;
 class DodoryuHill;
@@ -17,6 +18,7 @@ namespace DodoryuSub {
 };  // namespace DodoryuSub
 
 class JointController;
+class JointControllerInfo;
 class JointRumbler;
 class TalkMessageCtrl;
 

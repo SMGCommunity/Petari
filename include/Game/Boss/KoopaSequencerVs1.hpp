@@ -2,8 +2,8 @@
 
 #include "Game/Boss/KoopaSequencer.hpp"
 
-class KoopaSubSequenceBattle;
 class KoopaBattleMain;
+class KoopaSubSequenceBattle;
 
 class KoopaSequencerVs1 : public KoopaSequencer {
 public:

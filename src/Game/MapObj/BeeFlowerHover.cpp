@@ -1,5 +1,9 @@
 #include "Game/MapObj/BeeFlowerHover.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/MapObj/MapPartsRailPosture.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     static const f32 sDefaultRotateSpeed = 50.0f;

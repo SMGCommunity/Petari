@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/PartsModel.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 template < typename T >
 class JointControlDelegator;

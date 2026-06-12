@@ -1,13 +1,12 @@
 #include "Game/Ride/BigBubble.hpp"
 #include "Game/AreaObj/BigBubbleGoalArea.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigBubbleMoveLimitter.hpp"
 #include "Game/MapObj/BigFanHolder.hpp"
 #include "Game/MapObj/ElectricRailHolder.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/OctahedronBezierSurface.hpp"
-#include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <revolution/gx/GXTev.h>
 #include <revolution/mtx.h>

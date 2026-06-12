@@ -1,6 +1,8 @@
 #include "Game/LiveActor/ShadowVolumeBox.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/ShadowDrawer.hpp"
+#include "Game/Util/CameraUtil.hpp"
 
 void FORCE_MATCH_SDATA2() {
     f32 f1 = 0.0f;

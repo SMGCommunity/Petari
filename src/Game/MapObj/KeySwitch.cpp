@@ -1,4 +1,6 @@
 #include "Game/MapObj/KeySwitch.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 namespace {

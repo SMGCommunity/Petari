@@ -1,4 +1,5 @@
 #include "Game/Boss/KoopaRockBreak.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 KoopaRockBreak::KoopaRockBreak(LiveActor* pActor) : PartsModel(pActor, "岩壊れモデル", "KoopaRockBreak", nullptr, 18, false) {
 }

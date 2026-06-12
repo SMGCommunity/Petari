@@ -1,6 +1,6 @@
 #include "Game/MapObj/ItemBlock.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace {
     static Color8 hPointLight(0xFF, 0xE6, 0, 0xFF);

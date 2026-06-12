@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Enemy/StinkBugBase.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class StinkBugParent : public StinkBugBase {
 public:

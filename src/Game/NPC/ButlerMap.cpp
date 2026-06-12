@@ -1,9 +1,8 @@
 #include "Game/NPC/ButlerMap.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/NPC/ButlerStateStarPieceReaction.hpp"
-#include "Game/NPC/NPCActor.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/GalaxyMapController.hpp"
@@ -19,9 +18,6 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
-#include <cstddef>
 
 namespace {
     const char* cDemoNameMapLecture = "バトラーマップレクチャー";

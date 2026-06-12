@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class FallDownBridge : public LiveActor {
 public:

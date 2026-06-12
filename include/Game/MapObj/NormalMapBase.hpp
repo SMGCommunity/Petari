@@ -1,11 +1,12 @@
 #pragma once
 
-#include "Game/Animation/AnmPlayer.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
-#include "revolution/gx/GXEnum.h"
+#include "Game/Util/Color.hpp"
 
 class BtkPlayer;
+class J3DMaterial;
+class J3DModel;
+class JUTTexture;
 
 class NormalMapBase : public LiveActor {
 public:

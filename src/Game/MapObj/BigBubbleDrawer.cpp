@@ -1,7 +1,6 @@
 #include "Game/MapObj/BigBubbleDrawer.hpp"
-#include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/Color.hpp"
-#include "Game/Util/ObjUtil.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 

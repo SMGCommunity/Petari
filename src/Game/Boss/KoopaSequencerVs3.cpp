@@ -13,7 +13,17 @@
 #include "Game/Boss/KoopaSwitchKeeper.hpp"
 #include "Game/Boss/KoopaViewSwitchKeeper.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvKoopaSequencerVs3 {
     NEW_NERVE(KoopaSequencerVs3NrvWaitPlayer, KoopaSequencerVs3, WaitPlayer);

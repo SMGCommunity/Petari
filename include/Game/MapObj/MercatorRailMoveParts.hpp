@@ -1,7 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/MapPartsAppearController.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class MapPartsAppearController;
+class MapPartsRailMover;
+class MapPartsRailRotator;
 
 class MercatorRailMoveParts : public LiveActor {
 public:

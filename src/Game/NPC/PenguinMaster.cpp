@@ -1,12 +1,9 @@
 #include "Game/NPC/PenguinMaster.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NPC/NPCActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 
 namespace NrvPenguinMaster {
     NEW_NERVE(PenguinMasterNrvWait, PenguinMaster, Wait);

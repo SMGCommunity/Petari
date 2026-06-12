@@ -7,7 +7,10 @@
 #include "Game/Boss/KoopaStateDamageEscape.hpp"
 #include "Game/Boss/KoopaStateGuard.hpp"
 #include "Game/Boss/KoopaStateJumpAway.hpp"
-
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace NrvKoopaBattleVs3Lv1 {
     NEW_NERVE(KoopaBattleVs3Lv1NrvChaseRoll, KoopaBattleVs3Lv1, ChaseRoll);

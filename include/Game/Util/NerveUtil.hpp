@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Inline.hpp"
-#include <revolution.h>
+#include <revolution/types.h>
 
-class NerveExecutor;
 class Nerve;
+class NerveExecutor;
 
 namespace MR {
     /// @brief Determines if the working nerve action's frame of execution is equal to the given frame value.

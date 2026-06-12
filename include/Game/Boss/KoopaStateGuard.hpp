@@ -2,8 +2,8 @@
 
 #include "Game/LiveActor/ActorStateBase.hpp"
 
-class Koopa;
 class HitSensor;
+class Koopa;
 
 class KoopaStateGuard : public ActorStateBase< Koopa > {
 public:

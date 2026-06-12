@@ -3,6 +3,12 @@
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaStateDamageEscape.hpp"
 #include "Game/Boss/KoopaStateGuard.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace {
     MR::ActorMoveParam sFindParam = {0.0f, 1.0f, 0.98f, 3.0f};

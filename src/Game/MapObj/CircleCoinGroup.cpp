@@ -1,4 +1,6 @@
 #include "Game/MapObj/CircleCoinGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 CircleCoinGroup::CircleCoinGroup(const char* pName) : CoinGroup(pName) {
     mCoinRadius = 200.0f;

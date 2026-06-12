@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Screen/LayoutActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class PlayerRacer;
 class RaceManager;

@@ -1,12 +1,15 @@
 #include "Game/Map/Flag.hpp"
 #include "Game/Ride/SwingRopePoint.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
@@ -19,7 +22,6 @@
 #include "revolution/gx/GXTev.h"
 #include "revolution/gx/GXTransform.h"
 #include "revolution/gx/GXVert.h"
-#include "revolution/types.h"
 
 namespace {
     static const f32 sDefaultPointIntervalU = 40.0f;

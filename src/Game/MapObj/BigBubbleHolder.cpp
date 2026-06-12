@@ -1,9 +1,11 @@
 #include "Game/MapObj/BigBubbleHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigBubbleDrawer.hpp"
 #include "Game/MapObj/BigBubbleMoveLimitter.hpp"
 #include "Game/Ride/BigBubble.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 

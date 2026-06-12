@@ -1,5 +1,4 @@
 #include "Game/Effect/SimpleEffectObj.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -10,9 +9,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include "Game/Util/StringUtil.hpp"
 
 namespace NrvSimpleEffectObj {
     NEW_NERVE(HostTypeWait, SimpleEffectObj, Wait);

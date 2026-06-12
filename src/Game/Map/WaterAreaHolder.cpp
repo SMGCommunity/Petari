@@ -8,6 +8,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/WaterCameraFilter.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"

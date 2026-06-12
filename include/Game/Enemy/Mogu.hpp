@@ -2,10 +2,11 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-class HitSensor;
 class AnimScaleController;
-class MoguStone;
 class FixedPosition;
+class HitSensor;
+class MoguStone;
+class ModelObj;
 
 class Mogu : public LiveActor {
 public:

@@ -22,6 +22,7 @@
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/MessageSensorHolder.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/SensorHitChecker.hpp"
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/ShadowSurfaceDrawer.hpp"

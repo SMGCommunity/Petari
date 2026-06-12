@@ -1,6 +1,11 @@
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 KoopaPlanetShadow::~KoopaPlanetShadow() {
 }

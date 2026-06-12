@@ -1,13 +1,16 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util/Functor.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
 class GalaxyNamePlate;
-class LiveActor;
 class JMapInfo;
+class JMapInfoIter;
+class LiveActor;
+class NameObjArchiveListCollector;
+
+namespace MR {
+    class FunctorBase;
+};  // namespace MR
 
 class AstroMapObjFunction {
 public:

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>

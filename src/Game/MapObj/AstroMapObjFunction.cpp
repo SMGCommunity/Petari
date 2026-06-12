@@ -1,5 +1,7 @@
 #include "Game/MapObj/AstroMapObjFunction.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"

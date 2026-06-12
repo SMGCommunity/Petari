@@ -1,4 +1,5 @@
 #include "Game/NameObj/NameObjFactory.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
@@ -13,6 +14,7 @@
 #include "Game/NameObj/NameObjFactoryStubs.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Ride.hpp"
+#include "Game/Screen.hpp"
 
 namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);

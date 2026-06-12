@@ -1,4 +1,8 @@
 #include "Game/Enemy/WalkerStateBlowDamage.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace {
     static const f32 sAirFric = 0.99f;

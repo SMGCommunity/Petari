@@ -1,23 +1,23 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
 
-class NameObj;
-class Koopa;
-class LiveActor;
-class KoopaBattleMapStair;
-class PartsModel;
-class KoopaRockBreak;
-class KoopaFireStairs;
-class KoopaBattleMapPlanet;
 class HitSensor;
+class Koopa;
+class KoopaBattleMapPlanet;
+class KoopaBattleMapStair;
+class KoopaFireStairs;
 class KoopaPlanetShadow;
+class KoopaPowerUpSwitch;
+class KoopaRockBreak;
 class KoopaSwitchKeeper;
 class KoopaViewSwitchKeeper;
-class KoopaPowerUpSwitch;
-class ModelObjNpc;
+class LiveActor;
 class ModelObj;
+class ModelObjNpc;
+class NameObj;
+class PartsModel;
 
 namespace {
     bool tryStartCameraDemo(Koopa*, const char*, const char* pName, const char* pDemoName, bool isMario);

@@ -2,6 +2,7 @@
 #include "Game/AudioLib/AudSceneMgr.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/LightFunction.hpp"
 #include "Game/Map/SleepControllerHolder.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"

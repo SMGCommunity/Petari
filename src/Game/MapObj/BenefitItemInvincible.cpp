@@ -1,4 +1,6 @@
 #include "Game/MapObj/BenefitItemInvincible.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include <cstring>
 
 namespace {

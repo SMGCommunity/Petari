@@ -1,11 +1,16 @@
 #pragma once
 
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class Koopa;
 class KoopaStateDamageEscape;
 class KoopaStateGuard;
+class LiveActor;
+
+namespace MR {
+    struct ActorMoveParam;
+};  // namespace MR
 
 namespace MR {
     void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam) NO_INLINE;

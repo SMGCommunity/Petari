@@ -1,4 +1,6 @@
 #include "Game/MapObj/IronCannonShell.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     static const s32 sDefaultShotInterval = 300;

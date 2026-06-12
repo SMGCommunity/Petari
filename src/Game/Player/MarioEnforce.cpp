@@ -7,6 +7,7 @@
 #include "Game/Player/MarioHang.hpp"
 #include "Game/Player/MarioModule.hpp"
 #include "Game/Player/MarioSukekiyo.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"

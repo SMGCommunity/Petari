@@ -1,4 +1,5 @@
 #include "Game/MapObj/ChooChooTrain.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/Array.hpp"

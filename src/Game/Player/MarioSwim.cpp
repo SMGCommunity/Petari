@@ -1,33 +1,20 @@
 #include "Game/Player/MarioSwim.hpp"
-
-#include "Game/AreaObj/AreaObj.hpp"
 #include "Game/AreaObj/WaterArea.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-
 #include "Game/Map/HitInfo.hpp"
-#include "Game/Map/WaterInfo.hpp"
-
 #include "Game/MapObj/DashRing.hpp"
-
 #include "Game/Player/MarineSnow.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioConst.hpp"
-#include "Game/Player/MarioModule.hpp"
-
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
-
 #include "Game/Util/AreaObjUtil.hpp"
-#include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
-
-#include "JSystem/JGeometry/TVec.hpp"
-#include "math_types.hpp"
-#include "revolution/types.h"
-#include <cmath>
-#include <cstddef>
+#include "Game/Util/SoundUtil.hpp"
 
 static const f32 cAnimSpeeds[] = {1.0f, 1.0f, 1.0f, 1.0f};
 namespace {

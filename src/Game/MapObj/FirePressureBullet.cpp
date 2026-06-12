@@ -1,4 +1,6 @@
 #include "Game/MapObj/FirePressureBullet.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvFirePressureBullet {
     NEW_NERVE(FirePressureBulletNrvFly, FirePressureBullet, Fly);

@@ -1,5 +1,4 @@
 #include "Game/Map/PlanetMap.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/OceanHomeMapCtrl.hpp"

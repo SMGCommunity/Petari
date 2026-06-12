@@ -1,6 +1,8 @@
 #include "Game/Boss/TombSpiderStateSwoon.hpp"
 #include "Game/Boss/TombSpider.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace {
     static const s32 sLoopStep = 180;

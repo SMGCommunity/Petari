@@ -2,6 +2,8 @@
 #include "Game/Enemy/Karikari.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/FixedPosition.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace {
 

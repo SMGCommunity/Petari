@@ -1,4 +1,5 @@
 #include "Game/NPC/TicoGalaxy.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/NPC/TicoStarRing.hpp"
 #include "Game/System/GameEventFlagTable.hpp"

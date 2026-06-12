@@ -1,6 +1,8 @@
 #include "Game/MapObj/ExterminationChecker.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvExterminationChecker {
     NEW_NERVE(ExterminationCheckerNrvWatching, ExterminationChecker, Watching);

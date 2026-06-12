@@ -1,4 +1,12 @@
 #include "Game/MapObj/SimpleTimerObj.hpp"
+#include "Game/LiveActor/FlashingCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 namespace NrvSimpleTimerObj {
     NEW_NERVE(SimpleTimerObjNrvTimer, SimpleTimerObj, Timer);

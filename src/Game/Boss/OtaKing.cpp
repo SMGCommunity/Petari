@@ -1,6 +1,9 @@
 #include "Game/Boss/OtaKing.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MemoryUtil.hpp"
 
 namespace {
     // const _ cHP = _;

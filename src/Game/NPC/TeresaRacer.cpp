@@ -1,6 +1,21 @@
 #include "Game/NPC/TeresaRacer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/RaceRail.hpp"
 #include "Game/MapObj/GCapture.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/NPCUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static const f32 sSpeed = 20.0f;

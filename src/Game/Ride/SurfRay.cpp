@@ -1,14 +1,26 @@
 #include "Game/Ride/SurfRay.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
-
-inline f32 min(f32 a, f32 b) {
-    if (a >= b) {
-        return b;
-    }
-
-    return a;
-}
 
 namespace NrvSurfRay {
     NEW_NERVE(SurfRayNrvWaitPlayer, SurfRay, WaitPlayer);
@@ -441,7 +453,7 @@ void SurfRay::control() {
     mVelocity.set(mFront);
     mVelocity.scale(mSurfSpeed);
     mVelocity.add(mOrthoVelocity);
-    f32 rate = min(mSurfSpeed * ::sBtkSpeedRate + ::sBtkSpeedMin, ::sBtkSpeedMax);
+    f32 rate = MR::min(mSurfSpeed * ::sBtkSpeedRate + ::sBtkSpeedMin, ::sBtkSpeedMax);
     MR::setBtkRate(this, rate);
     mActorJointCtrl->update();
 }

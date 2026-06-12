@@ -2,6 +2,7 @@
 #include "Game/Enemy/KirairaChain.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 namespace {
     // static const f32 sDriftSpeedMax = 2.4f;

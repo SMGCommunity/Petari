@@ -2,14 +2,14 @@
 
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/Array.hpp"
-#include <revolution.h>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class CollisionPartsFilterBase;
-class ShadowDrawer;
+class HitSensor;
 class LiveActor;
 class ShadowController;
+class ShadowDrawer;
 
 class ShadowControllerList {
 public:

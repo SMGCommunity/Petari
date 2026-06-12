@@ -1,4 +1,5 @@
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/GameSystem.hpp"

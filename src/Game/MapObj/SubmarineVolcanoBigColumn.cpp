@@ -1,6 +1,8 @@
 #include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 namespace {

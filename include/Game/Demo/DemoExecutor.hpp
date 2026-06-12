@@ -2,11 +2,13 @@
 
 #include "Game/Demo/DemoCastGroup.hpp"
 #include "Game/Demo/DemoSubPartKeeper.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 class DemoActionKeeper;
-class DemoTimeKeeper;
+class DemoSubPartInfo;
 class DemoTalkAnimCtrl;
-class DemoSubPartKeeper;
+class DemoTimeKeeper;
+class TalkMessageCtrl;
 
 class DemoExecutor : public DemoCastGroup {
 public:

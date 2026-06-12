@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/MapObj/MapObjActorInitInfo.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+
+class NameObjArchiveListCollector;
 
 class UFOKinoko : public MapObjActor {
 public:

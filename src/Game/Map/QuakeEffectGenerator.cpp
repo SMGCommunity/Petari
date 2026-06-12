@@ -1,7 +1,10 @@
 #include "Game/Map/QuakeEffectGenerator.hpp"
 #include "Game/LiveActor/EffectKeeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvQuakeEffectGenerator {
     NEW_NERVE(HostTypeWait, QuakeEffectGenerator, Wait);

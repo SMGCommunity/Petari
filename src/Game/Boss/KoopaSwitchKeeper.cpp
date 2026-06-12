@@ -1,5 +1,6 @@
 #include "Game/Boss/KoopaSwitchKeeper.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
 
 KoopaSwitchKeeper::KoopaSwitchKeeper(const char* pName) : LiveActor(pName) {
 }

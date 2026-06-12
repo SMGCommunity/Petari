@@ -5,6 +5,7 @@
 #include "Game/MapObj/PowerStarAppearPoint.hpp"
 #include "Game/MapObj/PowerStarHolder.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util.hpp"
 #include "math_types.hpp"
 
 const GXColor lightColor[] = {
@@ -148,7 +149,8 @@ void PowerStar::requestAppear() {
     setNerve(&NrvPowerStar::PowerStarNrvWaitStartAppear::sInstance);
 
     if (MR::isStageKoopaVs()) {
-        MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, ::cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance, nullptr);
+        MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, ::cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance,
+                                                              nullptr);
     } else {
         MR::requestStartDemoWithoutCinemaFrame(this, ::cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance, nullptr);
     }

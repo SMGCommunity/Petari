@@ -1,6 +1,7 @@
 #include "Game/Demo/StarReturnDemoStarter.hpp"
 #include "Game/Demo/ReturnDemoRailMove.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"

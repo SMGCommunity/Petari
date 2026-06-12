@@ -1,4 +1,6 @@
 #include "Game/MapObj/SeaBottomTriplePropeller.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvSeaBottomTriplePropeller {
     NEW_NERVE(SeaBottomTriplePropellerNrvWait, SeaBottomTriplePropeller, Wait);

@@ -1,6 +1,8 @@
 #include "Game/Boss/DinoPackunTailRoot.hpp"
 #include "Game/Boss/DinoPackunAction.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
 typedef JointControlDelegator< DinoPackunTailRoot > Delegator;
 

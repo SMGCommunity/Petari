@@ -1,9 +1,19 @@
 #pragma once
 
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class AnimScaleController;
 class BegomanBaby;
+class JointControllerInfo;
+template < typename T >
+class JointControlDelegator;
+class WalkerStateBindStarPointer;
+
+namespace MR {
+    class ActorMoveParam;
+    class FunctorBase;
+};  // namespace MR
 
 struct BegomanSound {
     const char* mSound;

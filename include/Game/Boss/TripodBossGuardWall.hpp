@@ -2,6 +2,9 @@
 
 #include "Game/Boss/TripodBossGuardWallPart.hpp"
 
+class ActorCameraInfo;
+class CameraTargetMtx;
+
 class TripodBossGuardWall : public LiveActor {
 public:
     TripodBossGuardWall(const char*);

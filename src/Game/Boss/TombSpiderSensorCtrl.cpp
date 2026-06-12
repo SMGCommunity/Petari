@@ -3,12 +3,10 @@
 #include "Game/Boss/TombSpiderFunction.hpp"
 #include "Game/Boss/TombSpiderGland.hpp"
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
-
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution.h"
 
 namespace {
     static const f32 sAttackSensorDistanceOffset = 100.0f;

@@ -1,7 +1,11 @@
 #include "Game/NPC/CometEventKeeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/CometEventExecutorTimeLimit.hpp"
 #include "Game/Screen/GalaxyCometScreenFilter.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 struct GalaxyTimeLimitInfo {
     /* 0x0 */ const char* mGalaxyName;

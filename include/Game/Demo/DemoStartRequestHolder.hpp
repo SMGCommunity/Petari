@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Array.hpp"
 
 class LayoutActor;
 class LiveActor;
+class NameObj;
 class NerveExecutor;
 
 class DemoStartInfo {

@@ -3,6 +3,7 @@
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/Map/KoopaBattleMapStair.hpp"
+#include "Game/Util/JointUtil.hpp"
 
 KoopaBattleStairsBase::KoopaBattleStairsBase(Koopa* pKoopa) : NerveExecutor("クッパ戦（階段の戦い）"), mKoopa(pKoopa), mStairsGroup() {
     mStairsGroup = new LiveActorGroup("階段保持", 128);

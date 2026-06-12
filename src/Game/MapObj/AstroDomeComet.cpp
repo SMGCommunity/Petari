@@ -1,11 +1,16 @@
 #include "Game/MapObj/AstroDomeComet.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/AstroDome.hpp"
+#include "Game/MapObj/MiniatureGalaxy.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     static const char* cCometBrkName[] = {"Red", "Blue", "White", "Yellow", "Purple"};

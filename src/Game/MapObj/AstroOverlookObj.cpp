@@ -1,4 +1,9 @@
 #include "Game/MapObj/AstroOverlookObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 
 AstroOverlookObj::AstroOverlookObj(const char* pName) : LiveActor(pName) {
     _8C = 0;

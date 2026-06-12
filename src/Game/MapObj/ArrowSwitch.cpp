@@ -1,6 +1,12 @@
 #include "Game/MapObj/ArrowSwitch.hpp"
-#include "math_types.hpp"
-#include <cmath>
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 namespace {
     const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};

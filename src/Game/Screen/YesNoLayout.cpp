@@ -1,4 +1,5 @@
 #include "Game/Screen/YesNoLayout.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/YesNoController.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"

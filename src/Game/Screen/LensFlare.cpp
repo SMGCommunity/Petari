@@ -3,8 +3,10 @@
 #include "Game/MapObj/BrightObj.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/DrawSyncManager.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/TriggerChecker.hpp"
 
 namespace {

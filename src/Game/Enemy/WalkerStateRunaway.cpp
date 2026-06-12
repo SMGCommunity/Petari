@@ -1,4 +1,9 @@
 #include "Game/Enemy/WalkerStateRunaway.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace {
     static WalkerStateRunawayParam sDefaultParam;

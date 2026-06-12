@@ -1,5 +1,8 @@
 #include "Game/Map/GroupSwitchWatcher.hpp"
 #include "Game/Map/StageSwitch.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 GroupSwitchWatcher::GroupSwitchWatcher(const char* pName)
     : LiveActor(pName), mSwitchCtrl(nullptr), mNumSwitches(-1), mLogicType(-1), mActionType(-1) {

@@ -1,5 +1,6 @@
 #include "Game/Boss/KoopaSensorCtrl.hpp"
 #include "Game/Boss/Koopa.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 
 KoopaSensorCtrl::KoopaSensorCtrl(Koopa* pHost) : mHost(pHost) {
 }

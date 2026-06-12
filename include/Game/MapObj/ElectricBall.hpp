@@ -1,6 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/Array.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class MapPartsRailMover;
+class PartsModel;
 
 class ElectricBall : public LiveActor {
 public:

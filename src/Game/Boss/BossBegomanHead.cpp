@@ -1,6 +1,8 @@
 #include "Game/Boss/BossBegomanHead.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 namespace {
     static const f32 hSpikeRotate = 0.23f;

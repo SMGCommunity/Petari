@@ -1,17 +1,15 @@
 #include "Game/Boss/PoltaArm.hpp"
 #include "Game/Boss/Polta.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/types.h"
 
 namespace NrvPoltaArm {
     NEW_NERVE(PoltaArmNrvControlled, PoltaArm, Controlled);

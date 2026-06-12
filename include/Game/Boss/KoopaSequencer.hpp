@@ -2,12 +2,12 @@
 
 #include "Game/System/NerveExecutor.hpp"
 
-class Koopa;
-class JMapInfoIter;
 class HitSensor;
-class KoopaDemoPowerUp;
+class JMapInfoIter;
+class Koopa;
 class KoopaBattleStairsBase;
 class KoopaDemoJumpToPlanet;
+class KoopaDemoPowerUp;
 
 class KoopaSequencer : public NerveExecutor {
 public:

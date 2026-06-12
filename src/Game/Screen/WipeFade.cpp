@@ -1,13 +1,15 @@
 #include "Game/Screen/WipeFade.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 namespace {
     static const s32 sFadeFrame = 30;
 };  // namespace
 
-WipeFade::WipeFade(const char* pName, const Color8& rFillColor) : WipeLayoutBase(pName), mIsWipeIn(false), mFrame(::sFadeFrame), mStep(::sFadeFrame) {
-    mFillColor = rFillColor;
+WipeFade::WipeFade(const char* pName, const Color8& rFillColor)
+    : WipeLayoutBase(pName), mIsWipeIn(false), mFrame(::sFadeFrame), mStep(::sFadeFrame),
+      mFillColor(rFillColor.r, rFillColor.g, rFillColor.b, rFillColor.a) {
 }
 
 void WipeFade::init(const JMapInfoIter& rIter) {
@@ -28,7 +30,7 @@ void WipeFade::draw() const {
     }
 
     f32 rate = static_cast< f32 >(mStep) / mFrame;
-    f32 alpha = (rate < 0.0f) ? 0.0f : (rate > 1.0f) ? 1.0f : rate;
+    f32 alpha = MR::clamp(rate, 0.0f, 1.0f);
 
     if (mIsWipeIn) {
         alpha = 1.0f - alpha;

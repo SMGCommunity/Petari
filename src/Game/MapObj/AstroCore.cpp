@@ -1,6 +1,15 @@
 #include "Game/MapObj/AstroCore.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AstroDemoFunction.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <cstdio>
 
 namespace {
@@ -27,6 +36,12 @@ void AstroCore::init(const JMapInfoIter& rIter) {
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);
     AstroDemoFunction::tryRegisterGrandStarReturnWithFunctionAndSimpleCast(this, rIter, MR::Functor_Inline(this, &AstroCore::startDemo));
+}
+
+void AstroCore::exeWait() {
+    if (MR::isFirstStep(this)) {
+        setStateBeforeGrow();
+    }
 }
 
 void AstroCore::exeGrow() {

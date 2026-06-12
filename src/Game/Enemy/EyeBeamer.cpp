@@ -1,7 +1,8 @@
 #include "Game/Enemy/EyeBeamer.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/VolumeModelDrawer.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/Scene/SceneFunction.hpp"
@@ -25,7 +26,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
 namespace NrvEyeBeamer {

@@ -1,7 +1,9 @@
 #include "Game/MapObj/Note.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/NoteFairy.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/NoteCounter.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvNote {
     NEW_NERVE(NoteNrvWait, Note, Wait);

@@ -1,8 +1,9 @@
 #include "Game/Enemy/OtaRock.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/CocoNutBall.hpp"
 #include "Game/Enemy/FireBall.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -18,11 +19,8 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-
-#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JMath/JMath.hpp>
 #include <revolution/mtx.h>
-#include <revolution/types.h>
 
 namespace {
     const Vec cSensorOffset = {0.0f, 0.0f, 0.0f};

@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class NameObjArchiveListCollector;
 
 struct SoundEffectDataEntry {
     const char* objectName;  // 0x0

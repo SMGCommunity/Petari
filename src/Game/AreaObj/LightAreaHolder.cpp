@@ -1,4 +1,5 @@
 #include "Game/AreaObj/LightAreaHolder.hpp"
+#include "Game/AreaObj/LightArea.hpp"
 #include "Game/Map/LightFunction.hpp"
 #include "Game/Map/LightZoneDataHolder.hpp"
 

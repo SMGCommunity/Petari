@@ -2,6 +2,8 @@
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/MessageSensorHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -150,6 +152,12 @@ void JetTurtle::bound() {
             v15.scale(0.89f);
             _9C = v21 - v15;
         }
+    }
+}
+
+inline void JetTurtle::endWait() {
+    if (mShellType == JETTURTLETYPE_GOLD) {
+        MR::deleteEffect(this, "Glow");
     }
 }
 

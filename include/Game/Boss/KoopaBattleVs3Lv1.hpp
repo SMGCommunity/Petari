@@ -2,8 +2,9 @@
 
 #include "Game/Boss/KoopaBattleBase.hpp"
 
-class KoopaStateChaseRoll;
+class HitSensor;
 class KoopaStateAttackShockWave;
+class KoopaStateChaseRoll;
 
 class KoopaBattleVs3Lv1 : public KoopaBattleBase {
 public:

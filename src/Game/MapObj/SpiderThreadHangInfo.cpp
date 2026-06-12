@@ -1,5 +1,7 @@
 #include "Game/MapObj/SpiderThreadHangInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/SpiderThreadPart.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"

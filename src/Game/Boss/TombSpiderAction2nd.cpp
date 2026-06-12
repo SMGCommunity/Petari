@@ -3,6 +3,10 @@
 #include "Game/Boss/TombSpiderActionBase.hpp"
 #include "Game/Boss/TombSpiderFunction.hpp"
 #include "Game/Boss/TombSpiderStateSwoon.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace {
     static const s32 sStepWaitMin = 30;

@@ -1,5 +1,6 @@
 #include "Game/Boss/KoopaPowerUpSwitch.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
 
 KoopaPowerUpSwitch::KoopaPowerUpSwitch(const char* pName) : LiveActor(pName) {
 }

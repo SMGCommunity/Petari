@@ -3,6 +3,9 @@
 #include "Game/Boss/DinoPackunBattleVs1Lv1.hpp"
 #include "Game/Boss/DinoPackunBattleVs1Lv2.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace NrvDinoPackunVs1 {
     NEW_NERVE(DinoPackunVs1NrvWaitStart, DinoPackunVs1, WaitStart);

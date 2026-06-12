@@ -1,5 +1,7 @@
 #include "Game/Mapobj/RailCoin.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     class RailCoinMercatorDivInfo : public DivideMercatorRailPosInfo {

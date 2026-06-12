@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/MapObjActorInitInfo.hpp"
 
 class LodCtrl;
+class MapObjActorInitInfo;
 class MapPartsRailMover;
 class MapPartsRotator;
 class MapPartsRailRotator;

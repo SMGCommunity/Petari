@@ -2,6 +2,8 @@
 #include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include <cstdio>
 
 namespace {

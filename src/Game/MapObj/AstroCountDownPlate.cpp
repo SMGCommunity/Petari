@@ -1,6 +1,16 @@
 #include "Game/MapObj/AstroCountDownPlate.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DTevs.hpp>
 
 namespace NrvAstroCountDownPlate {

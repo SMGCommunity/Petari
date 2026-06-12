@@ -1,7 +1,9 @@
 #include "Game/MapObj/UFOKinoko.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvUFOKinoko {
     NEW_NERVE(HostTypeWait, UFOKinoko, Wait)

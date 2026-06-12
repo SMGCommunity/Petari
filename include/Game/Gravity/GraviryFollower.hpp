@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 
 class GlobalGravityObj;

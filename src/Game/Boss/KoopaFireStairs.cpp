@@ -1,5 +1,16 @@
 #include "Game/Boss/KoopaFireStairs.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/KoopaBattleMapStair.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 
 namespace NrvKoopaFireStairs {
     NEW_NERVE(KoopaFireStairsNrvFly, KoopaFireStairs, Fly);

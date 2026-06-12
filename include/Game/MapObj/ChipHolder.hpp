@@ -1,12 +1,11 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include <revolution.h>
 
 class ChipBase;
+class ChipCounter;
 class ChipGroup;
 class ChipHolder;
-class ChipCounter;
 
 namespace MR {
     void registerChip(s32, ChipBase*, s32);

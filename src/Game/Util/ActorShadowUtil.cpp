@@ -1,4 +1,5 @@
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ShadowSurfaceBox.hpp"
 #include "Game/LiveActor/ShadowSurfaceCircle.hpp"
 #include "Game/LiveActor/ShadowSurfaceOval.hpp"

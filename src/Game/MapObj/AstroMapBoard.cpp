@@ -1,6 +1,11 @@
 #include "Game/MapObj/AstroMapBoard.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AstroDemoFunction.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Screen/GalaxyMapController.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace {
     static const char* cDummyTexName = "MapDummy";
