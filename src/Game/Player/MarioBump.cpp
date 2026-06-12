@@ -2,6 +2,8 @@
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 void Mario::checkBump() {
     if (!mMovementStates.jumping && !mMovementStates._A && mMovementStates._1) {

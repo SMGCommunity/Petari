@@ -5,8 +5,8 @@
 #include "Game/AudioLib/AudSpeakerWrap.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/RhythmLib/AudRhythmWrap.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/Util/FileUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRDvdRipper.hpp>
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JKernel/JKRMemArchive.hpp>

@@ -1,9 +1,9 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
-class XanimePlayer;
 class ResourceHolder;
+class XanimePlayer;
 
 class BckCtrlData {
 public:

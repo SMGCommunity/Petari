@@ -1,6 +1,6 @@
 #include "Game/MapObj/LavaHomeVolcanoFlow.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"

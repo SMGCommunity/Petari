@@ -1,22 +1,34 @@
 #include "Game/MapObj/AstroMapObj.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
-#include "Game/MapObj/SimpleMapObj.hpp"
 #include "Game/Screen/GalaxyNamePlate.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
-#include <cstddef>
 
 namespace {
     s32 sAstroPathAppearStep = 90;
+};  // namespace
+
+namespace {
+    bool checkStrings(const char* arg1) {
+        return MR::isEqualString(arg1, "AstroDomeEntrance") || MR::isEqualString(arg1, "AstroLibrary");
+    }
+
+    bool checkOtherStrings(const char* arg1) {
+        return MR::isEqualString(arg1, "AstroRotateStepA") || MR::isEqualString(arg1, "AstroRotateStepB") ||
+               MR::isEqualString(arg1, "AstroDecoratePartsA");
+    }
+
+    bool moreInlines(const char* arg1) {
+        return MR::isEqualString(arg1, "AstroDomeEntrance") || MR::isEqualString(arg1, "AstroLibrary") || MR::isEqualString(arg1, "AstroChildRoom") ||
+               MR::isEqualString(arg1, "AstroParking");
+    }
 };  // namespace
 
 namespace NrvAstroMapObj {
@@ -186,7 +198,7 @@ void AstroMapObj::exeRevival() {
         MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_1");
     } else if (MR::isEqualString(_CC, "AstroRotateStepB")) {
         MR::startLevelSound(this, "SE_OJ_LV_ASTRO_ENGINE_2");
-    } else if (MR::isEqualString(_CC, "AstroStarPlate") && MR::isGreaterStep(this, sAstroPathAppearStep)) {
+    } else if (MR::isEqualString(_CC, "AstroStarPlate") && MR::isGreaterStep(this, ::sAstroPathAppearStep)) {
         MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_PATH_APPEAR");
     }
     if (AstroMapObj::isEndRevival()) {
@@ -241,13 +253,15 @@ bool AstroMapObj::isPlayMachineSE() const {
 AstroMapObj::~AstroMapObj() {
 }
 
-// Unused?
 void AstroMapObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
 }
+
 void AstroMapObj::initCaseUseSwitchB(const MapObjActorInitInfo&) {
 }
+
 void AstroMapObj::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
 }
+
 void AstroMapObj::initCaseUseSwitchA(const MapObjActorInitInfo&) {
 }
 

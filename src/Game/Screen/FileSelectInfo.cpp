@@ -160,10 +160,10 @@ void FileSelectInfo::exeDisplay() {
 
 void FileSelectInfo::exeDisappear() {
     if (MR::isFirstStep(this)) {
-        MR::setAnimRate(this, -sDisappearAnimRate, 0);
+        MR::setAnimRate(this, -::sDisappearAnimRate, 0);
     }
 
-    if (MR::getAnimFrame(this, 0) - sDisappearAnimRate <= 0.0f) {
+    if (MR::getAnimFrame(this, 0) - ::sDisappearAnimRate <= 0.0f) {
         kill();
     }
 }

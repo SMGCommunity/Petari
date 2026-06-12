@@ -1,6 +1,6 @@
 #include "Game/System/GameEventFlagChecker.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameDataConst.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 GameEventFlagChecker::GameEventFlagChecker(GameDataHolder* pHolder) : mDataHolder(pHolder), mFlagStorage(nullptr) {
     SingletonHolder< GameEventFlagTableInstance >::init();

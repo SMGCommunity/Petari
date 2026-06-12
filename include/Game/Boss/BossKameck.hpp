@@ -1,16 +1,15 @@
 #pragma once
 
 #include "Game/Enemy/KameckBeam.hpp"
-#include "Game/LiveActor/ActiveActorList.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 
-class BossKameckVs2;
-class BossKameckMoveRail;
-class KameckHolder;
+class ActiveActorList;
 class ActorJointCtrl;
 class BossKameck;
-class BossKameckSequencer;
 class BossKameckBeamEventListener;
+class BossKameckMoveRail;
+class BossKameckSequencer;
+class BossKameckVs2;
+class KameckHolder;
 
 class BossKameck : public LiveActor {
 public:
@@ -42,31 +41,30 @@ public:
     void startDemo();
     void hitBeam(s32);
 
-    const char* _8C;
-    TQuat4f _90;
-    TVec3f _A0;
-    BossKameckSequencer* mSequencer;             // 0xAC
-    KameckHolder* mKameckHolder;                 // 0xB0
-    ActorJointCtrl* mJointCtrl;                  // 0xB4
-    ActiveActorList* mActorList;                 // 0xB8
-    BossKameckBeamEventListener* mBeamListener;  // 0xBC
-    BossKameckMoveRail** mMoveRail;              // 0xC0
-    s32 _C4;
-    TVec3f _C8;
-    s32 _D4;
+    /* 0x8C */ const char* _8C;
+    /* 0x90 */ TQuat4f _90;
+    /* 0xA0 */ TVec3f _A0;
+    /* 0xAC */ BossKameckSequencer* mSequencer;
+    /* 0xB0 */ KameckHolder* mKameckHolder;
+    /* 0xB4 */ ActorJointCtrl* mJointCtrl;
+    /* 0xB8 */ ActiveActorList* mActorList;
+    /* 0xBC */ BossKameckBeamEventListener* mBeamListener;
+    /* 0xC0 */ BossKameckMoveRail** mMoveRail;
+    /* 0xC4 */ s32 _C4;
+    /* 0xC8 */ TVec3f _C8;
+    /* 0xD4 */ s32 _D4;
 };
 
 class BossKameckBeamEventListener : public KameckBeamEventListener {
 public:
-    inline BossKameckBeamEventListener(BossKameck* pBoss) : KameckBeamEventListener() {
-        mBossKameck = pBoss;
+    BossKameckBeamEventListener(BossKameck* pBoss) : KameckBeamEventListener(), mBossKameck(pBoss) {
     }
 
     virtual void hitBeam(s32 type) {
         mBossKameck->hitBeam(type);
     }
 
-    BossKameck* mBossKameck;  // 0x4
+    /* 0x04 */ BossKameck* mBossKameck;
 };
 
 namespace MR {

@@ -1,4 +1,5 @@
 #include "Game/NPC/TalkSupportPlayerWatcher.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/MathUtil.hpp"

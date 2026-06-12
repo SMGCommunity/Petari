@@ -129,7 +129,7 @@ void GalaxyNamePlate::exeAppearReady() {
     if (!_24) {
         kill();
     } else {
-        MR::setNerveAtStep(this, &NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance, cAppearReadyFrame);
+        MR::setNerveAtStep(this, &NrvGalaxyNamePlate::GalaxyNamePlateNrvAppear::sInstance, ::cAppearReadyFrame);
     }
 }
 

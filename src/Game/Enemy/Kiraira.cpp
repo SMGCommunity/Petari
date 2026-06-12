@@ -2,6 +2,7 @@
 #include "Game/Enemy/KirairaChain.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 namespace {
     // static const f32 sDriftSpeedMax = 2.4f;
@@ -43,8 +44,8 @@ void Kiraira::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
     initHitSensor(3);
     MR::addHitSensorEnemy(this, "body", 8, 120.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensorEye(this, "eye", 16, sEyeHitSize, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensorEye(this, "mind_eye", 8, sMindEyeHitSize, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEye(this, "eye", 16, ::sEyeHitSize, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEye(this, "mind_eye", 8, ::sMindEyeHitSize, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(6, false);
     MR::initShadowVolumeSphere(this, 90.0f);
@@ -87,7 +88,7 @@ void Kiraira::exeWait() {
         closeEyes();
         MR::startBrk(this, "Wait");
     }
-    if (MR::isNearPlayer(this, sEyeSensorInRadius)) {
+    if (MR::isNearPlayer(this, ::sEyeSensorInRadius)) {
         setNerve(&NrvKiraira::KirairaNrvFaceToMario::sInstance);
     } else {
         drift();
@@ -98,11 +99,11 @@ void Kiraira::exeFaceToMario() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "Wait");
     }
-    if (!MR::isNearPlayer(this, sEyeSensorOutRadius)) {
+    if (!MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
         setNerve(&NrvKiraira::KirairaNrvWait::sInstance);
     } else {
-        MR::turnDirectionToPlayerDegree(this, &mFront, sTurnRate);
-        if (MR::isFaceToPlayerHorizontalDegree(this, mFront, sTurnRate)) {
+        MR::turnDirectionToPlayerDegree(this, &mFront, ::sTurnRate);
+        if (MR::isFaceToPlayerHorizontalDegree(this, mFront, ::sTurnRate)) {
             MR::startBck(this, "Stop", static_cast< const char* >(nullptr));
             setNerve(&NrvKiraira::KirairaNrvFaceToMarioAndStare::sInstance);
         } else {
@@ -115,13 +116,13 @@ void Kiraira::exeFaceToMarioAndStare() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "Wait");
     }
-    if (MR::isStep(this, sStepToStare)) {
+    if (MR::isStep(this, ::sStepToStare)) {
         openEyes();
     }
-    if (!MR::isNearPlayer(this, sEyeSensorOutRadius)) {
+    if (!MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
         setNerve(&NrvKiraira::KirairaNrvWait::sInstance);
     } else {
-        MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), sTurnRate);
+        MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), ::sTurnRate);
         drift();
     }
 }
@@ -130,7 +131,7 @@ void Kiraira::exeBeExploded() {
     if (MR::isFirstStep(this)) {
         mIsForceDetonated = true;
     }
-    if (MR::isStep(this, sIntervalToExplode)) {
+    if (MR::isStep(this, ::sIntervalToExplode)) {
         explode();
     }
 }
@@ -151,7 +152,7 @@ void Kiraira::exeDead() {
     if (mSharedGroup != nullptr) {
         mSharedGroup->sendMsgToGroupMember(ACTMES_GROUP_ATTACK, getSensor("body"), "body");
     }
-    if (MR::isStep(this, sStepToRecoverSign)) {
+    if (MR::isStep(this, ::sStepToRecoverSign)) {
         setNerve(&NrvKiraira::KirairaNrvRecoverSign::sInstance);
     } else {
         drift();
@@ -168,7 +169,7 @@ void Kiraira::exeRecoverSign() {
         MR::startBrk(this, "RevivalStart");
         MR::validateClipping(this);
     }
-    if (MR::isStep(this, sStepToRecover)) {
+    if (MR::isStep(this, ::sStepToRecover)) {
         setNerve(&NrvKiraira::KirairaNrvRecover::sInstance);
     } else {
         drift();
@@ -185,20 +186,20 @@ void Kiraira::exeRecover() {
         MR::startBrk(this, "Revival");
         MR::startSound(this, "SE_OJ_KIRAIRA_RECOVER");
 
-        if (MR::isNearPlayer(this, sEyeSensorOutRadius)) {
+        if (MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
             openEyes();
         }
         MR::setShadowVolumeSphereRadius(this, static_cast< const char* >(nullptr), 90.0f);
         mIsForceDetonated = false;
     }
-    if (MR::isNearPlayer(this, sEyeSensorOutRadius)) {
-        MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), sTurnRate);
+    if (MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
+        MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), ::sTurnRate);
     }
     if (MR::isBckStopped(this)) {
         if (mChain != nullptr) {
             mChain->_90 = false;
         }
-        if (!MR::isNearPlayer(this, sEyeSensorOutRadius)) {
+        if (!MR::isNearPlayer(this, ::sEyeSensorOutRadius)) {
             setNerve(&NrvKiraira::KirairaNrvFaceToMarioAndStare::sInstance);
         } else {
             setNerve(&NrvKiraira::KirairaNrvWait::sInstance);
@@ -328,7 +329,7 @@ void Kiraira::drift() {
 
 void Kiraira::driftOnRail() {
     MR::moveCoordAndFollowTrans(this, mRailCoordSpeed);
-    if (MR::isRailReachedNearGoal(this, sRailGoalOffset)) {
+    if (MR::isRailReachedNearGoal(this, ::sRailGoalOffset)) {
         MR::reverseRailDirection(this);
     }
     MR::startLevelSound(this, "SE_OJ_LV_KIRAIRA_CHAIN");
@@ -336,7 +337,7 @@ void Kiraira::driftOnRail() {
 
 void Kiraira::explode() {
     closeEyes();
-    MR::startRumbleWithShakeCameraStrong(this, "強", "中", sCameraShakeDistance, sNoCameraShakeDistance);
+    MR::startRumbleWithShakeCameraStrong(this, "強", "中", ::sCameraShakeDistance, ::sNoCameraShakeDistance);
     if (mIsForceDetonated) {
         MR::sendMsgExplosionToNearActor(getSensor("eye"), -1.0f);
     }

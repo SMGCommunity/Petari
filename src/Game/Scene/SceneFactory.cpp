@@ -24,9 +24,9 @@ namespace {
 
 namespace MR {
     Scene* createScene(const char* pName) {
-        const Name2CreateFunc* pBegin = &cCreateTable[0];
-        const Name2CreateFunc* pEnd = &cCreateTable[ARRAY_SIZE(cCreateTable)];
-        const Name2CreateFunc* pIter;
+        const ::Name2CreateFunc* pBegin = &::cCreateTable[0];
+        const ::Name2CreateFunc* pEnd = &::cCreateTable[ARRAY_SIZE(::cCreateTable)];
+        const ::Name2CreateFunc* pIter;
 
         for (pIter = pBegin; pIter != pEnd; pIter++) {
             bool isEqualName = strcmp(pIter->mName, pName) == 0;

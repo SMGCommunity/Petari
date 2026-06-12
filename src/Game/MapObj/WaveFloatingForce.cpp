@@ -1,4 +1,6 @@
 #include "Game/MapObj/WaveFloatingForce.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
 WaveFloatingForce::WaveFloatingForce(const LiveActor* pActor, s32 a2, f32 a3, bool a4) {

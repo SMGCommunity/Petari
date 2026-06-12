@@ -12,9 +12,8 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 
 static TVec3f operator/(const TVec3f& rVec, f32 div) NO_INLINE {
     TVec3f ret(rVec);
@@ -1090,7 +1089,7 @@ void Mario::tryDrop() {
     TVec3f dropVec(mFrontVec);
     dropVec.scale(frontSpd);
     TVec3f dropVecScale(dropVec);
-    dropVecScale.scale(cDropFrontSpeed);
+    dropVecScale.scale(::cDropFrontSpeed);
     mJumpVec = dropVecScale;
 
     if (MR::isNearZero(_8F8) && (mMovementStates._23)) {

@@ -175,7 +175,7 @@ void StarPieceCounter::updateCounterValue() {
                 MR::emitEffect(this, MR::isStageAstroLocation() ? "TStarPieceCounterLight" : "StarPieceCounterLight");
             } else if (mMode == 1) {
                 if (mStarPieceDisplayNum - mStarPieceNum > 10) {
-                    mStarPieceDisplayNum -= cDecCounterValueFast;
+                    mStarPieceDisplayNum -= ::cDecCounterValueFast;
                 } else {
                     mStarPieceDisplayNum = mStarPieceNum;
                 }
@@ -183,7 +183,7 @@ void StarPieceCounter::updateCounterValue() {
                 mStarPieceDisplayNum--;
             }
 
-            mInvalidCountUpFrame = cInvalidCountUpInterval;
+            mInvalidCountUpFrame = ::cInvalidCountUpInterval;
 
             mPaneRumbler->start();
         }
@@ -240,7 +240,7 @@ void StarPieceCounter::exeHide() {
         MR::hideLayout(this);
     }
 
-    s32 step = mMode != 0 ? cHideFrameMinTicoEat : cHideFrameMin;
+    s32 step = mMode != 0 ? ::cHideFrameMinTicoEat : ::cHideFrameMin;
 
     if (MR::isGreaterStep(this, step) && isValidAppearSituation()) {
         setNerve(&NrvStarPieceCounter::StarPieceCounterNrvAppear::sInstance);
@@ -255,7 +255,7 @@ void StarPieceCounter::exeAppear() {
         if (isDispCenter()) {
             MR::showPaneRecursive(this, "TSPieceCounter");
             MR::hidePaneRecursive(this, "StarPieceCounter");
-            mLayoutAppearer->setAppearOffset(TVec2f(0.0f, cAppearOffsetCenterY));
+            mLayoutAppearer->setAppearOffset(TVec2f(0.0f, ::cAppearOffsetCenterY));
 
             if (MR::isStageAstroLocation()) {
                 MR::showPaneRecursive(this, "PicTStarPiece");
@@ -267,15 +267,15 @@ void StarPieceCounter::exeAppear() {
         } else {
             MR::showPaneRecursive(this, "StarPieceCounter");
             MR::hidePaneRecursive(this, "TSPieceCounter");
-            mLayoutAppearer->setAppearOffset(TVec2f(cAppearOffsetRightX, 0.0f));
+            mLayoutAppearer->setAppearOffset(TVec2f(::cAppearOffsetRightX, 0.0f));
         }
 
         f32 y = 0.0f;
 
         if (mMode != 0) {
-            y = cBaseOffsetTicoFatY;
+            y = ::cBaseOffsetTicoFatY;
         } else if (_3C == 2) {
-            y = cBaseOffsetEatTicoY;
+            y = ::cBaseOffsetEatTicoY;
         }
 
         mLayoutAppearer->appear(TVec2f(0.0f, y));

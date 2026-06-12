@@ -160,7 +160,7 @@ namespace MR {
 
     void setTripodBossJointAttachBaseMatrix(const TPos3f& rPos, s32 id) {
         TripodBoss* boss = MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss;
-        boss->setJointAttachBaseMatrix(rPos, convertBoneIDToIndex(id));
+        boss->setJointAttachBaseMatrix(rPos, ::convertBoneIDToIndex(id));
     }
 
     void requestStartTripodBossStepSequence(s32 seq) {
@@ -173,12 +173,12 @@ namespace MR {
 
     void getTripodBossJointMatrix(TPos3f* pPos, s32 id) {
         TripodBoss* boss = MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss;
-        boss->getJointMatrix(pPos, convertBoneIDToIndex(id));
+        boss->getJointMatrix(pPos, ::convertBoneIDToIndex(id));
     }
 
     void getTripodBossAttachJointMatrix(TPos3f* pPos, s32 id) {
         TripodBoss* boss = MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss;
-        boss->getJointAttachMatrix(pPos, convertBoneIDToIndex(id));
+        boss->getJointAttachMatrix(pPos, ::convertBoneIDToIndex(id));
     }
 
     void concatTripodBossAttachJointMatrix(TPos3f* pPos, s32 id) {
@@ -195,7 +195,7 @@ namespace MR {
     }
 
     bool isSteppingTripodBossJointID(s32 id) {
-        s32 partID = TripodBoss::getPartIDFromBoneID(convertBoneIDToIndex(id));
+        s32 partID = TripodBoss::getPartIDFromBoneID(::convertBoneIDToIndex(id));
         bool ret = false;
 
         if (partID >= 0 && partID < 3) {

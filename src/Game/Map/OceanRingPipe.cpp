@@ -1,12 +1,15 @@
 #include "Game/Map/OceanRingPipe.hpp"
+#include "Game/Map/Flag.hpp"
 #include "Game/Map/OceanRing.hpp"
 #include "Game/Map/OceanRingPipeInside.hpp"
 #include "Game/Map/OceanRingPipeOutside.hpp"
-
-#include "Game/Map/Flag.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
-#include "Game/Map/WaterInfo.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 
 OceanRingPipe::~OceanRingPipe() {
 }

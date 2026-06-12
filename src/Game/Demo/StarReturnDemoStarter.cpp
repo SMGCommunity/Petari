@@ -1,6 +1,7 @@
 #include "Game/Demo/StarReturnDemoStarter.hpp"
 #include "Game/Demo/ReturnDemoRailMove.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
@@ -126,7 +127,7 @@ void StarReturnDemoStarter::tryRegisterDemo(const char* pDemoName, const JMapInf
 }
 
 void StarReturnDemoStarter::tryStartStageResult() {
-    if (MR::isDemoPartLastStep(cDemoWaitPartName)) {
+    if (MR::isDemoPartLastStep(::cDemoWaitPartName)) {
         if (GameSequenceFunction::hasStageResultSequence()) {
             mStageResultInformer->appear();
             MR::requestMovementOn(mStageResultInformer);
@@ -183,7 +184,7 @@ void StarReturnDemoStarter::exeMove() {
         mReturnDemoRailMove->start();
     }
 
-    const char* pDemoName = cDemoMovePartName;
+    const char* pDemoName = ::cDemoMovePartName;
     int partStep = MR::getDemoPartStep(pDemoName) - 44;
     int totalStep = MR::getDemoPartTotalStep(pDemoName) - 45;
     mReturnDemoRailMove->update(partStep, totalStep);

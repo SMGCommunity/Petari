@@ -2,12 +2,14 @@
 #include "Game/Effect/EffectSystemUtil.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/Effect/MultiEmitterParticleCallBack.hpp"
+#include "Game/LiveActor/EffectKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/Screen/PaneEffectKeeper.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
 namespace {

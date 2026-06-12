@@ -1,5 +1,20 @@
 #include "Game/Map/RaceManager.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/RaceRail.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <algorithm>
 
 // FIXME: String "Record" is out of order in .data, yet function order matches in retail and debug
@@ -197,7 +212,7 @@ void RaceManager::exeWipeOut() {
             MR::stopStageBGM(90);
         }
 
-        MR::closeWipeFade(-1);
+        MR::closeWipeFade();
     }
 
     if (MR::isWipeActive()) {
@@ -233,7 +248,7 @@ void RaceManager::exeWipeIn() {
             MR::startCurrentStageBGM();
         }
 
-        MR::openWipeFade(-1);
+        MR::openWipeFade();
     }
 
     if (MR::isWipeActive()) {
@@ -252,7 +267,7 @@ void RaceManager::exeWipeIn() {
 
 void RaceManager::exeIntro() {
     if (MR::isFirstStep(this)) {
-        if (getRaceStruceData(mCurrentRace).mIsDemoWithStarPointer) {
+        if (::getRaceStruceData(mCurrentRace).mIsDemoWithStarPointer) {
             MR::startStarPointerModeDemoWithStarPointer(this);
         } else {
             MR::startStarPointerModeDemo(this);
@@ -279,8 +294,8 @@ void RaceManager::exeCount() {
         MR::startSystemSE("SE_SY_RACE_COUNT_DOWN");
     }
 
-    if (MR::isStep(this, sBgmStartStep)) {
-        MR::startEventBGM(getRaceStruceData(mCurrentRace).mEventBgmId);
+    if (MR::isStep(this, ::sBgmStartStep)) {
+        MR::startEventBGM(::getRaceStruceData(mCurrentRace).mEventBgmId);
     }
 
     if (mLayout->isPlayCountAnim()) {
@@ -297,7 +312,7 @@ void RaceManager::exeRace() {
         MR::startSystemSE("SE_SY_RACE_START");
     }
 
-    s32 maxTime = getRaceStruceData(mCurrentRace).mMaxTime;
+    s32 maxTime = ::getRaceStruceData(mCurrentRace).mMaxTime;
     MR::updateClearTimeTextBox(mLayout, "TimeCounter", getNerveStep());
     if (maxTime > 0 && getNerveStep() >= maxTime * 60) {
         mRank = 0;
@@ -501,46 +516,46 @@ void RaceManager::renewTime() {
 namespace RaceManagerFunction {
     void entryRacerOthers(AbstractRacer* pRacer) {
         MR::createSceneObj(SceneObj_RaceManager);
-        getRaceManager()->entry(pRacer);
+        ::getRaceManager()->entry(pRacer);
     }
 
     void entryAudience(AbstractAudience* pAudience) {
         MR::createSceneObj(SceneObj_RaceManager);
-        getRaceManager()->entry(pAudience);
+        ::getRaceManager()->entry(pAudience);
     }
 
     void entryRacerPlayer(PlayerRacer* pRacer) {
         MR::createSceneObj(SceneObj_RaceManager);
-        getRaceManager()->entry(pRacer);
+        ::getRaceManager()->entry(pRacer);
     }
 
     void startRaceWithWipe() {
-        getRaceManager()->startWithWipe();
+        ::getRaceManager()->startWithWipe();
     }
 
     void startRaceImmediately() {
-        getRaceManager()->startImmediately();
+        ::getRaceManager()->startImmediately();
     }
 
     u32 getRaceRank() {
-        return getRaceManager()->mRank;
+        return ::getRaceManager()->mRank;
     }
 
     u32 getRaceTime() {
-        return getRaceManager()->mTime;
+        return ::getRaceManager()->mTime;
     }
 
     const char* getRaceName(int index) {
-        return getRaceStruceData(index).mName;
+        return ::getRaceStruceData(index).mName;
     }
 
     const char* getRaceMessageId(int index) {
-        return getRaceStruceData(index).mMessageId;
+        return ::getRaceStruceData(index).mMessageId;
     }
 
     s32 getRaceId(const char* pGalaxyName, s32 scenarioNo) {
-        for (u32 i = 0; i < ARRAY_SIZE(sRaceStruct); i++) {
-            const RaceStructData& rRaceStructData = getRaceStruceData(i);
+        for (u32 i = 0; i < ARRAY_SIZE(::sRaceStruct); i++) {
+            const RaceStructData& rRaceStructData = ::getRaceStruceData(i);
 
             if (MR::isEqualString(rRaceStructData.mGalaxyName, pGalaxyName) && rRaceStructData.mScenarioNo == scenarioNo) {
                 return i;
@@ -551,6 +566,6 @@ namespace RaceManagerFunction {
     }
 
     bool hasPowerStarRaceScenario(int index) {
-        return MR::isOnGameEventFlagPowerStarSuccess(getRaceStruceData(index).mGalaxyName, getRaceStruceData(index).mScenarioNo);
+        return MR::isOnGameEventFlagPowerStarSuccess(::getRaceStruceData(index).mGalaxyName, ::getRaceStruceData(index).mScenarioNo);
     }
 };  // namespace RaceManagerFunction

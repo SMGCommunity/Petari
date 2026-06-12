@@ -1,6 +1,12 @@
 #include "Game/MapObj/ArrowSwitch.hpp"
-#include "math_types.hpp"
-#include <cmath>
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 namespace {
     const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
@@ -242,12 +248,12 @@ void ArrowSwitch::exeRotate() {
     _8C += _94;
     f32 v3 = fmod(360.0 + v2, 360.0);
     f32 v4 = (-180.0f + v3);
-    f32 v5 = (sRotYTargetList[mRotationIdx] - (-180.0f + v3));
+    f32 v5 = (::sRotYTargetList[mRotationIdx] - (-180.0f + v3));
     _8C = v4;
     f32 v6 = (-180.0 + fmod((360.0 + (v5 - -180.0)), 360.0));
 
     if (_9D && v6 < 0.0f || !_9D && v6 > 0.0f) {
-        f32 rot = sRotYTargetList[mRotationIdx];
+        f32 rot = ::sRotYTargetList[mRotationIdx];
         _94 = 0.0f;
         _8C = rot;
         if (MR::isValidSwitchA(this) && _9F) {

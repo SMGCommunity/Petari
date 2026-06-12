@@ -1,4 +1,5 @@
 #include "Game/NPC/DemoRabbit.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
 

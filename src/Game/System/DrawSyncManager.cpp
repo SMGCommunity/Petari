@@ -1,6 +1,6 @@
 #include "Game/System/DrawSyncManager.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 DrawSyncManager* DrawSyncManager::start(u32 a1, s32 a2) {
     if (!DrawSyncManager::sInstance) {

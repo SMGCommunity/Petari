@@ -1,6 +1,8 @@
 #include "Game/MapObj/SandUpDownTriRock.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 namespace NrvSandUpDownTriRock {

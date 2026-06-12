@@ -3,14 +3,13 @@
 #include "Game/Boss/DodoryuStateBase.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 
-class Dodoryu;
-
 class DodoryuDemoOpening : public DodoryuStateBase {
 public:
     DodoryuDemoOpening(Dodoryu* pHost, const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
+
     virtual void start();
     virtual void end();
 
@@ -33,6 +32,7 @@ public:
     DodoryuDemoAppear(Dodoryu* pHost, const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
+
     virtual void start();
     virtual void end();
 
@@ -47,6 +47,7 @@ public:
     DodoryuDemoAngry(Dodoryu* pHost, const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
+
     virtual void start();
     virtual void end();
 
@@ -61,6 +62,7 @@ public:
     DodoryuDemoDown(Dodoryu* pHost, const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
+
     virtual void start();
     virtual void end();
 

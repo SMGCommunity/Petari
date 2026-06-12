@@ -1,6 +1,8 @@
 #include "Game/LiveActor/FlashingCtrl.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 FlashingCtrl::FlashingCtrl(LiveActor* pActor, bool toggleDraw) : NameObj("点滅") {
     mActor = pActor;

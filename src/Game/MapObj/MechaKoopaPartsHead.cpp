@@ -1,4 +1,7 @@
 #include "Game/MapObj/MechaKoopaPartsHead.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     const char* sDemoPartNameBreak = "壊れ開始";
@@ -30,10 +33,10 @@ void MechaKoopaPartsHead::init(const JMapInfoIter& rIter) {
     initInfo.setupNerve(&NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvWait::sInstance);
     initialize(rIter, initInfo);
     MR::declarePowerStar(this);
-    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoBreak::sInstance, sDemoPartNameBreak);
-    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoWhiteFadeOut::sInstance, sDemoPartNameFadeOut);
-    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoWhiteWait::sInstance, sDemoPartNameWhite);
-    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoWhiteFadeIn::sInstance, sDemoPartNameFadeIn);
+    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoBreak::sInstance, ::sDemoPartNameBreak);
+    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoWhiteFadeOut::sInstance, ::sDemoPartNameFadeOut);
+    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoWhiteWait::sInstance, ::sDemoPartNameWhite);
+    MR::registerDemoActionNerve(this, &NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoWhiteFadeIn::sInstance, ::sDemoPartNameFadeIn);
 
     if (MR::isValidSwitchA(this)) {
         MR::onSwitchA(this);
@@ -99,7 +102,7 @@ void MechaKoopaPartsHead::exeDemoWhiteFadeIn() {
         MR::openWipeWhiteFade(60);
     }
 
-    if (MR::isDemoPartLastStep(sDemoPartNameFadeIn)) {
+    if (MR::isDemoPartLastStep(::sDemoPartNameFadeIn)) {
         setNerve(&NrvMechaKoopaPartsHead::MechaKoopaPartsHeadNrvDemoAppearStar::sInstance);
     }
 }

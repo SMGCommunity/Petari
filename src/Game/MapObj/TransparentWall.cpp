@@ -1,6 +1,8 @@
 #include "Game/MapObj/TransparentWall.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/InvisiblePolygonObj.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
@@ -11,9 +13,9 @@ TransparentWall::TransparentWall(const char* pName) : InvisiblePolygonObj(pName)
 TransparentWall::~TransparentWall() {
 }
 
-void TransparentWall::init(const JMapInfoIter& rIfter) {
-    InvisiblePolygonObj::init(rIfter);
-    MR::getJMapInfoArg4WithInit(rIfter, &_BC);
+void TransparentWall::init(const JMapInfoIter& rrIter) {
+    InvisiblePolygonObj::init(rrIter);
+    MR::getJMapInfoArg4WithInit(rrIter, &_BC);
     makeActorAppeared();
     _C0 = false;
     MR::invalidateCollisionParts(this);

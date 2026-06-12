@@ -25,7 +25,6 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Scene/StopSceneController.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/ResourceHolder.hpp"
@@ -37,6 +36,7 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
@@ -737,6 +737,7 @@ namespace MR {
 
     void initStarPieceGetCSSound() {
         StarPieceDirector* director = getStarPieceDirector();
+
         if (director != nullptr) {
             director->initCSSound();
         }
@@ -793,12 +794,12 @@ namespace MR {
         appearKinokoOneUpPop(pKinokoSuper, pMtx, param3);
     }
 
-    void stopScene(s32 param1) {
-        MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopScene(param1);
+    void stopScene(s32 frame) {
+        MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopScene(frame);
     }
 
-    void stopSceneForDefaultHit(s32 param1) {
-        MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopSceneDelay(param1, 2);
+    void stopSceneForDefaultHit(s32 frame) {
+        MR::getSceneObj< StopSceneController >(SceneObj_StopSceneController)->requestStopSceneDelay(frame, 2);
     }
 
     bool tryRumblePad(const void* pParam1, const char* pPatternName, s32 channel) {

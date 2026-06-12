@@ -33,8 +33,8 @@ u32 __MEM2End = 0x80003128;
 
 #define OSTicksToSeconds(ticks) ((ticks) / OS_TIMER_CLOCK)
 #define OSTicksToMilliseconds(ticks) ((ticks) / (OS_TIMER_CLOCK / 1000))
-#define OSTicksToMicroseconds(ticks) (((ticks) * 8) / (OS_TIMER_CLOCK / 125000))
-#define OSSecondsToTicks(sec) ((sec) * OS_TIMER_CLOCK)
+#define OSTicksToMicroseconds(ticks) (((ticks)*8) / (OS_TIMER_CLOCK / 125000))
+#define OSSecondsToTicks(sec) ((sec)*OS_TIMER_CLOCK)
 #define OSMillisecondsToTicks(msec) ((msec) * (OS_TIMER_CLOCK / 1000))
 #define OSMicrosecondsToTicks(usec) (((usec) * (OS_TIMER_CLOCK / 125000)) / 8)
 
@@ -47,18 +47,21 @@ void* OSPhysicalToUncached(u32);
 #define OS_BASE_UNCACHED (OS_UNCACHED_REGION_PREFIX << 16)
 
 #define OSPhysicalToCached(paddr) ((void*)((u32)(paddr) + OS_BASE_CACHED))
-#define OSCachedToPhysical(caddr) ((u32)((u8*)(caddr) - OS_BASE_CACHED))
+#define OSCachedToPhysical(caddr) ((u32)((u8*)(caddr)-OS_BASE_CACHED))
 #define OSUncachedToPhysical(ucaddr) ((u32)((u32)(ucaddr) & (~OS_BASE_UNCACHED)))
 #define OSPhysicalToUncached(paddr) ((void*)((u32)(paddr) + OS_BASE_UNCACHED))
 
-#define OSIsMEM1Region(addr) (((u32)(addr) & 0x30000000) == 0x00000000)
-#define OSIsMEM2Region(addr) (((u32)(addr) & 0x30000000) == 0x10000000)
+#define OSIsMEM1Region(addr) (((u32)(addr)&0x30000000) == 0x00000000)
+#define OSIsMEM2Region(addr) (((u32)(addr)&0x30000000) == 0x10000000)
 
 #define OSRoundUp32B(x) (((u32)(x) + 32 - 1) & ~(32 - 1))
 #define OSRoundDown32B(x) (((u32)(x)) & ~(32 - 1))
 #define OSDiffTick(tick1, tick0) ((s32)(tick1) - (s32)(tick0))
 
 #define OS_TICKS_DELTA(x, y) ((s32)x - (s32)y)
+
+u32 OSGetSoundMode(void);
+void OSSetSoundMode(u32 mode);
 
 u32 OSGetConsoleType(void);
 

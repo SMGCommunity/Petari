@@ -1,4 +1,6 @@
 #include "Game/MapObj/MagicBell.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvMagicBell {
     NEW_NERVE(MagicBellNrvWait, MagicBell, Wait);

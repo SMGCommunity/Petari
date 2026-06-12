@@ -1,17 +1,15 @@
 #include "Game/Boss/PoltaArm.hpp"
 #include "Game/Boss/Polta.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/types.h"
 
 namespace NrvPoltaArm {
     NEW_NERVE(PoltaArmNrvControlled, PoltaArm, Controlled);
@@ -75,6 +73,9 @@ void PoltaArm::control() {
     if (!MR::isDead(mBreakModel) && MR::isActionEnd(mBreakModel)) {
         mBreakModel->kill();
     }
+}
+
+void PoltaArm::exeControlled() {
 }
 
 void PoltaArm::exeDamage() {
@@ -143,6 +144,10 @@ void PoltaArm::exeRepair() {
     }
 }
 
+void PoltaArm::endRepair() {
+    mFormationModel->kill();
+}
+
 void PoltaArm::exeBroken() {
     if (!_D4) {
         mBrokenCounter++;
@@ -150,6 +155,12 @@ void PoltaArm::exeBroken() {
     if (mBrokenCounter > 1200) {
         setNerve(&NrvPoltaArm::PoltaArmNrvRepair::sInstance);
     }
+}
+
+void PoltaArm::exeWaitDamageEnd() {
+}
+
+void PoltaArm::exeWaitRepairEnd() {
 }
 
 bool PoltaArm::isEnableHitSensor() const {
@@ -267,17 +278,4 @@ void PoltaArm::appearBreakModel() {
     mBreakModel->makeActorAppeared();
     MR::invalidateClipping(mBreakModel);
     MR::startAction(mBreakModel, "Break");
-}
-
-inline void PoltaArm::exeWaitRepairEnd() {
-}
-
-inline void PoltaArm::exeWaitDamageEnd() {
-}
-
-inline void PoltaArm::endRepair() {
-    mFormationModel->kill();
-}
-
-inline void PoltaArm::exeControlled() {
 }

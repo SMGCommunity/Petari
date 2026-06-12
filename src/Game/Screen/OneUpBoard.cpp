@@ -43,8 +43,8 @@ void OneUpBoard::calcPos() {
 
     MR::calcScreenPosition(&pos, *MR::getPlayerCenterPos());
 
-    pos.y -= sOffsetY;
-    pos.y = pos.y >= sOffsetYMin ? pos.y : sOffsetYMin;
+    pos.y -= ::sOffsetY;
+    pos.y = pos.y >= ::sOffsetYMin ? pos.y : ::sOffsetYMin;
 
     setTrans(pos);
 }

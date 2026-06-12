@@ -28,7 +28,7 @@ struct JASBasicWaveBank : public JASWaveBank {
         TWaveHandle() {
             mHeap = nullptr;
         }
-        virtual ~TWaveHandle(){};
+        virtual ~TWaveHandle() {};
         virtual const JASWaveInfo* getWaveInfo() const {
             return &mWaveInfo;
         }

@@ -3,7 +3,6 @@
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Screen/HomeButtonLayout.hpp"
 #include "Game/Screen/SystemWipeHolder.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/DrawSyncManager.hpp"
 #include "Game/System/FileRipper.hpp"
@@ -28,6 +27,7 @@
 #include "Game/Util/MutexHolder.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRAram.hpp>
 #include <JSystem/JKernel/JKRExpHeap.hpp>

@@ -1,16 +1,33 @@
 #include "Game/Enemy/Petari.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/FootPrint.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     static const Vec sBodySensorOffset = {0.0f, 60.0f, 0.0f};
     static const Vec sSpinSensorOffset = {0.0f, 0.0f, 0.0f};
     const char* sBodySensorName = "body";
     const char* sSpinSensorName = "spin";
+};  // namespace
 
+namespace {
     NEW_NERVE(PetariNrvLurk, Petari, Lurk);
     NEW_NERVE(PetariNrvJumpOut, Petari, JumpOut);
     NEW_NERVE_ONEND(PetariNrvWait, Petari, Wait, Wait);
@@ -40,8 +57,8 @@ void Petari::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     initHitSensor(2);
-    MR::addHitSensorEnemy(this, sBodySensorName, 32, 60.0f, TVec3f(sBodySensorOffset));
-    MR::addHitSensorEnemy(this, sSpinSensorName, 32, 100.0f, TVec3f(sSpinSensorOffset));
+    MR::addHitSensorEnemy(this, ::sBodySensorName, 32, 60.0f, TVec3f(::sBodySensorOffset));
+    MR::addHitSensorEnemy(this, ::sSpinSensorName, 32, 100.0f, TVec3f(::sSpinSensorOffset));
     initBinder(60.0f, 60.0f, 0);
     initEffectKeeper(1, nullptr, false);
     MR::addEffect(this, "PointerTouchManual");
@@ -391,17 +408,17 @@ void Petari::calcAndSetBaseMtx() {
 }
 
 void Petari::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensor(pSender, sBodySensorName) && isSolidBody()) {
+    if (MR::isSensor(pSender, ::sBodySensorName) && isSolidBody()) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
 bool Petari::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensor(pReceiver, sBodySensorName)) {
+    if (MR::isSensor(pReceiver, ::sBodySensorName)) {
         return receivePlayerAttackAtBody(msg, pSender, pReceiver);
     }
 
-    if (MR::isSensor(pReceiver, sSpinSensorName)) {
+    if (MR::isSensor(pReceiver, ::sSpinSensorName)) {
         return receivePlayerAttackAtSpin(msg, pSender, pReceiver);
     }
 
@@ -409,7 +426,7 @@ bool Petari::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
 }
 
 bool Petari::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (!MR::isSensor(pReceiver, sBodySensorName)) {
+    if (!MR::isSensor(pReceiver, ::sBodySensorName)) {
         return false;
     }
 
@@ -423,7 +440,7 @@ bool Petari::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
 }
 
 bool Petari::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensor(pReceiver, sBodySensorName) && isSolidBody()) {
+    if (MR::isSensor(pReceiver, ::sBodySensorName) && isSolidBody()) {
         MR::addVelocityFromPush(this, 3.0f, pSender, pReceiver);
         return true;
     }
@@ -432,7 +449,7 @@ bool Petari::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool Petari::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensor(pReceiver, sBodySensorName) && isNerve(&PetariNrvSwoon::sInstance) && MR::isMsgPlayerKick(msg)) {
+    if (MR::isSensor(pReceiver, ::sBodySensorName) && isNerve(&PetariNrvSwoon::sInstance) && MR::isMsgPlayerKick(msg)) {
         MR::setVelocityBlowAttack(this, pSender, pReceiver, 10.0f, 0.0f, 4);
         setNerve(&PetariNrvKickOut::sInstance);
         return true;

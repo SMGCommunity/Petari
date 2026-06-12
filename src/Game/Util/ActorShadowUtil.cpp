@@ -1,4 +1,5 @@
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ShadowSurfaceBox.hpp"
 #include "Game/LiveActor/ShadowSurfaceCircle.hpp"
 #include "Game/LiveActor/ShadowSurfaceOval.hpp"
@@ -6,6 +7,7 @@
 #include "Game/LiveActor/ShadowVolumeCylinder.hpp"
 #include "Game/LiveActor/ShadowVolumeFlatModel.hpp"
 #include "Game/LiveActor/ShadowVolumeLine.hpp"
+#include "Game/LiveActor/ShadowVolumeOval.hpp"
 #include "Game/LiveActor/ShadowVolumeSphere.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Util/ActorShadowLocalUtil.hpp"
@@ -15,6 +17,12 @@
 #include "revolution/mtx.h"
 
 namespace MR {
+
+    void initShadowVolumeBox(LiveActor* pActor, const TVec3f& size) {
+        pActor->initShadowControllerList(1);
+        addShadowVolumeBox(pActor, "ボリューム影(ボックス)", size);
+    }
+
     void initShadowController(LiveActor* pActor, u32 numShadows) {
         pActor->initShadowControllerList(numShadows);
     }
@@ -33,15 +41,13 @@ namespace MR {
         pSphere->setRadius(radius);
     }
 
-    // Minor mismatch: stack_8 not initialized correctly
-    /* void addShadowVolumeOval(LiveActor *pActor, const char *pName, const TVec3f &rSize, MtxPtr mtx) {
+    void addShadowVolumeOval(LiveActor* pActor, const char* pName, const TVec3f& rSize, MtxPtr mtx) {
         ShadowController* pController = ActorShadow::createShadowControllerVolumeParam(pActor, pName);
         ShadowVolumeOval* pOval = new ShadowVolumeOval();
         pController->setShadowDrawer(pOval);
-        TVec3f stack_8(0.0f, 0.0f, 0.0f);
-        pController->setDropPosMtxPtr(mtx, stack_8);
+        pController->setDropPosMtxPtr(mtx, TVec3f(0.0f, 0.0f, 0.0f));
         pOval->setSize(rSize);
-    } */
+    }
 
     void addShadowVolumeCylinder(LiveActor* pActor, const char* pName, f32 radius) {
         ShadowController* pController = ActorShadow::createShadowControllerVolumeParam(pActor, pName);
@@ -51,19 +57,17 @@ namespace MR {
         pCylinder->setRadius(radius);
     }
 
-    void addShadowVolumeBox(LiveActor* pActor, const char* pName, const TVec3f& a3) {
-        addShadowVolumeBox(pActor, pName, a3, pActor->getBaseMtx());
+    void addShadowVolumeBox(LiveActor* pActor, const char* pName, const TVec3f& size) {
+        addShadowVolumeBox(pActor, pName, size, pActor->getBaseMtx());
     }
 
-    // Minor mismatch: stack_8 not initialized correctly
-    /* void addShadowVolumeBox(LiveActor *pActor, const char *pName, const TVec3f &a3, MtxPtr mtx) {
+    void addShadowVolumeBox(LiveActor* pActor, const char* pName, const TVec3f& size, MtxPtr mtx) {
         ShadowController* pController = ActorShadow::createShadowControllerVolumeParam(pActor, pName);
         ShadowVolumeBox* pBox = new ShadowVolumeBox();
         pController->setShadowDrawer(pBox);
-        TVec3f stack_8(0.0f, 0.0f, 0.0f);
-        pController->setDropPosMtxPtr(mtx, stack_8);
-        pBox->setSize(a3);
-    } */
+        pController->setDropPosMtxPtr(mtx, TVec3f(0.0f, 0.0f, 0.0f));
+        pBox->setSize(size);
+    }
 
     void addShadowVolumeLine(LiveActor* pActor1, const char* pName1, LiveActor* pActor2, const char* pName2, f32 fromWidth, LiveActor* pActor3,
                              const char* pName3, f32 toWidth) {
@@ -95,6 +99,11 @@ namespace MR {
         pController->setShadowDrawer(pModel);
         pController->offCalcCollision();
         pModel->setBaseMatrixPtr(mtx);
+    }
+
+    void initShadowVolumeBox(LiveActor* pActor, const TVec3f& size, MtxPtr mtx) {
+        pActor->initShadowControllerList(1);
+        addShadowVolumeBox(pActor, "ボリューム影(ボックス)", size, mtx);
     }
 
     void setShadowDropPosition(LiveActor* pActor, const char* pName, const TVec3f& rPos) {

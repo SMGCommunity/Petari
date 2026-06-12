@@ -1,5 +1,8 @@
 #include "Game/MapObj/ChipGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/StageSwitch.hpp"
 #include "Game/MapObj/ChipBase.hpp"
+#include "Game/Util.hpp"
 
 // ChipGroup::ChipGroup
 // ChipGroup::updateUIRange

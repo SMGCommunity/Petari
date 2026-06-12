@@ -4,8 +4,13 @@
 #include "Game/Boss/TombSpiderFunction.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static const s32 sBreakStep = 3;
@@ -70,7 +75,7 @@ void TombSpiderActionCocoon::exeBreak() {
         MR::startSound(TombSpiderFunction::getCocoon(mParent), "SE_OJ_TSPIDER_COCOON_BREAK");
     }
 
-    if (MR::isStep(this, sBreakStep)) {
+    if (MR::isStep(this, ::sBreakStep)) {
         kill();
     }
 }

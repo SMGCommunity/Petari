@@ -1,9 +1,11 @@
 #include "Game/MapObj/ChipBase.hpp"
 #include "Game/LiveActor/FlashingCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/ChipHolder.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvChipBase {
     NEW_NERVE(ChipBaseNrvDeactive, ChipBase, Deactive);

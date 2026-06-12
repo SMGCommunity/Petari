@@ -1,5 +1,8 @@
 #include "Game/MapObj/WaterPressureBulletHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/WaterPressureBullet.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 WaterPressureBulletHolder::WaterPressureBulletHolder(const char* pName) : NameObj(pName) {
 }

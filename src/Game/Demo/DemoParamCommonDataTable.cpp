@@ -29,23 +29,23 @@ namespace {
 namespace MR {
     namespace Demo {
         f32 getCameraShakeIntensity(const char* pParamName) {
-            return getParam(pParamName)->mCameraShakeIntensity;
+            return ::getParam(pParamName)->mCameraShakeIntensity;
         }
 
         f32 getCameraShakeSpeed(const char* pParamName) {
-            return getParam(pParamName)->mCameraShakeSpeed;
+            return ::getParam(pParamName)->mCameraShakeSpeed;
         }
 
         const char* getPadRumble(const char* pParamName) {
-            return getParam(pParamName)->pRumbleName;
+            return ::getParam(pParamName)->pRumbleName;
         }
 
         bool isExistCameraShaking(const char* pParamName) {
-            return 0.0f < getParam(pParamName)->mCameraShakeIntensity;
+            return 0.0f < ::getParam(pParamName)->mCameraShakeIntensity;
         }
 
         bool isExistPadRumble(const char* pParamName) {
-            return getParam(pParamName)->pRumbleName != nullptr;
+            return ::getParam(pParamName)->pRumbleName != nullptr;
         }
 
         const char* getStartEffect(const char* pParamName) {

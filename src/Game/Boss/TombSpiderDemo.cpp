@@ -3,10 +3,24 @@
 #include "Game/Boss/TombSpiderFunction.hpp"
 #include "Game/Boss/TombSpiderGland.hpp"
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/PlanetMap.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/NPC/TalkDirector.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
 namespace {
@@ -43,7 +57,7 @@ bool TombSpiderDemo::updateGateOpen() {
         MR::startEventCamera(getCameraInfo(), "ゲートオープンデモ[トゥームスパイダー]", CameraTargetArg(mParent), -1);
 
         TVec3f pos(mParent->mPosition);
-        pos.z += sPlanetRadius;
+        pos.z += ::sPlanetRadius;
         MR::makeMtxTR(mMtx, pos, TVec3f(270.0f, 180.0f, 0.0f));
 
         MR::startBckWithInterpole(MR::getPlayerDemoActor(), "CocoonFly", 0);
@@ -52,13 +66,14 @@ bool TombSpiderDemo::updateGateOpen() {
         MR::appearSpiderThread();
     }
 
-    if (MR::isLessEqualStep(mParent, sStepGateBreak)) {
-        mMtx[2][3] -= sGateOpenPlayerSpeed;
+    if (MR::isLessEqualStep(mParent, ::sStepGateBreak)) {
+        mMtx[2][3] -= ::sGateOpenPlayerSpeed;
     } else {
-        TVec3f startPos(mParent->mPosition.x, mParent->mPosition.y, mParent->mPosition.z + (sPlanetRadius - sGateOpenPlayerSpeed * sStepGateBreak));
-        TVec3f endPos(mParent->mPosition.x, mParent->mPosition.y - sPlanetInsideRadius, mParent->mPosition.z);
+        TVec3f startPos(mParent->mPosition.x, mParent->mPosition.y,
+                        mParent->mPosition.z + (::sPlanetRadius - ::sGateOpenPlayerSpeed * sStepGateBreak));
+        TVec3f endPos(mParent->mPosition.x, mParent->mPosition.y - ::sPlanetInsideRadius, mParent->mPosition.z);
 
-        f32 t1 = (mParent->getNerveStep() - (sStepGateBreak + 3)) / static_cast< f32 >(sStepDemoGateOpen - (sStepGateBreak + 3));
+        f32 t1 = (mParent->getNerveStep() - (::sStepGateBreak + 3)) / static_cast< f32 >(::sStepDemoGateOpen - (sStepGateBreak + 3));
         f32 t2 = MR::getEaseInValue(t1, 0.0f, 1.0f, 1.0f);
         TVec3f pos;
         pos.x = startPos.x * (1.0f - t1) + endPos.x * t1;
@@ -69,7 +84,7 @@ bool TombSpiderDemo::updateGateOpen() {
 
     MR::setPlayerBaseMtx(mMtx);
 
-    if (MR::isStep(mParent, sStepGateBreak)) {
+    if (MR::isStep(mParent, ::sStepGateBreak)) {
         MR::startBck(MR::getPlayerDemoActor(), "AirRotation", nullptr);
         MR::startBck(TombSpiderFunction::getPlanet(mParent), "BattleStart", nullptr);
         MR::onCalcAnim(TombSpiderFunction::getPlanet(mParent));
@@ -78,16 +93,16 @@ bool TombSpiderDemo::updateGateOpen() {
         MR::startSystemSE("SE_OJ_TSPIDER_PLANET_BREAK1");
     }
 
-    if (MR::isStep(mParent, sStepGateBreak - 1)) {
+    if (MR::isStep(mParent, ::sStepGateBreak - 1)) {
         MR::shakeCameraNormal();
     }
 
-    if (MR::isStep(mParent, sStepGateOpenChangeCamera)) {
+    if (MR::isStep(mParent, ::sStepGateOpenChangeCamera)) {
         MR::endEventCamera(getCameraInfo(), "ゲートオープンデモ[トゥームスパイダー]", false, -1);
         MR::startEventCameraNoTarget(getCameraInfo(), "マリオ着地デモ[トゥームスパイダー]", -1);
     }
 
-    if (MR::isStep(mParent, sStepDemoGateOpen)) {
+    if (MR::isStep(mParent, ::sStepDemoGateOpen)) {
         MR::startSound(MR::getPlayerDemoActor(), "SE_PM_LAND_HEAVY");
         MR::startSound(MR::getPlayerDemoActor(), "SE_PV_LAND");
         TombSpiderFunction::resetPlayerPosTombSpider(mParent, false);
@@ -121,7 +136,7 @@ bool TombSpiderDemo::updateCocoonBreak() {
         TombSpiderFunction::appearThreadAttacherAll(mParent);
     }
 
-    if (MR::isStep(mParent, sStepCocoonBreak)) {
+    if (MR::isStep(mParent, ::sStepCocoonBreak)) {
         return true;
     }
 
@@ -143,12 +158,12 @@ bool TombSpiderDemo::updateBattle1stStart() {
 
 bool TombSpiderDemo::updateBattle1stEnd() {
     if (MR::isFirstStep(mParent)) {
-        TombSpiderFunction::startTombSpiderAnimCameraDemo(mParent, "１回戦終了", "Battle2ndStart", sStepBattle2ndStartCameraInterpolateFrame);
+        TombSpiderFunction::startTombSpiderAnimCameraDemo(mParent, "１回戦終了", "Battle2ndStart", ::sStepBattle2ndStartCameraInterpolateFrame);
         TombSpiderFunction::resetPlayerPosTombSpider(mParent, true);
         MR::startBck(mParent, "ChanceDamageLast", nullptr);
     }
 
-    if (MR::isStep(mParent, sStepChanceDamagePlanetBreak)) {
+    if (MR::isStep(mParent, ::sStepChanceDamagePlanetBreak)) {
         MR::startBck(TombSpiderFunction::getPlanet(mParent), "BattleDamage", nullptr);
         MR::startSystemSE("SE_OJ_TSPI_PLANET_BREAK_M");
     }
@@ -173,10 +188,10 @@ bool TombSpiderDemo::updateBattle2ndStart() {
         TombSpiderFunction::getVitalSpotC(mParent)->recover();
         TombSpiderFunction::getVitalSpotL(mParent)->recover();
         TombSpiderFunction::getVitalSpotR(mParent)->recover();
-        mRotateSpeed = TombSpiderFunction::calcRotateSpeedToPlayer(mParent, sStepBattle2ndStartJumpEnd - sStepBattle2ndStartJumpStart);
+        mRotateSpeed = TombSpiderFunction::calcRotateSpeedToPlayer(mParent, ::sStepBattle2ndStartJumpEnd - ::sStepBattle2ndStartJumpStart);
     }
 
-    if (MR::isGreaterEqualStep(mParent, sStepBattle2ndStartJumpStart) && MR::isLessStep(mParent, sStepBattle2ndStartJumpEnd)) {
+    if (MR::isGreaterEqualStep(mParent, ::sStepBattle2ndStartJumpStart) && MR::isLessStep(mParent, ::sStepBattle2ndStartJumpEnd)) {
         mParent->mRotation.z += mRotateSpeed;
     }
 
@@ -209,7 +224,7 @@ bool TombSpiderDemo::updateDeath() {
         isDeathAnimDone = true;
     }
 
-    if (MR::isStep(mParent, sStepBattleEndPlanetBreak)) {
+    if (MR::isStep(mParent, ::sStepBattleEndPlanetBreak)) {
         MR::startBck(TombSpiderFunction::getPlanet(mParent), "BattleEnd", nullptr);
         MR::startSystemSE("SE_OJ_TSPIDER_PLANET_BREAK2");
         MR::onCalcAnim(TombSpiderFunction::getPlanet(mParent));
@@ -238,16 +253,16 @@ void TombSpiderDemo::updateJumpRotateToPlayer() {
     if (MR::isFirstStep(mParent)) {
         MR::startBck(mParent, "Jump", nullptr);
         MR::startSound(mParent, "SE_BM_TSPIDER_JUMP");
-        mRotateSpeed = TombSpiderFunction::calcRotateSpeedToPlayer(mParent, sStepJumpRotateToPlayerEnd - sStepJumpRotateToPlayerStart);
+        mRotateSpeed = TombSpiderFunction::calcRotateSpeedToPlayer(mParent, ::sStepJumpRotateToPlayerEnd - ::sStepJumpRotateToPlayerStart);
     }
 
-    if (MR::isGreaterEqualStep(mParent, sStepJumpRotateToPlayerStart) && MR::isLessStep(mParent, sStepJumpRotateToPlayerEnd)) {
+    if (MR::isGreaterEqualStep(mParent, ::sStepJumpRotateToPlayerStart) && MR::isLessStep(mParent, ::sStepJumpRotateToPlayerEnd)) {
         mParent->mRotation.z += mRotateSpeed;
     }
 }
 
 bool TombSpiderDemo::isStartDemoGateOpen() const {
-    return PSVECDistance(*MR::getPlayerPos(), mParent->mPosition) < sGateOpenPlayerDistance;
+    return PSVECDistance(*MR::getPlayerPos(), mParent->mPosition) < ::sGateOpenPlayerDistance;
 }
 
 bool TombSpiderDemo::updateBattle1stStartJumpToPlayer() {

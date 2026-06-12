@@ -7,9 +7,9 @@ template < typename T >
 class JASPtrListAdaptor {
 public:
     // TEMP NO_INLINE
-    JASPtrListAdaptor(T* pData) NO_INLINE : mNext(nullptr), mData(pData){};
+    JASPtrListAdaptor(T* pData) NO_INLINE : mNext(nullptr), mData(pData) {};
 
-    ~JASPtrListAdaptor(){};
+    ~JASPtrListAdaptor() {};
 
     JASPtrListAdaptor< T >* getNext() const {
         return mNext;
@@ -26,7 +26,7 @@ public:
 template < typename T >
 class JASPtrList {
 public:
-    JASPtrList() : mList(nullptr){};
+    JASPtrList() : mList(nullptr) {};
 
     JASPtrList(JASPtrListAdaptor< T >* pAdapter) {
         mList = pAdapter;
@@ -36,7 +36,7 @@ public:
         return mList == nullptr;
     }
 
-    ~JASPtrList(){};
+    ~JASPtrList() {};
 
     JASPtrListAdaptor< T >* begin() const {
         return mList;

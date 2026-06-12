@@ -1,4 +1,6 @@
 #include "Game/MapObj/SpiderThreadWindCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 
 namespace {
@@ -15,7 +17,8 @@ namespace {
 };  // namespace
 
 SpiderThreadWindCtrl::SpiderThreadWindCtrl()
-    : mWindTargetSpeed(sWindAccelBattle), mWindSpeed(sWindAccelBattle), mWindAccel(0.0f), mWindDirection(0.0f, 0.0f, -1.0f), mWind(mWindDirection) {
+    : mWindTargetSpeed(::sWindAccelBattle), mWindSpeed(::sWindAccelBattle), mWindAccel(0.0f), mWindDirection(0.0f, 0.0f, -1.0f),
+      mWind(mWindDirection) {
 }
 
 void SpiderThreadWindCtrl::update() {
@@ -46,31 +49,31 @@ void SpiderThreadWindCtrl::update() {
 }
 
 void SpiderThreadWindCtrl::startWindBattle() {
-    mWindSpeed = sWindAccelBattle;
-    mWindTargetSpeed = sWindAccelBattle;
+    mWindSpeed = ::sWindAccelBattle;
+    mWindTargetSpeed = ::sWindAccelBattle;
     mWindAccel = 0.0f;
 }
 
 void SpiderThreadWindCtrl::startWindChance() {
-    mWindSpeed = sWindAccelChance;
-    mWindTargetSpeed = sWindAccelChance;
+    mWindSpeed = ::sWindAccelChance;
+    mWindTargetSpeed = ::sWindAccelChance;
     mWindAccel = 0.0f;
 }
 
 void SpiderThreadWindCtrl::startWindBattleEnd() {
-    mWindTargetSpeed = sWindAccelBattleEndTarget;
-    mWindSpeed = sWindAccelBattleEndCurrent;
-    mWindAccel = sWindAccelSpeedBattleEnd;
+    mWindTargetSpeed = ::sWindAccelBattleEndTarget;
+    mWindSpeed = ::sWindAccelBattleEndCurrent;
+    mWindAccel = ::sWindAccelSpeedBattleEnd;
 }
 
 s32 SpiderThreadWindCtrl::getTimeToStartWind() const {
     if (mWindSpeed != mWindTargetSpeed) {
-        return sTimeToStartWindMin;
+        return ::sTimeToStartWindMin;
     }
 
-    return MR::getRandom(sTimeToStartWindMin, sTimeToStartWindMax);
+    return MR::getRandom(::sTimeToStartWindMin, ::sTimeToStartWindMax);
 }
 
 s32 SpiderThreadWindCtrl::getWindTime() const {
-    return MR::getRandom(sWindTimeMin, sWindTimeMax);
+    return MR::getRandom(::sWindTimeMin, ::sWindTimeMax);
 }

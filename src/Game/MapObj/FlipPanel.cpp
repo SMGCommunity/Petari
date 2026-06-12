@@ -2,6 +2,8 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
@@ -66,8 +68,8 @@ void FlipPanel::exeFrontLand() {
             MapObjActorUtil::appearBloomModel(this);
             ModelObj* bloomModel = mBloomModel;
             u32 frameMax = MR::getBrkFrameMax(bloomModel);
-            u32 val = sBloomSyncStep / frameMax;
-            frameMax = sBloomSyncStep - (val)*frameMax;
+            u32 val = ::sBloomSyncStep / frameMax;
+            frameMax = ::sBloomSyncStep - (val)*frameMax;
             MR::setBrkFrame(bloomModel, frameMax);
         } else {
             MapObjActorUtil::killBloomModel(this);
@@ -97,8 +99,8 @@ void FlipPanel::exeBackLand() {
             MapObjActorUtil::appearBloomModel(this);
             ModelObj* bloomModel = mBloomModel;
             u32 frameMax = MR::getBrkFrameMax(bloomModel);
-            u32 val = sBloomSyncStep / frameMax;
-            frameMax = sBloomSyncStep - (val)*frameMax;
+            u32 val = ::sBloomSyncStep / frameMax;
+            frameMax = ::sBloomSyncStep - (val)*frameMax;
             MR::setBrkFrame(bloomModel, frameMax);
         }
 
@@ -172,8 +174,8 @@ void FlipPanel::endClipped() {
     if (MR::getBrkCtrl(mBloomModel)) {
         ModelObj* bloomModel = mBloomModel;
         u32 frameMax = MR::getBrkFrameMax(bloomModel);
-        u32 val = sBloomSyncStep / frameMax;
-        frameMax = sBloomSyncStep - (val)*frameMax;
+        u32 val = ::sBloomSyncStep / frameMax;
+        frameMax = ::sBloomSyncStep - (val)*frameMax;
         MR::setBrkFrame(bloomModel, frameMax);
     }
 }
@@ -267,7 +269,7 @@ FlipPanelObserver::FlipPanelObserver(const char* pName) : LiveActor(pName) {
     mDemoDelay = 0;
     mPowerStarId = -1;
     _9C = 0;
-    sBloomSyncStep = 0;
+    ::sBloomSyncStep = 0;
 }
 
 void FlipPanelObserver::init(const JMapInfoIter& rIter) {
@@ -318,7 +320,7 @@ void FlipPanelObserver::exeWait() {
     if (_90 == _8C->mObjectCount - 1 && MR::tryStartDemo(this, "FlipPanelComplete")) {
         setNerve(&NrvFlipPanelObserver::FlipPanelObserverNrvComplete::sInstance);
     } else {
-        sBloomSyncStep++;
+        ::sBloomSyncStep++;
     }
 }
 

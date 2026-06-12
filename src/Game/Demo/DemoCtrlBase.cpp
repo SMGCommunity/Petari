@@ -1,7 +1,12 @@
 #include "Game/Demo/DemoCtrlBase.hpp"
 #include "Game/Demo/DemoParamCommonDataTable.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 DemoCtrlBase::DemoCtrlBase(LiveActor* pActor, const char* pName) {
     mActor = pActor;

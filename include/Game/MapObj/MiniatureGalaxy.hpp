@@ -1,24 +1,29 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/J3DGraphBase/J3DTexture.hpp"
+#include <JSystem/J3DGraphBase/J3DTexture.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class NameObjArchiveListCollector;
 class AstroDomeOrbit;
 class GalaxyNamePlate;
+class ModelObj;
+class NameObjArchiveListCollector;
+class ProjmapEffectMtxSetter;
 
 class MiniatureGalaxy : public LiveActor {
 public:
     MiniatureGalaxy(const char*);
-    ~MiniatureGalaxy();
+
+    virtual ~MiniatureGalaxy();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
-    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+
+    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
     void initPartsModel();
     void setScale(f32);

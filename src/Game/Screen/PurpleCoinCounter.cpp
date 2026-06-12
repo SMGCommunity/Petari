@@ -71,7 +71,7 @@ void PurpleCoinCounter::updateCounter() {
         mInvalidCountUpFrame--;
     } else if (mPurpleCoinDisplayNum < mPurpleCoinNum) {
         if (isNerve(&NrvPurpleCoinCounter::PurpleCoinCounterNrvWait::sInstance)) {
-            mInvalidCountUpFrame = cInvalidCountUpInterval;
+            mInvalidCountUpFrame = ::cInvalidCountUpInterval;
             mPurpleCoinDisplayNum++;
 
             MR::startAnim(this, "Flash", 0);

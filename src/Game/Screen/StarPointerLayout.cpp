@@ -12,7 +12,6 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -77,7 +76,7 @@ namespace NrvStarPointerLayout {
 
 StarPointerLayout::StarPointerLayout(const char* pName)
     : LayoutActor(pName, true), mPosition(0.0f, 0.0f), mPointerKind(StarPointerKind_NULL), mAnimType(AnimType_HandPaa), mTouchTimer(0),
-      mPadChannel(-1), mRadius(sNormalRadius), _3C(0.0f), mRotateAngle(0.0f), mDirector(nullptr), mBlur(nullptr), mCommandStream(nullptr),
+      mPadChannel(-1), mRadius(::sNormalRadius), _3C(0.0f), mRotateAngle(0.0f), mDirector(nullptr), mBlur(nullptr), mCommandStream(nullptr),
       mNumber(nullptr), mActor(nullptr), mNewTouchedID(0), mTouchedID(0), mStartTouch(false), mStartDisableShoot(false), mSingleTouch(false),
       mShootDisabled(false), mIsPointerValid(true), mIsAppear(true), mAppearTime(0) {
 }
@@ -105,8 +104,8 @@ void StarPointerLayout::initWithPort(s32 channel) {
 
     mCommandStream = new StarPointerCommandStream(&mPosition);
 
-    mBlur->setPortAndColor(mPadChannel, &sColorA[mPadChannel], &sColorB[mPadChannel]);
-    mCommandStream->setPortAndColor(mPadChannel, &sColorA[mPadChannel]);
+    mBlur->setPortAndColor(mPadChannel, &::sColorA[mPadChannel], &::sColorB[mPadChannel]);
+    mCommandStream->setPortAndColor(mPadChannel, &::sColorA[mPadChannel]);
     mCommandStream->initWithoutIter();
 
     mNumber = new StarPointerNumber(this, mPadChannel, "スターポインタナンバー");
@@ -237,7 +236,7 @@ void StarPointerLayout::exeGrip() {
         return;
     }
 
-    if (MR::isGreaterStep(this, hGripTime) || MR::isHiddenPane(this, "StarPointer")) {
+    if (MR::isGreaterStep(this, ::hGripTime) || MR::isHiddenPane(this, "StarPointer")) {
         setNerve(&NrvStarPointerLayout::HostTypeNrvHold::sInstance);
     }
 }
@@ -247,7 +246,7 @@ void StarPointerLayout::exeHold() {
         if (mPointerKind == StarPointerKind_StarPointer) {
             if (mPadChannel == WPAD_CHAN1) {
                 startAnimStarPointer("Hold");
-                mRadius = sHoldRadius;
+                mRadius = ::sHoldRadius;
             } else {
                 if (mCommandStream->mWorldPos != nullptr) {
                     mCommandStream->show();
@@ -258,12 +257,12 @@ void StarPointerLayout::exeHold() {
             }
         } else if (mPointerKind == StarPointerKind_HandPointer) {
             startAnimHandGuu();
-            mRadius = sHandRadius;
+            mRadius = ::sHandRadius;
         } else if (mPointerKind == StarPointerKind_2 || mPointerKind == StarPointerKind_HandPointerReactionWithCrossCursor) {
             if (mAnimType != AnimType_Finger) {
                 startAnimHandGuu();
             }
-            mRadius = sHandRadius;
+            mRadius = ::sHandRadius;
         } else if (mPointerKind == StarPointerKind_FingerPointer) {
             startAnimHandFinger();
         } else if (mPointerKind == StarPointerKind_5) {
@@ -312,12 +311,12 @@ void StarPointerLayout::endHold() {
 void StarPointerLayout::tearDownHold() {
     if (mPointerKind == StarPointerKind_StarPointer && mPadChannel == WPAD_CHAN1) {
         if (isNerve(&NrvStarPointerLayout::HostTypeNrvHold::sInstance) || isNerve(&NrvStarPointerLayout::HostTypeNrvHoldTouch::sInstance)) {
-            mRadius = sHandRadius;
+            mRadius = ::sHandRadius;
         } else {
-            mRadius = sNormalRadius;
+            mRadius = ::sNormalRadius;
         }
     } else if (mPointerKind == StarPointerKind_HandPointer || mPointerKind == StarPointerKind_2) {
-        mRadius = sHoldRadius;
+        mRadius = ::sHoldRadius;
     }
 }
 
@@ -361,7 +360,7 @@ void StarPointerLayout::exeRelease() {
         return;
     }
 
-    if (MR::isGreaterStep(this, hReleaseTime)) {
+    if (MR::isGreaterStep(this, ::hReleaseTime)) {
         setNerve(&NrvStarPointerLayout::HostTypeNrvWait::sInstance);
     }
 }
@@ -417,7 +416,7 @@ void StarPointerLayout::updateTouch() {
             mIsNewTouch = true;
             mTouchedID = mNewTouchedID;
         }
-        mTouchTimer = sTouchCount;
+        mTouchTimer = ::sTouchCount;
         mStartTouch = false;
         return;
     }
@@ -453,7 +452,7 @@ void StarPointerLayout::exeOutScreen() {
         return;
     }
 
-    if (MR::isGreaterStep(this, sBeginHideTime)) {
+    if (MR::isGreaterStep(this, ::sBeginHideTime)) {
         setNerve(&NrvStarPointerLayout::HostTypeNrvHide::sInstance);
     }
 }
@@ -488,7 +487,7 @@ void StarPointerLayout::exeHide() {
             if (mPointerKind == StarPointerKind_StarPointer || mPointerKind == StarPointerKind_5 ||
                 mPointerKind == StarPointerKind_StarPointerNozzle) {
                 startAnimStarPointer("End");
-                MR::setAnimRate(this, hEndAnimRate, 0);
+                MR::setAnimRate(this, ::hEndAnimRate, 0);
             } else if (mPointerKind == StarPointerKind_HandPointer || mPointerKind == StarPointerKind_2 ||
                        mPointerKind == StarPointerKind_HandPointerReactionWithCrossCursor || mPointerKind == StarPointerKind_FingerPointer) {
                 MR::hidePane(this, "HandPointer");
@@ -640,10 +639,10 @@ void StarPointerLayout::control() {
         MR::startAnim(this, "Transparency", 1);
 
         if (MR::isStarPointer2PTransparencyMode() && !isNerve(&NrvStarPointerLayout::HostTypeNrvHide::sInstance)) {
-            mBlur->setPortAndColor(mPadChannel, &sColorB[mPadChannel], &sColorB[mPadChannel]);
+            mBlur->setPortAndColor(mPadChannel, &::sColorB[mPadChannel], &::sColorB[mPadChannel]);
             MR::setAnimFrameAndStop(this, 1.0f, 1);
         } else {
-            mBlur->setPortAndColor(mPadChannel, &sColorA[mPadChannel], &sColorB[mPadChannel]);
+            mBlur->setPortAndColor(mPadChannel, &::sColorA[mPadChannel], &::sColorB[mPadChannel]);
             MR::setAnimFrameAndStop(this, 0.0f, 1);
         }
     }
@@ -663,14 +662,14 @@ void StarPointerLayout::rotateTest() {
     if (MR::isStarPointerInScreen(mPadChannel)) {
         TVec2f horiz;
         MR::getWPad(mPadChannel)->mPointer->getHorizonVec(&horiz);
-        angle = MR::normalizeAbs(MR::toDegree(JMAATan2(horiz.y, horiz.x)), sDegreeMin, 180.0f);
+        angle = MR::normalizeAbs(MR::toDegree(JMAATan2(horiz.y, horiz.x)), ::sDegreeMin, 180.0f);
         if (angle != 0.0f) {
             mRotateAngle = angle;
         }
     }
 
     if (mPointerKind == StarPointerKind_StarPointer) {
-        angle *= sRotateMult;
+        angle *= ::sRotateMult;
         TVec3f rotate;
         MR::copyPaneRotate(&rotate, this, "StarPointer");
         MR::setPaneRotate(this, rotate.x, rotate.y, -angle, "StarPointer");
@@ -713,31 +712,31 @@ void StarPointerLayout::changeLayout(StarPointerKind pointerKind) {
         } else {
             mCommandStream->show();
         }
-        mRadius = sNormalRadius;
+        mRadius = ::sNormalRadius;
         break;
     case StarPointerKind_HandPointer:
         mCommandStream->hide();
-        mRadius = sHandRadius;
+        mRadius = ::sHandRadius;
         break;
     case StarPointerKind_2:
         mCommandStream->hide();
-        mRadius = sHandRadius;
+        mRadius = ::sHandRadius;
         break;
     case StarPointerKind_HandPointerReactionWithCrossCursor:
         mCommandStream->hide();
-        mRadius = sHandRadius;
+        mRadius = ::sHandRadius;
         break;
     case StarPointerKind_FingerPointer:
         mCommandStream->hide();
-        mRadius = sHandRadius;
+        mRadius = ::sHandRadius;
         break;
     case StarPointerKind_5:
         mCommandStream->hide();
-        mRadius = sHandRadius;
+        mRadius = ::sHandRadius;
         break;
     case StarPointerKind_StarPointerNozzle:
         mCommandStream->hide();
-        mRadius = sNormalRadius;
+        mRadius = ::sNormalRadius;
         break;
     }
 
@@ -899,7 +898,7 @@ void StarPointerNumber::control() {
         mAppearTime = 0;
     }
 
-    if (mAppearTime == hHideRumbleTime) {
+    if (mAppearTime == ::hHideRumbleTime) {
         MR::tryRumblePadWeak(this, mPadChannel);
     }
 

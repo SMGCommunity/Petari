@@ -19,7 +19,7 @@ namespace FileSelectFunc {
 
     void copyMiiName(u16* pName, const FileSelectIconID& rIcon) {
         if (rIcon.isFellow()) {
-            const char* pMessageId = sIconNameMessageID[rIcon.getFellowID()];
+            const char* pMessageId = ::sIconNameMessageID[rIcon.getFellowID()];
             const wchar_t* pMessage = MR::getGameMessageDirect(pMessageId);
 
             MR::copyMemory(pName, pMessage, getMiiNameBufferSize() * sizeof(wchar_t));

@@ -4,6 +4,7 @@
 
 class ActorCameraInfo;
 class AnimScaleController;
+class ModelObj;
 class WalkerStateBindStarPointer;
 
 class Poihana : public LiveActor {

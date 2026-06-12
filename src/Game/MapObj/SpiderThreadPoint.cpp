@@ -1,7 +1,9 @@
 #include "Game/MapObj/SpiderThreadPoint.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/MapObj/SpiderThreadWindCtrl.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include <revolution/mtx.h>
 
@@ -18,8 +20,8 @@ namespace {
 
 SpiderThreadPoint::SpiderThreadPoint(const TVec3f& rPos, f32 friction)
     : mBasePos(rPos), mPosition(rPos), mVelocity(0.0f, 0.0f, 0.0f), mFriction(friction), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f) {
-    mWindStartTime = getWindCtrl()->getTimeToStartWind();
-    mWindTime = getWindCtrl()->getWindTime();
+    mWindStartTime = ::getWindCtrl()->getTimeToStartWind();
+    mWindTime = ::getWindCtrl()->getWindTime();
     mPrevStretchDist = 0.0f;
 }
 
@@ -29,7 +31,7 @@ bool SpiderThreadPoint::updateSpring() {
     v1.sub(mPosition);
 
     TVec3f v2(v1);
-    v2.scale(sAccelRate);
+    v2.scale(::sAccelRate);
     mVelocity.add(v2);
     mPosition.add(mVelocity);
 
@@ -40,7 +42,7 @@ bool SpiderThreadPoint::updateSpring() {
     f32 mag1 = v3.length();
     f32 mag2 = mVelocity.length();
 
-    if (mag2 < sSpeedMinToStop && mag1 < sDistanceToStop) {
+    if (mag2 < ::sSpeedMinToStop && mag1 < ::sDistanceToStop) {
         mVelocity.zero();
         return true;
     }
@@ -65,10 +67,10 @@ void SpiderThreadPoint::updateWind(f32 dampener) {
         mWindStartTime--;
     } else {
         if (--mWindTime > 0) {
-            mVelocity.add(getWindCtrl()->mWind);
+            mVelocity.add(::getWindCtrl()->mWind);
         } else {
-            mWindStartTime = getWindCtrl()->getTimeToStartWind();
-            mWindTime = getWindCtrl()->getWindTime();
+            mWindStartTime = ::getWindCtrl()->getTimeToStartWind();
+            mWindTime = ::getWindCtrl()->getWindTime();
         }
     }
     mVelocity.scale(dampener);

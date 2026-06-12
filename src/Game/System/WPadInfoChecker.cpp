@@ -20,7 +20,7 @@ void WPadInfoChecker::successGetInfo() {
 void WPadInfoChecker::startCheck() {
     WPADGetInfoAsync(mPad->mChannel, &mPadInfo, WPad::getInfoCallback);
 
-    mCheckInfoFrame = sCheckInfoInterval;
+    mCheckInfoFrame = ::sCheckInfoInterval;
 }
 
 void WPadInfoChecker::reset() {

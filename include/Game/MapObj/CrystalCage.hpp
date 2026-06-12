@@ -1,7 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/DummyDisplayModel.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class DummyDisplayModel;
+class ModelObj;
+class RumbleCalculatorCosMultLinear;
 
 class CrystalCage : public LiveActor {
 public:

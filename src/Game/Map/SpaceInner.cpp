@@ -1,5 +1,9 @@
 #include "Game/Map/SpaceInner.hpp"
-#include "Game/Util.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace NrvSpaceInner {
     NEW_NERVE(HostTypeAppear, SpaceInner, Appear);

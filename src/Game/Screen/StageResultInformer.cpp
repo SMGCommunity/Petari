@@ -73,7 +73,7 @@ DisplayInformationForResult::DisplayInformationForResult(StageResultInformer* pH
 
 void DisplayInformationForResult::exeAppear() {
     if (MR::isFirstStep(this)) {
-        if (MR::isEqualString(mMessageId, cMessageIdGalaxyComplete)) {
+        if (MR::isEqualString(mMessageId, ::cMessageIdGalaxyComplete)) {
             MR::startSubBGM("BGM_GALAXY_COMPLETE", false);
         } else {
             MR::startSubBGM("BGM_NEW_GALAXY", false);
@@ -82,7 +82,7 @@ void DisplayInformationForResult::exeAppear() {
         MR::appearInformationMessageCenter(mMessageId, true);
     }
 
-    MR::setNerveAtStep(this, &::DisplayInformationForResultDisplay::sInstance, sWaitAppearInformationWindow);
+    MR::setNerveAtStep(this, &::DisplayInformationForResultDisplay::sInstance, ::sWaitAppearInformationWindow);
 }
 
 void DisplayInformationForResult::exeDisplay() {
@@ -136,7 +136,7 @@ void StageResultInformer::kill() {
 }
 
 void StageResultInformer::exeAppearGetPowerStar() {
-    const char* pMessageId = cMessageIdGetNormalStar;
+    const char* pMessageId = ::cMessageIdGetNormalStar;
 
     if (MR::isFirstStep(this)) {
         MR::showLayout(this);
@@ -148,7 +148,7 @@ void StageResultInformer::exeAppearGetPowerStar() {
         GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(GameSequenceFunction::getClearedStageName());
 
         if (accessor.isHiddenStar(GameSequenceFunction::getClearedPowerStarId())) {
-            pMessageId = cMessageIdGetHiddenStar;
+            pMessageId = ::cMessageIdGetHiddenStar;
         }
 
         MR::setTextBoxGameMessageRecursive(this, "Result", pMessageId);
@@ -158,7 +158,7 @@ void StageResultInformer::exeAppearGetPowerStar() {
             MR::getScenarioNameOnCurrentLanguage(GameSequenceFunction::getClearedStageName(), GameSequenceFunction::getClearedPowerStarId()), 1);
         MR::startAnim(this, "Line", 1);
         MR::setAnimFrameAndStopAdjustTextHeight(this, "Result", 1);
-        MR::setTextBoxNumberRecursive(this, cNamePowerStarNum, mSequenceChecker->getPrevPowerStarNum());
+        MR::setTextBoxNumberRecursive(this, ::cNamePowerStarNum, mSequenceChecker->getPrevPowerStarNum());
         MR::startSubBGM("BGM_ASTRO_RETURN", false);
     }
 
@@ -172,12 +172,12 @@ void StageResultInformer::exeWaitBeforeCountUpPowerStar() {
         pNerve = &::StageResultInformerCountUpPowerStar::sInstance;
     }
 
-    tryWaitIntervalBeforeKeyWait(pNerve, sWaitBeforeCountUpPowerStar);
+    tryWaitIntervalBeforeKeyWait(pNerve, ::sWaitBeforeCountUpPowerStar);
 }
 
 void StageResultInformer::exeCountUpPowerStar() {
     if (MR::isFirstStep(this)) {
-        MR::setTextBoxNumberRecursive(this, cNamePowerStarNum, mSequenceChecker->getAfterPowerStarNum());
+        MR::setTextBoxNumberRecursive(this, ::cNamePowerStarNum, mSequenceChecker->getAfterPowerStarNum());
         MR::startAnim(this, "Flash", 0);
         MR::startSystemSE("SE_SY_RESULT_POW_STAR_INC");
         MR::emitEffect(this, "ResultStarCounter");
@@ -210,7 +210,7 @@ void StageResultInformer::exeDisappearGetPowerStar() {
 }
 
 void StageResultInformer::exeShowGalaxyComplete() {
-    tryShowAndKeyWaitInformationWindow(cMessageIdGalaxyComplete, nullptr);
+    tryShowAndKeyWaitInformationWindow(::cMessageIdGalaxyComplete, nullptr);
 }
 
 void StageResultInformer::exeAppearUpdateBestScore() {
@@ -218,7 +218,7 @@ void StageResultInformer::exeAppearUpdateBestScore() {
         setCounterPaneShowHide(false, true, false);
         MR::startSubBGM("BGM_HIGH_SCORE", false);
         MR::startAnim(this, "Appear", 0);
-        MR::setTextBoxGameMessageRecursive(this, "Result", cMessageIdUpdateBestScore);
+        MR::setTextBoxGameMessageRecursive(this, "Result", ::cMessageIdUpdateBestScore);
         MR::startAnim(this, "Line", 1);
         MR::setAnimFrameAndStopAdjustTextHeight(this, "Result", 1);
         GameSequenceFunction::reflectStageResultSequenceCoin();
@@ -250,12 +250,12 @@ void StageResultInformer::exeAppearGetStarPiece() {
     if (MR::isFirstStep(this)) {
         setCounterPaneShowHide(false, false, true);
         MR::startAnim(this, "Appear", 0);
-        MR::setTextBoxGameMessageRecursive(this, "Result", cMessageIdGetStarPiece);
+        MR::setTextBoxGameMessageRecursive(this, "Result", ::cMessageIdGetStarPiece);
         MR::startAnim(this, "Line", 1);
         MR::setAnimFrameAndStopAdjustTextHeight(this, "Result", 1);
         mClearedStarPieceNum = GameSequenceFunction::getClearedStarPieceNum();
-        MR::setTextBoxNumberRecursive(this, cNameGalaxyStarPieceNum, mClearedStarPieceNum);
-        MR::setTextBoxNumberRecursive(this, cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
+        MR::setTextBoxNumberRecursive(this, ::cNameGalaxyStarPieceNum, mClearedStarPieceNum);
+        MR::setTextBoxNumberRecursive(this, ::cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
     }
 
     MR::setNerveAtAnimStopped(this, &::StageResultInformerDisplayGetStarPiece::sInstance, 0);
@@ -285,8 +285,8 @@ void StageResultInformer::exeDisplayGetStarPiece() {
         MR::deleteEffect(this, "Flash");
     }
 
-    MR::setTextBoxNumberRecursive(this, cNameGalaxyStarPieceNum, mClearedStarPieceNum);
-    MR::setTextBoxNumberRecursive(this, cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
+    MR::setTextBoxNumberRecursive(this, ::cNameGalaxyStarPieceNum, mClearedStarPieceNum);
+    MR::setTextBoxNumberRecursive(this, ::cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
 
     if (MR::isAnimStopped(this, 0) && !hasStarPiece) {
         MR::startAnim(this, "Flash", 0);
@@ -309,12 +309,12 @@ void StageResultInformer::exeWaitBeforeDisappearGetStarPiece() {
         MR::addStockedStarPiece(mClearedStarPieceNum);
         MR::startSystemSE("SE_SY_STAR_PIECE_SUM_UP_END");
         mClearedStarPieceNum = 0;
-        MR::setTextBoxNumberRecursive(this, cNameGalaxyStarPieceNum, 0);
-        MR::setTextBoxNumberRecursive(this, cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
+        MR::setTextBoxNumberRecursive(this, ::cNameGalaxyStarPieceNum, 0);
+        MR::setTextBoxNumberRecursive(this, ::cNameTotalStarPieceNum, MR::getStockedStarPieceNum());
         MR::deleteEffect(this, "ResultPieceCounter");
     }
 
-    MR::setNerveAtStep(this, &::StageResultInformerDisappearGetStarPiece::sInstance, sWaitDisplayStarPieceCount);
+    MR::setNerveAtStep(this, &::StageResultInformerDisappearGetStarPiece::sInstance, ::sWaitDisplayStarPieceCount);
 }
 
 void StageResultInformer::exeDisappearGetStarPiece() {
@@ -334,7 +334,7 @@ void StageResultInformer::exeDisappearGetStarPiece() {
 }
 
 void StageResultInformer::exeShowNewGalaxyDiscover() {
-    tryShowAndKeyWaitInformationWindow(cMessageIdNewGalaxyDiscover, &::StageResultInformerShowGalaxyMap::sInstance);
+    tryShowAndKeyWaitInformationWindow(::cMessageIdNewGalaxyDiscover, &::StageResultInformerShowGalaxyMap::sInstance);
 }
 
 void StageResultInformer::exeShowGalaxyMap() {
@@ -347,10 +347,10 @@ void StageResultInformer::exeShowGalaxyMap() {
 
 void StageResultInformer::exeShowGetPictureBook() {
     if (MR::isFirstStep(this)) {
-        const char* pMessageId = cMessageIdGetPictureBook;
+        const char* pMessageId = ::cMessageIdGetPictureBook;
 
         if (mSequenceChecker->isJustOpenLibraryRoom()) {
-            pMessageId = cMessageIdOpenLibraryRoom;
+            pMessageId = ::cMessageIdOpenLibraryRoom;
         }
 
         mInformationDisplayer->mMessageId = pMessageId;
@@ -367,7 +367,7 @@ void StageResultInformer::exeShowGetPictureBook() {
 }
 
 void StageResultInformer::exeShowTicoGalaxyAppear() {
-    tryShowAndKeyWaitInformationWindow(cMessageIdTicoGalaxyAppear, &::StageResultInformerShowAstroMapForTico::sInstance);
+    tryShowAndKeyWaitInformationWindow(::cMessageIdTicoGalaxyAppear, &::StageResultInformerShowAstroMapForTico::sInstance);
 }
 
 void StageResultInformer::exeShowAstroMapForTico() {
@@ -384,14 +384,14 @@ void StageResultInformer::initBestScoreWindow() {
     //     GameSequenceFunction::getClearedPowerStarId());
     s32 clearedCoinNum = GameSequenceFunction::getClearedCoinNum();
 
-    MR::setTextBoxNumberRecursive(this, cNameBestCoinNum, clearedCoinNum);
+    MR::setTextBoxNumberRecursive(this, ::cNameBestCoinNum, clearedCoinNum);
 
     // ...
 
     if (clearedCoinNum < 0) {
-        MR::showPane(this, cNameBestCoinRoot);
+        MR::showPane(this, ::cNameBestCoinRoot);
     } else {
-        MR::hidePane(this, cNameBestCoinRoot);
+        MR::hidePane(this, ::cNameBestCoinRoot);
     }
 }
 

@@ -1,5 +1,9 @@
 #include "Game/Boss/DinoPackunTailNode.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
 typedef JointControlDelegator< DinoPackunTailNode > Delegator;
 

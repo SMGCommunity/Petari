@@ -143,7 +143,7 @@ void CameraDirector::init(const JMapInfoIter& rIter) {
 }
 
 void CameraDirector::movement() {
-    sUpdateCounter++;
+    ::sUpdateCounter++;
 
     backLastMtx();
     mTargetHolder->movement();
@@ -420,7 +420,7 @@ bool CameraDirector::isEnableToControl() const {
         bool change = true;
         bool equals = getCurrentCameraMan() == mCameraManEvent;
 
-        if (equals && !isEventCameraActive(0, sSubjectiveCameraName)) {
+        if (equals && !isEventCameraActive(0, ::sSubjectiveCameraName)) {
             change = false;
         }
 
@@ -474,21 +474,21 @@ bool CameraDirector::isForceCameraChange() const {
 }
 
 f32 CameraDirector::getDefaultFovy() const {
-    return sDefaultFovy;
+    return ::sDefaultFovy;
 }
 
 void CameraDirector::startStartAnimCamera() {
     if (mStartCameraCreated) {
-        ActorCameraInfo info = ActorCameraInfo(-1, 0);
+        ActorCameraInfo info = ActorCameraInfo();
         CameraTargetArg targetArg = CALL_INLINE_FUNC(CameraTargetArg, mTargetMatrix);
 
-        MR::startEventCamera(&info, sStartAnimCameraName, targetArg, 0);
+        MR::startEventCamera(&info, ::sStartAnimCameraName, targetArg, 0);
     }
 }
 
 bool CameraDirector::isStartAnimCameraEnd() const {
     if (mStartCameraCreated) {
-        return isAnimCameraEnd(0, sStartAnimCameraName);
+        return isAnimCameraEnd(0, ::sStartAnimCameraName);
     }
 
     return true;
@@ -496,21 +496,21 @@ bool CameraDirector::isStartAnimCameraEnd() const {
 
 u32 CameraDirector::getStartAnimCameraFrame() const {
     if (mStartCameraCreated) {
-        return getAnimCameraFrame(0, sStartAnimCameraName);
+        return getAnimCameraFrame(0, ::sStartAnimCameraName);
     }
 
     return 0;
 }
 
 void CameraDirector::endStartAnimCamera() {
-    ActorCameraInfo info = ActorCameraInfo(-1, 0);
-    MR::endEventCamera(&info, sStartAnimCameraName, true, 0);
+    ActorCameraInfo info = ActorCameraInfo();
+    MR::endEventCamera(&info, ::sStartAnimCameraName, true, 0);
 }
 
 // FIXME: Erroneously-ordered lwz instruction.
 void CameraDirector::startTalkCamera(const TVec3f& rPosition, const TVec3f& rUp, f32 axisX, f32 axisY, s32 a5) {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
-    chunkID.createEventID(0, sTalkCameraName);
+    chunkID.createEventID(0, ::sTalkCameraName);
 
     CameraParamChunk* chunk = mChunkHolder->getChunk(chunkID);
 
@@ -526,12 +526,12 @@ void CameraDirector::startTalkCamera(const TVec3f& rPosition, const TVec3f& rUp,
         CameraTargetArg targetArg = CALL_INLINE_FUNC_NO_ARG(CameraTargetArg);
 
         MR::setCameraTargetToPlayer(&targetArg);
-        startEvent(0, sTalkCameraName, targetArg, a5);
+        startEvent(0, ::sTalkCameraName, targetArg, a5);
     }
 }
 
 void CameraDirector::endTalkCamera(bool a1, s32 a2) {
-    endEvent(0, sTalkCameraName, a1, a2);
+    endEvent(0, ::sTalkCameraName, a1, a2);
 }
 
 void CameraDirector::startSubjectiveCamera(s32 a1) {
@@ -697,20 +697,20 @@ void CameraDirector::createStartAnimCamera() {
     MR::getCurrentScenarioStartAnimCameraData(&data, &size);
 
     if (size > 0) {
-        ActorCameraInfo info = ActorCameraInfo(-1, 0);
-        MR::declareEventCameraAnim(&info, sStartAnimCameraName, data);
+        ActorCameraInfo info = ActorCameraInfo();
+        MR::declareEventCameraAnim(&info, ::sStartAnimCameraName, data);
         mStartCameraCreated = true;
     }
 }
 
 void CameraDirector::createTalkCamera() {
-    const char* name = sTalkCameraName;
+    const char* name = ::sTalkCameraName;
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(0, name);
 
     mChunkHolder->createChunk(chunkID, nullptr);
 
-    const char* name2 = sTalkCameraName;
+    const char* name2 = ::sTalkCameraName;
     CameraParamChunkID_Tmp chunkID2 = CameraParamChunkID_Tmp();
     chunkID2.createEventID(0, name2);
 
@@ -723,13 +723,13 @@ void CameraDirector::createTalkCamera() {
 }
 
 void CameraDirector::createSubjectiveCamera() {
-    const char* name = sSubjectiveCameraName;
+    const char* name = ::sSubjectiveCameraName;
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
     chunkID.createEventID(0, name);
 
     mChunkHolder->createChunk(chunkID, nullptr);
 
-    const char* name2 = sSubjectiveCameraName;
+    const char* name2 = ::sSubjectiveCameraName;
     CameraParamChunkID_Tmp chunkID2 = CameraParamChunkID_Tmp();
     chunkID2.createEventID(0, name2);
 

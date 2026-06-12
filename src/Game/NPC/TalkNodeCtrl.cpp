@@ -1,5 +1,6 @@
 #include "Game/NPC/TalkNodeCtrl.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/Screen/MessageTagSkipTagProcessor.hpp"
 #include "Game/System/MessageHolder.hpp"

@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/Coin.hpp"
+
+class ActorCameraInfo;
+class Coin;
 
 class CoinGroup : public LiveActor {
 public:

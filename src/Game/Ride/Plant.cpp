@@ -1,5 +1,7 @@
 #include "Game/Ride/Plant.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/PlantPoint.hpp"
 #include "Game/Ride/PlantLeaf.hpp"
@@ -11,6 +13,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
@@ -22,7 +25,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DShapeDraw.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/gx/GXTransform.h>
 #include <revolution/mtx.h>
 #include <revolution/types.h>

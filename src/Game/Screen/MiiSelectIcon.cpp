@@ -58,9 +58,9 @@ void MiiSelectIcon::appear(const FileSelectIconID& rIconID) {
     if (rIconID.isFellow()) {
         MR::showLayout(this);
         MR::startAnim(this, "Character", 0);
-        MR::setAnimFrameAndStop(this, sCharacterTexFrame[rIconID.getFellowID()], 0);
+        MR::setAnimFrameAndStop(this, ::sCharacterTexFrame[rIconID.getFellowID()], 0);
         MR::startPaneAnim(this, "MarioIcon", "Character", 1);
-        MR::setPaneAnimFrameAndStop(this, "MarioIcon", sCharacterTexFrame[rIconID.getFellowID()], 1);
+        MR::setPaneAnimFrameAndStop(this, "MarioIcon", ::sCharacterTexFrame[rIconID.getFellowID()], 1);
 
         _20 = _24;
 

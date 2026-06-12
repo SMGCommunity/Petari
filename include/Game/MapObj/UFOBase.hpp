@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Map/CollisionParts.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+
+class CollisionParts;
+class LodCtrl;
+class MapPartsRailMover;
+class ModelObj;
 
 class UFOBase : public LiveActor {
 public:

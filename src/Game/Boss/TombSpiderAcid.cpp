@@ -80,7 +80,7 @@ void TombSpiderAcid::update() {
 }
 
 void TombSpiderAcid::updateEmitAcid() {
-    if (!mIsActive && ++mStateChangeTimer >= sStepToStartAcidGround) {
+    if (!mIsActive && ++mStateChangeTimer >= ::sStepToStartAcidGround) {
         MR::emitEffect(mParent, "AcidSplash");
 
         if (TombSpiderFunction::getGlandFrontL(mParent)->isActive()) {
@@ -104,7 +104,7 @@ void TombSpiderAcid::updateEmitAcid() {
 }
 
 void TombSpiderAcid::updateDeleteAcid() {
-    if (mIsActive && ++mStateChangeTimer >= sStepToEndAcidGround) {
+    if (mIsActive && ++mStateChangeTimer >= ::sStepToEndAcidGround) {
         MR::deleteEffect(mParent, "AcidSplash");
         MR::deleteEffect(TombSpiderFunction::getGlandFrontL(mParent), "AcidSplash");
         MR::deleteEffect(TombSpiderFunction::getGlandFrontR(mParent), "AcidSplash");
@@ -123,7 +123,7 @@ void TombSpiderAcid::updateGroundMtx(TPos3f* pDstMtx, MtxPtr pSrcMtx) {
     TVec3f side(up.y, -up.x, 0.0f);
     TVec3f front(0.0f, 0.0f, 1.0f);
 
-    TVec3f checkLine(up.multInLine(-sDistanceCheckMap));
+    TVec3f checkLine(up.multInLine(-::sDistanceCheckMap));
     TVec3f mtxPos(pSrcMtx[0][3], pSrcMtx[1][3], pSrcMtx[2][3]);
     TVec3f trans(0.0f, 0.0f, 0.0f);
     MR::getFirstPolyOnLineToMap(&trans, nullptr, mtxPos, checkLine);

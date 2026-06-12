@@ -67,14 +67,14 @@ namespace MR {
             return GameDataFunction::getStockedStarPieceNum();
         }
 
-        return getScenePlayingResult()->getStarPieceNum();
+        return ::getScenePlayingResult()->getStarPieceNum();
     }
 
     void addStarPiece(int num) {
         if (MR::isStageAstroLocation()) {
             GameDataFunction::addStockedStarPiece(num);
         } else {
-            getScenePlayingResult()->incStarPiece(num);
+            ::getScenePlayingResult()->incStarPiece(num);
         }
     }
 

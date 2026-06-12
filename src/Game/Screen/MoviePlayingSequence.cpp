@@ -220,7 +220,7 @@ const char* MoviePlayingSequence::getMovieName(MoviePlayingSequence::MovieType t
 
 // https://decomp.me/scratch/O5orZ
 MoviePlayingSequence::MoviePlayingSequence(const char* pName, s32 movieType) : LayoutActor(pName, true), mSubtitles() {
-    mInfo = &sInfoTable[movieType];
+    mInfo = &::sInfoTable[movieType];
     mPadRumbler = new DemoPadRumbler(getMovieName(MovieType(movieType)));
 
     MR::createSceneObj(SceneObj_MoviePlayerSimple);
@@ -301,7 +301,7 @@ void MoviePlayingSequence::exePlayStart() {
 
 void MoviePlayingSequence::exePlay() {
     if (MR::isFirstStep(this)) {
-        openWipe(WipeType(mInfo->mOpenWipeType), mInfo->mOpenWipeTime);
+        ::openWipe(WipeType(mInfo->mOpenWipeType), mInfo->mOpenWipeTime);
     }
 
     if (MR::isStep(this, 3)) {
@@ -340,7 +340,7 @@ bool MoviePlayingSequence::tryStartSubtitles() {
 bool MoviePlayingSequence::tryEnd() {
     if (mInfo->mCloseWipeTime == -1) {
         if (!MR::isActiveMoviePlayer()) {
-            closeWipe(WipeType(mInfo->mCloseWipeType), mInfo->mCloseWipeTime);
+            ::closeWipe(WipeType(mInfo->mCloseWipeType), mInfo->mCloseWipeTime);
             setNerve(&NrvMoviePlayingSequence::HostTypeEndWait::sInstance);
 
             return true;
@@ -386,7 +386,7 @@ bool MoviePlayingSequence::trySkip() {
 
 void MoviePlayingSequence::exeCloseWipeOnPlaying() {
     if (MR::isFirstStep(this)) {
-        closeWipe(WipeType(mInfo->mCloseWipeType), -1);
+        ::closeWipe(WipeType(mInfo->mCloseWipeType), -1);
     }
 
     if (!MR::isActiveMoviePlayer()) {
@@ -411,7 +411,7 @@ void MoviePlayingSequence::exeEndWait() {
         }
 
         if (!noWipe) {
-            openWipe(WipeType(mInfo->mEndWaitWipeType), -1);
+            ::openWipe(WipeType(mInfo->mEndWaitWipeType), -1);
         }
 
         if (mInfo->mStageBgmName != nullptr) {
@@ -473,11 +473,11 @@ namespace MR {
     }
 
     void startMovie(int type) {
-        getMoviePlayingSequence(type)->appear();
+        ::getMoviePlayingSequence(type)->appear();
     }
 
     bool isEndMovie(int type) {
-        return isDead(getMoviePlayingSequence(type));
+        return isDead(::getMoviePlayingSequence(type));
     }
 
     void startMovieEpilogueA() {
@@ -509,8 +509,8 @@ namespace MR {
             return false;
         }
 
-        for (int i = 0; i < getMoviePlayingSequenceHolder()->getSequenceNum(); i++) {
-            MoviePlayingSequence* pSequence = getMoviePlayingSequence(i);
+        for (int i = 0; i < ::getMoviePlayingSequenceHolder()->getSequenceNum(); i++) {
+            MoviePlayingSequence* pSequence = ::getMoviePlayingSequence(i);
 
             if (pSequence == nullptr) {
                 continue;

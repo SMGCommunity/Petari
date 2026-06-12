@@ -3,6 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class ActorCameraInfo;
+class JMapIdInfo;
 class LiveActorGroup;
 
 class WarpPod : public LiveActor {

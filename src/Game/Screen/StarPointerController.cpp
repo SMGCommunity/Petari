@@ -28,7 +28,7 @@ StarPointerController::StarPointerController()
 }
 
 bool StarPointerController::isOutScreenLong() const {
-    return mOutScreenTime > hIsOutScreenCounter;
+    return mOutScreenTime > ::hIsOutScreenCounter;
 }
 
 void StarPointerController::initAndSetPort(s32 padChannel) {

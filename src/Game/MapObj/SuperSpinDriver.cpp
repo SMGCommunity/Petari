@@ -1,4 +1,6 @@
 #include "Game/MapObj/SuperSpinDriver.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 /* it seems like this file was compiled with an earlier compiler version */
 
@@ -226,7 +228,7 @@ void SuperSpinDriver::exeWait() {
         MR::validateClipping(this);
     }
 
-    if (MR::isGreaterStep(this, sCanBindTime)) {
+    if (MR::isGreaterStep(this, ::sCanBindTime)) {
         addSwingSignRotateY();
     }
 

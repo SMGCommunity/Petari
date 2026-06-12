@@ -1,5 +1,7 @@
 #include "Game/MapObj/LavaStrangeRock.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvLavaStrangeRock {
     NEW_NERVE(LavaStrangeRockNrvWait, LavaStrangeRock, Wait);

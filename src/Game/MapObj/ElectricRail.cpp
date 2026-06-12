@@ -2,8 +2,8 @@
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ElectricRailHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace NrvElectricRail {
     NEW_NERVE(ElectricRailNrvWait, ElectricRail, Wait);

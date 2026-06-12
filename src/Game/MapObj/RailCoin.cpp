@@ -1,5 +1,7 @@
 #include "Game/Mapobj/RailCoin.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     class RailCoinMercatorDivInfo : public DivideMercatorRailPosInfo {
@@ -47,7 +49,7 @@ void RailCoin::placementNormalRail() {
 }
 
 void RailCoin::placementMercatorRail() {
-    RailCoinMercatorDivInfo info(this);
+    ::RailCoinMercatorDivInfo info(this);
     MR::getDivideMercatorRailPosition(&info, this, mCoinCount, 10.0f, 10);
 }
 

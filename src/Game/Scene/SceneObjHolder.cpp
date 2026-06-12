@@ -22,6 +22,7 @@
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/MessageSensorHolder.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/SensorHitChecker.hpp"
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/ShadowSurfaceDrawer.hpp"
@@ -118,7 +119,7 @@
 // #include "Game/Util/FurCtrl.hpp"
 #include "Game/Util/SceneUtil.hpp"
 // #include "Game/Util/ShareUtil.hpp"
-#include "Game/SingletonHolder.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 SceneObjHolder::SceneObjHolder() {
     for (int i = 0; i < SceneObj_NumMax; i++) {

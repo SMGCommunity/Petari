@@ -1,7 +1,11 @@
 #include "Game/NPC/TicoDomeLecture.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "math_types.hpp"
 
 namespace NrvTicoDomeLecture {
@@ -62,9 +66,9 @@ void TicoDomeLecture::exeMove() {
     MR::startLevelSound(this, "SE_SM_LV_TICO_FLY_DEMO");
     if (MR::isDemoPartActive(demoName)) {
         f32 easeOut = MR::calcNerveEaseOutRate(this, MR::getDemoPartTotalStep(demoName) - 1);
-        TVec3f v5(cMoveEndPos);
+        TVec3f v5(::cMoveEndPos);
         JMAVECLerp(&_8C, &v5, &mPosition, easeOut);
-        TVec3f v4(cMoveEndRotate);
+        TVec3f v4(::cMoveEndRotate);
         JMAVECLerp(&_98, &v4, &mRotation, easeOut);
         if (MR::isDemoPartLastStep(demoName)) {
             setNerve(&NrvTicoDomeLecture::TicoDomeLectureNrvMetamorphosis::sInstance);

@@ -1,4 +1,8 @@
 #include "Game/Boss/DinoPackunDemoPosition.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace {
     static const s32 sLandMotionStartTime = 28;

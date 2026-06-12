@@ -47,7 +47,7 @@ void BgmProhibitArea::movement() {
             _3D = 0;
 
             if (!_3C && MR::isPlayingStageBgm()) {
-                BgmMuteSet* set = findDataElement(MR::getCurrentStageName());
+                BgmMuteSet* set = ::findDataElement(MR::getCurrentStageName());
                 s32 v10 = set ? set->_4 : -1;
                 if (v10 >= 0) {
                     if (dist >= 10000.0f) {
@@ -62,7 +62,7 @@ void BgmProhibitArea::movement() {
         } else {
             _3C = 0;
             if (!_3D && MR::isPlayingStageBgm()) {
-                BgmMuteSet* set = findDataElement(MR::getCurrentStageName());
+                BgmMuteSet* set = ::findDataElement(MR::getCurrentStageName());
                 s32 v14 = set ? set->_8 : -1;
 
                 if (v14 >= 0) {

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/ModelObj.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 class ParabolicPath;
 

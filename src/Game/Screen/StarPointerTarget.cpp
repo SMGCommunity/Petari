@@ -33,7 +33,7 @@ bool StarPointerTarget::isPointing(const TVec2f& rPointerPos, f32 zMargin, f32 r
         return false;
     }
 
-    if (zMargin + mRadius3d + hZCheckAddDepth < -viewPos.z) {
+    if (zMargin + mRadius3d + ::hZCheckAddDepth < -viewPos.z) {
         return false;
     }
 

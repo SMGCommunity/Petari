@@ -3,8 +3,8 @@
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/System/StationedArchiveLoader.hpp"
 
-class JKRHeap;
 class JKRExpHeap;
+class JKRHeap;
 class PlayerHeapHolder;
 
 namespace MR {

@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class AnimScaleController;
+class FootPrint;
 
 class Petari : public LiveActor {
 public:

@@ -2,6 +2,9 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class BenefitItemOneUp;
+class ModelObj;
+
 class WoodBox : public LiveActor {
 public:
     WoodBox(const char*);

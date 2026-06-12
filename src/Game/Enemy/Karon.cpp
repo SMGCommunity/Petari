@@ -5,10 +5,16 @@
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     static const KaronParam hNoMoveNoTurnParam = {0.0f, 1.2f, 0.8f, 0.0f};
@@ -132,7 +138,7 @@ void Karon::exeFixWait() {
     }
 
     mBinder->_1EC._5 = true;
-    MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
+    MR::moveAndTurnToPlayer(this, ::hNoMoveNoTurnParam._0, ::hNoMoveNoTurnParam._4, ::hNoMoveNoTurnParam._8, ::hNoMoveNoTurnParam._C);
 
     if (MR::isOnSwitchA(this)) {
         setNerve(&NrvKaron::HostTypeNrvWait::sInstance);
@@ -151,7 +157,7 @@ void Karon::exeStepBroken() {
     TVec3f v6(0, 0, 0);
     if (MR::calcVelocityAreaOrRailMoveOnGround(&v6, this)) {
         MR::addVelocityLimit(this, v6 * 1.0f);
-        MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
+        MR::moveAndTurnToPlayer(this, ::hNoMoveNoTurnParam._0, ::hNoMoveNoTurnParam._4, ::hNoMoveNoTurnParam._8, ::hNoMoveNoTurnParam._C);
         MR::calcGravity(this);
     } else if (MR::isBinded(this)) {
         mVelocity.scale(MR::getBindedNormal(this)->dot(mVelocity));
@@ -177,7 +183,7 @@ void Karon::exeRecover() {
         mVelocity.scale(g->dot(mVelocity), *g);
     }
 
-    MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
+    MR::moveAndTurnToPlayer(this, ::hNoMoveNoTurnParam._0, ::hNoMoveNoTurnParam._4, ::hNoMoveNoTurnParam._8, ::hNoMoveNoTurnParam._C);
     mBinder->_1EC._5 = true;
     if (MR::isActionEnd(this)) {
         MR::onCalcGravity(this);
@@ -198,16 +204,16 @@ void Karon::exeHitReaction() {
 
     if (isNerve(&NrvKaron::HostTypeNrvStarPieceHit::sInstance)) {
         if (MR::isOnGround(this)) {
-            MR::moveAndTurnToPlayer(this, hNoMoveNoTurnParam._0, hNoMoveNoTurnParam._4, hNoMoveNoTurnParam._8, hNoMoveNoTurnParam._C);
+            MR::moveAndTurnToPlayer(this, ::hNoMoveNoTurnParam._0, ::hNoMoveNoTurnParam._4, ::hNoMoveNoTurnParam._8, ::hNoMoveNoTurnParam._C);
         } else {
-            MR::moveAndTurnToPlayer(this, hNoMoveNoTurnOnAirParam._0, hNoMoveNoTurnOnAirParam._4, hNoMoveNoTurnOnAirParam._8,
-                                    hNoMoveNoTurnOnAirParam._C);
+            MR::moveAndTurnToPlayer(this, ::hNoMoveNoTurnOnAirParam._0, ::hNoMoveNoTurnOnAirParam._4, ::hNoMoveNoTurnOnAirParam._8,
+                                    ::hNoMoveNoTurnOnAirParam._C);
         }
     } else if (MR::isOnGround(this)) {
-        MR::moveAndTurnToPlayer(this, hHitReactionOnGroundParam._0, hHitReactionOnGroundParam._4, hHitReactionOnGroundParam._8,
-                                hHitReactionOnGroundParam._C);
+        MR::moveAndTurnToPlayer(this, ::hHitReactionOnGroundParam._0, ::hHitReactionOnGroundParam._4, ::hHitReactionOnGroundParam._8,
+                                ::hHitReactionOnGroundParam._C);
     } else {
-        MR::moveAndTurnToPlayer(this, hHitReactionAirParam._0, hHitReactionAirParam._4, hHitReactionAirParam._8, hHitReactionAirParam._C);
+        MR::moveAndTurnToPlayer(this, ::hHitReactionAirParam._0, ::hHitReactionAirParam._4, ::hHitReactionAirParam._8, ::hHitReactionAirParam._C);
     }
 
     if (MR::isOnGround(this) && MR::isActionEnd(this)) {
@@ -226,7 +232,7 @@ void Karon::exeDeath() {
         MR::startSound(this, "SE_EV_KARON_DAMAGE");
     }
 
-    moveAndTurn(&hNoMoveNoTurnParam);
+    moveAndTurn(&::hNoMoveNoTurnParam);
 
     if (MR::isActionEnd(this)) {
         kill();

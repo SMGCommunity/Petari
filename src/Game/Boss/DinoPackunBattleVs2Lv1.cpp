@@ -8,7 +8,15 @@
 #include "Game/Boss/DinoPackunTail.hpp"
 #include "Game/Boss/DinoPackunTrackFire.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static TVec3f sShotMouthFireOffset = TVec3f(150.0f, 150.0f, 0.0f);
@@ -400,7 +408,7 @@ bool DinoPackunBattleVs2Lv1::emitFireMouth() {
     TPos3f v17;
     v17.setInline(mouthMtx);
     TVec3f v16;
-    v17.mult(sShotMouthFireOffset, v16);
+    v17.mult(::sShotMouthFireOffset, v16);
     TVec3f v15;
     v15.set< f32 >(v17(0, 0), v17(1, 0), v17(2, 0));
     MR::normalizeOrZero(&v15);

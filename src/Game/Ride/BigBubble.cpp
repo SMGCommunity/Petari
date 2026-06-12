@@ -1,13 +1,12 @@
 #include "Game/Ride/BigBubble.hpp"
 #include "Game/AreaObj/BigBubbleGoalArea.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigBubbleMoveLimitter.hpp"
 #include "Game/MapObj/BigFanHolder.hpp"
 #include "Game/MapObj/ElectricRailHolder.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/OctahedronBezierSurface.hpp"
-#include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <revolution/gx/GXTev.h>
 #include <revolution/mtx.h>
@@ -202,15 +201,15 @@ void BigBubble::calcAnim() {
         f32 radius = MR::calcPointRadius2D(mPosition, getSize());
 
         s32 divideLevel = 0;
-        if (radius >= sRadiusSubLevel6) {
+        if (radius >= ::sRadiusSubLevel6) {
             divideLevel = 6;
-        } else if (radius >= sRadiusSubLevel5) {
+        } else if (radius >= ::sRadiusSubLevel5) {
             divideLevel = 5;
-        } else if (radius >= sRadiusSubLevel4) {
+        } else if (radius >= ::sRadiusSubLevel4) {
             divideLevel = 4;
-        } else if (radius >= sRadiusSubLevel3) {
+        } else if (radius >= ::sRadiusSubLevel3) {
             divideLevel = 3;
-        } else if (radius >= sRadiusSubLevel2) {
+        } else if (radius >= ::sRadiusSubLevel2) {
             divideLevel = 2;
         } else if (radius >= 3.0f) {  // no static symbol here?
             divideLevel = 1;
@@ -296,13 +295,13 @@ void BigBubble::setShapeType(s32 shapeType) {
 f32 BigBubble::getBaseRadius() const {
     switch (mShapeType) {
     case ShapeType_Sphere:
-        return sBaseRadiusSphere;
+        return ::sBaseRadiusSphere;
     case ShapeType_Cube:
-        return sBaseRadiusCube;
+        return ::sBaseRadiusCube;
     case ShapeType_Octahedron:
-        return sBaseRadiusOctahedron;
+        return ::sBaseRadiusOctahedron;
     default:
-        return sBaseRadiusSphere;
+        return ::sBaseRadiusSphere;
     }
 }
 
@@ -342,7 +341,7 @@ bool BigBubble::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
     if (MR::isMsgStarPieceReflect(msg)) {
         TVec3f sensorDir;
         MR::calcSensorDirectionNormalize(&sensorDir, pSender, pReceiver);
-        addDeformVelocityOuter(sensorDir.multiplyOperatorInline(sStarPieceDeformPower), false);
+        addDeformVelocityOuter(sensorDir.multiplyOperatorInline(::sStarPieceDeformPower), false);
         return true;
     }
 
@@ -558,7 +557,7 @@ bool BigBubble::tryBreak() {
 }
 
 bool BigBubble::tryAutoBreak() {
-    if (!mIsObstruct && MR::isGreaterStep(this, sAutoBreakTime) || mIsExitLimitter) {
+    if (!mIsObstruct && MR::isGreaterStep(this, ::sAutoBreakTime) || mIsExitLimitter) {
         if (mRider != nullptr) {
             MR::endBindAndPlayerWeakGravityLimitJump(this, mVelocity);
             mRider = nullptr;
@@ -1034,8 +1033,8 @@ void BigBubble::updateMeshPoint() {
 }
 
 void BigBubble::updateCaptureReduceVolume() {
-    if (mReduceVolumeTimer >= sReduceSizeInterval) {
-        mVolume -= sReduceVolume;
+    if (mReduceVolumeTimer >= ::sReduceSizeInterval) {
+        mVolume -= ::sReduceVolume;
 
         if (0.25f <= mVolume && mVolume < 0.735f) {
             mVolume = 0.735f;

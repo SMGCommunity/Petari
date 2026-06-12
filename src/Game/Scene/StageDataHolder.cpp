@@ -1,6 +1,7 @@
 #include "Game/Scene/StageDataHolder.hpp"
 #include "Game/NameObj/NameObjFactory.hpp"
 #include "Game/Scene/PlacementInfoOrdered.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Scene/StageResourceLoader.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include <JSystem/JKernel/JKRMemArchive.hpp>

@@ -1,4 +1,6 @@
 #include "Game/MapObj/LavaGalaxyParts.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 LavaGalaxyParts::~LavaGalaxyParts() {
 }

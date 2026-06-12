@@ -1,6 +1,21 @@
 #include "Game/NPC/TeresaRacer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/RaceRail.hpp"
 #include "Game/MapObj/GCapture.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/NPCUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static const f32 sSpeed = 20.0f;
@@ -65,8 +80,8 @@ void TeresaRacer::init(const JMapInfoIter& rIter) {
         mParam.setTalkAction("WaitOpenTalk", "WaitOpenTalk");
         setTalkAction("Chase");
         mParam._8 = 1.5f;
-        _10C = sSpeed;
-        _110 = sAccele;
+        _10C = ::sSpeed;
+        _110 = ::sAccele;
         _114 = 0.05f;
         mParam._4 = 3000.0f;
 
@@ -172,7 +187,7 @@ void TeresaRacer::exePost() {
 }
 
 void TeresaRacer::exeMove() {
-    if (MR::isRailReachedNearGoal(this, sNearGoalDist) || !MR::isRailGoingToEnd(this)) {
+    if (MR::isRailReachedNearGoal(this, ::sNearGoalDist) || !MR::isRailGoingToEnd(this)) {
         setNerve(&NrvTeresaRacer::TeresaRacerNrvGoal::sInstance);
     } else {
         MR::getCurrentRailPointArg0NoInit(this, &_10C);  // speed
@@ -183,7 +198,7 @@ void TeresaRacer::exeMove() {
         if (mRacerId == -1) {
             MR::decidePose(this, up, MR::getRailDirection(this), MR::getRailPos(this), 1.0f, 0.05f, 0.1f);
         } else {
-            TVec3f dir = MR::getRailDirection(this) + MR::getCamZdir().invertOperatorInternal().multInLine(sCameraDirScale);
+            TVec3f dir = MR::getRailDirection(this).addOtherInline2(MR::getCamZdir().invertOperatorInternal().multInLine(::sCameraDirScale));
 
             if (!MR::normalizeOrZero(&dir)) {
                 MR::decidePose(this, up, dir, MR::getRailPos(this), 1.0f, 0.05f, 0.1f);
@@ -191,8 +206,8 @@ void TeresaRacer::exeMove() {
         }
     }
 
-    if (mRacerId != -1 && MR::calcDistanceToPlayer(this) < sRasterParamMax) {
-        MR::setRasterScroll(sRasterParamTime, sRasterParamX, sRasterParamY);
+    if (mRacerId != -1 && MR::calcDistanceToPlayer(this) < ::sRasterParamMax) {
+        MR::setRasterScroll(::sRasterParamTime, ::sRasterParamX, ::sRasterParamY);
         MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER");
     }
     changeBgmState();
@@ -211,8 +226,8 @@ void TeresaRacer::exeGoal() {
         MR::tryStartTurnAction(this);
     }
 
-    if (mRacerId != -1 && MR::calcDistanceToPlayer(this) < sRasterParamMax) {
-        MR::setRasterScroll(sRasterParamTime, sRasterParamX, sRasterParamY);
+    if (mRacerId != -1 && MR::calcDistanceToPlayer(this) < ::sRasterParamMax) {
+        MR::setRasterScroll(::sRasterParamTime, ::sRasterParamX, ::sRasterParamY);
         MR::startAtmosphereLevelSE("SE_AT_LV_DEATH_PROM_RASTER");
     }
     changeBgmState();
@@ -290,15 +305,15 @@ void TeresaRacer::exitRacer() {
 }
 
 void TeresaRacer::changeBgmState() {
-    if (!MR::isLessStep(this, sBgmChangeStep) && !mIsGoal) {
-        if (MR::calcDistanceToPlayer(this) < sNearBgmDist) {
+    if (!MR::isLessStep(this, ::sBgmChangeStep) && !mIsGoal) {
+        if (MR::calcDistanceToPlayer(this) < ::sNearBgmDist) {
             if (mBgmState != 2) {
-                MR::setStageBGMState(2, sNearBgm_Fadetime);
+                MR::setStageBGMState(2, ::sNearBgm_Fadetime);
             }
             mBgmState = 2;
         } else {
             if (mBgmState != 1) {
-                MR::setStageBGMState(1, sFarBgm_Fadetime);
+                MR::setStageBGMState(1, ::sFarBgm_Fadetime);
             }
             mBgmState = 1;
         }

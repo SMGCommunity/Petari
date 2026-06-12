@@ -1,5 +1,7 @@
 #include "Game/MapObj/StarPieceMother.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/StarPiece.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvStarPieceMother {
     NEW_NERVE(HostTypeNrvMoveOnRail, StarPieceMother, MoveOnRail);

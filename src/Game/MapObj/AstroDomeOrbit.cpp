@@ -1,17 +1,15 @@
 #include "Game/MapObj/AstroDomeOrbit.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXGeometry.h"
-#include "revolution/gx/GXVert.h"
+#include <revolution/gx/GXVert.h>
 
 namespace {
     static f32 cRotateOutermost[] = {20.0f, 45.0f, 0.0f};
@@ -38,7 +36,7 @@ void AstroDomeOrbit::init(const JMapInfoIter& rIter) {
 
 void AstroDomeOrbit::draw() const {
     if (MR::isValidDraw(this)) {
-        initDraw(cColor);
+        initDraw(::cColor);
         drawCelling(100.0f, true, 50.0f);
         drawCelling(100.0f, false, 50.0f);
         drawSide(100.0f, true, 50.0f);
@@ -48,7 +46,7 @@ void AstroDomeOrbit::draw() const {
 
 void AstroDomeOrbit::drawBloom() const {
     if (MR::isValidDraw(this)) {
-        initDraw(cBloomColor);
+        initDraw(::cBloomColor);
         drawCelling(131.0f, true, 60.0f);
         drawCelling(131.0f, false, 60.0f);
         drawSide(131.0f, true, 60.0f);
@@ -58,10 +56,10 @@ void AstroDomeOrbit::drawBloom() const {
 
 void AstroDomeOrbit::setup(s32 radiusIdx) {
     s32 miniNum = MiniatureGalaxyFunction::getMiniatureGalaxyNum();
-    f32* domes = cRadiusLastDome;
+    f32* domes = ::cRadiusLastDome;
 
     if (radiusIdx == 5) {
-        domes = cRadius;
+        domes = ::cRadius;
     }
 
     f32 radiusFlt = radiusIdx;
@@ -69,9 +67,9 @@ void AstroDomeOrbit::setup(s32 radiusIdx) {
     _90 = 230.0f * (radiusFlt - 4.503601774854144e15);
 
     if (radiusIdx >= 4) {
-        f32 z = cRotateOutermost[0];
-        f32 y = cRotateOutermost[1];
-        f32 x = cRotateOutermost[2];
+        f32 z = ::cRotateOutermost[0];
+        f32 y = ::cRotateOutermost[1];
+        f32 x = ::cRotateOutermost[2];
 
         mRotation.set(z, y, x);
     }

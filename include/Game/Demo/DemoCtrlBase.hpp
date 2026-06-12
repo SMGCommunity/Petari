@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include <revolution.h>
+#include <revolution/types.h>
 
+class ActorCameraInfo;
+class JMapInfoIter;
 class LiveActor;
 
 class DemoCtrlBase {

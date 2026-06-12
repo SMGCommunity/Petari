@@ -2,6 +2,8 @@
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/MessageSensorHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -153,6 +155,12 @@ void JetTurtle::bound() {
     }
 }
 
+inline void JetTurtle::endWait() {
+    if (mShellType == JETTURTLETYPE_GOLD) {
+        MR::deleteEffect(this, "Glow");
+    }
+}
+
 void JetTurtle::exeThrowing() {
     if (!_E3) {
         if (MR::isFirstStep(this)) {
@@ -184,7 +192,7 @@ void JetTurtle::exeThrowing() {
             }
         }
 
-        if (MR::isStep(this, sResetStep[_92])) {
+        if (MR::isStep(this, ::sResetStep[_92])) {
             TVec3f v16 = _C0 - mPosition;
             if (PSVECMag(&v16) > 5000.0f) {
                 reset(1);
@@ -208,7 +216,7 @@ void JetTurtle::exeThrowing() {
                     }
 
                     TVec3f v22 = _9C;
-                    v22.setLength(_8C + sThrowSpdHoming[_92]);
+                    v22.setLength(_8C + ::sThrowSpdHoming[_92]);
                     mVelocity = v22;
                 }
             } else {
@@ -218,7 +226,7 @@ void JetTurtle::exeThrowing() {
 
         if (_98 == nullptr) {
             TVec3f v22 = _9C;
-            v22.setLength(_8C + sThrowSpdStraight[_92]);
+            v22.setLength(_8C + ::sThrowSpdStraight[_92]);
             mVelocity = v22;
         }
 
@@ -285,7 +293,7 @@ void JetTurtle::exeThrowing() {
             }
 
             if (!v10) {
-                MR::vecBlendSphere(_9C, grav, &_9C, sGravityLevel[_92]);
+                MR::vecBlendSphere(_9C, grav, &_9C, ::sGravityLevel[_92]);
             }
 
             _CC = grav;

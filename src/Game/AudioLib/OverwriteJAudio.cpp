@@ -1,13 +1,15 @@
 #include "Game/AudioLib/AudUtil.hpp"
 #include "Game/Util/FileUtil.hpp"
-#include "JSystem/JAudio2/JASAiCtrl.hpp"
-#include "JSystem/JAudio2/JASBasicInst.hpp"
-#include "JSystem/JAudio2/JASChannel.hpp"
-#include "JSystem/JAudio2/JASMutex.hpp"
-#include "JSystem/JAudio2/JASWaveArcLoader.hpp"
-#include "JSystem/JSupport/JSupport.hpp"
-#include "cstring"
+#include <JSystem/JAudio2/JASAiCtrl.hpp>
+#include <JSystem/JAudio2/JASBankTable.hpp>
+#include <JSystem/JAudio2/JASBasicBank.hpp>
+#include <JSystem/JAudio2/JASBasicInst.hpp>
+#include <JSystem/JAudio2/JASChannel.hpp>
+#include <JSystem/JAudio2/JASMutex.hpp>
 #include <JSystem/JAudio2/JASTrack.hpp>
+#include <JSystem/JAudio2/JASWaveArcLoader.hpp>
+#include <JSystem/JSupport/JSupport.hpp>
+#include <cstring>
 
 JASChannel* JASBank::noteOn(JASBank const* pBank, int progNo, u8 pitch, u8 velocity, u16 priority, JASChannel::Callback pCallback,
                             void* pChannelMgr) {

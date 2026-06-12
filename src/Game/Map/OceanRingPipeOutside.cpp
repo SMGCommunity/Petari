@@ -1,8 +1,13 @@
 #include "Game/Map/OceanRingPipeOutside.hpp"
 #include "Game/Map/OceanRingPipe.hpp"
-
 #include "Game/Scene/SceneFunction.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SchedulerUtil.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 
 namespace {
     const f32 sTexRateU = 0.08f;
@@ -29,7 +34,7 @@ void OceanRingPipeOutside::init(const JMapInfoIter& rIter) {
 }
 
 void OceanRingPipeOutside::movement() {
-    mTexU = MR::repeat(mTexU + sTexSpeedU, 0.0f, 1.0f);
+    mTexU = MR::repeat(mTexU + ::sTexSpeedU, 0.0f, 1.0f);
 }
 
 void OceanRingPipeOutside::initDisplayList() {
@@ -96,7 +101,7 @@ void OceanRingPipeOutside::loadMaterial() const {
     TMtx34f mtx3;
     mtx3.identity();
     TMtx34f* ptrmtx = &mtx2;
-    mtx3.scale(sEnvMapScale);
+    mtx3.scale(::sEnvMapScale);
     PSMTXConcat(*ptrmtx, mtx3, *ptrmtx);
     PSMTXConcat(*ptrmtx, sMtx, mtx2);
     GXLoadTexMtxImm(ptrmtx->toMtxPtr(), 0x21, GX_MTX2x4);
@@ -107,15 +112,15 @@ void OceanRingPipeOutside::loadMaterial() const {
     GXSetIndTexOrder(GX_INDTEXSTAGE0, GX_TEXCOORD0, GX_TEXMAP0);
     GXSetTevIndWarp(GX_TEVSTAGE0, GX_INDTEXSTAGE0, 1, 0, GX_ITM_0);
     Mtx23 new_mtx;
-    new_mtx[0][0] = sIndirectScale;
+    new_mtx[0][0] = ::sIndirectScale;
     new_mtx[0][1] = 0.0f;
     new_mtx[0][2] = 0.0f;
     new_mtx[1][0] = 0.0f;
-    new_mtx[1][1] = sIndirectScale;
+    new_mtx[1][1] = ::sIndirectScale;
     new_mtx[1][2] = 0.0f;
     GXSetIndTexMtx(GX_ITM_0, new_mtx, 0);
 
-    GXSetTevColor(GX_TEVREG0, sTevReg0);
+    GXSetTevColor(GX_TEVREG0, ::sTevReg0);
 
     GXSetNumTevStages(2);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD1, GX_TEXMAP1, GX_COLOR0A0);
@@ -172,10 +177,10 @@ void OceanRingPipeOutside::sendGD() const {
             GDWrite_f32(f27);
             GDWrite_f32(f28);
 
-            f27 += sTexRateU;
+            f27 += ::sTexRateU;
         }
         f28 = f29;
-        f29 += sTexRateV;
+        f29 += ::sTexRateV;
     }
 }
 

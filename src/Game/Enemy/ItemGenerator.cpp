@@ -2,7 +2,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 ItemGenerator::ItemGenerator() {
     mNumType = 1;

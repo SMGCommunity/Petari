@@ -1,7 +1,9 @@
 #include "Game/MapObj/ChipHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ChipCounter.hpp"
 #include "Game/MapObj/ChipGroup.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
