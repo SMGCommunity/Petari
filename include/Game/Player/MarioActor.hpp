@@ -50,15 +50,27 @@ class MarioActor : public LiveActor {
 public:
     MarioActor(const char*);
 
-    ~MarioActor();
+    virtual ~MarioActor();
+    virtual void init(const JMapInfoIter&);
+    virtual void initAfterPlacement();
+    virtual void movement();
+    virtual void draw() const;
+    virtual void calcAnim();
+    virtual void calcViewAndEntry();
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+    virtual void updateHitSensor(HitSensor*);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgTaken(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     virtual const TVec3f& getLastMove() const;
     virtual void getLastMove(TVec3f*) const;
     virtual void getFrontVec(TVec3f*) const;
 
-    void init(const JMapInfoIter&);
     void init2(const TVec3f&, const TVec3f&, s32);
-    void initAfterPlacement();
     void initAfterOpeningDemo();
     void calcBaseFrontVec(const TVec3f&);
     void playSound(const char*, s32);
@@ -83,8 +95,6 @@ public:
     void exeGameOverNonStop();
     void exeGameOverSink();
     void exeTimeWait();
-    void movement();
-    void control();
     void control2();
     void controlMain();
     void updateBehavior();
@@ -115,8 +125,6 @@ public:
     void getGlobalJointMtx(const char*);
     void calcAnimInMovement();
     void forceSetBaseMtx(MtxPtr);
-    void calcAnim();
-    void calcAndSetBaseMtx();
     void setBlendMtxTimer(u16);
     void getGroundPos(TVec3f* dst) const;
     TVec3f* getShadowPos() const;
@@ -185,12 +193,10 @@ public:
     void captureScreenBox() const;
     void writeBackScreenBox() const;
     void changeDisplayMode(u8);
-    void calcViewAndEntry() override;
     bool isAllHidden() const;
     void calcViewMainModel();
     void initFace();
     void updateFace();
-    void draw() const override;
     void drawIndirect() const;
     void drawIndirectModel() const;
     void drawReflectModel() const;

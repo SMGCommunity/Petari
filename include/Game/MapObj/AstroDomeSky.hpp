@@ -7,7 +7,8 @@ class ProjmapEffectMtxSetter;
 class AstroDomeSky : public LiveActor {
 public:
     AstroDomeSky(const char*);
-    ~AstroDomeSky();
+
+    virtual ~AstroDomeSky();
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void calcAndSetBaseMtx();

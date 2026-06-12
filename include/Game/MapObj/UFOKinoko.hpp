@@ -7,8 +7,8 @@ class NameObjArchiveListCollector;
 class UFOKinoko : public MapObjActor {
 public:
     UFOKinoko(const char*);
-    ~UFOKinoko();
 
+    virtual ~UFOKinoko();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
