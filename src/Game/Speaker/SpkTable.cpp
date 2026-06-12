@@ -8,7 +8,9 @@ SpkTable::SpkTable() {
 }
 
 void SpkTable::setResource(void* pRes) {
-    /* FIXME: regswap */
+    // FIXME: regswap
+    // https://decomp.me/scratch/s37iv
+
     mInitialized = false;
 
     SpkFile* file = reinterpret_cast< SpkFile* >(pRes);

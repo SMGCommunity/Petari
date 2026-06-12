@@ -93,8 +93,16 @@ public:
     void freeDeadSound(s32);
     void framework();
 
+    f32 getBaseVolume() const {
+        return mBaseVolume;
+    }
+
+    f32 get_44() const {
+        return _44 / 15.0f;
+    }
+
     /* 0x00 */ JSUList< SpkSound > mSoundList[4];
     /* 0x30 */ f32 mVolume[4];
-    /* 0x40 */ f32 _40;
+    /* 0x40 */ f32 mBaseVolume;
     /* 0x44 */ s32 _44;
 };

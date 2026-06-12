@@ -225,7 +225,7 @@ bool SpkSound::setWaveData(s32 waveID) {
 
 SpkSoundHolder::SpkSoundHolder() : JASGlobalInstance(true) {
     _44 = 10;
-    _40 = 1.0f;
+    mBaseVolume = 1.0f;
 
     for (int i = 0; i < 4; i++) {
         mVolume[i] = 1.0f;
@@ -234,6 +234,8 @@ SpkSoundHolder::SpkSoundHolder() : JASGlobalInstance(true) {
 
 bool SpkSoundHolder::startSound(s32 padChannel, s32 waveID, SpkSoundHandle* pHandle) {
     // FIXME: regswap pHandle <-> sound
+    // https://decomp.me/scratch/qB80e
+
     if (!SpkSpeakerCtrl::isEnable(padChannel)) {
         return false;
     }
@@ -281,12 +283,10 @@ bool SpkSoundHolder::update(s32 padChannel) {
 }
 
 bool SpkSoundHolder::updateEachSound(s32 padChannel) {
-    // FIXME: float swaps
-
     bool updated = false;
 
     JSULink< SpkSound >* sound = mSoundList[padChannel].getFirst();
-    f32 volume = _40 * (_44 / 15.0f);
+    f32 volume = getBaseVolume() * get_44();
 
     if (sound != nullptr) {
         updated = true;
@@ -310,6 +310,7 @@ void SpkSoundHolder::freeDeadSound(s32 padChannel) {
 
 void SpkSoundHolder::framework() {
     // FIXME: regswap
+    // https://decomp.me/scratch/K75Rx
 
     BOOL status = OSDisableInterrupts();
     for (int i = 0; i < 4; i++) {

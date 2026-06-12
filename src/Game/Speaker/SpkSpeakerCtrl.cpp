@@ -43,6 +43,9 @@ void SpkSpeakerCtrl::setup() {
 }
 
 void SpkSpeakerCtrl::connect(s32 padChannel) {
+    // FIXME: regswap
+    // https://decomp.me/scratch/PPQPO
+
     BOOL state = OSDisableInterrupts();
     sSpeakerInfo[padChannel].mIsConnected = true;
     sSpeakerInfo[padChannel].mIsPlaying = false;
@@ -54,6 +57,9 @@ void SpkSpeakerCtrl::connect(s32 padChannel) {
 }
 
 void SpkSpeakerCtrl::disconnect(s32 padChannel) {
+    // FIXME: regswap
+    // https://decomp.me/scratch/X92eB
+
     BOOL state = OSDisableInterrupts();
     sSpeakerInfo[padChannel].mIsConnected = false;
     sSpeakerInfo[padChannel].mIsPlaying = false;
