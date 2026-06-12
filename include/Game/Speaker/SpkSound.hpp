@@ -43,12 +43,12 @@ public:
     /* 0x1C */ f32 mBaseVolume;
 };
 
-class SpkSound : public JSUPtrLink, public JASPoolAllocObject< SpkSound > {
+class SpkSound : public JSULink< SpkSound >, public JASPoolAllocObject< SpkSound > {
 public:
     enum State {
         State_0 = 0,
-        State_LOCK = 1,    // probably better name
-        State_UNLOCK = 2,  // probably better name
+        State_LOCK = 1,    // TODO: probably better name
+        State_UNLOCK = 2,  // TODO: probably better name
         State_STOP = 3,
         State_DEAD = 4,
     };

@@ -5,20 +5,42 @@
 
 class SpkMixingBuffer;
 
+// NOTE: __attribute__((packed)) does not work for some reason.
+#pragma pack(1)
 struct SpeakerInfo {
-    u8 _0;
-    u8 _1;
-    WENCInfo _2;
-    u8 _22;
-    u8 _23;
-    u32 _24;
-    u32 _28;
-    s32 _2C;
-    s32 _30;
+    enum State {
+        State_ENABLE = 0,
+        State_ON = 1,
+        State_PLAY = 2,
+        State_3 = 3,
+    };
+
+    enum ReconnectState {
+        Reconnect_NONE = 0,
+        Reconnect_OFF = 1,
+        Reconnect_WAIT = 2,
+        Reconnect_ON = 3,
+    };
+
+    void setUsingTimeout(s32 time) {
+        mUsingTimeOut = time;
+    }
+
+    bool mIsConnected;
+    bool mIsPlaying;
+    WENCInfo mWENCInfo;
+    bool mIsUpdated;
+    bool _23;  // disabled?
+    u32 mState;
+    u32 mReconnectState;
+    s32 mReconnectTime;
+    s32 mUsingTimeOut;
     u32 _34;
     u32 _38;
-    // u32 _3C;
+    u8 _3C;
+    u8 pad[3];
 };
+#pragma pack()
 
 namespace SpkSpeakerCtrl {
     void setMixingBuffer(SpkMixingBuffer*);
