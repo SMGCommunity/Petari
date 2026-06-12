@@ -97,14 +97,14 @@ bool KoopaBattleVs3Lv2::tryCalcAndSetBaseMtx() {
     return false;
 }
 
-bool KoopaBattleVs3Lv2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void KoopaBattleVs3Lv2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvAttackRoll::sInstance)) {
         if (!mStateAttackRoll->attackSensor(pSender, pReceiver)) {
-            return KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver);
+            KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver);
         }
     } else if (!isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvJumpAway::sInstance) || !KoopaFunction::tryKoopaAttackMapObj(pSender, pReceiver)) {
         if (isNerve(&NrvKoopaBattleVs3Lv2::KoopaBattleVs3Lv2NrvDamageReverse::sInstance)) {
-            return mStateDamageEscape->attackSensor(pSender, pReceiver);
+            mStateDamageEscape->attackSensor(pSender, pReceiver);
         } else if (!KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver) && KoopaFunction::tryKoopaBodyAttackPlayer(pSender, pReceiver)) {
             return;
         }

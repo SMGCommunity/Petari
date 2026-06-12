@@ -105,7 +105,7 @@ void Koopa::init(const JMapInfoIter& rIter) {
     }
 }
 
-bool KoopaSequencer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void KoopaSequencer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool KoopaSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {

@@ -301,18 +301,14 @@ void KoopaSequencerVs3::calcAndSetBaseMtx() {
     }
 }
 
-bool KoopaSequencerVs3::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void KoopaSequencerVs3::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv1::sInstance)) {
-        return mBattleLv1->attackSensor(pSender, pReceiver);
-    }
-
-    if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv2::sInstance)) {
-        return mBattleLv2->attackSensor(pSender, pReceiver);
-    }
-
-    if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv3::sInstance) ||
+        mBattleLv1->attackSensor(pSender, pReceiver);
+    } else if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv2::sInstance)) {
+        mBattleLv2->attackSensor(pSender, pReceiver);
+    } else if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv3::sInstance) ||
         isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleFinal::sInstance)) {
-        return mBattleMain->attackSensor(pSender, pReceiver);
+        mBattleMain->attackSensor(pSender, pReceiver);
     }
 }
 

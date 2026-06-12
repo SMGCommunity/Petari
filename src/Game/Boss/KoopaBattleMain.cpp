@@ -268,13 +268,15 @@ bool KoopaBattleMain::tryCalcAndSetBaseMtx() {
     return false;
 }
 
-bool KoopaBattleMain::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void KoopaBattleMain::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackHipDrop::sInstance)) {
-        return mStateAttackHipDrop->attackSensor(pSender, pReceiver);
+        mStateAttackHipDrop->attackSensor(pSender, pReceiver);
+        return;
     }
 
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackShockWave::sInstance)) {
-        return mStateAttackShockWave->attackSensor(pSender, pReceiver);
+        mStateAttackShockWave->attackSensor(pSender, pReceiver);
+        return;
     }
 
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvJumpAway::sInstance) && KoopaFunction::tryKoopaAttackMapObj(pSender, pReceiver)) {
@@ -286,15 +288,18 @@ bool KoopaBattleMain::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             return;
         }
 
-        return KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver);
+        KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver);
+        return;
     }
 
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackSpin::sInstance)) {
-        return mStateAttackSpin->attackSensor(pSender, pReceiver);
+        mStateAttackSpin->attackSensor(pSender, pReceiver);
+        return;
     }
 
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvDamageEscape::sInstance)) {
-        return mStateDamageEscape->attackSensor(pSender, pReceiver);
+        mStateDamageEscape->attackSensor(pSender, pReceiver);
+        return;
     }
 
     if (!KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver) && KoopaFunction::tryKoopaBodyAttackPlayer(pSender, pReceiver)) {

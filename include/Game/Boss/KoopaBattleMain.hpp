@@ -29,7 +29,7 @@ public:
     void exeDamageEscape();
 
     bool tryCalcAndSetBaseMtx();
-    bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     void startMainAttack();

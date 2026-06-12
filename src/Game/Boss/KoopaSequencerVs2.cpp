@@ -124,9 +124,9 @@ void KoopaSequencerVs2::exeDemoDown() {
 void KoopaSequencerVs2::exeWaitDemo() {
 }
 
-bool KoopaSequencerVs2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void KoopaSequencerVs2::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKoopaSequencerVs2::KoopaSequencerVs2NrvBattle::sInstance) && !mSubSequenceBattle->isDemo()) {
-        return mBattleMain->attackSensor(pSender, pReceiver);
+        mBattleMain->attackSensor(pSender, pReceiver);
     }
 }
 

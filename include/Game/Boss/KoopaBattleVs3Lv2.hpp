@@ -13,15 +13,14 @@ public:
     virtual void init();
     virtual void appear();
 
-    void exeAttackRoll();
-    void exeAttackFire();
-    void exeDamageReverse();
-
     bool tryCalcAndSetBaseMtx();
-    bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void exeAttackRoll();
+    void exeAttackFire();
+    void exeDamageReverse();
     void exeJumpAway();
     void exeGuard();
     void exeRecover();

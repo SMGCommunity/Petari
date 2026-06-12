@@ -757,7 +757,7 @@ bool BombTeresa::isEnableDisperse() const {
     if (isNerve(&NrvBombTeresa::BombTeresaNrvDrift::sInstance)) {
         return false;
     }
-    isEnableDrift();
+    return isEnableDrift();
 }
 
 bool BombTeresa::isEnableHitExplosionToPlayer() const {
