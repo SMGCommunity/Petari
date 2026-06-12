@@ -189,7 +189,8 @@ bool ScenarioSelectLayout::isAppearStarEnd() const {
 }
 
 bool ScenarioSelectLayout::isEndAnimStartStep() const {
-    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance) && MR::isStep(this, ::cSelectedEndAnimStartStep);
+    return isNerve(&NrvScenarioSelectLayout::ScenarioSelectLayoutNrvAfterScenarioSelected::sInstance) &&
+           MR::isStep(this, ::cSelectedEndAnimStartStep);
 }
 
 bool ScenarioSelectLayout::isCanceled() const {

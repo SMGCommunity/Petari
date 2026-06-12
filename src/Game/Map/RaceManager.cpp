@@ -1,6 +1,6 @@
 #include "Game/Map/RaceManager.hpp"
-#include "Game/Map/RaceRail.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/RaceRail.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"

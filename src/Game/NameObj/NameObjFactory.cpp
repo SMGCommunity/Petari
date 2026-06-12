@@ -1,5 +1,4 @@
 #include "Game/NameObj/NameObjFactory.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
@@ -11,6 +10,7 @@
 #include "Game/Map/OceanBowl.hpp"
 #include "Game/MapObj.hpp"
 #include "Game/NPC.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/NameObj/NameObjFactoryStubs.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Ride.hpp"

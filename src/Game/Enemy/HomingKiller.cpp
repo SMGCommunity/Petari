@@ -145,7 +145,8 @@ void HomingKiller::init(const JMapInfoIter& rIter) {
     f32 hitRadius = getScale();
     f32 offsetScale = getScale();
 
-    MR::addHitSensor(this, "body", ATYPE_HOMING_KILLER, 8, hitRadius * ::cBodyHitSensorRadius, TVec3f(::cBodyHitSensorOffset).scaleInline(offsetScale));
+    MR::addHitSensor(this, "body", ATYPE_HOMING_KILLER, 8, hitRadius * ::cBodyHitSensorRadius,
+                     TVec3f(::cBodyHitSensorOffset).scaleInline(offsetScale));
     MR::addHitSensorEye(this, "eye", 16, ::cEyeHitSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 
     f32 binderRadius = getScale();
@@ -827,8 +828,8 @@ void HomingKiller::exeFreeze() {
     mFreezeTime++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 rumbleOffset =
-        (MR::cosDegree(MR::repeatDegree(mFreezeTime * ::cFreezeRumbleSpeed)) * ::cFreezeRumbleWidth) * (::cFreezeFrame - getNerveStep()) / ::cFreezeFrame;
+    f32 rumbleOffset = (MR::cosDegree(MR::repeatDegree(mFreezeTime * ::cFreezeRumbleSpeed)) * ::cFreezeRumbleWidth) *
+                       (::cFreezeFrame - getNerveStep()) / ::cFreezeFrame;
 
     TVec3f rumble;
     rumble.set(MR::getCamXdir());

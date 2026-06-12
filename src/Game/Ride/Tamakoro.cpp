@@ -5,19 +5,19 @@
 #include "Game/Ride/SphereAccelSensorController.hpp"
 #include "Game/Ride/TamakoroTutorial.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "Game/Util/SceneUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/EventUtil.hpp"
-#include "Game/Util/ActorShadowUtil.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 
@@ -389,7 +389,8 @@ bool Tamakoro::requestEndBind() {
     if (!isNerve(&NrvTamakoro::TamakoroNrvBindEnd::sInstance) && !isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) {
         MR::startBckPlayer("SwingRopeSpin", static_cast< const char* >(nullptr));
         MR::endBindAndPlayerForceJump(
-            this, mMarioFront.multiplyOperatorInline(-::sEndBindFrontPower).addOperatorInLine(mGravity.multiplyOperatorInline(-::sEndBindJumpPower)), 0);
+            this, mMarioFront.multiplyOperatorInline(-::sEndBindFrontPower).addOperatorInLine(mGravity.multiplyOperatorInline(-::sEndBindJumpPower)),
+            0);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
         MR::invalidateClipping(this);

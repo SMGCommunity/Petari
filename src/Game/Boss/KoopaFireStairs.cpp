@@ -20,7 +20,8 @@ namespace NrvKoopaFireStairs {
 KoopaFireStairs::~KoopaFireStairs() {
 }
 
-KoopaFireStairs::KoopaFireStairs(const char* pName, bool a2) : LiveActor(pName), mIsKoopaJr(a2), mStair(), _94(0.0f, 0.0f, 1.0f), _A0(0.0f, 0.0f, 0.0f), _AC(0.0f, 1.0f, 0.0f), mBreakModel() {
+KoopaFireStairs::KoopaFireStairs(const char* pName, bool a2)
+    : LiveActor(pName), mIsKoopaJr(a2), mStair(), _94(0.0f, 0.0f, 1.0f), _A0(0.0f, 0.0f, 0.0f), _AC(0.0f, 1.0f, 0.0f), mBreakModel() {
 }
 
 void KoopaFireStairs::init(const JMapInfoIter& rIteR) {
@@ -29,23 +30,23 @@ void KoopaFireStairs::init(const JMapInfoIter& rIteR) {
 
     MR::connectToSceneEnemy(this);
 
-    initHitSensor(1);    
+    initHitSensor(1);
     MR::addHitSensorEnemyAttack(this, "Fire", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(1, nullptr, false);
-    
+
     MR::addEffectHitNormal(this, "Hit");
     MR::setEffectBaseScale(this, "Hit", 2.0f);
-    
+
     initSound(4, false);
     MR::initShadowVolumeSphere(this, 60.0f);
     initNerve(&NrvKoopaFireStairs::KoopaFireStairsNrvFly::sInstance);
-    
+
     MR::invalidateClipping(this);
-    
+
     mBreakModel = MR::createModelObjEnemy("クッパメテオ（壊れ）", "MeteorStrikeBreak", getBaseMtx());
     mBreakModel->kill();
     MR::invalidateClipping(mBreakModel);
-    
+
     makeActorDead();
 }
 

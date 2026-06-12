@@ -53,7 +53,7 @@ void KoopaFigureBall::control() {
     if (MR::isBindedWall(this)) {
         MR::addVelocityJump(this, 15.0f);
     }
-    
+
     f32 angle = MR::toDegree(mVelocity.dot(mFront) / mRadius);
     mAngle += angle;
     TVec3f direction = mGravity * angle;

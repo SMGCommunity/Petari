@@ -7,8 +7,8 @@
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
@@ -45,8 +45,9 @@ namespace NrvKoopaStateDamageEscape {
 };  // namespace NrvKoopaStateDamageEscape
 
 KoopaStateDamageEscape::KoopaStateDamageEscape(Koopa* pKoopa)
-    : ActorStateBase< Koopa >("State[逃走]", pKoopa), mEscapeTime(-1), mMaxEscapeTime(-1), _18(-1), mIsTurnClockwise(), mIsLastHit(), mEscapeRunParam(&sEscapeRunParamLv1),
-      mDamageTailRunParam(&sDamageTailRunParam), mMaxRunFrames(600), mRotateVelocity(40.0f), mJumpAwayVelocity(40.0f) {
+    : ActorStateBase< Koopa >("State[逃走]", pKoopa), mEscapeTime(-1), mMaxEscapeTime(-1), _18(-1), mIsTurnClockwise(), mIsLastHit(),
+      mEscapeRunParam(&sEscapeRunParamLv1), mDamageTailRunParam(&sDamageTailRunParam), mMaxRunFrames(600), mRotateVelocity(40.0f),
+      mJumpAwayVelocity(40.0f) {
 }
 
 void KoopaStateDamageEscape::init() {
@@ -176,8 +177,8 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
             MR::startSound(mHost, "SE_BM_KOOPA_DAMAGE_L");
 
             if (mIsLastHit && (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunStart::sInstance) ||
-                        isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance) ||
-                        isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEnd::sInstance))) {
+                               isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRun::sInstance) ||
+                               isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEnd::sInstance))) {
                 mDamageTailRunParam = &sDamageTailRunFinalParam;
                 mMaxRunFrames = 480;
 
@@ -193,7 +194,7 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
             KoopaFunction::changeBgmStateFlyAway();
 
             if (mIsLastHit && (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunFinal::sInstance) ||
-                        isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEndFinal::sInstance))) {
+                               isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEndFinal::sInstance))) {
                 MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
                 MR::startSystemSE("SE_SY_VS_KOOPA_LAST_HIT");
                 MR::startSound(mHost, "SE_BV_KOOPA_FLIP_DAMAGE_L");

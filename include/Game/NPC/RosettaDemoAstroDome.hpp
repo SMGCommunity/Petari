@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/System/NerveExecutor.hpp"
-#include "Game/Screen/SimpleLayout.hpp"
 #include "Game/NPC/TalkTextFormer.hpp"
+#include "Game/Screen/SimpleLayout.hpp"
+#include "Game/System/NerveExecutor.hpp"
 
 class IconAButton;
 class NameObjArchiveListCollector;

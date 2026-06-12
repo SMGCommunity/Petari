@@ -7,8 +7,8 @@
 #include "Game/Player/MarioConst.hpp"
 #include "Game/Player/MarioMapCode.hpp"
 #include "Game/Player/MarioState.hpp"
-#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 Mario* MarioModule::getPlayer() const {
     return mActor->mMario;

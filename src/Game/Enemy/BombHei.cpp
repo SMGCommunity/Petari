@@ -313,7 +313,8 @@ void BombHei::exeWalk() {
         }
     }
 
-    MR::moveAndTurnToDirection(this, &mFront, mTargetFront, ::hWalkParam.mSpeedH, ::hWalkParam.mGravAccel, ::hWalkParam.mFriction, ::hWalkParam.mTurnRate);
+    MR::moveAndTurnToDirection(this, &mFront, mTargetFront, ::hWalkParam.mSpeedH, ::hWalkParam.mGravAccel, ::hWalkParam.mFriction,
+                               ::hWalkParam.mTurnRate);
 
     if (MR::isGreaterStep(this, ::hWalkTime)) {
         setNerve(&NrvBombHei::HostTypeNrvWait::sInstance);

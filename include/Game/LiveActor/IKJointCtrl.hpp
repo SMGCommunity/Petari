@@ -3,7 +3,7 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class IKJoint;
-template< typename T >
+template < typename T >
 class JointControlDelegator;
 class JointControllerInfo;
 class LiveActor;

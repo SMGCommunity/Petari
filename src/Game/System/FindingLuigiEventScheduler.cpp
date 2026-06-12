@@ -65,7 +65,8 @@ void FindingLuigiEventScheduler::updateOnStageResult(const char* pClearedStageNa
             }
         }
 
-        if (::getLuigiEventState() == STATE_HIDING && MR::isEqualString(mLuigiLostStageName, pClearedStageName) && mLuigiLostStarID == clearedStarID) {
+        if (::getLuigiEventState() == STATE_HIDING && MR::isEqualString(mLuigiLostStageName, pClearedStageName) &&
+            mLuigiLostStarID == clearedStarID) {
             // if Luigi was hiding and just rescued him
             mLuigiMailDirector->found();
             if (calcPowerStarIndexLuigiHas() == 4) {

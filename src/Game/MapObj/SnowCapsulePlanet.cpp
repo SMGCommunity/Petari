@@ -1,7 +1,7 @@
 #include "Game/MapObj/SnowCapsulePlanet.hpp"
-#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
 
 namespace NrvSnowCapsulePlanet {

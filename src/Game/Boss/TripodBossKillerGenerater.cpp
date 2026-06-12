@@ -1,6 +1,6 @@
+#include "Game/Boss/TripodBossKillerGenerater.hpp"
 #include "Game/Boss/TripodBossAccesser.hpp"
 #include "Game/Boss/TripodBossFixPartsBase.hpp"
-#include "Game/Boss/TripodBossKillerGenerater.hpp"
 #include "Game/Enemy/HomingKiller.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"

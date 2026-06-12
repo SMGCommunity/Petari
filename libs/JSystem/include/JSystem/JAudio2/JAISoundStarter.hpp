@@ -4,7 +4,6 @@
 #include "JSystem/JAudio2/JASGlobal.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 
-
 struct JAISoundStarter : public JASGlobalInstance< JAISoundStarter > {
     JAISoundStarter(bool setInstance);
 

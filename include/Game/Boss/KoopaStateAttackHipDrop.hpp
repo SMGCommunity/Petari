@@ -14,7 +14,7 @@ public:
     virtual void init();
     virtual void appear();
     virtual void kill();
-    
+
     bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     bool isDamage() const;
     bool isEnableGuard() const;

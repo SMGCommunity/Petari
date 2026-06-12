@@ -3,7 +3,7 @@
 #include "Game/MapObj/MapObjActor.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-template< typename T >
+template < typename T >
 class JointControlDelegator;
 class JointControllerInfo;
 class MsgSharedGroup;

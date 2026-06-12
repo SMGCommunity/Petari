@@ -7,8 +7,8 @@
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 

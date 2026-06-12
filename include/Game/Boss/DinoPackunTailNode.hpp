@@ -4,7 +4,7 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class DinoPackun;
-template< typename T>
+template < typename T >
 class JointControlDelegator;
 class JointController;
 class JointControllerInfo;

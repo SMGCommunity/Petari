@@ -166,7 +166,8 @@ void StaffRollPicture::exeWork() {
         const PictureTiming* pPictureTiming = &::sPictureTimingTable[i];
 
         if (MR::isStep(this, pPictureTiming->mAppearStep)) {
-            startPictureAction(pPictureTiming->mReplaceTextureId, ::cPaneNameTable[pPictureTiming->mPaneId], ::cAnimNameTable[pPictureTiming->mAnimId]);
+            startPictureAction(pPictureTiming->mReplaceTextureId, ::cPaneNameTable[pPictureTiming->mPaneId],
+                               ::cAnimNameTable[pPictureTiming->mAnimId]);
         }
     }
 }

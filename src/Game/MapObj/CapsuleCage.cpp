@@ -1,6 +1,6 @@
 #include "Game/MapObj/CapsuleCage.hpp"
-#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
 
 namespace {

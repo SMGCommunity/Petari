@@ -1,7 +1,7 @@
 #include "Game/MapObj/MercatorRailMoveParts.hpp"
-#include "Game/MapObj/MapPartsAppearController.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapPartsAppearController.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRailRotator.hpp"
 #include "Game/Util.hpp"

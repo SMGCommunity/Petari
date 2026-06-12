@@ -98,7 +98,7 @@ void KoopaStateGuard::exeGuardBody() {
 void KoopaStateGuard::exeGuardTail() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "AttackTail");
-        
+
         MR::zeroVelocity(mHost);
     }
 

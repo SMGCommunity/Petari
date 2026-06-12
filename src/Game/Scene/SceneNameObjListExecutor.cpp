@@ -882,7 +882,8 @@ namespace {
 };  // namespace
 
 void SceneNameObjListExecutor::initMovementList() {
-    mMovementList = new NameObjCategoryList(ARRAY_SIZE(::cMovementListInitTable) - 1, ::cMovementListInitTable, &NameObj::executeMovement, ::sVar, "");
+    mMovementList =
+        new NameObjCategoryList(ARRAY_SIZE(::cMovementListInitTable) - 1, ::cMovementListInitTable, &NameObj::executeMovement, ::sVar, "");
 }
 
 void SceneNameObjListExecutor::initCalcAnimList() {

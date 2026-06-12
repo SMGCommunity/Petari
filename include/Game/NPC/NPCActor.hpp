@@ -5,7 +5,7 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class AnimScaleController;
-template< typename T>
+template < typename T >
 class JointControlDelegator;
 class JointControllerInfo;
 class LodCtrl;

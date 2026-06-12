@@ -1,8 +1,8 @@
 #include "Game/MapObj/CrystalCageMoving.hpp"
-#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include <JSystem/JMath/JMath.hpp>

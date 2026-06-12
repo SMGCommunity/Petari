@@ -6,7 +6,7 @@ class HitSensor;
 class KoopaStateAttackRoll;
 
 class KoopaBattleVs3Lv2 : public KoopaBattleBase {
-public :
+public:
     KoopaBattleVs3Lv2(Koopa* pKoopa);
 
     virtual ~KoopaBattleVs3Lv2();

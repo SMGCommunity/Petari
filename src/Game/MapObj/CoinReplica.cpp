@@ -1,7 +1,7 @@
 #include "Game/MapObj/CoinReplica.hpp"
-#include "Game/MapObj/Coin.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/StageSwitch.hpp"
+#include "Game/MapObj/Coin.hpp"
 #include "Game/Util.hpp"
 
 CoinReplica::CoinReplica(const char* pName) : NameObj(pName) {

@@ -11,7 +11,7 @@ class KoopaDemoFallToPlanetVs3Lv3;
 class KoopaSequencerVs3 : public KoopaSequencer {
 public:
     KoopaSequencerVs3();
-    
+
     virtual ~KoopaSequencerVs3();
     virtual void init(Koopa* pKoopa, const JMapInfoIter& rIter);
     virtual void calcAndSetBaseMtx();

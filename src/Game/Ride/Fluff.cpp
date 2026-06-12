@@ -1,7 +1,7 @@
 #include "Game/Ride/Fluff.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/FluffWind.hpp"
 #include "Game/Util.hpp"
 #include <revolution/wpad.h>

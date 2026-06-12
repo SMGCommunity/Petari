@@ -175,7 +175,7 @@ namespace {
 
         pModelObjNpc->mLodCtrl->invalidateClipping();
         pModelObjNpc->mLodCtrl->invalidate();
-        
+
         pModelObjNpc->mJointCtrl->endFaceCtrl(-1);
 
         MR::initLightCtrl(pModelObjNpc);

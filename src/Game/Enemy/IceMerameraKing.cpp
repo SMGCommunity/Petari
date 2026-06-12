@@ -340,7 +340,8 @@ void IceMerameraKing::exeExtinguish() {
 
     if (MR::isLessStep(this, 40)) {
         MR::addVelocityKeepHeightUseShadow(this, _11C, 1.3f, 700.0f, nullptr);
-        MR::moveAndTurnToPlayer(this, &_B0, ::hExtinguishOnAirParam[0], ::hExtinguishOnAirParam[1], ::hExtinguishOnAirParam[2], ::hExtinguishOnAirParam[3]);
+        MR::moveAndTurnToPlayer(this, &_B0, ::hExtinguishOnAirParam[0], ::hExtinguishOnAirParam[1], ::hExtinguishOnAirParam[2],
+                                ::hExtinguishOnAirParam[3]);
     } else if (MR::isOnGround(this) && MR::isActionEnd(this)) {
         MR::moveAndTurnToPlayer(this, &_B0, ::hOnGroundParam[0], ::hOnGroundParam[1], ::hOnGroundParam[2], ::hOnGroundParam[3]);
         MR::startSound(this, "SE_BM_ICEMERAKING_LAND");
@@ -370,7 +371,8 @@ void IceMerameraKing::exeEscape() {
         if (MR::isOnGround(this)) {
             f32 radius = getSensor("body")->mRadius;
             MR::rotateQuatRollBall(&_100, mVelocity, *MR::getGroundNormal(this), (0.5f * radius));
-            MR::moveAndTurnToPlayer(this, &_B0, ::hEscapeOnGroundParam[0], ::hEscapeOnGroundParam[1], ::hEscapeOnGroundParam[2], ::hEscapeOnGroundParam[3]);
+            MR::moveAndTurnToPlayer(this, &_B0, ::hEscapeOnGroundParam[0], ::hEscapeOnGroundParam[1], ::hEscapeOnGroundParam[2],
+                                    ::hEscapeOnGroundParam[3]);
             if (MR::isBindedWallFront(this, -_B0, 0.25f)) {
                 setNerve(&NrvIceMerameraKing::HostTypeNrvEscapeJump::sInstance);
             }
@@ -396,7 +398,8 @@ void IceMerameraKing::exeEscapeJump() {
     if (MR::isOnGround(this)) {
         f32 radius = getSensor("body")->mRadius;
         MR::rotateQuatRollBall(&_100, mVelocity, *MR::getGroundNormal(this), (0.5f * radius));
-        MR::moveAndTurnToPlayer(this, &_B0, ::hEscapeOnGroundParam[0], ::hEscapeOnGroundParam[1], ::hEscapeOnGroundParam[2], ::hEscapeOnGroundParam[3]);
+        MR::moveAndTurnToPlayer(this, &_B0, ::hEscapeOnGroundParam[0], ::hEscapeOnGroundParam[1], ::hEscapeOnGroundParam[2],
+                                ::hEscapeOnGroundParam[3]);
 
         if (MR::isGreaterStep(this, 20)) {
             MR::emitEffect(this, "Land");
@@ -449,7 +452,8 @@ void IceMerameraKing::exePreRecover() {
     addVelocityToInitPos();
 
     if (MR::isLessStep(this, 50)) {
-        MR::moveAndTurnToPlayer(this, &_B0, ::hPreRecoverJumpParam[0], ::hPreRecoverJumpParam[1], ::hPreRecoverJumpParam[2], ::hPreRecoverJumpParam[3]);
+        MR::moveAndTurnToPlayer(this, &_B0, ::hPreRecoverJumpParam[0], ::hPreRecoverJumpParam[1], ::hPreRecoverJumpParam[2],
+                                ::hPreRecoverJumpParam[3]);
     } else if (MR::isStep(this, 50)) {
         MR::startAction(this, "PreRecover");
         MR::setBinderRadius(this, 130.0f);
