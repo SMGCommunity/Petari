@@ -11,6 +11,8 @@ struct ResTIMG;
 class XanimePlayer;
 
 namespace MR {
+
+    void updateModelAnimPlayer(LiveActor *);
     bool isExistModel(const char*);
 
     J3DModel* getJ3DModel(const LiveActor*);
