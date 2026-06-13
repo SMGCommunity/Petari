@@ -175,7 +175,7 @@ void OtaKing::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const J
     pArchiveList->addArchive("OtaKingMagma");
     pArchiveList->addArchive("OtaKingMagmaBloom");
 
-    if (!isLv2) {
+    if (!isLv2Flag) {
         pArchiveList->addArchive("OtaKing");
         pArchiveList->addArchive("OtaKingFoot");
         pArchiveList->addArchive("OtaKingLongFoot");
