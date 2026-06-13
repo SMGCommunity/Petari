@@ -2,7 +2,6 @@
 
 #include "Game/System/BinaryDataChunkHolder.hpp"
 #include "Game/Util/Array.hpp"
-#include <revolution.h>
 
 class GalaxyStatusAccessor;
 

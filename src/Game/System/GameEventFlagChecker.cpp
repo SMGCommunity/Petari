@@ -1,5 +1,8 @@
 #include "Game/System/GameEventFlagChecker.hpp"
 #include "Game/System/GameDataConst.hpp"
+#include "Game/System/GameDataHolder.hpp"
+#include "Game/System/GameEventFlagStorage.hpp"
+#include "Game/System/GameEventFlagTable.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 
 GameEventFlagChecker::GameEventFlagChecker(GameDataHolder* pHolder) : mDataHolder(pHolder), mFlagStorage(nullptr) {
