@@ -1,5 +1,6 @@
 #include "Game/AudioLib/AudSoundObject.hpp"
 #include "Game/AudioLib/AudEffector.hpp"
+#include "Game/AudioLib/AudSoundId.hpp"
 #include "Game/AudioLib/AudSoundInfo.hpp"
 #include "Game/AudioLib/AudSoundNameConverter.hpp"
 #include "Game/AudioLib/AudSoundObjHolder.hpp"
@@ -316,17 +317,17 @@ void AudSoundObject::setMapCodeToPort(JAISoundHandle* pHandle, JAISoundID soundI
 
     // only specific soundIDs can modify based on mapcode
     switch (soundID) {
-    case 0x20006:  // SE_PM_HIPDROP
-    case 0x20013:  // SE_PM_FALLDOWN_S
-    case 0x20017:  // SE_PM_FALLDOWN_M
-    case 0x20025:  // SE_PM_FOOTNOTE_L
-    case 0x20026:  // SE_PM_FOOTNOTE_R
-    case 0x20027:  // SE_PM_FOOTNOTE_SUB_L
-    case 0x20028:  // SE_PM_FOOTNOTE_SUB_R
-    case 0x20029:  // SE_PM_JUMP
-    case 0x2002A:  // SE_PM_LAND
-    case 0x2002B:  // SE_PM_HAND
-    case 0x20038:  // SE_PM_LAND_HEAVY
+    case SE_PM_HIPDROP:
+    case SE_PM_FALLDOWN_S:
+    case SE_PM_FALLDOWN_M:
+    case SE_PM_FOOTNOTE_L:
+    case SE_PM_FOOTNOTE_R:
+    case SE_PM_FOOTNOTE_SUB_L:
+    case SE_PM_FOOTNOTE_SUB_R:
+    case SE_PM_JUMP:
+    case SE_PM_LAND:
+    case SE_PM_HAND:
+    case SE_PM_LAND_HEAVY:
         writePort(pHandle, 12, (mapCode - 1) / 7);
         writePort(pHandle, 11, ((mapCode - 1) % 7) * 12);
         break;
@@ -355,19 +356,19 @@ void AudSoundObject::setCutoffToPort(JAISoundHandle* pHandle, JAISoundID soundID
         }
 
         switch (soundID) {
-        case 0x6000E:  // SE_AT_LV_WATERFALL_S
-        case 0x6000F:  // SE_AT_LV_WATERFALL_L
-        case 0x60010:  // SE_AT_LV_WATERFALL_UPPER_S
-        case 0x60011:  // SE_AT_LV_WATERFALL_UPPER_L
-        case 0x5003F:  // SE_OJ_FLAG
+        case SE_AT_LV_WATERFALL_S:
+        case SE_AT_LV_WATERFALL_L:
+        case SE_AT_LV_WATERFALL_UPPER_S:
+        case SE_AT_LV_WATERFALL_UPPER_L:
+        case SE_OJ_SEAGULL_CHIRP:
             if (effector->mSpecialFx == 2) {
                 // TODO: magic value
                 value = 10;
                 pHandle->getSound()->mParams.mMove.moveVolume(0.5f, 0);
             }
             break;
-        case 0x5007B:  // SE_OJ_LV_FOUNTAIN
-        case 0x60037:  // SE_AT_LV_WIND_RABBIT_MAZE
+        case SE_OJ_LV_FOUNTAIN:
+        case SE_AT_LV_WIND_RABBIT_MAZE:
             if (effector->mSpecialFx == 1) {
                 // TODO: magic value
                 value = 20;
@@ -389,36 +390,36 @@ void AudSoundObject::setCutoffToPort(JAISoundHandle* pHandle, JAISoundID soundID
 JAISoundID AudSoundObject::convertSoundIdFromSeVersion(JAISoundID soundID) const {
     if (_30 == 1) {
         switch (soundID) {
-        case 0x90007:        // SE_EM_KURIBO_LAND
-            return 0x90212;  // SE_EM_KURIBO_LAND_2D
-        case 0x90008:        // SE_EM_KURIBO_STEP1
-            return 0x90213;  // SE_EM_KURIBO_STEP1_2D
-        case 0x90009:        // SE_EM_KURIBO_STEP2
-            return 0x90214;  // SE_EM_KURIBO_STEP2_2D
-        case 0x9000A:        // SE_EM_KURIBO_FIND
-            return 0x90215;  // SE_EM_KURIBO_FIND_2D
-        case 0x9000F:        // SE_EM_LV_KURIBO_DASH1
-            return 0x90216;  // SE_EM_LV_KURIBO_DASH1_2D
-        case 0x9001F:        // SE_EM_KURIBO_JUMP
-            return 0x90217;  // SE_EM_KURIBO_JUMP_2D
-        case 0x90077:        // SE_EM_KURIBO_SWOON_RECOVER
-            return 0x90218;  // SE_EM_KURIBO_SWOON_RECOVER_2D
-        case 0x90166:        // SE_EM_METBO_TRAMPLE
-            return 0x90219;  // SE_EM_METBO_TRAMPLE_2D
-        case 0x90167:        // SE_EM_METBO_SPIN_HIT
-            return 0x9021A;  // SE_EM_METBO_SPIN_HIT_2D
-        case 0x90168:        // SE_EM_METBO_FIND
-            return 0x9021B;  // SE_EM_METBO_FIND_2D
-        case 0x90187:        // SE_EM_LV_METBO_STAGGER
-            return 0x9021C;  // SE_EM_LV_METBO_STAGGER_2D
-        case 0x90188:        // SE_EM_METBO_SWOON_RECOVER
-            return 0x9021D;  // SE_EM_METBO_SWOON_RECOVER_2D
-        case 0x90189:        // SE_EM_LV_METBO_SWOON
-            return 0x9021E;  // SE_EM_LV_METBO_SWOON_2D
-        case 0x90003:        // SE_EM_EXPLODE_S
-            return 0x9021F;  // SE_EM_EXPLODE_S_2D
-        case 0x9006E:        // SE_EM_LV_SWOON_S
-            return 0x90220;  // SE_EM_LV_SWOON_S_2D
+        case SE_EM_KURIBO_LAND:
+            return SE_EM_KURIBO_LAND_2D;
+        case SE_EM_KURIBO_STEP1:
+            return SE_EM_KURIBO_STEP1_2D;
+        case SE_EM_KURIBO_STEP2:
+            return SE_EM_KURIBO_STEP2_2D;
+        case SE_EM_KURIBO_FIND:
+            return SE_EM_KURIBO_FIND_2D;
+        case SE_EM_LV_KURIBO_DASH1:
+            return SE_EM_LV_KURIBO_DASH1_2D;
+        case SE_EM_KURIBO_JUMP:
+            return SE_EM_KURIBO_JUMP_2D;
+        case SE_EM_KURIBO_SWOON_RECOVER:
+            return SE_EM_KURIBO_SWOON_RECOVER_2D;
+        case SE_EM_METBO_TRAMPLE:
+            return SE_EM_METBO_TRAMPLE_2D;
+        case SE_EM_METBO_SPIN_HIT:
+            return SE_EM_METBO_SPIN_HIT_2D;
+        case SE_EM_METBO_FIND:
+            return SE_EM_METBO_FIND_2D;
+        case SE_EM_LV_METBO_STAGGER:
+            return SE_EM_LV_METBO_STAGGER_2D;
+        case SE_EM_METBO_SWOON_RECOVER:
+            return SE_EM_METBO_SWOON_RECOVER_2D;
+        case SE_EM_LV_METBO_SWOON:
+            return SE_EM_LV_METBO_SWOON_2D;
+        case SE_EM_EXPLODE_S:
+            return SE_EM_EXPLODE_S_2D;
+        case SE_EM_LV_SWOON_S:
+            return SE_EM_LV_SWOON_S_2D;
         }
     }
 
