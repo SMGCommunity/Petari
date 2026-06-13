@@ -93,7 +93,7 @@ typedef u32 OSInterruptMask;
 
 BOOL OSDisableInterrupts(void);
 BOOL OSEnableInterrupts(void);
-BOOL OSRestoreInterrupts(BOOL);
+BOOL OSRestoreInterrupts(BOOL) NO_INLINE;
 
 __OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt, __OSInterruptHandler);
 __OSInterruptHandler __OSGetInterruptHandler(s32);
