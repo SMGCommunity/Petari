@@ -5,7 +5,7 @@
 class JKRDvdFile;
 class JKRHeap;
 
-enum JKRExpandSwitch { JKR_EXPAND_SWITCH_1 = 1 };
+enum JKRExpandSwitch { JKR_EXPAND_SWITCH_0 = 0, JKR_EXPAND_SWITCH_1 = 1 };
 
 class JKRDvdRipper {
 public:
@@ -19,3 +19,18 @@ public:
 
     static void isErrorRetry();
 };
+
+inline void* JKRDvdToMainRam(JKRDvdFile* file, u8* dst, JKRExpandSwitch expandSwitch, u32 dstLength, JKRHeap* heap,
+                             JKRDvdRipper::EAllocDirection allocDirection, u32 offset, int* compression, u32* returnSize) {
+    return JKRDvdRipper::loadToMainRAM(file, dst, expandSwitch, dstLength, heap, allocDirection, offset, compression, returnSize);
+}
+
+inline void* JKRDvdToMainRam(s32 entryNum, u8* dst, JKRExpandSwitch expandSwitch, u32 dstLength, JKRHeap* heap,
+                             JKRDvdRipper::EAllocDirection allocDirection, u32 offset, int* compression, u32* returnSize) {
+    return JKRDvdRipper::loadToMainRAM(entryNum, dst, expandSwitch, dstLength, heap, allocDirection, offset, compression, returnSize);
+}
+
+inline void* JKRDvdToMainRam(const char* name, u8* dst, JKRExpandSwitch expandSwitch, u32 dstLength, JKRHeap* heap,
+                             JKRDvdRipper::EAllocDirection allocDirection, u32 offset, int* compression, u32* returnSize) {
+    return JKRDvdRipper::loadToMainRAM(name, dst, expandSwitch, dstLength, heap, allocDirection, offset, compression, returnSize);
+}

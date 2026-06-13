@@ -3,7 +3,6 @@
 #include "Game/Scene/LogoScene.hpp"
 #include "Game/Screen/HomeButtonLayout.hpp"
 #include "Game/Screen/ScreenPreserver.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/GameSequenceDirector.hpp"
 #include "Game/System/GameSystem.hpp"
@@ -18,6 +17,8 @@
 #include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPadRumble.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 namespace {
     LogoScene* getLogoScene() {
@@ -41,11 +42,11 @@ namespace {
 
 namespace GameSystemFunction {
     void loadAudioStaticWaveData() {
-        getAudSystemWrapper()->loadStaticWaveData();
+        ::getAudSystemWrapper()->loadStaticWaveData();
     }
 
     bool isLoadedAudioStaticWaveData() {
-        return getAudSystemWrapper()->isLoadDoneStaticWaveData();
+        return ::getAudSystemWrapper()->isLoadDoneStaticWaveData();
     }
 
     void initAfterStationedResourceLoaded() {
@@ -131,51 +132,51 @@ namespace GameSystemFunction {
     }
 
     bool isPermitToResetSaveDataHandleSequence() {
-        if (getSaveDataHandleSequence() != nullptr) {
-            return getSaveDataHandleSequence()->isPermitToReset();
+        if (::getSaveDataHandleSequence() != nullptr) {
+            return ::getSaveDataHandleSequence()->isPermitToReset();
         }
 
         return true;
     }
 
     void prepareResetSaveDataHandleSequence() {
-        if (getSaveDataHandleSequence() != nullptr) {
-            getSaveDataHandleSequence()->prepareReset();
+        if (::getSaveDataHandleSequence() != nullptr) {
+            ::getSaveDataHandleSequence()->prepareReset();
         }
     }
 
     bool isPrepareResetSaveDataHandleSequence() {
-        if (getSaveDataHandleSequence() != nullptr) {
-            return getSaveDataHandleSequence()->isPreparedReset();
+        if (::getSaveDataHandleSequence() != nullptr) {
+            return ::getSaveDataHandleSequence()->isPreparedReset();
         }
 
         return true;
     }
 
     void restoreFromResetSaveDataHandleSequence() {
-        if (getSaveDataHandleSequence() != nullptr) {
-            getSaveDataHandleSequence()->restoreFromReset();
+        if (::getSaveDataHandleSequence() != nullptr) {
+            ::getSaveDataHandleSequence()->restoreFromReset();
         }
     }
 
     bool isPermitToResetAudioSystem() {
-        return getAudSystemWrapper()->isPermitToReset();
+        return ::getAudSystemWrapper()->isPermitToReset();
     }
 
     void prepareResetAudioSystem() {
-        getAudSystemWrapper()->prepareReset();
+        ::getAudSystemWrapper()->prepareReset();
     }
 
     void requestResetAudioSystem(bool param1) {
-        getAudSystemWrapper()->requestReset(param1);
+        ::getAudSystemWrapper()->requestReset(param1);
     }
 
     bool isDoneResetAudioSystem() {
-        return getAudSystemWrapper()->isResetDone();
+        return ::getAudSystemWrapper()->isResetDone();
     }
 
     void resumeResetAudioSystem() {
-        getAudSystemWrapper()->resumeReset();
+        ::getAudSystemWrapper()->resumeReset();
     }
 
     void stopControllerLeaveWatcher() {
@@ -277,6 +278,6 @@ namespace GameSystemFunction {
     }
 
     bool isDisplayStrapRemineder() {
-        return MR::isEqualSceneName("Logo") && getLogoScene() != nullptr && getLogoScene()->isDisplayStrapRemineder();
+        return MR::isEqualSceneName("Logo") && ::getLogoScene() != nullptr && ::getLogoScene()->isDisplayStrapRemineder();
     }
 };  // namespace GameSystemFunction

@@ -1,4 +1,7 @@
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/JMapLinkInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
 
 BaseMatrixFollower::BaseMatrixFollower(NameObj* pObj, const JMapInfoIter& rIter) {
     mFollowerObj = pObj;

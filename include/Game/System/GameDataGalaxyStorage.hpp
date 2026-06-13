@@ -3,9 +3,9 @@
 #include "Game/System/BinaryDataChunkHolder.hpp"
 #include "Game/Util/Array.hpp"
 
-class GalaxyStatusAccessor;
 class BinaryDataContentAccessor;
 class BinaryDataContentHeaderSerializer;
+class GalaxyStatusAccessor;
 
 class GameDataSomeGalaxyStorage {
 public:
@@ -16,19 +16,19 @@ public:
     s32 deserialize(const BinaryDataContentAccessor&, const u8*);
     void serialize(const BinaryDataContentAccessor&, u8*) const;
 
-    inline bool hasPowerStar(int scenarioNo) const {
+    bool hasPowerStar(int scenarioNo) const {
         return (mPowerStarOwnedFlags & (1 << scenarioNo)) != 0;
     }
 
-    inline bool isAlreadyVisited(int scenarioNo) const {
+    bool isAlreadyVisited(int scenarioNo) const {
         return (mAlreadyVisitedFlags & (1 << scenarioNo)) != 0;
     }
 
-    inline u16 getMaxCoinNum(int scenarioNo) const {
+    u16 getMaxCoinNum(int scenarioNo) const {
         return mMaxCoinNum[scenarioNo];
     }
 
-    inline void setMaxCoinNum(s32 scenarioNo, u16 coinNum) {
+    void setMaxCoinNum(s32 scenarioNo, u16 coinNum) {
         mMaxCoinNum[scenarioNo] = coinNum;
     }
 

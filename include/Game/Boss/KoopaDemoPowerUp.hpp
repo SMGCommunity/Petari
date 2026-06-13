@@ -1,9 +1,12 @@
-#include "Game/Boss/Koopa.hpp"
+#pragma once
+
 #include "Game/LiveActor/ActorStateBase.hpp"
+
+class Koopa;
 
 class KoopaDemoPowerUp : public ActorStateBase< Koopa > {
 public:
-    KoopaDemoPowerUp(Koopa*);
+    KoopaDemoPowerUp(Koopa* pKoopa);
 
     virtual ~KoopaDemoPowerUp();
     virtual void init();

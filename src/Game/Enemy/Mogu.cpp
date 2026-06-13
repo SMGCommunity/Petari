@@ -2,7 +2,6 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/MoguStone.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -11,7 +10,6 @@
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/FixedPosition.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -21,7 +19,6 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include <math_types.hpp>
 
@@ -253,9 +250,9 @@ void Mogu::exeSearch() {
 
     f32 sightParam;
     if (mIsCannonFleet) {
-        sightParam = hCannonFleetSightParam[0];
+        sightParam = ::hCannonFleetSightParam[0];
     } else {
-        sightParam = hThrowableSightParam[0];
+        sightParam = ::hThrowableSightParam[0];
     }
 
     if (distanceToPlayer < 400.0f || isPlayerExistUp()) {
@@ -281,9 +278,9 @@ void Mogu::exeSearch() {
     }
 
     if (!MR::isValidSwitchA(this) || MR::isOnSwitchA(this)) {
-        const f32* sight2 = hThrowableSightParam;
+        const f32* sight2 = ::hThrowableSightParam;
         if (mIsCannonFleet) {
-            sight2 = hCannonFleetSightParam;
+            sight2 = ::hCannonFleetSightParam;
         }
 
         if (MR::isInSightFanPlayer(this, mSight, sight2[0], sight2[1], sight2[2]) && MR::isGreaterStep(this, 45) && MR::isDead(mStone)) {

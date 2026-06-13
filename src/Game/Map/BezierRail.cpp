@@ -1,6 +1,7 @@
 #include "Game/Map/BezierRail.hpp"
 #include "Game/Map/RailPart.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
@@ -236,7 +237,7 @@ void BezierRail::calcDirection(TVec3f* pOut, f32 t) const {
     f32 param;
 
     getIncludedSection(&part, &param, t, 1);
-    calcRailDirection(pOut, part, part->getParam(param));
+    ::calcRailDirection(pOut, part, part->getParam(param));
 }
 
 void BezierRail::calcPosDir(TVec3f* pPos, TVec3f* pDir, f32 t) const {
@@ -246,7 +247,7 @@ void BezierRail::calcPosDir(TVec3f* pPos, TVec3f* pDir, f32 t) const {
     getIncludedSection(&part, &param, t, 1);
     f32 val = part->getParam(param);
     part->calcPos(pPos, val);
-    calcRailDirection(pDir, part, val);
+    ::calcRailDirection(pDir, part, val);
 }
 
 f32 BezierRail::getNearestRailPosCoord(const TVec3f& rPos) const {

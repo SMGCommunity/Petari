@@ -1,6 +1,9 @@
 #pragma once
 
-#include "Game/Util.hpp"
+#include "Game/Util/BothDirList.hpp"
+#include "Game/Util/JMapInfo.hpp"
+
+class NameObj;
 
 typedef NameObj* (*CreationFuncPtr)(const char*);
 

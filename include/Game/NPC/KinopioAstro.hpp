@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Game/NameObj/NameObj.hpp"
+#include "Game/NPC/Kinopio.hpp"
 
 class NameObjArchiveListCollector;
 class JMapInfoIter;
 
-class KinopioAstro : public NameObj {
+class KinopioAstro : public Kinopio {
 public:
     KinopioAstro(const char*);
     virtual ~KinopioAstro();

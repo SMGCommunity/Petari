@@ -5,24 +5,11 @@
 #include "size_t.h"
 #include "wchar_t.h"
 
-enum file_kinds {
-    file_closed,
-    file_disk,
-    file_console,
-    file_unavailable
-};
+enum file_kinds { file_closed, file_disk, file_console, file_unavailable };
 
-enum open_modes {
-    must_exist,
-    create_if_needed,
-    create_or_truncate
-};
+enum open_modes { must_exist, create_if_needed, create_or_truncate };
 
-enum file_orientation {
-    file_unoriented,
-    file_char_oriented,
-    file_wide_oriented
-};
+enum file_orientation { file_unoriented, file_char_oriented, file_wide_oriented };
 
 typedef struct {
     unsigned int open : 2;
@@ -33,26 +20,20 @@ typedef struct {
     unsigned int binary : 1;
 } file_modes;
 
-enum io_states {
-    neutral,
-    writing,
-    reading,
-    rereading
-};
+enum io_states { neutral, writing, reading, rereading };
 
-typedef struct
-{
-	unsigned int	io_state	: 3;
-	unsigned int	free_buffer	: 1;
-	unsigned char	eof;
-	unsigned char	error;
+typedef struct {
+    unsigned int io_state : 3;
+    unsigned int free_buffer : 1;
+    unsigned char eof;
+    unsigned char error;
 } file_state;
 
 typedef unsigned long file_handle;
 typedef struct _FILE FILE;
-typedef int (* __pos_proc)(unsigned long, long *, int, void *);
-typedef int (* __io_proc)(unsigned long, unsigned char *, size_t *, void *);
-typedef int (* __close_proc)(unsigned long);
+typedef int (*__pos_proc)(unsigned long, long*, int, void*);
+typedef int (*__io_proc)(unsigned long, unsigned char*, size_t*, void*);
+typedef int (*__close_proc)(unsigned long);
 
 struct _FILE {
     file_handle handle;
@@ -81,6 +62,8 @@ struct _FILE {
 
 extern FILE __files[];
 
-#define stdout	(&__std(__files[1])) 
+#define stdin (&__std(__files[0]))
+#define stdout (&__std(__files[1]))
+#define stderr (&__std(__files[2]))
 
-#endif // FILE_STRUCT_H
+#endif  // FILE_STRUCT_H

@@ -1,6 +1,7 @@
 #include "Game/Scene/IntermissionScene.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 #include <cstdio>
 #include <va_list.h>

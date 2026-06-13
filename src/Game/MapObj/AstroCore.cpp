@@ -1,6 +1,15 @@
 #include "Game/MapObj/AstroCore.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AstroDemoFunction.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <cstdio>
 
 namespace {
@@ -21,12 +30,18 @@ void AstroCore::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupNerve(&NrvAstroCore::AstroCoreNrvWait::sInstance);
     info.setupHitSensor();
-    info.setupHitSensorParam(8, sSensorSizeTable[0], TVec3f(0.0f, 0.0f, 0.0f));
+    info.setupHitSensorParam(8, ::sSensorSizeTable[0], TVec3f(0.0f, 0.0f, 0.0f));
     info.setupFarClipping(-1.0f);
     info.setupSound(4);
     info.setupNoAppearRiddleSE();
     initialize(rIter, info);
     AstroDemoFunction::tryRegisterGrandStarReturnWithFunctionAndSimpleCast(this, rIter, MR::Functor_Inline(this, &AstroCore::startDemo));
+}
+
+void AstroCore::exeWait() {
+    if (MR::isFirstStep(this)) {
+        setStateBeforeGrow();
+    }
 }
 
 void AstroCore::exeGrow() {
@@ -58,7 +73,7 @@ void AstroCore::startAnimGrow() {
     char buf[32];
     snprintf(buf, sizeof(buf), "Revival%d", v4);
     MR::startAllAnim(this, buf);
-    getSensor(nullptr)->mRadius = sSensorSizeTable[v3];
+    getSensor(nullptr)->mRadius = ::sSensorSizeTable[v3];
 }
 
 void AstroCore::setStateBeforeGrow() {
@@ -68,7 +83,7 @@ void AstroCore::setStateBeforeGrow() {
     snprintf(buf, sizeof(buf), "Revival%d", v4);
     MR::startAllAnim(this, buf);
     MR::setAllAnimFrameAtEnd(this, buf);
-    getSensor(nullptr)->mRadius = sSensorSizeTable[v3];
+    getSensor(nullptr)->mRadius = ::sSensorSizeTable[v3];
 }
 
 void AstroCore::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {

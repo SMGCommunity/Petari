@@ -1,4 +1,6 @@
 #include "Game/MapObj/KeySwitch.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 namespace {
@@ -83,7 +85,7 @@ void KeySwitch::exeDemoStart() {
         return;
     }
 
-    if (MR::tryStartDemoWithoutCinemaFrame(this, cDemoName)) {
+    if (MR::tryStartDemoWithoutCinemaFrame(this, ::cDemoName)) {
         MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
         mCurDemoFrame = 0;
         setNerve(&NrvKeySwitch::KeySwitchNrvAppear::sInstance);
@@ -165,7 +167,7 @@ void KeySwitch::control() {
     if (mCurDemoFrame != -1 && mCameraInfo) {
         if (mCurDemoFrame >= 0x28) {
             MR::endActorCamera(this, mCameraInfo, false, -1);
-            MR::endDemo(this, cDemoName);
+            MR::endDemo(this, ::cDemoName);
             mCameraInfo = 0;
             mCurDemoFrame = -1;
         } else {

@@ -2,6 +2,8 @@
 #include "Game/Enemy/Karikari.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/FixedPosition.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace {
 
@@ -25,10 +27,10 @@ KarikariDirector::KarikariDirector(const char* pName)
       mReleaseKarikari(nullptr), mReleaseVel(0.0f, 0.0f), mLowestReleaseDist(999999.0f), mNoReleaseTime(0) {
     MR::connectToSceneEnemyMovement(this);
     mClingJointMtxs = new TPos3f[5];
-    mClingPositions = new FixedPosition*[hKarikariHoldingMax];
-    mClingingKarikari = new Karikari*[hKarikariHoldingMax];
+    mClingPositions = new FixedPosition*[::hKarikariHoldingMax];
+    mClingingKarikari = new Karikari*[::hKarikariHoldingMax];
 
-    for (s32 idx = 0; idx < hKarikariHoldingMax; idx++) {
+    for (s32 idx = 0; idx < ::hKarikariHoldingMax; idx++) {
         mClingingKarikari[idx] = nullptr;
         mClingPositions[idx] = new FixedPosition(getClingMtx(idx), TVec3f(cling_data[idx].mPos.x, cling_data[idx].mPos.y, cling_data[idx].mPos.z),
                                                  TVec3f(cling_data[idx].mRotDegree.x, cling_data[idx].mRotDegree.y, cling_data[idx].mRotDegree.z));
@@ -36,11 +38,11 @@ KarikariDirector::KarikariDirector(const char* pName)
 }
 
 bool KarikariDirector::isMaxNumCling() const {
-    return mClingNum == hKarikariHoldingMax;
+    return mClingNum == ::hKarikariHoldingMax;
 }
 
 void KarikariDirector::removeAllClingingKarikari() {
-    for (s32 idx = 0; idx < hKarikariHoldingMax; idx++) {
+    for (s32 idx = 0; idx < ::hKarikariHoldingMax; idx++) {
         Karikari* karikari = mClingingKarikari[idx];
         if (karikari != nullptr) {
             karikari->tryHipDropRelease();
@@ -50,7 +52,7 @@ void KarikariDirector::removeAllClingingKarikari() {
 }
 
 void KarikariDirector::blowOutAllClingingKarikari(const TVec3f& rPos) {
-    for (s32 idx = 0; idx < hKarikariHoldingMax; idx++) {
+    for (s32 idx = 0; idx < ::hKarikariHoldingMax; idx++) {
         Karikari* karikari = mClingingKarikari[idx];
         if (karikari != nullptr) {
             karikari->tryBlowOut(rPos, false);
@@ -59,7 +61,7 @@ void KarikariDirector::blowOutAllClingingKarikari(const TVec3f& rPos) {
 }
 
 void KarikariDirector::electricKillAllClingingKarikari() {
-    for (s32 idx = 0; idx < hKarikariHoldingMax; idx++) {
+    for (s32 idx = 0; idx < ::hKarikariHoldingMax; idx++) {
         Karikari* karikari = mClingingKarikari[idx];
         if (karikari != nullptr) {
             karikari->tryElectricKill();
@@ -90,9 +92,9 @@ void KarikariDirector::movement() {
         mNoReleaseTime--;
     }
 
-    mRumbleTime = (mRumbleTime + 1 + sRumbleInterval) % sRumbleInterval;
+    mRumbleTime = (mRumbleTime + 1 + ::sRumbleInterval) % ::sRumbleInterval;
 
-    for (s32 idx = 0; idx < hKarikariHoldingMax; idx++) {
+    for (s32 idx = 0; idx < ::hKarikariHoldingMax; idx++) {
         MR::calcPlayerJointMtx(&mClingJointMtxs[idx], cling_data[idx].mJointName);
         mClingPositions[idx]->calc();
     }
@@ -103,7 +105,7 @@ void KarikariDirector::clearScratchInfo() {
     mLowestReleaseDist = 100000000.0f;
     mReleaseVel.y = 0.0f;
     mReleaseVel.x = 0.0f;
-    mNoReleaseTime = sNoReleaseTime;
+    mNoReleaseTime = ::sNoReleaseTime;
 }
 
 bool KarikariDirector::requestRelease(Karikari* pReleaseKarikari, TVec2f releaseVel, f32 dist) {
@@ -123,13 +125,13 @@ bool KarikariDirector::requestRelease(Karikari* pReleaseKarikari, TVec2f release
 }
 
 bool KarikariDirector::registCling(Karikari* pKarikari) {
-    if (mClingNum >= hKarikariHoldingMax) {
+    if (mClingNum >= ::hKarikariHoldingMax) {
         return false;
     }
 
     mClingNum++;
 
-    for (s32 idx = 0; idx < hKarikariHoldingMax; idx++) {
+    for (s32 idx = 0; idx < ::hKarikariHoldingMax; idx++) {
         if (mClingingKarikari[idx] == nullptr) {
             mClingingKarikari[idx] = pKarikari;
             pKarikari->mClingPosition = mClingPositions[idx];
@@ -143,7 +145,7 @@ bool KarikariDirector::registCling(Karikari* pKarikari) {
 bool KarikariDirector::unregistCling(Karikari* pKarikari) {
     mClingNum--;
 
-    for (s32 idx = 0; idx < hKarikariHoldingMax; idx++) {
+    for (s32 idx = 0; idx < ::hKarikariHoldingMax; idx++) {
         if (mClingingKarikari[idx] == pKarikari) {
             mClingingKarikari[idx] = nullptr;
             return true;
@@ -158,7 +160,7 @@ s32 MR::getKarikariClingNum() {
         return 0;
     }
 
-    KarikariDirector* director = getKarikariDirector();
+    KarikariDirector* director = ::getKarikariDirector();
     return director->mClingNum;
 }
 
@@ -167,13 +169,13 @@ s32 MR::getClingNumMax() {
         return 0;
     }
 
-    KarikariDirector* director = getKarikariDirector();
-    return hKarikariHoldingMax;
+    KarikariDirector* director = ::getKarikariDirector();
+    return ::hKarikariHoldingMax;
 }
 
 void MR::removeAllClingingKarikari() {
     if (MR::isExistSceneObj(SceneObj_KarikariDirector)) {
-        KarikariDirector* director = getKarikariDirector();
+        KarikariDirector* director = ::getKarikariDirector();
         director->removeAllClingingKarikari();
     }
 }

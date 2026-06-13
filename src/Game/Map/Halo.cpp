@@ -1,4 +1,12 @@
 #include "Game/Map/Halo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace NrvHalo {
     NEW_NERVE(HostTypeAppear, Halo, Appear);
@@ -34,7 +42,7 @@ void Halo::init(const JMapInfoIter& rIter) {
     info.setupDefaultPos();
     info.setupConnectToScene();
     info.setupNerve(&NrvHalo::HostTypeAppear::sInstance);
-    info.setupClippingRadius(getParam(mObjectName)->clippingRadius * 100.0f);
+    info.setupClippingRadius(::getParam(mObjectName)->clippingRadius * 100.0f);
     info.setupFarClipping(-1.0f);
     info.setupAffectedScale();
     initialize(rIter, info);

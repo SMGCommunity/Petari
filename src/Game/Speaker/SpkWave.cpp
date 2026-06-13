@@ -1,16 +1,16 @@
 #include "Game/Speaker/SpkWave.hpp"
+#include "JSystem/JAudio2/JASCriticalSection.hpp"
 #include <revolution/os.h>
 
 SpkWave::SpkWave() : mResource(nullptr) {
 }
 
 void SpkWave::setResource(void* pResource) {
-    BOOL status = OSDisableInterrupts();
+    JASCriticalSection crit;
     mResource = pResource;
-    OSRestoreInterrupts(status);
 }
 
-u32 SpkWave::getWaveSize(s32 wave) const {
+s32 SpkWave::getWaveSize(s32 wave) const {
     if (mResource == nullptr) {
         return 0;
     }
@@ -34,12 +34,12 @@ u32 SpkWave::getLoopEndPos(s32 wave) const {
     return getWaveData(wave)->mLoopEndPos;
 }
 
-u8** SpkWave::getWave(s32 wave) const {
+s16* SpkWave::getWave(s32 wave) const {
     if (mResource == nullptr) {
         return nullptr;
     }
 
-    return &getWaveData(wave)->mWave;
+    return getWaveData(wave)->mWave;
 }
 
 WaveData* SpkWave::getWaveData(s32 wave) const {

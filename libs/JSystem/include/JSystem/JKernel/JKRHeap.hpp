@@ -44,6 +44,7 @@ public:
     void* alloc(u32, int);
     JKRHeap* becomeSystemHeap();
     JKRHeap* becomeCurrentHeap();
+    void destroy();
     bool dispose(void*, u32);
     void dispose(void*, void*);
     void dispose();

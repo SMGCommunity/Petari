@@ -1,6 +1,8 @@
 #include "Game/MapObj/PlantRailInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/RailRider.hpp"
 #include "Game/MapObj/PlantPoint.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 
 PlantRailInfo::PlantRailInfo(const JMapInfoIter& rIter, f32 speed)

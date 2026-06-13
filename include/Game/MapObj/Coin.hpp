@@ -3,7 +3,8 @@
 #include "Game/LiveActor/FlashingCtrl.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+
+class NameObjArchiveListCollector;
 
 class CoinHostInfo {
 public:

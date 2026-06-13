@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
-#include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/JointController.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TQuat.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class AnimScaleController;
+template < typename T >
+class JointControlDelegator;
+class JointControllerInfo;
+class WalkerStateBindStarPointer;
 
 class BombTeresa : public LiveActor {
 public:

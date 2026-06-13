@@ -59,17 +59,17 @@ void ProloguePictureBook::exePlaying() {
     } else {
         int index = mPage + 1;
 
-        if (sBookPageInfo[index] < 0) {
+        if (::sBookPageInfo[index] < 0) {
             return;
         }
 
         MR::testSystemPadTriggerDecide();
 
-        if (sBookPageInfo[index] > static_cast< s32 >(pAnimCtrl->mFrame)) {
+        if (::sBookPageInfo[index] > static_cast< s32 >(pAnimCtrl->mFrame)) {
             return;
         }
 
-        pAnimCtrl->mFrame = sBookPageInfo[index] - 1.0f;
+        pAnimCtrl->mFrame = ::sBookPageInfo[index] - 1.0f;
 
         setNerve(&NrvProloguePictureBook::ProloguePictureBookKeyWait::sInstance);
     }

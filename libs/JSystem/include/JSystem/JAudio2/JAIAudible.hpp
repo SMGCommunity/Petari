@@ -1,11 +1,21 @@
 #pragma once
 
-#include <revolution.h>
+#include <JSystem/JGeometry/TVec.hpp>
+
+struct JASSoundParams;
 
 class JAIAudible {
 public:
-    f32 _0;
-    f32 _4;
-    f32 _8;
-    JAIAudible();
+    virtual ~JAIAudible();
+    virtual JASSoundParams* getOuterParams(int) = 0;
+    virtual void calc() = 0;
+
+    TVec3f& getPos() {
+        return mPos;
+    }
+    void setPos(const TVec3f& other) {
+        mPos.set(other);
+    }
+
+    /* 0x04 */ TVec3f mPos;
 };

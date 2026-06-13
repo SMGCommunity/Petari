@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/Util.hpp"
+
+class HashSortTable;
 
 class GroupChecker : public NameObj {
 public:

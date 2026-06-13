@@ -1,7 +1,7 @@
 #include "JSystem/JAudio2/JASBasicInst.hpp"
 #include "JSystem/JAudio2/JASCalc.hpp"
+#include "JSystem/JAudio2/JASGadget.hpp"
 #include "JSystem/JAudio2/JASInstEffect.hpp"
-#include "JSystem/JAudio2/JASList.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 
 JASBasicInst::JASBasicInst() : mVolume(1.0f), mPitch(1.0f), mEffects(nullptr), mKeymapCount(0), mKeymap(nullptr) {
@@ -14,7 +14,7 @@ JASBasicInst::~JASBasicInst() {
 }
 
 bool JASBasicInst::getParam(int pitch, int velocity, JASInstParam* pParams) const {
-    pParams->_14 = 0;
+    pParams->mChannelType = JASChannel::CH_WAVE;
     pParams->_24 = false;
     pParams->mOscillatorData = (JASOscillator::Data**)&mOscillatorData;
     pParams->mNumOscillators = 2;

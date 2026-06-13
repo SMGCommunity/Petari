@@ -1,8 +1,8 @@
 #include "Game/Util/MathUtil.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JGeometry/TUtil.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JMath/JMath.hpp>
@@ -17,7 +17,7 @@ namespace {
 
 namespace MR {
     void initAcosTable() {
-        gAcosTable = new f32[256];
+        ::gAcosTable = new f32[256];
 
         for (u32 i = 0; i < 256; i++) {
             // FIXME: Double-precision floating-point numbers load from incorrect offsets.
@@ -27,7 +27,7 @@ namespace MR {
                 x = 1.0f;
             }
 
-            gAcosTable[i] = acos(x);
+            ::gAcosTable[i] = acos(x);
         }
     }
 
@@ -36,13 +36,13 @@ namespace MR {
             return JMAAcosRadian(x);
         } else if (x < 0.0f) {
             u32 index = static_cast< u32 >((-x - 0.98f) * 255.0f * 50.0f);
-            f32 acos = gAcosTable[index];
+            f32 acos = ::gAcosTable[index];
 
             return PI - acos;
         } else {
             u32 index = static_cast< u32 >((x - 0.98f) * 255.0f * 50.0f);
 
-            return gAcosTable[index];
+            return ::gAcosTable[index];
         }
     }
 
@@ -62,7 +62,7 @@ namespace MR {
     }
 
     f32 getRandomDegree() {
-        return getRandom(cMinDegree, cMaxDegree);
+        return getRandom(::cMinDegree, ::cMaxDegree);
     }
 
     void calcRandomVec(TVec3f* pDst, f32 min, f32 max) {
@@ -324,7 +324,7 @@ namespace MR {
     /*
     f32 calcRotateY(f32 a1, f32 a2) {
         f32 val = JMath::sAtanTable.atan2_(-a2, a1);
-        return cMinDegree + mod((cMaxDegree + ((90.0f + (val * 57.295776f)) - cMinDegree)), cMaxDegree);
+        return ::cMinDegree + mod((::cMaxDegree + ((90.0f + (val * 57.295776f)) - ::cMinDegree)), ::cMaxDegree);
     }
     */
 

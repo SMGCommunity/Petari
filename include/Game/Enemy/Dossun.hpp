@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/EventUtil.hpp"
 
 class Dossun : public LiveActor {
 public:

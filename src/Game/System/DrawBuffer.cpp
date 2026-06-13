@@ -1,7 +1,10 @@
 #include "Game/System/DrawBuffer.hpp"
 #include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/System/ShapePacketUserData.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
 #include <cstring>
 
 DrawBufferShapeDrawer::DrawBufferShapeDrawer(J3DMaterial* pMaterial, J3DMatPacket* pMatPacket)
@@ -221,7 +224,7 @@ void DrawBuffer::initTable() {
     numOpaMaterials = 0;
     for (idx = 0; idx < MR::getMaterialNum(model); idx++) {
         if (!MR::getMaterial(model, idx)->isDrawModeOpaTexEdge()) {
-            if (getSortedMaterialIndex(idx, model) < 0) {
+            if (::getSortedMaterialIndex(idx, model) < 0) {
                 numOpaMaterials++;
             }
         }
@@ -243,7 +246,7 @@ void DrawBuffer::initTable() {
     s32 xluIndex = 0;
     for (s32 idx = 0; idx < mNumMaterials; idx++) {
         J3DMaterial* material = MR::getMaterial(mModel, idx);
-        s32 index = getSortedMaterialIndex(idx, mModel);
+        s32 index = ::getSortedMaterialIndex(idx, mModel);
 
         if (index >= 0) {
             s32 matNo = mMaterialNos[index];

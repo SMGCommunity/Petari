@@ -1,13 +1,9 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
-#include "Game/MapObj/BenefitItemLifeUp.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
 
+class ActorCameraInfo;
+class BenefitItemObj;
 class FullnessMeter;
 class SpinDriverShootPath;
 

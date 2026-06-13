@@ -20,7 +20,7 @@ void WipeGameOver::kill() {
     setNerve(&NrvWipeGameOver::WipeGameOverWait::sInstance);
 }
 
-void WipeGameOver::wipe(s32 step) {
+void WipeGameOver::wipe(s32 frame) {
     if (isNerve(&NrvWipeGameOver::WipeGameOverActive::sInstance)) {
         return;
     }

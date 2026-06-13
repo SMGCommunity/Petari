@@ -1,6 +1,7 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/gx.h>
+#include <revolution/types.h>
 
 class Color8 {
 public:

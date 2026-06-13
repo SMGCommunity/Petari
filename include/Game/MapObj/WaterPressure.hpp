@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/MapObj/PressureBase.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class WaterPressure : public PressureBase {
 public:

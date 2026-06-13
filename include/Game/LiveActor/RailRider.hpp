@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Map/BezierRail.hpp"
-#include "Game/Util.hpp"
 
 class RailRider {
 public:

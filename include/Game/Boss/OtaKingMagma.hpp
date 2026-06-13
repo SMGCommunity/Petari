@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/LiveActor/PartsModel.hpp"
 
 class ProjmapEffectMtxSetter;
@@ -28,6 +30,6 @@ public:
     void startBckThisAndBloomModel(const char*);
 
     /* 0x9C */ PartsModel* mBloomModel;
-    ProjmapEffectMtxSetter* _A0;
-    ProjmapEffectMtxSetter* _A4;
+    /* 0xA0 */ ProjmapEffectMtxSetter* _A0;
+    /* 0xA4 */ ProjmapEffectMtxSetter* _A4;
 };

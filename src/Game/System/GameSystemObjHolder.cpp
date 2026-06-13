@@ -3,7 +3,6 @@
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Screen/ScreenPreserver.hpp"
 #include "Game/Screen/StarPointerDirector.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/ErrorArchive.hpp"
 #include "Game/System/FileLoader.hpp"
@@ -15,6 +14,11 @@
 #include "Game/System/RenderMode.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/System/WPadHolder.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 #include <revolution/gx/GXStruct.h>

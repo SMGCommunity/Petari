@@ -2,15 +2,22 @@
 #include "Game/System/GameDataGalaxyStorage.hpp"
 #include "Game/System/GameDataPlayerStatus.hpp"
 #include "Game/System/GameEventFlagChecker.hpp"
+#include "Game/System/GameEventFlagStorage.hpp"
+#include "Game/System/GameEventFlagTable.hpp"
 #include "Game/System/GameEventValueChecker.hpp"
 #include "Game/System/ScenarioProgressTestRun.hpp"
 #include "Game/System/SpinDriverPathStorage.hpp"
 #include "Game/System/StarPieceAlmsStorage.hpp"
 #include "Game/System/UserFile.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include <cstdio>
 
 const static JMapInfo StoryEventBCSV;
+
+namespace {
+    const char cPictureBookChapterSuffix[] = "ABCDEFGHI";
+};  // namespace
 
 GameDataHolder::GameDataHolder(const UserFile* pUserFile)
     : mUserFile(pUserFile), mEventFlagChecker(), mEventValueChecker(), mPlayerStatus(), mAllGalaxyStorage(), mSpinDriverPathStorage(),
@@ -40,7 +47,7 @@ GameDataHolder::GameDataHolder(const UserFile* pUserFile)
 }
 
 bool GameDataHolder::isDataMario() const {
-    return strstr(mName, "mario");
+    return strstr(mName, "mario") != nullptr;
 }
 
 s32 GameDataHolder::getGalaxyNumCanOpen() const {
@@ -48,7 +55,8 @@ s32 GameDataHolder::getGalaxyNumCanOpen() const {
 
     for (s32 idx = 0; idx < mAllGalaxyStorage->getGalaxyNum(); idx++) {
         GameDataSomeGalaxyStorage* pSomeGalaxyStorage = mAllGalaxyStorage->getGalaxyStorage(idx);
-        if (mEventFlagChecker->canOn(pSomeGalaxyStorage->mGalaxyName) && !mEventFlagChecker->isOn(pSomeGalaxyStorage->mGalaxyName)) {
+
+        if (canOnGameEventFlag(pSomeGalaxyStorage->mGalaxyName) && !isOnGameEventFlag(pSomeGalaxyStorage->mGalaxyName)) {
             canOpen++;
         }
     }
@@ -69,7 +77,9 @@ void GameDataHolder::tryOnGameEventFlag(const char* pFlagName) {
 }
 
 s32 GameDataHolder::getGameEventValue(const char* pName) const {
-    return mEventValueChecker->getValue(pName);
+    u16 value = mEventValueChecker->getValue(pName);
+
+    return value;
 }
 
 void GameDataHolder::setGameEventValue(const char* pName, u16 value) {
@@ -77,7 +87,8 @@ void GameDataHolder::setGameEventValue(const char* pName, u16 value) {
 }
 
 bool GameDataHolder::isOnGameEventValueForBit(const char* pName, int bit) const {
-    s32 value = mEventValueChecker->getValue(pName);  // Necessary to match
+    u16 value = mEventValueChecker->getValue(pName);
+
     return value & 1 << bit;
 }
 
@@ -88,22 +99,22 @@ void GameDataHolder::setGameEventValueForBit(const char* pName, int bit, bool re
     if (reset) {
         value = value | set;
     }
-    mEventValueChecker->setValue(pName, value);
+
+    setGameEventValue(pName, value);
 }
 
 s32 GameDataHolder::getPictureBookChapterCanRead() const {
-    const char* chapter = "ABCDEFGHI";
     s32 canRead = 0;
 
-    for (u32 idx = 0; idx < 9; idx++) {
-        char buf[32];
-        snprintf(buf, sizeof(buf), "PictureBook%c", *chapter);
-        if (!mEventFlagChecker->isOn(buf)) {
+    for (u32 idx = 0; idx < sizeof(::cPictureBookChapterSuffix) - 1; idx++) {
+        char name[32];
+        snprintf(name, sizeof(name), "PictureBook%c", ::cPictureBookChapterSuffix[idx]);
+
+        if (!isOnGameEventFlag(name)) {
             break;
         }
 
         canRead++;
-        chapter++;
     }
 
     return canRead;
@@ -114,37 +125,40 @@ s32 GameDataHolder::getPictureBookChapterAlreadyRead() const {
 }
 
 void GameDataHolder::setPictureBookChapterAlreadyRead(int value) {
-    mEventValueChecker->setValue("絵本既読章", value);
+    setGameEventValue("絵本既読章", value);
 }
 
 void GameDataHolder::setRaceBestTime(const char* pName, u32 value) {
-    char hiBuffer[48];
-    snprintf(hiBuffer, sizeof(hiBuffer), "%s/hi", pName);
-    mEventValueChecker->setValue(hiBuffer, value >> 16);
+    char hiName[48];
+    snprintf(hiName, sizeof(hiName), "%s/hi", pName);
+    setGameEventValue(hiName, value >> 16);
 
-    char loBuffer[48];
-    snprintf(loBuffer, sizeof(loBuffer), "%/lo", pName);
-    mEventValueChecker->setValue(loBuffer, value);
+    char loName[48];
+    snprintf(loName, sizeof(loName), "%s/lo", pName);
+    setGameEventValue(loName, value);
 }
 
 u32 GameDataHolder::getRaceBestTime(const char* pName) const {
-    char hiBuffer[48];
-    snprintf(hiBuffer, sizeof(hiBuffer), "%/hi", pName);
-    u32 hiValue = mEventValueChecker->getValue(hiBuffer);
+    char hiName[48];
+    snprintf(hiName, sizeof(hiName), "%s/hi", pName);
+    u32 hiValue = mEventValueChecker->getValue(hiName);
 
-    char loBuffer[48];
-    snprintf(loBuffer, sizeof(loBuffer), "%/lo", pName);
-    return hiValue << 16 | mEventValueChecker->getValue(loBuffer);
+    char loName[48];
+    snprintf(loName, sizeof(loName), "%s/lo", pName);
+    u32 loValue = mEventValueChecker->getValue(loName);
+
+    return hiValue << 16 | loValue;
 }
 
 void GameDataHolder::addMissPoint(int points) {
     u32 value = mEventValueChecker->getValue("MissPointForLetter");
     u32 newValue = MR::clamp(value + points, 0l, 20l);
-    mEventValueChecker->setValue("MissPointForLetter", newValue);
+
+    setGameEventValue("MissPointForLetter", newValue);
 }
 
 void GameDataHolder::resetMissPoint() {
-    mEventValueChecker->setValue("MissPointForLetter", 0);
+    setGameEventValue("MissPointForLetter", 0);
 }
 
 bool GameDataHolder::isPointCollectForLetter() const {
@@ -152,30 +166,28 @@ bool GameDataHolder::isPointCollectForLetter() const {
 }
 
 void GameDataHolder::incPlayerMissNum() {
-    s32 value = mEventValueChecker->getValue("MissNum");
-    s32 newValue = MR::clamp(value + 1, 0l, 9999l);
-    mEventValueChecker->setValue("MissNum", newValue);
+    s32 newValue = MR::clamp(getGameEventValue("MissNum") + 1, 0, 9999);
+
+    setGameEventValue("MissNum", newValue);
 }
 
 s32 GameDataHolder::getPlayerMissNum() const {
-    s32 value = mEventValueChecker->getValue("MissNum");
-    return MR::clamp(value, 0l, 9999l);
+    return MR::clamp(getGameEventValue("MissNum"), 0, 9999);
 }
 
 bool GameDataHolder::hasPowerStar(const char* pGalaxyName, s32 scenarioNum) const {
-    GameDataSomeScenarioAccessor accessor = mAllGalaxyStorage->makeAccessor(pGalaxyName, scenarioNum);
-    return accessor.hasPowerStar();
+    return makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum).hasPowerStar();
 }
 
 bool GameDataHolder::hasGrandStar(int index) const {
-    char buf[32];
-    snprintf(buf, sizeof(buf), "SpecialGrandStar%1d", index);
-    return mEventFlagChecker->isOn(buf);
+    char name[32];
+    snprintf(name, sizeof(name), "SpecialStarGrand%1d", index);
+
+    return isOnGameEventFlag(name);
 }
 
 void GameDataHolder::setPowerStar(const char* pGalaxyName, s32 scenarioNum, bool set) {
-    GameDataSomeScenarioAccessor accessor = mAllGalaxyStorage->makeAccessor(pGalaxyName, scenarioNum);
-    accessor.setPowerStarFlag(set);
+    makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum).setPowerStarFlag(set);
 }
 
 s32 GameDataHolder::getPowerStarNumOwned(const char* pGalaxyName) const {
@@ -190,27 +202,33 @@ GameDataSomeScenarioAccessor GameDataHolder::makeGalaxyScenarioAccessor(const ch
     return mAllGalaxyStorage->makeAccessor(pGalaxyName, scenarioNum);
 }
 
+GameDataSomeScenarioAccessor GameDataHolder::makeGalaxyScenarioAccessor(const char* pGalaxyName, s32 scenarioNum) const {
+    return mAllGalaxyStorage->makeAccessor(pGalaxyName, scenarioNum);
+}
+
 bool GameDataHolder::isOnGalaxyScenarioFlagAlreadyVisited(const char* pGalaxyName, s32 scenarioNum) const {
     if (!mAllGalaxyStorage->isExistAccessor(pGalaxyName, scenarioNum)) {
         return true;
-    } else {
-        GameDataSomeScenarioAccessor accessor = mAllGalaxyStorage->makeAccessor(pGalaxyName, scenarioNum);
-        return accessor.isAlreadyVisited();
     }
+
+    return makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum).isAlreadyVisited();
 }
 
 void GameDataHolder::onGalaxyScenarioFlagAlreadyVisited(const char* pGalaxyName, s32 scenarioNum) {
     if (mAllGalaxyStorage->isExistAccessor(pGalaxyName, scenarioNum)) {
-        GameDataSomeScenarioAccessor accessor = mAllGalaxyStorage->makeAccessor(pGalaxyName, scenarioNum);
-        accessor.setFlagAlreadyVisited(true);
+        makeGalaxyScenarioAccessor(pGalaxyName, scenarioNum).setFlagAlreadyVisited(true);
     }
 }
 
 bool GameDataHolder::isAppearGalaxy(const char* pGalaxyName) const {
-    char buf[64];
-    snprintf(buf, sizeof(buf), "Appear%s", pGalaxyName);
+    char name[64];
+    snprintf(name, sizeof(name), "Appear%s", pGalaxyName);
 
-    return !GameEventFlagTable::isExist(buf) ? true : mEventFlagChecker->isOn(buf);
+    if (!GameEventFlagTable::isExist(name)) {
+        return true;
+    }
+
+    return isOnGameEventFlag(name);
 }
 
 s32 GameDataHolder::getPlayerLeft() const {

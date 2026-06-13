@@ -1,24 +1,39 @@
 #include "Game/NPC/TicoFat.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/MapObj/BenefitItemLifeUp.hpp"
 #include "Game/MapObj/SpinDriverShootPath.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/Screen/FullnessMeter.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LightUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 #include <cstdio>
 
@@ -153,7 +168,7 @@ void TicoFat::init(const JMapInfoIter& rIter) {
     _174 = 0;
     mStartEat = false;
     _1F4 = -1;
-    mScaleController = new AnimScaleController(&sParam);
+    mScaleController = new AnimScaleController(&::sParam);
     NPCActor::initialize(rIter, caps);
     s32 itemType = _1DC;
     MR::getJMapInfoArg0NoInit(rIter, &itemType);
@@ -283,7 +298,7 @@ void TicoFat::control() {
     NPCActor::control();
     TVec3f trans;
     MR::extractMtxTrans(MR::getJointMtx(this, "Center"), &trans);
-    MR::requestPointLight(this, TVec3f(trans), hPointLight, 0.99864602f, -1);
+    MR::requestPointLight(this, TVec3f(trans), ::hPointLight, 0.99864602f, -1);
     if (isNerve(&NrvTicoFat::TicoFatNrvPrep::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvWait::sInstance) ||
         isNerve(&NrvTicoFat::TicoFatNrvPoint::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvEat::sInstance) ||
         isNerve(&NrvTicoFat::TicoFatNrvChem::sInstance) || isNerve(&NrvTicoFat::TicoFatNrvFullness::sInstance) ||
@@ -510,7 +525,7 @@ void TicoFat::addStarPieceSaveData(s32) {
 }
 
 void TicoFat::appearInformation() const {
-    MR::appearInformationMessage(MR::getGameMessageDirect(sInfoMessageID), true);
+    MR::appearInformationMessage(MR::getGameMessageDirect(::sInfoMessageID), true);
 }
 
 void TicoFat::disappear(bool a1) {

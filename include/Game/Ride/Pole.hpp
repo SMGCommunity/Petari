@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class ActorCameraInfo;
 
 class Pole : public LiveActor {
 public:

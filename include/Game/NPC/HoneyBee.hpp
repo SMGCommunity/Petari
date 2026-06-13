@@ -1,12 +1,8 @@
 #pragma once
 
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/NPCUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+
+class NameObjArchiveListCollector;
 
 class HoneyBee : public NPCActor {
 public:
@@ -18,8 +14,8 @@ public:
     virtual void calcAndSetBaseMtx();
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
-    inline void exeWait();
-    inline void exeReaction();
+    void exeWait();
+    void exeReaction();
     void exeFly();
     void exeDropLecture();
     void exeJumpLecture();

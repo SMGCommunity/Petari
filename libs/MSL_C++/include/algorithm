@@ -51,6 +51,13 @@ namespace std {
         return first;
     }
 
+    template < class ForwardIt, class T >
+    inline void fill(ForwardIt first, ForwardIt last, const T& value) {
+        for (; first != last; ++first) {
+            *first = value;
+        }
+    }
+
     // mostly yoinked from OGWS decomp
     template < typename TIt, typename TCompare >
     inline TIt min_element(TIt first, TIt last, TCompare compare) {

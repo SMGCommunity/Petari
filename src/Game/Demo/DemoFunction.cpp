@@ -2,10 +2,16 @@
 #include "Game/Demo/DemoCastGroup.hpp"
 #include "Game/Demo/DemoCastGroupHolder.hpp"
 #include "Game/Demo/DemoDirector.hpp"
+#include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoExecutorFunction.hpp"
 #include "Game/Demo/DemoSubPartKeeper.hpp"
 #include "Game/Demo/DemoTimeKeeper.hpp"
 #include "Game/Effect/EffectSystemUtil.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 #include <cstring>
 
@@ -13,12 +19,14 @@ namespace {
     DemoTimeKeeper* getCurrentTimeKeeper() NO_INLINE {
         return DemoFunction::getDemoDirector()->mExecutor->mTimeKeeper;
     }
+
     DemoSubPartKeeper* getCurrentSubPartKeeper() NO_INLINE {
         return DemoFunction::getDemoDirector()->mExecutor->mSubPartKeeper;
     }
+
     bool isCurrentMainPart(const char* pPartName) NO_INLINE {
-        DemoTimeKeeper* timekeeper = getCurrentTimeKeeper();
-        return MR::isEqualString(pPartName, timekeeper->mSubPartInfos[0].mName);
+        DemoTimeKeeper* timeKeeper = getCurrentTimeKeeper();
+        return MR::isEqualString(pPartName, timeKeeper->mSubPartInfos[0].mName);
     }
 };  // namespace
 
@@ -88,13 +96,13 @@ namespace DemoFunction {
         if (group == nullptr) {
             return nullptr;
         }
-        return reinterpret_cast< DemoExecutor* >(group);
+        return static_cast< DemoExecutor* >(group);
     }
 
     DemoExecutor* findDemoExecutor(const LiveActor* pActor) {
         DemoExecutor* executor;
         for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
-            executor = reinterpret_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
+            executor = static_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor)) {
                 return executor;
             }
@@ -105,7 +113,7 @@ namespace DemoFunction {
     DemoExecutor* findDemoExecutorActive(const LiveActor* pActor) {
         DemoExecutor* executor;
         for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
-            executor = reinterpret_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
+            executor = static_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor) && MR::isDemoActive(executor->mName)) {
                 return executor;
             }
@@ -125,25 +133,25 @@ namespace DemoFunction {
         if (!MR::isTimeKeepDemoActive()) {
             return false;
         }
-        if (isCurrentMainPart(pPartName)) {
+        if (::isCurrentMainPart(pPartName)) {
             return true;
         }
-        return getCurrentSubPartKeeper()->isDemoPartActive(pPartName);
+        return ::getCurrentSubPartKeeper()->isDemoPartActive(pPartName);
     }
 
     s32 getDemoPartStepFunction(const char* pPartName) {
-        if (isCurrentMainPart(pPartName)) {
-            return getCurrentTimeKeeper()->mCurrentStep;
+        if (::isCurrentMainPart(pPartName)) {
+            return ::getCurrentTimeKeeper()->mCurrentStep;
         } else {
-            return getCurrentSubPartKeeper()->getDemoPartStep(pPartName);
+            return ::getCurrentSubPartKeeper()->getDemoPartStep(pPartName);
         }
     }
 
     s32 getDemoPartTotalStepFunction(const char* pPartName) {
-        if (isCurrentMainPart(pPartName)) {
-            return getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
+        if (::isCurrentMainPart(pPartName)) {
+            return ::getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
         } else {
-            return getCurrentSubPartKeeper()->getDemoPartTotalStep(pPartName);
+            return ::getCurrentSubPartKeeper()->getDemoPartTotalStep(pPartName);
         }
     }
 
@@ -151,12 +159,12 @@ namespace DemoFunction {
         if (!MR::isTimeKeepDemoActive()) {
             return false;
         }
-        s32 total = getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
-        s32 current = getCurrentTimeKeeper()->mCurrentStep;
+        s32 total = ::getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
+        s32 current = ::getCurrentTimeKeeper()->mCurrentStep;
         if (current != total - 1) {
             return false;
         } else {
-            return getCurrentTimeKeeper()->isPartLast();
+            return ::getCurrentTimeKeeper()->isPartLast();
         }
     }
 

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <revolution/types.h>
 
 class LiveActor;
 class JMapInfoIter;

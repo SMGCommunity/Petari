@@ -1,14 +1,13 @@
 #include "Game/MapObj/ClipArea.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ClipAreaHolder.hpp"
 #include "Game/MapObj/ClipAreaShape.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/Color.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/gx/GXCull.h"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXPixel.h"
@@ -40,7 +39,7 @@ void ClipArea::initBaseMatrix(const JMapInfoIter& rIter) {
 
 void ClipArea::draw() const {
     if (MR::isActiveClipArea()) {
-        GXSetTevColor(GX_TEVREG0, sShapeColor);
+        GXSetTevColor(GX_TEVREG0, ::sShapeColor);
         GXSetColorUpdate(false);
         GXSetDstAlpha(false, 0);
         GXSetCullMode(GX_CULL_FRONT);

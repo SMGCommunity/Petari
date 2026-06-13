@@ -7,7 +7,8 @@ class MarioActor;
 class MarioHolder : public NameObj {
 public:
     MarioHolder();
-    ~MarioHolder();
+
+    virtual ~MarioHolder();
 
     void setMarioActor(MarioActor* actor);
     MarioActor* getMarioActor() const;

@@ -6,7 +6,7 @@ namespace {
 };  // namespace
 
 void BckCtrl::overWrite(const BckCtrlData& rNew) {
-    if (MR::isEqualStringCase(rNew._0, sDefaultPlayDataName)) {
+    if (MR::isEqualStringCase(rNew._0, ::sDefaultPlayDataName)) {
         mDefaultCtrlData = rNew;
     } else {
         BckCtrlData* data = find(rNew._0);

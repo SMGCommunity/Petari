@@ -1,4 +1,5 @@
 #include "Game/Map/GroundChecker.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 GroundChecker::GroundChecker(const char* pName, f32 a2, f32 a3) : LiveActor(pName) {
     _8C = 1.0f;

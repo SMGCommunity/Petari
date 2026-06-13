@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
-#include "Game/LiveActor/VolumeModelDrawer.hpp"
-#include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
+
+class CollisionParts;
+class VolumeModelDrawer;
 
 class BeamGoRoundBeam : public LiveActor {
 public:

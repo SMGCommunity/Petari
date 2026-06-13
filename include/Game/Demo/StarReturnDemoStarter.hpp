@@ -1,11 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class ModelObj;
 class NameObjArchiveListCollector;
+class PowerStar;
 class ReturnDemoRailMove;
 class StageResultInformer;
-class PowerStar;
 
 class StarReturnDemoStarter : public LiveActor {
 public:

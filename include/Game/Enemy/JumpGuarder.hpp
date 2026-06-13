@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
-#include "Game/NameObj/NameObj.hpp"
-#include "Game/Util/MultiEventCamera.hpp"
-class JMapInfoIter;
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class ActorCameraInfo;
+class PartsModel;
+class MultiEventCamera;
 
 class JumpEmitter : public LiveActor {
 public:

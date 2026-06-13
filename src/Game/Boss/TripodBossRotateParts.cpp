@@ -1,6 +1,8 @@
 #include "Game/Boss/TripodBossRotateParts.hpp"
 #include "Game/Boss/TripodBossFixParts.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 TripodBossRotateParts::TripodBossRotateParts(const char* pName) : TripodBossFixParts(pName) {
     mRotator = nullptr;

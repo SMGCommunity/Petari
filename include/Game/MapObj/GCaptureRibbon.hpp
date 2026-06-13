@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class JUTTexture;
+
 class GCaptureRibbon : public LiveActor {
 public:
     GCaptureRibbon(const char*);

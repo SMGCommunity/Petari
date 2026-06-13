@@ -1,4 +1,5 @@
 #include "Game/MapObj/StarPieceFollowGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/StarPiece.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
@@ -13,7 +14,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "math_types.hpp"
 #include "revolution/mtx.h"
 

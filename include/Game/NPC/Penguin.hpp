@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/NPC/NPCActor.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 class JetTurtle;
 

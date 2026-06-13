@@ -1,4 +1,9 @@
 #include "Game/Enemy/BegomanSpringHead.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvBegomanSpringHead {
     NEW_NERVE(HostTypeNrvWait, BegomanSpringHead, Wait);

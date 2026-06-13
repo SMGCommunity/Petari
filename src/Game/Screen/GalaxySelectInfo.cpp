@@ -19,7 +19,7 @@ namespace NrvGalaxySelectInfo {
 
 GalaxySelectInfo::GalaxySelectInfo(bool param1)
     : LayoutActor("ギャラクシー選択情報", true), _20(param1), _24(nullptr), _28(false), mFadeinoutControl(nullptr), mInfoLayoutSetter(nullptr) {
-    mFadeinoutControl = new ValueControl(cFadeinoutFrame);
+    mFadeinoutControl = new ValueControl(::cFadeinoutFrame);
     mFadeinoutControl->setZero();
 }
 

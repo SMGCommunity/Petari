@@ -44,13 +44,13 @@ JASChannel* JASBank::noteOn(JASBank const* pBank, int progNo, u8 pitch, u8 veloc
     }
 
     channel->setPriority(priority);
-    channel->_DC.mWaveInfo = *waveInfo;
-    channel->_104 = wavePtr;
-    channel->_DC._0 = params._14;
+    channel->mWaveInfo = *waveInfo;
+    channel->mWavePtr = wavePtr;
+    channel->mChannelType = params.mChannelType;
     channel->setBankDisposeID(pBank);
-    channel->setInitPitch(params.mPitch * (waveInfo->_4 / JASDriver::getDacRate()));
+    channel->setInitPitch(params.mPitch * (waveInfo->mSampleRate / JASDriver::getDacRate()));
     if (params._24 == 0) {
-        channel->setKey(pitch - waveInfo->_1);
+        channel->setKey(pitch - waveInfo->mBaseKey);
     }
     channel->setInitVolume(params.mVolume);
     channel->setVelocity(velocity);
@@ -82,10 +82,10 @@ JASChannel* JASBank::noteOnOsc(int progNo, u8 pitch, u8 velocity, u16 priority, 
         return nullptr;
     }
     channel->setPriority(priority);
-    channel->_104 = progNo;
-    channel->_DC._0 = 2;
+    channel->mProgNo = progNo;
+    channel->mChannelType = JASChannel::CH_OSC;
     channel->setInitPitch(16736.016f / JASDriver::getDacRate());
-    channel->setKey(pitch - channel->_DC.mWaveInfo._1);
+    channel->setKey(pitch - channel->mWaveInfo.mBaseKey);
     channel->setVelocity(velocity);
     channel->setOscInit(0, &OSC_ENV);
     if (!channel->play()) {

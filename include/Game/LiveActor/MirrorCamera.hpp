@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "JSystem/JGeometry.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class J3DModelData;
 

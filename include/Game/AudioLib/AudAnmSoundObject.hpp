@@ -13,20 +13,15 @@ public:
 
     void update(f32);
     void modifySoundParams(JASSoundParams*, const JAUSoundAnimationSound*, f32);
-    void playsSound(const JAUSoundAnimationSound*, const TVec3f&, f32);
-    s32 getSoundID(const JAUSoundAnimationSound*, const TVec3f&, f32);
-    u32* getFreeHandle(const JAUSoundAnimationSound*);
+    bool playsSound(const JAUSoundAnimationSound*, const TVec3f&, f32);
+    u32 getSoundID(const JAUSoundAnimationSound*, const TVec3f&, f32);
+    JAISoundHandle* getFreeHandle(const JAUSoundAnimationSound*);
     void skip(f32);
     void setStartPos(f32);
-    void setLoopFrame(f32 a1, f32 a2) {
-        JAUSoundAnimator::setLoopFrame(a1, a2);
-    }
-    bool hasAnimHandles() const {
-        return JAUSoundAnimator::mHandles != nullptr;
+    bool hasAnim() const {
+        return mSoundAnimation != nullptr;
     }
     void updateAnimSound(f32, const TVec3f&, JAISoundStarter*);
     void startAnimSound(const TVec3f&, f32, JAISoundStarter*);
     void releaseHandleIfNecessary(JAISoundHandle*, u32);
-
-    s32 _70;  // 0x70
 };

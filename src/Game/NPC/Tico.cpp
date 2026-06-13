@@ -2,12 +2,21 @@
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/NPC/TicoDemoGetPower.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LightUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -98,9 +107,9 @@ void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
     if (color != -1) {
         MR::startBrk(this, "ColorChange");
         MR::setBrkFrameAndStop(this, color);
-        _17C = hPointLight[color];
+        _17C = ::hPointLight[color];
     } else {
-        _17C = hPointLight[5];
+        _17C = ::hPointLight[5];
     }
 
     _180 = &NrvTico::TicoNrvMeta::sInstance;

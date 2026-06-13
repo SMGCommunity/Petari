@@ -1,22 +1,20 @@
 #include "Game/Map/OceanSphere.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/OceanSpherePoint.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
-#include "Game/Map/WaterInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util.hpp"
-#include <JSystem/JGeometry.hpp>
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SchedulerUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JMath/JMATrigonometric.hpp>
-#include <JSystem/JMath/JMath.hpp>
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
-#include <cmath>
-#include <math_types.hpp>
-#include <revolution/gd/GDBase.h>
-#include <revolution/gx.h>
 #include <revolution/gx/GXVert.h>
-#include <revolution/mtx.h>
-#include <revolution/os/OSCache.h>
-
 
 extern const u8 sOceanSphereTevReg0FaceR;
 extern const u8 sOceanSphereTevReg0FaceG;
@@ -321,19 +319,19 @@ void OceanSphere::init(const JMapInfoIter& rIter) {
     initDisplayList();
     WaterAreaFunction::entryOceanSphere(this);
 
-    mWaterTex = new JUTTexture(MR::loadTexFromArc(sWaterWaveArc, sOceanSphereBti), 0);
-    mWaterEnvTex = new JUTTexture(MR::loadTexFromArc(sWaterWaveArc, sOceanSphereEnvRefBti), 0);
+    mWaterTex = new JUTTexture(MR::loadTexFromArc(::sWaterWaveArc, ::sOceanSphereBti), 0);
+    mWaterEnvTex = new JUTTexture(MR::loadTexFromArc(::sWaterWaveArc, ::sOceanSphereEnvRefBti), 0);
 
     MR::setClippingTypeSphere(this, mRadius);
     MR::setClippingFarMax(this);
     initNerve(&NrvOceanSphere::OceanSphereNrvWait::sInstance);
 
-    if (MR::isEqualStageName(sSkullSharkGalaxy)) {
+    if (MR::isEqualStageName(::sSkullSharkGalaxy)) {
         mEnableStartPosCameraSwitch = true;
         mAlwaysUseRealDrawing = true;
     }
 
-    if (MR::isEqualStageName(sTearDropGalaxy)) {
+    if (MR::isEqualStageName(::sTearDropGalaxy)) {
         mIsTearDrop = true;
         mAlwaysUseRealDrawing = true;
         mIsStartPosCamera = false;
@@ -363,10 +361,10 @@ void OceanSphere::exeWait() {
 }
 
 void OceanSphere::exeRiseUp() {
-    f32 rate = MR::calcDemoPartStepRate(sDemoPartName);
+    f32 rate = MR::calcDemoPartStepRate(::sDemoPartName);
     mRadius = 1000.0f + (rate * (mRadiusTarget - 1000.0f));
 
-    if (MR::isDemoPartLastStep(sDemoPartName)) {
+    if (MR::isDemoPartLastStep(::sDemoPartName)) {
         setNerve(&NrvOceanSphere::OceanSphereNrvWait::sInstance);
     }
 }
@@ -406,7 +404,7 @@ bool OceanSphere::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, Wate
 }
 
 void OceanSphere::initPoints() {
-    const TVec3f* axisBase = &sPosAxisX;
+    const TVec3f* axisBase = &::sPosAxisX;
 
     if (mRadius <= 300.0f) {
         mPointCount = 8;
@@ -489,7 +487,7 @@ void OceanSphere::initPoints() {
 
 void OceanSphere::initDisplayList() {
     MR::ProhibitSchedulerAndInterrupts prohibit(false);
-    u32 sizeFace = calcDisplayListSize(mPointCount, 0x1C);
+    u32 sizeFace = ::calcDisplayListSize(mPointCount, 0x1C);
     mDispListFace = new (0x20) u8[sizeFace];
     DCInvalidateRange(mDispListFace, sizeFace);
     GDLObj obj;
@@ -499,7 +497,7 @@ void OceanSphere::initDisplayList() {
     GDPadCurr32();
     mDispListFaceLen = obj.ptr - obj.start;
     DCStoreRange(mDispListFace, sizeFace);
-    u32 sizeBack = calcDisplayListSize(mPointCount, 0x18);
+    u32 sizeBack = ::calcDisplayListSize(mPointCount, 0x18);
     mDispListBack = new (0x20) u8[sizeBack];
     DCInvalidateRange(mDispListBack, sizeBack);
     GDInitGDLObj(&obj, mDispListBack, sizeBack);
@@ -900,7 +898,7 @@ void OceanSphere::loadMaterialBack() const {
 
 void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
     for (s32 i = 0; i < mPointCount - 1; i++) {
-        beginDrawPolygon(i, mPointCount, useGD);
+        ::beginDrawPolygon(i, mPointCount, useGD);
         sendVertex(getPlanePointLeftUpper(i, i), useEnvMap, useGD);
 
         for (s32 j = i + 1; j < mPointCount; j++) {
@@ -909,7 +907,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
             sendVertex(p0, useEnvMap, useGD);
         }
 
-        beginDrawPolygon(i, mPointCount, useGD);
+        ::beginDrawPolygon(i, mPointCount, useGD);
 
         for (s32 j = 0; j < mPointCount - i - 1; j++) {
             s32 u = mPointCount - 1 - j;
@@ -920,7 +918,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
 
         sendVertex(getPlanePointLeftUpper(i, i), useEnvMap, useGD);
 
-        beginDrawPolygon(i, mPointCount, useGD);
+        ::beginDrawPolygon(i, mPointCount, useGD);
         sendVertex(getPlanePointRightUpper(i, i), useEnvMap, useGD);
 
         for (s32 j = i + 1; j < mPointCount; j++) {
@@ -929,7 +927,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
             sendVertex(p0, useEnvMap, useGD);
         }
 
-        beginDrawPolygon(i, mPointCount, useGD);
+        ::beginDrawPolygon(i, mPointCount, useGD);
 
         for (s32 j = 0; j < mPointCount - i - 1; j++) {
             s32 u = mPointCount - 1 - j;
@@ -940,7 +938,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
 
         sendVertex(getPlanePointRightUpper(i, i), useEnvMap, useGD);
 
-        beginDrawPolygon(i, mPointCount, useGD);
+        ::beginDrawPolygon(i, mPointCount, useGD);
         sendVertex(getPlanePointLeftLower(i, i), useEnvMap, useGD);
 
         for (s32 j = i + 1; j < mPointCount; j++) {
@@ -949,7 +947,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
             sendVertex(p0, useEnvMap, useGD);
         }
 
-        beginDrawPolygon(i, mPointCount, useGD);
+        ::beginDrawPolygon(i, mPointCount, useGD);
 
         for (s32 j = 0; j < mPointCount - i - 1; j++) {
             s32 u = mPointCount - 1 - j;
@@ -960,7 +958,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
 
         sendVertex(getPlanePointLeftLower(i, i), useEnvMap, useGD);
 
-        beginDrawPolygon(i, mPointCount, useGD);
+        ::beginDrawPolygon(i, mPointCount, useGD);
         sendVertex(getPlanePointRightLower(i, i), useEnvMap, useGD);
 
         for (s32 j = i + 1; j < mPointCount; j++) {
@@ -969,7 +967,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
             sendVertex(p0, useEnvMap, useGD);
         }
 
-        beginDrawPolygon(i, mPointCount, useGD);
+        ::beginDrawPolygon(i, mPointCount, useGD);
 
         for (s32 j = 0; j < mPointCount - i - 1; j++) {
             s32 u = mPointCount - 1 - j;

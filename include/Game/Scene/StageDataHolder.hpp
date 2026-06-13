@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/Scene/PlacementInfoOrdered.hpp"
-#include "Game/Scene/PlacementStateChecker.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/Array.hpp"
+
+class JKRArchive;
+class JMapIdInfo;
+class PlacementInfoOrdered;
 
 class StageDataHolder : public NameObj {
 public:

@@ -1,6 +1,9 @@
 #include "Game/System/MessageHolder.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
+#include "Game/NPC/TalkNodeCtrl.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRArchive.hpp>
 
 #define SYSTEMMESSAGE_ARC "/Memory/SystemMessage.arc"
@@ -121,16 +124,16 @@ MessageData::MessageData(const char* pArchiveName)
     mIDTable = new JMapInfo();
     mIDTable->attach(mapData);
 
-    mInfoBlock = (MessageInfoBlock*)getBlock('INF1', msgData);
-    mDataBlock = (MessageDataBlock*)getBlock('DAT1', msgData);
-    mFlowBlock = (MessageFlowBlock*)getBlock('FLW1', msgData);
+    mInfoBlock = (MessageInfoBlock*)::getBlock('INF1', msgData);
+    mDataBlock = (MessageDataBlock*)::getBlock('DAT1', msgData);
+    mFlowBlock = (MessageFlowBlock*)::getBlock('FLW1', msgData);
 
     if (mFlowBlock != nullptr) {
         _14 = reinterpret_cast< u16* >(reinterpret_cast< TalkNode* >(mFlowBlock + 1) + mFlowBlock->mNodeCount);
         _18 = reinterpret_cast< u8* >(_14 + mFlowBlock->_A);
     }
 
-    mFLI1Block = (MessageFLI1Block*)getBlock('FLI1', msgData);
+    mFLI1Block = (MessageFLI1Block*)::getBlock('FLI1', msgData);
 }
 
 inline JMapInfoIter end(const JMapInfo* pInfo) {

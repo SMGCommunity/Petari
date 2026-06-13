@@ -1,4 +1,8 @@
 #include "Game/Boss/BossKameckBarrier.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace NrvBossKameckBarrier {
     NEW_NERVE(BossKameckBarrierNrvWait, BossKameckBarrier, Wait);

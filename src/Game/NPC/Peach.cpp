@@ -1,4 +1,6 @@
 #include "Game/NPC/Peach.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 namespace NrvPeach {
     NEW_NERVE(PeachNrvWait, Peach, Wait);

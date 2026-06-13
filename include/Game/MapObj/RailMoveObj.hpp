@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/Demo/DemoCtrlBase.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
+
+class DemoCtrlBase;
 
 class RailMoveObj : public MapObjActor {
 public:

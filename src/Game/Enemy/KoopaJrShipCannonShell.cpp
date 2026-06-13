@@ -1,4 +1,17 @@
 #include "Game/Enemy/KoopaJrShipCannonShell.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     static const f32 sBodySensorRadius = 75.0f;
@@ -41,17 +54,17 @@ void KoopaJrShipCannonShell::init(const JMapInfoIter& rIter) {
     MR::startBck(this, "KoopaJrShipCannonShell", nullptr);
     initSound(4, false);
     initHitSensor(2);
-    MR::addHitSensorEnemy(this, "body", 8, sBodySensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensorEnemyAttack(this, "attack", 8, sAttackSensorRadius * getBaseScale(), TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemy(this, "body", 8, ::sBodySensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemyAttack(this, "attack", 8, ::sAttackSensorRadius * getBaseScale(), TVec3f(0.0f, 0.0f, 0.0f));
 
-    initBinder(sBinderRadius * getBaseScale(), 0.0f, 0);
+    initBinder(::sBinderRadius * getBaseScale(), 0.0f, 0);
     initEffectKeeper(0, nullptr, false);
     initNerve(&NrvKoopaJrShipCannonShell::HostTypeFly::sInstance);
 
     MR::connectToSceneEnemy(this);
     MR::invalidateClipping(this);
-    MR::initStarPointerTarget(this, sStarWandRadius, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::initShadowVolumeSphere(this, sShadowRadius * getBaseScale());
+    MR::initStarPointerTarget(this, ::sStarWandRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::initShadowVolumeSphere(this, ::sShadowRadius * getBaseScale());
     MR::offCalcGravity(this);
     MR::declareCoin(this, 1);
     makeActorDead();
@@ -184,7 +197,7 @@ bool KoopaJrShipCannonShell::isStateEnableExplosion() const {
 }
 
 void KoopaJrShipCannonShell::explosion() {
-    MR::startRumbleWithShakeCameraWeak(this, "強", "中", sCameraShakeDistance, sCameraShakeDistance * 2);
+    MR::startRumbleWithShakeCameraWeak(this, "強", "中", ::sCameraShakeDistance, ::sCameraShakeDistance * 2);
     MR::emitEffect(this, "Explosion");
     MR::startSound(this, "SE_EM_KILLER_EXPLOSION");
     kill();
@@ -210,11 +223,11 @@ void KoopaJrShipCannonShell::exeFly() {
     if (tryFreeze())
         return;
 
-    if (MR::isGreaterStep(this, sWallHitInvalidTime) && MR::isBinded(this)) {
+    if (MR::isGreaterStep(this, ::sWallHitInvalidTime) && MR::isBinded(this)) {
         explosion();
         return;
     }
-    if (MR::isStep(this, sLifeTime))
+    if (MR::isStep(this, ::sLifeTime))
         kill();
 }
 
@@ -227,13 +240,13 @@ void KoopaJrShipCannonShell::exeDown() {
         }
     }
 
-    JMathInlineVEC::PSVECAdd(mVelocity, mGravity.scaleInline(sGravity), mVelocity);
-    if (MR::reboundVelocityFromCollision(this, sReboundRate, sReboundMinSpeed, 1.0f))
+    JMathInlineVEC::PSVECAdd(mVelocity, mGravity.scaleInline(::sGravity), mVelocity);
+    if (MR::reboundVelocityFromCollision(this, ::sReboundRate, ::sReboundMinSpeed, 1.0f))
         MR::deleteEffect(this, "LocusSmoke");
 
-    mVelocity.scale(MR::isBindedGround(this) ? sGroundFrec : sAirFrec);
+    mVelocity.scale(MR::isBindedGround(this) ? ::sGroundFrec : ::sAirFrec);
 
-    if (MR::isStep(this, sDownTime))
+    if (MR::isStep(this, ::sDownTime))
         misfire();
 }
 
@@ -247,8 +260,8 @@ void KoopaJrShipCannonShell::exeFreeze() {
     _B4++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 scale = sFreezeRumbleWidth * MR::cosDegree(MR::repeatDegree(_B4 * sFreezeRumbleSpeed)) * static_cast< f32 >(sFreezeFrame - getNerveStep()) /
-                sFreezeFrame;
+    f32 scale = ::sFreezeRumbleWidth * MR::cosDegree(MR::repeatDegree(_B4 * ::sFreezeRumbleSpeed)) *
+                static_cast< f32 >(::sFreezeFrame - getNerveStep()) / ::sFreezeFrame;
     TVec3f vec14;
     vec14.set(MR::getCamXdir());
     vec14.scale(scale);
@@ -259,7 +272,7 @@ void KoopaJrShipCannonShell::exeFreeze() {
         return;
     }
 
-    if (MR::isStep(this, sFreezeFrame)) {
+    if (MR::isStep(this, ::sFreezeFrame)) {
         mPosition.set< f32 >(_9C);
         mVelocity.set< f32 >(_A8);
         setNerve(&NrvKoopaJrShipCannonShell::HostTypeFly::sInstance);

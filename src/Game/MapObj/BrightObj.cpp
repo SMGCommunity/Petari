@@ -1,4 +1,6 @@
 #include "Game/MapObj/BrightObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 BrightInfo::BrightInfo() {
     reset();

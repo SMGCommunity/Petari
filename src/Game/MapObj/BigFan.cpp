@@ -1,6 +1,8 @@
 #include "Game/MapObj/BigFan.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigFanHolder.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 namespace NrvBigFan {

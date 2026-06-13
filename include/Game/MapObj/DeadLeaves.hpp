@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/Util.hpp"
 
 class DeadLeaves : public MapObjActor {
 public:

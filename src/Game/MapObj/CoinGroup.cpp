@@ -1,4 +1,6 @@
 #include "Game/MapObj/CoinGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/Coin.hpp"
 #include "Game/Util.hpp"
 
 namespace NrvCoinGroup {

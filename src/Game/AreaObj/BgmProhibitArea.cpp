@@ -10,17 +10,19 @@ BgmProhibitArea::~BgmProhibitArea() {
 
 namespace {
     static BgmMuteSet sBgmMuteSet[] = {{"OceanPhantomCaveGalaxy", 7, 1}, {"SoundMapCodeTest", 7, 1}};
+};  // namespace
 
+namespace {
     BgmMuteSet* findDataElement(const char* pName) {
-        for (u32 i = 0; i < 2; i++) {
-            BgmMuteSet* ret = &sBgmMuteSet[i];
+        for (u32 i = 0; i < ARRAY_SIZE(::sBgmMuteSet); i++) {
+            BgmMuteSet* set = &::sBgmMuteSet[i];
 
-            if (MR::isEqualString(pName, ret->mGalaxyName)) {
-                return ret;
+            if (MR::isEqualString(pName, set->mGalaxyName)) {
+                return set;
             }
         }
 
-        return 0;
+        return nullptr;
     }
 };  // namespace
 
@@ -47,7 +49,7 @@ void BgmProhibitArea::movement() {
             _3D = 0;
 
             if (!_3C && MR::isPlayingStageBgm()) {
-                BgmMuteSet* set = findDataElement(MR::getCurrentStageName());
+                BgmMuteSet* set = ::findDataElement(MR::getCurrentStageName());
                 s32 v10 = set ? set->_4 : -1;
                 if (v10 >= 0) {
                     if (dist >= 10000.0f) {
@@ -62,7 +64,7 @@ void BgmProhibitArea::movement() {
         } else {
             _3C = 0;
             if (!_3D && MR::isPlayingStageBgm()) {
-                BgmMuteSet* set = findDataElement(MR::getCurrentStageName());
+                BgmMuteSet* set = ::findDataElement(MR::getCurrentStageName());
                 s32 v14 = set ? set->_8 : -1;
 
                 if (v14 >= 0) {

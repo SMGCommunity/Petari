@@ -7,6 +7,7 @@
 #include "Game/Enemy/FireBall.hpp"
 #include "Game/Enemy/FireBubble.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
@@ -102,7 +103,7 @@ namespace {
 OtaKing::OtaKing(const char* pName)
     : LiveActor(pName), mMagma(nullptr), mCocoNutBallArray(nullptr), mFireBallArray(nullptr), mFireBubbleArray(nullptr), mThrowPos(nullptr), mHits(0),
       _EC(0), mTurnSpeed(0.0f), mSoundObj(nullptr), mSoundObjPos(gZeroVec), mBubbleAppearPos(nullptr), mDownCocoNut(nullptr), mAnimCamera(nullptr),
-      IsLv2(false), mScaleController(nullptr) {
+      mIsLv2(false), mScaleController(nullptr) {
     MR::zeroMemory(mFeet, sizeof(mFeet));
     MR::zeroMemory(mLongFeet, sizeof(mLongFeet));
     mLongFootMtx.identity();
@@ -168,19 +169,19 @@ void OtaKing::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const J
     MR::getJMapInfoArg1NoInit(rIter, &isLv2);
     bool isLv2Flag = isLv2;
 
-    pList->addArchive(CocoNut::getModelName());
-    pList->addArchive("FireBall");
-    pList->addArchive("FireBubble");
-    pList->addArchive("OtaKingMagma");
-    pList->addArchive("OtaKingMagmaBloom");
+    pArchiveList->addArchive(CocoNut::getModelName());
+    pArchiveList->addArchive("FireBall");
+    pArchiveList->addArchive("FireBubble");
+    pArchiveList->addArchive("OtaKingMagma");
+    pArchiveList->addArchive("OtaKingMagmaBloom");
 
-    if (!isLv2Flag) {
-        pList->addArchive("OtaKing");
-        pList->addArchive("OtaKingFoot");
-        pList->addArchive("OtaKingLongFoot");
+    if (!isLv2) {
+        pArchiveList->addArchive("OtaKing");
+        pArchiveList->addArchive("OtaKingFoot");
+        pArchiveList->addArchive("OtaKingLongFoot");
     } else {
-        pList->addArchive("OtaKingLv2");
-        pList->addArchive("OtaKingFootLv2");
+        pArchiveList->addArchive("OtaKingLv2");
+        pArchiveList->addArchive("OtaKingFootLv2");
     }
 }
 
@@ -233,7 +234,7 @@ bool OtaKing::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
 
     s32 a1 = mHits;
 
-    if (IsLv2) {
+    if (mIsLv2) {
         a1 = MR::max(mHits, 1);
     }
     bool b1 = rallyBall->_9C <= a1;
@@ -296,14 +297,14 @@ void OtaKing::initMapToolInfo(const JMapInfoIter& rIter) {
     bool arg1 = false;
 
     MR::getJMapInfoArg1NoInit(rIter, &arg1);
-    IsLv2 = arg1;
+    mIsLv2 = arg1;
 }
 
 void OtaKing::initModel(const JMapInfoIter& rIter) {
-    initModelManagerWithAnm(IsLv2 ? "OtaKing" : "OtaKingLv2", nullptr, false);
+    initModelManagerWithAnm(mIsLv2 ? "OtaKing" : "OtaKingLv2", nullptr, false);
 
     for (int i = 0; i < 2; i++) {
-        mFeet[i] = new PartsModel(this, "前足モデル", IsLv2 ? "OtaKingFoot" : "OtaKingFootLv2", nullptr, 18, false);
+        mFeet[i] = new PartsModel(this, "前足モデル", mIsLv2 ? "OtaKingFoot" : "OtaKingFootLv2", nullptr, 18, false);
         mFeet[i]->mPosition.set(mPosition);
         mFeet[i]->initWithoutIter();
         MR::initLightCtrl(mFeet[i]);
@@ -471,7 +472,7 @@ bool OtaKing::isValidThrowCocoNut() const {
 
 bool OtaKing::isValidThrowFireBall() const {
     return cFireBallThrowNum <= getDisappearedFireBallNum() && MR::calcDistanceToPlayer(this) < cThrowDistance &&
-           (!IsLv2 || getDisappearedCocoNutNum() == 3);
+           (!mIsLv2 || getDisappearedCocoNutNum() == 3);
 }
 
 bool OtaKing::isOneHP() const {
@@ -483,7 +484,7 @@ bool OtaKing::isValidBubbleAttack() const {
         return false;
     }
 
-    if (IsLv2) {
+    if (mIsLv2) {
         return mHits > 0;
     } else {
         return isOneHP();
@@ -632,7 +633,7 @@ void OtaKing::startDemo() {
         MR::requestMovementOn(mFeet[i]);
     }
 
-    if (!IsLv2) {
+    if (!mIsLv2) {
         for (int i = 0; i < 4; i++) {
             MR::requestMovementOn(mLongFeet[i]);
         }
@@ -650,7 +651,7 @@ void OtaKing::appearStarPiece() {
 }
 
 void OtaKing::initLongFoot(const JMapInfoIter& rIter) {
-    if (!IsLv2) {
+    if (!mIsLv2) {
         for (int i = 0; i < 4; i++) {
             mLongFeet[i] = new OtaKingLongFoot(this, cLongFootDemoBckStep[i], "飾り足");
             mLongFeet[i]->init(rIter);
@@ -694,7 +695,7 @@ void OtaKing::exeWaitOnSwitch() {
         MR::setBckFrameAndStop(mFeet[1], 0.0f);
         MR::hideModel(mFeet[1]);
 
-        if (!IsLv2) {
+        if (!mIsLv2) {
             for (int i = 0; i < 4; i++) {
                 mLongFeet[i]->hide();
             }
@@ -711,7 +712,7 @@ void OtaKing::exeAppearDemo() {
         MR::showModel(mFeet[0]);
         MR::showModel(mFeet[1]);
 
-        if (!IsLv2) {
+        if (!mIsLv2) {
             for (int i = 0; i < 4; i++) {
                 mLongFeet[i]->startAppearDemo();
             }
@@ -723,7 +724,7 @@ void OtaKing::exeAppearDemo() {
         mRotation.set(cAppearDemoRotate);
         MR::overlayWithPreviousScreen(2);
 
-        if (IsLv2) {
+        if (mIsLv2) {
             MR::forceToFrameCinemaFrame();
         }
     }
@@ -787,7 +788,7 @@ void OtaKing::exeAppearDemo() {
         MR::showPlayer();
         MR::endAnimCamera(this, mAnimCamera, "Appear", 0, true);
 
-        if (!IsLv2) {
+        if (!mIsLv2) {
             for (int i = 0; i < 4; i++) {
                 mLongFeet[i]->endDemo();
             }
@@ -904,7 +905,7 @@ void OtaKing::exeDamage() {
     }
 
     if (MR::isStep(this, 2)) {
-        MR::stopScene(IsLv2 ? 6 : 16);
+        MR::stopScene(mIsLv2 ? 6 : 16);
     }
 
     if (MR::isStep(this, 3)) {
@@ -933,7 +934,7 @@ void OtaKing::exePowerUp() {
     }
 
     if (MR::isStep(this, 2)) {
-        MR::stopScene(IsLv2 ? 6 : 16);
+        MR::stopScene(mIsLv2 ? 6 : 16);
     }
 
     if (MR::isStep(this, 3)) {
@@ -1039,7 +1040,7 @@ void OtaKing::exeDown() {
             }
         }
 
-        if (!IsLv2) {
+        if (!mIsLv2) {
             for (int i = 0; i < 4; i++) {
                 mLongFeet[i]->startDownDemo();
             }
@@ -1121,7 +1122,7 @@ void OtaKing::exeAppearStar() {
             mFeet[i]->kill();
         }
 
-        if (!IsLv2) {
+        if (!mIsLv2) {
             for (int i = 0; i < 4; i++) {
                 mLongFeet[i]->kill();
             }

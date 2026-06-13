@@ -1,17 +1,13 @@
 #include "Game/MapObj/AstroDomeSky.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "revolution/gx/GXStruct.h"
-#include "revolution/types.h"
 
 namespace {
     const char* cAstroDomeSkyTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
@@ -40,7 +36,7 @@ AstroDomeSky::AstroDomeSky(const char* pName) : LiveActor(pName) {
 void AstroDomeSky::init(const JMapInfoIter& rIter) {
     s32 arg = -1;
     MR::getJMapInfoArg0NoInit(rIter, &arg);
-    const char* arg2 = cAstroDomeSkyTable[arg - 1];
+    const char* arg2 = ::cAstroDomeSkyTable[arg - 1];
     initModelManagerWithAnm(arg2, 0, true);
     _94 = MR::initDLMakerProjmapEffectMtxSetter(this);
     MR::newDifferedDLBuffer(this);

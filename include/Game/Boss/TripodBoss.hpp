@@ -1,26 +1,26 @@
 #pragma once
 
-#include "Game/Boss/TripodBossStepPoint.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class ActorCameraInfo;
+class DummyDisplayModel;
+class ModelObj;
 class TripodBossLeg;
 class TripodBossMovableArea;
+class TripodBossStepPoint;
 class TripodBossStepSequence;
-class DummyDisplayModel;
 
 class TripodBossBone {
 public:
-    inline TripodBossBone() {
-        _30 = nullptr;
+    TripodBossBone() : _30() {
         _0.identity();
     }
 
     void setAttachBaseMatrix(const TPos3f&);
 
-    TMtx34f _0;
-    const TPos3f* _30;
+    /* 0x00 */ TMtx34f _0;
+    /* 0x30 */ const TPos3f* _30;
 };
 
 class TripodBoss : public LiveActor {
@@ -71,19 +71,6 @@ public:
     void requestOpeningDemo();
     bool tryDamageDemo();
     void requestEndDamageDemo();
-    void exeWait();
-    void exeStep();
-    void exeWaitStep();
-    void exeChangeSequence();
-    void exeLeaveLegOutOfPlayer();
-    void exeDamage();
-    void exeStartDemo();
-    void exeDamageDemo();
-    void exePainDemo();
-    void exeBreakDownDemo();
-    void exeExplosionDemo();
-    inline void exeNonActive();
-    inline void exeTryStartDemo();
     bool isStopLeg(s32) const;
     bool isStopAllLeg() const;
     bool isStarted() const;
@@ -119,6 +106,20 @@ public:
     void changeBgmState();
     static s32 getPartIDFromBoneID(s32);
     void setAttachBaseMatrix(const TPos3f&);
+
+    void exeTryStartDemo();
+    void exeNonActive();
+    void exeWait();
+    void exeStep();
+    void exeWaitStep();
+    void exeDamage();
+    void exeChangeSequence();
+    void exeLeaveLegOutOfPlayer();
+    void exeStartDemo();
+    void exeDamageDemo();
+    void exePainDemo();
+    void exeBreakDownDemo();
+    void exeExplosionDemo();
 
     inline TripodBossLeg* getLeg(s32 idx) const {
         return mLegs[idx];

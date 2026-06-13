@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NameObj/NameObj.hpp"
 
 class Koopa;

@@ -1,8 +1,12 @@
 #include "Game/Boss/DinoPackunStateFire.hpp"
 #include "Game/Boss/DinoPackun.hpp"
 #include "Game/Boss/DinoPackunBall.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvDinoPackunStateFire {
     NEW_NERVE(DinoPackunStateFireNrvNormal, DinoPackunStateFire, Normal);

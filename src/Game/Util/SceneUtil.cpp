@@ -3,13 +3,13 @@
 #include "Game/Scene/PlacementStateChecker.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Scene/ScenePlayingResult.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 
 namespace {
@@ -187,20 +187,20 @@ namespace MR {
     // getCurrentScenarioStartAnimCameraData
 
     void incCoin(int term) {
-        getScenePlayingResult()->incCoin(term);
+        ::getScenePlayingResult()->incCoin(term);
         incPlayerLife(term);
     }
 
     void incPurpleCoin() {
-        getScenePlayingResult()->incPurpleCoin();
+        ::getScenePlayingResult()->incPurpleCoin();
     }
 
     s32 getCoinNum() {
-        return getScenePlayingResult()->getCoinNum();
+        return ::getScenePlayingResult()->getCoinNum();
     }
 
     s32 getPurpleCoinNum() {
-        return getScenePlayingResult()->mPurpleCoinNum;
+        return ::getScenePlayingResult()->mPurpleCoinNum;
     }
 
     s32 getPowerStarNum() {

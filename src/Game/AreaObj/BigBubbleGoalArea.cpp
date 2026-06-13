@@ -1,6 +1,7 @@
 #include "Game/AreaObj/BigBubbleGoalArea.hpp"
 #include "Game/Ride/BigBubble.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -43,7 +44,7 @@ void BigBubbleGoalArea::movement() {
         return;
     }
 
-    mMeterDisplayAmount += sMeterUpSpeed;
+    mMeterDisplayAmount += ::sMeterUpSpeed;
 
     if (mMeterDisplayAmount >= mMeterCapacity) {
         mMeterDisplayAmount = mMeterCapacity;

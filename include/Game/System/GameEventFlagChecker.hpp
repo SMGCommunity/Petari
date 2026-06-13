@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Game/System/GameDataHolder.hpp"
-#include "Game/System/GameEventFlagStorage.hpp"
-#include "Game/System/GameEventFlagTable.hpp"
+#include <revolution/types.h>
+
+class GameDataHolder;
+class GameEventFlag;
+class GameEventFlagStorage;
 
 class GameEventFlagChecker {
 public:
@@ -16,6 +18,6 @@ public:
     bool isOnGalaxyDepended(const char*) const;
     bool isOnComet(const GameEventFlag*) const;
 
-    GameDataHolder* mDataHolder;         // 0x0
-    GameEventFlagStorage* mFlagStorage;  // 0x4
+    /* 0x00 */ GameDataHolder* mDataHolder;
+    /* 0x04 */ GameEventFlagStorage* mFlagStorage;
 };

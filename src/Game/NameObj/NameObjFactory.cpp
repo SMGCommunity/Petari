@@ -1,6 +1,7 @@
 #include "Game/NameObj/NameObjFactory.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
+#include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Demo.hpp"
 #include "Game/Effect.hpp"
 #include "Game/Enemy.hpp"
@@ -9,9 +10,12 @@
 #include "Game/Map/OceanBowl.hpp"
 #include "Game/MapObj.hpp"
 #include "Game/NPC.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/NameObj/NameObjFactoryStubs.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Ride.hpp"
+#include "Game/Screen.hpp"
+#include "Game/Util/FileUtil.hpp"
 
 namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);
@@ -78,12 +82,6 @@ namespace MR {
     NameObj* createFireBallBeamKameck(const char*);
     NameObj* createTurtleBeamKameck(const char*);
 };  // namespace MR
-
-namespace KoopaFunction {
-    NameObj* createKoopaVs1(const char*);
-    NameObj* createKoopaVs2(const char*);
-    NameObj* createKoopaVs3(const char*);
-};  // namespace KoopaFunction
 
 namespace {
     // FIXME: Polta is being worked on in #1867

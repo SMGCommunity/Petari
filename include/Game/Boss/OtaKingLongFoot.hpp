@@ -1,10 +1,12 @@
+#pragma once
+
 #include "Game/LiveActor/PartsModel.hpp"
 
 class AnimScaleController;
 
 class OtaKingLongFoot : public PartsModel {
 public:
-    OtaKingLongFoot(LiveActor*, s32, const char*);
+    OtaKingLongFoot(LiveActor* pHost, s32, const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();

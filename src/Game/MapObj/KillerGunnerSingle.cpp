@@ -1,5 +1,14 @@
 #include "Game/MapObj/KillerGunnerSingle.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     const Vec sShellPos = {0.0f, 0.0f, 700.0f};
@@ -21,7 +30,7 @@ void KillerGunnerSingle::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnvironment(this);
     initHitSensor(2);
     MR::addHitSensorMapObj(this, "body", 16, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensorEnemy(this, "shell", 16, 250.0f, TVec3f(sShellPos));
+    MR::addHitSensorEnemy(this, "shell", 16, 250.0f, TVec3f(::sShellPos));
     MR::initCollisionParts(this, "KillerGunnerSingle", getSensor("body"), nullptr);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);

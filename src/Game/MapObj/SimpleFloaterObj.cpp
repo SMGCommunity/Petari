@@ -1,6 +1,8 @@
 #include "Game/MapObj/SimpleFloaterObj.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsFloatingForce.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -24,9 +26,9 @@ SimpleFloaterObj::SimpleFloaterObj(const char* pName) : LiveActor(pName) {
 SimpleFloaterObj::~SimpleFloaterObj() {
 }
 
-void SimpleFloaterObj::init(const JMapInfoIter& rIfter) {
-    MR::initDefaultPos(this, rIfter);
-    MR::getObjectName(&_8C, rIfter);
+void SimpleFloaterObj::init(const JMapInfoIter& rrIter) {
+    MR::initDefaultPos(this, rrIter);
+    MR::getObjectName(&_8C, rrIter);
     initModelManagerWithAnm(_8C, nullptr, false);
     MR::connectToSceneMapObj(this);
     initHitSensor(1);
@@ -35,11 +37,11 @@ void SimpleFloaterObj::init(const JMapInfoIter& rIfter) {
     MR::initCollisionParts(this, _8C, mSensor, nullptr);
     initEffectKeeper(0, nullptr, false);
     _94.set(mPosition);
-    MR::setEffectHostSRT(this, cEffectName, &_94, &mRotation, nullptr);
+    MR::setEffectHostSRT(this, ::cEffectName, &_94, &mRotation, nullptr);
     initSound(4, false);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     _90 = new MapPartsFloatingForce(this);
-    _90->init(rIfter);
+    _90->init(rrIter);
     _90->setObjectName(_8C);
     _90->start();
     initNerve(&NrvSimpleFloaterObj::SimpleFloaterObjNrvWait::sInstance);
@@ -50,10 +52,10 @@ void SimpleFloaterObj::exeWait() {
     if (MR::isFirstStep(this)) {
     }
 
-    if (!isVelocityClose() && !MR::isEffectValid(this, cEffectName)) {
-        MR::emitEffect(this, cEffectName);
-    } else if (isVelocityClose() && MR::isEffectValid(this, cEffectName)) {
-        MR::deleteEffect(this, cEffectName);
+    if (!isVelocityClose() && !MR::isEffectValid(this, ::cEffectName)) {
+        MR::emitEffect(this, ::cEffectName);
+    } else if (isVelocityClose() && MR::isEffectValid(this, ::cEffectName)) {
+        MR::deleteEffect(this, ::cEffectName);
     }
 
     _90->movement();

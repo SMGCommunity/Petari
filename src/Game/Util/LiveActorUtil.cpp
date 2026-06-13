@@ -8,6 +8,7 @@
 #include "Game/LiveActor/ClippingActorHolder.hpp"
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/LiveActor/DisplayListMaker.hpp"
+#include "Game/LiveActor/EffectKeeper.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
@@ -15,13 +16,13 @@
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/MirrorActor.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
+#include "Game/LiveActor/ModelManager.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/Map/Flag.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Map/LightFunction.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjFinder.hpp"
 #include "Game/Player/GroupChecker.hpp"
@@ -32,6 +33,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/CollisionPartsFilter.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/FurMulti.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -40,13 +42,10 @@
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "Inline.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DTexture.hpp>
-#include <JSystem/JAudio2/JAUSoundAnimator.hpp>
-#include <JSystem/JUtility/JUTNameTab.hpp>
 #include <cstdio>
-#include <cstring>
-#include <new>
 
 namespace {
     f32 sAnimRateScale = 1.0f;
@@ -246,7 +245,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "MoveLimit";
         MR::makeMtxTRS(mtx, pActor);
-        CollisionParts* parts = createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 3);
+        CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 3);
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -268,7 +267,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "WaterSurface";
         MR::makeMtxTRS(mtx, pActor);
-        CollisionParts* parts = createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 2);
+        CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 2);
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -290,7 +289,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "Sunshade";
         MR::makeMtxTRS(mtx, pActor);
-        CollisionParts* parts = createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 1);
+        CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 1);
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -299,15 +298,15 @@ namespace MR {
     }
 
     const char* createLowModelObjName(const LiveActor* pActor) {
-        return createSubModelObjName(pActor, "Low");
+        return ::createSubModelObjName(pActor, "Low");
     }
 
     const char* createMiddleModelObjName(const LiveActor* pActor) {
-        return createSubModelObjName(pActor, "Middle");
+        return ::createSubModelObjName(pActor, "Middle");
     }
 
     PartsModel* createBloomModel(LiveActor* pActor, MtxPtr pMtx) {
-        PartsModel* parts = createSubModel(pActor, "Bloom", pMtx, 30);
+        PartsModel* parts = ::createSubModel(pActor, "Bloom", pMtx, 30);
         if (parts != nullptr) {
             MR::registerDemoSimpleCastAll(parts);
         }
@@ -316,11 +315,11 @@ namespace MR {
     }
 
     PartsModel* createWaterModel(LiveActor* pActor, MtxPtr pMtx) {
-        return createSubModel(pActor, "Water", pMtx, 8);
+        return ::createSubModel(pActor, "Water", pMtx, 8);
     }
 
     PartsModel* createIndirectPlanetModel(LiveActor* pActor, MtxPtr pMtx) {
-        return createSubModel(pActor, "Indirect", pMtx, 0x1D);
+        return ::createSubModel(pActor, "Indirect", pMtx, 0x1D);
     }
 
     MirrorActor* tryCreateMirrorActor(LiveActor* pActor, const char* pModelName) {
@@ -328,7 +327,7 @@ namespace MR {
             return nullptr;
         }
 
-        const char* objName = createSubModelObjName(pActor, "鏡内モデル");
+        const char* objName = ::createSubModelObjName(pActor, "鏡内モデル");
         MirrorActor* mirror = new MirrorActor(pActor, objName, pModelName);
         mirror->initWithoutIter();
         return mirror;
@@ -340,8 +339,7 @@ namespace MR {
             return false;
         }
 
-        bool isGround = (0.0f <= binder->_C8);
-        if (!isGround) {
+        if (!binder->isBindedGround()) {
             return false;
         }
 
@@ -367,7 +365,7 @@ namespace MR {
             return false;
         }
 
-        return 0.0f <= binder->_C8;
+        return binder->isBindedGround();
     }
 
     bool isBindedGround(const LiveActor* pActor, HitSensor* pSensor) {
@@ -384,7 +382,7 @@ namespace MR {
             return false;
         }
 
-        return 0.0f <= binder->_158;
+        return binder->isBindedWall();
     }
 
     bool isBindedWall(const LiveActor* pActor, HitSensor* pSensor) {
@@ -450,7 +448,7 @@ namespace MR {
             return false;
         }
 
-        return 0.0f <= binder->_1E8;
+        return binder->isBindedRoof();
     }
 
     bool isBindedRoof(const LiveActor* pActor, HitSensor* pSensor) {
@@ -995,20 +993,20 @@ namespace MR {
 
     void startBck(const LiveActor* pActor, const char* pBckName, const char* pBrkName) {
         pActor->mModelManager->startBck(pBckName, pBrkName);
-        changeBckForEffectKeeper(pActor);
+        ::changeBckForEffectKeeper(pActor);
         startBas(pActor, pBckName, false, 0.0f, 0.0f);
     }
 
     void startBckWithInterpole(const LiveActor* pActor, const char* pBckName, s32 interpole) {
         pActor->mModelManager->startBckWithInterpole(pBckName, interpole);
         startBas(pActor, pBckName, false, 0.0f, 0.0f);
-        changeBckForEffectKeeper(pActor);
+        ::changeBckForEffectKeeper(pActor);
     }
 
     void startBckNoInterpole(const LiveActor* pActor, const char* pBckName) {
         pActor->mModelManager->startBckWithInterpole(pBckName, 0);
         startBas(pActor, pBckName, false, 0.0f, 0.0f);
-        changeBckForEffectKeeper(pActor);
+        ::changeBckForEffectKeeper(pActor);
     }
 
     void startBckAtFirstStep(const LiveActor* pActor, const char* pBckName) {
@@ -1017,14 +1015,14 @@ namespace MR {
         }
 
         pActor->mModelManager->startBck(pBckName, nullptr);
-        changeBckForEffectKeeper(pActor);
+        ::changeBckForEffectKeeper(pActor);
         startBas(pActor, pBckName, false, 0.0f, 0.0f);
     }
 
     bool tryStartBck(const LiveActor* pActor, const char* pBckName, const char* pBrkName) {
         if (!isBckPlaying(pActor->mModelManager->mXanimePlayer, pBckName)) {
             pActor->mModelManager->startBck(pBckName, pBrkName);
-            changeBckForEffectKeeper(pActor);
+            ::changeBckForEffectKeeper(pActor);
             startBas(pActor, pBckName, false, 0.0f, 0.0f);
             return true;
         }
@@ -1226,31 +1224,31 @@ namespace MR {
     }
 
     void callMakeActorDeadAllGroupMember(const LiveActor* pActor) {
-        callMethodAllGroupMember(pActor, &LiveActor::makeActorDead);
+        ::callMethodAllGroupMember(pActor, &LiveActor::makeActorDead);
     }
 
     void callKillAllGroupMember(const LiveActor* pActor) {
-        callMethodAllGroupMember(pActor, &LiveActor::kill);
+        ::callMethodAllGroupMember(pActor, &LiveActor::kill);
     }
 
     void callMakeActorAppearedAllGroupMember(const LiveActor* pActor) {
-        callMethodAllGroupMember(pActor, &LiveActor::makeActorAppeared);
+        ::callMethodAllGroupMember(pActor, &LiveActor::makeActorAppeared);
     }
 
     void callAppearAllGroupMember(const LiveActor* pActor) {
-        callMethodAllGroupMember(pActor, &LiveActor::appear);
+        ::callMethodAllGroupMember(pActor, &LiveActor::appear);
     }
 
     void callRequestMovementOnAllGroupMember(const LiveActor* pActor) {
-        callFuncAllGroupMember(pActor, requestMovementOn);
+        ::callFuncAllGroupMember(pActor, requestMovementOn);
     }
 
     void callInvalidateClippingAllGroupMember(const LiveActor* pActor) {
-        callFuncAllGroupMember(pActor, invalidateClipping);
+        ::callFuncAllGroupMember(pActor, invalidateClipping);
     }
 
     void callValidateClippingAllGroupMember(const LiveActor* pActor) {
-        callFuncAllGroupMember(pActor, validateClipping);
+        ::callFuncAllGroupMember(pActor, validateClipping);
     }
 
     s32 countHideGroupMember(const LiveActor* pActor) {
@@ -1258,7 +1256,7 @@ namespace MR {
     }
 
     s32 countShowGroupMember(const LiveActor* pActor) {
-        return countGroupMember(pActor, isShowModel);
+        return countGroupMember(pActor, ::isShowModel);
     }
 
     void addToAttributeGroupSearchTurtle(const LiveActor* pActor) {
@@ -1438,7 +1436,7 @@ namespace MR {
     bool startBckIfExist(const LiveActor* pActor, const char* pBckName) {
         if (getResourceHolder(pActor)->mMotionResTable->isExistRes(pBckName)) {
             pActor->mModelManager->startBck(pBckName, nullptr);
-            changeBckForEffectKeeper(pActor);
+            ::changeBckForEffectKeeper(pActor);
             startBas(pActor, pBckName, false, 0.0f, 0.0f);
             return true;
         }
@@ -1606,22 +1604,22 @@ namespace MR {
 
     void setBckRate(const LiveActor* pActor, f32 rate) {
         J3DFrameCtrl* pBckCtrl = pActor->mModelManager->getBckCtrl();
-        pBckCtrl->mRate = rate * sAnimRateScale;
+        pBckCtrl->mRate = rate * ::sAnimRateScale;
     }
 
     void setBtkRate(const LiveActor* pActor, f32 rate) {
         J3DFrameCtrl* pBtkCtrl = pActor->mModelManager->getBtkCtrl();
-        pBtkCtrl->mRate = rate * sAnimRateScale;
+        pBtkCtrl->mRate = rate * ::sAnimRateScale;
     }
 
     void setBrkRate(const LiveActor* pActor, f32 rate) {
         J3DFrameCtrl* pBrkCtrl = pActor->mModelManager->getBrkCtrl();
-        pBrkCtrl->mRate = rate * sAnimRateScale;
+        pBrkCtrl->mRate = rate * ::sAnimRateScale;
     }
 
     void setBvaRate(const LiveActor* pActor, f32 rate) {
         J3DFrameCtrl* pBvaCtrl = pActor->mModelManager->getBvaCtrl();
-        pBvaCtrl->mRate = rate * sAnimRateScale;
+        pBvaCtrl->mRate = rate * ::sAnimRateScale;
     }
 
     void setBckFrame(const LiveActor* pActor, f32 frame) {
@@ -1808,7 +1806,7 @@ namespace MR {
         BckCtrlFunction::reflectBckCtrlData(rBck, pActor->mModelManager->mXanimePlayer);
 
         AudAnmSoundObject* pSoundObj = pActor->mSoundObject;
-        if (pSoundObj != nullptr && pSoundObj->hasAnimHandles()) {
+        if (pSoundObj != nullptr && pSoundObj->hasAnim()) {
             if (rBck.mRepeatFrame < 0) {
                 pSoundObj->setLoopFrame((f32)rBck.mStartFrame, (f32)rBck.mEndFrame);
             } else {
@@ -2311,21 +2309,21 @@ namespace MR {
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pName, HitSensor* pSensor, CollisionScaleType scaleType) {
         TPos3f mtx;
         makeMtxTRS(mtx, pActor);
-        return createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
+        return ::createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
     }
 
     CollisionParts* createCollisionPartsFromLiveActor(LiveActor* pActor, const char* pName, HitSensor* pSensor, MtxPtr pMtx,
                                                       CollisionScaleType scaleType) {
         TPos3f mtx;
         mtx.set(pMtx);
-        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pName, pSensor, mtx, scaleType, 0);
         pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
         return pParts;
     }
 
     CollisionParts* createCollisionPartsFromResourceHolder(ResourceHolder* pResHolder, const char* pName, HitSensor* pSensor, const TPos3f& rMtx,
                                                            CollisionScaleType scaleType) {
-        return createCollisionParts(pResHolder, pName, pSensor, rMtx, scaleType, 0);
+        return ::createCollisionParts(pResHolder, pName, pSensor, rMtx, scaleType, 0);
     }
 
     CollisionParts* tryCreateCollisionMoveLimit(LiveActor* pActor, MtxPtr pMtx, HitSensor* pSensor) {
@@ -2341,7 +2339,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "MoveLimit";
         mtx.set(pMtx);
-        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 3);
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 3);
         pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
 
         if (pParts != nullptr) {
@@ -2364,7 +2362,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "WaterSurface";
         mtx.set(pMtx);
-        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 2);
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 2);
         pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
 
         if (pParts != nullptr) {
@@ -2387,7 +2385,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "Sunshade";
         mtx.set(pMtx);
-        CollisionParts* pParts = createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 1);
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 1);
         pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
 
         if (pParts != nullptr) {
@@ -2531,7 +2529,7 @@ namespace MR {
         }
 
         TPos3f mtx;
-        calcCollisionMtx(&mtx, pActor);
+        ::calcCollisionMtx(&mtx, pActor);
         pParts->resetAllMtx(mtx);
     }
 
@@ -2788,7 +2786,7 @@ namespace MR {
         }
 
         TPos3f mtx;
-        calcCollisionMtx(&mtx, pActor);
+        ::calcCollisionMtx(&mtx, pActor);
         pParts->setMtx(mtx);
     }
 
@@ -2800,10 +2798,3 @@ namespace MR {
         return pActor->mCollisionParts != nullptr;
     }
 };  // namespace MR
-
-void JAUSoundAnimator::setLoopFrame(f32 start, f32 end) {
-    mLoopStartFrame = start;
-    mLoopStartSoundIndex = mSoundAnimation->getStartSoundIndex(start);
-    mLoopEndFrame = end;
-    mLoopEndSoundIndex = mSoundAnimation->getEndSoundIndex(end);
-}

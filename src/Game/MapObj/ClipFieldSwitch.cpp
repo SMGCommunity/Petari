@@ -1,5 +1,7 @@
 #include "Game/MapObj/ClipFieldSwitch.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ClipAreaHolder.hpp"
+#include "Game/Util.hpp"
 
 ClipFieldSwitch::~ClipFieldSwitch() {
 }

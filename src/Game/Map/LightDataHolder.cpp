@@ -24,7 +24,7 @@ AreaLightInfo* LightDataHolder::findAreaLight(const char* pName) const {
 }
 
 const char* LightDataHolder::getDefaultAreaLightName() const {
-    return sDefaultAreaLightName;
+    return ::sDefaultAreaLightName;
 }
 
 s32 LightDataHolder::getDefaultStepInterpolate() const {

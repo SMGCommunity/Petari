@@ -1,7 +1,10 @@
 #include "Game/System/DrawBufferGroup.hpp"
 #include "Game/System/DrawBufferExecuter.hpp"
 #include "Game/Util/LightUtil.hpp"
-
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+#include <JSystem/J3DGraphBase/J3DSys.hpp>
 #include <algorithm>
 
 DrawBufferGroup::DrawBufferGroup() : mExecutors(), mActiveExecutors(), mDrawCameraType(0), mLightType(-1), mLightLoadType(-1) {

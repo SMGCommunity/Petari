@@ -1,5 +1,7 @@
 #include "Game/MapObj/BigBubbleMoveLimitter.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigBubbleHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 

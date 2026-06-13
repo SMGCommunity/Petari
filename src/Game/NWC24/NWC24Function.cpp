@@ -34,8 +34,8 @@ namespace MR {
     // calcWiiMailSize
 
     bool checkWiiMailLimit(u32 mailSize) {
-        if (isLastUpdateToday(nullptr)) {
-            if (GameDataFunction::getSysConfigFileSentBytes() + mailSize > sSentSizeMax) {
+        if (::isLastUpdateToday(nullptr)) {
+            if (GameDataFunction::getSysConfigFileSentBytes() + mailSize > ::sSentSizeMax) {
                 return false;
             }
         }
@@ -47,7 +47,7 @@ namespace MR {
         u32 sentBytes = GameDataFunction::getSysConfigFileSentBytes();
         OSTime ticks;
 
-        if (!isLastUpdateToday(&ticks)) {
+        if (!::isLastUpdateToday(&ticks)) {
             sentBytes = 0;
         }
 

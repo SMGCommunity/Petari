@@ -1,11 +1,23 @@
 #include "Game/Demo/PrologueDirector.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/PrologueLetter.hpp"
 #include "Game/Screen/ProloguePictureBook.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static const char* sPictureBookDemoName = "プロローグデモ";
@@ -83,7 +95,7 @@ void PrologueDirector::kill() {
 }
 
 void PrologueDirector::exeWait() {
-    if (MR::tryStartDemoWithoutCinemaFrame(this, sPictureBookDemoName)) {
+    if (MR::tryStartDemoWithoutCinemaFrame(this, ::sPictureBookDemoName)) {
         MR::submitLevelSE();
         setNerve(&PrologueDirectorNrvPictureBook::sInstance);
         pauseOff();
@@ -92,11 +104,11 @@ void PrologueDirector::exeWait() {
 }
 
 void PrologueDirector::exePictureBook() {
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     if (MR::isFirstStep(this)) {
         mPictureBook->appear();
-        MR::openWipeFade(sPicBookStartWipeFrame);
+        MR::openWipeFade(::sPicBookStartWipeFrame);
         mScenery->appear();
         MR::startAnimCameraTargetSelf(mScenery, &cameraInfo, "DemoLetter", 0, 1.0f);
         MR::startStageBGM("STM_PROLOGUE_01", false);
@@ -114,7 +126,7 @@ void PrologueDirector::exePictureBook() {
 
 void PrologueDirector::exePeachLetterStart() {
     if (MR::isFirstStep(this)) {
-        MR::openWipeFade(sPeachLetterStartWipeFrame);
+        MR::openWipeFade(::sPeachLetterStartWipeFrame);
     }
 
     if (MR::isStep(this, 90)) {
@@ -137,21 +149,21 @@ void PrologueDirector::exePeachLetter() {
 }
 
 void PrologueDirector::exePeachLetterWait() {
-    if (MR::isGreaterEqualStep(this, sPeachLetterWait)) {
+    if (MR::isGreaterEqualStep(this, ::sPeachLetterWait)) {
         setNerve(&PrologueDirectorNrvPeachLetterEnd::sInstance);
     }
 }
 
 void PrologueDirector::exePeachLetterEnd() {
     if (MR::isFirstStep(this)) {
-        MR::closeWipeFade(sPeachLetterEndWipeFrame);
+        MR::closeWipeFade(::sPeachLetterEndWipeFrame);
     }
 
     if (MR::isWipeActive()) {
         return;
     }
 
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     MR::endAnimCamera(mScenery, &cameraInfo, "DemoLetter", 0, true);
     mScenery->kill();
@@ -160,15 +172,15 @@ void PrologueDirector::exePeachLetterEnd() {
 
 void PrologueDirector::exeBindWait() {
     if (MR::isFirstStep(this)) {
-        MR::endDemo(this, sPictureBookDemoName);
+        MR::endDemo(this, ::sPictureBookDemoName);
     }
 
-    if (MR::tryStartDemoMarioPuppetable(this, sArriveDemoName)) {
+    if (MR::tryStartDemoMarioPuppetable(this, ::sArriveDemoName)) {
         pauseOff();
         mMarioPosDummyModel->appear();
         MR::startBck(mMarioPosDummyModel, "DemoPeachCastleGate", 0);
 
-        ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+        ActorCameraInfo cameraInfo = ActorCameraInfo();
         CameraTargetArg cameraTarget = CameraTargetArg(nullptr, mCameraTarget, nullptr, nullptr);
 
         MR::startAnimCameraTargetOther(mMarioPosDummyModel, &cameraInfo, "DemoPeachCastleGate", cameraTarget, 0, 1.0f);
@@ -177,7 +189,7 @@ void PrologueDirector::exeBindWait() {
 }
 
 void PrologueDirector::exeArrive() {
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     if (MR::isFirstStep(this)) {
         MR::permitLevelSE();
@@ -190,7 +202,7 @@ void PrologueDirector::exeArrive() {
 
         MR::setPlayerBaseMtx(baseMtx);
         MR::startBckPlayer("DemoPeachCastleGate", (const char*)nullptr);
-        MR::openWipeFade(sArriveStartWipeFrame);
+        MR::openWipeFade(::sArriveStartWipeFrame);
         MR::setImageEffectControlAuto();
     }
 
@@ -199,12 +211,12 @@ void PrologueDirector::exeArrive() {
 
     MR::setPlayerBaseMtx(baseMtx);
 
-    if (MR::isStep(this, sFallingStarStep)) {
+    if (MR::isStep(this, ::sFallingStarStep)) {
         MR::startAtmosphereSE("SE_DM_ARRIVE_CASTLE_STAR");
     }
 
-    if (MR::isStep(this, MR::getBckFrameMaxPlayer("DemoPeachCastleGate") - sArriveEndWipeFrame)) {
-        MR::closeWipeFade(sArriveEndWipeFrame);
+    if (MR::isStep(this, MR::getBckFrameMaxPlayer("DemoPeachCastleGate") - ::sArriveEndWipeFrame)) {
+        MR::closeWipeFade(::sArriveEndWipeFrame);
     }
 
     if (MR::isBckStoppedPlayer()) {
@@ -220,9 +232,9 @@ void PrologueDirector::exeGameStart() {
         MR::forceCloseWipeFade();
     }
 
-    if (MR::isStep(this, sGameStartFrame)) {
-        MR::openWipeFade(sGameStartWipeFrame);
-        MR::endDemo(this, sArriveDemoName);
+    if (MR::isStep(this, ::sGameStartFrame)) {
+        MR::openWipeFade(::sGameStartWipeFrame);
+        MR::endDemo(this, ::sArriveDemoName);
         MR::initPlayerAfterOpeningDemo();
         kill();
     }
@@ -247,7 +259,7 @@ void PrologueDirector::createScenery() {
     MR::initLightCtrl(mScenery);
     mScenery->kill();
 
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     MR::initAnimCamera(mScenery, &cameraInfo, "DemoLetter");
 }
@@ -262,7 +274,7 @@ void PrologueDirector::createMarioPosDummyModel() {
     // FIXME: Order of store instructions is swapped.
     mMarioPosDummyModel->mPosition.set(0.0f, 0.0f, 0.0f);
 
-    ActorCameraInfo cameraInfo = ActorCameraInfo(-1, 0);
+    ActorCameraInfo cameraInfo = ActorCameraInfo();
 
     MR::initAnimCamera(mMarioPosDummyModel, &cameraInfo, "DemoPeachCastleGate");
 }

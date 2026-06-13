@@ -1,4 +1,7 @@
 #include "Game/Boss/SkeletalFishRailControl.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
 
 SkeletalFishRailControl::SkeletalFishRailControl() {
     _0 = 2;

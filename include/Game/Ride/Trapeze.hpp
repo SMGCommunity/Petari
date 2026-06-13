@@ -1,8 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Ride/SwingRopePoint.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
+
+class ActorCameraInfo;
+class JUTTexture;
+class PartsModel;
+class SwingRopePoint;
 
 class Trapeze : public LiveActor {
 public:
@@ -10,12 +15,12 @@ public:
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void draw() const;
-    virtual void exeFree();  // ????
     virtual void updateHitSensor(HitSensor* pSensor);
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeStop();
+    virtual void exeFree();
     void exeFreeInvalid();
     void exeSwingWait();
     void exeSwingSlideDownStart();

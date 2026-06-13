@@ -2,13 +2,11 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvWaterfallCaveCover {
     NEW_NERVE(HostTypeWait, WaterfallCaveCover, Wait);
@@ -38,7 +36,7 @@ bool WaterfallCaveCover::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hit
     return false;
 }
 
-inline void WaterfallCaveCover::exeWait() {
+void WaterfallCaveCover::exeWait() {
 }
 
 void WaterfallCaveCover::exeBreak() {

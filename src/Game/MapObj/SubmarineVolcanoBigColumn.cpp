@@ -1,6 +1,8 @@
 #include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 namespace {
@@ -68,7 +70,7 @@ void SubmarineVolcanoBigColumn::exeWait() {
 
 void SubmarineVolcanoBigColumn::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startRumbleWithShakeCameraWeak(this, "強", "弱", sShakeDistance, 3.4028235e38f);
+        MR::startRumbleWithShakeCameraWeak(this, "強", "弱", ::sShakeDistance, 3.4028235e38f);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
         MR::invalidateCollisionParts(this);

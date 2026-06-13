@@ -3,6 +3,8 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ShadowVolumeDrawer.hpp"
 
+class ModelObj;
+
 class RingBeamShadowDrawer : public ShadowVolumeDrawer {
 public:
     RingBeamShadowDrawer(const LiveActor*);

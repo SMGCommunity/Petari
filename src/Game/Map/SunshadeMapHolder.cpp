@@ -1,5 +1,7 @@
 #include "Game/Map/SunshadeMapHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
 
 SunshadeMapHolder::SunshadeMapHolder() : NameObj("日よけコリジョン管理") {
     _C.x = 0.0f;
@@ -18,9 +20,8 @@ namespace MR {
         }
 
         SunshadeMapHolder* holder = MR::getSceneObj< SunshadeMapHolder >(SceneObj_SunshadeMapHolder);
-        TVec3f pos;
-        pos.setPS(holder->_C);
-        return Collision::checkStrikeLineToSunshade(rPos, pos * a2, 0, nullptr, nullptr) != false;
+
+        return Collision::checkStrikeLineToSunshade(rPos, holder->_C.multInLine(a2), 0, nullptr, nullptr) != 0;
     }
 
     void createSunshadeMapHolder() {

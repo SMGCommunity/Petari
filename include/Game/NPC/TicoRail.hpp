@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class LodCtrl;
+
 class TicoRail : public LiveActor {
 public:
     /// @brief Creates a new `TicoRail`.

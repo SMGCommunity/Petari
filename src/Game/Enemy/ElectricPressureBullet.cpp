@@ -1,4 +1,5 @@
 #include "Game/Enemy/ElectricPressureBullet.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"

@@ -1,5 +1,7 @@
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Animation/XanimeCore.hpp"
 #include "Game/Animation/XanimePlayer.hpp"
+#include "Game/AudioLib/AudSystem.hpp"
 #include "Game/Enemy/KariKariDirector.hpp"
 #include "Game/Gravity.hpp"
 #include "Game/LiveActor/Binder.hpp"
@@ -19,9 +21,22 @@
 #include "Game/Player/RushEndInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/FixedPosition.hpp"
 #include "Game/Util/FootPrint.hpp"
-#include "JSystem/JAudio2/JAIAudible.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 bool gIsLuigi;
@@ -371,19 +386,17 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _1D1 = 0;
     _A24 = 0;
     _A25 = 0;
-    _1D8 = new FBO[MR::getFrameBufferWidth()];
-    _1DC = new FBO[MR::getFrameBufferWidth()];
+    _1D8 = new (0x20) FBO[MR::getFrameBufferWidth()];
+    _1DC = new (0x20) FBO[MR::getFrameBufferWidth()];
     _1E4 = 0.0f;
     _1E8 = 0;
     _1EC = 0.0f;
-    _F3C = new JAIAudible[0x1E];
+    _F3C = new AudGeneric[30];
     _F40 = 0;
     _F42 = 1;
-    for (int i = 0; i < 0x1E; i++) {
+    for (int i = 0; i < 30; i++) {
         JAIAudible& rAudible = _F3C[i];
-        rAudible._0 = 1.0f;
-        rAudible._4 = 0.0f;
-        rAudible._8 = 0.0f;
+        rAudible.mPos.set(0.0f, 0.0f, 1.0f);
     }
     _8C = 0;  // is this to indicate that we are in the process of initialization?
 }

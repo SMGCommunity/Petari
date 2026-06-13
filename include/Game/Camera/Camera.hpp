@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "revolution.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class Camera;
 class CameraHeightArrange;

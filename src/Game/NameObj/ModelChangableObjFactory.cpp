@@ -80,8 +80,8 @@ namespace {
     };
 
     const Model2CreateFunc* getModel2CreateFunc(const char* pName) {
-        for (u32 i = 0; i < ARRAY_SIZE(::cModelChangableObjCreatorTable); i++) {
-            const Model2CreateFunc* pModel2CreateFunc = &::cModelChangableObjCreatorTable[i];
+        for (u32 i = 0; i < ARRAY_SIZE(cModelChangableObjCreatorTable); i++) {
+            const Model2CreateFunc* pModel2CreateFunc = &cModelChangableObjCreatorTable[i];
             bool v7;
 
             if (pModel2CreateFunc->_0 != nullptr) {
@@ -101,7 +101,7 @@ namespace {
 
 namespace MR {
     CreatorFuncPtr getModelChangableObjCreator(const char* pName) {
-        const Model2CreateFunc* pModel2CreateFunc = getModel2CreateFunc(pName);
+        const Model2CreateFunc* pModel2CreateFunc = ::getModel2CreateFunc(pName);
 
         if (pModel2CreateFunc != nullptr) {
             return pModel2CreateFunc->mCreatorFunc;

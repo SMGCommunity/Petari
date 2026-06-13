@@ -23,11 +23,11 @@ void PauseButtonCheckerInGame::update() {
 }
 
 bool PauseButtonCheckerInGame::isPermitToPlusPause() const {
-    return isPermitToPause() && mPlusHoldFrame == sHoldCounterMax;
+    return isPermitToPause() && mPlusHoldFrame == ::sHoldCounterMax;
 }
 
 bool PauseButtonCheckerInGame::isPermitToMinusPause() const {
-    return isPermitToPause() && mMinusHoldFrame == sHoldCounterMax;
+    return isPermitToPause() && mMinusHoldFrame == ::sHoldCounterMax;
 }
 
 bool PauseButtonCheckerInGame::isPermitToPause() const {

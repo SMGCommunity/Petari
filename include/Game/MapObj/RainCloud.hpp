@@ -1,8 +1,12 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class LodCtrl;
+class MapPartsRailMover;
+class ModelObj;
+class NameObjArchiveListCollector;
 
 class RainCloud : public LiveActor {
 public:

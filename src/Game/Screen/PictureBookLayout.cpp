@@ -190,7 +190,7 @@ void PictureBookLayout::initTexture() {
     s32 textureNum = 0;
 
     for (s32 c = mChapterMin; c <= mChapterMax; c++) {
-        textureNum += getTextureNum(c);
+        textureNum += ::getTextureNum(c);
     }
 
     _44 = new nw4r::lyt::TexMap*[textureNum];
@@ -201,7 +201,7 @@ void PictureBookLayout::initTexture() {
         char chapterArcName[64];
         snprintf(chapterArcName, sizeof(chapterArcName), "PictureBookChapter%d.arc", c);
 
-        for (s32 p = 0; p < getTextureNum(c); p++) {
+        for (s32 p = 0; p < ::getTextureNum(c); p++) {
             char pageTexName[64];
             snprintf(pageTexName, sizeof(pageTexName), "Chapter%dPage%d.bti", c, p + 1);
 
@@ -219,12 +219,12 @@ void PictureBookLayout::initContentsButton() {
     char messageId[64];
 
     for (s32 i = 0; i < getChapterMax(); i++) {
-        mContentsButtonPaneController[i] = new ButtonPaneController(this, cContentsPaneName[i], cContentsPointingPaneName[i], 0, false);
+        mContentsButtonPaneController[i] = new ButtonPaneController(this, ::cContentsPaneName[i], ::cContentsPointingPaneName[i], 0, false);
         mContentsButtonPaneController[i]->invalidateAppearance();
 
         snprintf(messageId, sizeof(messageId), "PictureBookChapter%d_Title", i + 1);
 
-        MR::setTextBoxGameMessageRecursive(this, cContentsPaneName[i], messageId);
+        MR::setTextBoxGameMessageRecursive(this, ::cContentsPaneName[i], messageId);
     }
 }
 
@@ -250,7 +250,7 @@ bool PictureBookLayout::updateText() {
 }
 
 void PictureBookLayout::updateTexture() {
-    s32 textureNum = getTextureNum(mChapterNo);
+    s32 textureNum = ::getTextureNum(mChapterNo);
     s32 pageNo;
 
     if (mNextItemDir > 0) {
@@ -337,7 +337,7 @@ bool PictureBookLayout::chapterNext() {
         mPageNo = 0;
         mTextIndex = 0;
     } else {
-        mPageNo = getPageNum(mChapterNo);
+        mPageNo = ::getPageNum(mChapterNo);
         mTextIndex = getCurrentMaxTextIndex();
     }
 
@@ -352,7 +352,7 @@ void PictureBookLayout::updateTexMapChapterBase() {
             break;
         }
 
-        _48 = &_48[getTextureNum(c)];
+        _48 = &_48[::getTextureNum(c)];
     }
 }
 
@@ -433,7 +433,7 @@ bool PictureBookLayout::isBookEndCurrentText() const {
     bool r30 = false;
 
     if (mChapterNo == 9) {
-        if (mPageNo == getPageNum(mChapterNo)) {
+        if (mPageNo == ::getPageNum(mChapterNo)) {
             r30 = true;
         }
     }
@@ -511,11 +511,11 @@ void PictureBookLayout::exeOpen() {
         MR::replacePaneTexture(this, "PicTurnLeftPage", pTexMap, 0);
         MR::startAnim(this, "Appear", 0);
         MR::setAnimFrameAndStop(this, 0.0f, 0);
-        MR::openWipeFade(cFadeFrame);
+        MR::openWipeFade(::cFadeFrame);
         MR::startStageBGM("STM_PROLOGUE_01", false);
     }
 
-    if (MR::isStep(this, cBookOpenFrame)) {
+    if (MR::isStep(this, ::cBookOpenFrame)) {
         MR::setAnimRate(this, 1.0f, 0);
     }
 
@@ -524,8 +524,8 @@ void PictureBookLayout::exeOpen() {
     }
 
     s32 animFrameMax = MR::getAnimFrameMax(this, (u32)0);
-    s32 stepMin = animFrameMax + cBookOpenFrame;
-    s32 stepMax = stepMin + cFadeTextFrame;
+    s32 stepMin = animFrameMax + ::cBookOpenFrame;
+    s32 stepMax = stepMin + ::cFadeTextFrame;
 
     if (MR::isStep(this, stepMin)) {
         for (s32 i = 0; i < mChapterMax; i++) {
@@ -571,8 +571,8 @@ void PictureBookLayout::exeContentsSelect() {
 }
 
 void PictureBookLayout::exeContentsFadeOut() {
-    s32 stepMin = MR::getPaneAnimFrameMax(this, cContentsPaneName[mChapterNo - 1], 0);
-    s32 stepMax = stepMin + cFadeTextFrame;
+    s32 stepMin = MR::getPaneAnimFrameMax(this, ::cContentsPaneName[mChapterNo - 1], 0);
+    s32 stepMax = stepMin + ::cFadeTextFrame;
 
     if (MR::isGreaterEqualStep(this, stepMin)) {
         setTextAlpha(1.0f - MR::calcNerveRate(this, stepMin, stepMax));
@@ -593,7 +593,7 @@ void PictureBookLayout::exeContentsFadeOut() {
         }
     } else {
         if (MR::isStep(this, stepMax)) {
-            MR::closeWipeFade(cFadeFrame);
+            MR::closeWipeFade(::cFadeFrame);
         }
 
         if (MR::isGreaterStep(this, stepMax) && !MR::isWipeActive()) {
@@ -633,7 +633,7 @@ void PictureBookLayout::exeFadeIn() {
         }
 
         MR::setAnimFrameAndStop(this, animFrame, 0);
-        MR::openWipeFade(cFadeFrame / getReadSpeed());
+        MR::openWipeFade(::cFadeFrame / getReadSpeed());
 
         if (mContentsButtonPaneController == nullptr) {
             MR::startStageBGM("STM_PROLOGUE_01", false);
@@ -648,7 +648,7 @@ void PictureBookLayout::exeFadeIn() {
 void PictureBookLayout::exeWaitNoText() {
     bool b = mContentsButtonPaneController != nullptr || mIsNextItemFast;
 
-    MR::setNerveAtStep(this, &NrvPictureBookLayout::PictureBookLayoutNrvFadeInText::sInstance, b ? 0 : cWaitNoTextFrame);
+    MR::setNerveAtStep(this, &NrvPictureBookLayout::PictureBookLayoutNrvFadeInText::sInstance, b ? 0 : ::cWaitNoTextFrame);
 }
 
 void PictureBookLayout::exeFadeInText() {
@@ -837,10 +837,10 @@ void PictureBookLayout::exePageNext() {
     }
 
     if (mIsNextItemFast) {
-        if (MR::isStep(this, cPageNextEndFastSeStep)) {
+        if (MR::isStep(this, ::cPageNextEndFastSeStep)) {
             MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_F_ED");
         }
-    } else if (MR::isStep(this, cPageNextEndNormalSeStep)) {
+    } else if (MR::isStep(this, ::cPageNextEndNormalSeStep)) {
         MR::startSystemSE("SE_SY_PICTUREBOOK_NEXT_ED");
     }
 
@@ -849,10 +849,10 @@ void PictureBookLayout::exePageNext() {
 
 void PictureBookLayout::exeFadeOut() {
     if (MR::isFirstStep(this)) {
-        MR::closeWipeFade(cFadeFrame / getReadSpeed());
+        MR::closeWipeFade(::cFadeFrame / getReadSpeed());
 
         if (mContentsButtonPaneController == nullptr) {
-            MR::stopStageBGM(cFadeFrame / getReadSpeed());
+            MR::stopStageBGM(::cFadeFrame / getReadSpeed());
         }
     }
 
@@ -897,8 +897,8 @@ void PictureBookLayout::exeClose() {
     s32 step = MR::getAnimFrameMax(this, (u32)0);
 
     if (MR::isStep(this, step)) {
-        MR::closeWipeFade(cFadeFrame);
-        MR::stopStageBGM(cFadeFrame);
+        MR::closeWipeFade(::cFadeFrame);
+        MR::stopStageBGM(::cFadeFrame);
     }
 
     if (MR::isStep(this, 150)) {
@@ -929,7 +929,7 @@ f32 PictureBookLayout::getFadeInAlphaTextBG(f32 alpha) const {
             var = true;
         }
     } else if (getCurrentMaxTextIndex() == mTextIndex) {
-        if (mPageNo < getTextureNum(mChapterNo)) {
+        if (mPageNo < ::getTextureNum(mChapterNo)) {
             var = true;
         }
     }
@@ -947,7 +947,7 @@ f32 PictureBookLayout::getFadeOutAlphaTextBG(f32 alpha) const {
     var = false;
     if (mNextItemDir > 0) {
         if (getCurrentMaxTextIndex() == mTextIndex) {
-            if (mPageNo < getTextureNum(mChapterNo)) {
+            if (mPageNo < ::getTextureNum(mChapterNo)) {
                 var = true;
             }
         }

@@ -1,15 +1,13 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/Enemy/FireBall.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/FixedPosition.hpp"
-
 #include <JSystem/JGeometry/TMatrix.hpp>
 
+class AnimScaleController;
 class CocoNutBall;
+class FireBall;
+class FixedPosition;
 class NameObjArchiveListCollector;
-class JMapInfoIter;
 
 class OtaRock : public LiveActor {
 public:

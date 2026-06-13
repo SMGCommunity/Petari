@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/AreaObj/AreaObj.hpp"
-#include "Game/AreaObj/LightArea.hpp"
 
 class ZoneLightID;
 

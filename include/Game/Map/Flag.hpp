@@ -1,9 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class SwingRopePoint;
+class Color8;
 class JUTTexture;
+class SwingRopePoint;
 
 class Flag : public LiveActor {
 public:

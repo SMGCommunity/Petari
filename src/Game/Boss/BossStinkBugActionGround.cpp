@@ -2,6 +2,7 @@
 #include "Game/Boss/BossStinkBug.hpp"
 #include "Game/Boss/BossStinkBugFunction.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"

@@ -1,7 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/Color.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class ActorCameraInfo;
+class CameraTargetMtx;
+class JUTTexture;
+class PartsModel;
 class PlantPoint;
 
 class SpaceCocoon : public LiveActor {
@@ -10,6 +16,7 @@ public:
 
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
+    virtual void calcAnim();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
@@ -25,7 +32,6 @@ public:
     void exeBindAttack();
     void exeBindAttackSuccess();
 
-    void calcAnim();
     bool updateBindWait();
     bool updateSpringPoint();
     void updateHang();

@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/Enemy/AnimStampController.hpp"
-#include "Game/Enemy/SpinHitController.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+
+class AnimScaleController;
+class AnimStampController;
+class ModelObj;
+class SpinHitController;
 
 class BasaBasa : public LiveActor {
 public:

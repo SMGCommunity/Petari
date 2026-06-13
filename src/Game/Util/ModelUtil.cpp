@@ -58,21 +58,21 @@ namespace MR {
 
     void getLightNum(J3DMaterial* pMaterial, s32* pChan1, s32* pChan2, s32* pChan3, s32* pChan4) {
         for (int i = 0; i < 8; i++) {
-            if (isUseLightChanNo(pMaterial, 0, i)) {
+            if (::isUseLightChanNo(pMaterial, 0, i)) {
                 *pChan1 = *pChan1 + 1;
             }
 
-            if (isUseLightChanNo(pMaterial, 1, i)) {
+            if (::isUseLightChanNo(pMaterial, 1, i)) {
                 *pChan2 = *pChan2 + 1;
             }
         }
 
         for (int i = 0; i < 8; i++) {
-            if (isUseLightChanNo(pMaterial, 2, i)) {
+            if (::isUseLightChanNo(pMaterial, 2, i)) {
                 *pChan3 = *pChan3 + 1;
             }
 
-            if (isUseLightChanNo(pMaterial, 3, i)) {
+            if (::isUseLightChanNo(pMaterial, 3, i)) {
                 *pChan4 = *pChan4 + 1;
             }
         }

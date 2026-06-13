@@ -15,9 +15,9 @@ namespace {
 };  // namespace
 
 void FileRipper::setup(u32 size, JKRHeap* pHeap) {
-    sReadBuffer = new (pHeap, 0x40) u8[size];
-    sReadBufferEnd = sReadBuffer + size;
-    OSInitMutex(&sDecompMutex);
+    ::sReadBuffer = new (pHeap, 0x40) u8[size];
+    ::sReadBufferEnd = ::sReadBuffer + size;
+    OSInitMutex(&::sDecompMutex);
 }
 
 s32 FileRipper::checkCompressed(const u8* pData) {
@@ -133,19 +133,19 @@ void* FileRipper::loadToMainRAM(const char* fpath, u8* dest, bool decompress, JK
 }
 
 bool FileRipper::decompressFromDVD(DVDFileInfo* fileInfo, void* dest, u32 readSize, u32 destSize, const u8* currentPos, u32 copySize) {
-    OSLockMutex(&sDecompMutex);
+    OSLockMutex(&::sDecompMutex);
 
-    sSrcFileInfo = fileInfo;
-    sReadDvdOffset = 0;
-    sReadDvdLeftSize = readSize;
-    sReadBufferLimit = sReadBufferEnd - 0x19;
+    ::sSrcFileInfo = fileInfo;
+    ::sReadDvdOffset = 0;
+    ::sReadDvdLeftSize = readSize;
+    ::sReadBufferLimit = ::sReadBufferEnd - 0x19;
 
     u8* buf;
     if (currentPos) {
-        MR::copyMemory(sReadBufferEnd - copySize, currentPos, copySize);
-        sReadDvdOffset += copySize;
-        sReadDvdLeftSize -= copySize;
-        buf = readSrcDataNext(sReadBufferEnd - copySize);
+        MR::copyMemory(::sReadBufferEnd - copySize, currentPos, copySize);
+        ::sReadDvdOffset += copySize;
+        ::sReadDvdLeftSize -= copySize;
+        buf = readSrcDataNext(::sReadBufferEnd - copySize);
     } else {
         buf = readSrcDataFirst();
     }
@@ -158,7 +158,7 @@ bool FileRipper::decompressFromDVD(DVDFileInfo* fileInfo, void* dest, u32 readSi
     }
 
     DCStoreRangeNoSync(dest, destSize);
-    OSUnlockMutex(&sDecompMutex);
+    OSUnlockMutex(&::sDecompMutex);
 
     return result;
 }
@@ -178,7 +178,7 @@ bool FileRipper::decompressSzsSub(u8* src, u8* dest) {
 
     do {
         if (!group_count) {
-            if (src > sReadBufferLimit && sReadDvdLeftSize) {
+            if (src > ::sReadBufferLimit && ::sReadDvdLeftSize) {
                 if (!(src = readSrcDataNext(src))) {
                     return false;
                 }
@@ -225,13 +225,13 @@ bool FileRipper::decompressSzsSub(u8* src, u8* dest) {
 }
 
 u8* FileRipper::readSrcDataFirst() {
-    u8* readBuf = sReadBuffer;
-    u32 readSize = sReadBufferEnd - sReadBuffer;
-    if (sReadDvdLeftSize < readSize) {
-        readSize = sReadDvdLeftSize;
+    u8* readBuf = ::sReadBuffer;
+    u32 readSize = ::sReadBufferEnd - ::sReadBuffer;
+    if (::sReadDvdLeftSize < readSize) {
+        readSize = ::sReadDvdLeftSize;
     }
     while (true) {
-        s32 result = DVDReadPrio(sSrcFileInfo, readBuf, readSize, sReadDvdOffset, 2);
+        s32 result = DVDReadPrio(::sSrcFileInfo, readBuf, readSize, ::sReadDvdOffset, 2);
         if (result >= 0) {
             break;
         } else if (result == -3) {
@@ -240,27 +240,27 @@ u8* FileRipper::readSrcDataFirst() {
         VIWaitForRetrace();
     }
     DCInvalidateRange(readBuf, readSize);
-    sReadDvdOffset += readSize;
-    sReadDvdLeftSize -= readSize;
+    ::sReadDvdOffset += readSize;
+    ::sReadDvdLeftSize -= readSize;
     return readBuf;
 }
 
 u8* FileRipper::readSrcDataNext(u8* buf) {
-    u32 size = sReadBufferEnd - buf;
+    u32 size = ::sReadBufferEnd - buf;
     u8* start;
     if ((size & 0x1f) != 0) {
-        start = sReadBuffer + 0x20 - (size & 0x1f);
+        start = ::sReadBuffer + 0x20 - (size & 0x1f);
     } else {
-        start = sReadBuffer;
+        start = ::sReadBuffer;
     }
     MR::copyMemory(start, buf, size);
     u8* readBuf = start + size;
-    u32 readSize = sReadBufferEnd - readBuf;
-    if (sReadDvdLeftSize < readSize) {
-        readSize = sReadDvdLeftSize;
+    u32 readSize = ::sReadBufferEnd - readBuf;
+    if (::sReadDvdLeftSize < readSize) {
+        readSize = ::sReadDvdLeftSize;
     }
     while (true) {
-        s32 result = DVDReadPrio(sSrcFileInfo, readBuf, readSize, sReadDvdOffset, 2);
+        s32 result = DVDReadPrio(::sSrcFileInfo, readBuf, readSize, ::sReadDvdOffset, 2);
         if (result >= 0) {
             break;
         } else if (result == -3) {
@@ -269,10 +269,10 @@ u8* FileRipper::readSrcDataNext(u8* buf) {
         VIWaitForRetrace();
     }
     DCInvalidateRange(readBuf, readSize);
-    sReadDvdOffset += readSize;
-    sReadDvdLeftSize -= readSize;
-    if (!sReadDvdLeftSize) {
-        sReadBufferLimit = readBuf + readSize;
+    ::sReadDvdOffset += readSize;
+    ::sReadDvdLeftSize -= readSize;
+    if (!::sReadDvdLeftSize) {
+        ::sReadBufferLimit = readBuf + readSize;
     }
     return start;
 }

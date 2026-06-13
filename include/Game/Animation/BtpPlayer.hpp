@@ -2,10 +2,6 @@
 
 #include "Game/Animation/AnmPlayer.hpp"
 
-class J3DAnmBase;
-class J3DModelData;
-class ResourceHolder;
-
 class BtpPlayer : public MaterialAnmPlayerBase {
 public:
     BtpPlayer(const ResourceHolder*, J3DModelData*);

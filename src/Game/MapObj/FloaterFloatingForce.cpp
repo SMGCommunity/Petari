@@ -1,5 +1,7 @@
 #include "Game/MapObj/FloaterFloatingForce.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "math_types.hpp"
 
 FloaterFloatingForce::~FloaterFloatingForce() {

@@ -1,4 +1,6 @@
 #include "Game/MapObj/PunchingKinoko.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include <revolution.h>
 
 namespace NrvPunchingKinoko {

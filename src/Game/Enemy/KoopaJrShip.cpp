@@ -5,15 +5,24 @@
 #include "Game/Enemy/KoopaJrShipCannonShell.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/KoopaJr.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "math_types.hpp"
-#include "revolution/wpad.h"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <algorithm>
-#include <functional.hpp>
 
 namespace {
     static const char* cJointNamePropellerBack0 = "Screw00";
@@ -57,7 +66,7 @@ void KoopaJrShip_float_ordering0() {
 
 KoopaJrShip::KoopaJrShip(const char* pName)
     : LiveActor(pName), mShellHolder(nullptr), mMainShellHolder(nullptr), mJr(nullptr), mShipBreakModel(nullptr), mPodModel(nullptr), _D0(5),
-      _D4(gZeroVec), _E0(0.0f, 0.0f, 1.0f), _EC(0), mPropRotateSpeed(20.0f), _184(0.0f), _188(0), _1EC(sKoopaJrPos), _1F8(gZeroVec) {
+      _D4(gZeroVec), _E0(0.0f, 0.0f, 1.0f), _EC(0), mPropRotateSpeed(20.0f), _184(0.0f), _188(0), _1EC(::sKoopaJrPos), _1F8(gZeroVec) {
     mScrew00Mtx.identity();
     mScrew01Mtx.identity();
     mPropellerMtx.identity();
@@ -76,9 +85,9 @@ void KoopaJrShip::init(const JMapInfoIter& rIter) {
     MR::startBck(this, "KoopaJrShip", nullptr);
     MR::setBckRate(this, 0.0f);
     MR::initJointTransform(this);
-    MR::setJointTransformLocalMtx(this, cJointNamePropellerTop, mPropellerMtx);
-    MR::setJointTransformLocalMtx(this, cJointNamePropellerBack0, mScrew00Mtx);
-    MR::setJointTransformLocalMtx(this, cJointNamePropellerBack1, mScrew01Mtx);
+    MR::setJointTransformLocalMtx(this, ::cJointNamePropellerTop, mPropellerMtx);
+    MR::setJointTransformLocalMtx(this, ::cJointNamePropellerBack0, mScrew00Mtx);
+    MR::setJointTransformLocalMtx(this, ::cJointNamePropellerBack1, mScrew01Mtx);
     MR::connectToSceneCollisionEnemyStrongLight(this);
     initEffectKeeper(1, nullptr, false);
     initSound(8, false);
@@ -303,7 +312,7 @@ void KoopaJrShip::updateCoordSpeed() {
 
 void KoopaJrShip::calcLauncherInfo(TVec3f* a1, TVec3f* a2, s32 idx) const NO_INLINE {
     TPos3f mtx;
-    mtx.set(MR::getJointMtx(this, cJointNameCannon[idx]));
+    mtx.set(MR::getJointMtx(this, ::cJointNameCannon[idx]));
     mtx.getTrans(*a1);
     mtx.getXDir(*a2);
     MR::normalize(a2);
@@ -314,7 +323,7 @@ void KoopaJrShip::calcLauncherInfoKiller(TVec3f* a1, TVec3f* a2, s32 idx) const 
     TVec3f v16;
     TVec3f v15;
 
-    mtx.set(MR::getJointMtx(this, cJointNameCannon[idx]));
+    mtx.set(MR::getJointMtx(this, ::cJointNameCannon[idx]));
     mtx.getTrans(*a1);
     mtx.getXDir(*a2);
 
@@ -327,8 +336,8 @@ void KoopaJrShip::calcLauncherInfoKiller(TVec3f* a1, TVec3f* a2, s32 idx) const 
 
     mtx.getZDir(v15);
     MR::normalize(&v15);
-    MR::rotateVecDegree(a2, v16, sKillerLauncherAngle[idx].y);
-    MR::rotateVecDegree(a2, v15, sKillerLauncherAngle[idx].z);
+    MR::rotateVecDegree(a2, v16, ::sKillerLauncherAngle[idx].y);
+    MR::rotateVecDegree(a2, v15, ::sKillerLauncherAngle[idx].z);
     MR::normalize(a2);
     a1->addInline(*a2 * -100.0f);
 }
@@ -342,7 +351,7 @@ void KoopaJrShip::shootShell(s32 idx) {
         shell->launch(v8, v7 * 15.0f);
     }
 
-    MR::emitEffect(this, cEffectNameShoot[idx]);
+    MR::emitEffect(this, ::cEffectNameShoot[idx]);
 }
 
 bool KoopaJrShip::tryShootAllKillers() {
@@ -359,7 +368,7 @@ bool KoopaJrShip::tryShootAllKillers() {
         s32 idx = mKillers.indexOf(pActor);
         calcLauncherInfoKiller(&v6, &v5, idx);
         (*pActor)->appear(v6, v5);
-        MR::emitEffect(this, cEffectNameShoot[idx]);
+        MR::emitEffect(this, ::cEffectNameShoot[idx]);
     }
 
     return true;
@@ -371,7 +380,7 @@ void KoopaJrShip::shootKiller(s32 idx) {
         TVec3f v6, v5;
         calcLauncherInfoKiller(&v6, &v5, idx);
         killer->appear(v6, v5);
-        MR::emitEffect(this, cEffectNameShoot[idx]);
+        MR::emitEffect(this, ::cEffectNameShoot[idx]);
     }
 }
 
@@ -397,7 +406,7 @@ bool KoopaJrShip::isExistActiveKameck() const {
 
 void KoopaJrShip::shootMainShells() {
     /*TPos3f v16;
-    v16.set(MR::getJointMtx(this, cJointNameCannonMain));
+    v16.set(MR::getJointMtx(this, ::cJointNameCannonMain));
     TVec3f v15, v14;
     v16.getTrans(v15);
     v16.getZDir(v14);
@@ -415,7 +424,7 @@ void KoopaJrShip::shootMainShells() {
     mMainShellHolder->getValidShell()->launch(v15, v12 * 23.0f);*/
 
     TPos3f m;
-    m.set(MR::getJointMtx(this, cJointNameCannonMain));
+    m.set(MR::getJointMtx(this, ::cJointNameCannonMain));
 
     TVec3f pos;
     m.getTrans(pos);
@@ -475,11 +484,11 @@ void KoopaJrShip::emitDamageHitEffect() {
 void KoopaJrShip::updateKoopaJrPos() {
     if (isNerve(&NrvKoopaJrShip::HostTypeBreak::sInstance)) {
         TMtx34f v8;
-        v8.set(MR::getJointMtx(mPodModel, cJointNamePodPos));
+        v8.set(MR::getJointMtx(mPodModel, ::cJointNamePodPos));
         v8.mult(_1EC, mJr->mPosition);
     } else {
         TMtx34f v7;
-        v7.set(MR::getJointMtx(this, cJointNameKoopaJrPos));
+        v7.set(MR::getJointMtx(this, ::cJointNameKoopaJrPos));
         MR::faceToPoint(v7, TVec3f(*MR::getPlayerPos()), 5.0f);
         v7.mult(_1EC, mJr->mPosition);
     }
@@ -508,9 +517,9 @@ void KoopaJrShip::setStateTurnFront() {
     mPosition.set< f32 >(_1F8);
     MR::moveCoordAndTransToNearestRailPos(this);
     mJr->setStateShipBattlePowerUp();
-    _1EC.x = sKoopaJrPosFront.x;
-    _1EC.y = sKoopaJrPosFront.y;
-    _1EC.z = sKoopaJrPosFront.z;
+    _1EC.x = ::sKoopaJrPosFront.x;
+    _1EC.y = ::sKoopaJrPosFront.y;
+    _1EC.z = ::sKoopaJrPosFront.z;
     setNerve(&NrvKoopaJrShip::HostTypeTurnFront::sInstance);
 }
 

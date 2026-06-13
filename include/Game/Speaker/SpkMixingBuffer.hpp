@@ -1,7 +1,6 @@
 #pragma once
 
-#include "JSystem/JKernel/JKRHeap.hpp"
-#include <revolution.h>
+#include <JSystem/JKernel/JKRHeap.hpp>
 
 class SpkMixingBuffer {
 public:
@@ -11,5 +10,13 @@ public:
     const s16* getSamples(s32) const;
     bool update(s32);
 
-    const s16* mSamples[4];
+    s16 readSample(s32 padChannel, int offset) const {
+        return mSamples[padChannel][offset];
+    }
+
+    s16* getSample(s32 padChannel) {
+        return mSamples[padChannel];
+    }
+
+    s16* mSamples[4];
 };

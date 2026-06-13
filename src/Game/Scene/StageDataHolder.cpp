@@ -1,8 +1,15 @@
 #include "Game/Scene/StageDataHolder.hpp"
 #include "Game/NameObj/NameObjFactory.hpp"
 #include "Game/Scene/PlacementInfoOrdered.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Scene/StageResourceLoader.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <cstdio>
 

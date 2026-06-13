@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/ModelObj.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class PoltaArm : public ModelObj {
 public:

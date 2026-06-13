@@ -21,27 +21,25 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     virtual void resetPosition();
     virtual void reset(u32);
-    virtual void exeThrowing();
 
-    inline void endWait() {
-        if (mShellType == JETTURTLETYPE_GOLD) {
-            MR::deleteEffect(this, "Glow");
-        }
-    }
+    void exeWait();
+    void endWait();
+    void exeWait2();
+    void endWait2();
+    void exeThrowWait();
+    virtual void exeThrowing();
+    void exeTakenReserve();
+    void exeTakenStart();
+    void exeRestart();
+    void exeDrop();
 
     void init2(const JMapInfoIter&, s32);
     void becomeSlowType();
     void becomeFastType();
     void appearAndTryTaken();
     void resetPositionAndVanish();
-    void exeWait();
-    void exeThrowWait();
     void boundDrop();
     void bound();
-    void exeTakenReserve();
-    void exeTakenStart();
-    void exeRestart();
-    void exeDrop();
     bool isWait() const;
     bool isRestart() const;
 

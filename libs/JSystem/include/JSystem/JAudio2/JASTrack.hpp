@@ -2,11 +2,7 @@
 
 #include <revolution/types.h>
 
-#include "JSystem/JAudio2/JASBankTable.hpp"
 #include "JSystem/JAudio2/JASChannel.hpp"
-#include "JSystem/JAudio2/JASDspInterface.hpp"
-#include "JSystem/JAudio2/JASGadget.hpp"
-#include "JSystem/JAudio2/JASGlobal.hpp"
 #include "JSystem/JAudio2/JASHeapCtrl.hpp"
 #include "JSystem/JAudio2/JASOscillator.hpp"
 #include "JSystem/JAudio2/JASRegisterParam.hpp"
@@ -16,6 +12,7 @@
 
 class JASSoundParams;
 class JASChannel;
+class JASDefaultBankTable;
 
 namespace JASDsp {
     struct TChannel;
@@ -204,10 +201,10 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded< JASTrack > {
     void setTremDelay(u32 param_0) {
         mTremDelay = param_0;
     }
-    u8 getStatus() const {
+    int getStatus() const {
         return mStatus;
     }
-    void setStatus(s32 status) {
+    void setStatus(int status) {
         mStatus = status;
     }
     void setAutoDelete(bool param_0) {

@@ -3,6 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class AnimScaleController;
+class ModelObj;
 class WalkerStateBindStarPointer;
 
 class PackunPetit : public LiveActor {

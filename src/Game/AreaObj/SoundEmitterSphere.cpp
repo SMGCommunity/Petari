@@ -21,7 +21,7 @@ SoundEmitterSphere::~SoundEmitterSphere() {
 
 void SoundEmitterSphere::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
-    mSoundName = gSoundNameTable[mObjArg0];
+    mSoundName = ::gSoundNameTable[mObjArg0];
     mSoundIndex = mObjArg0;
     mSoundObj = new AudAnmSoundObject(&_40, 4, MR::getCurrentHeap());
 

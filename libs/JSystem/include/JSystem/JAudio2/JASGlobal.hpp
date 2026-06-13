@@ -23,3 +23,6 @@ public:
         return sInstance;
     }
 };
+
+template < typename T >
+T* JASGlobalInstance< T >::sInstance;

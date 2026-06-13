@@ -52,7 +52,7 @@ void PauseMenu::init(const JMapInfoIter& rIter) {
     MR::setFollowPos(&mStarPieceNumPos, this, "Piece");
     MR::setFollowTypeReplace(this, "Piece");
 
-    if (isStageHideScenarioTitle()) {
+    if (::isStageHideScenarioTitle()) {
         const char* pPaneName = "ShaStageTitle";
 
         MR::createAndAddPaneCtrl(this, pPaneName, 1);
@@ -68,7 +68,7 @@ void PauseMenu::init(const JMapInfoIter& rIter) {
     _24 = new ButtonPaneController(this, "NBackDown", "BoxButton2", 0, true);
     _24->_22 = false;
 
-    MR::setTextBoxGameMessageRecursive(this, "NBackDown", isInvalidBackAstroDome() ? "PauseMenu_ButtonEndGame" : "PauseMenu_ButtonBackAstroDome");
+    MR::setTextBoxGameMessageRecursive(this, "NBackDown", ::isInvalidBackAstroDome() ? "PauseMenu_ButtonEndGame" : "PauseMenu_ButtonBackAstroDome");
 
     if (MR::isEqualStageName("AstroDome")) {
         MR::setTextBoxMessageRecursive(this, "ShaStageTitle", MR::getCurrentScenarioNameOnCurrentLanguage());
@@ -76,7 +76,7 @@ void PauseMenu::init(const JMapInfoIter& rIter) {
         MR::setTextBoxMessageRecursive(this, "ShaStageTitle", MR::getCurrentGalaxyNameOnCurrentLanguage());
     }
 
-    if (isStageHideScenarioTitle()) {
+    if (::isStageHideScenarioTitle()) {
         MR::hidePaneRecursive(this, "ScenarioTitle");
     } else {
         MR::setTextBoxMessageRecursive(this, "ScenarioTitle", MR::getCurrentScenarioNameOnCurrentLanguage());
@@ -251,16 +251,16 @@ void PauseMenu::exeDisappear() {
 
 void PauseMenu::exeConfirm() {
     if (MR::isFirstStep(this)) {
-        const char* pMessageId = isInvalidBackAstroDome() ? "PauseMenu_ConfirmEndGame" : "PauseMenu_ConfirmBackAstroDome";
+        const char* pMessageId = ::isInvalidBackAstroDome() ? "PauseMenu_ConfirmEndGame" : "PauseMenu_ConfirmBackAstroDome";
 
         _30->appear(pMessageId, SysInfoWindow::Type_YesNo, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
     }
 
     if (MR::isDead(_30)) {
         if (_30->isSelectedYes()) {
-            MR::closeSystemWipeFadeWithCaptureScreen(cBackSequenceFadeFrame);
+            MR::closeSystemWipeFadeWithCaptureScreen(::cBackSequenceFadeFrame);
 
-            if (isInvalidBackAstroDome()) {
+            if (::isInvalidBackAstroDome()) {
                 MR::requestChangeSceneTitle();
             } else {
                 MR::requestChangeStageGoBackAstroDome();

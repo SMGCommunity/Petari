@@ -3,9 +3,11 @@
 #include "Game/Map/RaceManager.hpp"
 #include "Game/NPC/NPCActor.hpp"
 
-class TurnJointCtrl;
+class ActorCameraInfo;
 class LiveActorGroup;
 class SurfRayTutorial;
+class TakeOutStar;
+class TurnJointCtrl;
 
 class PenguinCoach : public NPCActor, public AbstractAudience {
 public:

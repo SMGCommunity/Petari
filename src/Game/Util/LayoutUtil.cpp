@@ -5,11 +5,11 @@
 #include "Game/Screen/LayoutPaneCtrl.hpp"
 #include "Game/Screen/PaneEffectKeeper.hpp"
 #include "Game/Screen/SimpleLayout.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/ResourceHolderManager.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DAnimation.hpp>
 #include <nw4r/lyt/layout.h>

@@ -112,8 +112,8 @@ void StarPointerCommandStream::calcPose(const TVec2f& rPos, const TVec2f& rInsid
         f32 length;
         MR::separateScalarAndDirection(&length, &diff, diff);
         f32 lineWidth = calcLineWidth(length);
-        length /= hDefaultLength;
-        lineWidth /= hDefaultWidth;
+        length /= ::hDefaultLength;
+        lineWidth /= ::hDefaultWidth;
         MR::setPaneScale(this, lineWidth, length, "PicRibbon");
         MR::setPaneRotate(this, 0.0f, 0.0f, toRadian(JMAATan2(diff.x, diff.y)), "Arrow");
         return;
@@ -142,6 +142,6 @@ void StarPointerCommandStream::exeSignal() {
 }
 
 f32 StarPointerCommandStream::calcLineWidth(f32 length) const {
-    f32 norm = MR::normalize(length, sMinLineWidthDistance, sMaxLineWidthDistance);
-    return norm * sMinWidth + (1.0f - norm) * sMaxWidth;
+    f32 norm = MR::normalize(length, ::sMinLineWidthDistance, ::sMaxLineWidthDistance);
+    return norm * ::sMinWidth + (1.0f - norm) * ::sMaxWidth;
 }

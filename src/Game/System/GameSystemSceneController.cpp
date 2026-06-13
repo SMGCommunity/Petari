@@ -6,7 +6,6 @@
 #include "Game/Scene/ScenarioSelectScene.hpp"
 #include "Game/Scene/SceneFactory.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFunction.hpp"
@@ -14,6 +13,15 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/System/WPadHolder.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
+#include "Game/Util/StringUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <cstdio>
 
@@ -286,11 +294,11 @@ void GameSystemSceneController::resetCurrentScenarioNo() {
 // GameSystemSceneController::isScenarioDecided
 
 void GameSystemSceneController::loadScenarioWaveData() {
-    getAudioSystemWrapper()->loadScenarioWaveData(_0.mScene, _0.mStage, _0.mCurrentScenarioNo);
+    ::getAudioSystemWrapper()->loadScenarioWaveData(_0.mScene, _0.mStage, _0.mCurrentScenarioNo);
 }
 
 bool GameSystemSceneController::isLoadDoneScenarioWaveData() const {
-    return getAudioSystemWrapper()->isLoadDoneScenarioWaveData();
+    return ::getAudioSystemWrapper()->isLoadDoneScenarioWaveData();
 }
 
 void GameSystemSceneController::exeNotInitialized() {
@@ -346,10 +354,10 @@ void GameSystemSceneController::exeChangeWaveBank() {
 
         bool isPlayerLuigi = GameSystemFunction::isCreatedGameDataHolder() ? MR::isPlayerLuigi() : false;
 
-        getAudioSystemWrapper()->loadStageWaveData(_4C.mScene, _4C.mStage, isPlayerLuigi);
+        ::getAudioSystemWrapper()->loadStageWaveData(_4C.mScene, _4C.mStage, isPlayerLuigi);
     }
 
-    if (getAudioSystemWrapper()->isLoadDoneStageWaveData()) {
+    if (::getAudioSystemWrapper()->isLoadDoneStageWaveData()) {
         requestChangeNerve(&NrvGameSystemSceneController::GameSystemSceneControllerInitializeScene::sInstance);
     }
 }

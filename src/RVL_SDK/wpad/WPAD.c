@@ -69,7 +69,7 @@ void* noAlloc(u32 size) {
     return NULL;
 }
 
-int noFree(void* ptr) {
+u8 noFree(void* ptr) {
     DEBUGPrint("No Free: Nothing to do!!!\n");
     return 0;
 }

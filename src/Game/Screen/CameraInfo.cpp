@@ -222,7 +222,7 @@ bool CameraInfo::tryHide() {
         mStep = 0;
     }
 
-    if (mStep >= sLifeTime) {
+    if (mStep >= ::sLifeTime) {
         setNerve(&NrvCameraInfo::CameraInfoNrvEnd::sInstance);
 
         return true;

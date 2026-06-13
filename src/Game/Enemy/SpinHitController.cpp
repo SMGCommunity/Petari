@@ -1,7 +1,9 @@
 #include "Game/Enemy/SpinHitController.hpp"
-#include "Game/Util.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 SpinHitController::SpinHitController(const NameObj* pObj, s32 a1, bool a2) {
     setParameter(pObj, 15, 10, 3, 0.0f, 40.0f, 20.0f, a1, a2);

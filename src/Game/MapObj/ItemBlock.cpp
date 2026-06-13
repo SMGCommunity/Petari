@@ -1,6 +1,6 @@
 #include "Game/MapObj/ItemBlock.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace {
     static Color8 hPointLight(0xFF, 0xE6, 0, 0xFF);
@@ -155,7 +155,7 @@ void ItemBlock::kill() {
 /*void ItemBlock::control() {
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
-    MR::requestPointLight(this, TVec3f(upVec * 100.0f), hPointLight, 0.998646f, -1);
+    MR::requestPointLight(this, TVec3f(upVec * 100.0f), ::hPointLight, 0.998646f, -1);
 }*/
 
 bool ItemBlock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {

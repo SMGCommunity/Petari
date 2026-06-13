@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/System/BinaryDataChunkHolder.hpp"
+#include <revolution/os.h>
 
 class BinaryDataChunkHolder;
 class BinaryDataContentHeaderSerializer;
@@ -9,6 +10,7 @@ class SysConfigChunk : public BinaryDataChunkBase {
     friend class SysConfigFile;
 
 public:
+    /// @brief Creates a new `SysConfigChunk`.
     SysConfigChunk();
 
     virtual u32 makeHeaderHashCode() const;

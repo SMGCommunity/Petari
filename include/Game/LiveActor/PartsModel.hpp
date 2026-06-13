@@ -1,14 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util.hpp"
+
+class FixedPosition;
 
 class PartsModel : public LiveActor {
 public:
     PartsModel(LiveActor*, const char*, const char*, MtxPtr, int, bool);
 
-    virtual ~PartsModel() {
-    }
     virtual void init(const JMapInfoIter&) override;
     virtual void movement() override;
     virtual void calcAnim() override;
@@ -23,11 +22,11 @@ public:
     void loadFixedPosition(const char*);
     void offFixedPosNormalizeScale();
 
-    LiveActor* mHost;          // 0x8C
-    FixedPosition* mFixedPos;  // 0x90
-    MtxPtr mMtx;               // 0x94
-    bool mCalcOwnMtx;          // 0x98
-    bool _99;
-    bool mIsDead;  // 0x9A
-    bool _9B;
+    /* 0x8C */ LiveActor* mHost;
+    /* 0x90 */ FixedPosition* mFixedPos;
+    /* 0x94 */ MtxPtr mMtx;
+    /* 0x98 */ bool mCalcOwnMtx;
+    /* 0x99 */ bool _99;
+    /* 0x9A */ bool mIsDead;
+    /* 0x9B */ bool _9B;
 };

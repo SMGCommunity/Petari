@@ -5,6 +5,7 @@
 #include "Game/MapObj/PowerStarAppearPoint.hpp"
 #include "Game/MapObj/PowerStarHolder.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util.hpp"
 #include "math_types.hpp"
 
 const GXColor lightColor[] = {
@@ -100,7 +101,7 @@ void PowerStar::init(const JMapInfoIter& rIter) {
             MR::initAnimCamera(power_star_mdl, cam_info, isStageV3 ? "DemoKoopaGrandStarVs3" : "DemoKoopaGrandStar");
 
             if (MR::isStageKoopaVs3()) {
-                MR::initAnimCamera(mPowerStarModelObj, mCameraInfo, cStageClearAnimNameKoopaVs3);
+                MR::initAnimCamera(mPowerStarModelObj, mCameraInfo, ::cStageClearAnimNameKoopaVs3);
             }
         }
     }
@@ -148,9 +149,10 @@ void PowerStar::requestAppear() {
     setNerve(&NrvPowerStar::PowerStarNrvWaitStartAppear::sInstance);
 
     if (MR::isStageKoopaVs()) {
-        MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance, nullptr);
+        MR::requestStartDemoMarioPuppetableWithoutCinemaFrame(this, ::cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoKoopa::sInstance,
+                                                              nullptr);
     } else {
-        MR::requestStartDemoWithoutCinemaFrame(this, cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance, nullptr);
+        MR::requestStartDemoWithoutCinemaFrame(this, ::cAppearDemoName, &NrvPowerStar::PowerStarNrvAppearDemoRise::sInstance, nullptr);
     }
 }
 
@@ -478,7 +480,7 @@ void PowerStar::initPosture() {
 
 void PowerStar::endAppearDemo() {
     if (!_11C) {
-        MR::endDemo(this, cAppearDemoName);
+        MR::endDemo(this, ::cAppearDemoName);
     }
 
     MR::moveVolumeStageBGM(1.0f, 60);

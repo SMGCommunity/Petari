@@ -1,9 +1,16 @@
 #pragma once
 
-#include "Game/Demo/DemoExecutor.hpp"
+#include <revolution/types.h>
 
+class DemoExecutor;
+class JMapInfoIter;
 class LiveActor;
+class Nerve;
 class TalkMessageCtrl;
+
+namespace MR {
+    class FunctorBase;
+};  // namespace MR
 
 namespace DemoExecutorFunction {
     void registerDemoActionFunction(const DemoExecutor*, const LiveActor*, const MR::FunctorBase&, const char*);

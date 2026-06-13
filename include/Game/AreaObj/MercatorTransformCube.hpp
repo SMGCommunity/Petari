@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Game/AreaObj/AreaObj.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+
+class LiveActor;
+class MapPartsRailMover;
 
 class DivideMercatorRailPosInfo {
 public:

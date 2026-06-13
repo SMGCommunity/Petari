@@ -1,5 +1,9 @@
 #include "Game/Screen/HeatHazeEffect.hpp"
 #include "Game/AreaObj/HazeCube.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 HeatHazeEffect::HeatHazeEffect(const char* pName) : LiveActor(pName), _8C(1500.0f) {
 }

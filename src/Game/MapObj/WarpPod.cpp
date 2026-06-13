@@ -1,8 +1,10 @@
 #include "Game/MapObj/WarpPod.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -174,7 +176,7 @@ void WarpPod::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
 
     f32 sensorRadiusCoef = mScale.x;
-    f32 sensorRadius = mArg1 == 0 ? sensorRadiusCoef * cSensorRadius1 : sensorRadiusCoef * cSensorRadius0;
+    f32 sensorRadius = mArg1 == 0 ? sensorRadiusCoef * ::cSensorRadius1 : sensorRadiusCoef * ::cSensorRadius0;
 
     MR::addHitSensorEye(this, "eye", 8, sensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 

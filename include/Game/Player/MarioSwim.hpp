@@ -2,9 +2,10 @@
 
 #include "Game/Map/WaterInfo.hpp"
 #include "Game/Player/Mario.hpp"
-#include "Game/Player/MarioConst.hpp"
 #include "Game/Player/MarioState.hpp"
 
+class AreaInfo;
+class HitInfo;
 class MarioActor;
 class MarineSnow;
 
@@ -127,11 +128,6 @@ public:
     inline bool check7Aand7C() const {
         return mSpinTimer || mSpinDashTimer;
     }
-    inline f32 getSwimFrontJetSpeed();
-    inline f32 getSwimFrontJetSpeedSlow();
-    inline f32 getSwimFrontMaxSpeed();
-    inline void updateSwimWeight(int animIndex, const MarioConstTable* table);
-    inline void setupSwimSpeeds(f32* speeds);
 
     /* 0x014 */ MarineSnow* mMarineSnow;
     /* 0x018 */ u8 _18;

@@ -1,4 +1,6 @@
 #include "Game/MapObj/ShootingStar.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvShootingStar {
     NEW_NERVE(HostTypeNrvPreShooting, ShootingStar, PreShooting);

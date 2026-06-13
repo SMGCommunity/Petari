@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include <revolution.h>
 
-class OceanBowlPoint;
+class JUTTexture;
 class OceanBowlBloomDrawer;
+class OceanBowlPoint;
 class WaterInfo;
 
 class OceanBowl : public LiveActor {

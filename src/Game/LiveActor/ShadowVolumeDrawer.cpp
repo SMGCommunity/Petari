@@ -1,6 +1,9 @@
 #include "Game/LiveActor/ShadowVolumeDrawer.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/DrawUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace {
     static Color8 sShapeColor(0xC0, 0xC0, 0, 4);
@@ -71,7 +74,7 @@ bool ShadowVolumeDrawer::isDraw() const {
 void ShadowVolumeDrawer::draw() const {
     if (isDraw()) {
         loadModelDrawMtx();
-        GXColor shapeColor = reinterpret_cast< GXColor& >(sShapeColor);
+        GXColor shapeColor = reinterpret_cast< GXColor& >(::sShapeColor);
         GXSetTevColor(GX_TEVREG0, shapeColor);
         GXSetColorUpdate(0);
         GXSetDstAlpha(0, 0);

@@ -1,9 +1,22 @@
 #include "Game/Demo/GrandStarReturnDemoStarter.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Demo/ReturnDemoRailMove.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/Screen/StageResultInformer.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <cstdio>
 
 namespace {
@@ -161,12 +174,12 @@ void GrandStarReturnDemoStarter::exeMove() {
             MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "移動", -1);
         }
 
-        if (MR::isDemoPartStep(cDemoMovePartName, 300)) {
+        if (MR::isDemoPartStep(::cDemoMovePartName, 300)) {
             MR::startMultiActorCameraTargetPlayer(this, mActorCameraInfo, "ウェイト", -1);
         }
     }
 
-    const char* pDemoName = cDemoMovePartName;
+    const char* pDemoName = ::cDemoMovePartName;
     mReturnDemoRailMove->update(MR::getDemoPartStep(pDemoName) + 1, MR::getDemoPartTotalStep(pDemoName));
 
     MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY", -1);
@@ -215,7 +228,7 @@ void GrandStarReturnDemoStarter::exeRushToCore() {
     updateRushStarPos(position, getNerveStep());
     MR::startLevelSound(mPowerStar, "SE_OJ_LV_GND_STAR_RUSH");
 
-    if (MR::isDemoPartLastStep(cDemoWaitPartName)) {
+    if (MR::isDemoPartLastStep(::cDemoWaitPartName)) {
         setNerve(&NrvGrandStarReturnDemoStarter::GrandStarReturnDemoStarterNrvRevival::sInstance);
     }
 }

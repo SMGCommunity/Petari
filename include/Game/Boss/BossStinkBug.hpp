@@ -1,13 +1,13 @@
 #pragma once
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Map/CollisionParts.hpp"
-#include "Game/NameObj/NameObj.hpp"
-#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
+
+class ActorCameraInfo;
 class ActorJointCtrl;
 class BossStinkBugActionSequencer;
 class BossStinkBugBombHolder;
+class CollisionParts;
 class GroundChecker;
 class PartsModel;
 

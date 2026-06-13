@@ -1,12 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class VolumeModelDrawer;
-class ModelObj;
 class MapPartsRailMover;
+class ModelObj;
+class VolumeModelDrawer;
 
 class EyeBeamer : public LiveActor {
 public:
@@ -23,9 +22,9 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
-    void initStartNerve(const JMapInfoIter& rVec);
+    void initStartNerve(const JMapInfoIter& rIter);
     void initModel();
-    void initRailMoveFunction(const JMapInfoIter& rVec);
+    void initRailMoveFunction(const JMapInfoIter& rIter);
     void updatePoseAndTrans();
     void updateWaterSurfaceMtx();
     void requestStartPatrol();

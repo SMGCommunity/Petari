@@ -1,7 +1,6 @@
 #include "Game/Map/SunshadeMapParts.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/SunshadeMapHolder.hpp"
-#include "Game/MapObj/GeneralMapParts.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 SunshadeMapParts::SunshadeMapParts(const char* pName) : GeneralMapParts(pName) {
     mCollision = nullptr;

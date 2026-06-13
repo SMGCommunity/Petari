@@ -1,6 +1,9 @@
 #include "Game/Demo/ReturnDemoRailMove.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 void setResultFlyStartFrame(LiveActor* liveActor, s32 frame) NO_INLINE {
     int maxFrames = MR::getBckFrameMax(liveActor);

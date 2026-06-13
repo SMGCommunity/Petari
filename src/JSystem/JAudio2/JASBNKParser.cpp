@@ -4,14 +4,14 @@
 #include "JSystem/JAudio2/JASCalc.hpp"
 #include "JSystem/JAudio2/JASChannel.hpp"
 #include "JSystem/JAudio2/JASDrumSet.hpp"
+#include "JSystem/JAudio2/JASGadget.hpp"
 #include "JSystem/JAudio2/JASHeapCtrl.hpp"
 #include "JSystem/JAudio2/JASInstRand.hpp"
 #include "JSystem/JAudio2/JASInstSense.hpp"
-#include "JSystem/JAudio2/JASList.hpp"
 #include "JSystem/JKernel/JKRSolidHeap.hpp"
 #include "JSystem/JSupport/JSupport.hpp"
 
-// TODO: fix inline issue in Ver0::createBasicBank
+// FIXME: chase down that rogue sdata2 mismatch
 
 template < typename T >
 inline T readStream(void const* stream, u32 offset) {
@@ -203,7 +203,7 @@ JASBasicBank* JASBNKParser::Ver1::createBasicBank(void const* stream, JKRHeap* h
     return bank;
 }
 
-JASInstParam::JASInstParam() {
+inline JASInstParam::JASInstParam() {
     init();
 }
 
@@ -229,7 +229,6 @@ JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* h
             for (int j = 0; j < 2; j++) {
                 TOsc* tosc = tinst->mOscOffset[j].ptr(header);
                 if (tosc != nullptr) {
-                    // MAJOR FIXME: this gets inlined for some reason
                     JASOscillator::Data* osc = findOscPtr(bank, header, tosc);
 
                     if (osc != nullptr) {
@@ -373,7 +372,7 @@ JASOscillator::Data* JASBNKParser::Ver0::findOscPtr(JASBasicBank* bank, THeader 
                     if (inst != nullptr) {
                         JASInstParam param;
                         inst->getParam(0x3c, 0x7f, &param);
-                        if (j < param._14) {
+                        if (j < param.mNumOscillators) {
                             return param.mOscillatorData[j];
                         }
                     }

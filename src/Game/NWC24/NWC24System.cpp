@@ -19,8 +19,8 @@ namespace {
 };  // namespace
 
 NWC24System::NWC24System(JKRHeap* pHeap, s32 threadPriority) : _0(false), mWorkBuffer(nullptr), mVFWorkBuffer(nullptr) {
-    mVFWorkBuffer = new (pHeap, 32) u8[sWorkSize];
-    VFInitEx(mVFWorkBuffer, sWorkSize);
+    mVFWorkBuffer = new (pHeap, 32) u8[::sWorkSize];
+    VFInitEx(mVFWorkBuffer, ::sWorkSize);
     mWorkBuffer = new (pHeap, 32) u8[NWC24_WORK_MEM_SIZE];
     mSendThread = new NWC24SendThread(threadPriority, pHeap);
 }

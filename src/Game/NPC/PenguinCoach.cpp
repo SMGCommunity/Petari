@@ -1,20 +1,24 @@
 #include "Game/NPC/PenguinCoach.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/RaceManager.hpp"
-#include "Game/NPC/NPCActor.hpp"
 #include "Game/NPC/Rosetta.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/NPC/TurnJointCtrl.hpp"
 #include "Game/Ride/SurfRayTutorial.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
 namespace {
@@ -192,7 +196,7 @@ void PenguinCoach::resetAudience() {
         setFinishPos();
     }
 
-    turnToPlayer(sTurnSpeed);
+    turnToPlayer(::sTurnSpeed);
 }
 
 void PenguinCoach::prepAudience() {
@@ -218,7 +222,7 @@ void PenguinCoach::exePrep() {
         MR::tryTalkNearPlayerAtEndAndStartTalkAction(this)) {
         if (mBehavior == Behavior_Tutorial || (mBehavior == Behavior_Race && MR::tryTalkSelectLeft(mMsgCtrl))) {
             MR::startTalkingSequenceWithoutCinemaFrame(this);
-            MR::closeWipeFade(-1);
+            MR::closeWipeFade();
             setNerve(&NrvPenguinCoach::PenguinCoachNrvFade::sInstance);
         } else if (mBehavior == Behavior_Race && MR::tryTalkSelectRight(mMsgCtrl)) {
             MR::endMultiActorCamera(this, mCameraInfo, "会話", false, -1);
@@ -237,7 +241,7 @@ void PenguinCoach::exeFade() {
         return;
     }
 
-    MR::openWipeFade(-1);
+    MR::openWipeFade();
     MR::endTalkingSequence(this);
 
     if (mBehavior == Behavior_Tutorial) {
