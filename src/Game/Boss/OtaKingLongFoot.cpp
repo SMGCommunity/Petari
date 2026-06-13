@@ -4,13 +4,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/LayoutUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include "Game/Util.hpp"
 
 namespace NrvOtaKingLongFoot {
     NEW_NERVE(OtaKingLongFootNrvWait, OtaKingLongFoot, Wait)
