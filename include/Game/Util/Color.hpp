@@ -8,10 +8,6 @@ public:
     Color8() : mColor(-1) {
     }
 
-    Color8(const Color8& rOther) {
-        set(rOther.r, rOther.g, rOther.b, rOther.a);
-    }
-
     Color8(GXColor color) {
         set(color);
     }

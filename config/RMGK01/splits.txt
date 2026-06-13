@@ -2780,19 +2780,19 @@ Game/Enemy/KameckBeam.cpp:
 
 Game/Enemy/KameckBeamHolder.cpp:
 	.text       start:0x80106F40 end:0x801074F8
-	.data       start:0x8057EF28 end:0x8057F010
+	.data       start:0x8057EF28 end:0x8057EF98
 
 Game/Enemy/KameckFireBall.cpp:
 	.text       start:0x801074F8 end:0x80107CC0
 	.ctors      start:0x8052EAC4 end:0x8052EAC8
-	.data       start:0x8057F010 end:0x8057F0B8
+	.data       start:0x8057EF98 end:0x8057F0A8
 	.sdata      start:0x806B1978 end:0x806B1980
 	.sbss       start:0x806B41A8 end:0x806B41B8
 	.sdata2     start:0x806BAA00 end:0x806BAA20
 
 Game/Enemy/KameckHolder.cpp:
 	.text       start:0x80107CC0 end:0x80107EF4
-	.data       start:0x8057F0B8 end:0x8057F0E0
+	.data       start:0x8057F0A8 end:0x8057F0E0
 
 Game/Enemy/KameckTurtle.cpp:
 	.text       start:0x80107EF4 end:0x801088CC
@@ -4225,14 +4225,14 @@ Game/MapObj/AstroMapBoard.cpp:
 Game/MapObj/AstroMapObj.cpp:
 	.text       start:0x801AEFF4 end:0x801AFF88
 	.ctors      start:0x8052EC48 end:0x8052EC4C
-	.data       start:0x8058EC40 end:0x8058F040
+	.data       start:0x8058EC40 end:0x8058EFB0
 	.sdata      start:0x806B1D40 end:0x806B1D48
 	.sbss       start:0x806B4E20 end:0x806B4E38
 	.sdata2     start:0x806BC788 end:0x806BC790
 
 Game/MapObj/AstroMapObjFunction.cpp:
 	.text       start:0x801AFF88 end:0x801B0A1C
-	.data       start:0x8058F040 end:0x8058F480
+	.data       start:0x8058EFB0 end:0x8058F480
 	.sdata2     start:0x806BC790 end:0x806BC798
 
 Game/MapObj/AstroOverlookObj.cpp:
