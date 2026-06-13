@@ -44,5 +44,5 @@ s32 KoopaBattleStairsBase::calcFireAttackStep(KoopaBattleMapStair* pBattleMapSta
 
     pBattleMapStair->_A8 = static_cast< s32 >(dist / myFloat) - static_cast< s32 >(::sFireRadius / myFloat);
 
-    return pBattleMapStair->mFireTimer - pBattleMapStair->_A8 - myInt;
+    return pBattleMapStair->mTimeToBreak - pBattleMapStair->_A8 - myInt;
 }

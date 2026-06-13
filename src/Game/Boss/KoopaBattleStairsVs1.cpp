@@ -66,12 +66,12 @@ s32 KoopaBattleStairsVs1::registerStair(KoopaBattleMapStair* pBattleMapStair) {
 
     const TVec3f* vec = &mJumpPos0;
 
-    if (pBattleMapStair->_94 == 1) {
+    if (pBattleMapStair->mArg1 == 1) {
         vec = &mJumpPos1;
         if (pBattleMapStair->isTypeNormal()) {
             _50++;
         }
-    } else if (pBattleMapStair->_94 == 2) {
+    } else if (pBattleMapStair->mArg1 == 2) {
         vec = &mJumpPos2;
         if (pBattleMapStair->isTypeNormal()) {
             _54++;
@@ -290,11 +290,11 @@ bool KoopaBattleStairsVs1::tryRequestedToMoveNextPos() {
         pBattleMapStair = static_cast< KoopaBattleMapStair* >(mStairsGroup->getActor(idx));
 
         if (pBattleMapStair->isRequestAttackVs1()) {
-            if (pBattleMapStair->_94 > mJumpIdx) {
+            if (pBattleMapStair->mArg1 > mJumpIdx) {
                 return true;
             }
 
-            if (pBattleMapStair->_9C) {
+            if (pBattleMapStair->mArg6) {
                 mCanJump = true;
             }
         }
