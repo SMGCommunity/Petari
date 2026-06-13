@@ -10,6 +10,8 @@ class FurCtrl {
 public:
     FurCtrl(LiveActor*, FurParam*, bool, u8);
 
+    void drawFur();
+
     LiveActor* _0;
     u32 _4;
     u32 _8;
@@ -38,12 +40,14 @@ public:
     virtual ~FurDrawManager();
     virtual void draw() const;
 
+    void add(FurCtrl*, u8);
+
     u8 _C;
     u8 mNumFurCtrls;  // 0xD
     u8 _E;
     u8 _F;
 
     FurCtrl** _10;
-    LiveActor** _14;
+    FurCtrl** _14;
     void* _18;
 };
