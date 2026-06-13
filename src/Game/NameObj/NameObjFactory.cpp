@@ -1,7 +1,6 @@
 #include "Game/NameObj/NameObjFactory.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
-#include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Demo.hpp"
 #include "Game/Effect.hpp"
 #include "Game/Enemy.hpp"
@@ -74,21 +73,12 @@ volatile const Nerve* cNerveInitKeep[] = {
 };
 
 namespace MR {
-    NameObj* createDinoPackunVs1(const char*);
-    NameObj* createDinoPackunVs2(const char*);
-    NameObj* createFallOutFieldDraw(const char*);
     NameObj* createClipFieldFillDraw(const char*);
     NameObj* createVolumeDrawSpotLight(const char*);
-    NameObj* createFireBallBeamKameck(const char*);
     NameObj* createTurtleBeamKameck(const char*);
 };  // namespace MR
 
 namespace {
-    // FIXME: Polta is being worked on in #1867
-    NameObj* createPoltaStub(const char* pName) {
-        return new NameObj(pName);
-    }
-
     template < typename T >
     NameObj* createCenterOriginCube(const char* pName) {
         return new T(AreaForm::Type_Cube1, pName);
@@ -1455,7 +1445,6 @@ namespace {
             createNameObj< OtaKing >,
             nullptr,
         },
-        // FIXME: Polta is being worked on in #1867
         {
             "Polta",
             createNameObj< Polta >,
