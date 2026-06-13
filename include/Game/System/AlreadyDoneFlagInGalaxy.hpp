@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include <revolution.h>
+#include "Game/Util/Array.hpp"
+#include <revolution/types.h>
+
+class JMapInfoIter;
 
 class AlreadyDoneInfo {
 public:

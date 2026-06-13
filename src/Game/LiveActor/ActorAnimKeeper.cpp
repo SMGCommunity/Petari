@@ -1,7 +1,5 @@
 #include "Game/LiveActor/ActorAnimKeeper.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/System/ResourceHolder.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"

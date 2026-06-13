@@ -1,6 +1,9 @@
 #include "Game/System/MessageHolder.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
+#include "Game/NPC/TalkNodeCtrl.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRArchive.hpp>
 
 #define SYSTEMMESSAGE_ARC "/Memory/SystemMessage.arc"

@@ -15,6 +15,7 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Ride.hpp"
 #include "Game/Screen.hpp"
+#include "Game/Util/FileUtil.hpp"
 
 namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);

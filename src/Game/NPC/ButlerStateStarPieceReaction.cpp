@@ -2,7 +2,6 @@
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"

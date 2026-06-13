@@ -7,6 +7,7 @@
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/Util/SingletonHolder.hpp"
+#include "Game/Util/SystemUtil.hpp"
 
 namespace {
     SceneDataInitializer* getSceneDataInitializer() {

@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/ShadowSurfaceDrawer.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/Color.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class ShadowSurfaceOval : public ShadowSurfaceDrawer {
 public:

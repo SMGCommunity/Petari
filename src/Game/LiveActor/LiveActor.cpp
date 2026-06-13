@@ -15,10 +15,12 @@
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
 LiveActor::LiveActor(const char* pName)

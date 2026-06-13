@@ -1,6 +1,7 @@
 #include "Game/Map/BezierRail.hpp"
 #include "Game/Map/RailPart.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"

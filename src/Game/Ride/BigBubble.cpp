@@ -1,5 +1,6 @@
 #include "Game/Ride/BigBubble.hpp"
 #include "Game/AreaObj/BigBubbleGoalArea.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigBubbleMoveLimitter.hpp"
 #include "Game/MapObj/BigFanHolder.hpp"

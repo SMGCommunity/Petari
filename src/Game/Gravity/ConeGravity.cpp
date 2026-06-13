@@ -1,4 +1,5 @@
 #include "Game/Gravity.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 ConeGravity::ConeGravity() : PlanetGravity() {
     mValidDegree = 360.0f;

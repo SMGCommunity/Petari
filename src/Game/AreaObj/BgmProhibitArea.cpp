@@ -10,17 +10,19 @@ BgmProhibitArea::~BgmProhibitArea() {
 
 namespace {
     static BgmMuteSet sBgmMuteSet[] = {{"OceanPhantomCaveGalaxy", 7, 1}, {"SoundMapCodeTest", 7, 1}};
+};  // namespace
 
+namespace {
     BgmMuteSet* findDataElement(const char* pName) {
-        for (u32 i = 0; i < 2; i++) {
-            BgmMuteSet* ret = &sBgmMuteSet[i];
+        for (u32 i = 0; i < ARRAY_SIZE(::sBgmMuteSet); i++) {
+            BgmMuteSet* set = &::sBgmMuteSet[i];
 
-            if (MR::isEqualString(pName, ret->mGalaxyName)) {
-                return ret;
+            if (MR::isEqualString(pName, set->mGalaxyName)) {
+                return set;
             }
         }
 
-        return 0;
+        return nullptr;
     }
 };  // namespace
 

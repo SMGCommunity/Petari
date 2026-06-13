@@ -4,11 +4,9 @@
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/MiniatureGalaxy.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/StringUtil.hpp"
 
 namespace {

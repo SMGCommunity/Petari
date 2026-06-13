@@ -1,5 +1,6 @@
 #include "Game/LiveActor/ActiveActorList.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 ActiveActorList::ActiveActorList(int max) {
     mCurCount = max;

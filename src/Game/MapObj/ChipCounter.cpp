@@ -1,7 +1,10 @@
 #include "Game/MapObj/ChipCounter.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/ChipBase.hpp"
+#include "Game/MapObj/CollectCounter.hpp"
 #include "Game/NPC/TalkDirector.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace {
     static const char* sChipPainName[] = {"Chip1", "Chip2", "Chip3", "Chip4", "Chip5"};
@@ -24,10 +27,10 @@ void ChipCounter::init(const JMapInfoIter& rIter) {
     MR::connectToSceneLayout(this);
 
     switch (mType) {
-    case 0:
+    case ChipBase::Type_Blue:
         initLayoutManager("BlueChipCounter", 2);
         break;
-    case 1:
+    case ChipBase::Type_Yellow:
         initLayoutManager("YellowChipCounter", 2);
         break;
     }
@@ -61,7 +64,7 @@ void ChipCounter::control() {
         }
     }
 
-    MR::setAnimFrameAndStop(this, (_30 * 20.0f), 1);
+    MR::setAnimFrameAndStop(this, _30 * 20.0f, 1);
 }
 
 void ChipCounter::setCount(s32 count) {

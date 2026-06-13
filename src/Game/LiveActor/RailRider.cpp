@@ -1,5 +1,8 @@
 #include "Game/LiveActor/RailRider.hpp"
-#include "revolution/types.h"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 
 RailRider::RailRider(const JMapInfoIter& rIter) {
     mBezierRail = nullptr;

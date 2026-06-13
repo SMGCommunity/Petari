@@ -10,6 +10,7 @@
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MutexHolder.hpp"
+#include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"

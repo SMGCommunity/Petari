@@ -6,7 +6,6 @@
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LightUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"

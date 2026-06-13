@@ -12,7 +12,6 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/GamePadUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"

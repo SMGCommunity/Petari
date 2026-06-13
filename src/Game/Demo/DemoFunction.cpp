@@ -19,12 +19,14 @@ namespace {
     DemoTimeKeeper* getCurrentTimeKeeper() NO_INLINE {
         return DemoFunction::getDemoDirector()->mExecutor->mTimeKeeper;
     }
+
     DemoSubPartKeeper* getCurrentSubPartKeeper() NO_INLINE {
         return DemoFunction::getDemoDirector()->mExecutor->mSubPartKeeper;
     }
+
     bool isCurrentMainPart(const char* pPartName) NO_INLINE {
-        DemoTimeKeeper* timekeeper = getCurrentTimeKeeper();
-        return MR::isEqualString(pPartName, timekeeper->mSubPartInfos[0].mName);
+        DemoTimeKeeper* timeKeeper = getCurrentTimeKeeper();
+        return MR::isEqualString(pPartName, timeKeeper->mSubPartInfos[0].mName);
     }
 };  // namespace
 
@@ -94,13 +96,13 @@ namespace DemoFunction {
         if (group == nullptr) {
             return nullptr;
         }
-        return reinterpret_cast< DemoExecutor* >(group);
+        return static_cast< DemoExecutor* >(group);
     }
 
     DemoExecutor* findDemoExecutor(const LiveActor* pActor) {
         DemoExecutor* executor;
         for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
-            executor = reinterpret_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
+            executor = static_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor)) {
                 return executor;
             }
@@ -111,7 +113,7 @@ namespace DemoFunction {
     DemoExecutor* findDemoExecutorActive(const LiveActor* pActor) {
         DemoExecutor* executor;
         for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
-            executor = reinterpret_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
+            executor = static_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor) && MR::isDemoActive(executor->mName)) {
                 return executor;
             }

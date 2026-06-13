@@ -6,6 +6,14 @@
 #include "Game/Enemy/KameckBeamHolder.hpp"
 #include "Game/LiveActor/ActiveActorList.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvBossKameckStateBattle {
     NEW_NERVE(BossKameckStateBattleNrvWait, BossKameckStateBattle, Wait);

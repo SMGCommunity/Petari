@@ -33,6 +33,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/CollisionPartsFilter.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/FurMulti.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
@@ -41,13 +42,10 @@
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "Inline.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DTexture.hpp>
-#include <JSystem/JAudio2/JAUSoundAnimator.hpp>
-#include <JSystem/JUtility/JUTNameTab.hpp>
 #include <cstdio>
-#include <cstring>
-#include <new>
 
 namespace {
     f32 sAnimRateScale = 1.0f;

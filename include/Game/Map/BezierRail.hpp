@@ -1,12 +1,15 @@
 #pragma once
 
 #include "Game/Map/RailPart.hpp"
-#include "Game/Util.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
+
+class JMapInfo;
+class JMapInfoIter;
 
 class BezierRailPart {
 public:
-    inline BezierRailPart() {
+    BezierRailPart() {
     }
 
     void set(const TVec3f&, const TVec3f&, const TVec3f&, const TVec3f&);

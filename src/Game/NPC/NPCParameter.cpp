@@ -2,7 +2,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/NPCActor.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
