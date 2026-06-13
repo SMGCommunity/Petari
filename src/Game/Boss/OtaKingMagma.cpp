@@ -148,12 +148,12 @@ void OtaKingMagma::exeDamage() {
 
 void OtaKingMagma::exeDown() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_OTAKING_MAGMA_ATTACK", -1, -1);
+        MR::startSound(this, "SE_BM_OTAKING_MAGMA_DAMAGE", -1, -1);
         startBckThisAndBloomModel("Down");
     }
 
     MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND", -1, -1, -1);
-    MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
+    MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvEndWait::sInstance);
 }
 
 void OtaKingMagma::exeEndWait() {

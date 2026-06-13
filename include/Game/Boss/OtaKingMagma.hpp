@@ -27,7 +27,7 @@ public:
 
     void startBckThisAndBloomModel(const char*);
 
-    PartsModel* mBloomModel;
+    /* 0x9C */ PartsModel* mBloomModel;
     ProjmapEffectMtxSetter* _A0;
     ProjmapEffectMtxSetter* _A4;
 };

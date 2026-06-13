@@ -57,6 +57,7 @@ public:
     void appearStarPiece();
     void initLongFoot(const JMapInfoIter& rIter);
     bool tryThrowCocoNutOrFireBallIfWait(s32);
+
     void exeWaitOnSwitch();
     void exeAppearDemo();
     void exeWait();
@@ -78,6 +79,7 @@ public:
 
     bool isSensorBodyOrFace(HitSensor*);
     bool isDamageNerve();
+    bool isOneHP() const;
 
     void invalidateClippingAndStartDemo(const char* demoStr, const Nerve* pNerve1, const Nerve* pNerve2) {
         MR::invalidateClipping(this);
@@ -89,32 +91,24 @@ public:
         MR::endDemo(this, demoStr);
     }
 
-    bool isOneHP() const{
-        return _E8 + 1 >= 3;
-    }
-
-    PartsModel* _8C[2];
-    OtaKingLongFoot* _94[4];
-    OtaKingMagma* _A4;
-    TPos3f _A8;
-
-    CocoNutBall* _D8;
-    FireBall* _DC;
-    FireBubble* _E0;
-
-    FixedPosition* _E4;
-    s32 _E8;
+    /*0x8C*/ PartsModel* mFeet[2];
+    /*0x94*/ OtaKingLongFoot* mLongFeet[4];
+    /*0xA4*/ OtaKingMagma* mMagma;
+    /*0xA8*/ TPos3f mLongFootMtx;
+    /*0xD8*/ CocoNutBall* mCocoNutBallArray;
+    /*0xDC*/ FireBall* mFireBallArray;
+    /*0xE0*/ FireBubble* mFireBubbleArray;
+    /*0xE4*/ FixedPosition* mThrowPos;
+    /*0xE8*/ s32 mHits;
     s32 _EC;
-
-    f32 _f0;
-    AudAnmSoundObject* _f4;
-    TVec3f _f8;
-
-    FixedPosition* _104;
-    CocoNutBall* _108;
-    ActorCameraInfo* _10C;
-    char _110[0x20];
-    char _130[0x20];
-    bool _150;
-    AnimScaleController* _154;
+    /*0xF0*/ f32 mTurnSpeed;
+    /*0xF4*/ AudAnmSoundObject* mSoundObj;
+    /*0xF8*/ TVec3f mSoundObjPos;
+    /*0x104*/ FixedPosition* mBubbleAppearPos;
+    /*0x108*/ CocoNutBall* mDownCocoNut;
+    /*0x10C*/ ActorCameraInfo* mAnimCamera;
+    /*0x110*/ char mBckLBuffer[0x20];
+    /*0x130*/ char mBckRBuffer[0x20];
+    /*0x150*/ bool IsLv2;
+    /*0x154*/ AnimScaleController* mScaleController;
 };

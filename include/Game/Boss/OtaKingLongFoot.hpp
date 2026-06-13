@@ -3,7 +3,7 @@
 class AnimScaleController;
 
 class OtaKingLongFoot : public PartsModel {
-public: 
+public:
     OtaKingLongFoot(LiveActor*, s32, const char*);
 
     virtual void init(const JMapInfoIter& rIter);
@@ -24,6 +24,6 @@ public:
     void exeAppearDemo();
     void exeDownDemo();
 
-    s32 _9C;
-    AnimScaleController* _A0;
+    /* 0x9C */ s32 mDemoBckStep;
+    /* 0xA0 */ AnimScaleController* mScaleController;
 };

@@ -317,25 +317,18 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
     vec1.add(mPosition, vec2);
 
     if (_BE) {
-        // inline max function?
-        f32 val = vec1.y;
         f32 val2 = _C0 + _8C->mPosition.y;
-        if (val >= _C4 + _8C->mPosition.y) {
-            val = val;
-        } else {
-            val = _C4 + _8C->mPosition.y;
-        }
-        vec1.y = val;
 
-        f32 flt = 120.0f;
+        vec1.y = MR::max(vec1.y, _C4 + _8C->mPosition.y);
+
         bool v1 = false;
-        while (vec1.y < val2 - flt) {
+        while (vec1.y < val2 - 120.0f) {
             vec2.subInline(vec1, mPosition);
             vec2.scale(1.5f);
 
             if (!MR::getFirstPolyOnLineToMap(nullptr, nullptr, mPosition, vec2)) {
                 v1 = true;
-                vec1.y += flt;
+                vec1.y += 120.0f;
                 break;
             }
 
@@ -504,7 +497,7 @@ void CocoNutBall::exeFreeze() {
     camXDirScaled.scale(scaleFactor);
     mPosition.add(_A4, camXDirScaled);
 
-    if (MR::changeShowModelFlagSyncNearClipping(this, 300.0)) {
+    if (MR::changeShowModelFlagSyncNearClipping(this, 300.0f)) {
         MR::emitEffect(this, "Touch");
     } else {
         MR::deleteEffect(this, "Touch");

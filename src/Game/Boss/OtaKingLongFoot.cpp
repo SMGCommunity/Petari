@@ -29,14 +29,14 @@ namespace {
 }  // namespace
 
 OtaKingLongFoot::OtaKingLongFoot(LiveActor* pHost, s32 a1, const char* pChar)
-    : PartsModel(pHost, pChar, "OtaKingLongFoot", nullptr, MR::DrawBufferType_Enemy, false), _9C(a1), _A0(nullptr) {
+    : PartsModel(pHost, pChar, "OtaKingLongFoot", nullptr, MR::DrawBufferType_Enemy, false), mDemoBckStep(a1), mScaleController(nullptr) {
 }
 
 void OtaKingLongFoot::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::initLightCtrl(this);
     initSensor();
-    _A0 = new AnimScaleController(nullptr);
+    mScaleController = new AnimScaleController(nullptr);
     initNerve(&NrvOtaKingLongFoot::OtaKingLongFootNrvWait::sInstance);
     PartsModel::init(rIter);
 }
@@ -60,12 +60,12 @@ void OtaKingLongFoot::endDemo() {
 }
 
 void OtaKingLongFoot::control() {
-    _A0->updateNerve();
+    mScaleController->updateNerve();
 }
 
 void OtaKingLongFoot::calcAndSetBaseMtx() {
     PartsModel::calcAndSetBaseMtx();
-    MR::setBaseScale(this, _A0->_C.mult(mScale));
+    MR::setBaseScale(this, mScaleController->_C.mult(mScale));
 }
 
 void OtaKingLongFoot::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -81,7 +81,7 @@ void OtaKingLongFoot::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool OtaKingLongFoot::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
-        _A0->startHitReaction();
+        mScaleController->startHitReaction();
         return true;
     }
     return false;
@@ -126,13 +126,13 @@ void OtaKingLongFoot::exeAppearDemo() {
         MR::showModel(this);
     }
 
-    if (MR::isStep(this, _9C)) {
+    if (MR::isStep(this, mDemoBckStep)) {
         MR::setBckRate(this, 1.0f);
     }
 }
 
 void OtaKingLongFoot::exeDownDemo() {
-    if (MR::isStep(this, _9C)) {
+    if (MR::isStep(this, mDemoBckStep)) {
         MR::startBckNoInterpole(this, "Down");
     }
 }
