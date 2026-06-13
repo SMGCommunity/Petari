@@ -2171,11 +2171,11 @@ config.libs = [
     GameLib(
         "Speaker",
         [
-            Object(NonMatching, "Game/Speaker/SpkSpeakerCtrl.cpp"),
-            Object(NonMatching, "Game/Speaker/SpkSystem.cpp"),
+            Object(Matching, "Game/Speaker/SpkSpeakerCtrl.cpp"),
+            Object(Matching, "Game/Speaker/SpkSystem.cpp"),
             Object(Matching, "Game/Speaker/SpkMixingBuffer.cpp"),
             Object(Matching, "Game/Speaker/SpkWave.cpp"),
-            Object(NonMatching, "Game/Speaker/SpkTable.cpp"),
+            Object(Matching, "Game/Speaker/SpkTable.cpp"),
             Object(Matching, "Game/Speaker/SpkData.cpp"),
             Object(NonMatching, "Game/Speaker/SpkSound.cpp"),
         ],

@@ -30,14 +30,14 @@ struct SpeakerInfo {
     bool mIsPlaying;
     WENCInfo mWENCInfo;
     bool mIsUpdated;
-    bool _23;  // disabled?
+    bool mIsMuted;
     u32 mState;
     u32 mReconnectState;
     s32 mReconnectTime;
     s32 mUsingTimeOut;
-    u32 _34;
-    u32 _38;
-    u8 _3C;
+    s32 mRadioSensitivityTimer;
+    s32 mExtensionTimer;
+    u8 mVolume;
     u8 pad[3];
 };
 #pragma pack()

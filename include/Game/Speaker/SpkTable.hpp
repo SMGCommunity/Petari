@@ -1,7 +1,6 @@
 #pragma once
 
-#include "JSystem/JAudio2/JAISound.hpp"
-#include "revolution.h"
+#include <revolution/types.h>
 
 struct SpkParameters {
     /* 0x00 */ u16 mWaveID;

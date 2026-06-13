@@ -3,7 +3,6 @@
 #include "Game/Speaker/SpkTable.hpp"
 #include "Game/Speaker/SpkWave.hpp"
 #include <JSystem/JKernel/JKRArchive.hpp>
-#include <revolution.h>
 
 class SpkData {
 public:

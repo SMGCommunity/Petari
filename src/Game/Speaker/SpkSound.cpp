@@ -1,7 +1,8 @@
 #include "Game/Speaker/SpkSound.hpp"
 #include "Game/Speaker/SpkSpeakerCtrl.hpp"
 #include "Game/Speaker/SpkSystem.hpp"
-#include "JSystem/JAudio2/JASHeapCtrl.hpp"
+#include <JSystem/JAudio2/JASCriticalSection.hpp>
+#include <JSystem/JAudio2/JASHeapCtrl.hpp>
 
 void SpkSoundHandle::releaseSound() {
     if (!mSound) {
@@ -34,7 +35,7 @@ void SpkSoundVolume::setRelease(s32 release) {
 }
 
 void SpkSoundVolume::setFadeOut(s32 fadeOut) {
-    BOOL status = OSDisableInterrupts();
+    JASCriticalSection crit;
 
     if (fadeOut > 0) {
         mFadeOutRate = 1.0f / fadeOut;
@@ -43,7 +44,6 @@ void SpkSoundVolume::setFadeOut(s32 fadeOut) {
     }
 
     mFadeOutVolume = 1.0f;
-    OSRestoreInterrupts(status);
 }
 
 f32 SpkSoundVolume::calc(bool& kill) {
@@ -233,9 +233,6 @@ SpkSoundHolder::SpkSoundHolder() : JASGlobalInstance(true) {
 }
 
 bool SpkSoundHolder::startSound(s32 padChannel, s32 waveID, SpkSoundHandle* pHandle) {
-    // FIXME: regswap pHandle <-> sound
-    // https://decomp.me/scratch/qB80e
-
     if (!SpkSpeakerCtrl::isEnable(padChannel)) {
         return false;
     }
@@ -269,16 +266,14 @@ bool SpkSoundHolder::startSound(s32 padChannel, s32 waveID, SpkSoundHandle* pHan
         return false;
     }
 
-    BOOL status = OSDisableInterrupts();
+    JASCriticalSection crit;
     mSoundList[padChannel].append(sound);
-    OSRestoreInterrupts(status);
     return true;
 }
 
 bool SpkSoundHolder::update(s32 padChannel) {
-    BOOL status = OSDisableInterrupts();
+    JASCriticalSection crit;
     bool ret = updateEachSound(padChannel);
-    OSRestoreInterrupts(status);
     return ret;
 }
 
@@ -309,10 +304,8 @@ void SpkSoundHolder::freeDeadSound(s32 padChannel) {
 }
 
 void SpkSoundHolder::framework() {
-    // FIXME: regswap
-    // https://decomp.me/scratch/K75Rx
+    JASCriticalSection crit;
 
-    BOOL status = OSDisableInterrupts();
     for (int i = 0; i < 4; i++) {
         for (JSULink< SpkSound >* sound = mSoundList[i].getFirst(); sound != mSoundList[i].getEnd(); sound = sound->getNext()) {
             if (sound->getObject() == nullptr) {
@@ -337,5 +330,4 @@ void SpkSoundHolder::framework() {
         }
         freeDeadSound(i);
     }
-    OSRestoreInterrupts(status);
 }

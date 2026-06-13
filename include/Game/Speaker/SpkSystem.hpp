@@ -3,8 +3,8 @@
 #include "Game/Speaker/SpkData.hpp"
 #include "Game/Speaker/SpkMixingBuffer.hpp"
 #include "Game/Speaker/SpkSound.hpp"
-#include "JSystem/JAudio2/JASGlobal.hpp"
-#include "JSystem/JAudio2/JASHeapCtrl.hpp"
+#include <JSystem/JAudio2/JASGlobal.hpp>
+#include <JSystem/JAudio2/JASHeapCtrl.hpp>
 
 class SpkSystem : JASGlobalInstance< SpkSystem > {
 public:
