@@ -8,6 +8,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sSensorRadius = 500.0f;
+    static const s32 sRiddleSeStep = 90;
+};  // namespace
+
 namespace NrvWaterfallCaveCover {
     NEW_NERVE(HostTypeWait, WaterfallCaveCover, Wait);
     NEW_NERVE(HostTypeBreak, WaterfallCaveCover, Break);
@@ -23,7 +28,7 @@ void WaterfallCaveCover::init(const JMapInfoIter& rIter) {
     rInitInfo.setupGroupClipping(16);
     rInitInfo.setupNerve(&NrvWaterfallCaveCover::HostTypeWait::sInstance);
     rInitInfo.setupHitSensor();
-    rInitInfo.setupHitSensorParam(8, 500.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    rInitInfo.setupHitSensorParam(8, ::sSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
     rInitInfo.setupEffect(nullptr);
     initialize(rIter, rInitInfo);
 }
@@ -44,11 +49,11 @@ void WaterfallCaveCover::exeBreak() {
         MR::invalidateHitSensor(this, "body");
         MR::invalidateCollisionParts(this);
         MapObjActorUtil::startBreak(this);
-        MR::startRumbleWithShakeCameraStrong(this, "中", "弱", 1000.0, 3.4028235e38);
+        MR::startRumbleWithShakeCameraStrong(this, "中", "弱", 1000.0f, FLOAT_MAX);
         MR::startSound(this, "SE_OJ_WATERFALL_COVER_BREAK");
     }
 
-    if (MR::isStep(this, 90)) {
+    if (MR::isStep(this, ::sRiddleSeStep)) {
         MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     }
 
