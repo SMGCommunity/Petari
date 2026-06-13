@@ -25,6 +25,16 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sKoopaFallVoiceStep = 20;
+    static const s32 sLastImpactSeStep = 70;
+    static const s32 sFallSeStartStep = 471;
+    static const s32 sFallAmbientSeStartStep = 544;
+    static const s32 sFallBurnStartStep = 930;
+    static const s32 sFallEndStep = 1049;
+    static const s32 sDownCameraCoverStep = 640;
+};  // namespace
+
 namespace NrvKoopaSequencerVs3 {
     NEW_NERVE(KoopaSequencerVs3NrvWaitPlayer, KoopaSequencerVs3, WaitPlayer);
     NEW_NERVE(KoopaSequencerVs3NrvBattleStairs, KoopaSequencerVs3, BattleStairs);
@@ -173,7 +183,7 @@ void KoopaSequencerVs3::exeFallToPlanetLv2() {
         MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1");
     }
 
-    if (MR::isStep(this, 20)) {
+    if (MR::isStep(this, ::sKoopaFallVoiceStep)) {
         MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL");
     }
 
@@ -196,7 +206,7 @@ void KoopaSequencerVs3::exeFallToPlanetLv3() {
         MR::startAtmosphereSE("SE_AT_KOOPA_FALLDOWN_LV1");
     }
 
-    if (MR::isStep(this, 20)) {
+    if (MR::isStep(this, ::sKoopaFallVoiceStep)) {
         MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL");
     }
 
@@ -247,31 +257,31 @@ void KoopaSequencerVs3::exeDemoDown() {
         MR::startBrk(KoopaFunction::getKoopaPlanetLv3(mKoopa), "Death");
     }
 
-    if (MR::isStep(this, 70)) {
+    if (MR::isStep(this, ::sLastImpactSeStep)) {
         MR::startSound(mKoopa, "SE_BM_KOOPA_DOWN_LAST_IMPACT");
     }
 
-    if (MR::isStep(this, 471)) {
+    if (MR::isStep(this, ::sFallSeStartStep)) {
         MR::startSound(mKoopa, "SE_BM_KOOPA_DOWN_TO_SUN_TRG");
     }
 
-    if (MR::isGreaterStep(this, 471) && MR::isLessStep(this, 1049)) {
+    if (MR::isGreaterStep(this, ::sFallSeStartStep) && MR::isLessStep(this, ::sFallEndStep)) {
         MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_DOWN_TO_SUN");
 
-        if (MR::isGreaterStep(this, 544)) {
+        if (MR::isGreaterStep(this, ::sFallAmbientSeStartStep)) {
             MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_DOWN_LAVA");
         }
     }
 
-    if (MR::isGreaterStep(this, 930) && MR::isLessStep(this, 1049)) {
+    if (MR::isGreaterStep(this, ::sFallBurnStartStep) && MR::isLessStep(this, ::sFallEndStep)) {
         MR::startLevelSound(mKoopa, "SE_BM_LV_KOOPA_FALL_BURN");
     }
 
-    if (MR::isStep(this, 1049)) {
+    if (MR::isStep(this, ::sFallEndStep)) {
         MR::startSound(mKoopa, "SE_BM_KOOPA_DOWN_INTO_SUN");
     }
 
-    if (MR::isStep(this, 640)) {
+    if (MR::isStep(this, ::sDownCameraCoverStep)) {
         MR::overlayWithPreviousScreen(3);
     }
 
@@ -307,7 +317,7 @@ void KoopaSequencerVs3::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     } else if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv2::sInstance)) {
         mBattleLv2->attackSensor(pSender, pReceiver);
     } else if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv3::sInstance) ||
-        isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleFinal::sInstance)) {
+               isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleFinal::sInstance)) {
         mBattleMain->attackSensor(pSender, pReceiver);
     }
 }
@@ -345,9 +355,11 @@ bool KoopaSequencerVs3::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
     if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv1::sInstance)) {
         return false;
     }
+
     if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv2::sInstance)) {
         return false;
     }
+
     if (isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleVs3Lv3::sInstance) ||
         isNerve(&NrvKoopaSequencerVs3::KoopaSequencerVs3NrvBattleFinal::sInstance)) {
         return mBattleMain->receiveOtherMsg(msg, pSender, pReceiver);

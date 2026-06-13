@@ -11,14 +11,23 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    MR::ActorMoveParam sRunParam = {3.0f, 1.0f, 0.9f, 3.0f};
-    MR::ActorMoveParam sParamAttackSpin1st = {2.0f, 1.0f, 0.9f, 0.0f};
-    MR::ActorMoveParam sParamAttackSpin2nd = {3.0f, 1.0f, 0.9f, 0.5f};
-    MR::ActorMoveParam sParamAttackSpinBrake = {1.0f, 1.0f, 0.9f, 0.0f};
-    MR::ActorMoveParam sEndParam = {0.0f, 1.0f, 0.9f, 0.0f};
-    MR::ActorMoveParam sEvenParam = {0.0f, 1.0f, 0.95f, 0.5f};
-
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
+    static MR::ActorMoveParam sRunParam = {3.0f, 1.0f, 0.9f, 3.0f};
+    static MR::ActorMoveParam sParamAttackSpin1st = {2.0f, 1.0f, 0.9f, 0.0f};
+    static MR::ActorMoveParam sParamAttackSpin2nd = {3.0f, 1.0f, 0.9f, 0.5f};
+    static MR::ActorMoveParam sParamAttackSpinBrake = {1.0f, 1.0f, 0.9f, 0.0f};
+    static MR::ActorMoveParam sEndParam = {0.0f, 1.0f, 0.9f, 0.0f};
+    static MR::ActorMoveParam sEvenParam = {0.0f, 1.0f, 0.95f, 0.5f};
+    static const s32 sWaitToStartStep = 30;
+    static const f32 sDistanceToJump = 1000.0f;
+    static const s32 sRunStepMax = 120;
+    static const f32 sRunWallJumpSpeed = 10.0f;
+    static const f32 sStartTurnSpeed = 5.0f;
+    static const f32 sWallJumpSpeed = 15.0f;
+    static const s32 sSpinBrakeStep = 60;
+    static const s32 sSpinAttackStepMin = 5;
+    static const s32 sSpinAttackStepMax = 65;
+    static const s32 sEvenStopSceneStep = 15;
+    static const f32 sEvenSpeed = 30.0f;
 };  // namespace
 
 namespace NrvKoopaStateAttackSpin {
@@ -31,7 +40,8 @@ namespace NrvKoopaStateAttackSpin {
 };  // namespace NrvKoopaStateAttackSpin
 
 KoopaStateAttackSpin::KoopaStateAttackSpin(Koopa* pKoopa)
-    : ActorStateBase< Koopa >("State[スピン攻撃]", pKoopa), mMaxAttacks(1), mAttacks(), mMoveParam(&sParamAttackSpin1st), mSpinDelay(30) {
+    : ActorStateBase< Koopa >("State[スピン攻撃]", pKoopa), mMaxAttacks(1), mAttacks(), mMoveParam(&::sParamAttackSpin1st),
+      mSpinDelay(::sWaitToStartStep) {
 }
 
 void KoopaStateAttackSpin::init() {
@@ -57,7 +67,7 @@ void KoopaStateAttackSpin::appear() {
         mMaxAttacks = 3;
     }
 
-    mMoveParam = &sParamAttackSpin1st;
+    mMoveParam = &::sParamAttackSpin1st;
 
     setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvWaitToStart::sInstance);
 }
@@ -73,8 +83,8 @@ bool KoopaStateAttackSpin::attackSensor(HitSensor* pSender, HitSensor* pReceiver
         return true;
     }
 
-    if (isNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance) && MR::isGreaterStep(this, 5) && MR::isLessStep(this, 65) &&
-        KoopaFunction::tryKoopaAttackPlayerMaximum(pSender, pReceiver)) {
+    if (isNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance) && MR::isGreaterStep(this, ::sSpinAttackStepMin) &&
+        MR::isLessStep(this, ::sSpinAttackStepMax) && KoopaFunction::tryKoopaAttackPlayerMaximum(pSender, pReceiver)) {
         return true;
     }
 
@@ -97,7 +107,7 @@ bool KoopaStateAttackSpin::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRe
     MR::startSound(mHost, "SE_BM_KOOPA_SPIN_EVEN");
     MR::startSound(mHost, "SE_BV_KOOPA_GUARD");
 
-    MR::stopSceneForDefaultHit(15);
+    MR::stopSceneForDefaultHit(::sEvenStopSceneStep);
 
     mAttacks++;
     if (mMaxAttacks >= 2 && mAttacks >= mMaxAttacks) {
@@ -125,15 +135,15 @@ void KoopaStateAttackSpin::exeRun() {
         MR::startAction(mHost, "Run");
     }
 
-    if (KoopaFunction::moveAndTurnKoopaToPlayer(mHost, sRunParam)) {
+    if (KoopaFunction::moveAndTurnKoopaToPlayer(mHost, ::sRunParam)) {
         return;
     }
 
     if (MR::isBindedWall(mHost)) {
-        MR::addVelocityJump(mHost, 10.0f);
+        MR::addVelocityJump(mHost, ::sRunWallJumpSpeed);
     }
 
-    if (MR::isNearPlayer(mHost, 1000.0f) || MR::isGreaterStep(this, 120)) {
+    if (MR::isNearPlayer(mHost, ::sDistanceToJump) || MR::isGreaterStep(this, ::sRunStepMax)) {
         if (MR::calcGravitySpeed(mHost) >= 0.0f) {
             setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvStart::sInstance);
         }
@@ -146,7 +156,7 @@ void KoopaStateAttackSpin::exeStart() {
         MR::zeroVelocity(mHost);
     }
 
-    MR::turnDirectionToPlayerDegree(mHost, &mHost->mFront, 5.0f);
+    MR::turnDirectionToPlayerDegree(mHost, &mHost->mFront, ::sStartTurnSpeed);
 
     if (MR::isActionEnd(mHost)) {
         setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance);
@@ -159,21 +169,21 @@ void KoopaStateAttackSpin::exeSpin() {
         MR::zeroVelocity(mHost);
     }
 
-    if (MR::isLessStep(this, 60)) {
+    if (MR::isLessStep(this, ::sSpinBrakeStep)) {
         KoopaFunction::moveAndTurnKoopaToPlayer(mHost, *mMoveParam);
     } else {
-        KoopaFunction::moveAndTurnKoopaToPlayer(mHost, sParamAttackSpinBrake);
+        KoopaFunction::moveAndTurnKoopaToPlayer(mHost, ::sParamAttackSpinBrake);
     }
 
     if (MR::isBindedWall(mHost)) {
-        MR::addVelocityJump(mHost, 15.0f);
+        MR::addVelocityJump(mHost, ::sWallJumpSpeed);
     }
 
     if (MR::isActionEnd(mHost)) {
         mAttacks++;
 
         if (!MR::isPlayerDamaging() && mAttacks < mMaxAttacks) {
-            mMoveParam = &sParamAttackSpin2nd;
+            mMoveParam = &::sParamAttackSpin2nd;
             setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvStart::sInstance);
         } else {
             setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvEnd::sInstance);
@@ -186,7 +196,7 @@ void KoopaStateAttackSpin::exeEnd() {
         MR::startAction(mHost, "SpinEnd");
     }
 
-    KoopaFunction::moveAndTurnKoopaToPlayer(mHost, sEndParam);
+    KoopaFunction::moveAndTurnKoopaToPlayer(mHost, ::sEndParam);
 
     if (MR::isActionEnd(mHost)) {
         MR::zeroVelocity(mHost);
@@ -198,14 +208,14 @@ void KoopaStateAttackSpin::exeEven() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "SpinEven");
         MR::calcVecFromPlayerH(&mHost->mVelocity, mHost);
-        MR::scaleVelocity(mHost, 30.0f);
+        MR::scaleVelocity(mHost, ::sSpinBrakeStep);
     }
 
-    KoopaFunction::moveAndTurnKoopaToPlayer(mHost, sEvenParam);
+    KoopaFunction::moveAndTurnKoopaToPlayer(mHost, ::sEvenParam);
 
     if (MR::isActionEnd(mHost)) {
         if (!MR::isPlayerDamaging() && mAttacks < mMaxAttacks) {
-            mMoveParam = &sParamAttackSpin2nd;
+            mMoveParam = &::sParamAttackSpin2nd;
             setNerve(&NrvKoopaStateAttackSpin::KoopaStateAttackSpinNrvSpin::sInstance);
         } else {
             kill();

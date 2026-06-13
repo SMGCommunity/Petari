@@ -9,7 +9,7 @@ public:
     KoopaBattleStairsVs1(Koopa* pKoopa);
 
     virtual ~KoopaBattleStairsVs1();
-    virtual s32 registerStair(KoopaBattleMapStair* pBattleMapStair);
+    virtual s32 registerStair(KoopaBattleMapStair* pStair);
 
     void exeWaitDemo();
     void exeDemo();
@@ -21,8 +21,6 @@ public:
 
     bool tryAttackRequest();
     bool tryRequestedToMoveNextPos();
-
-    inline KoopaFireStairs* temp(Koopa* pKoopa, KoopaBattleMapStair* pBattleMapStair);
 
     /* 0x10 */ KoopaBattleMapStair* mFarBattleMapStair;
     /* 0x14 */ KoopaBattleMapStair* mNearBattleMapStair;
