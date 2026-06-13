@@ -1,7 +1,9 @@
 #include "Game/GameAudio/AudTamakoroBgmCtrl.hpp"
+#include "Game/AudioLib/AudSoundId.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include <JSystem/JAudio2/JAISoundChild.hpp>
+
 
 namespace {
     f32 sSpeedMin = 2.0f;
@@ -34,7 +36,7 @@ void AudTamakoroBgmCtrl::control(f32 speed, bool disabled, s32 frames) {
         JAISoundHandle* handle = bgm->getHandle();
         if (handle != nullptr && handle->isSoundAttached()) {
             JAISoundID id = handle->getSound()->getID();
-            if (id == 0x100004b || id == 0x1000063) {  // BGM_TAMAKORO / BGM_TAMAKORO_2
+            if (id == BGM_TAMAKORO || id == BGM_TAMAKORO_2) {
                 if (mSteps > ::sFirstBarSteps) {
                     if (speed < ::sSpeedMin) {
                         speed = ::sSpeedMin;
@@ -59,7 +61,7 @@ void AudTamakoroBgmCtrl::control(f32 speed, bool disabled, s32 frames) {
                         } else {
                             stateNum = ::sStateNumHigh;
                         }
-                        
+
                         t0 = speed - ::sSpeedMin;
                         t1 = sSpeedMax - ::sSpeedMin;
                         tempoRate = ::sTempoRateMin + (t0 / t1) * (::sTempoRateMax - ::sTempoRateMin);
