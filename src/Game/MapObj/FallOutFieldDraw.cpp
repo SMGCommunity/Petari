@@ -13,11 +13,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-namespace MR {
-    JUTTexture* getScreenAlphaTexture(s32);
-    void loadScreenAlphaTexture(s32, GXTexMapID);
-};  // namespace MR
-
 namespace {
     static GXTevOp sAlphaTevOperater = GXTevOp(14);
     static GXBlendMode sFillBlendMode = GXBlendMode(1);
