@@ -14,11 +14,11 @@
 #include "Game/Util/ScreenUtil.hpp"
 
 namespace {
-    static GXTevOp sAlphaTevOperater = GXTevOp(14);
-    static GXBlendMode sFillBlendMode = GXBlendMode(1);
-    static GXBlendFactor sFillSrcFactor = GXBlendFactor(4);
-    static GXBlendFactor sFillDstFactor = GXBlendFactor(5);
-    static GXLogicOp sFillLogicOp = GXLogicOp(5);
+    static GXTevOp sAlphaTevOperater = GX_TEV_COMP_A8_GT;
+    static GXBlendMode sFillBlendMode = GX_BM_BLEND;
+    static GXBlendFactor sFillSrcFactor = GX_BL_SRCALPHA;
+    static GXBlendFactor sFillDstFactor = GX_BL_INVSRCALPHA;
+    static GXLogicOp sFillLogicOp = GX_LO_NOOP;
     // static const s32 sBlurCount = _;
     // static const f32 sBlurRadius = _;
     // static const f32 sBlurIntensity = _;
@@ -35,17 +35,17 @@ FallOutFieldDraw::FallOutFieldDraw(const char* pName) : NameObj(pName), _C() {
 }
 
 void FallOutFieldDraw::setUpFillScreen() const {
-    GXSetTevColorIn(GX_TEVSTAGE0, GXTevColorArg(2), GXTevColorArg(15), GXTevColorArg(15), GXTevColorArg(15));
-    GXSetTevColorOp(GX_TEVSTAGE0, GXTevOp(0), GXTevBias(0), GXTevScale(0), GX_TRUE, GXTevRegID(0));
-    GXSetTevKColor(GXTevKColorID(0), Color8(0, 0, 0, 1));
-    GXSetTevKAlphaSel(GX_TEVSTAGE0, GXTevKAlphaSel(28));
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevKColor(GX_KCOLOR0, Color8(0, 0, 0, 1));
+    GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K0_A);
 
-    GXTevAlphaArg alphaA = _C ? GXTevAlphaArg(4) : GXTevAlphaArg(6);
-    GXTevAlphaArg alphaB = _C ? GXTevAlphaArg(6) : GXTevAlphaArg(4);
+    GXTevAlphaArg alphaA = _C ? GX_CA_TEXA : GX_CA_KONST;
+    GXTevAlphaArg alphaB = _C ? GX_CA_KONST : GX_CA_TEXA;
 
-    GXSetTevAlphaIn(GX_TEVSTAGE0, alphaA, alphaB, GXTevAlphaArg(1), GXTevAlphaArg(7));
-    GXSetTevAlphaOp(GX_TEVSTAGE0, ::sAlphaTevOperater, GXTevBias(0), GXTevScale(0), GX_TRUE, GXTevRegID(0));
-    GXSetAlphaCompare(GXCompare(4), 0, GXAlphaOp(0), GXCompare(7), 0);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, alphaA, alphaB, GX_CA_A0, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, ::sAlphaTevOperater, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_AND, GX_ALWAYS, 0);
     GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
     GXSetZCompLoc(GX_FALSE);
     GXSetColorUpdate(GX_TRUE);
@@ -55,11 +55,11 @@ void FallOutFieldDraw::setUpFillScreen() const {
 }
 
 void FallOutFieldDraw::setUpEdgeAndClearAlpha() const {
-    GXSetTevColor(GXTevRegID(2), ::sEdgeColor);
-    GXSetTevColorIn(GX_TEVSTAGE0, GXTevColorArg(4), GXTevColorArg(15), GXTevColorArg(15), GXTevColorArg(15));
-    GXSetTevColorOp(GX_TEVSTAGE0, GXTevOp(0), GXTevBias(0), GXTevScale(0), GX_TRUE, GXTevRegID(0));
-    GXSetTevAlphaIn(GX_TEVSTAGE0, GXTevAlphaArg(7), GXTevAlphaArg(2), GXTevAlphaArg(4), GXTevAlphaArg(7));
-    GXSetTevAlphaOp(GX_TEVSTAGE0, GXTevOp(0), GXTevBias(0), GXTevScale(0), GX_TRUE, GXTevRegID(0));
+    GXSetTevColor(GX_TEVREG1, ::sEdgeColor);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C1, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_A1, GX_CA_TEXA, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetColorUpdate(GX_TRUE);
     GXSetAlphaUpdate(GX_TRUE);
     GXSetDstAlpha(GX_TRUE, 0);
@@ -105,45 +105,45 @@ void FallOutFieldDraw::draw() const {
     JUTTexture* screenAlphaTexture3 = MR::getScreenAlphaTexture(3);
     JUTTexture* screenAlphaTexture4 = MR::getScreenAlphaTexture(4);
 
-    ImageEffectLocalUtil::capture(screenAlphaTexture2, 0, 1, GXTexFmt(39), true, 0);
+    ImageEffectLocalUtil::capture(screenAlphaTexture2, 0, 1, GX_CTF_A8, true, 0);
 
-    GXSetTevKColor(GXTevKColorID(0), Color8(0, 0, 0, 1));
-    GXSetTevKAlphaSel(GX_TEVSTAGE0, GXTevKAlphaSel(28));
-    GXSetTevKColorSel(GX_TEVSTAGE0, GXTevKColorSel(28));
-    GXSetTevColor(GXTevRegID(1), Color8(255, 255, 255, 255));
+    GXSetTevKColor(GX_KCOLOR0, Color8(0, 0, 0, 1));
+    GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K0_A);
+    GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0_A);
+    GXSetTevColor(GX_TEVREG0, Color8(255, 255, 255, 255));
 
-    GXTevColorArg colorA = _C ? GXTevColorArg(9) : GXTevColorArg(14);
-    GXTevColorArg colorB = _C ? GXTevColorArg(14) : GXTevColorArg(9);
+    GXTevColorArg colorA = _C ? GX_CC_TEXA : GX_CC_KONST;
+    GXTevColorArg colorB = _C ? GX_CC_KONST : GX_CC_TEXA;
 
-    GXSetTevColorIn(GX_TEVSTAGE0, colorA, colorB, GXTevColorArg(15), GXTevColorArg(15));
-    GXSetTevColorOp(GX_TEVSTAGE0, GXTevOp(14), GXTevBias(0), GXTevScale(0), GX_TRUE, GXTevRegID(0));
+    GXSetTevColorIn(GX_TEVSTAGE0, colorA, colorB, GX_CC_ZERO, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_COMP_RGB8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 
-    GXTevAlphaArg alphaA = _C ? GXTevAlphaArg(4) : GXTevAlphaArg(6);
-    GXTevAlphaArg alphaB = _C ? GXTevAlphaArg(6) : GXTevAlphaArg(4);
+    GXTevAlphaArg alphaA = _C ? GX_CA_TEXA : GX_CA_KONST;
+    GXTevAlphaArg alphaB = _C ? GX_CA_KONST : GX_CA_TEXA;
 
-    GXSetTevAlphaIn(GX_TEVSTAGE0, alphaA, alphaB, GXTevAlphaArg(1), GXTevAlphaArg(7));
-    GXSetTevAlphaOp(GX_TEVSTAGE0, GXTevOp(14), GXTevBias(0), GXTevScale(0), GX_TRUE, GXTevRegID(0));
+    GXSetTevAlphaIn(GX_TEVSTAGE0, alphaA, alphaB, GX_CA_A0, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_COMP_A8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetColorUpdate(GX_FALSE);
     GXSetAlphaUpdate(GX_TRUE);
     GXSetDstAlpha(GX_FALSE, 0);
     GXSetZScaleOffset(0.0f, 0.0f);
 
     ImageEffectLocalUtil::drawTexture(screenAlphaTexture2, 2, 0, 255, ImageEffectLocalUtil::UNK_0);
-    ImageEffectLocalUtil::capture(screenAlphaTexture3, 2, 0, GXTexFmt(39), true, 0);
+    ImageEffectLocalUtil::capture(screenAlphaTexture3, 2, 0, GX_CTF_A8, true, 0);
 
-    GXSetTevColorIn(GX_TEVSTAGE0, GXTevColorArg(9), GXTevColorArg(15), GXTevColorArg(15), GXTevColorArg(15));
-    GXSetTevColorOp(GX_TEVSTAGE0, GXTevOp(0), GXTevBias(0), GXTevScale(0), GX_TRUE, GXTevRegID(0));
-    GXSetTevAlphaIn(GX_TEVSTAGE0, GXTevAlphaArg(4), GXTevAlphaArg(7), GXTevAlphaArg(7), GXTevAlphaArg(7));
-    GXSetTevAlphaOp(GX_TEVSTAGE0, GXTevOp(0), GXTevBias(0), GXTevScale(0), GX_TRUE, GXTevRegID(0));
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXA, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_TEXA, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 
     ImageEffectLocalUtil::blurTexture(screenAlphaTexture3, 4, 4, 5, 0.004f, 1.0f);
-    ImageEffectLocalUtil::capture(screenAlphaTexture4, 4, 4, GXTexFmt(39), false, 0);
+    ImageEffectLocalUtil::capture(screenAlphaTexture4, 4, 4, GX_CTF_A8, false, 0);
     setUpEdgeAndClearAlpha();
     ImageEffectLocalUtil::drawTexture(screenAlphaTexture4, 1, 0, 255, ImageEffectLocalUtil::UNK_2);
-    MR::loadScreenAlphaTexture(2, GXTexMapID(0));
+    MR::loadScreenAlphaTexture(2, GX_TEXMAP0);
     setUpFillScreen();
 
-    GXSetTevColor(GXTevRegID(1), ::sFillColor);
+    GXSetTevColor(GX_TEVREG0, ::sFillColor);
 
     ImageEffectLocalUtil::sendTextureVertex(1, 0);
     MR::loadViewMtx();
