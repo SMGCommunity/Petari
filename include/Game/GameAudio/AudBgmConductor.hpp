@@ -15,9 +15,15 @@ public:
     void stopPinchEventBgmSoon();
     void movementPinchEventBgm();
 
-    /* 0x0C */ u32 _C;
-    /* 0x10 */ u32 _10;
-    /* 0x14 */ s32 _14;
-    /* 0x18 */ s32 _18;
-    /* 0x1C */ u8 _1C;
+    // TODO: clarify StateBit_1
+    enum StateBits {
+        StateBit_1 = 0b010,
+        StateBit_Delay = 0b100,
+    };
+
+    /* 0x0C */ u32 mStateBits;
+    /* 0x10 */ s32 mState;
+    /* 0x14 */ s32 mStartDelay;
+    /* 0x18 */ s32 mFadeInDelay;
+    /* 0x1C */ bool mStopImmediately;
 };
