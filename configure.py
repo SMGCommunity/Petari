@@ -1226,7 +1226,7 @@ config.libs = [
             Object(Matching, "Game/GameAudio/AudTalkSoundData.cpp", cflags=[*cflags_game, "-sym on"]),
             Object(Matching, "Game/GameAudio/AudEffectDirector.cpp"),
             Object(NonMatching, "Game/GameAudio/AudBgmConductor.cpp"),
-            Object(NonMatching, "Game/GameAudio/AudStageBgmTable.cpp"),
+            Object(Matching, "Game/GameAudio/AudStageBgmTable.cpp"),
             Object(Matching, "Game/GameAudio/AudTamakoroBgmCtrl.cpp"),
         ],
     ),
