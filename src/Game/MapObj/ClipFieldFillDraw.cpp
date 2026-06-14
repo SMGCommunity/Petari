@@ -9,10 +9,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-namespace MR {
-    void loadScreenAlphaTexture(s32, GXTexMapID);
-};  // namespace MR
-
 ClipFieldFillDraw::ClipFieldFillDraw(const char* pName) : NameObj(pName), mFillBlendMode(GX_BM_BLEND), mFillSrcFactor(GX_BL_SRCALPHA), mFillDstFactor(GX_BL_ONE), mFillLogicOp(GX_LO_NOOP), _1C(255, 230, 80, 200), _20(255, 255, 255, 255), _24(), _25() {
     MR::connectToScene(this, -1, -1, -1, MR::DrawType_ClipFieldFillDraw);
     MR::createScreenAlphaSceneObj(1, 1.0f);
