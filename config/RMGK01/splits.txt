@@ -3254,6 +3254,7 @@ Game/GameAudio/AudCameraWatcher.cpp:
 Game/GameAudio/AudStageBgmWrap.cpp:
 	.text       start:0x801550B8 end:0x80155314
 	.rodata     start:0x805325C8 end:0x80532940
+	.data       start:0x80586970 end:0x80586CF8
 
 Game/GameAudio/AudSeKeeper.cpp:
 	.text       start:0x80155314 end:0x801557B4

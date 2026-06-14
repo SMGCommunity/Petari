@@ -1221,7 +1221,7 @@ config.libs = [
         "GameAudio",
         [
             Object(Matching, "Game/GameAudio/AudCameraWatcher.cpp"),
-            Object(NonMatching, "Game/GameAudio/AudStageBgmWrap.cpp"),
+            Object(Matching, "Game/GameAudio/AudStageBgmWrap.cpp"),
             Object(NonMatching, "Game/GameAudio/AudSeKeeper.cpp"),
             Object(Matching, "Game/GameAudio/AudTalkSoundData.cpp", cflags=[*cflags_game, "-sym on"]),
             Object(Matching, "Game/GameAudio/AudEffectDirector.cpp"),
