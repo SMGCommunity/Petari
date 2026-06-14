@@ -710,7 +710,7 @@ config.libs = [
             Object(NonMatching, "Game/AudioLib/AudSoundObject_Gohara.cpp"),
             Object(NonMatching, "Game/AudioLib/AudAnmSoundObject.cpp"),
             Object(NonMatching, "Game/AudioLib/AudBgm.cpp"),
-            Object(NonMatching, "Game/AudioLib/AudBgmKeeper.cpp"),
+            Object(Matching, "Game/AudioLib/AudBgmKeeper.cpp"),
             Object(NonMatching, "Game/AudioLib/AudBgmMgr.cpp"),
             Object(NonMatching, "Game/AudioLib/AudBgmRhythmStrategy.cpp"),
             Object(NonMatching, "Game/AudioLib/AudBgmSetting.cpp"),
