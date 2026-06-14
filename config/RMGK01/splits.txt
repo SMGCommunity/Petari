@@ -8358,6 +8358,7 @@ Game/Screen/SceneWipeHolder.cpp:
 
 Game/Screen/ScreenAlphaCapture.cpp:
 	.text       start:0x803805BC end:0x8038093C
+	.rodata     start:0x8053B300 end:0x8053B308
 	.data       start:0x805D92D8 end:0x805D9300
 
 Game/Screen/ScreenBlurEffect.cpp:
@@ -8367,6 +8368,7 @@ Game/Screen/ScreenBlurEffect.cpp:
 
 Game/Screen/ScreenPreserver.cpp:
 	.text       start:0x80381104 end:0x80381304
+	.rodata     start:0x8053B308 end:0x8053B310
 	.data       start:0x805D9338 end:0x805D9368
 	.sdata      start:0x806B2498 end:0x806B24A0
 	.sdata2     start:0x806C1248 end:0x806C1250
