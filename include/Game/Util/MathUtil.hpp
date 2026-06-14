@@ -188,8 +188,7 @@ namespace MR {
     }
 
     inline f32 toRadian(f32 angle) {
-        f32 cnv = PI_180;
-        return angle * cnv;
+        return angle * PI_180;
     }
 
     /// @brief Computes the distance between two points.

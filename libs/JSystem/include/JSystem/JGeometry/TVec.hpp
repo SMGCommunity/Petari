@@ -538,6 +538,12 @@ namespace JGeometry {
             z = z_;
         }
 
+        void set(const Vec& rVec) {
+            x = rVec.x;
+            y = rVec.y;
+            z = rVec.z;
+        }
+
         inline void set(f32 val) {
             x = val;
             y = val;
