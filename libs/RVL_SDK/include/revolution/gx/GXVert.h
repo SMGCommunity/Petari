@@ -50,10 +50,17 @@ __GXCDEF(GXCmd, 1, u8)
 __GXCDEF(GXCmd, 1, u16)
 __GXCDEF(GXCmd, 1, u32)
 
-__GXCDEF(GXPosition, 2, f32)
-
 __GXCDEF(GXPosition, 3, f32)
+__GXCDEF(GXPosition, 3, u8)
+__GXCDEF(GXPosition, 3, s8)
+__GXCDEF(GXPosition, 3, u16)
 __GXCDEF(GXPosition, 3, s16)
+
+__GXCDEF(GXPosition, 2, f32)
+__GXCDEF(GXPosition, 2, u8)
+__GXCDEF(GXPosition, 2, s8)
+__GXCDEF(GXPosition, 2, u16)
+__GXCDEF(GXPosition, 2, s16)
 
 __GXCDEF(GXNormal, 3, f32)
 

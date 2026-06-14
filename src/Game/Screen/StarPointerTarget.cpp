@@ -1,5 +1,4 @@
 #include "Game/Screen/StarPointerTarget.hpp"
-#include "Game/Camera/CameraContext.hpp"
 #include "Game/Screen/LayoutCoreUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
