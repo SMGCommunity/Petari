@@ -730,7 +730,7 @@ config.libs = [
             Object(Matching, "Game/AudioLib/AudTrackController.cpp"),
             Object(Matching, "Game/AudioLib/AudUtil.cpp"),
             Object(NonMatching, "Game/AudioLib/OverwriteJAudio.cpp"),
-            Object(NonMatching, "Game/AudioLib/CSSoundNameConverter.cpp"),
+            Object(Matching, "Game/AudioLib/CSSoundNameConverter.cpp"),
         ],
     ),
     GameLib(
