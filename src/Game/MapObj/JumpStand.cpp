@@ -2,6 +2,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace NrvJumpStand {
     NEW_NERVE(JumpStandNrvWait, JumpStand, Wait);
@@ -212,7 +213,68 @@ void JumpStand::updateBindActorMtx() {
     MR::setBaseTRMtx(mBindedActor, v6);
 }
 
-// JumpStand::endBindAndShootUp
+// https://decomp.me/scratch/GI33x
+void JumpStand::endBindAndShootUp(f32 v1, JumpType type) {
+    TVec3f v28;
+
+    if (MR::isPlayerInRush()) {
+        if (type == UNK_2) {
+            MR::calcUpVec(&v28, this);
+        } else {
+            JMathInlineVEC::PSVECNegate(&mGravity, &v28);
+        }
+
+        v28.x *= v1;
+        v28.y *= v1;
+        v28.z *= v1;
+
+        f32 v9 = MR::getSubPadStickY(0) * MR::getSubPadStickY(0);
+        f32 v11 = MR::getSubPadStickX(0) * MR::getSubPadStickX(0);
+        f32 v12 = v11 + v9;
+
+        f32 v13;
+        f32 v14;
+
+        if (v12 > 0.0f) {
+            v13 = __frsqrte(v12);
+            v14 = ((-(((v13 * v12) * v13) - 3.0f) * (v13 * v12)) * 0.5f);
+        } else {
+            v14 = v11 + v9;
+        }
+
+        TVec3f v27;
+
+        if (v14 > 0.1f) {
+            MR::normalize(v28, &v27);
+            TVec3f v26;
+            MR::calcPlayerWorldPadDir(&v26, MR::getSubPadStickX(0), MR::getSubPadStickY(0));
+            TVec3f v25;
+            v25.scale(3.0f * v14, v26);
+            JMAVECScaleAdd(&v27, &v25, &v25, -v27.dot(v25));
+            JMathInlineVEC::PSVECAdd(&v28, &v25, &v28);
+        }
+
+        if (type) {
+            if (type == UNK_1) {
+                MR::startBckPlayer("TrampolineJumpMiddle", (const char*)0);
+            } else if (type == UNK_2) {
+                MR::startBckPlayer("TrampolineJumpHigh", (const char*)0);
+            }
+        } else {
+            MR::startBckPlayer("TrampolineJumpLow", (const char*)0);
+        }
+
+        MR::endBindAndPlayerJump(this, v27, 0);
+
+        if (type != UNK_2) {
+            MR::becomePlayerNormalJumpStatus();
+        }
+
+        MR::invalidateHitSensor(this, "binder");
+    }
+
+    mBindedActor = nullptr;
+}
 
 JumpStand::~JumpStand() {
 }
