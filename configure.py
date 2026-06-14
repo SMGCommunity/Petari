@@ -727,7 +727,7 @@ config.libs = [
             Object(NonMatching, "Game/AudioLib/AudSoundNameConverter.cpp"),
             Object(NonMatching, "Game/AudioLib/AudSoundObjHolder.cpp"),
             Object(Matching, "Game/AudioLib/AudSpeakerWrap.cpp", cflags=[*cflags_game, "-rostr"]),
-            Object(NonMatching, "Game/AudioLib/AudTrackController.cpp"),
+            Object(Matching, "Game/AudioLib/AudTrackController.cpp"),
             Object(Matching, "Game/AudioLib/AudUtil.cpp"),
             Object(NonMatching, "Game/AudioLib/OverwriteJAudio.cpp"),
             Object(NonMatching, "Game/AudioLib/CSSoundNameConverter.cpp"),
