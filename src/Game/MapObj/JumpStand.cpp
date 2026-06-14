@@ -169,18 +169,19 @@ bool JumpStand::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceivi
     if (!MR::isOnPlayer(getSensor("body"))) {
         return false;
     } else {
-        if (MR::isPlayerHipDropLand()) {
-            if (MR::isPlayerHipDropLand()) {
-                if (tryToStartBind(pSender)) {
-                    setNerve(&NrvJumpStand::JumpStandNrvHipDropBound::sInstance);
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        } else {
-            if (tryToStartBind(pSender)) {
+        if (!MR::isPlayerHipDropLand()) {
+            if (!tryToStartBind(pSender)) {
+                return false;
+            } else {
                 setNerve(&NrvJumpStand::JumpStandNrvTrampleBound::sInstance);
+                return true;
+            }
+
+        } else if (MR::isPlayerHipDropLand()) {
+            if (!tryToStartBind(pSender)) {
+                return false;
+            } else {
+                setNerve(&NrvJumpStand::JumpStandNrvHipDropBound::sInstance);
                 return true;
             }
         }
