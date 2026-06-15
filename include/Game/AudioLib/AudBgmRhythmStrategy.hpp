@@ -3,6 +3,7 @@
 #include <revolution/types.h>
 
 class AudBgm;
+class JAISoundHandle;
 
 class AudBgmRhythmStrategy {
 public:
@@ -12,9 +13,9 @@ public:
     virtual bool set(AudBgm*, s32);
 
     void reject();
-    void setDominant();
+    bool setDominant();
     bool isDominant() const;
 
-    /* 0x04 */ s32 _4;
-    /* 0x08 */ AudBgm* _8;
+    /* 0x04 */ s32 mBgmIdx;
+    /* 0x08 */ AudBgm* mBgm;
 };
