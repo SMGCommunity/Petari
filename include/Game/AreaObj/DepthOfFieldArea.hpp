@@ -5,17 +5,20 @@
 class DepthOfFieldArea : public ImageEffectArea {
 public:
     DepthOfFieldArea(int, const char*);
-    virtual ~DepthOfFieldArea();
 
     virtual void init(const JMapInfoIter&);
-    virtual const char* getManagerName() const;
 
-    virtual bool isSyncWithPlayer() const;
+    virtual const char* getManagerName() const {
+        return "ImageEffectArea";
+    }
+
+    virtual bool isSyncWithPlayer() const {
+        return mIsPlayerSync;
+    }
 
     f32 getIntensity() const;
     s32 getBlurMaxDist() const;
     s32 getBlurMinDist() const;
 
-    bool mIsPlayerSync;  // 0x40
-    u8 _41[3];
+    /* 0x40 */ bool mIsPlayerSync;
 };
