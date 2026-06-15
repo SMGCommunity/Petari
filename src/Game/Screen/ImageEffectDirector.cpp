@@ -174,8 +174,8 @@ void ImageEffectDirector::setBloomSimpleParams(ImageEffectArea* pArea) {
         break;
     }
 
-    mStateBloomSimple->setThreshold(pSimpleBloomArea->_44);
-    mStateBloomSimple->setIntensity(pSimpleBloomArea->_45 / 255.0f);
+    mStateBloomSimple->setThreshold(pSimpleBloomArea->mThreshold);
+    mStateBloomSimple->setIntensity(pSimpleBloomArea->mIntensity / 255.0f);
 }
 
 void ImageEffectDirector::setScreenBlurParams(ImageEffectArea* pArea) {
