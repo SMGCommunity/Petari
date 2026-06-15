@@ -5,7 +5,7 @@
 #include "Game/Util.hpp"
 
 namespace {
-    const f32 cReboundVelocity[] = {0.0f, 15.0f, 5.0f};
+    const Vec cReboundVelocity = {0.0f, 15.0f, 5.0f};
 };  // namespace
 
 namespace NrvCocoNutBall {
@@ -392,7 +392,7 @@ void CocoNutBall::exeThrow() {
 
 void CocoNutBall::exeHitBackToHost() {
     if (MR::isFirstStep(this)) {
-        MR::setBckRate(this, 1.0);
+        MR::setBckRate(this, 1.0f);
         MR::deleteEffect(this, "Touch");
         MR::emitEffect(this, "CocoNutBlur");
         MR::emitEffect(this, "CocoNutLight");
@@ -459,9 +459,8 @@ void CocoNutBall::exeRebound() {
 
         MR::makeMtxUpFront(&pos, _C8, vec1);
 
-        mVelocity.x = ::cReboundVelocity[0];
-        mVelocity.y = ::cReboundVelocity[1];
-        mVelocity.z = ::cReboundVelocity[2];
+        mVelocity.set(::cReboundVelocity);
+
 
         pos.mult33(mVelocity);
     }
