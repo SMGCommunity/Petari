@@ -6,21 +6,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/FixedPosition.hpp"
-#include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/JointUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/MtxUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include <JSystem/JMath/JMath.hpp>
-#include <revolution/mtx.h>
+#include "Game/Util.hpp"
 
 namespace {
     const Vec cSensorOffset = {0.0f, 0.0f, 0.0f};
