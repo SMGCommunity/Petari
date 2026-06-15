@@ -1964,7 +1964,7 @@ config.libs = [
             Object(NonMatching, "Game/RhythmLib/AudRhythmMeSystem.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeHandles.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeObject.cpp"),
-            Object(NonMatching, "Game/RhythmLib/AudChordInfo.cpp"),
+            Object(NonMatching, "Game/RhythmLib/AudChordInfo.cpp", cflags=[*cflags_game, "-sym on"]),
             Object(NonMatching, "Game/RhythmLib/AudRhythmHolder.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudRhythmWrap.cpp"),
         ],
