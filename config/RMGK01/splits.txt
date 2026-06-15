@@ -237,11 +237,11 @@ Game/AreaObj/AstroChangeStageCube.cpp:
 
 Game/AreaObj/AudioEffectArea.cpp:
 	.text       start:0x8001F404 end:0x8001F5EC
-	.data       start:0x80565178 end:0x805651E0
+	.data       start:0x80565178 end:0x805651B8
 
 Game/AreaObj/BgmProhibitArea.cpp:
 	.text       start:0x8001F5EC end:0x8001F8BC
-	.data       start:0x805651E0 end:0x80565238
+	.data       start:0x805651B8 end:0x80565238
 	.sdata2     start:0x806B7DC0 end:0x806B7DC8
 
 Game/AreaObj/BigBubbleCameraArea.cpp:
