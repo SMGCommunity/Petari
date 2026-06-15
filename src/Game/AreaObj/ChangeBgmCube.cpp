@@ -37,12 +37,12 @@ void ChangeBgmCube::movement() {
         return;
     }
 
-    if (MR::isPlayingStageBgmID(0x2000014)) {
+    if (MR::isPlayingStageBgmID(STM_STAR_EXIST)) {
         mIsValid = false;
         return;
     }
 
-    if (MR::isPlayingStageBgmID(0x200003E)) {
+    if (MR::isPlayingStageBgmID(STM_STAR_EXIST_2)) {
         mIsValid = false;
         return;
     }
@@ -55,15 +55,15 @@ void ChangeBgmCube::movement() {
         return;
     }
 
-    if (MR::isPlayingStageBgmID(0x200000A)) {
+    if (MR::isPlayingStageBgmID(STM_GALAXY_02_CHASE)) {
         return;
     }
 
-    if (MR::isPlayingStageBgmID(0x2000039)) {
+    if (MR::isPlayingStageBgmID(STM_BOSS_MECHA_KOOPA)) {
         return;
     }
 
-    if (MR::isPlayingStageBgmID(0x2000003)) {
+    if (MR::isPlayingStageBgmID(STM_BOSS_01_A)) {
         return;
     }
 

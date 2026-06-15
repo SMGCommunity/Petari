@@ -405,11 +405,11 @@ namespace MR {
         return false;
     }
 
-    void setStageBGMState(s32 param1, u32 param2) {
+    void setStageBGMState(s32 state, u32 time) {
         AudBgm* pStageBgm = AudWrap::getStageBgm();
 
         if (pStageBgm != nullptr) {
-            pStageBgm->changeTrackMuteState(param1, param2);
+            pStageBgm->changeTrackMuteState(state, time);
         }
     }
 

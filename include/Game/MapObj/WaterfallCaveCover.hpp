@@ -4,10 +4,10 @@
 
 class WaterfallCaveCover : public MapObjActor {
 public:
-    inline WaterfallCaveCover(const char* pName) : MapObjActor(pName) {
+    WaterfallCaveCover(const char* pName) : MapObjActor(pName) {
     }
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();

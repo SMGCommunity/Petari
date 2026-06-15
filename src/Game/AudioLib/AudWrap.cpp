@@ -23,27 +23,27 @@ namespace AudWrap {
     }
 
     AudBgm* getStageBgm() {
-        return getBgmMgr()->mCurrentBgm[0];
+        return getBgmMgr()->mBgm[AudBgmMgr::BgmType_Stage];
     }
 
     AudBgm* getSubBgm() {
-        return getBgmMgr()->mCurrentBgm[1];
+        return getBgmMgr()->mBgm[AudBgmMgr::BgmType_Sub];
     }
 
-    JAISoundHandle* startStageBgm(u32 param1, bool param2) {
-        return getBgmMgr()->start(0, param1, param2);
+    JAISoundHandle* startStageBgm(u32 soundID, bool param2) {
+        return getBgmMgr()->start(AudBgmMgr::BgmType_Stage, soundID, param2);
     }
 
-    JAISoundHandle* startSubBgm(u32 param1, bool param2) {
-        return getBgmMgr()->start(1, param1, param2);
+    JAISoundHandle* startSubBgm(u32 soundID, bool param2) {
+        return getBgmMgr()->start(AudBgmMgr::BgmType_Sub, soundID, param2);
     }
 
-    void setNextIdStageBgm(u32 param1) {
-        getBgmMgr()->setNextBGM(0, param1);
+    void setNextIdStageBgm(u32 soundID) {
+        getBgmMgr()->setNextBGM(AudBgmMgr::BgmType_Stage, soundID);
     }
 
     JAISoundHandle* startLastStageBgm() {
-        return getBgmMgr()->startLastBGM(0);
+        return getBgmMgr()->startLastBGM(AudBgmMgr::BgmType_Stage);
     }
 
     AudSoundObject* getSystemSeObject() {

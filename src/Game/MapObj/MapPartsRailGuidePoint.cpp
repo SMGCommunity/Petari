@@ -1,6 +1,12 @@
 #include "Game/MapObj/MapPartsRailGuidePoint.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+
+namespace {
+    static const f32 sShadowRadius = 20.0f;
+};  //  namespace
 
 MapPartsRailGuidePoint::MapPartsRailGuidePoint(const LiveActor* pActor, const char* pName, f32 a3, bool a4) : LiveActor("レイル点") {
     _8C = a3;
@@ -21,7 +27,7 @@ void MapPartsRailGuidePoint::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjNoMovement(this);
 
     if (_90) {
-        MR::initShadowVolumeSphere(this, 20.0f);
+        MR::initShadowVolumeSphere(this, ::sShadowRadius);
         MR::setShadowDropLength(this, 0, 5000.0f);
         MR::onCalcShadowOneTime(this, 0);
     }

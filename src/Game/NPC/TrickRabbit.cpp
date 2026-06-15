@@ -846,7 +846,7 @@ bool TrickRabbit::selectEdgeStartEvent(RailGraphIter* pIter) {
 void TrickRabbit::selectEdgeRunnaway(RailGraphIter* pIter, const TVec3f& rVec, f32 f) {
     TVec3f stack_14;
     MR::normalizeOrZero(rVec, &stack_14);
-    f32 v10 = -3.4028235e38f;
+    f32 v10 = -FLOAT_MAX;
     s32 v17;
     s32 r29 = 0;
     s32 r28 = 0;

@@ -42,12 +42,12 @@ void QuestionBoxGalleryObj::init(const JMapInfoIter& rIter) {
         rInitInfo.setupFarClipping(100.0f);
     }
 
-    f32 rRotateSpeedArg = 3.4028235e38f;
-    MR::getMapPartsArgRotateSpeed(&rRotateSpeedArg, rIter);
+    f32 rotateSpeed = FLOAT_MAX;
+    MR::getMapPartsArgRotateSpeed(&rotateSpeed, rIter);
 
     if (MR::isConnectedWithRail(rIter)) {
         rInitInfo.setupRailMover();
-    } else if (rRotateSpeedArg != 0.0f && rRotateSpeedArg != 3.4028235e38f) {
+    } else if (rotateSpeed != 0.0f && rotateSpeed != FLOAT_MAX) {
         rInitInfo.setupRotator();
         rInitInfo.setupProjmapMtx(false);
     }
@@ -55,10 +55,10 @@ void QuestionBoxGalleryObj::init(const JMapInfoIter& rIter) {
     initialize(rIter, rInitInfo);
     startMapPartsFunctions();
 
-    bool v6 = false;
-    MR::getJMapInfoArg0NoInit(rIter, &v6);
+    bool arg0 = false;
+    MR::getJMapInfoArg0NoInit(rIter, &arg0);
 
-    if (v6) {
+    if (arg0) {
         initNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOnWait::sInstance);
     } else {
         initNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOffWait::sInstance);

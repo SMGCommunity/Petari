@@ -333,11 +333,11 @@ Game/AreaObj/PlayerSeArea.cpp:
 
 Game/AreaObj/QuakeEffectArea.cpp:
 	.text       start:0x80024BC0 end:0x80024C70
-	.data       start:0x80565828 end:0x80565890
+	.data       start:0x80565828 end:0x80565858
 
 Game/AreaObj/RestartCube.cpp:
 	.text       start:0x80024C70 end:0x80024FA4
-	.data       start:0x80565890 end:0x805658C0
+	.data       start:0x80565858 end:0x805658C0
 
 Game/AreaObj/ScreenBlurArea.cpp:
 	.text       start:0x80024FA4 end:0x800250A8
@@ -3254,6 +3254,7 @@ Game/GameAudio/AudCameraWatcher.cpp:
 Game/GameAudio/AudStageBgmWrap.cpp:
 	.text       start:0x801550B8 end:0x80155314
 	.rodata     start:0x805325C8 end:0x80532940
+	.data       start:0x80586970 end:0x80586CF8
 
 Game/GameAudio/AudSeKeeper.cpp:
 	.text       start:0x80155314 end:0x801557B4
@@ -8357,6 +8358,7 @@ Game/Screen/SceneWipeHolder.cpp:
 
 Game/Screen/ScreenAlphaCapture.cpp:
 	.text       start:0x803805BC end:0x8038093C
+	.rodata     start:0x8053B300 end:0x8053B308
 	.data       start:0x805D92D8 end:0x805D9300
 
 Game/Screen/ScreenBlurEffect.cpp:
@@ -8366,6 +8368,7 @@ Game/Screen/ScreenBlurEffect.cpp:
 
 Game/Screen/ScreenPreserver.cpp:
 	.text       start:0x80381104 end:0x80381304
+	.rodata     start:0x8053B308 end:0x8053B310
 	.data       start:0x805D9338 end:0x805D9368
 	.sdata      start:0x806B2498 end:0x806B24A0
 	.sdata2     start:0x806C1248 end:0x806C1250
@@ -11536,10 +11539,11 @@ Runtime/NMWException.cpp:
 
 Runtime/ptmf.c:
 	.text       start:0x80518844 end:0x805188D8
-	.rodata     start:0x805621F0 end:0x80562218
+	.rodata     start:0x805621F0 end:0x80562200
 
 Runtime/runtime.c:
 	.text       start:0x805188D8 end:0x80519034
+	.rodata     start:0x80562200 end:0x80562218
 
 Runtime/__init_cpp_exceptions.cpp:
 	.text       start:0x80519034 end:0x805190A4
@@ -11554,12 +11558,13 @@ Runtime/Gecko_ExceptionPPC.cpp:
 
 Runtime/GCN_mem_alloc.c:
 	.text       start:0x80519108 end:0x805191C0
-	.rodata     start:0x80562218 end:0x805622A0
+	.rodata     start:0x80562218 end:0x80562288
 
 MSL_C/alloc.c:
 	extab       start:0x800067C8 end:0x800067E0
 	extabindex  start:0x80006DCC end:0x80006DF0
 	.text       start:0x805191C0 end:0x805196D4
+	.rodata     start:0x80562288 end:0x805622A0
 
 MSL_C/ansi_files.c:
 	extab       start:0x800067E0 end:0x800067F0

@@ -1,5 +1,6 @@
 #include "Game/AreaObj/RestartCube.hpp"
 #include "Game/AudioLib/AudBgmMgr.hpp"
+#include "Game/AudioLib/AudSoundId.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/GameAudio/AudStageBgmTable.hpp"
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
@@ -39,42 +40,42 @@ void RestartCube::changeBgm() {
         return;
     }
 
-    if (MR::isPlayingStageBgmID(0x2000014)) {
+    if (MR::isPlayingStageBgmID(STM_STAR_EXIST)) {
         _48 = true;
         return;
     }
 
-    if (MR::isPlayingStageBgmID(0x200003E)) {
-        _48 = 1;
+    if (MR::isPlayingStageBgmID(STM_STAR_EXIST_2)) {
+        _48 = true;
         return;
     }
 
     if (MR::isPlayerDead()) {
-        _48 = 1;
+        _48 = true;
         return;
     }
 
-    if (!MR::isPlayingStageBgmID(0x2000039)) {
+    if (!MR::isPlayingStageBgmID(STM_BOSS_MECHA_KOOPA)) {
         u32 bgmID = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), _40);
 
-        if (bgmID + 0x10000 != 0xFFFF) {
-            u32 val = AudWrap::getBgmMgr()->_10[0];
+        if (bgmID != -1) {
+            u32 currBGM = AudWrap::getBgmMgr()->mCurrentBGM[AudBgmMgr::BgmType_Stage];
 
-            if (val == bgmID && MR::isPlayingStageBgm()) {
+            if (currBGM == bgmID && MR::isPlayingStageBgm()) {
                 return;
             }
 
             AudWrap::startStageBgm(bgmID, false);
 
-            if (MR::isEqualStageName("ReverseKingdomGalaxy") && bgmID == 0x1010012) {
+            if (MR::isEqualStageName("ReverseKingdomGalaxy") && bgmID == MBGM_BOSS_05_A) {
                 MR::setCubeBgmChangeInvalid();
             }
 
-            if (MR::isEqualStageName("CannonFleetGalaxy") && bgmID == 0x1010002) {
+            if (MR::isEqualStageName("CannonFleetGalaxy") && bgmID == MBGM_BOSS_01_A) {
                 MR::setCubeBgmChangeInvalid();
             }
 
-            if (MR::isEqualStageName("BattleShipGalaxy") && bgmID == 0x1010002) {
+            if (MR::isEqualStageName("BattleShipGalaxy") && bgmID == MBGM_BOSS_01_A) {
                 MR::setCubeBgmChangeInvalid();
             }
         }
