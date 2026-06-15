@@ -2177,7 +2177,7 @@ config.libs = [
             Object(Matching, "Game/Speaker/SpkWave.cpp"),
             Object(Matching, "Game/Speaker/SpkTable.cpp"),
             Object(Matching, "Game/Speaker/SpkData.cpp"),
-            Object(NonMatching, "Game/Speaker/SpkSound.cpp"),
+            Object(Matching, "Game/Speaker/SpkSound.cpp",  cflags=[*cflags_game, "-sym on"]),
         ],
     ),
     GameLib(
