@@ -1,7 +1,7 @@
 #include "Game/AreaObj/BloomArea.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-BloomArea::BloomArea(int type, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_BLOOM, type, pName) {
+BloomArea::BloomArea(int formType, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_BLOOM, formType, pName) {
     _40 = 128;
     _41 = 255;
     _44 = -1;

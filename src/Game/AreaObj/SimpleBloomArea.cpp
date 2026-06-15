@@ -1,7 +1,7 @@
 #include "Game/AreaObj/SimpleBloomArea.hpp"
 #include "Game/Util.hpp"
 
-SimpleBloomArea::SimpleBloomArea(int type, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, type, pName) {
+SimpleBloomArea::SimpleBloomArea(int formType, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, formType, pName) {
     mMaskFilterColor = MASK_FILTER_ALL;
     _44 = 128;
     _45 = 76;
