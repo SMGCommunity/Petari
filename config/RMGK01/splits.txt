@@ -333,11 +333,11 @@ Game/AreaObj/PlayerSeArea.cpp:
 
 Game/AreaObj/QuakeEffectArea.cpp:
 	.text       start:0x80024BC0 end:0x80024C70
-	.data       start:0x80565828 end:0x80565890
+	.data       start:0x80565828 end:0x80565858
 
 Game/AreaObj/RestartCube.cpp:
 	.text       start:0x80024C70 end:0x80024FA4
-	.data       start:0x80565890 end:0x805658C0
+	.data       start:0x80565858 end:0x805658C0
 
 Game/AreaObj/ScreenBlurArea.cpp:
 	.text       start:0x80024FA4 end:0x800250A8
