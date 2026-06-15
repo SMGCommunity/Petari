@@ -321,14 +321,16 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
 
         vec1.y = MR::max(vec1.y, _C4 + _8C->mPosition.y);
 
+
+        f32 flt = 120.0f;
         bool v1 = false;
-        while (vec1.y < val2 - 120.0f) {
+        while (vec1.y < val2 - flt) {
             vec2.subInline(vec1, mPosition);
             vec2.scale(1.5f);
 
             if (!MR::getFirstPolyOnLineToMap(nullptr, nullptr, mPosition, vec2)) {
                 v1 = true;
-                vec1.y += 120.0f;
+                vec1.y += flt;
                 break;
             }
 
