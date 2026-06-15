@@ -59,9 +59,9 @@ void RestartCube::changeBgm() {
         u32 bgmID = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), _40);
 
         if (bgmID != -1) {
-            u32 val = AudWrap::getBgmMgr()->_10[0];
+            u32 currBGM = AudWrap::getBgmMgr()->mCurrentBGM[AudBgmMgr::BgmType_Stage];
 
-            if (val == bgmID && MR::isPlayingStageBgm()) {
+            if (currBGM == bgmID && MR::isPlayingStageBgm()) {
                 return;
             }
 

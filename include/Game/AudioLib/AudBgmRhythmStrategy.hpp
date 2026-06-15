@@ -7,9 +7,9 @@ class AudBgm;
 class AudBgmRhythmStrategy {
 public:
     /// @brief Creates a new `AudBgmRhythmStrategy`.
-    AudBgmRhythmStrategy();
+    AudBgmRhythmStrategy(){};
 
-    virtual void set(AudBgm*, s32);
+    virtual bool set(AudBgm*, s32);
 
     void reject();
     void setDominant();
