@@ -11539,10 +11539,11 @@ Runtime/NMWException.cpp:
 
 Runtime/ptmf.c:
 	.text       start:0x80518844 end:0x805188D8
-	.rodata     start:0x805621F0 end:0x80562218
+	.rodata     start:0x805621F0 end:0x80562200
 
 Runtime/runtime.c:
 	.text       start:0x805188D8 end:0x80519034
+	.rodata     start:0x80562200 end:0x80562218
 
 Runtime/__init_cpp_exceptions.cpp:
 	.text       start:0x80519034 end:0x805190A4
@@ -11557,12 +11558,13 @@ Runtime/Gecko_ExceptionPPC.cpp:
 
 Runtime/GCN_mem_alloc.c:
 	.text       start:0x80519108 end:0x805191C0
-	.rodata     start:0x80562218 end:0x805622A0
+	.rodata     start:0x80562218 end:0x80562288
 
 MSL_C/alloc.c:
 	extab       start:0x800067C8 end:0x800067E0
 	extabindex  start:0x80006DCC end:0x80006DF0
 	.text       start:0x805191C0 end:0x805196D4
+	.rodata     start:0x80562288 end:0x805622A0
 
 MSL_C/ansi_files.c:
 	extab       start:0x800067E0 end:0x800067F0
