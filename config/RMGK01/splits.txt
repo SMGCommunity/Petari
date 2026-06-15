@@ -260,12 +260,12 @@ Game/AreaObj/BloomArea.cpp:
 
 Game/AreaObj/CameraRepulsiveArea.cpp:
 	.text       start:0x800200D0 end:0x80020344
-	.data       start:0x80565348 end:0x805653F8
+	.data       start:0x80565348 end:0x805653C0
 	.sdata2     start:0x806B7DE0 end:0x806B7DF0
 
 Game/AreaObj/ChangeBgmCube.cpp:
 	.text       start:0x80020344 end:0x800207B0
-	.data       start:0x805653F8 end:0x80565428
+	.data       start:0x805653C0 end:0x80565428
 
 Game/AreaObj/CollisionArea.cpp:
 	.text       start:0x800207B0 end:0x80021DB4

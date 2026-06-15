@@ -10,7 +10,9 @@ public:
 
     virtual ~CameraRepulsiveArea();
 
-    virtual const char* getManagerName() const;
+    virtual const char* getManagerName() const {
+        return "CameraRepulsiveArea";
+    }
 
     virtual TVec3f getRepulsion(const TVec3f&) = 0;
 };
