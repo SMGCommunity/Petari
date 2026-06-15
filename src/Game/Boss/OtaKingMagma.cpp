@@ -14,8 +14,7 @@ namespace NrvOtaKingMagma {
     NEW_NERVE(OtaKingMagmaNrvDamage, OtaKingMagma, Damage);
     NEW_NERVE(OtaKingMagmaNrvDown, OtaKingMagma, Down);
     NEW_NERVE(OtaKingMagmaNrvEndWait, OtaKingMagma, EndWait);
-
-}  // namespace NrvOtaKingMagma
+};  // namespace NrvOtaKingMagma
 
 namespace {
     const Vec cBloomModelOffset = {0.0, 10.0f, 0.0f};
@@ -40,7 +39,7 @@ void OtaKingMagma::init(const JMapInfoIter& rIter) {
     _A4 = MR::initDLMakerProjmapEffectMtxSetter(mBloomModel);
     MR::newDifferedDLBuffer(mBloomModel);
     mBloomModel->mPosition.set(mPosition);
-    mBloomModel->mPosition.add(cBloomModelOffset);
+    mBloomModel->mPosition.add(::cBloomModelOffset);
     mBloomModel->mRotation.set(mRotation);
     mBloomModel->mScale.set(mScale);
     mBloomModel->initWithoutIter();
@@ -76,7 +75,7 @@ void OtaKingMagma::down() {
 
 void OtaKingMagma::control() {
     mBloomModel->mPosition.set(mPosition);
-    mBloomModel->mPosition.add(cBloomModelOffset);
+    mBloomModel->mPosition.add(::cBloomModelOffset);
 }
 
 void OtaKingMagma::startBckThisAndBloomModel(const char* BckName) {
@@ -91,47 +90,47 @@ void OtaKingMagma::exeWait() {
         MR::emitEffect(this, "BloomMagma");
     }
 
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
 }
 
 void OtaKingMagma::exeAppearDemo() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_OTAKING_MAGMA_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_BM_OTAKING_MAGMA_DAMAGE");
         startBckThisAndBloomModel("Down");
     }
 
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
     MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
 }
 
 void OtaKingMagma::exeAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_OTAKING_MAGMA_ATTACK", -1, -1);
+        MR::startSound(this, "SE_BM_OTAKING_MAGMA_ATTACK");
         startBckThisAndBloomModel("Attack");
     }
 
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
     MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
 }
 
 void OtaKingMagma::exeFireAttack() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_OTAKING_MAGMA_ATTACK", -1, -1);
+        MR::startSound(this, "SE_BM_OTAKING_MAGMA_ATTACK");
         startBckThisAndBloomModel("FireAttack");
     }
 
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
     MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
 }
 
 void OtaKingMagma::exeHitBack() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_OTAKING_MAGMA_HITBACK", -1, -1);
+        MR::startSound(this, "SE_BM_OTAKING_MAGMA_HITBACK");
         startBckThisAndBloomModel("HitBack");
     }
 
     if (mHost != nullptr) {
-        MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND", -1, -1, -1);
+        MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
     }
 
     MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
@@ -139,21 +138,21 @@ void OtaKingMagma::exeHitBack() {
 
 void OtaKingMagma::exeDamage() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_OTAKING_MAGMA_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_BM_OTAKING_MAGMA_DAMAGE");
         startBckThisAndBloomModel("Damage");
     }
 
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
     MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvWait::sInstance);
 }
 
 void OtaKingMagma::exeDown() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_BM_OTAKING_MAGMA_DAMAGE", -1, -1);
+        MR::startSound(this, "SE_BM_OTAKING_MAGMA_DAMAGE");
         startBckThisAndBloomModel("Down");
     }
 
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
     MR::setNerveAtBckStopped(this, &NrvOtaKingMagma::OtaKingMagmaNrvEndWait::sInstance);
 }
 
@@ -162,5 +161,5 @@ void OtaKingMagma::exeEndWait() {
         startBckThisAndBloomModel("EndWait");
     }
 
-    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND", -1, -1, -1);
+    MR::startLevelSound(this, "SE_AT_LV_MAGMA_WIND");
 }

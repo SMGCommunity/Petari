@@ -1,13 +1,10 @@
 #pragma once
 
-#include "Game/Boss/OtaKing.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
 class ActorCameraInfo;
-class AudAnmSoundObject;
 class AnimScaleController;
 class CocoNutBall;
 class FireBall;
@@ -16,6 +13,7 @@ class FixedPosition;
 class NameObjArchiveListCollector;
 class OtaKingMagma;
 class OtaKingLongFoot;
+class PartsModel;
 
 class OtaKing : public LiveActor {
 public:

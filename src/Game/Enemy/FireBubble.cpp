@@ -1,7 +1,6 @@
 #include "Game/Enemy/FireBubble.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util.hpp"
 
 namespace NrvFireBubble {
@@ -13,7 +12,7 @@ namespace NrvFireBubble {
     NEW_NERVE(FireBubbleNrvReflectWait, FireBubble, ReflectWait);
     NEW_NERVE(FireBubbleNrvDown, FireBubble, Down);
     NEW_NERVE(FireBubbleNrvWaitToAppear, FireBubble, WaitToAppear);
-}  // namespace NrvFireBubble
+};  // namespace NrvFireBubble
 
 namespace {
     const f32 cSensorRadius = 30.0f;
@@ -35,11 +34,11 @@ namespace {
     const s32 cAppearInterval = 120;
     const Vec cAppearVelocity = {0.0f, 35.0f, 6.0f};
     const Vec cReflectVelocity = {0.0f, 40.0f, -15.0f};
-
-}  // namespace
+};  // namespace
 
 FireBubble::FireBubble(const char* pName)
-    : LiveActor(pName), isValidInfo(false), _90(gZeroVec), _9C(0.0f, 0.0f, 1.0f), _A8(cAppearVelocity), _B4(0.0f, 0.0f, 1.0f), mActFrame(0), mChaseCounter(0) {
+    : LiveActor(pName), mIsValidInfo(false), _90(gZeroVec), _9C(0.0f, 0.0f, 1.0f), _A8(cAppearVelocity), _B4(0.0f, 0.0f, 1.0f), mActFrame(0),
+      mChaseCounter(0) {
 }
 
 void FireBubble::init(const JMapInfoIter& rIter) {
@@ -60,7 +59,7 @@ void FireBubble::init(const JMapInfoIter& rIter) {
     MR::declareCoin(this, cCoinMaxNum);
     initNerve(&NrvFireBubble::FireBubbleNrvAppear::sInstance);
 
-    if (isValidInfo) {
+    if (mIsValidInfo) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
     } else {
@@ -85,7 +84,7 @@ void FireBubble::appear(const TVec3f& vec1, const TVec3f& vec2, const TVec3f& ve
 
 void FireBubble::kill() {
     LiveActor::kill();
-    if (!isValidInfo) {
+    if (!mIsValidInfo) {
         MR::emitEffect(this, "Down");
     }
 }
@@ -132,7 +131,7 @@ bool FireBubble::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
 }
 
 void FireBubble::initMapToolInfo(const JMapInfoIter& rIter) {
-    isValidInfo = true;
+    mIsValidInfo = true;
 
     MR::initDefaultPos(this, rIter);
     MR::needStageSwitchReadAppear(this, rIter);
@@ -235,7 +234,7 @@ bool FireBubble::tryReflect() {
 }
 
 void FireBubble::killOrWaitToApppear() {
-    if (isValidInfo) {
+    if (mIsValidInfo) {
         MR::emitEffect(this, "Down");
         setNerve(&NrvFireBubble::FireBubbleNrvWaitToAppear::sInstance);
     } else {
@@ -252,7 +251,7 @@ void FireBubble::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Appear", 0);
         MR::emitEffect(this, "Wait");
-        MR::startSound(this, "SE_EM_FIRE_BUBBLE_LAUNCH", -1, -1);
+        MR::startSound(this, "SE_EM_FIRE_BUBBLE_LAUNCH");
         MR::showModel(this);
         MR::onCalcGravity(this);
         MR::calcGravity(this);
@@ -268,7 +267,7 @@ void FireBubble::exeAppear() {
     }
 
     if (!MR::isNoBind(this) && MR::isOnGround(this)) {
-        MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP", -1, -1);
+        MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP");
         setNerve(&NrvFireBubble::FireBubbleNrvWait::sInstance);
     } else {
         updateGravity(cAppearGravity);
@@ -291,7 +290,7 @@ void FireBubble::exeWait() {
     }
 
     if (MR::isGreaterStep(this, cChaseFrame) && MR::isNearPlayer(this, cChaseStartDistance)) {
-        MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP", -1, -1);
+        MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP");
         mActFrame = MR::getRandom((s32)0, cRandomActFrame) + cChaseInvalidFrame;
         setNerve(&NrvFireBubble::FireBubbleNrvChase::sInstance);
     } else if (MR::isStep(this, mActFrame)) {
@@ -309,7 +308,7 @@ void FireBubble::exeChase() {
     updateGravity(cChaseGravity);
 
     if (MR::checkPassBckFrame(this, 0.0f)) {
-        MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP", -1, -1);
+        MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP");
     }
 
     if (!tryChaseEnd() && !tryReflect()) {
@@ -324,7 +323,7 @@ void FireBubble::exeReflect() {
         calcReflectVelocity(&mVelocity);
         MR::deleteEffect(this, "Wait");
         MR::emitEffect(this, "WaitS");
-        MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT", -1, -1);
+        MR::startSound(this, "SE_EM_FIRE_BUBBLE_REFLECT");
         MR::start2PAttackAssistSound();
     }
 
@@ -367,7 +366,7 @@ void FireBubble::exeDown() {
         MR::startBck(this, "Down", nullptr);
         MR::deleteEffect(this, "Wait");
         MR::deleteEffect(this, "WaitS");
-        MR::startSound(this, "SE_EM_FIRE_BUBBLE_DIE", -1, -1);
+        MR::startSound(this, "SE_EM_FIRE_BUBBLE_DIE");
         mVelocity.zero();
         MR::invalidateHitSensors(this);
     }

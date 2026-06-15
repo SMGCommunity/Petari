@@ -1,9 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-
-class JMapInfoIter;
 
 class FireBubble : public LiveActor {
 public:
@@ -37,7 +34,7 @@ public:
 
     bool isMovingDown(); //fabricated
 
-    /* 0x8C */ bool isValidInfo;
+    /* 0x8C */ bool mIsValidInfo;
     /* 0x90 */ TVec3f _90;
     /* 0x9C */ TVec3f _9C;
     /* 0xA8 */ TVec3f _A8;
