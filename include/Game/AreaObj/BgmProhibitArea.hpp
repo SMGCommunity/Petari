@@ -2,12 +2,6 @@
 
 #include "Game/AreaObj/AreaObj.hpp"
 
-struct BgmMuteSet {
-    const char* mGalaxyName;
-    u32 _4;
-    u32 _8;
-};
-
 class BgmProhibitArea : public AreaObj {
 public:
     BgmProhibitArea(int, const char*);
@@ -15,9 +9,12 @@ public:
     virtual ~BgmProhibitArea();
     virtual void init(const JMapInfoIter&);
     virtual void movement();
-    virtual const char* getManagerName() const;
 
-    u8 _3C;
-    u8 _3D;
-    TVec3f _40;
+    virtual const char* getManagerName() const {
+        return "BgmProhibitArea";
+    }
+
+    /* 0x3C */ bool _3C;
+    /* 0x3D */ bool _3D;
+    /* 0x40 */ TVec3f _40;
 };

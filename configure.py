@@ -551,6 +551,7 @@ def JSys_J3DLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+
 def JSys_JAudioLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -726,7 +727,11 @@ config.libs = [
             Object(NonMatching, "Game/AudioLib/AudSeStrategy.cpp"),
             Object(NonMatching, "Game/AudioLib/AudSoundNameConverter.cpp"),
             Object(Matching, "Game/AudioLib/AudSoundObjHolder.cpp"),
-            Object(Matching, "Game/AudioLib/AudSpeakerWrap.cpp", cflags=[*cflags_game, "-rostr"]),
+            Object(
+                Matching,
+                "Game/AudioLib/AudSpeakerWrap.cpp",
+                cflags=[*cflags_game, "-rostr"],
+            ),
             Object(Matching, "Game/AudioLib/AudTrackController.cpp"),
             Object(Matching, "Game/AudioLib/AudUtil.cpp"),
             Object(NonMatching, "Game/AudioLib/OverwriteJAudio.cpp"),
@@ -1223,7 +1228,11 @@ config.libs = [
             Object(Matching, "Game/GameAudio/AudCameraWatcher.cpp"),
             Object(Matching, "Game/GameAudio/AudStageBgmWrap.cpp"),
             Object(Matching, "Game/GameAudio/AudSeKeeper.cpp"),
-            Object(Matching, "Game/GameAudio/AudTalkSoundData.cpp", cflags=[*cflags_game, "-sym on"]),
+            Object(
+                Matching,
+                "Game/GameAudio/AudTalkSoundData.cpp",
+                cflags=[*cflags_game, "-sym on"],
+            ),
             Object(Matching, "Game/GameAudio/AudEffectDirector.cpp"),
             Object(Matching, "Game/GameAudio/AudBgmConductor.cpp"),
             Object(Matching, "Game/GameAudio/AudStageBgmTable.cpp"),
@@ -1955,7 +1964,7 @@ config.libs = [
             Object(NonMatching, "Game/RhythmLib/AudRhythmSeqParser.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudBgmTempoAdjuster.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeTrack.cpp"),
-            Object(NonMatching, "Game/RhythmLib/AudMeChannelMgr.cpp"),
+            Object(Matching, "Game/RhythmLib/AudMeChannelMgr.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeSeqCtrl.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeSeqReader.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeSeqParser.cpp"),
@@ -1964,7 +1973,11 @@ config.libs = [
             Object(NonMatching, "Game/RhythmLib/AudRhythmMeSystem.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeHandles.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeObject.cpp"),
-            Object(NonMatching, "Game/RhythmLib/AudChordInfo.cpp", cflags=[*cflags_game, "-sym on"]),
+            Object(
+                NonMatching,
+                "Game/RhythmLib/AudChordInfo.cpp",
+                cflags=[*cflags_game, "-sym on"],
+            ),
             Object(NonMatching, "Game/RhythmLib/AudRhythmHolder.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudRhythmWrap.cpp"),
         ],
@@ -2177,7 +2190,9 @@ config.libs = [
             Object(Matching, "Game/Speaker/SpkWave.cpp"),
             Object(Matching, "Game/Speaker/SpkTable.cpp"),
             Object(Matching, "Game/Speaker/SpkData.cpp"),
-            Object(Matching, "Game/Speaker/SpkSound.cpp",  cflags=[*cflags_game, "-sym on"]),
+            Object(
+                Matching, "Game/Speaker/SpkSound.cpp", cflags=[*cflags_game, "-sym on"]
+            ),
         ],
     ),
     GameLib(
@@ -3048,7 +3063,11 @@ config.libs = [
             Object(Matching, "JSystem/JAudio2/JASProbe.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASReport.cpp"),
             Object(Matching, "JSystem/JAudio2/JASCmdStack.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/JASTrack.cpp", cflags=[*cflags_jsys_jaudio, "-inline off"]),
+            Object(
+                NonMatching,
+                "JSystem/JAudio2/JASTrack.cpp",
+                cflags=[*cflags_jsys_jaudio, "-inline off"],
+            ),
             Object(Matching, "JSystem/JAudio2/JASTrackPort.cpp"),
             Object(Matching, "JSystem/JAudio2/JASRegisterParam.cpp"),
             Object(Matching, "JSystem/JAudio2/JASSeqCtrl.cpp"),
@@ -3075,10 +3094,16 @@ config.libs = [
             Object(NonMatching, "JSystem/JAudio2/JASAudioReseter.cpp"),
             Object(Matching, "JSystem/JAudio2/JASDSPChannel.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASDSPInterface.cpp"),
-            Object(NonMatching, "JSystem/JAudio2/dspproc.cpp", cflags=cflags_jsys_jasdsp),
-            Object(NonMatching, "JSystem/JAudio2/dsptask.cpp", cflags=cflags_jsys_jasdsp),
+            Object(
+                NonMatching, "JSystem/JAudio2/dspproc.cpp", cflags=cflags_jsys_jasdsp
+            ),
+            Object(
+                NonMatching, "JSystem/JAudio2/dsptask.cpp", cflags=cflags_jsys_jasdsp
+            ),
             Object(NonMatching, "JSystem/JAudio2/osdsp.cpp", cflags=cflags_jsys_jasdsp),
-            Object(NonMatching, "JSystem/JAudio2/osdsp_task.cpp", cflags=cflags_jsys_jasdsp),
+            Object(
+                NonMatching, "JSystem/JAudio2/osdsp_task.cpp", cflags=cflags_jsys_jasdsp
+            ),
             Object(NonMatching, "JSystem/JAudio2/JASDriverIF.cpp"),
             Object(Matching, "JSystem/JAudio2/JASSoundParams.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JAIAudible.cpp"),

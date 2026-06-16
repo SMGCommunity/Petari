@@ -65,8 +65,7 @@ void Tico::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapIn
 }
 
 void Tico::initBase(s32 color) {
-    JMapInfoIter iter(0, -1);
-    initBase(iter, color);
+    initBase(JMapInfoIter(), color);
 }
 
 void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
@@ -131,7 +130,8 @@ void Tico::initMessage(const JMapInfoIter& rIter, const char* pMsg) {
 }
 
 void Tico::initMessage(const char* pMsg) {
-    JMapInfoIter iter(0, -1);
+    JMapInfoIter iter;
+
     if (initTalkCtrl(iter, pMsg, TVec3f(0.0f, 120.0f, 0.0f), nullptr)) {
         TalkMessageCtrl* ctrl = mMsgCtrl;
         MR::registerKillFunc(mMsgCtrl, TalkMessageFunc< Tico >(this, &Tico::killFunc));

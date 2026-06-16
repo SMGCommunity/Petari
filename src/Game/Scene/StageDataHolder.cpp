@@ -322,11 +322,7 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) c
         int curIdx = isValid ? curData->mNumEntries : 0;
 
         if (idx < curIdx) {
-            JMapInfoIter iter;
-            iter.mInfo = pInfo;
-            iter.mIndex = idx;
-
-            return iter;
+            return JMapInfoIter(pInfo, idx);
         }
 
         curIdx = isValid ? curData->mNumEntries : 0;
@@ -345,11 +341,7 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) c
         idx -= startPosNum;
     }
 
-    JMapInfoIter iter;
-    iter.mInfo = nullptr;
-    iter.mIndex = -1;
-
-    return iter;
+    return JMapInfoIter();
 }
 
 void StageDataHolder::calcDataAddress() {
