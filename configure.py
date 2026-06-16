@@ -2031,7 +2031,7 @@ config.libs = [
         [
             Object(Matching, "Game/Screen/THPDraw.c"),
             Object(Matching, "Game/Screen/BackButton.cpp"),
-            Object(NonMatching, "Game/Screen/BatteryInfo.cpp"),
+            Object(Matching, "Game/Screen/BatteryInfo.cpp"),
             Object(NonMatching, "Game/Screen/BloomEffect.cpp"),
             Object(NonMatching, "Game/Screen/BloomEffectSimple.cpp"),
             Object(Matching, "Game/Screen/BombTimerLayout.cpp"),
