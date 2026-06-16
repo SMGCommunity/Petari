@@ -80,6 +80,12 @@ typedef int BOOL;
 #define ATTRIBUTE_PACKED
 #endif
 
+#if __MWERKS__
+#define ATTRIBUTE_WEAK __attribute__((weak))
+#else
+#define ATTRIBUTE_WEAK
+#endif
+
 #ifndef TRUE
 #define TRUE 1
 #endif

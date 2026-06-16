@@ -734,7 +734,7 @@ config.libs = [
             ),
             Object(Matching, "Game/AudioLib/AudTrackController.cpp"),
             Object(Matching, "Game/AudioLib/AudUtil.cpp"),
-            Object(NonMatching, "Game/AudioLib/OverwriteJAudio.cpp"),
+            Object(Matching, "Game/AudioLib/OverwriteJAudio.cpp"),
             Object(Matching, "Game/AudioLib/CSSoundNameConverter.cpp"),
         ],
     ),
@@ -2191,7 +2191,9 @@ config.libs = [
             Object(Matching, "Game/Speaker/SpkTable.cpp"),
             Object(Matching, "Game/Speaker/SpkData.cpp"),
             Object(
-                Matching, "Game/Speaker/SpkSound.cpp", cflags=[*cflags_game, "-sym on"]
+                Matching, 
+                "Game/Speaker/SpkSound.cpp", 
+                cflags=[*cflags_game, "-sym on"]
             ),
         ],
     ),
@@ -3054,7 +3056,11 @@ config.libs = [
     JSys_JAudioLib(
         "JAudio2",
         [
-            Object(NonMatching, "JSystem/JAudio2/JASCalc.cpp", cflags=cflags_jsys),
+            Object(
+                NonMatching, 
+                "JSystem/JAudio2/JASCalc.cpp", 
+                cflags=cflags_jsys
+            ),
             Object(NonMatching, "JSystem/JAudio2/JASTaskThread.cpp"),
             Object(Matching, "JSystem/JAudio2/JASDvdThread.cpp"),
             Object(Matching, "JSystem/JAudio2/JASCallback.cpp"),
@@ -3095,14 +3101,24 @@ config.libs = [
             Object(Matching, "JSystem/JAudio2/JASDSPChannel.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASDSPInterface.cpp"),
             Object(
-                NonMatching, "JSystem/JAudio2/dspproc.cpp", cflags=cflags_jsys_jasdsp
+                NonMatching, 
+                "JSystem/JAudio2/dspproc.cpp", 
+                cflags=cflags_jsys_jasdsp
             ),
             Object(
-                NonMatching, "JSystem/JAudio2/dsptask.cpp", cflags=cflags_jsys_jasdsp
+                NonMatching, 
+                "JSystem/JAudio2/dsptask.cpp", 
+                cflags=cflags_jsys_jasdsp
             ),
-            Object(NonMatching, "JSystem/JAudio2/osdsp.cpp", cflags=cflags_jsys_jasdsp),
             Object(
-                NonMatching, "JSystem/JAudio2/osdsp_task.cpp", cflags=cflags_jsys_jasdsp
+                NonMatching, 
+                "JSystem/JAudio2/osdsp.cpp", 
+                cflags=cflags_jsys_jasdsp
+            ),
+            Object(
+                NonMatching, 
+                "JSystem/JAudio2/osdsp_task.cpp", 
+                cflags=cflags_jsys_jasdsp
             ),
             Object(NonMatching, "JSystem/JAudio2/JASDriverIF.cpp"),
             Object(Matching, "JSystem/JAudio2/JASSoundParams.cpp"),

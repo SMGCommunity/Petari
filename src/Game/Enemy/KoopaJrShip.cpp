@@ -132,7 +132,7 @@ void KoopaJrShip::kill() {
 void KoopaJrShip::control() {
     _EC = MR::repeat(_EC + mPropRotateSpeed, 0.0f, 360.0f);
 
-    f32 angle = deg2rad(_EC);
+    f32 angle = MR::toRadian(_EC);
     f32 s = sin(angle);
     f32 c = cos(angle);
 
@@ -146,8 +146,8 @@ void KoopaJrShip::control() {
     mPropellerMtx[1][0] = 0.0f;
     mPropellerMtx[0][1] = 0.0f;
 
-    mScrew00Mtx.setEulerZ(deg2rad(_EC));
-    mScrew01Mtx.setEulerZ(deg2rad(_EC));
+    mScrew00Mtx.setEulerZ(MR::toRadian(_EC));
+    mScrew01Mtx.setEulerZ(MR::toRadian(_EC));
     MR::setRailCoordSpeed(this, _184);
 
     if (_D0 > 0) {
@@ -822,9 +822,6 @@ void KoopaJrShip::exeTurnFront() {
 
         setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
     }
-}
-
-KoopaJrShip::~KoopaJrShip() {
 }
 
 void KoopaJrShip::exeBreakEnd() {

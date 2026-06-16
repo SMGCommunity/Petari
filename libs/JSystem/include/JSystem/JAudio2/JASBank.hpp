@@ -18,7 +18,7 @@ public:
     JASBank() {
         mWaveBank = NULL;
     }
-    virtual ~JASBank() {};
+    virtual ~JASBank(){};
     virtual bool getInstParam(int, int, int, JASInstParam*) const = 0;
     virtual u32 getType() const = 0;
 
@@ -29,7 +29,7 @@ public:
         mWaveBank = param_0;
     }
 
-    static JASChannel* noteOn(JASBank const*, int, u8, u8, u16, void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
+    static JASChannel* noteOn(JASBank const*, int, u8, u8, u16, void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*) ATTRIBUTE_WEAK;
     static JASChannel* noteOnOsc(int, u8, u8, u16, void (*)(u32, JASChannel*, JASDsp::TChannel*, void*), void*);
 
 private:
@@ -38,7 +38,7 @@ private:
 
 class JASBankList {
 public:
-    JASBankList() {};
+    JASBankList(){};
 
     virtual JASBank* getBank(u32) const = 0;
 };

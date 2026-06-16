@@ -16,10 +16,6 @@ const f32 FLOAT_ZERO = 0.0f;
 
 extern const Vec gZeroVec;
 
-inline f32 deg2rad(f32 x) {
-    return x * PI_180;
-}
-
 namespace std {
     f32 atan2(f32, f32);
 };
