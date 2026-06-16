@@ -95,10 +95,6 @@ void BatteryInfo::exeLowHide() {
     }
 }
 
-void BatteryInfo::exeDisappear() {
-    exeStartAnimAndSetNerveIfStopped("EndCritical", &BatteryInfoEnought::sInstance);
-}
-
 void BatteryInfo::exeCriticalAppear() {
     if (MR::isFirstStep(this)) {
         MR::showPane(mHost, mPaneName);
@@ -114,6 +110,10 @@ void BatteryInfo::exeCritical() {
     }
 
     tryChangeNerveWithBatteryLeftAlreadyAppear();
+}
+
+void BatteryInfo::exeDisappear() {
+    exeStartAnimAndSetNerveIfStopped("EndCritical", &BatteryInfoEnought::sInstance);
 }
 
 void BatteryInfo::exeNoneAppear() {

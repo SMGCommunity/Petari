@@ -1717,7 +1717,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/FloaterFloatingForceTypeSpring.cpp"),
             Object(NonMatching, "Game/MapObj/FloaterFunction.cpp"),
             Object(NonMatching, "Game/MapObj/LavaHomeSeesawRotator.cpp"),
-            Object(NonMatching, "Game/MapObj/MapPartsAppearController.cpp"),
+            Object(Matching, "Game/MapObj/MapPartsAppearController.cpp",  cflags=[*cflags_game, "-sym on"]),
             Object(NonMatching, "Game/MapObj/MapPartsBreaker.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsFloatingForce.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsFunction.cpp"),
@@ -2044,7 +2044,7 @@ config.libs = [
         [
             Object(Matching, "Game/Screen/THPDraw.c"),
             Object(Matching, "Game/Screen/BackButton.cpp"),
-            Object(NonMatching, "Game/Screen/BatteryInfo.cpp"),
+            Object(Matching, "Game/Screen/BatteryInfo.cpp"),
             Object(NonMatching, "Game/Screen/BloomEffect.cpp"),
             Object(NonMatching, "Game/Screen/BloomEffectSimple.cpp"),
             Object(Matching, "Game/Screen/BombTimerLayout.cpp"),

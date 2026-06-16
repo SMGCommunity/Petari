@@ -8,7 +8,6 @@ class MapPartsAppearController : public MapPartsFunction {
 public:
     MapPartsAppearController(LiveActor*);
 
-    virtual ~MapPartsAppearController();
     virtual void init(const JMapInfoIter&);
     virtual void start();
     virtual void end();
