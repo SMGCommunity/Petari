@@ -37,13 +37,7 @@ void GlaringLightArea::init(const JMapInfoIter& rIter) {
 
 void GlaringLightArea::movement() {
     if (isOnSwitchA()) {
-        bool bVar1 = false;
-
-        if (mIsValid && _15 && mIsAwake) {
-            bVar1 = true;
-        }
-
-        if (!bVar1) {
+        if (!isValid()) {
             MR::startSoundObject(mSound, "SE_OJ_RAY_START");
         }
 

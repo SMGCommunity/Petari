@@ -18,13 +18,7 @@ void ChangeBgmCube::init(const JMapInfoIter& rIter) {
 // this is one massive function, todo
 /*
 void ChangeBgmCube::movement() {
-    bool valid = false;
-
-    if (mIsValid && _15 && _16) {
-        valid = true;
-    }
-
-    if (!valid) {
+    if (!isValid()) {
         return;
     }
 

@@ -291,12 +291,12 @@ Game/AreaObj/DepthOfFieldArea.cpp:
 Game/AreaObj/FollowCollisionArea.cpp:
 	.text       start:0x80022508 end:0x80022F5C
 	.rodata     start:0x8052F7F0 end:0x8052F7F8
-	.data       start:0x805655C0 end:0x80565610
+	.data       start:0x805655C0 end:0x80565600
 	.sdata2     start:0x806B7E18 end:0x806B7E28
 
 Game/AreaObj/GlaringLightArea.cpp:
 	.text       start:0x80022F5C end:0x800231F0
-	.data       start:0x80565610 end:0x80565678
+	.data       start:0x80565600 end:0x80565678
 	.sdata2     start:0x806B7E28 end:0x806B7E30
 
 Game/AreaObj/HazeCube.cpp:
