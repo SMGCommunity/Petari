@@ -1,18 +1,10 @@
 #include "Game/Screen/SystemWipeHolder.hpp"
-#include "Game/Camera/CameraContext.hpp"
 #include "Game/Screen/WipeFade.hpp"
 #include "Game/Screen/WipeHolderBase.hpp"
 #include "Game/Screen/WipeRing.hpp"
-#include "Game/Util/Color.hpp"
-#include "Game/Util/DrawUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/LayoutUtil.hpp"
-#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/J2DGraph/J2DPicture.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
 #include "JSystem/JUtility/JUTVideo.hpp"
-#include "revolution/types.h"
 
 SystemWipeHolder::SystemWipeHolder() : WipeHolderBase(4, "システムワイプ保持"), _1C(false) {
 }
