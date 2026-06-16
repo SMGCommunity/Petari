@@ -39,3 +39,6 @@ s32 DeathArea::getDeathType() const {
 
     return DeathType_Any;
 }
+
+DeathArea::~DeathArea() {
+}

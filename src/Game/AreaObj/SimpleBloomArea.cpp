@@ -20,3 +20,6 @@ void SimpleBloomArea::init(const JMapInfoIter& rIter) {
         mIntensity = mObjArg2;
     }
 }
+
+SimpleBloomArea::~SimpleBloomArea() {
+}
