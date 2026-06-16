@@ -351,6 +351,19 @@ public:
     void rushDropThrowMemoSensor();
     void offTakingFlag();
 
+    void settingRush();
+
+    void resetCondition();
+    bool isFixJumpRushSensor(const HitSensor*) const;
+    bool isLandEffectRushSensor(const HitSensor*) const;
+    void beginRush();
+
+    bool takeSensor(HitSensor*);
+
+    bool selectJumpRushSensor(const char*) const;
+
+    void memorizeSensorThrow(HitSensor*);
+
     const MarioConst& getConst() const {
         return *mConst;
     }
@@ -590,7 +603,7 @@ public:
     u32 _9B8;
     u32 _9BC;
     ModelHolder* _9C0;
-    u32 _9C4;
+    LiveActor* _9C4;
     ModelHolder* _9C8;
     f32 _9CC;
     f32 _9D0;
