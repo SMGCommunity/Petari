@@ -13,7 +13,7 @@ MapParts::~MapParts() {
 }
 
 MapParts::MapParts(const char* pName) : LiveActor(pName) {
-    _8C.zero();
+    _8C.setPSZeroVec();
 }
 
 void MapParts::init(const JMapInfoIter& rIter) {
