@@ -1340,7 +1340,7 @@ config.libs = [
             Object(Matching, "Game/Map/FileSelectFunc.cpp"),
             Object(Matching, "Game/Map/FileSelectIconID.cpp"),
             Object(NonMatching, "Game/Map/FileSelectItem.cpp"),
-            Object(NonMatching, "Game/Map/FileSelectModel.cpp"),
+            Object(Matching, "Game/Map/FileSelectModel.cpp"),
             Object(NonMatching, "Game/Map/FileSelector.cpp"),
             Object(NonMatching, "Game/Map/FileSelectSky.cpp"),
             Object(NonMatching, "Game/Map/FishGroup.cpp"),
