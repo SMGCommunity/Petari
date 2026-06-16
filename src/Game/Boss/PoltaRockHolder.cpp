@@ -8,6 +8,3 @@ PoltaRockHolder::PoltaRockHolder() : DeriveActorGroup< PoltaRock >("ポルタの
         registerActor(curRock);
     }
 }
-
-PoltaRockHolder::~PoltaRockHolder() {
-}

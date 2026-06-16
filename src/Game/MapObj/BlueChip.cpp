@@ -3,6 +3,3 @@
 
 BlueChip::BlueChip(const char* pName) : ChipBase(pName, ChipBase::Type_Blue, "BlueChip") {
 }
-
-BlueChip::~BlueChip() {
-}

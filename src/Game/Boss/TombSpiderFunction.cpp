@@ -26,6 +26,12 @@ namespace {
     static const f32 sPlanetInsideRadius = 1800.0f;
 };  // namespace
 
+void TombSpiderDemo_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 TombSpiderGland* TombSpiderFunction::getGlandFrontL(const TombSpider* pParent) {
     return pParent->mParts->mGlandFrontL;
 }

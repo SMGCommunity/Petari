@@ -13,7 +13,9 @@ namespace JGeometry {
     public:
         typedef f32 ArrType[4];
         void set(const ArrType*);
-        void set(const SMatrix34C< T >& rSrc);
+        void set(const SMatrix34C< T >& rSrc) {
+            JMath::gekko_ps_copy12(this, rSrc);
+        }
         void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
 
         void scale(T scale);

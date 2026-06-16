@@ -41,6 +41,10 @@ namespace {
     static const s32 sStepBattleEndPlanetBreak = 15;
 };  // namespace
 
+void TombSpiderDemo_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 TombSpiderDemo::TombSpiderDemo(TombSpider* pParent) : mParent(pParent), mRotateSpeed(0.0f) {
     mMtx.identity();
     MR::declareEventCamera(getCameraInfo(), "ゲートオープンデモ[トゥームスパイダー]");
