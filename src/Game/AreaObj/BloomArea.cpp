@@ -24,3 +24,6 @@ void BloomArea::init(const JMapInfoIter& rIter) {
         mIntensity2 = mObjArg3;
     }
 }
+
+BloomArea::~BloomArea() {
+}
