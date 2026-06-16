@@ -43,8 +43,8 @@ void MapPartsAppearController::storeCurrentPosture() {
 
 void MapPartsAppearController::initSwitchMessenger(const JMapInfoIter& rIter) {
     if (MR::isExistStageSwitchAppear(rIter)) {
-        MR::listenNameObjStageSwitchOnOffAppear(this, MR::createStageSwitchCtrl(this, rIter), MR::Functor(this, &MapPartsAppearController::startKill),
-                                                MR::Functor(this, &MapPartsAppearController::startAppear));
+        MR::listenNameObjStageSwitchOnOffAppear(this, MR::createStageSwitchCtrl(this, rIter), MR::Functor(this, &MapPartsAppearController::startAppear),
+                                                MR::Functor(this, &MapPartsAppearController::startKill));
     }
 }
 
@@ -135,7 +135,4 @@ void MapPartsAppearController::exeDisappear() {
         MR::showModel(mHost);
         killHost();
     }
-}
-
-MapPartsAppearController::~MapPartsAppearController() {
 }
