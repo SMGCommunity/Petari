@@ -174,12 +174,8 @@ void Triangle::calcForceMovePower(TVec3f* a1, const TVec3f& a2) const {
 }
 
 JMapInfoIter Triangle::getAttributes() const {
-    if (mIdx == 0xFFFFFFFF) {
-        JMapInfoIter iter;
-        iter.mInfo = nullptr;
-        iter.mIndex = -1;
-
-        return iter;
+    if (mIdx == -1) {
+        return JMapInfoIter();
     }
 
     return mParts->mServer->getAttributes(mIdx);

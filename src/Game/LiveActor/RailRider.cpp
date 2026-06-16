@@ -23,8 +23,6 @@ RailRider::RailRider(const JMapInfoIter& rIter) {
     mEndPos.z = 0.0f;
     const JMapInfo* info = nullptr;
     JMapInfoIter iter;
-    iter.mInfo = nullptr;
-    iter.mIndex = -1;
     MR::getRailInfo(&iter, &info, rIter);
     initBezierRail(iter, info);
 }
@@ -48,8 +46,6 @@ RailRider::RailRider(s32 a1, s32 a2) {
     mEndPos.z = 0.0f;
     const JMapInfo* info = nullptr;
     JMapInfoIter iter;
-    iter.mInfo = nullptr;
-    iter.mIndex = -1;
     MR::getCameraRailInfo(&iter, &info, a1, a2);
     initBezierRail(iter, info);
 }
@@ -207,8 +203,6 @@ s32 RailRider::getPointNum() const {
 
 void RailRider::copyPointPos(TVec3f* pOut, s32 pointNum) const {
     JMapInfoIter iter;
-    iter.mInfo = nullptr;
-    iter.mIndex = -1;
     mBezierRail->calcRailCtrlPointIter(&iter, pointNum);
     MR::getRailPointPos0(iter, pOut);
 }
@@ -229,7 +223,7 @@ void RailRider::initBezierRail(const JMapInfoIter& rIter, const JMapInfo* pInfo)
 
 bool RailRider::getPointArgS32NoInit(const char* pStr, s32* pOut, s32 pointNum) const {
     s32 val;
-    JMapInfoIter iter(nullptr, -1);
+    JMapInfoIter iter;
 
     mBezierRail->calcRailCtrlPointIter(&iter, pointNum);
     val = -1;
@@ -244,7 +238,7 @@ bool RailRider::getPointArgS32NoInit(const char* pStr, s32* pOut, s32 pointNum) 
 }
 
 bool RailRider::getPointArgS32WithInit(const char* pStr, s32* pOut, s32 pointNum) const {
-    JMapInfoIter iter(nullptr, -1);
+    JMapInfoIter iter;
     mBezierRail->calcRailCtrlPointIter(&iter, pointNum);
     iter.getValue< s32 >(pStr, pOut);
     return true;
@@ -252,7 +246,7 @@ bool RailRider::getPointArgS32WithInit(const char* pStr, s32* pOut, s32 pointNum
 
 bool RailRider::getCurrentPointArgS32NoInit(const char* pStr, s32* pOut) const {
     s32 val;
-    JMapInfoIter iter(nullptr, -1);
+    JMapInfoIter iter;
 
     mBezierRail->calcRailCtrlPointIter(&iter, mCurPoint);
     val = -1;
@@ -267,7 +261,7 @@ bool RailRider::getCurrentPointArgS32NoInit(const char* pStr, s32* pOut) const {
 }
 
 bool RailRider::getCurrentPointArgS32WithInit(const char* pStr, s32* pOut) const {
-    JMapInfoIter iter(nullptr, -1);
+    JMapInfoIter iter;
     mBezierRail->calcRailCtrlPointIter(&iter, mCurPoint);
     iter.getValue< s32 >(pStr, pOut);
     return true;
@@ -275,7 +269,7 @@ bool RailRider::getCurrentPointArgS32WithInit(const char* pStr, s32* pOut) const
 
 bool RailRider::getNextPointArgS32NoInit(const char* pStr, s32* pOut) const {
     s32 val;
-    JMapInfoIter iter(nullptr, -1);
+    JMapInfoIter iter;
 
     mBezierRail->calcRailCtrlPointIter(&iter, getNextPointNo());
     val = -1;
@@ -290,7 +284,7 @@ bool RailRider::getNextPointArgS32NoInit(const char* pStr, s32* pOut) const {
 }
 
 bool RailRider::getNextPointArgS32WithInit(const char* pStr, s32* pOut) const {
-    JMapInfoIter iter(nullptr, -1);
+    JMapInfoIter iter;
     mBezierRail->calcRailCtrlPointIter(&iter, getNextPointNo());
     iter.getValue< s32 >(pStr, pOut);
     return true;
@@ -317,7 +311,7 @@ void RailRider::syncPosDir() {
         mCurDirection.z *= -1.0f;
     }
 
-    JMapInfoIter iter(nullptr, -1);
+    JMapInfoIter iter;
     mBezierRail->calcCurrentRailCtrlPointIter(&iter, mCoord, mIsNotReverse);
     iter.getValue< s32 >("id", &mCurPoint);
 }

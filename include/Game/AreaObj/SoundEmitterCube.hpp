@@ -12,7 +12,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void movement();
 
-    AudAnmSoundObject* mSoundObj;  // 0x3C
-    TVec3f _40;
-    const char* mSoundName;  // 0x4C
+    /* 0x3C */ AudAnmSoundObject* mSoundObj;
+    /* 0x40 */ TVec3f _40;
+    /* 0x4C */ const char* mSoundName;
 };

@@ -19,6 +19,11 @@ enum SpinDriverScenarioDataFlag {
     SpinDriverScenarioDataFlag_EndOfData = 0b11111111,
 };
 
+void SpinDriverPathStorage_FORCE_MATCHSDATA2() {
+    f32 v1 = 1.0f;
+    f32 v2 = 0.0f;
+}
+
 SpinDriverPathStorageOne::SpinDriverPathStorageOne() : mZoneId(-1), mSpinDriverId(-1), mDrawRange(-1.0f) {
     reset();
 }
