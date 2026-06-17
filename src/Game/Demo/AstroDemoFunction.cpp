@@ -6,7 +6,7 @@
 #include "Game/Util/StringUtil.hpp"
 
 namespace {
-    const char* cGrandStarReturnDemoTable[] = {
+    const char* const cGrandStarReturnDemoTable[] = {
         "グランドスター１帰還", "グランドスター２帰還", "グランドスター３帰還",
         "グランドスター４帰還", "グランドスター５帰還", "グランドスター６帰還",
     };

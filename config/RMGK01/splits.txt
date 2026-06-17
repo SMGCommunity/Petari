@@ -154,11 +154,12 @@ nw4r/lyt/lyt_common.cpp:
 
 Game/Animation/AnmPlayer.cpp:
 	.text       start:0x800161D0 end:0x800178C8
-	.data       start:0x80564A00 end:0x80564A28
+	.data       start:0x80564A00 end:0x80564A38
 	.sdata2     start:0x806B7D30 end:0x806B7D38
 
 Game/Animation/BckCtrl.cpp:
 	.text       start:0x800178C8 end:0x8001804C
+	.data       start:0x80564A38 end:0x80564A80
 	.sdata      start:0x806B1638 end:0x806B1650
 	.sdata2     start:0x806B7D60 end:0x806B7D68
 
@@ -2261,7 +2262,7 @@ Game/Demo/DemoKoopaJrShip.cpp:
 	.ctors      start:0x8052EA0C end:0x8052EA10
 	.rodata     start:0x805319C8 end:0x805319F0
 	.data       start:0x80577388 end:0x80577528
-	.sdata      start:0x806B1850 end:0x806B1878
+	.sdata      start:0x806B1850 end:0x806B1860
 	.sbss       start:0x806B3A60 end:0x806B3A70
 	.sdata2     start:0x806B9C28 end:0x806B9C38
 
@@ -2273,6 +2274,7 @@ Game/Demo/DemoParamCommonDataTable.cpp:
 	.text       start:0x800BD200 end:0x800BD34C
 	.rodata     start:0x805319F0 end:0x80531A20
 	.data       start:0x80577570 end:0x805775B0
+	.sdata      start:0x806B1860 end:0x806B1868
 	.sdata2     start:0x806B9C38 end:0x806B9C40
 
 Game/Demo/DemoPlayerKeeper.cpp:
@@ -2290,6 +2292,7 @@ Game/Demo/DemoSimpleCastHolder.cpp:
 Game/Demo/DemoSoundKeeper.cpp:
 	.text       start:0x800BD938 end:0x800BDC9C
 	.data       start:0x80577660 end:0x805776F8
+	.sdata      start:0x806B1868 end:0x806B1870
 
 Game/Demo/DemoStartRequestHolder.cpp:
 	.text       start:0x800BDC9C end:0x800BE3A4
@@ -2306,6 +2309,7 @@ Game/Demo/DemoTalkAnimCtrl.cpp:
 	.text       start:0x800BF32C end:0x800BFC98
 	.rodata     start:0x80531A20 end:0x80531A28
 	.data       start:0x80577740 end:0x80577770
+	.sdata      start:0x806B1870 end:0x806B1878
 	.sdata2     start:0x806B9C48 end:0x806B9C50
 
 Game/Demo/DemoTimeKeeper.cpp:

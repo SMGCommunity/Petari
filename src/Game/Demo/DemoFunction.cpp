@@ -15,21 +15,6 @@
 #include <cstdio>
 #include <cstring>
 
-namespace {
-    DemoTimeKeeper* getCurrentTimeKeeper() NO_INLINE {
-        return DemoFunction::getDemoDirector()->mExecutor->mTimeKeeper;
-    }
-
-    DemoSubPartKeeper* getCurrentSubPartKeeper() NO_INLINE {
-        return DemoFunction::getDemoDirector()->mExecutor->mSubPartKeeper;
-    }
-
-    bool isCurrentMainPart(const char* pPartName) NO_INLINE {
-        DemoTimeKeeper* timeKeeper = getCurrentTimeKeeper();
-        return MR::isEqualString(pPartName, timeKeeper->mSubPartInfos[0].mName);
-    }
-};  // namespace
-
 namespace DemoFunction {
     DemoDirector* getDemoDirector() {
         return MR::getSceneObj< DemoDirector >(SceneObj_DemoDirector);
@@ -128,6 +113,24 @@ namespace DemoFunction {
     bool isExistDemoPart(const DemoExecutor* pExecutor, const char* pPartName) {
         return DemoExecutorFunction::isExistDemoPart(pExecutor, pPartName);
     }
+};  // namespace DemoFunction
+
+namespace {
+    DemoTimeKeeper* getCurrentTimeKeeper() NO_INLINE {
+        return DemoFunction::getDemoDirector()->mExecutor->mTimeKeeper;
+    }
+
+    DemoSubPartKeeper* getCurrentSubPartKeeper() NO_INLINE {
+        return DemoFunction::getDemoDirector()->mExecutor->mSubPartKeeper;
+    }
+
+    bool isCurrentMainPart(const char* pPartName) NO_INLINE {
+        DemoTimeKeeper* timeKeeper = getCurrentTimeKeeper();
+        return MR::isEqualString(pPartName, timeKeeper->mSubPartInfos[0].mName);
+    }
+};  // namespace
+
+namespace DemoFunction {
 
     bool isDemoPartActiveFunction(const char* pPartName) {
         if (!MR::isTimeKeepDemoActive()) {

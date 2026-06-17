@@ -13,13 +13,18 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void DemoKoopaJrShip_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)-1.0f;
+}
+
 namespace {
     struct Anim {
         /* 0x00 */ const char* mEntryAnimName;
         /* 0x04 */ const char* mLeaveAnimName;
     };
 
-    static const TVec3f sKoopaJrPos(135.0f, 188.0f, 0.0f);
+    static const Vec sKoopaJrPos = {135.0f, 188.0f, 0.0f};
     static const char* sPartName = "クッパＪｒ．デモ";
     static const char* sJointNameKoopaJrPos = "obj";
     static const s32 sBgmStartStep = 309;
@@ -129,10 +134,7 @@ void DemoKoopaJrShip::control() {
 
     MR::faceToPoint(jointMtx, *MR::getPlayerPos(), 5.0f);
 
-    TVec3f pos;
-    pos.setPS2(::sKoopaJrPos);
-
-    jointMtx.mult(pos, mKoopaJrObj->mPosition);
+    jointMtx.mult(::sKoopaJrPos, mKoopaJrObj->mPosition);
 }
 
 void DemoKoopaJrShip::initAnimID(const JMapInfoIter& rIter) {
@@ -174,7 +176,7 @@ void DemoKoopaJrShip::startEntryAnim() {
 void DemoKoopaJrShip::startLeaveAnim() {
     if (mAnimCameraIndex == -1) {
         MR::startBck(this, "Arrival", nullptr);
-        MR::setBckFrame(this, MR::getBckCtrl(this)->mEnd - 1.0f);
+        MR::setBckFrame(this, MR::getBckCtrl(this)->getEnd() - 1.0f);
         MR::setBckRate(this, -1.0f);
     } else {
         MR::startBck(this, ::sAnim[mAnimCameraIndex].mLeaveAnimName, nullptr);

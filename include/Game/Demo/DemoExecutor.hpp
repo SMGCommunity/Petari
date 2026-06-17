@@ -26,18 +26,6 @@ public:
     TalkMessageCtrl* findTalkMessageCtrl(const LiveActor*) const;
     void setTalkMessageCtrl(const LiveActor*, TalkMessageCtrl*);
 
-    inline s32 getSubPartStep(const char* pName) {
-        DemoSubPartInfo* subpart;
-        DemoSubPartKeeper* subpartkeeper = mSubPartKeeper;
-        for (int i = 0; i < subpartkeeper->mNumSubPartInfos; i++) {
-            subpart = &subpartkeeper->mSubPartInfos[i];
-            if (MR::isEqualString(pName, subpart->mMainPartName) && MR::isEqualSubString(subpart->mSubPartName, "会話アニメループ")) {
-                return subpart->mMainPartStep;
-            }
-        }
-        return 0;
-    }
-
     const char* mSheetName;             // 0x14
     DemoTimeKeeper* mTimeKeeper;        // 0x18
     DemoSubPartKeeper* mSubPartKeeper;  // 0x1C

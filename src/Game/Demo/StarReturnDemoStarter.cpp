@@ -23,9 +23,14 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void StarReturnDemoStarter_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace {
-    const char* cDemoMovePartName = "移動";
-    const char* cDemoWaitPartName = "ウェイト";
+    const char* const cDemoMovePartName = "移動";
+    const char* const cDemoWaitPartName = "ウェイト";
 };  // namespace
 
 StarReturnDemoStarter::StarReturnDemoStarter(const char* pName)

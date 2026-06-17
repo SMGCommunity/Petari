@@ -12,7 +12,9 @@ namespace JGeometry {
     struct SMatrix34C {
     public:
         typedef f32 ArrType[4];
-        void set(const ArrType*);
+        void set(const ArrType* pSrc) {
+            JMath::gekko_ps_copy12(this, pSrc);
+        }
         void set(const SMatrix34C< T >& rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
         }
