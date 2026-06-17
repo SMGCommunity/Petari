@@ -9,7 +9,7 @@
 #include "Game/Demo/PrologueDirector.hpp"
 #include "Game/Effect/EffectSystem.hpp"
 #include "Game/Enemy/BegomanBase.hpp"
-// #include "Game/Enemy/KabokuriFireHolder.hpp"
+#include "Game/Enemy/KabokuriFireHolder.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 #include "Game/Enemy/KarikariDirector.hpp"
 // #include "Game/Enemy/TakoHeiInkHolder.hpp"
@@ -281,8 +281,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_KameckBeamTurtleHolder:
         return new KameckBeamTurtleHolder();
     case SceneObj_KabokuriFireHolder:
-        // return new KabokuriFireHolder();
-        return nullptr;
+        return new KabokuriFireHolder();
     case SceneObj_TakoHeiInkHolder:
         // return new TakoHeiInkHolder();
         return nullptr;
