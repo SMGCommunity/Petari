@@ -12,7 +12,7 @@
 #include "Game/Enemy/KabokuriFireHolder.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 #include "Game/Enemy/KarikariDirector.hpp"
-// #include "Game/Enemy/TakoHeiInkHolder.hpp"
+#include "Game/Enemy/TakoHeiInkHolder.hpp"
 #include "Game/GameAudio/AudBgmConductor.hpp"
 #include "Game/GameAudio/AudCameraWatcher.hpp"
 #include "Game/GameAudio/AudEffectDirector.hpp"
@@ -283,8 +283,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_KabokuriFireHolder:
         return new KabokuriFireHolder();
     case SceneObj_TakoHeiInkHolder:
-        // return new TakoHeiInkHolder();
-        return nullptr;
+        return new TakoHeiInkHolder();
     case SceneObj_ShadowControllerHolder:
         return new ShadowControllerHolder();
     case SceneObj_ShadowVolumeDrawInit:
