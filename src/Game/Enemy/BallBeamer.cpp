@@ -20,6 +20,10 @@ namespace NrvBallBeamer {
     NEW_NERVE(BallBeamerNrvInter, BallBeamer, Inter);
 };  // namespace NrvBallBeamer
 
+void BallBeamer_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 BallBeamer::BallBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr), _90(false) {
     _98.identity();
 }

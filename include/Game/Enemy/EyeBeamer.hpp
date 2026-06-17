@@ -11,7 +11,6 @@ class EyeBeamer : public LiveActor {
 public:
     EyeBeamer(const char*);
 
-    virtual ~EyeBeamer();
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void draw() const;

@@ -16,7 +16,7 @@ public:
     void setTypeCoin(s32);
     void setTypeStarPeace(s32);
     void generate(const LiveActor*);
-    bool isUseFarSE() const;
+    bool isUseFarSE() const NO_INLINE;
 
     s32 mNumType;  // 0x00
     u8 mType;      // 0x04
