@@ -9,3 +9,6 @@ void ScreenBlurArea::init(const JMapInfoIter& rIter) {
     mIsPlayerSync = mObjArg0 > 0;
     MR::createScreenBlur();
 }
+
+ScreenBlurArea::~ScreenBlurArea() {
+}

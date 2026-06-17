@@ -1,8 +1,23 @@
-#include <revolution/os.h>
+#include <cstring>
 #include <revolution/esp.h>
 #include <revolution/ipc.h>
+#include <revolution/os.h>
 #include <stdbool.h>
-#include <cstring>
+
+typedef enum callbackType { BOGUS_TYPE = 0, TRANSACTION_CB, COVER_CB, COVER_REG_CB } callbackType_t;
+
+typedef struct dvdContext {
+    DVDLowCallback callback;
+    callbackType_t callbackType;
+    bool inUse;
+    u32 contextMagic;
+    u32 contextNum;
+    u32 pad[3];
+} dvdContext_t;
+
+static u32 registerBuf[8] __attribute__((aligned(32)));
+static dvdContext_t dvdContexts[4] __attribute__((aligned(32)));
+static diRegVals_t diRegValCache __attribute__((aligned(32)));
 
 IOSFd DiFD = -1;
 
@@ -10,40 +25,21 @@ static volatile bool requestInProgress = false;
 static bool breakRequested;
 static bool callbackInProgress;
 
-static u32 registerBuf[8] __attribute__((aligned(32)));
 static u32 statusRegister[8] __attribute__((aligned(32)));
 static s32 lastTicketError[8] __attribute__((aligned(32)));
 
 static u32 readLength;
 static u32 spinUpValue;
 
-static diRegVals_t diRegValCache __attribute__((aligned(32)));
-
 static bool DVDLowInitCalled = false;
-
-typedef enum callbackType {
-    BOGUS_TYPE = 0,
-    TRANSACTION_CB,
-    COVER_CB,
-    COVER_REG_CB
-} callbackType_t;
 
 static int freeCommandBuf = 0;
 static diCommand_t* diCommand;
 static char* pathBuf;
 
-typedef struct dvdContext {
-    DVDLowCallback callback;
-    callbackType_t callbackType;
-    bool inUse; 
-    u32 contextMagic;
-    u32 contextNum;
-    u32 pad[3];
-} dvdContext_t;
-
 static int freeDvdContext = 0;
 static bool dvdContextsInited = false;
-static dvdContext_t dvdContexts[4] __attribute__((aligned(32)));
+
 static IOSIoVector ioVec[10] __attribute__((aligned(32)));
 
 IOSError doTransactionCallback(IOSError ret, void* context) {
@@ -80,6 +76,9 @@ out:
     return 0;
 }
 
+// unused
+const char* _ = "(doCoverCallback) Error - context mangled!\n";
+
 IOSError doPrepareCoverRegisterCallback(IOSError ret, void* context) {
     dvdContext_t* dvdContext;
     requestInProgress = false;
@@ -90,8 +89,7 @@ IOSError doPrepareCoverRegisterCallback(IOSError ret, void* context) {
     if (dvdContext->contextMagic != 0xFEEBDAED) {
         OSReport("(doTransactionCallback) Error - context mangled!\n");
         dvdContext->contextMagic = 0xFEEBDAED;
-    }
-    else {
+    } else {
         if (dvdContext->callback != 0) {
             callbackInProgress = true;
 
@@ -110,7 +108,7 @@ IOSError doPrepareCoverRegisterCallback(IOSError ret, void* context) {
 }
 
 static void* ddrAllocAligned32(const int size) {
-    void* low, *high;
+    void *low, *high;
 
     if ((size & 0x1F) != 0) {
         return 0;
@@ -142,7 +140,7 @@ static bool allocateStructures(void) {
         return false;
     }
 
-    return true;    
+    return true;
 }
 
 static void initDvdContexts(void) {
@@ -163,20 +161,18 @@ static inline dvdContext_t* newContext(const DVDLowCallback callback, const call
     int returnIndex;
     bool use = dvdContexts[freeDvdContext].inUse != 0;
 
-    if (use == 1)  {
+    if (use == 1) {
         OSReport("(newContext) ERROR: freeDvdContext.inUse (#%d) is true\n", freeDvdContext);
         OSReport("(newContext) Now spinning in infinite loop\n");
 
         while (1) {
-
         }
     }
 
     if (dvdContexts[freeDvdContext].contextMagic != 0xFEEBDAED) {
         OSReport("(newContext) Something overwrote the context magic - spinning \n");
-    
-        while (1) {
 
+        while (1) {
         }
     }
 
@@ -190,7 +186,7 @@ static inline dvdContext_t* newContext(const DVDLowCallback callback, const call
         freeDvdContext = 0;
     }
 
-    return(dvdContexts + returnIndex);
+    return (dvdContexts + returnIndex);
 }
 
 static inline void nextCommandBuf(int* bufNum) {
@@ -240,25 +236,24 @@ bool DVDLowInit(void) {
 
     if (DiFD >= 0) {
         return true;
-    }
-    else {
+    } else {
         switch (DiFD) {
-            case IOS_ERROR_NOEXISTS:
-                OSReport("(DVDLowInit) Error: IOS_Open failed - pathname '/dev/di' does not exist\n");
-                return false;
-                break;
-            case IOS_ERROR_ACCESS:
-                OSReport("(DVDLowInit) Error: IOS_Open failed - calling thread lacks permission\n");
-                return false;
-                break;
-            case IOS_ERROR_MAX:
-                OSReport("(DVDLowInit) Error: IOS_Open failed - connection limit has been reached\n");
-                return false;
-                break;
-            default:
-                OSReport("(DVDLowInit) IOS_Open failed, errorcode = %d\n", DiFD);
-                return false;
-                break;
+        case IOS_ERROR_NOEXISTS:
+            OSReport("(DVDLowInit) Error: IOS_Open failed - pathname '/dev/di' does not exist\n");
+            return false;
+            break;
+        case IOS_ERROR_ACCESS:
+            OSReport("(DVDLowInit) Error: IOS_Open failed - calling thread lacks permission\n");
+            return false;
+            break;
+        case IOS_ERROR_MAX:
+            OSReport("(DVDLowInit) Error: IOS_Open failed - connection limit has been reached\n");
+            return false;
+            break;
+        default:
+            OSReport("(DVDLowInit) IOS_Open failed, errorcode = %d\n", DiFD);
+            return false;
+            break;
         }
     }
 }
@@ -287,21 +282,22 @@ bool DVDLowReadDiskID(DVDDiskID* diskID, DVDLowCallback callback) {
     return true;
 }
 
-bool DVDLowOpenPartition(const u32 partitionWordOffset, const ESTicket* const eTicket, const u32 numCertBytes, const u8* const certificates, ESTitleMeta* tmd, DVDLowCallback callback) {
+bool DVDLowOpenPartition(const u32 partitionWordOffset, const ESTicket* const eTicket, const u32 numCertBytes, const u8* const certificates,
+                         ESTitleMeta* tmd, DVDLowCallback callback) {
     dvdContext_t* dvdContext;
     IOSError rv;
-    
-    if (eTicket != 0 && !((u32)eTicket & 0x1F)) {
+
+    if (eTicket != 0 && ((u32)eTicket & 0x1F)) {
         OSReport("(DVDLowOpenPartition) eTicket memory is unaligned\n");
         return false;
     }
 
-    if (certificates != 0 && !((u32)certificates & 0x1F)) {
+    if (certificates != 0 && ((u32)certificates & 0x1F)) {
         OSReport("(DVDLowOpenPartition) certificates memory is unaligned\n");
         return false;
     }
 
-    if (tmd != 0 && !((u32)tmd & 0x1F)) {
+    if (tmd != 0 && ((u32)tmd & 0x1F)) {
         OSReport("(DVDLowOpenPartition) certificates memory is unaligned\n");
         return false;
     }
@@ -317,17 +313,15 @@ bool DVDLowOpenPartition(const u32 partitionWordOffset, const ESTicket* const eT
     ioVec[1].base = (u8*)eTicket;
     if (eTicket == 0) {
         ioVec[1].length = 0;
-    }
-    else {
+    } else {
         ioVec[1].length = sizeof(ESTicket);
     }
 
     ioVec[2].base = (u8*)certificates;
     if (certificates == 0) {
         ioVec[2].length = 0;
-    }
-    else {
-        ioVec[2].length = numCertBytes; 
+    } else {
+        ioVec[2].length = numCertBytes;
     }
 
     ioVec[3].base = (u8*)tmd;
@@ -347,19 +341,24 @@ bool DVDLowOpenPartition(const u32 partitionWordOffset, const ESTicket* const eT
     return true;
 }
 
-bool DVDLowOpenPartitionWithTmdAndTicketView(const u32 partitionWordOffset, const ESTicketView* const eTicketView, const u32 numTmdBytes, const ESTitleMeta* const tmd, const u32 numCertBytes, const u8* const certificates, DVDLowCallback callback) {
+const char* __ = "DVDLowOpenPartitionWithTmdAndTicket";
+const char* ___ = "(%s) eTicket memory is unaligned\n";
+const char* ____ = "(%s) eTicket parameter cannot be NULL\n";
+
+bool DVDLowOpenPartitionWithTmdAndTicketView(const u32 partitionWordOffset, const ESTicketView* const eTicketView, const u32 numTmdBytes,
+                                             const ESTitleMeta* const tmd, const u32 numCertBytes, const u8* const certificates,
+                                             DVDLowCallback callback) {
     dvdContext_t* dvdContext;
     IOSError rv;
-    
-    if (certificates != 0 && !((u32)certificates & 0x1F)) {
+
+    if (certificates != 0 && ((u32)certificates & 0x1F)) {
         return false;
     }
 
     if (tmd == 0) {
         OSReport("(%s) tmd parameter cannot be NULL\n", __FUNCTION__);
         return false;
-    }
-    else if (!((u32)tmd & 0x1F)) {
+    } else if (((u32)tmd & 0x1F)) {
         OSReport("(%s) tmd memory is unaligned\n", __FUNCTION__);
         return false;
     }
@@ -367,8 +366,7 @@ bool DVDLowOpenPartitionWithTmdAndTicketView(const u32 partitionWordOffset, cons
     if (eTicketView == 0) {
         OSReport("(%s) eTicketView parameter cannot be NULL\n", __FUNCTION__);
         return false;
-    }
-    else if (!((u32)eTicketView & 0x1F)) {
+    } else if (((u32)eTicketView & 0x1F)) {
         OSReport("(%s) eTicketView memory is unaligned\n", __FUNCTION__);
         return false;
     }
@@ -390,9 +388,8 @@ bool DVDLowOpenPartitionWithTmdAndTicketView(const u32 partitionWordOffset, cons
     ioVec[3].base = (u8*)certificates;
     if (certificates == 0) {
         ioVec[3].length = 0;
-    }
-    else {
-        ioVec[3].length = numCertBytes; 
+    } else {
+        ioVec[3].length = numCertBytes;
     }
 
     ioVec[4].base = (u8*)&lastTicketError[0];
@@ -418,12 +415,12 @@ bool DVDLowGetNoDiscBufferSizes(const u32 partitionWordOffset, u32* numTmdBytes,
         return false;
     }
 
-    if (!((u32)numTmdBytes & 0x1F)) {
+    if (((u32)numTmdBytes & 0x1F)) {
         OSReport("(%s) numTmdBytes memory is unaligned\n", __FUNCTION__);
         return false;
     }
 
-    if (!((u32)numCertBytes & 0x1F)) {
+    if (((u32)numCertBytes & 0x1F)) {
         OSReport("(%s) certificates memory is unaligned\n", __FUNCTION__);
         return false;
     }
@@ -456,7 +453,8 @@ bool DVDLowGetNoDiscBufferSizes(const u32 partitionWordOffset, u32* numTmdBytes,
 
 #define is_aligned(addr) (((u32)(addr) & 0x1F) == 0)
 
-bool DVDLowGetNoDiscOpenPartitionParams(const u32 partitionWordOffset, ESTicket* eTicket, u32* numTmdBytes, ESTitleMeta* tmd, u32* numCertBytes, u8* certificates, u32* dataWordOffset, u8* h3HashPtr, DVDLowCallback callback) {
+bool DVDLowGetNoDiscOpenPartitionParams(const u32 partitionWordOffset, ESTicket* eTicket, u32* numTmdBytes, ESTitleMeta* tmd, u32* numCertBytes,
+                                        u8* certificates, u32* dataWordOffset, u8* h3HashPtr, DVDLowCallback callback) {
     dvdContext_t* dvdContext;
     IOSError rv;
 
@@ -465,7 +463,8 @@ bool DVDLowGetNoDiscOpenPartitionParams(const u32 partitionWordOffset, ESTicket*
         return false;
     }
 
-    if (!is_aligned(eTicket) || !is_aligned(numTmdBytes) || !is_aligned(tmd) || !is_aligned(numCertBytes) || !is_aligned(certificates) || !is_aligned(dataWordOffset) || !is_aligned(h3HashPtr)) {
+    if (!is_aligned(eTicket) || !is_aligned(numTmdBytes) || !is_aligned(tmd) || !is_aligned(numCertBytes) || !is_aligned(certificates) ||
+        !is_aligned(dataWordOffset) || !is_aligned(h3HashPtr)) {
         OSReport("(%s) pointer argument is unaligned\n", __FUNCTION__);
         return false;
     }
@@ -488,7 +487,7 @@ bool DVDLowGetNoDiscOpenPartitionParams(const u32 partitionWordOffset, ESTicket*
     ioVec[3].base = (u8*)eTicket;
     ioVec[3].length = sizeof(ESTicket);
 
-    ioVec[4].base = (u8 *) numTmdBytes;
+    ioVec[4].base = (u8*)numTmdBytes;
     ioVec[4].length = 4;
 
     ioVec[5].base = (u8*)tmd;
@@ -571,7 +570,8 @@ bool DVDLowStopMotor(bool eject, bool saving, DVDLowCallback callback) {
     diCommand[freeCommandBuf].arg[0] = eject;
     diCommand[freeCommandBuf].arg[1] = saving;
 
-    rv = IOS_IoctlAsync(DiFD, 0xE3, &diCommand[freeCommandBuf], sizeof(diCommand_t), &diRegValCache, sizeof(diRegVals_t), doTransactionCallback, dvdContext);
+    rv = IOS_IoctlAsync(DiFD, 0xE3, &diCommand[freeCommandBuf], sizeof(diCommand_t), &diRegValCache, sizeof(diRegVals_t), doTransactionCallback,
+                        dvdContext);
 
     if (rv != IOS_ERROR_OK) {
         OSReport("@@@ (DVDLowStopMotor) IOS_IoctlAsync returned error: %d\n", rv);
@@ -609,7 +609,8 @@ bool DVDLowRequestError(DVDLowCallback callback) {
     dvdContext = newContext(callback, 1);
     nextCommandBuf(&freeCommandBuf);
     diCommand[freeCommandBuf].theCommand = 0xE0;
-    rv = IOS_IoctlAsync(DiFD, 0xE0, &diCommand[freeCommandBuf], sizeof(diCommand_t), &diRegValCache, sizeof(diRegVals_t), doTransactionCallback, dvdContext);
+    rv = IOS_IoctlAsync(DiFD, 0xE0, &diCommand[freeCommandBuf], sizeof(diCommand_t), &diRegValCache, sizeof(diRegVals_t), doTransactionCallback,
+                        dvdContext);
 
     if (rv != IOS_ERROR_OK) {
         OSReport("@@@ (DVDLowInquiry) IOS_IoctlAsync returned error: %d\n", rv);
@@ -655,7 +656,8 @@ bool DVDLowAudioBufferConfig(BOOL enable, u32 size, DVDLowCallback callback) {
     diCommand[freeCommandBuf].theCommand = 0xE4;
     diCommand[freeCommandBuf].arg[0] = enable;
     diCommand[freeCommandBuf].arg[1] = size;
-    rv = IOS_IoctlAsync(DiFD, 0xE4, &diCommand[freeCommandBuf], sizeof(diCommand_t), &diRegValCache, sizeof(diRegVals_t), doTransactionCallback, dvdContext);
+    rv = IOS_IoctlAsync(DiFD, 0xE4, &diCommand[freeCommandBuf], sizeof(diCommand_t), &diRegValCache, sizeof(diRegVals_t), doTransactionCallback,
+                        dvdContext);
 
     if (rv != IOS_ERROR_OK) {
         OSReport("@@@ (DVDLowAudioBufferConfig) IOS_IoctlAsync returned error: %d\n", rv);
@@ -677,7 +679,8 @@ bool DVDLowReportKey(DVDVideoReportKey* reportKey, u32 format, u32 lsn, DVDLowCa
     diCommand[freeCommandBuf].arg[0] = format >> 16;
     diCommand[freeCommandBuf].arg[1] = lsn;
 
-    rv = IOS_IoctlAsync(DiFD, 0xA4, &diCommand[freeCommandBuf], sizeof(diCommand_t), reportKey, sizeof(DVDVideoReportKey), doTransactionCallback, dvdContext);
+    rv = IOS_IoctlAsync(DiFD, 0xA4, &diCommand[freeCommandBuf], sizeof(diCommand_t), reportKey, sizeof(DVDVideoReportKey), doTransactionCallback,
+                        dvdContext);
 
     if (rv != IOS_ERROR_OK) {
         OSReport("@@@ (DVDLowReportKey) IOS_IoctlAsync returned error: %d\n", rv);
@@ -771,7 +774,8 @@ bool DVDLowPrepareCoverRegister(DVDLowCallback callback) {
     diCommand[freeCommandBuf].theCommand = 0x7A;
     requestInProgress = true;
     dvdContext = newContext(callback, 1);
-    rv = IOS_IoctlAsync(DiFD, 0x7A, &diCommand[freeCommandBuf], sizeof(diCommand_t), registerBuf, sizeof(registerBuf), doTransactionCallback, dvdContext);
+    rv = IOS_IoctlAsync(DiFD, 0x7A, &diCommand[freeCommandBuf], sizeof(diCommand_t), registerBuf, sizeof(registerBuf), doTransactionCallback,
+                        dvdContext);
 
     if (rv != IOS_ERROR_OK) {
         OSReport("@@@ (DVDLowPrepareCoverRegister) IOS_IoctlAsync returned error: %d\n", rv);
@@ -790,7 +794,8 @@ bool DVDLowPrepareStatusRegister(DVDLowCallback callback) {
     diCommand[freeCommandBuf].theCommand = 0x95;
     requestInProgress = true;
     dvdContext = newContext(callback, 1);
-    rv = IOS_IoctlAsync(DiFD, 0x95, &diCommand[freeCommandBuf], sizeof(diCommand_t), statusRegister, sizeof(statusRegister), doTransactionCallback, dvdContext);
+    rv = IOS_IoctlAsync(DiFD, 0x95, &diCommand[freeCommandBuf], sizeof(diCommand_t), statusRegister, sizeof(statusRegister), doTransactionCallback,
+                        dvdContext);
 
     if (rv != IOS_ERROR_OK) {
         OSReport("@@@ (DVDLowPrepareStatusRegister) IOS_IoctlAsync returned error: %d\n", rv);
@@ -832,6 +837,10 @@ bool DVDLowClearCoverInterrupt(DVDLowCallback callback) {
     return true;
 }
 
-BOOL __DVDLowTestAlarm(const OSAlarm *) {
+BOOL __DVDLowTestAlarm(const OSAlarm*) {
     return FALSE;
+}
+
+void DVD_StringGen(void) {
+    OSReport("@@@ (DVDLowEnableDvdVideo) IOS_IoctlAsync returned error: %d\n", 0);
 }

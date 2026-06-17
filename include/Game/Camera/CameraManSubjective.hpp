@@ -7,7 +7,6 @@ class CameraSubjective;
 class CameraManSubjective : public CameraMan {
 public:
     CameraManSubjective(const char*);
-    virtual ~CameraManSubjective();
 
     virtual void init(const JMapInfoIter&);
 

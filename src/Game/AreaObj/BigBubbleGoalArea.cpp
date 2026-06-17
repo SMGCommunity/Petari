@@ -11,6 +11,11 @@ namespace {
     static const f32 sMeterUpSpeed = 0.05f;
 };  // namespace
 
+void BigBubbleGoalArea_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 BigBubbleGoalArea::BigBubbleGoalArea(int formType, const char* pName)
     : AreaObj(formType, pName), mTrans(0.0f, 0.0f, 0.0f), mMeterCapacity(1.0f), mMeterDisplayAmount(), mMeterAmount() {
 }

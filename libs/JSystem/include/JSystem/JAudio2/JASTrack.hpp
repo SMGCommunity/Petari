@@ -88,7 +88,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded< JASTrack > {
     f32 getFxmix() const;
     f32 getDolby() const;
     void setLatestKey(u8);
-    JASChannel* channelStart(JASTrack::TChannelMgr*, u32, u32, u32);
+    JASChannel* channelStart(JASTrack::TChannelMgr*, u32, u32, u32) ATTRIBUTE_WEAK;
     bool noteOn(u32, u32, u32);
     bool gateOn(u32, u32, f32, u32);
     bool noteOff(u32, u16);

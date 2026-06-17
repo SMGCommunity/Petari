@@ -21,6 +21,10 @@ public:
     void start();
     void update(s32, s32);
 
+    inline TPos3f* getMtx() {
+        return mTransform;
+    }
+
     /* 0x0 */ LiveActor* mDemoStarter;  // Can be either StarReturnDemoStarter or GrandStarReturnDemoStarter
     /* 0x4 */ LiveActor* mPowerStar;
     /* 0x8 */ bool mIsGrandStar;

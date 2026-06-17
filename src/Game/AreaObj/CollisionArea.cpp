@@ -8,10 +8,6 @@
 DynamicCollisionObj::~DynamicCollisionObj() {
 }
 
-bool AreaObj::isValid() const {
-    return mIsValid && _15 && mIsAwake;
-}
-
 AreaPolygon::AreaPolygon() : DynamicCollisionObj("エリアポリゴン") {
     mForm = nullptr;
     _128 = nullptr;

@@ -154,11 +154,12 @@ nw4r/lyt/lyt_common.cpp:
 
 Game/Animation/AnmPlayer.cpp:
 	.text       start:0x800161D0 end:0x800178C8
-	.data       start:0x80564A00 end:0x80564A28
+	.data       start:0x80564A00 end:0x80564A38
 	.sdata2     start:0x806B7D30 end:0x806B7D38
 
 Game/Animation/BckCtrl.cpp:
 	.text       start:0x800178C8 end:0x8001804C
+	.data       start:0x80564A38 end:0x80564A80
 	.sdata      start:0x806B1638 end:0x806B1650
 	.sdata2     start:0x806B7D60 end:0x806B7D68
 
@@ -291,12 +292,12 @@ Game/AreaObj/DepthOfFieldArea.cpp:
 Game/AreaObj/FollowCollisionArea.cpp:
 	.text       start:0x80022508 end:0x80022F5C
 	.rodata     start:0x8052F7F0 end:0x8052F7F8
-	.data       start:0x805655C0 end:0x80565610
+	.data       start:0x805655C0 end:0x80565600
 	.sdata2     start:0x806B7E18 end:0x806B7E28
 
 Game/AreaObj/GlaringLightArea.cpp:
 	.text       start:0x80022F5C end:0x800231F0
-	.data       start:0x80565610 end:0x80565678
+	.data       start:0x80565600 end:0x80565678
 	.sdata2     start:0x806B7E28 end:0x806B7E30
 
 Game/AreaObj/HazeCube.cpp:
@@ -2261,7 +2262,7 @@ Game/Demo/DemoKoopaJrShip.cpp:
 	.ctors      start:0x8052EA0C end:0x8052EA10
 	.rodata     start:0x805319C8 end:0x805319F0
 	.data       start:0x80577388 end:0x80577528
-	.sdata      start:0x806B1850 end:0x806B1878
+	.sdata      start:0x806B1850 end:0x806B1860
 	.sbss       start:0x806B3A60 end:0x806B3A70
 	.sdata2     start:0x806B9C28 end:0x806B9C38
 
@@ -2273,6 +2274,7 @@ Game/Demo/DemoParamCommonDataTable.cpp:
 	.text       start:0x800BD200 end:0x800BD34C
 	.rodata     start:0x805319F0 end:0x80531A20
 	.data       start:0x80577570 end:0x805775B0
+	.sdata      start:0x806B1860 end:0x806B1868
 	.sdata2     start:0x806B9C38 end:0x806B9C40
 
 Game/Demo/DemoPlayerKeeper.cpp:
@@ -2290,6 +2292,7 @@ Game/Demo/DemoSimpleCastHolder.cpp:
 Game/Demo/DemoSoundKeeper.cpp:
 	.text       start:0x800BD938 end:0x800BDC9C
 	.data       start:0x80577660 end:0x805776F8
+	.sdata      start:0x806B1868 end:0x806B1870
 
 Game/Demo/DemoStartRequestHolder.cpp:
 	.text       start:0x800BDC9C end:0x800BE3A4
@@ -2306,6 +2309,7 @@ Game/Demo/DemoTalkAnimCtrl.cpp:
 	.text       start:0x800BF32C end:0x800BFC98
 	.rodata     start:0x80531A20 end:0x80531A28
 	.data       start:0x80577740 end:0x80577770
+	.sdata      start:0x806B1870 end:0x806B1878
 	.sdata2     start:0x806B9C48 end:0x806B9C50
 
 Game/Demo/DemoTimeKeeper.cpp:
@@ -2431,7 +2435,7 @@ Game/Effect/RandomEffectObj.cpp:
 Game/Effect/SimpleEffectObj.cpp:
 	.text       start:0x800CAC10 end:0x800CB2A8
 	.ctors      start:0x8052EA20 end:0x8052EA24
-	.rodata     start:0x80531AB0 end:0x80531BF0
+	.rodata     start:0x80531AB0 end:0x80531BD0
 	.data       start:0x805788F0 end:0x80578BE0
 	.sbss       start:0x806B3AF8 end:0x806B3B00
 
@@ -2449,11 +2453,13 @@ Game/Effect/SyncBckEffectChecker.cpp:
 
 Game/Effect/SyncBckEffectInfo.cpp:
 	.text       start:0x800CBA84 end:0x800CBD24
+	.rodata     start:0x80531BD0 end:0x80531BD8
 	.sdata2     start:0x806B9D90 end:0x806B9D98
 
 Game/Enemy/AnimScaleController.cpp:
 	.text       start:0x800CBD24 end:0x800CC370
 	.ctors      start:0x8052EA24 end:0x8052EA28
+	.rodata     start:0x80531BD8 end:0x80531BE0
 	.data       start:0x80578C08 end:0x80578C80
 	.bss        start:0x8060A798 end:0x8060A800
 	.sbss       start:0x806B3B00 end:0x806B3B18
@@ -2462,6 +2468,7 @@ Game/Enemy/AnimScaleController.cpp:
 Game/Enemy/AnimStampController.cpp:
 	.text       start:0x800CC370 end:0x800CC69C
 	.ctors      start:0x8052EA28 end:0x8052EA2C
+	.rodata     start:0x80531BE0 end:0x80531BE8
 	.data       start:0x80578C80 end:0x80578CC8
 	.sbss       start:0x806B3B18 end:0x806B3B20
 	.sdata2     start:0x806B9DE8 end:0x806B9E00
@@ -2476,6 +2483,7 @@ Game/Enemy/BallBeamer.cpp:
 Game/Enemy/Balloonfish.cpp:
 	.text       start:0x800CD00C end:0x800CDD78
 	.ctors      start:0x8052EA30 end:0x8052EA34
+	.rodata     start:0x80531BE8 end:0x80531BF0
 	.data       start:0x80578E60 end:0x80578FF0
 	.sbss       start:0x806B3B30 end:0x806B3B40
 	.sdata2     start:0x806B9E18 end:0x806B9E50
@@ -3707,7 +3715,7 @@ Game/Map/FileSelectItem.cpp:
 Game/Map/FileSelectModel.cpp:
 	.text       start:0x8017A850 end:0x8017AC3C
 	.ctors      start:0x8052EBB4 end:0x8052EBB8
-	.data       start:0x80589548 end:0x805896C0
+	.data       start:0x80589548 end:0x80589638
 	.sbss       start:0x806B4AA8 end:0x806B4AB8
 	.sdata2     start:0x806BBEF0 end:0x806BBEF8
 
@@ -3715,7 +3723,7 @@ Game/Map/FileSelector.cpp:
 	.text       start:0x8017AC3C end:0x8017F050
 	.ctors      start:0x8052EBB8 end:0x8052EBBC
 	.rodata     start:0x80532A68 end:0x80532AA8
-	.data       start:0x805896C0 end:0x80589EB8
+	.data       start:0x80589638 end:0x80589EB8
 	.sdata      start:0x806B1BA8 end:0x806B1BE0
 	.sbss       start:0x806B4AB8 end:0x806B4B78
 	.sdata2     start:0x806BBEF8 end:0x806BBF30
@@ -11030,7 +11038,7 @@ RVL_SDK/ai/ai.c:
 	.text       start:0x804CA2E4 end:0x804CA8BC
 	.data       start:0x80600260 end:0x806002A8
 	.sdata      start:0x806B2BA8 end:0x806B2BB0
-	.sbss       start:0x806B79E0 end:0x806B7A20
+	.sbss       start:0x806B79E0 end:0x806B7A10
 
 RVL_SDK/ax/AXAlloc.c:
 	.text       start:0x804CA8BC end:0x804CA9BC
@@ -11038,7 +11046,7 @@ RVL_SDK/ax/AXAlloc.c:
 
 RVL_SDK/ax/AXAux.c:
 	.text       start:0x804CA9BC end:0x804CAA34
-	.sbss       start:0x806B7A20 end:0x806B7A30
+	.sbss       start:0x806B7A10 end:0x806B7A30
 
 RVL_SDK/ax/AXCL.c:
 	.text       start:0x804CAA34 end:0x804CAA64

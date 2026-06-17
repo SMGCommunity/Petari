@@ -8,6 +8,7 @@ public:
 
     SimpleBloomArea(int, const char*);
 
+    virtual ~SimpleBloomArea();
     virtual void init(const JMapInfoIter&);
 
     virtual const char* getManagerName() const {

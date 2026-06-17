@@ -4,20 +4,19 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/GameAudio/AudStageBgmTable.hpp"
 #include "Game/System/GameDataTemporaryInGalaxy.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 
-RestartCube::RestartCube(int formType, const char* pName) : AreaObj(formType, pName) {
-    mIdInfo = nullptr;
-    _40 = -1;
-    _44 = -1;
-    _48 = false;
-}
-
-RestartCube::~RestartCube() {
+RestartCube::RestartCube(int formType, const char* pName) : AreaObj(formType, pName), mIdInfo(), _40(-1), _44(-1), _48() {
 }
 
 void RestartCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
+
     mIdInfo = new JMapIdInfo(mObjArg0, rIter);
     _40 = mObjArg1;
     _44 = mObjArg2;
@@ -32,6 +31,9 @@ void RestartCube::updatePlayerRestartIdInfo() {
             changeBgm();
         }
     }
+}
+
+RestartCube::~RestartCube() {
 }
 
 void RestartCube::changeBgm() {
@@ -55,40 +57,42 @@ void RestartCube::changeBgm() {
         return;
     }
 
-    if (!MR::isPlayingStageBgmID(STM_BOSS_MECHA_KOOPA)) {
-        u32 bgmID = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), _40);
+    if (MR::isPlayingStageBgmID(STM_BOSS_MECHA_KOOPA)) {
+        return;
+    }
 
-        if (bgmID != -1) {
-            u32 currBGM = AudWrap::getBgmMgr()->mCurrentBGM[AudBgmMgr::BgmType_Stage];
+    u32 bgmId = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), _40);
 
-            if (currBGM == bgmID && MR::isPlayingStageBgm()) {
-                return;
-            }
+    if (bgmId != -1) {
+        u32 currBGM = AudWrap::getBgmMgr()->mCurrentBGM[AudBgmMgr::BgmType_Stage];
 
-            AudWrap::startStageBgm(bgmID, false);
-
-            if (MR::isEqualStageName("ReverseKingdomGalaxy") && bgmID == MBGM_BOSS_05_A) {
-                MR::setCubeBgmChangeInvalid();
-            }
-
-            if (MR::isEqualStageName("CannonFleetGalaxy") && bgmID == MBGM_BOSS_01_A) {
-                MR::setCubeBgmChangeInvalid();
-            }
-
-            if (MR::isEqualStageName("BattleShipGalaxy") && bgmID == MBGM_BOSS_01_A) {
-                MR::setCubeBgmChangeInvalid();
-            }
+        if (currBGM == bgmId && MR::isPlayingStageBgm()) {
+            return;
         }
 
-        if (_44 >= 0) {
-            s32 state = AudStageBgmTable::getBgmState(MR::getCurrentStageName(), _44);
+        AudWrap::startStageBgm(bgmId, false);
 
-            if (state >= 0) {
-                AudBgm* bgm = AudWrap::getStageBgm();
+        if (MR::isEqualStageName("ReverseKingdomGalaxy") && bgmId == MBGM_BOSS_05_A) {
+            MR::setCubeBgmChangeInvalid();
+        }
 
-                if (bgm) {
-                    bgm->changeTrackMuteState(state, 0);
-                }
+        if (MR::isEqualStageName("CannonFleetGalaxy") && bgmId == MBGM_BOSS_01_A) {
+            MR::setCubeBgmChangeInvalid();
+        }
+
+        if (MR::isEqualStageName("BattleShipGalaxy") && bgmId == MBGM_BOSS_01_A) {
+            MR::setCubeBgmChangeInvalid();
+        }
+    }
+
+    if (_44 >= 0) {
+        s32 state = AudStageBgmTable::getBgmState(MR::getCurrentStageName(), _44);
+
+        if (state >= 0) {
+            AudBgm* stageBgm = AudWrap::getStageBgm();
+
+            if (stageBgm != nullptr) {
+                stageBgm->changeTrackMuteState(state, 0);
             }
         }
     }

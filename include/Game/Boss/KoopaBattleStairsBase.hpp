@@ -12,7 +12,6 @@ class KoopaBattleStairsBase : public NerveExecutor {
 public:
     KoopaBattleStairsBase(Koopa* pKoopa);
 
-    virtual ~KoopaBattleStairsBase() {};
     virtual s32 registerStair(KoopaBattleMapStair* pStair) = 0;
 
     void calcFireStartPos(TVec3f* pVec, const char* pDemoName) const;

@@ -1,6 +1,10 @@
 #include "Game/AreaObj/DepthOfFieldArea.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
+void DepthOfFieldArea_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 DepthOfFieldArea::DepthOfFieldArea(int formType, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_DOF, formType, pName), mIsPlayerSync() {
 }
 

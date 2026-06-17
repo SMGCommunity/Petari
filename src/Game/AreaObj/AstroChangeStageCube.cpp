@@ -71,9 +71,7 @@ bool AstroChangeStageCube::isInVolume(const TVec3f& rPos) const {
 AstroChangeStageCube::~AstroChangeStageCube() {}
 
 void AstroChangeStageCube::movement() {
-    bool isValid = mIsValid && _15 && mIsAwake;
-
-    if (isValid) {
+    if (isValid()) {
         TVec3f* playerPos = MR::getPlayerPos();
 
         if (!isInVolume(*playerPos)) {
