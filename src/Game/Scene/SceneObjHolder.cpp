@@ -22,7 +22,6 @@
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/MessageSensorHolder.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/SensorHitChecker.hpp"
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/ShadowSurfaceDrawer.hpp"
@@ -73,7 +72,6 @@
 #include "Game/NPC/NPCDirector.hpp"
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/NameObj/MovementOnOffGroupHolder.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjGroup.hpp"
 #include "Game/Player/GroupChecker.hpp"
@@ -238,8 +236,8 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         return new ResourceShare();
     case SceneObj_MoviePlayerSimple:
         return new MoviePlayerSimple();
-    case SceneObj_WarpPodMgr:
-        return new WarpPodMgr("ワープポッド管理局");
+    case SceneObj_InformationObserver:
+        return new InformationObserver();
     case SceneObj_CenterScreenBlur:
         return new CenterScreenBlur();
     case SceneObj_OdhConverter:
@@ -256,22 +254,6 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         return new BaseMatrixFollowTargetHolder("行列追随先リスト", 256, 256);
     case SceneObj_GameSceneLayoutHolder:
         return new GameSceneLayoutHolder();
-    case SceneObj_CoinHolder:
-        return new CoinHolder("コイン管理");
-    case SceneObj_PurpleCoinHolder:
-        return new PurpleCoinHolder();
-    case SceneObj_CoinRotater:
-        return new CoinRotater("コイン回転管理");
-    case SceneObj_AirBubbleHolder:
-        return new AirBubbleHolder("空気アワ管理");
-    case SceneObj_BigFanHolder:
-        return new BigFanHolder();
-    case SceneObj_KarikariDirector:
-        return new KarikariDirector("カリカリディレクター");
-    case SceneObj_StarPieceDirector:
-        return new StarPieceDirector("スターピース指揮");
-    case SceneObj_BegomanAttackPermitter:
-        return new BegomanAttackPermitter("ベーゴマン攻撃許可者");
     case SceneObj_TripodBossAccesser:
         return new TripodBossAccesser("三脚ボスアクセサ");
     case SceneObj_KameckBeamHolder:
@@ -284,14 +266,30 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         return new KabokuriFireHolder();
     case SceneObj_TakoHeiInkHolder:
         return new TakoHeiInkHolder();
+    case SceneObj_SwingRopeGroup:
+        return new SwingRopeGroup("スイングロープ描画");
+    case SceneObj_CoinHolder:
+        return new CoinHolder("コイン管理");
+    case SceneObj_PurpleCoinHolder:
+        return new PurpleCoinHolder();
+    case SceneObj_CoinRotater:
+        return new CoinRotater("コイン回転管理");
+    case SceneObj_AirBubbleHolder:
+        return new AirBubbleHolder("空気アワ管理");
+    case SceneObj_StarPieceDirector:
+        return new StarPieceDirector("スターピース指揮");
+    case SceneObj_BegomanAttackPermitter:
+        return new BegomanAttackPermitter("ベーゴマン攻撃許可者");
+    case SceneObj_BigFanHolder:
+        return new BigFanHolder();
+    case SceneObj_KarikariDirector:
+        return new KarikariDirector("カリカリディレクター");
     case SceneObj_ShadowControllerHolder:
         return new ShadowControllerHolder();
     case SceneObj_ShadowVolumeDrawInit:
         return new ShadowVolumeDrawInit();
     case SceneObj_ShadowSurfaceDrawInit:
         return new ShadowSurfaceDrawInit("水面影描画初期化");
-    case SceneObj_SwingRopeGroup:
-        return new SwingRopeGroup("スイングロープ描画");
     case SceneObj_PlantStalkDrawInit:
         return new PlantStalkDrawInit("植物の茎描画初期化");
     case SceneObj_PlantLeafDrawInit:
@@ -304,16 +302,16 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         return new SpinDriverPathDrawInit();
     case SceneObj_NoteGroup:
         return new NoteGroup();
+    case SceneObj_ClipAreaHolder:
+        return new ClipAreaHolder("クリップエリアホルダー");
+    case SceneObj_ArrowSwitchMultiHolder:
+        return new ArrowSwitchMultiHolder();
     case SceneObj_ClipAreaDropHolder:
         return new ClipAreaDropHolder();
     case SceneObj_FallOutFieldDraw:
         return new FallOutFieldDraw("クリップエリア描画[抜き]");
     case SceneObj_ClipFieldFillDraw:
         return new ClipFieldFillDraw("クリップエリア描画[塗りつぶし]");
-    case SceneObj_ClipAreaHolder:
-        return new ClipAreaHolder("クリップエリアホルダー");
-    case SceneObj_ArrowSwitchMultiHolder:
-        return new ArrowSwitchMultiHolder();
     case SceneObj_ScreenAlphaCapture:
         return new ScreenAlphaCapture("アルファテクスチャ取り込み");
     case SceneObj_MapPartsRailGuideHolder:
@@ -376,10 +374,10 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         return new MiniatureGalaxyHolder();
     case SceneObj_PlanetMapCreator:
         return new PlanetMapCreator("惑星クリエイタ");
+    case SceneObj_WarpPodMgr:
+        return new WarpPodMgr("ワープポッド管理局");
     case SceneObj_PriorDrawAirHolder:
         return new PriorDrawAirHolder();
-    case SceneObj_InformationObserver:
-        return new InformationObserver();
     case SceneObj_GalaxyMapController:
         return new GalaxyMapController();
     case SceneObj_MoviePlayingSequenceHolder:
