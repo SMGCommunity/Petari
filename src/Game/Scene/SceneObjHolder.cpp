@@ -42,7 +42,7 @@
 #include "Game/Map/SunshadeMapHolder.hpp"
 #include "Game/Map/SwitchWatcherHolder.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
-// #include "Game/Map/WaterPlant.hpp"
+#include "Game/Map/WaterPlant.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
 #include "Game/MapObj/ArrowSwitchMultiHolder.hpp"
 #include "Game/MapObj/BigBubbleHolder.hpp"
@@ -341,8 +341,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_WaterAreaHolder:
         return new WaterAreaHolder();
     case SceneObj_WaterPlantDrawInit:
-        // return new WaterPlantDrawInit();
-        return nullptr;
+        return new WaterPlantDrawInit();
     case SceneObj_OceanHomeMapCtrl:
         return new OceanHomeMapCtrl();
     case SceneObj_RaceManager:
