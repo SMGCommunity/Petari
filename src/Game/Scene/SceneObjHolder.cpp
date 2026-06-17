@@ -70,7 +70,7 @@
 #include "Game/NPC/EventDirector.hpp"
 #include "Game/NPC/MiiFaceIconHolder.hpp"
 #include "Game/NPC/MiiFacePartsHolder.hpp"
-// #include "Game/NPC/NPCDirector.hpp"
+#include "Game/NPC/NPCDirector.hpp"
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/NameObj/MovementOnOffGroupHolder.hpp"
 #include "Game/NameObj/NameObj.hpp"
@@ -233,8 +233,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_NamePosHolder:
         return new NamePosHolder();
     case SceneObj_NPCDirector:
-        // return new NPCDirector();
-        return nullptr;
+        return new NPCDirector();
     case SceneObj_ResourceShare:
         // return new ResourceShare();
         return nullptr;
