@@ -118,7 +118,7 @@
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 #include "Game/Util/FurCtrl.hpp"
 #include "Game/Util/SceneUtil.hpp"
-// #include "Game/Util/ShareUtil.hpp"
+#include "Game/Util/ShareUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 
 SceneObjHolder::SceneObjHolder() {
@@ -235,8 +235,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_NPCDirector:
         return new NPCDirector();
     case SceneObj_ResourceShare:
-        // return new ResourceShare();
-        return nullptr;
+        return new ResourceShare();
     case SceneObj_MoviePlayerSimple:
         return new MoviePlayerSimple();
     case SceneObj_WarpPodMgr:
