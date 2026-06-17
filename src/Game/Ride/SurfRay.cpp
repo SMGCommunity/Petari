@@ -22,6 +22,14 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void SurfRay_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
+}
+
 namespace NrvSurfRay {
     NEW_NERVE(SurfRayNrvWaitPlayer, SurfRay, WaitPlayer);
     NEW_NERVE(SurfRayNrvTurnToWait, SurfRay, TurnToWait);

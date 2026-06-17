@@ -50,6 +50,3 @@ void LavaShellTower::exeDemo() {
 
 void LavaShellTower::exeDone() {
 }
-
-void LavaShellTower::initCaseUseSwitchB(const MapObjActorInitInfo&) {
-}

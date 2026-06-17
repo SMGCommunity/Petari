@@ -30,6 +30,9 @@ KoopaJrShipCannonMainShell::KoopaJrShipCannonMainShell(const char* pName) : Cann
     _8C.set< f32 >(0.0f, 0.0f, 0.0f, one);
 }
 
+CannonShellBase::~CannonShellBase() {
+}
+
 void KoopaJrShipCannonMainShell::init(const JMapInfoIter& rIter) {
     mScale.setAll< f32 >(getBaseScale());
 

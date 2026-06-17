@@ -17,9 +17,19 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
+
+void Karikari_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    f32 f3 = JGeometry::TUtil< f32 >::epsilon();
+    (void)0.5f;
+    (void)3.0f;
+    (void)2.0f;
+}
 
 namespace {
-    const f32 sSize = 30.0f;
+    volatile static const f32 sSize = 30.0f;  // TODO: is this really volatile or is this just a hack
 
     static const f32 sGravity = 2.4f;
     static const f32 sTurnRatio = 0.25f;
@@ -117,7 +127,7 @@ void Karikari::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     initSound(4, false);
-    f32 size = mScale.y * ::sSize;
+    f32 size = ::sSize * mScale.y;
     initBinder(size, size, 0);
     initEffectKeeper(0, nullptr, false);
 
@@ -815,10 +825,8 @@ void Karikari::kill() {
 }
 
 void Karikari::generateItem(s32 numStarPieces) {
-    // FIXME: TVec and register order
-    // https://decomp.me/scratch/hBIP5
-
-    TVec3f pos = (-mGravity).scaleInline(80.0f);
+    TVec3f up = -mGravity;
+    TVec3f pos = up.scaleInline(80.0f);
     pos += mPosition;
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     MR::appearStarPiece(this, pos, numStarPieces, 10.0f, 40.0f, false);
@@ -984,4 +992,7 @@ void Karikari::calcAndSetBaseMtx() {
     TPos3f mtx;
     MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, mFront);
     MR::setBaseTRMtx(this, mtx);
+}
+
+Karikari::~Karikari() {
 }

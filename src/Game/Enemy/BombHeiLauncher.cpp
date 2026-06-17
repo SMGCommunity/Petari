@@ -12,6 +12,10 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void BombHeiLauncher_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     static const f32 hThrowVel = 35.0f;
     static const f32 hThrowFrontVel = 1.0f;

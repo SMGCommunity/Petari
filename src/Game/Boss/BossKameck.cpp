@@ -23,6 +23,19 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void BossKameck_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)3.0f;
+    (void)2.0f;
+
+    // function order is weird here
+    (void)300.0f;
+    (void)240.0f;
+    (void)30.0f;
+    (void)40.0f;
+}
+
 BossKameck::BossKameck(const char* pName, const char* pType)
     : LiveActor(pName), _8C(pType), _90(0.0f, 1.0f), _A0(0, 0, 1), mSequencer(nullptr), mKameckHolder(nullptr), mJointCtrl(nullptr),
       mActorList(nullptr), mBeamListener(nullptr), mMoveRail(nullptr), _C4(0), _C8(0, 0, 0), _D4(-1) {
@@ -130,21 +143,12 @@ void BossKameck::endDemo() {
     mJointCtrl->startDynamicCtrl("Cap1", -1);
 }
 
-/* functionally matches */
 void BossKameck::setPose(MtxPtr mtx) {
     TPos3f pos;
     pos.setInline(mtx);
     pos.getQuat(_90);
-
-    f32 z = pos.mMtx[2][3];
-    f32 y = pos.mMtx[1][3];
-    f32 x = pos.mMtx[0][3];
-    mPosition.set< f32 >(x, y, z);
-
-    f32 v1 = (2.0f * (_90.x * _90.z)) + (2.0f * (_90.w * _90.y));
-    f32 v2 = (2.0f * (_90.y * _90.z)) - (2.0f * (_90.w * _90.x));
-    f32 v3 = (1.0f - (2.0f * (_90.x * _90.x))) - (2.0f * (_90.y * _90.y));
-    _A0.set< f32 >(v1, v2, v3);
+    pos.getTransInline(mPosition);
+    _90.getZDir(_A0);
 }
 
 void BossKameck::killAllBeam() {
@@ -156,7 +160,7 @@ void BossKameck::killAllBeam() {
 void BossKameck::updatePose() {
     TVec3f v17(-mGravity);
     TVec3f v19;
-    v19.set<f32>(v17);
+    v19.set< f32 >(v17);
     TVec3f v16(mVelocity);
     v16.sub(_C8);
     TVec3f* gravPtr = &mGravity;
@@ -172,14 +176,12 @@ void BossKameck::updatePose() {
         f32 v4 = MR::normalize(mag, 0.0f, 3.0f);
         TVec3f v13(v18);
 
-
         ptr->scaleInline((4.0f * v4) / mag);
         ptr->addInline(v13);
 
         if (!MR::isNearZero(*ptr)) {
             MR::normalize(ptr);
-        }
-        else {
+        } else {
             ptr->set(-mGravity);
         }
     }
@@ -328,6 +330,3 @@ namespace MR {
         return boss;
     }
 };  // namespace MR
-
-BossKameck::~BossKameck() {
-}

@@ -4,6 +4,10 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 
+void WalkerStateBlowDamage_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     static const f32 sAirFric = 0.99f;
     static const f32 sAirGravityAccel = 1.0f;

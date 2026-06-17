@@ -6,6 +6,11 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void KoopaBattleMapPlate_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)3.0f;
+}
+
 KoopaBattleMapPlate::KoopaBattleMapPlate(const char* pName) : LiveActor(pName) {
     _8C.identity();
 }

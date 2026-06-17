@@ -10,6 +10,10 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void LavaSunPlanet_FORCE_MATCH_SDATA2() {
+    (void)-1.0f;
+}
+
 LavaSunPlanet::LavaSunPlanet(const char* pName) : LiveActor(pName) {
     mRotator = nullptr;
     mObjName = nullptr;

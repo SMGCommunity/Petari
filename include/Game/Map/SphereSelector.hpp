@@ -32,9 +32,17 @@ public:
     void exeConfirmCancel();
     void exeConfirm();
 
-    LiveActorGroup* mSphereGroup;  // 0x8C
-
-    bool mIsPointingInvalid;  // 0xB0
+    /* 0x8C */ LiveActorGroup* mSphereGroup;
+    /* 0x90 */ SphereSelectorHandle* _90;
+    /* 0x94 */ u32 _94;
+    /* 0x98 */ u32 _98;
+    /* 0x9C */ u32 _9C;
+    /* 0xA0 */ u32 _A0;
+    /* 0xA4 */ s32 _A4;
+    /* 0xA8 */ u32 _A8;
+    /* 0xAC */ u32 _AC;
+    /* 0xB0 */ bool mIsPointingInvalid;
+    /* 0xB1 */ bool _B1;
 };
 
 class SphereSelectorFunction {

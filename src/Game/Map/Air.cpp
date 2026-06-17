@@ -155,9 +155,6 @@ void Air::exeOut() {
     }
 }
 
-Air::~Air() {
-}
-
 ProjectionMapAir::ProjectionMapAir(const char* pName) : Air(pName) {
 }
 
@@ -214,15 +211,3 @@ namespace MR {
         return MR::getSceneObj< PriorDrawAirHolder >(SceneObj_PriorDrawAirHolder)->isExistValidDrawAir();
     }
 };  // namespace MR
-
-AirFar100m::~AirFar100m() {
-}
-
-ProjectionMapAir::~ProjectionMapAir() {
-}
-
-PriorDrawAir::~PriorDrawAir() {
-}
-
-PriorDrawAirHolder::~PriorDrawAirHolder() {
-}

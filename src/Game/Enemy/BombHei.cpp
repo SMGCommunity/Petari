@@ -22,6 +22,14 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void BombHei_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)2.0f;
+}
+
 namespace {
     static const s32 hStartBrkTime = 600;
     static const s32 hBrkRateUpTime = 120;

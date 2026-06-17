@@ -50,6 +50,7 @@ KoopaJrShipCannonShell::KoopaJrShipCannonShell(const char* pName) : CannonShellB
 }
 
 void KoopaJrShipCannonShell::init(const JMapInfoIter& rIter) {
+    // FIXME: weird tvec load, default arg initStarPointerTarget?
     initModelManagerWithAnm("KoopaJrShipCannonShell", nullptr, false);
     MR::startBck(this, "KoopaJrShipCannonShell", nullptr);
     initSound(4, false);

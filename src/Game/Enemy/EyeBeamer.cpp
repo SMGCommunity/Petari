@@ -216,7 +216,7 @@ void EyeBeamer::calcAnim() {
     MR::preScaleMtx(_9C, TVec3f(one, temp, one));
 }
 
-void EyeBeamer::calcAndSetBaseMtx() {};
+void EyeBeamer::calcAndSetBaseMtx(){};
 
 void EyeBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isOnBeam() && MR::isSensorPlayer(pReceiver) && isInBeamRange(*MR::getPlayerPos())) {
@@ -364,5 +364,3 @@ bool EyeBeamer::isOnBeam() const {
 
     return false;
 }
-
-EyeBeamer::~EyeBeamer() {};
