@@ -3397,6 +3397,7 @@ Game/LiveActor/ActorJointCtrl.cpp:
 
 Game/LiveActor/ActorLightCtrl.cpp:
 	.text       start:0x8015C2E0 end:0x8015C8C8
+	.rodata     start:0x805329A8 end:0x805329B0
 
 Game/LiveActor/ActorPadAndCameraCtrl.cpp:
 	.text       start:0x8015C8C8 end:0x8015CF30
@@ -3417,12 +3418,14 @@ Game/LiveActor/AllLiveActorGroup.cpp:
 Game/LiveActor/AnimationRandomPlayer.cpp:
 	.text       start:0x8015D348 end:0x8015D5D8
 	.ctors      start:0x8052EB98 end:0x8052EB9C
+	.rodata     start:0x805329B0 end:0x805329B8
 	.data       start:0x805878B8 end:0x805878E8
 	.sbss       start:0x806B4A10 end:0x806B4A18
 	.sdata2     start:0x806BBBD8 end:0x806BBBE0
 
 Game/LiveActor/Binder.cpp:
 	.text       start:0x8015D5D8 end:0x8015EC2C
+	.rodata     start:0x805329B8 end:0x805329C0
 	.sdata      start:0x806B1B30 end:0x806B1B38
 	.sdata2     start:0x806BBBE0 end:0x806BBBF8
 
@@ -3454,6 +3457,7 @@ Game/LiveActor/DisplayListMaker.cpp:
 
 Game/LiveActor/DynamicJointCtrl.cpp:
 	.text       start:0x801612D8 end:0x801621C0
+	.rodata     start:0x805329C0 end:0x805329C8
 	.data       start:0x80587A38 end:0x80587AE0
 	.sdata      start:0x806B1B48 end:0x806B1B50
 	.sdata2     start:0x806BBC30 end:0x806BBC40
@@ -3466,13 +3470,13 @@ Game/LiveActor/EffectKeeper.cpp:
 
 Game/LiveActor/FaceJointCtrl.cpp:
 	.text       start:0x80163388 end:0x80163808
-	.data       start:0x80587B60 end:0x80587BA8
+	.data       start:0x80587B60 end:0x80587BA0
 	.sdata      start:0x806B1B60 end:0x806B1B68
 	.sdata2     start:0x806BBC48 end:0x806BBC58
 
 Game/LiveActor/FlashingCtrl.cpp:
 	.text       start:0x80163808 end:0x80163B1C
-	.data       start:0x80587BA8 end:0x80587BD0
+	.data       start:0x80587BA0 end:0x80587BD0
 
 Game/LiveActor/HitSensor.cpp:
 	.text       start:0x80163B1C end:0x80163E20
