@@ -1,14 +1,14 @@
-#include <revolution/os.h>
 #include <private/OSLoMem.h>
+#include <revolution/os.h>
 
 extern OSErrorHandler __OSErrorTable[];
 
-static void DefaultSwitchThreadCallback(OSThread *, OSThread *);
+static void DefaultSwitchThreadCallback(OSThread*, OSThread*);
 static void OSClearStack(u8);
 
-#define OFFSET(n, a) (((u32) (n)) & ((a) - 1))
-#define TRUNC(n, a)  (((u32) (n)) & ~((a) - 1))
-#define ROUND(n, a)  (((u32) (n) + (a) - 1) & ~((a) - 1))
+#define OFFSET(n, a) (((u32)(n)) & ((a) - 1))
+#define TRUNC(n, a) (((u32)(n)) & ~((a) - 1))
+#define ROUND(n, a) (((u32)(n) + (a) - 1) & ~((a) - 1))
 
 static volatile u32 RunQueueBits;
 static OSThreadQueue RunQueue[32];
@@ -20,9 +20,9 @@ static OSThread DefaultThread;
 static OSContext IdleContext;
 
 #ifdef __MWERKS__
-OSThread*            __OSCurrentThread     : (OS_BASE_CACHED | OS_CURRENTTHREAD_ADDR);
-OSThreadQueue        __OSActiveThreadQueue : (OS_BASE_CACHED | OS_ACTIVETHREADQUEUE_ADDR);
-volatile OSContext*  __OSFPUContext        : (OS_BASE_CACHED | OS_FPUCONTEXT_ADDR);
+OSThread* __OSCurrentThread : (OS_BASE_CACHED | OS_CURRENTTHREAD_ADDR);
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | OS_ACTIVETHREADQUEUE_ADDR);
+volatile OSContext* __OSFPUContext : (OS_BASE_CACHED | OS_FPUCONTEXT_ADDR);
 #else
 OSThread* __OSCurrentThread;
 OSThreadQueue __OSActiveThreadQueue;
@@ -31,84 +31,82 @@ volatile OSContext* __OSFPUContext;
 
 static OSSwitchThreadCallback SwitchThreadCallback = DefaultSwitchThreadCallback;
 
-void UnsetRun(OSThread *) __attribute__((noinline));
+void UnsetRun(OSThread*) __attribute__((noinline));
 
-#define EnqueueTail(queue, thread, link)                    \
-do {                                                        \
-    OSThread* __prev;                                       \
-                                                            \
-    __prev = (queue)->tail;                                 \
-    if (__prev == NULL)                                     \
-        (queue)->head = (thread);                           \
-    else                                                    \
-        __prev->link.next = (thread);                       \
-    (thread)->link.prev = __prev;                           \
-    (thread)->link.next = NULL;                             \
-    (queue)->tail = (thread);                               \
-} while (0)
+#define EnqueueTail(queue, thread, link)                                                                                                             \
+    do {                                                                                                                                             \
+        OSThread* __prev;                                                                                                                            \
+                                                                                                                                                     \
+        __prev = (queue)->tail;                                                                                                                      \
+        if (__prev == NULL)                                                                                                                          \
+            (queue)->head = (thread);                                                                                                                \
+        else                                                                                                                                         \
+            __prev->link.next = (thread);                                                                                                            \
+        (thread)->link.prev = __prev;                                                                                                                \
+        (thread)->link.next = NULL;                                                                                                                  \
+        (queue)->tail = (thread);                                                                                                                    \
+    } while (0)
 
-#define EnqueuePrio(queue, thread, link)                    \
-do {                                                        \
-    OSThread* __prev;                                       \
-    OSThread* __next;                                       \
-                                                            \
-    for (__next = (queue)->head;                            \
-         __next && __next->priority <= thread->priority;    \
-         __next = __next->link.next)                        \
-            ;                                               \
-    if (__next == NULL)                                     \
-        EnqueueTail(queue, thread, link);                   \
-    else {                                                  \
-        (thread)->link.next = __next;                       \
-        __prev = __next->link.prev;                         \
-        __next->link.prev = (thread);                       \
-        (thread)->link.prev = __prev;                       \
-        if (__prev == NULL)                                 \
-            (queue)->head = (thread);                       \
-        else                                                \
-            __prev->link.next = (thread);                   \
-    }                                                       \
-} while (0)
+#define EnqueuePrio(queue, thread, link)                                                                                                             \
+    do {                                                                                                                                             \
+        OSThread* __prev;                                                                                                                            \
+        OSThread* __next;                                                                                                                            \
+                                                                                                                                                     \
+        for (__next = (queue)->head; __next && __next->priority <= thread->priority; __next = __next->link.next)                                     \
+            ;                                                                                                                                        \
+        if (__next == NULL)                                                                                                                          \
+            EnqueueTail(queue, thread, link);                                                                                                        \
+        else {                                                                                                                                       \
+            (thread)->link.next = __next;                                                                                                            \
+            __prev = __next->link.prev;                                                                                                              \
+            __next->link.prev = (thread);                                                                                                            \
+            (thread)->link.prev = __prev;                                                                                                            \
+            if (__prev == NULL)                                                                                                                      \
+                (queue)->head = (thread);                                                                                                            \
+            else                                                                                                                                     \
+                __prev->link.next = (thread);                                                                                                        \
+        }                                                                                                                                            \
+    } while (0)
 
-#define DequeueItem(queue, thread, link)                    \
-do {                                                        \
-    OSThread* __next;                                       \
-    OSThread* __prev;                                       \
-                                                            \
-    __next = (thread)->link.next;                           \
-    __prev = (thread)->link.prev;                           \
-                                                            \
-    if (__next == NULL)                                     \
-        (queue)->tail = __prev;                             \
-    else                                                    \
-        __next->link.prev = __prev;                         \
-                                                            \
-    if (__prev == NULL)                                     \
-        (queue)->head = __next;                             \
-    else                                                    \
-        __prev->link.next = __next;                         \
-} while (0)
+#define DequeueItem(queue, thread, link)                                                                                                             \
+    do {                                                                                                                                             \
+        OSThread* __next;                                                                                                                            \
+        OSThread* __prev;                                                                                                                            \
+                                                                                                                                                     \
+        __next = (thread)->link.next;                                                                                                                \
+        __prev = (thread)->link.prev;                                                                                                                \
+                                                                                                                                                     \
+        if (__next == NULL)                                                                                                                          \
+            (queue)->tail = __prev;                                                                                                                  \
+        else                                                                                                                                         \
+            __next->link.prev = __prev;                                                                                                              \
+                                                                                                                                                     \
+        if (__prev == NULL)                                                                                                                          \
+            (queue)->head = __next;                                                                                                                  \
+        else                                                                                                                                         \
+            __prev->link.next = __next;                                                                                                              \
+    } while (0)
 
-#define DequeueHead(queue, thread, link)                    \
-do {                                                        \
-    OSThread* __next;                                       \
-                                                            \
-    (thread) = (queue)->head;                               \
-    __next = (thread)->link.next;                           \
-    if (__next == NULL)                                     \
-        (queue)->tail = NULL;                               \
-    else                                                    \
-        __next->link.prev = NULL;                           \
-    (queue)->head = __next;                                 \
-} while (0)
+#define DequeueHead(queue, thread, link)                                                                                                             \
+    do {                                                                                                                                             \
+        OSThread* __next;                                                                                                                            \
+                                                                                                                                                     \
+        (thread) = (queue)->head;                                                                                                                    \
+        __next = (thread)->link.next;                                                                                                                \
+        if (__next == NULL)                                                                                                                          \
+            (queue)->tail = NULL;                                                                                                                    \
+        else                                                                                                                                         \
+            __next->link.prev = NULL;                                                                                                                \
+        (queue)->head = __next;                                                                                                                      \
+    } while (0)
 
-#define IsSuspended(suspendCount)   (0 < (suspendCount))
+#define IsSuspended(suspendCount) (0 < (suspendCount))
 
 static inline void OSInitMutexQueue(OSMutexQueue* queue) {
     queue->head = queue->tail = NULL;
 }
 
-void DefaultSwitchThreadCallback(OSThread *, OSThread *) {
+void DefaultSwitchThreadCallback(OSThread*, OSThread*) {
     return;
 }
 
@@ -156,7 +154,7 @@ void __OSThreadInit(void) {
     Reschedule = 0;
 }
 
-void OSInitThreadQueue(OSThreadQueue *queue) {
+void OSInitThreadQueue(OSThreadQueue* queue) {
     queue->head = queue->tail = 0;
 }
 
@@ -164,17 +162,17 @@ OSThread* OSGetCurrentThread(void) {
     return __OSCurrentThread;
 }
 
-static void __OSSwitchThread(OSThread *nextThread) {
+static void __OSSwitchThread(OSThread* nextThread) {
     OSSetCurrentThread(nextThread);
     OSSetCurrentContext(&nextThread->context);
     OSLoadContext(&nextThread->context);
 }
 
-BOOL OSIsThreadSuspended(OSThread *thread) {
+BOOL OSIsThreadSuspended(OSThread* thread) {
     return (0 < thread->suspend) ? TRUE : FALSE;
 }
 
-BOOL OSIsThreadTerminated(OSThread *thread) {
+BOOL OSIsThreadTerminated(OSThread* thread) {
     return ((thread->state == 8) || (thread->state == 0)) ? TRUE : FALSE;
 }
 
@@ -214,14 +212,14 @@ s32 OSEnableScheduler(void) {
     return count;
 }
 
-static void SetRun(OSThread *thread) {
+static void SetRun(OSThread* thread) {
     thread->queue = &RunQueue[thread->priority];
     EnqueueTail(thread->queue, thread, link);
     RunQueueBits |= 1 << (31 - thread->priority);
     RunQueueHint = TRUE;
 }
 
-void UnsetRun(OSThread *thread) {
+void UnsetRun(OSThread* thread) {
     OSThreadQueue* queue;
     queue = thread->queue;
     DequeueItem(queue, thread, link);
@@ -233,7 +231,7 @@ void UnsetRun(OSThread *thread) {
     thread->queue = 0;
 }
 
-OSPriority __OSGetEffectivePriority(OSThread *thread) {
+OSPriority __OSGetEffectivePriority(OSThread* thread) {
     OSPriority priority;
     OSMutex* mutex;
     OSThread* blocked;
@@ -251,26 +249,26 @@ OSPriority __OSGetEffectivePriority(OSThread *thread) {
     return priority;
 }
 
-OSThread* SetEffectivePriority(OSThread *thread, OSPriority priority) {
+OSThread* SetEffectivePriority(OSThread* thread, OSPriority priority) {
     switch (thread->state) {
-        case 1:
-            UnsetRun(thread);
-            thread->priority = priority;
-            SetRun(thread);
-            break;
-        case 4:
-            DequeueItem(thread->queue, thread, link);
-            thread->priority = priority;
-            EnqueuePrio(thread->queue, thread, link);
+    case 1:
+        UnsetRun(thread);
+        thread->priority = priority;
+        SetRun(thread);
+        break;
+    case 4:
+        DequeueItem(thread->queue, thread, link);
+        thread->priority = priority;
+        EnqueuePrio(thread->queue, thread, link);
 
-            if (thread->mutex != 0) {
-                return thread->mutex->thread;
-            }
-            break;
-        case 2:
-            RunQueueHint = TRUE;
-            thread->priority = priority;
-            break;
+        if (thread->mutex != 0) {
+            return thread->mutex->thread;
+        }
+        break;
+    case 2:
+        RunQueueHint = TRUE;
+        thread->priority = priority;
+        break;
     }
 
     return NULL;
@@ -292,9 +290,9 @@ static void UpdatePriority(OSThread* thread) {
     } while (thread);
 }
 
-void __OSPromoteThread(OSThread *thread, OSPriority priority) {
+void __OSPromoteThread(OSThread* thread, OSPriority priority) {
     do {
-        if ((thread->suspend < 0) || thread->priority <= priority) {
+        if ((thread->suspend > 0) || thread->priority <= priority) {
             break;
         }
 
@@ -309,7 +307,7 @@ OSThread* SelectThread(BOOL yield) {
     OSPriority priority;
     OSThreadQueue* queue;
 
-    if (Reschedule < 0) {
+    if (Reschedule > 0) {
         return 0;
     }
 
@@ -345,7 +343,8 @@ OSThread* SelectThread(BOOL yield) {
 
         do {
             OSEnableInterrupts();
-            while (RunQueueBits == 0);
+            while (RunQueueBits == 0)
+                ;
             OSDisableInterrupts();
         } while (RunQueueBits == 0);
 
@@ -380,7 +379,7 @@ void OSYieldThread(void) {
     OSRestoreInterrupts(enabled);
 }
 
-BOOL OSCreateThread(OSThread* thread, void* (*func)(void *), void* param, void* stack, u32 stackSize, OSPriority priority, u16 attr) {
+BOOL OSCreateThread(OSThread* thread, void* (*func)(void*), void* param, void* stack, u32 stackSize, OSPriority priority, u16 attr) {
     BOOL enabled;
     u32 sp;
     int i;
@@ -423,8 +422,8 @@ BOOL OSCreateThread(OSThread* thread, void* (*func)(void *), void* param, void* 
         thread->context.fpscr = (__OSFpscrEnableBits & 248) | 4;
 
         for (i = 0; i < 32; ++i) {
-            *(u64*) &thread->context.fpr[i] = (u64)0xffffffffffffffffLL;
-            *(u64*) &thread->context.psf[i] = (u64) 0xffffffffffffffffLL;
+            *(u64*)&thread->context.fpr[i] = (u64)0xffffffffffffffffLL;
+            *(u64*)&thread->context.psf[i] = (u64)0xffffffffffffffffLL;
         }
     }
 
@@ -444,8 +443,7 @@ void OSExitThread(void* val) {
     if (currentThread->attr & 1) {
         DequeueItem(&__OSActiveThreadQueue, currentThread, linkActive);
         currentThread->state = 0;
-    }
-    else {
+    } else {
         currentThread->state = 8;
         currentThread->value = val;
     }
@@ -461,17 +459,17 @@ void OSCancelThread(OSThread* thread) {
     BOOL enabled = OSDisableInterrupts();
 
     switch (thread->state) {
-      case OS_THREAD_STATE_READY:
+    case OS_THREAD_STATE_READY:
         if (!IsSuspended(thread->suspend)) {
             UnsetRun(thread);
         }
         break;
 
-      case OS_THREAD_STATE_RUNNING:
+    case OS_THREAD_STATE_RUNNING:
         RunQueueHint = TRUE;
         break;
 
-      case OS_THREAD_STATE_WAITING:
+    case OS_THREAD_STATE_WAITING:
         DequeueItem(thread->queue, thread, link);
         thread->queue = NULL;
         if (!IsSuspended(thread->suspend) && thread->mutex) {
@@ -480,7 +478,7 @@ void OSCancelThread(OSThread* thread) {
         }
         break;
 
-      default:
+    default:
         OSRestoreInterrupts(enabled);
         return;
     }
@@ -489,8 +487,7 @@ void OSCancelThread(OSThread* thread) {
     if (thread->attr & 1) {
         DequeueItem(&__OSActiveThreadQueue, thread, linkActive);
         thread->state = 0;
-    } 
-    else {
+    } else {
         thread->state = 8;
     }
 
@@ -511,7 +508,7 @@ BOOL OSJoinThread(OSThread* thread, void** val) {
         }
     }
 
-    if (((volatile OSThread*) thread)->state == OS_THREAD_STATE_MORIBUND) {
+    if (((volatile OSThread*)thread)->state == OS_THREAD_STATE_MORIBUND) {
         if (val) {
             *val = thread->value;
         }
@@ -526,8 +523,7 @@ BOOL OSJoinThread(OSThread* thread, void** val) {
     return FALSE;
 }
 
-void OSDetachThread(OSThread* thread)
-{
+void OSDetachThread(OSThread* thread) {
     BOOL enabled = OSDisableInterrupts();
 
     thread->attr |= 1;
@@ -542,7 +538,7 @@ void OSDetachThread(OSThread* thread)
 
 s32 OSResumeThread(OSThread* thread) {
     BOOL enabled;
-    s32  suspendCount;
+    s32 suspendCount;
 
     enabled = OSDisableInterrupts();
 
@@ -550,15 +546,14 @@ s32 OSResumeThread(OSThread* thread) {
 
     if (thread->suspend < 0) {
         thread->suspend = 0;
-    }
-    else if (thread->suspend == 0) {
+    } else if (thread->suspend == 0) {
         switch (thread->state) {
-          case OS_THREAD_STATE_READY:
+        case OS_THREAD_STATE_READY:
             thread->priority = __OSGetEffectivePriority(thread);
             SetRun(thread);
             break;
 
-          case OS_THREAD_STATE_WAITING:
+        case OS_THREAD_STATE_WAITING:
             ASSERT(thread->queue);
             DequeueItem(thread->queue, thread, link);
             thread->priority = __OSGetEffectivePriority(thread);
@@ -576,26 +571,25 @@ s32 OSResumeThread(OSThread* thread) {
     return suspendCount;
 }
 
-s32 OSSuspendThread(OSThread* thread)
-{
+s32 OSSuspendThread(OSThread* thread) {
     BOOL enabled;
-    s32  suspendCount;
+    s32 suspendCount;
 
     enabled = OSDisableInterrupts();
     suspendCount = thread->suspend++;
 
     if (suspendCount == 0) {
         switch (thread->state) {
-          case OS_THREAD_STATE_RUNNING:
+        case OS_THREAD_STATE_RUNNING:
             RunQueueHint = TRUE;
             thread->state = OS_THREAD_STATE_READY;
             break;
 
-          case OS_THREAD_STATE_READY:
+        case OS_THREAD_STATE_READY:
             UnsetRun(thread);
             break;
 
-          case OS_THREAD_STATE_WAITING:
+        case OS_THREAD_STATE_WAITING:
             DequeueItem(thread->queue, thread, link);
             thread->priority = 32;
             EnqueueTail(thread->queue, thread, link);
@@ -683,7 +677,7 @@ OSPriority OSGetThreadPriority(OSThread* thread) {
     return thread->base;
 }
 
-static void SleepAlarmHandler(OSAlarm *alarm, OSContext *context) {
+static void SleepAlarmHandler(OSAlarm* alarm, OSContext* context) {
     OSResumeThread((OSThread*)OSGetAlarmUserData(alarm));
 }
 

@@ -1,14 +1,14 @@
+#include <private/flipper.h>
 #include <revolution/ai.h>
 #include <revolution/os.h>
-#include <private/flipper.h>
 
 static AIDCallback __AID_Callback;
 static u8* __CallbackStack;
 static u8* __OldStack;
 static volatile BOOL __AI_init_flag = 0;
 static volatile BOOL __AID_Active = 0;
-static void __AIDHandler(__OSInterrupt, OSContext *);
-static void __AICallbackStackSwitch(register void *);
+static void __AIDHandler(__OSInterrupt, OSContext*);
+static void __AICallbackStackSwitch(register void*);
 static void __AI_SRC_INIT(void);
 
 const char* __AIVersion = "<< RVL_SDK - AI \trelease build: Aug  8 2007 01:58:12 (0x4199_60831) >>";
@@ -43,7 +43,7 @@ void AIStopDMA(void) {
 }
 
 u32 AIGetDMAStartAddr(void) {
-    return (((__DSPRegs[0x1B] & 0x1FFF) << 16) | (__DSPRegs[0x19] & 0xFFE0));
+    return (((__DSPRegs[0x18] & 0x1FFF) << 16) | (__DSPRegs[0x19] & 0xFFE0));
 }
 
 u32 AIGetDMALength(void) {
@@ -76,13 +76,13 @@ static OSTime min_wait;
 static OSTime max_wait;
 static OSTime buffer;
 
-void AIInit(u8 *pStack) {
+void AIInit(u8* pStack) {
     u32 reg;
 
     if (__AI_init_flag == 1) {
         return;
     }
- 
+
     OSRegisterVersion(__AIVersion);
 
     bound_32KHz = OSNanosecondsToTicks(31524);
@@ -107,7 +107,7 @@ void AIInit(u8 *pStack) {
     __AI_init_flag = 1;
 }
 
-static void __AIDHandler(__OSInterrupt intr, OSContext *pContext) {
+static void __AIDHandler(__OSInterrupt intr, OSContext* pContext) {
     OSContext context;
     u16 reg;
 
@@ -124,8 +124,7 @@ static void __AIDHandler(__OSInterrupt intr, OSContext *pContext) {
 
             if (__CallbackStack != NULL) {
                 __AICallbackStackSwitch(__AID_Callback);
-            }
-            else {
+            } else {
                 (*__AID_Callback)();
             }
 
@@ -137,6 +136,7 @@ static void __AIDHandler(__OSInterrupt intr, OSContext *pContext) {
     OSSetCurrentContext(pContext);
 }
 
+// clang-format off
 /* this function is written in assembly due to the direct stack changes */
 asm static void __AICallbackStackSwitch(register void *cb) {
     fralloc
@@ -156,6 +156,8 @@ asm static void __AICallbackStackSwitch(register void *cb) {
     blr 
 }
 
+// clang-format on
+
 /* honestly I have no idea what's going on here */
 void __AI_SRC_INIT(void) {
     OSTime v0 = 0;
@@ -171,16 +173,17 @@ void __AI_SRC_INIT(void) {
     v8 = 0;
     i = 0;
 
-    v4 = 0;   
+    v4 = 0;
 
-    while(isDone == 0) {
+    while (isDone == 0) {
         SET_FLAG(__AIRegs[0], 1, 0x20, 5);
-        SET_FLAG(__AIRegs[0], 0, 2, 1); 
+        SET_FLAG(__AIRegs[0], 0, 2, 1);
         SET_FLAG(__AIRegs[0], 1, 1, 0);
 
         v5 = GET_FLAG(__AIRegs[2], 0x7FFFFFFF, 0);
 
-        while(v5 == GET_FLAG(__AIRegs[2], 0x7FFFFFFF, 0)) { } 
+        while (v5 == GET_FLAG(__AIRegs[2], 0x7FFFFFFF, 0)) {
+        }
 
         v0 = OSGetTime();
         SET_FLAG(__AIRegs[0], 1, 2, 1);
@@ -188,26 +191,25 @@ void __AI_SRC_INIT(void) {
 
         v6 = GET_FLAG(__AIRegs[2], 0x7FFFFFFF, 0);
 
-        while (v6 == GET_FLAG(__AIRegs[2], 0x7FFFFFFF, 0)) { }
+        while (v6 == GET_FLAG(__AIRegs[2], 0x7FFFFFFF, 0)) {
+        }
 
         v1 = OSGetTime();
 
         v2 = v1 - v0;
         SET_FLAG(__AIRegs[0], 0, 2, 1);
-        SET_FLAG(__AIRegs[0], 0, 1, 0); 
+        SET_FLAG(__AIRegs[0], 0, 1, 0);
 
         if (v2 < bound_32KHz - buffer) {
             v4 = min_wait;
             isDone = 1;
             i++;
-        }
-        else {
+        } else {
             if (v2 >= (bound_32KHz + buffer) && v2 < (bound_48KHz - buffer)) {
                 v4 = max_wait;
                 isDone = 1;
                 i++;
-            }
-            else {
+            } else {
                 isDone = 0;
                 v8 = 1;
                 i++;
@@ -215,5 +217,6 @@ void __AI_SRC_INIT(void) {
         }
     }
 
-    while ((v1 + v4) > OSGetTime()) { }
+    while ((v1 + v4) > OSGetTime()) {
+    }
 }

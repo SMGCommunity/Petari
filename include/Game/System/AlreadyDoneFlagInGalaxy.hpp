@@ -13,6 +13,7 @@ public:
     void init(const char*, s32, s32);
     bool isEqual(const AlreadyDoneInfo&) const;
     void set(bool);
+    u16 mask() const;
 
     u16 _0;
     u16 _2;
