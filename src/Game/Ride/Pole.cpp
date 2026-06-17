@@ -282,7 +282,7 @@ void Pole::exeBindTurn() {
 
     if (!mIsSquare) {
         mRotation.y += 2.5f * getPoleSubPadStickX();
-        mRotation.y = MR::repeatDegree(mRotation.y);
+        mRotation.y = MR::repeat(mRotation.y, 0.0f, 360.0f);
     }
 
     f32 jump = 0.0f;
@@ -307,7 +307,7 @@ void Pole::exeBindTurn() {
                 mRotation.y -= 90.0f;
             }
 
-            mRotation.y = MR::repeatDegree(mRotation.y);
+            mRotation.y = MR::repeat(mRotation.y, 0.0f, 360.0f);
 
             MR::startBckPlayer("SquarePoleWait", "SquarePoleTurnEnd");
             setNerve(&NrvPole::PoleNrvBindTurnEnd::sInstance);
@@ -475,7 +475,7 @@ void Pole::exeBindHandstandTurn() {
     }
 
     mRotation.y += 2.5f * getPoleSubPadStickX();
-    mRotation.y = MR::repeatDegree(mRotation.y);
+    mRotation.y = MR::repeat(mRotation.y, 0.0f, 360.0f);
 
     if (!tryJump(true, (0.0f)) && !isEnableTurn()) {
         setNerve(&NrvPole::PoleNrvBindHandstandWait::sInstance);
@@ -623,7 +623,7 @@ bool Pole::tryJump(bool handstand, f32 angleOffset) {
         TPos3f pos;
         calcGravityMtx(&pos);
 
-        f32 frontAngle = MR::repeatDegree(angleOffset + mRotation.y + 180.0f);
+        f32 frontAngle = MR::repeat(angleOffset + mRotation.y + 180.0f, 0.0f, 360.0f);
         TVec3f jumpFront(0.0f, 0.0f, 0.0f);
         jumpFront.x = JMASinDegree(frontAngle);
         jumpFront.z = JMACosDegree(frontAngle);
