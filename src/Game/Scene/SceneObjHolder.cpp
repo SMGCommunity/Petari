@@ -78,7 +78,7 @@
 #include "Game/NameObj/NameObjGroup.hpp"
 #include "Game/Player/GroupChecker.hpp"
 #include "Game/Player/MarioHolder.hpp"
-// #include "Game/Player/PlayerEvent.hpp"
+#include "Game/Player/PlayerEvent.hpp"
 #include "Game/Ride/FluffWind.hpp"
 #include "Game/Ride/PlantLeaf.hpp"
 #include "Game/Ride/PlantStalk.hpp"
@@ -203,8 +203,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_TalkDirector:
         return new TalkDirector("会話ディレクター");
     case SceneObj_EventSequencer:
-        // return new EventSequencer();
-        return nullptr;
+        return new EventSequencer();
     case SceneObj_StopSceneController:
         return new StopSceneController();
     case SceneObj_SceneNameObjMovementController:
