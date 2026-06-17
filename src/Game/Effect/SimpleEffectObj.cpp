@@ -49,7 +49,6 @@ SimpleEffectObj::SimpleEffectObj(const char* pName) : LiveActor(pName) {
 }
 
 void SimpleEffectObj::init(const JMapInfoIter& rIter) {
-    TVec3f stack_8;
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjMovement(this);
     MR::getObjectName(&_8C, rIter);
@@ -66,8 +65,7 @@ void SimpleEffectObj::init(const JMapInfoIter& rIter) {
     } else {
         MR::registerDemoSimpleCastAll(this);
     }
-    PSVECAdd(getClippingCenterOffset(), &stack_8, &stack_8);
-    _90.set(stack_8);
+    _90.set(mPosition.addOtherInline2(*getClippingCenterOffset()));
     MR::setClippingTypeSphere(this, getClippingRadius(), &_90);
     MR::setGroupClipping(this, rIter, 0x40);
     MR::setClippingFar(this, getFarClipDistance());

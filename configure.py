@@ -1088,7 +1088,7 @@ config.libs = [
             Object(NonMatching, "Game/Effect/AutoEffectGroup.cpp"),
             Object(NonMatching, "Game/Effect/AutoEffectGroupHolder.cpp"),
             Object(NonMatching, "Game/Effect/AutoEffectInfo.cpp"),
-            Object(NonMatching, "Game/Effect/EffectObjGravityDust.cpp"),
+            Object(Matching, "Game/Effect/EffectObjGravityDust.cpp"),
             Object(NonMatching, "Game/Effect/EffectSystem.cpp"),
             Object(NonMatching, "Game/Effect/EffectSystemUtil.cpp"),
             Object(NonMatching, "Game/Effect/MultiEmitter.cpp"),

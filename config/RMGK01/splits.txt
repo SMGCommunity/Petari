@@ -2435,7 +2435,7 @@ Game/Effect/RandomEffectObj.cpp:
 Game/Effect/SimpleEffectObj.cpp:
 	.text       start:0x800CAC10 end:0x800CB2A8
 	.ctors      start:0x8052EA20 end:0x8052EA24
-	.rodata     start:0x80531AB0 end:0x80531BF0
+	.rodata     start:0x80531AB0 end:0x80531BD0
 	.data       start:0x805788F0 end:0x80578BE0
 	.sbss       start:0x806B3AF8 end:0x806B3B00
 
@@ -2453,11 +2453,13 @@ Game/Effect/SyncBckEffectChecker.cpp:
 
 Game/Effect/SyncBckEffectInfo.cpp:
 	.text       start:0x800CBA84 end:0x800CBD24
+	.rodata     start:0x80531BD0 end:0x80531BD8
 	.sdata2     start:0x806B9D90 end:0x806B9D98
 
 Game/Enemy/AnimScaleController.cpp:
 	.text       start:0x800CBD24 end:0x800CC370
 	.ctors      start:0x8052EA24 end:0x8052EA28
+	.rodata     start:0x80531BD8 end:0x80531BE0
 	.data       start:0x80578C08 end:0x80578C80
 	.bss        start:0x8060A798 end:0x8060A800
 	.sbss       start:0x806B3B00 end:0x806B3B18
@@ -2466,6 +2468,7 @@ Game/Enemy/AnimScaleController.cpp:
 Game/Enemy/AnimStampController.cpp:
 	.text       start:0x800CC370 end:0x800CC69C
 	.ctors      start:0x8052EA28 end:0x8052EA2C
+	.rodata     start:0x80531BE0 end:0x80531BE8
 	.data       start:0x80578C80 end:0x80578CC8
 	.sbss       start:0x806B3B18 end:0x806B3B20
 	.sdata2     start:0x806B9DE8 end:0x806B9E00
@@ -2480,6 +2483,7 @@ Game/Enemy/BallBeamer.cpp:
 Game/Enemy/Balloonfish.cpp:
 	.text       start:0x800CD00C end:0x800CDD78
 	.ctors      start:0x8052EA30 end:0x8052EA34
+	.rodata     start:0x80531BE8 end:0x80531BF0
 	.data       start:0x80578E60 end:0x80578FF0
 	.sbss       start:0x806B3B30 end:0x806B3B40
 	.sdata2     start:0x806B9E18 end:0x806B9E50
