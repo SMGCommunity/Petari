@@ -6,6 +6,12 @@
 #include "Game/Util.hpp"
 #include <revolution/wpad.h>
 
+void Fluff_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
 namespace NrvFluff {
     NEW_NERVE(FluffNrvFreeBloom, Fluff, FreeBloom);
     NEW_NERVE(FluffNrvFreeWaitOnGround, Fluff, FreeWaitOnGround);
