@@ -2926,7 +2926,7 @@ config.libs = [
                 Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c"
             ),
             Object(
                 Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c"

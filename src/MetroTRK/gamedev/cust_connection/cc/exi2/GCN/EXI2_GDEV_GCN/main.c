@@ -10,6 +10,17 @@ static u8 gRecvBuf[GDEV_BUF_SIZE];
 
 static BOOL gIsInitialized;
 
+void OutputData(void* data, int length) {
+    // u8 byte;
+    int i;
+    u8* datapointer = data;
+
+    for (i = 0; i < length; i++) {
+        if (i % 16 == 15) {
+        }
+    }
+}
+
 int gdev_cc_initialize(void* inputPendingPtrRef, EXICallback monitorCallback) {
     DBInitComm(inputPendingPtrRef, (int*)monitorCallback);
     CircleBufferInitialize(&gRecvCB, gRecvBuf, GDEV_BUF_SIZE);
@@ -33,11 +44,11 @@ int gdev_cc_close() {
     return 0;
 }
 
+//single instruction swap https://decomp.me/scratch/g6Lsa
 int gdev_cc_read(u8* data, int size) {
     u8 buff[GDEV_BUF_SIZE];
-    u32 retval;
-    int poll;
-    retval = 0;
+    u32 retval = 0;
+    u32 poll;
     
     if (!gIsInitialized) {
         return -0x2711;

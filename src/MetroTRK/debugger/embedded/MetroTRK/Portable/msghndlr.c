@@ -7,17 +7,6 @@
 static u32 g_CurrentSequence;
 static BOOL IsTRKConnected;
 
-void OutputData(void* data, int length) {
-    // u8 byte;
-    int i;
-    u8* datapointer = data;
-
-    for (i = 0; i < length; i++) {
-        if (i % 16 == 15) {
-        }
-    }
-}
-
 BOOL GetTRKConnected(void) {
     return IsTRKConnected;
 }
@@ -85,7 +74,7 @@ DSError TRKDoReadMemory(TRKBuffer* buffer) {
     size_t tempLength;
     int result;
     int replyErr;
-    int options;
+    u8 options;
     size_t length;
     u32 start;
 
@@ -106,8 +95,8 @@ DSError TRKDoReadMemory(TRKBuffer* buffer) {
     if (result == DS_NoError) {
         CommandReply reply;
         TRK_memset(&reply, 0, sizeof(CommandReply));
+        reply._00 = tempLength + sizeof(CommandReply);
         reply.replyError.b = result;
-        reply._00 = tempLength + 0x40;
         reply.commandID.b = DSMSG_ReplyACK;
         reply._0C = g_CurrentSequence++;
         TRKAppendBuffer(buffer, &reply, sizeof(CommandReply));
@@ -372,24 +361,10 @@ void TRKDoFlushCache(void) {
 
 DSError TRKDoContinue(TRKBuffer* buffer) {
     if (!TRKTargetStopped()) {
-        u8 arr[0x40];
-        TRK_memset(arr, 0, 0x40);
-
-        arr[4] = 0x80;
-        *(u32*)arr = 0x40;
-        arr[8] = 0x16;
-
-        TRKWriteUARTN(arr, 0x40);
+        TRKStandardACK(buffer, 0x80, DSREPLY_NotStopped);
         return DS_NoError;
     } else {
-        u8 arr[0x40];
-        TRK_memset(arr, 0, 0x40);
-
-        arr[4] = 0x80;
-        *(u32*)arr = 0x40;
-        arr[8] = 0x00;
-
-        TRKWriteUARTN(arr, 0x40);
+        TRKStandardACK(buffer, 0x80, DSREPLY_NoError);
         return TRKTargetContinue();
     }
 }
