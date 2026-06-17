@@ -381,8 +381,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_InformationObserver:
         return new InformationObserver();
     case SceneObj_GalaxyMapController:
-        // return new GalaxyMapController();
-        return nullptr;
+        return new GalaxyMapController();
     case SceneObj_MoviePlayingSequenceHolder:
         return new MoviePlayingSequenceHolder("ムービー管理保持");
     case SceneObj_PrologueHolder:
