@@ -25,7 +25,7 @@ DSError TRKSuppAccessFile(u32 file_handle, u8* data, size_t* count, DSIOResult* 
     i = 0;
     error = DS_NoError;
     while (!exit && i < *count && error == DS_NoError && *io_result == 0) {
-        memset(&reply, 0, sizeof(CommandReply));
+        TRK_memset(&reply, 0, sizeof(CommandReply));
 
         if (*count - i <= 0x800) {
             length = *count - i;
@@ -167,17 +167,17 @@ DSError HandleOpenFileSupportRequest(const char* path, u8 replyError, u32* param
     TRKBuffer* buffer;
     CommandReply reply;
 
-    memset(&reply, 0, sizeof(CommandReply));
+    TRK_memset(&reply, 0, sizeof(CommandReply));
     *param_3 = 0;
     reply.commandID.b = DSMSG_OpenFile;
-    reply._00 = strlen(path) + 0x40 + 1;
+    reply._00 = TRK_strlen(path) + 0x40 + 1;
     reply.replyError.b = replyError;
-    *(u16*)&reply._0C = strlen(path) + 1;
+    *(u16*)&reply._0C = TRK_strlen(path) + 1;
     TRKGetFreeBuffer(&bufferId1, &buffer);
     error = TRKAppendBuffer_ui8(buffer, (u8*)&reply, 0x40);
 
     if (error == DS_NoError) {
-        error = TRKAppendBuffer_ui8(buffer, (u8*)path, strlen(path) + 1);
+        error = TRKAppendBuffer_ui8(buffer, (u8*)path, TRK_strlen(path) + 1);
     }
 
     if (error == DS_NoError) {
@@ -204,7 +204,7 @@ DSError HandleCloseFileSupportRequest(int replyError, DSIOResult* ioResult) {
     TRKBuffer* buffer2;
     CommandReply reply;
 
-    memset(&reply, 0, sizeof(CommandReply));
+    TRK_memset(&reply, 0, sizeof(CommandReply));
     reply.commandID.b = DSMSG_CloseFile;
     reply._00 = 0x40;
     reply.replyError.r = replyError;
@@ -241,7 +241,7 @@ DSError HandlePositionFileSupportRequest(DSReplyError replyErr, u32* param_2, u8
     TRKBuffer* buffer2;
     CommandReply reply;
 
-    memset(&reply, 0, sizeof(CommandReply));
+    TRK_memset(&reply, 0, sizeof(CommandReply));
     reply.commandID.b = DSMSG_PositionFile;
     reply._00 = 0x40;
     reply.replyError.r = replyErr;

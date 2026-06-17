@@ -4,6 +4,7 @@
 #include <cstring>
 #include <mem.h>
 
+static u32 g_CurrentSequence;
 static BOOL IsTRKConnected;
 
 void OutputData(void* data, int length) {
@@ -34,10 +35,12 @@ DSError TRKSendACK(TRKBuffer* buffer) {
 DSError TRKStandardACK(TRKBuffer* buffer, MessageCommandID commandID, DSReplyError replyError) {
     CommandReply reply;
 
-    memset(&reply, 0, sizeof(CommandReply));
+    TRK_memset(&reply, 0, sizeof(CommandReply));
     reply.commandID.b = commandID;
+    reply._0C = g_CurrentSequence++;
     reply._00 = 0x40;
     reply.replyError.b = replyError;
+    reply._0C = g_CurrentSequence++;
     TRKWriteUARTN(&reply, sizeof(CommandReply));
     return DS_NoError;
 }
@@ -96,20 +99,17 @@ DSError TRKDoReadMemory(TRKBuffer* buffer) {
 
     tempLength = length;
 
-    if (options & DSMSGMEMORY_Space_data) {
-        result = TRKTargetAccessARAM(buf, start, &tempLength, TRUE);
-    } else {
-        result = TRKTargetAccessMemory(buf, start, &tempLength, options & DSMSGMEMORY_Userview ? 0 : 1, TRUE);
-    }
+    result = TRKTargetAccessMemory(buf, start, &tempLength, options & DSMSGMEMORY_Userview ? 0 : 1, TRUE);
 
     TRKResetBuffer(buffer, 0);
 
     if (result == DS_NoError) {
         CommandReply reply;
-        memset(&reply, 0, sizeof(CommandReply));
+        TRK_memset(&reply, 0, sizeof(CommandReply));
         reply.replyError.b = result;
         reply._00 = tempLength + 0x40;
         reply.commandID.b = DSMSG_ReplyACK;
+        reply._0C = g_CurrentSequence++;
         TRKAppendBuffer(buffer, &reply, sizeof(CommandReply));
 
         if (options & 0x40) {
@@ -166,22 +166,19 @@ DSError TRKDoWriteMemory(TRKBuffer* b) {
     tempLength = length;
 
     TRKSetBufferPosition(b, DSMSGMEMORY_Space_data);
-    if (options & DSMSGMEMORY_Space_data) {
-        TRKReadBuffer(b, buf + (start & 0x1f), tempLength);
-        result = TRKTargetAccessARAM(buf, start, &tempLength, FALSE);
-    } else {
-        TRKReadBuffer(b, buf, tempLength);
-        result = TRKTargetAccessMemory(buf, start, &tempLength, options & DSMSGMEMORY_Userview ? 0 : 1, FALSE);
-    }
+
+    TRKReadBuffer(b, buf, tempLength);
+    result = TRKTargetAccessMemory(buf, start, &tempLength, options & DSMSGMEMORY_Userview ? 0 : 1, FALSE);
 
     TRKResetBuffer(b, 0);
 
     if (result == DS_NoError) {
         CommandReply reply;
-        memset(&reply, 0, sizeof(CommandReply));
+        TRK_memset(&reply, 0, sizeof(CommandReply));
         reply._00 = 0x40;
         reply.commandID.b = DSMSG_ReplyACK;
         reply.replyError.b = result;
+        reply._0C = g_CurrentSequence++;
         result = TRKAppendBuffer(b, &reply, sizeof(CommandReply));
     }
 
@@ -230,6 +227,7 @@ DSError TRKDoReadRegisters(TRKBuffer* b) {
 
     local_50.commandID.b = DSMSG_ReplyACK;
     local_50._00 = 0x468;
+    local_50._0C = g_CurrentSequence++;
 
     TRKResetBuffer(b, 0);
 
@@ -325,10 +323,11 @@ DSError TRKDoWriteRegisters(TRKBuffer* b) {
 
     if (error == DS_NoError) {
         CommandReply local_50;
-        memset(&local_50, 0, sizeof(CommandReply));
+        TRK_memset(&local_50, 0, sizeof(CommandReply));
         local_50._00 = 0x40;
         local_50.commandID.b = DSMSG_ReplyACK;
         local_50.replyError.b = error;
+        local_50._0C = g_CurrentSequence++;
         error = TRKAppendBuffer(b, (u8*)&local_50, sizeof(CommandReply));
     }
 
@@ -371,10 +370,10 @@ void TRKDoFlushCache(void) {
     // UNUSED FUNCTION
 }
 
-DSError TRKDoContinue(TRKBuffer*) {
+DSError TRKDoContinue(TRKBuffer* buffer) {
     if (!TRKTargetStopped()) {
         u8 arr[0x40];
-        memset(arr, 0, 0x40);
+        TRK_memset(arr, 0, 0x40);
 
         arr[4] = 0x80;
         *(u32*)arr = 0x40;
@@ -384,7 +383,7 @@ DSError TRKDoContinue(TRKBuffer*) {
         return DS_NoError;
     } else {
         u8 arr[0x40];
-        memset(arr, 0, 0x40);
+        TRK_memset(arr, 0, 0x40);
 
         arr[4] = 0x80;
         *(u32*)arr = 0x40;

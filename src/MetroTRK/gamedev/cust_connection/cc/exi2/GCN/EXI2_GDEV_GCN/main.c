@@ -35,22 +35,19 @@ int gdev_cc_close() {
 
 int gdev_cc_read(u8* data, int size) {
     u8 buff[GDEV_BUF_SIZE];
-    int p1;
     u32 retval;
-    int p2;
     int poll;
     retval = 0;
+    
     if (!gIsInitialized) {
         return -0x2711;
     }
 
-    p1 = size;
-    p2 = size;
-    while ((u32)CBGetBytesAvailableForRead(&gRecvCB) < p2) {
+    while (CBGetBytesAvailableForRead(&gRecvCB) < size) {
         retval = 0;
         poll = DBQueryData();
         if (poll != 0) {
-            retval = DBRead(buff, p2);
+            retval = DBRead(buff, size);
             if (retval == 0) {
                 CircleBufferWriteBytes(&gRecvCB, buff, poll);
             }
@@ -58,9 +55,8 @@ int gdev_cc_read(u8* data, int size) {
     }
 
     if (retval == 0) {
-        CircleBufferReadBytes(&gRecvCB, data, p1);
-    } else {
-    }
+        CircleBufferReadBytes(&gRecvCB, data, size);
+    } 
 
     return retval;
 }
