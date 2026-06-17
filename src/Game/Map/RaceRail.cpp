@@ -10,6 +10,8 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 
+// TODO: this file has some weird compiler flags going on
+
 namespace {
     static const f32 sRaceJudgeLength = 10000.0f;
     // static const f32 sWaterSurface = ;

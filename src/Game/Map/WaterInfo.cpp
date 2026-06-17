@@ -1,5 +1,9 @@
 #include "Game/Map/WaterInfo.hpp"
 
+void WaterInfo_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 WaterInfo::WaterInfo() {
     clear();
 }

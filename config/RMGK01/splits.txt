@@ -3676,6 +3676,7 @@ Game/Map/Air.cpp:
 
 Game/Map/BezierRail.cpp:
 	.text       start:0x80171690 end:0x80172820
+	.rodata     start:0x805329C8 end:0x805329E8
 	.data       start:0x80588B10 end:0x80588B20
 	.sdata      start:0x806B1B90 end:0x806B1B98
 	.sdata2     start:0x806BBDC0 end:0x806BBDF8
@@ -3749,7 +3750,7 @@ Game/Map/FileSelector.cpp:
 	.ctors      start:0x8052EBB8 end:0x8052EBBC
 	.rodata     start:0x80532A68 end:0x80532AA8
 	.data       start:0x80589638 end:0x80589EB8
-	.sdata      start:0x806B1BA8 end:0x806B1BE0
+	.sdata      start:0x806B1BA8 end:0x806B1BC0
 	.sbss       start:0x806B4AB8 end:0x806B4B78
 	.sdata2     start:0x806BBEF8 end:0x806BBF30
 
@@ -3831,20 +3832,21 @@ Game/Map/KoopaBattleMapPlanet.cpp:
 Game/Map/KoopaBattleMapPlate.cpp:
 	.text       start:0x80186CC4 end:0x80186F84
 	.data       start:0x8058A778 end:0x8058A840
+	.sdata      start:0x806B1BD8 end:0x806B1BE0
 	.sdata2     start:0x806BC0A8 end:0x806BC0C0
 
 Game/Map/KoopaBattleMapStair.cpp:
 	.text       start:0x80186F84 end:0x80187AA8
 	.ctors      start:0x8052EBD0 end:0x8052EBD4
 	.rodata     start:0x80532B98 end:0x80532BE0
-	.data       start:0x8058A840 end:0x8058A9C8
+	.data       start:0x8058A840 end:0x8058A9A0
 	.sbss       start:0x806B4BB8 end:0x806B4BD0
 	.sdata2     start:0x806BC0C0 end:0x806BC0F0
 
 Game/Map/LavaShellTower.cpp:
 	.text       start:0x80187AA8 end:0x80187D10
 	.ctors      start:0x8052EBD4 end:0x8052EBD8
-	.data       start:0x8058A9C8 end:0x8058AA88
+	.data       start:0x8058A9A0 end:0x8058AA88
 	.sbss       start:0x806B4BD0 end:0x806B4BE0
 	.sdata2     start:0x806BC0F0 end:0x806BC0F8
 
@@ -3860,11 +3862,12 @@ Game/Map/LightDataHolder.cpp:
 
 Game/Map/LightDirector.cpp:
 	.text       start:0x801881C0 end:0x80188398
-	.data       start:0x8058AB40 end:0x8058AC20
+	.data       start:0x8058AB40 end:0x8058AB70
 
 Game/Map/LightFunction.cpp:
 	.text       start:0x80188398 end:0x80189120
 	.rodata     start:0x80532BE0 end:0x80532C80
+	.data       start:0x8058AB70 end:0x8058AC08
 	.sdata2     start:0x806BC100 end:0x806BC118
 
 Game/Map/LightPointCtrl.cpp:
@@ -3873,6 +3876,7 @@ Game/Map/LightPointCtrl.cpp:
 
 Game/Map/LightZoneDataHolder.cpp:
 	.text       start:0x801896C0 end:0x801898EC
+	.data       start:0x8058AC08 end:0x8058AC20
 
 Game/Map/NamePosHolder.cpp:
 	.text       start:0x801898EC end:0x80189BF4

@@ -7,6 +7,21 @@
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include <revolution/mtx.h>
 
+void BezierRail_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
+    (void)2.0f;
+
+    // getLength probably has a rounding inline
+    (void)0.001f;
+    (void)0.01f;
+    (void)4.0f;
+    (void)1024.0f;
+}
+
 inline void getCsvDataStr(const char** pOut, const JMapInfo* pMapInfo, const char* pKey, s32 idx) {
     // This SHOULD NOT be here. This is only here to match BezierRail::BezierRail
     // This is an exact copy of MR::getCsvDataStr, but that refuses to inline
