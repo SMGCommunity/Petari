@@ -68,7 +68,8 @@ bool AstroChangeStageCube::isInVolume(const TVec3f& rPos) const {
     return AreaObj::isInVolume(rPos);
 }
 
-AstroChangeStageCube::~AstroChangeStageCube() {}
+AstroChangeStageCube::~AstroChangeStageCube() {
+}
 
 void AstroChangeStageCube::movement() {
     if (isValid()) {

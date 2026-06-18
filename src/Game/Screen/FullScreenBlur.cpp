@@ -1,8 +1,8 @@
 #include "Game/Screen/FullScreenBlur.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/DrawUtil.hpp"
-#include "Game/Util/Color.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>

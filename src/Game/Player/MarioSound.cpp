@@ -1765,25 +1765,25 @@ bool Mario::playSoundJ(const char* pSoundName, s32 timing) {
 
         goto systemLevelSound;
 
-    actorSound : {
+    actorSound: {
         JAISoundID soundID(soundlist[index]._14);
         MR::startSound(mActor, soundID, timing);
     }
         goto typeEnd;
 
-    systemSound : {
+    systemSound: {
         JAISoundID soundID(soundlist[index]._14);
         MR::startSystemSE(soundID, timing);
     }
         goto typeEnd;
 
-    levelSound : {
+    levelSound: {
         JAISoundID soundID(soundlist[index]._14);
         MR::startLevelSound(mActor, soundID, timing);
     }
         goto typeEnd;
 
-    systemLevelSound : {
+    systemLevelSound: {
         JAISoundID soundID(soundlist[index]._14);
         MR::startSystemLevelSE(soundID, timing);
     }

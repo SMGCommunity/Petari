@@ -1,11 +1,11 @@
 #include "Game/MapObj/FallOutFieldDraw.hpp"
-#include "Game/MapObj/ClipAreaHolder.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/StageSwitch.hpp"
+#include "Game/MapObj/ClipAreaHolder.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/ImageEffectLocalUtil.hpp"
 #include "Game/Screen/ScreenAlphaCapture.hpp"
-#include "Game/Map/StageSwitch.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/Functor.hpp"
@@ -75,11 +75,8 @@ void FallOutFieldDraw::init(const JMapInfoIter& rIter) {
     _C = arg0;
 
     if (MR::isExistStageSwitchAppear(rIter)) {
-        MR::listenNameObjStageSwitchOnOffAppear(
-            this,
-            MR::createStageSwitchCtrl(this, rIter),
-            MR::Functor(this, &FallOutFieldDraw::activate),
-            MR::Functor(this, &FallOutFieldDraw::deactivate));
+        MR::listenNameObjStageSwitchOnOffAppear(this, MR::createStageSwitchCtrl(this, rIter), MR::Functor(this, &FallOutFieldDraw::activate),
+                                                MR::Functor(this, &FallOutFieldDraw::deactivate));
         MR::deactivateClipArea();
     } else {
         MR::activateClipArea();
@@ -159,4 +156,4 @@ namespace MR {
     NameObj* createFallOutFieldDraw(const char*) {
         return MR::createSceneObj(SceneObj_FallOutFieldDraw);
     }
-};
+};  // namespace MR

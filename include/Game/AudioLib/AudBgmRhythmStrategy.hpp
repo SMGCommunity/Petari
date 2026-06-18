@@ -8,7 +8,7 @@ class JAISoundHandle;
 class AudBgmRhythmStrategy {
 public:
     /// @brief Creates a new `AudBgmRhythmStrategy`.
-    AudBgmRhythmStrategy(){};
+    AudBgmRhythmStrategy() {};
 
     virtual bool set(AudBgm*, s32);
 

@@ -12,7 +12,7 @@ public:
     /// @brief Creates a new `AudBgmKeeper`.
     AudBgmKeeper();
 
-    ~AudBgmKeeper(){};
+    ~AudBgmKeeper() {};
 
     AudBgm* get(BgmType);
     void release(AudBgm*);

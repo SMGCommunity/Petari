@@ -9,7 +9,7 @@ public:
     /// @brief Creates a new `AudTrackController`.
     AudTrackController();
 
-    ~AudTrackController(){};
+    ~AudTrackController() {};
 
     void start(JAISoundHandle*);
     void stop();

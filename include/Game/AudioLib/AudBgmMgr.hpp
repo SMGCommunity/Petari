@@ -15,7 +15,7 @@ public:
     /// @brief Creates a new `AudBgmMgr`.
     AudBgmMgr();
 
-    ~AudBgmMgr(){};
+    ~AudBgmMgr() {};
     void movement();
     JAISoundHandle* start(s32, u32, bool);
     void setNextBGM(s32, u32);

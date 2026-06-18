@@ -1,7 +1,8 @@
 #include "Game/AreaObj/SimpleBloomArea.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-SimpleBloomArea::SimpleBloomArea(int formType, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, formType, pName), mMaskFilterColor(), mThreshold(128), mIntensity(76) {
+SimpleBloomArea::SimpleBloomArea(int formType, const char* pName)
+    : ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, formType, pName), mMaskFilterColor(), mThreshold(128), mIntensity(76) {
 }
 
 void SimpleBloomArea::init(const JMapInfoIter& rIter) {

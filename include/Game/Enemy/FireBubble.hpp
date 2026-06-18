@@ -18,7 +18,7 @@ public:
     void updateChaseFrontVec(f32);
     void updateChaseFrontVecAndVelocity(f32);
     void updateGravity(f32);
-    void calcReflectVelocity(TVec3f *) const;
+    void calcReflectVelocity(TVec3f*) const;
     bool tryChaseEnd();
     bool tryReflect();
     void killOrWaitToApppear();
@@ -32,7 +32,7 @@ public:
     void exeDown();
     void exeWaitToAppear();
 
-    bool isMovingDown(); //fabricated
+    bool isMovingDown();  // fabricated
 
     /* 0x8C */ bool mIsValidInfo;
     /* 0x90 */ TVec3f _90;

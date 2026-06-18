@@ -52,7 +52,7 @@ struct JASInstParam : public JASSoundParams {
 };
 
 struct JASInst {
-    virtual ~JASInst(){};
+    virtual ~JASInst() {};
     virtual bool getParam(int, int, JASInstParam*) const = 0;
     virtual u32 getType() const = 0;
 };

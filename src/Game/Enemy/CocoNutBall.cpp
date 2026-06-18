@@ -321,7 +321,6 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
 
         vec1.y = MR::max(vec1.y, _C4 + _8C->mPosition.y);
 
-
         f32 flt = 120.0f;
         bool v1 = false;
         while (vec1.y < val2 - flt) {
@@ -460,7 +459,6 @@ void CocoNutBall::exeRebound() {
         MR::makeMtxUpFront(&pos, _C8, vec1);
 
         mVelocity.set(::cReboundVelocity);
-
 
         pos.mult33(mVelocity);
     }

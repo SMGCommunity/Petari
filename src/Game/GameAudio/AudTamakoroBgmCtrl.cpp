@@ -4,7 +4,6 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include <JSystem/JAudio2/JAISoundChild.hpp>
 
-
 namespace {
     f32 sSpeedMin = 2.0f;
     f32 sSpeedMax = 22.0f;

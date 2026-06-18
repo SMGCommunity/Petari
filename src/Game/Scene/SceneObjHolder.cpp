@@ -1,3 +1,4 @@
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/AreaObj/AreaObjContainer.hpp"
 #include "Game/Boss/BossAccessor.hpp"
 #include "Game/Boss/SkeletalFishBabyRailHolder.hpp"
@@ -85,7 +86,6 @@
 #include "Game/Scene/PlacementStateChecker.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
 #include "Game/Scene/SceneNameObjMovementController.hpp"
-#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Scene/ScenePlayingResult.hpp"
 #include "Game/Scene/StageDataHolder.hpp"
 #include "Game/Scene/StopSceneController.hpp"

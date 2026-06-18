@@ -15,4 +15,4 @@ namespace KabokuriFireHolderFunc {
     void createHolder();
     KabokuriFire* getDeadMember();
     bool generateFire(const TVec3f&, const TVec3f&);
-};  // namespace MR
+};  // namespace KabokuriFireHolderFunc

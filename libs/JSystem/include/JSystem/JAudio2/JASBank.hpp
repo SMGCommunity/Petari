@@ -18,7 +18,7 @@ public:
     JASBank() {
         mWaveBank = NULL;
     }
-    virtual ~JASBank(){};
+    virtual ~JASBank() {};
     virtual bool getInstParam(int, int, int, JASInstParam*) const = 0;
     virtual u32 getType() const = 0;
 
@@ -38,7 +38,7 @@ private:
 
 class JASBankList {
 public:
-    JASBankList(){};
+    JASBankList() {};
 
     virtual JASBank* getBank(u32) const = 0;
 };

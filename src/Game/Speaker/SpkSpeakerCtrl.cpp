@@ -7,7 +7,6 @@
 #include <revolution/wenc.h>
 #include <revolution/wpad.h>
 
-
 OSAlarm sSpeakerAlarm;
 SpeakerInfo sSpeakerInfo[WPAD_MAX_CONTROLLERS];
 SpkSoundHandle sAdjustSoundHandle[WPAD_MAX_CONTROLLERS];

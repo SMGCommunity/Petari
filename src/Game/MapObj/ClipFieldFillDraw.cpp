@@ -9,7 +9,9 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-ClipFieldFillDraw::ClipFieldFillDraw(const char* pName) : NameObj(pName), mFillBlendMode(GX_BM_BLEND), mFillSrcFactor(GX_BL_SRCALPHA), mFillDstFactor(GX_BL_ONE), mFillLogicOp(GX_LO_NOOP), _1C(255, 230, 80, 200), _20(255, 255, 255, 255), _24(), _25() {
+ClipFieldFillDraw::ClipFieldFillDraw(const char* pName)
+    : NameObj(pName), mFillBlendMode(GX_BM_BLEND), mFillSrcFactor(GX_BL_SRCALPHA), mFillDstFactor(GX_BL_ONE), mFillLogicOp(GX_LO_NOOP),
+      _1C(255, 230, 80, 200), _20(255, 255, 255, 255), _24(), _25() {
     MR::connectToScene(this, -1, -1, -1, MR::DrawType_ClipFieldFillDraw);
     MR::createScreenAlphaSceneObj(1, 1.0f);
 }
@@ -64,7 +66,7 @@ void ClipFieldFillDraw::setUpFillScreen() const {
     }
 
     GXSetTevKColor(GX_KCOLOR0, Color8(0, 0, 0, 1));
-    GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K0_A);;
+    GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K0_A);
     GXSetTevAlphaIn(GX_TEVSTAGE0, alphaA, alphaB, GX_CA_A0, GX_CA_ZERO);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_COMP_RGB8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_AND, GX_ALWAYS, 0);

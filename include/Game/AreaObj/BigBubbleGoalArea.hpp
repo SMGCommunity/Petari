@@ -8,7 +8,7 @@ class BigBubbleGoalArea : public AreaObj {
 public:
     BigBubbleGoalArea(int, const char*);
 
-    virtual ~BigBubbleGoalArea(){};
+    virtual ~BigBubbleGoalArea() {};
     virtual void init(const JMapInfoIter&);
     virtual void movement();
     virtual void draw() const;
