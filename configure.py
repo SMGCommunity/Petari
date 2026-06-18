@@ -273,14 +273,14 @@ cflags_trk = [
     "-fp hardware",
     "-Cpp_exceptions off",
     "-O4,p",
-    "-inline auto",
+    "-inline deferred, auto",
     '-pragma "cats off"',
     '-pragma "warn_notinlined off"',
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
     "-fp_contract on",
-    "-str reuse,pool,readonly",
+    "-str reuse,readonly",
     "-use_lmw_stmw on",
     "-sdata 0",
     "-sdata2 0",
@@ -2902,92 +2902,96 @@ config.libs = [
         "MetroTRK",
         [
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mainloop.c"
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubevent.c"
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/nubinit.c"
             ),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msg.c"),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msgbuf.c"
             ),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/debugger/embedded/MetroTRK/Portable/serpoll.c",
                 extra_cflags=["-sdata 8"],
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/usr_put.c"
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/dispatch.c"
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/msghndlr.c"
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/support.c"
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mutex_TRK.c"
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/notify.c"
             ),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c",
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c"
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c"
             ),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c",
             ),
             Object(
-                NonMatching,
+                Matching,
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s",
+            ),
+            Object(
+                Matching,
                 "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c",
             ),
-            Object(NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
+            Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c",
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Portable/main_TRK.c"
             ),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c",
             ),
             Object(
-                NonMatching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"
+                Matching, "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c"
             ),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c",
             ),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c",
             ),
             Object(
                 NonMatching,
-                "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c",
+                "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c", extra_cflags=["-sdata 8"],
             ),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/gamedev/cust_connection/utils/common/CircleBuffer.c",
             ),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/gamedev/cust_connection/utils/gc/MWCriticalSection_gc.c",
             ),
         ],

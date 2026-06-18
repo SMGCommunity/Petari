@@ -11671,7 +11671,7 @@ MSL_C/printf.c:
 	extab       start:0x80006880 end:0x800068E8
 	extabindex  start:0x80006EE0 end:0x80006F7C
 	.text       start:0x8051C1E8 end:0x8051E674
-	.rodata     start:0x80562888 end:0x805628E0
+	.rodata     start:0x80562888 end:0x805628B8
 	.data       start:0x80609BC8 end:0x80609E18
 	.sdata      start:0x806B2E38 end:0x806B2E40
 
@@ -11682,6 +11682,7 @@ MSL_C/scanf.c:
 	extab       start:0x800068E8 end:0x80006900
 	extabindex  start:0x80006F7C end:0x80006FA0
 	.text       start:0x8051E674 end:0x8051FBE0
+	.rodata     start:0x805628B8 end:0x805628E0
 	.data       start:0x80609E18 end:0x80609F38
 
 MSL_C/signal.c:
@@ -11912,17 +11913,20 @@ MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
 	.text       start:0x8052AEDC end:0x8052AF14
 
 MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
-	.init       start:0x8000446C end:0x80006420
+	.init       start:0x8000446C end:0x800044C0
 	.text       start:0x8052AF14 end:0x8052AFCC
 
 MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c:
 	.text       start:0x8052AFCC end:0x8052AFE8
 
 MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
-	.text       start:0x8052AFE8 end:0x8052CA20
+	.text       start:0x8052AFE8 end:0x8052CA00
 	.rodata     start:0x80563288 end:0x80563310
 	.data       start:0x8060A310 end:0x8060A340
 	.bss        start:0x806B0B60 end:0x806B10E0
+
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s:
+	.text       start:0x8052CA00 end:0x8052CA20
 
 MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 	.text       start:0x8052CA20 end:0x8052CD90
@@ -11931,6 +11935,7 @@ MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c:
 	.text       start:0x8052CD90 end:0x8052CF08
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
+	.init       start:0x800063F4 end:0x80006420
 	.text       start:0x8052CF08 end:0x8052D224
 	.data       start:0x8060A340 end:0x8060A380
 	.bss        start:0x806B10E0 end:0x806B10E8
@@ -11943,13 +11948,14 @@ MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c:
 	.text       start:0x8052D268 end:0x8052D728
 	.rodata     start:0x80563310 end:0x80563418
 	.data       start:0x8060A380 end:0x8060A3A8
-	.bss        start:0x806B10F0 end:0x806B1100
+	.bss        start:0x806B10F0 end:0x806B10F8
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c:
 	.text       start:0x8052D728 end:0x8052D75C
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c:
 	.text       start:0x8052D75C end:0x8052D778
+	.bss        start:0x806B10F8 end:0x806B1100
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c:
 	.text       start:0x8052D778 end:0x8052D7C0
