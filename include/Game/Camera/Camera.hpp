@@ -12,7 +12,7 @@ class CameraTargetObj;
 
 class CamTranslatorBase {
 public:
-    inline CamTranslatorBase() {
+    CamTranslatorBase() {
     }
 
     virtual void setParam(const CameraParamChunk*) = 0;
@@ -69,8 +69,7 @@ public:
 
 class CamTranslatorDummy : public CamTranslatorBase {
 public:
-    inline CamTranslatorDummy(Camera* pCamera) {
-        mCamera = pCamera;
+    CamTranslatorDummy(Camera* pCamera) : mCamera(pCamera) {
     }
 
     virtual void setParam(const CameraParamChunk*){};

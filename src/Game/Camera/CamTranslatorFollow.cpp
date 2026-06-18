@@ -1,8 +1,7 @@
 #include "Game/Camera/CamTranslatorFollow.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 
-CamTranslatorFollow::CamTranslatorFollow(CameraFollow* pCamera) {
-    mCamera = pCamera;
+CamTranslatorFollow::CamTranslatorFollow(CameraFollow* pCamera) : mCamera(pCamera) {
 }
 
 void CamTranslatorFollow::setParam(const CameraParamChunk* pChunk) {

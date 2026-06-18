@@ -4,8 +4,7 @@
 
 class CamTranslatorRailWatch : public CamTranslatorBase {
 public:
-    inline CamTranslatorRailWatch(CameraRailWatch* pCamera) {
-        mCamera = pCamera;
+    CamTranslatorRailWatch(CameraRailWatch* pCamera) : mCamera(pCamera) {
     }
 
     virtual void setParam(const CameraParamChunk*);
