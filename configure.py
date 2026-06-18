@@ -2017,7 +2017,7 @@ config.libs = [
     GameLib(
         "Scene",
         [
-            Object(Matching, "Game/Scene/GameScene.cpp", cflags=[*cflags_game, "-sym on"]),
+            Object(NonMatching, "Game/Scene/GameScene.cpp"),
             Object(Matching, "Game/Scene/GameSceneFunction.cpp"),
             Object(Matching, "Game/Scene/GameScenePauseControl.cpp"),
             Object(Matching, "Game/Scene/GameSceneScenarioOpeningCameraState.cpp"),

@@ -4,8 +4,8 @@
 #include <cstring>
 #include <mem.h>
 
-static u32 g_CurrentSequence;
 static BOOL IsTRKConnected;
+static u32 g_CurrentSequence;
 
 BOOL GetTRKConnected(void) {
     return IsTRKConnected;
