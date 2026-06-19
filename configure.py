@@ -2914,15 +2914,11 @@ config.libs = [
             Object(
                 Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_fmod.c"
             ),
-            Object(
-                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c"
-            ),
+            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log.c"),
             Object(
                 Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_log10.c"
             ),
-            Object(
-                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c"
-            ),
+            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_pow.c"),
             Object(
                 Matching,
                 "MSL_C/MSL_Common_Embedded/Math/Double_precision/e_rem_pio2.c",
@@ -2933,11 +2929,9 @@ config.libs = [
                 "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_rem_pio2.c",
             ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_sin.c"),
+            Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_tan.c"),
             Object(
-                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/k_tan.c"
-            ),
-            Object(
-                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"
             ),
             Object(
                 Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"
@@ -2947,7 +2941,7 @@ config.libs = [
             ),
             Object(Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_cos.c"),
             Object(
-                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_floor.c"
             ),
             Object(
                 Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_frexp.c"

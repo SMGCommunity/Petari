@@ -17,7 +17,7 @@ double __ieee754_log(double x) {
 
     if (hx < 0x00100000) {
         if (((hx & 0x7fffffff) | lx) == 0) {
-            return -1.80143985094819840000e+16 / zero;
+            return -two54 / zero;
         }
 
         if (hx < 0) {
@@ -26,7 +26,7 @@ double __ieee754_log(double x) {
         }
 
         k -= 54;
-        x *= 1.80143985094819840000e+16;
+        x *= two54;
         hx = *(int*)&x;
     }
 
@@ -41,26 +41,22 @@ double __ieee754_log(double x) {
     k += (i >> 20);
     f = x - 1.0;
 
-    if ((0xFFFFF & (2 + hx)) < 3) {
-        if (f == 0.0) {
-            if (k == 0) {
-                return 0.0;
-            } else {
+    if ((0x000fffff & (2 + hx)) < 3) {
+        if (f == zero)
+            if (k == 0)
+                return zero;
+            else {
                 dk = (double)k;
-                return dk * 6.93147180369123816490e-01 + dk * 1.90821492927058770002e-10;
+                return dk * ln2_hi + dk * ln2_lo;
             }
-        }
-
         R = f * f * (0.5 - 0.33333333333333333 * f);
-
-        if (k == 0) {
+        if (k == 0)
             return f - R;
-        } else {
+        else {
             dk = (double)k;
-            return dk * 6.93147180369123816490e-01 - ((R - dk * 1.90821492927058770002e-10) - f);
+            return dk * ln2_hi - ((R - dk * ln2_lo) - f);
         }
     }
-
     s = f / (2.0 + f);
     dk = (double)k;
     z = s * s;
@@ -71,19 +67,16 @@ double __ieee754_log(double x) {
     t2 = z * (Lg1 + w * (Lg3 + w * (Lg5 + w * Lg7)));
     i |= j;
     R = t2 + t1;
-
     if (i > 0) {
         hfsq = 0.5 * f * f;
-        if (k == 0) {
+        if (k == 0)
             return f - (hfsq - s * (hfsq + R));
-        } else {
+        else
             return dk * ln2_hi - ((hfsq - (s * (hfsq + R) + dk * ln2_lo)) - f);
-        }
     } else {
-        if (k == 0) {
+        if (k == 0)
             return f - s * (f - R);
-        } else {
+        else
             return dk * ln2_hi - ((s * (f - R) - dk * ln2_lo) - f);
-        }
     }
 }
