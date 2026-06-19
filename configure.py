@@ -2983,7 +2983,7 @@ config.libs = [
                 "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c",
             ),
             Object(
-                NonMatching,
+                Matching,
                 "MetroTRK/gamedev/cust_connection/cc/exi2/GCN/EXI2_GDEV_GCN/main.c", extra_cflags=["-sdata 8"],
             ),
             Object(

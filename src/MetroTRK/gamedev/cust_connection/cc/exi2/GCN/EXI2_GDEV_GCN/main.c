@@ -44,21 +44,23 @@ int gdev_cc_close() {
     return 0;
 }
 
-//single instruction swap https://decomp.me/scratch/g6Lsa
 int gdev_cc_read(u8* data, int size) {
     u8 buff[GDEV_BUF_SIZE];
     u32 retval = 0;
+    s32 s;
     u32 poll;
-    
+
     if (!gIsInitialized) {
         return -0x2711;
     }
 
-    while (CBGetBytesAvailableForRead(&gRecvCB) < size) {
+    s = size;
+
+    while (CBGetBytesAvailableForRead(&gRecvCB) < s) {
         retval = 0;
         poll = DBQueryData();
         if (poll != 0) {
-            retval = DBRead(buff, size);
+            retval = DBRead(buff, s);
             if (retval == 0) {
                 CircleBufferWriteBytes(&gRecvCB, buff, poll);
             }
@@ -66,8 +68,8 @@ int gdev_cc_read(u8* data, int size) {
     }
 
     if (retval == 0) {
-        CircleBufferReadBytes(&gRecvCB, data, size);
-    } 
+        CircleBufferReadBytes(&gRecvCB, data, s);
+    }
 
     return retval;
 }
