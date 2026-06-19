@@ -368,7 +368,6 @@ cflags_rfl = [
     "-maxerrors 1",
     "-nosyspath",
     "-RTTI off",
-    "-fp_contract on",
     "-str reuse",
     "-enc SJIS",
     "-ipa file",
