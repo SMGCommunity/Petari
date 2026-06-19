@@ -2,16 +2,40 @@
 #include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/System/ResourceHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include <cstdio>
 
 namespace {
-    char* createActorCameraName(char*, u32, const LiveActor*, const ActorCameraInfo*);
-    char* createMultiActorCameraName(char*, u32, const LiveActor*, const ActorCameraInfo*, const char*);
+    void createActorCameraName(char* pName, u32 size, const LiveActor* pActor, const ActorCameraInfo* pInfo) NO_INLINE {
+        if (pInfo->mCameraSetID & 0x8000) {
+            snprintf(pName, size, "%s共通%03d", pActor->mName, pInfo->mCameraSetID - 0x8000);
+        } else {
+            snprintf(pName, size, "%s固有%03d", pActor->mName, pInfo->mCameraSetID);
+        }
+    }
+
+    void createMultiActorCameraName(char* pName, u32 size, const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pCamName) NO_INLINE {
+        s32 id = pInfo->mCameraSetID;
+        if (id & 0x8000) {
+            snprintf(pName, size, "%s共通%s%03d", pActor->mName, id - 0x8000);
+        } else {
+            snprintf(pName, size, "%s固有%s%03d", pActor->mName, id);
+        }
+    }
 };  // namespace
 
 namespace MR {
+    void initAnimCamera(const LiveActor* pActor, const ActorCameraInfo* pInfo, const char* pName) {
+        char actorName[128];
+        char camName[64];
+        snprintf(actorName, sizeof(actorName), "%s%s", pActor->mName, pName);
+        snprintf(camName, sizeof(camName), "%s.camn", pName);
+        MR::declareEventCameraAnim(pInfo, actorName, getResourceHolder(pActor)->mFileInfoTable->getRes(camName));
+    }
+
     ActorCameraInfo* createActorCameraInfo(const JMapInfoIter& rIter) {
         return new ActorCameraInfo(rIter);
     }
@@ -39,21 +63,19 @@ namespace MR {
         return initMultiActorCameraNoInit(pActor, (*pInfo), pName);
     }
 
-    // Need newName to take up the proper amount of space on the stack
-    /* bool initMultiActorCameraNoInit(const LiveActor *pActor, ActorCameraInfo *pInfo, const char *pName) {
-        char newName;
+    bool initMultiActorCameraNoInit(const LiveActor* pActor, ActorCameraInfo* pInfo, const char* pName) {
+        char newName[0x100];
         if (pInfo->mCameraSetID < 0) {
             return false;
         }
         if (pName != nullptr) {
-            ::createMultiActorCameraName(&newName, 0x100, pActor, pInfo, pName);
+            ::createMultiActorCameraName(newName, 0x100, pActor, pInfo, pName);
+        } else {
+            ::createActorCameraName(newName, 0x100, pActor, pInfo);
         }
-        else {
-            ::createActorCameraName(&newName, 0x100, pActor, pInfo);
-        }
-        declareEventCamera(pInfo, &newName);
+        declareEventCamera(pInfo, newName);
         return true;
-    } */
+    }
 
     void initActorCameraProgrammable(const LiveActor* pActor) {
         declareEventCameraProgrammable(pActor->mName);
