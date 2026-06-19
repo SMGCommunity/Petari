@@ -2940,7 +2940,7 @@ config.libs = [
                 NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_atan.c"
             ),
             Object(
-                NonMatching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"
+                Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_ceil.c"
             ),
             Object(
                 Matching, "MSL_C/MSL_Common_Embedded/Math/Double_precision/s_copysign.c"
