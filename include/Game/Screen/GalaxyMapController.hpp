@@ -13,6 +13,17 @@ class WipeFade;
 
 class GalaxyMapController : public LayoutActor {
 public:
+    enum Mode {
+        Mode_AstroMap,
+        Mode_GalaxyMap,
+        Mode_PowerStarList,
+        Mode_NewGalaxyDiscover,
+        Mode_NewTicoGalaxyDiscover,
+        Mode_NewDomeDiscover,
+        Mode_TicoCometPray,
+        Mode_ChallengeGalaxyDiscover,
+    };
+
     /// @brief Creates a new `GalaxyMapController`.
     GalaxyMapController();
 
@@ -37,6 +48,7 @@ public:
     bool tryAppearGalaxyMap();
     bool tryDisplayAndKeyWait();
     void setNerveAccordingToNextModeFromMap();
+    void setFaderParam(GXColor, int);
     void capture();
 
     void exeReadyModeMap();
