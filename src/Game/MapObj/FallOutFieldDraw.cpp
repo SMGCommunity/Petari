@@ -125,7 +125,7 @@ void FallOutFieldDraw::draw() const {
     GXSetDstAlpha(GX_FALSE, 0);
     GXSetZScaleOffset(0.0f, 0.0f);
 
-    ImageEffectLocalUtil::drawTexture(screenAlphaTexture2, 2, 0, 255, ImageEffectLocalUtil::UNK_0);
+    ImageEffectLocalUtil::drawTexture(screenAlphaTexture2, 2, 0, 255, ImageEffectLocalUtil::TexDrawType_0);
     ImageEffectLocalUtil::capture(screenAlphaTexture3, 2, 0, GX_CTF_A8, true, 0);
 
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXA, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
@@ -136,7 +136,7 @@ void FallOutFieldDraw::draw() const {
     ImageEffectLocalUtil::blurTexture(screenAlphaTexture3, 4, 4, 5, 0.004f, 1.0f);
     ImageEffectLocalUtil::capture(screenAlphaTexture4, 4, 4, GX_CTF_A8, false, 0);
     setUpEdgeAndClearAlpha();
-    ImageEffectLocalUtil::drawTexture(screenAlphaTexture4, 1, 0, 255, ImageEffectLocalUtil::UNK_2);
+    ImageEffectLocalUtil::drawTexture(screenAlphaTexture4, 1, 0, 255, ImageEffectLocalUtil::TexDrawType_2);
     MR::loadScreenAlphaTexture(2, GX_TEXMAP0);
     setUpFillScreen();
 

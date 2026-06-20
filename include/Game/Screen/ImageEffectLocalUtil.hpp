@@ -2,11 +2,17 @@
 
 #include <revolution/gx/GXEnum.h>
 
+class BloomEffect;
 class JUTTexture;
 class NameObj;
 
 namespace ImageEffectLocalUtil {
-    enum ETexDrawType { UNK_0, UNK_1, UNK_2 };
+    enum ETexDrawType {
+        TexDrawType_0,
+        TexDrawType_1,
+        TexDrawType_2,
+        TexDrawType_3,
+    };
 
     void capture(JUTTexture*, s32, s32, GXTexFmt, bool, u8);
     void setupDrawTexture();
@@ -18,4 +24,5 @@ namespace ImageEffectLocalUtil {
 namespace MR {
     void connectToSceneImageEffect(NameObj*);
     void connectToSceneImageEffectMovement(NameObj*);
+    void connectToSceneNormalBloom(BloomEffect*);
 };  // namespace MR
