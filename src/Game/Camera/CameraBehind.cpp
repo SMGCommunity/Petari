@@ -49,7 +49,8 @@ void CameraBehind::calcPosAndUp(f32 accel) {
     TVec3f cross;
     MR::polarToCrossDegree(multresult, &cross, mDist, mAngleB, mAngleA);
     matrix.mult(cross, cross);
-    CameraLocalUtil::setPos(this, (cross * accel) + (CameraLocalUtil::getPos(this) * (1.0f - accel)));
+    cross.setPS((cross * accel).addOtherInline2(CameraLocalUtil::getPos(this) * (1.0f - accel)));
+    CameraLocalUtil::setPos(this, cross);
 
     CameraLocalUtil::setWatchUpVec(this, TVec3f(0.0f, 1.0f, 0.0f));
     CameraLocalUtil::setUpVec(this, TVec3f(0.0f, 1.0f, 0.0f));
