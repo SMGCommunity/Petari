@@ -11,7 +11,7 @@ public:
     virtual CameraTargetObj* calc();
     virtual CamTranslatorBase* createTranslator();
 
-    void calcPosAndUp();
+    void calcPosAndUp(f32 accel);
 
     f32 mAngleB;  // 0x4C
     f32 mAngleA;  // 0x50
