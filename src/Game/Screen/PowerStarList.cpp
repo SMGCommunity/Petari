@@ -20,8 +20,8 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "nw4r/lyt/drawInfo.h"
-#include "nw4r/lyt/pane.h"
+#include <nw4r/lyt/drawInfo.h>
+#include <nw4r/lyt/pane.h>
 // #include <wprintf>
 
 extern int swprintf(wchar_t* s, size_t n, const wchar_t* format, ...);
