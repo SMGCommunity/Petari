@@ -225,20 +225,17 @@ s32 WPad::getValidStatusCount() const {
     return mReadInfo->getValidStatusCount();
 }
 
-/*
 s32 WPad::getEnableAccelPastCount(u32 deviceType) const {
     WPadAcceleration* pAcceleration;
 
     if (deviceType == WPAD_DEV_CORE) {
         pAcceleration = mCorePadAccel;
-    }
-    else {
+    } else {
         pAcceleration = mSubPadAccel;
     }
 
     return pAcceleration->_628;
 }
-*/
 
 bool WPad::getAcceleration(TVec3f* pAccel, u32 deviceType) const {
     WPadAcceleration* pAcceleration;
