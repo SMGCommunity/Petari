@@ -581,7 +581,7 @@ wchar_t* PowerStarList::makeCoinText(wchar_t* s, const GalaxyStatusAccessor* pAc
 
 wchar_t* PowerStarList::makeCrownText(wchar_t* s, const GalaxyStatusAccessor* pAccessor, bool a1) const {
     if (!a1) {
-        *s = 0xA;
+        *s = L'\n';
         s++;
     }
 
@@ -685,13 +685,13 @@ void PowerStarList::setTotalPowerStarNumForMessageBoardCapture() {
     pMessage = MR::addPictureFontTag(MR::addPictureFontTag(message, L'7'), L'@');
 
     s32 powerStarNum = MR::getPowerStarNum();
-    if (100 <= MR::getPowerStarNum()) {
+    if (MR::getPowerStarNum() >= 100) {
         pMessage[0] = powerStarNum / 100 + L'0';
         pMessage++;
         powerStarNum %= 100;
     }
 
-    if (10 <= MR::getPowerStarNum()) {
+    if (MR::getPowerStarNum() >= 10) {
         pMessage[0] = powerStarNum / 10 + L'0';
         pMessage++;
         powerStarNum %= 10;
