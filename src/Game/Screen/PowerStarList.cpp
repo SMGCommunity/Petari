@@ -91,7 +91,6 @@ namespace {
     const char* cMailMessageID = "WiiMessageStarList";
 
     const wchar_t cTemp = 0;
-    const wchar_t cTemp2 = 0x0A00;
 
     const s32 MAX_PAGES = 5;
     const s32 ITEMS_PER_PAGE = 15;
@@ -128,28 +127,23 @@ namespace {
     };
 
     s32 getSortedList(ListItem* pItems) {
-        // Local arrays mirror the decompiled stack layout
         GalaxyStatusAccessor* galaxyAccessors[MAX_ITEMS];
         void* auStack_28[10];
 
-        // Zero the local area (decomp zeroed up to auStack_28; we zero both arrays)
         for (s32 i = 0; i < ARRAY_SIZE(galaxyAccessors); ++i)
             galaxyAccessors[i] = nullptr;
         for (s32 i = 0; i < ARRAY_SIZE(auStack_28); ++i)
             auStack_28[i] = 0;
 
-        s32 availableGalaxies = 0;  // will count collected galaxy entries
-        s32 byteOffset = 0;         // in decomp iVar7 used as byte offset; we'll track insertion index similarly as bytes when needed
+        s32 availableGalaxies = 0;
+        s32 byteOffset = 0;
 
-        // 1) Collect matching galaxies into galaxyAccessors[] (store underlying ScenarioData pointer as 32-bit)
         ScenarioDataIter iter = MR::makeBeginScenarioDataIter();
         while (!iter.isEnd()) {
             GalaxyStatusAccessor accessor = iter.makeAccessor();
             bool open = accessor.getPowerStarNum() == 0 ? false : MR::isOnGameEventFlagGalaxyOpen(accessor.getName());
 
             if (open) {
-                // store the ScenarioData pointer (as 32-bit) into galaxyAccessors at index availableGalaxies
-                // (decomp stored raw 4-byte accessor/ptr in the local array)
                 *galaxyAccessors[availableGalaxies] = iter.makeAccessor();
                 availableGalaxies++;
             }
@@ -372,7 +366,7 @@ namespace {
         void addNewLine(s32 param1) {
             s32 v1 = param1 / _8;
 
-            if (param1 - v1 * _8) {
+            if (param1 - v1 * _8 != 0) {
                 mTail = MR::addNewLine(mTail);
             }
         }
