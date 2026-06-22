@@ -30,9 +30,7 @@ namespace {
     class ListItem {
     public:
         /// @brief Creates a new `ListItem`.
-        ListItem() NO_INLINE {
-            _0 = -1;
-            _4 = 0;
+        ListItem() : _0(-1), _4() {
         }
 
         /* 0x0 */ s32 _0;
