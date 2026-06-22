@@ -738,10 +738,10 @@ void PowerStarList::exeWait() {
         updateButtonAppearance();
     }
 
-    if ((s32)mPageNo < mPageNum - 1 &&
+    if (mPageNo < mPageNum - 1 &&
         (mArrowDownButtonCtrl->trySelect() || MR::testCorePadButtonDown(0) || MR::testSubPadStickTriggerDown(0))) {
         setNerve(&NrvPowerStarList::PowerStarListNrvPageNext::sInstance);
-    } else if ((s32)mPageNo > 0 && (mArrowUpButtonCtrl->trySelect() || MR::testCorePadButtonUp(0) || MR::testSubPadStickTriggerUp(0))) {
+    } else if (mPageNo > 0 && (mArrowUpButtonCtrl->trySelect() || MR::testCorePadButtonUp(0) || MR::testSubPadStickTriggerUp(0))) {
         setNerve(&NrvPowerStarList::PowerStarListNrvPagePrev::sInstance);
     } else if (mCaptureButtonCtrl->trySelect()) {
         setNerve(&NrvPowerStarList::PowerStarListNrvCaptureStart::sInstance);
