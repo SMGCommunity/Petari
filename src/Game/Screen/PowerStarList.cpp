@@ -403,27 +403,27 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
         mPageNo = pageNumber;
     }
 
-    for (u32 idx = 0; idx < 4; idx++) {
+    for (u32 idx = 0; idx < ARRAY_SIZE(::cGalaxyNamePaneTable); idx++) {
         MR::setTextBoxMessageRecursive(this, ::cGalaxyNamePaneTable[idx], &cTemp);
     }
 
-    for (u32 idx = 0; idx < 4; idx++) {
+    for (u32 idx = 0; idx < ARRAY_SIZE(::cStarNumPaneTable); idx++) {
         MR::setTextBoxMessageRecursive(this, ::cStarNumPaneTable[idx], &cTemp);
     }
 
-    for (u32 idx = 0; idx < 4; idx++) {
+    for (u32 idx = 0; idx < ARRAY_SIZE(::cCoinPaneTable); idx++) {
         MR::setTextBoxMessageRecursive(this, ::cCoinPaneTable[idx], &cTemp);
     }
 
-    for (u32 idx = 0; idx < 4; idx++) {
+    for (u32 idx = 0; idx < ARRAY_SIZE(::cCrownPaneTable); idx++) {
         MR::setTextBoxMessageRecursive(this, ::cCrownPaneTable[idx], &cTemp);
     }
 
-    for (u32 idx = 0; idx < 4; idx++) {
+    for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorPaneTable); idx++) {
         MR::setTextBoxMessageRecursive(this, ::cSeparatorPaneTable[idx], &cTemp);
     }
 
-    for (u32 idx = 0; idx < 4; idx++) {
+    for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorPaneTable); idx++) {
         MR::hidePaneRecursive(this, ::cSeparatorPaneTable[idx]);
     }
 
@@ -667,7 +667,7 @@ bool PowerStarList::tryShowSeparator(s32 separatorIdx, f32 myFloat) {
 
 void PowerStarList::setSeparatorPaneSize() {
     const char* pPaneName;
-    for (u32 idx = 0; idx < 4; idx++) {
+    for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorSizeTable); idx++) {
         pPaneName = ::cSeparatorSizeTable[idx];
 
         if (!MR::isHiddenPane(this, pPaneName)) {
