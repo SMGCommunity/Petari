@@ -50,14 +50,16 @@ namespace nw4r {
                 PaneList::Iterator currIt = it++;
                 mChildList.Erase(currIt);
                 if (!currIt->IsUserAllocated()) {
-                    Layout::DeleteObj(&(*currIt));
+                    currIt->~Pane();
+                    Layout::FreeMemory(&*currIt);
                 }
             }
 
             UnbindAnimationSelf(0);
 
             if (mpMaterial && !mpMaterial->IsUserAllocated()) {
-                Layout::DeleteObj(mpMaterial);
+                mpMaterial->~Material();
+                Layout::FreeMemory(mpMaterial);
             }
         }
 
