@@ -201,7 +201,7 @@ namespace NrvPowerStarList {
 
 PowerStarList::PowerStarList()
     : LayoutActor("全パワースターリスト", true), mArrowUpButtonCtrl(nullptr), mArrowDownButtonCtrl(nullptr), mCaptureButtonCtrl(nullptr),
-      mSysInfoWindow(nullptr), mPageNumber(0), mMailMessageLength(0), mMailMessage(nullptr) {
+      mSysInfoWindow(nullptr), mPageNo(0), mMailMessageLength(0), mMailMessage(nullptr) {
     mSeparatorArray = new Separator[4]();
 }
 
@@ -231,7 +231,7 @@ void PowerStarList::init(const JMapInfoIter& rIter) {
     MR::setTextBoxGameMessageRecursive(this, "Title", "AllStarList_Title");
 
     ListItem pItems[MAX_ITEMS];
-    mTotalPages = (getSortedList(pItems) - 1) / ITEMS_PER_PAGE + 1;
+    mPageNum = (getSortedList(pItems) - 1) / ITEMS_PER_PAGE + 1;
 
     MR::setTextBoxGameMessageRecursive(this, "PageNumber", "AllStarList_Page");
     MR::setTextBoxGameMessageRecursive(this, "Photo", "AllStarList_Page");
@@ -259,8 +259,8 @@ void PowerStarList::drawForMessageBoardCapture() {
     MR::showPaneRecursive(this, "Photo");
 
     const char* pPaneName = "TxtPhotoPage";
-    MR::setTextBoxArgNumberRecursive(this, pPaneName, mPageNumber + 1, 0);
-    MR::setTextBoxArgNumberRecursive(this, pPaneName, mTotalPages, 1);
+    MR::setTextBoxArgNumberRecursive(this, pPaneName, mPageNo + 1, 0);
+    MR::setTextBoxArgNumberRecursive(this, pPaneName, mPageNum, 1);
 
     wchar_t pictureFont[256];
     MR::addPictureFontTagPlayerIcon(pictureFont);
@@ -320,7 +320,7 @@ void PowerStarList::resetButtonAll() {
 }
 
 void PowerStarList::updateButtonAppearance() {
-    if (mTotalPages == 1) {
+    if (mPageNum == 1) {
         mArrowDownButtonCtrl->_24 = false;
         mArrowUpButtonCtrl->_24 = false;
 
@@ -332,7 +332,7 @@ void PowerStarList::updateButtonAppearance() {
         MR::showPane(this, "ArrowUpButton");
         MR::showPane(this, "PageNumber");
 
-        if (mPageNumber < mTotalPages - 1) {
+        if (mPageNo < mPageNum - 1) {
             mArrowDownButtonCtrl->_24 = true;
             MR::setPaneAlpha(this, "ArrowDownButton", -1);
         } else {
@@ -340,7 +340,7 @@ void PowerStarList::updateButtonAppearance() {
             MR::setPaneAlpha(this, "ArrowDownButton", 80);
         }
 
-        if (mPageNumber > 0) {
+        if (mPageNo > 0) {
             mArrowUpButtonCtrl->_24 = true;
             MR::setPaneAlpha(this, "ArrowUpButton", -1);
         } else {
@@ -349,8 +349,8 @@ void PowerStarList::updateButtonAppearance() {
         }
 
         const char* pPaneName = "PageNumber";
-        MR::setTextBoxArgNumberRecursive(this, pPaneName, mPageNumber + 1, 0);
-        MR::setTextBoxArgNumberRecursive(this, pPaneName, mTotalPages, 1);
+        MR::setTextBoxArgNumberRecursive(this, pPaneName, mPageNo + 1, 0);
+        MR::setTextBoxArgNumberRecursive(this, pPaneName, mPageNum, 1);
     }
 }
 
@@ -400,7 +400,7 @@ namespace {
 
 void PowerStarList::updateList(s32 pageNumber, bool myBool) {
     if (pageNumber >= 0) {
-        mPageNumber = pageNumber;
+        mPageNo = pageNumber;
     }
 
     for (u32 idx = 0; idx < 4; idx++) {
@@ -430,7 +430,7 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
     ListItem listItems[MAX_ITEMS];
 
     s32 pages = (getSortedList(listItems) - 1) / ITEMS_PER_PAGE;
-    mTotalPages = pages + 1;
+    mPageNum = pages + 1;
 
     TextBuffer galaxyBuffer(this, ::cGalaxyNamePaneTable, 4);
     TextBuffer starBuffer(this, ::cStarNumPaneTable, 8);
@@ -438,20 +438,20 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
     TextBuffer crownBuffer(this, ::cCrownPaneTable, 8);
     TextBuffer timeBuffer(this, ::cTimePaneTable, 8);
 
-    bool isEven = mPageNumber % 2;
+    bool isEven = mPageNo % 2;
     s32 bestTimeNum = getDisplayRaceBestTimeNum();
 
     s32 prevValue = -1;
     s32 sortPriority;
     wchar_t* pNameText;
 
-    for (s32 idx = 0; idx < mPageNumber; idx++) {
+    for (s32 idx = 0; idx < mPageNo; idx++) {
         switch (listItems[idx]._0) {
         case 0:
-            makeGalaxyNameText(pNameText, listItems[idx]._4Accessor, mPageNumber % 4);
-            makeStarNumText(pNameText, listItems[idx]._4Accessor, mPageNumber % 8);
-            makeCoinText(pNameText, listItems[idx]._4Accessor, mPageNumber & 8);
-            makeCrownText(pNameText, listItems[idx]._4Accessor, mPageNumber & 8);
+            makeGalaxyNameText(pNameText, listItems[idx]._4Accessor, mPageNo % 4);
+            makeStarNumText(pNameText, listItems[idx]._4Accessor, mPageNo % 8);
+            makeCoinText(pNameText, listItems[idx]._4Accessor, mPageNo & 8);
+            makeCrownText(pNameText, listItems[idx]._4Accessor, mPageNo & 8);
 
             timeBuffer.addNewLine(isEven);
 
@@ -474,12 +474,12 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
             }
             break;
         case 1:
-            makeRaceNameText(pNameText, listItems[idx]._0, mPageNumber % 4);
-            makeRaceTimeText(pNameText, listItems[idx]._0, mPageNumber % 8);
+            makeRaceNameText(pNameText, listItems[idx]._0, mPageNo % 4);
+            makeRaceTimeText(pNameText, listItems[idx]._0, mPageNo % 8);
 
-            starBuffer.addNewLine(mPageNumber);
-            coinBuffer.addNewLine(mPageNumber);
-            crownBuffer.addNewLine(mPageNumber);
+            starBuffer.addNewLine(mPageNo);
+            coinBuffer.addNewLine(mPageNo);
+            crownBuffer.addNewLine(mPageNo);
 
             if (tryShowSeparator(3, 72.0f + 20.0f * bestTimeNum)) {
                 Separator separator = mSeparatorArray[idx];
@@ -488,20 +488,20 @@ void PowerStarList::updateList(s32 pageNumber, bool myBool) {
             }
             break;
         case 3:
-            galaxyBuffer.addNewLine(mPageNumber);
-            starBuffer.addNewLine(mPageNumber);
-            coinBuffer.addNewLine(mPageNumber);
-            crownBuffer.addNewLine(mPageNumber);
-            timeBuffer.addNewLine(mPageNumber);
+            galaxyBuffer.addNewLine(mPageNo);
+            starBuffer.addNewLine(mPageNo);
+            coinBuffer.addNewLine(mPageNo);
+            crownBuffer.addNewLine(mPageNo);
+            timeBuffer.addNewLine(mPageNo);
             break;
         }
 
-        mPageNumber++;
-        galaxyBuffer.update(mPageNumber);
-        starBuffer.update(mPageNumber);
-        coinBuffer.update(mPageNumber);
-        crownBuffer.update(mPageNumber);
-        timeBuffer.update(mPageNumber);
+        mPageNo++;
+        galaxyBuffer.update(mPageNo);
+        starBuffer.update(mPageNo);
+        coinBuffer.update(mPageNo);
+        crownBuffer.update(mPageNo);
+        timeBuffer.update(mPageNo);
     }
 
     tryShowSeparator(0, 20.0f);
@@ -622,7 +622,7 @@ wchar_t* PowerStarList::makeRaceTimeText(wchar_t* s, int raceId, bool a1) const 
 void PowerStarList::startScrollAnimNext(bool set) {
     const char* pPage = "TurnOverPage2";
 
-    if (mPageNumber % 2) {
+    if (mPageNo % 2) {
         pPage = "TurnOverPage1";
     }
 
@@ -642,7 +642,7 @@ void PowerStarList::startScrollAnimNext(bool set) {
 void PowerStarList::startScrollAnimPrev() {
     const char* pPage = "TurnOverPage2";
 
-    if (mPageNumber % 2) {
+    if (mPageNo % 2) {
         pPage = "TurnOverPage1";
     }
 
@@ -738,10 +738,10 @@ void PowerStarList::exeWait() {
         updateButtonAppearance();
     }
 
-    if ((s32)mPageNumber < mTotalPages - 1 &&
+    if ((s32)mPageNo < mPageNum - 1 &&
         (mArrowDownButtonCtrl->trySelect() || MR::testCorePadButtonDown(0) || MR::testSubPadStickTriggerDown(0))) {
         setNerve(&NrvPowerStarList::PowerStarListNrvPageNext::sInstance);
-    } else if ((s32)mPageNumber > 0 && (mArrowUpButtonCtrl->trySelect() || MR::testCorePadButtonUp(0) || MR::testSubPadStickTriggerUp(0))) {
+    } else if ((s32)mPageNo > 0 && (mArrowUpButtonCtrl->trySelect() || MR::testCorePadButtonUp(0) || MR::testSubPadStickTriggerUp(0))) {
         setNerve(&NrvPowerStarList::PowerStarListNrvPagePrev::sInstance);
     } else if (mCaptureButtonCtrl->trySelect()) {
         setNerve(&NrvPowerStarList::PowerStarListNrvCaptureStart::sInstance);
@@ -756,7 +756,7 @@ void PowerStarList::exeDisappear() {
 
         updateList(-1, true);
 
-        MR::startAnim(this, mPageNumber % 2 ? "End2" : "End", 0);
+        MR::startAnim(this, mPageNo % 2 ? "End2" : "End", 0);
     }
 
     MR::killAtAnimStopped(this, 0);
@@ -765,7 +765,7 @@ void PowerStarList::exeDisappear() {
 void PowerStarList::exePageNext() {
     if (MR::isFirstStep(this)) {
         startScrollAnimNext(false);
-        mPageNumber++;
+        mPageNo++;
         MR::startSystemSE("SE_SY_GALAMAP_SCROLL");
     }
 
@@ -777,7 +777,7 @@ void PowerStarList::exePageNext() {
 
 void PowerStarList::exePagePrev() {
     if (MR::isFirstStep(this)) {
-        updateList(mPageNumber - 1, false);
+        updateList(mPageNo - 1, false);
         startScrollAnimPrev();
         MR::startSystemSE("SE_SY_GALAMAP_SCROLL");
     }

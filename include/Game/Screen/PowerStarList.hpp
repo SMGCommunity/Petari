@@ -58,8 +58,8 @@ private:
     /* 0x24 */ ButtonPaneController* mArrowDownButtonCtrl;
     /* 0x28 */ ButtonPaneController* mCaptureButtonCtrl;
     /* 0x2C */ SysInfoWindow* mSysInfoWindow;
-    /* 0x30 */ s32 mPageNumber;
-    /* 0x34 */ s32 mTotalPages;
+    /* 0x30 */ s32 mPageNo;
+    /* 0x34 */ s32 mPageNum;
     /* 0x38 */ Separator* mSeparatorArray;
     /* 0x3C */ u32 mMailMessageLength;
     /* 0x40 */ wchar_t* mMailMessage;
