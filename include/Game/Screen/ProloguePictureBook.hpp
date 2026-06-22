@@ -20,6 +20,6 @@ public:
     bool isEnd() const;
 
 private:
-    /* 0x20 */ IconAButton* mAButtonIcon;
+    /* 0x20 */ IconAButton* mIconAButton;
     /* 0x24 */ u32 mPage;
 };

@@ -1309,11 +1309,10 @@ afterBrake:
 
 f32 XanimePlayer::tellAnimationFrame() const {
     if (isTerminate()) {
-        s16 endFrame = _20->mEnd;
-        return (f32)endFrame;
+        return _20->getEnd();
     }
 
-    return _20->mFrame;
+    return _20->getFrame();
 }
 
 namespace NrvMarioActor {

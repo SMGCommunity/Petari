@@ -29,7 +29,7 @@ void WipeKoopa::exeWipeOut() {
         MR::startAnim(this, "out", 0);
 
         if (mFrame > 0) {
-            f32 animRate = static_cast< f32 >(MR::getAnimCtrl(this, 0)->mEnd) / mFrame;
+            f32 animRate = static_cast< f32 >(MR::getAnimCtrl(this, 0)->getEnd()) / mFrame;
 
             MR::setAnimRate(this, animRate, 0);
         }
@@ -60,7 +60,7 @@ void WipeKoopa::forceClose() {
     setNerve(&WipeKoopaNrvClose::sInstance);
     MR::showLayout(this);
     MR::startAnim(this, "out", 0);
-    MR::setAnimFrameAndStop(this, MR::getAnimCtrl(this, 0)->mEnd, 0);
+    MR::setAnimFrameAndStop(this, MR::getAnimCtrl(this, 0)->getEnd(), 0);
 }
 
 void WipeKoopa::forceOpen() {
