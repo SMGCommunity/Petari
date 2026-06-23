@@ -140,7 +140,8 @@ namespace {
         s32 byteOffset = 0;
 
         ScenarioDataIter iter = MR::makeBeginScenarioDataIter();
-        while (!iter.isEnd()) {
+
+        for (;!iter.isEnd();) {
             GalaxyStatusAccessor accessor = iter.makeAccessor();
             bool open = accessor.getPowerStarNum() == 0 ? false : MR::isOnGameEventFlagGalaxyOpen(accessor.getName());
 
@@ -148,6 +149,7 @@ namespace {
                 *galaxyAccessors[availableGalaxies] = iter.makeAccessor();
                 availableGalaxies++;
             }
+
             iter.goNext();
         }
 
@@ -623,16 +625,16 @@ wchar_t* PowerStarList::makeRaceTimeText(wchar_t* s, int raceId, bool a1) const 
 }
 
 void PowerStarList::startScrollAnimNext(bool set) {
-    const char* pPage = "TurnOverPage2";
+    const char* pAnimName = "TurnOverPage2";
 
     if (mPageNo % 2) {
-        pPage = "TurnOverPage1";
+        pAnimName = "TurnOverPage1";
     }
 
-    MR::startPaneAnim(this, "List1", pPage, 0);
-    MR::startPaneAnim(this, "List2", pPage, 0);
-    MR::startPaneAnim(this, "PicBG", pPage, 0);
-    MR::startPaneAnim(this, "Belt", pPage, 0);
+    MR::startPaneAnim(this, "List1", pAnimName, 0);
+    MR::startPaneAnim(this, "List2", pAnimName, 0);
+    MR::startPaneAnim(this, "PicBG", pAnimName, 0);
+    MR::startPaneAnim(this, "Belt", pAnimName, 0);
 
     if (set) {
         MR::setPaneAnimFrameAndStop(this, "List1", 0.0f, 0);
@@ -643,16 +645,16 @@ void PowerStarList::startScrollAnimNext(bool set) {
 }
 
 void PowerStarList::startScrollAnimPrev() {
-    const char* pPage = "TurnOverPage2";
+    const char* pAnimName = "TurnOverPage2";
 
     if (mPageNo % 2) {
-        pPage = "TurnOverPage1";
+        pAnimName = "TurnOverPage1";
     }
 
-    MR::startPaneAnimReverseOneTime(this, "List1", pPage, 0);
-    MR::startPaneAnimReverseOneTime(this, "List2", pPage, 0);
-    MR::startPaneAnimReverseOneTime(this, "PicBG", pPage, 0);
-    MR::startPaneAnimReverseOneTime(this, "Belt", pPage, 0);
+    MR::startPaneAnimReverseOneTime(this, "List1", pAnimName, 0);
+    MR::startPaneAnimReverseOneTime(this, "List2", pAnimName, 0);
+    MR::startPaneAnimReverseOneTime(this, "PicBG", pAnimName, 0);
+    MR::startPaneAnimReverseOneTime(this, "Belt", pAnimName, 0);
 }
 
 bool PowerStarList::tryShowSeparator(s32 separatorIdx, f32 myFloat) {
