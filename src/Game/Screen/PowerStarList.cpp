@@ -141,7 +141,7 @@ namespace {
 
         ScenarioDataIter iter = MR::makeBeginScenarioDataIter();
 
-        for (;!iter.isEnd();) {
+        for (; !iter.isEnd();) {
             GalaxyStatusAccessor accessor = iter.makeAccessor();
             bool open = accessor.getPowerStarNum() == 0 ? false : MR::isOnGameEventFlagGalaxyOpen(accessor.getName());
 
@@ -675,12 +675,14 @@ void PowerStarList::setSeparatorPaneSize() {
     for (u32 idx = 0; idx < ARRAY_SIZE(::cSeparatorSizeTable); idx++) {
         pPaneName = ::cSeparatorSizeTable[idx];
 
-        if (!MR::isHiddenPane(this, pPaneName)) {
-            nw4r::lyt::Pane* pPane = MR::getPane(this, pPaneName);
-            nw4r::lyt::Size size = pPane->mSize;
-            size.height = mSeparatorArray[idx]._0;
-            pPane->mSize = size;
+        if (MR::isHiddenPane(this, pPaneName)) {
+            continue;
         }
+
+        nw4r::lyt::Pane* pPane = MR::getPane(this, pPaneName);
+        nw4r::lyt::Size size = pPane->mSize;
+        size.height = mSeparatorArray[idx]._0;
+        pPane->mSize = size;
     }
 }
 
