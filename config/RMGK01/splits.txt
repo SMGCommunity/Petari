@@ -9095,6 +9095,7 @@ Game/Util/ActorCameraUtil.cpp:
 
 Game/Util/ActorMovementUtil.cpp:
 	.text       start:0x803BE7F8 end:0x803C3144
+	.rodata     start:0x8053EB20 end:0x8053EB28
 	.sdata2     start:0x806C1510 end:0x806C1560
 
 Game/Util/ActorSensorUtil.cpp:
@@ -9125,19 +9126,21 @@ Game/Util/BitArray.cpp:
 Game/Util/CameraUtil.cpp:
 	.text       start:0x803C8378 end:0x803CA518
 	.ctors      start:0x8052F3A4 end:0x8052F3A8
+	.rodata     start:0x8053EB28 end:0x8053EB30
 	.sdata      start:0x806B2608 end:0x806B2610
 	.sdata2     start:0x806C1588 end:0x806C15C0
 
 Game/Util/DemoUtil.cpp:
 	.text       start:0x803CA518 end:0x803CBA6C
-	.data       start:0x805E0BC0 end:0x805E0C20
+	.rodata     start:0x8053EB30 end:0x8053EB38
+	.data       start:0x805E0BC0 end:0x805E0BE0
 	.sdata2     start:0x806C15C0 end:0x806C15C8
 
 Game/Util/DrawUtil.cpp:
 	.text       start:0x803CBA6C end:0x803CD0E0
 	.ctors      start:0x8052F3A8 end:0x8052F3AC
 	.rodata     start:0x8053EB38 end:0x8053EB78
-	.data       start:0x805E0C20 end:0x805E0C48
+	.data       start:0x805E0BE0 end:0x805E0C48
 	.bss        start:0x8060B3C0 end:0x8060B3F0
 	.sdata      start:0x806B2610 end:0x806B2620
 	.sbss       start:0x806B7000 end:0x806B7008
