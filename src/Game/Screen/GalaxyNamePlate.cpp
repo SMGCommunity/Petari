@@ -64,7 +64,7 @@ void GalaxyNamePlate::setPos3D(const TVec3f& a1) {
     TVec3f vec;
     MR::calcScreenPosition(&vec, a1);
     setTrans(vec);
-    mDrawerEntry->mZ = __cvt_fp2unsigned(-vec.z * MR::getFarZ());
+    mDrawerEntry->mZ = -vec.z * MR::getFarZ();
 }
 
 void GalaxyNamePlate::setShowBalloonNozzle(bool showBalloonNozzle) {
