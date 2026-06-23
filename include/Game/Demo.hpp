@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Demo/AstroDemoFunction.hpp"
+#include "Game/Demo/AstroDomeDemoStarter.hpp"
 #include "Game/Demo/DemoActionKeeper.hpp"
 #include "Game/Demo/DemoCameraFunction.hpp"
 #include "Game/Demo/DemoCameraKeeper.hpp"
@@ -12,6 +13,7 @@
 #include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoExecutorFunction.hpp"
 #include "Game/Demo/DemoFunction.hpp"
+#include "Game/Demo/DemoKoopaJrShip.hpp"
 #include "Game/Demo/DemoPadRumbler.hpp"
 #include "Game/Demo/DemoParamCommonDataTable.hpp"
 #include "Game/Demo/DemoPlayerKeeper.hpp"
@@ -21,4 +23,9 @@
 #include "Game/Demo/DemoSubPartKeeper.hpp"
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
 #include "Game/Demo/DemoTimeKeeper.hpp"
+#include "Game/Demo/DemoWipeKeeper.hpp"
+#include "Game/Demo/GrandStarReturnDemoStarter.hpp"
 #include "Game/Demo/PrologueDirector.hpp"
+#include "Game/Demo/ReturnDemoRailMove.hpp"
+#include "Game/Demo/ScenarioStarter.hpp"
+#include "Game/Demo/StarReturnDemoStarter.hpp"
