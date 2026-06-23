@@ -26,6 +26,10 @@
 
 extern int swprintf(wchar_t* s, size_t n, const wchar_t* format, ...);
 
+#define MAX_PAGES 5
+#define ITEMS_PER_PAGE 15
+#define MAX_ITEMS MAX_PAGES* ITEMS_PER_PAGE
+
 namespace {
     class ListItem {
     public:
@@ -90,10 +94,6 @@ namespace {
 
     const wchar_t cTemp = 0;
 
-    const s32 MAX_PAGES = 5;
-    const s32 ITEMS_PER_PAGE = 15;
-    const s32 MAX_ITEMS = MAX_PAGES * ITEMS_PER_PAGE;
-
     s32 getSortPriority(const GalaxyStatusAccessor* pAccessor) NO_INLINE {
         const char* pName = pAccessor->getName();
 
@@ -109,7 +109,6 @@ namespace {
             return 3;
         }
 
-        
         if (GameDataConst::isQuestionGalaxy(pName)) {
             return 4;
         }
