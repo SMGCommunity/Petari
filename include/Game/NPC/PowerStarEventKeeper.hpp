@@ -4,11 +4,11 @@
 #include <revolution.h>
 
 struct PowerStarInfo {
-    u8 _0;
-    u8 _1;
-    u8 _2;
-    u8 _3;
-    const char* _4;
+    bool _0;
+    bool _1;
+    bool _2;
+    bool _3;
+    const char* demoName;
 };
 
 class PowerStarEventKeeper {
@@ -24,10 +24,18 @@ public:
     void initStarInfoTableAfterPlacement();
     void requestAppearPowerStar(const char*, s32, const TVec3f*, bool, bool);
     bool isExistPowerStarAtScenario(int) const;
-    bool isCorrectStarIdWithBBS(const char*, const char*, s32) const;
+    bool isCorrectStarIdWithBBS(const char*, const char*, s32) const NO_INLINE;
     bool isSuccess(const char*, s32) const;
 
-    u32 _0;
-    s32 mPowerStarNum;         // 0x4
-    PowerStarInfo** mInfoTbl;  // 0x8
+    inline PowerStarInfo* getStarInfo(u32 idx) {
+        return &mInfoTbl[idx];
+    }
+
+    inline s32 calcStarID(u32 scenarioNo) const {
+        return (1 << (scenarioNo - 1));
+    }
+
+    /* 0x0 */ u32 mStartScenario;
+    /* 0x4 */ s32 mPowerStarNum;
+    /* 0x8 */ PowerStarInfo* mInfoTbl;
 };

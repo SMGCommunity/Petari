@@ -1837,7 +1837,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/PenguinRacerLeader.cpp"),
             Object(NonMatching, "Game/NPC/PenguinSkater.cpp"),
             Object(NonMatching, "Game/NPC/PenguinStudent.cpp"),
-            Object(NonMatching, "Game/NPC/PowerStarEventKeeper.cpp"),
+            Object(Matching, "Game/NPC/PowerStarEventKeeper.cpp"),
             Object(NonMatching, "Game/NPC/Rabbit.cpp"),
             Object(NonMatching, "Game/NPC/RabbitStateCaught.cpp"),
             Object(NonMatching, "Game/NPC/RabbitStateWaitStart.cpp"),
