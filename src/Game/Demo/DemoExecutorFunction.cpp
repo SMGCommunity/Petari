@@ -34,7 +34,7 @@ namespace DemoExecutorFunction {
         DemoTimeKeeper* pTimeKeeper = pExecutor->mTimeKeeper;
 
         for (s32 i = 0; i < pTimeKeeper->mNumPartInfos; i++) {
-            if (MR::isEqualString(pTimeKeeper->mMainPartInfos[i].mName, pPartName)) {
+            if (MR::isEqualString(pTimeKeeper->mMainPartInfos[i].mPartName, pPartName)) {
                 return true;
             }
         }
