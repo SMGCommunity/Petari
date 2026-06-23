@@ -9,6 +9,11 @@ class NerveExecutor;
 
 class DemoStartInfo {
 public:
+    enum DemoType {};
+    enum CinemaFrameType {};
+    enum StarPointerType {};
+    enum DeleteEffectType {};
+
     DemoStartInfo();
     DemoStartInfo& operator=(const DemoStartInfo&);
 
@@ -27,10 +32,6 @@ public:
     u32 _30;
     u32 _34;
 };
-
-namespace DemoStartRequestUtil {
-    bool isEmpty(const DemoStartInfo*);
-};  // namespace DemoStartRequestUtil
 
 class DemoStartRequestHolder {
 public:

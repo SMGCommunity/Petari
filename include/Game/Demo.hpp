@@ -21,6 +21,7 @@
 #include "Game/Demo/DemoSimpleCastHolder.hpp"
 #include "Game/Demo/DemoSoundKeeper.hpp"
 #include "Game/Demo/DemoStartRequestHolder.hpp"
+#include "Game/Demo/DemoStartRequestUtil.hpp"
 #include "Game/Demo/DemoSubPartKeeper.hpp"
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
 #include "Game/Demo/DemoTimeKeeper.hpp"
