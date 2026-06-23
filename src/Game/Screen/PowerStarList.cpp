@@ -128,10 +128,13 @@ namespace {
         GalaxyStatusAccessor* galaxyAccessors[MAX_ITEMS];
         void* auStack_28[10];
 
-        for (s32 i = 0; i < ARRAY_SIZE(galaxyAccessors); ++i)
-            galaxyAccessors[i] = nullptr;
-        for (s32 i = 0; i < ARRAY_SIZE(auStack_28); ++i)
-            auStack_28[i] = 0;
+        for (s32 idx = 0; idx < ARRAY_SIZE(galaxyAccessors); idx++) {
+            galaxyAccessors[idx] = nullptr;
+        }
+
+        for (s32 idx = 0; idx < ARRAY_SIZE(auStack_28); idx++) {
+            auStack_28[idx] = 0;
+        }
 
         s32 availableGalaxies = 0;
         s32 byteOffset = 0;
@@ -738,8 +741,7 @@ void PowerStarList::exeWait() {
         updateButtonAppearance();
     }
 
-    if (mPageNo < mPageNum - 1 &&
-        (mArrowDownButtonCtrl->trySelect() || MR::testCorePadButtonDown(0) || MR::testSubPadStickTriggerDown(0))) {
+    if (mPageNo < mPageNum - 1 && (mArrowDownButtonCtrl->trySelect() || MR::testCorePadButtonDown(0) || MR::testSubPadStickTriggerDown(0))) {
         setNerve(&NrvPowerStarList::PowerStarListNrvPageNext::sInstance);
     } else if (mPageNo > 0 && (mArrowUpButtonCtrl->trySelect() || MR::testCorePadButtonUp(0) || MR::testSubPadStickTriggerUp(0))) {
         setNerve(&NrvPowerStarList::PowerStarListNrvPagePrev::sInstance);
