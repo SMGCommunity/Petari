@@ -7,6 +7,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace MR {
     bool tryRegisterDemoCast(LiveActor* pActor, const JMapInfoIter& rIter) {

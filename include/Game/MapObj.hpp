@@ -59,6 +59,7 @@
 #include "Game/MapObj/ClipAreaHolder.hpp"
 #include "Game/MapObj/ClipAreaMovable.hpp"
 #include "Game/MapObj/ClipAreaShape.hpp"
+#include "Game/MapObj/ClipFieldFillDraw.hpp"
 #include "Game/MapObj/ClipFieldMapParts.hpp"
 #include "Game/MapObj/ClipFieldSwitch.hpp"
 #include "Game/MapObj/CocoNut.hpp"

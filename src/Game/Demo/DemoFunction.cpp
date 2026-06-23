@@ -12,8 +12,8 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <cstdio>
-#include <cstring>
 
 namespace DemoFunction {
     DemoDirector* getDemoDirector() {
