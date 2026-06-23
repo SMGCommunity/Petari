@@ -2162,7 +2162,7 @@ config.libs = [
             Object(Matching, "Game/Screen/GalaxyMapSelectButton.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapTicoIcon.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapTitle.cpp"),
-            Object(NonMatching, "Game/Screen/GalaxyNamePlate.cpp"),
+            Object(Matching, "Game/Screen/GalaxyNamePlate.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyNamePlateDrawer.cpp"),
             Object(Matching, "Game/Screen/GalaxySelectBackButton.cpp"),
             Object(Matching, "Game/Screen/GalaxySelectInfo.cpp"),
