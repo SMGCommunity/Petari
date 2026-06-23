@@ -76,10 +76,10 @@ void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
     // https://decomp.me/scratch/vkqZ8
 
     // these are probably individual inlines considering the multiple-load of _B8
-    f32 accelDegreMargine = _B8 == 0 ? sCoreAccelDegreMargine : sSubAccelDegreMargine;
-    f32 accelDegreeRange = _B8 == 0 ? sCoreAccelDegreeRange : sSubAccelDegreeRange;
-    f32 accelDegreeRangeY = _B8 == 0 ? sCoreAccelDegreeRangeY : sSubAccelDegreeRangeY;
-    f32 baseDegreeYZ = _B8 == 0 ? sCoreBaseDegreeYZ : sSubBaseDegreeYZ;
+    f32 accelDegreMargine = _B8 == 0 ? ::sCoreAccelDegreMargine : ::sSubAccelDegreMargine;
+    f32 accelDegreeRange = _B8 == 0 ? ::sCoreAccelDegreeRange : ::sSubAccelDegreeRange;
+    f32 accelDegreeRangeY = _B8 == 0 ? ::sCoreAccelDegreeRangeY : ::sSubAccelDegreeRangeY;
+    f32 baseDegreeYZ = _B8 == 0 ? ::sCoreBaseDegreeYZ : ::sSubBaseDegreeYZ;
 
     TVec3f padAccel;
     getPadAcceleration(&padAccel);

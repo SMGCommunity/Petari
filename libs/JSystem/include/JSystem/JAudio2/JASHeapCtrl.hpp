@@ -65,6 +65,18 @@ public:
 
     void free(void*, u32);
 
+    u32 getFreeMemCount() const {
+        return mFreeMemCount;
+    }
+
+    u32 getTotalMemCount() const {
+        return mTotalMemCount;
+    }
+
+    u32 getUsedMemCount() const {
+        return mUsedMemCount;
+    }
+
     /* 0x0 */ void* _0;
     /* 0x4 */ u32 mFreeMemCount;
     /* 0x8 */ u32 mTotalMemCount;
@@ -119,14 +131,29 @@ namespace JASThreadingModel {
 template < typename T >
 class JASMemPool : public JASGenericMemPool {
 public:
-    JASMemPool() : JASGenericMemPool() {
-    }
-
-    ~JASMemPool();
-
     void newMemPool(int n) {
         typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
         JASGenericMemPool::newMemPool(sizeof(T), n);
+    }
+
+    void* alloc(u32 n) {
+        typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
+        return JASGenericMemPool::alloc(n);
+    }
+
+    void free(void* ptr, u32 n) {
+        typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
+        JASGenericMemPool::free(ptr, n);
+    }
+
+    u32 getFreeMemCount() const {
+        typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
+        return JASGenericMemPool::getFreeMemCount();
+    }
+
+    u32 getTotalMemCount() const {
+        typename JASThreadingModel::SingleThreaded< JASMemPool< T > >::Lock lock(*this);
+        return JASGenericMemPool::getTotalMemCount();
     }
 };
 
@@ -263,14 +290,25 @@ namespace JASKernel {
 };  // namespace JASKernel
 
 template < typename T >
-class JASPoolAllocObject : public JASMemPool< T > {
+class JASPoolAllocObject {
 public:
+    static void* operator new(u32 size) {
+        return memPool_.alloc(size);
+    }
+
+    static void operator delete(void* addr, u32 size) {
+        memPool_.free(addr, size);
+    }
+
     static void newMemPool(int n) {
         memPool_.newMemPool(n);
     }
 
     static JASMemPool< T > memPool_;
 };
+
+template < typename T >
+JASMemPool< T > JASPoolAllocObject< T >::memPool_;
 
 template < typename T >
 class JASMemPool_MultiThreaded : public JASGenericMemPool {

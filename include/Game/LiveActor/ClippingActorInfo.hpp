@@ -1,10 +1,12 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <revolution/types.h>
 
-class ViewGroupCtrlDataEntry;
+class JMapIdInfo;
+class JMapInfoIter;
 class LiveActor;
+class ViewGroupCtrlDataEntry;
 
 class ClippingActorInfo {
 public:

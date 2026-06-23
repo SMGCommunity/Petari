@@ -2,6 +2,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/HashUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 HitSensorInfo::HitSensorInfo(const char* pName, HitSensor* pSensor, const TVec3f* a3, MtxPtr mtx, const register TVec3f& a5, bool a6) {
     mName = pName;

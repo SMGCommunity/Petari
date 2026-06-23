@@ -1,8 +1,19 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Demo/DemoDirector.hpp"
+#include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/Scene/GameSceneFunction.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+
+namespace {
+    TalkDirector* getTalkDirector() {
+        return MR::getSceneObj< TalkDirector >(SceneObj_TalkDirector);
+    }
+};  // namespace
 
 namespace MR {
     bool tryRegisterDemoCast(LiveActor* pActor, const JMapInfoIter& rIter) {
@@ -20,19 +31,21 @@ namespace MR {
     bool tryRegisterDemoActionFunctor(const LiveActor* pActor, const MR::FunctorBase& rFunctor, const char* pName) {
         if (!DemoFunction::isRegisteredDemoActionFunctor(pActor)) {
             return false;
-        } else {
-            DemoFunction::registerDemoActionFunctorFunction(pActor, rFunctor, pName);
-            return true;
         }
+
+        registerDemoActionFunctor(pActor, rFunctor, pName);
+
+        return true;
     }
 
     bool tryRegisterDemoActionNerve(const LiveActor* pActor, const Nerve* pNerve, const char* pName) {
-        if (!DemoFunction::isRegisteredDemoActionNerve(pActor)) {
+        if (!isRegisteredDemoActionNerve(pActor)) {
             return false;
-        } else {
-            DemoFunction::registerDemoActionNerveFunction(pActor, pNerve, pName);
-            return true;
         }
+
+        registerDemoActionNerve(pActor, pNerve, pName);
+
+        return true;
     }
 
     bool tryRegisterDemoCast(LiveActor* pActor, const char* pName, const JMapInfoIter& rIter) {
@@ -55,10 +68,11 @@ namespace MR {
     bool tryRegisterDemoActionFunctorDirect(const LiveActor* pActor, const MR::FunctorBase& rFunctor, const char* pName1, const char* pName2) {
         if (!DemoFunction::isRegisteredDemoActionFunctor(pActor, pName1)) {
             return false;
-        } else {
-            DemoFunction::registerDemoActionFunctorFunction(pActor, rFunctor, pName1, pName2);
-            return true;
         }
+
+        DemoFunction::registerDemoActionFunctorFunction(pActor, rFunctor, pName1, pName2);
+
+        return true;
     }
 
     bool tryStartDemoRegistered(LiveActor* pActor, const char* pName) {
@@ -82,15 +96,17 @@ namespace MR {
     }
 
     bool isDemoCast(const LiveActor* pActor, const char* pName) {
-        DemoExecutor* pExecutor = DemoFunction::findDemoExecutor(pActor);
-        if (!pExecutor) {
+        DemoExecutor* demoExecutor = DemoFunction::findDemoExecutor(pActor);
+
+        if (demoExecutor == nullptr) {
             return false;
         }
-        if (pName) {
+
+        if (pName != nullptr) {
             return DemoFunction::isRegisteredDemoCast(pActor, pName);
-        } else {
-            return DemoFunction::isDemoCast(pExecutor, pActor);
         }
+
+        return DemoFunction::isDemoCast(demoExecutor, pActor);
     }
 
     bool isRegisteredDemoActionAppear(const LiveActor* pActor) {
@@ -130,56 +146,64 @@ namespace MR {
 
     bool isDemoActive(const char* pName) {
         DemoExecutor* pExecutor = DemoFunction::getDemoDirector()->mExecutor;
-        if (pExecutor) {
+
+        if (pExecutor != nullptr) {
             if (isName(pExecutor, pName)) {
                 return true;
             }
         }
-        char* pDemoName = DemoFunction::getDemoDirector()->getCurrentDemoName();
-        if (!pDemoName) {
+
+        const char* pDemoName = DemoFunction::getDemoDirector()->getCurrentDemoName();
+
+        if (pDemoName == nullptr) {
             return false;
-        } else {
-            return isEqualString(pDemoName, pName);
         }
+
+        return isEqualString(pDemoName, pName);
     }
 
     bool canStartDemo() {
-        if (DemoFunction::getDemoDirector()->mIsActive) {
+        if (isDemoActive()) {
             return false;
         }
+
         if (isPlayerDead()) {
             return false;
         }
+
         if (GameSceneFunction::isExecStageClearDemo()) {
             return false;
-        } else {
-            return !isPlayerConfrontDeath();
         }
+
+        return !isPlayerConfrontDeath();
     }
 
     bool isTimeKeepDemoActive() {
         if (DemoFunction::getDemoDirector()->mIsActive == false) {
             return false;
         }
+
         return DemoFunction::getDemoDirector()->mExecutor != nullptr;
     }
 
     bool isDemoActiveRegistered(const LiveActor* pActor) {
-        DemoExecutor* pExecutor = DemoFunction::findDemoExecutor(pActor);
-        if (pExecutor == false) {
+        DemoExecutor* demoExecutor = DemoFunction::findDemoExecutor(pActor);
+
+        if (demoExecutor == nullptr) {
             return false;
-        } else {
-            return DemoFunction::getDemoDirector()->mExecutor == pExecutor;
         }
+
+        return DemoFunction::getDemoDirector()->mExecutor == demoExecutor;
     }
 
     bool isDemoPartExist(const LiveActor* pActor, const char* pName) {
-        DemoExecutor* pExecutor = DemoFunction::findDemoExecutor(pActor);
-        if (pExecutor) {
-            return DemoFunction::isExistDemoPart(pExecutor, pName);
-        } else {
-            return false;
+        DemoExecutor* demoExecutor = DemoFunction::findDemoExecutor(pActor);
+
+        if (demoExecutor != nullptr) {
+            return DemoFunction::isExistDemoPart(demoExecutor, pName);
         }
+
+        return false;
     }
 
     bool isDemoLastStep() {
@@ -190,51 +214,52 @@ namespace MR {
         return DemoFunction::isDemoPartActiveFunction(pName);
     }
 
-    bool isDemoPartStep(const char* pName, s32 a2) {
-        if (DemoFunction::isDemoPartActiveFunction(pName) == false) {
+    bool isDemoPartStep(const char* pName, s32 step) {
+        if (isDemoPartActive(pName) == false) {
             return false;
-        } else {
-            return DemoFunction::getDemoPartStepFunction(pName) == a2;
         }
+
+        return getDemoPartStep(pName) == step;
     }
 
     bool isDemoPartFirstStep(const char* pName) {
-        if (DemoFunction::isDemoPartActiveFunction(pName) == false) {
+        if (isDemoPartActive(pName) == false) {
             return false;
-        } else {
-            return DemoFunction::getDemoPartStepFunction(pName) == 0;
         }
+
+        return getDemoPartStep(pName) == 0;
     }
 
-    // Minor mismatch: regswap
-    /* bool isDemoPartLastStep(const char *pName) {
-        if (DemoFunction::isDemoPartActiveFunction(pName) == false) {
+    bool isDemoPartLastStep(const char *pName) {
+        if (isDemoPartActive(pName) == false) {
             return false;
         }
-        else {
-            s32 totalSteps = DemoFunction::getDemoPartTotalStepFunction(pName);
-            return totalSteps - 1 == DemoFunction::getDemoPartStepFunction(pName);
-        }
-    } */
 
-    bool isDemoPartLessEqualStep(const char* pName, s32 a2) {
-        if (DemoFunction::isDemoPartActiveFunction(pName) == false) {
-            return false;
-        } else {
-            return DemoFunction::getDemoPartStepFunction(pName) <= a2;
-        }
+        return getDemoPartStep(pName) == getDemoPartTotalStep(pName) - 1;
     }
 
-    bool isDemoPartGreaterStep(const char* pName, s32 a2) {
-        if (DemoFunction::isDemoPartActiveFunction(pName) == false) {
+    bool isDemoPartLessEqualStep(const char* pName, s32 step) {
+        if (isDemoPartActive(pName) == false) {
             return false;
-        } else {
-            return DemoFunction::getDemoPartStepFunction(pName) > a2;
         }
+
+        return getDemoPartStep(pName) <= step;
+    }
+
+    bool isDemoPartGreaterStep(const char* pName, s32 step) {
+        if (isDemoPartActive(pName) == false) {
+            return false;
+        }
+
+        return getDemoPartStep(pName) > step;
     }
 
     s32 getDemoPartTotalStep(const char* pName) {
         return DemoFunction::getDemoPartTotalStepFunction(pName);
+    }
+
+    f32 calcDemoPartStepRate(const char* pName) {
+        return static_cast< f32 >(getDemoPartStep(pName)) / getDemoPartTotalStep(pName);
     }
 
     s32 getDemoPartStep(const char* pName) {
@@ -258,32 +283,31 @@ namespace MR {
     }
 
     void endTalkingSequence(NameObj* pObj) {
-        const char* pName = "会話";
-        DemoFunction::getDemoDirector()->endDemo(pObj, pName, false);
+        endDemo(pObj, "会話");
     }
 
     bool isSystemTalking() {
-        if (isExistSceneObj(0x19) == false) {
+        if (isExistSceneObj(SceneObj_TalkDirector) == false) {
             return false;
-        } else {
-            return getSceneObj< TalkDirector >(SceneObj_TalkDirector)->isSystemTalking();
         }
+
+        return getTalkDirector()->isSystemTalking();
     }
 
     bool isNormalTalking() {
-        if (isExistSceneObj(0x19) == false) {
+        if (isExistSceneObj(SceneObj_TalkDirector) == false) {
             return false;
-        } else {
-            return getSceneObj< TalkDirector >(SceneObj_TalkDirector)->isNormalTalking();
         }
+
+        return getTalkDirector()->isNormalTalking();
     }
 
     LiveActor* getTalkingActor() {
-        if (isExistSceneObj(0x19) == false) {
+        if (isExistSceneObj(SceneObj_TalkDirector) == false) {
             return false;
-        } else {
-            return getSceneObj< TalkDirector >(SceneObj_TalkDirector)->getTalkingActor();
         }
+
+        return getTalkDirector()->getTalkingActor();
     }
 
     bool isDemoPartTalk(const char* pName) {

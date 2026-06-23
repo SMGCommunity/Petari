@@ -5,6 +5,20 @@
 #include "Game/Boss/DinoPackunTail.hpp"
 #include "Game/Boss/DinoPackunTrackFire.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+
+void DinoPackunBattleEggVs2_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
 
 namespace {
     static TVec3f sEggOutPosition = TVec3f(0.0f, 60.0f, -320.0f);
@@ -92,7 +106,7 @@ void DinoPackunBattleEggVs2::exeTurn() {
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_LAVER");
     }
 
-    getHost()->adjustTailRootPosition(sEggOutPosition, 1.0f);
+    getHost()->adjustTailRootPosition(::sEggOutPosition, 1.0f);
 
     if (updateTurn(30, 1.5f)) {
         setNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvWalk::sInstance);
@@ -105,7 +119,7 @@ void DinoPackunBattleEggVs2::exeWalk() {
         getHost()->mTail->_C = 1.5f;
     }
 
-    getHost()->adjustTailRootPosition(sEggOutPosition, 1.0f);
+    getHost()->adjustTailRootPosition(::sEggOutPosition, 1.0f);
 
     s32 step = getNerveStep();
     f32 v3;
@@ -129,7 +143,7 @@ void DinoPackunBattleEggVs2::exeWalk() {
         }
     }
 
-    if (updateWalk(750, 0.89f, 40)) {
+    if (updateWalk(750, 0.9f, 40)) {
         setNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggVs2NrvTurn::sInstance);
     }
 }

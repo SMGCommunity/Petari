@@ -10,12 +10,15 @@
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/StageResultSequenceChecker.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <cstdio>
 
@@ -785,7 +788,7 @@ void StorySequenceExecutor::exeStaffRollSequence() {
     if (MR::isFirstStep(this)) {
         MR::deactivateDefaultGameLayout();
         MR::offPlayerControl();
-        MR::openWipeFade(-1);
+        MR::openWipeFade();
 
         const StorySequenceExecutorType::DemoSequenceInfo* pDemoInfo = getCurrentDemoInfo();
 
@@ -800,7 +803,7 @@ void StorySequenceExecutor::exeStaffRollSequence() {
         return;
     }
 
-    MR::closeWipeFade(-1);
+    MR::closeWipeFade();
 
     _48[0]++;
 
@@ -1131,7 +1134,7 @@ bool StorySequenceExecutor::tryWaitSaveEnd() {
 
 bool StorySequenceExecutor::tryStartFadein() {
     if (MR::isFirstStep(this)) {
-        MR::openWipeFade(-1);
+        MR::openWipeFade();
     } else if (!MR::isWipeActive()) {
         return true;
     }

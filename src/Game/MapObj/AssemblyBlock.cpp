@@ -1,6 +1,20 @@
 #include "Game/MapObj/AssemblyBlock.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapPartsUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace {
     static const char* sReturnPosName = "合体ブロック故郷点";
@@ -39,7 +53,7 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::tryRegisterNamePosLinkObj(this, rIter);
 
-    if (!MR::tryFindLinkNamePos(this, sReturnPosName, _EC.toMtxPtr())) {
+    if (!MR::tryFindLinkNamePos(this, ::sReturnPosName, _EC.toMtxPtr())) {
         stack_18.x = 0.0f;
         stack_18.y = 1000.0f;
         stack_18.z = 1000.0f;

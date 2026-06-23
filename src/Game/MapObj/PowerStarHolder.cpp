@@ -1,5 +1,8 @@
 #include "Game/MapObj/PowerStarHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/EventDirector.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/MemoryUtil.hpp"
 
 PowerStarHolder::PowerStarHolder(const char* pName) : NameObj(pName) {
     mNumInfos = 0;

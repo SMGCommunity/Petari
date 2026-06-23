@@ -1,7 +1,6 @@
 #include "Game/MapObj/BigBubbleDrawer.hpp"
-#include "Game/Util/CameraUtil.hpp"
-#include "Game/Util/Color.hpp"
-#include "Game/Util/ObjUtil.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 
@@ -44,9 +43,9 @@ void BigBubbleDrawer::setUpTexture() const {
     const MtxPtr cameraMtx = MR::getCameraViewMtx();
     mtx.setInline(cameraMtx);
 
-    mtx.mMtx[0][3] = sEnvMatTrans.x;
-    mtx.mMtx[1][3] = sEnvMatTrans.y;
-    mtx.mMtx[2][3] = sEnvMatTrans.z;
+    mtx.mMtx[0][3] = ::sEnvMatTrans.x;
+    mtx.mMtx[1][3] = ::sEnvMatTrans.y;
+    mtx.mMtx[2][3] = ::sEnvMatTrans.z;
     GXLoadTexMtxImm(mtx.toMtxPtr(), 0x21, GX_MTX3x4);
     mRainbowTexture->load(GX_TEXMAP0);
     mBubbleTexture->load(GX_TEXMAP1);
@@ -54,7 +53,7 @@ void BigBubbleDrawer::setUpTexture() const {
 
 void BigBubbleDrawer::setUpTevStage() const {
     GXSetNumTevStages(3);
-    GXSetTevColor(GX_TEVREG0, (GXColor&)sTevColor0);
+    GXSetTevColor(GX_TEVREG0, (GXColor&)::sTevColor0);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
     GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_TEXC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
     GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 0, GX_TEVPREV);

@@ -6,7 +6,7 @@
 #include "Game/Util/StringUtil.hpp"
 
 namespace {
-    const char* cGrandStarReturnDemoTable[] = {
+    const char* const cGrandStarReturnDemoTable[] = {
         "グランドスター１帰還", "グランドスター２帰還", "グランドスター３帰還",
         "グランドスター４帰還", "グランドスター５帰還", "グランドスター６帰還",
     };
@@ -18,12 +18,12 @@ namespace AstroDemoFunction {
     }
 
     const char* getGrandStarReturnDemoName(int index) {
-        return cGrandStarReturnDemoTable[index];
+        return ::cGrandStarReturnDemoTable[index];
     }
 
     int getActiveGrandStarReturnDemoIndex() {
         for (u32 i = 0; i < ARRAY_SIZE(::cGrandStarReturnDemoTable); i++) {
-            if (MR::isDemoActive(cGrandStarReturnDemoTable[i])) {
+            if (MR::isDemoActive(::cGrandStarReturnDemoTable[i])) {
                 return i;
             }
         }
@@ -59,7 +59,7 @@ namespace AstroDemoFunction {
 
     void tryRegisterGrandStarReturn(LiveActor* pParam1, const JMapInfoIter& rIter) {
         for (u32 i = 0; i < ARRAY_SIZE(::cGrandStarReturnDemoTable); i++) {
-            AstroDemoFunction::tryRegisterDemo(pParam1, cGrandStarReturnDemoTable[i], rIter);
+            AstroDemoFunction::tryRegisterDemo(pParam1, ::cGrandStarReturnDemoTable[i], rIter);
         }
     }
 
@@ -67,7 +67,7 @@ namespace AstroDemoFunction {
         const char* pDemoName;
 
         for (u32 i = 0; i < ARRAY_SIZE(::cGrandStarReturnDemoTable); i++) {
-            pDemoName = cGrandStarReturnDemoTable[i];
+            pDemoName = ::cGrandStarReturnDemoTable[i];
 
             if (MR::isDemoExist(pDemoName) && MR::tryRegisterDemoCast(pParam1, pDemoName, rIter)) {
                 MR::tryRegisterDemoActionFunctorDirect(pParam1, rFunctor, pDemoName, nullptr);
@@ -102,13 +102,13 @@ namespace AstroDemoFunction {
 
             switch (demoCastID) {
             case 0:
-                pDemoName = cGrandStarReturnDemoTable[0];
+                pDemoName = ::cGrandStarReturnDemoTable[0];
                 break;
             case 1:
-                pDemoName = cGrandStarReturnDemoTable[2];
+                pDemoName = ::cGrandStarReturnDemoTable[2];
                 break;
             case 2:
-                pDemoName = cGrandStarReturnDemoTable[4];
+                pDemoName = ::cGrandStarReturnDemoTable[4];
                 break;
             }
 

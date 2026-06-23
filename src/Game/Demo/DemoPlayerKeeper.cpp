@@ -2,6 +2,7 @@
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
 DemoPlayerKeeper::DemoPlayerKeeper(const DemoExecutor* pExecutor) : mExecutor(pExecutor), mNumPlayerInfos(0), mPlayerInfos(nullptr) {

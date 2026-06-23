@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Inline.hpp"
+
 class NameObj;
 
 enum SceneObj {

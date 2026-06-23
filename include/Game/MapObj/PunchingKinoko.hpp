@@ -8,8 +8,8 @@
 class PunchingKinoko : public LiveActor {
 public:
     PunchingKinoko(const char*);
-    ~PunchingKinoko();
 
+    virtual ~PunchingKinoko();
     virtual void init(const JMapInfoIter&);
     virtual void makeActorAppeared();
     virtual void kill();

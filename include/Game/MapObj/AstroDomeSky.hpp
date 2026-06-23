@@ -1,16 +1,14 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/MaterialCtrl.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "revolution/gx/GXStruct.h"
-#include "revolution/types.h"
+
+class ProjmapEffectMtxSetter;
 
 class AstroDomeSky : public LiveActor {
 public:
     AstroDomeSky(const char*);
-    ~AstroDomeSky();
+
+    virtual ~AstroDomeSky();
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void calcAndSetBaseMtx();

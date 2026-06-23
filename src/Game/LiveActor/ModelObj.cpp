@@ -1,9 +1,13 @@
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/ActorJointCtrl.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
-ModelObj::ModelObj(const char* pName, const char* pModelName, MtxPtr mtxPtr, int drawBufferType, int movementType, int calcAnimType, bool a7)
-    : LiveActor(pName), mMtx(mtxPtr) {
+ModelObj::ModelObj(const char* pName, const char* pModelName, MtxPtr pMtx, int drawBufferType, int movementType, int calcAnimType, bool a7)
+    : LiveActor(pName), mMtx(pMtx) {
     if (drawBufferType < -1) {
         drawBufferType = MR::DrawBufferType_MapObj;
     }
@@ -21,7 +25,7 @@ ModelObj::ModelObj(const char* pName, const char* pModelName, MtxPtr mtxPtr, int
     initSound(8, false);
     initEffectKeeper(8, nullptr, false);
 
-    if (mMtx) {
+    if (mMtx != nullptr) {
         mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     }
 }
@@ -31,7 +35,7 @@ void ModelObj::init(const JMapInfoIter&) {
 }
 
 void ModelObj::calcAndSetBaseMtx() {
-    if (mMtx) {
+    if (mMtx != nullptr) {
         mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
     } else {
@@ -42,6 +46,7 @@ void ModelObj::calcAndSetBaseMtx() {
 void ModelObjNpc::init(const JMapInfoIter& rIter) {
     mLodCtrl = MR::createLodCtrlNPC(this, rIter);
     mJointCtrl = new ActorJointCtrl(this);
+
     makeActorAppeared();
 }
 
@@ -51,7 +56,7 @@ void ModelObjNpc::control() {
 }
 
 void ModelObjNpc::calcAndSetBaseMtx() {
-    if (mMtx) {
+    if (mMtx != nullptr) {
         mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
     } else {
@@ -64,7 +69,7 @@ void ModelObjNpc::calcAndSetBaseMtx() {
 ModelObjNpc::~ModelObjNpc() {
 }
 
-ModelObjNpc::ModelObjNpc(const char* pName, const char* a2, MtxPtr mtx) : LiveActor(pName), mMtx(mtx), mLodCtrl(nullptr), mJointCtrl(nullptr) {
+ModelObjNpc::ModelObjNpc(const char* pName, const char* a2, MtxPtr pMtx) : LiveActor(pName), mMtx(pMtx), mLodCtrl(), mJointCtrl() {
     if (mMtx != nullptr) {
         mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     }

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Game/Map/SwitchWatcher.hpp"
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Array.hpp"
 
 class StageSwitchCtrl;
 class SwitchEventListener;
+class SwitchWatcher;
 
 class SwitchWatcherHolder : public NameObj {
 public:

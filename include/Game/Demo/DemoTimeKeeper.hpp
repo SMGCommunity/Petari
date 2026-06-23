@@ -2,26 +2,38 @@
 
 #include <revolution/types.h>
 
+class DemoExecutor;
+
 class DemoTimePartInfo {
 public:
-    const char* mName;  // _0
-    s32 mTotalSteps;    // _4
-    u8 _8;
+    /// @brief Creates a new `DemoTimePartInfo`.
+    DemoTimePartInfo();
+
+    /* 0x00 */ const char* mPartName;
+    /* 0x04 */ s32 mTotalStep;
+    /* 0x08 */ bool mSuspendFlag;
 };
 
 class DemoTimeKeeper {
 public:
+    DemoTimeKeeper(const DemoExecutor*);
+
+    void start();
+    void update();
+    void end();
+    bool isDemoEnd() const;
+    void setStartPart(const char*);
     bool isExistSuspendFlagCurrentPart() const;
     bool isPartLast() const;
     void setCurrentPart(const char*);
     bool isCurrentDemoPartLastStep() const;
 
-    u32 _0;
-    DemoTimePartInfo* mMainPartInfos;  // _4
-    DemoTimePartInfo* mSubPartInfos;   // _8
-    s32 mNumPartInfos;
-    u32 _10;
-    s32 mCurrentStep;  // _14
-    s32 _18;
-    bool mIsPaused;  // _1C
+    /* 0x00 */ const DemoExecutor* mExecutor;
+    /* 0x04 */ DemoTimePartInfo* mMainPartInfos;
+    /* 0x08 */ DemoTimePartInfo* mSubPartInfos;
+    /* 0x0C */ s32 mNumPartInfos;
+    /* 0x10 */ s32 _10;
+    /* 0x14 */ s32 mCurrentStep;
+    /* 0x18 */ s32 _18;
+    /* 0x1C */ bool mIsPaused;
 };

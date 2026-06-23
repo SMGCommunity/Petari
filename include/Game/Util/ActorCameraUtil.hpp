@@ -58,7 +58,7 @@ namespace MR {
     bool isAnimCameraEnd(const LiveActor*, const ActorCameraInfo*, const char*);
 
     s32 getActorCameraFrames(const LiveActor*, const ActorCameraInfo*);
-    u32 getMultiActorCameraFrames(const LiveActor*, const ActorCameraInfo*, const char*);
+    s32 getMultiActorCameraFrames(const LiveActor*, const ActorCameraInfo*, const char*);
 
     bool isExistActorCamera(const ActorCameraInfo*);
 

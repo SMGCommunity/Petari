@@ -1,5 +1,6 @@
 #include "Game/Util/ActorShadowLocalUtil.hpp"
-#include "Game/Util.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ShadowController.hpp"
 
 namespace ActorShadow {
     u32 getShadowControllerCount(const LiveActor* pActor) {

@@ -2,6 +2,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/GCaptureRibbon.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvGCapture {
     NEW_NERVE(GCaptureNrvWait, GCapture, Wait);

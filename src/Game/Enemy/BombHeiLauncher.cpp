@@ -1,5 +1,20 @@
 #include "Game/Enemy/BombHeiLauncher.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjConnector.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+
+void BombHeiLauncher_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
 
 namespace {
     static const f32 hThrowVel = 35.0f;
@@ -91,7 +106,7 @@ void BombHeiLauncher::startCountdown() {
         return;
     }
 
-    mCountdown = hCountTimer;
+    mCountdown = ::hCountTimer;
 }
 
 void BombHeiLauncher::onSwitchA() {
@@ -133,8 +148,8 @@ void BombHeiLauncher::exeLauncherWait() {
         TVec3f up, front;
         MR::calcUpVec(&up, this);
         MR::calcFrontVec(&front, this);
-        getBombVelocity()->set(up * hThrowVel);
-        getBombVelocity()->add(front * hThrowFrontVel);
+        getBombVelocity()->set(up * ::hThrowVel);
+        getBombVelocity()->add(front * ::hThrowFrontVel);
         setNerve(&NrvBombHeiLauncher::HostTypeNrvStop::sInstance);
         return;
     }

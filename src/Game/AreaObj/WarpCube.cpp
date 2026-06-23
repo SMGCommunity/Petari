@@ -79,13 +79,7 @@ void WarpCube::draw() const {
 
     u32 uVar2 = 0x1FFF080;
 
-    bool enabled = false;
-
-    if (mValid && _15 && mAwake) {
-        enabled = true;
-    }
-
-    if (!enabled) {
+    if (!isValid()) {
         uVar2 = 0x1FCF0010;
     }
 

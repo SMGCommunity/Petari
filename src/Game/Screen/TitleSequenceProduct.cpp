@@ -104,7 +104,7 @@ void TitleSequenceProduct::exeLogoWait() {
         MR::emitEffect(mLogoLayout, "TitleLogoLightG");
     }
 
-    if (MR::isStep(this, sPressABAppearFrame)) {
+    if (MR::isStep(this, ::sPressABAppearFrame)) {
         setNerve(&TitleSequenceProductLogoDisplay::sInstance);
     }
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
+#include <revolution/types.h>
 
 class BossKameckBattlePattarn {
 public:

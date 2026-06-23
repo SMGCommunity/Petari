@@ -1,6 +1,8 @@
 #include "Game/MapObj/PhantomShipBridge.hpp"
 #include "Game/Animation/BckCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
 namespace NrvPhantomShipBridge {
@@ -62,7 +64,7 @@ void PhantomShipBridge::startMoveB() {
 
 void PhantomShipBridge::setStateMoveA() {
     MR::startBck(this, "MoveA", nullptr);
-    MR::setBckFrameAndStop(this, MR::getBckCtrl(this)->mEnd);
+    MR::setBckFrameAndStop(this, MR::getBckCtrl(this)->getEnd());
     MR::calcAnimDirect(this);
     _8C->forceResetAllMtxAndSetUpdateMtxOneTime();
     setNerve(&NrvPhantomShipBridge::HostTypeWait::sInstance);

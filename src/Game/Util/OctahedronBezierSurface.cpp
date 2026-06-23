@@ -36,7 +36,7 @@ OctahedronBezierSurface::OctahedronBezierSurface(u32 a1) : mDiagonalRate(0.6f) {
     mVertices[5].set(0.0f, 200.0f, 0.0f);
 
     for (s32 idx = 0; idx < 8; idx++) {
-        mSurfaces[idx] = new BezierSurface(sCoefTableDivideNum, a1);
+        mSurfaces[idx] = new BezierSurface(::sCoefTableDivideNum, a1);
     }
 
     mSurfaces[0]->setST(TVec2f(0.25f, 0.5f), TVec2f(0.0f, 0.0f), TVec2f(0.0f, 1.0f));
@@ -106,92 +106,92 @@ void OctahedronBezierSurface::calcControlPoint() {
     mSurfaces[7]->mCtrlPts[12].set(mVertices[2]);
 
     TVec3f handle1, handle2;
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[1], mVertices[0], mVertices[3], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[1], mVertices[0], mVertices[3], mDiagonalRate);
     mSurfaces[0]->mCtrlPts[1].set(handle1);
     mSurfaces[3]->mCtrlPts[4].set(handle1);
     mSurfaces[2]->mCtrlPts[1].set(handle2);
     mSurfaces[1]->mCtrlPts[4].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[2], mVertices[0], mVertices[4], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[2], mVertices[0], mVertices[4], mDiagonalRate);
     mSurfaces[1]->mCtrlPts[1].set(handle1);
     mSurfaces[0]->mCtrlPts[4].set(handle1);
     mSurfaces[3]->mCtrlPts[1].set(handle2);
     mSurfaces[2]->mCtrlPts[4].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[2], mVertices[5], mVertices[4], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[2], mVertices[5], mVertices[4], mDiagonalRate);
     mSurfaces[4]->mCtrlPts[1].set(handle1);
     mSurfaces[7]->mCtrlPts[4].set(handle1);
     mSurfaces[6]->mCtrlPts[1].set(handle2);
     mSurfaces[5]->mCtrlPts[4].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[1], mVertices[5], mVertices[3], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[1], mVertices[5], mVertices[3], mDiagonalRate);
     mSurfaces[5]->mCtrlPts[1].set(handle1);
     mSurfaces[4]->mCtrlPts[4].set(handle1);
     mSurfaces[7]->mCtrlPts[1].set(handle2);
     mSurfaces[6]->mCtrlPts[4].set(handle2);
 
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[0], mVertices[1], mVertices[5], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[0], mVertices[1], mVertices[5], mDiagonalRate);
     mSurfaces[0]->mCtrlPts[5].set(handle1);
     mSurfaces[3]->mCtrlPts[8].set(handle1);
     mSurfaces[4]->mCtrlPts[8].set(handle2);
     mSurfaces[5]->mCtrlPts[5].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[0], mVertices[2], mVertices[5], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[0], mVertices[2], mVertices[5], mDiagonalRate);
     mSurfaces[1]->mCtrlPts[5].set(handle1);
     mSurfaces[0]->mCtrlPts[8].set(handle1);
     mSurfaces[7]->mCtrlPts[8].set(handle2);
     mSurfaces[4]->mCtrlPts[5].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[0], mVertices[3], mVertices[5], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[0], mVertices[3], mVertices[5], mDiagonalRate);
     mSurfaces[2]->mCtrlPts[5].set(handle1);
     mSurfaces[1]->mCtrlPts[8].set(handle1);
     mSurfaces[6]->mCtrlPts[8].set(handle2);
     mSurfaces[7]->mCtrlPts[5].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[0], mVertices[4], mVertices[5], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[0], mVertices[4], mVertices[5], mDiagonalRate);
     mSurfaces[3]->mCtrlPts[5].set(handle1);
     mSurfaces[2]->mCtrlPts[8].set(handle1);
     mSurfaces[5]->mCtrlPts[8].set(handle2);
     mSurfaces[6]->mCtrlPts[5].set(handle2);
 
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[1], mVertices[2], mVertices[3], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[1], mVertices[2], mVertices[3], mDiagonalRate);
     mSurfaces[0]->mCtrlPts[11].set(handle1);
     mSurfaces[4]->mCtrlPts[10].set(handle1);
     mSurfaces[1]->mCtrlPts[10].set(handle2);
     mSurfaces[7]->mCtrlPts[11].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[2], mVertices[3], mVertices[4], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[2], mVertices[3], mVertices[4], mDiagonalRate);
     mSurfaces[1]->mCtrlPts[11].set(handle1);
     mSurfaces[7]->mCtrlPts[10].set(handle1);
     mSurfaces[2]->mCtrlPts[10].set(handle2);
     mSurfaces[6]->mCtrlPts[11].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[3], mVertices[4], mVertices[1], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[3], mVertices[4], mVertices[1], mDiagonalRate);
     mSurfaces[2]->mCtrlPts[11].set(handle1);
     mSurfaces[6]->mCtrlPts[10].set(handle1);
     mSurfaces[3]->mCtrlPts[10].set(handle2);
     mSurfaces[5]->mCtrlPts[11].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mVertices[4], mVertices[1], mVertices[2], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mVertices[4], mVertices[1], mVertices[2], mDiagonalRate);
     mSurfaces[3]->mCtrlPts[11].set(handle1);
     mSurfaces[5]->mCtrlPts[10].set(handle1);
     mSurfaces[0]->mCtrlPts[10].set(handle2);
     mSurfaces[4]->mCtrlPts[11].set(handle2);
 
-    calcBezierHandlePoint(&handle1, &handle2, mSurfaces[0]->mCtrlPts[1], mSurfaces[1]->mCtrlPts[1], mSurfaces[2]->mCtrlPts[1], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mSurfaces[0]->mCtrlPts[1], mSurfaces[1]->mCtrlPts[1], mSurfaces[2]->mCtrlPts[1], mDiagonalRate);
     mSurfaces[0]->mCtrlPts[3].set(handle1);
     mSurfaces[1]->mCtrlPts[2].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mSurfaces[1]->mCtrlPts[1], mSurfaces[2]->mCtrlPts[1], mSurfaces[3]->mCtrlPts[1], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mSurfaces[1]->mCtrlPts[1], mSurfaces[2]->mCtrlPts[1], mSurfaces[3]->mCtrlPts[1], mDiagonalRate);
     mSurfaces[1]->mCtrlPts[3].set(handle1);
     mSurfaces[2]->mCtrlPts[2].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mSurfaces[2]->mCtrlPts[1], mSurfaces[3]->mCtrlPts[1], mSurfaces[0]->mCtrlPts[1], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mSurfaces[2]->mCtrlPts[1], mSurfaces[3]->mCtrlPts[1], mSurfaces[0]->mCtrlPts[1], mDiagonalRate);
     mSurfaces[2]->mCtrlPts[3].set(handle1);
     mSurfaces[3]->mCtrlPts[2].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mSurfaces[3]->mCtrlPts[1], mSurfaces[0]->mCtrlPts[1], mSurfaces[1]->mCtrlPts[1], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mSurfaces[3]->mCtrlPts[1], mSurfaces[0]->mCtrlPts[1], mSurfaces[1]->mCtrlPts[1], mDiagonalRate);
     mSurfaces[3]->mCtrlPts[3].set(handle1);
     mSurfaces[0]->mCtrlPts[2].set(handle2);
 
-    calcBezierHandlePoint(&handle1, &handle2, mSurfaces[4]->mCtrlPts[1], mSurfaces[5]->mCtrlPts[1], mSurfaces[6]->mCtrlPts[1], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mSurfaces[4]->mCtrlPts[1], mSurfaces[5]->mCtrlPts[1], mSurfaces[6]->mCtrlPts[1], mDiagonalRate);
     mSurfaces[4]->mCtrlPts[3].set(handle1);
     mSurfaces[5]->mCtrlPts[2].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mSurfaces[5]->mCtrlPts[1], mSurfaces[6]->mCtrlPts[1], mSurfaces[7]->mCtrlPts[1], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mSurfaces[5]->mCtrlPts[1], mSurfaces[6]->mCtrlPts[1], mSurfaces[7]->mCtrlPts[1], mDiagonalRate);
     mSurfaces[5]->mCtrlPts[3].set(handle1);
     mSurfaces[6]->mCtrlPts[2].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mSurfaces[6]->mCtrlPts[1], mSurfaces[7]->mCtrlPts[1], mSurfaces[4]->mCtrlPts[1], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mSurfaces[6]->mCtrlPts[1], mSurfaces[7]->mCtrlPts[1], mSurfaces[4]->mCtrlPts[1], mDiagonalRate);
     mSurfaces[6]->mCtrlPts[3].set(handle1);
     mSurfaces[7]->mCtrlPts[2].set(handle2);
-    calcBezierHandlePoint(&handle1, &handle2, mSurfaces[7]->mCtrlPts[1], mSurfaces[4]->mCtrlPts[1], mSurfaces[5]->mCtrlPts[1], mDiagonalRate);
+    ::calcBezierHandlePoint(&handle1, &handle2, mSurfaces[7]->mCtrlPts[1], mSurfaces[4]->mCtrlPts[1], mSurfaces[5]->mCtrlPts[1], mDiagonalRate);
     mSurfaces[7]->mCtrlPts[3].set(handle1);
     mSurfaces[4]->mCtrlPts[2].set(handle2);
 

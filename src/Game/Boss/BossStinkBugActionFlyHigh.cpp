@@ -3,8 +3,14 @@
 #include "Game/Boss/BossStinkBugActionBase.hpp"
 #include "Game/Boss/BossStinkBugFunction.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvBossStinkBugActionFlyHigh {
     NEW_NERVE(BossStinkBugActionFlyHighNrvFlyDash, BossStinkBugActionFlyHigh, FlyDash);

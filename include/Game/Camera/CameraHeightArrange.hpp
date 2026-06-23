@@ -1,19 +1,29 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include <JSystem/JGeometry.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class Camera;
 class CameraPoseParam;
+class CameraTargetObj;
 
 class CameraHeightArrange : public NameObj {
 public:
     CameraHeightArrange(Camera*);
 
+    void updateJump();
+    void calcWatchPos(CameraTargetObj*);
+    void arrange();
     void resetJump();
-
+    void reset();
     void resetParameter();
-
+    void checkState();
+    void arrangeHeight();
+    void arrangeVPan();
+    void calcPose();
+    void updateUpper();
+    void updateLower();
+    f32 calcOffset(f32);
     void chase();
     void updateHeightAndOffset();
     TVec3f* getGlobalAxis();

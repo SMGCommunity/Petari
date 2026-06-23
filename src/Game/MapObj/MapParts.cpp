@@ -1,5 +1,7 @@
 #include "Game/MapObj/MapParts.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"
 
@@ -7,11 +9,8 @@ namespace {
     const char* cFollowJointName = "Move";
 };  // namespace
 
-MapParts::~MapParts() {
-}
-
 MapParts::MapParts(const char* pName) : LiveActor(pName) {
-    _8C.zero();
+    _8C.setPSZeroVec();
 }
 
 void MapParts::init(const JMapInfoIter& rIter) {

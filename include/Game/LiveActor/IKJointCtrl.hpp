@@ -1,10 +1,11 @@
 #pragma once
 
-#include "Game/Util/IKJoint.hpp"
-#include "Game/Util/JointController.hpp"
-#include "Inline.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class IKJoint;
+template < typename T >
+class JointControlDelegator;
+class JointControllerInfo;
 class LiveActor;
 
 struct IKJointCtrlParam {

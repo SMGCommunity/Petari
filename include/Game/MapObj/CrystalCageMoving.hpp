@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class ActorCameraInfo;
 class ModelObj;
 
 class CrystalCageMoving : public MapObjActor {

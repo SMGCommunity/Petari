@@ -1,21 +1,14 @@
 #include "Game/AreaObj/GlaringLightArea.hpp"
 #include "Game/AudioLib/AudSoundObject.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 GlaringLightAreaMgr::GlaringLightAreaMgr(s32 maxNum, const char* pName) : AreaObjMgr(maxNum, pName) {
 }
 
-GlaringLightArea::GlaringLightArea(int formType, const char* pName) : AreaObj(formType, pName) {
-    mSound = nullptr;
-    mPos.x = 0.0f;
-    mPos.y = 0.0f;
-    mPos.z = 0.0f;
-}
-
-GlaringLightArea::~GlaringLightArea() {
-}
-
-GlaringLightAreaMgr::~GlaringLightAreaMgr() {
+GlaringLightArea::GlaringLightArea(int formType, const char* pName) : AreaObj(formType, pName), mSoundObj(), mPos(0.0f, 0.0f, 0.0f) {
 }
 
 void GlaringLightArea::init(const JMapInfoIter& rIter) {
@@ -28,23 +21,23 @@ void GlaringLightArea::init(const JMapInfoIter& rIter) {
     mPos.y = pos.y;
     mPos.z = pos.z;
 
-    mSound = new AudSoundObject(&mPos, 4, MR::getCurrentHeap());
+    mSoundObj = new AudSoundObject(&mPos, 4, MR::getCurrentHeap());
 
     if (isValidSwitchA()) {
         MR::connectToSceneAreaObj(this);
     }
 }
 
+GlaringLightArea::~GlaringLightArea() {
+}
+
+GlaringLightAreaMgr::~GlaringLightAreaMgr() {
+}
+
 void GlaringLightArea::movement() {
     if (isOnSwitchA()) {
-        bool bVar1 = false;
-
-        if (mIsValid && _15 && mIsAwake) {
-            bVar1 = true;
-        }
-
-        if (!bVar1) {
-            MR::startSoundObject(mSound, "SE_OJ_RAY_START");
+        if (!isValid()) {
+            MR::startSoundObject(mSoundObj, "SE_OJ_RAY_START");
         }
 
         mIsValid = true;
@@ -52,9 +45,5 @@ void GlaringLightArea::movement() {
         mIsValid = false;
     }
 
-    mSound->process();
-}
-
-const char* GlaringLightArea::getManagerName() const {
-    return "GlaringLightArea";
+    mSoundObj->process();
 }

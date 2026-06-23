@@ -2,6 +2,10 @@
 #include "Game/AudioLib/AudBgmMgr.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/GameAudio/AudStageBgmTable.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvEarthenPipe {
     NEW_NERVE(EarthenPipeNrvWait, EarthenPipe, Wait);
@@ -433,7 +437,7 @@ void EarthenPipe::processBgmPlayerIn() {
     if (idx >= 0) {
         u32 bgmId = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), idx);
         if (bgmId != -1) {
-            s32 cur = AudWrap::getBgmMgr()->_10[0];
+            s32 cur = AudWrap::getBgmMgr()->mCurrentBGM[AudBgmMgr::BgmType_Stage];
             if (cur != bgmId) {
                 MR::stopStageBGM(60);
                 return;
@@ -458,7 +462,7 @@ void EarthenPipe::processBgmPlayerOut() {
     if (idx >= 0) {
         u32 bgmId = AudStageBgmTable::getBgmId(MR::getCurrentStageName(), idx);
         if (bgmId != -1) {
-            s32 cur = AudWrap::getBgmMgr()->_10[0];
+            s32 cur = AudWrap::getBgmMgr()->mCurrentBGM[AudBgmMgr::BgmType_Stage];
             if (cur == bgmId && MR::isPlayingStageBgm()) {
                 return;
             }

@@ -1,16 +1,24 @@
 #include "Game/Ride/JumpBranch.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/SwingRopePoint.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
+
+void JumpBranch_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
 
 namespace {
     static Vec sStartPointVelocity = {0.0f, 0.0f, 0.0f};
@@ -161,13 +169,13 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         }
 
         if (playerFront.dot(*MR::getPlayerVelocity()) < 0.0f) {
-            grabFront.scale(1.0f);
+            grabFront.scale(-1.0f);
         }
 
         // interesting...
-        sStartPointVelocity.x = grabFront.x;
-        sStartPointVelocity.y = grabFront.y;
-        sStartPointVelocity.z = grabFront.z;
+        ::sStartPointVelocity.x = grabFront.x;
+        ::sStartPointVelocity.y = grabFront.y;
+        ::sStartPointVelocity.z = grabFront.z;
 
         swingVelocity.set(grabFront);
         swingVelocity.scale(speed);
@@ -178,7 +186,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         }
 
         if (mSwingReverse) {
-            swingFront.scale(1.0f);
+            swingFront.scale(-1.0f);
         }
 
         if (__fabsf(diff.y - mPosition.y) < 1.0f) {

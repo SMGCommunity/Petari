@@ -1,5 +1,8 @@
 #include "Game/MapObj/CollapsePlane.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvCollapsePlane {
     NEW_NERVE(CollapsePlaneNrvWait, CollapsePlane, Wait);

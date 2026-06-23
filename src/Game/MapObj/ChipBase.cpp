@@ -1,9 +1,11 @@
 #include "Game/MapObj/ChipBase.hpp"
 #include "Game/LiveActor/FlashingCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/ChipHolder.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvChipBase {
     NEW_NERVE(ChipBaseNrvDeactive, ChipBase, Deactive);
@@ -193,7 +195,7 @@ bool ChipBase::requestGet(HitSensor* pSender, HitSensor* pReceiver) {
         setNerve(&NrvChipBase::ChipBaseNrvGot::sInstance);
 
         if (mHost != nullptr) {
-            mHost->receiveMessage(0x87, pSender, pReceiver);
+            mHost->receiveMessage(ACTMES_ITEM_GET, pSender, pReceiver);
         }
 
         return true;
@@ -289,9 +291,9 @@ void ChipBase::exeGot() {
         MR::emitEffect(this, "Get");
         MR::tryRumblePadMiddle(this, 0);
 
-        if (!mChipType) {
+        if (mChipType == Type_Blue) {
             MR::startSystemSE("SE_SY_BLUECHIP_GET", MR::getGotChipCount(mChipType, mGroupID));
-        } else if (mChipType == 1) {
+        } else if (mChipType == Type_Yellow) {
             MR::startSystemSE("SE_SY_YELLOWCHIP_GET", MR::getGotChipCount(mChipType, mGroupID));
         }
     }

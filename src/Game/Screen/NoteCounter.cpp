@@ -49,16 +49,16 @@ void NoteCounter::exeShow() {
 }
 
 void NoteCounter::exeShowWait() {
-    if (MR::isStep(this, sStepShowWait)) {
+    if (MR::isStep(this, ::sStepShowWait)) {
         setNerve(&NrvNoteCounter::NoteCounterNrvShowToHide::sInstance);
     }
 }
 
 void NoteCounter::exeShowToHide() {
-    f32 y = MR::getEaseOutValue(getNerveStep() / 10.0f, sTransMaxY, sTransMinY, 1.0f);
+    f32 y = MR::getEaseOutValue(getNerveStep() / 10.0f, ::sTransMaxY, ::sTransMinY, 1.0f);
     setTrans(TVec2f(getTrans().x, y));
 
-    if (MR::isStep(this, sStepMove)) {
+    if (MR::isStep(this, ::sStepMove)) {
         setNerve(&NrvNoteCounter::NoteCounterNrvHide::sInstance);
     }
 }
@@ -68,10 +68,10 @@ void NoteCounter::exeHideToShow() {
         MR::showLayout(this);
     }
 
-    f32 y = MR::getEaseOutValue(getNerveStep() / 10.0f, sTransMaxY, sTransMinY, 1.0f);
+    f32 y = MR::getEaseOutValue(getNerveStep() / 10.0f, ::sTransMaxY, ::sTransMinY, 1.0f);
     setTrans(TVec2f(getTrans().x, y));
 
-    if (MR::isStep(this, sStepMove)) {
+    if (MR::isStep(this, ::sStepMove)) {
         setNerve(&NrvNoteCounter::NoteCounterNrvShow::sInstance);
     }
 }

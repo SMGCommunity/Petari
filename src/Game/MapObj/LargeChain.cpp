@@ -1,4 +1,6 @@
 #include "Game/MapObj/LargeChain.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     static f32 sPartsLength = 200.0f;
@@ -20,7 +22,7 @@ void LargeChain::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     s32 chainLen;
     MR::getJMapInfoArg0NoInit(rIter, &chainLen);
-    mChainCount = chainLen / sPartsLength;
+    mChainCount = chainLen / ::sPartsLength;
     createChainParts();
     MR::connectToSceneMapObjMovement(this);
 

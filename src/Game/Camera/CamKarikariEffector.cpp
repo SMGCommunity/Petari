@@ -4,7 +4,7 @@
 #include "Game/Enemy/KarikariDirector.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
 
 namespace {
     static const f32 sKarikariViewRate = 0.8f;
@@ -12,21 +12,12 @@ namespace {
     static const f32 sPlayerRadius = 75.0f;
 };  // namespace
 
-// TODO: replace call with MR::clamp01
-inline f32 clamp01(f32 val) {
-    if (val < 0.0f) {
-        return 0.0f;
-    }
-    if (val > 1.0f) {
-        return 1.0f;
-    }
-    return val;
-}
-
-// TODO: replace with proper function
-inline f32 toRadian(f32 degree) {
-    f32 pi = PI;
-    return degree * pi / 180.0f;
+void CamKarikariEffector_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    f32 f3 = JGeometry::TUtil< f32 >::epsilon();
+    (void)0.5f;
+    f32 f5 = MR::pi();
 }
 
 CamKarikariEffector::CamKarikariEffector() : mCounter(0) {
@@ -46,13 +37,13 @@ void CamKarikariEffector::update(CameraMan* pCameraMan) {
             mCounter--;
         }
     } else {
-        if (mCounter < sKarikariCounterMax) {
+        if (mCounter < ::sKarikariCounterMax) {
             mCounter++;
         }
     }
 
     // FIXME: t stored in f0 but should be in f31
-    f32 t = MR::getClingNumMax() == 0 ? sKarikariViewRate : static_cast< f32 >(MR::getKarikariClingNum()) / MR::getClingNumMax();
+    f32 t = MR::getClingNumMax() == 0 ? ::sKarikariViewRate : static_cast< f32 >(MR::getKarikariClingNum()) / MR::getClingNumMax();
 
     if (mCounter <= 0) {
         return;
@@ -67,17 +58,14 @@ void CamKarikariEffector::update(CameraMan* pCameraMan) {
     // FIXME: register scheduling issue, result of multInLine should be preloaded before the actual mult?
     TVec3f playerUp;
     MR::getPlayerUpVec(&playerUp);
-    TVec3f playerFocusPos = *MR::getPlayerPos() + playerUp.multInLine(sPlayerRadius);
+    TVec3f playerFocusPos = *MR::getPlayerPos() + playerUp.multInLine(::sPlayerRadius);
 
     TVec3f diffPlayerPos = playerFocusPos - CameraLocalUtil::getPos(pCameraMan);
     TVec3f toPlayerPos(diffPlayerPos);
     MR::normalize(&toPlayerPos);
 
     // Blend WatchPos to player focus pos by rotation (ease in)
-
-    // FIXME: PI mult order wrong
-    // TODO: this is likely MR::clamp(val, 0.0f, 1.0f), or MR::clamp01(val) instead of MR::clamp01(ptr)
-    f32 rotRatio = clamp01((1.0f - JMACosRadian(mCounter * PI / sKarikariCounterMax)) * 0.5f);
+    f32 rotRatio = MR::clamp((1.0f - MR::cos(mCounter * MR::pi() / ::sKarikariCounterMax)) * 0.5f, 0.0f, 1.0f);
     TQuat4f rot;
     rot.setRotate(toWatchPos, toPlayerPos, rotRatio);
     rot.transform(diffWatchPos);
@@ -93,11 +81,9 @@ void CamKarikariEffector::update(CameraMan* pCameraMan) {
     f32 dist = diffPlayerPos.length();
     f32 fovAngle = JMAAsinRadian(75.0f / dist);
 
-    f32 s = JMASinRadian(fovAngle);
-    f32 c = JMACosRadian(fovAngle);
-    f32 fovy = JMath::sAtanTable.atan2_((dist * (s / c)) / 0.3f, dist);
+    f32 fovy = JMAATan2((dist * MR::tan(fovAngle)) / 0.3f, dist);
 
-    if (fovy < toRadian(CameraLocalUtil::getFovy(pCameraMan))) {
-        CameraLocalUtil::setFovy(pCameraMan, (fovy * 180.0f * fovRate) / PI + (1.0f - fovRate) * CameraLocalUtil::getFovy(pCameraMan));
+    if (fovy < CameraLocalUtil::getFovy(pCameraMan) * MR::pi() / 180.0f) {
+        CameraLocalUtil::setFovy(pCameraMan, (fovy * 180.0f * fovRate) / MR::pi() + (1.0f - fovRate) * CameraLocalUtil::getFovy(pCameraMan));
     }
 }

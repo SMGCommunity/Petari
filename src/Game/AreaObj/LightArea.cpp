@@ -1,8 +1,7 @@
 #include "Game/AreaObj/LightArea.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/SceneUtil.hpp"
 
-LightArea::LightArea(int formType, const char* pName) : AreaObj(formType, pName) {
-    mPlacedZoneID = -1;
+LightArea::LightArea(int formType, const char* pName) : AreaObj(formType, pName), mPlacedZoneID(-1) {
 }
 
 void LightArea::init(const JMapInfoIter& rIter) {
@@ -11,8 +10,4 @@ void LightArea::init(const JMapInfoIter& rIter) {
 }
 
 LightArea::~LightArea() {
-}
-
-const char* LightArea::getManagerName() const {
-    return "LightArea";
 }

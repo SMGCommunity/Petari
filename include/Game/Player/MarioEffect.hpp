@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Game/Player/MarioModule.hpp"
-#include "JSystem/JGeometry.hpp"
-#include "JSystem/JParticle/MultiEmitterCallBack.hpp"
+#include "Game/Util/Color.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JParticle/MultiEmitterCallBack.hpp>
 
 class MarioActor;
 class JPABaseEmitter;

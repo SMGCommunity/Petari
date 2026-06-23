@@ -1,7 +1,7 @@
 #include "Game/MapObj/SwitchBox.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace NrvSwitchBox {
     NEW_NERVE(SwitchBoxNrvWait, SwitchBox, Wait);

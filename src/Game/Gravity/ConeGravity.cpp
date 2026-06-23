@@ -1,4 +1,11 @@
 #include "Game/Gravity.hpp"
+#include "Game/Util/MathUtil.hpp"
+
+void ConeGravity_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
 
 ConeGravity::ConeGravity() : PlanetGravity() {
     mValidDegree = 360.0f;
@@ -26,6 +33,19 @@ void ConeGravity::setTopCutRate(f32 val) {
 inline f32 absfInline(f32& orig, f32 v) {
     orig = v;
     return __fabsf(v);
+}
+
+void ConeGravity::updateMtx(const TPos3f& rMtx) {
+    mWorldMtx.concat(rMtx, mLocalMtx);
+
+    TVec3f sideVec;
+    mWorldMtx.getXDirInline(sideVec);
+    mWorldRadius = PSVECMag(&sideVec);
+
+    TVec3f axis;  // unused
+    mWorldMtx.getYDir(axis);
+    // The developers could have left this in because there originally was a height member
+    // that they would set to ||axis|| * (1.0f - mTopCutRate)
 }
 
 bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPos) const {
@@ -159,17 +179,4 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
     }
 
     return calcGravityFromMassPosition(pDest, pScalar, rPos, pointOfAttraction);
-}
-
-void ConeGravity::updateMtx(const TPos3f& rMtx) {
-    mWorldMtx.concat(rMtx, mLocalMtx);
-
-    TVec3f sideVec;
-    mWorldMtx.getXDirInline(sideVec);
-    mWorldRadius = PSVECMag(&sideVec);
-
-    TVec3f axis;  // unused
-    mWorldMtx.getYDir(axis);
-    // The developers could have left this in because there originally was a height member
-    // that they would set to ||axis|| * (1.0f - mTopCutRate)
 }

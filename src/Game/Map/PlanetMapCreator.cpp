@@ -245,7 +245,7 @@ namespace {
 
 // FIXME: Scheduling issues
 PlanetMapCreator::PlanetMapCreator(const char* pName) : NameObj(pName), mPlanetMapData(nullptr) {
-    JMapInfo* pIter = MR::createCsvParser(sArcName, sFileName);
+    JMapInfo* pIter = MR::createCsvParser(::sArcName, ::sFileName);
 
     mTableCount = MR::getCsvDataElementNum(pIter);
     mPlanetMapData = new PlanetMapData*[mTableCount];
@@ -259,10 +259,10 @@ CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
 
     const PlanetEntry* pEntry = nullptr;
 
-    for (u32 i = 0; i < ARRAY_SIZE(sUniquePlanetCreateFuncTable); i++) {
-        pEntry = &sUniquePlanetCreateFuncTable[i];
+    for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetCreateFuncTable); i++) {
+        pEntry = &::sUniquePlanetCreateFuncTable[i];
 
-        if (!MR::isEqualString(pParam1, sUniquePlanetCreateFuncTable[i].mName)) {
+        if (!MR::isEqualString(pParam1, ::sUniquePlanetCreateFuncTable[i].mName)) {
             break;
         }
     }
@@ -307,8 +307,8 @@ void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pArchi
         }
 
         const char* pPlanetName = pTableData->mPlanetName;
-        for (u32 i = 0; i < ARRAY_SIZE(sUniquePlanetUniqueArchiveName); i++) {
-            const UniqueEntry* pUniqueEntry = &sUniquePlanetUniqueArchiveName[i];
+        for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetUniqueArchiveName); i++) {
+            const UniqueEntry* pUniqueEntry = &::sUniquePlanetUniqueArchiveName[i];
             if (MR::isEqualString(pPlanetName, pUniqueEntry->_0)) {
                 pArchiveList->addArchive(pUniqueEntry->_4);
             }
@@ -327,11 +327,11 @@ void PlanetMapCreator::createPlanetMapDataTable(JMapInfo* pInfo) {
 void PlanetMapCreator::addTableData(const JMapInfo* pInfo, s32 idx) {
     PlanetMapData* curData = mPlanetMapData[idx];
     MR::getCsvDataStr(&curData->mPlanetName, pInfo, "PlanetName", idx);
-    makeSubModelName(&curData->mData[0], pInfo, idx, "LowFlag", "Low");
-    makeSubModelName(&curData->mData[1], pInfo, idx, "MiddleFlag", "Middle");
-    makeSubModelName(&curData->mData[2], pInfo, idx, "BloomFlag", "Bloom");
-    makeSubModelName(&curData->mData[3], pInfo, idx, "WaterFlag", "Water");
-    makeSubModelName(&curData->mData[4], pInfo, idx, "IndirectFlag", "Indirect");
+    ::makeSubModelName(&curData->mData[0], pInfo, idx, "LowFlag", "Low");
+    ::makeSubModelName(&curData->mData[1], pInfo, idx, "MiddleFlag", "Middle");
+    ::makeSubModelName(&curData->mData[2], pInfo, idx, "BloomFlag", "Bloom");
+    ::makeSubModelName(&curData->mData[3], pInfo, idx, "WaterFlag", "Water");
+    ::makeSubModelName(&curData->mData[4], pInfo, idx, "IndirectFlag", "Indirect");
 
     for (int i = 0; i < 5; i++) {
         if (curData->mData[i]) {
@@ -360,7 +360,7 @@ PlanetMapData* PlanetMapCreator::getTableData(const char* pName) const {
 }
 
 bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData* pData) const {
-    bool isForce = isDataForceLow(pData);
+    bool isForce = ::isDataForceLow(pData);
 
     if (!isForce) {
         return false;
@@ -395,7 +395,7 @@ bool PlanetMapCreatorFunction::isLoadArchiveAfterScenarioSelected(const char* pA
         return false;
     }
 
-    return isDataForceLow(MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive));
+    return ::isDataForceLow(MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->getTableData(pArchive));
 }
 
 bool PlanetMapCreatorFunction::isRegisteredObj(const char* pArchive) {

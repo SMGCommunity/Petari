@@ -1,17 +1,22 @@
 #include "Game/Ride/Creeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
-#include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
+#include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <revolution/gx/GXVert.h>
 #include <revolution/mtx.h>
@@ -479,43 +484,43 @@ void Creeper::draw() const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mNumPoints * 2);
     for (s32 idx = 0; idx < mNumPoints; idx++) {
         texY = delta * ((mNumPoints - 1) - idx);
-        color1 = sColorPlusX;
-        color2 = sColorPlusZ;
+        color1 = ::sColorPlusX;
+        color2 = ::sColorPlusZ;
 
         front = &mPoints[idx]->mFront;
         side = &mPoints[idx]->mSide;
         pos = &mPoints[idx]->mPosition;
 
-        sendVertex(*pos, *side, *front, 10.0f, -10.0f, color1, 1.0f, texY);
-        sendVertex(*pos, *side, *front, 0.0f, 10.0f, color2, 0.0f, texY);
+        ::sendVertex(*pos, *side, *front, 10.0f, -10.0f, color1, 1.0f, texY);
+        ::sendVertex(*pos, *side, *front, 0.0f, 10.0f, color2, 0.0f, texY);
     }
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mNumPoints * 2);
     for (s32 idx = 0; idx < mNumPoints; idx++) {
         texY = delta * ((mNumPoints - 1) - idx);
-        color1 = sColorPlusZ;
-        color2 = sColorMinusX;
+        color1 = ::sColorPlusZ;
+        color2 = ::sColorMinusX;
 
         front = &mPoints[idx]->mFront;
         side = &mPoints[idx]->mSide;
         pos = &mPoints[idx]->mPosition;
 
-        sendVertex(*pos, *side, *front, 0.0f, 10.0f, color1, 1.0f, texY);
-        sendVertex(*pos, *side, *front, -10.0f, -10.0f, color2, 0.0f, texY);
+        ::sendVertex(*pos, *side, *front, 0.0f, 10.0f, color1, 1.0f, texY);
+        ::sendVertex(*pos, *side, *front, -10.0f, -10.0f, color2, 0.0f, texY);
     }
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mNumPoints * 2);
     for (s32 idx = 0; idx < mNumPoints; idx++) {
         texY = delta * ((mNumPoints - 1) - idx);
-        color1 = sColorMinusX;
-        color2 = sColorPlusX;
+        color1 = ::sColorMinusX;
+        color2 = ::sColorPlusX;
 
         front = &mPoints[idx]->mFront;
         side = &mPoints[idx]->mSide;
         pos = &mPoints[idx]->mPosition;
 
-        sendVertex(*pos, *side, *front, -10.0f, -10.0f, color1, 1.0f, texY);
-        sendVertex(*pos, *side, *front, 10.0f, -10.0f, color2, 0.0f, texY);
+        ::sendVertex(*pos, *side, *front, -10.0f, -10.0f, color1, 1.0f, texY);
+        ::sendVertex(*pos, *side, *front, 10.0f, -10.0f, color2, 0.0f, texY);
     }
 }
 

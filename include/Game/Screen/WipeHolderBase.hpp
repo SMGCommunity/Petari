@@ -2,7 +2,6 @@
 
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Array.hpp"
-#include <revolution.h>
 
 class WipeLayoutBase;
 

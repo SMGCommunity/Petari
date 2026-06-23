@@ -1,12 +1,11 @@
 #include "Game/NPC/ButlerStateStarPieceReaction.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 
 namespace NrvButlerStateStarPieceReaction {
     NEW_NERVE(ButlerStateStarPieceReactionNrvWait, ButlerStateStarPieceReaction, Wait);

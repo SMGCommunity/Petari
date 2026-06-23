@@ -1,4 +1,16 @@
 #include "Game/Map/RaceRail.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/NPCUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+
+// TODO: this file has some weird compiler flags going on
 
 namespace {
     static const f32 sRaceJudgeLength = 10000.0f;
@@ -46,10 +58,10 @@ bool PlayerRacer::updateRacer(const RaceManager* pRaceManager) {
     TVec3f railPos;
     MR::calcNearestRailPos(&railPos, racer, *MR::getPlayerCenterPos());
 
-    if (railPos.subOtherInline(*MR::getPlayerCenterPos()).length() > sRaceJudgeLength) {
+    if (railPos.subOtherInline(*MR::getPlayerCenterPos()).length() > ::sRaceJudgeLength) {
         return false;
     }
-    if ((f32)__fabs(mRailCoord - railCoord) < sRaceJudgeLength) {
+    if ((f32)__fabs(mRailCoord - railCoord) < ::sRaceJudgeLength) {
         mRailCoord = railCoord;
     }
 

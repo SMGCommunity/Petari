@@ -24,6 +24,8 @@ public:
     void startGameScreenCapture();
     void drawGameScreenCapture() const;
 
+    bool isCurrentAlive() const;
+
 private:
     /* 0x1C */ bool _1C;
 };

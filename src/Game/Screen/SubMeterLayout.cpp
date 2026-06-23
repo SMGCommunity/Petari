@@ -111,8 +111,8 @@ void SubMeterLayout::control() {
     if (!MR::isHiddenLayout(this)) {
         TVec2f screenPos;
         MR::calcScreenPosition(&screenPos, *MR::getPlayerPos());
-        screenPos.x += sScreenOffsetX;
-        screenPos.y += sScreenOffsetY;
+        screenPos.x += ::sScreenOffsetX;
+        screenPos.y += ::sScreenOffsetY;
         setTrans(screenPos);
     }
 }

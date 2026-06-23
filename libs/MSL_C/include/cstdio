@@ -5,23 +5,24 @@
 extern "C" {
 #endif
 
+#include <cstring>
 #include <file_struct.h>
 #include <va_list.h>
-#include <cstring>
 
+int fprintf(FILE* stream, const char* format, ...);
+int printf(const char* format, ...);
+int sprintf(char* pStr, const char* pFormat, ...);
+int snprintf(char* pStr, size_t n, const char* pFormat, ...);
+int vprintf(const char*, va_list);
+int vsnprintf(char*, size_t, const char*, va_list);
 
-int sprintf(char *pStr, const char *pFormat, ...);
-int snprintf(char *pStr, size_t n, const char *pFormat, ...);
-int vprintf(const char *, va_list);
-int vsnprintf(char *, size_t, const char *, va_list);
+int sscanf(const char*, const char*, ...);
 
-int sscanf(const char *, const char *, ...);
-
-int fclose(FILE *);
-int fflush(FILE *);
+int fclose(FILE*);
+int fflush(FILE*);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // CSTDIO_H
+#endif  // CSTDIO_H

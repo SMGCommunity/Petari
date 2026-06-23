@@ -154,11 +154,12 @@ nw4r/lyt/lyt_common.cpp:
 
 Game/Animation/AnmPlayer.cpp:
 	.text       start:0x800161D0 end:0x800178C8
-	.data       start:0x80564A00 end:0x80564A28
+	.data       start:0x80564A00 end:0x80564A38
 	.sdata2     start:0x806B7D30 end:0x806B7D38
 
 Game/Animation/BckCtrl.cpp:
 	.text       start:0x800178C8 end:0x8001804C
+	.data       start:0x80564A38 end:0x80564A80
 	.sdata      start:0x806B1638 end:0x806B1650
 	.sdata2     start:0x806B7D60 end:0x806B7D68
 
@@ -237,11 +238,11 @@ Game/AreaObj/AstroChangeStageCube.cpp:
 
 Game/AreaObj/AudioEffectArea.cpp:
 	.text       start:0x8001F404 end:0x8001F5EC
-	.data       start:0x80565178 end:0x805651E0
+	.data       start:0x80565178 end:0x805651B8
 
 Game/AreaObj/BgmProhibitArea.cpp:
 	.text       start:0x8001F5EC end:0x8001F8BC
-	.data       start:0x805651E0 end:0x80565238
+	.data       start:0x805651B8 end:0x80565238
 	.sdata2     start:0x806B7DC0 end:0x806B7DC8
 
 Game/AreaObj/BigBubbleCameraArea.cpp:
@@ -260,12 +261,12 @@ Game/AreaObj/BloomArea.cpp:
 
 Game/AreaObj/CameraRepulsiveArea.cpp:
 	.text       start:0x800200D0 end:0x80020344
-	.data       start:0x80565348 end:0x805653F8
+	.data       start:0x80565348 end:0x805653C0
 	.sdata2     start:0x806B7DE0 end:0x806B7DF0
 
 Game/AreaObj/ChangeBgmCube.cpp:
 	.text       start:0x80020344 end:0x800207B0
-	.data       start:0x805653F8 end:0x80565428
+	.data       start:0x805653C0 end:0x80565428
 
 Game/AreaObj/CollisionArea.cpp:
 	.text       start:0x800207B0 end:0x80021DB4
@@ -291,12 +292,12 @@ Game/AreaObj/DepthOfFieldArea.cpp:
 Game/AreaObj/FollowCollisionArea.cpp:
 	.text       start:0x80022508 end:0x80022F5C
 	.rodata     start:0x8052F7F0 end:0x8052F7F8
-	.data       start:0x805655C0 end:0x80565610
+	.data       start:0x805655C0 end:0x80565600
 	.sdata2     start:0x806B7E18 end:0x806B7E28
 
 Game/AreaObj/GlaringLightArea.cpp:
 	.text       start:0x80022F5C end:0x800231F0
-	.data       start:0x80565610 end:0x80565678
+	.data       start:0x80565600 end:0x80565678
 	.sdata2     start:0x806B7E28 end:0x806B7E30
 
 Game/AreaObj/HazeCube.cpp:
@@ -333,11 +334,11 @@ Game/AreaObj/PlayerSeArea.cpp:
 
 Game/AreaObj/QuakeEffectArea.cpp:
 	.text       start:0x80024BC0 end:0x80024C70
-	.data       start:0x80565828 end:0x80565890
+	.data       start:0x80565828 end:0x80565858
 
 Game/AreaObj/RestartCube.cpp:
 	.text       start:0x80024C70 end:0x80024FA4
-	.data       start:0x80565890 end:0x805658C0
+	.data       start:0x80565858 end:0x805658C0
 
 Game/AreaObj/ScreenBlurArea.cpp:
 	.text       start:0x80024FA4 end:0x800250A8
@@ -855,22 +856,23 @@ Game/Boss/DinoPackunVs1.cpp:
 Game/Boss/DinoPackunVs2.cpp:
 	.text       start:0x8004E614 end:0x8004ED54
 	.ctors      start:0x8052E8CC end:0x8052E8D0
-	.data       start:0x8056A1B8 end:0x8056A3B8
+	.data       start:0x8056A1B8 end:0x8056A2B8
 	.sbss       start:0x806B3260 end:0x806B3288
 
 Game/Boss/Dodoryu.cpp:
 	.text       start:0x8004ED54 end:0x80051C54
 	.ctors      start:0x8052E8D0 end:0x8052E8D4
 	.rodata     start:0x80530F60 end:0x80530FC8
-	.data       start:0x8056A3B8 end:0x8056AFB0
-	.sdata      start:0x806B16E0 end:0x806B1730
+	.data       start:0x8056A2B8 end:0x8056ADD8
+	.sdata      start:0x806B16E0 end:0x806B1720
 	.sbss       start:0x806B3288 end:0x806B32B0
 	.sdata2     start:0x806B8660 end:0x806B86E0
 
 Game/Boss/DodoryuDemo.cpp:
 	.text       start:0x80051C54 end:0x80053060
 	.ctors      start:0x8052E8D4 end:0x8052E8D8
-	.data       start:0x8056AFB0 end:0x8056B378
+	.data       start:0x8056ADD8 end:0x8056B378
+	.sdata      start:0x806B1720 end:0x806B1728
 	.sbss       start:0x806B32B0 end:0x806B32E8
 	.sdata2     start:0x806B86E0 end:0x806B86F8
 
@@ -891,20 +893,21 @@ Game/Boss/DodoryuStateLv1.cpp:
 	.text       start:0x80053CB4 end:0x800550D8
 	.ctors      start:0x8052E8D8 end:0x8052E8DC
 	.data       start:0x8056B4B0 end:0x8056B828
+	.sdata      start:0x806B1728 end:0x806B1730
 	.sbss       start:0x806B32E8 end:0x806B3310
 	.sdata2     start:0x806B8728 end:0x806B8750
 
 Game/Boss/DodoryuStateLv2.cpp:
 	.text       start:0x800550D8 end:0x80057E04
 	.ctors      start:0x8052E8DC end:0x8052E8E0
-	.data       start:0x8056B828 end:0x8056BD38
+	.data       start:0x8056B828 end:0x8056BD00
 	.sbss       start:0x806B3310 end:0x806B3368
 	.sdata2     start:0x806B8750 end:0x806B8798
 
 Game/Boss/DodoryuStateWait.cpp:
 	.text       start:0x80057E04 end:0x80058048
 	.ctors      start:0x8052E8E0 end:0x8052E8E4
-	.data       start:0x8056BD38 end:0x8056BE78
+	.data       start:0x8056BD00 end:0x8056BE78
 	.sbss       start:0x806B3368 end:0x806B3370
 	.sdata2     start:0x806B8798 end:0x806B87A0
 
@@ -925,40 +928,40 @@ Game/Boss/KoopaBattleBase.cpp:
 Game/Boss/KoopaBattleMain.cpp:
 	.text       start:0x800590E4 end:0x8005A1F8
 	.ctors      start:0x8052E8E4 end:0x8052E8E8
-	.data       start:0x8056BF58 end:0x8056C128
+	.data       start:0x8056BF58 end:0x8056C100
 	.sbss       start:0x806B3370 end:0x806B33A8
 	.sdata2     start:0x806B87F0 end:0x806B8800
 
 Game/Boss/KoopaBattleStairsBase.cpp:
 	.text       start:0x8005A1F8 end:0x8005A450
-	.data       start:0x8056C128 end:0x8056C238
+	.data       start:0x8056C100 end:0x8056C138
 	.sdata2     start:0x806B8800 end:0x806B8808
 
 Game/Boss/KoopaBattleStairsVs1.cpp:
 	.text       start:0x8005A450 end:0x8005B120
 	.ctors      start:0x8052E8E8 end:0x8052E8EC
-	.data       start:0x8056C238 end:0x8056C380
-	.sdata      start:0x806B1730 end:0x806B1780
+	.data       start:0x8056C138 end:0x8056C2B8
+	.sdata      start:0x806B1730 end:0x806B1740
 	.sbss       start:0x806B33A8 end:0x806B33C8
 	.sdata2     start:0x806B8808 end:0x806B8830
 
 Game/Boss/KoopaBattleStairsVs3.cpp:
 	.text       start:0x8005B120 end:0x8005B5CC
 	.ctors      start:0x8052E8EC end:0x8052E8F0
-	.data       start:0x8056C380 end:0x8056C418
+	.data       start:0x8056C2B8 end:0x8056C3C0
 	.sbss       start:0x806B33C8 end:0x806B33D8
 	.sdata2     start:0x806B8830 end:0x806B8838
 
 Game/Boss/KoopaBattleVs3Lv1.cpp:
 	.text       start:0x8005B5CC end:0x8005BD60
 	.ctors      start:0x8052E8F0 end:0x8052E8F4
-	.data       start:0x8056C418 end:0x8056C4F0
+	.data       start:0x8056C3C0 end:0x8056C4A8
 	.sbss       start:0x806B33D8 end:0x806B33F8
 
 Game/Boss/KoopaBattleVs3Lv2.cpp:
 	.text       start:0x8005BD60 end:0x8005C504
 	.ctors      start:0x8052E8F4 end:0x8052E8F8
-	.data       start:0x8056C4F0 end:0x8056C570
+	.data       start:0x8056C4A8 end:0x8056C570
 	.sbss       start:0x806B33F8 end:0x806B3410
 
 Game/Boss/KoopaDemoPowerUp.cpp:
@@ -988,29 +991,31 @@ Game/Boss/KoopaDemoJumpToPlanet.cpp:
 
 Game/Boss/KoopaFigureBall.cpp:
 	.text       start:0x8005D994 end:0x8005DE18
-	.data       start:0x8056CC60 end:0x8056CD80
+	.data       start:0x8056CC60 end:0x8056CCD8
 	.sdata2     start:0x806B8848 end:0x806B8860
 
 Game/Boss/KoopaFireShort.cpp:
 	.text       start:0x8005DE18 end:0x8005E874
 	.ctors      start:0x8052E908 end:0x8052E90C
-	.data       start:0x8056CD80 end:0x8056CE28
+	.data       start:0x8056CCD8 end:0x8056CE28
 	.sbss       start:0x806B3458 end:0x806B3468
 	.sdata2     start:0x806B8860 end:0x806B8898
 
 Game/Boss/KoopaFireStairs.cpp:
 	.text       start:0x8005E874 end:0x8005F0F8
 	.ctors      start:0x8052E90C end:0x8052E910
-	.data       start:0x8056CE28 end:0x8056D2B8
+	.data       start:0x8056CE28 end:0x8056CF70
 	.sbss       start:0x806B3468 end:0x806B3470
 	.sdata2     start:0x806B8898 end:0x806B88D0
 
 Game/Boss/KoopaFunction.cpp:
 	.text       start:0x8005F0F8 end:0x8006008C
+	.data       start:0x8056CF70 end:0x8056CFE0
 	.sdata2     start:0x806B88D0 end:0x806B88D8
 
 Game/Boss/KoopaParts.cpp:
 	.text       start:0x8006008C end:0x80060D44
+	.data       start:0x8056CFE0 end:0x8056D2B8
 	.sdata2     start:0x806B88D8 end:0x806B88E0
 
 Game/Boss/KoopaPowerUpSwitch.cpp:
@@ -1028,44 +1033,45 @@ Game/Boss/KoopaRestarterVs3.cpp:
 
 Game/Boss/KoopaRockBreak.cpp:
 	.text       start:0x8006113C end:0x80061294
-	.data       start:0x8056D448 end:0x8056D650
+	.data       start:0x8056D448 end:0x8056D4F0
 
 Game/Boss/KoopaSensorCtrl.cpp:
 	.text       start:0x80061294 end:0x80061898
+	.data       start:0x8056D4F0 end:0x8056D650
 	.sdata2     start:0x806B88E8 end:0x806B8938
 
 Game/Boss/KoopaSequencer.cpp:
 	.text       start:0x80061898 end:0x80061A18
-	.data       start:0x8056D650 end:0x8056D688
+	.data       start:0x8056D650 end:0x8056D678
 
 Game/Boss/KoopaSubSequenceBattle.cpp:
 	.text       start:0x80061A18 end:0x80061CFC
 	.ctors      start:0x8052E910 end:0x8052E914
-	.data       start:0x8056D688 end:0x8056D6F8
+	.data       start:0x8056D678 end:0x8056D6F8
 	.sbss       start:0x806B3470 end:0x806B3488
 
 Game/Boss/KoopaSequencerVs1.cpp:
 	.text       start:0x80061CFC end:0x80062424
 	.ctors      start:0x8052E914 end:0x8052E918
-	.data       start:0x8056D6F8 end:0x8056D960
+	.data       start:0x8056D6F8 end:0x8056D878
 	.sbss       start:0x806B3488 end:0x806B34A8
 
 Game/Boss/KoopaSequencerVs2.cpp:
 	.text       start:0x80062424 end:0x80062A88
 	.ctors      start:0x8052E918 end:0x8052E91C
-	.data       start:0x8056D960 end:0x8056D9F8
+	.data       start:0x8056D878 end:0x8056D9F8
 	.sbss       start:0x806B34A8 end:0x806B34C8
 
 Game/Boss/KoopaSequencerVs3.cpp:
 	.text       start:0x80062A88 end:0x80063A98
 	.ctors      start:0x8052E91C end:0x8052E920
-	.data       start:0x8056D9F8 end:0x8056DD68
+	.data       start:0x8056D9F8 end:0x8056DCE8
 	.sbss       start:0x806B34C8 end:0x806B3508
 
 Game/Boss/KoopaShockWave.cpp:
 	.text       start:0x80063A98 end:0x800643B4
 	.ctors      start:0x8052E920 end:0x8052E924
-	.data       start:0x8056DD68 end:0x8056DDF0
+	.data       start:0x8056DCE8 end:0x8056DDF0
 	.sbss       start:0x806B3508 end:0x806B3510
 	.sdata2     start:0x806B8938 end:0x806B8968
 
@@ -1093,14 +1099,14 @@ Game/Boss/KoopaStateAttackHipDrop.cpp:
 Game/Boss/KoopaStateAttackRoll.cpp:
 	.text       start:0x800655E8 end:0x80066124
 	.ctors      start:0x8052E930 end:0x8052E934
-	.data       start:0x8056E118 end:0x8056E388
+	.data       start:0x8056E118 end:0x8056E2F8
 	.sbss       start:0x806B3540 end:0x806B3558
 	.sdata2     start:0x806B89A8 end:0x806B89B8
 
 Game/Boss/KoopaStateAttackShockWave.cpp:
 	.text       start:0x80066124 end:0x80066840
 	.ctors      start:0x8052E934 end:0x8052E938
-	.data       start:0x8056E388 end:0x8056E408
+	.data       start:0x8056E2F8 end:0x8056E408
 	.sbss       start:0x806B3558 end:0x806B3568
 	.sdata2     start:0x806B89B8 end:0x806B89E0
 
@@ -1315,7 +1321,7 @@ Game/Boss/SkeletalFishBossBattleDirector.cpp:
 
 Game/Boss/SkeletalFishBossFunc.cpp:
 	.text       start:0x8007B4A8 end:0x8007B5B0
-	.sdata      start:0x806B1780 end:0x806B1788
+	.sdata      start:0x806B1740 end:0x806B1788
 	.sdata2     start:0x806B8D18 end:0x806B8D20
 
 Game/Boss/SkeletalFishBossInfo.cpp:
@@ -2256,7 +2262,7 @@ Game/Demo/DemoKoopaJrShip.cpp:
 	.ctors      start:0x8052EA0C end:0x8052EA10
 	.rodata     start:0x805319C8 end:0x805319F0
 	.data       start:0x80577388 end:0x80577528
-	.sdata      start:0x806B1850 end:0x806B1878
+	.sdata      start:0x806B1850 end:0x806B1860
 	.sbss       start:0x806B3A60 end:0x806B3A70
 	.sdata2     start:0x806B9C28 end:0x806B9C38
 
@@ -2268,6 +2274,7 @@ Game/Demo/DemoParamCommonDataTable.cpp:
 	.text       start:0x800BD200 end:0x800BD34C
 	.rodata     start:0x805319F0 end:0x80531A20
 	.data       start:0x80577570 end:0x805775B0
+	.sdata      start:0x806B1860 end:0x806B1868
 	.sdata2     start:0x806B9C38 end:0x806B9C40
 
 Game/Demo/DemoPlayerKeeper.cpp:
@@ -2285,6 +2292,7 @@ Game/Demo/DemoSimpleCastHolder.cpp:
 Game/Demo/DemoSoundKeeper.cpp:
 	.text       start:0x800BD938 end:0x800BDC9C
 	.data       start:0x80577660 end:0x805776F8
+	.sdata      start:0x806B1868 end:0x806B1870
 
 Game/Demo/DemoStartRequestHolder.cpp:
 	.text       start:0x800BDC9C end:0x800BE3A4
@@ -2301,6 +2309,7 @@ Game/Demo/DemoTalkAnimCtrl.cpp:
 	.text       start:0x800BF32C end:0x800BFC98
 	.rodata     start:0x80531A20 end:0x80531A28
 	.data       start:0x80577740 end:0x80577770
+	.sdata      start:0x806B1870 end:0x806B1878
 	.sdata2     start:0x806B9C48 end:0x806B9C50
 
 Game/Demo/DemoTimeKeeper.cpp:
@@ -2426,7 +2435,7 @@ Game/Effect/RandomEffectObj.cpp:
 Game/Effect/SimpleEffectObj.cpp:
 	.text       start:0x800CAC10 end:0x800CB2A8
 	.ctors      start:0x8052EA20 end:0x8052EA24
-	.rodata     start:0x80531AB0 end:0x80531BF0
+	.rodata     start:0x80531AB0 end:0x80531BD0
 	.data       start:0x805788F0 end:0x80578BE0
 	.sbss       start:0x806B3AF8 end:0x806B3B00
 
@@ -2444,11 +2453,13 @@ Game/Effect/SyncBckEffectChecker.cpp:
 
 Game/Effect/SyncBckEffectInfo.cpp:
 	.text       start:0x800CBA84 end:0x800CBD24
+	.rodata     start:0x80531BD0 end:0x80531BD8
 	.sdata2     start:0x806B9D90 end:0x806B9D98
 
 Game/Enemy/AnimScaleController.cpp:
 	.text       start:0x800CBD24 end:0x800CC370
 	.ctors      start:0x8052EA24 end:0x8052EA28
+	.rodata     start:0x80531BD8 end:0x80531BE0
 	.data       start:0x80578C08 end:0x80578C80
 	.bss        start:0x8060A798 end:0x8060A800
 	.sbss       start:0x806B3B00 end:0x806B3B18
@@ -2457,6 +2468,7 @@ Game/Enemy/AnimScaleController.cpp:
 Game/Enemy/AnimStampController.cpp:
 	.text       start:0x800CC370 end:0x800CC69C
 	.ctors      start:0x8052EA28 end:0x8052EA2C
+	.rodata     start:0x80531BE0 end:0x80531BE8
 	.data       start:0x80578C80 end:0x80578CC8
 	.sbss       start:0x806B3B18 end:0x806B3B20
 	.sdata2     start:0x806B9DE8 end:0x806B9E00
@@ -2471,6 +2483,7 @@ Game/Enemy/BallBeamer.cpp:
 Game/Enemy/Balloonfish.cpp:
 	.text       start:0x800CD00C end:0x800CDD78
 	.ctors      start:0x8052EA30 end:0x8052EA34
+	.rodata     start:0x80531BE8 end:0x80531BF0
 	.data       start:0x80578E60 end:0x80578FF0
 	.sbss       start:0x806B3B30 end:0x806B3B40
 	.sdata2     start:0x806B9E18 end:0x806B9E50
@@ -2767,7 +2780,7 @@ Game/Enemy/Kameck.cpp:
 Game/Enemy/KameckBeam.cpp:
 	.text       start:0x80105E20 end:0x80106F40
 	.ctors      start:0x8052EAC0 end:0x8052EAC4
-	.rodata     start:0x805320C8 end:0x805320E8
+	.rodata     start:0x805320C8 end:0x805320E0
 	.data       start:0x8057ECA0 end:0x8057EF28
 	.sbss       start:0x806B4190 end:0x806B41A8
 	.sdata2     start:0x806BA9E8 end:0x806BAA00
@@ -2775,19 +2788,19 @@ Game/Enemy/KameckBeam.cpp:
 
 Game/Enemy/KameckBeamHolder.cpp:
 	.text       start:0x80106F40 end:0x801074F8
-	.data       start:0x8057EF28 end:0x8057F010
+	.data       start:0x8057EF28 end:0x8057EF98
 
 Game/Enemy/KameckFireBall.cpp:
 	.text       start:0x801074F8 end:0x80107CC0
 	.ctors      start:0x8052EAC4 end:0x8052EAC8
-	.data       start:0x8057F010 end:0x8057F0B8
+	.data       start:0x8057EF98 end:0x8057F0A8
 	.sdata      start:0x806B1978 end:0x806B1980
 	.sbss       start:0x806B41A8 end:0x806B41B8
 	.sdata2     start:0x806BAA00 end:0x806BAA20
 
 Game/Enemy/KameckHolder.cpp:
 	.text       start:0x80107CC0 end:0x80107EF4
-	.data       start:0x8057F0B8 end:0x8057F0E0
+	.data       start:0x8057F0A8 end:0x8057F0E0
 
 Game/Enemy/KameckTurtle.cpp:
 	.text       start:0x80107EF4 end:0x801088CC
@@ -2807,6 +2820,7 @@ Game/Enemy/Kanina.cpp:
 Game/Enemy/Karikari.cpp:
 	.text       start:0x8010B2B0 end:0x8010DFDC
 	.ctors      start:0x8052EAD0 end:0x8052EAD4
+	.rodata     start:0x805320E0 end:0x805320E8
 	.data       start:0x8057F550 end:0x8057F8D8
 	.sdata      start:0x806B1998 end:0x806B19A0
 	.sbss       start:0x806B4218 end:0x806B4260
@@ -2831,6 +2845,7 @@ Game/Enemy/Kiraira.cpp:
 	.text       start:0x80110298 end:0x80111470
 	.ctors      start:0x8052EAD8 end:0x8052EADC
 	.data       start:0x8057FBB8 end:0x8057FDA8
+	.sdata      start:0x806B19A8 end:0x806B19B8
 	.sbss       start:0x806B42A0 end:0x806B42C0
 	.sdata2     start:0x806BABE0 end:0x806BAC38
 
@@ -2870,6 +2885,7 @@ Game/Enemy/KoteBug.cpp:
 	.ctors      start:0x8052EAE8 end:0x8052EAEC
 	.rodata     start:0x805322A8 end:0x805322B0
 	.data       start:0x805807D0 end:0x80580AC8
+	.sdata      start:0x806B19E8 end:0x806B19F8
 	.sbss       start:0x806B4318 end:0x806B4360
 	.sdata2     start:0x806BAD18 end:0x806BADB0
 
@@ -2878,6 +2894,7 @@ Game/Enemy/Kuribo.cpp:
 	.ctors      start:0x8052EAEC end:0x8052EAF0
 	.data       start:0x80580AC8 end:0x80580D30
 	.bss        start:0x8060A818 end:0x8060A898
+	.sdata      start:0x806B19F8 end:0x806B1A00
 	.sbss       start:0x806B4360 end:0x806B4398
 	.sdata2     start:0x806BADB0 end:0x806BAE10
 
@@ -2886,6 +2903,7 @@ Game/Enemy/KuriboChief.cpp:
 	.ctors      start:0x8052EAF0 end:0x8052EAF4
 	.data       start:0x80580D30 end:0x80580FB0
 	.bss        start:0x8060A898 end:0x8060A960
+	.sdata      start:0x806B1A00 end:0x806B1A08
 	.sbss       start:0x806B4398 end:0x806B43C0
 	.sdata2     start:0x806BAE10 end:0x806BAE88
 
@@ -2894,6 +2912,7 @@ Game/Enemy/KuriboMini.cpp:
 	.ctors      start:0x8052EAF4 end:0x8052EAF8
 	.data       start:0x80580FB0 end:0x805811B0
 	.bss        start:0x8060A960 end:0x8060A9E0
+	.sdata      start:0x806B1A08 end:0x806B1A10
 	.sbss       start:0x806B43C0 end:0x806B43E8
 	.sdata2     start:0x806BAE88 end:0x806BAED8
 
@@ -2911,6 +2930,7 @@ Game/Enemy/Meramera.cpp:
 	.ctors      start:0x8052EAFC end:0x8052EB00
 	.data       start:0x80581480 end:0x80581950
 	.bss        start:0x8060A9F0 end:0x8060AA00
+	.sdata      start:0x806B1A10 end:0x806B1A18
 	.sbss       start:0x806B4428 end:0x806B4478
 	.sdata2     start:0x806BAF38 end:0x806BB008
 
@@ -2919,6 +2939,7 @@ Game/Enemy/Metbo.cpp:
 	.ctors      start:0x8052EB00 end:0x8052EB04
 	.rodata     start:0x80532388 end:0x805323E8
 	.data       start:0x80581950 end:0x80581C30
+	.sdata      start:0x806B1A18 end:0x806B1A20
 	.sbss       start:0x806B4478 end:0x806B44C0
 	.sdata2     start:0x806BB008 end:0x806BB058
 
@@ -2927,6 +2948,7 @@ Game/Enemy/Mogu.cpp:
 	.ctors      start:0x8052EB04 end:0x8052EB08
 	.rodata     start:0x805323E8 end:0x80532400
 	.data       start:0x80581C30 end:0x80581F28
+	.sdata      start:0x806B1A20 end:0x806B1A28
 	.sbss       start:0x806B44C0 end:0x806B44F0
 	.sdata2     start:0x806BB058 end:0x806BB0D0
 
@@ -2935,6 +2957,7 @@ Game/Enemy/Mogucchi.cpp:
 	.ctors      start:0x8052EB08 end:0x8052EB0C
 	.rodata     start:0x80532400 end:0x80532418
 	.data       start:0x80581F28 end:0x80582130
+	.sdata      start:0x806B1A28 end:0x806B1A30
 	.sbss       start:0x806B44F0 end:0x806B4508
 	.sdata2     start:0x806BB0D0 end:0x806BB120
 
@@ -3043,7 +3066,7 @@ Game/Enemy/RingBeamer.cpp:
 	.text       start:0x80139B40 end:0x8013A3AC
 	.ctors      start:0x8052EB38 end:0x8052EB3C
 	.data       start:0x80583DA8 end:0x80583EC8
-	.sdata      start:0x806B1A60 end:0x806B1AC0
+	.sdata      start:0x806B1A60 end:0x806B1A68
 	.sbss       start:0x806B4700 end:0x806B4710
 	.sdata2     start:0x806BB470 end:0x806BB498
 
@@ -3055,6 +3078,7 @@ Game/Enemy/SamboHead.cpp:
 	.text       start:0x8013A420 end:0x8013BD04
 	.ctors      start:0x8052EB3C end:0x8052EB40
 	.data       start:0x80583EC8 end:0x80584100
+	.sdata      start:0x806B1A68 end:0x806B1A70
 	.sbss       start:0x806B4710 end:0x806B4750
 	.sdata2     start:0x806BB4B0 end:0x806BB500
 
@@ -3102,6 +3126,7 @@ Game/Enemy/StringSpider.cpp:
 	.text       start:0x801427AC end:0x80145210
 	.ctors      start:0x8052EB50 end:0x8052EB54
 	.data       start:0x80584ED0 end:0x805850A0
+	.sdata      start:0x806B1A70 end:0x806B1A80
 	.sbss       start:0x806B4830 end:0x806B4868
 	.sdata2     start:0x806BB698 end:0x806BB748
 
@@ -3109,6 +3134,7 @@ Game/Enemy/Takobo.cpp:
 	.text       start:0x80145210 end:0x80146AEC
 	.ctors      start:0x8052EB54 end:0x8052EB58
 	.data       start:0x805850A0 end:0x805852B0
+	.sdata      start:0x806B1A80 end:0x806B1A88
 	.sbss       start:0x806B4868 end:0x806B4898
 	.sdata2     start:0x806BB748 end:0x806BB798
 
@@ -3117,6 +3143,7 @@ Game/Enemy/TakoHei.cpp:
 	.ctors      start:0x8052EB58 end:0x8052EB5C
 	.data       start:0x805852B0 end:0x805855C0
 	.bss        start:0x8060AA00 end:0x8060AA10
+	.sdata      start:0x806B1A88 end:0x806B1A90
 	.sbss       start:0x806B4898 end:0x806B48E0
 	.sdata2     start:0x806BB798 end:0x806BB820
 
@@ -3135,14 +3162,16 @@ Game/Enemy/Teresa.cpp:
 	.text       start:0x80149710 end:0x8014C790
 	.ctors      start:0x8052EB60 end:0x8052EB64
 	.data       start:0x805856C0 end:0x80585A70
+	.sdata      start:0x806B1A90 end:0x806B1A98
 	.sbss       start:0x806B48E8 end:0x806B4938
 	.sdata2     start:0x806BB830 end:0x806BB8D8
 
 Game/Enemy/TeresaWater.cpp:
 	.text       start:0x8014C790 end:0x8014CFE0
 	.ctors      start:0x8052EB64 end:0x8052EB68
-	.rodata     start:0x80532588 end:0x805325B8
+	.rodata     start:0x80532588 end:0x805325A8
 	.data       start:0x80585A70 end:0x80585BB0
+	.sdata      start:0x806B1A98 end:0x806B1AA0
 	.sbss       start:0x806B4938 end:0x806B4948
 	.sdata2     start:0x806BB8D8 end:0x806BB8F8
 
@@ -3168,6 +3197,7 @@ Game/Enemy/WalkerStateBindStarPointer.cpp:
 	.text       start:0x8014FBD0 end:0x8014FEE8
 	.ctors      start:0x8052EB70 end:0x8052EB74
 	.data       start:0x80585F60 end:0x80585FE0
+	.sdata      start:0x806B1AA0 end:0x806B1AA8
 	.sbss       start:0x806B4978 end:0x806B4980
 	.sdata2     start:0x806BB9B8 end:0x806BB9C0
 
@@ -3183,6 +3213,7 @@ Game/Enemy/WalkerStateChase.cpp:
 	.ctors      start:0x8052EB78 end:0x8052EB7C
 	.data       start:0x80586048 end:0x805860A8
 	.bss        start:0x8060AA10 end:0x8060AA28
+	.sdata      start:0x806B1AA8 end:0x806B1AB0
 	.sbss       start:0x806B4988 end:0x806B4990
 	.sdata2     start:0x806BB9D0 end:0x806BB9D8
 
@@ -3207,12 +3238,14 @@ Game/Enemy/WalkerStateRunaway.cpp:
 	.ctors      start:0x8052EB80 end:0x8052EB84
 	.data       start:0x80586140 end:0x805861B8
 	.bss        start:0x8060AA38 end:0x8060AA90
+	.sdata      start:0x806B1AB0 end:0x806B1AB8
 	.sbss       start:0x806B49A0 end:0x806B49B0
 	.sdata2     start:0x806BBA00 end:0x806BBA40
 
 Game/Enemy/WalkerStateStagger.cpp:
 	.text       start:0x80151154 end:0x80151980
 	.ctors      start:0x8052EB84 end:0x8052EB88
+	.rodata     start:0x805325A8 end:0x805325B8
 	.data       start:0x805861B8 end:0x80586230
 	.bss        start:0x8060AA90 end:0x8060AAC0
 	.sbss       start:0x806B49B0 end:0x806B49B8
@@ -3231,6 +3264,7 @@ Game/Enemy/WaterBazooka.cpp:
 	.ctors      start:0x8052EB8C end:0x8052EB90
 	.rodata     start:0x805325B8 end:0x805325C8
 	.data       start:0x80586298 end:0x80586808
+	.sdata      start:0x806B1AB8 end:0x806B1AC0
 	.sbss       start:0x806B49C0 end:0x806B4A00
 	.sdata2     start:0x806BBA88 end:0x806BBAD0
 
@@ -3249,6 +3283,7 @@ Game/GameAudio/AudCameraWatcher.cpp:
 Game/GameAudio/AudStageBgmWrap.cpp:
 	.text       start:0x801550B8 end:0x80155314
 	.rodata     start:0x805325C8 end:0x80532940
+	.data       start:0x80586970 end:0x80586CF8
 
 Game/GameAudio/AudSeKeeper.cpp:
 	.text       start:0x80155314 end:0x801557B4
@@ -3275,7 +3310,8 @@ Game/GameAudio/AudStageBgmTable.cpp:
 
 Game/GameAudio/AudTamakoroBgmCtrl.cpp:
 	.text       start:0x801567FC end:0x80156AD0
-	.sdata      start:0x806B1AC0 end:0x806B1B00
+	.rodata     start:0x80532990 end:0x80532998
+	.sdata      start:0x806B1AC0 end:0x806B1AFC
 
 Game/Gravity/ConeGravity.cpp:
 	.text       start:0x80156AD0 end:0x80157120
@@ -3307,6 +3343,7 @@ Game/Gravity/GraviryFollower.cpp:
 
 Game/Gravity/GravityCreator.cpp:
 	.text       start:0x801591C4 end:0x8015A02C
+	.rodata     start:0x80532998 end:0x805329A8
 	.data       start:0x805875A0 end:0x805876D8
 	.sdata2     start:0x806BBB48 end:0x806BBB58
 
@@ -3360,6 +3397,7 @@ Game/LiveActor/ActorJointCtrl.cpp:
 
 Game/LiveActor/ActorLightCtrl.cpp:
 	.text       start:0x8015C2E0 end:0x8015C8C8
+	.rodata     start:0x805329A8 end:0x805329B0
 
 Game/LiveActor/ActorPadAndCameraCtrl.cpp:
 	.text       start:0x8015C8C8 end:0x8015CF30
@@ -3380,12 +3418,14 @@ Game/LiveActor/AllLiveActorGroup.cpp:
 Game/LiveActor/AnimationRandomPlayer.cpp:
 	.text       start:0x8015D348 end:0x8015D5D8
 	.ctors      start:0x8052EB98 end:0x8052EB9C
+	.rodata     start:0x805329B0 end:0x805329B8
 	.data       start:0x805878B8 end:0x805878E8
 	.sbss       start:0x806B4A10 end:0x806B4A18
 	.sdata2     start:0x806BBBD8 end:0x806BBBE0
 
 Game/LiveActor/Binder.cpp:
 	.text       start:0x8015D5D8 end:0x8015EC2C
+	.rodata     start:0x805329B8 end:0x805329C0
 	.sdata      start:0x806B1B30 end:0x806B1B38
 	.sdata2     start:0x806BBBE0 end:0x806BBBF8
 
@@ -3417,6 +3457,7 @@ Game/LiveActor/DisplayListMaker.cpp:
 
 Game/LiveActor/DynamicJointCtrl.cpp:
 	.text       start:0x801612D8 end:0x801621C0
+	.rodata     start:0x805329C0 end:0x805329C8
 	.data       start:0x80587A38 end:0x80587AE0
 	.sdata      start:0x806B1B48 end:0x806B1B50
 	.sdata2     start:0x806BBC30 end:0x806BBC40
@@ -3429,13 +3470,13 @@ Game/LiveActor/EffectKeeper.cpp:
 
 Game/LiveActor/FaceJointCtrl.cpp:
 	.text       start:0x80163388 end:0x80163808
-	.data       start:0x80587B60 end:0x80587BA8
+	.data       start:0x80587B60 end:0x80587BA0
 	.sdata      start:0x806B1B60 end:0x806B1B68
 	.sdata2     start:0x806BBC48 end:0x806BBC58
 
 Game/LiveActor/FlashingCtrl.cpp:
 	.text       start:0x80163808 end:0x80163B1C
-	.data       start:0x80587BA8 end:0x80587BD0
+	.data       start:0x80587BA0 end:0x80587BD0
 
 Game/LiveActor/HitSensor.cpp:
 	.text       start:0x80163B1C end:0x80163E20
@@ -3635,6 +3676,7 @@ Game/Map/Air.cpp:
 
 Game/Map/BezierRail.cpp:
 	.text       start:0x80171690 end:0x80172820
+	.rodata     start:0x805329C8 end:0x805329E8
 	.data       start:0x80588B10 end:0x80588B20
 	.sdata      start:0x806B1B90 end:0x806B1B98
 	.sdata2     start:0x806BBDC0 end:0x806BBDF8
@@ -3699,7 +3741,7 @@ Game/Map/FileSelectItem.cpp:
 Game/Map/FileSelectModel.cpp:
 	.text       start:0x8017A850 end:0x8017AC3C
 	.ctors      start:0x8052EBB4 end:0x8052EBB8
-	.data       start:0x80589548 end:0x805896C0
+	.data       start:0x80589548 end:0x80589638
 	.sbss       start:0x806B4AA8 end:0x806B4AB8
 	.sdata2     start:0x806BBEF0 end:0x806BBEF8
 
@@ -3707,8 +3749,8 @@ Game/Map/FileSelector.cpp:
 	.text       start:0x8017AC3C end:0x8017F050
 	.ctors      start:0x8052EBB8 end:0x8052EBBC
 	.rodata     start:0x80532A68 end:0x80532AA8
-	.data       start:0x805896C0 end:0x80589EB8
-	.sdata      start:0x806B1BA8 end:0x806B1BE0
+	.data       start:0x80589638 end:0x80589EB8
+	.sdata      start:0x806B1BA8 end:0x806B1BC0
 	.sbss       start:0x806B4AB8 end:0x806B4B78
 	.sdata2     start:0x806BBEF8 end:0x806BBF30
 
@@ -3790,20 +3832,21 @@ Game/Map/KoopaBattleMapPlanet.cpp:
 Game/Map/KoopaBattleMapPlate.cpp:
 	.text       start:0x80186CC4 end:0x80186F84
 	.data       start:0x8058A778 end:0x8058A840
+	.sdata      start:0x806B1BD8 end:0x806B1BE0
 	.sdata2     start:0x806BC0A8 end:0x806BC0C0
 
 Game/Map/KoopaBattleMapStair.cpp:
 	.text       start:0x80186F84 end:0x80187AA8
 	.ctors      start:0x8052EBD0 end:0x8052EBD4
 	.rodata     start:0x80532B98 end:0x80532BE0
-	.data       start:0x8058A840 end:0x8058A9C8
+	.data       start:0x8058A840 end:0x8058A9A0
 	.sbss       start:0x806B4BB8 end:0x806B4BD0
 	.sdata2     start:0x806BC0C0 end:0x806BC0F0
 
 Game/Map/LavaShellTower.cpp:
 	.text       start:0x80187AA8 end:0x80187D10
 	.ctors      start:0x8052EBD4 end:0x8052EBD8
-	.data       start:0x8058A9C8 end:0x8058AA88
+	.data       start:0x8058A9A0 end:0x8058AA88
 	.sbss       start:0x806B4BD0 end:0x806B4BE0
 	.sdata2     start:0x806BC0F0 end:0x806BC0F8
 
@@ -3819,11 +3862,12 @@ Game/Map/LightDataHolder.cpp:
 
 Game/Map/LightDirector.cpp:
 	.text       start:0x801881C0 end:0x80188398
-	.data       start:0x8058AB40 end:0x8058AC20
+	.data       start:0x8058AB40 end:0x8058AB70
 
 Game/Map/LightFunction.cpp:
 	.text       start:0x80188398 end:0x80189120
 	.rodata     start:0x80532BE0 end:0x80532C80
+	.data       start:0x8058AB70 end:0x8058AC08
 	.sdata2     start:0x806BC100 end:0x806BC118
 
 Game/Map/LightPointCtrl.cpp:
@@ -3832,6 +3876,7 @@ Game/Map/LightPointCtrl.cpp:
 
 Game/Map/LightZoneDataHolder.cpp:
 	.text       start:0x801896C0 end:0x801898EC
+	.data       start:0x8058AC08 end:0x8058AC20
 
 Game/Map/NamePosHolder.cpp:
 	.text       start:0x801898EC end:0x80189BF4
@@ -4218,14 +4263,14 @@ Game/MapObj/AstroMapBoard.cpp:
 Game/MapObj/AstroMapObj.cpp:
 	.text       start:0x801AEFF4 end:0x801AFF88
 	.ctors      start:0x8052EC48 end:0x8052EC4C
-	.data       start:0x8058EC40 end:0x8058F040
+	.data       start:0x8058EC40 end:0x8058EFB0
 	.sdata      start:0x806B1D40 end:0x806B1D48
 	.sbss       start:0x806B4E20 end:0x806B4E38
 	.sdata2     start:0x806BC788 end:0x806BC790
 
 Game/MapObj/AstroMapObjFunction.cpp:
 	.text       start:0x801AFF88 end:0x801B0A1C
-	.data       start:0x8058F040 end:0x8058F480
+	.data       start:0x8058EFB0 end:0x8058F480
 	.sdata2     start:0x806BC790 end:0x806BC798
 
 Game/MapObj/AstroOverlookObj.cpp:
@@ -6924,12 +6969,12 @@ Game/Player/MarioCollision.cpp:
 
 Game/Player/MarioConst.cpp:
 	.text       start:0x802D53E4 end:0x802D5408
-	.data       start:0x805C4CE8 end:0x805C5DB8
+	.data       start:0x805C4CE8 end:0x805C5C30
 
 Game/Player/MarioDamage.cpp:
 	.text       start:0x802D5408 end:0x802D85DC
 	.ctors      start:0x8052F0C8 end:0x8052F0CC
-	.data       start:0x805C5DB8 end:0x805C6008
+	.data       start:0x805C5C30 end:0x805C6008
 	.sdata2     start:0x806BFAF8 end:0x806BFB30
 
 Game/Player/MarioDamageParalyze.cpp:
@@ -8350,6 +8395,7 @@ Game/Screen/SceneWipeHolder.cpp:
 
 Game/Screen/ScreenAlphaCapture.cpp:
 	.text       start:0x803805BC end:0x8038093C
+	.rodata     start:0x8053B300 end:0x8053B308
 	.data       start:0x805D92D8 end:0x805D9300
 
 Game/Screen/ScreenBlurEffect.cpp:
@@ -8359,6 +8405,7 @@ Game/Screen/ScreenBlurEffect.cpp:
 
 Game/Screen/ScreenPreserver.cpp:
 	.text       start:0x80381104 end:0x80381304
+	.rodata     start:0x8053B308 end:0x8053B310
 	.data       start:0x805D9338 end:0x805D9368
 	.sdata      start:0x806B2498 end:0x806B24A0
 	.sdata2     start:0x806C1248 end:0x806C1250
@@ -10524,7 +10571,7 @@ JSystem/JAudio2/osdsp.cpp:
 
 JSystem/JAudio2/osdsp_task.cpp:
 	.text       start:0x804987E0 end:0x80498CCC
-	.rodata     start:0x80561A80 end:0x80561B30
+	.rodata     start:0x80561A80 end:0x80561B08
 	.bss        start:0x80664BE0 end:0x80664BF8
 	.sbss       start:0x806B75C0 end:0x806B75C0
 
@@ -10544,7 +10591,7 @@ JSystem/JAudio2/JAISeMgr.cpp:
 	.ctors      start:0x8052F424 end:0x8052F428
 	.data       start:0x805EEEF8 end:0x805EEF48
 	.bss        start:0x80664BF8 end:0x80664C18
-	.sbss       start:0x806B75C0 end:0x806B75E8
+	.sbss       start:0x806B75C0 end:0x806B75D0
 	.sdata2     start:0x806C1FF8 end:0x806C2000
 
 JSystem/JAudio2/JAISeq.cpp:
@@ -10562,9 +10609,11 @@ JSystem/JAudio2/JAISeqMgr.cpp:
 	.ctors      start:0x8052F42C end:0x8052F430
 	.data       start:0x805EEF98 end:0x805EEFC0
 	.bss        start:0x80664C40 end:0x80664C60
+	.sbss       start:0x806B75D0 end:0x806B75D8
 
 JSystem/JAudio2/JAISound.cpp:
 	.text       start:0x8049BA70 end:0x8049C194
+	.rodata     start:0x80561B08 end:0x80561B10
 	.data       start:0x805EEFC0 end:0x805EF030
 	.sdata2     start:0x806C2008 end:0x806C2018
 
@@ -10580,6 +10629,7 @@ JSystem/JAudio2/JAISoundInfo.cpp:
 
 JSystem/JAudio2/JAISoundParams.cpp:
 	.text       start:0x8049C464 end:0x8049C518
+	.rodata     start:0x80561B10 end:0x80561B18
 
 JSystem/JAudio2/JAISoundStarter.cpp:
 	.text       start:0x8049C518 end:0x8049C6BC
@@ -10600,11 +10650,13 @@ JSystem/JAudio2/JAIStreamMgr.cpp:
 	.text       start:0x8049D0A0 end:0x8049D688
 	.ctors      start:0x8052F434 end:0x8052F438
 	.bss        start:0x80664C70 end:0x80664C90
+	.sbss       start:0x806B75D8 end:0x806B75E0
 
 JSystem/JAudio2/JAUAudience.cpp:
 	.text       start:0x8049D688 end:0x8049DB94
 	.ctors      start:0x8052F438 end:0x8052F43C
 	.bss        start:0x80664C90 end:0x80664D38
+	.sbss       start:0x806B75E0 end:0x806B75E8
 	.sdata2     start:0x806C2020 end:0x806C2050
 
 JSystem/JAudio2/JAUAudioArcInterpreter.cpp:
@@ -10627,7 +10679,7 @@ JSystem/JAudio2/JAUInitializer.cpp:
 JSystem/JAudio2/JAUSectionHeap.cpp:
 	.text       start:0x8049E4E8 end:0x804A030C
 	.data       start:0x805EF138 end:0x805EF218
-	.sdata      start:0x806B29F8 end:0x806B2A08
+	.sdata      start:0x806B29F8 end:0x806B2A00
 	.sbss       start:0x806B75E8 end:0x806B75F0
 
 JSystem/JAudio2/JAUSeqCollection.cpp:
@@ -10639,6 +10691,7 @@ JSystem/JAudio2/JAUSeqDataBlockMgr.cpp:
 
 JSystem/JAudio2/JAUSoundAnimator.cpp:
 	.text       start:0x804A0ABC end:0x804A11D0
+	.rodata     start:0x80561B18 end:0x80561B28
 	.data       start:0x805EF230 end:0x805EF248
 	.sdata2     start:0x806C2058 end:0x806C2070
 
@@ -10648,22 +10701,26 @@ JSystem/JAudio2/JAUSoundMgr.cpp:
 
 JSystem/JAudio2/JAUSoundObject.cpp:
 	.text       start:0x804A15D0 end:0x804A1C54
-	.data       start:0x805EF258 end:0x805EF290
+	.data       start:0x805EF258 end:0x805EF280
 
 JSystem/JAudio2/JAUSoundTable.cpp:
 	.text       start:0x804A1C54 end:0x804A215C
+	.data       start:0x805EF280 end:0x805EF290
+	.sdata      start:0x806B2A00 end:0x806B2A08
 
 JSystem/JAudio2/JAUStdSoundInfo.cpp:
 	.text       start:0x804A215C end:0x804A2628
+	.rodata     start:0x80561B28 end:0x80561B30
 	.data       start:0x805EF290 end:0x805EF2E0
 	.sdata2     start:0x806C2070 end:0x806C2080
 
 JSystem/JAudio2/JAUStreamFileTable.cpp:
 	.text       start:0x804A2628 end:0x804A2748
-	.data       start:0x805EF2E0 end:0x805EF330
+	.data       start:0x805EF2E0 end:0x805EF2F0
 
 RVL_SDK/aralt/aralt.c:
 	.text       start:0x804A2748 end:0x804A2B6C
+	.data       start:0x805EF2F0 end:0x805EF330
 	.sdata      start:0x806B2A08 end:0x806B2A10
 	.sbss       start:0x806B75F0 end:0x806B7628
 
@@ -11010,7 +11067,7 @@ RVL_SDK/ai/ai.c:
 	.text       start:0x804CA2E4 end:0x804CA8BC
 	.data       start:0x80600260 end:0x806002A8
 	.sdata      start:0x806B2BA8 end:0x806B2BB0
-	.sbss       start:0x806B79E0 end:0x806B7A20
+	.sbss       start:0x806B79E0 end:0x806B7A10
 
 RVL_SDK/ax/AXAlloc.c:
 	.text       start:0x804CA8BC end:0x804CA9BC
@@ -11018,7 +11075,7 @@ RVL_SDK/ax/AXAlloc.c:
 
 RVL_SDK/ax/AXAux.c:
 	.text       start:0x804CA9BC end:0x804CAA34
-	.sbss       start:0x806B7A20 end:0x806B7A30
+	.sbss       start:0x806B7A10 end:0x806B7A30
 
 RVL_SDK/ax/AXCL.c:
 	.text       start:0x804CAA34 end:0x804CAA64
@@ -11519,10 +11576,11 @@ Runtime/NMWException.cpp:
 
 Runtime/ptmf.c:
 	.text       start:0x80518844 end:0x805188D8
-	.rodata     start:0x805621F0 end:0x80562218
+	.rodata     start:0x805621F0 end:0x80562200
 
 Runtime/runtime.c:
 	.text       start:0x805188D8 end:0x80519034
+	.rodata     start:0x80562200 end:0x80562218
 
 Runtime/__init_cpp_exceptions.cpp:
 	.text       start:0x80519034 end:0x805190A4
@@ -11537,12 +11595,13 @@ Runtime/Gecko_ExceptionPPC.cpp:
 
 Runtime/GCN_mem_alloc.c:
 	.text       start:0x80519108 end:0x805191C0
-	.rodata     start:0x80562218 end:0x805622A0
+	.rodata     start:0x80562218 end:0x80562288
 
 MSL_C/alloc.c:
 	extab       start:0x800067C8 end:0x800067E0
 	extabindex  start:0x80006DCC end:0x80006DF0
 	.text       start:0x805191C0 end:0x805196D4
+	.rodata     start:0x80562288 end:0x805622A0
 
 MSL_C/ansi_files.c:
 	extab       start:0x800067E0 end:0x800067F0
@@ -11612,7 +11671,7 @@ MSL_C/printf.c:
 	extab       start:0x80006880 end:0x800068E8
 	extabindex  start:0x80006EE0 end:0x80006F7C
 	.text       start:0x8051C1E8 end:0x8051E674
-	.rodata     start:0x80562888 end:0x805628E0
+	.rodata     start:0x80562888 end:0x805628B8
 	.data       start:0x80609BC8 end:0x80609E18
 	.sdata      start:0x806B2E38 end:0x806B2E40
 
@@ -11623,6 +11682,7 @@ MSL_C/scanf.c:
 	extab       start:0x800068E8 end:0x80006900
 	extabindex  start:0x80006F7C end:0x80006FA0
 	.text       start:0x8051E674 end:0x8051FBE0
+	.rodata     start:0x805628B8 end:0x805628E0
 	.data       start:0x80609E18 end:0x80609F38
 
 MSL_C/signal.c:
@@ -11853,17 +11913,20 @@ MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
 	.text       start:0x8052AEDC end:0x8052AF14
 
 MetroTRK/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
-	.init       start:0x8000446C end:0x80006420
+	.init       start:0x8000446C end:0x800044C0
 	.text       start:0x8052AF14 end:0x8052AFCC
 
 MetroTRK/debugger/embedded/MetroTRK/Portable/string_TRK.c:
 	.text       start:0x8052AFCC end:0x8052AFE8
 
 MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
-	.text       start:0x8052AFE8 end:0x8052CA20
+	.text       start:0x8052AFE8 end:0x8052CA00
 	.rodata     start:0x80563288 end:0x80563310
 	.data       start:0x8060A310 end:0x8060A340
 	.bss        start:0x806B0B60 end:0x806B10E0
+
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s:
+	.text       start:0x8052CA00 end:0x8052CA20
 
 MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 	.text       start:0x8052CA20 end:0x8052CD90
@@ -11872,6 +11935,7 @@ MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c:
 	.text       start:0x8052CD90 end:0x8052CF08
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
+	.init       start:0x800063F4 end:0x80006420
 	.text       start:0x8052CF08 end:0x8052D224
 	.data       start:0x8060A340 end:0x8060A380
 	.bss        start:0x806B10E0 end:0x806B10E8
@@ -11884,13 +11948,14 @@ MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk_glue.c:
 	.text       start:0x8052D268 end:0x8052D728
 	.rodata     start:0x80563310 end:0x80563418
 	.data       start:0x8060A380 end:0x8060A3A8
-	.bss        start:0x806B10F0 end:0x806B1100
+	.bss        start:0x806B10F0 end:0x806B10F8
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/targcont.c:
 	.text       start:0x8052D728 end:0x8052D75C
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/target_options.c:
 	.text       start:0x8052D75C end:0x8052D778
+	.bss        start:0x806B10F8 end:0x806B1100
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/UDP_Stubs.c:
 	.text       start:0x8052D778 end:0x8052D7C0

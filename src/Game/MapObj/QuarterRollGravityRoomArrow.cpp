@@ -1,9 +1,8 @@
 #include "Game/MapObj/QuarterRollGravityRoomArrow.hpp"
-#include "Game/LiveActor/Spine.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
 namespace NrvQuarterRollGravityRoomArrow {

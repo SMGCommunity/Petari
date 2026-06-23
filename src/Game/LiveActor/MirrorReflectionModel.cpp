@@ -1,5 +1,9 @@
 #include "Game/LiveActor/MirrorReflectionModel.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 MirrorReflectionModel::MirrorReflectionModel(const LiveActor* pActor, const char* pName, const char* pInternalName, MtxPtr mtx) : LiveActor(pName) {
     _8C = pActor;

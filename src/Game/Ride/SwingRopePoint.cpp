@@ -1,6 +1,12 @@
 #include "Game/Ride/SwingRopePoint.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+void SwingRopePoint_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 SwingRopePoint::SwingRopePoint(const TVec3f& rPos)
     : mPosition(rPos), mVelocity(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f) {
 }

@@ -7,9 +7,15 @@ class JAISoundHandle;
 
 class AudBgmMgr {
 public:
+    enum BgmType {
+        BgmType_Stage = 0,
+        BgmType_Sub = 1,
+    };
+
     /// @brief Creates a new `AudBgmMgr`.
     AudBgmMgr();
 
+    ~AudBgmMgr() {};
     void movement();
     JAISoundHandle* start(s32, u32, bool);
     void setNextBGM(s32, u32);
@@ -26,11 +32,11 @@ public:
     void setBgmToRhythmDominant(s32);
     void stopRhythmProcess(s32);
 
-    /* 0x000 */ AudBgm* _0[2];
+    /* 0x000 */ AudBgm* mBgm[2];
     /* 0x008 */ u32 mNextBGM[2];
-    /* 0x010 */ u32 _10[2];
+    /* 0x010 */ u32 mCurrentBGM[2];
     /* 0x018 */ u32 mLastBGM[2];
     /* 0x020 */ AudBgmKeeper mKeeper;
     /* 0x7DC */ AudBgmVolumeController mVolumeController[2];
-    /* 0x8FC */ u8 _8FC;
+    /* 0x8FC */ bool _8FC;
 };

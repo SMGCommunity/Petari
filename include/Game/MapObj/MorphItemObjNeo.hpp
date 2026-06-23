@@ -1,10 +1,8 @@
 #pragma once
 
 #include "Game/Effect/SimpleEffectObj.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class NameObjArchiveListCollector;
-class JMapInfoIter;
 
 class MorphItemObjNeo : public NameObj {
 public:

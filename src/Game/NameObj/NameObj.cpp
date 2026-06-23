@@ -1,7 +1,7 @@
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjRegister.hpp"
 #include "Game/Scene/SceneNameObjMovementController.hpp"
-#include "Game/SingletonHolder.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 
 #define FLAG_MOVEMENT_OFF 1u
 #define FLAG_SUSPEND 2u
@@ -33,11 +33,7 @@ void NameObj::calcViewAndEntry() {
 }
 
 void NameObj::initWithoutIter() {
-    JMapInfoIter iter;
-    iter.mInfo = nullptr;
-    iter.mIndex = -1;
-
-    init(iter);
+    init(JMapInfoIter());
 }
 
 void NameObj::setName(const char* pName) {

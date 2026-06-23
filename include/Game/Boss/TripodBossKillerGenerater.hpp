@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Boss/TripodBossFixPartsBase.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
 
 class HomingKiller;
 
@@ -13,6 +12,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+
     virtual void calcTripodLocalMatrix(TPos3f*);
     virtual void activateTripodBoss();
 
@@ -26,6 +26,9 @@ public:
     bool tryBreak();
     bool tryAbort();
     bool requestBreak();
+
+    void exeNonActive();
+    void exeHide();
     void exeShowDemo();
     void exeReady();
     void exeShootSetting();
@@ -34,13 +37,11 @@ public:
     void exeStop();
     void exeRestart();
     void exeBreak();
-    inline void exeHide();
-    inline void exeNonActive();
 
-    TPos3f _E4;
-    HomingKiller* mKiller;  // 0x114
-    f32 _118;
-    s32 mActiveLabel;    // 0x11C
-    bool mHasCollision;  // 0x120
-    u8 _121;
+    /* 0x0E4 */ TPos3f _E4;
+    /* 0x114 */ HomingKiller* mKiller;
+    /* 0x118 */ f32 _118;
+    /* 0x11C */ s32 mActiveLabel;
+    /* 0x120 */ bool mHasCollision;
+    /* 0x121 */ u8 _121;
 };

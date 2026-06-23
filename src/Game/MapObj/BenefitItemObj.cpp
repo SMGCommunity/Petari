@@ -1,5 +1,8 @@
 #include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/LiveActor/FlashingCtrl.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 
 s16 def = 600;
@@ -324,11 +327,11 @@ void BenefitItemObj::appearThrowUp() {
     setNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance);
 
     if (!_DD) {
-        f32 speed = cAppearThrowUpSpd;
+        f32 speed = ::cAppearThrowUpSpd;
         mVelocity = MR::createVecAndScale(rotated_axis, speed);
     }
     else {
-        f32 speed = cAppearThrowUpSpd2;
+        f32 speed = ::cAppearThrowUpSpd2;
         mVelocity = MR::createVecAndScale(rotated_axis, speed);
     }
 
@@ -426,7 +429,7 @@ void BenefitItemObj::doRotateY() {
     if (isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance)) {
         _EC = 0.0f;
     } else {
-        _EC = (f32)fmod((6.2831855f + ((_EC + cSpdRotateY) - zero)), 6.283185482025146) + zero;
+        _EC = (f32)fmod((6.2831855f + ((_EC + ::cSpdRotateY) - zero)), 6.283185482025146) + zero;
     }
 }
 
@@ -454,14 +457,14 @@ void BenefitItemObj::exeShoot() {
     }
     else {
         gravity = v2;
-        gravity += cGravity;
+        gravity += ::cGravity;
         if (getNerveStep() == 60) {
             MR::validateHitSensors(this);
         }
 
         if (MR::isBindedWall(this)) {
             v4 = MR::vecKillElement(v9, *MR::getWallNormal(this), &v9);
-            reflect = cReflectWallX;
+            reflect = ::cReflectWallX;
             v9 -= MR::createVecAndScale(MR::createVecAndScale(*MR::getWallNormal(this), v4), reflect);
         }
 

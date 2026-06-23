@@ -1,14 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class J3DMaterial;
 class J3DShape;
 class J3DShapeDraw;
-
-namespace MR {
-    class FunctorBase;
-};  // namespace MR
 
 class PlantLeaf : public LiveActor {
 public:

@@ -1,14 +1,15 @@
 #include "Game/MapObj/Rock.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/RockCreator.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -17,7 +18,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <math_types.hpp>
 
@@ -70,9 +70,9 @@ namespace NrvRock {
 
 Rock::Rock(f32 moveSpeed, const char* pName)
     : LiveActor(pName), mCreator(nullptr), mRockType(NormalRock), mBreakModel(nullptr), mMoveSpeed(moveSpeed), mBreakModelOnRailGoal(false),
-      mSlowDownOnAttack(false), mAppearPos(gZeroVec), mRadius(cBinderRadius), mRotateSpeed(0.0f), mFallVelocity(gZeroVec), mCurrentRailPoint(-1),
-      mGravityRate(cGravity), mPrevPos(gZeroVec), mFront(0.0f, 0.0f, 1.0f), mAirTime(0), mIsNormalGravity(false), mWanwanVoiceTimer(0),
-      mFreezeTime(0), mFreezePos(gZeroVec), mUnfreezeNerve(nullptr), mInvalidBindTime(0), mAppearTime(cAppearMoveFrameRock), mAppearAngle(0.0f),
+      mSlowDownOnAttack(false), mAppearPos(gZeroVec), mRadius(::cBinderRadius), mRotateSpeed(0.0f), mFallVelocity(gZeroVec), mCurrentRailPoint(-1),
+      mGravityRate(::cGravity), mPrevPos(gZeroVec), mFront(0.0f, 0.0f, 1.0f), mAirTime(0), mIsNormalGravity(false), mWanwanVoiceTimer(0),
+      mFreezeTime(0), mFreezePos(gZeroVec), mUnfreezeNerve(nullptr), mInvalidBindTime(0), mAppearTime(::cAppearMoveFrameRock), mAppearAngle(0.0f),
       mRollSoundTimer(0), mSlowDownTimer(0) {
     mBaseMtx.identity();
 }
@@ -97,7 +97,7 @@ void Rock::init(const JMapInfoIter& rIter) {
             break;
         }
 
-        mAppearTime = cAppearMoveFrame;
+        mAppearTime = ::cAppearMoveFrame;
     }
 
     initMapToolInfo(rIter);
@@ -113,15 +113,15 @@ void Rock::init(const JMapInfoIter& rIter) {
     offset.x = 0.0f;
     offset.y = 0.0f;
     offset.z = 0.0f;
-    MR::initStarPointerTarget(this, cStarWandRadius3d * getRadius(), offset);
+    MR::initStarPointerTarget(this, ::cStarWandRadius3d * getRadius(), offset);
     initSound(5, false);
 
     f32 shadowDrop;
     if (MR::getJMapInfoArg4NoInit(rIter, &shadowDrop)) {
-        MR::initShadowVolumeCylinder(this, cBinderRadius * getRadius());
+        MR::initShadowVolumeCylinder(this, ::cBinderRadius * getRadius());
         MR::setShadowDropLength(this, nullptr, shadowDrop);
     } else {
-        MR::initShadowVolumeSphere(this, cBinderRadius * getRadius());
+        MR::initShadowVolumeSphere(this, ::cBinderRadius * getRadius());
     }
 
     initNerve(&NrvRock::RockNrvAppear::sInstance);
@@ -131,7 +131,7 @@ void Rock::init(const JMapInfoIter& rIter) {
 void Rock::appear() {
     mFallVelocity.zero();
     mAirTime = 0;
-    mGravityRate = cGravity;
+    mGravityRate = ::cGravity;
     mCurrentRailPoint = -1;
     mInvalidBindTime = 0;
     mPosition.set(mAppearPos);
@@ -178,7 +178,7 @@ void Rock::kill() {
 }
 
 s32 Rock::getAppearFrame() {
-    return cAppearMoveFrame + cAppearRumbleFrame + cAppearStopFrame;
+    return ::cAppearMoveFrame + ::cAppearRumbleFrame + ::cAppearStopFrame;
 }
 
 Rock::Type Rock::getType(const JMapInfoIter& rIter) {
@@ -198,7 +198,7 @@ Rock::Type Rock::getType(const JMapInfoIter& rIter) {
 }
 
 s32 Rock::getAppearStarPieceNum(Type type) {
-    return (type == WanwanRollingMini) ? cStarPieceNumWanwanMini : cStarPieceNum;
+    return (type == WanwanRollingMini) ? ::cStarPieceNumWanwanMini : ::cStarPieceNum;
 }
 
 bool Rock::isMoveEnabled() const {
@@ -241,7 +241,7 @@ void Rock::control() {
         MR::showModel(this);
         if (updateFront) {
             TVec3f v2(mFront);
-            MR::turnVecToVecCos(&mFront, v2, front, cRotateCosineMax, mGravity, 0.02f);
+            MR::turnVecToVecCos(&mFront, v2, front, ::cRotateCosineMax, mGravity, 0.02f);
         }
     }
 
@@ -307,7 +307,7 @@ void Rock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (!isNerve(&NrvRock::RockNrvFreeze::sInstance) && !isNerve(&NrvRock::RockNrvAppear::sInstance)) {
             if (MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
                 if (mSlowDownOnAttack && isNerve(&NrvRock::RockNrvMove::sInstance)) {
-                    mSlowDownTimer = cSlowMoveFrame;
+                    mSlowDownTimer = ::cSlowMoveFrame;
                 }
                 rumblePadAndCamera();
                 return;
@@ -387,8 +387,8 @@ void Rock::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     mAppearPos.set(mPosition);
 
-    mRadius = getRadius() * cBinderRadius;
-    mRotateSpeed = (mMoveSpeed * 180.0f * cRotateSpeedRate) / (PI * mRadius);  // regswap
+    mRadius = getRadius() * ::cBinderRadius;
+    mRotateSpeed = (mMoveSpeed * 180.0f * ::cRotateSpeedRate) / (PI * mRadius);  // regswap
 
     MR::getJMapInfoArg3NoInit(rIter, &mAppearTime);
     if (mRockType == NormalRock) {
@@ -451,11 +451,11 @@ void Rock::initSensor() {
         sensorType = ATYPE_WANWAN;
     }
 
-    MR::addHitSensor(this, "body", sensorType, 16, cSensorRadius * getRadius(), TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "body", sensorType, 16, ::cSensorRadius * getRadius(), TVec3f(0.0f, 0.0f, 0.0f));
 
     if (mRockType == NormalRock) {
-        MR::addHitSensor(this, "weak", sensorType, 16, cWeakSensorRadius * getRadius(),
-                         static_cast< TVec3f >(cWeakSensorOffset).scaleInline(getRadius()));
+        MR::addHitSensor(this, "weak", sensorType, 16, ::cWeakSensorRadius * getRadius(),
+                         static_cast< TVec3f >(::cWeakSensorOffset).scaleInline(getRadius()));
     }
 }
 
@@ -473,7 +473,7 @@ void Rock::initEffect() {
 bool Rock::isBreakByWall() const {
     if (MR::isBindedWall(this)) {
         const TVec3f& dir = MR::getRailDirection(this);
-        return dir.dot(*MR::getWallNormal(this)) < cWallBreakDot;
+        return dir.dot(*MR::getWallNormal(this)) < ::cWallBreakDot;
     }
 
     return false;
@@ -494,7 +494,7 @@ bool Rock::move(f32 speed) {
 
         if (pntArg >= 0) {
             mIsNormalGravity = false;
-            mGravityRate = cWeakGravity;
+            mGravityRate = ::cWeakGravity;
         }
 
         MR::getCurrentRailPointArg1WithInit(this, &pntArg);
@@ -528,7 +528,7 @@ bool Rock::isInClippingRange() const {
         return true;
     }
 
-    if (MR::isJudgedToNearClip(mPosition, (cNearClipDistance * getRadius()))) {
+    if (MR::isJudgedToNearClip(mPosition, (::cNearClipDistance * getRadius()))) {
         return true;
     }
 
@@ -537,8 +537,8 @@ bool Rock::isInClippingRange() const {
 
 void Rock::startSoundWanwanVoice() {
     if (mRockType != NormalRock) {
-        if (mWanwanVoiceTimer >= cSeWanwanVoiceInterval) {
-            if (MR::calcDistanceToPlayer(this) <= cSeWanwanVoiceDistance) {
+        if (mWanwanVoiceTimer >= ::cSeWanwanVoiceInterval) {
+            if (MR::calcDistanceToPlayer(this) <= ::cSeWanwanVoiceDistance) {
                 if (mRockType == WanwanRollingMini) {
                     MR::startSound(this, "SE_EV_WANWANROLLMINI_WANWAN");
                 } else {
@@ -555,7 +555,7 @@ void Rock::startSoundWanwanVoice() {
 
 void Rock::startRollLevelSound(bool resetTimer) {
     if (resetTimer) {
-        mRollSoundTimer = cRollSoundTime;
+        mRollSoundTimer = ::cRollSoundTime;
     }
 
     if (mRollSoundTimer > 0) {
@@ -614,12 +614,12 @@ void Rock::setBtkForEnvironmentMap(LiveActor* pActor, const char* pBtkName) {
 }
 
 void Rock::rumblePadAndCamera() {
-    MR::startRumbleWithShakeCameraWeak(this, "強", "中", cRumbleDistance, cRumbleDistance * 2);
+    MR::startRumbleWithShakeCameraWeak(this, "強", "中", ::cRumbleDistance, ::cRumbleDistance * 2);
 
     f32 dist = MR::calcDistanceToPlayer(this);
-    if (dist < cRumbleDistance) {
+    if (dist < ::cRumbleDistance) {
         MR::shakeCameraNormal();
-    } else if (dist < cRumbleDistance * 2) {
+    } else if (dist < ::cRumbleDistance * 2) {
         MR::shakeCameraWeak();
     }
 }
@@ -689,8 +689,8 @@ void Rock::exeAppear() {
     // FIXME: float regswaps and swapped load order near beginning
     // https://decomp.me/scratch/gOOpa
 
-    f32 rotateSpeed = (cAppearMoveSpeed * 180.0f * cRotateSpeedRate) / (PI * mRadius);
-    s32 spawnDelay = mRockType == NormalRock ? cAppearStopFrameRock : cAppearStopFrame;
+    f32 rotateSpeed = (::cAppearMoveSpeed * 180.0f * ::cRotateSpeedRate) / (PI * mRadius);
+    s32 spawnDelay = mRockType == NormalRock ? ::cAppearStopFrameRock : ::cAppearStopFrame;
 
     if (MR::isFirstStep(this)) {
         mAppearAngle = mRockType == WanwanRollingMini ? MR::getRandomDegree() : 0.0f;
@@ -699,7 +699,7 @@ void Rock::exeAppear() {
     }
 
     if (MR::isLessStep(this, mAppearTime)) {
-        moveOnRail(cAppearMoveSpeed, rotateSpeed, false);
+        moveOnRail(::cAppearMoveSpeed, rotateSpeed, false);
         if (mRockType != NormalRock) {
             MR::startLevelSound(this, "SE_EM_LV_WANWANROLL_STANDBY");
         }
@@ -709,15 +709,15 @@ void Rock::exeAppear() {
         MR::startSound(this, "SE_EM_WANWANROLL_STANDBY_END");
     }
 
-    if (MR::isGreaterStep(this, mAppearTime) && MR::isLessStep(this, mAppearTime + cAppearRumbleFrame)) {
+    if (MR::isGreaterStep(this, mAppearTime) && MR::isLessStep(this, mAppearTime + ::cAppearRumbleFrame)) {
         s32 step = getNerveStep() - mAppearTime;
-        f32 f1 = MR::sinDegree(MR::repeatDegree(step * cAppearRumbleSpeed));
-        f32 f2 = (cAppearRumbleFrame - step) * (f1 * cAppearRumbleAngle) / cAppearRumbleFrame;
+        f32 f1 = MR::sinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
+        f32 f2 = (::cAppearRumbleFrame - step) * (f1 * ::cAppearRumbleAngle) / ::cAppearRumbleFrame;
         mRotation.x = f2;
         updateRotateX(f2 + mAppearAngle);
     }
 
-    if (MR::isStep(this, spawnDelay + mAppearTime + cAppearRumbleFrame)) {
+    if (MR::isStep(this, spawnDelay + mAppearTime + ::cAppearRumbleFrame)) {
         setNerve(&NrvRock::RockNrvAppearMoveInvalidBind::sInstance);
     }
 }
@@ -741,7 +741,7 @@ void Rock::exeAppearMoveInvalidBind() {
     moveOnRail(mMoveSpeed, mRotateSpeed, isInvalid);
     mInvalidBindTime++;
 
-    if (!isInvalid && mInvalidBindTime > cAppearInvalidBindFrame) {
+    if (!isInvalid && mInvalidBindTime > ::cAppearInvalidBindFrame) {
         MR::onBind(this);
         setNerve(&NrvRock::RockNrvMove::sInstance);
     }
@@ -764,7 +764,7 @@ void Rock::exeMove() {
             }
         }
 
-        if (mAirTime >= cNoBindJudgeFrame) {
+        if (mAirTime >= ::cNoBindJudgeFrame) {
             if (!MR::isHiddenModel(this)) {
                 MR::emitEffect(this, "Land");
                 rumblePadAndCamera();
@@ -778,7 +778,7 @@ void Rock::exeMove() {
         }
         mAirTime = 0;
     } else {
-        if (mAirTime < cNoBindJudgeFrame) {
+        if (mAirTime < ::cNoBindJudgeFrame) {
             mAirTime++;
         } else {
             MR::deleteEffect(this, "Smoke");
@@ -789,8 +789,8 @@ void Rock::exeMove() {
     startSoundWanwanVoice();
 
     if (MR::isOnGround(this)) {
-        if (mIsNormalGravity && mGravityRate != cGravity) {
-            mGravityRate = cGravity;
+        if (mIsNormalGravity && mGravityRate != ::cGravity) {
+            mGravityRate = ::cGravity;
         }
     } else {
         if (!mIsNormalGravity) {
@@ -813,17 +813,17 @@ void Rock::exeMove() {
 
     f32 moveSpeed = mMoveSpeed;
     if (mSlowDownTimer > 0) {
-        moveSpeed = MR::getEaseOutValue(mSlowDownTimer, moveSpeed, 0.0f, cSlowMoveFrame);
+        moveSpeed = MR::getEaseOutValue(mSlowDownTimer, moveSpeed, 0.0f, ::cSlowMoveFrame);
         mSlowDownTimer--;
     }
 
     move(moveSpeed);
 
     f32 rotateSpeed = mRotateSpeed * moveSpeed / mMoveSpeed;
-    if (mSlowDownTimer > cSlowMoveFrame - cSlowMoveRumbleFrame) {
-        s32 step = cSlowMoveFrame - mSlowDownTimer;
-        f32 f1 = MR::sinDegree(MR::repeatDegree(step * cAppearRumbleSpeed));
-        rotateSpeed += (cSlowMoveRumbleFrame - step) * (f1 * cAppearRumbleAngle) / cSlowMoveRumbleFrame;
+    if (mSlowDownTimer > ::cSlowMoveFrame - ::cSlowMoveRumbleFrame) {
+        s32 step = ::cSlowMoveFrame - mSlowDownTimer;
+        f32 f1 = MR::sinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
+        rotateSpeed += (::cSlowMoveRumbleFrame - step) * (f1 * ::cAppearRumbleAngle) / ::cSlowMoveRumbleFrame;
     }
     updateRotateX(mRotation.x + rotateSpeed);
 
@@ -916,8 +916,8 @@ void Rock::exeBreak() {
     }
 
     if (mRockType == WanwanRollingGold) {
-        MR::stopSceneAtStep(this, cBreakStopStep, cBreakStopFrame);
-        if (MR::isStep(this, cAppearPowerStarStep)) {
+        MR::stopSceneAtStep(this, ::cBreakStopStep, ::cBreakStopFrame);
+        if (MR::isStep(this, ::cAppearPowerStarStep)) {
             MR::requestAppearPowerStar(this, mBreakModel->mPosition);
         }
     }
@@ -944,9 +944,9 @@ void Rock::exeFreeze() {
     mFreezeTime++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 f1 = MR::cosDegree(MR::repeatDegree(mFreezeTime * cFreezeRumbleSpeed));
-    s32 step = cFreezeFrame - getNerveStep();
-    f32 f2 = step * (f1 * cFreezeRumbleWidth) / cFreezeFrame;
+    f32 f1 = MR::cosDegree(MR::repeatDegree(mFreezeTime * ::cFreezeRumbleSpeed));
+    s32 step = ::cFreezeFrame - getNerveStep();
+    f32 f2 = step * (f1 * ::cFreezeRumbleWidth) / ::cFreezeFrame;
     TVec3f v1;
     v1.set(MR::getCamXdir());
     v1.scale(f2);
@@ -957,7 +957,7 @@ void Rock::exeFreeze() {
         return;
     }
 
-    if (MR::isStep(this, cFreezeFrame)) {
+    if (MR::isStep(this, ::cFreezeFrame)) {
         mPosition.set(mFreezePos);
         MR::deleteEffect(this, getTouchEffect());
         setNerve(mUnfreezeNerve);

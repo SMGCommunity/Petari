@@ -2,6 +2,21 @@
 #include "Game/Enemy/JumpGuarder.hpp"
 #include "Game/Enemy/RingBeam.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvJumpBeamer {
     NEW_NERVE(JumpBeamerNrvHide, JumpBeamer, Hide);
@@ -56,7 +71,7 @@ void JumpBeamer::init(const JMapInfoIter& rIter) {
     MR::invalidateClipping(this);
     initNerve(&NrvJumpBeamer::JumpBeamerNrvHide::sInstance);
     MR::startBckWithInterpole(this, "Down", 0);
-    MR::setBckFrame(this, MR::getBckCtrl(this)->mEnd - 1);
+    MR::setBckFrame(this, MR::getBckCtrl(this)->getEnd() - 1);
     MR::calcAnimDirect(this);
     _8C = MR::getJointMtx(this, "Top");
     MR::useStageSwitchReadA(this, rIter);
@@ -172,7 +187,7 @@ void JumpBeamer::exeUp() {
         MR::validateShadow(this, nullptr);
     }
 
-    s16 end = MR::getBckCtrl(this)->mEnd;
+    s16 end = MR::getBckCtrl(this)->getEnd();
     f32 frame = MR::getBckFrame(this);
     MR::setShadowVolumeSphereRadius(this, nullptr, (110.0f + (30.0f * (frame / (end)))));
 
@@ -206,7 +221,7 @@ void JumpBeamer::exeDown() {
         MR::startSound(this, "SE_EM_JGUARDER_HIDE");
     }
 
-    s16 end = MR::getBckCtrl(this)->mEnd;
+    s16 end = MR::getBckCtrl(this)->getEnd();
     f32 frame = MR::getBckFrame(this);
     MR::setShadowVolumeSphereRadius(this, nullptr, (110.0f + (30.0f * (1.0f - frame / (end)))));
     if (MR::isBckStopped(this)) {

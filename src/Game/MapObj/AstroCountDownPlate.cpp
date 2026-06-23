@@ -1,6 +1,16 @@
 #include "Game/MapObj/AstroCountDownPlate.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DTevs.hpp>
 
 namespace NrvAstroCountDownPlate {
@@ -30,13 +40,13 @@ void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
     initSound(2, false);
     MR::invalidateClipping(this);
 
-    if (MR::tryRegisterDemoCast(this, cStartCountDownDemoName, rIter)) {
-        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &AstroCountDownPlate::startDemoStartCountDown), cStartCountDownDemoName,
+    if (MR::tryRegisterDemoCast(this, ::cStartCountDownDemoName, rIter)) {
+        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &AstroCountDownPlate::startDemoStartCountDown), ::cStartCountDownDemoName,
                                                nullptr);
     }
 
-    if (MR::tryRegisterDemoCast(this, cLastBattleDemoName, rIter)) {
-        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &AstroCountDownPlate::startDemoLastBattle), cLastBattleDemoName, nullptr);
+    if (MR::tryRegisterDemoCast(this, ::cLastBattleDemoName, rIter)) {
+        MR::tryRegisterDemoActionFunctorDirect(this, MR::Functor(this, &AstroCountDownPlate::startDemoLastBattle), ::cLastBattleDemoName, nullptr);
     }
 
     MR::registerDemoSimpleCastAll(this);
@@ -58,8 +68,8 @@ void AstroCountDownPlate::exeWait() {
 
 void AstroCountDownPlate::exeRevival() {
     if (MR::isFirstStep(this)) {
-        MR::showMaterial(this, cMaterialName01);
-        MR::showMaterial(this, cMaterialName10);
+        MR::showMaterial(this, ::cMaterialName01);
+        MR::showMaterial(this, ::cMaterialName10);
         MR::tryStartAllAnim(this, "Revival");
         MR::emitEffect(this, "Light");
         _1B4 = 1;
@@ -76,8 +86,8 @@ void AstroCountDownPlate::exeRevival() {
 
 void AstroCountDownPlate::exeCountToZero() {
     if (MR::isFirstStep(this)) {
-        MR::showMaterial(this, cMaterialName01);
-        MR::showMaterial(this, cMaterialName10);
+        MR::showMaterial(this, ::cMaterialName01);
+        MR::showMaterial(this, ::cMaterialName10);
         MR::startSound(this, "SE_OJ_CDN_PLATE_ONE_TO_ZERO");
     }
 
@@ -95,8 +105,8 @@ void AstroCountDownPlate::exeCountToZero() {
 }
 
 void AstroCountDownPlate::initTextureAtNumLeftStar() {
-    MR::initDLMakerTexMtx(this, cMaterialName01)->setTexMtx(0, &_8C);
-    MR::initDLMakerTexMtx(this, cMaterialName10)->setTexMtx(0, &_120);
+    MR::initDLMakerTexMtx(this, ::cMaterialName01)->setTexMtx(0, &_8C);
+    MR::initDLMakerTexMtx(this, ::cMaterialName10)->setTexMtx(0, &_120);
     setNumLeftStar();
 }
 
@@ -119,11 +129,11 @@ void AstroCountDownPlate::selectNrvWait() {
 
 void AstroCountDownPlate::setupStateWait() {
     if (isNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvDead::sInstance)) {
-        MR::hideMaterial(this, cMaterialName01);
-        MR::hideMaterial(this, cMaterialName10);
+        MR::hideMaterial(this, ::cMaterialName01);
+        MR::hideMaterial(this, ::cMaterialName10);
     } else {
-        MR::showMaterial(this, cMaterialName01);
-        MR::showMaterial(this, cMaterialName10);
+        MR::showMaterial(this, ::cMaterialName01);
+        MR::showMaterial(this, ::cMaterialName10);
         if (!MR::isOnGameEventFlagViewNormalEnding()) {
             MR::startBrk(this, "Red");
         } else {

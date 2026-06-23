@@ -1,5 +1,4 @@
 #include "Game/Screen/StaffRoll.hpp"
-#include "Game/Camera/CameraContext.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/InformationMessage.hpp"
@@ -118,9 +117,9 @@ StaffRollLine::StaffRollLine(const char* pName) : LayoutActor(pName, true), mPos
 
 void StaffRollLine::init(const JMapInfoIter& rIter) {
     initLayoutManager("StaffRoll", 1);
-    MR::createAndAddPaneCtrl(this, cPaneNameText, 1);
-    MR::setFollowPos(&mPosition, this, cPaneNameText);
-    MR::setPaneScale(this, ::getStaffRollParam()->mPaneScale, ::getStaffRollParam()->mPaneScale, cPaneNameText);
+    MR::createAndAddPaneCtrl(this, ::cPaneNameText, 1);
+    MR::setFollowPos(&mPosition, this, ::cPaneNameText);
+    MR::setPaneScale(this, ::getStaffRollParam()->mPaneScale, ::getStaffRollParam()->mPaneScale, ::cPaneNameText);
     initNerve(&NrvStaffRollLine::StaffRollLineNrvScroll::sInstance);
     kill();
 }
@@ -162,11 +161,12 @@ void StaffRollPicture::init(const JMapInfoIter& rIter) {
 }
 
 void StaffRollPicture::exeWork() {
-    for (u32 i = 0; i < ARRAY_SIZE(sPictureTimingTable); i++) {
-        const PictureTiming* pPictureTiming = &sPictureTimingTable[i];
+    for (u32 i = 0; i < ARRAY_SIZE(::sPictureTimingTable); i++) {
+        const PictureTiming* pPictureTiming = &::sPictureTimingTable[i];
 
         if (MR::isStep(this, pPictureTiming->mAppearStep)) {
-            startPictureAction(pPictureTiming->mReplaceTextureId, cPaneNameTable[pPictureTiming->mPaneId], cAnimNameTable[pPictureTiming->mAnimId]);
+            startPictureAction(pPictureTiming->mReplaceTextureId, ::cPaneNameTable[pPictureTiming->mPaneId],
+                               ::cAnimNameTable[pPictureTiming->mAnimId]);
         }
     }
 }
@@ -178,14 +178,14 @@ void StaffRollPicture::initReplaceTexture() {
     mReplaceTexture = new nw4r::lyt::TexMap*[PICTURE_TEXTURE_NUM];
 
     if (MR::isStarCompleteAllGalaxy()) {
-        pReplaceTexturePrefix = cReplaceTexturePrefixComp;
+        pReplaceTexturePrefix = ::cReplaceTexturePrefixComp;
     } else {
-        pReplaceTexturePrefix = cReplaceTexturePrefixHalf;
+        pReplaceTexturePrefix = ::cReplaceTexturePrefixHalf;
     }
 
     for (s32 i = 0; i < PICTURE_TEXTURE_NUM; i++) {
         snprintf(replaceTextureName, sizeof(replaceTextureName), "%s%03d.bti", pReplaceTexturePrefix, i);
-        mReplaceTexture[i] = MR::createLytTexMap(cReplaceTextureArcName, replaceTextureName);
+        mReplaceTexture[i] = MR::createLytTexMap(::cReplaceTextureArcName, replaceTextureName);
     }
 }
 
@@ -254,15 +254,15 @@ void StaffRoll::init(const JMapInfoIter& rIter) {
     mInfo = new InformationMessage();
     mInfo->initWithoutIter();
 
-    MR::createAndAddPaneCtrl(this, cPaneNameTitleLogo, 1);
-    MR::copyPaneTrans(&mTitleLogoPos, this, cPaneNameTitleLogo);
-    MR::setFollowPos(&mTitleLogoPos, this, cPaneNameTitleLogo);
-    MR::hidePane(this, cPaneNameTitleLogo);
+    MR::createAndAddPaneCtrl(this, ::cPaneNameTitleLogo, 1);
+    MR::copyPaneTrans(&mTitleLogoPos, this, ::cPaneNameTitleLogo);
+    MR::setFollowPos(&mTitleLogoPos, this, ::cPaneNameTitleLogo);
+    MR::hidePane(this, ::cPaneNameTitleLogo);
 
-    MR::createAndAddPaneCtrl(this, cPaneNameTheEnd, 1);
-    MR::copyPaneTrans(&mEndLogoPos, this, cPaneNameTheEnd);
-    MR::setFollowPos(&mEndLogoPos, this, cPaneNameTheEnd);
-    MR::hidePane(this, cPaneNameTheEnd);
+    MR::createAndAddPaneCtrl(this, ::cPaneNameTheEnd, 1);
+    MR::copyPaneTrans(&mEndLogoPos, this, ::cPaneNameTheEnd);
+    MR::setFollowPos(&mEndLogoPos, this, ::cPaneNameTheEnd);
+    MR::hidePane(this, ::cPaneNameTheEnd);
 
     mLine = new StaffRollLine*[LINE_NUM];
 
@@ -271,7 +271,7 @@ void StaffRoll::init(const JMapInfoIter& rIter) {
         mLine[i]->initWithoutIter();
     }
 
-    mMsg = MR::getGameMessageDirect(cStaffRollMsgId);
+    mMsg = MR::getGameMessageDirect(::cStaffRollMsgId);
     mMsgLineNum = MR::countMessageLine(mMsg);
 
     mPicture = new StaffRollPicture("スタッフロール写真");
@@ -322,7 +322,7 @@ bool StaffRoll::isNextLineEmpty() const {
 }
 
 void StaffRoll::exePrepareDemo() {
-    if (MR::tryStartDemo(this, cStaffRollDemoName)) {
+    if (MR::tryStartDemo(this, ::cStaffRollDemoName)) {
         setNerve(&NrvStaffRoll::StaffRollNrvPrepareBgm::sInstance);
     }
 }
@@ -336,7 +336,7 @@ void StaffRoll::exePrepareBgm() {
         return;
     }
 
-    if (MR::isGreaterStep(this, sStepForTitleLogoAppear)) {
+    if (MR::isGreaterStep(this, ::sStepForTitleLogoAppear)) {
         MR::unlockStageBGM();
         _4C = 0;
         setNerve(&NrvStaffRoll::StaffRollNrvTitleLogoAppear::sInstance);
@@ -345,8 +345,8 @@ void StaffRoll::exePrepareBgm() {
 
 void StaffRoll::exeTitleLogoAppear() {
     if (MR::isFirstStep(this)) {
-        MR::showPane(this, cPaneNameTitleLogo);
-        MR::startPaneAnim(this, cPaneNameTitleLogo, "TitleLogoAppear", 0);
+        MR::showPane(this, ::cPaneNameTitleLogo);
+        MR::startPaneAnim(this, ::cPaneNameTitleLogo, "TitleLogoAppear", 0);
     }
 
     if (MR::isStep(this, 240)) {
@@ -356,7 +356,7 @@ void StaffRoll::exeTitleLogoAppear() {
 
 void StaffRoll::exeTitleLogoScroll() {
     if (MR::isFirstStep(this)) {
-        MR::startPaneAnim(this, cPaneNameTitleLogo, "TitleLogoWait", 0);
+        MR::startPaneAnim(this, ::cPaneNameTitleLogo, "TitleLogoWait", 0);
         mPicture->appear();
         _48 = 0;
     }
@@ -364,7 +364,7 @@ void StaffRoll::exeTitleLogoScroll() {
     mTitleLogoPos.y -= ::getStaffRollParam()->mScrollSpeed;
 
     if (mTitleLogoPos.y < -210.0f) {
-        MR::hidePane(this, cPaneNameTitleLogo);
+        MR::hidePane(this, ::cPaneNameTitleLogo);
         setNerve(&NrvStaffRoll::StaffRollNrvLineScroll::sInstance);
     }
 }
@@ -384,17 +384,17 @@ void StaffRoll::exeLineScroll() {
 
 void StaffRoll::exeEndLogoScroll() {
     if (MR::isFirstStep(this)) {
-        MR::showPane(this, cPaneNameTheEnd);
-        MR::startPaneAnim(this, cPaneNameTheEnd, "AllRights", 0);
-        MR::setPaneAnimFrameAndStop(this, cPaneNameTheEnd, 0.0f, 0);
+        MR::showPane(this, ::cPaneNameTheEnd);
+        MR::startPaneAnim(this, ::cPaneNameTheEnd, "AllRights", 0);
+        MR::setPaneAnimFrameAndStop(this, ::cPaneNameTheEnd, 0.0f, 0);
 
         mEndLogoPos.y = MR::getScreenHeight();
     }
 
     mEndLogoPos.y -= ::getStaffRollParam()->mScrollSpeed;
 
-    if (mEndLogoPos.y < sEndLogoPosY) {
-        mEndLogoPos.y = sEndLogoPosY;
+    if (mEndLogoPos.y < ::sEndLogoPosY) {
+        mEndLogoPos.y = ::sEndLogoPosY;
 
         setNerve(&NrvStaffRoll::StaffRollNrvAllRights::sInstance);
     }
@@ -402,10 +402,10 @@ void StaffRoll::exeEndLogoScroll() {
 
 void StaffRoll::exeAllRights() {
     if (MR::isFirstStep(this)) {
-        MR::startPaneAnim(this, cPaneNameTheEnd, "AllRights", 0);
+        MR::startPaneAnim(this, ::cPaneNameTheEnd, "AllRights", 0);
     }
 
-    if (MR::isStep(this, sStepToThankYouVoice)) {
+    if (MR::isStep(this, ::sStepToThankYouVoice)) {
         if (MR::isPlayerLuigi()) {
             MR::startSystemSE("SE_SY_THANK_YOU_LUIGI");
         } else {
@@ -413,16 +413,16 @@ void StaffRoll::exeAllRights() {
         }
     }
 
-    if (MR::isPaneAnimStopped(this, cPaneNameTheEnd, 0)) {
+    if (MR::isPaneAnimStopped(this, ::cPaneNameTheEnd, 0)) {
         MR::stopStageBGM(0);
         mPicture->kill();
-        MR::hidePane(this, cPaneNameTheEnd);
+        MR::hidePane(this, ::cPaneNameTheEnd);
         setNerve(&NrvStaffRoll::StaffRollNrvPrepareInfo::sInstance);
     }
 }
 
 void StaffRoll::exePrepareInfo() {
-    if (MR::isStep(this, sStepForPrepareInfo)) {
+    if (MR::isStep(this, ::sStepForPrepareInfo)) {
         setNrvNextInfo();
     }
 }
@@ -481,25 +481,25 @@ void StaffRoll::exeInfoDisappear() {
 
 void StaffRoll::exePause() {
     if (MR::isFirstStep(this)) {
-        MR::endDemo(this, cStaffRollDemoName);
+        MR::endDemo(this, ::cStaffRollDemoName);
         MR::offPlayerControl();
         MR::deactivateDefaultGameLayout();
     }
 }
 
 void StaffRoll::exeRestart() {
-    if (MR::tryStartDemo(this, cStaffRollDemoName)) {
+    if (MR::tryStartDemo(this, ::cStaffRollDemoName)) {
         setNrvNextInfo();
     }
 }
 
 void StaffRoll::exePrepareSave() {
     if (MR::isFirstStep(this)) {
-        MR::endDemo(this, cStaffRollDemoName);
+        MR::endDemo(this, ::cStaffRollDemoName);
         MR::offPlayerControl();
     }
 
-    if (MR::tryStartDemoWithoutCinemaFrameValidHandPointerFinger(this, cSaveAfterStaffRollDemoName)) {
+    if (MR::tryStartDemoWithoutCinemaFrameValidHandPointerFinger(this, ::cSaveAfterStaffRollDemoName)) {
         setNerve(&NrvStaffRoll::StaffRollNrvSave::sInstance);
     }
 }
@@ -513,7 +513,7 @@ void StaffRoll::exeSave() {
         return;
     }
 
-    MR::endDemo(this, cSaveAfterStaffRollDemoName);
+    MR::endDemo(this, ::cSaveAfterStaffRollDemoName);
     MR::offPlayerControl();
     MR::deactivateDefaultGameLayout();
     setNerve(&NrvStaffRoll::StaffRollNrvEnd::sInstance);

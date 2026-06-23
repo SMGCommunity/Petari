@@ -2,7 +2,10 @@
 
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
+class ModelObj;
 class RockCreator;
 
 class Rock : public LiveActor {

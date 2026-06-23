@@ -1,5 +1,7 @@
 #include "Game/MapObj/LavaGeyser.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 #define DEG_TO_RAD_0_1 0.017453292f
 

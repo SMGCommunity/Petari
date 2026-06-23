@@ -5,14 +5,17 @@
 class ScreenBlurArea : public ImageEffectArea {
 public:
     ScreenBlurArea(int, const char*);
-    virtual ~ScreenBlurArea();
 
+    virtual ~ScreenBlurArea();
     virtual void init(const JMapInfoIter&);
 
-    virtual const char* getManagerName() const;
+    virtual const char* getManagerName() const {
+        return "ImageEffectArea";
+    }
 
-    virtual bool isSyncWithPlayer() const;
+    virtual bool isSyncWithPlayer() const {
+        return mIsPlayerSync;
+    }
 
-    bool mIsPlayerSync;
-    u8 _41[3];
+    /* 0x40 */ bool mIsPlayerSync;
 };

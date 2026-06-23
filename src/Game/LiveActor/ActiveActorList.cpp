@@ -1,10 +1,8 @@
 #include "Game/LiveActor/ActiveActorList.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
-ActiveActorList::ActiveActorList(int max) {
-    mCurCount = max;
-    mActorList = 0;
-    mMaxCount = 0;
+ActiveActorList::ActiveActorList(int max) : mMaxCount(max), mActorList(0), mCurCount(0) {
     mActorList = new LiveActor*[max];
     clear();
 }

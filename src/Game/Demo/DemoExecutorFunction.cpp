@@ -1,7 +1,13 @@
 #include "Game/Demo/DemoExecutorFunction.hpp"
 #include "Game/Demo/DemoActionKeeper.hpp"
+#include "Game/Demo/DemoExecutor.hpp"
+#include "Game/Demo/DemoSubPartKeeper.hpp"
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
 #include "Game/Demo/DemoTimeKeeper.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace DemoExecutorFunction {
     void registerDemoActionFunction(const DemoExecutor* pExecutor, const LiveActor* pActor, const MR::FunctorBase& rFunctor, const char* a4) {
@@ -28,7 +34,7 @@ namespace DemoExecutorFunction {
         DemoTimeKeeper* pTimeKeeper = pExecutor->mTimeKeeper;
 
         for (s32 i = 0; i < pTimeKeeper->mNumPartInfos; i++) {
-            if (MR::isEqualString(pTimeKeeper->mMainPartInfos[i].mName, pPartName)) {
+            if (MR::isEqualString(pTimeKeeper->mMainPartInfos[i].mPartName, pPartName)) {
                 return true;
             }
         }

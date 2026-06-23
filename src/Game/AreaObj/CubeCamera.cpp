@@ -49,13 +49,7 @@ void CubeCameraArea::init(const JMapInfoIter& rIter) {
 }
 
 void CubeCameraArea::movement() {
-    bool val = false;
-
-    if (mIsValid && _15 && mIsAwake) {
-        val = true;
-    }
-
-    if (!val) {
+    if (!isValid()) {
         if (isValidSwitchA() && isOnSwitchA()) {
             mIsValid = true;
         }

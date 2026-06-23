@@ -4,13 +4,16 @@
 #include "Game/Boss/TombSpiderEnvironment.hpp"
 #include "Game/Boss/TombSpiderParts.hpp"
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/PlanetMap.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -22,6 +25,12 @@
 namespace {
     static const f32 sPlanetInsideRadius = 1800.0f;
 };  // namespace
+
+void TombSpiderDemo_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
 
 TombSpiderGland* TombSpiderFunction::getGlandFrontL(const TombSpider* pParent) {
     return pParent->mParts->mGlandFrontL;
@@ -193,8 +202,8 @@ namespace {
 };  // namespace
 
 bool TombSpiderFunction::tryDamageGland(TombSpider* pParent, HitSensor* pSender, HitSensor* pReceiver) {
-    if (tryDamageGlandFrontL(pParent, pSender, pReceiver) || tryDamageGlandFrontR(pParent, pSender, pReceiver) ||
-        tryDamageGlandRearL(pParent, pSender, pReceiver) || tryDamageGlandRearR(pParent, pSender, pReceiver)) {
+    if (::tryDamageGlandFrontL(pParent, pSender, pReceiver) || ::tryDamageGlandFrontR(pParent, pSender, pReceiver) ||
+        ::tryDamageGlandRearL(pParent, pSender, pReceiver) || ::tryDamageGlandRearR(pParent, pSender, pReceiver)) {
         return true;
     }
     return false;
@@ -213,15 +222,15 @@ namespace {
 };  // namespace
 
 bool TombSpiderFunction::tryDamageVitalSpot(TombSpider* pParent, HitSensor* pSender, HitSensor* pReceiver) {
-    if (tryDamageVitalSpotEach(getVitalSpotC(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_C, pSender, pReceiver)) {
+    if (::tryDamageVitalSpotEach(getVitalSpotC(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_C, pSender, pReceiver)) {
         return true;
     }
 
-    if (tryDamageVitalSpotEach(getVitalSpotL(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_L, pSender, pReceiver)) {
+    if (::tryDamageVitalSpotEach(getVitalSpotL(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_L, pSender, pReceiver)) {
         return true;
     }
 
-    if (tryDamageVitalSpotEach(getVitalSpotR(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_R, pSender, pReceiver)) {
+    if (::tryDamageVitalSpotEach(getVitalSpotR(pParent), ATYPE_TOMB_SPIDER_VITAL_SPOT_R, pSender, pReceiver)) {
         return true;
     }
 
@@ -348,13 +357,13 @@ void TombSpiderFunction::pauseOffTombSpiderParts(const TombSpider* pParent) {
 void TombSpiderFunction::resetPlayerPosTombSpider(const TombSpider* pParent, bool useCurrentPos) {
     TPos3f mtx;
     mtx.identity();
-    TVec3f pos(pParent->mPosition.x, pParent->mPosition.y - sPlanetInsideRadius, pParent->mPosition.z);
+    TVec3f pos(pParent->mPosition.x, pParent->mPosition.y - ::sPlanetInsideRadius, pParent->mPosition.z);
     TVec3f dirOut(*MR::getPlayerPos());
     dirOut.sub(pParent->mPosition);
 
     if (useCurrentPos && !MR::isNearZero(dirOut)) {
         MR::normalize(&dirOut);
-        pos.set(pParent->mPosition + dirOut.scaleInline(sPlanetInsideRadius - 200.0f));
+        pos.set(pParent->mPosition.addOtherInline2(dirOut.scaleInline(::sPlanetInsideRadius - 200.0f)));
     }
 
     TVec3f up;

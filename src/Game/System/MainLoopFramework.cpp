@@ -107,7 +107,7 @@ void MainLoopFramework::drawendXfb_single() {
     JUTXfb* pXfbMgr = JUTXfb::sManager;
     if (pXfbMgr->mDrawingXfbIndex >= 0) {
         prepareCopyDisp();
-        waitDrawDoneAndSetAlarm();
+        ::waitDrawDoneAndSetAlarm();
         GXFlush();
         pXfbMgr->mDrawnXfbIndex = pXfbMgr->mDrawingXfbIndex;
     }
@@ -161,7 +161,7 @@ void MainLoopFramework::exchangeXfb_triple() {
         if (nextIdx >= 3 || nextIdx < 0) {
             nextIdx = 0;
         }
-    } while (nextIdx == getDisplayingXfbIndex());
+    } while (nextIdx == ::getDisplayingXfbIndex());
     pXfbMgr->mDrawingXfbIndex = nextIdx;
 }
 
@@ -206,7 +206,7 @@ void MainLoopFramework::endGX() {
 }
 
 void MainLoopFramework::waitForRetrace() {
-    waitForTick(mTickDuration, mRetraceCount);
+    ::waitForTick(mTickDuration, mRetraceCount);
     JUTVideo::getManager()->waitRetraceIfNeed();
 }
 
@@ -272,11 +272,11 @@ void MainLoopFramework::endFrame() {
         case 1:
             break;
         case 2:
-            waitDrawDoneAndSetAlarm();
+            ::waitDrawDoneAndSetAlarm();
             GXFlush();
             break;
         case 3:
-            waitDrawDoneAndSetAlarm();
+            ::waitDrawDoneAndSetAlarm();
             GXFlush();
             break;
         }
@@ -294,7 +294,7 @@ void MainLoopFramework::endFrame() {
 
 void MainLoopFramework::waitBlanking(int tickCount) {
     while (tickCount-- > 0) {
-        waitForTick(mTickDuration, mRetraceCount);
+        ::waitForTick(mTickDuration, mRetraceCount);
     }
 }
 

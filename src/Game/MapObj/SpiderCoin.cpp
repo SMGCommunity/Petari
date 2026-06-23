@@ -1,7 +1,9 @@
 #include "Game/MapObj/SpiderCoin.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -9,7 +11,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/mtx.h>
 #include <revolution/types.h>
 
@@ -64,7 +65,7 @@ void SpiderCoin::kill() {
     LiveActor::kill();
     TVec3f vel(-mUp->x, -mUp->y, 0.0f);
     MR::normalizeOrZero(&vel);
-    vel.scale(sCoinSpeed);
+    vel.scale(::sCoinSpeed);
     TVec3f pos(mPosition.x, mPosition.y, mThreadZ);
 
     MR::appearCoinToVelocity(this, pos, vel, 1);
@@ -94,7 +95,7 @@ void SpiderCoin::exeTouch() {
     }
 
     mPosition.set(*mPointPos);
-    mRotation.y += sRotateSpeedY;
+    mRotation.y += ::sRotateSpeedY;
     mRotation.y = MR::repeatDegree(mRotation.y);
     if (MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testCorePadTriggerA(WPAD_CHAN1)) {
         kill();
@@ -111,15 +112,15 @@ void SpiderCoin::exeTouchAndApart() {
     mPosition.set(*mPointPos);
 
     mRotation.y +=
-        MR::getEaseOutValue((sStepToucnAndApart - getNerveStep()) / static_cast< f32 >(sStepToucnAndApart), 0.0f, 1.0f, 1.0f) * sRotateSpeedY;
+        MR::getEaseOutValue((::sStepToucnAndApart - getNerveStep()) / static_cast< f32 >(::sStepToucnAndApart), 0.0f, 1.0f, 1.0f) * ::sRotateSpeedY;
     MR::repeatDegree(&mRotation.y);
 
-    if (MR::isGreaterStep(this, sStepToTouch2nd) && MR::isStarPointerPointing(this, WPAD_CHAN0, true, "弱")) {
+    if (MR::isGreaterStep(this, ::sStepToTouch2nd) && MR::isStarPointerPointing(this, WPAD_CHAN0, true, "弱")) {
         kill();
         return;
     }
 
-    if (MR::isStep(this, sStepToucnAndApart)) {
+    if (MR::isStep(this, ::sStepToucnAndApart)) {
         setNerve(&NrvSpiderCoin::SpiderCoinNrvWait::sInstance);
     }
 }
@@ -147,16 +148,16 @@ void SpiderCoin::calcAndSetBaseMtx() {
         PSMTXConcat(mtx.toMtxPtr(), rotMtx.toMtxPtr(), mtx.toMtxPtr());
 
         TVec3f pos(up);
-        pos.scale(-sModelOffset);
+        pos.scale(-::sModelOffset);
         pos.add(mPosition);
         mtx.setTrans(pos);
         mBaseMtx.setInline(mtx.toMtxPtr());
 
         pos.set(up);
-        pos.scale(-sCocoonOffsetY);
+        pos.scale(-::sCocoonOffsetY);
         pos.add(mPosition);
         TVec3f forward(front);
-        forward.scale(sCocoonOffsetZ);
+        forward.scale(::sCocoonOffsetZ);
         pos.add(forward);
         mBaseMtx.setTrans(pos);
         MR::setBaseTRMtx(this, mtx);
@@ -164,12 +165,12 @@ void SpiderCoin::calcAndSetBaseMtx() {
 }
 
 bool SpiderCoin::tryRub(s32 padChannel, TVec2f* pVel) {
-    if (!MR::isStarPointerPointing(this, padChannel, true, "弱") || MR::getStarPointerScreenSpeed(padChannel) < sPointerSpeedMin) {
+    if (!MR::isStarPointerPointing(this, padChannel, true, "弱") || MR::getStarPointerScreenSpeed(padChannel) < ::sPointerSpeedMin) {
         return false;
     }
 
     TVec2f* vel = MR::getStarPointerScreenVelocity(padChannel);
-    if (vel->x * pVel->x + vel->y * pVel->y < sPointerSpeedDotToKill) {
+    if (vel->x * pVel->x + vel->y * pVel->y < ::sPointerSpeedDotToKill) {
         kill();
         return true;
     }

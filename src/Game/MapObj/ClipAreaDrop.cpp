@@ -3,12 +3,10 @@
 #include "Game/MapObj/ClipArea.hpp"
 #include "Game/MapObj/ClipAreaShape.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "revolution/mtx.h"
-#include "revolution/types.h"
 
 namespace NrvClipAreaDrop {
     NEW_NERVE(ClipAreaDropNrvWait, ClipAreaDrop, Wait);

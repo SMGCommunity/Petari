@@ -1,4 +1,8 @@
 #include "Game/Demo/DemoCastGroup.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 DemoCastGroup::DemoCastGroup(const char* pName) : NameObj(pName) {
     mInfo = 0;

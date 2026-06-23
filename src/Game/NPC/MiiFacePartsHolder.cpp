@@ -1,5 +1,6 @@
 #include "Game/NPC/MiiFacePartsHolder.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/MiiDatabase.hpp"
 #include "Game/NPC/MiiFaceParts.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
@@ -7,9 +8,12 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 

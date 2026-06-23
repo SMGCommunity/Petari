@@ -2,6 +2,7 @@
 #include "Game/AudioLib/AudSceneMgr.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/LightFunction.hpp"
 #include "Game/Map/SleepControllerHolder.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
@@ -22,6 +23,22 @@
 #include "Game/Screen/ScreenAlphaCapture.hpp"
 #include "Game/System/GalaxyMapController.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/DrawUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/LightUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 
 namespace {
@@ -250,10 +267,10 @@ void GameScene::exeScenarioOpeningCamera() {
 }
 
 void GameScene::exeCometRetryAfterMiss() {
-    CometRetryButton* pCometRetryButton = getCometRetryButton();
+    CometRetryButton* pCometRetryButton = ::getCometRetryButton();
 
     if (MR::isFirstStep(this)) {
-        getCometRetryButton()->appear();
+        ::getCometRetryButton()->appear();
         MR::forceOpenWipeCircle();
     }
 
@@ -461,7 +478,7 @@ void GameScene::startStagePlayFirst() {
         } else if (MR::isStageBeginWithoutWipe()) {
             MR::forceOpenWipeFade();
         } else {
-            MR::openWipeCircle(-1);
+            MR::openWipeCircle();
         }
 
         MR::stopSubBGM(0);
@@ -473,7 +490,7 @@ void GameScene::startStagePlayFirst() {
 }
 
 void GameScene::startStagePlayRetry() {
-    MR::openWipeCircle(-1);
+    MR::openWipeCircle();
 
     if (MR::isEqualStageName("SurfingLv1Galaxy") && MR::getPlayerRestartIdInfo()->_0 == 1) {
         MR::stopSubBGM(0);

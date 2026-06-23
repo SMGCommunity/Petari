@@ -1,9 +1,11 @@
 #include "Game/MapObj/BigBubbleHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigBubbleDrawer.hpp"
 #include "Game/MapObj/BigBubbleMoveLimitter.hpp"
 #include "Game/Ride/BigBubble.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
@@ -109,7 +111,7 @@ void BigBubbleHolder::sortDrawOrder() {
 }
 
 void MR::setUpBigBubbleDraw() {
-    BigBubbleHolder* holder = getBigBubbleHolder();
+    BigBubbleHolder* holder = ::getBigBubbleHolder();
     holder->sortDrawOrder();
     holder->mDrawer->setUpDraw();
 }
@@ -119,16 +121,16 @@ void MR::createBigBubbleHolder() {
 }
 
 void MR::limitBigBubblePosition(TVec3f* pPos, f32 f1, s32 limitterID) {
-    getBigBubbleHolder()->getMoveLimitter(limitterID)->limitPosition(pPos, f1);
+    ::getBigBubbleHolder()->getMoveLimitter(limitterID)->limitPosition(pPos, f1);
 }
 
 void MR::addBigBubbleMoveLimitter(BigBubbleMoveLimitter* pLimitter) {
-    getBigBubbleHolder()->addMoveLimitter(pLimitter);
+    ::getBigBubbleHolder()->addMoveLimitter(pLimitter);
 }
 
 BigBubble* MR::generateBigBubble(LiveActor* pHost, const TVec3f& rPos, const TVec3f& rUp, f32 volume, bool isObstruct, s32 actionType, s32 shapeType,
                                  s32 limitterID) {
-    return getBigBubbleHolder()->generateBigBubble(pHost, rPos, rUp, volume, isObstruct, actionType, shapeType, limitterID);
+    return ::getBigBubbleHolder()->generateBigBubble(pHost, rPos, rUp, volume, isObstruct, actionType, shapeType, limitterID);
 }
 
 bool MR::isPlayerBindedBigBubble() {
@@ -136,7 +138,7 @@ bool MR::isPlayerBindedBigBubble() {
         return false;
     }
 
-    return getBigBubbleHolder()->mIsMarioBinded;
+    return ::getBigBubbleHolder()->mIsMarioBinded;
 }
 
 void BigBubbleHolder::init(const JMapInfoIter& rIter) {

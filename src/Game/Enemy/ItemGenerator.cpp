@@ -2,7 +2,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 ItemGenerator::ItemGenerator() {
     mNumType = 1;
@@ -42,7 +42,6 @@ void ItemGenerator::generate(const LiveActor* pActor) {
     }
 }
 
-// Gets Inlined :(
 bool ItemGenerator::isUseFarSE() const {
     return MR::isEqualStageName("KoopaBattleVs2Galaxy");
 }

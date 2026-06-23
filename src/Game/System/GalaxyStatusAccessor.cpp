@@ -136,6 +136,14 @@ bool GalaxyStatusAccessor::isOpened() const {
     return GameDataFunction::isOnGameEventFlag(mScenarioData->mGalaxyName);
 }
 
+bool GalaxyStatusAccessor::hasPowerStar(s32 scenarioNo) const {
+    if (mScenarioData->getPowerStarNum() == 0) {
+        return false;
+    }
+
+    return GameDataFunction::hasPowerStar(mScenarioData->mGalaxyName, scenarioNo);
+}
+
 bool GalaxyStatusAccessor::isCompleted() const {
     if (mScenarioData->getPowerStarNum() == 0) {
         return false;
@@ -152,13 +160,15 @@ s32 GalaxyStatusAccessor::getPowerStarNumOwned() const {
     return GameDataFunction::getPowerStarNumOwned(mScenarioData->mGalaxyName);
 }
 
-bool GalaxyStatusAccessor::hasPowerStar(s32 scenarioNo) const {
-    if (mScenarioData->getPowerStarNum() == 0) {
-        return false;
+namespace MR {
+    GalaxyStatusAccessor makeGalaxyStatusAccessor(const char* pGalaxyName) {
+        return ScenarioDataFunction::getScenarioDataParser()->makeAccessor(pGalaxyName);
     }
 
-    return GameDataFunction::hasPowerStar(mScenarioData->mGalaxyName, scenarioNo);
-}
+    GalaxyStatusAccessor makeCurrentGalaxyStatusAccessor() {
+        return ScenarioDataFunction::getScenarioDataParser()->makeAccessor(MR::getCurrentStageName());
+    }
+};  // namespace MR
 
 s32 GalaxyStatusAccessor::getNormalScenarioNum() const {
     const char* pCometName;
@@ -240,13 +250,3 @@ bool GalaxyStatusAccessor::isHiddenStar(s32 scenarioNo) const {
 
     return isHidden;
 }
-
-namespace MR {
-    GalaxyStatusAccessor makeGalaxyStatusAccessor(const char* pGalaxyName) {
-        return ScenarioDataFunction::getScenarioDataParser()->makeAccessor(pGalaxyName);
-    }
-
-    GalaxyStatusAccessor makeCurrentGalaxyStatusAccessor() {
-        return ScenarioDataFunction::getScenarioDataParser()->makeAccessor(MR::getCurrentStageName());
-    }
-};  // namespace MR

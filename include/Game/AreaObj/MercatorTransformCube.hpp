@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Game/AreaObj/AreaObj.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+
+class LiveActor;
+class MapPartsRailMover;
 
 class DivideMercatorRailPosInfo {
 public:
@@ -14,7 +16,6 @@ public:
 class MercatorTransformCube : public AreaObj {
 public:
     MercatorTransformCube(int, const char*);
-    virtual ~MercatorTransformCube();
 
     virtual void init(const JMapInfoIter&);
 
@@ -23,15 +24,17 @@ public:
     void calcUV(TVec2f*, const TVec3f&) const;
     void calcLocalBoxSize(TVec3f*) const;
 
-    TMtx34f _3C;
+    /* 0x3C */ TMtx34f _3C;
 };
 
 namespace MR {
-    void getDivideMercatorRailPosition(DivideMercatorRailPosInfo*, const LiveActor*, u32, f32, u32);
-
-    void initDefaultPosForMercator(LiveActor*, const JMapInfoIter&, bool);
-
     void convertMercatorPlaneToSphereTransAndRotate(TVec3f*, TPos3f*, const TVec3f&, bool);
-
+    void convertMercatorPlaneToSphereTransAndRotate(TVec3f*, TVec3f*, const TVec3f&, bool);
+    f32 initDefaultPosForMercator(LiveActor*, const JMapInfoIter&, bool);
+    void calcNearestRailPosForMercator(TVec3f*, const LiveActor*, f32);
+    void calcRailClippingInfoForMercator(TVec3f*, f32*, LiveActor*, f32, f32);
+    void initAndSetRailClippingForMercator(TVec3f*, LiveActor*, f32, f32);
+    f32 calcRailTotalLengthForMercator(const LiveActor*, f32);
+    void getDivideMercatorRailPosition(DivideMercatorRailPosInfo*, const LiveActor*, u32, f32, u32);
     MapPartsRailMover* createMapPartsRailMoverForMercator(LiveActor*, const JMapInfoIter&, bool);
 };  // namespace MR

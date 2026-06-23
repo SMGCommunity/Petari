@@ -70,17 +70,17 @@ void RabbitStateCaught::exeCaught() {
     }
 
     if (!MR::isBindedGround(mHost)) {
-        MR::addVelocityToGravity(mHost, sGravityAccel);
+        MR::addVelocityToGravity(mHost, ::sGravityAccel);
     }
 
     MR::attenuateVelocity(mHost, 0.99f);
-    blendBaseMatrixToMario(MR::calcNerveRate(this, sMarioPoseBlendTime));
+    blendBaseMatrixToMario(MR::calcNerveRate(this, ::sMarioPoseBlendTime));
 
-    if (MR::isStep(this, sMarioPoseBlendTime)) {
-        MR::setVelocityJump(mHost, sCaughtJumpPower);
+    if (MR::isStep(this, ::sMarioPoseBlendTime)) {
+        MR::setVelocityJump(mHost, ::sCaughtJumpPower);
     }
 
-    if (MR::isGreaterEqualStep(this, sCaughtLandStartTime) && MR::isBindedGround(mHost)) {
+    if (MR::isGreaterEqualStep(this, ::sCaughtLandStartTime) && MR::isBindedGround(mHost)) {
         MR::zeroVelocity(mHost);
         setNerve(&NrvRabbitStateCaught::RabbitStateCaughtNrvCaughtLand::sInstance);
     }

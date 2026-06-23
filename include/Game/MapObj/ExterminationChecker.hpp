@@ -3,6 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class KeySwitch;
+class LiveActorGroup;
 
 typedef LiveActor* (*CreationFunc)(const char*);
 

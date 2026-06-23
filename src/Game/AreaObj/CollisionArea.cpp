@@ -2,14 +2,10 @@
 #include "Game/MapObj/DynamicCollisionObj.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "Inline.hpp"
 
 DynamicCollisionObj::~DynamicCollisionObj() {
-}
-
-bool AreaObj::isValid() const {
-    return mIsValid && _15 && mIsAwake;
 }
 
 AreaPolygon::AreaPolygon() : DynamicCollisionObj("エリアポリゴン") {

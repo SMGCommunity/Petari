@@ -18,9 +18,11 @@ public:
     virtual bool isWipeIn() const;
     virtual bool isWipeOut() const;
 
+    void setColor(GXColor);
+
 private:
     /* 0x20 */ bool mIsWipeIn;
-    /* 0x24 */ s32 mStepNum;
+    /* 0x24 */ s32 mFrame;
     /* 0x28 */ s32 mStep;
     /* 0x2C */ Color8 mFillColor;
 };

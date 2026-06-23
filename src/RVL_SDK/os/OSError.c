@@ -93,14 +93,14 @@ OSErrorHandler OSSetErrorHandler(OSError error, OSErrorHandler handler) {
             for (thread = __OSActiveThreadQueue.head; thread; thread = thread->linkActive.next) {
                 thread->context.srr1 &= ~(0x800 | 0x100);
                 thread->context.fpscr &= ~0xF8;
-                thread->context.fpscr &= ~0x6005F8FF;
+                thread->context.fpscr &= ~0x9FFA0700;
             }
 
             fpscr &= ~0xF8;
             msr &= ~(0x800 | 0x100);
         }
 
-        fpscr &= ~(0x6005F8FF);
+        fpscr &= ~(0x9FFA0700);
         PPCMtfpscr(fpscr);
         PPCMtmsr(msr);
     }

@@ -5,12 +5,18 @@
 #include "Game/Boss/TripodBossStepPoint.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/IKJointCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/IKJoint.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvTripodBossLeg {
     NEW_NERVE(TripodBossLegNrvHold, TripodBossLeg, Hold);

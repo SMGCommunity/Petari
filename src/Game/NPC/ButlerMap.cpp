@@ -1,9 +1,8 @@
 #include "Game/NPC/ButlerMap.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/NPC/ButlerStateStarPieceReaction.hpp"
-#include "Game/NPC/NPCActor.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/GalaxyMapController.hpp"
@@ -19,9 +18,6 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
-#include <cstddef>
 
 namespace {
     const char* cDemoNameMapLecture = "バトラーマップレクチャー";
@@ -69,12 +65,12 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
     MR::tryRegisterDemoCast(this, rIter);
     MR::tryRegisterDemoCast(this, "バトラー報告", rIter);
     TVec3f vec;
-    const char* demoNameMapLecture = cDemoNameMapLecture;
+    const char* demoNameMapLecture = ::cDemoNameMapLecture;
     vec.setPSZeroVec();
     TalkMessageCtrl* talkMessage =
         MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
     if (MR::tryInitDemoSheetTalkAnim(this, rIter, demoNameMapLecture, "DemoButlerMapLecture", talkMessage)) {
-        const char* demoNameMapLecture = cDemoNameMapLecture;
+        const char* demoNameMapLecture = ::cDemoNameMapLecture;
         const MR::FunctorBase& func = MR::Functor(this, &ButlerMap::startLectureDemo);
         MR::registerDemoActionFunctorDirect(this, func, demoNameMapLecture, "開始");
         MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &ButlerMap::resetStatus), demoNameMapLecture, "バトラーリセット");

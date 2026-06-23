@@ -1,16 +1,16 @@
 #pragma once
 
 #include "Game/Boss/SkeletalFishBossInfo.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 
+class CameraTargetMtx;
 class JointController;
 class JointControllerInfo;
+class ModelObj;
 class SkeletalFishGuard;
 class SkeletalFishGuardHolder;
 class SkeletalFishBossScarFlash;
 class SkeletalFishBossHead;
-class SkeletalFishBossInfo;
 class SkeletalFishRailControl;
 class SkeletalFishBossBattleDirector;
 class SkeletalFishBossRail;

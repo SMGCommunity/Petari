@@ -1,21 +1,21 @@
 #pragma once
 
-#include "Game/Enemy/HomingKiller.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include "Game/Util/Array.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class NameObjArchiveListCollector;
-class JMapInfoIter;
-class KoopaJr;
 class CannonShellHolder;
+class HomingKiller;
+class JMapInfoIter;
 class Kameck;
-class HomingKiler;
+class KoopaJr;
+class ModelObj;
+class NameObjArchiveListCollector;
 
 class KoopaJrShip : public LiveActor {
 public:
     KoopaJrShip(const char*);
 
-    virtual ~KoopaJrShip();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void kill();

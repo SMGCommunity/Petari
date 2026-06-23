@@ -86,7 +86,7 @@ void DinoPackunStateDamage::exePunched() {
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
     }
 
-    getHost()->adjustTailRootPosition(!_14 ? sEggOutPosition : sOutPosition, 0.1f);
+    getHost()->adjustTailRootPosition(!_14 ? ::sEggOutPosition : ::sOutPosition, 0.1f);
     getHost()->updateNormalVelocity();
 }
 
@@ -120,7 +120,7 @@ void DinoPackunStateDamage::exePulled() {
         }
     }
 
-    getHost()->adjustTailRootPosition(!_14 ? sEggOutPosition : sOutPosition, 0.1f);
+    getHost()->adjustTailRootPosition(!_14 ? ::sEggOutPosition : ::sOutPosition, 0.1f);
 
     if (v21.distance(getHost()->mPosition) > 800.0f) {
         TVec3f v15;

@@ -38,10 +38,10 @@ TimeLimitLayout::TimeLimitLayout(u32 timeLimit)
 void TimeLimitLayout::init(const JMapInfoIter& rIter) {
     initLayoutManager("TimeLimit", 1);
 
-    mScaleControl = new ValueControl(sScaleUpDownFrame);
+    mScaleControl = new ValueControl(::sScaleUpDownFrame);
     mScaleControl->setZero();
 
-    mFadeControl = new ValueControl(sFadeinoutFrame);
+    mFadeControl = new ValueControl(::sFadeinoutFrame);
     mFadeControl->setOne();
 
     MR::setInfluencedAlphaToChild(this);
@@ -81,7 +81,7 @@ void TimeLimitLayout::resetFrame() {
     mScaleControl->setOne();
     mFadeControl->setOne();
 
-    mCurrentTiming = &sTimingTable[0];
+    mCurrentTiming = &::sTimingTable[0];
 }
 
 void TimeLimitLayout::addFrame() {
@@ -176,7 +176,7 @@ void TimeLimitLayout::exeScaleDown() {
 }
 
 void TimeLimitLayout::exeFadeout() {
-    if (MR::isStep(this, sFadeoutBeforeFrame)) {
+    if (MR::isStep(this, ::sFadeoutBeforeFrame)) {
         mFadeControl->setDirToZeroResetFrame();
     }
 
@@ -196,7 +196,7 @@ void TimeLimitLayout::control() {
     mFadeControl->update();
     mScaleControl->update();
 
-    f32 paneScale = 1.0f + MR::getEaseInOutValue(mScaleControl->getValue(), 0.0f, 1.0f, 1.0f) * sScaleMaxAdd;
+    f32 paneScale = 1.0f + MR::getEaseInOutValue(mScaleControl->getValue(), 0.0f, 1.0f, 1.0f) * ::sScaleMaxAdd;
 
     MR::setPaneScale(this, paneScale, paneScale, "TimeLimit");
     MR::setLayoutAlphaFloat(this, MR::getEaseInOutValue(mFadeControl->getValue(), 0.0f, 1.0f, 1.0f));

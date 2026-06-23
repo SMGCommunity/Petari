@@ -1,4 +1,7 @@
 #include "Game/Player/MarioNullBck.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
 MarioNullBck::MarioNullBck(const char* pName) : LiveActor(pName) {
@@ -27,13 +30,13 @@ bool MarioNullBck::getFramePos(f32 a1, TVec3f* a2, TVec3f* a3) {
     if (MR::isDead(this)) {
         return true;
     }
-    if (a1 > (f32)MR::getBckCtrl(this)->mEnd - 0.01f) {
-        a1 = ((f32)MR::getBckCtrl(this)->mEnd) - 0.01f;
+    if (a1 > MR::getBckCtrl(this)->getEnd() - 0.01f) {
+        a1 = MR::getBckCtrl(this)->getEnd() - 0.01f;
         ret = true;
     }
     if ((f32)_8C >= a1) {
         ret = true;
-        a1 = (f32)MR::getBckCtrl(this)->mEnd;
+        a1 = MR::getBckCtrl(this)->getEnd();
     }
     _8C = (s16)a1;
     MR::setBckFrame(this, a1);

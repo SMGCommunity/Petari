@@ -1,4 +1,5 @@
 #include "Game/Map/FileSelectItem.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/FileSelectIconID.hpp"
 #include "Game/Map/FileSelectItemDelegator.hpp"
@@ -6,10 +7,16 @@
 #include "Game/NPC/MiiFaceParts.hpp"
 #include "Game/NPC/MiiFacePartsHolder.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/FileSelectNumber.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "RFL_Types.h"
 
@@ -336,7 +343,7 @@ void FileSelectItem::createNew() {
 
 void FileSelectItem::createFellows() {
     for (u32 i = 0; i < 5; i++) {
-        mModels[i] = new FileSelectModel(sFellowModel[i], _D4, "キャラフェイス");
+        mModels[i] = new FileSelectModel(::sFellowModel[i], _D4, "キャラフェイス");
     }
 }
 

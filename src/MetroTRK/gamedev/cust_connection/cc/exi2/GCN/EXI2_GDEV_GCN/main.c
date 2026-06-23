@@ -10,6 +10,17 @@ static u8 gRecvBuf[GDEV_BUF_SIZE];
 
 static BOOL gIsInitialized;
 
+void OutputData(void* data, int length) {
+    // u8 byte;
+    int i;
+    u8* datapointer = data;
+
+    for (i = 0; i < length; i++) {
+        if (i % 16 == 15) {
+        }
+    }
+}
+
 int gdev_cc_initialize(void* inputPendingPtrRef, EXICallback monitorCallback) {
     DBInitComm(inputPendingPtrRef, (int*)monitorCallback);
     CircleBufferInitialize(&gRecvCB, gRecvBuf, GDEV_BUF_SIZE);
@@ -35,22 +46,21 @@ int gdev_cc_close() {
 
 int gdev_cc_read(u8* data, int size) {
     u8 buff[GDEV_BUF_SIZE];
-    int p1;
-    u32 retval;
-    int p2;
-    int poll;
-    retval = 0;
+    u32 retval = 0;
+    s32 s;
+    u32 poll;
+
     if (!gIsInitialized) {
         return -0x2711;
     }
 
-    p1 = size;
-    p2 = size;
-    while ((u32)CBGetBytesAvailableForRead(&gRecvCB) < p2) {
+    s = size;
+
+    while (CBGetBytesAvailableForRead(&gRecvCB) < s) {
         retval = 0;
         poll = DBQueryData();
         if (poll != 0) {
-            retval = DBRead(buff, p2);
+            retval = DBRead(buff, s);
             if (retval == 0) {
                 CircleBufferWriteBytes(&gRecvCB, buff, poll);
             }
@@ -58,8 +68,7 @@ int gdev_cc_read(u8* data, int size) {
     }
 
     if (retval == 0) {
-        CircleBufferReadBytes(&gRecvCB, data, p1);
-    } else {
+        CircleBufferReadBytes(&gRecvCB, data, s);
     }
 
     return retval;

@@ -2,12 +2,21 @@
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/NPC/TicoDemoGetPower.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LightUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -56,8 +65,7 @@ void Tico::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapIn
 }
 
 void Tico::initBase(s32 color) {
-    JMapInfoIter iter(0, -1);
-    initBase(iter, color);
+    initBase(JMapInfoIter(), color);
 }
 
 void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
@@ -98,9 +106,9 @@ void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
     if (color != -1) {
         MR::startBrk(this, "ColorChange");
         MR::setBrkFrameAndStop(this, color);
-        _17C = hPointLight[color];
+        _17C = ::hPointLight[color];
     } else {
-        _17C = hPointLight[5];
+        _17C = ::hPointLight[5];
     }
 
     _180 = &NrvTico::TicoNrvMeta::sInstance;
@@ -122,7 +130,8 @@ void Tico::initMessage(const JMapInfoIter& rIter, const char* pMsg) {
 }
 
 void Tico::initMessage(const char* pMsg) {
-    JMapInfoIter iter(0, -1);
+    JMapInfoIter iter;
+
     if (initTalkCtrl(iter, pMsg, TVec3f(0.0f, 120.0f, 0.0f), nullptr)) {
         TalkMessageCtrl* ctrl = mMsgCtrl;
         MR::registerKillFunc(mMsgCtrl, TalkMessageFunc< Tico >(this, &Tico::killFunc));

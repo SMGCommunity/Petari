@@ -66,7 +66,7 @@ void BatteryInfo::exeLow() {
 
     tryChangeNerveWithBatteryLeftAlreadyAppear();
 
-    if (MR::isGreaterStep(this, sDisplayFrameBatteryLow)) {
+    if (MR::isGreaterStep(this, ::sDisplayFrameBatteryLow)) {
         setNerve(&BatteryInfoLowDisappear::sInstance);
     }
 }
@@ -90,13 +90,9 @@ void BatteryInfo::exeLowHide() {
         setNerve(&BatteryInfoCriticalAppear::sInstance);
     } else if (MR::getWPad(mChannel)->getBattery() > WPAD_BATTERY_LEVEL_LOW) {
         setNerve(&BatteryInfoEnought::sInstance);
-    } else if (MR::isGreaterStep(this, sLowIntervalFrame)) {
+    } else if (MR::isGreaterStep(this, ::sLowIntervalFrame)) {
         setNerve(&BatteryInfoLowAppear::sInstance);
     }
-}
-
-void BatteryInfo::exeDisappear() {
-    exeStartAnimAndSetNerveIfStopped("EndCritical", &BatteryInfoEnought::sInstance);
 }
 
 void BatteryInfo::exeCriticalAppear() {
@@ -116,6 +112,10 @@ void BatteryInfo::exeCritical() {
     tryChangeNerveWithBatteryLeftAlreadyAppear();
 }
 
+void BatteryInfo::exeDisappear() {
+    exeStartAnimAndSetNerveIfStopped("EndCritical", &BatteryInfoEnought::sInstance);
+}
+
 void BatteryInfo::exeNoneAppear() {
     if (MR::isFirstStep(this)) {
         MR::showPane(mHost, mPaneName);
@@ -130,7 +130,7 @@ void BatteryInfo::exeNone() {
         MR::startPaneAnim(mHost, mPaneName, "WaitNone", 0);
     }
 
-    if (MR::isGreaterStep(this, sDisplayFrameBatteryNone)) {
+    if (MR::isGreaterStep(this, ::sDisplayFrameBatteryNone)) {
         setNerve(&BatteryInfoNoneDisappear::sInstance);
     }
 }

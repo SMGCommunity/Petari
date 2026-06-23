@@ -1,11 +1,11 @@
 #include "Game/Enemy/CocoNutBall.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
 
 namespace {
-    const f32 cReboundVelocity[] = {0.0f, 15.0f, 5.0f};
+    const Vec cReboundVelocity = {0.0f, 15.0f, 5.0f};
 };  // namespace
 
 namespace NrvCocoNutBall {
@@ -317,15 +317,9 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
     vec1.add(mPosition, vec2);
 
     if (_BE) {
-        // inline max function?
-        f32 val = vec1.y;
         f32 val2 = _C0 + _8C->mPosition.y;
-        if (val >= _C4 + _8C->mPosition.y) {
-            val = val;
-        } else {
-            val = _C4 + _8C->mPosition.y;
-        }
-        vec1.y = val;
+
+        vec1.y = MR::max(vec1.y, _C4 + _8C->mPosition.y);
 
         f32 flt = 120.0f;
         bool v1 = false;
@@ -397,7 +391,7 @@ void CocoNutBall::exeThrow() {
 
 void CocoNutBall::exeHitBackToHost() {
     if (MR::isFirstStep(this)) {
-        MR::setBckRate(this, 1.0);
+        MR::setBckRate(this, 1.0f);
         MR::deleteEffect(this, "Touch");
         MR::emitEffect(this, "CocoNutBlur");
         MR::emitEffect(this, "CocoNutLight");
@@ -464,9 +458,7 @@ void CocoNutBall::exeRebound() {
 
         MR::makeMtxUpFront(&pos, _C8, vec1);
 
-        mVelocity.x = ::cReboundVelocity[0];
-        mVelocity.y = ::cReboundVelocity[1];
-        mVelocity.z = ::cReboundVelocity[2];
+        mVelocity.set(::cReboundVelocity);
 
         pos.mult33(mVelocity);
     }
@@ -504,7 +496,7 @@ void CocoNutBall::exeFreeze() {
     camXDirScaled.scale(scaleFactor);
     mPosition.add(_A4, camXDirScaled);
 
-    if (MR::changeShowModelFlagSyncNearClipping(this, 300.0)) {
+    if (MR::changeShowModelFlagSyncNearClipping(this, 300.0f)) {
         MR::emitEffect(this, "Touch");
     } else {
         MR::deleteEffect(this, "Touch");

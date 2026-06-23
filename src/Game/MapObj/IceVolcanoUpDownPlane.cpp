@@ -1,11 +1,11 @@
 #include "Game/MapObj/IceVolcanoUpDownPlane.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/RailMoveObj.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 IceVolcanoUpDownPlane::IceVolcanoUpDownPlane(const char* pName) : RailMoveObj(pName), mNearestPosToPlayer(0.0f, 0.0f, 0.0f) {

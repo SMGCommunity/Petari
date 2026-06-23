@@ -1,4 +1,5 @@
 #include "Game/MapObj/FireBar.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"

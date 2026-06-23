@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Game/Boss/TripodBossFixPartsBase.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
+
+class ModelObj;
 
 class TripodBossShell : public TripodBossFixPartsBase {
 public:
@@ -11,11 +12,12 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+
     virtual void activateTripodBoss();
 
+    void exeNonActive();
+    void exeWait();
     void exeBreak();
-    inline void exeWait();
-    inline void exeNonActive();
 
-    ModelObj* mBreakModel;  // 0xE4
+    /* 0xE4 */ ModelObj* mBreakModel;
 };

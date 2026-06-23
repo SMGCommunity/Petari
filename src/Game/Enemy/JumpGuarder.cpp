@@ -1,5 +1,6 @@
 #include "Game/Enemy/JumpGuarder.hpp"
-#include "Game/Util.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/Util/MultiEventCamera.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 

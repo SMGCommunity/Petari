@@ -1,8 +1,7 @@
 #include "Game/System/Language.hpp"
-#include "Game/NameObj/NameObj.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
 #include <revolution/sc.h>
@@ -131,7 +130,7 @@ namespace MR {
         if (language < 0) {
             i = 0;
         } else {
-            s32 size = ARRAY_SIZE(cSCLanguage2GameLanguageTable[4]);
+            s32 size = ARRAY_SIZE(::cSCLanguage2GameLanguageTable[4]);
 
             if (language <= size) {
                 i = language;
@@ -140,7 +139,7 @@ namespace MR {
             }
         }
 
-        return cSCLanguage2GameLanguageTable[4][i];
+        return ::cSCLanguage2GameLanguageTable[4][i];
     }
 
     u32 getLanguage() {
@@ -155,8 +154,8 @@ namespace MR {
         u32 id = getLanguage();
 
         for (int i = 0; i < getLanguageNum(); i++) {
-            if (id == cLanguages[i].mId) {
-                return cLanguages[i].mName;
+            if (id == ::cLanguages[i].mId) {
+                return ::cLanguages[i].mName;
             }
         }
 
@@ -191,10 +190,10 @@ namespace MR {
     }
 
     u32 getLanguageNum() {
-        return ARRAY_SIZE(cLanguages);
+        return ARRAY_SIZE(::cLanguages);
     }
 
     const char* getLanguagePrefixByIndex(u32 index) {
-        return cLanguages[index].mName;
+        return ::cLanguages[index].mName;
     }
 };  // namespace MR

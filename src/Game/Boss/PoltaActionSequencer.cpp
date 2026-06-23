@@ -9,10 +9,8 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/Util/ActorStateUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "revolution/types.h"
 
 namespace NrvPoltaActionSequencer {
     NEW_NERVE(PoltaActionSequencerNrvWaitStart, PoltaActionSequencer, WaitStart);

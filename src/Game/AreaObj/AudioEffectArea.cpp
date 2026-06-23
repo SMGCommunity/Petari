@@ -1,20 +1,21 @@
 #include "Game/AreaObj/AudioEffectArea.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
-AudioEffectArea::AudioEffectArea(int formType, const char* pName) : AreaObj(formType, pName) {
-    _3C = 0;
-    _40 = 0;
+AudioEffectArea::AudioEffectArea(int formType, const char* pName) : AreaObj(formType, pName), _3C(), _40() {
 }
 
 void AudioEffectArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     MR::connectToSceneAreaObj(this);
 
-    _40 = mObjArg1;
     _3C = mObjArg0;
+    _40 = mObjArg1;
 
     if (mObjArg1 < 0) {
-        _40 = 0x40;
+        _40 = 64;
     }
 }
 
@@ -24,12 +25,7 @@ void AudioEffectArea::movement() {
     switch (_3C) {
     case 3:
     case 4:
-        val = false;
-
-        if (isInVolume(MR::getCamPos()) || isInVolume(*MR::getPlayerPos())) {
-            val = true;
-        }
-
+        val = isInVolume(MR::getCamPos()) || isInVolume(*MR::getPlayerPos());
         break;
     default:
         val = isInVolume(*MR::getPlayerPos());
@@ -43,6 +39,5 @@ void AudioEffectArea::movement() {
     }
 }
 
-const char* AudioEffectArea::getManagerName() const {
-    return "AudioEffectArea";
+AudioEffectArea::~AudioEffectArea() {
 }

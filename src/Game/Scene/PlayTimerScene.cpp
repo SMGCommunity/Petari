@@ -1,7 +1,11 @@
 #include "Game/Scene/PlayTimerScene.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/TimeLimitLayout.hpp"
+#include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/ValueControl.hpp"
@@ -18,7 +22,7 @@ namespace NrvPlayTimerScene {
 };  // namespace NrvPlayTimerScene
 
 PlayTimerScene::PlayTimerScene()
-    : Scene("PlayTimerScene"), mTimeLimitLayout(nullptr), mTimeUpLayout(nullptr), mTimeUpWaitFrame(sTimeUpWaitFrame), _20(nullptr) {
+    : Scene("PlayTimerScene"), mTimeLimitLayout(nullptr), mTimeUpLayout(nullptr), mTimeUpWaitFrame(::sTimeUpWaitFrame), _20(nullptr) {
     initNerve(&NrvPlayTimerScene::PlayTimerSceneNormal::sInstance);
 
     _20 = new ValueControl(30);
@@ -26,7 +30,7 @@ PlayTimerScene::PlayTimerScene()
 }
 
 void PlayTimerScene::init() {
-    mTimeLimitLayout = new TimeLimitLayout(sTimeUpWaitFrame);
+    mTimeLimitLayout = new TimeLimitLayout(::sTimeUpWaitFrame);
     mTimeLimitLayout->initWithoutIter();
     mTimeLimitLayout->kill();
 

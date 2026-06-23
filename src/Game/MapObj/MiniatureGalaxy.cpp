@@ -1,12 +1,14 @@
 #include "Game/MapObj/MiniatureGalaxy.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/AstroDomeOrbit.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/GalaxyNamePlate.hpp"
 #include "Game/System/GalaxyStatusAccessor.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     const char* cDemoNameDomeLecture = "ドームレクチャー２";
@@ -56,7 +58,7 @@ void MiniatureGalaxy::init(const JMapInfoIter& rIter) {
 
     MR::tryRegisterDemoCast(this, rIter);
 
-    const char* pDemoName = cDemoNameDomeLecture;
+    const char* pDemoName = ::cDemoNameDomeLecture;
     MR::registerDemoCast(this, pDemoName, rIter);
     MR::registerDemoCast(mShadowModel, pDemoName, rIter);
     MR::registerDemoCast(mUnknownModel, pDemoName, rIter);
@@ -395,7 +397,7 @@ void MiniatureGalaxy::updateZoomInOut() {
 void MiniatureGalaxy::updateNamePlate() {
     if (!MR::isDead(mNamePlate)) {
         TVec3f newPosition;
-        newPosition.add(mPosition, cNamePlateOffset);
+        newPosition.add(mPosition, ::cNamePlateOffset);
         mNamePlate->setPos3D(newPosition);
     }
 }

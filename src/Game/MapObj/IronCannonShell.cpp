@@ -1,4 +1,6 @@
 #include "Game/MapObj/IronCannonShell.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     static const s32 sDefaultShotInterval = 300;
@@ -22,7 +24,7 @@ IronCannonShell::IronCannonShell(const char* pName) : KoopaJrShipCannonShell(pNa
 }
 
 IronCannonLauncherPoint::IronCannonLauncherPoint(const char* pName)
-    : LiveActor(pName), mShellHolder(nullptr), mShotInterval(sDefaultShotInterval), mBulletSpeed(sDefaultBulletSpeed) {
+    : LiveActor(pName), mShellHolder(nullptr), mShotInterval(::sDefaultShotInterval), mBulletSpeed(::sDefaultBulletSpeed) {
 }
 
 void IronCannonLauncherPoint::init(const JMapInfoIter& rIter) {
@@ -90,7 +92,7 @@ bool IronCannonLauncherPoint::tryShotBullet(f32 offset) {
     mtx.getZDirInline(vec);
 
     TVec3f vec2;
-    vec2.scaleAdd(vec, mPosition, sGunPointOffset + offset);
+    vec2.scaleAdd(vec, mPosition, ::sGunPointOffset + offset);
     pShell->launch(vec2, vec.multInLine(mBulletSpeed));
 
     TVec3f shadowdir;
@@ -113,10 +115,10 @@ void IronCannonLauncher::init(const JMapInfoIter& rIter) {
     IronCannonLauncherPoint::init(rIter);
 
     MR::useStageSwitchReadA(this, rIter);
-    MR::setClippingTypeSphereContainsModelBoundingBox(this, sGunPointModelOffset);
+    MR::setClippingTypeSphereContainsModelBoundingBox(this, ::sGunPointModelOffset);
     TVec3f front;
     MR::calcFrontVec(&front, this);
-    mEffectMtx.scaleAdd(front, mPosition, sGunPointModelOffset);
+    mEffectMtx.scaleAdd(front, mPosition, ::sGunPointModelOffset);
     MR::setEffectHostSRT(this, "Shoot", &mEffectMtx, nullptr, nullptr);
     setNerve(&NrvIronCannonLauncher::IronCannonLauncherNrvWait::sInstance);
 }
@@ -134,7 +136,7 @@ void IronCannonLauncher::exeWait() {
 void IronCannonLauncher::exeShot() {
     if (MR::isFirstStep(this)) {
         MR::startAllAnim(this, "Shot");
-        tryShotBullet(sGunPointModelOffset);
+        tryShotBullet(::sGunPointModelOffset);
         setNerve(&NrvIronCannonLauncher::IronCannonLauncherNrvWait::sInstance);
     }
 }
@@ -151,7 +153,7 @@ IronCannonLauncher::~IronCannonLauncher() {
 }
 
 s32 IronCannonShell::getLifeTime() const {
-    return sDefaultShotInterval;
+    return ::sDefaultShotInterval;
 }
 
 f32 IronCannonShell::getBaseScale() const {

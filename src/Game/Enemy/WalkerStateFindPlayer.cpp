@@ -1,5 +1,10 @@
 #include "Game/Enemy/WalkerStateFindPlayer.hpp"
 #include "Game/Enemy/WalkerStateFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace {
     WalkerStateFindPlayerParam sDefaultParam;
@@ -21,7 +26,7 @@ WalkerStateFindPlayer::WalkerStateFindPlayer(LiveActor* pHost, TVec3f* pDirectio
       mFindPlayerParam(pFindPlayerParam) {
     initNerve(&NrvWalkerStateFindPlayer::WalkerStateFindPlayerNrvFind::sInstance);
     if (mFindPlayerParam == nullptr) {
-        mFindPlayerParam = &sDefaultParam;
+        mFindPlayerParam = &::sDefaultParam;
     }
 }
 

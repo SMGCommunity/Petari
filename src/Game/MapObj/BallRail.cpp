@@ -1,6 +1,7 @@
 #include "Game/MapObj/BallRail.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include <JSystem/JMath/JMath.hpp>
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvBallRail {
     NEW_NERVE(BallRailNrvWait, BallRail, Wait);

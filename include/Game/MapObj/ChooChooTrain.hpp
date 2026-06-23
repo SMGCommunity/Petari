@@ -2,7 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/Array.hpp"
 
 class ChooChooTrain : public LiveActor {
 public:

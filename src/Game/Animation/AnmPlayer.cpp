@@ -28,14 +28,14 @@ void AnmPlayerBase::start(const char* pResName) {
     }
 
     mFrameCtrl.init(mAnmRes->mFrameMax);
-    mFrameCtrl.mAttribute = mAnmRes->mAttribute;
-    mFrameCtrl.mFrame = 0.0f;
-    mFrameCtrl.mRate = 1.0f;
+    mFrameCtrl.setAttribute(mAnmRes->mAttribute);
+    mFrameCtrl.setFrame(0.0f);
+    mFrameCtrl.setRate(1.0f);
 }
 
 void AnmPlayerBase::stop() {
     stopAnimation();
-    mFrameCtrl.mRate = 0.0f;
+    mFrameCtrl.setRate(0.0f);
 }
 
 bool AnmPlayerBase::isPlaying(const char* pAnimName) const {

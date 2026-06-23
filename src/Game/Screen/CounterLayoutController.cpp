@@ -83,7 +83,7 @@ bool CounterLayoutController::isInvalidSystemStateShowCounter() {
 }
 
 bool CounterLayoutController::isWaitToDisappearCounter(const LayoutActor* pActor) {
-    return MR::isGreaterStep(pActor, cShowWaitFrame) || MR::isExistStarPointerGuidance();
+    return MR::isGreaterStep(pActor, ::cShowWaitFrame) || MR::isExistStarPointerGuidance();
 }
 
 void CounterLayoutController::control() {
@@ -176,7 +176,7 @@ void CounterLayoutController::exePlayerMoving() {
     } else if (!isPlayerMoving()) {
         mPlayerNotMovingFrame++;
 
-        if (mPlayerNotMovingFrame > cJudgeNotMovingFrame) {
+        if (mPlayerNotMovingFrame > ::cJudgeNotMovingFrame) {
             setNerve(&NrvCounterLayoutController::CounterLayoutControllerNrvPlayerNotMoving::sInstance);
         }
     } else {

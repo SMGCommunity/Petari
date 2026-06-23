@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/FlashingCtrl.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
+
+class FlashingCtrl;
 
 class SimpleTimerObj : public MapObjActor {
 public:

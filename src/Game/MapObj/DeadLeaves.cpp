@@ -1,5 +1,7 @@
 #include "Game/MapObj/DeadLeaves.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvDeadLeaves {
     NEW_NERVE(DeadLeavesNrvWait, DeadLeaves, Wait);

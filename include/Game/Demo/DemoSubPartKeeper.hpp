@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/Util/StringUtil.hpp"
+#include <revolution/types.h>
 
 class DemoExecutor;
 

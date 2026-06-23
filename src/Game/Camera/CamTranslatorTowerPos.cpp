@@ -1,19 +1,26 @@
 #include "Game/Camera/CamTranslatorTowerPos.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
+#include "Game/Util/MathUtil.hpp"
 
-// fmuls operand order, same as CamTranslatorTower::setParam()
+void CamTranslatorTowerPos_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.5f;
+    (void)MR::pi();
+}
+
 void CamTranslatorTowerPos::setParam(const CameraParamChunk* pChunk) {
     CameraTowerPos* camera;
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    f32 upY;
     f32 upX;
+    f32 upY;
+
     TVec2f angle;
 
     angle.x = general->mAngleB;
-    angle.y = (1.0f - general->mAngleA) * 3.1415927f * 0.5f;
-    upX = general->mUp.x;
+    angle.y = (1.0f - general->mAngleA) * MR::pi() * 0.5f;
     upY = general->mUp.y;
+    upX = general->mUp.x;
 
     camera = mCamera;
 

@@ -1,7 +1,9 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include <revolution.h>
+#include "Game/Util/Array.hpp"
+#include <revolution/types.h>
+
+class JMapInfoIter;
 
 class AlreadyDoneInfo {
 public:
@@ -11,6 +13,7 @@ public:
     void init(const char*, s32, s32);
     bool isEqual(const AlreadyDoneInfo&) const;
     void set(bool);
+    u16 mask() const;
 
     u16 _0;
     u16 _2;

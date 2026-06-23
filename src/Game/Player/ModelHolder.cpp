@@ -1,6 +1,4 @@
 #include "Game/Player/ModelHolder.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModel.hpp"

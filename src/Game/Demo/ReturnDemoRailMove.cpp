@@ -1,11 +1,20 @@
 #include "Game/Demo/ReturnDemoRailMove.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
-void setResultFlyStartFrame(LiveActor* liveActor, s32 frame) NO_INLINE {
-    int maxFrames = MR::getBckFrameMax(liveActor);
-    MR::setBckFrame(liveActor, maxFrames - frame % maxFrames);
+void ReturnDemoRailMove_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
 }
+
+namespace {
+    void setResultFlyStartFrame(LiveActor* liveActor, s32 frame) NO_INLINE {
+        int maxFrames = MR::getBckFrameMax(liveActor);
+        MR::setBckFrame(liveActor, maxFrames - frame % maxFrames);
+    }
+}  // namespace
 
 ReturnDemoRailMove::ReturnDemoRailMove(LiveActor* pDemoStarter, LiveActor* pPowerStar, const JMapInfoIter& rIter, bool isGrandstar,
                                        TPos3f* pTransform)
@@ -26,8 +35,7 @@ void ReturnDemoRailMove::posToStart() {
     TVec3f forward;
     calcPathPosDir(&position, &forward, 0.0f);
 
-    TPos3f* transform = mTransform;  // Necessary to match
-    MR::makeMtxUpFront(transform, forward, TVec3f(0.0f, -1.0f, 0.0f));
+    MR::makeMtxUpFront(getMtx(), forward, TVec3f(0.0f, -1.0f, 0.0f));
     mTransform->setTrans(position);
     MR::setPlayerBaseMtx(*mTransform);
 };
@@ -36,8 +44,7 @@ void ReturnDemoRailMove::posToEnd() {
     TVec3f position;
     calcPathPosDir(&position, nullptr, 1.0f);
 
-    TPos3f* transform = mTransform;  // Necessary to match
-    MR::makeMtxUpFront(transform, TVec3f(0.0f, 1.0f, 0.0f), mForward);
+    MR::makeMtxUpFront(getMtx(), TVec3f(0.0f, 1.0f, 0.0f), mForward);
     mTransform->setTrans(position);
     MR::setPlayerBaseMtx(*mTransform);
 };
@@ -46,7 +53,7 @@ void ReturnDemoRailMove::offPathDraw() {
     mPathDrawer->kill();
 };
 
-inline s32 ReturnDemoRailMove::getDemoFlyBrakeFrame() const {
+s32 ReturnDemoRailMove::getDemoFlyBrakeFrame() const {
     return (mIsGrandStar) ? 296 : 45;
 };
 
@@ -109,7 +116,7 @@ void ReturnDemoRailMove::update(s32 currentStep, s32 maxSteps) {
     TVec3f direction;
     calcPathPosDir(&position, &direction, t);
 
-    MR::makeMtxUpFront(mTransform, direction, TVec3f(0.0f, -1.0f, 0.0f));
+    MR::makeMtxUpFront(getMtx(), direction, TVec3f(0.0f, -1.0f, 0.0f));
 
     if (MR::isGreaterStep(mDemoStarter, startStepSecondDemo)) {
         f32 rate = MR::calcNerveEaseOutRate(mDemoStarter, startStepSecondDemo, maxSteps);

@@ -1,4 +1,6 @@
 #include "Game/MapObj/SpinDriverOperateRing.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvSpinDriverOperateRing {
     NEW_NERVE(SpinDriverOperateRingNrvWait, SpinDriverOperateRing, Wait);

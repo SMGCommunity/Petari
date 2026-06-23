@@ -31,37 +31,37 @@ void WPadStick::update() {
     mSpeed = JGeometry::TUtil< f32 >::sqrt(deltaX * deltaX + deltaY * deltaY);
     u32 flagPrev = STICK_FLAG_NONE;
 
-    if (stickPrev.x > sIsOnValue) {
+    if (stickPrev.x > ::sIsOnValue) {
         flagPrev |= STICK_FLAG_RIGHT;
     }
 
-    if (stickPrev.x < -sIsOnValue) {
+    if (stickPrev.x < -::sIsOnValue) {
         flagPrev |= STICK_FLAG_LEFT;
     }
 
-    if (stickPrev.y > sIsOnValue) {
+    if (stickPrev.y > ::sIsOnValue) {
         flagPrev |= STICK_FLAG_UP;
     }
 
-    if (stickPrev.y < -sIsOnValue) {
+    if (stickPrev.y < -::sIsOnValue) {
         flagPrev |= STICK_FLAG_DOWN;
     }
 
     u32 flag = STICK_FLAG_NONE;
 
-    if (mStick.x > sIsOnValue) {
+    if (mStick.x > ::sIsOnValue) {
         flag |= STICK_FLAG_RIGHT;
     }
 
-    if (mStick.x < -sIsOnValue) {
+    if (mStick.x < -::sIsOnValue) {
         flag |= STICK_FLAG_LEFT;
     }
 
-    if (mStick.y > sIsOnValue) {
+    if (mStick.y > ::sIsOnValue) {
         flag |= STICK_FLAG_UP;
     }
 
-    if (mStick.y < -sIsOnValue) {
+    if (mStick.y < -::sIsOnValue) {
         flag |= STICK_FLAG_DOWN;
     }
 

@@ -1,5 +1,7 @@
 #include "Game/Effect/RandomEffectObj.hpp"
 #include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
@@ -8,7 +10,8 @@ namespace {
     static const s32 sRandWidth = 180;
 };  // namespace
 
-RandomEffectObj::RandomEffectObj(const char* pName) : SimpleEffectObj(pName), mStep(0), mSeStep(-1), mLifeTime(sLifeTime), mRandWidth(sRandWidth) {
+RandomEffectObj::RandomEffectObj(const char* pName)
+    : SimpleEffectObj(pName), mStep(0), mSeStep(-1), mLifeTime(::sLifeTime), mRandWidth(::sRandWidth) {
 }
 
 void RandomEffectObj::init(const JMapInfoIter& rIter) {

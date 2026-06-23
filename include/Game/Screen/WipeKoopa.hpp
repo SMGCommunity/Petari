@@ -24,5 +24,5 @@ public:
     void exeClose();
 
 private:
-    /* 0x20 */ s32 mStepNum;
+    /* 0x20 */ s32 mFrame;
 };

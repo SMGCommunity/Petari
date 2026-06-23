@@ -112,7 +112,7 @@ void SysInfoWindow::appear(const char* pMessageId, SysInfoType type, SysInfoText
         break;
     }
 
-    MessageChangeFunc* pMessageChangeFunc = cMessageChangeFuncTable[messageType].mFuncPtr;
+    MessageChangeFunc* pMessageChangeFunc = ::cMessageChangeFuncTable[messageType].mFuncPtr;
 
     pMessageChangeFunc(this, mTextParentPaneName, pMessageId);
 

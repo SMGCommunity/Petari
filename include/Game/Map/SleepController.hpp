@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Game/Util/JMapInfo.hpp"
+#include <revolution/types.h>
 
-class SwitchIdInfo;
+class JMapInfoIter;
 class SwitchEventListener;
+class SwitchIdInfo;
 
 class SleepController {
 public:

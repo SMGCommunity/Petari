@@ -1,4 +1,5 @@
 #include "Game/NPC/TalkTextFormer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <revolution/types.h>
+
 class IconComet;
 class LayoutActor;
 
@@ -12,11 +14,10 @@ namespace nw4r {
 class GalaxyInfoLayoutSetter {
 public:
     enum GalaxyState {
-        State0,
-        State1,
-        State2,
-        State3,
-        State4,
+        GalaxyState_Hatena,
+        GalaxyState_Unknown,
+        GalaxyState_New,
+        GalaxyState_Opened,
     };
 
     /// @brief Creates a new `GalaxyInfoLayoutSetter`.
@@ -35,7 +36,7 @@ public:
     void hideCometWindow();
 
     /* 0x00 */ LayoutActor* mHost;
-    /* 0x04 */ nw4r::lyt::TexMap** mTexture;
+    /* 0x04 */ nw4r::lyt::TexMap** mReplaceTexture;
     /* 0x08 */ nw4r::lyt::TexMap* mUnknownTexture;
     /* 0x0C */ IconComet* mIconComet;
 };

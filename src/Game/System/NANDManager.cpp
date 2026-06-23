@@ -1,7 +1,7 @@
 #include "Game/System/NANDManager.hpp"
-#include "Game/SingletonHolder.hpp"
 #include "Game/System/NANDManagerThread.hpp"
 #include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <cstdio>
 

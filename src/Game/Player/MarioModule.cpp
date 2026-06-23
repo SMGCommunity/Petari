@@ -1,4 +1,5 @@
 #include "Game/Player/MarioModule.hpp"
+#include "Game/Animation/XanimeCore.hpp"
 #include "Game/Enemy/KarikariDirector.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Player/MarioActor.hpp"
@@ -6,7 +7,8 @@
 #include "Game/Player/MarioConst.hpp"
 #include "Game/Player/MarioMapCode.hpp"
 #include "Game/Player/MarioState.hpp"
-#include "revolution/types.h"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 Mario* MarioModule::getPlayer() const {
     return mActor->mMario;

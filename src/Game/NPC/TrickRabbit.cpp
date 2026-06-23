@@ -3,6 +3,7 @@
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/SpotMarkLight.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Map/RailGraphIter.hpp"
@@ -15,7 +16,7 @@
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/FootPrint.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
@@ -28,9 +29,9 @@
 #include "Game/Util/RailGraphUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace {
     class RunnawayNodeSelector : public RailGraphNodeSelecter {
@@ -845,7 +846,7 @@ bool TrickRabbit::selectEdgeStartEvent(RailGraphIter* pIter) {
 void TrickRabbit::selectEdgeRunnaway(RailGraphIter* pIter, const TVec3f& rVec, f32 f) {
     TVec3f stack_14;
     MR::normalizeOrZero(rVec, &stack_14);
-    f32 v10 = -3.4028235e38f;
+    f32 v10 = -FLOAT_MAX;
     s32 v17;
     s32 r29 = 0;
     s32 r28 = 0;

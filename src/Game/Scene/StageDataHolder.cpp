@@ -1,8 +1,15 @@
 #include "Game/Scene/StageDataHolder.hpp"
 #include "Game/NameObj/NameObjFactory.hpp"
 #include "Game/Scene/PlacementInfoOrdered.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Scene/StageResourceLoader.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <cstdio>
 
@@ -315,11 +322,7 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) c
         int curIdx = isValid ? curData->mNumEntries : 0;
 
         if (idx < curIdx) {
-            JMapInfoIter iter;
-            iter.mInfo = pInfo;
-            iter.mIndex = idx;
-
-            return iter;
+            return JMapInfoIter(pInfo, idx);
         }
 
         curIdx = isValid ? curData->mNumEntries : 0;
@@ -338,11 +341,7 @@ JMapInfoIter StageDataHolder::getStartJMapInfoIterFromStartDataIndex(int idx_) c
         idx -= startPosNum;
     }
 
-    JMapInfoIter iter;
-    iter.mInfo = nullptr;
-    iter.mIndex = -1;
-
-    return iter;
+    return JMapInfoIter();
 }
 
 void StageDataHolder::calcDataAddress() {

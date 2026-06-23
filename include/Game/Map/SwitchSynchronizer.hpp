@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/Map/StageSwitch.hpp"
 #include "Game/NameObj/NameObj.hpp"
+
+class StageSwitchCtrl;
 
 class SwitchSynchronizer : public NameObj {
 public:
@@ -12,5 +13,5 @@ public:
     virtual void movement();
 
     StageSwitchCtrl* mSwitchCtrl;  // 0x0C
-    u8 _10;
+    bool _10;
 };

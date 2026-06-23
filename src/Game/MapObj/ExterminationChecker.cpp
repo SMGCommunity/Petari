@@ -1,6 +1,8 @@
 #include "Game/MapObj/ExterminationChecker.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvExterminationChecker {
     NEW_NERVE(ExterminationCheckerNrvWatching, ExterminationChecker, Watching);
@@ -47,7 +49,7 @@ void ExterminationChecker::init(const JMapInfoIter& rIter) {
     for (s32 i = 0; i < objNum; i++) {
         const char* objName = nullptr;
         MR::getChildObjName(&objName, rIter, i);
-        LiveActor* actor = findEntry(objName)(MR::getJapaneseObjectName(objName));
+        LiveActor* actor = ::findEntry(objName)(MR::getJapaneseObjectName(objName));
         MR::initChildObj(actor, rIter, i);
         mGroup->registerActor(actor);
     }

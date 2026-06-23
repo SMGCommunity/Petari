@@ -2,6 +2,7 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorTripodBoss::setParam(const CameraParamChunk* pChunk) {
+    // FIXME: float swap
     CameraTripodBoss* camera;
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
