@@ -109,7 +109,12 @@ namespace {
             return 3;
         }
 
-        return bool(GameDataConst::isQuestionGalaxy(pName)) + 5;
+        
+        if (GameDataConst::isQuestionGalaxy(pName)) {
+            return 4;
+        }
+
+        return 5;
     }
 
     s32 getDisplayRaceBestTimeNum() NO_INLINE {
