@@ -30,13 +30,13 @@ namespace {
     class ListItem {
     public:
         /// @brief Creates a new `ListItem`.
-        ListItem() : _0(-1), _4() {
+        ListItem() NO_INLINE : _0(-1), _4() {
         }
 
         /* 0x0 */ s32 _0;
         union {
             /* 0x4 */ GalaxyStatusAccessor* _4Accessor;
-            /* 0x4*/ s32 _4;
+            /* 0x4 */ s32 _4;
         };
     };
 
