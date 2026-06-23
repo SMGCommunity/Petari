@@ -2,8 +2,22 @@
 
 #include "Game/LiveActor/PartsModel.hpp"
 
-class DummyDisplayModelInfo;
+class LodCtrl;
 class NameObjArchiveListCollector;
+
+#define ITEM_TYPE_COIN 0
+#define ITEM_TYPE_KINOPIO 1
+#define ITEM_TYPE_STARPIECE 4
+#define ITEM_TYPE_POWER_STAR 7
+#define ITEM_TYPE_GRAND_STAR 13
+
+struct DummyDisplayModelInfo {
+    const char* mName;  // 0x00
+    TVec3f _4;
+    u32 _10;
+    const char* mAnim;     // 0x14
+    bool mHasColorChange;  // 0x18
+};
 
 class DummyDisplayModel : public PartsModel {
 public:
@@ -14,6 +28,12 @@ public:
     virtual void makeActorDead();
     virtual void control();
     virtual void calcAndSetBaseMtx();
+
+    const DummyDisplayModelInfo* mModelInfo;  // 0x9C
+    s32 mItemType;                            // 0xA0
+    s32 _A4;
+    LodCtrl* _A8;
+    bool _AC;
 };
 
 namespace MR {
