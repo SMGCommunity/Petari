@@ -140,7 +140,7 @@ namespace MR {
                 return true;
             }
         }
-        char* pDemoName = DemoFunction::getDemoDirector()->getCurrentDemoName();
+        const char* pDemoName = DemoFunction::getDemoDirector()->getCurrentDemoName();
         if (!pDemoName) {
             return false;
         } else {

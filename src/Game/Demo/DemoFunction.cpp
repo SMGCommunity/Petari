@@ -21,7 +21,7 @@ namespace DemoFunction {
     }
 
     DemoCastGroupHolder* getDemoCastSubGroupHolder() {
-        return getDemoDirector()->_1C;
+        return getDemoDirector()->mCastSubGroupHolder;
     }
 
     void registerDemoSimpleCastAllFunction(LiveActor* pActor) {
