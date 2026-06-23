@@ -606,14 +606,14 @@ wchar_t* PowerStarList::makeRaceNameText(wchar_t* s, int raceId, bool a1) const 
 }
 
 wchar_t* PowerStarList::makeRaceTimeText(wchar_t* s, int raceId, bool a1) const {
-    wchar_t pRaceBest[10];
-    MR::makeRaceBestTimeString(pRaceBest, raceId);
+    wchar_t raceBest[10];
+    MR::makeRaceBestTimeString(raceBest, raceId);
 
     s32 offset;
     if (a1) {
-        offset = swprintf(s, 0x100, pRaceBest);
+        offset = swprintf(s, 0x100, raceBest);
     } else {
-        offset = swprintf(s, 0x100, L"%ls%s%ls", s, L"\n", pRaceBest);
+        offset = swprintf(s, 0x100, L"%ls%s%ls", s, L"\n", raceBest);
     }
 
     return s + offset;
