@@ -6,11 +6,11 @@
 
 namespace DemoCameraFunction {
     bool isCameraTargetMario(const DemoCameraInfo* pInfo) {
-        if (pInfo->_4 == nullptr) {
+        if (pInfo->mCameraTargetName == nullptr) {
             return nullptr;
         }
 
-        return MR::isEqualString(pInfo->_4, MR::getPlayerDemoActor()->mName);
+        return MR::isEqualString(pInfo->mCameraTargetName, MR::getPlayerDemoActor()->mName);
     }
 
     bool setStringNullIfEmpty(const char** ppStr) {
@@ -28,6 +28,6 @@ namespace DemoCameraFunction {
     }
 
     void makeAnimCameraName(char* pName, u32 size, const DemoCameraInfo* pInfo) {
-        MR::removeExtensionString(pName, size, pInfo->_C);
+        MR::removeExtensionString(pName, size, pInfo->mAnimCameraName);
     }
 };  // namespace DemoCameraFunction
