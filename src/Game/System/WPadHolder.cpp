@@ -160,7 +160,23 @@ namespace MR {
         pWPadHolder->mMode = WPAD_SENSOR_BAR_POS_TOP;
     }
 
-    // getHBMKPadData
+    void getHBMKPadData(HBMKPadData* pPadData, s32 chan) {
+        u32 type;
+        s32 status = WPADProbe(chan, &type);
+        KPADStatus* pStatus = getWPadHolder()->mReadDataInfoArray[chan].mStatusArray;
+
+        switch (status) {
+        case WPAD_ERR_NONE:
+        case WPAD_ERR_BUSY:
+        case WPAD_ERR_TRANSFER:
+            pPadData->status = pStatus;
+            pPadData->pos = pStatus->pos;
+            pPadData->dev_type = pStatus->dev_type;
+            return;
+        }
+
+        pPadData->status = nullptr;
+    }
 
     void setAutoSleepTimeWiiRemote(bool isLongAutoSleep) {
         u8 minute = isLongAutoSleep ? 15 : 5;
