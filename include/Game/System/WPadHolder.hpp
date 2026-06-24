@@ -1,8 +1,9 @@
 #pragma once
 
-#include "revolution/kpad.h"
+#include <revolution/kpad.h>
 
 class WPad;
+class HBMKPadData;
 
 class WPadReadDataInfo {
 public:
@@ -13,12 +14,6 @@ public:
 
     /* 0x00 */ KPADStatus* mStatusArray;
     /* 0x04 */ u32 mValidStatusCount;
-};
-
-struct HBMKPadData {
-    /* 0x0 */ KPADStatus* status;
-    /* 0x4 */ Vec2 pos;
-    /* 0xC */ u32 dev_type;
 };
 
 class WPadHolder {
