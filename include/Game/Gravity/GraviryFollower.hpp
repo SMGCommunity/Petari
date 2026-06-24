@@ -3,6 +3,7 @@
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
 
 class GlobalGravityObj;
+class PlanetGravity;
 
 class GraviryFollower : public BaseMatrixFollower {
 public:
@@ -11,7 +12,7 @@ public:
     virtual void setGravityFollowHost(const NameObj* pHost);
     virtual void update();
 
-    PlanetGravity* mGravity;  // 0x14
+    /* 0x14 */ PlanetGravity* mGravity;
 };
 
 namespace MR {
