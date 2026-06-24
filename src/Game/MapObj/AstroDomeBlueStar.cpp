@@ -8,7 +8,7 @@
 #include "Game/Util.hpp"
 
 namespace {
-    Vec cZoomInOffset = {0, 0, 0};  // 0 because idk which are the values (yet)
+    const Vec cZoomInOffset = {400, 2550,-7600};
 }
 
 AstroDomeBlueStar::CaptureActor::CaptureActor() : LiveActor("キャプチャ用アクター") {
