@@ -1,9 +1,13 @@
 #pragma once
 
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class GCaptureRibbon;
+class CaptureActor;
+class ActorCameraInfo;
 
 class AstroDomeBlueStar : public LiveActor {
 public:
@@ -58,12 +62,11 @@ public:
     void exeGalaxyConfirmCancel();
     void exeGalaxyConfirm();
 
-    // Okay this thing shouldn't probably be here
     inline TVec3f makeZeroVec() {
         TVec3f v;
         v.set(0.0f, 0.0f, 0.0f);
         return v;
-    }
+    };
 
     /* 0x8C */ GCaptureRibbon* mCaptureRibbon;
     TPos3f _90;

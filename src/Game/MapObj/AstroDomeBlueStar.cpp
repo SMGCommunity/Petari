@@ -1,11 +1,15 @@
 #include "Game/MapObj/AstroDomeBlueStar.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
-#include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
+#include "Game/MapObj/GCapture.hpp"
+#include "Game/MapObj/GCaptureRibbon.hpp"
+#include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
+
+namespace {
+    Vec cZoomInOffset = {0, 0, 0};  // 0 because idk which are the values (yet)
+}
 
 AstroDomeBlueStar::CaptureActor::CaptureActor() : LiveActor("キャプチャ用アクター") {
     _8C.identity();
