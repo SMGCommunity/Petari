@@ -62,12 +62,6 @@ public:
     void exeGalaxyConfirmCancel();
     void exeGalaxyConfirm();
 
-    inline TVec3f makeZeroVec() {
-        TVec3f v;
-        v.set(0.0f, 0.0f, 0.0f);
-        return v;
-    };
-
     /* 0x8C */ GCaptureRibbon* mCaptureRibbon;
     TPos3f _90;
     TPos3f _C0;

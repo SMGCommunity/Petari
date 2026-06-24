@@ -87,26 +87,23 @@ void AstroDomeBlueStar::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     MR::initActorCamera(this, rIter, &_F0);
     initSound(6, false);
-    MR::initStarPointerTarget(this, 200.0f, makeZeroVec());
+    MR::initStarPointerTarget(this, 200.0f, TVec3f::makeZeroVec());
     mCaptureRibbon = new GCaptureRibbon("Gキャプチャーリボン");
     mCaptureRibbon->initWithoutIter();
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::tryRegisterDemoCast(mCaptureActor, rIter);
     }
-    const MR::FunctorBase& killFunc = MR::Functor(this, &AstroDomeBlueStar::forceKill);
-    MR::tryRegisterDemoActionFunctor(this, killFunc, nullptr);
+    MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &AstroDomeBlueStar::forceKill), nullptr);
     MR::registerDemoCast(this, "バトラー報告", rIter);
     MR::registerDemoCast(this, "ドームレクチャー１", rIter);
     MR::registerDemoCast(this, "スターピース解説前半", rIter);
     MR::registerDemoCast(this, "スターピース解説後半", rIter);
-    const MR::FunctorBase& waitAppearFunc = MR::Functor(this, &AstroDomeBlueStar::waitAppear);
-    MR::registerDemoActionFunctorDirect(this, waitAppearFunc, "スターピース解説後半", nullptr);
+    MR::registerDemoActionFunctorDirect(this, MR::Functor(this, &AstroDomeBlueStar::waitAppear), "スターピース解説後半", nullptr);
     MR::registerDemoCast(this, "天文ドームスター帰還", rIter);
     MR::registerDemoSimpleCastAll(this);
     SphereSelectorFunction::registerTarget(this);
     MR::needStageSwitchReadAppear(this, rIter);
-    const MR::FunctorBase& ctrlFunc = MR::Functor(this, &AstroDomeBlueStar::control);  // No idea of the functor here
-    MR::listenStageSwitchOnAppear(this, ctrlFunc);
+    MR::listenStageSwitchOnAppear(this, MR::Functor(this, &AstroDomeBlueStar::control));
     initNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvWait::sInstance);
     makeActorAppeared();
 }
@@ -141,17 +138,17 @@ void AstroDomeBlueStar::control() {
                   isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmStart::sInstance) ||
                   isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirm::sInstance) ||
                   isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmCancel::sInstance);
-    TVec2f mScreenPos;
     if (result) {
         TVec3f mCamZDir = MR::getCamZdir();
         TVec3f mCamYDir = MR::getCamYdir();
         MR::makeMtxUpFrontPos(&_90, mCamYDir, mCamZDir, mPosition);
 
-       mCaptureActor->setPosAll(mPosition);
+        mCaptureActor->setPosAll(mPosition);
     }
     if (!MR::isOnGameEventFlagOffAstroDomeGuidance()) {
         if (isValidBindStart()) {
-            if (MR::calcScreenPosition(&mScreenPos, mPosition)) {
+            TVec2f screenPos;
+            if (MR::calcScreenPosition(&screenPos, mPosition)) {
                 MR::requestBlueStarGuidance();
             }
         }
@@ -194,12 +191,12 @@ bool AstroDomeBlueStar::tryStartBind(const LiveActor* pActor) {
 }
 
 bool AstroDomeBlueStar::isActiveBind() const {
-    return (isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvBindTraction::sInstance) ||
+    return isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvBindTraction::sInstance) ||
             isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvBindHold::sInstance) ||
             isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxySelect::sInstance) ||
             isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmStart::sInstance) ||
             isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirm::sInstance) ||
-            isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmCancel::sInstance));
+            isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmCancel::sInstance);
 }
 
 bool AstroDomeBlueStar::isValidBindStart() const {

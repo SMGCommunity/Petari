@@ -29,7 +29,7 @@ OSTime __OSGetSystemTime(void);
 OSTime __OSTimeToSystemTime(OSTime);
 void OSTicksToCalendarTime(OSTime, OSCalendarTime*);
 
-vu32 OS_BUS_CLOCK_SPEED = 0x800000F8;
+vu32 OS_BUS_CLOCK_SPEED : 0x800000F8;
 
 #define OS_TIME_SPEED (OS_BUS_CLOCK_SPEED / 4)
 

@@ -617,6 +617,12 @@ namespace JGeometry {
             JGeometry::setTVec3f(&rSrc.x, &x);
         }
 
+        static inline TVec3 makeZeroVec() {
+        TVec3 v;
+        v.set(0.0f, 0.0f, 0.0f);
+        return v;
+        }
+
 #ifdef __MWERKS__
         // Point gravity doesn't match if we use setPS
         inline void setPS2(const TVec3< f32 >& rSrc) {
