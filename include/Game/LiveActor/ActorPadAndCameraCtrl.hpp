@@ -3,6 +3,7 @@
 #include <JSystem/JGeometry/TVec.hpp>
 
 class ModelManager;
+class ResourceHolder;
 
 struct ActorPadAndCameraCtrlInfo {
     /* 0x00 */ const char* mBckName;
