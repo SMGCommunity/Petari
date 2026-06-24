@@ -646,7 +646,7 @@ config.libs = [
             Object(Matching, "Game/Animation/BrkPlayer.cpp"),
             Object(Matching, "Game/Animation/BtkPlayer.cpp"),
             Object(Matching, "Game/Animation/BtpPlayer.cpp"),
-            Object(NonMatching, "Game/Animation/BvaPlayer.cpp"),
+            Object(Matching, "Game/Animation/BvaPlayer.cpp"),
             Object(NonMatching, "Game/Animation/LayoutAnmPlayer.cpp"),
             Object(NonMatching, "Game/Animation/MaterialAnmBuffer.cpp"),
             Object(NonMatching, "Game/Animation/XanimeCore.cpp"),
