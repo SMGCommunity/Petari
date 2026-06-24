@@ -618,9 +618,9 @@ namespace JGeometry {
         }
 
         static inline TVec3 makeZeroVec() {
-        TVec3 v;
-        v.set(0.0f, 0.0f, 0.0f);
-        return v;
+            TVec3 v;
+            v.set(0.0f, 0.0f, 0.0f);
+            return v;
         }
 
 #ifdef __MWERKS__

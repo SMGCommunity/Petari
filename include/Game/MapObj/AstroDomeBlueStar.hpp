@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
@@ -62,10 +61,10 @@ public:
     void exeGalaxyConfirmCancel();
     void exeGalaxyConfirm();
 
-    /* 0x8C */ GCaptureRibbon* mCaptureRibbon;
-    TPos3f _90;
-    TPos3f _C0;
-    ActorCameraInfo* _F0;
-    /* 0xF4 */ TVec3f mZoomPos;
+    /* 0x08C */ GCaptureRibbon* mCaptureRibbon;
+    /* 0x090 */ TPos3f _90;
+    /* 0x0C0 */ TPos3f _C0;
+    /* 0x0F0 */ ActorCameraInfo* _F0;
+    /* 0x0F4 */ TVec3f mZoomPos;
     /* 0x100*/ CaptureActor* mCaptureActor;
 };

@@ -8,8 +8,8 @@
 #include "Game/Util.hpp"
 
 namespace {
-    const Vec cZoomInOffset = {400, 2550,-7600};
-}
+    const Vec cZoomInOffset = {400, 2550, -7600};
+}; // namespace
 
 AstroDomeBlueStar::CaptureActor::CaptureActor() : LiveActor("キャプチャ用アクター") {
     _8C.identity();
@@ -228,7 +228,7 @@ void AstroDomeBlueStar::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::tryStartBck(this, "Wait", nullptr);
-        MR::setBckRate(this, 0.5);
+        MR::setBckRate(this, 0.5f);
         MR::deleteEffect(this, "Target");
         MR::deleteEffect(this, "Active");
         MR::deleteEffect(this, "Target");
