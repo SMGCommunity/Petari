@@ -454,6 +454,10 @@ namespace JGeometry {
             return ret;
         }
 
+        inline void lerp(const TVec3& a, const TVec3& b, f32 t) {
+            JMAVECLerp(&a, &b, this, t);
+        }
+
         TVec3 operator-() const;
 
         bool operator==(const TVec3& rVec) const {
@@ -611,6 +615,12 @@ namespace JGeometry {
 
         inline void setPS(const TVec3< f32 >& rSrc) {
             JGeometry::setTVec3f(&rSrc.x, &x);
+        }
+
+        static inline TVec3 makeZeroVec() {
+            TVec3 v;
+            v.set(0.0f, 0.0f, 0.0f);
+            return v;
         }
 
 #ifdef __MWERKS__
