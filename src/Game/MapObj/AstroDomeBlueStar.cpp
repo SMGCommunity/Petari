@@ -8,8 +8,12 @@
 #include "Game/Util.hpp"
 
 namespace {
-    const Vec cZoomInOffset = {400, 2550, -7600};
-}; // namespace
+    const Vec cZoomInOffset = {400.0f, 2550.0f, -7600.0f};
+    const s32 cTryStartBindFrame = 30;
+    const s32 cBindTractionFrame = 90;
+    const s32 cBubbleGrowFrame = 30;
+    const f32 cBubbleMaxRadius = 150.0f;
+};  // namespace
 
 AstroDomeBlueStar::CaptureActor::CaptureActor() : LiveActor("キャプチャ用アクター") {
     _8C.identity();
@@ -33,22 +37,26 @@ void AstroDomeBlueStar::CaptureActor::kill() {
 }
 
 void AstroDomeBlueStar::CaptureActor::updateTransTraction(const TVec3f& rBasePos, const TVec3f& rTarget, s32 step) {
-    mPosition.lerp(rBasePos, rTarget, MR::getEaseInOutValue(step / 90.0f, 0.0f, 1.0f, 1.0f));
+    mPosition.lerp(rBasePos, rTarget, MR::getEaseInOutValue(static_cast< f32 >(step) / ::cBindTractionFrame, 0.0f, 1.0f, 1.0f));
 
     TVec3f dir;
     dir.sub(rTarget, rBasePos);
+
     if (MR::normalizeOrZero(&dir)) {
         _8C.setTrans(mPosition);
         return;
     }
 
-    f32 dist = MR::getLinerValue(step < 30 ? step : 30, 0.0f, 150.0f, 30.0f);
+    s32 x = step < ::cBubbleGrowFrame ? step : ::cBubbleGrowFrame;
+    f32 dist = MR::getLinerValue(x, 0.0f, ::cBubbleMaxRadius, ::cBubbleGrowFrame);
     TVec3f pos;
+
     if (mPosition.distance(rTarget) < dist) {
         pos.set(rTarget);
     } else {
         pos.add(mPosition, dir.multInLine(dist));
     }
+
     MR::makeMtxUpNoSupportPos(&_8C, dir, pos);
 }
 
@@ -66,8 +74,7 @@ namespace NrvAstroDomeBlueStar {
     NEW_NERVE(AstroDomeBlueStarNrvGalaxyConfirmCancel, AstroDomeBlueStar, GalaxyConfirmCancel);
 };  // namespace NrvAstroDomeBlueStar
 
-AstroDomeBlueStar::AstroDomeBlueStar(const char* pName)
-    : LiveActor(pName), mCaptureRibbon(nullptr), _F0(0), mCaptureActor(nullptr), mZoomPos(gZeroVec) {
+AstroDomeBlueStar::AstroDomeBlueStar(const char* pName) : LiveActor(pName), mCaptureRibbon(), _F0(), mCaptureActor(), mZoomPos(gZeroVec) {
     _90.identity();
     _C0.identity();
 }
@@ -80,6 +87,7 @@ void AstroDomeBlueStar::init(const JMapInfoIter& rIter) {
 
     mCaptureActor = new CaptureActor();
     mCaptureActor->initWithoutIter();
+
     initHitSensor(1);
     TVec3f& vec = mCaptureActor->mPosition;
     MR::addHitSensorPosBinder(this, "bind", 16, 80.0f, &vec, TVec3f(0.0f, 0.0f, 0.0f));
@@ -90,9 +98,11 @@ void AstroDomeBlueStar::init(const JMapInfoIter& rIter) {
     MR::initStarPointerTarget(this, 200.0f, TVec3f::makeZeroVec());
     mCaptureRibbon = new GCaptureRibbon("Gキャプチャーリボン");
     mCaptureRibbon->initWithoutIter();
+
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::tryRegisterDemoCast(mCaptureActor, rIter);
     }
+
     MR::tryRegisterDemoActionFunctor(this, MR::Functor(this, &AstroDomeBlueStar::forceKill), nullptr);
     MR::registerDemoCast(this, "バトラー報告", rIter);
     MR::registerDemoCast(this, "ドームレクチャー１", rIter);
@@ -103,7 +113,7 @@ void AstroDomeBlueStar::init(const JMapInfoIter& rIter) {
     MR::registerDemoSimpleCastAll(this);
     SphereSelectorFunction::registerTarget(this);
     MR::needStageSwitchReadAppear(this, rIter);
-    MR::listenStageSwitchOnAppear(this, MR::Functor(this, &AstroDomeBlueStar::control));
+    MR::listenStageSwitchOnAppear(this, MR::Functor(this, &AstroDomeBlueStar::appear));
     initNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvWait::sInstance);
     makeActorAppeared();
 }
@@ -138,20 +148,25 @@ void AstroDomeBlueStar::control() {
                   isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmStart::sInstance) ||
                   isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirm::sInstance) ||
                   isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmCancel::sInstance);
+
     if (result) {
-        TVec3f mCamZDir = MR::getCamZdir();
-        TVec3f mCamYDir = MR::getCamYdir();
-        MR::makeMtxUpFrontPos(&_90, mCamYDir, mCamZDir, mPosition);
+        MR::makeMtxUpFrontPos(&_90, MR::getCamYdir(), MR::getCamZdir(), mPosition);
 
         mCaptureActor->setPosAll(mPosition);
     }
-    if (!MR::isOnGameEventFlagOffAstroDomeGuidance()) {
-        if (isValidBindStart()) {
-            TVec2f screenPos;
-            if (MR::calcScreenPosition(&screenPos, mPosition)) {
-                MR::requestBlueStarGuidance();
-            }
-        }
+
+    if (MR::isOnGameEventFlagOffAstroDomeGuidance()) {
+        return;
+    }
+
+    if (!isValidBindStart()) {
+        return;
+    }
+
+    TVec2f screenPos;
+
+    if (MR::calcScreenPosition(&screenPos, mPosition)) {
+        MR::requestBlueStarGuidance();
     }
 }
 
@@ -159,6 +174,7 @@ bool AstroDomeBlueStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
     if (MR::isMsgAutoRushBegin(msg)) {
         return tryStartBind(pSender->mHost);
     }
+
     if (MR::isMsgRushCancel(msg)) {
         if (isActiveBind()) {
             return true;
@@ -170,14 +186,17 @@ bool AstroDomeBlueStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
         setNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvBindEnd::sInstance);
         return true;
     }
+
     if (SphereSelectorFunction::isMsgConfirmStart(msg)) {
         setNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmStart::sInstance);
         return true;
     }
+
     if (SphereSelectorFunction::isMsgConfirmCancel(msg)) {
         setNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmCancel::sInstance);
         return true;
     }
+
     return false;
 }
 
@@ -187,16 +206,17 @@ bool AstroDomeBlueStar::tryStartBind(const LiveActor* pActor) {
         setNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvBindTraction::sInstance);
         return true;
     }
+
     return false;
 }
 
 bool AstroDomeBlueStar::isActiveBind() const {
     return isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvBindTraction::sInstance) ||
-            isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvBindHold::sInstance) ||
-            isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxySelect::sInstance) ||
-            isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmStart::sInstance) ||
-            isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirm::sInstance) ||
-            isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmCancel::sInstance);
+           isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvBindHold::sInstance) ||
+           isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxySelect::sInstance) ||
+           isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmStart::sInstance) ||
+           isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirm::sInstance) ||
+           isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxyConfirmCancel::sInstance);
 }
 
 bool AstroDomeBlueStar::isValidBindStart() const {
@@ -211,16 +231,17 @@ void AstroDomeBlueStar::calcZoomInPos(TVec3f* zoomVec) const {
     pos.getYDirInline(vec);
     cameraRelative.sub(SphereSelectorFunction::getSelectedActorTrans(), MR::getCamPos());
 
-    SphereSelectorFunction::calcOffsetPos(zoomVec, SphereSelectorFunction::getSelectedActorTrans(), TVec3f(cZoomInOffset), cameraRelative, vec);
+    SphereSelectorFunction::calcOffsetPos(zoomVec, SphereSelectorFunction::getSelectedActorTrans(), TVec3f(::cZoomInOffset), cameraRelative, vec);
 }
 
 void AstroDomeBlueStar::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Appear", nullptr);
         MR::emitEffect(this, "TargetLight");
-        MR::startSystemSE("SE_SY_GCAPTURE_AREA");
-        MR::startSound(this, "SE_OJ_GCAPTURE_AREA");
+        MR::startSystemSE("SE_SY_GCAPTURE_APPEAR");
+        MR::startSound(this, "SE_OJ_GCAPTURE_APPEAR");
     }
+
     MR::setNerveAtBckStopped(this, &NrvAstroDomeBlueStar::AstroDomeBlueStarNrvWait::sInstance);
 }
 
@@ -241,6 +262,7 @@ void AstroDomeBlueStar::exeWait() {
         mCaptureActor->kill();
         MR::tryShowTimeoutedStarPointerGuidance();
     }
+
     if (isValidBindStart() && MR::isStarPointerPointing(this, 0, true, "弱")) {
         setNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvPointing::sInstance);
     }
@@ -253,8 +275,10 @@ void AstroDomeBlueStar::exePointing() {
         MR::invalidateClipping(this);
         MR::startCSSound("CS_STAR_POWER", nullptr, 0);
     }
+
     MR::requestStarPointerModeBlueStarReady(this);
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_POINT");
+
     if (MR::isOnTractTrigger()) {
         setNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvTryStartBind::sInstance);
     } else if (!isValidBindStart() || !MR::isStarPointerPointing(this, 0, true, "弱")) {
@@ -273,14 +297,16 @@ void AstroDomeBlueStar::exeTryStartBind() {
         mCaptureActor->appear();
         MR::emitEffect(mCaptureActor, "RibbonPoint");
     }
+
     MR::requestStarPointerModeBlueStarReady(this);
     TVec3f resultPoint;
-    resultPoint.lerp(mCaptureActor->mPosition, *MR::getPlayerCenterPos(), MR::calcNerveRate(this, 30));
+    resultPoint.lerp(mCaptureActor->mPosition, *MR::getPlayerCenterPos(), MR::calcNerveRate(this, ::cTryStartBindFrame));
     mCaptureActor->setPosAll(resultPoint);
     mCaptureRibbon->lengthen(mPosition, resultPoint);
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_PULL", MR::calcDistanceToPlayer(this));
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_POINT");
-    if (MR::isStep(this, 30)) {
+
+    if (MR::isStep(this, ::cTryStartBindFrame)) {
         setNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvWait::sInstance);
     }
 }
@@ -288,14 +314,15 @@ void AstroDomeBlueStar::exeTryStartBind() {
 void AstroDomeBlueStar::exeBindTraction() {
     if (MR::isFirstStep(this)) {
         getSensor("bind")->invalidate();
-        MR::deleteEffect(this, "RibbonPoint");
-        MR::emitEffect(this, "RibbonBreak");
+        MR::deleteEffect(mCaptureActor, "RibbonPoint");
+        MR::emitEffect(mCaptureActor, "RibbonBreak");
         MR::emitEffect(mCaptureActor, "LightGrow");
         MR::emitEffect(mCaptureActor, "LightSplash");
         MR::startBckPlayer("SpaceStruggle", 20);
         _C0.setInline(_90);
         MR::startActorCameraTargetPlayer(this, _F0, -1);
     }
+
     TVec3f trans;
     _C0.getTrans(trans);
     mCaptureActor->updateTransTraction(trans, mPosition, getNerveStep());
@@ -305,16 +332,19 @@ void AstroDomeBlueStar::exeBindTraction() {
     mCaptureRibbon->shorten(mPosition, trans2);
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_PULL", MR::calcDistanceToPlayer(this));
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_POINT");
+
     if (MR::isStep(this, 30)) {
         MR::emitEffect(mCaptureActor, "Light");
     }
-    if (MR::isStep(this, 90)) {
+
+    if (MR::isStep(this, ::cBindTractionFrame)) {
         setNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvBindHold::sInstance);
     }
 }
 
 void AstroDomeBlueStar::exeBindHold() {
     s32 cancelFrame = SphereSelectorFunction::getConfirmStartCancelFrame();
+
     if (MR::isFirstStep(this)) {
         MR::hideModel(this);
         MR::deleteEffectAll(this);
@@ -324,10 +354,9 @@ void AstroDomeBlueStar::exeBindHold() {
         mCaptureActor->setPosAll(mPosition);
         SphereSelectorFunction::selectStart();
     }
-    TVec3f mCamZDir = MR::getCamZdir();
-    TVec3f mCamYDir = MR::getCamYdir();
+
     TPos3f frontMtx;
-    MR::makeMtxUpFront(&frontMtx, mCamYDir, mCamZDir);
+    MR::makeMtxUpFront(&frontMtx, MR::getCamYdir(), MR::getCamZdir());
     MR::blendMtxRotateSlerp(_C0, frontMtx, MR::calcNerveRate(this, cancelFrame), _90);
     _90.setTrans(mPosition);
     MR::setNerveAtStep(this, &NrvAstroDomeBlueStar::AstroDomeBlueStarNrvGalaxySelect::sInstance, cancelFrame);
@@ -368,9 +397,4 @@ void AstroDomeBlueStar::exeGalaxyConfirmCancel() {
 void AstroDomeBlueStar::exeGalaxyConfirm() {
     calcZoomInPos(&mZoomPos);
     mPosition.set(mZoomPos);
-}
-
-AstroDomeBlueStar::CaptureActor::~CaptureActor() {
-}
-AstroDomeBlueStar::~AstroDomeBlueStar() {
 }
