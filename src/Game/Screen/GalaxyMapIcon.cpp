@@ -116,6 +116,8 @@ bool GalaxyMapIcon::isNewOnDiscoverMode() const {
     return GameDataFunction::canOnJustGameEventFlag(mGalaxyName);
 }
 
+GalaxyMapIcon::~GalaxyMapIcon() {}
+
 void GalaxyMapIcon::init(const JMapInfoIter& rIter) {
     initLayoutManager("MapGalaxyIcon", 2);
     MR::createAndAddPaneCtrl(this, "GalaxyIcon", 1);
