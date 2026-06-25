@@ -564,9 +564,9 @@ namespace JGeometry {
         inline void mulInternal(register const f32* vec1, register const f32* vec2, register f32* dst) {
             register f32 xy1, xy2, res;
             __asm {
-                psq_l xy1, 0(vec1), 0, 0
-                psq_l xy2, 0(vec2), 0, 0
-                ps_mul res, xy1, xy2
+                psq_l xy2, 0(vec1), 0, 0
+                psq_l xy1, 0(vec2), 0, 0
+                ps_mul res, xy2, xy1
                 psq_st res, 0(dst), 0, 0
             }
             dst[2] = vec1[2] * vec2[2];
