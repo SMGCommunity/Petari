@@ -1,9 +1,9 @@
 #pragma once
 
-#include <revolution/kpad.h>
+#include <revolution/hbm.h>
+#include <revolution/types.h>
 
 class WPad;
-class HBMKPadData;
 
 class WPadReadDataInfo {
 public:

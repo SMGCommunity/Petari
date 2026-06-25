@@ -1,9 +1,7 @@
 #pragma once
 
 #include "Game/Screen/LayoutActor.hpp"
-
-struct HBMControllerData;
-struct HBMDataInfo;
+#include <revolution/hbm.h>
 
 class HomeButtonMenuContext {
 public:
