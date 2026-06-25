@@ -11,7 +11,15 @@ class ParticleEmitter;
 
 class MultiEmitter {
 public:
+    MultiEmitter(const char*);
+    MultiEmitter(const char*, MtxPtr, const TVec3f*, const TVec3f&);
+    MultiEmitter(const char*, MtxPtr, const TVec3f&);
+    MultiEmitter(const char*, const TVec3f*, const TVec3f*, const TVec3f*, const TVec3f&);
+
+    void createEmitter();
+
     void forceDelete(EffectSystem*);
+    void forceDeleteEmitter();
     void deleteEmitter();
     void create(EffectSystem*);
 
@@ -20,6 +28,8 @@ public:
     void setGlobalSRTMatrix(const MtxPtr, s32);
 
     void setBaseScale(f32);
+    void setName(const char*);
+    bool isEqualName(u16) const;
     void setLocalScale(const TVec3f&, s32);
     void setGlobalScale(const TVec3f&, s32);
     void setGlobalScale(f32, s32);
@@ -44,4 +54,7 @@ public:
 
     void onCreateSyncClipping();
     void onForceDeleteSyncClipping();
+
+    /* 0x0 */ u32 _0;
+    /* 0x4 */ u8 _4[0x38-0x4];
 };
