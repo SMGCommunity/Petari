@@ -5,7 +5,7 @@
 #include "Game/System/WPadPointer.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
-#include <revolution/kpad.h>
+#include <revolution/hbm/HBMBase.h>
 #include <revolution/wpad.h>
 
 #define KPAD_STATUS_ARRAY_SIZE 120
@@ -160,7 +160,24 @@ namespace MR {
         pWPadHolder->mMode = WPAD_SENSOR_BAR_POS_TOP;
     }
 
-    // getHBMKPadData
+    void getHBMKPadData(HBMKPadData* pPadData, s32 chan) {
+        u32 type;
+        s32 status = WPADProbe(chan, &type);
+        KPADStatus* pStatus = getWPadHolder()->mReadDataInfoArray[chan].mStatusArray;
+
+        switch (status) {
+        case WPAD_ERR_NONE:
+        case WPAD_ERR_BUSY:
+        case WPAD_ERR_TRANSFER:
+            pPadData->kpad = pStatus;
+            pPadData->pos = pStatus->pos;
+            pPadData->use_devtype = pStatus->dev_type;
+            break;
+        default:
+            pPadData->kpad = nullptr;
+            break;
+        }
+    }
 
     void setAutoSleepTimeWiiRemote(bool isLongAutoSleep) {
         u8 minute = isLongAutoSleep ? 15 : 5;
