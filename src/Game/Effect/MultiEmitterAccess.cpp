@@ -6,7 +6,7 @@
 
 void MultiEmitter::setGlobalRotation(const TVec3s& rRotation, s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->setGlobalRotation(rRotation);
@@ -24,7 +24,7 @@ void MultiEmitter::setGlobalRotation(const TVec3s& rRotation, s32 idx) {
 
 void MultiEmitter::setGlobalTranslation(const TVec3f& rPosition, s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->mEmitter->mGlobalTrs.set(rPosition);
@@ -42,7 +42,7 @@ void MultiEmitter::setGlobalTranslation(const TVec3f& rPosition, s32 idx) {
 
 void MultiEmitter::setGlobalScale(const TVec3f& rScale, s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->setGlobalScale(rScale);
@@ -60,7 +60,7 @@ void MultiEmitter::setGlobalScale(const TVec3f& rScale, s32 idx) {
 
 void MultiEmitter::setGlobalSRTMatrix(const MtxPtr pMtx, s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->setGlobalSRTMatrix(pMtx);
@@ -80,10 +80,10 @@ void MultiEmitter::setGlobalPrmColor(u8 r, u8 g, u8 b, s32 idx) {
     bool b1 = MR::isNearZero(_2C);
 
     if (idx == -1) {
-        _1C->mPrmColor.set(r, g, b, -1);
+        mCallBack->mPrmColor.set(r, g, b, -1);
 
         if (!b1) {
-            for (s32 i = 0; i < _0.size(); i++) {
+            for (s32 i = 0; i < mEmitters.size(); i++) {
                 SingleEmitter* pEmitter = getValidEmitter(i, false);
                 if (pEmitter != nullptr) {
                     pEmitter->mEmitter->setGlobalPrmColor(r, g, b);
@@ -104,10 +104,10 @@ void MultiEmitter::setGlobalEnvColor(u8 r, u8 g, u8 b, s32 idx) {
     bool b1 = MR::isNearZero(_2C);
 
     if (idx == -1) {
-        _1C->mEnvColor.set(r, g, b, -1);
+        mCallBack->mEnvColor.set(r, g, b, -1);
 
         if (!b1) {
-            for (s32 i = 0; i < _0.size(); i++) {
+            for (s32 i = 0; i < mEmitters.size(); i++) {
                 SingleEmitter* pEmitter = getValidEmitter(i, false);
                 if (pEmitter != nullptr) {
                     pEmitter->mEmitter->setGlobalEnvColor(r, g, b);
@@ -126,7 +126,7 @@ void MultiEmitter::setGlobalEnvColor(u8 r, u8 g, u8 b, s32 idx) {
 
 void MultiEmitter::setLocalScale(const TVec3f& rScale, s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->mEmitter->mLocalScl.set(rScale);
@@ -144,7 +144,7 @@ void MultiEmitter::setLocalScale(const TVec3f& rScale, s32 idx) {
 
 void MultiEmitter::setDirectionalSpeed(f32 speed, s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->mEmitter->setDirectionalSpeed(speed);
@@ -162,7 +162,7 @@ void MultiEmitter::setDirectionalSpeed(f32 speed, s32 idx) {
 
 void MultiEmitter::setRate(f32 rate, s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->mEmitter->setRate(rate);
@@ -180,7 +180,7 @@ void MultiEmitter::setRate(f32 rate, s32 idx) {
 
 void MultiEmitter::stopCalcEmitter(s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->mEmitter->stopCalcEmitter();
@@ -198,7 +198,7 @@ void MultiEmitter::stopCalcEmitter(s32 idx) {
 
 void MultiEmitter::playCalcEmitter(s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->mEmitter->playCalcEmitter();
@@ -216,7 +216,7 @@ void MultiEmitter::playCalcEmitter(s32 idx) {
 
 void MultiEmitter::stopDrawParticle(s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->mEmitter->stopDrawParticle();
@@ -234,7 +234,7 @@ void MultiEmitter::stopDrawParticle(s32 idx) {
 
 void MultiEmitter::playDrawParticle(s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->mEmitter->playDrawParticle();
@@ -252,7 +252,7 @@ void MultiEmitter::playDrawParticle(s32 idx) {
 
 void MultiEmitter::setParticleCallBackPtr(JPAParticleCallBack* pCallBack, s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->mEmitter->setParticleCallBackPtr(pCallBack);
@@ -270,7 +270,7 @@ void MultiEmitter::setParticleCallBackPtr(JPAParticleCallBack* pCallBack, s32 id
 
 void MultiEmitter::pauseOff(s32 idx) {
     if (idx == -1) {
-        for (s32 i = 0; i < _0.size(); i++) {
+        for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
                 pEmitter->mEmitter->pauseOff();

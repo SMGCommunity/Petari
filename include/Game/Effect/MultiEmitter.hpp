@@ -83,6 +83,9 @@ public:
     void setParticleCallBackPtr(JPAParticleCallBack*, s32);
     void pauseOff(s32);
 
+    // In MarioEffect
+    void setGlobalScale(f32, s32);
+
     inline bool isFlagOn(u16 flag) const {
         u16 mask = mFlags & flag;
         return mask == flag;

@@ -6,6 +6,7 @@
 #include "Game/Screen/LayoutManager.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
+#include <algorithm>
 
 extern "C" void __ptmf_scall(...);
 
@@ -73,9 +74,7 @@ void PaneEffectKeeper::forceDeleteEmitterAll() {
 }
 
 void PaneEffectKeeper::clear() {
-    for (MultiEmitter* const* pEmitter = mEmitters.begin(); pEmitter != mEmitters.end(); pEmitter++) {
-        __ptmf_scall(*pEmitter);
-    }
+    for_each(mEmitters.begin(), mEmitters.end(), std::mem_fun_t<void, MultiEmitter>(&MultiEmitter::playCalcAndDeleteForeverEmitter));
 }
 
 MultiEmitter* PaneEffectKeeper::getEmitter(const char* pName) const {
