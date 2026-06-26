@@ -4,11 +4,13 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include <JSystem/JParticle/JPAEmitterCallBack.hpp>
 
-#define FORCE_FOLLOW_ON 0x1
-#define FORCE_FOLLOW_OFF 0x2
-#define FORCE_SCALE_ON 0x10
-#define RESET_FOLLOW_CURRENT 0x40
-#define BASE_SCALE 0x100
+enum {
+    FORCE_FOLLOW_ON = 0x1,
+    FORCE_FOLLOW_OFF = 0x2,
+    FORCE_SCALE_ON = 0x10,
+    RESET_FOLLOW_CURRENT = 0x40,
+    BASE_SCALE = 0x100
+};
 
 class MultiEmitter;
 
