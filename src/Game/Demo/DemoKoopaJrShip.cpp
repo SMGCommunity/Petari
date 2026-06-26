@@ -140,7 +140,9 @@ void DemoKoopaJrShip::control() {
 void DemoKoopaJrShip::initAnimID(const JMapInfoIter& rIter) {
     MR::getJMapInfoArg0NoInit(rIter, &mAnimCameraIndex);
 
-    if (mAnimCameraIndex >= ARRAY_SIZEU(::sAnim)) {
+    u32 animNum = ARRAY_SIZE(::sAnim);
+
+    if (mAnimCameraIndex >= animNum) {
         mAnimCameraIndex = -1;
     }
 
