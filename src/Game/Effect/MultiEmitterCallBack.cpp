@@ -16,21 +16,21 @@ namespace {
 }
 
 MultiEmitterCallBack::MultiEmitterCallBack(const MultiEmitter* pEmitter, const TVec3f& rVec)
-    : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(), mRotation(), mPosition(), mMtx(), rotation8(rVec), mBaseScale(1.0f), mPrmColor(-1, -1, -1, -1), mEnvColor(-1, -1, -1, -1), mFlags() {
+    : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(), mRotation(), mPosition(), mMtx(), _18(rVec), mBaseScale(1.0f), mPrmColor(-1, -1, -1, -1), mEnvColor(-1, -1, -1, -1), mFlags() {
 }
 
 MultiEmitterCallBack::MultiEmitterCallBack(const MultiEmitter* pEmitter, const TVec3f* pScale, const TVec3f* pRotation, const TVec3f* pPosition,
                                            const TVec3f& rVec)
-    : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(pScale), mRotation(pRotation), mPosition(pPosition), mMtx(), rotation8(rVec), mBaseScale(1.0f), mPrmColor(-1, -1, -1, -1), mEnvColor(-1, -1, -1, -1),
+    : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(pScale), mRotation(pRotation), mPosition(pPosition), mMtx(), _18(rVec), mBaseScale(1.0f), mPrmColor(-1, -1, -1, -1), mEnvColor(-1, -1, -1, -1),
       mFlags() {
 }
 
 MultiEmitterCallBack::MultiEmitterCallBack(const MultiEmitter* pEmitter, MtxPtr pMtx, const TVec3f& rVec)
-    : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(), mRotation(), mPosition(), mMtx(pMtx), rotation8(rVec), mBaseScale(1.0f), mPrmColor(-1, -1, -1, -1), mEnvColor(-1, -1, -1, -1), mFlags() {
+    : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(), mRotation(), mPosition(), mMtx(pMtx), _18(rVec), mBaseScale(1.0f), mPrmColor(-1, -1, -1, -1), mEnvColor(-1, -1, -1, -1), mFlags() {
 }
 
 MultiEmitterCallBack::MultiEmitterCallBack(const MultiEmitter* pEmitter, MtxPtr pMtx, const TVec3f* pPosition, const TVec3f& rVec)
-    : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(), mRotation(), mPosition(pPosition), mMtx(pMtx), rotation8(rVec), mBaseScale(1.0f), mPrmColor(-1, -1, -1, -1), mEnvColor(-1, -1, -1, -1),
+    : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(), mRotation(), mPosition(pPosition), mMtx(pMtx), _18(rVec), mBaseScale(1.0f), mPrmColor(-1, -1, -1, -1), mEnvColor(-1, -1, -1, -1),
       mFlags() {
 }
 
@@ -91,7 +91,7 @@ void MultiEmitterCallBack::setSRTFromHostMtx(JPABaseEmitter* pEmitter, MtxPtr pM
 
     if (rFlag.scale) {
         TVec3f vecE8;
-        mtx94.mult33(rotation8, vecE8);
+        mtx94.mult33(_18, vecE8);
 
         if (rFlag.position) {
             vecE8.mul(vecDC);
@@ -125,9 +125,9 @@ void MultiEmitterCallBack::setSRTFromHostSRT(JPABaseEmitter* pEmitter, const Fla
             TVec3f vecEC(*mRotation);
             vecEC.scale(PI_180);
             mtxD4.makeMatrixFromRotAxesInline(vecEC.x, vecEC.y, vecEC.z);
-            mtxD4.mult33(rotation8, vecE0);
+            mtxD4.mult33(_18, vecE0);
         } else {
-            vecE0.set(rotation8);
+            vecE0.set(_18);
         }
 
         if (rFlag.position && mPosition != nullptr) {

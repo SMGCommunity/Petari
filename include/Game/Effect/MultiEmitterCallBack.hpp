@@ -73,7 +73,7 @@ public:
     /* 0x0C */ const TVec3f* mRotation;
     /* 0x10 */ const TVec3f* mPosition;
     /* 0x14 */ MtxPtr mMtx;
-    /* 0x18 */ TVec3f rotation8;
+    /* 0x18 */ TVec3f _18;
     /* 0x24 */ f32 mBaseScale;
     /* 0x28 */ Color8 mPrmColor;
     /* 0x2C */ Color8 mEnvColor;
