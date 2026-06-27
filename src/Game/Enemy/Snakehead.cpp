@@ -28,6 +28,7 @@ namespace {
         const char* _1C;
     };
 
+    // FIXME: these should be named sdata2 symbols
     static s32 sStepForWaitBig = 0x1E;
     static s32 sStepForRestBig = 0x64;
     static s32 sStepForWaitSmall = 0x3C;
@@ -39,7 +40,7 @@ namespace {
     static s32 sStepForRestSmallRace = 0x78;
     static f32 sGoHomeSpeedRace = 50.0f;
 
-    static SnakeheadData sSnakeheadDataTable[] = {
+    static const SnakeheadData sSnakeheadDataTable[] = {
         {&sStepForWaitBig, &sStepForRestBig, &sGoHomeSpeedNormal, "StraightAppear", "StraightWait", "StraightForward", "StraightForwardSmoke",
          "StraightBack"},
         {&sStepForWaitSmall, &sStepForRestSmall, &sGoHomeSpeedNormal, "StraightAppear", "Wait", "StraightForward", nullptr, "StraightBack"},
@@ -77,8 +78,8 @@ Snakehead::Snakehead(const char* pName) : LiveActor(pName) {
 void Snakehead::initAfterPlacement() {
     TVec3f headPos;
     MR::copyJointPos(this, "Head", &headPos);
-    JMathInlineVEC::PSVECSubtract(&headPos, MR::getRailPointPosStart(this), &headPos);
-    JMathInlineVEC::PSVECAdd(&headPos, MR::getRailPointPosEnd(this), &headPos);
+    headPos -= MR::getRailPointPosStart(this);
+    headPos += MR::getRailPointPosEnd(this);  // TODO: this is probably single-lined in scaleadd
     TVec3f v7;
     JMAVECScaleAdd(&mGravity, &headPos, &v7, -50.0f);
     TVec3f v6(mGravity);
@@ -137,8 +138,8 @@ void Snakehead::control() {
         TVec3f body01Pos;
         MR::copyJointPos(this, "Body01", &body01Pos);
         TVec3f v6;
-        f32 dist = PSVECDistance(&jointPos, &body01Pos);
-        JMathInlineVEC::PSVECAdd(&jointPos, &body01Pos, &v6);
+        f32 dist = jointPos.distance(body01Pos);
+        v6.add(jointPos, body01Pos);
         v6.scale(0.5f);
         MR::setShadowDropPosition(this, "Body", v6);
         TVec3f v5;

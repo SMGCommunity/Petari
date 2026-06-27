@@ -50,7 +50,7 @@ bool PlanetGravityManager::calcTotalGravityVector(TVec3f* pGravity, GravityInfo*
 
                 // If same priority, add gravity vector to total result
                 if (priority == largestPriority) {
-                    JMathInlineVEC::PSVECAdd(&totalGravity, &gravityVec, &totalGravity);
+                    totalGravity += gravityVec;
                     hasCalculated = true;
 
                     if (largestScalar < scalar) {

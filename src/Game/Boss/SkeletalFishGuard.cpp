@@ -573,8 +573,8 @@ void SkeletalFishGuard::calcTarget(TVec3f* a1, TVec3f* a2, TVec3f* a3, s32 a4) {
     TVec3f v19(v21);
     v19.scale(v17);
     TVec3f v20(v19);
-    JMathInlineVEC::PSVECAdd(&v20, &v18, &v20);
-    JMathInlineVEC::PSVECAdd(a1, &v20, a2);
+    v20.add(v18);
+    a2->add(*a1, v20);
 }
 
 bool SkeletalFishGuard::isInScreen() const {
