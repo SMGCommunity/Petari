@@ -385,7 +385,7 @@ bool Creeper::tryJump() {
     }
 
     TVec3f launch;
-    launch = (launchFront.scaleInline(mLaunchHorizontalSpeed)).subOperatorInLine(mGravity.scaleInline(mLaunchVerticalSpeed));
+    launch = launchFront.scaleInline(mLaunchHorizontalSpeed) - mGravity.scaleInline(mLaunchVerticalSpeed);
 
     MR::startBckPlayer("GrowPlantJump", static_cast< const char* >(nullptr));
     MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
@@ -443,11 +443,11 @@ void Creeper::calcAndGetCurrentInfo(TVec3f* pPosition, TVec3f* pUp) const {
     if (idx < mNumPoints - 1) {
         s32 nextIdx = idx + 1;
         *pPosition = mPoints[idx]->mPosition.scaleInline(1.0f - t) + mPoints[nextIdx]->mPosition.scaleInline(t);
-        *pUp = (mPoints[nextIdx]->mPosition).subOperatorInLine(mPoints[idx]->mPosition);
+        *pUp = mPoints[nextIdx]->mPosition - mPoints[idx]->mPosition;
     } else {
         s32 prevIdx = idx - 1;
         pPosition->set(mPoints[idx]->mPosition);
-        *pUp = (mPoints[idx]->mPosition).subOperatorInLine(mPoints[prevIdx]->mPosition);
+        *pUp = mPoints[idx]->mPosition - mPoints[prevIdx]->mPosition;
     }
     MR::normalize(pUp);
 }

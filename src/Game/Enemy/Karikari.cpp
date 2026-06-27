@@ -250,7 +250,7 @@ void Karikari::exeLand() {
     }
 
     if (MR::isGreaterStep(this, ::sBeginWaitMotionFrame)) {
-        TVec3f toPlayerH(MR::getPlayerPos()->subOperatorInLine(mPosition));
+        TVec3f toPlayerH(*MR::getPlayerPos() - mPosition);
         MR::vecKillElement(toPlayerH, mGravity, &toPlayerH);
         MR::normalizeOrZero(&toPlayerH);
         tryTurnToDirection(toPlayerH, ::sTurnRatio);
@@ -326,7 +326,7 @@ void Karikari::exePrePursue() {
     }
 
     if (MR::isLessStep(this, ::sJumpAgainTime)) {
-        TVec3f toPlayer(MR::getPlayerPos()->subOperatorInLine(mPosition));
+        TVec3f toPlayer(*MR::getPlayerPos() - mPosition);
         tryTurnToDirection(toPlayer, ::sTurnRatio);
         mIsPushable = true;
         return;
@@ -365,7 +365,7 @@ void Karikari::exePursue() {
         return;
     }
 
-    TVec3f toPlayerH(MR::getPlayerPos()->subOperatorInLine(mPosition));
+    TVec3f toPlayerH(*MR::getPlayerPos() - mPosition);
     f32 dist = toPlayerH.squared();
     MR::vecKillElement(toPlayerH, mGravity, &toPlayerH);
     MR::normalizeOrZero(&toPlayerH);
@@ -428,7 +428,7 @@ void Karikari::exeWatchFor() {
     }
 
     if (MR::isLessStep(this, ::sWatchForJumpTime)) {
-        TVec3f toPlayer(MR::getPlayerPos()->subOperatorInLine(mPosition));
+        TVec3f toPlayer(*MR::getPlayerPos() - mPosition);
         tryTurnToDirection(toPlayer, ::sTurnRatio);
 
         if (!::getKarikariDirector()->isMaxNumCling() || ::sWatchForDistance * ::sWatchForDistance < toPlayer.squared()) {
@@ -854,7 +854,7 @@ void Karikari::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             return;
         }
 
-        TVec3f diff = pSender->mPosition.subOperatorInLine(pReceiver->mPosition);
+        TVec3f diff = pSender->mPosition - pReceiver->mPosition;
         f32 dist = diff.squared();
         f32 clingDist = ::sDistToCling;
         if (dist < clingDist * clingDist) {

@@ -364,7 +364,7 @@ void StarPieceShooter::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::sendMsgLockOnStarPieceShoot(pReceiver, pSender)) {
-        f32 distBetweenSensors = pReceiver->mPosition.subOperatorInLine(pSender->mPosition).length();
+        f32 distBetweenSensors = (pReceiver->mPosition - pSender->mPosition).length();
         if (distBetweenSensors < _94) {
             _90 = pReceiver;
             _94 = distBetweenSensors;

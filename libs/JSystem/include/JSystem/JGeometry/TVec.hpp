@@ -361,12 +361,6 @@ namespace JGeometry {
             JMathInlineVEC::PSVECAdd(&a, &b, this);
         }
 
-        inline TVec3 addOtherInline(const TVec3& op) const {
-            TVec3 ret;
-            JMathInlineVEC::PSVECAdd(this, &op, &ret);
-            return ret;
-        }
-
         TVec3 operator-(const TVec3& op) const {
             TVec3 ret(*this);
             ret -= op;
@@ -383,12 +377,6 @@ namespace JGeometry {
 
         void sub(const TVec3& a, const TVec3& b) {
             JMathInlineVEC::PSVECSubtract(&a, &b, this);
-        }
-
-        TVec3 subOperatorInLine(const TVec3& op) const {
-            TVec3 ret(*this);
-            ret.sub(op);
-            return ret;
         }
 
         TVec3 operator*(f32 scalar) const NO_INLINE {

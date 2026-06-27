@@ -531,10 +531,10 @@ void BossBegoman::exeElectricDeath() {
         MR::normalizeOrZero(&vec);
 
         if (mHealth == 2) {
-            MR::appearStarPieceToDirection(this, mPosition.subOperatorInLine(mGravity.scaleInline(200.0f)), vec, 8, 20.0f, 40.0f, false);
+            MR::appearStarPieceToDirection(this, mPosition - mGravity.scaleInline(200.0f), vec, 8, 20.0f, 40.0f, false);
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         } else if (mHealth == 1) {
-            MR::appearStarPieceToDirection(this, mPosition.subOperatorInLine(mGravity.scaleInline(200.0f)), vec, 16, 20.0f, 40.0f, false);
+            MR::appearStarPieceToDirection(this, mPosition - mGravity.scaleInline(200.0f), vec, 16, 20.0f, 40.0f, false);
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
     }
@@ -616,7 +616,7 @@ void BossBegoman::exeJumpToInitPos() {
         TVec3f vec2(mGravity);
         vec2 = -vec2;
 
-        mPath->initFromUpVector(mPosition, mInitPos.subOperatorInLine(mGravity.scaleInline(10.0f)), vec2, 700.0f);
+        mPath->initFromUpVector(mPosition, mInitPos - mGravity.scaleInline(10.0f), vec2, 700.0f);
         mVelocity.zero();
     }
 

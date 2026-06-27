@@ -80,11 +80,11 @@ void OceanBowl::init(const JMapInfoIter& rIter) {
 }
 
 bool OceanBowl::isInWater(const TVec3f& rPos) const {
-    if (PSVECDistance(&rPos, &mPosition) > mRadius) {
+    if (rPos.distance(mPosition) > mRadius) {
         return false;
     }
 
-    return !(mUp.dot(rPos.subOperatorInLine(mPosition)) > 0.0f);
+    return !(mUp.dot(rPos - mPosition) > 0.0f);
 }
 
 bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterInfo* pInfo) const {
@@ -110,7 +110,7 @@ bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterI
 
     pInfo->mSurfaceNormal.set(mUp);
 
-    MR::vecKillElement(rPos.subOperatorInLine(*position), mUp, &v3);
+    MR::vecKillElement(rPos - *position, mUp, &v3);
     pInfo->mSurfacePos.set(*position + v3);
 
     TVec3f v5(rPos);

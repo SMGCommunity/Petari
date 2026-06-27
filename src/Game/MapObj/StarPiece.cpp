@@ -502,7 +502,7 @@ void StarPiece::exeToTarget() {
     MR::repeatDegree(&mRotation.y);
 
     if (!mFlags.isGoToPlayer) {
-        mScale.add(TVec3f(0.5f, 0.5f, 0.5f).subOperatorInLine(mScale).scaleInline(0.05f));
+        mScale.add((TVec3f(0.5f, 0.5f, 0.5f) - mScale).scaleInline(0.05f));
         changeScale(mScale.y);
     }
 
@@ -834,7 +834,7 @@ void StarPiece::giftToTarget(StarPieceReceiverInfo* receiverInfo, u32 numGift, H
     mFlags.isGoToPlayer = false;
     mTargetSensor = pSensor;
     mPosition.set(rVec1);
-    _8C.set(pSensor->mPosition.subOperatorInLine(rVec1));
+    _8C.set(pSensor->mPosition - rVec1);
     MR::normalizeOrZero(&_8C);
 
     MR::showModel(this);
@@ -1024,7 +1024,7 @@ void StarPiece::emitGettableEffect(f32 f1) {
 }
 
 void StarPiece::tryGotJudge() {
-    if (225000000.0f < MR::getPlayerCenterPos()->subOperatorInLine(mPosition).squared() || !mFlags._1) {
+    if (225000000.0f < (*MR::getPlayerCenterPos() - mPosition).squared() || !mFlags._1) {
         _C8 = -1;
         return;
     }
@@ -1098,7 +1098,7 @@ void StarPiece::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::sendArbitraryMsg(ACTMES_IS_STAR_PIECE_REFLECT, pReceiver, pSender)) {
-        TVec3f dirReceiverToSender(pSender->mPosition.subOperatorInLine(pReceiver->mPosition));
+        TVec3f dirReceiverToSender(pSender->mPosition - pReceiver->mPosition);
         MR::normalizeOrZero(&dirReceiverToSender);
 
         TVec3f vec2(pReceiver->mPosition);
