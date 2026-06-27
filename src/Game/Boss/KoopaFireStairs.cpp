@@ -136,7 +136,7 @@ void KoopaFireStairs::exeFly() {
             v11.scale(1.0f - rate);
             TVec3f v12(v11);
             v12.add(v10);
-            mPosition.setPS2(v12);
+            mPosition = v12;
 
             f32 v5 = (100.0f * mStair->calcTimeRate());
             f32 v6 = MR::sinDegree(v5);

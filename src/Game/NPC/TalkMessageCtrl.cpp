@@ -505,7 +505,7 @@ bool TalkMessageCtrl::isNearPlayer(f32 distance) const {
             setY = pos[1][3];
             setX = pos[0][3];
             v4.set< f32 >(setX, setY, setZ);
-            v4.setPS2(*MR::getPlayerPos() - v4);
+            v4 = *MR::getPlayerPos() - v4;
 
             f32 f3 = MR::vecKillElement(v4, v3, &v4);
 

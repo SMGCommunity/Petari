@@ -160,7 +160,7 @@ namespace PoltaFunction {
         JMathInlineVEC::PSVECSubtract(pPolta->mPosition, v28, v28);
         JMAVECScaleAdd(pPolta->mGravity, v28, v28, -pPolta->mGravity.dot(v28));
         if (MR::normalizeOrZero(&v28)) {
-            v28.setPS(pPolta->_C4);
+            v28 = pPolta->_C4;
         }
         MR::rotateVecDegree(&v28, pPolta->mGravity, param2);
         JMAVECScaleAdd(v28, pPolta->mPosition, v28, param3);

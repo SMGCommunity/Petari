@@ -258,7 +258,7 @@ void NoteFairy::exeRailMoveStart() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::emitEffect(this, "Blur");
-        mPosition.setPS(MR::getRailPos(this));
+        mPosition = MR::getRailPos(this);
     }
 
     if (_CD) {

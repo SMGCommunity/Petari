@@ -80,5 +80,5 @@ void BgmProhibitArea::movement() {
         }
     }
 
-    _40.setPS2(playerPos);
+    _40 = playerPos;
 }

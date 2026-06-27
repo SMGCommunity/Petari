@@ -343,9 +343,22 @@ namespace JGeometry {
             return *reinterpret_cast< const TVec2< f32 >* >(this);
         }
 
-        TVec3& operator=(const TVec3& b) NO_INLINE {
-            setTVec3f(&b.x, &x);
-            return *this;
+        void operator=(const TVec3& b) {
+#ifdef __MWERKS__
+            const register f32* v_a = &b.x;
+            register f32* v_b = &x;
+
+            register f32 b_x;
+            register f32 a_x;
+
+            asm {
+            psq_l a_x, 0(v_a), 0, 0
+            lfs b_x, 8(v_a)
+            psq_st a_x, 0(v_b), 0, 0
+            stfs b_x, 8(v_b)
+            }
+            ;
+#endif
         }
 
         TVec3& operator-=(const TVec3& op) NO_INLINE {
@@ -614,7 +627,7 @@ namespace JGeometry {
         }
 
         inline void setPS(const TVec3< f32 >& rSrc) {
-            JGeometry::setTVec3f(&rSrc.x, &x);
+            *this = rSrc;
         }
 
         static inline TVec3 makeZeroVec() {
@@ -624,23 +637,6 @@ namespace JGeometry {
         }
 
 #ifdef __MWERKS__
-        // Point gravity doesn't match if we use setPS
-        inline void setPS2(const TVec3< f32 >& rSrc) {
-            const register Vec* v_a = &rSrc;
-            register Vec* v_b = this;
-
-            register f32 b_x;
-            register f32 a_x;
-
-            asm {
-                psq_l a_x, 0(v_a), 0, 0
-                lfs b_x, 8(v_a)
-                psq_st a_x, 0(v_b), 0, 0
-                stfs b_x, 8(v_b)
-            }
-            ;
-        }
-
         inline void setPSZeroVec() {
             const register Vec* v_a = &gZeroVec;
             register Vec* v_b = this;
@@ -657,7 +653,6 @@ namespace JGeometry {
             ;
         }
 #else
-        void setPS2(const TVec3< f32 >& rSrc);
         void setPSZeroVec();
 #endif
 

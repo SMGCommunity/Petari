@@ -80,7 +80,7 @@ void WoodBox::init(const JMapInfoIter& rIter) {
     }
 
     mBreakModel = new ModelObj("壊れモデル", "WoodBoxBreak", getBaseMtx(), MR::DrawBufferType_NoSilhouettedMapObjStrongLight, -2, -2, false);
-    mBreakModel->mScale.setPS2(mScale);
+    mBreakModel->mScale = mScale;
     MR::initLightCtrl(mBreakModel);
     mBreakModel->kill();
     mFloorTouchTimer = 0;

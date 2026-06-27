@@ -525,7 +525,7 @@ void SlingShooter::updateHang() {
 
     TVec3f pos(v1.scaleInline(0.1f).addOperatorInLine(mPosition.scaleInline(0.9f)));
 
-    mVelocity.setPS2(pos.subOperatorInLine(mPosition));
+    mVelocity = pos.subOperatorInLine(mPosition);
 
     if (mRider == nullptr) {
         return;

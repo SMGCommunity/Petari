@@ -62,10 +62,7 @@ void SubmarineVolcanoBigColumn::exeWait() {
             MR::calcUpVec(&upVec, this);
             TVec3f v11;
             v11.scale(::sGenerateOffsetY, upVec);
-            TVec3f pos;
-            pos.setPS(v11);
-            pos.addInline(mPosition);
-            MR::appearAirBubble(pos, ::sGenerateLife);
+            MR::appearAirBubble(mPosition.addOtherInline2(v11), ::sGenerateLife);
             setNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvWait::sInstance);
         }
     }

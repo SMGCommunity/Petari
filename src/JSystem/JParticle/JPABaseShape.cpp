@@ -662,7 +662,7 @@ void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
 void JPADrawLine(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
     if (param_1->checkStatus(8) == 0) {
         JGeometry::TVec3< f32 > local_1c;
-        JGeometry::setTVec3f(&param_1->mPosition.x, &local_1c.x);
+        param_1->mPosition.x = local_1c.x;
         JGeometry::TVec3< f32 > local_28;
         param_1->getVelVec(local_28);
         if (!local_28.isZero()) {

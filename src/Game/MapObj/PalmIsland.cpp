@@ -52,7 +52,7 @@ inline void PalmIsland::exeWait() {
 
 void PalmIsland::exeFloat() {
     if (MR::isFirstStep(this)) {
-        _90.setPS2(mPosition);
+        _90 = mPosition;
         MR::emitEffect(this, "Ripple");
         MR::setEffectHostSRT(this, "Ripple", &_90, nullptr, nullptr);
     }

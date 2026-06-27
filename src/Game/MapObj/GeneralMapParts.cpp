@@ -138,7 +138,7 @@ void GeneralMapParts::control() {
         }
 
         if (v9) {
-            mPosition.setPS(mRailMover->_28);
+            mPosition.set(mRailMover->_28);
         }
     }
 }

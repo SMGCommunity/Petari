@@ -514,7 +514,7 @@ void SpaceCocoon::updateHang() {
         pos.add(mNeutralPos);
     }
 
-    mPosition.setPS2(pos.scaleInline(0.03f).addOperatorInLine(mPosition.scaleInline(0.97f)));
+    mPosition = pos.scaleInline(0.03f).addOperatorInLine(mPosition.scaleInline(0.97f));
     mCocoonPos.set(mPosition);
     updateDrawPoints();
 

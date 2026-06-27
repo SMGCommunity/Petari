@@ -71,11 +71,8 @@ void MapParts::initModelAndCollision(const JMapInfoIter& rIter) {
         MR::calcModelBoundingBox(&box, this);
         JMathInlineVEC::PSVECSubtract(&box.f, &box.i, &dist);
         sensorRange = 0.5f * PSVECMag(&dist);
-        JMAVECLerp(&box.f, &box.i, &lerpVec, 0.5f);
-        TVec3f trueSensorOffset;
-        trueSensorOffset.setPS(lerpVec);
-        JMathInlineVEC::PSVECSubtract(&trueSensorOffset, &mPosition, &trueSensorOffset);
-        MR::setSensorOffset(this, "body", trueSensorOffset);
+        lerpVec.lerp(box.f, box.i, 0.5f);
+        MR::setSensorOffset(this, "body", lerpVec - mPosition);
     } else {
         sensorRange = MR::getCollisionBoundingSphereRange(this);
     }

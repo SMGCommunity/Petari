@@ -48,13 +48,7 @@ void DinoPackunTailPart::attackSensor(HitSensor* pSender, HitSensor* pReceiver) 
         MR::calcSensorDirectionNormalize(&v16, pReceiver, pSender);
 
         if (mVelocity.dot(v16) < 3.0f) {
-            TVec3f stack_8;
-            stack_8.setPS2(v16);
-            /* todo -- this scalar is actually 1.0f, but that causes this segment to disappear */
-            stack_8.x *= 2.0f;
-            stack_8.y *= 2.0f;
-            stack_8.z *= 2.0f;
-            JMathInlineVEC::PSVECAdd(&stack_8, &mVelocity, &mVelocity);
+            mVelocity += v16.multInLine(1.0f);
         }
     }
 }

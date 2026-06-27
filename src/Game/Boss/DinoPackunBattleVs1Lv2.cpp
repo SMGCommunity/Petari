@@ -158,12 +158,7 @@ void DinoPackunBattleVs1Lv2::exeTurn() {
 
     TVec3f side;
     MR::calcSideVec(&side, getHost());
-    TVec3f v7;
-    v7.setPS(side);
-    v7.x *= _10;
-    v7.y *= _10;
-    v7.z *= _10;
-    MR::turnDirectionDegree(getHost(), &getHost()->_E8, v7, 1.0f);
+    MR::turnDirectionDegree(getHost(), &getHost()->_E8, side.multInLine(_10), 1.0f);
     MR::addVelocityMoveToDirection(getHost(), getHost()->_E8, 1.3f);
     getHost()->updateRunVelocity();
     getHost()->updateFootPrintNerve(getNerveStep(), 50);
