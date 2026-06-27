@@ -112,18 +112,6 @@ typedef struct NANDStatus {
     u8 permission;
 } NANDStatus;
 
-typedef struct {
-    u32 signature;
-    u32 flag;
-    u16 iconSpeed;
-    u8 reserved[22];
-    u16 comment[2][32];
-    u8 bannerTexture[192 * 64 * 2];
-    u8 iconTexture[8][48 * 48 * 2];
-} NANDBanner;
-
-void NANDInitBanner(NANDBanner *, u32, const u16 *, const u16 *);
-
 typedef void (*NANDCallback)(s32, NANDCommandBlock *);
 typedef void (*NANDAsyncCallback)(s32 result, struct NANDCommandBlock* block);
 
@@ -174,6 +162,41 @@ s32 NANDGetHomeDir(char[NAND_MAX_PATH]);
 s32 NANDGetStatus(const char *, NANDStatus *);
 
 s32 NANDSecretGetUsage(const char *, u32 *, u32 *);
+
+#define NAND_BANNER_TEXTURE_SIZE (192 * 64 * 2)
+#define NAND_BANNER_ICON_SIZE (48 * 48 * 2)
+#define NAND_BANNER_COMMENT_SIZE 32
+
+#define NAND_BANNER_ICON_ANIM_SPEED_END 0
+#define NAND_BANNER_ICON_ANIM_SPEED_FAST 1
+#define NAND_BANNER_ICON_ANIM_SPEED_NORMAL 2
+#define NAND_BANNER_ICON_ANIM_SPEED_SLOW 3
+#define NAND_BANNER_ICON_ANIM_SPEED_MASK 3
+
+#define NAND_BANNER_FLAG_NOTCOPY 0x00000001
+
+#define NAND_BANNER_FLAG_ANIM_BOUNCE 0x00000010
+#define NAND_BANNER_FLAG_ANIM_LOOP 0x00000000
+#define NAND_BANNER_FLAG_ANIM_MASK 0x00000010
+
+#define NAND_BANNER_SIGNATURE 0x5749424E
+
+#define NANDGetIconSpeed(stat, n) (((stat)->iconSpeed >> (2 * (n))) & NAND_BANNER_ICON_ANIM_SPEED_MASK)
+#define NANDSetIconSpeed(stat, n, f) ((stat)->iconSpeed = (u16) (((stat)->iconSpeed & ~(NAND_BANNER_ICON_ANIM_SPEED_MASK << (2 * (n)))) | ((f) << (2 * (n)))))
+
+#define NAND_BANNER_SIZE(i) (32 + NAND_BANNER_COMMENT_SIZE * sizeof(u16) * 2 + NAND_BANNER_TEXTURE_SIZE + NAND_BANNER_ICON_SIZE * (i))
+
+typedef struct {
+    /* 0x0000 */ u32 signature;
+    /* 0x0004 */ u32 flag;
+    /* 0x0008 */ u16 iconSpeed;
+    /* 0x000A */ u8 reserved[22];
+    /* 0x0020 */ u16 comment[2][NAND_BANNER_COMMENT_SIZE];
+    /* 0x0060 */ u8 bannerTexture[NAND_BANNER_TEXTURE_SIZE];
+    /* 0x6060 */ u8 iconTexture[8][NAND_BANNER_ICON_SIZE];
+} NANDBanner;
+
+void NANDInitBanner(NANDBanner*, u32, const u16*, const u16*);
 
 #ifdef __cplusplus
 }

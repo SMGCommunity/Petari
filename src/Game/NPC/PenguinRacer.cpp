@@ -378,7 +378,7 @@ void PenguinRacer::updateVelocity() {
         MR::normalizeOrZero(&grav);
         const TVec3f& v = mVelocity;
         velV.scale(grav.dot(v), grav);
-        velH.subInline(v, velV);
+        velH.sub(v, velV);
     } else {
         velV.zero();
         velH.set(mVelocity);
@@ -400,7 +400,7 @@ void PenguinRacer::updateVelocity() {
         velH.setLength(speedMaxH);
     }
 
-    mVelocity.set(velV.addOperatorInLine(velH));
+    mVelocity.set(velV + velH);
 }
 
 void PenguinRacer::updateRail() {

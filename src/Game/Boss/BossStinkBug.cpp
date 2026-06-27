@@ -245,7 +245,7 @@ void BossStinkBug::setPose(MtxPtr pMtx) {
 }
 
 void BossStinkBug::updateCamera() {
-    _F8.setPS2(mPosition);
+    _F8 = mPosition;
 }
 
 bool BossStinkBug::isValidFollowId(s32 id) const {

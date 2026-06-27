@@ -247,32 +247,32 @@ bool CubeGravity::calcEdgeGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
 
     case ENCODE_EDGE(AXIS_Z, REGION_NEGATIVE_X, REGION_POSITIVE_Y):
         edgeVector = zDir;
-        edgeTranslation = negate(xDir).translate(yDir);
+        edgeTranslation = negate(xDir) + yDir;
         break;
 
     case ENCODE_EDGE(AXIS_Z, REGION_POSITIVE_X, REGION_POSITIVE_Y):
         edgeVector = zDir;
-        edgeTranslation = xDir.translate(yDir);
+        edgeTranslation = xDir + yDir;
         break;
 
     case ENCODE_EDGE(AXIS_X, REGION_NEGATIVE_Y, REGION_POSITIVE_Z):
         edgeVector = xDir;
-        edgeTranslation = negate(yDir).translate(zDir);
+        edgeTranslation = negate(yDir) + zDir;
         break;
 
     case ENCODE_EDGE(AXIS_Y, REGION_NEGATIVE_X, REGION_POSITIVE_Z):
         edgeVector = yDir;
-        edgeTranslation = negate(xDir).translate(zDir);
+        edgeTranslation = negate(xDir) + zDir;
         break;
 
     case ENCODE_EDGE(AXIS_Y, REGION_POSITIVE_X, REGION_POSITIVE_Z):
         edgeVector = yDir;
-        edgeTranslation = xDir.translate(zDir);
+        edgeTranslation = xDir + zDir;
         break;
 
     case ENCODE_EDGE(AXIS_X, REGION_POSITIVE_Y, REGION_POSITIVE_Z):
         edgeVector = xDir;
-        edgeTranslation = yDir.translate(zDir);
+        edgeTranslation = yDir + zDir;
         break;
 
     default:
@@ -313,27 +313,27 @@ bool CubeGravity::calcCornerGravity(const TVec3f& rPosition, s32 area, TVec3f* p
         break;
 
     case ENCODE_CORNER(-1, 1, -1):
-        vertex = negate(xDir).translate(yDir) - zDir;
+        vertex = negate(xDir) + yDir - zDir;
         break;
 
     case ENCODE_CORNER(1, 1, -1):
-        vertex = xDir.translate(yDir) - zDir;
+        vertex = xDir + yDir - zDir;
         break;
 
     case ENCODE_CORNER(-1, -1, 1):
-        vertex = (negate(xDir) - yDir).translate(zDir);
+        vertex = negate(xDir) - yDir + zDir;
         break;
 
     case ENCODE_CORNER(1, -1, 1):
-        vertex = (xDir - yDir).translate(zDir);
+        vertex = xDir - yDir + zDir;
         break;
 
     case ENCODE_CORNER(-1, 1, 1):
-        vertex = negate(xDir).translate(yDir).translate(zDir);
+        vertex = negate(xDir) + yDir + zDir;
         break;
 
     case ENCODE_CORNER(1, 1, 1):
-        vertex = xDir.translate(yDir).translate(zDir);
+        vertex = xDir + yDir + zDir;
         break;
 
     default:

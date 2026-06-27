@@ -51,7 +51,7 @@ void DinoPackunAction::updateTurn(s32 a1, f32 a2) {
     TVec3f side;
     MR::calcSideVec(&side, mActor);
     TVec3f stack_8;
-    stack_8.setPS(side);
+    stack_8 = side;
 }
 */
 

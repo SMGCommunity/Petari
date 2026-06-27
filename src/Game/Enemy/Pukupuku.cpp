@@ -436,7 +436,7 @@ void Pukupuku::exeBlownOff() {
     } else if (!MR::isBinded(this)) {
         TVec3f v11(mGravity);
         v11.scale(getBlownOffSpeedRate());
-        mVelocity.addInline(v11);
+        mVelocity.add(v11);
     }
 
     MR::stopSceneAtStep(this, 2, 4);

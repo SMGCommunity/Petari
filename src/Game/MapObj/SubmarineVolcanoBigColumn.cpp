@@ -58,14 +58,11 @@ void SubmarineVolcanoBigColumn::kill() {
 void SubmarineVolcanoBigColumn::exeWait() {
     if (mIsSmallColumn) {
         if (MR::isStep(this, ::sGenerateInterval)) {
+            TVec3f v11;
             TVec3f upVec;
             MR::calcUpVec(&upVec, this);
-            TVec3f v11;
             v11.scale(::sGenerateOffsetY, upVec);
-            TVec3f pos;
-            pos.setPS(v11);
-            pos.addInline(mPosition);
-            MR::appearAirBubble(pos, ::sGenerateLife);
+            MR::appearAirBubble(mPosition + v11, ::sGenerateLife);
             setNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvWait::sInstance);
         }
     }

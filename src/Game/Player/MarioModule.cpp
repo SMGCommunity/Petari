@@ -304,7 +304,7 @@ TVec3f& MarioModule::getJumpVec() const {
 }
 
 void MarioModule::setJumpVec(const TVec3f& rVec) {
-    mActor->mMario->mJumpVec.setPS2(rVec);
+    mActor->mMario->mJumpVec = rVec;
 }
 
 void MarioModule::playEffect(const char* pEffectName) {

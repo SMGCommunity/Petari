@@ -109,10 +109,7 @@ void KoopaShockWave::exeWaveAttack() {
         MR::startAction(mShadow, "Spread");
         MR::startAction(mPartsModel, "Spread");
 
-        TVec3f& rCenterPos = KoopaFunction::getPlanetCenterPos(mKoopa);
-        TVec3f vec = mKoopa->mPosition;
-        vec.subInline(rCenterPos);
-        mUp.set(vec);
+        mUp.set(mKoopa->mPosition - KoopaFunction::getPlanetCenterPos(mKoopa));
         mFront.set(mKoopa->mFront);
         MR::normalizeOrZero(&mUp);
 

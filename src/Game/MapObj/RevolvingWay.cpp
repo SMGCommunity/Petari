@@ -57,15 +57,14 @@ void RevolvingWay::exeWait() {
 }
 
 void RevolvingWay::addAccelMoment() {
+    // FIXME: broke this when adjusting some TVec stuff, fix later. (f regswap)
+    // https://decomp.me/scratch/2QECD
+
     TVec3f stack_14;
     if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadButtonB(WPAD_CHAN0) &&
         MR::calcStarPointerStrokeRotateMoment(&stack_14, mPosition, _A8, 0)) {
-        TVec3f stack_8;
-        stack_8.setPS(stack_14);
-        f32 temp = 0.04f;
-        stack_8 *= temp;
-        JMathInlineVEC::PSVECAdd(&mFriction, &stack_8, &mFriction);
-        f32 mag = PSVECMag(&mFriction);
+        mFriction += stack_14.multiplyOperatorInline(0.04f);
+        f32 mag = mFriction.length();
         if (mag > 0.15f) {
             mFriction *= (0.15f / mag);
         }

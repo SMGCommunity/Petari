@@ -41,5 +41,5 @@ void MercatorTransformCube::calcLocalBoxSize(TVec3f* pPos) const {
     min.set< f32 >(box->i);
     max.set< f32 >(box->f);
 
-    pPos->subInline(max, min);
+    pPos->sub(max, min);
 }

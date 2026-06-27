@@ -156,7 +156,7 @@ void BossKameck::killAllBeam() {
 }
 
 /* stack is off */
-/*
+
 void BossKameck::updatePose() {
     TVec3f v17(-mGravity);
     TVec3f v19;
@@ -177,7 +177,7 @@ void BossKameck::updatePose() {
         TVec3f v13(v18);
 
         ptr->scaleInline((4.0f * v4) / mag);
-        ptr->addInline(v13);
+        ptr->add(v13);
 
         if (!MR::isNearZero(*ptr)) {
             MR::normalize(ptr);
@@ -188,7 +188,6 @@ void BossKameck::updatePose() {
 
     MR::blendQuatUpFront(&_90, stack_44, _A0, 0.04f, 0.2f);
 }
-*/
 
 void BossKameck::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);

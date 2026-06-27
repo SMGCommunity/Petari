@@ -509,7 +509,7 @@ void DinoPackun::adjustTailRootPosition(const TVec3f& rDir, f32 ratio) {
     TVec3f currPos;
     currPos = mTail->getNode(1)->mPosition;
     DinoPackunTailNode* node = mTail->getNode(1);
-    TVec3f pos = (newPos * ratio).addOperatorInLine(currPos * (1.0f - ratio));
+    TVec3f pos = newPos * ratio + currPos * (1.0f - ratio);
     node->mPosition.set(pos);
 }
 

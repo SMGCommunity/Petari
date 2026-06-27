@@ -1,10 +1,9 @@
 #pragma once
 
+#include <revolution/hbm.h>
 #include <revolution/types.h>
 
 class WPad;
-struct HBMKPadData;
-struct KPADStatus;
 
 class WPadReadDataInfo {
 public:

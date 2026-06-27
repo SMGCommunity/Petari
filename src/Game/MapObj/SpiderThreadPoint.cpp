@@ -99,7 +99,7 @@ void SpiderThreadPoint::restrict(const TVec3f* pAnchor, f32 length) {
 }
 
 void SpiderThreadPoint::updateHang(const TVec3f& rPos) {
-    mPosition.setPS2(rPos);
+    mPosition = rPos;
     mVelocity.zero();
 }
 

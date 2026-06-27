@@ -69,8 +69,8 @@ public:
     /* 0x014 */ const char* mSheetName;
     /* 0x018 */ DemoTimeKeeper* mTimeKeeper;
     /* 0x01C */ DemoSubPartKeeper* mSubPartKeeper;
-    /* 0x020 */ DemoCameraKeeper* mCameraKeeper;
-    /* 0x024 */ DemoPlayerKeeper* mPlayerKeeper;
+    /* 0x020 */ DemoPlayerKeeper* mPlayerKeeper;
+    /* 0x024 */ DemoCameraKeeper* mCameraKeeper;
     /* 0x028 */ DemoActionKeeper* mActionKeeper;
     /* 0x02C */ DemoWipeKeeper* mWipeKeeper;
     /* 0x030 */ DemoSoundKeeper* mSoundKeeper;

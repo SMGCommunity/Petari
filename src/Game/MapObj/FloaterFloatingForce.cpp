@@ -8,7 +8,7 @@ FloaterFloatingForce::~FloaterFloatingForce() {
 }
 
 FloaterFloatingForce::FloaterFloatingForce(LiveActor* pActor, const char* pName) : MapPartsFunction(pActor, "浮力"), _18(pName), _1C(gZeroVec) {
-    _28.setPS(TVec3f(0.0f, 1.0f, 0.0f));
+    _28 = TVec3f(0.0f, 1.0f, 0.0f);
     mMoveCondition = 0.0f;
 }
 

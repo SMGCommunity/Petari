@@ -170,7 +170,7 @@ void Takobo::control() {
                 TVec3f v6(mGravity);
                 v6 *= 28.0f;
                 v7 -= v6;
-                mVelocity.setPS(v7);
+                mVelocity = v7;
 
                 if (MR::isOnGround(this)) {
                     TVec3f v5(*info.mParentTriangle.getFaceNormal());

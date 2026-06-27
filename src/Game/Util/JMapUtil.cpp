@@ -135,12 +135,7 @@ namespace MR {
                 pOut->y = asin(-rotateMtx.mMtx[2][0]);
             }
 
-            TVec3f stack_8;
-            stack_8.setPS(*pOut);
-            stack_8.x *= 57.29578f;
-            stack_8.y *= 57.29578f;
-            stack_8.z *= 57.29578f;
-            pOut->setPS(stack_8);
+            *pOut = pOut->multInLine(_180_PI);
         }
 
         return true;
