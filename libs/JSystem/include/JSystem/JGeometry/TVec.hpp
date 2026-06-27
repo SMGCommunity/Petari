@@ -343,11 +343,6 @@ namespace JGeometry {
 #endif
         }
 
-        TVec3& operator-=(const TVec3& op) NO_INLINE {
-            sub(op);
-            return *this;
-        }
-
         TVec3 operator+(const TVec3& op) const {
             TVec3 ret(*this);
             ret += op;
@@ -369,6 +364,30 @@ namespace JGeometry {
         inline TVec3 addOtherInline(const TVec3& op) const {
             TVec3 ret;
             JMathInlineVEC::PSVECAdd(this, &op, &ret);
+            return ret;
+        }
+
+        TVec3 operator-(const TVec3& op) const {
+            TVec3 ret(*this);
+            ret -= op;
+            return ret;
+        }
+
+        void operator-=(const TVec3& op) {
+            sub(op);
+        }
+
+        void sub(const TVec3< f32 >& b) {
+            JMathInlineVEC::PSVECSubtract(this, &b, this);
+        }
+
+        void sub(const TVec3& a, const TVec3& b) {
+            JMathInlineVEC::PSVECSubtract(&a, &b, this);
+        }
+
+        TVec3 subOperatorInLine(const TVec3& op) const {
+            TVec3 ret(*this);
+            ret.sub(op);
             return ret;
         }
 
@@ -471,29 +490,6 @@ namespace JGeometry {
             JGeometry::negateInternal(&a.x, &this->x);
         }
 
-        TVec3 operator-(const TVec3& op) const {
-            TVec3 ret(*this);
-            JMathInlineVEC::PSVECSubtract(&ret, &op, &ret);
-            return ret;
-        }
-
-        TVec3 subOperatorInLine(const TVec3& op) const {
-            TVec3 ret(*this);
-            ret.sub(op);
-            return ret;
-        }
-
-        TVec3* subInline(const TVec3& op) {
-            JMathInlineVEC::PSVECSubtract(this, &op, this);
-            return this;
-        }
-
-        inline TVec3 subOtherInline(const TVec3& op) const {
-            TVec3 ret(*this);
-            ret -= op;
-            return ret;
-        }
-
         template < typename T >
         void set(const TVec3< T >& rVec) {
             x = rVec.x;
@@ -567,16 +563,6 @@ namespace JGeometry {
             x *= val;
             y *= val;
             z *= val;
-        }
-
-        void sub(const TVec3< f32 >& b) NO_INLINE {
-            JMathInlineVEC::PSVECSubtract(this, &b, this);
-        }
-
-        void sub(const TVec3& a, const TVec3& b);
-
-        inline void subInline(const TVec3< f32 >& a, const TVec3< f32 >& b) {
-            JMathInlineVEC::PSVECSubtract(&a, &b, this);
         }
 
         // Required for multiple objects to match?

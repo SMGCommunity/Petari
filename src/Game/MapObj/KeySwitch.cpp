@@ -219,7 +219,7 @@ bool KeySwitch::tryAvoid() {
     TVec3f up;
     MR::calcUpVec(&up, sensorActor);
     TVec3f thing;
-    thing.subInline(mPosition, sensorActor->mPosition);
+    thing.sub(mPosition, sensorActor->mPosition);
     TVec3f stack_8;
     JMAVECScaleAdd(&up, &thing, &stack_8, -up.dot(thing));
 

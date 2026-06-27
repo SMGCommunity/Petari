@@ -214,7 +214,7 @@ void Rock::control() {
     bool updateFront;
     bool hasMoved = false;
     TVec3f front;
-    front.subInline(mPosition, mPrevPos);
+    front.sub(mPosition, mPrevPos);
 
     if (!MR::isNearZero(front)) {
         MR::normalize(&front);
@@ -280,7 +280,7 @@ void Rock::calcAndSetBaseMtx() {
         }
 
         TVec3f pos;
-        pos.subInline(mPosition, up.scaleInline(mRadius));
+        pos.sub(mPosition, up.scaleInline(mRadius));
 
         if (MR::isSameDirection(up, mFront, 0.01f)) {
             MR::makeMtxUpNoSupportPos(&mBaseMtx, up, pos);

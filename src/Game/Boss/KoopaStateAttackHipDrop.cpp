@@ -213,8 +213,8 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "HipDropAttackDown");
 
-        TVec3f difference = *mGroundPosition;
-        difference.subInline(mHost->mPosition);
+        TVec3f difference = mGroundPosition;
+        difference.sub(mHost->mPosition);
 
         mJumpTime = static_cast< s32 >(difference.length() / 35.0f) + 10;
 
