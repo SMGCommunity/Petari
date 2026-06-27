@@ -5,7 +5,6 @@
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 
-
 CameraBehind::~CameraBehind() {
 }
 
@@ -50,7 +49,7 @@ void CameraBehind::calcPosAndUp(f32 accel) {
     TVec3f cross;
     MR::polarToCrossDegree(multresult, &cross, mDist, mAngleB, mAngleA);
     matrix.mult(cross, cross);
-    cross = (cross * accel).addOtherInline2(CameraLocalUtil::getPos(this) * (1.0f - accel));
+    cross = cross * accel + CameraLocalUtil::getPos(this) * (1.0f - accel);
     CameraLocalUtil::setPos(this, cross);
 
     CameraLocalUtil::setWatchUpVec(this, TVec3f(0.0f, 1.0f, 0.0f));

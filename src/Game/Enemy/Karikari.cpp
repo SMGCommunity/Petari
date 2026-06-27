@@ -468,7 +468,7 @@ void Karikari::exePreCling() {
     f32 t = getNerveStep() / static_cast< f32 >(::sPreClingTime);
     mClingPosition->copyTrans(&toClingPos);
     toClingPos.sub(mPosition);
-    mVelocity = mVelocity.scaleInline(1.0f - t).translate(toClingPos.scaleInline(t));
+    mVelocity = mVelocity.scaleInline(1.0f - t) + toClingPos.scaleInline(t);
     MR::startLevelSound(this, "SE_EM_LV_KARIKARI_CLING");
 
     if (MR::isGreaterStep(this, ::sPreClingTime)) {
@@ -799,7 +799,7 @@ bool Karikari::tryDPDAttacked() {
 void Karikari::setVelocityFromCursorMove(const TVec2f& rVel) {
     TVec3f camX = MR::getCamXdir();
     TVec3f camY = -MR::getCamYdir();
-    mVelocity = camX.scaleInline(rVel.x).translate(camY.scaleInline(rVel.y));
+    mVelocity = camX.scaleInline(rVel.x) + camY.scaleInline(rVel.y);
     if (mVelocity.dot(mGravity) > 0.0f) {
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
     }

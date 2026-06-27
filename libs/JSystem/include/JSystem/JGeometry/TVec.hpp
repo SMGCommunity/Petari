@@ -244,24 +244,6 @@ namespace JGeometry {
         }
     };
 
-    ALWAYS_INLINE inline void setTVec3f(const f32* a, f32* b) {
-#ifdef __MWERKS__
-        const register f32* v_a = a;
-        register f32* v_b = b;
-
-        register f32 b_x;
-        register f32 a_x;
-
-        asm {
-            psq_l a_x, 0(v_a), 0, 0
-            lfs b_x, 8(v_a)
-            psq_st a_x, 0(v_b), 0, 0
-            stfs b_x, 8(v_b)
-        }
-        ;
-#endif
-    }
-
     template <>
     struct TVec3< f32 > : public Vec {
 #ifdef __MWERKS__
@@ -343,10 +325,10 @@ namespace JGeometry {
             return *reinterpret_cast< const TVec2< f32 >* >(this);
         }
 
-        void operator=(const TVec3& b) {
+        void operator=(const TVec3& vec) {
 #ifdef __MWERKS__
-            const register f32* v_a = &b.x;
-            register f32* v_b = &x;
+            const register Vec* v_a = &vec;
+            register Vec* v_b = this;
 
             register f32 b_x;
             register f32 a_x;
@@ -373,18 +355,16 @@ namespace JGeometry {
         }
 
         void operator+=(const TVec3& op) {
-            JMathInlineVEC::PSVECAdd(this, &op, this);
+            // JMathInlineVEC::PSVECAdd(this, &op, this);
+            addInline(op);  // ITS ADD!!!!
         }
 
-        // Needs to be part of TVec to schedule instructions correctly in CubeGravity
-        // Also, this seems like it should be merged with operator+(), but then how is
-        // it that sometimes operator+() gets inlined several times without operator+= getting
-        // inlined while other times, operator+() doesn't get inlined, and other times yet,
-        // both operator+() and operator+=() both get inlined?
-        TVec3 translate(const TVec3& op) const {
-            TVec3 ret(*this);
-            ret += op;
-            return ret;
+        void add(const TVec3< f32 >& b) NO_INLINE {
+            JMathInlineVEC::PSVECAdd(this, &b, this);
+        }
+
+        void add(const TVec3& a, const TVec3& b) {
+            JMathInlineVEC::PSVECAdd(&a, &b, this);
         }
 
         // needed to match TVec stack access order in many places
@@ -401,12 +381,6 @@ namespace JGeometry {
         inline TVec3 addOtherInline(const TVec3& op) const {
             TVec3 ret;
             JMathInlineVEC::PSVECAdd(this, &op, &ret);
-            return ret;
-        }
-
-        inline TVec3 addOtherInline2(const TVec3& op) const {
-            TVec3 ret(*this);
-            JMathInlineVEC::PSVECAdd(&ret, &op, &ret);
             return ret;
         }
 
@@ -655,14 +629,6 @@ namespace JGeometry {
 #else
         void setPSZeroVec();
 #endif
-
-        void add(const TVec3< f32 >& b) NO_INLINE {
-            JMathInlineVEC::PSVECAdd(this, &b, this);
-        }
-
-        void add(const TVec3& a, const TVec3& b) {
-            JMathInlineVEC::PSVECAdd(&a, &b, this);
-        }
 
         f32 dot(const TVec3&) const;
 

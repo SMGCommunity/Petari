@@ -48,7 +48,7 @@ void DinoPackunTailPart::attackSensor(HitSensor* pSender, HitSensor* pReceiver) 
         MR::calcSensorDirectionNormalize(&v16, pReceiver, pSender);
 
         if (mVelocity.dot(v16) < 3.0f) {
-            mVelocity += v16.multInLine(1.0f);
+            mVelocity.addInline(v16.multInLine(1.0f));
         }
     }
 }
