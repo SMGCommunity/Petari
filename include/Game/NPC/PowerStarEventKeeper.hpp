@@ -26,7 +26,7 @@ public:
     bool isCorrectStarIdWithBBS(const char*, const char*, s32) const NO_INLINE;
     bool isSuccess(const char*, s32) const;
 
-    inline PowerStarInfo* getStarInfo(u32 idx) {
+    inline PowerStarInfo* getStarInfo(u32 idx) const {
         return &mInfoTbl[idx];
     }
 

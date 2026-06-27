@@ -42,8 +42,15 @@ s32 PowerStarEventKeeper::findStarID(const char* pName) const {
     }
 
     for (s32 starID = mStartScenario; starID <= mPowerStarNum; starID++) {
-        if (starID != MR::getCurrentScenarioNo() && MR::getAppearPowerStarObjName(starID) != nullptr &&
-            MR::isEqualString(pName, MR::getAppearPowerStarObjName(starID))) {
+        if (starID == MR::getCurrentScenarioNo()) {
+            continue;
+        }
+
+        if (MR::getAppearPowerStarObjName(starID) == nullptr) {
+            continue;
+        }
+
+        if (MR::isEqualString(pName, MR::getAppearPowerStarObjName(starID))) {
             return starID;
         }
     }
@@ -56,11 +63,13 @@ void PowerStarEventKeeper::declareStar(const char* pName1, const char* pName2, s
         starID = findStarID(pName1);
     }
 
-    if (isCorrectStarIdWithBBS(pName1, pName2, starID)) {
-        PowerStarInfo* pInfo = getStarInfo(starID - 1);
-        pInfo->mDemoName = pName1;
-        pInfo->_2 = myBool;
+    if (!isCorrectStarIdWithBBS(pName1, pName2, starID)) {
+        return;
     }
+
+    PowerStarInfo* pInfo = getStarInfo(starID - 1);
+    pInfo->mDemoName = pName1;
+    pInfo->_2 = myBool;
 }
 
 bool PowerStarEventKeeper::isGreen(const char* pName, s32 starID) const {
