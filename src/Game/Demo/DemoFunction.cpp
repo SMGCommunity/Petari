@@ -12,8 +12,8 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <cstdio>
-#include <cstring>
 
 namespace DemoFunction {
     DemoDirector* getDemoDirector() {
@@ -21,7 +21,7 @@ namespace DemoFunction {
     }
 
     DemoCastGroupHolder* getDemoCastSubGroupHolder() {
-        return getDemoDirector()->_1C;
+        return getDemoDirector()->mCastSubGroupHolder;
     }
 
     void registerDemoSimpleCastAllFunction(LiveActor* pActor) {
@@ -126,7 +126,7 @@ namespace {
 
     bool isCurrentMainPart(const char* pPartName) NO_INLINE {
         DemoTimeKeeper* timeKeeper = getCurrentTimeKeeper();
-        return MR::isEqualString(pPartName, timeKeeper->mSubPartInfos[0].mName);
+        return MR::isEqualString(pPartName, timeKeeper->mSubPartInfos[0].mPartName);
     }
 };  // namespace
 
@@ -152,7 +152,7 @@ namespace DemoFunction {
 
     s32 getDemoPartTotalStepFunction(const char* pPartName) {
         if (::isCurrentMainPart(pPartName)) {
-            return ::getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
+            return ::getCurrentTimeKeeper()->mSubPartInfos[0].mTotalStep;
         } else {
             return ::getCurrentSubPartKeeper()->getDemoPartTotalStep(pPartName);
         }
@@ -162,7 +162,7 @@ namespace DemoFunction {
         if (!MR::isTimeKeepDemoActive()) {
             return false;
         }
-        s32 total = ::getCurrentTimeKeeper()->mSubPartInfos[0].mTotalSteps;
+        s32 total = ::getCurrentTimeKeeper()->mSubPartInfos[0].mTotalStep;
         s32 current = ::getCurrentTimeKeeper()->mCurrentStep;
         if (current != total - 1) {
             return false;
@@ -193,7 +193,7 @@ namespace DemoFunction {
         }
         DemoTimePartInfo* part = &executor->mTimeKeeper->mSubPartInfos[0];
         if (part != nullptr) {
-            return part->mName;
+            return part->mPartName;
         }
         return nullptr;
     }

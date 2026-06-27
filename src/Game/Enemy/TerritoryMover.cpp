@@ -19,7 +19,7 @@ void TerritoryMover::decideNextTargetPos(const LiveActor* pActor) {
     randVec.mult(_0);
 
     JMathInlineVEC::PSVECAdd(&randVec, &mCenter, &randVec);
-    _10.setPS(randVec);
+    _10 = randVec;
 }
 
 bool TerritoryMover::isReachedTarget(const LiveActor* pActor, f32 a2) {

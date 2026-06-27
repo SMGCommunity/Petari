@@ -72,7 +72,7 @@ void TripodBossGuardWall::kill() {
 void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjDecorationMovement(this);
-    _580.setPS2(mPosition);
+    _580 = mPosition;
     initModelManagerWithAnm("TripodBossGuardWall", nullptr, false);
     MR::getJMapInfoArg0NoInit(rIter, &_58C);
     initSound(4, false);

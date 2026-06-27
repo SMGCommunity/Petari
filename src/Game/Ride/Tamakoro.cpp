@@ -398,8 +398,7 @@ bool Tamakoro::requestEndBind() {
     if (!isNerve(&NrvTamakoro::TamakoroNrvBindEnd::sInstance) && !isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) {
         MR::startBckPlayer("SwingRopeSpin", static_cast< const char* >(nullptr));
         MR::endBindAndPlayerForceJump(
-            this, mMarioFront.multiplyOperatorInline(-::sEndBindFrontPower).addOperatorInLine(mGravity.multiplyOperatorInline(-::sEndBindJumpPower)),
-            0);
+            this, mMarioFront.multiplyOperatorInline(-::sEndBindFrontPower) + mGravity.multiplyOperatorInline(-::sEndBindJumpPower), 0);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
         MR::invalidateClipping(this);
@@ -561,7 +560,7 @@ void Tamakoro::exeBindStart() {
 
     MR::blendQuatUpFront(&mMarioRotateQuat, -mGravity, mMarioFront, ::sBindStartUpAdjustRate, ::sBindStartFrontAdjustRate);
 
-    mMarioPos.set(horizontalVec.addOperatorInLine(upVec));
+    mMarioPos.set(horizontalVec + upVec);
 
     if (MR::isGreaterStep(this, ::sBindStartTime)) {
         setNerve(&NrvTamakoro::TamakoroNrvBindStartLand::sInstance);

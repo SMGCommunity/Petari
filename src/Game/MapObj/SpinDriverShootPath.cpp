@@ -41,7 +41,7 @@ void SpinDriverShootPath::setStartPosition(const TVec3f& rStartPos) {
     calcPosition(&position, 0.0f);
     TVec3f startPos(rStartPos);
     JMathInlineVEC::PSVECSubtract(&startPos, &position, &startPos);
-    mStartPosition.setPS(startPos);
+    mStartPosition = startPos;
 }
 
 void SpinDriverShootPath::calcPosition(TVec3f* pOutPosition, f32 a2) const {

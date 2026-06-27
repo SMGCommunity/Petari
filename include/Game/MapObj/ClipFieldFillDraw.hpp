@@ -27,6 +27,6 @@ public:
 };
 
 namespace MR {
-    ClipFieldFillDraw* createClipFieldFillDraw(const char*);
-    ClipFieldFillDraw* createVolumeDrawSpotLight(const char*);
+    NameObj* createClipFieldFillDraw(const char*);
+    NameObj* createVolumeDrawSpotLight(const char*);
 };  // namespace MR

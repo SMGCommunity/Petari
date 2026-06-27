@@ -174,12 +174,12 @@ void Flag::init(const JMapInfoIter& rIter) {
     initSound(4, false);
 
     if (MR::isEqualString(mObjName, "FlagKoopaCastle")) {
-        mClipCenter = mUp.scaleInline(500.0f).addOperatorInLine(mPosition);
+        mClipCenter = mUp.scaleInline(500.0f) + mPosition;
         MR::setClippingTypeSphere(this, 500.0f + ::sClippingRadiusOffset, &mClipCenter);
     } else if (mStickLength > 0.0f) {
         if (mBasePos == nullptr && mBaseMtx == nullptr) {
             // TODO: I dont think they use both "* 0.5f" and "/ 2"
-            mClipCenter = mUp.scaleInline(mStickLength * 0.5f).addOperatorInLine(mPosition);
+            mClipCenter = mUp.scaleInline(mStickLength * 0.5f) + mPosition;
             MR::setClippingTypeSphere(this, mStickLength / 2 + ::sClippingRadiusOffset, &mClipCenter);
         } else {
             MR::setClippingTypeSphere(this, mStickLength + ::sClippingRadiusOffset);

@@ -94,7 +94,7 @@ void RainCloud::init(const JMapInfoIter& rIter) {
     }
 
     TVec3f v13;
-    v13.setPS(mPosition);
+    v13 = mPosition;
     f32 boundRadius;
     MR::calcModelBoundingRadius(&boundRadius, this);
     boundRadius += 0.5f * _104;
@@ -110,7 +110,7 @@ void RainCloud::init(const JMapInfoIter& rIter) {
     MR::joinToGroupArray(this, rIter, "雲集団", 16);
     MR::startBck(this, "Wait", nullptr);
 
-    if (_10D) {
+    if (!_10D) {
         MR::startBpk(this, "Fine");
         MR::startBpk(_F4->_14, "Fine");
     } else {

@@ -287,7 +287,7 @@ void TicoFat::setCameraParam() {
     zDir.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.w * _B0.y))), ((2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.w * _B0.x))),
                     ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.y * _B0.y))));
 
-    v18.setPS2(_C0);
+    v18 = _C0;
     TVec3f* ptr = &v18;
     MR::setProgrammableCameraParam(
         "デブチコカメラ", (*ptr + (xDir * 0.0f) + (yDir * 0.0f)) + (zDir * 0.0f),

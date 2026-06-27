@@ -142,7 +142,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         f32 dotUp = mUp.dot(diff);
         f32 dotFront = mFront.dot(diff);
 
-        diff.set(mUp.scaleInline(dotUp).addOperatorInLine(mFront.scaleInline(dotFront)));
+        diff.set(mUp.scaleInline(dotUp) + mFront.scaleInline(dotFront));
 
         if (MR::isNearZero(diff)) {
             diff.set(mFront);

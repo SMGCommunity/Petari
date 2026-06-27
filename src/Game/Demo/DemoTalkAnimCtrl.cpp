@@ -1,6 +1,7 @@
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
 #include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoFunction.hpp"
+#include "Game/Demo/DemoSubPartKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/System/ResourceHolder.hpp"
@@ -11,6 +12,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <cstdio>
 
 namespace {

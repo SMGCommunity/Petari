@@ -22,7 +22,7 @@ void PenguinMaster::init(const JMapInfoIter& rIter) {
     caps.setDefault();
     caps.mSensor = false;
     caps.mShadowSize = 130.0f;
-    caps.mMessageOffset.setPS2(TVec3f(0.0f, 430.0f, 0.0f));
+    caps.mMessageOffset = TVec3f(0.0f, 430.0f, 0.0f);
     caps.mPointerSize = 180.0f;
     caps.mStarPointerOffs.x = 0.0f;
     caps.mStarPointerOffs.y = 200.0f;

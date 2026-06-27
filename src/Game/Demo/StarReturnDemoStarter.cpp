@@ -282,7 +282,7 @@ void StarReturnDemoStarter::exeFall() {
     offset.scale(1.8f * getNerveStep(), down);
 
     offset.y = MR::max(offset.y, -35.0f);
-    position.addInline(offset);
+    position.add(offset);
 
     if (position.y < mPosition.y) {
         position.set(mPosition);

@@ -1,7 +1,6 @@
-#pragma once
-
-#include "Game/Gravity.hpp"
-#include "Game/Util.hpp"
+#include "Game/Gravity/GraviryFollower.hpp"
+#include "Game/Gravity/GlobalGravityObj.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 GraviryFollower::GraviryFollower(GlobalGravityObj* pGravityObj, const JMapInfoIter& rIter)
     : BaseMatrixFollower(pGravityObj, rIter), mGravity(nullptr) {

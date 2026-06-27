@@ -4,6 +4,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 DynamicCollisionObj::~DynamicCollisionObj() {
 }
@@ -183,19 +184,10 @@ void CollisionArea::movement() {
                     tStack84 = tStack72;
                     tStack84.setLength(dVar4 + _40);
                 } else {
-                    TVec3f tStack96;
-                    TVec3f tStack108 = playerPos;
-                    tStack108.sub(tStack60);
-
-                    tStack84 = tStack108;
+                    tStack84 = playerPos - tStack60;
                     tStack84.setLength(dVar4);
 
-                    tStack96 = tStack60;
-                    tStack96.add(tStack84);
-
-                    TVec3f tStack120 = tStack96;
-                    tStack120.sub(playerPos);
-                    tStack84 = tStack120;
+                    tStack84 = tStack60 + tStack84 - playerPos;
                 }
 
                 if (tStack84.dot(tStack72) > 0) {

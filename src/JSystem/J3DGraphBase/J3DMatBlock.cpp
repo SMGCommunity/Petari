@@ -32,58 +32,76 @@ inline void loadTevKColor(u32 reg, const J3DGXColor& color) {
 
 void J3DColorBlockLightOff::initialize() {
     mColorChanNum = 0;
-    for (int i = 0; i < ARRAY_SIZE(mMatColor); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mMatColor); i++) {
         mMatColor[i] = j3dDefaultColInfo;
     }
+
     mMatColorOffset = 0;
     mColorChanOffset = 0;
 }
 
 void J3DColorBlockAmbientOn::initialize() {
     mColorChanNum = 0;
-    for (int i = 0; i < ARRAY_SIZE(mMatColor); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mMatColor); i++) {
         mMatColor[i] = j3dDefaultColInfo;
     }
-    for (int i = 0; i < ARRAY_SIZE(mAmbColor); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mAmbColor); i++) {
         mAmbColor[i] = j3dDefaultAmbInfo;
     }
+
     mMatColorOffset = 0;
     mColorChanOffset = 0;
 }
 
 void J3DColorBlockLightOn::initialize() {
     mColorChanNum = 0;
-    for (int i = 0; i < ARRAY_SIZE(mMatColor); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mMatColor); i++) {
         mMatColor[i] = j3dDefaultColInfo;
     }
-    for (int i = 0; i < ARRAY_SIZE(mAmbColor); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mAmbColor); i++) {
         mAmbColor[i] = j3dDefaultAmbInfo;
     }
-    for (int i = 0; i < ARRAY_SIZE(mLight); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mLight); i++) {
         mLight[i] = NULL;
     }
+
     mMatColorOffset = 0;
     mColorChanOffset = 0;
 }
 
 void J3DTexGenBlockPatched::initialize() {
     mTexGenNum = 0;
-    for (int i = 0; i < 8; i++)
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         mTexMtx[i] = NULL;
+    }
+
     mTexMtxOffset = 0;
 }
 
 void J3DTexGenBlock4::initialize() {
     mTexGenNum = 0;
-    for (int i = 0; i < 4; i++)
+
+    for (s32 i = 0; i < 4; i++) {
         mTexMtx[i] = NULL;
+    }
+
     mTexMtxOffset = 0;
 }
 
 void J3DTexGenBlockBasic::initialize() {
     mTexGenNum = 0;
-    for (int i = 0; i < 8; i++)
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         mTexMtx[i] = NULL;
+    }
+
     mTexMtxOffset = 0;
 }
 
@@ -92,19 +110,23 @@ void J3DTevBlockNull::initialize() {
 }
 
 void J3DTevBlockPatched::initialize() {
-    for (int i = 0; i < ARRAY_SIZE(mTexNo); i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         mTexNo[i] = 0xFFFF;
     }
-    for (int i = 0; i < ARRAY_SIZEU(mTevStage); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevStage); i++) {
         mTevStage[i].setStageNo(i);
     }
-    for (int i = 0; i < 3; i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         mTevColor[i] = j3dDefaultTevColor;
     }
-    for (int i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         mTevKColor[i] = j3dDefaultTevKColor;
     }
-    for (int i = 0; i < ARRAY_SIZE(mTevKColorSel); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTevKColorSel); i++) {
         mTevKColorSel[i] = GX_TEV_KCSEL_K0;
     }
 
@@ -131,10 +153,11 @@ void J3DTevBlock2::initialize() {
     mTevKAlphaSel[0] = GX_TEV_KASEL_K0_A;
     mTevKAlphaSel[1] = GX_TEV_KASEL_K0_A;
 
-    for (int i = 0; i < 3; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         mTevColor[i] = j3dDefaultTevColor;
     }
-    for (int i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         mTevKColor[i] = j3dDefaultTevKColor;
     }
 
@@ -163,10 +186,11 @@ void J3DTevBlock4::initialize() {
     mTevKAlphaSel[2] = GX_TEV_KASEL_K0_A;
     mTevKAlphaSel[3] = GX_TEV_KASEL_K0_A;
 
-    for (int i = 0; i < 3; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         mTevColor[i] = j3dDefaultTevColor;
     }
-    for (int i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         mTevKColor[i] = j3dDefaultTevKColor;
     }
 
@@ -175,25 +199,29 @@ void J3DTevBlock4::initialize() {
 }
 
 void J3DTevBlock16::initialize() {
-    for (int i = 0; i < ARRAY_SIZE(mTexNo); i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         mTexNo[i] = 0xFFFF;
     }
 
     mTevStageNum = 1;
 
-    for (int i = 0; i < 3; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         mTevColor[i] = j3dDefaultTevColor;
     }
-    for (int i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         mTevKColor[i] = j3dDefaultTevKColor;
     }
-    for (int i = 0; i < ARRAY_SIZE(mTevKColorSel); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTevKColorSel); i++) {
         mTevKColorSel[i] = GX_TEV_KCSEL_K0;
     }
-    for (int i = 0; i < ARRAY_SIZE(mTevKColorSel); i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTevKColorSel); i++) {
         mTevKAlphaSel[i] = GX_TEV_KASEL_K0_A;
     }
-    for (int i = 0; i < ARRAY_SIZEU(mTevStage); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevStage); i++) {
         mTevStage[i].setStageNo(i);
     }
 
@@ -338,7 +366,7 @@ void J3DColorBlockLightOn::load() {
     mColorChan[1].load();
     mColorChan[3].load();
 
-    for (u32 i = 0; i < 8; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mLight); i++) {
         if (mLight[i] != NULL) {
             mLight[i]->load(i);
         }
@@ -399,7 +427,7 @@ void J3DColorBlockLightOn::patchLight() {
     mColorChan[1].load();
     mColorChan[3].load();
 
-    for (u32 i = 0; i < 8; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mLight); i++) {
         if (mLight[i] != NULL) {
             mLight[i]->load(i);
         }
@@ -410,11 +438,13 @@ void J3DColorBlockLightOn::patchLight() {
 }
 
 void J3DColorBlockLightOff::diff(u32 diffFlags) {
-    if (diffFlags & J3DDiffFlag_MatColor)
+    if (diffFlags & J3DDiffFlag_MatColor) {
         diffMatColor();
+    }
 
-    if (diffFlags & J3DDiffFlag_ColorChan)
-        diffColorChan();
+    if (diffFlags & J3DDiffFlag_ColorChan) {
+        diffLight();
+    }
 }
 
 void J3DColorBlockLightOff::diffMatColor() {
@@ -455,6 +485,7 @@ void J3DColorBlockLightOn::diffColorChan() {
 
 void J3DTexGenBlock4::load() {
     mTexMtxOffset = GDGetCurrOffset();
+
     for (u32 i = 0; i < 4; i++) {
         if (mTexMtx[i] && mTexCoord[i].getTexGenMtx() != GX_IDENTITY) {
             mTexMtx[i]->load(i);
@@ -468,7 +499,8 @@ void J3DTexGenBlock4::load() {
 
 void J3DTexGenBlockBasic::load() {
     mTexMtxOffset = GDGetCurrOffset();
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         if (mTexMtx[i] && mTexCoord[i].getTexGenMtx() != GX_IDENTITY) {
             mTexMtx[i]->load(i);
         }
@@ -483,7 +515,7 @@ void J3DTexGenBlockPatched::patch() {
     GDSetCurrOffset(mTexMtxOffset);
     void* start = GDGetCurrPointer();
 
-    for (u32 i = 0; i < 8; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         if (mTexMtx[i]) {
             mTexMtx[i]->load(i);
         }
@@ -511,7 +543,7 @@ void J3DTexGenBlockBasic::patch() {
     GDSetCurrOffset(mTexMtxOffset);
     void* start = GDGetCurrPointer();
 
-    for (u32 i = 0; i < 8; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         if (mTexMtx[i] && mTexCoord[i].getTexGenMtx() != GX_IDENTITY) {
             mTexMtx[i]->load(i);
         }
@@ -532,7 +564,7 @@ void J3DTexGenBlockPatched::diff(u32 diffFlags) {
 }
 
 void J3DTexGenBlockPatched::diffTexMtx() {
-    for (u32 i = 0; i < ARRAY_SIZEU(mTexMtx); ++i) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexMtx); ++i) {
         if (mTexMtx[i] != NULL) {
             mTexMtx[i]->load(i);
         }
@@ -585,12 +617,14 @@ void J3DTevBlock2::load() {
 
     mTevRegOffset = GDGetCurrOffset();
 
-    for (u32 i = 0; i < 3; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mTevStage[i].load(i);
         mIndTevStage[i].load(i);
@@ -611,7 +645,7 @@ void J3DTevBlock4::load() {
     u32 tevStageNum = mTevStageNum;
     mTexNoOffset = GDGetCurrOffset();
 
-    for (u32 i = 0; i < 4; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xffff) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -631,12 +665,14 @@ void J3DTevBlock4::load() {
 
     mTevRegOffset = GDGetCurrOffset();
 
-    for (u32 i = 0; i < 3; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mTevStage[i].load(i);
         mIndTevStage[i].load(i);
@@ -657,7 +693,7 @@ void J3DTevBlock16::load() {
     u32 tevStageNum = mTevStageNum;
     mTexNoOffset = GDGetCurrOffset();
 
-    for (u32 i = 0; i < 8; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xffff) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -677,12 +713,14 @@ void J3DTevBlock16::load() {
 
     mTevRegOffset = GDGetCurrOffset();
 
-    for (u32 i = 0; i < 3; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mTevStage[i].load(i);
         mIndTevStage[i].load(i);
@@ -703,7 +741,7 @@ void J3DTevBlockPatched::patchTexNo() {
     GDSetCurrOffset(mTexNoOffset);
     void* start = GDGetCurrPointer();
 
-    for (u32 i = 0; i < 8; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xffff) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -717,10 +755,11 @@ void J3DTevBlockPatched::patchTevReg() {
     GDSetCurrOffset(mTevRegOffset);
     void* start = GDGetCurrPointer();
 
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevColor) - 1; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevKColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
 
@@ -733,7 +772,8 @@ void J3DTevBlockPatched::patchTexNoAndTexCoordScale() {
     void* start = GDGetCurrPointer();
 
     u32 tevStageNum = mTevStageNum;
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xffff) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -815,10 +855,11 @@ void J3DTevBlock2::patchTevReg() {
     GDSetCurrOffset(mTevRegOffset);
     void* start = GDGetCurrPointer();
 
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevColor) - 1; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevKColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
 
@@ -859,7 +900,7 @@ void J3DTevBlock4::patchTexNo() {
     GDSetCurrOffset(mTexNoOffset);
     void* start = GDGetCurrPointer();
 
-    for (u32 i = 0; i < 4; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xffff) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -873,10 +914,11 @@ void J3DTevBlock4::patchTevReg() {
     GDSetCurrOffset(mTevRegOffset);
     void* start = GDGetCurrPointer();
 
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevColor) - 1; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevKColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
 
@@ -889,7 +931,8 @@ void J3DTevBlock4::patchTexNoAndTexCoordScale() {
     void* start = GDGetCurrPointer();
 
     u32 tevStageNum = mTevStageNum;
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < 8; i++) {
         if (mTexNo[i] != 0xffff) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -919,7 +962,7 @@ void J3DTevBlock16::patchTexNo() {
     GDSetCurrOffset(mTexNoOffset);
     void* start = GDGetCurrPointer();
 
-    for (u32 i = 0; i < 8; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xffff) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -933,10 +976,11 @@ void J3DTevBlock16::patchTevReg() {
     GDSetCurrOffset(mTevRegOffset);
     void* start = GDGetCurrPointer();
 
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevColor) - 1; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevKColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
 
@@ -949,7 +993,8 @@ void J3DTevBlock16::patchTexNoAndTexCoordScale() {
     void* start = GDGetCurrPointer();
 
     u32 tevStageNum = mTevStageNum;
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xffff) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -999,7 +1044,7 @@ void J3DTevBlock::diff(u32 diffFlags) {
 }
 
 void J3DTevBlockPatched::diffTexNo() {
-    for (u32 i = 0; i < ARRAY_SIZEU(mTexNo); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xFFFF) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -1008,6 +1053,7 @@ void J3DTevBlockPatched::diffTexNo() {
 
 void J3DTevBlockPatched::diffTevStage() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mTevStage[i].load(i);
     }
@@ -1015,22 +1061,25 @@ void J3DTevBlockPatched::diffTevStage() {
 
 void J3DTevBlockPatched::diffTevStageIndirect() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mIndTevStage[i].load(i);
     }
 }
 
 void J3DTevBlockPatched::diffTevReg() {
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevColor) - 1; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevKColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
 }
 
 void J3DTevBlockPatched::diffTexCoordScale() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i += 2) {
         loadTexCoordScale(GXTexCoordID(mTevOrder[i].getTevOrderInfo().mTexCoord & 7),
                           J3DSys::sTexCoordScaleTable[mTevOrder[i].getTevOrderInfo().mTexMap & 7]);
@@ -1062,7 +1111,7 @@ void J3DTevBlock1::diffTexCoordScale() {
 }
 
 void J3DTevBlock2::diffTexNo() {
-    for (u32 i = 0; i < ARRAY_SIZEU(mTexNo); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xFFFF) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -1070,16 +1119,18 @@ void J3DTevBlock2::diffTexNo() {
 }
 
 void J3DTevBlock2::diffTevReg() {
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevColor) - 1; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevKColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
 }
 
 void J3DTevBlock2::diffTevStage() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mTevStage[i].load(i);
     }
@@ -1087,6 +1138,7 @@ void J3DTevBlock2::diffTevStage() {
 
 void J3DTevBlock2::diffTevStageIndirect() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mIndTevStage[i].load(i);
     }
@@ -1100,7 +1152,7 @@ void J3DTevBlock2::diffTexCoordScale() {
 }
 
 void J3DTevBlock4::diffTexNo() {
-    for (u32 i = 0; i < ARRAY_SIZEU(mTexNo); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xFFFF) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -1108,16 +1160,18 @@ void J3DTevBlock4::diffTexNo() {
 }
 
 void J3DTevBlock4::diffTevReg() {
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevColor) - 1; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevKColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
 }
 
 void J3DTevBlock4::diffTevStage() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mTevStage[i].load(i);
     }
@@ -1125,6 +1179,7 @@ void J3DTevBlock4::diffTevStage() {
 
 void J3DTevBlock4::diffTevStageIndirect() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mIndTevStage[i].load(i);
     }
@@ -1132,6 +1187,7 @@ void J3DTevBlock4::diffTevStageIndirect() {
 
 void J3DTevBlock4::diffTexCoordScale() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i += 2) {
         loadTexCoordScale(GXTexCoordID(mTevOrder[i].getTevOrderInfo().mTexCoord & 7),
                           J3DSys::sTexCoordScaleTable[mTevOrder[i].getTevOrderInfo().mTexMap & 7]);
@@ -1140,7 +1196,7 @@ void J3DTevBlock4::diffTexCoordScale() {
     }
 }
 void J3DTevBlock16::diffTexNo() {
-    for (u32 i = 0; i < ARRAY_SIZEU(mTexNo); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xFFFF) {
             loadTexNo(i, mTexNo[i]);
         }
@@ -1148,16 +1204,18 @@ void J3DTevBlock16::diffTexNo() {
 }
 
 void J3DTevBlock16::diffTevReg() {
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevColor) - 1; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor) - 1; i++) {
         loadTevColor(i, mTevColor[i]);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mTevKColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         loadTevKColor(i, mTevKColor[i]);
     }
 }
 
 void J3DTevBlock16::diffTevStage() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mTevStage[i].load(i);
     }
@@ -1165,6 +1223,7 @@ void J3DTevBlock16::diffTevStage() {
 
 void J3DTevBlock16::diffTevStageIndirect() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i++) {
         mIndTevStage[i].load(i);
     }
@@ -1172,6 +1231,7 @@ void J3DTevBlock16::diffTevStageIndirect() {
 
 void J3DTevBlock16::diffTexCoordScale() {
     u32 tevStageNum = mTevStageNum;
+
     for (u32 i = 0; i < tevStageNum; i += 2) {
         loadTexCoordScale(GXTexCoordID(mTevOrder[i].getTevOrderInfo().mTexCoord & 7),
                           J3DSys::sTexCoordScaleTable[mTevOrder[i].getTevOrderInfo().mTexMap & 7]);
@@ -1185,7 +1245,8 @@ void J3DTevBlock16::ptrToIndex() {
     void* start = GDGetCurrPointer();
 
     u32 offs = 0;
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xFFFF) {
             GDSetCurrOffset(mTexNoOffset + offs);
             patchTexNo_PtrToIdx(i, mTexNo[i]);
@@ -1208,7 +1269,8 @@ void J3DTevBlockPatched::ptrToIndex() {
     void* start = GDGetCurrPointer();
 
     u32 offs = 0;
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         if (mTexNo[i] != 0xFFFF) {
             GDSetCurrOffset(mTexNoOffset + offs);
             patchTexNo_PtrToIdx(i, mTexNo[i]);
@@ -1246,6 +1308,7 @@ void J3DTevBlock::indexToPtr_private(u32 offs) {
 
 void J3DIndBlockFull::load() {
     int indTexStageNum = mIndTexStageNum;
+
     for (u32 i = 0; i < indTexStageNum; i++) {
         mIndTexMtx[i].load(i);
     }
@@ -1366,10 +1429,11 @@ void J3DPEBlockFull::diff(u32 diffFlags) {
 void J3DColorBlockLightOff::reset(J3DColorBlock* pBlock) {
     mColorChanNum = pBlock->getColorChanNum();
 
-    for (u32 i = 0; i < ARRAY_SIZEU(mMatColor); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mMatColor); i++) {
         mMatColor[i] = *pBlock->getMatColor(i);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mColorChan); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mColorChan); i++) {
         mColorChan[i] = *pBlock->getColorChan(i);
     }
 }
@@ -1377,13 +1441,15 @@ void J3DColorBlockLightOff::reset(J3DColorBlock* pBlock) {
 void J3DColorBlockAmbientOn::reset(J3DColorBlock* pBlock) {
     mColorChanNum = pBlock->getColorChanNum();
 
-    for (u32 i = 0; i < ARRAY_SIZEU(mMatColor); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mMatColor); i++) {
         mMatColor[i] = *pBlock->getMatColor(i);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mColorChan); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mColorChan); i++) {
         mColorChan[i] = *pBlock->getColorChan(i);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mAmbColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mAmbColor); i++) {
         if (pBlock->getAmbColor(i) != NULL) {
             mAmbColor[i] = *pBlock->getAmbColor(i);
         }
@@ -1393,13 +1459,15 @@ void J3DColorBlockAmbientOn::reset(J3DColorBlock* pBlock) {
 void J3DColorBlockLightOn::reset(J3DColorBlock* pBlock) {
     mColorChanNum = pBlock->getColorChanNum();
 
-    for (u32 i = 0; i < ARRAY_SIZEU(mMatColor); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mMatColor); i++) {
         mMatColor[i] = *pBlock->getMatColor(i);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mColorChan); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mColorChan); i++) {
         mColorChan[i] = *pBlock->getColorChan(i);
     }
-    for (u32 i = 0; i < ARRAY_SIZEU(mAmbColor); i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mAmbColor); i++) {
         if (pBlock->getAmbColor(i) != NULL) {
             mAmbColor[i] = *pBlock->getAmbColor(i);
         }
@@ -1408,11 +1476,12 @@ void J3DColorBlockLightOn::reset(J3DColorBlock* pBlock) {
 
 void J3DTexGenBlockPatched::reset(J3DTexGenBlock* pBlock) {
     mTexGenNum = pBlock->getTexGenNum();
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTexCoord); i++) {
         mTexCoord[i] = *pBlock->getTexCoord(i);
     }
 
-    for (u32 i = 0; i < 8; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         if (pBlock->getTexMtx(i) != NULL) {
             if (mTexMtx[i] != NULL) {
                 memcpy(mTexMtx[i], pBlock->getTexMtx(i), sizeof(*mTexMtx[i]));
@@ -1424,6 +1493,7 @@ void J3DTexGenBlockPatched::reset(J3DTexGenBlock* pBlock) {
 
 void J3DTexGenBlock4::reset(J3DTexGenBlock* pBlock) {
     mTexGenNum = pBlock->getTexGenNum();
+
     for (u32 i = 0; i < 4; i++) {
         mTexCoord[i] = *pBlock->getTexCoord(i);
     }
@@ -1442,11 +1512,12 @@ void J3DTexGenBlock4::reset(J3DTexGenBlock* pBlock) {
 
 void J3DTexGenBlockBasic::reset(J3DTexGenBlock* pBlock) {
     mTexGenNum = pBlock->getTexGenNum();
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTexCoord); i++) {
         mTexCoord[i] = *pBlock->getTexCoord(i);
     }
 
-    for (u32 i = 0; i < 8; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         if (pBlock->getTexMtx(i) != NULL) {
             if (mTexMtx[i] != NULL) {
                 memcpy(mTexMtx[i], pBlock->getTexMtx(i), sizeof(*mTexMtx[i]));
@@ -1460,16 +1531,20 @@ void J3DTexGenBlockBasic::reset(J3DTexGenBlock* pBlock) {
 
 void J3DTevBlockPatched::reset(J3DTevBlock* pBlock) {
     mTevStageNum = pBlock->getTevStageNum();
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         mTexNo[i] = pBlock->getTexNo(i);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor); i++) {
         mTevColor[i] = *pBlock->getTevColor(i);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         mTevKColor[i] = *pBlock->getTevKColor(i);
     }
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevStage); i++) {
         mTevStage[i] = *pBlock->getTevStage(i);
         mIndTevStage[i] = *pBlock->getIndTevStage(i);
     }
@@ -1497,13 +1572,15 @@ void J3DTevBlock2::reset(J3DTevBlock* pBlock) {
     mTevKAlphaSel[0] = pBlock->getTevKAlphaSel(0);
     mTevKAlphaSel[1] = pBlock->getTevKAlphaSel(1);
 
-    for (u32 i = 0; i < 4; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor); i++) {
         mTevColor[i] = *pBlock->getTevColor(i);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         mTevKColor[i] = *pBlock->getTevKColor(i);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevSwapModeTable); i++) {
         mTevSwapModeTable[i] = *pBlock->getTevSwapModeTable(i);
     }
 }
@@ -1535,52 +1612,68 @@ void J3DTevBlock4::reset(J3DTevBlock* pBlock) {
     mTevKAlphaSel[2] = pBlock->getTevKAlphaSel(2);
     mTevKAlphaSel[3] = pBlock->getTevKAlphaSel(3);
 
-    for (u32 i = 0; i < 4; i++)
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor); i++) {
         mTevColor[i] = *pBlock->getTevColor(i);
-    for (u32 i = 0; i < 4; i++)
+    }
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         mTevKColor[i] = *pBlock->getTevKColor(i);
-    for (u32 i = 0; i < 4; i++)
+    }
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevSwapModeTable); i++) {
         mTevSwapModeTable[i] = *pBlock->getTevSwapModeTable(i);
+    }
 }
 
 void J3DTevBlock16::reset(J3DTevBlock* pBlock) {
     mTevStageNum = pBlock->getTevStageNum();
-    for (u32 i = 0; i < 8; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTexNo); i++) {
         mTexNo[i] = pBlock->getTexNo(i);
     }
-    for (u32 i = 0; i < 16; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevOrder); i++) {
         mTevOrder[i] = *pBlock->getTevOrder(i);
     }
-    for (u32 i = 0; i < 16; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevStage); i++) {
         mTevStage[i] = *pBlock->getTevStage(i);
         mIndTevStage[i] = *pBlock->getIndTevStage(i);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevColor); i++) {
         mTevColor[i] = *pBlock->getTevColor(i);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColor); i++) {
         mTevKColor[i] = *pBlock->getTevKColor(i);
     }
-    for (u32 i = 0; i < 16; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKColorSel); i++) {
         mTevKColorSel[i] = pBlock->getTevKColorSel(i);
     }
-    for (u32 i = 0; i < 16; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevKAlphaSel); i++) {
         mTevKAlphaSel[i] = pBlock->getTevKAlphaSel(i);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mTevSwapModeTable); i++) {
         mTevSwapModeTable[i] = *pBlock->getTevSwapModeTable(i);
     }
 }
 
 void J3DIndBlockFull::reset(J3DIndBlock* pBlock) {
     mIndTexStageNum = pBlock->getIndTexStageNum();
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mIndTexOrder); i++) {
         mIndTexOrder[i] = *pBlock->getIndTexOrder(i);
     }
-    for (u32 i = 0; i < 3; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mIndTexMtx); i++) {
         mIndTexMtx[i] = *pBlock->getIndTexMtx(i);
     }
-    for (u32 i = 0; i < 4; i++) {
+
+    for (u32 i = 0; i < ARRAY_SIZE(mIndTexCoordScale); i++) {
         mIndTexCoordScale[i] = *pBlock->getIndTexCoordScale(i);
     }
 }
@@ -1615,10 +1708,12 @@ void J3DPEBlockFull::reset(J3DPEBlock* pBlock) {
 
 void J3DTexGenBlockPatched::calc(const Mtx modelMtx) {
     Mtx viewMtx;
-    for (int i = 0; i < 8; i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         if (mTexMtx[i] != NULL) {
             u32 texMtxMode = mTexMtx[i]->getTexMtxInfo().mInfo & 0x3f;
             mTexCoord[i].resetTexMtxReg();
+
             switch (texMtxMode) {
             case J3DTexMtxMode_EnvmapBasic:
             case J3DTexMtxMode_EnvmapOld:
@@ -1674,7 +1769,8 @@ void J3DTexGenBlockPatched::calc(const Mtx modelMtx) {
 
 void J3DTexGenBlockPatched::calcWithoutViewMtx(const Mtx modelMtx) {
     Mtx mtx;
-    for (int i = 0; i < 8; i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         if (mTexMtx[i] != NULL) {
             u32 texMtxMode = mTexMtx[i]->getTexMtxInfo().mInfo & 0x3f;
             mTexCoord[i].resetTexMtxReg();
@@ -1719,7 +1815,8 @@ void J3DTexGenBlockPatched::calcWithoutViewMtx(const Mtx modelMtx) {
 
 void J3DTexGenBlockPatched::calcPostTexMtx(const Mtx modelMtx) {
     Mtx mtx1, mtx2;
-    for (int i = 0; i < 8; i++) {
+
+    for (s32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         if (mTexMtx[i] != NULL) {
             u32 texMtxMode = mTexMtx[i]->getTexMtxInfo().mInfo & 0x3f;
             mTexCoord[i].resetTexMtxReg();
@@ -1761,7 +1858,7 @@ void J3DTexGenBlockPatched::calcPostTexMtx(const Mtx modelMtx) {
 }
 
 void J3DTexGenBlockPatched::calcPostTexMtxWithoutViewMtx(f32 const (*param_0)[4]) {
-    for (int i = 0; i < 8; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mTexMtx); i++) {
         if (mTexMtx[i] != NULL) {
             int texMtxMode = mTexMtx[i]->getTexMtxInfo().mInfo & 0x3f;
             mTexCoord[i].resetTexMtxReg();

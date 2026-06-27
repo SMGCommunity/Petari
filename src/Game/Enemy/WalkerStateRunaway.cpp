@@ -90,7 +90,9 @@ bool WalkerStateRunaway::tryWallJump() {
             MR::addVelocityClockwiseToDirection(getHost(), wallNorml,
                                                 MR::isHalfProbability() ? mRunawayParam->mWallJumpPowerH : -mRunawayParam->mWallJumpPowerH);
         } else {
-            MR::addVelocityMoveToDirection(getHost(), wallNorml.addOtherInline(horiz), mRunawayParam->mWallJumpPowerH);
+            TVec3f dir;
+            dir.add(wallNorml, horiz);
+            MR::addVelocityMoveToDirection(getHost(), dir, mRunawayParam->mWallJumpPowerH);
         }
 
         MR::addVelocityJump(getHost(), mRunawayParam->mWallJumpPowerV);

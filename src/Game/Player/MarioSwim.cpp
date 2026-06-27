@@ -699,7 +699,7 @@ bool MarioSwim::update() {
 
             getPlayer()->mMovementStates._5 = false;
             getPlayer()->_278 = res;
-            getPlayer()->tryForcePowerJump(mActor->getLastMove().scaleInline(2.0f).translate(mUpVec.scaleInline(10.0f)), false);
+            getPlayer()->tryForcePowerJump(mActor->getLastMove().scaleInline(2.0f) + mUpVec.scaleInline(10.0f), false);
 
             mNextAction = EXIT_ACTION_POWER_JUMP;
             changeAnimationNonStop("リングダッシュ");
@@ -1032,7 +1032,7 @@ bool MarioSwim::update() {
             mIsOnSurface = false;
         }
     } else if (mIsOnSurface) {
-        AreaObj* obj = MR::getAreaObj("WaterArea", getTrans().translate(getGravityVec().scaleInline(100.0f)));
+        AreaObj* obj = MR::getAreaObj("WaterArea", getTrans() + getGravityVec().scaleInline(100.0f));
         if (obj != nullptr) {
             TPos3f* followMtx = obj->getFollowMtx();
             if (followMtx) {
@@ -1701,7 +1701,7 @@ bool MarioSwim::close() {
     }
 
     if (mNextAction == EXIT_ACTION_POWER_JUMP) {
-        TVec3f spawnPos = (getTrans() - mUpVec.scaleInline(mWaterDepth)).translate(mUpVec.scaleInline(10.0f));
+        TVec3f spawnPos = getTrans() - mUpVec.scaleInline(mWaterDepth) + mUpVec.scaleInline(10.0f);
 
         playEffectRT("水面ジャンプ水柱", mSurfacePos, mSurfaceNorm);
         playSound("水ジャンプ脱出", -1);
@@ -1716,7 +1716,7 @@ bool MarioSwim::close() {
     if (mNextAction == EXIT_ACTION_FALL) {
         TVec3f trans = getTrans();
 
-        playEffectRT("水面ジャンプ水柱", -mSurfacePos, trans.translate(mSurfacePos.scaleInline(mDistToFloor)));
+        playEffectRT("水面ジャンプ水柱", -mSurfacePos, trans + mSurfacePos.scaleInline(mDistToFloor));
 
         getPlayer()->setGroundNorm(-getAirGravityVec());
 
@@ -1734,7 +1734,7 @@ bool MarioSwim::close() {
 
         MR::vecKillElement(mWaterStreamVel, getGravityVec(), &mWaterStreamVel);
 
-        getPlayer()->mJumpVec = getPlayer()->mJumpVec.translate(mWaterStreamVel.scaleInline(0.3f));
+        getPlayer()->mJumpVec = getPlayer()->mJumpVec + mWaterStreamVel.scaleInline(0.3f);
     }
 
     getPlayer()->unlockGroundCheck(this);
@@ -1889,8 +1889,7 @@ void MarioSwim::updateUnderWater() {
     const f32 kOffset = 100.0f;
 
     for (u32 i = 0; i < searchLimit; ++i) {
-        TVec3f checkPos =
-            MarioModule::getTrans().translate(searchDir.scaleInline(kOffset)).translate(getGravityVec().scaleInline(mWaterDistanceTarget - kOffset));
+        TVec3f checkPos = MarioModule::getTrans() + searchDir.scaleInline(kOffset) + getGravityVec().scaleInline(mWaterDistanceTarget - kOffset);
 
         WaterInfo waterInfo;
         MR::getWaterAreaObj(&waterInfo, checkPos);
@@ -1912,7 +1911,7 @@ void MarioSwim::updateUnderWater() {
 
                     if (waterInfo.mCamWaterDepth < 100.0f) {
                         if (!(getPlayer()->mMovementStates._1) || getPlayer()->_71C) {
-                            mActor->createIceFloor(surfacePos.translate(searchDir.scaleInline(170.0f)));
+                            mActor->createIceFloor(surfacePos + searchDir.scaleInline(170.0f));
                         }
                         mWaterDistanceTarget = 0.0f;
                     }
@@ -1941,7 +1940,7 @@ f32 MarioSwim::checkUnderWaterFull(const TVec3f& rVec) {
     f32 maxDist = 10000.0f;
 
     while (currentDist < maxDist) {
-        TVec3f checkPos = getTrans().translate(rVec.scaleInline(offset)).translate(getGravityVec().scaleInline(currentDist - offset));
+        TVec3f checkPos = getTrans() + rVec.scaleInline(offset) + getGravityVec().scaleInline(currentDist - offset);
         if (MR::getAreaObj("ForbidWaterSearchCube", checkPos) != nullptr) {
             return -1.0f;
         }
@@ -2023,7 +2022,7 @@ AreaInfo* MarioSwim::getWaterAreaInfo(WaterInfo* pInfo, const TVec3f& rPos, TVec
     currentFlow.scale(finalScale);
     TVec3f smoothedFlow = currentFlow.scaleInline(0.05);
 
-    mWaterStreamVel = mWaterStreamVel.scaleInline(0.95).translate(smoothedFlow);
+    mWaterStreamVel = mWaterStreamVel.scaleInline(0.95) + smoothedFlow;
     mWaterStreamDir = smoothedFlow;
 
     return waterAreaInfo;
@@ -2391,7 +2390,7 @@ void MarioSwim::addDamage(const TVec3f& rDamageDir) {
         MR::vecKillElement(rDamageDir, mUpVec, &surfaceKnockback);
         surfaceKnockback.setLength(mActor->getConst().getTable()->mSwimSurfaceDamageSpeed);
 
-        TVec3f jumpVel = mUpVec.scaleInline(mActor->getConst().getTable()->mWaterSurfaceDamageJump).translate(surfaceKnockback);
+        TVec3f jumpVel = mUpVec.scaleInline(mActor->getConst().getTable()->mWaterSurfaceDamageJump) + surfaceKnockback;
         getPlayer()->tryForcePowerJump(jumpVel, false);
         changeAnimationNonStop("水上ダメージ中");
         playSound("水面ダメージ", -1);
@@ -2820,7 +2819,7 @@ void MarioSwim::hitWall(const TVec3f& rNormal, HitSensor* pSensor) {
                     }
                     TVec3f gravVecScaled = getGravityVec().scaleInline(10.0f);
                     TVec3f worldPadDirScaled = (*worldPadDir).scaleInline(10.0f);
-                    mKnockbackVel = gravVecScaled.translate(worldPadDirScaled);
+                    mKnockbackVel = gravVecScaled + worldPadDirScaled;
                 }
             }
         }
@@ -3228,7 +3227,7 @@ void MarioSwim::doJetJump(u8 type) {
         getPlayer()->_278 = speedRatio;
 
         TVec3f finalVelocity =
-            jumpDir.scaleInline(horizontalSpeed).scaleInline(horizontalScale).translate(mUpVec.scaleInline(verticalBoost).scaleInline(verticalScale));
+            jumpDir.scaleInline(horizontalSpeed).scaleInline(horizontalScale) + mUpVec.scaleInline(verticalBoost).scaleInline(verticalScale);
 
         getPlayer()->tryForcePowerJump(finalVelocity, false);
 

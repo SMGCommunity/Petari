@@ -51,7 +51,7 @@ bool SegmentGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVe
             }
             attraction = mWorldGravityPoints[1];
         } else {
-            attraction = mWorldGravityPoints[0].addOtherInline2(mAxis * axisY);
+            attraction = mWorldGravityPoints[0] + mAxis * axisY;
         }
     }
     TVec3f gravity = attraction - rPos;

@@ -22,7 +22,7 @@ void ParabolicPath::initFromUpVector(const TVec3f& a1, const TVec3f& a2, const T
     mAxisY.set(a3);
 
     f32 dot = mAxisY.dot(a2 - a1);
-    mAxisZ.setPS2(a2 - a1 - (mAxisY * dot));
+    mAxisZ = a2 - a1 - (mAxisY * dot);
 
     MR::separateScalarAndDirection(&_2C, &mAxisZ, mAxisZ);
     MR::calcParabolicFunctionParam(&_24, &_28, f1, dot);

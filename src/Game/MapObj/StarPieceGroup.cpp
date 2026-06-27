@@ -241,7 +241,7 @@ void StarPieceGroup::placementPieceOnCircle() {
     for (u32 i = 0; i < mNumPieces; i++) {
         f32 cos = mCircleRadius * MR::cos(currentAngle);
         f32 sin = mCircleRadius * MR::sin(currentAngle);
-        mPieces[i]->mPosition.setPS2(zDir * cos + xDir * sin + center);
+        mPieces[i]->mPosition = zDir * cos + xDir * sin + center;
         currentAngle += angleBetweenPieces;
     }
 

@@ -173,7 +173,7 @@ void BasaBasa::exeChase() {
     MR::normalizeOrZero(&v5);
     if (!MR::isNearZero(v5)) {
         TVec3f v4;
-        v4.setPS(v5);
+        v4 = v5;
         MR::rotateVecDegree(&v4, mGravity, _B8);
         MR::turnDirectionDegree(this, &_9C, v4, 1.7f);
     }

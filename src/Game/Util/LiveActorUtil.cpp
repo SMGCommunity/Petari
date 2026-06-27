@@ -1044,27 +1044,27 @@ namespace MR {
 
     void setAllAnimFrame(const LiveActor* pActor, const char* pName, f32 frame) {
         if (isExistBck(pActor, pName)) {
-            pActor->mModelManager->getBckCtrl()->mFrame = frame;
+            getBckCtrl(pActor)->setFrame(frame);
         }
 
         if (isExistBtk(pActor, pName)) {
-            pActor->mModelManager->getBtkCtrl()->mFrame = frame;
+            getBtkCtrl(pActor)->setFrame(frame);
         }
 
         if (isExistBpk(pActor, pName)) {
-            pActor->mModelManager->getBpkCtrl()->mFrame = frame;
+            getBpkCtrl(pActor)->setFrame(frame);
         }
 
         if (isExistBtp(pActor, pName)) {
-            pActor->mModelManager->getBtpCtrl()->mFrame = frame;
+            getBtpCtrl(pActor)->setFrame(frame);
         }
 
         if (isExistBrk(pActor, pName)) {
-            pActor->mModelManager->getBrkCtrl()->mFrame = frame;
+            getBrkCtrl(pActor)->setFrame(frame);
         }
 
         if (isExistBva(pActor, pName)) {
-            pActor->mModelManager->getBvaCtrl()->mFrame = frame;
+            getBvaCtrl(pActor)->setFrame(frame);
         }
     }
 
@@ -1096,52 +1096,52 @@ namespace MR {
 
     void setAllAnimFrameAtEnd(const LiveActor* pActor, const char* pName) {
         if (isExistBck(pActor, pName)) {
-            setBckFrame(pActor, (f32)pActor->mModelManager->getBckCtrl()->mEnd);
+            setBckFrame(pActor, getBckCtrl(pActor)->getEnd());
         }
 
         if (isExistBtk(pActor, pName)) {
-            setBtkFrame(pActor, (f32)pActor->mModelManager->getBtkCtrl()->mEnd);
+            setBtkFrame(pActor, getBtkCtrl(pActor)->getEnd());
         }
 
         if (isExistBpk(pActor, pName)) {
-            setBpkFrame(pActor, (f32)pActor->mModelManager->getBpkCtrl()->mEnd);
+            setBpkFrame(pActor, getBpkCtrl(pActor)->getEnd());
         }
 
         if (isExistBtp(pActor, pName)) {
-            setBtpFrame(pActor, (f32)pActor->mModelManager->getBtpCtrl()->mEnd);
+            setBtpFrame(pActor, getBtpCtrl(pActor)->getEnd());
         }
 
         if (isExistBrk(pActor, pName)) {
-            setBrkFrame(pActor, (f32)pActor->mModelManager->getBrkCtrl()->mEnd);
+            setBrkFrame(pActor, getBrkCtrl(pActor)->getEnd());
         }
 
         if (isExistBva(pActor, pName)) {
-            setBrkFrame(pActor, (f32)pActor->mModelManager->getBvaCtrl()->mEnd);
+            setBrkFrame(pActor, getBvaCtrl(pActor)->getEnd());
         }
     }
 
     bool isAnyAnimStopped(const LiveActor* pActor, const char* pName) {
-        if (isExistBck(pActor, pName) && pActor->mModelManager->isBckStopped()) {
+        if (isExistBck(pActor, pName) && isBckStopped(pActor)) {
             return true;
         }
 
-        if (isExistBtk(pActor, pName) && pActor->mModelManager->isBtkStopped()) {
+        if (isExistBtk(pActor, pName) && isBtkStopped(pActor)) {
             return true;
         }
 
-        if (isExistBpk(pActor, pName) && pActor->mModelManager->isBpkStopped()) {
+        if (isExistBpk(pActor, pName) && isBpkStopped(pActor)) {
             return true;
         }
 
-        if (isExistBtp(pActor, pName) && pActor->mModelManager->isBtpStopped()) {
+        if (isExistBtp(pActor, pName) && isBtpStopped(pActor)) {
             return true;
         }
 
-        if (isExistBrk(pActor, pName) && pActor->mModelManager->isBrkStopped()) {
+        if (isExistBrk(pActor, pName) && isBrkStopped(pActor)) {
             return true;
         }
 
-        if (isExistBva(pActor, pName) && pActor->mModelManager->isBvaStopped()) {
+        if (isExistBva(pActor, pName) && isBvaStopped(pActor)) {
             return true;
         }
 
@@ -1149,27 +1149,27 @@ namespace MR {
     }
 
     bool isAnyAnimOneTimeAndStopped(const LiveActor* pActor, const char* pName) {
-        if (isExistBck(pActor, pName) && pActor->mModelManager->isBckStopped()) {
+        if (isExistBck(pActor, pName) && isBckStopped(pActor)) {
             return true;
         }
 
-        if (isExistBtk(pActor, pName) && pActor->mModelManager->isBtkStopped()) {
+        if (isExistBtk(pActor, pName) && isBtkStopped(pActor)) {
             return true;
         }
 
-        if (isExistBpk(pActor, pName) && pActor->mModelManager->isBpkStopped()) {
+        if (isExistBpk(pActor, pName) && isBpkStopped(pActor)) {
             return true;
         }
 
-        if (isExistBtp(pActor, pName) && pActor->mModelManager->isBtpStopped()) {
+        if (isExistBtp(pActor, pName) && isBtpStopped(pActor)) {
             return true;
         }
 
-        if (isExistBrk(pActor, pName) && pActor->mModelManager->isBrkStopped()) {
+        if (isExistBrk(pActor, pName) && isBrkStopped(pActor)) {
             return true;
         }
 
-        if (isExistBva(pActor, pName) && pActor->mModelManager->isBvaStopped()) {
+        if (isExistBva(pActor, pName) && isBvaStopped(pActor)) {
             return true;
         }
 
@@ -1312,90 +1312,58 @@ namespace MR {
     }
 
     bool isBckLooped(const LiveActor* pActor) {
-        return (pActor->mModelManager->getBckCtrl()->mState & 0x2) != 0;
+        return (getBckCtrl(pActor)->mState & 0x2) != 0;
     }
 
     bool checkPassBckFrame(const LiveActor* pActor, f32 f) {
-        return pActor->mModelManager->getBckCtrl()->checkPass(f) == 1;
+        return getBckCtrl(pActor)->checkPass(f) == 1;
     }
 
     void setBckFrameAtRandom(const LiveActor* pActor) {
-        s16 actorEndFrame = pActor->mModelManager->getBckCtrl()->mEnd;
-        s32 frameRand = (actorEndFrame * MR::getRandom());
-        setBckFrame(pActor, frameRand);
+        s32 randomFrame = getBckCtrl(pActor)->getEnd() * MR::getRandom();
+
+        setBckFrame(pActor, randomFrame);
     }
 
     void setBtkFrameAtRandom(const LiveActor* pActor) {
-        s16 actorEndFrame = pActor->mModelManager->getBtkCtrl()->mEnd;
-        s32 frameRand = (actorEndFrame * MR::getRandom());
-        pActor->mModelManager->getBtkCtrl()->mFrame = frameRand;
+        s32 randomFrame = getBtkCtrl(pActor)->getEnd() * MR::getRandom();
+
+        pActor->mModelManager->getBtkCtrl()->mFrame = randomFrame;
     }
 
     void setBckFrameAndStop(const LiveActor* pActor, f32 frame) {
-        J3DFrameCtrl* pBckCtrl;
-
-        pBckCtrl = pActor->mModelManager->getBckCtrl();
-        pBckCtrl->mFrame = frame;
-
-        pBckCtrl = pActor->mModelManager->getBckCtrl();
-        pBckCtrl->mRate = 0.0f;
+        getBckCtrl(pActor)->setFrame(frame);
+        getBckCtrl(pActor)->setRate(0.0f);
     }
 
     void setBtkFrameAndStop(const LiveActor* pActor, f32 frame) {
-        J3DFrameCtrl* pBtkCtrl;
-
-        pBtkCtrl = pActor->mModelManager->getBtkCtrl();
-        pBtkCtrl->mFrame = frame;
-
-        pBtkCtrl = pActor->mModelManager->getBtkCtrl();
-        pBtkCtrl->mRate = 0.0f;
+        getBtkCtrl(pActor)->setFrame(frame);
+        getBtkCtrl(pActor)->setRate(0.0f);
     }
 
     void setBrkFrameAndStop(const LiveActor* pActor, f32 frame) {
-        J3DFrameCtrl* pBrkCtrl;
-
-        pBrkCtrl = pActor->mModelManager->getBrkCtrl();
-        pBrkCtrl->mFrame = frame;
-
-        pBrkCtrl = pActor->mModelManager->getBrkCtrl();
-        pBrkCtrl->mRate = 0.0f;
+        getBrkCtrl(pActor)->setFrame(frame);
+        getBrkCtrl(pActor)->setRate(0.0f);
     }
 
     void setBtpFrameAndStop(const LiveActor* pActor, f32 frame) {
-        J3DFrameCtrl* pBtpCtrl;
-
-        pBtpCtrl = pActor->mModelManager->getBtpCtrl();
-        pBtpCtrl->mFrame = frame;
-
-        pBtpCtrl = pActor->mModelManager->getBtpCtrl();
-        pBtpCtrl->mRate = 0.0f;
+        getBtpCtrl(pActor)->setFrame(frame);
+        getBtpCtrl(pActor)->setRate(0.0f);
     }
 
     void setBpkFrameAndStop(const LiveActor* pActor, f32 frame) {
-        J3DFrameCtrl* pBpkCtrl;
-
-        pBpkCtrl = pActor->mModelManager->getBpkCtrl();
-        pBpkCtrl->mFrame = frame;
-
-        pBpkCtrl = pActor->mModelManager->getBpkCtrl();
-        pBpkCtrl->mRate = 0.0f;
+        getBpkCtrl(pActor)->setFrame(frame);
+        getBpkCtrl(pActor)->setRate(0.0f);
     }
 
     void setBvaFrameAndStop(const LiveActor* pActor, f32 frame) {
-        J3DFrameCtrl* pBvaCtrl;
-
-        pBvaCtrl = pActor->mModelManager->getBvaCtrl();
-        pBvaCtrl->mFrame = frame;
-
-        pBvaCtrl = pActor->mModelManager->getBvaCtrl();
-        pBvaCtrl->mRate = 0.0f;
+        getBvaCtrl(pActor)->setFrame(frame);
+        getBvaCtrl(pActor)->setRate(0.0f);
     }
 
     void setBrkFrameEndAndStop(const LiveActor* pActor) {
-        f32 frame = (f32)pActor->mModelManager->getBrkCtrl()->mEnd;
-        pActor->mModelManager->getBrkCtrl()->mFrame = frame;
-        J3DFrameCtrl* pBrkCtrl = pActor->mModelManager->getBrkCtrl();
-        pBrkCtrl->mRate = 0.0f;
+        getBrkCtrl(pActor)->setFrame(getBrkCtrl(pActor)->getEnd());
+        getBrkCtrl(pActor)->setRate(0.0f);
     }
 
     void startBtkAndSetFrameAndStop(const LiveActor* pActor, const char* pBtkName, f32 frame) {
@@ -1582,8 +1550,7 @@ namespace MR {
     }
 
     void stopBck(const LiveActor* pActor) {
-        J3DFrameCtrl* pBckCtrl = pActor->mModelManager->getBckCtrl();
-        pBckCtrl->mRate = 0.0f;
+        getBckCtrl(pActor)->setRate(0.0f);
     }
 
     void stopBtk(const LiveActor* pActor) {
@@ -1603,47 +1570,43 @@ namespace MR {
     }
 
     void setBckRate(const LiveActor* pActor, f32 rate) {
-        J3DFrameCtrl* pBckCtrl = pActor->mModelManager->getBckCtrl();
-        pBckCtrl->mRate = rate * ::sAnimRateScale;
+        getBckCtrl(pActor)->mRate = rate * ::sAnimRateScale;
     }
 
     void setBtkRate(const LiveActor* pActor, f32 rate) {
-        J3DFrameCtrl* pBtkCtrl = pActor->mModelManager->getBtkCtrl();
-        pBtkCtrl->mRate = rate * ::sAnimRateScale;
+        getBtkCtrl(pActor)->mRate = rate * ::sAnimRateScale;
     }
 
     void setBrkRate(const LiveActor* pActor, f32 rate) {
-        J3DFrameCtrl* pBrkCtrl = pActor->mModelManager->getBrkCtrl();
-        pBrkCtrl->mRate = rate * ::sAnimRateScale;
+        getBrkCtrl(pActor)->mRate = rate * ::sAnimRateScale;
     }
 
     void setBvaRate(const LiveActor* pActor, f32 rate) {
-        J3DFrameCtrl* pBvaCtrl = pActor->mModelManager->getBvaCtrl();
-        pBvaCtrl->mRate = rate * ::sAnimRateScale;
+        getBvaCtrl(pActor)->mRate = rate * ::sAnimRateScale;
     }
 
     void setBckFrame(const LiveActor* pActor, f32 frame) {
-        pActor->mModelManager->getBckCtrl()->mFrame = frame;
+        getBckCtrl(pActor)->setFrame(frame);
     }
 
     void setBtkFrame(const LiveActor* pActor, f32 frame) {
-        pActor->mModelManager->getBtkCtrl()->mFrame = frame;
+        getBtkCtrl(pActor)->setFrame(frame);
     }
 
     void setBrkFrame(const LiveActor* pActor, f32 frame) {
-        pActor->mModelManager->getBrkCtrl()->mFrame = frame;
+        getBrkCtrl(pActor)->setFrame(frame);
     }
 
     void setBtpFrame(const LiveActor* pActor, f32 frame) {
-        pActor->mModelManager->getBtpCtrl()->mFrame = frame;
+        getBtpCtrl(pActor)->setFrame(frame);
     }
 
     void setBpkFrame(const LiveActor* pActor, f32 frame) {
-        pActor->mModelManager->getBpkCtrl()->mFrame = frame;
+        getBpkCtrl(pActor)->setFrame(frame);
     }
 
     void setBvaFrame(const LiveActor* pActor, f32 frame) {
-        pActor->mModelManager->getBvaCtrl()->mFrame = frame;
+        getBvaCtrl(pActor)->setFrame(frame);
     }
 
     bool isBckPlaying(const LiveActor* pActor, const char* pBckName) {
@@ -1771,35 +1734,35 @@ namespace MR {
     }
 
     f32 getBckFrame(const LiveActor* pActor) {
-        return pActor->mModelManager->getBckCtrl()->mFrame;
+        return getBckCtrl(pActor)->getFrame();
     }
 
     f32 getBrkFrame(const LiveActor* pActor) {
-        return pActor->mModelManager->getBrkCtrl()->mFrame;
+        return getBrkCtrl(pActor)->getFrame();
     }
 
     f32 getBtpFrame(const LiveActor* pActor) {
-        return pActor->mModelManager->getBtpCtrl()->mFrame;
+        return getBtpCtrl(pActor)->getFrame();
     }
 
     f32 getBvaFrame(const LiveActor* pActor) {
-        return pActor->mModelManager->getBvaCtrl()->mFrame;
+        return getBvaCtrl(pActor)->getFrame();
     }
 
     f32 getBckRate(const LiveActor* pActor) {
-        return pActor->mModelManager->getBckCtrl()->mRate;
+        return getBckCtrl(pActor)->getRate();
     }
 
     f32 getBckFrameMax(const LiveActor* pActor) {
-        return (f32)pActor->mModelManager->getBckCtrl()->mEnd;
+        return getBckCtrl(pActor)->getEnd();
     }
 
     f32 getBtkFrameMax(const LiveActor* pActor) {
-        return (f32)pActor->mModelManager->getBtkCtrl()->mEnd;
+        return getBtkCtrl(pActor)->getEnd();
     }
 
     f32 getBrkFrameMax(const LiveActor* pActor) {
-        return (f32)pActor->mModelManager->getBrkCtrl()->mEnd;
+        return getBrkCtrl(pActor)->getEnd();
     }
 
     void reflectBckCtrlData(LiveActor* pActor, const BckCtrlData& rBck) {
