@@ -645,9 +645,9 @@ void PowerStar::exeAppearDemoMove() {
         mPosition.add(zVec);
     } else {
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST_W", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST_W");
         } else {
-            MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST", -1, -1, -1);
+            MR::startLevelSound(this, "SE_OJ_LV_POW_STAR_EXIST");
         }
     }
 
