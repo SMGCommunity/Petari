@@ -21,7 +21,7 @@ void PowerStarEventKeeper::initStarInfoTable() {
         pInfo->_1 = false;
         pInfo->_2 = false;
         pInfo->_3 = false;
-        pInfo->demoName = nullptr;
+        pInfo->mDemoName = nullptr;
     }
 
     for (s32 scenarioNo = mStartScenario; scenarioNo <= mPowerStarNum; scenarioNo++) {
@@ -58,7 +58,7 @@ void PowerStarEventKeeper::declareStar(const char* pName1, const char* pName2, s
 
     if (isCorrectStarIdWithBBS(pName1, pName2, starID)) {
         PowerStarInfo* pInfo = getStarInfo(starID - 1);
-        pInfo->demoName = pName1;
+        pInfo->mDemoName = pName1;
         pInfo->_2 = myBool;
     }
 }
@@ -108,7 +108,7 @@ void PowerStarEventKeeper::initStarInfoTableAfterPlacement() {
             continue;
         }
 
-        if (pInfo->demoName != nullptr) {
+        if (pInfo->mDemoName != nullptr) {
             PowerStar* pPowerStar = PowerStarFunction::findPowerStar(mStartScenario + powerStarNo);
             pPowerStar->mIsInDemo = true;
 

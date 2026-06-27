@@ -1,14 +1,13 @@
 #pragma once
 
-#include "JSystem/JGeometry.hpp"
-#include <revolution.h>
+#include "JSystem/JGeometry/TVec.hpp"
 
 struct PowerStarInfo {
     bool _0;
     bool _1;
     bool _2;
     bool _3;
-    const char* demoName;
+    const char* mDemoName;
 };
 
 class PowerStarEventKeeper {
