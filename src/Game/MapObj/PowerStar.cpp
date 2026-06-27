@@ -628,7 +628,7 @@ void PowerStar::exeAppearDemoMove() {
         TVec3f vec;
         f32 step = getNerveStep() / 120.0f;
         calcAppearDemoRiseTrans(&vec, 300.0f);
-        JMAVECLerp(vec, mAppearPosition, mPosition, step);
+        vec.lerp(mAppearPosition, mPosition, step);
 
         TVec3f vec2;
         MR::vecKillElement(vec, mGravity, &vec2);
