@@ -14,10 +14,35 @@
 #define ICON_ID_KINOPIO 4
 #define ICON_ID_PEACH 5
 
-ConfigDataMii::ConfigDataMii() : mFlag(0), mIconId(ICON_ID_MARIO), mMiiId(nullptr) {
+ConfigDataMii::ConfigDataMii() : mFlag(), mIconId(ICON_ID_MARIO), mMiiId() {
     mMiiId = new u8[sizeof(RFLCreateID)];
 
     initializeData();
+}
+
+void ConfigDataMii::setMiiOrIconId(const void* pMiiId, const u32* pIconId) {
+    if (pMiiId != nullptr) {
+        MR::copyMemory(mMiiId, pMiiId, sizeof(RFLCreateID));
+
+        mFlag |= FLAG_UNK2;
+        mIconId = ICON_ID_MII;
+    } else {
+        MR::fillMemory(mMiiId, 0, sizeof(RFLCreateID));
+
+        mIconId = *pIconId;
+    }
+}
+
+bool ConfigDataMii::getIconId(u32* pIconId) const {
+    *pIconId = mIconId;
+
+    return mIconId != ICON_ID_MII;
+}
+
+bool ConfigDataMii::getMiiId(void* pMiiId) const {
+    MR::copyMemory(pMiiId, mMiiId, sizeof(RFLCreateID));
+
+    return mIconId == ICON_ID_MII;
 }
 
 u32 ConfigDataMii::makeHeaderHashCode() const {
@@ -69,29 +94,4 @@ void ConfigDataMii::initializeData() {
     mIconId = ICON_ID_MARIO;
 
     MR::zeroMemory(mMiiId, sizeof(RFLCreateID));
-}
-
-void ConfigDataMii::setMiiOrIconId(const void* pMiiId, const u32* pIconId) {
-    if (pMiiId != nullptr) {
-        MR::copyMemory(mMiiId, pMiiId, sizeof(RFLCreateID));
-
-        mFlag |= FLAG_UNK2;
-        mIconId = ICON_ID_MII;
-    } else {
-        MR::fillMemory(mMiiId, 0, sizeof(RFLCreateID));
-
-        mIconId = *pIconId;
-    }
-}
-
-bool ConfigDataMii::getIconId(u32* pIconId) const {
-    *pIconId = mIconId;
-
-    return mIconId != ICON_ID_MII;
-}
-
-bool ConfigDataMii::getMiiId(void* pMiiId) const {
-    MR::copyMemory(pMiiId, mMiiId, sizeof(RFLCreateID));
-
-    return mIconId == ICON_ID_MII;
 }

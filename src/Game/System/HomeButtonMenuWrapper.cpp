@@ -8,7 +8,7 @@ void (*HBMCreateRSO)(const HBMDataInfo*);
 void (*HBMInitRSO)(void);
 void (*HBMCalcRSO)(const HBMControllerData*);
 void (*HBMDrawRSO)(void);
-s32 (*HBMGetSelectBtnNumRSO)(void);
+HBMSelectBtnNum (*HBMGetSelectBtnNumRSO)(void);
 void (*HBMSetAdjustFlagRSO)(int);
 void (*HBMStartBlackOutRSO)(void);
 
@@ -51,7 +51,7 @@ void RSO::setupRsoHomeButtonMenu() {
         if (rsoPtr != nullptr) {
             RSOLinkJump(rsoPtr, symbolTable, jumps);
             reinterpret_cast< ProloguePtr >(rsoPtr->mProlog)(RSOIsImportSymbolResolvedAll(rsoPtr));
-            for (i = 0; i < 7; i++) {
+            for (i = 0; i < ARRAY_SIZE(exp_tbl); i++) {
                 pTbl = &exp_tbl[i];
                 RSOFindExportSymbolAddr(rsoPtr, pTbl->symbol_name);
                 *(pTbl->symbol_ptr) = (u32)RSOFindExportSymbolAddr(rsoPtr, pTbl->symbol_name);
@@ -60,23 +60,23 @@ void RSO::setupRsoHomeButtonMenu() {
     }
 }
 
-void RSO::HBMCreate(const HBMDataInfo* pInfo) {
-    (*HBMCreateRSO)(pInfo);
+void RSO::HBMCreate(const HBMDataInfo* pHBInfo) {
+    (*HBMCreateRSO)(pHBInfo);
 }
 
 void RSO::HBMInit() {
     (*HBMInitRSO)();
 }
 
-void RSO::HBMCalc(const HBMControllerData* pData) {
-    (*HBMCalcRSO)(pData);
+void RSO::HBMCalc(const HBMControllerData* pController) {
+    (*HBMCalcRSO)(pController);
 }
 
 void RSO::HBMDraw() {
     (*HBMDrawRSO)();
 }
 
-s32 RSO::HBMGetSelectBtnNum() {
+HBMSelectBtnNum RSO::HBMGetSelectBtnNum() {
     return (*HBMGetSelectBtnNumRSO)();
 }
 

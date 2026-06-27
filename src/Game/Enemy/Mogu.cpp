@@ -549,7 +549,7 @@ bool Mogu::tryPunchHitted(HitSensor* pSensor1, HitSensor* pSensor2, bool arg3) {
         TVec3f gravity(mGravity);
         gravity *= 50.0f;
         direction -= gravity;
-        mVelocity.setPS2(direction);
+        mVelocity = direction;
 
         if (MR::isOnGround(this)) {
             // r3 r4 order swap

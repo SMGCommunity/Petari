@@ -226,8 +226,7 @@ void MiniatureGalaxy::calcAndSetBaseMtx() {
     MR::setMtxTrans(_a, mPosition);
     MR::setBaseTRMtx(this, _a);
 
-    const TVec3f cameraPosition = MR::getCamPos();
-    cameraPosition.subOperatorInLine(mPosition);
+    const TVec3f cameraPosition = MR::getCamPos() - mPosition;
 
     const TVec3f cameraYDirectior = MR::getCamYdir();
 

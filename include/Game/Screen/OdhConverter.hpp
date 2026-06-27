@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/NameObj/NameObjAdaptor.hpp"
 #include "Game/Screen/LayoutActor.hpp"
+
+class NameObjAdaptor;
 
 namespace MR {
     class FunctorBase;

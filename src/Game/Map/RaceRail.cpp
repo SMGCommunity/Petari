@@ -58,7 +58,7 @@ bool PlayerRacer::updateRacer(const RaceManager* pRaceManager) {
     TVec3f railPos;
     MR::calcNearestRailPos(&railPos, racer, *MR::getPlayerCenterPos());
 
-    if (railPos.subOtherInline(*MR::getPlayerCenterPos()).length() > ::sRaceJudgeLength) {
+    if ((railPos - *MR::getPlayerCenterPos()).length() > ::sRaceJudgeLength) {
         return false;
     }
     if ((f32)__fabs(mRailCoord - railCoord) < ::sRaceJudgeLength) {
@@ -123,7 +123,7 @@ void PlayerRacer::prepRacer(const RaceManager* pRaceManager) {
     TVec3f pos;
     switch (pRaceManager->mCurrentRace) {
     case 0: {  // RaceName_Penguin
-        TVec3f s = mPosition.subOtherInline(grav * 500.f);
+        TVec3f s = mPosition - grav * 500.f;
         TVec3f pos(mPosition);
         MR::getFirstPolyOnLineToWaterSurface(&pos, nullptr, s, grav * 1000.0f);
         pos -= grav * 15.0f;

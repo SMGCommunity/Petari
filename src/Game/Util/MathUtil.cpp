@@ -96,9 +96,7 @@ namespace MR {
         randVec.y = y;
         randVec.z = z;
 
-        TVec3f otherVec(rOtherVec);
-        otherVec.add(randVec);
-        pOut->set(otherVec);
+        pOut->set(rOtherVec + randVec);
     }
 
     void turnRandomVector(TVec3f* pDst, const TVec3f& rSrc, f32 range) {

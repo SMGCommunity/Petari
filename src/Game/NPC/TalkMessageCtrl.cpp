@@ -505,7 +505,7 @@ bool TalkMessageCtrl::isNearPlayer(f32 distance) const {
             setY = pos[1][3];
             setX = pos[0][3];
             v4.set< f32 >(setX, setY, setZ);
-            v4.setPS2(*MR::getPlayerPos() - v4);
+            v4 = *MR::getPlayerPos() - v4;
 
             f32 f3 = MR::vecKillElement(v4, v3, &v4);
 
@@ -534,7 +534,7 @@ void TalkMessageCtrl::updateBalloonPos() {
     MR::addTransMtxLocal(tPos, _2C);
 
     v3.set< f32 >(pos[0][3], pos[1][3], pos[2][3]);
-    v3.addInline(TVec3f(tPos[0][3], tPos[1][3], tPos[2][3]));
+    v3.add(TVec3f(tPos[0][3], tPos[1][3], tPos[2][3]));
     MR::calcScreenPosition(&_1C, v3);
 }
 

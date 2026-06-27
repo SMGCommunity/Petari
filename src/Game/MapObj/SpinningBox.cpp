@@ -133,8 +133,7 @@ void SpinningBox::kill() {
     MR::startSound(this, "SE_OJ_SPIN_BOX_BREAK");
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     LiveActor::kill();
-    MR::appearStarPiece(this, mPosition.subOperatorInLine(mGravity.scaleInline(50.0f)), MR::getDeclareRemnantStarPieceCount(this), 10.0f, 40.0f,
-                        false);
+    MR::appearStarPiece(this, mPosition - mGravity.scaleInline(50.0f), MR::getDeclareRemnantStarPieceCount(this), 10.0f, 40.0f, false);
     MR::emitEffect(this, "Break");
 }
 
@@ -355,7 +354,7 @@ void SpinningBox::calcPlanarProjectedVec(TVec3f* pProj, const TVec3f& rNorm, con
 }
 
 void SpinningBox::calcHitDirection(const TVec3f& rPos) {
-    TVec3f hitDir = mPosition.subOperatorInLine(rPos);
+    TVec3f hitDir = mPosition - rPos;
     MR::vecKillElement(hitDir, mGravity, &hitDir);
     MR::normalizeOrZero(&hitDir);
 
@@ -385,7 +384,7 @@ void SpinningBox::generateIceBox(HitSensor* pSender, HitSensor* pReceiver) {
     MR::makeQuatFromVec(&mRotate, front, up);
 
     TVec3f grav = pReceiver->mHost->mGravity;
-    TVec3f dir = pReceiver->mPosition.subOperatorInLine(pSender->mPosition);
+    TVec3f dir = pReceiver->mPosition - pSender->mPosition;
     MR::vecKillElement(dir, grav, &dir);
     dir.setLength(::hIceInitBlowVelH);
     dir.add((-grav).scaleInline(::hIceInitBlowVelV));
@@ -509,7 +508,7 @@ bool SpinningBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 bool SpinningBox::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isExistInAttributeGroupReflectSpinningBox(pSender->mHost)) {
         if (!isNerve(&NrvSpinningBox::HostTypeNrvSpinning::sInstance) && !isNerve(&NrvSpinningBox::HostTypeNrvSliding::sInstance)) {
-            TVec3f dir = mPosition.subOperatorInLine(pSender->mPosition);
+            TVec3f dir = mPosition - pSender->mPosition;
             MR::normalizeOrZero(&dir);
             MR::vecKillElement(pSender->mHost->mVelocity, dir, &dir);
             MR::separateScalarAndDirection(&mSlideSpeed, &mSlideDir, dir);
@@ -525,7 +524,7 @@ bool SpinningBox::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 }
 
 void SpinningBox::hitReflection(HitSensor* pSender, HitSensor* pReceiver) {
-    TVec3f dir = pReceiver->mPosition.subOperatorInLine(pSender->mPosition);
+    TVec3f dir = pReceiver->mPosition - pSender->mPosition;
     MR::normalizeOrZero(&dir);
     if (MR::isNearZero(dir)) {
         return;
@@ -541,4 +540,11 @@ void SpinningBox::calcAndSetBaseMtx() {
     mtx.makeQuat(mRotate);
     mtx.setTrans(mPosition);
     MR::setBaseTRMtx(this, mtx);
+}
+
+void DUMMY() {
+    // This dummy is here to ensure that TVec3f::sub is the deepest call in the operator- chain.
+    // Presumably one of the stripped functions would have used sub directly.
+    TVec3f a, b;
+    a.sub(b);
 }

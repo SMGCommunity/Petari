@@ -144,7 +144,7 @@ void SkeletalFishGuard::exeAppear() {
     TVec3f v28 = mPosition - v29;
 
     if (!MR::isNearZero(v28)) {
-        _D0.setPS(v28);
+        _D0 = v28;
         MR::normalize(&_D0);
     }
 

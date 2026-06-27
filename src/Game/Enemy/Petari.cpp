@@ -712,7 +712,7 @@ void Petari::avoidWall() {
 }
 
 void Petari::calcCenter() {
-    mBodyCenter = mPosition.addOperatorInLine(mGravity.scaleInline(-60.0f));
+    mBodyCenter = mPosition + mGravity.scaleInline(-60.0f);
 }
 
 void Petari::meander() {

@@ -1,3 +1,4 @@
+#pragma once
 
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/Util/JMapInfo.hpp"

@@ -363,7 +363,7 @@ void TombSpiderFunction::resetPlayerPosTombSpider(const TombSpider* pParent, boo
 
     if (useCurrentPos && !MR::isNearZero(dirOut)) {
         MR::normalize(&dirOut);
-        pos.set(pParent->mPosition.addOtherInline2(dirOut.scaleInline(::sPlanetInsideRadius - 200.0f)));
+        pos.set(pParent->mPosition + dirOut.scaleInline(::sPlanetInsideRadius - 200.0f));
     }
 
     TVec3f up;
