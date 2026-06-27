@@ -534,7 +534,7 @@ void TalkMessageCtrl::updateBalloonPos() {
     MR::addTransMtxLocal(tPos, _2C);
 
     v3.set< f32 >(pos[0][3], pos[1][3], pos[2][3]);
-    v3.addInline(TVec3f(tPos[0][3], tPos[1][3], tPos[2][3]));
+    v3.add(TVec3f(tPos[0][3], tPos[1][3], tPos[2][3]));
     MR::calcScreenPosition(&_1C, v3);
 }
 

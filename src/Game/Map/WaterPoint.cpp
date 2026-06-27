@@ -28,7 +28,7 @@ void WaterPoint::updatePos(f32 waveTheta1, f32 waveTheta2, f32 waveHeight1, f32 
     mPosition.x = mUpVec.x * v9;
     mPosition.y = mUpVec.y * (a5 * height);
     mPosition.z = mUpVec.z * v9;
-    mPosition.addInline(mOrigPos);
+    mPosition.add(mOrigPos);
 }
 
 /* thanks to WMC for naming the vars */

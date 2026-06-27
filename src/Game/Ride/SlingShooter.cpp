@@ -523,7 +523,7 @@ void SlingShooter::updateHang() {
         v1.add(*mNeutralPos);
     }
 
-    TVec3f pos(v1.scaleInline(0.1f).addOperatorInLine(mPosition.scaleInline(0.9f)));
+    TVec3f pos(v1.scaleInline(0.1f) + mPosition.scaleInline(0.9f));
 
     mVelocity = pos.subOperatorInLine(mPosition);
 

@@ -355,27 +355,15 @@ namespace JGeometry {
         }
 
         void operator+=(const TVec3& op) {
-            // JMathInlineVEC::PSVECAdd(this, &op, this);
-            addInline(op);  // ITS ADD!!!!
+            add(op);
         }
 
-        void add(const TVec3< f32 >& b) NO_INLINE {
+        void add(const TVec3< f32 >& b) {
             JMathInlineVEC::PSVECAdd(this, &b, this);
         }
 
         void add(const TVec3& a, const TVec3& b) {
             JMathInlineVEC::PSVECAdd(&a, &b, this);
-        }
-
-        // needed to match TVec stack access order in many places
-        TVec3 addOperatorInLine(const TVec3& op) const {
-            TVec3 ret(*this);
-            ret.add(op);
-            return ret;
-        }
-
-        void addInline(const TVec3& op) {
-            JMathInlineVEC::PSVECAdd(this, &op, this);
         }
 
         inline TVec3 addOtherInline(const TVec3& op) const {

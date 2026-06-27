@@ -86,10 +86,8 @@ void CreeperPoint::updateBend(bool bend, const TVec3f& bendDirection, f32 t, f32
         mVelocity.add(bendDirection.scaleInline(t).scaleInline(bendFactor));
     }
 
-    mPosition = mPrevPoint->mSide.scaleInline(mProjection.x)
-                    .addOperatorInLine(mPrevPoint->mUp.scaleInline(mProjection.y))
-                    .addOperatorInLine(mPrevPoint->mFront.scaleInline(mProjection.z))
-                    .addOperatorInLine(mPrevPoint->mPosition);
+    mPosition = mPrevPoint->mSide.scaleInline(mProjection.x) + mPrevPoint->mUp.scaleInline(mProjection.y) +
+                mPrevPoint->mFront.scaleInline(mProjection.z) + mPrevPoint->mPosition;
 
     mPosition.add(mVelocity);
 
@@ -444,7 +442,7 @@ void Creeper::calcAndGetCurrentInfo(TVec3f* pPosition, TVec3f* pUp) const {
 
     if (idx < mNumPoints - 1) {
         s32 nextIdx = idx + 1;
-        *pPosition = (mPoints[idx]->mPosition.scaleInline(1.0f - t)).addOperatorInLine(mPoints[nextIdx]->mPosition.scaleInline(t));
+        *pPosition = mPoints[idx]->mPosition.scaleInline(1.0f - t) + mPoints[nextIdx]->mPosition.scaleInline(t);
         *pUp = (mPoints[nextIdx]->mPosition).subOperatorInLine(mPoints[idx]->mPosition);
     } else {
         s32 prevIdx = idx - 1;

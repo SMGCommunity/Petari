@@ -105,7 +105,7 @@ void StarPieceFollowGroup::placementPiece(s32 numPlace) {
         f32 zMag = MR::cos(currentAngle) * mRadius;
         f32 xMag = MR::sin(currentAngle) * mRadius;
 
-        mPieces[i]->mPosition = zDir.multiplyOperatorInline(zMag).addOperatorInLine(xDir.multiplyOperatorInline(xMag)).addOperatorInLine(position);
+        mPieces[i]->mPosition = zDir.multiplyOperatorInline(zMag) + xDir.multiplyOperatorInline(xMag) + position;
         currentAngle += angleBetweenPieces;
     }
 }

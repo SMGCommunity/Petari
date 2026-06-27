@@ -395,7 +395,7 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         f32 dotUp = mUp.dot(grabPos);
         f32 dotFront = mFront.dot(grabPos);
 
-        grabPos = mPosition.addOperatorInLine(mUp.scaleInline(dotUp)).addOperatorInLine(mFront.scaleInline(dotFront));
+        grabPos = mPosition + mUp.scaleInline(dotUp) + mFront.scaleInline(dotFront);
 
         f32 coord = grabPos.distance(mPosition);
         coord = MR::clamp(coord, 0.0f, mRopeLength);

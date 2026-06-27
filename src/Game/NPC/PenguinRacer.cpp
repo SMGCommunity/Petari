@@ -400,7 +400,7 @@ void PenguinRacer::updateVelocity() {
         velH.setLength(speedMaxH);
     }
 
-    mVelocity.set(velV.addOperatorInLine(velH));
+    mVelocity.set(velV + velH);
 }
 
 void PenguinRacer::updateRail() {

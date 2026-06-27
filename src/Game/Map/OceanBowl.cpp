@@ -111,7 +111,7 @@ bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterI
     pInfo->mSurfaceNormal.set(mUp);
 
     MR::vecKillElement(rPos.subOperatorInLine(*position), mUp, &v3);
-    pInfo->mSurfacePos.set(position->addOperatorInLine(v3));
+    pInfo->mSurfacePos.set(*position + v3);
 
     TVec3f v5(rPos);
     v5.sub(mPosition);

@@ -179,7 +179,7 @@ namespace MR {
 
         fromInPos.mult(1.0f / fromInPos.length());
 
-        pDir->set(fromInPos.addOperatorInLine(dir));
+        pDir->set(fromInPos + dir);
         normalizeOrZero(pDir);
     }
 

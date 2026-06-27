@@ -655,10 +655,10 @@ void StarPiece::exeThrow() {
     vec3.sub(_A8);
 
     f32 flt2 = 0.0f;
-    vec2 = _A8.addOperatorInLine(vec3.scaleInline(flt)).addOperatorInLine((-mGravity).scaleInline(flt2));
+    vec2 = _A8 + vec3.scaleInline(flt) + (-mGravity).scaleInline(flt2);
     if (mTargetSensor != nullptr) {
         f32 flt3 = MR::calcNerveRate(this, 30);
-        vec2 = mTargetSensor->mPosition.scaleInline(flt3).addOperatorInLine(vec2.scaleInline(1.0f - flt3));
+        vec2 = mTargetSensor->mPosition.scaleInline(flt3) + vec2.scaleInline(1.0f - flt3);
     }
 
     mVelocity.set(vec2);

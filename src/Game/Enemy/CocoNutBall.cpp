@@ -210,7 +210,7 @@ void CocoNutBall::calcHitBackVelocitAndGravity() {
         f32 scaleFactor = (hitBackRight ? 1.2f : -1.2f);
         TVec3f scaled4;
         scaled4.scale(scaleFactor * f1 * f1 / (f1 * 2.0f), cross);
-        mVelocity.addInline(scaled4);
+        mVelocity.add(scaled4);
         scaled4.scale(scaleFactor, cross);
         _90.subInline(scaled4);
     }
@@ -274,7 +274,7 @@ void CocoNutBall::calcHitBackDstPos(TVec3f* pOut, bool a1, bool a2) {
     TVec3f scaled;
 
     scaled.scale(100.0f, _C8);
-    vec1.addInline(scaled);
+    vec1.add(scaled);
 
     pOut->add(_8C->getSensor("body")->mPosition, vec1);
 }
@@ -303,7 +303,7 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
 
     if (!_BE) {
         vec1.scale(120.0f, _C8);
-        vec1.addInline(*MR::getPlayerPos());
+        vec1.add(*MR::getPlayerPos());
     } else {
         vec1.set(*MR::getPlayerPos());
     }
@@ -421,7 +421,7 @@ void CocoNutBall::exeHitBackToHost() {
     }
 
     if (MR::isGreaterEqualStep(this, 1)) {
-        mVelocity.addInline(_90);
+        mVelocity.add(_90);
     }
 
     if (tryToKill(!MR::isNearPlayer(this, 5000.0f))) {
@@ -465,7 +465,7 @@ void CocoNutBall::exeRebound() {
 
     TVec3f twoGravity;
     twoGravity.scale(2.0f, mGravity);
-    mVelocity.addInline(twoGravity);
+    mVelocity.add(twoGravity);
 
     if (tryToKill(!MR::isNearPlayer(this, 5000.0f))) {
         return;

@@ -475,7 +475,7 @@ bool BigBubble::requestAssimilate(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     TVec3f pos;
-    pos.set(mPosition.addOperatorInLine(dir.multiplyOperatorInline(getSize())));
+    pos.set(mPosition + dir.multiplyOperatorInline(getSize()));
     TPos3f mtx;
     MR::makeMtxUpNoSupportPos(&mtx, dir, pos);
     MR::emitEffectHit(this, mtx, "Merge");
@@ -643,7 +643,7 @@ void BigBubble::exeAppear() {
     f32 scale = MR::calcNerveValue(this, 30, 0.01f, mAppearRadius);
     setScale(scale);
 
-    mPosition.set(mSpawnPosition.addOperatorInLine(mGravity.multiplyOperatorInline(-scale * getBaseRadius())));
+    mPosition.set(mSpawnPosition + mGravity.multiplyOperatorInline(-scale * getBaseRadius()));
     if (tryAppearEnd()) {
         MR::onCalcGravity(this);
         MR::validateHitSensors(this);
@@ -977,8 +977,7 @@ void BigBubble::updatePose() {
 
 void BigBubble::updateBindActorMatrix() {
     if (mInterpolateTime < 1.0f) {
-        mRiderPos.set(
-            mRiderBasePos.multiplyOperatorInline(1.0f - mInterpolateTime).addOperatorInLine(mPosition.multiplyOperatorInline(mInterpolateTime)));
+        mRiderPos.set(mRiderBasePos.multiplyOperatorInline(1.0f - mInterpolateTime) + mPosition.multiplyOperatorInline(mInterpolateTime));
 
     } else {
         mRiderPos.set(mPosition);
@@ -1024,11 +1023,11 @@ void BigBubble::updateMeshPoint() {
     mBaseMtx.getYDir(up);
     mBaseMtx.getZDir(front);
 
-    mSurface->getVertexPtr(Side_Top)->set(mPosition.addOperatorInLine(up.multiplyOperatorInline(mDeformCoeff[Side_Top])));
-    mSurface->getVertexPtr(Side_Right)->set(mPosition.addOperatorInLine(side.multiplyOperatorInline(mDeformCoeff[Side_Right])));
+    mSurface->getVertexPtr(Side_Top)->set(mPosition + up.multiplyOperatorInline(mDeformCoeff[Side_Top]));
+    mSurface->getVertexPtr(Side_Right)->set(mPosition + side.multiplyOperatorInline(mDeformCoeff[Side_Right]));
     mSurface->getVertexPtr(Side_Back)->set(mPosition - front.multiplyOperatorInline(mDeformCoeff[Side_Back]));
     mSurface->getVertexPtr(Side_Left)->set(mPosition - side.multiplyOperatorInline(mDeformCoeff[Side_Left]));
-    mSurface->getVertexPtr(Side_Front)->set(mPosition.addOperatorInLine(front.multiplyOperatorInline(mDeformCoeff[Side_Front])));
+    mSurface->getVertexPtr(Side_Front)->set(mPosition + front.multiplyOperatorInline(mDeformCoeff[Side_Front]));
     mSurface->getVertexPtr(Side_Bottom)->set(mPosition - up.multiplyOperatorInline(mDeformCoeff[Side_Bottom]));
     mSurface->calcControlPoint();
 }

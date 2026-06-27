@@ -353,7 +353,7 @@ void BossBegoman::exeTurn() {
     }
 
     if (MR::isBckPlaying(this, "Turn")) {
-        MR::emitEffectHit(this, mPosition.addOperatorInLine(mFaceVec.scaleInline(180.0f)), "EdgeSpark");
+        MR::emitEffectHit(this, mPosition + mFaceVec.scaleInline(180.0f), "EdgeSpark");
     }
 
     updateRotateY(0.4f, 0.005f);

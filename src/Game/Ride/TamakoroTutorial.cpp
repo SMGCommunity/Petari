@@ -370,7 +370,7 @@ void TamakoroTutorial::updateHitSensor(HitSensor* pSensor) {
     TVec3f up(upVec);
     up.mult(dot);
 
-    pSensor->mPosition.addInline(up);
+    pSensor->mPosition.add(up);
 }
 
 void TamakoroTutorial::startTimerSound(s32 step, s32 param2) {

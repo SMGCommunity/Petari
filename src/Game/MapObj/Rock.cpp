@@ -256,8 +256,8 @@ void Rock::control() {
     MR::vecKillElement(MR::getRailPos(this) - mPosition, mGravity, &mVelocity);
     TVec3f grav(mGravity);
     grav.scale(mGravityRate);
-    mFallVelocity.addInline(grav);
-    mVelocity.addInline(mFallVelocity);
+    mFallVelocity.add(grav);
+    mVelocity.add(mFallVelocity);
 
     if (30.0f < mVelocity.length()) {
         mVelocity.setLength(30.0f);

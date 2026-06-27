@@ -187,7 +187,7 @@ void FireBubble::updateChaseFrontVecAndVelocity(f32 flt) {
 }
 
 void FireBubble::updateGravity(f32 strength) {
-    mVelocity.addInline(mGravity.scaleInline(strength));
+    mVelocity.add(mGravity.scaleInline(strength));
 }
 
 void FireBubble::calcReflectVelocity(TVec3f* pOut) const {

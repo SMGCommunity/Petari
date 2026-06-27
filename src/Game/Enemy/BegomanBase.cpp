@@ -634,7 +634,7 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
 
         directionFromLauncher.add(vec1.scaleInline(MR::sin(angle)));
 
-        begomanArray[i]->mPosition.set(pActor->mPosition.addOperatorInLine(directionFromLauncher.scaleInline(distFromLauncher)));
+        begomanArray[i]->mPosition.set(pActor->mPosition + directionFromLauncher.scaleInline(distFromLauncher));
         begomanArray[i]->mVelocity.set(directionFromLauncher.scaleInline(f2).subOperatorInLine(pActor->mGravity.scaleInline(f3)));
         begomanArray[i]->mFaceVec.set(directionFromLauncher);
 
@@ -906,7 +906,7 @@ void BegomanBase::dampingVerticalAndParallelVelocity(f32 f1, f32 f2) {
     }
 
     parallelVelocity.scale(f2 * f1 + (1 - f2));
-    mVelocity.set(verticalVelocity.addOperatorInLine(parallelVelocity));
+    mVelocity.set(verticalVelocity + parallelVelocity);
 }
 
 bool BegomanBase::isInWaterAndSetWaterNerve(const Nerve* pWaterNerve, TPos3f* pPos) {
