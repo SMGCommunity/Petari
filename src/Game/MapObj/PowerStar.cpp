@@ -621,7 +621,7 @@ void PowerStar::exeAppearDemoRise() {
 
 void PowerStar::exeAppearDemoMove() {
     if (MR::isFirstStep(this)) {
-        MR::startSound(this, "SE_SY_POW_STAR_APPEAR", -1, -1);
+        MR::startSound(this, "SE_SY_POW_STAR_APPEAR");
     }
 
     if (MR::isLessStep(this, 120)) {
@@ -655,9 +655,9 @@ void PowerStar::exeAppearDemoMove() {
         mPosition.set(mAppearPosition);
 
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-            MR::startSound(this, "SE_OJ_POW_STAR_MOVE_END_W", -1, -1);
+            MR::startSound(this, "SE_OJ_POW_STAR_MOVE_END_W");
         } else {
-            MR::startSound(this, "SE_OJ_POW_STAR_MOVE_END", -1, -1);
+            MR::startSound(this, "SE_OJ_POW_STAR_MOVE_END");
         }
     }
 
