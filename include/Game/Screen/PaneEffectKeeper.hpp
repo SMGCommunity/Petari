@@ -24,7 +24,7 @@ public:
     void registerEffect(MultiEmitter*, const char*);
     MultiEmitter* find(const char*) const;
 
-    /* 0x00 */ LayoutActor* _0;
+    /* 0x00 */ LayoutActor* mHost;
     /* 0x04 */ const char* mName;
     /* 0x08 */ MR::Vector< MR::AssignableArray< MultiEmitter* > > mEmitters;
 };

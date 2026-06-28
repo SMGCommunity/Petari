@@ -10,7 +10,7 @@
 
 extern "C" void __ptmf_scall(...);
 
-PaneEffectKeeper::PaneEffectKeeper(LayoutActor* pActor, const LayoutManager* pManager, int myInt, const char* pName) : _0(pActor), mName(pName), mEmitters() {
+PaneEffectKeeper::PaneEffectKeeper(LayoutActor* pActor, const LayoutManager* pManager, int myInt, const char* pName) : mHost(pActor), mName(pName), mEmitters() {
     if (pName == nullptr) {
         mName = pManager->_78;
     }
@@ -37,11 +37,11 @@ void PaneEffectKeeper::init(const LayoutActor* pActor, const EffectSystem* pSyst
 }
 
 void PaneEffectKeeper::add(const char* pName1, const char* pName2, const char* pName3) {
-    if (_0->getLayoutManager()->isExistPaneMtxRef(pName1) == nullptr) {
-        _0->createPaneMtxRef(pName1);
+    if (mHost->getLayoutManager()->isExistPaneMtxRef(pName1) == nullptr) {
+        mHost->createPaneMtxRef(pName1);
     }
 
-    MultiEmitter* pEmitter = new MultiEmitter(pName2, _0->getPaneMtxRef(pName1), TVec3f(0.0f, 0.0f, 0.0f));
+    MultiEmitter* pEmitter = new MultiEmitter(pName2, mHost->getPaneMtxRef(pName1), TVec3f(0.0f, 0.0f, 0.0f));
 
     registerEffect(pEmitter, pName3);
 }
