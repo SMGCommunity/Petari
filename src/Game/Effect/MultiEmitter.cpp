@@ -7,9 +7,9 @@
 #include <JSystem/JParticle/JPAEmitter.hpp>
 #include <algorithm>
 
-MultiEmitter::MultiEmitter(const char* pName, const TVec3f* vec1, const TVec3f* vec2, const TVec3f* vec3, const TVec3f& rVec)
+MultiEmitter::MultiEmitter(const char* pName, const TVec3f* pScale, const TVec3f* pRotation, const TVec3f* pTranslation, const TVec3f& rVec)
     : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(), _30(), mHash(), mFlags() {
-    mCallBack = new MultiEmitterCallBack(this, vec1, vec2, vec3, rVec);
+    mCallBack = new MultiEmitterCallBack(this, pScale, pRotation, pTranslation, rVec);
     mParticleCallBack = new MultiEmitterParticleCallBack();
 
     allocateEmitter(pName);
@@ -23,9 +23,9 @@ MultiEmitter::MultiEmitter(const char* pName, MtxPtr pMtx, const TVec3f& rVec)
     allocateEmitter(pName);
 }
 
-MultiEmitter::MultiEmitter(const char* pName, MtxPtr pMtx, const TVec3f* pVec, const TVec3f& rVec)
+MultiEmitter::MultiEmitter(const char* pName, MtxPtr pMtx, const TVec3f* pTranslation, const TVec3f& rVec)
     : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(), _30(), mHash(), mFlags() {
-    mCallBack = new MultiEmitterCallBack(this, pMtx, pVec, rVec);
+    mCallBack = new MultiEmitterCallBack(this, pMtx, pTranslation, rVec);
     mParticleCallBack = new MultiEmitterParticleCallBack();
 
     allocateEmitter(pName);
