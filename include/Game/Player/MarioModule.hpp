@@ -10,7 +10,7 @@ class Triangle;
 
 class MarioModule {
 public:
-    inline MarioModule(MarioActor* actor) : mActor(actor) {
+    inline MarioModule(MarioActor* pActor) : mActor(pActor) {
     }
 
     virtual f32 getStickY() const;
