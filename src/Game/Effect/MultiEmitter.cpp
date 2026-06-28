@@ -8,7 +8,7 @@
 #include <algorithm>
 
 MultiEmitter::MultiEmitter(const char* pName, const TVec3f* vec1, const TVec3f* vec2, const TVec3f* vec3, const TVec3f& rVec)
-    : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(0.0f), _30(0.0f), mHash(), mFlags() {
+    : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(), _30(), mHash(), mFlags() {
     mCallBack = new MultiEmitterCallBack(this, vec1, vec2, vec3, rVec);
     mParticleCallBack = new MultiEmitterParticleCallBack();
 
@@ -16,7 +16,7 @@ MultiEmitter::MultiEmitter(const char* pName, const TVec3f* vec1, const TVec3f* 
 }
 
 MultiEmitter::MultiEmitter(const char* pName, MtxPtr pMtx, const TVec3f& rVec)
-    : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(0.0f), _30(0.0f), mHash(), mFlags() {
+    : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(), _30(), mHash(), mFlags() {
     mCallBack = new MultiEmitterCallBack(this, pMtx, rVec);
     mParticleCallBack = new MultiEmitterParticleCallBack();
 
@@ -24,14 +24,14 @@ MultiEmitter::MultiEmitter(const char* pName, MtxPtr pMtx, const TVec3f& rVec)
 }
 
 MultiEmitter::MultiEmitter(const char* pName, MtxPtr pMtx, const TVec3f* pVec, const TVec3f& rVec)
-    : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(0.0f), _30(0.0f), mHash(), mFlags() {
+    : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(), _30(), mHash(), mFlags() {
     mCallBack = new MultiEmitterCallBack(this, pMtx, pVec, rVec);
     mParticleCallBack = new MultiEmitterParticleCallBack();
 
     allocateEmitter(pName);
 }
 
-MultiEmitter::MultiEmitter(const char* pName) : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(0.0f), _30(0.0f), mHash(), mFlags() {
+MultiEmitter::MultiEmitter(const char* pName) : mEmitters(), mCallBack(), mParticleCallBack(), _24(), _28(), _2C(), _30(), mHash(), mFlags() {
     mCallBack = new MultiEmitterCallBack(this, TVec3f(0.0f, 0.0f, 0.0f));
     mParticleCallBack = new MultiEmitterParticleCallBack();
 
