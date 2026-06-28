@@ -10,7 +10,7 @@ class RingBeam : public LiveActor {
 public:
     RingBeam(const char*, LiveActor*, bool, bool);
 
-    virtual ~RingBeam(){};
+    virtual ~RingBeam() {};
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();
@@ -43,7 +43,7 @@ class RingBeamShadowDrawer : public ShadowVolumeDrawer {
 public:
     RingBeamShadowDrawer(const LiveActor*);
 
-    virtual ~RingBeamShadowDrawer(){};
+    virtual ~RingBeamShadowDrawer() {};
     virtual void loadModelDrawMtx() const;
     virtual void drawShape() const;
     virtual bool isDraw() const;
