@@ -817,3 +817,16 @@ namespace NrvMarioActor {
     NERVE_DECL_EXE(MarioActorNrvTimeWait, MarioActor, TimeWait);
     NERVE_DECL_EXE(MarioActorNrvNoRush, MarioActor, Wait);
 };  // namespace NrvMarioActor
+
+namespace NrvMarioActor {
+    INIT_NERVE(MarioActorNrvWait);
+    INIT_NERVE(MarioActorNrvGameOver);
+    INIT_NERVE(MarioActorNrvGameOverAbyss);
+    INIT_NERVE(MarioActorNrvGameOverAbyss2);
+    INIT_NERVE(MarioActorNrvGameOverFire);
+    INIT_NERVE(MarioActorNrvGameOverBlackHole);
+    INIT_NERVE(MarioActorNrvGameOverNonStop);
+    INIT_NERVE(MarioActorNrvGameOverSink);
+    INIT_NERVE(MarioActorNrvTimeWait);
+    INIT_NERVE(MarioActorNrvNoRush);
+};  // namespace NrvMarioActor
