@@ -74,7 +74,7 @@ void PaneEffectKeeper::forceDeleteEmitterAll() {
 }
 
 void PaneEffectKeeper::clear() {
-    for_each(mEmitters.begin(), mEmitters.end(), std::mem_fun_t<void, MultiEmitter>(&MultiEmitter::playCalcAndDeleteForeverEmitter));
+    for_each(mEmitters.begin(), mEmitters.end(), std::mem_func(&MultiEmitter::playCalcAndDeleteForeverEmitter));
 }
 
 MultiEmitter* PaneEffectKeeper::getEmitter(const char* pName) const {
