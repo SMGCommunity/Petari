@@ -1,6 +1,6 @@
 #pragma once
 
-#include "revolution.h"
+#include "revolution/types.h"
 
 class CameraMan;
 
@@ -10,6 +10,6 @@ public:
 
     void update(CameraMan*);
 
-    u32 _0;
+    s32 _0;
     f32 _4;
 };
