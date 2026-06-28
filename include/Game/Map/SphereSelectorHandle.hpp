@@ -18,6 +18,5 @@ public:
     /* 0x090 */ TMtx34f _90;
 private:    u8 mPad2[0xC];
 public:     /* 0x0CC */ f32 mRotateSpeed;
-private:    u8 mPad3[0x60];
-
+private:    u8 mPad3[0x5C];
 };
