@@ -22,9 +22,9 @@ public:
 
     u32 getNoticedStatus() const;
 
-    MarioState* _8;
-    u32 mStatusId;  // 0xC
-    u8 _10;
-    u8 _11;
-    u16 _12;
+    /* 0x08 */ MarioState* _8;
+    /* 0x0C */ u32 mStatusId;
+    /* 0x10 */ u8 _10;
+    /* 0x11 */ u8 _11;
+    /* 0x12 */ u16 _12;
 };
