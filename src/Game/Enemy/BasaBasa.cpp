@@ -345,7 +345,7 @@ void BasaBasa::exeHitBack() {
 
     if (MR::isLessEqualStep(this, 5)) {
         TVec3f v3;
-        JMathInlineVEC::PSVECAdd(&_9C, &mGravity, &v3);
+        v3.add(_9C, mGravity);
         JGeometry::negateInternal(&v3.x, &v3.x);
         MR::normalizeOrZero(&v3);
         if (MR::isNearZero(v3)) {
@@ -743,7 +743,7 @@ void BasaBasa::controlVelocity() {
         TVec3f* velocity = &mVelocity;
         f32 v4 = v15.dot(*velocity);
         JMAVECScaleAdd(&v15, velocity, velocity, -v4);
-        JMathInlineVEC::PSVECAdd(&mVelocity, &v14, &mVelocity);
+        mVelocity.add(v14);
         f32 v5 = 0.95f;
         if (isNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance)) {
             v5 = 0.96f;

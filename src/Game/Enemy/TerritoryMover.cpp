@@ -12,22 +12,17 @@ void TerritoryMover::decideNextTargetPos(const LiveActor* pActor) {
     MR::getRandomVector(&randVec, 1.0f);
     MR::normalizeOrZero(&randVec);
 
-    const TVec3f* gravity = &pActor->mGravity;
-    f32 dot = gravity->dot(randVec);
-    JMAVECScaleAdd(gravity, &randVec, &randVec, -dot);
-
+    randVec.rejection(pActor->mGravity);
     randVec.mult(_0);
-
-    JMathInlineVEC::PSVECAdd(&randVec, &mCenter, &randVec);
+    randVec += mCenter;
     _10 = randVec;
 }
 
-bool TerritoryMover::isReachedTarget(const LiveActor* pActor, f32 a2) {
-    TVec3f planar;
-    TVec3f diff(_10);
-    const TVec3f* gravity = &pActor->mGravity;
+bool TerritoryMover::isReachedTarget(const LiveActor* pActor, f32 range) {
+    // FIXME: come back during rejection pass
+    // https://decomp.me/scratch/z8igI
 
-    JMathInlineVEC::PSVECSubtract(&diff, &pActor->mPosition, &diff);
-    JMAVECScaleAdd(gravity, &diff, &planar, -gravity->dot(diff));
-    return PSVECMag(&planar) < a2;
+    TVec3f planar;
+    planar.rejection(_10 - pActor->mPosition, pActor->mGravity);
+    return planar.length() < range;
 }

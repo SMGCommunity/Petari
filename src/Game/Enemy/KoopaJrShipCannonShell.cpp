@@ -241,7 +241,7 @@ void KoopaJrShipCannonShell::exeDown() {
         }
     }
 
-    JMathInlineVEC::PSVECAdd(mVelocity, mGravity.scaleInline(::sGravity), mVelocity);
+    mVelocity.add(mGravity.scaleInline(::sGravity));
     if (MR::reboundVelocityFromCollision(this, ::sReboundRate, ::sReboundMinSpeed, 1.0f))
         MR::deleteEffect(this, "LocusSmoke");
 
