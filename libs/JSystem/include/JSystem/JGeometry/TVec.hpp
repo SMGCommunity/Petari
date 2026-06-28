@@ -643,9 +643,7 @@ namespace JGeometry {
         void scale(f32 scale);
 
         void scale(f32 scalar, const TVec3& rVec); /*{
-            this->x = rVec.x * scalar;
-            this->y = rVec.y * scalar;
-            this->z = rVec.z * scalar;
+            PSVECScale(rVec, this, scalar);
         }*/
 
         void negate();
@@ -773,7 +771,11 @@ namespace JGeometry {
         template < typename T >
         void cubic(const TVec3&, const TVec3&, const TVec3&, const TVec3&, f32);
 
-        f32 angle(const TVec3&) const;
+        f32 angle(const TVec3& rB) const {
+            f32 crossPart = cross(rB).length();
+            f32 dotPart = dot(rB);
+            return __fabsf(JMAATan2(crossPart, dotPart));
+        }
 
         inline TVec3 cross(const TVec3& b) const {
             TVec3 ret;

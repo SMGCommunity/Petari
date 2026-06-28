@@ -494,10 +494,8 @@ void DinoPackun::resetPosition() {
     TVec3f v26;
     MR::calcGravityVector(this, v27, &v26, nullptr, 0);
 
-    TVec3f v24(mPosition);
-    JMathInlineVEC::PSVECSubtract(&v27, &v24, &v24);
     TVec3f v25;
-    v25 = v24;
+    v25 = mPosition - v27;
     MR::makeMtxUpFrontPos(&v28, -v26, v25, v27);
     MR::setPlayerBaseMtx(v28);
 }

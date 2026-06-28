@@ -6,7 +6,7 @@ class MapParts : public LiveActor {
 public:
     MapParts(const char*);
 
-    virtual ~MapParts() {};
+    virtual ~MapParts(){};
 
     virtual void init(const JMapInfoIter&);
     virtual void appear();

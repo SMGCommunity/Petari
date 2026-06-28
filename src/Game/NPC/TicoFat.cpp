@@ -573,9 +573,7 @@ void TicoFat::emitScreenEffect() {
 }
 
 void TicoFat::updateScreenEffect() {
-    const TVec3f camPos = MR::getCamPos();
-    TVec3f v19(mPosition);
-    JMathInlineVEC::PSVECSubtract(&v19, &camPos, &v19);
+    TVec3f v19 = mPosition - MR::getCamPos();
     MR::normalizeOrZero(&v19);
     MR::makeMtxFrontUpPos(&_17C, -MR::getCamZdir(), MR::getCamYdir(), MR::getCamPos() + (v19 * 500.0f));
     MR::makeMtxFrontUpPos(&_1AC, -MR::getCamZdir(), MR::getCamYdir(), mPosition);
