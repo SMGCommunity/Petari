@@ -116,7 +116,7 @@ void DriftWood::calcAndSetBaseMtx() {
 void DriftWood::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         TVec3f delta;
-        JMathInlineVEC::PSVECSubtract2(&pSender->mPosition, &pReceiver->mPosition, &delta);
+        delta.sub(pSender->mPosition, pReceiver->mPosition);
 
         TVec3f upVec;
         MR::calcUpVec(&upVec, this);

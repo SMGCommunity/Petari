@@ -87,9 +87,8 @@ void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
 void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) const {
     TVec3f zoomOutPos;
     calcZoomOutPos(&zoomOutPos);
-    TVec3f* trans = &SphereSelectorFunction::getSelectedActorTrans();
     TVec3f x;
-    JMathInlineVEC::PSVECSubtract2(trans, &zoomOutPos, &x);
+    x.sub(SphereSelectorFunction::getSelectedActorTrans(), zoomOutPos);
     SphereSelectorFunction::calcOffsetPos(v1, SphereSelectorFunction::getSelectedActorTrans(), ::cZoomInPos, x, v2);
 }
 
