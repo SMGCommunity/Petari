@@ -35,7 +35,7 @@ void JAISeq::JAISeqMgr_startID_(JAISoundID id, const TVec3f* posPtr, JAIAudience
 }
 
 void JAISeq::playSeqData_(const JASSoundParams& params, JAISoundActivity activity) {
-    inner_.outputTrack.setSeqData(inner_.mSeqData.addr, inner_.mSeqData.size);
+    inner_.outputTrack.setSeqData(inner_.mSeqData.data, inner_.mSeqData.offset);
     if (mAudible) {
         initTrack_JAISound_(&inner_.outputTrack);
     } else {
