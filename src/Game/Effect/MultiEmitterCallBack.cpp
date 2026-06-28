@@ -6,10 +6,10 @@
 #include <JSystem/JParticle/JPAEmitter.hpp>
 
 namespace {
-    Color8 getSyntheticColor(const Color8& color1, const Color8& color2) {
-        u8 r = color1.r * color2.r / 0xFF;
-        u8 g = color1.g * color2.g / 0xFF;
-        u8 b = color1.b * color2.b / 0xFF;
+    Color8 getSyntheticColor(const Color8& rColor1, const Color8& rColor2) {
+        u8 r = rColor1.r * rColor2.r / 0xFF;
+        u8 g = rColor1.g * rColor2.g / 0xFF;
+        u8 b = rColor1.b * rColor2.b / 0xFF;
         
         return Color8(r, g, b, -1);
     }
@@ -172,8 +172,7 @@ void MultiEmitterCallBack::followSRT(JPABaseEmitter* pEmitter, bool b2) {
     FlagSRT flag;
     isFollowSRT(&flag, b2);
 
-    bool b = (flag.mScale || flag.mRotation || flag.mTranslation) ? true : false;
-    if (b || (isFlagOn(BASE_SCALE))) {
+    if (flag.isTransform() || (isFlagOn(BASE_SCALE))) {
         if (mMtx != nullptr) {
             setSRTFromHostMtx(pEmitter, mMtx, flag, b2);
         } else {

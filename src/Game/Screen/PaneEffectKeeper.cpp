@@ -8,8 +8,6 @@
 #include "Game/Util/SystemUtil.hpp"
 #include <algorithm>
 
-extern "C" void __ptmf_scall(...);
-
 PaneEffectKeeper::PaneEffectKeeper(LayoutActor* pActor, const LayoutManager* pManager, int myInt, const char* pName) : mHost(pActor), mName(pName), mEmitters() {
     if (pName == nullptr) {
         mName = pManager->_78;

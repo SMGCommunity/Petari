@@ -28,6 +28,10 @@ public:
         bool mScale;
         bool mRotation;
         bool mTranslation;
+
+        inline bool isTransform() const {
+            return mScale || mRotation || mTranslation ? true : false;
+        }
     };
 
     MultiEmitterCallBack(const MultiEmitter*, const TVec3f&);
