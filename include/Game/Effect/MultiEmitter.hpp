@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/Util/Array.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class MultiEmitterCallBackBase;
 class EffectSystem;

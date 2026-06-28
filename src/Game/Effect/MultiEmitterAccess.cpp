@@ -2,7 +2,7 @@
 #include "Game/Effect/MultiEmitterCallBack.hpp"
 #include "Game/Effect/SingleEmitter.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JParticle/JPAEmitter.hpp"
+#include <JSystem/JParticle/JPAEmitter.hpp>
 
 void MultiEmitter::setGlobalRotation(const TVec3s& rRotation, s32 idx) {
     if (idx == -1) {

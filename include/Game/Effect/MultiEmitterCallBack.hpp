@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/Util/Color.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JParticle/JPAEmitterCallBack.hpp>
 
 enum {

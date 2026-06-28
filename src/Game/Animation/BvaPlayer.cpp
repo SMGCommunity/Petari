@@ -1,5 +1,5 @@
 #include "Game/Animation/BvaPlayer.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 
 BvaPlayer::BvaPlayer(const ResTable* pResTable, J3DModel* pModel) : AnmPlayerBase(pResTable), mModel(pModel) {
 }

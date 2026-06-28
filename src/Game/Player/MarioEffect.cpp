@@ -18,8 +18,8 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JParticle/JPAEmitter.hpp"
-#include "JSystem/JParticle/JPAMath.hpp"
+#include <JSystem/JParticle/JPAEmitter.hpp>
+#include <JSystem/JParticle/JPAMath.hpp>
 #include <cstdio>
 #include <cstring>
 

@@ -3,7 +3,7 @@
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "JSystem/JParticle/JPAEmitter.hpp"
+#include <JSystem/JParticle/JPAEmitter.hpp>
 
 namespace {
     Color8 getSyntheticColor(const Color8& color1, const Color8& color2) {
