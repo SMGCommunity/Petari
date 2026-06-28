@@ -94,9 +94,9 @@ void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) cons
 }
 
 void AstroDomeCameraController::calcZoomInTarget(TVec3f* vec1, const TVec3f& vec2) const {
-    TVec3f stack;
-    stack.scale(200.0f, vec2);
-    JMathInlineVEC::PSVECAdd3(&SphereSelectorFunction::getSelectedActorTrans(), &stack, vec1);
+    TVec3f offset;
+    offset.scale(200.0f, vec2);
+    vec1->add(SphereSelectorFunction::getSelectedActorTrans(), offset);
 }
 
 void AstroDomeCameraController::calcZoomInUp(TVec3f* vec) const {
@@ -185,7 +185,7 @@ void AstroDomeCameraController::exeGalaxyConfirmCancel() {
     MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, frame);
 }
 
-AstroDomeCameraController::~AstroDomeCameraController() {};
+AstroDomeCameraController::~AstroDomeCameraController(){};
 
 AstroDomeCameraController::Position::Position() {
     _0.zero();

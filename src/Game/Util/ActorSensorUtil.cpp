@@ -1013,8 +1013,7 @@ namespace MR {
 
         pPos->set(dir);
         pPos->mult(value + pSensor1->mRadius + offset);
-
-        JMathInlineVEC::PSVECAdd2(pPos, &pSensor1->mPosition, pPos);
+        pPos->add(pSensor1->mPosition);
     }
 
     bool tryForceKillIfMsgStartPowerStarGet(LiveActor* pActor, u32 msg) {
