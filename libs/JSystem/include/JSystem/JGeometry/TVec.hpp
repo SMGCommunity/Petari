@@ -572,12 +572,6 @@ namespace JGeometry {
             return v;
         }
 
-        static inline TVec3 makeZeroVec() {
-            TVec3 v;
-            v.set(0.0f, 0.0f, 0.0f);
-            return v;
-        }
-
 #ifdef __MWERKS__
         inline void setPSZeroVec() {
             const register Vec* v_a = &gZeroVec;
