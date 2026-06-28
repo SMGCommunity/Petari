@@ -102,8 +102,8 @@ bool MultiEmitter::isExistOneTimeEmitter() const {
     return false;
 }
 
-void MultiEmitter::setHostSRT(const TVec3f* pScale, const TVec3f* pRotation, const TVec3f* pPosition) {
-    mCallBack->setHostSRT(pScale, pRotation, pPosition);
+void MultiEmitter::setHostSRT(const TVec3f* pScale, const TVec3f* pRotation, const TVec3f* pTranslation) {
+    mCallBack->setHostSRT(pScale, pRotation, pTranslation);
 }
 
 void MultiEmitter::setHostMtx(MtxPtr pMtx) {

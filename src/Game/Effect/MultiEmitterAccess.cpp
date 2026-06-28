@@ -22,12 +22,12 @@ void MultiEmitter::setGlobalRotation(const TVec3s& rRotation, s32 idx) {
     }
 }
 
-void MultiEmitter::setGlobalTranslation(const TVec3f& rPosition, s32 idx) {
+void MultiEmitter::setGlobalTranslation(const TVec3f& rTranslation, s32 idx) {
     if (idx == -1) {
         for (s32 i = 0; i < mEmitters.size(); i++) {
             SingleEmitter* pEmitter = getValidEmitter(i, false);
             if (pEmitter != nullptr) {
-                pEmitter->mEmitter->mEmitter->mGlobalTrs.set(rPosition);
+                pEmitter->mEmitter->mEmitter->mGlobalTrs.set(rTranslation);
             }
         }
 
@@ -36,7 +36,7 @@ void MultiEmitter::setGlobalTranslation(const TVec3f& rPosition, s32 idx) {
 
     SingleEmitter* pEmitter = getValidEmitter(idx, false);
     if (pEmitter != nullptr) {
-        pEmitter->mEmitter->mEmitter->mGlobalTrs.set(rPosition);
+        pEmitter->mEmitter->mEmitter->mGlobalTrs.set(rTranslation);
     }
 }
 
