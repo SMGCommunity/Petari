@@ -8,5 +8,14 @@ class MarioFpView : public MarioState {
 public:
     MarioFpView(MarioActor*);
 
-    u8 _11[11];
+    virtual bool start();
+    virtual bool update();
+    virtual bool close();
+    virtual f32 getBlurOffset() const;
+
+    void forceClose();
+
+    /* 0x12 */ u16 mDelay;
+    /* 0x14 */ bool mIsActive;
+    /* 0x18 */ f32 mBlurOffset;
 };
