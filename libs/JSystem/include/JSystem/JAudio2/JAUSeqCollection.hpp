@@ -6,16 +6,21 @@ struct JAISeqData;
 struct JAISeqDataRegion;
 
 struct JAUSeqCollectionData {
-    s8 field_0x0;
-    s8 field_0x1;
-    u16 field_0x2;
-    u32 field_0x4;
-    u32 field_0x8;
+    /* 0x00 */ char magic[2];
+    /* 0x02 */ u16 mGroupNum;
+    /* 0x04 */ u32 mFileSize;
+    /* 0x08 */ u32 mSoundTableOffsets;
+};
+
+struct JAUSeqCollectionSoundTable {
+    /* 0x00 */ u32 mWaveNum;
+    /* 0x04 */ u32 mWaveSeqOffsets[];
 };
 
 class JAUSeqCollection {
 public:
     JAUSeqCollection();
+
     void init(void const*);
     bool getSeqData(int, int, JAISeqData*);
     bool getSeqDataRegion(JAISeqDataRegion*);
@@ -28,10 +33,10 @@ public:
         return mCollectionData;
     }
 
-    /* 0x00 */ u16 field_0x0;
-    /* 0x04 */ const u32* field_0x4;
+    /* 0x00 */ u16 mGroupNum;
+    /* 0x04 */ const u32* mSoundTableOffsets;
     /* 0x08 */ const JAUSeqCollectionData* mCollectionData;
-    /* 0x0C */ int field_0xc;
+    /* 0x0C */ u32 mFileSize;
 };
 
 class JAUSeqDataMgr_SeqCollection : public JAISeqDataMgr, public JAUSeqCollection {
@@ -43,7 +48,7 @@ public:
     ~JAUSeqDataMgr_SeqCollection();
 
     const void* getResource() const {
-        return field_0x4;
+        return mSoundTableOffsets;
     }
     void init(const void* pData) {
         JAUSeqCollection::init(pData);
