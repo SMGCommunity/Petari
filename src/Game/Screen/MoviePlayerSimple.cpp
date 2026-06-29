@@ -1,5 +1,5 @@
 #include "Game/Screen/MoviePlayerSimple.hpp"
-#include "Game/Player/MarioActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/THPSimplePlayerWrapper.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFunction.hpp"
