@@ -291,7 +291,7 @@ public:
 
     u32 initSoundTable(SoundList* list, u32);
     void initSound();
-    bool playSoundJ(const char*, s32);
+    void playSoundJ(const char*, s32);
     void stopSoundJ(const char*, u32);
     void startBas(const char*, bool, f32, f32);
     bool isRunningBas(const char*) const;

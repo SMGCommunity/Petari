@@ -1737,89 +1737,42 @@ void Mario::initSound() {
     _970 = nullptr;
 }
 
-bool Mario::playSoundJ(const char* pSoundName, s32 timing) {
+void Mario::playSoundJ(const char* pSoundName, s32 timing) {
     // FIXME: Keep this goto dispatch shape for match; revisit with a decomp.me scratch before restructuring.
     u32 index;
     if (_96C->search(pSoundName, &index)) {
-        s32 type = soundlist[index]._8._4[0] & 0x3;
+        switch (soundlist[index]._8._4[0] & 0x3) {
+        case 0:
+            MR::startSound(mActor, soundlist[index]._14, timing);
+            break;
 
-        if (type == 2) {
-            goto systemSound;
+        case 2:
+            MR::startSystemSE(soundlist[index]._14, timing);
+            break;
+
+        case 1:
+            MR::startLevelSound(mActor, soundlist[index]._14, timing);
+            break;
+
+        case 3:
+            MR::startSystemLevelSE(soundlist[index]._14, timing);
+            break;
         }
 
-        if (type < 2) {
-            if (type == 0) {
-                goto actorSound;
+        switch (soundlist[index]._8._4[0] & ~0x3) {
+        case 0x4:
+        case 0x8:
+            if (mDrawStates.mIsUnderwater || mDrawStates._13) {
+                playSoundJ(soundlist[index]._C, -1);
             }
-
-            if (type >= 0) {
-                goto levelSound;
-            }
-
-            goto typeEnd;
+            break;
         }
-
-        if (type >= 4) {
-            goto typeEnd;
-        }
-
-        goto systemLevelSound;
-
-    actorSound: {
-        JAISoundID soundID(soundlist[index]._14);
-        MR::startSound(mActor, soundID, timing);
-    }
-        goto typeEnd;
-
-    systemSound: {
-        JAISoundID soundID(soundlist[index]._14);
-        MR::startSystemSE(soundID, timing);
-    }
-        goto typeEnd;
-
-    levelSound: {
-        JAISoundID soundID(soundlist[index]._14);
-        MR::startLevelSound(mActor, soundID, timing);
-    }
-        goto typeEnd;
-
-    systemLevelSound: {
-        JAISoundID soundID(soundlist[index]._14);
-        MR::startSystemLevelSE(soundID, timing);
-    }
-
-    typeEnd:
-        s32 recurType = soundlist[index]._8._4[0];
-        recurType &= ~0x3;
-        if (recurType == 0x8) {
-            goto recurse;
-        }
-
-        if (recurType >= 0x8) {
-            goto recurseEnd;
-        }
-
-        if (recurType == 0x4) {
-            goto recurse;
-        }
-
-        goto recurseEnd;
-
-    recurse:
-        if (mDrawStates.mIsUnderwater || mDrawStates._13) {
-            playSoundJ(soundlist[index]._C, -1);
-        }
-
-    recurseEnd:;
     }
 
     bool isFound = _96C->search("声", pSoundName, &index);
     if (isFound) {
-        JAISoundID soundID(soundlist[index]._14);
-        return MR::startSound(mActor, soundID, timing);
+        MR::startSound(mActor, soundlist[index]._14, timing);
     }
-
-    return isFound;
 }
 
 void Mario::stopSoundJ(const char* pSoundName, u32 delay) {
