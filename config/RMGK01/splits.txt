@@ -7127,13 +7127,13 @@ Game/Player/MarioSideStep.cpp:
 Game/Player/MarioSkate.cpp:
 	.text       start:0x802F1C44 end:0x802F28B4
 	.ctors      start:0x8052F120 end:0x8052F124
-	.data       start:0x805C94C0 end:0x805C9FF0
+	.data       start:0x805C94C0 end:0x805C95A8
 	.sdata2     start:0x806BFF78 end:0x806BFFD0
 
 Game/Player/MarioSound.cpp:
 	.text       start:0x802F28B4 end:0x802F2F20
 	.ctors      start:0x8052F124 end:0x8052F128
-	.data       start:0x805C9FF0 end:0x805CB4C0
+	.data       start:0x805C95A8 end:0x805CB370
 
 Game/Player/MarioSpecial.cpp:
 	.text       start:0x802F2F20 end:0x802F3DA0
@@ -7143,7 +7143,7 @@ Game/Player/MarioSpecial.cpp:
 Game/Player/MarioSpin.cpp:
 	.text       start:0x802F3DA0 end:0x802F4324
 	.ctors      start:0x8052F12C end:0x8052F130
-	.data       start:0x805CB4C0 end:0x805CB588
+	.data       start:0x805CB370 end:0x805CB588
 	.sdata2     start:0x806C0028 end:0x806C0030
 
 Game/Player/MarioState.cpp:

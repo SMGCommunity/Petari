@@ -1738,7 +1738,6 @@ void Mario::initSound() {
 }
 
 void Mario::playSoundJ(const char* pSoundName, s32 timing) {
-    // FIXME: Keep this goto dispatch shape for match; revisit with a decomp.me scratch before restructuring.
     u32 index;
     if (_96C->search(pSoundName, &index)) {
         switch (soundlist[index]._8._4[0] & 0x3) {
@@ -1789,7 +1788,7 @@ void Mario::stopSoundJ(const char* pSoundName, u32 delay) {
         case 2:
             MR::stopSystemSE(soundlist[index]._14, delay);
             break;
-            
+
         case 3:
             break;
         }
