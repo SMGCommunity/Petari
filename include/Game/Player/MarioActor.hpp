@@ -648,7 +648,7 @@ public:
     u32 _A64;
     f32 _A68;
     u16 _A6C;
-    bool _A6E;
+    u8 _A6E;
     // padding
     Mtx* _A70[8];
     Mtx* _A90[8];

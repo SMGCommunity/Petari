@@ -455,11 +455,11 @@ public:
     void stopPunch();
     void startMagic();
 
-    void doObjWarp(LiveActor*);
-    void doPointWarp(const TVec3f&, const TVec3f&, s32);
+    bool doObjWarp(LiveActor*);
+    bool doPointWarp(const TVec3f&, const TVec3f&, s32);
     bool isVisibleRecoveryWarpBubble() const;
     void doCubeWarp();
-    void doPointWarpRecovery(const TVec3f&, const TVec3f&);
+    bool doPointWarpRecovery(const TVec3f&, const TVec3f&);
 
     bool isDisableStayHere() const;
     bool isDisableFpViewMode() const;
@@ -793,7 +793,7 @@ public:
 
     /* 0x564 */ s32 _564;
     /* 0x568 */ u32 _568;
-    /* 0x56C */ u32 _56C;
+    /* 0x56C */ AreaObj* _56C;
     /* 0x570 */ u8 _570;
     /* 0x574 */ u32 _574;
     /* 0x578 */ u32 _578;
