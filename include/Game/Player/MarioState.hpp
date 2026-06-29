@@ -25,5 +25,4 @@ public:
     /* 0x08 */ MarioState* _8;
     /* 0x0C */ u32 mStatusId;
     /* 0x10 */ u8 _10;
-    /* 0x11 */ u8 _11;
 };
