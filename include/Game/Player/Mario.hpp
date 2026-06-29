@@ -199,7 +199,7 @@ public:
 
     bool taskOnEffectCheck(u32);
 
-    void doFlow();
+    bool doFlow();
 
     void tryStartFoo();
 
