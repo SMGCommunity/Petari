@@ -1778,20 +1778,20 @@ void Mario::playSoundJ(const char* pSoundName, s32 timing) {
 void Mario::stopSoundJ(const char* pSoundName, u32 delay) {
     u32 index;
     if (_96C->search(pSoundName, &index)) {
-        s32 stopType = soundlist[index]._8._4[0] & 0x3;
+        switch (soundlist[index]._8._4[0] & 0x3) {
+        case 0:
+            MR::stopSound(mActor, soundlist[index]._14, delay);
+            break;
 
-        if (stopType != 2) {
-            if (stopType >= 2) {
-            } else {
-                if (stopType == 0) {
-                    JAISoundID soundID(soundlist[index]._14);
-                    MR::stopSound(mActor, soundID, delay);
-                } else {
-                }
-            }
-        } else {
-            JAISoundID soundID(soundlist[index]._14);
-            MR::stopSystemSE(soundID, delay);
+        case 1:
+            break;
+
+        case 2:
+            MR::stopSystemSE(soundlist[index]._14, delay);
+            break;
+            
+        case 3:
+            break;
         }
     }
 
