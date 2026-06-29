@@ -7061,18 +7061,18 @@ Game/Player/MarioInit.cpp:
 Game/Player/MarioJump.cpp:
 	.text       start:0x802E1D70 end:0x802E8C80
 	.ctors      start:0x8052F0FC end:0x8052F100
-	.data       start:0x805C8170 end:0x805C8A18
+	.data       start:0x805C8170 end:0x805C8A00
 	.sdata      start:0x806B22B0 end:0x806B22D0
 	.sdata2     start:0x806BFCB0 end:0x806BFD50
 
 Game/Player/MarioMessenger.cpp:
 	.text       start:0x802E8C80 end:0x802E8E0C
-	.data       start:0x805C8A18 end:0x805C8A88
+	.data       start:0x805C8A00 end:0x805C8A40
 
 Game/Player/MarioModule.cpp:
 	.text       start:0x802E8E0C end:0x802E9FEC
 	.ctors      start:0x8052F100 end:0x8052F104
-	.data       start:0x805C8A88 end:0x805C8C38
+	.data       start:0x805C8A40 end:0x805C8C38
 	.sdata2     start:0x806BFD50 end:0x806BFD78
 
 Game/Player/MarioMove.cpp:
