@@ -6,16 +6,20 @@
 #include "Game/Util.hpp"
 
 namespace {
+    SphereSelector* getSphereSelector() {
+        return MR::getSceneObj< SphereSelector >(SceneObj_SphereSelector);
+    }
+
     void getHandleMtx(TPos3f* pPos) {
         pPos->identity();
         if (MR::isExistSceneObj(SceneObj_SphereSelector)) {
-            SphereSelectorHandle* pSelectorHandle = MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->_90;
+            SphereSelectorHandle* pSelectorHandle = ::getSphereSelector()->_90;
             if (pSelectorHandle && !MR::isDead(pSelectorHandle)) {
                 pPos->set(pSelectorHandle->getBaseMtx());
             }
         }
     }
-}
+}  // namespace
 
 namespace NrvSphereSelector {
     NEW_NERVE(SphereSelectorNrvSelectStart, SphereSelector, SelectStart);
@@ -28,8 +32,8 @@ namespace NrvSphereSelector {
 };  // namespace NrvSphereSelector
 
 SphereSelector::SphereSelector()
-    : LiveActor("スフィアセレクター"), mSphereGroup(nullptr), _90(nullptr), mSelectedTarget(nullptr), _98(0), mPointingTarget(nullptr), _A4(0), _A8(0.0f), _AC(0.0f),
-      mIsPointingInvalid(false), _B1(false) {
+    : LiveActor("スフィアセレクター"), mSphereGroup(nullptr), _90(nullptr), mSelectedTarget(nullptr), _98(0), mPointingTarget(nullptr), _A4(0),
+      _A8(0.0f), _AC(0.0f), mIsPointingInvalid(false), _B1(false) {
 }
 
 void SphereSelector::init(const JMapInfoIter& rIter) {
@@ -80,43 +84,39 @@ void SphereSelector::sendMsgToAllActor(u32 msg) {
 }
 
 void SphereSelector::playSelectedME() {
-    s32 random = MR::getRandom((s32)0, (s32)4);
-
-    switch(random) {
-        case 0: 
-            MR::startSystemME("ME_ASTRO_DOME_SELECT1");
-            break;
-        case 1: 
-            MR::startSystemME("ME_ASTRO_DOME_SELECT2");
-            break;        
-        case 2: 
-            MR::startSystemME("ME_ASTRO_DOME_SELECT3");
-            break;        
-        case 3: 
-            MR::startSystemME("ME_ASTRO_DOME_SELECT4");
-            break;
+    switch (MR::getRandom(0L, 4L)) {
+    case 0:
+        MR::startSystemME("ME_ASTRO_DOME_SELECT1");
+        break;
+    case 1:
+        MR::startSystemME("ME_ASTRO_DOME_SELECT2");
+        break;
+    case 2:
+        MR::startSystemME("ME_ASTRO_DOME_SELECT3");
+        break;
+    case 3:
+        MR::startSystemME("ME_ASTRO_DOME_SELECT4");
+        break;
     }
 }
 
 void SphereSelector::playCanceledME() {
-    s32 random = MR::getRandom((s32)0, (s32)4);
-
-    switch(random) {
-        case 0: 
-            MR::startSystemME("ME_ASTRO_DOME_CALCEL1");
-            break;
-        case 1: 
-            MR::startSystemME("ME_ASTRO_DOME_CALCEL2");
-            break;        
-        case 2: 
-            MR::startSystemME("ME_ASTRO_DOME_CANCEL3");
-            break;        
-        case 3: 
-            MR::startSystemME("ME_ASTRO_DOME_CANCEL4");
-            break;
-        case 4:
-            MR::startSystemME("ME_ASTRO_DOME_CANCEL5");
-            break;
+    switch (MR::getRandom(0L, 4L)) {
+    case 0:
+        MR::startSystemME("ME_ASTRO_DOME_CALCEL1");
+        break;
+    case 1:
+        MR::startSystemME("ME_ASTRO_DOME_CALCEL2");
+        break;
+    case 2:
+        MR::startSystemME("ME_ASTRO_DOME_CANCEL3");
+        break;
+    case 3:
+        MR::startSystemME("ME_ASTRO_DOME_CANCEL4");
+        break;
+    case 4:
+        MR::startSystemME("ME_ASTRO_DOME_CANCEL5");
+        break;
     }
 }
 
@@ -176,11 +176,11 @@ void SphereSelector::exeConfirm() {
 
 void SphereSelectorFunction::registerTarget(LiveActor* actor) {
     MR::createSceneObj(SceneObj_SphereSelector);
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->mSphereGroup->registerActor(actor);
+    ::getSphereSelector()->mSphereGroup->registerActor(actor);
 }
 
 bool SphereSelectorFunction::isPadButton() {
-    return MR::testCorePadButtonA(0) && !MR::isDemoActive();
+    return MR::testCorePadButtonA(WPAD_CHAN0) && !MR::isDemoActive();
 }
 
 s32 SphereSelectorFunction::getSelectStartFrame() {
@@ -192,41 +192,41 @@ s32 SphereSelectorFunction::getConfirmStartCancelFrame() {
 }
 
 void SphereSelectorFunction::selectStart() {
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->appear();
+    ::getSphereSelector()->appear();
 }
 
 void SphereSelectorFunction::selectCancel(bool b) {
     if (b) {
-        MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->_B1 = true;
+        ::getSphereSelector()->_B1 = true;
     }
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->setNerve(&NrvSphereSelector::SphereSelectorNrvSelectCancel::sInstance);
+    ::getSphereSelector()->setNerve(&NrvSphereSelector::SphereSelectorNrvSelectCancel::sInstance);
 }
 
 void SphereSelectorFunction::selectEnd() {
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->kill();
+    ::getSphereSelector()->kill();
 }
 
 void SphereSelectorFunction::confirmStart() {
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->setNerve(&NrvSphereSelector::SphereSelectorNrvConfirmStart::sInstance);
+    ::getSphereSelector()->setNerve(&NrvSphereSelector::SphereSelectorNrvConfirmStart::sInstance);
 }
 
 void SphereSelectorFunction::confirmCancel(bool b) {
     if (b) {
-        MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->_B1 = true;
+        ::getSphereSelector()->_B1 = true;
     }
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->setNerve(&NrvSphereSelector::SphereSelectorNrvConfirmCancel::sInstance);
+    ::getSphereSelector()->setNerve(&NrvSphereSelector::SphereSelectorNrvConfirmCancel::sInstance);
 }
 
 void SphereSelectorFunction::confirmed() {
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->setNerve(&NrvSphereSelector::SphereSelectorNrvConfirmed::sInstance);
+    ::getSphereSelector()->setNerve(&NrvSphereSelector::SphereSelectorNrvConfirmed::sInstance);
 }
 
 bool SphereSelectorFunction::isSelectWait() {
-    return MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->isNerve(&NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance);
+    return ::getSphereSelector()->isNerve(&NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance);
 }
 
 bool SphereSelectorFunction::isConfirmWait() {
-    return MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->isNerve(&NrvSphereSelector::SphereSelectorNrvConfirmWait::sInstance);
+    return ::getSphereSelector()->isNerve(&NrvSphereSelector::SphereSelectorNrvConfirmWait::sInstance);
 }
 
 bool SphereSelectorFunction::isMsgSelectStart(u32 msg) {
@@ -265,7 +265,7 @@ bool SphereSelectorFunction::trySyncAppearMsgSelectStart(LiveActor* pActor, u32 
     return false;
 }
 
-bool SphereSelectorFunction::trySyncKillMsgSelectStart(LiveActor * pActor, u32 msg) {
+bool SphereSelectorFunction::trySyncKillMsgSelectStart(LiveActor* pActor, u32 msg) {
     if (isMsgSelectStart(msg)) {
         pActor->kill();
         return true;
@@ -278,73 +278,73 @@ bool SphereSelectorFunction::trySyncKillMsgSelectStart(LiveActor * pActor, u32 m
 }
 
 void SphereSelectorFunction::validatePointing() {
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->validatePointing();
+    ::getSphereSelector()->validatePointing();
 }
 
 void SphereSelectorFunction::invalidatePointing() {
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->invalidatePointing();
+    ::getSphereSelector()->invalidatePointing();
 }
 
 bool SphereSelectorFunction::isValidPointing() {
-    return !MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->mIsPointingInvalid;
+    return !::getSphereSelector()->mIsPointingInvalid;
 }
 
 void SphereSelectorFunction::setHandle(SphereSelectorHandle* pSelectorHandler) {
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->_90 = pSelectorHandler;
+    ::getSphereSelector()->_90 = pSelectorHandler;
 }
 
 void SphereSelectorFunction::calcHandledTrans(const TVec3f& src, TVec3f* dst) {
     TPos3f mtx;
-    getHandleMtx(&mtx);
+    ::getHandleMtx(&mtx);
     mtx.mult(src, *dst);
 }
 
 void SphereSelectorFunction::calcHandledRotateMtx(const TVec3f& src, TPos3f* dst) {
     TPos3f mtx;
-    getHandleMtx(&mtx);
+    ::getHandleMtx(&mtx);
     TMtx34f mtx2;
     MR::makeMtxRotate(mtx2, src);
     dst->concat(mtx, mtx2);
 }
 
 TVec3f& SphereSelectorFunction::getHandleTrans() {
-    return MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->_90->mPosition;
+    return ::getSphereSelector()->_90->mPosition;
 }
 
 f32 SphereSelectorFunction::getHandleRotateSpeed() {
-    return MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->_90->mRotateSpeed;
+    return ::getSphereSelector()->_90->mRotateSpeed;
 }
 
 bool SphereSelectorFunction::isHandleHolding() {
-    return MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->_90->isHolding();
+    return ::getSphereSelector()->_90->isHolding();
 }
 
-void SphereSelectorFunction::registerPointingTarget(LiveActor * pActor, HandlePointingPriority priority) {
-    MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->registerPointingTarget(pActor, priority);
+void SphereSelectorFunction::registerPointingTarget(LiveActor* pActor, HandlePointingPriority priority) {
+    ::getSphereSelector()->registerPointingTarget(pActor, priority);
 }
 
-bool SphereSelectorFunction::tryRegisterPointingTarget(LiveActor * pActor, HandlePointingPriority priority) {
+bool SphereSelectorFunction::tryRegisterPointingTarget(LiveActor* pActor, HandlePointingPriority priority) {
     if (isHandleHolding() && MR::isStarPointerPointing1PWithoutCheckZ(pActor, nullptr, true, false)) {
-        MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->registerPointingTarget(pActor, priority);
+        ::getSphereSelector()->registerPointingTarget(pActor, priority);
         return true;
     }
     return false;
 }
 
 bool SphereSelectorFunction::isPointingTarget() {
-    return MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->mPointingTarget;
+    return ::getSphereSelector()->mPointingTarget;
 }
 
 bool SphereSelectorFunction::isPointingTarget(const LiveActor* pActor) {
-    return MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->mPointingTarget == pActor;
+    return ::getSphereSelector()->mPointingTarget == pActor;
 }
 
 LiveActor* SphereSelectorFunction::getPointingTarget() {
-    return MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->mPointingTarget;
+    return ::getSphereSelector()->mPointingTarget;
 }
 
 LiveActor* SphereSelectorFunction::getSelectedTarget() {
-    return MR::getSceneObj<SphereSelector>(SceneObj_SphereSelector)->mSelectedTarget;
+    return ::getSphereSelector()->mSelectedTarget;
 }
 
 TVec3f& SphereSelectorFunction::getSelectedActorTrans() {
@@ -354,8 +354,3 @@ TVec3f& SphereSelectorFunction::getSelectedActorTrans() {
 // void SphereSelectorFunction::calcOffsetPos(TVec3f * dst, const TVec3f & vec2, const TVec3f & vec3, const TVec3f & vec4, const TVec3f & vec5) {}
 
 SphereSelector::~SphereSelector() {}
-
-// I have no idea why is this at this file
-MtxPtr SphereSelectorHandle::getBaseMtx() const {
-    return (MtxPtr)&_90;
-}
