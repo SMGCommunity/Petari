@@ -16,7 +16,7 @@ public:
     void exeWait();
     void addAccelMoment();
 
-    TQuat4f _8C;
-    TVec3f mFriction;
-    f32 _A8;
+    TQuat4f mRotateQuat;   // 0x8C
+    TVec3f mFriction;      // 0x9C
+    f32 mRadius;           // 0xA8
 };
