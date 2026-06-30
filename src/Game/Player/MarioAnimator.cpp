@@ -960,12 +960,11 @@ void MarioAnimator::setHoming() {
 
     XanimeCore* core = mXanimePlayer->mCore;
     u8 leftIdx = MR::getJointIndex(mActor, "ShoulderL");
-    XjointTransform* leftJt = core->getJointTransform(leftIdx);
-    leftJt->_2C = leftShoulderRot;
-
+    core->getJointTransform(leftIdx)->_2C.x = leftShoulderRot;
+    
+    core = mXanimePlayer->mCore;
     u8 rightIdx = MR::getJointIndex(mActor, "ShoulderR");
-    XjointTransform* rightJt = core->getJointTransform(rightIdx);
-    rightJt->_2C = rightShoulderRot;
+    core->getJointTransform(rightIdx)->_2C.x = rightShoulderRot;
 }
 
 void MarioAnimator::updateJointRumble() {
