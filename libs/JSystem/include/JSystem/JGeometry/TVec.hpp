@@ -538,6 +538,12 @@ namespace JGeometry {
             z = z_;
         }
 
+        inline void setInline(f32 x_, f32 y_, f32 z_) {
+            x = x_;
+            y = y_;
+            z = z_;
+        }
+
         inline void set(f32 val) {
             x = val;
             y = val;

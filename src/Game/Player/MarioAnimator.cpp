@@ -375,12 +375,12 @@ void MarioAnimator::clearAllJointTransform() {
     core = mXanimePlayer->mCore;
     jointIdx = MR::getJointIndex(mActor, "ArmL1");
     jt = core->getJointTransform(jointIdx);
-    jt->_30 = 0.0f;
+    jt->_2C.y = 0.0f;
 
     core = mXanimePlayer->mCore;
     jointIdx = MR::getJointIndex(mActor, "ArmR2");
     jt = core->getJointTransform(jointIdx);
-    jt->_30 = 0.0f;
+    jt->_2C.y = 0.0f;
 
     core = mXanimePlayer->mCore;
     u8 chestIdx = MR::getJointIndex(mActor, jname_chest);
@@ -1000,11 +1000,11 @@ void MarioAnimator::updateJointRumble() {
     XanimeCore* core = mXanimePlayer->mCore;
     u16 larmIdx = MR::getJointIndex(mActor, "ArmL1");
     XjointTransform* larmJt = core->getJointTransform(larmIdx);
-    larmJt->_30 = sineVal * power;
+    larmJt->_2C.y = sineVal * power;
 
     u16 rarmIdx = MR::getJointIndex(mActor, "ArmR2");
     XjointTransform* rarmJt = core->getJointTransform(rarmIdx);
-    rarmJt->_30 = sineVal * power;
+    rarmJt->_2C.y = sineVal * power;
 
     f32 hipRot = 0.7f * ((f32)_74 / 60.0f);
 
