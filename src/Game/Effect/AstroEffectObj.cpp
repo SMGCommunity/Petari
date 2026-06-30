@@ -2,7 +2,6 @@
 #include "Game/Effect/SimpleEffectObj.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
 #include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 

@@ -355,6 +355,19 @@ public:
     void changeHandMaterial();
     void calcScreenBoxRange();
     void updateRasterScroll();
+  
+    void settingRush();
+
+    void resetCondition();
+    bool isFixJumpRushSensor(const HitSensor*) const;
+    bool isLandEffectRushSensor(const HitSensor*) const;
+    void beginRush();
+
+    bool takeSensor(HitSensor*);
+
+    bool selectJumpRushSensor(const char*) const;
+
+    void memorizeSensorThrow(HitSensor*);
 
     const MarioConst& getConst() const {
         return *mConst;

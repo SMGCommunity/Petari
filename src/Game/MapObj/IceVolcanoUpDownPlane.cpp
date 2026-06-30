@@ -3,8 +3,7 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/RailMoveObj.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
-#include "Game/Util.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
@@ -21,11 +20,8 @@ void IceVolcanoUpDownPlane::move() {
 }
 
 bool IceVolcanoUpDownPlane::tryCalcNearestPosToPlayer(TVec3f* pArg) const {
-    TVec3f* playerPos = MR::getPlayerPos();
-
-    // f1 f2 paired single regswap
     TVec3f vec;
-    JMathInlineVEC::PSVECSubtract2(playerPos, &mPosition, &vec);
+    vec.sub(*MR::getPlayerPos(), mPosition);
 
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
@@ -44,8 +40,7 @@ bool IceVolcanoUpDownPlane::tryCalcNearestPosToPlayer(TVec3f* pArg) const {
         scaledAdded.setLength2(radius);
     }
 
-    // f1 f2 paired single regswap
-    JMathInlineVEC::PSVECAdd3(&scaledAdded, &mPosition, pArg);
+    pArg->add(scaledAdded, mPosition);
     return true;
 }
 

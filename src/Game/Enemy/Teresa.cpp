@@ -404,7 +404,7 @@ bool Teresa::tryWalk() {
         JMAVECScaleAdd(grav, &v6, &v6, -grav->dot(v6));
         v6 *= _F0;
         v6.add(_C8);
-        _E0.setPS(v6);
+        _E0 = v6;
         setNerve(&NrvTeresa::TeresaNrvWalk::sInstance);
         return true;
     }

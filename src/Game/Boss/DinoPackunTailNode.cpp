@@ -148,7 +148,7 @@ const TVec3f* DinoPackunTailNode::getNodeDirection() const {
 }
 
 void DinoPackunTailNode::addNodeVelocity(const TVec3f& rVel) {
-    mVelocity.addInline(rVel);
+    mVelocity.add(rVel);
 }
 
 void DinoPackunTailNode::requestLockPosition() {

@@ -9,6 +9,10 @@
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "revolution/mtx.h"
 
+void HipDropRock_FORCE_MATCHSDATA2() {
+    f32 v1 = 1.0f;
+}
+
 namespace NrvHipDropRock {
     NEW_NERVE(HipDropRockNrvWait, HipDropRock, Wait);
     NEW_NERVE(HipDropRockNrvBreak, HipDropRock, Break);

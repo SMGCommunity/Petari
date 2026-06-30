@@ -4,7 +4,7 @@
 BOOL gTRKBigEndian;
 
 DSError TRKInitializeNub(void) {
-    DSError ret;
+    BOOL ret;
     DSError uartErr;
 
     ret = TRKInitializeEndian();
@@ -44,7 +44,7 @@ DSError TRKTerminateNub(void) {
 }
 
 void TRKNubWelcome(void) {
-    TRK_board_display("MetroTRK for GAMECUBE v2.6");
+    TRK_board_display("MetroTRK for Revolution v0.1");
     return;
 }
 

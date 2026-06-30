@@ -17,6 +17,13 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
+    static const s32 sAnimCameraInterpoleFrame = 60;
+    static const s32 sStepToEmitFire = 15;
+    static const f32 sFireSpeed = 20.0f;
+    static const s32 sFireAttackStep = 33;
+    static const s32 sStepJumpToNextPosLoop = 60;
+    static const f32 sJumpHeight = 1000.0f;
+    static const f32 sTurnSpeed = 2.0f;
     static const char* sKoopaPosName0 = "階段の戦い０（クッパ）";
     static const char* sKoopaPosName1 = "階段の戦い１（クッパ）";
     static const char* sKoopaPosName2 = "階段の戦い２（クッパ）";
@@ -59,12 +66,12 @@ s32 KoopaBattleStairsVs1::registerStair(KoopaBattleMapStair* pBattleMapStair) {
 
     const TVec3f* vec = &mJumpPos0;
 
-    if (pBattleMapStair->_94 == 1) {
+    if (pBattleMapStair->mArg1 == 1) {
         vec = &mJumpPos1;
         if (pBattleMapStair->isTypeNormal()) {
             _50++;
         }
-    } else if (pBattleMapStair->_94 == 2) {
+    } else if (pBattleMapStair->mArg1 == 2) {
         vec = &mJumpPos2;
         if (pBattleMapStair->isTypeNormal()) {
             _54++;
@@ -73,12 +80,12 @@ s32 KoopaBattleStairsVs1::registerStair(KoopaBattleMapStair* pBattleMapStair) {
         _4C++;
     }
 
-    return calcFireAttackStep(pBattleMapStair, 20.0f, 15, *vec);
+    return calcFireAttackStep(pBattleMapStair, ::sFireSpeed, ::sStepToEmitFire, *vec);
 }
 
 void KoopaBattleStairsVs1::exeWaitDemo() {
     if (MR::tryStartDemo(mKoopa, "階段の戦い開始デモ")) {
-        KoopaFunction::startKoopaAnimCamera(mKoopa, "DemoBattleStairsStart", 60);
+        KoopaFunction::startKoopaAnimCamera(mKoopa, "DemoBattleStairsStart", ::sAnimCameraInterpoleFrame);
         KoopaFunction::endFaceCtrl(mKoopa, -1);
 
         MR::startAction(mKoopa, "DemoBattleStairsStart");
@@ -148,7 +155,7 @@ void KoopaBattleStairsVs1::exeAttackFire() {
         return;
     }
 
-    if (MR::isStep(this, 15)) {
+    if (MR::isStep(this, ::sStepToEmitFire)) {
         KoopaBattleMapStair* pBattleMapStair = _20;
         Koopa* pKoopa = mKoopa;
         TVec3f jointPos = TVec3f(0.0f, 0.0f, 0.0f);
@@ -158,7 +165,7 @@ void KoopaBattleStairsVs1::exeAttackFire() {
     }
 
     KoopaBattleMapStair* pBattleMapStair = _20;
-    if (MR::isLessStep(this, 15) && tryAttackRequest()) {
+    if (MR::isLessStep(this, ::sStepToEmitFire) && tryAttackRequest()) {
         Koopa* pKoopa = mKoopa;
         TVec3f jointPos = TVec3f(0.0f, 0.0f, 0.0f);
         MR::copyJointPos(pKoopa, "Tongue2", &jointPos);
@@ -169,12 +176,12 @@ void KoopaBattleStairsVs1::exeAttackFire() {
         return;
     }
 
-    if (MR::isGreaterEqualStep(this, 15) && tryAttackRequest()) {
+    if (MR::isGreaterEqualStep(this, ::sStepToEmitFire) && tryAttackRequest()) {
         setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvAttackFire::sInstance);
         return;
     }
 
-    if (MR::isGreaterStep(this, 33)) {
+    if (MR::isGreaterStep(this, ::sFireAttackStep)) {
         if (mCanJump || (mJumpIdx == 0 && mAvailableStairs >= _4C) || (mJumpIdx == 1 && mAvailableStairs >= _4C + _50) ||
             (mJumpIdx == 2 && mAvailableStairs >= _4C + _50 + _54)) {
             _20 = nullptr;
@@ -221,10 +228,10 @@ void KoopaBattleStairsVs1::exeJumpToNextPosLoop() {
     f32 val = MR::getEaseInOutValue(step, 0.0f, 1.0f, 1.0f);
     mKoopa->mPosition.set(mOldPosition * (1.0f - val) + mNewPosition * val);
 
-    mKoopa->mPosition.y += 1000.0f * MR::sinDegree(180.0f * step);
-    MR::turnDirectionDegree(mKoopa, &mKoopa->mFront, mNewDirection, 2.0f);
+    mKoopa->mPosition.y += ::sJumpHeight * MR::sinDegree(180.0f * step);
+    MR::turnDirectionDegree(mKoopa, &mKoopa->mFront, mNewDirection, ::sTurnSpeed);
 
-    if (MR::isStep(this, 60)) {
+    if (MR::isStep(this, ::sStepJumpToNextPosLoop)) {
         MR::tryRumblePadStrong(mKoopa, 0);
         MR::shakeCameraNormal();
         setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvJumpToNextPosEnd::sInstance);
@@ -283,11 +290,11 @@ bool KoopaBattleStairsVs1::tryRequestedToMoveNextPos() {
         pBattleMapStair = static_cast< KoopaBattleMapStair* >(mStairsGroup->getActor(idx));
 
         if (pBattleMapStair->isRequestAttackVs1()) {
-            if (pBattleMapStair->_94 > mJumpIdx) {
+            if (pBattleMapStair->mArg1 > mJumpIdx) {
                 return true;
             }
 
-            if (pBattleMapStair->_9C) {
+            if (pBattleMapStair->mArg6) {
                 mCanJump = true;
             }
         }

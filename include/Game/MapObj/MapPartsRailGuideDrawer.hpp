@@ -2,7 +2,7 @@
 
 #include "Game/MapObj/MapPartsFunction.hpp"
 #include "Game/MapObj/MapPartsRailGuidePoint.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/Array.hpp"
 
 class MapPartsRailGuideDrawer : public MapPartsFunction {
 public:
@@ -19,7 +19,7 @@ public:
     void show();
     void hide();
 
-    MR::Vector< MR::FixedArray< MapPartsRailGuidePoint*, 0x100 > > mGuidePoints;  // 0x18
+    MR::Vector< MR::FixedArray< MapPartsRailGuidePoint*, 256 > > mGuidePoints;  // 0x18
     u32 _41C;
     s32 _420;
     const char* _424;

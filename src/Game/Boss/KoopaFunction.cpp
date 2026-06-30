@@ -24,6 +24,10 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sKoopaHitBlowStopSceneStep = 10;
+};  // namespace
+
 NameObj* KoopaFunction::createKoopaVs1(const char* pName) {
     KoopaSequencerVs1* pSequencer = new KoopaSequencerVs1();
     return new Koopa(pName, pSequencer);
@@ -488,6 +492,7 @@ void KoopaFunction::tryRestartKoopa() {
         MR::startAction(pKoopa->mParts->mKoopaJrShip, "DemoKoopaVs3Wait");
 
         // This is super ugly but idk how to fix the register issue
+        // TODO: The following is an inline for `KoopaParts`.
         pKoopa = (Koopa*)pKoopa->mParts;
         ((KoopaParts*)pKoopa)->mPeach->mJointCtrl->startFaceCtrl(-1);
         ((KoopaParts*)pKoopa)->mKoopaJr->mJointCtrl->startFaceCtrl(-1);
@@ -516,7 +521,7 @@ bool KoopaFunction::tryKoopaShellAttackPlayer(HitSensor* pSender, HitSensor* pRe
 
 void KoopaFunction::startKoopaSpinHitBlow(Koopa* pKoopa) {
     MR::tryRumblePadVeryStrong(pKoopa, 0);
-    MR::stopSceneForDefaultHit(10);
+    MR::stopSceneForDefaultHit(::sKoopaHitBlowStopSceneStep);
     MR::startSpinHitSound(pKoopa);
     MR::startBlowHitSound(pKoopa);
 

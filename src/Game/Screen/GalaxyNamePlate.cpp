@@ -45,7 +45,7 @@ void GalaxyNamePlate::kill() {
 }
 
 void GalaxyNamePlate::showUnknown(bool a1) {
-    show(MR::getGameMessageDirect("GalaxyNameShort_Unkonwn"), 0, true, a1);
+    show(MR::getGameMessageDirect("GalaxyNameShort_Unknown"), 0, true, a1);
 }
 
 void GalaxyNamePlate::showNew(bool a1) {
@@ -61,11 +61,10 @@ void GalaxyNamePlate::show(const wchar_t* pName, bool a2) {
 }
 
 void GalaxyNamePlate::setPos3D(const TVec3f& a1) {
-    TVec2f vec;
+    TVec3f vec;
     MR::calcScreenPosition(&vec, a1);
     setTrans(vec);
-    mDrawerEntry->mZ = __cvt_fp2unsigned(-vec.y * MR::getFarZ());
-    // the vec is a TVec3f, but I currently can't use it on SetTrans()
+    mDrawerEntry->mZ = -vec.z * MR::getFarZ();
 }
 
 void GalaxyNamePlate::setShowBalloonNozzle(bool showBalloonNozzle) {

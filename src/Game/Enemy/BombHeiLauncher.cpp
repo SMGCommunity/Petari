@@ -12,6 +12,10 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void BombHeiLauncher_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     static const f32 hThrowVel = 35.0f;
     static const f32 hThrowFrontVel = 1.0f;
@@ -90,7 +94,7 @@ void BombHeiLauncher::init(const JMapInfoIter& rIter) {
 void BombHeiLauncher::initAfterPlacement() {
     TVec3f up;
     MR::calcUpVec(&up, this);
-    MR::resetPosition(mBomb, mPosition.addOperatorInLine(up * 30.0f));
+    MR::resetPosition(mBomb, mPosition + up * 30.0f);
     mBomb->mGravity.set(up.invertOperatorInternal());
     mBomb->initAfterPlacement();
     mConnector->attachToUnder();

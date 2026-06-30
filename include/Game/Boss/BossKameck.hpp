@@ -15,7 +15,6 @@ class BossKameck : public LiveActor {
 public:
     BossKameck(const char*, const char*);
 
-    virtual ~BossKameck();
     virtual void init(const JMapInfoIter&);
     virtual void makeActorDead();
     virtual void control();

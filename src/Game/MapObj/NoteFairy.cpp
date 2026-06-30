@@ -247,7 +247,7 @@ void NoteFairy::exeStartAppearDemo() {
     if (MR::isStep(this, 30)) {
         TVec3f* pos = MR::getPlayerPos();
         TVec3f stack_8(_8C);
-        stack_8.subInline(*pos);
+        stack_8.sub(*pos);
         MR::setPlayerFrontVec(stack_8, 1);
         enterDemoAppear(&NrvNoteFairy::NoteFairyNrvDemoAppear::sInstance, true);
     }
@@ -258,7 +258,7 @@ void NoteFairy::exeRailMoveStart() {
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::emitEffect(this, "Blur");
-        mPosition.setPS(MR::getRailPos(this));
+        mPosition = MR::getRailPos(this);
     }
 
     if (_CD) {

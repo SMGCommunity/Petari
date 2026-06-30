@@ -11,6 +11,7 @@ public:
     SlingShooter(const char*);
 
     virtual void init(const JMapInfoIter&);
+    virtual void initAfterPlacement();
     virtual void calcAnim();
     virtual void calcAndSetBaseMtx();
     virtual void updateHitSensor(HitSensor* pSensor);
@@ -18,8 +19,6 @@ public:
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-
-    void initAfterPlacement();
 
     void exeFree();
     void exeFreeInvalid();

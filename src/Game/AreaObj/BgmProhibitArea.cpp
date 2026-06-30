@@ -9,27 +9,30 @@ BgmProhibitArea::~BgmProhibitArea() {
 }
 
 namespace {
+    struct BgmMuteSet {
+        /* 0x00 */ const char* mGalaxyName;
+        /* 0x04 */ u32 _4;
+        /* 0x08 */ u32 _8;
+    };
+
     static BgmMuteSet sBgmMuteSet[] = {{"OceanPhantomCaveGalaxy", 7, 1}, {"SoundMapCodeTest", 7, 1}};
+};  // namespace
 
+namespace {
     BgmMuteSet* findDataElement(const char* pName) {
-        for (u32 i = 0; i < 2; i++) {
-            BgmMuteSet* ret = &sBgmMuteSet[i];
+        for (u32 i = 0; i < ARRAY_SIZE(::sBgmMuteSet); i++) {
+            BgmMuteSet* set = &::sBgmMuteSet[i];
 
-            if (MR::isEqualString(pName, ret->mGalaxyName)) {
-                return ret;
+            if (MR::isEqualString(pName, set->mGalaxyName)) {
+                return set;
             }
         }
 
-        return 0;
+        return nullptr;
     }
 };  // namespace
 
-BgmProhibitArea::BgmProhibitArea(int formType, const char* pName) : AreaObj(formType, pName) {
-    _3C = 0;
-    _3D = 0;
-    _40.x = 0.0f;
-    _40.y = 0.0f;
-    _40.z = 0.0f;
+BgmProhibitArea::BgmProhibitArea(int formType, const char* pName) : AreaObj(formType, pName), _3C(), _3D(), _40(0.0f, 0.0f, 0.0f) {
 }
 
 void BgmProhibitArea::init(const JMapInfoIter& rIter) {
@@ -38,45 +41,44 @@ void BgmProhibitArea::init(const JMapInfoIter& rIter) {
 }
 
 void BgmProhibitArea::movement() {
-    if (!MR::isStageStateScenarioOpeningCamera()) {
-        TVec3f stack_8;
-        stack_8.setPS(*MR::getPlayerPos());
-        f32 dist = PSVECDistance(&stack_8, &_40);
-
-        if (isInVolume(*MR::getPlayerPos())) {
-            _3D = 0;
-
-            if (!_3C && MR::isPlayingStageBgm()) {
-                BgmMuteSet* set = ::findDataElement(MR::getCurrentStageName());
-                s32 v10 = set ? set->_4 : -1;
-                if (v10 >= 0) {
-                    if (dist >= 10000.0f) {
-                        MR::setStageBGMState(v10, 0);
-                    } else {
-                        MR::setStageBGMState(v10, 120);
-                    }
-                }
-
-                _3C = 1;
-            }
-        } else {
-            _3C = 0;
-            if (!_3D && MR::isPlayingStageBgm()) {
-                BgmMuteSet* set = ::findDataElement(MR::getCurrentStageName());
-                s32 v14 = set ? set->_8 : -1;
-
-                if (v14 >= 0) {
-                    MR::setStageBGMState(v14, 120);
-                }
-
-                _3D = 1;
-            }
-        }
-
-        _40.setPS(stack_8);
+    if (MR::isStageStateScenarioOpeningCamera()) {
+        return;
     }
-}
 
-const char* BgmProhibitArea::getManagerName() const {
-    return "BgmProhibitArea";
+    TVec3f playerPos = *MR::getPlayerPos();
+    f32 distToPlayer = playerPos.distance(_40);
+
+    if (isInVolume(*MR::getPlayerPos())) {
+        _3D = false;
+
+        if (!_3C && MR::isPlayingStageBgm()) {
+            BgmMuteSet* set = ::findDataElement(MR::getCurrentStageName());
+            s32 v10 = set ? set->_4 : -1;
+
+            if (v10 >= 0) {
+                if (distToPlayer >= 10000.0f) {
+                    MR::setStageBGMState(v10, 0);
+                } else {
+                    MR::setStageBGMState(v10, 120);
+                }
+            }
+
+            _3C = true;
+        }
+    } else {
+        _3C = false;
+
+        if (!_3D && MR::isPlayingStageBgm()) {
+            BgmMuteSet* set = ::findDataElement(MR::getCurrentStageName());
+            s32 v14 = set ? set->_8 : -1;
+
+            if (v14 >= 0) {
+                MR::setStageBGMState(v14, 120);
+            }
+
+            _3D = true;
+        }
+    }
+
+    _40 = playerPos;
 }

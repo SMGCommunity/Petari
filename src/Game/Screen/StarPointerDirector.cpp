@@ -1,5 +1,4 @@
 #include "Game/Screen/StarPointerDirector.hpp"
-#include "Game/Camera/CameraContext.hpp"
 #include "Game/Screen/LayoutCoreUtil.hpp"
 #include "Game/Screen/StarPointerController.hpp"
 #include "Game/Screen/StarPointerGuidance.hpp"

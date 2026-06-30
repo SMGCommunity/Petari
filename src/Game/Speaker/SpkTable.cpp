@@ -8,29 +8,28 @@ SpkTable::SpkTable() {
 }
 
 void SpkTable::setResource(void* pRes) {
-    // FIXME: regswap
-    // https://decomp.me/scratch/s37iv
-
     mInitialized = false;
 
-    SpkFile* file = reinterpret_cast< SpkFile* >(pRes);
-    u32 parameterOffset = file->parametersOffset;
+    s32* cursor = (s32*)pRes;
 
-    const char** names = (const char**)((u8*)file + file->namesOffset);
+    s32 resourceCount = *cursor++;
+    s32 entryOff = *cursor++;
+    s32 dataOffsetsStartOff = *cursor++;
+    s32* pIsDataOffsetsInitialized = cursor;
+    BOOL isDataOffsetsInitialized = *cursor++;
 
-    u32 initialized = file->initialized;
+    mResourceCount = resourceCount;
 
-    mResourceCount = file->count;
-    mParameters = (SpkParameters*)((u8*)file + parameterOffset);
-
-    if (initialized == 0) {
-        for (s32 idx = 0; idx < mResourceCount; idx++) {
-            names[idx] += reinterpret_cast< u32 >(file);
+    SpkParameters* entryOffset = (SpkParameters*)((s32)pRes + entryOff);
+    mParameters = entryOffset;
+    const char** names = (const char**)((s32)pRes + dataOffsetsStartOff);
+    if (!isDataOffsetsInitialized) {
+        for (s32 i = 0; i < mResourceCount; i++) {
+            names[i] += (s32)pRes;
         }
     }
 
     mNames = names;
-
-    file->initialized = 1;
+    *pIsDataOffsetsInitialized = TRUE;
     mInitialized = true;
 }

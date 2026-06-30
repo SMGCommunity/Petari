@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/Util.hpp"
 
 class HitSensor;
+class JMapIdInfo;
 
 class MsgSharedGroup : public LiveActorGroup {
 public:

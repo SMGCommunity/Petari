@@ -6,6 +6,10 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
+namespace {
+    static const f32 sWallJumpSpeed = 15.0f;
+};  // namespace
+
 KoopaFigureBall::~KoopaFigureBall() {
 }
 
@@ -51,7 +55,7 @@ void KoopaFigureBall::control() {
     MR::moveAndTurnToPlayer(this, &mFront, mMoveParam->_0, mMoveParam->_4, mMoveParam->_8, mMoveParam->_C);
 
     if (MR::isBindedWall(this)) {
-        MR::addVelocityJump(this, 15.0f);
+        MR::addVelocityJump(this, ::sWallJumpSpeed);
     }
 
     f32 angle = MR::toDegree(mVelocity.dot(mFront) / mRadius);

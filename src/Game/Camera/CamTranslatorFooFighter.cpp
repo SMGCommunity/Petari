@@ -1,8 +1,7 @@
 #include "Game/Camera/CamTranslatorFooFighter.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 
-CamTranslatorFooFighter::CamTranslatorFooFighter(CameraFooFighter* pCamera) {
-    mCamera = pCamera;
+CamTranslatorFooFighter::CamTranslatorFooFighter(CameraFooFighter* pCamera) : mCamera(pCamera) {
 }
 
 void CamTranslatorFooFighter::setParam(const CameraParamChunk* pChunk) {

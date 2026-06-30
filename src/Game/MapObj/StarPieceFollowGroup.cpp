@@ -105,8 +105,7 @@ void StarPieceFollowGroup::placementPiece(s32 numPlace) {
         f32 zMag = MR::cos(currentAngle) * mRadius;
         f32 xMag = MR::sin(currentAngle) * mRadius;
 
-        mPieces[i]->mPosition.setPS2(
-            zDir.multiplyOperatorInline(zMag).addOperatorInLine(xDir.multiplyOperatorInline(xMag)).addOperatorInLine(position));
+        mPieces[i]->mPosition = zDir.multiplyOperatorInline(zMag) + xDir.multiplyOperatorInline(xMag) + position;
         currentAngle += angleBetweenPieces;
     }
 }
@@ -168,7 +167,7 @@ void StarPieceFollowGroup::followPieces() {
 
         vec2.add(vec.multiplyOperatorInline(cos2));
         currentPiece->mVelocity.set(vec2);
-        JMathInlineVEC::PSVECSubtract2(&currentPiece->mVelocity, &currentPiece->mPosition, &currentPiece->mVelocity);
+        currentPiece->mVelocity.sub(currentPiece->mPosition);
         currentPiece->mVelocity.mult(1.0f);
     }
 }

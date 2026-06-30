@@ -14,7 +14,7 @@ namespace NrvNote {
 Note::Note(const char* pName, const TVec3f& rRailDirection, NoteFairy* pParent) : LiveActor(pName) {
     mParentFairy = pParent;
     _90.set(0.0f);
-    mRailDirection.setPS(rRailDirection);
+    mRailDirection = rRailDirection;
     mCounter = 0;
     _AC = 0.0f;
     mIsCountdown = false;

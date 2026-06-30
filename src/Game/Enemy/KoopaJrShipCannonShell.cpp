@@ -50,6 +50,7 @@ KoopaJrShipCannonShell::KoopaJrShipCannonShell(const char* pName) : CannonShellB
 }
 
 void KoopaJrShipCannonShell::init(const JMapInfoIter& rIter) {
+    // FIXME: weird tvec load, default arg initStarPointerTarget?
     initModelManagerWithAnm("KoopaJrShipCannonShell", nullptr, false);
     MR::startBck(this, "KoopaJrShipCannonShell", nullptr);
     initSound(4, false);
@@ -240,7 +241,7 @@ void KoopaJrShipCannonShell::exeDown() {
         }
     }
 
-    JMathInlineVEC::PSVECAdd(mVelocity, mGravity.scaleInline(::sGravity), mVelocity);
+    mVelocity.add(mGravity.scaleInline(::sGravity));
     if (MR::reboundVelocityFromCollision(this, ::sReboundRate, ::sReboundMinSpeed, 1.0f))
         MR::deleteEffect(this, "LocusSmoke");
 

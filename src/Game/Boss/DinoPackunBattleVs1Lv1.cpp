@@ -10,6 +10,12 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void DinoPackunBattleEggVs2_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
 namespace NrvDinoPackunBattleVs1Lv1 {
     NEW_NERVE(DinoPackunBattleVs1Lv1NrvStart, DinoPackunBattleVs1Lv1, Start);
     NEW_NERVE(DinoPackunBattleVs1Lv1NrvTurn, DinoPackunBattleVs1Lv1, Turn);

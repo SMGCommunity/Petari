@@ -8,10 +8,10 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-AreaObj::AreaObj(int type, const char* pName)
-    : NameObj(pName), mFormType(type), mIsValid(true), _15(true), mIsAwake(true), mObjArg0(-1), mObjArg1(-1), mObjArg2(-1), mObjArg3(-1),
-      mObjArg4(-1), mObjArg5(-1), mObjArg6(-1), mObjArg7(-1), mSwitchCtrl(nullptr) {
-    switch (type) {
+AreaObj::AreaObj(int formType, const char* pName)
+    : NameObj(pName), mFormType(formType), mIsValid(true), _15(true), mIsAwake(true), mObjArg0(-1), mObjArg1(-1), mObjArg2(-1), mObjArg3(-1),
+      mObjArg4(-1), mObjArg5(-1), mObjArg6(-1), mObjArg7(-1), mSwitchCtrl() {
+    switch (formType) {
     case AreaForm::Type_Cube1:
         mForm = new AreaFormCube(0);
         break;
@@ -50,10 +50,10 @@ void AreaObj::init(const JMapInfoIter& rIter) {
         mIsValid = false;
     }
 
-    const char* pName;
+    const char* name;
 
-    if (MR::getObjectName(&pName, rIter)) {
-        setName(pName);
+    if (MR::getObjectName(&name, rIter)) {
+        setName(name);
     }
 
     MR::getAreaObjManager(getManagerName())->entry(this);
@@ -62,7 +62,7 @@ void AreaObj::init(const JMapInfoIter& rIter) {
 }
 
 bool AreaObj::isInVolume(const TVec3f& rPos) const {
-    return mIsValid && _15 && mIsAwake && mForm->isInVolume(rPos);
+    return isValid() && mForm->isInVolume(rPos);
 }
 
 void AreaObj::onSwitchA() {
@@ -109,15 +109,3 @@ void AreaObjMgr::entry(AreaObj* pAreaObj) {
 }
 
 // AreaObjMgr::find_in
-
-void AreaObj::validate() {
-    mIsValid = true;
-}
-
-void AreaObj::invalidate() {
-    mIsValid = false;
-}
-
-const char* AreaObj::getManagerName() const {
-    return mName;
-}

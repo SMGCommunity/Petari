@@ -5,17 +5,41 @@
 #include <JSystem/JSupport/JSUMemoryOutputStream.hpp>
 #include <cstdio>
 
-ConfigDataHolder::ConfigDataHolder() : mChunkHolder(nullptr), mCreateChunk(nullptr), mMii(nullptr), mMisc(nullptr) {
-    mChunkHolder = new BinaryDataChunkHolder(64, 3);
-    mCreateChunk = new ConfigDataCreateChunk();
-    mMii = new ConfigDataMii();
-    mMisc = new ConfigDataMisc();
+ConfigDataCreateChunk::ConfigDataCreateChunk() : mIsCreated() {
+    initializeData();
+}
 
-    mChunkHolder->addChunk(mCreateChunk);
-    mChunkHolder->addChunk(mMii);
-    mChunkHolder->addChunk(mMisc);
-    resetAllData();
-    snprintf(mName, sizeof(mName), "config1");
+u32 ConfigDataCreateChunk::makeHeaderHashCode() const {
+    return 0x2432DA;
+}
+
+u32 ConfigDataCreateChunk::getSignature() const {
+    return 'CONF';
+}
+
+s32 ConfigDataCreateChunk::serialize(u8* pBuffer, u32 size) const {
+    JSUMemoryOutputStream stream = JSUMemoryOutputStream(pBuffer, size);
+
+    u8 isCreated = -(mIsCreated != false);
+    stream.write(&isCreated, sizeof(mIsCreated));
+
+    return stream.mPosition;
+}
+
+s32 ConfigDataCreateChunk::deserialize(const u8* pBuffer, u32 size) {
+    initializeData();
+
+    JSUMemoryInputStream stream = JSUMemoryInputStream(pBuffer, size);
+
+    u8 isCreated;
+    stream.read(&isCreated, sizeof(mIsCreated));
+    mIsCreated = isCreated != 0;
+
+    return 0;
+}
+
+void ConfigDataCreateChunk::initializeData() {
+    mIsCreated = false;
 }
 
 void ConfigDataHolder::setIsCreated(bool isCreated) {
@@ -80,45 +104,21 @@ s32 ConfigDataHolder::makeFileBinary(u8* pBuffer, u32 size) {
     return mChunkHolder->makeFileBinary(pBuffer, size);
 }
 
+ConfigDataHolder::ConfigDataHolder() : mChunkHolder(), mCreateChunk(), mMii(), mMisc() {
+    mChunkHolder = new BinaryDataChunkHolder(64, 3);
+    mCreateChunk = new ConfigDataCreateChunk();
+    mMii = new ConfigDataMii();
+    mMisc = new ConfigDataMisc();
+
+    mChunkHolder->addChunk(mCreateChunk);
+    mChunkHolder->addChunk(mMii);
+    mChunkHolder->addChunk(mMisc);
+    resetAllData();
+    snprintf(mName, sizeof(mName), "config1");
+}
+
 bool ConfigDataHolder::loadFromFileBinary(const char* pName, const u8* pBuffer, u32 size) {
     snprintf(mName, sizeof(mName), "%s", pName);
 
     return mChunkHolder->loadFromFileBinary(pBuffer, size);
-}
-
-ConfigDataCreateChunk::ConfigDataCreateChunk() : mIsCreated(false) {
-    initializeData();
-}
-
-u32 ConfigDataCreateChunk::makeHeaderHashCode() const {
-    return 0x2432DA;
-}
-
-u32 ConfigDataCreateChunk::getSignature() const {
-    return 'CONF';
-}
-
-s32 ConfigDataCreateChunk::serialize(u8* pBuffer, u32 size) const {
-    JSUMemoryOutputStream stream = JSUMemoryOutputStream(pBuffer, size);
-
-    u8 isCreated = -(mIsCreated != false);
-    stream.write(&isCreated, sizeof(mIsCreated));
-
-    return stream.mPosition;
-}
-
-s32 ConfigDataCreateChunk::deserialize(const u8* pBuffer, u32 size) {
-    initializeData();
-
-    JSUMemoryInputStream stream = JSUMemoryInputStream(pBuffer, size);
-
-    u8 isCreated;
-    stream.read(&isCreated, sizeof(mIsCreated));
-    mIsCreated = isCreated != 0;
-
-    return 0;
-}
-
-void ConfigDataCreateChunk::initializeData() {
-    mIsCreated = false;
 }

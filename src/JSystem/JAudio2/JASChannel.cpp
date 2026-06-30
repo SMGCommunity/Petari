@@ -340,7 +340,7 @@ s32 JASChannel::updateDSPChannel(JASDsp::TChannel* i_channel) {
     }
     i_channel->setPitch(pitch);
 
-    if (mPauseFlag == 0 && mKeySweepCount != 0) {
+    if (!mPauseFlag && mKeySweepCount != 0) {
         mKeySweep += (mKeySweepTarget - mKeySweep) / mKeySweepCount;
         mKeySweepCount--;
     }

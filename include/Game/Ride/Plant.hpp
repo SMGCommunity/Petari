@@ -14,14 +14,16 @@ public:
     Plant(const char*);
 
     virtual void init(const JMapInfoIter&);
+    virtual void initAfterPlacement();
     virtual void draw() const;
+    virtual void calcAnim();
     virtual void appear();
+    virtual void startClipped();
+    virtual void endClipped();
     virtual void updateHitSensor(HitSensor* pSensor);
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-
-    virtual void initAfterPlacement();
 
     void exeWaitFar();
     void exeSeedWait();
@@ -38,10 +40,6 @@ public:
     void exeHangDown();
 
     void initLeaf();
-    void calcAnim();
-    void startClipped();
-    void endClipped();
-
     void updateTopMtx();
     bool updateGrowUp();
     bool updateHangUp(f32);

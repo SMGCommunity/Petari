@@ -16,7 +16,6 @@ class KoopaJrShip : public LiveActor {
 public:
     KoopaJrShip(const char*);
 
-    virtual ~KoopaJrShip();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void kill();

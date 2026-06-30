@@ -9,6 +9,10 @@ namespace {
     static const f32 hSpikeRotateTurn = 0.2f;
 };  // namespace
 
+void BossBegomanHead_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace NrvBossBegomanHead {
     NEW_NERVE(HostTypeNrvDemoWait, BossBegomanHead, DemoWait);
     NEW_NERVE(HostTypeNrvOpeningDemo, BossBegomanHead, OpeningDemo);

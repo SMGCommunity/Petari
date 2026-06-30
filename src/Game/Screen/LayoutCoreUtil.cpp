@@ -1,5 +1,4 @@
 #include "Game/Screen/LayoutCoreUtil.hpp"
-#include "Game/Camera/CameraContext.hpp"
 #include "Game/Screen/CustomTagProcessor.hpp"
 #include "Game/Screen/ReplaceTagProcessor.hpp"
 #include "Game/Util/MemoryUtil.hpp"

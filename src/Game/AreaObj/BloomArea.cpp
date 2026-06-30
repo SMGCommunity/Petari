@@ -1,14 +1,8 @@
 #include "Game/AreaObj/BloomArea.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
-BloomArea::BloomArea(int type, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_BLOOM, type, pName) {
-    _40 = 128;
-    _41 = 255;
-    _44 = -1;
-    _48 = -1;
-}
-
-BloomArea::~BloomArea() {
+BloomArea::BloomArea(int formType, const char* pName)
+    : ImageEffectArea(IMAGE_EFFECT_TYPE_BLOOM, formType, pName), mThreshold(128), mIntensity(255), mIntensity1(-1), mIntensity2(-1) {
 }
 
 void BloomArea::init(const JMapInfoIter& rIter) {
@@ -16,22 +10,21 @@ void BloomArea::init(const JMapInfoIter& rIter) {
     MR::createNormalBloom();
 
     if (mObjArg0 >= 0) {
-        _41 = static_cast< u8 >(mObjArg0);
+        mIntensity = mObjArg0;
     }
 
     if (mObjArg1 >= 0) {
-        _40 = static_cast< u8 >(mObjArg1);
+        mThreshold = mObjArg1;
     }
 
     if (mObjArg2 >= 0) {
-        _44 = mObjArg2;
+        mIntensity1 = mObjArg2;
     }
 
     if (mObjArg3 >= 0) {
-        _48 = mObjArg3;
+        mIntensity2 = mObjArg3;
     }
 }
 
-const char* BloomArea::getManagerName() const {
-    return "ImageEffectArea";
+BloomArea::~BloomArea() {
 }

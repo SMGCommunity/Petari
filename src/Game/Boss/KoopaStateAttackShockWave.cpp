@@ -9,6 +9,19 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sJumpSpeed1st = 50.0f;
+    static const f32 sJumpSpeed = 40.0f;
+    static const f32 sJumpSpeedVs3 = 40.0f;
+    static const f32 sJumpGravity = 1.5f;
+    static const f32 sJumpGravityVs3 = 2.0f;
+    static const f32 sJumpTurnSpeedVs3 = 3.0f;
+    static const s32 sLandStep = 15;
+    static const s32 sLandStepVs2 = 10;
+    static const s32 sLandStepVs3 = 10;
+    static const s32 sLandStepVs3Angry = 5;
+};  // namespace
+
 namespace NrvKoopaStateAttackShockWave {
     NEW_NERVE(KoopaStateAttackShockWaveNrvJumpStart, KoopaStateAttackShockWave, JumpStart);
     NEW_NERVE(KoopaStateAttackShockWaveNrvJump, KoopaStateAttackShockWave, Jump);
@@ -17,7 +30,8 @@ namespace NrvKoopaStateAttackShockWave {
 };  // namespace NrvKoopaStateAttackShockWave
 
 KoopaStateAttackShockWave::KoopaStateAttackShockWave(Koopa* pKoopa)
-    : ActorStateBase< Koopa >("State[衝撃波攻撃]", pKoopa), mMaxAttacks(1), mAttacks(), mJumpVelocity(40.0f), mGravity(1.5f), mJumpDelay(15) {
+    : ActorStateBase< Koopa >("State[衝撃波攻撃]", pKoopa), mMaxAttacks(1), mAttacks(), mJumpVelocity(::sJumpSpeed), mGravity(::sJumpGravity),
+      mJumpDelay(::sLandStep) {
 }
 
 void KoopaStateAttackShockWave::init() {
@@ -40,9 +54,9 @@ void KoopaStateAttackShockWave::appear() {
             mMaxAttacks = 1;
         }
 
-        mJumpVelocity = 40.0f;
-        mGravity = 1.5f;
-        mJumpDelay = 15;
+        mJumpVelocity = ::sJumpSpeed;
+        mGravity = ::sJumpGravity;
+        mJumpDelay = ::sLandStep;
     } else if (KoopaFunction::isKoopaVs2(mHost)) {
         if (KoopaFunction::isKoopaLv3(mHost)) {
             mMaxAttacks = 5;
@@ -50,31 +64,33 @@ void KoopaStateAttackShockWave::appear() {
             mMaxAttacks = 3;
         }
 
-        mJumpVelocity = 40.0f;
-        mGravity = 1.5;
-        mJumpDelay = 10;
-    } else if (KoopaFunction::isKoopaLv1(mHost)) {
-        mMaxAttacks = 3;
-
-        if (KoopaFunction::isKoopaAngry(mHost)) {
-            mJumpVelocity = 40.0f;
-            mGravity = 1.5f;
-            mJumpDelay = 5;
-        } else {
-            mJumpVelocity = 40.0f;
-            mGravity = 2.0f;
-            mJumpDelay = 10;
-        }
+        mJumpVelocity = ::sJumpSpeed;
+        mGravity = ::sJumpGravity;
+        mJumpDelay = ::sLandStepVs2;
     } else {
-        mJumpVelocity = 40.0f;
-        mGravity = 2.0f;
-
-        if (KoopaFunction::isKoopaAngry(mHost)) {
-            mMaxAttacks = 5;
-            mJumpDelay = 5;
-        } else {
+        if (KoopaFunction::isKoopaLv1(mHost)) {
             mMaxAttacks = 3;
-            mJumpDelay = 10;
+
+            if (KoopaFunction::isKoopaAngry(mHost)) {
+                mJumpVelocity = ::sJumpSpeed;
+                mGravity = ::sJumpGravity;
+                mJumpDelay = ::sLandStepVs3Angry;
+            } else {
+                mJumpVelocity = ::sJumpSpeedVs3;
+                mGravity = ::sJumpGravityVs3;
+                mJumpDelay = ::sLandStepVs2;
+            }
+        } else {
+            mJumpVelocity = ::sJumpSpeedVs3;
+            mGravity = ::sJumpGravityVs3;
+
+            if (KoopaFunction::isKoopaAngry(mHost)) {
+                mMaxAttacks = 5;
+                mJumpDelay = ::sLandStepVs3Angry;
+            } else {
+                mMaxAttacks = 3;
+                mJumpDelay = ::sLandStepVs3;
+            }
         }
     }
 
@@ -127,14 +143,18 @@ void KoopaStateAttackShockWave::exeJump() {
 
         MR::startSound(mHost, "SE_BM_KOOPA_JUMP");
 
-        mAttacks == 0 ? MR::setVelocityJump(mHost, 50.0f) : MR::setVelocityJump(mHost, mJumpVelocity);
+        if (mAttacks == 0) {
+            MR::setVelocityJump(mHost, ::sJumpSpeed1st);
+        } else {
+            MR::setVelocityJump(mHost, mJumpVelocity);
+        }
     }
 
     MR::addVelocityToGravity(mHost, mGravity);
 
     if (KoopaFunction::isKoopaVs3(mHost) && KoopaFunction::isKoopaLv3(mHost)) {
         Koopa* pKoopa = mHost;
-        MR::turnDirectionToPlayerDegree(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), 3.0f);
+        MR::turnDirectionToPlayerDegree(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), ::sJumpTurnSpeedVs3);
     }
 
     Koopa* pKoopa = mHost;

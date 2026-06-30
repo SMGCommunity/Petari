@@ -1,25 +1,7 @@
 #include "Game/Enemy/FireBall.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorShadowUtil.hpp"
-#include "Game/Util/Color.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/LightUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/MtxUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-#include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include "Game/Util.hpp"
 
 namespace NrvFireBall {
     NEW_NERVE(FireBallNrvThrow, FireBall, Throw);
@@ -134,7 +116,7 @@ void FireBall::setVelocityToPlayer(f32 param1) {
     stack_14.scale(120.0f, _90);
     stack_14.add(*MR::getPlayerPos());
     TVec3f a1;
-    JMathInlineVEC::PSVECSubtract2(&stack_14, &mPosition, &a1);
+    a1.sub(stack_14, mPosition);
     MR::normalize(&a1);
     mVelocity.scale(param1, a1);
 }

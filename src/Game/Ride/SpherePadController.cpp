@@ -7,6 +7,12 @@
 #include <JSystem/JGeometry/TUtil.hpp>
 #include <revolution/wpad.h>
 
+void SpherePadController_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
+
 SpherePadController::SpherePadController() : SphereController() {
 }
 

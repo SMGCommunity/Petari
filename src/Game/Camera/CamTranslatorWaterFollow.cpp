@@ -1,8 +1,7 @@
 #include "Game/Camera/CamTranslatorWaterFollow.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 
-CamTranslatorWaterFollow::CamTranslatorWaterFollow(CameraWaterFollow* pCamera) {
-    mCamera = pCamera;
+CamTranslatorWaterFollow::CamTranslatorWaterFollow(CameraWaterFollow* pCamera) : mCamera(pCamera) {
 }
 
 void CamTranslatorWaterFollow::setParam(const CameraParamChunk* pChunk) {

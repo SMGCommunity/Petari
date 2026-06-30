@@ -29,6 +29,12 @@ namespace {
     static const s32 sStepChanceEndAnim = 30;
 };  // namespace
 
+void TombSpiderActionBase_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
+
 TombSpiderActionBase::TombSpiderActionBase(TombSpider* pParent, const char* pName)
     : ActorStateBase< TombSpider >(pName, pParent), mParent(pParent), mRotateAccel(0.0f), mRotateSpeed(0.0f), mHitStep(-1), mWaitTime(0),
       mAttackTime(0), mEnergy(::sEnergyMax), mPosZ(0.0f), mInDemo(true) {

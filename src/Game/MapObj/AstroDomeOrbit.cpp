@@ -28,6 +28,9 @@ AstroDomeOrbit::AstroDomeOrbit() : LiveActor("天文ドームの軌道") {
 }
 
 void AstroDomeOrbit::init(const JMapInfoIter& rIter) {
+    // FIXME: Functor with const ptr template
+    // https://decomp.me/scratch/xqxnU
+
     MR::connectToScene(this, -1, -1, -1, MR::DrawType_AstroDomeOrbit);
     MR::invalidateClipping(this);
     MR::createAdaptorAndConnectToDrawBloomModel("天文ドーム軌道ブルーム描画", MR::Functor_Inline(this, &AstroDomeOrbit::drawBloom));
@@ -80,14 +83,10 @@ void AstroDomeOrbit::moveCoord() {
 }
 
 void AstroDomeOrbit::calcGalaxyPos(TVec3f* pPos) const {
-    f32 v4 = ((6.2831855f * calcRepeatedRotateCoord(_90) / 360.0f));
-    f32 v5 = MR::sin(v4);
-    f32 v6 = MR::cos(v4);
-    pPos->set< f32 >(v6, 0.0f, v5);
-    pPos->x *= _8C;
-    pPos->y *= _8C;
-    pPos->z *= _8C;
-    JMathInlineVEC::PSVECAdd(pPos, &SphereSelectorFunction::getHandleTrans(), pPos);
+    f32 v4 = TWO_PI * calcRepeatedRotateCoord(_90) / 360.0f;
+    pPos->set< f32 >(MR::cos(v4), 0.0f, MR::sin(v4));
+    pPos->mult(_8C);
+    pPos->add(*pPos, SphereSelectorFunction::getHandleTrans());
     TPos3f rotateMtx;
     SphereSelectorFunction::calcHandledRotateMtx(mRotation, &rotateMtx);
     rotateMtx.mult(*pPos, *pPos);
@@ -129,18 +128,16 @@ void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x82);
 
     for (s32 i = 0; i < 65; i++) {
-        f32 v10 = 6.2831855f * (i * 0.015625f);
-        f32 v11 = MR::sin(v10);
-        f32 v12 = MR::cos(v10);
+        f32 v10 = TWO_PI * i / 64;
 
         TVec3f v15;
-        v15.set< f32 >(v12, 0.0f, v11);
+        v15.set< f32 >(MR::cos(v10), 0.0f, MR::sin(v10));
         TVec3f v14;
         v14.scale(_8C - (0.5f * a2), v15);
-        JMathInlineVEC::PSVECAdd(&v14, &v16, &v14);
+        v14.add(v16);
         TVec3f v13;
         v13.scale(_8C + (0.5f * a2), v15);
-        JMathInlineVEC::PSVECAdd(&v13, &v16, &v13);
+        v13.add(v16);
 
         if (a3) {
             GXPosition3f32(v14.x, v14.y, v14.z);
@@ -167,14 +164,13 @@ void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x82);
 
     for (s32 i = 0; i < 65; i++) {
-        f32 v11 = 6.2831855f * (i * 0.015625f);
-        f32 v12 = MR::sin(v11);
-        f32 v13 = MR::cos(v11);
+        f32 v11 = TWO_PI * i / 64;
+
         TVec3f v17;
-        v17.set< f32 >(v13, 0.0f, v12);
+        v17.set< f32 >(MR::cos(v11), 0.0f, MR::sin(v11));
         TVec3f v16;
         v16.scale(v9, v17);
-        JMathInlineVEC::PSVECAdd(&v16, &v18, &v16);
+        v16.add(v18);
         TVec3f v15;
         v15.set< f32 >(v16);
 

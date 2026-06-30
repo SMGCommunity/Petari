@@ -27,6 +27,8 @@
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/RenderMode.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"

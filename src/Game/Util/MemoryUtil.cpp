@@ -3,6 +3,7 @@
 #include "Game/Util/MutexHolder.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
+#include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <mem.h>
 
 namespace MR {
@@ -41,7 +42,21 @@ namespace MR {
         return JKRHeap::sCurrentHeap;
     }
 
-    // MR::getAproposHeapForSceneArchive
+    JKRHeap* getAproposHeapForSceneArchive(f32 maxFreeSizeRate) {
+        JKRHeap* pFileCacheHeap = SingletonHolder< HeapMemoryWatcher >::get()->mFileCacheHeap;
+
+        if (pFileCacheHeap != nullptr) {
+            f32 freeSize = pFileCacheHeap->getTotalFreeSize();
+            f32 size = pFileCacheHeap->mSize;
+            f32 workFreeSizeRate = freeSize / size;
+
+            if (workFreeSizeRate < maxFreeSizeRate) {
+                return SingletonHolder< HeapMemoryWatcher >::get()->mSceneHeapGDDR;
+            }
+        }
+
+        return pFileCacheHeap;
+    }
 
     JKRExpHeap* getStationedHeapNapa() {
         return SingletonHolder< HeapMemoryWatcher >::get()->mStationedHeapNapa;
@@ -77,7 +92,10 @@ namespace MR {
         return JKRHeap::sCurrentHeap == pHeap;
     }
 
-    // MR::adjustHeapSize
+    void adjustHeapSize(JKRExpHeap* pHeap, const char* pParam2) {
+        pHeap->adjustSize();
+    }
+
     // MR::copyMemory
 
     void fillMemory(void* pDst, u8 ch, u32 size) {
@@ -112,7 +130,7 @@ namespace MR {
         return SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->alloc(size, 0);
     }
 
-    int freeFromWPadHeap(void* pPtr) {
+    u8 freeFromWPadHeap(void* pPtr) {
         SingletonHolder< HeapMemoryWatcher >::get()->mWPadHeap->free(pPtr);
 
         return 1;

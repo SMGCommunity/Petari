@@ -9,6 +9,8 @@ class PartsModel;
 
 class ChipBase : public LiveActor {
 public:
+    enum Type { Type_Blue = 0, Type_Yellow = 1 };
+
     ChipBase(const char*, s32, const char*);
 
     virtual ~ChipBase() {

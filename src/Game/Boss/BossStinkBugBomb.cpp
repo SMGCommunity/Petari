@@ -15,6 +15,10 @@ namespace NrvBossStinkBugBomb {
     NEW_NERVE(BossStinkBugBombNrvExplosion, BossStinkBugBomb, Explosion);
 };  // namespace NrvBossStinkBugBomb
 
+void BossStinkBugBomb_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 BossStinkBugBomb::BossStinkBugBomb(const char* pName) : LiveActor(pName), _8C(0.0f, 0.0f, 0.0f, 1.0f), _9C(0.0f, 0.0f, 0.0f) {
 }
 

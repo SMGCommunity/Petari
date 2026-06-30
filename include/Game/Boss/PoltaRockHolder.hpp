@@ -8,5 +8,5 @@ class PoltaRockHolder : public DeriveActorGroup< PoltaRock > {
 public:
     PoltaRockHolder();
 
-    virtual ~PoltaRockHolder();
+    virtual ~PoltaRockHolder() {};
 };

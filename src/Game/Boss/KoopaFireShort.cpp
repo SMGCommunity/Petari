@@ -13,6 +13,19 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+namespace {
+    // static const f32 sFlySpeedSlow = _;
+    static const f32 sFlySpeedNormal = 15.0f;
+    static const f32 sFlySpeedFast = 30.0f;
+    // static const s32 sFallStep = _;
+    // static const f32 sFallSpeed = _;
+    static const s32 sFlyStepNormal = 180;
+    static const s32 sFlyStepLong = 300;
+    // static const s32 sCurveLifeTime = _;
+    static const f32 sCurveRotateSpeed = 0.1f;
+    static const s32 sStepToValidSensor = 30;
+};  // namespace
+
 namespace NrvKoopaFireShort {
     NEW_NERVE(KoopaFireShortNrvFly, KoopaFireShort, Fly);
     NEW_NERVE(KoopaFireShortNrvDisappear, KoopaFireShort, Disappear);
@@ -73,9 +86,9 @@ void KoopaFireShort::appear() {
     MR::isNearZero(mVelocity) ? transform.getYDir(mVelocity) : MR::normalize(&mVelocity);
 
     f32 radius = 80.0f * mScale.x;
-    mVelocity.x *= 15.0f;
-    mVelocity.y *= 15.0f;
-    mVelocity.z *= 15.0f;
+    mVelocity.x *= ::sFlySpeedNormal;
+    mVelocity.y *= ::sFlySpeedNormal;
+    mVelocity.z *= ::sFlySpeedNormal;
 
     MR::setBinderRadius(this, radius);
     MR::setSensorRadius(this, "Attack", radius);
@@ -91,33 +104,37 @@ void KoopaFireShort::appear() {
 void KoopaFireShort::emitNormal() {
     appear();
 
-    mSpeed = 15.0f;
-    mDuration = 180;
+    mSpeed = ::sFlySpeedNormal;
+    mDuration = ::sFlyStepNormal;
     mOffset = 0.0f;
 }
 
 void KoopaFireShort::emitFast() {
     appear();
 
-    mSpeed = 30.0f;
-    mDuration = 180;
+    mSpeed = ::sFlySpeedFast;
+    mDuration = ::sFlyStepNormal;
     mOffset = 0.0f;
 }
 
 void KoopaFireShort::emitCurve() {
     appear();
 
-    mDuration = 300;
-    mSpeed = 30.0f;
+    mDuration = ::sFlyStepLong;
+    mSpeed = ::sFlySpeedFast;
 
-    MR::isPlayerLeftSide(this) ? mOffset = 0.1f : mOffset = -0.1f;
+    if (MR::isPlayerLeftSide(this)) {
+        mOffset = ::sCurveRotateSpeed;
+    } else {
+        mOffset = -::sCurveRotateSpeed;
+    }
 }
 
 void KoopaFireShort::emitLongTime() {
     appear();
 
-    mSpeed = 15.0f;
-    mDuration = 300;
+    mSpeed = ::sFlySpeedNormal;
+    mDuration = ::sFlyStepLong;
     mOffset = 0.0f;
 }
 
@@ -127,7 +144,7 @@ void KoopaFireShort::exeFly() {
         MR::startSound(this, "SE_OJ_KOOPA_BULLET_SHOOT");
     }
 
-    if (MR::isStep(this, 30)) {
+    if (MR::isStep(this, ::sStepToValidSensor)) {
         MR::validateHitSensors(this);
     }
 

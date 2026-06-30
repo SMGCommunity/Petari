@@ -4,8 +4,7 @@
 
 class CamTranslatorBlackHole : public CamTranslatorBase {
 public:
-    inline CamTranslatorBlackHole(CameraBlackHole* pCamera) {
-        mCamera = pCamera;
+    CamTranslatorBlackHole(CameraBlackHole* pCamera) : mCamera(pCamera) {
     }
 
     virtual void setParam(const CameraParamChunk*);

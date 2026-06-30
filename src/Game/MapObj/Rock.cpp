@@ -10,7 +10,6 @@
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -215,7 +214,7 @@ void Rock::control() {
     bool updateFront;
     bool hasMoved = false;
     TVec3f front;
-    front.subInline(mPosition, mPrevPos);
+    front.sub(mPosition, mPrevPos);
 
     if (!MR::isNearZero(front)) {
         MR::normalize(&front);
@@ -257,8 +256,8 @@ void Rock::control() {
     MR::vecKillElement(MR::getRailPos(this) - mPosition, mGravity, &mVelocity);
     TVec3f grav(mGravity);
     grav.scale(mGravityRate);
-    mFallVelocity.addInline(grav);
-    mVelocity.addInline(mFallVelocity);
+    mFallVelocity.add(grav);
+    mVelocity.add(mFallVelocity);
 
     if (30.0f < mVelocity.length()) {
         mVelocity.setLength(30.0f);
@@ -281,7 +280,7 @@ void Rock::calcAndSetBaseMtx() {
         }
 
         TVec3f pos;
-        pos.subInline(mPosition, up.scaleInline(mRadius));
+        pos.sub(mPosition, up.scaleInline(mRadius));
 
         if (MR::isSameDirection(up, mFront, 0.01f)) {
             MR::makeMtxUpNoSupportPos(&mBaseMtx, up, pos);

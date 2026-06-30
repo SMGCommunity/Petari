@@ -8,6 +8,7 @@ class Karikari : public LiveActor {
 public:
     Karikari(const char*);
 
+    virtual ~Karikari();
     virtual void init(const JMapInfoIter& rIter);
     virtual void kill();
     virtual void makeActorDead();

@@ -22,6 +22,14 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+void BombHei_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)2.0f;
+}
+
 namespace {
     static const s32 hStartBrkTime = 600;
     static const s32 hBrkRateUpTime = 120;
@@ -662,7 +670,7 @@ void BombHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (!mExplosionIgnoreCollision && MR::isExistCollisionParts(pReceiver->mHost) && MR::isValidCollisionParts(pReceiver->mHost)) {
             Triangle hitPoly;
 
-            if (!MR::getFirstPolyOnLineToMap(nullptr, &hitPoly, pSender->mPosition, pReceiver->mPosition.subOtherInline(pSender->mPosition))) {
+            if (!MR::getFirstPolyOnLineToMap(nullptr, &hitPoly, pSender->mPosition, pReceiver->mPosition - pSender->mPosition)) {
                 return;
             }
 
@@ -703,7 +711,8 @@ void BombHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
     if (MR::isSensorNpc(pReceiver) || MR::isSensorEnemy(pReceiver)) {
         if (isNerve(&NrvBombHei::HostTypeNrvThrown::sInstance)) {
-            TVec3f direction(pSender->mPosition.subOtherInline(pReceiver->mPosition));
+            TVec3f direction = pSender->mPosition;
+            direction -= pReceiver->mPosition;
             MR::normalizeOrZero(&direction);
             MR::calcReflectionVector(&mVelocity, direction, ::hThrownReboundRate, ::hThrownReboundMin);
         } else {

@@ -65,8 +65,7 @@ void Tico::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapIn
 }
 
 void Tico::initBase(s32 color) {
-    JMapInfoIter iter(0, -1);
-    initBase(iter, color);
+    initBase(JMapInfoIter(), color);
 }
 
 void Tico::initBase(const JMapInfoIter& rIter, s32 color) {
@@ -131,7 +130,8 @@ void Tico::initMessage(const JMapInfoIter& rIter, const char* pMsg) {
 }
 
 void Tico::initMessage(const char* pMsg) {
-    JMapInfoIter iter(0, -1);
+    JMapInfoIter iter;
+
     if (initTalkCtrl(iter, pMsg, TVec3f(0.0f, 120.0f, 0.0f), nullptr)) {
         TalkMessageCtrl* ctrl = mMsgCtrl;
         MR::registerKillFunc(mMsgCtrl, TalkMessageFunc< Tico >(this, &Tico::killFunc));
@@ -228,7 +228,7 @@ void Tico::control() {
     if (_178) {
         TVec3f trans;
         MR::extractMtxTrans(_178, &trans);
-        MR::requestPointLight(this, TVec3f(trans), _17C, 0.99864602f, -1);
+        MR::requestPointLight(this, trans, _17C, 0.99864602f, -1);
     }
 
     if (isNerve(_180)) {
@@ -238,9 +238,7 @@ void Tico::control() {
             MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
         }
 
-        TVec3f v14(mPosition);
-        JMathInlineVEC::PSVECSubtract(&v14, &_160, &v14);
-        f32 v11 = PSVECMag(&v14);
+        f32 v11 = (mPosition - _160).length();
         f32 v16 = (100.0f * MR::getLinerValueFromMinMax(v11, 1.0f, 11.0f, 0.2f, 1.0f));
         MR::startLevelSound(this, "SE_SM_LV_TICO_FLOAT", v16);
         _160.set< f32 >(mPosition);

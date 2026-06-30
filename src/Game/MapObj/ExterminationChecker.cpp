@@ -83,7 +83,7 @@ void ExterminationChecker::exeWatching() {
     for (s32 i = 0; i < mGroup->mObjectCount; i++) {
         LiveActor* cur = mGroup->getActor(i);
         if (!MR::isDead(cur)) {
-            mKeySwitchPos.setPS(mGroup->getActor(i)->mPosition);
+            mKeySwitchPos.set(mGroup->getActor(i)->mPosition);
             return;
         }
     }

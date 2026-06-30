@@ -22,6 +22,14 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void SurfRay_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
+}
+
 namespace NrvSurfRay {
     NEW_NERVE(SurfRayNrvWaitPlayer, SurfRay, WaitPlayer);
     NEW_NERVE(SurfRayNrvTurnToWait, SurfRay, TurnToWait);
@@ -787,7 +795,7 @@ void SurfRay::updateToWater() {
     }
 
     WaterInfo waterInfo;
-    TVec3f v(mPosition.addOperatorInLine(mGravity.scaleInline(20.0f)));
+    TVec3f v(mPosition + mGravity.scaleInline(20.0f));
 
     if (MR::getWaterAreaObj(&waterInfo, v)) {
         mShadowAlpha -= ::sShadowAlphaSpeed;
@@ -985,36 +993,36 @@ bool SurfRay::tryInWater() {
         return true;
     }
 
-    TVec3f v1(mFront.scaleInline(100.0f).addOperatorInLine(mPosition));
+    TVec3f v1(mFront.scaleInline(100.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v1)) {
         return true;
     }
 
-    TVec3f v2(mUp.scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v2(mUp.scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v2)) {
         return true;
     }
 
     TVec3f v3(mFront);
     MR::rotateVecDegree(&v3, -mGravity, -90.0f);
-    TVec3f v3a(v3.scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v3a(v3.scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v3a)) {
         return true;
     }
 
     TVec3f v4(mFront);
     MR::rotateVecDegree(&v4, -mGravity, 90.0f);
-    TVec3f v4a(v4.scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v4a(v4.scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v4a)) {
         return true;
     }
 
-    TVec3f v5(mSide.scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v5(mSide.scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v5)) {
         return true;
     }
 
-    TVec3f v6((-mSide).scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v6((-mSide).scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v6)) {
         return true;
     }

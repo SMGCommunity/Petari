@@ -20,8 +20,7 @@ namespace {
     NEW_NERVE(Manual2PNrvDisappear, Manual2P, Disappear);
 };  // namespace
 
-Manual2P::Manual2P(const char* pName)
-    : LayoutActor(pName, true), mPageIndex(0), _24(0), mLeftPaneCtrl(nullptr), mRightPaneCtrl(nullptr), _30(false), _31(false), mBackButton(nullptr) {
+Manual2P::Manual2P(const char* pName) : LayoutActor(pName, true), mPageIndex(), _24(), mLeftPaneCtrl(), mRightPaneCtrl(), _30(), _31(), mBackButton() {
 }
 
 void Manual2P::init(const JMapInfoIter& rIter) {
@@ -64,8 +63,8 @@ void Manual2P::appear() {
 
     MR::startAnim(this, "Picture", 1);
 
-    if (_24 > MR::getAnimCtrl(this, 1)->mEnd) {
-        _24 = MR::getAnimCtrl(this, 1)->mEnd;
+    if (_24 > MR::getAnimCtrl(this, 1)->getEnd()) {
+        _24 = MR::getAnimCtrl(this, 1)->getEnd();
     }
 }
 
@@ -162,11 +161,11 @@ void Manual2P::exeScrollRightAfter() {
 void Manual2P::exeScrollLeft() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "PageIn", 0);
-        MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->mFrame - 1.0f, 0);
-        MR::getAnimCtrl(this, 0)->mRate = -1.0f;
+        MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->getEnd() - 1.0f, 0);
+        MR::getAnimCtrl(this, 0)->setRate(-1.0f);
     }
 
-    if (MR::getAnimCtrl(this, 0)->mFrame + MR::getAnimCtrl(this, 0)->mRate <= 0.0f) {
+    if (MR::getAnimCtrl(this, 0)->getFrame() + MR::getAnimCtrl(this, 0)->getRate() <= 0.0f) {
         setNerve(&Manual2PNrvScrollLeftAfter::sInstance);
     }
 }
@@ -174,18 +173,18 @@ void Manual2P::exeScrollLeft() {
 void Manual2P::exeScrollLeftAfter() {
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "PageIn", 0);
-        MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->mFrame - 1.0f, 0);
-        MR::getAnimCtrl(this, 0)->mRate = -1.0f;
+        MR::setAnimFrame(this, MR::getAnimCtrl(this, 0)->getEnd() - 1.0f, 0);
+        MR::getAnimCtrl(this, 0)->setRate(-1.0f);
 
         mPageIndex--;
 
         reflectPageIndex();
     }
 
-    if (MR::getAnimCtrl(this, 0)->mFrame - MR::getAnimCtrl(this, 0)->mRate <= 0.0f) {
+    if (MR::getAnimCtrl(this, 0)->getFrame() - MR::getAnimCtrl(this, 0)->getRate() <= 0.0f) {
         mLeftPaneCtrl->_24 = true;
         mLeftPaneCtrl->forceToWait();
-        setNerve(&Manual2PNrvScrollLeftAfter::sInstance);
+        setNerve(&Manual2PNrvWait::sInstance);
     }
 }
 

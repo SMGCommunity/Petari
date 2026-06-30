@@ -10,6 +10,29 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
+struct OffsetPair {
+    /* 0x00 */ f32 x;
+    /* 0x04 */ f32 z;
+};
+
+namespace {
+    static const s32 sDefaultTimeToBreak = 300;
+    static const f32 sNormalHalfWidthX = 300.0f;
+    static const f32 sNormalHalfWidthZ = 200.0f;
+    static const f32 sHalfHeight = 100.0f;
+    static const f32 sBigHalfWidthX = 600.0f;
+    static const f32 sBigHalfWidthZ = 400.0f;
+    static const f32 sTurnHalfWidthX = 140.0f;
+    static const f32 sTurnHalfWidthZ = 300.0f;
+    static const s32 sDefaultStepWaitFall = 60;
+    static const s32 sDefaultStepFall = 240;
+    static const f32 sFallGravity = 0.03f;
+    static const f32 sFallSpeedMax = 1.5f;
+    // static const f32 sDebugRadius = _;
+    static const OffsetPair offset_table[] = {{0.0f, -1.0f}, {1.0f, -1.0f}, {1.0f, 0.0f},  {1.0f, 1.0f},
+                                              {0.0f, 1.0f},  {-1.0f, 1.0f}, {-1.0f, 0.0f}, {-1.0f, -1.0f}};
+};  // namespace
+
 namespace NrvKoopaBattleMapStair {
     NEW_NERVE(KoopaBattleMapStairNrvWaitSwitch, KoopaBattleMapStair, WaitSwitch);
     NEW_NERVE(KoopaBattleMapStairNrvWaitKoopaFire, KoopaBattleMapStair, WaitKoopaFire);
@@ -18,45 +41,30 @@ namespace NrvKoopaBattleMapStair {
     NEW_NERVE(KoopaBattleMapStairNrvDisappear, KoopaBattleMapStair, Disappear);
 };  // namespace NrvKoopaBattleMapStair
 
-struct OffsetPair {
-    f32 _0;
-    f32 _4;
-};
-
-KoopaBattleMapStair::KoopaBattleMapStair(const char* pName) : LiveActor(pName) {
-    mFireTimer = 300;
-    _90 = -1;
-    _94 = 0;
-    _98 = -1;
-    _9C = 0;
-    mType = 0;
-    mIsStairBig = false;
-    mIsStairTurn = false;
-    _A6 = 0;
-    _A8 = -1;
-    _AC.x = 0.0f;
-    _AC.y = 0.0f;
-    _AC.z = 0.0f;
-    _B8 = 60;
-    _BC = 240;
+KoopaBattleMapStair::KoopaBattleMapStair(const char* pName)
+    : LiveActor(pName), mTimeToBreak(::sDefaultTimeToBreak), mFireAttackStep(-1), mArg1(), mArg5(-1), mArg6(), mType(), mIsBig(), mIsTurn(), _A6(),
+      _A8(-1), _AC(0.0f, 0.0f, 0.0f), mWaitFallStep(::sDefaultStepWaitFall), mFallStep(::sDefaultStepFall) {
 }
 
 void KoopaBattleMapStair::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    MR::getJMapInfoArg0NoInit(rIter, &mFireTimer);
-    MR::getJMapInfoArg1NoInit(rIter, &_94);
+    MR::getJMapInfoArg0NoInit(rIter, &mTimeToBreak);
+    MR::getJMapInfoArg1NoInit(rIter, &mArg1);
     MR::getJMapInfoArg2NoInit(rIter, &mType);
-    MR::getJMapInfoArg3NoInit(rIter, &_B8);
-    MR::getJMapInfoArg4NoInit(rIter, &_BC);
-    MR::getJMapInfoArg5NoInit(rIter, &_98);
-    MR::getJMapInfoArg6NoInit(rIter, &_9C);
+    MR::getJMapInfoArg3NoInit(rIter, &mWaitFallStep);
+    MR::getJMapInfoArg4NoInit(rIter, &mFallStep);
+    MR::getJMapInfoArg5NoInit(rIter, &mArg5);
+    MR::getJMapInfoArg6NoInit(rIter, &mArg6);
+
     const char* objName = nullptr;
     MR::getObjectName(&objName, rIter);
+
     initModelManagerWithAnm(objName, nullptr, false);
+
     if (MR::isEqualString(objName, "KoopaBattleMapStairBig")) {
-        mIsStairBig = 1;
+        mIsBig = true;
     } else if (MR::isEqualString(objName, "KoopaBattleMapStairTurn")) {
-        mIsStairTurn = 1;
+        mIsTurn = true;
     }
 
     MR::connectToSceneMapObj(this);
@@ -67,7 +75,8 @@ void KoopaBattleMapStair::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     initNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitSwitch::sInstance);
     MR::needStageSwitchReadA(this, rIter);
-    if (mIsStairBig) {
+
+    if (mIsBig) {
         MR::setClippingTypeSphere(this, 800.0f);
     } else {
         MR::setClippingTypeSphere(this, 500.0f);
@@ -78,12 +87,12 @@ void KoopaBattleMapStair::init(const JMapInfoIter& rIter) {
 
 void KoopaBattleMapStair::initAfterPlacement() {
     if (!isTypeNoRequestFire()) {
-        _90 = KoopaFunction::registerBattleMapStair(this);
+        mFireAttackStep = KoopaFunction::registerBattleMapStair(this);
     }
 }
 
 bool KoopaBattleMapStair::isRequestAttackVs1() const {
-    if (isTypeNormal() && isNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitKoopaFire::sInstance) && MR::isStep(this, _90)) {
+    if (isTypeNormal() && isNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitKoopaFire::sInstance) && MR::isStep(this, mFireAttackStep)) {
         return true;
     }
 
@@ -91,12 +100,12 @@ bool KoopaBattleMapStair::isRequestAttackVs1() const {
 }
 
 s32 KoopaBattleMapStair::calcRemainTimeToBreak() const {
-    return mFireTimer - getNerveStep();
+    return mTimeToBreak - getNerveStep();
 }
 
 bool KoopaBattleMapStair::isRequestAttackVs3() const {
     if (!_A6 && isTypeNormal() && isNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitKoopaFire::sInstance)) {
-        if (MR::isStep(this, _90) || _90 < 0) {
+        if (MR::isStep(this, mFireAttackStep) || mFireAttackStep < 0) {
             return true;
         }
     }
@@ -105,56 +114,64 @@ bool KoopaBattleMapStair::isRequestAttackVs3() const {
 }
 
 namespace {
-    static OffsetPair offset_table[] = {{0.0f, -1.0f}, {1.0f, -1.0f}, {1.0f, 0.0f},  {1.0f, 1.0f},
-                                        {0.0f, 1.0f},  {-1.0f, 1.0f}, {-1.0f, 0.0f}, {-1.0f, -1.0f}};
-
-    void updateNearestPos(TVec3f* pPos, f32* pTable, const TVec3f& a3, const TVec3f& a4, s32 a5, s32 a6) {
-        if (a5 < 0) {
-            f32 dist = PSVECDistance(&a3, &a4);
-            if (dist > *pTable) {
-            } else {
+    void updateNearestPos(TVec3f* pPos, f32* pDist, const TVec3f& a3, const TVec3f& a4, s32 a5, s32 a6) {
+        if (a5 >= 0) {
+            if (a5 == a6) {
                 pPos->set(a3);
-                *pTable = dist;
             }
-        } else if (a5 == a6) {
+        } else {
+            f32 dist = a3.distance(a4);
+
+            if (dist > *pDist) {
+                return;
+            }
+
             pPos->set(a3);
+            *pDist = dist;
         }
     }
 };  // namespace
 
 f32 KoopaBattleMapStair::calcAndSetTargetPos(TVec3f* pPos, const TVec3f& a2) {
-    TVec3f v41, v40, v39;
-    MR::calcActorAxis(&v39, &v40, &v41, this);
-    TVec3f v38 = (v40 * 100) + mPosition;
-    f32 v20 = PSVECDistance(&v38, &a2);
+    TVec3f axisZ, axisY, axisX;
+    MR::calcActorAxis(&axisX, &axisY, &axisZ, this);
+    TVec3f v38 = (axisY * ::sHalfHeight) + mPosition;
+    f32 v20 = v38.distance(a2);
     pPos->set< f32 >(v38);
     s32 val;
-    if (mIsStairBig) {
-        val = _98;
-        for (s32 i = 0; i < 8; i++) {
-            TVec3f v31 = (v38 + (v39 * 600.0f) * offset_table[i]._0) + (v41 * 400.0f * offset_table[i]._4);
+
+    if (mIsBig) {
+        val = mArg5;
+
+        for (s32 i = 0; i < ARRAY_SIZE(offset_table); i++) {
+            TVec3f v31 = v38 + (axisX * ::sBigHalfWidthX * offset_table[i].x) + (axisZ * ::sBigHalfWidthZ * offset_table[i].z);
+
             ::updateNearestPos(pPos, &v20, v31, a2, val, i);
         }
-    } else if (mIsStairTurn) {
-        TVec3f v30 = v39 * 140.0f;
-        TVec3f tmp = v38 + (v41 * 300.0f);
-        TVec3f v27(tmp);
-        JMathInlineVEC::PSVECSubtract(&v27, &v30, &v27);
+    } else if (mIsTurn) {
+        TVec3f v30 = axisX * ::sTurnHalfWidthX;
+        TVec3f tmp = v38 + (axisZ * ::sTurnHalfWidthZ);
+        TVec3f v27 = tmp;
+        v27 -= v30;
+
         ::updateNearestPos(pPos, &v20, v27, a2, -1, -1);
     } else {
-        val = _98;
-        for (s32 i = 0; i < 8; i++) {
-            TVec3f v21 = (v38 + (v39 * 300.0f) * offset_table[i]._0) + (v41 * 200.0f * offset_table[i]._4);
+        val = mArg5;
+
+        for (s32 i = 0; i < ARRAY_SIZE(offset_table); i++) {
+            TVec3f v21 = v38 + (axisX * ::sNormalHalfWidthX * offset_table[i].x) + (axisZ * ::sNormalHalfWidthZ * offset_table[i].z);
+
             ::updateNearestPos(pPos, &v20, v21, a2, val, i);
         }
     }
 
     _AC.set< f32 >(*pPos);
+
     return v20;
 }
 
 f32 KoopaBattleMapStair::calcTimeRate() const {
-    return (f32)(getNerveStep() - _90) / (mFireTimer - _90);
+    return static_cast< f32 >(getNerveStep() - mFireAttackStep) / (mTimeToBreak - mFireAttackStep);
 }
 
 bool KoopaBattleMapStair::isBreak() const {
@@ -162,19 +179,19 @@ bool KoopaBattleMapStair::isBreak() const {
 }
 
 bool KoopaBattleMapStair::isTypeNormal() const {
-    return mType == 0;
+    return mType == Type_Normal;
 }
 
 bool KoopaBattleMapStair::isTypeDemoFar() const {
-    return mType == 2;
+    return mType == Type_DemoFar;
 }
 
 bool KoopaBattleMapStair::isTypeDemoNear() const {
-    return mType == 3;
+    return mType == Type_DemoNear;
 }
 
 bool KoopaBattleMapStair::isTypeNoRequestFire() const {
-    return mType == 1;
+    return mType == Type_NoRequestFire;
 }
 
 void KoopaBattleMapStair::exeWaitSwitch() {
@@ -189,7 +206,7 @@ void KoopaBattleMapStair::exeWaitSwitch() {
 }
 
 void KoopaBattleMapStair::exeWaitKoopaFire() {
-    if (MR::isStep(this, mFireTimer)) {
+    if (MR::isStep(this, mTimeToBreak)) {
         setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvWaitFall::sInstance);
     }
 }
@@ -201,8 +218,9 @@ void KoopaBattleMapStair::exeWaitFall() {
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_STAIR_BREAK");
-    if (MR::isStep(this, _B8)) {
-        mVelocity.x = mVelocity.y = mVelocity.z = 0.0f;
+
+    if (MR::isStep(this, mWaitFallStep)) {
+        mVelocity.zeroInline();
         setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvFall::sInstance);
     }
 }
@@ -213,10 +231,11 @@ void KoopaBattleMapStair::exeFall() {
         MR::startAllAnim(this, "Fall");
     }
 
-    MR::addVelocityToGravity(this, 0.03f);
-    MR::restrictVelocity(this, 1.5f);
+    MR::addVelocityToGravity(this, ::sFallGravity);
+    MR::restrictVelocity(this, ::sFallSpeedMax);
     MR::startLevelSound(this, "SE_OJ_LV_STAIR_BREAK");
-    if (MR::isStep(this, _BC)) {
+
+    if (MR::isStep(this, mFallStep)) {
         MR::startSound(this, "SE_OJ_STAIR_BREAK_END");
         setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvDisappear::sInstance);
     }
@@ -228,8 +247,9 @@ void KoopaBattleMapStair::exeDisappear() {
         MR::setBrkRate(this, 0.25f);
     }
 
-    MR::addVelocityToGravity(this, 0.03f);
-    MR::restrictVelocity(this, 1.5f);
+    MR::addVelocityToGravity(this, ::sFallGravity);
+    MR::restrictVelocity(this, ::sFallSpeedMax);
+
     if (MR::isBrkStopped(this)) {
         kill();
     }

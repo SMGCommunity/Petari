@@ -3,7 +3,7 @@
 
 SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(true), mData(nullptr) {
     if (pHeap == nullptr) {
-        pHeap = JKRHeap::sCurrentHeap;
+        pHeap = JKRGetCurrentHeap();
     }
 
     mHeap = pHeap;
@@ -11,6 +11,11 @@ SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(true), mData(nullptr) {
     mSoundHolder = new (pHeap, 0) SpkSoundHolder();
     SpkSpeakerCtrl::setup();
     SpkSpeakerCtrl::setMixingBuffer(mMixBuffer);
+}
+
+void DUMMY() {
+    // NOTE: JSUList<SpkSound> dtor is being emitted here, as well as JASGlobalInstance<SpkSystem>. Unsure as to exactly why
+    SpkSoundHolder dummy;
 }
 
 void SpkSystem::setResource(JKRArchive* pArchive, u16 tableOffset, u16 waveOffset) {

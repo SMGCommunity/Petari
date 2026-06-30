@@ -4,6 +4,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 
 namespace {

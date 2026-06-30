@@ -14,6 +14,11 @@ namespace {
     static const f32 sHipSensorPosOffset = -400.0f;
 };  // namespace
 
+void TombSpiderSensorCtrl_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 TombSpiderSensorCtrl::TombSpiderSensorCtrl(TombSpider* pOwner) : mParent(pOwner) {
 }
 

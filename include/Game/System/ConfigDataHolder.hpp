@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/System/BinaryDataChunkHolder.hpp"
+#include <revolution/os.h>
 
 class ConfigDataCreateChunk;
 class ConfigDataMii;

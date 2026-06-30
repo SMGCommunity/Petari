@@ -1,5 +1,4 @@
 #include "Game/Screen/StarPointerTarget.hpp"
-#include "Game/Camera/CameraContext.hpp"
 #include "Game/Screen/LayoutCoreUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
@@ -63,7 +62,7 @@ void StarPointerTarget::calcPosition(TVec3f* pWorldPos) const {
         pWorldPos->z += mMtx[2][0] * mOffset.x + mMtx[2][1] * mOffset.y + mMtx[2][2] * mOffset.z;
     } else {
         pWorldPos->set< f32 >(mPosition->x, mPosition->y, mPosition->z);
-        pWorldPos->addInline(mOffset);
+        pWorldPos->add(mOffset);
     }
 }
 

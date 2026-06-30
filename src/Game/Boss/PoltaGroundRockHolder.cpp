@@ -16,6 +16,3 @@ void PoltaGroundRockHolder::breakAll() {
         curGroundRock->requestBreak();
     }
 }
-
-PoltaGroundRockHolder::~PoltaGroundRockHolder() {
-}

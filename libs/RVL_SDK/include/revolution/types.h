@@ -80,6 +80,12 @@ typedef int BOOL;
 #define ATTRIBUTE_PACKED
 #endif
 
+#if __MWERKS__
+#define ATTRIBUTE_WEAK __attribute__((weak))
+#else
+#define ATTRIBUTE_WEAK
+#endif
+
 #ifndef TRUE
 #define TRUE 1
 #endif
@@ -95,7 +101,6 @@ typedef int BOOL;
 #define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
 
 #define ARRAY_SIZE(o) (s32)(sizeof(o) / sizeof(o[0]))
-#define ARRAY_SIZEU(o) (sizeof(o) / sizeof(o[0]))
 
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
 #define MIN(x, y) ((x) < (y) ? (x) : (y))

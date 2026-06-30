@@ -20,7 +20,3 @@ void HazeCube::init(const JMapInfoIter& rIter) {
 
 HazeCube::~HazeCube() {
 }
-
-const char* HazeCube::getManagerName() const {
-    return "HazeCube";
-}

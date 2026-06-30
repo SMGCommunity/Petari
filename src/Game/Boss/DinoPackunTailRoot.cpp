@@ -39,6 +39,3 @@ bool DinoPackunTailRoot::calcJointDirection(TPos3f* pOut, const JointControllerI
 void DinoPackunTailRoot::addNodeVelocity(const TVec3f& rVel) {
     return;
 }
-
-DinoPackunTailRoot::~DinoPackunTailRoot() {
-}

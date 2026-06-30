@@ -502,8 +502,7 @@ void DodoryuStateLv2::exeChaseMoreStart() {
         }
 
         TVec3f vel(toPlayer);
-        s16 bckFrames = MR::getBckCtrl(mHost)->mEnd;
-        vel.scale(1500.0f / bckFrames);
+        vel.scale(1500.0f / MR::getBckCtrl(mHost)->getEnd());
         mHost->mVelocity.set(vel);
     }
 

@@ -1,15 +1,29 @@
 #pragma once
 
-#include <revolution/types.h>
+#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/Array.hpp"
 
 class AreaObj;
-class JMapInfoIter;
 class LiveActor;
+class SleepController;
+class SwitchEventListener;
 
-class SleepControlFunc {
+class SleepControllerHolder : public NameObj {
 public:
-    static void addSleepControl(AreaObj*, const JMapInfoIter&);
-    static void addSleepControl(LiveActor*, const JMapInfoIter&);
+    /// @brief Creates a new `SleepControllerHolder`.
+    SleepControllerHolder();
 
-    static void initSyncSleepController();
+    virtual void movement();
+
+    void add(NameObj*, const JMapInfoIter&, SwitchEventListener*);
+    void initSync();
+
+private:
+    /* 0x0C */ MR::Vector< MR::FixedArray< SleepController*, 1024 > > mSleepControl;
 };
+
+namespace SleepControlFunc {
+    void initSyncSleepController();
+    void addSleepControl(AreaObj*, const JMapInfoIter&);
+    void addSleepControl(LiveActor*, const JMapInfoIter&);
+};  // namespace SleepControlFunc

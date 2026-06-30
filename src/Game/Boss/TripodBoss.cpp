@@ -199,13 +199,13 @@ void TripodBoss::initLegIKPlacement() {
 
         TVec3f j(0.0f, 1.0f, 0.0f);
 
-        TVec3f legDir = legDirShadow.multiplyOperatorInline(_610).translate(j.multiplyOperatorInline(_614));
+        TVec3f legDir = legDirShadow.multiplyOperatorInline(_610) + j.multiplyOperatorInline(_614);
 
         getLeg(rI)->setIKParam(_608, _60C, legDir, legDirShadow, j);
 
         TVec3f* center = &mMovableArea->mCenter;
 
-        TVec3f v23 = v29.translate(v27.multiplyOperatorInline(x)).translate(v28.multiplyOperatorInline(z)).translate(*center);
+        TVec3f v23 = v29 + v27.multiplyOperatorInline(x) + v28.multiplyOperatorInline(z) + *center;
 
         TVec3f v22;
         mMovableArea->calcLandingNormal(&v22, v23);

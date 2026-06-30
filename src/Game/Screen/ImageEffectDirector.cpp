@@ -141,16 +141,16 @@ void ImageEffectDirector::setState(ImageEffectState* pState) {
 
 void ImageEffectDirector::setBloomNormalParams(ImageEffectArea* pArea) {
     BloomArea* pBloomArea = static_cast< BloomArea* >(pArea);
-    mStateBloomNormal->setBloomIntensity(pBloomArea->_41);
-    mStateBloomNormal->setThreshold(pBloomArea->_40);
+    mStateBloomNormal->setBloomIntensity(pBloomArea->mIntensity);
+    mStateBloomNormal->setThreshold(pBloomArea->mThreshold);
 
-    if (pBloomArea->_44 >= 0) {
-        mStateBloomNormal->setIntensity1(pBloomArea->_44);
+    if (pBloomArea->mIntensity1 >= 0) {
+        mStateBloomNormal->setIntensity1(pBloomArea->mIntensity1);
     } else {
         mStateBloomNormal->setIntensity1Default();
     }
-    if (pBloomArea->_48 >= 0) {
-        mStateBloomNormal->setIntensity2(pBloomArea->_48);
+    if (pBloomArea->mIntensity2 >= 0) {
+        mStateBloomNormal->setIntensity2(pBloomArea->mIntensity2);
     } else {
         mStateBloomNormal->setIntensity2Default();
     }
@@ -174,8 +174,8 @@ void ImageEffectDirector::setBloomSimpleParams(ImageEffectArea* pArea) {
         break;
     }
 
-    mStateBloomSimple->setThreshold(pSimpleBloomArea->_44);
-    mStateBloomSimple->setIntensity(pSimpleBloomArea->_45 / 255.0f);
+    mStateBloomSimple->setThreshold(pSimpleBloomArea->mThreshold);
+    mStateBloomSimple->setIntensity(pSimpleBloomArea->mIntensity / 255.0f);
 }
 
 void ImageEffectDirector::setScreenBlurParams(ImageEffectArea* pArea) {

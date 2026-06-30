@@ -4,7 +4,7 @@
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
-DemoPositionController::DemoPositionController(const char* pName, const JMapInfoIter& rIter) : LiveActor("OSS_09_B"), pCameraInfo(nullptr) {
+DemoPositionController::DemoPositionController(const char* pName, const JMapInfoIter& rIter) : LiveActor("デモアクター位置"), pCameraInfo(nullptr) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm(pName, nullptr, false);
     pCameraInfo = new ActorCameraInfo(rIter);
@@ -29,7 +29,4 @@ void DemoPositionController::startDemo(const char* pBckName) {
 void DemoPositionController::endDemo(const char* pCameraName) {
     MR::endAnimCamera(this, pCameraInfo, pCameraName, -1, true);
     kill();
-}
-
-DemoPositionController::~DemoPositionController() {
 }

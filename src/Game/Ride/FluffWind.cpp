@@ -10,6 +10,12 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 
+void FluffWind_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace NrvFluffWindEffect {
     NEW_NERVE(FluffWindEffectNrvBrowWind, FluffWindEffect, BrowWind);
 };  // namespace NrvFluffWindEffect
@@ -122,7 +128,7 @@ void FluffWindHolder::calcWindInfo(const TVec3f& rPosition, TVec3f* pWindDirecti
         f32 distance = PSVECDistance(&nearestPos, &rPosition);
         if (distance < bestDistance) {
             bestDistance = distance;
-            bestDir.setPS2(railDir);
+            bestDir = railDir;
         }
     }
 

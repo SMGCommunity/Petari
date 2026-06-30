@@ -12,6 +12,12 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    // static const s32 sStepWaveAttack = _;
+    // static const f32 sModelRadius = _;
+    // static const f32 sShadowRadius = _;
+};  // namespace
+
 namespace NrvKoopaShockWave {
     NEW_NERVE(KoopaShockWaveNrvWaveAttack, KoopaShockWave, WaveAttack);
 };  // namespace NrvKoopaShockWave
@@ -103,10 +109,7 @@ void KoopaShockWave::exeWaveAttack() {
         MR::startAction(mShadow, "Spread");
         MR::startAction(mPartsModel, "Spread");
 
-        TVec3f& rCenterPos = KoopaFunction::getPlanetCenterPos(mKoopa);
-        TVec3f vec = mKoopa->mPosition;
-        vec.subInline(rCenterPos);
-        mUp.set(vec);
+        mUp.set(mKoopa->mPosition - KoopaFunction::getPlanetCenterPos(mKoopa));
         mFront.set(mKoopa->mFront);
         MR::normalizeOrZero(&mUp);
 

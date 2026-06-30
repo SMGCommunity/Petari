@@ -6,8 +6,44 @@
 #define FLAG_COMPLETE_ENDING_MARIO 0x2
 #define FLAG_COMPLETE_ENDING_LUIGI 0x4
 
-ConfigDataMisc::ConfigDataMisc() : mFlag(FLAG_LAST_LOADED_MARIO), mLastModified(0) {
+ConfigDataMisc::ConfigDataMisc() : mFlag(FLAG_LAST_LOADED_MARIO), mLastModified() {
     initializeData();
+}
+
+bool ConfigDataMisc::isLastLoadedMario() const {
+    return !((mFlag & FLAG_LAST_LOADED_MARIO) - 1);
+}
+
+void ConfigDataMisc::setLastLoadedMario(bool lastLoadedMario) {
+    if (lastLoadedMario) {
+        mFlag |= FLAG_LAST_LOADED_MARIO;
+    } else {
+        mFlag &= ~FLAG_LAST_LOADED_MARIO;
+    }
+}
+
+void ConfigDataMisc::onCompleteEndingMario() {
+    mFlag |= FLAG_COMPLETE_ENDING_MARIO;
+}
+
+void ConfigDataMisc::onCompleteEndingLuigi() {
+    mFlag |= FLAG_COMPLETE_ENDING_LUIGI;
+}
+
+bool ConfigDataMisc::isOnCompleteEndingMario() {
+    return (mFlag & FLAG_COMPLETE_ENDING_MARIO) != 0;
+}
+
+bool ConfigDataMisc::isOnCompleteEndingLuigi() {
+    return (mFlag & FLAG_COMPLETE_ENDING_LUIGI) != 0;
+}
+
+OSTime ConfigDataMisc::getLastModified() const {
+    return mLastModified;
+}
+
+void ConfigDataMisc::updateLastModified() {
+    mLastModified = OSGetTime();
 }
 
 u32 ConfigDataMisc::makeHeaderHashCode() const {
@@ -53,40 +89,4 @@ s32 ConfigDataMisc::deserialize(const u8* pBuffer, u32 size) {
 void ConfigDataMisc::initializeData() {
     mFlag = FLAG_LAST_LOADED_MARIO;
     mLastModified = 0;
-}
-
-bool ConfigDataMisc::isLastLoadedMario() const {
-    return !((mFlag & FLAG_LAST_LOADED_MARIO) - 1);
-}
-
-void ConfigDataMisc::setLastLoadedMario(bool lastLoadedMario) {
-    if (lastLoadedMario) {
-        mFlag |= FLAG_LAST_LOADED_MARIO;
-    } else {
-        mFlag &= ~FLAG_LAST_LOADED_MARIO;
-    }
-}
-
-void ConfigDataMisc::onCompleteEndingMario() {
-    mFlag |= FLAG_COMPLETE_ENDING_MARIO;
-}
-
-void ConfigDataMisc::onCompleteEndingLuigi() {
-    mFlag |= FLAG_COMPLETE_ENDING_LUIGI;
-}
-
-bool ConfigDataMisc::isOnCompleteEndingMario() {
-    return (mFlag & FLAG_COMPLETE_ENDING_MARIO) != 0;
-}
-
-bool ConfigDataMisc::isOnCompleteEndingLuigi() {
-    return (mFlag & FLAG_COMPLETE_ENDING_LUIGI) != 0;
-}
-
-OSTime ConfigDataMisc::getLastModified() const {
-    return mLastModified;
-}
-
-void ConfigDataMisc::updateLastModified() {
-    mLastModified = OSGetTime();
 }
