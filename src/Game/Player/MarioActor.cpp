@@ -736,13 +736,13 @@ void MarioActor::movement() {
         }
         if (getMovementStates().jumping && !mAlphaEnable) {
             if (stack_128.dot(getGravityVec()) < -40.0f) {
-                TVec3f stack_EC(mPosition.subOtherInline(getGravityVec().scaleInline(100.0f)));
+                TVec3f stack_EC(mPosition - (getGravityVec().scaleInline(100.0f)));
                 TVec3f stack_E0;
                 Triangle* pTmp = mMario->getTmpPolygon();
 
                 if (MR::getFirstPolyOnLineToMap(&stack_E0, pTmp, stack_EC, getGravityVec().scaleInline(200.f))) {
                     TVec3f stack_D4;
-                    if (MR::vecKillElement(stack_E0.subOtherInline(mPosition), getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts &&
+                    if (MR::vecKillElement(stack_E0 - (mPosition), getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts &&
                         !pTmp->mParts->_D4 && getMovementStates()._3E != 1) {
                         mPosition = stack_E0;
                         mMario->mPosition = mPosition;
@@ -764,14 +764,14 @@ void MarioActor::movement() {
                         }
                     }
                 }
-                if ((mMario->mShadowPos.subOtherInline(mPosition)).dot(getGravityVec()) < 0.0f) {
+                if ((mMario->mShadowPos - (mPosition)).dot(getGravityVec()) < 0.0f) {
                     bool eject = true;
                     CollisionParts* parts = mMario->_45C->mParts;
                     if (parts && !mMario->_45C->mParts->_D4) {
                         TVec3f stack_C8, stack_BC, stack_B0;
                         PSMTXMultVec(parts->mInvBaseMatrix.toMtxPtr(), &mMario->mShadowPos, &stack_C8);
                         PSMTXMultVec(parts->mPrevBaseMatrix.toMtxPtr(), &stack_C8, &stack_BC);
-                        stack_B0 = mMario->mShadowPos.subOtherInline(stack_BC);
+                        stack_B0 = mMario->mShadowPos - (stack_BC);
                         if (stack_B0.dot(stack_128) > 0.0f) {
                             eject = false;
                         }
@@ -987,7 +987,7 @@ void MarioActor::updateBehavior() {
 
 void MarioActor::updateBindRatio() {
     // FIXME: wrong stack
-    if (!_934 && !MR::isNearZero(_978.subOtherInline(_264))) {
+    if (!_934 && !MR::isNearZero(_978 - (_264))) {
         f32 mag = _978.length();
         TVec3f stack_38(_978);
         stack_38 -= _264;
@@ -1323,8 +1323,8 @@ void MarioActor::updateRealMtx() {
     TVec3f stack_44, stack_38;
     MR::extractMtxTrans(_D7C.toMtxPtr(), &stack_44);
     MR::extractMtxTrans(_DAC.toMtxPtr(), &stack_38);
-    _4B8 = stack_44.subOtherInline(stack_38);
-    _4C4 = stack_38.subOtherInline(stack_44);
+    _4B8 = stack_44 - (stack_38);
+    _4C4 = stack_38 - (stack_44);
     if (MR::normalizeOrZero(&_4B8)) {
         _4B8 = mMario->mHeadVec;
     }
@@ -2763,7 +2763,7 @@ void MarioActor::updateCameraInfo() {
         _F74 = true;
     }
 
-    if ((mCamPos.subOtherInline(MR::getCamPos())).length() > 500.0f) {
+    if ((mCamPos - MR::getCamPos()).length() > 500.0f) {
         _F74 = true;
     }
 
