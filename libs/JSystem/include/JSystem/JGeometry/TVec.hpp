@@ -454,6 +454,10 @@ namespace JGeometry {
             return ret;
         }
 
+        inline void lerp(const TVec3& a, const TVec3& b, f32 t) {
+            JMAVECLerp(&a, &b, this, t);
+        }
+
         TVec3 operator-() const;
 
         bool operator==(const TVec3& rVec) const {
