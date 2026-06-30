@@ -67,9 +67,8 @@ void ElectricPressureBullet::exeFly() {
         if (MR::isLessStep(this, 150)) {
             s32 v2 = getNerveStep();
             if (!(v2 % 5)) {
-                TVec3f* v1 = MR::getPlayerCenterPos();
                 TVec3f v3;
-                JMathInlineVEC::PSVECSubtract2(v1, &mPosition, &v3);
+                v3.sub(*MR::getPlayerCenterPos(), mPosition);
                 MR::normalize(&v3);
                 MR::turnVecToVecDegree(&_8C, _8C, v3, 4.0f, TVec3f(0, 1, 0));
                 mVelocity.scale(_9C, _8C);

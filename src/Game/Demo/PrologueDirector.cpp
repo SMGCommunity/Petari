@@ -31,6 +31,10 @@ namespace {
     static const s32 sGameStartWipeFrame = 30;
     static const s32 sGameStartFrame = 15;
     static const s32 sFallingStarStep = 130;
+
+    PrologueHolder* getPrologueHolder() {
+        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
+    }
 };  // namespace
 
 namespace {
@@ -66,7 +70,7 @@ void PrologueDirector::init(const JMapInfoIter& rIter) {
     makeActorDead();
 
     MR::createSceneObj(SceneObj_PrologueHolder);
-    MR::getPrologueHolder()->registerPrologueObj(this);
+    getPrologueHolder()->registerPrologueObj(this);
 }
 
 void PrologueDirector::initAfterPlacement() {
@@ -271,8 +275,7 @@ void PrologueDirector::createMarioPosDummyModel() {
     MR::invalidateClipping(mMarioPosDummyModel);
 
     mMarioPosDummyModel->kill();
-    // FIXME: Order of store instructions is swapped.
-    mMarioPosDummyModel->mPosition.set(0.0f, 0.0f, 0.0f);
+    mMarioPosDummyModel->mPosition.zeroInline();
 
     ActorCameraInfo cameraInfo = ActorCameraInfo();
 
@@ -306,10 +309,6 @@ void PrologueHolder::start() {
 }
 
 namespace MR {
-    PrologueHolder* getPrologueHolder() {
-        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
-    }
-
     void startPrologue() {
         getPrologueHolder()->start();
     }

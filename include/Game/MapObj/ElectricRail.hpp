@@ -11,7 +11,6 @@ class ElectricRail : public LiveActor {
 public:
     ElectricRail(const char*);
 
-    virtual ~ElectricRail();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void draw() const;

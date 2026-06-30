@@ -1,5 +1,8 @@
 #include "Game/LiveActor/ViewGroupCtrl.hpp"
+#include "Game/LiveActor/ClippingActorInfo.hpp"
+#include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/Util/Array.hpp"
+#include "Game/Util/JMapUtil.hpp"
 
 ViewGroupCtrl::ViewGroupCtrl() {
     mViewCubeMgr = nullptr;

@@ -1,12 +1,13 @@
 #include "Game/Speaker/SpkSpeakerCtrl.hpp"
 #include "Game/Speaker/SpkMixingBuffer.hpp"
 #include "Game/Speaker/SpkSound.hpp"
-#include "revolution/os/OSAlarm.h"
-#include "revolution/wenc.h"
+#include <JSystem/JAudio2/JASCriticalSection.hpp>
 #include <mem.h>
+#include <revolution/os/OSAlarm.h>
+#include <revolution/wenc.h>
 #include <revolution/wpad.h>
 
-OSAlarm sAlarm;
+OSAlarm sSpeakerAlarm;
 SpeakerInfo sSpeakerInfo[WPAD_MAX_CONTROLLERS];
 SpkSoundHandle sAdjustSoundHandle[WPAD_MAX_CONTROLLERS];
 SpkMixingBuffer* sMixingBuffer;
@@ -28,50 +29,42 @@ void SpkSpeakerCtrl::setup() {
         sSpeakerInfo[i].mIsConnected = false;
         sSpeakerInfo[i].mIsPlaying = false;
         sSpeakerInfo[i].mIsUpdated = true;
-        sSpeakerInfo[i]._23 = false;
+        sSpeakerInfo[i].mIsMuted = false;
         sSpeakerInfo[i].mState = SpeakerInfo::State_ENABLE;
-        sSpeakerInfo[i]._3C = 0x40;
-        sSpeakerInfo[i]._34 = 0;
-        sSpeakerInfo[i]._38 = 0;
+        sSpeakerInfo[i].mVolume = 64;
+        sSpeakerInfo[i].mRadioSensitivityTimer = 0;
+        sSpeakerInfo[i].mExtensionTimer = 0;
         SpkSpeakerCtrl::initReconnect(i);
         sSpeakerInfo[i].mUsingTimeOut = -1;
         memset(&sSpeakerInfo[i].mWENCInfo, 0, sizeof(WENCInfo));
     }
 
-    OSCreateAlarm(&sAlarm);
-    OSSetPeriodicAlarm(&sAlarm, OSGetTime(), OSNanosecondsToTicks(6666667), SpkSpeakerCtrl::updateSpeaker);
+    OSCreateAlarm(&sSpeakerAlarm);
+    OSSetPeriodicAlarm(&sSpeakerAlarm, OSGetTime(), OSNanosecondsToTicks(6666667), SpkSpeakerCtrl::updateSpeaker);
 }
 
 void SpkSpeakerCtrl::connect(s32 padChannel) {
-    // FIXME: regswap
-    // https://decomp.me/scratch/PPQPO
-
-    BOOL state = OSDisableInterrupts();
+    JASCriticalSection crit;
     sSpeakerInfo[padChannel].mIsConnected = true;
     sSpeakerInfo[padChannel].mIsPlaying = false;
     sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
     SpkSpeakerCtrl::initReconnect(padChannel);
     sSpeakerInfo[padChannel].mUsingTimeOut = -1;
     SpkSpeakerCtrl::setSpeakerOn(padChannel);
-    OSRestoreInterrupts(state);
 }
 
 void SpkSpeakerCtrl::disconnect(s32 padChannel) {
-    // FIXME: regswap
-    // https://decomp.me/scratch/X92eB
-
-    BOOL state = OSDisableInterrupts();
+    JASCriticalSection crit;
     sSpeakerInfo[padChannel].mIsConnected = false;
     sSpeakerInfo[padChannel].mIsPlaying = false;
     sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
     SpkSpeakerCtrl::setSpeakerOff(padChannel);
     SpkSpeakerCtrl::initReconnect(padChannel);
     sSpeakerInfo[padChannel].mUsingTimeOut = -1;
-    OSRestoreInterrupts(state);
 }
 
 void SpkSpeakerCtrl::setSpeakerOn(s32 padChannel) {
-    BOOL state = OSDisableInterrupts();
+    JASCriticalSection crit;
     // TODO: WPAD command magic numbers
     s32 err = WPADControlSpeaker(padChannel, 1, SpkSpeakerCtrl::setSpeakerOnCallback);
 
@@ -80,24 +73,20 @@ void SpkSpeakerCtrl::setSpeakerOn(s32 padChannel) {
     } else {
         sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
     }
-
-    OSRestoreInterrupts(state);
 }
 
 void SpkSpeakerCtrl::setSpeakerOnCallback(s32 padChannel, s32 err) {
-    BOOL state = OSDisableInterrupts();
+    JASCriticalSection crit;
     if (err == WPAD_ERR_NONE) {
         sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
         SpkSpeakerCtrl::setSpeakerPlay(padChannel);
     } else if (err == WPAD_ERR_TRANSFER) {
         sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ON;
     }
-
-    OSRestoreInterrupts(state);
 }
 
 void SpkSpeakerCtrl::setSpeakerPlay(s32 padChannel) {
-    BOOL state = OSDisableInterrupts();
+    JASCriticalSection crit;
     // TODO: WPAD command magic numbers
     s32 err = WPADControlSpeaker(padChannel, 4, SpkSpeakerCtrl::startPlayCallback);
 
@@ -106,12 +95,10 @@ void SpkSpeakerCtrl::setSpeakerPlay(s32 padChannel) {
     } else {
         sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
     }
-
-    OSRestoreInterrupts(state);
 }
 
 void SpkSpeakerCtrl::startPlayCallback(s32 padChannel, s32 err) {
-    BOOL enabled = OSDisableInterrupts();
+    JASCriticalSection crit;
 
     if (err == WPAD_ERR_NONE) {
         sSpeakerInfo[padChannel].mIsPlaying = true;
@@ -122,8 +109,6 @@ void SpkSpeakerCtrl::startPlayCallback(s32 padChannel, s32 err) {
     } else if (err == WPAD_ERR_TRANSFER) {
         sSpeakerInfo[padChannel].mState = SpeakerInfo::State_PLAY;
     }
-
-    OSRestoreInterrupts(enabled);
 }
 
 void SpkSpeakerCtrl::setSpeakerOff(s32 padChannel) {
@@ -215,35 +200,33 @@ void SpkSpeakerCtrl::updateSpeaker(OSAlarm*, OSContext*) {
             continue;
         }
 
-        if (inf._23) {
+        if (inf.mIsMuted) {
             continue;
         }
 
         if (sMixingBuffer->update(i)) {
             u32 flags = WENC_FLAG_USER_INFO;
 
-            if (!inf.mIsPlaying || sMixingBuffer == nullptr) {
-                continue;
-            }
+            if (inf.mIsPlaying && sMixingBuffer != nullptr) {
+                BOOL en = OSDisableInterrupts();
 
-            BOOL en = OSDisableInterrupts();
+                if (!WPADCanSendStreamData(i)) {
+                    OSRestoreInterrupts(en);
+                    continue;
+                }
 
-            if (!WPADCanSendStreamData(i)) {
+                if (inf.mIsUpdated) {
+                    flags = 0;
+                    inf.mIsUpdated = false;
+                }
+
+                const s16* samples = sMixingBuffer->getSamples(i);
+                u8 data[16];
+                WENCGetEncodeData(&inf.mWENCInfo, flags, samples, 40, data);
+                WPADSendStreamData(i, data, 20);
+
                 OSRestoreInterrupts(en);
-                continue;
             }
-
-            if (inf.mIsUpdated) {
-                flags = 0;
-                inf.mIsUpdated = false;
-            }
-
-            const s16* samples = sMixingBuffer->getSamples(i);
-            u8 data[16];
-            WENCGetEncodeData(&inf.mWENCInfo, flags, samples, 40, data);
-            WPADSendStreamData(i, data, 20);
-
-            OSRestoreInterrupts(en);
             continue;
         }
 

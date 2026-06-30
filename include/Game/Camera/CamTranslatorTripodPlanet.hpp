@@ -4,8 +4,7 @@
 
 class CamTranslatorTripodPlanet : public CamTranslatorBase {
 public:
-    inline CamTranslatorTripodPlanet(CameraTripodPlanet* pCamera) {
-        mCamera = pCamera;
+    CamTranslatorTripodPlanet(CameraTripodPlanet* pCamera) : mCamera(pCamera) {
     }
 
     virtual void setParam(const CameraParamChunk*);

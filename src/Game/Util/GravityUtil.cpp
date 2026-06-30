@@ -1,8 +1,9 @@
 #include "Game/Util/GravityUtil.hpp"
-#include "Game/Gravity.hpp"
+#include "Game/Gravity/GravityInfo.hpp"
+#include "Game/Gravity/PlanetGravity.hpp"
+#include "Game/Gravity/PlanetGravityManager.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include <cstring>
 
 namespace {

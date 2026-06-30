@@ -188,8 +188,7 @@ namespace MR {
     }
 
     inline f32 toRadian(f32 angle) {
-        f32 cnv = PI_180;
-        return angle * cnv;
+        return angle * PI_180;
     }
 
     /// @brief Computes the distance between two points.
@@ -403,6 +402,11 @@ namespace MR {
     template < typename T >
     T converge(T, T, T);
 
+    /// @brief Returns the value of pi (3.14159274f)
+    inline f32 pi() {
+        return PI;  // TODO: test if actually JGeometry::TUtil<f32>::PI();
+    }
+
     /// @brief Computes the cosine of a number, in radians.
     /// @param x The number of radians to evaluate.
     /// @return The ratio of the length of the adjacent to that of the hypotenuse.
@@ -421,7 +425,7 @@ namespace MR {
     /// @param x The number of radians to evaluate.
     /// @return The ratio of the length of the opposite to that of the adjacent.
     inline f32 tan(f32 x) {
-        return sin(x) / cos(x);
+        return JMASinRadian(x) / JMACosRadian(x);
     }
 
     /// @brief Computes the cosine of a number, in degrees.
@@ -442,7 +446,7 @@ namespace MR {
     /// @param x The number of degrees to evaluate.
     /// @return The ratio of the length of the opposite to that of the adjacent.
     inline f32 tanDegree(f32 x) {
-        return sinDegree(x) / cosDegree(x);
+        return JMASinDegree(x) / JMACosDegree(x);
     }
 
     /// @brief Compares two numbers for the smallest value.

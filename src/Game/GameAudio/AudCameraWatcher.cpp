@@ -2,6 +2,7 @@
 #include "Game/AudioLib/AudEffector.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -20,7 +21,7 @@ void AudCameraWatcher::playAtmosphereSE() {
 }
 
 void AudCameraWatcher::init(const JMapInfoIter& rIter) {
-    MR::connectToScene(this, 9, -1, -1, -1);
+    MR::connectToScene(this, MR::MovementType_AudCameraWatcher, -1, -1, -1);
 }
 
 void AudCameraWatcher::movement() {

@@ -422,7 +422,7 @@ DSError TRKTargetAddStopInfo(TRKBuffer* b) {
     CommandReply reply;
     int t;
 
-    memset(&reply, 0, 0x40);
+    TRK_memset(&reply, 0, 0x40);
     reply._00 = 0x40;
     reply.commandID.b = 0x90;
     reply.replyError.r = gTRKCPUState.Default.PC;
@@ -439,7 +439,7 @@ void TRKTargetAddExceptionInfo(TRKBuffer* b) {
     u32 local_54;
     CommandReply reply;
 
-    memset(&reply, 0, 0x40);
+    TRK_memset(&reply, 0, 0x40);
 
     reply._00 = 0x40;
     reply.commandID.b = 0x91;
@@ -517,8 +517,8 @@ DSError TRKTargetSingleStep(u32 count, BOOL stepOver) {
     if (stepOver) {
         error = DS_UnsupportedError;
     } else {
-        gTRKStepStatus.count = count;
         gTRKStepStatus.type = DSSTEP_IntoCount;
+        gTRKStepStatus.count = count;
         error = TRKTargetDoStep();
     }
 

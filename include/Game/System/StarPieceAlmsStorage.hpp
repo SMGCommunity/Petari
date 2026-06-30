@@ -21,9 +21,10 @@ public:
     virtual void initializeData();
     virtual s32 deserialize(const u8*, u32);
 
-    u16 getValue(int) const;
-    u32 getMaxValue(int) const;
+    s32 getValue(int) const;
+    s32 getMaxValue(int) const;
     void addValue(int, int);
 
-    /* 0x8 */ u16* mRequirements;
+private:
+    /* 0x8 */ u16* mValueArray;
 };

@@ -7,8 +7,6 @@ DotCamReader::~DotCamReader() {
 }
 
 DotCamReaderInBin::DotCamReaderInBin(const void* pData) : mVersion(0), _8(nullptr), mMapInfo() {
-    mMapIter.mInfo = nullptr;
-    mMapIter.mIndex = -1;
     init(pData);
 }
 

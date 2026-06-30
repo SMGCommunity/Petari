@@ -1,5 +1,8 @@
 #include "Game/System/GameEventFlagStorage.hpp"
+#include "Game/System/GameEventFlag.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
+#include "Game/Util/BitArray.hpp"
+#include "Game/Util/HashUtil.hpp"
 #include <JSystem/JSupport/JSUMemoryInputStream.hpp>
 #include <JSystem/JSupport/JSUMemoryOutputStream.hpp>
 

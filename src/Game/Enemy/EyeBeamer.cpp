@@ -13,7 +13,6 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -217,7 +216,8 @@ void EyeBeamer::calcAnim() {
     MR::preScaleMtx(_9C, TVec3f(one, temp, one));
 }
 
-void EyeBeamer::calcAndSetBaseMtx() {};
+void EyeBeamer::calcAndSetBaseMtx() {
+}
 
 void EyeBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isOnBeam() && MR::isSensorPlayer(pReceiver) && isInBeamRange(*MR::getPlayerPos())) {
@@ -365,5 +365,3 @@ bool EyeBeamer::isOnBeam() const {
 
     return false;
 }
-
-EyeBeamer::~EyeBeamer() {};

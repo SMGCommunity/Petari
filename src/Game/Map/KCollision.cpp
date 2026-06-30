@@ -155,11 +155,7 @@ s32 KCollisionServer::getTriangleNum() const {
 JMapInfoIter KCollisionServer::getAttributes(u32 index) const {
     KC_PrismData* prism = &mFile->mPrisms[1 + index];
 
-    JMapInfoIter iter;
-    iter.mInfo = mapInfo;
-    iter.mIndex = prism->mAttribute;
-
-    return iter;
+    return JMapInfoIter(mapInfo, prism->mAttribute);
 }
 
 // Register mismatch

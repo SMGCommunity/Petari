@@ -1,14 +1,13 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "revolution/types.h"
 
 class BombBirdBomb : public LiveActor {
 public:
-    BombBirdBomb(const char*);
+    /// @brief Creates a new `BombBirdBomb`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    BombBirdBomb(const char* pName);
 
-    virtual ~BombBirdBomb();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();
@@ -19,6 +18,7 @@ public:
 
     void hold(const TVec3f&);
     void start(const TVec3f&, const TVec3f&);
+
     void exeHold();
     void exeWait();
     void exeExplosion();

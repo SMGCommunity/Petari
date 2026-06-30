@@ -100,7 +100,7 @@ void MercatorRailMoveParts::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
 
     MR::addHitSensorMapObj(this, "body", 4, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::initCollisionParts(this, "body", getSensor("body"), nullptr);
+    MR::initCollisionParts(this, objName, getSensor("body"), nullptr);
 
     if (MR::useStageSwitchReadB(this, rIter)) {
         MR::listenStageSwitchOnOffB(this, MR::Functor(this, &MercatorRailMoveParts::startMove), MR::Functor(this, &MercatorRailMoveParts::endMove));
@@ -108,7 +108,7 @@ void MercatorRailMoveParts::init(const JMapInfoIter& rIter) {
 
     initRailRider(rIter);
     TVec3f what;
-    what.setPS(mPosition);
+    what = mPosition;
     mRailMover = MR::createMapPartsRailMoverForMercator(this, rIter, true);
     mRailMover->start();
     mRailRotator = new MapPartsRailRotator(this);

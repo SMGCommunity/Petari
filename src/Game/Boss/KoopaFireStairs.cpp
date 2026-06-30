@@ -12,6 +12,12 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
+namespace {
+    // static const f32 sFlyUpHeight = _;
+    static const f32 sFlyUpDirDegreeMax = 45.0f;
+    static const f32 sRotateSpeed = 15.0f;
+};  // namespace
+
 namespace NrvKoopaFireStairs {
     NEW_NERVE(KoopaFireStairsNrvFly, KoopaFireStairs, Fly);
     NEW_NERVE(KoopaFireStairsNrvBreak, KoopaFireStairs, Break);
@@ -83,9 +89,9 @@ void KoopaFireStairs::setInfo(const KoopaBattleMapStair* pStair, const TVec3f* a
         vec.cross(vec1, vec2);
 
         if (vec.dot(pStair->mGravity) > 0.0f) {
-            MR::rotateVecDegree(&_AC, *a2, MR::getRandom(0.0f, 45.0f));
+            MR::rotateVecDegree(&_AC, *a2, MR::getRandom(0.0f, ::sFlyUpDirDegreeMax));
         } else {
-            MR::rotateVecDegree(&_AC, *a2, MR::getRandom(-45.0f, 0.0f));
+            MR::rotateVecDegree(&_AC, *a2, MR::getRandom(-::sFlyUpDirDegreeMax, 0.0f));
         }
     }
 
@@ -130,7 +136,7 @@ void KoopaFireStairs::exeFly() {
             v11.scale(1.0f - rate);
             TVec3f v12(v11);
             v12.add(v10);
-            mPosition.setPS2(v12);
+            mPosition = v12;
 
             f32 v5 = (100.0f * mStair->calcTimeRate());
             f32 v6 = MR::sinDegree(v5);
@@ -151,7 +157,7 @@ void KoopaFireStairs::exeFly() {
             MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_METEOR");
         }
 
-        mRotation.x += 15.0f;
+        mRotation.x += ::sRotateSpeed;
         mRotation.x = MR::repeatDegree(mRotation.x);
     }
 }

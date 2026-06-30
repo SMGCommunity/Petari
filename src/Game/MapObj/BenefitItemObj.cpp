@@ -581,7 +581,6 @@ void BenefitItemObj::initEscape() {
     MR::startSound(this, "SE_OJ_KINOKO_1UP_RUN_START");
 }
 
-/*
 void BenefitItemObj::doEscape() {
     MR::startLevelSound(this, "SE_OJ_LV_KINOKO_1UP_RUN");
     bool cond = false;
@@ -590,7 +589,7 @@ void BenefitItemObj::doEscape() {
     }
 
     if (MR::isBindedGround(this)) {
-        f32 mag = PSVECMag(&_BC);
+        f32 mag = _BC.length();
         MR::vecKillElement(_BC, mGravity, &_BC);
         _BC.setLength(mag);
 
@@ -601,20 +600,19 @@ void BenefitItemObj::doEscape() {
             MR::vecKillElement(v22, mGravity, &v22);
             MR::normalizeOrZero(&v22);
             if (_BC.dot(v22) < 0.0f) {
-                _BC += MR::createVecAndScale(v22, 0.2f);
+                _BC += v22.scaleInline(0.2f);
                 _BC.x *= 1.1f;
                 _BC.y *= 1.1f;
                 _BC.z *= 1.1f;
-            }
-            else {
-                _BC += MR::createVecAndScale(v22, 0.01f);
+            } else {
+                _BC += v22.scaleInline(0.01f);
                 _BC.x *= 0.01f;
                 _BC.y *= 0.01f;
                 _BC.z *= 0.01f;
             }
         }
 
-        if (PSVECMag(&_BC) > 7.0f) {
+        if (_BC.length() > 7.0f) {
             _BC.setLength(7.0f);
         }
 
@@ -623,17 +621,16 @@ void BenefitItemObj::doEscape() {
             runBck("Land");
         }
 
-        _C8 = MR::createVecAndScale(mGravity, 5.0f);
+        _C8 = mGravity.scaleInline(5.0f);
         runEfx("Move");
-    }
-    else {
+    } else {
         _E5 = 1;
         _BC.x *= 0.95f;
         _BC.y *= 0.95f;
         _BC.z *= 0.95f;
-        _C8 += MR::createVecAndScale(mGravity, 1.0f);
+        _C8 += mGravity.scaleInline(1.0f);
 
-        if (PSVECMag(&_C8) > 20.0f) {
+        if (_C8.length() > 20.0f) {
             _C8.setLength(20.0f);
         }
 
@@ -643,12 +640,12 @@ void BenefitItemObj::doEscape() {
     if (MR::isBindedWall(this) && !_E5) {
         if (MR::getWallNormal(this)->dot(mGravity) < 0.0f) {
             f32 scalar = MR::vecKillElement(_BC, *MR::getWallNormal(this), &_BC);
-            _BC += -*MR::getWallNormal(this) % scalar;
-            _C8 += -mGravity % 20.0f;
+            _BC += (-*MR::getWallNormal(this)).scaleInline(scalar);
+            _C8 += (-mGravity).scaleInline(20.0f);
             _E5 = 1;
         }
     }
-}*/
+}
 
 void BenefitItemObj::exeEscape() {
     if (MR::isFirstStep(this)) {
@@ -661,20 +658,15 @@ void BenefitItemObj::exeEscape() {
 
     if (_B0) {
         MR::showModel(this);
-        s16 v1 = _B0;
-        _B0 = v1 - 1;
-        s16 v2 = _B8;
+        _B0--;
 
-        if (v2) {
+        if (_B8 != 0) {
             _B8--;
             MR::hideModel(this);
         }
 
-        if (_B6) {
-            s16 v3 = _B6 - 1;
-            _B6--;
-
-            if ((s16)v3) {
+        if (_B6 != 0) {
+            if (--_B6 == 0) {
                 _B6 = _B2;
                 _B8 = _B4;
             }
@@ -693,7 +685,7 @@ void BenefitItemObj::exeEscape() {
             _B8 = 4;
         }
 
-        if (!_B0) {
+        if (_B0 == 0) {
             runEfx("Vanish");
             makeActorDead();
         }

@@ -6,7 +6,6 @@ class Air : public LiveActor {
 public:
     Air(const char*);
 
-    virtual ~Air();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void initModel(const char*);
@@ -24,34 +23,28 @@ public:
     f32 mDistance;  // 0x90
 };
 
-class ProjectionMapAir : public Air {
-public:
-    ProjectionMapAir(const char*);
-
-    virtual ~ProjectionMapAir();
-    virtual void initModel(const char*);
-};
-
 class AirFar100m : public Air {
 public:
     AirFar100m(const char*);
 
-    virtual ~AirFar100m();
     virtual void setFarClipping();
+};
+
+class ProjectionMapAir : public Air {
+public:
+    ProjectionMapAir(const char*);
+
+    virtual void initModel(const char*);
 };
 
 class PriorDrawAir : public Air {
 public:
     PriorDrawAir(const char*);
-
-    virtual ~PriorDrawAir();
 };
 
 class PriorDrawAirHolder : public NameObj {
 public:
     PriorDrawAirHolder();
-
-    virtual ~PriorDrawAirHolder();
 
     void add(PriorDrawAir*);
     bool isExistValidDrawAir() const;

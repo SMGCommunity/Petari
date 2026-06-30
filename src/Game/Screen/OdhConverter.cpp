@@ -2,13 +2,12 @@
 #include "Game/NameObj/NameObjAdaptor.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Screen/odh.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
-
-extern "C" u32 ODHEncodeRGB565(u8*, u8*, int, int, u32, int, u8*);
 
 namespace {
     const u32 cCaptureWidth = 488;

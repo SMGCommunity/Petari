@@ -124,7 +124,8 @@ void OceanRingPipe::initPoints() {
                 MR::calcRailPosAtCoord(&railPos, this, MR::repeat(MR::getRailCoord(this) + 300.0f, 0.0f, MR::getRailTotalLength(this)));
                 v3.add(railPos);
 
-                v1.cross(-grav, *v2.subInline(v3));
+                v2.sub(v3);
+                v1.cross(-grav, v2);
                 MR::normalize(&v1);
             }
         }

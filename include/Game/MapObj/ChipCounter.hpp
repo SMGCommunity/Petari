@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/MapObj/CollectCounter.hpp"
 #include "Game/Screen/LayoutActor.hpp"
+
+class CollectCounter;
 
 class ChipCounter : public LayoutActor {
 public:

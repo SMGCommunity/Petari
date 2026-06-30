@@ -1,7 +1,12 @@
 #pragma once
 
-#include "Game/LiveActor/ClippingActorInfo.hpp"
-#include "Game/LiveActor/LodCtrl.hpp"
+#include <revolution/types.h>
+
+class AreaObjMgr;
+class ClippingActorInfo;
+class ClippingActorInfoList;
+class JMapInfoIter;
+class LodCtrl;
 
 struct ViewGroupCtrlDataEntry {
     bool _0;

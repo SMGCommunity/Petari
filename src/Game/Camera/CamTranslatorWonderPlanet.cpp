@@ -1,8 +1,7 @@
 #include "Game/Camera/CamTranslatorWonderPlanet.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 
-CamTranslatorWonderPlanet::CamTranslatorWonderPlanet(CameraWonderPlanet* pCamera) {
-    mCamera = pCamera;
+CamTranslatorWonderPlanet::CamTranslatorWonderPlanet(CameraWonderPlanet* pCamera) : mCamera(pCamera) {
 }
 
 void CamTranslatorWonderPlanet::setParam(const CameraParamChunk* pChunk) {

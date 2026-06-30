@@ -43,6 +43,7 @@ public:
     s32 getPowerStarNumOwned(const char*) const;
     s32 calcCurrentPowerStarNum() const;
     GameDataSomeScenarioAccessor makeGalaxyScenarioAccessor(const char*, s32);
+    GameDataSomeScenarioAccessor makeGalaxyScenarioAccessor(const char*, s32) const;
     bool isOnGalaxyScenarioFlagAlreadyVisited(const char*, s32) const;
     void onGalaxyScenarioFlagAlreadyVisited(const char*, s32);
     bool isAppearGalaxy(const char*) const;

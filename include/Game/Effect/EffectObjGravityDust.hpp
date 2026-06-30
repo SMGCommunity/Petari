@@ -7,13 +7,18 @@ class GravityDustParticleCallBack;
 class EffectObjGravityDust : public SimpleEffectObj {
 public:
     EffectObjGravityDust(const char*);
+
     virtual ~EffectObjGravityDust();
     virtual void init(const JMapInfoIter& rIter);
     virtual void endClipped();
     virtual f32 getClippingRadius() const;
-    virtual f32 getFarClipDistance() const;
+    virtual f32 getFarClipDistance() const {
+        return 50.0f;
+    }
     virtual TVec3f* getClippingCenterOffset() const;
-    virtual bool isSyncClipping() const;
+    virtual bool isSyncClipping() const {
+        return true;
+    }
 
 private:
     GravityDustParticleCallBack* _9C;

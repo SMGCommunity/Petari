@@ -9,6 +9,13 @@
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
+void WalkerStateStagger_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+}
+
 namespace {
     WalkerStateStaggerParam sDefaultStaggerParam;
 };  // namespace

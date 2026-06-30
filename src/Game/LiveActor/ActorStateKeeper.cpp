@@ -12,6 +12,14 @@ ActorStateKeeper::ActorStateKeeper(int capacity) : mStatesCapacity(capacity), mL
     }
 }
 
+void ActorStateKeeper::addState(ActorStateBaseInterface* pInterface, const Nerve* pNerve, const char* pName) {
+    State& e = mStates[mLength];
+    e.mInterface = pInterface;
+    e.mNerve = pNerve;
+    e.mName = pName;
+    mLength += 1;
+}
+
 bool ActorStateKeeper::updateCurrentState() {
     return (!mCurrentState) ? false : (mCurrentState->mInterface)->update();
 }
@@ -35,14 +43,6 @@ void ActorStateKeeper::endState(const Nerve* pNerve) {
             interface->kill();
         }
     }
-}
-
-void ActorStateKeeper::addState(ActorStateBaseInterface* pInterface, const Nerve* pNerve, const char* pName) {
-    State& e = mStates[mLength];
-    e.mInterface = pInterface;
-    e.mNerve = pNerve;
-    e.mName = pName;
-    mLength += 1;
 }
 
 ActorStateKeeper::State* ActorStateKeeper::findStateInfo(const Nerve* pNerve) {

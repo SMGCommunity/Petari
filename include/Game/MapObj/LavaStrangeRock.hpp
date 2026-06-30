@@ -8,6 +8,7 @@ class LavaStrangeRock : public LiveActor {
 public:
     LavaStrangeRock(const char*);
 
+    virtual ~LavaStrangeRock();
     virtual void init(const JMapInfoIter&);
     virtual void control();
 

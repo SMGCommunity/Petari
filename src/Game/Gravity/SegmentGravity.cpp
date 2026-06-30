@@ -1,6 +1,15 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
 #include <JSystem/JMath/JMATrigonometric.hpp>
+
+void SegmentGravity_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    f32 f3 = JGeometry::TUtil< f32 >::epsilon();
+    (void)0.5f;
+    (void)-1.0f;
+}
 
 SegmentGravity::SegmentGravity()
     : PlanetGravity(), mSideVector(1, 0, 0), mOppositeSideVecOrtho(1, 0, 0), mWorldOppositeSideVecOrtho(1, 0, 0), mAxis(0, 0, 0) {
@@ -60,6 +69,36 @@ bool SegmentGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVe
     return true;
 }
 
+void SegmentGravity::updateMtx(const TPos3f& rMtx) {
+    for (s32 i = 0; i < 2; i++) {
+        rMtx.mult(mGravityPoints[i], mWorldGravityPoints[i]);
+    }
+    rMtx.mult33Inline(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
+    mAxis = mWorldGravityPoints[1] - mWorldGravityPoints[0];
+    MR::separateScalarAndDirection(&mAxisLength, &mAxis, mAxis);
+}
+
+void SegmentGravity::setGravityPoint(u32 index, const TVec3f& rGravityPoint) {
+    mGravityPoints[index != 0] = rGravityPoint;
+    updateLocalParam();
+}
+
+void SegmentGravity::setSideVector(const TVec3f& rSideVec) {
+    mSideVector = rSideVec;
+    MR::normalizeOrZero(&mSideVector);
+    updateLocalParam();
+}
+
+void SegmentGravity::setValidSideDegree(f32 val) {
+    mValidSideDegree = val;
+    ;
+    updateLocalParam();
+}
+
+void SegmentGravity::setEdgeValid(u32 index, bool val) {
+    mEdges[index != 0] = val;
+}
+
 void SegmentGravity::updateLocalParam() {
     TRot3f rot;
 
@@ -92,34 +131,4 @@ void SegmentGravity::updateLocalParam() {
     if (!artifact) {
         rot.mult(mOppositeSideVecOrtho, mOppositeSideVecOrtho);
     }
-}
-
-void SegmentGravity::setGravityPoint(u32 index, const TVec3f& rGravityPoint) {
-    mGravityPoints[index != 0] = rGravityPoint;
-    updateLocalParam();
-}
-
-void SegmentGravity::setSideVector(const TVec3f& rSideVec) {
-    mSideVector = rSideVec;
-    MR::normalizeOrZero(&mSideVector);
-    updateLocalParam();
-}
-
-void SegmentGravity::setValidSideDegree(f32 val) {
-    mValidSideDegree = val;
-    ;
-    updateLocalParam();
-}
-
-void SegmentGravity::setEdgeValid(u32 index, bool val) {
-    mEdges[index != 0] = val;
-}
-
-void SegmentGravity::updateMtx(const TPos3f& rMtx) {
-    for (s32 i = 0; i < 2; i++) {
-        rMtx.mult(mGravityPoints[i], mWorldGravityPoints[i]);
-    }
-    rMtx.mult33Inline(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
-    mAxis = mWorldGravityPoints[1] - mWorldGravityPoints[0];
-    MR::separateScalarAndDirection(&mAxisLength, &mAxis, mAxis);
 }

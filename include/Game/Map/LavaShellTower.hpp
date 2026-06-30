@@ -7,7 +7,7 @@ public:
     LavaShellTower(const char*);
 
     virtual void init(const JMapInfoIter&);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
+    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {};
 
     void exeWait();
     void exeDemo();

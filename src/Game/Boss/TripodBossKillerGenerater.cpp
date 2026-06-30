@@ -16,6 +16,10 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void TripodBossKillerGenerater_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace NrvTripodBossKillerGenerater {
     NEW_NERVE(TripodBossKillerGeneraterNrvNonActive, TripodBossKillerGenerater, NonActive);
     NEW_NERVE(TripodBossKillerGeneraterNrvHide, TripodBossKillerGenerater, Hide);

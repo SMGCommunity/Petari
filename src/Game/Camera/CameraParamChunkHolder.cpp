@@ -10,6 +10,12 @@
 
 #define CHUNK_CAPACITY 0x400
 
+void CameraParamChunkHolder_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
 CameraParamChunkHolder::CameraParamChunkHolder(CameraHolder* pCameraHolder, const char* pName) : NameObj(pName) {
     mCameraHolder = pCameraHolder;
     mChunkCapacity = CHUNK_CAPACITY;

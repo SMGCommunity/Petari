@@ -1,4 +1,5 @@
 #include "Game/Scene/PlacementInfoOrdered.hpp"
+#include "Game/Util/MemoryUtil.hpp"
 
 namespace {
     CreationFuncPtr getCreator(const PlacementInfoOrdered::Identifier&);

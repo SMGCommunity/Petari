@@ -1,3 +1,4 @@
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/AreaObj/AreaObjContainer.hpp"
 #include "Game/Boss/BossAccessor.hpp"
 #include "Game/Boss/SkeletalFishBabyRailHolder.hpp"
@@ -9,12 +10,12 @@
 #include "Game/Demo/PrologueDirector.hpp"
 #include "Game/Effect/EffectSystem.hpp"
 #include "Game/Enemy/BegomanBase.hpp"
-// #include "Game/Enemy/KabokuriFireHolder.hpp"
+#include "Game/Enemy/KabokuriFireHolder.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 #include "Game/Enemy/KarikariDirector.hpp"
-// #include "Game/Enemy/TakoHeiInkHolder.hpp"
-// #include "Game/GameAudio/AudBgmConductor.hpp"
-// #include "Game/GameAudio/AudCameraWatcher.hpp"
+#include "Game/Enemy/TakoHeiInkHolder.hpp"
+#include "Game/GameAudio/AudBgmConductor.hpp"
+#include "Game/GameAudio/AudCameraWatcher.hpp"
 #include "Game/GameAudio/AudEffectDirector.hpp"
 #include "Game/Gravity/PlanetGravityManager.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
@@ -22,7 +23,6 @@
 #include "Game/LiveActor/LiveActorGroupArray.hpp"
 #include "Game/LiveActor/MessageSensorHolder.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/SensorHitChecker.hpp"
 #include "Game/LiveActor/ShadowController.hpp"
 #include "Game/LiveActor/ShadowSurfaceDrawer.hpp"
@@ -32,7 +32,7 @@
 #include "Game/Map/CollisionDirector.hpp"
 #include "Game/Map/LightDirector.hpp"
 #include "Game/Map/NamePosHolder.hpp"
-// #include "Game/Map/OceanHomeMapCtrl.hpp"
+#include "Game/Map/OceanHomeMapCtrl.hpp"
 #include "Game/Map/PlanetMapCreator.hpp"
 #include "Game/Map/QuakeEffectGenerator.hpp"
 #include "Game/Map/RaceManager.hpp"
@@ -42,7 +42,7 @@
 #include "Game/Map/SunshadeMapHolder.hpp"
 #include "Game/Map/SwitchWatcherHolder.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
-// #include "Game/Map/WaterPlant.hpp"
+#include "Game/Map/WaterPlant.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
 #include "Game/MapObj/ArrowSwitchMultiHolder.hpp"
 #include "Game/MapObj/BigBubbleHolder.hpp"
@@ -50,7 +50,7 @@
 #include "Game/MapObj/ChipHolder.hpp"
 #include "Game/MapObj/ClipAreaDropHolder.hpp"
 #include "Game/MapObj/ClipAreaHolder.hpp"
-// #include "Game/MapObj/ClipFieldFillDraw.hpp"
+#include "Game/MapObj/ClipFieldFillDraw.hpp"
 #include "Game/MapObj/CoinHolder.hpp"
 #include "Game/MapObj/CoinRotater.hpp"
 #include "Game/MapObj/EarthenPipe.hpp"
@@ -70,15 +70,14 @@
 #include "Game/NPC/EventDirector.hpp"
 #include "Game/NPC/MiiFaceIconHolder.hpp"
 #include "Game/NPC/MiiFacePartsHolder.hpp"
-// #include "Game/NPC/NPCDirector.hpp"
+#include "Game/NPC/NPCDirector.hpp"
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/NameObj/MovementOnOffGroupHolder.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
 #include "Game/NameObj/NameObjGroup.hpp"
 #include "Game/Player/GroupChecker.hpp"
 #include "Game/Player/MarioHolder.hpp"
-// #include "Game/Player/PlayerEvent.hpp"
+#include "Game/Player/PlayerEvent.hpp"
 #include "Game/Ride/FluffWind.hpp"
 #include "Game/Ride/PlantLeaf.hpp"
 #include "Game/Ride/PlantStalk.hpp"
@@ -87,7 +86,6 @@
 #include "Game/Scene/PlacementStateChecker.hpp"
 #include "Game/Scene/SceneDataInitializer.hpp"
 #include "Game/Scene/SceneNameObjMovementController.hpp"
-#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Scene/ScenePlayingResult.hpp"
 #include "Game/Scene/StageDataHolder.hpp"
 #include "Game/Scene/StopSceneController.hpp"
@@ -116,9 +114,9 @@
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
-// #include "Game/Util/FurCtrl.hpp"
+#include "Game/Util/FurCtrl.hpp"
 #include "Game/Util/SceneUtil.hpp"
-// #include "Game/Util/ShareUtil.hpp"
+#include "Game/Util/ShareUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 
 SceneObjHolder::SceneObjHolder() {
@@ -177,8 +175,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_SwitchWatcherHolder:
         return new SwitchWatcherHolder();
     case SceneObj_SleepControllerHolder:
-        // return new SleepControllerHolder();
-        return nullptr;
+        return new SleepControllerHolder();
     case SceneObj_AreaObjContainer:
         return new AreaObjContainer("エリアオブジェクトコンテナ管理");
     case SceneObj_LiveActorGroupArray:
@@ -188,13 +185,11 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_CaptureScreenActor:
         return new CaptureScreenActor(MR::DrawType_CaptureScreenIndirect, "Indirect");
     case SceneObj_AudCameraWatcher:
-        // return new AudCameraWatcher();
-        return nullptr;
+        return new AudCameraWatcher();
     case SceneObj_AudEffectDirector:
         return new AudEffectDirector();
     case SceneObj_AudBgmConductor:
-        // return new AudBgmConductor();
-        return nullptr;
+        return new AudBgmConductor();
     case SceneObj_MarioHolder:
         return new MarioHolder();
     case SceneObj_MirrorCamera:
@@ -206,8 +201,7 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_TalkDirector:
         return new TalkDirector("会話ディレクター");
     case SceneObj_EventSequencer:
-        // return new EventSequencer();
-        return nullptr;
+        return new EventSequencer();
     case SceneObj_StopSceneController:
         return new StopSceneController();
     case SceneObj_SceneNameObjMovementController:
@@ -231,22 +225,19 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_LensFlareDirector:
         return new LensFlareDirector();
     case SceneObj_FurDrawManager:
-        // return new FurDrawManager(64);
-        return nullptr;
+        return new FurDrawManager(64);
     case SceneObj_PlacementStateChecker:
         return new PlacementStateChecker("オブジェクト配置状態の監視");
     case SceneObj_NamePosHolder:
         return new NamePosHolder();
     case SceneObj_NPCDirector:
-        // return new NPCDirector();
-        return nullptr;
+        return new NPCDirector();
     case SceneObj_ResourceShare:
-        // return new ResourceShare();
-        return nullptr;
+        return new ResourceShare();
     case SceneObj_MoviePlayerSimple:
         return new MoviePlayerSimple();
-    case SceneObj_WarpPodMgr:
-        return new WarpPodMgr("ワープポッド管理局");
+    case SceneObj_InformationObserver:
+        return new InformationObserver();
     case SceneObj_CenterScreenBlur:
         return new CenterScreenBlur();
     case SceneObj_OdhConverter:
@@ -263,6 +254,20 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         return new BaseMatrixFollowTargetHolder("行列追随先リスト", 256, 256);
     case SceneObj_GameSceneLayoutHolder:
         return new GameSceneLayoutHolder();
+    case SceneObj_TripodBossAccesser:
+        return new TripodBossAccesser("三脚ボスアクセサ");
+    case SceneObj_KameckBeamHolder:
+        return new KameckBeamHolder();
+    case SceneObj_KameckFireBallHolder:
+        return new KameckFireBallHolder();
+    case SceneObj_KameckBeamTurtleHolder:
+        return new KameckBeamTurtleHolder();
+    case SceneObj_KabokuriFireHolder:
+        return new KabokuriFireHolder();
+    case SceneObj_TakoHeiInkHolder:
+        return new TakoHeiInkHolder();
+    case SceneObj_SwingRopeGroup:
+        return new SwingRopeGroup("スイングロープ描画");
     case SceneObj_CoinHolder:
         return new CoinHolder("コイン管理");
     case SceneObj_PurpleCoinHolder:
@@ -271,39 +276,20 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         return new CoinRotater("コイン回転管理");
     case SceneObj_AirBubbleHolder:
         return new AirBubbleHolder("空気アワ管理");
-    case SceneObj_BigFanHolder:
-        return new BigFanHolder();
-    case SceneObj_KarikariDirector:
-        return new KarikariDirector("カリカリディレクター");
     case SceneObj_StarPieceDirector:
         return new StarPieceDirector("スターピース指揮");
     case SceneObj_BegomanAttackPermitter:
         return new BegomanAttackPermitter("ベーゴマン攻撃許可者");
-    case SceneObj_TripodBossAccesser:
-        return new TripodBossAccesser("三脚ボスアクセサ");
-    case SceneObj_KameckBeamHolder:
-        // return new KameckBeamHolder();
-        return nullptr;
-    case SceneObj_KameckFireBallHolder:
-        // return new KameckFireBallHolder();
-        return nullptr;
-    case SceneObj_KameckBeamTurtleHolder:
-        // return new KameckBeamTurtleHolder();
-        return nullptr;
-    case SceneObj_KabokuriFireHolder:
-        // return new KabokuriFireHolder();
-        return nullptr;
-    case SceneObj_TakoHeiInkHolder:
-        // return new TakoHeiInkHolder();
-        return nullptr;
+    case SceneObj_BigFanHolder:
+        return new BigFanHolder();
+    case SceneObj_KarikariDirector:
+        return new KarikariDirector("カリカリディレクター");
     case SceneObj_ShadowControllerHolder:
         return new ShadowControllerHolder();
     case SceneObj_ShadowVolumeDrawInit:
         return new ShadowVolumeDrawInit();
     case SceneObj_ShadowSurfaceDrawInit:
         return new ShadowSurfaceDrawInit("水面影描画初期化");
-    case SceneObj_SwingRopeGroup:
-        return new SwingRopeGroup("スイングロープ描画");
     case SceneObj_PlantStalkDrawInit:
         return new PlantStalkDrawInit("植物の茎描画初期化");
     case SceneObj_PlantLeafDrawInit:
@@ -316,20 +302,18 @@ NameObj* SceneObjHolder::newEachObj(int id) {
         return new SpinDriverPathDrawInit();
     case SceneObj_NoteGroup:
         return new NoteGroup();
+    case SceneObj_ClipAreaHolder:
+        return new ClipAreaHolder("クリップエリアホルダー");
+    case SceneObj_ArrowSwitchMultiHolder:
+        return new ArrowSwitchMultiHolder();
     case SceneObj_ClipAreaDropHolder:
         return new ClipAreaDropHolder();
     case SceneObj_FallOutFieldDraw:
         return new FallOutFieldDraw("クリップエリア描画[抜き]");
     case SceneObj_ClipFieldFillDraw:
-        // return new ClipFieldFillDraw("クリップエリア描画[塗りつぶし]");
-        return nullptr;
-    case SceneObj_ClipAreaHolder:
-        return new ClipAreaHolder("クリップエリアホルダー");
-    case SceneObj_ArrowSwitchMultiHolder:
-        return new ArrowSwitchMultiHolder();
+        return new ClipFieldFillDraw("クリップエリア描画[塗りつぶし]");
     case SceneObj_ScreenAlphaCapture:
-        // return new ScreenAlphaCapture("アルファテクスチャ取り込み");
-        return nullptr;
+        return new ScreenAlphaCapture("アルファテクスチャ取り込み");
     case SceneObj_MapPartsRailGuideHolder:
         return new MapPartsRailGuideHolder();
     case SceneObj_GCapture:
@@ -349,19 +333,15 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_YellowChipHolder:
         return new ChipHolder("イエローーチップホルダー", 1);
     case SceneObj_BigBubbleHolder:
-        // return new BigBubbleHolder("オオアワホルダー");
-        return nullptr;
+        return new BigBubbleHolder("オオアワホルダー");
     case SceneObj_EarthenPipeMediator:
         return new EarthenPipeMediator();
     case SceneObj_WaterAreaHolder:
-        // return new WaterAreaHolder();
-        return nullptr;
+        return new WaterAreaHolder();
     case SceneObj_WaterPlantDrawInit:
-        // return new WaterPlantDrawInit();
-        return nullptr;
+        return new WaterPlantDrawInit();
     case SceneObj_OceanHomeMapCtrl:
-        // return new OceanHomeMapCtrl();
-        return nullptr;
+        return new OceanHomeMapCtrl();
     case SceneObj_RaceManager:
         return new RaceManager();
     case SceneObj_GroupCheckManager:
@@ -391,17 +371,15 @@ NameObj* SceneObjHolder::newEachObj(int id) {
     case SceneObj_BossAccessor:
         return new BossAccessor();
     case SceneObj_MiniatureGalaxyHolder:
-        // return new MiniatureGalaxyHolder();
-        return nullptr;
+        return new MiniatureGalaxyHolder();
     case SceneObj_PlanetMapCreator:
         return new PlanetMapCreator("惑星クリエイタ");
+    case SceneObj_WarpPodMgr:
+        return new WarpPodMgr("ワープポッド管理局");
     case SceneObj_PriorDrawAirHolder:
         return new PriorDrawAirHolder();
-    case SceneObj_InformationObserver:
-        return new InformationObserver();
     case SceneObj_GalaxyMapController:
-        // return new GalaxyMapController();
-        return nullptr;
+        return new GalaxyMapController();
     case SceneObj_MoviePlayingSequenceHolder:
         return new MoviePlayingSequenceHolder("ムービー管理保持");
     case SceneObj_PrologueHolder:

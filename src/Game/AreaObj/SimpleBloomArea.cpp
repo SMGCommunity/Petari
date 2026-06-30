@@ -1,13 +1,8 @@
 #include "Game/AreaObj/SimpleBloomArea.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ScreenUtil.hpp"
 
-SimpleBloomArea::SimpleBloomArea(int type, const char* pName) : ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, type, pName) {
-    mMaskFilterColor = MASK_FILTER_ALL;
-    _44 = 128;
-    _45 = 76;
-}
-
-SimpleBloomArea::~SimpleBloomArea() {
+SimpleBloomArea::SimpleBloomArea(int formType, const char* pName)
+    : ImageEffectArea(IMAGE_EFFECT_TYPE_SIMPLE_BLOOM, formType, pName), mMaskFilterColor(), mThreshold(128), mIntensity(76) {
 }
 
 void SimpleBloomArea::init(const JMapInfoIter& rIter) {
@@ -19,14 +14,13 @@ void SimpleBloomArea::init(const JMapInfoIter& rIter) {
     }
 
     if (mObjArg1 >= 0) {
-        _44 = static_cast< u8 >(mObjArg1);
+        mThreshold = mObjArg1;
     }
 
     if (mObjArg2 >= 0) {
-        _45 = static_cast< u8 >(mObjArg2);
+        mIntensity = mObjArg2;
     }
 }
 
-const char* SimpleBloomArea::getManagerName() const {
-    return "ImageEffectArea";
+SimpleBloomArea::~SimpleBloomArea() {
 }

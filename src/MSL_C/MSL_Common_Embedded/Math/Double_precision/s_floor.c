@@ -11,16 +11,14 @@ double floor(double x) {
     if (j0 < 20) {
         if (j0 < 0) {
             if (big + x > 0.0) {
-                if (dbl_hi >= 0) { 
+                if (dbl_hi >= 0) {
                     dbl_hi = dbl_lo = 0;
-                }
-                else if (((dbl_hi & 0x7FFFFFFF) | dbl_lo) != 0) {
+                } else if (((dbl_hi & 0x7FFFFFFF) | dbl_lo) != 0) {
                     dbl_hi = 0xBFF00000;
                     dbl_lo = 0;
                 }
             }
-        }
-        else {
+        } else {
             i = 0xFFFFF >> j0;
 
             if (((dbl_hi & i) | dbl_lo) == 0) {
@@ -29,23 +27,20 @@ double floor(double x) {
 
             if (big + x > 0.0) {
                 if (dbl_hi < 0) {
-                    i += 0x100000 >> j0;
+                    dbl_hi += 0x100000 >> j0;
                 }
 
                 dbl_hi &= ~i;
                 dbl_lo = 0;
             }
         }
-    }
-    else if (j0 > 51) {
+    } else if (j0 > 51) {
         if (j0 == 0x400) {
             return x + x;
-        }
-        else {
+        } else {
             return x;
         }
-    }
-    else {
+    } else {
         i = ((unsigned int)(0xFFFFFFFF)) >> j0 - 20;
 
         if ((dbl_lo & i) == 0) {
@@ -56,8 +51,7 @@ double floor(double x) {
             if (dbl_hi < 0) {
                 if (j0 == 20) {
                     dbl_hi += 1;
-                }
-                else {
+                } else {
                     j = dbl_lo + (1 << (52 - j0));
 
                     if (j < dbl_lo) {
@@ -74,5 +68,5 @@ double floor(double x) {
 
     *(int*)&x = dbl_hi;
     *(1 + (int*)&x) = dbl_lo;
-     return x;
+    return x;
 }

@@ -26,6 +26,12 @@ namespace {
     static const f32 sPlanetInsideRadius = 1800.0f;
 };  // namespace
 
+void TombSpiderDemo_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 TombSpiderGland* TombSpiderFunction::getGlandFrontL(const TombSpider* pParent) {
     return pParent->mParts->mGlandFrontL;
 }
@@ -357,7 +363,7 @@ void TombSpiderFunction::resetPlayerPosTombSpider(const TombSpider* pParent, boo
 
     if (useCurrentPos && !MR::isNearZero(dirOut)) {
         MR::normalize(&dirOut);
-        pos.set(pParent->mPosition.addOtherInline2(dirOut.scaleInline(::sPlanetInsideRadius - 200.0f)));
+        pos.set(pParent->mPosition + dirOut.scaleInline(::sPlanetInsideRadius - 200.0f));
     }
 
     TVec3f up;

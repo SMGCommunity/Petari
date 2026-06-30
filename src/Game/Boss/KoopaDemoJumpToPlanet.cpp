@@ -1,5 +1,6 @@
 #include "Game/Boss/KoopaDemoJumpToPlanet.hpp"
 #include "Game/Boss/Koopa.hpp"
+#include "Game/Boss/KoopaBattleBase.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/LiveActor/Nerve.hpp"
@@ -12,13 +13,10 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
-    MR::ActorMoveParam sWaitParam = {0.0f, 1.0f, 0.9f, 1.0f};
+    static MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
+    static MR::ActorMoveParam sWaitParam = {0.0f, 1.0f, 0.9f, 1.0f};
+    static const s32 sFallWarpStepVs3 = 90;
 };  // namespace
-
-namespace MR {
-    void moveAndTurnToPlayer(LiveActor*, TVec3f*, const MR::ActorMoveParam&);
-};  // namespace MR
 
 namespace NrvKoopaDemoJumpToPlanet {
     NEW_NERVE(KoopaDemoJumpToPlanetNrvStart, KoopaDemoJumpToPlanet, Start);
@@ -67,9 +65,9 @@ void KoopaDemoJumpToPlanet::exeFall() {
         KoopaFunction::getKoopaPlanetShadow(mHost)->appear();
     }
 
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sFallParam);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sFallParam);
 
-    if (KoopaFunction::isKoopaVs3(mHost) && MR::isStep(this, 90)) {
+    if (KoopaFunction::isKoopaVs3(mHost) && MR::isStep(this, ::sFallWarpStepVs3)) {
         KoopaFunction::setKoopaPos(mHost, "Ｌｖ１開始（クッパ）");
         MR::setPlayerPosAndWait("Ｌｖ１開始（マリオ）");
 
@@ -106,7 +104,7 @@ void KoopaDemoJumpToPlanet::exeWaitPlayer() {
         KoopaFunction::startFaceCtrl(mHost);
     }
 
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sWaitParam);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sWaitParam);
 
     if (MR::isOnGroundPlayer()) {
         KoopaFunction::startFaceCtrl(mHost);

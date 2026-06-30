@@ -8,7 +8,10 @@ class FlashingCtrl;
 
 class BenefitItemObj : public LiveActor {
 public:
-    BenefitItemObj(const char*, const char*);
+    /// @brief Creates a new `BenefitItemObj`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    /// @param pModelName A pointer to the null-terminated name of the model.
+    BenefitItemObj(const char* pName, const char* pModelName);
 
     virtual ~BenefitItemObj();
     virtual void init(const JMapInfoIter&);
@@ -19,6 +22,7 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+
     virtual void appearGround();
     virtual void appearThrowUp();
     virtual void appearThrowUpQuestionBox();
@@ -86,9 +90,10 @@ public:
 
 class BenefitItemOneUp : public BenefitItemObj {
 public:
-    inline BenefitItemOneUp(const char* a1) : BenefitItemObj(a1, "KinokoOneUp") {
-    }
-    inline BenefitItemOneUp(const char* a1, const char* a2) : BenefitItemObj(a1, a2) {
+    /// @brief Creates a new `BenefitItemOneUp`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    /// @param pModelName A pointer to the null-terminated name of the model.
+    BenefitItemOneUp(const char* pName, const char* pModelName = "KinokoOneUp") : BenefitItemObj(pName, pModelName) {
     }
 
     virtual ~BenefitItemOneUp() {

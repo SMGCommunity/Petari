@@ -2,6 +2,11 @@
 #include "Game/Map/GravityDust.hpp"
 #include "Game/Util/EffectUtil.hpp"
 
+void EffectObjGravityDust_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 EffectObjGravityDust::EffectObjGravityDust(const char* pName) : SimpleEffectObj(pName), _9C(nullptr), _A0(1.0f) {
 }
 
@@ -27,12 +32,4 @@ TVec3f* EffectObjGravityDust::getClippingCenterOffset() const {
 }
 
 EffectObjGravityDust::~EffectObjGravityDust() {
-}
-
-bool EffectObjGravityDust::isSyncClipping() const {
-    return true;
-}
-
-f32 EffectObjGravityDust::getFarClipDistance() const {
-    return 50.0f;
 }

@@ -2,24 +2,30 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjConnector.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SpringValue.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/mtx.h"
 #include "revolution/types.h"
+
+void DesertLandMoveSwitch_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+}
 
 namespace NrvDesertLandMoveSwitch {
     NEW_NERVE(HostTypeWait, DesertLandMoveSwitch, Wait);
@@ -75,21 +81,11 @@ void DesertLandMoveSwitch::calcAnim() {
     mtx2.setInline(mtx);
     f32 val = mSpringValue->mSpringValue;
     if (!MR::isNearZero(val)) {
-        TVec3f stack_20;
-        f32 f3 = mtx2[2][3];
-        f32 f2 = mtx2[1][3];
-        f32 f1 = mtx2[0][3];
-        stack_20.set< f32 >(f1, f2, f3);
-        TVec3f stack_14, stack_8;
-        MR::calcUpVec(&stack_14, this);
-        stack_8.setPS(stack_14);
-        stack_8.x *= val;
-        stack_8.y *= val;
-        stack_8.z *= val;
-        JMathInlineVEC::PSVECAdd(&stack_20, &stack_8, &stack_20);
-        mtx2[0][3] = stack_20.x;
-        mtx2[1][3] = stack_20.y;
-        mtx2[2][3] = stack_20.z;
+        TVec3f pos, up;
+        mtx2.getTransInline(pos);
+        MR::calcUpVec(&up, this);
+        pos += up.multInLine(val);
+        mtx2.setTransInline(pos);
         PSMTXCopy(mtx2, mtx);
     }
     mCollisionParts->setMtx(mtx2);

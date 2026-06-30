@@ -1,5 +1,4 @@
 #include "Game/Screen/StaffRoll.hpp"
-#include "Game/Camera/CameraContext.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/InformationMessage.hpp"

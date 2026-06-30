@@ -1,8 +1,8 @@
 #pragma once
 
-#include "JSystem/JAudio2/JASGlobal.hpp"
-#include "JSystem/JAudio2/JASHeapCtrl.hpp"
-#include "JSystem/JSupport/JSUList.hpp"
+#include <JSystem/JAudio2/JASGlobal.hpp>
+#include <JSystem/JAudio2/JASHeapCtrl.hpp>
+#include <JSystem/JSupport/JSUList.hpp>
 #include <revolution.h>
 
 class SpkSound;

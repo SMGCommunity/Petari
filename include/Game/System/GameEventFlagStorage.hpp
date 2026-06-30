@@ -1,8 +1,12 @@
 #pragma once
 
 #include "Game/System/BinaryDataChunkHolder.hpp"
-#include "Game/System/GameEventFlag.hpp"
-#include "Game/Util.hpp"
+
+class GameEventFlag;
+
+namespace MR {
+    class BitArray;
+};  // namespace MR
 
 class GameEventFlagStorage : public BinaryDataChunkBase {
 public:
@@ -17,5 +21,5 @@ public:
     void set(const GameEventFlag*, bool);
     bool isOn(const GameEventFlag*) const;
 
-    MR::BitArray* mFlagBitArray;  // 0x4
+    /* 0x04 */ MR::BitArray* mFlagBitArray;
 };

@@ -4,8 +4,7 @@
 
 class CamTranslatorFixedPoint : public CamTranslatorBase {
 public:
-    inline CamTranslatorFixedPoint(CameraFixedPoint* pCamera) {
-        mCamera = pCamera;
+    CamTranslatorFixedPoint(CameraFixedPoint* pCamera) : mCamera(pCamera) {
     }
 
     virtual void setParam(const CameraParamChunk*);

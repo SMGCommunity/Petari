@@ -117,12 +117,12 @@ bool KameckFireBall::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     return false;
 }
 
-/*
 void KameckFireBall::appearDirection(const TVec3f& rDirection) {
     appear();
     MR::onCalcGravity(this);
     MR::calcGravity(this);
-}*/
+    mVelocity.set(rDirection * 15.0f + mGravity * 15.0f);
+}
 
 void KameckFireBall::setEventListener(KameckBeamEventListener* pListener) {
     mEventListener = pListener;

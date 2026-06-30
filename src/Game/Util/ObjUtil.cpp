@@ -32,17 +32,15 @@
 #include "Game/System/WPadRumble.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
+#include "Game/Util/SwitchEventFunctorListener.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
-#include "revolution/types.h"
-#include <cstddef>
 #include <cstdio>
 #include <va_list.h>
 

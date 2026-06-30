@@ -3,10 +3,8 @@
 #include "Game/LiveActor/ClippingGroupHolder.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ViewGroupCtrl.hpp"
-#include "Game/Util.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "revolution/types.h"
 
 namespace {
     static int sActorNumMax = 2560;

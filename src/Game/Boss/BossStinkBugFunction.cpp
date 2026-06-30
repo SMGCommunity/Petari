@@ -8,8 +8,16 @@
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+void BossStinkBugFunction_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+    (void)2.0f;
+}
+
 void BossStinkBugFunction::addHeightOffset(TVec3f* pOut, const BossStinkBug* pStinkBug, f32 scale) {
-    pOut->addInline(pStinkBug->mGravity.multInLine(-scale));
+    pOut->add(pStinkBug->mGravity.multInLine(-scale));
 }
 
 void BossStinkBugFunction::addLocalHeightOffset(TVec3f* pOut, BossStinkBug* pStinkBug, f32 scale) {

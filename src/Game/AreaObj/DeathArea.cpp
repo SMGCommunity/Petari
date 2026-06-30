@@ -11,13 +11,17 @@ void DeathArea::init(const JMapInfoIter& rIter) {
 }
 
 void DeathArea::movement() {
-    if (isInVolume(*MR::getPlayerPos())) {
-        bool canKill = getDeathType() == 0;
-
-        if (canKill) {
-            MR::forceKillPlayerByAbyss();
-        }
+    if (!isInVolume(*MR::getPlayerPos())) {
+        return;
     }
+
+    bool canKillPlayer = getDeathType() == DeathType_Any;
+
+    if (!canKillPlayer) {
+        return;
+    }
+
+    MR::forceKillPlayerByAbyss();
 }
 
 bool DeathArea::isInVolume(const TVec3f& rVec) const {
@@ -29,12 +33,12 @@ bool DeathArea::isInVolume(const TVec3f& rVec) const {
 }
 
 s32 DeathArea::getDeathType() const {
-    return mObjArg0 != -1 ? mObjArg0 : 0;
+    if (mObjArg0 != -1) {
+        return mObjArg0;
+    }
+
+    return DeathType_Any;
 }
 
 DeathArea::~DeathArea() {
-}
-
-const char* DeathArea::getManagerName() const {
-    return "DeathArea";
 }

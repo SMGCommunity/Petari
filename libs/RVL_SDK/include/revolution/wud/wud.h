@@ -48,7 +48,7 @@ typedef enum {
 } WUDSyncResult;
 
 typedef void* (*WUDAllocFunc)(u32 size);
-typedef BOOL (*WUDFreeFunc)(void* pBlock);
+typedef u8 (*WUDFreeFunc)(void* pBlock);
 
 typedef void (*WUDSyncDeviceCallback)(s32 result, s32 num);
 typedef void (*WUDClearDeviceCallback)(s32 result);

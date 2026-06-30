@@ -2,14 +2,19 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+void CamTranslatorCharmedFix_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 void CamTranslatorCharmedFix::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
     TVec3f up;
-    up.setPS(general->mUp);
+    up = general->mUp;
 
     if (MR::isNearZero(up)) {
-        up.set(0.0f, 1.0f, 0.0f);
+        up.set< f32 >(0.0f, 1.0f, 0.0f);
     } else {
         MR::normalize(&up);
     }

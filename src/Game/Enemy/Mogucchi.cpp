@@ -208,7 +208,7 @@ void Mogucchi::exeScatter() {
         mRotation.mult(_180_PI);
     }
 
-    mPosition.add(mRailGravity.scaleInline(-mScatterPropulsionSpeed).addOperatorInLine(mScatterNormal.multInLine(23.0f)));
+    mPosition.add(mRailGravity.scaleInline(-mScatterPropulsionSpeed) + mScatterNormal.multInLine(23.0f));
     mScatterPropulsionSpeed -= 1.2f;
 
     if (MR::isGreaterEqualStep(this, 15)) {

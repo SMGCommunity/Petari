@@ -8,9 +8,6 @@ public:
     /// @brief Creates a new `GalaxyCometState`.
     GalaxyCometState();
 
-    /// @brief Destroys the `GalaxyCometState`.
-    virtual ~GalaxyCometState();
-
     /// @brief Updates the working nerve action.
     void update();
 

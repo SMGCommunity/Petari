@@ -1,20 +1,15 @@
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
 
 MercatorTransformCube::MercatorTransformCube(int formType, const char* pName) : AreaObj(formType, pName) {
     _3C.identity();
 }
 
-MercatorTransformCube::~MercatorTransformCube() {
-}
-
 void MercatorTransformCube::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
 
-    TMtx34f* matrix = MR::getZonePlacementMtx(rIter);
-    _3C.setInline(*matrix);
+    _3C.setInline(*MR::getZonePlacementMtx(rIter));
 }
 
 f32 MercatorTransformCube::getSphereRadius() const {
@@ -22,10 +17,10 @@ f32 MercatorTransformCube::getSphereRadius() const {
         return 3000.0f;
     }
 
-    return static_cast< f32 >(mObjArg0);
+    return mObjArg0;
 }
 
-void MercatorTransformCube::calcUV(TVec2f* uv, const TVec3f& a2) const {
+void MercatorTransformCube::calcUV(TVec2f* pUV, const TVec3f& a2) const {
     TVec3f boxSize;
     calcLocalBoxSize(&boxSize);
     boxSize *= 0.5f;
@@ -33,8 +28,8 @@ void MercatorTransformCube::calcUV(TVec2f* uv, const TVec3f& a2) const {
     TVec3f localPos;
     MR::calcCubeLocalPos(&localPos, this, a2);
 
-    uv->x = 3.1415927f * localPos.x / boxSize.x;
-    uv->y = 1.5707964f * -localPos.z / boxSize.z;
+    pUV->x = PI * localPos.x / boxSize.x;
+    pUV->y = HALF_PI * -localPos.z / boxSize.z;
 }
 
 void MercatorTransformCube::calcLocalBoxSize(TVec3f* pPos) const {
@@ -46,5 +41,5 @@ void MercatorTransformCube::calcLocalBoxSize(TVec3f* pPos) const {
     min.set< f32 >(box->i);
     max.set< f32 >(box->f);
 
-    JMathInlineVEC::PSVECSubtract(&max, &min, pPos);
+    pPos->sub(max, min);
 }

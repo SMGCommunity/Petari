@@ -32,14 +32,12 @@ public:
     void exeDamageTailRunStart();
     void exeDamageTailRun();
     void exeDamageTailRunEnd();
-    void exeDown();
-    void exeDownLand();
-
     void exeDamageTailRunStartFinal();
     void exeDamageTailRunFinal();
     void exeDamageTailRunEndFinal();
-    void exeDownEnd() {
-    }
+    void exeDown();
+    void exeDownLand();
+    void exeDownEnd();
 
 private:
     /* 0x10 */ s32 mEscapeTime;

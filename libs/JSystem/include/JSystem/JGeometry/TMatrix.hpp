@@ -12,8 +12,12 @@ namespace JGeometry {
     struct SMatrix34C {
     public:
         typedef f32 ArrType[4];
-        void set(const ArrType*);
-        void set(const SMatrix34C< T >& rSrc);
+        void set(const ArrType* pSrc) {
+            JMath::gekko_ps_copy12(this, pSrc);
+        }
+        void set(const SMatrix34C< T >& rSrc) {
+            JMath::gekko_ps_copy12(this, rSrc);
+        }
         void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz);
 
         void scale(T scale);
@@ -147,7 +151,17 @@ namespace JGeometry {
     template < class T >
     struct TRotation3 : public T {
     public:
-        void identity33();
+        void identity33() {
+            this->mMtx[0][0] = 1.0f;
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[0][1] = 0.0f;
+            this->mMtx[1][1] = 1.0f;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[2][2] = 1.0f;
+        };
 
         void getXDir(TVec3f& rDest) const NO_INLINE {
             rDest.set(this->mMtx[0][0], this->mMtx[1][0], this->mMtx[2][0]);
@@ -226,15 +240,15 @@ namespace JGeometry {
             f32 s = sin(val);
             f32 c = cos(val);
 
-            mMtx[1][0] = s;
-            mMtx[0][0] = c;
-            mMtx[0][1] = -s;
-            mMtx[1][1] = c;
-            mMtx[2][2] = 1.0f;
-            mMtx[2][1] = 0.0f;
-            mMtx[1][2] = 0.0f;
-            mMtx[2][0] = 0.0f;
-            mMtx[0][2] = 0.0f;
+            this->mMtx[1][0] = s;
+            this->mMtx[0][0] = c;
+            this->mMtx[0][1] = -s;
+            this->mMtx[1][1] = c;
+            this->mMtx[2][2] = 1.0f;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
         }
 
         void getQuat(TQuat4f& rDest) const;

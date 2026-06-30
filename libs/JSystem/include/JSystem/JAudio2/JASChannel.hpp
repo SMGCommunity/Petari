@@ -162,7 +162,7 @@ public:
     }
 
     /* 0x00 */ int mStatus;
-    /* 0x04 */ u8 mPauseFlag;
+    /* 0x04 */ bool mPauseFlag;
     /* 0x08 */ JASDSPChannel* mDspCh;
     /* 0x0C */ Callback mCallback;
     /* 0x10 */ void* mCallbackData;

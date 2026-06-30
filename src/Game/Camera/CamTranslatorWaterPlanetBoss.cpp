@@ -1,8 +1,7 @@
 #include "Game/Camera/CamTranslatorWaterPlanetBoss.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 
-CamTranslatorWaterPlanetBoss::CamTranslatorWaterPlanetBoss(CameraWaterPlanetBoss* pCamera) {
-    mCamera = pCamera;
+CamTranslatorWaterPlanetBoss::CamTranslatorWaterPlanetBoss(CameraWaterPlanetBoss* pCamera) : mCamera(pCamera) {
 }
 
 // wPoint.z is put into f2 instead of f8

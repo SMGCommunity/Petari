@@ -54,24 +54,23 @@ void Halo::appear() {
 
     if (isDistanceDisappear()) {
         const char* anim = "Disappear";
+
         MR::tryStartAllAnim(this, anim);
+
         if (MR::isExistBtk(this, anim)) {
-            J3DFrameCtrl* ctrl = MR::getBtkCtrl(this);
-            MR::setBtkFrame(this, ctrl->mEnd);
+            MR::setBtkFrame(this, MR::getBtkCtrl(this)->getEnd());
         }
 
         if (MR::isExistBpk(this, anim)) {
-            J3DFrameCtrl* ctrl = MR::getBpkCtrl(this);
-            MR::setBpkFrame(this, ctrl->mEnd);
+            MR::setBpkFrame(this, MR::getBpkCtrl(this)->getEnd());
         }
+
         if (MR::isExistBtp(this, anim)) {
-            J3DFrameCtrl* ctrl = MR::getBtpCtrl(this);
-            MR::setBpkFrame(this, ctrl->mEnd);
+            MR::setBpkFrame(this, MR::getBtpCtrl(this)->getEnd());
         }
 
         if (MR::isExistBrk(this, anim)) {
-            J3DFrameCtrl* ctrl = MR::getBrkCtrl(this);
-            MR::setBrkFrame(this, ctrl->mEnd);
+            MR::setBrkFrame(this, MR::getBrkCtrl(this)->getEnd());
         }
 
         MR::hideModel(this);

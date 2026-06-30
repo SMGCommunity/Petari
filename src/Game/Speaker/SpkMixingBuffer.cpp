@@ -1,7 +1,7 @@
 #include "Game/Speaker/SpkMixingBuffer.hpp"
 #include "Game/Speaker/SpkSound.hpp"
-#include "JSystem/JAudio2/JASCalc.hpp"
-#include "JSystem/JAudio2/JASGlobal.hpp"
+#include <JSystem/JAudio2/JASCalc.hpp>
+#include <JSystem/JAudio2/JASGlobal.hpp>
 
 SpkMixingBuffer::SpkMixingBuffer(JKRHeap* pHeap) {
     for (int i = 0; i < 4; i++) {

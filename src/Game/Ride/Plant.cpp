@@ -16,7 +16,6 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"

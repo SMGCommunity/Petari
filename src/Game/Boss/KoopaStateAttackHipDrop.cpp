@@ -1,5 +1,6 @@
 #include "Game/Boss/KoopaStateAttackHipDrop.hpp"
 #include "Game/Boss/Koopa.hpp"
+#include "Game/Boss/KoopaBattleBase.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -12,14 +13,24 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    MR::ActorMoveParam sParamRunStart = {3.0f, 1.0f, 0.9f, 3.0f};
-    MR::ActorMoveParam sParamJumpStart = {0.0f, 1.0f, 0.95f, 0.0f};
-    MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 1.0f, 0.0f};
+    static MR::ActorMoveParam sParamRunStart = {3.0f, 1.0f, 0.9f, 3.0f};
+    static MR::ActorMoveParam sParamJumpStart = {0.0f, 1.0f, 0.95f, 0.0f};
+    static MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 1.0f, 0.0f};
+    static const f32 sDistanceToJump = 1000.0f;
+    static const f32 sDistanceToJumpVs3 = 2000.0f;
+    static const s32 sRunStepMax = 180;
+    static const f32 sRunWallJumpSpeed = 10.0f;
+    static const f32 sJumpUpSpeedFrontMax = 20.0f;
+    static const f32 sJumpUpSpeedUp = 50.0f;
+    static const f32 sJumpUpGravity = 1.0f;
+    static const f32 sJumpUpTurnSpeed = 3.0f;
+    static const s32 sJumpWaitAirStep = 30;
+    static const s32 sJumpWaitAirStepVs2 = 15;
+    static const s32 sJumpWaitAirStepVs3 = 15;
+    static const f32 sJumpWaitAirTurnSpeed = 2.0f;
+    // static const f32 sJumpAttackDownSpeed = _;
+    // static const f32 sJumpAttackGravity = _;
 };  // namespace
-
-namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-};  // namespace MR
 
 namespace NrvKoopaStateAttackHipDrop {
     NEW_NERVE(KoopaStateAttackHipDropNrvRun, KoopaStateAttackHipDrop, Run);
@@ -58,20 +69,24 @@ void KoopaStateAttackHipDrop::appear() {
 
     if (KoopaFunction::isKoopaVs1(mHost)) {
         mMaxAttacks = 3;
-        mAttackDelay = 30;
+        mAttackDelay = ::sJumpWaitAirStep;
 
         setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance);
     } else if (KoopaFunction::isKoopaVs2(mHost)) {
         mMaxAttacks = 2;
-        mAttackDelay = 15;
+        mAttackDelay = ::sJumpWaitAirStepVs2;
 
         setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance);
     } else {
-        mAttackDelay = 15;
+        mAttackDelay = ::sJumpWaitAirStepVs3;
 
-        KoopaFunction::isKoopaAngry(mHost) ? mMaxAttacks = 2 : mMaxAttacks = 3;
+        if (KoopaFunction::isKoopaAngry(mHost)) {
+            mMaxAttacks = 2;
+        } else {
+            mMaxAttacks = 3;
+        }
 
-        if (MR::isNearPlayer(mHost, 2000.0f)) {
+        if (MR::isNearPlayer(mHost, ::sDistanceToJumpVs3)) {
             setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance);
         } else {
             setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvRun::sInstance);
@@ -95,7 +110,7 @@ bool KoopaStateAttackHipDrop::attackSensor(HitSensor* pSender, HitSensor* pRecei
             return true;
         }
 
-        if (MR::sendArbitraryMsg(192, pReceiver, pSender)) {
+        if (MR::sendArbitraryMsg(ACTMES_KOOPA_HIP_DROP_ATTACK, pReceiver, pSender)) {
             return true;
         }
     }
@@ -128,7 +143,7 @@ void KoopaStateAttackHipDrop::exeRun() {
         KoopaFunction::startKoopaCamera(mHost, "ヒップドロップ攻撃");
     }
 
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sParamRunStart);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sParamRunStart);
 
     Koopa* pKoopa = mHost;
     if (MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body"))) {
@@ -136,10 +151,10 @@ void KoopaStateAttackHipDrop::exeRun() {
     }
 
     if (MR::isBindedWall(mHost)) {
-        MR::addVelocityJump(mHost, 10.0f);
+        MR::addVelocityJump(mHost, ::sRunWallJumpSpeed);
     }
 
-    if ((MR::isNearPlayer(mHost, 1000.0f) || MR::isGreaterStep(this, 180)) && MR::calcGravitySpeed(mHost) >= 0.0f) {
+    if ((MR::isNearPlayer(mHost, ::sDistanceToJump) || MR::isGreaterStep(this, ::sRunStepMax)) && MR::calcGravitySpeed(mHost) >= 0.0f) {
         setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpStart::sInstance);
     }
 }
@@ -149,7 +164,7 @@ void KoopaStateAttackHipDrop::exeJumpStart() {
         MR::startAction(mHost, "HipDropJumpStart");
     }
 
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sParamJumpStart);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sParamJumpStart);
 
     if (MR::isBckStopped(mHost)) {
         setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpUp::sInstance);
@@ -162,16 +177,16 @@ void KoopaStateAttackHipDrop::exeJumpUp() {
         MR::startSound(mHost, "SE_BM_KOOPA_JUMP");
 
         MR::vecKillElement(mHost->mVelocity, mHost->mGravity, &mHost->mVelocity);
-        MR::restrictVelocity(mHost, 20.0f);
-        MR::addVelocityJump(mHost, 50.0f);
+        MR::restrictVelocity(mHost, ::sJumpUpSpeedFrontMax);
+        MR::addVelocityJump(mHost, ::sJumpUpSpeedUp);
 
         KoopaFunction::startKoopaCamera(mHost, "ヒップドロップ攻撃");
     }
 
-    MR::addVelocityToGravity(mHost, 1.0f);
+    MR::addVelocityToGravity(mHost, ::sJumpUpGravity);
 
     Koopa* pKoopa = mHost;
-    MR::turnDirectionToPlayerDegree(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), 3.0f);
+    MR::turnDirectionToPlayerDegree(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), ::sJumpUpTurnSpeed);
 
     if (mHost->mVelocity.dot(mHost->mGravity) >= 0.0f) {
         setNerve(&NrvKoopaStateAttackHipDrop::KoopaStateAttackHipDropNrvJumpWaitAir::sInstance);
@@ -183,7 +198,7 @@ void KoopaStateAttackHipDrop::exeJumpWaitAir() {
         MR::zeroVelocity(mHost);
     }
 
-    MR::turnDirectionToPlayerDegree(mHost, &mHost->mFront, 2.0f);
+    MR::turnDirectionToPlayerDegree(mHost, &mHost->mFront, ::sJumpWaitAirTurnSpeed);
 
     if (MR::isStep(this, 0)) {
         MR::getPlayerGroundPos(&mGroundPosition);
@@ -198,8 +213,8 @@ void KoopaStateAttackHipDrop::exeJumpAttackDown() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "HipDropAttackDown");
 
-        TVec3f difference = *mGroundPosition;
-        difference.subInline(mHost->mPosition);
+        TVec3f difference = mGroundPosition;
+        difference.sub(mHost->mPosition);
 
         mJumpTime = static_cast< s32 >(difference.length() / 35.0f) + 10;
 
@@ -261,7 +276,7 @@ void KoopaStateAttackHipDrop::exeLand() {
         MR::startAction(mHost, "HipDropLand");
     }
 
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sFallParam);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sFallParam);
 
     if (MR::isBckStopped(mHost)) {
         mAttacks++;

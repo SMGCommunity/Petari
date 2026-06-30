@@ -1,7 +1,6 @@
 #pragma once
 
-#include "JSystem/JKernel/JKRHeap.hpp"
-#include <revolution.h>
+#include <JSystem/JKernel/JKRHeap.hpp>
 
 class SpkMixingBuffer {
 public:

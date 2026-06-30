@@ -2,7 +2,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/MapObj/ChipBase.hpp"
-#include "Game/Util.hpp"
 
 // ChipGroup::ChipGroup
 // ChipGroup::updateUIRange
@@ -31,8 +30,7 @@ s32 ChipGroup::getGotCount() const {
 }
 
 bool ChipGroup::isComplete() const {
-    s32 count = mTotalCount;
-    for (s32 i = 0; i < count; i++) {
+    for (s32 i = 0; i < mTotalCount; i++) {
         if (!mChips[i].mIsGotten) {
             return false;
         }
@@ -41,13 +39,13 @@ bool ChipGroup::isComplete() const {
     return true;
 }
 
-BlueChipGroup::BlueChipGroup(const char* pName) : ChipGroup(pName, 0) {
+BlueChipGroup::BlueChipGroup(const char* pName) : ChipGroup(pName, ChipBase::Type_Blue) {
 }
 
 ChipGroup::~ChipGroup() {
 }
 
-YellowChipGroup::YellowChipGroup(const char* pName) : ChipGroup(pName, 1) {
+YellowChipGroup::YellowChipGroup(const char* pName) : ChipGroup(pName, ChipBase::Type_Yellow) {
 }
 
 // ChipGroup::init

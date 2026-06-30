@@ -13,7 +13,9 @@ public:
     virtual void makeActorAppeared();
     virtual void kill();
     virtual void makeActorDead();
-    virtual MtxPtr getBaseMtx() const;
+    virtual MtxPtr getBaseMtx() const {
+        return (MtxPtr)mBaseMtx.mMtx;
+    }
     virtual void control();
     virtual void calcAndSetBaseMtx();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);

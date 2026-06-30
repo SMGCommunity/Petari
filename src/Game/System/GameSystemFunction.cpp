@@ -17,6 +17,7 @@
 #include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPadRumble.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 
 namespace {

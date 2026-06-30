@@ -64,7 +64,7 @@ void PhantomShipBridge::startMoveB() {
 
 void PhantomShipBridge::setStateMoveA() {
     MR::startBck(this, "MoveA", nullptr);
-    MR::setBckFrameAndStop(this, MR::getBckCtrl(this)->mEnd);
+    MR::setBckFrameAndStop(this, MR::getBckCtrl(this)->getEnd());
     MR::calcAnimDirect(this);
     _8C->forceResetAllMtxAndSetUpdateMtxOneTime();
     setNerve(&NrvPhantomShipBridge::HostTypeWait::sInstance);

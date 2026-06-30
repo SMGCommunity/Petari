@@ -141,7 +141,7 @@ bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
         MR::normalizeOrZero(&v15);
         TVec3f v14(v15);
         v14.scale(-200.0f);
-        v14.addInline(mPosition);
+        v14.add(mPosition);
         startRing(v15, v14);
         return true;
     }

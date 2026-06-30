@@ -1,6 +1,10 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 
+void GravityCreator_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 GravityCreator::GravityCreator() {
 }
 

@@ -27,7 +27,7 @@ bool CameraParamChunkID::operator>(const CameraParamChunkID& other) const {
     if (mZoneID <= other.mZoneID) {
         bool stringEqual = false;
 
-        if (mZoneID == other.mZoneID && strcmp(mName, other.mName) == 0) {
+        if (mZoneID == other.mZoneID && strcmp(mName, other.mName) > 0) {
             stringEqual = true;
         }
 
@@ -47,7 +47,8 @@ bool CameraParamChunkID::operator==(const CameraParamChunkID& other) const {
     }
 
     if (mZoneID == other.mZoneID) {
-        strcmp(mName, other.mName);
+        if (strcmp(mName, other.mName) != 0) {
+        }
     }
 
     return mZoneID == other.mZoneID && strcmp(mName, other.mName) == 0;

@@ -403,10 +403,10 @@ bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline) 
         char out_line[256];
 
         if (result == true) {
-            result = queryMapAddress((char*)name_part, section_offset, section_id, &out_addr, &out_size, out_line, ARRAY_SIZEU(out_line), true,
+            result = queryMapAddress((char*)name_part, section_offset, section_id, &out_addr, &out_size, out_line, ARRAY_SIZE(out_line), true,
                                      begin_with_newline);
         } else {
-            result = queryMapAddress(NULL, address, -1, &out_addr, &out_size, out_line, ARRAY_SIZEU(out_line), true, begin_with_newline);
+            result = queryMapAddress(NULL, address, -1, &out_addr, &out_size, out_line, ARRAY_SIZE(out_line), true, begin_with_newline);
         }
 
         if (result == true) {

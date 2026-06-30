@@ -490,7 +490,7 @@ void PowerStar::endAppearDemo() {
 
 PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f& rPos) const {
     LiveActorGroup* pGroup = MR::getGroupFromArray(this);
-    f32 minDist = 3.4028235e38f;
+    f32 minDist = FLOAT_MAX;
     PowerStarAppearPoint* pNearestAppearPoint = nullptr;
 
     for (int i = 0; i < pGroup->mObjectCount; i++) {

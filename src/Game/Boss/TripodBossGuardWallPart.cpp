@@ -11,6 +11,10 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void TripodBossGuardWallPart_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace NrvTripodBossGuardWallPart {
     NEW_NERVE(TripodBossGuardWallPartNrvNonActive, TripodBossGuardWallPart, NonActive);
     NEW_NERVE(TripodBossGuardWallPartNrvDemo, TripodBossGuardWallPart, Demo);

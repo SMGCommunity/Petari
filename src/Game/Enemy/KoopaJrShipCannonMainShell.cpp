@@ -30,6 +30,9 @@ KoopaJrShipCannonMainShell::KoopaJrShipCannonMainShell(const char* pName) : Cann
     _8C.set< f32 >(0.0f, 0.0f, 0.0f, one);
 }
 
+CannonShellBase::~CannonShellBase() {
+}
+
 void KoopaJrShipCannonMainShell::init(const JMapInfoIter& rIter) {
     mScale.setAll< f32 >(getBaseScale());
 
@@ -100,14 +103,12 @@ void KoopaJrShipCannonMainShell::launch(const TVec3f& rStartPos, const TVec3f& r
     appear();
 
     mPosition.set< f32 >(rStartPos);
-    TVec3f tmp;
-    TVec3f* vec = &tmp;
-
-    vec->setPS2(rVelocity);
-    MR::normalize(vec);
+    TVec3f dir;
+    dir = rVelocity;
+    MR::normalize(&dir);
 
     TPos3f mtx;
-    MR::makeMtxFrontUp(&mtx, *vec, mGravity.invertOperatorInternal());
+    MR::makeMtxFrontUp(&mtx, dir, mGravity.invertOperatorInternal());
     mtx.getQuat(_8C);
     mVelocity.set< f32 >(rVelocity);
     setNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance);

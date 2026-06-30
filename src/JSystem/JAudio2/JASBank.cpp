@@ -67,10 +67,9 @@ JASChannel* JASBank::noteOn(JASBank const* pBank, int progNo, u8 pitch, u8 veloc
     return channel;
 }
 
-// FIXME: rodata aligning to 8 here when it shouldnt
 static JASOscillator::Point const OSC_RELEASE_TABLE[] = {
     {0x0001, 0x000A, 0x0000},
-    {0x000F, 0x0000, 0x0001},
+    {0x000F, 0x0000, 0x0000},
 };
 
 JASChannel* JASBank::noteOnOsc(int progNo, u8 pitch, u8 velocity, u16 priority, void (*param_4)(u32, JASChannel*, JASDsp::TChannel*, void*),

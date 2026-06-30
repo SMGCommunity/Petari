@@ -17,6 +17,10 @@ namespace {
     static const f32 sAttachFootOffset = 100.0f;
 };  // namespace
 
+void TombSpiderParts_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 TombSpiderParts::TombSpiderParts(TombSpider* pParent)
     : mParent(pParent), mGlandFrontL(nullptr), mGlandFrontR(nullptr), mGlandRearL(nullptr), mGlandRearR(nullptr), mVitalSpotC(nullptr),
       mVitalSpotL(nullptr), mVitalSpotR(nullptr), mAcid(nullptr), mThreadAttacherWing(nullptr), mThreadAttacherFrontL(nullptr),

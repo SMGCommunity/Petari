@@ -23,24 +23,19 @@ class BegomanBase : public LiveActor {
 public:
     BegomanBase(const char*);
 
-    virtual void makeActorDead();
+    virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
-
+    virtual void makeActorDead();
+    virtual void startClipped();
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void startClipped();
-
     virtual u32 getKind() const = 0;
-
     virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
-
     virtual bool setNerveReturn() = 0;
     virtual void setNerveLaunch();
     virtual const Nerve* getNerveWait() = 0;
-
     virtual void addVelocityOnPushedFromElectricRail(const TVec3f&, const TVec3f&);
-
     virtual bool requestAttack();
 
     const BegomanSound* getSoundBaby();
@@ -53,7 +48,6 @@ public:
     void initCore(const JMapInfoIter&, const char*, bool);
     void initEffect(s32);
     void initEffectAndStarPointerBind();
-    void initAfterPlacement();
     void initShadow(f32, const char*);
     void initSensor(s32, f32, f32, const char*);
     void initUseSwitchB(const JMapInfoIter&, const MR::FunctorBase&);

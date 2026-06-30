@@ -1,6 +1,11 @@
 #include "Game/Gravity.hpp"
 #include "Game/Util.hpp"
 
+void PointGravity_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 PointGravity::PointGravity() : PlanetGravity(), mOrigPosition(0, 0, 0), mTranslation(0, 0, 0) {
 }
 
@@ -9,7 +14,7 @@ bool PointGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3
     f32 distance = PSVECMag(&direction);
 
     // Epsilon-equals zero? If so, direction is the zero vector.
-    if (MR::isNearZero(distance, 0.01f)) {
+    if (MR::isNearZero(distance)) {
         direction.z = 0.0f;
         direction.y = 0.0f;
         direction.x = 0.0f;
@@ -29,7 +34,7 @@ bool PointGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3
     // Update result vector & scalar if applicable
     else {
         if (pDest) {
-            pDest->setPS2(direction);
+            *pDest = direction;
         }
         if (pScalar) {
             *pScalar = distance;

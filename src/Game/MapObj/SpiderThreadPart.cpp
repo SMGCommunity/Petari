@@ -462,7 +462,7 @@ void SpiderThreadPart::updateForceAttach() {
         TVec3f vel(getPoint(idx)->mVelocity);
         getPoint(idx)->updateSpring();
 
-        getPoint(idx)->setPos(getPoint(idx)->mPosition.scaleInline(t).addOperatorInLine(getPoint(idx)->mBasePos.scaleInline(1.0f - t)));
+        getPoint(idx)->setPos(getPoint(idx)->mPosition.scaleInline(t) + getPoint(idx)->mBasePos.scaleInline(1.0f - t));
         getPoint(idx)->mVelocity.set(vel);
     }
 }

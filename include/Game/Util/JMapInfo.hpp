@@ -49,12 +49,6 @@ public:
     JMapInfo();
     ~JMapInfo();
 
-    inline JMapInfo& operator=(const JMapInfo& rInfo) {
-        mData = rInfo.mData;
-        mName = rInfo.mName;
-        return *this;
-    }
-
     inline bool operator==(const JMapInfo& rInfo) const {
         return mData == rInfo.mData;
     }
@@ -119,28 +113,20 @@ public:
 
     inline JMapInfoIter end() const;
 
-    const JMapData* mData;  // 0x0
-    const char* mName;      // 0x4
+    /* 0x00 */ const JMapData* mData;
+    /* 0x04 */ const char* mName;
 };
 
 class JMapInfoIter {
 public:
-    inline JMapInfoIter() {
+    JMapInfoIter() : mInfo(), mIndex(-1) {
     }
 
-    inline JMapInfoIter(const JMapInfo* pInfo, s32 index) {
-        mInfo = pInfo;
-        mIndex = index;
-    }
-
-    inline JMapInfoIter& operator=(const JMapInfoIter& rIter) {
-        mInfo = rIter.mInfo;
-        mIndex = rIter.mIndex;
-        return *this;
+    JMapInfoIter(const JMapInfo* pInfo, s32 index) : mInfo(pInfo), mIndex(index) {
     }
 
     bool operator==(const JMapInfoIter& rIter) const {
-        return mIndex == rIter.mIndex && mInfo && rIter.mInfo && *mInfo == *rIter.mInfo;
+        return mIndex == rIter.mIndex && mInfo != nullptr && rIter.mInfo != nullptr && *mInfo == *rIter.mInfo;
     }
 
     bool operator!=(const JMapInfoIter& rIter) const {
@@ -156,8 +142,8 @@ public:
         return mInfo->getValue(mIndex, pKey, pValueOut);
     }
 
-    const JMapInfo* mInfo;  // 0x0
-    s32 mIndex;             // 0x4
+    /* 0x00 */ const JMapInfo* mInfo;
+    /* 0x04 */ s32 mIndex;
 };
 
 JMapInfoIter JMapInfo::end() const {

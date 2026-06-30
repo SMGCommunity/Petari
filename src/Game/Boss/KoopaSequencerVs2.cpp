@@ -15,6 +15,10 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sKoopaFallVoiceStep = 20;
+};  // namespace
+
 namespace NrvKoopaSequencerVs2 {
     NEW_NERVE(KoopaSequencerVs2NrvWaitDemoBattleStart, KoopaSequencerVs2, WaitDemoBattleStart);
     NEW_NERVE(KoopaSequencerVs2NrvDemoBattleStart, KoopaSequencerVs2, DemoBattleStart);
@@ -100,7 +104,7 @@ void KoopaSequencerVs2::exeDemoDown() {
         MR::startBrk(KoopaFunction::getKoopaPlanet(mKoopa), "Death");
     }
 
-    if (MR::isStep(this, 20)) {
+    if (MR::isStep(this, ::sKoopaFallVoiceStep)) {
         MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL");
     }
 

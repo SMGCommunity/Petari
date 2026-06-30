@@ -9,6 +9,7 @@ namespace MR {
     u32 getViWidth();
     f32 getSafetyVIScreenWidthRatio();
     s32 getScreenWidth();
+    s32 getScreenHeight();
     s32 getSafetyFrameWidth();
     s32 getSafetyFrameLeft();
     s32 getSafetyFrameRight();

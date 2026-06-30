@@ -4,6 +4,13 @@
 
 class KoopaBattleMapStair : public LiveActor {
 public:
+    enum Type {
+        Type_Normal,
+        Type_NoRequestFire,
+        Type_DemoFar,
+        Type_DemoNear,
+    };
+
     KoopaBattleMapStair(const char*);
 
     virtual void init(const JMapInfoIter&);
@@ -26,17 +33,17 @@ public:
     void exeFall();
     void exeDisappear();
 
-    s32 mFireTimer;  // _8C
-    s32 _90;
-    s32 _94;
-    s32 _98;
-    bool _9C;
-    s32 mType;          // 0xA0
-    bool mIsStairBig;   // 0xA4
-    bool mIsStairTurn;  // 0xA5
-    u8 _A6;
-    u32 _A8;
-    TVec3f _AC;
-    s32 _B8;
-    s32 _BC;
+    /* 0x8C */ s32 mTimeToBreak;
+    /* 0x90 */ s32 mFireAttackStep;
+    /* 0x94 */ s32 mArg1;
+    /* 0x98 */ s32 mArg5;
+    /* 0x9C */ bool mArg6;
+    /* 0xA0 */ s32 mType;
+    /* 0xA4 */ bool mIsBig;
+    /* 0xA5 */ bool mIsTurn;
+    /* 0xA6 */ bool _A6;
+    /* 0xA8 */ s32 _A8;
+    /* 0xAC */ TVec3f _AC;
+    /* 0xB8 */ s32 mWaitFallStep;
+    /* 0xBC */ s32 mFallStep;
 };

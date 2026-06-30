@@ -12,7 +12,7 @@ struct JASInstEffect;
 const int OSC_MAX = 2;
 
 struct JASInstParam : public JASSoundParams {
-    JASInstParam();  // gets overwritten in OverwriteJAudio
+    JASInstParam() ATTRIBUTE_WEAK;  // gets overwritten in OverwriteJAudio
 
     void initChannelType() {
         mChannelType = JASChannel::CH_WAVE;

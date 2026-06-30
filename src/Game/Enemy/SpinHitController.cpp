@@ -57,7 +57,7 @@ bool SpinHitController::execute(LiveActor* pActor) {
     f32 val = _C;
     TVec3f v12(pActor->mGravity);
     v12 *= val;
-    JMathInlineVEC::PSVECAdd(&pActor->mVelocity, &v12, &pActor->mVelocity);
+    pActor->mVelocity.add(v12);
 
     if (MR::isStep(pActor, _4)) {
         emitItem(pActor);

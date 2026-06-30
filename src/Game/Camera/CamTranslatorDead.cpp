@@ -1,8 +1,7 @@
 #include "Game/Camera/CamTranslatorDead.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 
-CamTranslatorDead::CamTranslatorDead(CameraDead* pCamera) {
-    mCamera = pCamera;
+CamTranslatorDead::CamTranslatorDead(CameraDead* pCamera) : mCamera(pCamera) {
 }
 
 void CamTranslatorDead::setParam(const CameraParamChunk* pChunk) {

@@ -31,11 +31,11 @@ struct JASWaveArc : JASDisposer {
     bool eraseSetup();
     static void loadToAramCallback(void*);
     bool sendLoadCmd();
-    inline bool load(JASHeap*) NO_INLINE; /* overwritten in OverwriteJAudio */
+    bool load(JASHeap*) ATTRIBUTE_WEAK; /* overwritten in OverwriteJAudio */
     bool loadTail(JASHeap*);
     bool erase();
     void setEntryNum(s32);
-    inline void setFileName(char const*) NO_INLINE; /* overwritten in OverwriteJAudio */
+    void setFileName(char const*) ATTRIBUTE_WEAK; /* overwritten in OverwriteJAudio */
 
     virtual ~JASWaveArc();
     virtual void onDispose();

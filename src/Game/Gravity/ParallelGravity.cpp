@@ -3,6 +3,11 @@
 #include "Inline.hpp"
 #include "JSystem/JMath.hpp"
 
+void ParallelGravity_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 ParallelGravity::ParallelGravity()
     : PlanetGravity(), mPlanePosition(0, 0, 0), mPlaneUpVec(0.0f, 1.0f, 0.0f), mWorldPlanePosition(0, 0, 0), mWorldPlaneUpVec(0.0f, 1.0f, 0.0f) {
     mCylinderHeight = 1000.0f;
@@ -118,7 +123,7 @@ bool ParallelGravity::isInBoxRange(const TVec3f& rPosition, f32* pScalar) const 
 
     // Check in Z direction
     TVec3f dirZ;
-    mWorldMtx.getYDir(dirZ);
+    mWorldMtx.getZDir(dirZ);
     f32 dotZ = dirToCenter.dot(dirZ);
 
     if (dotZ < -mExtentZ || mExtentZ < dotZ)
@@ -150,6 +155,7 @@ bool ParallelGravity::isInBoxRange(const TVec3f& rPosition, f32* pScalar) const 
 }
 
 bool ParallelGravity::isInCylinderRange(const TVec3f& rPosition, f32* pScalar) const {
+    // FIXME
     f32 height = mWorldPlaneUpVec.dot(rPosition - mWorldPlanePosition);
 
     if (height < 0.0f || mCylinderHeight < height) {
@@ -161,7 +167,7 @@ bool ParallelGravity::isInCylinderRange(const TVec3f& rPosition, f32* pScalar) c
     // Check radius range
     positionOnWorldPlane.rejection(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
 
-    f32 radius = PSVECMag(&positionOnWorldPlane);
+    f32 radius = positionOnWorldPlane.length();
 
     if (radius > mCylinderRadius) {
         return false;

@@ -1,4 +1,5 @@
 #include "Game/NPC/TicoFat.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
@@ -10,17 +11,29 @@
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/Screen/FullnessMeter.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LightUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 #include <cstdio>
 
@@ -274,7 +287,7 @@ void TicoFat::setCameraParam() {
     zDir.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.w * _B0.y))), ((2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.w * _B0.x))),
                     ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.y * _B0.y))));
 
-    v18.setPS2(_C0);
+    v18 = _C0;
     TVec3f* ptr = &v18;
     MR::setProgrammableCameraParam(
         "デブチコカメラ", (*ptr + (xDir * 0.0f) + (yDir * 0.0f)) + (zDir * 0.0f),
@@ -560,9 +573,7 @@ void TicoFat::emitScreenEffect() {
 }
 
 void TicoFat::updateScreenEffect() {
-    const TVec3f camPos = MR::getCamPos();
-    TVec3f v19(mPosition);
-    JMathInlineVEC::PSVECSubtract(&v19, &camPos, &v19);
+    TVec3f v19 = mPosition - MR::getCamPos();
     MR::normalizeOrZero(&v19);
     MR::makeMtxFrontUpPos(&_17C, -MR::getCamZdir(), MR::getCamYdir(), MR::getCamPos() + (v19 * 500.0f));
     MR::makeMtxFrontUpPos(&_1AC, -MR::getCamZdir(), MR::getCamYdir(), mPosition);
