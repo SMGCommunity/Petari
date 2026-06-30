@@ -4,6 +4,7 @@
 #include "Game/Map/SphereSelectorHandle.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
+#include "revolution/types.h"
 
 namespace {
     SphereSelector* getSphereSelector() {
@@ -13,13 +14,13 @@ namespace {
     void getHandleMtx(TPos3f* pPos) {
         pPos->identity();
         if (MR::isExistSceneObj(SceneObj_SphereSelector)) {
-            SphereSelectorHandle* pSelectorHandle = ::getSphereSelector()->_90;
+            SphereSelectorHandle* pSelectorHandle = ::getSphereSelector()->mHandle;
             if (pSelectorHandle && !MR::isDead(pSelectorHandle)) {
                 pPos->set(pSelectorHandle->getBaseMtx());
             }
         }
     }
-}  // namespace
+};  // namespace
 
 namespace NrvSphereSelector {
     NEW_NERVE(SphereSelectorNrvSelectStart, SphereSelector, SelectStart);
@@ -32,7 +33,7 @@ namespace NrvSphereSelector {
 };  // namespace NrvSphereSelector
 
 SphereSelector::SphereSelector()
-    : LiveActor("スフィアセレクター"), mSphereGroup(nullptr), _90(nullptr), mSelectedTarget(nullptr), _98(0), mPointingTarget(nullptr), _A4(0),
+    : LiveActor("スフィアセレクター"), mSphereGroup(nullptr), mHandle(nullptr), mSelectedTarget(nullptr), _98(0), mPointingTarget(nullptr), _A4(0),
       _A8(0.0f), _AC(0.0f), mIsPointingInvalid(false), _B1(false) {
 }
 
@@ -49,7 +50,7 @@ void SphereSelector::appear() {
     mSelectedTarget = nullptr;
     _98 = 0;
     mPointingTarget = nullptr;
-    mIsPointingInvalid = nullptr;
+    mIsPointingInvalid = false;
     MR::deactivateDefaultGameLayout();
     MR::startStarPointerModeSphereSelectorFinger(this);
     setNerve(&NrvSphereSelector::SphereSelectorNrvSelectStart::sInstance);
@@ -67,13 +68,13 @@ void SphereSelector::kill() {
 
 void SphereSelector::validatePointing() {
     mIsPointingInvalid = false;
-    _90->validateRotate();
+    mHandle->validateRotate();
     MR::startStarPointerModeSphereSelectorOnReaction(this);
 }
 
 void SphereSelector::invalidatePointing() {
     mIsPointingInvalid = true;
-    _90->invalidateRotate();
+    mHandle->invalidateRotate();
     MR::endStarPointerMode(this);
 }
 
@@ -109,13 +110,13 @@ void SphereSelector::playCanceledME() {
         MR::startSystemME("ME_ASTRO_DOME_CALCEL2");
         break;
     case 2:
-        MR::startSystemME("ME_ASTRO_DOME_CANCEL3");
+        MR::startSystemME("ME_ASTRO_DOME_CALCEL3");
         break;
     case 3:
-        MR::startSystemME("ME_ASTRO_DOME_CANCEL4");
+        MR::startSystemME("ME_ASTRO_DOME_CALCEL4");
         break;
     case 4:
-        MR::startSystemME("ME_ASTRO_DOME_CANCEL5");
+        MR::startSystemME("ME_ASTRO_DOME_CALCEL5");
         break;
     }
 }
@@ -140,20 +141,20 @@ void SphereSelector::exeConfirmStart() {
         _B1 = false;
         MR::endStarPointerMode(this);
     }
-    MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvConfirmWait::sInstance, 45);
+    MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvConfirmWait::sInstance, SphereSelectorFunction::getConfirmStartCancelFrame());
 }
 
 void SphereSelector::exeConfirmCancel() {
     if (MR::isFirstStep(this)) {
         sendMsgToAllActor(ACTMES_SPHERE_SELECTOR_CONFIRM_CANCEL);
-        mSelectedTarget = 0;
-        mPointingTarget = 0;
+        mSelectedTarget = nullptr;
+        mPointingTarget = nullptr;
         if (!_B1) {
             playCanceledME();
         }
         _B1 = false;
     }
-    MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance, 45);
+    MR::setNerveAtStep(this, &NrvSphereSelector::SphereSelectorNrvSelectWait::sInstance, SphereSelectorFunction::getConfirmStartCancelFrame());
 }
 
 void SphereSelector::exeSelectStart() {
@@ -289,14 +290,14 @@ bool SphereSelectorFunction::isValidPointing() {
     return !::getSphereSelector()->mIsPointingInvalid;
 }
 
-void SphereSelectorFunction::setHandle(SphereSelectorHandle* pSelectorHandler) {
-    ::getSphereSelector()->_90 = pSelectorHandler;
+void SphereSelectorFunction::setHandle(SphereSelectorHandle* pHandle) {
+    ::getSphereSelector()->mHandle = pHandle;
 }
 
-void SphereSelectorFunction::calcHandledTrans(const TVec3f& src, TVec3f* dst) {
+void SphereSelectorFunction::calcHandledTrans(const TVec3f& rSrc, TVec3f* pDst) {
     TPos3f mtx;
     ::getHandleMtx(&mtx);
-    mtx.mult(src, *dst);
+    mtx.mult(rSrc, *pDst);
 }
 
 void SphereSelectorFunction::calcHandledRotateMtx(const TVec3f& src, TPos3f* dst) {
@@ -308,15 +309,15 @@ void SphereSelectorFunction::calcHandledRotateMtx(const TVec3f& src, TPos3f* dst
 }
 
 TVec3f& SphereSelectorFunction::getHandleTrans() {
-    return ::getSphereSelector()->_90->mPosition;
+    return ::getSphereSelector()->mHandle->mPosition;
 }
 
 f32 SphereSelectorFunction::getHandleRotateSpeed() {
-    return ::getSphereSelector()->_90->mRotateSpeed;
+    return ::getSphereSelector()->mHandle->mRotateSpeed;
 }
 
 bool SphereSelectorFunction::isHandleHolding() {
-    return ::getSphereSelector()->_90->isHolding();
+    return ::getSphereSelector()->mHandle->isHolding();
 }
 
 void SphereSelectorFunction::registerPointingTarget(LiveActor* pActor, HandlePointingPriority priority) {
@@ -332,7 +333,7 @@ bool SphereSelectorFunction::tryRegisterPointingTarget(LiveActor* pActor, Handle
 }
 
 bool SphereSelectorFunction::isPointingTarget() {
-    return ::getSphereSelector()->mPointingTarget;
+    return ::getSphereSelector()->mPointingTarget != nullptr;
 }
 
 bool SphereSelectorFunction::isPointingTarget(const LiveActor* pActor) {

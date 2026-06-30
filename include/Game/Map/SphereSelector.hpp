@@ -33,7 +33,7 @@ public:
     void exeConfirm();
 
     /* 0x8C */ LiveActorGroup* mSphereGroup;
-    /* 0x90 */ SphereSelectorHandle* _90;
+    /* 0x90 */ SphereSelectorHandle* mHandle;
     /* 0x94 */ LiveActor* mSelectedTarget;
     /* 0x98 */ u32 _98;
     /* 0x9C */ u32 _9C;     // This doesn't seem to exist
