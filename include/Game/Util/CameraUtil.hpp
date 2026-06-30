@@ -96,7 +96,7 @@ namespace MR {
 
     void overlayWithPreviousScreen(u32);
 
-    void resetCamerLocalOffset();
+    void resetCameraLocalOffset();
 
     void drawInitFor2DModel();
 
