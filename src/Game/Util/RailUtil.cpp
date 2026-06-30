@@ -213,7 +213,7 @@ namespace MR {
         padVec.set(padding);
         clipBox.i.sub(padVec);
         clipBox.f.add(padVec);
-        pCenter->lerp(clipBox.f, clipBox.i, 0.5f);
+        //pCenter->lerp(clipBox.f, clipBox.i, 0.5f);
 
         TVec3f diameterVec;
         diameterVec.sub(clipBox.f, clipBox.i);
