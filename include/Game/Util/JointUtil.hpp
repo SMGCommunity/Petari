@@ -15,7 +15,7 @@ namespace MR {
     MtxPtr getJointMtx(J3DModel*, const char*);
     MtxPtr getJointMtx(const LiveActor*, const char*);
     MtxPtr getJointMtx(const LiveActor*, int);
-    u16 getJointIndex(const LiveActor*, const char*);
+    s32 getJointIndex(const LiveActor*, const char*);
     const char* getJointName(const LiveActor*, int);
     s32 getJointNum(const LiveActor*);
     bool isExistJoint(const LiveActor*, const char*);
