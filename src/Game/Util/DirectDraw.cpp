@@ -1,7 +1,9 @@
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "JSystem/JUtility/JUTTexture.hpp"
 #include "math_types.hpp"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXVert.h"
@@ -229,9 +231,119 @@ namespace TDDraw {
         }
     }
 
-    // TDDraw::drawFillFan
-    // TDDraw::drawCylinder
-    // TDDraw::drawSpherePart
+    void drawFillFan(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, u32 a4, f32 a5, f32 a6, u32 a7) {
+        Mtx v18;
+        PSMTXRotAxisRad(v18, a2, a5);
+        Mtx v17;
+        PSMTXRotAxisRad(v17, a2, (a6 - a5) / (a7));
+        TVec3f v16;
+        PSMTXMultVec(v18, a3, v16);
+        GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, a7 + 2);
+        GXPosition3f32(a1.x, a1.y, a1.z);
+        GXCmd1u32(a4);
+
+        for (u32 i = 0; i <= a7; i++) {
+            TVec3f v15(v16);
+            v15 += a1;
+            GXPosition3f32(v15.x, v15.y, v15.z);
+            GXCmd1u32(a4);
+            PSMTXMultVec(v17, v16, v16);
+        }
+    }
+
+    void drawCylinder(const TVec3f& a1, const TVec3f& a2, f32 a3, u32 a4, u32 a5, u32 a6) {
+        TVec3f v19;
+        if (a2.x != 0.0f) {
+            v19.set< f32 >(a2.y, -a2.x, 0.0f);
+        } else {
+            v19.set< f32 >(0.0f, -a2.z, a2.y);
+        }
+
+        if (!MR::isNearZero(v19)) {
+            MR::normalizeOrZero(&v19);
+            TVec3f v18(a1);
+            v18 += a2;
+            Mtx v20;
+            PSMTXRotAxisRad(v20, a2, (TWO_PI / a6));
+            GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * (a6 + 1));
+
+            for (u32 i = 0; i <= a6; i++) {
+                TVec3f v15(v19);
+                v15 *= a3;
+                TVec3f v17(a1);
+                v17 += v15;
+                TVec3f v14(v19);
+                v14 *= a3;
+                TVec3f v16(v18);
+                v16 += v14;
+                GXPosition3f32(v17.x, v17.y, v17.z);
+                GXCmd1u32(a4);
+                GXPosition3f32(v16.x, v16.y, v16.z);
+                GXCmd1u32(a5);
+                PSMTXMultVec(v20, v19, v19);
+            }
+        }
+    }
+
+    void drawSpherePart(const TPos3f& a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, u32 a7, u32 a8, u32 a9) {
+        TVec3f v47;
+        v47.set< f32 >(a1(0, 0), a1(1, 0), a1(2, 0));
+        TVec3f v46;
+        v46.set< f32 >(a1(0, 1), a1(1, 1), a1(2, 1));
+        TVec3f v45;
+        v45.set< f32 >(a1(0, 2), a1(1, 2), a1(2, 2));
+        TVec3f v44;
+        a1.getTrans(v44);
+        f32 v21 = MR::sin(a3);
+        f32 v22 = MR::cos(a3);
+        TVec3f v36(v46);
+        v36 *= v21;
+        TVec3f v37(v47);
+        v37 *= v22;
+        TVec3f v38(v37);
+        v38 += v36;
+        TVec3f v43(v38);
+        v43 *= a2;
+        f32 v23 = a6 - a5;
+
+        for (u32 i = 1; i <= a8; i++) {
+            f32 v25 = (a3 + (i / a8)) * (a4 - a3);
+            f32 v26 = MR::sin(v25);
+            f32 v27 = MR::cos(v25);
+            TVec3f v33(v46);
+            v33 *= v26;
+            TVec3f v34(v47);
+            v34 *= v27;
+            TVec3f v35(v34);
+            v34 += v33;
+            TVec3f v42(v35);
+            v42 *= a2;
+
+            GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * (a9 + 1));
+
+            for (s32 j = 0; j <= a9; j++) {
+                f32 v29 = (a5 + (j / a9) * v23);
+                f32 v30 = MR::sin(v29);
+                f32 v31 = MR::cos(v29);
+                TVec3f v32(v45);
+                v32 *= (v31 * a2);
+                TVec3f v41(v44);
+                v41 += v32;
+                TVec3f v40(v43);
+                v40 *= v30;
+                TVec3f v39(v42);
+                v39 *= v30;
+                v40 += v41;
+                v39 += v41;
+                GXPosition3f32(v40.x, v40.y, v40.z);
+                GXCmd1u32(a7);
+                GXPosition3f32(v39.x, v39.y, v39.z);
+                GXCmd1u32(a7);
+            }
+
+            v43 = v42;
+        }
+    }
 
     void drawSphere(const TVec3f& a1, f32 a2, u32 a3, u32 a4) {
         TVec3f v9 = MR::getCamZdir();
@@ -243,6 +355,86 @@ namespace TDDraw {
         v8.identity();
         v8.setTrans(a1);
         drawSpherePart(v8, a2, a3, a3, a4, 0.0f, TWO_PI, 0.0f, PI);
+    }
+
+    void drawTexture(const TVec2f& a1, JUTTexture* a2, const TVec2f& a3) {
+        a2->load(GX_TEXMAP0);
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+        GXPosition3f32(a1.x, a1.y, 0.0f);
+        GXCmd1f32(0.0f);
+        GXCmd1f32(0.0f);
+        GXPosition3f32(a1.x + a3.x, a1.y, 0.0f);
+        GXCmd1f32(1.0f);
+        GXCmd1f32(0.0f);
+        GXPosition3f32(a1.x + a3.x, a1.y + a3.y, 0.0f);
+        GXCmd1f32(1.0f);
+        GXCmd1f32(1.0f);
+        GXPosition3f32(a1.x, a1.y + a3.y, 0.0f);
+        GXCmd1f32(0.0f);
+        GXCmd1f32(1.0f);
+    }
+
+    // TDDraw::drawTexture3D
+
+    void drawFillBox(const TVec3f& a1, const TVec3f& a2, u32 a3) {
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+        GXPosition3f32(a1.x, a1.y, a1.z);
+        GXCmd1u32(a3);
+        GXPosition3f32(a2.x, a1.y, a1.z);
+        GXCmd1u32(a3);
+        GXPosition3f32(a2.x, a2.y, a2.z);
+        GXCmd1u32(a3);
+        GXPosition3f32(a1.x, a2.y, a2.z);
+        GXCmd1u32(a3);
+    }
+
+    void drawFillBox(const TVec2f& a1, const TVec2f& a2, u32 a3) {
+        GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+        GXPosition3f32(a1.x, a1.y, 0.0f);
+        GXCmd1u32(a3);
+        GXPosition3f32(a2.x, a1.y, 0.0f);
+        GXCmd1u32(a3);
+        GXPosition3f32(a2.x, a2.y, 0.0f);
+        GXCmd1u32(a3);
+        GXPosition3f32(a1.x, a2.y, 0.0f);
+        GXCmd1u32(a3);
+    }
+
+    //  TDDraw::drawFillBox3D
+
+    void cameraInit3D() {
+        MR::loadProjectionMtx();
+    }
+
+    // TDDraw::cameraInit2D
+
+    void mixFogColor(TVec3f a1, f32 a2, u32 a3) {
+        f32 nearZ = MR::getNearZ();
+        f32 farZ = MR::getFarZ();
+        GXColor color;
+        setGXColor(a3, &color);
+        f32 v11;
+        f32 v10;
+        MR::calcFogStartEnd(a1, a2, &v11, &v10);
+        GXSetFog(GX_FOG_PERSP_LIN, v11, v10, nearZ, farZ, color);
+    }
+
+    // TDDraw::tileConversion8
+    // TDDraw::tileConversion16
+    // TDDraw::getTexel32
+    // TDDraw::getTexel32
+    // TDDraw::setTexel32
+    // TDDraw::setTexel32
+    // TDDraw::invProject
+    // TDDraw::project2D
+    // TDDraw::project2D
+    // TDDraw::fix2Dpos
+
+    void setGXColor(u32 a1, GXColor* pColor) {
+        pColor->r = (a1 >> 24) & 0xFF;
+        pColor->g = (a1 >> 16) & 0xFF;
+        pColor->b = (a1 >> 8) & 0xFF;
+        pColor->a = a1 & 0xFF;
     }
 
 };  // namespace TDDraw

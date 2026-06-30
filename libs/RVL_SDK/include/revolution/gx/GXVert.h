@@ -49,6 +49,7 @@ volatile PPCWGPipe GXWGFifo;
 __GXCDEF(GXCmd, 1, u8)
 __GXCDEF(GXCmd, 1, u16)
 __GXCDEF(GXCmd, 1, u32)
+__GXCDEF(GXCmd, 1, f32)
 
 __GXCDEF(GXPosition, 3, f32)
 __GXCDEF(GXPosition, 3, u8)
