@@ -601,7 +601,7 @@ public:
     /* 0x9B8 */ u32 _9B8;
     /* 0x9BC */ u32 _9BC;
     /* 0x9C0 */ ModelHolder* _9C0;
-    /* 0x9C4 */ u32 _9C4;
+    /* 0x9C4 */ LiveActor* _9C4;
     /* 0x9C8 */ ModelHolder* _9C8;
     /* 0x9CC */ f32 _9CC;
     /* 0x9D0 */ f32 _9D0;
