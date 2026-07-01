@@ -7,9 +7,9 @@
 
 namespace {
     Color8 getSyntheticColor(const Color8& rColor1, const Color8& rColor2) {
-        u8 r = rColor1.r * rColor2.r / 0xFF;
-        u8 g = rColor1.g * rColor2.g / 0xFF;
-        u8 b = rColor1.b * rColor2.b / 0xFF;
+        u8 r = rColor1.r * rColor2.r / 255;
+        u8 g = rColor1.g * rColor2.g / 255;
+        u8 b = rColor1.b * rColor2.b / 255;
         
         return Color8(r, g, b, -1);
     }
