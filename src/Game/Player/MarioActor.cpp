@@ -462,7 +462,7 @@ void MarioActor::changeAnimationNonStop(const char* pName) {
 
 void MarioActor::changeAnimationUpper(const char* pName) {
     if (!mMario->_71C && isAnimationRun("基本")) {
-        mMario->changeAnimation(pName, reinterpret_cast< char* >(nullptr));
+        mMario->changeAnimation(pName, static_cast< const char* >(nullptr));
         return;
     }
 
