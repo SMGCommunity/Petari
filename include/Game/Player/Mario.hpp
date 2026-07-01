@@ -951,8 +951,7 @@ public:
     /* 0x978 */ u32 _978;
     // Not fake
 
-    /* 0x97C */
-    MarioState* _97C;
+    /* 0x97C */ MarioState* _97C;
     /* 0x980 */ MarioState* _980;
 
     /* 0x984 */ Task _984[0xb];
