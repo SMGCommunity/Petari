@@ -28,7 +28,7 @@ from tools.project import (
 
 # Game versions
 DEFAULT_VERSION = 0
-VERSIONS = ["RMGK01", "RMGK02"]  # 0  # 1
+VERSIONS = ["RMGK01"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
