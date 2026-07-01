@@ -4,7 +4,6 @@
 #include <revolution/sc.h>
 #include <revolution/vi.h>
 
-
 const char* __VIVersion = "<< RVL_SDK - VI \trelease build: Aug  8 2007 02:07:17 (0x4199_60831) >>";
 
 static BOOL IsInitialized = FALSE;
@@ -1218,6 +1217,14 @@ void VISetNextFrameBuffer(void* fb) {
     OSRestoreInterrupts(enabled);
 }
 
+void* VIGetNextFrameBuffer(void) {
+    return (void*)NextBufAddr;
+}
+
+void* VIGetCurrentFrameBuffer(void) {
+    return (void*)CurrBufAddr;
+}
+
 u32 VIGetTvFormat(void) {
     u32 format;
     BOOL enabled;
@@ -1342,6 +1349,17 @@ void __VIDisplayPositionToXY(u32 hct, u32 vct, s16* x, s16* y) {
     *x = (s16)(hct - 1);
 }
 
+u32 VIGetDimmingCount(void) {
+    u32 count;
+
+    if (_gIdleCount_dimming >= THD_TIME_TO_DIMMING) {
+        count = 0;
+    } else {
+        count = (u32)THD_TIME_TO_DIMMING - _gIdleCount_dimming;
+    }
+    return count;
+}
+
 void __VIGetCurrentPosition(s16* x, s16* y) {
     u32 hcount;
     u32 vcount;
@@ -1391,4 +1409,44 @@ BOOL VIEnableDimming(BOOL enable) {
 
     __VIDimmingFlag_Enable = enable;
     return old;
+}
+
+VITimeToDIM VISetTimeToDimming(VITimeToDIM time) {
+    VITimeToDIM old_time = g_current_time_to_dim;
+    g_current_time_to_dim = time;
+
+    switch (VIGetTvFormat()) {
+    case VI_PAL:
+        switch (g_current_time_to_dim) {
+        case VI_DM_10M:
+            NEW_TIME_TO_DIMMING = 30000;
+            break;
+        case VI_DM_15M:
+            NEW_TIME_TO_DIMMING = 45000;
+            break;
+        default:
+            NEW_TIME_TO_DIMMING = 15000;
+            break;
+        }
+        break;
+    default:
+        switch (g_current_time_to_dim) {
+        case VI_DM_10M:
+            NEW_TIME_TO_DIMMING = 36000;
+            break;
+        case VI_DM_15M:
+            NEW_TIME_TO_DIMMING = 54000;
+            break;
+        default:
+            NEW_TIME_TO_DIMMING = 18000;
+            break;
+        }
+        break;
+    }
+    return old_time;
+}
+
+BOOL __VIResetRFIdle(void) {
+    __VIDimmingFlag_RF_IDLE = 0;
+    return TRUE;
 }
