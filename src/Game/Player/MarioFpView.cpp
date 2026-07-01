@@ -162,7 +162,7 @@ bool MarioFpView::update() {
         mIsActive = false;
     }
 
-    if (mDelay && --mDelay == 0) {
+    if (mDelay != 0 && --mDelay == 0) {
         return false;
     }
 
