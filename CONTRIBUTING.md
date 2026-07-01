@@ -50,6 +50,7 @@ Contributors should be familiar with:
 - Use `nullptr` instead of `0` for pointers in C++.
 - Use `NULL` for pointers in C.
 - Use `0` only for numeric values.
+- Use the 'f' suffix for floating point literals.
 - Avoid humorous comments, jokes, or commentary about typos, compiler behavior, or reverse engineering discoveries. Comments should remain professional and describe the code, not the contributor's thought process.
 
 ## Headers
