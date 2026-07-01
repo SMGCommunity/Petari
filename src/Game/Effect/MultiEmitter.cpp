@@ -110,8 +110,8 @@ void MultiEmitter::setHostMtx(MtxPtr pMtx) {
     mCallBack->setHostMtx(pMtx);
 }
 
-void MultiEmitter::setOffset(const TVec3f& rOffet) {
-    mCallBack->_18.set(rOffet);
+void MultiEmitter::setOffset(const TVec3f& rOffset) {
+    mCallBack->_18.set(rOffset);
 }
 
 void MultiEmitter::setBaseScale(f32 scale) {
