@@ -355,7 +355,7 @@ public:
     void changeHandMaterial();
     void calcScreenBoxRange();
     void updateRasterScroll();
-  
+
     void settingRush();
 
     void resetCondition();
@@ -506,14 +506,14 @@ public:
     /* 0x3C4 */ TVec3f _3C4;
     /* 0x3D0 */ u16 _3D0;
     /* 0x3D2 */ u16 _3D2;
-    /* 0x3D4 */ u16 mPlayerMode;  // 0x3D4
+    /* 0x3D4 */ u16 mPlayerMode;
     /* 0x3D6 */ u16 _3D6;
     /* 0x3D8 */ u16 _3D8;
     /* 0x3DA */ u16 _3DA;
     /* 0x3DC */ u16 _3DC;
     /* 0x3DE */ u8 _3DE;
     /* 0x3DF */ u8 _3DF;
-    /* 0x3E0 */ u32 mMaxHealth;  // 0x3E0
+    /* 0x3E0 */ u32 mMaxHealth;
     /* 0x3E4 */ bool _3E4;
     /* 0x3E5 */ bool _3E5;
     /* 0x3E6 */ bool _3E6;
@@ -526,14 +526,17 @@ public:
     /* 0x428 */ HitSensor* _428[4];
     /* 0x438 */ u8 _438[48];
     /* 0x468 */
+
     union {
         struct {
-            u32 _468;
-            HitSensor* _46C;
-            u32 _470;
+            /* 0x468 */ u32 _468;
+            /* 0x46C */ HitSensor* _46C;
+            /* 0x470 */ u32 _470;
         };
-        TVec3f _468Vec;
+
+        /* 0x468 */ TVec3f _468Vec;
     };
+
     /* 0x474 */ u32 _474;
     /* 0x478 */ f32 _478;
     /* 0x47C */ u32 _47C;
@@ -626,7 +629,7 @@ public:
     /* 0xA18 */ TVec3f _A18;
     /* 0xA24 */ u8 _A24;
     /* 0xA25 */ u8 _A25;
-    /* 0xA28 */ J3DModelX* mModels[6];  // 0xA28
+    /* 0xA28 */ J3DModelX* mModels[6];
     /* 0xA40 */ ModelHolder* _A40;
     /* 0xA44 */ ModelHolder* _A44;
     /* 0xA48 */ ModelHolder* _A48;
@@ -750,16 +753,19 @@ public:
     /* 0xF24 */ u32 _F24;
     /* 0xF28 */ u16 _F28;
     /* 0xF2C */
+
     union {
-        u32 _F2C;
-        TVec3f _F2CVec;
+        /* 0xF2c */ u32 _F2C;
+        /* 0xF2C */ TVec3f _F2CVec;
     };
+
     /* 0xF38 */ u8 _F38;
-    /* 0xF3C */
+
     union {
-        TVec3f* _F3CVec;
-        AudGeneric* _F3C;
+        /* 0xF3C */ TVec3f* _F3CVec;
+        /* 0xF3C */ AudGeneric* _F3C;
     };
+
     /* 0xF40 */ u16 _F40;
     /* 0xF42 */ u16 _F42;
     /* 0xF44 */ bool _F44;
