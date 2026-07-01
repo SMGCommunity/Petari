@@ -37,7 +37,7 @@ void Mario::sendStateMsg(u32 msg) {
         }
 
         if (pState->proc(msg) == 0) {
-            if (Mario::isStatusActive(pState->mStatusId) != 0) {
+            if (isStatusActive(pState->mStatusId) != 0) {
                 closeStatus(pState);
             }
         } else if (msg == 2) {
