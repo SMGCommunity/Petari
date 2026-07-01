@@ -65,7 +65,7 @@ void SimpleEffectObj::init(const JMapInfoIter& rIter) {
     } else {
         MR::registerDemoSimpleCastAll(this);
     }
-    _90.set(mPosition.addOtherInline2(*getClippingCenterOffset()));
+    _90.set(mPosition + *getClippingCenterOffset());
     MR::setClippingTypeSphere(this, getClippingRadius(), &_90);
     MR::setGroupClipping(this, rIter, 0x40);
     MR::setClippingFar(this, getFarClipDistance());

@@ -151,8 +151,8 @@ f32 KoopaBattleMapStair::calcAndSetTargetPos(TVec3f* pPos, const TVec3f& a2) {
     } else if (mIsTurn) {
         TVec3f v30 = axisX * ::sTurnHalfWidthX;
         TVec3f tmp = v38 + (axisZ * ::sTurnHalfWidthZ);
-        TVec3f v27(tmp);
-        JMathInlineVEC::PSVECSubtract(&v27, &v30, &v27);
+        TVec3f v27 = tmp;
+        v27 -= v30;
 
         ::updateNearestPos(pPos, &v20, v27, a2, -1, -1);
     } else {

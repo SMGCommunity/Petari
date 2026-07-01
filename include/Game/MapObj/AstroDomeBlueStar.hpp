@@ -4,38 +4,39 @@
 #include "Game/Util/EffectUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-class GCaptureRibbon;
-class CaptureActor;
 class ActorCameraInfo;
+class CaptureActor;
+class GCaptureRibbon;
 
 class AstroDomeBlueStar : public LiveActor {
 public:
     class CaptureActor : public LiveActor {
     public:
+        /// @brief Creates a new `CaptureActor`.
         CaptureActor();
 
-        virtual ~CaptureActor();
         virtual void init(const JMapInfoIter&);
         virtual void kill();
 
         void updateTransTraction(const TVec3f&, const TVec3f&, s32);
 
-        inline void forceKill() {
+        void forceKill() {
             MR::forceDeleteEffectAll(this);
             LiveActor::kill();
         };
 
-        inline void setPosAll(TVec3f& mPos) {
+        void setPosAll(TVec3f& mPos) {
             mPosition.set(mPos);
             _8C.setTrans(mPosition);
         }
 
-        TPos3f _8C;
+        /* 0x8C */ TPos3f _8C;
     };
 
-    AstroDomeBlueStar(const char*);
+    /// @brief Creates a new `AstroDomeBlueStar`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    AstroDomeBlueStar(const char* pName);
 
-    virtual ~AstroDomeBlueStar();
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void appear();
@@ -66,5 +67,5 @@ public:
     /* 0x0C0 */ TPos3f _C0;
     /* 0x0F0 */ ActorCameraInfo* _F0;
     /* 0x0F4 */ TVec3f mZoomPos;
-    /* 0x100*/ CaptureActor* mCaptureActor;
+    /* 0x100 */ CaptureActor* mCaptureActor;
 };

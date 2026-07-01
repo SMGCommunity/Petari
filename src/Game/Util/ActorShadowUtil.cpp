@@ -370,26 +370,19 @@ namespace MR {
         }
     }
 
-    // Minor mismatch: Stack positions are wrong
-    /* bool calcClippingRangeIncludeShadow(TVec3f *pVecOutput, f32 *pF32Output, const LiveActor *pActor, f32 a4) {
+    bool calcClippingRangeIncludeShadow(TVec3f* pVecOutput, f32* pF32Output, const LiveActor* pActor, f32 a4) {
         TVec3f projectionPos;
         if (ActorShadow::getShadowController(pActor, (char*)nullptr)->isProjected()) {
             ActorShadow::getShadowController(pActor, (char*)nullptr)->getProjectionPos(&projectionPos);
-            TVec3f stack_8(pActor->mPosition);
-            TVec3f* pProjectionPos = &projectionPos;
-            JMathInlineVEC::PSVECAdd2((Vec*)&stack_8, (Vec*)pProjectionPos, (Vec*)&stack_8);
-            TVec3f stack_14(stack_8);
-            stack_14.mult(0.5f);
-            pVecOutput->set(stack_14);
-            *pF32Output = 0.5f * PSVECDistance((Vec*)pProjectionPos, (Vec*)&pActor->mPosition) + a4;
+            pVecOutput->set((pActor->mPosition + projectionPos).multInLine(0.5f));
+            *pF32Output = 0.5f * projectionPos.distance(pActor->mPosition) + a4;
             return true;
-        }
-        else {
+        } else {
             pVecOutput->set(pActor->mPosition);
             *pF32Output = a4;
             return false;
         }
-    } */
+    }
 
     void setClippingRangeIncludeShadow(LiveActor* pActor, TVec3f* a2, f32 a3) {
         f32 stack_8(a3);

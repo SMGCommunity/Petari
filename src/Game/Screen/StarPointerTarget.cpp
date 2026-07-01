@@ -62,7 +62,7 @@ void StarPointerTarget::calcPosition(TVec3f* pWorldPos) const {
         pWorldPos->z += mMtx[2][0] * mOffset.x + mMtx[2][1] * mOffset.y + mMtx[2][2] * mOffset.z;
     } else {
         pWorldPos->set< f32 >(mPosition->x, mPosition->y, mPosition->z);
-        pWorldPos->addInline(mOffset);
+        pWorldPos->add(mOffset);
     }
 }
 

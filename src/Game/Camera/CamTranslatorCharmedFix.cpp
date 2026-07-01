@@ -11,7 +11,7 @@ void CamTranslatorCharmedFix::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
     TVec3f up;
-    up.setPS2(general->mUp);
+    up = general->mUp;
 
     if (MR::isNearZero(up)) {
         up.set< f32 >(0.0f, 1.0f, 0.0f);

@@ -13,14 +13,15 @@ OceanBowlPoint::OceanBowlPoint(const TVec3f& rVec) : mVertexPosition(rVec), mPos
 }
 
 void OceanBowlPoint::updatePos(f32 a, f32 b) {
-    if (mWaveScale == 0.0f)
+    if (mWaveScale == 0.0f) {
         return;
+    }
     f32 z = mPosition.z;
     f32 x = mPosition.x;
     f32 height = mWaveScale * calcHeightStatic(a, b, x, z);
     mVertexPosition.set(TVec3f(0.0f, 1.0f, 0.0f));
     mVertexPosition.mult(height);
-    JMathInlineVEC::PSVECAdd2(&mVertexPosition, &mPosition, &mVertexPosition);
+    mVertexPosition.add(mPosition);
 }
 
 f32 OceanBowlPoint::calcHeightStatic(f32 a, f32 b, f32 c, f32 d) {

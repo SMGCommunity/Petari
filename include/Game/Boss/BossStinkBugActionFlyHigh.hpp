@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Game/Boss/BossStinkBugActionBase.hpp"
 
 class BossStinkBugActionFlyHigh : public BossStinkBugActionBase {

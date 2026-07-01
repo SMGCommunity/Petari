@@ -339,7 +339,7 @@ void KoopaJrShip::calcLauncherInfoKiller(TVec3f* a1, TVec3f* a2, s32 idx) const 
     MR::rotateVecDegree(a2, v16, ::sKillerLauncherAngle[idx].y);
     MR::rotateVecDegree(a2, v15, ::sKillerLauncherAngle[idx].z);
     MR::normalize(a2);
-    a1->addInline(*a2 * -100.0f);
+    a1->add(*a2 * -100.0f);
 }
 
 void KoopaJrShip::shootShell(s32 idx) {

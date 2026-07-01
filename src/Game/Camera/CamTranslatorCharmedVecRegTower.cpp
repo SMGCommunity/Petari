@@ -9,6 +9,8 @@ void CamTranslatorCharmedVecRegTower_FORCE_MATCH_SDATA2() {
 
 void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
     // FIXME: regswap
+    // https://decomp.me/scratch/bEuU7
+
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
     TVec3f axis;
@@ -18,7 +20,7 @@ void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
     f32 dist;
     bool uVar3;
 
-    axis.setPS2(general->mAxis);
+    axis = general->mAxis;
 
     MR::normalizeOrZero(&axis);
 

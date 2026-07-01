@@ -47,7 +47,7 @@ void PenguinCoach::init(const JMapInfoIter& rIter) {
     caps.mShadowSize = 130.0f;
     caps.mSensor = false;
     caps.mMakeActor = false;
-    caps.mMessageOffset.setPS2(TVec3f(0.0f, 430.0f, 0.0f));
+    caps.mMessageOffset = TVec3f(0.0f, 430.0f, 0.0f);
     caps.mPointerSize = 180.0f;
     caps.mStarPointerOffs.set(0.0f, 200.0f, 80.0f);
 

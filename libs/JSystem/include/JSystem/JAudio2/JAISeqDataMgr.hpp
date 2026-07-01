@@ -4,26 +4,26 @@
 #include <stdint.h>
 
 struct JAISeqData {
-    JAISeqData(const void* _addr, u32 _size) {
-        addr = (void*)_addr;
-        size = _size;
+    JAISeqData(const void* _data, u32 _offset) {
+        data = (void*)_data;
+        offset = _offset;
     }
 
-    void set(const void* _addr, u32 _size) {
-        addr = (void*)_addr;
-        size = _size;
+    void set(const void* _data, u32 _offset) {
+        data = (void*)_data;
+        offset = _offset;
     }
 
-    /* 0x00 */ void* addr;
-    /* 0x04 */ u32 size;
+    /* 0x00 */ void* data;
+    /* 0x04 */ u32 offset;
 };
 
 struct JAISeqDataRegion {
     bool intersects(const JAISeqData& seqData) const {
-        if ((uintptr_t)addr + size < (uintptr_t)seqData.addr) {
+        if ((uintptr_t)addr + size < (uintptr_t)seqData.data) {
             return false;
         }
-        if ((uintptr_t)seqData.addr + seqData.size < (uintptr_t)addr) {
+        if ((uintptr_t)seqData.data + seqData.offset < (uintptr_t)addr) {
             return false;
         }
         return true;

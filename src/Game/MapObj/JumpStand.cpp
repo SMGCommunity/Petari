@@ -236,6 +236,7 @@ void JumpStand::endBindAndShootUp(f32 v1, JumpType type) {
         f32 v13;
         f32 v14;
 
+        // FIXME: JGeometry::TUtil<f32>::sqrt(v12)
         if (v12 > 0.0f) {
             v13 = __frsqrte(v12);
             v14 = ((-(((v13 * v12) * v13) - 3.0f) * (v13 * v12)) * 0.5f);
@@ -252,20 +253,18 @@ void JumpStand::endBindAndShootUp(f32 v1, JumpType type) {
             TVec3f v25;
             v25.scale(3.0f * v14, v26);
             JMAVECScaleAdd(&v27, &v25, &v25, -v27.dot(v25));
-            JMathInlineVEC::PSVECAdd(&v28, &v25, &v28);
+            v28.add(v25);
         }
 
-        if (type) {
-            if (type == UNK_1) {
-                MR::startBckPlayer("TrampolineJumpMiddle", (const char*)0);
-            } else if (type == UNK_2) {
-                MR::startBckPlayer("TrampolineJumpHigh", (const char*)0);
-            }
-        } else {
+        if (type == UNK_0) {
             MR::startBckPlayer("TrampolineJumpLow", (const char*)0);
+        } else if (type == UNK_1) {
+            MR::startBckPlayer("TrampolineJumpMiddle", (const char*)0);
+        } else if (type == UNK_2) {
+            MR::startBckPlayer("TrampolineJumpHigh", (const char*)0);
         }
 
-        MR::endBindAndPlayerJump(this, v27, 0);
+        MR::endBindAndPlayerJump(this, v28, 0);
 
         if (type != UNK_2) {
             MR::becomePlayerNormalJumpStatus();

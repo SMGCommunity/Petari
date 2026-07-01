@@ -32,7 +32,7 @@ void GreenCaterpillarBigBody::init(const JMapInfoIter& rIter) {
 void GreenCaterpillarBigBody::setPosAndDirection(LiveActor* pActor) {
     TVec3f jointPos;
     MR::copyJointPos(mCaterpillar, "FollowPoint", &jointPos);
-    mPosition.setPS(jointPos);
+    mPosition.set(jointPos);
     calcBodyDir(pActor, &mFrontVec);
 
     mScale.x = 1.0f;

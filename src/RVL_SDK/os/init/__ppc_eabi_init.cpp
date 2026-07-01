@@ -1,5 +1,7 @@
 #include "revolution/base/PPCArch.h"
 
+#pragma section code_type ".init"
+
 // clang-format off
 #ifdef __cplusplus
 extern "C" {

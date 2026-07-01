@@ -121,7 +121,7 @@ void GrandStarReturnDemoStarter::calcOffsetStarToCore(TVec3f* pOffset) const {
     MR::findNamePos("コア中心", &namePos, nullptr);
     MR::copyJointPos(mPowerStar, "PowerStar", &jointPos);
 
-    pOffset->subInline(namePos, jointPos);
+    pOffset->sub(namePos, jointPos);
 }
 
 void GrandStarReturnDemoStarter::updateRailMoveEndDir() {

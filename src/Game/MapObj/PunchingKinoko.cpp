@@ -81,24 +81,20 @@ void PunchingKinoko::initJointControl() {
     mDelegator = MR::createJointDelegatorWithNullChildFunc(this, &PunchingKinoko::ballMtxCallBack, "Ball");
 }
 
-bool PunchingKinoko::ballMtxCallBack(TPos3f* a1, const JointControllerInfo& joint) {
+bool PunchingKinoko::ballMtxCallBack(TPos3f* pMtx, const JointControllerInfo& joint) {
     TVec3f stack_8;
-    PSVECSubtract(&mGroundChecker->mPosition, &mPosition, &stack_8);
-    MR::orthogonalize(a1);
+    stack_8.sub(mGroundChecker->mPosition, mPosition);
+    MR::orthogonalize(pMtx);
     if (!MR::normalizeOrZero(&stack_8)) {
-        MR::turnMtxToYDirRate(a1, stack_8, 1.0f);
+        MR::turnMtxToYDirRate(pMtx, stack_8, 1.0f);
     }
 
     TPos3f stack_14;
     stack_14.identity();
 
     MR::scaleMtxToDir(&stack_14, _A8, mScaleController->_C);
-    a1->concat(stack_14, *a1);
-
-    TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
-    a1->mMtx[0][0] = groundCheckerPos->x;
-    a1->mMtx[1][1] = groundCheckerPos->y;
-    a1->mMtx[2][2] = groundCheckerPos->z;
+    pMtx->concat(stack_14, *pMtx);
+    pMtx->setTransInline(mGroundChecker->mPosition);
 
     return true;
 }
@@ -191,7 +187,7 @@ stack_24);
                 TVec3f stack_C(stack_30);
                 stack_C.scale(dot);
                 TVec3f *groundvel = &mGroundChecker->mVelocity;
-                PSVECSubtract(groundvel, stack_C, groundvel);
+                groundvel->sub(stack_C);
                 mGroundChecker->mVelocity.scaleInline(0.3f);
                 setNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance);
             }
@@ -376,26 +372,15 @@ void PunchingKinoko::exeWait() {
     }
 
     TVec3f stack_38;
-    TVec3f stack_2C;
     MR::calcPositionUpOffset(&stack_38, this, 130.0f);
-
-    TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
-    TVec3f stack_20;
-    TVec3f stack_14(stack_38);
-    PSVECSubtract(&stack_14, groundCheckerPos, &stack_14);
-
-    stack_20 = stack_14;
-    stack_20.scale(0.008f);
-    MR::addVelocity(mGroundChecker, stack_20);
+    MR::addVelocity(mGroundChecker, (stack_38 - mGroundChecker->mPosition).scaleInline(0.008f));
     MR::attenuateVelocity(mGroundChecker, 0.94f);
 
     if (MR::isStarPointerPointing2POnPressButton(this, nullptr, false, false)) {
         if (mStarPointerHitCoolDown == 0 && !_B8 && MR::getStarPointerScreenSpeed(1) > 5.0f) {
-            stack_2C.set(0.0f, 0.0f, 0.0f);
+            TVec3f stack_2C(0.0f, 0.0f, 0.0f);
             if (MR::calcStarPointerWorldVelocityDirectionOnPlane(&stack_2C, mGroundChecker->mPosition, mGravity, 1)) {
-                TVec3f stack_8(stack_2C);
-                stack_8.scale(35.0f);
-                mGroundChecker->mVelocity.add(stack_8);
+                mGroundChecker->mVelocity.add(stack_2C.scaleInline(35.0f));
                 MR::startBlowHitSound(this);
                 MR::start2PAttackAssistSound();
                 MR::tryRumblePadWeak(this, 1);
@@ -416,14 +401,8 @@ void PunchingKinoko::exeSwing() {
     TVec3f stack_20;
     MR::calcPositionUpOffset(&stack_20, this, 130.0f);
 
-    TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
-    TVec3f stack_14(stack_20);
-    PSVECSubtract(&stack_14, groundCheckerPos, &stack_14);
-
-    TVec3f stack_8(stack_14);
-    stack_8.scale(0.008f);
-
-    MR::addVelocity(mGroundChecker, stack_8);
+    TVec3f stack_14 = stack_20 - mGroundChecker->mPosition;
+    MR::addVelocity(mGroundChecker, stack_14.scaleInline(0.008f));
     MR::attenuateVelocity(mGroundChecker, 0.97f);
     f32 var3 = MR::calcVelocityLength(mGroundChecker);
 
@@ -434,7 +413,7 @@ void PunchingKinoko::exeSwing() {
 
     MR::vecBlend(_9C, mPosition, &_9C, 0.05f);
 
-    if (var3 < 40.0f && PSVECMag(&stack_14) < 50.0f) {
+    if (var3 < 40.0f && stack_14.length() < 50.0f) {
         setNerve(&NrvPunchingKinoko::PunchingKinokoNrvWait::sInstance);
     }
 }
@@ -528,13 +507,7 @@ void PunchingKinoko::exeCrushedEnd() {
 
     TVec3f stack_20;
     MR::calcPositionUpOffset(&stack_20, this, 130.0f);
-    TVec3f* groundCheckerPos = &mGroundChecker->mPosition;
-    TVec3f stack_14;
-    TVec3f stack_8(stack_20);
-    PSVECSubtract(&stack_8, groundCheckerPos, &stack_8);
-    stack_14 = stack_8;
-    stack_14.scale(0.008f);
-    MR::addVelocity(mGroundChecker, stack_14);
+    MR::addVelocity(mGroundChecker, (stack_20 - mGroundChecker->mPosition).scaleInline(0.008f));
     MR::attenuateVelocity(mGroundChecker, 0.94f);
 
     if (MR::isGreaterStep(this, 60)) {

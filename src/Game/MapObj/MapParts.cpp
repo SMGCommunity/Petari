@@ -36,7 +36,7 @@ s32 MapParts::getSensorNumMax() const {
 }
 
 s32 MapParts::getMoveStartSignalTime() {
-    return 0x32;
+    return 50;
 }
 
 void MapParts::connectToScene() {
@@ -50,10 +50,7 @@ void MapParts::initModelAndCollision(const JMapInfoIter& rIter) {
     initHitSensor(2);
     TVec3f dist;
     TVec3f lerpVec;
-    TVec3f sensor_offs;
-    sensor_offs.x = 0.0f;
-    sensor_offs.y = 0.0f;
-    sensor_offs.z = 0.0f;
+    TVec3f sensor_offs(0.0f, 0.0f, 0.0f);
     u32 sensorNum = getSensorNumMax();
     HitSensor* sensor = MR::addHitSensorMapObj(this, "body", sensorNum, 100.0f, sensor_offs);
     if (MR::isExistJoint(this, ::cFollowJointName)) {
@@ -69,13 +66,10 @@ void MapParts::initModelAndCollision(const JMapInfoIter& rIter) {
     if (MR::getJ3DModel(this)) {
         TBox3f box;
         MR::calcModelBoundingBox(&box, this);
-        JMathInlineVEC::PSVECSubtract(&box.f, &box.i, &dist);
-        sensorRange = 0.5f * PSVECMag(&dist);
-        JMAVECLerp(&box.f, &box.i, &lerpVec, 0.5f);
-        TVec3f trueSensorOffset;
-        trueSensorOffset.setPS(lerpVec);
-        JMathInlineVEC::PSVECSubtract(&trueSensorOffset, &mPosition, &trueSensorOffset);
-        MR::setSensorOffset(this, "body", trueSensorOffset);
+        dist.sub(box.f, box.i);
+        sensorRange = 0.5f * dist.length();
+        lerpVec.lerp(box.f, box.i, 0.5f);
+        MR::setSensorOffset(this, "body", lerpVec - mPosition);
     } else {
         sensorRange = MR::getCollisionBoundingSphereRange(this);
     }

@@ -74,4 +74,6 @@ namespace MR {
 
     void updateModelManager(LiveActor*);
     void calcAnimModelManager(LiveActor*);
+
+    void calcFogStartEnd(TVec3f, f32, f32*, f32*);
 };  // namespace MR

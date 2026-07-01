@@ -5,12 +5,11 @@
 #include "Game/System/WPadPointer.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
-#include <revolution/kpad.h>
 #include <revolution/wpad.h>
 
 #define KPAD_STATUS_ARRAY_SIZE 120
 
-WPadReadDataInfo::WPadReadDataInfo() : mStatusArray(nullptr), mValidStatusCount(0) {
+WPadReadDataInfo::WPadReadDataInfo() : mStatusArray(), mValidStatusCount() {
     mStatusArray = new KPADStatus[KPAD_STATUS_ARRAY_SIZE];
 
     MR::zeroMemory(mStatusArray, sizeof(KPADStatus) * KPAD_STATUS_ARRAY_SIZE);
@@ -28,15 +27,15 @@ u32 WPadReadDataInfo::getValidStatusCount() const {
     return mValidStatusCount;
 }
 
-WPadHolder::WPadHolder() : mReadDataInfoArray(nullptr), mMode(WPAD_SENSOR_BAR_POS_TOP) {
+WPadHolder::WPadHolder() : mReadDataInfoArray(), mMode(WPAD_SENSOR_BAR_POS_TOP) {
     WPADRegisterAllocator(MR::allocFromWPadHeap, MR::freeFromWPadHeap);
     KPADInit();
 
     mReadDataInfoArray = new WPadReadDataInfo[WPAD_MAX_CONTROLLERS];
 
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + ARRAY_SIZEU(mPad); chan++) {
-        mPad[chan] = new WPad(chan);
-        mPad[chan]->setReadInfo(&mReadDataInfoArray[chan]);
+    for (u32 i = 0; i < ARRAY_SIZE(mPad); i++) {
+        mPad[i] = new WPad(i);
+        mPad[i]->setReadInfo(&mReadDataInfoArray[i]);
     }
 
     setConnectCallback();
@@ -46,20 +45,20 @@ WPadHolder::WPadHolder() : mReadDataInfoArray(nullptr), mMode(WPAD_SENSOR_BAR_PO
 void WPadHolder::updateReadDataOnly() {
     WPadReadDataInfo* pReadData;
 
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + WPAD_MAX_CONTROLLERS; chan++) {
+    for (s32 chan = WPAD_CHAN0; chan < WPAD_MAX_CONTROLLERS; chan++) {
         pReadData = &mReadDataInfoArray[chan];
         pReadData->mValidStatusCount = KPADRead(chan, pReadData->mStatusArray, KPAD_STATUS_ARRAY_SIZE);
     }
 }
 
 void WPadHolder::updateProjectPadData() {
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + ARRAY_SIZEU(mPad); chan++) {
-        mPad[chan]->update();
+    for (u32 i = 0; i < ARRAY_SIZE(mPad); i++) {
+        mPad[i]->update();
     }
 }
 
 void WPadHolder::updateInGame() {
-    for (s32 chan = WPAD_CHAN2; chan < WPAD_CHAN0 + WPAD_MAX_CONTROLLERS; chan++) {
+    for (s32 chan = WPAD_CHAN2; chan < WPAD_MAX_CONTROLLERS; chan++) {
         KPADStatus* pStatus = mReadDataInfoArray[chan].getKPadStatus(0);
 
         if (pStatus == nullptr) {
@@ -100,21 +99,23 @@ void WPadHolder::initSensorBarPosition() {
         break;
     }
 
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + ARRAY_SIZEU(mPad); chan++) {
-        mPad[chan]->mPointer->setSensorBarLevel(level);
+    for (u32 i = 0; i < ARRAY_SIZE(mPad); i++) {
+        mPad[i]->mPointer->setSensorBarLevel(level);
     }
 }
 
 void WPadHolder::resetPad() {
     KPADReset();
 
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + ARRAY_SIZEU(mPad); chan++) {
-        mPad[chan]->resetPad();
+    for (u32 i = 0; i < ARRAY_SIZE(mPad); i++) {
+        mPad[i]->resetPad();
     }
 }
 
 WPad* WPadHolder::getWPad(s32 channel) {
-    if (channel < WPAD_CHAN0 + ARRAY_SIZEU(mPad)) {
+    u32 channelMax = ARRAY_SIZE(mPad);
+
+    if (channel < channelMax) {
         return mPad[channel];
     }
 
@@ -122,7 +123,7 @@ WPad* WPadHolder::getWPad(s32 channel) {
 }
 
 void WPadHolder::setConnectCallback() {
-    for (s32 chan = WPAD_CHAN0; chan < WPAD_CHAN0 + WPAD_MAX_CONTROLLERS; chan++) {
+    for (s32 chan = WPAD_CHAN0; chan < WPAD_MAX_CONTROLLERS; chan++) {
         WPADSetConnectCallback(chan, WPad::connectCallback);
         WPADSetExtensionCallback(chan, WPad::extensionCallback);
     }
@@ -160,7 +161,24 @@ namespace MR {
         pWPadHolder->mMode = WPAD_SENSOR_BAR_POS_TOP;
     }
 
-    // getHBMKPadData
+    void getHBMKPadData(HBMKPadData* pPadData, s32 chan) {
+        u32 type;
+        s32 err = WPADProbe(chan, &type);
+        KPADStatus* pStatus = getWPadHolder()->mReadDataInfoArray[chan].mStatusArray;
+
+        switch (err) {
+        case WPAD_ERR_NONE:
+        case WPAD_ERR_BUSY:
+        case WPAD_ERR_TRANSFER:
+            pPadData->kpad = pStatus;
+            pPadData->pos = pStatus->pos;
+            pPadData->use_devtype = pStatus->dev_type;
+            break;
+        default:
+            pPadData->kpad = nullptr;
+            break;
+        }
+    }
 
     void setAutoSleepTimeWiiRemote(bool isLongAutoSleep) {
         u8 minute = isLongAutoSleep ? 15 : 5;

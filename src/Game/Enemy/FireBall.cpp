@@ -116,7 +116,7 @@ void FireBall::setVelocityToPlayer(f32 param1) {
     stack_14.scale(120.0f, _90);
     stack_14.add(*MR::getPlayerPos());
     TVec3f a1;
-    JMathInlineVEC::PSVECSubtract2(&stack_14, &mPosition, &a1);
+    a1.sub(stack_14, mPosition);
     MR::normalize(&a1);
     mVelocity.scale(param1, a1);
 }

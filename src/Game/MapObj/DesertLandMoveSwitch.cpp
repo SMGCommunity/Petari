@@ -22,6 +22,11 @@
 #include "revolution/mtx.h"
 #include "revolution/types.h"
 
+void DesertLandMoveSwitch_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace NrvDesertLandMoveSwitch {
     NEW_NERVE(HostTypeWait, DesertLandMoveSwitch, Wait);
     NEW_NERVE(HostTypeSwitchDown, DesertLandMoveSwitch, SwitchDown);
@@ -76,21 +81,11 @@ void DesertLandMoveSwitch::calcAnim() {
     mtx2.setInline(mtx);
     f32 val = mSpringValue->mSpringValue;
     if (!MR::isNearZero(val)) {
-        TVec3f stack_20;
-        f32 f3 = mtx2[2][3];
-        f32 f2 = mtx2[1][3];
-        f32 f1 = mtx2[0][3];
-        stack_20.set< f32 >(f1, f2, f3);
-        TVec3f stack_14, stack_8;
-        MR::calcUpVec(&stack_14, this);
-        stack_8.setPS(stack_14);
-        stack_8.x *= val;
-        stack_8.y *= val;
-        stack_8.z *= val;
-        JMathInlineVEC::PSVECAdd(&stack_20, &stack_8, &stack_20);
-        mtx2[0][3] = stack_20.x;
-        mtx2[1][3] = stack_20.y;
-        mtx2[2][3] = stack_20.z;
+        TVec3f pos, up;
+        mtx2.getTransInline(pos);
+        MR::calcUpVec(&up, this);
+        pos += up.multInLine(val);
+        mtx2.setTransInline(pos);
         PSMTXCopy(mtx2, mtx);
     }
     mCollisionParts->setMtx(mtx2);

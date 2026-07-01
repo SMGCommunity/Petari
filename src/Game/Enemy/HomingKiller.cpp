@@ -751,7 +751,7 @@ void HomingKiller::exeAppear() {
         f32 scl = JMASinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
         f32 rumbleOffset = (::cAppearRumbleFrame - step) * (scl * ::cAppearRumbleWidth) / ::cAppearRumbleFrame;
 
-        mPosition.addInline(mBaseFront.scaleInline(rumbleOffset));
+        mPosition.add(mBaseFront.scaleInline(rumbleOffset));
     }
 
     mFront.set(mBaseFront);

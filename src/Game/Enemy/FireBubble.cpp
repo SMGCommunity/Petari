@@ -153,13 +153,15 @@ void FireBubble::initMapToolInfo(const JMapInfoIter& rIter) {
 void FireBubble::updateChaseFrontVec(f32 flt) {
     TVec3f vec2;
     TVec3f vec3;
+    TVec3f pos;
     TVec3f playerUpVec;
 
     MR::getPlayerUpVec(&playerUpVec);
     MR::normalize(&playerUpVec);
     playerUpVec.scale(40.0f);
 
-    vec2.sub(MR::getPlayerPos()->addOtherInline(playerUpVec), mPosition);
+    pos.add(*MR::getPlayerPos(), playerUpVec);
+    vec2.sub(pos, mPosition);
 
     if (!MR::normalizeOrZero(&vec2)) {
         if (MR::isBindedGround(this)) {
@@ -173,9 +175,8 @@ void FireBubble::updateChaseFrontVec(f32 flt) {
             MR::normalize(&vec2);
 
             TVec3f copy(_B4);
-            f32 cos = JMACosRadian(flt);
 
-            MR::turnVecToVecCos(&_B4, copy, vec2, cos, vec3, cChaseRotateSpeed);
+            MR::turnVecToVecCos(&_B4, copy, vec2, MR::cos(flt), vec3, cChaseRotateSpeed);
         }
     }
 }
@@ -187,7 +188,7 @@ void FireBubble::updateChaseFrontVecAndVelocity(f32 flt) {
 }
 
 void FireBubble::updateGravity(f32 strength) {
-    mVelocity.addInline(mGravity.scaleInline(strength));
+    mVelocity.add(mGravity.scaleInline(strength));
 }
 
 void FireBubble::calcReflectVelocity(TVec3f* pOut) const {

@@ -8,7 +8,7 @@
 #include <JSystem/JMath/JMath.hpp>
 
 namespace {
-    TVec3f sDummyModelOffset;
+    const Vec sDummyModelOffset = {0.0f, -150.0f, 0.0f};
 };  // namespace
 
 namespace NrvCrystalCageMoving {
@@ -85,7 +85,7 @@ void CrystalCageMoving::exeBreakSmall() {
     if (MR::isFirstStep(this)) {
         startBreakDemo();
         MR::emitEffect(this, "BreakInside");
-        MR::startSound(this, "SE_OJ_CRY_CAGE_MV_BREAK_OUT");
+        MR::startSound(this, "SE_OJ_CRY_CAGE_MV_BREAK_CNT");
     }
 }
 
@@ -98,7 +98,6 @@ void CrystalCageMoving::exeBreakAll() {
     }
 }
 
-/*
 void CrystalCageMoving::exeDemoTicoMove() {
     if (MR::isFirstStep(this)) {
         MR::startBck(mTicoModel, "Fly", nullptr);
@@ -106,7 +105,8 @@ void CrystalCageMoving::exeDemoTicoMove() {
     }
 
     TVec3f stack_14;
-    stack_14.subInline2(_FC, mPosition);
+    stack_14.sub(_FC, mPosition);
+
     f32 nerveRate = MR::calcNerveRate(this, 30);
     TVec3f stack_8;
     JMAVECScaleAdd(&stack_14, &mPosition, &stack_8, nerveRate);
@@ -116,7 +116,6 @@ void CrystalCageMoving::exeDemoTicoMove() {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvDemoTicoStop::sInstance);
     }
 }
-*/
 
 void CrystalCageMoving::exeDemoTicoStop() {
     if (MR::isFirstStep(this)) {

@@ -11,15 +11,15 @@ public:
     class Separator {
     public:
         /// @brief Creates a new `Separator`.
-        Separator();
+        Separator() {};
 
-        /* 0x00 */ u8 _0[4];
+        /* 0x00 */ f32 _0;
         /* 0x04 */ TVec2f _4;
     };
 
     /// @brief Creates a new `PowerStarList`.
     PowerStarList();
-
+    virtual ~PowerStarList();
     virtual void init(const JMapInfoIter& rIter);
     virtual void calcAnim();
     virtual void appear();
@@ -32,12 +32,12 @@ public:
     void resetButtonAll();
     void updateButtonAppearance();
     void updateList(s32, bool);
-    void makeGalaxyNameText(wchar_t*, const GalaxyStatusAccessor*, bool) const;
-    void makeStarNumText(wchar_t*, const GalaxyStatusAccessor*, bool) const;
-    void makeCoinText(wchar_t*, const GalaxyStatusAccessor*, bool) const;
-    void makeCrownText(wchar_t*, const GalaxyStatusAccessor*, bool) const;
-    void makeRaceNameText(wchar_t*, int, bool) const;
-    void makeRaceTimeText(wchar_t*, int, bool) const;
+    wchar_t* makeGalaxyNameText(wchar_t*, const GalaxyStatusAccessor*, bool) const;
+    wchar_t* makeStarNumText(wchar_t*, const GalaxyStatusAccessor*, bool) const;
+    wchar_t* makeCoinText(wchar_t*, const GalaxyStatusAccessor*, bool) const;
+    wchar_t* makeCrownText(wchar_t*, const GalaxyStatusAccessor*, bool) const;
+    wchar_t* makeRaceNameText(wchar_t*, int, bool) const;
+    wchar_t* makeRaceTimeText(wchar_t*, int, bool) const;
     void startScrollAnimNext(bool);
     void startScrollAnimPrev();
     bool tryShowSeparator(s32, f32);
@@ -57,9 +57,9 @@ private:
     /* 0x20 */ ButtonPaneController* mArrowUpButtonCtrl;
     /* 0x24 */ ButtonPaneController* mArrowDownButtonCtrl;
     /* 0x28 */ ButtonPaneController* mCaptureButtonCtrl;
-    /* 0x2C */ SysInfoWindow* _2C;
-    /* 0x30 */ s32 _30;
-    /* 0x34 */ s32 _34;
+    /* 0x2C */ SysInfoWindow* mSysInfoWindow;
+    /* 0x30 */ s32 mPageNo;
+    /* 0x34 */ s32 mPageNum;
     /* 0x38 */ Separator* mSeparatorArray;
     /* 0x3C */ u32 mMailMessageLength;
     /* 0x40 */ wchar_t* mMailMessage;

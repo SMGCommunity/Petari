@@ -126,10 +126,7 @@ bool AirBubble::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         _8C = mPosition;
         return true;
     } else if (MR::isMsgSpinStormRange(msg) && canSpinGet()) {
-        TVec3f stack_8(pSender->mPosition);
-        stack_8 -= mPosition;
-
-        if (PSVECMag(&stack_8) < 250.0f) {
+        if ((pSender->mPosition - mPosition).length() < 250.0f) {
             setNerve(&NrvAirBubble::AirBubbleNrvBreak::sInstance);
             return true;
         }
