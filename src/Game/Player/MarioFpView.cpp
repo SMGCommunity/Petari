@@ -7,8 +7,8 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    static bool sDisabled;
-}
+    static bool sIsDisabled;
+};  // namespace
 
 bool Mario::isDisableStayHere() const {
     if (getMovementStates().jumping) {
@@ -129,7 +129,7 @@ bool MarioFpView::start() {
     MR::startSubjectiveCamera(-1);
     changeAnimation("見る", reinterpret_cast< char* >(nullptr));
 
-    sDisabled = true;
+    sIsDisabled = true;
 
     mDelay = 0;
     mIsActive = true;
@@ -139,8 +139,8 @@ bool MarioFpView::start() {
 }
 
 bool MarioFpView::update() {
-    if (sDisabled) {
-        sDisabled = false;
+    if (sIsDisabled) {
+        sIsDisabled = false;
         return true;
     }
 
