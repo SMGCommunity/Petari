@@ -4,7 +4,6 @@
 #include "Game/Map/SphereSelectorHandle.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
-#include "revolution/types.h"
 
 namespace {
     SphereSelector* getSphereSelector() {
@@ -33,8 +32,8 @@ namespace NrvSphereSelector {
 };  // namespace NrvSphereSelector
 
 SphereSelector::SphereSelector()
-    : LiveActor("スフィアセレクター"), mSphereGroup(nullptr), mHandle(nullptr), mSelectedTarget(nullptr), _98(0), mPointingTarget(nullptr), _A4(0),
-      _A8(0.0f), _AC(0.0f), mIsPointingInvalid(false), _B1(false) {
+    : LiveActor("スフィアセレクター"), mSphereGroup(), mHandle(), mSelectedTarget(), _98(), mPointingTarget(), _A4(),
+      _A8(), _AC(), mIsPointingInvalid(), _B1() {
 }
 
 void SphereSelector::init(const JMapInfoIter& rIter) {
@@ -300,12 +299,12 @@ void SphereSelectorFunction::calcHandledTrans(const TVec3f& rSrc, TVec3f* pDst) 
     mtx.mult(rSrc, *pDst);
 }
 
-void SphereSelectorFunction::calcHandledRotateMtx(const TVec3f& src, TPos3f* dst) {
+void SphereSelectorFunction::calcHandledRotateMtx(const TVec3f& rSrc, TPos3f* pDst) {
     TPos3f mtx;
     ::getHandleMtx(&mtx);
     TMtx34f mtx2;
-    MR::makeMtxRotate(mtx2, src);
-    dst->concat(mtx, mtx2);
+    MR::makeMtxRotate(mtx2, rSrc);
+    pDst->concat(mtx, mtx2);
 }
 
 TVec3f& SphereSelectorFunction::getHandleTrans() {

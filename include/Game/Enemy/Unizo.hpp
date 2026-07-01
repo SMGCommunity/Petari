@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class AnimScaleController;
@@ -14,8 +13,14 @@ public:
     virtual void initAfterPlacement();
     virtual void control();
     virtual void appear();
+    virtual void makeActorAppeared();
     virtual void kill();
+    virtual void makeActorDead();
+    virtual void calcAndSetBaseMtx();
     virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual ~Unizo();
     virtual MtxPtr getBaseMtx() const;
 
@@ -26,7 +31,7 @@ public:
     bool tryPointBind();
     bool isBreakNow() const;
     bool isEnablePointBind() const;
-    void udpateInfluence(); // Nice one Nintendo
+    void udpateInfluence();
     void doBreak();
     void doAttack(HitSensor*);
     void appearBreakModel();

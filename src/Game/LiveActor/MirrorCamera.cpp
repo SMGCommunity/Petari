@@ -18,16 +18,14 @@ void MirrorCamera::updateViewMtx() {
     TVec3f y;
     TVec3f z;
     TVec3f trans;
-    TVec3f x;
     cameraInv.getYDirInline(y);
     cameraInv.getZDirInline(z);
     cameraInv.getTransInline(trans);
     y -= _18 * (_18.dot(y) * 2.0f);
     z -= _18 * (_18.dot(z) * 2.0f);
-    PSVECCrossProduct(y, z, x);
+    TVec3f x = y.cross(z);
     trans -= _18 * ((_18.dot(trans) + _24) * 2.0f);
-    mViewMtx.setXYZDirInline(x, y, z);
-    mViewMtx.setTransInline(trans);
+    mViewMtx.setVecAndTransInline(x, y, z, trans);
     mViewMtx.invert(mViewMtx);
 }
 
