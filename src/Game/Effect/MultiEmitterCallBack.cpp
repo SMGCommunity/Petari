@@ -11,7 +11,7 @@ namespace {
         u8 g = rColor1.g * rColor2.g / 255;
         u8 b = rColor1.b * rColor2.b / 255;
         
-        return Color8(r, g, b, -1);
+        return Color8(r, g, b, 255);
     }
 }
 
