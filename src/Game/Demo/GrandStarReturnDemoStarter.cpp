@@ -221,7 +221,7 @@ void GrandStarReturnDemoStarter::exeRushToCore() {
     mPrevTransform.getTransInline(position);
 
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("ResultFlyGrandStarRush", reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer("ResultFlyGrandStarRush", static_cast< const char* >(nullptr));
         MR::startBck(mPowerStar, "ResultFlyGrandStarRush", nullptr);
         MR::startSound(mPowerStar, "SE_OJ_GND_STAR_RUSH");
 

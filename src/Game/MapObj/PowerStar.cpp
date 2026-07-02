@@ -832,7 +832,7 @@ void PowerStar::exeStageClearDemo() {
     }
 
     if (mIsGrandStar && MR::isStageKoopaVs3() && MR::isStep(this, 600)) {
-        MR::startBckPlayer(::cStageClearAnimNameKoopaVs3, reinterpret_cast< char* >(nullptr));
+        MR::startBckPlayer(::cStageClearAnimNameKoopaVs3, static_cast< const char* >(nullptr));
         MR::startBck(mPowerStarModelObj, ::cStageClearAnimNameKoopaVs3, nullptr);
         MR::startAnimCameraTargetSelf(mPowerStarModelObj, mCameraInfo, ::cStageClearAnimNameKoopaVs3, 1, 1.0f);
     }
