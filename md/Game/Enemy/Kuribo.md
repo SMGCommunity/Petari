@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__Q220@unnamed@Kuribo_cpp@11KuriboParamFv` | `0x80117DA0` | :white_check_mark: (100.0%) |
 | `__ct__6KuriboFPCc` | `0x80117E54` | :white_check_mark: (100.0%) |
-| `init__6KuriboFRC12JMapInfoIter` | `0x80117EF0` | :x: (99.2%) |
+| `init__6KuriboFRC12JMapInfoIter` | `0x80117EF0` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__6KuriboFv` | `0x801181D0` | :white_check_mark: (100.0%) |
 | `initState__6KuriboFv` | `0x80118210` | :white_check_mark: (100.0%) |
 | `initSensor__6KuriboFv` | `0x80118308` | :white_check_mark: (100.0%) |
@@ -16,15 +16,15 @@
 | `makeActorAppeared__6KuriboFv` | `0x80118458` | :white_check_mark: (100.0%) |
 | `makeActorDead__6KuriboFv` | `0x80118490` | :white_check_mark: (100.0%) |
 | `kill__6KuriboFv` | `0x80118494` | :white_check_mark: (100.0%) |
-| `control__6KuriboFv` | `0x80118518` | :x: (97.1%) |
-| `calcAndSetBaseMtx__6KuriboFv` | `0x80118608` | :x: (99.2%) |
+| `control__6KuriboFv` | `0x80118518` | :white_check_mark: (100.0%) |
+| `calcAndSetBaseMtx__6KuriboFv` | `0x80118608` | :white_check_mark: (100.0%) |
 | `attackSensor__6KuriboFP9HitSensorP9HitSensor` | `0x80118668` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__6KuriboFUlP9HitSensorP9HitSensor` | `0x80118774` | :white_check_mark: (100.0%) |
 | `receiveMsgEnemyAttack__6KuriboFUlP9HitSensorP9HitSensor` | `0x801188C4` | :white_check_mark: (100.0%) |
 | `receiveMsgPush__6KuriboFP9HitSensorP9HitSensor` | `0x8011898C` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__6KuriboFUlP9HitSensorP9HitSensor` | `0x80118A4C` | :white_check_mark: (100.0%) |
 | `requestDead__6KuriboFv` | `0x80118AF4` | :white_check_mark: (100.0%) |
-| `requestFlatDown__6KuriboFP9HitSensorP9HitSensor` | `0x80118BA0` | :x: (99.9%) |
+| `requestFlatDown__6KuriboFP9HitSensorP9HitSensor` | `0x80118BA0` | :white_check_mark: (100.0%) |
 | `requestHipDropDown__6KuriboFP9HitSensorP9HitSensor` | `0x80118C84` | :white_check_mark: (100.0%) |
 | `requestPressDown__6KuriboFv` | `0x80118D50` | :white_check_mark: (100.0%) |
 | `requestStagger__6KuriboFP9HitSensorP9HitSensor` | `0x80118E08` | :white_check_mark: (100.0%) |

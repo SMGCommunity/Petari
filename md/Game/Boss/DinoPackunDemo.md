@@ -17,7 +17,7 @@
 | `exeTryStartDemo__14DinoPackunDemoFv` | `0x80049A94` | :white_check_mark: (100.0%) |
 | `exeOpeningDemo__14DinoPackunDemoFv` | `0x80049AF0` | :white_check_mark: (100.0%) |
 | `exeCryDemo__14DinoPackunDemoFv` | `0x80049D08` | :white_check_mark: (100.0%) |
-| `exeAngryDemo__14DinoPackunDemoFv` | `0x80049E18` | :white_check_mark: (100.0%) |
+| `exeAngryDemo__14DinoPackunDemoFv` | `0x80049E18` | :x: (100.0%) |
 | `exeDownDemo__14DinoPackunDemoFv` | `0x80049FF8` | :white_check_mark: (100.0%) |
 | `exeAppearPowerStar__14DinoPackunDemoFv` | `0x8004A13C` | :white_check_mark: (100.0%) |
 | `__dt__14DinoPackunDemoFv` | `0x8004A1FC` | :white_check_mark: (100.0%) |

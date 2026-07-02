@@ -40,7 +40,7 @@
 | `drawPlane__11SpaceCocoonCFffff6Color86Color8ff` | `0x8032FFEC` | :white_check_mark: (100.0%) |
 | `initDraw__11SpaceCocoonCFv` | `0x8033021C` | :white_check_mark: (100.0%) |
 | `__dt__11SpaceCocoonFv` | `0x80330444` | :white_check_mark: (100.0%) |
-| `__sinit_\SpaceCocoon_cpp` | `0x803304A0` | :white_check_mark: (100.0%) |
+| `__sinit_\SpaceCocoon_cpp` | `0x803304A0` | :x: (79.3%) |
 | `__ct__Q214NrvSpaceCocoon18SpaceCocoonNrvStopFv` | `0x80330544` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvSpaceCocoon18SpaceCocoonNrvFreeFv` | `0x80330554` | :white_check_mark: (100.0%) |
 | `__ct__Q214NrvSpaceCocoon25SpaceCocoonNrvFreeInvalidFv` | `0x80330564` | :white_check_mark: (100.0%) |

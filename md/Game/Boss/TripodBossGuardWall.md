@@ -12,13 +12,13 @@
 | `makeActorAppeared__19TripodBossGuardWallFv` | `0x8008BD30` | :white_check_mark: (100.0%) |
 | `makeActorDead__19TripodBossGuardWallFv` | `0x8008BD34` | :white_check_mark: (100.0%) |
 | `kill__19TripodBossGuardWallFv` | `0x8008BD98` | :white_check_mark: (100.0%) |
-| `init__19TripodBossGuardWallFRC12JMapInfoIter` | `0x8008BDFC` | :x: (99.8%) |
+| `init__19TripodBossGuardWallFRC12JMapInfoIter` | `0x8008BDFC` | :white_check_mark: (100.0%) |
 | `initParts__19TripodBossGuardWallFv` | `0x8008BF48` | :white_check_mark: (100.0%) |
 | `control__19TripodBossGuardWallFv` | `0x8008BFD8` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__19TripodBossGuardWallFv` | `0x8008BFDC` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__19TripodBossGuardWallFUlP9HitSensorP9HitSensor` | `0x8008BFE4` | :white_check_mark: (100.0%) |
 | `requestStart__19TripodBossGuardWallFv` | `0x8008C054` | :white_check_mark: (100.0%) |
-| `exeDemo__19TripodBossGuardWallFv` | `0x8008C09C` | :x: (98.9%) |
+| `exeDemo__19TripodBossGuardWallFv` | `0x8008C09C` | :white_check_mark: (100.0%) |
 | `exeRotate__19TripodBossGuardWallFv` | `0x8008C210` | :white_check_mark: (100.0%) |
 | `updateMatrix__19TripodBossGuardWallFv` | `0x8008C2B0` | :white_check_mark: (100.0%) |
 | `updateCameraTarget__19TripodBossGuardWallFv` | `0x8008C308` | :x: (99.2%) |

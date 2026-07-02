@@ -13,7 +13,7 @@
 | `showNew__15GalaxyNamePlateFb` | `0x80360570` | :white_check_mark: (100.0%) |
 | `showOpen__15GalaxyNamePlateFb` | `0x803605C8` | :white_check_mark: (100.0%) |
 | `show__15GalaxyNamePlateFPCwb` | `0x8036061C` | :white_check_mark: (100.0%) |
-| `setPos3D__15GalaxyNamePlateFRCQ29JGeometry8TVec3<f>` | `0x8036062C` | :x: (100.0%) |
+| `setPos3D__15GalaxyNamePlateFRCQ29JGeometry8TVec3<f>` | `0x8036062C` | :white_check_mark: (100.0%) |
 | `setShowBalloonNozzle__15GalaxyNamePlateFb` | `0x80360684` | :white_check_mark: (100.0%) |
 | `control__15GalaxyNamePlateFv` | `0x8036068C` | :white_check_mark: (100.0%) |
 | `show__15GalaxyNamePlateFPCwlbb` | `0x80360698` | :white_check_mark: (100.0%) |

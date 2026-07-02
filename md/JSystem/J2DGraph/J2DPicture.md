@@ -7,14 +7,14 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__10J2DPictureFP10JUTTexture` | `0x8041E240` | :x: (0.0%) |
-| `initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT` | `0x8041E318` | :x: (87.4%) |
+| `initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT` | `0x8041E318` | :x: (97.4%) |
 | `private_initiate__10J2DPictureFPC7ResTIMGPC7ResTLUT` | `0x8041E3AC` | :x: (96.1%) |
 | `initinfo__10J2DPictureFv` | `0x8041E4D8` | :x: (97.0%) |
 | `__dt__10J2DPictureFv` | `0x8041E5B0` | :white_check_mark: (100.0%) |
 | `prepareTexture__10J2DPictureFUc` | `0x8041E65C` | :x: (88.2%) |
-| `insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf` | `0x8041E728` | :x: (96.3%) |
+| `insert__10J2DPictureFPC7ResTIMGP10JUTPaletteUcf` | `0x8041E728` | :x: (98.1%) |
 | `insert__10J2DPictureFPCcP10JUTPaletteUcf` | `0x8041EA70` | :white_check_mark: (100.0%) |
-| `insert__10J2DPictureFP10JUTTextureUcf` | `0x8041EAE0` | :x: (94.8%) |
+| `insert__10J2DPictureFP10JUTTextureUcf` | `0x8041EAE0` | :x: (98.0%) |
 | `remove__10J2DPictureFUc` | `0x8041ECB4` | :white_check_mark: (100.0%) |
 | `remove__10J2DPictureFP10JUTTexture` | `0x8041EDC8` | :white_check_mark: (100.0%) |
 | `changeTexture__10J2DPictureFPC7ResTIMGUc` | `0x8041EE0C` | :white_check_mark: (100.0%) |
@@ -25,7 +25,7 @@
 | `drawSelf__10J2DPictureFffPA3_A4_f` | `0x8041F11C` | :x: (76.1%) |
 | `drawFullSet__10J2DPictureFffffPA3_A4_f` | `0x8041F170` | :white_check_mark: (100.0%) |
 | `draw__10J2DPictureFffffbbb` | `0x8041F1E4` | :white_check_mark: (100.0%) |
-| `drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>` | `0x8041F4F8` | :x: (98.2%) |
+| `drawOut__10J2DPictureFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>` | `0x8041F4F8` | :white_check_mark: (100.0%) |
 | `drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f` | `0x8041F8E8` | :white_check_mark: (100.0%) |
 | `setTevMode__10J2DPictureFv` | `0x8041FB38` | :white_check_mark: (100.0%) |
 | `swap__10J2DPictureFRfRf` | `0x80420038` | :white_check_mark: (100.0%) |
@@ -34,7 +34,7 @@
 | `setBlendKonstColor__10J2DPictureFv` | `0x80420074` | :x: (99.2%) |
 | `setBlendKonstAlpha__10J2DPictureFv` | `0x80420140` | :x: (99.2%) |
 | `getNewColor__10J2DPictureFPQ28JUtility6TColor` | `0x8042020C` | :white_check_mark: (100.0%) |
-| `setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb` | `0x804202CC` | :x: (98.9%) |
+| `setTexCoord__10J2DPictureFPQ29JGeometry8TVec2<s>PC10JUTTexture10J2DBinding9J2DMirrorb` | `0x804202CC` | :white_check_mark: (100.0%) |
 | `isUsed__10J2DPictureFPC7ResTIMG` | `0x804205CC` | :white_check_mark: (100.0%) |
 | `getUsableTlut__10J2DPictureFUc` | `0x80420618` | :white_check_mark: (100.0%) |
 | `getTlutID__10J2DPictureFPC7ResTIMGUc` | `0x804206DC` | :white_check_mark: (100.0%) |
@@ -58,7 +58,7 @@
 | `setWhite__10J2DPictureFQ28JUtility6TColor` | `0x8042095C` | :white_check_mark: (100.0%) |
 | `setBlack__10J2DPictureFQ28JUtility6TColor` | `0x80420984` | :white_check_mark: (100.0%) |
 | `getTextureCount__10J2DPictureCFv` | `0x804209AC` | :white_check_mark: (100.0%) |
-| `drawOut__10J2DPictureFffffff` | `0x804209B4` | :x: (70.9%) |
+| `drawOut__10J2DPictureFffffff` | `0x804209B4` | :x: (90.6%) |
 | `drawOut__10J2DPictureFffffffff` | `0x80420AD0` | :x: (81.8%) |
 | `draw__10J2DPictureFffbbb` | `0x80420BA0` | :white_check_mark: (100.0%) |
 | `remove__10J2DPictureFv` | `0x80420BC4` | :white_check_mark: (100.0%) |

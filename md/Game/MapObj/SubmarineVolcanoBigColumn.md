@@ -9,7 +9,7 @@
 | `__ct__25SubmarineVolcanoBigColumnFPCc` | `0x80245538` | :white_check_mark: (100.0%) |
 | `init__25SubmarineVolcanoBigColumnFRC12JMapInfoIter` | `0x80245580` | :white_check_mark: (100.0%) |
 | `kill__25SubmarineVolcanoBigColumnFv` | `0x802456CC` | :white_check_mark: (100.0%) |
-| `exeWait__25SubmarineVolcanoBigColumnFv` | `0x80245710` | :x: (79.1%) |
+| `exeWait__25SubmarineVolcanoBigColumnFv` | `0x80245710` | :white_check_mark: (100.0%) |
 | `exeBreak__25SubmarineVolcanoBigColumnFv` | `0x802457B0` | :white_check_mark: (100.0%) |
 | `pauseOff__25SubmarineVolcanoBigColumnFv` | `0x802458A4` | :white_check_mark: (100.0%) |
 | `receiveMsgEnemyAttack__25SubmarineVolcanoBigColumnFUlP9HitSensorP9HitSensor` | `0x802458D8` | :white_check_mark: (100.0%) |

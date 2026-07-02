@@ -6,4 +6,4 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ieee754_log` | `0x80524FC4` | :x: (99.9%) |
+| `__ieee754_log` | `0x80524FC4` | :white_check_mark: (100.0%) |

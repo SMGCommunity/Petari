@@ -6,7 +6,7 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__4NoteFPCcRCQ29JGeometry8TVec3<f>P9NoteFairy` | `0x80206A10` | :x: (99.4%) |
+| `__ct__4NoteFPCcRCQ29JGeometry8TVec3<f>P9NoteFairy` | `0x80206A10` | :white_check_mark: (100.0%) |
 | `init__4NoteFRC12JMapInfoIter` | `0x80206A94` | :x: (91.2%) |
 | `startCountDown__4NoteFv` | `0x80206BEC` | :white_check_mark: (100.0%) |
 | `exeWait__4NoteFv` | `0x80206BF8` | :x: (0.0%) |

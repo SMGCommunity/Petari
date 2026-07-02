@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__4CoinFPCc` | `0x801C6A48` | :white_check_mark: (100.0%) |
-| `init__4CoinFRC12JMapInfoIter` | `0x801C6AD0` | :x: (96.1%) |
+| `init__4CoinFRC12JMapInfoIter` | `0x801C6AD0` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__4CoinFv` | `0x801C6DBC` | :white_check_mark: (100.0%) |
 | `initShadow__4CoinFRC12JMapInfoIter` | `0x801C6DC8` | :white_check_mark: (100.0%) |
 | `setShadowAndPoseModeFromJMapIter__4CoinFRC12JMapInfoIter` | `0x801C6EA8` | :white_check_mark: (100.0%) |

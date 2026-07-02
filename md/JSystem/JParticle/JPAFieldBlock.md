@@ -6,16 +6,16 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle` | `0x80448C34` | :x: (82.0%) |
+| `calcAffect__12JPAFieldBaseFP13JPAFieldBlockP15JPABaseParticle` | `0x80448C34` | :x: (76.2%) |
 | `calcFadeAffect__12JPAFieldBaseCFP13JPAFieldBlockf` | `0x80448D04` | :white_check_mark: (100.0%) |
 | `prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock` | `0x80448DA0` | :white_check_mark: (100.0%) |
 | `calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80448E14` | :white_check_mark: (100.0%) |
 | `calc__11JPAFieldAirFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80448E20` | :white_check_mark: (100.0%) |
-| `prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock` | `0x80448E94` | :white_check_mark: (100.0%) |
-| `calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80448EE8` | :white_check_mark: (100.0%) |
-| `prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock` | `0x80448F4C` | :white_check_mark: (100.0%) |
-| `calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80448FB4` | :white_check_mark: (100.0%) |
-| `calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80449054` | :x: (74.9%) |
+| `prepare__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlock` | `0x80448E94` | :x: (99.2%) |
+| `calc__14JPAFieldMagnetFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80448EE8` | :x: (99.5%) |
+| `prepare__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlock` | `0x80448F4C` | :x: (98.4%) |
+| `calc__14JPAFieldNewtonFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80448FB4` | :x: (99.7%) |
+| `calc__18JPAFieldConvectionFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80449054` | :x: (74.4%) |
 | `calc__14JPAFieldRandomFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80449164` | :white_check_mark: (100.0%) |
 | `calc__12JPAFieldDragFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x80449238` | :white_check_mark: (100.0%) |
 | `calc__12JPAFieldSpinFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle` | `0x804492B8` | :white_check_mark: (100.0%) |

@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__16SunshadeMapPartsFPCc` | `0x8019EF10` | :white_check_mark: (100.0%) |
-| `__dt__15GeneralMapPartsFv` | `0x8019EF54` | :x: (91.7%) |
+| `__dt__15GeneralMapPartsFv` | `0x8019EF54` | :white_check_mark: (100.0%) |
 | `calcAnim__16SunshadeMapPartsFv` | `0x8019EFB4` | :white_check_mark: (100.0%) |
 | `createSunshadeMapParts__2MRFPCc` | `0x8019EFF4` | :white_check_mark: (100.0%) |
 | `__dt__16SunshadeMapPartsFv` | `0x8019F034` | :white_check_mark: (100.0%) |

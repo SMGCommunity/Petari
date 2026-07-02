@@ -9,7 +9,7 @@
 | `__ct__14J2DGrafContextFffff` | `0x8041C268` | :x: (85.9%) |
 | `setPort__14J2DGrafContextFv` | `0x8041C350` | :x: (93.0%) |
 | `setup2D__14J2DGrafContextFv` | `0x8041C3FC` | :white_check_mark: (100.0%) |
-| `setScissor__14J2DGrafContextFv` | `0x8041C5D8` | :x: (83.0%) |
+| `setScissor__14J2DGrafContextFv` | `0x8041C5D8` | :x: (84.9%) |
 | `__as__Q29JGeometry8TBox2<f>FRCQ29JGeometry8TBox2<f>` | `0x8041C7B0` | :x: (0.0%) |
 | `place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>` | `0x8041C7D4` | :white_check_mark: (100.0%) |
 | `setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor` | `0x8041C81C` | :white_check_mark: (100.0%) |

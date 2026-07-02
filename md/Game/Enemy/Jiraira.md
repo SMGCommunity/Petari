@@ -16,7 +16,7 @@
 | `exeExplode__7JirairaFv` | `0x800FDB2C` | :x: (100.0%) |
 | `exePreRecover__7JirairaFv` | `0x800FDC84` | :x: (99.9%) |
 | `exeRecover__7JirairaFv` | `0x800FDD1C` | :white_check_mark: (100.0%) |
-| `attackSensor__7JirairaFP9HitSensorP9HitSensor` | `0x800FDDAC` | :x: (73.1%) |
+| `attackSensor__7JirairaFP9HitSensorP9HitSensor` | `0x800FDDAC` | :x: (83.8%) |
 | `receiveMsgPlayerAttack__7JirairaFUlP9HitSensorP9HitSensor` | `0x800FDEC0` | :white_check_mark: (100.0%) |
 | `receiveMsgEnemyAttack__7JirairaFUlP9HitSensorP9HitSensor` | `0x800FDF70` | :white_check_mark: (100.0%) |
 | `__dt__7JirairaFv` | `0x800FDFF8` | :white_check_mark: (100.0%) |

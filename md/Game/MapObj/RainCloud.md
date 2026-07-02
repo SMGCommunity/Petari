@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__9RainCloudFPCc` | `0x80219578` | :white_check_mark: (100.0%) |
-| `init__9RainCloudFRC12JMapInfoIter` | `0x802195F8` | :x: (99.9%) |
+| `init__9RainCloudFRC12JMapInfoIter` | `0x802195F8` | :x: (95.5%) |
 | `makeArchiveList__9RainCloudFP27NameObjArchiveListCollectorRC12JMapInfoIter` | `0x802199B8` | :white_check_mark: (100.0%) |
 | `exeAppear__9RainCloudFv` | `0x80219A40` | :white_check_mark: (100.0%) |
 | `exeWait__9RainCloudFv` | `0x80219B1C` | :white_check_mark: (100.0%) |

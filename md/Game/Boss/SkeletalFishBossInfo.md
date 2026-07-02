@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__20SkeletalFishBossInfoFP16SkeletalFishBossllPCc` | `0x8007B5B0` | :white_check_mark: (100.0%) |
-| `init__20SkeletalFishBossInfoFRC12JMapInfoIter` | `0x8007B620` | :white_check_mark: (100.0%) |
+| `init__20SkeletalFishBossInfoFRC12JMapInfoIter` | `0x8007B620` | :x: (87.5%) |
 | `getLevelStatus__20SkeletalFishBossInfoCFl` | `0x8007B688` | :white_check_mark: (100.0%) |
 | `createLevelStatus__20SkeletalFishBossInfoFv` | `0x8007B698` | :x: (93.2%) |
 | `__ct__Q220SkeletalFishBossInfo11GuardStatusFv` | `0x8007B7F8` | :white_check_mark: (100.0%) |

@@ -6,5 +6,5 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `TRKSaveExtended1Block` | `0x8052CA20` | :white_check_mark: (100.0%) |
 | `TRKRestoreExtended1Block` | `0x8052CBD8` | :white_check_mark: (100.0%) |
+| `TRKSaveExtended1Block` | `0x8052CA20` | :white_check_mark: (100.0%) |

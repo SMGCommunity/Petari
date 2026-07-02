@@ -6,4 +6,4 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `RFLiClearDBBuffer` | `0x80461F04` | :x: (97.0%) |
+| `RFLiClearDBBuffer` | `0x80461F04` | :white_check_mark: (100.0%) |

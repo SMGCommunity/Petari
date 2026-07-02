@@ -32,11 +32,11 @@
 | `tryElectricKill__8KarikariFv` | `0x8010CECC` | :white_check_mark: (100.0%) |
 | `tryHipDropRelease__8KarikariFv` | `0x8010CF60` | :white_check_mark: (100.0%) |
 | `tryDPDRelease__8KarikariFRCQ29JGeometry8TVec2<f>` | `0x8010D000` | :white_check_mark: (100.0%) |
-| `tryDPDAttacked__8KarikariFv` | `0x8010D03C` | :x: (97.8%) |
+| `tryDPDAttacked__8KarikariFv` | `0x8010D03C` | :white_check_mark: (100.0%) |
 | `setVelocityFromCursorMove__8KarikariFRCQ29JGeometry8TVec2<f>` | `0x8010D1F0` | :white_check_mark: (100.0%) |
 | `makeActorDead__8KarikariFv` | `0x8010D304` | :white_check_mark: (100.0%) |
 | `kill__8KarikariFv` | `0x8010D384` | :white_check_mark: (100.0%) |
-| `generateItem__8KarikariFl` | `0x8010D3D8` | :x: (99.6%) |
+| `generateItem__8KarikariFl` | `0x8010D3D8` | :white_check_mark: (100.0%) |
 | `attackSensor__8KarikariFP9HitSensorP9HitSensor` | `0x8010D470` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__8KarikariFUlP9HitSensorP9HitSensor` | `0x8010D5E8` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__8KarikariFUlP9HitSensorP9HitSensor` | `0x8010D664` | :white_check_mark: (100.0%) |

@@ -1,11 +1,13 @@
 # main/Game/Screen/odh
 
+**Source Path:** `src/Game/Screen/odh.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `ODHEncodeRGB565` | `0x80373794` | :x: (0.0%) |
-| `compressGbaOdh__9CArGBAOdhFPUcPUciiiUlPUci` | `0x803737F8` | :x: (0.0%) |
+| `ODHEncodeRGB565` | `0x80373794` | :white_check_mark: (100.0%) |
+| `compressGbaOdh__9CArGBAOdhFPUcPUciiiUlPUci` | `0x803737F8` | :white_check_mark: (100.0%) |
 | `cdj_c_initializeCompressOdh__9CArGBAOdhFP16SArCDJ_OdhMasterPUsUcPUcPUcUl` | `0x80373918` | :x: (0.0%) |
 | `cdj_c_compressLoop__9CArGBAOdhFP16SArCDJ_OdhMaster` | `0x80373AB4` | :x: (0.0%) |
 | `cdj_c_flashBuffer__9CArGBAOdhFP16SArCDJ_OdhMaster` | `0x80373D38` | :x: (0.0%) |

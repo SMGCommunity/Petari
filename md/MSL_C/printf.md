@@ -9,10 +9,10 @@
 | `parse_format` | `0x8051C1E8` | :white_check_mark: (100.0%) |
 | `long2str` | `0x8051C7E4` | :white_check_mark: (100.0%) |
 | `longlong2str` | `0x8051CA0C` | :white_check_mark: (100.0%) |
-| `double2hex` | `0x8051CCAC` | :x: (87.3%) |
+| `double2hex` | `0x8051CCAC` | :white_check_mark: (100.0%) |
 | `round_decimal` | `0x8051D074` | :white_check_mark: (100.0%) |
-| `float2str` | `0x8051D19C` | :x: (97.9%) |
-| `__pformatter` | `0x8051D96C` | :x: (90.9%) |
+| `float2str` | `0x8051D19C` | :white_check_mark: (100.0%) |
+| `__pformatter` | `0x8051D96C` | :white_check_mark: (100.0%) |
 | `__FileWrite` | `0x8051E1C8` | :white_check_mark: (100.0%) |
 | `__StringWrite` | `0x8051E220` | :white_check_mark: (100.0%) |
 | `fprintf` | `0x8051E28C` | :white_check_mark: (100.0%) |

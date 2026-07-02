@@ -18,13 +18,13 @@
 | `__ct__13LensFlareRingFv` | `0x8036ACFC` | :white_check_mark: (100.0%) |
 | `__dt__14LensFlareModelFv` | `0x8036AD68` | :white_check_mark: (100.0%) |
 | `appearAnim__13LensFlareRingFv` | `0x8036ADC4` | :white_check_mark: (100.0%) |
-| `controlAnim__13LensFlareRingFv` | `0x8036ADD4` | :x: (95.2%) |
+| `controlAnim__13LensFlareRingFv` | `0x8036ADD4` | :x: (99.7%) |
 | `__ct__13LensFlareGlowFv` | `0x8036AEC4` | :white_check_mark: (100.0%) |
 | `appearAnim__13LensFlareGlowFv` | `0x8036AF18` | :white_check_mark: (100.0%) |
-| `controlAnim__13LensFlareGlowFv` | `0x8036AF24` | :x: (91.9%) |
+| `controlAnim__13LensFlareGlowFv` | `0x8036AF24` | :white_check_mark: (100.0%) |
 | `__ct__13LensFlareLineFv` | `0x8036AFB0` | :white_check_mark: (100.0%) |
 | `appearAnim__13LensFlareLineFv` | `0x8036B004` | :white_check_mark: (100.0%) |
-| `controlAnim__13LensFlareLineFv` | `0x8036B008` | :x: (91.9%) |
+| `controlAnim__13LensFlareLineFv` | `0x8036B008` | :white_check_mark: (100.0%) |
 | `__ct__17LensFlareDirectorFv` | `0x8036B094` | :x: (68.7%) |
 | `__dt__17LensFlareDirectorFv` | `0x8036B144` | :white_check_mark: (100.0%) |
 | `init__17LensFlareDirectorFRC12JMapInfoIter` | `0x8036B19C` | :white_check_mark: (100.0%) |

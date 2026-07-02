@@ -10,7 +10,7 @@
 | `init__Q212ElectricBall4BallFP9LiveActor` | `0x801D306C` | :x: (0.0%) |
 | `updatePosition__Q212ElectricBall4BallFRCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | `0x801D3104` | :x: (0.0%) |
 | `activate__Q212ElectricBall4BallFv` | `0x801D311C` | :x: (0.0%) |
-| `__ct__12ElectricBallFPCc` | `0x801D3134` | :x: (45.3%) |
+| `__ct__12ElectricBallFPCc` | `0x801D3134` | :x: (54.1%) |
 | `init__12ElectricBallFRC12JMapInfoIter` | `0x801D31B0` | :x: (0.0%) |
 | `initAfterPlacement__12ElectricBallFv` | `0x801D3368` | :x: (0.0%) |
 | `control__12ElectricBallFv` | `0x801D33FC` | :x: (0.0%) |
@@ -29,7 +29,7 @@
 | `execute__Q215NrvElectricBall12HostTypeWaitCFP5Spine` | `0x801D3A50` | :x: (0.0%) |
 | `for_each<PQ212ElectricBall4Ball,Q23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>>__3stdFPQ212ElectricBall4BallPQ212ElectricBall4BallQ23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>_Q23std221binder2nd<Q23std120mem_fun1_ref_t<v,Q212ElectricBall4Ball,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>,RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>>` | `0x801D3A54` | :x: (0.0%) |
 | `getBaseMtx__12ElectricBallCFv` | `0x801D3AD4` | :x: (0.0%) |
-| `__dt__Q22MR38AssignableArray<Q212ElectricBall4Ball>Fv` | `0x801D3ADC` | :x: (0.0%) |
+| `__dt__Q22MR38AssignableArray<Q212ElectricBall4Ball>Fv` | `0x801D3ADC` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR51FunctorV0M<P12ElectricBall,M12ElectricBallFPCvPv_v>CFv` | `0x801D3B44` | :x: (0.0%) |
 | `clone__Q22MR51FunctorV0M<P12ElectricBall,M12ElectricBallFPCvPv_v>CFP7JKRHeap` | `0x801D3B74` | :x: (0.0%) |
-| `__dt__12ElectricBallFv` | `0x801D3BDC` | :x: (82.1%) |
+| `__dt__12ElectricBallFv` | `0x801D3BDC` | :white_check_mark: (100.0%) |

@@ -128,7 +128,7 @@
 | `requestAppearPowerStar__2MRFPC7NameObj` | `0x803F1EB4` | :white_check_mark: (100.0%) |
 | `requestAppearPowerStar__2MRFPC7NameObjRCQ29JGeometry8TVec3<f>` | `0x803F1ECC` | :white_check_mark: (100.0%) |
 | `requestAppearPowerStar__2MRFPC7NameObjlRCQ29JGeometry8TVec3<f>` | `0x803F1EE4` | :white_check_mark: (100.0%) |
-| `requestAppearPowerStar__2MRFPC7NameObjPC9LiveActorf` | `0x803F1EF4` | :x: (79.8%) |
+| `requestAppearPowerStar__2MRFPC7NameObjPC9LiveActorf` | `0x803F1EF4` | :x: (56.5%) |
 | `requestAppearPowerStarCoin100__2MRFv` | `0x803F1F98` | :white_check_mark: (100.0%) |
 | `isEndPowerStarAppearDemo__2MRFPC7NameObj` | `0x803F1FB4` | :white_check_mark: (100.0%) |
 | `createPowerStarDemoModel__2MRFPC7NameObjPCcPA4_f` | `0x803F1FBC` | :white_check_mark: (100.0%) |
@@ -149,7 +149,7 @@
 | `appearStarPiece__2MRFPC7NameObjRCQ29JGeometry8TVec3<f>lffb` | `0x803F23DC` | :white_check_mark: (100.0%) |
 | `appearStarPieceToDirection__2MRFPC7NameObjRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>lffb` | `0x803F2454` | :white_check_mark: (100.0%) |
 | `initStarPieceGetCSSound__2MRFv` | `0x803F24D4` | :white_check_mark: (100.0%) |
-| `createKinokoOneUp__2MRFv` | `0x803F2500` | :white_check_mark: (100.0%) |
+| `createKinokoOneUp__2MRFv` | `0x803F2500` | :x: (99.0%) |
 | `appearKinokoOneUpPop__2MRFP14BenefitItemObjPA4_ff` | `0x803F2578` | :x: (99.9%) |
 | `createKinokoSuper__2MRFv` | `0x803F273C` | :white_check_mark: (100.0%) |
 | `appearKinokoSuper__2MRFP17BenefitItemLifeUpPA4_ff` | `0x803F27A4` | :white_check_mark: (100.0%) |

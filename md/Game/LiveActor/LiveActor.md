@@ -32,7 +32,7 @@
 | `initBinder__9LiveActorFffUl` | `0x80165F78` | :white_check_mark: (100.0%) |
 | `initRailRider__9LiveActorFRC12JMapInfoIter` | `0x80166030` | :white_check_mark: (100.0%) |
 | `initEffectKeeper__9LiveActorFiPCcb` | `0x80166080` | :x: (94.3%) |
-| `initSound__9LiveActorFib` | `0x8016612C` | :x: (100.0%) |
+| `initSound__9LiveActorFib` | `0x8016612C` | :white_check_mark: (100.0%) |
 | `initShadowControllerList__9LiveActorFUl` | `0x801661D4` | :white_check_mark: (100.0%) |
 | `initActorCollisionParts__9LiveActorFPCcP9HitSensorP14ResourceHolderPA4_fbb` | `0x80166228` | :x: (0.0%) |
 | `initStageSwitch__9LiveActorFRC12JMapInfoIter` | `0x8016633C` | :white_check_mark: (100.0%) |

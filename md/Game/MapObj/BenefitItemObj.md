@@ -10,7 +10,7 @@
 | `control__15ShadowClipActorFv` | `0x801B40A8` | :white_check_mark: (100.0%) |
 | `__ct__14BenefitItemObjFPCcPCc` | `0x801B40F0` | :white_check_mark: (100.0%) |
 | `initModelAndEfx__14BenefitItemObjFv` | `0x801B4194` | :white_check_mark: (100.0%) |
-| `init__14BenefitItemObjFRC12JMapInfoIter` | `0x801B4234` | :x: (98.1%) |
+| `init__14BenefitItemObjFRC12JMapInfoIter` | `0x801B4234` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__14BenefitItemObjFv` | `0x801B48B4` | :white_check_mark: (100.0%) |
 | `makeActorAppeared__14BenefitItemObjFv` | `0x801B48C8` | :white_check_mark: (100.0%) |
 | `appear__14BenefitItemObjFv` | `0x801B4910` | :white_check_mark: (100.0%) |
@@ -28,8 +28,8 @@
 | `exeAppearGround__14BenefitItemObjFv` | `0x801B5280` | :x: (99.9%) |
 | `exePreEscape__14BenefitItemObjFv` | `0x801B5358` | :white_check_mark: (100.0%) |
 | `initEscape__14BenefitItemObjFv` | `0x801B5398` | :white_check_mark: (100.0%) |
-| `doEscape__14BenefitItemObjFv` | `0x801B5424` | :x: (0.0%) |
-| `exeEscape__14BenefitItemObjFv` | `0x801B579C` | :x: (100.0%) |
+| `doEscape__14BenefitItemObjFv` | `0x801B5424` | :x: (100.0%) |
+| `exeEscape__14BenefitItemObjFv` | `0x801B579C` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__14BenefitItemObjFv` | `0x801B59BC` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtxInMovement__14BenefitItemObjFv` | `0x801B59C0` | :white_check_mark: (100.0%) |
 | `setFollowMtx__14BenefitItemObjFPA4_f` | `0x801B5BCC` | :white_check_mark: (100.0%) |

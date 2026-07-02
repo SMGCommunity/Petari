@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__9SnakeheadFPCc` | `0x8013D988` | :white_check_mark: (100.0%) |
 | `init__9SnakeheadFRC12JMapInfoIter` | `0x8013DA14` | :x: (0.0%) |
-| `initAfterPlacement__9SnakeheadFv` | `0x8013DE94` | :x: (43.8%) |
+| `initAfterPlacement__9SnakeheadFv` | `0x8013DE94` | :x: (48.5%) |
 | `kill__9SnakeheadFv` | `0x8013DF70` | :x: (99.9%) |
 | `control__9SnakeheadFv` | `0x8013E080` | :x: (99.9%) |
 | `calcAndSetBaseMtx__9SnakeheadFv` | `0x8013E188` | :x: (99.5%) |
@@ -17,10 +17,10 @@
 | `exeMoveForward__9SnakeheadFv` | `0x8013E3C0` | :white_check_mark: (100.0%) |
 | `exeRest__9SnakeheadFv` | `0x8013E49C` | :white_check_mark: (100.0%) |
 | `exeMoveBack__9SnakeheadFv` | `0x8013E4F8` | :white_check_mark: (100.0%) |
-| `exeTurtleDown__9SnakeheadFv` | `0x8013E59C` | :x: (83.9%) |
+| `exeTurtleDown__9SnakeheadFv` | `0x8013E59C` | :white_check_mark: (100.0%) |
 | `attackSensor__9SnakeheadFP9HitSensorP9HitSensor` | `0x8013E690` | :x: (0.0%) |
 | `receiveMsgPlayerAttack__9SnakeheadFUlP9HitSensorP9HitSensor` | `0x8013E8B8` | :x: (0.0%) |
-| `choiceAndStartBck__9SnakeheadFPCc` | `0x8013E960` | :x: (95.4%) |
+| `choiceAndStartBck__9SnakeheadFPCc` | `0x8013E960` | :x: (99.9%) |
 | `tryDPDSwoon__9SnakeheadFv` | `0x8013EAE8` | :white_check_mark: (100.0%) |
 | `isNearPlayerFromRail__9SnakeheadCFv` | `0x8013EB88` | :white_check_mark: (100.0%) |
 | `__dt__9SnakeheadFv` | `0x8013EBE8` | :white_check_mark: (100.0%) |

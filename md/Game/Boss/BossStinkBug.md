@@ -48,7 +48,7 @@
 | `throwBomb__12BossStinkBugFff` | `0x8003CF84` | :x: (99.0%) |
 | `isValid__27BossStinkBugFollowValidaterCFl` | `0x8003D090` | :white_check_mark: (100.0%) |
 | `__sinit_\BossStinkBug_cpp` | `0x8003D098` | :white_check_mark: (100.0%) |
-| `gekko_ps_copy12__5JMathFPvPCv` | `0x8003D0B0` | :x: (0.0%) |
+| `gekko_ps_copy12__5JMathFPvPCv` | `0x8003D0B0` | :white_check_mark: (100.0%) |
 | `__cl__Q22MR51FunctorV0M<P12BossStinkBug,M12BossStinkBugFPCvPv_v>CFv` | `0x8003D0E4` | :white_check_mark: (100.0%) |
 | `clone__Q22MR51FunctorV0M<P12BossStinkBug,M12BossStinkBugFPCvPv_v>CFP7JKRHeap` | `0x8003D114` | :white_check_mark: (100.0%) |
 | `__dt__12BossStinkBugFv` | `0x8003D17C` | :white_check_mark: (100.0%) |

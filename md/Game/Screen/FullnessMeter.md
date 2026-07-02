@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__13FullnessMeterFP9LiveActorll` | `0x80357C5C` | :white_check_mark: (100.0%) |
 | `init__13FullnessMeterFRC12JMapInfoIter` | `0x80357D38` | :white_check_mark: (100.0%) |
-| `control__13FullnessMeterFv` | `0x80357D94` | :x: (67.1%) |
+| `control__13FullnessMeterFv` | `0x80357D94` | :white_check_mark: (100.0%) |
 | `setNumber__13FullnessMeterFl` | `0x80357DD8` | :white_check_mark: (100.0%) |
 | `requestAppear__13FullnessMeterFv` | `0x80357EF4` | :white_check_mark: (100.0%) |
 | `requestDisappear__13FullnessMeterFv` | `0x80357F80` | :white_check_mark: (100.0%) |

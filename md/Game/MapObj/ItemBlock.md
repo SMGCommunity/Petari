@@ -23,7 +23,7 @@
 | `decTimer__9ItemBlockFv` | `0x801E95B0` | :white_check_mark: (100.0%) |
 | `calcAnim__9ItemBlockFv` | `0x801E95CC` | :white_check_mark: (100.0%) |
 | `__dt__9ItemBlockFv` | `0x801E960C` | :white_check_mark: (100.0%) |
-| `__sinit_\ItemBlock_cpp` | `0x801E9668` | :white_check_mark: (100.0%) |
+| `__sinit_\ItemBlock_cpp` | `0x801E9668` | :x: (59.5%) |
 | `__ct__Q212NrvItemBlock19ItemBlockNrvStandbyFv` | `0x801E96BC` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvItemBlock16ItemBlockNrvWaitFv` | `0x801E96CC` | :white_check_mark: (100.0%) |
 | `__ct__Q212NrvItemBlock22ItemBlockNrvAppearItemFv` | `0x801E96DC` | :white_check_mark: (100.0%) |

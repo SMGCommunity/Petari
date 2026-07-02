@@ -147,7 +147,7 @@
 | `createNameObj<10KuriboMini>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | `0x80265410` | :white_check_mark: (100.0%) |
 | `createNameObj<8Kabokuri>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | `0x80265450` | :white_check_mark: (100.0%) |
 | `createNameObj<7TakoHei>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | `0x80265490` | :white_check_mark: (100.0%) |
-| `createNameObj<7OtaRock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | `0x802654D0` | :x: (99.9%) |
+| `createNameObj<7OtaRock>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | `0x802654D0` | :white_check_mark: (100.0%) |
 | `createNameObj<8Meramera>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | `0x80265510` | :white_check_mark: (100.0%) |
 | `createNameObj<9EyeBeamer>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | `0x80265550` | :white_check_mark: (100.0%) |
 | `createNameObj<7Birikyu>__28@unnamed@NameObjFactory_cpp@FPCc_P7NameObj` | `0x80265590` | :white_check_mark: (100.0%) |

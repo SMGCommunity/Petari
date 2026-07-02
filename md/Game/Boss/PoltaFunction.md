@@ -34,7 +34,7 @@
 | `isEnableAttackLeftArm__13PoltaFunctionFP5Polta` | `0x80072CCC` | :white_check_mark: (100.0%) |
 | `isMaxGenerateBombTeresa__13PoltaFunctionFP5Polta` | `0x80072CD4` | :white_check_mark: (100.0%) |
 | `getCountDeadGroundRock__13PoltaFunctionFP5Polta` | `0x80072D00` | :white_check_mark: (100.0%) |
-| `appearGroundRock__13PoltaFunctionFP5Poltaff` | `0x80072D34` | :x: (79.9%) |
+| `appearGroundRock__13PoltaFunctionFP5Poltaff` | `0x80072D34` | :x: (80.1%) |
 | `appearRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3<f>flll` | `0x80072E74` | :x: (0.0%) |
 | `appearWhiteRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3<f>fll` | `0x800730CC` | :white_check_mark: (100.0%) |
 | `appearBlackRockCircle__13PoltaFunctionFP5PoltaRCQ29JGeometry8TVec3<f>fll` | `0x800730D4` | :white_check_mark: (100.0%) |

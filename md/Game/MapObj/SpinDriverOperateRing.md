@@ -14,7 +14,7 @@
 | `update__21SpinDriverOperateRingFRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x802370AC` | :white_check_mark: (100.0%) |
 | `updatePosition__21SpinDriverOperateRingFv` | `0x80237160` | :x: (0.0%) |
 | `updateControlPoint__21SpinDriverOperateRingFRCQ29JGeometry8TVec3<f>` | `0x802372A4` | :x: (0.0%) |
-| `updateDirection__21SpinDriverOperateRingFRCQ29JGeometry8TVec3<f>` | `0x80237334` | :x: (99.8%) |
+| `updateDirection__21SpinDriverOperateRingFRCQ29JGeometry8TVec3<f>` | `0x80237334` | :x: (91.1%) |
 | `resetVelocityAndTrans__21SpinDriverOperateRingFv` | `0x802373BC` | :white_check_mark: (100.0%) |
 | `addAccelToOperatePlane__21SpinDriverOperateRingFRCQ29JGeometry8TVec3<f>` | `0x80237408` | :white_check_mark: (100.0%) |
 | `addAccelOperate__21SpinDriverOperateRingFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x80237484` | :x: (0.0%) |

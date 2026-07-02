@@ -13,7 +13,7 @@
 | `exeMove__18MechaKoopaPartsArmFv` | `0x801FBDA0` | :white_check_mark: (100.0%) |
 | `exeBreakStart__18MechaKoopaPartsArmFv` | `0x801FBE38` | :white_check_mark: (100.0%) |
 | `exeBreak__18MechaKoopaPartsArmFv` | `0x801FBEBC` | :white_check_mark: (100.0%) |
-| `initCaseUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo` | `0x801FBF70` | :x: (50.8%) |
+| `initCaseUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo` | `0x801FBF70` | :white_check_mark: (100.0%) |
 | `initCaseNoUseSwitchB__18MechaKoopaPartsArmFRC19MapObjActorInitInfo` | `0x801FBFCC` | :white_check_mark: (100.0%) |
 | `startBreak__18MechaKoopaPartsArmFv` | `0x801FBFD0` | :white_check_mark: (100.0%) |
 | `__sinit_\MechaKoopaPartsArm_cpp` | `0x801FBFD8` | :white_check_mark: (100.0%) |

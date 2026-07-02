@@ -9,7 +9,7 @@
 | `__ct__9LavaSteamFPCc` | `0x801F425C` | :white_check_mark: (100.0%) |
 | `init__9LavaSteamFRC12JMapInfoIter` | `0x801F42B8` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__9LavaSteamFv` | `0x801F448C` | :x: (84.8%) |
-| `attackSensor__9LavaSteamFP9HitSensorP9HitSensor` | `0x801F45FC` | :x: (94.0%) |
+| `attackSensor__9LavaSteamFP9HitSensorP9HitSensor` | `0x801F45FC` | :x: (93.7%) |
 | `startClipped__9LavaSteamFv` | `0x801F484C` | :white_check_mark: (100.0%) |
 | `endClipped__9LavaSteamFv` | `0x801F4880` | :white_check_mark: (100.0%) |
 | `startSteam__9LavaSteamFv` | `0x801F48B8` | :white_check_mark: (100.0%) |

@@ -13,7 +13,7 @@
 | `setNoUseDrawMtx__12J3DMtxBufferFv` | `0x80431EB0` | :white_check_mark: (100.0%) |
 | `createDoubleDrawMtx__12J3DMtxBufferFP12J3DModelDataUl` | `0x80431EDC` | :white_check_mark: (100.0%) |
 | `createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl` | `0x80431FD0` | :white_check_mark: (100.0%) |
-| `calcWeightEnvelopeMtx__12J3DMtxBufferFv` | `0x804321F8` | :x: (64.9%) |
+| `calcWeightEnvelopeMtx__12J3DMtxBufferFv` | `0x804321F8` | :x: (67.9%) |
 | `calcDrawMtx__12J3DMtxBufferFUlRC3VecRA3_A4_Cf` | `0x80432424` | :white_check_mark: (100.0%) |
 | `calcNrmMtx__12J3DMtxBufferFv` | `0x80432654` | :white_check_mark: (100.0%) |
 | `calcBBoardMtx__12J3DMtxBufferFv` | `0x80432770` | :white_check_mark: (100.0%) |

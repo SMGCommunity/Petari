@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `App_MEMalloc` | `0x804E5DA0` | :white_check_mark: (100.0%) |
-| `App_MEMfree` | `0x804E5DF0` | :white_check_mark: (100.0%) |
+| `App_MEMfree` | `0x804E5DF0` | :x: (94.4%) |
 | `SyncFlushCallback` | `0x804E5E40` | :white_check_mark: (100.0%) |
 | `DeleteFlushCallback` | `0x804E5EB8` | :white_check_mark: (100.0%) |
 | `ShutFlushCallback` | `0x804E5F10` | :x: (80.4%) |

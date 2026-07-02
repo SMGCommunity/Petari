@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `getSystem__7AudWrapFv` | `0x8002AA50` | :white_check_mark: (100.0%) |
-| `getSoundInfo__7AudWrapFv` | `0x8002AA58` | :x: (0.0%) |
+| `getSoundInfo__7AudWrapFv` | `0x8002AA58` | :white_check_mark: (100.0%) |
 | `getSceneMgr__7AudWrapFv` | `0x8002AA60` | :white_check_mark: (100.0%) |
 | `getBgmMgr__7AudWrapFv` | `0x8002AA6C` | :white_check_mark: (100.0%) |
 | `getStageBgm__7AudWrapFv` | `0x8002AA78` | :white_check_mark: (100.0%) |

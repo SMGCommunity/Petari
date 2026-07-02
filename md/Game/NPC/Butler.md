@@ -24,8 +24,8 @@
 | `receiveMsgPlayerAttack__6ButlerFUlP9HitSensorP9HitSensor` | `0x8026CE74` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__6ButlerFUlP9HitSensorP9HitSensor` | `0x8026CFA8` | :white_check_mark: (100.0%) |
 | `initTalkCtrlArray__6ButlerFRC12JMapInfoIter` | `0x8026CFEC` | :white_check_mark: (100.0%) |
-| `initForAstroDome__6ButlerFRC12JMapInfoIter` | `0x8026D064` | :x: (89.8%) |
-| `initForAstroGalaxy__6ButlerFRC12JMapInfoIter` | `0x8026D438` | :white_check_mark: (100.0%) |
+| `initForAstroDome__6ButlerFRC12JMapInfoIter` | `0x8026D064` | :x: (89.7%) |
+| `initForAstroGalaxy__6ButlerFRC12JMapInfoIter` | `0x8026D438` | :x: (99.9%) |
 | `createTalkCtrl__6ButlerFRC12JMapInfoIterPCc` | `0x8026D584` | :white_check_mark: (100.0%) |
 | `forceNerveToWait__6ButlerFv` | `0x8026D5FC` | :white_check_mark: (100.0%) |
 | `tryReplaceStarPieceIfExecLecture__6ButlerFv` | `0x8026D644` | :white_check_mark: (100.0%) |

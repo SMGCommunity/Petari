@@ -34,7 +34,7 @@
 | `dispose__7JKRHeapFPvPv` | `0x8040B39C` | :white_check_mark: (100.0%) |
 | `dispose__7JKRHeapFv` | `0x8040B3A0` | :white_check_mark: (100.0%) |
 | `copyMemory__7JKRHeapFPvPvUl` | `0x8040B3F0` | :white_check_mark: (100.0%) |
-| `JKRDefaultMemoryErrorRoutine__FPvUli` | `0x8040B418` | :x: (63.8%) |
+| `JKRDefaultMemoryErrorRoutine__FPvUli` | `0x8040B418` | :x: (96.2%) |
 | `setErrorHandler__7JKRHeapFPFPvUli_v` | `0x8040B438` | :white_check_mark: (100.0%) |
 | `__nw__FUl` | `0x8040B458` | :white_check_mark: (100.0%) |
 | `__nw__FUli` | `0x8040B464` | :white_check_mark: (100.0%) |

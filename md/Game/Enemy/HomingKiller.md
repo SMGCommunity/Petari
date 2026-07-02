@@ -32,7 +32,7 @@
 | `tryToExplosion__12HomingKillerFP9HitSensorP9HitSensor` | `0x800F705C` | :white_check_mark: (100.0%) |
 | `sendMsgExplosionToNearActor__12HomingKillerFv` | `0x800F70DC` | :white_check_mark: (100.0%) |
 | `isUpdateChaseFrontVec__12HomingKillerCFRCQ29JGeometry8TVec3<f>` | `0x800F7168` | :white_check_mark: (100.0%) |
-| `calcFrontVecToTarget__12HomingKillerCFPQ29JGeometry8TVec3<f>` | `0x800F7210` | :x: (99.8%) |
+| `calcFrontVecToTarget__12HomingKillerCFPQ29JGeometry8TVec3<f>` | `0x800F7210` | :x: (88.4%) |
 | `isValidShowModel__12HomingKillerCFv` | `0x800F72A0` | :white_check_mark: (100.0%) |
 | `isWaterBreak__12HomingKillerCFv` | `0x800F7318` | :white_check_mark: (100.0%) |
 | `updateBaseMtxNoRotateZ__12HomingKillerFv` | `0x800F738C` | :white_check_mark: (100.0%) |

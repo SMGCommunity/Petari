@@ -132,7 +132,7 @@
 | `diffMatColor__13J3DColorBlockFv` | `0x804288BC` | :white_check_mark: (100.0%) |
 | `patchLight__13J3DColorBlockFv` | `0x804288C0` | :white_check_mark: (100.0%) |
 | `patchMatColor__13J3DColorBlockFv` | `0x804288C4` | :white_check_mark: (100.0%) |
-| `__ct__12J3DColorChanFv` | `0x804288C8` | :x: (48.8%) |
+| `__ct__12J3DColorChanFv` | `0x804288C8` | :x: (57.0%) |
 | `__ct__11J3DNBTScaleFv` | `0x8042899C` | :white_check_mark: (100.0%) |
 | `__ct__11J3DTevStageFv` | `0x804289C8` | :x: (38.2%) |
 | `__ct__14J3DIndTevStageFv` | `0x80428B9C` | :x: (34.5%) |

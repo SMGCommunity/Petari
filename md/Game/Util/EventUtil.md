@@ -92,7 +92,7 @@
 | `getPowerStarNumSucceed__2MRFPCc` | `0x803CE100` | :white_check_mark: (100.0%) |
 | `isPowerStarGreen__2MRFPCcl` | `0x803CE12C` | :white_check_mark: (100.0%) |
 | `getPictureBookChapterCanRead__2MRFv` | `0x803CE130` | :white_check_mark: (100.0%) |
-| `getPictureBookChapterAlreadyRead__2MRFv` | `0x803CE134` | :x: (0.0%) |
+| `getPictureBookChapterAlreadyRead__2MRFv` | `0x803CE134` | :white_check_mark: (100.0%) |
 | `setPictureBookChapterAlreadyRead__2MRFi` | `0x803CE138` | :white_check_mark: (100.0%) |
 | `setRaceBestTime__2MRFiUl` | `0x803CE13C` | :white_check_mark: (100.0%) |
 | `getRaceBestTime__2MRFi` | `0x803CE170` | :white_check_mark: (100.0%) |

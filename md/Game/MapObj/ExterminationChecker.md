@@ -9,9 +9,9 @@
 | `createLiveActor<16SkeletalFishBaby>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor` | `0x801D80B0` | :x: (0.0%) |
 | `createLiveActor<8Meramera>__34@unnamed@ExterminationChecker_cpp@FPCc_P9LiveActor` | `0x801D80F0` | :x: (0.0%) |
 | `__ct__20ExterminationCheckerFPCc` | `0x801D8130` | :white_check_mark: (100.0%) |
-| `init__20ExterminationCheckerFRC12JMapInfoIter` | `0x801D8194` | :x: (99.5%) |
+| `init__20ExterminationCheckerFRC12JMapInfoIter` | `0x801D8194` | :white_check_mark: (100.0%) |
 | `control__20ExterminationCheckerFv` | `0x801D8358` | :white_check_mark: (100.0%) |
-| `exeWatching__20ExterminationCheckerFv` | `0x801D835C` | :x: (90.0%) |
+| `exeWatching__20ExterminationCheckerFv` | `0x801D835C` | :white_check_mark: (100.0%) |
 | `exeTryStartDemoAppear__20ExterminationCheckerFv` | `0x801D8414` | :white_check_mark: (100.0%) |
 | `exeAppearStar__20ExterminationCheckerFv` | `0x801D8488` | :white_check_mark: (100.0%) |
 | `exeAppearKeySwitch__20ExterminationCheckerFv` | `0x801D8518` | :white_check_mark: (100.0%) |

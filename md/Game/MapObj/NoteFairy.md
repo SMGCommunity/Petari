@@ -13,7 +13,7 @@
 | `killAllNotes__9NoteFairyFv` | `0x802077B8` | :white_check_mark: (100.0%) |
 | `exeHide__9NoteFairyFv` | `0x80207820` | :white_check_mark: (100.0%) |
 | `exeStartAppearDemo__9NoteFairyFv` | `0x80207904` | :x: (0.0%) |
-| `exeRailMoveStart__9NoteFairyFv` | `0x802079BC` | :x: (99.5%) |
+| `exeRailMoveStart__9NoteFairyFv` | `0x802079BC` | :white_check_mark: (100.0%) |
 | `exeDemoAppear__9NoteFairyFv` | `0x80207A60` | :x: (97.9%) |
 | `exeAppearNoteBloom__9NoteFairyFv` | `0x80207CB8` | :x: (100.0%) |
 | `exeAppearNote__9NoteFairyFv` | `0x80207F04` | :white_check_mark: (100.0%) |

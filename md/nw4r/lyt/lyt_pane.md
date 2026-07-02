@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__Q34nw4r3lyt4PaneFPCQ44nw4r3lyt3res4Pane` | `0x8000BD4C` | :white_check_mark: (100.0%) |
-| `__dt__Q34nw4r3lyt4PaneFv` | `0x8000BE80` | :x: (91.8%) |
+| `__dt__Q34nw4r3lyt4PaneFv` | `0x8000BE80` | :white_check_mark: (100.0%) |
 | `SetName__Q34nw4r3lyt4PaneFPCc` | `0x8000BFAC` | :white_check_mark: (100.0%) |
 | `AppendChild__Q34nw4r3lyt4PaneFPQ34nw4r3lyt4Pane` | `0x8000BFE8` | :white_check_mark: (100.0%) |
 | `RemoveChild__Q34nw4r3lyt4PaneFPQ34nw4r3lyt4Pane` | `0x8000C038` | :white_check_mark: (100.0%) |
@@ -17,8 +17,8 @@
 | `SetColorElement__Q34nw4r3lyt4PaneFUlUc` | `0x8000C0AC` | :white_check_mark: (100.0%) |
 | `GetVtxColorElement__Q34nw4r3lyt4PaneCFUl` | `0x8000C0D4` | :white_check_mark: (100.0%) |
 | `SetVtxColorElement__Q34nw4r3lyt4PaneFUlUc` | `0x8000C0DC` | :white_check_mark: (100.0%) |
-| `FindPaneByName__Q34nw4r3lyt4PaneFPCcb` | `0x8000C0E0` | :x: (89.5%) |
-| `FindMaterialByName__Q34nw4r3lyt4PaneFPCcb` | `0x8000C18C` | :x: (94.6%) |
+| `FindPaneByName__Q34nw4r3lyt4PaneFPCcb` | `0x8000C0E0` | :white_check_mark: (100.0%) |
+| `FindMaterialByName__Q34nw4r3lyt4PaneFPCcb` | `0x8000C18C` | :white_check_mark: (100.0%) |
 | `CalculateMtx__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo` | `0x8000C244` | :white_check_mark: (100.0%) |
 | `Draw__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo` | `0x8000C53C` | :white_check_mark: (100.0%) |
 | `DrawSelf__Q34nw4r3lyt4PaneFRCQ34nw4r3lyt8DrawInfo` | `0x8000C5C0` | :white_check_mark: (100.0%) |

@@ -22,7 +22,7 @@
 | `createPictureBook__16PrologueDirectorFv` | `0x800C1784` | :white_check_mark: (100.0%) |
 | `createLetter__16PrologueDirectorFv` | `0x800C17DC` | :white_check_mark: (100.0%) |
 | `createScenery__16PrologueDirectorFv` | `0x800C1828` | :white_check_mark: (100.0%) |
-| `createMarioPosDummyModel__16PrologueDirectorFv` | `0x800C18D8` | :x: (100.0%) |
+| `createMarioPosDummyModel__16PrologueDirectorFv` | `0x800C18D8` | :white_check_mark: (100.0%) |
 | `createCameraTarget__16PrologueDirectorFv` | `0x800C1994` | :white_check_mark: (100.0%) |
 | `control__16PrologueDirectorFv` | `0x800C19E4` | :white_check_mark: (100.0%) |
 | `pauseOff__16PrologueDirectorFv` | `0x800C19E8` | :white_check_mark: (100.0%) |

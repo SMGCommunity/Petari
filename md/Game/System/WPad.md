@@ -24,6 +24,6 @@
 | `getPadDataForExceptionNoInit__2MRFUlPUlPUl` | `0x803ABB2C` | :white_check_mark: (100.0%) |
 | `getKPadStatus__4WPadCFUl` | `0x803ABCD4` | :white_check_mark: (100.0%) |
 | `getValidStatusCount__4WPadCFv` | `0x803ABCDC` | :white_check_mark: (100.0%) |
-| `getEnableAccelPastCount__4WPadCFUl` | `0x803ABCE4` | :x: (0.0%) |
+| `getEnableAccelPastCount__4WPadCFUl` | `0x803ABCE4` | :white_check_mark: (100.0%) |
 | `getAcceleration__4WPadCFPQ29JGeometry8TVec3<f>Ul` | `0x803ABD00` | :white_check_mark: (100.0%) |
 | `getPastAcceleration__4WPadCFPQ29JGeometry8TVec3<f>lUl` | `0x803ABD18` | :white_check_mark: (100.0%) |

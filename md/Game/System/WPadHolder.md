@@ -23,5 +23,5 @@
 | `resetWPad__2MRFv` | `0x803ACB7C` | :white_check_mark: (100.0%) |
 | `setWPadHolderModeHomeButton__2MRFv` | `0x803ACBA0` | :white_check_mark: (100.0%) |
 | `setWPadHolderModeGame__2MRFv` | `0x803ACBC8` | :white_check_mark: (100.0%) |
-| `getHBMKPadData__2MRFP11HBMKPadDatal` | `0x803ACBF0` | :x: (0.0%) |
+| `getHBMKPadData__2MRFP11HBMKPadDatal` | `0x803ACBF0` | :white_check_mark: (100.0%) |
 | `setAutoSleepTimeWiiRemote__2MRFb` | `0x803ACC8C` | :white_check_mark: (100.0%) |

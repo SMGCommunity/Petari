@@ -9,7 +9,7 @@
 | `__ct__9DriftWoodFPCc` | `0x801D00EC` | :white_check_mark: (100.0%) |
 | `init__9DriftWoodFRC12JMapInfoIter` | `0x801D015C` | :white_check_mark: (100.0%) |
 | `exeWait__9DriftWoodFv` | `0x801D02A0` | :x: (99.9%) |
-| `exeVibrate__9DriftWoodFv` | `0x801D0364` | :x: (99.5%) |
+| `exeVibrate__9DriftWoodFv` | `0x801D0364` | :x: (99.9%) |
 | `connectToScene__9DriftWoodFRC19MapObjActorInitInfo` | `0x801D0514` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__9DriftWoodFv` | `0x801D0518` | :white_check_mark: (100.0%) |
 | `attackSensor__9DriftWoodFP9HitSensorP9HitSensor` | `0x801D0560` | :white_check_mark: (100.0%) |

@@ -34,7 +34,7 @@
 | `exeAppear__7PoihanaFv` | `0x80135370` | :x: (99.9%) |
 | `exeDPDSwoon__7PoihanaFv` | `0x801354B8` | :white_check_mark: (100.0%) |
 | `endDPDSwoon__7PoihanaFv` | `0x8013550C` | :white_check_mark: (100.0%) |
-| `attackSensor__7PoihanaFP9HitSensorP9HitSensor` | `0x80135590` | :white_check_mark: (100.0%) |
+| `attackSensor__7PoihanaFP9HitSensorP9HitSensor` | `0x80135590` | :x: (99.7%) |
 | `receiveMsgPlayerAttack__7PoihanaFUlP9HitSensorP9HitSensor` | `0x80135714` | :white_check_mark: (100.0%) |
 | `receiveMsgEnemyAttack__7PoihanaFUlP9HitSensorP9HitSensor` | `0x801358EC` | :white_check_mark: (100.0%) |
 | `receiveMsgPush__7PoihanaFP9HitSensorP9HitSensor` | `0x80135940` | :white_check_mark: (100.0%) |
@@ -43,7 +43,7 @@
 | `updateBindActorMtx__7PoihanaFv` | `0x80135BDC` | :white_check_mark: (100.0%) |
 | `endBind__7PoihanaFv` | `0x80135C1C` | :white_check_mark: (100.0%) |
 | `startBound__7PoihanaFv` | `0x80135C98` | :white_check_mark: (100.0%) |
-| `calcBound__7PoihanaFv` | `0x80135CB4` | :x: (0.0%) |
+| `calcBound__7PoihanaFv` | `0x80135CB4` | :x: (99.9%) |
 | `contactMario__7PoihanaFP9HitSensorP9HitSensor` | `0x80135E20` | :white_check_mark: (100.0%) |
 | `controlVelocity__7PoihanaFv` | `0x80135EF4` | :x: (0.0%) |
 | `calcMyGravity__7PoihanaFv` | `0x8013611C` | :white_check_mark: (100.0%) |

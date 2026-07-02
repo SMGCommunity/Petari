@@ -23,7 +23,7 @@
 | `setTilt__13MarioAnimatorFv` | `0x802CBEAC` | :x: (99.4%) |
 | `resetTilt__13MarioAnimatorFv` | `0x802CC0D8` | :white_check_mark: (100.0%) |
 | `setHoming__13MarioAnimatorFv` | `0x802CC11C` | :x: (98.7%) |
-| `setHipSlidingTilt__13MarioAnimatorFff` | `0x802CC4F4` | :x: (87.8%) |
+| `setHipSlidingTilt__13MarioAnimatorFff` | `0x802CC4F4` | :x: (99.8%) |
 | `setHipSliderTilt__13MarioAnimatorFv` | `0x802CC688` | :white_check_mark: (100.0%) |
 | `setHipSlipTilt__13MarioAnimatorFv` | `0x802CC6E4` | :white_check_mark: (100.0%) |
 | `setSpeed__13MarioAnimatorFf` | `0x802CC76C` | :white_check_mark: (100.0%) |

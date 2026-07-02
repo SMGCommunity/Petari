@@ -13,7 +13,7 @@
 | `control__25AstroDomeCameraControllerFv` | `0x801ABEC4` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__25AstroDomeCameraControllerFUlP9HitSensorP9HitSensor` | `0x801ABF48` | :white_check_mark: (100.0%) |
 | `calcZoomOutPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>` | `0x801ABFDC` | :white_check_mark: (100.0%) |
-| `calcZoomInPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801AC080` | :x: (99.5%) |
+| `calcZoomInPos__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801AC080` | :white_check_mark: (100.0%) |
 | `calcZoomInTarget__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801AC114` | :white_check_mark: (100.0%) |
 | `calcZoomInUp__25AstroDomeCameraControllerCFPQ29JGeometry8TVec3<f>` | `0x801AC170` | :white_check_mark: (100.0%) |
 | `exeGalaxySelectStart__25AstroDomeCameraControllerFv` | `0x801AC1C8` | :white_check_mark: (100.0%) |

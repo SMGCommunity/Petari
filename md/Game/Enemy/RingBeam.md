@@ -22,7 +22,7 @@
 | `initPos__8RingBeamFPC9LiveActor` | `0x80139410` | :white_check_mark: (100.0%) |
 | `attackSensor__8RingBeamFP9HitSensorP9HitSensor` | `0x801394B0` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__8RingBeamFUlP9HitSensorP9HitSensor` | `0x801395D0` | :white_check_mark: (100.0%) |
-| `exeSpread__8RingBeamFv` | `0x801395D8` | :x: (99.9%) |
+| `exeSpread__8RingBeamFv` | `0x801395D8` | :white_check_mark: (100.0%) |
 | `__sinit_\RingBeam_cpp` | `0x80139A58` | :white_check_mark: (100.0%) |
 | `__ct__Q211NrvRingBeam17RingBeamNrvSpreadFv` | `0x80139A60` | :white_check_mark: (100.0%) |
 | `execute__Q211NrvRingBeam17RingBeamNrvSpreadCFP5Spine` | `0x80139A70` | :white_check_mark: (100.0%) |

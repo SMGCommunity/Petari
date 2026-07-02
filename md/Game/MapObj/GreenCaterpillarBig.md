@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__23GreenCaterpillarBigBodyFP9LiveActorPA4_f` | `0x801E3750` | :white_check_mark: (100.0%) |
 | `init__23GreenCaterpillarBigBodyFRC12JMapInfoIter` | `0x801E37DC` | :white_check_mark: (100.0%) |
-| `setPosAndDirection__23GreenCaterpillarBigBodyFP9LiveActor` | `0x801E3864` | :x: (79.0%) |
+| `setPosAndDirection__23GreenCaterpillarBigBodyFP9LiveActor` | `0x801E3864` | :white_check_mark: (100.0%) |
 | `control__23GreenCaterpillarBigBodyFv` | `0x801E38E4` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__23GreenCaterpillarBigBodyFv` | `0x801E38EC` | :white_check_mark: (100.0%) |
 | `calcBodyDir__23GreenCaterpillarBigBodyFP9LiveActorPQ29JGeometry8TVec3<f>` | `0x801E397C` | :x: (0.0%) |

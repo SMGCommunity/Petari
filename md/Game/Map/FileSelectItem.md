@@ -36,7 +36,7 @@
 | `createMii__14FileSelectItemFv` | `0x8017915C` | :white_check_mark: (100.0%) |
 | `createNumber__14FileSelectItemFv` | `0x8017927C` | :white_check_mark: (100.0%) |
 | `updatePointing__14FileSelectItemFv` | `0x801792D4` | :white_check_mark: (100.0%) |
-| `updateRotate__14FileSelectItemFv` | `0x801793CC` | :x: (90.1%) |
+| `updateRotate__14FileSelectItemFv` | `0x801793CC` | :x: (91.5%) |
 | `playPointedME__14FileSelectItemFv` | `0x80179A44` | :x: (0.0%) |
 | `playPointedNotUsingME__14FileSelectItemFv` | `0x80179AE0` | :x: (0.0%) |
 | `appearFellowModel__14FileSelectItemFv` | `0x80179B7C` | :x: (0.0%) |

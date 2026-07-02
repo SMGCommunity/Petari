@@ -1,12 +1,14 @@
 # main/Game/Util/FurCtrl
 
+**Source Path:** `src/Game/Util/FurCtrl.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
 | `check__7FurBankFP12J3DModelDataUl` | `0x803D0608` | :x: (0.0%) |
-| `add__14FurDrawManagerFP7FurCtrlUc` | `0x803D0660` | :x: (0.0%) |
-| `draw__14FurDrawManagerCFv` | `0x803D0698` | :x: (0.0%) |
+| `add__14FurDrawManagerFP7FurCtrlUc` | `0x803D0660` | :x: (46.3%) |
+| `draw__14FurDrawManagerCFv` | `0x803D0698` | :white_check_mark: (100.0%) |
 | `__ct__7FurCtrlFP9LiveActorP8FurParambUc` | `0x803D0750` | :x: (0.0%) |
 | `calcLayerForm__7FurCtrlFv` | `0x803D0800` | :x: (0.0%) |
 | `drawFur__7FurCtrlFv` | `0x803D09B0` | :x: (0.0%) |

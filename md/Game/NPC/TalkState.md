@@ -23,7 +23,7 @@
 | `test__15TalkStateNormalFv` | `0x802A2D04` | :white_check_mark: (100.0%) |
 | `clos__15TalkStateNormalFv` | `0x802A2D5C` | :white_check_mark: (100.0%) |
 | `term__15TalkStateNormalFPC15TalkMessageCtrl` | `0x802A2DA0` | :white_check_mark: (100.0%) |
-| `updateButton__15TalkStateNormalFv` | `0x802A2E1C` | :x: (92.5%) |
+| `updateButton__15TalkStateNormalFv` | `0x802A2E1C` | :x: (92.4%) |
 | `init__16TalkStateComposeFP15TalkMessageCtrlP11TalkBalloon` | `0x802A301C` | :white_check_mark: (100.0%) |
 | `open__16TalkStateComposeFv` | `0x802A306C` | :white_check_mark: (100.0%) |
 | `prep__16TalkStateComposeFPC15TalkMessageCtrl` | `0x802A30AC` | :white_check_mark: (100.0%) |

@@ -14,7 +14,7 @@
 | `initMessage__4TicoFPCc` | `0x8028CA20` | :x: (97.4%) |
 | `init__4TicoFRC12JMapInfoIter` | `0x8028CB18` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__4TicoFv` | `0x8028CDA4` | :white_check_mark: (100.0%) |
-| `control__4TicoFv` | `0x8028CDAC` | :x: (99.6%) |
+| `control__4TicoFv` | `0x8028CDAC` | :x: (100.0%) |
 | `receiveMsgPlayerAttack__4TicoFUlP9HitSensorP9HitSensor` | `0x8028CEFC` | :white_check_mark: (100.0%) |
 | `tryReaction__4TicoFv` | `0x8028CF88` | :white_check_mark: (100.0%) |
 | `setNerveMeta__4TicoFv` | `0x8028CFC8` | :white_check_mark: (100.0%) |
@@ -35,7 +35,7 @@
 | `exeGuide2__4TicoFv` | `0x8028D58C` | :white_check_mark: (100.0%) |
 | `exeGuide3__4TicoFv` | `0x8028D5EC` | :white_check_mark: (100.0%) |
 | `exeLead0__4TicoFv` | `0x8028D658` | :white_check_mark: (100.0%) |
-| `__sinit_\Tico_cpp` | `0x8028D6C4` | :white_check_mark: (100.0%) |
+| `__sinit_\Tico_cpp` | `0x8028D6C4` | :x: (15.6%) |
 | `__ct__Q27NrvTico17TicoNrvNoReactionFv` | `0x8028D810` | :white_check_mark: (100.0%) |
 | `__ct__Q27NrvTico15TicoNrvReactionFv` | `0x8028D820` | :white_check_mark: (100.0%) |
 | `__ct__Q27NrvTico14TicoNrvDelightFv` | `0x8028D830` | :white_check_mark: (100.0%) |

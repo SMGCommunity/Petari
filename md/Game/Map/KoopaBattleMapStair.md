@@ -12,7 +12,7 @@
 | `isRequestAttackVs1__19KoopaBattleMapStairCFv` | `0x80187200` | :white_check_mark: (100.0%) |
 | `calcRemainTimeToBreak__19KoopaBattleMapStairCFv` | `0x80187268` | :white_check_mark: (100.0%) |
 | `isRequestAttackVs3__19KoopaBattleMapStairCFv` | `0x8018729C` | :white_check_mark: (100.0%) |
-| `updateNearestPos__33@unnamed@KoopaBattleMapStair_cpp@FPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ll` | `0x8018731C` | :x: (71.9%) |
+| `updateNearestPos__33@unnamed@KoopaBattleMapStair_cpp@FPQ29JGeometry8TVec3<f>PfRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>ll` | `0x8018731C` | :white_check_mark: (100.0%) |
 | `calcAndSetTargetPos__19KoopaBattleMapStairFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801873AC` | :x: (99.1%) |
 | `calcTimeRate__19KoopaBattleMapStairCFv` | `0x80187624` | :white_check_mark: (100.0%) |
 | `isBreak__19KoopaBattleMapStairCFv` | `0x801876A0` | :white_check_mark: (100.0%) |
@@ -21,8 +21,8 @@
 | `isTypeDemoNear__19KoopaBattleMapStairCFv` | `0x801876CC` | :white_check_mark: (100.0%) |
 | `isTypeNoRequestFire__19KoopaBattleMapStairCFv` | `0x801876E0` | :white_check_mark: (100.0%) |
 | `exeWaitSwitch__19KoopaBattleMapStairFv` | `0x801876F4` | :white_check_mark: (100.0%) |
-| `exeWaitFall__19KoopaBattleMapStairFv` | `0x8018775C` | :x: (99.9%) |
-| `exeFall__19KoopaBattleMapStairFv` | `0x80187808` | :x: (99.9%) |
+| `exeWaitFall__19KoopaBattleMapStairFv` | `0x8018775C` | :white_check_mark: (100.0%) |
+| `exeFall__19KoopaBattleMapStairFv` | `0x80187808` | :white_check_mark: (100.0%) |
 | `exeDisappear__19KoopaBattleMapStairFv` | `0x801878C4` | :white_check_mark: (100.0%) |
 | `__dt__19KoopaBattleMapStairFv` | `0x80187950` | :white_check_mark: (100.0%) |
 | `__sinit_\KoopaBattleMapStair_cpp` | `0x801879AC` | :white_check_mark: (100.0%) |

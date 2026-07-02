@@ -9,7 +9,7 @@
 | `__ct__22TripodBossFixPartsBaseFPCc` | `0x8008B7A8` | :white_check_mark: (100.0%) |
 | `init__22TripodBossFixPartsBaseFRC12JMapInfoIter` | `0x8008B824` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__22TripodBossFixPartsBaseFv` | `0x8008B884` | :white_check_mark: (100.0%) |
-| `initClippingSphere__22TripodBossFixPartsBaseFv` | `0x8008B8CC` | :x: (99.8%) |
+| `initClippingSphere__22TripodBossFixPartsBaseFv` | `0x8008B8CC` | :white_check_mark: (100.0%) |
 | `setClippingSphere__22TripodBossFixPartsBaseFRCQ29JGeometry8TVec3<f>f` | `0x8008B97C` | :white_check_mark: (100.0%) |
 | `makeActorDead__22TripodBossFixPartsBaseFv` | `0x8008B9BC` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__22TripodBossFixPartsBaseFv` | `0x8008BA04` | :white_check_mark: (100.0%) |

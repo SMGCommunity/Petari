@@ -23,7 +23,7 @@
 | `getFirstChildPane__7J2DPaneFv` | `0x8041D9C0` | :white_check_mark: (100.0%) |
 | `getNextChildPane__7J2DPaneFv` | `0x8041D9F8` | :white_check_mark: (100.0%) |
 | `getParentPane__7J2DPaneFv` | `0x8041DA30` | :white_check_mark: (100.0%) |
-| `J2DCast_F32_to_S16__7J2DPaneFfUc` | `0x8041DA4C` | :x: (89.9%) |
+| `J2DCast_F32_to_S16__7J2DPaneFfUc` | `0x8041DA4C` | :white_check_mark: (100.0%) |
 | `setAnimation__7J2DPaneFP10J2DAnmBase` | `0x8041DB00` | :x: (0.0%) |
 | `setAnimation__7J2DPaneFP15J2DAnmTransform` | `0x8041DBA0` | :white_check_mark: (100.0%) |
 | `clearAnmTransform__7J2DPaneFv` | `0x8041DBA8` | :white_check_mark: (100.0%) |

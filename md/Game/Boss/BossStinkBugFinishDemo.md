@@ -9,7 +9,7 @@
 | `__ct__22BossStinkBugFinishDemoFP12BossStinkBugRC12JMapInfoIter` | `0x800421A0` | :white_check_mark: (100.0%) |
 | `appear__22BossStinkBugFinishDemoFv` | `0x80042234` | :white_check_mark: (100.0%) |
 | `exeDemo__22BossStinkBugFinishDemoFv` | `0x80042288` | :white_check_mark: (100.0%) |
-| `exeAppearPowerStar__22BossStinkBugFinishDemoFv` | `0x80042378` | :x: (100.0%) |
+| `exeAppearPowerStar__22BossStinkBugFinishDemoFv` | `0x80042378` | :white_check_mark: (100.0%) |
 | `__dt__22BossStinkBugFinishDemoFv` | `0x80042480` | :white_check_mark: (100.0%) |
 | `__sinit_\BossStinkBugFinishDemo_cpp` | `0x800424D8` | :white_check_mark: (100.0%) |
 | `__ct__Q225NrvBossStinkBugFinishDemo33BossStinkBugFinishDemoNrvTryStartFv` | `0x8004250C` | :white_check_mark: (100.0%) |

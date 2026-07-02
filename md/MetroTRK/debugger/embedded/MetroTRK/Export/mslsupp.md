@@ -6,5 +6,5 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__TRK_write_console` | `0x8052CD90` | :x: (43.1%) |
-| `__read_console` | `0x8052CE4C` | :x: (43.1%) |
+| `__read_console` | `0x8052CE4C` | :white_check_mark: (100.0%) |
+| `__TRK_write_console` | `0x8052CD90` | :white_check_mark: (100.0%) |

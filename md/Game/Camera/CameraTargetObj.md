@@ -42,12 +42,12 @@
 | `getGravityInfo__18CameraTargetPlayerCFv` | `0x800B0700` | :x: (0.0%) |
 | `isDebugMode__18CameraTargetPlayerCFv` | `0x800B0708` | :x: (0.0%) |
 | `getMapBaseMtx__18CameraTargetPlayerCFv` | `0x800B0710` | :x: (0.0%) |
-| `__ct__21CameraTargetDemoActorFPA4_fPCc` | `0x800B0718` | :x: (0.0%) |
-| `init__21CameraTargetDemoActorFRC12JMapInfoIter` | `0x800B0770` | :x: (0.0%) |
-| `setTargetMtx__21CameraTargetDemoActorFPA4_f` | `0x800B07B0` | :x: (0.0%) |
+| `__ct__21CameraTargetDemoActorFPA4_fPCc` | `0x800B0718` | :white_check_mark: (100.0%) |
+| `init__21CameraTargetDemoActorFRC12JMapInfoIter` | `0x800B0770` | :white_check_mark: (100.0%) |
+| `setTargetMtx__21CameraTargetDemoActorFPA4_f` | `0x800B07B0` | :white_check_mark: (100.0%) |
 | `__dt__17CameraTargetActorFv` | `0x800B0800` | :white_check_mark: (100.0%) |
 | `__dt__18CameraTargetPlayerFv` | `0x800B085C` | :white_check_mark: (100.0%) |
-| `__dt__21CameraTargetDemoActorFv` | `0x800B08B8` | :x: (0.0%) |
-| `getBaseMtx__21CameraTargetDemoActorCFv` | `0x800B0914` | :x: (0.0%) |
+| `__dt__21CameraTargetDemoActorFv` | `0x800B08B8` | :white_check_mark: (100.0%) |
+| `getBaseMtx__21CameraTargetDemoActorCFv` | `0x800B0914` | :white_check_mark: (100.0%) |
 | `getRadius__17CameraTargetActorCFv` | `0x800B091C` | :white_check_mark: (100.0%) |
 | `__sinit_\CameraTargetObj_cpp` | `0x800B0924` | :x: (0.0%) |

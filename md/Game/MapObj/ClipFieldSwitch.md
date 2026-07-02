@@ -8,5 +8,5 @@
 |------|---------|---------|
 | `__dt__15ClipFieldSwitchFv` | `0x801C3694` | :white_check_mark: (100.0%) |
 | `__ct__15ClipFieldSwitchFPCc` | `0x801C36F0` | :white_check_mark: (100.0%) |
-| `control__15ClipFieldSwitchFv` | `0x801C372C` | :x: (99.6%) |
+| `control__15ClipFieldSwitchFv` | `0x801C372C` | :white_check_mark: (100.0%) |
 | `init__15ClipFieldSwitchFRC12JMapInfoIter` | `0x801C37E0` | :white_check_mark: (100.0%) |

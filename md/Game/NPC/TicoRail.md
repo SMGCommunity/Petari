@@ -13,7 +13,7 @@
 | `exeMoveSign__8TicoRailFv` | `0x80292688` | :white_check_mark: (100.0%) |
 | `exeMove__8TicoRailFv` | `0x80292780` | :white_check_mark: (100.0%) |
 | `exeStop__8TicoRailFv` | `0x80292818` | :white_check_mark: (100.0%) |
-| `exeTalkStart__8TicoRailFv` | `0x802928A8` | :x: (99.7%) |
+| `exeTalkStart__8TicoRailFv` | `0x802928A8` | :white_check_mark: (100.0%) |
 | `exeTalk__8TicoRailFv` | `0x802929D4` | :white_check_mark: (100.0%) |
 | `exeTalkCancel__8TicoRailFv` | `0x80292AA4` | :white_check_mark: (100.0%) |
 | `exeGoodBye__8TicoRailFv` | `0x80292B28` | :white_check_mark: (100.0%) |

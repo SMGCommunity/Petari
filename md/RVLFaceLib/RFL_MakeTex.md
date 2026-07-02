@@ -11,7 +11,7 @@
 | `RFLiSetup2DCameraAndParam` | `0x8045E5B8` | :white_check_mark: (100.0%) |
 | `RFLiSetTev4Mouth` | `0x8045E790` | :white_check_mark: (100.0%) |
 | `RFLiSetTev4Eye` | `0x8045E9D8` | :white_check_mark: (100.0%) |
-| `RFLiSetFaceParts` | `0x8045EC88` | :x: (72.1%) |
+| `RFLiSetFaceParts` | `0x8045EC88` | :white_check_mark: (100.0%) |
 | `RFLiCapture` | `0x8045F190` | :white_check_mark: (100.0%) |
 | `RFLiDrawQuad` | `0x8045FA20` | :white_check_mark: (100.0%) |
 | `RFLiGetMaxMaskRsl` | `0x8045FC18` | :white_check_mark: (100.0%) |

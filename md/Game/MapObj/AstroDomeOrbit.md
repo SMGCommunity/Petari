@@ -12,10 +12,10 @@
 | `drawBloom__14AstroDomeOrbitCFv` | `0x801ADACC` | :white_check_mark: (100.0%) |
 | `setup__14AstroDomeOrbitFl` | `0x801ADB5C` | :x: (74.5%) |
 | `moveCoord__14AstroDomeOrbitFv` | `0x801ADC04` | :white_check_mark: (100.0%) |
-| `calcGalaxyPos__14AstroDomeOrbitCFPQ29JGeometry8TVec3<f>` | `0x801ADC40` | :x: (99.2%) |
+| `calcGalaxyPos__14AstroDomeOrbitCFPQ29JGeometry8TVec3<f>` | `0x801ADC40` | :white_check_mark: (100.0%) |
 | `initDraw__14AstroDomeOrbitCFRC6Color8` | `0x801ADD28` | :white_check_mark: (100.0%) |
-| `drawCelling__14AstroDomeOrbitCFfbf` | `0x801ADE88` | :x: (99.4%) |
-| `drawSide__14AstroDomeOrbitCFfbf` | `0x801AE078` | :x: (99.4%) |
+| `drawCelling__14AstroDomeOrbitCFfbf` | `0x801ADE88` | :white_check_mark: (100.0%) |
+| `drawSide__14AstroDomeOrbitCFfbf` | `0x801AE078` | :white_check_mark: (100.0%) |
 | `calcRepeatedRotateCoord__14AstroDomeOrbitCFf` | `0x801AE260` | :white_check_mark: (100.0%) |
 | `__sinit_\AstroDomeOrbit_cpp` | `0x801AE2A4` | :white_check_mark: (100.0%) |
 | `GXPosition3f32` | `0x801AE2F0` | :white_check_mark: (100.0%) |

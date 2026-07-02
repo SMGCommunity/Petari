@@ -6,5 +6,5 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `setParam__25CamTranslatorTripodPlanetFPC16CameraParamChunk` | `0x80093C0C` | :x: (93.8%) |
+| `setParam__25CamTranslatorTripodPlanetFPC16CameraParamChunk` | `0x80093C0C` | :white_check_mark: (100.0%) |
 | `getCamera__25CamTranslatorTripodPlanetCFv` | `0x80093CDC` | :white_check_mark: (100.0%) |
