@@ -131,7 +131,7 @@ namespace nw4r {
             void SetupGXForI();
             void SetupGXDefault();
             void SetupGXForRGBA();
-            void SetupGXWithColorMapping(Color, Color);
+            static void SetupGXWithColorMapping(Color, Color);
 
             void ResetTextureCache() {
                 mLoadingTexture.Reset();
@@ -149,7 +149,7 @@ namespace nw4r {
             f32 Print(CharCode);
             void PrintGlyph(f32, f32, f32, const Glyph&);
             void UpdateVertexColor();
-            void SetupVertexFormat();
+            static void SetupVertexFormat();
 
             void ResetColorMapping() {
                 SetColorMapping(0x00000000UL, 0xFFFFFFFFUL);
