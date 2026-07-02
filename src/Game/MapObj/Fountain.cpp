@@ -7,6 +7,11 @@ namespace NrvFountain {
     NEW_NERVE(HostTypeMove, Fountain, Move);
 };  // namespace NrvFountain
 
+void FORCE_OPERATOR() {
+    TVec3f vec;
+    vec * 1.0f;
+}
+
 Fountain::Fountain(const char* pName) : LiveActor(pName) {
     mFountainName = nullptr;
     _90.x = 0.0f;

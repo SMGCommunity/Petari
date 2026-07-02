@@ -1,6 +1,11 @@
 #include "Game/Util/IKJoint.hpp"
 #include "Game/Util.hpp"
 
+void FORCE_OPERATOR() {
+    TVec3f vec;
+    vec * 1.0f;
+}
+
 IKJoint::IKJoint() : mRootBoneLength(100.0f), mMiddleBoneLength(100.0f), _0(), _30(), _60() {
     _0.identity();
     _60.identity();

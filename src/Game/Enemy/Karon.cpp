@@ -45,6 +45,11 @@ namespace NrvKaron {
     NEW_NERVE_ONEND(HostTypeNrvBindStarPointer, Karon, BindStarPointer, BindStarPointer);
 };  // namespace NrvKaron
 
+void FORCE_OPERATOR() {
+    TVec3f vec;
+    vec * 1.0f;
+}
+
 Karon::Karon(const char* pName) : LiveActor(pName) {
     mTerritoryMover = nullptr;
     _90 = 0;

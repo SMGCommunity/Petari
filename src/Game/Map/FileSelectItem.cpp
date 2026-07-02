@@ -46,6 +46,11 @@ namespace FileSelectItemSub {
     NEW_NERVE(BlinkControllerNrvBlink, BlinkController, Blink);
 };  // namespace FileSelectItemSub
 
+void FORCE_SCALE() {
+    TVec3f vec;
+    vec.scale(1.0f);
+}
+
 FileSelectItem::FileSelectItem(s32 a1, bool a2, const FileSelectIconID& rID, const char* pName) : LiveActor(pName) {
     _8C = a2;
     mPlanetMapObj = nullptr;

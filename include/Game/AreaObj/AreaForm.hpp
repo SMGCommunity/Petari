@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JGeometry/TMatrix.hpp"
 #include <JSystem/JGeometry.hpp>
 
 class JMapInfoIter;
@@ -28,6 +29,7 @@ public:
     virtual bool isInVolume(const TVec3f&) const;
 
     void calcWorldPos(TVec3f*) const;
+    void calcWorldRotate(TVec3f*) const;
     void calcWorldBox(TDirBox3f*) const;
     void calcLocalPos(TVec3f*, const TVec3f&) const;
     f32 getBaseSize();
@@ -39,7 +41,7 @@ public:
     TVec3f mRotation;     // 0x18
     TVec3f mScale;        // 0x24
     TBox3f mBounding;     // 0x30
-    Mtx _48;
+    TPos3f _48;
 };
 
 class AreaFormSphere : public AreaForm {

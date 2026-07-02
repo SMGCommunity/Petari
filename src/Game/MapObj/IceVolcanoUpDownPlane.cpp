@@ -40,7 +40,7 @@ bool IceVolcanoUpDownPlane::tryCalcNearestPosToPlayer(TVec3f* pArg) const {
     MR::calcModelBoundingRadius(&radius, this);
 
     if (scaledAdded.length() > radius) {
-        scaledAdded.setLength2(radius);
+        scaledAdded.setLength(radius);
     }
 
     // f1 f2 paired single regswap

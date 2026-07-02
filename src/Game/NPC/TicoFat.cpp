@@ -280,12 +280,10 @@ void TicoFat::setCameraParam() {
     TVec3f trans, yDir, zDir, xDir, v18;
     MR::extractMtxXYZDir(getBaseMtx(), &xDir, &yDir, &zDir);
     MR::extractMtxTrans(getBaseMtx(), &trans);
-    xDir.set< f32 >(((1.0f - (2.0f * (_B0.y * _B0.y))) - (2.0f * (_B0.z * _B0.z))), ((2.0f * (_B0.x * _B0.y)) + (2.0f * (_B0.w * _B0.z))),
-                    ((2.0f * (_B0.x * _B0.z)) - (2.0f * (_B0.w * _B0.y))));
-    yDir.set< f32 >(((2.0f * (_B0.x * _B0.y)) - (2.0f * (_B0.w * _B0.z))), ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.z * _B0.z))),
-                    ((2.0f * (_B0.y * _B0.z)) + (2.0f * (_B0.w * _B0.x))));
-    zDir.set< f32 >(((2.0f * (_B0.x * _B0.z)) + (2.0f * (_B0.w * _B0.y))), ((2.0f * (_B0.y * _B0.z)) - (2.0f * (_B0.w * _B0.x))),
-                    ((1.0f - (2.0f * (_B0.x * _B0.x))) - (2.0f * (_B0.y * _B0.y))));
+    _B0.getXDir(xDir);
+    _B0.getYDir(yDir);
+    _B0.getZDir(zDir);
+
 
     v18 = _C0;
     TVec3f* ptr = &v18;
@@ -574,8 +572,7 @@ void TicoFat::emitScreenEffect() {
 
 void TicoFat::updateScreenEffect() {
     const TVec3f camPos = MR::getCamPos();
-    TVec3f v19(mPosition);
-    JMathInlineVEC::PSVECSubtract(&v19, &camPos, &v19);
+    TVec3f v19(mPosition - camPos);
     MR::normalizeOrZero(&v19);
     MR::makeMtxFrontUpPos(&_17C, -MR::getCamZdir(), MR::getCamYdir(), MR::getCamPos() + (v19 * 500.0f));
     MR::makeMtxFrontUpPos(&_1AC, -MR::getCamZdir(), MR::getCamYdir(), mPosition);

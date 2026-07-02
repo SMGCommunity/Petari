@@ -341,7 +341,7 @@ void StarPiece::appearHop(const TVec3f& rVec1, const TVec3f& rVec2) {
 
     mPosition.set(rVec1);
     makeActorAppeared();
-    mVelocity.set(rVec2.scaleInline(30.0f));
+    mVelocity.set(rVec2 * 30.0f);
     setNerve(&NrvStarPiece::HostTypeNrvHop::sInstance);
 }
 
@@ -353,7 +353,7 @@ void StarPiece::exeHop() {
         MR::invalidateShadow(this, nullptr);
     }
 
-    mVelocity.add(mGravity);
+    mVelocity += mGravity;
 
     if (MR::isGreaterStep(this, 30)) {
         if (mHostInfo != nullptr) {
@@ -381,11 +381,11 @@ void StarPiece::exeFall() {
     tryCalcGravity();
 
     if (mFlags.InWater) {
-        mVelocity.scale(0.97f);
-        mVelocity.add(mGravity.scaleInline(0.1f));
+        mVelocity *= 0.97f;
+        mVelocity += mGravity * 0.1f;
     } else {
-        mVelocity.scale(0.97f);
-        mVelocity.add(mGravity.scaleInline(1.0f));
+        mVelocity *= 0.97f;
+        mVelocity += mGravity * 1.0f;
     }
 
     mRotation.y += 15.0f;
@@ -447,8 +447,8 @@ bool StarPiece::isTouchToTarget(TVec3f* pVec, f32 flt) {
     }
 
     TVec3f vec2(*vec);
-    vec2.sub(mGravity.scaleInline(flt));
-    vec2.sub(mPosition);
+    vec2 -= mGravity * flt;
+    vec2 -= mPosition;
 
     if (pVec != nullptr) {
         pVec->set(vec2);
@@ -502,7 +502,7 @@ void StarPiece::exeToTarget() {
     MR::repeatDegree(&mRotation.y);
 
     if (!mFlags.isGoToPlayer) {
-        mScale.add((TVec3f(0.5f, 0.5f, 0.5f) - mScale).scaleInline(0.05f));
+        mScale += (TVec3f(0.5f, 0.5f, 0.5f) - mScale) * 0.05f;
         changeScale(mScale.y);
     }
 
@@ -554,7 +554,7 @@ void StarPiece::exeToTarget() {
     MR::normalizeOrZero(&_8C);
 
     TVec3f vec2(_8C);
-    vec2.scale(_9C * 85.0f + 1.0f);
+    vec2 *= _9C * 85.0f + 1.0f;
     mVelocity.set(vec2);
 
     TVec3f* vel;
@@ -570,9 +570,9 @@ void StarPiece::exeToTarget() {
         f32 dot = _8C.dot(velNormalized);
         if (0.0f < dot) {
             if (mFlags.isGoToPlayer) {
-                mVelocity.add(MR::getPlayerVelocity()->scaleInline(_9C).scaleInline(dot));
+                mVelocity += *MR::getPlayerVelocity() *_9C * dot;
             } else {
-                mVelocity.add(mTargetSensor->mHost->mVelocity.scaleInline(_9C).scaleInline(dot));
+                mVelocity += mTargetSensor->mHost->mVelocity *_9C * dot;
             }
         }
     }
@@ -602,7 +602,7 @@ void StarPiece::exeToPlayerEnd() {
         MR::invalidateShadow(this, nullptr);
 
         _B4.set(mPosition);
-        _B4.sub(*MR::getPlayerCenterPos());
+        _B4 -= (*MR::getPlayerCenterPos());
         mVelocity.zero();
 
         MR::deleteEffect(this, "StarPieceGetBlur");
@@ -616,7 +616,7 @@ void StarPiece::exeToPlayerEnd() {
     f32 newScale = 1.0f - MR::calcNerveRate(this, 10);
     changeScale(newScale);
     mPosition.set(*MR::getPlayerCenterPos());
-    mPosition.add(_B4.scaleInline(newScale));
+    mPosition += _B4 * newScale;
 
     if (MR::isGreaterStep(this, 30)) {
         getSensor("body")->validate();
@@ -652,25 +652,25 @@ void StarPiece::exeThrow() {
     TVec3f vec3;
 
     vec3.set(_B4);
-    vec3.sub(_A8);
+    vec3 -= _A8;
 
     f32 flt2 = 0.0f;
-    vec2 = _A8 + vec3.scaleInline(flt) + (-mGravity).scaleInline(flt2);
+    vec2 = _A8 + vec3 * flt + (-mGravity) * flt2;
     if (mTargetSensor != nullptr) {
         f32 flt3 = MR::calcNerveRate(this, 30);
-        vec2 = mTargetSensor->mPosition.scaleInline(flt3) + vec2.scaleInline(1.0f - flt3);
+        vec2 = mTargetSensor->mPosition * flt3 + vec2 * (1.0f - flt3);
     }
 
     mVelocity.set(vec2);
-    mVelocity.sub(vec1);
+    mVelocity -= vec1;
 
     TVec3f camZDir(MR::getCamZdir());
     TVec3f camPos(MR::getCamPos());
     TVec3f vec10(mPosition);
     TVec3f playerCenterPos(*MR::getPlayerCenterPos());
 
-    vec10.sub(camPos);
-    playerCenterPos.sub(camPos);
+    vec10 -= camPos;
+    playerCenterPos -= camPos;
 
     if (MR::isNoBind(this)) {
         if ((1500.0f < PSVECDistance(&MR::getCamPos(), &mPosition)) || (camZDir.dot(playerCenterPos) < camZDir.dot(vec10)) ||
@@ -713,8 +713,8 @@ void StarPiece::exeThrowFall() {
     }
 
     tryCalcGravity();
-    mVelocity.scale(0.97f);
-    mVelocity.add(mGravity.scaleInline(1.0f));
+    mVelocity *= 0.97f;
+    mVelocity +=  mGravity * 1.0f;
 
     mRotation.y += 15.0f;
     MR::repeatDegree(&mRotation.y);
@@ -869,7 +869,7 @@ void StarPiece::goToPlayer(TVec3f vec) {
     } else if (isNerve(&NrvStarPiece::HostTypeNrvFollowPlayer::sInstance)) {
         f32 dot = _8C.dot(mGravity);
         if (0.0f < dot) {
-            _8C.sub(mGravity.scaleInline(dot).scaleInline(2.0f));
+            _8C -= mGravity * dot * 2.0f;
         }
     }
 
@@ -888,20 +888,20 @@ void StarPiece::launch(const TVec3f& rVec, f32 f1, f32 f2, bool notCheckInWater,
 
     if (MR::isNearZero(mGravity)) {
         MR::calcUpVec(&mGravity, this);
-        mGravity.scale(-1.0f);
+        mGravity *= -1.0f;
         trySetGravityAndFront(mGravity);
     }
 
     TVec3f randVec(MR::getRandom(-f1, f1), MR::getRandom(-f1, f1), MR::getRandom(-f1, f1));
-    mVelocity.set((-mGravity).scaleInline(f2));
-    mVelocity.add(randVec);
+    mVelocity.set(-mGravity * f2);
+    mVelocity += randVec;
 
     if (notCheckInWater) {
         mFlags.InWater = false;
     } else {
         mFlags.InWater = MR::isInWater(mPosition);
         if (mFlags.InWater) {
-            mVelocity.scale(0.5f);
+            mVelocity *= 0.5f;
         }
     }
 
@@ -922,15 +922,15 @@ void StarPiece::launch(const TVec3f& rVec1, const TVec3f& rVec2, f32 f1, f32 f2,
     trySetGravityAndFront(-rVec2);
 
     TVec3f randVec(MR::getRandom(-f1, f1), MR::getRandom(-f1, f1), MR::getRandom(-f1, f1));
-    mVelocity.set(rVec2.scaleInline(f2));
-    mVelocity.add(randVec);
+    mVelocity.set(rVec2 * f2);
+    mVelocity += randVec;
 
     if (notCheckInWater) {
         mFlags.InWater = false;
     } else {
         mFlags.InWater = MR::isInWater(mPosition);
         if (mFlags.InWater) {
-            mVelocity.scale(0.5f);
+            mVelocity *= 0.5f;
         }
     }
 
@@ -956,7 +956,7 @@ void StarPiece::launch(const TVec3f& rVec1, const TVec3f& rVec2, bool notCheckIn
     } else {
         mFlags.InWater = MR::isInWater(mPosition);
         if (mFlags.InWater) {
-            mVelocity.scale(0.5f);
+            mVelocity *= 0.5f;
         }
     }
 
@@ -1102,7 +1102,7 @@ void StarPiece::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         MR::normalizeOrZero(&dirReceiverToSender);
 
         TVec3f vec2(pReceiver->mPosition);
-        vec2.add(dirReceiverToSender.scaleInline(pReceiver->mRadius));
+        vec2.add(dirReceiverToSender * pReceiver->mRadius);
         setReflect(dirReceiverToSender, vec2);
         return;
     }
@@ -1115,10 +1115,10 @@ void StarPiece::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 void StarPiece::setReflect(const TVec3f& rVec1, const TVec3f& rVec2) {
     if (!MR::isNearZero(rVec1)) {
-        MR::calcReflectionVector(&mPosition, rVec1, 0.5f, 0.0f);
+        MR::calcReflectionVector(&mVelocity, rVec1, 0.5f, 0.0f);
     }
 
-    mVelocity.add(mGravity.scaleInline(-35.0f));
+    mVelocity.add(mGravity * -35.0f);
     if (200.0f < calcDistToCamera()) {
         MR::emitEffectHit(this, rVec2, "InvalidHitMark");
     }

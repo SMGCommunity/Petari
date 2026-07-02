@@ -575,7 +575,7 @@ namespace MR {
         planePosA.set(camPos);
         planePosA.add(toPointA.scaleInline(distA));
         planePosB.set(camPos);
-        planePosB.add(toPointB.scaleInline(distB));
+        planePosB.add(toPointB.scaleInline2(distB));
         pDir->set(planePosA);
         pDir->sub(planePosB);
         MR::normalizeOrZero(pDir);

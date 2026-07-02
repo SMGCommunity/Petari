@@ -15,12 +15,6 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-static TVec3f operator/(const TVec3f& rVec, f32 div) NO_INLINE {
-    TVec3f ret(rVec);
-    ret.scale(1.0f / div);
-    return ret;
-}
-
 namespace {
     f32 cDropFrontSpeed = 2.0f;
 };  // namespace
@@ -2173,23 +2167,9 @@ void Mario::doAirWalk() {
             }
 
             if (mMovementStates._11) {
-                TVec3f backMove(mFrontVec);
-                backMove.scale(mActor->getConst().getTable()->mAirWalkBackBonus);
-                TVec3f backMoveScale(backMove);
-                backMoveScale.scale(frontDot);
-
-                TVec3f result(sideMove);
-                result += backMoveScale;
-                moveDir = result;
+                moveDir = sideMove + mFrontVec * mActor->getConst().getTable()->mAirWalkBackBonus * frontDot;
             } else {
-                TVec3f backMove(mFrontVec);
-                backMove.scale(frontDot);
-                TVec3f backMoveScale(backMove);
-                backMoveScale.scale(speedKiller);
-
-                TVec3f result(sideMove);
-                result += backMoveScale;
-                moveDir = result;
+                moveDir = sideMove + mFrontVec * frontDot * speedKiller;
             }
 
             const f32 backDot = -moveDir.dot(mFrontVec);
@@ -2211,38 +2191,19 @@ void Mario::doAirWalk() {
         const f32 dot = moveNorm.dot(jumpNorm);
         if (dot < 0.0f) {
             const f32 jumpGravity = cutGravityElementFromJumpVec(true);
+            mJumpVec += mJumpVec * mActor->getConst().getTable()->mAirWalkSpeedKiller * dot;
 
-            TVec3f killer(mJumpVec);
-            killer.scale(mActor->getConst().getTable()->mAirWalkSpeedKiller);
-            TVec3f killerScale(killer);
-            killerScale.scale(dot);
-            mJumpVec += killerScale;
-
-            TVec3f gravityVec(getAirGravityVec());
-            gravityVec.scale(jumpGravity);
-            mJumpVec += gravityVec;
+            mJumpVec += getAirGravityVec() * jumpGravity;
         }
     }
 
     if (_430 == 8) {
-        TVec3f spinAdd(moveDir);
-        spinAdd.scale(mActor->getConst().getTable()->mWalkSpeed);
-        TVec3f spinAddScale(spinAdd);
-        spinAddScale.scale(5.0f);
-        TVec3f spinAddDiv(spinAddScale / static_cast< f32 >(mActor->getConst().getTable()->mAirWalkTimerFact2));
-        mJumpVec += spinAddDiv;
+        mJumpVec += moveDir * mActor->getConst().getTable()->mWalkSpeed * 5.0f / mActor->getConst().getTable()->mAirWalkTimerFact2;
     } else if (_430 == 0xB && !isRising()) {
-        TVec3f trampleAdd(moveDir);
-        trampleAdd.scale(mActor->getConst().getTable()->mWalkSpeed);
-        TVec3f trampleAddScale(trampleAdd);
-        trampleAddScale.scale(5.0f);
-        TVec3f trampleAddDiv(trampleAddScale / static_cast< f32 >(mActor->getConst().getTable()->mAirWalkTimerFact2));
-        mJumpVec += trampleAddDiv;
+        mJumpVec += moveDir * mActor->getConst().getTable()->mWalkSpeed * 5.0f / mActor->getConst().getTable()->mAirWalkTimerFact2;
         playSound("天井ヒット", -1);
     } else if (getPlayerMode() == 4) {
-        TVec3f beeAdd(moveDir);
-        beeAdd.scale(mActor->getConst().getTable()->mBeeAirWalkAcc);
-        mJumpVec += beeAdd;
+        mJumpVec += moveDir * mActor->getConst().getTable()->mBeeAirWalkAcc;
         playSound("天井ヒット", -1);
     } else if (getPlayerMode() == 6) {
         const f32 moveFrontDot = moveDir.dot(mFrontVec);
@@ -2252,17 +2213,13 @@ void Mario::doAirWalk() {
                 if (normJump.dot(mFrontVec) < 0.0f) {
                     const f32 ratio = (moveFrontDot + 1.0f) * 0.5f;
                     const f32 scale = 0.998f - (0.01f * (1.0f - ratio));
-                    mJumpVec.scale(scale);
+                    mJumpVec *= scale;
                 }
             }
         }
     } else {
-        TVec3f addVec(moveDir);
-        addVec.scale(mActor->getConst().getTable()->mWalkSpeed);
-        TVec3f addVecScale(addVec);
-        addVecScale.scale(mActor->getConst().getTable()->mAirWalkTimerFact1);
-        TVec3f addVecDiv(addVecScale / static_cast< f32 >(_3BC + mActor->getConst().getTable()->mAirWalkTimerFact2));
-        mJumpVec += addVecDiv;
+        mJumpVec += moveDir * mActor->getConst().getTable()->mWalkSpeed * mActor->getConst().getTable()->mAirWalkTimerFact1 /
+                    (_3BC + mActor->getConst().getTable()->mAirWalkTimerFact2);
     }
 
     if (_430 != 0xB && getPlayerMode() != 6 && !isRising()) {
@@ -2299,10 +2256,7 @@ void Mario::doAirWalk() {
             mJumpVec.setLength(mActor->getConst().getTable()->mMaxJumpSpeed);
         }
     }
-
-    TVec3f gravityVec(getAirGravityVec());
-    gravityVec.scale(jumpGravity);
-    mJumpVec += gravityVec;
+    mJumpVec += getAirGravityVec() * jumpGravity;
 }
 
 void Mario::stopJump() {

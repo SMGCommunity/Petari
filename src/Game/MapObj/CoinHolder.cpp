@@ -5,6 +5,11 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
+void FORCE_SCALE() {
+    TVec3f vec;
+    vec.scale(1.0f);
+}
+
 CoinHolder::CoinHolder(const char* pName) : DeriveActorGroup< Coin >(pName, 0x200), mHostInfoArr(nullptr), mHostInfoCount(0) {
     mHostInfoArr = new CoinHostInfo[0x200];
 }

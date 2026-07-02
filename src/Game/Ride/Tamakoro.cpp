@@ -240,7 +240,7 @@ void Tamakoro::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             f32 downVel = mVelocity.dot(mGravity);
             if (downVel < ::sStampReactionInvalidSpeed) {
                 downVel = -::sStampReactionV - downVel;
-                mVelocity.add(mGravity.multiplyOperatorInline(downVel));
+                mVelocity += mGravity * downVel;
                 MR::tryRumblePadWeak(this, WPAD_CHAN0);
                 MR::shakeCameraNormalWeak();
             }
@@ -398,7 +398,7 @@ bool Tamakoro::requestEndBind() {
     if (!isNerve(&NrvTamakoro::TamakoroNrvBindEnd::sInstance) && !isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) {
         MR::startBckPlayer("SwingRopeSpin", static_cast< const char* >(nullptr));
         MR::endBindAndPlayerForceJump(
-            this, mMarioFront.multiplyOperatorInline(-::sEndBindFrontPower) + mGravity.multiplyOperatorInline(-::sEndBindJumpPower), 0);
+            this, mMarioFront * -::sEndBindFrontPower + mGravity * -::sEndBindJumpPower, 0);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
         MR::invalidateClipping(this);

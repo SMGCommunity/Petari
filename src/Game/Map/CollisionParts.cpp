@@ -9,6 +9,11 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
+void FORCE_SCALE() {
+    TVec3f vec;
+    vec.scale(1.0f);
+}
+
 CollisionParts::CollisionParts() {
     _0 = nullptr;
     mHitSensor = nullptr;

@@ -22,6 +22,11 @@ namespace NrvSpinDriver {
     NEW_NERVE(SpinDriverNrvCoolDown, SpinDriver, CoolDown);
 };  // namespace NrvSpinDriver
 
+void FORCE_OPERATOR() {
+    TVec3f vec;
+    vec *= 1.0f;
+}
+
 SpinDriver::SpinDriver(const char* pName)
     : LiveActor(pName), _8C(nullptr), mShootPath(nullptr), mSpinDriverCamera(nullptr), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), _B8(0, 0, 0), _C4(0, 0, 0),
       _D0(0, 0, 1), _DC(0, 0, 0), _E8(0, 1, 0), _F4(0, 0, 0), _104(0.0f), _100(40.0f), _108(0.0f), _10C(0, 0, 0) {
