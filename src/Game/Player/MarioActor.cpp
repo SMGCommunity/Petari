@@ -1115,7 +1115,7 @@ void MarioActor::updateSwingTimer() {
         if (_94E && --_94E == 0) {
             mMario->startPadVib((u32)0);
             mMario->playSound("スピン回復終了", -1);
-            Color8 stack_8(0x50, 0x80, 0xc8, 0);
+            Color8 stack_8(80, 128, 200, 0);
             _1AA = 0xf;
             _1AC = 1.5f;
             _1B0 = stack_8;
