@@ -3,7 +3,7 @@
 namespace nw4r {
     namespace math {
         namespace detail {
-            const SinCosSample gSinCosTbl[256 + 1] = {
+            SinCosSample gSinCosTbl[256 + 1] = {
                 0.000000f,  1.000000f,  0.024541f,  -0.000301f,  // rad = 0.000000, deg = 0.000000
                 0.024541f,  0.999699f,  0.024526f,  -0.000903f,  // rad = 0.024544, deg = 1.406250
                 0.049068f,  0.998795f,  0.024497f,  -0.001505f,  // rad = 0.049087, deg = 2.812500

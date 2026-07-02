@@ -59,9 +59,9 @@ namespace MR {
     }
 
     void makeMtxRotate(MtxPtr mtx, f32 rx, f32 ry, f32 rz) {
-        s16 angleX = (s16)(rx * 182.04445f);
-        s16 angleY = (s16)(ry * 182.04445f);
-        s16 angleZ = (s16)(rz * 182.04445f);
+        s16 angleX = (s16)(rx * DEGREE_TO_S16);
+        s16 angleY = (s16)(ry * DEGREE_TO_S16);
+        s16 angleZ = (s16)(rz * DEGREE_TO_S16);
         makeMtxRotate(mtx, angleX, angleY, angleZ);
     }
 
@@ -70,7 +70,7 @@ namespace MR {
     }
 
     void makeMtxRotateY(MtxPtr mtx, f32 ry) {
-        s16 angle = (s16)(ry * 182.04445f);
+        s16 angle = (s16)(ry * DEGREE_TO_S16);
         f32 sinY = JMASSin(angle);
         f32 cosY = JMASCos(angle);
 

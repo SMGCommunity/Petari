@@ -774,7 +774,7 @@ bool DVDLowPrepareCoverRegister(DVDLowCallback callback) {
     diCommand[freeCommandBuf].theCommand = 0x7A;
     requestInProgress = true;
     dvdContext = newContext(callback, 1);
-    rv = IOS_IoctlAsync(DiFD, 0x7A, &diCommand[freeCommandBuf], sizeof(diCommand_t), registerBuf, sizeof(registerBuf), doTransactionCallback,
+    rv = IOS_IoctlAsync(DiFD, 0x7A, &diCommand[freeCommandBuf], sizeof(diCommand_t), registerBuf, sizeof(registerBuf), doPrepareCoverRegisterCallback,
                         dvdContext);
 
     if (rv != IOS_ERROR_OK) {

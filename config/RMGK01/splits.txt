@@ -61,12 +61,13 @@ nw4r/db/db_console.cpp:
 
 nw4r/db/db_assert.cpp:
 	.text       start:0x8000B8C4 end:0x8000BBA0
-	.data       start:0x805635A0 end:0x80564678
+	.data       start:0x805635A0 end:0x80563610
 	.sdata      start:0x806B1620 end:0x806B1628
 	.sbss       start:0x806B2E78 end:0x806B2E80
 
 nw4r/math/math_triangular.cpp:
 	.text       start:0x8000BBA0 end:0x8000BC68
+	.data       start:0x80563620 end:0x80564630
 	.sdata2     start:0x806B7C60 end:0x806B7C68
 
 nw4r/math/math_types.cpp:
@@ -74,6 +75,7 @@ nw4r/math/math_types.cpp:
 
 nw4r/lyt/lyt_init.cpp:
 	.text       start:0x8000BCF8 end:0x8000BD4C
+	.data       start:0x80564630 end:0x80564678
 	.sdata      start:0x806B1628 end:0x806B1630
 
 nw4r/lyt/lyt_pane.cpp:
@@ -116,11 +118,12 @@ nw4r/lyt/lyt_window.cpp:
 nw4r/lyt/lyt_bounding.cpp:
 	.text       start:0x800112C4 end:0x80011370
 	.ctors      start:0x8052E818 end:0x8052E81C
-	.data       start:0x805648C8 end:0x80564998
+	.data       start:0x805648C8 end:0x80564930
 	.sbss       start:0x806B2EA8 end:0x806B2EB0
 
 nw4r/lyt/lyt_material.cpp:
 	.text       start:0x80011370 end:0x800140C8
+	.data       start:0x80564930 end:0x80564998
 	.sdata2     start:0x806B7CC8 end:0x806B7CE8
 
 nw4r/lyt/lyt_texMap.cpp:
@@ -5338,7 +5341,7 @@ Game/MapObj/PomponPlant.cpp:
 	.text       start:0x8020E8A0 end:0x8020EE70
 	.ctors      start:0x8052EE08 end:0x8052EE0C
 	.rodata     start:0x805335C8 end:0x80533600
-	.data       start:0x8059B738 end:0x8059BA90
+	.data       start:0x8059B738 end:0x8059B838
 	.sdata      start:0x806B1EE8 end:0x806B1EF0
 	.sbss       start:0x806B5590 end:0x806B55A0
 	.sdata2     start:0x806BDA40 end:0x806BDA58
@@ -5346,7 +5349,7 @@ Game/MapObj/PomponPlant.cpp:
 Game/MapObj/PowerStar.cpp:
 	.text       start:0x8020EE70 end:0x80211300
 	.ctors      start:0x8052EE0C end:0x8052EE10
-	.data       start:0x8059BA90 end:0x8059BB98
+	.data       start:0x8059B838 end:0x8059BB98
 	.sbss       start:0x806B55A0 end:0x806B55C8
 	.sdata2     start:0x806BDA58 end:0x806BDAE0
 
@@ -5696,14 +5699,14 @@ Game/MapObj/SpaceMine.cpp:
 Game/MapObj/SpaceShipStep.cpp:
 	.text       start:0x8022E950 end:0x8022EF24
 	.ctors      start:0x8052EEB0 end:0x8052EEB4
-	.data       start:0x805A0608 end:0x805A06E0
+	.data       start:0x805A0608 end:0x805A06D8
 	.sbss       start:0x806B5888 end:0x806B5898
 	.sdata2     start:0x806BE068 end:0x806BE080
 
 Game/MapObj/SphereRailDash.cpp:
 	.text       start:0x8022EF24 end:0x8022F560
 	.ctors      start:0x8052EEB4 end:0x8052EEB8
-	.data       start:0x805A06E0 end:0x805A0778
+	.data       start:0x805A06D8 end:0x805A0778
 	.sbss       start:0x806B5898 end:0x806B58A0
 	.sdata2     start:0x806BE080 end:0x806BE0A8
 
@@ -10769,12 +10772,12 @@ RVL_SDK/os/OSError.c:
 	.text       start:0x804A60D4 end:0x804A6808
 	.data       start:0x805EFC00 end:0x805EFF20
 	.bss        start:0x80664E50 end:0x80664EC0
-	.sdata      start:0x806B2A50 end:0x806B2A60
+	.sdata      start:0x806B2A50 end:0x806B2A58
 
 RVL_SDK/os/OSExec.c:
 	.text       start:0x804A6808 end:0x804A7E78
 	.data       start:0x805EFF20 end:0x805EFF90
-	.sdata      start:0x806B2A60 end:0x806B2A68
+	.sdata      start:0x806B2A58 end:0x806B2A68
 	.sbss       start:0x806B7690 end:0x806B76A8
 	.sdata2     start:0x806C2080 end:0x806C2088
 
