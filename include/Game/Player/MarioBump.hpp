@@ -12,6 +12,7 @@ public:
     virtual bool close();
     virtual bool update();
 
-    f32 _14;
-    TVec3f _18;
+    /* 0x12 */ u16 _12;
+    /* 0x14 */ f32 _14;
+    /* 0x18 */ TVec3f _18;
 };

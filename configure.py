@@ -1980,7 +1980,7 @@ config.libs = [
             Object(Matching, "Game/Player/MarioHolder.cpp"),
             Object(Matching, "Game/Player/MarioInit.cpp"),
             Object(NonMatching, "Game/Player/MarioJump.cpp"),
-            Object(NonMatching, "Game/Player/MarioMessenger.cpp"),
+            Object(Matching, "Game/Player/MarioMessenger.cpp"),
             Object(NonMatching, "Game/Player/MarioModule.cpp"),
             Object(NonMatching, "Game/Player/MarioMove.cpp"),
             Object(NonMatching, "Game/Player/MarioMove2D.cpp"),

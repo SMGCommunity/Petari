@@ -30,7 +30,6 @@ public:
     void initDraw();
     void drawCylinder(u32) const;
 
-private:
     /* 0x8C */ JMapIdInfo* _8C;
     /* 0x90 */ s32 _90;
     /* 0x94 */ ActorCameraInfo* _94;
