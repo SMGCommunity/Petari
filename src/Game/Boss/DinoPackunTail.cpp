@@ -1,6 +1,8 @@
 #include "Game/Boss/DinoPackunTail.hpp"
 #include "Game/Boss/DinoPackunTailNode.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 DinoPackunTail::DinoPackunTail(u32 nodeCount) {
     mNodes = nullptr;
@@ -174,7 +176,7 @@ void DinoPackunTail::addAccelKeepDistance() {
             mNodes[i - 1]->addNodeVelocityHost(v13 * v7);
         }
 
-        v19.setPS2(v18);
+        v19 = v18;
     }
 }
 

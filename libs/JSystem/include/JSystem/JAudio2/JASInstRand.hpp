@@ -6,7 +6,7 @@ class JASInstParam;
 
 class JASInstRand : public JASInstEffect {
 public:
-    JASInstRand() : JASInstEffect(), mType(VOLUME), mBaseValue(0.0f), mRange(1.0f){};
+    JASInstRand() : JASInstEffect(), mType(VOLUME), mBaseValue(0.0f), mRange(1.0f) {};
 
     virtual void effect(int pitch, int velocity, JASInstParam* pParams) const;
 

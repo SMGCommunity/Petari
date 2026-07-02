@@ -1,5 +1,11 @@
 #include "Game/MapObj/AirBubbleGenerator.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace NrvAirBubbleGenerator {
     NEW_NERVE(AirBubbleGeneratorNrvWait, AirBubbleGenerator, Wait);
@@ -47,7 +53,6 @@ void AirBubbleGenerator::exeWait() {
     }
 }
 
-// inlined assembly math is not matching, deal with this later
 /*
 void AirBubbleGenerator::exeGenerate() {
     TVec3f axisY;

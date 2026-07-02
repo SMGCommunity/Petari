@@ -3,6 +3,8 @@
 #include "Game/LiveActor/ActorStateKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace MR {
     void initActorStateKeeper(NerveExecutor* pExecutor, s32 capacity) {

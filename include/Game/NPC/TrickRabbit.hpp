@@ -1,14 +1,17 @@
 #pragma once
 
-#include "Game/LiveActor/PartsModel.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class FootPrint;
+class MultiEventCamera;
+class ParabolicPath;
 class RabbitStateWaitStart;
 class RabbitStateCaught;
 class RailGraph;
 class RailGraphIter;
 class RailGraphNodeSelecter {};
 class SpotMarkLight;
+class TalkMessageCtrl;
 
 namespace TrickRabbitUtil {
     FootPrint* createRabbitFootPrint(LiveActor* pActor);

@@ -1,4 +1,5 @@
 #include "Game/MapObj/FireBar.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
@@ -213,7 +214,7 @@ void FireBar::fixFireBarBall() {
     for (s32 i = 0; i < mFireBallCount; i++) {
         s32 div = i / totalNum;
         div *= totalNum;
-        if (!(i - div)) {
+        if (i - div == 0) {
             TVec3f up_vec;
             MR::calcUpVec(&up_vec, this);
             MR::rotateVecDegree(&scaled, up_vec, 360.0f / mStickCount);
@@ -222,9 +223,9 @@ void FireBar::fixFireBarBall() {
             JMAVECScaleAdd((const Vec*)&norm, (const Vec*)&mPosition, (Vec*)&final_pos, mStickDistance);
             JMAVECScaleAdd((const Vec*)&up_vec, (const Vec*)&final_pos, (Vec*)&final_pos, 50.0f);
         } else {
-            JMathInlineVEC::PSVECAdd((const Vec*)&final_pos, (const Vec*)&scaled, (Vec*)&final_pos);
+            final_pos.add(scaled);
         }
 
-        mFireBalls[i]->mPosition.set< f32 >(scaled);
+        mFireBalls[i]->mPosition.set< f32 >(final_pos);
     }
 }

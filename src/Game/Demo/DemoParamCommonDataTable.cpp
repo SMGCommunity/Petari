@@ -52,4 +52,4 @@ namespace MR {
             return "Open";
         }
     };  // namespace Demo
-};      // namespace MR
+};  // namespace MR

@@ -1,13 +1,13 @@
 #include "Game/MapObj/PalmIsland.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include "revolution/types.h"
 
@@ -52,7 +52,7 @@ inline void PalmIsland::exeWait() {
 
 void PalmIsland::exeFloat() {
     if (MR::isFirstStep(this)) {
-        _90.setPS2(mPosition);
+        _90 = mPosition;
         MR::emitEffect(this, "Ripple");
         MR::setEffectHostSRT(this, "Ripple", &_90, nullptr, nullptr);
     }

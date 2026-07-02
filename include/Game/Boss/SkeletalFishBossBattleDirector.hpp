@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/ModelObj.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class SkeletalFishBoss;
 class SubmarineVolcanoBigColumn;

@@ -1,5 +1,14 @@
 #include "Game/MapObj/AirBubble.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvAirBubble {
     NEW_NERVE(AirBubbleNrvWait, AirBubble, Wait);
@@ -117,10 +126,7 @@ bool AirBubble::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         _8C = mPosition;
         return true;
     } else if (MR::isMsgSpinStormRange(msg) && canSpinGet()) {
-        TVec3f stack_8(pSender->mPosition);
-        stack_8 -= mPosition;
-
-        if (PSVECMag(&stack_8) < 250.0f) {
+        if ((pSender->mPosition - mPosition).length() < 250.0f) {
             setNerve(&NrvAirBubble::AirBubbleNrvBreak::sInstance);
             return true;
         }

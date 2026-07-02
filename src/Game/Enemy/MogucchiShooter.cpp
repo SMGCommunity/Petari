@@ -1,23 +1,33 @@
 #include "Game/Enemy/MogucchiShooter.hpp"
 #include "Game/Enemy/WaterBazooka.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/FixedPosition.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void MogucchiShooter_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
+
 namespace {
     static const s32 sStepForLaugh = 120;
     static const s32 sStepToAngerBlur = 40;
     static const s32 sAngerBlurTime = 60;
-    static const f32 sAngerBlurOffset = 100.0f;
+    volatile static const f32 sAngerBlurOffset = 100.0f;
     static const s32 sExplosionBlurTime = 50;
-    static const f32 sExplosionBlurOffset = 100.0f;
+    volatile static const f32 sExplosionBlurOffset = 100.0f;
     static const f32 sTurnRate = 1.0f;
     static const f32 sLimitAngleOfTurn = 30.0f;
 };  // namespace

@@ -6,10 +6,23 @@
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/KoopaRockBreak.hpp"
 #include "Game/Boss/KoopaShockWave.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
+#include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+
+namespace {
+    static const s32 sFireStairsNum = 16;
+    static const s32 sFireShortNum = 32;
+    static const s32 sShockWaveNum = 8;
+};  // namespace
 
 KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
     : mKoopa(pKoopa), mPlanetRadius(1300.0f), mThornBig(), mThornSmall(), mArmorBreak(), mThornBreak(), mPlanetLv1(), mPlanetShadow(), mShockWave(),
@@ -22,7 +35,7 @@ KoopaParts::KoopaParts(Koopa* pKoopa, const JMapInfoIter& rIter)
 
 namespace {
     PartsModel* createKoopaBodyParts(LiveActor* pActor, const char* pName, const char* pModelName, const char* pJointName) {
-        PartsModel* pPartsModel = new PartsModel(pActor, pName, pModelName, nullptr, 18, false);
+        PartsModel* pPartsModel = new PartsModel(pActor, pName, pModelName, nullptr, MR::DrawBufferType_Enemy, false);
 
         pPartsModel->loadFixedPosition(pJointName);
         pPartsModel->initWithoutIter();
@@ -63,7 +76,7 @@ KoopaFireStairs* KoopaParts::emitFireStairsToPos(const KoopaBattleMapStair* pBat
 }
 
 void KoopaParts::killFireStairsAll() {
-    for (int idx = 0; idx < 16; idx++) {
+    for (int idx = 0; idx < ::sFireStairsNum; idx++) {
         LiveActor* pActor = mFireStairs->getActor(idx);
 
         if (!MR::isDead(pActor)) {
@@ -169,7 +182,7 @@ namespace {
 
         pModelObjNpc->mLodCtrl->invalidateClipping();
         pModelObjNpc->mLodCtrl->invalidate();
-        
+
         pModelObjNpc->mJointCtrl->endFaceCtrl(-1);
 
         MR::initLightCtrl(pModelObjNpc);
@@ -262,19 +275,19 @@ void KoopaParts::createCommonParts() {
     mThornBreak = createKoopaBodyParts(mKoopa, "トゲ破片", "KoopaThornBreak", "ThornBreakFixPos");
     mThornBreak->kill();
 
-    mFireShort = new LiveActorGroup("ショート炎", 32);
+    mFireShort = new LiveActorGroup("ショート炎", ::sFireShortNum);
     mFireShort->initWithoutIter();
 
-    for (int idx = 0; idx < 32; idx++) {
+    for (int idx = 0; idx < ::sFireShortNum; idx++) {
         KoopaFireShort* pFireShort = new KoopaFireShort(mKoopa);
         pFireShort->initWithoutIter();
         mFireShort->registerActor(pFireShort);
     }
 
-    mShockWave = new LiveActorGroup("衝撃波（球状）", 8);
+    mShockWave = new LiveActorGroup("衝撃波（球状）", ::sShockWaveNum);
     mShockWave->initWithoutIter();
 
-    for (int idx = 0; idx < 8; idx++) {
+    for (int idx = 0; idx < ::sShockWaveNum; idx++) {
         KoopaShockWave* pShockWave = new KoopaShockWave(mKoopa);
         pShockWave->initWithoutIter();
         mShockWave->registerActor(pShockWave);
@@ -282,10 +295,10 @@ void KoopaParts::createCommonParts() {
 }
 
 void KoopaParts::createFireStairs(bool a1) {
-    mFireStairs = new LiveActorGroup("炎（階段用）保持", 16);
+    mFireStairs = new LiveActorGroup("炎（階段用）保持", ::sFireStairsNum);
     mFireStairs->initWithoutIter();
 
-    for (int idx = 0; idx < 16; idx++) {
+    for (int idx = 0; idx < ::sFireStairsNum; idx++) {
         KoopaFireStairs* pFireStairs = new KoopaFireStairs("炎（階段用）", a1);
         pFireStairs->initWithoutIter();
         mFireStairs->registerActor(pFireStairs);

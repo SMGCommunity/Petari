@@ -3,7 +3,15 @@
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/KoopaBattleMapStair.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+
+namespace {
+    static const f32 sFireSpeed = 30.0f;
+};  // namespace
 
 namespace NrvKoopaBattleStairsVs3 {
     NEW_NERVE(KoopaBattleStairsVs3NrvWaitDemo, KoopaBattleStairsVs3, WaitDemo);
@@ -17,9 +25,10 @@ KoopaBattleStairsVs3::KoopaBattleStairsVs3(Koopa* pKoopa) : KoopaBattleStairsBas
     KoopaFunction::initKoopaAnimCamera(mKoopa, "DemoKoopaBattleStairsVs3Start");
 }
 
-void KoopaBattleStairsVs3::registerStair(KoopaBattleMapStair* pBattleMapStair) {
+s32 KoopaBattleStairsVs3::registerStair(KoopaBattleMapStair* pBattleMapStair) {
     mStairsGroup->registerActor(pBattleMapStair);
-    calcFireAttackStep(pBattleMapStair, 30.0f, 0, mNamePos);
+
+    return calcFireAttackStep(pBattleMapStair, ::sFireSpeed, 0, mNamePos);
 }
 
 void KoopaBattleStairsVs3::exeWaitDemo() {
@@ -83,7 +92,7 @@ void KoopaBattleStairsVs3::tryAttack() {
         pBattleMapStair = static_cast< KoopaBattleMapStair* >(mStairsGroup->getActor(idx));
 
         if (pBattleMapStair->isRequestAttackVs3()) {
-            pBattleMapStair->_A6 = 1;
+            pBattleMapStair->_A6 = true;
             KoopaFunction::emitFireStairsToTarget(mKoopa, pBattleMapStair, mNamePos, true);
         }
     }

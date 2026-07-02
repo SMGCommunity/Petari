@@ -1,5 +1,4 @@
 #include "Game/Screen/StaffRoll.hpp"
-#include "Game/Camera/CameraContext.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/InformationMessage.hpp"
@@ -166,7 +165,8 @@ void StaffRollPicture::exeWork() {
         const PictureTiming* pPictureTiming = &::sPictureTimingTable[i];
 
         if (MR::isStep(this, pPictureTiming->mAppearStep)) {
-            startPictureAction(pPictureTiming->mReplaceTextureId, ::cPaneNameTable[pPictureTiming->mPaneId], ::cAnimNameTable[pPictureTiming->mAnimId]);
+            startPictureAction(pPictureTiming->mReplaceTextureId, ::cPaneNameTable[pPictureTiming->mPaneId],
+                               ::cAnimNameTable[pPictureTiming->mAnimId]);
         }
     }
 }

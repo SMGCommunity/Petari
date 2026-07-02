@@ -1,5 +1,9 @@
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvSphereSelector {
     NEW_NERVE(SphereSelectorNrvSelectStart, SphereSelector, SelectStart);

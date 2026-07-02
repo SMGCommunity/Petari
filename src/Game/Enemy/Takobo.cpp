@@ -2,9 +2,22 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/SpinHitController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/MapObj/SpinningBox.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 namespace NrvTakobo {
@@ -157,7 +170,7 @@ void Takobo::control() {
                 TVec3f v6(mGravity);
                 v6 *= 28.0f;
                 v7 -= v6;
-                mVelocity.setPS(v7);
+                mVelocity = v7;
 
                 if (MR::isOnGround(this)) {
                     TVec3f v5(*info.mParentTriangle.getFaceNormal());

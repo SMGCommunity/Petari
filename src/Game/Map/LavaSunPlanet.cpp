@@ -3,8 +3,16 @@
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "revolution/types.h"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+
+void LavaSunPlanet_FORCE_MATCH_SDATA2() {
+    (void)-1.0f;
+}
 
 LavaSunPlanet::LavaSunPlanet(const char* pName) : LiveActor(pName) {
     mRotator = nullptr;

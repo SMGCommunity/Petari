@@ -1,14 +1,34 @@
 #include "Game/Ride/Tamakoro.hpp"
 #include "Game/GameAudio/AudTamakoroBgmCtrl.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/SphereAccelSensorController.hpp"
 #include "Game/Ride/TamakoroTutorial.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
+
+void Tamakoro_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
+    (void)2.0f;
+}
 
 namespace {
     static const f32 mBaseRadius = 150.0f;
@@ -378,7 +398,7 @@ bool Tamakoro::requestEndBind() {
     if (!isNerve(&NrvTamakoro::TamakoroNrvBindEnd::sInstance) && !isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) {
         MR::startBckPlayer("SwingRopeSpin", static_cast< const char* >(nullptr));
         MR::endBindAndPlayerForceJump(
-            this, mMarioFront.multiplyOperatorInline(-::sEndBindFrontPower).addOperatorInLine(mGravity.multiplyOperatorInline(-::sEndBindJumpPower)), 0);
+            this, mMarioFront.multiplyOperatorInline(-::sEndBindFrontPower) + mGravity.multiplyOperatorInline(-::sEndBindJumpPower), 0);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
         MR::invalidateClipping(this);
@@ -540,7 +560,7 @@ void Tamakoro::exeBindStart() {
 
     MR::blendQuatUpFront(&mMarioRotateQuat, -mGravity, mMarioFront, ::sBindStartUpAdjustRate, ::sBindStartFrontAdjustRate);
 
-    mMarioPos.set(horizontalVec.addOperatorInLine(upVec));
+    mMarioPos.set(horizontalVec + upVec);
 
     if (MR::isGreaterStep(this, ::sBindStartTime)) {
         setNerve(&NrvTamakoro::TamakoroNrvBindStartLand::sInstance);

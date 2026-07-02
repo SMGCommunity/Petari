@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
 
 class KoopaBattleMapStair;
+class ModelObj;
 
 class KoopaFireStairs : public LiveActor {
 public:
@@ -15,7 +15,7 @@ public:
     virtual void makeActorDead();
     virtual void calcAndSetBaseMtx();
 
-    void setInfo(const KoopaBattleMapStair* pBattleMapStair, const TVec3f*);
+    void setInfo(const KoopaBattleMapStair*, const TVec3f*);
     void exeFly();
     void exeBreak();
 

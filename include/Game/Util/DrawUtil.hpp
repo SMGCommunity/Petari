@@ -13,10 +13,10 @@ class J2DOrthoGraphSimple : public J2DOrthoGraph {
 public:
     J2DOrthoGraphSimple();
 
-    ~J2DOrthoGraphSimple() {
+    virtual ~J2DOrthoGraphSimple() {
     }
 
-    void setPort();
+    virtual void setPort();
 };
 
 namespace MR {

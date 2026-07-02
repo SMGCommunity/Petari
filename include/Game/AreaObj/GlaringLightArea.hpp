@@ -7,15 +7,17 @@ class AudSoundObject;
 class GlaringLightArea : public AreaObj {
 public:
     GlaringLightArea(int, const char*);
-    virtual ~GlaringLightArea();
 
+    virtual ~GlaringLightArea();
     virtual void init(const JMapInfoIter&);
     virtual void movement();
 
-    virtual const char* getManagerName() const;
+    virtual const char* getManagerName() const {
+        return "GlaringLightArea";
+    }
 
-    AudSoundObject* mSound;  // 0x3C
-    TVec3f mPos;             // 0x40
+    /* 0x3C */ AudSoundObject* mSoundObj;
+    /* 0x40 */ TVec3f mPos;
 };
 
 class GlaringLightAreaMgr : public AreaObjMgr {

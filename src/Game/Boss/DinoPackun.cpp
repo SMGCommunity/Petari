@@ -9,15 +9,33 @@
 #include "Game/Boss/DinoPackunTailRoot.hpp"
 #include "Game/Boss/DinoPackunVs1.hpp"
 #include "Game/Boss/DinoPackunVs2.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/FootPrint.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static TVec3f sHeadHitOffset = TVec3f(140.0f, -110.0f, 0.0f);
@@ -476,10 +494,8 @@ void DinoPackun::resetPosition() {
     TVec3f v26;
     MR::calcGravityVector(this, v27, &v26, nullptr, 0);
 
-    TVec3f v24(mPosition);
-    JMathInlineVEC::PSVECSubtract(&v27, &v24, &v24);
     TVec3f v25;
-    v25 = v24;
+    v25 = mPosition - v27;
     MR::makeMtxUpFrontPos(&v28, -v26, v25, v27);
     MR::setPlayerBaseMtx(v28);
 }
@@ -491,7 +507,7 @@ void DinoPackun::adjustTailRootPosition(const TVec3f& rDir, f32 ratio) {
     TVec3f currPos;
     currPos = mTail->getNode(1)->mPosition;
     DinoPackunTailNode* node = mTail->getNode(1);
-    TVec3f pos = (newPos * ratio).addOperatorInLine(currPos * (1.0f - ratio));
+    TVec3f pos = newPos * ratio + currPos * (1.0f - ratio);
     node->mPosition.set(pos);
 }
 

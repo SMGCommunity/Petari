@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class GCaptureRibbon;
 class CameraTargetMtx;
-class SpringValue;
+class GCaptureRibbon;
 class GCaptureTargetable;
+class SpringValue;
 
 class GCapture : public LiveActor {
 public:

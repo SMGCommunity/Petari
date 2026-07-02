@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/Map/StageSwitch.hpp"
 #include "Game/NameObj/NameObj.hpp"
-#include <JSystem/JGeometry.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 
 class ChipBase;
+class StageSwitchCtrl;
 
 class ChipGroup : public NameObj {
 public:

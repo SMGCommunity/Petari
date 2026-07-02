@@ -16,8 +16,13 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/RhythmLib/AudChordInfo.hpp"
 #include "Game/RhythmLib/AudMeObject.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/ResourceHolder.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/JAudio2/JAISound.hpp>
@@ -400,11 +405,11 @@ namespace MR {
         return false;
     }
 
-    void setStageBGMState(s32 param1, u32 param2) {
+    void setStageBGMState(s32 state, u32 time) {
         AudBgm* pStageBgm = AudWrap::getStageBgm();
 
         if (pStageBgm != nullptr) {
-            pStageBgm->changeTrackMuteState(param1, param2);
+            pStageBgm->changeTrackMuteState(state, time);
         }
     }
 

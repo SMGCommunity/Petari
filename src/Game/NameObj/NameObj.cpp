@@ -33,11 +33,7 @@ void NameObj::calcViewAndEntry() {
 }
 
 void NameObj::initWithoutIter() {
-    JMapInfoIter iter;
-    iter.mInfo = nullptr;
-    iter.mIndex = -1;
-
-    init(iter);
+    init(JMapInfoIter());
 }
 
 void NameObj::setName(const char* pName) {

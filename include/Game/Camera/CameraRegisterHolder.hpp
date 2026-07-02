@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 #define NR_REGISTERS 0x40
 

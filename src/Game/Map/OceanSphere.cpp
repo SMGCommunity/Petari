@@ -1,21 +1,20 @@
 #include "Game/Map/OceanSphere.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/OceanSpherePoint.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
-#include "Game/Map/WaterInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util.hpp"
-#include <JSystem/JGeometry.hpp>
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SchedulerUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JMath/JMATrigonometric.hpp>
-#include <JSystem/JMath/JMath.hpp>
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
-#include <cmath>
-#include <math_types.hpp>
-#include <revolution/gd/GDBase.h>
-#include <revolution/gx.h>
 #include <revolution/gx/GXVert.h>
-#include <revolution/mtx.h>
-#include <revolution/os/OSCache.h>
 
 extern const u8 sOceanSphereTevReg0FaceR;
 extern const u8 sOceanSphereTevReg0FaceG;

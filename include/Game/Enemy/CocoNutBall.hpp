@@ -1,10 +1,11 @@
+#pragma once
+
 #include "Game/LiveActor/LiveActor.hpp"
 
 class CocoNutBall : public LiveActor {
 public:
-    CocoNutBall(const char* pName);
+    CocoNutBall(const char* pName = "ヤシの実弾");
 
-    virtual ~CocoNutBall();
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();

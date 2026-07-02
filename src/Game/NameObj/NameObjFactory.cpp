@@ -1,7 +1,6 @@
 #include "Game/NameObj/NameObjFactory.hpp"
 #include "Game/AreaObj.hpp"
 #include "Game/Boss.hpp"
-#include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Demo.hpp"
 #include "Game/Effect.hpp"
 #include "Game/Enemy.hpp"
@@ -10,9 +9,13 @@
 #include "Game/Map/OceanBowl.hpp"
 #include "Game/MapObj.hpp"
 #include "Game/NPC.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/NameObj/NameObjFactoryStubs.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Ride.hpp"
+#include "Game/Screen.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvWait, MorphItemObjNeo, Wait);
@@ -71,21 +74,10 @@ volatile const Nerve* cNerveInitKeep[] = {
 };
 
 namespace MR {
-    NameObj* createDinoPackunVs1(const char*);
-    NameObj* createDinoPackunVs2(const char*);
-    NameObj* createFallOutFieldDraw(const char*);
-    NameObj* createClipFieldFillDraw(const char*);
-    NameObj* createVolumeDrawSpotLight(const char*);
-    NameObj* createFireBallBeamKameck(const char*);
     NameObj* createTurtleBeamKameck(const char*);
 };  // namespace MR
 
 namespace {
-    // FIXME: Polta is being worked on in #1867
-    NameObj* createPoltaStub(const char* pName) {
-        return new NameObj(pName);
-    }
-
     template < typename T >
     NameObj* createCenterOriginCube(const char* pName) {
         return new T(AreaForm::Type_Cube1, pName);
@@ -115,7 +107,6 @@ namespace {
         "Hopper",          "BenefitItemInvincible", "MorphItemNeoBee", "MorphItemNeoFire",
         "MorphItemNeoFoo", "MorphItemNeoHopper",    "MorphItemNeoIce", "MorphItemNeoTeresa",
     };
-
     const NameObjFactory::Name2CreateFunc cCreateTable[] = {
         {
             "SwitchCube",
@@ -1452,7 +1443,6 @@ namespace {
             createNameObj< OtaKing >,
             nullptr,
         },
-        // FIXME: Polta is being worked on in #1867
         {
             "Polta",
             createNameObj< Polta >,
@@ -7800,7 +7790,6 @@ namespace {
             "MoviePadRumbleEndingB",
         },
     };
-
     const NameObjFactory::Name2MakeArchiveListFunc cName2MakeArchiveListFuncTable[] = {
         {
             "BallBeamer",
@@ -8309,8 +8298,8 @@ namespace NameObjFactory {
     }
 
     bool isPlayerArchiveLoaderObj(const char* pArchive) {
-        for (u32 i = 0; i < ARRAY_SIZE(cPlayerArchiveLoaderObjTable); i++) {
-            if (MR::isEqualStringCase(cPlayerArchiveLoaderObjTable[i], pArchive)) {
+        for (u32 i = 0; i < ARRAY_SIZE(::cPlayerArchiveLoaderObjTable); i++) {
+            if (MR::isEqualStringCase(::cPlayerArchiveLoaderObjTable[i], pArchive)) {
                 return true;
             }
         }
@@ -8320,10 +8309,10 @@ namespace NameObjFactory {
 
     const Name2CreateFunc* getName2CreateFunc(const char* pName, const Name2CreateFunc* pTable) {
         if (pTable == nullptr) {
-            pTable = cCreateTable;
+            pTable = ::cCreateTable;
         }
 
-        for (const Name2CreateFunc* pName2CreateFunc = pTable; pName2CreateFunc != cCreateTable + ARRAY_SIZE(cCreateTable); pName2CreateFunc++) {
+        for (const Name2CreateFunc* pName2CreateFunc = pTable; pName2CreateFunc != ::cCreateTable + ARRAY_SIZE(::cCreateTable); pName2CreateFunc++) {
             if (pName2CreateFunc->mName == nullptr) {
                 continue;
             }
@@ -8348,15 +8337,15 @@ namespace NameObjFactory {
                 pArchiveList->addArchive(pName2CreateFunc->mArchiveName);
             }
 
-            for (const Name2Archive* pName2Archive = cName2ArchiveNamesTable;
-                 pName2Archive != cName2ArchiveNamesTable + ARRAY_SIZE(cName2ArchiveNamesTable); pName2Archive++) {
+            for (const Name2Archive* pName2Archive = ::cName2ArchiveNamesTable;
+                 pName2Archive != ::cName2ArchiveNamesTable + ARRAY_SIZE(::cName2ArchiveNamesTable); pName2Archive++) {
                 if (MR::isEqualString(pName2Archive->mObjectName, pName)) {
                     pArchiveList->addArchive(pName2Archive->mArchiveName);
                 }
             }
 
-            for (const Name2MakeArchiveListFunc* pName2ArchiveFunc = cName2MakeArchiveListFuncTable;
-                 pName2ArchiveFunc != cName2MakeArchiveListFuncTable + ARRAY_SIZE(cName2MakeArchiveListFuncTable); pName2ArchiveFunc++) {
+            for (const Name2MakeArchiveListFunc* pName2ArchiveFunc = ::cName2MakeArchiveListFuncTable;
+                 pName2ArchiveFunc != ::cName2MakeArchiveListFuncTable + ARRAY_SIZE(::cName2MakeArchiveListFuncTable); pName2ArchiveFunc++) {
                 if (MR::isEqualString(pName2ArchiveFunc->mName, pName)) {
                     pName2ArchiveFunc->mArchiveFunc(pArchiveList, rIter);
                 }

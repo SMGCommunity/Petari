@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include <revolution/types.h>
 
 class ClippingActorHolder;
 class ClippingGroupHolder;

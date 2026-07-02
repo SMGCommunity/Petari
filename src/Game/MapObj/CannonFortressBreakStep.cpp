@@ -1,5 +1,7 @@
 #include "Game/MapObj/CannonFortressBreakStep.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/Functor.hpp"
 
 namespace NrvCannonFortressBreakStep {

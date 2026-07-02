@@ -1,17 +1,22 @@
 #include "Game/Ride/Creeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
-#include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
+#include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <revolution/gx/GXVert.h>
 #include <revolution/mtx.h>
@@ -81,10 +86,8 @@ void CreeperPoint::updateBend(bool bend, const TVec3f& bendDirection, f32 t, f32
         mVelocity.add(bendDirection.scaleInline(t).scaleInline(bendFactor));
     }
 
-    mPosition = mPrevPoint->mSide.scaleInline(mProjection.x)
-                    .addOperatorInLine(mPrevPoint->mUp.scaleInline(mProjection.y))
-                    .addOperatorInLine(mPrevPoint->mFront.scaleInline(mProjection.z))
-                    .addOperatorInLine(mPrevPoint->mPosition);
+    mPosition = mPrevPoint->mSide.scaleInline(mProjection.x) + mPrevPoint->mUp.scaleInline(mProjection.y) +
+                mPrevPoint->mFront.scaleInline(mProjection.z) + mPrevPoint->mPosition;
 
     mPosition.add(mVelocity);
 
@@ -382,7 +385,7 @@ bool Creeper::tryJump() {
     }
 
     TVec3f launch;
-    launch = (launchFront.scaleInline(mLaunchHorizontalSpeed)).subOperatorInLine(mGravity.scaleInline(mLaunchVerticalSpeed));
+    launch = launchFront.scaleInline(mLaunchHorizontalSpeed) - mGravity.scaleInline(mLaunchVerticalSpeed);
 
     MR::startBckPlayer("GrowPlantJump", static_cast< const char* >(nullptr));
     MR::endMultiActorCamera(this, mCameraInfo, "掴まり", true, -1);
@@ -439,12 +442,12 @@ void Creeper::calcAndGetCurrentInfo(TVec3f* pPosition, TVec3f* pUp) const {
 
     if (idx < mNumPoints - 1) {
         s32 nextIdx = idx + 1;
-        *pPosition = (mPoints[idx]->mPosition.scaleInline(1.0f - t)).addOperatorInLine(mPoints[nextIdx]->mPosition.scaleInline(t));
-        *pUp = (mPoints[nextIdx]->mPosition).subOperatorInLine(mPoints[idx]->mPosition);
+        *pPosition = mPoints[idx]->mPosition.scaleInline(1.0f - t) + mPoints[nextIdx]->mPosition.scaleInline(t);
+        *pUp = mPoints[nextIdx]->mPosition - mPoints[idx]->mPosition;
     } else {
         s32 prevIdx = idx - 1;
         pPosition->set(mPoints[idx]->mPosition);
-        *pUp = (mPoints[idx]->mPosition).subOperatorInLine(mPoints[prevIdx]->mPosition);
+        *pUp = mPoints[idx]->mPosition - mPoints[prevIdx]->mPosition;
     }
     MR::normalize(pUp);
 }

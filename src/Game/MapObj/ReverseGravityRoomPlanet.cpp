@@ -1,4 +1,7 @@
 #include "Game/MapObj/ReverseGravityRoomPlanet.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvReverseGravityRoomPlanet {
     NEW_NERVE(ReverseGravityRoomPlanetNrvDownStart, ReverseGravityRoomPlanet, DownStart);

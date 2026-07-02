@@ -1,4 +1,6 @@
 #include "Game/MapObj/CoinSpot.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvCoinSpot {
     NEW_NERVE(CoinSpotNrvWait, CoinSpot, Wait);

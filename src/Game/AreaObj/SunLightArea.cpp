@@ -5,7 +5,3 @@ SunLightArea::SunLightArea(int formType, const char* pName) : AreaObj(formType, 
 
 SunLightArea::~SunLightArea() {
 }
-
-const char* SunLightArea::getManagerName() const {
-    return "SunLightArea";
-}

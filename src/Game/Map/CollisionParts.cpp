@@ -1,11 +1,12 @@
 #include "Game/Map/CollisionParts.hpp"
-#include "Game/Boss/BossStinkBug.hpp"
 #include "Game/Camera/CameraPolygonCodeUtil.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/CollisionCategorizedKeeper.hpp"
 #include "Game/Map/CollisionDirector.hpp"
 #include "Game/Map/KCollision.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
 CollisionParts::CollisionParts() {

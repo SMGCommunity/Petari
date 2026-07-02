@@ -5,6 +5,14 @@
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 // NOTE: this function order is how it appears in the debug symbol map, because that order lets the .data section match.
 // Writing directly as the release symbol map produces incorrect .data order.
@@ -20,6 +28,12 @@ namespace {
     static const s32 sStepChanceEndDemo = 120;
     static const s32 sStepChanceEndAnim = 30;
 };  // namespace
+
+void TombSpiderActionBase_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)2.0f;
+}
 
 TombSpiderActionBase::TombSpiderActionBase(TombSpider* pParent, const char* pName)
     : ActorStateBase< TombSpider >(pName, pParent), mParent(pParent), mRotateAccel(0.0f), mRotateSpeed(0.0f), mHitStep(-1), mWaitTime(0),

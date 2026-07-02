@@ -13,7 +13,7 @@ struct JASInstEffect {
         DOLBY = 4,
     };
 
-    JASInstEffect(){};
+    JASInstEffect() {};
 
     virtual void effect(int, int, JASInstParam*) const;
 };

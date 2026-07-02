@@ -2,12 +2,12 @@
 
 #include "Game/System/NerveExecutor.hpp"
 
-class Koopa;
-class JMapInfoIter;
 class HitSensor;
-class KoopaDemoPowerUp;
+class JMapInfoIter;
+class Koopa;
 class KoopaBattleStairsBase;
 class KoopaDemoJumpToPlanet;
+class KoopaDemoPowerUp;
 
 class KoopaSequencer : public NerveExecutor {
 public:
@@ -17,7 +17,7 @@ public:
     virtual void init(Koopa* pKoopa, const JMapInfoIter& rIter);
     virtual void update();
     virtual void calcAndSetBaseMtx();
-    virtual bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);

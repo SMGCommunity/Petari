@@ -1,7 +1,9 @@
 #include "Game/Enemy/SpinHitController.hpp"
-#include "Game/Util.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 SpinHitController::SpinHitController(const NameObj* pObj, s32 a1, bool a2) {
     setParameter(pObj, 15, 10, 3, 0.0f, 40.0f, 20.0f, a1, a2);
@@ -55,7 +57,7 @@ bool SpinHitController::execute(LiveActor* pActor) {
     f32 val = _C;
     TVec3f v12(pActor->mGravity);
     v12 *= val;
-    JMathInlineVEC::PSVECAdd(&pActor->mVelocity, &v12, &pActor->mVelocity);
+    pActor->mVelocity.add(v12);
 
     if (MR::isStep(pActor, _4)) {
         emitItem(pActor);

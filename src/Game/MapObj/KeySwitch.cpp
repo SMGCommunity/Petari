@@ -1,4 +1,7 @@
 #include "Game/MapObj/KeySwitch.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 namespace {
@@ -90,7 +93,6 @@ void KeySwitch::exeDemoStart() {
     }
 }
 
-/*
 void KeySwitch::exeAppear() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Rotation", 0);
@@ -114,10 +116,9 @@ void KeySwitch::exeAppear() {
 
             MR::startSound(this, "SE_OJ_KEY_SWITCH_BOUND", mag);
             TVec3f neg;
-            neg.negateInline_2(mGravity);
+            neg.negate(mGravity);
             MR::calcReboundVelocity(&mVelocity, neg, 0.60f, 0.7f);
-        }
-        else {
+        } else {
             val = true;
         }
     }
@@ -129,7 +130,6 @@ void KeySwitch::exeAppear() {
         }
     }
 }
-*/
 
 void KeySwitch::exeWait() {
     if (MR::isFirstStep(this)) {
@@ -197,15 +197,13 @@ bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
     return false;
 }
 
-/*
 bool KeySwitch::tryAvoid() {
     LiveActor* sensorActor;
     HitSensor* sensor = nullptr;
 
     if (MR::isBindedGround(this)) {
         sensor = MR::getGroundSensor(this);
-    }
-    else if (MR::isBindedWall(this)) {
+    } else if (MR::isBindedWall(this)) {
         sensor = MR::getWallSensor(this);
     }
 
@@ -221,7 +219,7 @@ bool KeySwitch::tryAvoid() {
     TVec3f up;
     MR::calcUpVec(&up, sensorActor);
     TVec3f thing;
-    thing.subInline2(mPosition, sensorActor->mPosition);
+    thing.sub(mPosition, sensorActor->mPosition);
     TVec3f stack_8;
     JMAVECScaleAdd(&up, &thing, &stack_8, -up.dot(thing));
 
@@ -232,4 +230,3 @@ bool KeySwitch::tryAvoid() {
     mVelocity.scale(10.0f, stack_8);
     return true;
 }
-*/

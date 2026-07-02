@@ -1,7 +1,7 @@
 #pragma once
 
-class Koopa;
 class HitSensor;
+class Koopa;
 
 class KoopaSensorCtrl {
 public:

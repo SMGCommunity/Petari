@@ -1,8 +1,9 @@
 #include "Game/MapObj/LavaSteam.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"
 #include "revolution/types.h"
@@ -91,13 +92,8 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             f32 f31 = rad * 0.7f;
 
             if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
-                TVec3f stack_30 = _8C * 400.0f;
-                TVec3f stack_3C = TVec3f(mPosition);
-
-                JMathInlineVEC::PSVECAdd2(&stack_3C, &stack_30, &stack_3C);
-
                 TVec3f stack_48;
-                stack_48.set(stack_3C);
+                stack_48.set(mPosition + _8C * 400.0f);
 
                 stack_54 = 70.0;
 
@@ -107,9 +103,10 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 f32 dist = stack_48.squared(stack_20);
                 f32 s = (stack_54 + f31);
                 stack_2C = f31;
-
-                if ((dist <= s * s) & 3 && MR::sendMsgEnemyAttackFire(pReceiver, pSender))
+                // w h a t
+                if (((dist <= s * s) & 3) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
                     return;
+                }
             }
 
             if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
@@ -119,7 +116,7 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 stack_64.set(stack_14);
 
                 TVec3f stack_8;
-                JMathInlineVEC::PSVECSubtract(&pReceiver->mPosition, &stack_58, &stack_8);
+                stack_8.sub(pReceiver->mPosition, stack_58);
                 f32 sq1 = stack_8.squared();
                 f32 sq2 = stack_64.squared();
                 f32 _64dot8 = stack_64.dot(stack_8);
@@ -127,8 +124,9 @@ void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 f32 ff2 = _64dot8 / sq2;
                 f32 squ3 = JGeometry::TUtil< f32 >::sqrt((ff1 - (_64dot8 * _64dot8)) / sq2);
 
-                if (0.0f <= ff2 && ff2 <= 1.0f && squ3 < (10.0f + f31) && MR::sendMsgEnemyAttackFire(pReceiver, pSender))
+                if (0.0f <= ff2 && ff2 <= 1.0f && squ3 < (10.0f + f31) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
                     return;
+                }
             }
         }
     }

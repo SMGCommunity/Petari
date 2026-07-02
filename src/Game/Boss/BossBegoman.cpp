@@ -1,8 +1,23 @@
 #include "Game/Boss/BossBegoman.hpp"
 #include "Game/Boss/BossBegomanHead.hpp"
 #include "Game/Enemy/BegomanBaby.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ElectricRailHolder.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     const MR::ActorMoveParam hWaitParam = {0.0f, 3.0f, 0.95f, 1.0f};
@@ -338,7 +353,7 @@ void BossBegoman::exeTurn() {
     }
 
     if (MR::isBckPlaying(this, "Turn")) {
-        MR::emitEffectHit(this, mPosition.addOperatorInLine(mFaceVec.scaleInline(180.0f)), "EdgeSpark");
+        MR::emitEffectHit(this, mPosition + mFaceVec.scaleInline(180.0f), "EdgeSpark");
     }
 
     updateRotateY(0.4f, 0.005f);
@@ -516,10 +531,10 @@ void BossBegoman::exeElectricDeath() {
         MR::normalizeOrZero(&vec);
 
         if (mHealth == 2) {
-            MR::appearStarPieceToDirection(this, mPosition.subOperatorInLine(mGravity.scaleInline(200.0f)), vec, 8, 20.0f, 40.0f, false);
+            MR::appearStarPieceToDirection(this, mPosition - mGravity.scaleInline(200.0f), vec, 8, 20.0f, 40.0f, false);
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         } else if (mHealth == 1) {
-            MR::appearStarPieceToDirection(this, mPosition.subOperatorInLine(mGravity.scaleInline(200.0f)), vec, 16, 20.0f, 40.0f, false);
+            MR::appearStarPieceToDirection(this, mPosition - mGravity.scaleInline(200.0f), vec, 16, 20.0f, 40.0f, false);
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
     }
@@ -601,7 +616,7 @@ void BossBegoman::exeJumpToInitPos() {
         TVec3f vec2(mGravity);
         vec2 = -vec2;
 
-        mPath->initFromUpVector(mPosition, mInitPos.subOperatorInLine(mGravity.scaleInline(10.0f)), vec2, 700.0f);
+        mPath->initFromUpVector(mPosition, mInitPos - mGravity.scaleInline(10.0f), vec2, 700.0f);
         mVelocity.zero();
     }
 

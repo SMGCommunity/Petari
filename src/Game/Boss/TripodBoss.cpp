@@ -6,14 +6,24 @@
 #include "Game/Boss/TripodBossStepSequence.hpp"
 #include "Game/Gravity/GravityInfo.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
@@ -189,13 +199,13 @@ void TripodBoss::initLegIKPlacement() {
 
         TVec3f j(0.0f, 1.0f, 0.0f);
 
-        TVec3f legDir = legDirShadow.multiplyOperatorInline(_610).translate(j.multiplyOperatorInline(_614));
+        TVec3f legDir = legDirShadow.multiplyOperatorInline(_610) + j.multiplyOperatorInline(_614);
 
         getLeg(rI)->setIKParam(_608, _60C, legDir, legDirShadow, j);
 
         TVec3f* center = &mMovableArea->mCenter;
 
-        TVec3f v23 = v29.translate(v27.multiplyOperatorInline(x)).translate(v28.multiplyOperatorInline(z)).translate(*center);
+        TVec3f v23 = v29 + v27.multiplyOperatorInline(x) + v28.multiplyOperatorInline(z) + *center;
 
         TVec3f v22;
         mMovableArea->calcLandingNormal(&v22, v23);

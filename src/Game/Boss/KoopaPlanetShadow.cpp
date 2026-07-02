@@ -1,6 +1,11 @@
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 KoopaPlanetShadow::~KoopaPlanetShadow() {
 }
@@ -24,7 +29,7 @@ void KoopaPlanetShadow::calcAndSetBaseMtx() {
     TVec3f vec(mHipMtx[0][3], mHipMtx[1][3], mHipMtx[2][3]);
     TVec3f direction = vec - KoopaFunction::getPlanetCenterPos(mKoopa);
 
-    if (MR::isNearZero(direction, 0.001f)) {
+    if (MR::isNearZero(direction)) {
         return;
     }
 

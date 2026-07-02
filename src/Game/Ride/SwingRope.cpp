@@ -1,16 +1,22 @@
 #include "Game/Ride/SwingRope.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/SledRopePoint.hpp"
 #include "Game/Ride/SwingRopePoint.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/GamePadUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <revolution/gx/GXCull.h>
 #include <revolution/gx/GXEnum.h>
@@ -236,7 +242,7 @@ bool SwingRope::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         TVec3f grav(mGravity);
         TVec3f pos(mPosition);
 
-        MR::calcPerpendicFootToLine(&pos, *MR::getPlayerPos(), mBasePos, mBasePos.addOperatorInLine(grav.scaleInline(mRopeLength)));
+        MR::calcPerpendicFootToLine(&pos, *MR::getPlayerPos(), mBasePos, mBasePos + grav.scaleInline(mRopeLength));
 
         TVec3f posDiff = pos - mBasePos;
         f32 grabCoord = posDiff.dot(grav);
@@ -477,8 +483,8 @@ void SwingRope::updateFootPos() {
     footMtx.getZDirInline(front);
     footMtx.getTransInline(mFootPos);
 
-    mFootPos.add(side.scaleInline(0.0f).addOperatorInLine(up.scaleInline(-20.0f)).addOperatorInLine(front.scaleInline(10.0f)));
-    mGrabToFootDist = PSVECDistance(&mFootPos, &mSledPoint->mPosition);
+    mFootPos.add(side.scaleInline(0.0f) + up.scaleInline(-20.0f) + front.scaleInline(10.0f));
+    mGrabToFootDist = mFootPos.distance(mSledPoint->mPosition);
     mFootCoord = mGrabCoord + mGrabToFootDist;
     mFootPointNum = calcPointNo(mFootCoord);
 }
@@ -586,7 +592,7 @@ void SwingRope::updateStretchHangUpperPoints() {
         if (mStretchTime < 10) {
             f32 t = MR::getEaseOutValue((mStretchTime + 1) / 10.0f, 0.0f, 1.0f, 1.0f);
             TVec3f stretchPos(pos);
-            pos = stretchPos.scaleInline(t).addOperatorInLine(mPoints[idx]->mPosition.scaleInline(1.0f - t));
+            pos = stretchPos.scaleInline(t) + mPoints[idx]->mPosition.scaleInline(1.0f - t);
         }
         mPoints[idx]->setAndUpdatePosAndAxis(pos, mSledPoint->mUp, front);
         front.set(mPoints[idx]->mFront);

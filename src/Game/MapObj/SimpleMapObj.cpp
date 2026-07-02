@@ -1,5 +1,11 @@
 #include "Game/MapObj/SimpleMapObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/MapPartsUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace {
     static const SoundEffectDataEntry sSeDataTable[] = {

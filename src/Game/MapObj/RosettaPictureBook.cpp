@@ -1,6 +1,8 @@
 #include "Game/MapObj/RosettaPictureBook.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/IconAButton.hpp"
 #include "Game/Screen/PictureBookLayout.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"

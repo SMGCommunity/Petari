@@ -1,10 +1,26 @@
 #include "Game/NPC/PenguinRacer.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/RaceRail.hpp"
 #include "Game/Map/WaterInfo.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NPCUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     // static const f32 sBrake = ;
@@ -362,7 +378,7 @@ void PenguinRacer::updateVelocity() {
         MR::normalizeOrZero(&grav);
         const TVec3f& v = mVelocity;
         velV.scale(grav.dot(v), grav);
-        velH.subInline(v, velV);
+        velH.sub(v, velV);
     } else {
         velV.zero();
         velH.set(mVelocity);
@@ -384,7 +400,7 @@ void PenguinRacer::updateVelocity() {
         velH.setLength(speedMaxH);
     }
 
-    mVelocity.set(velV.addOperatorInLine(velH));
+    mVelocity.set(velV + velH);
 }
 
 void PenguinRacer::updateRail() {

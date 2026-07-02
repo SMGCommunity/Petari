@@ -1,10 +1,14 @@
 #include "Game/NPC/TalkNodeCtrl.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/Screen/MessageTagSkipTagProcessor.hpp"
 #include "Game/System/MessageHolder.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <cstdio>
 

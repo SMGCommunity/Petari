@@ -1,17 +1,17 @@
 #include "Game/MapObj/AstroDomeGalaxySelector.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
+#include "Game/MapObj/AstroDomeCameraController.hpp"
 #include "Game/MapObj/MiniatureGalaxy.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
 #include "Game/Screen/GalaxyConfirmLayout.hpp"
 #include "Game/Screen/GalaxySelectBackButton.hpp"
+#include "Game/Screen/GalaxySelectInfo.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -260,4 +260,7 @@ void AstroDomeGalaxySelector::exeGalaxyMoveLecture() {
         MR::onGameEventFlagEndButlerGalaxyMoveLecture();
         setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirm::sInstance);
     }
+}
+
+void AstroDomeGalaxySelector::exeWaitStartDemo() {
 }

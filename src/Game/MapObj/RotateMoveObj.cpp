@@ -1,6 +1,9 @@
 #include "Game/MapObj/RotateMoveObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvRotateMoveObj {
     NEW_NERVE(HostTypeWaitForPlayerOn, RotateMoveObj, WaitForPlayerOn);

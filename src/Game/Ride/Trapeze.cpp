@@ -3,15 +3,21 @@
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Ride/SwingRopePoint.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/GamePadUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <revolution/gx/GXCull.h>
 #include <revolution/gx/GXEnum.h>
@@ -389,9 +395,9 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         f32 dotUp = mUp.dot(grabPos);
         f32 dotFront = mFront.dot(grabPos);
 
-        grabPos.setPS2(mPosition.addOperatorInLine(mUp.scaleInline(dotUp)).addOperatorInLine(mFront.scaleInline(dotFront)));
+        grabPos = mPosition + mUp.scaleInline(dotUp) + mFront.scaleInline(dotFront);
 
-        f32 coord = PSVECDistance(&grabPos, &mPosition);
+        f32 coord = grabPos.distance(mPosition);
         coord = MR::clamp(coord, 0.0f, mRopeLength);
         mGrabCoord = coord;
 

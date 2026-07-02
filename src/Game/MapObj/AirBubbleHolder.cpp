@@ -1,6 +1,8 @@
 #include "Game/MapObj/AirBubbleHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AirBubble.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 
 AirBubbleHolder::AirBubbleHolder(const char* pName) : LiveActorGroup(pName, 64) {
 }

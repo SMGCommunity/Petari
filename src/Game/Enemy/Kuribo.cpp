@@ -6,17 +6,34 @@
 #include "Game/Enemy/WalkerStateStagger.hpp"
 #include "Game/Enemy/WalkerStateWander.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/Air.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/VectorUtil.hpp"
 #include "revolution/mtx.h"
+
+void Kuribo_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)2.0f;
+}
 
 namespace {
     class KuriboParam {
@@ -93,12 +110,7 @@ void Kuribo::init(const JMapInfoIter& rIter) {
 
     mScaleController = new AnimScaleController(nullptr);
     mItemGenerator = new ItemGenerator();
-    f32 offsScale = mScale.y;
-    TVec3f v7;
-    v7.x = 0.0f;
-    v7.y = 75.0f * offsScale;
-    v7.z = 0.0f;
-    MR::initStarPointerTarget(this, 70.0f * mScale.y, v7);
+    MR::initStarPointerTarget(this, 70.0f * mScale.y, TVec3f(0.0f, 75.0f * mScale.y, 0.0f));
     initSound(4, false);
     if (MR::isEqualStageName("KoopaBattleVs2Galaxy")) {
         MR::setSeVersion(this, 1);
@@ -200,12 +212,7 @@ void Kuribo::control() {
     if (!isNerve(&NrvKuribo::KuriboNrvBindStarPointer::sInstance)) {
         TVec3f v3(0, 0, 0);
         if (MR::calcVelocityAreaOrRailMoveOnGround(&v3, this)) {
-            TVec3f stack_8;
-            stack_8.setPS(v3);
-            stack_8.z *= 0.05f;
-            stack_8.x *= 0.05f;
-            stack_8.y *= 0.05f;
-            MR::addVelocity(this, stack_8);
+            MR::addVelocity(this, v3.multInLine(0.05f));
         }
     }
 
@@ -218,9 +225,7 @@ void Kuribo::control() {
 
 void Kuribo::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _A8);
-    TVec3f scale;
-    JMathInlineVEC::PSVECMultiply(&mScaleController->_C, &mScale, &scale);
-    MR::setBaseScale(this, scale);
+    MR::setBaseScale(this, mScaleController->_C.mult(mScale));
 }
 
 void Kuribo::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -330,7 +335,7 @@ bool Kuribo::requestDead() {
 }
 
 bool Kuribo::requestFlatDown(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensorEnemyAttack(pSender)) {
+    if (MR::isSensorEnemyAttack(pReceiver)) {
         return false;
     }
 
@@ -706,7 +711,7 @@ void Kuribo::calcPassiveMovement() {
 
     MR::attenuateVelocity(this, vel);
     if (MR::isBindedWall(this)) {
-        MR::calcReboundVelocity(&mVelocity, *MR::getWallNormal(this), 0.2f, 0.69f);
+        MR::calcReboundVelocity(&mVelocity, *MR::getWallNormal(this), 0.2f, 0.7f);
     }
 }
 

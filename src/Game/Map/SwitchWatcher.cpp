@@ -1,7 +1,6 @@
 #include "Game/Map/SwitchWatcher.hpp"
 #include "Game/Map/ActorAppearSwitchListener.hpp"
 #include "Game/Map/StageSwitch.hpp"
-#include "Game/Screen/MoviePlayerSimple.hpp"
 
 SwitchWatcher::SwitchWatcher(const StageSwitchCtrl* pCtrl) : NameObj("スイッチ監視") {
     mFlags = 0;

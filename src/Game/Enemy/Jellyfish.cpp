@@ -2,10 +2,24 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LightUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
 namespace NrvJellyfish {
@@ -269,17 +283,14 @@ void Jellyfish::threatTurn() {
 }
 
 bool Jellyfish::faceToMario() {
-    TVec3f* pos = &mPosition;
     TVec3f v13;
-    JMathInlineVEC::PSVECSubtract(MR::getPlayerPos(), pos, &v13);
+    v13.sub(*MR::getPlayerPos(), mPosition);
     MR::normalizeOrZero(&v13);
     TVec3f v12;
     MR::calcSideVec(&v12, this);
 
     if (!MR::isNearZero(v13)) {
-        f32 v4 = MR::negateIfLessZero(0.5f);
-        f32 cos = JMath::sSinCosTable.cosShort(v4);
-        MR::turnVecToVecCosOnPlane(&_98, v13, v12, cos);
+        MR::turnVecToVecCosOnPlane(&_98, v13, v12, MR::cos(0.5f));
         TVec3f v10;
         v10.negate(mGravity);
         TVec3f v11;
@@ -307,9 +318,7 @@ bool Jellyfish::faceToMario() {
 
 void Jellyfish::knockOut(HitSensor* a2, HitSensor* a3) {
     TVec3f v6;
-    TVec3f v5(a3->mPosition);
-    JMathInlineVEC::PSVECSubtract(&v5, &a2->mPosition, v5);
-    MR::normalize(v5, &v6);
+    MR::normalize(a3->mPosition - a2->mPosition, &v6);
     mVelocity.scale(50.0f, v6);
     _98.negate(v6);
     setNerve(&NrvJellyfish::JellyfishNrvDeath::sInstance);

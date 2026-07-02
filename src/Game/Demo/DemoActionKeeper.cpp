@@ -1,8 +1,16 @@
 #include "Game/Demo/DemoActionKeeper.hpp"
+#include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoFunction.hpp"
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+#include "Game/Util/TalkUtil.hpp"
 
 namespace {
     TalkMessageCtrl* findTalkMessageCtrl(LiveActor* pActor) {
@@ -15,8 +23,8 @@ namespace {
 
     void setTalkAnimCtrlInterpole(LiveActor* pActor, s32 interpole) {
         DemoExecutor* executor = DemoFunction::findDemoExecutorActive(pActor);
-        for (s32 i = 0; i < executor->mNumTalkAnimCtrls; i++) {
-            executor->mTalkAnimCtrls[i]->_38 = interpole;
+        for (s32 i = 0; i < executor->mTalkAnimCtrl.size(); i++) {
+            executor->mTalkAnimCtrl[i]->_38 = interpole;
         }
     }
 };  // namespace

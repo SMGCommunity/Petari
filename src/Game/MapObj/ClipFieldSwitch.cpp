@@ -1,5 +1,7 @@
 #include "Game/MapObj/ClipFieldSwitch.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ClipAreaHolder.hpp"
+#include "Game/Util.hpp"
 
 ClipFieldSwitch::~ClipFieldSwitch() {
 }
@@ -8,7 +10,7 @@ ClipFieldSwitch::ClipFieldSwitch(const char* pName) : LiveActor(pName) {
 }
 
 void ClipFieldSwitch::control() {
-    mPosition.setPS(*MR::getPlayerPos());
+    mPosition = *MR::getPlayerPos();
     if (MR::isInClipArea(*MR::getPlayerPos(), 5.0f)) {
         if (MR::isValidSwitchA(this)) {
             MR::onSwitchA(this);

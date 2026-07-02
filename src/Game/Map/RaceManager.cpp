@@ -1,9 +1,28 @@
 #include "Game/Map/RaceManager.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/RaceRail.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <algorithm>
 
 // FIXME: String "Record" is out of order in .data, yet function order matches in retail and debug
-// Bug with build system means .data and .rodata are not matching yet due to incorrect parsing of shift-jis strings
+
+void RaceManager_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
 
 namespace {
     // static const _ sTimeOutSecond = _;
@@ -12,6 +31,10 @@ namespace {
 
 namespace {
     struct RaceStructData {
+        s32 getMaxTime() const {
+            return mMaxTime;
+        }
+
         /* 0x00 */ const char* mName;
         /* 0x04 */ s32 mEventBgmId;
         /* 0x08 */ s32 mMaxTime;
@@ -297,7 +320,7 @@ void RaceManager::exeRace() {
         MR::startSystemSE("SE_SY_RACE_START");
     }
 
-    s32 maxTime = ::getRaceStruceData(mCurrentRace).mMaxTime;
+    s32 maxTime = ::getRaceStruceData(mCurrentRace).getMaxTime();
     MR::updateClearTimeTextBox(mLayout, "TimeCounter", getNerveStep());
     if (maxTime > 0 && getNerveStep() >= maxTime * 60) {
         mRank = 0;

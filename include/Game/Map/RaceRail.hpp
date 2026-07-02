@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/RaceManager.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class ActorCameraInfo;
+class RaceManager;
 
 class PlayerRacer : public LiveActor, public AbstractRacer {
 public:

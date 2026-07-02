@@ -1,4 +1,6 @@
 #include "Game/MapObj/PrizeRing.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvPrizeRing {
     NEW_NERVE(PrizeRingStart, PrizeRing, Start);

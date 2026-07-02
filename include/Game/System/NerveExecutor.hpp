@@ -1,7 +1,6 @@
 #pragma once
 
-#include <cstddef>
-#include <revolution.h>
+#include <revolution/types.h>
 
 class Nerve;
 class Spine;

@@ -1,7 +1,10 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/Util.hpp"
+
+namespace MR {
+    class FunctorBase;
+};  // namespace MR
 
 /// @brief Implementation of a NameObj that stores function pointers to movement, calcAnim, calcView, and draw functions.
 class NameObjAdaptor : public NameObj {

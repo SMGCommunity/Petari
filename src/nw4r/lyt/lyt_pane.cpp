@@ -50,14 +50,16 @@ namespace nw4r {
                 PaneList::Iterator currIt = it++;
                 mChildList.Erase(currIt);
                 if (!currIt->IsUserAllocated()) {
-                    Layout::DeleteObj(&(*currIt));
+                    currIt->~Pane();
+                    Layout::FreeMemory(&*currIt);
                 }
             }
 
             UnbindAnimationSelf(0);
 
             if (mpMaterial && !mpMaterial->IsUserAllocated()) {
-                Layout::DeleteObj(mpMaterial);
+                mpMaterial->~Material();
+                Layout::FreeMemory(mpMaterial);
             }
         }
 
@@ -138,7 +140,7 @@ namespace nw4r {
 
             if (recursive) {
                 for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter(); ++it) {
-                    if (Pane* pPane = it->FindPaneByName(pName, recursive)) {
+                    if (Pane* pPane = it->FindPaneByName(pName, true)) {
                         return pPane;
                     }
                 }
@@ -154,7 +156,7 @@ namespace nw4r {
 
             if (recursive) {
                 for (PaneList::Iterator it = mChildList.GetBeginIter(); it != mChildList.GetEndIter(); ++it) {
-                    if (Material* pMat = it->FindMaterialByName(pName, recursive)) {
+                    if (Material* pMat = it->FindMaterialByName(pName, true)) {
                         return pMat;
                     }
                 }

@@ -15,10 +15,10 @@ void ZoneLightID::clear() {
 
 bool ZoneLightID::isTargetArea(const LightArea* pLightArea) const {
     if (_0 == pLightArea->mPlacedZoneID && mLightID == pLightArea->mObjArg0) {
-        return false;
+        return true;
     }
 
-    return true;
+    return false;
 }
 
 bool ZoneLightID::isOutOfArea() const {

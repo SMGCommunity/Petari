@@ -1,5 +1,8 @@
 #include "Game/MapObj/FirePressureBulletHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/FirePressureBullet.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 FirePressureBulletHolder::FirePressureBulletHolder(const char* pName) : NameObj(pName) {
 }

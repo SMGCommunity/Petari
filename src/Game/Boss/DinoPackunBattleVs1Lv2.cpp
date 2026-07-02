@@ -1,7 +1,14 @@
 #include "Game/Boss/DinoPackunBattleVs1Lv2.hpp"
 #include "Game/Boss/DinoPackun.hpp"
 #include "Game/Boss/DinoPackunStateDamage.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvDinoPackunBattleVs1Lv2 {
     NEW_NERVE(DinoPackunBattleVs1Lv2NrvStart, DinoPackunBattleVs1Lv2, Start);
@@ -151,12 +158,7 @@ void DinoPackunBattleVs1Lv2::exeTurn() {
 
     TVec3f side;
     MR::calcSideVec(&side, getHost());
-    TVec3f v7;
-    v7.setPS(side);
-    v7.x *= _10;
-    v7.y *= _10;
-    v7.z *= _10;
-    MR::turnDirectionDegree(getHost(), &getHost()->_E8, v7, 1.0f);
+    MR::turnDirectionDegree(getHost(), &getHost()->_E8, side.multInLine(_10), 1.0f);
     MR::addVelocityMoveToDirection(getHost(), getHost()->_E8, 1.3f);
     getHost()->updateRunVelocity();
     getHost()->updateFootPrintNerve(getNerveStep(), 50);

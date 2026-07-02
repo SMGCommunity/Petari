@@ -1,12 +1,28 @@
 #include "Game/Enemy/BallBeamer.hpp"
 #include "Game/Enemy/RingBeam.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvBallBeamer {
     NEW_NERVE(BallBeamerNrvWait, BallBeamer, Wait);
     NEW_NERVE(BallBeamerNrvAttack, BallBeamer, Attack);
     NEW_NERVE(BallBeamerNrvInter, BallBeamer, Inter);
 };  // namespace NrvBallBeamer
+
+void BallBeamer_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
 
 BallBeamer::BallBeamer(const char* pName) : LiveActor(pName), mBeams(nullptr), _90(false) {
     _98.identity();

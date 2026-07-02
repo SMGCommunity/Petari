@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game/Gravity/GravityCreator.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+
+class PointGravityCreator;
 
 class MarioLauncherAttractor : public LiveActor {
 public:
@@ -11,14 +12,7 @@ public:
     }
     virtual void init(const JMapInfoIter& rIter);
 
+    void exeWait();
+
     PointGravityCreator* mGravityCreator;  // 0x8C
 };
-
-namespace NrvMarioLauncherAttractor {
-    class MarioLauncherAttractorNrvWait : public Nerve {
-    public:
-        virtual void execute(Spine* pSpine) const;
-
-        static MarioLauncherAttractorNrvWait sInstance;
-    };
-};  // namespace NrvMarioLauncherAttractor

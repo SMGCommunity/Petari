@@ -1,18 +1,14 @@
 #include "Game/MapObj/QuestionBoxGalleryObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
 
 namespace NrvQuestionBoxGalleryObj {
     NEW_NERVE(QuestionBoxGalleryObjNrvOnStart, QuestionBoxGalleryObj, OnStart);
@@ -46,12 +42,12 @@ void QuestionBoxGalleryObj::init(const JMapInfoIter& rIter) {
         rInitInfo.setupFarClipping(100.0f);
     }
 
-    f32 rRotateSpeedArg = 3.4028235e38f;
-    MR::getMapPartsArgRotateSpeed(&rRotateSpeedArg, rIter);
+    f32 rotateSpeed = FLOAT_MAX;
+    MR::getMapPartsArgRotateSpeed(&rotateSpeed, rIter);
 
     if (MR::isConnectedWithRail(rIter)) {
         rInitInfo.setupRailMover();
-    } else if (rRotateSpeedArg != 0.0f && rRotateSpeedArg != 3.4028235e38f) {
+    } else if (rotateSpeed != 0.0f && rotateSpeed != FLOAT_MAX) {
         rInitInfo.setupRotator();
         rInitInfo.setupProjmapMtx(false);
     }
@@ -59,10 +55,10 @@ void QuestionBoxGalleryObj::init(const JMapInfoIter& rIter) {
     initialize(rIter, rInitInfo);
     startMapPartsFunctions();
 
-    bool v6 = false;
-    MR::getJMapInfoArg0NoInit(rIter, &v6);
+    bool arg0 = false;
+    MR::getJMapInfoArg0NoInit(rIter, &arg0);
 
-    if (v6) {
+    if (arg0) {
         initNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOnWait::sInstance);
     } else {
         initNerve(&NrvQuestionBoxGalleryObj::QuestionBoxGalleryObjNrvOffWait::sInstance);

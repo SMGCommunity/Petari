@@ -1,19 +1,19 @@
 #include <cmath>
 
-static int init_jk[] = {2, 3, 4, 6};
+const static int init_jk[] = {2, 3, 4, 6};
 
-static double PIo2[] = {
-  1.57079625129699707031e+00, /* 0x3FF921FB, 0x40000000 */
-  7.54978941586159635335e-08, /* 0x3E74442D, 0x00000000 */
-  5.39030252995776476554e-15, /* 0x3CF84698, 0x80000000 */
-  3.28200341580791294123e-22, /* 0x3B78CC51, 0x60000000 */
-  1.27065575308067607349e-29, /* 0x39F01B83, 0x80000000 */
-  1.22933308981111328932e-36, /* 0x387A2520, 0x40000000 */
-  2.73370053816464559624e-44, /* 0x36E38222, 0x80000000 */
-  2.16741683877804819444e-51, /* 0x3569F31D, 0x00000000 */
+const static double PIo2[] = {
+    1.57079625129699707031e+00, /* 0x3FF921FB, 0x40000000 */
+    7.54978941586159635335e-08, /* 0x3E74442D, 0x00000000 */
+    5.39030252995776476554e-15, /* 0x3CF84698, 0x80000000 */
+    3.28200341580791294123e-22, /* 0x3B78CC51, 0x60000000 */
+    1.27065575308067607349e-29, /* 0x39F01B83, 0x80000000 */
+    1.22933308981111328932e-36, /* 0x387A2520, 0x40000000 */
+    2.73370053816464559624e-44, /* 0x36E38222, 0x80000000 */
+    2.16741683877804819444e-51, /* 0x3569F31D, 0x00000000 */
 };
 
-int __kernel_rem_pio2(double *x, double *y, int e0, int nx, int prec, const int *ipio2) {
+int __kernel_rem_pio2(double* x, double* y, int e0, int nx, int prec, const int* ipio2) {
     int jz, jx, jv, jp, jk, carry, n, iq[20], i, j, k, m, q0, ih;
     double z, fw, f[20], fq[20], q[20];
 
@@ -46,7 +46,7 @@ int __kernel_rem_pio2(double *x, double *y, int e0, int nx, int prec, const int 
     jz = jk;
 
 do_recomp:
-    for (i = 0, j= jz, z = q[jz]; j > 0; i++, j--) {
+    for (i = 0, j = jz, z = q[jz]; j > 0; i++, j--) {
         fw = (double)(int)(5.96046447753906250000e-08 * z);
         iq[i] = (int)(z - 1.67772160000000000000e+07 * fw);
         z = q[j - 1] + fw;
@@ -63,11 +63,9 @@ do_recomp:
         n += i;
         iq[jz - 1] -= i << (24 - q0);
         ih = iq[jz - 1] >> (23 - q0);
-    }
-    else if (q0 == 0) {
+    } else if (q0 == 0) {
         ih = iq[jz - 1] >> 23;
-    }
-    else if (z >= 0.5) {
+    } else if (z >= 0.5) {
         ih = 2;
     }
 
@@ -83,20 +81,19 @@ do_recomp:
                     carry = 1;
                     iq[i] = 0x1000000 - j;
                 }
+            } else {
+                iq[i] = 0xFFFFFF - j;
             }
-            else {
-                    iq[i] = 0xFFFFFF - j;
-                }
         }
 
         if (q0 > 0) {
             switch (q0) {
-                case 1:
-                    iq[jz - 1] &= 0x7FFFFF;
-                    break;
-                case 2:
-                    iq[jz - 1] &= 0x3FFFFF;
-                    break;
+            case 1:
+                iq[jz - 1] &= 0x7FFFFF;
+                break;
+            case 2:
+                iq[jz - 1] &= 0x3FFFFF;
+                break;
             }
         }
 
@@ -117,7 +114,8 @@ do_recomp:
         }
 
         if (j == 0) {
-            for (k = 1; iq[jk - k] == 0; k++);
+            for (k = 1; iq[jk - k] == 0; k++)
+                ;
 
             for (i = jz + 1; i <= jz + k; i++) {
                 f[jx + i] = (double)ipio2[jv + i];
@@ -142,8 +140,7 @@ do_recomp:
             jz--;
             q0 -= 24;
         }
-    }
-    else {
+    } else {
         z = scalbn(z, -q0);
 
         if (z >= 1.67772160000000000000e+07) {
@@ -152,8 +149,7 @@ do_recomp:
             jz += 1;
             q0 += 24;
             iq[jz] = fw;
-        }
-        else {
+        } else {
             iq[jz] = z;
         }
     }
@@ -165,63 +161,62 @@ do_recomp:
         fw *= 5.96046447753906250000e-08;
     }
 
-    for(i = jz; i >= 0; i--) {
-        for(fw = 0.0, k = 0;k <= jp && k <= jz - i; k++) {
-            fw += PIo2[k] * q[i+k];
+    for (i = jz; i >= 0; i--) {
+        for (fw = 0.0, k = 0; k <= jp && k <= jz - i; k++) {
+            fw += PIo2[k] * q[i + k];
         }
 
         fq[jz - i] = fw;
     }
 
-    switch(prec) {
-        case 0:
-            fw = 0.0;
-            for (i = jz; i >= 0; i--) {
-                fw += fq[i];
-            }
+    switch (prec) {
+    case 0:
+        fw = 0.0;
+        for (i = jz; i >= 0; i--) {
+            fw += fq[i];
+        }
 
-            y[0] = (ih == 0) ? fw : -fw; 
-            break;
-        case 1:
-        case 2:
-            fw = 0.0;
-            for (i = jz; i >= 0; i--) {
-                fw += fq[i];
-            }
+        y[0] = (ih == 0) ? fw : -fw;
+        break;
+    case 1:
+    case 2:
+        fw = 0.0;
+        for (i = jz; i >= 0; i--) {
+            fw += fq[i];
+        }
 
-            y[0] = (ih == 0) ? fw : -fw; 
-            fw = fq[0] - fw;
-            for (i = 1; i <= jz; i++) {
-                fw += fq[i];
-            }
+        y[0] = (ih == 0) ? fw : -fw;
+        fw = fq[0] - fw;
+        for (i = 1; i <= jz; i++) {
+            fw += fq[i];
+        }
 
-            y[1] = (ih == 0) ? fw : -fw; 
-            break;
-        case 3:
-            for (i = jz; i > 0; i--) {
-                fw = fq[i - 1] + fq[i]; 
-                fq[i] += fq[i - 1] - fw;
-                fq[i - 1] = fw;
-            }
-            for (i= jz; i > 1; i--) {
-                fw = fq[i - 1] + fq[i]; 
-                fq[i] += fq[i - 1] - fw;
-                fq[i - 1] = fw;
-            }
-            for (fw = 0.0, i = jz; i >= 2; i--) {
-                fw += fq[i];
-            }
+        y[1] = (ih == 0) ? fw : -fw;
+        break;
+    case 3:
+        for (i = jz; i > 0; i--) {
+            fw = fq[i - 1] + fq[i];
+            fq[i] += fq[i - 1] - fw;
+            fq[i - 1] = fw;
+        }
+        for (i = jz; i > 1; i--) {
+            fw = fq[i - 1] + fq[i];
+            fq[i] += fq[i - 1] - fw;
+            fq[i - 1] = fw;
+        }
+        for (fw = 0.0, i = jz; i >= 2; i--) {
+            fw += fq[i];
+        }
 
-            if(ih == 0) {
-                y[0] = fq[0]; 
-                y[1] = fq[1]; 
-                y[2] = fw;
-            } 
-            else {
-                y[0] = -fq[0]; 
-                y[1] = -fq[1]; 
-                y[2] = -fw;
-            }
+        if (ih == 0) {
+            y[0] = fq[0];
+            y[1] = fq[1];
+            y[2] = fw;
+        } else {
+            y[0] = -fq[0];
+            y[1] = -fq[1];
+            y[2] = -fw;
+        }
     }
-    return n&7;
+    return n & 7;
 }

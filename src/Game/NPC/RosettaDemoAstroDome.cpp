@@ -1,9 +1,17 @@
 #include "Game/NPC/RosettaDemoAstroDome.hpp"
 #include "Game/Demo/DemoFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/Rosetta.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/IconAButton.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <cstdio>
 
 // TODO: this file is not linkable yet due to a mismatch in .data related to TalkMessageFunc

@@ -108,7 +108,9 @@ JAUSection::JAUSection(JAUSectionHeap* param_0, u32 param_1, s32 param_2) : JSUL
 }
 
 void JAUSection::finishBuild() {
-    { TPushCurrentHeap push(getHeap_()); }
+    {
+        TPushCurrentHeap push(getHeap_());
+    }
     data_.field_0x98 -= getHeap_()->getFreeSize();
     getHeap_()->freeTail();
     field_0x2c = 0;

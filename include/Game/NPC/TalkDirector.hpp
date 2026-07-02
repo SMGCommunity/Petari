@@ -1,12 +1,11 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include <revolution.h>
+#include "Game/Util/Array.hpp"
 
 class ActorCameraInfo;
+class LiveActor;
 class TalkMessageCtrl;
 class TalkBalloonHolder;
 class TalkStateHolder;

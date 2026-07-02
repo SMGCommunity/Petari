@@ -1,11 +1,23 @@
 #include "Game/Demo/PrologueDirector.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/PrologueLetter.hpp"
 #include "Game/Screen/ProloguePictureBook.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static const char* sPictureBookDemoName = "プロローグデモ";
@@ -19,6 +31,10 @@ namespace {
     static const s32 sGameStartWipeFrame = 30;
     static const s32 sGameStartFrame = 15;
     static const s32 sFallingStarStep = 130;
+
+    PrologueHolder* getPrologueHolder() {
+        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
+    }
 };  // namespace
 
 namespace {
@@ -54,7 +70,7 @@ void PrologueDirector::init(const JMapInfoIter& rIter) {
     makeActorDead();
 
     MR::createSceneObj(SceneObj_PrologueHolder);
-    MR::getPrologueHolder()->registerPrologueObj(this);
+    getPrologueHolder()->registerPrologueObj(this);
 }
 
 void PrologueDirector::initAfterPlacement() {
@@ -259,8 +275,7 @@ void PrologueDirector::createMarioPosDummyModel() {
     MR::invalidateClipping(mMarioPosDummyModel);
 
     mMarioPosDummyModel->kill();
-    // FIXME: Order of store instructions is swapped.
-    mMarioPosDummyModel->mPosition.set(0.0f, 0.0f, 0.0f);
+    mMarioPosDummyModel->mPosition.zeroInline();
 
     ActorCameraInfo cameraInfo = ActorCameraInfo();
 
@@ -294,10 +309,6 @@ void PrologueHolder::start() {
 }
 
 namespace MR {
-    PrologueHolder* getPrologueHolder() {
-        return MR::getSceneObj< PrologueHolder >(SceneObj_PrologueHolder);
-    }
-
     void startPrologue() {
         getPrologueHolder()->start();
     }

@@ -1,6 +1,7 @@
 #include "Game/MapObj/BallOpener.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/Util/GeometryBindUtil.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvBallOpener {
     NEW_NERVE(BallOpenerNrvWait, BallOpener, Wait);

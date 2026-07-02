@@ -1,5 +1,7 @@
 #include "Game/MapObj/StarPieceMother.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/StarPiece.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvStarPieceMother {
     NEW_NERVE(HostTypeNrvMoveOnRail, StarPieceMother, MoveOnRail);
@@ -165,7 +167,7 @@ void StarPieceMother::emitStarPieces() {
     for (u32 idx = 0; idx < _94; idx++) {
         TVec3f position;
         position.set(*MR::getPlayerCenterPos());
-        position.subInline(mPosition);
+        position.sub(mPosition);
         MR::normalizeOrZero(&position);
         MR::addRandomVector(&position, position, 0.5f);
         MR::normalizeOrZero(&position);

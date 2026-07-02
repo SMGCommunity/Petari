@@ -1,5 +1,6 @@
 #include "Game/Util/FixedPosition.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"

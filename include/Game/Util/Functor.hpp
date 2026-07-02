@@ -1,9 +1,7 @@
 #pragma once
 
 #include "Inline.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
-
-class JKRHeap;
+#include <JSystem/JKernel/JKRHeap.hpp>
 
 namespace MR {
     class FunctorBase {

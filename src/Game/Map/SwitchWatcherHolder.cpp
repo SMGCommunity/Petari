@@ -4,7 +4,7 @@
 #include "Game/Map/SwitchWatcher.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 SwitchWatcherHolder::SwitchWatcherHolder() : NameObj("SwitchWatcherHolder") {
     mWatcherCount = 0;

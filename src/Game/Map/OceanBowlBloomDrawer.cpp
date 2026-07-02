@@ -2,7 +2,9 @@
 #include "Game/Map/OceanBowl.hpp"
 #include "Game/Map/OceanBowlPoint.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <revolution/gx/GXVert.h>
 
 OceanBowlBloomDrawer::OceanBowlBloomDrawer(OceanBowl* pOwner) : NameObj("オーシャンボウル[ブルーム描画]"), mOwner(pOwner) {

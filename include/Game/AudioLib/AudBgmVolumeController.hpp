@@ -7,6 +7,7 @@ public:
     /// @brief Creates a new `AudBgmVolumeController`.
     AudBgmVolumeController();
 
+    ~AudBgmVolumeController() {};
     void update();
     f32 getVolume() const;
     void volDown(bool);

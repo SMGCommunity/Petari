@@ -1,6 +1,8 @@
 #include "Game/Demo/DemoTalkAnimCtrl.hpp"
 #include "Game/Demo/DemoExecutor.hpp"
 #include "Game/Demo/DemoFunction.hpp"
+#include "Game/Demo/DemoSubPartKeeper.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/System/NerveExecutor.hpp"
 #include "Game/System/ResourceHolder.hpp"
 #include "Game/System/ResourceInfo.hpp"
@@ -8,16 +10,19 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <cstdio>
+
+namespace {
+    // sBckCtrlData
+};  // namespace
 
 DemoTalkAnimCtrl::DemoTalkAnimCtrl(LiveActor* pActor, const char* a3, const char* a4)
     : NerveExecutor(a3), mActor(pActor), _C(a3), _10(a4), _14(nullptr), _18(""), _1C(""), mCameraInfo(nullptr), _24(0), _28(0), _2C(0), _30(0),
       _34(true), _35(false), _36(false), _38(0), _3C(0), _40(0), _44(0), _48(false), mHaveCamera(false), _4A(false), mHaveBtk(false), mHaveBpk(false),
       mHaveBtp(false), mHaveBrk(false), mHaveBva(false) {
-}
-
-DemoTalkAnimCtrl::~DemoTalkAnimCtrl() {
 }
 
 void DemoTalkAnimCtrl::initForScene(const char* a1, const char* a2, const JMapInfoIter& rIter) {
@@ -45,6 +50,22 @@ void DemoTalkAnimCtrl::updateCamera() {
     }
 }
 
+namespace {
+    s32 calcDemoPartStep(const char* pExecutorName, const char* pMainPartName) {
+        DemoExecutor* exec = DemoFunction::findDemoExecutor(pExecutorName);
+
+        DemoSubPartInfo* subpart;
+        DemoSubPartKeeper* subpartkeeper = exec->mSubPartKeeper;
+        for (int i = 0; i < subpartkeeper->mNumSubPartInfos; i++) {
+            subpart = &subpartkeeper->mSubPartInfos[i];
+            if (MR::isEqualString(pMainPartName, subpart->mMainPartName) && MR::isEqualSubString(subpart->mSubPartName, "会話アニメループ")) {
+                return subpart->mMainPartStep;
+            }
+        }
+        return 0;
+    }
+};  // namespace
+
 void DemoTalkAnimCtrl::createBckCtrlData(BckCtrlData* pBck, s32 totalSteps) const {
     s16 temp_r0 = MR::max(_24 - 1, 0);
     pBck->mLoopMode = 2;
@@ -54,9 +75,9 @@ void DemoTalkAnimCtrl::createBckCtrlData(BckCtrlData* pBck, s32 totalSteps) cons
     pBck->mEndFrame = temp_r0 + totalSteps + 1;
 
     if (_36) {
-        s32 var_r0 = DemoFunction::findDemoExecutor(_C)->getSubPartStep(_14);
-        if (var_r0 > 0) {
-            pBck->mRepeatFrame = temp_r0 + var_r0;
+        s32 step = ::calcDemoPartStep(_C, _14);
+        if (step > 0) {
+            pBck->mRepeatFrame = temp_r0 + step;
         }
     }
 }

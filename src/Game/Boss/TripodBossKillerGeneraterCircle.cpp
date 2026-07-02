@@ -1,6 +1,9 @@
 #include "Game/Boss/TripodBossKillerGeneraterCircle.hpp"
-#include "Game/Boss/TripodBossKillerGenerator.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include "Game/Boss/TripodBossKillerGenerater.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 struct GeneratorCircleData {
     const char* mName;       // 0x00

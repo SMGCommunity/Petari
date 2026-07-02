@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 class AstroDomeCameraController : public LiveActor {
 public:

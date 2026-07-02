@@ -76,8 +76,8 @@ s32 JAUDynamicSeqDataBlocks::getSeqData(JAISoundID param_0, JAISeqDataUser* para
 
     u8* seqData = mLoadedBlocks.getSeqData(param_0);
     if (seqData != nullptr) {
-        param_2->addr = seqData;
-        param_2->size = 0;
+        param_2->data = seqData;
+        param_2->offset = 0;
         return JAISeqDataMgr::SeqDataReturnValue_2;
     }
 

@@ -1,6 +1,8 @@
 #include "Game/MapObj/BigFan.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigFanHolder.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 namespace NrvBigFan {
@@ -92,7 +94,7 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
         }
 
         TVec3f stack_2C;
-        stack_2C.setPS(stack_38 - (front_vec * dot));
+        stack_2C = stack_38 - (front_vec * dot);
         f32 mag = PSVECMag(&stack_2C);
 
         if (mag >= 400.0f * mScale.x) {

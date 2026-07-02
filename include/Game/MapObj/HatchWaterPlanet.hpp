@@ -2,6 +2,9 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class CollisionParts;
+class LodCtrl;
+
 class HatchWaterPlanet : public LiveActor {
 public:
     HatchWaterPlanet(const char*);

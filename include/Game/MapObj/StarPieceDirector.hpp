@@ -2,15 +2,13 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/NameObj/NameObj.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include <revolution.h>
 
 class HitSensor;
-class StarPieceShooter;
-class StarPieceDirector;
 class StarPiece;
+class StarPieceDirector;
+class StarPieceHostInfo;
+class StarPieceReceiverInfo;
+class StarPieceShooter;
 
 namespace MR {
     StarPieceDirector* getStarPieceDirector();
@@ -29,9 +27,6 @@ namespace MR {
     void incNumStarPieceNewed();
 
 };  // namespace MR
-
-class StarPieceHostInfo;
-class StarPieceReceiverInfo;
 
 class StarPieceDirector : public LiveActorGroup {
 public:

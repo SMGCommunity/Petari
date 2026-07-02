@@ -1,6 +1,8 @@
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvTombSpiderVitalSpot {
     NEW_NERVE(TombSpiderVitalSpotNrvWait, TombSpiderVitalSpot, Wait);

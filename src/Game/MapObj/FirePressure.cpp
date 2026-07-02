@@ -1,7 +1,9 @@
 #include "Game/MapObj/FirePressure.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/FirePressureBullet.hpp"
 #include "Game/MapObj/FirePressureBulletHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
 FirePressure::~FirePressure() {

@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TBox.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class ActorCameraInfo;
+class ModelObj;
 
 class BlackHole : public LiveActor {
 public:

@@ -1,4 +1,5 @@
 #include "Game/NPC/MiiFaceRecipe.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 MiiFaceRecipe::MiiFaceRecipe(RFLDataSource dataSource, int index, RFLResolution resolution, u32 expressionFlag)
     : mDataSource(dataSource), mMiddleDB(nullptr), mIndex(index), mResolution(resolution), mExpressionFlag(expressionFlag) {

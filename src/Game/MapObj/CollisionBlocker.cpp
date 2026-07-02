@@ -1,4 +1,6 @@
 #include "Game/MapObj/CollisionBlocker.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     static f32 cRadius = 50.0f;

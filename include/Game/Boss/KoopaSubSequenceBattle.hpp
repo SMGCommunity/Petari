@@ -3,8 +3,8 @@
 #include "Game/LiveActor/ActorStateBase.hpp"
 
 class Koopa;
-class KoopaSequencer;
 class KoopaBattleBase;
+class KoopaSequencer;
 
 class KoopaSubSequenceBattle : public ActorStateBase< Koopa > {
 public:

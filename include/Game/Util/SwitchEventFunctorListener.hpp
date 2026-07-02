@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Game/Map/ActorAppearSwitchListener.hpp"
-#include "Game/Util/Functor.hpp"
-#include <revolution.h>
+
+namespace MR {
+    class FunctorBase;
+};  // namespace MR
 
 class SwitchEventFunctorListener : public SwitchEventListener {
 public:

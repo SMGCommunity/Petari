@@ -1,6 +1,6 @@
 #include "Game/MapObj/ItemBlock.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace {
     static Color8 hPointLight(0xFF, 0xE6, 0, 0xFF);
@@ -235,7 +235,7 @@ void ItemBlock::exeWait() {
         TVec3f position(mPosition);
         MR::calcGravityVector(this, &gravVec, nullptr, 0);
 
-        position.subInline(mPosition, gravVec * 100.0f);
+        position.sub(mPosition, gravVec * 100.0f);
 
         if (mKind == 2) {
             MR::startSystemSE("SE_SY_ITEM_APPEAR");

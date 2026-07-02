@@ -3,7 +3,7 @@
 #include "Game/LiveActor/RailRider.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
+#include "Game/Util/PlayerUtil.hpp"
 #include <JSystem/JMath/JMath.hpp>
 #include <revolution/mtx.h>
 
@@ -179,7 +179,7 @@ namespace MR {
 
         fromInPos.mult(1.0f / fromInPos.length());
 
-        pDir->set(fromInPos.addOperatorInLine(dir));
+        pDir->set(fromInPos + dir);
         normalizeOrZero(pDir);
     }
 
@@ -211,12 +211,12 @@ namespace MR {
 
         TVec3f padVec;
         padVec.set(padding);
-        JMathInlineVEC::PSVECSubtract(clipBox.i, padVec, clipBox.i);  // TODO: smells like clipMin.sub(offsetVec)
+        clipBox.i.sub(padVec);
         clipBox.f.add(padVec);
-        JMAVECLerp(clipBox.f, clipBox.i, pCenter, 0.5f);
+        pCenter->lerp(clipBox.f, clipBox.i, 0.5f);
 
         TVec3f diameterVec;
-        JMathInlineVEC::PSVECSubtract(clipBox.f, clipBox.i, diameterVec);
+        diameterVec.sub(clipBox.f, clipBox.i);
         *pRadius = diameterVec.length() * 0.5f;
     }
 

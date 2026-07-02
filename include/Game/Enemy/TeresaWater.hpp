@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class TeresaWater : public LiveActor {
 public:

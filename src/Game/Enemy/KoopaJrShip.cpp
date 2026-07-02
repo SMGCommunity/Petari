@@ -5,15 +5,24 @@
 #include "Game/Enemy/KoopaJrShipCannonShell.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/KoopaJr.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "math_types.hpp"
-#include "revolution/wpad.h"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <algorithm>
-#include <functional.hpp>
 
 namespace {
     static const char* cJointNamePropellerBack0 = "Screw00";
@@ -123,7 +132,7 @@ void KoopaJrShip::kill() {
 void KoopaJrShip::control() {
     _EC = MR::repeat(_EC + mPropRotateSpeed, 0.0f, 360.0f);
 
-    f32 angle = deg2rad(_EC);
+    f32 angle = MR::toRadian(_EC);
     f32 s = sin(angle);
     f32 c = cos(angle);
 
@@ -137,8 +146,8 @@ void KoopaJrShip::control() {
     mPropellerMtx[1][0] = 0.0f;
     mPropellerMtx[0][1] = 0.0f;
 
-    mScrew00Mtx.setEulerZ(deg2rad(_EC));
-    mScrew01Mtx.setEulerZ(deg2rad(_EC));
+    mScrew00Mtx.setEulerZ(MR::toRadian(_EC));
+    mScrew01Mtx.setEulerZ(MR::toRadian(_EC));
     MR::setRailCoordSpeed(this, _184);
 
     if (_D0 > 0) {
@@ -330,7 +339,7 @@ void KoopaJrShip::calcLauncherInfoKiller(TVec3f* a1, TVec3f* a2, s32 idx) const 
     MR::rotateVecDegree(a2, v16, ::sKillerLauncherAngle[idx].y);
     MR::rotateVecDegree(a2, v15, ::sKillerLauncherAngle[idx].z);
     MR::normalize(a2);
-    a1->addInline(*a2 * -100.0f);
+    a1->add(*a2 * -100.0f);
 }
 
 void KoopaJrShip::shootShell(s32 idx) {
@@ -813,9 +822,6 @@ void KoopaJrShip::exeTurnFront() {
 
         setNerve(&NrvKoopaJrShip::HostTypeMoveFrontAttack::sInstance);
     }
-}
-
-KoopaJrShip::~KoopaJrShip() {
 }
 
 void KoopaJrShip::exeBreakEnd() {

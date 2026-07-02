@@ -1,8 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class Koopa;
+class ModelObj;
+class PartsModel;
 
 class KoopaShockWave : public LiveActor {
 public:

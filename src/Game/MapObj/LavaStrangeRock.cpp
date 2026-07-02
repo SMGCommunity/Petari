@@ -1,9 +1,14 @@
 #include "Game/MapObj/LavaStrangeRock.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvLavaStrangeRock {
     NEW_NERVE(LavaStrangeRockNrvWait, LavaStrangeRock, Wait);
 };  // namespace NrvLavaStrangeRock
+
+LavaStrangeRock::~LavaStrangeRock() {
+}
 
 LavaStrangeRock::LavaStrangeRock(const char* pName) : LiveActor(pName), mRockType(3), _90(0), mLodCtrlPlanet(nullptr) {
 }
@@ -87,11 +92,13 @@ void LavaStrangeRock::control() {
 }
 
 void LavaStrangeRock::exeWait() {
-    TVec3f pCenterPos = *MR::getPlayerCenterPos();
-    JMathInlineVEC::PSVECSubtract(&pCenterPos, MR::getPlayerVelocity(), &pCenterPos);
+    TVec3f centerPos = *MR::getPlayerCenterPos();
+    centerPos -= *MR::getPlayerVelocity();
+
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
-    TVec3f upVec2(upVec);
+    TVec3f upVec2 = upVec;
+
     f32 v1;
     switch (mRockType) {
     case 0:
@@ -109,13 +116,15 @@ void LavaStrangeRock::exeWait() {
     default:
         break;
     }
+
     TVec3f checkHitSegSphereRes;
     if (_90 == 1) {
-        if (!(MR::isPlayerInRush()))
+        if (!MR::isPlayerInRush()) {
             return;
+        }
+
         TVec3f upPlusPosition = mPosition + upVec2;
-        TVec3f* pCenterPos2 = MR::getPlayerCenterPos();
-        if ((MR::checkHitSegmentSphere(*pCenterPos2, mPosition, upPlusPosition, v1, 0)) != 1) {
+        if ((MR::checkHitSegmentSphere(*MR::getPlayerCenterPos(), mPosition, upPlusPosition, v1, 0)) != 1) {
             return;
         }
         MR::emitEffect(this, "Break");
@@ -132,14 +141,13 @@ void LavaStrangeRock::exeWait() {
         kill();
         return;
     }
-    if (_90 != 2) {
-        return;
+    if (_90 == 2) {
+        TVec3f upPlusPosition2 = mPosition + upVec2;
+        if (!(MR::checkHitSegmentSphere(*MR::getPlayerCenterPos(), mPosition, upPlusPosition2, v1, &checkHitSegSphereRes))) {
+            return;
+        }
+        TVec3f checkHitSegSphereRes2(checkHitSegSphereRes);
+        checkHitSegSphereRes2 *= 50.0f;
+        MR::pushPlayer(checkHitSegSphereRes2);
     }
-    TVec3f upPlusPosition2 = mPosition + upVec2;
-    if (!(MR::checkHitSegmentSphere(*MR::getPlayerCenterPos(), mPosition, upPlusPosition2, v1, &checkHitSegSphereRes))) {
-        return;
-    }
-    TVec3f checkHitSegSphereRes2(checkHitSegSphereRes);
-    checkHitSegSphereRes2 *= 50.0f;
-    MR::pushPlayer(checkHitSegSphereRes2);
 }

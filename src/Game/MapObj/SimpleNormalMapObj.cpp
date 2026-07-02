@@ -1,10 +1,11 @@
 #include "Game/MapObj/SimpleNormalMapObj.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "revolution/types.h"
 
 SimpleNormalMapObj::SimpleNormalMapObj(const char* pName) : NormalMapBase(pName) {
 }

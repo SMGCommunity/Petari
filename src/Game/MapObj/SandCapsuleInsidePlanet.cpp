@@ -1,4 +1,9 @@
 #include "Game/MapObj/SandCapsuleInsidePlanet.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 namespace NrvSandCapsuleInsidePlanet {
     NEW_NERVE(SandCapsuleInsidePlanetNrvWait, SandCapsuleInsidePlanet, Wait);

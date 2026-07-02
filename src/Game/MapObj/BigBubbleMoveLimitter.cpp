@@ -1,5 +1,7 @@
 #include "Game/MapObj/BigBubbleMoveLimitter.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigBubbleHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 
@@ -50,7 +52,7 @@ bool BigBubbleMoveLimitter::limitPosition(TVec3f* pPos, f32 offset) const {
             limitted = true;
         }
 
-        pPos->set(mPosition.addOperatorInLine(mAxis * proj).addOperatorInLine(ortho * (mCylinderRadius + offset)));
+        pPos->set(mPosition + mAxis * proj + ortho * (mCylinderRadius + offset));
     } else {
         TVec3f pos;
         MR::vecKillElement(*pPos - mPosition, mFront, &pos);
@@ -74,7 +76,7 @@ bool BigBubbleMoveLimitter::limitPosition(TVec3f* pPos, f32 offset) const {
             limitted = true;
         }
 
-        pPos->set(mPosition.addOperatorInLine(pos));
+        pPos->set(mPosition + pos);
     }
 
     return limitted;
@@ -82,7 +84,7 @@ bool BigBubbleMoveLimitter::limitPosition(TVec3f* pPos, f32 offset) const {
 
 bool BigBubbleMoveLimitter::limitVelocity(TVec3f* pPos, const TVec3f& rVel, f32 offset) const {
     TVec3f nextPos;
-    nextPos.set(rVel.addOperatorInLine(*pPos));
+    nextPos.set(rVel + *pPos);
     bool limitted = limitPosition(&nextPos, offset);
     pPos->set(nextPos - rVel);
     return limitted;

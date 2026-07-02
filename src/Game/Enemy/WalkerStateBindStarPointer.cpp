@@ -1,5 +1,12 @@
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     static const s32 sPointCanceBindTime = 5;

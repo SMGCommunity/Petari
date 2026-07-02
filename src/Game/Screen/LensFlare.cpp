@@ -3,8 +3,10 @@
 #include "Game/MapObj/BrightObj.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/System/DrawSyncManager.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/TriggerChecker.hpp"
 
 namespace {
@@ -132,13 +134,13 @@ void LensFlareRing::appearAnim() {
 void LensFlareRing::controlAnim() {
     MR::startBrk(this, "LensFlare");
     MR::setBrkRate(this, 0.0f);
-    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->mEnd);
+    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->getEnd());
 
     if (MR::isBckStopped(this)) {
         MR::startBckWithInterpole(this, "LensFlare", 0);
     }
 
-    MR::setBckFrameAndStop(this, _A0 * MR::getBckCtrl(this)->mEnd);
+    MR::setBckFrameAndStop(this, _A0 * MR::getBckCtrl(this)->getEnd());
 }
 
 LensFlareGlow::LensFlareGlow() : LensFlareModel("グレア（円形）", "GlareGlow") {
@@ -152,7 +154,7 @@ void LensFlareGlow::appearAnim() {
 void LensFlareGlow::controlAnim() {
     MR::startBrk(this, "GlareGlow");
     MR::setBrkRate(this, 0.0f);
-    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->mEnd);
+    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->getEnd());
 }
 
 LensFlareLine::LensFlareLine() : LensFlareModel("グレア（ライン）", "GlareLine") {
@@ -165,7 +167,7 @@ void LensFlareLine::appearAnim() {
 void LensFlareLine::controlAnim() {
     MR::startBrk(this, "GlareLine");
     MR::setBrkRate(this, 0.0f);
-    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->mEnd);
+    MR::setBrkFrame(this, (1.0f - _8C * _90) * MR::getBrkCtrl(this)->getEnd());
 }
 
 LensFlareDirector::LensFlareDirector()

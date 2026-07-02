@@ -1,12 +1,9 @@
 #include "Game/NPC/PenguinMaster.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NPC/NPCActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/NPCUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 
 namespace NrvPenguinMaster {
     NEW_NERVE(PenguinMasterNrvWait, PenguinMaster, Wait);
@@ -25,7 +22,7 @@ void PenguinMaster::init(const JMapInfoIter& rIter) {
     caps.setDefault();
     caps.mSensor = false;
     caps.mShadowSize = 130.0f;
-    caps.mMessageOffset.setPS2(TVec3f(0.0f, 430.0f, 0.0f));
+    caps.mMessageOffset = TVec3f(0.0f, 430.0f, 0.0f);
     caps.mPointerSize = 180.0f;
     caps.mStarPointerOffs.x = 0.0f;
     caps.mStarPointerOffs.y = 200.0f;

@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class Color8;
+
 class AstroDomeOrbit : public LiveActor {
 public:
     AstroDomeOrbit();

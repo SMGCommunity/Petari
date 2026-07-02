@@ -1,5 +1,16 @@
 #include "Game/Boss/BossKameckBattleDemo.hpp"
 #include "Game/Boss/BossKameck.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 BossKameckDemoPosition::BossKameckDemoPosition() : LiveActor("キャスト位") {
     makeActorDead();
@@ -108,7 +119,7 @@ void BossKameckBattleDemo::startDemoDownVs2() {
 void BossKameckBattleDemo::exeWaitAppearVs1() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("BattleWait", (const char*)nullptr);
-        MR::stopStageBGM(0x5A);
+        MR::stopStageBGM(90);
         mHost->startDemo();
     }
 
@@ -155,7 +166,7 @@ void BossKameckBattleDemo::exeAppearVs1() {
 void BossKameckBattleDemo::exeWaitAppearVs2() {
     if (MR::isFirstStep(this)) {
         MR::startBckPlayer("BattleWait", (const char*)0);
-        MR::stopStageBGM(0x5A);
+        MR::stopStageBGM(90);
         mHost->startDemo();
     }
 

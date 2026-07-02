@@ -1,5 +1,7 @@
 #include "Game/MapObj/SpinDriver.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/SpinDriverUtil.hpp"
+#include "Game/Util.hpp"
 #include "math_types.hpp"
 #include <cstdio>
 #include <cstring>

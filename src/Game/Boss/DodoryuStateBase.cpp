@@ -1,6 +1,7 @@
 #include "Game/Boss/DodoryuStateBase.hpp"
 #include "Game/Boss/Dodoryu.hpp"
 #include "Game/Boss/DodoryuUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 bool DodoryuStateBase::calcVerticalizedDir(TVec3f* pVec, const TVec3f& rVec) {
     // TODO: Possibly an inline of `DodoryuUtil::calcVerticalizedDir`.

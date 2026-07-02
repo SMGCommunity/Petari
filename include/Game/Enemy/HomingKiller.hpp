@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class ModelObj;
+class PartsModel;
 
 class HomingKiller : public LiveActor {
 public:

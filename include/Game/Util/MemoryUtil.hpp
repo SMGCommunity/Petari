@@ -62,7 +62,7 @@ namespace MR {
     u32 calcCheckSum(const void* pPtr, u32 size);
 
     void* allocFromWPadHeap(u32 size);
-    int freeFromWPadHeap(void* pPtr);
+    u8 freeFromWPadHeap(void* pPtr);
 
     template < int N >
     class JKRHeapAllocator {

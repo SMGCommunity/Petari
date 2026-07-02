@@ -1,8 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "revolution/mtx.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class TripodBossBaseJointPosition : public LiveActor {
 public:

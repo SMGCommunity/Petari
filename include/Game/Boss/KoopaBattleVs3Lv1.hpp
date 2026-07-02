@@ -2,8 +2,9 @@
 
 #include "Game/Boss/KoopaBattleBase.hpp"
 
-class KoopaStateChaseRoll;
+class HitSensor;
 class KoopaStateAttackShockWave;
+class KoopaStateChaseRoll;
 
 class KoopaBattleVs3Lv1 : public KoopaBattleBase {
 public:
@@ -13,15 +14,14 @@ public:
     virtual void init();
     virtual void appear();
 
-    void exeChaseRoll();
-    void exeAttackShockWave();
-    void exeDamageReverse();
-
     bool tryCalcAndSetBaseMtx();
-    bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void exeChaseRoll();
     void exeAttackFire();
+    void exeAttackShockWave();
+    void exeDamageReverse();
     void exeJumpAway();
     void exeGuard();
     void exeRecover();

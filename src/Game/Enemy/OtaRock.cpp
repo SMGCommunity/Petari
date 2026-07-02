@@ -1,28 +1,12 @@
 #include "Game/Enemy/OtaRock.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/CocoNutBall.hpp"
 #include "Game/Enemy/FireBall.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
-#include "Game/Util/ActorSwitchUtil.hpp"
-#include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/FixedPosition.hpp"
-#include "Game/Util/JMapUtil.hpp"
-#include "Game/Util/JointUtil.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/MathUtil.hpp"
-#include "Game/Util/MtxUtil.hpp"
-#include "Game/Util/ObjUtil.hpp"
-#include "Game/Util/PlayerUtil.hpp"
-#include "Game/Util/SoundUtil.hpp"
-
-#include <JSystem/JGeometry/TVec.hpp>
-#include <JSystem/JMath/JMath.hpp>
-#include <revolution/mtx.h>
-#include <revolution/types.h>
+#include "Game/Util.hpp"
 
 namespace {
     const Vec cSensorOffset = {0.0f, 0.0f, 0.0f};
@@ -39,8 +23,8 @@ namespace NrvOtaRock {
 };  // namespace NrvOtaRock
 
 OtaRock::OtaRock(const char* pName)
-    : LiveActor(pName), _8C(false), mCocoNutArray(nullptr), mFireBallArray(nullptr), mFixedPosition(nullptr), _9C(nullptr), _A0(0), _A4(), _D4(0.0f),
-      _D8(0.0f), _DC(1.0f), mAnimScaleController(nullptr) {
+    : LiveActor(pName), _8C(false), mCocoNutArray(nullptr), mFireBallArray(nullptr), mFixedPosition(nullptr), _9C(nullptr), _A0(0), _A4(),
+      _D4(0.0f, 0.0f, 1.0f), mAnimScaleController(nullptr) {
     _A4.identity();
 }
 OtaRock::~OtaRock() {
@@ -97,18 +81,17 @@ void OtaRock::initSensor() {
     MR::addHitSensorMtxEnemy(this, "body", 8, 300.0f, MR::getJointMtx(this, "body"), static_cast< TVec3f >(::cSensorOffset));
 }
 
-// void OtaRock::updateBaseMtx() {
-//     if (MR::isStageStateScenarioOpeningCamera()) {
-//         _D4 = mGravity.x;
-//         _D8 = mGravity.y;
-//         _DC = mGravity.z;
-//     } else {
-//         TVec3f* pos;
-//         JMathInlineVEC::PSVECSubtract(MR::getPlayerPos(), &mPosition, pos);
-
-//         // MR::makeMtxUpFrontPos(pos, mRotation, MR::normalize(pos), mPosition)
-//     }
-// }
+void OtaRock::updateBaseMtx() {
+    TVec3f up = mGravity.negateInline();
+    TVec3f front;
+    if (MR::isStageStateScenarioOpeningCamera()) {
+        front.set(_D4);
+    } else {
+        front.sub(*MR::getPlayerPos(), mPosition);
+        MR::normalize(&front);
+    }
+    MR::makeMtxUpFrontPos(&_A4, up, front, mPosition);
+}
 
 CocoNutBall* OtaRock::getDisappearedCocoNut() {
     for (s32 i = 0; i < 4; i++) {

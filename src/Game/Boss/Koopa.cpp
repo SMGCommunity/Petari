@@ -5,6 +5,12 @@
 #include "Game/Boss/KoopaSensorCtrl.hpp"
 #include "Game/Boss/KoopaSequencer.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 Koopa::Koopa(const char* pName, KoopaSequencer* pSequencer)
     : LiveActor(pName), mFront(0.0f, 0.0f, 1.0f), mSequencer(pSequencer), mSensorCtrl(), mParts(), mJointCtrl() {
@@ -99,7 +105,7 @@ void Koopa::init(const JMapInfoIter& rIter) {
     }
 }
 
-bool KoopaSequencer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void KoopaSequencer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool KoopaSequencer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {

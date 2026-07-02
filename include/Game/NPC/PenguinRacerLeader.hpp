@@ -2,6 +2,9 @@
 
 #include "Game/NPC/PenguinRacer.hpp"
 
+class ActorCameraInfo;
+class TakeOutStar;
+
 class PenguinRacerLeader : public PenguinRacer {
 public:
     PenguinRacerLeader(const char*);

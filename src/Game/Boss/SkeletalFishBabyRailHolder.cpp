@@ -1,5 +1,7 @@
 #include "Game/Boss/SkeletalFishBabyRailHolder.hpp"
 #include "Game/Boss/SkeletalFishBabyRail.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/RailUtil.hpp"
 
 SkeletalFishBabyRailGroupNode::SkeletalFishBabyRailGroupNode(s32 a1) {
     _0 = a1;

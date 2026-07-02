@@ -1,7 +1,24 @@
 #include "Game/Enemy/HomingKiller.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     static const Vec cBodyHitSensorOffset = {0.0f, 0.0f, -10.0f};
@@ -128,7 +145,8 @@ void HomingKiller::init(const JMapInfoIter& rIter) {
     f32 hitRadius = getScale();
     f32 offsetScale = getScale();
 
-    MR::addHitSensor(this, "body", ATYPE_HOMING_KILLER, 8, hitRadius * ::cBodyHitSensorRadius, TVec3f(::cBodyHitSensorOffset).scaleInline(offsetScale));
+    MR::addHitSensor(this, "body", ATYPE_HOMING_KILLER, 8, hitRadius * ::cBodyHitSensorRadius,
+                     TVec3f(::cBodyHitSensorOffset).scaleInline(offsetScale));
     MR::addHitSensorEye(this, "eye", 16, ::cEyeHitSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 
     f32 binderRadius = getScale();
@@ -733,7 +751,7 @@ void HomingKiller::exeAppear() {
         f32 scl = JMASinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
         f32 rumbleOffset = (::cAppearRumbleFrame - step) * (scl * ::cAppearRumbleWidth) / ::cAppearRumbleFrame;
 
-        mPosition.addInline(mBaseFront.scaleInline(rumbleOffset));
+        mPosition.add(mBaseFront.scaleInline(rumbleOffset));
     }
 
     mFront.set(mBaseFront);
@@ -810,8 +828,8 @@ void HomingKiller::exeFreeze() {
     mFreezeTime++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 rumbleOffset =
-        (MR::cosDegree(MR::repeatDegree(mFreezeTime * ::cFreezeRumbleSpeed)) * ::cFreezeRumbleWidth) * (::cFreezeFrame - getNerveStep()) / ::cFreezeFrame;
+    f32 rumbleOffset = (MR::cosDegree(MR::repeatDegree(mFreezeTime * ::cFreezeRumbleSpeed)) * ::cFreezeRumbleWidth) *
+                       (::cFreezeFrame - getNerveStep()) / ::cFreezeFrame;
 
     TVec3f rumble;
     rumble.set(MR::getCamXdir());

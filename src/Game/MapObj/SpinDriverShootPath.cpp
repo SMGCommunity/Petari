@@ -1,4 +1,6 @@
 #include "Game/MapObj/SpinDriverShootPath.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 SpinDriverShootPath::SpinDriverShootPath() {
@@ -34,12 +36,8 @@ void SpinDriverShootPath::setStartPosition(const TVec3f& rStartPos) {
     }
 
     TVec3f position;
-    TVec3f pos_diff;
-
     calcPosition(&position, 0.0f);
-    TVec3f startPos(rStartPos);
-    JMathInlineVEC::PSVECSubtract(&startPos, &position, &startPos);
-    mStartPosition.setPS(startPos);
+    mStartPosition = rStartPos - position;
 }
 
 void SpinDriverShootPath::calcPosition(TVec3f* pOutPosition, f32 a2) const {
@@ -81,10 +79,10 @@ void SpinDriverShootPath::calcDirection(TVec3f* pOutDirection, f32 a2, f32 a3) c
     calcPosition(&stack_20, v7);
     TVec3f stack_14;
     calcPosition(&stack_14, v6);
-    TVec3f stack_8(stack_14);
-    JMathInlineVEC::PSVECSubtract(&stack_8, &stack_14, &stack_8);
+    TVec3f stack_8 = stack_14;
+    stack_8.sub(stack_8, stack_20);
     pOutDirection->set< f32 >(stack_8);
-    MR::normalize(pOutDirection);
+    MR::normalizeOrZero(pOutDirection);
 }
 
 // SpinDriverShootPath::calcInitPose

@@ -1,7 +1,10 @@
 #include "Game/LiveActor/SensorHitChecker.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 void SensorHitChecker::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, MR::MovementType_SensorHitChecker, -1, -1, -1);

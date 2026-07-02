@@ -5,7 +5,7 @@
 
 class JASVoiceBank : public JASBank {
 public:
-    virtual ~JASVoiceBank(){};
+    virtual ~JASVoiceBank() {};
     virtual bool getInstParam(int, int, int, JASInstParam*) const;
     virtual u32 getType() const {
         return 'VOIC';

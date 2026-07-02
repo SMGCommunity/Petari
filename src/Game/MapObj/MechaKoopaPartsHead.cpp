@@ -1,4 +1,7 @@
 #include "Game/MapObj/MechaKoopaPartsHead.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     const char* sDemoPartNameBreak = "壊れ開始";

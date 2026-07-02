@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include "JSystem/JGeometry.hpp"
-#include <revolution.h>
+#include <JSystem/JGeometry.hpp>
+
+class JMapInfoIter;
 
 class AreaForm {
 public:

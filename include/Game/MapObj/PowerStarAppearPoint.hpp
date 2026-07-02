@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class ActorCameraInfo;
+
 class PowerStarAppearPoint : public LiveActor {
 public:
     /// @brief Creates a new `PowerStarAppearPoint`.

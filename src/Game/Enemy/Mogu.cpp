@@ -2,7 +2,6 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/MoguStone.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -11,7 +10,6 @@
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/FixedPosition.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -21,7 +19,6 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include <math_types.hpp>
 
@@ -552,7 +549,7 @@ bool Mogu::tryPunchHitted(HitSensor* pSensor1, HitSensor* pSensor2, bool arg3) {
         TVec3f gravity(mGravity);
         gravity *= 50.0f;
         direction -= gravity;
-        mVelocity.setPS2(direction);
+        mVelocity = direction;
 
         if (MR::isOnGround(this)) {
             // r3 r4 order swap

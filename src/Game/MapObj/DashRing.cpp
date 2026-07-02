@@ -1,5 +1,7 @@
 #include "Game/MapObj/DashRing.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
 
 DashRing::~DashRing() {
 }

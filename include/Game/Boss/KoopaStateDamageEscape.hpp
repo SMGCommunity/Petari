@@ -1,9 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/Util/ActorMovementUtil.hpp"
 
+class HitSensor;
 class Koopa;
+
+namespace MR {
+    struct ActorMoveParam;
+};  // namespace MR
 
 class KoopaStateDamageEscape : public ActorStateBase< Koopa > {
 public:
@@ -28,14 +32,12 @@ public:
     void exeDamageTailRunStart();
     void exeDamageTailRun();
     void exeDamageTailRunEnd();
-    void exeDown();
-    void exeDownLand();
-
     void exeDamageTailRunStartFinal();
     void exeDamageTailRunFinal();
     void exeDamageTailRunEndFinal();
-    void exeDownEnd() {
-    }
+    void exeDown();
+    void exeDownLand();
+    void exeDownEnd();
 
 private:
     /* 0x10 */ s32 mEscapeTime;

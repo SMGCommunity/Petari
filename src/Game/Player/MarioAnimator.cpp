@@ -1,4 +1,5 @@
 #include "Game/Player/MarioAnimator.hpp"
+#include "Game/Animation/XanimeCore.hpp"
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/Animation/XanimeResource.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
@@ -7,12 +8,15 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimatorData.hpp"
 #include "Game/Player/MarioConst.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include <cstring>
 
@@ -1305,11 +1309,10 @@ afterBrake:
 
 f32 XanimePlayer::tellAnimationFrame() const {
     if (isTerminate()) {
-        s16 endFrame = _20->mEnd;
-        return (f32)endFrame;
+        return _20->getEnd();
     }
 
-    return _20->mFrame;
+    return _20->getFrame();
 }
 
 namespace NrvMarioActor {

@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class ActorCameraInfo;
 class Note;
 
 class NoteFairy : public LiveActor {

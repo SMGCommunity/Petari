@@ -3,8 +3,20 @@
 #include "Game/Boss/SkeletalFishRailControl.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include <cstdio>
 
 namespace {
@@ -37,7 +49,7 @@ SkeletalFishBaby::SkeletalFishBaby(const char* pName) : LiveActor(pName) {
     _DC = 3000.0f;
     mScaleController = new AnimScaleController(nullptr);
 
-    for (s32 i = 0; i < 4; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mControllers); i++) {
         mControllers[i] = nullptr;
     }
 
@@ -79,7 +91,7 @@ void SkeletalFishBaby::init(const JMapInfoIter& rIter) {
     MR::declareStarPiece(this, 10);
     MR::onCalcGravity(this);
 
-    for (u32 i = 0; i < 4; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mStarPieceTargets); i++) {
         mStarPieceTargets[i] = new LiveActor("StarPointerTargetDummy");
         mStarPieceTargets[i]->makeActorDead();
 
@@ -254,7 +266,7 @@ bool SkeletalFishBaby::damage(const TVec3f& rAirBubblePos, bool shakeCameraNorma
 
 void SkeletalFishBaby::calcAndSetBaseMtx() {
     if (mRailControl->_8 != nullptr) {
-        for (u32 i = 0; i < 4; i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(mControllers); i++) {
             mControllers[i]->registerCallBack();
         }
 
@@ -285,7 +297,7 @@ void SkeletalFishBaby::initJoint() {
         mJointIndicies[i] = -1;
     }
 
-    for (s32 i = 0; i < 4; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mControllers); i++) {
         char buf[16];
         snprintf(buf, sizeof(buf), "Joint%02d", i);
         mControllers[i] = MR::createJointDelegatorWithNullMtxFunc(this, &SkeletalFishBaby::calcJoint, buf);

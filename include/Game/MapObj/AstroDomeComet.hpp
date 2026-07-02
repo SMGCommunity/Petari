@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
+
+class PartsModel;
 
 class AstroDomeComet : public LiveActor {
 public:

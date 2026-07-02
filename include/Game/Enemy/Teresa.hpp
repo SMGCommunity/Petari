@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 
 class KeySwitch;
 class PartsModel;
+class Triangle;
 
 class Teresa : public LiveActor {
 public:

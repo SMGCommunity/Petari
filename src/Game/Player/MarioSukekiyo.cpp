@@ -2,6 +2,7 @@
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
 MarioSukekiyo::MarioSukekiyo(MarioActor* pActor) : MarioState(pActor, 0x1A) {
     _44 = new Triangle();

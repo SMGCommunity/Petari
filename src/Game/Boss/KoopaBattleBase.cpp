@@ -3,9 +3,22 @@
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaStateDamageEscape.hpp"
 #include "Game/Boss/KoopaStateGuard.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace {
-    MR::ActorMoveParam sFindParam = {0.0f, 1.0f, 0.98f, 3.0f};
+    static MR::ActorMoveParam sFindParam = {0.0f, 1.0f, 0.98f, 3.0f};
+    static const f32 sChasePlayerJumpSpeed = 15.0f;
+    static const f32 sWalkAnimRate = 0.18f;
+    static const s32 sWanderStepToAttackMin = 60;
+    static const s32 sWanderStepToAttackMax = 120;
+    static const s32 sSearchStep = 120;
+    static const f32 sSearchTurnSpeed = 2.4f;
+    static const f32 sFindJumpSpeed = 10.0f;
 };  // namespace
 
 KoopaBattleBase::KoopaBattleBase(const char* pName, Koopa* pKoopa)
@@ -38,14 +51,14 @@ void KoopaBattleBase::updateChasePlayer(const MR::ActorMoveParam& rMoveParam) {
     if (MR::isBindedWall(mHost)) {
         Koopa* pKoopa = mHost;
         if (!MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body"))) {
-            MR::addVelocityJump(mHost, 15.0f);
+            MR::addVelocityJump(mHost, ::sChasePlayerJumpSpeed);
         }
     }
 
     MR::moveAndTurnToPlayer(mHost, &mHost->mFront, rMoveParam);
 
     Koopa* pKoopa = mHost;
-    MR::setBckRate(pKoopa, MR::calcVelocityLength(pKoopa) * 0.18f);
+    MR::setBckRate(pKoopa, MR::calcVelocityLength(pKoopa) * ::sWalkAnimRate);
 }
 
 bool KoopaBattleBase::updateWander(const MR::ActorMoveParam& rMoveParam) {
@@ -56,13 +69,13 @@ bool KoopaBattleBase::updateWander(const MR::ActorMoveParam& rMoveParam) {
 
         KoopaFunction::endFaceCtrl(mHost, -1);
 
-        mWanderTime = MR::getRandom(60l, 120l);
+        mWanderTime = MR::getRandom(::sWanderStepToAttackMin, ::sWanderStepToAttackMax);
     }
 
     if (MR::isBindedWall(mHost)) {
         Koopa* pKoopa = mHost;
         if (!MR::sendMsgEnemyAttackToBindedSensor(pKoopa, pKoopa->getSensor("Body"))) {
-            MR::addVelocityJump(mHost, 15.0f);
+            MR::addVelocityJump(mHost, ::sChasePlayerJumpSpeed);
         }
     }
 
@@ -70,7 +83,7 @@ bool KoopaBattleBase::updateWander(const MR::ActorMoveParam& rMoveParam) {
                                rMoveParam._8, rMoveParam._C);
 
     Koopa* pKoopa = mHost;
-    MR::setBckRate(pKoopa, MR::calcVelocityLength(pKoopa) * 0.18f);
+    MR::setBckRate(pKoopa, MR::calcVelocityLength(pKoopa) * ::sWalkAnimRate);
 
     return MR::isStep(this, mWanderTime);
 }
@@ -81,9 +94,9 @@ bool KoopaBattleBase::updateSearch() {
         MR::zeroVelocity(mHost);
     }
 
-    MR::rotateVecDegree(KoopaFunction::getKoopaFrontPtr(mHost), mHost->mGravity, 2.4f);
+    MR::rotateVecDegree(KoopaFunction::getKoopaFrontPtr(mHost), mHost->mGravity, ::sSearchTurnSpeed);
 
-    if (MR::isStep(this, 120)) {
+    if (MR::isStep(this, ::sSearchStep)) {
         return true;
     }
 
@@ -93,11 +106,11 @@ bool KoopaBattleBase::updateSearch() {
 bool KoopaBattleBase::updateFind() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "Find");
-        MR::setVelocityJump(mHost, 10.0f);
+        MR::setVelocityJump(mHost, ::sFindJumpSpeed);
     }
 
     Koopa* pKoopa = mHost;
-    MR::moveAndTurnToPlayer(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), sFindParam);
+    MR::moveAndTurnToPlayer(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), ::sFindParam);
 
     if (!MR::isFirstStep(this) && MR::isBindedGround(mHost)) {
         MR::tryRumblePadAndCameraDistanceMiddle(mHost, 800.0f, 1200.0f, 2000.0f);

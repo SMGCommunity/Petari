@@ -1,11 +1,10 @@
 #include "Game/NPC/Butler.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/Demo/DemoFunction.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/StarPieceGroup.hpp"
 #include "Game/NPC/ButlerStateStarPieceReaction.hpp"
-#include "Game/NPC/NPCActor.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/Screen/GalaxyMapController.hpp"
@@ -26,9 +25,7 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
-#include "revolution/types.h"
 
 namespace {
     const char* cDemoNameDomeLecture1 = "ドームレクチャー１";

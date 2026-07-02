@@ -63,9 +63,3 @@ void VolumeModelDrawer::loadModelDrawMtx() const {
     PSMTXConcat(MR::getCameraViewMtx(), mMtx, dest);
     GXLoadPosMtxImm(dest, 0);
 }
-
-VolumeModelDrawer::~VolumeModelDrawer() {
-}
-
-VolumeModelDrawInit::~VolumeModelDrawInit() {
-}

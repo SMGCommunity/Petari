@@ -3,6 +3,7 @@
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/System/MessageHolder.hpp"
 #include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include <cstdio>
 
 #define MESSAGE_ID_BUFFER_SIZE 256

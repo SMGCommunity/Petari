@@ -1,14 +1,13 @@
 #pragma once
 
-#include <revolution.h>
-
-class ResourceHolder;
+class J3DMaterialAnm;
 class J3DModelData;
+class ResourceHolder;
 
 class MaterialAnmBuffer {
 public:
     MaterialAnmBuffer(const ResourceHolder*, J3DModelData*, bool);
 
-    /* 0x00 */ u32 _0;
-    /* 0x04 */ u32 _4;
+    /* 0x00 */ J3DMaterialAnm* _0;
+    /* 0x04 */ void* _4;
 };

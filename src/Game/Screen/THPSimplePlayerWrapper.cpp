@@ -1,6 +1,8 @@
 #include "Game/Screen/THPSimplePlayerWrapper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/System/NerveExecutor.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 #include "revolution/dvd.h"
 #include "revolution/gx/GXStruct.h"
 #include "revolution/os.h"
@@ -8,6 +10,7 @@
 #include "revolution/sc.h"
 #include "revolution/thp.h"
 #include <JSystem/JAudio2/JASAiCtrl.hpp>
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <cstring>
 
 static u16 VolumeTable[] = {0,     2,     8,     18,    32,    50,    73,    99,    130,   164,   203,   245,   292,   343,   398,   457,

@@ -1,5 +1,6 @@
 #include "Game/Boss/SkeletalFishBabyRail.hpp"
 #include "Game/Boss/SkeletalFishBabyRailHolder.hpp"
+#include "Game/Util/JMapUtil.hpp"
 
 SkeletalFishBabyRail::SkeletalFishBabyRail(const char* pName) : LiveActor(pName) {
     _8C = -1;

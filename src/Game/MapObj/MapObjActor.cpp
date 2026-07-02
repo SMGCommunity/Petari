@@ -2,6 +2,8 @@
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRailPosture.hpp"

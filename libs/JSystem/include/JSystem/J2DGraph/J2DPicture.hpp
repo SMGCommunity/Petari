@@ -45,6 +45,8 @@ struct J2DScrnBlockPictureParameter {
 
 class J2DPicture : public J2DPane {
 public:
+    J2DPicture(JUTTexture*);
+
     virtual ~J2DPicture();
     virtual u16 getTypeID() const {
         return 18;

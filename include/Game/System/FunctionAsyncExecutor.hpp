@@ -1,10 +1,15 @@
 #pragma once
 
 #include "Game/System/OSThreadWrapper.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/Array.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 class JKRExpHeap;
 class JKRUnitHeap;
+
+namespace MR {
+    class FunctorBase;
+};  // namespace MR
 
 class FunctionAsyncExecInfo {
 public:

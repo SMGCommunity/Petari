@@ -1,4 +1,6 @@
 #include "Game/MapObj/SuperSpinDriver.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 /* it seems like this file was compiled with an earlier compiler version */
 

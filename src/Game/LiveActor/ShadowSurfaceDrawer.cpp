@@ -4,6 +4,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/Functor.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 ShadowSurfaceDrawInit::ShadowSurfaceDrawInit(const char* pName) : NameObj(pName) {
     MR::registerPreDrawFunction(MR::Functor_Inline(&ShadowSurfaceDrawInit::initDraw), MR::DrawType_ShadowSurface);

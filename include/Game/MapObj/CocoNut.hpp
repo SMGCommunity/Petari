@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class NameObjArchiveListCollector;
 
 class CocoNut : public LiveActor {
 public:

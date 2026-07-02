@@ -1,4 +1,5 @@
 #include "Game/NPC/NPCSupportRail.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "revolution/types.h"
 #include <cstddef>

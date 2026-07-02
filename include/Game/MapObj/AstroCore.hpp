@@ -11,13 +11,8 @@ public:
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
+    void exeWait();
     void exeGrow();
-
-    inline void exeWait() {
-        if (MR::isFirstStep(this)) {
-            setStateBeforeGrow();
-        }
-    }
 
     void startDemo();
     void startAnimGrow();

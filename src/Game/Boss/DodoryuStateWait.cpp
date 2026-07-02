@@ -1,5 +1,13 @@
 #include "Game/Boss/DodoryuStateWait.hpp"
 #include "Game/Boss/Dodoryu.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     NEW_NERVE(DodoryuStateWaitNrvWait, DodoryuStateWait, Wait);

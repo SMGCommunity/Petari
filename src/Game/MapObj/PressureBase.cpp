@@ -1,4 +1,6 @@
 #include "Game/MapObj/PressureBase.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvPressureMessenger {
     NEW_NERVE(PressureMessengerNrvSync, PressureMessenger, Sync);

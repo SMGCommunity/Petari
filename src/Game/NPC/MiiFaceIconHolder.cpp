@@ -1,4 +1,5 @@
 #include "Game/NPC/MiiFaceIconHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/MiiFaceIcon.hpp"
 #include "Game/NameObj/NameObjAdaptor.hpp"
 #include "Game/Scene/SceneFunction.hpp"

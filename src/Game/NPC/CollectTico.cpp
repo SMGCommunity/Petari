@@ -1,9 +1,15 @@
 #include "Game/NPC/CollectTico.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/StrayTico.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
 namespace NrvCollectTico {

@@ -2,7 +2,6 @@
 
 #include "Game/System/NerveExecutor.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
-#include <revolution/types.h>
 
 class JMapInfoIter;
 class LiveActor;

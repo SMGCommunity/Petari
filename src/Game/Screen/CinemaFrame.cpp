@@ -15,8 +15,8 @@ namespace NrvCinemaFrame {
     NEW_NERVE(CinemaFrameNrvFrameToScreen, CinemaFrame, FrameToScreen);
 };  // namespace NrvCinemaFrame
 
-CinemaFrame::CinemaFrame(bool param1) : LayoutActor("シネマフレーム", true) {
-    if (param1) {
+CinemaFrame::CinemaFrame(bool isConnectToSceneLayout) : LayoutActor("シネマフレーム", true) {
+    if (isConnectToSceneLayout) {
         MR::connectToScene(this, MR::MovementType_Layout, MR::CalcAnimType_Layout, -1, MR::DrawType_CinemaFrame);
     }
 }
@@ -33,59 +33,51 @@ void CinemaFrame::appear() {
 }
 
 void CinemaFrame::tryScreenToFrame() {
-    bool result;
-
     if (MR::isDead(this)) {
         appear();
     }
 
-    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance) ||
+    bool isInvalid = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance) ||
              isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
 
-    if (!result) {
+    if (!isInvalid) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance);
     }
 }
 
 void CinemaFrame::tryFrameToBlank() {
-    bool result;
-
     if (MR::isDead(this)) {
         appear();
     }
 
-    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvBlank::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToBlank::sInstance);
+    bool isInvalid = isNerve(&NrvCinemaFrame::CinemaFrameNrvBlank::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToBlank::sInstance);
 
-    if (!result) {
+    if (!isInvalid) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToBlank::sInstance);
     }
 }
 
 void CinemaFrame::tryBlankToFrame() {
-    bool result;
-
     if (MR::isDead(this)) {
         appear();
     }
 
-    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance) ||
+    bool isInvalid = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance) ||
              isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
 
-    if (!result) {
+    if (!isInvalid) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
     }
 }
 
 void CinemaFrame::tryFrameToScreen() {
-    bool result;
-
     if (MR::isDead(this)) {
         appear();
     }
 
-    result = isNerve(&NrvCinemaFrame::CinemaFrameNrvScreen::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToScreen::sInstance);
+    bool isInvalid = isNerve(&NrvCinemaFrame::CinemaFrameNrvScreen::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToScreen::sInstance);
 
-    if (!result) {
+    if (!isInvalid) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvFrameToScreen::sInstance);
     }
 }
@@ -120,14 +112,9 @@ bool CinemaFrame::isStop() const {
 }
 
 void CinemaFrame::exeScreen() {
-    J3DFrameCtrl* pAnimCtrl;
-
     if (MR::isFirstStep(this)) {
         MR::startAnim(this, "End", 0);
-
-        pAnimCtrl = MR::getAnimCtrl(this, 0);
-
-        MR::setAnimFrameAndStop(this, pAnimCtrl->mEnd - 1.0f, 0);
+        MR::setAnimFrameAndStop(this, MR::getAnimCtrl(this, 0)->getEnd() - 1.0f, 0);
         kill();
     }
 }

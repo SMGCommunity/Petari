@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
 #include "Game/NameObj/NameObj.hpp"
 
 class LiveActor;
+class MapPartsRailGuideDrawer;
 
 class MapPartsRailGuideHolder : public NameObj {
 public:

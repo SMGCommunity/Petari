@@ -3,8 +3,17 @@
 #include "Game/Boss/DinoPackunDemoPosition.hpp"
 #include "Game/Boss/DinoPackunEggShell.hpp"
 #include "Game/Boss/DinoPackunSequencer.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     // static const _ sMairoHitEgg_ = _;

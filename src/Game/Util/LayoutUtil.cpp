@@ -28,7 +28,7 @@ namespace {
     void showPaneRecursive(nw4r::lyt::Pane*);
     void hidePaneRecursive(nw4r::lyt::Pane*);
     void initFrameCtrlReverse(J3DFrameCtrl* pFrameCtrl) {
-        pFrameCtrl->mAttribute = pFrameCtrl->EMode_RESET;
+        pFrameCtrl->setAttribute(pFrameCtrl->EMode_RESET);
         pFrameCtrl->setRate(-pFrameCtrl->mRate);
         pFrameCtrl->setFrame(pFrameCtrl->mEnd);
     }
@@ -233,39 +233,39 @@ namespace MR {
     void setAnimFrameAndStop(LayoutActor* pActor, f32 animFrame, u32 animLayer) {
         J3DFrameCtrl* pFrameCtrl = getAnimCtrl(pActor, animLayer);
 
-        pFrameCtrl->mFrame = animFrame;
-        pFrameCtrl->mRate = 0.0f;
+        pFrameCtrl->setFrame(animFrame);
+        pFrameCtrl->setRate(0.0f);
     }
 
     void setAnimFrameAndStopAtEnd(LayoutActor* pActor, u32 animLayer) {
-        setAnimFrameAndStop(pActor, getAnimCtrl(pActor, animLayer)->mEnd, animLayer);
+        setAnimFrameAndStop(pActor, getAnimFrameMax(pActor, animLayer), animLayer);
     }
 
     void setPaneAnimFrameAndStop(LayoutActor* pActor, const char* pPaneName, f32 animFrame, u32 animLayer) {
         J3DFrameCtrl* pFrameCtrl = getPaneAnimCtrl(pActor, pPaneName, animLayer);
 
-        pFrameCtrl->mFrame = animFrame;
-        pFrameCtrl->mRate = 0.0f;
+        pFrameCtrl->setFrame(animFrame);
+        pFrameCtrl->setRate(0.0f);
     }
 
     void setPaneAnimFrameAndStopAtEnd(LayoutActor* pActor, const char* pPaneName, u32 animLayer) {
-        setPaneAnimFrameAndStop(pActor, pPaneName, getPaneAnimCtrl(pActor, pPaneName, animLayer)->mEnd, animLayer);
+        setPaneAnimFrameAndStop(pActor, pPaneName, getPaneAnimFrameMax(pActor, pPaneName, animLayer), animLayer);
     }
 
     void setAnimFrame(LayoutActor* pActor, f32 animFrame, u32 animLayer) {
-        getAnimCtrl(pActor, animLayer)->mFrame = animFrame;
+        getAnimCtrl(pActor, animLayer)->setFrame(animFrame);
     }
 
     void setPaneAnimFrame(LayoutActor* pActor, const char* pPaneName, f32 animFrame, u32 animLayer) {
-        getPaneAnimCtrl(pActor, pPaneName, animLayer)->mFrame = animFrame;
+        getPaneAnimCtrl(pActor, pPaneName, animLayer)->setFrame(animFrame);
     }
 
     void setAnimRate(LayoutActor* pActor, f32 animRate, u32 param3) {
-        getAnimCtrl(pActor, param3)->mRate = animRate;
+        getAnimCtrl(pActor, param3)->setRate(animRate);
     }
 
     void setPaneAnimRate(LayoutActor* pActor, const char* pPaneName, f32 animRate, u32 animLayer) {
-        getPaneAnimCtrl(pActor, pPaneName, animLayer)->mRate = animRate;
+        getPaneAnimCtrl(pActor, pPaneName, animLayer)->setRate(animRate);
     }
 
     void stopAnim(LayoutActor* pActor, u32 animLayer) {
@@ -285,19 +285,19 @@ namespace MR {
     }
 
     f32 getAnimFrame(const LayoutActor* pActor, u32 param2) {
-        return getAnimCtrl(pActor, param2)->mFrame;
+        return getAnimCtrl(pActor, param2)->getFrame();
     }
 
     f32 getPaneAnimFrame(const LayoutActor* pActor, const char* pPaneName, u32 animLayer) {
-        return getPaneAnimCtrl(pActor, pPaneName, animLayer)->mFrame;
+        return getPaneAnimCtrl(pActor, pPaneName, animLayer)->getFrame();
     }
 
     s16 getAnimFrameMax(const LayoutActor* pActor, u32 param2) {
-        return getAnimCtrl(pActor, param2)->mEnd;
+        return getAnimCtrl(pActor, param2)->getEnd();
     }
 
     s16 getPaneAnimFrameMax(const LayoutActor* pActor, const char* pPaneName, u32 animLayer) {
-        return getPaneAnimCtrl(pActor, pPaneName, animLayer)->mEnd;
+        return getPaneAnimCtrl(pActor, pPaneName, animLayer)->getEnd();
     }
 
     s16 getAnimFrameMax(const LayoutActor* pActor, const char* pAnimName) {

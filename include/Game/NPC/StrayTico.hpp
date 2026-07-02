@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 
 class CollectTico;
+class PartsModel;
 
 class StrayTico : public LiveActor {
 public:

@@ -1,5 +1,7 @@
 #include "Game/Boss/TombSpiderGland.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 namespace NrvTombSpiderGland {
     NEW_NERVE(TombSpiderGlandNrvWait, TombSpiderGland, Wait);

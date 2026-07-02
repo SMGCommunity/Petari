@@ -3,10 +3,24 @@
 #include "Game/Boss/TombSpiderFunction.hpp"
 #include "Game/Boss/TombSpiderGland.hpp"
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/PlanetMap.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/NPC/TalkDirector.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
 namespace {
@@ -26,6 +40,10 @@ namespace {
     static const s32 sStepBattle2ndStartJumpEnd = 190;
     static const s32 sStepBattleEndPlanetBreak = 15;
 };  // namespace
+
+void TombSpiderDemo_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
 
 TombSpiderDemo::TombSpiderDemo(TombSpider* pParent) : mParent(pParent), mRotateSpeed(0.0f) {
     mMtx.identity();

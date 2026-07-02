@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class ActorCameraInfo;
+class PartsModel;
 
 class EarthenPipe : public LiveActor {
 public:
@@ -27,8 +29,8 @@ public:
     void exeInvalid();
     void exeHide();
     void exeShow();
-    inline void exeWaitToHideDown();
-    inline void exeWaitToShowUp();
+    void exeWaitToHideDown();
+    void exeWaitToShowUp();
     void exeShowUp();
     void exeHideDown();
     void calcTrans(f32);

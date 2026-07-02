@@ -10,12 +10,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void appear();
 
-    inline void exeAppear() {
-        if (MR::isFirstStep(this)) {
-            MR::startBck(this, "Start", nullptr);
-        }
-    }
-
+    void exeAppear();
     void exeBreak();
 };
 
@@ -28,9 +23,10 @@ public:
     virtual void calcAnim();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
+    void initPipeHeight();
+
     void exeWait();
     void exeFreeze();
-    void initPipeHeight();
 
     IceStepNoSlip* mIceStep;  // 0x8C
     f32 mPipeHeight;          // 0x90

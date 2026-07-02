@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class SpringValue;
-class MapObjConnector;
 class CollisionParts;
+class MapObjConnector;
+class SpringValue;
 
 class HipDropSwitch : public LiveActor {
 public:

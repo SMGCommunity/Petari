@@ -2,6 +2,9 @@
 #include "Game/Map/OceanRing.hpp"
 #include "Game/Map/OceanRingDrawer.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 OceanRingBloomDrawer::OceanRingBloomDrawer(OceanRing* pRing) : NameObj("オーシャンリング[ブルーム描画]") {
     mRing = pRing;

@@ -1,11 +1,8 @@
 #pragma once
 
-#include "Game/Map/CollisionParts.hpp"
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/NPCUtil.hpp"
-#include "revolution/types.h"
+
+class TakeOutStar;
 
 class LuigiNPC : public NPCActor {
 public:

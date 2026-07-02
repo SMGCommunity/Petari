@@ -1,5 +1,8 @@
 #include "Game/LiveActor/AnimationRandomPlayer.hpp"
-#include "Game/Util.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace NrvAnimationRandomPlayer {
     NEW_NERVE(HostTypeWait, AnimationRandomPlayer, Wait);

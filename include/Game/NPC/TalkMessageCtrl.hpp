@@ -1,11 +1,13 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NPC/TalkMessageFunc.hpp"
+#include "Game/NameObj/NameObj.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
-class TalkNodeCtrl;
 class ActorCameraInfo;
+class LiveActor;
+class TalkMessageFuncBase;
 class TalkMessageInfo;
+class TalkNodeCtrl;
 
 class CustomTagArg {
 public:

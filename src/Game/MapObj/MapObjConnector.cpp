@@ -1,4 +1,5 @@
 #include "Game/MapObj/MapObjConnector.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 #include "JSystem/JMath.hpp"
 

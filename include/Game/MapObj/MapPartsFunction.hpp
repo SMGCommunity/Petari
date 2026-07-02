@@ -3,8 +3,8 @@
 #include "Game/NameObj/NameObj.hpp"
 
 class LiveActor;
-class Spine;
 class Nerve;
+class Spine;
 
 class MapPartsFunction : public NameObj {
 public:

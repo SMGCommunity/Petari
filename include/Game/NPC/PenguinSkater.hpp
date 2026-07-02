@@ -2,6 +2,7 @@
 
 #include "Game/NPC/NPCActor.hpp"
 
+class ActorCameraInfo;
 class NPCSupportRail;
 
 class PenguinSkater : public NPCActor {

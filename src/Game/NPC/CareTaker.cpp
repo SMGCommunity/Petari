@@ -1,8 +1,9 @@
 #include "Game/NPC/CareTaker.hpp"
-#include "Game/NPC/NPCActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/NPCUtil.hpp"
 
 Caretaker::Caretaker(const char* pName) : NPCActor(pName) {
 }

@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include "JSystem/JGeometry.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <revolution/types.h>
 
 class HitSensor;
+class JMapInfoIter;
 class MapPartsRailGuideDrawer;
 class MapPartsRailMover;
 class MapPartsRailRotator;

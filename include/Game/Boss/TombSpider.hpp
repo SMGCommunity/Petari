@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-class TombSpiderSensorCtrl;
-class TombSpiderParts;
-class TombSpiderEnvironment;
-class TombSpiderActionCocoon;
+class ActorCameraInfo;
 class TombSpiderAction1st;
 class TombSpiderAction2nd;
+class TombSpiderActionCocoon;
 class TombSpiderDemo;
+class TombSpiderEnvironment;
+class TombSpiderParts;
+class TombSpiderSensorCtrl;
 
 class TombSpider : public LiveActor {
 public:

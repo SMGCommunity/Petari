@@ -9,10 +9,14 @@
 #include "Game/Boss/PoltaStatePunch.hpp"
 #include "Game/Boss/PoltaStateStagger.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvPoltaBattleLv2 {
     NEW_NERVE(PoltaBattleLv2NrvWait, PoltaBattleLv2, Wait);

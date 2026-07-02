@@ -1,4 +1,6 @@
 #include "Game/MapObj/LargeChain.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     static f32 sPartsLength = 200.0f;

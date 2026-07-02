@@ -1,7 +1,9 @@
 #include "Game/MapObj/SpiderThreadPart.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/MapObj/SpiderThreadMainPoint.hpp"
 #include "Game/MapObj/SpiderThreadPoint.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
@@ -460,7 +462,7 @@ void SpiderThreadPart::updateForceAttach() {
         TVec3f vel(getPoint(idx)->mVelocity);
         getPoint(idx)->updateSpring();
 
-        getPoint(idx)->setPos(getPoint(idx)->mPosition.scaleInline(t).addOperatorInLine(getPoint(idx)->mBasePos.scaleInline(1.0f - t)));
+        getPoint(idx)->setPos(getPoint(idx)->mPosition.scaleInline(t) + getPoint(idx)->mBasePos.scaleInline(1.0f - t));
         getPoint(idx)->mVelocity.set(vel);
     }
 }
@@ -564,17 +566,18 @@ namespace {
 void SpiderThreadPart::drawLine() const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
     ::sendPointsUpper(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
-    ::sendPointsUpper(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV, mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+    ::sendPointsUpper(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV,
+                      mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
     ::sendPointsRightLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
     ::sendPointsRightLower(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV,
-                         mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+                           mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
     ::sendPointsLeftLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
     ::sendPointsLeftLower(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV,
-                        mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+                          mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
 }
 
 void SpiderThreadPart::drawPoints() const {
@@ -594,7 +597,7 @@ void SpiderThreadPart::drawPoints() const {
     }
 
     ::sendPointsUpper(mPointB->mPosition, mSide, getPoint(mNumPoints - 1)->mUp, mDistBetweenMainPoints * ::sTexRateV,
-                    mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+                      mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (mNumPoints + 2) * 2);
     ::sendPointsRightLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
@@ -607,7 +610,7 @@ void SpiderThreadPart::drawPoints() const {
     }
 
     ::sendPointsRightLower(mPointB->mPosition, mSide, getPoint(mNumPoints - 1)->mUp, mDistBetweenMainPoints * ::sTexRateV,
-                         mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+                           mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (mNumPoints + 2) * 2);
     ::sendPointsLeftLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
@@ -620,5 +623,5 @@ void SpiderThreadPart::drawPoints() const {
     }
 
     ::sendPointsLeftLower(mPointB->mPosition, mSide, getPoint(mNumPoints - 1)->mUp, mDistBetweenMainPoints * ::sTexRateV,
-                        mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+                          mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
 }

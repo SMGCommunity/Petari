@@ -7,7 +7,7 @@
 #include "JSystem/JKernel/JKRHeap.hpp"
 
 JAUSoundObject::JAUSoundObject(TVec3f* pPos, u8 numHandles, JKRHeap* pHeap)
-    : JAISoundHandles(new (pHeap, 0) JAISoundHandle[numHandles], numHandles), _10(0), mPos(pPos) {
+    : JAISoundHandles(new(pHeap, 0) JAISoundHandle[numHandles], numHandles), _10(0), mPos(pPos) {
     mIsAllocated = true;
 }
 

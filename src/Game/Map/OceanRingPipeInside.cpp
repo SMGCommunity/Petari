@@ -1,8 +1,13 @@
 #include "Game/Map/OceanRingPipeInside.hpp"
 #include "Game/Map/OceanRingPipe.hpp"
-
 #include "Game/Scene/SceneFunction.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SchedulerUtil.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 
 namespace {
     const f32 sTexRateU0 = 0.08f;

@@ -8,6 +8,10 @@
 // TODO: How is this size calculated?
 #define TEMP_BUFFER_SIZE (TABLE_DATA_STEP * sizeof(RFLiHiddenCharData) + 0x30E0)
 
+void RFLiAllocateDB(RFLiDatabase* db) {
+    memset((u8*)db + sizeof(db->identifier), 0, sizeof(RFLiDatabase));
+}
+
 static void RFLiClearTableData(RFLiTableData* data) {
     memset(data, 0, sizeof(RFLiTableData));
     data->next = -1;
@@ -23,7 +27,7 @@ void RFLiClearDBBuffer(void) {
     header = &db->hidden;
 
     // @bug Four-byte buffer overrun
-    memset((u8*)db + sizeof(db->identifier), 0, sizeof(RFLiDatabase));
+    RFLiAllocateDB(db);
     db->identifier = MAGIC_OFFICIAL_DB;
     db->isolation = TRUE;
 

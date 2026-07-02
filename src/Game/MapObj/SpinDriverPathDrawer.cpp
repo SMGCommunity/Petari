@@ -1,6 +1,8 @@
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 #include <revolution/gx/GXVert.h>
 
 SpinDriverPathDrawInit::SpinDriverPathDrawInit()

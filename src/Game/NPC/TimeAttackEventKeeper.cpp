@@ -1,5 +1,6 @@
 #include "Game/NPC/TimeAttackEventKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 TimeAttackEventKeeper::TimeAttackEventKeeper() : _0(nullptr) {
 }

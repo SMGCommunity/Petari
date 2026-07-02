@@ -5,33 +5,39 @@
 #include "Game/Enemy/WaterBazookaCapsule.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/WaterPressureBullet.hpp"
 #include "Game/MapObj/WaterPressureBulletHolder.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <JSystem/JMath/JMath.hpp>
 #include <math_types.hpp>
 #include <revolution/mtx.h>
+
+void WaterBazooka_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)2.0f;
+}
 
 namespace NrvWaterBazooka {
     NEW_NERVE(WaterBazookaNrvWaitForBattle, WaterBazooka, WaitForBattle);
@@ -54,8 +60,7 @@ namespace NrvWaterBazooka {
 
 namespace {
     static const f32 sElectricBulletSpeed = 12.0f;
-    // FIXME: sDropPointStringTable should end up in .rodata
-    const char* sDropPointStringTable[] = {"落下点1", "落下点2", "落下点3", "落下点4"};
+    const char* const sDropPointStringTable[] = {"落下点1", "落下点2", "落下点3", "落下点4"};
 
 };  // namespace
 
@@ -989,9 +994,6 @@ bool WaterBazooka::tryJumpBackPlayerFromBazooka() const {
 }
 
 void WaterBazooka::calcNearDropPoint(TVec3f* pPos) const {
-    // FIXME: rejection register
-    // https://decomp.me/scratch/bkPaT
-
     f32 nearestDistance = FLOAT_MAX;
     TVec3f nearestPoint;
     for (u32 idx = 0; idx < 4; idx++) {
@@ -1009,8 +1011,7 @@ void WaterBazooka::calcNearDropPoint(TVec3f* pPos) const {
 
     TVec3f toPlayer;
     toPlayer.sub(*MR::getPlayerPos(), mPosition);
-    const TVec3f& grav = mGravity;
-    toPlayer.rejection(toPlayer, grav);  // possibly uninline
+    toPlayer.rejection(toPlayer, mGravity);
     MR::normalizeOrZero(&toPlayer);
 
     if (MR::isNearZero(toPlayer)) {

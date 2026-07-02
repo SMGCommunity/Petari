@@ -1,4 +1,5 @@
 #include "Game/Map/FileSelectItem.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/FileSelectIconID.hpp"
 #include "Game/Map/FileSelectItemDelegator.hpp"
@@ -6,10 +7,16 @@
 #include "Game/NPC/MiiFaceParts.hpp"
 #include "Game/NPC/MiiFacePartsHolder.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/FileSelectNumber.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "RFL_Types.h"
 
@@ -407,9 +414,7 @@ void FileSelectItem::updateRotate() {
             mBlinkCtrl->open();
             mBlinkCtrl->setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
         } else if (MR::isStarPointerInScreen(0)) {
-            TVec3f v35(0.0f, 900.0f, 0.0f);
-            TVec3f v43(mPosition);
-            JMathInlineVEC::PSVECAdd(&v43, &v35, &v43);
+            TVec3f v43 = mPosition + TVec3f(0.0f, 900.0f, 0.0f);
             TVec2f screenPos(*MR::getStarPointerScreenPosition(0));
 
             if (_154) {

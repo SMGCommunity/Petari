@@ -1,7 +1,14 @@
 #include "Game/MapObj/HeavensDoorDemoObj.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
+#include "Game/Util.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/Functor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvHeavensDoorDemoObj {
     NEW_NERVE(HeavensDoorDemoObjNrvAppear, HeavensDoorDemoObj, Appear);

@@ -8,7 +8,15 @@
 #include "Game/Boss/DinoPackunTail.hpp"
 #include "Game/Boss/DinoPackunTrackFire.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static TVec3f sShotMouthFireOffset = TVec3f(150.0f, 150.0f, 0.0f);
@@ -431,7 +439,7 @@ bool DinoPackunBattleVs2Lv1::emitFireTail() {
     if (fire != nullptr) {
         TVec3f v7(getHost()->mBall->mPosition);
         if (PSVECDistance(&_28, &v7) >= 120.0f) {
-            _28.setPS2(v7);
+            _28 = v7;
             fire->appearAndSetPos(v7);
             return true;
         }

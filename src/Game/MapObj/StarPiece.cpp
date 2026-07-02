@@ -1,10 +1,10 @@
 #include "Game/MapObj/StarPiece.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
@@ -12,7 +12,6 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
@@ -25,11 +24,9 @@
 #include "Game/Util/TriangleFilter.hpp"
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/gx/GXEnum.h"
 #include "revolution/gx/GXStruct.h"
 #include "revolution/mtx.h"
-#include "revolution/types.h"
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
 const GXColor effectColors[] = {{0x00, 0x55, 0xff, 0xFF}, {0xFF, 0xFF, 0x00, 0xFF}, {0x55, 0xFF, 0x00, 0xFF}, {0x7F, 0x7F, 0x00, 0xFF}};
@@ -505,7 +502,7 @@ void StarPiece::exeToTarget() {
     MR::repeatDegree(&mRotation.y);
 
     if (!mFlags.isGoToPlayer) {
-        mScale.add(TVec3f(0.5f, 0.5f, 0.5f).subOperatorInLine(mScale).scaleInline(0.05f));
+        mScale.add((TVec3f(0.5f, 0.5f, 0.5f) - mScale).scaleInline(0.05f));
         changeScale(mScale.y);
     }
 
@@ -658,10 +655,10 @@ void StarPiece::exeThrow() {
     vec3.sub(_A8);
 
     f32 flt2 = 0.0f;
-    vec2 = _A8.addOperatorInLine(vec3.scaleInline(flt)).addOperatorInLine((-mGravity).scaleInline(flt2));
+    vec2 = _A8 + vec3.scaleInline(flt) + (-mGravity).scaleInline(flt2);
     if (mTargetSensor != nullptr) {
         f32 flt3 = MR::calcNerveRate(this, 30);
-        vec2 = mTargetSensor->mPosition.scaleInline(flt3).addOperatorInLine(vec2.scaleInline(1.0f - flt3));
+        vec2 = mTargetSensor->mPosition.scaleInline(flt3) + vec2.scaleInline(1.0f - flt3);
     }
 
     mVelocity.set(vec2);
@@ -837,7 +834,7 @@ void StarPiece::giftToTarget(StarPieceReceiverInfo* receiverInfo, u32 numGift, H
     mFlags.isGoToPlayer = false;
     mTargetSensor = pSensor;
     mPosition.set(rVec1);
-    _8C.set(pSensor->mPosition.subOperatorInLine(rVec1));
+    _8C.set(pSensor->mPosition - rVec1);
     MR::normalizeOrZero(&_8C);
 
     MR::showModel(this);
@@ -1027,7 +1024,7 @@ void StarPiece::emitGettableEffect(f32 f1) {
 }
 
 void StarPiece::tryGotJudge() {
-    if (225000000.0f < MR::getPlayerCenterPos()->subOperatorInLine(mPosition).squared() || !mFlags._1) {
+    if (225000000.0f < (*MR::getPlayerCenterPos() - mPosition).squared() || !mFlags._1) {
         _C8 = -1;
         return;
     }
@@ -1101,7 +1098,7 @@ void StarPiece::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::sendArbitraryMsg(ACTMES_IS_STAR_PIECE_REFLECT, pReceiver, pSender)) {
-        TVec3f dirReceiverToSender(pSender->mPosition.subOperatorInLine(pReceiver->mPosition));
+        TVec3f dirReceiverToSender(pSender->mPosition - pReceiver->mPosition);
         MR::normalizeOrZero(&dirReceiverToSender);
 
         TVec3f vec2(pReceiver->mPosition);

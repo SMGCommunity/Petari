@@ -1,14 +1,15 @@
 #include "Game/MapObj/Rock.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/RockCreator.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -17,7 +18,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <math_types.hpp>
 
@@ -214,7 +214,7 @@ void Rock::control() {
     bool updateFront;
     bool hasMoved = false;
     TVec3f front;
-    front.subInline(mPosition, mPrevPos);
+    front.sub(mPosition, mPrevPos);
 
     if (!MR::isNearZero(front)) {
         MR::normalize(&front);
@@ -256,8 +256,8 @@ void Rock::control() {
     MR::vecKillElement(MR::getRailPos(this) - mPosition, mGravity, &mVelocity);
     TVec3f grav(mGravity);
     grav.scale(mGravityRate);
-    mFallVelocity.addInline(grav);
-    mVelocity.addInline(mFallVelocity);
+    mFallVelocity.add(grav);
+    mVelocity.add(mFallVelocity);
 
     if (30.0f < mVelocity.length()) {
         mVelocity.setLength(30.0f);
@@ -280,7 +280,7 @@ void Rock::calcAndSetBaseMtx() {
         }
 
         TVec3f pos;
-        pos.subInline(mPosition, up.scaleInline(mRadius));
+        pos.sub(mPosition, up.scaleInline(mRadius));
 
         if (MR::isSameDirection(up, mFront, 0.01f)) {
             MR::makeMtxUpNoSupportPos(&mBaseMtx, up, pos);

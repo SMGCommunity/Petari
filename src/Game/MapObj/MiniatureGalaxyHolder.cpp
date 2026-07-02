@@ -1,15 +1,19 @@
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/MiniatureGalaxy.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "revolution/types.h"
+
+namespace {
+    MiniatureGalaxyHolder* getHolder() {
+        return MR::getSceneObj< MiniatureGalaxyHolder >(SceneObj_MiniatureGalaxyHolder);
+    }
+};  // namespace
 
 MiniatureGalaxyHolder::MiniatureGalaxyHolder() : LiveActor("ミニチュアギャラクシー保持"), _8C(), _90(), mCometGalaxy(), mCometID(-1), _9C() {
     _8C = new LiveActorGroup("ミニチュアギャラクシーグループ", 16);
@@ -99,37 +103,39 @@ void MiniatureGalaxyHolder::updateCometStatus() {
 }
 
 void MiniatureGalaxyFunction::registerMiniatureGalaxyToHolder(LiveActor* mActor, const JMapInfoIter& rIter) {
-    MR::createSceneObj(115);
-    getMiniGalaxyHolder()->registerActor(mActor, rIter);
+    MR::createSceneObj(SceneObj_MiniatureGalaxyHolder);
+    ::getHolder()->registerActor(mActor, rIter);
 }
 
 s32 MiniatureGalaxyFunction::getMiniatureGalaxyNum() {
-    return getMiniGalaxyHolder()->_8C->mObjectCount;
+    return ::getHolder()->_8C->mObjectCount;
 }
 
 s32 MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(const LiveActor* mActor) {
-    return getMiniGalaxyHolder()->calcIndex(mActor);
+    return ::getHolder()->calcIndex(mActor);
 }
 
 void MiniatureGalaxyFunction::updateCometStatus() {
-    getMiniGalaxyHolder()->updateCometStatus();
+    ::getHolder()->updateCometStatus();
 }
 
 MiniatureGalaxy* MiniatureGalaxyFunction::getCometLandMiniatureGalaxy() {
-    return getMiniGalaxyHolder()->mCometGalaxy;
+    return ::getHolder()->mCometGalaxy;
 }
 
 s32 MiniatureGalaxyFunction::getCometNameId() {
-    return getMiniGalaxyHolder()->mCometID;
+    return ::getHolder()->mCometID;
 }
 
 MiniatureGalaxy* MiniatureGalaxyFunction::getPointingMiniatureGalaxy() {
     if (SphereSelectorFunction::isPointingTarget()) {
-        LiveActor* mPTarget = SphereSelectorFunction::getPointingTarget();
-        if (getMiniGalaxyHolder()->isRegisteredActor(mPTarget)) {
-            return (MiniatureGalaxy*)mPTarget;
+        LiveActor* pointingTarget = SphereSelectorFunction::getPointingTarget();
+
+        if (::getHolder()->isRegisteredActor(pointingTarget)) {
+            return static_cast< MiniatureGalaxy* >(pointingTarget);
         }
     }
+
     return nullptr;
 }
 

@@ -101,8 +101,7 @@ void IKJoint::getEndJointPosition(TVec3f* pPos) const {
     TVec3f xDir;
     _60.getXDir(xDir);
     _60.getTrans(*pPos);
-    TVec3f scale = (xDir * mMiddleBoneLength);
-    JMathInlineVEC::PSVECAdd(pPos, &scale, pPos);
+    pPos->add(xDir * mMiddleBoneLength);
 }
 
 f32 IKJoint::getMinLimitDistance() const {

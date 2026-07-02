@@ -1,9 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/EffectKeeper.hpp"
-#include "Game/LiveActor/HitSensorKeeper.hpp"
 #include "Game/LiveActor/LiveActorFlag.hpp"
-#include "Game/LiveActor/ShadowController.hpp"
 #include "Game/NameObj/NameObj.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
@@ -13,8 +10,13 @@ class ActorPadAndCameraCtrl;
 class AudAnmSoundObject;
 class Binder;
 class CollisionParts;
+class EffectKeeper;
+class HitSensor;
+class HitSensorKeeper;
 class ModelManager;
+class Nerve;
 class RailRider;
+class ResourceHolder;
 class ShadowControllerList;
 class Spine;
 class StageSwitchCtrl;

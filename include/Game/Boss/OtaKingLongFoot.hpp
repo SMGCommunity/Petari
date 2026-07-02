@@ -11,21 +11,21 @@ public:
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
-    void initSensor();
     void hide();
     void startAppearDemo();
     void startDownDemo();
     void endDemo();
+    void initSensor();
 
     void exeWait();
     void exeDamage();
     void exeAppearDemo();
     void exeDownDemo();
 
-    /* 0x9C */ s32 _9C;
-    /* 0xA0 */ AnimScaleController* _A0;
+    /* 0x9C */ s32 mDemoBckStep;
+    /* 0xA0 */ AnimScaleController* mScaleController;
 };

@@ -5,7 +5,7 @@
 namespace JMath {
     class TRandom_fast_ {
     public:
-        TRandom_fast_(){};
+        TRandom_fast_() {};
 
         TRandom_fast_(u32);
 

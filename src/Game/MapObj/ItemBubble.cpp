@@ -1,5 +1,7 @@
 #include "Game/MapObj/ItemBubble.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/StarPiece.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
@@ -194,35 +196,22 @@ void ItemBubble::kill() {
 
 void ItemBubble::calcAndSetBaseMtx() {
     TVec3f camPos = MR::getCamPos();
-    TVec3f* pCamPos = &camPos;
+    camPos.sub(mPosition);
 
-    JMathInlineVEC::PSVECSubtract2(pCamPos, mPosition, pCamPos);
-
-    if (MR::isNearZero(*pCamPos))
+    if (MR::isNearZero(camPos))
         return;
 
-    MR::normalize(pCamPos);
+    MR::normalize(&camPos);
     TVec3f YDir(MR::getCamYdir());
-    TVec3f camcross(YDir.cross(*pCamPos));
+    TVec3f camcross(YDir.cross(camPos));
 
-    if (MR::isNearZero(camcross))
+    if (MR::isNearZero(camcross)) {
         return;
+    }
 
     MR::normalize(&camcross);
-    MtxPtr baseMtx = getBaseMtx();
-    baseMtx[0][0] = camcross.x;
-    baseMtx[1][0] = camcross.y;
-    baseMtx[2][0] = camcross.z;
-    baseMtx[0][1] = YDir.x;
-    baseMtx[1][1] = YDir.y;
-    baseMtx[2][1] = YDir.z;
-    baseMtx[0][2] = pCamPos->x;
-    baseMtx[1][2] = pCamPos->y;
-    baseMtx[2][2] = pCamPos->z;
-    MtxPtr baseMtx2 = getBaseMtx();
-    baseMtx2[0][3] = mPosition.x;
-    baseMtx2[1][3] = mPosition.y;
-    baseMtx2[2][3] = mPosition.z;
+    reinterpret_cast< TPos3f* >(getBaseMtx())->setXYZDirInline(camcross, YDir, camPos);
+    reinterpret_cast< TPos3f* >(getBaseMtx())->setTransInline(mPosition);
 }
 
 void ItemBubble::exeWait() {

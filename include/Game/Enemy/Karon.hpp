@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 
 class AnimScaleController;
 class WalkerStateBindStarPointer;

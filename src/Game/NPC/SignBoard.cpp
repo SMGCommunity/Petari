@@ -1,6 +1,7 @@
 #include "Game/NPC/SignBoard.hpp"
 #include "Game/AreaObj/FollowCollisionArea.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 

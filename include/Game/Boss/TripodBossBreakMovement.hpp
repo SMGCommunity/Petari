@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/SpringValue.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class SpringValue;
 
 class TripodBossBreakMovement : public LiveActor {
 public:

@@ -4,7 +4,7 @@
 
 SwitchSynchronizer::SwitchSynchronizer(const char* pName) : NameObj(pName) {
     mSwitchCtrl = nullptr;
-    _10 = 1;
+    _10 = true;
 }
 
 void SwitchSynchronizer::init(const JMapInfoIter& rIter) {
@@ -21,7 +21,6 @@ void SwitchSynchronizer::movement() {
 
         if (!mSwitchCtrl->isOnSwitchA() && !mSwitchCtrl->isOnSwitchB()) {
             mSwitchCtrl->onSwitchA();
-            return;
         }
     } else {
         if (mSwitchCtrl->isOnSwitchA() && !mSwitchCtrl->isOnSwitchB()) {

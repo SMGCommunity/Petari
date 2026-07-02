@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class SpaceShipStep : public MapObjActor {
 public:

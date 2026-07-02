@@ -6,6 +6,7 @@
 #include "Game/Map/WaterInfo.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 // Not entirely sure if the createSceneObj would've been here or not. There's no evidence for or against it being here.
 namespace {

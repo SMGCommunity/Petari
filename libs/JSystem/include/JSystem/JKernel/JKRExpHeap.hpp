@@ -51,15 +51,17 @@ public:
     void* allocFromTail(u32);
     void* allocFromTail(u32, int);
     bool isEmpty();
-
     void appendUsedList(JKRExpHeap::CMemBlock*);
     void setFreeBlock(CMemBlock*, CMemBlock*, CMemBlock*);
     void removeFreeBlock(CMemBlock*);
-
-    static JKRExpHeap* create(void*, u32, JKRHeap*, bool);
-    static JKRExpHeap* create(u32, JKRHeap*, bool);
+    void removeUsedBlock(CMemBlock*);
+    void recycleFreeBlock(CMemBlock*);
+    void joinTwoBlocks(CMemBlock*);
+    void adjustSize();
 
     static JKRExpHeap* createRoot(int, bool);
+    static JKRExpHeap* create(u32, JKRHeap*, bool);
+    static JKRExpHeap* create(void*, u32, JKRHeap*, bool);
 
     u8 mAllocMode;       // 0x6C
     u8 mCurrentGroupId;  // 0x6D

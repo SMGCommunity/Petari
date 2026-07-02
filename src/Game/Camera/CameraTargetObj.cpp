@@ -1,8 +1,10 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Gravity/GravityInfo.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
 CameraTargetObj::CameraTargetObj(const char* pName) : NameObj(pName) {
     mCameraWall = false;

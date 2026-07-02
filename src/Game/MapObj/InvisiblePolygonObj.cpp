@@ -1,4 +1,6 @@
 #include "Game/MapObj/InvisiblePolygonObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 InvisiblePolygonObj::InvisiblePolygonObj(const char* pName) : LiveActor(pName) {

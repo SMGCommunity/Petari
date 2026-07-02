@@ -1,9 +1,30 @@
 #include "Game/Enemy/BegomanBase.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/BegomanBaby.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/WaterInfo.hpp"
-#include "Game/Util.hpp"
-#include "Game/mapObj/ElectricRailHolder.hpp"
+#include "Game/MapObj/ElectricRailHolder.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointController.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
 namespace NrvBegomanAttackPermitter {
@@ -613,8 +634,8 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
 
         directionFromLauncher.add(vec1.scaleInline(MR::sin(angle)));
 
-        begomanArray[i]->mPosition.set(pActor->mPosition.addOperatorInLine(directionFromLauncher.scaleInline(distFromLauncher)));
-        begomanArray[i]->mVelocity.set(directionFromLauncher.scaleInline(f2).subOperatorInLine(pActor->mGravity.scaleInline(f3)));
+        begomanArray[i]->mPosition.set(pActor->mPosition + directionFromLauncher.scaleInline(distFromLauncher));
+        begomanArray[i]->mVelocity.set(directionFromLauncher.scaleInline(f2) - pActor->mGravity.scaleInline(f3));
         begomanArray[i]->mFaceVec.set(directionFromLauncher);
 
         angle += TWO_PI / (numBegoman);
@@ -797,7 +818,7 @@ bool BegomanBase::checkTouchElectricRail(bool notCheckPush) {
                 sideVec.scale(-1.0f);
             }
 
-            if (0.0f < sideVec.dot(vec1.subOperatorInLine(mPosition))) {
+            if (0.0f < sideVec.dot(vec1 - mPosition)) {
                 mInvertSideVec = !mInvertSideVec;
             }
         }
@@ -853,7 +874,7 @@ void BegomanBase::pushedFromElectricRail(HitSensor* pSensor, const TVec3f& rVec1
 
 void BegomanBase::preventSwingby(f32 f1) {
     if (!MR::isOnGround(this)) {
-        f32 mag = mGravity.subOperatorInLine(_A8).length();
+        f32 mag = (mGravity - _A8).length();
         mag *= 0.5f;
         dampingVerticalAndParallelVelocity(f1, mag);
     }
@@ -885,7 +906,7 @@ void BegomanBase::dampingVerticalAndParallelVelocity(f32 f1, f32 f2) {
     }
 
     parallelVelocity.scale(f2 * f1 + (1 - f2));
-    mVelocity.set(verticalVelocity.addOperatorInLine(parallelVelocity));
+    mVelocity.set(verticalVelocity + parallelVelocity);
 }
 
 bool BegomanBase::isInWaterAndSetWaterNerve(const Nerve* pWaterNerve, TPos3f* pPos) {
@@ -903,7 +924,7 @@ bool BegomanBase::isInWaterAndSetWaterNerve(const Nerve* pWaterNerve, TPos3f* pP
 }
 
 void BegomanBase::calcBlowReaction(const TVec3f& rVec1, const TVec3f& rVec2, f32 blowStrengthParallel, f32 blowStrengthVertical) {
-    TVec3f blowDirection(rVec2.subOperatorInLine(rVec1));
+    TVec3f blowDirection(rVec2 - rVec1);
     TVec3f effectVec(-blowDirection);
     f32 sensorRadius = getSensor("body")->mRadius;
 

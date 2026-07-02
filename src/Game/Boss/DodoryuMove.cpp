@@ -1,6 +1,9 @@
 #include "Game/Boss/DodoryuMove.hpp"
 #include "Game/Boss/Dodoryu.hpp"
 #include "Game/Boss/DodoryuUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
 
 namespace {
     // static const f32 sRailSpeed = _;

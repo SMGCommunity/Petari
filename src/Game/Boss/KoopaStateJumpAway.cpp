@@ -1,6 +1,20 @@
 #include "Game/Boss/KoopaStateJumpAway.hpp"
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+
+namespace {
+    static const f32 sJumpFrontSpeed = 20.0f;
+    static const f32 sJumpFlyUpSpeed = 35.0f;
+    static const f32 sJumpGravity = 1.0f;
+    static const s32 sLandStepVs3Lv3 = 30;
+};  // namespace
 
 namespace NrvKoopaStateJumpAway {
     NEW_NERVE(KoopaStateJumpAwayNrvJumpStart, KoopaStateJumpAway, JumpStart);
@@ -41,16 +55,16 @@ void KoopaStateJumpAway::exeJump() {
 
         Koopa* pKoopa = mHost;
         TVec3f front = KoopaFunction::getKoopaFront(pKoopa);
-        front.mult(-20.0f);
+        front.mult(-::sJumpFrontSpeed);
 
         MR::setVelocity(pKoopa, front);
-        MR::addVelocityJump(mHost, 35.0f);
+        MR::addVelocityJump(mHost, ::sJumpFlyUpSpeed);
 
         MR::startSound(mHost, "SE_BM_KOOPA_JUMP");
         MR::startSound(mHost, "SE_BV_KOOPA_JUMP");
     }
 
-    MR::addVelocityToGravity(mHost, 1.0f);
+    MR::addVelocityToGravity(mHost, ::sJumpGravity);
     TVec3f newFront = mHost->mVelocity;
     MR::vecKillElement(newFront, mHost->mGravity, &newFront);
 
@@ -77,7 +91,7 @@ void KoopaStateJumpAway::exeLand() {
         MR::startAction(mHost, "JumpAwayLand");
     }
 
-    if (KoopaFunction::isKoopaVs3(mHost) && KoopaFunction::isKoopaLv3(mHost) && MR::isGreaterStep(this, 30)) {
+    if (KoopaFunction::isKoopaVs3(mHost) && KoopaFunction::isKoopaLv3(mHost) && MR::isGreaterStep(this, ::sLandStepVs3Lv3)) {
         kill();
     } else if (MR::isActionEnd(mHost)) {
         kill();

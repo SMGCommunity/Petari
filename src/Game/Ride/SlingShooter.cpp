@@ -1,21 +1,23 @@
 #include "Game/Ride/SlingShooter.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/mtx.h>
 #include <revolution/wpad.h>
 
@@ -505,15 +507,15 @@ bool SlingShooter::updateWait() {
 }
 
 void SlingShooter::updateHang() {
-    f32 dist = PSVECDistance(&mPosition, mNeutralPos);
+    f32 dist = mPosition.distance(*mNeutralPos);
 
     if (MR::isStarPointerInScreen(mPadChannel)) {
         MR::calcStarPointerPosOnPlane(&mPointerPos, *mNeutralPos, TVec3f(0.0f, 0.0f, 1.0f), mPadChannel, false);
     }
 
-    TVec3f v1(mPointerPos);
+    TVec3f v1 = mPointerPos;
 
-    if (PSVECDistance(&v1, mNeutralPos) > 300.0f) {
+    if (v1.distance(*mNeutralPos) > 300.0f) {
         v1.set(mPointerPos);
         v1.sub(*mNeutralPos);
         MR::normalize(&v1);
@@ -521,9 +523,9 @@ void SlingShooter::updateHang() {
         v1.add(*mNeutralPos);
     }
 
-    TVec3f pos(v1.scaleInline(0.1f).addOperatorInLine(mPosition.scaleInline(0.9f)));
+    TVec3f pos = v1.scaleInline(0.1f) + mPosition.scaleInline(0.9f);
 
-    mVelocity.setPS2(pos.subOperatorInLine(mPosition));
+    mVelocity = pos - mPosition;
 
     if (mRider == nullptr) {
         return;

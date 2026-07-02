@@ -1,4 +1,5 @@
 #include "Game/LiveActor/ShadowVolumeLine.hpp"
+#include "Game/Util/CameraUtil.hpp"
 
 ShadowVolumeLine::ShadowVolumeLine() : ShadowVolumeDrawer("影描画[ボリュームライン]") {
     mFromShadowController = 0;

@@ -2,6 +2,8 @@
 
 #include "Game/Boss/TripodBossFixPartsBase.hpp"
 
+class ModelObj;
+
 class TripodBossShell : public TripodBossFixPartsBase {
 public:
     TripodBossShell(const char*);

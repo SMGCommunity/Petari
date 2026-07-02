@@ -2,7 +2,7 @@
 
 #include "Game/Camera/CameraParamChunkID.hpp"
 #include "Game/NameObj/NameObj.hpp"
-#include "JSystem/JGeometry.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
 
 class CameraCover;
 class CameraDirector;

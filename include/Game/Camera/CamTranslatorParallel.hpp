@@ -4,8 +4,7 @@
 
 class CamTranslatorParallel : public CamTranslatorBase {
 public:
-    inline CamTranslatorParallel(CameraParallel* pCamera) {
-        mCamera = pCamera;
+    CamTranslatorParallel(CameraParallel* pCamera) : mCamera(pCamera) {
     }
 
     virtual void setParam(const CameraParamChunk*);

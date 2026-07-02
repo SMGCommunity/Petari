@@ -7,13 +7,21 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 #include "revolution/mtx.h"
-#include "revolution/types.h"
 
 namespace NrvBasaBasa {
     NEW_NERVE(BasaBasaNrvWait, BasaBasa, Wait);
@@ -165,7 +173,7 @@ void BasaBasa::exeChase() {
     MR::normalizeOrZero(&v5);
     if (!MR::isNearZero(v5)) {
         TVec3f v4;
-        v4.setPS(v5);
+        v4 = v5;
         MR::rotateVecDegree(&v4, mGravity, _B8);
         MR::turnDirectionDegree(this, &_9C, v4, 1.7f);
     }
@@ -337,7 +345,7 @@ void BasaBasa::exeHitBack() {
 
     if (MR::isLessEqualStep(this, 5)) {
         TVec3f v3;
-        JMathInlineVEC::PSVECAdd(&_9C, &mGravity, &v3);
+        v3.add(_9C, mGravity);
         JGeometry::negateInternal(&v3.x, &v3.x);
         MR::normalizeOrZero(&v3);
         if (MR::isNearZero(v3)) {
@@ -735,7 +743,7 @@ void BasaBasa::controlVelocity() {
         TVec3f* velocity = &mVelocity;
         f32 v4 = v15.dot(*velocity);
         JMAVECScaleAdd(&v15, velocity, velocity, -v4);
-        JMathInlineVEC::PSVECAdd(&mVelocity, &v14, &mVelocity);
+        mVelocity.add(v14);
         f32 v5 = 0.95f;
         if (isNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance)) {
             v5 = 0.96f;

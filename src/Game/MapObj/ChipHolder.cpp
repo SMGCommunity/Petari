@@ -1,8 +1,9 @@
 #include "Game/MapObj/ChipHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/ChipBase.hpp"
 #include "Game/MapObj/ChipCounter.hpp"
 #include "Game/MapObj/ChipGroup.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
 ChipHolder::ChipHolder(const char* pName, s32 chipType) : NameObj(pName) {
@@ -17,13 +18,13 @@ void ChipHolder::registerChipGroup(ChipGroup* pChipGroup) {
     mNumChipGroups++;
 }
 
-ChipGroup* ChipHolder::findChipGroup(s32 chipGroupType) const {
-    if (chipGroupType < 0) {
+ChipGroup* ChipHolder::findChipGroup(s32 groupId) const {
+    if (groupId < 0) {
         return nullptr;
     }
 
     for (s32 i = 0; i < mNumChipGroups; i++) {
-        if (mChipGroups[i]->_4C == chipGroupType) {
+        if (mChipGroups[i]->_4C == groupId) {
             return mChipGroups[i];
         }
     }
@@ -31,29 +32,23 @@ ChipGroup* ChipHolder::findChipGroup(s32 chipGroupType) const {
     return nullptr;
 }
 
-ChipHolder* MR::createChipHolder(s32 chipHolderType) {
-    ChipHolder* result;
-
-    switch (chipHolderType) {
-    case ChipHolder::Chip_Blue:
-        result = (ChipHolder*)createSceneObj(SceneObj_BlueChipHolder);
+void MR::createChipHolder(s32 chipType) {
+    switch (chipType) {
+    case ChipBase::Type_Blue:
+        createSceneObj(SceneObj_BlueChipHolder);
         break;
-    case ChipHolder::Chip_Yellow:
-        result = (ChipHolder*)createSceneObj(SceneObj_YellowChipHolder);
+    case ChipBase::Type_Yellow:
+        createSceneObj(SceneObj_YellowChipHolder);
         break;
     }
-
-    return result;
 }
 
 ChipHolder* MR::getChipHolder(s32 chipType) {
     switch (chipType) {
-    case ChipHolder::Chip_Blue:
-        return (ChipHolder*)getSceneObjHolder()->getObj(SceneObj_BlueChipHolder);
-
-    case ChipHolder::Chip_Yellow:
-        return (ChipHolder*)getSceneObjHolder()->getObj(SceneObj_YellowChipHolder);
-
+    case ChipBase::Type_Blue:
+        return getSceneObj< ChipHolder >(SceneObj_BlueChipHolder);
+    case ChipBase::Type_Yellow:
+        return getSceneObj< ChipHolder >(SceneObj_YellowChipHolder);
     default:
         return nullptr;
     }
@@ -63,58 +58,56 @@ void MR::registerChipGroup(s32 chipType, ChipGroup* pChipGroup) {
     getChipHolder(chipType)->registerChipGroup(pChipGroup);
 }
 
-void MR::registerChip(s32 chipHolderType, ChipBase* pChip, s32 chipGroupType) {
-    getChipHolder(chipHolderType)->findChipGroup(chipGroupType)->registerChip(pChip);
+void MR::registerChip(s32 chipType, ChipBase* pChip, s32 groupId) {
+    getChipHolder(chipType)->findChipGroup(groupId)->registerChip(pChip);
 }
 
-void MR::noticeGetChip(s32 chipHolderType, ChipBase* pChip, s32 chipGroupType) {
-    ChipHolder* holder = getChipHolder(chipHolderType);
-    ChipGroup* group = holder->findChipGroup(chipGroupType);
+void MR::noticeGetChip(s32 chipType, ChipBase* pChip, s32 groupId) {
+    ChipHolder* holder = getChipHolder(chipType);
+    ChipGroup* group = holder->findChipGroup(groupId);
     group->noticeGet(pChip);
     holder->mChipCounter->setCount(group->getGotCount());
     incPlayerOxygen(8);
 }
 
-s32 MR::showChipCounter(s32 chipHolderType, s32 arg_1) {
-    ChipHolder* holder = getChipHolder(chipHolderType);
-    return holder->mChipCounter->requestShow(arg_1, holder->findChipGroup(arg_1)->getGotCount());
+s32 MR::showChipCounter(s32 chipType, s32 param2) {
+    ChipHolder* holder = getChipHolder(chipType);
+    return holder->mChipCounter->requestShow(param2, holder->findChipGroup(param2)->getGotCount());
 }
 
-void MR::hideChipCounter(s32 chipHolderType, s32 arg_1) {
-    ChipHolder* holder = getChipHolder(chipHolderType);
-    holder->mChipCounter->requestHide(arg_1);
+void MR::hideChipCounter(s32 chipType, s32 param2) {
+    getChipHolder(chipType)->mChipCounter->requestHide(param2);
 }
 
-void MR::requestStartChipCompleteDemo(s32 chipHolderType, s32 arg_1) {
-    ChipHolder* holder = getChipHolder(chipHolderType);
-    holder->mChipCounter->requestComplete(arg_1);
+void MR::requestStartChipCompleteDemo(s32 chipType, s32 param2) {
+    getChipHolder(chipType)->mChipCounter->requestComplete(param2);
 }
 
-void MR::noticeEndChipCompleteDemo(s32 chipHolderType, s32 chipGroupType) {
-    getChipHolder(chipHolderType)->findChipGroup(chipGroupType)->noticeEndCompleteDemo();
+void MR::noticeEndChipCompleteDemo(s32 chipType, s32 groupId) {
+    getChipHolder(chipType)->findChipGroup(groupId)->noticeEndCompleteDemo();
 }
 
-s32 MR::getGotChipCount(s32 chipHolderType, s32 chipGroupType) {
-    return getChipHolder(chipHolderType)->findChipGroup(chipGroupType)->getGotCount();
+s32 MR::getGotChipCount(s32 chipType, s32 groupId) {
+    return getChipHolder(chipType)->findChipGroup(groupId)->getGotCount();
 }
 
 void MR::activateChipLayout() {
     if (isExistSceneObj(SceneObj_BlueChipHolder)) {
-        getChipHolder(0)->mChipCounter->requestActive();
+        getChipHolder(ChipBase::Type_Blue)->mChipCounter->requestActive();
     }
 
     if (isExistSceneObj(SceneObj_YellowChipHolder)) {
-        getChipHolder(1)->mChipCounter->requestActive();
+        getChipHolder(ChipBase::Type_Yellow)->mChipCounter->requestActive();
     }
 }
 
 void MR::deactivateChipLayout() {
     if (isExistSceneObj(SceneObj_BlueChipHolder)) {
-        getChipHolder(0)->mChipCounter->requestDeactive();
+        getChipHolder(ChipBase::Type_Blue)->mChipCounter->requestDeactive();
     }
 
     if (isExistSceneObj(SceneObj_YellowChipHolder)) {
-        getChipHolder(1)->mChipCounter->requestDeactive();
+        getChipHolder(ChipBase::Type_Yellow)->mChipCounter->requestDeactive();
     }
 }
 
@@ -122,13 +115,13 @@ ChipHolder::~ChipHolder() {
 }
 
 void ChipHolder::init(const JMapInfoIter& rIter) {
-    mChipGroups = new ChipGroup*[0x40];
+    mChipGroups = new ChipGroup*[64];
 
     switch (mChipType) {
-    case Chip_Blue:
+    case ChipBase::Type_Blue:
         mChipCounter = new ChipCounter("ブルーチップカウンター", mChipType);
         break;
-    case Chip_Yellow:
+    case ChipBase::Type_Yellow:
         mChipCounter = new ChipCounter("イエローチップカウンター", mChipType);
         break;
     }

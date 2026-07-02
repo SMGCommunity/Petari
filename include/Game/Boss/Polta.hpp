@@ -2,15 +2,16 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class PoltaSensorCtrl;
-class PoltaArm;
-class PoltaActionSequencer;
-class PoltaRockHolder;
-class PoltaGroundRockHolder;
+class ActorCameraInfo;
 class BombTeresa;
+class ModelObj;
+class PoltaActionSequencer;
+class PoltaArm;
+class PoltaGroundRockHolder;
+class PoltaRockHolder;
+class PoltaSensorCtrl;
 
 class BombTeresaHolder : public DeriveActorGroup< BombTeresa > {
 public:

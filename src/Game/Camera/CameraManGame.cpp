@@ -12,6 +12,9 @@
 #include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/MapObj/GCapture.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include <cstring>
 
 namespace {

@@ -3,18 +3,17 @@
 #include "Game/Boss/PoltaArm.hpp"
 #include "Game/Boss/PoltaFunction.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/types.h"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvPoltaRock {
     NEW_NERVE(PoltaRockNrvFloat, PoltaRock, Float);
@@ -174,7 +173,7 @@ void PoltaRock::exeMove() {
     }
 
     if (MR::isLessStep(this, 30)) {
-        mVelocity.addInline(_A0.multInLine(3.0f * MR::calcNerveRate(this, 30)));
+        mVelocity.add(_A0.multInLine(3.0f * MR::calcNerveRate(this, 30)));
     }
     MR::addVelocityToGravity(this, -0.02f);
     MR::attenuateVelocity(this, 0.99f);

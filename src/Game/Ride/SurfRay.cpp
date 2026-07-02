@@ -1,13 +1,33 @@
 #include "Game/Ride/SurfRay.hpp"
 #include "Game/LiveActor/ActorJointCtrl.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SequenceUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
-inline f32 min(f32 a, f32 b) {
-    if (a >= b) {
-        return b;
-    }
-
-    return a;
+void SurfRay_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
 }
 
 namespace NrvSurfRay {
@@ -441,7 +461,7 @@ void SurfRay::control() {
     mVelocity.set(mFront);
     mVelocity.scale(mSurfSpeed);
     mVelocity.add(mOrthoVelocity);
-    f32 rate = min(mSurfSpeed * ::sBtkSpeedRate + ::sBtkSpeedMin, ::sBtkSpeedMax);
+    f32 rate = MR::min(mSurfSpeed * ::sBtkSpeedRate + ::sBtkSpeedMin, ::sBtkSpeedMax);
     MR::setBtkRate(this, rate);
     mActorJointCtrl->update();
 }
@@ -775,7 +795,7 @@ void SurfRay::updateToWater() {
     }
 
     WaterInfo waterInfo;
-    TVec3f v(mPosition.addOperatorInLine(mGravity.scaleInline(20.0f)));
+    TVec3f v(mPosition + mGravity.scaleInline(20.0f));
 
     if (MR::getWaterAreaObj(&waterInfo, v)) {
         mShadowAlpha -= ::sShadowAlphaSpeed;
@@ -973,36 +993,36 @@ bool SurfRay::tryInWater() {
         return true;
     }
 
-    TVec3f v1(mFront.scaleInline(100.0f).addOperatorInLine(mPosition));
+    TVec3f v1(mFront.scaleInline(100.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v1)) {
         return true;
     }
 
-    TVec3f v2(mUp.scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v2(mUp.scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v2)) {
         return true;
     }
 
     TVec3f v3(mFront);
     MR::rotateVecDegree(&v3, -mGravity, -90.0f);
-    TVec3f v3a(v3.scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v3a(v3.scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v3a)) {
         return true;
     }
 
     TVec3f v4(mFront);
     MR::rotateVecDegree(&v4, -mGravity, 90.0f);
-    TVec3f v4a(v4.scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v4a(v4.scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v4a)) {
         return true;
     }
 
-    TVec3f v5(mSide.scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v5(mSide.scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v5)) {
         return true;
     }
 
-    TVec3f v6((-mSide).scaleInline(150.0f).addOperatorInLine(mPosition));
+    TVec3f v6((-mSide).scaleInline(150.0f) + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v6)) {
         return true;
     }

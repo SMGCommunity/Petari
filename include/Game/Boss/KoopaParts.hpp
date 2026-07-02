@@ -1,6 +1,7 @@
 #pragma once
 
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <revolution/types.h>
 
 class Koopa;
 class JMapInfoIter;

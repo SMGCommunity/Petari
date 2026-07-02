@@ -1,5 +1,11 @@
 #include "Game/Map/SeaGull.hpp"
-#include "Game/Util.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvSeaGull {
     NEW_NERVE(SeaGullNrvHoverFront, SeaGull, HoverFront);

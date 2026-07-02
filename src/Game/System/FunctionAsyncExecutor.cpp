@@ -1,6 +1,7 @@
 #include "Game/System/FunctionAsyncExecutor.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/MemoryUtil.hpp"
-#include "Game/Util/StringUtil.hpp"
+#include "Game/Util/MutexHolder.hpp"
 #include <JSystem/JKernel/JKRExpHeap.hpp>
 #include <JSystem/JKernel/JKRUnitHeap.hpp>
 

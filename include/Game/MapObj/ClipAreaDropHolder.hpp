@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/MapObj/ClipAreaDrop.hpp"
-#include "Game/NameObj/NameObj.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
+
+class ClipAreaDrop;
 
 class ClipAreaDropHolder : public DeriveActorGroup< ClipAreaDrop > {
 public:

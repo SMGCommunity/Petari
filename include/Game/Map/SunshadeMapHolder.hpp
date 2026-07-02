@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/Util.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class SunshadeMapHolder : public NameObj {
 public:

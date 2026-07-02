@@ -2,18 +2,17 @@
 #include "file_struct.h"
 #include "locale.h"
 
-int fflush(FILE *);
-void free(void *);
+int fflush(FILE*);
+void free(void*);
 int __flush_all(void);
-long ftell(FILE *);
-int __flush_buffer(FILE *, size_t *);
+long ftell(FILE*);
+int __flush_buffer(FILE*, size_t*);
 
 inline int tolower_inline(int c) {
-    return ((c < 0) || (c >= 0x100)) ? c : (int) (_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
+    return ((c < 0) || (c >= 0x100)) ? c : (int)(_current_locale.ctype_cmpt_ptr->lower_map_ptr[c]);
 }
 
-
-int fclose(FILE *pFile) {
+int fclose(FILE* pFile) {
     int flush_res, close_res;
 
     if (pFile == 0) {
@@ -36,7 +35,7 @@ int fclose(FILE *pFile) {
     return ((flush_res || close_res) ? -1 : 0);
 }
 
-int fflush(FILE *pFile) {
+int fflush(FILE* pFile) {
     long pos;
 
     if (pFile == 0) {
@@ -64,10 +63,9 @@ int fflush(FILE *pFile) {
         return 0;
     }
 
-    if (pFile->mode.file == 1) {
+    if (pFile->mode.file != 1) {
         pos = 0;
-    }
-    else {
+    } else {
         pos = ftell(pFile);
     }
 
@@ -84,7 +82,7 @@ int fflush(FILE *pFile) {
 }
 
 /* tolower is inlined here, but for some reason CW won't inline the one in ctype */
-int __msl_strnicmp(const char *pStr1, const char *pStr2, int n) {
+int __msl_strnicmp(const char* pStr1, const char* pStr2, int n) {
     int i;
     char c1, c2;
 

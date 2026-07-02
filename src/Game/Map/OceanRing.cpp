@@ -5,11 +5,17 @@
 #include "Game/Map/OceanRingPipe.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/mtx.h"
@@ -157,7 +163,7 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
     MR::calcGravityVector(this, a1, &v20, nullptr, 0);
     pInfo->mSurfaceNormal.set(-v20);
 
-    pInfo->mSurfacePos.set(a1.addOperatorInLine(a2.scaleInline(v10)));
+    pInfo->mSurfacePos.set(a1 + a2.scaleInline(v10));
 
     TVec3f v19(a1);
     v19.sub(v24);

@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/NPC/Penguin.hpp"
+
+class RemovableTurtle;
 
 class PenguinStudent : public NPCActor {
 public:

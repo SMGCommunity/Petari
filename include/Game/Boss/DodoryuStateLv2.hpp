@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/Boss/DodoryuStateBase.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 struct DodoryuAnimSet {
     /* 0x00 */ const char* mBckName;

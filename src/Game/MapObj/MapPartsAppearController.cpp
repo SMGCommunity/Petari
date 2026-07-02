@@ -1,7 +1,14 @@
 #include "Game/MapObj/MapPartsAppearController.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/StageSwitch.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PostureHolder.hpp"
 
 namespace NrvMapPartsAppearController {
@@ -36,8 +43,9 @@ void MapPartsAppearController::storeCurrentPosture() {
 
 void MapPartsAppearController::initSwitchMessenger(const JMapInfoIter& rIter) {
     if (MR::isExistStageSwitchAppear(rIter)) {
-        MR::listenNameObjStageSwitchOnOffAppear(this, MR::createStageSwitchCtrl(this, rIter), MR::Functor(this, &MapPartsAppearController::startKill),
-                                                MR::Functor(this, &MapPartsAppearController::startAppear));
+        MR::listenNameObjStageSwitchOnOffAppear(this, MR::createStageSwitchCtrl(this, rIter),
+                                                MR::Functor(this, &MapPartsAppearController::startAppear),
+                                                MR::Functor(this, &MapPartsAppearController::startKill));
     }
 }
 
@@ -128,7 +136,4 @@ void MapPartsAppearController::exeDisappear() {
         MR::showModel(mHost);
         killHost();
     }
-}
-
-MapPartsAppearController::~MapPartsAppearController() {
 }

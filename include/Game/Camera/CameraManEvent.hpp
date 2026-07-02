@@ -2,7 +2,6 @@
 
 #include "Game/Camera/CameraMan.hpp"
 #include "Game/Camera/CameraTargetArg.hpp"
-#include "Inline.hpp"
 
 class Camera;
 class CameraHolder;

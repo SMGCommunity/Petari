@@ -1,5 +1,11 @@
 #include "Game/Enemy/WalkerStateChase.hpp"
 #include "Game/Enemy/WalkerStateFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace {
     WalkerStateChaseParam sDefaultParam;

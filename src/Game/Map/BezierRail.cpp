@@ -1,10 +1,26 @@
 #include "Game/Map/BezierRail.hpp"
 #include "Game/Map/RailPart.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include <revolution/mtx.h>
+
+void BezierRail_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)-1.0f;
+    (void)2.0f;
+
+    // getLength probably has a rounding inline
+    (void)0.001f;
+    (void)0.01f;
+    (void)4.0f;
+    (void)1024.0f;
+}
 
 inline void getCsvDataStr(const char** pOut, const JMapInfo* pMapInfo, const char* pKey, s32 idx) {
     // This SHOULD NOT be here. This is only here to match BezierRail::BezierRail

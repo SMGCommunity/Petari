@@ -1,8 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
+#include "Game/Util/Color.hpp"
 #include "Game/Util/NPCUtil.hpp"
 
 class TicoDemoGetPower;
@@ -35,7 +34,7 @@ public:
     void exeMeta();
     void exeBlue0();
     void exeBlue1();
-    inline void exeRed0();
+    void exeRed0();
     void exeRed1();
     void exeRed2();
     void exeGuide0();

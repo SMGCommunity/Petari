@@ -1,7 +1,8 @@
 #include "Game\MapObj\PhantomTorch.hpp"
 #include "Game/Effect/SpinPullParticleCallBack.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -10,7 +11,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/types.h"
 
 namespace NrvPhantomTorch {

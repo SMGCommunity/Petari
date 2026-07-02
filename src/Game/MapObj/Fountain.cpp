@@ -1,4 +1,6 @@
 #include "Game/MapObj/Fountain.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvFountain {
     NEW_NERVE(HostTypeWait, Fountain, Wait);

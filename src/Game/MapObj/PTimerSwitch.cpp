@@ -1,6 +1,8 @@
 #include "Game/MapObj/PTimerSwitch.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvPTimerSwitch {
     NEW_NERVE(PTimerSwitchNrvOff, PTimerSwitch, Off);

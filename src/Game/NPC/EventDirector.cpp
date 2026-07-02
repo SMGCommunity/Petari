@@ -1,4 +1,5 @@
 #include "Game/NPC/EventDirector.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/PowerStarHolder.hpp"
 #include "Game/NPC/CometEventKeeper.hpp"
 #include "Game/NPC/PowerStarEventKeeper.hpp"

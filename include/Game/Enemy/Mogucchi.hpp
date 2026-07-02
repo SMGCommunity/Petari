@@ -1,9 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class MogucchiHill;
 class ModelObj;
+class MogucchiHill;
 
 class Mogucchi : public LiveActor {
 public:

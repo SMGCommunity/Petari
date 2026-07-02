@@ -1,5 +1,9 @@
 #include "Game/Boss/DinoPackunTailNode.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/JointController.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
 typedef JointControlDelegator< DinoPackunTailNode > Delegator;
 
@@ -144,7 +148,7 @@ const TVec3f* DinoPackunTailNode::getNodeDirection() const {
 }
 
 void DinoPackunTailNode::addNodeVelocity(const TVec3f& rVel) {
-    mVelocity.addInline(rVel);
+    mVelocity.add(rVel);
 }
 
 void DinoPackunTailNode::requestLockPosition() {

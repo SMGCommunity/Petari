@@ -1,18 +1,27 @@
 #include "Game/Boss/KoopaDemoFallToPlanetVs3Lv3.hpp"
 #include "Game/Boss/Koopa.hpp"
+#include "Game/Boss/KoopaBattleBase.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/KoopaSwitchKeeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
-    MR::ActorMoveParam sWaitParam = {0.0f, 1.0f, 0.9f, 1.0f};
+    static MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
+    static MR::ActorMoveParam sWaitParam = {0.0f, 1.0f, 0.9f, 1.0f};
+    static const s32 sFallOutsideChangeSun = 266;
+    static const s32 sFinalBgmStartStepSub = 250;
+    static const s32 sFallDownSeStep2 = 214;
+    static const s32 sFallDownSeStep3 = 328;
 };  // namespace
-
-namespace MR {
-    void moveAndTurnToPlayer(LiveActor*, TVec3f*, const MR::ActorMoveParam&);
-};  // namespace MR
 
 namespace NrvKoopaDemoFallToPlanetVs3Lv3 {
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv3NrvWaitFallDemo, KoopaDemoFallToPlanetVs3Lv3, WaitFallDemo);
@@ -56,16 +65,16 @@ void KoopaDemoFallToPlanetVs3Lv3::exeFallOutside() {
         MR::showModel(KoopaFunction::getKoopaPlanetLv3(mHost));
     }
 
-    if (MR::isStep(this, 250)) {
+    if (MR::isStep(this, ::sFinalBgmStartStepSub)) {
         MR::startStageBGM("MBGM_BOSS_KOOPA_FINAL", false);
     }
 
-    if (MR::isStep(this, 266)) {
+    if (MR::isStep(this, ::sFallOutsideChangeSun)) {
         KoopaFunction::appearKoopaHoleSunPlanetInside(mHost);
         MR::onSwitchDead(KoopaFunction::getKoopaSwitchKeeper(mHost));
     }
 
-    if (MR::isStep(this, 267)) {
+    if (MR::isStep(this, ::sFallOutsideChangeSun + 1)) {
         KoopaFunction::getKoopaPlanet(mHost)->kill();
         KoopaFunction::getKoopaPlanetLv2(mHost)->kill();
 
@@ -76,15 +85,15 @@ void KoopaDemoFallToPlanetVs3Lv3::exeFallOutside() {
         MR::offSwitchDead(KoopaFunction::getKoopaSwitchKeeper(mHost));
     }
 
-    if (MR::isLessStep(this, 214)) {
+    if (MR::isLessStep(this, ::sFallDownSeStep2)) {
         MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_1");
-    } else if (MR::isLessStep(this, 328)) {
+    } else if (MR::isLessStep(this, ::sFallDownSeStep3)) {
         MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_2");
     } else {
         MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_3");
     }
 
-    if (MR::isStep(this, 328)) {
+    if (MR::isStep(this, ::sFallDownSeStep3)) {
         MR::startAtmosphereSE("SE_BM_KOOPA_FALL_SUN_3_WIND");
     }
 
@@ -103,7 +112,7 @@ void KoopaDemoFallToPlanetVs3Lv3::exeFallOutside() {
 
 void KoopaDemoFallToPlanetVs3Lv3::exeFallInside() {
     MR::startAtmosphereLevelSE("SE_BM_LV_KOOPA_FALL_SUN_1");
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sFallParam);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sFallParam);
 
     if (MR::isBindedGround(mHost)) {
         MR::zeroVelocity(mHost);
@@ -131,7 +140,7 @@ void KoopaDemoFallToPlanetVs3Lv3::exeWaitPlayer() {
         KoopaFunction::startFaceCtrl(mHost);
     }
 
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sWaitParam);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sWaitParam);
 
     if (MR::isOnGroundPlayer()) {
         kill();

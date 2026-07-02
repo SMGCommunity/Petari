@@ -2,6 +2,8 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 
+class ActorCameraInfo;
+
 class AnmModelObj : public MapObjActor {
 public:
     AnmModelObj(const char*);
@@ -21,7 +23,7 @@ public:
     virtual inline void moveInner();
     virtual void stopInner();
 
-    inline void exeWait();
+    void exeWait();
     void exeMove();
     void exeDone();
 

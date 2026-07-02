@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 
+class JUTTexture;
 class SpiderThreadHangInfo;
 class SpiderThreadMainPoint;
 class SpiderThreadPart;

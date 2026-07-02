@@ -12,7 +12,7 @@ struct JASInstEffect;
 const int OSC_MAX = 2;
 
 struct JASInstParam : public JASSoundParams {
-    JASInstParam();  // gets overwritten in OverwriteJAudio
+    JASInstParam() ATTRIBUTE_WEAK;  // gets overwritten in OverwriteJAudio
 
     void initChannelType() {
         mChannelType = JASChannel::CH_WAVE;
@@ -52,7 +52,7 @@ struct JASInstParam : public JASSoundParams {
 };
 
 struct JASInst {
-    virtual ~JASInst(){};
+    virtual ~JASInst() {};
     virtual bool getParam(int, int, JASInstParam*) const = 0;
     virtual u32 getType() const = 0;
 };

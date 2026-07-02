@@ -1,6 +1,7 @@
 #include "Game/MapObj/BlackHole.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
 namespace NrvBlackHole {
@@ -111,7 +112,7 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
         _A0 = 500.0f * mScale.z;
     } else {
         TVec3f stack_C;
-        stack_C.setPS(mScale);
+        stack_C = mScale;
         _A0 = PSVECMag(&stack_C);
     }
 

@@ -1,4 +1,6 @@
 #include "Game/MapObj/BenefitItemLifeUp.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include <cstring>
 
 BenefitItemLifeUp::BenefitItemLifeUp(const char* pName) : BenefitItemObj(pName, "KinokoLifeUp") {

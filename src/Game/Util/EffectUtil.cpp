@@ -2,12 +2,14 @@
 #include "Game/Effect/EffectSystemUtil.hpp"
 #include "Game/Effect/MultiEmitter.hpp"
 #include "Game/Effect/MultiEmitterParticleCallBack.hpp"
+#include "Game/LiveActor/EffectKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Screen/LayoutActor.hpp"
 #include "Game/Screen/PaneEffectKeeper.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include <JSystem/JMath/JMath.hpp>
 
 namespace {
@@ -218,15 +220,11 @@ namespace MR {
         }
     }
 
-    // Regswap + stackswap
-    /* void updateEffectFloorCodeLineToMap(LiveActor *pActor, f32 a2, f32 a3) {
-        TVec3f gravity(pActor->mGravity);
-        TVec3f scaledGrav = gravity * a3;
-        TVec3f sumPosScaledGrav(pActor->mPosition);
-        JMathInlineVEC::PSVECAdd2((Vec*)&scaledGrav, (Vec*)&sumPosScaledGrav, (Vec*)&sumPosScaledGrav);
-        TVec3f scaledGrav2 = gravity * (a2-a3);
-        updateEffectFloorCodeLineToMap(pActor, sumPosScaledGrav, scaledGrav2);
-    } */
+    void updateEffectFloorCodeLineToMap(LiveActor* pActor, f32 a2, f32 a3) {
+        TVec3f gravity = pActor->mGravity;
+        TVec3f sumPosScaledGrav = pActor->mPosition + gravity * a3;
+        updateEffectFloorCodeLineToMap(pActor, sumPosScaledGrav, gravity * (a2 - a3));
+    }
 
     // Not byte-matching but does the same thing
     void initEffectSyncBck(LiveActor* pActor, const char* pEffectName, const char* const* pStrList) {
@@ -249,7 +247,7 @@ namespace MR {
     // Instructionswap for some reason
     void addEffectHitNormal(LiveActor* pActor, const char* pEffectName) {
         pActor->mEffectKeeper->addEffect("HitMarkNormal", pActor);
-        if (pEffectName) {
+        if (pEffectName != nullptr) {
             pActor->mEffectKeeper->changeEffectName("HitMarkNormal", pEffectName);
         }
     }

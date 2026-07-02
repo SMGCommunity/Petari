@@ -1,4 +1,6 @@
 #include "Game/MapObj/Swinger.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 
 Swinger::Swinger(const TVec3f* a1, MtxPtr a2, f32 a3, f32 a4, f32 a5, const TVec3f* a6)

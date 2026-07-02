@@ -1,10 +1,9 @@
 #include "Game/NPC/ButlerExplain.hpp"
 #include "Game/Demo/DemoFunction.hpp"
-#include "Game/NPC/NPCActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "revolution/types.h"
 
 namespace NrvButlerExplain {
     NEW_NERVE(ButlerExplainNrvDemo, ButlerExplain, Demo);

@@ -1,6 +1,8 @@
 #include "Game/MapObj/MapPartsFunction.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/Spine.hpp"
+#include "Game/Util.hpp"
 
 MapPartsFunction::MapPartsFunction(LiveActor* pActor, const char* pName) : NameObj(pName != 0 ? pName : "マップパーツ機能") {
     mSpine = 0;

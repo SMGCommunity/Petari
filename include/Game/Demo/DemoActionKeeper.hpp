@@ -1,11 +1,15 @@
 #pragma once
 
-#include "Game/Demo/DemoExecutor.hpp"
-#include "Game/Util.hpp"
+#include <revolution/types.h>
 
+class JMapInfoIter;
 class LiveActor;
 class Nerve;
 class DemoExecutor;
+
+namespace MR {
+    class FunctorBase;
+};  // namespace MR
 
 class DemoActionInfo {
 public:

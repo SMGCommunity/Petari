@@ -2,8 +2,14 @@
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
@@ -156,12 +162,12 @@ void TicoRail::exeStop() {
 
 void TicoRail::exeTalkStart() {
     TVec3f diff;
-    JMathInlineVEC::PSVECSubtract(&mPosition, &_98->mPosition, &diff);
+    diff.sub(_98->mPosition, mPosition);
     MR::normalize(&diff);
 
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Spin", nullptr);
-        TVec3f v14(MR::getRailDirection(this));
+        TVec3f v14 = MR::getRailDirection(this);
 
         if (diff.dot(v14) > 0.0f) {
             MR::reverseRailDirection(this);

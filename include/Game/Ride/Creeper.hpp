@@ -1,8 +1,11 @@
 #pragma once
 
-#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
+
+class ActorCameraInfo;
+class JUTTexture;
+class PartsModel;
 
 class CreeperPoint {
 public:

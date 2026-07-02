@@ -2,9 +2,9 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-class BigBubbleMoveLimitter;
 class BigBubble;
 class BigBubbleDrawer;
+class BigBubbleMoveLimitter;
 
 class BigBubbleHolder : public NameObj {
 public:

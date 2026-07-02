@@ -1,6 +1,9 @@
 #include "Game/NPC/TicoReading.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 

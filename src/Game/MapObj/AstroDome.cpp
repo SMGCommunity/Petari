@@ -1,6 +1,12 @@
 #include "Game/MapObj/AstroDome.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/AstroMapObjFunction.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace NrvAstroDome {
     NEW_NERVE(AstroDomeNrvWait, AstroDome, Wait);

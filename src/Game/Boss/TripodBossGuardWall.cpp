@@ -1,14 +1,22 @@
 #include "Game/Boss/TripodBossGuardWall.hpp"
 #include "Game/Boss/TripodBossAccesser.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JMath/JMath.hpp"
-#include "revolution/mtx.h"
 
 struct WallPart2Angle {
     f32 angle;
@@ -21,6 +29,10 @@ namespace {
 
     static s32 sMoveSeLength = 58;
 };  // namespace
+
+void TripodBossGuardWall_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
 
 namespace NrvTriPodBossGuardWall {
     NEW_NERVE(TripodBossGuardWallNrvWait, TripodBossGuardWall, Wait);
@@ -60,7 +72,7 @@ void TripodBossGuardWall::kill() {
 void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjDecorationMovement(this);
-    _580.setPS(mPosition);
+    _580 = mPosition;
     initModelManagerWithAnm("TripodBossGuardWall", nullptr, false);
     MR::getJMapInfoArg0NoInit(rIter, &_58C);
     initSound(4, false);
@@ -192,15 +204,12 @@ void TripodBossGuardWall::updateCameraTarget() {
     f32 z = mBaseMtx.mMtx[2][1];
     f32 y = mBaseMtx.mMtx[1][1];
     f32 x = mBaseMtx.mMtx[0][1];
-    up.set< f32 >(x, y, z);
+    mBaseMtx.getYDirInline(up);
     f32 v9 = up.dot(front);
     JMAVECScaleAdd(&up, &front, &front, -v9);
 
     if (MR::isNearZero(front)) {
-        f32 z = mBaseMtx.mMtx[2][2];
-        f32 y = mBaseMtx.mMtx[1][2];
-        f32 x = mBaseMtx.mMtx[0][2];
-        front.set< f32 >(x, y, z);
+        mBaseMtx.getZDirInline(front);
     } else {
         MR::normalize(&front);
     }
@@ -209,8 +218,4 @@ void TripodBossGuardWall::updateCameraTarget() {
     pos.identity();
     MR::makeMtxUpFrontPos(&pos, up, front, mPosition);
     mCameraTargetMtx->mMatrix.setInline(pos);
-}
-
-MtxPtr TripodBossGuardWall::getBaseMtx() const {
-    return (MtxPtr)mBaseMtx.mMtx;
 }

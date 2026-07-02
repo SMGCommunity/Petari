@@ -6,7 +6,22 @@
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/KoopaSubSequenceBattle.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+
+namespace {
+    static const s32 sKoopaFallVoiceStep = 20;
+};  // namespace
 
 namespace NrvKoopaSequencerVs1 {
     NEW_NERVE(KoopaSequencerVs1NrvBattleStairs, KoopaSequencerVs1, BattleStairs);
@@ -113,7 +128,7 @@ void KoopaSequencerVs1::exeDemoBattleEnd() {
         MR::startBrk(KoopaFunction::getKoopaPlanet(mKoopa), "Death");
     }
 
-    if (MR::isStep(this, 20)) {
+    if (MR::isStep(this, ::sKoopaFallVoiceStep)) {
         MR::startSound(mKoopa, "SE_BV_KOOPA_BATTLE_END_FALL");
     }
 
@@ -135,9 +150,9 @@ void KoopaSequencerVs1::exeDemoBattleEnd() {
 void KoopaSequencerVs1::exeWaitDemo() {
 }
 
-bool KoopaSequencerVs1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void KoopaSequencerVs1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKoopaSequencerVs1::KoopaSequencerVs1NrvBattle::sInstance) && !mSubSequenceBattle->isDemo()) {
-        return mBattleMain->attackSensor(pSender, pReceiver);
+        mBattleMain->attackSensor(pSender, pReceiver);
     }
 }
 

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Game/NPC/TalkNodeCtrl.hpp"
-#include "Game/Util.hpp"
+#include <revolution/types.h>
 
-class TalkNode;
+class JMapInfo;
 class TalkMessageInfo;
+class TalkNode;
 
 struct MessageInfoBlock {
     u32 mMagic;

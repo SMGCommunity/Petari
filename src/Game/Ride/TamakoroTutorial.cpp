@@ -2,12 +2,17 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Ride/Tamakoro.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/PlayerActionGuidance.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -365,7 +370,7 @@ void TamakoroTutorial::updateHitSensor(HitSensor* pSensor) {
     TVec3f up(upVec);
     up.mult(dot);
 
-    pSensor->mPosition.addInline(up);
+    pSensor->mPosition.add(up);
 }
 
 void TamakoroTutorial::startTimerSound(s32 step, s32 param2) {

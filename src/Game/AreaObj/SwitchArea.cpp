@@ -1,5 +1,6 @@
 #include "Game/AreaObj/SwitchArea.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 SwitchArea::SwitchArea(int formType, const char* pName) : AreaObj(formType, pName) {
 }
@@ -14,11 +15,7 @@ void SwitchArea::movement() {
         return;
     }
 
-    bool bVar1 = false;
-
-    if (!isValidSwitchB() || isOnSwitchB()) {
-        bVar1 = true;
-    }
+    bool bVar1 = !isValidSwitchB() || isOnSwitchB();
 
     if (bVar1 && isInVolume(*MR::getPlayerPos())) {
         if (mObjArg1 == -1) {
@@ -29,10 +26,6 @@ void SwitchArea::movement() {
     } else if (mObjArg0 != -1) {
         offSwitchA();
     }
-}
-
-const char* SwitchArea::getManagerName() const {
-    return "SwitchArea";
 }
 
 bool SwitchArea::isUpdate() const {
@@ -49,4 +42,8 @@ bool SwitchArea::isUpdate() const {
     }
 
     return isOnSwitchA();
+}
+
+const char* SwitchArea::getManagerName() const {
+    return "SwitchArea";
 }

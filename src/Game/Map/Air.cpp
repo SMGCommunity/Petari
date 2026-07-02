@@ -1,7 +1,15 @@
 #include "Game/Map/Air.hpp"
 #include "Game/LiveActor/MaterialCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace NrvAir {
     NEW_NERVE(HostTypeIn, Air, In);
@@ -147,9 +155,6 @@ void Air::exeOut() {
     }
 }
 
-Air::~Air() {
-}
-
 ProjectionMapAir::ProjectionMapAir(const char* pName) : Air(pName) {
 }
 
@@ -206,15 +211,3 @@ namespace MR {
         return MR::getSceneObj< PriorDrawAirHolder >(SceneObj_PriorDrawAirHolder)->isExistValidDrawAir();
     }
 };  // namespace MR
-
-AirFar100m::~AirFar100m() {
-}
-
-ProjectionMapAir::~ProjectionMapAir() {
-}
-
-PriorDrawAir::~PriorDrawAir() {
-}
-
-PriorDrawAirHolder::~PriorDrawAirHolder() {
-}

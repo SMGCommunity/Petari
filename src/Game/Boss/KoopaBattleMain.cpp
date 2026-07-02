@@ -10,13 +10,25 @@
 #include "Game/Boss/KoopaStateDamageEscape.hpp"
 #include "Game/Boss/KoopaStateGuard.hpp"
 #include "Game/Boss/KoopaStateJumpAway.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace {
-    MR::ActorMoveParam sChasePlayerParam = {1.5f, 1.0f, 0.9f, 3.0f};
-    MR::ActorMoveParam sWanderParam = {0.5f, 1.0f, 0.9f, 1.3f};
-    MR::ActorSightParam sChasePlayerStartSight = {1800.0f, 120.0f, 50.0f};
-    MR::ActorSightParam sChasePlayerKeepSight = {2200.0f, 125.0f, 50.0f};
-    MR::ActorSightParam sAttackHipDropSight = {1000.0f, 90.0f, 30.0f};
+    static MR::ActorMoveParam sChasePlayerParam = {1.5f, 1.0f, 0.9f, 3.0f};
+    static MR::ActorMoveParam sWanderParam = {0.5f, 1.0f, 0.9f, 1.3f};
+    static MR::ActorSightParam sChasePlayerStartSight = {1800.0f, 120.0f, 50.0f};
+    static MR::ActorSightParam sChasePlayerKeepSight = {2200.0f, 125.0f, 50.0f};
+    static MR::ActorSightParam sAttackHipDropSight = {1000.0f, 90.0f, 30.0f};
+    static const f32 sDistanceMaxToJumpAway = 1500.0f;
+    static const f32 sSearchDistance = 2000.0f;
+    static const s32 sSearchStepToFind = 60;
+    static const f32 sChasePlayerDistanceNearAttack = 500.0f;
+    static const s32 sChasePlayerStepToAttackFireShort = 90;
+    static const s32 sChasePlayerStepToAttackHipDrop = 60;
 };  // namespace
 
 namespace NrvKoopaBattleMain {
@@ -101,51 +113,52 @@ void KoopaBattleMain::appear() {
 }
 
 void KoopaBattleMain::exeChasePlayer() {
-    updateChasePlayer(sChasePlayerParam);
+    updateChasePlayer(::sChasePlayerParam);
 
     if (KoopaFunction::isKoopaVs1(mHost)) {
-        if (MR::isNearPlayer(mHost, 500.0f) ||
-            ((MR::isGreaterStep(this, 60) && MR::isInSightFanPlayer(mHost, KoopaFunction::getKoopaFront(mHost), sAttackHipDropSight._0,
-                                                                    sAttackHipDropSight._4, sAttackHipDropSight._8)))) {
+        if (MR::isNearPlayer(mHost, ::sChasePlayerDistanceNearAttack) ||
+            ((MR::isGreaterStep(this, ::sChasePlayerStepToAttackHipDrop) &&
+              MR::isInSightFanPlayer(mHost, KoopaFunction::getKoopaFront(mHost), ::sAttackHipDropSight._0, ::sAttackHipDropSight._4,
+                                     ::sAttackHipDropSight._8)))) {
             setNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackHipDrop::sInstance);
             return;
         }
     }
 
-    if (MR::isGreaterStep(this, 90)) {
+    if (MR::isGreaterStep(this, ::sChasePlayerStepToAttackFireShort)) {
         startMainAttack();
         return;
     }
 
-    if (!KoopaFunction::isKoopaSightPlayer(mHost, sChasePlayerKeepSight)) {
+    if (!KoopaFunction::isKoopaSightPlayer(mHost, ::sChasePlayerKeepSight)) {
         setNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvWander::sInstance);
     }
 }
 
 void KoopaBattleMain::exeWander() {
-    if (KoopaFunction::isKoopaSightPlayer(mHost, sChasePlayerStartSight)) {
+    if (KoopaFunction::isKoopaSightPlayer(mHost, ::sChasePlayerStartSight)) {
         setNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvFind::sInstance);
         return;
     }
 
-    if (updateWander(sWanderParam)) {
+    if (updateWander(::sWanderParam)) {
         setNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvSearch::sInstance);
     }
 }
 
 void KoopaBattleMain::exeSearch() {
-    if (MR::isGreaterStep(this, 60)) {
-        if (KoopaFunction::isKoopaVs1(mHost) && KoopaFunction::isKoopaSightPlayer(mHost, sAttackHipDropSight)) {
+    if (MR::isGreaterStep(this, ::sSearchStepToFind)) {
+        if (KoopaFunction::isKoopaVs1(mHost) && KoopaFunction::isKoopaSightPlayer(mHost, ::sAttackHipDropSight)) {
             setNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackHipDrop::sInstance);
             return;
         }
 
-        if (KoopaFunction::isKoopaSightPlayer(mHost, sChasePlayerStartSight)) {
+        if (KoopaFunction::isKoopaSightPlayer(mHost, ::sChasePlayerStartSight)) {
             startMainAttack();
             return;
         }
 
-        if (MR::isNearPlayer(mHost, 2000.0f)) {
+        if (MR::isNearPlayer(mHost, ::sSearchDistance)) {
             setNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvFind::sInstance);
             return;
         }
@@ -262,13 +275,15 @@ bool KoopaBattleMain::tryCalcAndSetBaseMtx() {
     return false;
 }
 
-bool KoopaBattleMain::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void KoopaBattleMain::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackHipDrop::sInstance)) {
-        return mStateAttackHipDrop->attackSensor(pSender, pReceiver);
+        mStateAttackHipDrop->attackSensor(pSender, pReceiver);
+        return;
     }
 
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackShockWave::sInstance)) {
-        return mStateAttackShockWave->attackSensor(pSender, pReceiver);
+        mStateAttackShockWave->attackSensor(pSender, pReceiver);
+        return;
     }
 
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvJumpAway::sInstance) && KoopaFunction::tryKoopaAttackMapObj(pSender, pReceiver)) {
@@ -280,15 +295,18 @@ bool KoopaBattleMain::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             return;
         }
 
-        return KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver);
+        KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver);
+        return;
     }
 
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvAttackSpin::sInstance)) {
-        return mStateAttackSpin->attackSensor(pSender, pReceiver);
+        mStateAttackSpin->attackSensor(pSender, pReceiver);
+        return;
     }
 
     if (isNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvDamageEscape::sInstance)) {
-        return mStateDamageEscape->attackSensor(pSender, pReceiver);
+        mStateDamageEscape->attackSensor(pSender, pReceiver);
+        return;
     }
 
     if (!KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver) && KoopaFunction::tryKoopaBodyAttackPlayer(pSender, pReceiver)) {
@@ -384,7 +402,7 @@ void KoopaBattleMain::startMainAttack() {
 }
 
 bool KoopaBattleMain::tryJumpAway() {
-    if (MR::isNearPlayer(mHost, 1500.0f)) {
+    if (MR::isNearPlayer(mHost, ::sDistanceMaxToJumpAway)) {
         setNerve(&NrvKoopaBattleMain::KoopaBattleMainNrvJumpAway::sInstance);
         return true;
     }

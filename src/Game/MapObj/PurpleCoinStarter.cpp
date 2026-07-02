@@ -1,6 +1,8 @@
 #include "Game/MapObj/PurpleCoinStarter.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/StageSwitch.hpp"
 #include "Game/MapObj/PurpleCoinHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/ObjUtil.hpp"
 

@@ -1,5 +1,7 @@
 #include "Game/MapObj/PicketSwitch.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvPicketSwitch {
     NEW_NERVE(PicketSwitchNrvWait, PicketSwitch, Wait);

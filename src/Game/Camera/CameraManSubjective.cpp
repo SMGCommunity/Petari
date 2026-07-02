@@ -7,9 +7,6 @@ CameraManSubjective::CameraManSubjective(const char* pName) : CameraMan(pName) {
     mCamera->mCameraMan = this;
 }
 
-CameraManSubjective::~CameraManSubjective() {
-}
-
 void CameraManSubjective::init(const JMapInfoIter& rIter) {
 }
 

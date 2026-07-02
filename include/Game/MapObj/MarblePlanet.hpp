@@ -4,6 +4,7 @@
 
 class MarblePlanetElectron;
 class MarblePlanetElectronShadow;
+class ModelObj;
 
 class MarblePlanet : public LiveActor {
 public:

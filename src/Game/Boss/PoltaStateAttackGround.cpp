@@ -3,6 +3,10 @@
 #include "Game/Boss/PoltaFunction.hpp"
 #include "Game/LiveActor/ActorStateBase.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvPoltaStateAttackGround {
     NEW_NERVE(PoltaStateAttackGroundNrvStart, PoltaStateAttackGround, Start);

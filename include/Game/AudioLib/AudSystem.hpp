@@ -100,15 +100,15 @@ public:
     /* 0x0828 */ u8 _828;
     /* 0x0829 */ u8 _829;
     /* 0x082A */ u8 _82A;
-    /* 0x082B */ u8 _82B;
-    /* 0x082C */ u8 _82C;
+    /* 0x082B */ bool _82B;
+    /* 0x082C */ bool _82C;
     /* 0x0830 */ s32 _830;
     /* 0x0834 */ u32 _834;
     /* 0x0838 */ u32 _838;
     /* 0x083C */ u32 _83C;
     /* 0x0840 */ AudAudience_withSetting mAudience;
     /* 0x0894 */ u8 _894[0x4];
-    /* 0x0898 */ MicData _898[WPAD_MAX_CONTROLLERS];
+    /* 0x0898 */ MicData mMicData[WPAD_MAX_CONTROLLERS];
     /* 0x09E8 */ u8 _9E8[0x4];
     /* 0x09EC */ AudSoundObject* mSystemSeObject;
     /* 0x09F0 */ AudSoundObject* mAtmosphereSeObject;

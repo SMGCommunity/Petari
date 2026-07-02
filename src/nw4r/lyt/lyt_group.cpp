@@ -33,7 +33,7 @@ namespace nw4r {
             for (PaneLinkList::Iterator it = mPaneLinkList.GetBeginIter(); it != mPaneLinkList.GetEndIter();) {
                 PaneLinkList::Iterator currIt = it++;
                 mPaneLinkList.Erase(currIt);
-                Layout::DeleteObj(&(*currIt));
+                Layout::FreeMemory(&*currIt);
             }
         }
 
@@ -42,6 +42,7 @@ namespace nw4r {
                 GroupList::Iterator currIt = it++;
                 mGroupList.Erase(currIt);
                 if (!currIt->IsUserAllocated()) {
+                    // Layout::FreeMemory(&*currIt);
                     Layout::DeleteObj(&(*currIt));
                 }
             }

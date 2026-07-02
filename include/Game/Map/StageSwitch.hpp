@@ -1,10 +1,9 @@
 #pragma once
 
-#include <revolution.h>
-
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Array.hpp"
-#include "Game/Util/JMapIdInfo.hpp"
+
+class JMapIdInfo;
 
 class BitFlag128 {
 public:

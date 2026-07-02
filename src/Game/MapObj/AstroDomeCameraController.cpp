@@ -1,17 +1,14 @@
 #include "Game/MapObj/AstroDomeCameraController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "math_types.hpp"
 #include "revolution/mtx.h"
@@ -90,16 +87,15 @@ void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
 void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) const {
     TVec3f zoomOutPos;
     calcZoomOutPos(&zoomOutPos);
-    TVec3f* trans = &SphereSelectorFunction::getSelectedActorTrans();
     TVec3f x;
-    JMathInlineVEC::PSVECSubtract2(trans, &zoomOutPos, &x);
+    x.sub(SphereSelectorFunction::getSelectedActorTrans(), zoomOutPos);
     SphereSelectorFunction::calcOffsetPos(v1, SphereSelectorFunction::getSelectedActorTrans(), ::cZoomInPos, x, v2);
 }
 
 void AstroDomeCameraController::calcZoomInTarget(TVec3f* vec1, const TVec3f& vec2) const {
-    TVec3f stack;
-    stack.scale(200.0f, vec2);
-    JMathInlineVEC::PSVECAdd3(&SphereSelectorFunction::getSelectedActorTrans(), &stack, vec1);
+    TVec3f offset;
+    offset.scale(200.0f, vec2);
+    vec1->add(SphereSelectorFunction::getSelectedActorTrans(), offset);
 }
 
 void AstroDomeCameraController::calcZoomInUp(TVec3f* vec) const {
@@ -188,7 +184,7 @@ void AstroDomeCameraController::exeGalaxyConfirmCancel() {
     MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, frame);
 }
 
-AstroDomeCameraController::~AstroDomeCameraController() {};
+AstroDomeCameraController::~AstroDomeCameraController(){};
 
 AstroDomeCameraController::Position::Position() {
     _0.zero();

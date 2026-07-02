@@ -1,4 +1,5 @@
 #include "Game/NPC/TalkMessageInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 
 TalkMessageInfo::TalkMessageInfo() : _0(0), mCameraSetID(0), _6(0), mCameraType(2), mTalkType(0), _A(-1), _B(-1) {
 }

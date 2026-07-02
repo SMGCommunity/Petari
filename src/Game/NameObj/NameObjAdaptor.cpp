@@ -1,4 +1,5 @@
 #include "Game/NameObj/NameObjAdaptor.hpp"
+#include "Game/Util/Functor.hpp"
 
 NameObjAdaptor::NameObjAdaptor(const char* pName)
     : NameObj(pName), mMovementFunc(nullptr), mCalcAnimFunc(nullptr), mCalcViewFunc(nullptr), mDrawAnimFunc(nullptr) {

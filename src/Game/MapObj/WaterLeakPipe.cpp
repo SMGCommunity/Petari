@@ -1,5 +1,7 @@
 #include "Game/MapObj/WaterLeakPipe.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvIceStepNoSlip {
     NEW_NERVE(IceStepNoSlipNrvAppear, IceStepNoSlip, Appear);
@@ -31,6 +33,12 @@ void IceStepNoSlip::init(const JMapInfoIter& rIter) {
 void IceStepNoSlip::appear() {
     LiveActor::appear();
     setNerve(&NrvIceStepNoSlip::IceStepNoSlipNrvAppear::sInstance);
+}
+
+void IceStepNoSlip::exeAppear() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Start", nullptr);
+    }
 }
 
 void IceStepNoSlip::exeBreak() {

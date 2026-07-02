@@ -1,4 +1,17 @@
 #include "Game/Enemy/KoopaJrShipCannonShell.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     static const f32 sBodySensorRadius = 75.0f;
@@ -37,6 +50,7 @@ KoopaJrShipCannonShell::KoopaJrShipCannonShell(const char* pName) : CannonShellB
 }
 
 void KoopaJrShipCannonShell::init(const JMapInfoIter& rIter) {
+    // FIXME: weird tvec load, default arg initStarPointerTarget?
     initModelManagerWithAnm("KoopaJrShipCannonShell", nullptr, false);
     MR::startBck(this, "KoopaJrShipCannonShell", nullptr);
     initSound(4, false);
@@ -227,7 +241,7 @@ void KoopaJrShipCannonShell::exeDown() {
         }
     }
 
-    JMathInlineVEC::PSVECAdd(mVelocity, mGravity.scaleInline(::sGravity), mVelocity);
+    mVelocity.add(mGravity.scaleInline(::sGravity));
     if (MR::reboundVelocityFromCollision(this, ::sReboundRate, ::sReboundMinSpeed, 1.0f))
         MR::deleteEffect(this, "LocusSmoke");
 
@@ -247,8 +261,8 @@ void KoopaJrShipCannonShell::exeFreeze() {
     _B4++;
     MR::startDPDFreezeLevelSound(this);
 
-    f32 scale = ::sFreezeRumbleWidth * MR::cosDegree(MR::repeatDegree(_B4 * ::sFreezeRumbleSpeed)) * static_cast< f32 >(::sFreezeFrame - getNerveStep()) /
-                ::sFreezeFrame;
+    f32 scale = ::sFreezeRumbleWidth * MR::cosDegree(MR::repeatDegree(_B4 * ::sFreezeRumbleSpeed)) *
+                static_cast< f32 >(::sFreezeFrame - getNerveStep()) / ::sFreezeFrame;
     TVec3f vec14;
     vec14.set(MR::getCamXdir());
     vec14.scale(scale);

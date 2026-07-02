@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/Ride/SwingRopePoint.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 
 class Binder;
 

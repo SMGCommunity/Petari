@@ -2,8 +2,8 @@
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ElectricRailHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace NrvElectricRail {
     NEW_NERVE(ElectricRailNrvWait, ElectricRail, Wait);
@@ -183,12 +183,12 @@ void ElectricRail::initMapToolInfo(const JMapInfoIter& iter) {
 void ElectricRail::initSensor() {
     initHitSensor(mRailHeight);
 
-    _94 = new JGeometry::TVec3< f32 >[mRailHeight];
+    _94 = new TVec3f[mRailHeight];
 
     s32 curSensor = 0;
 
     while (curSensor < mRailHeight) {
-        JGeometry::TVec3< f32 > temp(0.0f, 0.0f, 0.0f);
+        TVec3f temp(0.0f, 0.0f, 0.0f);
 
         f32 hitSensorRadius = ElectricRailFunction::getHitSensorRadius();
         MR::addHitSensorPosMapObj(this, ElectricRail::cSensorNameTable[curSensor], 8, hitSensorRadius, &_94[curSensor], temp);
@@ -209,9 +209,9 @@ void ElectricRail::initPoints() {
 
         bool ret = MR::getRailPointArg0NoInit(this, curRail, &curRailPointArg);
 
-        if (!ret)
+        if (!ret) {
             mPointCount++;
-
+        }
         curRail++;
     }
 
@@ -228,22 +228,22 @@ void ElectricRail::initPoints() {
 
         if (!ret) {
             ElectricRailPoint* point = &mPoints[curPointIdx];
-            JGeometry::TVec3< f32 > temp;
-            MR::calcRailPointPos(&temp, this, curRailPoint);
-            point->mPosition.set< f32 >(temp);
+            TVec3f pos;
+            MR::calcRailPointPos(&pos, this, curRailPoint);
+            point->mPosition.set< f32 >(pos);
             curPointIdx++;
 
             if (mRailHeight > 1) {
-                JGeometry::TVec3< f32 > outGrav;
-                calcGravity(&outGrav, temp);
+                TVec3f outGrav;
+                calcGravity(&outGrav, pos);
                 outGrav.scale(-100.0f);
 
                 s32 curHeight = 1;
 
                 while (curHeight < mRailHeight) {
                     ElectricRailPoint* curPointInRail = &mPoints[curPointIdx];
-                    JMathInlineVEC::PSVECAdd(&temp, &outGrav, &temp);
-                    curPointInRail->mPosition.set< f32 >(temp);
+                    pos.add(outGrav);
+                    curPointInRail->mPosition.set< f32 >(pos);
                     curPointInRail->_8C = flag;
                     curPointIdx++;
                     curHeight++;
@@ -322,10 +322,10 @@ void ElectricRail::initShadow(const JMapInfoIter& iter) {
         MR::addShadowVolumeCylinder(this, "start", 20.0);
         MR::addShadowVolumeCylinder(this, "end", 20.0);
 
-        JGeometry::TVec3< f32 > startPos;
+        TVec3f startPos;
         MR::calcRailStartPos(&startPos, this);
 
-        JGeometry::TVec3< f32 > endPos;
+        TVec3f endPos;
         MR::calcRailEndPos(&endPos, this);
 
         MR::setShadowDropPosition(this, "start", startPos);
@@ -349,20 +349,20 @@ void ElectricRail::updateHitSensorPos() {
     MR::calcNearestRailPos(_94, this, *MR::getPlayerCenterPos());
 
     if (mRailHeight > 1) {
-        JGeometry::TVec3< f32 > gravity;
+        TVec3f gravity;
         calcGravity(&gravity, *_94);
         gravity.scale(-100.0);
 
         s32 curIdx = 1;
 
         while (curIdx < mRailHeight) {
-            JMathInlineVEC::PSVECAdd(&_94[curIdx - 1], &gravity, &_94[curIdx]);
+            _94[curIdx].add(_94[curIdx - 1], gravity);
             curIdx++;
         }
     }
 }
 
-void ElectricRail::calcGravity(JGeometry::TVec3< f32 >* pOut, const JGeometry::TVec3< f32 >& a2) const {
+void ElectricRail::calcGravity(TVec3f* pOut, const TVec3f& a2) const {
     if (_B4) {
         pOut->set< f32 >(mGravity);
     } else {
@@ -404,7 +404,4 @@ void ElectricRail::exeDisappeared() {
     if (MR::isFirstStep(this)) {
         MR::hideModel(this);
     }
-}
-
-ElectricRail::~ElectricRail() {
 }

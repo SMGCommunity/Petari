@@ -3,8 +3,8 @@
 #include "Game/Speaker/SpkData.hpp"
 #include "Game/Speaker/SpkMixingBuffer.hpp"
 #include "Game/Speaker/SpkSound.hpp"
-#include "JSystem/JAudio2/JASGlobal.hpp"
-#include "JSystem/JAudio2/JASHeapCtrl.hpp"
+#include <JSystem/JAudio2/JASGlobal.hpp>
+#include <JSystem/JAudio2/JASHeapCtrl.hpp>
 
 class SpkSystem : JASGlobalInstance< SpkSystem > {
 public:
@@ -20,8 +20,8 @@ public:
     static void extensionProcess(s32, s32);
     static f32 getDeviceVolume(s32);
 
-    JKRHeap* mHeap;                // 0x0
-    SpkData* mData;                // 0x4
-    SpkMixingBuffer* mMixBuffer;   // 0x8
-    SpkSoundHolder* mSoundHolder;  // 0xC
+    /* 0x00 */ JKRHeap* mHeap;
+    /* 0x04 */ SpkData* mData;
+    /* 0x08 */ SpkMixingBuffer* mMixBuffer;
+    /* 0x0C */ SpkSoundHolder* mSoundHolder;
 };

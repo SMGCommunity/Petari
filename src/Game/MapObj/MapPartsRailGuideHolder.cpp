@@ -1,4 +1,6 @@
 #include "Game/MapObj/MapPartsRailGuideHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 MapPartsRailGuideHolder::~MapPartsRailGuideHolder() {
 }

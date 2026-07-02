@@ -3,18 +3,21 @@
 #include "Game/Boss/TombSpiderFunction.hpp"
 #include "Game/Boss/TombSpiderGland.hpp"
 #include "Game/Boss/TombSpiderVitalSpot.hpp"
-
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution.h"
 
 namespace {
     static const f32 sAttackSensorDistanceOffset = 100.0f;
     static const f32 sEyeSensorPosOffset = -100.0f;
     static const f32 sHipSensorPosOffset = -400.0f;
 };  // namespace
+
+void TombSpiderSensorCtrl_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
 
 TombSpiderSensorCtrl::TombSpiderSensorCtrl(TombSpider* pOwner) : mParent(pOwner) {
 }

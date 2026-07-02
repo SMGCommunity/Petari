@@ -21,7 +21,8 @@ public:
     };
 
     CameraRailHolder(const char*);
-    ~CameraRailHolder();
+
+    virtual ~CameraRailHolder();
 
     // getRider(s32, s32) const;
     // find(s32, s32) const;

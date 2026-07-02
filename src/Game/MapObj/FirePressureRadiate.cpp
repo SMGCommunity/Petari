@@ -1,4 +1,6 @@
 #include "Game/MapObj/FirePressureRadiate.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvFirePressureRadiate {
     NEW_NERVE(FirePressureRadiateNrvRelax, FirePressureRadiate, Relax);

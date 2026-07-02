@@ -5,6 +5,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
 namespace NrvPoltaStatePunch {

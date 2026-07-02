@@ -7,7 +7,18 @@
 #include "Game/Boss/TombSpiderFunction.hpp"
 #include "Game/Boss/TombSpiderParts.hpp"
 #include "Game/Boss/TombSpiderSensorCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/PlanetMap.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static s32 sSecondBgmStartStep = 180;

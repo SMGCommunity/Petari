@@ -1,18 +1,12 @@
 #pragma once
 
-#include "Game/Demo/DemoFunction.hpp"
-#include "Game/NPC/Rosetta.hpp"
-#include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/NPC/TalkTextFormer.hpp"
 #include "Game/Screen/SimpleLayout.hpp"
 #include "Game/System/NerveExecutor.hpp"
-#include "Game/Util/DemoUtil.hpp"
-#include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/TalkUtil.hpp"
 
 class IconAButton;
 class NameObjArchiveListCollector;
+class Rosetta;
 class RosettaMonologue;
 
 class RosettaDemoAstroDomeExplain : public NerveExecutor {

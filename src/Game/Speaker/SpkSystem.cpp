@@ -1,11 +1,9 @@
 #include "Game/Speaker/SpkSystem.hpp"
 #include "Game/Speaker/SpkSpeakerCtrl.hpp"
 
-SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(this) {
-    mData = nullptr;
-
-    if (!pHeap) {
-        pHeap = JKRHeap::sCurrentHeap;
+SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(true), mData(nullptr) {
+    if (pHeap == nullptr) {
+        pHeap = JKRGetCurrentHeap();
     }
 
     mHeap = pHeap;
@@ -15,10 +13,15 @@ SpkSystem::SpkSystem(JKRHeap* pHeap) : JASGlobalInstance(this) {
     SpkSpeakerCtrl::setMixingBuffer(mMixBuffer);
 }
 
-void SpkSystem::setResource(JKRArchive* pArchive, u16 a2, u16 a3) {
+void DUMMY() {
+    // NOTE: JSUList<SpkSound> dtor is being emitted here, as well as JASGlobalInstance<SpkSystem>. Unsure as to exactly why
+    SpkSoundHolder dummy;
+}
+
+void SpkSystem::setResource(JKRArchive* pArchive, u16 tableOffset, u16 waveOffset) {
     mData = new (mHeap, 0) SpkData(pArchive);
-    mData->loadTable(a2);
-    mData->loadWave(a3);
+    mData->loadTable(tableOffset);
+    mData->loadWave(waveOffset);
 }
 
 void SpkSystem::framework() {
@@ -26,29 +29,29 @@ void SpkSystem::framework() {
     mSoundHolder->framework();
 }
 
-void SpkSystem::startSound(s32 a1, s32 a2, SpkSoundHandle* pHandle) {
-    mSoundHolder->startSound(a1, a2, pHandle);
+void SpkSystem::startSound(s32 padChannel, s32 waveID, SpkSoundHandle* pHandle) {
+    mSoundHolder->startSound(padChannel, waveID, pHandle);
 }
 
 void SpkSystem::newSoundMemPool(s32 n) {
     JASPoolAllocObject< SpkSound >::memPool_.newMemPool(n);
 }
 
-void SpkSystem::connect(s32 chan) {
-    SpkSpeakerCtrl::connect(chan);
+void SpkSystem::connect(s32 padChannel) {
+    SpkSpeakerCtrl::connect(padChannel);
 }
 
-void SpkSystem::disconnect(s32 chan) {
-    SpkSpeakerCtrl::disconnect(chan);
+void SpkSystem::disconnect(s32 padChannel) {
+    SpkSpeakerCtrl::disconnect(padChannel);
 }
 
-void SpkSystem::reconnect(s32 chan) {
-    if (chan < 0) {
+void SpkSystem::reconnect(s32 padChannel) {
+    if (padChannel < 0) {
         for (int i = 0; i < 4; i++) {
             SpkSpeakerCtrl::reconnect(i);
         }
     } else {
-        SpkSpeakerCtrl::reconnect(chan);
+        SpkSpeakerCtrl::reconnect(padChannel);
     }
 }
 
@@ -56,6 +59,6 @@ void SpkSystem::extensionProcess(s32 a1, s32 a2) {
     SpkSpeakerCtrl::extensionProcess(a1, a2);
 }
 
-f32 SpkSystem::getDeviceVolume(s32 chan) {
-    return SpkSpeakerCtrl::getDeviceVolume(chan);
+f32 SpkSystem::getDeviceVolume(s32 padChannel) {
+    return SpkSpeakerCtrl::getDeviceVolume(padChannel);
 }

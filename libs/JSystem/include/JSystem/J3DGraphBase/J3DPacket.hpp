@@ -193,10 +193,10 @@ public:
     bool checkFlag(u32 flag) const {
         return (mFlags & flag) ? true : false;
     }
-    void onFlag(u32 flag) {
+    inline void onFlag(u32 flag) {
         mFlags |= flag;
     }
-    void offFlag(u32 flag) {
+    inline void offFlag(u32 flag) {
         mFlags &= ~flag;
     }
     void lock() {

@@ -1,6 +1,12 @@
 #include "Game/MapObj/GeneralMapParts.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/BaseMatrixFollowTargetHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapPartsAppearController.hpp"
+#include "Game/MapObj/MapPartsRailGuideDrawer.hpp"
+#include "Game/MapObj/MapPartsRailMover.hpp"
+#include "Game/MapObj/MapPartsRailPosture.hpp"
+#include "Game/MapObj/MapPartsRailRotator.hpp"
+#include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvGeneralMapParts {
     NEW_NERVE(HostTypeWait, GeneralMapParts, Wait);
@@ -132,7 +138,7 @@ void GeneralMapParts::control() {
         }
 
         if (v9) {
-            mPosition.setPS(mRailMover->_28);
+            mPosition.set(mRailMover->_28);
         }
     }
 }

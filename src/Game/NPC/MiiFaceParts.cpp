@@ -1,9 +1,11 @@
 #include "Game/NPC/MiiFaceParts.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/FixedPosition.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <RVLFaceLib.h>
 
 MiiFaceParts::MiiFaceParts(const char* pName, const MiiFaceRecipe& rRecipe)

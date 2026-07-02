@@ -1,4 +1,14 @@
 #include "Game/Enemy/KoopaJrShipCannonMainShell.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static const f32 sTmpScale = 1.2f;
@@ -18,6 +28,9 @@ namespace NrvKoopaJrShipCannonMainShell {
 KoopaJrShipCannonMainShell::KoopaJrShipCannonMainShell(const char* pName) : CannonShellBase(pName) {
     f32 one = 1.0f;  // This makes Data match
     _8C.set< f32 >(0.0f, 0.0f, 0.0f, one);
+}
+
+CannonShellBase::~CannonShellBase() {
 }
 
 void KoopaJrShipCannonMainShell::init(const JMapInfoIter& rIter) {
@@ -90,14 +103,12 @@ void KoopaJrShipCannonMainShell::launch(const TVec3f& rStartPos, const TVec3f& r
     appear();
 
     mPosition.set< f32 >(rStartPos);
-    TVec3f tmp;
-    TVec3f* vec = &tmp;
-
-    vec->setPS2(rVelocity);
-    MR::normalize(vec);
+    TVec3f dir;
+    dir = rVelocity;
+    MR::normalize(&dir);
 
     TPos3f mtx;
-    MR::makeMtxFrontUp(&mtx, *vec, mGravity.invertOperatorInternal());
+    MR::makeMtxFrontUp(&mtx, dir, mGravity.invertOperatorInternal());
     mtx.getQuat(_8C);
     mVelocity.set< f32 >(rVelocity);
     setNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance);

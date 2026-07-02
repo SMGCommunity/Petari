@@ -1,4 +1,8 @@
 #include "Game/Map/TimerSwitch.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 TimerSwitch::TimerSwitch(const char* pName) : LiveActor(pName) {
     mTimerLength = -1;

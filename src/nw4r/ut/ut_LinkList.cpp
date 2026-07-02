@@ -4,6 +4,17 @@
 namespace nw4r {
     namespace ut {
         namespace detail {
+
+            LinkListImpl::~LinkListImpl() {
+                Clear();
+            }
+
+            LinkListImpl::Iterator LinkListImpl::Erase(Iterator it) {
+                Iterator itNext = it;
+                (void)++itNext;
+                return Erase(it, itNext);
+            }
+
             void LinkListImpl::Clear() {
                 Erase(GetBeginIter(), GetEndIter());
             }
@@ -41,16 +52,6 @@ namespace nw4r {
                 }
 
                 return itLast;
-            }
-
-            LinkListImpl::~LinkListImpl() {
-                Clear();
-            }
-
-            LinkListImpl::Iterator LinkListImpl::Erase(Iterator it) {
-                Iterator itNext = it;
-                (void)++itNext;
-                return Erase(it, itNext);
             }
         };  // namespace detail
     };  // namespace ut

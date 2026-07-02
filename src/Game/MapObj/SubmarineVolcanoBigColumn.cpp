@@ -1,10 +1,15 @@
 #include "Game/MapObj/SubmarineVolcanoBigColumn.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AirBubbleHolder.hpp"
+#include "Game/Util.hpp"
 #include <cstdio>
 
 namespace {
-    static f32 sShakeDistance = 800.0f;
+    static const f32 sShakeDistance = 800.0f;
+    static const s32 sGenerateInterval = 360;
+    static const s32 sGenerateLife = 360;
+    static const f32 sGenerateOffsetY = 125.0f;
 };  // namespace
 
 namespace NrvSubmarineVolcanoBigColumn {
@@ -52,15 +57,12 @@ void SubmarineVolcanoBigColumn::kill() {
 
 void SubmarineVolcanoBigColumn::exeWait() {
     if (mIsSmallColumn) {
-        if (MR::isStep(this, 360)) {
+        if (MR::isStep(this, ::sGenerateInterval)) {
+            TVec3f v11;
             TVec3f upVec;
             MR::calcUpVec(&upVec, this);
-            TVec3f v11;
-            v11.scale(125.0f, upVec);
-            TVec3f pos;
-            pos.setPS(v11);
-            pos.addInline(mPosition);
-            MR::appearAirBubble(pos, 360);
+            v11.scale(::sGenerateOffsetY, upVec);
+            MR::appearAirBubble(mPosition + v11, ::sGenerateLife);
             setNerve(&NrvSubmarineVolcanoBigColumn::SubmarineVolcanoBigColumnNrvWait::sInstance);
         }
     }
@@ -68,7 +70,7 @@ void SubmarineVolcanoBigColumn::exeWait() {
 
 void SubmarineVolcanoBigColumn::exeBreak() {
     if (MR::isFirstStep(this)) {
-        MR::startRumbleWithShakeCameraWeak(this, "強", "弱", ::sShakeDistance, 3.4028235e38f);
+        MR::startRumbleWithShakeCameraWeak(this, "強", "弱", ::sShakeDistance, FLOAT_MAX);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
         MR::invalidateCollisionParts(this);
@@ -102,9 +104,9 @@ bool SubmarineVolcanoBigColumn::receiveMsgEnemyAttack(u32 msg, HitSensor* pSende
 }
 
 void SubmarineVolcanoBigColumn::initBreakModel(const char* pModelName) {
-    char buf[256];
-    snprintf(buf, sizeof(buf), "%sBreak", pModelName);
-    mBreakModel = MR::createModelObjMapObj("海底火山石柱壊れモデル", buf, getBaseMtx());
+    char modelName[256];
+    snprintf(modelName, sizeof(modelName), "%sBreak", pModelName);
+    mBreakModel = MR::createModelObjMapObj("海底火山石柱壊れモデル", modelName, getBaseMtx());
     MR::invalidateClipping(mBreakModel);
     mBreakModel->makeActorDead();
 }

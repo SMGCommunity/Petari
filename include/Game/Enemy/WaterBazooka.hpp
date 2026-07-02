@@ -2,14 +2,17 @@
 
 #include "Game/Enemy/WaterBazookaCapsule.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
-class MogucchiShooter;
 class ActorCameraInfo;
-class JointController;
-class CollisionParts;
-class ModelObj;
 class CameraTargetDemoActor;
+class CollisionParts;
 class ElectricPressureBullet;
+class JointController;
+class JointControllerInfo;
+class ModelObj;
+class MogucchiShooter;
 
 class WaterBazooka : public LiveActor {
 public:

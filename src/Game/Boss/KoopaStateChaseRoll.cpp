@@ -1,19 +1,31 @@
 #include "Game/Boss/KoopaStateChaseRoll.hpp"
 #include "Game/Boss/Koopa.hpp"
+#include "Game/Boss/KoopaBattleBase.hpp"
 #include "Game/Boss/KoopaFigureBall.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaRockBreak.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    MR::ActorMoveParam sStartParam = {0.0f, 0.5f, 1.0f, 3.0f};
-    MR::ActorMoveParam sChaseRollParam = {1.1f, 2.0f, 0.95f, 1.5f};
-    MR::ActorMoveParam sChaseRollParamFast = {1.5f, 2.0f, 0.95f, 1.5f};
-    MR::ActorMoveParam sEndParam = {0.0f, 1.0f, 0.98f, 1.0f};
+    static MR::ActorMoveParam sStartParam = {0.0f, 0.5f, 1.0f, 3.0f};
+    static MR::ActorMoveParam sChaseRollParam = {1.1f, 2.0f, 0.95f, 1.5f};
+    static MR::ActorMoveParam sChaseRollParamFast = {1.5f, 2.0f, 0.95f, 1.5f};
+    static MR::ActorMoveParam sEndParam = {0.0f, 1.0f, 0.98f, 1.0f};
+    static const s32 sWaitToStartStep = 60;
+    static const s32 sWaitToStartStepAngry = 60;
+    static const s32 sStartStepToJump = 24;
+    static const f32 sStartJumpSpeed = 30.0f;
+    static const f32 sRotateSpeed = 5.0f;
+    static const s32 sStepRollGround = 900;
+    static const f32 sEndJumpSpeed = 30.0f;
 };  // namespace
-
-namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-};  // namespace MR
 
 namespace NrvKoopaStateChaseRoll {
     NEW_NERVE(KoopaStateChaseRollNrvWaitToStart, KoopaStateChaseRoll, WaitToStart);
@@ -24,7 +36,8 @@ namespace NrvKoopaStateChaseRoll {
     NEW_NERVE(KoopaStateChaseRollNrvEndLand, KoopaStateChaseRoll, EndLand);
 }  // namespace NrvKoopaStateChaseRoll
 
-KoopaStateChaseRoll::KoopaStateChaseRoll(Koopa* pKoopa) : ActorStateBase< Koopa >("State[転がり追跡攻撃]", pKoopa), mFigureBall(), mRollDelay(60) {
+KoopaStateChaseRoll::KoopaStateChaseRoll(Koopa* pKoopa)
+    : ActorStateBase< Koopa >("State[転がり追跡攻撃]", pKoopa), mFigureBall(), mRollDelay(::sWaitToStartStep) {
 }
 
 void KoopaStateChaseRoll::init() {
@@ -34,7 +47,7 @@ void KoopaStateChaseRoll::init() {
 
     KoopaFunction::createKoopaRock(mHost);
 
-    mFigureBall = new KoopaFigureBall("追跡ボール", mHost, 260.0f, &sChaseRollParam);
+    mFigureBall = new KoopaFigureBall("追跡ボール", mHost, 260.0f, &::sChaseRollParam);
     mFigureBall->initWithoutIter();
 
     kill();
@@ -50,11 +63,11 @@ void KoopaStateChaseRoll::appear() {
     MR::validateHitSensor(mHost, "ChaseRollStarPiece");
 
     if (KoopaFunction::isKoopaAngry(mHost)) {
-        mFigureBall->mMoveParam = &sChaseRollParamFast;
-        mRollDelay = 60;
+        mFigureBall->mMoveParam = &::sChaseRollParamFast;
+        mRollDelay = ::sWaitToStartStepAngry;
     } else {
-        mFigureBall->mMoveParam = &sChaseRollParam;
-        mRollDelay = 60;
+        mFigureBall->mMoveParam = &::sChaseRollParam;
+        mRollDelay = ::sWaitToStartStep;
     }
 
     if (mRollDelay >= 0) {
@@ -111,7 +124,7 @@ bool KoopaStateChaseRoll::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRec
     if (isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollGround::sInstance)) {
         KoopaRockBreak* pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
         pKoopaRockBreak->mCalcOwnMtx = true;
-        KoopaFunction::getKoopaRockBreak(mHost)->calcAndSetBaseMtx();
+        KoopaFunction::getKoopaRockBreak(mHost)->appear();
         MR::calcAnimDirect(KoopaFunction::getKoopaRockBreak(mHost));
 
         MR::startAction(KoopaFunction::getKoopaRockBreak(mHost), "Break");
@@ -164,12 +177,12 @@ void KoopaStateChaseRoll::exeStart() {
 
     MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_ROCK_GATHER");
 
-    if (MR::isStep(this, 24)) {
-        MR::setVelocityJump(mHost, 30.0f);
+    if (MR::isStep(this, ::sStartStepToJump)) {
+        MR::setVelocityJump(mHost, ::sStartJumpSpeed);
     }
 
-    if (MR::isGreaterStep(this, 24)) {
-        MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sStartParam);
+    if (MR::isGreaterStep(this, ::sStartStepToJump)) {
+        MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sStartParam);
     }
 
     if (MR::isActionEnd(mHost)) {
@@ -186,8 +199,8 @@ void KoopaStateChaseRoll::exeRollAir() {
         MR::startAction(KoopaFunction::getKoopaRock(mHost), "AttackRoll");
     }
 
-    mFigureBall->mAngle += 5.0f;
-    mFigureBall->appear();
+    mFigureBall->mAngle += ::sRotateSpeed;
+    mFigureBall->movement();
 
     mHost->mPosition.set(mFigureBall->mPosition);
 
@@ -212,7 +225,7 @@ void KoopaStateChaseRoll::exeRollGround() {
 
     MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_CHACE_ROLL");
 
-    if (MR::isPlayerDamaging() || MR::isGreaterStep(this, 900)) {
+    if (MR::isPlayerDamaging() || MR::isGreaterStep(this, ::sStepRollGround)) {
         MR::deleteEffect(KoopaFunction::getKoopaRock(mHost), "RollingSmoke");
 
         mFigureBall->kill();
@@ -223,7 +236,7 @@ void KoopaStateChaseRoll::exeRollGround() {
 
 void KoopaStateChaseRoll::exeEndAir() {
     if (MR::isFirstStep(this)) {
-        MR::setVelocityJump(mHost, 30.0f);
+        MR::setVelocityJump(mHost, ::sEndJumpSpeed);
 
         MR::startAction(mHost, "ChaseRollEnd");
         MR::startAction(KoopaFunction::getKoopaRock(mHost), "AttackRollEnd");
@@ -241,7 +254,7 @@ void KoopaStateChaseRoll::exeEndAir() {
         MR::startSound(mHost, "SE_BM_KOOPA_ROCK_BREAK");
     }
 
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sEndParam);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sEndParam);
 
     if (!MR::isFirstStep(this) && MR::isBindedGround(mHost)) {
         MR::zeroVelocity(mHost);

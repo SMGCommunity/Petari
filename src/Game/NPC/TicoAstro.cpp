@@ -1,5 +1,7 @@
 #include "Game/NPC/TicoAstro.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 
 TicoAstro::TicoAstro(const char* pName) : Tico(pName) {
 }

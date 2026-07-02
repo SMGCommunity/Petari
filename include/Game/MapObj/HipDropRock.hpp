@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/ModelObj.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class ModelObj;
 
 class HipDropRock : public LiveActor {
 public:

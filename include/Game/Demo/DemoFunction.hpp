@@ -1,12 +1,22 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util.hpp"
-#include "Game/Util/JMapInfo.hpp"
+#include <revolution/types.h>
 
 class DemoDirector;
 class DemoCastGroupHolder;
 class DemoExecutor;
+class JMapInfo;
+class JMapInfoIter;
+class LayoutActor;
+class LiveActor;
+class NameObj;
+class Nerve;
+class ResourceHolder;
+class TalkMessageCtrl;
+
+namespace MR {
+    class FunctorBase;
+};  // namespace MR
 
 namespace DemoFunction {
     DemoDirector* getDemoDirector();

@@ -1,7 +1,9 @@
 #include "Game/MapObj/SpiderThreadPoint.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/SpiderThread.hpp"
 #include "Game/MapObj/SpiderThreadWindCtrl.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include <revolution/mtx.h>
 
@@ -97,7 +99,7 @@ void SpiderThreadPoint::restrict(const TVec3f* pAnchor, f32 length) {
 }
 
 void SpiderThreadPoint::updateHang(const TVec3f& rPos) {
-    mPosition.setPS2(rPos);
+    mPosition = rPos;
     mVelocity.zero();
 }
 

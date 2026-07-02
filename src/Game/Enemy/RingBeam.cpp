@@ -2,12 +2,25 @@
 #include "Game/AudioLib/AudAnmSoundObject.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
 
-// GX function that is included as a local symbol for some reason
-extern "C" {
-void GXPosition3f32(f32, f32, f32);
+void RingBeam_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    f32 f3 = JGeometry::TUtil< f32 >::epsilon();
 }
 
 namespace NrvRingBeam {
@@ -45,7 +58,7 @@ void RingBeamShadowDrawer::drawShape() const {
     XDirScaled.scale(_20, XDir);
     f32 f2 = 0.0f;
     for (int i = 0; i < 32; i++) {
-        JMathInlineVEC::PSVECAdd(&Trans, &XDirScaled, &temp);
+        temp.add(Trans, XDirScaled);
         MR::calcGravityVector(_1c, temp, &temp2, nullptr, 0);
         if (MR::normalizeOrZero(XDirScaled, &temp3)) {
             MtxList[i].setInline(baseMtxCopy);
@@ -69,8 +82,8 @@ void RingBeamShadowDrawer::drawShape() const {
         MtxList[i].getTrans(Trans);
         listXDirScaledNeg.scale(-5.0f, listXDir);
         listXDirScaledPos.scale(5.0f, listXDir);
-        JMathInlineVEC::PSVECAdd(&Trans, &listXDirScaledNeg, &temp);
-        JMathInlineVEC::PSVECAdd(&Trans, &listXDirScaledPos, &temp2);
+        temp.add(Trans, listXDirScaledNeg);
+        temp2.add(Trans, listXDirScaledPos);
         GXPosition3f32(temp2.x, temp2.y, temp2.z);
         GXPosition3f32(temp.x, temp.y, temp.z);
     }
@@ -83,10 +96,10 @@ void RingBeamShadowDrawer::drawShape() const {
         listXDirScaledNeg.scale(-5.0f, listXDir);
         listXDirScaledPos.scale(5.0f, listXDir);
         negYDirScaled.scale(500.0f, -listYDir);
-        JMathInlineVEC::PSVECAdd(&Trans, &listXDirScaledNeg, &temp);
-        JMathInlineVEC::PSVECAdd(&Trans, &listXDirScaledPos, &temp2);
-        JMathInlineVEC::PSVECAdd(&temp, &negYDirScaled, &temp);
-        JMathInlineVEC::PSVECAdd(&temp2, &negYDirScaled, &temp2);
+        temp.add(Trans, listXDirScaledNeg);
+        temp2.add(Trans, listXDirScaledPos);
+        temp.add(negYDirScaled);
+        temp2.add(negYDirScaled);
         GXPosition3f32(temp.x, temp.y, temp.z);
         GXPosition3f32(temp2.x, temp2.y, temp2.z);
     }
@@ -98,9 +111,9 @@ void RingBeamShadowDrawer::drawShape() const {
 
         listXDirScaledNeg.scale(-5.0f, listXDir);
         negYDirScaled.scale(500.0f, -listYDir);
-        JMathInlineVEC::PSVECAdd(&Trans, &listXDirScaledNeg, &temp);
-        JMathInlineVEC::PSVECAdd(&Trans, &listXDirScaledNeg, &temp2);
-        JMathInlineVEC::PSVECAdd(&temp2, &negYDirScaled, &temp2);
+        temp.add(Trans, listXDirScaledNeg);
+        temp2.add(Trans, listXDirScaledNeg);
+        temp2.add(negYDirScaled);
         GXPosition3f32(temp.x, temp.y, temp.z);
         GXPosition3f32(temp2.x, temp2.y, temp2.z);
     }
@@ -112,9 +125,9 @@ void RingBeamShadowDrawer::drawShape() const {
 
         listXDirScaledPos.scale(5.0f, listXDir);
         negYDirScaled.scale(500.0f, -listYDir);
-        JMathInlineVEC::PSVECAdd(&Trans, &listXDirScaledPos, &temp);
-        JMathInlineVEC::PSVECAdd(&Trans, &listXDirScaledPos, &temp2);
-        JMathInlineVEC::PSVECAdd(&temp2, &negYDirScaled, &temp2);
+        temp.add(Trans, listXDirScaledPos);
+        temp2.add(Trans, listXDirScaledPos);
+        temp2.add(negYDirScaled);
         GXPosition3f32(temp2.x, temp2.y, temp2.z);
         GXPosition3f32(temp.x, temp.y, temp.z);
     }
@@ -225,22 +238,14 @@ void RingBeam::setRadius(f32 radius) {
         Triangle triangle;
         MR::extractMtxYDir(_8c->getBaseMtx(), &Ydir);
         Ydir.scale(1000.0f);
-        TVec3f temp = _b4;
-        temp.scale(500.0f);
-        MR::getFirstPolyOnLineToMap(&temp2, &triangle, _c0, temp);
-        TVec3f temp3 = _b4;
-        temp3.scale(10.0f);
-        temp2 -= temp3;
-        TVec3f temp4 = _8c->mPosition;
-        JMathInlineVEC::PSVECAdd(&temp4, &Ydir, &temp4);
-        TVec3f temp5 = _8c->mPosition;
-        temp5 -= Ydir;
-        MR::calcPerpendicFootToLine(&temp6, temp2, temp4, temp5);
+
+        MR::getFirstPolyOnLineToMap(&temp2, &triangle, _c0, _b4.scaleInline(500.0f));
+
+        temp2 -= _b4.scaleInline(10.0f);
+        MR::calcPerpendicFootToLine(&temp6, temp2, _8c->mPosition + Ydir, _8c->mPosition - Ydir);
         _a4->mPosition.set(temp6);
         MR::startBckNoInterpole(_a4, str);
-        TVec3f temp7 = temp2;
-        temp7 -= temp6;
-        f32 length = temp7.length();
+        f32 length = (temp2 - temp6).length();
         if (0.0f <= length && length < 2000.0f) {
             MR::setBckFrameAndStop(_a4, (length / 2000.0f) * MR::getBckFrameMax(_a4));
         }
@@ -284,17 +289,9 @@ bool RingBeam::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
     return false;
 }
 
-// has a bunch of stack problems and wrong operators
-// due to TVec jank.
 void RingBeam::exeSpread() {
     TPos3f mtx;
-    TVec3f temp;
-    TVec3f ec;
-    TVec3f temp7;
-    TVec3f temp12;
-    TVec3f temp13;
-    TVec3f temp15;
-    TVec3f temp3;
+
     if (MR::isFirstStep(this)) {
         if (!MR::isPowerStarGetDemoActive()) {
             MR::startSound(this, "SE_EM_JUMPRING_APPEAR");
@@ -307,47 +304,37 @@ void RingBeam::exeSpread() {
         if (_a4) {
             MR::setBrkFrameAndStop(_a4, 0.0f);
         }
+        TVec3f temp;
         MR::extractMtxZDir(_8c->getBaseMtx(), &_a8);
         MR::extractMtxYDir(_8c->getBaseMtx(), &temp);
-        TVec3f temp2 = temp;
-        temp2.scale(75.0f);
-        temp3 = _8c->mPosition;
-        JMathInlineVEC::PSVECAdd(&temp3, &temp2, &temp3);
-        _c0.set(temp3);
+        _c0.set(_8c->mPosition + temp.scaleInline(75.0f));
         MR::calcGravityVector(this, _c0, &_b4, nullptr, 0);
     }
+
+    TVec3f ec;
     if (_9c) {
         MR::calcGravityVector(this, _c0 + _a8.scaleInline(mSpeed), &_b4, nullptr, 0);
-        TVec3f temp6 = -_b4;
-        MR::makeMtxUpFront(&mtx, temp6, _a8);
+        MR::makeMtxUpFront(&mtx, -_b4, _a8);
         mtx.getZDir(_a8);
+        TVec3f temp7;
         MR::extractMtxYDir(_8c->getBaseMtx(), &temp7);
-        TVec3f temp8(_8c->mPosition);
-        JMathInlineVEC::PSVECAdd(&temp8, &temp7, &temp8);
-        TVec3f temp9(_8c->mPosition);
-        temp9 -= temp7;
-        MR::calcPerpendicFootToLine(&ec, _c0, temp8, temp9);
-        TVec3f temp10(ec);
-        mPosition = temp10;
+        MR::calcPerpendicFootToLine(&ec, _c0, _8c->mPosition + temp7, _8c->mPosition - temp7);
+        mPosition = ec.copy();
     } else {
         ec = mPosition;
     }
-    JMathInlineVEC::PSVECAdd(&_c0, &(_a8.scaleInline(mSpeed)), &_c0);
-    TVec3f temp11 = _c0;
-    temp11 -= ec;
-    setRadius(PSVECMag(&temp11));
+
+    _c0 += _a8.scaleInline(mSpeed);
+    setRadius((_c0 - ec).length());
+
     if (!MR::isPowerStarGetDemoActive()) {
-        temp12 = MR::getCamPos();
-        temp12 -= ec;
+        TVec3f temp12 = MR::getCamPos() - ec;
         if (!MR::isNearZero(temp12)) {
             f32 radius;
-            f32 dot;
             f32 float2;
+            TVec3f temp13;
             MR::extractMtxYDir(_8c->getBaseMtx(), &temp13);
-            dot = temp12.dot(temp13);
-            TVec3f temp14 = temp13.scaleInline(dot);
-            temp15 = temp12;
-            temp15 -= temp14;
+            TVec3f temp15 = temp12 - temp13.scaleInline(temp12.dot(temp13));
             MR::normalizeOrZero(&temp15);
             MR::normalizeOrZero(&temp12);
             float2 = 1.0f - __fabsf(temp13.dot(temp12));
@@ -364,10 +351,4 @@ void RingBeam::exeSpread() {
     if (MR::isGreaterEqualStep(this, mLife)) {
         kill();
     }
-}
-
-RingBeam::~RingBeam() {
-}
-
-RingBeamShadowDrawer::~RingBeamShadowDrawer() {
 }

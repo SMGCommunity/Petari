@@ -1,7 +1,18 @@
 #include "Game/Map/OceanRingDrawer.hpp"
 #include "Game/Map/OceanRing.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/DrawUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SchedulerUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <revolution/gd/GDBase.h>
+#include <revolution/gx/GXVert.h>
 
 namespace {
     const f32 sPointNumInPart = 0.0f;

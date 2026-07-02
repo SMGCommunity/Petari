@@ -1,10 +1,17 @@
 #include "Game/Boss/TripodBossFixParts.hpp"
 #include "Game/Boss/TripodBossAccesser.hpp"
 #include "Game/Boss/TripodBossFixPartsBase.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapPartsUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
 
 namespace NrvTripodBossFixParts {
     NEW_NERVE(TripodBossFixPartsNrvNonActive, TripodBossFixParts, NonActive);

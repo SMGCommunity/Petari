@@ -12,9 +12,8 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 
 static TVec3f operator/(const TVec3f& rVec, f32 div) NO_INLINE {
     TVec3f ret(rVec);

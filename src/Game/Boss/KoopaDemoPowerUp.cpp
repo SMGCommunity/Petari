@@ -2,6 +2,22 @@
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPowerUpSwitch.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+
+namespace {
+    static const s32 sStepToScreenBlur = 65;
+    static const s32 sScreenBlurStep = 135;
+    static const s32 sStepToScreenBlurFinal = 50;
+    static const s32 sScreenBlurStepFinal = 140;
+};  // namespace
 
 namespace NrvKoopaDemoPowerUp {
     NEW_NERVE(KoopaDemoPowerUpNrvWaitDemo, KoopaDemoPowerUp, WaitDemo);
@@ -76,12 +92,12 @@ void KoopaDemoPowerUp::exeWaitDemo() {
 
 void KoopaDemoPowerUp::exeDemo() {
     if (KoopaFunction::isKoopaLv3(mHost)) {
-        if (MR::isStep(this, 50)) {
-            MR::startCenterScreenBlur(140, 15.0f, 80, 5, 30);
+        if (MR::isStep(this, ::sStepToScreenBlurFinal)) {
+            MR::startCenterScreenBlur(::sScreenBlurStepFinal, 15.0f, 80, 5, 30);
         }
     } else {
-        if (MR::isStep(this, 65)) {
-            MR::startCenterScreenBlur(135, 15.0f, 80, 5, 30);
+        if (MR::isStep(this, ::sStepToScreenBlur)) {
+            MR::startCenterScreenBlur(::sScreenBlurStep, 15.0f, 80, 5, 30);
         }
     }
 

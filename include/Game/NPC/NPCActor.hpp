@@ -1,10 +1,18 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/NPC/TalkMessageCtrl.hpp"
-#include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util/JointController.hpp"
+#include "Game/Util/TalkUtil.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class AnimScaleController;
+template < typename T >
+class JointControlDelegator;
+class JointControllerInfo;
+class LodCtrl;
+class NameObjArchiveListCollector;
+class NPCActorItem;
+class PartsModel;
+class TalkMessageCtrl;
 
 static const char* ReactionDefault = "Reaction";
 static const char* PointingDefault = "Pointing";

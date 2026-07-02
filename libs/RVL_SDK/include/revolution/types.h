@@ -74,6 +74,18 @@ typedef int BOOL;
 #define ATTRIBUTE_ALIGN(num)
 #endif
 
+#if __MWERKS__
+#define ATTRIBUTE_PACKED __attribute__((packed))
+#else
+#define ATTRIBUTE_PACKED
+#endif
+
+#if __MWERKS__
+#define ATTRIBUTE_WEAK __attribute__((weak))
+#else
+#define ATTRIBUTE_WEAK
+#endif
+
 #ifndef TRUE
 #define TRUE 1
 #endif
@@ -82,14 +94,13 @@ typedef int BOOL;
 #define FALSE 0
 #endif
 
-#define ROUND_UP(x, align) (((x) + (align) - 1) & (-(align)))
-#define ROUND_UP_PTR(x, align) ((void*)((((u32)(x)) + (align) - 1) & (~((align) - 1))))
+#define ROUND_UP(x, align) (((x) + (align)-1) & (-(align)))
+#define ROUND_UP_PTR(x, align) ((void*)((((u32)(x)) + (align)-1) & (~((align)-1))))
 
-#define ALIGN_PREV(X, N) ((X) & ~((N) - 1))
-#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N) - 1), N)
+#define ALIGN_PREV(X, N) ((X) & ~((N)-1))
+#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
 
 #define ARRAY_SIZE(o) (s32)(sizeof(o) / sizeof(o[0]))
-#define ARRAY_SIZEU(o) (sizeof(o) / sizeof(o[0]))
 
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
 #define MIN(x, y) ((x) < (y) ? (x) : (y))

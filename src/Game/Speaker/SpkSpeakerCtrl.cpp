@@ -1,12 +1,16 @@
 #include "Game/Speaker/SpkSpeakerCtrl.hpp"
 #include "Game/Speaker/SpkMixingBuffer.hpp"
 #include "Game/Speaker/SpkSound.hpp"
+#include <JSystem/JAudio2/JASCriticalSection.hpp>
 #include <mem.h>
+#include <revolution/os/OSAlarm.h>
+#include <revolution/wenc.h>
 #include <revolution/wpad.h>
 
+OSAlarm sSpeakerAlarm;
+SpeakerInfo sSpeakerInfo[WPAD_MAX_CONTROLLERS];
 SpkSoundHandle sAdjustSoundHandle[WPAD_MAX_CONTROLLERS];
 SpkMixingBuffer* sMixingBuffer;
-SpeakerInfo sSpeakerInfo[WPAD_MAX_CONTROLLERS];
 
 namespace {
     SpeakerInfo& getSpeakerInfo(s32 idx) {
@@ -20,102 +24,118 @@ void SpkSpeakerCtrl::setMixingBuffer(SpkMixingBuffer* pMixingBuffer) {
     OSRestoreInterrupts(status);
 }
 
-// SpkSpeakerCtrl::setup
-
-void SpkSpeakerCtrl::connect(s32 idx) {
-    BOOL state = OSDisableInterrupts();
-    sSpeakerInfo[idx]._0 = 1;
-    sSpeakerInfo[idx]._1 = 0;
-    sSpeakerInfo[idx]._24 = 0;
-    SpkSpeakerCtrl::initReconnect(idx);
-    sSpeakerInfo[idx]._30 = -1;
-    SpkSpeakerCtrl::setSpeakerOn(idx);
-    OSRestoreInterrupts(state);
-}
-
-void SpkSpeakerCtrl::setSpeakerOn(s32 idx) {
-    BOOL state = OSDisableInterrupts();
-    s32 val = WPADControlSpeaker(idx, 1, SpkSpeakerCtrl::setSpeakerOnCallback);
-
-    if (val == -2) {
-        sSpeakerInfo[idx]._24 = 1;
-    } else {
-        sSpeakerInfo[idx]._24 = 0;
+void SpkSpeakerCtrl::setup() {
+    for (int i = 0; i < WPAD_MAX_CONTROLLERS; i++) {
+        sSpeakerInfo[i].mIsConnected = false;
+        sSpeakerInfo[i].mIsPlaying = false;
+        sSpeakerInfo[i].mIsUpdated = true;
+        sSpeakerInfo[i].mIsMuted = false;
+        sSpeakerInfo[i].mState = SpeakerInfo::State_ENABLE;
+        sSpeakerInfo[i].mVolume = 64;
+        sSpeakerInfo[i].mRadioSensitivityTimer = 0;
+        sSpeakerInfo[i].mExtensionTimer = 0;
+        SpkSpeakerCtrl::initReconnect(i);
+        sSpeakerInfo[i].mUsingTimeOut = -1;
+        memset(&sSpeakerInfo[i].mWENCInfo, 0, sizeof(WENCInfo));
     }
 
-    OSRestoreInterrupts(state);
+    OSCreateAlarm(&sSpeakerAlarm);
+    OSSetPeriodicAlarm(&sSpeakerAlarm, OSGetTime(), OSNanosecondsToTicks(6666667), SpkSpeakerCtrl::updateSpeaker);
 }
 
-void SpkSpeakerCtrl::setSpeakerOnCallback(s32 idx, s32 a2) {
-    BOOL state = OSDisableInterrupts();
-    if (a2 == 0) {
-        sSpeakerInfo[idx]._24 = 0;
-        SpkSpeakerCtrl::setSpeakerPlay(idx);
+void SpkSpeakerCtrl::connect(s32 padChannel) {
+    JASCriticalSection crit;
+    sSpeakerInfo[padChannel].mIsConnected = true;
+    sSpeakerInfo[padChannel].mIsPlaying = false;
+    sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
+    SpkSpeakerCtrl::initReconnect(padChannel);
+    sSpeakerInfo[padChannel].mUsingTimeOut = -1;
+    SpkSpeakerCtrl::setSpeakerOn(padChannel);
+}
+
+void SpkSpeakerCtrl::disconnect(s32 padChannel) {
+    JASCriticalSection crit;
+    sSpeakerInfo[padChannel].mIsConnected = false;
+    sSpeakerInfo[padChannel].mIsPlaying = false;
+    sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
+    SpkSpeakerCtrl::setSpeakerOff(padChannel);
+    SpkSpeakerCtrl::initReconnect(padChannel);
+    sSpeakerInfo[padChannel].mUsingTimeOut = -1;
+}
+
+void SpkSpeakerCtrl::setSpeakerOn(s32 padChannel) {
+    JASCriticalSection crit;
+    // TODO: WPAD command magic numbers
+    s32 err = WPADControlSpeaker(padChannel, 1, SpkSpeakerCtrl::setSpeakerOnCallback);
+
+    if (err == WPAD_ERR_BUSY) {
+        sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ON;
     } else {
-        if (a2 == -3) {
-            sSpeakerInfo[idx]._24 = 1;
-        }
+        sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
     }
-
-    OSRestoreInterrupts(state);
 }
 
-void SpkSpeakerCtrl::setSpeakerPlay(s32 idx) {
-    BOOL state = OSDisableInterrupts();
-    s32 val = WPADControlSpeaker(idx, 4, SpkSpeakerCtrl::startPlayCallback);
+void SpkSpeakerCtrl::setSpeakerOnCallback(s32 padChannel, s32 err) {
+    JASCriticalSection crit;
+    if (err == WPAD_ERR_NONE) {
+        sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
+        SpkSpeakerCtrl::setSpeakerPlay(padChannel);
+    } else if (err == WPAD_ERR_TRANSFER) {
+        sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ON;
+    }
+}
 
-    if (val == -2) {
-        sSpeakerInfo[idx]._24 = 2;
+void SpkSpeakerCtrl::setSpeakerPlay(s32 padChannel) {
+    JASCriticalSection crit;
+    // TODO: WPAD command magic numbers
+    s32 err = WPADControlSpeaker(padChannel, 4, SpkSpeakerCtrl::startPlayCallback);
+
+    if (err == WPAD_ERR_BUSY) {
+        sSpeakerInfo[padChannel].mState = SpeakerInfo::State_PLAY;
     } else {
-        sSpeakerInfo[idx]._24 = 0;
+        sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
     }
-
-    OSRestoreInterrupts(state);
 }
 
-void SpkSpeakerCtrl::startPlayCallback(s32 idx, s32 a2) {
-    BOOL enabled = OSDisableInterrupts();
+void SpkSpeakerCtrl::startPlayCallback(s32 padChannel, s32 err) {
+    JASCriticalSection crit;
 
-    if (!enabled) {
-        SpeakerInfo* inf = &sSpeakerInfo[idx];
-        inf->_1 = 1;
-        inf->_22 = 1;
-        inf->_24 = 0;
-        inf->_30 = 28800;
-        memset(&sSpeakerInfo[idx]._2, 0, 0x20);
-    } else {
-        if (enabled == -3) {
-            sSpeakerInfo[idx]._24 = 2;
-        }
+    if (err == WPAD_ERR_NONE) {
+        sSpeakerInfo[padChannel].mIsPlaying = true;
+        sSpeakerInfo[padChannel].mIsUpdated = true;
+        sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
+        sSpeakerInfo[padChannel].mUsingTimeOut = 8 * 60 * 60;
+        memset(&sSpeakerInfo[padChannel].mWENCInfo, 0, sizeof(WENCInfo));
+    } else if (err == WPAD_ERR_TRANSFER) {
+        sSpeakerInfo[padChannel].mState = SpeakerInfo::State_PLAY;
     }
-
-    OSRestoreInterrupts(enabled);
 }
 
-void SpkSpeakerCtrl::setSpeakerOff(s32 idx) {
-    sSpeakerInfo[idx]._1 = 0;
-    sSpeakerInfo[idx]._24 = 0;
-    sSpeakerInfo[idx]._30 = -1;
-    WPADControlSpeaker(idx, 0, 0);
+void SpkSpeakerCtrl::setSpeakerOff(s32 padChannel) {
+    sSpeakerInfo[padChannel].mIsPlaying = false;
+    sSpeakerInfo[padChannel].mState = SpeakerInfo::State_ENABLE;
+    sSpeakerInfo[padChannel].mUsingTimeOut = -1;
+    // TODO: WPAD command magic numbers
+    WPADControlSpeaker(padChannel, 0, nullptr);
 }
 
-void SpkSpeakerCtrl::retryConnection(s32 idx) {
-    switch (sSpeakerInfo[idx]._24) {
-    case 0:
-    case 3:
+void SpkSpeakerCtrl::retryConnection(s32 padChannel) {
+    switch (sSpeakerInfo[padChannel].mState) {
+    case SpeakerInfo::State_ENABLE:
+    case SpeakerInfo::State_3:
         break;
-    case 1:
-        SpkSpeakerCtrl::setSpeakerOn(idx);
+    case SpeakerInfo::State_ON:
+        SpkSpeakerCtrl::setSpeakerOn(padChannel);
         break;
-    case 2:
-        SpkSpeakerCtrl::setSpeakerPlay(idx);
+    case SpeakerInfo::State_PLAY:
+        SpkSpeakerCtrl::setSpeakerPlay(padChannel);
         break;
     }
 }
 
-void SpkSpeakerCtrl::reconnect(s32 idx) {
-    if (sSpeakerInfo[idx]._0) {
-        sSpeakerInfo[idx]._28 = 1;
+void SpkSpeakerCtrl::reconnect(s32 padChannel) {
+    if (sSpeakerInfo[padChannel].mIsConnected) {
+        sSpeakerInfo[padChannel].mReconnectState = SpeakerInfo::Reconnect_OFF;
     }
 }
 
@@ -127,93 +147,103 @@ void SpkSpeakerCtrl::framework() {
     }
 }
 
-void SpkSpeakerCtrl::reconnectProcess(s32 idx) {
-    if (sSpeakerInfo[idx]._0) {
-        switch (sSpeakerInfo[idx]._28) {
-        case 0:
+void SpkSpeakerCtrl::reconnectProcess(s32 padChannel) {
+    if (sSpeakerInfo[padChannel].mIsConnected) {
+        switch (sSpeakerInfo[padChannel].mReconnectState) {
+        case SpeakerInfo::Reconnect_NONE:
             break;
-        case 1:
-            SpkSpeakerCtrl::setSpeakerOff(idx);
-            sSpeakerInfo[idx]._28 = 2;
-            sSpeakerInfo[idx]._2C = 0x14;
+        case SpeakerInfo::Reconnect_OFF:
+            SpkSpeakerCtrl::setSpeakerOff(padChannel);
+            sSpeakerInfo[padChannel].mReconnectState = SpeakerInfo::Reconnect_WAIT;
+            sSpeakerInfo[padChannel].mReconnectTime = 20;
             break;
-        case 2:
-            sSpeakerInfo[idx]._2C--;
+        case SpeakerInfo::Reconnect_WAIT:
+            sSpeakerInfo[padChannel].mReconnectTime--;
 
-            if (sSpeakerInfo[idx]._2C <= 0) {
-                sSpeakerInfo[idx]._2C = -1;
-                sSpeakerInfo[idx]._28 = 3;
+            if (sSpeakerInfo[padChannel].mReconnectTime <= 0) {
+                sSpeakerInfo[padChannel].mReconnectTime = -1;
+                sSpeakerInfo[padChannel].mReconnectState = SpeakerInfo::Reconnect_ON;
             }
             break;
-        case 3:
-            SpkSpeakerCtrl::setSpeakerOn(idx);
-            sSpeakerInfo[idx]._28 = 0;
+        case SpeakerInfo::Reconnect_ON:
+            SpkSpeakerCtrl::setSpeakerOn(padChannel);
+            sSpeakerInfo[padChannel].mReconnectState = SpeakerInfo::Reconnect_NONE;
             break;
         }
     }
 }
 
-void SpkSpeakerCtrl::initReconnect(s32 idx) {
-    sSpeakerInfo[idx]._28 = 0;
-    sSpeakerInfo[idx]._2C = -1;
+void SpkSpeakerCtrl::initReconnect(s32 padChannel) {
+    sSpeakerInfo[padChannel].mReconnectState = SpeakerInfo::Reconnect_NONE;
+    sSpeakerInfo[padChannel].mReconnectTime = -1;
 }
 
-void SpkSpeakerCtrl::continuousUsingProcess(s32 idx) {
-    if (sSpeakerInfo[idx]._30 >= 0) {
-        sSpeakerInfo[idx]._30 = sSpeakerInfo[idx]._30 - 1;
-        if (sSpeakerInfo[idx]._30 <= 0) {
-            sSpeakerInfo[idx]._30 = -1;
-            SpkSpeakerCtrl::reconnect(idx);
+void SpkSpeakerCtrl::continuousUsingProcess(s32 padChannel) {
+    if (sSpeakerInfo[padChannel].mUsingTimeOut >= 0) {
+        sSpeakerInfo[padChannel].mUsingTimeOut--;
+        if (sSpeakerInfo[padChannel].mUsingTimeOut <= 0) {
+            sSpeakerInfo[padChannel].mUsingTimeOut = -1;
+            SpkSpeakerCtrl::reconnect(padChannel);
         }
     }
 }
 
 void SpkSpeakerCtrl::updateSpeaker(OSAlarm*, OSContext*) {
     for (s32 i = 0; i < WPAD_MAX_CONTROLLERS; i++) {
-        if (sMixingBuffer != nullptr) {
-            SpeakerInfo& inf = ::getSpeakerInfo(i);
-
-            if (inf._1) {
-                if (!inf._23) {
-                    if (sMixingBuffer->update(i)) {
-                        bool v5 = true;
-
-                        if (inf._1 && sMixingBuffer != nullptr) {
-                            BOOL en = OSDisableInterrupts();
-
-                            if (!WPADCanSendStreamData(i)) {
-                                OSRestoreInterrupts(en);
-                            } else {
-                                if (inf._22) {
-                                    v5 = false;
-                                    inf._22 = 0;
-                                }
-
-                                const s16* samples = sMixingBuffer->getSamples(i);
-                                u8 data[16];
-                                WENCGetEncodeData(&inf._2, v5, samples, 40, data);
-                                WPADSendStreamData(i, data, 0x14);
-                                OSRestoreInterrupts(en);
-                            }
-                        }
-                    } else {
-                        inf._22 = 1;
-                    }
-                }
-            }
+        if (sMixingBuffer == nullptr) {
+            continue;
         }
+
+        SpeakerInfo& inf = ::getSpeakerInfo(i);
+
+        if (!inf.mIsPlaying) {
+            continue;
+        }
+
+        if (inf.mIsMuted) {
+            continue;
+        }
+
+        if (sMixingBuffer->update(i)) {
+            u32 flags = WENC_FLAG_USER_INFO;
+
+            if (inf.mIsPlaying && sMixingBuffer != nullptr) {
+                BOOL en = OSDisableInterrupts();
+
+                if (!WPADCanSendStreamData(i)) {
+                    OSRestoreInterrupts(en);
+                    continue;
+                }
+
+                if (inf.mIsUpdated) {
+                    flags = 0;
+                    inf.mIsUpdated = false;
+                }
+
+                const s16* samples = sMixingBuffer->getSamples(i);
+                u8 data[16];
+                WENCGetEncodeData(&inf.mWENCInfo, flags, samples, 40, data);
+                WPADSendStreamData(i, data, 20);
+
+                OSRestoreInterrupts(en);
+            }
+            continue;
+        }
+
+        inf.mIsUpdated = true;
     }
 }
 
-bool SpkSpeakerCtrl::isEnable(s32 idx) {
-    return WPADIsSpeakerEnabled(idx) && sSpeakerInfo[idx]._1 != 0 && sSpeakerInfo[idx]._24 == 0 && sMixingBuffer != nullptr;
+bool SpkSpeakerCtrl::isEnable(s32 padChannel) {
+    return WPADIsSpeakerEnabled(padChannel) && sSpeakerInfo[padChannel].mIsPlaying && sSpeakerInfo[padChannel].mState == SpeakerInfo::State_ENABLE &&
+           sMixingBuffer != nullptr;
 }
 
 void SpkSpeakerCtrl::extensionProcess(s32, s32) {
 }
 
-f32 SpkSpeakerCtrl::getDeviceVolume(s32 channel) {
-    if (channel >= WPAD_CHAN0 && !WPADIsSpeakerEnabled(channel)) {
+f32 SpkSpeakerCtrl::getDeviceVolume(s32 padChannel) {
+    if (padChannel >= WPAD_CHAN0 && !WPADIsSpeakerEnabled(padChannel)) {
         return 0.0f;
     }
 

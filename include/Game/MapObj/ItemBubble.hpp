@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class StarPiece;
 

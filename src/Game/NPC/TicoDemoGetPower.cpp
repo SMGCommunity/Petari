@@ -1,7 +1,12 @@
 #include "Game/NPC/TicoDemoGetPower.hpp"
 #include "Game/Demo/DemoFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/Tico.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace NrvTicoDemoGetPower {
     NEW_NERVE(TicoDemoGetPowerNrvWait, TicoDemoGetPower, Wait);

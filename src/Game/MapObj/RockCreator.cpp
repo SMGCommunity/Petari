@@ -1,5 +1,7 @@
 #include "Game/MapObj/RockCreator.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/Rock.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
 namespace NrvRockCreator {

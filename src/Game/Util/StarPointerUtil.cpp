@@ -19,6 +19,8 @@
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include <JSystem/JUtility/JUTVideo.hpp>
 #include <revolution/wpad.h>

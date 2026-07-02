@@ -1,7 +1,12 @@
 #pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/Util/JointController.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+template < typename T >
+class JointControlDelegator;
+class JointControllerInfo;
+class MsgSharedGroup;
 
 class FlipPanel : public MapObjActor {
 public:

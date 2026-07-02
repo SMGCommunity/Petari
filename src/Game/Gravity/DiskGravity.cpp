@@ -4,6 +4,13 @@
 #include <JSystem/JMath/JMATrigonometric.hpp>
 #include <math_types.hpp>
 
+void DiskGravity_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+}
+
 DiskGravity::DiskGravity()
     : PlanetGravity(), mLocalPosition(0.0f, 50.0f, 0.0f), mWorldPosition(0.0f, 50.0f, 0.0f), mLocalNormal(0, 1, 0), mWorldNormal(0, 1, 0),
       mSideDirection(1, 0, 0), mOppositeSideVecOrtho(1, 0, 0), mWorldOppositeSideVecOrtho(1, 0, 0) {
@@ -76,7 +83,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f* pDest, f32* pDistance, const TVec
 
         TVec3f closestEdgePoint;
         closestEdgePoint.set< f32 >(dirOnDiskPlane * mWorldRadius);
-        JMathInlineVEC::PSVECAdd(&closestEdgePoint, &mWorldPosition, &closestEdgePoint);
+        closestEdgePoint += mWorldPosition;
 
         gravity = closestEdgePoint - rPosition;
         MR::separateScalarAndDirection(&distance, &gravity, gravity);
@@ -95,6 +102,16 @@ bool DiskGravity::calcOwnGravityVector(TVec3f* pDest, f32* pDistance, const TVec
     }
 
     return true;
+}
+
+void DiskGravity::updateMtx(const TPos3f& rMtx) {
+    rMtx.mult(mLocalPosition, mWorldPosition);
+    rMtx.mult33(mLocalNormal, mWorldNormal);
+    rMtx.mult33(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
+
+    f32 axisScale;
+    MR::separateScalarAndDirection(&axisScale, &mWorldNormal, mWorldNormal);
+    mWorldRadius = mLocalRadius * axisScale;
 }
 
 void DiskGravity::updateLocalParam() {
@@ -124,14 +141,4 @@ void DiskGravity::updateLocalParam() {
     if (!artifact) {
         rot.mult(mOppositeSideVecOrtho, mOppositeSideVecOrtho);
     }
-}
-
-void DiskGravity::updateMtx(const TPos3f& rMtx) {
-    rMtx.mult(mLocalPosition, mWorldPosition);
-    rMtx.mult33(mLocalNormal, mWorldNormal);
-    rMtx.mult33(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
-
-    f32 axisScale;
-    MR::separateScalarAndDirection(&axisScale, &mWorldNormal, mWorldNormal);
-    mWorldRadius = mLocalRadius * axisScale;
 }

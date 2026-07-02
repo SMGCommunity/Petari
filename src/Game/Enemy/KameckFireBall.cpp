@@ -1,6 +1,18 @@
 #include "Game/Enemy/KameckFireBall.hpp"
 #include "Game/Enemy/KameckBeam.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/Color.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LightUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
     static Color8 sPointLightColor(0xFF, 0x64, 0, 0xFF);
@@ -105,12 +117,12 @@ bool KameckFireBall::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
     return false;
 }
 
-/*
 void KameckFireBall::appearDirection(const TVec3f& rDirection) {
     appear();
     MR::onCalcGravity(this);
     MR::calcGravity(this);
-}*/
+    mVelocity.set(rDirection * 15.0f + mGravity * 15.0f);
+}
 
 void KameckFireBall::setEventListener(KameckBeamEventListener* pListener) {
     mEventListener = pListener;

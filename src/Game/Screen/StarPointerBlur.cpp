@@ -1,5 +1,4 @@
 #include "Game/Screen/StarPointerBlur.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Screen/StarPointerDirector.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"

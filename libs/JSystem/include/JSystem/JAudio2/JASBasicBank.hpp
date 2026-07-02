@@ -10,7 +10,7 @@ class JASBasicBank : public JASBank {
 public:
     JASBasicBank();
 
-    virtual ~JASBasicBank(){};
+    virtual ~JASBasicBank() {};
     virtual bool getInstParam(int, int, int, JASInstParam*) const;
     virtual u32 getType() const {
         return 'BSIC';

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class SideSpikeMoveStep : public MapObjActor {
 public:

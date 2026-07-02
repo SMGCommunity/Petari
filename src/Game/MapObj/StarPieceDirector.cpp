@@ -1,6 +1,8 @@
 #include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/StarPiece.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/StarPointerDirector.hpp"
 #include "Game/Util.hpp"
 
@@ -362,7 +364,7 @@ void StarPieceShooter::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::sendMsgLockOnStarPieceShoot(pReceiver, pSender)) {
-        f32 distBetweenSensors = pReceiver->mPosition.subOperatorInLine(pSender->mPosition).length();
+        f32 distBetweenSensors = (pReceiver->mPosition - pSender->mPosition).length();
         if (distBetweenSensors < _94) {
             _90 = pReceiver;
             _94 = distBetweenSensors;

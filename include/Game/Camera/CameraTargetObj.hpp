@@ -1,11 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class CubeCameraArea;
 class GravityInfo;
-class LiveActor;
 class MarioActor;
 class Triangle;
 

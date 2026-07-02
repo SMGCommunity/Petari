@@ -3,24 +3,14 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ShadowVolumeDrawer.hpp"
 
-class RingBeamShadowDrawer : public ShadowVolumeDrawer {
-public:
-    RingBeamShadowDrawer(const LiveActor*);
-
-    virtual ~RingBeamShadowDrawer();
-    virtual void loadModelDrawMtx() const;
-    virtual void drawShape() const;
-    virtual bool isDraw() const;
-
-    const LiveActor* _1c;
-    f32 _20;
-};
+class ModelObj;
+class RingBeamShadowDrawer;
 
 class RingBeam : public LiveActor {
 public:
     RingBeam(const char*, LiveActor*, bool, bool);
 
-    virtual ~RingBeam();
+    virtual ~RingBeam() {};
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();
@@ -47,4 +37,17 @@ public:
     TVec3f _b4;
     TVec3f _c0;
     TVec3f _cc;
+};
+
+class RingBeamShadowDrawer : public ShadowVolumeDrawer {
+public:
+    RingBeamShadowDrawer(const LiveActor*);
+
+    virtual ~RingBeamShadowDrawer() {};
+    virtual void loadModelDrawMtx() const;
+    virtual void drawShape() const;
+    virtual bool isDraw() const;
+
+    const LiveActor* _1c;
+    f32 _20;
 };

@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Game/System/ResourceInfo.hpp"
-#include "Game/Util/HashUtil.hpp"
 #include <revolution/types.h>
 
+class HashSortTable;
 class ResourceHolder;
 
 class XanimeSwapTable {

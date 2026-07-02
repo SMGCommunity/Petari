@@ -1,38 +1,41 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/BlackHole.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Player/Mario.hpp"
-#include <revolution/gd/GDBase.h>
+#include "Game/Util/Color.hpp"
 
+class BlackHole;
+class CollisionShadow;
+class DLchanger;
+class DrawAdaptor;
+class FixedPosition;
 class FootPrint;
+class HashSortTable;
+class IceStep;
 class J3DAnmTexPattern;
 class J3DModel;
 class J3DModelData;
-class JUTTexture;
+class J3DModelX;
 class JAIAudible;
-struct DLholder;
-struct ResTIMG;
-class MarioNullBck;
-class XjointTransform;
-class MarioParts;
-class RushEndInfo;
+class JUTTexture;
+class JetTurtleShadow;
+class MarioAnimator;
 class MarioConst;
 class MarioEffect;
-class MarioAnimator;
 class MarioMessenger;
-class CollisionShadow;
-class JetTurtleShadow;
-class DLchanger;
-class J3DModelX;
-class TornadoMario;
+class MarioNullBck;
+class MarioParts;
 class ModelHolder;
-class FixedPosition;
 class ModelObj;
 class MultiEmitter;
-class IceStep;
-class HashSortTable;
-class DrawAdaptor;
+class RushEndInfo;
+class TornadoMario;
+class Triangle;
+class XanimeResourceTable;
+class XjointTransform;
+struct DLholder;
+struct ResTIMG;
 struct SmokeEffectEntry;
 
 template < int SIZE, class T, class U >
@@ -47,15 +50,27 @@ class MarioActor : public LiveActor {
 public:
     MarioActor(const char*);
 
-    ~MarioActor();
+    virtual ~MarioActor();
+    virtual void init(const JMapInfoIter&);
+    virtual void initAfterPlacement();
+    virtual void movement();
+    virtual void draw() const;
+    virtual void calcAnim();
+    virtual void calcViewAndEntry();
+    virtual void control();
+    virtual void calcAndSetBaseMtx();
+    virtual void updateHitSensor(HitSensor*);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgTaken(HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     virtual const TVec3f& getLastMove() const;
     virtual void getLastMove(TVec3f*) const;
     virtual void getFrontVec(TVec3f*) const;
 
-    void init(const JMapInfoIter&);
     void init2(const TVec3f&, const TVec3f&, s32);
-    void initAfterPlacement();
     void initAfterOpeningDemo();
     void calcBaseFrontVec(const TVec3f&);
     void playSound(const char*, s32);
@@ -80,8 +95,6 @@ public:
     void exeGameOverNonStop();
     void exeGameOverSink();
     void exeTimeWait();
-    void movement();
-    void control();
     void control2();
     void controlMain();
     void updateBehavior();
@@ -112,8 +125,6 @@ public:
     void getGlobalJointMtx(const char*);
     void calcAnimInMovement();
     void forceSetBaseMtx(MtxPtr);
-    void calcAnim();
-    void calcAndSetBaseMtx();
     void setBlendMtxTimer(u16);
     void getGroundPos(TVec3f* dst) const;
     TVec3f* getShadowPos() const;
@@ -182,12 +193,10 @@ public:
     void captureScreenBox() const;
     void writeBackScreenBox() const;
     void changeDisplayMode(u8);
-    void calcViewAndEntry() override;
     bool isAllHidden() const;
     void calcViewMainModel();
     void initFace();
     void updateFace();
-    void draw() const override;
     void drawIndirect() const;
     void drawIndirectModel() const;
     void drawReflectModel() const;
@@ -341,6 +350,19 @@ public:
     void copyMaterial(J3DModel*, u16, s32);
     void rushDropThrowMemoSensor();
     void offTakingFlag();
+
+    void settingRush();
+
+    void resetCondition();
+    bool isFixJumpRushSensor(const HitSensor*) const;
+    bool isLandEffectRushSensor(const HitSensor*) const;
+    void beginRush();
+
+    bool takeSensor(HitSensor*);
+
+    bool selectJumpRushSensor(const char*) const;
+
+    void memorizeSensorThrow(HitSensor*);
 
     const MarioConst& getConst() const {
         return *mConst;
@@ -581,7 +603,7 @@ public:
     u32 _9B8;
     u32 _9BC;
     ModelHolder* _9C0;
-    u32 _9C4;
+    LiveActor* _9C4;
     ModelHolder* _9C8;
     f32 _9CC;
     f32 _9D0;

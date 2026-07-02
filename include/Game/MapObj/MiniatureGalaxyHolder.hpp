@@ -1,13 +1,18 @@
 #pragma once
 
-#include "Game/MapObj/MiniatureGalaxy.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
-class MiniatureGalaxyHolder : LiveActor {
+class LiveActorGroup;
+class MiniatureGalaxy;
+
+class MiniatureGalaxyHolder : public LiveActor {
 public:
     MiniatureGalaxyHolder();
-    ~MiniatureGalaxyHolder();
-    void registerActor(LiveActor*, const JMapInfoIter&);
+
+    virtual ~MiniatureGalaxyHolder();
     virtual void init(const JMapInfoIter&);
+
+    void registerActor(LiveActor*, const JMapInfoIter&);
     bool isRegisteredActor(const LiveActor*);
     MiniatureGalaxy* findMiniatureGalaxy(const char*) const;  // MiniatureGalaxy* ?
     void killAllMiniatureGalaxy();
@@ -30,10 +35,4 @@ public:
     static MiniatureGalaxy* getCometLandMiniatureGalaxy();
     static s32 getCometNameId();
     static MiniatureGalaxy* getPointingMiniatureGalaxy();
-
-    inline static MiniatureGalaxyHolder* getMiniGalaxyHolder() {  // No proves, no doubts
-        SceneObjHolder* mHolder = MR::getSceneObjHolder();
-        MiniatureGalaxyHolder* mMiniatureGalaxyHolder = (MiniatureGalaxyHolder*)mHolder->getObj(115);
-        return mMiniatureGalaxyHolder;
-    }
 };

@@ -1,6 +1,8 @@
 #include "Game/Ride/PlantLeaf.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DModelData.hpp>
@@ -41,7 +43,7 @@ void PlantLeaf::init(const JMapInfoIter&) {
 void PlantLeaf::updateGrowUp(const TVec3f& rStalkPos, const TVec3f& rAxisY, f32 growthPercent, f32 offset) {
     mPosition.set(mFront);
     mPosition.mult(offset);
-    mPosition.addInline(rStalkPos);
+    mPosition.add(rStalkPos);
 
     f32 t = growthPercent * growthPercent;
     mUp.x = rAxisY.x * (1.0f - t);

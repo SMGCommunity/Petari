@@ -1,4 +1,5 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
 // scheduling issues with the paired single set

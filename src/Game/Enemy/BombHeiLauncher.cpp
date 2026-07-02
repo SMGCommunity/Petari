@@ -1,5 +1,20 @@
 #include "Game/Enemy/BombHeiLauncher.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjConnector.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+
+void BombHeiLauncher_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
 
 namespace {
     static const f32 hThrowVel = 35.0f;
@@ -79,7 +94,7 @@ void BombHeiLauncher::init(const JMapInfoIter& rIter) {
 void BombHeiLauncher::initAfterPlacement() {
     TVec3f up;
     MR::calcUpVec(&up, this);
-    MR::resetPosition(mBomb, mPosition.addOperatorInLine(up * 30.0f));
+    MR::resetPosition(mBomb, mPosition + up * 30.0f);
     mBomb->mGravity.set(up.invertOperatorInternal());
     mBomb->initAfterPlacement();
     mConnector->attachToUnder();

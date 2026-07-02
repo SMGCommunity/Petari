@@ -1,4 +1,7 @@
 #include "Game/LiveActor/SimpleJ3DModelDrawer.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 SimpleJ3DModelDrawer::SimpleJ3DModelDrawer(NameObj* pObj, const char* pName, const char* pModelName, int drawType) : LiveActor(pName) {
     mMaterial = nullptr;

@@ -1,10 +1,12 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class AnimScaleController;
-class WalkerStateBindStarPointer;
 class JointController;
+class JointControllerInfo;
+class WalkerStateBindStarPointer;
 
 class BombHei : public LiveActor {
 public:

@@ -3,7 +3,32 @@
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointController.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+
+void BombHei_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)3.0f;
+    (void)2.0f;
+}
 
 namespace {
     static const s32 hStartBrkTime = 600;
@@ -296,7 +321,8 @@ void BombHei::exeWalk() {
         }
     }
 
-    MR::moveAndTurnToDirection(this, &mFront, mTargetFront, ::hWalkParam.mSpeedH, ::hWalkParam.mGravAccel, ::hWalkParam.mFriction, ::hWalkParam.mTurnRate);
+    MR::moveAndTurnToDirection(this, &mFront, mTargetFront, ::hWalkParam.mSpeedH, ::hWalkParam.mGravAccel, ::hWalkParam.mFriction,
+                               ::hWalkParam.mTurnRate);
 
     if (MR::isGreaterStep(this, ::hWalkTime)) {
         setNerve(&NrvBombHei::HostTypeNrvWait::sInstance);
@@ -644,7 +670,7 @@ void BombHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (!mExplosionIgnoreCollision && MR::isExistCollisionParts(pReceiver->mHost) && MR::isValidCollisionParts(pReceiver->mHost)) {
             Triangle hitPoly;
 
-            if (!MR::getFirstPolyOnLineToMap(nullptr, &hitPoly, pSender->mPosition, pReceiver->mPosition.subOtherInline(pSender->mPosition))) {
+            if (!MR::getFirstPolyOnLineToMap(nullptr, &hitPoly, pSender->mPosition, pReceiver->mPosition - pSender->mPosition)) {
                 return;
             }
 
@@ -685,7 +711,8 @@ void BombHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
     if (MR::isSensorNpc(pReceiver) || MR::isSensorEnemy(pReceiver)) {
         if (isNerve(&NrvBombHei::HostTypeNrvThrown::sInstance)) {
-            TVec3f direction(pSender->mPosition.subOtherInline(pReceiver->mPosition));
+            TVec3f direction = pSender->mPosition;
+            direction -= pReceiver->mPosition;
             MR::normalizeOrZero(&direction);
             MR::calcReflectionVector(&mVelocity, direction, ::hThrownReboundRate, ::hThrownReboundMin);
         } else {

@@ -1,4 +1,8 @@
 #include "Game/Boss/DinoPackunEggShell.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 
 namespace NrvDinoPackunEggshell {
     NEW_NERVE(DinoPackunEggShellNrvWait, DinoPackunEggShell, Wait);

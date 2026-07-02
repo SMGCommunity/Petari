@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
-#include <revolution.h>
+#include <revolution/types.h>
 
 class JMapInfoIter;
 class LayoutActor;
 class LiveActor;
 class NameObj;
+class Nerve;
 class NerveExecutor;
 class TalkMessageCtrl;
 

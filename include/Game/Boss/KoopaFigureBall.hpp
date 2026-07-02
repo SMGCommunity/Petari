@@ -1,8 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class Koopa;
+
+namespace MR {
+    struct ActorMoveParam;
+};  // namespace MR
 
 class KoopaFigureBall : public LiveActor {
 public:

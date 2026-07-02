@@ -1,5 +1,17 @@
 #include "Game/Boss/DodoryuDemo.hpp"
 #include "Game/Boss/Dodoryu.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     static const s32 sOpeningHideFrame = 60;

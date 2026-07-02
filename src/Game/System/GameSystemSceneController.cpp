@@ -13,7 +13,15 @@
 #include "Game/System/HeapMemoryWatcher.hpp"
 #include "Game/System/ScenarioDataParser.hpp"
 #include "Game/System/WPadHolder.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/FileUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapIdInfo.hpp"
+#include "Game/Util/MemoryUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
+#include "Game/Util/StringUtil.hpp"
+#include "Game/Util/SystemUtil.hpp"
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 #include <cstdio>
 

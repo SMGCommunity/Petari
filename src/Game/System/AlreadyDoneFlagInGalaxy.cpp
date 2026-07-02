@@ -27,7 +27,7 @@ void AlreadyDoneInfo::init(const char* pInfo, s32 a2, s32 a3) {
 bool AlreadyDoneInfo::isEqual(const AlreadyDoneInfo& otherInfo) const {
     bool ret = 0;
 
-    if ((otherInfo._0 & 0x7FFFu) == (_0 & 0x7FFFu)) {
+    if ((otherInfo.mask()) == (mask())) {
         if (otherInfo._2 == _2) {
             if (otherInfo._4 == _4) {
                 ret = 1;
@@ -39,7 +39,11 @@ bool AlreadyDoneInfo::isEqual(const AlreadyDoneInfo& otherInfo) const {
 }
 
 void AlreadyDoneInfo::set(bool flag) {
-    _0 = (flag ? 0x8000 : 0) | _0 & 0x7FFF;
+    _0 = (flag ? 0x8000 : 0) | mask();
+}
+
+u16 AlreadyDoneInfo::mask() const {
+    return _0 & 0x7FFF;
 }
 
 AlreadyDoneFlagInGalaxy::AlreadyDoneFlagInGalaxy(int numInfos) : mDoneInfos(), _8(0) {
@@ -77,9 +81,7 @@ u32 AlreadyDoneFlagInGalaxy::setupFlag(const char* pName, const JMapInfoIter& rI
         *a3 = (infs->_0 >> 15) & 0x1;
     } else {
         result = _8++;
-        new_infs->_0 = info._0;
-        new_infs->_2 = info._2;
-        new_infs->_4 = info._4;
+        *new_infs = info;
         *a3 = 0;
     }
 

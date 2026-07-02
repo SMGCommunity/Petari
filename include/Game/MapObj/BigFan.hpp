@@ -2,6 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class ModelObj;
+
 class BigFan : public LiveActor {
 public:
     BigFan(const char*);

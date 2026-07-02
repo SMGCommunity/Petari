@@ -1,6 +1,8 @@
 #include "Game/MapObj/ExterminationChecker.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvExterminationChecker {
     NEW_NERVE(ExterminationCheckerNrvWatching, ExterminationChecker, Watching);
@@ -81,7 +83,7 @@ void ExterminationChecker::exeWatching() {
     for (s32 i = 0; i < mGroup->mObjectCount; i++) {
         LiveActor* cur = mGroup->getActor(i);
         if (!MR::isDead(cur)) {
-            mKeySwitchPos.setPS(mGroup->getActor(i)->mPosition);
+            mKeySwitchPos.set(mGroup->getActor(i)->mPosition);
             return;
         }
     }

@@ -1,8 +1,10 @@
 #include "Game/MapObj/WormEatenPlanet.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/GreenCaterpillarBig.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "cstdio"
 

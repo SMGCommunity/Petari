@@ -1,6 +1,8 @@
 #include "Game/MapObj/BattleShipElevator.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
-#include "Game/Util/DemoUtil.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvBattleShipElevator {
     NEW_NERVE(BattleShipElevatorNrvWait, BattleShipElevator, Wait);

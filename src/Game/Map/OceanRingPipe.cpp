@@ -1,12 +1,15 @@
 #include "Game/Map/OceanRingPipe.hpp"
+#include "Game/Map/Flag.hpp"
 #include "Game/Map/OceanRing.hpp"
 #include "Game/Map/OceanRingPipeInside.hpp"
 #include "Game/Map/OceanRingPipeOutside.hpp"
-
-#include "Game/Map/Flag.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
-#include "Game/Map/WaterInfo.hpp"
+#include "Game/Util/GravityUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 
 OceanRingPipe::~OceanRingPipe() {
 }
@@ -121,7 +124,8 @@ void OceanRingPipe::initPoints() {
                 MR::calcRailPosAtCoord(&railPos, this, MR::repeat(MR::getRailCoord(this) + 300.0f, 0.0f, MR::getRailTotalLength(this)));
                 v3.add(railPos);
 
-                v1.cross(-grav, *v2.subInline(v3));
+                v2.sub(v3);
+                v1.cross(-grav, v2);
                 MR::normalize(&v1);
             }
         }

@@ -1,6 +1,13 @@
 #include "Game/NPC/TrickRabbitFreeRun.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/SpotMarkLight.hpp"
 #include "Game/NPC/TrickRabbit.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/TalkUtil.hpp"
 
 namespace NrvTrickRabbitFreeRun {
     NEW_NERVE(TrickRabbitFreeRunNrvWaitStart, TrickRabbitFreeRun, WaitStart);

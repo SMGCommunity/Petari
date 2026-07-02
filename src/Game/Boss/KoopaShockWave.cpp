@@ -2,8 +2,21 @@
 #include "Game/Boss/Koopa.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+
+namespace {
+    // static const s32 sStepWaveAttack = _;
+    // static const f32 sModelRadius = _;
+    // static const f32 sShadowRadius = _;
+};  // namespace
 
 namespace NrvKoopaShockWave {
     NEW_NERVE(KoopaShockWaveNrvWaveAttack, KoopaShockWave, WaveAttack);
@@ -96,10 +109,7 @@ void KoopaShockWave::exeWaveAttack() {
         MR::startAction(mShadow, "Spread");
         MR::startAction(mPartsModel, "Spread");
 
-        TVec3f& rCenterPos = KoopaFunction::getPlanetCenterPos(mKoopa);
-        TVec3f vec = mKoopa->mPosition;
-        vec.subInline(rCenterPos);
-        mUp.set(vec);
+        mUp.set(mKoopa->mPosition - KoopaFunction::getPlanetCenterPos(mKoopa));
         mFront.set(mKoopa->mFront);
         MR::normalizeOrZero(&mUp);
 

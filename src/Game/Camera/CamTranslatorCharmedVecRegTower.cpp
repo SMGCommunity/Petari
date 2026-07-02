@@ -2,8 +2,15 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Util.hpp"
 
-// Register issues
+void CamTranslatorCharmedVecRegTower_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
+    // FIXME: regswap
+    // https://decomp.me/scratch/bEuU7
+
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
     TVec3f axis;
@@ -13,12 +20,12 @@ void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
     f32 dist;
     bool uVar3;
 
-    axis.set(general->mAxis);
+    axis = general->mAxis;
 
     MR::normalizeOrZero(&axis);
 
     if (MR::isNearZero(axis)) {
-        axis.set(0.0f, 1.0f, 0.0f);
+        axis.set< f32 >(0.0f, 1.0f, 0.0f);
     }
 
     uVar3 = general->mNum1 != 0;
@@ -29,7 +36,7 @@ void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
 
     CameraCharmedVecRegTower* camera = mCamera;
 
-    camera->mString = string;
+    mCamera->mString = string;
     camera->mWPoint.set(general->mWPoint);
     camera->mAxis.set(axis);
     camera->mAngleA = angleA;

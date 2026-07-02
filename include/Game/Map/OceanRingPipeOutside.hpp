@@ -3,6 +3,7 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class OceanRingPipe;
+class JUTTexture;
 
 class OceanRingPipeOutside : public LiveActor {
 public:

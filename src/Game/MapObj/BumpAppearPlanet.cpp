@@ -1,7 +1,8 @@
 #include "Game/MapObj/BumpAppearPlanet.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvBumpAppearPlanet {
     NEW_NERVE(BumpAppearPlanetNrvWait, BumpAppearPlanet, Wait);

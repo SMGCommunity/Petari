@@ -1,5 +1,7 @@
 #include "Game/MapObj/SpinDriverCamera.hpp"
 #include "Game/Camera/CameraTargetMtx.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 SpinDriverCamera::SpinDriverCamera() {
     mCamera = nullptr;

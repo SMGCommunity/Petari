@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Game/MapObj/BenefitItemLifeUp.hpp"
-#include "Game/MapObj/BenefitItemObj.hpp"
 #include "Game/NPC/TicoComet.hpp"
+
+class BenefitItemOneUp;
+class BenefitItemLifeUp;
 
 class TicoShop : public TicoComet {
 public:

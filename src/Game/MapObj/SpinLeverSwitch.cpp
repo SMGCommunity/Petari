@@ -1,4 +1,6 @@
 #include "Game/MapObj/SpinLeverSwitch.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvSpinLeverSwitch {
     NEW_NERVE(SpinLeverSwitchNrvWait, SpinLeverSwitch, Wait);

@@ -8,12 +8,12 @@
 #include "revolution/dvd.h"
 
 u16 JAUStdSoundInfo::getBgmSeqResourceID(JAISoundID soundID) const {
-    JAUSoundTableItem* data = JASGlobalInstance< JAUSoundTable >::getInstance()->getData(soundID);
+    void* data = JASGlobalInstance< JAUSoundTable >::getInstance()->getData(soundID);
     u8 typeID = JASGlobalInstance< JAUSoundTable >::getInstance()->getTypeID(soundID);
     if (data != nullptr) {
         switch (typeID & 0xF0) {
         case DATA_BGM:
-            return data->mResourceId;
+            return ((JAUSoundTableBgm*)data)->mResourceId;
         default:
             break;
         }
@@ -39,12 +39,12 @@ int JAUStdSoundInfo::getCategory(JAISoundID soundID) const {
 }
 
 u16 JAUStdSoundInfo::getAudibleSw(JAISoundID soundID) const {
-    JAUSoundTableItem* data = JASGlobalInstance< JAUSoundTable >::getInstance()->getData(soundID);
+    void* data = JASGlobalInstance< JAUSoundTable >::getInstance()->getData(soundID);
     u8 typeID = JASGlobalInstance< JAUSoundTable >::getInstance()->getTypeID(soundID);
     if (data != nullptr) {
         switch (typeID & 0xF0) {
         case DATA_SE:
-            return data->mResourceId;
+            return ((JAUSoundTableSe*)data)->mAudibleSw;
         default:
             break;
         }
@@ -82,9 +82,9 @@ void JAUStdSoundInfo::getStreamInfo(JAISoundID soundID, JAIStream* pStream) cons
         return;
     }
 
-    JAUSoundTableItem* data = JASGlobalInstance< JAUSoundTable >::getInstance()->getData(soundID);
+    JAUSoundTableStream* data = (JAUSoundTableStream*)JASGlobalInstance< JAUSoundTable >::getInstance()->getData(soundID);
 
-    u16 bits = data->mResourceId;
+    u16 bits = data->mChannelCtrl;
     int numChild = pStream->getNumChild();
     for (int idx = 0; idx < numChild && bits != 0; idx++, bits >>= 2) {
         u16 ctrl = bits & 0b11;
@@ -125,8 +125,8 @@ const char* JAUStdSoundInfo::getStreamFilePath(JAISoundID soundID) {
     u8 typeID = JASGlobalInstance< JAUSoundTable >::getInstance()->getTypeID(soundID);
     switch (typeID & 0xF0) {
     case DATA_STREAM: {
-        JAUSoundTableItem* data = JASGlobalInstance< JAUSoundTable >::getInstance()->getData(soundID);
-        return (const char*)JASGlobalInstance< JAUSoundTable >::getInstance()->mTable.mData + (u32)data->_4;
+        JAUSoundTableStream* data = (JAUSoundTableStream*)JASGlobalInstance< JAUSoundTable >::getInstance()->getData(soundID);
+        return (const char*)JASGlobalInstance< JAUSoundTable >::getInstance()->mTable.mData + (u32)data->mStreamFileNameOffset;
     }
     default:
         break;

@@ -1,15 +1,36 @@
 #include "Game/Demo/StarReturnDemoStarter.hpp"
 #include "Game/Demo/ReturnDemoRailMove.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/StageResultInformer.hpp"
 #include "Game/System/GameSequenceFunction.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SceneUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StringUtil.hpp"
+
+void StarReturnDemoStarter_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+}
 
 namespace {
-    const char* cDemoMovePartName = "移動";
-    const char* cDemoWaitPartName = "ウェイト";
+    const char* const cDemoMovePartName = "移動";
+    const char* const cDemoWaitPartName = "ウェイト";
 };  // namespace
 
 StarReturnDemoStarter::StarReturnDemoStarter(const char* pName)
@@ -261,7 +282,7 @@ void StarReturnDemoStarter::exeFall() {
     offset.scale(1.8f * getNerveStep(), down);
 
     offset.y = MR::max(offset.y, -35.0f);
-    position.addInline(offset);
+    position.add(offset);
 
     if (position.y < mPosition.y) {
         position.set(mPosition);

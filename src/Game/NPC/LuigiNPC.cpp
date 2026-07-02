@@ -1,8 +1,8 @@
 #include "Game/NPC/LuigiNPC.hpp"
 #include "Game/Demo/AstroDemoFunction.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/HitInfo.hpp"
-#include "Game/NPC/NPCActor.hpp"
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -10,7 +10,6 @@
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EventUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
@@ -20,9 +19,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
-#include <cstddef>
 
 namespace NrvLuigiNPC {
     NEW_NERVE(LuigiNPCNrvWait, LuigiNPC, Wait);
@@ -37,7 +33,6 @@ namespace NrvLuigiNPC {
     NEW_NERVE(LuigiNPCNrvOnTreeTouch, LuigiNPC, OnTreeTouch);
     NEW_NERVE(LuigiNPCNrvOnTreeFall, LuigiNPC, OnTreeFall);
     NEW_NERVE(LuigiNPCNrvOnTreeLand, LuigiNPC, OnTreeLand);
-
 };  // namespace NrvLuigiNPC
 
 LuigiNPC::LuigiNPC(const char* pName) : NPCActor(pName) {

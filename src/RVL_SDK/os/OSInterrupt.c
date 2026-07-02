@@ -1,31 +1,18 @@
+#include <mem.h>
+#include <private/flipper.h>
 #include <revolution/os.h>
 #include <revolution/os/OSInterrupt.h>
-#include <private/flipper.h>
-#include <mem.h>
 
 static __OSInterruptHandler* InterruptHandlerTable;
 
-static OSInterruptMask InterruptPrioTable[] =
-{
-    0x100,
-    0x40,
-    0xF8000000,
-    0x200,
-    0x80,
-    0x10,
-    0x3000,
-    0x20,
-    0x3FF8C00,
-    0x4000000,
-    0x4000,
-    0xFFFFFFFF
-};
+static OSInterruptMask InterruptPrioTable[] = {0x100, 0x40, 0xF8000000, 0x200, 0x80, 0x10, 0x3000, 0x20, 0x3FF8C00, 0x4000000, 0x4000, 0xFFFFFFFF};
 
 // forward decl for init
-static asm void ExternalInterruptHandler( register __OSException, register OSContext *);
+static asm void ExternalInterruptHandler(register __OSException, register OSContext*);
 
 static OSInterruptMask SetInterruptMask(OSInterruptMask, OSInterruptMask);
- 
+
+// clang-format off
 asm BOOL OSDisableInterrupts(void) {
     nofralloc
 
@@ -50,7 +37,7 @@ BOOL OSEnableInterrupts(void) {
     }
 }
  
-BOOL OSRestoreInterrupts(register BOOL level) {
+BOOL OSRestoreInterrupts(register BOOL level) NO_INLINE {
     asm {
         cmpwi level, 0
         mfmsr r4
@@ -66,6 +53,8 @@ BOOL OSRestoreInterrupts(register BOOL level) {
         extrwi r3, r4, 1, 16
     }
 }
+
+// clang-format on
 
 __OSInterruptHandler __OSSetInterruptHandler(__OSInterrupt interrupt, __OSInterruptHandler handler) {
     __OSInterruptHandler oldHandler;
@@ -99,7 +88,7 @@ OSInterruptMask __OSMaskInterrupts(OSInterruptMask new_mask) {
 
     OSRestoreInterrupts(v2);
     return user_interrupt;
-} 
+}
 
 void __OSInterruptInit(void) {
     // set our interrupt handler table to the __OSInterruptTable
@@ -109,7 +98,7 @@ void __OSInterruptInit(void) {
     *(OSInterruptMask*)0x800000C8 = 0;
     *(int*)0xCC003004 = 240;
     *(int*)0xCD000034 = 0x40000000;
-    
+
     // this function call is inlined
     __OSMaskInterrupts(OS_INTERRUPTMASK_MEM | OS_INTERRUPTMASK_DSP | OS_INTERRUPTMASK_AI | OS_INTERRUPTMASK_EXI | OS_INTERRUPTMASK_PI);
     __OSSetExceptionHandler(4, ExternalInterruptHandler);
@@ -118,197 +107,197 @@ void __OSInterruptInit(void) {
 static OSInterruptMask SetInterruptMask(OSInterruptMask mask, OSInterruptMask current) {
     u32 reg;
 
-    switch(__cntlzw(mask)) {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-            reg = 0;
+    switch (__cntlzw(mask)) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+        reg = 0;
 
-            if (!(current & 0x80000000)) {
-                reg |= 1;
-            }
+        if (!(current & 0x80000000)) {
+            reg |= 1;
+        }
 
-            if (!(current & 0x40000000)) {
-                reg |= 2;
-            }
+        if (!(current & 0x40000000)) {
+            reg |= 2;
+        }
 
-            if (!(current & 0x20000000)) {
-                reg |= 4;
-            }
+        if (!(current & 0x20000000)) {
+            reg |= 4;
+        }
 
-            if (!(current & 0x10000000)) {
-                reg |= 8;
-            }
+        if (!(current & 0x10000000)) {
+            reg |= 8;
+        }
 
-            if (!(current & 0x8000000)) {
-                reg |= 16;
-            }
+        if (!(current & 0x8000000)) {
+            reg |= 16;
+        }
 
-            __MEMRegs[0xE] = (u16)reg;
-            mask &= 0x7FFFFFF;
-            break;
+        __MEMRegs[0xE] = (u16)reg;
+        mask &= 0x7FFFFFF;
+        break;
 
-        case 5:
-        case 6:
-        case 7:
-            reg = __DSPRegs[5];
-            reg &= 0xFFFFFE07;
+    case 5:
+    case 6:
+    case 7:
+        reg = __DSPRegs[5];
+        reg &= 0xFFFFFE07;
 
-            if (!(current & 0x4000000)) {
-                reg |= 0x10;
-            }
+        if (!(current & 0x4000000)) {
+            reg |= 0x10;
+        }
 
-            if (!(current & 0x2000000)) {
-                reg |= 0x40;
-            }
+        if (!(current & 0x2000000)) {
+            reg |= 0x40;
+        }
 
-            if (!(current & 0x1000000)) {
-                reg |= 0x100;
-            }
-            
-            __DSPRegs[5] = (u16)reg;
-            mask &= 0xF8FFFFFF;
-            break;
+        if (!(current & 0x1000000)) {
+            reg |= 0x100;
+        }
 
-        case 8:
-            reg = __AIRegs[0];
-            reg &= 0xFFFFFFD3;
+        __DSPRegs[5] = (u16)reg;
+        mask &= 0xF8FFFFFF;
+        break;
 
-            if (!(current & 0x800000)) {
-                reg |= 4;
-            }
+    case 8:
+        reg = __AIRegs[0];
+        reg &= 0xFFFFFFD3;
 
-            __AIRegs[0] = reg;
-            mask &= 0xFF7FFFFF;
-            break;
+        if (!(current & 0x800000)) {
+            reg |= 4;
+        }
 
-        case 9:
-        case 10:
-        case 11:
-            reg = __EXIRegs[0];
-            reg &= 0xFFFFD3F0;
+        __AIRegs[0] = reg;
+        mask &= 0xFF7FFFFF;
+        break;
 
-            if (!(current & 0x400000)) {
-                reg |= 1;
-            }
+    case 9:
+    case 10:
+    case 11:
+        reg = __EXIRegs[0];
+        reg &= 0xFFFFD3F0;
 
-            if (!(current & 0x200000)) {
-                reg |= 4;
-            }
+        if (!(current & 0x400000)) {
+            reg |= 1;
+        }
 
-            if (!(current & 0x100000)) {
-                reg |= 0x400;
-            }
+        if (!(current & 0x200000)) {
+            reg |= 4;
+        }
 
-            __EXIRegs[0] = reg;
-            mask &= 0xFF8FFFFF;
-            break;
+        if (!(current & 0x100000)) {
+            reg |= 0x400;
+        }
 
-        case 12:
-        case 13:
-        case 14:
-            reg = __EXIRegs[5];
-            reg &= 0xFFFFF3F0;
+        __EXIRegs[0] = reg;
+        mask &= 0xFF8FFFFF;
+        break;
 
-            if (!(current & 0x80000)) {
-                reg |= 1;
-            }
+    case 12:
+    case 13:
+    case 14:
+        reg = __EXIRegs[5];
+        reg &= 0xFFFFF3F0;
 
-            if (!(current & 0x40000)) {
-                reg |= 4;
-            }
+        if (!(current & 0x80000)) {
+            reg |= 1;
+        }
 
-            if (!(current & 0x20000)) {
-                reg |= 0x400;
-            }
+        if (!(current & 0x40000)) {
+            reg |= 4;
+        }
 
-            __EXIRegs[5] = reg;
-            mask &= 0xFFF1FFFF;
-            break;
+        if (!(current & 0x20000)) {
+            reg |= 0x400;
+        }
 
-        case 15:
-        case 16:
-            reg = __EXIRegs[0xA];
-            reg &= 0xFFFFFFF0;
+        __EXIRegs[5] = reg;
+        mask &= 0xFFF1FFFF;
+        break;
 
-            if (!(current & 0x10000)) {
-                reg |= 1;
-            }
+    case 15:
+    case 16:
+        reg = __EXIRegs[0xA];
+        reg &= 0xFFFFFFF0;
 
-            if (!(current & 0x8000)) {
-                reg |= 4;
-            }
+        if (!(current & 0x10000)) {
+            reg |= 1;
+        }
 
-            __EXIRegs[0xA] = reg;
-            mask &= 0xFFFE7FFF;
+        if (!(current & 0x8000)) {
+            reg |= 4;
+        }
 
-            break;
+        __EXIRegs[0xA] = reg;
+        mask &= 0xFFFE7FFF;
 
-        case 17:
-        case 20:
-        case 21:
-        case 22:
-        case 23:
-        case 24:
-        case 25:
-        case 18:
-        case 19:
-        case 26:
-        case 27:
-            reg = 0xF0;
+        break;
 
-            if (!(current & 0x4000)) {
-                reg |= 0x800;
-            }
+    case 17:
+    case 20:
+    case 21:
+    case 22:
+    case 23:
+    case 24:
+    case 25:
+    case 18:
+    case 19:
+    case 26:
+    case 27:
+        reg = 0xF0;
 
-            if (!(current & 0x800)) {
-                reg |= 8;
-            }
+        if (!(current & 0x4000)) {
+            reg |= 0x800;
+        }
 
-            if (!(current & 0x400)) {
-                reg |= 4;
-            }
+        if (!(current & 0x800)) {
+            reg |= 8;
+        }
 
-            if (!(current & 0x200)) {
-                reg |= 2;
-            }
+        if (!(current & 0x400)) {
+            reg |= 4;
+        }
 
-            if (!(current & 0x100)) {
-                reg |= 1;
-            }
+        if (!(current & 0x200)) {
+            reg |= 2;
+        }
 
-            if (!(current & 0x80)) {
-                reg |= 0x100;
-            }
+        if (!(current & 0x100)) {
+            reg |= 1;
+        }
 
-            if (!(current & 0x40)) {
-                reg |= 0x1000;
-            }
+        if (!(current & 0x80)) {
+            reg |= 0x100;
+        }
 
-            if (!(current & 0x2000)) {
-                reg |= 0x200;
-            }
+        if (!(current & 0x40)) {
+            reg |= 0x1000;
+        }
 
-            if (!(current & 0x1000)) {
-                reg |= 0x400;
-            }
+        if (!(current & 0x2000)) {
+            reg |= 0x200;
+        }
 
-            if (!(current & 0x20)) {
-                reg |= 0x2000;
-            }
+        if (!(current & 0x1000)) {
+            reg |= 0x400;
+        }
 
-            if (!(current & 0x10)) {
-                reg |= 0x4000;
-            }
+        if (!(current & 0x20)) {
+            reg |= 0x2000;
+        }
 
-            __PIRegs[1] = reg;
-            mask &= 0xFFFF800F;
-            break;
-        
-        default:
-            break;
+        if (!(current & 0x10)) {
+            reg |= 0x4000;
+        }
+
+        __PIRegs[1] = reg;
+        mask &= 0xFFFF800F;
+        break;
+
+    default:
+        break;
     }
 
     return mask;
@@ -379,7 +368,7 @@ void __OSDispatchInterrupt(__OSException exception, OSContext* context) {
             cause |= 0x8000000;
         }
     }
-    
+
     if (instr & 0x40) {
         reg = __DSPRegs[5];
 
@@ -403,7 +392,7 @@ void __OSDispatchInterrupt(__OSException exception, OSContext* context) {
             cause |= 0x800000;
         }
     }
-    
+
     if (instr & 0x10) {
         reg = __EXIRegs[0];
 
@@ -445,54 +434,53 @@ void __OSDispatchInterrupt(__OSException exception, OSContext* context) {
     }
 
     if ((instr & 0x2000) != 0) {
-	    cause |= 0x20;
-	}
+        cause |= 0x20;
+    }
 
+    if ((instr & 0x1000) != 0) {
+        cause |= 0x40;
+    }
 
-	if ((instr & 0x1000) != 0) {
-	    cause |= 0x40;
-	}
+    if ((instr & 0x400) != 0) {
+        cause |= 0x1000;
+    }
 
-	if ((instr & 0x400) != 0) {
-	    cause |= 0x1000;
-	}
+    if ((instr & 0x200) != 0) {
+        cause |= 0x2000;
+    }
 
-	if ((instr & 0x200) != 0) {
-	    cause |= 0x2000;
-	}
+    if ((instr & 0x100) != 0) {
+        cause |= 0x80;
+    }
 
-	if ((instr & 0x100) != 0) {
-	    cause |= 0x80;
-	}
+    if ((instr & 8) != 0) {
+        cause |= 0x800;
+    }
 
-	if ((instr & 8) != 0) {
-	    cause |= 0x800;
-	}
+    if ((instr & 4) != 0) {
+        cause |= 0x400;
+    }
 
-	if ((instr & 4) != 0) {
-	    cause |= 0x400;
-	}
+    if ((instr & 2) != 0) {
+        cause |= 0x200;
+    }
 
-	if ((instr & 2) != 0) {
-	    cause |= 0x200;
-	}
+    if ((instr & 0x800) != 0) {
+        cause |= 0x4000;
+    }
 
-	if ((instr & 0x800) != 0) {
-	    cause |= 0x4000;
-	}
+    if ((instr & 1) != 0) {
+        cause |= 0x100;
+    }
 
-	if ((instr & 1) != 0) {
-	    cause |= 0x100;
-	}
-
-	if ((instr & 0x4000) != 0) {
-	    cause |= 0x10;
-	}
+    if ((instr & 0x4000) != 0) {
+        cause |= 0x10;
+    }
 
     unmasked = cause & ~(*(OSInterruptMask*)OSPhysicalToCached(0xC4) | *(OSInterruptMask*)OSPhysicalToCached(0xC8));
 
     if (unmasked) {
-        for (prio = InterruptPrioTable; ; ++prio) {
+        for (prio = InterruptPrioTable;; ++prio) {
             if (unmasked & *prio) {
                 interrupt = (__OSInterrupt)__cntlzw(unmasked & *prio);
                 break;
@@ -519,6 +507,8 @@ void __OSDispatchInterrupt(__OSException exception, OSContext* context) {
     OSLoadContext(context);
 }
 
+// clang-format off
+
 static asm void ExternalInterruptHandler(register __OSException, register OSContext *pContext) {
     nofralloc
     stw r0, OS_CONTEXT_R0(pContext)
@@ -542,3 +532,5 @@ static asm void ExternalInterruptHandler(register __OSException, register OSCont
     stwu r1, -8(r1)
     b __OSDispatchInterrupt
 }
+
+// clang-format on

@@ -1,5 +1,4 @@
 #include "Game/System/Language.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/Util/SingletonHolder.hpp"

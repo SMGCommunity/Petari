@@ -1,4 +1,15 @@
 #include "Game/Enemy/WalkerStateRunaway.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+
+void WalkerStateRunaway_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)3.0f;
+}
 
 namespace {
     static WalkerStateRunawayParam sDefaultParam;
@@ -79,7 +90,9 @@ bool WalkerStateRunaway::tryWallJump() {
             MR::addVelocityClockwiseToDirection(getHost(), wallNorml,
                                                 MR::isHalfProbability() ? mRunawayParam->mWallJumpPowerH : -mRunawayParam->mWallJumpPowerH);
         } else {
-            MR::addVelocityMoveToDirection(getHost(), wallNorml.addOtherInline(horiz), mRunawayParam->mWallJumpPowerH);
+            TVec3f dir;
+            dir.add(wallNorml, horiz);
+            MR::addVelocityMoveToDirection(getHost(), dir, mRunawayParam->mWallJumpPowerH);
         }
 
         MR::addVelocityJump(getHost(), mRunawayParam->mWallJumpPowerV);

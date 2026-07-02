@@ -1,9 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JointController.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class DinoPackun;
+template < typename T >
+class JointControlDelegator;
+class JointController;
+class JointControllerInfo;
 
 class DinoPackunTailNode : public LiveActor {
 public:

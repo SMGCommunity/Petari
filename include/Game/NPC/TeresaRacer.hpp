@@ -3,6 +3,9 @@
 #include "Game/Map/RaceManager.hpp"
 #include "Game/NPC/NPCActor.hpp"
 
+class ActorCameraInfo;
+class TakeOutStar;
+
 class TeresaRacer : public NPCActor, AbstractRacer {
 public:
     TeresaRacer(const char*);

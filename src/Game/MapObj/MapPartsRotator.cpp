@@ -1,4 +1,5 @@
 #include "Game/MapObj/MapPartsRotator.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/Util.hpp"
 

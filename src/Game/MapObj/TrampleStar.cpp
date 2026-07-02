@@ -1,7 +1,9 @@
 #include "Game/MapObj/TrampleStar.hpp"
 #include "Game/LiveActor/AllLiveActorGroup.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
+#include "Game/Util.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
 
@@ -226,7 +228,7 @@ void TrampleStar::divide() {
             if (readCheckFlag(vtx1, vtx2) != 0) {
                 midpoints[idx] = readCheckFlag(vtx1, vtx2);
             } else {
-                mVtxs[numVtxs] = mVtxs[vtx1].translate(mVtxs[vtx2]).scaleInline(0.5f);
+                mVtxs[numVtxs] = (mVtxs[vtx1] + mVtxs[vtx2]).scaleInline(0.5f);
 
                 // FIXME: TVec2 shenanigans
                 TVec2f midpoint = mTexST[vtx1].addInline(mTexST[vtx2]).scaleInline(0.5f);
@@ -471,7 +473,7 @@ u32 TrampleStar::calcNearestVtxIndex(const TVec3f& rPos) {
     u32 nearestIndex = 0;
 
     for (u32 vtx = 0; vtx < mNumVtxs; vtx++) {
-        f32 dist = (mVtxs[vtx].translate(mPosition) - rPos).length();
+        f32 dist = (mVtxs[vtx] + mPosition - rPos).length();
         if (dist < nearestDistance) {
             nearestDistance = dist;
             nearestIndex = vtx;
@@ -526,7 +528,7 @@ bool TrampleStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         TVec3f down = -capturePos;
         down.normalizePS();
         TPos3f mtx;
-        capturePos += mPosition.translate(down.scaleInline(mDeformCoeff[mCaptureVtx]));
+        capturePos += mPosition + down.scaleInline(mDeformCoeff[mCaptureVtx]);
         MR::makeMtxUpSidePos(&mtx, -down, side, capturePos);
         MR::setPlayerBaseMtx(mtx);
         return true;

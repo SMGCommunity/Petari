@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/Util.hpp"
 
 class ClippingActorInfo;
+class JMapIdInfo;
 
 class ClippingInfoGroup : public NameObj {
 public:

@@ -7,7 +7,10 @@
 #include "Game/Boss/KoopaStateDamageEscape.hpp"
 #include "Game/Boss/KoopaStateGuard.hpp"
 #include "Game/Boss/KoopaStateJumpAway.hpp"
-
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace NrvKoopaBattleVs3Lv1 {
     NEW_NERVE(KoopaBattleVs3Lv1NrvChaseRoll, KoopaBattleVs3Lv1, ChaseRoll);
@@ -101,16 +104,16 @@ bool KoopaBattleVs3Lv1::tryCalcAndSetBaseMtx() {
     return false;
 }
 
-bool KoopaBattleVs3Lv1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+void KoopaBattleVs3Lv1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvChaseRoll::sInstance)) {
         if (!mStateChaseRoll->attackSensor(pSender, pReceiver)) {
-            return KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver);
+            KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver);
         }
     } else if (isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvAttackShockWave::sInstance)) {
-        return mStateAttackShockWave->attackSensor(pSender, pReceiver);
+        mStateAttackShockWave->attackSensor(pSender, pReceiver);
     } else if (!isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvJumpAway::sInstance) || !KoopaFunction::tryKoopaAttackMapObj(pSender, pReceiver)) {
         if (isNerve(&NrvKoopaBattleVs3Lv1::KoopaBattleVs3Lv1NrvDamageReverse::sInstance)) {
-            return mStateDamageEscape->attackSensor(pSender, pReceiver);
+            mStateDamageEscape->attackSensor(pSender, pReceiver);
         } else if (!KoopaFunction::tryKoopaPushPlayer(pSender, pReceiver) && KoopaFunction::tryKoopaBodyAttackPlayer(pSender, pReceiver)) {
             return;
         }

@@ -1,7 +1,9 @@
 #include "Game/MapObj/Note.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/NoteFairy.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/NoteCounter.hpp"
+#include "Game/Util.hpp"
 
 namespace NrvNote {
     NEW_NERVE(NoteNrvWait, Note, Wait);
@@ -12,7 +14,7 @@ namespace NrvNote {
 Note::Note(const char* pName, const TVec3f& rRailDirection, NoteFairy* pParent) : LiveActor(pName) {
     mParentFairy = pParent;
     _90.set(0.0f);
-    mRailDirection.setPS(rRailDirection);
+    mRailDirection = rRailDirection;
     mCounter = 0;
     _AC = 0.0f;
     mIsCountdown = false;

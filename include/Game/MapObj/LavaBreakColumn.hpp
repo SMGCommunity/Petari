@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/MapObj/AnmModelObj.hpp"
-#include "Game/NameObj/NameObj.hpp"
 
 class LavaBreakColumn : public AnmModelSwitchMove {
 public:

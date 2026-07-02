@@ -1,6 +1,7 @@
 #include "Game/MapObj/DriftWood.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -10,7 +11,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/mtx.h"
 #include "revolution/types.h"
@@ -74,6 +74,9 @@ void DriftWood::exeWait() {
 }
 
 void DriftWood::exeVibrate() {
+    // FIXME: load order in .scale
+    // https://decomp.me/scratch/z1m1A
+
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_DRIFT_WOOD_PLAYER_ON");
         mVibrateOffset.zero();
@@ -81,27 +84,11 @@ void DriftWood::exeVibrate() {
 
     MR::moveCoord(this, 3.0f);
 
-    f32 step = 16.0f * getNerveStep();
-
-    if (step < 0.0f) {
-        s32 tempIndex = -45.511112f * step;
-        u16 index = tempIndex & 0x3FFF;
-        step = -lbl_8060FC80[index].sin;
-    } else {
-        s32 tempIndex = 45.511112f * step;
-        u16 index = tempIndex & 0x3FFF;
-        step = lbl_8060FC80[index].sin;
-    }
-
-    step = 30.0f * step;
-
+    f32 step = 30.0f * MR::sinDegree(16.0f * getNerveStep());
     f32 nerveValue = MR::calcNerveValue(this, 45, 0.1f, 1.0f);
 
-    step = (1.0f - nerveValue) * step;
-
-    mVibrateOffset.scale(step, mGravity);
-
-    JMathInlineVEC::PSVECAdd(&MR::getRailPos(this), &mVibrateOffset, &mPosition);
+    mVibrateOffset.scale((1.0f - nerveValue) * step, mGravity);
+    mPosition.add(MR::getRailPos(this), mVibrateOffset);
 
     if (!tryVibrate()) {
         if (MR::isGreaterEqualStep(this, 45)) {
@@ -129,7 +116,7 @@ void DriftWood::calcAndSetBaseMtx() {
 void DriftWood::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         TVec3f delta;
-        JMathInlineVEC::PSVECSubtract2(&pSender->mPosition, &pReceiver->mPosition, &delta);
+        delta.sub(pSender->mPosition, pReceiver->mPosition);
 
         TVec3f upVec;
         MR::calcUpVec(&upVec, this);

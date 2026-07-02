@@ -1,7 +1,8 @@
 #include "Game/Enemy/EyeBeamer.hpp"
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/VolumeModelDrawer.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/Scene/SceneFunction.hpp"
@@ -12,7 +13,6 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -25,7 +25,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TQuat.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "revolution/mtx.h"
 
 namespace NrvEyeBeamer {
@@ -217,7 +216,8 @@ void EyeBeamer::calcAnim() {
     MR::preScaleMtx(_9C, TVec3f(one, temp, one));
 }
 
-void EyeBeamer::calcAndSetBaseMtx() {};
+void EyeBeamer::calcAndSetBaseMtx() {
+}
 
 void EyeBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isOnBeam() && MR::isSensorPlayer(pReceiver) && isInBeamRange(*MR::getPlayerPos())) {
@@ -365,5 +365,3 @@ bool EyeBeamer::isOnBeam() const {
 
     return false;
 }
-
-EyeBeamer::~EyeBeamer() {};

@@ -3,6 +3,10 @@
 #include "Game/Boss/KoopaBattleBase.hpp"
 #include "Game/Boss/KoopaDemoPowerUp.hpp"
 #include "Game/Boss/KoopaSequencer.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
 
 namespace NrvKoopaSubSequenceBattle {
     NEW_NERVE(KoopaSubSequenceBattleNrvBattleLv1, KoopaSubSequenceBattle, BattleLv1);

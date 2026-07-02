@@ -1,9 +1,19 @@
 #include "Game/MapObj/CrystalCage.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/Util.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JMath.hpp"
 #include "math_types.hpp"
+
+void CrystalCage_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)HALF_PI;
+    (void)2.0f;
+}
 
 namespace NrvCrystalCage {
     NEW_NERVE(CrystalCageNrvWait, CrystalCage, Wait);
@@ -20,7 +30,6 @@ CrystalCage::CrystalCage(const char* pName)
 
 void CrystalCage::init(const JMapInfoIter& rIter) {
     const char* obj_name;
-    TVec3f v23;
     MR::getObjectName(&obj_name, rIter);
     initMapToolInfo(rIter);
     MR::calcGravity(this);
@@ -29,8 +38,6 @@ void CrystalCage::init(const JMapInfoIter& rIter) {
     _E8.set< f32 >(mPosition);
     initHitSensor(1);
     MR::addHitSensorPosMapObj(this, "body", 8, (130.0f * mScale.x), &_E8, TVec3f(0.0f, 0.0f, 0.0f));
-
-    TVec3f v21;
 
     if (mCrystalCageType) {
         MR::invalidateHitSensors(this);
@@ -52,14 +59,12 @@ void CrystalCage::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphere(this, range * mScale.x);
     initSound(4, false);
 
+    TVec3f v23;
     if (mCrystalCageType == 2) {
         f32 mult = mScale.x * 250.0f;
         _C4 = 2;
 
-        v21.x = 0.0f;
-        v21.y = mult;
-        v21.z = 0.0f;
-        mDisplayModel = MR::createDummyDisplayModelCrystalItem(this, 7, v21, TVec3f(0.0f, 0.0f, 0.0f));
+        mDisplayModel = MR::createDummyDisplayModelCrystalItem(this, 7, TVec3f(0.0f, mult, 0.0f), TVec3f(0.0f, 0.0f, 0.0f));
 
         if (_108 == -1) {
             MR::declarePowerStar(this);
@@ -68,9 +73,9 @@ void CrystalCage::init(const JMapInfoIter& rIter) {
         }
     } else {
         if (!mCrystalCageType) {
-            v23.set(-30.0f, 100.0f, -30.0f);
+            v23.set< f32 >(-30.0f, 100.0f, -30.0f);
         } else {
-            v23.set(0.0f, 200.0f, 0.0f);
+            v23.set< f32 >(0.0f, 200.0f, 0.0f);
         }
 
         mDisplayModel = MR::createDummyDisplayModelCrystalItem(this, rIter, v23, TVec3f(0.0f, 0.0f, 0.0f));
@@ -90,7 +95,7 @@ void CrystalCage::init(const JMapInfoIter& rIter) {
     MR::setBvaFrameAndStop(this, 0.0f);
 
     if (_C4 > 1) {
-        mRumbleCalc = new RumbleCalculatorCosMultLinear(4.0f, 1.5707964f, 50.0f, 0x14);
+        mRumbleCalc = new RumbleCalculatorCosMultLinear(4.0f, HALF_PI, 50.0f, 0x14);
     }
 
     MR::joinToGroupArray(this, rIter, nullptr, 0x20);
@@ -121,7 +126,6 @@ void CrystalCage::init(const JMapInfoIter& rIter) {
     }
 }
 
-/*
 void CrystalCage::initAfterPlacement() {
     if (!mIsBreakObjVisible || mHasBinding) {
         f32 val = mCrystalCageType == 2 ? 1000.0f : 300.0f;
@@ -129,22 +133,21 @@ void CrystalCage::initAfterPlacement() {
         TVec3f stack_2C;
         TVec3f stack_20;
         MR::calcUpVec(&up_vec, this);
-        // I realy do not like this, but it matches :c
-        JMathInlineVEC::PSVECAdd(&mPosition, (Vec *) &(up_vec * (val * mScale.x)), &stack_20);
+        // TODO: fix this during .scale pass
+        stack_20.add(mPosition, up_vec * (val * mScale.x));
         stack_2C.scale((-(2.0f * val) * mScale.x), up_vec);
 
         if (!MR::getFirstPolyOnLineToMapExceptActor(&_F8, 0, stack_20, stack_2C, this)) {
-            _F8.set<f32>(mPosition);
+            _F8.set< f32 >(mPosition);
         }
 
         if (mHasBinding) {
             _110.sub(_F8, mPosition);
-            JMathInlineVEC::PSVECAdd(&_110, &(up_vec * 50.0f), &_110);
+            _110.add(up_vec * 50.0f);
             mVelocity.scale(-2.0f, up_vec);
         }
     }
 }
-*/
 
 void CrystalCage::kill() {
     LiveActor::kill();
@@ -157,7 +160,7 @@ void CrystalCage::kill() {
 
 void CrystalCage::forceBreak() {
     if (isNerve(&NrvCrystalCage::CrystalCageNrvWait::sInstance)) {
-        if (!_104 || MR::isClipped(this)) {
+        if (!_104 || !MR::isClipped(this)) {
             MR::tryRumblePadStrong(this, 0);
             MR::invalidateClipping(this);
             MR::invalidateCollisionParts(this);
@@ -256,26 +259,21 @@ void CrystalCage::initMapToolInfo(const JMapInfoIter& rIter) {
     }
 }
 
-/*
-void CrystalCage::initModel(const char *pName) {
+void CrystalCage::initModel(const char* pName) {
     initModelManagerWithAnm(pName, nullptr, false);
-    TVec3f stack_8;
-    stack_8.negateInline_2(mGravity);
-    MR::makeMtxUpNoSupportPos(&_94, stack_8, _DC);
+    MR::makeMtxUpNoSupportPos(&_94, mGravity.negateInline(), _DC);
 
     if (mCrystalCageType == 2) {
         mBreakObj = MR::createModelObjMapObjStrongLight("クリスタルケージ[大]壊れモデル", "CrystalCageLBreak", (MtxPtr)&_94);
-    }
-    else {
+    } else {
         mBreakObj = MR::createModelObjMapObjStrongLight("クリスタルケージ[小]壊れモデル", "CrystalCageSBreak", (MtxPtr)&_94);
     }
 
-    MR::invalidateClipping(this);
+    MR::invalidateClipping(mBreakObj);
     mBreakObj->mScale.set(mScale);
     MR::registerDemoSimpleCastAll(mBreakObj);
     mBreakObj->makeActorDead();
 }
-*/
 
 void CrystalCage::tryOnSwitchDead() {
     if (mCrystalCageType == 2 || !MR::isValidSwitchDead(this)) {
@@ -303,7 +301,7 @@ void CrystalCage::exeWait() {
             mRumbleCalc->calc();
             TVec3f v9;
             v9.scale(mRumbleCalc->_C.y, _D0);
-            JMathInlineVEC::PSVECAdd(&_DC, &v9, &mPosition);
+            mPosition.add(_DC, v9);
         } else {
             mPosition.set< f32 >(_DC);
         }
@@ -314,10 +312,10 @@ void CrystalCage::exeWait() {
         MR::calcUpVec(&up_vec, this);
         TVec3f v6;
         v6.scale(-40.0f, up_vec);
-        JMathInlineVEC::PSVECAdd(&v6, &mPosition, &v6);
+        v6.add(mPosition);
         TVec3f v5;
         v5.scale(140.0f, up_vec);
-        JMathInlineVEC::PSVECAdd(&v5, &mPosition, &v5);
+        v5.add(mPosition);
         MR::calcPerpendicFootToLineInside(&_E8, *MR::getPlayerPos(), v6, v5);
     }
 }
@@ -394,7 +392,4 @@ void CrystalCage::exeBreakAfter() {
         MR::validateClipping(this);
         mBreakObj->kill();
     }
-}
-
-CrystalCage::~CrystalCage() {
 }

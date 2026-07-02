@@ -2,7 +2,7 @@
 
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Color.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
 class JUTTexture;
 

@@ -1,18 +1,24 @@
 #include "Game/Boss/KoopaDemoFallToPlanetVs3Lv2.hpp"
 #include "Game/Boss/Koopa.hpp"
+#include "Game/Boss/KoopaBattleBase.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
 #include "Game/Boss/KoopaPlanetShadow.hpp"
 #include "Game/Boss/KoopaSwitchKeeper.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/KoopaBattleMapPlanet.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
-    MR::ActorMoveParam sWaitParam = {0.0f, 1.0f, 0.9f, 1.0f};
+    static MR::ActorMoveParam sFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
+    static MR::ActorMoveParam sWaitParam = {0.0f, 1.0f, 0.9f, 1.0f};
 };  // namespace
-
-namespace MR {
-    void moveAndTurnToPlayer(LiveActor*, TVec3f*, const MR::ActorMoveParam&);
-};  // namespace MR
 
 namespace NrvKoopaDemoFallToPlanetVs3Lv2 {
     NEW_NERVE(KoopaDemoFallToPlanetVs3Lv2NrvWaitFall, KoopaDemoFallToPlanetVs3Lv2, WaitFall);
@@ -76,7 +82,7 @@ void KoopaDemoFallToPlanetVs3Lv2::exeFallToLand() {
         KoopaFunction::getKoopaPlanetShadow(mHost)->appear();
     }
 
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sFallParam);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sFallParam);
 
     MR::startLevelSound(mHost, "SE_BM_LV_KOOPA_FALL_TO_PLANET");
 
@@ -106,7 +112,7 @@ void KoopaDemoFallToPlanetVs3Lv2::exeWaitPlayer() {
         KoopaFunction::startFaceCtrl(mHost);
     }
 
-    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, sWaitParam);
+    MR::moveAndTurnToPlayer(mHost, &mHost->mFront, ::sWaitParam);
 
     if (MR::isOnGroundPlayer()) {
         KoopaFunction::startFaceCtrl(mHost);

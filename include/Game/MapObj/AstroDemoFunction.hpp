@@ -1,9 +1,13 @@
 #pragma once
 
-#include "Game/Util.hpp"
-#include <revolution.h>
+#include <revolution/types.h>
 
+class JMapInfoIter;
 class LiveActor;
+
+namespace MR {
+    class FunctorBase;
+};  // namespace MR
 
 class AstroDemoFunction {
 public:

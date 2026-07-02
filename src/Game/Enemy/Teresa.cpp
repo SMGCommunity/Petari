@@ -1,18 +1,28 @@
 #include "Game/Enemy/Teresa.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Map/SunshadeMapHolder.hpp"
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/KeySwitch.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/Color.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LightUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "Game/Util/TriangleFilter.hpp"
 
 namespace {
     static Color8 sPointLightColor(255, 255, 255, 255);
@@ -394,7 +404,7 @@ bool Teresa::tryWalk() {
         JMAVECScaleAdd(grav, &v6, &v6, -grav->dot(v6));
         v6 *= _F0;
         v6.add(_C8);
-        _E0.setPS(v6);
+        _E0 = v6;
         setNerve(&NrvTeresa::TeresaNrvWalk::sInstance);
         return true;
     }

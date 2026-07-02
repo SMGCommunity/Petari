@@ -1,14 +1,17 @@
 #include "Game/Boss/KoopaStateGuard.hpp"
 #include "Game/Boss/Koopa.hpp"
+#include "Game/Boss/KoopaBattleBase.hpp"
 #include "Game/Boss/KoopaFunction.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
     MR::ActorMoveParam sGuardFallParam = {0.0f, 1.0f, 0.98f, 0.0f};
 };  // namespace
-
-namespace MR {
-    void moveAndTurnToPlayer(LiveActor* pActor, TVec3f* pVec, const MR::ActorMoveParam& rMoveParam);
-};  // namespace MR
 
 namespace NrvKoopaStateGuard {
     NEW_NERVE(KoopaStateGuardNrvGuardFace, KoopaStateGuard, GuardFace);
@@ -66,7 +69,7 @@ void KoopaStateGuard::exeGuardFace() {
     }
 
     Koopa* pKoopa = mHost;
-    MR::moveAndTurnToPlayer(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), sGuardFallParam);
+    MR::moveAndTurnToPlayer(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), ::sGuardFallParam);
 
     if (MR::isActionEnd(mHost)) {
         kill();
@@ -82,7 +85,7 @@ void KoopaStateGuard::exeGuardBody() {
     }
 
     Koopa* pKoopa = mHost;
-    MR::moveAndTurnToPlayer(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), sGuardFallParam);
+    MR::moveAndTurnToPlayer(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), ::sGuardFallParam);
 
     if (MR::isActionEnd(mHost)) {
         kill();
@@ -92,12 +95,12 @@ void KoopaStateGuard::exeGuardBody() {
 void KoopaStateGuard::exeGuardTail() {
     if (MR::isFirstStep(this)) {
         MR::startAction(mHost, "AttackTail");
-        
+
         MR::zeroVelocity(mHost);
     }
 
     Koopa* pKoopa = mHost;
-    MR::moveAndTurnToPlayer(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), sGuardFallParam);
+    MR::moveAndTurnToPlayer(pKoopa, KoopaFunction::getKoopaFrontPtr(pKoopa), ::sGuardFallParam);
 
     if (MR::isActionEnd(mHost)) {
         kill();

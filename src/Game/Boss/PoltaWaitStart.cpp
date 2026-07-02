@@ -2,6 +2,7 @@
 #include "Game/Boss/Polta.hpp"
 #include "Game/Boss/PoltaActionBase.hpp"
 #include "Game/Boss/PoltaFunction.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 PoltaWaitStart::PoltaWaitStart(Polta* pPolta) : PoltaActionBase("ポルタ開始待ち", pPolta) {
 }

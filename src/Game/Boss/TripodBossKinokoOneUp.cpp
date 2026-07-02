@@ -1,6 +1,7 @@
 #include "Game/Boss/TripodBossKinokoOneUp.hpp"
 #include "Game/Boss/TripodBossAccesser.hpp"
 #include "Game/MapObj/BenefitItemObj.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 

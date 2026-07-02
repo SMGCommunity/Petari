@@ -1,5 +1,12 @@
 #include "Game/NPC/PenguinRacerLeader.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
+#include "Game/NPC/TalkMessageFunc.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/NPCUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace NrvPenguinRacerLeader {
     NEW_NERVE(PenguinRacerLeaderNrvWait, PenguinRacerLeader, Wait);

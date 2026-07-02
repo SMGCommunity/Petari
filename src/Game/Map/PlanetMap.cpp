@@ -1,5 +1,4 @@
 #include "Game/Map/PlanetMap.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Map/OceanHomeMapCtrl.hpp"
@@ -7,7 +6,6 @@
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -100,7 +98,7 @@ void PlanetMap::initClipping(const JMapInfoIter& rIter) {
     if (info != nullptr) {
         TVec3f _4 = TVec3f(info->_4, info->_8, info->_C);
         TVec3f _8;
-        _8.addInline(_4);
+        _8.add(_4);
         _90.set(_8);
         MR::setClippingTypeSphere(this, v2, &_90);
     } else {

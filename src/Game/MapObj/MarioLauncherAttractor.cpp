@@ -1,5 +1,11 @@
 #include "Game/MapObj/MarioLauncherAttractor.hpp"
+#include "Game/Gravity/GravityCreator.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+
+namespace NrvMarioLauncherAttractor {
+    NEW_NERVE(MarioLauncherAttractorNrvWait, MarioLauncherAttractor, Wait);
+};  // namespace NrvMarioLauncherAttractor
 
 MarioLauncherAttractor::MarioLauncherAttractor(const char* pName) : LiveActor(pName) {
     mGravityCreator = nullptr;
@@ -36,9 +42,5 @@ void MarioLauncherAttractor::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-namespace NrvMarioLauncherAttractor {
-    void MarioLauncherAttractorNrvWait::execute(Spine* pSpine) const {
-    }
-
-    MarioLauncherAttractorNrvWait(MarioLauncherAttractorNrvWait::sInstance);
-};  // namespace NrvMarioLauncherAttractor
+void MarioLauncherAttractor::exeWait() {
+}

@@ -1,5 +1,5 @@
 #include "Game/NPC/KinopioAstro.hpp"
-#include "Game/NPC/NPCActor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/NPCActorItem.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Screen/LuigiLetter.hpp"
@@ -41,7 +41,7 @@ void KinopioAstro::makeArchiveList(NameObjArchiveListCollector* pArchiveList, co
     }
 }
 
-KinopioAstro::KinopioAstro(const char* pName) : NameObj(pName) {
+KinopioAstro::KinopioAstro(const char* pName) : Kinopio(pName) {
 }
 KinopioAstro::~KinopioAstro() {
 }

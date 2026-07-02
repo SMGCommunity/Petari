@@ -9,6 +9,7 @@
 #include "Game/Player/TornadoMario.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/FileUtil.hpp"
 #include "Game/Util/FixedPosition.hpp"
 #include "Game/Util/FootPrint.hpp"
 #include "Game/Util/Functor.hpp"

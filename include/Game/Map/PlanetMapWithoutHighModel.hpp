@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/MapObj/MapObjActorInitInfo.hpp"
 
 class PlanetMapWithoutHighModel : public MapObjActor {
 public:

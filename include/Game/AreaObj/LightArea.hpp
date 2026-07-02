@@ -9,7 +9,9 @@ public:
     virtual ~LightArea();
     virtual void init(const JMapInfoIter&);
 
-    virtual const char* getManagerName() const;
+    virtual const char* getManagerName() const {
+        return "LightArea";
+    }
 
-    s32 mPlacedZoneID;  // 0x3C
+    /* 0x3C */ s32 mPlacedZoneID;
 };

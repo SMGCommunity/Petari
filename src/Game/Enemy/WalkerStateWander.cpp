@@ -2,6 +2,15 @@
 #include "Game/Enemy/TerritoryMover.hpp"
 #include "Game/Enemy/WalkerStateFunction.hpp"
 #include "Game/Enemy/WalkerStateParam.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/NerveUtil.hpp"
+
+void WalkerStateWander_FORCE_MATCH_SDATA2() {
+    (void)3.0f;
+}
 
 namespace {
     WalkerStateWanderParam sDefaultParam;

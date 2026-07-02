@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include <revolution.h>
 
 class JUTTexture;
 class OceanSpherePlane;

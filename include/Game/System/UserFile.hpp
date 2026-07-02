@@ -1,7 +1,6 @@
 #pragma once
 
 #include <revolution/os.h>
-#include <revolution/types.h>
 
 class ConfigDataHolder;
 class GameDataHolder;

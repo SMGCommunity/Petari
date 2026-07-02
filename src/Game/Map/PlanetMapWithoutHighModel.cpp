@@ -1,7 +1,7 @@
 #include "Game/Map/PlanetMapWithoutHighModel.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
-#include "cstdio"
+#include "Game/Util/ObjUtil.hpp"
+#include <cstdio>
 
 PlanetMapWithoutHighModel::PlanetMapWithoutHighModel(const char* pName) : MapObjActor(pName) {
 }
@@ -21,8 +21,8 @@ void PlanetMapWithoutHighModel::init(const JMapInfoIter& rIter) {
     info.setupConnectToScene();
     info.setupEffect(nullptr);
     info.setupFarClipping(-1.0f);
-    char buf[0x100];
-    snprintf(buf, sizeof(buf), "%sLow", mObjectName);
-    info.setupModelName(buf);
+    char modelName[256];
+    snprintf(modelName, sizeof(modelName), "%sLow", mObjectName);
+    info.setupModelName(modelName);
     initialize(rIter, info);
 }

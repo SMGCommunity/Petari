@@ -1,4 +1,5 @@
 #include "Game/Player/GroupChecker.hpp"
+#include "Game/Util/HashUtil.hpp"
 
 GroupChecker::GroupChecker(const char* pName, u32 a2) : NameObj(pName) {
     mHashTable = new HashSortTable(a2);

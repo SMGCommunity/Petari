@@ -1,5 +1,6 @@
 #include "Game/Boss/SkeletalFishBossRailHolder.hpp"
 #include "Game/Boss/SkeletalFishBossRail.hpp"
+#include "Game/Scene/SceneObjHolder.hpp"
 
 SkeletalFishBossRailHolder::SkeletalFishBossRailHolder(const char* pName) : NameObj(pName) {
     mNumRails = 0;

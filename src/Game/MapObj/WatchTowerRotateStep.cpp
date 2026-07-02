@@ -1,4 +1,5 @@
 #include "Game/MapObj/WatchTowerRotateStep.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 #include "Inline.hpp"
 

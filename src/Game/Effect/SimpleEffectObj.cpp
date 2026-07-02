@@ -1,18 +1,14 @@
 #include "Game/Effect/SimpleEffectObj.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include "Game/Util/StringUtil.hpp"
 
 namespace NrvSimpleEffectObj {
     NEW_NERVE(HostTypeWait, SimpleEffectObj, Wait);
@@ -53,7 +49,6 @@ SimpleEffectObj::SimpleEffectObj(const char* pName) : LiveActor(pName) {
 }
 
 void SimpleEffectObj::init(const JMapInfoIter& rIter) {
-    TVec3f stack_8;
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjMovement(this);
     MR::getObjectName(&_8C, rIter);
@@ -70,8 +65,7 @@ void SimpleEffectObj::init(const JMapInfoIter& rIter) {
     } else {
         MR::registerDemoSimpleCastAll(this);
     }
-    PSVECAdd(getClippingCenterOffset(), &stack_8, &stack_8);
-    _90.set(stack_8);
+    _90.set(mPosition + *getClippingCenterOffset());
     MR::setClippingTypeSphere(this, getClippingRadius(), &_90);
     MR::setGroupClipping(this, rIter, 0x40);
     MR::setClippingFar(this, getFarClipDistance());

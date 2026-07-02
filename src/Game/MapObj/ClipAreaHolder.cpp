@@ -1,8 +1,10 @@
 #include "Game/MapObj/ClipAreaHolder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ClipArea.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     ClipAreaHolder* getClipAreaHolder() {

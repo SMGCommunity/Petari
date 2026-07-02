@@ -2,15 +2,14 @@
 
 #include "Game/Map/WaterInfo.hpp"
 #include "Game/NameObj/NameObj.hpp"
-
 #include <JSystem/JGeometry/TVec.hpp>
 
 class OceanBowl;
 class OceanRing;
 class OceanSphere;
+class WaterCameraFilter;
 class WhirlPool;
 class WhirlPoolAccelerator;
-class WaterCameraFilter;
 
 class WaterAreaHolder : public NameObj {
 public:

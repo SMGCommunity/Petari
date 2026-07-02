@@ -2,8 +2,8 @@
 
 #include "Game/Boss/KoopaSequencer.hpp"
 
-class KoopaSubSequenceBattle;
 class KoopaBattleMain;
+class KoopaSubSequenceBattle;
 
 class KoopaSequencerVs1 : public KoopaSequencer {
 public:
@@ -11,7 +11,7 @@ public:
 
     virtual ~KoopaSequencerVs1();
     virtual void init(Koopa* pKoopa, const JMapInfoIter& rIter);
-    virtual bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);

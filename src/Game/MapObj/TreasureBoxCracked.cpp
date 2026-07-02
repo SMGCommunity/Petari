@@ -1,4 +1,6 @@
 #include "Game/MapObj/TreasureBoxCracked.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util.hpp"
 
 namespace {
     static Color8 sPointLightColor(0xFF, 0xFF, 0x96, 0xFF);

@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/ActorStateBase.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TVec.hpp>
 
-class Koopa;
 class HitSensor;
+class Koopa;
 
 class KoopaStateAttackHipDrop : public ActorStateBase< Koopa > {
 public:
@@ -14,7 +14,7 @@ public:
     virtual void init();
     virtual void appear();
     virtual void kill();
-    
+
     bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     bool isDamage() const;
     bool isEnableGuard() const;

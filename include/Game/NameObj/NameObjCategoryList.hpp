@@ -2,7 +2,11 @@
 
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/NameObj/NameObjHolder.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/Array.hpp"
+
+namespace MR {
+    class FunctorBase;
+};  // namespace MR
 
 namespace {
     template < typename T >

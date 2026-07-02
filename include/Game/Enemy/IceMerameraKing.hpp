@@ -3,8 +3,10 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/Util/Array.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class CameraTargetDemoActor;
+class FixedPosition;
 template < typename T >
 class JointControlDelegator;
 class JointControllerInfo;
