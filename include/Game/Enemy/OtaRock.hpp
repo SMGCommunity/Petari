@@ -53,9 +53,7 @@ private:
     /* 0x98 */ FixedPosition* mFixedPosition;
     /* 0x9C */ u32 _9C;
     /* 0xA0 */ u32 _A0;
-    /* 0xA4 */ TMtx34f _A4;
-    /* 0xD4 */ f32 _D4;
-    /* 0xD8 */ f32 _D8;
-    /* 0xDC */ f32 _DC;
+    /* 0xA4 */ TPos3f _A4;
+    /* 0xD4 */ TVec3f _D4;
     /* 0xE0 */ AnimScaleController* mAnimScaleController;
 };

@@ -4602,7 +4602,7 @@ Game/MapObj/CollisionBlocker.cpp:
 Game/MapObj/CrystalCage.cpp:
 	.text       start:0x801CB150 end:0x801CC1EC
 	.ctors      start:0x8052ECC8 end:0x8052ECCC
-	.data       start:0x80592610 end:0x80592958
+	.data       start:0x80592610 end:0x80592830
 	.sbss       start:0x806B4FF8 end:0x806B5008
 	.sdata2     start:0x806BCC78 end:0x806BCCC0
 
@@ -4610,7 +4610,7 @@ Game/MapObj/CrystalCageMoving.cpp:
 	.text       start:0x801CC1EC end:0x801CCD78
 	.ctors      start:0x8052ECCC end:0x8052ECD0
 	.rodata     start:0x80533118 end:0x80533128
-	.data       start:0x80592958 end:0x80592A68
+	.data       start:0x80592830 end:0x80592A68
 	.sdata      start:0x806B1DB8 end:0x806B1DC0
 	.sbss       start:0x806B5008 end:0x806B5028
 	.sdata2     start:0x806BCCC0 end:0x806BCCE0
@@ -4659,7 +4659,7 @@ Game/MapObj/DesertMovingLand.cpp:
 Game/MapObj/DragonHeadFlower.cpp:
 	.text       start:0x801CF628 end:0x801D00EC
 	.ctors      start:0x8052ECE0 end:0x8052ECE4
-	.data       start:0x80593060 end:0x805931C0
+	.data       start:0x80593060 end:0x80593160
 	.sdata      start:0x806B1DE0 end:0x806B1DF8
 	.sbss       start:0x806B5070 end:0x806B5080
 	.sdata2     start:0x806BCD80 end:0x806BCDC0
@@ -4667,7 +4667,7 @@ Game/MapObj/DragonHeadFlower.cpp:
 Game/MapObj/DriftWood.cpp:
 	.text       start:0x801D00EC end:0x801D085C
 	.ctors      start:0x8052ECE4 end:0x8052ECE8
-	.data       start:0x805931C0 end:0x80593290
+	.data       start:0x80593160 end:0x80593290
 	.sbss       start:0x806B5080 end:0x806B5090
 	.sdata2     start:0x806BCDC0 end:0x806BCDF8
 
@@ -5338,7 +5338,7 @@ Game/MapObj/PomponPlant.cpp:
 	.text       start:0x8020E8A0 end:0x8020EE70
 	.ctors      start:0x8052EE08 end:0x8052EE0C
 	.rodata     start:0x805335C8 end:0x80533600
-	.data       start:0x8059B738 end:0x8059BA90
+	.data       start:0x8059B738 end:0x8059B838
 	.sdata      start:0x806B1EE8 end:0x806B1EF0
 	.sbss       start:0x806B5590 end:0x806B55A0
 	.sdata2     start:0x806BDA40 end:0x806BDA58
@@ -5346,7 +5346,7 @@ Game/MapObj/PomponPlant.cpp:
 Game/MapObj/PowerStar.cpp:
 	.text       start:0x8020EE70 end:0x80211300
 	.ctors      start:0x8052EE0C end:0x8052EE10
-	.data       start:0x8059BA90 end:0x8059BB98
+	.data       start:0x8059B838 end:0x8059BB98
 	.sbss       start:0x806B55A0 end:0x806B55C8
 	.sdata2     start:0x806BDA58 end:0x806BDAE0
 
@@ -5696,14 +5696,14 @@ Game/MapObj/SpaceMine.cpp:
 Game/MapObj/SpaceShipStep.cpp:
 	.text       start:0x8022E950 end:0x8022EF24
 	.ctors      start:0x8052EEB0 end:0x8052EEB4
-	.data       start:0x805A0608 end:0x805A06E0
+	.data       start:0x805A0608 end:0x805A06D8
 	.sbss       start:0x806B5888 end:0x806B5898
 	.sdata2     start:0x806BE068 end:0x806BE080
 
 Game/MapObj/SphereRailDash.cpp:
 	.text       start:0x8022EF24 end:0x8022F560
 	.ctors      start:0x8052EEB4 end:0x8052EEB8
-	.data       start:0x805A06E0 end:0x805A0778
+	.data       start:0x805A06D8 end:0x805A0778
 	.sbss       start:0x806B5898 end:0x806B58A0
 	.sdata2     start:0x806BE080 end:0x806BE0A8
 
@@ -10769,12 +10769,12 @@ RVL_SDK/os/OSError.c:
 	.text       start:0x804A60D4 end:0x804A6808
 	.data       start:0x805EFC00 end:0x805EFF20
 	.bss        start:0x80664E50 end:0x80664EC0
-	.sdata      start:0x806B2A50 end:0x806B2A60
+	.sdata      start:0x806B2A50 end:0x806B2A58
 
 RVL_SDK/os/OSExec.c:
 	.text       start:0x804A6808 end:0x804A7E78
 	.data       start:0x805EFF20 end:0x805EFF90
-	.sdata      start:0x806B2A60 end:0x806B2A68
+	.sdata      start:0x806B2A58 end:0x806B2A68
 	.sbss       start:0x806B7690 end:0x806B76A8
 	.sdata2     start:0x806C2080 end:0x806C2088
 

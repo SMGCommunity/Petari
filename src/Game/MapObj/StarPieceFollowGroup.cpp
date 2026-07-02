@@ -167,7 +167,7 @@ void StarPieceFollowGroup::followPieces() {
 
         vec2.add(vec.multiplyOperatorInline(cos2));
         currentPiece->mVelocity.set(vec2);
-        JMathInlineVEC::PSVECSubtract2(&currentPiece->mVelocity, &currentPiece->mPosition, &currentPiece->mVelocity);
+        currentPiece->mVelocity.sub(currentPiece->mPosition);
         currentPiece->mVelocity.mult(1.0f);
     }
 }

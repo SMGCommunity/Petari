@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cmath>
 #include <revolution.h>
 
 const f32 HALF_PI = 1.5707964f;
@@ -17,5 +18,7 @@ const f32 FLOAT_ZERO = 0.0f;
 extern const Vec gZeroVec;
 
 namespace std {
-    f32 atan2(f32, f32);
-};
+    inline f32 atan2(f32 x, f32 y) {
+        return ::atan2(x, y);
+    }
+};  // namespace std

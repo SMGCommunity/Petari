@@ -83,7 +83,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f* pDest, f32* pDistance, const TVec
 
         TVec3f closestEdgePoint;
         closestEdgePoint.set< f32 >(dirOnDiskPlane * mWorldRadius);
-        JMathInlineVEC::PSVECAdd(&closestEdgePoint, &mWorldPosition, &closestEdgePoint);
+        closestEdgePoint += mWorldPosition;
 
         gravity = closestEdgePoint - rPosition;
         MR::separateScalarAndDirection(&distance, &gravity, gravity);

@@ -105,7 +105,7 @@ void AreaFormCube::calcWorldBox(TDirBox3f* pBox) const {
     pBox->_18.z = pos.mMtx[2][2];
     pBox->_24.z = pos.mMtx[2][3];
 
-    JMathInlineVEC::PSVECSubtract(&mBounding.f, &mBounding.i, &pBox->_30);
+    pBox->_30.sub(mBounding.f, mBounding.i);
     pos.mult(mBounding.i, pBox->_24);
 }
 
@@ -177,10 +177,7 @@ bool AreaFormSphere::isInVolume(const TVec3f& rVector) const {
     TVec3f pos;
     calcPos(&pos);
 
-    TVec3f otherPos(rVector);
-    JMathInlineVEC::PSVECSubtract(&otherPos, &pos, &otherPos);
-
-    return PSVECMag(&otherPos) < _14;
+    return (rVector - pos).length() < _14;
 }
 
 AreaFormBowl::AreaFormBowl() {
@@ -205,17 +202,11 @@ void AreaFormBowl::init(const JMapInfoIter& rIter) {
 }
 
 bool AreaFormBowl::isInVolume(const TVec3f& rPos) const {
-    TVec3f pos(rPos);
-    JMathInlineVEC::PSVECSubtract(&pos, &mTranslation, &pos);
-
-    if (PSVECMag((const Vec*)&pos) > _20) {
+    if ((rPos - mTranslation).length() > _20) {
         return false;
     }
 
-    TVec3f otherPos(rPos);
-    JMathInlineVEC::PSVECSubtract(&otherPos, &mTranslation, &otherPos);
-
-    return otherPos.dot(mUp) < 0.0f;
+    return (rPos - mTranslation).dot(mUp) < 0.0f;
 }
 
 void AreaFormBowl::calcUpVec(const TVec3f& rPos) {
@@ -271,10 +262,9 @@ bool AreaFormCylinder::isInVolume(const TVec3f& rVec) const {
     TVec3f up;
     calcUpVec(&up);
 
-    TVec3f stack_8(rVec);
-    JMathInlineVEC::PSVECSubtract((const Vec*)&stack_8, (const Vec*)&pos, (Vec*)&stack_8);
+    TVec3f stack_8 = rVec - pos;
     f32 v6 = MR::vecKillElement(stack_8, up, &stack_8);
-    f32 v7 = PSVECMag((const Vec*)&stack_8);
+    f32 v7 = stack_8.length();
 
     bool ret;
 

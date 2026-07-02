@@ -228,7 +228,7 @@ void Tico::control() {
     if (_178) {
         TVec3f trans;
         MR::extractMtxTrans(_178, &trans);
-        MR::requestPointLight(this, TVec3f(trans), _17C, 0.99864602f, -1);
+        MR::requestPointLight(this, trans, _17C, 0.99864602f, -1);
     }
 
     if (isNerve(_180)) {
@@ -238,9 +238,7 @@ void Tico::control() {
             MR::startLevelSound(this, "SE_SM_LV_TICO_WAIT");
         }
 
-        TVec3f v14(mPosition);
-        JMathInlineVEC::PSVECSubtract(&v14, &_160, &v14);
-        f32 v11 = PSVECMag(&v14);
+        f32 v11 = (mPosition - _160).length();
         f32 v16 = (100.0f * MR::getLinerValueFromMinMax(v11, 1.0f, 11.0f, 0.2f, 1.0f));
         MR::startLevelSound(this, "SE_SM_LV_TICO_FLOAT", v16);
         _160.set< f32 >(mPosition);

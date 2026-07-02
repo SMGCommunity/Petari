@@ -162,12 +162,12 @@ void TicoRail::exeStop() {
 
 void TicoRail::exeTalkStart() {
     TVec3f diff;
-    JMathInlineVEC::PSVECSubtract(&mPosition, &_98->mPosition, &diff);
+    diff.sub(_98->mPosition, mPosition);
     MR::normalize(&diff);
 
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Spin", nullptr);
-        TVec3f v14(MR::getRailDirection(this));
+        TVec3f v14 = MR::getRailDirection(this);
 
         if (diff.dot(v14) > 0.0f) {
             MR::reverseRailDirection(this);

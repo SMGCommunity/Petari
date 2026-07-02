@@ -28,7 +28,7 @@ from tools.project import (
 
 # Game versions
 DEFAULT_VERSION = 0
-VERSIONS = ["RMGK01", "RMGK02"]  # 0  # 1
+VERSIONS = ["RMGK01"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -646,7 +646,7 @@ config.libs = [
             Object(Matching, "Game/Animation/BrkPlayer.cpp"),
             Object(Matching, "Game/Animation/BtkPlayer.cpp"),
             Object(Matching, "Game/Animation/BtpPlayer.cpp"),
-            Object(NonMatching, "Game/Animation/BvaPlayer.cpp"),
+            Object(Matching, "Game/Animation/BvaPlayer.cpp"),
             Object(NonMatching, "Game/Animation/LayoutAnmPlayer.cpp"),
             Object(NonMatching, "Game/Animation/MaterialAnmBuffer.cpp"),
             Object(NonMatching, "Game/Animation/XanimeCore.cpp"),
@@ -1837,7 +1837,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/PenguinRacerLeader.cpp"),
             Object(NonMatching, "Game/NPC/PenguinSkater.cpp"),
             Object(NonMatching, "Game/NPC/PenguinStudent.cpp"),
-            Object(NonMatching, "Game/NPC/PowerStarEventKeeper.cpp"),
+            Object(Matching, "Game/NPC/PowerStarEventKeeper.cpp"),
             Object(NonMatching, "Game/NPC/Rabbit.cpp"),
             Object(NonMatching, "Game/NPC/RabbitStateCaught.cpp"),
             Object(NonMatching, "Game/NPC/RabbitStateWaitStart.cpp"),
@@ -2157,7 +2157,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/GalaxyMapDomeIcon.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapGalaxyDetail.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapGalaxyPlain.cpp"),
-            Object(NonMatching, "Game/Screen/GalaxyMapIcon.cpp"),
+            Object(Matching, "Game/Screen/GalaxyMapIcon.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapMarioIcon.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapSelectButton.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapTicoIcon.cpp"),
@@ -2209,7 +2209,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/odh.cpp"),
             Object(Matching, "Game/Screen/OdhConverter.cpp"),
             Object(Matching, "Game/Screen/OneUpBoard.cpp"),
-            Object(NonMatching, "Game/Screen/PaneEffectKeeper.cpp"),
+            Object(Matching, "Game/Screen/PaneEffectKeeper.cpp"),
             Object(NonMatching, "Game/Screen/PauseMenu.cpp"),
             Object(Matching, "Game/Screen/PeachLetter.cpp"),
             Object(Matching, "Game/Screen/PictureBookCloseButton.cpp"),

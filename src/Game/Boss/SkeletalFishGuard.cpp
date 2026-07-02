@@ -178,36 +178,29 @@ void SkeletalFishGuard::exeApart() {
     }
 
     f32 v3 = (f32)getNerveStep() / 80.0f;
-    TVec3f v14(_A4);
+    TVec3f v14 = _A4;
 
     if (!MR::isNearZero(v14)) {
         MR::normalize(&v14);
-        f32 sqr = v14.squared();
-        if (sqr > 0.0000038146973f) {
-            f32 inv = JGeometry::TUtil< f32 >::inv_sqrt(sqr);
-            v14.scale(inv * 0.3f);
-        }
+        v14.setLength(0.3f);
 
         f32 v6 = _A4.squared();
         if (v14.squared() >= v6) {
-            _A4.z = 0.0f;
-            _A4.y = 0.0f;
-            _A4.x = 0.0f;
+            _A4.zeroInline();
         } else {
-            TVec3f v10 = v14 * 0.3f;
-            JMathInlineVEC::PSVECSubtract(&_A4, &v10, &_A4);
+            _A4.sub(v14.scaleInline(0.3f));
         }
     }
 
-    f32 v7 = (_B0 * v3);
+    f32 v7 = _B0 * v3;
     TVec3f grav(mGravity);
     MR::calcGravity(this);
     TQuat4f quat;
     quat.setRotate(grav, mGravity);
     quat.transform(_D0);
     quat.transform(_A4);
-    lookToPlayer((v3 * (v3 * 18.849556f)) / 180.0f, ((v3 * (v3 * 18.849556f)) / 180.0f));
-    mPosition = (_A4 + (mGravity * v7)) + mPosition;
+    lookToPlayer((v3 * (v3 * (6 * MR::pi()))) / 180.0f, ((v3 * (v3 * (6 * MR::pi()))) / 180.0f));
+    mPosition += mGravity.scaleInline(v7) + _A4;
     MR::calcGravity(this);
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_SWIM_NORMAL");
     MR::startLevelSound(this, "SE_BM_LV_SKL_GUARD_ALARM", MR::calcDistanceToPlayer(this));
@@ -439,7 +432,7 @@ void SkeletalFishGuard::initSensor() {
 void SkeletalFishGuard::calcTransAndFront() {
     calcTarget(&_E8, &_F4, &_100, 0);
     _D0.set< f32 >(_100);
-    JMathInlineVEC::PSVECSubtract(&_F4, &mPosition, &_A4);
+    _A4.sub(_F4, mPosition);
     mPosition.set< f32 >(_F4);
 }
 
@@ -463,8 +456,7 @@ void SkeletalFishGuard::rotateHorizontal(const TVec3f& a2, f32 scalar) {
 }
 
 void SkeletalFishGuard::rotateVertical(const TVec3f& a2, f32 a3) {
-    TVec3f v12;
-    PSVECCrossProduct(&mGravity, &_D0, &v12);
+    TVec3f v12 = mGravity.cross(_D0);
 
     if (!MR::isNearZero(v12)) {
         MR::normalize(&v12);
@@ -510,9 +502,7 @@ bool SkeletalFishGuard::tryShiftApart() {
 }
 
 bool SkeletalFishGuard::tryShiftStraight() {
-    TVec3f pos(*MR::getPlayerCenterPos());
-    JMathInlineVEC::PSVECSubtract(&pos, &mPosition, &pos);
-    if (_D0.dot(pos) < 0.0f) {
+    if (_D0.dot(*MR::getPlayerCenterPos() - mPosition) < 0.0f) {
         setNerve(&::SkeletalFishGuardNrvStraight::sInstance);
         return true;
     }
@@ -573,8 +563,8 @@ void SkeletalFishGuard::calcTarget(TVec3f* a1, TVec3f* a2, TVec3f* a3, s32 a4) {
     TVec3f v19(v21);
     v19.scale(v17);
     TVec3f v20(v19);
-    JMathInlineVEC::PSVECAdd(&v20, &v18, &v20);
-    JMathInlineVEC::PSVECAdd(a1, &v20, a2);
+    v20.add(v18);
+    a2->add(*a1, v20);
 }
 
 bool SkeletalFishGuard::isInScreen() const {
@@ -582,15 +572,12 @@ bool SkeletalFishGuard::isInScreen() const {
     return MR::calcScreenPosition(&screen, mPosition);
 }
 
-/*
 bool SkeletalFishGuard::isPlayerInAttackRange() const {
-    //const Vec* posPtr = mPosition;
-    //TVec3f v7(*MR::getPlayerCenterPos());
-    //JMathInlineVEC::PSVECSubtract(v7, posPtr, v7);
+    // FIXME: is there some inline that calculates vector to player?
 
-    TVec3f v7 = MR::subVec(mPosition, *MR::getPlayerCenterPos());
+    TVec3f v7 = *MR::getPlayerCenterPos() - mPosition;
 
-    if (PSVECMag(v7) > 5000.0f) {
+    if (v7.length() > 5000.0f) {
         return false;
     }
 
@@ -599,34 +586,28 @@ bool SkeletalFishGuard::isPlayerInAttackRange() const {
     }
 
     MR::normalize(&v7);
-    f32 lap = MR::cosDegree(180.0f);
-    f32 dot = v7.dot(_D0);
-    if (dot < lap) {
+    if (v7.dot(_D0) < MR::cosDegree(180.0f)) {
         return false;
     }
 
     return true;
 }
-*/
 
 // pretty close
 bool SkeletalFishGuard::isLineOfSightClear() const {
-    TVec3f v12(*MR::getPlayerCenterPos());
-    JMathInlineVEC::PSVECSubtract(&v12, &mPosition, &v12);
+    TVec3f v12 = *MR::getPlayerCenterPos() - mPosition;
 
     if (Collision::checkStrikeLineToMap(mPosition, v12, 0, nullptr, nullptr)) {
         return false;
     }
 
-    TVec3f v10 = MR::getCamPos();
-    JMathInlineVEC::PSVECSubtract(&v10, &mPosition, &v10);
+    TVec3f v10 = MR::getCamPos() - mPosition;
 
     if (Collision::checkStrikeLineToMap(mPosition, v10, 0, nullptr, nullptr)) {
         return false;
     }
 
-    TVec3f v11(_E8);
-    JMathInlineVEC::PSVECSubtract(&v11, &mPosition, &v11);
+    TVec3f v11 = _E8 - mPosition;
     f32 v4 = _100.dot(v11);
     JMAVECScaleAdd(&_100, &v11, &v11, -v4);
     f32 v5 = _100.dot(v12);
@@ -634,9 +615,7 @@ bool SkeletalFishGuard::isLineOfSightClear() const {
     bool ret = true;
 
     if (!MR::isNearZero(v11) && !MR::isNearZero(v12)) {
-        f32 v6 = PSVECMag(&v11);
-        f32 thick = mFishBoss->getBodyThickness();
-        f64 angle = JMAAsinRadian(thick / v6);
+        f64 angle = JMAAsinRadian(mFishBoss->getBodyThickness() / v11.length());
         if (v11.angle(v12) < angle) {
             return false;
         }

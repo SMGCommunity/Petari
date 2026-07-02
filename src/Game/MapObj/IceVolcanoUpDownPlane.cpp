@@ -20,11 +20,8 @@ void IceVolcanoUpDownPlane::move() {
 }
 
 bool IceVolcanoUpDownPlane::tryCalcNearestPosToPlayer(TVec3f* pArg) const {
-    TVec3f* playerPos = MR::getPlayerPos();
-
-    // f1 f2 paired single regswap
     TVec3f vec;
-    JMathInlineVEC::PSVECSubtract2(playerPos, &mPosition, &vec);
+    vec.sub(*MR::getPlayerPos(), mPosition);
 
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
@@ -43,8 +40,7 @@ bool IceVolcanoUpDownPlane::tryCalcNearestPosToPlayer(TVec3f* pArg) const {
         scaledAdded.setLength(radius);
     }
 
-    // f1 f2 paired single regswap
-    JMathInlineVEC::PSVECAdd3(&scaledAdded, &mPosition, pArg);
+    pArg->add(scaledAdded, mPosition);
     return true;
 }
 

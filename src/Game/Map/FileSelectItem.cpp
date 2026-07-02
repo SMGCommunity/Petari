@@ -419,9 +419,7 @@ void FileSelectItem::updateRotate() {
             mBlinkCtrl->open();
             mBlinkCtrl->setNerve(&FileSelectItemSub::BlinkControllerNrvOpen::sInstance);
         } else if (MR::isStarPointerInScreen(0)) {
-            TVec3f v35(0.0f, 900.0f, 0.0f);
-            TVec3f v43(mPosition);
-            JMathInlineVEC::PSVECAdd(&v43, &v35, &v43);
+            TVec3f v43 = mPosition + TVec3f(0.0f, 900.0f, 0.0f);
             TVec2f screenPos(*MR::getStarPointerScreenPosition(0));
 
             if (_154) {

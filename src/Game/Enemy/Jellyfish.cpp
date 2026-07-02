@@ -283,17 +283,14 @@ void Jellyfish::threatTurn() {
 }
 
 bool Jellyfish::faceToMario() {
-    TVec3f* pos = &mPosition;
     TVec3f v13;
-    JMathInlineVEC::PSVECSubtract(MR::getPlayerPos(), pos, &v13);
+    v13.sub(*MR::getPlayerPos(), mPosition);
     MR::normalizeOrZero(&v13);
     TVec3f v12;
     MR::calcSideVec(&v12, this);
 
     if (!MR::isNearZero(v13)) {
-        f32 v4 = MR::negateIfLessZero(0.5f);
-        f32 cos = JMath::sSinCosTable.cosShort(v4);
-        MR::turnVecToVecCosOnPlane(&_98, v13, v12, cos);
+        MR::turnVecToVecCosOnPlane(&_98, v13, v12, MR::cos(0.5f));
         TVec3f v10;
         v10.negate(mGravity);
         TVec3f v11;
@@ -321,9 +318,7 @@ bool Jellyfish::faceToMario() {
 
 void Jellyfish::knockOut(HitSensor* a2, HitSensor* a3) {
     TVec3f v6;
-    TVec3f v5(a3->mPosition);
-    JMathInlineVEC::PSVECSubtract(&v5, &a2->mPosition, v5);
-    MR::normalize(v5, &v6);
+    MR::normalize(a3->mPosition - a2->mPosition, &v6);
     mVelocity.scale(50.0f, v6);
     _98.negate(v6);
     setNerve(&NrvJellyfish::JellyfishNrvDeath::sInstance);
