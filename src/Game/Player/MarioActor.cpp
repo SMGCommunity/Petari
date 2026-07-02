@@ -2395,11 +2395,7 @@ bool MarioActor::isJumping() const {
 }
 
 bool MarioActor::isJumpRising() const {
-    bool ret = false;
-    if (mMario->mMovementStates.jumping && mMario->isRising()) {
-        ret = true;
-    }
-    return ret;
+    return mMario->mMovementStates.jumping && mMario->isRising();
 }
 
 bool MarioActor::isPunching() const {
