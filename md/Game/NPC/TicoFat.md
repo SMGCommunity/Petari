@@ -31,7 +31,7 @@
 | `disappear__7TicoFatFb` | `0x802909F8` | :white_check_mark: (100.0%) |
 | `tryMetamorphosis__7TicoFatFv` | `0x80290B04` | :white_check_mark: (100.0%) |
 | `emitScreenEffect__7TicoFatFv` | `0x80290B68` | :white_check_mark: (100.0%) |
-| `updateScreenEffect__7TicoFatFv` | `0x80290BBC` | :x: (95.8%) |
+| `updateScreenEffect__7TicoFatFv` | `0x80290BBC` | :white_check_mark: (100.0%) |
 | `getDanceSeTranspose__7TicoFatCFv` | `0x80290CB4` | :white_check_mark: (100.0%) |
 | `startAbsorbSound__7TicoFatFv` | `0x80290CE4` | :white_check_mark: (100.0%) |
 | `updateGuidance__7TicoFatFv` | `0x80290D34` | :white_check_mark: (100.0%) |

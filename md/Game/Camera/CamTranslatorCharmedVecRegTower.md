@@ -6,5 +6,5 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `setParam__31CamTranslatorCharmedVecRegTowerFPC16CameraParamChunk` | `0x80092BC4` | :x: (76.3%) |
+| `setParam__31CamTranslatorCharmedVecRegTowerFPC16CameraParamChunk` | `0x80092BC4` | :x: (99.1%) |
 | `getCamera__31CamTranslatorCharmedVecRegTowerCFv` | `0x80092CBC` | :white_check_mark: (100.0%) |

@@ -11,7 +11,7 @@
 | `init__15KoopaFireStairsFRC12JMapInfoIter` | `0x8005E954` | :white_check_mark: (100.0%) |
 | `appear__15KoopaFireStairsFv` | `0x8005EA98` | :white_check_mark: (100.0%) |
 | `makeActorDead__15KoopaFireStairsFv` | `0x8005EB2C` | :white_check_mark: (100.0%) |
-| `setInfo__15KoopaFireStairsFPC19KoopaBattleMapStairPCQ29JGeometry8TVec3<f>` | `0x8005EB6C` | :x: (91.4%) |
+| `setInfo__15KoopaFireStairsFPC19KoopaBattleMapStairPCQ29JGeometry8TVec3<f>` | `0x8005EB6C` | :white_check_mark: (100.0%) |
 | `exeFly__15KoopaFireStairsFv` | `0x8005ED10` | :x: (99.7%) |
 | `exeBreak__15KoopaFireStairsFv` | `0x8005EFAC` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__15KoopaFireStairsFv` | `0x8005F028` | :white_check_mark: (100.0%) |

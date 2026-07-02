@@ -6,6 +6,6 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `TRKReleaseMutex` | `0x8052AE2C` | :white_check_mark: (100.0%) |
-| `TRKAcquireMutex` | `0x8052AE34` | :white_check_mark: (100.0%) |
 | `TRKInitializeMutex` | `0x8052AE3C` | :white_check_mark: (100.0%) |
+| `TRKAcquireMutex` | `0x8052AE34` | :white_check_mark: (100.0%) |
+| `TRKReleaseMutex` | `0x8052AE2C` | :white_check_mark: (100.0%) |

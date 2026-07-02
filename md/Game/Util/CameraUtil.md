@@ -14,7 +14,7 @@
 | `calcNormalizedScreenPositionFromView__2MRFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x803C8594` | :x: (0.0%) |
 | `calcWorldPositionFromScreen__2MRFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>f` | `0x803C86D0` | :x: (0.0%) |
 | `calcWorldPositionFromCenterScreen__2MRFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>f` | `0x803C879C` | :x: (0.0%) |
-| `calcWorldRayDirectionFromScreen__2MRFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>` | `0x803C88E0` | :white_check_mark: (100.0%) |
+| `calcWorldRayDirectionFromScreen__2MRFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>` | `0x803C88E0` | :x: (67.4%) |
 | `calcCameraDistanceZ__2MRFRCQ29JGeometry8TVec3<f>` | `0x803C8934` | :x: (0.0%) |
 | `loadProjectionMtx__2MRFv` | `0x803C89A4` | :white_check_mark: (100.0%) |
 | `loadViewMtx__2MRFv` | `0x803C89D8` | :white_check_mark: (100.0%) |

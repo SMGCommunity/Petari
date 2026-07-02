@@ -113,8 +113,8 @@
 | `__dt__27JASMemPool<13AudSeStrategy>Fv` | `0x8002A0B8` | :x: (0.0%) |
 | `__ct__34JASMemPool<20AudDopplerAudible<4>>Fv` | `0x8002A110` | :x: (0.0%) |
 | `__dt__34JASMemPool<20AudDopplerAudible<4>>Fv` | `0x8002A140` | :x: (0.0%) |
-| `@4@getBgmSeqResourceID__15JAUStdSoundInfoCF10JAISoundID_8002A198` | `0x8002A198` | :x: (0.0%) |
-| `@4@getAudibleSw__15JAUStdSoundInfoCF10JAISoundID_8002A1A0` | `0x8002A1A0` | :x: (0.0%) |
+| `@4@getBgmSeqResourceID__15JAUStdSoundInfoCF10JAISoundID` | `0x8002A198` | :x: (0.0%) |
+| `@4@getAudibleSw__15JAUStdSoundInfoCF10JAISoundID` | `0x8002A1A0` | :x: (0.0%) |
 | `@8@__dt__37JAUDisposerObject_<15JAUStdSoundInfo>Fv` | `0x8002A1A8` | :x: (0.0%) |
-| `@8@getStreamFileEntry__15JAUStdSoundInfoF10JAISoundID_8002A1B0` | `0x8002A1B0` | :x: (0.0%) |
+| `@8@getStreamFileEntry__15JAUStdSoundInfoF10JAISoundID` | `0x8002A1B0` | :x: (0.0%) |
 | `@12@__dt__37JAUDisposerObject_<15JAUStdSoundInfo>Fv` | `0x8002A1B8` | :x: (0.0%) |

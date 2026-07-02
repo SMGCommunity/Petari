@@ -11,14 +11,14 @@
 | `appear__23AstroDomeGalaxySelectorFv` | `0x801AD02C` | :white_check_mark: (100.0%) |
 | `kill__23AstroDomeGalaxySelectorFv` | `0x801AD06C` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__23AstroDomeGalaxySelectorFUlP9HitSensorP9HitSensor` | `0x801AD0C0` | :white_check_mark: (100.0%) |
-| `showGalaxyInfo__23AstroDomeGalaxySelectorFPC15MiniatureGalaxy` | `0x801AD17C` | :x: (0.0%) |
+| `showGalaxyInfo__23AstroDomeGalaxySelectorFPC15MiniatureGalaxy` | `0x801AD17C` | :white_check_mark: (100.0%) |
 | `tryStartLectureDemo__23AstroDomeGalaxySelectorFPC5Nerve` | `0x801AD218` | :white_check_mark: (100.0%) |
 | `exeGalaxySelectStart__23AstroDomeGalaxySelectorFv` | `0x801AD2CC` | :white_check_mark: (100.0%) |
 | `exeGalaxySelect__23AstroDomeGalaxySelectorFv` | `0x801AD324` | :white_check_mark: (100.0%) |
 | `exeGalaxySelectCancel__23AstroDomeGalaxySelectorFv` | `0x801AD480` | :white_check_mark: (100.0%) |
 | `exeGalaxyConfirmStart__23AstroDomeGalaxySelectorFv` | `0x801AD4E0` | :white_check_mark: (100.0%) |
 | `exeGalaxyConfirm__23AstroDomeGalaxySelectorFv` | `0x801AD558` | :white_check_mark: (100.0%) |
-| `exeDemoJumpOut__23AstroDomeGalaxySelectorFv` | `0x801AD604` | :x: (0.0%) |
+| `exeDemoJumpOut__23AstroDomeGalaxySelectorFv` | `0x801AD604` | :white_check_mark: (100.0%) |
 | `exeDemoDomeLecture__23AstroDomeGalaxySelectorFv` | `0x801AD6BC` | :white_check_mark: (100.0%) |
 | `exeGalaxyMoveLecture__23AstroDomeGalaxySelectorFv` | `0x801AD714` | :white_check_mark: (100.0%) |
 | `__dt__23AstroDomeGalaxySelectorFv` | `0x801AD768` | :white_check_mark: (100.0%) |

@@ -11,12 +11,12 @@
 | `kill__14KameckFireBallFv` | `0x80107678` | :white_check_mark: (100.0%) |
 | `makeActorAppeared__14KameckFireBallFv` | `0x801076CC` | :white_check_mark: (100.0%) |
 | `makeActorDead__14KameckFireBallFv` | `0x8010770C` | :white_check_mark: (100.0%) |
-| `control__14KameckFireBallFv` | `0x80107740` | :x: (19.4%) |
+| `control__14KameckFireBallFv` | `0x80107740` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__14KameckFireBallFv` | `0x80107794` | :white_check_mark: (100.0%) |
 | `attackSensor__14KameckFireBallFP9HitSensorP9HitSensor` | `0x801077D0` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__14KameckFireBallFUlP9HitSensorP9HitSensor` | `0x80107880` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__14KameckFireBallFUlP9HitSensorP9HitSensor` | `0x80107910` | :white_check_mark: (100.0%) |
-| `appearDirection__14KameckFireBallFRCQ29JGeometry8TVec3<f>` | `0x80107968` | :x: (0.0%) |
+| `appearDirection__14KameckFireBallFRCQ29JGeometry8TVec3<f>` | `0x80107968` | :white_check_mark: (100.0%) |
 | `setEventListener__14KameckFireBallFP23KameckBeamEventListener` | `0x80107A20` | :white_check_mark: (100.0%) |
 | `exeWait__14KameckFireBallFv` | `0x80107A28` | :white_check_mark: (100.0%) |
 | `exeSweep__14KameckFireBallFv` | `0x80107B8C` | :white_check_mark: (100.0%) |

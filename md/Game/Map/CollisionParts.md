@@ -31,8 +31,8 @@
 | `checkStrikeBallCore__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fffPP12KC_PrismDataPfPUcPC18TriangleFilterBasePCQ29JGeometry8TVec3<f>` | `0x80176A48` | :x: (0.0%) |
 | `checkStrikeBallWithThickness__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>ffPC18TriangleFilterBase` | `0x80176BF0` | :x: (0.0%) |
 | `calcCollidePosition__14CollisionPartsFPQ29JGeometry8TVec3<f>RC12KC_PrismDataUc` | `0x80176DA8` | :x: (0.0%) |
-| `projectToPlane__14CollisionPartsFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801770F0` | :x: (78.7%) |
+| `projectToPlane__14CollisionPartsFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x801770F0` | :x: (63.6%) |
 | `checkStrikeLine__14CollisionPartsFP7HitInfoUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>PC18TriangleFilterBase` | `0x801771A4` | :x: (0.0%) |
 | `createAreaPolygonList__14CollisionPartsFP8TriangleUlRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x80177390` | :x: (0.0%) |
 | `createAreaPolygonListArray__14CollisionPartsFP8TriangleUlPQ29JGeometry8TVec3<f>Ul` | `0x8017747C` | :x: (0.0%) |
-| `calcForceMovePower__14CollisionPartsCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x8017758C` | :white_check_mark: (100.0%) |
+| `calcForceMovePower__14CollisionPartsCFPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x8017758C` | :x: (83.5%) |

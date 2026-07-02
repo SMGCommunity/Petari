@@ -6,5 +6,5 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `setParam__24CamTranslatorInwardTowerFPC16CameraParamChunk` | `0x800931B0` | :x: (93.8%) |
+| `setParam__24CamTranslatorInwardTowerFPC16CameraParamChunk` | `0x800931B0` | :white_check_mark: (100.0%) |
 | `getCamera__24CamTranslatorInwardTowerCFv` | `0x80093280` | :white_check_mark: (100.0%) |

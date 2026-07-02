@@ -11,7 +11,7 @@
 | `exeWait__8BasaBasaFv` | `0x800CE0D0` | :white_check_mark: (100.0%) |
 | `exeAirWait__8BasaBasaFv` | `0x800CE174` | :white_check_mark: (100.0%) |
 | `exeChaseStart__8BasaBasaFv` | `0x800CE23C` | :x: (100.0%) |
-| `exeChase__8BasaBasaFv` | `0x800CE324` | :x: (99.8%) |
+| `exeChase__8BasaBasaFv` | `0x800CE324` | :white_check_mark: (100.0%) |
 | `exeQuickTurnStart__8BasaBasaFv` | `0x800CE49C` | :white_check_mark: (100.0%) |
 | `exeQuickTurn__8BasaBasaFv` | `0x800CE504` | :white_check_mark: (100.0%) |
 | `exeTrampleDown__8BasaBasaFv` | `0x800CE588` | :white_check_mark: (100.0%) |

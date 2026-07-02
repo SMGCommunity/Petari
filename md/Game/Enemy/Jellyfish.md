@@ -21,7 +21,7 @@
 | `receiveMsgPlayerAttack__9JellyfishFUlP9HitSensorP9HitSensor` | `0x800FBE78` | :white_check_mark: (100.0%) |
 | `receiveMsgEnemyAttack__9JellyfishFUlP9HitSensorP9HitSensor` | `0x800FBF18` | :white_check_mark: (100.0%) |
 | `threatTurn__9JellyfishFv` | `0x800FBF90` | :white_check_mark: (100.0%) |
-| `faceToMario__9JellyfishFv` | `0x800FC028` | :x: (84.8%) |
+| `faceToMario__9JellyfishFv` | `0x800FC028` | :x: (96.0%) |
 | `knockOut__9JellyfishFP9HitSensorP9HitSensor` | `0x800FC1E8` | :white_check_mark: (100.0%) |
 | `selectNerveAfterWait__9JellyfishFv` | `0x800FC26C` | :x: (0.0%) |
 | `selectNerveThreat__9JellyfishFv` | `0x800FC35C` | :x: (0.0%) |

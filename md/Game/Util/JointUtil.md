@@ -20,7 +20,7 @@
 | `copyJointPos__2MRFPC9LiveActorPCcPQ29JGeometry8TVec3<f>` | `0x803D69E0` | :white_check_mark: (100.0%) |
 | `copyJointPos__2MRFP8J3DModeliPQ29JGeometry8TVec3<f>` | `0x803D6A24` | :white_check_mark: (100.0%) |
 | `copyJointPos__2MRFPC9LiveActoriPQ29JGeometry8TVec3<f>` | `0x803D6A4C` | :white_check_mark: (100.0%) |
-| `copyJointScale__2MRFPC9LiveActorPCcPQ29JGeometry8TVec3<f>` | `0x803D6A90` | :white_check_mark: (100.0%) |
+| `copyJointScale__2MRFPC9LiveActorPCcPQ29JGeometry8TVec3<f>` | `0x803D6A90` | :x: (58.6%) |
 | `hideJoint__2MRFP8J3DJoint` | `0x803D6B40` | :white_check_mark: (100.0%) |
 | `hideJoint__2MRFP8J3DModelPCc` | `0x803D6B68` | :white_check_mark: (100.0%) |
 | `hideJoint__2MRFPC9LiveActorPCc` | `0x803D6B8C` | :white_check_mark: (100.0%) |

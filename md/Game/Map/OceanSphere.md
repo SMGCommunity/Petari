@@ -7,9 +7,9 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `setRotate__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry8TVec3<f>f` | `0x80191530` | :white_check_mark: (100.0%) |
-| `__ct__16OceanSpherePlaneFlPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | `0x80191644` | :x: (49.7%) |
+| `__ct__16OceanSpherePlaneFlPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | `0x80191644` | :x: (51.8%) |
 | `update__16OceanSpherePlaneFfff` | `0x80191A98` | :x: (82.6%) |
-| `__ct__20OceanSpherePlaneEdgeFlPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | `0x80191B3C` | :x: (82.0%) |
+| `__ct__20OceanSpherePlaneEdgeFlPCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec2<f>RCQ29JGeometry8TVec2<f>` | `0x80191B3C` | :x: (78.3%) |
 | `update__20OceanSpherePlaneEdgeFfff` | `0x80191D34` | :white_check_mark: (100.0%) |
 | `__ct__11OceanSphereFPCc` | `0x80191DB8` | :x: (89.0%) |
 | `init__11OceanSphereFRC12JMapInfoIter` | `0x80191EFC` | :x: (88.3%) |
@@ -28,7 +28,7 @@
 | `getPlanePointRightLower__11OceanSphereCFii` | `0x80193204` | :white_check_mark: (100.0%) |
 | `draw__11OceanSphereCFv` | `0x8019330C` | :x: (89.2%) |
 | `loadMaterialFace__11OceanSphereCFv` | `0x801934D0` | :x: (94.4%) |
-| `loadMaterialBack__11OceanSphereCFv` | `0x8019395C` | :x: (82.6%) |
+| `loadMaterialBack__11OceanSphereCFv` | `0x8019395C` | :x: (91.2%) |
 | `beginDrawPolygon__25@unnamed@OceanSphere_cpp@Filb` | `0x80193C9C` | :white_check_mark: (100.0%) |
 | `drawSphere__11OceanSphereCFbb` | `0x80193D60` | :x: (94.8%) |
 | `sendVertex__11OceanSphereCFPC16OceanSpherePointbb` | `0x801942B0` | :x: (89.2%) |

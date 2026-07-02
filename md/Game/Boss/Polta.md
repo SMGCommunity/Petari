@@ -9,7 +9,7 @@
 | `__ct<i>__Q29JGeometry9TQuat4<f>Fiiii_Pv` | `0x8006E654` | :white_check_mark: (100.0%) |
 | `__ct__16BombTeresaHolderFv` | `0x8006E6C4` | :white_check_mark: (100.0%) |
 | `__dt__30DeriveActorGroup<10BombTeresa>Fv` | `0x8006E778` | :white_check_mark: (100.0%) |
-| `init__5PoltaFRC12JMapInfoIter` | `0x8006E7D4` | :x: (97.4%) |
+| `init__5PoltaFRC12JMapInfoIter` | `0x8006E7D4` | :white_check_mark: (100.0%) |
 | `initArm__5PoltaFv` | `0x8006E9A8` | :white_check_mark: (100.0%) |
 | `initPartsModel__5PoltaFv` | `0x8006EA88` | :white_check_mark: (100.0%) |
 | `initCamera__5PoltaFRC12JMapInfoIter` | `0x8006EB5C` | :white_check_mark: (100.0%) |

@@ -10,8 +10,8 @@
 | `init__11NoteCounterFRC12JMapInfoIter` | `0x80373188` | :white_check_mark: (100.0%) |
 | `declareNoteNumMaxAndMelody__11NoteCounterFP9LiveActorllf` | `0x803731CC` | :white_check_mark: (100.0%) |
 | `add__11NoteCounterFv` | `0x80373264` | :x: (0.0%) |
-| `exeShowToHide__11NoteCounterFv` | `0x80373390` | :x: (79.1%) |
-| `exeHideToShow__11NoteCounterFv` | `0x80373450` | :x: (81.4%) |
+| `exeShowToHide__11NoteCounterFv` | `0x80373390` | :white_check_mark: (100.0%) |
+| `exeHideToShow__11NoteCounterFv` | `0x80373450` | :white_check_mark: (100.0%) |
 | `tryEndDisp__11NoteCounterFv` | `0x80373528` | :white_check_mark: (100.0%) |
 | `declareNoteNumMaxAndMelodyToCounter__2MRFP9LiveActorllf` | `0x8037354C` | :white_check_mark: (100.0%) |
 | `addNoteToCounter__2MRFv` | `0x803735AC` | :white_check_mark: (100.0%) |

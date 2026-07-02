@@ -17,5 +17,5 @@
 | `setDistanceCalcType__15ParallelGravityFQ215ParallelGravity18DISTANCE_CALC_TYPE` | `0x8015A394` | :white_check_mark: (100.0%) |
 | `isInSphereRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf` | `0x8015A39C` | :white_check_mark: (100.0%) |
 | `isInBoxRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf` | `0x8015A428` | :white_check_mark: (100.0%) |
-| `isInCylinderRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf` | `0x8015A5F4` | :white_check_mark: (100.0%) |
+| `isInCylinderRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf` | `0x8015A5F4` | :x: (96.4%) |
 | `isInRange__15ParallelGravityCFRCQ29JGeometry8TVec3<f>Pf` | `0x8015A6C0` | :white_check_mark: (100.0%) |

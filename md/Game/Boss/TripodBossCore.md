@@ -12,9 +12,9 @@
 | `kill__14TripodBossCoreFv` | `0x8008AA2C` | :white_check_mark: (100.0%) |
 | `receiveMsgEnemyAttack__14TripodBossCoreFUlP9HitSensorP9HitSensor` | `0x8008AA6C` | :white_check_mark: (100.0%) |
 | `activateTripodBoss__14TripodBossCoreFv` | `0x8008AABC` | :white_check_mark: (100.0%) |
-| `exeWait__14TripodBossCoreFv` | `0x8008AB24` | :x: (91.7%) |
-| `exeDamageDemo__14TripodBossCoreFv` | `0x8008ABF0` | :x: (91.3%) |
-| `exeWarning__14TripodBossCoreFv` | `0x8008ACB4` | :x: (80.9%) |
+| `exeWait__14TripodBossCoreFv` | `0x8008AB24` | :white_check_mark: (100.0%) |
+| `exeDamageDemo__14TripodBossCoreFv` | `0x8008ABF0` | :x: (99.9%) |
+| `exeWarning__14TripodBossCoreFv` | `0x8008ACB4` | :white_check_mark: (100.0%) |
 | `exeBreak__14TripodBossCoreFv` | `0x8008AD3C` | :white_check_mark: (100.0%) |
 | `__dt__14TripodBossCoreFv` | `0x8008AE74` | :white_check_mark: (100.0%) |
 | `__sinit_\TripodBossCore_cpp` | `0x8008AECC` | :white_check_mark: (100.0%) |

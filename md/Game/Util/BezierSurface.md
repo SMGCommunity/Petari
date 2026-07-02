@@ -15,8 +15,8 @@
 | `calcTrianglePatchNormal__13BezierSurfaceCFPQ29JGeometry8TVec3<f>` | `0x80401728` | :x: (99.0%) |
 | `drawTrianglePatchPos__13BezierSurfaceCFv` | `0x80401858` | :white_check_mark: (100.0%) |
 | `drawTrianglePatchPosNorm__13BezierSurfaceCFv` | `0x80401900` | :white_check_mark: (100.0%) |
-| `drawTrianglePatchPosST__13BezierSurfaceCFv` | `0x804019DC` | :x: (72.2%) |
-| `drawTrianglePatchPosNormST__13BezierSurfaceCFv` | `0x80401B08` | :x: (75.0%) |
+| `drawTrianglePatchPosST__13BezierSurfaceCFv` | `0x804019DC` | :white_check_mark: (100.0%) |
+| `drawTrianglePatchPosNormST__13BezierSurfaceCFv` | `0x80401B08` | :white_check_mark: (100.0%) |
 | `GXPosition3f32` | `0x80401C64` | :white_check_mark: (100.0%) |
 | `GXNormal3f32` | `0x80401C78` | :white_check_mark: (100.0%) |
 | `GXTexCoord2f32` | `0x80401C8C` | :white_check_mark: (100.0%) |

@@ -18,4 +18,4 @@
 | `draw__13J3DDrawBufferCFv` | `0x80431220` | :white_check_mark: (100.0%) |
 | `drawHead__13J3DDrawBufferCFv` | `0x80431274` | :white_check_mark: (100.0%) |
 | `drawTail__13J3DDrawBufferCFv` | `0x804312EC` | :white_check_mark: (100.0%) |
-| `calcZRatio__13J3DDrawBufferFv` | `0x80431368` | :x: (88.4%) |
+| `calcZRatio__13J3DDrawBufferFv` | `0x80431368` | :white_check_mark: (100.0%) |

@@ -13,11 +13,11 @@
 | `initialize__15J3DTexGenBlock4Fv` | `0x80429120` | :white_check_mark: (100.0%) |
 | `initialize__19J3DTexGenBlockBasicFv` | `0x80429150` | :white_check_mark: (100.0%) |
 | `initialize__15J3DTevBlockNullFv` | `0x80429180` | :white_check_mark: (100.0%) |
-| `initialize__18J3DTevBlockPatchedFv` | `0x8042918C` | :x: (97.7%) |
+| `initialize__18J3DTevBlockPatchedFv` | `0x8042918C` | :white_check_mark: (100.0%) |
 | `initialize__12J3DTevBlock1Fv` | `0x804292C0` | :white_check_mark: (100.0%) |
-| `initialize__12J3DTevBlock2Fv` | `0x804292E8` | :x: (97.4%) |
-| `initialize__12J3DTevBlock4Fv` | `0x804293F8` | :x: (97.4%) |
-| `initialize__13J3DTevBlock16Fv` | `0x80429540` | :x: (97.9%) |
+| `initialize__12J3DTevBlock2Fv` | `0x804292E8` | :white_check_mark: (100.0%) |
+| `initialize__12J3DTevBlock4Fv` | `0x804293F8` | :white_check_mark: (100.0%) |
+| `initialize__13J3DTevBlock16Fv` | `0x80429540` | :white_check_mark: (100.0%) |
 | `initialize__15J3DIndBlockFullFv` | `0x80429694` | :white_check_mark: (100.0%) |
 | `initialize__16J3DPEBlockFogOffFv` | `0x804296A0` | :white_check_mark: (100.0%) |
 | `initialize__14J3DPEBlockFullFv` | `0x804296C4` | :white_check_mark: (100.0%) |
@@ -47,7 +47,7 @@
 | `patch__20J3DColorBlockLightOnFv` | `0x80429B14` | :white_check_mark: (100.0%) |
 | `patchMatColor__20J3DColorBlockLightOnFv` | `0x80429B60` | :white_check_mark: (100.0%) |
 | `patchLight__20J3DColorBlockLightOnFv` | `0x80429BD8` | :white_check_mark: (100.0%) |
-| `diff__21J3DColorBlockLightOffFUl` | `0x80429C90` | :x: (100.0%) |
+| `diff__21J3DColorBlockLightOffFUl` | `0x80429C90` | :white_check_mark: (100.0%) |
 | `diffMatColor__21J3DColorBlockLightOffFv` | `0x80429CF8` | :white_check_mark: (100.0%) |
 | `diffLight__21J3DColorBlockLightOffFv` | `0x80429D44` | :x: (0.0%) |
 | `diff__20J3DColorBlockLightOnFUl` | `0x80429DA0` | :x: (92.5%) |
@@ -79,7 +79,7 @@
 | `patch__12J3DTevBlock2Fv` | `0x8042B0C0` | :white_check_mark: (100.0%) |
 | `patchTexNo__12J3DTevBlock4Fv` | `0x8042B10C` | :white_check_mark: (100.0%) |
 | `patchTevReg__12J3DTevBlock4Fv` | `0x8042B190` | :white_check_mark: (100.0%) |
-| `patchTexNoAndTexCoordScale__12J3DTevBlock4Fv` | `0x8042B27C` | :x: (100.0%) |
+| `patchTexNoAndTexCoordScale__12J3DTevBlock4Fv` | `0x8042B27C` | :white_check_mark: (100.0%) |
 | `patch__12J3DTevBlock4Fv` | `0x8042B37C` | :white_check_mark: (100.0%) |
 | `patchTexNo__13J3DTevBlock16Fv` | `0x8042B3C8` | :white_check_mark: (100.0%) |
 | `patchTevReg__13J3DTevBlock16Fv` | `0x8042B44C` | :white_check_mark: (100.0%) |

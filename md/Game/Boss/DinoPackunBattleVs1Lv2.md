@@ -17,7 +17,7 @@
 | `setStartContinueBattle__22DinoPackunBattleVs1Lv2Fv` | `0x80048188` | :white_check_mark: (100.0%) |
 | `tryFind__22DinoPackunBattleVs1Lv2Fv` | `0x80048194` | :white_check_mark: (100.0%) |
 | `exeStart__22DinoPackunBattleVs1Lv2Fv` | `0x800481F4` | :white_check_mark: (100.0%) |
-| `exeTurn__22DinoPackunBattleVs1Lv2Fv` | `0x80048258` | :x: (91.0%) |
+| `exeTurn__22DinoPackunBattleVs1Lv2Fv` | `0x80048258` | :x: (100.0%) |
 | `exeWalk__22DinoPackunBattleVs1Lv2Fv` | `0x80048384` | :white_check_mark: (100.0%) |
 | `exeChase__22DinoPackunBattleVs1Lv2Fv` | `0x80048400` | :x: (99.9%) |
 | `__dt__22DinoPackunBattleVs1Lv2Fv` | `0x800484DC` | :white_check_mark: (100.0%) |

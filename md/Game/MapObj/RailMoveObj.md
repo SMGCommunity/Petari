@@ -28,7 +28,7 @@
 | `doAtEndPoint__21RailMoveObjBreakAtEndFv` | `0x80218CE4` | :white_check_mark: (100.0%) |
 | `connectToScene__19RailMoveIndirectObjFRC19MapObjActorInitInfo` | `0x80218D50` | :white_check_mark: (100.0%) |
 | `init__23RailMoveObjSwitchShadowFRC12JMapInfoIter` | `0x80218D54` | :white_check_mark: (100.0%) |
-| `initCaseUseSwitchA__23RailMoveObjSwitchShadowFRC19MapObjActorInitInfo` | `0x80218D8C` | :x: (53.6%) |
+| `initCaseUseSwitchA__23RailMoveObjSwitchShadowFRC19MapObjActorInitInfo` | `0x80218D8C` | :white_check_mark: (100.0%) |
 | `startOnShadow__23RailMoveObjSwitchShadowFv` | `0x80218DDC` | :white_check_mark: (100.0%) |
 | `__ct__15RailDemoMoveObjFPCc` | `0x80218DE4` | :white_check_mark: (100.0%) |
 | `init__15RailDemoMoveObjFRC12JMapInfoIter` | `0x80218E28` | :white_check_mark: (100.0%) |
@@ -39,7 +39,7 @@
 | `__ct__17RailRotateMoveObjFPCc` | `0x80219010` | :white_check_mark: (100.0%) |
 | `setupInitInfo__17RailRotateMoveObjFRC12JMapInfoIterP19MapObjActorInitInfo` | `0x8021904C` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__17RailRotateMoveObjFUlP9HitSensorP9HitSensor` | `0x80219054` | :white_check_mark: (100.0%) |
-| `initCaseUseSwitchB__17RailRotateMoveObjFRC19MapObjActorInitInfo` | `0x802190AC` | :x: (70.3%) |
+| `initCaseUseSwitchB__17RailRotateMoveObjFRC19MapObjActorInitInfo` | `0x802190AC` | :white_check_mark: (100.0%) |
 | `tryStartRotateAtPoint__17RailRotateMoveObjFv` | `0x80219114` | :white_check_mark: (100.0%) |
 | `tryStartRotateBetweenPoints__17RailRotateMoveObjFv` | `0x80219194` | :white_check_mark: (100.0%) |
 | `__sinit_\RailMoveObj_cpp` | `0x8021921C` | :white_check_mark: (100.0%) |

@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__12ShootingStarFPCc` | `0x80224E88` | :white_check_mark: (100.0%) |
-| `init__12ShootingStarFRC12JMapInfoIter` | `0x80224F18` | :x: (97.6%) |
+| `init__12ShootingStarFRC12JMapInfoIter` | `0x80224F18` | :x: (95.4%) |
 | `appearPreShooting__12ShootingStarFv` | `0x802251B0` | :white_check_mark: (100.0%) |
 | `control__12ShootingStarFv` | `0x802251FC` | :x: (0.0%) |
 | `exePreShooting__12ShootingStarFv` | `0x8022525C` | :x: (0.0%) |

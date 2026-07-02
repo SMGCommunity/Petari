@@ -12,5 +12,5 @@
 | `movement__11MirrorActorFv` | `0x80168920` | :white_check_mark: (100.0%) |
 | `calcAnim__11MirrorActorFv` | `0x801689F8` | :white_check_mark: (100.0%) |
 | `calcViewAndEntry__11MirrorActorFv` | `0x80168A30` | :white_check_mark: (100.0%) |
-| `isHostInTheOtherSideOfMirror__11MirrorActorCFv` | `0x80168A38` | :x: (91.5%) |
+| `isHostInTheOtherSideOfMirror__11MirrorActorCFv` | `0x80168A38` | :x: (74.6%) |
 | `getHostCenterPos__11MirrorActorCFv` | `0x80168A98` | :x: (0.0%) |

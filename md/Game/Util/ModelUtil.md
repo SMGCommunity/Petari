@@ -55,11 +55,11 @@
 | `syncJointAnimation__2MRFP9LiveActorPC9LiveActor` | `0x803EA43C` | :x: (0.0%) |
 | `syncMaterialAnimation__2MRFP8J3DModelP8J3DModel` | `0x803EA484` | :x: (0.0%) |
 | `syncMaterialAnimation__2MRFP9LiveActorPC9LiveActor` | `0x803EA50C` | :x: (0.0%) |
-| `isUseLightChanNo__23@unnamed@ModelUtil_cpp@FP11J3DMaterialii` | `0x803EA558` | :x: (0.0%) |
-| `getLightNum__2MRFP11J3DMaterialPlPlPlPl` | `0x803EA5C4` | :x: (0.0%) |
-| `getLightNum__2MRFP11J3DMaterial` | `0x803EA6B4` | :x: (0.0%) |
-| `getLightNumMax__2MRFPC9LiveActor` | `0x803EA714` | :x: (0.0%) |
-| `getLightNumMax__2MRFP12J3DModelData` | `0x803EA738` | :x: (0.0%) |
+| `isUseLightChanNo__23@unnamed@ModelUtil_cpp@FP11J3DMaterialii` | `0x803EA558` | :white_check_mark: (100.0%) |
+| `getLightNum__2MRFP11J3DMaterialPlPlPlPl` | `0x803EA5C4` | :white_check_mark: (100.0%) |
+| `getLightNum__2MRFP11J3DMaterial` | `0x803EA6B4` | :white_check_mark: (100.0%) |
+| `getLightNumMax__2MRFPC9LiveActor` | `0x803EA714` | :white_check_mark: (100.0%) |
+| `getLightNumMax__2MRFP12J3DModelData` | `0x803EA738` | :white_check_mark: (100.0%) |
 | `downFracVtx__2MRFP12J3DModelData` | `0x803EA7A4` | :x: (0.0%) |
 | `calcModelBoundingBox__2MRFPQ29JGeometry8TBox3<f>PC9LiveActor` | `0x803EA86C` | :x: (0.0%) |
 | `calcModelBoundingRadius__2MRFPfPC9LiveActor` | `0x803EAB04` | :x: (0.0%) |
@@ -74,4 +74,4 @@
 | `getTevStageNum__11J3DTevBlockCFv` | `0x803EB204` | :x: (0.0%) |
 | `getIndTexOrder__11J3DIndBlockFUl` | `0x803EB20C` | :x: (0.0%) |
 | `getIndTexStageNum__11J3DIndBlockCFv` | `0x803EB214` | :x: (0.0%) |
-| `getColorChan__13J3DColorBlockFUl` | `0x803EB21C` | :x: (0.0%) |
+| `getColorChan__13J3DColorBlockFUl` | `0x803EB21C` | :white_check_mark: (100.0%) |

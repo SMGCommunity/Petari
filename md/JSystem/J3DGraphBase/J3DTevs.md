@@ -14,7 +14,7 @@
 | `calcPostTexMtx__9J3DTexMtxFPA4_Cf` | `0x8043051C` | :white_check_mark: (100.0%) |
 | `isTexNoReg__FPv` | `0x80430874` | :white_check_mark: (100.0%) |
 | `getTexNoReg__FPv` | `0x80430898` | :white_check_mark: (100.0%) |
-| `loadTexNo__FUlRCUs` | `0x804308A4` | :x: (87.8%) |
+| `loadTexNo__FUlRCUs` | `0x804308A4` | :x: (85.6%) |
 | `patchTexNo_PtrToIdx__FUlRCUs` | `0x80430A28` | :white_check_mark: (100.0%) |
 | `loadNBTScale__FR11J3DNBTScale` | `0x80430A30` | :white_check_mark: (100.0%) |
 | `makeTexCoordTable__Fv` | `0x80430A64` | :white_check_mark: (100.0%) |

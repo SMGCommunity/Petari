@@ -26,7 +26,7 @@
 | `preScaleMtx__2MRFPA4_ffff` | `0x803EB924` | :white_check_mark: (100.0%) |
 | `scaleMtxToLocalMtx__2MRFPA4_fPA4_fPA4_fRCQ29JGeometry8TVec3<f>` | `0x803EB994` | :white_check_mark: (100.0%) |
 | `scaleMtxToLocalMtx__2MRFPA4_fPA4_fRCQ29JGeometry8TVec3<f>` | `0x803EBA80` | :white_check_mark: (100.0%) |
-| `scaleMtxToDir__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x803EBA94` | :x: (99.8%) |
+| `scaleMtxToDir__2MRFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x803EBA94` | :x: (78.0%) |
 | `makeMtxTRS__2MRFPA4_ffffffffff` | `0x803EBB84` | :x: (84.0%) |
 | `makeMtxTRS__2MRFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x803EBD74` | :white_check_mark: (100.0%) |
 | `setMtxAxisXYZ__2MRFPA4_fRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x803EBDBC` | :white_check_mark: (100.0%) |

@@ -97,7 +97,7 @@
 | `tryStartBckAndBtp__2MRFPC9LiveActorPCcPCc` | `0x803DC344` | :white_check_mark: (100.0%) |
 | `setAllAnimFrame__2MRFPC9LiveActorPCcf` | `0x803DC3B0` | :white_check_mark: (100.0%) |
 | `setAllAnimFrameAndStop__2MRFPC9LiveActorPCcf` | `0x803DC4A8` | :white_check_mark: (100.0%) |
-| `setAllAnimFrameAtEnd__2MRFPC9LiveActorPCc` | `0x803DC5A0` | :x: (99.5%) |
+| `setAllAnimFrameAtEnd__2MRFPC9LiveActorPCc` | `0x803DC5A0` | :white_check_mark: (100.0%) |
 | `isAnyAnimStopped__2MRFPC9LiveActorPCc` | `0x803DC758` | :white_check_mark: (100.0%) |
 | `isAnyAnimOneTimeAndStopped__2MRFPC9LiveActorPCc` | `0x803DC890` | :white_check_mark: (100.0%) |
 | `isBckStopped__2MRFPC9LiveActor` | `0x803DC9C8` | :white_check_mark: (100.0%) |
@@ -182,7 +182,7 @@
 | `getBtkFrameMax__2MRFPC9LiveActor` | `0x803DDA68` | :white_check_mark: (100.0%) |
 | `getBrkFrameMax__2MRFPC9LiveActor` | `0x803DDAB0` | :white_check_mark: (100.0%) |
 | `getPlayingBckName__2MRFPC9LiveActor` | `0x803DDAF8` | :white_check_mark: (100.0%) |
-| `reflectBckCtrlData__2MRFP9LiveActorRC11BckCtrlData` | `0x803DDB00` | :x: (98.5%) |
+| `reflectBckCtrlData__2MRFP9LiveActorRC11BckCtrlData` | `0x803DDB00` | :white_check_mark: (100.0%) |
 | `initLightCtrl__2MRFP9LiveActor` | `0x803DDC08` | :white_check_mark: (100.0%) |
 | `initLightCtrlForPlayer__2MRFP9LiveActor` | `0x803DDC44` | :white_check_mark: (100.0%) |
 | `initLightCtrlNoDrawEnemy__2MRFP9LiveActor` | `0x803DDC88` | :white_check_mark: (100.0%) |

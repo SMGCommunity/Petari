@@ -7,11 +7,11 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__14PenguinStudentFPCc` | `0x8027E914` | :white_check_mark: (100.0%) |
-| `init__14PenguinStudentFRC12JMapInfoIter` | `0x8027E964` | :x: (100.0%) |
+| `init__14PenguinStudentFRC12JMapInfoIter` | `0x8027E964` | :white_check_mark: (100.0%) |
 | `initAfterPlacement__14PenguinStudentFv` | `0x8027EC50` | :white_check_mark: (100.0%) |
 | `branchFunc__14PenguinStudentFUl` | `0x8027ECD0` | :white_check_mark: (100.0%) |
 | `tryReleaseTurtle__14PenguinStudentFv` | `0x8027ECDC` | :white_check_mark: (100.0%) |
-| `exeSwim__14PenguinStudentFv` | `0x8027ED58` | :x: (99.9%) |
+| `exeSwim__14PenguinStudentFv` | `0x8027ED58` | :white_check_mark: (100.0%) |
 | `exeLead__14PenguinStudentFv` | `0x8027EEDC` | :white_check_mark: (100.0%) |
 | `exeSlow__14PenguinStudentFv` | `0x8027EF6C` | :white_check_mark: (100.0%) |
 | `attackSensor__14PenguinStudentFP9HitSensorP9HitSensor` | `0x8027F018` | :white_check_mark: (100.0%) |

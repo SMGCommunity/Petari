@@ -1,5 +1,7 @@
 # main/Game/Effect/ParticleDrawExecutor
 
+**Source Path:** `src/Game/Effect/ParticleDrawExecutor.cpp`
+
 ## Functions
 
 | Name | Address | Match % |

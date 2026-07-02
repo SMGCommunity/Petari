@@ -7,8 +7,8 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__7SeaGullFP12SeaGullGroup` | `0x8019A4E0` | :white_check_mark: (100.0%) |
-| `init__7SeaGullFRC12JMapInfoIter` | `0x8019A5A0` | :x: (88.6%) |
-| `exeHoverFront__7SeaGullFv` | `0x8019A754` | :white_check_mark: (100.0%) |
+| `init__7SeaGullFRC12JMapInfoIter` | `0x8019A5A0` | :x: (75.9%) |
+| `exeHoverFront__7SeaGullFv` | `0x8019A754` | :x: (77.0%) |
 | `exeHoverLeft__7SeaGullFv` | `0x8019A824` | :white_check_mark: (100.0%) |
 | `exeHoverRight__7SeaGullFv` | `0x8019A898` | :white_check_mark: (100.0%) |
 | `control__7SeaGullFv` | `0x8019A90C` | :white_check_mark: (100.0%) |

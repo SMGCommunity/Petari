@@ -17,7 +17,7 @@
 | `receiveMsgPlayerAttack__8FireBallFUlP9HitSensorP9HitSensor` | `0x800EC6C0` | :white_check_mark: (100.0%) |
 | `isBindedAny__8FireBallCFv` | `0x800EC768` | :white_check_mark: (100.0%) |
 | `tryToKill__8FireBallFv` | `0x800EC7E4` | :white_check_mark: (100.0%) |
-| `setVelocityToPlayer__8FireBallFf` | `0x800EC890` | :x: (99.5%) |
+| `setVelocityToPlayer__8FireBallFf` | `0x800EC890` | :white_check_mark: (100.0%) |
 | `calcReflectVelocity__8FireBallFv` | `0x800EC930` | :white_check_mark: (100.0%) |
 | `exeThrow__8FireBallFv` | `0x800ECA18` | :white_check_mark: (100.0%) |
 | `exeReflect__8FireBallFv` | `0x800ECB28` | :white_check_mark: (100.0%) |

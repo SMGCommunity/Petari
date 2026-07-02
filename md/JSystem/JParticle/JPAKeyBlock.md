@@ -7,4 +7,4 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__11JPAKeyBlockFPCUc` | `0x804497E0` | :white_check_mark: (100.0%) |
-| `calc__11JPAKeyBlockFf` | `0x804497F0` | :x: (85.9%) |
+| `calc__11JPAKeyBlockFf` | `0x804497F0` | :white_check_mark: (100.0%) |

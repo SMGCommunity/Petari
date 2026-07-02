@@ -46,6 +46,6 @@
 | `initEffectAfterPlacement__2MRFP9LiveActor` | `0x803CD778` | :white_check_mark: (100.0%) |
 | `updateEffectFloorCode__2MRFP9LiveActorPC8Triangle` | `0x803CD7BC` | :white_check_mark: (100.0%) |
 | `updateEffectFloorCodeLineToMap__2MRFP9LiveActorRCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x803CD7C4` | :white_check_mark: (100.0%) |
-| `updateEffectFloorCodeLineToMap__2MRFP9LiveActorff` | `0x803CD83C` | :x: (0.0%) |
+| `updateEffectFloorCodeLineToMap__2MRFP9LiveActorff` | `0x803CD83C` | :white_check_mark: (100.0%) |
 | `initEffectSyncBck__2MRFP9LiveActorPCcPCPCc` | `0x803CD900` | :x: (96.9%) |
 | `addEffectHitNormal__2MRFP9LiveActorPCc` | `0x803CD9AC` | :x: (74.4%) |

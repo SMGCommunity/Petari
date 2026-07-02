@@ -12,7 +12,7 @@
 | `initIceMario__10MarioActorFv` | `0x802B5F2C` | :x: (89.7%) |
 | `initInvincibleMario__10MarioActorFv` | `0x802B6090` | :x: (85.2%) |
 | `initTeresaMario__10MarioActorFv` | `0x802B6190` | :x: (87.8%) |
-| `initTornadoMario__10MarioActorFv` | `0x802B62B8` | :x: (100.0%) |
+| `initTornadoMario__10MarioActorFv` | `0x802B62B8` | :white_check_mark: (100.0%) |
 | `initBoneMario__10MarioActorFv` | `0x802B6348` | :x: (89.8%) |
 | `changeDisplayMode__10MarioActorFUc` | `0x802B640C` | :white_check_mark: (100.0%) |
 | `calcViewAndEntry__10MarioActorFv` | `0x802B64CC` | :x: (87.7%) |

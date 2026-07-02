@@ -18,7 +18,7 @@
 | `receiveMsgEnemyAttack__7OtaRockFUlP9HitSensorP9HitSensor` | `0x8012F4E8` | :white_check_mark: (100.0%) |
 | `initModel__7OtaRockFv` | `0x8012F510` | :x: (0.0%) |
 | `initSensor__7OtaRockFv` | `0x8012F694` | :x: (58.9%) |
-| `updateBaseMtx__7OtaRockFv` | `0x8012F71C` | :x: (0.0%) |
+| `updateBaseMtx__7OtaRockFv` | `0x8012F71C` | :white_check_mark: (100.0%) |
 | `getDisappearedCocoNut__7OtaRockFv` | `0x8012F7C8` | :x: (95.1%) |
 | `getDisappearedFireBall__7OtaRockFv` | `0x8012F834` | :x: (95.1%) |
 | `getDisappearedCocoNutNum__7OtaRockCFv` | `0x8012F8A0` | :x: (81.7%) |

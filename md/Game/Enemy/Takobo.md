@@ -11,7 +11,7 @@
 | `initAfterPlacement__6TakoboFv` | `0x80145678` | :white_check_mark: (100.0%) |
 | `initSensor__6TakoboFv` | `0x801456AC` | :white_check_mark: (100.0%) |
 | `kill__6TakoboFv` | `0x80145764` | :white_check_mark: (100.0%) |
-| `control__6TakoboFv` | `0x801457D0` | :x: (99.7%) |
+| `control__6TakoboFv` | `0x801457D0` | :x: (99.9%) |
 | `generateCoin__6TakoboFv` | `0x80145950` | :x: (99.8%) |
 | `tryPress__6TakoboFv` | `0x801459B8` | :white_check_mark: (100.0%) |
 | `exeMove__6TakoboFv` | `0x80145A20` | :x: (91.4%) |

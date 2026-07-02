@@ -19,6 +19,6 @@
 | `updateByDistanceOnly__7IKJointFf` | `0x80405C34` | :x: (0.0%) |
 | `calcToTargetMatrixByFirstPose__7IKJointCFPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>RCQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>` | `0x80405DA0` | :x: (0.0%) |
 | `getRootJointPosition__7IKJointCFPQ29JGeometry8TVec3<f>` | `0x80405EF8` | :white_check_mark: (100.0%) |
-| `getEndJointPosition__7IKJointCFPQ29JGeometry8TVec3<f>` | `0x80405F00` | :x: (99.0%) |
+| `getEndJointPosition__7IKJointCFPQ29JGeometry8TVec3<f>` | `0x80405F00` | :white_check_mark: (100.0%) |
 | `getMinLimitDistance__7IKJointCFv` | `0x80405F7C` | :white_check_mark: (100.0%) |
 | `getMaxLimitDistance__7IKJointCFv` | `0x80405F90` | :white_check_mark: (100.0%) |

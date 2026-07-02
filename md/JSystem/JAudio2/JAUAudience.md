@@ -1,10 +1,12 @@
 # main/JSystem/JAudio2/JAUAudience
 
+**Source Path:** `src/JSystem/JAudio2/JAUAudience.cpp`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `init__20JAUAudience3DSettingFv` | `0x8049D688` | :x: (0.0%) |
+| `init__20JAUAudience3DSettingFv` | `0x8049D688` | :white_check_mark: (100.0%) |
 | `__sinit_\JAUAudience_cpp` | `0x8049D6F8` | :x: (0.0%) |
 | `__ct__34JASMemPool<20JAUDopplerAudible<4>>Fv` | `0x8049D864` | :x: (0.0%) |
 | `__dt__34JASMemPool<20JAUDopplerAudible<4>>Fv` | `0x8049D894` | :x: (0.0%) |

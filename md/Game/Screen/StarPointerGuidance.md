@@ -10,9 +10,9 @@
 | `init__19StarPointerGuidanceFRC12JMapInfoIter` | `0x803877A0` | :white_check_mark: (100.0%) |
 | `control__19StarPointerGuidanceFv` | `0x803878CC` | :white_check_mark: (100.0%) |
 | `checkRequest2P__19StarPointerGuidanceFv` | `0x80387934` | :white_check_mark: (100.0%) |
-| `checkRequest1P__19StarPointerGuidanceFv` | `0x80387A54` | :x: (0.0%) |
+| `checkRequest1P__19StarPointerGuidanceFv` | `0x80387A54` | :white_check_mark: (100.0%) |
 | `exeAppearCore__19StarPointerGuidanceFP5SpinePCcUlPC5Nerve` | `0x80387D1C` | :white_check_mark: (100.0%) |
-| `exeWaitCore__19StarPointerGuidanceFP5SpinePCcUl` | `0x80387DE0` | :x: (99.9%) |
+| `exeWaitCore__19StarPointerGuidanceFP5SpinePCcUl` | `0x80387DE0` | :white_check_mark: (100.0%) |
 | `exeEndCore__19StarPointerGuidanceFP5SpinePCcUl` | `0x80387E8C` | :white_check_mark: (100.0%) |
 | `request1PGuidance__19StarPointerGuidanceFPCcb` | `0x80387F6C` | :white_check_mark: (100.0%) |
 | `tryResetTimeout__19StarPointerGuidanceFv` | `0x80388004` | :white_check_mark: (100.0%) |

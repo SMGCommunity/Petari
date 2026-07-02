@@ -11,7 +11,7 @@
 | `calcAnim__17PhantomShipBridgeFv` | `0x8020B2D4` | :white_check_mark: (100.0%) |
 | `startMoveA__17PhantomShipBridgeFv` | `0x8020B308` | :white_check_mark: (100.0%) |
 | `startMoveB__17PhantomShipBridgeFv` | `0x8020B310` | :white_check_mark: (100.0%) |
-| `setStateMoveA__17PhantomShipBridgeFv` | `0x8020B318` | :x: (99.4%) |
+| `setStateMoveA__17PhantomShipBridgeFv` | `0x8020B318` | :white_check_mark: (100.0%) |
 | `exeMoveA__17PhantomShipBridgeFv` | `0x8020B3A0` | :white_check_mark: (100.0%) |
 | `exeMoveB__17PhantomShipBridgeFv` | `0x8020B4B4` | :white_check_mark: (100.0%) |
 | `__sinit_\PhantomShipBridge_cpp` | `0x8020B5E4` | :white_check_mark: (100.0%) |

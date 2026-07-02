@@ -8,12 +8,12 @@
 |------|---------|---------|
 | `__ct__9BlackHoleFPCc` | `0x801B81FC` | :x: (0.0%) |
 | `init__9BlackHoleFRC12JMapInfoIter` | `0x801B8280` | :x: (99.5%) |
-| `makeActorAppeared__9BlackHoleFv` | `0x801B843C` | :x: (99.8%) |
+| `makeActorAppeared__9BlackHoleFv` | `0x801B843C` | :white_check_mark: (100.0%) |
 | `kill__9BlackHoleFv` | `0x801B84B4` | :white_check_mark: (100.0%) |
 | `tryStartDemoCamera__9BlackHoleFv` | `0x801B84F4` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__9BlackHoleFv` | `0x801B8530` | :x: (0.0%) |
 | `attackSensor__9BlackHoleFP9HitSensorP9HitSensor` | `0x801B8650` | :white_check_mark: (100.0%) |
-| `initMapToolInfo__9BlackHoleFRC12JMapInfoIter` | `0x801B86EC` | :x: (87.1%) |
+| `initMapToolInfo__9BlackHoleFRC12JMapInfoIter` | `0x801B86EC` | :x: (87.2%) |
 | `initModel__9BlackHoleFv` | `0x801B8810` | :white_check_mark: (100.0%) |
 | `initCubeBox__9BlackHoleFv` | `0x801B88A0` | :x: (96.2%) |
 | `isInCubeBox__9BlackHoleCFRCQ29JGeometry8TVec3<f>` | `0x801B8990` | :white_check_mark: (100.0%) |

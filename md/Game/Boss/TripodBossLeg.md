@@ -11,10 +11,10 @@
 | `setZDir__Q29JGeometry64TRotation3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff` | `0x8008E308` | :x: (0.0%) |
 | `__dt__13TripodBossLegFv` | `0x8008E318` | :white_check_mark: (100.0%) |
 | `scale__Q29JGeometry8TVec4<f>Ff` | `0x8008E374` | :x: (0.0%) |
-| `normalize__Q29JGeometry9TQuat4<f>Fv` | `0x8008E3A8` | :x: (0.0%) |
+| `normalize__Q29JGeometry9TQuat4<f>Fv` | `0x8008E3A8` | :white_check_mark: (100.0%) |
 | `slerp__Q29JGeometry9TQuat4<f>FRCQ29JGeometry9TQuat4<f>RCQ29JGeometry9TQuat4<f>f` | `0x8008E410` | :white_check_mark: (100.0%) |
 | `__ct__13TripodBossLegFPCc` | `0x8008E43C` | :x: (99.6%) |
-| `init__13TripodBossLegFRC12JMapInfoIter` | `0x8008E590` | :x: (100.0%) |
+| `init__13TripodBossLegFRC12JMapInfoIter` | `0x8008E590` | :white_check_mark: (100.0%) |
 | `initShadow__13TripodBossLegFPCc` | `0x8008E6C4` | :white_check_mark: (100.0%) |
 | `makeActorAppeared__13TripodBossLegFv` | `0x8008E704` | :white_check_mark: (100.0%) |
 | `makeActorDead__13TripodBossLegFv` | `0x8008E708` | :white_check_mark: (100.0%) |
@@ -94,5 +94,5 @@
 | `execute__Q216NrvTripodBossLeg20TripodBossLegNrvDemoCFP5Spine` | `0x8009055C` | :white_check_mark: (100.0%) |
 | `execute__Q216NrvTripodBossLeg20TripodBossLegNrvHoldCFP5Spine` | `0x80090564` | :white_check_mark: (100.0%) |
 | `setTrans__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>Ffff` | `0x800905AC` | :x: (0.0%) |
-| `makeQuat__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f>` | `0x800905BC` | :x: (33.1%) |
+| `makeQuat__Q29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>FRCQ29JGeometry9TQuat4<f>` | `0x800905BC` | :white_check_mark: (100.0%) |
 | `clamp__2MRFfff` | `0x8009066C` | :white_check_mark: (100.0%) |

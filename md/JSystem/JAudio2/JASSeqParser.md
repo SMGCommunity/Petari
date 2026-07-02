@@ -7,7 +7,7 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `conditionCheck__12JASSeqParserFP8JASTrackQ212JASSeqParser15BranchCondition` | `0x8048E45C` | :white_check_mark: (100.0%) |
-| `writeReg__12JASSeqParserFP8JASTrackUlUl` | `0x8048E530` | :x: (92.4%) |
+| `writeReg__12JASSeqParserFP8JASTrackUlUl` | `0x8048E530` | :white_check_mark: (100.0%) |
 | `readReg__12JASSeqParserCFP8JASTrackUl` | `0x8048E728` | :white_check_mark: (100.0%) |
 | `cmdOpenTrack__12JASSeqParserFP8JASTrackPUl` | `0x8048E8AC` | :white_check_mark: (100.0%) |
 | `cmdCloseTrack__12JASSeqParserFP8JASTrackPUl` | `0x8048E918` | :white_check_mark: (100.0%) |
@@ -35,7 +35,7 @@
 | `cmdWait__12JASSeqParserFP8JASTrackPUl` | `0x8048EEC4` | :white_check_mark: (100.0%) |
 | `cmdWaitByte__12JASSeqParserFP8JASTrackPUl` | `0x8048EEFC` | :white_check_mark: (100.0%) |
 | `cmdSetLastNote__12JASSeqParserFP8JASTrackPUl` | `0x8048EF0C` | :white_check_mark: (100.0%) |
-| `cmdEnvScaleSet__12JASSeqParserFP8JASTrackPUl` | `0x8048EF44` | :x: (70.0%) |
+| `cmdEnvScaleSet__12JASSeqParserFP8JASTrackPUl` | `0x8048EF44` | :white_check_mark: (100.0%) |
 | `cmdEnvSet__12JASSeqParserFP8JASTrackPUl` | `0x8048EF98` | :white_check_mark: (100.0%) |
 | `cmdSimpleADSR__12JASSeqParserFP8JASTrackPUl` | `0x8048EFD0` | :white_check_mark: (100.0%) |
 | `cmdBusConnect__12JASSeqParserFP8JASTrackPUl` | `0x8048F024` | :white_check_mark: (100.0%) |
@@ -55,17 +55,17 @@
 | `cmdBankPrg__12JASSeqParserFP8JASTrackPUl` | `0x8048F2B8` | :white_check_mark: (100.0%) |
 | `cmdBank__12JASSeqParserFP8JASTrackPUl` | `0x8048F2D4` | :white_check_mark: (100.0%) |
 | `cmdPrg__12JASSeqParserFP8JASTrackPUl` | `0x8048F2E8` | :white_check_mark: (100.0%) |
-| `cmdParamI__12JASSeqParserFP8JASTrackPUl` | `0x8048F2FC` | :x: (59.2%) |
-| `cmdParamII__12JASSeqParserFP8JASTrackPUl` | `0x8048F35C` | :x: (73.8%) |
-| `cmdParamE__12JASSeqParserFP8JASTrackPUl` | `0x8048F3BC` | :x: (91.3%) |
-| `cmdParamEI__12JASSeqParserFP8JASTrackPUl` | `0x8048F438` | :x: (91.3%) |
+| `cmdParamI__12JASSeqParserFP8JASTrackPUl` | `0x8048F2FC` | :white_check_mark: (100.0%) |
+| `cmdParamII__12JASSeqParserFP8JASTrackPUl` | `0x8048F35C` | :white_check_mark: (100.0%) |
+| `cmdParamE__12JASSeqParserFP8JASTrackPUl` | `0x8048F3BC` | :white_check_mark: (100.0%) |
+| `cmdParamEI__12JASSeqParserFP8JASTrackPUl` | `0x8048F438` | :white_check_mark: (100.0%) |
 | `cmdReg__12JASSeqParserFP8JASTrackPUl` | `0x8048F4B4` | :white_check_mark: (100.0%) |
 | `cmdRegLoad__12JASSeqParserFP8JASTrackPUl` | `0x8048F61C` | :white_check_mark: (100.0%) |
 | `cmdRegUni__12JASSeqParserFP8JASTrackPUl` | `0x8048F64C` | :white_check_mark: (100.0%) |
 | `cmdRegTblLoad__12JASSeqParserFP8JASTrackPUl` | `0x8048F6C0` | :white_check_mark: (100.0%) |
 | `cmdDump__12JASSeqParserFP8JASTrackPUl` | `0x8048F794` | :white_check_mark: (100.0%) |
 | `cmdPrintf__12JASSeqParserFP8JASTrackPUl` | `0x8048F910` | :white_check_mark: (100.0%) |
-| `execNoteOnGate__12JASSeqParserFP8JASTrackUlUlUlUl` | `0x8048FB10` | :x: (94.1%) |
+| `execNoteOnGate__12JASSeqParserFP8JASTrackUlUlUlUl` | `0x8048FB10` | :white_check_mark: (100.0%) |
 | `execNoteOnMidi__12JASSeqParserFP8JASTrackUlUlUl` | `0x8048FBB4` | :white_check_mark: (100.0%) |
 | `execNoteOff__12JASSeqParserFP8JASTrackUl` | `0x8048FBC8` | :white_check_mark: (100.0%) |
 | `execCommand__12JASSeqParserFP8JASTrackM12JASSeqParserFPCvPvP8JASTrackPUl_lUlPUl` | `0x8048FBD8` | :white_check_mark: (100.0%) |

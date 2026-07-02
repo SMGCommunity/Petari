@@ -7,13 +7,13 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `init__12J3DFrameCtrlFs` | `0x80433964` | :white_check_mark: (100.0%) |
-| `checkPass__12J3DFrameCtrlFf` | `0x80433994` | :x: (94.8%) |
-| `update__12J3DFrameCtrlFv` | `0x80433ED8` | :x: (93.0%) |
+| `checkPass__12J3DFrameCtrlFf` | `0x80433994` | :white_check_mark: (100.0%) |
+| `update__12J3DFrameCtrlFv` | `0x80433ED8` | :white_check_mark: (100.0%) |
 | `__ct__15J3DAnmTransformFsPfPsPf` | `0x804342F8` | :white_check_mark: (100.0%) |
 | `getTransform__19J3DAnmTransformFullCFUsP16J3DTransformInfo` | `0x8043436C` | :white_check_mark: (100.0%) |
-| `getTransform__27J3DAnmTransformFullWithLerpCFUsP16J3DTransformInfo` | `0x804346CC` | :x: (95.0%) |
+| `getTransform__27J3DAnmTransformFullWithLerpCFUsP16J3DTransformInfo` | `0x804346CC` | :white_check_mark: (100.0%) |
 | `calcTransform__18J3DAnmTransformKeyCFfUsP16J3DTransformInfo` | `0x80434EF0` | :white_check_mark: (100.0%) |
-| `J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs_f` | `0x80435318` | :x: (97.6%) |
+| `J3DGetKeyFrameInterpolation<s>__FfP18J3DAnmKeyTableBasePs_f` | `0x80435318` | :x: (99.1%) |
 | `J3DHermiteInterpolation__FfPCsPCsPCsPCsPCsPCs` | `0x804354E8` | :x: (89.3%) |
 | `J3DGetKeyFrameInterpolation<f>__FfP18J3DAnmKeyTableBasePf_f` | `0x8043553C` | :x: (86.3%) |
 | `J3DHermiteInterpolation__FfPCfPCfPCfPCfPCfPCf` | `0x8043565C` | :x: (0.0%) |
@@ -35,7 +35,7 @@
 | `getColor__14J3DAnmColorKeyCFUsP8_GXColor` | `0x80436360` | :x: (88.4%) |
 | `__ct__15J3DAnmTevRegKeyFv` | `0x80436620` | :white_check_mark: (100.0%) |
 | `__ct__16J3DAnmTexPatternFv` | `0x804366C0` | :white_check_mark: (100.0%) |
-| `getTexNo__16J3DAnmTexPatternCFUsPUs` | `0x8043671C` | :x: (95.1%) |
+| `getTexNo__16J3DAnmTexPatternCFUsPUs` | `0x8043671C` | :white_check_mark: (100.0%) |
 | `getVisibility__20J3DAnmVisibilityFullCFUsPUc` | `0x804367D4` | :x: (0.0%) |
 | `searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable` | `0x80436864` | :white_check_mark: (100.0%) |
 | `searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData` | `0x804368FC` | :white_check_mark: (100.0%) |

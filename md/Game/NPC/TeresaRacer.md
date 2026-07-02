@@ -7,15 +7,15 @@
 | Name | Address | Match % |
 |------|---------|---------|
 | `__ct__11TeresaRacerFPCc` | `0x8028B7A0` | :white_check_mark: (100.0%) |
-| `init__11TeresaRacerFRC12JMapInfoIter` | `0x8028B818` | :x: (99.8%) |
+| `init__11TeresaRacerFRC12JMapInfoIter` | `0x8028B818` | :white_check_mark: (100.0%) |
 | `control__11TeresaRacerFv` | `0x8028BA88` | :white_check_mark: (100.0%) |
 | `branchFunc__11TeresaRacerFUl` | `0x8028BAD8` | :white_check_mark: (100.0%) |
-| `animeFunc__11TeresaRacerFUl` | `0x8028BB04` | :x: (99.2%) |
+| `animeFunc__11TeresaRacerFUl` | `0x8028BB04` | :white_check_mark: (100.0%) |
 | `eventFunc__11TeresaRacerFUl` | `0x8028BC3C` | :white_check_mark: (100.0%) |
 | `exeWait__11TeresaRacerFv` | `0x8028BC44` | :white_check_mark: (100.0%) |
 | `exePre__11TeresaRacerFv` | `0x8028BCA8` | :white_check_mark: (100.0%) |
 | `exePost__11TeresaRacerFv` | `0x8028BD58` | :white_check_mark: (100.0%) |
-| `exeMove__11TeresaRacerFv` | `0x8028BDE4` | :x: (100.0%) |
+| `exeMove__11TeresaRacerFv` | `0x8028BDE4` | :white_check_mark: (100.0%) |
 | `exeGoal__11TeresaRacerFv` | `0x8028BFD8` | :white_check_mark: (100.0%) |
 | `initRacer__11TeresaRacerFv` | `0x8028C094` | :white_check_mark: (100.0%) |
 | `prepRacer__11TeresaRacerFPC11RaceManager` | `0x8028C09C` | :white_check_mark: (100.0%) |

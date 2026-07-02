@@ -13,8 +13,8 @@
 | `storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut` | `0x80417ED4` | :white_check_mark: (100.0%) |
 | `attachPalette__10JUTTextureFP10JUTPalette` | `0x80417FE4` | :white_check_mark: (100.0%) |
 | `init__10JUTTextureFv` | `0x80418024` | :white_check_mark: (100.0%) |
-| `initTexObj__10JUTTextureFv` | `0x80418054` | :x: (86.8%) |
-| `initTexObj__10JUTTextureF7_GXTlut` | `0x8041814C` | :x: (80.8%) |
+| `initTexObj__10JUTTextureFv` | `0x80418054` | :white_check_mark: (100.0%) |
+| `initTexObj__10JUTTextureF7_GXTlut` | `0x8041814C` | :x: (93.5%) |
 | `load__10JUTTextureF11_GXTexMapID` | `0x8041824C` | :white_check_mark: (100.0%) |
 | `capture__10JUTTextureFii9_GXTexFmtbUc` | `0x804182A0` | :white_check_mark: (100.0%) |
 | `setEmbPaletteDelFlag__10JUTTextureFb` | `0x80418354` | :white_check_mark: (100.0%) |

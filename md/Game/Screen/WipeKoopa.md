@@ -10,7 +10,7 @@
 | `init__9WipeKoopaFRC12JMapInfoIter` | `0x803924B8` | :white_check_mark: (100.0%) |
 | `exeWipeOut__9WipeKoopaFv` | `0x803924FC` | :x: (91.8%) |
 | `wipe__9WipeKoopaFl` | `0x803925CC` | :white_check_mark: (100.0%) |
-| `forceClose__9WipeKoopaFv` | `0x80392628` | :x: (99.4%) |
+| `forceClose__9WipeKoopaFv` | `0x80392628` | :white_check_mark: (100.0%) |
 | `forceOpen__9WipeKoopaFv` | `0x803926AC` | :white_check_mark: (100.0%) |
 | `isOpen__9WipeKoopaCFv` | `0x803926E4` | :white_check_mark: (100.0%) |
 | `isClose__9WipeKoopaCFv` | `0x803926EC` | :white_check_mark: (100.0%) |

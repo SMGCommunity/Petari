@@ -18,14 +18,14 @@
 | `getLivingKameckNum__10BossKameckCFv` | `0x800377E8` | :white_check_mark: (100.0%) |
 | `appearStarPieceToPlayer__10BossKameckFl` | `0x80037800` | :white_check_mark: (100.0%) |
 | `makeActorDead__10BossKameckFv` | `0x80037890` | :white_check_mark: (100.0%) |
-| `control__10BossKameckFv` | `0x800378C4` | :x: (80.8%) |
+| `control__10BossKameckFv` | `0x800378C4` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__10BossKameckFv` | `0x80037928` | :white_check_mark: (100.0%) |
 | `attackSensor__10BossKameckFP9HitSensorP9HitSensor` | `0x8003796C` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__10BossKameckFUlP9HitSensorP9HitSensor` | `0x8003798C` | :white_check_mark: (100.0%) |
 | `endDemo__10BossKameckFv` | `0x800379B0` | :white_check_mark: (100.0%) |
-| `setPose__10BossKameckFPA4_f` | `0x80037A18` | :x: (91.0%) |
+| `setPose__10BossKameckFPA4_f` | `0x80037A18` | :white_check_mark: (100.0%) |
 | `killAllBeam__10BossKameckFv` | `0x80037AF4` | :white_check_mark: (100.0%) |
-| `updatePose__10BossKameckFv` | `0x80037AFC` | :x: (0.0%) |
+| `updatePose__10BossKameckFv` | `0x80037AFC` | :x: (81.9%) |
 | `createBossKameck2__2MRFPCc` | `0x80037C80` | :white_check_mark: (100.0%) |
 | `hitBeam__27BossKameckBeamEventListenerFl` | `0x80037CF4` | :white_check_mark: (100.0%) |
 | `init__10BossKameckFRC12JMapInfoIter` | `0x80037CFC` | :x: (100.0%) |

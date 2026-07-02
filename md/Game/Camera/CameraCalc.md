@@ -1,5 +1,7 @@
 # main/Game/Camera/CameraCalc
 
+**Source Path:** `src/Game/Camera/CameraCalc.cpp`
+
 ## Functions
 
 | Name | Address | Match % |

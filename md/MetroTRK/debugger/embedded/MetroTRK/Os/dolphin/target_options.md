@@ -6,5 +6,5 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `GetUseSerialIO` | `0x8052D75C` | :white_check_mark: (100.0%) |
 | `SetUseSerialIO` | `0x8052D76C` | :white_check_mark: (100.0%) |
+| `GetUseSerialIO` | `0x8052D75C` | :white_check_mark: (100.0%) |

@@ -12,7 +12,7 @@
 | `appear__15GeneralMapPartsFv` | `0x802574E8` | :white_check_mark: (100.0%) |
 | `kill__15GeneralMapPartsFv` | `0x80257578` | :x: (0.0%) |
 | `receiveOtherMsg__15GeneralMapPartsFUlP9HitSensorP9HitSensor` | `0x8025760C` | :white_check_mark: (100.0%) |
-| `control__15GeneralMapPartsFv` | `0x80257694` | :x: (94.7%) |
+| `control__15GeneralMapPartsFv` | `0x80257694` | :white_check_mark: (100.0%) |
 | `calcAndSetBaseMtx__15GeneralMapPartsFv` | `0x802577F0` | :white_check_mark: (100.0%) |
 | `initMapPartsFunction__15GeneralMapPartsFRC12JMapInfoIter` | `0x80257950` | :white_check_mark: (100.0%) |
 | `initSensorType__15GeneralMapPartsFRC12JMapInfoIter` | `0x80257B18` | :white_check_mark: (100.0%) |

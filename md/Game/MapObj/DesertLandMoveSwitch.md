@@ -14,7 +14,7 @@
 | `calcAndSetBaseMtx__20DesertLandMoveSwitchFv` | `0x801CE4E0` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__20DesertLandMoveSwitchFUlP9HitSensorP9HitSensor` | `0x801CE514` | :white_check_mark: (100.0%) |
 | `receiveOtherMsg__20DesertLandMoveSwitchFUlP9HitSensorP9HitSensor` | `0x801CE56C` | :white_check_mark: (100.0%) |
-| `initModelAndCollision__20DesertLandMoveSwitchFRC12JMapInfoIter` | `0x801CE594` | :x: (99.9%) |
+| `initModelAndCollision__20DesertLandMoveSwitchFRC12JMapInfoIter` | `0x801CE594` | :white_check_mark: (100.0%) |
 | `tryOn__20DesertLandMoveSwitchFv` | `0x801CE694` | :white_check_mark: (100.0%) |
 | `trySwitchDown__20DesertLandMoveSwitchFv` | `0x801CE710` | :white_check_mark: (100.0%) |
 | `tryConnect__20DesertLandMoveSwitchFv` | `0x801CE74C` | :white_check_mark: (100.0%) |

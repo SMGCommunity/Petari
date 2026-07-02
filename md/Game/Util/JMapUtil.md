@@ -12,7 +12,7 @@
 | `getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPf` | `0x803D5530` | :white_check_mark: (100.0%) |
 | `getJMapInfoArgNoInit__22@unnamed@JMapUtil_cpp@FRC12JMapInfoIterPCcPb` | `0x803D559C` | :white_check_mark: (100.0%) |
 | `getJMapInfoTrans__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D5600` | :white_check_mark: (100.0%) |
-| `getJMapInfoRotate__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D566C` | :x: (90.6%) |
+| `getJMapInfoRotate__2MRFRC12JMapInfoIterPQ29JGeometry8TVec3<f>` | `0x803D566C` | :white_check_mark: (100.0%) |
 | `getJMapInfoMatrixFromRT__2MRFRC12JMapInfoIterPQ29JGeometry64TPosition3<Q29JGeometry38TMatrix34<Q29JGeometry13SMatrix34C<f>>>` | `0x803D57D4` | :white_check_mark: (100.0%) |
 | `getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPl` | `0x803D5850` | :white_check_mark: (100.0%) |
 | `getJMapInfoArg0WithInit__2MRFRC12JMapInfoIterPf` | `0x803D5868` | :white_check_mark: (100.0%) |

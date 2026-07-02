@@ -12,7 +12,7 @@
 | `free__Q22MR18NewDeleteAllocatorFP12MEMAllocatorPv` | `0x803E89E4` | :white_check_mark: (100.0%) |
 | `getHomeButtonLayoutAllocator__2MRFv` | `0x803E89EC` | :white_check_mark: (100.0%) |
 | `getCurrentHeap__2MRFv` | `0x803E8A04` | :white_check_mark: (100.0%) |
-| `getAproposHeapForSceneArchive__2MRFf` | `0x803E8A0C` | :x: (0.0%) |
+| `getAproposHeapForSceneArchive__2MRFf` | `0x803E8A0C` | :x: (80.8%) |
 | `getStationedHeapNapa__2MRFv` | `0x803E8AB8` | :white_check_mark: (100.0%) |
 | `getStationedHeapGDDR3__2MRFv` | `0x803E8AC4` | :white_check_mark: (100.0%) |
 | `getSceneHeapNapa__2MRFv` | `0x803E8AD0` | :white_check_mark: (100.0%) |
@@ -21,7 +21,7 @@
 | `getHeapGDDR3__2MRFPC7JKRHeap` | `0x803E8AF4` | :white_check_mark: (100.0%) |
 | `becomeCurrentHeap__2MRFP7JKRHeap` | `0x803E8B00` | :x: (81.5%) |
 | `isEqualCurrentHeap__2MRFP7JKRHeap` | `0x803E8B50` | :white_check_mark: (100.0%) |
-| `adjustHeapSize__2MRFP10JKRExpHeapPCc` | `0x803E8B64` | :x: (0.0%) |
+| `adjustHeapSize__2MRFP10JKRExpHeapPCc` | `0x803E8B64` | :white_check_mark: (100.0%) |
 | `copyMemory__2MRFPvPCvUl` | `0x803E8B68` | :x: (0.0%) |
 | `fillMemory__2MRFPvUcUl` | `0x803E8C74` | :white_check_mark: (100.0%) |
 | `zeroMemory__2MRFPvUl` | `0x803E8C88` | :x: (0.0%) |

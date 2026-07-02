@@ -28,7 +28,7 @@
 | `setRailDirectionCloseToCoord__2MRFP9LiveActorf` | `0x803F54E8` | :white_check_mark: (100.0%) |
 | `setRailDirectionCloseToNearestPos__2MRFP9LiveActorRCQ29JGeometry8TVec3<f>` | `0x803F55B4` | :white_check_mark: (100.0%) |
 | `reverseRailDirection__2MRFP9LiveActor` | `0x803F55EC` | :white_check_mark: (100.0%) |
-| `calcMovingDirectionAlongRail__2MRFP9LiveActorPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fbPb` | `0x803F55F4` | :x: (94.5%) |
+| `calcMovingDirectionAlongRail__2MRFP9LiveActorPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fbPb` | `0x803F55F4` | :x: (89.9%) |
 | `calcMovingDirectionAlongRailH__2MRFP9LiveActorPQ29JGeometry8TVec3<f>RCQ29JGeometry8TVec3<f>fPb` | `0x803F5790` | :white_check_mark: (100.0%) |
 | `calcRailClippingInfo__2MRFPQ29JGeometry8TVec3<f>PfPC9LiveActorff` | `0x803F579C` | :x: (99.7%) |
 | `initAndSetRailClipping__2MRFPQ29JGeometry8TVec3<f>P9LiveActorff` | `0x803F5A1C` | :white_check_mark: (100.0%) |
@@ -42,7 +42,7 @@
 | `calcBoundingBox__2MRFPC9LiveActorPQ29JGeometry8TBox3<f>f` | `0x803F5DBC` | :white_check_mark: (100.0%) |
 | `calcDifferenceRailCoord__2MRFPC9LiveActorff` | `0x803F5DC4` | :white_check_mark: (100.0%) |
 | `calcDifferenceRailCoord__2MRFPC9LiveActorf` | `0x803F5E60` | :white_check_mark: (100.0%) |
-| `calcDistanceHorizonToCurrentPos__2MRFPC9LiveActor` | `0x803F5E74` | :x: (88.8%) |
+| `calcDistanceHorizonToCurrentPos__2MRFPC9LiveActor` | `0x803F5E74` | :x: (99.8%) |
 | `calcRailPosAtCoord__2MRFPQ29JGeometry8TVec3<f>PC9LiveActorf` | `0x803F5EE8` | :white_check_mark: (100.0%) |
 | `calcRailPosFrontCoord__2MRFPQ29JGeometry8TVec3<f>PC9LiveActorf` | `0x803F5EF8` | :white_check_mark: (100.0%) |
 | `calcRailDirectionAtCoord__2MRFPQ29JGeometry8TVec3<f>PC9LiveActorf` | `0x803F5FD4` | :white_check_mark: (100.0%) |

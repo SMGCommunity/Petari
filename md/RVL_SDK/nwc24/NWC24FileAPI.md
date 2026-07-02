@@ -1,11 +1,13 @@
 # main/RVL_SDK/nwc24/NWC24FileAPI
 
+**Source Path:** `src/RVL_SDK/nwc24/NWC24FileAPI.c`
+
 ## Functions
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `NWC24FOpen` | `0x80463144` | :x: (0.0%) |
-| `NWC24iFOpenNand` | `0x80463238` | :x: (0.0%) |
+| `NWC24FOpen` | `0x80463144` | :white_check_mark: (100.0%) |
+| `NWC24iFOpenNand` | `0x80463238` | :x: (97.9%) |
 | `NWC24iFOpenVF` | `0x80463370` | :x: (0.0%) |
 | `NWC24FClose` | `0x80463498` | :x: (0.0%) |
 | `NWC24iFCloseNand` | `0x80463580` | :x: (0.0%) |

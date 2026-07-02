@@ -6,5 +6,5 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `TRKDispatchMessage` | `0x80529554` | :white_check_mark: (100.0%) |
 | `TRKInitializeDispatcher` | `0x80529694` | :white_check_mark: (100.0%) |
+| `TRKDispatchMessage` | `0x80529554` | :white_check_mark: (100.0%) |

@@ -22,4 +22,4 @@
 | `isState__26FindingLuigiEventSchedulerCFUl` | `0x803AF040` | :white_check_mark: (100.0%) |
 | `setStateReturnAstroGalaxy__26FindingLuigiEventSchedulerFi` | `0x803AF0B0` | :white_check_mark: (100.0%) |
 | `update__26FindingLuigiEventSchedulerFRC18GalaxyMoveArgument` | `0x803AF124` | :white_check_mark: (100.0%) |
-| `updateOnStageResult__26FindingLuigiEventSchedulerFPCcl` | `0x803AF194` | :x: (100.0%) |
+| `updateOnStageResult__26FindingLuigiEventSchedulerFPCcl` | `0x803AF194` | :white_check_mark: (100.0%) |

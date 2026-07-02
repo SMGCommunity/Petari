@@ -6,4 +6,4 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `ceil` | `0x80527CE0` | :x: (99.9%) |
+| `ceil` | `0x80527CE0` | :white_check_mark: (100.0%) |

@@ -10,7 +10,7 @@
 | `init__18DinoPackunTailPartFRC12JMapInfoIter` | `0x8004D258` | :white_check_mark: (100.0%) |
 | `control__18DinoPackunTailPartFv` | `0x8004D308` | :white_check_mark: (100.0%) |
 | `createJointControllerOwn__18DinoPackunTailPartFP9LiveActorPCc` | `0x8004D30C` | :white_check_mark: (100.0%) |
-| `attackSensor__18DinoPackunTailPartFP9HitSensorP9HitSensor` | `0x8004D3E8` | :x: (97.0%) |
+| `attackSensor__18DinoPackunTailPartFP9HitSensorP9HitSensor` | `0x8004D3E8` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__18DinoPackunTailPartFUlP9HitSensorP9HitSensor` | `0x8004D4C8` | :white_check_mark: (100.0%) |
 | `requestLockPosition__18DinoPackunTailPartFv` | `0x8004D56C` | :white_check_mark: (100.0%) |
 | `requestUnLockPosition__18DinoPackunTailPartFv` | `0x8004D5AC` | :white_check_mark: (100.0%) |

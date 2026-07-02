@@ -9,7 +9,7 @@
 | `__ct__14BeeFlowerHoverFPCc` | `0x801B2D5C` | :white_check_mark: (100.0%) |
 | `init__14BeeFlowerHoverFRC12JMapInfoIter` | `0x801B2DC8` | :x: (100.0%) |
 | `exeSoftTouch__14BeeFlowerHoverFv` | `0x801B3038` | :white_check_mark: (100.0%) |
-| `exeSoftTouchWait__14BeeFlowerHoverFv` | `0x801B30B4` | :x: (99.9%) |
+| `exeSoftTouchWait__14BeeFlowerHoverFv` | `0x801B30B4` | :white_check_mark: (100.0%) |
 | `exeHardTouch__14BeeFlowerHoverFv` | `0x801B313C` | :white_check_mark: (100.0%) |
 | `exeRecover__14BeeFlowerHoverFv` | `0x801B31F0` | :white_check_mark: (100.0%) |
 | `control__14BeeFlowerHoverFv` | `0x801B32BC` | :x: (89.3%) |

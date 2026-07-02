@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `__ct__4HaloFPCc` | `0x80182094` | :white_check_mark: (100.0%) |
 | `__dt__11MapObjActorFv` | `0x801820D8` | :x: (0.0%) |
-| `init__4HaloFRC12JMapInfoIter` | `0x80182134` | :x: (0.0%) |
+| `init__4HaloFRC12JMapInfoIter` | `0x80182134` | :white_check_mark: (100.0%) |
 | `appear__4HaloFv` | `0x80182228` | :white_check_mark: (100.0%) |
 | `getDistance__4HaloCFv` | `0x801823C0` | :white_check_mark: (100.0%) |
 | `connectToScene__4HaloFRC19MapObjActorInitInfo` | `0x801823C4` | :white_check_mark: (100.0%) |

@@ -11,7 +11,7 @@
 | `exeBreakBig__17CrystalCageMovingFv` | `0x801CC374` | :white_check_mark: (100.0%) |
 | `exeBreakSmall__17CrystalCageMovingFv` | `0x801CC430` | :white_check_mark: (100.0%) |
 | `exeBreakAll__17CrystalCageMovingFv` | `0x801CC494` | :white_check_mark: (100.0%) |
-| `exeDemoTicoMove__17CrystalCageMovingFv` | `0x801CC50C` | :x: (0.0%) |
+| `exeDemoTicoMove__17CrystalCageMovingFv` | `0x801CC50C` | :white_check_mark: (100.0%) |
 | `exeDemoTicoStop__17CrystalCageMovingFv` | `0x801CC5DC` | :white_check_mark: (100.0%) |
 | `exeDemoTicoChange__17CrystalCageMovingFv` | `0x801CC668` | :white_check_mark: (100.0%) |
 | `kill__17CrystalCageMovingFv` | `0x801CC6F8` | :white_check_mark: (100.0%) |
@@ -20,11 +20,11 @@
 | `crashMario__17CrystalCageMovingFP9HitSensorP9HitSensor` | `0x801CC830` | :white_check_mark: (100.0%) |
 | `updateHitSensor__17CrystalCageMovingFP9HitSensor` | `0x801CC8F0` | :white_check_mark: (100.0%) |
 | `connectToScene__17CrystalCageMovingFRC19MapObjActorInitInfo` | `0x801CC9C4` | :white_check_mark: (100.0%) |
-| `initDummyModel__17CrystalCageMovingFRC12JMapInfoIter` | `0x801CC9D8` | :x: (100.0%) |
-| `startBreakDemo__17CrystalCageMovingFv` | `0x801CCACC` | :x: (99.9%) |
+| `initDummyModel__17CrystalCageMovingFRC12JMapInfoIter` | `0x801CC9D8` | :white_check_mark: (100.0%) |
+| `startBreakDemo__17CrystalCageMovingFv` | `0x801CCACC` | :white_check_mark: (100.0%) |
 | `isNerveTypeEnd__17CrystalCageMovingCFv` | `0x801CCB48` | :white_check_mark: (100.0%) |
 | `__dt__17CrystalCageMovingFv` | `0x801CCBF8` | :white_check_mark: (100.0%) |
-| `__sinit_\CrystalCageMoving_cpp` | `0x801CCC50` | :x: (87.0%) |
+| `__sinit_\CrystalCageMoving_cpp` | `0x801CCC50` | :white_check_mark: (100.0%) |
 | `__ct__Q220NrvCrystalCageMoving27CrystalCageMovingNrvWaitBigFv` | `0x801CCCAC` | :white_check_mark: (100.0%) |
 | `__ct__Q220NrvCrystalCageMoving28CrystalCageMovingNrvBreakBigFv` | `0x801CCCBC` | :white_check_mark: (100.0%) |
 | `__ct__Q220NrvCrystalCageMoving29CrystalCageMovingNrvWaitSmallFv` | `0x801CCCCC` | :white_check_mark: (100.0%) |

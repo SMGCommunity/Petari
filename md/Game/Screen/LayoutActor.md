@@ -25,5 +25,5 @@
 | `initLayoutManagerWithTextBoxBufferLength__11LayoutActorFPCcUlUl` | `0x803678E0` | :white_check_mark: (100.0%) |
 | `initNerve__11LayoutActorFPC5Nerve` | `0x80367944` | :white_check_mark: (100.0%) |
 | `initEffectKeeper__11LayoutActorFiPCcPC12EffectSystem` | `0x80367998` | :x: (0.0%) |
-| `initPointingTarget__11LayoutActorFi` | `0x80367A08` | :x: (0.0%) |
+| `initPointingTarget__11LayoutActorFi` | `0x80367A08` | :white_check_mark: (100.0%) |
 | `updateSpine__11LayoutActorFv` | `0x80367A58` | :white_check_mark: (100.0%) |

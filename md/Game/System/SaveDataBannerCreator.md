@@ -6,13 +6,13 @@
 
 | Name | Address | Match % |
 |------|---------|---------|
-| `__ct__21SaveDataBannerCreatorFv` | `0x803B7758` | :x: (93.5%) |
+| `__ct__21SaveDataBannerCreatorFv` | `0x803B7758` | :white_check_mark: (100.0%) |
 | `execute__21SaveDataBannerCreatorFv` | `0x803B77D4` | :white_check_mark: (100.0%) |
 | `isDone__21SaveDataBannerCreatorCFv` | `0x803B77DC` | :white_check_mark: (100.0%) |
 | `getResultCode__21SaveDataBannerCreatorCFv` | `0x803B77E4` | :white_check_mark: (100.0%) |
 | `exeCreateOnTemporary__21SaveDataBannerCreatorFv` | `0x803B77F0` | :white_check_mark: (100.0%) |
 | `exeMoveToHomeDir__21SaveDataBannerCreatorFv` | `0x803B7894` | :white_check_mark: (100.0%) |
-| `setupBannerInfo__21SaveDataBannerCreatorFv` | `0x803B792C` | :x: (1.4%) |
+| `setupBannerInfo__21SaveDataBannerCreatorFv` | `0x803B792C` | :x: (92.7%) |
 | `__dt__21SaveDataBannerCreatorFv` | `0x803B7A48` | :white_check_mark: (100.0%) |
 | `__sinit_\SaveDataBannerCreator_cpp` | `0x803B7AA0` | :white_check_mark: (100.0%) |
 | `__ct__Q235@unnamed@SaveDataBannerCreator_cpp@32SaveDataBannerCreatorNoOperationFv` | `0x803B7AD4` | :white_check_mark: (100.0%) |

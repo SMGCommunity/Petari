@@ -28,7 +28,7 @@
 | `draw__7CreeperCFv` | `0x80322CE0` | :x: (99.5%) |
 | `loadMaterial__7CreeperCFv` | `0x80322F94` | :white_check_mark: (100.0%) |
 | `__dt__7CreeperFv` | `0x80323188` | :white_check_mark: (100.0%) |
-| `__sinit_\Creeper_cpp` | `0x803231E4` | :white_check_mark: (100.0%) |
+| `__sinit_\Creeper_cpp` | `0x803231E4` | :x: (69.8%) |
 | `__ct__Q210NrvCreeper14CreeperNrvFreeFv` | `0x80323270` | :white_check_mark: (100.0%) |
 | `__ct__Q210NrvCreeper21CreeperNrvFreeInvalidFv` | `0x80323280` | :white_check_mark: (100.0%) |
 | `__ct__Q210NrvCreeper19CreeperNrvHangStartFv` | `0x80323290` | :white_check_mark: (100.0%) |

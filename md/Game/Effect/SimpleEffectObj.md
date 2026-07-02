@@ -8,7 +8,7 @@
 |------|---------|---------|
 | `findDataElement__29@unnamed@SimpleEffectObj_cpp@FPCc` | `0x800CAC10` | :white_check_mark: (100.0%) |
 | `__ct__15SimpleEffectObjFPCc` | `0x800CAC84` | :white_check_mark: (100.0%) |
-| `init__15SimpleEffectObjFRC12JMapInfoIter` | `0x800CACC8` | :x: (89.7%) |
+| `init__15SimpleEffectObjFRC12JMapInfoIter` | `0x800CACC8` | :white_check_mark: (100.0%) |
 | `isStateMove__15SimpleEffectObjCFv` | `0x800CAEFC` | :white_check_mark: (100.0%) |
 | `startClipped__15SimpleEffectObjFv` | `0x800CAF04` | :white_check_mark: (100.0%) |
 | `endClipped__15SimpleEffectObjFv` | `0x800CAF68` | :white_check_mark: (100.0%) |

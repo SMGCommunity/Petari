@@ -15,12 +15,12 @@
 | `showFloatSub__12JUTExceptionFif` | `0x80418CC0` | :x: (91.2%) |
 | `showFloat__12JUTExceptionFP9OSContext` | `0x80418DC0` | :white_check_mark: (100.0%) |
 | `searchPartialModule__12JUTExceptionFUlPUlPUlPUlPUl` | `0x80418ECC` | :white_check_mark: (100.0%) |
-| `showStack__12JUTExceptionFP9OSContext` | `0x80418F8C` | :x: (95.2%) |
-| `showMainInfo__12JUTExceptionFUsP9OSContextUlUl` | `0x80419078` | :x: (85.3%) |
+| `showStack__12JUTExceptionFP9OSContext` | `0x80418F8C` | :x: (95.3%) |
+| `showMainInfo__12JUTExceptionFUsP9OSContextUlUl` | `0x80419078` | :x: (86.2%) |
 | `showGPR__12JUTExceptionFP9OSContext` | `0x804192B8` | :x: (88.1%) |
 | `showMapInfo_subroutine__12JUTExceptionFUlb` | `0x80419368` | :x: (70.2%) |
 | `showGPRMap__12JUTExceptionFP9OSContext` | `0x80419518` | :x: (98.1%) |
-| `showSRR0Map__12JUTExceptionFP9OSContext` | `0x80419610` | :x: (97.5%) |
+| `showSRR0Map__12JUTExceptionFP9OSContext` | `0x80419610` | :x: (97.6%) |
 | `printDebugInfo__12JUTExceptionFQ212JUTException9EInfoPageUsP9OSContextUlUl` | `0x804196C8` | :x: (99.1%) |
 | `isEnablePad__12JUTExceptionCFv` | `0x8041976C` | :white_check_mark: (100.0%) |
 | `printContext__12JUTExceptionFUsP9OSContextUlUl` | `0x804197A4` | :x: (0.0%) |

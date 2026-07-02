@@ -9,7 +9,7 @@
 | `__ct__10JumpBeamerFPCc` | `0x800FE130` | :white_check_mark: (100.0%) |
 | `__dt__11JumpEmitterFv` | `0x800FE16C` | :white_check_mark: (100.0%) |
 | `control__10JumpBeamerFv` | `0x800FE1C8` | :white_check_mark: (100.0%) |
-| `init__10JumpBeamerFRC12JMapInfoIter` | `0x800FE25C` | :x: (99.9%) |
+| `init__10JumpBeamerFRC12JMapInfoIter` | `0x800FE25C` | :white_check_mark: (100.0%) |
 | `attackSensor__10JumpBeamerFP9HitSensorP9HitSensor` | `0x800FE5B4` | :white_check_mark: (100.0%) |
 | `receiveMsgPlayerAttack__10JumpBeamerFUlP9HitSensorP9HitSensor` | `0x800FE604` | :white_check_mark: (100.0%) |
 | `syncSwitchOffB__10JumpBeamerFv` | `0x800FE718` | :white_check_mark: (100.0%) |

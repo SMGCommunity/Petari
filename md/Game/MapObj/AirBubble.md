@@ -17,7 +17,7 @@
 | `exeMove__9AirBubbleFv` | `0x801A57E0` | :x: (0.0%) |
 | `exeBreak__9AirBubbleFv` | `0x801A59A8` | :white_check_mark: (100.0%) |
 | `receiveMsgPush__9AirBubbleFP9HitSensorP9HitSensor` | `0x801A5A2C` | :x: (99.9%) |
-| `receiveOtherMsg__9AirBubbleFUlP9HitSensorP9HitSensor` | `0x801A5AB4` | :x: (88.7%) |
+| `receiveOtherMsg__9AirBubbleFUlP9HitSensorP9HitSensor` | `0x801A5AB4` | :x: (79.7%) |
 | `canSpinGet__9AirBubbleCFv` | `0x801A5BE8` | :white_check_mark: (100.0%) |
 | `__dt__9AirBubbleFv` | `0x801A5C40` | :white_check_mark: (100.0%) |
 | `__sinit_\AirBubble_cpp` | `0x801A5C9C` | :white_check_mark: (100.0%) |

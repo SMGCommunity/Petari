@@ -10,7 +10,7 @@
 | `loadPosMtxIndx__6J3DSysCFiUs` | `0x804226B0` | :white_check_mark: (100.0%) |
 | `loadNrmMtxIndx__6J3DSysCFiUs` | `0x804226D4` | :x: (17.4%) |
 | `setTexCacheRegion__6J3DSysF15_GXTexCacheSize` | `0x804226FC` | :x: (98.1%) |
-| `drawInit__6J3DSysFv` | `0x804228A0` | :x: (99.2%) |
+| `drawInit__6J3DSysFv` | `0x804228A0` | :white_check_mark: (100.0%) |
 | `reinitGX__6J3DSysFv` | `0x80422F60` | :white_check_mark: (100.0%) |
 | `reinitLighting__6J3DSysFv` | `0x80422FE8` | :white_check_mark: (100.0%) |
 | `reinitTransform__6J3DSysFv` | `0x804230F4` | :white_check_mark: (100.0%) |

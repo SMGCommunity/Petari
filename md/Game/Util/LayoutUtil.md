@@ -12,7 +12,7 @@
 | `SetInfluencedAlpha__Q34nw4r3lyt4PaneFb` | `0x803D6FD8` | :x: (0.0%) |
 | `showPaneRecursive__24@unnamed@LayoutUtil_cpp@FPQ34nw4r3lyt4Pane` | `0x803D6FF0` | :x: (0.0%) |
 | `hidePaneRecursive__24@unnamed@LayoutUtil_cpp@FPQ34nw4r3lyt4Pane` | `0x803D70AC` | :x: (0.0%) |
-| `initFrameCtrlReverse__24@unnamed@LayoutUtil_cpp@FP12J3DFrameCtrl` | `0x803D7160` | :x: (0.0%) |
+| `initFrameCtrlReverse__24@unnamed@LayoutUtil_cpp@FP12J3DFrameCtrl` | `0x803D7160` | :white_check_mark: (100.0%) |
 | `getTextDrawRectRecursive__24@unnamed@LayoutUtil_cpp@FPQ34nw4r2ut4RectPCQ34nw4r3lyt4Paneb` | `0x803D71A8` | :x: (0.0%) |
 | `getTextLineNumMaxRecursiveSub__24@unnamed@LayoutUtil_cpp@FPCQ34nw4r3lyt4Pane` | `0x803D7314` | :x: (0.0%) |
 | `createAndAddLayoutHolder__2MRFPCc` | `0x803D73FC` | :white_check_mark: (100.0%) |
@@ -25,7 +25,7 @@
 | `setLayoutAlpha__2MRFPC11LayoutActorUc` | `0x803D75A4` | :x: (0.0%) |
 | `setLayoutAlphaFloat__2MRFPC11LayoutActorf` | `0x803D75DC` | :x: (0.0%) |
 | `setPaneAlpha__2MRFPC11LayoutActorPCcUc` | `0x803D764C` | :x: (0.0%) |
-| `setPaneAlphaFloat__2MRFPC11LayoutActorPCcf` | `0x803D7690` | :x: (0.0%) |
+| `setPaneAlphaFloat__2MRFPC11LayoutActorPCcf` | `0x803D7690` | :white_check_mark: (100.0%) |
 | `executeTextBoxRecursive__2MRFP11LayoutActorPCcRC25TextBoxRecursiveOperation` | `0x803D770C` | :x: (0.0%) |
 | `setTextBoxGameMessageRecursive__2MRFP11LayoutActorPCcPCc` | `0x803D77E8` | :white_check_mark: (100.0%) |
 | `setTextBoxLayoutMessageRecursive__2MRFP11LayoutActorPCcPCc` | `0x803D7834` | :white_check_mark: (100.0%) |

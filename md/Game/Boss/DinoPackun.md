@@ -40,7 +40,7 @@
 | `updateRunVelocity__10DinoPackunFv` | `0x80044640` | :white_check_mark: (100.0%) |
 | `appearStarPiece__10DinoPackunFl` | `0x80044644` | :white_check_mark: (100.0%) |
 | `isSensorEgg__10DinoPackunCFPC9HitSensor` | `0x800446CC` | :white_check_mark: (100.0%) |
-| `resetPosition__10DinoPackunFv` | `0x80044708` | :x: (97.2%) |
+| `resetPosition__10DinoPackunFv` | `0x80044708` | :white_check_mark: (100.0%) |
 | `adjustTailRootPosition__10DinoPackunFRCQ29JGeometry8TVec3<f>f` | `0x80044894` | :white_check_mark: (100.0%) |
 | `activateParts__10DinoPackunFv` | `0x80044A68` | :white_check_mark: (100.0%) |
 | `onMovementParts__10DinoPackunFv` | `0x80044A70` | :white_check_mark: (100.0%) |

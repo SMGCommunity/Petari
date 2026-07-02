@@ -11,14 +11,14 @@
 | `init__17RaceManagerLayoutFRC12JMapInfoIter` | `0x80196490` | :white_check_mark: (100.0%) |
 | `playCountAndGo__17RaceManagerLayoutFv` | `0x80196558` | :white_check_mark: (100.0%) |
 | `playGo__17RaceManagerLayoutFv` | `0x801965B0` | :white_check_mark: (100.0%) |
-| `playGoal__17RaceManagerLayoutFv` | `0x8019661C` | :x: (100.0%) |
+| `playGoal__17RaceManagerLayoutFv` | `0x8019661C` | :white_check_mark: (100.0%) |
 | `playLose__17RaceManagerLayoutFv` | `0x80196690` | :white_check_mark: (100.0%) |
 | `playTimeUp__17RaceManagerLayoutFv` | `0x801966F8` | :white_check_mark: (100.0%) |
 | `playRank__17RaceManagerLayoutFUl` | `0x80196760` | :white_check_mark: (100.0%) |
 | `isAllAnimStopped__17RaceManagerLayoutFv` | `0x801967E0` | :white_check_mark: (100.0%) |
 | `hideRecordPane__17RaceManagerLayoutFv` | `0x801968B0` | :white_check_mark: (100.0%) |
 | `hideBestRecordPane__17RaceManagerLayoutFv` | `0x801968BC` | :white_check_mark: (100.0%) |
-| `hideAllPane__17RaceManagerLayoutFv` | `0x801968C8` | :x: (100.0%) |
+| `hideAllPane__17RaceManagerLayoutFv` | `0x801968C8` | :white_check_mark: (100.0%) |
 | `isPlayCountAnim__17RaceManagerLayoutCFv` | `0x80196950` | :white_check_mark: (100.0%) |
 | `isPlayCountAndGoAnim__17RaceManagerLayoutCFv` | `0x80196988` | :white_check_mark: (100.0%) |
 | `setTime__17RaceManagerLayoutFUl` | `0x801969B8` | :white_check_mark: (100.0%) |
@@ -30,8 +30,8 @@
 | `exeWipeWait__11RaceManagerFv` | `0x80196C18` | :white_check_mark: (100.0%) |
 | `exeWipeIn__11RaceManagerFv` | `0x80196C80` | :white_check_mark: (100.0%) |
 | `exeIntro__11RaceManagerFv` | `0x80196D98` | :white_check_mark: (100.0%) |
-| `exeCount__11RaceManagerFv` | `0x80196E20` | :x: (100.0%) |
-| `exeRace__11RaceManagerFv` | `0x80196F5C` | :x: (99.9%) |
+| `exeCount__11RaceManagerFv` | `0x80196E20` | :white_check_mark: (100.0%) |
+| `exeRace__11RaceManagerFv` | `0x80196F5C` | :white_check_mark: (100.0%) |
 | `exeDemo__11RaceManagerFv` | `0x801973C4` | :white_check_mark: (100.0%) |
 | `exeRank__11RaceManagerFv` | `0x80197410` | :white_check_mark: (100.0%) |
 | `startWithWipe__11RaceManagerFv` | `0x80197470` | :white_check_mark: (100.0%) |

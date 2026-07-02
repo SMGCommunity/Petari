@@ -69,7 +69,7 @@
 | `calcDemoMovement__10TripodBossFv` | `0x80088580` | :x: (98.7%) |
 | `calcBodyMovement__10TripodBossFv` | `0x800886E8` | :white_check_mark: (100.0%) |
 | `calcLegMovement__10TripodBossFv` | `0x80088758` | :white_check_mark: (100.0%) |
-| `addAccelToWeightPosition__10TripodBossFv` | `0x800887B8` | :x: (99.4%) |
+| `addAccelToWeightPosition__10TripodBossFv` | `0x800887B8` | :x: (99.7%) |
 | `calcClippingSphere__10TripodBossFv` | `0x800889E0` | :white_check_mark: (100.0%) |
 | `clippingModel__10TripodBossFv` | `0x80088A68` | :white_check_mark: (100.0%) |
 | `startDemo__10TripodBossFv` | `0x80088B74` | :white_check_mark: (100.0%) |
