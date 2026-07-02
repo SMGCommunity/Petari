@@ -607,7 +607,7 @@ config.libs = [
         "libnw4r_db",
         [
             Object(Matching, "nw4r/db/db_console.cpp"),
-            Object(NonMatching, "nw4r/db/db_assert.cpp"),
+            Object(Matching, "nw4r/db/db_assert.cpp"),
         ],
     ),
     NWLib(
@@ -620,14 +620,14 @@ config.libs = [
     NWLib(
         "libnw4r_lyt",
         [
-            Object(NonMatching, "nw4r/lyt/lyt_init.cpp"),
-            Object(NonMatching, "nw4r/lyt/lyt_pane.cpp"),
+            Object(Matching, "nw4r/lyt/lyt_init.cpp"),
+            Object(Matching, "nw4r/lyt/lyt_pane.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_group.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_layout.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_picture.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_textBox.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_window.cpp"),
-            Object(NonMatching, "nw4r/lyt/lyt_bounding.cpp"),
+            Object(Matching, "nw4r/lyt/lyt_bounding.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_material.cpp"),
             Object(Matching, "nw4r/lyt/lyt_texMap.cpp"),
             Object(Matching, "nw4r/lyt/lyt_drawInfo.cpp"),
