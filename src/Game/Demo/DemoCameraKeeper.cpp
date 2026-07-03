@@ -17,9 +17,10 @@ DemoCameraInfo::DemoCameraInfo()
 }
 
 void DemoCameraKeeper::initCast(LiveActor* pActor, const JMapInfoIter& rIter) {
-    s32 j = 0;
-    for (s32 i = 0, j = 0; i < _4; j++, i++) {
-        DemoCameraInfo* curInfo = &_8[j];
+    s32 i;
+    DemoCameraInfo* curInfo;
+    for (i = 0; i < _4; curInfo++, i++) {
+        curInfo = &_8[i];
         if (!DemoFunction::isTargetDemoCast(pActor, rIter, curInfo->mCameraTargetName, curInfo->mCameraTargetCastID)) {
             continue;
         }
@@ -34,14 +35,17 @@ void DemoCameraKeeper::start() {
 
 // https://decomp.me/scratch/eRSVw
 void DemoCameraKeeper::update() {
-    if (_C < 0)
+    if (_C < 0) {
         return;
-    if (_4 > _C)
+    }
+    if (_4 > _C) {
         return;
+    }
 
-    s32 j = 0;
-    for (s32 i = 0, j = 0; i < _4; j++, i++) {
-        DemoCameraInfo* curInfo = &_8[j];
+    s32 i;
+    DemoCameraInfo* curInfo;
+    for (i = 0; i < _4; i++) {
+        curInfo = &_8[i];
         executeType(curInfo);
     }
 }
@@ -59,7 +63,7 @@ void DemoCameraKeeper::initActorCamera(DemoCameraInfo* pInfo, const JMapInfoIter
         return;
 
     char animCameraName[256];
-    DemoCameraFunction::makeAnimCameraName(animCameraName, 256, pInfo);
+    DemoCameraFunction::makeAnimCameraName(animCameraName, sizeof(animCameraName), pInfo);
 
     MR::initAnimCamera(pInfo->_24, pInfo->_20, animCameraName);
 }
@@ -114,7 +118,7 @@ void DemoCameraKeeper::endCurrentCamera() {
 
 // https://decomp.me/scratch/2zGrk
 DemoCameraKeeper::DemoCameraKeeper(DemoExecutor* pExecutor, const JMapInfoIter& rIter)
-    : mExecutor(pExecutor), _4(-1), _8(nullptr), _C(-1), _10(nullptr) {
+    : mExecutor(pExecutor), _4(-1), _8(), _C(-1), _10() {
     JMapInfo* map = nullptr;
     _4 = DemoFunction::createSheetParser(mExecutor, "Camera", &map);
 
@@ -122,19 +126,20 @@ DemoCameraKeeper::DemoCameraKeeper(DemoExecutor* pExecutor, const JMapInfoIter& 
 
     s32 executorNameLen = strlen(mExecutor->mName);
 
-    s32 j = 0;
-    for (s32 i = 0; i < _4; i++, ++j) {
-        DemoCameraInfo* curInfo = &_8[j];
+    s32 i;
+    DemoCameraInfo* curInfo;
+    for (i = 0; i < _4; i++) {
+        curInfo = &_8[i];
         map->getValue< const char* >(i, "PartName", &curInfo->mPartName);
         map->getValue< const char* >(i, "CameraTargetName", &curInfo->mCameraTargetName);
         map->getValue< s32 >(i, "CameraTargetCastID", &curInfo->mCameraTargetCastID);
         map->getValue< const char* >(i, "AnimCameraName", &curInfo->mAnimCameraName);
         map->getValue< s32 >(i, "AnimCameraStartFrame", &curInfo->mAnimCameraStartFrame);
         map->getValue< s32 >(i, "AnimCameraEndFrame", &curInfo->mAnimCameraEndFrame);
-        s32 continious = -1;
-        map->getValue< s32 >(i, "IsContinuous", &continious);
+        s32 continuous = -1;
+        map->getValue< s32 >(i, "IsContinuous", &continuous);
 
-        curInfo->mIsContinuous = (continious == true);
+        curInfo->mIsContinuous = (continuous == true);
         DemoCameraFunction::setStringNullIfEmpty(&curInfo->mCameraTargetName);
         DemoCameraFunction::setStringNullIfEmpty(&curInfo->mAnimCameraName);
 
