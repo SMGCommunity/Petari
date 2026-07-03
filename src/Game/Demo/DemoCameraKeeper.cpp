@@ -17,10 +17,8 @@ DemoCameraInfo::DemoCameraInfo()
 }
 
 void DemoCameraKeeper::initCast(LiveActor* pActor, const JMapInfoIter& rIter) {
-    s32 i;
-    DemoCameraInfo* curInfo;
-    for (i = 0; i < _4; curInfo++, i++) {
-        curInfo = &_8[i];
+    for (s32 i = 0; i < _4; i++) {
+        DemoCameraInfo* curInfo = &_8[i];
         if (!DemoFunction::isTargetDemoCast(pActor, rIter, curInfo->mCameraTargetName, curInfo->mCameraTargetCastID)) {
             continue;
         }
@@ -42,10 +40,8 @@ void DemoCameraKeeper::update() {
         return;
     }
 
-    s32 i;
-    DemoCameraInfo* curInfo;
-    for (i = 0; i < _4; i++) {
-        curInfo = &_8[i];
+    for (s32 i = 0; i < _4; i++) {
+        DemoCameraInfo* curInfo = &_8[i];
         executeType(curInfo);
     }
 }
@@ -87,7 +83,7 @@ void DemoCameraKeeper::executeFirst(const DemoCameraInfo* pInfo) {
 
     if (pInfo->_24 != nullptr) {
         if (pInfo->mAnimCameraName != nullptr) {
-            MR::removeExtensionString(animCameraName, 256, pInfo->mAnimCameraName);
+            MR::removeExtensionString(animCameraName, sizeof(animCameraName), pInfo->mAnimCameraName);
             MR::startAnimCameraTargetSelf(pInfo->_24, pInfo->_20, animCameraName, pInfo->mAnimCameraStartFrame, 1.0f);
         } else {
             MR::startEventCamera(pInfo->_20, pInfo->_1C, CameraTargetArg(pInfo->_24), -1);
@@ -104,7 +100,7 @@ void DemoCameraKeeper::executeLast(const DemoCameraInfo* pInfo) {
     if (pInfo->mAnimCameraName == nullptr)
         return;
 
-    MR::removeExtensionString(animCameraName, 256, pInfo->mAnimCameraName);
+    MR::removeExtensionString(animCameraName, sizeof(animCameraName), pInfo->mAnimCameraName);
     MR::endAnimCamera(pInfo->_24, pInfo->_20, animCameraName, pInfo->mAnimCameraEndFrame, true);
 }
 
@@ -112,7 +108,6 @@ void DemoCameraKeeper::endCurrentCamera() {
     if (_10 != nullptr) {
         MR::endEventCamera(_10->_20, _10->_1C, _10->mIsContinuous != false, -1);
     }
-
     _10 = nullptr;
 }
 
@@ -126,10 +121,8 @@ DemoCameraKeeper::DemoCameraKeeper(DemoExecutor* pExecutor, const JMapInfoIter& 
 
     s32 executorNameLen = strlen(mExecutor->mName);
 
-    s32 i;
-    DemoCameraInfo* curInfo;
-    for (i = 0; i < _4; i++) {
-        curInfo = &_8[i];
+    for (s32 i = 0; i < _4; i++) {
+        DemoCameraInfo* curInfo = &_8[i];
         map->getValue< const char* >(i, "PartName", &curInfo->mPartName);
         map->getValue< const char* >(i, "CameraTargetName", &curInfo->mCameraTargetName);
         map->getValue< s32 >(i, "CameraTargetCastID", &curInfo->mCameraTargetCastID);
