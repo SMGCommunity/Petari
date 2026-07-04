@@ -9,7 +9,7 @@
 namespace {
     static char* const sPlaySoundNames[] = {nullptr, "SE_SY_GET_PRIZE_RING_5", "SE_SY_GET_PRIZE_RING_4", "SE_SY_GET_PRIZE_RING_3", "SE_SY_GET_PRIZE_RING_2"};
     static const f32 sOnTriggerFlashFrames[] = {10.0f, 60.0f, 110.0f, 160.0f, 210.0f, 240.0f, 270.0f, 300.0f, -1.0f};
-};
+};  // namespace
 
 namespace NrvPrizeRing {
     NEW_NERVE(PrizeRingStart, PrizeRing, Start);
