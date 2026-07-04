@@ -1,12 +1,14 @@
 #include "Game/LiveActor/ModelManager.hpp"
 #include "Game/MapObj/IceStep.hpp"
 #include "Game/Player/DLchanger.hpp"
+#include "Game/Player/DrawAdaptor.hpp"
 #include "Game/Player/J3DModelX.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioParts.hpp"
 #include "Game/Player/ModelHolder.hpp"
 #include "Game/Player/TornadoMario.hpp"
+#include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/FileUtil.hpp"
@@ -26,7 +28,6 @@
 #include "JSystem/JUtility/JUTNameTab.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
 #include <cstring>
-#include <new>
 #include <revolution/gd/GDBase.h>
 
 namespace MR {
@@ -43,11 +44,6 @@ struct DLholder {
     u8* mDL;
     u16 mSize;
     u16 _6;
-};
-
-class DrawAdaptor {
-public:
-    DrawAdaptor(const MR::FunctorBase&, int);
 };
 
 class JetTurtleShadow : public LiveActor {
@@ -94,51 +90,11 @@ namespace {
 };  // namespace
 
 void MarioActor::initDrawAndModel() {
-    DrawAdaptor* adaptor = nullptr;
-
-    void* mem = ::operator new(0x10);
-    if (mem) {
-        MR::FunctorV0M< const MarioActor*, void (MarioActor::*)() const > functor =
-            MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawShadow);
-        adaptor = new (mem) DrawAdaptor(functor, 0x29);
-    }
-    _218 = adaptor;
-
-    adaptor = nullptr;
-    mem = ::operator new(0x10);
-    if (mem) {
-        MR::FunctorV0M< const MarioActor*, void (MarioActor::*)() const > functor =
-            MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawSilhouette);
-        adaptor = new (mem) DrawAdaptor(functor, 0x28);
-    }
-    _21C = adaptor;
-
-    adaptor = nullptr;
-    mem = ::operator new(0x10);
-    if (mem) {
-        MR::FunctorV0M< const MarioActor*, void (MarioActor::*)() const > functor =
-            MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawPreWipe);
-        adaptor = new (mem) DrawAdaptor(functor, 0x41);
-    }
-    _220 = adaptor;
-
-    adaptor = nullptr;
-    mem = ::operator new(0x10);
-    if (mem) {
-        MR::FunctorV0M< const MarioActor*, void (MarioActor::*)() const > functor =
-            MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawScreenBlend);
-        adaptor = new (mem) DrawAdaptor(functor, 0x2F);
-    }
-    _228 = adaptor;
-
-    adaptor = nullptr;
-    mem = ::operator new(0x10);
-    if (mem) {
-        MR::FunctorV0M< const MarioActor*, void (MarioActor::*)() const > functor =
-            MR::Functor(static_cast< const MarioActor* >(this), &MarioActor::drawIndirect);
-        adaptor = new (mem) DrawAdaptor(functor, 0x24);
-    }
-    _22C = adaptor;
+    _218 = new DrawAdaptor(MR::Functor(this, &MarioActor::drawShadow), MR::DrawType_AlphaShadow);
+    _21C = new DrawAdaptor(MR::Functor(this, &MarioActor::drawSilhouette), MR::DrawType_0x28);
+    _220 = new DrawAdaptor(MR::Functor(this, &MarioActor::drawPreWipe), MR::DrawType_CometScreenFilter);
+    _228 = new DrawAdaptor(MR::Functor(this, &MarioActor::drawScreenBlend), MR::DrawType_CenterScreenBlur);
+    _22C = new DrawAdaptor(MR::Functor(this, &MarioActor::drawIndirect), MR::DrawType_0x24);
 
     if (gIsLuigi) {
         initModelManagerWithAnm("Luigi", "MarioAnime", true);
