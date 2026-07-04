@@ -5371,7 +5371,7 @@ Game/MapObj/PressureBase.cpp:
 Game/MapObj/PrizeRing.cpp:
 	.text       start:0x8021286C end:0x80213084
 	.ctors      start:0x8052EE14 end:0x8052EE18
-	.rodata     start:0x80533600 end:0x80533650
+	.rodata     start:0x80533600 end:0x80533640
 	.data       start:0x8059BED0 end:0x8059C0A8
 	.sdata      start:0x806B1EF0 end:0x806B1EF8
 	.sbss       start:0x806B55F0 end:0x806B5608
@@ -5477,7 +5477,7 @@ Game/MapObj/RevolvingWay.cpp:
 Game/MapObj/Rock.cpp:
 	.text       start:0x8021ADD8 end:0x8021D5F0
 	.ctors      start:0x8052EE44 end:0x8052EE48
-	.rodata     start:0x80533650 end:0x80533678
+	.rodata     start:0x80533640 end:0x80533678
 	.data       start:0x8059D460 end:0x8059D7C8
 	.sdata      start:0x806B1F40 end:0x806B1F50
 	.sbss       start:0x806B56C8 end:0x806B56E0

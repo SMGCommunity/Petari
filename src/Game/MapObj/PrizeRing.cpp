@@ -1,6 +1,15 @@
 #include "Game/MapObj/PrizeRing.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "revolution/types.h"
+#include <cstddef>
+
+namespace {
+    static char* const sPlaySoundNames[] = {nullptr, "SE_SY_GET_PRIZE_RING_5", "SE_SY_GET_PRIZE_RING_4", "SE_SY_GET_PRIZE_RING_3", "SE_SY_GET_PRIZE_RING_2"};
+    static const f32 sOnTriggerFlashFrames[] = {10.0f, 60.0f, 110.0f, 160.0f, 210.0f, 240.0f, 270.0f, 300.0f, -1.0f};
+};
 
 namespace NrvPrizeRing {
     NEW_NERVE(PrizeRingStart, PrizeRing, Start);
@@ -12,7 +21,7 @@ namespace NrvPrizeRing {
 };  // namespace NrvPrizeRing
 
 PrizeRing::PrizeRing() : ModelObj("PrizeRing", "PrizeRing", nullptr, -2, -2, -2, false) {
-    _90 = 800;
+    mLifeTime = 800;
 }
 
 PrizeRing::~PrizeRing() {
@@ -21,16 +30,16 @@ PrizeRing::~PrizeRing() {
 void PrizeRing::init(const JMapInfoIter& rIter) {
     initNerve(&NrvPrizeRing::PrizeRingStart::sInstance);
     initHitSensor(1);
-    TVec3f vec;
-    vec.x = 0.0f;
-    vec.y = 0.0f;
-    vec.z = 0.0f;
-    MR::addHitSensorMapObjSimple(this, "body", 4, 300.0f, vec);
+    TVec3f offset;
+    offset.x = 0.0f;
+    offset.y = 0.0f;
+    offset.z = 0.0f;
+    MR::addHitSensorMapObjSimple(this, "body", 4, 300.0f, offset);
     makeActorDead();
 }
 
 void PrizeRing::appear() {
-    this->makeActorAppeared();
+    makeActorAppeared();
     MR::showModel(this);
     MR::invalidateClipping(this);
     setNerve(&NrvPrizeRing::PrizeRingStart::sInstance);
@@ -40,14 +49,14 @@ void PrizeRing::kill() {
     makeActorDead();
 }
 
-void PrizeRing::setLife(int num) {
-    _90 = num;
+void PrizeRing::setLife(int pTime) {
+    mLifeTime = pTime;
 }
 
-void PrizeRing::setNumber(int num) {
-    f32 pNum = num - 1.0f;
+void PrizeRing::setNumber(int pNum) {
+    f32 num = pNum - 1.0f;
     MR::startBva(this, "Number");
-    MR::setBvaFrameAndStop(this, pNum);
+    MR::setBvaFrameAndStop(this, num);
 }
 
 void PrizeRing::setNervePass() {
@@ -89,7 +98,7 @@ void PrizeRing::exeLoop() {
         MR::startBrk(this, "Loop");
     }
 
-    if (MR::isStep(this, _90)) {
+    if (MR::isStep(this, mLifeTime)) {
         setNerve(&NrvPrizeRing::PrizeRingTimeout::sInstance);
     }
 }
@@ -105,7 +114,7 @@ void PrizeRing::exeTimeout() {
 
     if (MR::isBrkStopped(this)) {
         MR::startSound(this, "SE_OJ_PRIZE_RING_DISAPPEAR");
-        this->kill();
+        kill();
     }
 }
 
@@ -117,7 +126,7 @@ void PrizeRing::exePass() {
         MR::startBck(this, "End", nullptr);
         MR::startBrk(this, "End");
         MR::tryRumblePadMiddle(this, 0);
-        PrizeRing::playSound();
+        playSound();
     }
 
     if (MR::isBckStopped(this)) {
@@ -130,20 +139,65 @@ void PrizeRing::exeReadyToKill() {
         MR::hideModel(this);
     }
 }
-/*
+
 bool PrizeRing::isPassed() const {
-    if (!PrizeRing::isReadyToPass()) {
-        if (!isNerve(&NrvPrizeRing::PrizeRingPass::sInstance)) {
-            return PrizeRing::isReadyToKill();
-        }
+    bool pass = isReadyToPass();
+    if (!pass) {
+        pass = isNerve(&NrvPrizeRing::PrizeRingPass::sInstance);
+    }
+    
+    if (!pass) {
+        return isReadyToKill();
     }
 }
-*/
 
 void PrizeRing::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
-        if (!PrizeRing::isPassed()) {
+        if (!isPassed()) {
             setNerve(&NrvPrizeRing::PrizeRingReadyToPass::sInstance);
         }
     }
+}
+
+s32 PrizeRing::getNumber() const {
+    return static_cast<s32>(MR::getBvaCtrl(this)->mFrame) + 1;
+}
+
+void PrizeRing::playSound() const {
+    const char* sound = nullptr;
+    if (getNumber() < static_cast<u32>(ARRAY_SIZE(::sPlaySoundNames))) {
+        sound = ::sPlaySoundNames[getNumber()];
+    }
+
+    if (sound == nullptr) {
+        sound = "SE_SY_GET_PRIZE_RING_1";
+    }
+
+    MR::startSystemSE(sound);
+    if (getNumber() == 1) {
+        MR::startSystemSE("SE_SY_TOTAL_COMPLETE");
+    }
+}
+
+bool PrizeRing::isOnTriggerTimeoutFlash() const {
+    if (!isNerve(&NrvPrizeRing::PrizeRingTimeout::sInstance)) {
+        return false;
+    }
+
+    J3DFrameCtrl* brkCtrl = MR::getBrkCtrl(this);
+    for (s32 i = 0; i < 9; i++) {
+        f32 frame;
+        f32 rate;
+        f32 flashFrames;
+
+        flashFrames = ::sOnTriggerFlashFrames[i];
+        frame = brkCtrl->mFrame;
+        if (frame <= flashFrames) {
+            rate = brkCtrl->mRate;
+            if (flashFrames < frame + rate) {
+                return true;
+            }
+        }
+    }    
+    return false;
 }
