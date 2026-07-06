@@ -15,6 +15,7 @@ public:
 
     void viewCalc2();
     void viewCalc3(u32, MtxPtr);
+    bool simpleDrawSetup(J3DMaterial*);
     void simpleDrawShape(J3DMaterial*);
     void storeDisplayList(_GDLObj*, u32);
     void shapePacketDrawFast(J3DShapePacketX*);

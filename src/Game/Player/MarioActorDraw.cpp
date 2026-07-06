@@ -747,7 +747,7 @@ void MarioActor::changeDisplayMode(u8 mode) {
     }
 
     MtxPtr handMtx = MR::getJointMtx(this, "HandR");
-    _4A0->setBaseMtx(handMtx);
+    mSearchLightThrowPos->setBaseMtx(handMtx);
 }
 
 void MarioActor::calcViewMainModel() {
