@@ -33,21 +33,21 @@ public:
     void exeConfirm();
 
     /* 0x8C */ LiveActorGroup* mSphereGroup;
-    /* 0x90 */ SphereSelectorHandle* _90;
-    /* 0x94 */ u32 _94;
+    /* 0x90 */ SphereSelectorHandle* mHandle;
+    /* 0x94 */ LiveActor* mSelectedTarget;
     /* 0x98 */ u32 _98;
-    /* 0x9C */ u32 _9C;
-    /* 0xA0 */ u32 _A0;
+    /* 0x9C */ u32 _9C;     // This doesn't seem to exist
+    /* 0xA0 */ LiveActor* mPointingTarget;
     /* 0xA4 */ s32 _A4;
-    /* 0xA8 */ u32 _A8;
-    /* 0xAC */ u32 _AC;
+    /* 0xA8 */ f32 _A8;
+    /* 0xAC */ f32 _AC;
     /* 0xB0 */ bool mIsPointingInvalid;
-    /* 0xB1 */ bool _B1;
+    /* 0xB1 */ bool _B1;    // Something for playing sounds the first time you click on a galaxy or cancel the selection
 };
 
 class SphereSelectorFunction {
 public:
-    static bool registerTarget(LiveActor*);
+    static void registerTarget(LiveActor*);
     static bool isPadButton();
     static s32 getSelectStartFrame();
     static s32 getConfirmStartCancelFrame();
