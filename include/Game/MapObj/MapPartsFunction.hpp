@@ -45,5 +45,5 @@ public:
 
     Spine* mSpine;     // 0xC
     LiveActor* mHost;  // 0x10
-    u8 _14;
+    bool mIsActive;    // 0x14
 };

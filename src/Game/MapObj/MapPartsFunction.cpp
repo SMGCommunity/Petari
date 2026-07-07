@@ -7,7 +7,7 @@
 MapPartsFunction::MapPartsFunction(LiveActor* pActor, const char* pName) : NameObj(pName != 0 ? pName : "マップパーツ機能") {
     mSpine = 0;
     mHost = pActor;
-    _14 = 1;
+    mIsActive = true;
 }
 
 void MapPartsFunction::sendMsgToHost(u32 msg) {
@@ -16,7 +16,7 @@ void MapPartsFunction::sendMsgToHost(u32 msg) {
 }
 
 void MapPartsFunction::movement() {
-    if (_14) {
+    if (mIsActive) {
         mSpine->update();
         control();
     }
