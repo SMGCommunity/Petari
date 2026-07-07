@@ -25,6 +25,11 @@
 #include "revolution/mtx.h"
 #include "revolution/types.h"
 
+void BlueStarCupsulePlanet_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+}
+
 namespace {
     static const BlueStarCupsulePlanetParam sParams[] = {{"BlueStarCupsulePlanet", 500.0f}, {"UFOBlueStarCupsule", 200.0f}};
 
@@ -240,7 +245,7 @@ void BlueStarCupsulePlanet::exeActive() {
     updatePose();
     MR::noticeInTouchableRange();
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_PULL", MR::calcDistanceToPlayer(this));
-    MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_PULL");
+    MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_POINT");
 }
 
 void BlueStarCupsulePlanet::calcAndSetBaseMtx() {

@@ -16,7 +16,8 @@ namespace {
 
 class GCaptureTargetable {
 public:
-    GCaptureTargetable();
+    GCaptureTargetable() {
+    }
 
     virtual bool canEndHold() const;
     virtual bool isReleaseForce() const;
