@@ -2,29 +2,25 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 
-MarioState::MarioState(MarioActor* actor, u32 statusId) : MarioModule(actor) {
-    _8 = nullptr;
-    mStatusId = statusId;
-    _10 = 0;
+MarioState::MarioState(MarioActor* pActor, u32 statusId) : MarioModule(pActor), _8(), mStatusId(statusId), _10() {
 }
 
 bool MarioState::proc(u32 msg) {
     switch (msg) {
     case 0:
-        start();
-        break;
+        return start();
     case 1:
         if (_10 != 0) {
             break;
         }
         _10 = 1;
-        notice();
+        close();
         _10 = 0;
         break;
     case 2:
-        return close();
-    case 3:
         return update();
+    case 3:
+        return notice();
     case 4:
         return keep();
     }
@@ -32,22 +28,22 @@ bool MarioState::proc(u32 msg) {
 }
 
 void Mario::sendStateMsg(u32 msg) {
-    MarioState* pState = _97C;
-    while (pState != nullptr) {
-        MarioState* pNext = pState->_8;
-        if (isStatusActiveID(pState->mStatusId) == 0) {
+    MarioState* pNext;
+    for (MarioState* pState = _97C; pState != nullptr; ) {
+        pNext = pState->_8;
+        if (isStatusActive(pState->mStatusId) == 0) {
             pState = pNext;
             continue;
         }
+
         if (pState->proc(msg) == 0) {
-            if (isStatusActiveID(pState->mStatusId) != 0) {
+            if (isStatusActive(pState->mStatusId) != 0) {
                 closeStatus(pState);
             }
-        } else {
-            if (msg == 2) {
-                msg = 4;
-            }
+        } else if (msg == 2) {
+            msg = 4;
         }
+
         pState = pNext;
     }
 }
@@ -66,7 +62,7 @@ bool MarioState::postureCtrl(MtxPtr mtx) {
 }
 
 void Mario::changeStatus(MarioState* pState) {
-    if (isStatusActiveID(pState->mStatusId)) {
+    if (isStatusActive(pState->mStatusId)) {
         return;
     }
     _980 = pState;
@@ -119,11 +115,11 @@ bool Mario::isStatusActive(u32 statusId) const {
     if (!pState) {
         return false;
     }
-    if (pState->mStatusId == statusId) {
+    if (statusId == pState->mStatusId) {
         return true;
     }
     while (pState) {
-        if (pState->mStatusId == statusId) {
+        if (statusId == pState->mStatusId) {
             return true;
         }
         pState = pState->_8;
