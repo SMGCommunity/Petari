@@ -459,29 +459,29 @@ void MapObjActorUtil::endAllMapPartsFunctions(const MapObjActor* pActor) {
 
 void MapObjActorUtil::pauseAllMapPartsFunctions(const MapObjActor* pActor) {
     if (pActor->mRotator) {
-        pActor->mRotator->_14 = 0;
+        pActor->mRotator->mIsActive = false;
     }
 
     if (pActor->mRailMover) {
-        pActor->mRailMover->_14 = 0;
+        pActor->mRailMover->mIsActive = false;
     }
 
     if (pActor->mRailRotator) {
-        pActor->mRailRotator->_14 = 0;
+        pActor->mRailRotator->mIsActive = false;
     }
 }
 
 void MapObjActorUtil::resumeAllMapPartsFunctions(const MapObjActor* pActor) {
     if (pActor->mRotator) {
-        pActor->mRotator->_14 = 1;
+        pActor->mRotator->mIsActive = true;
     }
 
     if (pActor->mRailMover) {
-        pActor->mRailMover->_14 = 1;
+        pActor->mRailMover->mIsActive = true;
     }
 
     if (pActor->mRailRotator) {
-        pActor->mRailRotator->_14 = 1;
+        pActor->mRailRotator->mIsActive = true;
     }
 }
 
@@ -518,7 +518,7 @@ void MapObjActorUtil::endRotator(const MapObjActor* pActor) {
 }
 
 void MapObjActorUtil::pauseRotator(const MapObjActor* pActor) {
-    pActor->mRotator->_14 = 0;
+    pActor->mRotator->mIsActive = false;
 }
 
 void MapObjActorUtil::resetRailMoverToInitPos(const MapObjActor* pActor) {
