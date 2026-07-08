@@ -6936,13 +6936,13 @@ Game/Player/MarioActorTakeMsg.cpp:
 Game/Player/MarioActorBlackHole.cpp:
 	.text       start:0x802CA7F8 end:0x802CAD30
 	.ctors      start:0x8052F0B0 end:0x8052F0B4
-	.data       start:0x805BAB40 end:0x805BAD70
+	.data       start:0x805BAB40 end:0x805BAC68
 	.sdata2     start:0x806BF948 end:0x806BF968
 
 Game/Player/MarioAnimator.cpp:
 	.text       start:0x802CAD30 end:0x802CDBC8
 	.ctors      start:0x8052F0B4 end:0x8052F0B8
-	.data       start:0x805BAD70 end:0x805C3DE0
+	.data       start:0x805BAC68 end:0x805C3DE0
 	.sdata      start:0x806B2288 end:0x806B22A8
 	.sdata2     start:0x806BF968 end:0x806BF9D8
 
