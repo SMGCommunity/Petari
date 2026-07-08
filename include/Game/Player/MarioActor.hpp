@@ -313,7 +313,6 @@ public:
     bool sendPunch(HitSensor*, bool);
     void reactionPunch(HitSensor*);
     void tryCoinPullInRush();
-    bool tryJetAttack(HitSensor*);
     void releaseThrowMemoSensor();
     void createIceFloor(const TVec3f&);
     void syncJumpBeeStickMode();
@@ -332,7 +331,6 @@ public:
 
     void forceKill(u32);
 
-    void sendMsgUpperPunch(HitSensor*);
     bool sendMsgToSensor(HitSensor*, u32);
 
     void entryWallWalkMode(const TVec3f&, const TVec3f&);
@@ -363,6 +361,25 @@ public:
     bool selectJumpRushSensor(const char*) const;
 
     void memorizeSensorThrow(HitSensor*);
+
+    // Defined in MarioActorOffensiveMsg
+    void attackOrPushSensor(HitSensor*, f32);
+    void attackOrPushSensorInDamage(HitSensor*, f32);
+    void attackOrPushSensorInRush(HitSensor*, f32);
+    void tryAddClapCoin(HitSensor*);
+    bool tryTornadoAttack(HitSensor*);
+    bool isUnderTarget(HitSensor*);
+    bool tryHipDropAttack(HitSensor*);
+    bool checkAndTryTrampleAttack(HitSensor*, f32, bool);
+    bool tryTrampleAttack(HitSensor*);
+    bool cylinderHorizontalCheck(HitSensor*);
+    bool tryJetAttack(HitSensor*);
+    void tryCounterJetAttack(HitSensor*);
+    bool tryGetItem(HitSensor*);
+    bool cylinderPushCheck(const TVec3f&, f32, f32, f32);
+    void attackOrPushPolygons();
+    void sendWallTouch(HitSensor*, HitSensor*);
+    bool sendMsgUpperPunch(HitSensor*);
 
     const MarioConst& getConst() const {
         return *mConst;
@@ -552,7 +569,7 @@ public:
     /* 0x6D4 */ f32 _6D4;
     /* 0x6D8 */ f32 _6D8;
     /* 0x6DC */ HitSensor* _6DC[0x40];
-    /* 0x7DC */ u16 _7DC;
+    /* 0x7DC */ u16 _7DC; // _6DC count
     /* 0x7DE */ u16 _7DE;
     /* 0x7E0 */ u16 _7E0;
     /* 0x7E2 */ u8 _7E2;

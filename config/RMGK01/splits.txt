@@ -6903,17 +6903,19 @@ Game/Player/MarioActorMatrix.cpp:
 Game/Player/MarioActorMorph.cpp:
 	.text       start:0x802C48A4 end:0x802C52CC
 	.ctors      start:0x8052F098 end:0x8052F09C
-	.data       start:0x805BA5B8 end:0x805BA840
+	.data       start:0x805BA5B8 end:0x805BA740
 	.sdata2     start:0x806BF890 end:0x806BF898
 
 Game/Player/MarioActorEye.cpp:
 	.text       start:0x802C52CC end:0x802C55E0
 	.ctors      start:0x8052F09C end:0x8052F0A0
+	.data       start:0x805BA740 end:0x805BA758
 	.sdata2     start:0x806BF898 end:0x806BF8A0
 
 Game/Player/MarioActorOffensiveMsg.cpp:
 	.text       start:0x802C55E0 end:0x802C7078
 	.ctors      start:0x8052F0A0 end:0x8052F0A4
+	.data       start:0x805BA758 end:0x805BA840
 	.sdata      start:0x806B2258 end:0x806B2288
 	.sdata2     start:0x806BF8A0 end:0x806BF8C8
 
