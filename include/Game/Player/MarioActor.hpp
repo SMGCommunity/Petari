@@ -390,7 +390,7 @@ public:
     }
 
     // Only used in isSleeping() to make it match
-    inline bool marioIsAnimationRun(const char* pAnimName) const {
+    inline bool IsMarioAnimationRun(const char* pAnimName) const {
         return mMario->isAnimationRun(pAnimName);
     }
 

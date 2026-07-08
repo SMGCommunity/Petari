@@ -674,7 +674,7 @@ void MarioActor::movement() {
     PSMTXCopy(MR::getCameraViewMtx(), _AE0.toMtxPtr());
     updateCameraInfo();
     _4A8 = 0;
-    _4AC = HALF_PI / 2;
+    _4AC = HALF_PI / 2.0f;
     LiveActor::movement();
     TVec3f stack_134(mPosition);
     stack_134 -= _294;
@@ -1622,7 +1622,7 @@ void MarioActor::calcAnimInMovement() {
     }
 
     if (_3D8 != 0) {
-        if (mPlayerMode == 6 && mMario->mVerticalSpeed < mConst->mTable[mConst->mCurrentTable]->mTeresaWaitHeight) {
+        if (mPlayerMode == 6 && mMario->mVerticalSpeed < mConst->getTable()->mTeresaWaitHeight) {
             mPosition -= getGravityVec();
         }
 
@@ -2092,11 +2092,11 @@ void MarioActor::calcAndSetBaseMtx() {
         _9F4 = mMario->mAirGravityVec;
 
         TVec3f vec(-getGravityVec());
-        vec.scale(mConst->mTable[mConst->mCurrentTable]->mBeePoseHeadToFootLength);
+        vec.scale(mConst->getTable()->mBeePoseHeadToFootLength);
         mtxD8 = MR::tmpMtxTrans(-vec);
 
         TVec3f vec2(_9F4);
-        vec2.scale(mConst->mTable[mConst->mCurrentTable]->mBeePoseHeadToFootLength);
+        vec2.scale(mConst->getTable()->mBeePoseHeadToFootLength);
 
         TVec3f vec3(mPosition);
         vec3 -= vec2;
@@ -2112,9 +2112,9 @@ void MarioActor::calcAndSetBaseMtx() {
 
             if (!MR::normalizeOrZero(&vec5)) {
                 f32 val = MR::acosEx(_9F4.dot(vec4));
-                f32 max = mConst->mTable[mConst->mCurrentTable]->mBeePoseDelayAngleAir;
+                f32 max = mConst->getTable()->mBeePoseDelayAngleAir;
                 if (mMario->mMovementStates_LOW_WORD >> 30 & 1) {
-                    max = mConst->mTable[mConst->mCurrentTable]->mBeePoseDelayAngleGround;
+                    max = mConst->getTable()->mBeePoseDelayAngleGround;
                 }
                 dot = MR::clamp(val, 0.0f, max);
             }
@@ -2126,14 +2126,14 @@ void MarioActor::calcAndSetBaseMtx() {
         PSMTXConcat(MR::tmpMtxTrans(vec), mtx2, mtx2);
 
         TVec3f vec240(_9F4);
-        vec240.scale(mConst->mTable[mConst->mCurrentTable]->mBeePoseDelayAccel);
+        vec240.scale(mConst->getTable()->mBeePoseDelayAccel);
         MR::vecKillElement(vec240, _360, &vec240);
 
         _354 += vec240;
         _33C += _354;
 
         TVec3f vec300(_9F4);
-        vec300.scale(mConst->mTable[mConst->mCurrentTable]->mBeePoseHeadToFootLength);
+        vec300.scale(mConst->getTable()->mBeePoseHeadToFootLength);
 
         TVec3f vec2F4(mPosition);
         vec2F4 -= vec300;
@@ -2148,9 +2148,9 @@ void MarioActor::calcAndSetBaseMtx() {
 
         f32 dot2 = MR::acosEx(_9F4.dot(vec258));
 
-        f32 val = mConst->mTable[mConst->mCurrentTable]->mBeePoseLimitAngleAir;
+        f32 val = mConst->getTable()->mBeePoseLimitAngleAir;
         if (mMario->mMovementStates_LOW_WORD >> 30 & 1) {
-            val = mConst->mTable[mConst->mCurrentTable]->mBeePoseLimitAngleGround;
+            val = mConst->getTable()->mBeePoseLimitAngleGround;
         }
 
         if (val < dot2) {
@@ -2166,16 +2166,16 @@ void MarioActor::calcAndSetBaseMtx() {
             }
         }
 
-        _360.setLength(mConst->mTable[mConst->mCurrentTable]->mBeePoseHeadToFootLength);
+        _360.setLength(mConst->getTable()->mBeePoseHeadToFootLength);
 
-        if (mConst->mTable[mConst->mCurrentTable]->mBeePoseHeadToFootLength < vec24C.length()) {
+        if (mConst->getTable()->mBeePoseHeadToFootLength < vec24C.length()) {
             TVec3f vec318(vec24C);
             vec318 -= _360;
             _354 += -vec318;
         }
 
         TVec3f vec33C(_9F4);
-        vec33C.scale(mConst->mTable[mConst->mCurrentTable]->mBeePoseHeadToFootLength);
+        vec33C.scale(mConst->getTable()->mBeePoseHeadToFootLength);
 
         TVec3f vec330(mPosition);
         vec330 -= vec33C;
@@ -2183,13 +2183,13 @@ void MarioActor::calcAndSetBaseMtx() {
 
         MR::normalizeOrZero(&_360);
 
-        if (mConst->mTable[mConst->mCurrentTable]->mBeePoseDelaySpeedLimit < _354.length()) {
-            _354.setLength(mConst->mTable[mConst->mCurrentTable]->mBeePoseDelaySpeedLimit);
+        if (mConst->getTable()->mBeePoseDelaySpeedLimit < _354.length()) {
+            _354.setLength(mConst->getTable()->mBeePoseDelaySpeedLimit);
         }
 
-        f32 friction = mConst->mTable[mConst->mCurrentTable]->mBeePoseFrictionStop;
+        f32 friction = mConst->getTable()->mBeePoseFrictionStop;
         if (mMario->_71C == 0 && !isJumping()) {
-            friction = mConst->mTable[mConst->mCurrentTable]->mBeePoseFrictionMove;
+            friction = mConst->getTable()->mBeePoseFrictionMove;
         }
 
         _354.scale(friction);
@@ -2205,17 +2205,17 @@ void MarioActor::calcAndSetBaseMtx() {
         }
 
         if (mMario->_71C < 3 && !isJumping()) {
-            _348.scale(mConst->mTable[mConst->mCurrentTable]->mBeePoseTransBlendingRatioStop);
+            _348.scale(mConst->getTable()->mBeePoseTransBlendingRatioStop);
             MR::setMtxTrans(mtxD8, _348);
         } else {
             TVec3f vec378(_33C);
             vec378 -= mPosition;
 
             TVec3f vec36C(vec378);
-            vec36C.scale(1.0f - mConst->mTable[mConst->mCurrentTable]->mBeePoseTransBlendingRatioMove);
+            vec36C.scale(1.0f - mConst->getTable()->mBeePoseTransBlendingRatioMove);
 
             TVec3f vec360(_348);
-            vec360.scale(mConst->mTable[mConst->mCurrentTable]->mBeePoseTransBlendingRatioMove);
+            vec360.scale(mConst->getTable()->mBeePoseTransBlendingRatioMove);
 
             _348 += vec36C;
 
@@ -2386,12 +2386,7 @@ bool MarioActor::isJumping() const {
         return true;
     }
 
-    bool out = false;
-    if (mMario->mMovementStates.jumping && !mMario->mMovementStates._1) {
-        out = true;
-    }
-
-    return out;
+    return mMario->mMovementStates.jumping && !mMario->mMovementStates._1;
 }
 
 bool MarioActor::isJumpRising() const {
@@ -2405,7 +2400,7 @@ bool MarioActor::isPunching() const {
 
     if (mMario->mSwim->check7Aand7C()) {
         return true;
-    };
+    }
 
     if (_3E5) {
         return true;
@@ -2452,7 +2447,7 @@ bool MarioActor::isStaggering() const {
 bool MarioActor::isSleeping() const {
     // No way that this is a real inline but only way I could make it match
     bool out = true;
-    if (!marioIsAnimationRun("特殊ウエイト1B") && !marioIsAnimationRun("特殊ウエイト1A")) {
+    if (!IsMarioAnimationRun("特殊ウエイト1B") && !IsMarioAnimationRun("特殊ウエイト1A")) {
         out = false;
     }
 
