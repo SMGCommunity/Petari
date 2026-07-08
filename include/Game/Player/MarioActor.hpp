@@ -532,12 +532,7 @@ public:
             /* 0x468 */ u32 _468;
             /* 0x46C */ HitSensor* _46C;
             /* 0x470 */ u32 _470;
-            /* 0x468 */ u32 _468;
-            /* 0x46C */ HitSensor* _46C;
-            /* 0x470 */ u32 _470;
         };
-
-        /* 0x468 */ TVec3f _468Vec;
 
         /* 0x468 */ TVec3f _468Vec;
     };
@@ -766,12 +761,9 @@ public:
 
     /* 0xF38 */ u8 _F38;
 
-
-    /* 0xF38 */ u8 _F38;
-
     union {
         /* 0xF3C */ AudGeneric* _F3C;
-        /* 0xF3C */ TVec3f* _F3C_vec;
+        /* 0xF3C */ TVec3f* _F3CVec;
     };
 
     /* 0xF40 */ u16 _F40;
