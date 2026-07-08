@@ -1,230 +1,192 @@
-
 # Contributing
 
-We will be glad to answer any questions <br>
-for people who wish to contribute.
+Thank you for your interest in contributing! We welcome pull requests and documentation improvements from the community.
 
-All pull requests and issues are welcome.
-
-<br>
-
-### Before Submission
-
-Be sure that all of your submitted code <br>
-follows the guidelines that are listed below.
-
-When running `ninja`, it is **REQUIRED** that the output is `1:1` for a file to be marked MATCHING (otherwise the linking sequence will fail).
-
-After the code matches, be sure to run `objdiff` <br>
-to check the functions to ensure that they are matching.
-
-If it matches, it will automatically be marked as decompiled.
-
-When each function you've matched has been marked as decompiled, <br>
-run `ninja` to see the current percentages.
-
-<br>
-
-### Questions
-
-If you have any questions or concerns, <br>
-please join our **[Discord]** server.
-
-<br>
+If you have any questions, feel free to join our **[Discord]** server.
 
 ---
 
-<br>
+# Before Submitting
 
-## Requirements
+Before opening a pull request, make sure your changes satisfy all of the following:
 
-<br>
-
-### Tools
-
-- A **Disassembler** / **IDA Pro** / **Ghidra**
-
-    *You can also use a decompiler, it can make some things easier*
-
-- **CodeWarrior**
-
-    *We specifically use version `3.0a3`*
-
-- **Python**
-
-    *Version `3.7+`*
-
-- **Any Code IDE (Visual Studio Code recommended)**
-    *If you are using Visual Studio Code, `dtk` automatically creates a `compile_commands.json` file that will help with `clangd`.
-
-<br>
-
-### Knowledge
-
-- **C** / **C++**
-
-    *However **C++** is recommended*
-
-- **PowerPC Assembly**
-
-- **PowerPC** ➝ **C** / **C++** reverse engineering instructions
-
-<br>
-
-*Decompilers such as Hex-Rays (included in IDA Pro) are* <br>
-*useful as they can make the decompilation easier to write.*
-
-<br>
+- Run `clang-format` on every modified file. **Formatting is required.**
+- Run `ninja` and ensure the object you're working on is **1:1 matching**. Non-matching objects cannot be marked as matching and will break the link step.
+- Run `objdiff` to verify every function still matches the original binary.
+- Once all modified functions are marked as decompiled, run `ninja` again to verify it can successfully link.
+- Keep your pull request focused on **a single object whenever possible**. Multiple objects are acceptable only when they are directly related or depend on each other.
+- Every non-matching function in your pull request **must** have a decomp.me scratch linked in a comment directly above the function.
 
 ---
 
-<br>
+# Requirements
 
-## Guidelines
+## Tools
 
-<br>
+Recommended tools:
 
-### General
+- **IDA Pro**, **Ghidra**, or another PowerPC disassembler
+  - A decompiler (such as Hex-Rays) can help understand code, but its output should never be copied directly.
+- **Python 3.7+**
+- A code editor (Visual Studio Code is recommended)
 
-<br>
+When using Visual Studio Code, `dtk` automatically generates a `compile_commands.json` file for `clangd`.
 
-- `clang-format` will do a lot of the work for you. Just be sure that it is enabled to run on save.
+## Knowledge
 
-- Use `nullptr` instead of `0` when assigning / comparing a pointer in C++ code, use `NULL` in C.
+Contributors should be familiar with:
 
-  *Only use `0` when assigning or comparing a value.*
+- C and C++
+- PowerPC assembly
+- PowerPC reverse engineering
 
-<br>
+---
 
-### Headers
+# Coding Guidelines
 
-<br>
+## General
 
-- Use `forward-declared` types when possible
+- Run `clang-format` before submitting any changes.
+- Use `nullptr` instead of `0` for pointers in C++.
+- Use `NULL` for pointers in C.
+- Use `0` only for numeric values.
+- Use the `f` suffix for floating point literals.
+- Avoid humorous comments, jokes, or commentary about typos, compiler behavior, or reverse engineering discoveries. Comments should remain professional and describe the code, not the contributor's thought process.
 
-- At the top of every header place:
+## Headers
 
-    ```c++
-    #pragma once
-    ```
+Every header should begin with:
 
+```cpp
+#pragma once
+```
 
-<br>
+Prefer forward declarations whenever possible instead of adding unnecessary includes.
 
-### Classes
+## Includes
 
-<br>
+Use angle brackets (`<>`) for library and SDK headers:
 
-- Follow the proper syntax for documenting a class's functions and variables:
+```cpp
+#include <revolution/OS.h>
+#include <JSystem/JGeometry.hpp>
+```
 
-    ```c++
-    /* member-offset */     s32 varName;    ///< Description of varName.
-    ```
+Use quotes (`""`) for project headers:
 
-    ```c++
-    /// @brief Function does a thing.
-    /// @param argumentName Is an argument to a function that does a thing.
-    /// @return If the function did a thing.
-    /// @note Might have not done a thing...
-    bool func(s32 argumentName);
-    ```
+```cpp
+#include "Game/MapObj/HipDropRock.hpp"
+```
 
-    If there is a function that does not have this implemented (ie in headers before the new documentation revamp), please take the time to help reimplement them to document this repository better!
+Project includes should always be relative to the `include` directory.
 
-- At the top of every header place:
+## Classes
 
-    ```c++
-    #pragma once
-    ```
+Do not use `this->` unless it is required for compilation.
 
+Member functions should appear in the following order:
 
-<br>
+1. Constructors
+2. Destructor
+3. Operators
+4. Virtual functions
+5. Other member functions
 
-### Includes
+Virtual functions **must** appear in the same order as the original vtable. Preserving the original virtual function order takes precedence over the ordering above.
 
-<br>
+Class members should be documented using the project's standard format:
 
-- For system library includes use:
+```cpp
+/* 0x10 */ s32 mValue;    ///< Description.
+```
 
-    ```c++
-    #include <...>
-    ```
+Functions should also use the project's Doxygen style:
 
-- For game header includes use:
+```cpp
+/// @brief Does something.
+/// @param pValue Pointer to a value.
+/// @return True on success.
+bool doThing(int* pValue);
+```
 
-    ```c++
-    #include "..."
-    ```
+If you encounter an older header that has not yet been documented, documentation improvements are always appreciated.
 
-    *These includes must be relative to the `include` folder.*
+## Naming
 
-<br>
+Known symbols must match the original names exactly, including spelling mistakes.
 
-### Names
+Do **not** "fix" typos in symbol names.
 
-<br>
+Use the following naming conventions:
 
-- Names for known symbols should match **exactly**, <br>
-  even including typos in the symbol.
+- Member variables begin with `m`
+- Pointer parameters begin with `p`
+- Reference parameters begin with `r`
+- Unknown static variables begin with `s`
+- Unknown globals begin with `g`
+- Unknown functions use `camelCase`
 
-- Member variables must be prefixed with `m`.
+## Types
 
-- Arguments for functions must be prefixed with:
+If an original function uses `int`, then use `int`.
 
-    - `p` for pointers
+Do **not** replace it with `s32`, even if they are the same size, as they produce different mangled symbols.
 
-    - `r` for passed-by-reference
+---
 
-- Static variables with:
+# Non-Matching Code
 
-    - No known symbol must be prefixed with `s`
+Non-matching code is welcome, but it should be easy for others to continue working on.
 
-    - Global scope must be prefixed with `g`
+For every non-matching function:
 
-- Functions with no symbols must use **camelCase**.
+- Explain why the function does not currently match, if known.
+- Include a link to the corresponding decomp.me scratch directly above the function.
+- Update the comment if the scratch changes or a better reproduction is found.
 
-    *Such as **inlined** functions.*
+For example:
 
-<br>
+```cpp
+// NON_MATCHING
+// decomp.me: https://decomp.me/scratch/XXXXX
+// Stack usage due to inlines not matching
 
-### Classes
+void someFunction() {
+    ...
+}
+```
 
-<br>
+If you do not know why the function does not match, simply include the decomp.me link and omit the explanation.
 
-- When referencing a class member, do **not** use <br>
-  `this->`, unless it is required for compilation.
+---
 
-- Functions for classes must be put in the following order:
+# Generated Code
 
-    - Constructor
+Decompiler output and AI tools can be helpful for understanding code, suggesting variable names, or improving the readability of existing C++ code.
 
-    - Destructor
+However:
 
-    - Operators
+- **Do not copy and paste IDA output directly into the repository.**
+- **Do not copy and paste AI-generated code directly into the repository.**
 
-    - Virtual Functions
+Submissions containing obvious decompiler output or AI-generated code will be rejected.
 
-    - Member Functions
+AI is perfectly acceptable for tasks such as:
 
-    *If the virtual functions are not in the order that* <br>
-    *they are in the **vtable**, then the rule above can be* <br>
-    *ignored as these functions must be placed in order.*
+- Suggesting better variable or function names.
+- Cleaning up existing C++ code.
+- Explaining PowerPC assembly.
+- Answering reverse engineering questions.
 
+Contributors are expected to understand the code they submit and ensure it accurately matches the original.
 
-<br>
+---
 
-### Nonmatching Code
+# Questions
 
-If your code does **NOT** match, explain in a comment why it does not match.<br>
-Be sure to also include a decomp.me scratch in a comment as well.
+Need help?
 
-<br>
-
-### Types
-
-If the function arguments in the symbol use `int`, <br>
-do **NOT** use `s32`, you have to use `int`, as they <br>
-do not mangle to the same symbol.
+Join our **[Discord]** server and we'll be happy to answer any questions in our decompilation channel!
 
 <!----------------------------------------------------------------------------->
 

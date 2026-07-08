@@ -28,7 +28,7 @@ from tools.project import (
 
 # Game versions
 DEFAULT_VERSION = 0
-VERSIONS = ["RMGK01", "RMGK02"]  # 0  # 1
+VERSIONS = ["RMGK01"]
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -140,12 +140,12 @@ if not config.non_matching:
     config.asm_dir = None
 
 # Tool versions
-config.binutils_tag = "2.42-1"
-config.compilers_tag = "20240706"
-config.dtk_tag = "v1.7.6"
-config.objdiff_tag = "v3.5.1"
+config.binutils_tag = "2.42-2"
+config.compilers_tag = "20251118"
+config.dtk_tag = "v1.8.3"
+config.objdiff_tag = "v3.6.1"
 config.sjiswrap_tag = "v1.2.2"
-config.wibo_tag = "1.0.0"
+config.wibo_tag = "1.0.3"
 
 # Project
 config.config_path = Path("config") / config.version / "config.yml"
@@ -607,7 +607,7 @@ config.libs = [
         "libnw4r_db",
         [
             Object(Matching, "nw4r/db/db_console.cpp"),
-            Object(NonMatching, "nw4r/db/db_assert.cpp"),
+            Object(Matching, "nw4r/db/db_assert.cpp"),
         ],
     ),
     NWLib(
@@ -620,14 +620,14 @@ config.libs = [
     NWLib(
         "libnw4r_lyt",
         [
-            Object(NonMatching, "nw4r/lyt/lyt_init.cpp"),
-            Object(NonMatching, "nw4r/lyt/lyt_pane.cpp"),
+            Object(Matching, "nw4r/lyt/lyt_init.cpp"),
+            Object(Matching, "nw4r/lyt/lyt_pane.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_group.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_layout.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_picture.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_textBox.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_window.cpp"),
-            Object(NonMatching, "nw4r/lyt/lyt_bounding.cpp"),
+            Object(Matching, "nw4r/lyt/lyt_bounding.cpp"),
             Object(NonMatching, "nw4r/lyt/lyt_material.cpp"),
             Object(Matching, "nw4r/lyt/lyt_texMap.cpp"),
             Object(Matching, "nw4r/lyt/lyt_drawInfo.cpp"),
@@ -646,7 +646,7 @@ config.libs = [
             Object(Matching, "Game/Animation/BrkPlayer.cpp"),
             Object(Matching, "Game/Animation/BtkPlayer.cpp"),
             Object(Matching, "Game/Animation/BtpPlayer.cpp"),
-            Object(NonMatching, "Game/Animation/BvaPlayer.cpp"),
+            Object(Matching, "Game/Animation/BvaPlayer.cpp"),
             Object(NonMatching, "Game/Animation/LayoutAnmPlayer.cpp"),
             Object(NonMatching, "Game/Animation/MaterialAnmBuffer.cpp"),
             Object(NonMatching, "Game/Animation/XanimeCore.cpp"),
@@ -1837,7 +1837,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/PenguinRacerLeader.cpp"),
             Object(NonMatching, "Game/NPC/PenguinSkater.cpp"),
             Object(NonMatching, "Game/NPC/PenguinStudent.cpp"),
-            Object(NonMatching, "Game/NPC/PowerStarEventKeeper.cpp"),
+            Object(Matching, "Game/NPC/PowerStarEventKeeper.cpp"),
             Object(NonMatching, "Game/NPC/Rabbit.cpp"),
             Object(NonMatching, "Game/NPC/RabbitStateCaught.cpp"),
             Object(NonMatching, "Game/NPC/RabbitStateWaitStart.cpp"),
@@ -1980,7 +1980,7 @@ config.libs = [
             Object(Matching, "Game/Player/MarioHolder.cpp"),
             Object(Matching, "Game/Player/MarioInit.cpp"),
             Object(NonMatching, "Game/Player/MarioJump.cpp"),
-            Object(NonMatching, "Game/Player/MarioMessenger.cpp"),
+            Object(Matching, "Game/Player/MarioMessenger.cpp"),
             Object(NonMatching, "Game/Player/MarioModule.cpp"),
             Object(NonMatching, "Game/Player/MarioMove.cpp"),
             Object(NonMatching, "Game/Player/MarioMove2D.cpp"),
@@ -2157,7 +2157,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/GalaxyMapDomeIcon.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapGalaxyDetail.cpp"),
             Object(NonMatching, "Game/Screen/GalaxyMapGalaxyPlain.cpp"),
-            Object(NonMatching, "Game/Screen/GalaxyMapIcon.cpp"),
+            Object(Matching, "Game/Screen/GalaxyMapIcon.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapMarioIcon.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapSelectButton.cpp"),
             Object(Matching, "Game/Screen/GalaxyMapTicoIcon.cpp"),
@@ -2209,7 +2209,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/odh.cpp"),
             Object(Matching, "Game/Screen/OdhConverter.cpp"),
             Object(Matching, "Game/Screen/OneUpBoard.cpp"),
-            Object(NonMatching, "Game/Screen/PaneEffectKeeper.cpp"),
+            Object(Matching, "Game/Screen/PaneEffectKeeper.cpp"),
             Object(NonMatching, "Game/Screen/PauseMenu.cpp"),
             Object(Matching, "Game/Screen/PeachLetter.cpp"),
             Object(Matching, "Game/Screen/PictureBookCloseButton.cpp"),

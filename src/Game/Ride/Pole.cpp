@@ -673,9 +673,9 @@ bool Pole::tryJump(bool handstand, f32 angleOffset) {
 bool Pole::tryTurn() {
     if (isEnableTurn()) {
         if (getPoleSubPadStickX() > 0.0f) {
-            setNerve(&NrvPole::PoleNrvBindTurnLeft::sInstance);
-        } else {
             setNerve(&NrvPole::PoleNrvBindTurnRight::sInstance);
+        } else {
+            setNerve(&NrvPole::PoleNrvBindTurnLeft::sInstance);
         }
         return true;
     }

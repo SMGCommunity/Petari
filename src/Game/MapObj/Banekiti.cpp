@@ -62,13 +62,13 @@ void Banekiti::exeRepel() {
 
 void Banekiti::exeDPDSwoon() {
     if (MR::isFirstStep(this)) {
-        mRailMover->_14 = false;
+        mRailMover->mIsActive = false;
     }
     MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvBanekiti::BanekitiNrvWait::sInstance);
 }
 
 void Banekiti::endDPDSwoon() {
-    mRailMover->_14 = true;
+    mRailMover->mIsActive = true;
     mBindStarPointer->kill();
 }
 

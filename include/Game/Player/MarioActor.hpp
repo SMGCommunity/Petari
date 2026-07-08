@@ -401,7 +401,7 @@ public:
 
     /* 0x08C */ u8 _8C;
     /* 0x090 */ DLchanger* mDLchanger;
-    /* 0x094 */ DLchanger* _94[64];
+    /* 0x094 */ DLchanger* _94[0x40];
     /* 0x194 */ u8* mDL[2];
     /* 0x19C */ u32 mDLSize;
     /* 0x1A0 */ u8 mCurrDL;
@@ -486,7 +486,7 @@ public:
     /* 0x378 */ u16 _378;
     /* 0x37C */ u32 _37C;
     /* 0x380 */ u32 mHealth;
-    /* 0x384 */ u32 mWaterLife;
+    /* 0x394 */ u32 mWaterLife;
     /* 0x388 */ u32 _388;
     /* 0x38C */ u16 _38C;
     /* 0x390 */ u32 _390;
@@ -512,7 +512,7 @@ public:
     /* 0x3D8 */ u16 _3D8;
     /* 0x3DA */ u16 _3DA;
     /* 0x3DC */ u16 _3DC;
-    /* 0x3DE */ u8 _3DE;
+    /* 0x3De */ u8 _3DE;
     /* 0x3DF */ u8 _3DF;
     /* 0x3E0 */ u32 mMaxHealth;
     /* 0x3E4 */ bool _3E4;
@@ -525,15 +525,19 @@ public:
     /* 0x420 */ u32 _420;
     /* 0x424 */ HitSensor* _424;
     /* 0x428 */ HitSensor* _428[4];
-    /* 0x438 */ u8 _438[48];
-    /* 0x468 */
+    /* 0x438 */ u8 _438[0x30];
 
     union {
         struct {
             /* 0x468 */ u32 _468;
             /* 0x46C */ HitSensor* _46C;
             /* 0x470 */ u32 _470;
+            /* 0x468 */ u32 _468;
+            /* 0x46C */ HitSensor* _46C;
+            /* 0x470 */ u32 _470;
         };
+
+        /* 0x468 */ TVec3f _468Vec;
 
         /* 0x468 */ TVec3f _468Vec;
     };
@@ -756,15 +760,18 @@ public:
     /* 0xF2C */
 
     union {
-        /* 0xF2c */ u32 _F2C;
+        /* 0xF2C */ u32 _F2C;
         /* 0xF2C */ TVec3f _F2CVec;
     };
 
     /* 0xF38 */ u8 _F38;
 
+
+    /* 0xF38 */ u8 _F38;
+
     union {
-        /* 0xF3C */ TVec3f* _F3CVec;
         /* 0xF3C */ AudGeneric* _F3C;
+        /* 0xF3C */ TVec3f* _F3C_vec;
     };
 
     /* 0xF40 */ u16 _F40;

@@ -1,5 +1,6 @@
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
@@ -11,7 +12,12 @@
 
 namespace {
     static Mtx mViewMtx;
-};
+
+    static u8 byte_806B7048;
+    static u8 byte_806B7049;
+    static u8 byte_806B704A;
+
+};  // namespace
 
 namespace TDDraw {
     void setViewMtx(MtxPtr mtx) {
@@ -406,7 +412,31 @@ namespace TDDraw {
         MR::loadProjectionMtx();
     }
 
-    // TDDraw::cameraInit2D
+    // https://decomp.me/scratch/33EPL
+    void cameraInit2D() {
+        if (!byte_806B7048) {
+            static TVec3f camLoc = TVec3f(MR::getScreenWidth() / 2.0f, MR::getScreenHeight() / 2.0f, -30.0f);
+            byte_806B7048 = 1;
+        }
+
+        if (!byte_806B7049) {
+            static TVec3f objPt = TVec3f(MR::getScreenWidth() / 2.0f, MR::getScreenHeight() / 2.0f, 0.0f);
+            byte_806B7049 = 1;
+        }
+
+        if (!byte_806B704A) {
+            static TVec3f up = TVec3f(0, -10, 0);
+            byte_806B704A = 1;
+        }
+
+        f32 width = MR::getScreenWidth() / 2;
+        f32 height = MR::getScreenHeight() / 2;
+
+        Mtx proj;
+        C_MTXOrtho(proj, height, -height, -width, width, 0.0f, -1.0f);
+        GXSetProjection(proj, GX_ORTHOGRAPHIC);
+        MR::setDefaultViewportAndScissor();
+    }
 
     void mixFogColor(TVec3f a1, f32 a2, u32 a3) {
         f32 nearZ = MR::getNearZ();
@@ -424,7 +454,17 @@ namespace TDDraw {
     // TDDraw::getTexel32
     // TDDraw::getTexel32
     // TDDraw::setTexel32
-    // TDDraw::setTexel32
+
+    // https://decomp.me/scratch/WFf2R
+    void setTexel32(u8* tex, u32 width, u32 x, u32 y, u32 color) {
+        u32 offset = ((width << 4) & ~0x3F) * (y >> 2) + ((x << 4) & ~0x3F) + ((x & 3) << 1) + ((y & 3) << 3);
+        u8* dst = tex + offset;
+        dst[0x00] = color;
+        dst[0x20] = color >> 8;
+        dst[0x21] = color >> 16;
+        dst[0x01] = color >> 24;
+    }
+
     // TDDraw::invProject
     // TDDraw::project2D
     // TDDraw::project2D
