@@ -159,7 +159,7 @@ public:
     void updateCubeCode();
 
     bool isDamaging() const;
-    void damageLarge(const TVec3f&);
+    bool damageLarge(const TVec3f&);
     void decDamageAfterTimer();
     bool checkDamage();
     u16 getDamageAfterTimer() const;
@@ -168,7 +168,7 @@ public:
     void damagePolygonCheck(const Triangle*);
     void flipLarge(const TVec3f&);
     bool isEnableAddDamage() const;
-    void damage(const TVec3f&);
+    bool damage(const TVec3f&);
     void doAbyssDamage();
     void connectToFireRun();
     void doFireDanceWithInitialDamage(u8);
@@ -179,16 +179,19 @@ public:
     void doFireDance();
     void checkKarikariDamage();
     void doDarkDamage();
-    void doParalyze();
-    void doFreeze();
-    void requestCrush();
+    bool doParalyze();
+    bool doFreeze();
+    bool requestCrush();
     void tryCrush();
 
-    void doFlipWeak(const TVec3f&);
-    void faint(const TVec3f&);
+    bool doFlipWeak(const TVec3f&);
+    bool faint(const TVec3f&);
 
-    void doFlipJump(const TVec3f&);
-    void doFlipBackRoll(const TVec3f&);
+    bool doFlipJump(const TVec3f&);
+    bool doFlipBackRoll(const TVec3f&);
+
+    bool doFlipLarge(const TVec3f&);
+    bool doFlipRot(const TVec3f&);
 
     void doFrontStep();
 

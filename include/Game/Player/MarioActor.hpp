@@ -381,6 +381,14 @@ public:
     void sendWallTouch(HitSensor*, HitSensor*);
     bool sendMsgUpperPunch(HitSensor*);
 
+    // Defined in MarioActorDefensiveMsg
+    bool tryAttackMsg(u32, const HitSensor*, bool*);
+    bool tryVectorAttackMsg(u32, const TVec3f&);
+    void cylinderHitCheck(const HitSensor*, TVec3f*);
+
+    bool selectDamageFireColor(const char*) const;
+    void trampleJump(f32, f32);
+
     const MarioConst& getConst() const {
         return *mConst;
     }
