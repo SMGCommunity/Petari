@@ -2,6 +2,14 @@
 
 #include "Game/Player/MarioModule.hpp"
 
+enum MarioStateMsg {
+    MarioStateMsg_Start,
+    MarioStateMsg_Close,
+    MarioStateMsg_Update,
+    MarioStateMsg_Notice,
+    MarioStateMsg_Keep,
+};
+
 class MarioState : public MarioModule {
 public:
     MarioState(MarioActor*, u32);
@@ -24,5 +32,5 @@ public:
 
     /* 0x08 */ MarioState* _8;
     /* 0x0C */ u32 mStatusId;
-    /* 0x10 */ u8 _10;
+    /* 0x10 */ bool _10;
 };

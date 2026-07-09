@@ -1263,7 +1263,7 @@ void Mario::actionMain() {
     if (!mMovementStates._16) {
         if (checkDamage() == false) {
             if (_97C) {
-                sendStateMsg(2);
+                sendStateMsg(MarioStateMsg_Update);
             }
             else if (mMovementStates._0) {
                 procJump(false);
