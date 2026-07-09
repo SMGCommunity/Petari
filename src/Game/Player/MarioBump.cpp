@@ -7,7 +7,8 @@
 
 void Mario::checkBump() {
     if (!mMovementStates.jumping && !mMovementStates._A && mMovementStates._1) {
-        if (!isStatusActive(MarioStatus_Hang) && !isStatusActive(MarioStatus_Wall) && !isStatusActive(MarioStatus_Swim) && !isStatusActive(MarioStatus_Climb)) {
+        if (!isStatusActive(MarioStatus_Hang) && !isStatusActive(MarioStatus_Wall) && !isStatusActive(MarioStatus_Swim) &&
+            !isStatusActive(MarioStatus_Climb)) {
             if (!isDamaging() && getPlayerMode() != 5 && !isSwimming()) {
                 if (isStickOn()) {
                     if (!_750 && (mMovementStates._23 == 0)) {

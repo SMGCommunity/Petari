@@ -38,10 +38,10 @@ void SnowMan::init(const JMapInfoIter& rrIter) {
     initHitSensor(2);
     MR::addMessageSensorMapObj(this, "head");
     MR::addMessageSensorMapObj(this, "body");
-    mHeadCollisionParts =
-        MR::createCollisionPartsFromLiveActor(this, "HeadCol", getSensor("head"), MR::getJointMtx(this, "Head"), MR::CollisionScaleType_NotUsingScale);
-    mBodyCollisionParts =
-        MR::createCollisionPartsFromLiveActor(this, "BodyCol", getSensor("body"), MR::getJointMtx(this, "Body"), MR::CollisionScaleType_NotUsingScale);
+    mHeadCollisionParts = MR::createCollisionPartsFromLiveActor(this, "HeadCol", getSensor("head"), MR::getJointMtx(this, "Head"),
+                                                                MR::CollisionScaleType_NotUsingScale);
+    mBodyCollisionParts = MR::createCollisionPartsFromLiveActor(this, "BodyCol", getSensor("body"), MR::getJointMtx(this, "Body"),
+                                                                MR::CollisionScaleType_NotUsingScale);
     MR::validateCollisionParts(mHeadCollisionParts);
     MR::validateCollisionParts(mBodyCollisionParts);
     mAnimScaleParam = new AnimScaleParam();

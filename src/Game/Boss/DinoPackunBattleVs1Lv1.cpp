@@ -51,9 +51,9 @@ void DinoPackunBattleVs1Lv1::attackSensor(HitSensor* a1, HitSensor* a2) {
         }
 
         bool v6 = isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvWalk::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvTurn::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvFind::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvCoolDown::sInstance);
+                  isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvTurn::sInstance) ||
+                  isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvFind::sInstance) ||
+                  isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvCoolDown::sInstance);
 
         if (v6 && sendHitAttackMessage(a1, a2, false)) {
             setNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvAttackHit::sInstance);
@@ -62,7 +62,8 @@ void DinoPackunBattleVs1Lv1::attackSensor(HitSensor* a1, HitSensor* a2) {
             MR::sendMsgPush(a2, a1);
         }
     } else {
-        bool v7 = isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvWalk::sInstance) || isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvChase::sInstance);
+        bool v7 = isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvWalk::sInstance) ||
+                  isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvChase::sInstance);
 
         if (v7) {
             MR::sendMsgEnemyAttack(a2, a1);

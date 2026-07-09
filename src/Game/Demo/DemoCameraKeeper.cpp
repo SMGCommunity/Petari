@@ -112,8 +112,7 @@ void DemoCameraKeeper::endCurrentCamera() {
 }
 
 // https://decomp.me/scratch/2zGrk
-DemoCameraKeeper::DemoCameraKeeper(DemoExecutor* pExecutor, const JMapInfoIter& rIter)
-    : mExecutor(pExecutor), _4(-1), _8(), _C(-1), _10() {
+DemoCameraKeeper::DemoCameraKeeper(DemoExecutor* pExecutor, const JMapInfoIter& rIter) : mExecutor(pExecutor), _4(-1), _8(), _C(-1), _10() {
     JMapInfo* map = nullptr;
     _4 = DemoFunction::createSheetParser(mExecutor, "Camera", &map);
 

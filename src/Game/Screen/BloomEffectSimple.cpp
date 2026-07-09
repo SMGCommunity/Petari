@@ -13,7 +13,8 @@ namespace {
 namespace {
     class TexSpec {
     public:
-        TexSpec() {}
+        TexSpec() {
+        }
 
         void set(JUTTexture*, s32, s32, GXTexFmt);
 
@@ -24,7 +25,8 @@ namespace {
     };
 };  // namespace
 
-BloomEffectSimple::BloomEffectSimple() : ImageEffectBase("簡易ブルーム"), _14(), _18(), _1C(), _20(), _24(), _28(), _2C(), mMaskFilter(), mThreshold(205), mIntensity(0.3f) {
+BloomEffectSimple::BloomEffectSimple()
+    : ImageEffectBase("簡易ブルーム"), _14(), _18(), _1C(), _20(), _24(), _28(), _2C(), mMaskFilter(), mThreshold(205), mIntensity(0.3f) {
     MR::connectToSceneImageEffect(this);
     MR::createImageEffectSystemHolder();
     MR::getImageEffectResource()->createBloomTexture();

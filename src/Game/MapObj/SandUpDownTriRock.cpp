@@ -37,8 +37,8 @@ void SandUpDownTriRock::init(const JMapInfoIter& rIter) {
     char buffer[256];
     for (s32 idx = 0; idx < 3; idx++) {
         snprintf(buffer, 256, "Move0%d", idx);
-        mRockCollisionParts[idx] = MR::createCollisionPartsFromLiveActor(this, buffer, getSensor("body"), MR::getJointMtx(this, buffer),
-                                                                         MR::CollisionScaleType_Unk2);
+        mRockCollisionParts[idx] =
+            MR::createCollisionPartsFromLiveActor(this, buffer, getSensor("body"), MR::getJointMtx(this, buffer), MR::CollisionScaleType_Unk2);
         MR::validateCollisionParts(mRockCollisionParts[idx]);
     }
 }

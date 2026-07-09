@@ -38,7 +38,7 @@ void CinemaFrame::tryScreenToFrame() {
     }
 
     bool isInvalid = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance) ||
-             isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
+                     isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
 
     if (!isInvalid) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance);
@@ -63,7 +63,7 @@ void CinemaFrame::tryBlankToFrame() {
     }
 
     bool isInvalid = isNerve(&NrvCinemaFrame::CinemaFrameNrvFrame::sInstance) || isNerve(&NrvCinemaFrame::CinemaFrameNrvScreenToFrame::sInstance) ||
-             isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
+                     isNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);
 
     if (!isInvalid) {
         setNerve(&NrvCinemaFrame::CinemaFrameNrvBlankToFrame::sInstance);

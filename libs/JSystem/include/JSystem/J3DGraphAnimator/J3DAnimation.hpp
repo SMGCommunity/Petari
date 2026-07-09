@@ -801,7 +801,7 @@ public:
     virtual s32 getKind() const {
         return 6;
     }
-    
+
     void getVisibility(u16, u8*) const;
 
     /* 0x0C */ u16 mUpdateMaterialNum;

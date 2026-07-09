@@ -8,7 +8,8 @@
 #include "Game/Util/SystemUtil.hpp"
 #include <algorithm>
 
-PaneEffectKeeper::PaneEffectKeeper(LayoutActor* pActor, const LayoutManager* pManager, int myInt, const char* pName) : mHost(pActor), mName(pName), mEmitters() {
+PaneEffectKeeper::PaneEffectKeeper(LayoutActor* pActor, const LayoutManager* pManager, int myInt, const char* pName)
+    : mHost(pActor), mName(pName), mEmitters() {
     if (pName == nullptr) {
         mName = pManager->_78;
     }

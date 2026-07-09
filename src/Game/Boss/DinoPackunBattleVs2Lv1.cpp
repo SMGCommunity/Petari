@@ -102,8 +102,8 @@ void DinoPackunBattleVs2Lv1::control() {
 void DinoPackunBattleVs2Lv1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         bool v6 = isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvChase::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvWalk::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvCrazy::sInstance);
+                  isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvWalk::sInstance) ||
+                  isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvCrazy::sInstance);
 
         if (v6) {
             if (sendBlowAttackMessage(pSender, pReceiver, mStateFire->isFire())) {
@@ -116,7 +116,8 @@ void DinoPackunBattleVs2Lv1::attackSensor(HitSensor* pSender, HitSensor* pReceiv
             }
         }
 
-        bool v8 = isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvTurn::sInstance) || isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvAwake::sInstance);
+        bool v8 = isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvTurn::sInstance) ||
+                  isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvAwake::sInstance);
 
         if (v8 && sendHitAttackMessage(pSender, pReceiver, mStateFire->isFire())) {
             if (!_3D) {
@@ -127,8 +128,8 @@ void DinoPackunBattleVs2Lv1::attackSensor(HitSensor* pSender, HitSensor* pReceiv
         }
     } else {
         bool v10 = isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvChase::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvWalk::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvCrazy::sInstance);
+                   isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvWalk::sInstance) ||
+                   isNerve(&NrvDinoPackunBattleVs2Lv1::DinoPackunBattleVs2Lv1NrvCrazy::sInstance);
 
         if (v10) {
             MR::sendMsgEnemyAttack(pReceiver, pSender);

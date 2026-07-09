@@ -162,7 +162,8 @@ void DinoPackunBall::attackSensor(HitSensor* a1, HitSensor* a2) {
             }
         }
 
-    } else if (a2 == mWeakSensor && isNerve(&NrvDinoPackunBall::DinoPackunBallNrvReverse::sInstance) && MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_BALL_ATTACK, a2, a1)) {
+    } else if (a2 == mWeakSensor && isNerve(&NrvDinoPackunBall::DinoPackunBallNrvReverse::sInstance) &&
+               MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_BALL_ATTACK, a2, a1)) {
         TVec3f v12;
         MR::calcSensorDirection(&v12, a2, a1);
         MR::normalizeOrZero(&v12);

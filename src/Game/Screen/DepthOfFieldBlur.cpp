@@ -16,7 +16,8 @@ namespace {
     static const s8 sScaleExp = 1;
 };  // namespace
 
-DepthOfFieldBlur::DepthOfFieldBlur(const char* pName) : ImageEffectBase(pName), _14(), _18(), _1C(), _20(), _24(), _28(), mIntensity(1.0f), mBlurMaxDist(248), mBlurMinDist(242) {
+DepthOfFieldBlur::DepthOfFieldBlur(const char* pName)
+    : ImageEffectBase(pName), _14(), _18(), _1C(), _20(), _24(), _28(), mIntensity(1.0f), mBlurMaxDist(248), mBlurMinDist(242) {
     MR::connectToSceneImageEffect(this);
     MR::createImageEffectSystemHolder();
     MR::getImageEffectResource()->createDOFTexture();
@@ -52,7 +53,8 @@ void DepthOfFieldBlur::draw() const {
 
 void DepthOfFieldBlur::drawZAlphaTex() const {
     Mtx44 projectionMtx;
-    C_MTXOrtho(projectionMtx, 0.0f, JUTVideo::getManager()->getEfbHeight(), 0.0f, JUTVideo::getManager()->getFbWidth(), -::sViewDistance, ::sViewDistance);
+    C_MTXOrtho(projectionMtx, 0.0f, JUTVideo::getManager()->getEfbHeight(), 0.0f, JUTVideo::getManager()->getFbWidth(), -::sViewDistance,
+               ::sViewDistance);
     GXSetProjection(projectionMtx, GX_ORTHOGRAPHIC);
     MR::loadViewMtxFor2DModel();
     GXClearVtxDesc();

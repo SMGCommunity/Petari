@@ -1394,8 +1394,9 @@ const TVec3f* Mario::getGravityVec() const {
     } else if (_430 == 0xd) {
         b1 = false;
     }
-    if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging() && !isStatusActive(MarioStatus_Swim) && !isStatusActive(MarioStatus_Blown) &&
-        !isStatusActive(MarioStatus_13) && _430 != 5 && mActor->_334 == 0 && mMovementStates.jumping && !mMovementStates._22 && _3BC < 8) {
+    if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging() && !isStatusActive(MarioStatus_Swim) &&
+        !isStatusActive(MarioStatus_Blown) && !isStatusActive(MarioStatus_13) && _430 != 5 && mActor->_334 == 0 && mMovementStates.jumping &&
+        !mMovementStates._22 && _3BC < 8) {
         return &_374;
     }
     return &mAirGravityVec;

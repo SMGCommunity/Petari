@@ -264,7 +264,7 @@ bool Mario::doPointWarpRecovery(const TVec3f& rVec1, const TVec3f& rVec2) {
 
     return true;
 }
-/* 
+/*
 void MarioWarp::updateJump() {
 }
 

@@ -314,7 +314,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _2C4.z = 0.0f;
     mBinder->_1EC._0 = false;
     MR::setBinderOffsetVec(this, &_2C4, false);
-    
+
     mBinder->setTriangleFilter(TriangleFilterDelegator< MarioActor >::allocateDelegator(this, &MarioActor::binderFilter));
 
     mBinder->_1EC._3 = true;
@@ -742,8 +742,8 @@ void MarioActor::movement() {
 
                 if (MR::getFirstPolyOnLineToMap(&stack_E0, pTmp, stack_EC, getGravityVec().scaleInline(200.f))) {
                     TVec3f stack_D4;
-                    if (MR::vecKillElement(stack_E0 - (mPosition), getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts &&
-                        !pTmp->mParts->_D4 && getMovementStates()._3E != 1) {
+                    if (MR::vecKillElement(stack_E0 - (mPosition), getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts && !pTmp->mParts->_D4 &&
+                        getMovementStates()._3E != 1) {
                         mPosition = stack_E0;
                         mMario->mPosition = mPosition;
                         mMario->stopJump();
@@ -1602,7 +1602,7 @@ void MarioActor::calcAnimInMovement() {
         _9C8->movement();
         _A50->movement();
         _A54->movement();
-        
+
         MR::setBrkFrame(_A50, MR::getBrkFrame(_9C8));
         MR::setBrkFrame(_A54, MR::getBrkFrame(_9C8));
     }
@@ -2086,7 +2086,9 @@ void MarioActor::calcAndSetBaseMtx() {
     }
 
     TPos3f mtxD8;
-    if (!b1 && mPlayerMode == 4 && !(mMario->isStatusActive(MarioStatus_Stick) || mMario->isStatusActive(MarioStatus_SideStep) || mMario->isStatusActive(MarioStatus_Flip)) &&
+    if (!b1 && mPlayerMode == 4 &&
+            !(mMario->isStatusActive(MarioStatus_Stick) || mMario->isStatusActive(MarioStatus_SideStep) ||
+              mMario->isStatusActive(MarioStatus_Flip)) &&
             !(mMario->mMovementStates_HIGH_WORD >> 28 & 1 || mMario->mMovementStates_LOW_WORD >> 21 & 1) ||
         ((mMario->mMovementStates_LOW_WORD >> 20 & 1) && (mMario->mMovementStates_LOW_WORD >> 31 & 1))) {
         _9F4 = mMario->mAirGravityVec;

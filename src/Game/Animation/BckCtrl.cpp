@@ -71,7 +71,8 @@ void BckCtrl::changeBckSetting(const char* pName, XanimePlayer* pPlayer) const {
     BckCtrlData* data = find(pName);
 
     if (data != nullptr) {
-        bool isValidReflect = data->mInterpole >= 0 || data->mPlayFrame >= 0 || data->mStartFrame >= 0 || data->mEndFrame >= 0 || data->mRepeatFrame >= 0 || data->mLoopMode != 0xFF;
+        bool isValidReflect = data->mInterpole >= 0 || data->mPlayFrame >= 0 || data->mStartFrame >= 0 || data->mEndFrame >= 0 ||
+                              data->mRepeatFrame >= 0 || data->mLoopMode != 0xFF;
 
         if (isValidReflect) {
             BckCtrlFunction::reflectBckCtrlData(*data, pPlayer);

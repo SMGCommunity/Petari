@@ -17,8 +17,9 @@ void SensorHitChecker::initGroup(HitSensor* pSensor) {
         pSensor->mSensorGroup = mRideGroup;
     } else if (pSensor->isType(ATYPE_EYE)) {
         pSensor->mSensorGroup = mEyeGroup;
-    } else if (pSensor->isType(ATYPE_COIN) || pSensor->isType(ATYPE_STAR_PIECE) || pSensor->isType(ATYPE_ENEMY_SIMPLE) || pSensor->isType(ATYPE_MAP_OBJ_SIMPLE) || pSensor->isType(ATYPE_PLAYER_AUTO_JUMP) ||
-               MR::isSensorRush(pSensor) || MR::isSensorAutoRush(pSensor)) {
+    } else if (pSensor->isType(ATYPE_COIN) || pSensor->isType(ATYPE_STAR_PIECE) || pSensor->isType(ATYPE_ENEMY_SIMPLE) ||
+               pSensor->isType(ATYPE_MAP_OBJ_SIMPLE) || pSensor->isType(ATYPE_PLAYER_AUTO_JUMP) || MR::isSensorRush(pSensor) ||
+               MR::isSensorAutoRush(pSensor)) {
         pSensor->mSensorGroup = mSimpleGroup;
     } else {
         if (MR::isSensorMapObj(pSensor)) {

@@ -7,7 +7,8 @@
 #include <cstddef>
 
 namespace {
-    static char* const sPlaySoundNames[] = {nullptr, "SE_SY_GET_PRIZE_RING_5", "SE_SY_GET_PRIZE_RING_4", "SE_SY_GET_PRIZE_RING_3", "SE_SY_GET_PRIZE_RING_2"};
+    static char* const sPlaySoundNames[] = {nullptr, "SE_SY_GET_PRIZE_RING_5", "SE_SY_GET_PRIZE_RING_4", "SE_SY_GET_PRIZE_RING_3",
+                                            "SE_SY_GET_PRIZE_RING_2"};
     static const f32 sOnTriggerFlashFrames[] = {10.0f, 60.0f, 110.0f, 160.0f, 210.0f, 240.0f, 270.0f, 300.0f, -1.0f};
 };  // namespace
 
@@ -145,7 +146,7 @@ bool PrizeRing::isPassed() const {
     if (!pass) {
         pass = isNerve(&NrvPrizeRing::PrizeRingPass::sInstance);
     }
-    
+
     if (!pass) {
         return isReadyToKill();
     }
@@ -160,12 +161,12 @@ void PrizeRing::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 s32 PrizeRing::getNumber() const {
-    return static_cast<s32>(MR::getBvaCtrl(this)->mFrame) + 1;
+    return static_cast< s32 >(MR::getBvaCtrl(this)->mFrame) + 1;
 }
 
 void PrizeRing::playSound() const {
     const char* sound = nullptr;
-    if (getNumber() < static_cast<u32>(ARRAY_SIZE(::sPlaySoundNames))) {
+    if (getNumber() < static_cast< u32 >(ARRAY_SIZE(::sPlaySoundNames))) {
         sound = ::sPlaySoundNames[getNumber()];
     }
 
@@ -198,6 +199,6 @@ bool PrizeRing::isOnTriggerTimeoutFlash() const {
                 return true;
             }
         }
-    }    
+    }
     return false;
 }

@@ -596,7 +596,7 @@ bool Petari::isSolidBody() const {
     }
 
     return isNerve(&PetariNrvSwoonStart::sInstance) || isNerve(&PetariNrvSwoon::sInstance) || isNerve(&PetariNrvSwoonEnd::sInstance) ||
-            isNerve(&PetariNrvWait::sInstance) || isNerve(&PetariNrvFreeze::sInstance);
+           isNerve(&PetariNrvWait::sInstance) || isNerve(&PetariNrvFreeze::sInstance);
 }
 
 void Petari::moveTowardTargetDirection(f32 vel, f32 f2, f32 angle) {

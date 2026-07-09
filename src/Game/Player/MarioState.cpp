@@ -32,7 +32,7 @@ bool MarioState::proc(u32 msg) {
 void Mario::sendStateMsg(u32 msg) {
     MarioState* pNext;
 
-    for (MarioState* pState = _97C; pState != nullptr; ) {
+    for (MarioState* pState = _97C; pState != nullptr;) {
         pNext = pState->_8;
 
         if (isStatusActive(pState->mStatusId) == MarioStatus_None) {
