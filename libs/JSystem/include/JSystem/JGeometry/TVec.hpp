@@ -501,6 +501,12 @@ namespace JGeometry {
             z = z_;
         }
 
+        inline void setInline(f32 x_, f32 y_, f32 z_) {
+            x = x_;
+            y = y_;
+            z = z_;
+        }
+
         void set(const Vec& rVec) {
             x = rVec.x;
             y = rVec.y;
