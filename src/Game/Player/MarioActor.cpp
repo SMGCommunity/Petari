@@ -487,7 +487,7 @@ bool MarioActor::isStopNullAnimation() const {
 
 void MarioActor::changeGameOverAnimation() {
     int animation = 0;
-    if (mMario->isStatusActive(0x12)) {
+    if (mMario->isStatusActive(MarioStatus_FpView)) {
         mMario->closeStatus(nullptr);
     }
 
@@ -546,7 +546,7 @@ void MarioActor::changeGameOverAnimation() {
         animation = 6;
     }
 
-    if (mMario->isAnimationRun("氷結") || mMario->isStatusActive(0xd)) {
+    if (mMario->isAnimationRun("氷結") || mMario->isStatusActive(MarioStatus_Freeze)) {
         animation = -1;
     }
 
@@ -665,7 +665,7 @@ bool MarioActor::isDamaging() const {
 }
 
 bool MarioActor::isStaggering() const {
-    return mMario->isStatusActive(0x14) != false;
+    return mMario->isStatusActive(MarioStatus_Flip) != false;
 }
 
 // does not want to cooperate
@@ -1189,7 +1189,7 @@ void MarioActor::updateSwingTimer() {
 }
 
 void MarioActor::updateSwingAction() {
-    if (isJumping() && mPlayerMode != 6 && !mMario->isStatusActive(0x18)) {
+    if (isJumping() && mPlayerMode != 6 && !mMario->isStatusActive(MarioStatus_Foo)) {
         _946 = 0;
     }
     bool requestRush = isRequestRush();
@@ -1236,16 +1236,16 @@ void MarioActor::updateSwingAction() {
     if (mMario->isSwimming()) {
         canRush = false;
     }
-    if (mMario->isStatusActive(0x18)) {
+    if (mMario->isStatusActive(MarioStatus_Foo)) {
         canRush = false;
     }
-    if (mMario->isStatusActive(0x13)) {
+    if (mMario->isStatusActive(MarioStatus_13)) {
         canRush = false;
     }
     if (_468) {
         canRush = false;
     }
-    if (mMario->isStatusActive(2)) {
+    if (mMario->isStatusActive(MarioStatus_Damage)) {
         canRush = false;
     }
     if (_3C0) {
@@ -1369,7 +1369,7 @@ void MarioActor::updateRealMtx() {
         getBaseMtx();
     }
     bool notStatus12 = true;
-    if (mMario->isStatusActive(0x12)) {
+    if (mMario->isStatusActive(MarioStatus_FpView)) {
         notStatus12 = false;
     }
     if (!notStatus12) {

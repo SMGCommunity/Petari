@@ -20,7 +20,7 @@ void Mario::tryBeeStick(const HitSensor* pSensor) {
     }
 }
 
-MarioStick::MarioStick(MarioActor* pActor) : MarioState(pActor, 0x16) {
+MarioStick::MarioStick(MarioActor* pActor) : MarioState(pActor, MarioStatus_Stick) {
     _4C = 0;
     _50 = 0;
     _54.zero();
@@ -58,7 +58,7 @@ bool MarioStick::setStickSensor(const HitSensor* pSensor) {
         return false;
     }
 
-    if (getPlayer()->isStatusActive(22)) {
+    if (getPlayer()->isStatusActive(MarioStatus_Stick)) {
         return false;
     }
 

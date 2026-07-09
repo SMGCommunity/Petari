@@ -491,7 +491,7 @@ void Mario::updateMorphResetTimer() {
 } */
 
 bool Mario::isEnableCheckGround() {
-    return !isStatusActive(6);
+    return !isStatusActive(MarioStatus_Swim);
 }
 
 void Mario::setGroundNorm(const TVec3f& rVec) {
@@ -549,19 +549,19 @@ void Mario::createMtxDir(MtxPtr mtx, const TVec3f& rFront, const TVec3f& rUp, co
 }
 
 bool Mario::isNonFixHeadVec() const {
-    if (isStatusActive(6)) {
+    if (isStatusActive(MarioStatus_Swim)) {
         return true;
     }
-    if (isStatusActive(1)) {
+    if (isStatusActive(MarioStatus_Wall)) {
         return true;
     }
-    if (isStatusActive(0x15)) {
+    if (isStatusActive(MarioStatus_SideStep)) {
         return true;
     }
-    if (isStatusActive(0x18)) {
+    if (isStatusActive(MarioStatus_Foo)) {
         return true;
     }
-    if (isStatusActive(0x16)) {
+    if (isStatusActive(MarioStatus_Stick)) {
         return true;
     }
     if (mMovementStates._3E) {
@@ -570,7 +570,7 @@ bool Mario::isNonFixHeadVec() const {
     if (mActor->_EA5) {
         return true;
     }
-    if (isStatusActive(0x22)) {
+    if (isStatusActive(MarioStatus_Talk)) {
         return false;
     }
     return mActor->_EA4;
@@ -711,7 +711,7 @@ void Mario::setHeadVec(const TVec3f& rHead) {
 void Mario::setFrontVec(const TVec3f& rFront) {
     TVec3f plusMinus6A0;
     TVec3f frontWithout6A0;
-    if (mMovementStates._37 && !isStatusActive(0x22)) {
+    if (mMovementStates._37 && !isStatusActive(MarioStatus_Talk)) {
         if (getCamDirZ().dot(_6A0) > 0.0f) {
             plusMinus6A0 = _6A0;
         } else {
@@ -961,7 +961,7 @@ bool Mario::isEnableRush() const {
     if (isDamaging()) {
         return false;
     }
-    if (isStatusActive(0x19)) {
+    if (isStatusActive(MarioStatus_Flow)) {
         return false;
     }
     if (mMovementStates._B && mMovementStates.jumping) {
@@ -1023,7 +1023,7 @@ void Mario::updateSoundCode() {
     } else if (_45C->isValid()) {
         soundCode = MR::getSoundCodeIndex(_45C->getAttributes());
     }
-    if (isStatusActive(1)) {
+    if (isStatusActive(MarioStatus_Wall)) {
         if (mMovementStates._8) {
             soundCode = MR::getSoundCodeIndex(mFrontWallTriangle->getAttributes());
         } else if (mMovementStates._19) {
@@ -1335,8 +1335,8 @@ void Mario::actionMain() {
         if (b1 && mMovementStates._1 && isDefaultAnimationRun("落下")) {
             changeAnimation(nullptr, "基本");
         }
-        if (!isStatusActive(0x13)) {
-            if (!isStatusActive(0x13) && !mMovementStates._1 && mMovementStates._3E == 1 && _2D4.dot(Mario::getGravityVec()) > 0.0f
+        if (!isStatusActive(MarioStatus_13)) {
+            if (!isStatusActive(MarioStatus_13) && !mMovementStates._1 && mMovementStates._3E == 1 && _2D4.dot(Mario::getGravityVec()) > 0.0f
                 && _2D4.dot(*_45C->getNormal(0)) < 0.0f && _1FC.dot(Mario::getGravityVec()) > 0.0f && _488 < 170.0f) {
                 mMovementStates._1 = 1;
                 setGroundNorm(*_45C->getNormal(0));
@@ -1363,7 +1363,7 @@ void Mario::actionMain() {
 
 // conditionals won't behave
 const TVec3f* Mario::getGravityVec() const {
-    if (isStatusActive(0x1e) || isStatusActive(0x1d)) {
+    if (isStatusActive(MarioStatus_Bump) || isStatusActive(MarioStatus_Climb)) {
         return &_790;
     }
     if (mMovementStates._1 && !isSlipFloorCode(_960)) {
@@ -1394,8 +1394,8 @@ const TVec3f* Mario::getGravityVec() const {
     } else if (_430 == 0xd) {
         b1 = false;
     }
-    if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging() && !isStatusActive(6) && !isStatusActive(4) &&
-        !isStatusActive(0x13) && _430 != 5 && mActor->_334 == 0 && mMovementStates.jumping && !mMovementStates._22 && _3BC < 8) {
+    if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging() && !isStatusActive(MarioStatus_Swim) && !isStatusActive(MarioStatus_Blown) &&
+        !isStatusActive(MarioStatus_13) && _430 != 5 && mActor->_334 == 0 && mMovementStates.jumping && !mMovementStates._22 && _3BC < 8) {
         return &_374;
     }
     return &mAirGravityVec;

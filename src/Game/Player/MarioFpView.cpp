@@ -122,7 +122,7 @@ bool Mario::isDisableFpViewMode() const {
     return isDisableStayHere();
 }
 
-MarioFpView::MarioFpView(MarioActor* pActor) : MarioState(pActor, 18), mDelay(), mIsActive(), mBlurOffset() {
+MarioFpView::MarioFpView(MarioActor* pActor) : MarioState(pActor, MarioStatus_FpView), mDelay(), mIsActive(), mBlurOffset() {
 }
 
 bool MarioFpView::start() {
@@ -188,7 +188,7 @@ void MarioFpView::forceClose() {
 }
 
 void Mario::tryFpViewMode() {
-    if (isStatusActive(18)) {
+    if (isStatusActive(MarioStatus_FpView)) {
         return;
     }
 

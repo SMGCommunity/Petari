@@ -14,7 +14,7 @@ void Mario::endTalk() {
     closeStatus(mTalk);
 }
 
-MarioTalk::MarioTalk(MarioActor* pActor) : MarioState(pActor, 34), _14(), mIsUpdate() {
+MarioTalk::MarioTalk(MarioActor* pActor) : MarioState(pActor, MarioStatus_Talk), _14(), mIsUpdate() {
 }
 
 bool MarioTalk::update() {

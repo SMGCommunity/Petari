@@ -90,10 +90,10 @@ f32 getSwimValue(f32 stick, u32 index, const MarioConstTable* table) {
 }
 
 bool Mario::isSwimming() const {
-    if (isStatusActive(6)) {
+    if (isStatusActive(MarioStatus_Swim)) {
         return true;
     }
-    return isStatusActive(24);
+    return isStatusActive(MarioStatus_Foo);
 }
 
 bool Mario::forceStartSwimAndShoot(const TVec3f& rKnockbackVec) {
@@ -107,7 +107,7 @@ bool Mario::forceStartSwimAndShoot(const TVec3f& rKnockbackVec) {
 }
 
 bool Mario::forceExitSwim() {
-    if (!isStatusActive(6)) {
+    if (!isStatusActive(MarioStatus_Swim)) {
         return false;
     }
     mSwim->mNextAction = MarioSwim::EXIT_ACTION_SURFACE;
@@ -135,10 +135,10 @@ void MarioSwim::setDamage(const TVec3f& rKnockbackVec, u16 damage) {
 }
 
 bool Mario::checkStartSwim() {
-    if (isStatusActive(6)) {
+    if (isStatusActive(MarioStatus_Swim)) {
         return false;
     }
-    if (isStatusActive(29)) {
+    if (isStatusActive(MarioStatus_Climb)) {
         return false;
     }
     if (_10._7 && getMovementStates()._1) {
@@ -151,10 +151,10 @@ bool Mario::checkStartSwim() {
             if (getPlayer()->getMovementStates().jumping) {
                 stopJump();
             }
-            if (getPlayer()->isStatusActive(1)) {
+            if (getPlayer()->isStatusActive(MarioStatus_Wall)) {
                 getPlayer()->closeStatus(0);
             }
-            if (getPlayer()->isStatusActive(4)) {
+            if (getPlayer()->isStatusActive(MarioStatus_Blown)) {
                 getPlayer()->closeStatus(0);
             }
             return false;
@@ -167,7 +167,7 @@ bool Mario::checkStartSwim() {
 }
 
 void Mario::startSwim() {
-    if (!isStatusActive(6)) {
+    if (!isStatusActive(MarioStatus_Swim)) {
         if (getPlayer()->isDamaging()) {
             mSwim->_9D = 4;
             playSound("水落下突入", -1);
@@ -197,7 +197,7 @@ void Mario::startSwim() {
     }
 }
 
-MarioSwim::MarioSwim(MarioActor* pActor) : MarioState(pActor, 6), mWaterInfo() {
+MarioSwim::MarioSwim(MarioActor* pActor) : MarioState(pActor, MarioStatus_Swim), mWaterInfo() {
     _18 = 0;
     mIsOnSurface = false;
     mEnteredWater = false;
@@ -1619,11 +1619,11 @@ void MarioSwim::decideEffect(bool isReset) {
 }
 
 bool MarioSwim::notice() {
-    if (MarioState::getNoticedStatus() == 18) {
+    if (MarioState::getNoticedStatus() == MarioStatus_FpView) {
         return true;
     }
 
-    return getNoticedStatus() == 11;
+    return getNoticedStatus() == MarioStatus_Paralyze;
 }
 
 bool MarioSwim::close() {
@@ -2886,7 +2886,7 @@ void MarioSwim::decOxygen(u16 amount) {
         return;
     }
 
-    if (isStatusActiveID(0x22)) {
+    if (isStatusActiveID(MarioStatus_Talk)) {
         return;
     }
 

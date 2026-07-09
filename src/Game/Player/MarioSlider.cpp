@@ -20,7 +20,7 @@ bool Mario::checkSliderMode() const {
     return false;
 }
 
-MarioSlider::MarioSlider(MarioActor* pActor) : MarioState(pActor, 7) {
+MarioSlider::MarioSlider(MarioActor* pActor) : MarioState(pActor, MarioStatus_Slider) {
     _14.zero();
     _20.zero();
     _2C.zero();

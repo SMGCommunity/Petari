@@ -1,6 +1,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "revolution/mtx.h"
 
@@ -181,7 +182,7 @@ bool Mario::taskOnHipDropBlurHopper(u32) {
     Mario* player = getPlayer();
     if (player->mMovementStates._C) {
         if (!mMovementStates._2) {
-            if (!isStatusActive(6)) {
+            if (!isStatusActive(MarioStatus_Swim)) {
                 return true;
             }
         }
@@ -200,7 +201,7 @@ bool Mario::taskOnHipDropBlur(u32) {
     Mario* player = getPlayer();
     if (player->mMovementStates._C) {
         if (!mMovementStates._2) {
-            if (!isStatusActive(6)) {
+            if (!isStatusActive(MarioStatus_Swim)) {
                 return true;
             }
         }
@@ -226,7 +227,7 @@ bool Mario::taskOnHipDropSlide(u32 flags) {
         return false;
     }
 
-    if (getPlayer()->mMovementStates._1 || !getPlayer()->mMovementStates.jumping || isStatusActive(6)) {
+    if (getPlayer()->mMovementStates._1 || !getPlayer()->mMovementStates.jumping || isStatusActive(MarioStatus_Swim)) {
         return false;
     }
 

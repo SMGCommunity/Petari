@@ -6,6 +6,7 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioParts.hpp"
+#include "Game/Player/MarioState.hpp"
 #include "Game/Player/ModelHolder.hpp"
 #include "Game/Player/TornadoMario.hpp"
 #include "Game/Scene/SceneFunction.hpp"
@@ -486,7 +487,7 @@ void MarioActor::calcViewAndEntry() {
         calcViewFootPrint();
     }
 
-    if (mMario->isStatusActive(0x12)) {
+    if (mMario->isStatusActive(MarioStatus_FpView)) {
         calc1stPersonView();
     } else {
         calcFogLighting();
@@ -585,7 +586,7 @@ void MarioActor::updateFace() {
         return;
     }
 
-    if (mMario->isStatusActive(0x12)) {
+    if (mMario->isStatusActive(MarioStatus_FpView)) {
         MR::hideModel(_A5C);
         return;
     }
@@ -841,7 +842,7 @@ void MarioActor::drawIndirectModel() const {
     }
 
     model->mFlags._1C = false;
-    if (mMario->isStatusActive(0x12)) {
+    if (mMario->isStatusActive(MarioStatus_FpView)) {
         if (_1A1) {
             return;
         }
@@ -1026,7 +1027,7 @@ void MarioActor::drawMarioModel() const {
 
     if (!mFlag.mIsHiddenModel) {
         model->mFlags._1C = false;
-        if (mMario->isStatusActive(0x12)) {
+        if (mMario->isStatusActive(MarioStatus_FpView)) {
             if (_1A1) {
                 return;
             }
@@ -1053,7 +1054,7 @@ void MarioActor::drawMarioModel() const {
         model->mFlags.clear();
     }
 
-    if (mMario->isStatusActive(0x12)) {
+    if (mMario->isStatusActive(MarioStatus_FpView)) {
         MR::hideJoint(model, "HandR0");
         MR::hideJoint(model, "HandL0");
         MR::hideJoint(model, "Face0");

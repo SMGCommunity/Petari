@@ -12,11 +12,11 @@ bool Mario::doObjWarp(LiveActor* pActor) {
         return false;
     }
 
-    if (isStatusActive(19)) {
+    if (isStatusActive(MarioStatus_Warp)) {
         return false;
     }
 
-    if (isStatusActive(19)) {
+    if (isStatusActive(MarioStatus_Warp)) {
         return false;
     }
 
@@ -63,11 +63,11 @@ bool Mario::doPointWarp(const TVec3f& rVec1, const TVec3f& rVec2, s32 myInt) {
         return false;
     }
 
-    if (isStatusActive(19)) {
+    if (isStatusActive(MarioStatus_Warp)) {
         return false;
     }
 
-    if (isStatusActive(19)) {
+    if (isStatusActive(MarioStatus_Warp)) {
         return false;
     }
 
@@ -97,14 +97,14 @@ bool Mario::doPointWarp(const TVec3f& rVec1, const TVec3f& rVec2, s32 myInt) {
 }
 
 bool Mario::isVisibleRecoveryWarpBubble() const {
-    if (isStatusActive(19) && mWarp->_45 == 3) {
+    if (isStatusActive(MarioStatus_Warp) && mWarp->_45 == 3) {
         return true;
     }
 
     return false;
 }
 
-MarioWarp::MarioWarp(MarioActor* pActor) : MarioState(pActor, 19), _52(), _58(-1) {
+MarioWarp::MarioWarp(MarioActor* pActor) : MarioState(pActor, MarioStatus_Warp), _52(), _58(-1) {
     _4C = nullptr;
     _48 = 0;
 
@@ -172,11 +172,11 @@ void Mario::doCubeWarp() {
         return;
     }
 
-    if (isStatusActive(19)) {
+    if (isStatusActive(MarioStatus_Warp)) {
         return;
     }
 
-    if (isStatusActive(19)) {
+    if (isStatusActive(MarioStatus_Warp)) {
         return;
     }
 
@@ -235,11 +235,11 @@ bool Mario::doPointWarpRecovery(const TVec3f& rVec1, const TVec3f& rVec2) {
         return false;
     }
 
-    if (isStatusActive(19)) {
+    if (isStatusActive(MarioStatus_Warp)) {
         return false;
     }
 
-    if (isStatusActive(19)) {
+    if (isStatusActive(MarioStatus_Warp)) {
         return false;
     }
 

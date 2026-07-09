@@ -256,7 +256,7 @@ s32 MarioActor::getFloorMaterialIndex(u32 flags) const {
         floor = mMario->_962;
     }
 
-    if (mMario->isStatusActive(1)) {
+    if (mMario->isStatusActive(MarioStatus_Wall)) {
         if (mMario->mMovementStates._1C) {
             floor = mMario->_964[0];
         } else if (mMario->mMovementStates._5) {
@@ -915,7 +915,7 @@ void MarioActor::updateEffect() {
         effectA = 1;
     }
 
-    if (mMario->isStatusActive(0x14)) {
+    if (mMario->isStatusActive(MarioStatus_Flip)) {
         effectA = 1;
     }
 
@@ -930,7 +930,7 @@ void MarioActor::updateEffect() {
         effectA = 0;
     }
 
-    if (_3C0 || mPlayerMode == 1 || mMario->isStatusActive(6) || mMario->isStatusActive(0x12) || _934) {
+    if (_3C0 || mPlayerMode == 1 || mMario->isStatusActive(MarioStatus_Swim) || mMario->isStatusActive(MarioStatus_FpView) || _934) {
         effectA = 0;
         effectB = 0;
         effectC = 0;

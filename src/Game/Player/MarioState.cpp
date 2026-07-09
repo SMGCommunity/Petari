@@ -35,13 +35,13 @@ void Mario::sendStateMsg(u32 msg) {
     for (MarioState* pState = _97C; pState != nullptr; ) {
         pNext = pState->_8;
 
-        if (isStatusActive(pState->mStatusId) == 0) {
+        if (isStatusActive(pState->mStatusId) == MarioStatus_None) {
             pState = pNext;
             continue;
         }
 
         if (!pState->proc(msg)) {
-            if (isStatusActive(pState->mStatusId) != 0) {
+            if (isStatusActive(pState->mStatusId) != MarioStatus_None) {
                 closeStatus(pState);
             }
         } else if (msg == MarioStateMsg_Update) {
@@ -125,7 +125,7 @@ u32 Mario::getCurrentStatus() const {
     MarioState* pState = _97C;
 
     if (pState == nullptr) {
-        return 0;
+        return MarioStatus_None;
     }
 
     return pState->mStatusId;

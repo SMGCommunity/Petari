@@ -673,7 +673,7 @@ bool Mario::taskOnTornadoCentering(u32 a1) {
 }
 
 void Mario::trySpinJump(u8 a1) {
-    if (mMovementStates._C || _430 == 0x8 || isStatusActive(0x17)) {
+    if (mMovementStates._C || _430 == 0x8 || isStatusActive(MarioStatus_Rabbit)) {
         return;
     }
 
@@ -730,7 +730,7 @@ void Mario::trySpinJump(u8 a1) {
         _10.digitalJump = true;
         _10._6 = true;
 
-        if (isStatusActive(0x17)) {
+        if (isStatusActive(MarioStatus_Rabbit)) {
             mRabbit->hop();
         }
     }
