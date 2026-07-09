@@ -63,7 +63,7 @@ void PicketSwitch::exeLastDrop() {
 
 bool PicketSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg)) {
-        if (pReceiver->isType(79)) {
+        if (pReceiver->isType(ATYPE_SWITCH)) {
             if (isNerve(&NrvPicketSwitch::PicketSwitchNrvWait::sInstance)) {
                 setNerve(&NrvPicketSwitch::PicketSwitchNrvLastDrop::sInstance);
                 return true;

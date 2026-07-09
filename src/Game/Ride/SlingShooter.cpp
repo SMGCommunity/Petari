@@ -54,8 +54,8 @@ void SlingShooter::init(const JMapInfoIter& rIter) {
 
     initHitSensor(3);
     MR::addHitSensorCallbackBinder(this, "bind", 8, 80.0f);
-    MR::addHitSensorCallback(this, "npc", 14, 8, 150.0f);
-    MR::addHitSensor(this, "attack", 12, 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorCallback(this, "npc", ATYPE_SPRING_ATTACKER_KINOPIO_BIND, 8, 150.0f);
+    MR::addHitSensor(this, "attack", ATYPE_SPRING_ATTACKER, 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
 
     initBinder(50.0f, 50.0f, 8);
     MR::offBind(this);

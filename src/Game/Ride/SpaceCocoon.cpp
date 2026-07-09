@@ -89,7 +89,7 @@ void SpaceCocoon::init(const JMapInfoIter& rIter) {
     initHitSensor(3);
     MR::addHitSensorTransferableBinder(this, "Bind", 8, 200.0f, TVec3f(0.0f, 100.0f, 0.0f));
     MR::addHitSensorMapObj(this, "Push", 8, 50.0f, TVec3f(0.0f, -50.0f, 0.0f));
-    MR::addHitSensor(this, "Attack", 12, 8, 150.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "Attack", ATYPE_SPRING_ATTACKER, 8, 150.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initBinder(50.0f, 50.0f, 8);
     MR::offBind(this);
 

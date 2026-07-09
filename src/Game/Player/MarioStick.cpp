@@ -4,6 +4,7 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioConst.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "revolution/mtx.h"
@@ -61,7 +62,7 @@ bool MarioStick::setStickSensor(const HitSensor* pSensor) {
         return false;
     }
 
-    if (!pSensor->isType(83)) {
+    if (!pSensor->isType(ATYPE_BEE_FLOWER)) {
         return false;
     }
 

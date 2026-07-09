@@ -421,7 +421,7 @@ void CocoNut::reviseFrontVec() {
 
     for (int i = 0; i < eye->mSensorCount; i++) {
         sensor = eye->mSensors[i];
-        if ((sensor->isType(0x26) || sensor->isType(0x56)) && !MR::isDead(sensor->mHost)) {
+        if ((sensor->isType(ATYPE_SAMBO_BODY) || sensor->isType(ATYPE_WATER_BAZOOKA_CAPSULE)) && !MR::isDead(sensor->mHost)) {
             found_actor = sensor->mHost;
             break;
         }
@@ -674,7 +674,7 @@ void CocoNut::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (!MR::isPlayerHipDropFalling()) {
             MR::sendMsgPush(pReceiver, pSender);
         }
-    } else if (pReceiver->isType(0x17)) {
+    } else if (pReceiver->isType(ATYPE_COCO_NUT)) {
         if (MR::sendMsgPush(pReceiver, pSender)) {
             MR::startSound(this, "SE_OJ_COCONUT_HIT");
         }
@@ -691,7 +691,7 @@ bool CocoNut::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    if (pSender->isType(0x17)) {
+    if (pSender->isType(ATYPE_COCO_NUT)) {
         return tryHit(pReceiver, pSender);
     }
 
@@ -826,8 +826,7 @@ void CocoNut::emitEffectSpinHit(const HitSensor* pOtherSensor, const HitSensor* 
 bool CocoNut::isContactWithOtherCocoNut() const {
     HitSensor* body = getSensor("body");
     for (int i = 0; i < body->mSensorCount; i++) {
-        HitSensor* sensor = body->mSensors[i];
-        if (body->mSensors[i]->isType(0x17)) {
+        if (body->mSensors[i]->isType(ATYPE_COCO_NUT)) {
             return true;
         }
     }

@@ -8,6 +8,7 @@
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioConst.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
@@ -484,9 +485,9 @@ bool MarioSwim::start() {
     }
     if (mActor->_468) {
         if (mJetTimer == 0) {
-            if (mActor->getCarrySensor()->isType(15) || mActor->getCarrySensor()->isType(16)) {
+            if (mActor->getCarrySensor()->isType(ATYPE_JET_TURTLE) || mActor->getCarrySensor()->isType(ATYPE_JET_TURTLE_SLOW)) {
                 u32 r1b = 0;
-                if (mActor->getCarrySensor()->isType(16)) {
+                if (mActor->getCarrySensor()->isType(ATYPE_JET_TURTLE_SLOW)) {
                     r1b = 1;
                 }
                 startJet(r1b);

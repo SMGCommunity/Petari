@@ -290,7 +290,7 @@ bool Teresa::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) 
 }
 
 bool Teresa::filterBind(const Triangle* pTriangle) {
-    if (pTriangle->mSensor->isType(73)) {
+    if (pTriangle->mSensor->isType(ATYPE_CLIP_FIELD_MAP_PARTS)) {
         return true;
     }
 

@@ -15,9 +15,9 @@ void SensorHitChecker::initGroup(HitSensor* pSensor) {
         pSensor->mSensorGroup = mPlayerGroup;
     } else if (MR::isSensorRide(pSensor)) {
         pSensor->mSensorGroup = mRideGroup;
-    } else if (pSensor->isType(0x7F)) {
+    } else if (pSensor->isType(ATYPE_EYE)) {
         pSensor->mSensorGroup = mEyeGroup;
-    } else if (pSensor->isType(0x4A) || pSensor->isType(0x4C) || pSensor->isType(0x15) || pSensor->isType(0x47) || pSensor->isType(0x1F) ||
+    } else if (pSensor->isType(ATYPE_COIN) || pSensor->isType(ATYPE_STAR_PIECE) || pSensor->isType(ATYPE_ENEMY_SIMPLE) || pSensor->isType(ATYPE_MAP_OBJ_SIMPLE) || pSensor->isType(ATYPE_PLAYER_AUTO_JUMP) ||
                MR::isSensorRush(pSensor) || MR::isSensorAutoRush(pSensor)) {
         pSensor->mSensorGroup = mSimpleGroup;
     } else {
@@ -102,11 +102,11 @@ void SensorHitChecker::checkAttack(HitSensor* pSensor1, HitSensor* pSensor2) con
         f32 totalSize = pSensor2->mRadius + pSensor1->mRadius;
 
         if (!((((yPos * yPos) + (xPos * xPos)) + (zPos * zPos)) >= (totalSize * totalSize))) {
-            if (!pSensor2->isType(127)) {
+            if (!pSensor2->isType(ATYPE_EYE)) {
                 pSensor1->addHitSensor(pSensor2);
             }
 
-            if (!pSensor1->isType(127)) {
+            if (!pSensor1->isType(ATYPE_EYE)) {
                 pSensor2->addHitSensor(pSensor1);
             }
         }

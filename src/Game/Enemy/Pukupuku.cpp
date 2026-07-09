@@ -252,7 +252,7 @@ void Pukupuku::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     initHitSensor(1);
-    MR::addHitSensorAtJoint(this, "body", "center", 34, 8, 60.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorAtJoint(this, "body", "center", ATYPE_NOKONOKO, 8, 60.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initBinder(70.0f, 0.0f, 0);
     MR::setBinderOffsetVec(this, &_9C, false);
     initRailRider(rIter);

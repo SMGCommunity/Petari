@@ -59,7 +59,7 @@ void JumpBeamer::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     initHitSensor(2);
-    MR::addHitSensorMtx(this, "Jump", 31, 8, 145.0f, MR::getJointMtx(mHeadModel, "SpringJoint3"), TVec3f(0.0f, -100.0f, 0.0f));
+    MR::addHitSensorMtx(this, "Jump", ATYPE_PLAYER_AUTO_JUMP, 8, 145.0f, MR::getJointMtx(mHeadModel, "SpringJoint3"), TVec3f(0.0f, -100.0f, 0.0f));
     MR::addHitSensorMtxEnemy(this, "Body", 8, 145.0f, MR::getJointMtx(this, "Body"), TVec3f(0.0f, 35.0f, 0.0f));
     getSensor("Body")->setType(29);
     getSensor("Body")->validate();
@@ -109,7 +109,7 @@ void JumpBeamer::attackSensor(HitSensor* a1, HitSensor* a2) {
 
 bool JumpBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
     if (MR::isMsgPlayerTrample(msg)) {
-        if (a3->isType(31)) {
+        if (a3->isType(ATYPE_PLAYER_AUTO_JUMP)) {
             TVec3f up;
             MR::calcUpVec(&up, this);
             MR::setPlayerJumpVec(up);
@@ -174,7 +174,7 @@ void JumpBeamer::exeHide() {
     }
 
     if (MR::enableGroupAttack(this, 3000.0f, 500.0f)) {
-        MR::sendMsgToGroupMember(106, this, getSensor("Body"), "Body");
+        MR::sendMsgToGroupMember(ATYPE_WATER_PRESSURE_BULLET_BIND, this, getSensor("Body"), "Body");
     }
 }
 
@@ -288,7 +288,7 @@ void JumpBeamer::exePreOpen() {
     updateRotate();
 
     if (!MR::enableGroupAttack(this, 3200.0f, 500.0f)) {
-        MR::sendMsgToGroupMember(108, this, getSensor("Body"), "Body");
+        MR::sendMsgToGroupMember(ATYPE_QUESTION_COIN_BIND, this, getSensor("Body"), "Body");
 
     } else {
         if (MR::isStep(this, 0)) {
@@ -338,18 +338,15 @@ void JumpBeamer::exeInter() {
     }
 
     if (!MR::enableGroupAttack(this, 3200.0f, 500.0f)) {
-        MR::sendMsgToGroupMember(108, this, getSensor("Body"), "Body");
-    } else {
-        if (MR::isGreaterEqualStep(this, 80)) {
-            for (s32 i = 0; i < 3; i++) {
-                if (!MR::isDead(mBeams[i])) {
-                    return;
-                }
+        MR::sendMsgToGroupMember(ATYPE_QUESTION_COIN_BIND, this, getSensor("Body"), "Body");
+    } else if (MR::isGreaterEqualStep(this, 80)) {
+        for (s32 i = 0; i < 3; i++) {
+            if (!MR::isDead(mBeams[i])) {
+                return;
             }
-
-            setNerve(&NrvJumpBeamer::JumpBeamerNrvWait::sInstance);
-            return;
         }
+
+        setNerve(&NrvJumpBeamer::JumpBeamerNrvWait::sInstance);
     }
 }
 
