@@ -65,13 +65,13 @@ namespace {
         }
 
         switch (scaleType) {
-        case 0:
+        case MR::CollisionScaleType_AutoEqualScale:
             parts->initWithAutoEqualScale(rMtx, pSensor, kclRes, paRes, unk, false);
             break;
-        case 1:
+        case MR::CollisionScaleType_NotUsingScale:
             parts->initWithNotUsingScale(rMtx, pSensor, kclRes, paRes, unk, false);
             break;
-        case 2:
+        case MR::CollisionScaleType_Unk2:
             parts->init(rMtx, pSensor, kclRes, paRes, unk, false);
             break;
         }
@@ -245,7 +245,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "MoveLimit";
         MR::makeMtxTRS(mtx, pActor);
-        CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 3);
+        CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::CollisionScaleType_Unk2, 3);
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -267,7 +267,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "WaterSurface";
         MR::makeMtxTRS(mtx, pActor);
-        CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 2);
+        CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::CollisionScaleType_Unk2, 2);
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -289,7 +289,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "Sunshade";
         MR::makeMtxTRS(mtx, pActor);
-        CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::UNKNOWN_2, 1);
+        CollisionParts* parts = ::createCollisionParts(MR::getResourceHolder(pActor), pCollisionName, pSensor, mtx, MR::CollisionScaleType_Unk2, 1);
         if (parts != nullptr) {
             MR::validateCollisionParts(parts);
         }
@@ -2302,7 +2302,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "MoveLimit";
         mtx.set(pMtx);
-        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 3);
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, CollisionScaleType_Unk2, 3);
         pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
 
         if (pParts != nullptr) {
@@ -2325,7 +2325,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "WaterSurface";
         mtx.set(pMtx);
-        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 2);
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, CollisionScaleType_Unk2, 2);
         pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
 
         if (pParts != nullptr) {
@@ -2348,7 +2348,7 @@ namespace MR {
         TPos3f mtx;
         const char* pCollisionName = "Sunshade";
         mtx.set(pMtx);
-        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, UNKNOWN_2, 1);
+        CollisionParts* pParts = ::createCollisionParts(getResourceHolder(pActor), pCollisionName, pSensor, mtx, CollisionScaleType_Unk2, 1);
         pParts->_0 = reinterpret_cast< TPos3f* >(pMtx);
 
         if (pParts != nullptr) {

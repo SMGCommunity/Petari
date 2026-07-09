@@ -49,7 +49,7 @@ void Jiraira::init(const JMapInfoIter& rIter) {
     MR::addHitSensorEnemyAttack(this, "explode", 16, (_90 * scaleY), offset2);
     MR::initCollisionPartsAutoEqualScaleOne(this, "Jiraira", getSensor("body"), MR::getJointMtx(this, "Jiraira"));
     CollisionParts* colPart =
-        MR::createCollisionPartsFromLiveActor(this, "Button", getSensor("body"), MR::getJointMtx(this, "Button"), (MR::CollisionScaleType)1);
+        MR::createCollisionPartsFromLiveActor(this, "Button", getSensor("body"), MR::getJointMtx(this, "Button"), MR::CollisionScaleType_NotUsingScale);
     _8C = colPart;
     MR::validateCollisionParts(colPart);
     initSound(6, false);

@@ -32,7 +32,11 @@ class TriangleFilterBase;
 class XjointTransform;
 
 namespace MR {
-    enum CollisionScaleType { AutoEqualScale = 0, NoScale = 1, UNKNOWN_2 = 2, UNKNOWN_3 = 3 };
+    enum CollisionScaleType {
+        CollisionScaleType_AutoEqualScale,
+        CollisionScaleType_NotUsingScale,
+        CollisionScaleType_Unk2,
+    };
 
     bool isExistIndirectTexture(const LiveActor*);
     void initMirrorReflection(LiveActor*);

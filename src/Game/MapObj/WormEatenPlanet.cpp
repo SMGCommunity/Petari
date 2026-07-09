@@ -31,9 +31,9 @@ void WormEatenPlanet::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
     MR::initCollisionParts(this, "First", getSensor(nullptr), nullptr);
-    mSecondHill = MR::createCollisionPartsFromLiveActor(this, "Second", getSensor(nullptr), MR::UNKNOWN_2);
-    mThirdHill = MR::createCollisionPartsFromLiveActor(this, "Third", getSensor(nullptr), MR::UNKNOWN_2);
-    mFourthHill = MR::createCollisionPartsFromLiveActor(this, "Fourth", getSensor(nullptr), MR::UNKNOWN_2);
+    mSecondHill = MR::createCollisionPartsFromLiveActor(this, "Second", getSensor(nullptr), MR::CollisionScaleType_Unk2);
+    mThirdHill = MR::createCollisionPartsFromLiveActor(this, "Third", getSensor(nullptr), MR::CollisionScaleType_Unk2);
+    mFourthHill = MR::createCollisionPartsFromLiveActor(this, "Fourth", getSensor(nullptr), MR::CollisionScaleType_Unk2);
     MR::invalidateCollisionParts(mSecondHill);
     MR::invalidateCollisionParts(mThirdHill);
     MR::invalidateCollisionParts(mFourthHill);

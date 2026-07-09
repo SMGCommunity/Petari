@@ -86,7 +86,7 @@ void WaterBazooka::init(const JMapInfoIter& rIter) {
     MR::addMessageSensorEnemy(this, "cannon");
 
     MR::initCollisionParts(this, "Cannon1", getSensor("cannon"), MR::getJointMtx(this, "Cannon1"));
-    mCannonCollisionParts = MR::createCollisionPartsFromLiveActor(this, "AllRoot", getSensor("body"), static_cast< MR::CollisionScaleType >(2));
+    mCannonCollisionParts = MR::createCollisionPartsFromLiveActor(this, "AllRoot", getSensor("body"), MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(mCannonCollisionParts);
 
     initEffectKeeper(1, nullptr, false);

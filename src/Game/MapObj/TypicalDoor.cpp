@@ -37,12 +37,12 @@ void TypicalDoor::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::isExistCollisionResource(this, "Close")) {
-        mCloseCollision = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), (MR::CollisionScaleType)2);
+        mCloseCollision = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), MR::CollisionScaleType_Unk2);
         MR::invalidateCollisionParts(mCloseCollision);
     }
 
     if (MR::isExistCollisionResource(this, "Open")) {
-        mOpenCollision = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), (MR::CollisionScaleType)2);
+        mOpenCollision = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), MR::CollisionScaleType_Unk2);
         MR::invalidateCollisionParts(mOpenCollision);
     }
 
