@@ -88,13 +88,7 @@ bool CameraManEvent::isZeroFrameMoveOff() const {
 }
 
 bool CameraManEvent::isCorrectingErpPositionOff() const {
-    bool off = false;
-
-    if (mCamera != nullptr && mCamera->isCorrectingErpPositionOff()) {
-        off = true;
-    }
-
-    return off;
+    return mCamera != nullptr && mCamera->isCorrectingErpPositionOff();
 }
 
 void CameraManEvent::start(s32 zoneID, const char* pName, const CameraTargetArg& rTargetArg, s32 a4) {

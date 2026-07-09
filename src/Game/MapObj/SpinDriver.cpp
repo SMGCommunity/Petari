@@ -130,7 +130,9 @@ void SpinDriver::initShootPath(const JMapInfoIter& rIter) {
 void SpinDriver::initEventCamera(const JMapInfoIter& rIter) {
     mSpinDriverCamera = new SpinDriverCamera();
     mSpinDriverCamera->init(rIter, this);
-    MR::isConnectedWithRail(rIter);
+
+    if (MR::isConnectedWithRail(rIter)) {
+    }
 }
 
 void SpinDriver::appear() {

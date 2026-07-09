@@ -133,13 +133,7 @@ bool CameraManGame::isSubjectiveCameraOff() const {
 }
 
 bool CameraManGame::isCorrectingErpPositionOff() const {
-    bool off = false;
-
-    if (mCamera != nullptr && mCamera->isCorrectingErpPositionOff()) {
-        off = true;
-    }
-
-    return off;
+    return mCamera != nullptr && mCamera->isCorrectingErpPositionOff();
 }
 
 bool CameraManGame::isEnableToRoundLeft() const {

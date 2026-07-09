@@ -242,7 +242,10 @@ void TripodBossKillerGenerater::exeShowDemo() {
     }
 
     updateTripodMatrix();
-    MR::isStep(this, 110);
+
+    if (MR::isStep(this, 110)) {
+    }
+
     if (!MR::isDamageDemoTripodBoss()) {
         setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvReady::sInstance);
     }

@@ -57,21 +57,13 @@ void SensorHitChecker::doObjColGroup(SensorGroup* pGroup1, SensorGroup* pGroup2)
     s32 group1SensorCount = pGroup1->mSensorCount;
     for (s32 i = 0; i < group1SensorCount; i++) {
         HitSensor* curGroup1Sensor = pGroup1->mSensors[i];
-        bool group1Sensorvalidated = false;
-
-        if (curGroup1Sensor->mValidByHost && curGroup1Sensor->mValidBySystem) {
-            group1Sensorvalidated = true;
-        }
+        bool group1Sensorvalidated = curGroup1Sensor->mValidByHost && curGroup1Sensor->mValidBySystem;
 
         if (group1Sensorvalidated && !MR::isClipped(curGroup1Sensor->mHost)) {
             s32 group2SensorCount = pGroup2->mSensorCount;
             for (s32 x = 0; x < group2SensorCount; x++) {
                 HitSensor* curGroup2Sensor = pGroup2->mSensors[x];
-                bool group2Validated = false;
-
-                if (curGroup2Sensor->mValidByHost && curGroup2Sensor->mValidBySystem) {
-                    group2Validated = true;
-                }
+                bool group2Validated = curGroup2Sensor->mValidByHost && curGroup2Sensor->mValidBySystem;
 
                 if (group2Validated && !MR::isClipped(curGroup2Sensor->mHost)) {
                     checkAttack(curGroup1Sensor, curGroup2Sensor);
@@ -86,20 +78,12 @@ void SensorHitChecker::doObjColInSameGroup(SensorGroup* pSensorGroup) const {
     s32 sensorGroupCount = pSensorGroup->mSensorCount;
     for (s32 i = 0; i < sensorGroupCount; i++) {
         HitSensor* pFirstSensor = pSensorGroup->mSensors[i];
-        bool isFirstSensorValid = false;
-
-        if (pFirstSensor->mValidByHost && pFirstSensor->mValidBySystem) {
-            isFirstSensorValid = true;
-        }
+        bool isFirstSensorValid = pFirstSensor->mValidByHost && pFirstSensor->mValidBySystem;
 
         if (isFirstSensorValid && !MR::isClipped(pFirstSensor->mHost)) {
             for (s32 x = 0; x < sensorGroupCount; x++) {
                 HitSensor* pSecondSensor = pSensorGroup->mSensors[x];
-                bool isSecondSensorValid = false;
-
-                if (pSecondSensor->mValidByHost && pSecondSensor->mValidBySystem) {
-                    isSecondSensorValid = true;
-                }
+                bool isSecondSensorValid = pSecondSensor->mValidByHost && pSecondSensor->mValidBySystem;
 
                 if (isSecondSensorValid && !MR::isClipped(pSecondSensor->mHost)) {
                     checkAttack(pFirstSensor, pSecondSensor);

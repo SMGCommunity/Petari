@@ -251,15 +251,7 @@ void CameraDirector::calcPose() {
 }*/
 
 bool CameraDirector::isInterpolationOff() {
-    bool off = false;
-
-    CameraMan* man = getCurrentCameraMan();
-
-    if (man->isInterpolationOff() || mViewInterpolator->_9) {
-        off = true;
-    }
-
-    return off;
+    return getCurrentCameraMan()->isInterpolationOff() || mViewInterpolator->_9;
 }
 
 void CameraDirector::switchAntiOscillation() {

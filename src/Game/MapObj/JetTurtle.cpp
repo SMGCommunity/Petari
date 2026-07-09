@@ -399,7 +399,8 @@ void JetTurtle::exeTakenStart() {
 
 // missing branch
 void JetTurtle::exeRestart() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+    }
 
     if (MR::isStep(this, 45)) {
         mPosition = _A8;

@@ -45,25 +45,17 @@ void DinoPackunBattleVs1Lv2::appear() {
 
 void DinoPackunBattleVs1Lv2::attackSensor(HitSensor* a1, HitSensor* a2) {
     if (MR::isSensorPlayer(a2)) {
-        bool v6 = false;
-
-        if (isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvChase::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvWalk::sInstance)) {
-            v6 = true;
-        }
+        bool v6 = isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvChase::sInstance) ||
+            isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvWalk::sInstance);
 
         if (v6 && sendBlowAttackMessage(a1, a2, false)) {
             setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvAttackHit::sInstance);
             return;
         }
 
-        bool v7 = false;
-
-        if (isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvTurn::sInstance) ||
+        bool v7 = isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvTurn::sInstance) ||
             isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvFind::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvCoolDown::sInstance)) {
-            v7 = true;
-        }
+            isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvCoolDown::sInstance);
 
         if (v7 && sendHitAttackMessage(a1, a2, false)) {
             setNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvAttackHit::sInstance);
@@ -72,12 +64,8 @@ void DinoPackunBattleVs1Lv2::attackSensor(HitSensor* a1, HitSensor* a2) {
 
         MR::sendMsgPush(a2, a1);
     } else {
-        bool v8 = false;
-
-        if (isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvChase::sInstance) ||
-            isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvWalk::sInstance)) {
-            v8 = true;
-        }
+        bool v8 = isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvChase::sInstance) ||
+            isNerve(&NrvDinoPackunBattleVs1Lv2::DinoPackunBattleVs1Lv2NrvWalk::sInstance);
 
         if (v8) {
             MR::sendMsgEnemyAttack(a2, a1);

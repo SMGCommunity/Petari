@@ -145,11 +145,13 @@ void JumpBeamer::syncSwitchOffB() {
 }
 
 bool JumpBeamer::receiveOtherMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
-    if (msg == 106) {
+    if (msg == ACTMES_GROUP_ATTACK) {
         MR::invalidateClipping(this);
         setNerve(&NrvJumpBeamer::JumpBeamerNrvUp::sInstance);
         return true;
-    } else if (msg == 108) {
+    }
+
+    if (msg == ACTMES_GROUP_HIDE) {
         setNerve(&NrvJumpBeamer::JumpBeamerNrvDown::sInstance);
         return true;
     }
@@ -158,11 +160,7 @@ bool JumpBeamer::receiveOtherMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
 }
 
 void JumpBeamer::exeHide() {
-    bool v2 = false;
-
-    if (MR::isValidSwitchB(this) && !MR::isOnSwitchB(this)) {
-        v2 = true;
-    }
+    bool v2 = MR::isValidSwitchB(this) && !MR::isOnSwitchB(this);
 
     if (!v2) {
         updateRotate();
@@ -201,13 +199,9 @@ void JumpBeamer::exeWait() {
     updateRotate();
 
     if (!MR::enableGroupAttack(this, 3200.0f, 500.0f)) {
-        MR::sendMsgToGroupMember(108, this, getSensor("Body"), "Body");
+        MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
     } else {
-        bool v3 = false;
-
-        if (MR::isValidSwitchB(this) && !MR::isOnSwitchB(this)) {
-            v3 = true;
-        }
+        bool v3 = MR::isValidSwitchB(this) && !MR::isOnSwitchB(this);
 
         if (!v3) {
             setNerve(&NrvJumpBeamer::JumpBeamerNrvPreOpen::sInstance);
@@ -326,19 +320,18 @@ void JumpBeamer::exeOpen() {
 }
 
 void JumpBeamer::exeClose() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+    }
+
     MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHUTTER_CLOSE");
+
     if (MR::isBckStopped(this)) {
         setNerve(&NrvJumpBeamer::JumpBeamerNrvInter::sInstance);
     }
 }
 
 void JumpBeamer::exeInter() {
-    u8 v2 = false;
-
-    if (MR::isValidSwitchB(this) && !MR::isOnSwitchB(this)) {
-        v2 = true;
-    }
+    bool v2 = MR::isValidSwitchB(this) && !MR::isOnSwitchB(this);
 
     if (!v2) {
         updateRotate();

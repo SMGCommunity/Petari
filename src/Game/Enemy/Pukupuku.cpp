@@ -360,11 +360,7 @@ void Pukupuku::exeWait() {
 }
 
 void Pukupuku::exeMoveWater() {
-    bool v2 = false;
-
-    if (isNerve(&PukupukuTrampled::sInstance) || isNerve(&PukupukuBlownOff::sInstance)) {
-        v2 = true;
-    }
+    bool v2 = isNerve(&PukupukuTrampled::sInstance) || isNerve(&PukupukuBlownOff::sInstance);
 
     if (!v2 && !tryBindStarPointer()) {
         if (MR::isFirstStep(this)) {

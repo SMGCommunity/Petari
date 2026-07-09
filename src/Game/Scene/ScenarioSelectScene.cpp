@@ -76,18 +76,18 @@ void ScenarioSelectScene::startBackground() {
 }
 
 void ScenarioSelectScene::update() {
-    if (_14) {
-        updateNerve();
-        bool res = false;
-        if (isExecForeground() && _28 == 0) {
-            res = true;
-        }
+    if (!_14) {
+        return;
+    }
 
-        if (res) {
-            mScenarioLayout->movement();
-            mCinemaFrame->movement();
-            MR::Effect::checkEffectSceneUpdate(mEffectSystem);
-        }
+    updateNerve();
+
+    bool res = isExecForeground() && _28 == 0;
+
+    if (res) {
+        mScenarioLayout->movement();
+        mCinemaFrame->movement();
+        MR::Effect::checkEffectSceneUpdate(mEffectSystem);
     }
 }
 
@@ -137,20 +137,11 @@ void ScenarioSelectScene::draw() const {
 }
 
 bool ScenarioSelectScene::isActive() const {
-    bool ret = _14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance);
-
-    return ret;
+    return _14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance);
 }
 
 bool ScenarioSelectScene::isExecForeground() const {
-    bool ret = false;
-    if (_14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance)) {
-        if (_15 == 0) {
-            ret = true;
-        }
-    }
-
-    return ret;
+    return _14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance) && _15 == 0;
 }
 
 // ...

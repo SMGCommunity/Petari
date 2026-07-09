@@ -190,19 +190,14 @@ namespace MR {
     }
 
     bool isSteppingTripodBossLegID(s32 id) {
-        bool ret = !MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isStopLeg(id);
-        return ret;
+        return !MR::getSceneObj< TripodBossAccesser >(SceneObj_TripodBossAccesser)->mBoss->isStopLeg(id);
     }
 
     bool isSteppingTripodBossJointID(s32 id) {
         s32 partID = TripodBoss::getPartIDFromBoneID(::convertBoneIDToIndex(id));
-        bool ret = false;
+        bool isValidPartID = partID >= TripodBoss::LeftLeg && partID < 3;
 
-        if (partID >= 0 && partID < 3) {
-            ret = true;
-        }
-
-        if (ret) {
+        if (isValidPartID) {
             return MR::isSteppingTripodBossLegID(partID);
         }
 

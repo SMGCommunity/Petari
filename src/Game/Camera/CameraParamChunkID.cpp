@@ -18,20 +18,18 @@ CameraParamChunkID::CameraParamChunkID(const CameraParamChunkID& other) {
 bool CameraParamChunkID::operator>(const CameraParamChunkID& other) const {
     if (mName == nullptr) {
         return other.mName != nullptr;
-    } else if (other.mName == nullptr) {
+    }
+
+    if (other.mName == nullptr) {
         return false;
     }
 
     bool result = true;
 
     if (mZoneID <= other.mZoneID) {
-        bool stringEqual = false;
+        bool isSame = mZoneID == other.mZoneID && strcmp(mName, other.mName) > 0;
 
-        if (mZoneID == other.mZoneID && strcmp(mName, other.mName) > 0) {
-            stringEqual = true;
-        }
-
-        if (!stringEqual) {
+        if (!isSame) {
             result = false;
         }
     }
@@ -42,7 +40,9 @@ bool CameraParamChunkID::operator>(const CameraParamChunkID& other) const {
 bool CameraParamChunkID::operator==(const CameraParamChunkID& other) const {
     if (mName == nullptr) {
         return other.mName == nullptr;
-    } else if (other.mName == nullptr) {
+    }
+
+    if (other.mName == nullptr) {
         return false;
     }
 

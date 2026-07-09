@@ -1015,16 +1015,10 @@ void SkeletalFishBoss::endBreakDemo() {
 }
 
 bool SkeletalFishBoss::isEnableToBeDamaged() const {
-    bool isDmg = false;
-
-    if (!isNerve(&::SkeletalFishBossNrvDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDown::sInstance) &&
+    return !isNerve(&::SkeletalFishBossNrvDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDown::sInstance) &&
         !isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDead::sInstance) &&
         !isNerve(&::SkeletalFishBossNrvDemoWait::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) &&
-        !isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) && !isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
-        isDmg = true;
-    }
-
-    return isDmg;
+        !isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) && !isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
 }
 
 SkeletalFishBossHead::SkeletalFishBossHead(LiveActor* pActor)
