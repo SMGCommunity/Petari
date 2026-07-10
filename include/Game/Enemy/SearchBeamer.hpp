@@ -49,6 +49,7 @@ public:
     bool tryNonActive();
     bool tryStopStart();
     bool tryDPDSwoon();
+    void endNonActive();
 
     AnimScaleController* mScaleController;         // 0x8C
     WalkerStateBindStarPointer* mBindStarPointer;  // 0x90
@@ -61,8 +62,8 @@ public:
     TMtx34f _E8;
     JointController* mBeanStartJointCtrl;  // 0x118
     JointController* mBeamEndJointCtrl;    // 0x11C
-    TVec3f _120;
-    TVec3f _12C;
+    TVec3f mBeamStart;                     // 0x120
+    TVec3f mBeamEnd;                       // 0x12C
     f32 _138;
     f32 _13C;
     f32 _140;
