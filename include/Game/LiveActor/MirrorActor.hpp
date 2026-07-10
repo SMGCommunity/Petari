@@ -14,12 +14,10 @@ public:
     virtual void calcViewAndEntry() override;
 
     bool isHostInTheOtherSideOfMirror() const;
-    TVec3f& getHostCenterPos() const;
+    TVec3f getHostCenterPos() const;
 
-    LiveActor* _8C;
-    u32 _90;
-    u32 _94;
-    u32 _98;
-    f32 _9C;
-    bool _A0;
+    /* 0x8C */ LiveActor* mHost;
+    /* 0x90 */ TVec3f mCenter;
+    /* 0x9C */ f32 mRadius;
+    /* 0xA0 */ bool mIsDisconnected;
 };
