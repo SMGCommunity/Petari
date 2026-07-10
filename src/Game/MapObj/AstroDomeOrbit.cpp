@@ -33,7 +33,7 @@ void AstroDomeOrbit::init(const JMapInfoIter& rIter) {
 
     MR::connectToScene(this, -1, -1, -1, MR::DrawType_AstroDomeOrbit);
     MR::invalidateClipping(this);
-    MR::createAdaptorAndConnectToDrawBloomModel("天文ドーム軌道ブルーム描画", MR::Functor_Inline(this, &AstroDomeOrbit::drawBloom));
+    MR::createAdaptorAndConnectToDrawBloomModel("天文ドーム軌道ブルーム描画", MR::Functor_InlineC(this, &AstroDomeOrbit::drawBloom));
     makeActorDead();
 }
 

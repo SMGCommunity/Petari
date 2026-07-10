@@ -168,11 +168,9 @@ JMapInfo StageDataHolder::getCommonPathPointInfoFromRailDataIndex(const JMapInfo
 // StageDataHolder::getCommonPathInfoElementNum
 
 s32 StageDataHolder::getStartPosNum() const {
-    const JMapInfo* i = mStartObjs.begin();
     s32 cur = 0;
-    while (i != mStartObjs.end()) {
-        cur += i->mData != nullptr ? i->mData->mNumEntries : 0;
-        i++;
+    for (const JMapInfo* i = &mStartObjs[0]; i != mStartObjs.end(); i++) {
+        cur += i->getNumEntries();
     }
 
     for (s32 i = 0; i < mStageDataHolderCount; i++) {
