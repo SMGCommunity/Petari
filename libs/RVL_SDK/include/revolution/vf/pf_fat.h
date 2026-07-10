@@ -47,10 +47,14 @@ s32 VFiPFFAT_InitFATRegion(PF_VOLUME* p_vol);
 
 s32 VFiPFFAT_MakeRootDir(PF_VOLUME* p_vol);
 
-s32 VFiPFFAT_GetBeforeSector(u32 * p_befor_sector, PF_VOLUME * p_vol, u32 current_sector);
+s32 VFiPFFAT_GetBeforeSector(u32* p_befor_sector, PF_VOLUME* p_vol, u32 current_sector);
 
 void VFiPFENT_SetDotEntry(u8* entry);
 
 void VFiPFENT_SetDotDotEntry(u8* entry);
+
+s32 VFiPFFAT_ResetFFD(struct PF_FFD* p_ffd, u32* p_start_cluster);
+
+s32 VFiPFFAT_GetBeforeChain(struct PF_VOLUME* p_vol, u32 start_cluster, u32 lActive, u32* p_cluster);
 
 #endif  // PF_FAT_H
