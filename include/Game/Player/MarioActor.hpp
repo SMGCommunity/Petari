@@ -268,16 +268,12 @@ public:
     void updateForCamera();
     void updateTornado();
 
-    bool tryJumpRush();
     void initForJump();
     void lockOnDPD();
     bool tryCoinPull();
     bool tryThrow();
-    bool tryStandardRush();
-    void checkPriorRushTarget();
     u8 selectAction(const char*) const;
     bool selectInvalidMovingCollision(const char*) const;
-    bool tryRushInRush();
     void bodyClap();
     bool selectWaterInOut(const char*) const;
     bool selectWaterInOutEffect(const char*) const;
@@ -391,7 +387,24 @@ public:
     bool tryVectorAttackMsg(u32, const TVec3f&);
     void cylinderHitCheck(const HitSensor*, TVec3f*);
 
+    // Defined in MarioActorRushMsg
+    void addRushSensor(HitSensor*, bool);
+    bool tryStandardRush();
+    void checkPriorRushTarget();
+    HitSensor* getNearestRushTarget(bool) const;
+    HitSensor* getNearestJumpTarget() const;
+    HitSensor* getHighPriorityTarget() const;
+    HitSensor* getRescueTarget() const;
+    bool tryStartRush(bool);
+    bool tryJumpRush();
+    void tryRushInRush();
+
+    bool selectHipDropRush(const HitSensor*) const;
+    bool selectHideFlyMeter(const HitSensor*) const;
+    bool selectHandyRush(const HitSensor*) const;
+    bool selectAutoBind(const char*, unsigned char*) const;
     bool selectDamageFireColor(const char*) const;
+    bool selectOnDamageRush(const char*) const;
     void trampleJump(f32, f32);
 
     const MarioConst& getConst() const {
@@ -587,14 +600,14 @@ public:
     /* 0x6D4 */ f32 _6D4;
     /* 0x6D8 */ f32 _6D8;
     /* 0x6DC */ HitSensor* _6DC[64];
-    /* 0x7DC */ u16 _7DC; // _6DC count
+    /* 0x7DC */ u16 _7DC;  // _6DC count
     /* 0x7DE */ u16 _7DE;
     /* 0x7E0 */ u16 _7E0;
     /* 0x7E2 */ u8 _7E2;
-    /* 0x7E4 */ u32 _7E4[64];
-    /* 0x8E4 */ u8 _8E4[64];
+    /* 0x7E4 */ HitSensor* _7E4[64];
+    /* 0x8E4 */ bool _8E4[64];
     /* 0x924 */ HitSensor* _924;
-    /* 0x928 */ u32 _928;
+    /* 0x928 */ HitSensor* _928;
     /* 0x92C */ u32 _92C;
     /* 0x930 */ u32 _930;
     /* 0x934 */ bool _934;
