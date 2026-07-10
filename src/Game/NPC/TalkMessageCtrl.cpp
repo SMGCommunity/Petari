@@ -123,9 +123,9 @@ void TalkMessageCtrl::rootNodePre(bool arg) {
         case 1:
             if (mBranchFunc == nullptr) {
                 cond = true;
-                break;
+            } else {
+                cond = mBranchFunc->operator()(branch->mNextIdx);
             }
-            cond = mBranchFunc->operator()(branch->mNextIdx);
             break;
         case 2:
             cond = MR::isNearPlayerAnyTime(mHostActor, mTalkDistance);

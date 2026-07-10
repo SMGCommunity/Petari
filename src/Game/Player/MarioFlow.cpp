@@ -4,7 +4,7 @@
 #include "Game/Util/MathUtil.hpp"
 
 bool Mario::doFlow() {
-    if (isStatusActive(0x19)) {
+    if (isStatusActive(MarioStatus_Flow)) {
         return false;
     }
 
@@ -109,6 +109,6 @@ bool MarioFlow::close() {
     return true;
 }
 
-MarioFlow::MarioFlow(MarioActor* pActor) : MarioState(pActor, 0x19), _12(), _14() {
+MarioFlow::MarioFlow(MarioActor* pActor) : MarioState(pActor, MarioStatus_Flow), _12(), _14() {
     _18.zeroInline();
 }

@@ -59,7 +59,7 @@ void Jellyfish::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     TVec3f sensorOffs;
     sensorOffs.set(0.0f, 30.0f, 0.0f);
-    MR::addHitSensor(this, "body", 0x1E, 8, 100.0f, sensorOffs);
+    MR::addHitSensor(this, "body", ATYPE_KILLER_TARGET_ENEMY, 8, 100.0f, sensorOffs);
     initBinder(130.0f, 0.0f, 0);
     MR::offBind(this);
     mController = new AnimScaleController(nullptr);

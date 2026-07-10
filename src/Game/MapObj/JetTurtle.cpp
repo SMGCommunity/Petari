@@ -254,7 +254,7 @@ void JetTurtle::exeThrowing() {
                 }
 
                 if (MR::isBindedGround(this)) {
-                    if (MR::sendMsgToGroundSensor(6, getSensor("body"))) {
+                    if (MR::sendMsgToGroundSensor(ACTMES_JET_TURTLE_ATTACK, getSensor("body"))) {
                         MR::shakeCameraWeak();
                         reset(0);
                         return;
@@ -399,7 +399,8 @@ void JetTurtle::exeTakenStart() {
 
 // missing branch
 void JetTurtle::exeRestart() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+    }
 
     if (MR::isStep(this, 45)) {
         mPosition = _A8;

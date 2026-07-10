@@ -7,6 +7,8 @@
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioConst.hpp"
 #include "Game/Player/MarioRabbit.hpp"
+#include "Game/Player/MarioSkate.hpp"
+#include "Game/Player/MarioSukekiyo.hpp"
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Player/MarioWall.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -673,7 +675,7 @@ bool Mario::taskOnTornadoCentering(u32 a1) {
 }
 
 void Mario::trySpinJump(u8 a1) {
-    if (mMovementStates._C || _430 == 0x8 || isStatusActive(0x17)) {
+    if (mMovementStates._C || _430 == 0x8 || isStatusActive(MarioStatus_Rabbit)) {
         return;
     }
 
@@ -730,7 +732,7 @@ void Mario::trySpinJump(u8 a1) {
         _10.digitalJump = true;
         _10._6 = true;
 
-        if (isStatusActive(0x17)) {
+        if (isStatusActive(MarioStatus_Rabbit)) {
             mRabbit->hop();
         }
     }
@@ -1908,7 +1910,7 @@ void Mario::procHipDrop() {
             _71E = 0;
 
             if (isCurrentFloorSand()) {
-                changeStatus(reinterpret_cast< MarioState* >(mBury));
+                changeStatus(mBury);
                 return;
             }
 
@@ -2530,7 +2532,7 @@ void Mario::doLanding() {
             stopWalk();
             changeAnimation("ステージインB", "ショートジャンプ");
         } else {
-            changeStatus(reinterpret_cast< MarioState* >(mSkate));
+            changeStatus(mSkate);
         }
         return;
     }
@@ -2576,7 +2578,7 @@ void Mario::doLanding() {
             doHardLanding = true;
             if (_1FC.dot(_368) < 0.0f) {
                 if (_960 == 0xD || _960 == 0x1E || _960 == 5 || _960 == 0x17) {
-                    changeStatus(reinterpret_cast< MarioState* >(mSukekiyo));
+                    changeStatus(mSukekiyo);
                 } else {
                     stopWalk();
                     startCamVib(4);
@@ -2641,7 +2643,7 @@ void Mario::doLanding() {
     }
 
     if (doHardLanding && isCurrentFloorSand()) {
-        changeStatus(reinterpret_cast< MarioState* >(mBury));
+        changeStatus(mBury);
         return;
     }
 

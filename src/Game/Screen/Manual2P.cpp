@@ -20,7 +20,8 @@ namespace {
     NEW_NERVE(Manual2PNrvDisappear, Manual2P, Disappear);
 };  // namespace
 
-Manual2P::Manual2P(const char* pName) : LayoutActor(pName, true), mPageIndex(), _24(), mLeftPaneCtrl(), mRightPaneCtrl(), _30(), _31(), mBackButton() {
+Manual2P::Manual2P(const char* pName)
+    : LayoutActor(pName, true), mPageIndex(), _24(), mLeftPaneCtrl(), mRightPaneCtrl(), _30(), _31(), mBackButton() {
 }
 
 void Manual2P::init(const JMapInfoIter& rIter) {

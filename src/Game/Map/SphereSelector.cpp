@@ -32,8 +32,8 @@ namespace NrvSphereSelector {
 };  // namespace NrvSphereSelector
 
 SphereSelector::SphereSelector()
-    : LiveActor("スフィアセレクター"), mSphereGroup(), mHandle(), mSelectedTarget(), _98(), mPointingTarget(), _A4(),
-      _A8(), _AC(), mIsPointingInvalid(), _B1() {
+    : LiveActor("スフィアセレクター"), mSphereGroup(), mHandle(), mSelectedTarget(), _98(), mPointingTarget(), _A4(), _A8(), _AC(),
+      mIsPointingInvalid(), _B1() {
 }
 
 void SphereSelector::init(const JMapInfoIter& rIter) {
@@ -353,4 +353,5 @@ TVec3f& SphereSelectorFunction::getSelectedActorTrans() {
 
 // void SphereSelectorFunction::calcOffsetPos(TVec3f * dst, const TVec3f & vec2, const TVec3f & vec3, const TVec3f & vec4, const TVec3f & vec5) {}
 
-SphereSelector::~SphereSelector() {}
+SphereSelector::~SphereSelector() {
+}

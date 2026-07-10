@@ -164,9 +164,9 @@ void OtaKing::startAppearDemo() {
 }
 
 void OtaKing::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
-    bool isLv2 = false;
-    MR::getJMapInfoArg1NoInit(rIter, &isLv2);
-    bool isLv2Flag = isLv2;
+    bool arg1 = false;
+    MR::getJMapInfoArg1NoInit(rIter, &arg1);
+    bool isLv2 = arg1;
 
     pArchiveList->addArchive(CocoNut::getModelName());
     pArchiveList->addArchive("FireBall");
@@ -174,7 +174,7 @@ void OtaKing::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const J
     pArchiveList->addArchive("OtaKingMagma");
     pArchiveList->addArchive("OtaKingMagmaBloom");
 
-    if (!isLv2Flag) {
+    if (!isLv2) {
         pArchiveList->addArchive("OtaKing");
         pArchiveList->addArchive("OtaKingFoot");
         pArchiveList->addArchive("OtaKingLongFoot");
@@ -294,7 +294,6 @@ void OtaKing::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::useStageSwitchWriteDead(this, rIter);
 
     bool arg1 = false;
-
     MR::getJMapInfoArg1NoInit(rIter, &arg1);
     mIsLv2 = arg1;
 }

@@ -676,7 +676,7 @@ void SkeletalFishBoss::initCollision() {
 
     for (u32 i = 0; i < 0xE; i++) {
         mPartsArray[i] = MR::createCollisionPartsFromLiveActor(this, ::sColInfo[i].mColliderName, mBossHead->getSensor("body"),
-                                                               MR::getJointMtx(this, ::sColInfo[i].mJointName), (MR::CollisionScaleType)2);
+                                                               MR::getJointMtx(this, ::sColInfo[i].mJointName), MR::CollisionScaleType_Unk2);
         MR::validateCollisionParts(mPartsArray[i]);
     }
 }
@@ -1015,16 +1015,10 @@ void SkeletalFishBoss::endBreakDemo() {
 }
 
 bool SkeletalFishBoss::isEnableToBeDamaged() const {
-    bool isDmg = false;
-
-    if (!isNerve(&::SkeletalFishBossNrvDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDown::sInstance) &&
-        !isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDead::sInstance) &&
-        !isNerve(&::SkeletalFishBossNrvDemoWait::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) &&
-        !isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) && !isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance)) {
-        isDmg = true;
-    }
-
-    return isDmg;
+    return !isNerve(&::SkeletalFishBossNrvDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDown::sInstance) &&
+           !isNerve(&::SkeletalFishBossNrvDeadDamage::sInstance) && !isNerve(&::SkeletalFishBossNrvDead::sInstance) &&
+           !isNerve(&::SkeletalFishBossNrvDemoWait::sInstance) && !isNerve(&::SkeletalFishBossNrvAppearDemo::sInstance) &&
+           !isNerve(&::SkeletalFishBossNrvPowerUpDemo::sInstance) && !isNerve(&::SkeletalFishBossNrvDeadDemo::sInstance);
 }
 
 SkeletalFishBossHead::SkeletalFishBossHead(LiveActor* pActor)
@@ -1043,10 +1037,10 @@ SkeletalFishBossHead::SkeletalFishBossHead(LiveActor* pActor)
 
     MR::initLightCtrl(this);
     _9C.identity();
-    _CC = MR::createCollisionPartsFromLiveActor(this, "Head", getSensor("body"), (MR::CollisionScaleType)2);
+    _CC = MR::createCollisionPartsFromLiveActor(this, "Head", getSensor("body"), MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(_CC);
     _D0.identity();
-    _100 = MR::createCollisionPartsFromLiveActor(this, "Jow", getSensor("body"), (MR::CollisionScaleType)2);
+    _100 = MR::createCollisionPartsFromLiveActor(this, "Jow", getSensor("body"), MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(_100);
     MR::addToAttributeGroupSearchTurtle(this);
     createSubModel();

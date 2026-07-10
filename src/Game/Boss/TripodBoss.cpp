@@ -370,8 +370,7 @@ bool TripodBoss::tryEndSequence() {
 
 bool TripodBoss::tryNextSequence() {
     if (isStopAllLeg()) {
-        bool v4 = isStateSomething();
-        if (!v4) {
+        if (!isStateSomething()) {
             setNerve(&NrvTripodBoss::TripodBossNrvStep::sInstance);
             return true;
         }
@@ -400,8 +399,7 @@ bool TripodBoss::tryWaitStep() {
 }
 
 bool TripodBoss::tryNextStep() {
-    bool v3 = isStateSomething();
-    if (v3) {
+    if (isStateSomething()) {
         return false;
     }
 
@@ -720,12 +718,9 @@ void TripodBoss::exeTryStartDemo() {
 }
 
 bool TripodBoss::isStopLeg(s32 idx) const {
-    bool ret = false;
-    if (idx >= 0 && idx <= 2) {
-        ret = true;
-    }
+    bool isValidIndex = idx >= 0 && idx <= ARRAY_SIZE(mLegs) - 1;
 
-    if (ret) {
+    if (isValidIndex) {
         return mLegs[idx]->isStop();
     }
 
@@ -1026,7 +1021,7 @@ void TripodBoss::endDemo(const char* pName) {
 void TripodBoss::checkRideMario() {
     GravityInfo info;
     TVec3f v8;
-    MR::calcGravityAndMagnetVector(this, *MR::getPlayerPos(), v8, &info, 0);
+    MR::calcGravityAndMagnetVector(this, *MR::getPlayerPos(), &v8, &info, 0);
 
     if (info.mGravityInstance != nullptr && MR::isTripoddBossParts((const NameObj*)info.mGravityInstance->mHost)) {
         _630 = 120;
@@ -1037,19 +1032,13 @@ void TripodBoss::checkRideMario() {
     }
 
     if (_630 > 0) {
-        bool v5 = 1;
-        v5 = isStateSomething();
-
-        if (v5) {
+        if (isStateSomething()) {
             _634 = 0;
         } else {
             _634 = 1;
         }
     } else {
-        bool v7 = 1;
-        v7 = isStateSomething();
-
-        if (v7) {
+        if (isStateSomething()) {
             _634 = 3;
         } else {
             _634 = 2;
@@ -1058,12 +1047,9 @@ void TripodBoss::checkRideMario() {
 }
 
 const TPos3f* TripodBoss::getLegMatrixPtr(PART_ID partID, SUB_PART_ID subPartID) const {
-    bool v3 = false;
-    if (partID >= LeftLeg && partID <= RightLeg) {
-        v3 = true;
-    }
+    bool isValidLegPartID = partID >= LeftLeg && partID <= RightLeg;
 
-    if (!v3) {
+    if (!isValidLegPartID) {
         return nullptr;
     }
 
@@ -1096,8 +1082,7 @@ void TripodBoss::changeBgmState() {
         _640 = 0;
     }
 
-    bool v3 = isStateSomething();
-    if (v3) {
+    if (isStateSomething()) {
         if (_63C != 3) {
             MR::setStageBGMState(3, 60);
         }

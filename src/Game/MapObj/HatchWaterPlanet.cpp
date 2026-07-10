@@ -22,7 +22,7 @@ void HatchWaterPlanet::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::addBodyMessageSensorMapObj(this);
     MR::initCollisionParts(this, "HatchWaterPlanetBefore", getSensor(nullptr), nullptr);
-    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "HatchWaterPlanetAfter", getSensor(nullptr), (MR::CollisionScaleType)2);
+    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "HatchWaterPlanetAfter", getSensor(nullptr), MR::CollisionScaleType_Unk2);
     MR::invalidateCollisionParts(mCollisionParts);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);

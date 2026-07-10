@@ -12,7 +12,7 @@ public:
     virtual void makeActorAppeared();
     virtual void kill();
     virtual void control();
-    virtual void calcAndSetBaseMtx();    
+    virtual void calcAndSetBaseMtx();
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
@@ -52,10 +52,10 @@ public:
     /* 0xA4 */ s32 _A4;
     /* 0xA8 */ f32 _A8;
     /* 0xAC */ f32 _AC;
-    /* 0xB0 */ f32 _B0;    
-    /* 0xB4 */ f32 _B4;    
-    /* 0xB8 */ s32 _B8;    
-    /* 0xBC */ s32 _BC;    
+    /* 0xB0 */ f32 _B0;
+    /* 0xB4 */ f32 _B4;
+    /* 0xB8 */ s32 _B8;
+    /* 0xBC */ s32 _BC;
 
 private:
     u8 mPad[(0xC0) - sizeof(LiveActor)];

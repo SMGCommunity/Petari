@@ -82,9 +82,15 @@ void SkeletalFishGuard::control() {
 
     if (!isNerve(&::SkeletalFishGuardNrvKill::sInstance) && !isNerve(&::SkeletalFishGuardNrvApart::sInstance)) {
         if (MR::isBinded(this)) {
-            MR::isBindedGround(this);
-            MR::isBindedWall(this);
-            MR::isBindedRoof(this);
+            if (MR::isBindedGround(this)) {
+            }
+
+            if (MR::isBindedWall(this)) {
+            }
+
+            if (MR::isBindedRoof(this)) {
+            }
+
             setNerve(&::SkeletalFishGuardNrvKill::sInstance);
         }
     }

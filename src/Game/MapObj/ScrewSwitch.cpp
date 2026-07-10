@@ -47,7 +47,7 @@ void ScrewSwitch::init(const JMapInfoIter& rIter) {
     HitSensor* Sensor = getSensor("binder");
     MR::initCollisionParts(this, "ScrewCol", Sensor, jointMtx);
     mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "ScrewReceiveCol", getSensor("body"), MR::getJointMtx(this, "ScrewReceive"),
-                                                            (MR::CollisionScaleType)1);
+                                                            MR::CollisionScaleType_NotUsingScale);
     MR::validateCollisionParts(mCollisionParts);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);

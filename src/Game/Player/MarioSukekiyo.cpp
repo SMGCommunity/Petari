@@ -4,7 +4,7 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Util/MtxUtil.hpp"
 
-MarioSukekiyo::MarioSukekiyo(MarioActor* pActor) : MarioState(pActor, 0x1A) {
+MarioSukekiyo::MarioSukekiyo(MarioActor* pActor) : MarioState(pActor, MarioStatus_Sukekiyo) {
     _44 = new Triangle();
     _14.zero();
     _20.zero();
@@ -15,7 +15,7 @@ MarioSukekiyo::MarioSukekiyo(MarioActor* pActor) : MarioState(pActor, 0x1A) {
 }
 
 MarioBury::MarioBury(MarioActor* pActor) : MarioSukekiyo(pActor) {
-    mStatusId = 27;
+    mStatusId = MarioStatus_Bury;
 }
 
 bool MarioSukekiyo::close() {
@@ -49,7 +49,7 @@ bool MarioSukekiyo::start() {
     getPlayer()->stopJump();
     getPlayer()->stopWalk();
 
-    if (mStatusId == 26) {
+    if (mStatusId == MarioStatus_Sukekiyo) {
         changeAnimation("スケキヨ", static_cast< const char* >(nullptr));
     } else {
         playSound("声足埋まり開始", -1);
@@ -64,7 +64,7 @@ bool MarioSukekiyo::update() {
     }
 
     if (_4A) {
-        return isAnimationRun(nullptr) != 0;
+        return isAnimationRun(nullptr) != false;
     }
 
     if (mActor->isRequestRush()) {
@@ -76,7 +76,7 @@ bool MarioSukekiyo::update() {
     }
 
     if (_4A) {
-        if (mStatusId == 26) {
+        if (mStatusId == MarioStatus_Sukekiyo) {
             changeAnimation("スケキヨ脱出", "基本");
             playSound("声スケキヨ終了", -1);
         } else {

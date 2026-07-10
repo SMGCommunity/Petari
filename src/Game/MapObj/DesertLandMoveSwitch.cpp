@@ -127,7 +127,7 @@ void DesertLandMoveSwitch::initModelAndCollision(const JMapInfoIter& rIter) {
     HitSensor* sensorBody = MR::addHitSensorMapObj(this, "body", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     HitSensor* sensorMove = MR::addHitSensorMapObj(this, "move", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, pObjName, sensorBody, 0);
-    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "Move", sensorMove, MR::UNKNOWN_2);
+    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "Move", sensorMove, MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(mCollisionParts);
 }
 

@@ -54,11 +54,10 @@ void PartsModel::makeActorDead() {
     mIsDead = true;
 }
 
-// 99.9% sure the call to makeActorAppered is meant to be inlined but this matches
 void PartsModel::init(const JMapInfoIter& rIter) {
     initEffectKeeper(8, nullptr, false);
     initSound(8, false);
-    MR::isInvalidClipping(this);
+    MR::invalidateClipping(this);
     makeActorAppeared();
     mIsDead = false;
 }
@@ -91,7 +90,7 @@ void PartsModel::calcAnim() {
         return;
     }
 
-    if (mFixedPos) {
+    if (mFixedPos != nullptr) {
         mFixedPos->calc();
     }
     LiveActor::calcAnim();

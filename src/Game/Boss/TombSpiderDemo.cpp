@@ -223,10 +223,7 @@ bool TombSpiderDemo::updateDeath() {
         TombSpiderFunction::killThreadAttacherAll(mParent);
     }
 
-    bool isDeathAnimDone = false;
-    if (!MR::isHiddenModel(mParent) && MR::isBckStopped(mParent)) {
-        isDeathAnimDone = true;
-    }
+    bool isDeathAnimDone = !MR::isHiddenModel(mParent) && MR::isBckStopped(mParent);
 
     if (MR::isStep(mParent, ::sStepBattleEndPlanetBreak)) {
         MR::startBck(TombSpiderFunction::getPlanet(mParent), "BattleEnd", nullptr);

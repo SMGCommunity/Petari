@@ -314,7 +314,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _2C4.z = 0.0f;
     mBinder->_1EC._0 = false;
     MR::setBinderOffsetVec(this, &_2C4, false);
-    
+
     mBinder->setTriangleFilter(TriangleFilterDelegator< MarioActor >::allocateDelegator(this, &MarioActor::binderFilter));
 
     mBinder->_1EC._3 = true;
@@ -497,7 +497,7 @@ bool MarioActor::isStopNullAnimation() const {
 
 void MarioActor::changeGameOverAnimation() {
     int animation = 0;
-    if (mMario->isStatusActive(0x12)) {
+    if (mMario->isStatusActive(MarioStatus_FpView)) {
         mMario->closeStatus(nullptr);
     }
 
@@ -556,7 +556,7 @@ void MarioActor::changeGameOverAnimation() {
         animation = 6;
     }
 
-    if (mMario->isAnimationRun("氷結") || mMario->isStatusActive(0xd)) {
+    if (mMario->isAnimationRun("氷結") || mMario->isStatusActive(MarioStatus_Freeze)) {
         animation = -1;
     }
 
@@ -742,8 +742,8 @@ void MarioActor::movement() {
 
                 if (MR::getFirstPolyOnLineToMap(&stack_E0, pTmp, stack_EC, getGravityVec().scaleInline(200.f))) {
                     TVec3f stack_D4;
-                    if (MR::vecKillElement(stack_E0 - (mPosition), getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts &&
-                        !pTmp->mParts->_D4 && getMovementStates()._3E != 1) {
+                    if (MR::vecKillElement(stack_E0 - (mPosition), getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts && !pTmp->mParts->_D4 &&
+                        getMovementStates()._3E != 1) {
                         mPosition = stack_E0;
                         mMario->mPosition = mPosition;
                         mMario->stopJump();
@@ -1134,7 +1134,7 @@ void MarioActor::updateSwingTimer() {
 }
 
 void MarioActor::updateSwingAction() {
-    if (isJumping() && mPlayerMode != 6 && !mMario->isStatusActive(0x18)) {
+    if (isJumping() && mPlayerMode != 6 && !mMario->isStatusActive(MarioStatus_Foo)) {
         _946 = 0;
     }
     bool requestRush = isRequestRush();
@@ -1181,16 +1181,16 @@ void MarioActor::updateSwingAction() {
     if (mMario->isSwimming()) {
         canRush = false;
     }
-    if (mMario->isStatusActive(0x18)) {
+    if (mMario->isStatusActive(MarioStatus_Foo)) {
         canRush = false;
     }
-    if (mMario->isStatusActive(0x13)) {
+    if (mMario->isStatusActive(MarioStatus_13)) {
         canRush = false;
     }
     if (_468) {
         canRush = false;
     }
-    if (mMario->isStatusActive(2)) {
+    if (mMario->isStatusActive(MarioStatus_Damage)) {
         canRush = false;
     }
     if (_3C0) {
@@ -1314,7 +1314,7 @@ void MarioActor::updateRealMtx() {
         getBaseMtx();
     }
     bool notStatus12 = true;
-    if (mMario->isStatusActive(0x12)) {
+    if (mMario->isStatusActive(MarioStatus_FpView)) {
         notStatus12 = false;
     }
     if (!notStatus12) {
@@ -1602,7 +1602,7 @@ void MarioActor::calcAnimInMovement() {
         _9C8->movement();
         _A50->movement();
         _A54->movement();
-        
+
         MR::setBrkFrame(_A50, MR::getBrkFrame(_9C8));
         MR::setBrkFrame(_A54, MR::getBrkFrame(_9C8));
     }
@@ -1822,7 +1822,7 @@ void MarioActor::calcAnim() {
         }
     }
 
-    if (mMario->isStatusActive(11)) {
+    if (mMario->isStatusActive(MarioStatus_Paralyze)) {
         if (mCurrModel != 1) {
             _A0B = mCurrModel;
         }
@@ -1936,7 +1936,7 @@ void MarioActor::calcAnim() {
         }
 
         TVec3f vec;
-        if (mMario->isStatusActive(5)) {
+        if (mMario->isStatusActive(MarioStatus_Hang)) {
             TMtx34f mtx;
             getRealMtx(mtx, "Center");
             MR::extractMtxTrans(mtx, &vec);
@@ -2086,7 +2086,9 @@ void MarioActor::calcAndSetBaseMtx() {
     }
 
     TPos3f mtxD8;
-    if (!b1 && mPlayerMode == 4 && !(mMario->isStatusActive(22) || mMario->isStatusActive(21) || mMario->isStatusActive(20)) &&
+    if (!b1 && mPlayerMode == 4 &&
+            !(mMario->isStatusActive(MarioStatus_Stick) || mMario->isStatusActive(MarioStatus_SideStep) ||
+              mMario->isStatusActive(MarioStatus_Flip)) &&
             !(mMario->mMovementStates_HIGH_WORD >> 28 & 1 || mMario->mMovementStates_LOW_WORD >> 21 & 1) ||
         ((mMario->mMovementStates_LOW_WORD >> 20 & 1) && (mMario->mMovementStates_LOW_WORD >> 31 & 1))) {
         _9F4 = mMario->mAirGravityVec;
@@ -2394,7 +2396,7 @@ bool MarioActor::isJumpRising() const {
 }
 
 bool MarioActor::isPunching() const {
-    if (mMario->isStatusActive(17)) {
+    if (mMario->isStatusActive(MarioStatus_Magic)) {
         return true;
     }
 
@@ -2441,7 +2443,7 @@ bool MarioActor::isDamaging() const {
 }
 
 bool MarioActor::isStaggering() const {
-    return mMario->isStatusActive(0x14) != false;
+    return mMario->isStatusActive(MarioStatus_Flip) != false;
 }
 
 bool MarioActor::isSleeping() const {
@@ -2460,15 +2462,15 @@ bool MarioActor::isRefuseTalk() const {
         return true;
     }
 
-    if (mMario->isStatusActive(28)) {
+    if (mMario->isStatusActive(MarioStatus_Wait)) {
         return true;
     }
 
-    if (mMario->isStatusActive(5)) {
+    if (mMario->isStatusActive(MarioStatus_Hang)) {
         return true;
     }
 
-    if (mMario->isStatusActive(19)) {
+    if (mMario->isStatusActive(MarioStatus_13)) {
         return true;
     }
 
@@ -2561,10 +2563,10 @@ void MarioActor::calcCenterPos() {
     }
 
     TVec3f vec24;
-    if (mMario->isStatusActive(1)) {
+    if (mMario->isStatusActive(MarioStatus_Wall)) {
         vec24 = mMario->_75C;
     } else {
-        if (mMario->isStatusActive(5)) {
+        if (mMario->isStatusActive(MarioStatus_Hang)) {
             MR::copyJointPos(this, "Spine1", &_2A0);
 
             return;
@@ -2621,7 +2623,7 @@ void MarioActor::setPress(u8 myChar, s32 myInt) {
         *mMario->_484 = *mMario->_4C8;
     }
 
-    if (mMario->isStatusActive(4)) {
+    if (mMario->isStatusActive(MarioStatus_Blown)) {
         mMario->closeStatus(nullptr);
     }
 

@@ -24,7 +24,7 @@ namespace {
     }
 
     bool calcGravityVectorOrZero(const NameObj* pActor, const TVec3f& rPosition, u32 gravityType, TVec3f* pDest, GravityInfo* pInfo, u32 host) {
-        if (!host) {
+        if (host == 0) {
             host = (u32)pActor;
         }
 
@@ -96,12 +96,17 @@ namespace MR {
 
     bool isZeroGravity(const LiveActor* pActor) {
         TVec3f dummyGravity;
-        return ::calcGravityVectorOrZero(pActor, pActor->mPosition, GRAVITY_TYPE_NORMAL, &dummyGravity, nullptr, 0) == false;
+        return !::calcGravityVectorOrZero(pActor, pActor->mPosition, GRAVITY_TYPE_NORMAL, &dummyGravity, nullptr, 0);
     }
 
     bool isLightGravity(const GravityInfo& rInfo) {
         PlanetGravity* pGravity = rInfo.mGravityInstance;
-        return !pGravity ? false : pGravity->mGravityPower == GRAVITY_POWER_LIGHT;
+
+        if (pGravity == nullptr) {
+            return false;
+        }
+
+        return pGravity->mGravityPower == GRAVITY_POWER_LIGHT;
     }
 
     void settingGravityParamFromJMap(PlanetGravity* pGravity, const JMapInfoIter& rIter) {
