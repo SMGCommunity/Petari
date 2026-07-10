@@ -38,8 +38,8 @@ namespace {
 };  // namespace
 
 GameSequenceProgress::GameSequenceProgress()
-    : NerveExecutor("シーケンス進行"), mStarPointerOnOffController(nullptr), mStorySequenceExecutor(nullptr), mFindingLuigiEventScheduler(nullptr),
-      mGalaxyCometScheduler(nullptr), mLuigiLeftSupplier(nullptr), mPlayerMissLeft(nullptr), _20(0), _24(false), _25(false), _26(true) {
+    : NerveExecutor("シーケンス進行"), mStarPointerOnOffController(), mStorySequenceExecutor(), mFindingLuigiEventScheduler(),
+      mGalaxyCometScheduler(), mLuigiLeftSupplier(), mPlayerMissLeft(), _20(), _24(), _25(), _26(true) {
     initNerve(&::GameSequenceProgressBooting::sInstance);
 
     mStarPointerOnOffController = new StarPointerOnOffController();
@@ -134,13 +134,13 @@ void GameSequenceProgress::endScene() {
     }
 }
 
-void GameSequenceProgress::requestChangeScene(const char* pParam1) {
+void GameSequenceProgress::requestChangeScene(const char* pName) {
     GameSystemSceneController* pSceneController;
 
     updateGameDataBeforeChangeScene();
 
     pSceneController = SingletonHolder< GameSystem >::get()->mSceneController;
-    pSceneController->_4C.setScene(pParam1);
+    pSceneController->mNextSceneControlInfo.setScene(pName);
     pSceneController->requestChangeScene();
 
     mStarPointerOnOffController->setStateToBase(this);
