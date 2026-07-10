@@ -24,23 +24,19 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
+#include <JSystem/JGeometry/TUtil.hpp>
 
-namespace {
-    static const MR::ActorMoveParam hOnAirParam = {0.0f, 3.0f, 0.96f, 0.0f};
-    static const MR::ActorMoveParam hOnGroundParam = {0.0f, 1.0f, 0.8f, 0.0f};
-    static const MR::ActorMoveParam hFlyParam = {0.0f, 0.5f, 0.9f, 1.0f};
-    static const MR::ActorMoveParam hAngryDemoParam = {0.0f, 0.5f, 0.9f, 1.5f};
-    static const MR::ActorMoveParam hEscapeOnGroundParam = {-0.7f, 1.0f, 0.96f, 180.0f};
-    static const MR::ActorMoveParam hEscapeOnAirParam = {0.0f, 3.0f, 0.96f, 0.0f};
-    static const MR::ActorMoveParam hPreRecoverJumpParam = {0.0f, 1.0f, 0.96f, 0.0f};
-    static const MR::ActorMoveParam hDamageJumpParam = {0.0f, 1.9f, 0.98f, 0.0f};
-    static const MR::ActorMoveParam hAttackParam = {0.0f, 6.0f, 0.98f, 0.0f};
-    static const MR::ActorMoveParam hExtinguishOnAirParam = {0.0f, 0.125f, 0.96f, 0.0f};
-    static const MR::ActorMoveParam hExtinguishFallOnAirParam = {0.0f, 4.0f, 0.96f, 0.0f};
-    static const char* hScaleJointName[] = {"WideInSide", "WideOutSide", "Hirgh1"};
-    static const TVec3f hBinderOffset(-100.586f, 222.65601f, -91.796898f);
-    static const TVec3f hEscapeBinderOffset(-39.0625f, 91.796898f, -47.851601f);
-};  // namespace
+// TODO: the symbol order for header funcs is out of order between JointControlDelegator funcs
+//       and Array funcs. This needs to be fixed in order to link.
+
+void IceMerameraKing_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    f32 f3 = JGeometry::TUtil< f32 >::epsilon();
+    (void)0.5f;
+    (void)3.0f;
+    (void)2.0f;
+}
 
 namespace NrvIceMerameraKing {
     NEW_NERVE(HostTypeNrvSearch, IceMerameraKing, Search);
@@ -61,6 +57,22 @@ namespace NrvIceMerameraKing {
     NEW_NERVE(HostTypeNrvDeathDemoWait, IceMerameraKing, DeathDemoWait);
     NEW_NERVE(HostTypeNrvDeathDemo, IceMerameraKing, DeathDemo);
 };  // namespace NrvIceMerameraKing
+
+namespace {
+    static const MR::ActorMoveParam hOnAirParam = {0.0f, 3.0f, 0.96f, 0.0f};
+    static const MR::ActorMoveParam hOnGroundParam = {0.0f, 1.0f, 0.8f, 0.0f};
+    static const MR::ActorMoveParam hFlyParam = {0.0f, 0.5f, 0.9f, 1.0f};
+    static const MR::ActorMoveParam hAngryDemoParam = {0.0f, 0.5f, 0.9f, 1.5f};
+    static const MR::ActorMoveParam hEscapeOnGroundParam = {-0.7f, 1.0f, 0.96f, 180.0f};
+    static const MR::ActorMoveParam hEscapeOnAirParam = {0.0f, 3.0f, 0.96f, 0.0f};
+    static const MR::ActorMoveParam hPreRecoverJumpParam = {0.0f, 1.0f, 0.96f, 0.0f};
+    static const MR::ActorMoveParam hDamageJumpParam = {0.0f, 1.9f, 0.98f, 0.0f};
+    static const MR::ActorMoveParam hAttackParam = {0.0f, 6.0f, 0.98f, 0.0f};
+    static const MR::ActorMoveParam hExtinguishOnAirParam = {0.0f, 0.125f, 0.96f, 0.0f};
+    static const MR::ActorMoveParam hExtinguishFallOnAirParam = {0.0f, 4.0f, 0.96f, 0.0f};
+    static const TVec3f hBinderOffset(-100.586f, 222.65601f, -91.796898f);
+    static const TVec3f hEscapeBinderOffset(-39.0625f, 91.796898f, -47.851601f);
+};  // namespace
 
 IceMerameraKing::IceMerameraKing(const char* pName)
     : LiveActor(pName), mFixedPos(nullptr), mThrowingIce(nullptr), mMeramera(nullptr), mIce(), _A8(nullptr), _AC(nullptr), _B0(0, 0, 1), _BC(0, 1, 0),
@@ -317,9 +329,7 @@ void IceMerameraKing::exeExtinguish() {
         MR::startSound(this, "SE_BM_ICEMERAKING_SMOKE");
         MR::deleteEffect(this, "BodyIce");
         MR::emitEffectWithParticleCallBack(this, "BodyIceOff", mSpinParticle);
-        TVec3f* v3 = MR::getPlayerCenterPos();
-        TVec3f v4(mPosition);
-        v4.sub(*v3);
+        TVec3f v4 = mPosition - *MR::getPlayerCenterPos();
         MR::vecKillElement(v4, mGravity, &v4);
         MR::normalizeOrZero(&v4);
         MR::setVelocitySeparateHV(this, v4, 20.0f, 0.0f);
@@ -352,7 +362,7 @@ void IceMerameraKing::exeEscape() {
     } else {
         MR::emitEffect(this, "Rolling");
         if (MR::isOnGround(this)) {
-            f32 v11 = MR::getLinerValueFromMinMax(PSVECMag(&mVelocity), 2.0f, 6.0f, 0.0f, 100.0f);
+            f32 v11 = MR::getLinerValueFromMinMax(mVelocity.length(), 2.0f, 6.0f, 0.0f, 100.0f);
             MR::startLevelSound(this, "SE_BM_LV_ICEMERAKING_ROLL", v11, -1, 15);
         }
 
@@ -697,11 +707,10 @@ bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
             isNerve(&NrvIceMerameraKing::HostTypeNrvRecover::sInstance)) {
             return false;
         } else {
-            TVec3f v10(*MR::getPlayerCenterPos());
-            v10.sub(mPosition);
+            TVec3f v10 = *MR::getPlayerCenterPos() - mPosition;
             MR::vecKillElement(v10, mGravity, &v10);
 
-            if (PSVECMag(&v10) < getSensor("body")->mRadius) {
+            if (v10.length() < getSensor("body")->getRadius()) {
                 return false;
             } else {
                 setNerve(&NrvIceMerameraKing::HostTypeNrvExtinguish::sInstance);
@@ -714,8 +723,7 @@ bool IceMerameraKing::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pR
 }
 
 void IceMerameraKing::addVelocityToInitPos() {
-    TVec3f v12(_C8);
-    v12.sub(mPosition);
+    TVec3f v12 = _C8 - mPosition;
 
     if (0.0f < mGravity.dot(v12)) {
         MR::vecKillElement(v12, mGravity, &v12);
@@ -759,8 +767,7 @@ bool IceMerameraKing::isEnableThrow() {
     if (MR::isPlayerInWaterMode() || MR::isPlayerOnWaterSurface()) {
         return false;
     }
-    TVec3f v10(*MR::getPlayerCenterPos());
-    v10.sub(mPosition);
+    TVec3f v10 = *MR::getPlayerCenterPos() - mPosition;
     MR::normalizeOrZero(&v10);
     TVec3f v9;
     MR::calcUpVec(&v9, this);
@@ -802,6 +809,10 @@ bool IceMerameraKing::calcJoint(TPos3f* a2, const JointControllerInfo& info) {
     return true;
 }
 
+namespace {
+    static const char* hScaleJointName[] = {"WideInSide", "WideOutSide", "Hirgh1"};
+};
+
 IceMerameraKingShockWave::IceMerameraKingShockWave() : ModelObj("衝撃", "IceMerameraKingShock", nullptr, -2, -2, -2, false) {
     initHitSensor(2);
     MR::addHitSensorEnemyAttack(this, "circle", 16, 15.0f, TVec3f(0.0f, -100.0f, 0.0f));
@@ -821,7 +832,7 @@ void IceMerameraKingShockWave::control() {
     f32 v3 = 15.0f * v7.y;
     getSensor("circle")->mRadius = v3;
     MR::copyJointScale(this, ::hScaleJointName[0], &v7);
-    f32 v4 = 25.0f * v7.y;
+    f32 v4 = 24.0f * v7.y;
     getSensor("circle_end")->mRadius = v4;
     if (MR::isActionEnd(this)) {
         kill();
@@ -831,18 +842,13 @@ void IceMerameraKingShockWave::control() {
 void IceMerameraKingShockWave::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (pSender != getSensor("circle_end") && MR::isSensorPlayer(pReceiver)) {
         HitSensor* sensor = getSensor("circle_end");
-        TVec3f v17(sensor->mPosition);
-        v17.sub(pReceiver->mPosition);
-        f32 radius2 = pReceiver->mRadius;
-        f32 radius1 = sensor->mRadius;
-
-        if (PSVECMag(&v17) < (radius1 + radius2)) {
+        TVec3f v14 = sensor->mPosition - pReceiver->mPosition;
+        if (v14.length() < sensor->getRadius() + pReceiver->getRadius()) {
             return;
         }
 
-        TVec3f v15(pReceiver->mPosition);
+        TVec3f v15 = pReceiver->mPosition - pSender->mPosition;
         TVec3f v16;
-        v15.sub(pSender->mPosition);
         MR::calcUpVec(&v16, this);
 
         if (__fabsf(v15.dot(v16)) < 200.0f) {

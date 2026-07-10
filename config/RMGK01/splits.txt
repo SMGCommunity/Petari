@@ -2697,7 +2697,7 @@ Game/Enemy/HomingKiller.cpp:
 Game/Enemy/IceMerameraKing.cpp:
 	.text       start:0x800F84E0 end:0x800FB370
 	.ctors      start:0x8052EA98 end:0x8052EA9C
-	.rodata     start:0x80531FE0 end:0x805320C8
+	.rodata     start:0x80531FE0 end:0x80532098
 	.data       start:0x8057D290 end:0x8057D818
 	.bss        start:0x8060A800 end:0x8060A818
 	.sdata      start:0x806B1950 end:0x806B1958
@@ -2712,6 +2712,7 @@ Game/Enemy/ItemGenerator.cpp:
 Game/Enemy/Jellyfish.cpp:
 	.text       start:0x800FB4AC end:0x800FC7B0
 	.ctors      start:0x8052EA9C end:0x8052EAA0
+	.rodata     start:0x80532098 end:0x805320A0
 	.data       start:0x8057D860 end:0x8057DA40
 	.sbss       start:0x806B4010 end:0x806B4040
 	.sdata2     start:0x806BA7A8 end:0x806BA800
@@ -2719,6 +2720,7 @@ Game/Enemy/Jellyfish.cpp:
 Game/Enemy/JellyfishElectric.cpp:
 	.text       start:0x800FC7B0 end:0x800FD714
 	.ctors      start:0x8052EAA0 end:0x8052EAA4
+	.rodata     start:0x805320A0 end:0x805320A8
 	.data       start:0x8057DA40 end:0x8057DBE0
 	.sbss       start:0x806B4040 end:0x806B4068
 	.sdata2     start:0x806BA800 end:0x806BA840
@@ -2726,6 +2728,7 @@ Game/Enemy/JellyfishElectric.cpp:
 Game/Enemy/Jiraira.cpp:
 	.text       start:0x800FD714 end:0x800FE130
 	.ctors      start:0x8052EAA4 end:0x8052EAA8
+	.rodata     start:0x805320A8 end:0x805320B0
 	.data       start:0x8057DBE0 end:0x8057DD80
 	.sbss       start:0x806B4068 end:0x806B4080
 	.sdata2     start:0x806BA840 end:0x806BA860
@@ -2733,6 +2736,7 @@ Game/Enemy/Jiraira.cpp:
 Game/Enemy/JumpBeamer.cpp:
 	.text       start:0x800FE130 end:0x800FF3A0
 	.ctors      start:0x8052EAA8 end:0x8052EAAC
+	.rodata     start:0x805320B0 end:0x805320B8
 	.data       start:0x8057DD80 end:0x8057E030
 	.sdata      start:0x806B1958 end:0x806B1960
 	.sbss       start:0x806B4080 end:0x806B40B0
@@ -2741,6 +2745,7 @@ Game/Enemy/JumpBeamer.cpp:
 Game/Enemy/JumpGuarder.cpp:
 	.text       start:0x800FF3A0 end:0x80100ED8
 	.ctors      start:0x8052EAAC end:0x8052EAB0
+	.rodata     start:0x805320B8 end:0x805320C8
 	.data       start:0x8057E030 end:0x8057E3F8
 	.sdata      start:0x806B1960 end:0x806B1968
 	.sbss       start:0x806B40B0 end:0x806B40E0
