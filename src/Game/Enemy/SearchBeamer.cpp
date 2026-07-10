@@ -599,3 +599,6 @@ void SearchBeamer::exeStopForPlayerOff() {
         setNerve(GET_NERVE(SearchBeamer, SearchBeamerNrvRecover));
     }
 }
+
+SearchBeamer::~SearchBeamer() {
+}
