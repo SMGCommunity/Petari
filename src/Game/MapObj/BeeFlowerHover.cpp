@@ -162,7 +162,7 @@ void BeeFlowerHover::control() {
 
     TVec3f v10;
     v10.set(v11);
-    f32 mag = PSVECMag(&v10);
+    f32 mag = v10.length();
     PSVECNormalize(&v10, &v10);
     f32 v6 = sin(v5);
     f32 v7 = cos(v5);

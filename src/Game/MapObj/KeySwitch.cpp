@@ -107,8 +107,8 @@ void KeySwitch::exeAppear() {
     bool val = false;
 
     if (MR::isBindedGround(this)) {
-        if (PSVECMag(&mVelocity) >= 10.0f) {
-            s32 mag = PSVECMag(&mVelocity);
+        if (mVelocity.length() >= 10.0f) {
+            s32 mag = mVelocity.length();
             mag *= 2;
             if (mag > 0x64) {
                 mag = 0x64;

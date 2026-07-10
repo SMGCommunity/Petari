@@ -882,13 +882,13 @@ void MarioAnimator::setHoming() {
         Mario* player = getPlayer();
         angleH = MR::vecKillElement(toTarget, player->mHeadVec, &toTarget);
 
-        f32 dist = PSVECMag((Vec*)&toTarget);
+        f32 dist = toTarget.length();
         f32 vAngle;
 
         if (dist < 10.0f) {
             vAngle = 0.0f;
         } else {
-            f32 dist2 = PSVECMag((Vec*)&toTarget);
+            f32 dist2 = toTarget.length();
             vAngle = JMath::sAtanTable.atan2_(angleH, dist2);
 
             if (isStatusActiveID(MarioStatus_Talk)) {

@@ -253,7 +253,7 @@ void Takobo::exeMove() {
     } else {
         TVec3f v20(*MR::getPlayerPos());
         v20 -= mPosition;
-        f32 mag = PSVECMag(&v20);
+        f32 mag = v20.length();
         MR::vecKillElement(v20, mGravity, &v20);
         MR::normalizeOrZero(&v20);
 

@@ -113,7 +113,7 @@ void DesertMovingLand::exeWait() {
 void DesertMovingLand::exeMoveDown() {
     if (MR::isFirstStep(this)) {
         TVec3f stack_8(_D0 - _C4);
-        stack_8.setLength(PSVECMag(&stack_8) / _DC);
+        stack_8.setLength(stack_8.length() / _DC);
         mVelocity.set(stack_8);
         MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST");
     }
@@ -138,7 +138,7 @@ void DesertMovingLand::exeMoveDown() {
 void DesertMovingLand::exeMoveUp() {
     if (MR::isFirstStep(this)) {
         TVec3f stack_8(_C4 - _D0);
-        stack_8.setLength(PSVECMag(&stack_8) / _E0);
+        stack_8.setLength(stack_8.length() / _E0);
         mVelocity.set(stack_8);
         MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST");
     }
@@ -210,4 +210,4 @@ void DesertMovingLand::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
 void DesertMovingLand::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
 }
 
-DesertMovingLand::~DesertMovingLand() {};
+DesertMovingLand::~DesertMovingLand(){};

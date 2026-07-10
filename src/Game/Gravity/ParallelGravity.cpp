@@ -52,7 +52,7 @@ void ParallelGravity::updateMtx(const TPos3f& rMtx) {
 void ParallelGravity::setPlane(const TVec3f& rPlaneUp, const TVec3f& rPlanePos) {
     // Up vector
     mPlaneUpVec.set(rPlaneUp);
-    PSVECMag(&mPlaneUpVec);  // unused result
+    mPlaneUpVec.length();  // unused result
     PSVECNormalize(&mPlaneUpVec, &mPlaneUpVec);
 
     // Position

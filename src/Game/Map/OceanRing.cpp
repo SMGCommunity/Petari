@@ -149,7 +149,7 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
     TVec3f v21(a1);
     v21.sub(v24);
     f32 v10 = MR::vecKillElement(v21, -a2, &v21);
-    f32 v12 = PSVECMag(&v21) / v9;
+    f32 v12 = v21.length() / v9;
     f32 v11 = v12;
     v11 *= PI;
     v11 *= 0.5f;
@@ -300,7 +300,7 @@ void OceanRing::calcStreamVec(const TVec3f& a1, f32 a2, TVec3f* pStreamVec) cons
     f32 v9 = (10.0f * calcCurrentFlowSpeedRate(a2));
     TVec3f near(mNearestPos);
     near.sub(a1);
-    if (PSVECMag(&near) < v8) {
+    if (near.length() < v8) {
         pStreamVec->set(mNearestDir);
         pStreamVec->scale(v9);
     }

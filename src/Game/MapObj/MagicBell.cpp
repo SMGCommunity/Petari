@@ -173,7 +173,7 @@ bool MagicBell::tryRing() {
 }
 
 void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
-    f32 v10 = PSVECMag(&mBellSwinger->mAcceleration);
+    f32 v10 = mBellSwinger->mAcceleration.length();
     TVec3f v13(mBellSwinger->mAcceleration);
     v13.scale(-1.0f);
     mBellSwinger->accel(v13);

@@ -158,7 +158,7 @@ void BreakableCage::calcAndSetBaseMtx() {
         stack_20.mMtx[1][3] = 0.0f;
         stack_20.mMtx[2][3] = 0.0f;
         stack_C.set< f32 >(stack_14);
-        PSVECMag(&stack_C);
+        stack_C.length();
         PSVECNormalize(&stack_C, &stack_C);
         TPos3f stack_50;
         f32 v3 = sin(v2);

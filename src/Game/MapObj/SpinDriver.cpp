@@ -564,7 +564,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
     _8C = pSensor->mHost;
     _B8 = mPosition;
     _C4 = *MR::getPlayerLastMove();
-    f32 mag = PSVECMag(&_C4);
+    f32 mag = _C4.length();
     if (mag > 40.0f) {
         _C4 *= 40.0f / mag;
     }

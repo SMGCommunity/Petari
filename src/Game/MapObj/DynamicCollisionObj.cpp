@@ -82,7 +82,7 @@ void DynamicCollisionObj::updateTriangle() {
         KC_PrismData* prism = &mKCLFile->mPrisms[prismidx];
         MR::vecKillElement(SaveForLater, c, &SaveForLater);
 
-        prism->mHeight = PSVECMag(&SaveForLater);
+        prism->mHeight = SaveForLater.length();
         prism->mPositionIndex = i;
         u16 nrmidx = normalidx;
         prism->mNormalIndex = nrmidx;

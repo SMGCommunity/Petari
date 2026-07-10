@@ -23,7 +23,7 @@ void BigFanHolder::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2, f32 *a3) {
         stack_2C.addInline3(stack_14);
     }
 
-    f32 mag = PSVECMag(&stack_2C);
+    f32 mag = stack_2C.length();
     if (MR::isNearZero(mag)) {
         pWindInfo->zero();
 

@@ -438,7 +438,7 @@ void Mario::setFrontVecKeepUp(const TVec3f &v)
     PSVECCrossProduct(&mSideVec, &mHeadVec, &stack_14);
     setFrontVec(stack_14);
     _22C = mFrontVec;
-    _328 = mFrontVec % PSVECMag(_328);
+    _328 = mFrontVec % _328.length();
     _344 = mSideVec;
 }
 */
@@ -670,7 +670,7 @@ void Mario::fixFrontVecByGravity() {
     if (MR::normalizeOrZero(&front) == nullptr) {
         setFrontVec(front);
         _22C = mFrontVec;
-        f32 _328mag = PSVECMag(&_328);
+        f32 _328mag = _328.length();
         _328 = mFrontVec.scaleInline(_328mag);
     }
 }
@@ -682,7 +682,7 @@ void Mario::fixFrontVecFromUpSide() {
     if (MR::isNearZero(frontVec) == false) {
         setFrontVec(frontVec);
         _22C = mFrontVec;
-        f32 scaleFactor = PSVECMag((Vec*)&_328);
+        f32 scaleFactor = _328.length();
         TVec3f scaledFront(mFrontVec);  // inlined when it shouldn't be
         scaledFront.scale(scaleFactor);
         _328 = scaledFront;
@@ -812,7 +812,7 @@ void Mario::setFrontVecKeepUp(const TVec3f& rFront) {
     PSVECCrossProduct(&mSideVec, &mHeadVec, &front2);
     setFrontVec(front2);
     _22C = mFrontVec;
-    f32 _328mag = PSVECMag(&_328);
+    f32 _328mag = _328.length();
     TVec3f scaledFront(mFrontVec);
     scaledFront.scale(_328mag);
     _328 = scaledFront;
@@ -838,7 +838,7 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
     PSVECCrossProduct(&mSideVec, &mHeadVec, &front);
     setFrontVec(front);
     _22C = mFrontVec;
-    f32 _328mag = PSVECMag(&_328);
+    f32 _328mag = _328.length();
     TVec3f scaledFront(mFrontVec);
     scaledFront.scale(_328mag);
     _328 = scaledFront;
@@ -878,7 +878,7 @@ void Mario::draw() const {
         TDDraw::drawCylinder(mPosition, diff31C_2A0, 32.0f, 0xffff0010, 0xff000004, 8);
         TVec3f diff2A0_31C(mActor->_2A0);
         diff2A0_31C -= mShadowPos;
-        f32 diffMag = PSVECMag(&diff2A0_31C);
+        f32 diffMag = diff2A0_31C.length();
         MR::normalize(&diff2A0_31C);
         TVec3f _31CPlusStuff(mShadowPos);
         f32 _37CMod10 = mActor->_37C % 0xa;
@@ -1187,7 +1187,7 @@ void Mario::initAfterConst() {
                     }
                     else if (MR::diffAngleAbs(*getGravityVec(), _2D4) < PI_30) {
                         MR::vecKillElement(*_57C[i]->getNormal(0), *getGravityVec(), &stack_c8);
-                        f32 _2D4Mag = PSVECMag(&_2D4);
+                        f32 _2D4Mag = _2D4.length();
                         MR::normalizeOrZero(&stack_c8);
                         _2D4 += stack_c8;
                         _2D4.setLength(_2D4Mag);

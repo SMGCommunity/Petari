@@ -946,7 +946,7 @@ void TripodBoss::addAccelToWeightPosition() {
     v16 += v12;
     TVec3f v15(v16);
     v15 -= _5D4;
-    f32 v10 = PSVECMag(&v15);
+    f32 v10 = v15.length();
     if (v10 < 500.0f) {
         v10 = 500.0f;
     }

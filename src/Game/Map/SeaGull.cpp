@@ -136,7 +136,7 @@ void SeaGull::control() {
     mVelocity.y *= 0.99f;
     mVelocity.z *= 0.99f;
 
-    f32 mag = PSVECMag((const Vec*)&mVelocity);
+    f32 mag = mVelocity.length();
 
     if (mag > 0.0f) {
         MR::normalize(&mVelocity);

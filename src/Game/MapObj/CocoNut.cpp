@@ -4,6 +4,7 @@
 #include "Game/LiveActor/Spine.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "JSystem/JMath.hpp"
 #include "math_types.hpp"
 
@@ -161,7 +162,7 @@ bool CocoNut::isPossibleToHit(const TVec3f& a1, const TVec3f& a2, const TVec3f& 
 }
 
 f32 CocoNut::calcMoveSpeed() const {
-    return !isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) ? 0.0f : MR::max(_8C, PSVECMag(&_150));
+    return !isNerve(&NrvCocoNut::CocoNutNrvMove::sInstance) ? 0.0f : MR::max(_8C, _150.length());
 }
 
 void CocoNut::initSensor() {
@@ -198,7 +199,7 @@ void CocoNut::updateRotate(f32 a1) {
     if (!MR::normalizeOrZero(mVelocity, &stack_2C) && !MR::isSameDirection(stack_2C, stack_20, 0.01f)) {
         PSVECCrossProduct(&stack_2C, &stack_20, &stack_14);
 
-        f32 temp1 = PSVECMag(&mVelocity) * -180.0f;
+        f32 temp1 = mVelocity.length() * -180.0f;
         f32 temp2 = a1 * temp1;
         f32 f = PI_180 * (temp2 / (PI * getSize()));
 
@@ -207,7 +208,7 @@ void CocoNut::updateRotate(f32 a1) {
         stack_38.mMtx[2][3] = 0.0f;
 
         stack_8.set(stack_14);
-        PSVECMag(&stack_8);
+        stack_8.length();
         PSVECNormalize(&stack_8, &stack_8);
 
         f32 fsin = sin(f);
@@ -309,19 +310,19 @@ void CocoNut::processMove() {
 
     if (getWallNormal(&stack_20) && _94.dot(stack_20) < 0.0f) {
         stack_14.set(_94);
-        PSVECMag(&stack_14);
+        stack_14.length();
         PSVECNormalize(&stack_14, &stack_14);
 
         stack_8.set(stack_20);
-        PSVECMag(&stack_8);
+        stack_8.length();
         PSVECNormalize(&stack_8, &stack_8);
 
         f32 ok2 = -2.0f * stack_14.dot(stack_8);
         JMAVECScaleAdd(&stack_8, &_94, &_94, ok2);
 
-        PSVECMag(&_94);
+        _94.length();
         PSVECNormalize(&_94, &_94);
-        _94.normalize(_94);
+        MR::normalize(&_94);
 
         _8C *= 0.8f;
 

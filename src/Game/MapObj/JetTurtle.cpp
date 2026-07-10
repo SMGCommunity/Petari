@@ -194,7 +194,7 @@ void JetTurtle::exeThrowing() {
 
         if (MR::isStep(this, ::sResetStep[_92])) {
             TVec3f v16 = _C0 - mPosition;
-            if (PSVECMag(&v16) > 5000.0f) {
+            if (v16.length() > 5000.0f) {
                 reset(1);
             } else {
                 reset(0);
@@ -231,7 +231,7 @@ void JetTurtle::exeThrowing() {
         }
 
         TVec3f v14 = _C0 - mPosition;
-        if (PSVECMag(&v14) > 10000.0f) {
+        if (v14.length() > 10000.0f) {
             reset(1);
         } else {
             if (MR::isBindedWall(this) || MR::isBindedRoof(this)) {
@@ -568,7 +568,7 @@ bool JetTurtle::receiveMsgThrow(HitSensor* a1, HitSensor* a2) {
     }
 
     if (!_92) {
-        _8C = PSVECMag(MR::getPlayerVelocity());
+        _8C = MR::getPlayerVelocity()->length();
     } else {
         _8C = 0.0f;
     }

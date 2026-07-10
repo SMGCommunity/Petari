@@ -71,7 +71,7 @@ void GCapture::addRotateAccelPointing() {
         TVec3f v3(rotate);
         v3.scale(0.055104f);
         _F0 += v3;
-        f32 mag = PSVECMag(&_F0);
+        f32 mag = _F0.length();
         if (mag > 0.2f) {
             _F0.scale(0.2f / mag);
         }
