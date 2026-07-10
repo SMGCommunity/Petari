@@ -60,7 +60,9 @@ void DinoPackunTrackFire::control() {
 }
 
 void DinoPackunTrackFire::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    MR::isSensorPlayer(pReceiver);
+    if (MR::isSensorPlayer(pReceiver)) {
+    }
+
     MR::sendMsgEnemyAttackFire(pReceiver, pSender);
 }
 
@@ -82,7 +84,7 @@ void DinoPackunTrackFire::exeWait() {
     }
 
     MR::addVelocityToGravity(this, 2.0f);
-    MR::attenuateVelocity(this, 0.99199998f);
+    MR::attenuateVelocity(this, 0.992f);
     if (MR::isBindedGround(this)) {
         setNerve(&NrvDinoPackunFire::DinoPackunTrackFireNrvGround::sInstance);
         MR::zeroVelocity(this);

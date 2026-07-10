@@ -109,7 +109,11 @@ namespace MR {
     }
 
     f32 calcDistanceToPlayer(const LiveActor* pActor) {
-        return (!MR::isExistSceneObj(SceneObj_MarioHolder) ? FLOAT_MAX : PSVECDistance((Vec*)&pActor->mPosition, (Vec*)MR::getPlayerPos()));
+        if (!MR::isExistSceneObj(SceneObj_MarioHolder)) {
+            return FLOAT_MAX;
+        }
+
+        return pActor->mPosition.distance(*MR::getPlayerPos());
     }
 
     f32 calcDistanceToPlayerH(const LiveActor* pActor) {

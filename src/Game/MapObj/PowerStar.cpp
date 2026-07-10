@@ -77,9 +77,9 @@ namespace NrvPowerStar {
 };  // namespace NrvPowerStar
 
 PowerStar::PowerStar(const char* pName)
-    : LiveActor(pName), mPowerStarId(-1), mIsInDemo(false), mAppearPosition(gZeroVec), mInitRotation(gZeroVec), mInitPosition(gZeroVec), mPowerStarModelObj(nullptr),
-      _11C(0), mColorFrame(0), mIsGrandStar(false), _125(false), _126(false), _127(false), mCameraInfo(nullptr), mCameraActor(nullptr),
-      mLuigiNPC(nullptr), _164(false) {
+    : LiveActor(pName), mPowerStarId(-1), mIsInDemo(false), mAppearPosition(gZeroVec), mInitRotation(gZeroVec), mInitPosition(gZeroVec),
+      mPowerStarModelObj(nullptr), _11C(0), mColorFrame(0), mIsGrandStar(false), _125(false), _126(false), _127(false), mCameraInfo(nullptr),
+      mCameraActor(nullptr), mLuigiNPC(nullptr), _164(false) {
     _B8.identity();
     mBaseMtx.identity();
     _134.identity();
@@ -494,7 +494,7 @@ PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f& rPos) const
         LiveActor* pActor = pGroup->getActor(i);
 
         if (pActor != this) {
-            f32 dist = PSVECDistance(&rPos, &pActor->mPosition);
+            f32 dist = rPos.distance(pActor->mPosition);
 
             if (dist < minDist) {
                 pNearestAppearPoint = static_cast< PowerStarAppearPoint* >(pActor);

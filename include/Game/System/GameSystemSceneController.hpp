@@ -16,6 +16,7 @@ class Spine;
 
 class SceneControlInfo {
 public:
+    /// @brief Creates a new `SceneControlInfo`.
     SceneControlInfo();
 
     void setScene(const char*);
@@ -24,23 +25,24 @@ public:
 
     /* 0x00 */ char mScene[32];
     /* 0x20 */ char mStage[32];
-    /* 0x40 */ s32 mCurrentScenarioNo;
-    /* 0x44 */ s32 mCurrentSelectedScenarioNo;
+    /* 0x40 */ s32 mScenarioNo;
+    /* 0x44 */ s32 mSelectedScenarioNo;
     /* 0x48 */ JMapIdInfo* mStartIdInfo;
 };
 
 enum SceneInitializeState {
-    State_NotInit = 0,
-    State_Init = 1,
-    State_PlacementPlayer = 2,
-    State_PlacementHighPrio = 3,
-    State_Placement = 4,
-    State_AfterPlacement = 5,
-    State_End = 6
+    SceneInitializeState_NotInit,
+    SceneInitializeState_Init,
+    SceneInitializeState_PlacementPlayer,
+    SceneInitializeState_PlacementHighPriority,
+    SceneInitializeState_Placement,
+    SceneInitializeState_AfterPlacement,
+    SceneInitializeState_End,
 };
 
 class GameSystemSceneController {
 public:
+    /// @brief Creates a new `GameSystemSceneController`.
     GameSystemSceneController();
 
     void initAfterStationedResourceLoaded();
@@ -90,11 +92,14 @@ public:
     bool tryDestroyFileCacheHeap(bool) NO_INLINE;
     void requestChangeNerve(const Nerve*);
 
-    /* 0x00 */ SceneControlInfo _0;
-    /* 0x4C */ SceneControlInfo _4C;
-    /* 0x98 */ Spine* _98;
-    /* 0x9C */ const Nerve* _9C;
-    /* 0xA0 */ bool _A0;
+    bool isCurrentNerve(const Nerve*) const;
+    bool isNextNerve(const Nerve*) const;
+
+    /* 0x00 */ SceneControlInfo mCurrSceneControlInfo;
+    /* 0x4C */ SceneControlInfo mNextSceneControlInfo;
+    /* 0x98 */ Spine* mSpine;
+    /* 0x9C */ const Nerve* mNextNerve;
+    /* 0xA0 */ bool mIsResetProcessing;
     /* 0xA4 */ ScenarioDataParser* mScenarioParser;
     /* 0xA8 */ NameObjHolder* mObjHolder;
     /* 0xAC */ Scene* mScene;

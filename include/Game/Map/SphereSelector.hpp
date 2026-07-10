@@ -36,13 +36,13 @@ public:
     /* 0x90 */ SphereSelectorHandle* mHandle;
     /* 0x94 */ LiveActor* mSelectedTarget;
     /* 0x98 */ u32 _98;
-    /* 0x9C */ u32 _9C;     // This doesn't seem to exist
+    /* 0x9C */ u32 _9C;  // This doesn't seem to exist
     /* 0xA0 */ LiveActor* mPointingTarget;
     /* 0xA4 */ s32 _A4;
     /* 0xA8 */ f32 _A8;
     /* 0xAC */ f32 _AC;
     /* 0xB0 */ bool mIsPointingInvalid;
-    /* 0xB1 */ bool _B1;    // Something for playing sounds the first time you click on a galaxy or cancel the selection
+    /* 0xB1 */ bool _B1;  // Something for playing sounds the first time you click on a galaxy or cancel the selection
 };
 
 class SphereSelectorFunction {

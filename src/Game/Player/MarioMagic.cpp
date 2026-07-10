@@ -3,7 +3,7 @@
 #include "Game/Player/MarioModule.hpp"
 
 void Mario::stopPunch() {
-    if (isStatusActive(17)) {
+    if (isStatusActive(MarioStatus_Magic)) {
         closeStatus(mMagic);
     }
 
@@ -21,7 +21,7 @@ void Mario::startMagic() {
     if (!mMovementStates.jumping) {
         if (!mActor->_468) {
             if (!mMovementStates._23) {
-                if (!isStatusActive(7)) {
+                if (!isStatusActive(MarioStatus_Slider)) {
                     if (isSkatableFloor()) {
                         doSkate();
                     } else {
@@ -36,7 +36,7 @@ void Mario::startMagic() {
     }
 }
 
-MarioMagic::MarioMagic(MarioActor* pActor) : MarioState(pActor, 0x11) {
+MarioMagic::MarioMagic(MarioActor* pActor) : MarioState(pActor, MarioStatus_Magic) {
     _12 = 0;
 }
 

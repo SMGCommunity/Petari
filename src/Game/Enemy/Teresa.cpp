@@ -290,7 +290,7 @@ bool Teresa::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) 
 }
 
 bool Teresa::filterBind(const Triangle* pTriangle) {
-    if (pTriangle->mSensor->isType(73)) {
+    if (pTriangle->mSensor->isType(ATYPE_CLIP_FIELD_MAP_PARTS)) {
         return true;
     }
 
@@ -413,7 +413,7 @@ bool Teresa::tryWalk() {
 }
 
 bool Teresa::tryWalkEnd() {
-    if (MR::isGreaterStep(this, 300) || PSVECDistance(&_E0, mPosition) <= 200.0f) {
+    if (MR::isGreaterStep(this, 300) || _E0.distance(mPosition) <= 200.0f) {
         setNerve(&NrvTeresa::TeresaNrvWait::sInstance);
         return true;
     }

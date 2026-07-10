@@ -118,9 +118,9 @@ namespace MR {
         pController->setDropPosPtr(pPos);
     }
 
-    void setShadowDropPositionMtxPtr(LiveActor* pActor, const char* pName, MtxPtr mtx, const TVec3f* pPos) {
+    void setShadowDropPositionMtxPtr(LiveActor* pActor, const char* pName, MtxPtr mtx, const TVec3f& pPos) {
         ShadowController* pController = ActorShadow::getShadowController(pActor, pName);
-        pController->setDropPosMtxPtr(mtx, *pPos);
+        pController->setDropPosMtxPtr(mtx, pPos);
     }
 
     void setShadowDropPositionAtJoint(LiveActor* pActor, const char* pName1, const char* pName2, const TVec3f* pPos) {

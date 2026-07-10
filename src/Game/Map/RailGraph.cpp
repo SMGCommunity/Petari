@@ -42,7 +42,7 @@ void RailGraph::connectNodeTwoWay(s32 a1, s32 a2, const RailGraphEdge* pEdge) {
     edge.clearConnectInfo();
     edge._4 = a1;
     edge._8 = a2;
-    edge.mDistance = PSVECDistance((const Vec*)&mNodes[a1]._0, (const Vec*)&mNodes[a2]._0);
+    edge.mDistance = mNodes[a1]._0.distance(mNodes[a2]._0);
     s32 cnt = _14;
     _14 = cnt + 1;
     mEdges[cnt] = edge;

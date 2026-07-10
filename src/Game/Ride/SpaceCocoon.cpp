@@ -89,7 +89,7 @@ void SpaceCocoon::init(const JMapInfoIter& rIter) {
     initHitSensor(3);
     MR::addHitSensorTransferableBinder(this, "Bind", 8, 200.0f, TVec3f(0.0f, 100.0f, 0.0f));
     MR::addHitSensorMapObj(this, "Push", 8, 50.0f, TVec3f(0.0f, -50.0f, 0.0f));
-    MR::addHitSensor(this, "Attack", 12, 8, 150.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "Attack", ATYPE_SPRING_ATTACKER, 8, 150.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initBinder(50.0f, 50.0f, 8);
     MR::offBind(this);
 
@@ -187,7 +187,7 @@ void SpaceCocoon::exeFreeInvalid() {
         return;
     }
 
-    if (PSVECDistance(&mRider->mPosition, &mPosition) > 300.0f || MR::isOnGroundPlayer()) {
+    if (mRider->mPosition.distance(mPosition) > 300.0f || MR::isOnGroundPlayer()) {
         mRider = nullptr;
         MR::validateClipping(this);
         MR::validateHitSensors(this);
@@ -270,7 +270,7 @@ void SpaceCocoon::exeBindAim() {
         }
     }
 
-    f32 dist = PSVECDistance(&mPosition, &mNeutralPos);
+    f32 dist = mPosition.distance(mNeutralPos);
     if (dist >= 100.0f) {
         MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG", ((dist - 100.0f) / 400.0f) * 100.0f);
     }
@@ -432,7 +432,7 @@ bool SpaceCocoon::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
 }
 
 bool SpaceCocoon::updateBindWait() {
-    if (PSVECDistance(MR::getPlayerPos(), &mPosition) < 3000.0f && (!isKinopioAttached() || MR::isOnGroundPlayer())) {
+    if (MR::getPlayerPos()->distance(mPosition) < 3000.0f && (!isKinopioAttached() || MR::isOnGroundPlayer())) {
         if (MR::isStarPointerPointing(this, WPAD_CHAN0, true, "弱")) {
             MR::requestStarPointerModeBlueStarReady(this);
         }
@@ -479,7 +479,7 @@ bool SpaceCocoon::updateSpringPoint() {
 
     updateDrawPoints();
 
-    if (mSpringVel.length() < 0.1f && PSVECDistance(&mCocoonPos, &mNeutralPos) < 1.0f) {
+    if (mSpringVel.length() < 0.1f && mCocoonPos.distance(mNeutralPos) < 1.0f) {
         mCocoonPos.set(mNeutralPos);
         mSpringVel.zero();
         return true;
@@ -489,7 +489,7 @@ bool SpaceCocoon::updateSpringPoint() {
 }
 
 void SpaceCocoon::updateHang() {
-    f32 dist = PSVECDistance(&mPosition, &mNeutralPos);
+    f32 dist = mPosition.distance(mNeutralPos);
 
     if (MR::isStarPointerInScreen(mPadChannel) && 100.0f > dist) {
         f32 dummy = 0.0f;
@@ -506,7 +506,7 @@ void SpaceCocoon::updateHang() {
     }
 
     TVec3f pos(mPointerPos);
-    if (PSVECDistance(&pos, &mNeutralPos) > 500.0f) {
+    if (pos.distance(mNeutralPos) > 500.0f) {
         pos.set(mPointerPos);
         pos.sub(mNeutralPos);
         MR::normalize(&pos);
@@ -651,7 +651,7 @@ bool SpaceCocoon::tryRelease() {
     endCommandStream();
     MR::endMultiActorCamera(this, mCameraInfo, "狙い中", true, -1);
 
-    if (PSVECDistance(&mPosition, &mNeutralPos) < 100.0f) {
+    if (mPosition.distance(mNeutralPos) < 100.0f) {
         if (isKinopioAttached()) {
             MR::endDemo(this, "キノピオ狙い中");
             setNerve(&NrvSpaceCocoon::SpaceCocoonNrvKinopioWait::sInstance);

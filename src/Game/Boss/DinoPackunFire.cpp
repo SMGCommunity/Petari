@@ -65,7 +65,6 @@ void DinoPackunFire::kill() {
 }
 
 void DinoPackunFire::control() {
-    return;
 }
 
 void DinoPackunFire::calcAndSetBaseMtx() {
@@ -73,7 +72,9 @@ void DinoPackunFire::calcAndSetBaseMtx() {
 }
 
 void DinoPackunFire::attackSensor(HitSensor* a1, HitSensor* a2) {
-    MR::isSensorPlayer(a2);
+    if (MR::isSensorPlayer(a2)) {
+    }
+
     MR::sendMsgEnemyAttackFire(a2, a1);
 }
 

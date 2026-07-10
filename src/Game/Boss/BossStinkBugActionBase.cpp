@@ -215,7 +215,7 @@ void BossStinkBugActionBase::updateSoundFly() {
     }
 
     _58 = _54;
-    _54 = PSVECDistance(getHost()->mPosition, MR::getCamPos());
+    _54 = getHost()->mPosition.distance(MR::getCamPos());
 
     if (_58 - _54 > 0.0f) {
         _5C = 12;

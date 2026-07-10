@@ -45,7 +45,7 @@ void HipDropSwitch::init(const JMapInfoIter& rIter) {
     targetOffs.z = 0.0f;
     MR::initStarPointerTarget(this, 150.0f, targetOffs);
     MR::initCollisionParts(this, "HipDropSwitch", getSensor("body"), nullptr);
-    _98 = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("hit"), (MR::CollisionScaleType)2);
+    _98 = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("hit"), MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(_98);
     initNerve(&NrvHipDropSwitch::HipDropSwitchNrvOff::sInstance);
     MR::needStageSwitchWriteA(this, rIter);

@@ -124,7 +124,7 @@ void EyeBeamer::initAfterPlacement() {
     TVec3f stack_68;
     f32 dist;
     if (MR::getFirstPolyOnLineToMapExceptActor(&stack_68, 0, stack_74, stack_80 * (300.0f + _15C), this)) {
-        dist = PSVECDistance(&stack_68, &mPosition);
+        dist = stack_68.distance(mPosition);
         _140.set((stack_68 + mPosition) * 0.5);
         dist = 300.0f + 0.5f * dist;
     } else {
@@ -349,7 +349,7 @@ bool EyeBeamer::isInBeamRange(const TVec3f& rVec) const {
     else {
         TVec3f stack_2C;
         stack_2C.set(stack_38 + (stack_44 * dot));
-        f32 dist = PSVECDistance(&stack_2C, &rVec);
+        f32 dist = stack_2C.distance(rVec);
 
         if (dist < 140.0f)
             return true;

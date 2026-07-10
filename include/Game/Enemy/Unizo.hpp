@@ -50,17 +50,17 @@ public:
     void endPointing();
 
 private:
-    /* 0x08C */ s32 _8C; // Okay I have no idea
+    /* 0x08C */ s32 _8C;  // Okay I have no idea
     /* 0x090 */ s32 _90;
     /* 0x094 */ u32 mPad[3];
     /* 0x0A0 */ TPos3f _A0;
     /* 0x0D0 */ TMtx34f _D0;
     /* 0x100 */ u32 _100;
-    /* 0x104 */ s32 _104; // Not sure
+    /* 0x104 */ s32 _104;  // Not sure
     /* 0x108 */ u32 mPad2[3];
-    /* 0x114 */ LiveActor* _114; // It's a LiveActor, idk which one
+    /* 0x114 */ LiveActor* _114;  // It's a LiveActor, idk which one
     /* 0x118 */ AnimScaleController* _118;
     /* 0x11C */ WalkerStateBindStarPointer* _11C;
     /* 0x120 */ s32 _120;
-    /* 0x124 */ u32 mPad3[4];   // Total: 0x134
+    /* 0x124 */ u32 mPad3[4];  // Total: 0x134
 };

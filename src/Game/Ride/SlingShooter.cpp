@@ -54,8 +54,8 @@ void SlingShooter::init(const JMapInfoIter& rIter) {
 
     initHitSensor(3);
     MR::addHitSensorCallbackBinder(this, "bind", 8, 80.0f);
-    MR::addHitSensorCallback(this, "npc", 14, 8, 150.0f);
-    MR::addHitSensor(this, "attack", 12, 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorCallback(this, "npc", ATYPE_SPRING_ATTACKER_KINOPIO_BIND, 8, 150.0f);
+    MR::addHitSensor(this, "attack", ATYPE_SPRING_ATTACKER, 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
 
     initBinder(50.0f, 50.0f, 8);
     MR::offBind(this);
@@ -181,7 +181,7 @@ void SlingShooter::exeAim() {
         }
     }
 
-    f32 dist = PSVECDistance(&mPosition, mNeutralPos);
+    f32 dist = mPosition.distance(*mNeutralPos);
     if (dist >= 100.0f) {
         MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG", ((dist - 100.0f) / 200.0f) * 100.0f);
     }
@@ -604,7 +604,7 @@ bool SlingShooter::tryRelease() {
         return false;
     }
 
-    if (PSVECDistance(&mPosition, mNeutralPos) < 100.0f) {
+    if (mPosition.distance(*mNeutralPos) < 100.0f) {
         MR::sendMsgToSpiderThread(ACTMES_SLING_SHOOT_ACTOR_HANG_END, getSensor("bind"));
         endCommandStream();
 

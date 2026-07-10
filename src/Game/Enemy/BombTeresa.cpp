@@ -181,7 +181,7 @@ bool BombTeresa::rootTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& 
         v14.set(v13);
     }
     MR::turnMtxToXDirRate(arg0, v14, (0.5f * _DC));
-    v14.x = MR::getEaseInOutValue(MR::normalize(PSVECDistance(&v11, &v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
+    v14.x = MR::getEaseInOutValue(MR::normalize(v11.distance(v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
     v14.y = 1.0f;
     MR::preScaleMtx(arg0->toMtxPtr(), v14);
     return true;
@@ -213,7 +213,7 @@ bool BombTeresa::endTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& a
     arg0->mMtx[0][1] = v13.x;
     arg0->mMtx[0][2] = v13.y;
     arg0->mMtx[0][3] = v13.z;
-    v14.x = MR::getEaseInOutValue(MR::normalize(PSVECDistance(&v11, &v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
+    v14.x = MR::getEaseInOutValue(MR::normalize(v11.distance(v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
     v14.y = 1.0f;
     MR::preScaleMtx(arg0->toMtxPtr(), v14);
     return true;

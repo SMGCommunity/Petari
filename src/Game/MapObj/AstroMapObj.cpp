@@ -86,8 +86,8 @@ void AstroMapObj::init(const JMapInfoIter& rIter) {  // Pain
     }
 
     if (checkStrings(_CC)) {
-        _D0 = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), MR::CollisionScaleType(2));
-        _D4 = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), MR::CollisionScaleType(2));
+        _D0 = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), MR::CollisionScaleType_Unk2);
+        _D4 = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), MR::CollisionScaleType_Unk2);
     }
 
     AstroMapObjFunction::initilizePeculiar(_CC, this, rIter);

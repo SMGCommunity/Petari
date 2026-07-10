@@ -8,6 +8,7 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimatorData.hpp"
 #include "Game/Player/MarioConst.hpp"
+#include "Game/Player/MarioState.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
@@ -304,8 +305,8 @@ void MarioAnimator::setWalkMode() {
         f32 stick = player->_8F0;
         if (0.0f != stick) {
         } else if ((u8)(player = self->getPlayer())->checkStickFrontBack() != 2) {
-        } else if (self->isStatusActiveID(0x11)) {
-        } else if (self->isStatusActiveID(0x1f)) {
+        } else if (self->isStatusActiveID(MarioStatus_Magic)) {
+        } else if (self->isStatusActiveID(MarioStatus_Skate)) {
         } else {
             player = self->getPlayer();
             if (player->mMovementStates._35) {
@@ -375,12 +376,12 @@ void MarioAnimator::clearAllJointTransform() {
     core = mXanimePlayer->mCore;
     jointIdx = MR::getJointIndex(mActor, "ArmL1");
     jt = core->getJointTransform(jointIdx);
-    jt->_30 = 0.0f;
+    jt->_2C.y = 0.0f;
 
     core = mXanimePlayer->mCore;
     jointIdx = MR::getJointIndex(mActor, "ArmR2");
     jt = core->getJointTransform(jointIdx);
-    jt->_30 = 0.0f;
+    jt->_2C.y = 0.0f;
 
     core = mXanimePlayer->mCore;
     u8 chestIdx = MR::getJointIndex(mActor, jname_chest);
@@ -890,7 +891,7 @@ void MarioAnimator::setHoming() {
             f32 dist2 = PSVECMag((Vec*)&toTarget);
             vAngle = JMath::sAtanTable.atan2_(angleH, dist2);
 
-            if (isStatusActiveID(0x22)) {
+            if (isStatusActiveID(MarioStatus_Talk)) {
                 if (vAngle > 1.0f) {
                     vAngle = 1.0f;
                 }
@@ -960,12 +961,11 @@ void MarioAnimator::setHoming() {
 
     XanimeCore* core = mXanimePlayer->mCore;
     u8 leftIdx = MR::getJointIndex(mActor, "ShoulderL");
-    XjointTransform* leftJt = core->getJointTransform(leftIdx);
-    leftJt->_2C = leftShoulderRot;
+    core->getJointTransform(leftIdx)->_2C.x = leftShoulderRot;
 
+    core = mXanimePlayer->mCore;
     u8 rightIdx = MR::getJointIndex(mActor, "ShoulderR");
-    XjointTransform* rightJt = core->getJointTransform(rightIdx);
-    rightJt->_2C = rightShoulderRot;
+    core->getJointTransform(rightIdx)->_2C.x = rightShoulderRot;
 }
 
 void MarioAnimator::updateJointRumble() {
@@ -1000,11 +1000,11 @@ void MarioAnimator::updateJointRumble() {
     XanimeCore* core = mXanimePlayer->mCore;
     u16 larmIdx = MR::getJointIndex(mActor, "ArmL1");
     XjointTransform* larmJt = core->getJointTransform(larmIdx);
-    larmJt->_30 = sineVal * power;
+    larmJt->_2C.y = sineVal * power;
 
     u16 rarmIdx = MR::getJointIndex(mActor, "ArmR2");
     XjointTransform* rarmJt = core->getJointTransform(rarmIdx);
-    rarmJt->_30 = sineVal * power;
+    rarmJt->_2C.y = sineVal * power;
 
     f32 hipRot = 0.7f * ((f32)_74 / 60.0f);
 
@@ -1111,7 +1111,7 @@ void MarioAnimator::update() {
     if (player->mDrawStates._A) {
         if (!isPlayerModeHopper()) {
             player = getPlayer();
-            if (!player->isStatusActive(0xD)) {
+            if (!player->isStatusActive(MarioStatus_Freeze)) {
                 if (isLandingAnimationRun()) {
                     stopAnimation(nullptr, static_cast< const char* >(nullptr));
                 }

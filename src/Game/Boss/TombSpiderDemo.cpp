@@ -223,10 +223,7 @@ bool TombSpiderDemo::updateDeath() {
         TombSpiderFunction::killThreadAttacherAll(mParent);
     }
 
-    bool isDeathAnimDone = false;
-    if (!MR::isHiddenModel(mParent) && MR::isBckStopped(mParent)) {
-        isDeathAnimDone = true;
-    }
+    bool isDeathAnimDone = !MR::isHiddenModel(mParent) && MR::isBckStopped(mParent);
 
     if (MR::isStep(mParent, ::sStepBattleEndPlanetBreak)) {
         MR::startBck(TombSpiderFunction::getPlanet(mParent), "BattleEnd", nullptr);
@@ -266,7 +263,7 @@ void TombSpiderDemo::updateJumpRotateToPlayer() {
 }
 
 bool TombSpiderDemo::isStartDemoGateOpen() const {
-    return PSVECDistance(*MR::getPlayerPos(), mParent->mPosition) < ::sGateOpenPlayerDistance;
+    return MR::getPlayerPos()->distance(mParent->mPosition) < ::sGateOpenPlayerDistance;
 }
 
 bool TombSpiderDemo::updateBattle1stStartJumpToPlayer() {

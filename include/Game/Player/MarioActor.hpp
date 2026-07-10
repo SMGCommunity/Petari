@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Util/Color.hpp"
@@ -65,7 +64,6 @@ public:
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveMsgTaken(HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-
     virtual const TVec3f& getLastMove() const;
     virtual void getLastMove(TVec3f*) const;
     virtual void getFrontVec(TVec3f*) const;
@@ -122,7 +120,7 @@ public:
     void updateBaseScaleMtx();
     void getRealMtx(MtxPtr, const char*) const NO_INLINE;
     void getRealPos(const char*, TVec3f*) const;
-    void getGlobalJointMtx(const char*);
+    MtxPtr getGlobalJointMtx(const char*);
     void calcAnimInMovement();
     void forceSetBaseMtx(MtxPtr);
     void setBlendMtxTimer(u16);
@@ -196,6 +194,7 @@ public:
     bool isAllHidden() const;
     void calcViewMainModel();
     void initFace();
+    void updateHand();
     void updateFace();
     void drawIndirect() const;
     void drawIndirectModel() const;
@@ -205,6 +204,7 @@ public:
     void drawRasterScroll(f32, s16, f32) const;
     void drawMosaic() const;
     void drawLifeUp() const;
+    void calcSpinEffect();
     void drawSpinEffect() const;
     void drawWallShade(const TVec3f&, const TVec3f&, f32) const;
     void drawShadow() const;
@@ -280,6 +280,7 @@ public:
     bool tryRushInRush();
     void bodyClap();
     bool selectWaterInOut(const char*) const;
+    bool selectWaterInOutEffect(const char*) const;
     bool selectWaterInOutRush(const HitSensor*) const;
     void playEffectRT(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTZ(const char*, const TVec3f&, const TVec3f&);
@@ -349,6 +350,10 @@ public:
     void rushDropThrowMemoSensor();
     void offTakingFlag();
 
+    void changeHandMaterial();
+    void calcScreenBoxRange();
+    void updateRasterScroll();
+
     void settingRush();
 
     void resetCondition();
@@ -407,6 +412,11 @@ public:
 
     inline const Mario::DrawStates& getPrevDrawStates() const {
         return mMario->mPrevDrawStates;
+    }
+
+    // Only used in isSleeping() to make it match
+    inline bool IsMarioAnimationRun(const char* pAnimName) const {
+        return mMario->isAnimationRun(pAnimName);
     }
 
     struct FBO {
@@ -555,7 +565,7 @@ public:
     /* 0x474 */ u32 _474;
     /* 0x478 */ f32 _478;
     /* 0x47C */ u32 _47C;
-    /* 0x480 */ u8 _480;
+    /* 0x480 */ bool _480;
     /* 0x481 */ u8 _481;
     /* 0x482 */ bool _482;
     /* 0x483 */ u8 _483;
@@ -565,24 +575,24 @@ public:
     /* 0x498 */ FixedPosition* _498;
     /* 0x49C */ FixedPosition* _49C;
     /* 0x4A0 */ FixedPosition* _4A0;
-    /* 0x4A4 */ u32 _4A4;
+    /* 0x4A4 */ void* _4A4;  // used in calcAnimInMovement()
     /* 0x4A8 */ u32 _4A8;
     /* 0x4AC */ f32 _4AC;
     /* 0x4B0 */ f32 _4B0;
     /* 0x4B4 */ f32 _4B4;
     /* 0x4B8 */ TVec3f _4B8;
     /* 0x4C4 */ TVec3f _4C4;
-    /* 0x4D0 */ u32 _4D0[0x80];
+    /* 0x4D0 */ u32 _4D0[128];
     /* 0x6D0 */ u8 _6D0;
     /* 0x6D4 */ f32 _6D4;
     /* 0x6D8 */ f32 _6D8;
-    /* 0x6DC */ HitSensor* _6DC[0x40];
+    /* 0x6DC */ HitSensor* _6DC[64];
     /* 0x7DC */ u16 _7DC; // _6DC count
     /* 0x7DE */ u16 _7DE;
     /* 0x7E0 */ u16 _7E0;
     /* 0x7E2 */ u8 _7E2;
-    /* 0x7E4 */ u32 _7E4[0x40];
-    /* 0x8E4 */ u8 _8E4[0x40];
+    /* 0x7E4 */ u32 _7E4[64];
+    /* 0x8E4 */ u8 _8E4[64];
     /* 0x924 */ HitSensor* _924;
     /* 0x928 */ u32 _928;
     /* 0x92C */ u32 _92C;
@@ -633,7 +643,7 @@ public:
     /* 0x9F2 */ u16 _9F2;
     /* 0x9F4 */ TVec3f _9F4;
     /* 0xA00 */ ModelHolder* _A00;
-    /* 0xA0$ */ ModelHolder* _A04;
+    /* 0xA04 */ ModelHolder* _A04;
     /* 0xA08 */ u8 _A08;
     /* 0xA09 */ u8 _A09;
     /* 0xA0A */ u8 mCurrModel;
@@ -662,7 +672,7 @@ public:
     /* 0xA64 */ u32 _A64;
     /* 0xA68 */ f32 _A68;
     /* 0xA6C */ u16 _A6C;
-    /* 0xA6E */ u8 _A6E;
+    /* 0xA6E */ bool _A6E;
     /* 0xA70 */ Mtx* _A70[8];
     /* 0xA90 */ Mtx* _A90[8];
     /* 0xAB0 */ TMtx34f _AB0;
@@ -714,7 +724,7 @@ public:
     /* 0xBC4 */ u16 _BC4;
     /* 0xBC8 */ TMtx34f _BC8;
     /* 0xBF8 */ TMtx34f _BF8;
-    /* 0xC28 */ void* _C28;
+    /* 0xC28 */ Mtx* _C28;
     /* 0xC2C */ TMtx34f _C2C;
     /* 0xC5C */ TMtx34f _C5C;
     /* 0xC8C */ TMtx34f _C8C;
@@ -767,6 +777,7 @@ public:
     /* 0xF21 */ u8 _F21;
     /* 0xF24 */ u32 _F24;
     /* 0xF28 */ u16 _F28;
+    /* 0xF2C */
 
     union {
         /* 0xF2C */ u32 _F2C;
@@ -777,18 +788,18 @@ public:
 
     union {
         /* 0xF3C */ AudGeneric* _F3C;
-        /* 0xF3C */ TVec3f* _F3C_vec;
+        /* 0xF3C */ TVec3f* _F3CVec;
     };
 
     /* 0xF40 */ u16 _F40;
     /* 0xF42 */ u16 _F42;
     /* 0xF44 */ bool _F44;
-    /* 0xF48 */ u32 _F48;
+    /* 0xF48 */ HitSensor* _F48;
     /* 0xF4C */ BlackHole* mBlackHole;
     /* 0xF50 */ TVec3f mBlackHolePosition;
     /* 0xF5C */ TVec3f mBlackHoleRotateAxis;
     /* 0xF68 */ TVec3f mPosRelativeToBlackHole;
-    /* 0xF74 */ u8 _F74;
+    /* 0xF74 */ bool _F74;
     /* 0xF78 */ TVec3f mCamPos;
     /* 0xF84 */ TVec3f mCamDirX;
     /* 0xF90 */ TVec3f mCamDirY;

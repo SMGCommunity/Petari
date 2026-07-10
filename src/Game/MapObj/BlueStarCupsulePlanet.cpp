@@ -265,7 +265,7 @@ void BlueStarCupsulePlanet::calcAndSetBaseMtx() {
 bool BlueStarCupsulePlanet::isPointable() const {
     TVec3f pos, vec1;
     MR::copyJointPos(this, "Root", &pos);
-    f32 distance = PSVECDistance(pos, MR::getPlayerPos());
+    f32 distance = pos.distance(*MR::getPlayerPos());
 
     if (MR::isEqualString(mName, "UFOBlueStarCupsule")) {
         MR::calcUpVec(&vec1, this);

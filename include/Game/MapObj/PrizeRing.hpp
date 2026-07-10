@@ -30,5 +30,5 @@ public:
     void playSound() const;
     bool isOnTriggerTimeoutFlash() const;
 
-    int mLifeTime; //_90
+    /* 0x90 */ int mLifeTime;
 };

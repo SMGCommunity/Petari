@@ -83,7 +83,11 @@ void KoopaFireShort::appear() {
 
     MR::vecKillElement(mVelocity, mGravity, &mVelocity);
 
-    MR::isNearZero(mVelocity) ? transform.getYDir(mVelocity) : MR::normalize(&mVelocity);
+    if (MR::isNearZero(mVelocity)) {
+        transform.getYDir(mVelocity);
+    } else {
+        MR::normalize(&mVelocity);
+    }
 
     f32 radius = 80.0f * mScale.x;
     mVelocity.x *= ::sFlySpeedNormal;

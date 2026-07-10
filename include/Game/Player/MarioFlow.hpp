@@ -7,7 +7,7 @@ class MarioActor;
 class MarioFlow : public MarioState {
 public:
     MarioFlow(MarioActor*);
-    
+
     virtual bool start();
     virtual bool close();
     virtual bool update();

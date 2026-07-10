@@ -130,7 +130,9 @@ void SpinDriver::initShootPath(const JMapInfoIter& rIter) {
 void SpinDriver::initEventCamera(const JMapInfoIter& rIter) {
     mSpinDriverCamera = new SpinDriverCamera();
     mSpinDriverCamera->init(rIter, this);
-    MR::isConnectedWithRail(rIter);
+
+    if (MR::isConnectedWithRail(rIter)) {
+    }
 }
 
 void SpinDriver::appear() {
@@ -263,7 +265,7 @@ bool SpinDriver::tryStartShoot() {
 }
 
 bool SpinDriver::tryEndCapture() {
-    if (MR::isGreaterStep(this, 40) && PSVECDistance(&_B8, &mPosition) < 15.0f) {
+    if (MR::isGreaterStep(this, 40) && _B8.distance(mPosition) < 15.0f) {
         cancelBind();
         _141 = 0;
         setNerve(&NrvSpinDriver::SpinDriverNrvWait::sInstance);

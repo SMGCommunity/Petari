@@ -133,13 +133,7 @@ bool CameraManGame::isSubjectiveCameraOff() const {
 }
 
 bool CameraManGame::isCorrectingErpPositionOff() const {
-    bool off = false;
-
-    if (mCamera != nullptr && mCamera->isCorrectingErpPositionOff()) {
-        off = true;
-    }
-
-    return off;
+    return mCamera != nullptr && mCamera->isCorrectingErpPositionOff();
 }
 
 bool CameraManGame::isEnableToRoundLeft() const {
@@ -196,7 +190,7 @@ void CameraManGame::zoomIn() {
     const TVec3f& pos = CameraLocalUtil::getPos(this);
     const TVec3f& watchPos = CameraLocalUtil::getWatchPos(this);
 
-    f32 distance = PSVECDistance(&watchPos, &pos);
+    f32 distance = watchPos.distance(pos);
     f32 dVar3 = JMAAsinRadian(100.0f / distance);
     f32 var2 = 1.5f;
     f32 var1 = dVar3 * var2;

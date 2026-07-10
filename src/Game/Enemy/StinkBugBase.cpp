@@ -20,7 +20,7 @@ void StinkBugBase::setDashVelocity(f32 velocity) {
     TVec3f result;
     f32 radius = mRadius;
     JMAVECScaleAdd(&_8C, &_98, &result, radius);
-    f32 distance = PSVECDistance(&result, &mPosition);
+    f32 distance = result.distance(mPosition);
     // Illogical branching in the ASM. Possible inline?
     if (velocity >= distance) {
         distance = velocity;

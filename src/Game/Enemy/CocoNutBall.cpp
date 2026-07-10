@@ -179,7 +179,7 @@ bool CocoNutBall::isValidReceivePunch() const {
     if (MR::isDead(this) || (!isNerveTrowToOrFreeze() && !isNerve(&NrvCocoNutBall::CocoNutBallNrvRebound::sInstance))) {
         return false;
     } else {
-        return PSVECDistance(mPosition, MR::getPlayerCenterPos()) < 400.0f;
+        return mPosition.distance(*MR::getPlayerCenterPos()) < 400.0f;
     }
 }
 

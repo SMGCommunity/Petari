@@ -153,7 +153,7 @@ void Mario::recordRelativePosition() {
     }
 
     if (sameSensorFloor == nullptr) {
-        if (isStatusActive(1)) {
+        if (isStatusActive(MarioStatus_Wall)) {
             *_8C8 = *mFrontWallTriangle;
         } else if (mMovementStates._1) {
             if (_1C._13) {
@@ -230,7 +230,7 @@ u32 Mario::moveRelativePosition(u32) {
         return 0;
     }
 
-    if (mActor->_EA4 && !isStatusActive(0x22)) {
+    if (mActor->_EA4 && !isStatusActive(MarioStatus_Talk)) {
         invalidateRelativePosition();
         return 0;
     }
@@ -419,8 +419,8 @@ void Mario::tryPushToVelocity() {
             }
 
             mVelocity += pushVec;
-        } else if (!isStatusActive(5)) {
-            if (isStatusActive(0x1B)) {
+        } else if (!isStatusActive(MarioStatus_Hang)) {
+            if (isStatusActive(MarioStatus_Bury)) {
                 closeStatus(mBury);
             } else {
                 if (mMovementStates.jumping && !mMovementStates._1) {

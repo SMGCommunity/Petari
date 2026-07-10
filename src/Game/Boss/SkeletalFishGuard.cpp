@@ -82,9 +82,15 @@ void SkeletalFishGuard::control() {
 
     if (!isNerve(&::SkeletalFishGuardNrvKill::sInstance) && !isNerve(&::SkeletalFishGuardNrvApart::sInstance)) {
         if (MR::isBinded(this)) {
-            MR::isBindedGround(this);
-            MR::isBindedWall(this);
-            MR::isBindedRoof(this);
+            if (MR::isBindedGround(this)) {
+            }
+
+            if (MR::isBindedWall(this)) {
+            }
+
+            if (MR::isBindedRoof(this)) {
+            }
+
             setNerve(&::SkeletalFishGuardNrvKill::sInstance);
         }
     }
@@ -224,7 +230,7 @@ void SkeletalFishGuard::exeFollow() {
         _C4 = 22.0f;
     }
 
-    f32 dist = PSVECDistance(MR::getPlayerCenterPos(), &mPosition);
+    f32 dist = MR::getPlayerCenterPos()->distance(mPosition);
     f32 v6 = 0.0f;
     f32 v7 = (dist - 1000.0f) / 500.0f;
     if (v7 >= 0.0f) {

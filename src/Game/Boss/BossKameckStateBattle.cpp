@@ -437,8 +437,6 @@ void BossKameckStateBattle::selectPosition() {
 }
 
 bool BossKameckStateBattle::isEnableDamage() const {
-    bool ret = false;
-
     if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) ||
         isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) ||
         isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) ||
@@ -450,12 +448,10 @@ bool BossKameckStateBattle::isEnableDamage() const {
         return true;
     }
 
-    return ret;
+    return false;
 }
 
 bool BossKameckStateBattle::isEnableGuard() const {
-    bool ret = false;
-
     if (isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance) ||
         isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance) ||
         isNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance) ||
@@ -467,7 +463,7 @@ bool BossKameckStateBattle::isEnableGuard() const {
         return true;
     }
 
-    return ret;
+    return false;
 }
 
 BossKameckStateBattle::~BossKameckStateBattle() {

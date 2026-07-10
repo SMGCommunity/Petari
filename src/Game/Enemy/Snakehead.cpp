@@ -330,7 +330,8 @@ bool Snakehead::tryDPDSwoon() {
 bool Snakehead::isNearPlayerFromRail() const {
     TVec3f nearestPos;
     MR::calcNearestRailPos(&nearestPos, this, *MR::getPlayerPos());
-    return PSVECDistance(&nearestPos, *MR::getPlayerPos()) <= _D8;
+
+    return nearestPos.distance(*MR::getPlayerPos()) <= _D8;
 }
 
 Snakehead::~Snakehead() {
