@@ -104,4 +104,11 @@ namespace MR {
         setJointControllerParam(delegator, pHost, pName);
         return delegator;
     }
+
+    template < class T >
+    JointController* createJointController(T* pHost, const char* pName, bool (T::*calcFunc)(TPos3f*, const JointControllerInfo&)) {
+        JointControlDelegator< T >* delegator = new JointControlDelegator< T >(calcFunc, pHost, 0);
+        setJointControllerParam(delegator, pHost, pName);
+        return delegator;
+    }
 };  // namespace MR
