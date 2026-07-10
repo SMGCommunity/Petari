@@ -83,7 +83,7 @@ void OceanRingPartDrawer::initDisplayList(f32* a1, f32* a2, f32* a3) {
 }
 
 void OceanRingPartDrawer::draw() const {
-    if (PSVECDistance(&mPosition, MR::getPlayerPos()) < ::sDistancePartDL) {
+    if (mPosition.distance(*MR::getPlayerPos()) < ::sDistancePartDL) {
         drawDynamic();
     } else {
         GXCallDisplayList(mDispList, mDispListLength);
@@ -350,7 +350,7 @@ void OceanRingDrawer::drawBloom() const {
         for (s32 i = 0; i < mDrawerCount; i++) {
             OceanRingPartDrawer* drwr = getDrawer(i);
 
-            if (PSVECDistance(&drwr->mPosition, &zDir) < ::sDistancePartDrawBloom) {
+            if (drwr->mPosition.distance(zDir) < ::sDistancePartDrawBloom) {
                 drwr->drawDynamicBloom();
             }
         }

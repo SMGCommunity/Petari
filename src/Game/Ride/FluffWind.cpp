@@ -125,7 +125,7 @@ void FluffWindHolder::calcWindInfo(const TVec3f& rPosition, TVec3f* pWindDirecti
         TVec3f nearestPos;
         MR::calcNearestRailPosAndDirection(&nearestPos, &railDir, pActor, rPosition);
 
-        f32 distance = PSVECDistance(&nearestPos, &rPosition);
+        f32 distance = nearestPos.distance(rPosition);
         if (distance < bestDistance) {
             bestDistance = distance;
             bestDir = railDir;

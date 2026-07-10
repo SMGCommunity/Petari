@@ -92,9 +92,8 @@ void SeaGull::exeHoverFront() {
     } else {
         TVec3f stack_8(*_9C);
         stack_8.sub(mPosition);
-        f32 dist = PSVECDistance((const Vec*)&mPosition, (const Vec*)_9C);
 
-        if (dist > 500.0f) {
+        if (mPosition.distance(*_9C) > 500.0f) {
             f32 prod = _C4.dot(stack_8);
 
             if (prod > 0.0f) {

@@ -126,7 +126,7 @@ bool OceanRing::isInWater(const TVec3f& rVec) const {
     f32 pos = calcNearestPos(rVec, &nearPos, nullptr, nullptr);
     f32 w = (mWidthMax * calcCurrentWidthRate(pos));
 
-    if (PSVECDistance(&nearPos, &rVec) > w) {
+    if (nearPos.distance(rVec) > w) {
         return false;
     }
 
@@ -178,7 +178,7 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
         MR::normalize(&v19);
         v19.scale(v9);
         v19.add(v24);
-        pInfo->mEdgeDistance = PSVECDistance(&v19, &a1);
+        pInfo->mEdgeDistance = v19.distance(a1);
         pInfo->mEdgePos.set< f32 >(v19);
     }
 
@@ -187,12 +187,12 @@ bool OceanRing::calcWaterInfo(const TVec3f& a1, const TVec3f& a2, WaterInfo* pIn
 
 f32 OceanRing::calcNearestPos(const TVec3f& a1, TVec3f* a2, TVec3f* a3, TVec3f* a4) const {
     WaterPoint* point = getPoint(7);
-    f32 dist = PSVECDistance(&point->mOrigPos, &a1);
+    f32 dist = point->mOrigPos.distance(a1);
 
     s32 index = 0;
     for (s32 i = 1; i < mSegCount; i++) {
         WaterPoint* p = getPoint(i * 15 + 7);
-        f32 d = PSVECDistance(&p->mOrigPos, &a1);
+        f32 d = p->mOrigPos.distance(a1);
         if (d < dist) {
             dist = d;
             point = p;
@@ -204,9 +204,9 @@ f32 OceanRing::calcNearestPos(const TVec3f& a1, TVec3f* a2, TVec3f* a3, TVec3f* 
     if (index > 0 && index < mSegCount - 1) {
         WaterPoint* v20 = getPoint(15 * (index - 1) + 7);
         WaterPoint* v21 = getPoint(15 * (index + 1) + 7);
-        f32 v22 = PSVECDistance(&v20->mOrigPos, &a1);
+        f32 v22 = v20->mOrigPos.distance(a1);
 
-        if (v22 < PSVECDistance(&v21->mOrigPos, &a1)) {
+        if (v22 < v21->mOrigPos.distance(a1)) {
             v18 = (::sPointIntervalLine * (index - MR::calcPerpendicFootToLine(a2, a1, point->mOrigPos, v20->mOrigPos)));
         } else {
             v18 = (::sPointIntervalLine * (index + MR::calcPerpendicFootToLine(a2, a1, point->mOrigPos, v21->mOrigPos)));
@@ -391,7 +391,7 @@ void OceanRing::updatePoints() {
     }
 
     mNearPosToPlayer = calcNearestPos(*MR::getPlayerPos(), &mNearestPos, &mNearestDir, nullptr);
-    if (PSVECDistance(&mNearestPos, MR::getPlayerPos()) > ::sUpdateDistanceMax) {
+    if (mNearestPos.distance(*MR::getPlayerPos()) > ::sUpdateDistanceMax) {
         mIsClipped = true;
         return;
     }
@@ -537,7 +537,7 @@ void OceanRing::calcClippingBox() {
     mClippingBox.i.sub(v7);
     mClippingBox.f.add(v7);
     JMAVECLerp(&mClippingBox.f, &mClippingBox.i, &_108, 0.5f);
-    f32 dist = PSVECDistance(&_108, &mClippingBox.i);
+    f32 dist = _108.distance(mClippingBox.i);
     MR::setClippingTypeSphere(this, (100.0f + dist), &_108);
     MR::setClippingFarMax(this);
 }

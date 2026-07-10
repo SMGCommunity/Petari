@@ -129,7 +129,7 @@ bool OceanBowl::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterI
         MR::normalize(&v5);
         v5.scale(B0);
         v5.add(mPosition);
-        pInfo->mEdgeDistance = PSVECDistance(&v5, &rPos);
+        pInfo->mEdgeDistance = v5.distance(rPos);
         pInfo->mEdgePos.set(v5);
     }
 
@@ -273,7 +273,7 @@ void OceanBowl::moveToLeft() {
         TVec3f resetvec(mSide);
         resetvec.scale(-200.0f);
         resetvec.add(getPoint(x, 1)->mPosition);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - position->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
     }
     mTexV0 -= ::sTexRate0;
     mTexV1 -= ::sTexRate1;
@@ -295,7 +295,7 @@ void OceanBowl::moveToRight() {
         TVec3f resetvec(mSide);
         resetvec.scale(::sPointInterval);
         resetvec.add(getPoint(x, 23)->mPosition);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - position->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
     }
     mTexV0 += ::sTexRate0;
     mTexV1 += ::sTexRate1;
@@ -317,7 +317,7 @@ void OceanBowl::moveToUpper() {
         TVec3f resetvec(mFront);
         resetvec.scale(-::sPointInterval);
         resetvec.add(getPoint(1, y)->mPosition);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - position->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
     }
     mTexU0 -= ::sTexRate0;
     mTexU1 -= ::sTexRate1;
@@ -339,7 +339,7 @@ void OceanBowl::moveToLower() {
         TVec3f resetvec(mFront);
         resetvec.scale(::sPointInterval);
         resetvec.add(getPoint(23, y)->mPosition);
-        mLastPoint->reset(resetvec, MR::clamp((mRadius - PSVECDistance(position, &resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
+        mLastPoint->reset(resetvec, MR::clamp((mRadius - position->distance(resetvec)) / ::sPointWaveRateDistMax, 0.0f, 1.0f));
     }
     mTexU0 += ::sTexRate0;
     mTexU1 += ::sTexRate1;

@@ -173,7 +173,7 @@ void SwingRope::exeBindStretch() {
         mStretchTime = 0;
     }
 
-    if (!updateStretch() && mGrabCoord - PSVECDistance(&mBasePos, &mSledPoint->mPosition) > 5.0f) {
+    if (!updateStretch() && mGrabCoord - mBasePos.distance(mSledPoint->mPosition) > 5.0f) {
         setNerve(&NrvSwingRope::SwingRopeNrvBindLoose::sInstance);
     }
 }
@@ -358,7 +358,7 @@ bool SwingRope::isAllPointsStop() const {
 }
 
 bool SwingRope::isStretched() const {
-    return __fabsf(mGrabCoord - PSVECDistance(&mBasePos, &mSledPoint->mPosition)) < 1.0f;
+    return __fabsf(mGrabCoord - mBasePos.distance(mSledPoint->mPosition)) < 1.0f;
 }
 
 bool SwingRope::tryJump() {

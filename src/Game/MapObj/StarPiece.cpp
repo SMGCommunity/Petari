@@ -674,7 +674,7 @@ void StarPiece::exeThrow() {
     playerCenterPos.sub(camPos);
 
     if (MR::isNoBind(this)) {
-        if ((1500.0f < PSVECDistance(&MR::getCamPos(), &mPosition)) || (camZDir.dot(playerCenterPos) < camZDir.dot(vec10)) ||
+        if (1500.0f < MR::getCamPos().distance(mPosition) || camZDir.dot(playerCenterPos) < camZDir.dot(vec10) ||
             MR::isGreaterStep(this, 28)) {
             MR::onBind(this);
         }

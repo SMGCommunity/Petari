@@ -413,7 +413,7 @@ bool Teresa::tryWalk() {
 }
 
 bool Teresa::tryWalkEnd() {
-    if (MR::isGreaterStep(this, 300) || PSVECDistance(&_E0, mPosition) <= 200.0f) {
+    if (MR::isGreaterStep(this, 300) || _E0.distance(mPosition) <= 200.0f) {
         setNerve(&NrvTeresa::TeresaNrvWait::sInstance);
         return true;
     }

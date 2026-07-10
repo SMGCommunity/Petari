@@ -142,7 +142,7 @@ bool TripodBossKillerGenerater::tryShootSetting() {
     TVec3f trans;
     _8C.getTrans(trans);
     if (MR::isDead(mKiller)) {
-        if (PSVECDistance(MR::getPlayerPos(), &trans) < _118) {
+        if (MR::getPlayerPos()->distance(trans) < _118) {
             TVec3f front;
             MR::calcFrontVec(&front, this);
             TVec3f v4;
@@ -229,7 +229,7 @@ bool TripodBossKillerGenerater::requestBreak() {
 
 void TripodBossKillerGenerater::exeShowDemo() {
     if (MR::isStep(this, 90)) {
-        if (PSVECDistance(MR::getPlayerPos(), &mPosition) < 230.0f) {
+        if (MR::getPlayerPos()->distance(mPosition) < 230.0f) {
             setNerve(&NrvTripodBossKillerGenerater::TripodBossKillerGeneraterNrvRestart::sInstance);
             return;
         }
@@ -275,7 +275,7 @@ void TripodBossKillerGenerater::exeShootSetting() {
 void TripodBossKillerGenerater::exeShoot() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Shoot", nullptr);
-        PSVECDistance(&mPosition, MR::getPlayerPos());
+        mPosition.distance(*MR::getPlayerPos());
     }
 
     updateTripodMatrix();
@@ -312,7 +312,7 @@ void TripodBossKillerGenerater::exeRestart() {
     }
 
     if (_121) {
-        if (PSVECDistance(MR::getPlayerPos(), &mPosition) >= 230.0f) {
+        if (MR::getPlayerPos()->distance(mPosition) >= 230.0f) {
             MR::startBck(this, "2ndDemo", nullptr);
             MR::startSound(this, "SE_BM_TRIPOD_CANNON_RESTART");
             if (mHasCollision) {

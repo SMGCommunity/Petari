@@ -498,11 +498,11 @@ void FileSelectItem::updateRotate() {
                     }
                     if (v14) {
                         v13 = 1;
-                    } else if (PSVECDistance(&v44, &v43) <= 900.0f) {
+                    } else if (v44.distance(v43) <= 900.0f) {
                         v13 = 1;
-                    } else if (PSVECDistance(&v45, &v43) <= 900.0f) {
+                    } else if (v45.distance(v43) <= 900.0f) {
                         v13 = 1;
-                    } else if (PSVECDistance(&v46, &v43) <= 900.0f) {
+                    } else if (v46.distance(v43) <= 900.0f) {
                         v13 = 1;
                     } else if (checkCollisionOfPointAndCylinder(v43, v44, v47, 900.0f)) {
                         v13 = 1;

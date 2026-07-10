@@ -374,7 +374,7 @@ bool OceanSphere::isInWater(const TVec3f& rPos) const {
         return false;
     }
 
-    return PSVECDistance(&rPos, &mPosition) <= mRadius;
+    return rPos.distance(mPosition) <= mRadius;
 }
 
 bool OceanSphere::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterInfo* pInfo) const {

@@ -86,7 +86,7 @@ bool DinoPackunTailNode::calcJointScale(TPos3f* pMtx, const JointControllerInfo&
 
     TVec3f v12;
     v12.set< f32 >(_B8->mPosition);
-    f32 v6 = PSVECDistance(&v12, &mPosition);
+    f32 v6 = v12.distance(mPosition);
     f32 v7 = 0.2f;
     f32 v8 = (v6 / mLinkLength);
 

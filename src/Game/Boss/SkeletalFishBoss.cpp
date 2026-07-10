@@ -312,7 +312,7 @@ void SkeletalFishBoss::exeSwim() {
     TVec3f mouthPos;
     getMouthSensorCenterPos(mouthPos, 5000.0f);
 
-    bool isClose = PSVECDistance(&mouthPos, MR::getPlayerPos()) < 5000.0f;
+    bool isClose = mouthPos.distance(*MR::getPlayerPos()) < 5000.0f;
 
     if (isClose) {
         setNerve(&::SkeletalFishBossNrvOpen::sInstance);
@@ -337,7 +337,7 @@ void SkeletalFishBoss::exeOpen() {
 void SkeletalFishBoss::exeOpenWait() {
     TVec3f mouthPos;
     getMouthSensorCenterPos(mouthPos, 7800.0f);
-    bool isClose = PSVECDistance(&mouthPos, MR::getPlayerPos()) < 7000.0f;
+    bool isClose = mouthPos.distance(*MR::getPlayerPos()) < 7000.0f;
 
     if (!isClose) {
         setNerve(&::SkeletalFishBossNrvClose::sInstance);

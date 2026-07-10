@@ -699,7 +699,7 @@ void Petari::avoidWall() {
             wallNormal.rejection(mGravity);
             if (!MR::isNearZero(wallNormal)) {
                 MR::normalize(&wallNormal);
-                f32 proximity = 1.0f - (PSVECDistance(&v19, &mBodyCenter) / 600.0f);
+                f32 proximity = 1.0f - (v19.distance(mBodyCenter) / 600.0f);
                 MR::clamp01(&proximity);
                 f32 v8 = (proximity * proximity);
                 proximity *= proximity;

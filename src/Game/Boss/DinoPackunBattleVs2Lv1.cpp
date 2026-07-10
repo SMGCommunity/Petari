@@ -428,7 +428,7 @@ bool DinoPackunBattleVs2Lv1::emitFireTail() {
 
     if (fire != nullptr) {
         TVec3f v7(getHost()->mBall->mPosition);
-        if (PSVECDistance(&_28, &v7) >= 120.0f) {
+        if (_28.distance(v7) >= 120.0f) {
             _28 = v7;
             fire->appearAndSetPos(v7);
             return true;

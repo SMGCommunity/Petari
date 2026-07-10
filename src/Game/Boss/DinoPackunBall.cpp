@@ -260,8 +260,10 @@ void DinoPackunBall::exeShoot() {
     addDodgeTargetVelocity();
     MR::attenuateVelocity(this, 1.0f);
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
-    f32 v4 = PSVECDistance(MR::getSensorPos(mWeakSensor), &mPosition);
-    if (MR::isGreaterStep(this, 30) || v4 >= 1500.0f) {
+
+    f32 distanceToWeakSensor = MR::getSensorPos(mWeakSensor).distance(mPosition);
+
+    if (MR::isGreaterStep(this, 30) || distanceToWeakSensor >= 1500.0f) {
         setNerve(&NrvDinoPackunBall::DinoPackunBallNrvCharge::sInstance);
     }
 }

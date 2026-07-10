@@ -401,7 +401,7 @@ bool CocoNut::tryPushedFromActor(HitSensor* pOtherSensor, HitSensor* pMySensor) 
     } else {
         f32 mySensorRadius = pMySensor->mRadius;
         f32 otherSensorRadius = pOtherSensor->mRadius;
-        if (((otherSensorRadius + mySensorRadius) - PSVECDistance(otherSensorPos, mySensorPos)) < 0.0f) {
+        if (((otherSensorRadius + mySensorRadius) - otherSensorPos->distance(*mySensorPos)) < 0.0f) {
             return false;
         }
         stack_10.sub(*otherSensorPos, *mySensorPos);

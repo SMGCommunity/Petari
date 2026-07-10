@@ -181,7 +181,7 @@ void SlingShooter::exeAim() {
         }
     }
 
-    f32 dist = PSVECDistance(&mPosition, mNeutralPos);
+    f32 dist = mPosition.distance(*mNeutralPos);
     if (dist >= 100.0f) {
         MR::startLevelSound(this, "SE_OJ_LV_SPACE_COCOON_DRAG", ((dist - 100.0f) / 200.0f) * 100.0f);
     }
@@ -604,7 +604,7 @@ bool SlingShooter::tryRelease() {
         return false;
     }
 
-    if (PSVECDistance(&mPosition, mNeutralPos) < 100.0f) {
+    if (mPosition.distance(*mNeutralPos) < 100.0f) {
         MR::sendMsgToSpiderThread(ACTMES_SLING_SHOOT_ACTOR_HANG_END, getSensor("bind"));
         endCommandStream();
 

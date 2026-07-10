@@ -494,7 +494,7 @@ PowerStarAppearPoint* PowerStar::getNearestAppearPoint(const TVec3f& rPos) const
         LiveActor* pActor = pGroup->getActor(i);
 
         if (pActor != this) {
-            f32 dist = PSVECDistance(&rPos, &pActor->mPosition);
+            f32 dist = rPos.distance(pActor->mPosition);
 
             if (dist < minDist) {
                 pNearestAppearPoint = static_cast< PowerStarAppearPoint* >(pActor);

@@ -421,15 +421,13 @@ void TripodBossLeg::exeLanding() {
     v8 -= v12;
     if (mMoveArea->collideSphere(&hitResult, v12, 0.0f, v8)) {
         MR::startSoundObject(_260, "SE_BM_TRIPOD_LAND");
-        f32 dist = PSVECDistance(&mForceEndPoint, MR::getPlayerPos());
+        f32 dist = mForceEndPoint.distance(*MR::getPlayerPos());
         if (dist < 2000.0f) {
             MR::shakeCameraStrong();
+        } else if (dist < 3500.0f) {
+            MR::shakeCameraNormal();
         } else {
-            if (dist < 3500.0f) {
-                MR::shakeCameraNormal();
-            } else {
-                MR::shakeCameraWeak();
-            }
+            MR::shakeCameraWeak();
         }
 
         MR::emitEffect(this, "LegSmoke");

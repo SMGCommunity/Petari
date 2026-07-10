@@ -263,7 +263,7 @@ void TombSpiderDemo::updateJumpRotateToPlayer() {
 }
 
 bool TombSpiderDemo::isStartDemoGateOpen() const {
-    return PSVECDistance(*MR::getPlayerPos(), mParent->mPosition) < ::sGateOpenPlayerDistance;
+    return MR::getPlayerPos()->distance(mParent->mPosition) < ::sGateOpenPlayerDistance;
 }
 
 bool TombSpiderDemo::updateBattle1stStartJumpToPlayer() {

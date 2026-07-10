@@ -143,6 +143,7 @@ void PrizeRing::exeReadyToKill() {
 
 bool PrizeRing::isPassed() const {
     bool pass = isReadyToPass();
+
     if (!pass) {
         pass = isNerve(&NrvPrizeRing::PrizeRingPass::sInstance);
     }
@@ -150,6 +151,8 @@ bool PrizeRing::isPassed() const {
     if (!pass) {
         return isReadyToKill();
     }
+
+    return pass;
 }
 
 void PrizeRing::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
