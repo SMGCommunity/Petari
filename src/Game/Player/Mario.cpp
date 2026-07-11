@@ -423,13 +423,12 @@ void Mario::setFrontVecKeepUp(const TVec3f &v)
     if (!MR::isNearZero(v)) {
         setFrontVec(v);
     }
-    TVec3f stack_2C;
-    PSVECCrossProduct(&mHeadVec, &mFrontVec, &stack_2C);
+    TVec3f stack_2C = mHeadVec.cross(mFrontVec);
 
     if (MR::isNearZero(stack_2C)) {
         TVec3f stack_20;
         MR::vecBlendSphere(stack_38, v, &stack_20, 0.5f);
-        PSVECCrossProduct(&mHeadVec, &stack_20, &stack_2C);
+        stack_2C.cross(mHeadVec, stack_20);
         setFrontVec(stack_20);
         if (MR::isNearZero(stack_2C)) {
             setFrontVecKeepSide(v);
@@ -439,11 +438,9 @@ void Mario::setFrontVecKeepUp(const TVec3f &v)
     MR::normalize(&stack_2C);
     mSideVec = stack_2C;
     MR::normalize(&mSideVec);
-    TVec3f stack_14;
-    PSVECCrossProduct(&mSideVec, &mHeadVec, &stack_14);
-    setFrontVec(stack_14);
+    setFrontVec(mSideVec.cross(mHeadVec));
     _22C = mFrontVec;
-    _328 = mFrontVec % PSVECMag(_328);
+    _328 = mFrontVec % _328.length();
     _344 = mSideVec;
 }
 */
@@ -480,7 +477,10 @@ void Mario::updateMorphResetTimer() {
         TVec3f* pTrans = getLastSafetyTrans(nullptr);
         TVec3f stack_8(_130);
         stack_8 -= *pTrans;
-        MR::isNearZero(mAirGravityVec);
+
+        if (MR::isNearZero(mAirGravityVec)) {
+        }
+
         if (MR::vecKillElement(stack_8, mAirGravityVec, &stack_20) > 28000.0f) {
             if (_488 > 2499.0f || mActor->isInZeroGravitySpot()) {
                 mActor->forceKill(0);
@@ -493,12 +493,15 @@ void Mario::updateMorphResetTimer() {
 } */
 
 bool Mario::isEnableCheckGround() {
-    return !isStatusActive(6);
+    return !isStatusActive(MarioStatus_Swim);
 }
 
 void Mario::setGroundNorm(const TVec3f& rVec) {
-    MR::isNearZero(mAirGravityVec);
+    if (MR::isNearZero(mAirGravityVec)) {
+    }
+
     TVec3f negRVec = -rVec;
+
     if (MR::diffAngleAbs(negRVec, mAirGravityVec) > 1.4959966f) {
     } else {
         _368 = rVec;
@@ -548,19 +551,19 @@ void Mario::createMtxDir(MtxPtr mtx, const TVec3f& rFront, const TVec3f& rUp, co
 }
 
 bool Mario::isNonFixHeadVec() const {
-    if (isStatusActive(6)) {
+    if (isStatusActive(MarioStatus_Swim)) {
         return true;
     }
-    if (isStatusActive(1)) {
+    if (isStatusActive(MarioStatus_Wall)) {
         return true;
     }
-    if (isStatusActive(0x15)) {
+    if (isStatusActive(MarioStatus_SideStep)) {
         return true;
     }
-    if (isStatusActive(0x18)) {
+    if (isStatusActive(MarioStatus_Foo)) {
         return true;
     }
-    if (isStatusActive(0x16)) {
+    if (isStatusActive(MarioStatus_Stick)) {
         return true;
     }
     if (mMovementStates._3E) {
@@ -569,7 +572,7 @@ bool Mario::isNonFixHeadVec() const {
     if (mActor->_EA5) {
         return true;
     }
-    if (isStatusActive(0x22)) {
+    if (isStatusActive(MarioStatus_Talk)) {
         return false;
     }
     return mActor->_EA4;
@@ -584,12 +587,12 @@ bool Mario::isNonFixHeadVec() const {
     stack_8 = mFrontVec;
     if (mDrawStates._11) {
         MR::normalize(&stack_14);
-        PSVECCrossProduct(&stack_20, &stack_14, &stack_8);
+        stack_8.cross(stack_20, stack_14);
         MR::normalizeOrZero(&stack_8);
         if (MR::isNearZero(stack_8)) {
             stack_8 = mFrontVec;
         }
-        PSVECCrossProduct(&stack_14, &stack_8, &stack_20);
+        stack_20.cross(stack_14, stack_8);
         MR::normalizeOrZero(&stack_20);
         if (MR::isNearZero(stack_20)) {
             stack_20 = mSideVec;
@@ -597,12 +600,12 @@ bool Mario::isNonFixHeadVec() const {
     }
     else {
         MR::normalizeOrZero(&stack_14);
-        PSVECCrossProduct(&stack_14, &mFrontVec, &stack_20);
+        stack_20.cross(stack_14, mFrontVec);
         MR::normalizeOrZero(&stack_20);
         if (MR::isNearZero(stack_20)) {
             stack_20 = mSideVec;
         }
-        PSVECCrossProduct(&stack_20, &stack_14, &stack_8);
+        stack_8.cross(stack_20, stack_14);
         MR::normalizeOrZero(&stack_8);
         if (MR::isNearZero(stack_8)) {
             stack_8 = mFrontVec;
@@ -629,62 +632,62 @@ void Mario::slopeTiltHead(TVec3f* pVec) {
 }
 
 void Mario::fixFrontVecByGravity() {
-    if (isNonFixHeadVec() == false) {
-        MR::isNearZero(mAirGravityVec);
-        TVec3f up = -mAirGravityVec;
-        MR::normalize(&up);
-        if (_10._13) {
-            TVec3f side(mPosition);
-            side -= _6F4;
-            MR::vecKillElement(side, _700, &side);
-            MR::normalizeOrZero(&side);
-            if (_344.dot(side) >= 0.0f) {
-                _344 = side;
-            } else {
-                _344 = -side;
-            }
-            if (mSideVec.dot(_344) >= 0.0f) {
-                mSideVec = _344;
-                MR::normalize(&mSideVec);
-            } else {
-                // TVec3f stack_14 = -_344;
-                mSideVec = -_344;
-                MR::normalize(&mSideVec);
-            }
-        } else if (_1C._2) {
-            TVec3f side2;
-            PSVECCrossProduct(&up, &mFrontVec, &side2);
-            MR::normalizeOrZero(&side2);
-            if (MR::isNearZero(side2) == false) {
-                _344 = side2;
-            }
+    if (isNonFixHeadVec()) {
+        return;
+    }
+
+    if (MR::isNearZero(mAirGravityVec)) {
+    }
+
+    TVec3f up = -mAirGravityVec;
+    MR::normalize(&up);
+    if (_10._13) {
+        TVec3f side(mPosition);
+        side -= _6F4;
+        MR::vecKillElement(side, _700, &side);
+        MR::normalizeOrZero(&side);
+        if (_344.dot(side) >= 0.0f) {
+            _344 = side;
+        } else {
+            _344 = -side;
         }
-        TVec3f front;
-        PSVECCrossProduct(&_344, &up, &front);
-        if (MR::normalizeOrZero(&front) == nullptr) {
-            setFrontVec(front);
-            _22C = mFrontVec;
-            f32 _328mag = PSVECMag(&_328);
-            _328 = mFrontVec * _328mag;
+        if (mSideVec.dot(_344) >= 0.0f) {
+            mSideVec = _344;
+            MR::normalize(&mSideVec);
+        } else {
+            // TVec3f stack_14 = -_344;
+            mSideVec = -_344;
+            MR::normalize(&mSideVec);
         }
+    } else if (_1C._2) {
+        TVec3f side2 = up.cross(mFrontVec);
+        MR::normalizeOrZero(&side2);
+        if (MR::isNearZero(side2) == false) {
+            _344 = side2;
+        }
+    }
+    TVec3f front = _344.cross(up);
+    if (MR::normalizeOrZero(&front) == nullptr) {
+        setFrontVec(front);
+        _22C = mFrontVec;
+        f32 _328mag = _328.length();
+        _328 = mFrontVec.scaleInline(_328mag);
     }
 }
 
 void Mario::fixFrontVecFromUpSide() {
-    TVec3f frontVec;
-    PSVECCrossProduct((Vec*)&mSideVec, (Vec*)&mHeadVec, (Vec*)&frontVec);
+    TVec3f frontVec = mSideVec.cross(mHeadVec);
     MR::normalizeOrZero(&frontVec);
     if (MR::isNearZero(frontVec) == false) {
         setFrontVec(frontVec);
         _22C = mFrontVec;
-        f32 scaleFactor = PSVECMag((Vec*)&_328);
+        f32 scaleFactor = _328.length();
         _328 = mFrontVec * scaleFactor;
     }
 }
 
 void Mario::fixSideVecFromFrontUp() {
-    TVec3f side;
-    PSVECCrossProduct((Vec*)&mHeadVec, (Vec*)&mFrontVec, (Vec*)&side);
+    TVec3f side = mHeadVec.cross(mFrontVec);
     MR::normalizeOrZero(&side);
     if (MR::isNearZero(side) == false) {
         mSideVec = side;
@@ -704,7 +707,7 @@ void Mario::setHeadVec(const TVec3f& rHead) {
 void Mario::setFrontVec(const TVec3f& rFront) {
     TVec3f plusMinus6A0;
     TVec3f frontWithout6A0;
-    if (mMovementStates._37 && !isStatusActive(0x22)) {
+    if (mMovementStates._37 && !isStatusActive(MarioStatus_Talk)) {
         if (getCamDirZ().dot(_6A0) > 0.0f) {
             plusMinus6A0 = _6A0;
         } else {
@@ -783,14 +786,13 @@ void Mario::setFrontVecKeepUp(const TVec3f& rFront) {
     TVec3f front = mFrontVec;
     TVec3f side;
     TVec3f blendedFront;
-    TVec3f front2;
     if (MR::isNearZero(rFront) == false) {
         setFrontVec(rFront);
     }
-    PSVECCrossProduct(&mHeadVec, &mFrontVec, &side);
+    side.cross(mHeadVec, mFrontVec);
     if (MR::isNearZero(side)) {
         MR::vecBlendSphere(front, rFront, &blendedFront, 0.5f);
-        PSVECCrossProduct(&mHeadVec, &blendedFront, &side);
+        side.cross(mHeadVec, blendedFront);
         setFrontVec(blendedFront);
         if (MR::isNearZero(side)) {
             setFrontVecKeepSide(rFront);
@@ -800,10 +802,10 @@ void Mario::setFrontVecKeepUp(const TVec3f& rFront) {
     MR::normalize(&side);
     mSideVec = side;
     MR::normalize(&mSideVec);
-    PSVECCrossProduct(&mSideVec, &mHeadVec, &front2);
-    setFrontVec(front2);
+    TVec3f stack_14 = mSideVec.cross(mHeadVec);
+    setFrontVec(stack_14);
     _22C = mFrontVec;
-    f32 _328mag = PSVECMag(&_328);
+    f32 _328mag = _328.length();
     _328 = mFrontVec * _328mag;
     _344 = mSideVec;
 }
@@ -814,7 +816,8 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
     if (MR::isNearZero(rFront) == false) {
         setFrontVec(rFront);
     }
-    PSVECCrossProduct(&mFrontVec, &mSideVec, &headVec);
+
+    headVec.cross(mFrontVec, mSideVec);
     if (MR::normalizeOrZero(&headVec) != nullptr) {
         const TVec3f* gravity = getGravityVec();
         TVec3f up = -(*gravity);
@@ -824,10 +827,10 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
         mHeadVec = headVec;
         MR::normalize(&mHeadVec);
     }
-    PSVECCrossProduct(&mSideVec, &mHeadVec, &front);
+    front.cross(mSideVec, mHeadVec);
     setFrontVec(front);
     _22C = mFrontVec;
-    f32 _328mag = PSVECMag(&_328);
+    f32 _328mag = _328.length();
     _328 = mFrontVec * _328mag;
 }
 
@@ -865,7 +868,7 @@ void Mario::draw() const {
         TDDraw::drawCylinder(mPosition, diff31C_2A0, 32.0f, 0xffff0010, 0xff000004, 8);
         TVec3f diff2A0_31C(mActor->_2A0);
         diff2A0_31C -= mShadowPos;
-        f32 diffMag = PSVECMag(&diff2A0_31C);
+        f32 diffMag = diff2A0_31C.length();
         MR::normalize(&diff2A0_31C);
         TVec3f _31CPlusStuff(mShadowPos);
         f32 _37CMod10 = mActor->_37C % 0xa;
@@ -948,7 +951,7 @@ bool Mario::isEnableRush() const {
     if (isDamaging()) {
         return false;
     }
-    if (isStatusActive(0x19)) {
+    if (isStatusActive(MarioStatus_Flow)) {
         return false;
     }
     if (mMovementStates._B && mMovementStates.jumping) {
@@ -984,7 +987,7 @@ void Mario::setGravityVec(const TVec3f& rGravity) {
         }
         _1E4.zero();
     } else {
-        PSVECCrossProduct(&mAirGravityVec, &rGravity, &_1E4);
+        _1E4.cross(mAirGravityVec, rGravity);
         MR::normalizeOrZero(&_1E4);
         f32 frontDot = __fabsf(mFrontVec.dot(_1E4));
         f32 sideDot = __fabsf(mSideVec.dot(_1E4));
@@ -1010,7 +1013,7 @@ void Mario::updateSoundCode() {
     } else if (_45C->isValid()) {
         soundCode = MR::getSoundCodeIndex(_45C->getAttributes());
     }
-    if (isStatusActive(1)) {
+    if (isStatusActive(MarioStatus_Wall)) {
         if (mMovementStates._8) {
             soundCode = MR::getSoundCodeIndex(mFrontWallTriangle->getAttributes());
         } else if (mMovementStates._19) {
@@ -1068,7 +1071,9 @@ const TVec3f& Mario::getShadowNorm() const {
 }
 
 const TVec3f& Mario::getAirGravityVec() const {
-    MR::isNearZero(this->mAirGravityVec);
+    if (MR::isNearZero(this->mAirGravityVec)) {
+    }
+
     return mAirGravityVec;
 }
 
@@ -1172,7 +1177,7 @@ void Mario::initAfterConst() {
                     }
                     else if (MR::diffAngleAbs(*getGravityVec(), _2D4) < PI_30) {
                         MR::vecKillElement(*_57C[i]->getNormal(0), *getGravityVec(), &stack_c8);
-                        f32 _2D4Mag = PSVECMag(&_2D4);
+                        f32 _2D4Mag = _2D4.length();
                         MR::normalizeOrZero(&stack_c8);
                         _2D4 += stack_c8;
                         _2D4.setLength(_2D4Mag);
@@ -1248,7 +1253,7 @@ void Mario::actionMain() {
     if (!mMovementStates._16) {
         if (checkDamage() == false) {
             if (_97C) {
-                sendStateMsg(2);
+                sendStateMsg(MarioStateMsg_Update);
             }
             else if (mMovementStates._0) {
                 procJump(false);
@@ -1320,8 +1325,8 @@ void Mario::actionMain() {
         if (b1 && mMovementStates._1 && isDefaultAnimationRun("落下")) {
             changeAnimation(nullptr, "基本");
         }
-        if (!isStatusActive(0x13)) {
-            if (!isStatusActive(0x13) && !mMovementStates._1 && mMovementStates._3E == 1 && _2D4.dot(Mario::getGravityVec()) > 0.0f
+        if (!isStatusActive(MarioStatus_13)) {
+            if (!isStatusActive(MarioStatus_13) && !mMovementStates._1 && mMovementStates._3E == 1 && _2D4.dot(Mario::getGravityVec()) > 0.0f
                 && _2D4.dot(*_45C->getNormal(0)) < 0.0f && _1FC.dot(Mario::getGravityVec()) > 0.0f && _488 < 170.0f) {
                 mMovementStates._1 = 1;
                 setGroundNorm(*_45C->getNormal(0));
@@ -1348,7 +1353,7 @@ void Mario::actionMain() {
 
 // conditionals won't behave
 const TVec3f* Mario::getGravityVec() const {
-    if (isStatusActive(0x1e) || isStatusActive(0x1d)) {
+    if (isStatusActive(MarioStatus_Bump) || isStatusActive(MarioStatus_Climb)) {
         return &_790;
     }
     if (mMovementStates._1 && !isSlipFloorCode(_960)) {
@@ -1371,15 +1376,17 @@ const TVec3f* Mario::getGravityVec() const {
         }
         return &mAirGravityVec;
     }
-    MR::isNearZero(mAirGravityVec);
+    if (MR::isNearZero(mAirGravityVec)) {
+    }
     bool b1 = true;
     if (_430 == 0xc) {
         b1 = false;
     } else if (_430 == 0xd) {
         b1 = false;
     }
-    if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging() && !isStatusActive(6) && !isStatusActive(4) &&
-        !isStatusActive(0x13) && _430 != 5 && mActor->_334 == 0 && mMovementStates.jumping && !mMovementStates._22 && _3BC < 8) {
+    if (!isSlipFloorCode(_960) && b1 && !isPlayerModeHopper() && !isPlayerModeTeresa() && !isDamaging() && !isStatusActive(MarioStatus_Swim) &&
+        !isStatusActive(MarioStatus_Blown) && !isStatusActive(MarioStatus_13) && _430 != 5 && mActor->_334 == 0 && mMovementStates.jumping &&
+        !mMovementStates._22 && _3BC < 8) {
         return &_374;
     }
     return &mAirGravityVec;

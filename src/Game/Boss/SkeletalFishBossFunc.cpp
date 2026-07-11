@@ -13,7 +13,7 @@ s32 SkeletalFishBossFunc::getNearestGuardPosID(const TVec3f& rVec) {
     for (int i = 0; i < 16; i++) {
         TVec3f pos;
         if (copyGuardPos(&pos, i)) {
-            f32 dist = PSVECDistance(&rVec, &pos);
+            f32 dist = rVec.distance(pos);
 
             if (dist < closest) {
                 closest = dist;

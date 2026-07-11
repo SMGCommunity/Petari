@@ -583,7 +583,9 @@ void TalkFunction::startTalkSystem(TalkMessageCtrl* pCtrl, bool force, bool demo
 
 void TalkFunction::endTalkSystem(TalkMessageCtrl* pCtrl) {
     ::getTalkDirector();
-    MR::isTalkEnableEnd(pCtrl);
+
+    if (MR::isTalkEnableEnd(pCtrl)) {
+    }
 }
 
 bool TalkFunction::isTalkSystemStart(const TalkMessageCtrl* pCtrl) {

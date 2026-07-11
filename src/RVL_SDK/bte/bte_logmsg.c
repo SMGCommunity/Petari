@@ -52,7 +52,6 @@
  * functions
  */
 
-/*
 void LogMsg(UINT32 trace_set_mask, char const* fmt_str, ...) {
     static char tmp[BTE_LOG_BUF_SIZE];
 
@@ -69,7 +68,6 @@ void LogMsg(UINT32 trace_set_mask, char const* fmt_str, ...) {
 
     (void)trace_set_mask;
 }
-    */
 
 void LogMsg_0(UINT32 trace_set_mask, char const* fmt_str) {
     if (bte_target_mode == BTE_MODE_SERIAL_APP)

@@ -4,6 +4,7 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioConst.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "revolution/mtx.h"
@@ -19,7 +20,7 @@ void Mario::tryBeeStick(const HitSensor* pSensor) {
     }
 }
 
-MarioStick::MarioStick(MarioActor* pActor) : MarioState(pActor, 0x16) {
+MarioStick::MarioStick(MarioActor* pActor) : MarioState(pActor, MarioStatus_Stick) {
     _4C = 0;
     _50 = 0;
     _54.zero();
@@ -55,7 +56,7 @@ bool MarioStick::setStickSensor(const HitSensor* pSensor) {
         return false;
     }
 
-    if (getPlayer()->isStatusActive(22)) {
+    if (getPlayer()->isStatusActive(MarioStatus_Stick)) {
         return false;
     }
 

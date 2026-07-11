@@ -13,7 +13,7 @@ namespace MR {
     s32 getSafetyFrameWidth();
     s32 getSafetyFrameLeft();
     s32 getSafetyFrameRight();
-    s32 getFrameBufferWidth();
+    s32 getFrameBufferWidth() NO_INLINE;
     s32 getFrameBufferHeight();
     void convertFrameBufferPosToScreenPos(TVec2f*, const TVec2f&);
     void convertScreenPosToFrameBufferPos(TVec2f*, const TVec2f&);

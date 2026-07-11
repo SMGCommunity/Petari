@@ -32,7 +32,7 @@ void PhantomShipBridge::init(const JMapInfoIter& rIter) {
     MR::addBodyMessageSensorMapObj(this);
     MR::initCollisionParts(this, objName, getSensor("body"), nullptr);
     MR::addMessageSensorMapObjMoveCollision(this, "move");
-    _8C = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("move"), MR::getJointMtx(this, "Move"), (MR::CollisionScaleType)2);
+    _8C = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("move"), MR::getJointMtx(this, "Move"), MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(_8C);
     initSound(4, false);
     MR::setClippingTypeSphere(this, 2000.0f);

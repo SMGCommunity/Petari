@@ -277,12 +277,12 @@ void HomingKiller::control() {
 }
 
 void HomingKiller::calcAndSetBaseMtx() {
-    // FIXME: Incorrect register scheduling in inline
+    // FIXME: Regswap in inline
     // https://decomp.me/scratch/5jw7T
 
     TPos3f mtx2;
     TPos3f mtx;
-    mtx.setRotateInlineZeroTrans(TVec3f(0.0f, 0.0f, 1.0f), toRadian(mRotation.z));
+    mtx.makeRotate(TVec3f(0.0f, 0.0f, 1.0f), MR::toRadian(mRotation.z));
 
     mtx2.concat(mBaseMtx, mtx);
     MR::setBaseTRMtx(this, mtx2);

@@ -37,11 +37,11 @@ bool GameSystemResetAndPowerProcess::isActive() const {
 }
 
 void GameSystemResetAndPowerProcess::setResetOperationApplicationReset() {
-    mResetOperation = 0;
+    mResetOperation = ResetOperation_ApplicationReset;
 }
 
 void GameSystemResetAndPowerProcess::setResetOperationReturnToMenu() {
-    mResetOperation = 2;
+    mResetOperation = ResetOperation_ReturnToMenu;
 }
 
 void GameSystemResetAndPowerProcess::requestReset(bool param1) {
@@ -67,7 +67,7 @@ void GameSystemResetAndPowerProcess::notifyCheckDiskResult(bool param1) {
         return;
     }
 
-    if (mResetOperation == 0) {
+    if (mResetOperation == ResetOperation_ApplicationReset) {
         setResetOperationReturnToMenu();
     }
 }
@@ -83,9 +83,9 @@ void GameSystemResetAndPowerProcess::exePolling() {
 void GameSystemResetAndPowerProcess::exeWaitResetPermitted() {
     if (GameSystemFunction::isPermitToResetAudioSystem() && GameSystemFunction::isPermitToResetSaveDataHandleSequence()) {
         if (_5E) {
-            mFadeinValueControl->setZero();
+            mFadeinoutControl->setZero();
         } else {
-            mFadeinValueControl->setDirToZero();
+            mFadeinoutControl->setDirToZero();
         }
 
         _5E = false;
@@ -106,10 +106,10 @@ void GameSystemResetAndPowerProcess::exePrepareReset() {
     }
 
     if (MR::isStep(this, 2)) {
-        GameSystemFunction::requestResetAudioSystem(mResetOperation != 0);
+        GameSystemFunction::requestResetAudioSystem(mResetOperation != ResetOperation_ApplicationReset);
     }
 
-    bool b = mFadeinValueControl->mFrame == 0;
+    bool b = mFadeinoutControl->mFrame == 0;
 
     if (b) {
         b = GameSystemFunction::isPrepareResetSaveDataHandleSequence();
@@ -139,7 +139,7 @@ void GameSystemResetAndPowerProcess::exeReset() {
     if (_5C) {
         GameSystemFunction::setPermissionToCheckWiiRemoteConnectAndScreenDimming(false);
 
-        if (mResetOperation != 0) {
+        if (mResetOperation != ResetOperation_ApplicationReset) {
             exitApplication();
         }
     }
@@ -170,10 +170,10 @@ void GameSystemResetAndPowerProcess::exeFadein() {
         setNerve(&NrvGameSystemResetAndPowerProcess::GameSystemResetAndPowerProcessWaitResetPermitted::sInstance);
     } else {
         if (MR::isFirstStep(this)) {
-            mFadeinValueControl->setDirToOneResetFrame();
+            mFadeinoutControl->setDirToOneResetFrame();
         }
 
-        if (mFadeinValueControl->mFrame == mFadeinValueControl->mMaxFrame) {
+        if (mFadeinoutControl->mFrame == mFadeinoutControl->mMaxFrame) {
             GameSystemFunction::restartControllerLeaveWatcher();
             GameSystemFunction::restartSceneController();
             setNerve(&NrvGameSystemResetAndPowerProcess::GameSystemResetAndPowerProcessPolling::sInstance);
@@ -189,16 +189,16 @@ void GameSystemResetAndPowerProcess::exitApplication() {
     VIWaitForRetrace();
 
     switch (mResetOperation) {
-    case 1:
+    case ResetOperation_Restart:
         OSRestart(0);
         break;
-    case 2:
+    case ResetOperation_ReturnToMenu:
         OSReturnToMenu();
         break;
-    case 4:
+    case ResetOperation_RebootSystem:
         OSRebootSystem();
         break;
-    case 3:
+    case ResetOperation_ShutdownSystem:
         OSShutdownSystem();
         break;
     }
@@ -214,13 +214,13 @@ bool GameSystemResetAndPowerProcess::tryAcceptPowerOff() {
     }
 
     mIsValidPowerOff = false;
-    mResetOperation = 3;
+    mResetOperation = ResetOperation_ShutdownSystem;
 
     return true;
 }
 
 bool GameSystemResetAndPowerProcess::isResetAcceptAudio() const {
-    if (mResetOperation != 0 && MR::isGreaterStep(this, 2) && GameSystemFunction::isDoneResetAudioSystem()) {
+    if (mResetOperation != ResetOperation_ApplicationReset && MR::isGreaterStep(this, 2) && GameSystemFunction::isDoneResetAudioSystem()) {
         return true;
     }
 
@@ -229,7 +229,7 @@ bool GameSystemResetAndPowerProcess::isResetAcceptAudio() const {
 
 void GameSystemResetAndPowerProcess::control() {
     mResetTriggerChecker->update(OSGetResetButtonState() != FALSE);
-    mFadeinValueControl->update();
+    mFadeinoutControl->update();
 }
 
 void GameSystemResetAndPowerProcess::handleOSPowerCallback() {
@@ -241,10 +241,10 @@ void GameSystemResetAndPowerProcess::handleCheckDiskAsync(s32 result, DVDCommand
 }
 
 GameSystemResetAndPowerProcess::GameSystemResetAndPowerProcess()
-    : LayoutActor("リセット・電源", false), mResetTriggerChecker(nullptr), mFadeinValueControl(nullptr), mResetOperation(1), _5C(true),
-      mIsValidPowerOff(false), _5E(false) {
+    : LayoutActor("リセット・電源", false), mResetTriggerChecker(), mFadeinoutControl(), mResetOperation(ResetOperation_Restart), _5C(true),
+      mIsValidPowerOff(), _5E() {
     mResetTriggerChecker = new TriggerChecker();
 
-    mFadeinValueControl = new ValueControl(::sFadeinoutFrame);
-    mFadeinValueControl->setOne();
+    mFadeinoutControl = new ValueControl(::sFadeinoutFrame);
+    mFadeinoutControl->setOne();
 }

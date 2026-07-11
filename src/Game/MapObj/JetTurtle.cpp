@@ -182,7 +182,7 @@ void JetTurtle::exeThrowing() {
 
         if (MR::isStep(this, ::sResetStep[_92])) {
             TVec3f v16 = _C0 - mPosition;
-            if (PSVECMag(&v16) > 5000.0f) {
+            if (v16.length() > 5000.0f) {
                 reset(1);
             } else {
                 reset(0);
@@ -219,7 +219,7 @@ void JetTurtle::exeThrowing() {
         }
 
         TVec3f v14 = _C0 - mPosition;
-        if (PSVECMag(&v14) > 10000.0f) {
+        if (v14.length() > 10000.0f) {
             reset(1);
         } else {
             if (MR::isBindedWall(this) || MR::isBindedRoof(this)) {
@@ -242,7 +242,7 @@ void JetTurtle::exeThrowing() {
                 }
 
                 if (MR::isBindedGround(this)) {
-                    if (MR::sendMsgToGroundSensor(6, getSensor("body"))) {
+                    if (MR::sendMsgToGroundSensor(ACTMES_JET_TURTLE_ATTACK, getSensor("body"))) {
                         MR::shakeCameraWeak();
                         reset(0);
                         return;
@@ -287,9 +287,8 @@ void JetTurtle::exeThrowing() {
             _CC = grav;
         }
 
-        TVec3f v18;
-        PSVECCrossProduct(&mVelocity, &v20, &v18);
-        PSVECCrossProduct(&v18, &mVelocity, &v20);
+        TVec3f v18 = mVelocity.cross(v20);
+        v20.cross(v18, mVelocity);
 
         if (!MR::isNearZero(mVelocity)) {
             TPos3f frontUp;
@@ -381,7 +380,8 @@ void JetTurtle::exeTakenStart() {
 
 // missing branch
 void JetTurtle::exeRestart() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+    }
 
     if (MR::isStep(this, 45)) {
         mPosition = _A8;
@@ -544,7 +544,7 @@ bool JetTurtle::receiveMsgThrow(HitSensor* a1, HitSensor* a2) {
     }
 
     if (!_92) {
-        _8C = PSVECMag(MR::getPlayerVelocity());
+        _8C = MR::getPlayerVelocity()->length();
     } else {
         _8C = 0.0f;
     }

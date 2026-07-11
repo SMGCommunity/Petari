@@ -2,132 +2,154 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
 
-MarioState::MarioState(MarioActor* actor, u32 statusId) : MarioModule(actor) {
-    _8 = nullptr;
-    mStatusId = statusId;
-    _10 = 0;
+MarioState::MarioState(MarioActor* pActor, u32 statusId) : MarioModule(pActor), _8(), mStatusId(statusId), _10() {
 }
 
 bool MarioState::proc(u32 msg) {
     switch (msg) {
-    case 0:
-        start();
-        break;
-    case 1:
-        if (_10 != 0) {
+    case MarioStateMsg_Start:
+        return start();
+    case MarioStateMsg_Close:
+        if (_10) {
             break;
         }
-        _10 = 1;
-        notice();
-        _10 = 0;
+
+        _10 = true;
+        close();
+        _10 = false;
         break;
-    case 2:
-        return close();
-    case 3:
+    case MarioStateMsg_Update:
         return update();
-    case 4:
+    case MarioStateMsg_Notice:
+        return notice();
+    case MarioStateMsg_Keep:
         return keep();
     }
+
     return true;
 }
 
 void Mario::sendStateMsg(u32 msg) {
-    MarioState* pState = _97C;
-    while (pState != nullptr) {
-        MarioState* pNext = pState->_8;
-        if (isStatusActiveID(pState->mStatusId) == 0) {
+    MarioState* pNext;
+
+    for (MarioState* pState = _97C; pState != nullptr;) {
+        pNext = pState->_8;
+
+        if (isStatusActive(pState->mStatusId) == MarioStatus_None) {
             pState = pNext;
             continue;
         }
-        if (pState->proc(msg) == 0) {
-            if (isStatusActiveID(pState->mStatusId) != 0) {
+
+        if (!pState->proc(msg)) {
+            if (isStatusActive(pState->mStatusId) != MarioStatus_None) {
                 closeStatus(pState);
             }
-        } else {
-            if (msg == 2) {
-                msg = 4;
-            }
+        } else if (msg == MarioStateMsg_Update) {
+            msg = MarioStateMsg_Keep;
         }
+
         pState = pNext;
     }
 }
 
 bool Mario::updatePosture(MtxPtr mtx) {
-    if (_97C != 0) {
+    if (_97C != nullptr) {
         return _97C->postureCtrl(mtx);
     }
+
     postureCtrl(mtx);
+
     return false;
 }
 
 bool MarioState::postureCtrl(MtxPtr mtx) {
     getPlayer()->postureCtrl(mtx);
+
     return false;
 }
 
 void Mario::changeStatus(MarioState* pState) {
-    if (isStatusActiveID(pState->mStatusId)) {
+    if (isStatusActive(pState->mStatusId)) {
         return;
     }
+
     _980 = pState;
-    sendStateMsg(3);
+
+    sendStateMsg(MarioStateMsg_Notice);
+
     if (_97C) {
         pState->_8 = _97C;
     }
+
     _97C = pState;
-    if (!pState->proc(0)) {
+
+    if (!pState->proc(MarioStateMsg_Start)) {
         closeStatus(pState);
+
         _97C = pState->_8;
     }
 }
 
 void Mario::closeStatus(MarioState* pState) {
     if (pState == nullptr) {
-        while (_97C) {
+        while (_97C != nullptr) {
             closeStatus(_97C);
         }
+
         return;
     }
 
     MarioState* pCurr = _97C;
+
     if (pCurr == pState) {
         _97C = pState->_8;
     } else {
-        while (pCurr) {
+        while (pCurr != nullptr) {
             MarioState* pNext = pCurr->_8;
+
             if (pNext == pState) {
                 break;
             }
+
             pCurr = pNext;
         }
+
         pCurr->_8 = pState->_8;
     }
+
     pState->_8 = nullptr;
-    pState->proc(1);
+    pState->proc(MarioStateMsg_Close);
 }
 
 u32 Mario::getCurrentStatus() const {
     MarioState* pState = _97C;
-    if (pState == 0) {
-        return 0;
+
+    if (pState == nullptr) {
+        return MarioStatus_None;
     }
+
     return pState->mStatusId;
 }
 
 bool Mario::isStatusActive(u32 statusId) const {
     MarioState* pState = _97C;
-    if (!pState) {
+
+    if (pState == nullptr) {
         return false;
     }
-    if (pState->mStatusId == statusId) {
+
+    if (statusId == pState->mStatusId) {
         return true;
     }
-    while (pState) {
-        if (pState->mStatusId == statusId) {
+
+    while (pState != nullptr) {
+        if (statusId == pState->mStatusId) {
             return true;
         }
+
         pState = pState->_8;
     }
+
     return false;
 }
 

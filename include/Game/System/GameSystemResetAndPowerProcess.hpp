@@ -7,6 +7,14 @@ class ValueControl;
 
 class GameSystemResetAndPowerProcess : public LayoutActor {
 public:
+    enum ResetOperation {
+        ResetOperation_ApplicationReset,
+        ResetOperation_Restart,
+        ResetOperation_ReturnToMenu,
+        ResetOperation_ShutdownSystem,
+        ResetOperation_RebootSystem,
+    };
+
     /// @brief Creates a new `GameSystemResetAndPowerProcess`.
     GameSystemResetAndPowerProcess();
 
@@ -34,7 +42,7 @@ public:
     static void handleCheckDiskAsync(s32, DVDCommandBlock*);
 
     /* 0x20 */ TriggerChecker* mResetTriggerChecker;
-    /* 0x24 */ ValueControl* mFadeinValueControl;
+    /* 0x24 */ ValueControl* mFadeinoutControl;
     /* 0x28 */ DVDCommandBlock mCommandBlock;
     /* 0x58 */ s32 mResetOperation;
     /* 0x5C */ bool _5C;

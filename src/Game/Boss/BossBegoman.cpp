@@ -580,11 +580,11 @@ void BossBegoman::exeElectricReturn() {
         if (ElectricRailFunction::isTouchRail(getSensor("check"), &vec1, &vec2)) {
             vec1.sub(mPosition);
 
-            TVec3f vec3(vec1);
-            PSVECCrossProduct(&vec2, &vec3, &vec3);
+            TVec3f vec3 = vec1;
+            vec3.cross(vec2, vec3);
 
-            TVec3f vec4(vec3);
-            PSVECCrossProduct(&vec2, &vec4, &vec4);
+            TVec3f vec4 = vec3;
+            vec4.cross(vec2, vec4);
 
             if (0.0f < vec1.dot(vec4)) {
                 vec4 = -vec4;
@@ -876,16 +876,14 @@ bool BossBegoman::receiveMsgTrample(HitSensor* pSender, HitSensor* pReceiver) {
         MR::vecKillElement(vec2, mGravity, &vec2);
 
         if (!MR::isNearZero(vec2)) {
-            TVec3f vec3(vec2);
-            PSVECCrossProduct(&mGravity, &vec3, &vec3);
-
+            TVec3f vec3 = vec2;
+            vec3.cross(mGravity, vec3);
             vec3.setLength(25.0f);
             mVelocity = vec3;
         } else {
             TVec3f vec4;
             MR::getPlayerFrontVec(&vec4);
-            PSVECCrossProduct(&mGravity, &vec4, &vec4);
-
+            vec4.cross(mGravity, vec4);
             vec4.setLength(25.0f);
             mVelocity = vec4;
         }

@@ -286,10 +286,9 @@ void AreaFormCylinder::calcDir(const TVec3f& a1) {
     PSMTXMultVec(mtx_x, (const Vec*)&mRotation, (Vec*)&mRotation);
     MtxPtr mtx_y = MR::tmpMtxRotYDeg(a1.y);
     PSMTXMultVec(mtx_y, (const Vec*)&mRotation, (Vec*)&mRotation);
-    MtxPtr mtx_z = MR::tmpMtxRotYDeg(a1.z);
+    MtxPtr mtx_z = MR::tmpMtxRotZDeg(a1.z);
     PSMTXMultVec(mtx_z, (const Vec*)&mRotation, (Vec*)&mRotation);
-    PSVECMag((const Vec*)&mRotation);
-    PSVECNormalize((const Vec*)&mRotation, (Vec*)&mRotation);
+    mRotation.normalize();
 }
 
 void AreaFormSphere::init(const JMapInfoIter& rIter) {

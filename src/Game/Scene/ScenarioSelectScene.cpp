@@ -15,6 +15,7 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
+#include "revolution/gx/GXEnum.h"
 #include <JSystem/J3DGraphBase/J3DDrawBuffer.hpp>
 #include <JSystem/J3DGraphBase/J3DSys.hpp>
 
@@ -76,18 +77,18 @@ void ScenarioSelectScene::startBackground() {
 }
 
 void ScenarioSelectScene::update() {
-    if (_14) {
-        updateNerve();
-        bool res = false;
-        if (isExecForeground() && _28 == 0) {
-            res = true;
-        }
+    if (!_14) {
+        return;
+    }
 
-        if (res) {
-            mScenarioLayout->movement();
-            mCinemaFrame->movement();
-            MR::Effect::checkEffectSceneUpdate(mEffectSystem);
-        }
+    updateNerve();
+
+    bool res = isExecForeground() && _28 == 0;
+
+    if (res) {
+        mScenarioLayout->movement();
+        mCinemaFrame->movement();
+        MR::Effect::checkEffectSceneUpdate(mEffectSystem);
     }
 }
 
@@ -137,15 +138,18 @@ void ScenarioSelectScene::draw() const {
 }
 
 bool ScenarioSelectScene::isActive() const {
-    bool ret = _14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance);
-
-    return ret;
+    return _14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance);
 }
 
 bool ScenarioSelectScene::isExecForeground() const {
+    return _14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance) && _15 == 0;
+}
+
+bool ScenarioSelectScene::isScenarioSelecting() const {
     bool ret = false;
-    if (_14 && !isNerve(&NrvScenarioSelectScene::ScenarioSelectSceneNrvDeactive::sInstance)) {
-        if (_15 == 0) {
+
+    if (isExecForeground()) {
+        if (!isNerve(GET_NERVE(ScenarioSelectScene, ScenarioSelectSceneNrvWaitDisappearLayout))) {
             ret = true;
         }
     }
@@ -153,17 +157,26 @@ bool ScenarioSelectScene::isExecForeground() const {
     return ret;
 }
 
-// ...
+void ScenarioSelectScene::validateScenarioSelect() {
+    if (!_28) {
+        if (_15) {
+            setNerve(GET_NERVE(ScenarioSelectScene, ScenarioSelectSceneNrvWaitResumeInitializeThread));
+            return;
+        }
+        setNerve(GET_NERVE(ScenarioSelectScene, ScenarioSelectSceneNrvWaitStartScenarioSelect));
+    } else {
+        setNerve(GET_NERVE(ScenarioSelectScene, ScenarioSelectSceneNrvWaitResumeInitializeThreadIfRequestedReset));
+    }
+}
 
 bool ScenarioSelectScene::isResetEnd() const {
     return _28 == 0;
 }
 
-/*
 void ScenarioSelectScene::setupCameraMtx() const {
-    PSMTXCopy(&j3dSys.mViewMtx, mCameraContext->getViewMtx());
+    PSMTXCopy(*mCameraContext->getViewMtx(), j3dSys.mViewMtx);
+    GXSetProjection(mCameraContext->mProjection, GX_PERSPECTIVE);
 }
-*/
 
 bool ScenarioSelectScene::trySetCurrentScenarioNo() const {
     if (mScenarioLayout->_28) {

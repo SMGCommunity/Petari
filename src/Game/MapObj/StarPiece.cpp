@@ -171,7 +171,8 @@ void StarPiece::init(const JMapInfoIter& rIter) {
 }
 
 void StarPiece::initAfterPlacement() {
-    MR::isDead(this);
+    if (MR::isDead(this)) {
+    }
 }
 
 void StarPiece::appear() {
@@ -673,7 +674,7 @@ void StarPiece::exeThrow() {
     playerCenterPos -= camPos;
 
     if (MR::isNoBind(this)) {
-        if ((1500.0f < PSVECDistance(&MR::getCamPos(), &mPosition)) || (camZDir.dot(playerCenterPos) < camZDir.dot(vec10)) ||
+        if (1500.0f < MR::getCamPos().distance(mPosition) || camZDir.dot(playerCenterPos) < camZDir.dot(vec10) ||
             MR::isGreaterStep(this, 28)) {
             MR::onBind(this);
         }
@@ -1231,9 +1232,15 @@ void StarPiece::calcAndSetBaseMtx() {
         pos.set(getBaseMtx());
         pos.setTrans(mPosition);
     } else {
-        MR::isNearZero(mGravity);
-        MR::isNearZero(_8C);
-        MR::isSameDirection(mGravity, _8C, 0.01f);
+        if (MR::isNearZero(mGravity)) {
+        }
+
+        if (MR::isNearZero(_8C)) {
+        }
+
+        if (MR::isSameDirection(mGravity, _8C, 0.01f)) {
+        }
+
         MR::calcMtxFromGravityAndZAxis(&pos, this, mGravity, _8C);
     }
 

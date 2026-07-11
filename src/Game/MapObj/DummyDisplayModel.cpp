@@ -6,6 +6,7 @@
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
@@ -145,20 +146,17 @@ void DummyDisplayModel::control() {
 
 void DummyDisplayModel::calcAndSetBaseMtx() {
     PartsModel::calcAndSetBaseMtx();
-    MtxPtr baseMtx = getBaseMtx();
-    TPos3f& m = *(TPos3f*)baseMtx;
+    TPos3f* m = (TPos3f*)getBaseMtx();
 
-    TVec3f v19;
-    JMathInlineVEC::PSVECNegate(mModelInfo->_4, &v19);
-    PSMTXMultVec(baseMtx, &v19, &mPosition);
-    m.mMtx[0][3] = mPosition.x;
-    m.mMtx[1][3] = mPosition.y;
-    m.mMtx[2][3] = mPosition.z;
+    TVec3f v19 = mModelInfo->_4;
+    // JMathInlineVEC::PSVECNegate(mModelInfo->_4, &v19);
+    PSMTXMultVec((MtxPtr)m, v19.negateInline(), &mPosition);
+    m->setTransInline(mPosition);
 
     switch (mItemType) {
     case ITEM_TYPE_COIN:
         if (!_AC) {
-            PSMTXConcat(m, MR::getCoinRotateYMatrix(), m);
+            PSMTXConcat((MtxPtr)m, MR::getCoinRotateYMatrix(), (MtxPtr)m);
         }
 
         break;
@@ -166,12 +164,8 @@ void DummyDisplayModel::calcAndSetBaseMtx() {
     case ITEM_TYPE_GRAND_STAR:
         if (!_AC) {
             TPos3f rot;
-            TVec3f v;
-            v.x = 0.0f;
-            v.y = 1.0f;
-            v.z = 0.0f;
-            rot.setRotateInline(v, PI_180 * mRotation.y);
-            PSMTXConcat(m, rot, m);
+            rot.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(mRotation.y));
+            PSMTXConcat((MtxPtr)m, rot, (MtxPtr)m);
         }
 
         break;

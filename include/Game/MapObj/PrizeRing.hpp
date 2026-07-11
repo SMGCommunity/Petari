@@ -13,6 +13,8 @@ public:
     virtual void kill();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
+    inline s32 getNumber() const;
+
     void setLife(int);
     void setNumber(int);
     void setNervePass();
@@ -28,5 +30,5 @@ public:
     void playSound() const;
     bool isOnTriggerTimeoutFlash() const;
 
-    int _90;
+    /* 0x90 */ int mLifeTime;
 };

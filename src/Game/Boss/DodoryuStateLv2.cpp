@@ -933,8 +933,7 @@ void DodoryuStateLv2::addVelocity(bool snapToGround) {
 
 void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, const TVec3f& rTo, f32 rate) {
     f32 maxAngle = rate * PI / 180.0f;
-    TVec3f cross;
-    PSVECCrossProduct(&rFrom, &rTo, &cross);
+    TVec3f cross = rFrom.cross(rTo);
     f32 crossMag = cross.length();
     f32 dotResult = rFrom.dot(rTo);
     f32 angle = JMath::sAtanTable.atan2_(crossMag, dotResult);
@@ -1011,4 +1010,12 @@ void DodoryuStateLv2::startLeadHillBck(const DodoryuAnimSet& rAnim) {
     } else {
         mHost->startLeadHillBck(rAnim.mLeadHillBckName);
     }
+}
+
+void DUMMY() {
+    // NOTE: to emit TPos3f::makeRotate, TVec3f::setLength, TRot3f::mult33
+    TVec3f a;
+    a.setLength(2.0f);
+    TPos3f m;
+    m.makeRotate(a, 3.0f);
 }

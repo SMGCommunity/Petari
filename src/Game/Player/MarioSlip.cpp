@@ -290,7 +290,9 @@ void Mario::slopeMove() {
                 return;
             }
 
-            MR::isNearZero(stack_134);
+            if (MR::isNearZero(stack_134)) {
+            }
+
             MR::normalize(&stack_134);
 
             const f32 speed = _8F8.length();

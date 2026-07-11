@@ -315,13 +315,9 @@ namespace MR {
     }
 
     f32 calcDistanceHorizonToCurrentPos(const LiveActor* pActor) {
-        // FIXME : reg scheduling and stack order
-        // https://decomp.me/scratch/KkQjM
-
-        TVec3f diff(getRailPos(pActor) - pActor->mPosition);
         TVec3f horizontal;
-        horizontal.rejection(diff, pActor->mGravity);
-        return PSVECMag(horizontal);
+        horizontal.rejection(getRailPos(pActor) - pActor->mPosition, pActor->mGravity);
+        return horizontal.length();
     }
 
     void calcRailPosAtCoord(TVec3f* pPos, const LiveActor* pActor, f32 coord) {

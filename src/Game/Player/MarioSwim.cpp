@@ -8,6 +8,7 @@
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioConst.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
@@ -83,10 +84,10 @@ f32 getSwimValue(f32 stick, u32 index, const MarioConstTable* table) {
 }
 
 bool Mario::isSwimming() const {
-    if (isStatusActive(6)) {
+    if (isStatusActive(MarioStatus_Swim)) {
         return true;
     }
-    return isStatusActive(24);
+    return isStatusActive(MarioStatus_Foo);
 }
 
 bool Mario::forceStartSwimAndShoot(const TVec3f& rKnockbackVec) {
@@ -100,7 +101,7 @@ bool Mario::forceStartSwimAndShoot(const TVec3f& rKnockbackVec) {
 }
 
 bool Mario::forceExitSwim() {
-    if (!isStatusActive(6)) {
+    if (!isStatusActive(MarioStatus_Swim)) {
         return false;
     }
     mSwim->mNextAction = MarioSwim::EXIT_ACTION_SURFACE;
@@ -128,10 +129,10 @@ void MarioSwim::setDamage(const TVec3f& rKnockbackVec, u16 damage) {
 }
 
 bool Mario::checkStartSwim() {
-    if (isStatusActive(6)) {
+    if (isStatusActive(MarioStatus_Swim)) {
         return false;
     }
-    if (isStatusActive(29)) {
+    if (isStatusActive(MarioStatus_Climb)) {
         return false;
     }
     if (_10._7 && getMovementStates()._1) {
@@ -144,10 +145,10 @@ bool Mario::checkStartSwim() {
             if (getPlayer()->getMovementStates().jumping) {
                 stopJump();
             }
-            if (getPlayer()->isStatusActive(1)) {
+            if (getPlayer()->isStatusActive(MarioStatus_Wall)) {
                 getPlayer()->closeStatus(0);
             }
-            if (getPlayer()->isStatusActive(4)) {
+            if (getPlayer()->isStatusActive(MarioStatus_Blown)) {
                 getPlayer()->closeStatus(0);
             }
             return false;
@@ -160,7 +161,7 @@ bool Mario::checkStartSwim() {
 }
 
 void Mario::startSwim() {
-    if (!isStatusActive(6)) {
+    if (!isStatusActive(MarioStatus_Swim)) {
         if (getPlayer()->isDamaging()) {
             mSwim->_9D = 4;
             playSound("水落下突入", -1);
@@ -190,7 +191,7 @@ void Mario::startSwim() {
     }
 }
 
-MarioSwim::MarioSwim(MarioActor* pActor) : MarioState(pActor, 6), mWaterInfo() {
+MarioSwim::MarioSwim(MarioActor* pActor) : MarioState(pActor, MarioStatus_Swim), mWaterInfo() {
     _18 = 0;
     mIsOnSurface = false;
     mEnteredWater = false;
@@ -478,9 +479,9 @@ bool MarioSwim::start() {
     }
     if (mActor->_468) {
         if (mJetTimer == 0) {
-            if (mActor->getCarrySensor()->isType(15) || mActor->getCarrySensor()->isType(16)) {
+            if (mActor->getCarrySensor()->isType(ATYPE_JET_TURTLE) || mActor->getCarrySensor()->isType(ATYPE_JET_TURTLE_SLOW)) {
                 u32 r1b = 0;
-                if (mActor->getCarrySensor()->isType(16)) {
+                if (mActor->getCarrySensor()->isType(ATYPE_JET_TURTLE_SLOW)) {
                     r1b = 1;
                 }
                 startJet(r1b);
@@ -703,10 +704,8 @@ bool MarioSwim::update() {
         checkWaterBottom();
         if (getStickY() >= 0.0f && (_1F || (mDistToFloor < 60.0f && mForwardSpeed > 1.0f))) {
             const TVec3f& rShadowNorm = getPlayer()->getShadowNorm();
-            TVec3f stack_17C;
-            PSVECCrossProduct(&mFrontVec, &rShadowNorm, &stack_17C);
-            TVec3f stack_170;
-            PSVECCrossProduct(&rShadowNorm, &stack_17C, &stack_170);
+            TVec3f stack_17C = mFrontVec.cross(rShadowNorm);
+            TVec3f stack_170 = rShadowNorm.cross(stack_17C);
 
             if (-mWaterDepth + mDistToFloor > 1000.0f) {
                 mEnteredWater = true;
@@ -967,7 +966,7 @@ bool MarioSwim::update() {
     TVec3f stack_14C;
     TVec3f stack_140;
     if (!MR::normalizeOrZero(&mFrontVec)) {
-        PSVECCrossProduct(&mUpVec, &mFrontVec, &stack_140);
+        stack_140.cross(mUpVec, mFrontVec);
         MR::normalize(&stack_140);
         getPlayer()->setSideVec(stack_140);
         MR::rotAxisVecRad(mFrontVec, stack_140, &stack_14C, mVerticalAngle);
@@ -988,7 +987,7 @@ bool MarioSwim::update() {
     TVec3f stack_110;
     stack_110 = getPlayer()->_1FC;
     if (mJumpDiveTimer != 0 || mSinkTimer != 0 || isAnimationRun("水泳ジャンプダイブ回転") || isAnimationRun("水泳潜り")) {
-        PSVECCrossProduct(&stack_14C, &stack_140, &stack_110);
+        stack_110.cross(stack_14C, stack_140);
     }
     if (mJetTimer == 0) {
         decideVelocity();
@@ -1594,11 +1593,11 @@ void MarioSwim::decideEffect(bool isReset) {
 }
 
 bool MarioSwim::notice() {
-    if (MarioState::getNoticedStatus() == 18) {
+    if (MarioState::getNoticedStatus() == MarioStatus_FpView) {
         return true;
     }
 
-    return getNoticedStatus() == 11;
+    return getNoticedStatus() == MarioStatus_Paralyze;
 }
 
 bool MarioSwim::close() {
@@ -2419,8 +2418,7 @@ void MarioSwim::updateTilt() {
 
             targetTiltX = absAngle * scale;
 
-            TVec3f cross;
-            PSVECCrossProduct(&mFrontVec, &padDir, &cross);
+            TVec3f cross = mFrontVec.cross(padDir);
             if (cross.dot(mUpVec) > 0.0f) {
                 targetTiltX = -targetTiltX;
             }
@@ -2673,12 +2671,10 @@ void MarioSwim::hitWall(const TVec3f& rNormal, HitSensor* pSensor) {
 
                             if (headAngle <= DEG_TO_RAD(150)) {
                                 if (headAngle >= 2 * PI) {
-                                    TVec3f cross1;
-                                    PSVECCrossProduct(&rNormal, &getPlayer()->mHeadVec, &cross1);
+                                    TVec3f cross1 = rNormal.cross(getPlayer()->mHeadVec);
                                     MR::normalizeOrZero(&cross1);
 
-                                    TVec3f cross2;
-                                    PSVECCrossProduct(&getPlayer()->mHeadVec, &cross1, &cross2);
+                                    TVec3f cross2 = getPlayer()->mHeadVec.cross(cross1);
                                     MR::normalizeOrZero(&cross2);
 
                                     getPlayer()->forceSetHeadVecKeepSide(cross2);
@@ -2844,7 +2840,7 @@ void MarioSwim::decOxygen(u16 amount) {
         return;
     }
 
-    if (isStatusActiveID(0x22)) {
+    if (isStatusActiveID(MarioStatus_Talk)) {
         return;
     }
 

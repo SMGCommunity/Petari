@@ -198,6 +198,10 @@ namespace nw4r {
                 CalcStringRect(&textRect, str, length);
                 textWidth = textRect.left + textRect.right;
                 textHeight = textRect.top + textRect.bottom;
+
+                if (textWidth > mWidthLimit) {
+                    textWidth = mWidthLimit;
+                }
             }
 
             if (IsDrawFlagSet(HORIZONTAL_ORIGIN_MASK, HORIZONTAL_ORIGIN_CENTER)) {

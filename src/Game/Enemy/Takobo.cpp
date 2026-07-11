@@ -138,7 +138,7 @@ void Takobo::initSensor() {
     offs.x = 0.0f;
     offs.y = 70.0f * yScale;
     offs.z = 0.0f;
-    MR::addHitSensor(this, "body", 26, 32, offs.y, offs);
+    MR::addHitSensor(this, "body", ATYPE_TAKOBO, 32, offs.y, offs);
     MR::addHitSensorAtJointEnemyAttack(this, "attack", "Hear", 0x10, (80.0f * yScale), TVec3f(10.0f, 2.0f, 0.0f));
 }
 
@@ -237,7 +237,7 @@ void Takobo::exeMove() {
         setNerve(&NrvTakobo::HostTypeNrvMove::sInstance);
     } else {
         TVec3f v20(*MR::getPlayerPos() - mPosition);
-        f32 mag = PSVECMag(&v20);
+        f32 mag = v20.length();
         MR::vecKillElement(v20, mGravity, &v20);
         MR::normalizeOrZero(&v20);
 
@@ -484,7 +484,7 @@ bool Takobo::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
 }
 
 bool Takobo::receiveMsgEnemyAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
-    if (!a3->isType(26)) {
+    if (!a3->isType(ATYPE_TAKOBO)) {
         return false;
     }
 

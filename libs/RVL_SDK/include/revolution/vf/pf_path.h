@@ -35,7 +35,7 @@ static u32 VFiPFPATH_OEM_ConvertFWchar(const s8* src, u16* dst);
 static u16 VFiPFPATH_GetNextCharOfShortName(PF_FILE_NAME_ITER* p_name);
 static u16 VFiPFPATH_GetNextCharOfLongName(PF_FILE_NAME_ITER* p_name);
 static u16 VFiPFPATH_GetNextCharOfFileName(PF_FILE_NAME_ITER* p_name);
-static u16 VFiPFPATH_GetNextCharOfPattern(PF_STR* p_pattern, u16 name_kind);
-static u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, PF_FILE_NAME_ITER* p_name, u16 c_pat, PF_STR* p_pattern);
+static u16 VFiPFPATH_GetNextCharOfPattern(struct PF_STR* p_pattern, u32 is_long_name);
+static u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p_name, u16 c_pat, struct PF_STR* p_pattern, u32 is_long_name);
 
 #endif  // PF_PATH_H

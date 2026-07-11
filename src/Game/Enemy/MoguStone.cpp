@@ -222,8 +222,7 @@ void ThrowingIce::emitIce(const TVec3f& arg1, const TVec3f& arg2, f32 arg3, cons
 
 void ThrowingIce::doBehavior() {
     if (MR::isFirstStep(this)) {
-        TVec3f v1;
-        PSVECCrossProduct(_B0, mGravity, &v1);
+        TVec3f v1 = _B0.cross(mGravity);
         _A0.setRotate(v1, 0.25f);
     }
 

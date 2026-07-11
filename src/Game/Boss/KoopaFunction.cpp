@@ -353,7 +353,7 @@ namespace {
         MR::startAction(pKoopa, pName);
 
         if (isMario) {
-            MR::startBckPlayer(pName, static_cast< char* >(nullptr));
+            MR::startBckPlayer(pName, static_cast< const char* >(nullptr));
         }
 
         MR::startAnimCameraTargetSelf(pKoopa, pKoopa->mParts->mActorCameraInfo, pName, 0, 1.0f);

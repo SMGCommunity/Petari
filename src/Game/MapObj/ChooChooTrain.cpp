@@ -30,7 +30,8 @@ void ChooChooTrain::endClipped() {
 
 void ChooChooTrain::init(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
-        MR::isConnectedWithRail(rIter);
+        if (MR::isConnectedWithRail(rIter)) {
+        }
     }
 
     MR::initDefaultPos(this, rIter);

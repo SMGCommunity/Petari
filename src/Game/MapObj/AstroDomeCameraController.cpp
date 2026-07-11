@@ -184,7 +184,7 @@ void AstroDomeCameraController::exeGalaxyConfirmCancel() {
     MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, frame);
 }
 
-AstroDomeCameraController::~AstroDomeCameraController(){};
+AstroDomeCameraController::~AstroDomeCameraController() {};
 
 AstroDomeCameraController::Position::Position() {
     _0.zero();

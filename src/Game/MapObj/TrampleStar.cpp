@@ -526,7 +526,7 @@ bool TrampleStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         MR::getPlayerSideVec(&side);
         TVec3f capturePos = mVtxs[mCaptureVtx];
         TVec3f down = -capturePos;
-        down.normalizePS();
+        down.normalize();
         TPos3f mtx;
         capturePos += mPosition + down * mDeformCoeff[mCaptureVtx];
         MR::makeMtxUpSidePos(&mtx, -down, side, capturePos);

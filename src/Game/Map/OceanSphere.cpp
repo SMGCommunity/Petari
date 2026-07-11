@@ -73,43 +73,10 @@ extern const u8 sOceanSphereFogBackG;
 extern const u8 sOceanSphereFogBackB;
 extern const u8 sOceanSphereFogBackA;
 
-inline f32 yy(f32 y) {
-    return y * y;
-}
-
-template <>
-void TRot3f::setRotate(const TVec3f& rAxis, f32 angle) {
-    TVec3f v;
-    v.set< f32 >(rAxis);
-    v.length();
-    PSVECNormalize(&v, &v);
-    f32 angley = sin(angle), anglex = cos(angle);
-    f32 x, y, z;
-    y = v.y;
-    x = v.x;
-    z = v.z;
-    mMtx[0][0] = anglex + (1.0f - anglex) * yy(x);
-    mMtx[0][1] = (1.0f - anglex) * x * y - angley * z;
-    mMtx[0][2] = (1.0f - anglex) * x * z + angley * y;
-    mMtx[1][0] = (1.0f - anglex) * x * y + angley * z;
-    mMtx[1][1] = anglex + (1.0f - anglex) * yy(y);
-    mMtx[1][2] = (1.0f - anglex) * y * z - angley * x;
-    mMtx[2][0] = (1.0f - anglex) * x * z - angley * y;
-    mMtx[2][1] = (1.0f - anglex) * y * z + angley * x;
-    mMtx[2][2] = anglex + (1.0f - anglex) * yy(z);
-}
-
 namespace {
     Vec sAxisX = {1.0f, 0.0f, 0.0f};
     Vec sAxisY = {0.0f, 1.0f, 0.0f};
     Vec sAxisZ = {0.0f, 0.0f, 1.0f};
-
-    const char sWaterWaveArc[] = "WaterWave.arc";
-    const char sOceanSphereBti[] = "OceanSphere.bti";
-    const char sOceanSphereEnvRefBti[] = "OceanSphereEnvRef.bti";
-    const char sSkullSharkGalaxy[] = "SkullSharkGalaxy";
-    const char sTearDropGalaxy[] = "TearDropGalaxy";
-    const char sDemoPartName[] = "\x97\x4E\x82\xAB\x90\x85\x8F\xE3\x8F\xB8";
 
     extern TVec3f sPosAxisX;
     extern TVec3f sPosAxisY;
@@ -117,32 +84,9 @@ namespace {
 };  // namespace
 
 namespace NrvOceanSphere {
-    NEW_NERVE(OceanSphereNrvWait, OceanSphere, Wait);
     NEW_NERVE(OceanSphereNrvRiseUp, OceanSphere, RiseUp);
+    NEW_NERVE(OceanSphereNrvWait, OceanSphere, Wait);
 };  // namespace NrvOceanSphere
-
-class OceanSpherePlane {
-public:
-    OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1, const TVec2f& rTex2,
-                     const TVec2f& rTex3);
-
-    void update(f32, f32, f32);
-    OceanSpherePoint* getPoint(int, int) const;
-
-    s32 mGridPointCount;
-    s32 mAxisPointCount;
-    OceanSpherePoint** mPoints;
-};
-
-class OceanSpherePlaneEdge {
-public:
-    OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1, const TVec2f& rTex2);
-
-    void update(f32, f32, f32);
-
-    s32 mPointCount;
-    OceanSpherePoint** mPoints;
-};
 
 namespace {
     u32 calcDisplayListSize(u32 count, u32 stride) {
@@ -236,10 +180,6 @@ void OceanSpherePlane::update(f32 radius, f32 wave1Time, f32 wave2Time) {
     }
 }
 
-OceanSpherePoint* OceanSpherePlane::getPoint(int row, int col) const {
-    return mPoints[(row * mAxisPointCount) + col];
-}
-
 OceanSpherePlaneEdge::OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1,
                                            const TVec2f& rTex2) {
     s32 pointCountMinus2 = pointCount - 2;
@@ -247,8 +187,7 @@ OceanSpherePlaneEdge::OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter
     mPointCount = pointCountMinus2;
     mPoints = nullptr;
     mPoints = new OceanSpherePoint*[mPointCount];
-    TVec3f axis;
-    PSVECCrossProduct(&rAxis1, &rAxis2, &axis);
+    TVec3f axis = rAxis1.cross(rAxis2);
     MR::normalize(&axis);
     TRot3f rot;
     rot.identity();
@@ -319,19 +258,19 @@ void OceanSphere::init(const JMapInfoIter& rIter) {
     initDisplayList();
     WaterAreaFunction::entryOceanSphere(this);
 
-    mWaterTex = new JUTTexture(MR::loadTexFromArc(::sWaterWaveArc, ::sOceanSphereBti), 0);
-    mWaterEnvTex = new JUTTexture(MR::loadTexFromArc(::sWaterWaveArc, ::sOceanSphereEnvRefBti), 0);
+    mWaterTex = new JUTTexture(MR::loadTexFromArc("WaterWave.arc", "OceanSphere.bti"), 0);
+    mWaterEnvTex = new JUTTexture(MR::loadTexFromArc("WaterWave.arc", "OceanSphereEnvRef.bti"), 0);
 
     MR::setClippingTypeSphere(this, mRadius);
     MR::setClippingFarMax(this);
     initNerve(&NrvOceanSphere::OceanSphereNrvWait::sInstance);
 
-    if (MR::isEqualStageName(::sSkullSharkGalaxy)) {
+    if (MR::isEqualStageName("SkullSharkGalaxy")) {
         mEnableStartPosCameraSwitch = true;
         mAlwaysUseRealDrawing = true;
     }
 
-    if (MR::isEqualStageName(::sTearDropGalaxy)) {
+    if (MR::isEqualStageName("TearDropGalaxy")) {
         mIsTearDrop = true;
         mAlwaysUseRealDrawing = true;
         mIsStartPosCamera = false;
@@ -361,10 +300,10 @@ void OceanSphere::exeWait() {
 }
 
 void OceanSphere::exeRiseUp() {
-    f32 rate = MR::calcDemoPartStepRate(::sDemoPartName);
+    f32 rate = MR::calcDemoPartStepRate("湧き水上昇");
     mRadius = 1000.0f + (rate * (mRadiusTarget - 1000.0f));
 
-    if (MR::isDemoPartLastStep(::sDemoPartName)) {
+    if (MR::isDemoPartLastStep("湧き水上昇")) {
         setNerve(&NrvOceanSphere::OceanSphereNrvWait::sInstance);
     }
 }
@@ -374,7 +313,7 @@ bool OceanSphere::isInWater(const TVec3f& rPos) const {
         return false;
     }
 
-    return PSVECDistance(&rPos, &mPosition) <= mRadius;
+    return rPos.distance(mPosition) <= mRadius;
 }
 
 bool OceanSphere::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterInfo* pInfo) const {

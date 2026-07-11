@@ -413,12 +413,10 @@ namespace MR {
         TVec3f axisX;
         MR::normalize(rSide, &axisX);
 
-        TVec3f axisZ;
-        PSVECCrossProduct(&axisX, &rUp, &axisZ);
+        TVec3f axisZ = axisX.cross(rUp);
         MR::normalize(&axisZ);
 
-        TVec3f axisY;
-        PSVECCrossProduct(&axisZ, &axisX, &axisY);
+        TVec3f axisY = axisZ.cross(axisX);
 
         pDst->setXYZDir(axisX, axisY, axisZ);
     }
@@ -432,12 +430,10 @@ namespace MR {
         TVec3f axisX;
         MR::normalize(rSide, &axisX);
 
-        TVec3f axisY;
-        PSVECCrossProduct(&axisX, &rFront, &axisY);
+        TVec3f axisY = axisX.cross(rFront);
         MR::normalize(&axisY);
 
-        TVec3f axisZ;
-        PSVECCrossProduct(&axisY, &axisX, &axisZ);
+        TVec3f axisZ = axisY.cross(axisX);
 
         pDst->setXYZDir(axisX, axisY, axisZ);
     }
@@ -446,12 +442,10 @@ namespace MR {
         TVec3f axisY;
         MR::normalize(rUp, &axisY);
 
-        TVec3f axisZ;
-        PSVECCrossProduct(&axisY, &rSide, &axisZ);
+        TVec3f axisZ = axisY.cross(rSide);
         MR::normalize(&axisZ);
 
-        TVec3f axisX;
-        PSVECCrossProduct(&axisZ, &axisY, &axisX);
+        TVec3f axisX = axisZ.cross(axisY);
 
         pDst->setXYZDir(axisX, axisY, axisZ);
     }
@@ -465,12 +459,10 @@ namespace MR {
         TVec3f axisY;
         MR::normalize(rUp, &axisY);
 
-        TVec3f axisX;
-        PSVECCrossProduct(&axisY, &rFront, &axisX);
+        TVec3f axisX = axisY.cross(rFront);
         MR::normalize(&axisX);
 
-        TVec3f axisZ;
-        PSVECCrossProduct(&axisX, &axisY, &axisZ);
+        TVec3f axisZ = axisX.cross(axisY);
 
         pDst->setXYZDir(axisX, axisY, axisZ);
     }
@@ -484,12 +476,10 @@ namespace MR {
         TVec3f axisZ;
         MR::normalize(rFront, &axisZ);
 
-        TVec3f axisY;
-        PSVECCrossProduct(&axisZ, &rSide, &axisY);
+        TVec3f axisY = axisZ.cross(rSide);
         MR::normalize(&axisY);
 
-        TVec3f axisX;
-        PSVECCrossProduct(&axisY, &axisZ, &axisX);
+        TVec3f axisX = axisY.cross(axisZ);
 
         pDst->setXYZDir(axisX, axisY, axisZ);
         pDst->setTrans(rPos);
@@ -499,12 +489,10 @@ namespace MR {
         TVec3f axisZ;
         MR::normalize(rFront, &axisZ);
 
-        TVec3f axisX;
-        PSVECCrossProduct(&rUp, &axisZ, &axisX);
+        TVec3f axisX = rUp.cross(axisZ);
         MR::normalize(&axisX);
 
-        TVec3f axisY;
-        PSVECCrossProduct(&axisZ, &axisX, &axisY);
+        TVec3f axisY = axisZ.cross(axisX);
 
         pDst->setXYZDir(axisX, axisY, axisZ);
     }
@@ -525,12 +513,10 @@ namespace MR {
         TVec3f axisY;
         MR::normalize(rUp, &axisY);
 
-        TVec3f axisX;
-        PSVECCrossProduct(&axisY, &support, &axisX);
+        TVec3f axisX = axisY.cross(support);
         MR::normalize(&axisX);
 
-        TVec3f axisZ;
-        PSVECCrossProduct(&axisX, &axisY, &axisZ);
+        TVec3f axisZ = axisX.cross(axisY);
 
         pDst->setXYZDir(axisX, axisY, axisZ);
     }
@@ -559,12 +545,10 @@ namespace MR {
         TVec3f axisZ;
         MR::normalize(rFront, &axisZ);
 
-        TVec3f axisX;
-        PSVECCrossProduct(&support, &axisZ, &axisX);
+        TVec3f axisX = support.cross(axisZ);
         MR::normalize(&axisX);
 
-        TVec3f axisY;
-        PSVECCrossProduct(&axisZ, &axisX, &axisY);
+        TVec3f axisY = axisZ.cross(axisX);
 
         pDst->setXYZDir(axisX, axisY, axisZ);
     }
@@ -587,14 +571,11 @@ namespace MR {
 
         pMtx->getXYZDir(axisX, axisY, axisZ);
 
-        PSVECCrossProduct(&axisY, &axisZ, &axisX);
-        PSVECCrossProduct(&axisZ, &axisX, &axisY);
+        axisX.cross(axisY, axisZ);
+        axisY.cross(axisZ, axisX);
 
-        PSVECMag(&axisX);
-        PSVECNormalize(&axisX, &axisX);
-
-        PSVECMag(&axisY);
-        PSVECNormalize(&axisY, &axisY);
+        axisX.normalize();
+        axisY.normalize();
 
         pMtx->setXYZDir(axisX, axisY, axisZ);
 
@@ -830,8 +811,7 @@ namespace MR {
         PSMTXMultVecSR(invA, &localZ, &axisZA);
         PSMTXMultVecSR(b, &localZ, &axisZB);
 
-        TVec3f cross;
-        PSVECCrossProduct(&axisZA, &axisZB, &cross);
+        TVec3f cross = axisZA.cross(axisZB);
 
         if (MR::normalizeOrZero(&cross)) {
             *pOut = localZ;

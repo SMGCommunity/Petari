@@ -199,7 +199,7 @@ public:
 
     bool taskOnEffectCheck(u32);
 
-    void doFlow();
+    bool doFlow();
 
     void tryStartFoo();
 
@@ -291,7 +291,7 @@ public:
 
     u32 initSoundTable(SoundList* list, u32);
     void initSound();
-    bool playSoundJ(const char*, s32);
+    void playSoundJ(const char*, s32);
     void stopSoundJ(const char*, u32);
     void startBas(const char*, bool, f32, f32);
     bool isRunningBas(const char*) const;
@@ -455,11 +455,11 @@ public:
     void stopPunch();
     void startMagic();
 
-    void doObjWarp(LiveActor*);
-    void doPointWarp(const TVec3f&, const TVec3f&, s32);
+    bool doObjWarp(LiveActor*);
+    bool doPointWarp(const TVec3f&, const TVec3f&, s32);
     bool isVisibleRecoveryWarpBubble() const;
     void doCubeWarp();
-    void doPointWarpRecovery(const TVec3f&, const TVec3f&);
+    bool doPointWarpRecovery(const TVec3f&, const TVec3f&);
 
     bool isDisableStayHere() const;
     bool isDisableFpViewMode() const;
@@ -793,7 +793,7 @@ public:
 
     /* 0x564 */ s32 _564;
     /* 0x568 */ u32 _568;
-    /* 0x56C */ u32 _56C;
+    /* 0x56C */ AreaObj* _56C;
     /* 0x570 */ u8 _570;
     /* 0x574 */ u32 _574;
     /* 0x578 */ u32 _578;
@@ -951,8 +951,7 @@ public:
     /* 0x978 */ u32 _978;
     // Not fake
 
-    /* 0x97C */
-    MarioState* _97C;
+    /* 0x97C */ MarioState* _97C;
     /* 0x980 */ MarioState* _980;
 
     /* 0x984 */ Task _984[0xb];

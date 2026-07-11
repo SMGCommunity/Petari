@@ -83,7 +83,7 @@ namespace MR {
     bool isJudgedToNearClip(const TVec3f& rParam1, f32 param2) {
         TVec3f camPos = MR::getCamPos();
 
-        return PSVECDistance(&rParam1, &camPos) < param2;
+        return rParam1.distance(camPos) < param2;
     }
 
     bool isInWater(const TVec3f& rParam1) {

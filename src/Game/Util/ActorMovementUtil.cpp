@@ -92,24 +92,28 @@ namespace MR {
     f32 calcDistanceHorizontal(const LiveActor* pActor, const TVec3f& a2, const TVec3f& a3) {
         TVec3f stack_8 = a2 - pActor->mPosition;
         MR::vecKillElement(stack_8, a3, &stack_8);
-        return PSVECMag((Vec*)&stack_8);
+        return stack_8.length();
     }
 
     f32 calcDistanceVertical(const LiveActor* pActor, const TVec3f& a2, const TVec3f& a3) {
         TVec3f stack_8 = a2 - pActor->mPosition;
         stack_8.scale(a3.dot(stack_8), a3);
-        return PSVECMag((Vec*)&stack_8);
+        return stack_8.length();
     }
 
     f32 calcDistanceVertical(const LiveActor* pActor, const TVec3f& a2) {
         const TVec3f& grav = pActor->mGravity;
         TVec3f stack_8 = a2 - pActor->mPosition;
         stack_8.scale(grav.dot(stack_8), grav);
-        return PSVECMag((Vec*)&stack_8);
+        return stack_8.length();
     }
 
     f32 calcDistanceToPlayer(const LiveActor* pActor) {
-        return (!MR::isExistSceneObj(SceneObj_MarioHolder) ? FLOAT_MAX : PSVECDistance((Vec*)&pActor->mPosition, (Vec*)MR::getPlayerPos()));
+        if (!MR::isExistSceneObj(SceneObj_MarioHolder)) {
+            return FLOAT_MAX;
+        }
+
+        return pActor->mPosition.distance(*MR::getPlayerPos());
     }
 
     f32 calcDistanceToPlayerH(const LiveActor* pActor) {
@@ -118,7 +122,7 @@ namespace MR {
         }
         TVec3f stack_8 = *MR::getPlayerPos() - pActor->mPosition;
         MR::vecKillElement(stack_8, pActor->mGravity, &stack_8);
-        return PSVECMag((Vec*)&stack_8);
+        return stack_8.length();
     }
 
     bool isNear(const HitSensor* pSensor_1, const HitSensor* pSensor_2, f32 dist) {

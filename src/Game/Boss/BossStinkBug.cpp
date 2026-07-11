@@ -148,7 +148,7 @@ void BossStinkBug::initCollision() {
     _8C = new CollisionParts*[3];
     for (int i = 0; i < 3; i++) {
         _8C[i] = MR::createCollisionPartsFromLiveActor(this, ::sCollisionInfo[i]._0, getSensor(::sCollisionInfo[i]._8),
-                                                       MR::getJointMtx(this, sCollisionInfo[i]._4), MR::AutoEqualScale);
+                                                       MR::getJointMtx(this, sCollisionInfo[i]._4), MR::CollisionScaleType_AutoEqualScale);
     }
 }
 

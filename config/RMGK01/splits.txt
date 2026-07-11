@@ -61,12 +61,13 @@ nw4r/db/db_console.cpp:
 
 nw4r/db/db_assert.cpp:
 	.text       start:0x8000B8C4 end:0x8000BBA0
-	.data       start:0x805635A0 end:0x80564678
+	.data       start:0x805635A0 end:0x80563610
 	.sdata      start:0x806B1620 end:0x806B1628
 	.sbss       start:0x806B2E78 end:0x806B2E80
 
 nw4r/math/math_triangular.cpp:
 	.text       start:0x8000BBA0 end:0x8000BC68
+	.data       start:0x80563620 end:0x80564630
 	.sdata2     start:0x806B7C60 end:0x806B7C68
 
 nw4r/math/math_types.cpp:
@@ -74,6 +75,7 @@ nw4r/math/math_types.cpp:
 
 nw4r/lyt/lyt_init.cpp:
 	.text       start:0x8000BCF8 end:0x8000BD4C
+	.data       start:0x80564630 end:0x80564678
 	.sdata      start:0x806B1628 end:0x806B1630
 
 nw4r/lyt/lyt_pane.cpp:
@@ -116,11 +118,12 @@ nw4r/lyt/lyt_window.cpp:
 nw4r/lyt/lyt_bounding.cpp:
 	.text       start:0x800112C4 end:0x80011370
 	.ctors      start:0x8052E818 end:0x8052E81C
-	.data       start:0x805648C8 end:0x80564998
+	.data       start:0x805648C8 end:0x80564930
 	.sbss       start:0x806B2EA8 end:0x806B2EB0
 
 nw4r/lyt/lyt_material.cpp:
 	.text       start:0x80011370 end:0x800140C8
+	.data       start:0x80564930 end:0x80564998
 	.sdata2     start:0x806B7CC8 end:0x806B7CE8
 
 nw4r/lyt/lyt_texMap.cpp:
@@ -2694,7 +2697,7 @@ Game/Enemy/HomingKiller.cpp:
 Game/Enemy/IceMerameraKing.cpp:
 	.text       start:0x800F84E0 end:0x800FB370
 	.ctors      start:0x8052EA98 end:0x8052EA9C
-	.rodata     start:0x80531FE0 end:0x805320C8
+	.rodata     start:0x80531FE0 end:0x80532098
 	.data       start:0x8057D290 end:0x8057D818
 	.bss        start:0x8060A800 end:0x8060A818
 	.sdata      start:0x806B1950 end:0x806B1958
@@ -2709,6 +2712,7 @@ Game/Enemy/ItemGenerator.cpp:
 Game/Enemy/Jellyfish.cpp:
 	.text       start:0x800FB4AC end:0x800FC7B0
 	.ctors      start:0x8052EA9C end:0x8052EAA0
+	.rodata     start:0x80532098 end:0x805320A0
 	.data       start:0x8057D860 end:0x8057DA40
 	.sbss       start:0x806B4010 end:0x806B4040
 	.sdata2     start:0x806BA7A8 end:0x806BA800
@@ -2716,6 +2720,7 @@ Game/Enemy/Jellyfish.cpp:
 Game/Enemy/JellyfishElectric.cpp:
 	.text       start:0x800FC7B0 end:0x800FD714
 	.ctors      start:0x8052EAA0 end:0x8052EAA4
+	.rodata     start:0x805320A0 end:0x805320A8
 	.data       start:0x8057DA40 end:0x8057DBE0
 	.sbss       start:0x806B4040 end:0x806B4068
 	.sdata2     start:0x806BA800 end:0x806BA840
@@ -2723,6 +2728,7 @@ Game/Enemy/JellyfishElectric.cpp:
 Game/Enemy/Jiraira.cpp:
 	.text       start:0x800FD714 end:0x800FE130
 	.ctors      start:0x8052EAA4 end:0x8052EAA8
+	.rodata     start:0x805320A8 end:0x805320B0
 	.data       start:0x8057DBE0 end:0x8057DD80
 	.sbss       start:0x806B4068 end:0x806B4080
 	.sdata2     start:0x806BA840 end:0x806BA860
@@ -2730,6 +2736,7 @@ Game/Enemy/Jiraira.cpp:
 Game/Enemy/JumpBeamer.cpp:
 	.text       start:0x800FE130 end:0x800FF3A0
 	.ctors      start:0x8052EAA8 end:0x8052EAAC
+	.rodata     start:0x805320B0 end:0x805320B8
 	.data       start:0x8057DD80 end:0x8057E030
 	.sdata      start:0x806B1958 end:0x806B1960
 	.sbss       start:0x806B4080 end:0x806B40B0
@@ -2738,6 +2745,7 @@ Game/Enemy/JumpBeamer.cpp:
 Game/Enemy/JumpGuarder.cpp:
 	.text       start:0x800FF3A0 end:0x80100ED8
 	.ctors      start:0x8052EAAC end:0x8052EAB0
+	.rodata     start:0x805320B8 end:0x805320C8
 	.data       start:0x8057E030 end:0x8057E3F8
 	.sdata      start:0x806B1960 end:0x806B1968
 	.sbss       start:0x806B40B0 end:0x806B40E0
@@ -3936,7 +3944,7 @@ Game/Map/OceanRingPipeOutside.cpp:
 Game/Map/OceanSphere.cpp:
 	.text       start:0x80191530 end:0x801945EC
 	.ctors      start:0x8052EBD8 end:0x8052EBDC
-	.data       start:0x8058B1A0 end:0x8058B2E8
+	.data       start:0x8058B1A0 end:0x8058B2C0
 	.bss        start:0x8060AD78 end:0x8060ADA0
 	.sbss       start:0x806B4BE0 end:0x806B4BE8
 	.sdata2     start:0x806BC2C0 end:0x806BC308
@@ -3948,7 +3956,7 @@ Game/Map/OceanSpherePoint.cpp:
 Game/Map/PlanetMap.cpp:
 	.text       start:0x80194790 end:0x80195118
 	.rodata     start:0x80532C80 end:0x80532C98
-	.data       start:0x8058B2E8 end:0x8058B4E8
+	.data       start:0x8058B2C0 end:0x8058B4E8
 	.sdata      start:0x806B1C58 end:0x806B1C68
 	.sdata2     start:0x806BC318 end:0x806BC328
 
@@ -5368,7 +5376,7 @@ Game/MapObj/PressureBase.cpp:
 Game/MapObj/PrizeRing.cpp:
 	.text       start:0x8021286C end:0x80213084
 	.ctors      start:0x8052EE14 end:0x8052EE18
-	.rodata     start:0x80533600 end:0x80533650
+	.rodata     start:0x80533600 end:0x80533640
 	.data       start:0x8059BED0 end:0x8059C0A8
 	.sdata      start:0x806B1EF0 end:0x806B1EF8
 	.sbss       start:0x806B55F0 end:0x806B5608
@@ -5474,7 +5482,7 @@ Game/MapObj/RevolvingWay.cpp:
 Game/MapObj/Rock.cpp:
 	.text       start:0x8021ADD8 end:0x8021D5F0
 	.ctors      start:0x8052EE44 end:0x8052EE48
-	.rodata     start:0x80533650 end:0x80533678
+	.rodata     start:0x80533640 end:0x80533678
 	.data       start:0x8059D460 end:0x8059D7C8
 	.sdata      start:0x806B1F40 end:0x806B1F50
 	.sbss       start:0x806B56C8 end:0x806B56E0
@@ -7033,19 +7041,19 @@ Game/Player/MarioEffect.cpp:
 	.text       start:0x802DC258 end:0x802DEC08
 	.ctors      start:0x8052F0F0 end:0x8052F0F4
 	.rodata     start:0x80539B18 end:0x80539C08
-	.data       start:0x805C6B28 end:0x805C7D48
+	.data       start:0x805C6B28 end:0x805C7CD8
 	.sdata2     start:0x806BFBF0 end:0x806BFC08
 
 Game/Player/MarioFlow.cpp:
 	.text       start:0x802DEC08 end:0x802DF14C
 	.ctors      start:0x8052F0F4 end:0x8052F0F8
-	.data       start:0x805C7D48 end:0x805C8050
+	.data       start:0x805C7CD8 end:0x805C7E30
 	.sdata2     start:0x806BFC08 end:0x806BFC10
 
 Game/Player/MarioFoo.cpp:
 	.text       start:0x802DF14C end:0x802E1A58
 	.ctors      start:0x8052F0F8 end:0x8052F0FC
-	.data       start:0x805C8050 end:0x805C8140
+	.data       start:0x805C7E30 end:0x805C8140
 	.sdata      start:0x806B22A8 end:0x806B22B0
 	.sbss       start:0x806B6290 end:0x806B62A0
 	.sdata2     start:0x806BFC10 end:0x806BFCA8
@@ -7061,18 +7069,18 @@ Game/Player/MarioInit.cpp:
 Game/Player/MarioJump.cpp:
 	.text       start:0x802E1D70 end:0x802E8C80
 	.ctors      start:0x8052F0FC end:0x8052F100
-	.data       start:0x805C8170 end:0x805C8A18
+	.data       start:0x805C8170 end:0x805C8A00
 	.sdata      start:0x806B22B0 end:0x806B22D0
 	.sdata2     start:0x806BFCB0 end:0x806BFD50
 
 Game/Player/MarioMessenger.cpp:
 	.text       start:0x802E8C80 end:0x802E8E0C
-	.data       start:0x805C8A18 end:0x805C8A88
+	.data       start:0x805C8A00 end:0x805C8A40
 
 Game/Player/MarioModule.cpp:
 	.text       start:0x802E8E0C end:0x802E9FEC
 	.ctors      start:0x8052F100 end:0x8052F104
-	.data       start:0x805C8A88 end:0x805C8C38
+	.data       start:0x805C8A40 end:0x805C8C38
 	.sdata2     start:0x806BFD50 end:0x806BFD78
 
 Game/Player/MarioMove.cpp:
@@ -7127,13 +7135,13 @@ Game/Player/MarioSideStep.cpp:
 Game/Player/MarioSkate.cpp:
 	.text       start:0x802F1C44 end:0x802F28B4
 	.ctors      start:0x8052F120 end:0x8052F124
-	.data       start:0x805C94C0 end:0x805C9FF0
+	.data       start:0x805C94C0 end:0x805C95A8
 	.sdata2     start:0x806BFF78 end:0x806BFFD0
 
 Game/Player/MarioSound.cpp:
 	.text       start:0x802F28B4 end:0x802F2F20
 	.ctors      start:0x8052F124 end:0x8052F128
-	.data       start:0x805C9FF0 end:0x805CB4C0
+	.data       start:0x805C95A8 end:0x805CB370
 
 Game/Player/MarioSpecial.cpp:
 	.text       start:0x802F2F20 end:0x802F3DA0
@@ -7143,7 +7151,7 @@ Game/Player/MarioSpecial.cpp:
 Game/Player/MarioSpin.cpp:
 	.text       start:0x802F3DA0 end:0x802F4324
 	.ctors      start:0x8052F12C end:0x8052F130
-	.data       start:0x805CB4C0 end:0x805CB588
+	.data       start:0x805CB370 end:0x805CB588
 	.sdata2     start:0x806C0028 end:0x806C0030
 
 Game/Player/MarioState.cpp:
@@ -7160,17 +7168,17 @@ Game/Player/MarioStick.cpp:
 Game/Player/MarioSukekiyo.cpp:
 	.text       start:0x802F5014 end:0x802F5420
 	.ctors      start:0x8052F138 end:0x8052F13C
-	.data       start:0x805CB790 end:0x805CB8C8
+	.data       start:0x805CB790 end:0x805CB8C0
 
 Game/Player/MarioTalk.cpp:
 	.text       start:0x802F5420 end:0x802F5760
 	.ctors      start:0x8052F13C end:0x8052F140
-	.data       start:0x805CB8C8 end:0x805CBA18
+	.data       start:0x805CB8C0 end:0x805CB910
 
 Game/Player/MarioWall.cpp:
 	.text       start:0x802F5760 end:0x802F7BD0
 	.ctors      start:0x8052F140 end:0x8052F144
-	.data       start:0x805CBA18 end:0x805CBB98
+	.data       start:0x805CB910 end:0x805CBB98
 	.sdata2     start:0x806C0040 end:0x806C0090
 
 Game/Player/MarioHang.cpp:

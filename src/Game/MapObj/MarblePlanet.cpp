@@ -31,7 +31,7 @@ void MarblePlanet::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
     MR::addHitSensorEnemy(this, "core", 8, 50.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, "MarblePlanet", getSensor(0), 0);
-    mWatermelonCollision = MR::createCollisionPartsFromLiveActor(this, "WaterMelon", getSensor(0), (MR::CollisionScaleType)2);
+    mWatermelonCollision = MR::createCollisionPartsFromLiveActor(this, "WaterMelon", getSensor(0), MR::CollisionScaleType_Unk2);
     initEffectKeeper(0, 0, false);
     initSound(4, false);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
@@ -221,7 +221,7 @@ void MarblePlanetElectron::init(const JMapInfoIter& rIter) {
 void MarblePlanetElectron::exeMove() {
     MR::turnDirectionToGround(this, &_94);
     MR::attenuateVelocity(this, 0.99f);
-    f32 mag = PSVECMag(&mVelocity);
+    f32 mag = mVelocity.length();
     f32 scale = (mag >= 13.0f ? mag : 13.0f);
     mVelocity.scale(scale, _94);
     MR::startLevelSound(this, "SE_OJ_LV_MARBLE_ROTATE");

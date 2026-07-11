@@ -184,8 +184,8 @@ void CrystalCageMoving::crashMario(HitSensor* pSender, HitSensor* pReceiver) {
     if (_108) {
         setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakSmall::sInstance);
     } else {
-        f32 sensorDist = PSVECDistance(&pReceiver->mPosition, &pSender->mPosition);
-        f32 sensorObjDist = PSVECDistance(&mPosition, &pSender->mPosition);
+        f32 sensorDist = pReceiver->mPosition.distance(pSender->mPosition);
+        f32 sensorObjDist = mPosition.distance(pSender->mPosition);
 
         if (sensorDist < 30.0f && sensorObjDist < 450.0f) {
             setNerve(&NrvCrystalCageMoving::CrystalCageMovingNrvBreakAll::sInstance);

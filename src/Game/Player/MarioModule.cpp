@@ -339,8 +339,8 @@ void MarioModule::stopEffectForce(const char* pEffectName) {
     mActor->stopEffectForce(pEffectName);
 }
 
-bool MarioModule::playSound(const char* pSoundName, s32 a2) {
-    return mActor->mMario->playSoundJ(pSoundName, a2);
+void MarioModule::playSound(const char* pSoundName, s32 a2) {
+    mActor->mMario->playSoundJ(pSoundName, a2);
 }
 
 void MarioModule::stopSound(const char* pSoundName, u32 a2) {
@@ -576,7 +576,7 @@ bool MarioModule::isInputDisable() const {
     if (mActor->mMario->mMovementStates._22) {
         return true;
     }
-    if (mActor->mMario->isStatusActive(12)) {
+    if (mActor->mMario->isStatusActive(MarioStatus_AbyssDamage)) {
         return true;
     }
     if (isAnimationRun("ハード着地")) {  // "Hard landing"

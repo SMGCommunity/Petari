@@ -161,8 +161,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
 
         TVec3f swingVelocity(0.0f, 0.0f, 0.0f);
 
-        TVec3f grabFront;
-        PSVECCrossProduct(&grabUp, &mSide, &grabFront);
+        TVec3f grabFront = grabUp.cross(mSide);
 
         if (mSwingReverse) {
             grabFront.scale(-1.0f);

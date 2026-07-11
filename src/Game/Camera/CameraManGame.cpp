@@ -133,13 +133,7 @@ bool CameraManGame::isSubjectiveCameraOff() const {
 }
 
 bool CameraManGame::isCorrectingErpPositionOff() const {
-    bool off = false;
-
-    if (mCamera != nullptr && mCamera->isCorrectingErpPositionOff()) {
-        off = true;
-    }
-
-    return off;
+    return mCamera != nullptr && mCamera->isCorrectingErpPositionOff();
 }
 
 bool CameraManGame::isEnableToRoundLeft() const {
@@ -196,7 +190,7 @@ void CameraManGame::zoomIn() {
     const TVec3f& pos = CameraLocalUtil::getPos(this);
     const TVec3f& watchPos = CameraLocalUtil::getWatchPos(this);
 
-    f32 distance = PSVECDistance(&watchPos, &pos);
+    f32 distance = watchPos.distance(pos);
     f32 dVar3 = JMAAsinRadian(100.0f / distance);
     f32 var2 = 1.5f;
     f32 var1 = dVar3 * var2;
@@ -447,23 +441,10 @@ void CameraManGame::keepAwayWatchPos(TVec3f* watchPos, const TVec3f& pos) {
 
     if (length < 300.0f) {
         if (length < 1.0f) {
-            TVec3f currentPos = CameraLocalUtil::getPos(this);
-            TVec3f currentWatchPos = CameraLocalUtil::getWatchPos(this);
-
-            TVec3f newWatchPos1 = pos + currentWatchPos;
-            TVec3f newWatchPos2 = newWatchPos1 - currentPos;
-
-            watchPos->set(newWatchPos2);
+            watchPos->set(pos + CameraLocalUtil::getWatchPos(this) - CameraLocalUtil::getPos(this));
         } else {
-            f32 length2 = dir.length();
-            PSVECNormalize(&dir, &dir);
-
-            TVec3f dirCopy = TVec3f(dir);
-            dirCopy.x *= 300.0f;
-            dirCopy.y *= 300.0f;
-            dirCopy.z *= 300.0f;
-
-            watchPos->set(pos + dirCopy);
+            dir.normalize();
+            watchPos->set(pos + dir * 300.0f);
         }
     }
 }

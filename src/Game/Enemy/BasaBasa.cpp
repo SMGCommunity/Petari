@@ -728,53 +728,52 @@ void BasaBasa::updateRailType() {
 }
 
 void BasaBasa::controlVelocity() {
-    bool v1 = false;
-    if (isNerve(&NrvBasaBasa::BasaBasaNrvTrampleDown::sInstance) || isNerve(&NrvBasaBasa::BasaBasaNrvPunchDown::sInstance)) {
-        v1 = true;
+    bool v1 = isNerve(&NrvBasaBasa::BasaBasaNrvTrampleDown::sInstance) || isNerve(&NrvBasaBasa::BasaBasaNrvPunchDown::sInstance);
+
+    if (v1) {
+        return;
     }
 
-    if (!v1) {
-        TVec3f v15;
-        MR::calcSideVec(&v15, this);
-        f32 v3 = v15.dot(mVelocity);
-        TVec3f v14;
-        v14.scale(v3, v15);
-        v14.scale(0.5f);
-        TVec3f* velocity = &mVelocity;
-        f32 v4 = v15.dot(*velocity);
-        JMAVECScaleAdd(&v15, velocity, velocity, -v4);
-        mVelocity.add(v14);
-        f32 v5 = 0.95f;
-        if (isNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance)) {
-            v5 = 0.96f;
-        } else if (isNerve(&NrvBasaBasa::BasaBasaNrvChaseStart::sInstance)) {
-            v5 = 0.45f;
-        }
+    TVec3f v15;
+    MR::calcSideVec(&v15, this);
+    f32 v3 = v15.dot(mVelocity);
+    TVec3f v14;
+    v14.scale(v3, v15);
+    v14.scale(0.5f);
+    TVec3f* velocity = &mVelocity;
+    f32 v4 = v15.dot(*velocity);
+    JMAVECScaleAdd(&v15, velocity, velocity, -v4);
+    mVelocity.add(v14);
+    f32 v5 = 0.95f;
+    if (isNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance)) {
+        v5 = 0.96f;
+    } else if (isNerve(&NrvBasaBasa::BasaBasaNrvChaseStart::sInstance)) {
+        v5 = 0.45f;
+    }
 
-        mVelocity.scale(v5);
-        f32 v6;
-        if (isNerve(&NrvBasaBasa::BasaBasaNrvChaseStart::sInstance)) {
-            v6 = 15.0f;
-        } else if (isNerve(&NrvBasaBasa::BasaBasaNrvHitBack::sInstance)) {
-            v6 = 15.0f;
-        } else if (isNerve(&NrvBasaBasa::BasaBasaNrvQuickTurn::sInstance)) {
-            v6 = 8.0f;
-        } else if (isNerve(&NrvBasaBasa::BasaBasaNrvAttack::sInstance)) {
-            v6 = 23.0f;
-        } else {
-            v6 = 8.0f;
-        }
+    mVelocity.scale(v5);
+    f32 v6;
+    if (isNerve(&NrvBasaBasa::BasaBasaNrvChaseStart::sInstance)) {
+        v6 = 15.0f;
+    } else if (isNerve(&NrvBasaBasa::BasaBasaNrvHitBack::sInstance)) {
+        v6 = 15.0f;
+    } else if (isNerve(&NrvBasaBasa::BasaBasaNrvQuickTurn::sInstance)) {
+        v6 = 8.0f;
+    } else if (isNerve(&NrvBasaBasa::BasaBasaNrvAttack::sInstance)) {
+        v6 = 23.0f;
+    } else {
+        v6 = 8.0f;
+    }
 
-        if (PSVECMag(&mVelocity) > v6) {
-            TVec3f* velocityPtr = &mVelocity;
-            f32 sqr = velocityPtr->squared();
-            if (sqr <= 0.0000038146973f) {
-                velocityPtr->scale(v6 * JGeometry::TUtil< f32 >::inv_sqrt(sqr));
-            }
-        } else {
-            if (MR::isNearZero(mVelocity)) {
-                mVelocity.zero();
-            }
+    if (mVelocity.length() > v6) {
+        TVec3f* velocityPtr = &mVelocity;
+        f32 sqr = velocityPtr->squared();
+        if (sqr <= 0.0000038146973f) {
+            velocityPtr->scale(v6 * JGeometry::TUtil< f32 >::inv_sqrt(sqr));
+        }
+    } else {
+        if (MR::isNearZero(mVelocity)) {
+            mVelocity.zero();
         }
     }
 }
@@ -790,7 +789,7 @@ void BasaBasa::tuneHeight() {
             v5.scale(MR::getShadowProjectionLength(this, nullptr) - (_AC - 350.0f), mGravity);
         }
 
-        if (PSVECMag(&v5) < 2.0f) {
+        if (v5.length() < 2.0f) {
             return;
         } else {
             TVec3f v4;

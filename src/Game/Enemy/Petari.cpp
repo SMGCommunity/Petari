@@ -580,14 +580,13 @@ bool Petari::receivePlayerAttackAtSpin(u32 msg, HitSensor* pSender, HitSensor* p
         return false;
     }
 
-    bool v5 = false;
-    if (isNerve(&PetariNrvWait::sInstance) || isNerve(&PetariNrvEscape::sInstance) || isNerve(&PetariNrvFreeze::sInstance)) {
-        v5 = true;
-    }
+    bool v5 = isNerve(&PetariNrvWait::sInstance) || isNerve(&PetariNrvEscape::sInstance) || isNerve(&PetariNrvFreeze::sInstance);
+
     if (v5) {
         setNerve(&PetariNrvSwoonStart::sInstance);
         return true;
     }
+
     return false;
 }
 
@@ -596,8 +595,8 @@ bool Petari::isSolidBody() const {
         return false;
     }
 
-    return (isNerve(&PetariNrvSwoonStart::sInstance) || isNerve(&PetariNrvSwoon::sInstance) || isNerve(&PetariNrvSwoonEnd::sInstance) ||
-            isNerve(&PetariNrvWait::sInstance) || isNerve(&PetariNrvFreeze::sInstance));
+    return isNerve(&PetariNrvSwoonStart::sInstance) || isNerve(&PetariNrvSwoon::sInstance) || isNerve(&PetariNrvSwoonEnd::sInstance) ||
+           isNerve(&PetariNrvWait::sInstance) || isNerve(&PetariNrvFreeze::sInstance);
 }
 
 void Petari::moveTowardTargetDirection(f32 vel, f32 f2, f32 angle) {
@@ -693,7 +692,7 @@ void Petari::avoidWall() {
             wallNormal.rejection(mGravity);
             if (!MR::isNearZero(wallNormal)) {
                 MR::normalize(&wallNormal);
-                f32 proximity = 1.0f - (PSVECDistance(&v19, &mBodyCenter) / 600.0f);
+                f32 proximity = 1.0f - (v19.distance(mBodyCenter) / 600.0f);
                 MR::clamp01(&proximity);
                 f32 v8 = (proximity * proximity);
                 proximity *= proximity;

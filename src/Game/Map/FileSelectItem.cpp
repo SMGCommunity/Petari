@@ -244,7 +244,8 @@ void FileSelectItem::turnToFront(s32 angle) {
 }
 
 void FileSelectItem::exeFormat() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+    }
 
     if (MR::isLessStep(this, 40)) {
         MR::startSystemLevelSE("SE_SY_LV_FILE_SE_MORPHBLUR");
@@ -270,7 +271,8 @@ void FileSelectItem::exeFormat() {
 }
 
 void FileSelectItem::exeChangeFellow() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+    }
 
     if (MR::isLessStep(this, 40)) {
         MR::startSystemLevelSE("SE_SY_FILE_SEL_MORPHBLR");
@@ -302,7 +304,8 @@ void FileSelectItem::exeChangeFellow() {
 }
 
 void FileSelectItem::exeChangeMii() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+    }
 
     if (MR::isLessStep(this, 40)) {
         MR::startSystemLevelSE("SE_SY_LV_FILE_SEL_MORPHBLUR");
@@ -437,8 +440,7 @@ void FileSelectItem::updateRotate() {
                 MR::calcWorldPositionFromScreen(&v40, screenPos, v11);
                 TVec3f v39 = v40 - v42;
                 MR::normalize(&v39);
-                TVec3f v38;
-                PSVECCrossProduct(stack_F4, &v39, &v38);
+                TVec3f v38 = stack_F4.cross(v39);
 
                 if (v38.length() < 900.0f) {
                     _155 = 1;
@@ -463,8 +465,7 @@ void FileSelectItem::updateRotate() {
 
                 TVec3f v49;
                 v49 = v42 - v36;
-                TVec3f v50;  // 0x160
-                PSVECCrossProduct(&v48, &v47, &v50);
+                TVec3f v50 = v48.cross(v47);  // 0x160
                 MR::normalize(&v50);
 
                 f32 v12 = v50.dot(v43 - v42);
@@ -478,31 +479,28 @@ void FileSelectItem::updateRotate() {
                     TVec3f v29;
                     v29 = v43 - v50 * v12;
                     TVec3f v25 = v29 - v44;
-                    TVec3f v34;
-                    PSVECCrossProduct(&v25, &v47, &v34);
+                    TVec3f v34 = v25.cross(v47);
 
                     if (v34.dot(v50) < 0.0f) {
                         v14 = 0;
                     } else {
-                        TVec3f v32 = v25 - v45;
-                        PSVECCrossProduct(&v32, &v48, &v34);
+                        v34.cross(v25 - v45, v48);
 
                         if (v34.dot(v50) < 0.0f) {
                             v14 = 0;
                         } else {
-                            TVec3f v31 = v25 - v46;
-                            PSVECCrossProduct(&v31, &v49, &v34);
+                            v34.cross(v25 - v46, v49);
 
                             v14 = !(v34.dot(v50) < 0.0f);
                         }
                     }
                     if (v14) {
                         v13 = 1;
-                    } else if (PSVECDistance(&v44, &v43) <= 900.0f) {
+                    } else if (v44.distance(v43) <= 900.0f) {
                         v13 = 1;
-                    } else if (PSVECDistance(&v45, &v43) <= 900.0f) {
+                    } else if (v45.distance(v43) <= 900.0f) {
                         v13 = 1;
-                    } else if (PSVECDistance(&v46, &v43) <= 900.0f) {
+                    } else if (v46.distance(v43) <= 900.0f) {
                         v13 = 1;
                     } else if (checkCollisionOfPointAndCylinder(v43, v44, v47, 900.0f)) {
                         v13 = 1;

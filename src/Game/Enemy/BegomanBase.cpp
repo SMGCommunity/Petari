@@ -151,9 +151,9 @@ void BegomanBase::initSensor(s32 numBaseSensors, f32 f1, f32 f2, const char* sen
     f32 yScale = mScale.y;
     initHitSensor(numBaseSensors + 3);
 
-    MR::addHitSensor(this, "check", 0x7F, 1, f1 * yScale, TVec3f(0.0f, 0.5f * f1 * yScale, 1.5f * f1 * yScale));
-    MR::addHitSensorAtJoint(this, "body", sensorJointName, 0x1D, 0x20, f1 * yScale, TVec3f(0.0f, 0.5f * f1 * yScale, 0.0f));
-    MR::addHitSensorAtJoint(this, "pushed_rail", sensorJointName, 0x7F, 0x20, f2 * yScale, TVec3f(0.0f, 0.5f * f2 * yScale, 0.0f));
+    MR::addHitSensor(this, "check", ATYPE_EYE, 1, f1 * yScale, TVec3f(0.0f, 0.5f * f1 * yScale, 1.5f * f1 * yScale));
+    MR::addHitSensorAtJoint(this, "body", sensorJointName, ATYPE_BEGOMAN, 0x20, f1 * yScale, TVec3f(0.0f, 0.5f * f1 * yScale, 0.0f));
+    MR::addHitSensorAtJoint(this, "pushed_rail", sensorJointName, ATYPE_EYE, 0x20, f2 * yScale, TVec3f(0.0f, 0.5f * f2 * yScale, 0.0f));
 }
 
 void BegomanBase::initUseSwitchB(const JMapInfoIter& rIter, const MR::FunctorBase& rFunctor) {
@@ -619,8 +619,8 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
         MR::calcSideVec(&vec2, pActor);
     } else {
         vec1.set(*pVec);
-        PSVECCrossProduct(&pActor->mGravity, &vec1, &vec2);
-        PSVECCrossProduct(&vec2, &pActor->mGravity, &vec1);
+        vec2.cross(pActor->mGravity, vec1);
+        vec1.cross(vec2, pActor->mGravity);
     }
 
     f32 angle = 0.0f;

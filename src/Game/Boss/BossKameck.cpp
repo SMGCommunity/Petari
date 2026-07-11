@@ -165,7 +165,7 @@ void BossKameck::updatePose() {
     TVec3f* gravPtr = &mGravity;
     f32 dot = gravPtr->dot(v16);
     JMAVECScaleAdd(gravPtr, &v16, &v18, -dot);
-    f32 mag = PSVECMag(&v18);
+    f32 mag = v18.length();
 
     if (!MR::isNearZero(mag)) {
         f32 v4 = MR::normalize(mag, 0.0f, 3.0f);

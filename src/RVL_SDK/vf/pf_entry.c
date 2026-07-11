@@ -644,7 +644,7 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
 
                 if (err != 0 || success_size != 32) {
                     err = 17;
-                    ent_cnt = p_ent->num_entry_LFNs; 
+                    ent_cnt = p_ent->num_entry_LFNs;
                 }
             }
         }
@@ -676,7 +676,7 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
                 }
 
                 if (err2 != 0) {
-                    ent_cnt = success_cnt; 
+                    ent_cnt = success_cnt;
                 }
             }
         }

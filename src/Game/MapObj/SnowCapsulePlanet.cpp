@@ -26,8 +26,8 @@ void SnowCapsulePlanet::init(const JMapInfoIter& rIter) {
     info.setupSound(6);
     info.setupNerve(&NrvSnowCapsulePlanet::SnowCapsulePlanetNrvCloseWait::sInstance);
     initialize(rIter, info);
-    mDoor1 = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), (MR::CollisionScaleType)2);
-    mDoor2 = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), (MR::CollisionScaleType)2);
+    mDoor1 = MR::createCollisionPartsFromLiveActor(this, "Open", getSensor("body"), MR::CollisionScaleType_Unk2);
+    mDoor2 = MR::createCollisionPartsFromLiveActor(this, "Close", getSensor("body"), MR::CollisionScaleType_Unk2);
     MR::validateCollisionParts(mDoor2);
     if (MR::isDemoCast(this, nullptr)) {
         MR::tryRegisterDemoActionNerve(this, &NrvSnowCapsulePlanet::SnowCapsulePlanetNrvOpen::sInstance, nullptr);

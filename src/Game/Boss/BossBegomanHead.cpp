@@ -134,17 +134,8 @@ void BossBegomanHead::calcAndSetBaseMtx() {
 }
 
 bool BossBegomanHead::calcJointEdge(TPos3f* pMtx, const JointControllerInfo&) {
-    f32 v3 = _9C;
-    TVec3f v8;
-    v8.x = 0.0;
-    v8.y = 1.0;
-    v8.z = 0.0;
     TPos3f v9;
-    TVec3f v7;
-    v7.x = 0.0;
-    v7.y = 1.0;
-    v7.z = 0.0;
-    v9.makeRotateInline(v7, v3);
+    v9.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), _9C);
     pMtx->concat(*pMtx, v9);
 
     return true;

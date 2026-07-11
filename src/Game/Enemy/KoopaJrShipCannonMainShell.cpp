@@ -70,25 +70,28 @@ void KoopaJrShipCannonMainShell::calcAndSetBaseMtx() {
 }
 
 void KoopaJrShipCannonMainShell::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!MR::isSensorEnemyAttack(pSender))
+    if (!MR::isSensorEnemyAttack(pSender)) {
         return;
+    }
 
     if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttackFireStrong(pReceiver, pSender)) {
         explosion();
         return;
     }
 
-    if (!MR::isSensorEnemy(pReceiver))
+    if (!MR::isSensorEnemy(pReceiver)) {
         return;
-
-    bool x = false;
-    if (isNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance) && MR::isGreaterEqualStep(this, 0)) {
-        x = true;
     }
 
-    if (x)
-        if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender))
-            return;
+    bool isFly = isNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance) && MR::isGreaterEqualStep(this, 0);
+
+    if (!isFly) {
+        return;
+    }
+
+    if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
+        return;
+    }
 }
 
 bool KoopaJrShipCannonMainShell::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -96,6 +99,7 @@ bool KoopaJrShipCannonMainShell::receiveMsgPlayerAttack(u32 msg, HitSensor* pSen
         MR::sendMsgEnemyAttack(pReceiver, pSender);
         return true;
     }
+
     return MR::isMsgStarPieceReflect(msg);
 }
 
@@ -136,10 +140,11 @@ void KoopaJrShipCannonMainShell::exeFly() {
 
     MR::startLevelSound(this, "SE_BM_LV_KOOPAJR_SHIP_FLY_FIRE");
 
-    if (MR::isGreaterStep(this, ::sWallHitInvalidTime) && MR::isBindedWall(this))
+    if (MR::isGreaterStep(this, ::sWallHitInvalidTime) && MR::isBindedWall(this)) {
         explosion();
-    else if (MR::isStep(this, ::sLifeTime))
+    } else if (MR::isStep(this, ::sLifeTime)) {
         kill();
+    }
 }
 
 namespace CannonShellUtil {

@@ -52,15 +52,14 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     }
 
     MR::normalize(&subvec);
-    TVec3f cross;
-    PSVECCrossProduct(&vec, &subvec, &cross);
+    TVec3f cross = vec.cross(subvec);
 
     if (MR::isNearZero(cross)) {
         return result;
     }
 
     MR::normalize(&cross);
-    PSVECCrossProduct(&subvec, &cross, &vec);
+    vec.cross(subvec, cross);
     MR::normalize(&subvec);
     TPos3f mtx;
     mtx.identity();

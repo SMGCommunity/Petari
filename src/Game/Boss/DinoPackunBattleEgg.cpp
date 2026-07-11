@@ -47,7 +47,9 @@ bool DinoPackunBattleEgg::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSens
         return false;
     }
 
-    MR::isMsgPlayerSpinAttack(msg);
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+    }
+
     return MR::isMsgStarPieceReflect(msg);
 }
 
@@ -58,7 +60,7 @@ bool DinoPackunBattleEgg::receiveMsgPush(HitSensor* a2, HitSensor* a3) {
     }
 
     if (!isNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvWalk::sInstance) &&
-        !isNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvTurn::sInstance) && getHost()->isSensorEgg(a2) && MR::isSensorMapObj(a3)) {
+        isNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvTurn::sInstance) && getHost()->isSensorEgg(a2) && MR::isSensorMapObj(a3)) {
         TVec3f v11;
         MR::calcSensorHorizonNormalize(&v11, getHost()->mGravity, a3, a2);
 

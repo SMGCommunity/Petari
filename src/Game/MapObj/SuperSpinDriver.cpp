@@ -23,7 +23,7 @@ namespace NrvSuperSpinDriver {
 };  // namespace NrvSuperSpinDriver
 
 bool SuperSpinDriver::tryEndCapture() {
-    if (MR::isGreaterStep(this, 60) && PSVECDistance(&_C4, &mPosition) < 15.0f) {
+    if (MR::isGreaterStep(this, 60) && _C4.distance(mPosition) < 15.0f) {
         cancelBind();
         _174 = 0;
         setNerve(&NrvSuperSpinDriver::SuperSpinDriverNrvWait::sInstance);

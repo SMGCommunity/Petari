@@ -98,19 +98,19 @@ void BallRail::initRailPoints() {
 
     if (mNumPoints >= 2) {
         BallRailPoint* pnt = mRailPoints;
-        PSVECCrossProduct(&pnt->_24, &v17, &pnt->_C);
+        pnt->_C.cross(pnt->_24, v17);
         MR::normalizeOrZero(&pnt->_C);
     }
 
     for (u32 i = 0; i < mNumPoints; i++) {
         BallRailPoint* pnt = &mRailPoints[i];
-        PSVECCrossProduct(&pnt->_24, &v17, &pnt->_C);
+        pnt->_C.cross(pnt->_24, v17);
         MR::normalizeOrZero(&pnt->_C);
     }
 
     if (mNumPoints >= 2) {
         BallRailPoint* lastPnt = &mRailPoints[mNumPoints - 1];
-        PSVECCrossProduct(&lastPnt->_24, &v17, &lastPnt->_C);
+        lastPnt->_C.cross(lastPnt->_24, v17);
         MR::normalizeOrZero(&lastPnt->_C);
     }
 }

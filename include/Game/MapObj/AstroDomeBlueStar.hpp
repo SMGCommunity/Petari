@@ -5,7 +5,6 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class ActorCameraInfo;
-class CaptureActor;
 class GCaptureRibbon;
 
 class AstroDomeBlueStar : public LiveActor {

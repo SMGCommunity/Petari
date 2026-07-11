@@ -73,7 +73,7 @@ void SwingRopePoint::updatePos(f32 vel) {
 
 void SwingRopePoint::updateAxis(const TVec3f& rAxis) {
     TVec3f side(mSide);
-    PSVECCrossProduct(&mUp, &rAxis, &mSide);
+    mSide.cross(mUp, rAxis);
     if (MR::isNearZero(mSide)) {
         mSide.set(side);
     } else {
@@ -81,7 +81,7 @@ void SwingRopePoint::updateAxis(const TVec3f& rAxis) {
     }
 
     TVec3f front(mFront);
-    PSVECCrossProduct(&mSide, &mUp, &mFront);
+    mFront.cross(mSide, mUp);
     if (MR::isNearZero(mFront)) {
         mFront.set(front);
     } else {
@@ -117,10 +117,10 @@ void SwingRopePoint::setInfo(const TVec3f& rTarget, const TVec3f& rVelocity, con
     mUp.set(direction);
     mUp.mult(-1.0f);
 
-    PSVECCrossProduct(&mUp, &mFront, &mSide);
-    PSVECCrossProduct(&mSide, &mUp, &mFront);
+    mSide.cross(mUp, mFront);
+    mFront.cross(mSide, mUp);
     MR::normalize(&mFront);
-    PSVECCrossProduct(&mUp, &mFront, &mSide);
+    mSide.cross(mUp, mFront);
     MR::normalize(&mSide);
 }
 

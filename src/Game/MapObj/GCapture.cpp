@@ -60,7 +60,7 @@ void GCapture::addRotateAccelPointing() {
     TVec3f rotate;
     if (MR::calcStarPointerStrokeRotateMoment(&rotate, mRotation, 200.0f, 0)) {
         _F0 += rotate * 0.055104f;
-        f32 mag = PSVECMag(&_F0);
+        f32 mag = _F0.length();
         if (mag > 0.2f) {
             _F0.scale(0.2f / mag);
         }

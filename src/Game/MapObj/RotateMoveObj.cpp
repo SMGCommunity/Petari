@@ -83,7 +83,7 @@ void RotateMoveObj::exeMove() {
     if (!MapObjActorUtil::isRotatorMoving(this)) {
         setNerve(&NrvRotateMoveObj::HostTypeStop::sInstance);
     } else {
-        if (mRotator->_14) {
+        if (mRotator->mIsActive) {
             if (MR::isEqualString(mObjectName, "OceanRingRuinsGearBig") || MR::isEqualString(mObjectName, "OceanRingRuinsGearSmall")) {
                 if (mRotator->getRotateSpeed() != 0.0f) {
                     MR::StageEffect::tryStageEffectMoving(this, mObjectName);

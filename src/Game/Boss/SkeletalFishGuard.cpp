@@ -82,9 +82,15 @@ void SkeletalFishGuard::control() {
 
     if (!isNerve(&::SkeletalFishGuardNrvKill::sInstance) && !isNerve(&::SkeletalFishGuardNrvApart::sInstance)) {
         if (MR::isBinded(this)) {
-            MR::isBindedGround(this);
-            MR::isBindedWall(this);
-            MR::isBindedRoof(this);
+            if (MR::isBindedGround(this)) {
+            }
+
+            if (MR::isBindedWall(this)) {
+            }
+
+            if (MR::isBindedRoof(this)) {
+            }
+
             setNerve(&::SkeletalFishGuardNrvKill::sInstance);
         }
     }
@@ -224,7 +230,7 @@ void SkeletalFishGuard::exeFollow() {
         _C4 = 22.0f;
     }
 
-    f32 dist = PSVECDistance(MR::getPlayerCenterPos(), &mPosition);
+    f32 dist = MR::getPlayerCenterPos()->distance(mPosition);
     f32 v6 = 0.0f;
     f32 v7 = (dist - 1000.0f) / 500.0f;
     if (v7 >= 0.0f) {
@@ -339,10 +345,9 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
         TVec3f gravityVec;
         MR::calcGravityVector(this, _F4, &gravityVec, nullptr, 0);
         JGeometry::negateInternal((f32*)&gravityVec, (f32*)&gravityVec);
-        TVec3f stack_4C;
-        PSVECCrossProduct(gravityVec, _100, stack_4C);
+        TVec3f stack_4C = gravityVec.cross(_100);
         MR::normalize(&stack_4C);
-        PSVECCrossProduct(_100, stack_4C, gravityVec);
+        gravityVec.cross(_100, stack_4C);
         TQuat4f quat;
         quat.setRotate(_100, _D0);
         quat.transform(gravityVec);
@@ -355,9 +360,8 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
         MR::setBaseTRMtx(this, stack_D0);
     } else {
         TVec3f stack_30;
-        TVec3f stack_24;
         JGeometry::negateInternal((f32*)&mGravity, (f32*)&stack_30);
-        PSVECCrossProduct(stack_30, _D0, stack_24);
+        TVec3f stack_24 = stack_30.cross(_D0);
 
         if (MR::isNearZero(stack_24)) {
             MtxPtr mtx = getBaseMtx();
@@ -374,7 +378,7 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
             stack_8.transform(stack_30);
         } else {
             MR::normalize(&stack_24);
-            PSVECCrossProduct(_D0, stack_24, stack_30);
+            stack_30.cross(_D0, stack_24);
         }
 
         TPos3f stack_70;
@@ -553,8 +557,7 @@ void SkeletalFishGuard::calcTarget(TVec3f* a1, TVec3f* a2, TVec3f* a3, s32 a4) {
     MR::calcRailDirectionAtCoord(a3, mFishBoss->getCurrentRail(), v13);
     TVec3f v22;
     MR::calcGravityVector(this, *a1, &v22, nullptr, 0);
-    TVec3f v21;
-    PSVECCrossProduct(a3, &v22, &v21);
+    TVec3f v21 = a3->cross(v22);
     MR::normalizeOrZero(&v21);
     a2->add(*a1, v21 * _94.x + v22 * -_94.y);
 }

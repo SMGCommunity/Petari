@@ -704,7 +704,7 @@ void BezierSurface::calcTrianglePatchNormal(TVec3f* pNormalPatch) const {
                 MR::vecScaleAdd(&tangentT, &mCtrlPts[i], scaleT);
             }
         }
-        PSVECCrossProduct(&tangentS, &tangentT, &pNormalPatch[idx]);
+        pNormalPatch[idx].cross(tangentS, tangentT);
         MR::normalizeOrZero(&pNormalPatch[idx]);
     }
 }

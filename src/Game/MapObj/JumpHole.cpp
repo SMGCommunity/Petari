@@ -25,7 +25,7 @@ void JumpHole::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObj(this);
     initRailRider(rIter);
     initHitSensor(1);
-    MR::addHitSensor(this, "body", 0x79, 8, 200.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "body", ATYPE_JUMP_HOLE, 8, 200.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initSound(4, false);
     MR::initCollisionParts(this, "JumpHole", getSensor(nullptr), 0);
     mCone->setPosition(mPosition);

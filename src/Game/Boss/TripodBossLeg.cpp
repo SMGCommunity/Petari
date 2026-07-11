@@ -185,19 +185,19 @@ const TPos3f& TripodBossLeg::getAnkleLocalXZMatrix() const {
 }
 
 void TripodBossLeg::requestStepTarget(TripodBossStepPoint* pPoint) {
-    bool v4 = false;
-    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance)) {
-        v4 = true;
+    bool v4 = isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance);
+
+    if (v4) {
+        return;
     }
 
-    if (!v4) {
-        _94 = _98;
-        _98 = pPoint;
-        if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance)) {
-            setNerve(&NrvTripodBossLeg::TripodBossLegNrvUp::sInstance);
-        } else {
-            setNerve(&NrvTripodBossLeg::TripodBossLegNrvMoveToLandingPos::sInstance);
-        }
+    _94 = _98;
+    _98 = pPoint;
+
+    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance)) {
+        setNerve(&NrvTripodBossLeg::TripodBossLegNrvUp::sInstance);
+    } else {
+        setNerve(&NrvTripodBossLeg::TripodBossLegNrvMoveToLandingPos::sInstance);
     }
 }
 
@@ -226,22 +226,12 @@ bool TripodBossLeg::isLanding() const {
 }
 
 bool TripodBossLeg::isDamage() const {
-    bool ret = false;
-
-    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamageVibration::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance)) {
-        ret = true;
-    }
-
-    return ret;
+    return isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamageVibration::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance);
 }
 
 bool TripodBossLeg::isStop() const {
-    bool ret = false;
-    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvDemo::sInstance) ||
-        isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance)) {
-        ret = true;
-    }
-    return ret;
+    return isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvDemo::sInstance) ||
+           isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance);
 }
 
 bool TripodBossLeg::isBroken() const {
@@ -253,28 +243,16 @@ bool TripodBossLeg::isPressPlayer() const {
 }
 
 bool TripodBossLeg::canStep() const {
-    bool ret = false;
-    if (!isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) && !isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance)) {
-        ret = true;
-    }
-    return ret;
+    return !isNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance) && !isNerve(&NrvTripodBossLeg::TripodBossLegNrvBreak::sInstance);
 }
 
 bool TripodBossLeg::canCancelStep() const {
-    bool ret = false;
-    if (!isNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance) && !isNerve(&NrvTripodBossLeg::TripodBossLegNrvStampSign::sInstance)) {
-        ret = true;
-    }
-    return ret;
+    return !isNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance) && !isNerve(&NrvTripodBossLeg::TripodBossLegNrvStampSign::sInstance);
 }
 
 bool TripodBossLeg::canWeighting() const {
-    bool ret = false;
-    if (isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance) ||
-        isNerve(&NrvTripodBossLeg::TripodBossLegNrvLeaveOut::sInstance) && MR::isLessStep(this, 60)) {
-        ret = true;
-    }
-    return ret;
+    return isNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance) || isNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance) ||
+           isNerve(&NrvTripodBossLeg::TripodBossLegNrvLeaveOut::sInstance) && MR::isLessStep(this, 60);
 }
 
 void TripodBossLeg::exeDemo() {
@@ -426,15 +404,13 @@ void TripodBossLeg::exeLanding() {
     HitResult hitResult;
     if (mMoveArea->collideSphere(&hitResult, v12, 0.0f, endJointPos - v12)) {
         MR::startSoundObject(_260, "SE_BM_TRIPOD_LAND");
-        f32 dist = PSVECDistance(&mForceEndPoint, MR::getPlayerPos());
+        f32 dist = mForceEndPoint.distance(*MR::getPlayerPos());
         if (dist < 2000.0f) {
             MR::shakeCameraStrong();
+        } else if (dist < 3500.0f) {
+            MR::shakeCameraNormal();
         } else {
-            if (dist < 3500.0f) {
-                MR::shakeCameraNormal();
-            } else {
-                MR::shakeCameraWeak();
-            }
+            MR::shakeCameraWeak();
         }
 
         MR::emitEffect(this, "LegSmoke");

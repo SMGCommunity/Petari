@@ -1,6 +1,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "revolution/mtx.h"
 
@@ -181,7 +182,7 @@ bool Mario::taskOnHipDropBlurHopper(u32) {
     Mario* player = getPlayer();
     if (player->mMovementStates._C) {
         if (!mMovementStates._2) {
-            if (!isStatusActive(6)) {
+            if (!isStatusActive(MarioStatus_Swim)) {
                 return true;
             }
         }
@@ -200,7 +201,7 @@ bool Mario::taskOnHipDropBlur(u32) {
     Mario* player = getPlayer();
     if (player->mMovementStates._C) {
         if (!mMovementStates._2) {
-            if (!isStatusActive(6)) {
+            if (!isStatusActive(MarioStatus_Swim)) {
                 return true;
             }
         }
@@ -217,8 +218,7 @@ bool Mario::taskOnHipDropBlur(u32) {
 
 bool Mario::taskOnHipDropSlide(u32 flags) {
     if (flags == 0x100) {
-        Mario* player = getPlayer();
-        if (!player->mMovementStates._C) {
+        if (!getPlayer()->mMovementStates._B) {
             return false;
         }
     }
@@ -227,25 +227,12 @@ bool Mario::taskOnHipDropSlide(u32 flags) {
         return false;
     }
 
-    Mario* player = getPlayer();
-    if (player->mMovementStates._2) {
-        return false;
-    }
-
-    player = getPlayer();
-    if (!player->mMovementStates.jumping) {
-        return false;
-    }
-
-    if (isStatusActive(6)) {
+    if (getPlayer()->mMovementStates._1 || !getPlayer()->mMovementStates.jumping || isStatusActive(MarioStatus_Swim)) {
         return false;
     }
 
     HitSensor* sensor = _A68;
-    bool enabled = false;
-    if (sensor->mValidByHost != 0 && sensor->mValidBySystem != 0) {
-        enabled = true;
-    }
+    bool enabled = sensor->mValidByHost != 0 && sensor->mValidBySystem != 0;
 
     if (!enabled) {
         return false;

@@ -465,33 +465,20 @@ void SurfRay::control() {
 }
 
 void SurfRay::calcAndSetBaseMtx() {
-    PSVECCrossProduct(&mBaseUp, &mFront, &mBaseSide);
+    mBaseSide.cross(mBaseUp, mFront);
     MR::normalize(&mBaseSide);
-    PSVECCrossProduct(&mFront, &mBaseSide, &mBaseUp);
+    mBaseUp.cross(mFront, mBaseSide);
     MR::normalize(&mBaseUp);
     mUp.set(mBaseUp);
     MR::rotateVecDegree(&mUp, mFront, mRotation.z);
-    PSVECCrossProduct(&mUp, &mFront, &mSide);
+    mSide.cross(mUp, mFront);
     MR::normalize(&mSide);
-    PSVECCrossProduct(&mFront, &mSide, &mUp);
+    mUp.cross(mFront, mSide);
     MR::normalize(&mUp);
 
     TPos3f mtx;
     mtx.identity();
-    // these are definitely some inlines...
-    mtx[0][0] = mSide.x;
-    mtx[1][0] = mSide.y;
-    mtx[2][0] = mSide.z;
-    mtx[0][1] = mUp.x;
-    mtx[1][1] = mUp.y;
-    mtx[2][1] = mUp.z;
-    mtx[0][2] = mFront.x;
-    mtx[1][2] = mFront.y;
-    mtx[2][2] = mFront.z;
-    mtx[0][3] = mPosition.x;
-    mtx[1][3] = mPosition.y;
-    mtx[2][3] = mPosition.z;
-
+    mtx.setVecAndTransInline(mSide, mUp, mFront, mPosition);
     MR::setBaseTRMtx(this, mtx);
     mActorJointCtrl->setCallBackFunction();
     mProjmapFxMtxSetter->updateMtxUseBaseMtx();
@@ -730,7 +717,7 @@ void SurfRay::updateToMap() {
             MR::turnVecToPlane(&v2, v2, mGravity);
             TVec3f v3;
             MR::vecBlend(mFront, v2, &v3, ::sBlendRatioAxisFrontWall);
-            PSVECCrossProduct(&mBaseUp, &v3, &mBaseSide);
+            mBaseSide.cross(mBaseUp, v3);
         }
     } else if (mInWater) {
         MR::vecBlendSphere(mBaseUp, mWaterNormal, &mBaseUp, ::sBlendRatioAxisUpGround);
@@ -738,7 +725,7 @@ void SurfRay::updateToMap() {
         MR::vecBlendSphere(mBaseUp, mGravity * -1.0f, &mBaseUp, ::sBlendRatioAxisUpAir);
     }
 
-    PSVECCrossProduct(&mBaseSide, &mBaseUp, &mFront);
+    mFront.cross(mBaseSide, mBaseUp);
     MR::normalize(&mFront);
 }
 
@@ -910,7 +897,7 @@ void SurfRay::updateRotate() {
 
     TRot3f mtx;
     mtx.identity();
-    mtx.setRotateInline(mBaseUp, -mRotation.z * 0.00028f);
+    mtx.setRotate(mBaseUp, -mRotation.z * 0.00028f);
     mtx.mult(mFront, mFront);
 
     for (s32 i = mTwistBufferSize - 1; i >= 1; i--) {

@@ -505,6 +505,12 @@ namespace JGeometry {
             z = z_;
         }
 
+        inline void setInline(f32 x_, f32 y_, f32 z_) {
+            x = x_;
+            y = y_;
+            z = z_;
+        }
+
         void set(const Vec& rVec) {
             x = rVec.x;
             y = rVec.y;
@@ -659,13 +665,14 @@ namespace JGeometry {
         void negate();
 
         f32 normalize() {
-            f32 sq = squared();
-            if (sq <= TUtil< f32 >::epsilon()) {
-                return 0.0f;
-            }
-            f32 inv_norm = TUtil< f32 >::inv_sqrt(sq);
-            scale(inv_norm);
-            return inv_norm * sq;
+            f32 magnitude = length();
+            PSVECNormalize(this, this);
+            return magnitude;
+        }
+
+        f32 normalize(const TVec3& rSrc) {
+            set(rSrc);
+            return normalize();
         }
 
         inline void mul(const TVec3< f32 >& a) {
@@ -720,21 +727,6 @@ namespace JGeometry {
 
         bool isZero() const {
             return squared() <= 0.0000038146973f;
-        }
-
-        f32 normalize(const TVec3& rSrc) {
-            x = rSrc.x;
-            y = rSrc.y;
-            z = rSrc.z;
-            float magnitude = PSVECMag(this);
-            PSVECNormalize(this, this);
-            return magnitude;
-        }
-
-        inline f32 normalizePS() {
-            float magnitude = PSVECMag(this);
-            PSVECNormalize(this, this);
-            return magnitude;
         }
 
         f32 setLength(f32 newlength) {

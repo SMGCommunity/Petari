@@ -7,9 +7,12 @@ class MarioActor;
 class MarioFlow : public MarioState {
 public:
     MarioFlow(MarioActor*);
-    u16 _12;
-    u16 _14;
-    f32 _18;
-    f32 _1C;
-    f32 _20;
+
+    virtual bool start();
+    virtual bool close();
+    virtual bool update();
+
+    /* 0x12 */ u16 _12;
+    /* 0x14 */ u16 _14;
+    /* 0x18 */ TVec3f _18;
 };

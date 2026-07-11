@@ -46,7 +46,7 @@ bool PlanetGravityManager::calcTotalGravityVector(TVec3f* pGravity, GravityInfo*
 
             if ((*pGravities)->calcGravity(&gravityVec, rPosition)) {
                 bool storeInfo = false;
-                f32 scalar = PSVECMag(&gravityVec);
+                f32 scalar = gravityVec.length();
 
                 // If same priority, add gravity vector to total result
                 if (priority == largestPriority) {

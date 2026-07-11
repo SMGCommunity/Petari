@@ -23,19 +23,19 @@ void Mario::checkStep() {
         return;
     }
 
-    if (isStatusActive(5)) {
+    if (isStatusActive(MarioStatus_Hang)) {
         return;
     }
 
-    if (isStatusActive(1)) {
+    if (isStatusActive(MarioStatus_Wall)) {
         return;
     }
 
-    if (isStatusActive(6)) {
+    if (isStatusActive(MarioStatus_Swim)) {
         return;
     }
 
-    if (isStatusActive(29)) {
+    if (isStatusActive(MarioStatus_Climb)) {
         return;
     }
 
@@ -185,7 +185,7 @@ void Mario::startStep(const TVec3f& rVec) {
     mMovementStates._10 = false;
 }
 
-MarioStep::MarioStep(MarioActor* pActor) : MarioState(pActor, 0x10) {
+MarioStep::MarioStep(MarioActor* pActor) : MarioState(pActor, MarioStatus_Step) {
     _14 = 0.0f;
     _18 = 0.0f;
 }
