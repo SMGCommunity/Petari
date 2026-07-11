@@ -30,6 +30,8 @@ public:
 
     static JKRAram* sAramObject;
 
+    static OSMessageQueue sMessageQueue;
+
     /* 0x7C */ u32 mAudioMemoryPtr;
     /* 0x80 */ u32 mAudioMemorySize;
     /* 0x84 */ u32 mGraphMemoryPtr;
