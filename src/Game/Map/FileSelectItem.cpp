@@ -46,6 +46,11 @@ namespace FileSelectItemSub {
     NEW_NERVE(BlinkControllerNrvBlink, BlinkController, Blink);
 };  // namespace FileSelectItemSub
 
+void FORCE_SCALE() {
+    TVec3f vec;
+    vec.scale(1.0f);
+}
+
 FileSelectItem::FileSelectItem(s32 a1, bool a2, const FileSelectIconID& rID, const char* pName) : LiveActor(pName) {
     _8C = a2;
     mPlanetMapObj = nullptr;
@@ -471,10 +476,8 @@ void FileSelectItem::updateRotate() {
                 if (__fabsf(v12) >= 900.0f) {
                     v13 = false;
                 } else {
-                    TVec3f v30(v50);
-                    v30.scale(v12);
                     TVec3f v29;
-                    v29 = v43 - v30;
+                    v29 = v43 - v50 * v12;
                     TVec3f v25 = v29 - v44;
                     TVec3f v34 = v25.cross(v47);
 

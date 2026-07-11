@@ -84,7 +84,7 @@ void DesertLandMoveSwitch::calcAnim() {
         TVec3f pos, up;
         mtx2.getTransInline(pos);
         MR::calcUpVec(&up, this);
-        pos += up.multInLine(val);
+        pos += up * val;
         mtx2.setTransInline(pos);
         PSMTXCopy(mtx2, mtx);
     }

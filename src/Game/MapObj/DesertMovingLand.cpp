@@ -62,10 +62,10 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
 
     if (MR::isValidSwitchA(this)) {
         _C4.set(mPosition);
-        _D0.set(_C4 - stack_3C.scaleInline(arg));
+        _D0.set(_C4 - stack_3C * arg);
     } else {
         _D0.set(mPosition);
-        _C4.set(_D0 + stack_3C.scaleInline(arg));
+        _C4.set(_D0 + stack_3C * arg);
     }
     MR::setBodySensorTypePress(this);
 }

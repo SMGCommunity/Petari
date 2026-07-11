@@ -177,7 +177,7 @@ namespace MR {
             vecKillElement(dir, pActor->mGravity, &dir);
         }
 
-        fromInPos.mult(1.0f / fromInPos.length());
+        fromInPos *= (1.0f / fromInPos.length());
 
         pDir->set(fromInPos + dir);
         normalizeOrZero(pDir);

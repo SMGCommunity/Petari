@@ -15,6 +15,11 @@ namespace {
     const f32 cMaxDegree = 360.0f;
 };  // namespace
 
+void FORCE_SETLENGTH() {
+    TVec3f vec;
+    vec.setLength(1.0f);
+}
+
 namespace MR {
     void initAcosTable() {
         ::gAcosTable = new f32[256];

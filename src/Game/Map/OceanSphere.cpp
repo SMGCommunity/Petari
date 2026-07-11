@@ -338,7 +338,7 @@ bool OceanSphere::calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, Wate
     MR::normalizeOrZero(&normal);
     pInfo->mSurfaceNormal.set(normal);
 
-    pInfo->mSurfacePos.set(*position + normal.multInLine(B0));
+    pInfo->mSurfacePos.set(*position + normal * B0);
     return true;
 }
 

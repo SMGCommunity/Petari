@@ -284,13 +284,13 @@ TVec3f StarPieceDirector::calcPosCameraShoot(s32 addOrSubXDir) {
     TVec3f camZDir(MR::getCamZdir());
 
     if (addOrSubXDir == 0) {
-        returnVec.add(camXDir.scaleInline(300.0f));
+        returnVec.add(camXDir * 300.0f);
     } else {
-        returnVec.sub(camXDir.scaleInline(300.0f));
+        returnVec.sub(camXDir * 300.0f);
     }
 
-    returnVec.add(camYDir.scaleInline(0.0f));
-    returnVec.add(camZDir.scaleInline(30.0f));
+    returnVec.add(camYDir * 0.0f);
+    returnVec.add(camZDir * 30.0f);
     return returnVec;
 }
 
@@ -380,7 +380,7 @@ void StarPieceShooter::control() {
     MR::getPlayerUpVec(&playerUpVec);
 
     _A8.set(playerCenterPos);
-    _A8.sub(playerUpVec.scaleInline(-160.0f));
+    _A8.sub(playerUpVec * -160.0f);
 
     MR::setEffectBaseScale(this, "Charge", (0.125f + _A4 / 7.0f * 0.25f));
 }
@@ -515,7 +515,7 @@ void StarPieceShooter::calcShootGoalUsingPointingDepth() {
 
         starPointerWorldPos.set(camPos);
 
-        starPointerWorldPos.add(worldPos.scaleInline(3000.0f + dirToPlayer.length()));
+        starPointerWorldPos.add(worldPos * (3000.0f + dirToPlayer.length()));
         new_8C = 400.0f;
     } else if (9000000.0f < dirsquared) {
         dir.setLength(3000.0f);

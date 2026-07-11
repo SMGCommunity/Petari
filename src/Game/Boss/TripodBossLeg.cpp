@@ -293,11 +293,7 @@ void TripodBossLeg::exeLeaveOut() {
         v9.identity();
         MR::makeMtxSideUp(&v9, -_98->mStepNormal, _98->mStepFront);
         v9.getQuat(_1F0);
-        TVec3f v6(_98->mStepNormal);
-        v6 *= 1000.0f;
-        TVec3f v7(_98->mStepPosition);
-        v7 += v6;
-        _240 = v7;
+        _240 = _98->mStepPosition + _98->mStepNormal * 1000.0f;
     }
 
     if (MR::isLessStep(this, 60)) {
@@ -331,7 +327,7 @@ void TripodBossLeg::exeMove() {
 
 void TripodBossLeg::exeMoveToLandingPos() {
     if (MR::isFirstStep(this)) {
-        TVec3f v14 = _98->mStepPosition + _98->mStepNormal.multiplyOperatorInline(1000.0f);
+        TVec3f v14 = _98->mStepPosition + _98->mStepNormal * 1000.0f;
         _240 = v14;
     }
 
@@ -353,11 +349,7 @@ void TripodBossLeg::exeMoveToLandingPos() {
 // float regswap
 void TripodBossLeg::exeStampSign() {
     if (MR::isFirstStep(this)) {
-        TVec3f v6(_98->mStepNormal);
-        v6 *= 1000.0f;
-        TVec3f v7(_98->mStepPosition);
-        v7 += v6;
-        _240 = v7;
+        _240 = _98->mStepPosition + _98->mStepNormal * 1000.0f;
     }
 
     MR::startSoundObjectLevel(_260, "SE_BM_LV_TRIPOD_LEG_PREFALL");
@@ -370,10 +362,7 @@ void TripodBossLeg::exeStampSign() {
 
     if (MR::isGreaterStep(this, 20)) {
         TVec3f v8(_98->mStepNormal);
-        f32 v4 = MR::sin(getNerveStep() * 6.2831855f / 10.0f) * 20.0f;
-        TVec3f v5(v8);
-        v5 *= v4;
-        mForceEndPoint += v5;
+        mForceEndPoint += v8 * (20.0f * MR::sin(getNerveStep() * 6.2831855f / 10.0f));
     }
 
     updatePose();
@@ -394,14 +383,10 @@ void TripodBossLeg::exeLanding() {
         TripodBossStepPoint* point = _98;
         MR::makeMtxSideUp(&v18, -point->mStepNormal, point->mStepFront);
         v18.getQuat(_200);
-        TVec3f* step = &_98->mStepPosition;
-        TVec3f v16(mForceEndPoint);
-        v16 -= *step;
-        _250 = v16.dot(_98->mStepNormal);
+        _250 = (mForceEndPoint - _98->mStepPosition).dot(_98->mStepNormal);
     }
 
-    TVec3f v15(_240);
-    v15 -= mForceEndPoint;
+    TVec3f v15(_240 - mForceEndPoint);
     MR::normalizeOrZero(&v15);
     TVec3f v9(v15);
     v9.mult(1.0f);
@@ -417,9 +402,7 @@ void TripodBossLeg::exeLanding() {
     TVec3f endJointPos;
     mJoint->getEndJointPosition(&endJointPos);
     HitResult hitResult;
-    TVec3f v8(endJointPos);
-    v8 -= v12;
-    if (mMoveArea->collideSphere(&hitResult, v12, 0.0f, v8)) {
+    if (mMoveArea->collideSphere(&hitResult, v12, 0.0f, endJointPos - v12)) {
         MR::startSoundObject(_260, "SE_BM_TRIPOD_LAND");
         f32 dist = mForceEndPoint.distance(*MR::getPlayerPos());
         if (dist < 2000.0f) {
@@ -454,12 +437,7 @@ void TripodBossLeg::exeDamageVibration() {
     }
 
     TVec3f v5(_98->mStepNormal);
-    f32 v2 = (MR::sin(((6.2831855f * getNerveStep() * 25.0f))) * 40.0f);
-    TVec3f v3(v5);
-    v3 *= v2;
-    TVec3f v4(_240);
-    v4 += v3;
-    mForceEndPoint = v4;
+    mForceEndPoint = _240 + v5 * (MR::sin(((6.2831855f * getNerveStep() * 25.0f))) * 40.0f);
     updateIKPose();
 
     if (MR::isGreaterStep(this, 27)) {
@@ -490,29 +468,20 @@ void TripodBossLeg::exeHold() {
 }
 
 void TripodBossLeg::addToTargetPower(const TVec3f& a1, f32 a2) {
-    TVec3f v11(a1);
-    v11 -= mForceEndPoint;
+    TVec3f v11(a1 - mForceEndPoint);
     f32 v7;
     MR::separateScalarAndDirection(&v7, &v11, v11);
-    f32 v5 = a2 * MR::clamp(v7 / 300.0f, -1.0f, 1.0f);
-    TVec3f v10(v11);
-    v10 *= v5;
-    _234 += v10;
+    _234 += v11 * (a2 * MR::clamp(v7 / 300.0f, -1.0f, 1.0f));
     f32 v6 = (1.0f - (v7 / 300.0f));
     if (v6 > 0.0f) {
-        TVec3f v8(_234);
-        v8 *= v6;
-        TVec3f v9(v8);
-        v9 *= 0.1f;
-        _234 -= v9;
+        _234 -= _234 * v6 * 0.1f;
     }
 }
 
 void TripodBossLeg::addIKLimitPower() {
     TVec3f rootJoint;
     mJoint->getRootJointPosition(&rootJoint);
-    TVec3f v12(rootJoint);
-    v12 -= mForceEndPoint;
+    TVec3f v12(rootJoint - mForceEndPoint);
     f32 v8;
     MR::separateScalarAndDirection(&v8, &v12, v12);
     f32 maxDist = mJoint->getMaxLimitDistance();
@@ -533,19 +502,13 @@ void TripodBossLeg::addIKLimitPower() {
 
     if (v5 < v8) {
         f32 ease = MR::getEaseInOutValue(((1.0f / (1.0f - v5))) * (v8 - v5), 0.0f, 1.0f, 1.0f);
-        TVec3f v9(v12);
-        v9 *= ease;
-        TVec3f v10(v9);
-        v10 *= v6;
-        _234 += v10;
+        _234 += v12 * ease * v6;
     }
 }
 
 void TripodBossLeg::addAccelUpLeg(TripodBossStepPoint* pPoint, f32 a3) {
     TVec3f v8(pPoint->mStepNormal);
-    TVec3f v7(v8);
-    v7 *= a3;
-    _234 += v7;
+    _234 += v8 * a3;
     addIKLimitPower();
     mForceEndPoint += _234;
     _234.x *= 0.9f;
@@ -555,8 +518,7 @@ void TripodBossLeg::addAccelUpLeg(TripodBossStepPoint* pPoint, f32 a3) {
 }
 
 f32 TripodBossLeg::calcLegHeight(TripodBossStepPoint* pPoint) const {
-    TVec3f v4(mForceEndPoint);
-    v4 -= pPoint->mStepPosition;
+    TVec3f v4(mForceEndPoint - pPoint->mStepPosition);
     return v4.dot(pPoint->mStepNormal);
 }
 
@@ -595,9 +557,7 @@ bool TripodBossLeg::bindEndPosition() {
     TVec3f endJointPos;
     mJoint->getEndJointPosition(&endJointPos);
     HitResult hitResult;
-    TVec3f v4(endJointPos);
-    v4 -= v6;
-
+    TVec3f v4(endJointPos - v6);
     if (mMoveArea->collideSphere(&hitResult, v6, 0.0f, v4)) {
         mForceEndPoint = hitResult._C;
         if (_234.dot(hitResult._18) < 0.0f) {
@@ -666,9 +626,7 @@ void TripodBossLeg::updateAnkleSlerpToBasePose() {
 }
 
 void TripodBossLeg::updateAnkleLanding() {
-    TVec3f* stepPos = &_98->mStepPosition;
-    TVec3f v6(mForceEndPoint);
-    v6 -= *stepPos;
+    TVec3f v6(mForceEndPoint - _98->mStepPosition);
     f32 v3 = v6.dot(_98->mStepNormal);
     f32 v4 = MR::normalize((v3 / _250), 0.15f, 1.0f);
     TQuat4f quat;

@@ -264,7 +264,7 @@ void CocoNut::processMove() {
         _14C = MR::calcVelocityAreaMoveOnGround(&stack_2C, this);
         if (_14C) {
             _150.set(stack_2C);
-            _150.scaleInline(0.75f);
+            _150 * 0.75f;
         }
         _138 = 0;
         _13C = false;
@@ -299,7 +299,7 @@ void CocoNut::processMove() {
 
     bool ok = _14C && _138 < 10;
     if (!ok) {
-        _150.scaleInline(0.925f);
+        _150 * 0.925f;
     }
     mVelocity.add(_150);
     updateGravity();

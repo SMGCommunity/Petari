@@ -105,7 +105,7 @@ void StarPieceFollowGroup::placementPiece(s32 numPlace) {
         f32 zMag = MR::cos(currentAngle) * mRadius;
         f32 xMag = MR::sin(currentAngle) * mRadius;
 
-        mPieces[i]->mPosition = zDir.multiplyOperatorInline(zMag) + xDir.multiplyOperatorInline(xMag) + position;
+        mPieces[i]->mPosition = zDir * zMag + xDir * xMag + position;
         currentAngle += angleBetweenPieces;
     }
 }
@@ -223,12 +223,14 @@ void StarPieceFollowGroup::exeFollowEnd() {
         }
 
         if (doSomeExtraTVecStuff) {
-            currentPiece->mVelocity.add(_90[i].multiplyOperatorInline(0.05f));
+            const f32 SCALE = 0.05f;
+            currentPiece->mVelocity += (_90[i] * SCALE);
         }
 
         TVec3f vec2(*MR::getPlayerVelocity());
         MR::normalizeOrZero(&vec2);
-        currentPiece->mVelocity.add(vec2.multiplyOperatorInline(10.0f));
+        const f32 TEN = 10.0f;
+        currentPiece->mVelocity += (vec2 * TEN);
     }
 
     if (MR::isGreaterStep(this, 120)) {

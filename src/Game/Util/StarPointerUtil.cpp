@@ -573,9 +573,9 @@ namespace MR {
 
         TVec3f planePosA, planePosB;
         planePosA.set(camPos);
-        planePosA.add(toPointA.scaleInline(distA));
+        planePosA.add(toPointA * distA);
         planePosB.set(camPos);
-        planePosB.add(toPointB.scaleInline(distB));
+        planePosB.add(toPointB * distB);
         pDir->set(planePosA);
         pDir->sub(planePosB);
         MR::normalizeOrZero(pDir);
@@ -596,8 +596,10 @@ namespace MR {
     void DUMMY() {
         TVec2f a;
         TVec2f b;
+        TVec3f scale;
 
         a.sub(b);
+        scale.scale(1.0f);
     }
 
     bool calcStarPointerStrokeRotateMoment(TVec3f* pMoment, const TVec3f& rPosition, f32 radius, s32 channel) {

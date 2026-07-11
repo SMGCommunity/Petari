@@ -240,7 +240,7 @@ void Tamakoro::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             f32 downVel = mVelocity.dot(mGravity);
             if (downVel < ::sStampReactionInvalidSpeed) {
                 downVel = -::sStampReactionV - downVel;
-                mVelocity.add(mGravity.multiplyOperatorInline(downVel));
+                mVelocity.add(mGravity * downVel);
                 MR::tryRumblePadWeak(this, WPAD_CHAN0);
                 MR::shakeCameraNormalWeak();
             }
@@ -397,8 +397,7 @@ bool Tamakoro::requestBind(HitSensor* pSensor) {
 bool Tamakoro::requestEndBind() {
     if (!isNerve(&NrvTamakoro::TamakoroNrvBindEnd::sInstance) && !isNerve(&NrvTamakoro::TamakoroNrvStandByBind::sInstance)) {
         MR::startBckPlayer("SwingRopeSpin", static_cast< const char* >(nullptr));
-        MR::endBindAndPlayerForceJump(
-            this, mMarioFront.multiplyOperatorInline(-::sEndBindFrontPower) + mGravity.multiplyOperatorInline(-::sEndBindJumpPower), 0);
+        MR::endBindAndPlayerForceJump(this, mMarioFront * (-::sEndBindFrontPower) + mGravity * (-::sEndBindJumpPower), 0);
         MR::hideModel(this);
         MR::invalidateHitSensors(this);
         MR::invalidateClipping(this);
@@ -556,7 +555,7 @@ void Tamakoro::exeBindStart() {
     MR::vecBlend(mMarioBindRequestPos, expectMario, &horizontalVec, time);
     time = (time * 2.0f) - 1.0f;
     TVec3f upVec;
-    upVec.set(mGravity.multiplyOperatorInline(-(time * time * -::sBindStartJumpHeight + mBaseRadius)));
+    upVec.set(mGravity * (-(time * time * -::sBindStartJumpHeight + mBaseRadius)));
 
     MR::blendQuatUpFront(&mMarioRotateQuat, -mGravity, mMarioFront, ::sBindStartUpAdjustRate, ::sBindStartFrontAdjustRate);
 

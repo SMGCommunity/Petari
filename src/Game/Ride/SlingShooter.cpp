@@ -453,8 +453,7 @@ void SlingShooter::calcAndSetBaseMtx() {
 }
 
 void SlingShooter::calcBaseMtx(TPos3f* pBaseMtx) {
-    TVec3f up(*mUp);
-    up.scale(-1.0f);
+    TVec3f up(*mUp * -1.0f);
     MR::normalize(&up);
     TVec3f front(0.0f, 0.0f, -1.0f);
     TVec3f side = up.cross(front);
@@ -522,7 +521,7 @@ void SlingShooter::updateHang() {
         v1.add(*mNeutralPos);
     }
 
-    TVec3f pos = v1.scaleInline(0.1f) + mPosition.scaleInline(0.9f);
+    TVec3f pos = v1 * 0.1f + mPosition * 0.9f;
 
     mVelocity = pos - mPosition;
 

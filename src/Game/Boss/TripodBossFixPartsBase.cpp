@@ -42,7 +42,7 @@ void TripodBossFixPartsBase::initAfterPlacement() {
 void TripodBossFixPartsBase::initClippingSphere() {
     TBox3f box;
     MR::calcModelBoundingBox(&box, this);
-    _D0 = (box.i + box.f).multInLine(0.5f);
+    _D0 = (box.i + box.f) * 0.5f;
     mClippingDistance = _D0.distance(box.i);
 }
 

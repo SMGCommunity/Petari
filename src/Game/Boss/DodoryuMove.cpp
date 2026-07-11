@@ -231,7 +231,7 @@ namespace DodoryuSub {
         DodoryuUtil::calcVerticalizedDir(mHost, &toPlayer, toPlayer);
         DodoryuUtil::turnToward(mHost, toPlayer, _10);
 
-        mHost->mVelocity.set(toPlayer.scaleInline(_14));
+        mHost->mVelocity.set(toPlayer * _14);
 
         if (mHost->checkWallWithVelocity()) {
             DodoryuUtil::rotateVelocityByWall(mHost);

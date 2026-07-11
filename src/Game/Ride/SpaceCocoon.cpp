@@ -469,12 +469,9 @@ bool SpaceCocoon::updateBindWait() {
 bool SpaceCocoon::updateSpringPoint() {
     mSpringVel.mult(0.95);
 
-    TVec3f v1(mNeutralPos);
-    v1.sub(mCocoonPos);
+    TVec3f v1(mNeutralPos - mCocoonPos);
 
-    TVec3f v2(v1);
-    v2.scale(0.02f);
-    mSpringVel.add(v2);
+    mSpringVel.add(v1 * 0.02f);
     mCocoonPos.add(mSpringVel);
 
     updateDrawPoints();
@@ -514,7 +511,7 @@ void SpaceCocoon::updateHang() {
         pos.add(mNeutralPos);
     }
 
-    mPosition = pos.scaleInline(0.03f) + mPosition.scaleInline(0.97f);
+    mPosition = pos * 0.03f + mPosition * 0.97f;
     mCocoonPos.set(mPosition);
     updateDrawPoints();
 
@@ -563,8 +560,7 @@ void SpaceCocoon::updateDrawPoints() {
         f32 t = MR::getEaseOutValue(static_cast< f32 >(idx + 1) / static_cast< f32 >(mNumPoints + 1), 0.0f, 1.0f, 1.0f);
         t = MR::getEaseOutValue(t, 0.0f, 1.0f, 1.0f);
 
-        TVec3f baseUp(mUp);
-        baseUp.scale((idx + 1) * delta);
+        TVec3f baseUp(mUp * ((idx + 1) * delta));
 
         TVec3f pos;
         pos.x = mCocoonPos.x * (1.0f - t) + mNeutralPos.x * t;
@@ -573,8 +569,7 @@ void SpaceCocoon::updateDrawPoints() {
 
         pos.sub(baseUp);
 
-        TVec3f up(prevPos);
-        up.sub(pos);
+        TVec3f up(prevPos - pos);
         MR::normalize(&up);
 
         TVec3f side(mSide);
@@ -674,8 +669,7 @@ bool SpaceCocoon::tryRelease() {
     MR::normalize(&mVelocity);
 
     // turn mario so he flies feet-first
-    TVec3f reaxisUp(mVelocity);
-    reaxisUp.scale(-1.0f);
+    TVec3f reaxisUp(mVelocity * -1.0f);
     TVec3f reaxisFront(mUp);
     TVec3f reaxisSide = reaxisUp.cross(reaxisFront);
     MR::normalize(&reaxisSide);

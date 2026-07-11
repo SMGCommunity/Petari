@@ -72,7 +72,7 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     TVec3f v20(_5C);
     mtx.mult(v20, v20);
 
-    TVec3f tert = v20 - subvec.multInLine(_5C.z);
+    TVec3f tert = v20 - subvec * _5C.z;
     JMathInlineVEC::PSVECCopy(&tert, &watchpoint);
     CameraLocalUtil::setPos(this, v20);
     CameraLocalUtil::setWatchPos(this, watchpoint);

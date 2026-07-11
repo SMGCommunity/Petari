@@ -276,11 +276,7 @@ void IceMerameraKing::exeThrow() {
         }
 
         _E0 += 1;
-        TVec3f v11(*MR::getPlayerVelocity());
-        v11.scale(35.0f);
-        TVec3f v12(*MR::getPlayerCenterPos());
-        v12.add(v11);
-        mThrowingIce->emitIce(ice->mPosition, v12, -5.0f, mGravity);
+        mThrowingIce->emitIce(ice->mPosition, *MR::getPlayerCenterPos() + *MR::getPlayerVelocity() * 35.0f, -5.0f, mGravity);
         mThrowingIce = nullptr;
         MR::startSound(this, "SE_BM_ICEMERAKING_THROW");
     }
@@ -568,14 +564,12 @@ void IceMerameraKing::exeAngryDemo() {
 
     if (MR::isDemoPartLastStep("怒りデモ")) {
         if (!(_EC > 2)) {
-            TVec3f v7(mGravity);
-            v7.scale(200.0f);
+            TVec3f v7(mGravity * 200.0f);
             TVec3f v8(mPosition);
             v8.sub(v7);
             MR::appearStarPiece(this, v8, 8, 15.0f, 70.0f, false);
         } else {
-            TVec3f v5(mGravity);
-            v5.scale(200.0f);
+            TVec3f v5(mGravity * 200.0f);
             TVec3f v6(mPosition);
             v6.sub(v5);
             MR::appearStarPiece(this, v6, 16, 15.0f, 70.0f, false);

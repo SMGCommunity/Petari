@@ -306,9 +306,7 @@ void DodoryuStateLv2::endEscape() {
 
 void DodoryuStateLv2::exeEscapeJump() {
     if (MR::isFirstStep(this)) {
-        TVec3f gravity(mHost->mGravity);
-        gravity.scale(-10.0f);
-        mHost->mVelocity.set(gravity);
+        mHost->mVelocity.set(mHost->mGravity * 10.0f);
         mHost->shiftMoveStateNull();
     }
 
@@ -322,9 +320,7 @@ void DodoryuStateLv2::exeEscapeJump() {
         setNerve(&::DodoryuStateLv2NrvEscape::sInstance);
         mHost->snapToGround();
     } else {
-        TVec3f gravity(mHost->mGravity);
-        gravity.scale(0.5f);
-        mHost->mVelocity.add(gravity);
+        mHost->mVelocity += mHost->mGravity * 0.5f;
     }
 }
 
@@ -448,9 +444,7 @@ void DodoryuStateLv2::exeFindPos() {
             TPos3f mtx = mHost->mBaseMtx;
             TVec3f trans;
             mtx.getTrans(trans);
-            TVec3f scaledOffset(offset);
-            scaledOffset.scale(0.2f);
-            trans.add(scaledOffset);
+            trans += offset * 0.2f;
             mtx.setTrans(trans);
             mHost->setMtx(mtx);
         }
@@ -500,10 +494,7 @@ void DodoryuStateLv2::exeChaseMoreStart() {
         } else {
             MR::normalize(&toPlayer);
         }
-
-        TVec3f vel(toPlayer);
-        vel.scale(1500.0f / MR::getBckCtrl(mHost)->getEnd());
-        mHost->mVelocity.set(vel);
+        mHost->mVelocity.set(toPlayer * (1500.0f / MR::getBckCtrl(mHost)->getEnd()));
     }
 
     MR::startLevelSound(mHost, "SE_BM_LV_DODORYU_SHOUT");
@@ -725,9 +716,7 @@ void DodoryuStateLv2::knockOver() {
     TPos3f mtx(mHost->mBaseMtx);
     TVec3f trans;
     mtx.getTrans(trans);
-    TVec3f knockDir(_A0);
-    knockDir.scale(::sKnockSpeed);
-    trans.add(knockDir);
+    trans += (_A0 * ::sKnockSpeed);
     mtx.setTrans(trans);
     mHost->setMtx(mtx);
     mHost->keepOffFromClosedArea(nullptr);
@@ -844,9 +833,7 @@ void DodoryuStateLv2::calcRandomVelocity(s32 time) {
     f32 dist = MR::getRandom(mChaseParam->_84, mChaseParam->_88);
     f32 speed = dist / time;
     mHost->setMtx(MR::getPlayerBaseMtx());
-    TVec3f vel(frontVec);
-    vel.scale(speed);
-    mHost->mVelocity.set(vel);
+    mHost->mVelocity.set(frontVec * speed);
 }
 
 void DodoryuStateLv2::keepVerticalizedVelocity() {

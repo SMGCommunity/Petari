@@ -22,6 +22,11 @@ namespace NrvBirikyu {
     NEW_NERVE(HostTypeStopPointing, Birikyu, StopPointing);
 };  // namespace NrvBirikyu
 
+void FORCE_OPERATOR() {
+    TVec3f vec;
+    vec * 1.0f; vec + TVec3f(1.0f);
+}
+
 Birikyu::Birikyu(const char* pName)
     : LiveActor(pName), _8C(nullptr), _90(gZeroVec), _9C(gZeroVec), _A8(false), _A9(false), _AC(0.0f, 1.0f, 0.0f), _B8(0.0f, 0.0f, 1.0f), _C4(0.0f),
       _C8(10.0f) {
@@ -73,9 +78,7 @@ void Birikyu::initAfterPlacement() {
         f32 x2 = matrix.mMtx[0][2];
         _B8.set(x2, y2, z2);
         MR::normalize(&_B8);
-        TVec3f add(_9C * 400.0f);
-        TVec3f vec(_9C + add);
-        mPosition.set< f32 >(vec);
+        mPosition.set< f32 >(_9C + _9C * 400.0f);
     }
 }
 

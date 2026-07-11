@@ -34,7 +34,7 @@ void PoltaStateStagger::exeWait() {
     MR::separateScalarAndDirection(&v17, &v2, getHost()->_E0 - getHost()->mPosition);
 
     if (v17 >= 1800.0f) {
-        MR::addVelocity(getHost(), v2.multInLine(v17 - 1800.0f));
+        MR::addVelocity(getHost(), v2 * (v17 - 1800.0f));
         _20 = MR::isClockwiseToPlayer(getHost(), v2);
     }
 

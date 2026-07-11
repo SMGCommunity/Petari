@@ -197,7 +197,8 @@ void Mogucchi::exeScatter() {
     MR::normalizeOrZero(&mScatterNormal);
 
     if (!MR::isNearZero(mScatterNormal)) {
-        TVec3f v2 = railGravity->cross(mScatterNormal);
+        TVec3f v2;
+        PSVECCrossProduct(railGravity, mScatterNormal, &v2);
 
         TRot3f mtx;
         mtx.setXDirInline(v2);

@@ -228,7 +228,7 @@ void TrampleStar::divide() {
             if (readCheckFlag(vtx1, vtx2) != 0) {
                 midpoints[idx] = readCheckFlag(vtx1, vtx2);
             } else {
-                mVtxs[numVtxs] = (mVtxs[vtx1] + mVtxs[vtx2]).scaleInline(0.5f);
+                mVtxs[numVtxs] = (mVtxs[vtx1] + mVtxs[vtx2]) * 0.5f;
 
                 // FIXME: TVec2 shenanigans
                 TVec2f midpoint = mTexST[vtx1].addInline(mTexST[vtx2]).scaleInline(0.5f);
@@ -311,7 +311,7 @@ void TrampleStar::calcSurface(bool calcDrawBuffers) {
                 MR::normalizeOrZero(&up);
                 TVec2f texST = mTexST[vtx];
 
-                pos += mPosition - up.scaleInline(mDeformCoeff[vtx]);
+                pos += mPosition - up * mDeformCoeff[vtx];
                 mDrawPos[mNumDrawVtxs] = pos;
                 mDrawNorm[mNumDrawVtxs] = up;
                 mDrawTex[mNumDrawVtxs] = texST;
@@ -432,7 +432,7 @@ void TrampleStar::exeBindingShoot() {
                         MR::startSoundPlayer("SE_PV_JUMP_M", -1);
                     }
 
-                    MR::endBindAndPlayerJump(this, up.scaleInline(mJumpVel), 0);
+                    MR::endBindAndPlayerJump(this, up * mJumpVel, 0);
                     MR::startBckPlayer("Jump2", static_cast< const char* >(nullptr));
                     setNerve(&TrampleStarNrvWait::sInstance);
                 }
@@ -453,7 +453,7 @@ void TrampleStar::exeBindingShoot() {
                 mJumpVel *= 1.5f;
             }
 
-            MR::endBindAndPlayerJump(this, up.scaleInline(mJumpVel), 0);
+            MR::endBindAndPlayerJump(this, up * mJumpVel, 0);
         }
 
         setNerve(&TrampleStarNrvWait::sInstance);
@@ -528,7 +528,7 @@ bool TrampleStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         TVec3f down = -capturePos;
         down.normalize();
         TPos3f mtx;
-        capturePos += mPosition + down.scaleInline(mDeformCoeff[mCaptureVtx]);
+        capturePos += mPosition + down * mDeformCoeff[mCaptureVtx];
         MR::makeMtxUpSidePos(&mtx, -down, side, capturePos);
         MR::setPlayerBaseMtx(mtx);
         return true;

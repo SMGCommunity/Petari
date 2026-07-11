@@ -379,15 +379,25 @@ namespace JGeometry {
             JMathInlineVEC::PSVECSubtract(&a, &b, this);
         }
 
-        TVec3 operator*(f32 scalar) const NO_INLINE {
+        TVec3 operator*(f32 scalar) const {
             TVec3 ret(*this);
-            ret.x *= scalar;
-            ret.y *= scalar;
-            ret.z *= scalar;
+            ret *= scalar;
             return ret;
         }
 
-        TVec3& operator*=(f32);
+        TVec3 operator/(f32 div) const NO_INLINE {
+            TVec3 ret(*this);
+            ret *= (1.0f / div);
+            return ret;
+        }
+
+        void operator*=(f32 scalar) {
+            scale(scalar);
+        }
+
+        void operator/=(f32 scalar) {
+            scale(1.0f / scalar);
+        }
 
         void operator*=(const TVec3& op) {
             mulInternal(&this->x, &op.x, &this->x);
@@ -409,12 +419,6 @@ namespace JGeometry {
 
         // appears to be needed in RingBeam to match stack in some places
         TVec3 scaleInline(f32 scalar) const {
-            TVec3 ret(*this);
-            ret.scale(scalar);
-            return ret;
-        }
-
-        TVec3 scaleInline2(f32 scalar) const {
             TVec3 ret(*this);
             ret.scale(scalar);
             return ret;
@@ -646,11 +650,17 @@ namespace JGeometry {
             return ret;
         }
 
-        void scale(f32 scale);
+        void scale(f32 scalar) {
+            this->x = this->x * scalar;
+            this->y = this->y * scalar;
+            this->z = this->z * scalar;
+        }
 
-        void scale(f32 scalar, const TVec3& rVec); /*{
-            PSVECScale(rVec, this, scalar);
-        }*/
+        void scale(f32 scalar, const TVec3& rVec) NO_INLINE {
+            this->x = rVec.x * scalar;
+            this->y = rVec.y * scalar;
+            this->z = rVec.z * scalar;
+        }
 
         void negate();
 
@@ -726,18 +736,6 @@ namespace JGeometry {
             }
             f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
             scale(lengthinv * newlength);
-            return lengthinv * oldlength;
-        };
-
-        f32 setLength2(f32 newlength) {
-            f32 oldlength = squared();
-            if (oldlength <= 0.0000038146973f) {
-                return 0.0f;
-            }
-            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
-            x *= lengthinv * newlength;
-            y *= lengthinv * newlength;
-            z *= lengthinv * newlength;
             return lengthinv * oldlength;
         };
 

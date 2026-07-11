@@ -142,7 +142,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         f32 dotUp = mUp.dot(diff);
         f32 dotFront = mFront.dot(diff);
 
-        diff.set(mUp.scaleInline(dotUp) + mFront.scaleInline(dotFront));
+        diff.set(mUp * dotUp + mFront * dotFront);
 
         if (MR::isNearZero(diff)) {
             diff.set(mFront);
@@ -267,9 +267,7 @@ bool JumpBranch::updateBind() {
         return true;
     }
 
-    TVec3f grav(mGravity);
-    grav.scale(0.2f);
-    mSwingPoint->addAccel(grav);
+    mSwingPoint->addAccel(mGravity * 0.2f);
     mSwingPoint->strain(mPosition, 30.0f);
     mSwingPoint->updatePosAndAxis(mSwingPoint->mFront, 0.995f);
     return false;
