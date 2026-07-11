@@ -77,7 +77,6 @@ public:
     void changeAnimation(const char*, const char*);
     void changeAnimationNonStop(const char*);
     void changeAnimationUpper(const char*);
-    const char* changeMorphString(const char*) const;
     void stopAnimation(const char*);
     bool isAnimationRun(const char*) const;
     void changeNullAnimation(const char*, s8);
@@ -166,7 +165,6 @@ public:
     void initCommonEffect();
     void addSoundObjHolder();
     void initParts();
-    void initMorphStringTable();
     void setupSensors();
     void updateTransForCamera();
 
@@ -262,7 +260,6 @@ public:
     void updateFairyStar();
     void createRainbowDL();
     void updateRandomTexture(f32);
-    void updatePlayerMode();
     void updateEffect();
     bool checkEffectWaterColumn();
     void updateThrowVector();
@@ -306,8 +303,6 @@ public:
     void syncJumpBeeStickMode();
 
     bool isRequestJump() const;
-
-    void setPlayerMode(u16, bool);
 
     bool isInZeroGravitySpot() const;
     f32 getGravityRatio() const;
@@ -372,6 +367,15 @@ public:
     bool selectDamagePop(const HitSensor*) const;
     f32 getFaceLookHeight(const char*) const;
 
+    // Defined in MarioActorMorph
+    void setPlayerMode(u8, bool);
+    void resetPlayerModeOnDamage();
+    void resetPlayerModeOnNoDamage();
+    void updatePlayerMode();
+    void touchSensor(HitSensor*);
+    void initMorphStringTable();
+    const char* changeMorphString(const char*) const;
+
     // Defined in MarioActorOffensiveMsg
     void attackOrPushSensor(HitSensor*, f32);
     void attackOrPushSensorInDamage(HitSensor*, f32);
@@ -426,6 +430,8 @@ public:
     bool tryReleaseBombTeresa();
 
 
+    void updateHandAtMorph();
+    void runTeresaBaseAnimation();
     void getThrowVec(TVec3f*) const;
     bool isRequestThrow() const;
     void trampleJump(f32, f32);
@@ -612,14 +618,14 @@ public:
     /* 0x480 */ bool _480;
     /* 0x481 */ u8 _481;
     /* 0x482 */ bool _482;
-    /* 0x483 */ u8 _483;
+    /* 0x483 */ bool _483;
     /* 0x484 */ TVec3f _484;
     /* 0x490 */ f32 _490;
     /* 0x494 */ FixedPosition* _494;
     /* 0x498 */ FixedPosition* _498;
     /* 0x49C */ FixedPosition* _49C;
     /* 0x4A0 */ FixedPosition* _4A0;
-    /* 0x4A4 */ void* _4A4;  // used in calcAnimInMovement()
+    /* 0x4A4 */ HitSensor* _4A4;  // used in calcAnimInMovement() (maybe HitSensor*?)
     /* 0x4A8 */ u32 _4A8;
     /* 0x4AC */ f32 _4AC;
     /* 0x4B0 */ f32 _4B0;
