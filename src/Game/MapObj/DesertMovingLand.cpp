@@ -62,10 +62,10 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
 
     if (MR::isValidSwitchA(this)) {
         _C4.set(mPosition);
-        _D0.set(_C4 - stack_3C.scaleInline(arg));
+        _D0.set(_C4 - stack_3C * arg);
     } else {
         _D0.set(mPosition);
-        _C4.set(_D0 + stack_3C.scaleInline(arg));
+        _C4.set(_D0 + stack_3C * arg);
     }
     MR::setBodySensorTypePress(this);
 }
@@ -113,7 +113,7 @@ void DesertMovingLand::exeWait() {
 void DesertMovingLand::exeMoveDown() {
     if (MR::isFirstStep(this)) {
         TVec3f stack_8(_D0 - _C4);
-        stack_8.setLength(PSVECMag(&stack_8) / _DC);
+        stack_8.setLength(stack_8.length() / _DC);
         mVelocity.set(stack_8);
         MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST");
     }
@@ -138,7 +138,7 @@ void DesertMovingLand::exeMoveDown() {
 void DesertMovingLand::exeMoveUp() {
     if (MR::isFirstStep(this)) {
         TVec3f stack_8(_C4 - _D0);
-        stack_8.setLength(PSVECMag(&stack_8) / _E0);
+        stack_8.setLength(stack_8.length() / _E0);
         mVelocity.set(stack_8);
         MR::startAtmosphereSE("SE_OJ_DESERT_LAND_MOVE_ST");
     }
@@ -210,4 +210,4 @@ void DesertMovingLand::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
 void DesertMovingLand::initCaseUseSwitchA(const MapObjActorInitInfo& rInfo) {
 }
 
-DesertMovingLand::~DesertMovingLand() {};
+DesertMovingLand::~DesertMovingLand(){};

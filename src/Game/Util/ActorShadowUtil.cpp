@@ -374,7 +374,7 @@ namespace MR {
         TVec3f projectionPos;
         if (ActorShadow::getShadowController(pActor, (char*)nullptr)->isProjected()) {
             ActorShadow::getShadowController(pActor, (char*)nullptr)->getProjectionPos(&projectionPos);
-            pVecOutput->set((pActor->mPosition + projectionPos).multInLine(0.5f));
+            pVecOutput->set((pActor->mPosition + projectionPos) * 0.5f);
             *pF32Output = 0.5f * projectionPos.distance(pActor->mPosition) + a4;
             return true;
         } else {

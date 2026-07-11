@@ -12,7 +12,7 @@ public:
 
     void exeWait();
     inline bool isVelocityClose() {
-        return PSVECMag(&_90->_50) < 0.3f;
+        return _90->_50.length() < 0.3f;
     }
 
     const char* _8C;

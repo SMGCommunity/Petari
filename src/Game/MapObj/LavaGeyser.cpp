@@ -86,9 +86,7 @@ void LavaGeyser::updateHitSensor(HitSensor* pSensor) {
     }
 
     pSensor->mPosition.set(mPosition);
-    TVec3f v5 = _A0;
-    v5.mult(v4);
-    pSensor->mPosition.add(v5);
+    pSensor->mPosition.add(_A0 * v4);
 }
 
 void LavaGeyser::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {

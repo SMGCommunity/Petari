@@ -55,10 +55,10 @@ void CamKarikariEffector::update(CameraMan* pCameraMan) {
     TVec3f toWatchPos(diffWatchPos);
     MR::normalize(&toWatchPos);
 
-    // FIXME: register scheduling issue, result of multInLine should be preloaded before the actual mult?
+    // FIXME: register scheduling issue, result of operator * should be preloaded before the actual mult?
     TVec3f playerUp;
     MR::getPlayerUpVec(&playerUp);
-    TVec3f playerFocusPos = *MR::getPlayerPos() + playerUp.multInLine(::sPlayerRadius);
+    TVec3f playerFocusPos = *MR::getPlayerPos() + playerUp * ::sPlayerRadius;
 
     TVec3f diffPlayerPos = playerFocusPos - CameraLocalUtil::getPos(pCameraMan);
     TVec3f toPlayerPos(diffPlayerPos);

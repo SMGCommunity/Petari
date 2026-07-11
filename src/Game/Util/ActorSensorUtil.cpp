@@ -1012,7 +1012,7 @@ namespace MR {
         f32 value = (radius1 + radius2 - dist) / 2.0f;
 
         pPos->set(dir);
-        pPos->mult(value + pSensor1->mRadius + offset);
+        *pPos *= value + pSensor1->mRadius + offset;
         pPos->add(pSensor1->mPosition);
     }
 

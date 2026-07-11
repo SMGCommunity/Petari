@@ -21,7 +21,7 @@ namespace MR {
 
         SunshadeMapHolder* holder = MR::getSceneObj< SunshadeMapHolder >(SceneObj_SunshadeMapHolder);
 
-        return Collision::checkStrikeLineToSunshade(rPos, holder->_C.multInLine(a2), 0, nullptr, nullptr) != 0;
+        return Collision::checkStrikeLineToSunshade(rPos, holder->_C * a2, 0, nullptr, nullptr) != 0;
     }
 
     void createSunshadeMapHolder() {

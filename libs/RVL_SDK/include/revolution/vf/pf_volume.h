@@ -19,4 +19,6 @@ PF_VOLUME* VFiPFVOL_GetCurrentVolume();
 
 PF_VOLUME* VFiPFVOL_GetVolumeFromDrvChar(s8 drv_char);
 
+s32 VFiPFVOL_GetCurrentDir(struct PF_VOLUME* p_vol, struct PF_DIR_ENT* p_current_dir);
+
 #endif  // PF_VOLUME_H

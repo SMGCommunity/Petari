@@ -54,7 +54,7 @@ void AstroDomeBlueStar::CaptureActor::updateTransTraction(const TVec3f& rBasePos
     if (mPosition.distance(rTarget) < dist) {
         pos.set(rTarget);
     } else {
-        pos.add(mPosition, dir.multInLine(dist));
+        pos.add(mPosition, dir * dist);
     }
 
     MR::makeMtxUpNoSupportPos(&_8C, dir, pos);

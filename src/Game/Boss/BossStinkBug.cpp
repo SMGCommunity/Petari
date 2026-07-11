@@ -401,7 +401,7 @@ bool BossStinkBug::throwBomb(f32 f1, f32 f2) {
 
     jointMtx.getTrans(trans);
     jointMtx.getYDir(yDir);
-    yDir.scale(-f1);
+    yDir *= -f1;
     MR::addRandomVector(&yDir, yDir, f2);
 
     throwBomb->start(trans, yDir);

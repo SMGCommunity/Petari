@@ -52,15 +52,14 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     }
 
     MR::normalize(&subvec);
-    TVec3f cross;
-    PSVECCrossProduct(&vec, &subvec, &cross);
+    TVec3f cross = vec.cross(subvec);
 
     if (MR::isNearZero(cross)) {
         return result;
     }
 
     MR::normalize(&cross);
-    PSVECCrossProduct(&subvec, &cross, &vec);
+    vec.cross(subvec, cross);
     MR::normalize(&subvec);
     TPos3f mtx;
     mtx.identity();
@@ -73,7 +72,7 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     TVec3f v20(_5C);
     mtx.mult(v20, v20);
 
-    TVec3f tert = v20 - subvec.multInLine(_5C.z);
+    TVec3f tert = v20 - subvec * _5C.z;
     JMathInlineVEC::PSVECCopy(&tert, &watchpoint);
     CameraLocalUtil::setPos(this, v20);
     CameraLocalUtil::setWatchPos(this, watchpoint);

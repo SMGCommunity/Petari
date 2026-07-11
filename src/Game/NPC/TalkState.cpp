@@ -229,10 +229,7 @@ void TalkStateNormal::updateButton() {
     f32 f2 = camY.dot(up);
     f1 = f1 * f1;
 
-    TVec3f up_but_bigger(up);  // 0x48 but should be 0x3c
-    up_but_bigger.mult(1000.0f);
-
-    MR::calcNormalizedScreenPosition(&up, up_but_bigger + centerPlayer);  // Second arg is 0x3c, but should be 0x48
+    MR::calcNormalizedScreenPosition(&up, up * 1000.0f + centerPlayer);  // Second arg is 0x3c, but should be 0x48
     MR::calcNormalizedScreenPosition(&centerPlayer, centerPlayer);
     MR::normalize(up - centerPlayer, &up);  // First arg is 0x30
     TVec2f playerScreenPos;                 // 0x28

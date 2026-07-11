@@ -24,12 +24,10 @@ namespace DodoryuUtil {
         TVec3f auStack_40;
         TVec3f auStack_34 = TVec3f(rVec);
         auStack_40.scaleAdd(auStack_34, pDodoryu->mVelocity, -auStack_34.dot(pDodoryu->mVelocity));
-        pDodoryu->mVelocity.sub(auStack_40);
-        auStack_40.scale(param4);
-        pDodoryu->mVelocity.add(auStack_40);
-        TVec3f auStack_58 = TVec3f(auStack_34);
-        auStack_58.scale(param3);
-        pDodoryu->mVelocity.add(auStack_58);
+        pDodoryu->mVelocity -= auStack_40;
+        auStack_40 *= param4;
+        pDodoryu->mVelocity += auStack_40;
+        pDodoryu->mVelocity += auStack_34 * param3;
 
         if (pDodoryu->mVelocity.length() > param5) {
             pDodoryu->mVelocity.setLength(param5);

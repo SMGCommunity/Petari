@@ -255,7 +255,7 @@ void Rock::control() {
 
     MR::vecKillElement(MR::getRailPos(this) - mPosition, mGravity, &mVelocity);
     TVec3f grav(mGravity);
-    grav.scale(mGravityRate);
+    grav *= mGravityRate;
     mFallVelocity.add(grav);
     mVelocity.add(mFallVelocity);
 
@@ -280,7 +280,7 @@ void Rock::calcAndSetBaseMtx() {
         }
 
         TVec3f pos;
-        pos.sub(mPosition, up.scaleInline(mRadius));
+        pos.sub(mPosition, up * mRadius);
 
         if (MR::isSameDirection(up, mFront, 0.01f)) {
             MR::makeMtxUpNoSupportPos(&mBaseMtx, up, pos);
@@ -454,8 +454,7 @@ void Rock::initSensor() {
     MR::addHitSensor(this, "body", sensorType, 16, ::cSensorRadius * getRadius(), TVec3f(0.0f, 0.0f, 0.0f));
 
     if (mRockType == NormalRock) {
-        MR::addHitSensor(this, "weak", sensorType, 16, ::cWeakSensorRadius * getRadius(),
-                         static_cast< TVec3f >(::cWeakSensorOffset).scaleInline(getRadius()));
+        MR::addHitSensor(this, "weak", sensorType, 16, ::cWeakSensorRadius * getRadius(), static_cast< TVec3f >(::cWeakSensorOffset) * getRadius());
     }
 }
 
@@ -649,8 +648,8 @@ void Rock::moveOnRail(f32 speed, f32 rotateSpeed, bool isValidBind) {
     updateRotateX(mRotation.x + rotateSpeed);
     if (isValidBind) {
         TVec3f pos;
-        if (MR::getFirstPolyOnLineToMap(&pos, nullptr, mPosition, mGravity.scaleInline(mRadius * 2.0f))) {
-            mPosition.add(pos, mGravity.scaleInline(-mRadius));
+        if (MR::getFirstPolyOnLineToMap(&pos, nullptr, mPosition, mGravity * (mRadius * 2.0f))) {
+            mPosition.add(pos, mGravity * (-mRadius));
         }
     }
 }
@@ -949,7 +948,7 @@ void Rock::exeFreeze() {
     f32 f2 = step * (f1 * ::cFreezeRumbleWidth) / ::cFreezeFrame;
     TVec3f v1;
     v1.set(MR::getCamXdir());
-    v1.scale(f2);
+    v1 *= f2;
     mPosition.add(mFreezePos, v1);
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {

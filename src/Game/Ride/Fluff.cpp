@@ -155,7 +155,7 @@ void Fluff::exeRideStart() {
     }
 
     if (mVelocity.dot(mUp) < 15.0f) {
-        mVelocity.add(mUp.scaleInline(0.2f));
+        mVelocity.add(mUp * 0.2f);
     }
 
     if (updateRide()) {
@@ -277,7 +277,7 @@ bool Fluff::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
         if (isNerve(&NrvFluff::FluffNrvFreeBloom::sInstance) && MR::isGreaterStep(this, 15) ||
             isNerve(&NrvFluff::FluffNrvFreeWaitOnGround::sInstance)) {
             MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-            mVelocity.set(mGravity.scaleInline(-10.0f));
+            mVelocity.set(mGravity * -10.0f);
             setNerve(&NrvFluff::FluffNrvFreeWaitAir::sInstance);
 
             return false;
@@ -285,7 +285,7 @@ bool Fluff::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
 
         if (isNerve(&NrvFluff::FluffNrvFreeWaitAir::sInstance) && MR::isGreaterStep(this, 60)) {
             MR::tryRumblePadMiddle(this, WPAD_CHAN0);
-            mVelocity.set(mGravity.scaleInline(-5.0f));
+            mVelocity.set(mGravity * -5.0f);
             setNerve(&NrvFluff::FluffNrvFreeWaitAir::sInstance);
 
             return false;
@@ -381,8 +381,7 @@ bool Fluff::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
 
 void Fluff::endBind(f32 ejectForce) {
     if (ejectForce > 0.0f) {
-        TVec3f jumpImpulseVec(mUp);
-        jumpImpulseVec.scale(ejectForce);
+        TVec3f jumpImpulseVec(mUp * ejectForce);
         MR::vecKillElement(mVelocity, mGravity, &mVelocity);
         jumpImpulseVec.add(mVelocity);
         MR::startBckPlayer("Fall", (const char*)nullptr);
@@ -445,7 +444,7 @@ bool Fluff::updateRide() {
         MR::normalize(&mFront);
         worldStickDirection.scale(0.2f);
         mVelocity.add(worldStickDirection);
-        PSVECCrossProduct(&mUp, &mFront, &mSide);
+        mSide.cross(mUp, mFront);
         MR::startLevelSound(this, "SE_OJ_LV_FLUFF_SIDE_MOVE");
     }
 
@@ -468,8 +467,8 @@ void Fluff::updateWind() {
         f32 speedAlongGrav = MR::vecKillElement(mVelocity, mGravity, &mVelocity);
         MR::restrictVelocity(this, 6.0f);
 
-        mVelocity.add(mWindDir.scaleInline(speedAlongWind));
-        mVelocity.add(mGravity.scaleInline(speedAlongGrav));
+        mVelocity.add(mWindDir * speedAlongWind);
+        mVelocity.add(mGravity * speedAlongGrav);
 
         targetMoveDir.set(mWindDir);
     } else {

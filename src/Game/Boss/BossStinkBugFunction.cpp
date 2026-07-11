@@ -17,7 +17,7 @@ void BossStinkBugFunction_FORCE_MATCH_SDATA2() {
 }
 
 void BossStinkBugFunction::addHeightOffset(TVec3f* pOut, const BossStinkBug* pStinkBug, f32 scale) {
-    pOut->add(pStinkBug->mGravity.multInLine(-scale));
+    pOut->add(pStinkBug->mGravity * -scale);
 }
 
 void BossStinkBugFunction::addLocalHeightOffset(TVec3f* pOut, BossStinkBug* pStinkBug, f32 scale) {

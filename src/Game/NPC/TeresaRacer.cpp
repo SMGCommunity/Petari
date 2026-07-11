@@ -198,7 +198,7 @@ void TeresaRacer::exeMove() {
         if (mRacerId == -1) {
             MR::decidePose(this, up, MR::getRailDirection(this), MR::getRailPos(this), 1.0f, 0.05f, 0.1f);
         } else {
-            TVec3f dir = MR::getRailDirection(this) + MR::getCamZdir().invertOperatorInternal().multInLine(::sCameraDirScale);
+            TVec3f dir = MR::getRailDirection(this) + MR::getCamZdir().invertOperatorInternal() * ::sCameraDirScale;
 
             if (!MR::normalizeOrZero(&dir)) {
                 MR::decidePose(this, up, dir, MR::getRailPos(this), 1.0f, 0.05f, 0.1f);

@@ -600,12 +600,12 @@ void BenefitItemObj::doEscape() {
             MR::vecKillElement(v22, mGravity, &v22);
             MR::normalizeOrZero(&v22);
             if (_BC.dot(v22) < 0.0f) {
-                _BC += v22.scaleInline(0.2f);
+                _BC += v22 * 0.2f;
                 _BC.x *= 1.1f;
                 _BC.y *= 1.1f;
                 _BC.z *= 1.1f;
             } else {
-                _BC += v22.scaleInline(0.01f);
+                _BC += v22 * 0.01f;
                 _BC.x *= 0.01f;
                 _BC.y *= 0.01f;
                 _BC.z *= 0.01f;
@@ -621,14 +621,14 @@ void BenefitItemObj::doEscape() {
             runBck("Land");
         }
 
-        _C8 = mGravity.scaleInline(5.0f);
+        _C8 = mGravity * 5.0f;
         runEfx("Move");
     } else {
         _E5 = 1;
         _BC.x *= 0.95f;
         _BC.y *= 0.95f;
         _BC.z *= 0.95f;
-        _C8 += mGravity.scaleInline(1.0f);
+        _C8 += mGravity * 1.0f;
 
         if (_C8.length() > 20.0f) {
             _C8.setLength(20.0f);
@@ -640,8 +640,8 @@ void BenefitItemObj::doEscape() {
     if (MR::isBindedWall(this) && !_E5) {
         if (MR::getWallNormal(this)->dot(mGravity) < 0.0f) {
             f32 scalar = MR::vecKillElement(_BC, *MR::getWallNormal(this), &_BC);
-            _BC += (-*MR::getWallNormal(this)).scaleInline(scalar);
-            _C8 += (-mGravity).scaleInline(20.0f);
+            _BC += (-*MR::getWallNormal(this)) * scalar;
+            _C8 += (-mGravity) * 20.0f;
             _E5 = 1;
         }
     }

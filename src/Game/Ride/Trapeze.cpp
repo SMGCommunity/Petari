@@ -92,10 +92,8 @@ void Trapeze::draw() const {
         return;
     }
 
-    TVec3f left(mSide);
-    left.scale(-60.0f);
-    TVec3f right(mSide);
-    right.scale(60.0f);
+    TVec3f left(mSide * -60.0f);
+    TVec3f right(mSide * 60.0f);
 
     TVec3f grabLeft(left);
     TVec3f grabRight(right);
@@ -359,9 +357,7 @@ void Trapeze::updateHitSensor(HitSensor* pSensor) {
 
     if (mRider != nullptr) {
         pSensor->mPosition.set(mRider->mPosition);
-        TVec3f down(mGrabPoint->mUp);
-        down.scale(-70.0f);
-        pSensor->mPosition.add(down);
+        pSensor->mPosition.add(mGrabPoint->mUp * -70.0f);
     }
 }
 
@@ -395,7 +391,7 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         f32 dotUp = mUp.dot(grabPos);
         f32 dotFront = mFront.dot(grabPos);
 
-        grabPos = mPosition + mUp.scaleInline(dotUp) + mFront.scaleInline(dotFront);
+        grabPos = mPosition + mUp * dotUp + mFront * dotFront;
 
         f32 coord = grabPos.distance(mPosition);
         coord = MR::clamp(coord, 0.0f, mRopeLength);
@@ -469,8 +465,7 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
 
 bool Trapeze::tryJump() {
     if (MR::testCorePadTriggerA(WPAD_CHAN0) || MR::testSystemTriggerA()) {
-        TVec3f jumpVel(mGrabPoint->mVelocity);
-        jumpVel.scale(1.0f);
+        TVec3f jumpVel(mGrabPoint->mVelocity * 1.0f);
         jumpVel.y = MR::clamp(jumpVel.y, 20.0f, 50.0f);
 
         TVec3f grabVel(jumpVel.x, 0.0f, jumpVel.z);
@@ -522,9 +517,7 @@ bool Trapeze::tryJump() {
 }
 
 void Trapeze::updateStick(const TVec3f& rAnchor, f32 length) {
-    TVec3f grav(mGravity);
-    grav.scale(1.0f);
-    mSwingPoint->addAccel(grav);
+    mSwingPoint->addAccel(mGravity * 1.0f);
     mSwingPoint->strain(rAnchor, length);
     mSwingPoint->updatePosAndAxis(mSwingPoint->mFront, 0.995f);
 }
@@ -571,9 +564,7 @@ void Trapeze::updateHangPoint() {
         }
     }
 
-    TVec3f grav(mGravity);
-    grav.scale(1.0f);
-    mGrabPoint->addAccel(grav);
+    mGrabPoint->addAccel(mGravity * 1.0f);
     mGrabPoint->strain(mPosition, mGrabCoord);
     MR::vecKillElement(mGrabPoint->mVelocity, mSide, &mGrabPoint->mVelocity);
     mGrabPoint->updatePosAndAxis(mGrabPoint->mFront, 0.995f);

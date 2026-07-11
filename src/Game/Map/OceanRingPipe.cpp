@@ -86,7 +86,7 @@ void OceanRingPipe::initPoints() {
 
         TPos3f mtx;
         mtx.identity();
-        mtx.setRotateInline(MR::getRailDirection(this), angle);
+        mtx.setRotate(MR::getRailDirection(this), angle);
 
         f32 currDist = 0.0f;
         f32 nextDist = 0.0f;

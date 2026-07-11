@@ -10,10 +10,14 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include <JSystem/JKernel/JKRFileFinder.hpp>
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <cstdio>
 
 namespace {
+    static const char* cLayerDirName[0x11] = {"Common", "LayerA", "LayerB", "LayerC", "LayerD", "LayerE", "LayerF", "LayerG", "LayerH",
+                                              "LayerI", "LayerJ", "LayerK", "LayerL", "LayerM", "LayerN", "LayerO", "LayerP"};
+
     static bool isPrioPlacementObjInfo(const char* pName) NO_INLINE {
         return MR::isEqualStringCase(pName, "AreaObjInfo") || MR::isEqualStringCase(pName, "PlanetObjInfo") ||
                MR::isEqualStringCase(pName, "DemoObjInfo") || MR::isEqualStringCase(pName, "CameraCubeInfo");
@@ -161,6 +165,25 @@ JMapInfo StageDataHolder::getCommonPathPointInfoFromRailDataIndex(const JMapInfo
     return *pInfo;
 }
 
+// StageDataHolder::getCommonPathInfoElementNum
+
+s32 StageDataHolder::getStartPosNum() const {
+    s32 cur = 0;
+    for (const JMapInfo* i = &mStartObjs[0]; i != mStartObjs.end(); i++) {
+        cur += i->getNumEntries();
+    }
+
+    for (s32 i = 0; i < mStageDataHolderCount; i++) {
+        cur += mStageDataArray[i]->getStartPosNum();
+    }
+
+    return cur;
+}
+
+s32 StageDataHolder::getCurrentStartZoneId() const {
+    return findPlacedStageDataHolder(makeCurrentMarioJMapInfoIter())->mZoneID;
+}
+
 s32 StageDataHolder::getCurrentStartCameraId() const {
     JMapInfoIter marioIter = makeCurrentMarioJMapInfoIter();
     s32 cameraID;
@@ -263,6 +286,93 @@ void StageDataHolder::initPlacementMario() {
     NameObj* obj = funcPtr("マリオアクター");
     obj->init(iter);
     MR::clearCurrentPlacementZoneId();
+}
+
+JMapInfoIter StageDataHolder::makeMarioJMapInfoIter(const JMapIdInfo& rInfo) const {
+    const StageDataHolder* hldr = getStageDataHolderFromZoneId(rInfo.mZoneID);
+    s32 id = rInfo._0;
+    const JMapInfo* i = hldr->mStartObjs.begin();
+
+    while (i != hldr->mStartObjs.end()) {
+        JMapInfoIter iter = i->findElement< s32 >("MarioNo", id, 0);
+        bool res = !(iter == i->end());
+
+        if (res) {
+            return iter;
+        }
+
+        i++;
+    }
+
+    return JMapInfoIter();
+}
+
+void StageDataHolder::initJmpInfo(MR::AssignableArray< JMapInfo >* pInfo, const char* pName) {
+    s32 fileCnt = mArchive->countFile(pName) - 2;
+    s32 v = fileCnt > 0 ? fileCnt : 0;
+
+    if (v != 0) {
+        JMapInfo* inf = new JMapInfo[v];
+        pInfo->mArr = inf;
+        pInfo->mMaxSize = v;
+        attachJmpInfoToArray(inf, pName);
+    }
+}
+
+void StageDataHolder::initAllLayerJmpInfo(MR::AssignableArray< JMapInfo >* pInfo, const char* pName) {
+    s32 v = 0;
+    u32 curScenario = MR::getCurrentScenarioNo();
+    u32 commonLayers = ScenarioDataFunction::getCurrentCommonLayers(_A8);
+    u32 mask = commonLayers | ScenarioDataFunction::getCurrentScenarioLayers(_A8, curScenario);
+    char buf[64];
+
+    for (u32 i = 0; i < 0x11; i++) {
+        if ((mask & (1 << i)) != 0) {
+            snprintf(buf, sizeof(buf), "%s/%s", pName, cLayerDirName[i]);
+            s32 fileCnt = mArchive->countFile(buf) - 2;
+            v += fileCnt > 0 ? fileCnt : 0;
+        }
+    }
+
+    if (v != 0) {
+        JMapInfo* inf = new JMapInfo[v];
+        pInfo->mMaxSize = v;
+        pInfo->mArr = inf;
+
+        for (u32 i = 0; i < 0x11; i++) {
+            if ((mask & (1 << i)) != 0) {
+                snprintf(buf, sizeof(buf), "%s/%s", pName, cLayerDirName[i]);
+                inf = attachJmpInfoToArray(inf, buf);
+            }
+        }
+    }
+}
+
+void StageDataHolder::initAllLayerJmpInfo(MR::AssignableArray< JMapInfo >* pInfo, const char* a2, const char* a3) {
+    u32 commonLayers = ScenarioDataFunction::getCurrentCommonLayers(_A8);
+    u32 scenarioLayers = ScenarioDataFunction::getCurrentScenarioLayers(_A8, MR::getCurrentScenarioNo());
+    initLayerJmpInfo(pInfo, a2, a3, commonLayers | scenarioLayers);
+}
+
+// StageDataHolder::initLayerJmpInfo
+
+JMapInfo* StageDataHolder::attachJmpInfoToArray(JMapInfo* pInfo, const char* a2) {
+    s32 fileCnt = mArchive->countFile(a2) - 2;
+    s32 v = fileCnt > 0 ? fileCnt : 0;
+
+    if (v == 0) {
+        return pInfo;
+    }
+
+    JKRArcFinder* arch = mArchive->getFirstFile(a2);
+
+    for (u32 i = 0; i < v; i++, pInfo++, arch->findNextFile()) {
+        pInfo->attach(mArchive->getIdxResource(arch->mDirIndex));
+        pInfo->setName(arch->mName);
+    }
+
+    delete arch;
+    return pInfo;
 }
 
 void StageDataHolder::initTableData() {

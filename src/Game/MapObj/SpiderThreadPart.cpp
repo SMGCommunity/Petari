@@ -418,17 +418,13 @@ void SpiderThreadPart::updatePointVelocityTouch(s32 hangIndex, const TVec3f& rVe
     for (s32 idx = 0; idx < hangIndex; idx++) {
         f32 t = MR::getEaseOutValue(static_cast< f32 >(idx + 1) / static_cast< f32 >(hangIndex + 1), 0.0f, 1.0f, 1.0f);
 
-        TVec3f vel(rVel);
-        vel.scale(t);
-        getPoint(idx)->mVelocity.add(vel);
+        getPoint(idx)->mVelocity.add(rVel * t);
     }
 
     for (s32 idx = hangIndex + 1; idx < mNumPoints; idx++) {
         f32 t = MR::getEaseOutValue(static_cast< f32 >(mNumPoints - idx) / static_cast< f32 >(mNumPoints - hangIndex), 0.0f, 1.0f, 1.0f);
 
-        TVec3f vel(rVel);
-        vel.scale(t);
-        getPoint(idx)->mVelocity.add(vel);
+        getPoint(idx)->mVelocity.add(rVel * t);
     }
 }
 
@@ -462,7 +458,7 @@ void SpiderThreadPart::updateForceAttach() {
         TVec3f vel(getPoint(idx)->mVelocity);
         getPoint(idx)->updateSpring();
 
-        getPoint(idx)->setPos(getPoint(idx)->mPosition.scaleInline(t) + getPoint(idx)->mBasePos.scaleInline(1.0f - t));
+        getPoint(idx)->setPos(getPoint(idx)->mPosition * t + getPoint(idx)->mBasePos * (1.0f - t));
         getPoint(idx)->mVelocity.set(vel);
     }
 }

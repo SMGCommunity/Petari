@@ -108,23 +108,20 @@ void BlackHole::initMapToolInfo(const JMapInfoIter& rIter) {
         setName("ブラックホール[キューブ指定]");
     }
 
-    if (_A4 == 0) {
+    if (_A4 == nullptr) {
         _A0 = 500.0f * mScale.z;
     } else {
-        TVec3f stack_C;
-        stack_C = mScale;
-        _A0 = PSVECMag(&stack_C);
+        _A0 = (mScale * 500.0f).length();
     }
 
     f32 arg0;
-    bool ret = MR::getJMapInfoArg0NoInit(rIter, &arg0);
 
-    if (ret) {
+    if (MR::getJMapInfoArg0NoInit(rIter, &arg0)) {
         _9C = arg0 / 1000.0f;
-    } else if (_A4) {
-        _9C = 1.0f;
-    } else {
+    } else if (_A4 == nullptr) {
         _9C = mScale.x;
+    } else {
+        _9C = 1.0f;
     }
 }
 

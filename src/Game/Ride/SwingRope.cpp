@@ -193,8 +193,7 @@ void SwingRope::initPoints() {
     mPoints = new SwingRopePoint*[mNumPoints];
 
     for (s32 idx = 0; idx < mNumPoints; idx++) {
-        TVec3f pos(mGravity);
-        pos.scale(50.0f * (idx + 1));
+        TVec3f pos(mGravity * (50.0f * (idx + 1)));
         pos.add(mBasePos);
         mPoints[idx] = new SwingRopePoint(pos);
     }
@@ -212,8 +211,7 @@ void SwingRope::updateHitSensor(HitSensor* pSensor) {
     }
 
     if (MR::isSensorRide(pSensor)) {
-        TVec3f sensorPos(mSledPoint->mUp);
-        sensorPos.scale(-50.0f);
+        TVec3f sensorPos(mSledPoint->mUp * -50.0f);
         sensorPos.add(mSledPoint->mPosition);
         pSensor->mPosition.set(sensorPos);
         return;
@@ -242,7 +240,7 @@ bool SwingRope::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         TVec3f grav(mGravity);
         TVec3f pos(mPosition);
 
-        MR::calcPerpendicFootToLine(&pos, *MR::getPlayerPos(), mBasePos, mBasePos + grav.scaleInline(mRopeLength));
+        MR::calcPerpendicFootToLine(&pos, *MR::getPlayerPos(), mBasePos, mBasePos + grav * mRopeLength);
 
         TVec3f posDiff = pos - mBasePos;
         f32 grabCoord = posDiff.dot(grav);
@@ -304,8 +302,7 @@ f32 SwingRope::calcFriction(s32 index) const {
 }
 
 void SwingRope::addPointGravity() {
-    TVec3f grav(mGravity);
-    grav.scale(1.0f);
+    TVec3f grav(mGravity * 1.0f);
 
     for (s32 idx = 0; idx < mNumPoints; idx++) {
         mPoints[idx]->addAccel(grav);
@@ -367,9 +364,9 @@ bool SwingRope::tryJump() {
         TVec3f proj(mGravity);
         proj.scale(mSledPoint->mVelocity.dot(mGravity));
         if (proj.length() < 25.0f) {
-            proj = mGravity.scaleInline(-25.0f);
+            proj = mGravity * -25.0f;
         } else if (proj.length() > 50.0f) {
-            proj = mGravity.scaleInline(-50.0f);
+            proj = mGravity * -50.0f;
         }
 
         TVec3f velHoriz(mSledPoint->mVelocity);
@@ -382,7 +379,7 @@ bool SwingRope::tryJump() {
             TVec3f stick(0.0f, 0.0f, 0.0f);
             MR::calcWorldStickDirectionXZ(&stick, WPAD_CHAN0);
             front.set< f32 >(stick.x, stick.y, stick.z);
-            velHoriz.set(stick.scaleInline(5.0f));
+            velHoriz.set(stick * 5.0f);
             MR::vecKillElement(velHoriz, mGravity, &velHoriz);
         } else if (!MR::isNearZero(velHoriz, 0.001f)) {
             front.set(velHoriz);
@@ -483,7 +480,7 @@ void SwingRope::updateFootPos() {
     footMtx.getZDirInline(front);
     footMtx.getTransInline(mFootPos);
 
-    mFootPos.add(side.scaleInline(0.0f) + up.scaleInline(-20.0f) + front.scaleInline(10.0f));
+    mFootPos.add(side * 0.0f + up * -20.0f + front * 10.0f);
     mGrabToFootDist = mFootPos.distance(mSledPoint->mPosition);
     mFootCoord = mGrabCoord + mGrabToFootDist;
     mFootPointNum = calcPointNo(mFootCoord);
@@ -585,14 +582,13 @@ void SwingRope::updateStretchHangUpperPoints() {
 
     TVec3f front(mSledPoint->mFront);
     for (s32 idx = 0; idx <= grabIndex; idx++) {
-        TVec3f pos(mSledPoint->mUp);
-        pos.scale(-50.0f * (idx + 1));
+        TVec3f pos(mSledPoint->mUp * (-50.0f * (idx + 1)));
         pos.add(mBasePos);
 
         if (mStretchTime < 10) {
             f32 t = MR::getEaseOutValue((mStretchTime + 1) / 10.0f, 0.0f, 1.0f, 1.0f);
             TVec3f stretchPos(pos);
-            pos = stretchPos.scaleInline(t) + mPoints[idx]->mPosition.scaleInline(1.0f - t);
+            pos = stretchPos * t + mPoints[idx]->mPosition * (1.0f - t);
         }
         mPoints[idx]->setAndUpdatePosAndAxis(pos, mSledPoint->mUp, front);
         front.set(mPoints[idx]->mFront);
@@ -619,8 +615,8 @@ void SwingRope::updateHangLowerPoints() {
         MR::normalize(&up);
         MR::normalize(&front);
 
-        PSVECCrossProduct(&up, &front, &side);
-        if (!MR::isNearZero(side, 0.001f)) {
+        side.cross(up, front);
+        if (!MR::isNearZero(side)) {
             MR::makeAxisUpFront(&side, &front, up, front);
             mPoints[nextIndex]->setPosAndAxis(mFootPos, side, up, front);
         }

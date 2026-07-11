@@ -128,14 +128,12 @@ void DinoPackunTail::addAccelKeepBend() {
             if (MR::makeAxisAndCosignVecToVec(&v16, &v11, v19, v17) && v11 < 1.1f) {
                 f32 bendPower = mNodes[i]->getKeepBendPower();
                 f32 v8 = (_C * ((1.0f - MR::normalize(v11, -1.0f, 1.1f)) * bendPower));
-                TVec3f v15;
-                PSVECCrossProduct(&v17, &v16, &v15);
+                TVec3f v15 = v17.cross(v16);
                 MR::normalize(&v15);
                 mNodes[i]->addNodeVelocityHost(v15 * v8);
 
                 if (i >= 2) {
-                    TVec3f v14;
-                    PSVECCrossProduct(&v19, &v16, &v14);
+                    TVec3f v14 = v19.cross(v16);
                     MR::normalize(&v14);
                     mNodes[i - 2]->addNodeVelocityHost(v14 * v8);
                 }

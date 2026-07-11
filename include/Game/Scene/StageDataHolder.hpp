@@ -26,6 +26,8 @@ public:
     void getStartCameraIdInfoFromStartDataIndex(JMapIdInfo*, int) const;
     s32 getGeneralPosNum() const;
 
+    JMapInfoIter makeMarioJMapInfoIter(const JMapIdInfo&) const;
+
     const StageDataHolder* findPlacedStageDataHolder(const JMapInfoIter&) const;
     const StageDataHolder* getStageDataHolderFromZoneId(int) const;
     const StageDataHolder* getStageDataHolderFromZoneId(int);
@@ -58,6 +60,8 @@ public:
     JMapInfoIter getStartJMapInfoIterFromStartDataIndex(int) const;
 
     void calcPlacementMtx(const JMapInfoIter&);
+
+    JMapInfo* attachJmpInfoToArray(JMapInfo*, const char*);
 
     MR::AssignableArray< JMapInfo > mPlacementObjs;   // 0xC
     MR::AssignableArray< JMapInfo > mStartObjs;       // 0x14

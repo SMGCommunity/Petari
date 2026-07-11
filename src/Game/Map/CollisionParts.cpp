@@ -9,6 +9,11 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
+void FORCE_SCALE() {
+    TVec3f vec;
+    vec.scale(1.0f);
+}
+
 CollisionParts::CollisionParts() {
     _0 = nullptr;
     mHitSensor = nullptr;
@@ -260,14 +265,9 @@ s32 CollisionParts::getPlacementZoneID() const {
 void CollisionParts::projectToPlane(TVec3f* pProjected, const TVec3f& rPos, const TVec3f& rOrigin, const TVec3f& rNormal) {
     TVec3f projected = rPos;
 
-    TVec3f relative = rPos;
-    relative.sub(rOrigin);
+    f32 distance = (rPos - rOrigin).dot(rNormal);
 
-    f32 distance = relative.dot(rNormal);
-
-    TVec3f negNormal = TVec3f(-rNormal);
-    negNormal.scale(distance);
-    projected.add(negNormal);
+    projected.add(-rNormal * distance);
     pProjected->set(projected);
 }
 

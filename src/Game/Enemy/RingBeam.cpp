@@ -239,9 +239,9 @@ void RingBeam::setRadius(f32 radius) {
         MR::extractMtxYDir(_8c->getBaseMtx(), &Ydir);
         Ydir.scale(1000.0f);
 
-        MR::getFirstPolyOnLineToMap(&temp2, &triangle, _c0, _b4.scaleInline(500.0f));
+        MR::getFirstPolyOnLineToMap(&temp2, &triangle, _c0, _b4 * 500.0f);
 
-        temp2 -= _b4.scaleInline(10.0f);
+        temp2 -= _b4 * 10.0f;
         MR::calcPerpendicFootToLine(&temp6, temp2, _8c->mPosition + Ydir, _8c->mPosition - Ydir);
         _a4->mPosition.set(temp6);
         MR::startBckNoInterpole(_a4, str);
@@ -257,7 +257,7 @@ void RingBeam::initPos(const LiveActor* actor) {
     TVec3f baseMtxYdir;
     actorBaseMtxCopy.setInline(actor->getBaseMtx());
     actorBaseMtxCopy.getYDir(baseMtxYdir);
-    mPosition.set(actor->mPosition + baseMtxYdir.scaleInline(75.0f));
+    mPosition.set(actor->mPosition + baseMtxYdir * 75.0f);
 }
 
 void RingBeam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -307,13 +307,13 @@ void RingBeam::exeSpread() {
         TVec3f temp;
         MR::extractMtxZDir(_8c->getBaseMtx(), &_a8);
         MR::extractMtxYDir(_8c->getBaseMtx(), &temp);
-        _c0.set(_8c->mPosition + temp.scaleInline(75.0f));
+        _c0.set(_8c->mPosition + temp * 75.0f);
         MR::calcGravityVector(this, _c0, &_b4, nullptr, 0);
     }
 
     TVec3f ec;
     if (_9c) {
-        MR::calcGravityVector(this, _c0 + _a8.scaleInline(mSpeed), &_b4, nullptr, 0);
+        MR::calcGravityVector(this, _c0 + _a8 * mSpeed, &_b4, nullptr, 0);
         MR::makeMtxUpFront(&mtx, -_b4, _a8);
         mtx.getZDir(_a8);
         TVec3f temp7;
@@ -324,7 +324,7 @@ void RingBeam::exeSpread() {
         ec = mPosition;
     }
 
-    _c0 += _a8.scaleInline(mSpeed);
+    _c0 += _a8 * mSpeed;
     setRadius((_c0 - ec).length());
 
     if (!MR::isPowerStarGetDemoActive()) {
@@ -334,12 +334,12 @@ void RingBeam::exeSpread() {
             f32 float2;
             TVec3f temp13;
             MR::extractMtxYDir(_8c->getBaseMtx(), &temp13);
-            TVec3f temp15 = temp12 - temp13.scaleInline(temp12.dot(temp13));
+            TVec3f temp15 = temp12 - temp13 * (temp12.dot(temp13));
             MR::normalizeOrZero(&temp15);
             MR::normalizeOrZero(&temp12);
             float2 = 1.0f - __fabsf(temp13.dot(temp12));
             radius = getSensor("Beam")->mRadius;
-            _cc = ec + temp15.scaleInline(radius).scaleInline(float2);
+            _cc = ec + temp15 * radius * float2;
         } else {
             _cc = ec;
         }

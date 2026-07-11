@@ -324,7 +324,7 @@ void BegomanBase::exePursueCore(const MR::ActorMoveParam& rMoveParam, const Nerv
     }
 
     if (MR::isStep(this, 18)) {
-        mVelocity = mFaceVec.scaleInline(15.0f).scaleInline(f1);
+        mVelocity = mFaceVec * 15.0f * f1;
     }
 
     if (isFallNextMove(150.0f, 150.0f)) {
@@ -426,7 +426,7 @@ void BegomanBase::exeBrakeCore(const Nerve* pNerve) {
     reboundWallAndGround(&mFaceVec, true);
 
     if (isFallNextMove(150.0f, 150.0f)) {
-        MR::addVelocityLimit(this, (-mFaceVec).scaleInline(0.0f));
+        MR::addVelocityLimit(this, (-mFaceVec) * 0.0f);
     } else {
         if (!ElectricRailFunction::isTouchRail(getSensor("check"), nullptr, nullptr) && MR::isGreaterStep(this, 50)) {
             MR::startAction(this, "Brake");
@@ -619,8 +619,8 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
         MR::calcSideVec(&vec2, pActor);
     } else {
         vec1.set(*pVec);
-        PSVECCrossProduct(&pActor->mGravity, &vec1, &vec2);
-        PSVECCrossProduct(&vec2, &pActor->mGravity, &vec1);
+        vec2.cross(pActor->mGravity, vec1);
+        vec1.cross(vec2, pActor->mGravity);
     }
 
     f32 angle = 0.0f;
@@ -632,10 +632,10 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
         TVec3f directionFromLauncher(vec2);
         directionFromLauncher.scale(MR::cos(angle));
 
-        directionFromLauncher.add(vec1.scaleInline(MR::sin(angle)));
+        directionFromLauncher += (vec1 * MR::sin(angle));
 
-        begomanArray[i]->mPosition.set(pActor->mPosition + directionFromLauncher.scaleInline(distFromLauncher));
-        begomanArray[i]->mVelocity.set(directionFromLauncher.scaleInline(f2) - pActor->mGravity.scaleInline(f3));
+        begomanArray[i]->mPosition.set(pActor->mPosition + directionFromLauncher * distFromLauncher);
+        begomanArray[i]->mVelocity.set(directionFromLauncher * f2 - pActor->mGravity * f3);
         begomanArray[i]->mFaceVec.set(directionFromLauncher);
 
         angle += TWO_PI / (numBegoman);
@@ -707,7 +707,7 @@ bool BegomanBase::reboundPlaneWithEffect(const TVec3f& rVec, f32 f1, f32 f2, con
     if (pEffectName != nullptr && reflected) {
         TVec3f bodySensorPos(getSensor("body")->mPosition);
 
-        bodySensorPos.sub(rVec.scaleInline(getSensor("body")->mRadius));
+        bodySensorPos.sub(rVec * getSensor("body")->mRadius);
         MR::emitEffectHit(this, bodySensorPos, pEffectName);
     }
     return reflected;
@@ -731,7 +731,7 @@ void BegomanBase::reboundWallAndGround(TVec3f* pOut, bool emitEffect) {
     if (MR::isBindedWallOfMap(this)) {
         TVec3f wallNormal(*MR::getWallNormal(this));
         bool reboundWall = reboundPlaneWithEffect(wallNormal, 0.0f, 0.0f, "Spark");
-        mVelocity.add(wallNormal.scaleInline(5.0f));
+        mVelocity.add(wallNormal * 5.0f);
 
         if (reboundWall) {
             MR::startLevelSound(this, "SE_EM_LV_BEGOMAN_COLLI_WALL");
@@ -800,7 +800,7 @@ void BegomanBase::addVelocityOnPushedFromElectricRail(const TVec3f& rVec1, const
 
     directionAwayFromRail.setLength(10.0f);
     MR::addVelocityLimit(this, directionAwayFromRail);
-    MR::addVelocityLimit(this, mGravity.scaleInline(-20.0f));
+    MR::addVelocityLimit(this, mGravity * -20.0f);
 }
 
 bool BegomanBase::checkTouchElectricRail(bool notCheckPush) {
@@ -864,10 +864,10 @@ void BegomanBase::pushedFromElectricRail(HitSensor* pSensor, const TVec3f& rVec1
     vec.setLength(f2);
 
     if (limit) {
-        MR::addVelocityLimit(this, directionAwayFromRail.scaleInline(f1));
+        MR::addVelocityLimit(this, directionAwayFromRail * f1);
         MR::addVelocityLimit(this, vec);
     } else {
-        MR::addVelocity(this, directionAwayFromRail.scaleInline(f1));
+        MR::addVelocity(this, directionAwayFromRail * f1);
         MR::addVelocity(this, vec);
     }
 }
@@ -943,7 +943,7 @@ void BegomanBase::calcBlowReaction(const TVec3f& rVec1, const TVec3f& rVec2, f32
     }
 
     blowDirection.scale(blowStrengthParallel);
-    blowDirection.sub(mGravity.scaleInline(blowStrengthVertical));
+    blowDirection.sub(mGravity * blowStrengthVertical);
     mVelocity.set(blowDirection);
 }
 

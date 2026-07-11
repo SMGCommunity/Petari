@@ -57,13 +57,10 @@ void RevolvingWay::exeWait() {
 }
 
 void RevolvingWay::addAccelMoment() {
-    // FIXME: broke this when adjusting some TVec stuff, fix later. (f regswap)
-    // https://decomp.me/scratch/2QECD
-
     TVec3f rotateMoment;
     if (MR::isStarPointerPointing(this, 0, true, "弱") && MR::testCorePadButtonB(WPAD_CHAN0) &&
         MR::calcStarPointerStrokeRotateMoment(&rotateMoment, mPosition, mRadius, 0)) {
-        mFriction += rotateMoment.multiplyOperatorInline(0.04f);
+        mFriction += rotateMoment * 0.04f;
         f32 mag = mFriction.length();
         if (mag > 0.15f) {
             mFriction *= (0.15f / mag);

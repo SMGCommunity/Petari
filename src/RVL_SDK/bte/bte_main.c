@@ -93,26 +93,7 @@ void __btu_interrupt_handler_debug_msg(BOOLEAN enable) {
 #endif
 
 static void BTUInterruptHandler(OSAlarm* alarm, OSContext* context) {
-#if !defined(NDEBUG)
-    OSTime start;
-    OSTime end;
-    OSTick elapsed;
-
-    start = __OSGetSystemTime();
-#endif
-
     OSSwitchFiber((u32)&btu_task_msg_handler, (u32)__BTUInterruptHandlerStack + sizeof __BTUInterruptHandlerStack);
-
-#if !defined(NDEBUG)
-    end = __OSGetSystemTime();
-
-    if (enable_dbg_msg) {
-        elapsed = OSTicksToMicroseconds(OSDiffTick(end, start));
-        if (elapsed > 100) {
-            OSReport("BTUInterruptHandler: Warning BTU consumes %d microseconds\n", elapsed);
-        }
-    }
-#endif
 }
 
 static void BTE_BringUpStack(void) {

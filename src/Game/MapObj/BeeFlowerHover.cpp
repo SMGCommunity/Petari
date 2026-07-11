@@ -4,6 +4,7 @@
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRailPosture.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 namespace {
     static const f32 sDefaultRotateSpeed = 50.0f;
@@ -148,38 +149,9 @@ void BeeFlowerHover::control() {
         }
     }
 
-    f32 v5 = _BC;
-    TVec3f v11;
-    v5 = v5 * 0.017453292f;
-    v11.y = 1.0f;
-    v11.x = 0.0f;
-    v11.z = 0.0f;
-
-    TMtx34f v12;  // stack_20
-    v12.mMtx[0][3] = 0.0f;
-    v12.mMtx[1][3] = 0.0f;
-    v12.mMtx[2][3] = 0.0f;
-
-    TVec3f v10;
-    v10.set(v11);
-    f32 mag = PSVECMag(&v10);
-    PSVECNormalize(&v10, &v10);
-    f32 v6 = sin(v5);
-    f32 v7 = cos(v5);
-    v12.mMtx[0][0] = v7 + ((1.0f - v7) * (v10.x * v10.x));
-    v12.mMtx[1][1] = v7 + ((1.0f - v7) * (v10.y * v10.y));
-
-    v12.mMtx[2][2] = v7 + ((1.0f - v7) * (v10.z * v10.z));
-
-    // f32 val_3 =
-
-    v12.mMtx[0][1] = (v10.y * ((1.0f - v7) * v10.x)) - (v6 * v10.z);
-    v12.mMtx[1][0] = (v10.y * ((1.0f - v7) * v10.x)) + (v6 * v10.z);
-    v12.mMtx[0][2] = (v10.z * ((1.0f - v7) * v10.x)) + (v6 * v10.y);
-    v12.mMtx[2][0] = (v10.z * ((1.0f - v7) * v10.x)) - (v6 * v10.y);
-    v12.mMtx[1][2] = (v10.z * ((1.0f - v7) * v10.y)) - (v6 * v10.x);
-    v12.mMtx[2][1] = (v10.z * ((1.0f - v7) * v10.y)) + (v6 * v10.x);
-    _8C.concat(v12);
+    TPos3f mtx;
+    mtx.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(_BC));
+    _8C.concat(mtx);
 
     if (mRailMover) {
         mRailMover->movement();

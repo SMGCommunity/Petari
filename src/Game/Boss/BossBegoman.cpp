@@ -66,7 +66,7 @@ void BossBegoman::init(const JMapInfoIter& rIter) {
 
     MR::calcGravity(this);
 
-    mInitPos.sub(mGravity.scaleInline(10.0f));
+    mInitPos.sub(mGravity * 10.0f);
     mHead = new BossBegomanHead(this, mHeadMtx);
     mHead->initWithoutIter();
 
@@ -252,7 +252,7 @@ void BossBegoman::addVelocityOnPushedFromElectricRail(const TVec3f& a1, const TV
     railPushVelH.setLength(getRailPushVelHBoss());
 
     mVelocity.add(railPushVelH);
-    mVelocity.add(mGravity.scaleInline(-getRailPushJumpBoss()));
+    mVelocity.add(mGravity * -getRailPushJumpBoss());
 }
 
 bool BossBegoman::requestAttack() {
@@ -353,7 +353,7 @@ void BossBegoman::exeTurn() {
     }
 
     if (MR::isBckPlaying(this, "Turn")) {
-        MR::emitEffectHit(this, mPosition + mFaceVec.scaleInline(180.0f), "EdgeSpark");
+        MR::emitEffectHit(this, mPosition + mFaceVec * 180.0f, "EdgeSpark");
     }
 
     updateRotateY(0.4f, 0.005f);
@@ -531,10 +531,10 @@ void BossBegoman::exeElectricDeath() {
         MR::normalizeOrZero(&vec);
 
         if (mHealth == 2) {
-            MR::appearStarPieceToDirection(this, mPosition - mGravity.scaleInline(200.0f), vec, 8, 20.0f, 40.0f, false);
+            MR::appearStarPieceToDirection(this, mPosition - mGravity * 200.0f, vec, 8, 20.0f, 40.0f, false);
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         } else if (mHealth == 1) {
-            MR::appearStarPieceToDirection(this, mPosition - mGravity.scaleInline(200.0f), vec, 16, 20.0f, 40.0f, false);
+            MR::appearStarPieceToDirection(this, mPosition - mGravity * 200.0f, vec, 16, 20.0f, 40.0f, false);
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         }
     }
@@ -580,11 +580,11 @@ void BossBegoman::exeElectricReturn() {
         if (ElectricRailFunction::isTouchRail(getSensor("check"), &vec1, &vec2)) {
             vec1.sub(mPosition);
 
-            TVec3f vec3(vec1);
-            PSVECCrossProduct(&vec2, &vec3, &vec3);
+            TVec3f vec3 = vec1;
+            vec3.cross(vec2, vec3);
 
-            TVec3f vec4(vec3);
-            PSVECCrossProduct(&vec2, &vec4, &vec4);
+            TVec3f vec4 = vec3;
+            vec4.cross(vec2, vec4);
 
             if (0.0f < vec1.dot(vec4)) {
                 vec4 = -vec4;
@@ -610,13 +610,13 @@ void BossBegoman::exeJumpToInitPos() {
         MR::startSound(this, "SE_BM_BBEGO_BIG_JUMP");
         // vec1 goes completely unused
         TVec3f vec1(mInitPos);
-        vec1.sub(mPosition);
-        vec1.scale(0.5f);
+        vec1 -= mPosition;
+        vec1 *= 0.5f;
 
         TVec3f vec2(mGravity);
         vec2 = -vec2;
 
-        mPath->initFromUpVector(mPosition, mInitPos - mGravity.scaleInline(10.0f), vec2, 700.0f);
+        mPath->initFromUpVector(mPosition, mInitPos - mGravity * 10.0f, vec2, 700.0f);
         mVelocity.zero();
     }
 
@@ -741,7 +741,7 @@ void BossBegoman::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
         if (!MR::isNearZero(dirReceiverToSender)) {
             bool rebounded = reboundPlaneWithEffect(dirReceiverToSender, 0.0f, 0.0f, "Spark");
-            mVelocity.add(dirReceiverToSender.scaleInline(2.0f));
+            mVelocity.add(dirReceiverToSender * 2.0f);
 
             if (rebounded) {
                 MR::startSound(this, "SE_EM_BEGOMAN_COLLI");
@@ -790,7 +790,7 @@ bool BossBegoman::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
         bool rebounded = reboundPlaneWithEffect(vec2, 0.0f, 0.0f, "Spark");
         // float regswap
-        MR::addVelocityLimit(this, vec2.scaleInline(6.0f).scaleInline(pSender->mRadius / getSensor("body")->mRadius));
+        MR::addVelocityLimit(this, vec2 * 6.0f * (pSender->mRadius / getSensor("body")->mRadius));
 
         if (rebounded) {
             MR::startSound(this, "SE_EM_BEGOMAN_COLLI_BEGOMAN");
@@ -876,16 +876,14 @@ bool BossBegoman::receiveMsgTrample(HitSensor* pSender, HitSensor* pReceiver) {
         MR::vecKillElement(vec2, mGravity, &vec2);
 
         if (!MR::isNearZero(vec2)) {
-            TVec3f vec3(vec2);
-            PSVECCrossProduct(&mGravity, &vec3, &vec3);
-
+            TVec3f vec3 = vec2;
+            vec3.cross(mGravity, vec3);
             vec3.setLength(25.0f);
             mVelocity = vec3;
         } else {
             TVec3f vec4;
             MR::getPlayerFrontVec(&vec4);
-            PSVECCrossProduct(&mGravity, &vec4, &vec4);
-
+            vec4.cross(mGravity, vec4);
             vec4.setLength(25.0f);
             mVelocity = vec4;
         }

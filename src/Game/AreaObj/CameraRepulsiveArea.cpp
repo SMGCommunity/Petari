@@ -30,7 +30,7 @@ TVec3f CameraRepulsiveCylinder::getRepulsion(const TVec3f& rRep) {
     f32 dot = upVec.dot(ret);
     TVec3f _14;
     TVec3f _8(upVec);
-    _8.scale(dot);
+    _8 *= dot;
     ret -= _8;
 
     _14.cross(ret, upVec);
@@ -44,7 +44,7 @@ TVec3f CameraRepulsiveCylinder::getRepulsion(const TVec3f& rRep) {
         denom *= base;
     }
 
-    ret.scale(1.0f / denom);
+    ret /= denom;
 
     return ret;
 }

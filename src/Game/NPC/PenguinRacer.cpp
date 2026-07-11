@@ -366,7 +366,7 @@ void PenguinRacer::updateVelocity() {
     TVec3f toTarget = nextPointPos - mPosition;
     MR::normalizeOrZero(&toTarget);
 
-    mVelocity.add(toTarget.scaleInline(mSpeed));
+    mVelocity.add(toTarget * mSpeed);
 
     TVec3f velV, velH;
     TVec3f grav = mGravity;
@@ -475,7 +475,7 @@ void PenguinRacer::prepRacer(const RaceManager* pRaceManager) {
     } else {
         TVec3f pos;
         Triangle triangle;
-        if (MR::getFirstPolyOnLineToMap(&pos, &triangle, mPosition, mGravity.scaleInline(1000.0f))) {
+        if (MR::getFirstPolyOnLineToMap(&pos, &triangle, mPosition, mGravity * 1000.0f)) {
             mPosition.set(pos);
         }
         MR::startAction(this, "RacerWalkSoon");

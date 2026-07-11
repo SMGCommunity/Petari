@@ -145,8 +145,7 @@ void HomingKiller::init(const JMapInfoIter& rIter) {
     f32 hitRadius = getScale();
     f32 offsetScale = getScale();
 
-    MR::addHitSensor(this, "body", ATYPE_HOMING_KILLER, 8, hitRadius * ::cBodyHitSensorRadius,
-                     TVec3f(::cBodyHitSensorOffset).scaleInline(offsetScale));
+    MR::addHitSensor(this, "body", ATYPE_HOMING_KILLER, 8, hitRadius * ::cBodyHitSensorRadius, TVec3f(::cBodyHitSensorOffset) * offsetScale);
     MR::addHitSensorEye(this, "eye", 16, ::cEyeHitSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 
     f32 binderRadius = getScale();
@@ -176,7 +175,7 @@ void HomingKiller::init(const JMapInfoIter& rIter) {
         MR::initShadowFromCSV(this, "Shadow");
     } else {
         f32 scale = getScale();
-        MR::initShadowVolumeOval(this, TVec3f(::cShadowRadiusXY, ::cShadowRadiusXY, ::cShadowRadiusZ).scaleInline2(scale));
+        MR::initShadowVolumeOval(this, TVec3f(::cShadowRadiusXY, ::cShadowRadiusXY, ::cShadowRadiusZ) * scale);
         MR::setShadowDropLength(this, nullptr, 2000.0f);
     }
 
@@ -278,12 +277,12 @@ void HomingKiller::control() {
 }
 
 void HomingKiller::calcAndSetBaseMtx() {
-    // FIXME: Incorrect register scheduling in inline
+    // FIXME: Regswap in inline
     // https://decomp.me/scratch/5jw7T
 
     TPos3f mtx2;
     TPos3f mtx;
-    mtx.setRotateInlineZeroTrans(TVec3f(0.0f, 0.0f, 1.0f), toRadian(mRotation.z));
+    mtx.makeRotate(TVec3f(0.0f, 0.0f, 1.0f), MR::toRadian(mRotation.z));
 
     mtx2.concat(mBaseMtx, mtx);
     MR::setBaseTRMtx(this, mtx2);
@@ -736,7 +735,7 @@ void HomingKiller::exeAppear() {
     }
 
     f32 appearOffset = step * ::cAppearMoveDistance / ::cAppearMoveFrame;
-    mPosition.add(mBasePos, mBaseFront.scaleInline(appearOffset));
+    mPosition.add(mBasePos, mBaseFront * appearOffset);
 
     if (MR::isLessStep(this, ::cAppearMoveFrame)) {
         MR::startLevelSound(this, "SE_EM_LV_KILLER_STANDBY");
@@ -751,7 +750,7 @@ void HomingKiller::exeAppear() {
         f32 scl = JMASinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
         f32 rumbleOffset = (::cAppearRumbleFrame - step) * (scl * ::cAppearRumbleWidth) / ::cAppearRumbleFrame;
 
-        mPosition.add(mBaseFront.scaleInline(rumbleOffset));
+        mPosition.add(mBaseFront * rumbleOffset);
     }
 
     mFront.set(mBaseFront);
