@@ -5,7 +5,6 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
@@ -67,7 +66,7 @@ void MeterLayout::init(const JMapInfoIter& rIter) {
     appear();
 }
 
-// regswap
+// ! regswap - https://decomp.me/scratch/aeADT
 void MeterLayout::control() {
     if (isNerve(&NrvMeterLayout::MeterLayoutNrvAppear::sInstance)) {
         _48 = 1.0f;
@@ -100,7 +99,7 @@ void MeterLayout::requestActive() {
             mFollowPos.x = 0.0f;
         }
 
-        f32 tmp = _4C; // required for matching
+        f32 tmp = _4C;
         MR::setAnimFrameAndStop(this, tmp * 20.0f, 2);
         mFollowPosW.y = 0.0f;
         mFollowPosW.x = 0.0f;
@@ -231,6 +230,7 @@ void MeterLayout::exeWait() {
     mFollowPosW.x = 0.0f;
 }
 
+// ! minus operator gets inlined - https://decomp.me/scratch/wWkjw
 void MeterLayout::exePowerUp() {
     TVec2f headPos;
     TVec2f basePos;
@@ -395,7 +395,7 @@ void MeterLayout::exeZeroMeterBreak() {
     }
 }
 
-// regswap
+// ! regswap - https://decomp.me/scratch/LdV5o
 void MeterLayout::calcMarioHeadPosition(TVec2f* pHeadPosition) const {
     TVec2f screenPos;
     MR::calcScreenPosition(&screenPos, *MR::getPlayerCenterPos());
