@@ -9,6 +9,27 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+namespace {
+    // static const f32 sMarioWorldOffset = ...;
+    static const f32 sMarioScreenOffsetX = 32.0f;
+    static const f32 sMarioScreenOffsetY = -38.0f;
+    static const s32 sMoveToBasePositionTime = 25;
+    // static const s32 sWarningSignLifeLV1 = ...;
+    // static const s32 sWarningSignLifeLV2 = ...;
+    // static const f32 sWarningSignSpeedLV1 = ...;
+    // static const f32 sWarningSignSpeedLV2 = ...;
+    // static const s32 sMaxHPHideTime = ...;
+    static const f32 sMinAlpha = 0.3f;
+    static const f32 sMaxAlpha = 1.2f;
+    // static const f32 sHideSpeed = ...;
+    // static const f32 sShowSpeed = ...;
+    static const s32 sAppearTime = 120;
+    static const s32 sWaitStartTime = 240;
+    static const s32 sBreakDelayTime = 40;
+    static const s32 sPowerUpWaitTime = 60;
+    static const s32 sRecoveryCountInterval = 5;
+};  // namespace
+
 namespace NrvMeterLayout {
     NEW_NERVE(MeterLayoutNrvHide, MeterLayout, Hide);
     NEW_NERVE(MeterLayoutNrvAppear, MeterLayout, Appear);
@@ -22,13 +43,13 @@ namespace NrvMeterLayout {
     NEW_NERVE(MeterLayoutNrvBreakMeter, MeterLayout, BreakMeter);
     NEW_NERVE(MeterLayoutNrvZeroMeter, MeterLayout, ZeroMeter);
     NEW_NERVE(MeterLayoutNrvZeroMeterBreak, MeterLayout, ZeroMeterBreak);
-}  // namespace NrvMeterLayout
+};  // namespace NrvMeterLayout
 
-MeterLayout::MeterLayout(const char* pName, const char* pLayoutName)
-    : LayoutActor(pName, true), mCountUpPaneRumbler(nullptr), mFollowPos(0.0f, 0.0f), mFollowPosW(0.0f, 0.0f), _38(0.0f, 0.0f), mCount(3), _48(),
+MeterLayout::MeterLayout(const char* pName, const char* pArcName)
+    : LayoutActor(pName, true), mCountUpPaneRumbler(), mFollowPos(0.0f, 0.0f), mFollowPosW(0.0f, 0.0f), _3C(0.0f, 0.0f), mCount(3), mAlpha(),
       _4C(1.0f) {
     MR::connectToSceneLayout(this);
-    initLayoutManager(pLayoutName, 3);
+    initLayoutManager(pArcName, 3);
 }
 
 void MeterLayout::init(const JMapInfoIter& rIter) {
@@ -43,7 +64,7 @@ void MeterLayout::init(const JMapInfoIter& rIter) {
     MR::setFollowTypeAdd(this, "HitPointW");
     MR::startAnim(this, "FontPosition2to1", 1);
     MR::startAnim(this, "ShowHide", 2);
-    MR::setAnimFrameAndStop(this, _48 * _4C * 20.0f, 2);
+    MR::setAnimFrameAndStop(this, mAlpha * _4C * 20.0f, 2);
     setCountAnimFrame();
     mCountUpPaneRumbler = new CountUpPaneRumbler(this, "HitPointNumber");
     initNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
@@ -51,43 +72,43 @@ void MeterLayout::init(const JMapInfoIter& rIter) {
     appear();
 }
 
-// ! regswap - https://decomp.me/scratch/aeADT
 void MeterLayout::control() {
     if (isNerve(&NrvMeterLayout::MeterLayoutNrvAppear::sInstance)) {
-        _48 = 1.0f;
+        mAlpha = 1.0f;
     } else if (MR::isStarPointerPointingPaneForMeterLayout(this, "PicBase", 0, false, nullptr)) {
-        _48 -= 0.05f;
+        mAlpha -= 0.05f;
     } else {
-        _48 += 0.05f;
+        mAlpha += 0.05f;
     }
 
-    _48 = MR::clamp(_48, 0.3f, 1.2f);
+    mAlpha = MR::clamp(mAlpha, ::sMinAlpha, ::sMaxAlpha);
 
-    f32 v1 = MR::normalize(_48, 0.0f, 1.0f);
-    MR::setAnimFrameAndStop(this, _4C * v1 * 20.0f, 2);
+    MR::setAnimFrameAndStop(this, _4C * MR::normalize(mAlpha, 0.0f, 1.0f) * 20.0f, 2);
     mCountUpPaneRumbler->update();
 }
 
 void MeterLayout::requestActive() {
-    if (MR::isDead(this)) {
-        mCountUpPaneRumbler->reset();
-
-        if (mCount == 3) {
-            _4C = 0.0f;
-            mFollowPos.x = MR::getEaseInOutValue(0.0f, 1.0f, 0.0f, 1.0f) * 50.0f;
-        } else {
-            _4C = 1.0f;
-            mFollowPos.y = 0.0f;
-            mFollowPos.x = 0.0f;
-        }
-
-        f32 tmp = _4C;
-        MR::setAnimFrameAndStop(this, tmp * 20.0f, 2);
-        mFollowPosW.y = 0.0f;
-        mFollowPosW.x = 0.0f;
-        appear();
-        setNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
+    if (!MR::isDead(this)) {
+        return;
     }
+
+    mCountUpPaneRumbler->reset();
+
+    if (mCount == 3) {
+        _4C = 0.0f;
+        mFollowPos.x = MR::getEaseInOutValue(0.0f, 1.0f, 0.0f, 1.0f) * 50.0f;
+    } else {
+        _4C = 1.0f;
+        mFollowPos.y = 0.0f;
+        mFollowPos.x = 0.0f;
+    }
+
+    f32 tmp = _4C;
+    MR::setAnimFrameAndStop(this, tmp * 20.0f, 2);
+    mFollowPosW.y = 0.0f;
+    mFollowPosW.x = 0.0f;
+    appear();
+    setNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
 }
 
 void MeterLayout::requestDeactivate() {
@@ -96,7 +117,7 @@ void MeterLayout::requestDeactivate() {
 
 void MeterLayout::requestPowerUp() {
     _4C = 1.0f;
-    MR::setAnimFrameAndStop(this, 20.0f * _4C, 2);
+    MR::setAnimFrameAndStop(this, _4C * 20.0f, 2);
     mFollowPos.y = 0.0f;
     mFollowPos.x = 0.0f;
     mFollowPosW.y = 0.0f;
@@ -106,35 +127,43 @@ void MeterLayout::requestPowerUp() {
 }
 
 void MeterLayout::requestForceAppear() {
-    if (mCount == 1) {
-        requestActive();
-        setNerve(&NrvMeterLayout::MeterLayoutNrvAppear::sInstance);
+    if (mCount != 1) {
+        return;
     }
+
+    requestActive();
+    setNerve(&NrvMeterLayout::MeterLayoutNrvAppear::sInstance);
 }
 
 void MeterLayout::requestPlayerMoving() {
-    if (isNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance)) {
-        if (mCount == 3) {
-            _4C -= 0.05f;
-            if (_4C < 0.0f) {
-                _4C = 0.0f;
-            }
-        } else {
-            _4C = 1.0f;
+    if (!isNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance)) {
+        return;
+    }
+
+    if (mCount == 3) {
+        _4C -= 0.05f;
+
+        if (_4C < 0.0f) {
+            _4C = 0.0f;
         }
+    } else {
+        _4C = 1.0f;
     }
 }
 
 void MeterLayout::requestPlayerStopped() {
-    if (isNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance)) {
-        if (mCount == 3) {
-            _4C += 0.05f;
-            if (_4C > 1.0f) {
-                _4C = 1.0f;
-            }
-        } else {
+    if (!isNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance)) {
+        return;
+    }
+
+    if (mCount == 3) {
+        _4C += 0.05f;
+
+        if (_4C > 1.0f) {
             _4C = 1.0f;
         }
+    } else {
+        _4C = 1.0f;
     }
 }
 
@@ -144,6 +173,7 @@ void MeterLayout::initCount(s32 count) {
 
 void MeterLayout::setCount(s32 count) {
     s32 prevCount = mCount;
+
     mCount = count;
 
     if (count < prevCount) {
@@ -173,7 +203,7 @@ void MeterLayout::exeAppear() {
     mFollowPos.y = 0.0f;
     mFollowPos.x = 0.0f;
 
-    if (MR::isGreaterStep(this, 120)) {
+    if (MR::isGreaterStep(this, ::sAppearTime)) {
         setNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
     }
 }
@@ -189,7 +219,7 @@ void MeterLayout::exeWaitStart() {
     mFollowPosW.y = 0.0f;
     mFollowPosW.x = 0.0f;
 
-    if (MR::isGreaterStep(this, 240)) {
+    if (MR::isGreaterStep(this, ::sWaitStartTime)) {
         setNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
     }
 }
@@ -226,7 +256,7 @@ void MeterLayout::exePowerUp() {
         _4C = 1.0f;
     }
 
-    if (mCount < 6 && MR::isGreaterStep(this, 0) && MR::isIntervalStep(this, 5)) {
+    if (mCount < 6 && MR::isGreaterStep(this, 0) && MR::isIntervalStep(this, ::sRecoveryCountInterval)) {
         mCount++;
         setRecoveryCountAnimFrame();
 
@@ -238,21 +268,22 @@ void MeterLayout::exePowerUp() {
         }
     }
 
-    if (MR::isGreaterStep(this, 60)) {
+    if (MR::isGreaterStep(this, ::sPowerUpWaitTime)) {
         setNerve(&NrvMeterLayout::MeterLayoutNrvMeterMove::sInstance);
     }
 }
 
 void MeterLayout::exeMeterMove() {
     if (MR::isFirstStep(this)) {
-        _38 = mFollowPosW;
+        _3C = mFollowPosW;
         _4C = 1.0f;
     }
 
-    f32 easeIn = MR::calcNerveEaseInRate(this, 25.0f);
-    mFollowPosW = _38 * (1.0f - easeIn);
+    f32 rate = MR::calcNerveEaseInRate(this, ::sMoveToBasePositionTime);
 
-    if (MR::isGreaterStep(this, 25)) {
+    mFollowPosW = _3C * (1.0f - rate);
+
+    if (MR::isGreaterStep(this, ::sMoveToBasePositionTime)) {
         setNerve(&NrvMeterLayout::MeterLayoutNrvCounterMove::sInstance);
     }
 }
@@ -263,15 +294,15 @@ void MeterLayout::exeCounterMove() {
         _4C = 1.0f;
     }
 
-    if (MR::isStep(this, 0)) {
+    if (MR::isStep(this, ::sRecoveryCountInterval * 0)) {
         MR::setTextBoxNumberRecursive(this, "HitPointNumber", 4);
     }
 
-    if (MR::isStep(this, 5)) {
+    if (MR::isStep(this, ::sRecoveryCountInterval * 1)) {
         MR::setTextBoxNumberRecursive(this, "HitPointNumber", 5);
     }
 
-    if (MR::isStep(this, 10)) {
+    if (MR::isStep(this, ::sRecoveryCountInterval * 2)) {
         MR::setTextBoxNumberRecursive(this, "HitPointNumber", 6);
     }
 
@@ -300,9 +331,9 @@ void MeterLayout::exeRecover() {
 void MeterLayout::exeDamage() {
     if (MR::isFirstStep(this)) {
         if (mCount < 3) {
-            MR::startAnim(this, "Damage2", 1);
-        } else {
             MR::startAnim(this, "Damage1", 1);
+        } else {
+            MR::startAnim(this, "Damage2", 1);
         }
 
         mFollowPos.y = 0.0f;
@@ -330,7 +361,7 @@ void MeterLayout::exeBreakMeter() {
         _4C = 1.0f;
     }
 
-    if (MR::isStep(this, 40)) {
+    if (MR::isStep(this, ::sBreakDelayTime)) {
         MR::emitEffect(this, "Break");
         MR::startSystemSE("SE_SY_LIFE_PLATE_DEC");
         MR::startAnim(this, "FontPosition2to1", 1);
@@ -363,20 +394,20 @@ void MeterLayout::exeZeroMeterBreak() {
         mFollowPosW.x = 0.0f;
     }
 
-    if (MR::isStep(this, 40)) {
+    if (MR::isStep(this, ::sBreakDelayTime)) {
         MR::emitEffect(this, "Break123");
         MR::hideLayout(this);
     }
 }
 
-// ! regswap - https://decomp.me/scratch/LdV5o
 void MeterLayout::calcMarioHeadPosition(TVec2f* pHeadPosition) const {
     TVec2f screenPos;
     MR::calcScreenPosition(&screenPos, *MR::getPlayerCenterPos());
     f32 radius = MR::calcPointRadius2D(*MR::getPlayerCenterPos(), 120.0f);
 
-    screenPos.x += 32.0f;
-    screenPos.y = screenPos.y - radius + (-38.0f);
+    screenPos.y = screenPos.y - radius;
+    screenPos.x += ::sMarioScreenOffsetX;
+    screenPos.y += ::sMarioScreenOffsetY;
 
     pHeadPosition->x = screenPos.x;
     pHeadPosition->y = screenPos.y;
@@ -390,7 +421,7 @@ void MeterLayout::calcPowerUpMeterBasePosition(TVec2f* pBasePosition) const {
 void MeterLayout::setAnimBase() {
     setCountAnimFrame();
 
-    if (mCount < 3) {
+    if (mCount <= 3) {
         MR::startAnim(this, "Danger1", 1);
     } else {
         MR::startAnim(this, "Danger2", 1);

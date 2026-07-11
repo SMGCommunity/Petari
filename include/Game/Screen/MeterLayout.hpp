@@ -6,7 +6,10 @@ class CountUpPaneRumbler;
 
 class MeterLayout : public LayoutActor {
 public:
-    MeterLayout(const char*, const char*);
+    /// @brief Creates a new `MeterLayout`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    /// @param pArcName A pointer to the null-terminated name of the resource archive.
+    MeterLayout(const char* pName, const char* pArcName);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
@@ -37,13 +40,12 @@ public:
     void setCountAnimFrame();
     void setRecoveryCountAnimFrame();
 
-    CountUpPaneRumbler* mCountUpPaneRumbler;  // 0x20
-    s32 _24;                                  // 0x24
-    s32 _28;                                  // 0x28
-    TVec2f mFollowPos;                        // 0x2C
-    TVec2f mFollowPosW;                       // 0x34
-    TVec2f _38;                               // 0x38
-    s32 mCount;                               // 0x44
-    f32 _48;                                  // 0x48
-    f32 _4C;                                  // 0x4C
+    /* 0x20 */ CountUpPaneRumbler* mCountUpPaneRumbler;
+    /* 0x24 */ u8 _24[8];
+    /* 0x2C */ TVec2f mFollowPos;
+    /* 0x34 */ TVec2f mFollowPosW;
+    /* 0x3C */ TVec2f _3C;
+    /* 0x44 */ s32 mCount;
+    /* 0x48 */ f32 mAlpha;
+    /* 0x4C */ f32 _4C;
 };

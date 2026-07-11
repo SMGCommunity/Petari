@@ -77,7 +77,7 @@ void PaneEffectKeeper::clear() {
 }
 
 MultiEmitter* PaneEffectKeeper::getEmitter(const char* pName) const {
-    find(pName);
+    return find(pName);
 }
 
 void PaneEffectKeeper::changeAnim() {
