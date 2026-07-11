@@ -64,13 +64,13 @@ bool MatrixControl::getBitOrNone(const char* pName, u8 bit) const {
 
 MatrixValueGetter::MatrixValueGetter(const char* pName, MatrixValueTable* pTable) : NameObj(pName), _C(pTable) {
     s32 size;
-    for (size = 0; _C->mValues[size].mName[0] != '\x00'; size++)
+    for (size = 0; _C[size].mName[0] != '\x00'; size++)
         ;
 
     _10 = new HashSortTable(size);
 
     for (u32 idx = 0; idx < size; idx++) {
-        _10->add(_C->mValues[idx].mName, idx, false);
+        _10->add(_C[idx].mName, idx, false);
         _10->sort();
     }
 }
@@ -82,7 +82,7 @@ bool MatrixValueGetter::getValue(const char* pName, f32* value) const {
     }
 
     if (value != nullptr) {
-        *value = _C->mValues[index].mValue;
+        *value = _C[index].mValue;
     }
 
     return true;
