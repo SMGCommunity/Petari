@@ -106,7 +106,7 @@ void MarioActor::exeGameOverBlackHole2() {
 
     f32 newDistToBlackHole = mPosRelativeToBlackHole.length() * distChangeFactor / (1 + distChangeFactor);
 
-    mPosRelativeToBlackHole.setLength2(newDistToBlackHole);
+    mPosRelativeToBlackHole.setLength(newDistToBlackHole);
 
     f32 scale = getNerveStep() * mConst->getTable()->mBlackHoleScaleSpeed;
     scale = 1 - scale;
