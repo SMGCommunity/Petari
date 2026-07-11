@@ -40,7 +40,7 @@ bool CoinHolder::appearCoinFix(const NameObj* pObj, const TVec3f& a2, s32 a3) {
 bool CoinHolder::appearCoinPop(const NameObj* pObj, const TVec3f& a2, s32 a3) {
     TVec3f stack_20;
     MR::calcGravityVector(this, a2, &stack_20, nullptr, nullptr);
-    TVec3f stack_14 = (-stack_20).scaleInline(25.0f);
+    TVec3f stack_14 = (-stack_20) * 25.0f;
     return appearCoin(pObj, a2, stack_14, a3, -1, -1, a3 == 1 ? 0.0f : 4.0f);
 }
 

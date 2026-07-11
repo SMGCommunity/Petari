@@ -165,9 +165,7 @@ void KoopaFireShort::exeFly() {
         updateFly();
 
         if (MR::isLessStep(this, 50)) {
-            TVec3f gravity = mGravity;
-            gravity.scale(4.0f);
-            mPosition.add(gravity);
+            mPosition += mGravity * 4.0f;
         }
 
         if (MR::isGreaterStep(this, mDuration)) {

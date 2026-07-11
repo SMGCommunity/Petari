@@ -387,12 +387,9 @@ void KoopaStateDamageEscape::exeDamageTailRunStart() {
 
         MR::calcVecFromPlayerH(KoopaFunction::getKoopaFrontPtr(mHost), mHost);
 
-        f32 scale = mRotateVelocity;
         Koopa* pKoopa = mHost;
-        TVec3f vec = *KoopaFunction::getKoopaFront(pKoopa);
-        vec.mult(scale);
 
-        MR::setVelocity(pKoopa, vec);
+        MR::setVelocity(pKoopa, KoopaFunction::getKoopaFront(pKoopa) * mRotateVelocity);
 
         KoopaFunction::startKoopaCamera(mHost, "逃走（尻尾ダメージ）");
 

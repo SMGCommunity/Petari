@@ -408,7 +408,7 @@ void MarioActor::initAfterPlacement() {
     mMario->_1FC = -_240;
     _300 = mMario->mHeadVec;
     _2D0 = _300;
-    _2C4 = _240.scaleInline(-70.0f);
+    _2C4 = _240 * -70.0f;
     calcCenterPos();
     MR::updateHitSensorsAll(this);
     _360 = getGravityVector();
@@ -748,7 +748,7 @@ void MarioActor::movement() {
         f32 mag_288 = PSVECMag(&_288);
         f32 magStack_11C = PSVECMag(&stack_11C);
         if (!MR::isNearZero(mag_288) && !MR::isNearZero(magStack_11C) && MR::isNearZero(mag_288 - magStack_11C, 1.0f)) {
-            mPosition -= _288.scaleInline(0.5f);
+            mPosition -= _288 * 0.5f;
         }
     }
     if (PSVECMag(&stack_128) > 0.1f) {
@@ -777,7 +777,7 @@ void MarioActor::movement() {
                     if (scale > 10.0f) {
                         scale = 10.0f;
                     }
-                    mMario->mJumpVec += (-getGravityVec()).scaleInline(scale);
+                    mMario->mJumpVec += -getGravityVec() * scale;
                 }
             }
         } else if (getMovementStates()._23) {
@@ -788,20 +788,20 @@ void MarioActor::movement() {
             f32 elementB = MR::vecKillElement(mVelocity, stack_104, &stack_F8);
             if (PSVECMag(&mVelocity) > 20.0f && elementA < elementB * 0.5f) {
                 if (mMario->isAnimationRun("坂すべり下向きあおむけ")) {
-                    mMario->push(mMario->mFrontVec.scaleInline(5.0f));
+                    mMario->push(mMario->mFrontVec * 5.0f);
                 } else if (mMario->isAnimationRun("坂すべり上向きうつぶせ")) {
-                    mMario->push(mMario->mFrontVec.scaleInline(-5.0f));
+                    mMario->push(mMario->mFrontVec * -5.0f);
                 }
                 mMario->mDrawStates._2 = true;
             }
         }
         if (getMovementStates().jumping && !mAlphaEnable) {
             if (stack_128.dot(getGravityVec()) < -40.0f) {
-                TVec3f stack_EC(mPosition - getGravityVec().scaleInline(100.0f));
+                TVec3f stack_EC(mPosition - getGravityVec() * 100.0f);
                 TVec3f stack_E0;
                 Triangle* pTmp = mMario->getTmpPolygon();
 
-                if (MR::getFirstPolyOnLineToMap(&stack_E0, pTmp, stack_EC, getGravityVec().scaleInline(200.f))) {
+                if (MR::getFirstPolyOnLineToMap(&stack_E0, pTmp, stack_EC, getGravityVec() * 200.f)) {
                     TVec3f stack_D4;
                     if (MR::vecKillElement(stack_E0 - mPosition, getGravityVec(), &stack_D4) < -5.0f && pTmp->mParts && !pTmp->mParts->_D4 &&
                         getMovementStates()._3E != 1) {
@@ -883,7 +883,7 @@ void MarioActor::movement() {
             if (eject) {
                 TVec3f stack_98;
                 f32 element = MR::vecKillElement(stack_134, mMario->_368, &stack_98);
-                mPosition -= mMario->_368.scaleInline(element);
+                mPosition -= mMario->_368 * element;
             }
         }
     }
@@ -1602,9 +1602,9 @@ void MarioActor::scaleMtx(MtxPtr rawMtx) {
     i.scale(scalar);
     j.scale(scalar);
     k.scale(scalar);
-    i += _3B4.scaleInline(elementX);
-    j += _3B4.scaleInline(elementY);
-    k += _3B4.scaleInline(elementZ);
+    i += _3B4 * elementX;
+    j += _3B4 * elementY;
+    k += _3B4 * elementZ;
     rawMtx[0][0] = i.x;
     rawMtx[1][0] = i.y;
     rawMtx[2][0] = i.z;

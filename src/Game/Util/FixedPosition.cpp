@@ -25,7 +25,7 @@ void FixedPosition::calc() {
 
     mMtx.identity();
 
-    TVec3f rot = mRotDegrees.multInLine(PI_180);
+    TVec3f rot = mRotDegrees * PI_180;
     mMtx.makeMatrixFromRotAxesInline(rot.z, rot.y, rot.x);
 
     mMtx.setTrans(mLocalTrans);

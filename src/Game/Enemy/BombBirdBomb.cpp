@@ -132,12 +132,10 @@ void BombBirdBomb::exeWait() {
 
     f32 dotP = mGravity.dot(mVelocity);
     TVec3f velocity;
-    velocity.zeroInline();
+    velocity.set(0.0f);
 
     if (MR::calcVelocityAreaOrRailMoveOnGround(&velocity, this)) {
-        TVec3f velocity2 = velocity;
-        velocity2.mult(::sGroundFric);
-        mVelocity.set(velocity);
+        mVelocity.set(velocity * ::sGroundFric);
         MR::addVelocityToGravity(this, ::sGravityAccel);
 
         if (dotP >= 5.5f) {

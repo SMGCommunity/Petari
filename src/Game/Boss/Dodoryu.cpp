@@ -329,8 +329,8 @@ void Dodoryu::snapToGround() {
 
     Triangle triangle;
     TVec3f v4;
-    TVec3f v3 = mGravity.scaleInline(200.0f);
-    TVec3f v2 = mGravity.scaleInline(1200.0f);
+    TVec3f v3 = mGravity * 200.0f;
+    TVec3f v2 = mGravity * 1200.0f;
     TVec3f v1 = mPosition - v2;
 
     if (MR::getFirstPolyOnLineToMap(&v4, &triangle, v3, v1)) {
@@ -361,7 +361,7 @@ bool Dodoryu::snapToWall() {
     MR::normalize(&v1);
     _134.set(v1);
 
-    TVec3f v2 = cylinderPos + v1.scaleInline(cylinderRadius);
+    TVec3f v2 = cylinderPos + v1 * cylinderRadius;
     mPosition.set(v2);
     mBaseMtx.setTrans(v2);
 
@@ -375,7 +375,7 @@ void Dodoryu::setMtx(const TPos3f& rMtx) {
     if (_C8) {
         _BC = *MR::getPlayerPos();
     } else {
-        _BC = mPosition - mGravity.scaleInline(150.0f);
+        _BC = mPosition - mGravity * 150.0f;
     }
 }
 
@@ -736,7 +736,7 @@ void Dodoryu::updateCameraTarget() {
     TVec3f v1;
     m1.getTrans(v1);
 
-    TVec3f v4 = v1.scaleInline(0.7f) + MR::getPlayerPos()->scaleInline(0.3f);
+    TVec3f v4 = v1 * 0.7f + *MR::getPlayerPos() * 0.3f;
 
     v1 = v4;
     m1.setTrans(v1);

@@ -135,7 +135,7 @@ namespace MR {
                 pOut->y = asin(-rotateMtx.mMtx[2][0]);
             }
 
-            *pOut = pOut->multInLine(_180_PI);
+            *pOut = *pOut * _180_PI;
         }
 
         return true;

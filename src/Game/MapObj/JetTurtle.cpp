@@ -120,11 +120,7 @@ void JetTurtle::bound() {
         f32 v3 = MR::vecKillElement(_9C, *MR::getGroundNormal(this), &v22);
 
         if (v3 < 0.0f) {
-            TVec3f v17(*MR::getGroundNormal(this));
-            v17.scale(v3);
-            TVec3f v18(v17);
-            v18.scale(0.80f);
-            _9C = v22 - v18;
+            _9C = v22 - *MR::getGroundNormal(this) * v3 * 0.80f;
         }
     }
 
@@ -133,11 +129,7 @@ void JetTurtle::bound() {
         f32 v6 = MR::vecKillElement(_9C, *MR::getWallNormal(this), &v21);
 
         if (v6 < 0.0f) {
-            TVec3f v14(*MR::getWallNormal(this));
-            v14.scale(v6);
-            TVec3f v15(v14);
-            v15.scale(0.89f);
-            _9C = v21 - v15;
+            _9C = v21 - *MR::getWallNormal(this) * v6 * 0.89f;
         }
     }
 
@@ -146,11 +138,7 @@ void JetTurtle::bound() {
         f32 v6 = MR::vecKillElement(_9C, *MR::getRoofNormal(this), &v21);
 
         if (v6 < 0.0f) {
-            TVec3f v14(*MR::getRoofNormal(this));
-            v14.scale(v6);
-            TVec3f v15(v14);
-            v15.scale(0.89f);
-            _9C = v21 - v15;
+            _9C = v21 - *MR::getRoofNormal(this) * v6 * 0.89f;
         }
     }
 }
@@ -354,23 +342,17 @@ void JetTurtle::exeTakenReserve() {
 
     TVec3f takePos;
     MR::getPlayerTakePos(&takePos);
-    TVec3f v3(takePos);
-    v3.scale(v2);
-    TVec3f v4(mPosition);
-    v4.scale(1.0f - v2);
-    TVec3f v5(v4);
-    v5 += v3;
-    mPosition = v5;
+    mPosition = mPosition * (1.0f - v2) + takePos * v2;
 
     if (isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserveD::sInstance)) {
         if (MR::isStep(this, 2)) {
             setNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance);
-            return;
         }
+        return;
+    }
 
-        if (MR::isStep(this, 8)) {
-            setNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance);
-        }
+    if (MR::isStep(this, 8)) {
+        setNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance);
     }
 }
 
@@ -450,13 +432,8 @@ void JetTurtle::exeDrop() {
     if (MR::isFirstStep(this)) {
         TVec3f front;
         MR::calcFrontVec(&front, this);
-        TVec3f v3 = -mGravity;
-        TVec3f v4(v3);
-        v4.scale(10.0f);
-        mVelocity = v4;
-        TVec3f v2(front);
-        v2.scale(10.0f);
-        mVelocity += v2;
+        mVelocity = -mGravity * 10.0f;
+        mVelocity += front * 10.0f;
     }
 
     boundDrop();

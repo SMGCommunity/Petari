@@ -43,6 +43,11 @@
 #include "Game/Util.hpp"
 #include "revolution/mtx.h"
 
+void FORCE_OPERATOR() {
+    TVec3f vec;
+    vec.scale(1.0f);
+}
+
 Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     initMember();
     mVelocity.zero();
@@ -660,7 +665,7 @@ void Mario::fixFrontVecByGravity() {
             setFrontVec(front);
             _22C = mFrontVec;
             f32 _328mag = PSVECMag(&_328);
-            _328 = mFrontVec.scaleInline(_328mag);
+            _328 = mFrontVec * _328mag;
         }
     }
 }
@@ -673,9 +678,7 @@ void Mario::fixFrontVecFromUpSide() {
         setFrontVec(frontVec);
         _22C = mFrontVec;
         f32 scaleFactor = PSVECMag((Vec*)&_328);
-        TVec3f scaledFront(mFrontVec);  // inlined when it shouldn't be
-        scaledFront.scale(scaleFactor);
-        _328 = scaledFront;
+        _328 = mFrontVec * scaleFactor;
     }
 }
 
@@ -711,9 +714,7 @@ void Mario::setFrontVec(const TVec3f& rFront) {
         if (plusMinus6A0.dot(rFront) > 0.0f) {
             // maybe this reflects rFront around _6A0?? (very unsure)
             f32 f1 = MR::vecKillElement(rFront, plusMinus6A0, &frontWithout6A0);
-            TVec3f scaled6A0(plusMinus6A0);
-            scaled6A0.scale(f1);
-            frontWithout6A0 -= scaled6A0;
+            frontWithout6A0 -= plusMinus6A0 * f1;
             MR::normalizeOrZero(&frontWithout6A0);
             mFrontVec = frontWithout6A0;
         } else {
@@ -803,9 +804,7 @@ void Mario::setFrontVecKeepUp(const TVec3f& rFront) {
     setFrontVec(front2);
     _22C = mFrontVec;
     f32 _328mag = PSVECMag(&_328);
-    TVec3f scaledFront(mFrontVec);
-    scaledFront.scale(_328mag);
-    _328 = scaledFront;
+    _328 = mFrontVec * _328mag;
     _344 = mSideVec;
 }
 
@@ -829,9 +828,7 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
     setFrontVec(front);
     _22C = mFrontVec;
     f32 _328mag = PSVECMag(&_328);
-    TVec3f scaledFront(mFrontVec);
-    scaledFront.scale(_328mag);
-    _328 = scaledFront;
+    _328 = mFrontVec * _328mag;
 }
 
 void Mario::setHeadAndFrontVecFromRotate(const TVec3f& rRotate) {
@@ -872,11 +869,11 @@ void Mario::draw() const {
         MR::normalize(&diff2A0_31C);
         TVec3f _31CPlusStuff(mShadowPos);
         f32 _37CMod10 = mActor->_37C % 0xa;
-        _31CPlusStuff += diff2A0_31C.scaleInline(diffMag).scaleInline(0.125f).scaleInline(_37CMod10).scaleInline(0.1f);
+        _31CPlusStuff += diff2A0_31C * diffMag * 0.125f * _37CMod10 * 0.1f;
         f32 one_eighth = 0.125f;
         for (u32 i = 0; i < 8; i++) {
             TDDraw::drawCircle(_31CPlusStuff, diff2A0_31C, 100.0f, 0xffffff70, 0x10);
-            _31CPlusStuff += diff2A0_31C.scaleInline(one_eighth).scaleInline(diffMag);
+            _31CPlusStuff += diff2A0_31C * one_eighth * diffMag;
         }
     }
     if (_97C != nullptr) {

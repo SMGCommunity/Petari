@@ -64,10 +64,7 @@ void MarioSlider::calcWallHit() {
                 sideDot = -10.0f;
             }
 
-            TVec3f stack_20(*getPlayer()->mSideWallTriangle->getNormal(0));
-            stack_20.scale(sideDot);
-            TVec3f stack_2C(stack_50 - stack_20);
-            _14 = stack_2C;
+            _14 = stack_50 - *getPlayer()->mSideWallTriangle->getNormal(0) * sideDot;
         }
     }
 
@@ -81,10 +78,7 @@ void MarioSlider::calcWallHit() {
             }
 
             f32 frontScale = 0.5f * frontDot;
-            TVec3f stack_8(*getPlayer()->mFrontWallTriangle->getNormal(0));
-            stack_8.scale(frontScale);
-            TVec3f stack_14(stack_44 - stack_8);
-            _14 = stack_14;
+            _14 = stack_44 - *getPlayer()->mFrontWallTriangle->getNormal(0) * frontScale;
 
             TVec3f stack_38(_14);
             MR::normalize(&stack_38);
@@ -168,9 +162,7 @@ bool MarioSlider::update() {
 
         if (MR::isNearZero(v48)) {
             f32 slopePow = mActor->mConst->getTable()->mSliderSlopePow;
-            TVec3f v42(_2C);
-            v42.scale(slopePow);
-            v48 = v42;
+            v48 = _2C * slopePow;
         }
 
         if (MR::isNearZero(v48)) {
@@ -184,17 +176,11 @@ bool MarioSlider::update() {
             MR::normalize(&v46);
             _14.setLength(v18);
             f32 slopePow = mActor->mConst->getTable()->mSliderSlopePow;
-            TVec3f v41(_2C);
-            v41.scale(slopePow);
-            _14 += v41;
+            _14 += _2C * slopePow;
 
             f32 v23 = _3C;
             f32 weightPow = mActor->mConst->getTable()->mSliderWeightPow;
-            TVec3f v39(v46);
-            v39.scale(v23);
-            TVec3f v40(v39);
-            v40.scale(weightPow);
-            _14 += v40;
+            _14 += v46 * v23 * weightPow;
             MR::vecKillElement(_14, getPlayer()->_368, &_14);
             if (_14.length() > mActor->mConst->getTable()->mSliderMaxSpeed) {
                 _14.setLength(mActor->mConst->getTable()->mSliderMaxSpeed);
@@ -205,8 +191,7 @@ bool MarioSlider::update() {
             TVec3f v38;
             JMathInlineVEC::PSVECNegate(&getPlayer()->_368, &v38);
 
-            TVec3f v45(v38);
-            v45.scale(15.0f);
+            TVec3f v45(v38 * 15.0f);
 
             f32 v31 = MR::vecKillElement(v45, getFrontVec(), &v45);
             addVelocity(v45, v31);

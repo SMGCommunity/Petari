@@ -588,8 +588,7 @@ void Plant::updateBindLeaf() {
         springPower *= -1.0f;
     }
 
-    TVec3f railDir(MR::getRailDirection(this));
-    railDir.scale(20.0f);
+    TVec3f railDir(MR::getRailDirection(this) * 20.0f);
     if (MR::isRailGoingToEnd(this)) {
         railDir.scale(-1.0f);
     }
@@ -649,10 +648,7 @@ bool Plant::tryReachGoal() {
     TVec3f endUp(mStalk->mPlantPoints[0]->mUp);
     endUp.scale(mLaunchSpeed);
 
-    f32 launchVel = -mLaunchNormal;
-    TVec3f up(mGravity);
-    up.scale(launchVel);
-    endUp.add(up);
+    endUp.add(mGravity * -mLaunchNormal);
 
     MR::startBckPlayer("GrowPlantJump", (const char*)0);
     MR::stopSound(mRider, "SE_OJ_PLANT_MARIO_UP_START");

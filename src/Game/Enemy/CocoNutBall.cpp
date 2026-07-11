@@ -202,9 +202,9 @@ void CocoNutBall::calcHitBackVelocitAndGravity() {
     _90.scale(2.2f, mGravity);
     TVec3f scaled2;
     scaled2.scale(42.0f, dir);
-    TVec3f scaled3(_90.scaleInline(f1).scaleInline(f1));
-    scaled.sub(scaled.scaleInline(2.0f));
-    mVelocity.add(scaled2, scaled.scaleInline(1.0f / (2.0f * f1)));
+    TVec3f scaled3(_90 * f1 * f1);
+    scaled.sub(scaled * 2.0f);
+    mVelocity.add(scaled2, scaled * (1.0f / (2.0f * f1)));
 
     if (!hitBackFront) {
         f32 scaleFactor = (hitBackRight ? 1.2f : -1.2f);

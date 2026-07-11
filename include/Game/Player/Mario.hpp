@@ -103,7 +103,7 @@ public:
     void updateSoundCode();
     const TVec3f& getShadowNorm() const;
     const TVec3f& getAirGravityVec() const;
-    const TVec3f& getAirFrontVec() const;
+    const TVec3f getAirFrontVec() const;
     const TVec3f* getGravityVec() const;
     void initAfterConst();
     void writeBackPhysicalVector();

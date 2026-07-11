@@ -328,7 +328,7 @@ void Petari::exeSpinOut() {
     }
 
     v8.rejection(mVelocity);
-    mVelocity.add(v8.scaleInline(1.3f));
+    mVelocity.add(v8 * 1.3f);
 
     calcCenter();
     appearStarPieceGradually();
@@ -608,15 +608,8 @@ void Petari::moveTowardTargetDirection(f32 vel, f32 f2, f32 angle) {
 }
 
 void Petari::updateFootPrint() {
-    // FIXME: TVec3f stack order
-    // https://decomp.me/scratch/NHFYA
     if (MR::isBindedGround(this)) {
-        f32 yOffs = mFootprintYOffs;
-        TVec3f v8(*MR::getGroundNormal(this));
-        v8.scale(yOffs);
-        TVec3f v9(mPosition);
-        v9 -= v8;
-        mFootPrint->addPrint(v9, mFront, *MR::getGroundNormal(this), false);
+        mFootPrint->addPrint(mPosition - *MR::getGroundNormal(this) * mFootprintYOffs, mFront, *MR::getGroundNormal(this), false);
     }
 }
 
@@ -671,7 +664,7 @@ void Petari::avoidPlayer() {
     TVec3f dirToPlayer(*MR::getPlayerCenterPos());
     dirToPlayer -= mBodyCenter;
     if (!MR::isNearZero(dirToPlayer)) {
-        f32 avoidWeight = 3.0f / dirToPlayer.scaleInline(0.1f).squared();
+        f32 avoidWeight = 3.0f / (dirToPlayer * 0.1f).squared();
         MR::clamp01(&avoidWeight);
         MR::normalize(&dirToPlayer);
         JGeometry::negateInternal((f32*)&dirToPlayer, (f32*)&dirToPlayer);
@@ -695,7 +688,7 @@ void Petari::avoidWall() {
         MR::normalize(&planarDir);
         Triangle rayHitTri;
         TVec3f v19;
-        if (MR::getFirstPolyOnLineToMapAndMoveLimit(&v19, &rayHitTri, mBodyCenter, planarDir.scaleInline(600.0f))) {
+        if (MR::getFirstPolyOnLineToMapAndMoveLimit(&v19, &rayHitTri, mBodyCenter, planarDir * 600.0f)) {
             TVec3f wallNormal(*rayHitTri.getNormal(0));
             wallNormal.rejection(mGravity);
             if (!MR::isNearZero(wallNormal)) {
@@ -705,14 +698,14 @@ void Petari::avoidWall() {
                 f32 v8 = (proximity * proximity);
                 proximity *= proximity;
 
-                mTargetDir -= wallNormal.scaleInline(wallNormal.dot(mTargetDir)).scaleInline(2.0f).scaleInline(v8).scaleInline(2.0f);
+                mTargetDir -= wallNormal * (wallNormal.dot(mTargetDir)) * 2.0f * v8 * 2.0f;
             }
         }
     }
 }
 
 void Petari::calcCenter() {
-    mBodyCenter = mPosition + mGravity.scaleInline(-60.0f);
+    mBodyCenter = mPosition + mGravity * -60.0f;
 }
 
 void Petari::meander() {

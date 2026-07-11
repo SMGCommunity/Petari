@@ -54,10 +54,8 @@ void KoopaStateJumpAway::exeJump() {
         MR::startAction(mHost, "JumpAway");
 
         Koopa* pKoopa = mHost;
-        TVec3f front = KoopaFunction::getKoopaFront(pKoopa);
-        front.mult(-::sJumpFrontSpeed);
 
-        MR::setVelocity(pKoopa, front);
+        MR::setVelocity(pKoopa, KoopaFunction::getKoopaFront(pKoopa) * -::sJumpFrontSpeed);
         MR::addVelocityJump(mHost, ::sJumpFlyUpSpeed);
 
         MR::startSound(mHost, "SE_BM_KOOPA_JUMP");

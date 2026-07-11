@@ -27,16 +27,12 @@ SpiderThreadPoint::SpiderThreadPoint(const TVec3f& rPos, f32 friction)
 
 bool SpiderThreadPoint::updateSpring() {
     mVelocity.scale(mFriction);
-    TVec3f v1(mBasePos);
-    v1.sub(mPosition);
-
-    TVec3f v2(v1);
-    v2.scale(::sAccelRate);
+    TVec3f v1(mBasePos - mPosition);
+    TVec3f v2(v1 * ::sAccelRate);
     mVelocity.add(v2);
     mPosition.add(mVelocity);
 
-    TVec3f v3(mBasePos);
-    v3.sub(mPosition);
+    TVec3f v3(mBasePos - mPosition);
     v3.z = 0.0f;
 
     f32 mag1 = v3.length();
@@ -90,7 +86,7 @@ void SpiderThreadPoint::restrict(const TVec3f* pAnchor, f32 length) {
         MR::normalize(&v2);
 
         if (nextPosDiff.squared() >= length * length) {
-            TVec3f restriction = v2.scaleInline(length);
+            TVec3f restriction = v2 * length;
             mVelocity.x -= nextPosDiff.x - restriction.x;
             mVelocity.y -= nextPosDiff.y - restriction.y;
             mVelocity.z -= nextPosDiff.z - restriction.z;

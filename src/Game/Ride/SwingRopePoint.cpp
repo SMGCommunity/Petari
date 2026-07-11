@@ -35,7 +35,7 @@ bool SwingRopePoint::restrict(const TVec3f& rAnchor, f32 length, const TVec3f* p
     }
 
     if (nextPosDiff.squared() >= length * length) {
-        TVec3f restriction = v2.scaleInline(length);
+        TVec3f restriction = v2 * length;
         mVelocity.x -= nextPosDiff.x - restriction.x;
         mVelocity.y -= nextPosDiff.y - restriction.y;
         mVelocity.z -= nextPosDiff.z - restriction.z;
@@ -60,7 +60,7 @@ void SwingRopePoint::strain(const TVec3f& rAnchor, f32 length) {
         mUp.mult(-1.0f);
     }
 
-    TVec3f restriction = v2.scaleInline(length);
+    TVec3f restriction = v2 * length;
     mVelocity.x -= nextPosDiff.x - restriction.x;
     mVelocity.y -= nextPosDiff.y - restriction.y;
     mVelocity.z -= nextPosDiff.z - restriction.z;

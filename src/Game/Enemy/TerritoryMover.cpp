@@ -13,7 +13,7 @@ void TerritoryMover::decideNextTargetPos(const LiveActor* pActor) {
     MR::normalizeOrZero(&randVec);
 
     randVec.rejection(pActor->mGravity);
-    randVec.mult(_0);
+    randVec *= _0;
     randVec += mCenter;
     _10 = randVec;
 }

@@ -367,10 +367,7 @@ void TamakoroTutorial::updateHitSensor(HitSensor* pSensor) {
 
     pSensor->mPosition.set(mHost->mPosition);
 
-    TVec3f up(upVec);
-    up.mult(dot);
-
-    pSensor->mPosition.add(up);
+    pSensor->mPosition.add(upVec * dot);
 }
 
 void TamakoroTutorial::startTimerSound(s32 step, s32 param2) {

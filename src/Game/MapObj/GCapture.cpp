@@ -31,21 +31,12 @@ void GCapture::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 void GCapture::updateRibbon(const TVec3f& rVec, s32 a2) {
-    TVec3f v13(mPosition);
-    v13 -= rVec;
+    TVec3f v13(mPosition - rVec);
     TVec3f v12;
     MR::normalizeOrZero(v13, &v12);
-    f32 scalar = _128;
-    TVec3f v9(v12);
-    v9.scale(scalar);
-    TVec3f v10(v9);
-    v10.scale(180.0f);
-    v13 -= v10;
+    v13 -= v12 * _128 * 180.0f;
     f32 rate = MR::calcNerveRate(this, a2);
-    TVec3f v8(v13);
-    v8.scale(rate * rate);
-    TVec3f v11(rVec);
-    v11 += v8;
+    TVec3f v11(rVec + v13 * (rate * rate));
     mCaptureRibbon->lengthen(rVec, v11);
     updateRibbonPointEffectMatrix(v11);
 }
@@ -68,9 +59,7 @@ void GCapture::updateRibbonPointEffectMatrix(const TVec3f& rVec) {
 void GCapture::addRotateAccelPointing() {
     TVec3f rotate;
     if (MR::calcStarPointerStrokeRotateMoment(&rotate, mRotation, 200.0f, 0)) {
-        TVec3f v3(rotate);
-        v3.scale(0.055104f);
-        _F0 += v3;
+        _F0 += rotate * 0.055104f;
         f32 mag = PSVECMag(&_F0);
         if (mag > 0.2f) {
             _F0.scale(0.2f / mag);

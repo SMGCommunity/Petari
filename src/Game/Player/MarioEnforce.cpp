@@ -14,6 +14,11 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 
+void FORCE_SCALE() {
+    TVec3f vec;
+    vec.scale(1.0f);
+}
+
 void Mario::checkEnforceMove() {
     checkEnforceMoveInner();
     updateOnimasu();
@@ -45,9 +50,7 @@ void Mario::checkEnforceMoveInner() {
                         }
                     }
 
-                    TVec3f v13(_368);
-                    v13.scale(v8);
-                    mVelocity += v13;
+                    mVelocity += _368 * v8;
                 }
             }
         }
@@ -306,9 +309,7 @@ u32 Mario::moveRelativePositionWall() {
 
         const f32 elem = MR::vecKillElement(add, *tri->getNormal(0), &add);
         if (elem > 0.0f) {
-            TVec3f push(*tri->getNormal(0));
-            push.scale(elem);
-            addVelocity(push);
+            addVelocity(*tri->getNormal(0) * elem);
         }
 
         if (!MR::isSameMtxRot(*tri->getBaseMtx(), *tri->getPrevBaseMtx())) {
@@ -356,14 +357,11 @@ u32 Mario::getLastGroundEdgeIndex(const TVec3f& rPos, const TVec3f& rDir) const 
     const TVec3f* pos1 = _474->calcAndGetPos(1);
     const TVec3f* pos0 = _474->calcAndGetPos(0);
 
-    TVec3f center(*pos0);
-    center += *pos1;
-    TVec3f centerAvg(center);
-    centerAvg += *pos2;
-    centerAvg.scale(1.0f / 3.0f);
+    TVec3f centerAvg(*pos0 + *pos1 + *pos2);
 
-    TVec3f outDir(centerAvg);
-    outDir -= rPos;
+    centerAvg *= 1.0f / 3.0f;
+
+    TVec3f outDir(centerAvg - rPos);
     MR::normalizeOrZero(&outDir);
 
     const f32 add0 = outDir.dot(*edge0);
@@ -390,7 +388,7 @@ u32 Mario::getLastGroundEdgeIndex(const TVec3f& rPos, const TVec3f& rDir) const 
 
 void Mario::pushedByReaction() {
     addVelocity(_928);
-    _928.scale(_934);
+    _928 *= _934;
 }
 
 void Mario::addReaction(const TVec3f& rReact) {
@@ -509,9 +507,7 @@ void Mario::powerRailMove() {
         }
     }
 
-    TVec3f railMove(railDir);
-    railMove.scale(static_cast< f32 >(arg));
-    _19C = railMove;
+    _19C = railDir * static_cast< f32 >(arg);
     addVelocity(_19C);
 }
 
@@ -529,20 +525,14 @@ void Mario::doEnforceJump(f32 param) {
         initActiveJumpVec();
     }
 
-    TVec3f enforce(_184);
-    enforce.scale(param);
-    _8DC = enforce;
+    _8DC = _184 * param;
 
     f32 element = MR::vecKillElement(_8DC, getAirGravityVec(), &_8DC);
 
-    TVec3f jump(_8DC);
-    jump += mJumpVec;
-    mJumpVec = jump;
+    mJumpVec = _8DC + mJumpVec;
 
     if (element < 0.0f) {
-        TVec3f grav(getAirGravityVec());
-        grav.scale(element);
-        mJumpVec += grav;
+        mJumpVec += getAirGravityVec() * element;
     }
 
     mVelocity -= _184;
@@ -576,9 +566,7 @@ void Mario::pushedByWind() {
 
     if (mMovementStates.jumping) {
         const MarioConstTable* table = mActor->getConst().getTable();
-        TVec3f add(_91C);
-        add.scale(table->mWindJumpingFriction);
-        mJumpVec += add;
+        mJumpVec += _91C * table->mWindJumpingFriction;
         return;
     }
 
@@ -589,33 +577,25 @@ void Mario::pushedByWind() {
         }
 
         windMag = (windMag - table->mWindSlideLimit) * table->mWindSlideFriction;
-        TVec3f add(windDir);
-        add.scale(windMag);
-        _350 += add;
+        _350 += windDir * windMag;
         _1C._A = 1;
         changeAnimation("向かい風ふんばり", noAnim);
         return;
     }
 
-    TVec3f scaled(windDir);
-    scaled.scale(windMag);
+    TVec3f scaled(windDir * windMag);
 
     if (mVelocity.dot(windDir) > 0.0f) {
         const MarioConstTable* table = mActor->getConst().getTable();
-        TVec3f add(scaled);
-        add.scale(table->mWindForwardFriction);
-        _350 += add;
+        _350 += scaled * table->mWindForwardFriction;
         _1C._A = 1;
         stopAnimation("向かい風ふんばり", noAnim);
         stopAnimation("向かい風走り", noAnim);
         return;
     }
 
-    TVec3f combined(scaled);
-    combined += mVelocity;
-
     TVec3f killed;
-    f32 element = MR::vecKillElement(combined, windDir, &killed);
+    f32 element = MR::vecKillElement(scaled + mVelocity, windDir, &killed);
 
     const MarioConstTable* table = mActor->getConst().getTable();
     if (element > table->mWindSlideLimit) {
@@ -626,11 +606,7 @@ void Mario::pushedByWind() {
 
     clearVelocity();
 
-    TVec3f add(windDir);
-    add.scale(element);
-
-    TVec3f final(killed);
-    final += add;
+    TVec3f final(killed + windDir * element);
 
     changeAnimation("向かい風走り", noAnim);
     _350 += final;

@@ -385,7 +385,7 @@ namespace JGeometry {
             return ret;
         }
 
-        TVec3 operator/(f32 div) const NO_INLINE{
+        TVec3 operator/(f32 div) const NO_INLINE {
             TVec3 ret(*this);
             ret *= (1.0f / div);
             return ret;
@@ -393,6 +393,10 @@ namespace JGeometry {
 
         void operator*=(f32 scalar) {
             scale(scalar);
+        }
+
+        void operator/=(f32 scalar) {
+            scale(1.0f / scalar);
         }
 
         void operator*=(const TVec3& op) {
@@ -415,12 +419,6 @@ namespace JGeometry {
 
         // appears to be needed in RingBeam to match stack in some places
         TVec3 scaleInline(f32 scalar) const {
-            TVec3 ret(*this);
-            ret.scale(scalar);
-            return ret;
-        }
-
-        TVec3 scaleInline2(f32 scalar) const {
             TVec3 ret(*this);
             ret.scale(scalar);
             return ret;
@@ -652,7 +650,7 @@ namespace JGeometry {
             this->z = this->z * scalar;
         }
 
-        void scale(f32 scalar, const TVec3& rVec) NO_INLINE{
+        void scale(f32 scalar, const TVec3& rVec) NO_INLINE {
             this->x = rVec.x * scalar;
             this->y = rVec.y * scalar;
             this->z = rVec.z * scalar;

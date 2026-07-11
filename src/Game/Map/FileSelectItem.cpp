@@ -475,10 +475,8 @@ void FileSelectItem::updateRotate() {
                 if (__fabsf(v12) >= 900.0f) {
                     v13 = false;
                 } else {
-                    TVec3f v30(v50);
-                    v30.scale(v12);
                     TVec3f v29;
-                    v29 = v43 - v30;
+                    v29 = v43 - v50 * v12;
                     TVec3f v25 = v29 - v44;
                     TVec3f v34;
                     PSVECCrossProduct(&v25, &v47, &v34);

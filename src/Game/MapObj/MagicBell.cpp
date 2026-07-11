@@ -139,8 +139,7 @@ bool MagicBell::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
         v15.sub(*MR::getPlayerPos());
         v15.y += 100.0f;
         MR::normalizeOrZero(&v15);
-        TVec3f v14(v15);
-        v14.scale(-200.0f);
+        TVec3f v14(v15 * -200.0f);
         v14.add(mPosition);
         startRing(v15, v14);
         return true;
@@ -174,12 +173,8 @@ bool MagicBell::tryRing() {
 
 void MagicBell::startRing(const TVec3f& a1, const TVec3f& a2) {
     f32 v10 = PSVECMag(&mBellSwinger->mAcceleration);
-    TVec3f v13(mBellSwinger->mAcceleration);
-    v13.scale(-1.0f);
-    mBellSwinger->accel(v13);
-    TVec3f v12(a1);
-    v12.scale(5.0f + v10);
-    mBellSwinger->accel(v12);
+    mBellSwinger->accel(mBellSwinger->mAcceleration * -1.0f);
+    mBellSwinger->accel(a1 * (5.0f + v10));
     mHitMarkPosition.set< f32 >(a2);
     MR::emitEffect(this, "StarWandHitMark");
     MR::emitEffect(this, "Ring");

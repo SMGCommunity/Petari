@@ -199,13 +199,13 @@ void TripodBoss::initLegIKPlacement() {
 
         TVec3f j(0.0f, 1.0f, 0.0f);
 
-        TVec3f legDir = legDirShadow.multiplyOperatorInline(_610) + j.multiplyOperatorInline(_614);
+        TVec3f legDir = legDirShadow * _610 + j * _614;
 
         getLeg(rI)->setIKParam(_608, _60C, legDir, legDirShadow, j);
 
         TVec3f* center = &mMovableArea->mCenter;
 
-        TVec3f v23 = v29 + v27.multiplyOperatorInline(x) + v28.multiplyOperatorInline(z) + *center;
+        TVec3f v23 = v29 + v27 * x + v28 * z + *center;
 
         TVec3f v22;
         mMovableArea->calcLandingNormal(&v22, v23);
@@ -957,7 +957,7 @@ void TripodBoss::addAccelToWeightPosition() {
     }
 
     v15 *= (1.0f / v10);
-    _5E0 += v15.multiplyOperatorInline(0.8f);
+    _5E0 += v15 * 0.8f;
 }
 
 void TripodBoss::calcClippingSphere() {
