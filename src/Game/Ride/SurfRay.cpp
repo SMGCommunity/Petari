@@ -914,7 +914,7 @@ void SurfRay::updateRotate() {
 
     TRot3f mtx;
     mtx.identity();
-    mtx.setRotateInline(mBaseUp, -mRotation.z * 0.00028f);
+    mtx.setRotate(mBaseUp, -mRotation.z * 0.00028f);
     mtx.mult(mFront, mFront);
 
     for (s32 i = mTwistBufferSize - 1; i >= 1; i--) {

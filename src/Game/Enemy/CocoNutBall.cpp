@@ -3,6 +3,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 namespace {
     const Vec cReboundVelocity = {0.0f, 15.0f, 5.0f};
@@ -308,9 +309,8 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
         vec1.set(*MR::getPlayerPos());
     }
 
-    TRot3f rotate;
-    f32 angle = PI_180 * f2;
-    rotate.makeRotateInline(_C8, angle);
+    TPos3f rotate;
+    rotate.makeRotate(_C8, MR::toRadian(f2));
     TVec3f vec2;
     vec2.sub(vec1, mPosition);
     rotate.mult33(vec2);

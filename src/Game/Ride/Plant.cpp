@@ -325,7 +325,7 @@ void Plant::exeHangDown() {
 }
 
 void Plant::initLeaf() {
-    f32 leafPos, leafSize, leafRatio;
+    f32 leafRatio, leafSize, leafPos;
 
     mNumLeaves = (s32)(((MR::getRailTotalLength(this) - 100.0f) - 200.0f) / 200.0f) + 2;
     mLeaves = new PlantLeaf*[mNumLeaves];
@@ -363,14 +363,9 @@ void Plant::initLeaf() {
         mLeaves[leaf]->initWithoutIter();
         leafPos -= MR::getInterpolateValue(leafRatio, 100.0f, 300.0f);
 
-        f32 rand = PI_180 * MR::getRandom(90.0f, 270.0f);
-        mtx.setRotateInline(TVec3f(0.0f, 1.0f, 0.0f), rand);
+        mtx.setRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(MR::getRandom(90.0f, 270.0f)));
         mtx.mult(baseRotate, baseRotate);
     }
-}
-
-inline void setMatrix(MtxPtr posMtx, MtxPtr camMtx, MtxPtr baseMtx) {
-    PSMTXConcat(camMtx, baseMtx, posMtx);
 }
 
 void Plant::calcAnim() {

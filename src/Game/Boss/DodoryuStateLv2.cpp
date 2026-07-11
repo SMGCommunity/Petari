@@ -1025,3 +1025,11 @@ void DodoryuStateLv2::startLeadHillBck(const DodoryuAnimSet& rAnim) {
         mHost->startLeadHillBck(rAnim.mLeadHillBckName);
     }
 }
+
+void DUMMY() {
+    // NOTE: to emit TPos3f::makeRotate, TVec3f::setLength, TRot3f::mult33
+    TVec3f a;
+    a.setLength(2.0f);
+    TPos3f m;
+    m.makeRotate(a, 3.0f);
+}

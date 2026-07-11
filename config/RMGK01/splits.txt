@@ -3944,7 +3944,7 @@ Game/Map/OceanRingPipeOutside.cpp:
 Game/Map/OceanSphere.cpp:
 	.text       start:0x80191530 end:0x801945EC
 	.ctors      start:0x8052EBD8 end:0x8052EBDC
-	.data       start:0x8058B1A0 end:0x8058B2E8
+	.data       start:0x8058B1A0 end:0x8058B2C0
 	.bss        start:0x8060AD78 end:0x8060ADA0
 	.sbss       start:0x806B4BE0 end:0x806B4BE8
 	.sdata2     start:0x806BC2C0 end:0x806BC308
@@ -3956,7 +3956,7 @@ Game/Map/OceanSpherePoint.cpp:
 Game/Map/PlanetMap.cpp:
 	.text       start:0x80194790 end:0x80195118
 	.rodata     start:0x80532C80 end:0x80532C98
-	.data       start:0x8058B2E8 end:0x8058B4E8
+	.data       start:0x8058B2C0 end:0x8058B4E8
 	.sdata      start:0x806B1C58 end:0x806B1C68
 	.sdata2     start:0x806BC318 end:0x806BC328
 
