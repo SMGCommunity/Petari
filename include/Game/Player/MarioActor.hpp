@@ -255,7 +255,7 @@ public:
     void updateControllerSwingLeft();
     void update2D();
     void updateTakingPosition();
-    void updateSearchLight();
+    bool updateSearchLight();
     void updateThrowing();
     void updateBeeWingAnimation();
     void updateFairyStar();
@@ -270,8 +270,6 @@ public:
 
     void initForJump();
     void lockOnDPD();
-    bool tryCoinPull();
-    bool tryThrow();
     u8 selectAction(const char*) const;
     bool selectInvalidMovingCollision(const char*) const;
     void bodyClap();
@@ -293,7 +291,6 @@ public:
     bool isKeepJump2P() const;
     bool isRequestHipDrop() const;
     bool isRequestSpinJump2P() const;
-    bool tryReleaseBombTeresa();
     void initBlackHoleOut();  // void ?
     void exeGameOverBlackHole2();
     bool isEnableSpinPunch();
@@ -309,14 +306,10 @@ public:
     bool checkButtonType(u16, bool) const;
     bool sendPunch(HitSensor*, bool);
     void reactionPunch(HitSensor*);
-    void tryCoinPullInRush();
-    void releaseThrowMemoSensor();
     void createIceFloor(const TVec3f&);
     void syncJumpBeeStickMode();
 
     bool isRequestJump() const;
-
-    void damageDropThrowMemoSensor();
 
     void setPlayerMode(u16, bool);
 
@@ -343,7 +336,6 @@ public:
     void createTextureDL(DLholder*, u16, u16);
     void swapTexture(const char*, u8) const;
     void copyMaterial(J3DModel*, u16, s32);
-    void rushDropThrowMemoSensor();
     void offTakingFlag();
 
     void changeHandMaterial();
@@ -360,8 +352,6 @@ public:
     bool takeSensor(HitSensor*);
 
     bool selectJumpRushSensor(const char*) const;
-
-    void memorizeSensorThrow(HitSensor*);
 
     // Defined in MarioActorOffensiveMsg
     void attackOrPushSensor(HitSensor*, f32);
@@ -399,6 +389,26 @@ public:
     bool tryJumpRush();
     void tryRushInRush();
 
+    // Defined in MarioActorTakeMsg
+    void memorizeSensorThrow(HitSensor*);
+    bool tryThrow();
+    void tryReleaseDirect(const HitSensor*);
+    bool damageDropThrowMemoSensor();
+    bool rushDropThrowMemoSensor();
+    void trySetLockOnTarget(HitSensor*);
+    void tryCoinPull();
+    void tryCoinPullInRush();
+    void flushCoinPull();
+    bool tryCoinPullOne(HitSensor*);
+    void tryPullTrans(TVec3f*, const TVec3f&);
+    bool releaseThrowMemoSensor();
+    void tryReleaseWithMsg(u32);
+    void tryTornadoPull(HitSensor*);
+    bool tryReleaseBombTeresa();
+
+
+    void getThrowVec(TVec3f*) const;
+    bool isRequestThrow() const;
     bool selectHipDropRush(const HitSensor*) const;
     bool selectHideFlyMeter(const HitSensor*) const;
     bool selectHandyRush(const HitSensor*) const;
@@ -430,6 +440,14 @@ public:
     // Only used in isSleeping() to make it match
     inline bool IsMarioAnimationRun(const char* pAnimName) const {
         return mMario->isAnimationRun(pAnimName);
+    }
+
+    inline bool IsMarioSwimming() const {
+        return mMario->isSwimming();
+    }
+
+    inline void MarioStopWalk() const {
+        mMario->stopWalk();
     }
 
     struct FBO {
@@ -563,19 +581,19 @@ public:
     /* 0x420 */ u32 _420;
     /* 0x424 */ HitSensor* _424;
     /* 0x428 */ HitSensor* _428[4];
-    /* 0x438 */ u8 _438[0x30];
+    /* 0x438 */ TVec3f _438[4];
 
     union {
         struct {
             /* 0x468 */ u32 _468;
             /* 0x46C */ HitSensor* _46C;
-            /* 0x470 */ u32 _470;
+            /* 0x470 */ HitSensor* _470;
         };
 
         /* 0x468 */ TVec3f _468Vec;
     };
 
-    /* 0x474 */ u32 _474;
+    /* 0x474 */ HitSensor* _474;
     /* 0x478 */ f32 _478;
     /* 0x47C */ u32 _47C;
     /* 0x480 */ bool _480;
@@ -595,7 +613,7 @@ public:
     /* 0x4B4 */ f32 _4B4;
     /* 0x4B8 */ TVec3f _4B8;
     /* 0x4C4 */ TVec3f _4C4;
-    /* 0x4D0 */ u32 _4D0[128];
+    /* 0x4D0 */ HitSensor* _4D0[128];
     /* 0x6D0 */ u8 _6D0;
     /* 0x6D4 */ f32 _6D4;
     /* 0x6D8 */ f32 _6D8;
@@ -788,7 +806,7 @@ public:
     /* 0xF1E */ u16 _F1E;
     /* 0xF20 */ u8 _F20;
     /* 0xF21 */ u8 _F21;
-    /* 0xF24 */ u32 _F24;
+    /* 0xF24 */ HitSensor* _F24;
     /* 0xF28 */ u16 _F28;
     /* 0xF2C */
 

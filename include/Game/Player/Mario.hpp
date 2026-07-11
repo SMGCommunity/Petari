@@ -537,7 +537,7 @@ public:
         unsigned _3B : 1;
         unsigned _3C : 1;
         unsigned _3D : 1;
-        unsigned _3E : 2; // clrrwi rX, rX, 2
+        unsigned _3E : 2;  // clrrwi rX, rX, 2
     };
     struct DrawStates {
         unsigned _0 : 1;
