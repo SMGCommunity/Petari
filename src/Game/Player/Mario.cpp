@@ -671,7 +671,7 @@ void Mario::fixFrontVecByGravity() {
         setFrontVec(front);
         _22C = mFrontVec;
         f32 _328mag = _328.length();
-        _328 = mFrontVec.scaleInline(_328mag);
+        _328 = mFrontVec * _328mag;
     }
 }
 

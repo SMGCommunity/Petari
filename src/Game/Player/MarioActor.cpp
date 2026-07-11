@@ -1668,7 +1668,7 @@ void MarioActor::calcAnimInMovement() {
                     vec += mMario->mJumpVec;
                 }
 
-                MR::setProgrammableCameraParam("変身初出カメラ", vec, vec + frontVec.scaleInline(scale), -_240, true);
+                MR::setProgrammableCameraParam("変身初出カメラ", vec, vec + frontVec * scale, -_240, true);
             }
 
             _336 = 1;
@@ -2532,11 +2532,11 @@ void MarioActor::jumpHop() {
     if (!mMario->isRising()) {
         mMario->cutGravityElementFromJumpVec(true);
 
-        mMario->mJumpVec += _240.scaleInline(getConst().getTable()->mClapJumpBonusFalling);
+        mMario->mJumpVec += _240 * getConst().getTable()->mClapJumpBonusFalling;
     } else {
         f32 val = MR::min(getConst().getTable()->mHopLimit, -mMario->cutGravityElementFromJumpVec(true));
         // smth missing here
-        mMario->mJumpVec += _240.scaleInline(val);
+        mMario->mJumpVec += _240 * val;
     }
 
     if (mMario->_430 == 5) {
@@ -2594,7 +2594,7 @@ void MarioActor::calcCenterPos() {
         mBinder->mRadius = val2;
     }
 
-    _2A0 = mPosition + vec24.scaleInline(val);
+    _2A0 = mPosition + vec24 * val;
 }
 
 void MarioActor::calcHeadPos() {
