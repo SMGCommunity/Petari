@@ -8,7 +8,7 @@ namespace {
     static const f32 sGravityAccel = 0.8f;
     static const s32 sBindOnTime = 10;
     static const s32 sForceBreakTime = 240;
-}
+}  // namespace
 
 namespace NrvTakoHeiInk {
     NEW_NERVE(TakoHeiInkNrvWait, TakoHeiInk, Wait);
@@ -47,8 +47,8 @@ void TakoHeiInk::start(const TVec3f& startPos, const TVec3f& startVelocity, bool
     setNerve(&NrvTakoHeiInk::TakoHeiInkNrvWait::sInstance);
     appear();
     mVelocity.set(startVelocity);
-    
-    if(startOffBind) {
+
+    if (startOffBind) {
         MR::offBind(this);
     } else {
         MR::onBind(this);
@@ -56,26 +56,26 @@ void TakoHeiInk::start(const TVec3f& startPos, const TVec3f& startVelocity, bool
 }
 
 void TakoHeiInk::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if(MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
-        MR::startSound(this,"SE_EM_TAKOHEI_INK_BREAK");
+    if (MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
+        MR::startSound(this, "SE_EM_TAKOHEI_INK_BREAK");
         kill();
     }
 }
 
 void TakoHeiInk::exeWait() {
-    if(MR::isFirstStep(this)) {
+    if (MR::isFirstStep(this)) {
         MR::tryStartBck(this, "Wait", nullptr);
     }
 
-    if(MR::isGreaterStep(this, ::sBindOnTime) && MR::isNoBind(this)) {
+    if (MR::isGreaterStep(this, ::sBindOnTime) && MR::isNoBind(this)) {
         MR::onBind(this);
     }
 
     MR::addVelocityToGravity(this, ::sGravityAccel);
     MR::attenuateVelocity(this, ::sNormalFric);
 
-    if(MR::isBinded(this) || MR::isGreaterStep(this, ::sForceBreakTime)) {
-        MR::startSound(this,"SE_EM_TAKOHEI_INK_BREAK");
+    if (MR::isBinded(this) || MR::isGreaterStep(this, ::sForceBreakTime)) {
+        MR::startSound(this, "SE_EM_TAKOHEI_INK_BREAK");
         kill();
     }
 }
