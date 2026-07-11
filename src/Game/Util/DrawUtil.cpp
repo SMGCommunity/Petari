@@ -2,16 +2,92 @@
 #include "Game/Scene/GameSceneFunction.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
+#include "JSystem/J3DGraphBase/J3DShape.hpp"
+#include "JSystem/J3DGraphBase/J3DSys.hpp"
+#include "revolution/gx/GXCull.h"
+#include "revolution/gx/GXEnum.h"
+#include "revolution/gx/GXPixel.h"
+#include "revolution/gx/GXTransform.h"
+#include "revolution/mtx.h"
 #include <revolution/gx/GXRegs.h>
 
+static bool sIsReinitTextureCache;
+static GXTexCacheSize sReinitTextureCacheSize;
 const JUTTexture* mShadowTex;
 TVec3f mShadowVec;
 
 namespace {
     GXTexObj clear_z_tobj;
-};  // namespace
+
+    const f32 cViewDistance = 10000.0;
+}; // namespace
 
 namespace MR {
+    void drawInit() {
+        j3dSys.offFlag(2);
+        j3dSys.drawInit();
+        j3dSys.setTexCacheRegion(GX_TEXCACHE_128K);
+    }
+
+    void reinitGX() {
+        j3dSys.reinitGX();
+        GXSetAlphaUpdate(GX_FALSE);
+        J3DShape::resetVcdVatCache();
+        if (sIsReinitTextureCache) {
+            j3dSys.setTexCacheRegion(sReinitTextureCacheSize);
+        }
+    }
+
+    void resetTextureCacheSize() {
+        if (sIsReinitTextureCache) {
+            j3dSys.setTexCacheRegion(sReinitTextureCacheSize);
+        }
+    }
+
+    void loadViewMtxFor2DModel() {
+        Mtx viewMtx;
+        PSMTXIdentity(viewMtx);
+        PSMTXCopy(viewMtx, j3dSys.mViewMtx);
+    }
+
+    void drawInitFor2DModel() {
+        MR::reinitGX();
+        GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
+
+        Mtx44 projMtx;
+        C_MTXOrtho(projMtx, 0.0f, -MR::getScreenHeight(), 0.0f, MR::getScreenWidth(), -cViewDistance, cViewDistance);
+        GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
+
+        Mtx viewMtx;
+        PSMTXIdentity(viewMtx);
+        PSMTXCopy(viewMtx, j3dSys.mViewMtx);
+    }
+
+    // ! regswap
+    void setDefaultViewportAndScissor() {
+        s32 screenWidth = MR::getFrameBufferWidth();
+        s32 screenHeight = MR::getScreenHeight();
+
+        GXSetViewport(0.0f, 0.0f, screenWidth, screenHeight, 0.0f, 1.0f);
+        GXSetScissor(0, 0, screenWidth, screenHeight);
+    }
+
+    void loadProjectionMtxFor2D() {
+        J2DOrthoGraphSimple orthoGraph;
+        orthoGraph.J2DOrthoGraph::setPort();
+    }
+
+    // ! unfinished
+    void setupDrawForNW4RLayout(f32 a1, bool) {
+        Mtx44 projMtx;
+        f32 v1 = MR::getScreenHeight() * 0.5f * a1;
+        f32 v2 = 608.0f * 0.5f * a1;
+        C_MTXOrtho(projMtx, -v1, v1, -v2, v2, -cViewDistance, cViewDistance);
+        GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
+        GXSetCullMode(GX_CULL_NONE);
+        GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
+    }
+
     void fillScreenArea(const TVec2s& rMin, const TVec2s& rMax) {
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
         GX_WRITE_U16(rMin.x);
