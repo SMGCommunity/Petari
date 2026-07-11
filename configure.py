@@ -1251,7 +1251,11 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/Takobo.cpp"),
             Object(NonMatching, "Game/Enemy/TakoHei.cpp"),
             Object(Matching, "Game/Enemy/TakoHeiInk.cpp"),
-            Object(NonMatching, "Game/Enemy/TakoHeiInkHolder.cpp"),
+            Object(
+                Matching,
+                "Game/Enemy/TakoHeiInkHolder.cpp", 
+                cflags=[*cflags_game, "-sym off"]
+            ),
             Object(NonMatching, "Game/Enemy/Teresa.cpp"),
             Object(NonMatching, "Game/Enemy/TeresaWater.cpp"),
             Object(NonMatching, "Game/Enemy/TerritoryMover.cpp"),
