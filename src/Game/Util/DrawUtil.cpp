@@ -4,24 +4,24 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/ScreenUtil.hpp"
-#include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
-#include "JSystem/J3DGraphAnimator/J3DModel.hpp"
-#include "JSystem/J3DGraphBase/J3DMaterial.hpp"
-#include "JSystem/J3DGraphBase/J3DPacket.hpp"
-#include "JSystem/J3DGraphBase/J3DShape.hpp"
-#include "JSystem/J3DGraphBase/J3DSys.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JUtility/JUTVideo.hpp"
-#include "revolution/gx/GXBump.h"
-#include "revolution/gx/GXCull.h"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXFrameBuf.h"
-#include "revolution/gx/GXGeometry.h"
-#include "revolution/gx/GXPixel.h"
-#include "revolution/gx/GXStruct.h"
-#include "revolution/gx/GXTransform.h"
-#include "revolution/mtx.h"
+#include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
+#include <JSystem/J3DGraphAnimator/J3DModel.hpp>
+#include <JSystem/J3DGraphBase/J3DMaterial.hpp>
+#include <JSystem/J3DGraphBase/J3DPacket.hpp>
+#include <JSystem/J3DGraphBase/J3DShape.hpp>
+#include <JSystem/J3DGraphBase/J3DSys.hpp>
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JUtility/JUTVideo.hpp>
+#include <revolution/gx/GXBump.h>
+#include <revolution/gx/GXCull.h>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXFrameBuf.h>
+#include <revolution/gx/GXGeometry.h>
+#include <revolution/gx/GXPixel.h>
 #include <revolution/gx/GXRegs.h>
+#include <revolution/gx/GXStruct.h>
+#include <revolution/gx/GXTransform.h>
+#include <revolution/gx/GXVert.h>
 
 static u8 sTexImgObj[] = {0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF,
                           0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF, 0,    0xFF,
@@ -53,7 +53,7 @@ namespace MR {
 
     void reinitGX() {
         j3dSys.reinitGX();
-        GXSetAlphaUpdate(0);
+        GXSetAlphaUpdate(GX_FALSE);
         J3DShape::resetVcdVatCache();
 
         if (sIsReinitTextureCache) {
@@ -75,7 +75,7 @@ namespace MR {
 
     void drawInitFor2DModel() {
         MR::reinitGX();
-        GXSetZMode(0, GX_ALWAYS, 0);
+        GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
 
         Mtx44 projMtx;
         C_MTXOrtho(projMtx, 0.0f, -MR::getScreenHeight(), 0.0f, MR::getScreenWidth(), cNearZ, cFarZ);
@@ -107,7 +107,7 @@ namespace MR {
         C_MTXOrtho(projMtx, v1, -v1, -v2, v2, cNearZ, cFarZ);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
         GXSetCullMode(GX_CULL_NONE);
-        GXSetZMode(0, GX_NEVER, 0);
+        GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
     }
 
     void clearZBuffer() {
@@ -128,12 +128,12 @@ namespace MR {
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_U16, 0);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U8, 0);
         GXSetNumChans(0);
-        GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
-        GXSetChanCtrl(GX_COLOR1A1, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
         GXSetNumTexGens(1);
-        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, 0, 125);
-        GXInitTexObj(&clear_z_tobj, sTexImgObj, 4, 4, GX_TF_Z24X8, GX_REPEAT, GX_REPEAT, 0);
-        GXInitTexObjLOD(&clear_z_tobj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, 0, 0, GX_ANISO_1);
+        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
+        GXInitTexObj(&clear_z_tobj, sTexImgObj, 4, 4, GX_TF_Z24X8, GX_REPEAT, GX_REPEAT, GX_FALSE);
+        GXInitTexObjLOD(&clear_z_tobj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
         GXLoadTexObj(&clear_z_tobj, GX_TEXMAP0);
         GXSetNumTevStages(1);
         GXColor tev0;
@@ -144,41 +144,31 @@ namespace MR {
         GXSetTevColor(GX_TEVREG0, tev0);
         GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
         GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_C0);
-        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
-        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
         GXSetZTexture(GX_ZT_REPLACE, GX_TF_Z24X8, 0);
-        GXSetZCompLoc(0);
+        GXSetZCompLoc(GX_FALSE);
         GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_NOOP);
-        GXSetColorUpdate(0);
-        GXSetAlphaUpdate(0);
-        GXSetZMode(1, GX_ALWAYS, 1);
+        GXSetColorUpdate(GX_FALSE);
+        GXSetAlphaUpdate(GX_FALSE);
+        GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
         GXSetCullMode(GX_CULL_BACK);
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        GX_WRITE_U16(0);
-        GX_WRITE_U16(0);
-        GX_WRITE_U8(0);
-        GX_WRITE_U8(0);
-        GX_WRITE_U16(width);
-        GX_WRITE_U16(0);
-        GX_WRITE_U8(1);
-        GX_WRITE_U8(0);
-        GX_WRITE_U16(width);
-        GX_WRITE_U16(height);
-        GX_WRITE_U8(1);
-        GX_WRITE_U8(1);
-        GX_WRITE_U16(0);
-        GX_WRITE_U16(height);
-        GX_WRITE_U8(0);
-        GX_WRITE_U8(1);
+        GXPosition2u16(0, 0);
+        GXPosition2u8(0, 0);
+        GXPosition2u16(width, 0);
+        GXPosition2u8(1, 0);
+        GXPosition2u16(width, height);
+        GXPosition2u8(1, 1);
+        GXPosition2u16(0, height);
+        GXPosition2u8(0, 1);
+        GXEnd();
         GXSetZTexture(GX_ZT_DISABLE, GX_TF_Z24X8, 0);
-        GXSetZCompLoc(1);
-        GXSetColorUpdate(1);
+        GXSetZCompLoc(GX_TRUE);
+        GXSetColorUpdate(GX_TRUE);
     }
-
-    // void clearAlphaBuffer(u8 a1) {}
-    // void clearAlphaBuffer(u8 a1, const TVec2f& a2, const TVec2f& a3) {}
 
     void fillScreenSetup(const GXColor& rColor) {
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_U16, 0);
@@ -192,21 +182,21 @@ namespace MR {
         C_MTXOrtho(projMtx, 0.0f, getScreenHeightInline(), 0.0f, MR::getFrameBufferWidth(), -1.0f, 1.0f);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
         GXSetNumChans(1);
-        GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
-        GXSetChanCtrl(GX_COLOR1A1, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
         GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
-        GXSetZMode(0, GX_LEQUAL, 0);
-        GXSetZCompLoc(0);
+        GXSetZMode(GX_FALSE, GX_LEQUAL, GX_FALSE);
+        GXSetZCompLoc(GX_FALSE);
         GXSetCullMode(GX_CULL_NONE);
-        GXSetDither(0);
+        GXSetDither(GX_FALSE);
         GXSetNumTexGens(0);
         GXSetNumTevStages(1);
         GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
         GXSetTevColor(GX_TEVREG0, rColor);
         GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
-        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
-        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     }
 
     void fillScreenArea(const TVec2s& rMin, const TVec2s& rMax) {
@@ -215,14 +205,10 @@ namespace MR {
         u16 minX = rMin.x;
         u16 minY = rMin.y;
         u16 maxY = rMax.y;
-        GX_WRITE_U16(minX);
-        GX_WRITE_U16(minY);
-        GX_WRITE_U16(maxX);
-        GX_WRITE_U16(minY);
-        GX_WRITE_U16(maxX);
-        GX_WRITE_U16(maxY);
-        GX_WRITE_U16(minX);
-        GX_WRITE_U16(maxY);
+        GXPosition2u16(minX, minY);
+        GXPosition2u16(maxX, minY);
+        GXPosition2u16(maxX, maxY);
+        GXPosition2u16(minX, maxY);
     }
 
     void fillScreen(const GXColor& color) {
@@ -237,8 +223,8 @@ namespace MR {
         GXSetNumIndStages(0);
         GXSetNumTexGens(0);
         GXSetNumChans(1);
-        GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
-        GXSetChanCtrl(GX_COLOR1A1, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
         GXSetChanMatColor(GX_COLOR0A0, Color8(0));
         GXSetNumTevStages(1);
         GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
@@ -247,8 +233,8 @@ namespace MR {
         GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
         GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
         GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
-        GXSetZCompLoc(0);
-        GXSetZMode(1, GX_GEQUAL, 0);
+        GXSetZCompLoc(GX_FALSE);
+        GXSetZMode(GX_TRUE, GX_GEQUAL, GX_FALSE);
         GXSetClipMode(GX_CLIP_ENABLE);
     }
 
@@ -258,7 +244,7 @@ namespace MR {
         j3dSys.setVtxNrm(pModelData->mVertexData.mVtxNrmArray);
         j3dSys.setVtxCol(pModelData->mVertexData.mVtxColorArray[0]);
 
-        while (pMaterial) {
+        while (pMaterial != nullptr) {
             pMaterial->mShape->simpleDraw();
             pMaterial = pMaterial->mNext;
         }
@@ -283,10 +269,10 @@ namespace MR {
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_U16, 0);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
         GXSetNumChans(1);
-        GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
-        GXSetChanCtrl(GX_COLOR1A1, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
         GXSetNumTexGens(1);
-        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, 0, 125);
+        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
         GXSetNumTevStages(1);
         GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
         GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
@@ -301,36 +287,29 @@ namespace MR {
         GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_TEXA, GX_CA_KONST, GX_CA_A0, GX_CA_ZERO);
         GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_COMP_RGB8_GT, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
         GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_AND, GX_ALWAYS, 0);
-        GXSetZMode(1, GX_ALWAYS, 0);
-        GXSetZCompLoc(0);
+        GXSetZMode(GX_TRUE, GX_ALWAYS, GX_FALSE);
+        GXSetZCompLoc(GX_FALSE);
         GXSetCullMode(GX_CULL_NONE);
-        GXSetDither(0);
-        GXSetColorUpdate(1);
-        GXSetAlphaUpdate(1);
-        GXSetDstAlpha(1, 0);
+        GXSetDither(GX_FALSE);
+        GXSetColorUpdate(GX_TRUE);
+        GXSetAlphaUpdate(GX_TRUE);
+        GXSetDstAlpha(GX_TRUE, 0);
         GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
         GXSetTevColor(GX_TEVREG0, Color8(0x00000080));
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
         u16 width = MR::getScreenWidth();
         u16 height = MR::getScreenHeight();
-        GX_WRITE_U16(0);
-        GX_WRITE_U16(0);
-        GX_WRITE_F32(0.0f);
-        GX_WRITE_F32(0.0f);
-        GX_WRITE_U16(width);
-        GX_WRITE_U16(0);
-        GX_WRITE_F32(1.0f);
-        GX_WRITE_F32(0.0f);
-        GX_WRITE_U16(0);
-        GX_WRITE_U16(height);
-        GX_WRITE_F32(0.0f);
-        GX_WRITE_F32(1.0f);
-        GX_WRITE_U16(width);
-        GX_WRITE_U16(height);
-        GX_WRITE_F32(1.0f);
-        GX_WRITE_F32(1.0f);
-        GXSetDstAlpha(0, 0);
-        GXSetAlphaUpdate(0);
+        GXPosition2u16(0, 0);
+        GXPosition2f32(0.0f, 0.0f);
+        GXPosition2u16(width, 0);
+        GXPosition2f32(1.0f, 0.0f);
+        GXPosition2u16(0, height);
+        GXPosition2f32(0.0f, 1.0f);
+        GXPosition2u16(width, height);
+        GXPosition2f32(1.0f, 1.0f);
+        GXEnd();
+        GXSetDstAlpha(GX_FALSE, 0);
+        GXSetAlphaUpdate(GX_FALSE);
     }
 
     const JUTTexture* getMarioShadowTex() {
@@ -380,9 +359,9 @@ namespace MR {
 
     void nonFilteredCapture(JUTTexture* pTexture, s16 width, s16 height) {
         GXRenderModeObj* pRenderModeObj = JUTVideo::getManager()->getRenderMode();
-        GXSetCopyFilter(0, pRenderModeObj->sample_pattern, 0, pRenderModeObj->vfilter);
+        GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, 0, pRenderModeObj->vfilter);
         pTexture->capture(width, height, (GXTexFmt)pTexture->getFormat(), false, 0);
-        GXSetCopyFilter(0, pRenderModeObj->sample_pattern, 1, pRenderModeObj->vfilter);
+        GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, 1, pRenderModeObj->vfilter);
     }
 
     void simpleDraw(J3DModel* pModel, J3DMaterial* pMaterial) {
