@@ -197,7 +197,8 @@ void Mogucchi::exeScatter() {
     MR::normalizeOrZero(&mScatterNormal);
 
     if (!MR::isNearZero(mScatterNormal)) {
-        TVec3f v2 = railGravity->cross(mScatterNormal);
+        TVec3f v2;
+        PSVECCrossProduct(railGravity, mScatterNormal, &v2);
 
         TRot3f mtx;
         mtx.setXDirInline(v2);
@@ -435,7 +436,9 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 void Mogucchi::updateReferenceMtx() {
-    TVec3f v1(mRotation * PI_180);
+    TVec3f v1(mRotation);
+    // Using PI_180 will mismatch the float value by 1 least significant bit
+    v1.scale(57.295776);
 
     mNewHolePos.makeMatrixFromRotAxesInline(v1.x, v1.y, v1.z);
     mNewHolePos.setTransInline(mPosition);
