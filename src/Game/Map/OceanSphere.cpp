@@ -187,8 +187,7 @@ OceanSpherePlaneEdge::OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter
     mPointCount = pointCountMinus2;
     mPoints = nullptr;
     mPoints = new OceanSpherePoint*[mPointCount];
-    TVec3f axis;
-    PSVECCrossProduct(&rAxis1, &rAxis2, &axis);
+    TVec3f axis = rAxis1.cross(rAxis2);
     MR::normalize(&axis);
     TRot3f rot;
     rot.identity();

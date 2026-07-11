@@ -221,8 +221,7 @@ f32 OceanRing::calcNearestPos(const TVec3f& a1, TVec3f* a2, TVec3f* a3, TVec3f* 
         MR::calcRailPosAndDirectionAtCoord(&v31, &v32, this, v18);
         TVec3f v30(0.0f, -1.0f, 0.0f);
         MR::calcGravityVector(this, v31, &v30, 0, 0);
-        TVec3f v29;
-        PSVECCrossProduct(&MR::getRailDirection(this), &-v30, &v29);
+        TVec3f v29 = MR::getRailDirection(this).cross(-v30);
         f32 v24 = (mWidthMax * calcCurrentWidthRate(v18));
         TVec3f v28(v29);
         v28.scale(-v24);
@@ -246,8 +245,7 @@ f32 OceanRing::calcWaveHeight(const TVec3f& a1, f32 a2, TVec3f* a3) const {
     v43.sub(MR::getRailPos(this));
     TVec3f v42(0.0f, -1.0f, 0.0f);
     MR::calcGravityVector(this, a1, &v42, nullptr, 0);
-    TVec3f v37;
-    PSVECCrossProduct(&MR::getRailDirection(this), &-v42, &v37);
+    TVec3f v37 = MR::getRailDirection(this).cross(-v42);
 
     f32 dot = v43.dot(v37);
     f32 v12 = (::sDefaultWidth + dot);
@@ -283,7 +281,7 @@ f32 OceanRing::calcWaveHeight(const TVec3f& a1, f32 a2, TVec3f* a3) const {
     v32.sub(v36);
     TVec3f v31(v33);
     v31.sub(v34);
-    PSVECCrossProduct(&v31, &v32, a3);
+    a3->cross(v31, v32);
 
     if (MR::isNearZero(*a3)) {
         a3->set(-v42);
@@ -353,8 +351,7 @@ void OceanRing::initPoints() {
         TVec3f v23(0.0f, 1.0f, 0.0f);
         MR::calcGravityVector(this, MR::getRailPos(this), &v23, nullptr, 0);
         v23.scale(-1.0f);
-        TVec3f v22;
-        PSVECCrossProduct(&MR::getRailDirection(this), &v23, &v22);
+        TVec3f v22 = MR::getRailDirection(this).cross(v23);
         MR::normalize(&v22);
 
         f32 railCoord = MR::getRailCoord(this);

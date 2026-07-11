@@ -144,10 +144,9 @@ void SeaGull::control() {
         mVelocity.y *= 10.0f;
         mVelocity.z *= 10.0f;
     }
-
-    PSVECCrossProduct((const Vec*)&_B8, (const Vec*)&_AC, (Vec*)&_C4);
+    _C4.cross(_B8, _AC);
     MR::normalize(&_C4);
-    PSVECCrossProduct((const Vec*)&_AC, (const Vec*)&_C4, (Vec*)&_B8);
+    _B8.cross(_AC, _C4);
     MR::normalize(&_B8);
     _98 -= 1;
 

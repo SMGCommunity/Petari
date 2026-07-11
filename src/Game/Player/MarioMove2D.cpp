@@ -62,7 +62,7 @@ void Mario::calcMoveDir2D(f32 a1, f32 a2, TVec3f* pOut) {
     stack_74 = _654;
 
     TVec3f stack_50(_660);
-    PSVECCrossProduct(&stack_74, &stack_50, &stack_68);
+    stack_68.cross(stack_74, stack_50);
     MR::normalize(&stack_68);
 
     if (stack_50.dot(stack_80) < 0.0f) {

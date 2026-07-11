@@ -619,8 +619,8 @@ void SwingRope::updateHangLowerPoints() {
         MR::normalize(&up);
         MR::normalize(&front);
 
-        PSVECCrossProduct(&up, &front, &side);
-        if (!MR::isNearZero(side, 0.001f)) {
+        side.cross(up, front);
+        if (!MR::isNearZero(side)) {
             MR::makeAxisUpFront(&side, &front, up, front);
             mPoints[nextIndex]->setPosAndAxis(mFootPos, side, up, front);
         }

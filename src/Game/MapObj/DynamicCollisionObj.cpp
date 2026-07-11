@@ -47,8 +47,7 @@ void DynamicCollisionObj::updateTriangle() {
         MR::normalizeOrZero(&a);
         MR::normalizeOrZero(&b);
         MR::normalizeOrZero(&c);
-        TVec3f cross;
-        PSVECCrossProduct(&b, &a, &cross);
+        TVec3f cross = b.cross(a);
         MR::normalizeOrZero(&cross);
         _9C[i] = cross;
 
@@ -56,14 +55,9 @@ void DynamicCollisionObj::updateTriangle() {
             continue;
         }
 
-        TVec3f cross2;
-        TVec3f cross3;
-        TVec3f cross4;
-        TVec3f OuterVec;
-        JMathInlineVEC::PSVECNegate(&a, &OuterVec);
-        PSVECCrossProduct(&OuterVec, &cross, &cross2);
-        PSVECCrossProduct(&b, &cross, &cross3);
-        PSVECCrossProduct(&c, &cross, &cross4);
+        TVec3f cross2 = a.negateInline().cross(cross);
+        TVec3f cross3 = b.cross(cross);
+        TVec3f cross4 = c.cross(cross);
 
         MR::normalizeOrZero(&cross2);
         MR::normalizeOrZero(&cross3);

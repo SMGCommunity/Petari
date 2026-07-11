@@ -445,7 +445,7 @@ bool Fluff::updateRide() {
         MR::normalize(&mFront);
         worldStickDirection.scale(0.2f);
         mVelocity.add(worldStickDirection);
-        PSVECCrossProduct(&mUp, &mFront, &mSide);
+        mSide.cross(mUp, mFront);
         MR::startLevelSound(this, "SE_OJ_LV_FLUFF_SIDE_MOVE");
     }
 

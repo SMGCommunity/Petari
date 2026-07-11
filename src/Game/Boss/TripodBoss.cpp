@@ -178,8 +178,7 @@ void TripodBoss::initLegIKPlacement() {
 
     TVec3f v29(mMovableArea->mBaseAxis);
     TVec3f v28(mMovableArea->mFront);
-    TVec3f v27;
-    PSVECCrossProduct(&v29, &v28, &v27);
+    TVec3f v27 = v29.cross(v28);
     v29 *= (temp618 * mMovableArea->mRadius);
     v28 *= (v5 * mMovableArea->mRadius);
     v27 *= (v5 * mMovableArea->mRadius);

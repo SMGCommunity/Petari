@@ -799,8 +799,7 @@ void MarioAnimator::setTilt() {
         tiltAngle = 1.0f - frontDot;
 
         if (tiltAngle > 0.001f) {
-            TVec3f cross;
-            PSVECCrossProduct((Vec*)&_60, (Vec*)getFrontVec(), (Vec*)&cross);
+            TVec3f cross = _60.cross(getFrontVec());
 
             f32 gravDot = cross.dot(*getPlayer()->getGravityVec());
             if (gravDot < 0.0f) {
@@ -916,8 +915,7 @@ void MarioAnimator::setHoming() {
             angleH = table->mLookMaxAngleH;
         }
 
-        TVec3f cross;
-        PSVECCrossProduct((Vec*)&toTarget, (Vec*)getFrontVec(), (Vec*)&cross);
+        TVec3f cross = toTarget.cross(getFrontVec());
         Mario* player2 = getPlayer();
         f32 gravDot = cross.dot(player2->mHeadVec);
         if (gravDot < 0.0f) {

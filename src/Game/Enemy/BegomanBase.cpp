@@ -619,8 +619,8 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
         MR::calcSideVec(&vec2, pActor);
     } else {
         vec1.set(*pVec);
-        PSVECCrossProduct(&pActor->mGravity, &vec1, &vec2);
-        PSVECCrossProduct(&vec2, &pActor->mGravity, &vec1);
+        vec2.cross(pActor->mGravity, vec1);
+        vec1.cross(vec2, pActor->mGravity);
     }
 
     f32 angle = 0.0f;

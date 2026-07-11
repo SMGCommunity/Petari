@@ -143,27 +143,27 @@ namespace MR {
     // getReduceVibrationValue
 
     void makeAxisFrontUp(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
-        PSVECCrossProduct(&rParam4, &rParam3, pParam1);
+        pParam1->cross(rParam4, rParam3);
         normalize(pParam1);
-        PSVECCrossProduct(&rParam3, pParam1, pParam2);
+        pParam2->cross(rParam3, *pParam1);
     }
 
     void makeAxisFrontSide(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
-        PSVECCrossProduct(&rParam3, &rParam4, pParam1);
+        pParam1->cross(rParam3, rParam4);
         normalize(pParam1);
-        PSVECCrossProduct(pParam1, &rParam3, pParam2);
+        pParam2->cross(*pParam1, rParam3);
     }
 
     void makeAxisUpFront(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
-        PSVECCrossProduct(&rParam3, &rParam4, pParam1);
+        pParam1->cross(rParam3, rParam4);
         normalize(pParam1);
-        PSVECCrossProduct(pParam1, &rParam3, pParam2);
+        pParam2->cross(*pParam1, rParam3);
     }
 
     void makeAxisUpSide(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
-        PSVECCrossProduct(&rParam4, &rParam3, pParam1);
+        pParam1->cross(rParam4, rParam3);
         normalize(pParam1);
-        PSVECCrossProduct(&rParam3, pParam1, pParam2);
+        pParam2->cross(rParam3, *pParam1);
     }
 
     void makeAxisVerticalZX(TVec3f* pParam1, const TVec3f& rParam2) {
@@ -182,7 +182,7 @@ namespace MR {
 
     void makeAxisCrossPlane(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3) {
         makeAxisVerticalZX(pParam1, rParam3);
-        PSVECCrossProduct(pParam1, &rParam3, pParam2);
+        pParam2->cross(*pParam1, rParam3);
         normalizeOrZero(pParam2);
     }
 
@@ -196,9 +196,7 @@ namespace MR {
             v1.set(rParam3);
         }
 
-        TVec3f v2;
-
-        PSVECCrossProduct(&v1, &rParam4, &v2);
+        TVec3f v2 = v1.cross(rParam4);
 
         if (isNearZero(v2)) {
             pParam1->zero();
@@ -802,8 +800,7 @@ namespace MR {
     f32 diffAngleSigned(const TVec3f& rParam1, const TVec3f& rParam2, const TVec3f& rParam3) {
         f32 angleDiff = diffAngleAbs(rParam1, rParam2);
 
-        TVec3f v;
-        PSVECCrossProduct(&rParam1, &rParam3, &v);
+        TVec3f v = rParam1.cross(rParam3);
 
         if (v.dot(rParam2) >= 0.0f) {
             return angleDiff;

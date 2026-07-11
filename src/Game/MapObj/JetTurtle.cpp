@@ -299,9 +299,8 @@ void JetTurtle::exeThrowing() {
             _CC = grav;
         }
 
-        TVec3f v18;
-        PSVECCrossProduct(&mVelocity, &v20, &v18);
-        PSVECCrossProduct(&v18, &mVelocity, &v20);
+        TVec3f v18 = mVelocity.cross(v20);
+        v20.cross(v18, mVelocity);
 
         if (!MR::isNearZero(mVelocity)) {
             TPos3f frontUp;

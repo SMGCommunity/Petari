@@ -580,15 +580,15 @@ void SpaceCocoon::updateDrawPoints() {
         TVec3f side(mSide);
         TVec3f front(mFront);
 
-        if (MR::isNearZero(side.dot(up), 0.001f)) {
-            PSVECCrossProduct(&up, &front, &side);
+        if (MR::isNearZero(side.dot(up))) {
+            side.cross(up, front);
             MR::normalize(&side);
-            PSVECCrossProduct(&side, &up, &front);
+            front.cross(side, up);
             MR::normalize(&front);
         } else {
-            PSVECCrossProduct(&side, &up, &front);
+            front.cross(side, up);
             MR::normalize(&front);
-            PSVECCrossProduct(&up, &front, &side);
+            side.cross(up, front);
             MR::normalize(&side);
         }
 
@@ -677,10 +677,9 @@ bool SpaceCocoon::tryRelease() {
     TVec3f reaxisUp(mVelocity);
     reaxisUp.scale(-1.0f);
     TVec3f reaxisFront(mUp);
-    TVec3f reaxisSide;
-    PSVECCrossProduct(&reaxisUp, &reaxisFront, &reaxisSide);
+    TVec3f reaxisSide = reaxisUp.cross(reaxisFront);
     MR::normalize(&reaxisSide);
-    PSVECCrossProduct(&reaxisSide, &reaxisUp, &reaxisFront);
+    reaxisFront.cross(reaxisSide, reaxisUp);
     MR::normalize(&reaxisFront);
     mBaseMtx.setXYZDir(reaxisSide, reaxisUp, reaxisFront);
 

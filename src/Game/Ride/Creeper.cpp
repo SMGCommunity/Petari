@@ -45,9 +45,8 @@ void Creeoer_FORCE_MATCH_SDATA2() {
 CreeperPoint::CreeperPoint(const TVec3f& rPos, const TVec3f& rUp, const CreeperPoint* pPrevPoint)
     : mPosition(rPos), mNeutralPos(rPos), mVelocity(0.0f, 0.0f, 0.0f), mSide(1.0f, 0.0f, 0.0f), mUp(rUp), mFront(0.0f, 0.0f, 1.0f),
       mProjection(0.0f, 0.0f, 0.0f), mPrevPoint(pPrevPoint) {
-    TVec3f front;
-    PSVECCrossProduct(&mSide, &mUp, &front);
-    if (MR::isNearZero(front, 0.001f)) {
+    TVec3f front = mSide.cross(mUp);
+    if (MR::isNearZero(front)) {
         MR::makeAxisUpFront(&mSide, &mFront, mUp, mFront);
     } else {
         MR::makeAxisUpSide(&mFront, &mSide, mUp, mSide);
@@ -57,8 +56,7 @@ CreeperPoint::CreeperPoint(const TVec3f& rPos, const TVec3f& rUp, const CreeperP
         return;
     }
 
-    TVec3f posDiff(mPosition);
-    posDiff.sub(pPrevPoint->mPosition);
+    TVec3f posDiff = mPosition - pPrevPoint->mPosition;
     mProjection.x = pPrevPoint->mSide.dot(posDiff);
     mProjection.y = pPrevPoint->mUp.dot(posDiff);
     mProjection.z = pPrevPoint->mFront.dot(posDiff);
@@ -110,9 +108,8 @@ void CreeperPoint::updateLocalAxis() {
     mUp.sub(mPrevPoint->mPosition);
     MR::normalize(&mUp);
 
-    TVec3f front;
-    PSVECCrossProduct(&mSide, &mUp, &front);
-    if (MR::isNearZero(front, 0.001f)) {
+    TVec3f front = mSide.cross(mUp);
+    if (MR::isNearZero(front)) {
         MR::makeAxisUpFront(&mSide, &mFront, mUp, mFront);
     } else {
         MR::makeAxisUpSide(&mFront, &mSide, mUp, mSide);

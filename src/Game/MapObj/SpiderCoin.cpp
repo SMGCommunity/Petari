@@ -132,10 +132,9 @@ void SpiderCoin::calcAndSetBaseMtx() {
         MR::normalize(&up);
 
         TVec3f front(0.0f, 0.0f, 1.0f);
-        TVec3f side;
-        PSVECCrossProduct(&up, &front, &side);
+        TVec3f side = up.cross(front);
         MR::normalize(&side);
-        PSVECCrossProduct(&side, &up, &front);
+        front.cross(side, up);
         MR::normalize(&front);
 
         TPos3f mtx;

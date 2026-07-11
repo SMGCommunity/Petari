@@ -710,10 +710,8 @@ bool MarioSwim::update() {
         checkWaterBottom();
         if (getStickY() >= 0.0f && (_1F || (mDistToFloor < 60.0f && mForwardSpeed > 1.0f))) {
             const TVec3f& rShadowNorm = getPlayer()->getShadowNorm();
-            TVec3f stack_17C;
-            PSVECCrossProduct(&mFrontVec, &rShadowNorm, &stack_17C);
-            TVec3f stack_170;
-            PSVECCrossProduct(&rShadowNorm, &stack_17C, &stack_170);
+            TVec3f stack_17C = mFrontVec.cross(rShadowNorm);
+            TVec3f stack_170 = rShadowNorm.cross(stack_17C);
 
             if (-mWaterDepth + mDistToFloor > 1000.0f) {
                 mEnteredWater = true;
@@ -974,7 +972,7 @@ bool MarioSwim::update() {
     TVec3f stack_14C;
     TVec3f stack_140;
     if (!MR::normalizeOrZero(&mFrontVec)) {
-        PSVECCrossProduct(&mUpVec, &mFrontVec, &stack_140);
+        stack_140.cross(mUpVec, mFrontVec);
         MR::normalize(&stack_140);
         getPlayer()->setSideVec(stack_140);
         MR::rotAxisVecRad(mFrontVec, stack_140, &stack_14C, mVerticalAngle);
@@ -995,7 +993,7 @@ bool MarioSwim::update() {
     TVec3f stack_110;
     stack_110 = getPlayer()->_1FC;
     if (mJumpDiveTimer != 0 || mSinkTimer != 0 || isAnimationRun("水泳ジャンプダイブ回転") || isAnimationRun("水泳潜り")) {
-        PSVECCrossProduct(&stack_14C, &stack_140, &stack_110);
+        stack_110.cross(stack_14C, stack_140);
     }
     if (mJetTimer == 0) {
         decideVelocity();
@@ -2461,8 +2459,7 @@ void MarioSwim::updateTilt() {
 
             targetTiltX = absAngle * scale;
 
-            TVec3f cross;
-            PSVECCrossProduct(&mFrontVec, &padDir, &cross);
+            TVec3f cross = mFrontVec.cross(padDir);
             if (cross.dot(mUpVec) > 0.0f) {
                 targetTiltX = -targetTiltX;
             }
@@ -2715,12 +2712,10 @@ void MarioSwim::hitWall(const TVec3f& rNormal, HitSensor* pSensor) {
 
                             if (headAngle <= DEG_TO_RAD(150)) {
                                 if (headAngle >= 2 * PI) {
-                                    TVec3f cross1;
-                                    PSVECCrossProduct(&rNormal, &getPlayer()->mHeadVec, &cross1);
+                                    TVec3f cross1 = rNormal.cross(getPlayer()->mHeadVec);
                                     MR::normalizeOrZero(&cross1);
 
-                                    TVec3f cross2;
-                                    PSVECCrossProduct(&getPlayer()->mHeadVec, &cross1, &cross2);
+                                    TVec3f cross2 = getPlayer()->mHeadVec.cross(cross1);
                                     MR::normalizeOrZero(&cross2);
 
                                     getPlayer()->forceSetHeadVecKeepSide(cross2);

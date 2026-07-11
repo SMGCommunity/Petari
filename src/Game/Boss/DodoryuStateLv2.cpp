@@ -946,8 +946,7 @@ void DodoryuStateLv2::addVelocity(bool snapToGround) {
 
 void DodoryuStateLv2::calcLimitedRotateMtx(TPos3f* pMtx, const TVec3f& rFrom, const TVec3f& rTo, f32 rate) {
     f32 maxAngle = rate * PI / 180.0f;
-    TVec3f cross;
-    PSVECCrossProduct(&rFrom, &rTo, &cross);
+    TVec3f cross = rFrom.cross(rTo);
     f32 crossMag = cross.length();
     f32 dotResult = rFrom.dot(rTo);
     f32 angle = JMath::sAtanTable.atan2_(crossMag, dotResult);

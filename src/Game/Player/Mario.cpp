@@ -418,13 +418,12 @@ void Mario::setFrontVecKeepUp(const TVec3f &v)
     if (!MR::isNearZero(v)) {
         setFrontVec(v);
     }
-    TVec3f stack_2C;
-    PSVECCrossProduct(&mHeadVec, &mFrontVec, &stack_2C);
+    TVec3f stack_2C = mHeadVec.cross(mFrontVec);
 
     if (MR::isNearZero(stack_2C)) {
         TVec3f stack_20;
         MR::vecBlendSphere(stack_38, v, &stack_20, 0.5f);
-        PSVECCrossProduct(&mHeadVec, &stack_20, &stack_2C);
+        stack_2C.cross(mHeadVec, stack_20);
         setFrontVec(stack_20);
         if (MR::isNearZero(stack_2C)) {
             setFrontVecKeepSide(v);
@@ -434,9 +433,7 @@ void Mario::setFrontVecKeepUp(const TVec3f &v)
     MR::normalize(&stack_2C);
     mSideVec = stack_2C;
     MR::normalize(&mSideVec);
-    TVec3f stack_14;
-    PSVECCrossProduct(&mSideVec, &mHeadVec, &stack_14);
-    setFrontVec(stack_14);
+    setFrontVec(mSideVec.cross(mHeadVec));
     _22C = mFrontVec;
     _328 = mFrontVec % _328.length();
     _344 = mSideVec;
@@ -585,12 +582,12 @@ bool Mario::isNonFixHeadVec() const {
     stack_8 = mFrontVec;
     if (mDrawStates._11) {
         MR::normalize(&stack_14);
-        PSVECCrossProduct(&stack_20, &stack_14, &stack_8);
+        stack_8.cross(stack_20, stack_14);
         MR::normalizeOrZero(&stack_8);
         if (MR::isNearZero(stack_8)) {
             stack_8 = mFrontVec;
         }
-        PSVECCrossProduct(&stack_14, &stack_8, &stack_20);
+        stack_20.cross(stack_14, stack_8);
         MR::normalizeOrZero(&stack_20);
         if (MR::isNearZero(stack_20)) {
             stack_20 = mSideVec;
@@ -598,12 +595,12 @@ bool Mario::isNonFixHeadVec() const {
     }
     else {
         MR::normalizeOrZero(&stack_14);
-        PSVECCrossProduct(&stack_14, &mFrontVec, &stack_20);
+        stack_20.cross(stack_14, mFrontVec);
         MR::normalizeOrZero(&stack_20);
         if (MR::isNearZero(stack_20)) {
             stack_20 = mSideVec;
         }
-        PSVECCrossProduct(&stack_20, &stack_14, &stack_8);
+        stack_8.cross(stack_20, stack_14);
         MR::normalizeOrZero(&stack_8);
         if (MR::isNearZero(stack_8)) {
             stack_8 = mFrontVec;
@@ -658,15 +655,13 @@ void Mario::fixFrontVecByGravity() {
             MR::normalize(&mSideVec);
         }
     } else if (_1C._2) {
-        TVec3f side2;
-        PSVECCrossProduct(&up, &mFrontVec, &side2);
+        TVec3f side2 = up.cross(mFrontVec);
         MR::normalizeOrZero(&side2);
         if (MR::isNearZero(side2) == false) {
             _344 = side2;
         }
     }
-    TVec3f front;
-    PSVECCrossProduct(&_344, &up, &front);
+    TVec3f front = _344.cross(up);
     if (MR::normalizeOrZero(&front) == nullptr) {
         setFrontVec(front);
         _22C = mFrontVec;
@@ -676,8 +671,7 @@ void Mario::fixFrontVecByGravity() {
 }
 
 void Mario::fixFrontVecFromUpSide() {
-    TVec3f frontVec;
-    PSVECCrossProduct((Vec*)&mSideVec, (Vec*)&mHeadVec, (Vec*)&frontVec);
+    TVec3f frontVec = mSideVec.cross(mHeadVec);
     MR::normalizeOrZero(&frontVec);
     if (MR::isNearZero(frontVec) == false) {
         setFrontVec(frontVec);
@@ -690,8 +684,7 @@ void Mario::fixFrontVecFromUpSide() {
 }
 
 void Mario::fixSideVecFromFrontUp() {
-    TVec3f side;
-    PSVECCrossProduct((Vec*)&mHeadVec, (Vec*)&mFrontVec, (Vec*)&side);
+    TVec3f side = mHeadVec.cross(mFrontVec);
     MR::normalizeOrZero(&side);
     if (MR::isNearZero(side) == false) {
         mSideVec = side;
@@ -792,14 +785,13 @@ void Mario::setFrontVecKeepUp(const TVec3f& rFront) {
     TVec3f front = mFrontVec;
     TVec3f side;
     TVec3f blendedFront;
-    TVec3f front2;
     if (MR::isNearZero(rFront) == false) {
         setFrontVec(rFront);
     }
-    PSVECCrossProduct(&mHeadVec, &mFrontVec, &side);
+    side.cross(mHeadVec, mFrontVec);
     if (MR::isNearZero(side)) {
         MR::vecBlendSphere(front, rFront, &blendedFront, 0.5f);
-        PSVECCrossProduct(&mHeadVec, &blendedFront, &side);
+        side.cross(mHeadVec, blendedFront);
         setFrontVec(blendedFront);
         if (MR::isNearZero(side)) {
             setFrontVecKeepSide(rFront);
@@ -809,8 +801,8 @@ void Mario::setFrontVecKeepUp(const TVec3f& rFront) {
     MR::normalize(&side);
     mSideVec = side;
     MR::normalize(&mSideVec);
-    PSVECCrossProduct(&mSideVec, &mHeadVec, &front2);
-    setFrontVec(front2);
+    TVec3f stack_14 = mSideVec.cross(mHeadVec);
+    setFrontVec(stack_14);
     _22C = mFrontVec;
     f32 _328mag = _328.length();
     TVec3f scaledFront(mFrontVec);
@@ -825,7 +817,8 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
     if (MR::isNearZero(rFront) == false) {
         setFrontVec(rFront);
     }
-    PSVECCrossProduct(&mFrontVec, &mSideVec, &headVec);
+
+    headVec.cross(mFrontVec, mSideVec);
     if (MR::normalizeOrZero(&headVec) != nullptr) {
         const TVec3f* gravity = getGravityVec();
         TVec3f up = -(*gravity);
@@ -835,7 +828,7 @@ void Mario::setFrontVecKeepSide(const TVec3f& rFront) {
         mHeadVec = headVec;
         MR::normalize(&mHeadVec);
     }
-    PSVECCrossProduct(&mSideVec, &mHeadVec, &front);
+    front.cross(mSideVec, mHeadVec);
     setFrontVec(front);
     _22C = mFrontVec;
     f32 _328mag = _328.length();
@@ -997,7 +990,7 @@ void Mario::setGravityVec(const TVec3f& rGravity) {
         }
         _1E4.zero();
     } else {
-        PSVECCrossProduct(&mAirGravityVec, &rGravity, &_1E4);
+        _1E4.cross(mAirGravityVec, rGravity);
         MR::normalizeOrZero(&_1E4);
         f32 frontDot = __fabsf(mFrontVec.dot(_1E4));
         f32 sideDot = __fabsf(mSideVec.dot(_1E4));

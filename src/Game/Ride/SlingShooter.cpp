@@ -457,10 +457,9 @@ void SlingShooter::calcBaseMtx(TPos3f* pBaseMtx) {
     up.scale(-1.0f);
     MR::normalize(&up);
     TVec3f front(0.0f, 0.0f, -1.0f);
-    TVec3f side;
-    PSVECCrossProduct(&up, &front, &side);
+    TVec3f side = up.cross(front);
     MR::normalize(&side);
-    PSVECCrossProduct(&side, &up, &front);
+    front.cross(side, up);
     MR::normalize(&front);
     pBaseMtx->setXYZDir(side, up, front);
     pBaseMtx->setTrans(*mBasePos);
@@ -575,10 +574,9 @@ void SlingShooter::updateActorMtx() {
         MR::normalize(&up);
         TVec3f front;
         mBaseMtx.getZDir(front);
-        TVec3f side;
-        PSVECCrossProduct(&up, &front, &side);
+        TVec3f side = up.cross(front);
         MR::normalize(&side);
-        PSVECCrossProduct(&front, &side, &up);
+        up.cross(front, side);
         MR::normalize(&up);
         mBaseMtx.setXYZDir(side, up, front);
     }
@@ -638,8 +636,7 @@ bool SlingShooter::tryRelease() {
 
     TVec3f front;
     mBaseMtx.getZDir(front);
-    TVec3f side;
-    PSVECCrossProduct(&up, &front, &side);
+    TVec3f side = up.cross(front);
     MR::normalize(&side);
     mBaseMtx.setXYZDir(side, up, front);
 

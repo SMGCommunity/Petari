@@ -187,17 +187,14 @@ void CocoNut::initEffect() {
     MR::setEffectHostMtx(this, "SpinHitMark", _108.toMtxPtr());
 }
 
-// hell function
 void CocoNut::updateRotate(f32 a1) {
     TPos3f stack_38;
     TVec3f stack_2C;
     TVec3f stack_20;
-    TVec3f stack_14;
-    TVec3f stack_8;
 
     negateInternalInline(mGravity, &stack_20);
     if (!MR::normalizeOrZero(mVelocity, &stack_2C) && !MR::isSameDirection(stack_2C, stack_20, 0.01f)) {
-        PSVECCrossProduct(&stack_2C, &stack_20, &stack_14);
+        TVec3f stack_14 = stack_2C.cross(stack_20);
 
         f32 angle = (mVelocity.length() * -180.0f * a1) / (_D0 * MR::pi());
         stack_38.makeRotate(stack_14, MR::toRadian(angle));
@@ -500,7 +497,7 @@ void CocoNut::calcHitSpeedAndFrontVec(f32* arg0, f32* arg1, TVec3f* arg2, TVec3f
     arg3->sub(arg5, arg4);
     MR::normalize(arg3);
     stack_14.set(mGravity);
-    PSVECCrossProduct(arg3, &stack_14, arg2);
+    arg2->cross(*arg3, stack_14);
     MR::normalize(arg2);
     if (MR::normalizeOrZero(mVelocity, &stack_8)) {
         stack_8.set(_94);
@@ -508,7 +505,7 @@ void CocoNut::calcHitSpeedAndFrontVec(f32* arg0, f32* arg1, TVec3f* arg2, TVec3f
     f32 var_f30 = stack_8.dot(*arg2);
     if (var_f30 < 0.0f) {
         negateInternalInline(stack_14, &stack_14);
-        PSVECCrossProduct(arg3, &stack_14, arg2);
+        arg2->cross(*arg3, stack_14);
         MR::normalize(arg2);
         var_f30 = stack_8.dot(*arg2);
     }

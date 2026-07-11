@@ -31,10 +31,9 @@ MarioSlider::MarioSlider(MarioActor* pActor) : MarioState(pActor, MarioStatus_Sl
 
 void MarioSlider::calcGroundAccel() {
     TVec3f* val = &getPlayer()->_368;
-    TVec3f v6;
-    PSVECCrossProduct(val, getPlayer()->getGravityVec(), &v6);
+    TVec3f v6 = val->cross(*getPlayer()->getGravityVec());
     MR::normalizeOrZero(&v6);
-    PSVECCrossProduct(&v6, val, &_2C);
+    _2C.cross(v6, *val);
     MR::normalizeOrZero(&_2C);
 }
 
@@ -178,8 +177,7 @@ bool MarioSlider::update() {
         } else {
             MR::normalize(&v48);
             TVec3f v47(getPlayer()->_368);
-            TVec3f v46;
-            PSVECCrossProduct(&v48, &v47, &v46);
+            TVec3f v46 = v48.cross(v47);
             MR::vecKillElement(v46, getPlayer()->_368, &v46);
             MR::normalize(&v46);
             _14.setLength(v18);
