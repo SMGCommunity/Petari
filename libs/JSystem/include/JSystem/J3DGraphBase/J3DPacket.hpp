@@ -161,6 +161,9 @@ public:
     void setDisplayListObj(J3DDisplayListObj* pObj) {
         mpDisplayListObj = pObj;
     }
+    bool isValidDisplayListObj() const {
+        return mpDisplayListObj;
+    }
 
     void beginPatch() {
         mpDisplayListObj->beginPatch();
