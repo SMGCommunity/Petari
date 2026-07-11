@@ -230,9 +230,9 @@ namespace MR {
         GXSetNumTevStages(1);
         GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
         GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
-        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO);
-        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
         GXSetZCompLoc(GX_FALSE);
         GXSetZMode(GX_TRUE, GX_GEQUAL, GX_FALSE);
@@ -277,7 +277,7 @@ namespace MR {
         GXSetNumTevStages(1);
         GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
         GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
-        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+        GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXColor kcolor0;
         kcolor0.r = 0;
         kcolor0.g = 0;
@@ -286,7 +286,7 @@ namespace MR {
         GXSetTevKColor(GX_KCOLOR0, kcolor0);
         GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K0_A);
         GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_TEXA, GX_CA_KONST, GX_CA_A0, GX_CA_ZERO);
-        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_COMP_RGB8_GT, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
+        GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_COMP_RGB8_GT, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
         GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_AND, GX_ALWAYS, 0);
         GXSetZMode(GX_TRUE, GX_ALWAYS, GX_FALSE);
         GXSetZCompLoc(GX_FALSE);
@@ -360,13 +360,13 @@ namespace MR {
 
     void nonFilteredCapture(JUTTexture* pTexture, s16 width, s16 height) {
         GXRenderModeObj* pRenderModeObj = JUTVideo::getManager()->getRenderMode();
-        GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, 0, pRenderModeObj->vfilter);
+        GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, GX_FALSE, pRenderModeObj->vfilter);
         pTexture->capture(width, height, (GXTexFmt)pTexture->getFormat(), false, 0);
-        GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, 1, pRenderModeObj->vfilter);
+        GXSetCopyFilter(GX_FALSE, pRenderModeObj->sample_pattern, GX_TRUE, pRenderModeObj->vfilter);
     }
 
     void simpleDraw(J3DModel* pModel, J3DMaterial* pMaterial) {
-        if (pMaterial && pMaterial->mShape != nullptr && !pMaterial->mShape->checkFlag(1)) {
+        if (pMaterial != nullptr && pMaterial->mShape != nullptr && !pMaterial->mShape->checkFlag(1)) {
             J3DShape::resetVcdVatCache();
             J3DMatPacket* pMatPacket = pModel->getMatPacket(pMaterial->mIndex);
             J3DShapePacket* pShapePacket = pModel->getShapePacket(pMaterial->mShape->mIndex);
