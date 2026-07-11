@@ -276,7 +276,6 @@ void IceMerameraKing::exeThrow() {
         }
 
         _E0 += 1;
-
         mThrowingIce->emitIce(ice->mPosition, *MR::getPlayerCenterPos() + *MR::getPlayerVelocity() * 35.0f, -5.0f, mGravity);
         mThrowingIce = nullptr;
         MR::startSound(this, "SE_BM_ICEMERAKING_THROW");
@@ -565,9 +564,15 @@ void IceMerameraKing::exeAngryDemo() {
 
     if (MR::isDemoPartLastStep("怒りデモ")) {
         if (!(_EC > 2)) {
-            MR::appearStarPiece(this, mPosition - mGravity * 200.0f, 8, 15.0f, 70.0f, false);
+            TVec3f v7(mGravity * 200.0f);
+            TVec3f v8(mPosition);
+            v8.sub(v7);
+            MR::appearStarPiece(this, v8, 8, 15.0f, 70.0f, false);
         } else {
-            MR::appearStarPiece(this, mPosition - mGravity * 200.0f, 16, 15.0f, 70.0f, false);
+            TVec3f v5(mGravity * 200.0f);
+            TVec3f v6(mPosition);
+            v6.sub(v5);
+            MR::appearStarPiece(this, v6, 16, 15.0f, 70.0f, false);
         }
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         setNerve(&NrvIceMerameraKing::HostTypeNrvSearch::sInstance);
@@ -717,7 +722,16 @@ void IceMerameraKing::addVelocityToInitPos() {
     if (0.0f < mGravity.dot(v12)) {
         MR::vecKillElement(v12, mGravity, &v12);
     }
-    v12.setLength(0.5f);
+    f32 squared = v12.squared();
+    f32 half = 0.5f;
+
+    if (squared <= 0.0000038146973f) {
+        squared = squared;
+    } else {
+        f32 inv = JGeometry::TUtil< f32 >::inv_sqrt(squared);
+        f32 v9 = inv * half;
+        v12.scale(v9);
+    }
     mVelocity.add(v12);
 }
 

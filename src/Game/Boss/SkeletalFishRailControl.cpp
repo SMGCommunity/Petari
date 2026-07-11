@@ -138,9 +138,6 @@ void SkeletalFishRailControl::getMtx(TPos3f* pOut, f32 a2) {
     TVec3f railPos;
     TVec3f railDir;
     TVec3f gravityVec;
-    TVec3f v15;
-    TVec3f v14;
-    TVec3f negVector;
 
     if (normalRailInfo._4 < 0.0f && !MR::isLoopRail(normalRailInfo._0)) {
         MR::calcRailPosAtCoord(&railPos, normalRailInfo._0, 0.0f);
