@@ -104,7 +104,7 @@ namespace MR {
         f32 v2 = 608.0f * 0.5f * a1;
 
         Mtx44 projMtx;
-        C_MTXOrtho(projMtx, v1, -v1, -v2, v2, cNearZ, cFarZ);
+        C_MTXOrtho(projMtx, v1, -v1, -v2, v2, ::cNearZ, ::cFarZ);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
         GXSetCullMode(GX_CULL_NONE);
         GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
@@ -120,18 +120,18 @@ namespace MR {
         MR::setDefaultViewportAndScissor();
         TMtx34f mtxImm;
         mtxImm.identity();
-        GXLoadPosMtxImm(mtxImm, 0);
-        GXSetCurrentMtx(0);
+        GXLoadPosMtxImm(mtxImm, GX_PNMTX0);
+        GXSetCurrentMtx(GX_PNMTX0);
         GXClearVtxDesc();
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
         GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_U16, 0);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U8, 0);
         GXSetNumChans(0);
-        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
-        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
         GXSetNumTexGens(1);
-        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
+        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
         GXInitTexObj(&::clear_z_tobj, sTexImgObj, 4, 4, GX_TF_Z24X8, GX_REPEAT, GX_REPEAT, GX_FALSE);
         GXInitTexObjLOD(&::clear_z_tobj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
         GXLoadTexObj(&::clear_z_tobj, GX_TEXMAP0);
@@ -157,13 +157,13 @@ namespace MR {
         GXSetCullMode(GX_CULL_BACK);
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
         GXPosition2u16(0, 0);
-        GXPosition2u8(0, 0);
+        GXTexCoord2u8(0, 0);
         GXPosition2u16(width, 0);
-        GXPosition2u8(1, 0);
+        GXTexCoord2u8(1, 0);
         GXPosition2u16(width, height);
-        GXPosition2u8(1, 1);
+        GXTexCoord2u8(1, 1);
         GXPosition2u16(0, height);
-        GXPosition2u8(0, 1);
+        GXTexCoord2u8(0, 1);
         GXEnd();
         GXSetZTexture(GX_ZT_DISABLE, GX_TF_Z24X8, 0);
         GXSetZCompLoc(GX_TRUE);
@@ -176,14 +176,14 @@ namespace MR {
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
         TMtx34f mtxImm;
         mtxImm.identity();
-        GXLoadPosMtxImm(mtxImm, 0);
-        GXSetCurrentMtx(0);
+        GXLoadPosMtxImm(mtxImm, GX_PNMTX0);
+        GXSetCurrentMtx(GX_PNMTX0);
         Mtx44 projMtx;
         C_MTXOrtho(projMtx, 0.0f, getScreenHeightInline(), 0.0f, MR::getFrameBufferWidth(), -1.0f, 1.0f);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
         GXSetNumChans(1);
-        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
-        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
         GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
         GXSetZMode(GX_FALSE, GX_LEQUAL, GX_FALSE);
         GXSetZCompLoc(GX_FALSE);
@@ -224,8 +224,8 @@ namespace MR {
         GXSetNumIndStages(0);
         GXSetNumTexGens(0);
         GXSetNumChans(1);
-        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
-        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
         GXSetChanMatColor(GX_COLOR0A0, Color8(0));
         GXSetNumTevStages(1);
         GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
@@ -262,18 +262,18 @@ namespace MR {
         GXSetNumIndStages(0);
         TMtx34f mtxImm;
         mtxImm.identity();
-        GXLoadPosMtxImm(mtxImm, 0);
-        GXSetCurrentMtx(0);
+        GXLoadPosMtxImm(mtxImm, GX_PNMTX0);
+        GXSetCurrentMtx(GX_PNMTX0);
         GXClearVtxDesc();
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
         GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_U16, 0);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
         GXSetNumChans(1);
-        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
-        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+        GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
         GXSetNumTexGens(1);
-        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
+        GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY, GX_FALSE, GX_PTIDENTITY);
         GXSetNumTevStages(1);
         GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
         GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
@@ -301,13 +301,13 @@ namespace MR {
         u16 width = MR::getScreenWidth();
         u16 height = MR::getScreenHeight();
         GXPosition2u16(0, 0);
-        GXPosition2f32(0.0f, 0.0f);
+        GXTexCoord2f32(0.0f, 0.0f);
         GXPosition2u16(width, 0);
-        GXPosition2f32(1.0f, 0.0f);
+        GXTexCoord2f32(1.0f, 0.0f);
         GXPosition2u16(0, height);
-        GXPosition2f32(0.0f, 1.0f);
+        GXTexCoord2f32(0.0f, 1.0f);
         GXPosition2u16(width, height);
-        GXPosition2f32(1.0f, 1.0f);
+        GXTexCoord2f32(1.0f, 1.0f);
         GXEnd();
         GXSetDstAlpha(GX_FALSE, 0);
         GXSetAlphaUpdate(GX_FALSE);
@@ -366,7 +366,7 @@ namespace MR {
     }
 
     void simpleDraw(J3DModel* pModel, J3DMaterial* pMaterial) {
-        if (pMaterial && pMaterial->mShape && !pMaterial->mShape->checkFlag(1)) {
+        if (pMaterial && pMaterial->mShape != nullptr && !pMaterial->mShape->checkFlag(1)) {
             J3DShape::resetVcdVatCache();
             J3DMatPacket* pMatPacket = pModel->getMatPacket(pMaterial->mIndex);
             J3DShapePacket* pShapePacket = pModel->getShapePacket(pMaterial->mShape->mIndex);
