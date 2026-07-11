@@ -158,13 +158,19 @@ public:
     J3DDisplayListObj* getDisplayListObj() {
         return mpDisplayListObj;
     }
+
     void setDisplayListObj(J3DDisplayListObj* pObj) {
         mpDisplayListObj = pObj;
+    }
+
+    bool isValidDisplayListObj() const {
+        return mpDisplayListObj;
     }
 
     void beginPatch() {
         mpDisplayListObj->beginPatch();
     }
+
     void endPatch() {
         mpDisplayListObj->endPatch();
     }
@@ -172,9 +178,11 @@ public:
     void callDL() const {
         mpDisplayListObj->callDL();
     }
+
     void beginDL() {
         mpDisplayListObj->beginDL();
     }
+
     void endDL() {
         mpDisplayListObj->endDL();
     }
