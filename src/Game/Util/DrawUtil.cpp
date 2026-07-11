@@ -209,6 +209,7 @@ namespace MR {
         GXPosition2u16(maxX, minY);
         GXPosition2u16(maxX, maxY);
         GXPosition2u16(minX, maxY);
+        GXEnd();
     }
 
     void fillScreen(const GXColor& color) {
