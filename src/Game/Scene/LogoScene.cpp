@@ -219,7 +219,7 @@ void LogoScene::initLayout() {
     }
 
     mIsbnManager =
-        IsbnManager::create(MR::loadToMainRAM("CnSimpChinese/LayoutData/ISBNLayoutData.arc", nullptr, nullptr, JKRDvdRipper::ALLOC_DIRECTION_1),
+        IsbnManager::create(MR::loadToMainRAM("CnSimpChinese/LayoutData/ISBNLayoutData.arc", nullptr, nullptr, JKRDvdRipper::ALLOC_DIRECTION_FORWARD),
                             &MR::NewDeleteAllocator::sAllocator);
     mIsbnManager->setNumber(pIsbnNumber, pRegistNumber, pOtherNumber);
 

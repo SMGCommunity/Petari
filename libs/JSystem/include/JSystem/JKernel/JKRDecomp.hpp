@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JKernel/JKRCompression.hpp"
 #include "JSystem/JKernel/JKRThread.hpp"
 
 class JKRAMCommand;
@@ -41,3 +42,18 @@ public:
     static void decodeSZS(u8*, u8*, u32, u32);
     static EJKRCompression checkCompressed(unsigned char*);
 };
+
+inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength) {
+    JKRDecomp::orderSync(srcBuffer, dstBuffer, srcLength, dstLength);
+}
+
+inline JKRCompression JKRCheckCompressed_noASR(u8* pBuf) {
+    JKRCompression compression = JKRDecomp::checkCompressed(pBuf);
+    if (compression == COMPRESSION_ASR)  // ternary i had before was either incorrect, or was not a ternary at all
+        compression = COMPRESSION_NONE;
+    return compression;
+}
+
+inline u32 JKRDecompExpandSize(u8* pBuf) {
+    return (pBuf[4] << 0x18) | (pBuf[5] << 0x10) | (pBuf[6] << 8) | pBuf[7];
+}

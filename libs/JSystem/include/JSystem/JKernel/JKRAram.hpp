@@ -3,7 +3,7 @@
 #include "JSystem/JKernel/JKRDvdRipper.hpp"
 #include <revolution.h>
 
-s32 JKRDecompExpandSize(u8*);
+u32 JKRDecompExpandSize(u8*);
 
 class JKRAram {
 public:

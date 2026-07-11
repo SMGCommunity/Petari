@@ -108,9 +108,7 @@ JAUSection::JAUSection(JAUSectionHeap* param_0, u32 param_1, s32 param_2) : JSUL
 }
 
 void JAUSection::finishBuild() {
-    {
-        TPushCurrentHeap push(getHeap_());
-    }
+    { TPushCurrentHeap push(getHeap_()); }
     data_.field_0x98 -= getHeap_()->getFreeSize();
     getHeap_()->freeTail();
     field_0x2c = 0;
@@ -251,7 +249,7 @@ void* JAUSection::loadDVDFile(const char* pFileName, bool direction, JKRExpandSw
     {
         TPushCurrentHeap push(getHeap_());
         return JKRDvdToMainRam(pFileName, nullptr, expandSwitch, 0, getHeap_(),
-                               direction ? JKRDvdRipper::ALLOC_DIRECTION_2 : JKRDvdRipper::ALLOC_DIRECTION_1, 0, nullptr, nullptr);
+                               direction ? JKRDvdRipper::ALLOC_DIRECTION_BACKWARD : JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, nullptr, nullptr);
     }
 }
 
