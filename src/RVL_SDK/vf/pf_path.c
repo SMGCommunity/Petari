@@ -1,5 +1,8 @@
 #include "revolution/vf/pf_path.h"
+#include "revolution/vf/pf_clib.h"
+#include "revolution/vf/pf_service.h"
 #include "revolution/vf/pf_str.h"
+#include "revolution/vf/pf_volume.h"
 #include "revolution/vf/vf_struct.h"
 
 extern PF_VOLUME_SET VFipf_vol_set;
@@ -149,7 +152,7 @@ static u16 VFiPFPATH_GetNextCharOfFileName(struct PF_FILE_NAME_ITER* p_name) {
     }
 }
 
-static u16 VFiPFPATH_GetNextCharOfPattern(PF_STR* p_pattern, u16 name_kind) {
+u16 VFiPFPATH_GetNextCharOfPattern(struct PF_STR* p_pattern, u32 is_long_name) {
     u16 twc;
     u16 wc;
     u16 tmp_wc;
@@ -170,7 +173,7 @@ static u16 VFiPFPATH_GetNextCharOfPattern(PF_STR* p_pattern, u16 name_kind) {
             twc = pattern[0];
         }
 
-        if (name_kind != 0) {
+        if (is_long_name != 0) {
             VFipf_vol_set.codeset.oem2unicode(pattern, &twc);
         }
     } else {
@@ -185,7 +188,7 @@ static u16 VFiPFPATH_GetNextCharOfPattern(PF_STR* p_pattern, u16 name_kind) {
 
         twc = ((u8)pattern[1] << 8) + (u8)pattern[0];
 
-        if (name_kind == 0) {
+        if (is_long_name == 0) {
             VFipf_vol_set.codeset.unicode2oem(&twc, (s8*)&wc);
             if (VFipf_vol_set.codeset.is_oem_mb_char(wc >> 8, 1) != 0) {
                 twc = wc;
@@ -197,7 +200,7 @@ static u16 VFiPFPATH_GetNextCharOfPattern(PF_STR* p_pattern, u16 name_kind) {
 
     twc = (twc >= 0x61 && twc <= 0x7A) ? twc - 0x20 : twc;
 
-    if (name_kind != 0) {
+    if (is_long_name != 0) {
         if (VFiPFPATH_UNI_ConvertFWchar(twc, &tmp_wc) == 1) {
             twc = tmp_wc;
         }
@@ -210,8 +213,7 @@ static u16 VFiPFPATH_GetNextCharOfPattern(PF_STR* p_pattern, u16 name_kind) {
     return twc;
 }
 
-/*
-static u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, PF_FILE_NAME_ITER* p_name, u16 c_pat, PF_STR* p_pattern) {
+u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p_name, u16 c_pat, struct PF_STR* p_pattern, u32 is_long_name) {
     struct PF_FILE_NAME_ITER name;
     struct PF_STR pattern;
 
@@ -350,9 +352,11 @@ s32 VFiPFPATH_cmpNameImpl(const s8* sName, const s8* sPattern, u32* p_is_end) {
     return *sName != '\0';
 }
 
+/*
 s32 VFiPFPATH_cmpNameUni(const u16* p_name, struct PF_STR* sPattern) {
     return VFiPFPATH_MatchFileNameWithPattern((const s8*)p_name, sPattern, 1) == 0;
 }
+    */
 
 s32 VFiPFPATH_cmpName(const s8* sShort, struct PF_STR* p_pattern, u32 is_short_search) {
     u32 is_end;
@@ -509,6 +513,7 @@ struct PF_VOLUME* VFiPFPATH_GetVolumeFromPath(struct PF_STR* p_path) {
     return p_vol;
 }
 
+/*
 u32 VFiPFPATH_MatchFileNameWithPattern(const s8* file_name, struct PF_STR* p_pattern, u32 is_long_name) {
     u16 c_name;
     u16 c_pat;
@@ -522,8 +527,8 @@ u32 VFiPFPATH_MatchFileNameWithPattern(const s8* file_name, struct PF_STR* p_pat
     sig[1] = *(s8*)"1";
 
     name.buf = file_name;
-    name.dot_inserted = 0;
-    name.is_long_name = is_long_name;
+    name.index = 0;
+    name.kind = is_long_name;
     name.index = 0;
 
     pattern = *p_pattern;
@@ -549,6 +554,7 @@ u32 VFiPFPATH_MatchFileNameWithPattern(const s8* file_name, struct PF_STR* p_pat
 
     return is_match;
 }
+    */
 
 s32 VFiPFPATH_putShortName(u8* pDirEntry, const s8* short_name, u8 attr) {
     s32 i;
@@ -1211,5 +1217,3 @@ s32 VFiPFPATH_AdjustExtShortName(s8* pName, u32 position) {
 
     return 0;
 }
-
-*/

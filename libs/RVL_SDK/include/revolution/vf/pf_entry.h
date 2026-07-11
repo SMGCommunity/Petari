@@ -32,4 +32,10 @@ s32 VFiPFENT_FillVoidEntryToSectors(PF_VOLUME* p_vol, u32 start_sector, u32 num_
 
 void VFiPFENT_StoreEntryNumericFieldsToBuf(u8* buf, const PF_DIR_ENT* p_ent);
 
+s32 VFiPFENT_LoadLFNEntryFieldsFromBuf(struct PF_DIR_ENT* p_ent, const u8* buf, u32);
+
+void VFiPFENT_LoadShortNameFromBuf(struct PF_DIR_ENT* p_ent, const u8* buf);
+
+void VFiPFENT_loadEntryNumericFieldsFromBuf(struct PF_DIR_ENT* p_ent, const u8* buf);
+
 #endif  // PF_ENTRY_H
