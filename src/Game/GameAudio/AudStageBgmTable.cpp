@@ -120,8 +120,7 @@ namespace {
         }
         return nullptr;
     }
-
-}  // namespace
+};  // namespace
 
 u32 AudStageBgmTable::getBgmId(const char* pStageName, s32 bgmNo) {
     JAISoundID cometBgm = AudStageBgmWrap::getCometEventBgm(pStageName);

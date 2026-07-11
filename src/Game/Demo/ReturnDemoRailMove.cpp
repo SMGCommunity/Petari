@@ -14,7 +14,7 @@ namespace {
         int maxFrames = MR::getBckFrameMax(liveActor);
         MR::setBckFrame(liveActor, maxFrames - frame % maxFrames);
     }
-}  // namespace
+};  // namespace
 
 ReturnDemoRailMove::ReturnDemoRailMove(LiveActor* pDemoStarter, LiveActor* pPowerStar, const JMapInfoIter& rIter, bool isGrandstar,
                                        TPos3f* pTransform)

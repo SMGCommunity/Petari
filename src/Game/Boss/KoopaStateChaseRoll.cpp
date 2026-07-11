@@ -34,7 +34,7 @@ namespace NrvKoopaStateChaseRoll {
     NEW_NERVE(KoopaStateChaseRollNrvRollGround, KoopaStateChaseRoll, RollGround);
     NEW_NERVE(KoopaStateChaseRollNrvEndAir, KoopaStateChaseRoll, EndAir);
     NEW_NERVE(KoopaStateChaseRollNrvEndLand, KoopaStateChaseRoll, EndLand);
-}  // namespace NrvKoopaStateChaseRoll
+};  // namespace NrvKoopaStateChaseRoll
 
 KoopaStateChaseRoll::KoopaStateChaseRoll(Koopa* pKoopa)
     : ActorStateBase< Koopa >("State[転がり追跡攻撃]", pKoopa), mFigureBall(), mRollDelay(::sWaitToStartStep) {

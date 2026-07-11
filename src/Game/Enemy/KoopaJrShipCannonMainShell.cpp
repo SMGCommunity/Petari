@@ -156,4 +156,4 @@ namespace CannonShellUtil {
             pHolder->registerCannonShell(pShell);
         }
     }
-}  // namespace CannonShellUtil
+};  // namespace CannonShellUtil
