@@ -78,7 +78,7 @@ namespace MR {
         GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
 
         Mtx44 projMtx;
-        C_MTXOrtho(projMtx, 0.0f, -MR::getScreenHeight(), 0.0f, MR::getScreenWidth(), cNearZ, cFarZ);
+        C_MTXOrtho(projMtx, 0.0f, -MR::getScreenHeight(), 0.0f, MR::getScreenWidth(), ::cNearZ, ::cFarZ);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
 
         Mtx viewMtx;
@@ -132,9 +132,9 @@ namespace MR {
         GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
         GXSetNumTexGens(1);
         GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 60, GX_FALSE, 125);
-        GXInitTexObj(&clear_z_tobj, sTexImgObj, 4, 4, GX_TF_Z24X8, GX_REPEAT, GX_REPEAT, GX_FALSE);
-        GXInitTexObjLOD(&clear_z_tobj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
-        GXLoadTexObj(&clear_z_tobj, GX_TEXMAP0);
+        GXInitTexObj(&::clear_z_tobj, sTexImgObj, 4, 4, GX_TF_Z24X8, GX_REPEAT, GX_REPEAT, GX_FALSE);
+        GXInitTexObjLOD(&::clear_z_tobj, GX_NEAR, GX_NEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE, GX_ANISO_1);
+        GXLoadTexObj(&::clear_z_tobj, GX_TEXMAP0);
         GXSetNumTevStages(1);
         GXColor tev0;
         tev0.r = 0;
@@ -256,7 +256,7 @@ namespace MR {
         MR::captureScreenAlpha(0);
         MR::loadScreenAlphaTexture(0, GX_TEXMAP0);
         Mtx44 projMtx;
-        C_MTXOrtho(projMtx, 0.0f, MR::getScreenHeight(), 0.0f, MR::getScreenWidth(), cNearZ, cFarZ);
+        C_MTXOrtho(projMtx, 0.0f, MR::getScreenHeight(), 0.0f, MR::getScreenWidth(), ::cNearZ, ::cFarZ);
         GXSetProjection(projMtx, GX_ORTHOGRAPHIC);
         GXSetTevDirect(GX_TEVSTAGE0);
         GXSetNumIndStages(0);
