@@ -158,35 +158,28 @@ void BossKameck::killAllBeam() {
 /* stack is off */
 
 void BossKameck::updatePose() {
-    TVec3f v17(-mGravity);
     TVec3f v19;
-    v19.set< f32 >(v17);
-    TVec3f v16(mVelocity);
-    v16.sub(_C8);
+    TVec3f v18;
+    v19.set< f32 >(-mGravity);
+    TVec3f v16(mVelocity - _C8);
     TVec3f* gravPtr = &mGravity;
     f32 dot = gravPtr->dot(v16);
-    TVec3f v18;
     JMAVECScaleAdd(gravPtr, &v16, &v18, -dot);
-    f32 mag = PSVECMag(&v18);
-
-    TVec3f stack_44;
-    TVec3f* ptr = &stack_44;
+    f32 mag = v18.length();
 
     if (!MR::isNearZero(mag)) {
         f32 v4 = MR::normalize(mag, 0.0f, 3.0f);
-        TVec3f v13(v18);
 
-        ptr->scaleInline((4.0f * v4) / mag);
-        ptr->add(v13);
+        v19.add(v18 * ((4.0f * v4) / mag));
 
-        if (!MR::isNearZero(*ptr)) {
-            MR::normalize(ptr);
+        if (!MR::isNearZero(v19)) {
+            MR::normalize(&v19);
         } else {
-            ptr->set(-mGravity);
+            v19.set(-mGravity);
         }
     }
 
-    MR::blendQuatUpFront(&_90, stack_44, _A0, 0.04f, 0.2f);
+    MR::blendQuatUpFront(&_90, v19, _A0, 0.04f, 0.2f);
 }
 
 void BossKameck::init(const JMapInfoIter& rIter) {

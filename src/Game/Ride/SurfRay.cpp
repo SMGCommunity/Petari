@@ -136,9 +136,7 @@ namespace {
                 return true;
             }
 
-            TVec3f step(rShadowDir);
-            step.scale(100.0f);
-            sample.add(step);
+            sample.add(rShadowDir * 100.0f);
         }
 
         return false;
@@ -467,33 +465,20 @@ void SurfRay::control() {
 }
 
 void SurfRay::calcAndSetBaseMtx() {
-    PSVECCrossProduct(&mBaseUp, &mFront, &mBaseSide);
+    mBaseSide.cross(mBaseUp, mFront);
     MR::normalize(&mBaseSide);
-    PSVECCrossProduct(&mFront, &mBaseSide, &mBaseUp);
+    mBaseUp.cross(mFront, mBaseSide);
     MR::normalize(&mBaseUp);
     mUp.set(mBaseUp);
     MR::rotateVecDegree(&mUp, mFront, mRotation.z);
-    PSVECCrossProduct(&mUp, &mFront, &mSide);
+    mSide.cross(mUp, mFront);
     MR::normalize(&mSide);
-    PSVECCrossProduct(&mFront, &mSide, &mUp);
+    mUp.cross(mFront, mSide);
     MR::normalize(&mUp);
 
     TPos3f mtx;
     mtx.identity();
-    // these are definitely some inlines...
-    mtx[0][0] = mSide.x;
-    mtx[1][0] = mSide.y;
-    mtx[2][0] = mSide.z;
-    mtx[0][1] = mUp.x;
-    mtx[1][1] = mUp.y;
-    mtx[2][1] = mUp.z;
-    mtx[0][2] = mFront.x;
-    mtx[1][2] = mFront.y;
-    mtx[2][2] = mFront.z;
-    mtx[0][3] = mPosition.x;
-    mtx[1][3] = mPosition.y;
-    mtx[2][3] = mPosition.z;
-
+    mtx.setVecAndTransInline(mSide, mUp, mFront, mPosition);
     MR::setBaseTRMtx(this, mtx);
     mActorJointCtrl->setCallBackFunction();
     mProjmapFxMtxSetter->updateMtxUseBaseMtx();
@@ -732,17 +717,15 @@ void SurfRay::updateToMap() {
             MR::turnVecToPlane(&v2, v2, mGravity);
             TVec3f v3;
             MR::vecBlend(mFront, v2, &v3, ::sBlendRatioAxisFrontWall);
-            PSVECCrossProduct(&mBaseUp, &v3, &mBaseSide);
+            mBaseSide.cross(mBaseUp, v3);
         }
     } else if (mInWater) {
         MR::vecBlendSphere(mBaseUp, mWaterNormal, &mBaseUp, ::sBlendRatioAxisUpGround);
     } else {
-        TVec3f v4(mGravity);
-        v4.scale(-1.0f);
-        MR::vecBlendSphere(mBaseUp, v4, &mBaseUp, ::sBlendRatioAxisUpAir);
+        MR::vecBlendSphere(mBaseUp, mGravity * -1.0f, &mBaseUp, ::sBlendRatioAxisUpAir);
     }
 
-    PSVECCrossProduct(&mBaseSide, &mBaseUp, &mFront);
+    mFront.cross(mBaseSide, mBaseUp);
     MR::normalize(&mFront);
 }
 
@@ -777,12 +760,12 @@ void SurfRay::updateToWater() {
 
         if (innerProd > 0.0f && mWaterInfo._4 < innerProd) {
             TVec3f v2(mGravity);
-            mVelocity.sub(mGravity.scaleInline(innerProd).scaleInline(1.5f));
+            mVelocity.sub(mGravity * innerProd * 1.5f);
         } else {
             f32 camWaterDepth = mWaterInfo.mCamWaterDepth;
             f32 waveHeight = mWaterInfo.mWaveHeight;
             f32 f0 = camWaterDepth + waveHeight;
-            mVelocity.sub(mGravity.scaleInline(f0).scaleInline(0.01f));
+            mVelocity.sub(mGravity * f0 * 0.01f);
         }
     } else {
         if (mInWater) {
@@ -795,7 +778,7 @@ void SurfRay::updateToWater() {
     }
 
     WaterInfo waterInfo;
-    TVec3f v(mPosition + mGravity.scaleInline(20.0f));
+    TVec3f v(mPosition + mGravity * 20.0f);
 
     if (MR::getWaterAreaObj(&waterInfo, v)) {
         mShadowAlpha -= ::sShadowAlphaSpeed;
@@ -914,7 +897,7 @@ void SurfRay::updateRotate() {
 
     TRot3f mtx;
     mtx.identity();
-    mtx.setRotateInline(mBaseUp, -mRotation.z * 0.00028f);
+    mtx.setRotate(mBaseUp, -mRotation.z * 0.00028f);
     mtx.mult(mFront, mFront);
 
     for (s32 i = mTwistBufferSize - 1; i >= 1; i--) {
@@ -993,36 +976,36 @@ bool SurfRay::tryInWater() {
         return true;
     }
 
-    TVec3f v1(mFront.scaleInline(100.0f) + mPosition);
+    TVec3f v1(mFront * 100.0f + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v1)) {
         return true;
     }
 
-    TVec3f v2(mUp.scaleInline(150.0f) + mPosition);
+    TVec3f v2(mUp * 150.0f + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v2)) {
         return true;
     }
 
     TVec3f v3(mFront);
     MR::rotateVecDegree(&v3, -mGravity, -90.0f);
-    TVec3f v3a(v3.scaleInline(150.0f) + mPosition);
+    TVec3f v3a(v3 * 150.0f + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v3a)) {
         return true;
     }
 
     TVec3f v4(mFront);
     MR::rotateVecDegree(&v4, -mGravity, 90.0f);
-    TVec3f v4a(v4.scaleInline(150.0f) + mPosition);
+    TVec3f v4a(v4 * 150.0f + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v4a)) {
         return true;
     }
 
-    TVec3f v5(mSide.scaleInline(150.0f) + mPosition);
+    TVec3f v5(mSide * 150.0f + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v5)) {
         return true;
     }
 
-    TVec3f v6((-mSide).scaleInline(150.0f) + mPosition);
+    TVec3f v6(-mSide * 150.0f + mPosition);
     if (MR::getWaterAreaObj(&mWaterInfo, v6)) {
         return true;
     }

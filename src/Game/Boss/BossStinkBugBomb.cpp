@@ -43,7 +43,7 @@ void BossStinkBugBomb::init(const JMapInfoIter& rIter) {
 }
 
 void BossStinkBugBomb::control() {
-    _9C.mult(0.96f);
+    _9C *= 0.96f;
     MR::rotateQuatMoment(&_8C, _9C);
 }
 

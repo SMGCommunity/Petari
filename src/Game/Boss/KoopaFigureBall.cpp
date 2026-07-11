@@ -73,7 +73,7 @@ void KoopaFigureBall::control() {
     mBaseMtx.setTrans(vec2);
 
     TPos3f mtx;
-    mtx.setRotateInlineZeroTrans(TVec3f(1.0f, 0.0f, 0.0f), MR::toRadian(mAngle));
+    mtx.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), MR::toRadian(mAngle));
     mBaseMtx.concat(mBaseMtx, mtx);
 }
 

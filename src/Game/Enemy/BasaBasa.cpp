@@ -765,7 +765,7 @@ void BasaBasa::controlVelocity() {
         v6 = 8.0f;
     }
 
-    if (PSVECMag(&mVelocity) > v6) {
+    if (mVelocity.length() > v6) {
         TVec3f* velocityPtr = &mVelocity;
         f32 sqr = velocityPtr->squared();
         if (sqr <= 0.0000038146973f) {
@@ -789,7 +789,7 @@ void BasaBasa::tuneHeight() {
             v5.scale(MR::getShadowProjectionLength(this, nullptr) - (_AC - 350.0f), mGravity);
         }
 
-        if (PSVECMag(&v5) < 2.0f) {
+        if (v5.length() < 2.0f) {
             return;
         } else {
             TVec3f v4;

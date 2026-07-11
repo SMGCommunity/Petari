@@ -178,8 +178,7 @@ void TripodBoss::initLegIKPlacement() {
 
     TVec3f v29(mMovableArea->mBaseAxis);
     TVec3f v28(mMovableArea->mFront);
-    TVec3f v27;
-    PSVECCrossProduct(&v29, &v28, &v27);
+    TVec3f v27 = v29.cross(v28);
     v29 *= (temp618 * mMovableArea->mRadius);
     v28 *= (v5 * mMovableArea->mRadius);
     v27 *= (v5 * mMovableArea->mRadius);
@@ -199,13 +198,13 @@ void TripodBoss::initLegIKPlacement() {
 
         TVec3f j(0.0f, 1.0f, 0.0f);
 
-        TVec3f legDir = legDirShadow.multiplyOperatorInline(_610) + j.multiplyOperatorInline(_614);
+        TVec3f legDir = legDirShadow * _610 + j * _614;
 
         getLeg(rI)->setIKParam(_608, _60C, legDir, legDirShadow, j);
 
         TVec3f* center = &mMovableArea->mCenter;
 
-        TVec3f v23 = v29 + v27.multiplyOperatorInline(x) + v28.multiplyOperatorInline(z) + *center;
+        TVec3f v23 = v29 + v27 * x + v28 * z + *center;
 
         TVec3f v22;
         mMovableArea->calcLandingNormal(&v22, v23);
@@ -946,13 +945,13 @@ void TripodBoss::addAccelToWeightPosition() {
     v16 += v12;
     TVec3f v15(v16);
     v15 -= _5D4;
-    f32 v10 = PSVECMag(&v15);
+    f32 v10 = v15.length();
     if (v10 < 500.0f) {
         v10 = 500.0f;
     }
 
     v15 *= (1.0f / v10);
-    _5E0 += v15.multiplyOperatorInline(0.8f);
+    _5E0 += v15 * 0.8f;
 }
 
 void TripodBoss::calcClippingSphere() {

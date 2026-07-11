@@ -99,7 +99,7 @@ bool BossStinkBugActionFlyHigh::receiveOtherMsg(u32 msg, HitSensor* pSender, Hit
         }
     } else if (isEnableAttack() && (MR::isMsgWallTouch(msg) || MR::isMsgCeilTouch(msg))) {
         if (MR::isFaceToTargetDegree(getHost(), MR::getSensorPos(pSender), getHost()->_EC, 45.0f)) {
-            if (MR::sendMsgEnemyAttackStrongToDir(pSender, pReceiver, getHost()->_EC.multInLine(50.0f))) {
+            if (MR::sendMsgEnemyAttackStrongToDir(pSender, pReceiver, getHost()->_EC * 50.0f)) {
                 if (isNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvGroundRun::sInstance)) {
                     getHost()->validateCollisionHitOnly();
                     setNerve(&NrvBossStinkBugActionFlyHigh::BossStinkBugActionFlyHighNrvToFly::sInstance);

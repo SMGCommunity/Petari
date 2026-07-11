@@ -65,7 +65,7 @@ void SpiderCoin::kill() {
     LiveActor::kill();
     TVec3f vel(-mUp->x, -mUp->y, 0.0f);
     MR::normalizeOrZero(&vel);
-    vel.scale(::sCoinSpeed);
+    vel *= ::sCoinSpeed;
     TVec3f pos(mPosition.x, mPosition.y, mThreadZ);
 
     MR::appearCoinToVelocity(this, pos, vel, 1);
@@ -127,15 +127,13 @@ void SpiderCoin::exeTouchAndApart() {
 
 void SpiderCoin::calcAndSetBaseMtx() {
     if (mUp != nullptr) {
-        TVec3f up(*mUp);
-        up.scale(-1.0f);
+        TVec3f up(*mUp * -1.0f);
         MR::normalize(&up);
 
         TVec3f front(0.0f, 0.0f, 1.0f);
-        TVec3f side;
-        PSVECCrossProduct(&up, &front, &side);
+        TVec3f side = up.cross(front);
         MR::normalize(&side);
-        PSVECCrossProduct(&side, &up, &front);
+        front.cross(side, up);
         MR::normalize(&front);
 
         TPos3f mtx;
@@ -156,9 +154,7 @@ void SpiderCoin::calcAndSetBaseMtx() {
         pos.set(up);
         pos.scale(-::sCocoonOffsetY);
         pos.add(mPosition);
-        TVec3f forward(front);
-        forward.scale(::sCocoonOffsetZ);
-        pos.add(forward);
+        pos.add(front * ::sCocoonOffsetZ);
         mBaseMtx.setTrans(pos);
         MR::setBaseTRMtx(this, mtx);
     }

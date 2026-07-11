@@ -296,7 +296,62 @@ namespace JGeometry {
             this->mMtx[2][1] = 0.0f;
             this->mMtx[2][2] = z;
         }
-        void setRotate(const TVec3f&, f32);
+
+        void setRotate(const TVec3f& rAxis, f32 angle) {
+            TVec3f vec;
+            vec.normalize(rAxis);
+
+            // MATCHES {
+            //    TPos3f::makeRotate
+            //    OceanSphere definition
+            //    DiskGravity::updateLocalParam
+            //    OceanRingPipe::initPoints
+            //    SegmentGravity::updateLocalParam
+            //    SurfRay::updateRotate
+            //    Plant::initLeaf
+            // }
+            //
+            // DOES NOT MATCH {
+            // all of these have the exact same regswap pattern
+            //    DummyDisplayModel::calcAndSetBaseMtx (regswap)
+            //    HomingKiller::calcAndSetBaseMtx (regswap)
+            //    PowerStar::calcAndSetBaseMtx (regswap)
+            //    BossBegomanHead::calcJointEdge (regswap)
+            //    CocoNutBall::setVelocityToPlayer (regswap)
+            //    KoopaFigureBall::control (regswap)
+            //    BeeFlowerHover::control (regswap)
+            //    BreakableCage::calcAndSetBaseMtx (regswap)
+            //    CocoNut::updateRotate (regswap)
+            //    FirePressureRadiate::calcJointCannon (regswap)
+            // }
+
+            f32 s = sin(angle);
+            f32 c = cos(angle);
+
+            f32 negc = 1.0f - c;
+
+            f32 x, y, z;
+
+            x = vec.x;
+            y = vec.y;
+            z = vec.z;
+
+            f32 xx, yy, zz;
+            xx = x * x;
+            yy = y * y;
+            zz = z * z;
+
+            this->mMtx[0][0] = c + negc * xx;
+            this->mMtx[0][1] = negc * x * y - s * z;
+            this->mMtx[0][2] = negc * x * z + s * y;
+            this->mMtx[1][0] = negc * x * y + s * z;
+            this->mMtx[1][1] = c + negc * yy;
+            this->mMtx[1][2] = negc * y * z - s * x;
+            this->mMtx[2][0] = negc * x * z - s * y;
+            this->mMtx[2][1] = negc * y * z + s * x;
+            this->mMtx[2][2] = c + negc * zz;
+        }
+
         void setRotate(const TVec3f& v1, const TVec3f& v2) {
             TQuat4f q;
             q.setRotate(v1, v2);
@@ -378,11 +433,6 @@ namespace JGeometry {
             this->mMtx[0][3] = 0.0f;
             this->mMtx[1][3] = 0.0f;
             this->mMtx[2][3] = 0.0f;
-        }
-
-        inline void makeRotateInline(const TVec3f& rVec, f32 r) {
-            zeroTrans();
-            setRotateInline(rVec, r);
         }
 
         inline void setRotateInline2(f32 y, f32 p) {
@@ -488,62 +538,6 @@ namespace JGeometry {
             // this->mMtx[2][3] = rTrans.z;
         }
 
-        inline void setRotateInline(const TVec3f& vec1, f32 r) {
-            TVec3f vec;
-            vec.set(vec1);
-            PSVECMag(&vec);
-            PSVECNormalize(&vec, &vec);
-            f32 s = sin(r);
-            f32 c = cos(r);
-            f32 negc = (1.0f - c);
-            f32 x = vec.x;
-            f32 y = vec.y;
-            f32 z = vec.z;
-
-            this->mMtx[0][0] = (negc * (x * x) + c);
-            this->mMtx[0][1] = (y * (negc * x)) - (s * z);
-            this->mMtx[0][2] = (z * (negc * x)) + (s * y);
-            this->mMtx[1][0] = (y * (negc * x)) + (s * z);
-            this->mMtx[1][1] = (negc * (y * y) + c);
-            this->mMtx[1][2] = (z * (negc * y)) - (s * x);
-            this->mMtx[2][0] = (z * (negc * x)) - (s * y);
-            this->mMtx[2][1] = (z * (negc * y)) + (s * x);
-            this->mMtx[2][2] = (negc * (z * z) + c);
-        }
-        void setRotateInline2(const TVec3f& vec1, f32 r) {
-            // The only difference from setRotateInline is that we use setInline instead of set
-            TVec3f vec;
-            vec.x = vec1.x;
-            vec.y = vec1.y;
-            vec.z = vec1.z;
-            PSVECMag(&vec);
-            PSVECNormalize(&vec, &vec);
-            f32 s = sin(r);
-            f32 c = cos(r);
-            f32 negc = (1.0f - c);
-            f32 x = vec.x;
-            f32 y = vec.y;
-            f32 z = vec.z;
-
-            this->mMtx[0][0] = (negc * (x * x) + c);
-            this->mMtx[0][1] = (y * (negc * x)) - (s * z);
-            this->mMtx[0][2] = (z * (negc * x)) + (s * y);
-            this->mMtx[1][0] = (y * (negc * x)) + (s * z);
-            this->mMtx[1][1] = (negc * (y * y) + c);
-            this->mMtx[1][2] = (z * (negc * y)) - (s * x);
-            this->mMtx[2][0] = (z * (negc * x)) - (s * y);
-            this->mMtx[2][1] = (z * (negc * y)) + (s * x);
-            this->mMtx[2][2] = (negc * (z * z) + c);
-        }
-
-        inline void setRotateInlineZeroTrans(const TVec3f& vec1, f32 r) {
-            this->mMtx[0][3] = 0.0f;
-            this->mMtx[1][3] = 0.0f;
-            this->mMtx[2][3] = 0.0f;
-
-            setRotateInline(vec1, r);
-        }
-
         inline void mult33Inline(const TVec3f& rSrc, TVec3f& rDst) const {
             f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
             a32 = this->mMtx[2][1];
@@ -566,7 +560,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3() {};
+        TPosition3(){};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -592,7 +586,10 @@ namespace JGeometry {
             this->mMtx[2][3] = 0.0f;
         }
 
-        void makeRotate(const TVec3f&, f32);
+        void makeRotate(const TVec3f& rVec, f32 angle) {
+            zeroTrans();
+            TRotation3< T >::setRotate(rVec, angle);
+        }
 
         void makeQuat(const TQuat4f& rSrcQuat) {
             zeroTrans();
@@ -792,7 +789,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3() {};
+        TProjection3(){};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);

@@ -2,6 +2,11 @@
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
+void FORCE_OPERATOR() {
+    TVec3f vec;
+    vec *= 0.0f;
+}
+
 MercatorTransformCube::MercatorTransformCube(int formType, const char* pName) : AreaObj(formType, pName) {
     _3C.identity();
 }

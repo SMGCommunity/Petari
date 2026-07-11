@@ -588,8 +588,10 @@ void BombTeresa::exeDrift() {
         _E4 = 7.0f;
         _DC = 1.0f;
     }
-    PSVECCrossProduct(&mGravity, &_AC, &v14);
-    PSVECCrossProduct(&mGravity, &(*MR::getPlayerPos() - MR::getCamPos()), &v15);
+
+    v14.cross(mGravity, _AC);
+    v15.cross(mGravity, *MR::getPlayerPos() - MR::getCamPos());
+
     if (MR::isNearZero(v14)) {
         MR::makeAxisVerticalZX(&v14, mGravity);
     }
@@ -606,7 +608,7 @@ void BombTeresa::exeDrift() {
     TVec3f v13;
     v16.getTrans(v13);
     TVec3f v12;
-    v12.set< f32 >(v16[2][2], v16[1][2], v16[0][2]);
+    v16.getZDirInline(v12);
     if (!MR::normalizeOrZero(&v12)) {
         JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
     }

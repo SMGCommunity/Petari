@@ -195,11 +195,9 @@ namespace CameraLocalUtil {
     }
 
     void recalcUpVec(TVec3f* pDst, const TVec3f& rSrc) {
-        TVec3f temp;
-
-        PSVECCrossProduct(pDst, &rSrc, &temp);
+        TVec3f temp = pDst->cross(rSrc);
         MR::normalize(&temp);
-        PSVECCrossProduct(&rSrc, &temp, pDst);
+        pDst->cross(rSrc, temp);
         MR::normalize(pDst);
     }
 

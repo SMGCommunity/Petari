@@ -3,6 +3,7 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/CocoNut.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 namespace {
     const Vec cReboundVelocity = {0.0f, 15.0f, 5.0f};
@@ -196,15 +197,14 @@ void CocoNutBall::calcHitBackVelocitAndGravity() {
     MR::vecKillElement(dir, _C8, &dir);
     f32 f1 = dir.length() / 42.0f;
     MR::normalize(&dir);
-    TVec3f cross;
-    PSVECCrossProduct(_C8, dir, &cross);
+    TVec3f cross = _C8.cross(dir);
     MR::normalize(&cross);
     _90.scale(2.2f, mGravity);
     TVec3f scaled2;
     scaled2.scale(42.0f, dir);
-    TVec3f scaled3(_90.scaleInline(f1).scaleInline(f1));
-    scaled.sub(scaled.scaleInline(2.0f));
-    mVelocity.add(scaled2, scaled.scaleInline(1.0f / (2.0f * f1)));
+    TVec3f scaled3(_90 * f1 * f1);
+    scaled.sub(scaled * 2.0f);
+    mVelocity.add(scaled2, scaled * (1.0f / (2.0f * f1)));
 
     if (!hitBackFront) {
         f32 scaleFactor = (hitBackRight ? 1.2f : -1.2f);
@@ -231,8 +231,7 @@ bool CocoNutBall::isHitBackRight() const {
     MR::normalize(&vec1);
     MR::normalize(&vec2);
 
-    TVec3f cross;
-    PSVECCrossProduct(vec1, vec2, cross);
+    TVec3f cross = vec1.cross(vec2);
 
     return 0.0f < _C8.dot(cross);
 }
@@ -264,8 +263,7 @@ void CocoNutBall::calcHitBackDstPos(TVec3f* pOut, bool a1, bool a2) {
         MR::vecKillElement(vec2, _C8, &vec2);
         MR::normalize(&vec2);
 
-        PSVECCrossProduct(_C8, vec2, &cross);
-
+        cross.cross(_C8, vec2);
         MR::vecKillElement(cross, _C8, &cross);
         MR::normalize(&cross);
 
@@ -308,9 +306,8 @@ void CocoNutBall::setVelocityToPlayer(f32 f1, f32 f2) {
         vec1.set(*MR::getPlayerPos());
     }
 
-    TRot3f rotate;
-    f32 angle = PI_180 * f2;
-    rotate.makeRotateInline(_C8, angle);
+    TPos3f rotate;
+    rotate.makeRotate(_C8, MR::toRadian(f2));
     TVec3f vec2;
     vec2.sub(vec1, mPosition);
     rotate.mult33(vec2);

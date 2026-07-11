@@ -18,6 +18,12 @@ AreaPolygon::AreaPolygon() : DynamicCollisionObj("エリアポリゴン") {
 AreaPolygon::~AreaPolygon() {
 }
 
+//this is needed to get setLength to match
+void FORCE_SCALE() {
+    TVec3f vec(0.0f);
+    vec.scale(5.0f);
+}
+
 /*void AreaPolygon::init(const JMapInfoIter &rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);

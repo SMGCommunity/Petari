@@ -342,7 +342,7 @@ bool BigBubble::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
     if (MR::isMsgStarPieceReflect(msg)) {
         TVec3f sensorDir;
         MR::calcSensorDirectionNormalize(&sensorDir, pSender, pReceiver);
-        addDeformVelocityOuter(sensorDir.multiplyOperatorInline(::sStarPieceDeformPower), false);
+        addDeformVelocityOuter(sensorDir * ::sStarPieceDeformPower, false);
         return true;
     }
 
@@ -385,12 +385,12 @@ bool BigBubble::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
             }
 
             if (mergeDiff > 0.0f) {
-                mVelocity.add(dir.multiplyOperatorInline(mergeDiff / getSize()).multiplyOperatorInline(0.18f));
+                mVelocity.add(dir * (mergeDiff / getSize()) * 0.18f);
             }
 
             f32 mergeDiff2 = sumRadii * 0.9f - dist;
             if (mergeDiff2 > 0.0f) {
-                addDeformVelocityOuter(dir.multiplyOperatorInline(mergeDiff2 * (1.1f / getBaseRadius())), false);
+                addDeformVelocityOuter(dir * (mergeDiff2 * (1.1f / getBaseRadius())), false);
             }
         }
         return true;
@@ -475,7 +475,7 @@ bool BigBubble::requestAssimilate(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     TVec3f pos;
-    pos.set(mPosition + dir.multiplyOperatorInline(getSize()));
+    pos.set(mPosition + dir * getSize());
     TPos3f mtx;
     MR::makeMtxUpNoSupportPos(&mtx, dir, pos);
     MR::emitEffectHit(this, mtx, "Merge");
@@ -487,7 +487,7 @@ bool BigBubble::requestAssimilate(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     setScale(getRadius(mVolume));
-    addDeformVelocityOuter(dir.multiplyOperatorInline(scale).multiplyOperatorInline(8.0f), true);
+    addDeformVelocityOuter(dir * scale * 8.0f, true);
 
     for (s32 idx = 0; idx < 6; idx++) {
         if (mMergeBubbles[idx] == pReceiver->mHost) {
@@ -589,7 +589,7 @@ bool BigBubble::tryEscapeEnd() {
     if (MR::isGreaterStep(this, 30)) {
         if (mRider != nullptr) {
             MR::calcGravity(this);
-            MR::endBindAndPlayerJump(this, mGravity.multiplyOperatorInline(30.0f), 30);
+            MR::endBindAndPlayerJump(this, mGravity * 30.0f, 30);
             mRider = nullptr;
         }
         MR::emitEffect(this, "Break");
@@ -643,7 +643,7 @@ void BigBubble::exeAppear() {
     f32 scale = MR::calcNerveValue(this, 30, 0.01f, mAppearRadius);
     setScale(scale);
 
-    mPosition.set(mSpawnPosition + mGravity.multiplyOperatorInline(-scale * getBaseRadius()));
+    mPosition.set(mSpawnPosition + mGravity * (-scale * getBaseRadius()));
     if (tryAppearEnd()) {
         MR::onCalcGravity(this);
         MR::validateHitSensors(this);
@@ -736,8 +736,8 @@ void BigBubble::exeMerged() {
     }
 
     f32 f1 = size * MR::calcNerveRate(this, 25) * 0.0075f;
-    addDeformVelocityOuter(mergeDir.multiplyOperatorInline(f1), false);
-    mMergeBubble->addDeformVelocityOuter(mergeDir.multiplyOperatorInline(-f1).multiplyOperatorInline(0.75f), false);
+    addDeformVelocityOuter(mergeDir * f1, false);
+    mMergeBubble->addDeformVelocityOuter(mergeDir * -f1 * 0.75f, false);
     addDeformVelocityInternalOressure();
     addDeformVelocityRebound();
     updateDeformVelocity();
@@ -748,7 +748,7 @@ void BigBubble::exeMerged() {
     q.setRotate(localDir, mergeDir.negateOperatorInternal(), 0.2f);
     PSQUATMultiply(&q, &mBubbleQuat, &mBubbleQuat);
     calcLocalDirection(&localDir, mMergeIndex);
-    mPosition.set(mergePos - localDir.multiplyOperatorInline(mDeformCoeff[mMergeIndex]).multiplyOperatorInline(0.95f));
+    mPosition.set(mergePos - localDir * mDeformCoeff[mMergeIndex] * 0.95f);
     MR::rotateQuatMoment(&mBubbleQuat, mMoment);
 
     mBaseMtx.setQT(mBubbleQuat, mPosition);
@@ -899,13 +899,13 @@ void BigBubble::addCoriolisAccel() {
         MR::getRandomVector(&mCoriolisAccel, 1.0f);
     }
     MR::normalizeOrZero(&mCoriolisAccel);
-    mVelocity.add(mCoriolisAccel.multiplyOperatorInline(mScale.x).multiplyOperatorInline(0.1f));
+    mVelocity.add(mCoriolisAccel * mScale.x * 0.1f);
 }
 
 void BigBubble::addAccelMoment(s32 padChannel) {
     TVec3f rotateMoment;
     if (MR::calcStarPointerStrokeRotateMoment(&rotateMoment, mPosition, getSize(), padChannel)) {
-        mMoment.add(rotateMoment.multiplyOperatorInline(0.03f));
+        mMoment.add(rotateMoment * 0.03f);
         f32 inertia = mMoment.length();
         if (inertia > 0.2f) {
             mMoment *= 0.2f / inertia;
@@ -943,8 +943,8 @@ bool BigBubble::addAccelPointing(s32 padChannel) {
 
     TVec3f accelDir;
     MR::normalizeOrZero(mPosition - mPointerPos, &accelDir);
-    MR::addVelocity(this, accelDir.multiplyOperatorInline(mBlowForce));
-    addDeformVelocityOuter(accelDir.multiplyOperatorInline(1.5f), false);
+    MR::addVelocity(this, accelDir * mBlowForce);
+    addDeformVelocityOuter(accelDir * 1.5f, false);
     return true;
 }
 
@@ -966,10 +966,10 @@ void BigBubble::updatePose() {
         addDeformVelocityOuter(_1A4, false);
     }
 
-    addDeformVelocityOuter(mGravity.negateOperatorInternal().multiplyOperatorInline(0.03f).multiplyOperatorInline(mScale.x), false);
+    addDeformVelocityOuter(mGravity.negateOperatorInternal() * 0.03f * mScale.x, false);
     TVec3f v1;
     MR::clampLength(&v1, mVelocity.negateOperatorInternal(), 10.0f);
-    addDeformVelocityOuter(v1.multiplyOperatorInline(0.1f), false);
+    addDeformVelocityOuter(v1 * 0.1f, false);
     addDeformVelocityInternalOressure();
     addDeformVelocityRebound();
     updateDeformVelocity();
@@ -977,7 +977,7 @@ void BigBubble::updatePose() {
 
 void BigBubble::updateBindActorMatrix() {
     if (mInterpolateTime < 1.0f) {
-        mRiderPos.set(mRiderBasePos.multiplyOperatorInline(1.0f - mInterpolateTime) + mPosition.multiplyOperatorInline(mInterpolateTime));
+        mRiderPos.set(mRiderBasePos * (1.0f - mInterpolateTime) + mPosition * mInterpolateTime);
 
     } else {
         mRiderPos.set(mPosition);
@@ -994,7 +994,7 @@ void BigBubble::updateNormalVelocity() {
     f32 windSpeed;
     BigFanFunction::calcWindInfo(&windDir, mPosition, &windSpeed);
     windSpeed = MR::normalize(windSpeed, 0.0f, 0.5f);
-    mVelocity.add(windDir.multiplyOperatorInline(0.25f).multiplyOperatorInline(windSpeed));
+    mVelocity.add(windDir * 0.25f * windSpeed);
     mMoment.mult(0.99f);
     MR::reboundVelocityFromEachCollision(this, 0.1f, 0.1f, 0.1f, 0.0f);
 }
@@ -1023,12 +1023,12 @@ void BigBubble::updateMeshPoint() {
     mBaseMtx.getYDir(up);
     mBaseMtx.getZDir(front);
 
-    mSurface->getVertexPtr(Side_Top)->set(mPosition + up.multiplyOperatorInline(mDeformCoeff[Side_Top]));
-    mSurface->getVertexPtr(Side_Right)->set(mPosition + side.multiplyOperatorInline(mDeformCoeff[Side_Right]));
-    mSurface->getVertexPtr(Side_Back)->set(mPosition - front.multiplyOperatorInline(mDeformCoeff[Side_Back]));
-    mSurface->getVertexPtr(Side_Left)->set(mPosition - side.multiplyOperatorInline(mDeformCoeff[Side_Left]));
-    mSurface->getVertexPtr(Side_Front)->set(mPosition + front.multiplyOperatorInline(mDeformCoeff[Side_Front]));
-    mSurface->getVertexPtr(Side_Bottom)->set(mPosition - up.multiplyOperatorInline(mDeformCoeff[Side_Bottom]));
+    mSurface->getVertexPtr(Side_Top)->set(mPosition + up * mDeformCoeff[Side_Top]);
+    mSurface->getVertexPtr(Side_Right)->set(mPosition + side * mDeformCoeff[Side_Right]);
+    mSurface->getVertexPtr(Side_Back)->set(mPosition - front * mDeformCoeff[Side_Back]);
+    mSurface->getVertexPtr(Side_Left)->set(mPosition - side * mDeformCoeff[Side_Left]);
+    mSurface->getVertexPtr(Side_Front)->set(mPosition + front * mDeformCoeff[Side_Front]);
+    mSurface->getVertexPtr(Side_Bottom)->set(mPosition - up * mDeformCoeff[Side_Bottom]);
     mSurface->calcControlPoint();
 }
 

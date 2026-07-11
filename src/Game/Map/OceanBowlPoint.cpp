@@ -20,7 +20,7 @@ void OceanBowlPoint::updatePos(f32 a, f32 b) {
     f32 x = mPosition.x;
     f32 height = mWaveScale * calcHeightStatic(a, b, x, z);
     mVertexPosition.set(TVec3f(0.0f, 1.0f, 0.0f));
-    mVertexPosition.mult(height);
+    mVertexPosition *= height;
     mVertexPosition.add(mPosition);
 }
 

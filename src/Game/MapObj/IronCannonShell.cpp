@@ -93,7 +93,7 @@ bool IronCannonLauncherPoint::tryShotBullet(f32 offset) {
 
     TVec3f vec2;
     vec2.scaleAdd(vec, mPosition, ::sGunPointOffset + offset);
-    pShell->launch(vec2, vec.multInLine(mBulletSpeed));
+    pShell->launch(vec2, vec * mBulletSpeed);
 
     TVec3f shadowdir;
     mtx.getYDirInline(shadowdir);

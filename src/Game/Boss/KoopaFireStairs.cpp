@@ -130,22 +130,13 @@ void KoopaFireStairs::exeFly() {
         if (mIsKoopaJr) {
             TVec3f v14(mPosition);
             f32 rate = mStair->calcTimeRate();
-            TVec3f v10(mStair->_AC);
-            v10.scale(rate);
-            TVec3f v11(_A0);
-            v11.scale(1.0f - rate);
-            TVec3f v12(v11);
-            v12.add(v10);
-            mPosition = v12;
+
+            mPosition = _A0 * (1.0f - rate) + mStair->_AC * rate;
 
             f32 v5 = (100.0f * mStair->calcTimeRate());
             f32 v6 = MR::sinDegree(v5);
 
-            TVec3f v8(_AC);
-            v8.scale(v6);
-            TVec3f v9(v8);
-            v9.scale(1500.0f);
-            mPosition.add(v9);
+            mPosition.add(_AC * v6 * 1500.0f);
 
             TVec3f v13 = mPosition - v14;
 

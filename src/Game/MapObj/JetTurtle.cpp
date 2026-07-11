@@ -120,11 +120,7 @@ void JetTurtle::bound() {
         f32 v3 = MR::vecKillElement(_9C, *MR::getGroundNormal(this), &v22);
 
         if (v3 < 0.0f) {
-            TVec3f v17(*MR::getGroundNormal(this));
-            v17.scale(v3);
-            TVec3f v18(v17);
-            v18.scale(0.80f);
-            _9C = v22 - v18;
+            _9C = v22 - *MR::getGroundNormal(this) * v3 * 0.80f;
         }
     }
 
@@ -133,11 +129,7 @@ void JetTurtle::bound() {
         f32 v6 = MR::vecKillElement(_9C, *MR::getWallNormal(this), &v21);
 
         if (v6 < 0.0f) {
-            TVec3f v14(*MR::getWallNormal(this));
-            v14.scale(v6);
-            TVec3f v15(v14);
-            v15.scale(0.89f);
-            _9C = v21 - v15;
+            _9C = v21 - *MR::getWallNormal(this) * v6 * 0.89f;
         }
     }
 
@@ -146,11 +138,7 @@ void JetTurtle::bound() {
         f32 v6 = MR::vecKillElement(_9C, *MR::getRoofNormal(this), &v21);
 
         if (v6 < 0.0f) {
-            TVec3f v14(*MR::getRoofNormal(this));
-            v14.scale(v6);
-            TVec3f v15(v14);
-            v15.scale(0.89f);
-            _9C = v21 - v15;
+            _9C = v21 - *MR::getRoofNormal(this) * v6 * 0.89f;
         }
     }
 }
@@ -194,7 +182,7 @@ void JetTurtle::exeThrowing() {
 
         if (MR::isStep(this, ::sResetStep[_92])) {
             TVec3f v16 = _C0 - mPosition;
-            if (PSVECMag(&v16) > 5000.0f) {
+            if (v16.length() > 5000.0f) {
                 reset(1);
             } else {
                 reset(0);
@@ -231,7 +219,7 @@ void JetTurtle::exeThrowing() {
         }
 
         TVec3f v14 = _C0 - mPosition;
-        if (PSVECMag(&v14) > 10000.0f) {
+        if (v14.length() > 10000.0f) {
             reset(1);
         } else {
             if (MR::isBindedWall(this) || MR::isBindedRoof(this)) {
@@ -299,9 +287,8 @@ void JetTurtle::exeThrowing() {
             _CC = grav;
         }
 
-        TVec3f v18;
-        PSVECCrossProduct(&mVelocity, &v20, &v18);
-        PSVECCrossProduct(&v18, &mVelocity, &v20);
+        TVec3f v18 = mVelocity.cross(v20);
+        v20.cross(v18, mVelocity);
 
         if (!MR::isNearZero(mVelocity)) {
             TPos3f frontUp;
@@ -354,23 +341,17 @@ void JetTurtle::exeTakenReserve() {
 
     TVec3f takePos;
     MR::getPlayerTakePos(&takePos);
-    TVec3f v3(takePos);
-    v3.scale(v2);
-    TVec3f v4(mPosition);
-    v4.scale(1.0f - v2);
-    TVec3f v5(v4);
-    v5 += v3;
-    mPosition = v5;
+    mPosition = mPosition * (1.0f - v2) + takePos * v2;
 
     if (isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserveD::sInstance)) {
         if (MR::isStep(this, 2)) {
             setNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance);
-            return;
         }
+        return;
+    }
 
-        if (MR::isStep(this, 8)) {
-            setNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance);
-        }
+    if (MR::isStep(this, 8)) {
+        setNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance);
     }
 }
 
@@ -451,13 +432,8 @@ void JetTurtle::exeDrop() {
     if (MR::isFirstStep(this)) {
         TVec3f front;
         MR::calcFrontVec(&front, this);
-        TVec3f v3 = -mGravity;
-        TVec3f v4(v3);
-        v4.scale(10.0f);
-        mVelocity = v4;
-        TVec3f v2(front);
-        v2.scale(10.0f);
-        mVelocity += v2;
+        mVelocity = -mGravity * 10.0f;
+        mVelocity += front * 10.0f;
     }
 
     boundDrop();
@@ -568,7 +544,7 @@ bool JetTurtle::receiveMsgThrow(HitSensor* a1, HitSensor* a2) {
     }
 
     if (!_92) {
-        _8C = PSVECMag(MR::getPlayerVelocity());
+        _8C = MR::getPlayerVelocity()->length();
     } else {
         _8C = 0.0f;
     }

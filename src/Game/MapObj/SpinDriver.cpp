@@ -22,6 +22,11 @@ namespace NrvSpinDriver {
     NEW_NERVE(SpinDriverNrvCoolDown, SpinDriver, CoolDown);
 };  // namespace NrvSpinDriver
 
+void FORCE_OPERATOR() {
+    TVec3f vec;
+    vec *= 1.0f;
+}
+
 SpinDriver::SpinDriver(const char* pName)
     : LiveActor(pName), _8C(nullptr), mShootPath(nullptr), mSpinDriverCamera(nullptr), _98(0, 0, 0, 1), _A8(0, 0, 0, 1), _B8(0, 0, 0), _C4(0, 0, 0),
       _D0(0, 0, 1), _DC(0, 0, 0), _E8(0, 1, 0), _F4(0, 0, 0), _104(0.0f), _100(40.0f), _108(0.0f), _10C(0, 0, 0) {
@@ -564,7 +569,7 @@ bool SpinDriver::startBind(HitSensor *pSensor) {
     _8C = pSensor->mHost;
     _B8 = mPosition;
     _C4 = *MR::getPlayerLastMove();
-    f32 mag = PSVECMag(&_C4);
+    f32 mag = _C4.length();
     if (mag > 40.0f) {
         _C4 *= 40.0f / mag;
     }

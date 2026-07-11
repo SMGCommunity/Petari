@@ -118,7 +118,7 @@ void BegomanBaby::kill() {
 
 void BegomanBaby::killWithGenItem() {
     TVec3f minusGravity(-mGravity);
-    TVec3f starPieceAppearPos(minusGravity.scaleInline(80.0f));
+    TVec3f starPieceAppearPos(minusGravity * 80.0f);
     starPieceAppearPos += mPosition;
 
     bool appearedStarPiece;
@@ -309,14 +309,7 @@ void BegomanBaby::exeAfterLaunch() {
 
     if (MR::isLessStep(this, 80)) {
         f32 f1 = 5.0f * MR::cos(getNerveStep() * (16 * PI) / 80.0f);
-        // TODO: fix vector math
-        TVec3f scaledGravity(mGravity);
-        scaledGravity.scale(f1);
-        TVec3f velocity = mFaceVec.scaleInline(5.0f);
-        TVec3f velocity2(velocity);
-        velocity2 -= scaledGravity;
-        mVelocity.set(velocity2);
-
+        mVelocity.set(mFaceVec * 5.0f - mGravity * f1);
     } else if (MR::isLessStep(this, 85)) {
         mVelocity.zero();
     } else {
@@ -408,7 +401,7 @@ void BegomanBaby::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
         if (!MR::isNearZero(dirFromSenderToReceiver)) {
             bool reflected = reboundPlaneWithEffect(dirFromSenderToReceiver, 0.0f, 0.0f, "Spark");
-            mVelocity += dirFromSenderToReceiver.scaleInline(2.0f);
+            mVelocity += dirFromSenderToReceiver * 2.0f;
 
             if (reflected) {
                 MR::startSound(this, "SE_EM_BABYBEGO_COLLI");
@@ -471,10 +464,7 @@ bool BegomanBaby::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* 
         f32 bodyRadius = getSensor("body")->mRadius;
         f32 f1 = pSender->mRadius / bodyRadius;
 
-        TVec3f vec2 = TVec3f(dirFromReceiverToSender.scaleInline(4.0f));
-        vec2.scale(f1);
-
-        MR::addVelocityLimit(this, vec2);
+        MR::addVelocityLimit(this, dirFromReceiverToSender * 4.0f * f1);
 
         if (reflected) {
             MR::startSound(this, "SE_EM_BABYBEGO_COLLI_BEGOMAN");

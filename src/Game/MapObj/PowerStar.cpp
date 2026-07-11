@@ -313,7 +313,7 @@ void PowerStar::calcAndSetBaseMtx() {
     TPos3f mtx2;
     TPos3f mtx;
     // FIXME
-    mtx.setRotateInlineZeroTrans(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(mRotation.y));
+    mtx.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(mRotation.y));
 
     mtx2.concat(_B8, mtx);
     mtx2.setTrans(mPosition);

@@ -125,7 +125,7 @@ void DriftWood::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         JMAVECScaleAdd(&upVec, &delta, &result, -upVec.dot(delta));
 
         f32 radius = pReceiver->mRadius;
-        f32 magnitude = PSVECMag(&result);
+        f32 magnitude = result.length();
         f32 threshold = 140.0f + radius;
 
         if (magnitude > threshold) {

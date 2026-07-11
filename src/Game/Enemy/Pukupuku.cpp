@@ -215,11 +215,9 @@ void PukupukuStateLanding::emitGroundHitEffect() {
     if (!MR::isBindedGround(mHost)) {
         Triangle triangle;
         Pukupuku* parent = mHost;
-        TVec3f v3(parent->mGravity);
-        v3.scale(100.0f);
 
         TVec3f poly;
-        if (MR::getFirstPolyOnLineToMap(&poly, &triangle, parent->mPosition, v3)) {
+        if (MR::getFirstPolyOnLineToMap(&poly, &triangle, parent->mPosition, mHost->mGravity * 100.0f)) {
             MR::updateEffectFloorCode(mHost, &triangle);
         }
     }
@@ -402,9 +400,7 @@ void Pukupuku::exeTrampled() {
         TPos3f hitMtx;
         calcGroundHitMtx(&hitMtx);
         hitMtx.getQuat(_A8);
-        TVec3f v4(mGravity);
-        v4.scale(10.0f);
-        mVelocity.set< f32 >(v4);
+        mVelocity.set< f32 >(mGravity * 10.0f);
         startAnim("Flat", "CloseEye");
         MR::startSound(this, "SE_EM_STOMPED_S");
     } else if (!MR::isBinded(this)) {

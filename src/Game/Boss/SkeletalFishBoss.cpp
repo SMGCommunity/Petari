@@ -89,6 +89,11 @@ namespace {
     NEW_NERVE(SkeletalFishBossNrvDemoWait, SkeletalFishBoss, DemoWait);
 };  // namespace
 
+void FORCE_SCALE() {
+    TVec3f vec;
+    vec.scale(1.0f);
+}
+
 SkeletalFishBoss::SkeletalFishBoss(const char* pName) : LiveActor(pName) {
     mJointIndicies = nullptr;
     mPartsArray = nullptr;

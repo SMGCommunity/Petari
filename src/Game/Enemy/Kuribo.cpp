@@ -212,7 +212,7 @@ void Kuribo::control() {
     if (!isNerve(&NrvKuribo::KuriboNrvBindStarPointer::sInstance)) {
         TVec3f v3(0, 0, 0);
         if (MR::calcVelocityAreaOrRailMoveOnGround(&v3, this)) {
-            MR::addVelocity(this, v3.multInLine(0.05f));
+            MR::addVelocity(this, v3 * 0.05f);
         }
     }
 

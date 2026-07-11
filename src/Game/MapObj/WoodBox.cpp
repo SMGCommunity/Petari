@@ -240,10 +240,7 @@ void WoodBox::exeHit() {
             Mtx spawnMtx;
             PSMTXCopy(getBaseMtx(), spawnMtx);
 
-            f32 scale = 50.0f;
-            TVec3f spawnOffset = upVec;
-            spawnOffset.mult(scale);
-            MR::addTransMtx(spawnMtx, spawnOffset);
+            MR::addTransMtx(spawnMtx, upVec * 50.0f);
 
             MR::appearKinokoOneUpPop((BenefitItemObj*)mOneUp, spawnMtx, 30.0f);
         }

@@ -124,7 +124,7 @@ void SegmentGravity::updateLocalParam() {
     }
 
     rot.identity();
-    rot.setRotateInline2(localAxis, 0.5f * mValidSideDegree * (PI / 180));
+    rot.setRotate(localAxis, 0.5f * mValidSideDegree * (PI / 180));
 
     // Necessary to force the compiler to load the arguments to `mult` in the correct order
     rArtifact = false;

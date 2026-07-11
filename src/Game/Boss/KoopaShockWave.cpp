@@ -82,13 +82,7 @@ void KoopaShockWave::makeActorDead() {
 
 namespace {
     void makeShockWaveMtx(TPos3f* pDest, const TVec3f& rUp, const TVec3f& rFront, const TVec3f& r6, f32 f1, f32 f2) NO_INLINE {
-        TVec3f localVec = rUp;
-        localVec.scale(f1);
-        TVec3f localVec2 = localVec;
-        localVec2.scale(f2);
-        TVec3f localVec3 = localVec2;
-        localVec3.add(r6);
-        MR::makeMtxUpFrontPos(pDest, rUp, rFront, localVec3);
+        MR::makeMtxUpFrontPos(pDest, rUp, rFront, rUp * f1 * f2 + r6);
     }
 };  // namespace
 

@@ -325,7 +325,7 @@ void Plant::exeHangDown() {
 }
 
 void Plant::initLeaf() {
-    f32 leafPos, leafSize, leafRatio;
+    f32 leafRatio, leafSize, leafPos;
 
     mNumLeaves = (s32)(((MR::getRailTotalLength(this) - 100.0f) - 200.0f) / 200.0f) + 2;
     mLeaves = new PlantLeaf*[mNumLeaves];
@@ -347,11 +347,9 @@ void Plant::initLeaf() {
         f32 dot = growDirection.dot(railDirection);
         if (__fabsf(dot) > 0.7f) {
             if (dot > 0.0f) {
-                TVec3f up(0.0f, 1.0f, 0.0f);
-                PSVECCrossProduct(&up, &railDirection, &growDirection);
+                growDirection.cross(TVec3f(0.0f, 1.0f, 0.0f), railDirection);
             } else {
-                TVec3f up(0.0f, 1.0f, 0.0f);
-                PSVECCrossProduct(&railDirection, &up, &growDirection);
+                growDirection.cross(railDirection, TVec3f(0.0f, 1.0f, 0.0f));
             }
 
             MR::normalize(&growDirection);
@@ -363,14 +361,9 @@ void Plant::initLeaf() {
         mLeaves[leaf]->initWithoutIter();
         leafPos -= MR::getInterpolateValue(leafRatio, 100.0f, 300.0f);
 
-        f32 rand = PI_180 * MR::getRandom(90.0f, 270.0f);
-        mtx.setRotateInline(TVec3f(0.0f, 1.0f, 0.0f), rand);
+        mtx.setRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(MR::getRandom(90.0f, 270.0f)));
         mtx.mult(baseRotate, baseRotate);
     }
-}
-
-inline void setMatrix(MtxPtr posMtx, MtxPtr camMtx, MtxPtr baseMtx) {
-    PSMTXConcat(camMtx, baseMtx, posMtx);
 }
 
 void Plant::calcAnim() {
@@ -588,8 +581,7 @@ void Plant::updateBindLeaf() {
         springPower *= -1.0f;
     }
 
-    TVec3f railDir(MR::getRailDirection(this));
-    railDir.scale(20.0f);
+    TVec3f railDir(MR::getRailDirection(this) * 20.0f);
     if (MR::isRailGoingToEnd(this)) {
         railDir.scale(-1.0f);
     }
@@ -649,10 +641,7 @@ bool Plant::tryReachGoal() {
     TVec3f endUp(mStalk->mPlantPoints[0]->mUp);
     endUp.scale(mLaunchSpeed);
 
-    f32 launchVel = -mLaunchNormal;
-    TVec3f up(mGravity);
-    up.scale(launchVel);
-    endUp.add(up);
+    endUp.add(mGravity * -mLaunchNormal);
 
     MR::startBckPlayer("GrowPlantJump", (const char*)0);
     MR::stopSound(mRider, "SE_OJ_PLANT_MARIO_UP_START");

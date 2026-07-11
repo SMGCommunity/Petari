@@ -317,7 +317,7 @@ void CameraManEvent::resetCameraIfRequested() {
 
     TVec3f dir = watchPos - pos;
 
-    f32 length = PSVECMag(reinterpret_cast<Vec *>(&dir));
+    f32 length = dir.length();
 
     if (length < 300.0f) {
         if (length < 1.0f) {

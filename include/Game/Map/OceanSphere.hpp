@@ -3,10 +3,33 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class JUTTexture;
-class OceanSpherePlane;
-class OceanSpherePlaneEdge;
 class OceanSpherePoint;
 class WaterInfo;
+
+class OceanSpherePlane {
+public:
+    OceanSpherePlane(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1, const TVec2f& rTex2,
+                     const TVec2f& rTex3);
+
+    void update(f32, f32, f32);
+    OceanSpherePoint* getPoint(int col, int row) const {
+        return mPoints[(mAxisPointCount * row) + col];
+    }
+
+    s32 mGridPointCount;
+    s32 mAxisPointCount;
+    OceanSpherePoint** mPoints;
+};
+
+class OceanSpherePlaneEdge {
+public:
+    OceanSpherePlaneEdge(s32 pointCount, const TVec3f* pCenter, const TVec3f& rAxis1, const TVec3f& rAxis2, const TVec2f& rTex1, const TVec2f& rTex2);
+
+    void update(f32, f32, f32);
+
+    s32 mPointCount;
+    OceanSpherePoint** mPoints;
+};
 
 class OceanSphere : public LiveActor {
 public:

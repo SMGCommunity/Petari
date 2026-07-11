@@ -95,7 +95,7 @@ void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
 
         TVec3f stack_2C;
         stack_2C = stack_38 - (front_vec * dot);
-        f32 mag = PSVECMag(&stack_2C);
+        f32 mag = stack_2C.length();
 
         if (mag >= 400.0f * mScale.x) {
             pWindInfo->zero();

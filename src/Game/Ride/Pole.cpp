@@ -392,8 +392,7 @@ void Pole::exeBindFallDown() {
         front.z = JMACosDegree(mRotation.y);
         mtx.mult(front, front);
 
-        TVec3f pos(front);
-        pos.scale(-30.0f);
+        TVec3f pos(front * -30.0f);
         pos.add(mBasePos);
 
         MR::setPlayerPos(pos);
@@ -651,8 +650,7 @@ bool Pole::tryJump(bool handstand, f32 angleOffset) {
         MR::endActorCamera(this, mCameraInfo, 1, -1);
 
         if (mIsSquare) {
-            TVec3f vec2(jumpFront);
-            vec2.scale(50.0f);
+            TVec3f vec2(jumpFront * 50.0f);
             vec2.add(*MR::getPlayerPos());
             MR::setPlayerPos(vec2);
         }

@@ -809,7 +809,7 @@ void Poihana::contactMario(HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)) {
         f32 magVel = isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ? 10.0f : 5.0f;
 
-        if (PSVECMag((Vec *)&mVelocity) > magVel) {
+        if (mVelocity.length() > magVel) {
             f32 squared = mVelocity.squared();
 
             if (squared > 0.0000038146973f) {
@@ -947,7 +947,7 @@ bool Poihana::isNeedForGetUp() const {
     if (MR::isNearPlayer(this, 500.0f)) {
         bool flag = true;
 
-        f32 mag = PSVECMag(MR::getPlayerVelocity());
+        f32 mag = MR::getPlayerVelocity()->length();
 
         if (!(mag >= 10.0f) && !MR::isPlayerSwingAction()) {
             flag = false;

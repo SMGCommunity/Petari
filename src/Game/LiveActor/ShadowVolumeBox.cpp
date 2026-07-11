@@ -50,7 +50,7 @@ void ShadowVolumeBox::makeVertexBuffer() const {
     TVec3f size = mSize;
     if (controller->isFollowHostScale()) {
         // FIXME: some weirder TVec inline happening here
-        size *= controller->getHost()->mScale.scaleInline(0.5f);
+        size *= controller->getHost()->mScale * 0.5f;
     } else {
         size.scale(0.5f);
     }
