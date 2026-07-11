@@ -108,6 +108,7 @@ typedef int BOOL;
 
 #define FOURCC(c0, c1, c2, c3) (u32)((c0 & 0xFF) << 24 | (c1 & 0xFF) << 16 | (c2 & 0xFF) << 8 | (c3 & 0xFF))
 
+#define IS_ALIGNED(x, align) (((unsigned long)(x) & ((align) - 1)) == 0)
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N) - 1)) != 0)
 
 /* just some common intrinsics */
