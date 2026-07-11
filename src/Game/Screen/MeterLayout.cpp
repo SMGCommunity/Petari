@@ -1,7 +1,6 @@
 #include "Game/Screen/MeterLayout.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/CountUpPaneRumbler.hpp"
-#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -9,8 +8,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 
 namespace NrvMeterLayout {
     NEW_NERVE(MeterLayoutNrvHide, MeterLayout, Hide);
@@ -25,23 +22,11 @@ namespace NrvMeterLayout {
     NEW_NERVE(MeterLayoutNrvBreakMeter, MeterLayout, BreakMeter);
     NEW_NERVE(MeterLayoutNrvZeroMeter, MeterLayout, ZeroMeter);
     NEW_NERVE(MeterLayoutNrvZeroMeterBreak, MeterLayout, ZeroMeterBreak);
-}
+}  // namespace NrvMeterLayout
 
-namespace {
-    f32 clamp(f32 v, f32 min, f32 max) {
-        if (v < min) {
-            return min;
-        }
-
-        if (v > max) {
-            return max;
-        }
-
-        return v;
-    }
-}
-
-MeterLayout::MeterLayout(const char* pName, const char* pLayoutName) : LayoutActor(pName, true), mCountUpPaneRumbler(nullptr), mFollowPos(0.0f, 0.0f), mFollowPosW(0.0f, 0.0f), _38(0.0f, 0.0f), mCount(3), _48(), _4C(1.0f) {
+MeterLayout::MeterLayout(const char* pName, const char* pLayoutName)
+    : LayoutActor(pName, true), mCountUpPaneRumbler(nullptr), mFollowPos(0.0f, 0.0f), mFollowPosW(0.0f, 0.0f), _38(0.0f, 0.0f), mCount(3), _48(),
+      _4C(1.0f) {
     MR::connectToSceneLayout(this);
     initLayoutManager(pLayoutName, 3);
 }
@@ -70,15 +55,13 @@ void MeterLayout::init(const JMapInfoIter& rIter) {
 void MeterLayout::control() {
     if (isNerve(&NrvMeterLayout::MeterLayoutNrvAppear::sInstance)) {
         _48 = 1.0f;
-    }
-    else if (MR::isStarPointerPointingPaneForMeterLayout(this, "PicBase", 0, false, nullptr)) {
-        _48 -= 0.050000001f;
-    }
-    else {
-        _48 += 0.050000001f;
+    } else if (MR::isStarPointerPointingPaneForMeterLayout(this, "PicBase", 0, false, nullptr)) {
+        _48 -= 0.05f;
+    } else {
+        _48 += 0.05f;
     }
 
-    _48 = clamp(_48, 0.30000001f, 1.2f);
+    _48 = MR::clamp(_48, 0.3f, 1.2f);
 
     f32 v1 = MR::normalize(_48, 0.0f, 1.0f);
     MR::setAnimFrameAndStop(this, _4C * v1 * 20.0f, 2);
@@ -92,8 +75,7 @@ void MeterLayout::requestActive() {
         if (mCount == 3) {
             _4C = 0.0f;
             mFollowPos.x = MR::getEaseInOutValue(0.0f, 1.0f, 0.0f, 1.0f) * 50.0f;
-        }
-        else {
+        } else {
             _4C = 1.0f;
             mFollowPos.y = 0.0f;
             mFollowPos.x = 0.0f;
@@ -133,12 +115,11 @@ void MeterLayout::requestForceAppear() {
 void MeterLayout::requestPlayerMoving() {
     if (isNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance)) {
         if (mCount == 3) {
-            _4C -= 0.050000001f;
+            _4C -= 0.05f;
             if (_4C < 0.0f) {
                 _4C = 0.0f;
             }
-        }
-        else {
+        } else {
             _4C = 1.0f;
         }
     }
@@ -147,12 +128,11 @@ void MeterLayout::requestPlayerMoving() {
 void MeterLayout::requestPlayerStopped() {
     if (isNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance)) {
         if (mCount == 3) {
-            _4C += 0.050000001f;
+            _4C += 0.05f;
             if (_4C > 1.0f) {
                 _4C = 1.0f;
             }
-        }
-        else {
+        } else {
             _4C = 1.0f;
         }
     }
@@ -169,21 +149,17 @@ void MeterLayout::setCount(s32 count) {
     if (count < prevCount) {
         if (count == 0) {
             setNerve(&NrvMeterLayout::MeterLayoutNrvZeroMeter::sInstance);
-        }
-        else if (prevCount >= 4 && count < 4) {
+        } else if (prevCount >= 4 && count < 4) {
             setNerve(&NrvMeterLayout::MeterLayoutNrvBreakMeter::sInstance);
-        }
-        else {
+        } else {
             setNerve(&NrvMeterLayout::MeterLayoutNrvDamage::sInstance);
         }
-    }
-    else if (prevCount < count) {
+    } else if (prevCount < count) {
         setNerve(&NrvMeterLayout::MeterLayoutNrvRecover::sInstance);
     }
 }
 
 void MeterLayout::exeHide() {
-
 }
 
 void MeterLayout::exeAppear() {
@@ -215,7 +191,7 @@ void MeterLayout::exeWaitStart() {
 
     if (MR::isGreaterStep(this, 240)) {
         setNerve(&NrvMeterLayout::MeterLayoutNrvWait::sInstance);
-    }   
+    }
 }
 
 void MeterLayout::exeWait() {
@@ -224,7 +200,7 @@ void MeterLayout::exeWait() {
         mFollowPos.y = 0.0f;
         mFollowPos.x = 0.0f;
     }
-    
+
     mFollowPos.x = MR::getEaseInOutValue(_4C, 1.0f, 0.0f, 1.0f) * 50.0f;
     mFollowPosW.y = 0.0f;
     mFollowPosW.x = 0.0f;
@@ -256,8 +232,7 @@ void MeterLayout::exePowerUp() {
 
         if (mCount >= 4) {
             MR::setTextBoxNumberRecursive(this, "HitPointNumber", 3);
-        }
-        else {
+        } else {
             mCountUpPaneRumbler->start();
             MR::startPaneAnim(this, "Font", "Flash", 0);
         }
@@ -326,8 +301,7 @@ void MeterLayout::exeDamage() {
     if (MR::isFirstStep(this)) {
         if (mCount < 3) {
             MR::startAnim(this, "Damage2", 1);
-        }
-        else {
+        } else {
             MR::startAnim(this, "Damage1", 1);
         }
 
@@ -418,18 +392,15 @@ void MeterLayout::setAnimBase() {
 
     if (mCount < 3) {
         MR::startAnim(this, "Danger1", 1);
-    }
-    else {
+    } else {
         MR::startAnim(this, "Danger2", 1);
     }
 
     if (mCount <= 1) {
         MR::setAnimRate(this, 4.0f, 1);
-    }
-    else if (mCount <= 2) {
+    } else if (mCount <= 2) {
         MR::setAnimRate(this, 2.0f, 1);
-    }
-    else {
+    } else {
         MR::setAnimFrameAndStop(this, 0.0f, 1);
     }
 }

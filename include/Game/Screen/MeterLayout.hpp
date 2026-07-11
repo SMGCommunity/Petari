@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Screen/LayoutActor.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 class CountUpPaneRumbler;
 
