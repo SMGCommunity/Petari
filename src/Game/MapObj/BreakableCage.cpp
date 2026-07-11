@@ -5,6 +5,7 @@
 #include "Game/MapObj/DummyDisplayModel.hpp"
 #include "Game/MapObj/PowerStar.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 namespace {
     Vec cHitSensorOffsetCage;
@@ -150,29 +151,9 @@ void BreakableCage::kill() {
 
 void BreakableCage::calcAndSetBaseMtx() {
     if (mCageType == CAGE_NORMAL) {
-        f32 v2 = (0.017453292f * mRotation.y);
-        TVec3f stack_C;
-        TVec3f stack_14(0.0f, 1.0f, 0.0f);
-        TPos3f stack_20;
-        stack_20.mMtx[0][3] = 0.0f;
-        stack_20.mMtx[1][3] = 0.0f;
-        stack_20.mMtx[2][3] = 0.0f;
-        stack_C.set< f32 >(stack_14);
-        stack_C.length();
-        PSVECNormalize(&stack_C, &stack_C);
         TPos3f stack_50;
-        f32 v3 = sin(v2);
-        f32 v4 = cos(v2);
-        stack_50.mMtx[0][0] = v4 + ((1.0f - v4) * (stack_C.x * stack_C.x));
-        stack_50.mMtx[1][1] = v4 + ((1.0f - v4) * (stack_C.y * stack_C.y));
-        stack_50.mMtx[2][2] = v4 + ((1.0f - v4) * (stack_C.z * stack_C.z));
-        stack_50.mMtx[0][1] = (stack_C.y * ((1.0f - v4) * stack_C.x)) - (v3 * stack_C.z);
-        stack_50.mMtx[0][2] = (stack_C.z * ((1.0f - v4) * stack_C.x)) + (v3 * stack_C.y);
-        stack_50.mMtx[1][0] = (stack_C.y * ((1.0f - v4) * stack_C.x)) + (v3 * stack_C.z);
-        stack_50.mMtx[2][0] = (stack_C.z * ((1.0f - v4) * stack_C.x)) - (v3 * stack_C.y);
-        stack_50.mMtx[1][2] = (stack_C.z * ((1.0f - v4) * stack_C.y)) - (v3 * stack_C.x);
-        stack_50.mMtx[2][1] = (stack_C.z * ((1.0f - v4) * stack_C.y)) + (v3 * stack_C.x);
-
+        stack_50.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(mRotation.y));
+        TPos3f stack_20;
         stack_20.concat(mMtx, stack_50);
         MR::setBaseTRMtx(this, stack_20);
     } else {

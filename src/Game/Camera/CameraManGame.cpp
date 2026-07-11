@@ -441,23 +441,10 @@ void CameraManGame::keepAwayWatchPos(TVec3f* watchPos, const TVec3f& pos) {
 
     if (length < 300.0f) {
         if (length < 1.0f) {
-            TVec3f currentPos = CameraLocalUtil::getPos(this);
-            TVec3f currentWatchPos = CameraLocalUtil::getWatchPos(this);
-
-            TVec3f newWatchPos1 = pos + currentWatchPos;
-            TVec3f newWatchPos2 = newWatchPos1 - currentPos;
-
-            watchPos->set(newWatchPos2);
+            watchPos->set(pos + CameraLocalUtil::getWatchPos(this) - CameraLocalUtil::getPos(this));
         } else {
-            f32 length2 = dir.length();
-            PSVECNormalize(&dir, &dir);
-
-            TVec3f dirCopy = TVec3f(dir);
-            dirCopy.x *= 300.0f;
-            dirCopy.y *= 300.0f;
-            dirCopy.z *= 300.0f;
-
-            watchPos->set(pos + dirCopy);
+            dir.normalize();
+            watchPos->set(pos + dir * 300.0f);
         }
     }
 }

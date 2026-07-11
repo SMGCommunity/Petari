@@ -312,12 +312,17 @@ namespace JGeometry {
             // }
             //
             // DOES NOT MATCH {
+            // all of these have the exact same regswap pattern
             //    DummyDisplayModel::calcAndSetBaseMtx (regswap)
             //    HomingKiller::calcAndSetBaseMtx (regswap)
             //    PowerStar::calcAndSetBaseMtx (regswap)
             //    BossBegomanHead::calcJointEdge (regswap)
             //    CocoNutBall::setVelocityToPlayer (regswap)
             //    KoopaFigureBall::control (regswap)
+            //    BeeFlowerHover::control (regswap)
+            //    BreakableCage::calcAndSetBaseMtx (regswap)
+            //    CocoNut::updateRotate (regswap)
+            //    FirePressureRadiate::calcJointCannon (regswap)
             // }
 
             f32 s = sin(angle);

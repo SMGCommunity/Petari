@@ -144,25 +144,25 @@ namespace MR {
 
     void makeAxisFrontUp(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
         PSVECCrossProduct(&rParam4, &rParam3, pParam1);
-        PSVECNormalize(pParam1, pParam1);
+        normalize(pParam1);
         PSVECCrossProduct(&rParam3, pParam1, pParam2);
     }
 
     void makeAxisFrontSide(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
         PSVECCrossProduct(&rParam3, &rParam4, pParam1);
-        PSVECNormalize(pParam1, pParam1);
+        normalize(pParam1);
         PSVECCrossProduct(pParam1, &rParam3, pParam2);
     }
 
     void makeAxisUpFront(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
         PSVECCrossProduct(&rParam3, &rParam4, pParam1);
-        PSVECNormalize(pParam1, pParam1);
+        normalize(pParam1);
         PSVECCrossProduct(pParam1, &rParam3, pParam2);
     }
 
     void makeAxisUpSide(TVec3f* pParam1, TVec3f* pParam2, const TVec3f& rParam3, const TVec3f& rParam4) {
         PSVECCrossProduct(&rParam4, &rParam3, pParam1);
-        PSVECNormalize(pParam1, pParam1);
+        normalize(pParam1);
         PSVECCrossProduct(&rParam3, pParam1, pParam2);
     }
 

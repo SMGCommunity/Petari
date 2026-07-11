@@ -590,11 +590,8 @@ namespace MR {
         PSVECCrossProduct(&axisY, &axisZ, &axisX);
         PSVECCrossProduct(&axisZ, &axisX, &axisY);
 
-        axisX.length();
-        PSVECNormalize(&axisX, &axisX);
-
-        axisY.length();
-        PSVECNormalize(&axisY, &axisY);
+        axisX.normalize();
+        axisY.normalize();
 
         pMtx->setXYZDir(axisX, axisY, axisZ);
 

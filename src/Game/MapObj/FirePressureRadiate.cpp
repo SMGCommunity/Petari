@@ -1,6 +1,7 @@
 #include "Game/MapObj/FirePressureRadiate.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 namespace NrvFirePressureRadiate {
     NEW_NERVE(FirePressureRadiateNrvRelax, FirePressureRadiate, Relax);
@@ -219,28 +220,10 @@ void FirePressureRadiate::calcRadiateEffectMtx() {
 }
 
 bool FirePressureRadiate::calcJointCannon(TPos3f* pOutPos, const JointControllerInfo&) {
-    TVec3f v9(0.0f, 0.0f, 1.0f);
-    f32 rotDegree = (0.017453292f * mCannonRotation);
-    TPos3f v10;
-    v10.mMtx[0][3] = 0.0f;
-    v10.mMtx[1][3] = 0.0f;
-    v10.mMtx[2][3] = 0.0f;
-    TVec3f v8;
-    v8.set(v9);
-    v8.length();  // oops ?
-    PSVECNormalize(&v8, &v8);
-    f32 v5 = sin(rotDegree);
-    f32 v6 = cos(rotDegree);
-    v10.mMtx[0][0] = v6 + ((1.0f - v6) * (v8.x * v8.x));
-    v10.mMtx[1][1] = v6 + ((1.0f - v6) * (v8.y * v8.y));
-    v10.mMtx[2][2] = v6 + ((1.0f - v6) * (v8.z * v8.z));
-    v10.mMtx[0][1] = (v8.y * ((1.0f - v6) * v8.x)) - (v5 * v8.z);
-    v10.mMtx[0][2] = (v8.z * ((1.0f - v6) * v8.x)) + (v5 * v8.y);
-    v10.mMtx[1][0] = (v8.y * ((1.0f - v6) * v8.x)) + (v5 * v8.z);
-    v10.mMtx[2][0] = (v8.z * ((1.0f - v6) * v8.x)) - (v5 * v8.y);
-    v10.mMtx[1][2] = (v8.z * ((1.0f - v6) * v8.y)) - (v5 * v8.x);
-    v10.mMtx[2][1] = (v8.z * ((1.0f - v6) * v8.y)) + (v5 * v8.x);
-    pOutPos->concat(*pOutPos, v10);
+    TPos3f mtx;
+    TVec3f axis(0.0f, 0.0f, 1.0f);
+    mtx.makeRotate(axis, MR::toRadian(mCannonRotation));
+    pOutPos->concat(*pOutPos, mtx);
     return true;
 }
 
