@@ -6774,7 +6774,7 @@ Game/Player/FireMarioBall.cpp:
 	.text       start:0x802A3D8C end:0x802A4544
 	.ctors      start:0x8052F04C end:0x8052F050
 	.data       start:0x805B6E90 end:0x805B75C0
-	.sdata      start:0x806B21E8 end:0x806B2258
+	.sdata      start:0x806B21E8 end:0x806B2248
 	.sbss       start:0x806B6258 end:0x806B6260
 	.sdata2     start:0x806BF3B0 end:0x806BF3C0
 
@@ -6881,7 +6881,7 @@ Game/Player/MarioActorRush.cpp:
 Game/Player/MarioActorSensor.cpp:
 	.text       start:0x802BEAAC end:0x802BFB84
 	.ctors      start:0x8052F088 end:0x8052F08C
-	.data       start:0x805B8CE8 end:0x805B8F28
+	.data       start:0x805B8CE8 end:0x805B8F58
 	.sdata2     start:0x806BF758 end:0x806BF7A0
 
 Game/Player/MarioActorShadow.cpp:
@@ -6897,13 +6897,14 @@ Game/Player/MarioActorSpecialDraw.cpp:
 Game/Player/MarioActorMatrix.cpp:
 	.text       start:0x802C43B8 end:0x802C48A4
 	.ctors      start:0x8052F094 end:0x8052F098
-	.data       start:0x805B8F28 end:0x805BA5B8
+	.data       start:0x805B8F58 end:0x805BA468
+	.sdata      start:0x806B2248 end:0x806B2258
 	.sdata2     start:0x806BF888 end:0x806BF890
 
 Game/Player/MarioActorMorph.cpp:
 	.text       start:0x802C48A4 end:0x802C52CC
 	.ctors      start:0x8052F098 end:0x8052F09C
-	.data       start:0x805BA5B8 end:0x805BA740
+	.data       start:0x805BA468 end:0x805BA740
 	.sdata2     start:0x806BF890 end:0x806BF898
 
 Game/Player/MarioActorEye.cpp:

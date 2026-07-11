@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Player/Mario.hpp"
+#include "Game/Player/MatrixControl.hpp"
 #include "Game/Util/Color.hpp"
 
 class BlackHole;
@@ -36,6 +37,7 @@ class XjointTransform;
 struct DLholder;
 struct ResTIMG;
 struct SmokeEffectEntry;
+class MatrixControl;
 
 template < int SIZE, class T, class U >
 class AudGenericAudible;
@@ -231,7 +233,6 @@ public:
     void updateDarkMask(u16);
 
     void resetPadSwing();
-    void initActionMatrix();
 
     TVec3f& getGravityVec() const;
     TVec3f& getGravityVector() const;
@@ -270,18 +271,13 @@ public:
 
     void initForJump();
     void lockOnDPD();
-    u8 selectAction(const char*) const;
-    bool selectInvalidMovingCollision(const char*) const;
     void bodyClap();
     bool selectWaterInOut(const char*) const;
-    bool selectWaterInOutEffect(const char*) const;
-    bool selectWaterInOutRush(const HitSensor*) const;
     void playEffectRT(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTZ(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTW(const char*, const TVec3f&, const TVec3f&);
     void playEffectSRT(const char*, f32, const TVec3f&, const TVec3f&);
     void emitEffectWaterColumn(const TVec3f&, const TVec3f&);
-    bool selectRecoverFlyMeter(const HitSensor*) const;
     void endRush(const RushEndInfo*);
     void stopSpinTicoEffect(bool);
     void stopEffectForce(const char*);
@@ -313,8 +309,6 @@ public:
 
     void setPlayerMode(u16, bool);
 
-    bool isActionOk(const char*) const;
-
     bool isInZeroGravitySpot() const;
     f32 getGravityRatio() const;
     u32 getGravityLevel() const;
@@ -327,8 +321,6 @@ public:
 
     const HitSensor* getCarrySensor() const;
     HitSensor* getLookTargetSensor() const;
-    bool selectHomingInSuperHipDrop(const char*) const;
-    f32 getFaceLookHeight(const char*) const;
     void updateSpecialModeAnimation();
     J3DModelX* getJ3DModel() const;
     J3DModelData* getModelData() const;
@@ -351,7 +343,34 @@ public:
 
     bool takeSensor(HitSensor*);
 
+    // Defined in MarioActorMatrix
+    void initActionMatrix();
+    bool isActionOk(const char*) const;
+    u8 selectAction(const char*) const;
+    bool selectAutoBind(const char*, unsigned char*) const;
+    bool selectCustomEffectSpinHitSound(const char*) const;
+    bool selectSpinCatchInRush(const char*) const;
+    bool selectHomingInSuperHipDrop(const char*) const;
+    bool selectNotHomingSensor(const HitSensor*) const;
+    bool selectInvalidMovingCollision(const char*) const;
+    bool selectQuickResetBeeWallGravity(const char*) const;
     bool selectJumpRushSensor(const char*) const;
+    bool selectDamageFireColor(const char*) const;
+    bool selectWaterInOutEffect(const char*) const;
+    bool selectOnDamageRush(const char*) const;
+    bool selectTiltPress(const HitSensor*) const;
+    bool selectHandyRush(const HitSensor*) const;
+    bool selectRecoverFlyMeter(const HitSensor*) const;
+    bool selectHideFlyMeter(const HitSensor*) const;
+    bool selectTeresaThru(const HitSensor*) const;
+    bool selectRebindTimer(const HitSensor*) const;
+    bool selectHipDropRush(const HitSensor*) const;
+    bool selectPushOff(const HitSensor*) const;
+    bool selectWaterInOutRush(const HitSensor*) const;
+    bool selectLandEffect(const HitSensor*) const;
+    bool selectNoShadow(const HitSensor*) const;
+    bool selectDamagePop(const HitSensor*) const;
+    f32 getFaceLookHeight(const char*) const;
 
     // Defined in MarioActorOffensiveMsg
     void attackOrPushSensor(HitSensor*, f32);
@@ -409,12 +428,6 @@ public:
 
     void getThrowVec(TVec3f*) const;
     bool isRequestThrow() const;
-    bool selectHipDropRush(const HitSensor*) const;
-    bool selectHideFlyMeter(const HitSensor*) const;
-    bool selectHandyRush(const HitSensor*) const;
-    bool selectAutoBind(const char*, unsigned char*) const;
-    bool selectDamageFireColor(const char*) const;
-    bool selectOnDamageRush(const char*) const;
     void trampleJump(f32, f32);
 
     const MarioConst& getConst() const {
@@ -838,10 +851,10 @@ public:
     /* 0xFA8 */ TVec3f _FA8;
     /* 0xFB4 */ const Nerve* _FB4;
     /* 0xFB8 */ u16 _FB8;  // a timer
-    /* 0xFBC */ u32 _FBC;
-    /* 0xFC0 */ u32 _FC0;
-    /* 0xFC4 */ u32 _FC4;
-    /* 0xFC8 */ u32 _FC8;
+    /* 0xFBC */ MatrixControl* _FBC;
+    /* 0xFC0 */ MatrixControl* _FC0;
+    /* 0xFC4 */ MatrixControl* _FC4;
+    /* 0xFC8 */ MatrixValueGetter* _FC8;
     /* 0xFCC */ bool _FCC;
     /* 0xFCD */ bool _FCD;
 };

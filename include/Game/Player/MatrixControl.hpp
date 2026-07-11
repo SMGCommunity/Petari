@@ -7,27 +7,22 @@ class MatrixMap;
 class MatrixSelectList;
 class HashSortTable;
 
-struct Map {
+struct MatrixMap {
     /* 0x0 */ const char* mName;
     /* 0x4 */ u32 _4;
     /* 0x8 */ u8* _8;
 };
 
-struct MatrixMap {
-    Map mMaps[];
-};
-
 struct MatrixSelectList {
-    /* 0x0 */ u8 _0[0x84];
+    /* 0x00 */ u8 mCount;
+    /* 0x04 */ const char* _4[32];
 };
 
-struct MatrixValue {
-    /* 0x0 */ const char* mName;
-    /* 0x4 */ f32 mValue;
-};
+
 
 struct MatrixValueTable {
-    MatrixValue mValues[];
+    /* 0x0 */ const char* mName;
+    /* 0x4 */ f32 mValue;
 };
 
 class MatrixControl : public NameObj {

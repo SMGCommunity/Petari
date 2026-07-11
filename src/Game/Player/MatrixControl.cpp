@@ -4,19 +4,19 @@
 
 MatrixControl::MatrixControl(const char* pName, MatrixMap* pMap, MatrixSelectList* pSelectList, s32 myInt)
     : NameObj(pName), _C(pMap), _10(pSelectList), _18(myInt), _1C(true), _1D(false) {
-    for (s32 idx = 0; _C->mMaps->mName[0] != '\x00'; idx++) {
+    for (s32 idx = 0; _C->mName[0] != '\x00'; idx++) {
         if (_1C) {
             continue;
         }
 
-        _C->mMaps->_8 = 0;
+        _C->_8 = 0;
     }
 
     s32 size;
     _14 = new HashSortTable(size);
 
     for (u32 idx = 0; idx < size; idx++) {
-        _14->add(_C->mMaps[idx].mName, idx, false);
+        _14->add(_C[idx].mName, idx, false);
     }
 
     _14->sort();
@@ -25,17 +25,17 @@ MatrixControl::MatrixControl(const char* pName, MatrixMap* pMap, MatrixSelectLis
 u8 MatrixControl::getValue(const char* pName, u8 value) const {
     u32 index;
     _14->search(pName, &index);
-    return _C->mMaps[index]._8[value];
+    return _C[index]._8[value];
 }
 
-bool MatrixControl::getValueOrNone(const char* pName, u8 value, u8* newValue) const {
+bool MatrixControl::getValueOrNone(const char* pName, u8 idx, u8* value) const {
     u32 index;
     if (!_14->search(pName, &index)) {
         return false;
     }
 
-    if (newValue != nullptr) {
-        *newValue = _C->mMaps[index]._8[value];
+    if (value != nullptr) {
+        *value = _C[index]._8[idx];
     }
 
     return true;
@@ -44,7 +44,7 @@ bool MatrixControl::getValueOrNone(const char* pName, u8 value, u8* newValue) co
 bool MatrixControl::getBit(const char* pName, u8 bit) const {
     u32 index;
     _14->search(pName, &index);
-    return _C->mMaps[index]._4 & (1 << (31 - bit));
+    return _C[index]._4 & (1 << (31 - bit));
 }
 
 bool MatrixControl::isExist(const char* pName) const {
@@ -59,7 +59,7 @@ bool MatrixControl::getBitOrNone(const char* pName, u8 bit) const {
         return _1D;
     }
 
-    return _C->mMaps[index]._4 & (1 << (31 - bit));
+    return _C[index]._4 & (1 << (31 - bit));
 }
 
 MatrixValueGetter::MatrixValueGetter(const char* pName, MatrixValueTable* pTable) : NameObj(pName), _C(pTable) {
