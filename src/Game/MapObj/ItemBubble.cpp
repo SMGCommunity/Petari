@@ -15,7 +15,7 @@ namespace {
 namespace NrvItemBubble {
     NEW_NERVE(ItemBubbleNrvWait, ItemBubble, Wait);
     NEW_NERVE(ItemBubbleNrvBreak, ItemBubble, Break);
-}  // namespace NrvItemBubble
+};  // namespace NrvItemBubble
 
 void FORCE_OPERATOR() {
     TVec3f vec;

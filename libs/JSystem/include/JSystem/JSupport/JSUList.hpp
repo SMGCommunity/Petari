@@ -25,6 +25,10 @@ public:
         return mNext;
     }
 
+    JSUPtrLink* getPrev() const {
+        return mPrev;
+    }
+
     void* mData;           // 0x0
     JSUPtrList* mPtrList;  // 0x4
     JSUPtrLink* mPrev;     // 0x8
@@ -99,7 +103,7 @@ public:
     JSUList(bool thing) : JSUPtrList(thing) {
     }
 
-    ~JSUList() {};
+    ~JSUList(){};
 
     JSULink< T >* getFirst() const {
         return (JSULink< T >*)getFirstLink();
@@ -152,7 +156,7 @@ public:
         return this->mLink != other.mLink;
     }
 
-    JSUListIterator< T > operator++(int) {
+    JSUListIterator< T > operator++(int) NO_INLINE {
         JSUListIterator< T > prev = *this;
         this->mLink = this->mLink->getNext();
         return prev;

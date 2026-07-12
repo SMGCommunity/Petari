@@ -38,7 +38,7 @@ void StationedArchiveLoader::loadResourcesFromTable(const StationedArchiveLoader
 
         switch (pInfo->mLoadType) {
         case 0:
-            MR::loadToMainRAM(pInfo->mArchive, nullptr, pHeap, JKRDvdRipper::ALLOC_DIRECTION_1);
+            MR::loadToMainRAM(pInfo->mArchive, nullptr, pHeap, JKRDvdRipper::ALLOC_DIRECTION_FORWARD);
             break;
         case 1:
         case 2:

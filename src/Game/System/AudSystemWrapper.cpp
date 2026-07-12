@@ -19,7 +19,7 @@ AudSystemWrapper::AudSystemWrapper(JKRSolidHeap* pParam1, JKRHeap* pParam2)
 }
 
 void AudSystemWrapper::requestResourceForInitialize() {
-    MR::loadAsyncToMainRAM("/AudioRes/SMR.szs", nullptr, _8, JKRDvdRipper::ALLOC_DIRECTION_2);
+    MR::loadAsyncToMainRAM("/AudioRes/SMR.szs", nullptr, _8, JKRDvdRipper::ALLOC_DIRECTION_BACKWARD);
     MR::mountAsyncArchive("/AudioRes/Seqs/JaiSeq.arc", _4);
     MR::mountAsyncArchive("/AudioRes/Seqs/JaiChord.arc", _4);
     MR::mountAsyncArchive("/AudioRes/Seqs/JaiMe.arc", _4);

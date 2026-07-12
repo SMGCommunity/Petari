@@ -13,7 +13,7 @@ namespace {
 
         return Color8(r, g, b, 255);
     }
-}  // namespace
+};  // namespace
 
 MultiEmitterCallBack::MultiEmitterCallBack(const MultiEmitter* pEmitter, const TVec3f& rVec)
     : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(), mRotation(), mTranslation(), mMtx(), _18(rVec), mBaseScale(1.0f),

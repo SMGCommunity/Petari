@@ -15,6 +15,10 @@ public:
             return (void*)(this + 1);
         }
 
+        void newGroupId(u8 groupId) {
+            mGroupId = groupId;
+        }
+
         u16 mMagic;        // 0x0
         u8 mFlags;         // 0x2
         u8 mGroupId;       // 0x3

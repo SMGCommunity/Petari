@@ -73,7 +73,7 @@ bool JASWaveArc::eraseSetup() {
 void JASWaveArc::loadToAramCallback(void* this_) {
     loadToAramCallbackParams* tmp = (loadToAramCallbackParams*)this_;
     JASWaveArc* wavArc = tmp->mWavArc;
-    if (JKRDvdAramRipper::loadToAram(tmp->mEntryNum, tmp->mBase, JKR_EXPAND_SWITCH_0, 0, 0, nullptr) == nullptr) {
+    if (JKRDvdAramRipper::loadToAram(tmp->mEntryNum, tmp->mBase, EXPAND_SWITCH_UNKNOWN0, 0, 0, nullptr) == nullptr) {
         return;
     }
     wavArc->_5A--;

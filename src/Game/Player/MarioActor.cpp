@@ -2785,7 +2785,7 @@ namespace MR {
     s32 getFrameBufferWidth() {
         return JUTGetVideoManager()->getRenderMode()->fbWidth;
     }
-}  // namespace MR
+};  // namespace MR
 
 void MarioActor::setPunchHitTimer(u8 punchHitTime) {
     if (_944 == 0) {
