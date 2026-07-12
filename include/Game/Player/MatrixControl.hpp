@@ -2,9 +2,6 @@
 
 #include "Game/NameObj/NameObj.hpp"
 
-class MatrixValueTable;
-class MatrixMap;
-class MatrixSelectList;
 class HashSortTable;
 
 struct MatrixMap {
@@ -17,8 +14,6 @@ struct MatrixSelectList {
     /* 0x00 */ u8 mCount;
     /* 0x04 */ const char* _4[32];
 };
-
-
 
 struct MatrixValueTable {
     /* 0x0 */ const char* mName;
