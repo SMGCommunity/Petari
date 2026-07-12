@@ -916,11 +916,11 @@ bool TakoHei::isInSightMario() const {
     f32 scalarToPlayer;
     MR::separateScalarAndDirection(&scalarToPlayer, &dirToPlayer, dirToPlayer);
 
-    TVec3f quatYDir;
+    TVec3f quatZDir;
 
-    _94.getYDir(quatYDir);
+    _94.getZDir(quatZDir);
 
-    if (scalarToPlayer < 1600.0f && dirToPlayer.dot(quatYDir) > 0.0f) {
+    if (scalarToPlayer < 1600.0f && dirToPlayer.dot(quatZDir) > 0.0f) {
         return true;
     } else {
         return false;
