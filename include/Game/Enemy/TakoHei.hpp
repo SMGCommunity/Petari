@@ -71,6 +71,7 @@ public:
     void updateSwoonVelocity();
     void decideNextTargetPos();
 
+    bool checkFront() const;
     bool canAttack() const;
     bool isPushMovable() const;
     bool isEnableKick() const;

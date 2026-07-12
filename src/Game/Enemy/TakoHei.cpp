@@ -616,9 +616,7 @@ void TakoHei::exePursue() {
     updateNormalVelocity();
 
     if (isFarPlayer) {
-        TVec3f positionUpOffset;
-        MR::calcPositionUpOffset(&positionUpOffset, this, ::sCheckFrontHeight);
-        if (MR::isExistMapCollision(positionUpOffset, _B0 * ::sCheckFrontAttackSpace)) {
+        if (checkFront()) {
             setNerve(&NrvTakoHei::TakoHeiNrvAttackSign::sInstance);
             return;
         }
@@ -658,9 +656,7 @@ void TakoHei::exeAttackSign() {
 
     MR::turnDirectionToTargetDegree(this, &_B0, *MR::getPlayerPos(), ::sAttackSignDegree);
 
-    TVec3f positionUpOffset;
-    MR::calcPositionUpOffset(&positionUpOffset, this, ::sCheckFrontHeight);
-    if (MR::isExistMapCollision(positionUpOffset, _B0 * ::sCheckFrontAttackSpace)) {
+    if (checkFront()) {
         MR::addVelocity(this, _B0 * ::sBackAttackSpaceAccel);
     }
 
@@ -851,6 +847,12 @@ void TakoHei::decideNextTargetPos() {
     JMAVECScaleAdd(grav, _BC, _BC, -dot);
 
     _BC += _D4;
+}
+
+bool TakoHei::checkFront() const {
+    TVec3f positionUpOffset;
+    MR::calcPositionUpOffset(&positionUpOffset, this, ::sCheckFrontHeight);
+    return MR::isExistMapCollision(positionUpOffset, _B0 * ::sCheckFrontAttackSpace);
 }
 
 bool TakoHei::canAttack() const {
