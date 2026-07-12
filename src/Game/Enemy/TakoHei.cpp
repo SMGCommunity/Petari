@@ -27,7 +27,65 @@
 
 namespace {
     static TVec3f sInkShotOffset(0.0f, 20.0f, 0.0f);
-}
+    static const f32 sBaseScale = 1.0f;
+    static const f32 sBodyHitRadius = 70.0f;
+    static const f32 sBodyHitYOffset = 70.0f;
+    static const f32 sAttackHitRadius = 50.0f;
+    static const f32 sAttackHitYOffset = 70.0f;
+    static const f32 sCollisionRadius = 90.0f;
+    static const f32 sShadowRadius = 60.0f;
+    static const f32 sPointerHitSize = 70.0f;
+    // static const f32 sFrontVecBlendRate;
+    // static const f32 sUpVecBlendRate;
+    static const f32 sPushAccel = 5.0f;
+    static const f32 sPushScaleYSpeed = 0.1f;
+    static const s32 sNoPushTime = 20;
+    static const f32 sPushScaleYMarioSpeed = 0.15f;
+    static const f32 sPushMarioAccel = 12.0f;
+    static const s32 sNoPushMarioTime = 60;
+    // static const f32 sFallLimitDistance;
+    static const f32 sNormalGroundFrec = 0.85f;
+    static const f32 sNormalAirFrec = 0.99f;
+    static const f32 sNormalGravityAccel = 1.5f;
+    static const f32 sActiveDistance = 3000.0f;
+    static const s32 sWaitTime = 120;
+    static const s32 sWalkMoveStartTime = 10;
+    static const s32 sWalkEndTime = 120;
+    static const f32 sWalkAccel = 0.2f;
+    static const f32 sWalkGoalDistance = 500.0f;
+    static const f32 sWalkTurnDegree = 6.0f;
+    static const f32 sWalkTerritoryRadius = 400.0f;
+    static const s32 sFindTurnTime = 20;
+    static const s32 sFindTime = 30;
+    // static const f32 sFindDistance;
+    static const f32 sFindTurnDegree = 6.0f;
+    static const s32 sPursueTime = 300;
+    static const f32 sPursueAccel = 0.5f;
+    static const f32 sPursueTurnDegree = 6.0f;
+    static const s32 sCoolDownTime = 60;
+    static const f32 sAttackSignDegree = 8.0f;
+    static const f32 sAttackDistanceNear = 650.0f;
+    static const f32 sAttackDistanceFar = 750.0f;
+    static const s32 sForceFarAttackTime = 250;
+    static const f32 sSpurtPowerH = 20.0f;
+    static const f32 sSpurtPowerV = -15.0f;
+    static const f32 sCheckFrontHeight = 40.0f;
+    static const f32 sCheckFrontAttackSpace = 140.0f;
+    static const f32 sBackAttackSpaceAccel = -0.1f;
+    static const s32 sAttackSuccessTime = 60;
+    static const f32 sAttackSuccessHitPower = 8.0f;
+    static const s32 sSwoonTime = 180;
+    static const s32 sRecoverTime = 20;
+    static const f32 sSwoonGroundFrec = 0.85f;
+    static const f32 sSwoonGravityAccel = 1.5f;
+    static const s32 sPunchStopSceneTime = 2;
+    static const s32 sPunchDownTime = 22;
+    static const f32 sPunchHorizonPower = 20.0f;
+    static const f32 sPunchVerticalPower = 35.0f;
+    static const s32 sFlatDownTime = 20;
+    static const s32 sHipDropDownTime = 40;
+    static const s32 sPressDownTime = 180;
+}  // namespace
 
 namespace NrvTakoHei {
     NEW_NERVE(TakoHeiNrvNonActive, TakoHei, NonActive);
@@ -57,7 +115,7 @@ TakoHei::TakoHei(const char* pName)
 
 void TakoHei::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    mScale.mult(1.0f);
+    mScale.mult(::sBaseScale);
     initModelManagerWithAnm("TakoHei", nullptr, false);
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
@@ -65,11 +123,11 @@ void TakoHei::init(const JMapInfoIter& rIter) {
     _D4 = mPosition;
     MR::makeQuatAndFrontFromRotate(&_94, &_B0, this);
     MR::addToAttributeGroupSearchTurtle(this);
-    initBinder(90.0f * mScale.y, 90.0f * mScale.y, 0);
+    initBinder(::sCollisionRadius * mScale.y, ::sCollisionRadius * mScale.y, 0);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initSensor();
-    MR::initShadowVolumeSphere(this, 60.0f);
+    MR::initShadowVolumeSphere(this, ::sShadowRadius);
     initNerve(&NrvTakoHei::TakoHeiNrvWait::sInstance);
     _8C = new AnimScaleController(nullptr);
     _90 = new WalkerStateBindStarPointer(this, _8C);
@@ -87,9 +145,9 @@ void TakoHei::initAfterPlacement() {
 void TakoHei::initSensor() {
     const f32 scaleX = mScale.x;
     initHitSensor(2);
-    MR::addHitSensorEnemyAttack(this, "attack", 8, 50.0f * scaleX, TVec3f(0.0f, 70.0f * scaleX, 0.0f));
-    MR::addHitSensorEnemy(this, "body", 8, 70.0f * scaleX, TVec3f(0.0f, 70.0f * scaleX, 0.0f));
-    MR::initStarPointerTarget(this, 70.0f * mScale.y, TVec3f(0.0f, 70.0f * mScale.y, 0.0f));
+    MR::addHitSensorEnemyAttack(this, "attack", 8, ::sAttackHitRadius * scaleX, TVec3f(0.0f, ::sAttackHitYOffset * scaleX, 0.0f));
+    MR::addHitSensorEnemy(this, "body", 8, ::sBodyHitRadius * scaleX, TVec3f(0.0f, ::sBodyHitYOffset * scaleX, 0.0f));
+    MR::initStarPointerTarget(this, ::sPointerHitSize * mScale.y, TVec3f(0.0f, ::sPointerHitSize * mScale.y, 0.0f));
 }
 
 void TakoHei::kill() {
@@ -154,10 +212,9 @@ bool TakoHei::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
                 MR::startBtp(this, "BlinkTwice");
                 TVec3f sensorDirection;
                 MR::calcSensorDirectionNormalize(&sensorDirection, pSender, pReceiver);
-
-                mVelocity += sensorDirection * (MR::isSensorPlayer(pSender) ? 12.0f : 5.0f);
-                _8C->startAndAddScaleVelocityY(MR::isSensorPlayer(pSender) ? 0.15f : 0.1f);
-                _E4 = MR::isSensorPlayer(pSender) ? 60 : 20;
+                mVelocity += sensorDirection * (MR::isSensorPlayer(pSender) ? ::sPushMarioAccel : ::sPushAccel);
+                _8C->startAndAddScaleVelocityY(MR::isSensorPlayer(pSender) ? ::sPushScaleYMarioSpeed : ::sPushScaleYSpeed);
+                _E4 = MR::isSensorPlayer(pSender) ? ::sNoPushMarioTime : ::sNoPushTime;
             }
             return true;
         }
@@ -271,7 +328,7 @@ bool TakoHei::requestPunch(HitSensor* pSensor1, HitSensor* pSensor2) {
     if (!isDown()) {
         MR::clearHitSensors(this);
         MR::invalidateHitSensors(this);
-        MR::addVelocitySeparateHV(this, pSensor2, pSensor1, 20.0f, 35.0f);
+        MR::addVelocitySeparateHV(this, pSensor2, pSensor1, ::sPunchHorizonPower, ::sPunchVerticalPower);
         setNerve(&NrvTakoHei::TakoHeiNrvPunchDown::sInstance);
         _E0 = 2;
         return true;
@@ -282,7 +339,7 @@ bool TakoHei::requestPunch(HitSensor* pSensor1, HitSensor* pSensor2) {
 
 bool TakoHei::requestAttackSuccess(HitSensor* pSensor1, HitSensor* pSensor2) {
     if (canAttack()) {
-        MR::addVelocityMoveToDirection(this, pSensor1->mPosition - pSensor2->mPosition, 8.0f);
+        MR::addVelocityMoveToDirection(this, pSensor1->mPosition - pSensor2->mPosition, ::sAttackSuccessHitPower);
         setNerve(&NrvTakoHei::TakoHeiNrvAttackSuccess::sInstance);
         return true;
     }
@@ -291,7 +348,7 @@ bool TakoHei::requestAttackSuccess(HitSensor* pSensor1, HitSensor* pSensor2) {
 }
 
 bool TakoHei::tryActive() {
-    if (MR::isNearPlayerAnyTime(this, 3000.0f)) {
+    if (MR::isNearPlayerAnyTime(this, ::sActiveDistance)) {
         setNerve(&NrvTakoHei::TakoHeiNrvWait::sInstance);
         return true;
     }
@@ -300,7 +357,7 @@ bool TakoHei::tryActive() {
 }
 
 bool TakoHei::tryNonActive() {
-    bool isNotNearPlayer = MR::isNearPlayerAnyTime(this, 3000.0f) ? false : true;
+    bool isNotNearPlayer = MR::isNearPlayerAnyTime(this, ::sActiveDistance) ? false : true;
     if (isNotNearPlayer && MR::isBindedGround(this)) {
         MR::zeroVelocity(this);
         MR::invalidateHitSensors(this);
@@ -312,7 +369,7 @@ bool TakoHei::tryNonActive() {
 }
 
 bool TakoHei::tryWalk() {
-    if (MR::isGreaterStep(this, 120)) {
+    if (MR::isGreaterStep(this, ::sWaitTime)) {
         setNerve(&NrvTakoHei::TakoHeiNrvWalk::sInstance);
         return true;
     }
@@ -327,7 +384,7 @@ bool TakoHei::tryWalkEnd() {
     f32 dot = grav->dot(diff);
     JMAVECScaleAdd(grav, diff, scaleAdd, -dot);
 
-    if (MR::isGreaterStep(this, 120) || scaleAdd.squared() < 400.0f) {
+    if (MR::isGreaterStep(this, ::sWalkEndTime) || scaleAdd.squared() < ::sWalkTerritoryRadius) {
         setNerve(&NrvTakoHei::TakoHeiNrvWait::sInstance);
         return true;
     }
@@ -351,7 +408,7 @@ bool TakoHei::tryFindTurn() {
 }
 
 bool TakoHei::tryFind() {
-    if (MR::isGreaterStep(this, 20)) {
+    if (MR::isGreaterStep(this, ::sFindTurnTime)) {
         setNerve(&NrvTakoHei::TakoHeiNrvFind::sInstance);
         return true;
     }
@@ -360,7 +417,7 @@ bool TakoHei::tryFind() {
 }
 
 bool TakoHei::tryPursue() {
-    if (MR::isGreaterStep(this, 30)) {
+    if (MR::isGreaterStep(this, ::sFindTime)) {
         setNerve(&NrvTakoHei::TakoHeiNrvPursue::sInstance);
         return true;
     }
@@ -369,7 +426,7 @@ bool TakoHei::tryPursue() {
 }
 
 bool TakoHei::tryPursueEnd() {
-    if (MR::isGreaterStep(this, 300)) {
+    if (MR::isGreaterStep(this, ::sPursueTime)) {
         setNerve(&NrvTakoHei::TakoHeiNrvCoolDown::sInstance);
         return true;
     }
@@ -385,7 +442,7 @@ bool TakoHei::tryPursueEnd() {
 
 bool TakoHei::tryAttack() {
     f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
-    if (650.0f <= distanceToPlayer && (distanceToPlayer <= 750.0f || MR::isGreaterStep(this, 250))) {
+    if (::sAttackDistanceNear <= distanceToPlayer && (distanceToPlayer <= ::sAttackDistanceFar || MR::isGreaterStep(this, ::sForceFarAttackTime))) {
         setNerve(&NrvTakoHei::TakoHeiNrvAttackSign::sInstance);
         return true;
     }
@@ -394,7 +451,7 @@ bool TakoHei::tryAttack() {
 }
 
 bool TakoHei::tryCoolDownEnd() {
-    if (MR::isGreaterStep(this, 60)) {
+    if (MR::isGreaterStep(this, ::sCoolDownTime)) {
         if (isInSightMario()) {
             setNerve(&NrvTakoHei::TakoHeiNrvPursue::sInstance);
         } else {
@@ -407,7 +464,7 @@ bool TakoHei::tryCoolDownEnd() {
 }
 
 bool TakoHei::tryAttackSuccessEnd() {
-    if (MR::isGreaterStep(this, 60)) {
+    if (MR::isGreaterStep(this, ::sAttackSuccessTime)) {
         setNerve((&NrvTakoHei::TakoHeiNrvWait::sInstance));
         return true;
     }
@@ -425,7 +482,7 @@ bool TakoHei::tryPointBind() {
 }
 
 bool TakoHei::tryRecover() {
-    if (MR::isGreaterStep(this, 180)) {
+    if (MR::isGreaterStep(this, ::sSwoonTime)) {
         setNerve((&NrvTakoHei::TakoHeiNrvRecover::sInstance));
         return true;
     }
@@ -434,7 +491,7 @@ bool TakoHei::tryRecover() {
 }
 
 bool TakoHei::tryRecoverEnd() {
-    if (MR::isGreaterStep(this, 20)) {
+    if (MR::isGreaterStep(this, ::sRecoverTime)) {
         setNerve((&NrvTakoHei::TakoHeiNrvWait::sInstance));
         return true;
     }
@@ -508,10 +565,10 @@ void TakoHei::exeWalk() {
         MR::startBtp(this, "Blink");
     }
 
-    MR::turnDirectionToTargetDegree(this, &_B0, _BC, 6.0f);
+    MR::turnDirectionToTargetDegree(this, &_B0, _BC, ::sWalkTurnDegree);
 
-    if (MR::isGreaterStep(this, 10)) {
-        MR::addVelocityMoveToTarget(this, _BC, 0.2f);
+    if (MR::isGreaterStep(this, ::sWalkMoveStartTime)) {
+        MR::addVelocityMoveToTarget(this, _BC, ::sWalkAccel);
     }
 
     updateNormalVelocity();
@@ -532,7 +589,7 @@ void TakoHei::exeFindTurn() {
         MR::startBtp(this, "Open");
     }
 
-    MR::turnDirectionToTargetDegree(this, &_B0, *MR::getPlayerPos(), 6.0f);
+    MR::turnDirectionToTargetDegree(this, &_B0, *MR::getPlayerPos(), ::sFindTurnDegree);
 
     updateNormalVelocity();
 
@@ -567,21 +624,20 @@ void TakoHei::exePursue() {
     bool isFarPlayer = false;
 
     if (MR::isNearPlayer(this, 700.0f)) {
-        MR::addVelocityAwayFromTarget(this, *MR::getPlayerPos(), 0.5f);
+        MR::addVelocityAwayFromTarget(this, *MR::getPlayerPos(), ::sPursueAccel);
     } else {
-        MR::addVelocityMoveToTarget(this, *MR::getPlayerPos(), 0.5f);
+        MR::addVelocityMoveToTarget(this, *MR::getPlayerPos(), ::sPursueAccel);
         isFarPlayer = true;
     }
 
-    MR::turnDirectionToTargetDegree(this, &_B0, *MR::getPlayerPos(), 6.0f);
+    MR::turnDirectionToTargetDegree(this, &_B0, *MR::getPlayerPos(), ::sPursueTurnDegree);
 
     updateNormalVelocity();
 
     if (isFarPlayer) {
         TVec3f positionUpOffset;
-        MR::calcPositionUpOffset(&positionUpOffset, this, 40.0f);
-        TVec3f _B0scaled(_B0 * 140.0f);
-        if (MR::isExistMapCollision(positionUpOffset, _B0scaled)) {
+        MR::calcPositionUpOffset(&positionUpOffset, this, ::sCheckFrontHeight);
+        if (MR::isExistMapCollision(positionUpOffset, _B0 * ::sCheckFrontAttackSpace)) {
             setNerve(&NrvTakoHei::TakoHeiNrvAttackSign::sInstance);
             return;
         }
@@ -619,12 +675,12 @@ void TakoHei::exeAttackSign() {
 
     MR::startLevelSound(this, "SE_EM_TAKOHEI_LV_PRE_SPIT_OUT");
 
-    MR::turnDirectionToTargetDegree(this, &_B0, *MR::getPlayerPos(), 8.0f);
+    MR::turnDirectionToTargetDegree(this, &_B0, *MR::getPlayerPos(), ::sAttackSignDegree);
 
     TVec3f positionUpOffset;
-    MR::calcPositionUpOffset(&positionUpOffset, this, 40.0f);
-    if (MR::isExistMapCollision(positionUpOffset, _B0 * 140.0f)) {
-        MR::addVelocity(this, _B0 * -0.1f);
+    MR::calcPositionUpOffset(&positionUpOffset, this, ::sCheckFrontHeight);
+    if (MR::isExistMapCollision(positionUpOffset, _B0 * ::sCheckFrontAttackSpace)) {
+        MR::addVelocity(this, _B0 * ::sBackAttackSpaceAccel);
     }
 
     updateNormalVelocity();
@@ -643,7 +699,7 @@ void TakoHei::exeAttack() {
         TPos3f mouthMtx = MR::getJointMtx(this, "Mouth");
         TVec3f mult;
         mouthMtx.mult(::sInkShotOffset, mult);
-        MR::spurtTakoHeiInk(mult, _B0 * 20.0f + mGravity * -15.0f);
+        MR::spurtTakoHeiInk(mult, _B0 * ::sSpurtPowerH + mGravity * -::sSpurtPowerV);
 
         MR::startBck(this, "Shot", nullptr);
         MR::startSound(this, "SE_EM_TAKOHEI_SPIT_OUT");
@@ -724,7 +780,7 @@ void TakoHei::exePressDown() {
         MR::zeroVelocity(this);
     }
 
-    if (MR::isGreaterStep(this, 180)) {
+    if (MR::isGreaterStep(this, ::sPressDownTime)) {
         kill();
     }
 }
@@ -737,7 +793,7 @@ void TakoHei::exeHipDropDown() {
         MR::zeroVelocity(this);
     }
 
-    if (MR::isGreaterStep(this, 40)) {
+    if (MR::isGreaterStep(this, ::sHipDropDownTime)) {
         kill();
     }
 }
@@ -750,7 +806,7 @@ void TakoHei::exeFlatDown() {
         MR::zeroVelocity(this);
     }
 
-    if (MR::isGreaterStep(this, 20)) {
+    if (MR::isGreaterStep(this, ::sFlatDownTime)) {
         kill();
     }
 }
@@ -760,14 +816,14 @@ void TakoHei::exePunchDown() {
         MR::startBck(this, "PunchDown", nullptr);
         MR::startBtp(this, "Cry");
         MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), -1.0f);
-        MR::stopScene(2);
+        MR::stopScene(::sPunchStopSceneTime);
         MR::startSound(this, "SE_EM_TAKOHEI_HITPUNCH");
         MR::startBlowHitSound(this);
     }
 
     updateNormalVelocity();
 
-    if (MR::isGreaterStep(this, 22) || (MR::isBinded(this) && MR::isGreaterStep(this, 5))) {
+    if (MR::isGreaterStep(this, ::sPunchDownTime) || (MR::isBinded(this) && MR::isGreaterStep(this, 5))) {
         kill();
     }
 }
@@ -786,10 +842,10 @@ void TakoHei::updatePose() {
 
 void TakoHei::updateNormalVelocity() {
     if (MR::isBindedGround(this)) {
-        MR::attenuateVelocity(this, 0.85f);
+        MR::attenuateVelocity(this, ::sNormalGroundFrec);
     } else {
-        MR::addVelocityToGravity(this, 1.5f);
-        MR::attenuateVelocity(this, 0.99f);
+        MR::addVelocityToGravity(this, ::sNormalGravityAccel);
+        MR::attenuateVelocity(this, ::sNormalAirFrec);
     }
 
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
@@ -797,17 +853,17 @@ void TakoHei::updateNormalVelocity() {
 
 void TakoHei::updateSwoonVelocity() {
     if (MR::isBindedGround(this)) {
-        MR::attenuateVelocity(this, 0.85f);
+        MR::attenuateVelocity(this, ::sSwoonGroundFrec);
     } else {
-        MR::addVelocityToGravity(this, 1.5f);
-        MR::attenuateVelocity(this, 0.99f);
+        MR::addVelocityToGravity(this, ::sSwoonGravityAccel);
+        MR::attenuateVelocity(this, ::sNormalAirFrec);
     }
 
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
 }
 
 void TakoHei::decideNextTargetPos() {
-    MR::getRandomVector(&_BC, 500.0f);
+    MR::getRandomVector(&_BC, ::sWalkGoalDistance);
 
     TVec3f* grav = &mGravity;
     f32 dot = grav->dot(_BC);
@@ -844,7 +900,7 @@ bool TakoHei::isPushMovable() const {
 }
 
 bool TakoHei::isEnableKick() const {
-    if(isNerve(&NrvTakoHei::TakoHeiNrvSwoon::sInstance)) {
+    if (isNerve(&NrvTakoHei::TakoHeiNrvSwoon::sInstance)) {
         return true;
     } else {
         return false;
@@ -861,11 +917,11 @@ bool TakoHei::isDown() const {
 }
 
 bool TakoHei::isFallNextMove() const {
-    if(_ED) {
+    if (_ED) {
         return false;
     }
 
-    if(MR::isOnGround(this)) {
+    if (MR::isOnGround(this)) {
         return MR::isFallNextMove(mPosition, mVelocity, mGravity, 150.0f, mScale.x * 90.0f * 2.0f, 150.0f, nullptr);
     } else {
         return false;
@@ -881,7 +937,7 @@ bool TakoHei::isInSightMario() const {
 
     _94.getYDir(quatYDir);
 
-    if(scalarToPlayer < 1600.0f && dirToPlayer.dot(quatYDir) > 0.0f) {
+    if (scalarToPlayer < 1600.0f && dirToPlayer.dot(quatYDir) > 0.0f) {
         return true;
     } else {
         return false;
