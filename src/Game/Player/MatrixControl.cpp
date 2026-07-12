@@ -4,7 +4,7 @@
 
 MatrixControl::MatrixControl(const char* pName, MatrixMap* pMap, MatrixSelectList* pSelectList, s32 myInt)
     : NameObj(pName), _C(pMap), _10(pSelectList), _18(myInt), _1C(true), _1D(false) {
-    for (s32 idx = 0; _C->mName[0] != '\x00'; idx++) {
+    for (s32 idx = 0; _C->mName[0] != '\0'; idx++) {
         if (_1C) {
             continue;
         }

@@ -341,7 +341,7 @@ struct myStruct {
     u32 _24;
 };
 
-static myStruct cMorphStringTable[] = {{"DieBlackHole", 0, 0, 0, "DieBlackHoleBee", 0, 0, 0, "DieBlackHoleLuigi", 0}, {0}};
+static myStruct cMorphStringTable[] = {{"DieBlackHole", 0, 0, 0, "DieBlackHoleBee", 0, 0, 0, "DieBlackHoleLuigi", 0}, {}};
 
 void MarioActor::touchSensor(HitSensor* pSensor) {
     switch (pSensor->mType) {
