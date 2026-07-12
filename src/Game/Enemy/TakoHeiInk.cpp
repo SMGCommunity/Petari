@@ -8,7 +8,7 @@ namespace {
     static const f32 sGravityAccel = 0.8f;
     static const s32 sBindOnTime = 10;
     static const s32 sForceBreakTime = 240;
-}  // namespace
+};  // namespace
 
 namespace NrvTakoHeiInk {
     NEW_NERVE(TakoHeiInkNrvWait, TakoHeiInk, Wait);
