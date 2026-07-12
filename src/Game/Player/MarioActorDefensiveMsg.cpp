@@ -2,6 +2,7 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioConst.hpp"
+#include "Game/Player/MarioState.hpp"
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 
@@ -135,13 +136,13 @@ bool MarioActor::receiveMsgTaken(HitSensor* pReceiver, HitSensor* pSender) {
         return false;
     }
 
-    if (mMario->isSwimming() && !mMario->isStatusActive(0x18)) {
-        u32 isType = 0;
-        if (pReceiver->isType(0x10)) {
-            isType = 1;
+    if (mMario->isSwimming() && !mMario->isStatusActive(MarioStatus_Foo)) {
+        u32 type = 0;
+        if (pReceiver->isType(ATYPE_JET_TURTLE_SLOW)) {
+            type = 1;
         }
 
-        if (!mMario->mSwim->startJet(isType)) {
+        if (!mMario->mSwim->startJet(type)) {
             return false;
         }
     } else if (pReceiver != _424) {
