@@ -4,7 +4,7 @@
 
 namespace {
     static const s32 sMaxTakoHeiInk = 16;
-}
+};  // namespace
 
 TakoHeiInkHolder::TakoHeiInkHolder() : DeriveActorGroup< TakoHeiInk >("タコヘイ墨管理", ::sMaxTakoHeiInk) {
     for (int i = 0; i < ::sMaxTakoHeiInk; i++) {
@@ -18,6 +18,7 @@ namespace MR {
     void createTakoHeiInkHolder() {
         createSceneObj(SceneObj_TakoHeiInkHolder);
     }
+
     bool spurtTakoHeiInk(const TVec3f& position, const TVec3f& velocity) {
         TakoHeiInk* spurtInk = static_cast< TakoHeiInkHolder* >(getSceneObjHolder()->getObj(SceneObj_TakoHeiInkHolder))->getDeadMember();
         if (spurtInk == nullptr) {
