@@ -88,6 +88,14 @@ namespace NrvTakoHei {
     NEW_NERVE(TakoHeiNrvPunchDown, TakoHei, PunchDown);
 }  // namespace NrvTakoHei
 
+void TakoHei_FORCE_MATCH_SDATA2() {
+    (void) 1.0f;
+    (void) 0.0f;
+    (void) 0.5f;
+    (void) -1.0f;
+    (void) 2.0f;
+}
+
 TakoHei::TakoHei(const char* pName)
     : LiveActor(pName), _8C(0), _90(0), _94(0.0f, 0.0f, 0.0f, 1.0f), _A4(0, 0, 0), _B0(0, 0, 1), _BC(0, 0, 0), _C8(0, 0, 1), _D4(0, 0, 0), _E0(0),
       _E4(0), _E8(0), _EC(0), _ED(0) {
@@ -676,7 +684,7 @@ void TakoHei::exeAttack() {
         TPos3f mouthMtx = MR::getJointMtx(this, "Mouth");
         TVec3f mult;
         mouthMtx.mult(::sInkShotOffset, mult);
-        MR::spurtTakoHeiInk(mult, _B0 * ::sSpurtPowerH + mGravity * -::sSpurtPowerV);
+        MR::spurtTakoHeiInk(mult, _B0 * ::sSpurtPowerH + mGravity * ::sSpurtPowerV);
 
         MR::startBck(this, "Shot", nullptr);
         MR::startSound(this, "SE_EM_TAKOHEI_SPIT_OUT");
@@ -926,3 +934,5 @@ bool TakoHei::isInSightMario() const {
         return false;
     }
 }
+
+TakoHei::~TakoHei() {};

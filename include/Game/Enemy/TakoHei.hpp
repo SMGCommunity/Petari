@@ -10,7 +10,7 @@ class TakoHei : public LiveActor {
 public:
     TakoHei(const char*);
 
-
+    virtual ~TakoHei();
     virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void kill();
