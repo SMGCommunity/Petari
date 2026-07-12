@@ -14,10 +14,10 @@ static f32 mSensorRadiusHipDropAttack = 80.0f;
 static f32 mSensorRadiusClapCatch = 600.0f;
 static f32 mSensorRadiusClapCatchSwim = 2000.0f;
 static f32 mSensorRadiusTrampleAttack = 80.0f;
-static f32 mSensorRadiusTornadoStorm = 600.0f;
-static f32 mSensorRadiusSpinPull = 1000.0f;
+static f32 mSensorRadiusSpinStorm = 600.0f;
+static f32 mSensorRadiusTornadoStorm = 1000.0f;
+static f32 mSensorRadiusSpinPull = 450.0f;
 static f32 mSensorRadiusSpinPullOnGround = 450.0f;
-static f32 mUnk1 = 450.0f;
 
 // void MarioActor::attackOrPushSensor(HitSensor*, f32);
 
