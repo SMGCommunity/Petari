@@ -12,7 +12,7 @@ namespace {
 
 namespace NrvTakoHeiInk {
     NEW_NERVE(TakoHeiInkNrvWait, TakoHeiInk, Wait);
-}
+}; // namespace NrvTakoHeiInk
 
 TakoHeiInk::TakoHeiInk(const char* pName) : LiveActor(pName) {
 }

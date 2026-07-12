@@ -38,7 +38,7 @@ namespace {
     static const f32 sWalkTerritoryRadius = 400.0f;
     static const s32 sFindTurnTime = 20;
     static const s32 sFindTime = 30;
-    // static const f32 sFindDistance;
+    static const f32 sFindDistance = 1600.0f;
     static const f32 sFindTurnDegree = 6.0f;
     static const s32 sPursueTime = 300;
     static const f32 sPursueAccel = 0.5f;
@@ -66,7 +66,7 @@ namespace {
     static const s32 sFlatDownTime = 20;
     static const s32 sHipDropDownTime = 40;
     static const s32 sPressDownTime = 180;
-}  // namespace
+};  // namespace
 
 namespace NrvTakoHei {
     NEW_NERVE(TakoHeiNrvNonActive, TakoHei, NonActive);
@@ -86,14 +86,14 @@ namespace NrvTakoHei {
     NEW_NERVE(TakoHeiNrvHipDropDown, TakoHei, HipDropDown);
     NEW_NERVE(TakoHeiNrvFlatDown, TakoHei, FlatDown);
     NEW_NERVE(TakoHeiNrvPunchDown, TakoHei, PunchDown);
-}  // namespace NrvTakoHei
+};  // namespace NrvTakoHei
 
 void TakoHei_FORCE_MATCH_SDATA2() {
-    (void) 1.0f;
-    (void) 0.0f;
-    (void) 0.5f;
-    (void) -1.0f;
-    (void) 2.0f;
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)-1.0f;
+    (void)2.0f;
 }
 
 TakoHei::TakoHei(const char* pName)
@@ -188,7 +188,7 @@ void TakoHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             TVec3f sensorDirection;
             MR::calcSensorDirectionNormalize(&sensorDirection, pReceiver, pSender);
             if (mVelocity.dot(sensorDirection) < 0.0f) {
-                JMAVECScaleAdd(sensorDirection, mVelocity, mVelocity, -sensorDirection.dot(mVelocity));
+                mVelocity.rejection(sensorDirection);
             }
         }
     }
@@ -368,10 +368,7 @@ bool TakoHei::tryWalk() {
 
 bool TakoHei::tryWalkEnd() {
     TVec3f scaleAdd;
-    TVec3f diff(_BC - mPosition);
-    TVec3f* grav = &mGravity;
-    f32 dot = grav->dot(diff);
-    JMAVECScaleAdd(grav, diff, scaleAdd, -dot);
+    scaleAdd.rejection(_BC - mPosition, mGravity);
 
     if (MR::isGreaterStep(this, ::sWalkEndTime) || scaleAdd.squared() < ::sWalkTerritoryRadius) {
         setNerve(&NrvTakoHei::TakoHeiNrvWait::sInstance);
@@ -850,9 +847,7 @@ void TakoHei::updateSwoonVelocity() {
 void TakoHei::decideNextTargetPos() {
     MR::getRandomVector(&_BC, ::sWalkGoalDistance);
 
-    TVec3f* grav = &mGravity;
-    f32 dot = grav->dot(_BC);
-    JMAVECScaleAdd(grav, _BC, _BC, -dot);
+    _BC.rejection(mGravity);
 
     _BC += _D4;
 }
@@ -920,15 +915,15 @@ bool TakoHei::isFallNextMove() const {
 }
 
 bool TakoHei::isInSightMario() const {
-    TVec3f dirToPlayer(*MR::getPlayerPos() - mPosition);
+    TVec3f toPlayer(*MR::getPlayerPos() - mPosition);
     f32 scalarToPlayer;
-    MR::separateScalarAndDirection(&scalarToPlayer, &dirToPlayer, dirToPlayer);
+    MR::separateScalarAndDirection(&scalarToPlayer, &toPlayer, toPlayer);
 
     TVec3f quatZDir;
 
     _94.getZDir(quatZDir);
 
-    if (scalarToPlayer < 1600.0f && dirToPlayer.dot(quatZDir) > 0.0f) {
+    if (scalarToPlayer < ::sFindDistance && toPlayer.dot(quatZDir) > 0.0f) {
         return true;
     } else {
         return false;
