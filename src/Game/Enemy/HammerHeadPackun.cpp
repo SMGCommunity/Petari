@@ -33,7 +33,7 @@ void HammerHeadPackun_FORCE_MATCH_SDATA2() {
 
 HammerHeadPackun::HammerHeadPackun(const char* pName) : LiveActor(pName) {
     mLeafModel = nullptr;
-    _90 = 0;
+    mImmunityTime = 0;
     _94.x = 0.0f;
     _94.y = 1.0f;
     _94.z = 0.0f;
@@ -160,7 +160,7 @@ void HammerHeadPackun::exeRest() {
         const char* chance = "Chance";
         MR::startBck(this, chance, nullptr);
         MR::startBck(mLeafModel, chance, nullptr);
-        _90 = 0;
+        mImmunityTime = 0;
     }
 
     if (!tryShiftNumb()) {
@@ -187,7 +187,7 @@ void HammerHeadPackun::exeDamage() {
         MR::startBck(this, swoonStart, nullptr);
         MR::startBck(mLeafModel, swoonStart, nullptr);
         MR::startBlowHitSound(this);
-        _90++;
+        mImmunityTime++;
     }
 
     if (MR::isStep(this, 76)) {
@@ -600,7 +600,7 @@ bool HammerHeadPackun::receiveMsgPlayerAttackChance(u32 msg, HitSensor* pSender,
         setNerve(&::HammerHeadPackunNrvSmashKill::sInstance);
         return true;
     } else if (MR::isMsgPlayerSpinAttack(msg)) {
-        if (_90 >= 3u) {
+        if (mImmunityTime >= 3u) {
             setNerve(&::HammerHeadPackunNrvRise::sInstance);
         } else {
             setNerve(&::HammerHeadPackunNrvDamage::sInstance);

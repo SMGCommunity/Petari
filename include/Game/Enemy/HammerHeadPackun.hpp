@@ -52,7 +52,7 @@ public:
     inline bool checkBlowAttack() const;
 
     /* 0x8C */ PartsModel* mLeafModel;
-    /* 0x90 */ s32 _90;
+    /* 0x90 */ s32 mImmunityTime;
     /* 0x94 */ TVec3f _94;
     /* 0xA0 */ TVec3f _A0;
     /* 0xAC */ TVec3f _AC;
