@@ -149,7 +149,7 @@ void OtaRock::initModel() {
 
     TPos3f mtxTR;
     MR::makeMtxTR(mtxTR.toMtxPtr(), this);
-    mtxTR.getZDirInline(_D4);
+    mtxTR.getZDir(_D4);
 }
 
 void OtaRock::initSensor() {
