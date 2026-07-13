@@ -61,7 +61,7 @@ public:
     const char* getNameStringPointer(const char*) const;
     bool checkPass(f32) const;
     f32 tellAnimationFrame() const;
-    const XanimeGroupInfo* getSimpleGroup() const;
+    XanimeGroupInfo* getSimpleGroup() const;
     void duplicateSimpleGroup();
     void changeCurrentAnimation(const XanimeGroupInfo*);
 
@@ -73,11 +73,11 @@ public:
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ f32 _08;
     /* 0x0C */ f32 _0C;
-    /* 0x10 */ f32 _10[4];
+    /* 0x10 */ f32 mWeights[4];
     /* 0x20 */ XanimeFrameCtrl* _20;
     /* 0x24 */ XanimeFrameCtrl _24[2];
     /* 0x54 */ u8 _54;
-    /* 0x55 */ u8 _55;
+    /* 0x55 */ u8 mCurrent_24;
     /* 0x58 */ const char* mCurrentBckName;
     /* 0x5C */ const XanimeGroupInfo* mDefaultAnimation;
     /* 0x60 */ const XanimeGroupInfo* mCurrentAnimation;
@@ -87,7 +87,7 @@ public:
     /* 0x70 */ XanimeResourceTable* mResourceTable;
     /* 0x74 */ XanimeGroupInfo* _74;
     /* 0x78 */ s32 _78;
-    /* 0x7C */ u8 _7C;
+    /* 0x7C */ bool _7C;
     /* 0x7D */ u8 _7D;
     /* 0x7E */ u8 _7E;
     /* 0x7F */ u8 _7F;

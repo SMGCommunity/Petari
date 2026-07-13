@@ -1,7 +1,10 @@
 #include "Game/Animation/XanimePlayer.hpp"
 #include "Game/Animation/XanimeCore.hpp"
 #include "Game/Animation/XanimeResource.hpp"
+#include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
+#include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModel.hpp"
+#include "JSystem/J3DGraphAnimator/J3DMtxCalc.hpp"
 
 XanimePlayer::XanimePlayer(J3DModel* pModel, XanimeResourceTable* pRessource) {
     init();
@@ -19,12 +22,12 @@ XanimePlayer::XanimePlayer(J3DModel* pModel, XanimeResourceTable* pRessource) {
 
     mCore = new XanimeCore(mResourceTable->mMaxGroupInfoTableSize, mModelData->mJointTree.mJointNum, flags);
 
-    _10[0] = 0.0f;
+    mWeights[0] = 0.0f;
     for (u32 i = 1; i < mResourceTable->mMaxGroupInfoTableSize; i++) {
-        _10[i] = 0.0f;
+        mWeights[i] = 0.0f;
     }
 
-    _7C = 0;
+    _7C = false;
     _7D = 0;
     _7F = 0;
     _7E = 1;
@@ -33,7 +36,7 @@ XanimePlayer::XanimePlayer(J3DModel* pModel, XanimeResourceTable* pRessource) {
     _24[1].init(0);
 
     _54 = 0;
-    _55 = 0;
+    mCurrent_24 = 0;
 
     _20 = _24;
 
@@ -56,12 +59,12 @@ XanimePlayer::XanimePlayer(J3DModel* pModel, XanimeResourceTable* pRessource, Xa
 
     mCore = new XanimeCore(mResourceTable->mMaxGroupInfoTableSize, pPlayer->mCore);
 
-    _10[0] = 0.0f;
+    mWeights[0] = 0.0f;
     for (u32 i = 1; i < mResourceTable->mMaxGroupInfoTableSize; i++) {
-        _10[i] = 0.0f;
+        mWeights[i] = 0.0f;
     }
 
-    _7C = 0;
+    _7C = false;
     _7D = 0;
     _7F = 0;
     _7E = 1;
@@ -70,7 +73,7 @@ XanimePlayer::XanimePlayer(J3DModel* pModel, XanimeResourceTable* pRessource, Xa
     _24[1].init(0);
 
     _54 = 0;
-    _55 = 0;
+    mCurrent_24 = 0;
 
     _20 = _24;
 
@@ -88,19 +91,19 @@ void XanimePlayer::init() {
     mCore = nullptr;
     mResourceTable = nullptr;
     _20 = nullptr;
-    _55 = 0;
+    mCurrent_24 = 0;
     _54 = 0;
 
     _78 = 0;
     _7F = 0;
     _7E = 0;
     _7D = 0;
-    _7C = 0;
+    _7C = false;
     _88 = 0;
     _80 = 0;
 
     for (int i = 0; i < 4; i++) {
-        _10[i] = 0.0f;
+        mWeights[i] = 0.0f;
     }
     _74 = 0;
     _84 = -2.0f;
@@ -228,4 +231,136 @@ void XanimePlayer::setModel(J3DModel* pModel) {
     mModel = pModel;
     mModelData = pModel->mModelData;
     mCore->reconfigJointTransform(mModelData);
+}
+
+void XanimePlayer::runNextAnimation() {
+    if (!_7F) {
+        return;
+    }
+
+    _7F = false;
+
+    const XanimeGroupInfo* curAnim = mCurrentAnimation;
+    u32 i = 0;
+    for (; i < curAnim->mBckTableVariant; i++) {
+        mCore->setBck(i & 0xFF, static_cast< J3DAnmTransform* >(curAnim->_20[i]));
+        mWeights[i] = curAnim->_30[i];
+    }
+
+    for (u32 j = i; j < mResourceTable->mMaxGroupInfoTableSize; j++) {
+        mCore->setBck(j & 0xFF, nullptr);
+        mWeights[j] = 0.0f;
+    }
+
+    bool cond = _7C;
+
+    _54 = mCurrent_24;
+
+    _08 = 0.0f;
+    _0C = 1.0f;
+
+    _78 = false;
+    _7C = true;
+
+    if (!cond) {
+        _24[mCurrent_24]._14 = 1;
+        _08 = 1.0f;
+        updateBeforeMovement();
+        calcAnm(0);
+    }
+}
+
+void XanimePlayer::changeAnimationSimple(J3DAnmTransform* pAnm) {
+    _68 = nullptr;
+
+    if (_54 != mCurrent_24) {
+        _54 = mCurrent_24;
+    }
+
+    mCore->doFreeze();
+    changeCurrentAnimation(getSimpleGroup());
+    mCore->setBck(0, pAnm);
+
+    mWeights[0] = 1.0f;
+    for (u32 i = 1; i < mResourceTable->mMaxGroupInfoTableSize; i++) {
+        mCore->setBck(i & 0xFF, nullptr);
+        mWeights[i] = 0.0f;
+    }
+
+    XanimeGroupInfo* info = getSimpleGroup();
+    info->_20[0] = pAnm;
+    J3DAnmTransform* transform = static_cast< J3DAnmTransform* >(info->_20[0]);
+    _20->init(transform->mFrameMax);
+    _20->mAttribute = transform->mAttribute;
+    _20->mFrame = 0.0f;
+
+    _08 = 0.0f;
+    _0C = 1.0f;
+    _78 = 0;
+    _20->_14 = 1;
+    _7C = true;
+    _7F = 0;
+    _68 = nullptr;
+    _84 = 0.0f;
+    _88 = 0;
+}
+
+void XanimePlayer::changeSpeed(f32 speed) {
+    _20->mRate = speed;
+}
+
+void XanimePlayer::changeInterpoleFrame(s32 frame) {
+    _20->_14 = frame;
+    if (frame == 0) {
+        _08 = 1.0f;
+        mCore->_1C = 1.0f;
+        return;
+    }
+
+    _08 = 0.0f;
+    mCore->_1C = 0.0f;
+    updateInterpoleRatio();
+}
+
+bool XanimePlayer::changeTrackWeight(u32 track, f32 weight) {
+    if (mCurrentAnimation == nullptr) {
+        return false;
+    }
+
+    if (track >= mCurrentAnimation->mBckTableVariant) {
+        return false;
+    }
+
+    mWeights[track] = weight;
+    return true;
+}
+
+void XanimePlayer::overWriteMtxCalc(u16 arg) {
+    mModelData->mJointTree.mJointNodePointer[arg]->mMtxCalc = mCore;
+}
+
+void XanimePlayer::clearMtxCalc(u16 arg) {
+    mModelData->mJointTree.mJointNodePointer[arg]->mMtxCalc = nullptr;
+}
+
+void XanimePlayer::clearAnm(u16 arg) {
+    if (_7C == 0) {
+        return;
+    }
+
+    mModelData->mJointTree.mJointNodePointer[arg]->mMtxCalc = nullptr;
+}
+
+void XanimePlayer::updateBeforeMovement() {
+    if (_7C == 0) {
+        return;
+    }
+
+    if ((_20->mState & 0x1) == 1 && _7E != 0 && (_20->mAttribute == 0 || _20->mAttribute == 3)) {
+        runDefaultAnimation();
+    }
+
+    if (_78 != 0 && (_78 -= 0x1) == 0) {
+        runDefaultAnimation();
+    }
 }
