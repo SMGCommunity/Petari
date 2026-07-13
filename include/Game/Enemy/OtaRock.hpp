@@ -48,10 +48,10 @@ public:
 
 private:
     /* 0x8C */ bool _8C;
-    /* 0x90 */ CocoNutBall** mCocoNutArray;
-    /* 0x94 */ FireBall** mFireBallArray;
+    /* 0x90 */ CocoNutBall* mCocoNutArray;
+    /* 0x94 */ FireBall* mFireBallArray;
     /* 0x98 */ FixedPosition* mFixedPosition;
-    /* 0x9C */ u32 _9C;
+    /* 0x9C */ s32 _9C;
     /* 0xA0 */ u32 _A0;
     /* 0xA4 */ TPos3f _A4;
     /* 0xD4 */ TVec3f _D4;
