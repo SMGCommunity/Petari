@@ -82,9 +82,9 @@ void Pole::init(const JMapInfoIter& rIter) {
     mtx.identity();
     MR::makeMtxTR(mtx.toMtxPtr(), this);
 
-    mtx.getXDirInline(mSide);
-    mtx.getYDirInline(mUp);
-    mtx.getZDirInline(mFront);
+    mtx.getXDir(mSide);
+    mtx.getYDir(mUp);
+    mtx.getZDir(mFront);
 
     mPosMtx.set(mtx);
     mPosMtx.invert(mPosMtx);

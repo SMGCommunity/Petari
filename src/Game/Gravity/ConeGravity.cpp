@@ -39,7 +39,7 @@ void ConeGravity::updateMtx(const TPos3f& rMtx) {
     mWorldMtx.concat(rMtx, mLocalMtx);
 
     TVec3f sideVec;
-    mWorldMtx.getXDirInline(sideVec);
+    mWorldMtx.getXDir(sideVec);
     mWorldRadius = sideVec.length();
 
     TVec3f axis;  // unused

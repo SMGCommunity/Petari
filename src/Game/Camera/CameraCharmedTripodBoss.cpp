@@ -63,11 +63,11 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     MR::normalize(&subvec);
     TPos3f mtx;
     mtx.identity();
-    mtx.setXYZDirInline(cross, vec, subvec);
+    mtx.setXYZDir(cross, vec, subvec);
     mtx.setTrans(*CameraLocalUtil::getTarget(this)->getPosition());
     mtx.concat(mtx, finalrot);
-    mtx.getZDirInline(subvec);
-    mtx.getYDirInline(vec);
+    mtx.getZDir(subvec);
+    mtx.getYDir(vec);
 
     TVec3f v20(_5C);
     mtx.mult(v20, v20);

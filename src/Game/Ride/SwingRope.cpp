@@ -475,9 +475,9 @@ void SwingRope::updateFootPos() {
     MR::calcPlayerJointMtx(&footMtx, "FootL");
 
     TVec3f side, up, front;
-    footMtx.getXDirInline(side);
-    footMtx.getYDirInline(up);
-    footMtx.getZDirInline(front);
+    footMtx.getXDir(side);
+    footMtx.getYDir(up);
+    footMtx.getZDir(front);
     footMtx.getTransInline(mFootPos);
 
     mFootPos.add(side * 0.0f + up * -20.0f + front * 10.0f);

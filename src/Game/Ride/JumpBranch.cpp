@@ -43,9 +43,9 @@ void JumpBranch::init(const JMapInfoIter& rIter) {
     posMtx.identity();
     MR::makeMtxTR(reinterpret_cast< MtxPtr >(&posMtx), this);
 
-    posMtx.getXDirInline(mSide);
-    posMtx.getYDirInline(mUp);
-    posMtx.getZDirInline(mFront);
+    posMtx.getXDir(mSide);
+    posMtx.getYDir(mUp);
+    posMtx.getZDir(mFront);
 
     initModelManagerWithAnm("JumpBranch", nullptr, false);
 

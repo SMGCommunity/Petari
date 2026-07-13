@@ -762,7 +762,7 @@ namespace MR {
         pBenefitObj->mRotation.set(vec2);
 
         pos.getTrans(transVec);
-        pos.getYDirInline(vec3);
+        pos.getYDir(vec3);
         MR::normalize(&vec3);
 
         TVec3f vec4 = vec3;

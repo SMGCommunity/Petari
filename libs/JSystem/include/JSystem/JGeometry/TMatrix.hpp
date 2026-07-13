@@ -163,19 +163,28 @@ namespace JGeometry {
             this->mMtx[2][2] = 1.0f;
         };
 
-        void getXDir(TVec3f& rDest) const NO_INLINE {
-            rDest.set(this->mMtx[0][0], this->mMtx[1][0], this->mMtx[2][0]);
+        void getXDir(TVec3f& rDest) const {
+            f32 z = this->mMtx[2][0];
+            f32 y = this->mMtx[1][0];
+            f32 x = this->mMtx[0][0];
+            rDest.set< f32 >(x, y, z);
         };
 
-        void getYDir(TVec3f& rDest) const NO_INLINE {
-            rDest.set(this->mMtx[0][1], this->mMtx[1][1], this->mMtx[2][1]);
+        void getYDir(TVec3f& rDest) const {
+            f32 z = this->mMtx[2][1];
+            f32 y = this->mMtx[1][1];
+            f32 x = this->mMtx[0][1];
+            rDest.set< f32 >(x, y, z);
         };
 
-        void getZDir(TVec3f& rDest) const NO_INLINE {
-            rDest.set(this->mMtx[0][2], this->mMtx[1][2], this->mMtx[2][2]);
+        void getZDir(TVec3f& rDest) const {
+            f32 z = this->mMtx[2][2];
+            f32 y = this->mMtx[1][2];
+            f32 x = this->mMtx[0][2];
+            rDest.set< f32 >(x, y, z);
         };
 
-        void getXYZDir(TVec3f& rDestX, TVec3f& rDestY, TVec3f& rDestZ) const NO_INLINE {
+        void getXYZDir(TVec3f& rDestX, TVec3f& rDestY, TVec3f& rDestZ) const {
             f32 xz = this->mMtx[2][0];
             f32 xy = this->mMtx[1][0];
             f32 xx = this->mMtx[0][0];
@@ -189,48 +198,69 @@ namespace JGeometry {
             f32 zx = this->mMtx[0][2];
             rDestZ.set< f32 >(zx, zy, zz);
         }
-        void setXDir(const TVec3f& rSrc);
-        void setXDir(f32 x, f32 y, f32 z);
 
-        inline void setXDirInline(f32 x, f32 y, f32 z) {
-            this->mMtx[0][0] = x;
-            this->mMtx[1][0] = y;
-            this->mMtx[2][0] = z;
-        }
-        inline void setXDirInline(const TVec3f& rSrc) {
+        void setXDir(const TVec3f& rSrc) {
             this->mMtx[0][0] = rSrc.x;
             this->mMtx[1][0] = rSrc.y;
             this->mMtx[2][0] = rSrc.z;
         }
-
-        inline void setYDirInline(f32 x, f32 y, f32 z) {
-            this->mMtx[0][1] = x;
-            this->mMtx[1][1] = y;
-            this->mMtx[2][1] = z;
+        void setXDir(f32 x, f32 y, f32 z) {
+            this->mMtx[0][0] = x;
+            this->mMtx[1][0] = y;
+            this->mMtx[2][0] = z;
         }
-        inline void setYDirInline(const TVec3f& rSrc) {
+
+        void setYDir(const TVec3f& rSrc) {
             this->mMtx[0][1] = rSrc.x;
             this->mMtx[1][1] = rSrc.y;
             this->mMtx[2][1] = rSrc.z;
         }
-
-        inline void setZDirInline(f32 x, f32 y, f32 z) {
-            this->mMtx[0][2] = x;
-            this->mMtx[1][2] = y;
-            this->mMtx[2][2] = z;
+        void setYDir(f32 x, f32 y, f32 z) {
+            this->mMtx[0][1] = x;
+            this->mMtx[1][1] = y;
+            this->mMtx[2][1] = z;
         }
-        inline void setZDirInline(const TVec3f& rSrc) {
+
+        void setZDir(const TVec3f& rSrc) {
             this->mMtx[0][2] = rSrc.x;
             this->mMtx[1][2] = rSrc.y;
             this->mMtx[2][2] = rSrc.z;
         }
+        void setZDir(f32 x, f32 y, f32 z) {
+            this->mMtx[0][2] = x;
+            this->mMtx[1][2] = y;
+            this->mMtx[2][2] = z;
+        }
 
-        void setYDir(const TVec3f& rSrc);
-        void setYDir(f32 x, f32 y, f32 z);
-        void setZDir(const TVec3f& rSrc);
-        void setZDir(f32 x, f32 y, f32 z);
-        void setXYZDir(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) NO_INLINE {
-            setXYZDirInline(rSrcX, rSrcY, rSrcZ);
+        void setXYZDir(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) {
+            this->mMtx[0][0] = rSrcX.x;
+            this->mMtx[1][0] = rSrcX.y;
+            this->mMtx[2][0] = rSrcX.z;
+            this->mMtx[0][1] = rSrcY.x;
+            this->mMtx[1][1] = rSrcY.y;
+            this->mMtx[2][1] = rSrcY.z;
+            this->mMtx[0][2] = rSrcZ.x;
+            this->mMtx[1][2] = rSrcZ.y;
+            this->mMtx[2][2] = rSrcZ.z;
+        }
+
+        inline void getYDir2(TVec3f& rDest) const {
+            f32 x = this->mMtx[0][1];
+            f32 y = this->mMtx[1][1];
+            f32 z = this->mMtx[2][1];
+            rDest.set< f32 >(x, y, z);
+        }
+
+        inline void setXYZDir2(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) {
+            this->mMtx[0][0] = rSrcX.x;
+            this->mMtx[0][1] = rSrcX.y;
+            this->mMtx[0][2] = rSrcX.z;
+            this->mMtx[1][0] = rSrcY.x;
+            this->mMtx[1][1] = rSrcY.y;
+            this->mMtx[1][2] = rSrcY.z;
+            this->mMtx[2][0] = rSrcZ.x;
+            this->mMtx[2][1] = rSrcZ.y;
+            this->mMtx[2][2] = rSrcZ.z;
         }
 
         void getEuler(TVec3f& rDest) const {
@@ -282,7 +312,6 @@ namespace JGeometry {
             this->mMtx[1][0] = 0.0f;
             this->mMtx[0][1] = 0.0f;
         }
-
         void setEulerZ(f32 angle) {
             f32 s = sin(angle);
             f32 c = cos(angle);
@@ -441,74 +470,6 @@ namespace JGeometry {
         void mult33(TVec3f&) const;
         void mult33(const TVec3f& rDst, TVec3f& rSrc) const;
 
-        inline void getXDirInline(TVec3f& rDest) const {
-            f32 z = this->mMtx[2][0];
-            f32 y = this->mMtx[1][0];
-            f32 x = this->mMtx[0][0];
-            rDest.set< f32 >(x, y, z);
-        }
-
-        inline void getYDirInline(TVec3f& rDest) const {
-            f32 z = this->mMtx[2][1];
-            f32 y = this->mMtx[1][1];
-            f32 x = this->mMtx[0][1];
-            rDest.set< f32 >(x, y, z);
-        }
-        inline void getYDirInline2(TVec3f& rDest) const {
-            f32 x = this->mMtx[0][1];
-            f32 y = this->mMtx[1][1];
-            f32 z = this->mMtx[2][1];
-            rDest.set< f32 >(x, y, z);
-        }
-
-        inline void getZDirInline(TVec3f& rDest) const {
-            f32 z = this->mMtx[2][2];
-            f32 y = this->mMtx[1][2];
-            f32 x = this->mMtx[0][2];
-            rDest.set< f32 >(x, y, z);
-        }
-
-        inline void setXYZDirInline(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) {
-            this->mMtx[0][0] = rSrcX.x;
-            this->mMtx[1][0] = rSrcX.y;
-            this->mMtx[2][0] = rSrcX.z;
-            this->mMtx[0][1] = rSrcY.x;
-            this->mMtx[1][1] = rSrcY.y;
-            this->mMtx[2][1] = rSrcY.z;
-            this->mMtx[0][2] = rSrcZ.x;
-            this->mMtx[1][2] = rSrcZ.y;
-            this->mMtx[2][2] = rSrcZ.z;
-        }
-
-        inline void setXYZDirInline2(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) {
-            this->mMtx[0][0] = rSrcX.x;
-            this->mMtx[0][1] = rSrcX.y;
-            this->mMtx[0][2] = rSrcX.z;
-            this->mMtx[1][0] = rSrcY.x;
-            this->mMtx[1][1] = rSrcY.y;
-            this->mMtx[1][2] = rSrcY.z;
-            this->mMtx[2][0] = rSrcZ.x;
-            this->mMtx[2][1] = rSrcZ.y;
-            this->mMtx[2][2] = rSrcZ.z;
-        }
-
-        inline void getXYZDirInline(TVec3f& rDstX, TVec3f& rDstY, TVec3f& rDstZ) {
-            f32 z1 = this->mMtx[2][0];
-            f32 y1 = this->mMtx[1][0];
-            f32 x1 = this->mMtx[0][0];
-            rDstX.set< f32 >(x1, y1, z1);
-
-            f32 z2 = this->mMtx[2][1];
-            f32 y2 = this->mMtx[1][1];
-            f32 x2 = this->mMtx[0][1];
-            rDstY.set< f32 >(x2, y2, z2);
-
-            f32 z3 = this->mMtx[2][2];
-            f32 y3 = this->mMtx[1][2];
-            f32 x3 = this->mMtx[0][2];
-            rDstZ.set< f32 >(x3, y3, z3);
-        }
-
         inline void mult33Inline(const TVec3f& rSrc, TVec3f& rDst) const {
             f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
             a32 = this->mMtx[2][1];
@@ -549,7 +510,11 @@ namespace JGeometry {
             this->mMtx[2][3] = rSrc.z;
         }
 
-        void setTrans(f32 x, f32 y, f32 z);
+        void setTrans(f32 x, f32 y, f32 z) {
+            this->mMtx[0][3] = x;
+            this->mMtx[1][3] = y;
+            this->mMtx[2][3] = z;
+        }
 
         void zeroTrans() {
             this->mMtx[0][3] = 0.0f;

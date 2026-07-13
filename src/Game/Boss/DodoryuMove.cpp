@@ -156,7 +156,7 @@ namespace DodoryuSub {
             DodoryuUtil::turnToward(mHost, accelDir, 1.8f);
         } else {
             TVec3f yDir;
-            mHost->mBaseMtx.getYDirInline(yDir);
+            mHost->mBaseMtx.getYDir(yDir);
 
             accelDir.cross(yDir, mHost->_134);
         }

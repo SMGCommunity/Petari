@@ -608,7 +608,7 @@ void BombTeresa::exeDrift() {
     TVec3f v13;
     v16.getTrans(v13);
     TVec3f v12;
-    v16.getZDirInline(v12);
+    v16.getZDir(v12);
     if (!MR::normalizeOrZero(&v12)) {
         JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
     }

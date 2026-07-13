@@ -400,7 +400,7 @@ void Rock::initMapToolInfo(const JMapInfoIter& rIter) {
     } else {
         TPos3f mtx;
         MR::makeMtxTR(mtx, this);
-        mtx.getYDirInline(mGravity);
+        mtx.getYDir(mGravity);
         mGravity.negateInternal();
     }
 }

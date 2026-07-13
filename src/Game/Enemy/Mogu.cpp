@@ -68,7 +68,7 @@ void Mogu::init(const JMapInfoIter& rIter) {
 
     TPos3f mtx;
     mtx.setInline(getBaseMtx());
-    mtx.getYDirInline(_A8);
+    mtx.getYDir(_A8);
 
     MR::connectToSceneEnemy(this);
     MR::declareStarPiece(this, 3);

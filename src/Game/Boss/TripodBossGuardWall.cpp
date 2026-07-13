@@ -204,12 +204,12 @@ void TripodBossGuardWall::updateCameraTarget() {
     f32 z = mBaseMtx.mMtx[2][1];
     f32 y = mBaseMtx.mMtx[1][1];
     f32 x = mBaseMtx.mMtx[0][1];
-    mBaseMtx.getYDirInline(up);
+    mBaseMtx.getYDir(up);
     f32 v9 = up.dot(front);
     JMAVECScaleAdd(&up, &front, &front, -v9);
 
     if (MR::isNearZero(front)) {
-        mBaseMtx.getZDirInline(front);
+        mBaseMtx.getZDir(front);
     } else {
         MR::normalize(&front);
     }

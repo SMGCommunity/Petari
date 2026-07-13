@@ -378,8 +378,8 @@ void SpinningBox::generateIceBox(HitSensor* pSender, HitSensor* pReceiver) {
     mPosition.set(pReceiver->mHost->mPosition);
     TPos3f mtx = pReceiver->mHost->getBaseMtx();
     TVec3f up, front;
-    mtx.getYDirInline(up);
-    mtx.getZDirInline(front);
+    mtx.getYDir(up);
+    mtx.getZDir(front);
 
     MR::makeQuatFromVec(&mRotate, front, up);
 

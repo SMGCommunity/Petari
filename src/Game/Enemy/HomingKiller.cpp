@@ -382,7 +382,7 @@ void HomingKiller::calcInitPosture() {
     MR::makeMtxRotate(mtx, mRotation);
 
     mBasePos.set(mPosition);
-    mtx.getZDirInline(mBaseFront);
+    mtx.getZDir(mBaseFront);
 
     if (!isGravityIgnored()) {
         MR::vecKillElement(mBaseFront, mGravity, &mBaseFront);

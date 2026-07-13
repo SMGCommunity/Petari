@@ -50,9 +50,9 @@ f32 SpherePadController::calcDirSphereMove(TVec3f* pMoveDir, const TVec3f& rBase
         TVec3f dirY;
         TVec3f dirZ;
 
-        invMtx.getXDirInline(dirX);
-        invMtx.getYDirInline(dirY);
-        invMtx.getZDirInline(dirZ);
+        invMtx.getXDir(dirX);
+        invMtx.getYDir(dirY);
+        invMtx.getZDir(dirZ);
 
         MR::normalizeOrZero(&dirX);
         MR::normalizeOrZero(&dirY);

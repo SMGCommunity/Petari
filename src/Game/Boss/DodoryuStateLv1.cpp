@@ -346,7 +346,7 @@ bool DodoryuStateLv1::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
         _98.set(pReceiver->mPosition - pSender->mPosition);
 
         if (!calcVerticalizedDir(&_98, _98)) {
-            mHost->mBaseMtx.getZDirInline(_98);
+            mHost->mBaseMtx.getZDir(_98);
             _98.negateInternal();
         }
 

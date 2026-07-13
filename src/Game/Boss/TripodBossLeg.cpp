@@ -117,13 +117,8 @@ void TripodBossLeg::setIKParam(f32 rootLength, f32 middleLength, const TVec3f& a
 
     if (!MR::isNearZero(v12)) {
         MR::normalize(&v12);
-        _A0.mMtx[0][0] = v12.x;
-        _A0.mMtx[1][0] = v12.y;
-        _A0.mMtx[2][0] = v12.z;
-        TVec3f v11(-v12.z, 0.0f, v12.x);
-        _A0.mMtx[0][2] = v11.x;
-        _A0.mMtx[1][2] = v11.y;
-        _A0.mMtx[2][2] = v11.z;
+        _A0.setXDir(v12);
+        _A0.setZDir(TVec3f(-v12.z, 0.0f, v12.x));
     }
 
     _A0.setTrans(_210);
@@ -644,10 +639,8 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
     mMoveArea->calcLandingNormal(&landingNormal, landingPosition);
 
     MR::setShadowDropDirection(this, nullptr, -landingNormal);
-    v9.set< f32 >(mEndJointMtx.get(0, 0), mEndJointMtx.get(1, 0), mEndJointMtx.get(2, 0));
-    v8.set< f32 >(mEndJointMtx.get(0, 1), mEndJointMtx.get(1, 1), mEndJointMtx.get(2, 1));
-    v7.set< f32 >(mEndJointMtx.get(0, 2), mEndJointMtx.get(1, 2), mEndJointMtx.get(2, 2));
-    _1C0.setVec(-v7, -v9, v8);
+    mEndJointMtx.getXYZDir(v7, v8, v9);
+    _1C0.setVec(-v9, -v7, v8);
 
     TVec3f v2(landingNormal);
     v2 *= 630.0f;
@@ -662,10 +655,7 @@ namespace MR {
         v17.invert(a3);
         v17.concat(v17, a4);
         TVec3f v16;
-        f32 z = v17.mMtx[2][0];
-        f32 y = v17.mMtx[1][0];
-        f32 x = v17.mMtx[0][0];
-        v16.set< f32 >(x, y, z);
+        v17.getXDir(v16);
         f32 v10 = MR::sqrt((v16.x * v16.x) + (v16.z * v16.z));
 
         if (MR::isNearZero(v10, 0.000001f)) {

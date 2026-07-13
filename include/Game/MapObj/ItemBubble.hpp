@@ -33,10 +33,10 @@ public:
         f32 sinY = sin(Y);
         f32 sinX = sin(X);
 
-        mtx.setXDirInline(cosY * cosZ, cosY * sinZ, -sinY);
+        mtx.setXDir(cosY * cosZ, cosY * sinZ, -sinY);
         f32 asds = sinX * cosY;
-        mtx.setYDirInline(sinX * sinY * cosZ - cosX * sinZ, sinX * sinY * sinZ + cosX * cosZ, asds);
-        mtx.setZDirInline(cosX * cosZ * sinY + sinX * sinZ, cosX * sinZ * sinY - sinX * cosZ, cosX * cosY);
+        mtx.setYDir(sinX * sinY * cosZ - cosX * sinZ, sinX * sinY * sinZ + cosX * cosZ, asds);
+        mtx.setZDir(cosX * cosZ * sinY + sinX * sinZ, cosX * sinZ * sinY - sinX * cosZ, cosX * cosY);
 
         PSMTXConcat(getBaseMtx(), mtx, getBaseMtx());
     }

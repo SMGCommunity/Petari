@@ -55,7 +55,7 @@ void ShootingStar::init(const JMapInfoIter& rIter) {
     LiveActor::calcAndSetBaseMtx();
     TPos3f matrix;
     matrix.setInline(getBaseMtx());
-    matrix.getYDirInline(_98);
+    matrix.getYDir(_98);
     MR::startBpk(this, "ShootingStar");
 }
 

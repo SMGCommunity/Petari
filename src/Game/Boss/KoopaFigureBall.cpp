@@ -67,7 +67,7 @@ void KoopaFigureBall::control() {
 
     TVec3f vec1;
     TVec3f vec2;
-    mBaseMtx.getYDirInline(vec1);
+    mBaseMtx.getYDir(vec1);
     mBaseMtx.getTransInline(vec2);
     vec2 += vec1 * mRadius;
     mBaseMtx.setTrans(vec2);

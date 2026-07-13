@@ -73,10 +73,10 @@ void KoopaFunction::setKoopaPos(Koopa* pKoopa, const char* pDemoName) {
     MR::findNamePos(pDemoName, transform);
 
     TVec3f yDir;
-    transform.getYDirInline(yDir);
+    transform.getYDir(yDir);
 
     pKoopa->mGravity.set(yDir.negateInline());
-    transform.getZDirInline(pKoopa->mFront);
+    transform.getZDir(pKoopa->mFront);
     transform.getTransInline(pKoopa->mPosition);
 
     bool isCalcGravity = MR::isCalcGravity(pKoopa);

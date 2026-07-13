@@ -474,7 +474,7 @@ void Petari::initFootPrint(const JMapInfoIter& rIter) {
 void Petari::initFrontVec() {
     TPos3f mtx;
     MR::makeMtxTR(mtx, mPosition, mRotation);
-    mtx.getZDirInline(mFront);
+    mtx.getZDir(mFront);
 }
 
 void Petari::initStarPiece(const JMapInfoIter& rIter) {

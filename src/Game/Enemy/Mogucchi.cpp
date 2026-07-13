@@ -201,9 +201,9 @@ void Mogucchi::exeScatter() {
         PSVECCrossProduct(railGravity, mScatterNormal, &v2);
 
         TRot3f mtx;
-        mtx.setXDirInline(v2);
-        mtx.setYDirInline(-mRailGravity);
-        mtx.setZDirInline(-mScatterNormal);
+        mtx.setXDir(v2);
+        mtx.setYDir(-mRailGravity);
+        mtx.setZDir(-mScatterNormal);
         mtx.getEulerXYZ(mRotation);
         mRotation.mult(_180_PI);
     }

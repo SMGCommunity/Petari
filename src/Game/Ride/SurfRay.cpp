@@ -589,9 +589,9 @@ void SurfRay::resetAllInfo() {
     rotMtx.identity();
     MR::makeMtxRotate(rotMtx, mRotation);
 
-    rotMtx.getXDirInline(mSide);
-    rotMtx.getYDirInline(mUp);
-    rotMtx.getZDirInline(mFront);
+    rotMtx.getXDir(mSide);
+    rotMtx.getYDir(mUp);
+    rotMtx.getZDir(mFront);
 
     mBaseUp.set(mUp);
     mBaseSide.set(mSide);
