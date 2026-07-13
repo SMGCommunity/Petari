@@ -906,7 +906,7 @@ void BossBegoman::calcAnim() {
     mHeadMtx.setInline(MR::getJointMtx(this, "Center"));
 
     TVec3f vec;
-    mHeadMtx.getYDirInline(vec);
+    mHeadMtx.getYDir(vec);
 
     if (!MR::isSameDirection(vec, mTargetVec, 0.01f)) {
         MR::makeMtxUpFront(&mHeadMtx, vec, mTargetVec);

@@ -58,13 +58,14 @@ void TripodBossGuardWallPart::kill() {
 }
 
 void TripodBossGuardWallPart::control() {
-    mPosition.set< f32 >(mHostMtx->get(0, 3), mHostMtx->get(1, 3), mHostMtx->get(2, 3));
+    mHostMtx->getTrans(mPosition);
 }
 
 void TripodBossGuardWallPart::calcAndSetBaseMtx() {
+    // FIXME: float swap in setEulerY
     TPos3f mtx;
     mtx.identity();
-    mtx.setRotateInline(mPlacementAngle, 0.017453292f);
+    mtx.setEulerY(MR::toRadian(mPlacementAngle));
     mtx.concat(*mHostMtx, mtx);
     MR::setBaseTRMtx(this, mtx);
 }

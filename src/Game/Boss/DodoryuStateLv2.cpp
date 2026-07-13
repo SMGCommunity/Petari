@@ -1018,4 +1018,6 @@ void DUMMY() {
     a.setLength(2.0f);
     TPos3f m;
     m.makeRotate(a, 3.0f);
+    TVec3f b;
+    m.mult33(b);
 }

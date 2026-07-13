@@ -138,11 +138,11 @@ void SpiderCoin::calcAndSetBaseMtx() {
 
         TPos3f mtx;
         mtx.identity();
-        mtx.setVec(side, up, front);
+        mtx.setXYZDir(side, up, front);
 
         TRot3f rotMtx;
         rotMtx.identity();
-        MR::makeMtxRotateY(rotMtx.toMtxPtr(), mRotation.y);
+        MR::makeMtxRotateY(rotMtx, mRotation.y);
         PSMTXConcat(mtx.toMtxPtr(), rotMtx.toMtxPtr(), mtx.toMtxPtr());
 
         TVec3f pos(up);

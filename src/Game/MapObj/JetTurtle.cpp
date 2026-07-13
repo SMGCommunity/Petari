@@ -12,10 +12,10 @@
 #include <JSystem/JMath/JMATrigonometric.hpp>
 
 namespace {
-    static f32 sThrowSpdStraight[3] = {30.0f, 20.0f, 30.0f};
-    static f32 sThrowSpdHoming[3] = {24.0f, 20.0f, 24.0f};
-    static f32 sGravityLevel[3] = {0.017000001f, 0.0099999998f, 0.0055f};
-    static u16 sResetStep[3] = {0x12C, 0x1E0, 0x12C};
+    static const f32 sThrowSpdStraight[3] = {30.0f, 20.0f, 30.0f};
+    static const f32 sThrowSpdHoming[3] = {24.0f, 20.0f, 24.0f};
+    static const f32 sGravityLevel[3] = {0.017000001f, 0.0099999998f, 0.0055f};
+    static const u16 sResetStep[3] = {0x12C, 0x1E0, 0x12C};
 };  // namespace
 
 namespace NrvJetTurtle {
@@ -167,7 +167,7 @@ void JetTurtle::exeThrowing() {
                 MR::startBck(this, "Bullet", nullptr);
 
                 switch (mShellType) {
-                case 0:
+                default:
                     MR::emitEffect(this, "Blur");
                     break;
                 case 1:
@@ -181,8 +181,7 @@ void JetTurtle::exeThrowing() {
         }
 
         if (MR::isStep(this, ::sResetStep[_92])) {
-            TVec3f v16 = _C0 - mPosition;
-            if (v16.length() > 5000.0f) {
+            if ((_C0 - mPosition).length() > 5000.0f) {
                 reset(1);
             } else {
                 reset(0);
@@ -191,8 +190,11 @@ void JetTurtle::exeThrowing() {
             return;
         }
 
+        TVec3f v22;
         if (_98 != nullptr) {
-            if (_98->mValidByHost) {
+            if (!_98->mValidByHost) {
+                _98 = nullptr;
+            } else {
                 TVec3f v21 = _98->mPosition - mPosition;
                 MR::normalizeOrZero(&v21);
                 MR::vecBlendSphere(_9C, v21, &_9C, 0.2f);
@@ -202,24 +204,20 @@ void JetTurtle::exeThrowing() {
                     } else {
                         MR::startBck(this, "Bullet", nullptr);
                     }
-
-                    TVec3f v22 = _9C;
-                    v22.setLength(_8C + ::sThrowSpdHoming[_92]);
-                    mVelocity = v22;
                 }
-            } else {
-                _98 = nullptr;
+                v22 = _9C;
+                v22.setLength(_8C + ::sThrowSpdHoming[_92]);
+                mVelocity = v22;
             }
         }
 
         if (_98 == nullptr) {
-            TVec3f v22 = _9C;
+            v22 = _9C;
             v22.setLength(_8C + ::sThrowSpdStraight[_92]);
             mVelocity = v22;
         }
 
-        TVec3f v14 = _C0 - mPosition;
-        if (v14.length() > 10000.0f) {
+        if ((_C0 - mPosition).length() > 10000.0f) {
             reset(1);
         } else {
             if (MR::isBindedWall(this) || MR::isBindedRoof(this)) {
@@ -227,36 +225,32 @@ void JetTurtle::exeThrowing() {
                     MR::sendArbitraryMsg(ACTMES_JET_TURTLE_ATTACK, MR::getBindedPlaneSensor(this, i), getSensor("body"));
                 }
 
-                if (MR::isBindedWall(this)) {
-                    if (MR::isWallCodeRebound(&mBinder->mWallInfo.mParentTriangle)) {
-                        bound();
-                    }
-                } else if (MR::isBindedRoof(this)) {
-                    if (MR::isWallCodeRebound(&mBinder->mRoofInfo.mParentTriangle)) {
-                        bound();
-                    }
+                if (MR::isBindedWall(this) && MR::isWallCodeRebound(&mBinder->mWallInfo.mParentTriangle)) {
+                    bound();
+                } else if (MR::isBindedRoof(this) && MR::isWallCodeRebound(&mBinder->mRoofInfo.mParentTriangle)) {
+                    bound();
                 } else {
                     MR::shakeCameraWeak();
                     reset(0);
                     return;
                 }
+            }
 
-                if (MR::isBindedGround(this)) {
-                    if (MR::sendMsgToGroundSensor(ACTMES_JET_TURTLE_ATTACK, getSensor("body"))) {
-                        MR::shakeCameraWeak();
-                        reset(0);
-                        return;
-                    }
+            if (MR::isBindedGround(this)) {
+                if (MR::sendMsgToGroundSensor(ACTMES_JET_TURTLE_ATTACK, getSensor("body"))) {
+                    MR::shakeCameraWeak();
+                    reset(0);
+                    return;
+                }
 
-                    if (MR::isWallCodeRebound(&mBinder->mGroundInfo.mParentTriangle)) {
-                        bound();
-                    }
+                if (MR::isWallCodeRebound(&mBinder->mGroundInfo.mParentTriangle)) {
+                    bound();
                 }
             }
         }
 
         MtxPtr jointMtx = MR::getJointMtx(this, 0);
-        TVec3f v20(jointMtx[0][3], jointMtx[1][3], jointMtx[2][3]);
+        TVec3f v20(jointMtx[0][1], jointMtx[1][1], jointMtx[2][1]);
         TVec3f grav;
         MR::calcGravityVector(this, &grav, nullptr, 0);
 
@@ -266,21 +260,12 @@ void JetTurtle::exeThrowing() {
             return;
         }
 
-        if (!MR::isSameDirection(grav, mVelocity, 0.0099999998f)) {
-            TVec3f v13 = -grav;
-            v20 = v13;
+        if (!MR::isSameDirection(grav, mVelocity, 0.01f)) {
+            v20 = -grav;
         }
 
         if (!_98) {
-            bool v10 = false;
-
-            if (JGeometry::TUtil< f32 >::epsilonEquals(grav.x, _CC.x, 0.0000038146973f) &&
-                JGeometry::TUtil< f32 >::epsilonEquals(grav.y, _CC.y, 0.0000038146973f) &&
-                JGeometry::TUtil< f32 >::epsilonEquals(grav.z, _CC.z, 0.0000038146973f)) {
-                v10 = true;
-            }
-
-            if (!v10) {
+            if (!(grav == _CC)) {
                 MR::vecBlendSphere(_9C, grav, &_9C, ::sGravityLevel[_92]);
             }
 
@@ -293,26 +278,8 @@ void JetTurtle::exeThrowing() {
         if (!MR::isNearZero(mVelocity)) {
             TPos3f frontUp;
             MR::makeMtxFrontUp(&frontUp, mVelocity, v20);
-
-            if ((frontUp.mMtx[2][0] - 1.0f) >= -0.0000038146973f) {
-                mRotation.x = JMath::sAtanTable.atan2_(-frontUp.mMtx[0][1], frontUp.mMtx[1][1]);
-                mRotation.y = -1.5707964f;
-                mRotation.z = 0.0f;
-            } else {
-                if ((frontUp.mMtx[2][0] + 1.0f) <= 0.0000038146973f) {
-                    mRotation.x = JMath::sAtanTable.atan2_(frontUp.mMtx[0][1], frontUp.mMtx[1][1]);
-                    mRotation.y = 1.5707964f;
-                    mRotation.z = 0.0f;
-                } else {
-                    mRotation.x = JMath::sAtanTable.atan2_(frontUp.mMtx[2][1], frontUp.mMtx[2][2]);
-                    mRotation.z = JMath::sAtanTable.atan2_(frontUp.mMtx[1][0], frontUp.mMtx[0][0]);
-                    mRotation.y = JGeometry::TUtil< f32 >::asin(-frontUp.mMtx[2][0]);
-                }
-            }
-
-            mRotation.x *= 57.295776f;
-            mRotation.y *= 57.295776f;
-            mRotation.z *= 57.295776f;
+            frontUp.getEulerXYZ(mRotation);
+            mRotation.mult(_180_PI);
         }
     }
 }

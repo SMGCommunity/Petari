@@ -150,7 +150,7 @@ void MarioActor::updateThrowing() {
     }
 
     TVec3f trans;
-    mSearchLightThrowPos->mMtx.getTransInline(trans);
+    mSearchLightThrowPos->mMtx.getTrans(trans);
 
     // TODO: Probably missing an inline?
     MarioSearchLight* searchLight = mSearchLight;

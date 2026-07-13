@@ -82,9 +82,9 @@ void Pole::init(const JMapInfoIter& rIter) {
     mtx.identity();
     MR::makeMtxTR(mtx.toMtxPtr(), this);
 
-    mtx.getXDirInline(mSide);
-    mtx.getYDirInline(mUp);
-    mtx.getZDirInline(mFront);
+    mtx.getXDir(mSide);
+    mtx.getYDir(mUp);
+    mtx.getZDir(mFront);
 
     mPosMtx.set(mtx);
     mPosMtx.invert(mPosMtx);
@@ -594,12 +594,12 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         TPos3f posMtx;
         TRot3f rotMtx;
         posMtx.identity();
-        posMtx.setVec(mSide, mUp, mFront);
+        posMtx.setXYZDir(mSide, mUp, mFront);
 
         rotMtx.identity();
         MR::makeMtxTransRotateY(rotMtx.toMtxPtr(), this);
         PSMTXConcat(posMtx.toMtxPtr(), rotMtx.toMtxPtr(), posMtx.toMtxPtr());
-        posMtx.setPos(mPosition);
+        posMtx.setTrans(mPosition);
         MR::setBaseTRMtx(mRider, posMtx);
         return true;
     }

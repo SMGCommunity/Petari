@@ -134,8 +134,8 @@ void Fluff::exeFreeWaitInvalid() {
         MR::hideModel(this);
         MR::offBind(this);
 
-        mInitialMtx.getXYZDirInline(mSide, mUp, mFront);
-        mInitialMtx.getTransInline(mPosition);
+        mInitialMtx.getXYZDir(mSide, mUp, mFront);
+        mInitialMtx.getTrans(mPosition);
 
         mTargetUpVec.set(mUp);
         mVelocity.zero();
@@ -493,8 +493,8 @@ void Fluff::updateWind() {
     TPos3f orientationMtx;
     orientationMtx.identity();
     MR::makeMtxUpFront(&orientationMtx, mUp, mFront);
-    orientationMtx.getXDirInline(mSide);
-    orientationMtx.getZDirInline(mFront);
+    orientationMtx.getXDir(mSide);
+    orientationMtx.getZDir(mFront);
 
     if (mWindStrength > 0.0f) {
         f32 tiltFactor = 1.0f - MR::clamp(((mWindStrength - 200.0f) / 1300.0f), 0.0f, 1.0f);

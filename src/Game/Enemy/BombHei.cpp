@@ -594,31 +594,30 @@ void BombHei::calcAndSetBaseMtx() {
     MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, mFront);
     MR::setBaseTRMtx(this, mtx);
     MR::setBaseScale(this, mScaleController->_C.mult(mScale));
-    mtx.getYDirInline(mBinderOffset);
+    mtx.getYDir(mBinderOffset);
     mBinderOffset.mult(::hTranslateHeight);
     mBodyJoint->registerCallBack();
 }
 
 bool BombHei::calcJoint(TPos3f* pMtx, const JointControllerInfo& rJointInfo) {
     TPos3f mtx;
-    mtx.zeroTransInline();
-    mtx.fromQuat(mRotQuat);
+    mtx.makeQuat(mRotQuat);
 
     // interesting way to transpose a matrix
     TPos3f mtx2;
     TVec3f x, y, z;
     mtx2.setInline(getBaseMtx());
-    mtx2.getXYZDirInline(x, y, z);
+    mtx2.getXYZDir(x, y, z);
     TPos3f mtx3;
-    mtx3.setXYZDirInline2(x, y, z);
+    mtx3.setXYZDir2(x, y, z);
 
     TVec3f t;
-    pMtx->getTransInline(t);
+    pMtx->getTrans(t);
 
     pMtx->zeroTransInline2();
     pMtx->concat(mtx3, *pMtx);
     pMtx->concat(mtx, *pMtx);
-    pMtx->setTransInline(t);
+    pMtx->setTrans(t);
 
     return true;
 }

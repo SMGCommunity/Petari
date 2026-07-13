@@ -478,7 +478,7 @@ void SurfRay::calcAndSetBaseMtx() {
 
     TPos3f mtx;
     mtx.identity();
-    mtx.setVecAndTransInline(mSide, mUp, mFront, mPosition);
+    mtx.setTR(mSide, mUp, mFront, mPosition);
     MR::setBaseTRMtx(this, mtx);
     mActorJointCtrl->setCallBackFunction();
     mProjmapFxMtxSetter->updateMtxUseBaseMtx();
@@ -589,9 +589,9 @@ void SurfRay::resetAllInfo() {
     rotMtx.identity();
     MR::makeMtxRotate(rotMtx, mRotation);
 
-    rotMtx.getXDirInline(mSide);
-    rotMtx.getYDirInline(mUp);
-    rotMtx.getZDirInline(mFront);
+    rotMtx.getXDir(mSide);
+    rotMtx.getYDir(mUp);
+    rotMtx.getZDir(mFront);
 
     mBaseUp.set(mUp);
     mBaseSide.set(mSide);

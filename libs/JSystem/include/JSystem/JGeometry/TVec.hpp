@@ -343,6 +343,52 @@ namespace JGeometry {
 #endif
         }
 
+        inline void setPS(const TVec3< f32 >& rSrc) {
+            *this = rSrc;
+        }
+
+        template < typename T >
+        void set(const TVec3< T >& rVec) {
+            x = rVec.x;
+            y = rVec.y;
+            z = rVec.z;
+        }
+
+        template < typename T >
+        void set(T _x, T _y, T _z) NO_INLINE {
+            x = _x;
+            y = _y;
+            z = _z;
+        }
+
+        void set(f32 x_, f32 y_, f32 z_) {
+            x = x_;
+            y = y_;
+            z = z_;
+        }
+
+        void set(const Vec& rVec) {
+            x = rVec.x;
+            y = rVec.y;
+            z = rVec.z;
+        }
+
+        inline void set(f32 val) {
+            x = val;
+            y = val;
+            z = val;
+        }
+
+        inline void set2(f32 val) {
+            z = val;
+            y = val;
+            x = val;
+        }
+
+        void setTrans(MtxPtr mtx) {
+            set< f32 >((*mtx)[3], (*mtx)[7], (*mtx)[11]);
+        }
+
         TVec3 operator+(const TVec3& op) const {
             TVec3 ret(*this);
             ret += op;
@@ -424,6 +470,18 @@ namespace JGeometry {
             return ret;
         }
 
+        void scale(f32 scalar) {
+            this->x = this->x * scalar;
+            this->y = this->y * scalar;
+            this->z = this->z * scalar;
+        }
+
+        void scale(f32 scalar, const TVec3& rVec) NO_INLINE {
+            this->x = rVec.x * scalar;
+            this->y = rVec.y * scalar;
+            this->z = rVec.z * scalar;
+        }
+
         // needed in StarPieceFollowGroup???
         inline TVec3 multInLine(f32 val) const {
             TVec3 ret(*this);
@@ -440,93 +498,8 @@ namespace JGeometry {
             return ret;
         }
 
-        inline void lerp(const TVec3& a, const TVec3& b, f32 t) {
-            JMAVECLerp(&a, &b, this, t);
-        }
-
-        TVec3 operator-() const;
-
-        bool operator==(const TVec3& rVec) const {
-            return TUtil< f32 >::epsilonEquals(x, rVec.x, 0.0000038146973f) && TUtil< f32 >::epsilonEquals(y, rVec.y, 0.0000038146973f) &&
-                   TUtil< f32 >::epsilonEquals(z, rVec.z, 0.0000038146973f);
-        }
-
         void mul(const TVec3< f32 >& a, const TVec3< f32 >& b) {
             mulInternal(&a.x, &b.x, &this->x);
-        }
-
-        // This should probably be merged with operator-(), but ParallelGravity doesn't inline
-        // operator-() despite only referencing it once. So if we can match that, the two functions
-        // can be merged.
-        inline TVec3 negateInline() const {
-            TVec3 ret;
-            JMathInlineVEC::PSVECNegate(this, &ret);
-            return ret;
-        }
-
-        inline void negate(const TVec3& rVec) {
-            JMathInlineVEC::PSVECNegate(rVec, this);
-        }
-
-        inline TVec3 negateOperatorInternal() const {
-            TVec3 ret;
-            JGeometry::negateInternal(&this->x, &ret.x);
-            return ret;
-        }
-
-        inline void negateInternal() {
-            JGeometry::negateInternal(&this->x, &this->x);
-        }
-
-        inline void negateOtherInternal(const TVec3< f32 >& a) {
-            JGeometry::negateInternal(&a.x, &this->x);
-        }
-
-        template < typename T >
-        void set(const TVec3< T >& rVec) {
-            x = rVec.x;
-            y = rVec.y;
-            z = rVec.z;
-        }
-
-        template < typename T >
-        void set(T _x, T _y, T _z) NO_INLINE {
-            x = _x;
-            y = _y;
-            z = _z;
-        }
-
-        template < typename T >
-        void set(int x, int y, int z);
-
-        void set(f32 x_, f32 y_, f32 z_) {
-            x = x_;
-            y = y_;
-            z = z_;
-        }
-
-        inline void setInline(f32 x_, f32 y_, f32 z_) {
-            x = x_;
-            y = y_;
-            z = z_;
-        }
-
-        void set(const Vec& rVec) {
-            x = rVec.x;
-            y = rVec.y;
-            z = rVec.z;
-        }
-
-        inline void set(f32 val) {
-            x = val;
-            y = val;
-            z = val;
-        }
-
-        inline void set2(f32 val) {
-            z = val;
-            y = val;
-            x = val;
         }
 
 #ifdef __MWERKS__
@@ -568,12 +541,42 @@ namespace JGeometry {
             mulInternal(&b.x, &a.x, &this->x);
         }
 
-        void setTrans(MtxPtr mtx) {
-            set< f32 >((*mtx)[3], (*mtx)[7], (*mtx)[11]);
+        inline void lerp(const TVec3& a, const TVec3& b, f32 t) {
+            JMAVECLerp(&a, &b, this, t);
         }
 
-        inline void setPS(const TVec3< f32 >& rSrc) {
-            *this = rSrc;
+        TVec3 operator-() const;
+
+        bool operator==(const TVec3& rVec) const {
+            return TUtil< f32 >::epsilonEquals(x, rVec.x, 0.0000038146973f) && TUtil< f32 >::epsilonEquals(y, rVec.y, 0.0000038146973f) &&
+                   TUtil< f32 >::epsilonEquals(z, rVec.z, 0.0000038146973f);
+        }
+
+        // This should probably be merged with operator-(), but ParallelGravity doesn't inline
+        // operator-() despite only referencing it once. So if we can match that, the two functions
+        // can be merged.
+        inline TVec3 negateInline() const {
+            TVec3 ret;
+            JMathInlineVEC::PSVECNegate(this, &ret);
+            return ret;
+        }
+
+        inline void negate(const TVec3& rVec) {
+            JMathInlineVEC::PSVECNegate(rVec, this);
+        }
+
+        inline TVec3 negateOperatorInternal() const {
+            TVec3 ret;
+            JGeometry::negateInternal(&this->x, &ret.x);
+            return ret;
+        }
+
+        inline void negateInternal() {
+            JGeometry::negateInternal(&this->x, &this->x);
+        }
+
+        inline void negateOtherInternal(const TVec3< f32 >& a) {
+            JGeometry::negateInternal(&a.x, &this->x);
         }
 
         static inline TVec3 makeZeroVec() {
@@ -648,18 +651,6 @@ namespace JGeometry {
             TVec3 ret;
             JMathInlineVEC::PSVECNegate(this, &ret);
             return ret;
-        }
-
-        void scale(f32 scalar) {
-            this->x = this->x * scalar;
-            this->y = this->y * scalar;
-            this->z = this->z * scalar;
-        }
-
-        void scale(f32 scalar, const TVec3& rVec) NO_INLINE {
-            this->x = rVec.x * scalar;
-            this->y = rVec.y * scalar;
-            this->z = rVec.z * scalar;
         }
 
         void negate();

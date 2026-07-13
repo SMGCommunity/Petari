@@ -474,7 +474,7 @@ void Petari::initFootPrint(const JMapInfoIter& rIter) {
 void Petari::initFrontVec() {
     TPos3f mtx;
     MR::makeMtxTR(mtx, mPosition, mRotation);
-    mtx.getZDirInline(mFront);
+    mtx.getZDir(mFront);
 }
 
 void Petari::initStarPiece(const JMapInfoIter& rIter) {
@@ -770,7 +770,7 @@ bool Petari::reflectStarPointer2P() {
 void Petari::calcMouthPos(TVec3f* pOut) const {
     TPos3f mtx;
     mtx.set(MR::getJointMtx(this, "Head3"));
-    mtx.getTransInline(*pOut);
+    mtx.getTrans(*pOut);
 }
 
 void Petari::tryEmitFirstFootPrintEffect() {

@@ -43,9 +43,9 @@ void JumpBranch::init(const JMapInfoIter& rIter) {
     posMtx.identity();
     MR::makeMtxTR(reinterpret_cast< MtxPtr >(&posMtx), this);
 
-    posMtx.getXDirInline(mSide);
-    posMtx.getYDirInline(mUp);
-    posMtx.getZDirInline(mFront);
+    posMtx.getXDir(mSide);
+    posMtx.getYDir(mUp);
+    posMtx.getZDir(mFront);
 
     initModelManagerWithAnm("JumpBranch", nullptr, false);
 
@@ -207,7 +207,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         TVec3f swingSide(mSwingPoint->mSide);
         TVec3f swingFront(mSwingPoint->mFront);
 
-        posMtx.setVecAndTransInline(swingSide, mSwingPoint->mUp, swingFront, mPosition);
+        posMtx.setTR(swingSide, mSwingPoint->mUp, swingFront, mPosition);
 
         MR::setBaseTRMtx(mRider, posMtx);
         return true;

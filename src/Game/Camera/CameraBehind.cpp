@@ -38,9 +38,9 @@ CamTranslatorBase* CameraBehind::createTranslator() {
 void CameraBehind::calcPosAndUp(f32 accel) {
     TVec3f watchpos(CameraLocalUtil::getWatchPos(this));
     TPos3f matrix;
-    matrix.setZDirInline(-*CameraLocalUtil::getTarget(this)->getFrontVec());
-    matrix.setYDirInline(*CameraLocalUtil::getTarget(this)->getUpVec());
-    matrix.setXDirInline(-*CameraLocalUtil::getTarget(this)->getSideVec());
+    matrix.setZDir(-*CameraLocalUtil::getTarget(this)->getFrontVec());
+    matrix.setYDir(*CameraLocalUtil::getTarget(this)->getUpVec());
+    matrix.setXDir(-*CameraLocalUtil::getTarget(this)->getSideVec());
     matrix.setTrans(*CameraLocalUtil::getTarget(this)->getPosition());
     TPos3f matrix2;
     matrix2.invert(matrix);

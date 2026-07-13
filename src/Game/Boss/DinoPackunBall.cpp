@@ -58,7 +58,7 @@ void DinoPackunBall::control() {
     TVec3f v3 = mGravity * 135.0f;
     TVec3f v4(mPosition);
     v4.add(v3);
-    _D4.setPos(v4);
+    _D4.setTrans(v4);
 
     if (_128 > 0) {
         MR::startLevelSound(this, "SE_BM_LV_D_PAKKUN_TAIL_DRAG");

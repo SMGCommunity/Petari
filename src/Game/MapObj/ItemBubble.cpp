@@ -161,7 +161,7 @@ void ItemBubble::initAfterPlacement() {
     TPos3f mtx;
     MR::makeMtxRotate(mtx, mRotation);
     TVec3f vec;
-    mtx.getZDirInline(vec);
+    mtx.getZDir(vec);
 
     if (mUseRail)
         MR::moveCoordAndTransToNearestRailPos(this);
@@ -215,8 +215,8 @@ void ItemBubble::calcAndSetBaseMtx() {
     }
 
     MR::normalize(&camcross);
-    reinterpret_cast< TPos3f* >(getBaseMtx())->setXYZDirInline(camcross, YDir, camPos);
-    reinterpret_cast< TPos3f* >(getBaseMtx())->setTransInline(mPosition);
+    reinterpret_cast< TPos3f* >(getBaseMtx())->setXYZDir(camcross, YDir, camPos);
+    reinterpret_cast< TPos3f* >(getBaseMtx())->setTrans(mPosition);
 }
 
 void ItemBubble::exeWait() {

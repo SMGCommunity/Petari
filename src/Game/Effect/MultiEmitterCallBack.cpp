@@ -123,10 +123,7 @@ void MultiEmitterCallBack::setSRTFromHostSRT(JPABaseEmitter* pEmitter, const Fla
         if (rFlag.mRotation) {
             TRot3f mtxD4;
             mtxD4.identity();
-
-            TVec3f vecEC(*mRotation);
-            vecEC.scale(PI_180);
-            mtxD4.makeMatrixFromRotAxesInline(vecEC.x, vecEC.y, vecEC.z);
+            mtxD4.setRotate(*mRotation * PI_180);
             mtxD4.mult33(_18, vecE0);
         } else {
             vecE0.set(_18);

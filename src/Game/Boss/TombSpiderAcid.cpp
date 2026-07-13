@@ -128,5 +128,5 @@ void TombSpiderAcid::updateGroundMtx(TPos3f* pDstMtx, MtxPtr pSrcMtx) {
     TVec3f trans(0.0f, 0.0f, 0.0f);
     MR::getFirstPolyOnLineToMap(&trans, nullptr, mtxPos, checkLine);
 
-    pDstMtx->setVecAndTransInline(side, up, front, trans);
+    pDstMtx->setTR(side, up, front, trans);
 }

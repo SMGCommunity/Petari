@@ -287,9 +287,9 @@ void MogucchiShooter::calcAndSetBaseMtx() {
     copyMtx.setInline(mFixedPos->mMtx);
 
     TVec3f up;
-    copyMtx.getYDirInline(up);
+    copyMtx.getYDir(up);
 
-    mFixedPos->mMtx.getTransInline(mPosition);
+    mFixedPos->mMtx.getTrans(mPosition);
     MR::makeMtxUpFrontPos(&posMtx, up, mFront, mPosition);
     MR::setBaseTRMtx(this, posMtx);
 }

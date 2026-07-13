@@ -51,9 +51,9 @@ void Trapeze::init(const JMapInfoIter& rIter) {
     mtx.identity();
     MR::makeMtxTR(reinterpret_cast< MtxPtr >(&mtx), this);
 
-    mtx.getXDirInline(mSide);
-    mtx.getYDirInline(mUp);
-    mtx.getZDirInline(mFront);
+    mtx.getXDir(mSide);
+    mtx.getYDir(mUp);
+    mtx.getZDir(mFront);
 
     mRopeLength = mScale.y * 100.0f;
     mScale.set(1.0f, 1.0f, 1.0f);

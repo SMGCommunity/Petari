@@ -32,7 +32,7 @@ bool ParallelGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TV
 }
 
 void ParallelGravity::updateMtx(const TPos3f& rMtx) {
-    rMtx.mult33Inline(mPlaneUpVec, mWorldPlaneUpVec);
+    rMtx.mult33(mPlaneUpVec, mWorldPlaneUpVec);
     rMtx.mult(mPlanePosition, mWorldPlanePosition);
     MR::normalizeOrZero(&mWorldPlaneUpVec);
 
@@ -99,7 +99,7 @@ bool ParallelGravity::isInSphereRange(const TVec3f& rPosition, f32* pScalar) con
 bool ParallelGravity::isInBoxRange(const TVec3f& rPosition, f32* pScalar) const {
     // Get direction to center
     TVec3f translation;
-    mWorldMtx.getTransInline(translation);
+    mWorldMtx.getTrans(translation);
     TVec3f dirToCenter(rPosition - translation);
 
     // Check in X direction

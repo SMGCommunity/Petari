@@ -3,6 +3,7 @@
 #include "Game/MapObj/SpinDriverPathDrawer.hpp"
 #include "Game/MapObj/SpinDriverShootPath.hpp"
 #include "Game/Util.hpp"
+#include "math_types.hpp"
 
 namespace {
     const char* const cJumpOutPartName = "飛び出す";
@@ -10,11 +11,17 @@ namespace {
     // const s32 cJumpOutStopStep = _;
     // const s32 cJumpOutStopFrame = _;
     // const f32 cJumpOutStartSpeed = _;
-    // const f32 cJumpOutRotateSpeed = _;
-    // const f32 cJumpOutRotateEndAngle = _;
+    const f32 cJumpOutRotateSpeed = -18.0f;
+    const f32 cJumpOutRotateEndAngle = -PI / 4.0f;
     const f32 cJumpOutNearClipDistance = 250.0f;
     const s32 cWhiteOutFrame = 146;
     const s32 cBgmStartFrame = 108;
+
+    f32 countRotations(f32 angle) {
+        // TODO: replace this with what the actual logic is supposed to be.
+        // This is a hack to match, but it is unclear if this is in fact correct
+        return TWO_PI * (volatile s32)(angle / TWO_PI);
+    }
 };  // namespace
 
 namespace NrvAstroDomeDemoStarter {
@@ -87,12 +94,13 @@ void AstroDomeDemoStarter::movePlayer() {
 
     _8C->calcDirection(&direction, demoPartStepRate, 0.01f);
 
-    // something weird is going on with these floats here which i can't seem to fix
-    f32 flt = (int)(-18.0f / TWO_PI) * TWO_PI * MR::getEaseInOutValue(demoPartStepRate, 0.0f, 1.0f, 1.0f);
+    f32 speed = ::cJumpOutRotateSpeed;
+    f32 spinRate = ::countRotations(speed) + (-MR::pi() / 4.0f);
+    f32 angle = MR::getEaseOutValue(demoPartStepRate, 0.0f, 1.0f, 1.0f) * spinRate;
 
     TPos3f mtx;
     mtx.identity();
-    mtx.setRotateInline(flt, 1.0f);
+    mtx.setEulerY(angle);
 
     TVec3f position;
 
@@ -121,7 +129,7 @@ void AstroDomeDemoStarter::exeSpinDriverAppear() {
         _C4.set(playerDemobaseMtx);
         TPos3f rotateMtx;
         MR::makeMtxRotate(rotateMtx, TVec3f(cAppearRotate));
-        _C4.getTransInline(mPosition);
+        _C4.getTrans(mPosition);
         MR::makeMtxUpFrontPos(&_94, MR::getCamYdir(), MR::getCamZdir(), mPosition);
         _94.concat(rotateMtx);
         MR::setBaseTRMtx(this, _94);

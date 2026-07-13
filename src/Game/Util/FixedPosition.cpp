@@ -24,15 +24,12 @@ void FixedPosition::calc() {
     // https://decomp.me/scratch/Q7A0B
 
     mMtx.identity();
-
-    TVec3f rot = mRotDegrees * PI_180;
-    mMtx.makeMatrixFromRotAxesInline(rot.z, rot.y, rot.x);
-
+    mMtx.setRotate(mRotDegrees * PI_180);
     mMtx.setTrans(mLocalTrans);
 
     if (mBaseMtx != nullptr) {
         TMtx34f mtx;
-        mtx.setInline((const MtxPtr)mBaseMtx);
+        mtx.set((const MtxPtr)mBaseMtx);
         mMtx.concat(mtx, mMtx);
     }
 
@@ -46,13 +43,13 @@ void FixedPosition::setBaseMtx(MtxPtr mtx) {
 }
 
 void FixedPosition::setLocalTrans(const TVec3f& rLocalTrans) {
-    mLocalTrans.set< f32 >(rLocalTrans);
+    mLocalTrans.set(rLocalTrans);
 }
 
 void FixedPosition::init(MtxPtr mtx, const TVec3f& rLocalTrans, const TVec3f& rRotAxes) {
     setBaseMtx(mtx);
-    mLocalTrans.set< f32 >(rLocalTrans);
-    mRotDegrees.set< f32 >(rRotAxes);
+    mLocalTrans.set(rLocalTrans);
+    mRotDegrees.set(rRotAxes);
     mMtx.identity();
     mNormalizeScale = true;
 }

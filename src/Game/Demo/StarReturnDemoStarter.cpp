@@ -266,7 +266,7 @@ void StarReturnDemoStarter::exeFall() {
     TVec3f down = TVec3f(0.0f, -1.0f, 0.0f);
 
     TVec3f position;
-    mTransform.getTransInline(position);
+    mTransform.getTrans(position);
 
     if (MR::isFirstStep(this)) {
         MR::startSoundPlayer("SE_PV_DM_ASTRO_RET_LANDING", -1);
@@ -290,7 +290,7 @@ void StarReturnDemoStarter::exeFall() {
         setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvLand::sInstance);
     }
 
-    mTransform.setPos(position);
+    mTransform.setTrans(position);
 }
 
 void StarReturnDemoStarter::exeLand() {

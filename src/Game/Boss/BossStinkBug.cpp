@@ -185,7 +185,7 @@ void BossStinkBug::calcAndSetBaseMtx() {
     _98->setCallBackFunction();
     TPos3f pos;
     pos.setQuat(_DC);
-    pos.setPos(mPosition);
+    pos.setTrans(mPosition);
 
     _9C.setInline(pos);
 
