@@ -233,12 +233,59 @@ namespace JGeometry {
             setXYZDirInline(rSrcX, rSrcY, rSrcZ);
         }
 
-        void getEuler(TVec3f& rDest) const;
-        void getEulerXYZ(TVec3f& rDest) const;
-        void setEulerY(f32 val);
-        void setEulerZ(f32 val) {
-            f32 s = sin(val);
-            f32 c = cos(val);
+        void getEuler(TVec3f& rDest) const {
+            getEulerXYZ(rDest);
+        }
+
+        void getEulerXYZ(TVec3f& rDest) const {
+            if (this->mMtx[2][0] - 1.0f >= -(f32)JGeometry::TUtil< f32 >::epsilon()) {
+                rDest.set(JMAATan2(-this->mMtx[0][1], this->mMtx[1][1]), -HALF_PI, 0.0f);
+                return;
+            }
+
+            f32 f1 = 1.0f;  // TODO: this is a hack to fix the float regswap
+            if (this->mMtx[2][0] + f1 <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
+                rDest.set(JMAATan2(this->mMtx[0][1], this->mMtx[1][1]), HALF_PI, 0.0f);
+                return;
+            }
+
+            rDest.x = JMAATan2(this->mMtx[2][1], this->mMtx[2][2]);
+            rDest.z = JMAATan2(this->mMtx[1][0], this->mMtx[0][0]);
+            rDest.y = JGeometry::TUtil< f32 >::asin(-this->mMtx[2][0]);
+        }
+
+        void setEulerX(f32 angle) {
+            f32 s = sin(angle);
+            f32 c = cos(angle);
+
+            this->mMtx[0][0] = 1.0f;
+            this->mMtx[2][1] = s;
+            this->mMtx[1][1] = c;
+            this->mMtx[1][2] = -s;
+            this->mMtx[2][2] = c;
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[0][1] = 0.0f;
+        }
+        void setEulerY(f32 angle) {
+            f32 s = sin(angle);
+            f32 c = cos(angle);
+
+            this->mMtx[0][2] = s;
+            this->mMtx[1][1] = 1.0f;
+            this->mMtx[0][0] = c;
+            this->mMtx[2][0] = -s;
+            this->mMtx[2][2] = c;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[0][1] = 0.0f;
+        }
+
+        void setEulerZ(f32 angle) {
+            f32 s = sin(angle);
+            f32 c = cos(angle);
 
             this->mMtx[1][0] = s;
             this->mMtx[0][0] = c;
@@ -358,6 +405,39 @@ namespace JGeometry {
             setQuat(q);
         }
 
+        void setRotate(const TVec3f& rRot) {
+            setRotate(rRot.x, rRot.y, rRot.z);
+        }
+
+        void setRotate(f32 rx, f32 ry, f32 rz) {
+            // NOTE: setEulerXYZ?
+            f32 sinX, sinY, sinZ;
+            f32 cosX, cosY, cosZ;
+
+            cosZ = cos(rz);
+            cosY = cos(ry);
+            cosX = cos(rx);
+            sinZ = sin(rz);
+            sinY = sin(ry);
+            sinX = sin(rx);
+
+            f32 sXsY = sinX * sinY;
+            f32 cXcZ = cosX * cosZ;
+            f32 cXsZ = cosX * sinZ;
+
+            this->mMtx[0][0] = cosY * cosZ;
+            this->mMtx[1][0] = cosY * sinZ;
+            this->mMtx[2][0] = -sinY;
+
+            this->mMtx[0][1] = sXsY * cosZ - cosX * sinZ;
+            this->mMtx[1][1] = cosX * cosZ + sXsY * sinZ;
+            this->mMtx[2][1] = sinX * cosY;
+
+            this->mMtx[0][2] = cXcZ * sinY + sinX * sinZ;
+            this->mMtx[1][2] = cXsZ * sinY - sinX * cosZ;
+            this->mMtx[2][2] = cosX * cosY;
+        }
+
         void mult33(TVec3f&) const;
         void mult33(const TVec3f& rDst, TVec3f& rSrc) const;
 
@@ -427,115 +507,6 @@ namespace JGeometry {
             f32 y3 = this->mMtx[1][2];
             f32 x3 = this->mMtx[0][2];
             rDstZ.set< f32 >(x3, y3, z3);
-        }
-
-        inline void zeroTrans() {
-            this->mMtx[0][3] = 0.0f;
-            this->mMtx[1][3] = 0.0f;
-            this->mMtx[2][3] = 0.0f;
-        }
-
-        inline void setRotateInline2(f32 y, f32 p) {
-            f32 v9 = (0.017453292 * y);
-            f32 v10 = -(0.017453292f * p);
-
-            f32 v11 = cos(0.0f);
-            f32 v12 = cos(v9);
-            f32 v13 = cos(v10);
-            f32 v14 = sin(0.0f);
-            f32 v15 = sin(v9);
-            f32 v16 = sin(v10);
-
-            this->mMtx[0][0] = v12 * v13;
-            this->mMtx[0][1] = (v16 * v11) - (v15 * v14);
-            this->mMtx[0][2] = (v15 * v11) + (v16 * v14);
-            this->mMtx[1][0] = v15;
-            this->mMtx[1][1] = v12 * v11;
-            this->mMtx[1][2] = -v12 * v14;
-            this->mMtx[2][0] = -v14;
-            this->mMtx[2][1] = v13 * v14;
-            this->mMtx[2][2] = v13 * v11;
-        }
-
-        inline void setRotateInline(f32 r, f32 n) {
-            f32 c, s, angle;
-            angle = n * r;
-            s = sin(angle);
-            c = cos(angle);
-
-            this->mMtx[0][2] = s;
-            this->mMtx[1][1] = 1.0f;
-            this->mMtx[0][0] = c;
-            this->mMtx[2][0] = -s;
-            this->mMtx[2][2] = c;
-            this->mMtx[2][1] = 0.0f;
-            this->mMtx[1][2] = 0.0f;
-            this->mMtx[1][0] = 0.0f;
-            this->mMtx[0][1] = 0.0f;
-        }
-
-        inline void someInlineMatrixFunction(f32 y, f32 p) {
-            f32 HUNDERDEIGHTIETHPI = 0.017453292f;
-            f32 v9 = (HUNDERDEIGHTIETHPI * y);    // f25
-            f32 v10 = -(HUNDERDEIGHTIETHPI * p);  // f24
-
-            f32 v11 = cos(0.0f);  // f28
-            f32 v12 = cos(v9);    // f27
-            f32 v13 = cos(v10);   // f26
-            f32 v14 = sin(0.0f);  // f23
-            f32 v15 = sin(v9);    // f25
-            f32 v16 = sin(v10);   // f9
-
-            this->mMtx[0][0] = v12 * v11;
-            this->mMtx[0][1] = (v16 * v15 * v11) - (v13 * v14);
-            this->mMtx[1][0] = v12 * v14;
-            this->mMtx[1][1] = (v13 * v11) + (v16 * v15 * v14);
-            this->mMtx[2][0] = -v15;
-            this->mMtx[2][1] = v16 * v12;
-            this->mMtx[0][2] = (v13 * v11 * v15) + (v16 * v14);
-            this->mMtx[1][2] = (v13 * v14 * v15) - (v16 * v11);
-            this->mMtx[2][2] = v12 * v13;
-        }
-
-        inline void makeMatrixFromRotAxesInline(f32 rx, f32 ry, f32 rz) {
-            // FIXME: this isnt 100% correct yet, caution
-
-            f32 cosZ = cos(rz);
-            f32 cosY = cos(ry);
-            f32 cosX = cos(rx);
-            f32 sinZ = sin(rz);
-            f32 sinY = sin(ry);
-            f32 sinX = sin(rx);
-
-            /*
-            this->mMtx[0][0] = cosY * cosZ;
-            this->mMtx[1][0] = cosY * sinZ;
-            this->mMtx[2][0] = -sinY;
-
-            this->mMtx[0][1] = sinX * sinY * cosZ - cosX * sinZ;
-            this->mMtx[1][1] = sinX * sinY * sinZ + cosX * cosZ;
-            this->mMtx[2][1] = sinX * cosY;
-
-            this->mMtx[0][2] = cosX * cosZ * sinY + sinX * sinZ;
-            this->mMtx[1][2] = cosX * sinZ * sinY - sinX * cosZ;
-            this->mMtx[2][2] = cosX * cosY;
-            */
-
-            this->mMtx[0][0] = cosY * cosZ;
-            this->mMtx[1][0] = cosY * sinZ;
-            this->mMtx[2][0] = -sinY;
-
-            this->mMtx[0][1] = sinX * sinY * cosZ - cosX * sinZ;
-            this->mMtx[1][1] = sinX * sinY * sinZ + cosX * cosZ;
-            this->mMtx[2][1] = sinX * cosY;
-
-            this->mMtx[0][2] = cosX * cosZ * sinY + sinX * sinZ;
-            this->mMtx[1][2] = cosX * sinZ * sinY - sinX * cosZ;
-            this->mMtx[2][2] = cosX * cosY;
-
-            // this->mMtx[0][3] = rTrans.x;
-            // this->mMtx[1][3] = rTrans.y;
-            // this->mMtx[2][3] = rTrans.z;
         }
 
         inline void mult33Inline(const TVec3f& rSrc, TVec3f& rDst) const {
@@ -608,6 +579,41 @@ namespace JGeometry {
             setTrans(rSrcTrans);
         }
 
+        void setRT(f32 rx, f32 ry, f32 rz, const TVec3f& rSrcTrans) {
+            // nonmatching, see
+            // see Mogucchi::updateReferenceMtx
+
+            f32 sinX, sinY, sinZ;
+            f32 cosX, cosY, cosZ;
+
+            cosZ = cos(rz);
+            cosY = cos(ry);
+            cosX = cos(rx);
+            sinZ = sin(rz);
+            sinY = sin(ry);
+            sinX = sin(rx);
+
+            this->mMtx[0][3] = rSrcTrans.x;
+            this->mMtx[1][3] = rSrcTrans.y;
+            this->mMtx[2][3] = rSrcTrans.z;
+
+            f32 sXsY = sinX * sinY;
+            f32 cXcZ = cosX * cosZ;
+            f32 cXsZ = cosX * sinZ;
+
+            this->mMtx[0][0] = cosY * cosZ;
+            this->mMtx[1][0] = cosY * sinZ;
+            this->mMtx[2][0] = -sinY;
+
+            this->mMtx[0][1] = sXsY * cosZ - cosX * sinZ;
+            this->mMtx[1][1] = cosX * cosZ + sXsY * sinZ;
+            this->mMtx[2][1] = sinX * cosY;
+
+            this->mMtx[0][2] = cXcZ * sinY + sinX * sinZ;
+            this->mMtx[1][2] = cXsZ * sinY - sinX * cosZ;
+            this->mMtx[2][2] = cosX * cosY;
+        }
+
         f32 get(int x, int y) const {
             return this->mMtx[x][y];
         }
@@ -658,6 +664,12 @@ namespace JGeometry {
             this->mMtx[0][3] = a1.x;
             this->mMtx[1][3] = a1.y;
             this->mMtx[2][3] = a1.z;
+        }
+
+        inline void setTransInline(f32 x, f32 y, f32 z) {
+            this->mMtx[0][3] = x;
+            this->mMtx[1][3] = y;
+            this->mMtx[2][3] = z;
         }
 
         inline void zeroTransInline() {

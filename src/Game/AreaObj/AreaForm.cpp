@@ -66,21 +66,20 @@ void AreaFormCube::calcWorldPos(TVec3f* pPos) const {
     if (_4 != nullptr) {
         _4->mult(mTranslation, *pPos);
     } else {
-        pPos->set< f32 >(mTranslation);
-    } 
+        pPos->set(mTranslation);
+    }
 }
 
 void AreaFormCube::calcWorldRotate(TVec3f* pOut) const {
-    if(_4 != nullptr) {
+    if (_4 != nullptr) {
         TPos3f stack = _48;
         stack.zeroTrans();
         stack.concat(*_4, stack);
-        if(stack[2][0] - 1.0f >= -0.0000038146973f) {
-            pOut->set(JMAATan2(-stack[1][0],stack[2][0]),HALF_PI,0.0f);
+        if (stack[2][0] - 1.0f >= -0.0000038146973f) {
+            pOut->set(JMAATan2(-stack[1][0], stack[2][0]), HALF_PI, 0.0f);
         } else if (stack[2][0] + 1.0f <= 0.0000038146973f) {
-            pOut->set(JMAATan2(stack[1][0],stack[2][0]),HALF_PI,0.0f);
+            pOut->set(JMAATan2(stack[1][0], stack[2][0]), HALF_PI, 0.0f);
         } else {
-            
         }
         *pOut = *pOut * _180_PI;
     } else {
@@ -119,7 +118,6 @@ f32 AreaFormCube::getBaseSize() {
     return 1000.0f;
 }
 
-// issues with floating point math order
 void AreaFormCube::updateBoxParam() {
     MR::makeMtxRotate(_48, mRotation.x, mRotation.y, mRotation.z);
 
@@ -132,8 +130,7 @@ void AreaFormCube::updateBoxParam() {
     mBounding.f.set(v9);
 
     if (_8 == 1) {
-        TVec3f temp;
-        temp.set(0.0f, 0.5f * (mScale.y * getBaseSize()), 0.0f);
+        TVec3f temp(0.0f, 0.5f * (mScale.y * getBaseSize()), 0.0f);
 
         mBounding.i += temp;
         mBounding.f += temp;
@@ -142,7 +139,7 @@ void AreaFormCube::updateBoxParam() {
 
 void AreaFormCube::calcWorldMtx(TPos3f* pPos) const {
     if (_4 != nullptr) {
-        pPos->concat(*_4,_48);
+        pPos->concat(*_4, _48);
     } else {
         pPos->set(_48);
     }
@@ -161,7 +158,7 @@ void AreaFormSphere::calcUpVec(TVec3f* pOut) const {
         _4->mult33(mUp, *pOut);
         MR::normalize(pOut);
     } else {
-        pOut->set< f32 >(mUp);
+        pOut->set(mUp);
     }
 }
 
@@ -169,7 +166,7 @@ void AreaFormSphere::calcPos(TVec3f* pOut) const {
     if (_4 != nullptr) {
         _4->mult(mTranslation, *pOut);
     } else {
-        pOut->set< f32 >(mTranslation);
+        pOut->set(mTranslation);
     }
 }
 

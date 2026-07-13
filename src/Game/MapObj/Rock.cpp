@@ -878,24 +878,11 @@ void Rock::exeBreak() {
         rotMtx.makeRotate(mGravity, MR::getRandom(0.0f, TWO_PI));
         mtx.concat(rotMtx, mtx);
 
-        // TODO: this logic is reused in many places, is this an inline from ActorMovementUtil?
         TVec3f rot;
-        if ((mtx[2][0] - 1.0f) >= -0.0000038146973f) {
-            rot.x = JMath::sAtanTable.atan2_(-mtx[0][1], mtx[1][1]);
-            rot.y = -HALF_PI;
-            rot.z = 0.0f;
-        } else if ((mtx[2][0] + 1.0f) <= 0.0000038146973f) {
-            rot.x = JMath::sAtanTable.atan2_(mtx[0][1], mtx[1][1]);
-            rot.y = HALF_PI;
-            rot.z = 0.0f;
-        } else {
-            rot.x = JMath::sAtanTable.atan2_(mtx[2][1], mtx[2][2]);
-            rot.y = JMath::sAtanTable.atan2_(mtx[1][0], mtx[0][0]);
-            rot.z = JGeometry::TUtil< f32 >::asin(-mtx[2][0]);
-        }
-        mBreakModel->mRotation.x = _180_PI * rot.x;
-        mBreakModel->mRotation.y = _180_PI * rot.y;
-        mBreakModel->mRotation.z = _180_PI * rot.z;
+        mtx.getEulerXYZ(rot);
+        mBreakModel->mRotation.x = MR::toDegree(rot.x);
+        mBreakModel->mRotation.y = MR::toDegree(rot.y);
+        mBreakModel->mRotation.z = MR::toDegree(rot.z);
 
         mBreakModel->appear();
 
