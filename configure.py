@@ -1232,7 +1232,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/Onimasu.cpp"),
             Object(NonMatching, "Game/Enemy/OnimasuJump.cpp"),
             Object(NonMatching, "Game/Enemy/OnimasuPivot.cpp"),
-            Object(NonMatching, "Game/Enemy/OtaRock.cpp"),
+            Object(Matching, "Game/Enemy/OtaRock.cpp"),
             Object(NonMatching, "Game/Enemy/PackunPetit.cpp"),
             Object(NonMatching, "Game/Enemy/Petari.cpp"),
             Object(NonMatching, "Game/Enemy/Poihana.cpp"),

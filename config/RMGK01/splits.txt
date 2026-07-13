@@ -3025,15 +3025,16 @@ Game/Enemy/OnimasuPivot.cpp:
 Game/Enemy/OtaRock.cpp:
 	.text       start:0x8012F114 end:0x801301B4
 	.ctors      start:0x8052EB20 end:0x8052EB24
-	.rodata     start:0x80532460 end:0x80532478
-	.data       start:0x80582DC8 end:0x805830E8
+	.rodata     start:0x80532460 end:0x80532470
+	.data       start:0x80582DC8 end:0x80582FC8
 	.sbss       start:0x806B45D8 end:0x806B45F8
 	.sdata2     start:0x806BB250 end:0x806BB278
 
 Game/Enemy/PackunPetit.cpp:
 	.text       start:0x801301B4 end:0x801319F8
 	.ctors      start:0x8052EB24 end:0x8052EB28
-	.data       start:0x805830E8 end:0x80583270
+	.rodata     start:0x80532470 end:0x80532478
+	.data       start:0x80582FC8 end:0x80583270
 	.sbss       start:0x806B45F8 end:0x806B4640
 	.sdata2     start:0x806BB278 end:0x806BB2B8
 
