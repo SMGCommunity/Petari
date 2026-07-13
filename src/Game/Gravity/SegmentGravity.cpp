@@ -73,7 +73,7 @@ void SegmentGravity::updateMtx(const TPos3f& rMtx) {
     for (s32 i = 0; i < 2; i++) {
         rMtx.mult(mGravityPoints[i], mWorldGravityPoints[i]);
     }
-    rMtx.mult33Inline(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
+    rMtx.mult33(mOppositeSideVecOrtho, mWorldOppositeSideVecOrtho);
     mAxis = mWorldGravityPoints[1] - mWorldGravityPoints[0];
     MR::separateScalarAndDirection(&mAxisLength, &mAxis, mAxis);
 }

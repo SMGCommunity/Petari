@@ -613,7 +613,7 @@ void OtaKing::appearBubble() {
             vec1.sub(trans, mPosition);
 
             if (MR::normalizeOrZero(&vec1)) {
-                vec1.set(0.0f, 0.0f, 1.0f);
+                vec1.set< f32 >(0.0f, 0.0f, 1.0f);
             }
 
             TPos3f rotate;
@@ -621,7 +621,7 @@ void OtaKing::appearBubble() {
             rotate.makeRotate(TVec3f(0.0f, 1.0f, 0.0f),
                               MR::toRadian(((i + 0.5f) * 60.0f) + MR::getRandom(-::cBubbleAppearRandomAngle, ::cBubbleAppearRandomAngle)));
 
-            rotate.mult33Inline(vec1, vec1);
+            rotate.mult33(vec1, vec1);
             currentBubble->appear(trans, vec1, ::cBubbleAppearVelocity);
         }
     }

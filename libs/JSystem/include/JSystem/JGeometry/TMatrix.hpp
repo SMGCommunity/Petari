@@ -467,10 +467,11 @@ namespace JGeometry {
             this->mMtx[2][2] = cosX * cosY;
         }
 
-        void mult33(TVec3f&) const;
-        void mult33(const TVec3f& rDst, TVec3f& rSrc) const;
+        void mult33(TVec3f& rVec) const {
+            mult33(rVec, rVec);
+        }
 
-        inline void mult33Inline(const TVec3f& rSrc, TVec3f& rDst) const {
+        void mult33(const TVec3f& rSrc, TVec3f& rDst) const {
             f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
             a32 = this->mMtx[2][1];
             a22 = this->mMtx[1][1];
@@ -484,7 +485,6 @@ namespace JGeometry {
             f32 x, y;
             vx = rSrc.x;
             vy = rSrc.y;
-            x = (vx * a11 + vy * a12);
             rDst.set< f32 >(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
         }
     };
