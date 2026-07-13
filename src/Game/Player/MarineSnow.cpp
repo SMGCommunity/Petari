@@ -4,16 +4,15 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JKernel/JKRHeap.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
 
 MarineSnow::MarineSnow() {
-    s32 idx = 0;
     _0 = 16;
     _4 = new (32) TVec3f[_0];
 
     _8 = 1000.0f;
-    for (idx = 0; idx < _0; idx++) {
+    for (s32 idx = 0; idx < _0; idx++) {
         TVec3f randVec;
         randVec.set(MR::getRandom() * _8, MR::getRandom() * _8, MR::getRandom() * _8);
         _4[idx] = randVec;
@@ -47,17 +46,17 @@ void MarineSnow::draw(const TVec3f& rVec1, const TVec3f& rVec2, f32 myFloat) con
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
     GXSetPointSize(27, GX_TO_ZERO);
 
-    f32 C_60 = (f32)_C / 60.0f;
+    f32 C_60 = static_cast< f32 >(_C) / 60.0f;
 
     TVec3f camZDir = MR::getCamZdir();
     TVec3f camYDir = MR::getCamYdir();
 
     TVec3f crossnegZY;
-    PSVECCrossProduct(-camZDir, camYDir, crossnegZY);
+    crossnegZY.cross(-camZDir, camYDir);
     MR::normalizeOrZero(&crossnegZY);
 
     TVec3f crossneg_negZY_negZ;
-    PSVECCrossProduct(-crossnegZY, -camZDir, crossneg_negZY_negZ);
+    crossneg_negZY_negZ.cross(-crossnegZY, -camZDir);
     MR::normalizeOrZero(&crossneg_negZY_negZ);
 
     TVec3f vec1C0 = (crossnegZY + crossneg_negZY_negZ) * 10.0f;
