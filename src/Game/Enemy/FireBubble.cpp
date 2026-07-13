@@ -99,7 +99,7 @@ void FireBubble::calcAndSetBaseMtx() {
 
     if (MR::isSameDirection(_B4, minusGravity, 0.01f)) {
         baseMtx.set(getBaseMtx());
-        baseMtx.setTransInline(mPosition);
+        baseMtx.setTrans(mPosition);
     } else {
         MR::makeMtxUpFrontPos(&baseMtx, minusGravity, _B4, mPosition);
     }

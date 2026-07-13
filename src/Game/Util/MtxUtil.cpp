@@ -402,9 +402,7 @@ namespace MR {
             ((TRot3f*)src)->getEuler(*pOutRot);
 
             if (toDegree) {
-                TVec3f scaled;
-                pOutRot->scale(57.29578f, scaled);
-                *pOutRot = scaled;
+                pOutRot->set(*pOutRot * (180.0f / PI));
             }
         }
     }

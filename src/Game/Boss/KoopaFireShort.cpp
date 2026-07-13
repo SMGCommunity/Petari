@@ -78,7 +78,7 @@ void KoopaFireShort::appear() {
 
     TPos3f transform;
     transform.setInline(MR::getJointMtx(mKoopa, "Tongue2"));
-    transform.getTransInline(mPosition);
+    transform.getTrans(mPosition);
     transform.getYDir(mVelocity);
 
     MR::vecKillElement(mVelocity, mGravity, &mVelocity);

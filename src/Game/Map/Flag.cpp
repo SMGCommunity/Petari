@@ -289,7 +289,7 @@ void Flag::updateFlag() {
 
     if (mBaseMtx != nullptr) {
         mBaseMtx->getTransInline2(mPosition);
-        mBaseMtx->getYDirInline2(mUp);
+        mBaseMtx->getYDir2(mUp);
 
         for (s32 idxV = 0; idxV < mNumPointsV; idxV++) {
             TVec3f pos = mUp;

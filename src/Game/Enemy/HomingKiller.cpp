@@ -382,7 +382,7 @@ void HomingKiller::calcInitPosture() {
     MR::makeMtxRotate(mtx, mRotation);
 
     mBasePos.set(mPosition);
-    mtx.getZDirInline(mBaseFront);
+    mtx.getZDir(mBaseFront);
 
     if (!isGravityIgnored()) {
         MR::vecKillElement(mBaseFront, mGravity, &mBaseFront);
@@ -664,7 +664,7 @@ bool HomingKiller::isWaterBreak() const {
 
 void HomingKiller::updateBaseMtxNoRotateZ() {
     if (MR::isSameDirection(mFront, mUp, 0.01f)) {
-        mBaseMtx.setTransInline(mPosition);
+        mBaseMtx.setTrans(mPosition);
     } else {
         MR::makeMtxFrontUpPos(&mBaseMtx, mFront, mUp, mPosition);
     }

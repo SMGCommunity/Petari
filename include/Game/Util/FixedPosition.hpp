@@ -17,7 +17,9 @@ public:
     void calc();
     void setBaseMtx(MtxPtr);
     void setLocalTrans(const TVec3f&);
-    void copyTrans(TVec3f*) const;
+    void copyTrans(TVec3f* pTrans) const {
+        mMtx.getTrans(*pTrans);
+    }
     void copyRotate(TVec3f*) const;
 
     /* 0x00 */ TMtx34f* mBaseMtx;

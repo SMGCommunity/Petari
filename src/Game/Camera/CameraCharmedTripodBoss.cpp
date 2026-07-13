@@ -34,8 +34,8 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     if (_4C >= 0) {
         TPos3f pos;
         MR::getTripodBossJointMatrix(&pos, _4C);
-        pos.getTransInline(renameme);
-        pos.mult33Inline(vec, vec);
+        pos.getTrans(renameme);
+        pos.mult33(vec, vec);
     }
 
     TPos3f rotX;
@@ -63,17 +63,16 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     MR::normalize(&subvec);
     TPos3f mtx;
     mtx.identity();
-    mtx.setXYZDirInline(cross, vec, subvec);
+    mtx.setXYZDir(cross, vec, subvec);
     mtx.setTrans(*CameraLocalUtil::getTarget(this)->getPosition());
     mtx.concat(mtx, finalrot);
-    mtx.getZDirInline(subvec);
-    mtx.getYDirInline(vec);
+    mtx.getZDir(subvec);
+    mtx.getYDir(vec);
 
     TVec3f v20(_5C);
     mtx.mult(v20, v20);
 
-    TVec3f tert = v20 - subvec * _5C.z;
-    JMathInlineVEC::PSVECCopy(&tert, &watchpoint);
+    watchpoint = v20 - subvec * _5C.z;
     CameraLocalUtil::setPos(this, v20);
     CameraLocalUtil::setWatchPos(this, watchpoint);
     CameraLocalUtil::setUpVec(this, vec);

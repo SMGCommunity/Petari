@@ -201,9 +201,9 @@ void Mogucchi::exeScatter() {
         PSVECCrossProduct(railGravity, mScatterNormal, &v2);
 
         TRot3f mtx;
-        mtx.setXDirInline(v2);
-        mtx.setYDirInline(-mRailGravity);
-        mtx.setZDirInline(-mScatterNormal);
+        mtx.setXDir(v2);
+        mtx.setYDir(-mRailGravity);
+        mtx.setZDir(-mScatterNormal);
         mtx.getEulerXYZ(mRotation);
         mRotation.mult(_180_PI);
     }
@@ -435,13 +435,16 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
     return false;
 }
 
+// FIXME: special rotation + translation function in use
+// https://decomp.me/scratch/rUfad
 void Mogucchi::updateReferenceMtx() {
-    TVec3f v1(mRotation);
-    // Using PI_180 will mismatch the float value by 1 least significant bit
-    v1.scale(57.295776);
+    TVec3f v1 = mRotation * (PI / 180.0f);
 
-    mNewHolePos.makeMatrixFromRotAxesInline(v1.x, v1.y, v1.z);
-    mNewHolePos.setTransInline(mPosition);
+    // mNewHolePos.setRotate(v1.x, v1.y, v1.z);
+    // mNewHolePos.setRotate(v1);
+    // mNewHolePos.setTrans(mHole->mPosition);
+    mNewHolePos.setRT(v1.x, v1.y, v1.z, mPosition);
+    // mNewHolePos.setRT(v1, mHole->mPosition);
 
     mHole->mPosition.set(mPosition);
 }

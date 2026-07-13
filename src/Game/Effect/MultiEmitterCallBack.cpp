@@ -13,7 +13,7 @@ namespace {
 
         return Color8(r, g, b, 255);
     }
-}  // namespace
+};  // namespace
 
 MultiEmitterCallBack::MultiEmitterCallBack(const MultiEmitter* pEmitter, const TVec3f& rVec)
     : MultiEmitterCallBackBase(), mEmitter(pEmitter), mScale(), mRotation(), mTranslation(), mMtx(), _18(rVec), mBaseScale(1.0f),
@@ -123,10 +123,7 @@ void MultiEmitterCallBack::setSRTFromHostSRT(JPABaseEmitter* pEmitter, const Fla
         if (rFlag.mRotation) {
             TRot3f mtxD4;
             mtxD4.identity();
-
-            TVec3f vecEC(*mRotation);
-            vecEC.scale(PI_180);
-            mtxD4.makeMatrixFromRotAxesInline(vecEC.x, vecEC.y, vecEC.z);
+            mtxD4.setRotate(*mRotation * PI_180);
             mtxD4.mult33(_18, vecE0);
         } else {
             vecE0.set(_18);

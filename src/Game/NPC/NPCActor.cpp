@@ -267,7 +267,7 @@ void NPCActor::makeArchiveListDefault(NameObjArchiveListCollector* pCollector, c
 
 void NPCActor::setBaseMtx(const TPos3f& rPos) {
     TVec3f trans;
-    rPos.getTransInline(trans);
+    rPos.getTrans(trans);
 
     TVec3f eulerXYZ;
     // inlined in the assembly

@@ -116,7 +116,7 @@ void CameraTripodBossJoint::calcIdealPose() {
         TPos3f pos;
         MR::getTripodBossJointMatrix(&pos, _58);
         pos.mult33(polecrossdegree, polecrossdegree);
-        pos.getYDirInline(axis);
+        pos.getYDir(axis);
     } else {
         axis.set< f32 >(0.0f, 1.0f, 0.0f);
     }

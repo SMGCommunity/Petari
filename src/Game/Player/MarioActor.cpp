@@ -41,6 +41,7 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+#include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
 bool gIsLuigi;
@@ -392,8 +393,8 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _1D1 = 0;
     _A24 = 0;
     _A25 = 0;
-    _1D8 = new FBO[MR::getFrameBufferWidth()];
-    _1DC = new FBO[MR::getFrameBufferWidth()];
+    _1D8 = new (0x20) FBO[MR::getFrameBufferWidth()];
+    _1DC = new (0x20) FBO[MR::getFrameBufferWidth()];
     _1E4 = 0.0f;
     _1E8 = 0;
     _1EC = 0.0f;
@@ -401,8 +402,7 @@ void MarioActor::init2(const TVec3f& a, const TVec3f& b, s32 initialAnimation) {
     _F40 = 0;
     _F42 = 1;
     for (int i = 0; i < 30; i++) {
-        TVec3f& vec = _F3CVec[i];
-        vec.setInline(1.0f, 0.0f, 0.0f);
+        _F3CVec[i].set(1.0f, 0.0f, 0.0f);
     }
     _8C = 0;  // is this to indicate that we are in the process of initialization?
 }
@@ -2785,7 +2785,7 @@ namespace MR {
     s32 getFrameBufferWidth() {
         return JUTGetVideoManager()->getRenderMode()->fbWidth;
     }
-}  // namespace MR
+};  // namespace MR
 
 void MarioActor::setPunchHitTimer(u8 punchHitTime) {
     if (_944 == 0) {

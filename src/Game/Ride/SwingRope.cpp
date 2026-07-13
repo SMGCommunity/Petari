@@ -467,7 +467,7 @@ void SwingRope::updateHangPoint() {
 }
 
 void SwingRope::updateRideMtx() {
-    mRideMtx.setVecAndTransInline(mSledPoint->mSide, mSledPoint->mUp, mSledPoint->mFront, mSledPoint->mPosition);
+    mRideMtx.setTR(mSledPoint->mSide, mSledPoint->mUp, mSledPoint->mFront, mSledPoint->mPosition);
 }
 
 void SwingRope::updateFootPos() {
@@ -475,10 +475,10 @@ void SwingRope::updateFootPos() {
     MR::calcPlayerJointMtx(&footMtx, "FootL");
 
     TVec3f side, up, front;
-    footMtx.getXDirInline(side);
-    footMtx.getYDirInline(up);
-    footMtx.getZDirInline(front);
-    footMtx.getTransInline(mFootPos);
+    footMtx.getXDir(side);
+    footMtx.getYDir(up);
+    footMtx.getZDir(front);
+    footMtx.getTrans(mFootPos);
 
     mFootPos.add(side * 0.0f + up * -20.0f + front * 10.0f);
     mGrabToFootDist = mFootPos.distance(mSledPoint->mPosition);

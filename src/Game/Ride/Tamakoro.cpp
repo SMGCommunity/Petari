@@ -167,7 +167,7 @@ void Tamakoro::initJointControl() {
 
 bool Tamakoro::ringMtxCallBack(TPos3f* pMtx, const JointControllerInfo& pJointCtrlInfo) {
     TVec3f trans;
-    pMtx->getTransInline(trans);
+    pMtx->getTrans(trans);
 
     if (MR::isNearZero(mAccelDir) || MR::isSameDirection(mAccelDir, mRingUp, 0.01f)) {
         MR::makeMtxUpNoSupport(pMtx, mRingUp);

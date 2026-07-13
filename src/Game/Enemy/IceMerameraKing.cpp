@@ -795,11 +795,11 @@ ThrowingIce* IceMerameraKing::getDeadWeaponAndAppear() {
 bool IceMerameraKing::calcJoint(TPos3f* a2, const JointControllerInfo& info) {
     TPos3f mtx;
     TVec3f v3;
-    mtx.makeQuatInline(_100);
+    mtx.makeQuat(_100);
     a2->getTrans(v3);
     a2->zeroTransInline2();
     a2->concat(mtx, *a2);
-    a2->setTransInline(v3);
+    a2->setTrans(v3);
     return true;
 }
 

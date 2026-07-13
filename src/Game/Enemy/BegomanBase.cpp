@@ -952,7 +952,7 @@ void BegomanBase::calcAnimCore(TPos3f* pPos) {
     pPos->setInline(MR::getJointMtx(this, "Center"));
 
     TVec3f yDir;
-    pPos->getYDirInline(yDir);
+    pPos->getYDir(yDir);
 
     if (!MR::isSameDirection(yDir, mTargetVec, 0.01f)) {
         MR::makeMtxUpFront(pPos, yDir, mTargetVec);

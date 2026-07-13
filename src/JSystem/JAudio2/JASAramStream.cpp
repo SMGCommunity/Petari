@@ -289,8 +289,8 @@ bool JASAramStream::load() {
     }
     u32 sp08 = _148 + _10C * sBlockSize;
     for (int i = 0; i < mChannelNum; i++) {
-        if (!JKRAram::mainRamToAram(sReadBuffer + bhead->_4 * i + sizeof(BlockHeader), sp08 + sBlockSize * _160 * i, bhead->_4, JKR_EXPAND_SWITCH_0,
-                                    0, nullptr, -1, nullptr)) {
+        if (!JKRAram::mainRamToAram(sReadBuffer + bhead->_4 * i + sizeof(BlockHeader), sp08 + sBlockSize * _160 * i, bhead->_4,
+                                    EXPAND_SWITCH_UNKNOWN0, 0, nullptr, -1, nullptr)) {
             UNK_BOOL_B = 1;
             return false;
         }

@@ -39,7 +39,7 @@ void ConeGravity::updateMtx(const TPos3f& rMtx) {
     mWorldMtx.concat(rMtx, mLocalMtx);
 
     TVec3f sideVec;
-    mWorldMtx.getXDirInline(sideVec);
+    mWorldMtx.getXDir(sideVec);
     mWorldRadius = sideVec.length();
 
     TVec3f axis;  // unused
@@ -52,7 +52,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
     TVec3f worldBaseCenter, worldCentralAxis;
 
     mWorldMtx.getYDir(worldCentralAxis);
-    mWorldMtx.getTransInline(worldBaseCenter);
+    mWorldMtx.getTrans(worldBaseCenter);
 
     TVec3f unitWorldCentralAxis;
     f32 centralAxisLength;

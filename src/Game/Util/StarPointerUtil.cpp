@@ -655,7 +655,7 @@ namespace MR {
         rot.setRotate(front, stroke);
         rot.rotate(moment);
 
-        MR::getCameraInvViewMtx()->mult33Inline(moment, *pMoment);
+        MR::getCameraInvViewMtx()->mult33(moment, *pMoment);
         return true;
     }
 

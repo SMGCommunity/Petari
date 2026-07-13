@@ -41,7 +41,7 @@ namespace {
     static GXColor sOceanBowlTevReg1 = {0xC8, 0xE6, 0xD2, 0xFF};
     static u8 sOceanBowlBloomTevReg0V = 0x5F;
     static u8 sOceanBowlBloomTevReg1V = 0x32;
-}  // namespace
+};  // namespace
 
 OceanBowl::OceanBowl(const char* pName)
     : LiveActor(pName), mSide(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mFront(0.0f, 0.0f, 1.0f), mRadius(0.0f), mWaveX(0.0f), mWaveZ(0.0f),

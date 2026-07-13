@@ -177,8 +177,8 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
     if (mountDir == MOUNT_DIRECTION_1) {
         u32 size;
 
-        u8* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, JKR_EXPAND_SWITCH_1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_1, 0,
-                                                reinterpret_cast< int* >(&_5C), &size);
+        void* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0,
+                                                  reinterpret_cast< int* >(&_5C), &size);
 
         mHeader = reinterpret_cast< RarcHeader* >(pData);
 
@@ -188,8 +188,8 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
     } else {
         u32 size;
 
-        u8* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, JKR_EXPAND_SWITCH_1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_2, 0,
-                                                reinterpret_cast< int* >(&_5C), &size);
+        void* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_BACKWARD, 0,
+                                                  reinterpret_cast< int* >(&_5C), &size);
 
         mHeader = reinterpret_cast< RarcHeader* >(pData);
 

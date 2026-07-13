@@ -26,15 +26,8 @@ namespace {
     // TODO: figure out where exactly to put this
     inline void DO_ROTATE(const TPos3f& rMtx, TVec3f* pVec, f32 f1) {
         if (3.0f < f1) {
-            if (rMtx[2][0] - 1.0f >= -(f32)JGeometry::TUtil< f32 >::epsilon()) {
-                pVec->set(JMAATan2(-rMtx[0][1], rMtx[1][1]), -HALF_PI, 0.0f);
-            } else if (rMtx[2][0] + 1.0f <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
-                pVec->set(JMAATan2(rMtx[0][1], rMtx[1][1]), HALF_PI, 0.0f);
-            } else {
-                pVec->x = JMAATan2(rMtx[2][1], rMtx[2][2]);
-                pVec->z = JMAATan2(rMtx[1][0], rMtx[0][0]);
-                pVec->y = JGeometry::TUtil< f32 >::asin(-rMtx[2][0]);
-            }
+            rMtx.getEulerXYZ(*pVec);
+
         } else {
             pVec->x = std::atan2(rMtx[2][1], rMtx[2][2]);
             pVec->z = std::atan2(rMtx[1][0], rMtx[0][0]);

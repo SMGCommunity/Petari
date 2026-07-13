@@ -753,29 +753,19 @@ namespace MR {
         TPos3f pos;
         TVec3f vec1;
         pos.setInline(pMtx);
-
-        if (pos(2, 0) - 1.0f >= -0.0000038146973f) {
-            vec1.set(JMath::sAtanTable.atan2_(-pos(0, 1), pos(1, 1)), -HALF_PI, 0.0f);
-        } else if (1.0f + pos(2, 0) <= 0.0000038146973f) {
-            vec1.set(JMath::sAtanTable.atan2_(pos(0, 1), pos(1, 1)), -HALF_PI, 0.0f);
-        } else {
-            vec1.x = JMath::sAtanTable.atan2_(pos(2, 1), pos(2, 2));
-            vec1.z = JMath::sAtanTable.atan2_(pos(1, 0), pos(0, 0));
-            vec1.y = JGeometry::TUtil< f32 >::asin(-pos(1, 4));
-        }
+        pos.getEulerXYZ(vec1);
 
         TVec3f transVec;
         TVec3f vec3;
-        TVec3f vec2(vec1);
-
-        vec2.scale(57.29578f);
+        TVec3f vec2 = vec1;
+        vec2.scale(_180_PI);
         pBenefitObj->mRotation.set(vec2);
 
         pos.getTrans(transVec);
-        pos.getYDirInline(vec3);
+        pos.getYDir(vec3);
         MR::normalize(&vec3);
 
-        TVec3f vec4(vec3);
+        TVec3f vec4 = vec3;
         vec4.scale(flt);
         pBenefitObj->shoot(transVec, vec4, true);
     }

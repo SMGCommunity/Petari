@@ -68,6 +68,7 @@ __GXCDEF(GXNormal, 3, f32)
 __GXCDEF(GXColor, 1, u32)
 __GXCDEF(GXColor, 4, u8)
 
+__GXCDEF(GXTexCoord, 2, u8)
 __GXCDEF(GXTexCoord, 2, u16)
 __GXCDEF(GXTexCoord, 2, s16)
 __GXCDEF(GXTexCoord, 2, f32)

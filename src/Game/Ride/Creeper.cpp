@@ -259,8 +259,8 @@ void Creeper::control() {
         mCoord = MR::getRailCoord(this) / MR::getRailTotalLength(this);
     }
 
-    mTopMtx.setVec(getHeadPoint()->mSide, getHeadPoint()->mUp, getHeadPoint()->mFront);
-    mTopMtx.setPos(getHeadPoint()->mPosition);
+    mTopMtx.setXYZDir(getHeadPoint()->mSide, getHeadPoint()->mUp, getHeadPoint()->mFront);
+    mTopMtx.setTrans(getHeadPoint()->mPosition);
 }
 
 bool Creeper::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {

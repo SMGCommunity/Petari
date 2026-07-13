@@ -94,18 +94,22 @@ typedef int BOOL;
 #define FALSE 0
 #endif
 
-#define ROUND_UP(x, align) (((x) + (align)-1) & (-(align)))
-#define ROUND_UP_PTR(x, align) ((void*)((((u32)(x)) + (align)-1) & (~((align)-1))))
+#define ROUND_UP(x, align) (((x) + (align) - 1) & (-(align)))
+#define ROUND_UP_PTR(x, align) ((void*)((((u32)(x)) + (align) - 1) & (~((align) - 1))))
 
-#define ALIGN_PREV(X, N) ((X) & ~((N)-1))
-#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
+#define ALIGN_PREV(X, N) ((X) & ~((N) - 1))
+#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N) - 1), N)
 
 #define ARRAY_SIZE(o) (s32)(sizeof(o) / sizeof(o[0]))
+#define ARRAY_SIZEU(o) (sizeof(o) / sizeof(o[0]))
 
 #define MAX(x, y) ((x) > (y) ? (x) : (y))
 #define MIN(x, y) ((x) < (y) ? (x) : (y))
 
 #define FOURCC(c0, c1, c2, c3) (u32)((c0 & 0xFF) << 24 | (c1 & 0xFF) << 16 | (c2 & 0xFF) << 8 | (c3 & 0xFF))
+
+#define IS_ALIGNED(x, align) (((unsigned long)(x) & ((align) - 1)) == 0)
+#define IS_NOT_ALIGNED(X, N) (((X) & ((N) - 1)) != 0)
 
 /* just some common intrinsics */
 

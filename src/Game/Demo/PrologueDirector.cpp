@@ -202,7 +202,7 @@ void PrologueDirector::exeArrive() {
         baseMtx.set(MR::getJointMtx(mMarioPosDummyModel, "MarioPosition"));
 
         TVec3f trans;
-        baseMtx.getTransInline(trans);
+        baseMtx.getTrans(trans);
 
         MR::setPlayerBaseMtx(baseMtx);
         MR::startBckPlayer("DemoPeachCastleGate", (const char*)nullptr);

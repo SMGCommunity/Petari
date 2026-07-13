@@ -56,7 +56,7 @@ namespace {
     static const f32 hIceInitBlowVelV = 100.0f;
     static const f32 hKickCheckOffsetUp = 0.0f;
     static const f32 hIceInitBlowVelH = 0.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvSpinningBox {
     NEW_NERVE(HostTypeNrvFall, SpinningBox, Fall);
@@ -64,7 +64,7 @@ namespace NrvSpinningBox {
     NEW_NERVE_ONEND(HostTypeNrvSliding, SpinningBox, Sliding, Sliding);
     NEW_NERVE_ONEND(HostTypeNrvSpinning, SpinningBox, Spinning, Spinning);
     NEW_NERVE_ONEND(HostTypeNrvPointed, SpinningBox, Pointed, Pointed);
-}  // namespace NrvSpinningBox
+};  // namespace NrvSpinningBox
 
 void FORCE_MATCH_SDATA2() {
     f32 f1 = 1.0f;
@@ -378,8 +378,8 @@ void SpinningBox::generateIceBox(HitSensor* pSender, HitSensor* pReceiver) {
     mPosition.set(pReceiver->mHost->mPosition);
     TPos3f mtx = pReceiver->mHost->getBaseMtx();
     TVec3f up, front;
-    mtx.getYDirInline(up);
-    mtx.getZDirInline(front);
+    mtx.getYDir(up);
+    mtx.getZDir(front);
 
     MR::makeQuatFromVec(&mRotate, front, up);
 

@@ -1014,7 +1014,7 @@ void WaterBazooka::calcGunPointFromCannon(TPos3f* pMtx) {
     JMAVECScaleAdd(&side, &pos, &pos, 550.0f);
     pMtx->setInline(mtx);
     TVec3f up;
-    mtx.getYDirInline(up);
+    mtx.getYDir(up);
     TVec3f front;
     mtx.getZDir(front);
     MR::makeMtxFrontUpPos(pMtx, side, up, pos);
@@ -1023,7 +1023,7 @@ void WaterBazooka::calcGunPointFromCannon(TPos3f* pMtx) {
 void WaterBazooka::setCameraTargetMtx() {
     TPos3f mtx(mShooter->getBaseMtx());
 
-    mtx.setPos(mPosition);
+    mtx.setTrans(mPosition);
     TVec3f up;
     MR::calcUpVec(&up, this);
     TVec3f front;

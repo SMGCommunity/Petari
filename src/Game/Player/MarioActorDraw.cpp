@@ -35,7 +35,7 @@ namespace MR {
     void showMaterial(J3DModel*, const char*);
     template < class T >
     FunctorV0M< const T*, void (T::*)() const > Functor(const T*, void (T::*)() const) NO_INLINE;
-}  // namespace MR
+};  // namespace MR
 
 extern "C" {
 void GDSetTexImgPtr(GXTexMapID, void*);
@@ -747,7 +747,7 @@ void MarioActor::changeDisplayMode(u8 mode) {
     }
 
     MtxPtr handMtx = MR::getJointMtx(this, "HandR");
-    _4A0->setBaseMtx(handMtx);
+    mSearchLightThrowPos->setBaseMtx(handMtx);
 }
 
 void MarioActor::calcViewMainModel() {

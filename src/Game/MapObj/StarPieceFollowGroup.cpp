@@ -95,8 +95,8 @@ void StarPieceFollowGroup::placementPiece(s32 numPlace) {
     TVec3f zDir;
     TVec3f xDir;
 
-    mtxTRS.getXDirInline(xDir);
-    mtxTRS.getZDirInline(zDir);
+    mtxTRS.getXDir(xDir);
+    mtxTRS.getZDir(zDir);
 
     TVec3f position(mPosition);
     f32 currentAngle = 0.0f;
