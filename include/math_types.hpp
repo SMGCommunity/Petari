@@ -15,6 +15,7 @@ const f32 PI_3 = 1.0471976f;
 const f32 PI_4 = 0.78539819f;
 const f32 _4_PI = 1.2566371f;
 const f32 PI_6 = 0.52359879f;
+const f32 PI_36 = 0.087266468f;
 
 const f32 FLOAT_MAX = 3.4028235e38;
 const f32 FLOAT_ZERO = 0.0f;

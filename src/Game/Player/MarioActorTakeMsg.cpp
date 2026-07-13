@@ -128,8 +128,9 @@ bool MarioActor::damageDropThrowMemoSensor() {
 bool MarioActor::rushDropThrowMemoSensor() {
     tryReleaseWithMsg(ACTMES_RUSHDROP);
 
-    bool out = updateSearchLight();
+    updateSearchLight();
 
+    bool out;
     if (_424 != nullptr) {
         out = _424->receiveMessage(ACTMES_DAMAGEDROP, getSensor("body"));
         _424 = nullptr;

@@ -6,7 +6,7 @@ MarioStun::MarioStun(MarioActor* pActor) : MarioState(pActor, MarioStatus_Stun),
 }
 
 bool MarioStun::close() {
-    stopAnimation("しびれ", static_cast< const char* >(nullptr));  // "hesitation"
+    stopAnimation("しびれ");  // "hesitation"
     return true;
 }
 
@@ -38,7 +38,7 @@ bool MarioStun::update() {
         }
     }
     if (_12 != 0 && (mActor->isRequestRush() || checkTrgA())) {
-        stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+        stopAnimation(static_cast< const char* >(nullptr));
         if (checkTrgA()) {
             getPlayer()->tryJump();
         }

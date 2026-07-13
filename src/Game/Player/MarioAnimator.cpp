@@ -581,7 +581,7 @@ void MarioAnimator::updateTakingAnimation(const HitSensor* pSensor) {
     u32 type = pSensor->mType;
     switch (type) {
     case ACTMES_STAR_PIECE_GIFT_MAX:
-        stopAnimation(nullptr, static_cast< const char* >(nullptr));
+        stopAnimation(nullptr);
         changeAnimationUpper("カブウエイト", nullptr);
         mActor->clearNullAnimation(0);
         mActor->offTakingFlag();
@@ -1072,7 +1072,7 @@ void MarioAnimator::update() {
                 if (!mActor->_934) {
                     player = getPlayer();
                     if (player->mMovementStates._1) {
-                        stopAnimation(nullptr, static_cast< const char* >(nullptr));
+                        stopAnimation(nullptr);
                     }
                 }
             }
@@ -1111,7 +1111,7 @@ void MarioAnimator::update() {
             player = getPlayer();
             if (!player->isStatusActive(MarioStatus_Freeze)) {
                 if (isLandingAnimationRun()) {
-                    stopAnimation(nullptr, static_cast< const char* >(nullptr));
+                    stopAnimation(nullptr);
                 }
 
                 player = getPlayer();
@@ -1146,12 +1146,12 @@ void MarioAnimator::update() {
 
         player = getPlayer();
         if (player->_71C != 0) {
-            stopAnimation(nullptr, static_cast< const char* >(nullptr));
+            stopAnimation(nullptr);
         }
 
         player = getPlayer();
         if (player->mMovementStates._A) {
-            stopAnimation(nullptr, static_cast< const char* >(nullptr));
+            stopAnimation(nullptr);
         }
         goto afterBrake;
     }
@@ -1229,7 +1229,7 @@ notSquat:
     }
 
     if (isAnimationRun("壁押し")) {
-        stopAnimation(nullptr, static_cast< const char* >(nullptr));
+        stopAnimation(nullptr);
         goto doBrake;
     }
 
@@ -1252,7 +1252,7 @@ notSquat:
         if (isAnimationRun("ターン")) {
             player = getPlayer();
             if (player->_8F0 < 1.0f) {
-                stopAnimation(nullptr, static_cast< const char* >(nullptr));
+                stopAnimation(nullptr);
             }
         } else {
             _15 = 0;

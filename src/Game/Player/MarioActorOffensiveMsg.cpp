@@ -122,7 +122,7 @@ bool MarioActor::isUnderTarget(HitSensor* pSensor) {
     if (mAlphaEnable) {
         down = _240;
     } else {
-        MR::calcGravityVectorOrZero(this, pSensor->mPosition, &down, _36C, 0);
+        MR::calcGravityVectorOrZero(this, pSensor->mPosition, &down, mGravityInfo, 0);
     }
 
     if (down.dot(mPosition - pSensor->mPosition) <= 0.0f && mMario->_424 == 0) {

@@ -542,18 +542,17 @@ void Mario::doEnforceJump(f32 param) {
 // Mario::pushedByWind
 void Mario::pushedByWind() {
     f32 windMag = _91C.length();
-    const char* noAnim = static_cast< const char* >(nullptr);
 
     TVec3f windDir(_91C);
     MR::normalizeOrZero(&windDir);
 
     if (MR::isNearZero(windDir)) {
         if (isAnimationRun("向かい風ふんばり")) {
-            stopAnimation("向かい風ふんばり", noAnim);
+            stopAnimation("向かい風ふんばり");
         }
 
         if (isAnimationRun("向かい風走り")) {
-            stopAnimation("向かい風走り", noAnim);
+            stopAnimation("向かい風走り");
         }
 
         if (_10.debugMode) {
@@ -579,7 +578,7 @@ void Mario::pushedByWind() {
         windMag = (windMag - table->mWindSlideLimit) * table->mWindSlideFriction;
         _350 += windDir * windMag;
         _1C._A = 1;
-        changeAnimation("向かい風ふんばり", noAnim);
+        changeAnimation("向かい風ふんばり", static_cast< const char* >(nullptr));
         return;
     }
 
@@ -589,8 +588,8 @@ void Mario::pushedByWind() {
         const MarioConstTable* table = mActor->getConst().getTable();
         _350 += scaled * table->mWindForwardFriction;
         _1C._A = 1;
-        stopAnimation("向かい風ふんばり", noAnim);
-        stopAnimation("向かい風走り", noAnim);
+        stopAnimation("向かい風ふんばり");
+        stopAnimation("向かい風走り");
         return;
     }
 
@@ -608,7 +607,7 @@ void Mario::pushedByWind() {
 
     TVec3f final(killed + windDir * element);
 
-    changeAnimation("向かい風走り", noAnim);
+    changeAnimation("向かい風走り", static_cast< const char* >(nullptr));
     _350 += final;
     _1C._A = 1;
 }

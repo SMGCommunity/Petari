@@ -3,6 +3,7 @@
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimator.hpp"
 #include "Game/Player/MarioModule.hpp"
+#include "Game/Player/MarioParts.hpp"
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Player/MarioWait.hpp"
 #include "Game/Util.hpp"

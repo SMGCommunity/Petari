@@ -35,7 +35,7 @@ public:
     void changeAnimation(const char*, const char*);
     void changeAnimationNonStop(const char*);
     void changeAnimationWithAttr(const char*, u32);
-    void stopAnimation(const char*, const char*);
+    void stopAnimation(const char*, const char* = nullptr);
     bool isDefaultAnimationRun(const char*) const;
     void changeAnimationInterpoleFrame(u32);
     bool isAnimationRun(const char*) const;

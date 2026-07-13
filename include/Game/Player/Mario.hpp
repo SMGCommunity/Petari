@@ -166,7 +166,7 @@ public:
     void damageFloorCheck();
     void damageWallCheck();
     void damagePolygonCheck(const Triangle*);
-    void flipLarge(const TVec3f&);
+    bool flipLarge(const TVec3f&);
     bool isEnableAddDamage() const;
     bool damage(const TVec3f&);
     void doAbyssDamage();
@@ -189,7 +189,6 @@ public:
 
     bool doFlipJump(const TVec3f&);
     bool doFlipBackRoll(const TVec3f&);
-
     bool doFlipLarge(const TVec3f&);
     bool doFlipRot(const TVec3f&);
 
@@ -843,7 +842,7 @@ public:
     /* 0x700 */ TVec3f _700;
     /* 0x70C */ TVec3f _70C;
     /* 0x718 */ f32 _718;
-    /* 0x71C */ u8 _71C;
+    /* 0x71C */ bool _71C;
     /* 0x71D */ u8 _71D;
     /* 0x71E */ u8 _71E;
     /* 0x71F */ u8 _71F;

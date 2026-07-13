@@ -252,7 +252,7 @@ void MarioActor::setPlayerMode(u8 playerMode, bool myBool) {
         mMario->_42A = 0;
 
         _9E8->appear();
-        _9F0 = false;
+        _9F0 = 0;
 
         MR::startBck(_9E8, "Wait", nullptr);
         MR::startBva(_9E8, "Wait");
