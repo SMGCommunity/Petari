@@ -49,7 +49,7 @@ void MarioActor::initMember() {
     _218 = nullptr;
     _21C = nullptr;
     _220 = nullptr;
-    _224 = 0;
+    mDrawSearchLight = nullptr;
     _228 = nullptr;
     _22C = nullptr;
     mMario = nullptr;
@@ -154,7 +154,7 @@ void MarioActor::initMember() {
     _490 = 0.0f;
     _498 = nullptr;
     _49C = nullptr;
-    _4A0 = 0;
+    mSearchLightThrowPos = nullptr;
     _4A4 = 0;
     _4A8 = 0;
     _4AC = 0.0f;
@@ -208,8 +208,8 @@ void MarioActor::initMember() {
     mTornadoMario = nullptr;
     _990 = 0;
     _994 = 0;
-    _998 = 0;
-    _99C = 0;
+    mSearchLight = nullptr;
+    mSearchLightTimer = 0;
     _9A0 = 0;
     _9A4 = nullptr;
     _9A8 = 0.0f;
