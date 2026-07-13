@@ -138,7 +138,7 @@ bool MarioStick::update() {
     if (getStickP() > 0.0f) {
         changeAnimation("ハチ壁移動", static_cast< const char* >(nullptr));
     } else {
-        stopAnimation("ハチ壁移動", static_cast< const char* >(nullptr));
+        stopAnimation("ハチ壁移動");
     }
 
     if (MR::diffAngleAbs(stack_2C, _2C) < 1.308997f) {

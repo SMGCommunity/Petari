@@ -103,7 +103,7 @@ bool MarioFlow::update() {
 }
 
 bool MarioFlow::close() {
-    stopAnimation("ダメージ", static_cast< const char* >(nullptr));
+    stopAnimation("ダメージ");
     stopAnimation("ダメージ着地", "基本");
 
     return true;

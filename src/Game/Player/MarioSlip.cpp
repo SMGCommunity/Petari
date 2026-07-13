@@ -245,7 +245,7 @@ void Mario::slopeMove() {
                 mVelocity += -_904 * dashAccel;
 
                 if (isAnimationRun("がんばり走り")) {
-                    stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+                    stopAnimation(static_cast< const char* >(nullptr));
                 }
             }
         }
@@ -417,14 +417,14 @@ void Mario::slopeMove() {
             }
 
             if (isAnimationRun("スケーティング")) {
-                stopAnimation("スケーティング", static_cast< const char* >(nullptr));
+                stopAnimation("スケーティング");
             }
 
             if (isStickOn() && _8F0 == 0.0f) {
                 if (isAnimationRun("坂すべり上向き終了")) {
-                    stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+                    stopAnimation(static_cast< const char* >(nullptr));
                 } else if (isAnimationRun("坂すべり下向き終了")) {
-                    stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+                    stopAnimation(static_cast< const char* >(nullptr));
                 }
             }
         }

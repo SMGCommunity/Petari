@@ -1193,16 +1193,16 @@ void Mario::procJump(bool a1) {
 
     if (!isRising()) {
         if (isAnimationRun("ジャンプB")) {
-            stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+            stopAnimation(static_cast< const char* >(nullptr));
         }
 
         if (!mSwim->_1B2) {
             if (isAnimationRun("水泳スピン移動")) {
-                stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+                stopAnimation(static_cast< const char* >(nullptr));
             }
 
             if (isAnimationRun("水泳スピンジャンプ")) {
-                stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+                stopAnimation(static_cast< const char* >(nullptr));
             }
 
             if (isAnimationRun("水泳ジェット")) {
@@ -1252,7 +1252,7 @@ void Mario::procJump(bool a1) {
         if (checkTrgZ()) {
             resetTornado();
             cancelTornadoJump();
-            stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+            stopAnimation(static_cast< const char* >(nullptr));
             changeAnimationInterpoleFrame(1);
             mDrawStates._8 = true;
             playSound("声小ジャンプ", -1);
@@ -1649,7 +1649,7 @@ void Mario::procHipDrop() {
             return;
         }
 
-        stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+        stopAnimation(static_cast< const char* >(nullptr));
         return;
     }
 
@@ -2098,7 +2098,7 @@ void Mario::cancelTornadoJump() {
     if ((mMovementStates._1) == 0) {
         stopAnimation("スピンジャンプ", "落下");
     } else {
-        stopAnimation("スピンジャンプ", static_cast< const char* >(nullptr));
+        stopAnimation("スピンジャンプ");
     }
 
     _4B0 = mPosition;

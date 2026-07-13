@@ -220,7 +220,7 @@ void MarioActor::initBeeMario() {
     _9E8->initFixedPosition(_DDC.toMtxPtr(), localRot, localTrans);
     _9E8->makeActorDead();
 
-    _9F0 = false;
+    _9F0 = 0;
     _3D2 |= 0x10;
 }
 

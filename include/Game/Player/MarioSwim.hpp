@@ -82,6 +82,14 @@ public:
     f32 checkUnderWaterFull(const TVec3f&);
     void hitHead(const HitInfo*);
 
+    f32 calcWaterEdgeDist() const {
+        if (isOnWaterSurface()) {
+            return -1.0f;
+        }
+
+        return mDistanceToWaterSurface;
+    };
+
     static inline f32 getWorthlessNumber() {
         return 0.523598790169f;
     }
@@ -127,6 +135,10 @@ public:
 
     inline bool check7Aand7C() const {
         return mSpinTimer || mSpinDashTimer;
+    }
+
+    inline bool isOnWaterSurface() const {
+        return mIsOnSurface || mIsSwimmingAtSurface;
     }
 
     /* 0x014 */ MarineSnow* mMarineSnow;

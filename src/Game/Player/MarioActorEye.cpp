@@ -6,10 +6,7 @@
 #include "Game/Util/ModelUtil.hpp"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
 
-extern "C" {
-extern u8 lbl_805BA740[];
-extern char lbl_805BA74A[];
-}
+static u8 sBlinkStates[] = {0, 1, 2, 2, 2, 2, 1, 1, 0, 0};
 
 void MarioActor::initBlink() {
     _B72 = 0;
@@ -21,16 +18,23 @@ void MarioActor::initBlink() {
 void MarioActor::setBlink(const char* pName) {
     if (pName == nullptr) {
         mEyeRes = nullptr;
-    } else if (MR::getResourceHolder(this)->mBtpResTable->isExistRes(pName)) {
+
+        return;
+    }
+
+    if (MR::getResourceHolder(this)->mBtpResTable->isExistRes(pName)) {
         J3DAnmTexPattern* pPattern = static_cast< J3DAnmTexPattern* >(MR::getResourceHolder(this)->mBtpResTable->getRes(pName));
         mEyeRes = pPattern;
         mEyeRes->mFrame = 0.0f;
-    } else {
-        mEyeRes = nullptr;
+
+        return;
     }
+
+    mEyeRes = nullptr;
 }
 
 void MarioActor::updateBlink() {
+    // FIXME: double regswap
     if (mCurrModel == 1) {
         return;
     }
@@ -42,7 +46,7 @@ void MarioActor::updateBlink() {
         if (pPattern->mAttribute == 2) {
             frame = pPattern->mFrame + 1.0f;
 
-            if (frame >= static_cast< f32 >(pPattern->mFrameMax) - 1.0f) {
+            if (frame >= pPattern->mFrameMax - 1.0f) {
                 frame = 0.0f;
             }
         } else {
@@ -51,15 +55,15 @@ void MarioActor::updateBlink() {
 
         mEyeRes->mFrame = frame;
 
-        u16 eyeLidMaterial = static_cast< u16 >(MR::getMaterialNo(MR::getJ3DModelData(this), lbl_805BA74A));
+        u16 eyeLidMaterial = MR::getMaterialNo(MR::getJ3DModelData(this), "EyeLid_v");
 
         for (u16 i = 0; i < mEyeRes->mUpdateMaterialNum; i++) {
             u16 texNo;
             mEyeRes->getTexNo(i, &texNo);
 
             if (mEyeRes->mUpdateMaterialID[i] == eyeLidMaterial) {
-                _B68 = 1;
                 _B6A = texNo - _B70;
+                _B68 = 1;
                 return;
             }
         }
@@ -82,9 +86,9 @@ void MarioActor::updateBlink() {
     }
 
     if (_B72) {
-        s32 blinkStep = _B72 - 1;
+        u8 blinkStep = _B72 - 1;
         _B72 = blinkStep;
-        _B6A = lbl_805BA740[9 - static_cast< u8 >(blinkStep)];
+        _B6A = sBlinkStates[9 - blinkStep];
         _B74 = MR::getRandom(60L, 360L);
         return;
     }

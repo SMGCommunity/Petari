@@ -174,7 +174,7 @@ bool MarioFpView::close() {
         MR::endSubjectiveCamera(15);
     }
 
-    stopAnimation("見る", reinterpret_cast< char* >(nullptr));
+    stopAnimation("見る");
 
     // mActor->showBeeFur();
 

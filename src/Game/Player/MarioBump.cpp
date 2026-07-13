@@ -91,7 +91,7 @@ bool MarioBump::start() {
     _12 = static_cast< u16 >(blendTimer);
 
     if (isAnimationRun(static_cast< const char* >(nullptr))) {
-        stopAnimation(static_cast< const char* >(nullptr), static_cast< const char* >(nullptr));
+        stopAnimation(static_cast< const char* >(nullptr));
     }
 
     _18 = getFrontVec();

@@ -203,7 +203,7 @@ bool MarioStep::start() {
     _14 = v3;
 
     if (isAnimationRun(nullptr) && !mActor->_3E5) {
-        stopAnimation(nullptr, static_cast< const char* >(nullptr));
+        stopAnimation(nullptr);
     }
 
     return true;

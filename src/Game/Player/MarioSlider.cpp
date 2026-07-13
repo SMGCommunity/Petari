@@ -214,7 +214,7 @@ bool MarioSlider::update() {
 
 bool MarioSlider::close() {
     if (getPlayer()->isSwimming()) {
-        stopAnimation("スライダー尻", static_cast< const char* >(nullptr));
+        stopAnimation("スライダー尻");
     } else if (getPlayer()->mMovementStates.jumping == 0) {
         stopAnimation("スライダー尻", "基本");
     } else {

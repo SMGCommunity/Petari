@@ -2,7 +2,9 @@
 
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Player/Mario.hpp"
+#include "Game/Player/MatrixControl.hpp"
 #include "Game/Util/Color.hpp"
+#include "Game/Util/MapUtil.hpp"
 
 class BlackHole;
 class CollisionShadow;
@@ -12,6 +14,7 @@ class FixedPosition;
 class FootPrint;
 class HashSortTable;
 class IceStep;
+class FireMarioBall;
 class J3DAnmTexPattern;
 class J3DModel;
 class J3DModelData;
@@ -22,6 +25,7 @@ class JetTurtleShadow;
 class MarioAnimator;
 class MarioConst;
 class MarioEffect;
+class CollectCounter;
 class MarioMessenger;
 class MarioNullBck;
 class MarioSearchLight;
@@ -37,6 +41,9 @@ class XjointTransform;
 struct DLholder;
 struct ResTIMG;
 struct SmokeEffectEntry;
+class MatrixControl;
+
+enum SPECIAL_STATUS_FOR_CAMERA { CASE_0, CASE_1 };
 
 template < int SIZE, class T, class U >
 class AudGenericAudible;
@@ -76,24 +83,16 @@ public:
     void changeAnimation(const char*, const char*);
     void changeAnimationNonStop(const char*);
     void changeAnimationUpper(const char*);
-    const char* changeMorphString(const char*) const;
     void stopAnimation(const char*);
     bool isAnimationRun(const char*) const;
     void changeNullAnimation(const char*, s8);
     void clearNullAnimation(s8);
-    void changeSpecialModeAnimation(const char*);
     bool isStopNullAnimation() const;
     void changeGameOverAnimation();
     XjointTransform* getJointCtrl(const char*) const;
     void updateRotationInfo();
     void exeWait();
-    void exeGameOver();
-    void exeGameOverAbyss();
-    void exeGameOverFire();
     // void exeGameOverBlackHole();
-    void exeGameOverNonStop();
-    void exeGameOverSink();
-    void exeTimeWait();
     void control2();
     void controlMain();
     void updateBehavior();
@@ -139,7 +138,6 @@ public:
     bool isSleeping() const;
     bool isRefuseTalk() const;
     bool isDebugMode() const;
-    bool isRequestSpin() const;
 
     void jumpHop();
     void calcCenterPos();
@@ -164,14 +162,8 @@ public:
     void initMaterialEffect();
     void initCommonEffect();
     void addSoundObjHolder();
-    void initParts();
-    void initMorphStringTable();
-    void setupSensors();
-    void updateTransForCamera();
 
     void initMember();
-
-    void init2D();
 
     void initDrawAndModel();
     void initBeeMario();
@@ -182,64 +174,26 @@ public:
     void initTeresaMarioAnimation();
     void initTornadoMario();
     void initBoneMario();
-    void initFireBall();
-    void initShadow();
-    void initSearchLight();
-    void initHand();
     void swapTextureInit();
     void initBlur();
-    void initScreenBox();
-    bool isUseScreenBox() const;
-    void captureScreenBox() const;
-    void writeBackScreenBox() const;
     void changeDisplayMode(u8);
     bool isAllHidden() const;
     void calcViewMainModel();
     void initFace();
-    void updateHand();
     void updateFace();
     void drawIndirect() const;
     void drawIndirectModel() const;
     void drawReflectModel() const;
     void drawModelBlur() const;
-    void drawColdWaterDamage() const;
-    void drawRasterScroll(f32, s16, f32) const;
-    void drawMosaic() const;
-    void drawLifeUp() const;
-    void calcSpinEffect();
-    void drawSpinEffect() const;
-    void drawWallShade(const TVec3f&, const TVec3f&, f32) const;
     void drawSearchLight() const;
-    void drawShadow() const;
-    void drawSilhouette() const;
     void drawPreWipe() const;
-    void drawScreenBlend() const;
-
+    void initSearchLight();
+    void initThrowing();
     void drawMarioModel() const;
 
     // Called by drawMarioModel
-    void drawSpinInhibit() const;
-    void drawSphereMask() const;
-    bool drawDarkMask() const;
-    void drawHand() const;
-    void decideShadowMode();
-    void calcViewSilhouetteModel();
-    void calcViewWallShadowModel();
-    void calcViewBlurModel();
-    void calcViewFootPrint();
-    void calc1stPersonView();
-    void calcFogLighting();
-    void calcViewReflectionModel();
     void calcViewSearchLight();
-    void updateDarkMask(u16);
 
-    void resetPadSwing();
-    void initActionMatrix();
-
-    TVec3f& getGravityVec() const;
-    TVec3f& getGravityVector() const;
-    const TVec3f& getAirGravityVec() const;
-    void updateGravityVec(bool, bool);
     void changeTeresaAnimation(const char*, s32);
 
     MultiEmitter* playEffect(const char*);
@@ -253,111 +207,36 @@ public:
     bool isMaterialEffect(const char*) const NO_INLINE;
     s32 getFloorMaterialIndex(u32) const;
 
-    void updateActionTrigger();
-    void updateControllerSwing();
-    void updateControllerSwingLeft();
-    void update2D();
-    void updateTakingPosition();
     void updateSearchLight();
     void updateThrowing();
-    void updateBeeWingAnimation();
-    void updateFairyStar();
-    void createRainbowDL();
-    void updateRandomTexture(f32);
-    void updatePlayerMode();
     void updateEffect();
     bool checkEffectWaterColumn();
-    void updateThrowVector();
-    void updateForCamera();
-    void updateTornado();
 
-    bool tryJumpRush();
-    void initForJump();
-    void lockOnDPD();
-    bool tryCoinPull();
-    bool tryThrow();
-    bool tryStandardRush();
-    void checkPriorRushTarget();
-    u8 selectAction(const char*) const;
-    bool selectInvalidMovingCollision(const char*) const;
-    bool tryRushInRush();
     void bodyClap();
     bool selectWaterInOut(const char*) const;
-    bool selectWaterInOutEffect(const char*) const;
-    bool selectWaterInOutRush(const HitSensor*) const;
     void playEffectRT(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTZ(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTW(const char*, const TVec3f&, const TVec3f&);
     void playEffectSRT(const char*, f32, const TVec3f&, const TVec3f&);
     void emitEffectWaterColumn(const TVec3f&, const TVec3f&);
-    bool selectRecoverFlyMeter(const HitSensor*) const;
     void endRush(const RushEndInfo*);
     void stopSpinTicoEffect(bool);
     void stopEffectForce(const char*);
-    bool isRequestRush() const;
-    bool isRequestJump2P() const;
-    bool isKeepJump() const;
-    bool isKeepJump2P() const;
-    bool isRequestHipDrop() const;
-    bool isRequestSpinJump2P() const;
-    bool tryReleaseBombTeresa();
     void initBlackHoleOut();  // void ?
     void exeGameOverBlackHole2();
-    bool isEnableSpinPunch();
-    bool trySpinPunch();
-    void shootFireBall();
-    void doFreezeAttack();
     void initBlink();
     void updateBlink();
-    bool finalizeFreezeModel();
     void setBlink(const char*);
-    void resetSensorCount();
-    void getStickValue(f32*, f32*);
-    bool checkButtonType(u16, bool) const;
-    bool sendPunch(HitSensor*, bool);
-    void reactionPunch(HitSensor*);
-    void tryCoinPullInRush();
-    bool tryJetAttack(HitSensor*);
-    void releaseThrowMemoSensor();
-    void createIceFloor(const TVec3f&);
-    void syncJumpBeeStickMode();
-
-    bool isRequestJump() const;
-
-    void damageDropThrowMemoSensor();
-
-    void setPlayerMode(u16, bool);
-
-    bool isActionOk(const char*) const;
-
-    bool isInZeroGravitySpot() const;
-    f32 getGravityRatio() const;
-    u32 getGravityLevel() const;
-
-    void forceKill(u32);
-
-    void sendMsgUpperPunch(HitSensor*);
-    bool sendMsgToSensor(HitSensor*, u32);
 
     void entryWallWalkMode(const TVec3f&, const TVec3f&);
 
-    const HitSensor* getCarrySensor() const;
     HitSensor* getLookTargetSensor() const;
-    bool selectHomingInSuperHipDrop(const char*) const;
-    f32 getFaceLookHeight(const char*) const;
-    void updateSpecialModeAnimation();
     J3DModelX* getJ3DModel() const;
     J3DModelData* getModelData() const;
     J3DModelX* getSimpleModel() const;
     void createTextureDL(DLholder*, u16, u16);
     void swapTexture(const char*, u8) const;
     void copyMaterial(J3DModel*, u16, s32);
-    void rushDropThrowMemoSensor();
-    void offTakingFlag();
-
-    void changeHandMaterial();
-    void calcScreenBoxRange();
-    void updateRasterScroll();
 
     void settingRush();
 
@@ -368,12 +247,254 @@ public:
 
     bool takeSensor(HitSensor*);
 
+    // Defined in MarioActorPunch
+    bool isEnableSpinPunch();
+    void reactionPunch(HitSensor*);
+    bool sendPunch(HitSensor*, bool);
+    bool doFreezeAttack(HitSensor*);
+    bool trySpinPunch();
+    void printHitMark(HitSensor*);
+    bool tryPunchAirAfter(HitSensor*);
+    bool sendBodyAttack(HitSensor*);
+    void doFreezeAttack();
+
+    // Defined in MarioActorCamera
+    MtxPtr getMapBaseMtx() const;
+    bool isFastRise() const;
+    bool isLongDrop() const;
+    bool isFastDrop() const;
+    u32 getSpecialMode() const;
+    bool isCameraStateOn(SPECIAL_STATUS_FOR_CAMERA) const;
+    void getSideVec(TVec3f*) const;
+    void getUpVec(TVec3f*) const;
+    const TVec3f& getTransForCamera() const;
+    void updateTransForCamera();
+    void updateForCamera();
+
+    // Defined in MarioActorGameOver
+    void forceKill(u32);
+    void exeGameOver();
+    void exeGameOverAbyss();
+    void exeGameOverFire();
+    void exeGameOverSink();
+    void exeGameOverNonStop();
+    void exeTimeWait();
+
+    // Defined in MarioActorGravity
+    const TVec3f& getGravityVec() const;
+    const TVec3f& getGravityVector() const;
+    const TVec3f& getAirGravityVec() const;
+    void getGravityVector(TVec3f*) const;
+    f32 getGravityRatio() const;
+    GravityInfo* getGravityInfo() const;
+    u8 getGravityLevel() const;
+    bool checkBeeWallStick(TVec3f&);
+    bool checkBeeFloorStick(TVec3f&);
+    void syncJumpBeeStickMode();
+    void updateBeeModeGravity(TVec3f&);
+    bool isInZeroGravitySpot() const;
+    void updateGravityVec(bool, bool);
+    bool checkBeeCeilStick(TVec3f&);
+    void updateBeeStickMode(TVec3f&);
+
+    // Defined in MarioActorHand
+    void initHand();
+    void updateHand();
+    void changeHandMaterial();
+    void updateHandAtMorph();
+    void drawHand() const;
+    void drawIndirectHand() const;
+
+    // Defined in MarioActorPad
+    void resetPadSwing();
+    bool isRequestHipDrop() const;
+    bool isRequestRush() const;
+    bool isRequestThrow() const;
+    bool isRequestSpin() const;
+    bool isRequestJump() const;
+    bool isRequestJump2P() const;
+    bool isKeepJump() const;
+    bool isKeepJump2P() const;
+    bool checkButtonType(u16, bool) const;
+    void getStickValue(f32*, f32*);
+    void updateActionTrigger();
+    void updateControllerSwing();
+    void updateControllerSwingLeft();
+    void lockOnDPD();
+    bool isRequestSpinJump2P() const;
+
+    // Defined in MarioActorParts
+    void init2D();
+    void initParts();
+    void updateBeeWingAnimation();
+    void updateTornado();
+    void updateTakingPosition();
+    const HitSensor* getCarrySensor() const;
+    void changeSpecialModeAnimation(const char*);
+    void updateSpecialModeAnimation();
+    void initFireBall();
+    void shootFireBall();
+    void showFreezeModel();
+    void hideFreezeModel();
+    void updateFairyStar();
+    void update2D();
+    void updateThrowVector();
+    void createIceFloor(const TVec3f&);
+    void createIceFloor(const TVec3f&, const TVec3f&);
+    void createIceWall(const TVec3f&, const TVec3f&);
+    void updateBaseMtxTeresa(MtxPtr);
+    bool finalizeFreezeModel();
+    void offTakingFlag();
+
+    // Defined in MarioActorSensor
+    void setupSensors();
+    void doTrampleJump(HitSensor*);
+    void trampleJump(f32, f32);
+    bool sendMsgToSensor(HitSensor*, u32);
+    void resetSensorCount();
+    void recordScoutingObject(HitSensor*);
+    void updateScouter();
+    void initScouter();
+    void initForJump();
+
+    // Defined in MarioActorShadow
+    void initShadow();
+    void calcViewReflectionModel();
+    void calcViewWallShadowModel();
+    void drawShadow() const;
+    void decideShadowMode();
+    void calcViewSilhouetteModel();
+    f32 calcCylinderToCenter(const AreaObj*, TVec3f*);
+    void calcViewBlurModel();
+    void calcViewFootPrint();
+    void drawSilhouette() const;
+
+    // Defined in MarioActorSpecialDraw
+    void initScreenBox();
+    bool isUseScreenBox() const;
+    void calcScreenBoxRange();
+    void captureScreenBox() const;
+    void writeBackScreenBox() const;
+    void calc1stPersonView();
+    void hideBeeFur();
+    void calcFogLighting();
+    void resetFog();
+    void updateAlphaDL(u8);
+    void updateSimpleAlphaDL(u8);
+    void updateReflectAlphaDL(u8);
+    void updateLightDL(const Color8&, const Color8&, const Color8&, f32);
+    void createRainbowDL();
+    void drawScreenBlend() const;
+    void updateRandomTexture(f32);
+    void drawWallShade(const TVec3f&, const TVec3f&, f32) const;
+    void drawSpinInhibit() const;
+    void drawColdWaterDamage() const;
+    void setRasterScroll(s32, s32, s32);
+    void updateRasterScroll();
+    void drawRasterScroll(f32, s16, f32) const;
+    void drawMosaic() const;
+    void drawLifeUp() const;
+    void calcSpinEffect();
+    void drawSpinEffect() const;
+    void drawSphereMask() const;
+    void initDarkMask();
+    void updateDarkMask(u16);
+    void showBeeFur();
+    bool drawDarkMask() const;
+
+    // Defined in MarioActorMatrix
+    void initActionMatrix();
+    bool isActionOk(const char*) const;
+    u8 selectAction(const char*) const;
+    bool selectAutoBind(const char*, u8*) const;
+    bool selectCustomEffectSpinHitSound(const char*) const;
+    bool selectSpinCatchInRush(const char*) const;
+    bool selectHomingInSuperHipDrop(const char*) const;
+    bool selectNotHomingSensor(const HitSensor*) const;
+    bool selectInvalidMovingCollision(const char*) const;
+    bool selectQuickResetBeeWallGravity(const char*) const;
     bool selectJumpRushSensor(const char*) const;
+    bool selectDamageFireColor(const char*) const;
+    bool selectWaterInOutEffect(const char*) const;
+    bool selectOnDamageRush(const char*) const;
+    bool selectTiltPress(const HitSensor*) const;
+    bool selectHandyRush(const HitSensor*) const;
+    bool selectRecoverFlyMeter(const HitSensor*) const;
+    bool selectHideFlyMeter(const HitSensor*) const;
+    bool selectTeresaThru(const HitSensor*) const;
+    bool selectRebindTimer(const HitSensor*) const;
+    bool selectHipDropRush(const HitSensor*) const;
+    bool selectPushOff(const HitSensor*) const;
+    bool selectWaterInOutRush(const HitSensor*) const;
+    bool selectLandEffect(const HitSensor*) const;
+    bool selectNoShadow(const HitSensor*) const;
+    bool selectDamagePop(const HitSensor*) const;
+    f32 getFaceLookHeight(const char*) const;
 
+    // Defined in MarioActorMorph
+    void setPlayerMode(u8, bool);
+    void resetPlayerModeOnDamage();
+    void resetPlayerModeOnNoDamage();
+    void updatePlayerMode();
+    void touchSensor(HitSensor*);
+    void initMorphStringTable();
+    const char* changeMorphString(const char*) const;
+
+    // Defined in MarioActorOffensiveMsg
+    void attackOrPushSensor(HitSensor*, f32);
+    void attackOrPushSensorInDamage(HitSensor*, f32);
+    void attackOrPushSensorInRush(HitSensor*, f32);
+    void tryAddClapCoin(HitSensor*);
+    bool tryTornadoAttack(HitSensor*);
+    bool isUnderTarget(HitSensor*);
+    bool tryHipDropAttack(HitSensor*);
+    bool checkAndTryTrampleAttack(HitSensor*, f32, bool);
+    bool tryTrampleAttack(HitSensor*);
+    bool cylinderHorizontalCheck(HitSensor*);
+    bool tryJetAttack(HitSensor*);
+    void tryCounterJetAttack(HitSensor*);
+    bool tryGetItem(HitSensor*);
+    bool cylinderPushCheck(const TVec3f&, f32, f32, f32);
+    void attackOrPushPolygons();
+    void sendWallTouch(HitSensor*, HitSensor*);
+    bool sendMsgUpperPunch(HitSensor*);
+
+    // Defined in MarioActorDefensiveMsg
+    bool tryAttackMsg(u32, const HitSensor*, bool*);
+    bool tryVectorAttackMsg(u32, const TVec3f&);
+    void cylinderHitCheck(const HitSensor*, TVec3f*);
+
+    // Defined in MarioActorRushMsg
+    void addRushSensor(HitSensor*, bool);
+    bool tryStandardRush();
+    void checkPriorRushTarget();
+    HitSensor* getNearestRushTarget(bool) const;
+    HitSensor* getNearestJumpTarget() const;
+    HitSensor* getHighPriorityTarget() const;
+    HitSensor* getRescueTarget() const;
+    bool tryStartRush(bool);
+    bool tryJumpRush();
+    void tryRushInRush();
+
+    // Defined in MarioActorTakeMsg
     void memorizeSensorThrow(HitSensor*);
+    bool tryThrow();
+    void tryReleaseDirect(const HitSensor*);
+    bool damageDropThrowMemoSensor();
+    bool rushDropThrowMemoSensor();
+    void trySetLockOnTarget(HitSensor*);
+    void tryCoinPull();
+    void tryCoinPullInRush();
+    void flushCoinPull();
+    bool tryCoinPullOne(HitSensor*);
+    void tryPullTrans(TVec3f*, const TVec3f&);
+    bool releaseThrowMemoSensor();
+    void tryReleaseWithMsg(u32);
+    void tryTornadoPull(HitSensor*);
+    bool tryReleaseBombTeresa();
 
-    void initThrowing();
-    void getThrowVec(TVec3f* pVec) const;
+    void runTeresaBaseAnimation();
+    void getThrowVec(TVec3f*) const;
 
     const MarioConst& getConst() const {
         return *mConst;
@@ -400,6 +521,22 @@ public:
         return mMario->isAnimationRun(pAnimName);
     }
 
+    inline bool IsMarioSwimming() const {
+        return mMario->isSwimming();
+    }
+
+    inline void MarioStopWalk() const {
+        mMario->stopWalk();
+    }
+
+    inline const bool isBeeMarioOnFur() const {
+        return mMario->getMovementStates()._1 && !strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) && mAlphaEnable == 0;
+    }
+
+    inline const bool is481or482On() const {
+        return _481 || _482;
+    }
+
     struct FBO {
         u32 _0;
         u32 _4;
@@ -419,7 +556,7 @@ public:
     /* 0x1B0 */ Color8 _1B0;
     /* 0x1B4 */ u8 _1B4;
     /* 0x1B5 */ bool _1B5;
-    /* 0x1B8 */ u32 _1B8;
+    /* 0x1B8 */ CollectCounter* _1B8;
     /* 0x1BC */ MarioMessenger* _1BC;
     /* 0x1C0 */ bool _1C0;
     /* 0x1C1 */ bool _1C1;
@@ -460,7 +597,7 @@ public:
     /* 0x240 */ TVec3f _240;
     /* 0x24C */ TVec3f _24C;
     /* 0x258 */ TVec3f _258;
-    /* 0x264 */ TVec3f _264;
+    /* 0x264 */ TVec3f mLastMove;
     /* 0x270 */ TVec3f _270;
     /* 0x27C */ TVec3f _27C;
     /* 0x288 */ TVec3f _288;
@@ -469,15 +606,15 @@ public:
     /* 0x2AC */ TVec3f _2AC;
     /* 0x2B8 */ TVec3f _2B8;
     /* 0x2C4 */ TVec3f _2C4;
-    /* 0x2D0 */ TVec3f _2D0;
+    /* 0x2D0 */ TVec3f mUpVec;
     /* 0x2DC */ TVec3f _2DC;
     /* 0x2E8 */ TVec3f _2E8;
-    /* 0x2F4 */ TVec3f _2F4;
+    /* 0x2F4 */ TVec3f mCameraTrans;
     /* 0x300 */ TVec3f _300;
     /* 0x30C */ TVec3f _30C;
     /* 0x318 */ TVec3f _318;
     /* 0x324 */ TVec3f _324;
-    /* 0x330 */ u16 _330;
+    /* 0x330 */ u16 _330;  // a timer
     /* 0x332 */ u16 _332;
     /* 0x334 */ u16 _334;
     /* 0x336 */ u16 _336;
@@ -486,9 +623,9 @@ public:
     /* 0x348 */ TVec3f _348;
     /* 0x354 */ TVec3f _354;
     /* 0x360 */ TVec3f _360;
-    /* 0x36C */ GravityInfo* _36C;
-    /* 0x370 */ u8 _370;
-    /* 0x374 */ f32 _374;
+    /* 0x36C */ GravityInfo* mGravityInfo;
+    /* 0x370 */ bool _370;
+    /* 0x374 */ f32 mGravityRatio;
     /* 0x378 */ u16 _378;
     /* 0x37C */ u32 _37C;
     /* 0x380 */ u32 mHealth;
@@ -531,51 +668,51 @@ public:
     /* 0x420 */ u32 _420;
     /* 0x424 */ HitSensor* _424;
     /* 0x428 */ HitSensor* _428[4];
-    /* 0x438 */ u8 _438[0x30];
+    /* 0x438 */ TVec3f _438[4];
 
     union {
         struct {
             /* 0x468 */ u32 _468;
             /* 0x46C */ HitSensor* _46C;
-            /* 0x470 */ u32 _470;
+            /* 0x470 */ HitSensor* _470;
         };
 
         /* 0x468 */ TVec3f _468Vec;
     };
 
-    /* 0x474 */ u32 _474;
+    /* 0x474 */ HitSensor* _474;
     /* 0x478 */ f32 _478;
     /* 0x47C */ u32 _47C;
     /* 0x480 */ bool _480;
     /* 0x481 */ u8 _481;
     /* 0x482 */ bool _482;
-    /* 0x483 */ u8 _483;
+    /* 0x483 */ bool _483;
     /* 0x484 */ TVec3f _484;
     /* 0x490 */ f32 _490;
     /* 0x494 */ FixedPosition* _494;
     /* 0x498 */ FixedPosition* _498;
     /* 0x49C */ FixedPosition* _49C;
     /* 0x4A0 */ FixedPosition* mSearchLightThrowPos;
-    /* 0x4A4 */ void* _4A4;  // used in calcAnimInMovement()
+    /* 0x4A4 */ HitSensor* _4A4;  // used in calcAnimInMovement()
     /* 0x4A8 */ u32 _4A8;
     /* 0x4AC */ f32 _4AC;
     /* 0x4B0 */ f32 _4B0;
     /* 0x4B4 */ f32 _4B4;
     /* 0x4B8 */ TVec3f _4B8;
     /* 0x4C4 */ TVec3f _4C4;
-    /* 0x4D0 */ u32 _4D0[128];
+    /* 0x4D0 */ HitSensor* _4D0[128];
     /* 0x6D0 */ u8 _6D0;
     /* 0x6D4 */ f32 _6D4;
     /* 0x6D8 */ f32 _6D8;
     /* 0x6DC */ HitSensor* _6DC[64];
-    /* 0x7DC */ u16 _7DC;
+    /* 0x7DC */ u16 _7DC;  // _6DC count
     /* 0x7DE */ u16 _7DE;
     /* 0x7E0 */ u16 _7E0;
     /* 0x7E2 */ u8 _7E2;
-    /* 0x7E4 */ u32 _7E4[64];
-    /* 0x8E4 */ u8 _8E4[64];
+    /* 0x7E4 */ HitSensor* _7E4[64];
+    /* 0x8E4 */ bool _8E4[64];
     /* 0x924 */ HitSensor* _924;
-    /* 0x928 */ u32 _928;
+    /* 0x928 */ HitSensor* _928;
     /* 0x92C */ u32 _92C;
     /* 0x930 */ u32 _930;
     /* 0x934 */ bool _934;
@@ -588,17 +725,17 @@ public:
     /* 0x94A */ u16 _94A;
     /* 0x94C */ u16 _94C;
     /* 0x94E */ u16 _94E;
-    /* 0x950 */ u8 _950;
+    /* 0x950 */ bool _950;
     /* 0x951 */ u8 _951;
-    /* 0x954 */ u32 _954[8];
-    /* 0x974 */ u8 _974;
+    /* 0x954 */ HitSensor* _954[8];
+    /* 0x974 */ u8 _974;  // _954 count
     /* 0x978 */ TVec3f _978;
     /* 0x984 */ f32 _984;
     /* 0x988 */ u8 _988;
     /* 0x989 */ u8 _989;
     /* 0x98C */ TornadoMario* mTornadoMario;
     /* 0x990 */ u8 _990;
-    /* 0x994 */ u32 _994;
+    /* 0x994 */ LiveActor* _994;  // probably some subclass of LiveActor
     /* 0x998 */ MarioSearchLight* mSearchLight;
     /* 0x99C */ u32 mSearchLightTimer;
     /* 0x9A0 */ JetTurtleShadow* _9A0;
@@ -610,7 +747,7 @@ public:
     /* 0x9B8 */ u32 _9B8;
     /* 0x9BC */ u32 _9BC;
     /* 0x9C0 */ ModelHolder* _9C0;
-    /* 0x9C4 */ LiveActor* _9C4;
+    /* 0x9C4 */ MarioParts* _9C4;
     /* 0x9C8 */ ModelHolder* _9C8;
     /* 0x9CC */ f32 _9CC;
     /* 0x9D0 */ f32 _9D0;
@@ -619,8 +756,8 @@ public:
     /* 0x9E4 */ ModelHolder* _9E4;
     /* 0x9E8 */ MarioParts* _9E8;
     /* 0x9EC */ LiveActor* _9EC;
-    /* 0x9F0 */ bool _9F0;
-    /* 0x9F1 */ bool mAlphaEnable;
+    /* 0x9F0 */ u8 _9F0;
+    /* 0x9F1 */ u8 mAlphaEnable;
     /* 0x9F2 */ u16 _9F2;
     /* 0x9F4 */ TVec3f _9F4;
     /* 0xA00 */ ModelHolder* _A00;
@@ -630,7 +767,7 @@ public:
     /* 0xA0A */ u8 mCurrModel;
     /* 0xA0B */ u8 _A0B;
     /* 0xA0C */ u8 _A0C;
-    /* 0xA10 */ u32 _A10;
+    /* 0xA10 */ ModelHolder* _A10;
     /* 0xA14 */ J3DModelX* _A14;
     /* 0xA18 */ TVec3f _A18;
     /* 0xA24 */ u8 _A24;
@@ -642,7 +779,7 @@ public:
     /* 0xA4C */ ModelHolder* _A4C;
     /* 0xA50 */ ModelHolder* _A50;
     /* 0xA54 */ ModelHolder* _A54;
-    /* 0xA58 */ u8 _A58;
+    /* 0xA58 */ bool _A58;
     /* 0xA59 */ u8 _A59;
     /* 0xA5A */ u8 _A5A;
     /* 0xA5B */ u8 _A5B;
@@ -670,11 +807,11 @@ public:
     /* 0xB38 */ f32 _B38;
     /* 0xB3C */ f32 _B3C;
     /* 0xB40 */ f32 _B40;
-    /* 0xB44 */ u32 _B44;
+    /* 0xB44 */ void* _B44;
     /* 0xB48 */ FootPrint* _B48;
     /* 0xB4C */ IceStep** _B4C;
-    /* 0xB50 */ u16 _B50;
-    /* 0xB54 */ u32 _B54[3];
+    /* 0xB50 */ u16 _B50;  // _B4C count
+    /* 0xB54 */ FireMarioBall* _B54[3];
     /* 0xB60 */ u16 _B60;
     /* 0xB64 */ ResTIMG** _B64;
     /* 0xB68 */ u8 _B68;
@@ -740,7 +877,7 @@ public:
     /* 0xEF6 */ u16 _EF6;
     /* 0xEF8 */ u32 _EF8;
     /* 0xEFC */ u32 _EFC;
-    /* 0xF00 */ u8 _F00;
+    /* 0xF00 */ bool _F00;
     /* 0xF04 */ u32 _F04;
     /* 0xF08 */ u32 _F08;
     /* 0xF0C */ bool _F0C;
@@ -754,9 +891,9 @@ public:
     /* 0xF1A */ u16 _F1A;
     /* 0xF1C */ u16 _F1C;
     /* 0xF1E */ u16 _F1E;
-    /* 0xF20 */ u8 _F20;
-    /* 0xF21 */ u8 _F21;
-    /* 0xF24 */ u32 _F24;
+    /* 0xF20 */ bool _F20;
+    /* 0xF21 */ bool _F21;
+    /* 0xF24 */ HitSensor* _F24;
     /* 0xF28 */ u16 _F28;
     /* 0xF2C */
 
@@ -788,10 +925,10 @@ public:
     /* 0xFA8 */ TVec3f _FA8;
     /* 0xFB4 */ const Nerve* _FB4;
     /* 0xFB8 */ u16 _FB8;  // a timer
-    /* 0xFBC */ u32 _FBC;
-    /* 0xFC0 */ u32 _FC0;
-    /* 0xFC4 */ u32 _FC4;
-    /* 0xFC8 */ u32 _FC8;
+    /* 0xFBC */ MatrixControl* _FBC;
+    /* 0xFC0 */ MatrixControl* _FC0;
+    /* 0xFC4 */ MatrixControl* _FC4;
+    /* 0xFC8 */ MatrixValueGetter* _FC8;
     /* 0xFCC */ bool _FCC;
     /* 0xFCD */ bool _FCD;
 };
