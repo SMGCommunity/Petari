@@ -770,7 +770,7 @@ bool Petari::reflectStarPointer2P() {
 void Petari::calcMouthPos(TVec3f* pOut) const {
     TPos3f mtx;
     mtx.set(MR::getJointMtx(this, "Head3"));
-    mtx.getTransInline(*pOut);
+    mtx.getTrans(*pOut);
 }
 
 void Petari::tryEmitFirstFootPrintEffect() {

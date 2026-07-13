@@ -151,7 +151,7 @@ void DummyDisplayModel::calcAndSetBaseMtx() {
     TVec3f v19 = mModelInfo->_4;
     // JMathInlineVEC::PSVECNegate(mModelInfo->_4, &v19);
     PSMTXMultVec((MtxPtr)m, v19.negateInline(), &mPosition);
-    m->setTransInline(mPosition);
+    m->setTrans(mPosition);
 
     switch (mItemType) {
     case ITEM_TYPE_COIN:

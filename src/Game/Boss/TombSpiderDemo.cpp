@@ -83,7 +83,7 @@ bool TombSpiderDemo::updateGateOpen() {
         pos.x = startPos.x * (1.0f - t1) + endPos.x * t1;
         pos.y = startPos.y * (1.0f - t2) + endPos.y * t2;
         pos.z = startPos.z * (1.0f - t1) + endPos.z * t1;
-        mMtx.setPos(pos);
+        mMtx.setTrans(pos);
     }
 
     MR::setPlayerBaseMtx(mMtx);

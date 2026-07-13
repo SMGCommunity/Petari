@@ -664,7 +664,7 @@ bool HomingKiller::isWaterBreak() const {
 
 void HomingKiller::updateBaseMtxNoRotateZ() {
     if (MR::isSameDirection(mFront, mUp, 0.01f)) {
-        mBaseMtx.setTransInline(mPosition);
+        mBaseMtx.setTrans(mPosition);
     } else {
         MR::makeMtxFrontUpPos(&mBaseMtx, mFront, mUp, mPosition);
     }

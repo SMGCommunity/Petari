@@ -147,7 +147,7 @@ void BossKameck::setPose(MtxPtr mtx) {
     TPos3f pos;
     pos.setInline(mtx);
     pos.getQuat(_90);
-    pos.getTransInline(mPosition);
+    pos.getTrans(mPosition);
     _90.getZDir(_A0);
 }
 

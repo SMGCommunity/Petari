@@ -17,7 +17,7 @@ void BigBubbleMoveLimitter::init(const JMapInfoIter& rIter) {
 
     TPos3f mtx;
     MR::getJMapInfoMatrixFromRT(rIter, &mtx);
-    mtx.getTransInline(mPosition);
+    mtx.getTrans(mPosition);
     mtx.getYDir(mAxis);
     mtx.getXYZDir(mSide, mUp, mFront);
 

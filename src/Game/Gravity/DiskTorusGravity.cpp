@@ -106,7 +106,7 @@ bool DiskTorusGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const T
 
 void DiskTorusGravity::updateMtx(const TPos3f& rMtx) {
     rMtx.mult(mLocalPosition, mTranslation);
-    rMtx.mult33Inline(mLocalDirection, mRotation);
+    rMtx.mult33(mLocalDirection, mRotation);
 
     f32 worldScale;
     MR::separateScalarAndDirection(&worldScale, &mRotation, mRotation);

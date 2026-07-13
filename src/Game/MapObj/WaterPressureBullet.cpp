@@ -104,7 +104,7 @@ void WaterPressureBullet::shotWaterBullet(LiveActor* pActor, const TPos3f& rPos,
     mCameraInfo = pInfo;
     rPos.getZDir(_8C);
     mVelocity.scale(_A8, _8C);
-    rPos.getTransInline(mPosition);
+    rPos.getTrans(mPosition);
     rPos.getXDir(_98);
     mRotation.zero();
     makeActorAppeared();

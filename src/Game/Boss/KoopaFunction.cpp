@@ -77,7 +77,7 @@ void KoopaFunction::setKoopaPos(Koopa* pKoopa, const char* pDemoName) {
 
     pKoopa->mGravity.set(yDir.negateInline());
     transform.getZDir(pKoopa->mFront);
-    transform.getTransInline(pKoopa->mPosition);
+    transform.getTrans(pKoopa->mPosition);
 
     bool isCalcGravity = MR::isCalcGravity(pKoopa);
     MR::offCalcGravity(pKoopa);

@@ -160,5 +160,5 @@ void SkeletalFishRailControl::getMtx(TPos3f* pOut, f32 a2) {
     MR::normalizeOrZero(&v15);
     MR::normalizeOrZero(&v14);
     MR::normalizeOrZero(&railDir);
-    pOut->setVecAndTransInline(v15, v14, railDir, railPos);
+    pOut->setTR(v15, v14, railDir, railPos);
 }

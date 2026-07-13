@@ -601,8 +601,7 @@ void BombHei::calcAndSetBaseMtx() {
 
 bool BombHei::calcJoint(TPos3f* pMtx, const JointControllerInfo& rJointInfo) {
     TPos3f mtx;
-    mtx.zeroTransInline();
-    mtx.fromQuat(mRotQuat);
+    mtx.makeQuat(mRotQuat);
 
     // interesting way to transpose a matrix
     TPos3f mtx2;
@@ -613,12 +612,12 @@ bool BombHei::calcJoint(TPos3f* pMtx, const JointControllerInfo& rJointInfo) {
     mtx3.setXYZDir2(x, y, z);
 
     TVec3f t;
-    pMtx->getTransInline(t);
+    pMtx->getTrans(t);
 
     pMtx->zeroTransInline2();
     pMtx->concat(mtx3, *pMtx);
     pMtx->concat(mtx, *pMtx);
-    pMtx->setTransInline(t);
+    pMtx->setTrans(t);
 
     return true;
 }

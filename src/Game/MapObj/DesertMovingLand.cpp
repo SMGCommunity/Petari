@@ -96,7 +96,7 @@ void DesertMovingLand::updateDemoPlayerPos() {
     TPos3f stack_8;
     stack_8.set(jointMtx);
     stack_8.concat(stack_8, _E4);
-    stack_8.getTransInline(MR::getPlayerDemoActor()->mPosition);
+    stack_8.getTrans(MR::getPlayerDemoActor()->mPosition);
     MR::setPlayerBaseMtx(stack_8);
 }
 

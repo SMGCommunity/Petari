@@ -640,7 +640,7 @@ void TripodBossLeg::updateAnkleShadowMatrix() {
 
     MR::setShadowDropDirection(this, nullptr, -landingNormal);
     mEndJointMtx.getXYZDir(v7, v8, v9);
-    _1C0.setVec(-v9, -v7, v8);
+    _1C0.setXYZDir(-v9, -v7, v8);
 
     TVec3f v2(landingNormal);
     v2 *= 630.0f;

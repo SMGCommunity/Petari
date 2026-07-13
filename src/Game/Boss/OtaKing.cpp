@@ -1058,7 +1058,7 @@ void OtaKing::exeDown() {
 void OtaKing::exeDownDemo() {
     TPos3f rotate;
     rotate.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(::cDownDemoRotate.y));
-    rotate.setTransInline(mPosition);
+    rotate.setTrans(mPosition);
 
     if (MR::isFirstStep(this)) {
         startDemo();

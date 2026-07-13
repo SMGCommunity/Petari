@@ -1023,7 +1023,7 @@ void WaterBazooka::calcGunPointFromCannon(TPos3f* pMtx) {
 void WaterBazooka::setCameraTargetMtx() {
     TPos3f mtx(mShooter->getBaseMtx());
 
-    mtx.setPos(mPosition);
+    mtx.setTrans(mPosition);
     TVec3f up;
     MR::calcUpVec(&up, this);
     TVec3f front;

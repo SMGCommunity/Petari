@@ -58,7 +58,7 @@ void TripodBossGuardWallPart::kill() {
 }
 
 void TripodBossGuardWallPart::control() {
-    mHostMtx->getTransInline(mPosition);
+    mHostMtx->getTrans(mPosition);
 }
 
 void TripodBossGuardWallPart::calcAndSetBaseMtx() {

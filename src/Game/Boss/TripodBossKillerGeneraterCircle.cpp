@@ -89,7 +89,7 @@ void TripodBossKillerGeneraterCircle::placementGenerater() {
         TPos3f mtx;
         mtx.identity();
         mtx.setEulerX(-MR::toRadian(_3C));
-        mtx.setTransInline(0.0f, 0.0f, _34);
+        mtx.setTrans(0.0f, 0.0f, _34);
 
         TPos3f mtx2;
         mtx2.identity();

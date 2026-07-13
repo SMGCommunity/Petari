@@ -112,12 +112,6 @@ namespace JGeometry {
             return (this->mMtx[x][y] * this->mMtx[x][y]);
         }
 
-        void setTrans(const TVec3f& v) NO_INLINE {
-            this->mMtx[0][3] = v.x;
-            this->mMtx[1][3] = v.y;
-            this->mMtx[2][3] = v.z;
-        }
-
         T mMtx[3][4];
     };
 
@@ -354,11 +348,6 @@ namespace JGeometry {
             this->mMtx[2][2] = 1.0f - xx - yy;
         }
 
-        inline void fromQuat(const TQuat4f& q) {
-            // in cases where setQuat doesnt quite work
-            q.makeMtx((MtxPtr)this);
-        }
-
         void getScale(TVec3f& rDest) const;
         void setScale(const TVec3f& rSrc);
         void setScale(f32 x, f32 y, f32 z) NO_INLINE {
@@ -502,7 +491,19 @@ namespace JGeometry {
             JMath::gekko_ps_copy12(this, rSrc);
         }
 
-        void getTrans(TVec3f& rDest) const;
+        void getTrans(TVec3f& rDest) const {
+            f32 z = this->mMtx[2][3];
+            f32 y = this->mMtx[1][3];
+            f32 x = this->mMtx[0][3];
+            rDest.set< f32 >(x, y, z);
+        }
+
+        inline void getTransInline2(TVec3f& rDest) const {
+            f32 x = this->mMtx[0][3];
+            f32 y = this->mMtx[1][3];
+            f32 z = this->mMtx[2][3];
+            rDest.set< f32 >(x, y, z);
+        }
 
         void setTrans(const TVec3f& rSrc) {
             this->mMtx[0][3] = rSrc.x;
@@ -522,6 +523,30 @@ namespace JGeometry {
             this->mMtx[2][3] = 0.0f;
         }
 
+        inline void zeroTransInline2() {
+            this->mMtx[0][3] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+            this->mMtx[2][3] = 0.0f;
+        }
+
+        void setTR(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {
+            this->mMtx[0][0] = a1.x;
+            this->mMtx[1][0] = a1.y;
+            this->mMtx[2][0] = a1.z;
+
+            this->mMtx[0][1] = a2.x;
+            this->mMtx[1][1] = a2.y;
+            this->mMtx[2][1] = a2.z;
+
+            this->mMtx[0][2] = a3.x;
+            this->mMtx[1][2] = a3.y;
+            this->mMtx[2][2] = a3.z;
+
+            this->mMtx[0][3] = a4.x;
+            this->mMtx[1][3] = a4.y;
+            this->mMtx[2][3] = a4.z;
+        }
+
         void makeRotate(const TVec3f& rVec, f32 angle) {
             zeroTrans();
             TRotation3< T >::setRotate(rVec, angle);
@@ -529,11 +554,6 @@ namespace JGeometry {
 
         void makeQuat(const TQuat4f& rSrcQuat) {
             zeroTrans();
-            TRotation3< T >::setQuat(rSrcQuat);
-        }
-
-        inline void makeQuatInline(const TQuat4f& rSrcQuat) {
-            zeroTransInline();
             TRotation3< T >::setQuat(rSrcQuat);
         }
 
@@ -589,82 +609,6 @@ namespace JGeometry {
 
         operator TMatrix34< T >() const {
             return *(TMatrix34< T >*)this;
-        }
-
-        inline void getTransInline(TVec3f& rDest) const {
-            f32 z = this->mMtx[2][3];
-            f32 y = this->mMtx[1][3];
-            f32 x = this->mMtx[0][3];
-            rDest.set< f32 >(x, y, z);
-        }
-
-        inline void getTransInline2(TVec3f& rDest) const {
-            f32 x = this->mMtx[0][3];
-            f32 y = this->mMtx[1][3];
-            f32 z = this->mMtx[2][3];
-            rDest.set< f32 >(x, y, z);
-        }
-
-        inline void setVec(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3) {
-            this->mMtx[0][0] = a1.x;
-            this->mMtx[1][0] = a1.y;
-            this->mMtx[2][0] = a1.z;
-
-            this->mMtx[0][1] = a2.x;
-            this->mMtx[1][1] = a2.y;
-            this->mMtx[2][1] = a2.z;
-
-            this->mMtx[0][2] = a3.x;
-            this->mMtx[1][2] = a3.y;
-            this->mMtx[2][2] = a3.z;
-        }
-
-        inline void setPos(const TVec3f& a1) {
-            this->mMtx[0][3] = a1.x;
-            this->mMtx[1][3] = a1.y;
-            this->mMtx[2][3] = a1.z;
-        }
-
-        inline void setTransInline(const TVec3f& a1) {
-            this->mMtx[0][3] = a1.x;
-            this->mMtx[1][3] = a1.y;
-            this->mMtx[2][3] = a1.z;
-        }
-
-        inline void setTransInline(f32 x, f32 y, f32 z) {
-            this->mMtx[0][3] = x;
-            this->mMtx[1][3] = y;
-            this->mMtx[2][3] = z;
-        }
-
-        inline void zeroTransInline() {
-            this->mMtx[0][3] = 0.0f;
-            this->mMtx[1][3] = 0.0f;
-            this->mMtx[2][3] = 0.0f;
-        }
-
-        inline void zeroTransInline2() {
-            this->mMtx[0][3] = 0.0f;
-            this->mMtx[1][3] = 0.0f;
-            this->mMtx[2][3] = 0.0f;
-        }
-
-        inline void setVecAndTransInline(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {
-            this->mMtx[0][0] = a1.x;
-            this->mMtx[1][0] = a1.y;
-            this->mMtx[2][0] = a1.z;
-
-            this->mMtx[0][1] = a2.x;
-            this->mMtx[1][1] = a2.y;
-            this->mMtx[2][1] = a2.z;
-
-            this->mMtx[0][2] = a3.x;
-            this->mMtx[1][2] = a3.y;
-            this->mMtx[2][2] = a3.z;
-
-            this->mMtx[0][3] = a4.x;
-            this->mMtx[1][3] = a4.y;
-            this->mMtx[2][3] = a4.z;
         }
 
         inline void normalizeBasis() {

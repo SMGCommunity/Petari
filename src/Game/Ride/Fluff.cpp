@@ -135,7 +135,7 @@ void Fluff::exeFreeWaitInvalid() {
         MR::offBind(this);
 
         mInitialMtx.getXYZDir(mSide, mUp, mFront);
-        mInitialMtx.getTransInline(mPosition);
+        mInitialMtx.getTrans(mPosition);
 
         mTargetUpVec.set(mUp);
         mVelocity.zero();

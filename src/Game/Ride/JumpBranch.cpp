@@ -207,7 +207,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         TVec3f swingSide(mSwingPoint->mSide);
         TVec3f swingFront(mSwingPoint->mFront);
 
-        posMtx.setVecAndTransInline(swingSide, mSwingPoint->mUp, swingFront, mPosition);
+        posMtx.setTR(swingSide, mSwingPoint->mUp, swingFront, mPosition);
 
         MR::setBaseTRMtx(mRider, posMtx);
         return true;

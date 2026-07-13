@@ -34,7 +34,7 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     if (_4C >= 0) {
         TPos3f pos;
         MR::getTripodBossJointMatrix(&pos, _4C);
-        pos.getTransInline(renameme);
+        pos.getTrans(renameme);
         pos.mult33(vec, vec);
     }
 

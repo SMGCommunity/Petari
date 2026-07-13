@@ -234,7 +234,7 @@ void PenguinSkater::setCaughtStartMarioPose() {
     TPos3f baseMtx;
     baseMtx.set(MR::getPlayerDemoActor()->getBaseMtx());
     baseMtx.getQuat(mMarioQuat);
-    baseMtx.getTransInline(mMarioPos);
+    baseMtx.getTrans(mMarioPos);
 }
 
 void PenguinSkater::blendBaseMatrixToMario(f32 blendRate) const {

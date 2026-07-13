@@ -442,7 +442,7 @@ void Mogucchi::updateReferenceMtx() {
 
     // mNewHolePos.setRotate(v1.x, v1.y, v1.z);
     // mNewHolePos.setRotate(v1);
-    // mNewHolePos.setTransInline(mHole->mPosition);
+    // mNewHolePos.setTrans(mHole->mPosition);
     mNewHolePos.setRT(v1.x, v1.y, v1.z, mPosition);
     // mNewHolePos.setRT(v1, mHole->mPosition);
 

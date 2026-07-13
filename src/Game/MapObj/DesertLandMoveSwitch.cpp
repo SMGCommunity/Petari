@@ -82,10 +82,10 @@ void DesertLandMoveSwitch::calcAnim() {
     f32 val = mSpringValue->mSpringValue;
     if (!MR::isNearZero(val)) {
         TVec3f pos, up;
-        mtx2.getTransInline(pos);
+        mtx2.getTrans(pos);
         MR::calcUpVec(&up, this);
         pos += up * val;
-        mtx2.setTransInline(pos);
+        mtx2.setTrans(pos);
         PSMTXCopy(mtx2, mtx);
     }
     mCollisionParts->setMtx(mtx2);

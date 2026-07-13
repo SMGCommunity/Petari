@@ -140,7 +140,7 @@ void RabbitStateCaught::exeCaughtEvent() {
 void RabbitStateCaught::setCaughtStartMarioPose() {
     TPos3f baseMtx(MR::getPlayerDemoActor()->getBaseMtx());
     baseMtx.getQuat(mCaughtStartMarioRot);
-    baseMtx.getTransInline(mCaughtStartMarioPos);
+    baseMtx.getTrans(mCaughtStartMarioPos);
 }
 
 void RabbitStateCaught::blendBaseMatrixToMario(f32 blendRate) const {
