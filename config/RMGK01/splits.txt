@@ -6770,7 +6770,7 @@ Game/NPC/TalkSupportPlayerWatcher.cpp:
 
 Game/NPC/TalkTextFormer.cpp:
 	.text       start:0x802A3738 end:0x802A3D3C
-	.data       start:0x805B6DE0 end:0x805B6E90
+	.data       start:0x805B6DE0 end:0x805B6E10
 	.sdata2     start:0x806BF390 end:0x806BF3B0
 
 Game/NPC/TimeAttackEventKeeper.cpp:
@@ -6779,7 +6779,7 @@ Game/NPC/TimeAttackEventKeeper.cpp:
 Game/Player/FireMarioBall.cpp:
 	.text       start:0x802A3D8C end:0x802A4544
 	.ctors      start:0x8052F04C end:0x8052F050
-	.data       start:0x805B6E90 end:0x805B75C0
+	.data       start:0x805B6E10 end:0x805B6F18
 	.sdata      start:0x806B21E8 end:0x806B2200
 	.sbss       start:0x806B6258 end:0x806B6260
 	.sdata2     start:0x806BF3B0 end:0x806BF3C0
@@ -6791,7 +6791,7 @@ Game/Player/GhostPlayer.cpp:
 	.text       start:0x802A46A8 end:0x802A684C
 	.ctors      start:0x8052F050 end:0x8052F054
 	.rodata     start:0x805398D0 end:0x80539A58
-	.data       start:0x805B75C0 end:0x805B77E0
+	.data       start:0x805B6F18 end:0x805B77E0
 	.sbss       start:0x806B6260 end:0x806B6290
 	.sdata2     start:0x806BF3C0 end:0x806BF408
 
@@ -6801,13 +6801,13 @@ Game/Player/GroupChecker.cpp:
 
 Game/Player/J3DModelX.cpp:
 	.text       start:0x802A6A70 end:0x802A876C
-	.data       start:0x805B7828 end:0x805B7858
+	.data       start:0x805B7828 end:0x805B7850
 	.sdata      start:0x806B2200 end:0x806B2208
 	.sdata2     start:0x806BF408 end:0x806BF420
 
 Game/Player/JetTurtleShadow.cpp:
 	.text       start:0x802A876C end:0x802A895C
-	.data       start:0x805B7858 end:0x805B78D0
+	.data       start:0x805B7850 end:0x805B78D0
 	.sdata2     start:0x806BF420 end:0x806BF428
 
 Game/Player/MarineSnow.cpp:
@@ -7302,13 +7302,13 @@ Game/Player/MarioMagic.cpp:
 Game/Player/MarioWarp.cpp:
 	.text       start:0x803105B0 end:0x80311B40
 	.ctors      start:0x8052F180 end:0x8052F184
-	.data       start:0x805CD1D0 end:0x805CD408
+	.data       start:0x805CD1D0 end:0x805CD3D8
 	.sdata2     start:0x806C0528 end:0x806C0560
 
 Game/Player/MarioFpView.cpp:
 	.text       start:0x80311B40 end:0x803120B0
 	.ctors      start:0x8052F184 end:0x8052F188
-	.data       start:0x805CD408 end:0x805CD450
+	.data       start:0x805CD3D8 end:0x805CD450
 	.sdata2     start:0x806C0560 end:0x806C0578
 
 Game/Player/Mario2D.cpp:
