@@ -24,6 +24,7 @@ class MarioConst;
 class MarioEffect;
 class MarioMessenger;
 class MarioNullBck;
+class MarioSearchLight;
 class MarioParts;
 class ModelHolder;
 class ModelObj;
@@ -183,6 +184,7 @@ public:
     void initBoneMario();
     void initFireBall();
     void initShadow();
+    void initSearchLight();
     void initHand();
     void swapTextureInit();
     void initBlur();
@@ -207,6 +209,7 @@ public:
     void calcSpinEffect();
     void drawSpinEffect() const;
     void drawWallShade(const TVec3f&, const TVec3f&, f32) const;
+    void drawSearchLight() const;
     void drawShadow() const;
     void drawSilhouette() const;
     void drawPreWipe() const;
@@ -369,6 +372,9 @@ public:
 
     void memorizeSensorThrow(HitSensor*);
 
+    void initThrowing();
+    void getThrowVec(TVec3f* pVec) const;
+
     const MarioConst& getConst() const {
         return *mConst;
     }
@@ -444,7 +450,7 @@ public:
     /* 0x218 */ DrawAdaptor* _218;
     /* 0x21C */ DrawAdaptor* _21C;
     /* 0x220 */ DrawAdaptor* _220;
-    /* 0x224 */ u32 _224;
+    /* 0x224 */ DrawAdaptor* mDrawSearchLight;
     /* 0x228 */ DrawAdaptor* _228;
     /* 0x22C */ DrawAdaptor* _22C;
     /* 0x230 */ Mario* mMario;
@@ -549,7 +555,7 @@ public:
     /* 0x494 */ FixedPosition* _494;
     /* 0x498 */ FixedPosition* _498;
     /* 0x49C */ FixedPosition* _49C;
-    /* 0x4A0 */ FixedPosition* _4A0;
+    /* 0x4A0 */ FixedPosition* mSearchLightThrowPos;
     /* 0x4A4 */ void* _4A4;  // used in calcAnimInMovement()
     /* 0x4A8 */ u32 _4A8;
     /* 0x4AC */ f32 _4AC;
@@ -593,8 +599,8 @@ public:
     /* 0x98C */ TornadoMario* mTornadoMario;
     /* 0x990 */ u8 _990;
     /* 0x994 */ u32 _994;
-    /* 0x998 */ u32 _998;
-    /* 0x99C */ u32 _99C;
+    /* 0x998 */ MarioSearchLight* mSearchLight;
+    /* 0x99C */ u32 mSearchLightTimer;
     /* 0x9A0 */ JetTurtleShadow* _9A0;
     /* 0x9A4 */ MarioParts* _9A4;
     /* 0x9A8 */ f32 _9A8;
