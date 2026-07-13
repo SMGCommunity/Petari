@@ -13,7 +13,7 @@
 #include "JSystem/JGeometry/TMatrix.hpp"
 
 namespace {
-    const Vec cSensorOffset = {0.0f, 0.0f, 0.0f};
+    const Vec cSensorOffset = {0.0f, 180.0f, 0.0f};
 };  // namespace
 
 namespace NrvOtaRock {
