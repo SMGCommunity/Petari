@@ -6790,8 +6790,8 @@ Game/Player/GhostPacket.cpp:
 Game/Player/GhostPlayer.cpp:
 	.text       start:0x802A46A8 end:0x802A684C
 	.ctors      start:0x8052F050 end:0x8052F054
-	.rodata     start:0x805398D0 end:0x80539A58
-	.data       start:0x805B6F18 end:0x805B77E0
+	.rodata     start:0x805398D0 end:0x80539A28
+	.data       start:0x805B75C0 end:0x805B77E0
 	.sbss       start:0x806B6260 end:0x806B6290
 	.sdata2     start:0x806BF3C0 end:0x806BF408
 
@@ -6812,12 +6812,14 @@ Game/Player/JetTurtleShadow.cpp:
 
 Game/Player/MarineSnow.cpp:
 	.text       start:0x802A895C end:0x802A9178
+	.rodata     start:0x80539A28 end:0x80539A38
 	.data       start:0x805B78D0 end:0x805B78E0
 	.sdata2     start:0x806BF428 end:0x806BF458
 
 Game/Player/Mario.cpp:
 	.text       start:0x802A9178 end:0x802AEC90
 	.ctors      start:0x8052F054 end:0x8052F058
+	.rodata     start:0x80539A38 end:0x80539A40
 	.data       start:0x805B78E0 end:0x805B7AC0
 	.sdata      start:0x806B2208 end:0x806B2210
 	.sdata2     start:0x806BF458 end:0x806BF528
@@ -6825,6 +6827,7 @@ Game/Player/Mario.cpp:
 Game/Player/MarioActor.cpp:
 	.text       start:0x802AEC90 end:0x802B57F0
 	.ctors      start:0x8052F058 end:0x8052F05C
+	.rodata     start:0x80539A40 end:0x80539A58
 	.data       start:0x805B7AC0 end:0x805B8138
 	.sdata      start:0x806B2210 end:0x806B2218
 	.sdata2     start:0x806BF528 end:0x806BF618
