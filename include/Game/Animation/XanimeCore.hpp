@@ -85,6 +85,7 @@ public:
     void setBck(u32, J3DAnmTransform*);
     void freezeCopy(J3DModelData*, XanimeCore*, u32, u32);
     void initT(J3DModelData*);
+    void reconfigJointTransform(J3DModelData*);
 
     void enableJointTransform(J3DModelData*);
 
