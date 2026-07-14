@@ -9,7 +9,7 @@ public:
     virtual ~JetTurtleShadow();
     virtual void init(const JMapInfoIter&);
 
-    //void calcType0(MtxPtr);
-    //void drawType0() const;
-    //void drawType1() const;
+    void calcType0(MtxPtr);
+    void drawType0() const;
+    void drawType1() const;
 };
