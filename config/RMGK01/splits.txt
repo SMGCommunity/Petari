@@ -4901,7 +4901,7 @@ Game/MapObj/HipDropSwitch.cpp:
 Game/MapObj/HipDropTimerSwitch.cpp:
 	.text       start:0x801E6224 end:0x801E6C20
 	.ctors      start:0x8052ED4C end:0x8052ED50
-	.rodata     start:0x80533360 end:0x80533398
+	.rodata     start:0x80533360 end:0x80533380
 	.data       start:0x80595C80 end:0x80595E18
 	.sdata      start:0x806B1E50 end:0x806B1E60
 	.sbss       start:0x806B5258 end:0x806B5268
@@ -4918,6 +4918,7 @@ Game/MapObj/HitWallTimerSwitch.cpp:
 Game/MapObj/IceStep.cpp:
 	.text       start:0x801E73E0 end:0x801E79DC
 	.ctors      start:0x8052ED54 end:0x8052ED58
+	.rodata     start:0x80533380 end:0x80533388
 	.data       start:0x80595F38 end:0x80596048
 	.sdata      start:0x806B1E70 end:0x806B1E78
 	.sbss       start:0x806B5278 end:0x806B5280
@@ -4954,6 +4955,7 @@ Game/MapObj/ItemAppearStone.cpp:
 Game/MapObj/ItemBlock.cpp:
 	.text       start:0x801E89D0 end:0x801E9760
 	.ctors      start:0x8052ED60 end:0x8052ED64
+	.rodata     start:0x80533388 end:0x80533390
 	.data       start:0x805964D0 end:0x80596640
 	.sbss       start:0x806B52A0 end:0x806B52B8
 	.sdata2     start:0x806BD270 end:0x806BD290
@@ -4961,6 +4963,7 @@ Game/MapObj/ItemBlock.cpp:
 Game/MapObj/ItemBubble.cpp:
 	.text       start:0x801E9760 end:0x801EA864
 	.ctors      start:0x8052ED64 end:0x8052ED68
+	.rodata     start:0x80533390 end:0x80533398
 	.data       start:0x80596640 end:0x805967E8
 	.sbss       start:0x806B52B8 end:0x806B52C0
 	.sdata2     start:0x806BD290 end:0x806BD300

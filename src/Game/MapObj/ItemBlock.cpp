@@ -2,8 +2,20 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
+void ItemBlock_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace {
-    static Color8 hPointLight(0xFF, 0xE6, 0, 0xFF);
+    // static const f32 cVanishEffectScale = ;
+    static const s32 cAppearItemStep = 1;
+    static const f32 cAppearItemOffsetY = 100.0f;
+    // static const f32 cVelocityCoin =
+    static const s32 cTimerLimit = 240;
+    static const s32 hNumTimerLastPiece = 11;
+    static const f32 hLastBonusSplashRangeH = 10.0f;
+    static const f32 hPointLightOffsetY = 100.0f;
+    static const f32 hBrightness = 0.998646f;
 };  // namespace
 
 namespace NrvItemBlock {
@@ -13,12 +25,16 @@ namespace NrvItemBlock {
     NEW_NERVE(ItemBlockNrvAppearItemSplash, ItemBlock, AppearItemSplash);
 };  // namespace NrvItemBlock
 
+namespace {
+    static Color8 hPointLight(0xFF, 0xE6, 0, 0xFF);
+};  // namespace
+
 ItemBlock::ItemBlock(const char* pName) : LiveActor(pName) {
     mKind = 0;
     mTimer = 0;
     mItemCount = 8;
     _98 = 0;
-    mCalcShadowOneTime = false;
+    mCalcShadow = false;
 }
 
 void ItemBlock::init(const JMapInfoIter& rIter) {
@@ -42,10 +58,10 @@ void ItemBlock::init(const JMapInfoIter& rIter) {
     MR::onShadowVolumeCutDropLength(this, nullptr);
     MR::excludeCalcShadowToMyCollision(this, nullptr);
 
-    if (mCalcShadowOneTime) {
-        MR::onCalcShadowOneTime(this, nullptr);
-    } else {
+    if (mCalcShadow) {
         MR::onCalcShadow(this, nullptr);
+    } else {
+        MR::onCalcShadowOneTime(this, nullptr);
     }
 
     if (MR::isZeroGravity(this)) {
@@ -111,7 +127,7 @@ void ItemBlock::checkKind(const JMapInfoIter& rIter) {
         MR::getJMapInfoArg1NoInit(rIter, &arg);
 
         if (arg == -1) {
-            mTimer = 240;
+            mTimer = ::cTimerLimit;
         } else {
             mTimer = arg;
         }
@@ -119,31 +135,36 @@ void ItemBlock::checkKind(const JMapInfoIter& rIter) {
 
     arg = -1;
     MR::getJMapInfoArg2NoInit(rIter, &arg);
-    mCalcShadowOneTime = !(arg - 1);
+    mCalcShadow = !(arg - 1);
 }
 
 void ItemBlock::initBlock() {
     initHitSensor(1);
-
-    if (mKind >= 6 || mKind < 1) {
-        return;
+    switch (mKind) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        initModelManagerWithAnm("CoinBlock", nullptr, false);
+        TPos3f mtx;
+        MR::addHitSensorMtxMapObj(this, "body", 8, 100.0f, MR::getJointMtx(this, "CoinBlock"), TVec3f(0.0f, 100.0f, 0.0f));
+        MR::initCollisionPartsAutoEqualScale(this, "CoinBlock", getSensor("body"), MR::getJointMtx(this, "CoinBlock"));
     }
-
-    initModelManagerWithAnm("CoinBlock", nullptr, false);
-    TPos3f mtx;
-    MR::addHitSensorMtxMapObj(this, "body", 8, 100.0f, MR::getJointMtx(this, "CoinBlock"), TVec3f(0.0f, 100.0f, 0.0f));
-    MR::initCollisionPartsAutoEqualScale(this, "CoinBlock", getSensor("body"), MR::getJointMtx(this, "CoinBlock"));
 }
 
 void ItemBlock::appear() {
     LiveActor::appear();
-    initNerve(&NrvItemBlock::ItemBlockNrvStandby::sInstance);
+    setNerve(&NrvItemBlock::ItemBlockNrvStandby::sInstance);
 
-    if (mKind >= 6 || mKind < 1) {
-        return;
+    switch (mKind) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        MR::startBrk(this, "CoinBlock");
     }
-
-    MR::startBrk(this, "CoinBlock");
 }
 
 void ItemBlock::kill() {
@@ -152,11 +173,11 @@ void ItemBlock::kill() {
     LiveActor::kill();
 }
 
-/*void ItemBlock::control() {
+void ItemBlock::control() {
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
-    MR::requestPointLight(this, TVec3f(upVec * 100.0f), ::hPointLight, 0.998646f, -1);
-}*/
+    MR::requestPointLight(this, mPosition + upVec * ::hPointLightOffsetY, ::hPointLight, ::hBrightness, -1);
+}
 
 bool ItemBlock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerUpperPunch(msg) && MR::isPlayerExistDown(this, 0.0f, 0.25f) && tryStartJumpPunch()) {
@@ -174,7 +195,7 @@ bool ItemBlock::tryStartJumpPunch() {
             calcAnim();
             mNoCalcAnim = true;
             setNerve(&NrvItemBlock::ItemBlockNrvAppearItem::sInstance);
-        } else if (mKind == 2 || (u32)(mKind - 4) <= 1) {
+        } else if (mKind == 2 || mKind == 4 || mKind == 5) {
             setNerve(&NrvItemBlock::ItemBlockNrvAppearItemSplash::sInstance);
         }
 
@@ -188,7 +209,7 @@ bool ItemBlock::tryStartJumpPunch() {
                     mTimer = 0;
                 }
             } else {
-                if (!(MR::getDeclareRemnantStarPieceCountNotExist(this) - 11)) {
+                if (MR::getDeclareRemnantStarPieceCountNotExist(this) - ::hNumTimerLastPiece == 0) {
                     mTimer = 0;
                 }
             }
@@ -220,7 +241,7 @@ void ItemBlock::exeWait() {
     decTimer();
 }
 
-/*void ItemBlock::exeAppearItem() {
+void ItemBlock::exeAppearItem() {
     if (MR::isFirstStep(this)) {
         if (!mTimer) {
             MR::forceDeleteEffect(this, "Glow");
@@ -230,30 +251,31 @@ void ItemBlock::exeWait() {
         MR::invalidateClipping(this);
     }
 
-    if (MR::isStep(this, 1)) {
+    if (MR::isStep(this, ::cAppearItemStep)) {
         TVec3f gravVec;
-        TVec3f position(mPosition);
+        TVec3f position = mPosition;
         MR::calcGravityVector(this, &gravVec, nullptr, 0);
+        position -= gravVec * ::cAppearItemOffsetY;
 
-        position.sub(mPosition, gravVec * 100.0f);
-
-        if (mKind == 2) {
-            MR::startSystemSE("SE_SY_ITEM_APPEAR");
-        }
-
-        if (mKind >= 1) {
+        switch (mKind) {
+        case 1:
             MR::hopCoin(this, position, -gravVec);
-        }
+            break;
 
-        if (mKind >= 4) {
-        } else {
-            if (mTimer || MR::getDeclareRemnantStarPieceCountNotExist(this) != 11) {
-                MR::appearStarPieceToDirection(this, position, -gravVec, 11, 10.0f, 40.0f, false);
+        case 3:
+            if (!mTimer && MR::getDeclareRemnantStarPieceCountNotExist(this) - ::hNumTimerLastPiece == 0) {
+                MR::appearStarPieceToDirection(this, position, -gravVec, 11, ::hLastBonusSplashRangeH, 40.0f, false);
+
             } else {
                 MR::hopStarPiece(this, position, -gravVec);
             }
 
             MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
+            break;
+        case 2:
+        default:
+            MR::startSystemSE("SE_SY_ITEM_APPEAR");
+            break;
         }
     }
 
@@ -263,12 +285,12 @@ void ItemBlock::exeWait() {
         return;
     }
 
-    if (mTimer) {
-        setNerve(&NrvItemBlock::ItemBlockNrvWait::sInstance);
-    } else {
+    if (!mTimer) {
         kill();
+    } else {
+        setNerve(&NrvItemBlock::ItemBlockNrvWait::sInstance);
     }
-}*/
+}
 
 void ItemBlock::exeAppearItemSplash() {
     if (MR::isFirstStep(this)) {
@@ -287,7 +309,7 @@ void ItemBlock::exeAppearItemSplash() {
             MR::appearCoinCircle(this, mPosition, mItemCount);
         }
     } else if (mKind == 4) {
-        MR::appearStarPiece(this, mPosition, mItemCount, 10.0f, 40.0f, false);
+        MR::appearStarPiece(this, mPosition, mItemCount, ::hLastBonusSplashRangeH, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     } else if (mKind == 5) {
         MR::onSwitchDead(this);
@@ -310,7 +332,4 @@ void ItemBlock::calcAnim() {
         LiveActor::calcAnim();
     }
     mNoCalcAnim = false;
-}
-
-ItemBlock::~ItemBlock() {
 }
