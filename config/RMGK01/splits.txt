@@ -5210,7 +5210,7 @@ Game/MapObj/MeteorStrikeLauncher.cpp:
 Game/MapObj/MiniatureGalaxy.cpp:
 	.text       start:0x801FEDEC end:0x80200808
 	.ctors      start:0x8052EDD0 end:0x8052EDD4
-	.rodata     start:0x80533500 end:0x80533578
+	.rodata     start:0x80533500 end:0x80533530
 	.data       start:0x805999C0 end:0x80599DA0
 	.sdata      start:0x806B1EB8 end:0x806B1EC0
 	.sbss       start:0x806B5488 end:0x806B54A0
@@ -5223,6 +5223,7 @@ Game/MapObj/MiniatureGalaxyHolder.cpp:
 Game/MapObj/MorphItemObjNeo.cpp:
 	.text       start:0x80200E78 end:0x80202CF8
 	.ctors      start:0x8052EDD4 end:0x8052EDD8
+	.rodata     start:0x80533530 end:0x80533540
 	.data       start:0x80599ED0 end:0x8059A2F0
 	.sdata      start:0x806B1EC0 end:0x806B1ED0
 	.sbss       start:0x806B54A0 end:0x806B54B8
@@ -5237,6 +5238,7 @@ Game/MapObj/NeedlePlant.cpp:
 
 Game/MapObj/NormalMapBase.cpp:
 	.text       start:0x8020332C end:0x80206910
+	.rodata     start:0x80533540 end:0x80533558
 	.data       start:0x8059A408 end:0x8059A5C8
 	.sdata      start:0x806B1ED0 end:0x806B1ED8
 	.sdata2     start:0x806BD848 end:0x806BD888
@@ -5248,6 +5250,7 @@ Game/MapObj/NormalMapTestObj.cpp:
 Game/MapObj/Note.cpp:
 	.text       start:0x80206A10 end:0x8020710C
 	.ctors      start:0x8052EDDC end:0x8052EDE0
+	.rodata     start:0x80533558 end:0x80533568
 	.data       start:0x8059A668 end:0x8059A770
 	.sdata      start:0x806B1ED8 end:0x806B1EE0
 	.sbss       start:0x806B54C8 end:0x806B54D8
@@ -5256,6 +5259,7 @@ Game/MapObj/Note.cpp:
 Game/MapObj/NoteFairy.cpp:
 	.text       start:0x8020710C end:0x802085A0
 	.ctors      start:0x8052EDE0 end:0x8052EDE4
+	.rodata     start:0x80533568 end:0x80533570
 	.data       start:0x8059A770 end:0x8059A960
 	.sbss       start:0x806B54D8 end:0x806B5500
 	.sdata2     start:0x806BD8A8 end:0x806BD8E0
@@ -5270,6 +5274,7 @@ Game/MapObj/OceanFloaterLandParts.cpp:
 Game/MapObj/OceanSmallTurtle.cpp:
 	.text       start:0x80208CFC end:0x80209AE4
 	.ctors      start:0x8052EDE8 end:0x8052EDEC
+	.rodata     start:0x80533570 end:0x80533578
 	.data       start:0x8059AAB8 end:0x8059AC70
 	.sbss       start:0x806B5510 end:0x806B5528
 	.sdata2     start:0x806BD8E8 end:0x806BD928
