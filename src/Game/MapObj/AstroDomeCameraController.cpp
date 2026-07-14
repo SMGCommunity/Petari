@@ -58,9 +58,9 @@ void AstroDomeCameraController::kill() {
 }
 
 void AstroDomeCameraController::control() {
-    JMAVECLerp(&_98._0, &_98._C, &_98._18, _104);
-    JMAVECLerp(&_BC._0, &_BC._C, &_BC._18, _104);
-    JMAVECLerp(&_E0._0, &_E0._C, &_E0._18, _104);
+    _98._18.lerp(_98._0, _98._C, _104);
+    _BC._18.lerp(_BC._0, _BC._C, _104);
+    _E0._18.lerp(_E0._0, _E0._C, _104);
     MR::setProgrammableCameraParam(this, _BC._18, _98._18, _E0._18);
     MR::setProgrammableCameraParamFovy(this, 60.0f);
 }

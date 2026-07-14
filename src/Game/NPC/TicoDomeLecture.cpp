@@ -66,10 +66,8 @@ void TicoDomeLecture::exeMove() {
     MR::startLevelSound(this, "SE_SM_LV_TICO_FLY_DEMO");
     if (MR::isDemoPartActive(demoName)) {
         f32 easeOut = MR::calcNerveEaseOutRate(this, MR::getDemoPartTotalStep(demoName) - 1);
-        TVec3f v5(::cMoveEndPos);
-        JMAVECLerp(&_8C, &v5, &mPosition, easeOut);
-        TVec3f v4(::cMoveEndRotate);
-        JMAVECLerp(&_98, &v4, &mRotation, easeOut);
+        mPosition.lerp(_8C, ::cMoveEndPos, easeOut);
+        mRotation.lerp(_98, ::cMoveEndRotate, easeOut);
         if (MR::isDemoPartLastStep(demoName)) {
             setNerve(&NrvTicoDomeLecture::TicoDomeLectureNrvMetamorphosis::sInstance);
         }

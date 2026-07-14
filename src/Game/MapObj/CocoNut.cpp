@@ -399,7 +399,7 @@ void CocoNut::reviseFrontVec() {
         MR::normalize(&stack_8);
         f32 temp_f31 = stack_8.dot(_94);
         if (MR::cosDegree(15.0f) < temp_f31) {
-            JMAVECLerp(&_94, &stack_8, &_94, 0.8f);
+            _94.lerp(_94, stack_8, 0.8f);
         }
     }
 }
@@ -765,7 +765,7 @@ void CocoNut::statusToHide() {
 
 void CocoNut::emitEffectSpinHit(const HitSensor* pOtherSensor, const HitSensor* pMySensor) {
     TVec3f point;  // point 70% of the way between pOtherSensor and pMySensor
-    JMAVECLerp(&pOtherSensor->mPosition, &pMySensor->mPosition, &point, 0.7f);
+    point.lerp(pOtherSensor->mPosition, pMySensor->mPosition, 0.7f);
     _108.mMtx[0][0] = 1.0f;
     _108.mMtx[1][0] = 0.0f;
     _108.mMtx[2][0] = 0.0f;
@@ -773,8 +773,8 @@ void CocoNut::emitEffectSpinHit(const HitSensor* pOtherSensor, const HitSensor* 
     _108.mMtx[1][1] = 1.0f;
     _108.mMtx[2][1] = 0.0f;
     _108.mMtx[0][2] = 0.0f;
-    _108.mMtx[1][3] = 0.0f;
-    _108.mMtx[2][3] = 1.0f;
+    _108.mMtx[1][2] = 0.0f;
+    _108.mMtx[2][2] = 1.0f;
     _108.mMtx[0][3] = point.x;
     _108.mMtx[1][3] = point.y;
     _108.mMtx[2][3] = point.z;

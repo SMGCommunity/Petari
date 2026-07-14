@@ -920,9 +920,9 @@ void TripodBoss::addAccelToWeightPosition() {
         v21.extend(getLeg(i)->mForceEndPoint);
     }
 
-    JMAVECLerp(&v22.f, &v22.i, &v20, 0.5f);
+    v20.lerp(v22.f, v22.i, 0.5f);
 
-    JMAVECLerp(&v21.f, &v21.i, &v19, 0.5f);
+    v19.lerp(v21.f, v21.i, 0.5f);
 
     MR::vecBlend(v19, v20, &v18, 0.3f);
     center = &mMovableArea->mCenter;
@@ -963,7 +963,7 @@ void TripodBoss::calcClippingSphere() {
         v4.extend(mLegs[i]->mForceEndPoint);
     }
 
-    JMAVECLerp(&v4.f, &v4.i, &_5EC, 0.5f);
+    _5EC.lerp(v4.f, v4.i, 0.5f);
 }
 
 void TripodBoss::clippingModel() {

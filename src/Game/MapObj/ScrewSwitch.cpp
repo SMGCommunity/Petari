@@ -56,15 +56,13 @@ void ScrewSwitch::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-// Theres an Inline at JMAVECLearp. Scratch: https://decomp.me/scratch/LUQFL
 void ScrewSwitch::exeAdjust() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "ScrewSwitchOn");
         MR::setBrkFrameAndStop(this, 0.0f);
     }
-    f32 step = getNerveStep() / 3.0f;
-    HitSensor* sensor = getSensor("body");
-    JMAVECLerp((const Vec*)_90, &sensor->mPosition, &mPosition, step);
+
+    _90->mPosition.lerp(_90->mPosition, getSensor("body")->mPosition, getNerveStep() / 3.0f);
     if (MR::isStep(this, 3)) {
         setNerve(&NrvScrewSwitch::ScrewSwitchNrvScrew::sInstance);
     }
