@@ -747,7 +747,7 @@ void HomingKiller::exeAppear() {
 
     if (MR::isGreaterStep(this, ::cAppearMoveFrame) && MR::isLessStep(this, ::cAppearMoveFrame + ::cAppearRumbleFrame)) {
         s32 step = getNerveStep() - ::cAppearMoveFrame;
-        f32 scl = JMASinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
+        f32 scl = MR::sinDegree(MR::repeatDegree(step * ::cAppearRumbleSpeed));
         f32 rumbleOffset = (::cAppearRumbleFrame - step) * (scl * ::cAppearRumbleWidth) / ::cAppearRumbleFrame;
 
         mPosition.add(mBaseFront * rumbleOffset);

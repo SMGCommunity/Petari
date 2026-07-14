@@ -585,7 +585,6 @@ bool SkeletalFishGuard::isPlayerInAttackRange() const {
     return true;
 }
 
-// pretty close
 bool SkeletalFishGuard::isLineOfSightClear() const {
     TVec3f v12 = *MR::getPlayerCenterPos() - mPosition;
 
@@ -593,9 +592,7 @@ bool SkeletalFishGuard::isLineOfSightClear() const {
         return false;
     }
 
-    TVec3f v10 = MR::getCamPos() - mPosition;
-
-    if (Collision::checkStrikeLineToMap(mPosition, v10, 0, nullptr, nullptr)) {
+    if (Collision::checkStrikeLineToMap(mPosition, MR::getCamPos() - mPosition, 0, nullptr, nullptr)) {
         return false;
     }
 
@@ -607,7 +604,7 @@ bool SkeletalFishGuard::isLineOfSightClear() const {
     bool ret = true;
 
     if (!MR::isNearZero(v11) && !MR::isNearZero(v12)) {
-        f64 angle = JMAAsinRadian(mFishBoss->getBodyThickness() / v11.length());
+        f64 angle = MR::asin(mFishBoss->getBodyThickness() / v11.length());
         if (v11.angle(v12) < angle) {
             return false;
         }

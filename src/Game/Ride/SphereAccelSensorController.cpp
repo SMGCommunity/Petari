@@ -26,13 +26,9 @@ namespace {
     static const f32 sSubAccelDegreeRangeY = 22.5f * PI_180;
 };  // namespace
 
-inline TVec2f getTrig(f32 angle) {
-    return TVec2f(MR::cos(angle), MR::sin(angle));
-}
-
 inline f32 diffAngleAbs(const TVec2f& v1, const TVec2f& v2) {
     f32 orientation = v1.y * v2.x - v1.x * v2.y;
-    f32 angle = JMAAcosRadian(v1.dot(v2));
+    f32 angle = MR::acos(v1.dot(v2));
     if (orientation < 0.0f) {
         angle = -angle;
     }
@@ -86,44 +82,42 @@ void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
 
     f32 angleXY = 0.0f;
     TVec2f accelXY(padAccel.x, __fabsf(padAccel.y));
-    if (!isDeadZone(accelXY)) {
+    if (!accelXY.isZero()) {
         MR::normalizeOrZero(&accelXY);
-        angleXY = JMAAsinRadian(accelXY.x);
+        angleXY = MR::asin(accelXY.x);
     }
 
     f32 angleYZ = 0.0f;
     TVec2f accelYZ(-padAccel.y, padAccel.z);
-    if (!isDeadZone(accelYZ)) {
+    if (!accelYZ.isZero()) {
         MR::normalizeOrZero(&accelYZ);
-        angleYZ = diffAngleAbs(accelYZ, getTrig(baseDegreeYZ));
+        angleYZ = diffAngleAbs(accelYZ, TVec2f(MR::cos(baseDegreeYZ), MR::sin(baseDegreeYZ)));
     }
 
-    f32 x;
     if (__fabsf(angleXY) < accelDegreMargine) {
-        x = 0.0f;
+        angleXY = 0.0f;
     } else {
         if (angleXY > 0.0f) {
             angleXY -= accelDegreMargine;
         } else {
             angleXY += accelDegreMargine;
         }
-        x = angleXY / (accelDegreeRange - accelDegreMargine);
+        angleXY /= (accelDegreeRange - accelDegreMargine);
     }
 
-    f32 y;
     if (__fabsf(angleYZ) < accelDegreMargine) {
-        y = 0.0f;
+        angleYZ = 0.0f;
     } else {
         if (angleYZ > 0.0f) {
             angleYZ -= accelDegreMargine;
         } else {
             angleYZ += accelDegreMargine;
         }
-        y = angleYZ / (accelDegreeRangeY - accelDegreMargine);
+        angleYZ /= (accelDegreeRangeY - accelDegreMargine);
     }
 
-    *pX = x;
-    *pY = y;
+    *pX = angleXY;
+    *pY = angleYZ;
 }
 
 void SphereController::notifyDeactivate() {

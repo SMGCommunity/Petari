@@ -39,9 +39,9 @@ namespace {
     };
 
     static const s32 sTouchCount = 1;
-    static const f32 sNormalRadius = 15.0f;
-    static const f32 sHoldRadius = 45.0f;
-    static const f32 sHandRadius = 20.0f;
+    static const vf32 sNormalRadius = 15.0f;
+    static const vf32 sHoldRadius = 45.0f;
+    static const vf32 sHandRadius = 20.0f;
 
     // static const _32 sStepRadian =
     static const s32 hGripTime = 20;
@@ -662,7 +662,7 @@ void StarPointerLayout::rotateTest() {
     if (MR::isStarPointerInScreen(mPadChannel)) {
         TVec2f horiz;
         MR::getWPad(mPadChannel)->mPointer->getHorizonVec(&horiz);
-        angle = MR::normalizeAbs(MR::toDegree(JMAATan2(horiz.y, horiz.x)), ::sDegreeMin, 180.0f);
+        angle = MR::normalizeAbs(MR::toDegree(MR::atan2(horiz.y, horiz.x)), ::sDegreeMin, 180.0f);
         if (angle != 0.0f) {
             mRotateAngle = angle;
         }
@@ -693,7 +693,7 @@ void StarPointerLayout::calcPoseNozzle(const TVec2f& rTargetPos, const TVec2f& r
         f32 dist;
         MR::separateScalarAndDirection(&dist, &diff, diff);
 
-        f32 angle = MR::toDegree(JMAATan2(diff.x, diff.y));
+        f32 angle = MR::toDegree(MR::atan2(diff.x, diff.y));
         TVec3f rotate;
         MR::copyPaneRotate(&rotate, this, "PicNozzle");
         MR::setPaneRotate(this, rotate.x, rotate.y, angle, "PicNozzle");

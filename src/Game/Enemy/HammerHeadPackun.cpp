@@ -551,13 +551,9 @@ bool HammerHeadPackun::calcPlayerDir(TVec3f* pPos) const {
 }
 
 void HammerHeadPackun::turnTo(const TVec3f& rFrom, f32 rate) {
-    f32 crossMag = _A0.cross(rFrom).length();
-    f32 dotResult = _A0.dot(rFrom);
-    f32 absAngle = __fabsf(JMath::sAtanTable.atan2_(crossMag, dotResult));
+    f32 absAngle = _A0.angle(rFrom);
     f32 ratio = 1.0f;
-    f32 maxAngle = rate;
-    maxAngle *= PI;
-    maxAngle = maxAngle / 180.0f;
+    f32 maxAngle = rate * MR::pi() / 180.0f;
     if (absAngle > maxAngle) {
         ratio = maxAngle / absAngle;
     }

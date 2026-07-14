@@ -2,6 +2,7 @@
 #include "Game/Screen/LayoutCoreUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
@@ -68,9 +69,7 @@ void StarPointerTarget::calcPosition(TVec3f* pWorldPos) const {
 
 f32 StarPointerTarget::calcRadius2d(f32 radius3d, f32 margin, f32 z) const {
     f32 fovyRad = MR::getFovy() * PI_180;
-    f32 tan = JMASinRadian(fovyRad * 0.5f) / JMACosRadian(fovyRad * 0.5f);
-
-    f32 radius2d = (radius3d * ((MR::getScreenHeight() * 0.5f) / tan) / z);
+    f32 radius2d = (radius3d * ((MR::getScreenHeight() * 0.5f) / MR::tan(fovyRad * 0.5f)) / z);
     return radius2d + margin;
 }
 

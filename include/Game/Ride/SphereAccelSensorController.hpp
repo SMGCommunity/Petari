@@ -20,10 +20,6 @@ public:
     bool testBrake() const;
     // void listenPropertyEvent(const JORPropertyEvent*); // DEBUG
 
-    inline bool isDeadZone(const TVec2f& vec) {
-        return vec.dot(vec) <= 0.0000038146973f;
-    }
-
     // everything up to 0x58 seems like it may be inhereted memory
     // however none of the inhereted classes use anything near
     // this much memory. Unsure of what exactly this memory is...

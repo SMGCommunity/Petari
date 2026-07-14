@@ -308,7 +308,7 @@ void Flag::updateFlag() {
             point->addAccel(grav);
 
             TVec3f side = mSide;
-            f32 wave = JMASinDegree(mWavePhase + ::sWindPosRateU * idxU + ::sWindPosRateV * idxV);
+            f32 wave = MR::sinDegree(mWavePhase + ::sWindPosRateU * idxU + ::sWindPosRateV * idxV);
             if (wave < 0.0f) {
                 wave *= -1.0f;
             }

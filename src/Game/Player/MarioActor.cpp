@@ -439,7 +439,7 @@ void MarioActor::calcBaseFrontVec(const TVec3f& rVec) {
         if (MR::makeAxisAndCosignVecToVec(&cross, &cosine, rVec, j)) {
             TVec3f k(0.0f, 0.0f, 1.0f);
             Mtx transformation;
-            PSMTXRotAxisRad(transformation, &cross, -JMAAcosRadian(cosine));
+            PSMTXRotAxisRad(transformation, &cross, -MR::acos(cosine));
             PSMTXMultVecSR(transformation, &k, &_258);
             MR::normalize(&_258);
         } else {

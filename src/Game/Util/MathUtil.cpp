@@ -32,13 +32,13 @@ namespace MR {
                 x = 1.0f;
             }
 
-            ::gAcosTable[i] = acos(x);
+            ::gAcosTable[i] = ::acos(x);
         }
     }
 
     f32 acosEx(f32 x) {
         if (__fabsf(x) < 0.98f) {
-            return JMAAcosRadian(x);
+            return MR::acos(x);
         } else if (x < 0.0f) {
             u32 index = static_cast< u32 >((-x - 0.98f) * 255.0f * 50.0f);
             f32 acos = ::gAcosTable[index];
@@ -90,18 +90,12 @@ namespace MR {
         pDst->set< f32 >(getRandom(-range, range), getRandom(-range, range), getRandom(-range, range));
     }
 
-    // stack places randVec and otherVec wrongly
     void addRandomVector(TVec3f* pOut, const TVec3f& rOtherVec, f32 range) {
         f32 x = getRandom(-range, range);
         f32 y = getRandom(-range, range);
         f32 z = getRandom(-range, range);
 
-        TVec3f randVec;
-        randVec.x = x;
-        randVec.y = y;
-        randVec.z = z;
-
-        pOut->set(rOtherVec + randVec);
+        pOut->set(rOtherVec + TVec3f(x, y, z));
     }
 
     void turnRandomVector(TVec3f* pDst, const TVec3f& rSrc, f32 range) {
@@ -109,7 +103,7 @@ namespace MR {
 
         addRandomVector(pDst, rSrc, range);
 
-        if (isNearZero(rSrc)) {
+        if (isNearZero(*pDst)) {
             pDst->set(rSrc);
         } else {
             pDst->setLength(srcLength);
@@ -322,17 +316,14 @@ namespace MR {
         }
     }
 
-    /*
-    f32 calcRotateY(f32 a1, f32 a2) {
-        f32 val = JMath::sAtanTable.atan2_(-a2, a1);
-        return ::cMinDegree + mod((::cMaxDegree + ((90.0f + (val * 57.295776f)) - ::cMinDegree)), ::cMaxDegree);
+    f32 calcRotateY(f32 x, f32 z) {
+        return MR::repeatDegree(MR::toDegree(MR::atan2(-z, x)) + 90.0f);
     }
-    */
 
     // Compiler refuses to cooperate, but mathematically this is correct
     f32 calcRotateZ(const TVec3f& a1, const TVec3f& a2) {
         TVec2f vec(a2.y - a1.y, a2.x - a1.x);
-        return 57.29578f * JMath::sAtanTable.atan2_(vec.x, vec.y);
+        return _180_PI * MR::atan2(vec.x, vec.y);
     }
 
     f32 calcDistanceXY(const TVec3f& rPos1, const TVec3f& rPos2) {
@@ -771,7 +762,7 @@ namespace MR {
     }
 
     f32 diffAngleAbsFast(const TVec3f& rParam1, const TVec3f& rParam2) {
-        return JMAAcosRadian(rParam1.dot(rParam2));
+        return MR::acos(rParam1.dot(rParam2));
     }
 
     f32 diffAngleAbs(const TVec3f& rParam1, const TVec3f& rParam2) {

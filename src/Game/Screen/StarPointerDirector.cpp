@@ -146,9 +146,7 @@ StarPointerTransformHolder::StarPointerTransformHolder() : mViewMtx(mtx_identity
 
 void StarPointerTransformHolder::movement() {
     f32 fovyRad = PI_180 * getFovy();
-    f32 tan = JMASinRadian(fovyRad * 0.5f) / JMACosRadian(fovyRad * 0.5f);
-
-    mFocalLength = ((MR::getScreenHeight() * 0.5f) / tan);
+    mFocalLength = ((MR::getScreenHeight() * 0.5f) / MR::tan(fovyRad * 0.5f));
 }
 
 StarPointerPeekZ::StarPointerPeekZ() {

@@ -725,8 +725,7 @@ bool WaterBazooka::aimAtMario() {
 
     TVec3f side2;
     mBaseMtx.getXDir(side2);
-    f32 angle = JMath::sAtanTable.atan2_(side2.cross(aim).length(), side2.dot(aim));
-    return __fabsf(angle) * _180_PI <= 2.0f;
+    return side2.angle(aim) * _180_PI <= 2.0f;
 }
 
 void WaterBazooka::switchShowOrHide() {

@@ -428,6 +428,28 @@ namespace MR {
         return JMASinRadian(x) / JMACosRadian(x);
     }
 
+    /// @brief Computes the arccos of a number in radians.
+    /// @param x The ratio to evaluate.
+    /// @return The angle in radians such that cos(angle) = x.
+    inline f32 acos(f32 x) {
+        return JMAAcosRadian(x);
+    }
+
+    /// @brief Computes the arcsin of a number in radians.
+    /// @param x The ratio to evaluate.
+    /// @return The angle in radians such that sin(angle) = x.
+    inline f32 asin(f32 x) {
+        return JMAAsinRadian(x);
+    }
+
+    /// @brief Computes the angle of the vector given by (x,y), in radians.
+    /// @param x The x coordinate of input vector
+    /// @param y The y coordinate of input vector
+    /// @return The heading angle of the vector given by (x,y).
+    inline f32 atan2(f32 x, f32 y) {
+        return JMAATan2(x, y);
+    }
+
     /// @brief Computes the cosine of a number, in degrees.
     /// @param x The number of degrees to evaluate.
     /// @return The ratio of the length of the adjacent to that of the hypotenuse.

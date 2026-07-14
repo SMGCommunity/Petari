@@ -104,6 +104,10 @@ namespace JGeometry {
             return (x >= other.x) && (y >= other.y) ? true : false;
         }
 
+        inline bool isZero() const {
+            return dot(*this) <= (f32)JGeometry::TUtil< f32 >::epsilon();
+        }
+
         void sub(const TVec2< T >& rOther) {
             x = x - rOther.x;
             y = y - rOther.y;
