@@ -537,8 +537,6 @@ bool HammerHeadPackun::isChance() const {
 }
 
 bool HammerHeadPackun::calcPlayerDir(TVec3f* pPos) const {
-    // https://decomp.me/scratch/yaccF
-    // it's (*MR::getPlayerPos() - mPosition), but it gets inlined
     pPos->set(*MR::getPlayerPos() - mPosition);
     f32 dot = _94.dot(*pPos);
     JMAVECScaleAdd(_94, pPos, pPos, -dot);
