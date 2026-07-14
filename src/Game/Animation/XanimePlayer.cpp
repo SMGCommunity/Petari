@@ -191,7 +191,7 @@ void XanimePlayer::changeAnimationByHash(u32 hash) {
     }
 }
 
-void XanimePlayer::swapFrameCtrl(const XanimeGroupInfo* pInfo) {
+/*void XanimePlayer::swapFrameCtrl(const XanimeGroupInfo* pInfo) {
     if (pInfo == nullptr) {
         return;
     }
@@ -199,7 +199,7 @@ void XanimePlayer::swapFrameCtrl(const XanimeGroupInfo* pInfo) {
     if (pInfo->_20[0] == nullptr) {
         return;
     }
-}
+}*/
 
 void XanimePlayer::changeAnimation(const XanimeGroupInfo* pInfo) {
     if (pInfo == nullptr) {
@@ -213,7 +213,7 @@ void XanimePlayer::changeAnimation(const XanimeGroupInfo* pInfo) {
     swapFrameCtrl(pInfo);
     _68 = pInfo;
     changeCurrentAnimation(pInfo);
-    mCurrentBckName = pInfo->_48;
+    mCurrentBckName = pInfo->mBckName;
 }
 
 void XanimePlayer::prepareAnimation(const XanimeGroupInfo* pInfo) {
@@ -432,4 +432,94 @@ bool XanimePlayer::isRun(const char* pName) const {
     }
 
     return mCurrentAnimation == mResourceTable->getGroupInfo(pName);
+}
+
+void XanimePlayer::runDefaultAnimation() {
+    if (_68 != nullptr) {
+        _68 = nullptr;
+    }
+
+    if (_7D == 0) {
+        return;
+    }
+
+    if (mResourceTable->mAmountOfGroupInfos == 0) {
+        return;
+    }
+
+    swapFrameCtrl(mDefaultAnimation);
+    _68 = mDefaultAnimation;
+    changeCurrentAnimation(mDefaultAnimation);
+    mCurrentBckName = mDefaultAnimation->mBckName;
+}
+
+bool XanimePlayer::isAnimationRunSimple() const {
+    if (mCurrentAnimation == nullptr) {
+        return false;
+    }
+
+    return mCurrentAnimation == getSimpleGroup();
+}
+
+const char* XanimePlayer::getCurrentAnimationName() const {
+    if (mCurrentAnimation == nullptr) {
+        return nullptr;
+    }
+
+    return "";
+}
+
+const char* XanimePlayer::getDefaultAnimationName() const {
+    if (mDefaultAnimation == nullptr) {
+        return nullptr;
+    }
+
+    return "";
+}
+
+const char* XanimePlayer::getCurrentBckName() const {
+    return mCurrentBckName;
+}
+
+const char* XanimePlayer::getNameStringPointer(const char* pName) const {
+    const XanimeGroupInfo* info = mResourceTable->getGroupInfo(pName);
+    if (info != nullptr) {
+        return info->mParent.animationName;
+    }
+
+    return nullptr;
+}
+
+bool XanimePlayer::checkPass(f32 arg) const {
+    if (_88 == 0) {
+        return _20->checkPass(arg);
+    }
+
+    f32 oldFrame = _20->mFrame;
+    _20->mFrame = _84;
+    bool res = _20->checkPass(arg);
+    _20->mFrame = oldFrame;
+
+    return res;
+}
+
+XanimeGroupInfo* XanimePlayer::getSimpleGroup() const {
+    if (_74 != nullptr) {
+        return _74;
+    }
+
+    return &mResourceTable->_1C;
+}
+
+void XanimePlayer::duplicateSimpleGroup() {
+    _74 = new XanimeGroupInfo();
+    _74->init();
+    _74->mParent.animationName = "dup-non-group";
+    _74->_4 = 1.0f;
+    _74->_8 = 1;
+    _74->mBckTableVariant = 1;
+    _74->_1D = 0;
+}
+
+XanimeFrameCtrl::XanimeFrameCtrl() : _14(0) {
 }

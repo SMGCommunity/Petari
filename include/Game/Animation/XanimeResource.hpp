@@ -41,7 +41,7 @@ public:
     f32 _30[4];
     XanimeOfsInfo** _40;
     /* 0x44 */ u32 mHash;
-    const char* _48;
+    /* 0x48 */ const char* mBckName;
 
     void init();
 };
