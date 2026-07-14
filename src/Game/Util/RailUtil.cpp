@@ -147,12 +147,9 @@ namespace MR {
         pActor->mRailRider->reverse();
     }
 
-    void calcMovingDirectionAlongRail(LiveActor* pActor, TVec3f* pDir, const TVec3f& rPos, f32 coord, bool horizontal, bool* pReachedGoal) {
-        // FIXME : improper float register store, float regswaps
-        // https://decomp.me/scratch/xYffl
-
+    f32 calcMovingDirectionAlongRail(LiveActor* pActor, TVec3f* pDir, const TVec3f& rPos, f32 curveRatio, bool horizontal, bool* pReachedGoal) {
         TVec3f pos, dir;
-        calcNearestRailPosAndDirection(&pos, &dir, pActor, rPos);
+        f32 coord = calcNearestRailPosAndDirection(&pos, &dir, pActor, rPos);
         setRailCoord(pActor, coord);
 
         if (!isLoopRail(pActor) && isRailReachedGoal(pActor)) {
@@ -167,24 +164,26 @@ namespace MR {
         }
 
         if (!isRailGoingToEnd(pActor)) {
-            dir = dir.negateInline();
+            dir = -dir;
         }
 
-        TVec3f fromInPos(pos - rPos);
+        TVec3f fromInPos = pos - rPos;
 
         if (horizontal) {
             vecKillElement(fromInPos, pActor->mGravity, &fromInPos);
             vecKillElement(dir, pActor->mGravity, &dir);
         }
 
-        fromInPos *= (1.0f / fromInPos.length());
+        f32 distTravelled = fromInPos.length();
+        fromInPos /= curveRatio;
 
         pDir->set(fromInPos + dir);
         normalizeOrZero(pDir);
+        return distTravelled;
     }
 
-    void calcMovingDirectionAlongRailH(LiveActor* pActor, TVec3f* pDir, const TVec3f& rPos, f32 coord, bool* pReachedGoal) {
-        calcMovingDirectionAlongRail(pActor, pDir, rPos, coord, true, pReachedGoal);
+    f32 calcMovingDirectionAlongRailH(LiveActor* pActor, TVec3f* pDir, const TVec3f& rPos, f32 curveRatio, bool* pReachedGoal) {
+        return calcMovingDirectionAlongRail(pActor, pDir, rPos, curveRatio, true, pReachedGoal);
     }
 
     void calcRailClippingInfo(TVec3f* pCenter, f32* pRadius, const LiveActor* pActor, f32 delta, f32 padding) {

@@ -458,17 +458,17 @@ void PowerStar::initPosture() {
     MR::makeMtxRotate(mtx, mInitRotation);
 
     if (!_126) {
-        TVec3f yDir;
-        mtx.getYDir(yDir);
+        TVec3f zDir;
+        mtx.getZDir(zDir);
 
-        TVec3f negGravity = mGravity.negateInline();
-        if (!MR::isSameDirection(negGravity, yDir, 0.01f)) {
-            MR::makeMtxUpFront(&_B8, negGravity, yDir);
+        TVec3f up = -mGravity;
+        if (!MR::isSameDirection(up, zDir, 0.01f)) {
+            MR::makeMtxUpFront(&_B8, up, zDir);
         } else {
-            MR::makeMtxUpNoSupport(&_B8, negGravity);
+            MR::makeMtxUpNoSupport(&_B8, up);
         }
     } else {
-        _B8.setInline(&mtx);
+        _B8.set(mtx);
     }
 
     _B8.zeroTrans();

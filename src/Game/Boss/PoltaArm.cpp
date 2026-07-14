@@ -272,8 +272,7 @@ bool PoltaArm::requestControlled(const char* pActionName) {
 void PoltaArm::appearBreakModel() {
     TVec3f jointPos;
     MR::copyJointPos(this, mIsLeftArm ? "HandL" : "HandR", &jointPos);
-    TVec3f negativeGravity(mGravity.negateInline());
-    MR::makeMtxUpNoSupportPos(&_98, negativeGravity, jointPos);
+    MR::makeMtxUpNoSupportPos(&_98, -mGravity, jointPos);
     mBreakModel->mScale.set(1.0f, 1.0f, 1.0f);
     mBreakModel->makeActorAppeared();
     MR::invalidateClipping(mBreakModel);

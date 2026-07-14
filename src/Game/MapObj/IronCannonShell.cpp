@@ -97,7 +97,7 @@ bool IronCannonLauncherPoint::tryShotBullet(f32 offset) {
 
     TVec3f shadowdir;
     mtx.getYDir(shadowdir);
-    shadowdir.invertInternal();
+    shadowdir.negate();
     MR::setShadowDropDirection(pShell, nullptr, shadowdir);
 
     MR::emitEffect(this, "Shoot");

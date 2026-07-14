@@ -262,7 +262,7 @@ void TicoFat::init(const JMapInfoIter& rIter) {
 
 void TicoFat::initAfterPlacement() {
     MR::extractMtxYDir(getBaseMtx(), &mGravity);
-    mGravity.invert();
+    mGravity.mult(-1.0f);
     if (!_1E0) {
         disappear(false);
         makeActorDead();
@@ -283,7 +283,6 @@ void TicoFat::setCameraParam() {
     _B0.getXDir(xDir);
     _B0.getYDir(yDir);
     _B0.getZDir(zDir);
-
 
     v18 = _C0;
     TVec3f* ptr = &v18;

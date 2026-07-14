@@ -19,7 +19,7 @@ void MapPartsBreaker::exeReactToTornado() {
     }
 
     if (getStep() % 3 == 0) {
-        mHost->mVelocity.invertInternal();
+        mHost->mVelocity.negate();
     }
 
     if (isStep(36)) {

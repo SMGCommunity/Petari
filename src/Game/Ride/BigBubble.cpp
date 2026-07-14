@@ -259,7 +259,7 @@ void BigBubble::generate(const TVec3f& rPos, const TVec3f& rUp, f32 volume, bool
     mCoriolisAccel.rejection(mGravity);
     MR::onBind(this);
     MR::offCalcGravity(this);
-    mGravity.set(rUp.negateOperatorInternal());
+    mGravity.set(-rUp);
     mWarningColor.a = 0;
 }
 
@@ -745,7 +745,7 @@ void BigBubble::exeMerged() {
     TVec3f localDir;
     calcLocalDirection(&localDir, mMergeIndex);
     TQuat4f q;
-    q.setRotate(localDir, mergeDir.negateOperatorInternal(), 0.2f);
+    q.setRotate(localDir, -mergeDir, 0.2f);
     PSQUATMultiply(&q, &mBubbleQuat, &mBubbleQuat);
     calcLocalDirection(&localDir, mMergeIndex);
     mPosition.set(mergePos - localDir * mDeformCoeff[mMergeIndex] * 0.95f);
@@ -966,9 +966,9 @@ void BigBubble::updatePose() {
         addDeformVelocityOuter(_1A4, false);
     }
 
-    addDeformVelocityOuter(mGravity.negateOperatorInternal() * 0.03f * mScale.x, false);
+    addDeformVelocityOuter(-mGravity * 0.03f * mScale.x, false);
     TVec3f v1;
-    MR::clampLength(&v1, mVelocity.negateOperatorInternal(), 10.0f);
+    MR::clampLength(&v1, -mVelocity, 10.0f);
     addDeformVelocityOuter(v1 * 0.1f, false);
     addDeformVelocityInternalOressure();
     addDeformVelocityRebound();
@@ -1104,18 +1104,18 @@ void BigBubble::calcLocalDirection(TVec3f* pDir, s32 mergeIndex) const {
         break;
     case Side_Back:
         mBubbleQuat.getZDir(dir);
-        dir.negateInternal();
+        dir.negate();
         break;
     case Side_Left:
         mBubbleQuat.getXDir(dir);
-        dir.negateInternal();
+        dir.negate();
         break;
     case Side_Front:
         mBubbleQuat.getZDir(dir);
         break;
     case Side_Bottom:
         mBubbleQuat.getYDir(dir);
-        dir.negateInternal();
+        dir.negate();
         break;
     }
     pDir->set(dir);

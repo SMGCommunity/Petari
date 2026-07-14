@@ -110,11 +110,9 @@ void SkeletalFishGuard::exeAppear() {
         MR::clearHitSensors(this);
         MR::offBind(this);
         _C8 = 0.0f;
-        TVec3f v27;
-        JGeometry::negateInternal((f32*)&mGravity, (f32*)&v27);
-        _D0.set< f32 >(v27);
-        _10C.set< f32 >(mPosition);
-        _DC.set(MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f));
+        _D0.set(-mGravity);
+        _10C.set(mPosition);
+        _DC.set< f32 >(MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f), MR::getRandom(-1.0f, 1.0f));
     }
 
     MR::calcGravityVector(this, _10C, &v32, nullptr, false);
@@ -123,7 +121,7 @@ void SkeletalFishGuard::exeAppear() {
     calcTarget(&_E8, &_F4, &_100, v5);
     TVec3f v30 = _DC;
     f32 v6 = v32.dot(v30);
-    // JMAVECScaleAdd(v32, v30, v30, -v6);
+    JMAVECScaleAdd(v32, v30, v30, -v6);
     MR::normalizeOrZero(&v30);
     v31 += v30 * 500.0f;
     v30 += TVec3f(0.0f, 1.0f, 0.0f);
@@ -141,7 +139,7 @@ void SkeletalFishGuard::exeAppear() {
         f32 v9 = (getNerveStep() - 0x63);
         s32 max = 0xC9;
         f32 scaled = v9 / (f32)max;
-        f32 v11 = MR::getRailCoordSpeed(mFishBoss->getCurrentBossRail());
+        f32 v11 = MR::getRailCoordSpeed(mFishBoss->getCurrentRail());
         TVec3f temp_vec = v30 * 10.0f * (f32)max;
         TVec3f temp_vec2 = _100 * v11 * (f32)max;
         mPosition.cubic< f32 >(v31, temp_vec, temp_vec2, _F4, scaled);
@@ -344,7 +342,7 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
     if (isNerve(&::SkeletalFishGuardNrvAppear::sInstance)) {
         TVec3f gravityVec;
         MR::calcGravityVector(this, _F4, &gravityVec, nullptr, 0);
-        JGeometry::negateInternal((f32*)&gravityVec, (f32*)&gravityVec);
+        gravityVec.negate();
         TVec3f stack_4C = gravityVec.cross(_100);
         MR::normalize(&stack_4C);
         gravityVec.cross(_100, stack_4C);
@@ -359,8 +357,7 @@ void SkeletalFishGuard::calcAndSetBaseMtx() {
         stack_D0.setTrans(mPosition);
         MR::setBaseTRMtx(this, stack_D0);
     } else {
-        TVec3f stack_30;
-        JGeometry::negateInternal((f32*)&mGravity, (f32*)&stack_30);
+        TVec3f stack_30 = -mGravity;
         TVec3f stack_24 = stack_30.cross(_D0);
 
         if (MR::isNearZero(stack_24)) {

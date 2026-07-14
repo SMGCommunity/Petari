@@ -374,7 +374,7 @@ bool Creeper::tryJump() {
 
     calcAndGetCurrentInfo(&mPosition, &mUp);
 
-    TVec3f launchFront = mBendDirection.negateInline();
+    TVec3f launchFront = -mBendDirection;
 
     MR::vecKillElement(launchFront, mGravity, &launchFront);
     MR::normalizeOrZero(&launchFront);

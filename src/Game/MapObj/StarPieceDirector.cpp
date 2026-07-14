@@ -396,10 +396,10 @@ bool StarPieceShooter::shoot() {
         pSensor = _98;
     }
 
-    TVec3f position(mPosition);
+    TVec3f position = mPosition;
     TVec3f vec;
     TVec3f posCameraShoot = MR::getStarPieceDirector()->calcPosCameraShoot(_A0);
-    TVec3f negCameraPos = MR::getCamPos().negateInline();
+    TVec3f negCameraPos = -MR::getCamPos();
 
     if (pSensor != nullptr) {
         negCameraPos.add(pSensor->mPosition);

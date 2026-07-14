@@ -11,7 +11,17 @@
 #include <JSystem/JMath/JMath.hpp>
 
 namespace JGeometry {
-    void negateInternal(const f32* rSrc, f32* rDest);
+    inline void negateInternal(register const f32* rSrc, register f32* rDest) {
+#ifdef __MWERKS__
+        register f32 xy;
+        __asm {
+            psq_l xy, 0(rSrc), 0, 0
+            ps_neg xy, xy
+            psq_st xy, 0(rDest), 0, 0
+        }
+        rDest[2] = -rSrc[2];
+#endif
+    }
 
 #ifdef __MWERKS__
     inline static void subInternal(register const f32* vec1, register const f32* vec2, register f32* dst) {
@@ -545,38 +555,23 @@ namespace JGeometry {
             JMAVECLerp(&a, &b, this, t);
         }
 
-        TVec3 operator-() const;
-
         bool operator==(const TVec3& rVec) const {
             return TUtil< f32 >::epsilonEquals(x, rVec.x, 0.0000038146973f) && TUtil< f32 >::epsilonEquals(y, rVec.y, 0.0000038146973f) &&
                    TUtil< f32 >::epsilonEquals(z, rVec.z, 0.0000038146973f);
         }
 
-        // This should probably be merged with operator-(), but ParallelGravity doesn't inline
-        // operator-() despite only referencing it once. So if we can match that, the two functions
-        // can be merged.
-        inline TVec3 negateInline() const {
+        TVec3 operator-() const {
             TVec3 ret;
-            JMathInlineVEC::PSVECNegate(this, &ret);
+            ret.negate(*this);
             return ret;
         }
 
-        inline void negate(const TVec3& rVec) {
-            JMathInlineVEC::PSVECNegate(rVec, this);
-        }
-
-        inline TVec3 negateOperatorInternal() const {
-            TVec3 ret;
-            JGeometry::negateInternal(&this->x, &ret.x);
-            return ret;
-        }
-
-        inline void negateInternal() {
+        void negate() {
             JGeometry::negateInternal(&this->x, &this->x);
         }
 
-        inline void negateOtherInternal(const TVec3< f32 >& a) {
-            JGeometry::negateInternal(&a.x, &this->x);
+        void negate(const TVec3& rVec) {
+            JGeometry::negateInternal(&rVec.x, &this->x);
         }
 
         static inline TVec3 makeZeroVec() {
@@ -637,24 +632,6 @@ namespace JGeometry {
             JMAVECScaleAdd(&norm, this, this, -norm.dot(*this));
         }
 
-        inline void invert() {
-            this->x *= -1.0f;
-            this->y *= -1.0f;
-            this->z *= -1.0f;
-        }
-
-        inline void invertInternal() {
-            JMathInlineVEC::PSVECNegate(this, this);
-        }
-
-        inline TVec3 invertOperatorInternal() {
-            TVec3 ret;
-            JMathInlineVEC::PSVECNegate(this, &ret);
-            return ret;
-        }
-
-        void negate();
-
         f32 normalize() {
             f32 magnitude = length();
             PSVECNormalize(this, this);
@@ -672,6 +649,12 @@ namespace JGeometry {
 
         void cross(const TVec3< f32 >& a, const TVec3< f32 >& b) {
             PSVECCrossProduct(a, b, *this);
+        }
+
+        TVec3 cross(const TVec3& b) const {
+            TVec3 ret;
+            PSVECCrossProduct(this, &b, &ret);
+            return ret;
         }
 
         f32 squared() const {
@@ -756,12 +739,6 @@ namespace JGeometry {
             f32 crossPart = cross(rB).length();
             f32 dotPart = dot(rB);
             return __fabsf(JMAATan2(crossPart, dotPart));
-        }
-
-        inline TVec3 cross(const TVec3& b) const {
-            TVec3 ret;
-            PSVECCrossProduct(this, &b, &ret);
-            return ret;
         }
 
         inline TVec3 copy() const {

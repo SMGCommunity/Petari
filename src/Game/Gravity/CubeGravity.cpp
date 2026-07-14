@@ -47,43 +47,6 @@ void CubeGravity::setCube(const TPos3f& rCube) {
     updateIdentityMtx();
 }
 
-void CubeGravity::updateMtx(const TPos3f& rMtx) {
-    mPosition.concat(rMtx, mCube);
-    TVec3f dir;
-    mPosition.getXDir(dir);
-    lenX = dir.length();
-    mPosition.getYDir(dir);
-    lenY = dir.length();
-    mPosition.getZDir(dir);
-    lenZ = dir.length();
-}
-
-bool CubeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const {
-    int area = calcGravityArea(rPosition);
-    if (area < 0) {
-        return false;
-    }
-    TVec3f gravityForce;
-    f32 scalar;
-    if (!calcFaceGravity(rPosition, area, &gravityForce, &scalar) && !calcEdgeGravity(rPosition, area, &gravityForce, &scalar) &&
-        !calcCornerGravity(rPosition, area, &gravityForce, &scalar)) {
-        return false;
-    }
-
-    if (!isInRangeDistance(scalar)) {
-        return false;
-    }
-
-    if (pDest != nullptr) {
-        *pDest = gravityForce;
-    }
-
-    if (pScalar != nullptr) {
-        *pScalar = scalar;
-    }
-    return true;
-}
-
 int CubeGravity::calcGravityArea(const TVec3f& rPosition) const {
     TVec3f dirX, dirY, dirZ, trans;
     mPosition.getXDir(dirX);
@@ -163,17 +126,17 @@ bool CubeGravity::calcFaceGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
 
     case REGION_X_FACE_POSITIVE:
         mPosition.getXDir(antiFaceDir);
-        JGeometry::negateInternal(&antiFaceDir.x, &antiFaceDir.x);
+        antiFaceDir.negate();
         break;
 
     case REGION_Y_FACE_POSITIVE:
         mPosition.getYDir(antiFaceDir);
-        JGeometry::negateInternal(&antiFaceDir.x, &antiFaceDir.x);
+        antiFaceDir.negate();
         break;
 
     case REGION_Z_FACE_POSITIVE:
         mPosition.getZDir(antiFaceDir);
-        JGeometry::negateInternal(&antiFaceDir.x, &antiFaceDir.x);
+        antiFaceDir.negate();
         break;
 
     default:
@@ -190,12 +153,6 @@ bool CubeGravity::calcFaceGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
     *pDest = antiFaceDir;
     *pScalar = height;
     return true;
-}
-
-TVec3f negate(const TVec3f& in) {
-    TVec3f tmp;
-    JGeometry::negateInternal(&in.x, &tmp.x);
-    return tmp;
 }
 
 bool CubeGravity::calcEdgeGravity(const TVec3f& rPosition, s32 area, TVec3f* pDest, f32* pScalar) const {
@@ -217,12 +174,12 @@ bool CubeGravity::calcEdgeGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
     switch (area) {
     case ENCODE_EDGE(AXIS_X, REGION_NEGATIVE_Y, REGION_NEGATIVE_Z):
         edgeVector = xDir;
-        edgeTranslation = negate(yDir) - zDir;
+        edgeTranslation = -yDir - zDir;
         break;
 
     case ENCODE_EDGE(AXIS_Y, REGION_NEGATIVE_X, REGION_NEGATIVE_Z):
         edgeVector = yDir;
-        edgeTranslation = negate(xDir) - zDir;
+        edgeTranslation = -xDir - zDir;
         break;
 
     case ENCODE_EDGE(AXIS_Y, REGION_POSITIVE_X, REGION_NEGATIVE_Z):
@@ -237,7 +194,7 @@ bool CubeGravity::calcEdgeGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
 
     case ENCODE_EDGE(AXIS_Z, REGION_NEGATIVE_X, REGION_NEGATIVE_Y):
         edgeVector = zDir;
-        edgeTranslation = negate(xDir) - yDir;
+        edgeTranslation = -xDir - yDir;
         break;
 
     case ENCODE_EDGE(AXIS_Z, REGION_POSITIVE_X, REGION_NEGATIVE_Y):
@@ -247,7 +204,7 @@ bool CubeGravity::calcEdgeGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
 
     case ENCODE_EDGE(AXIS_Z, REGION_NEGATIVE_X, REGION_POSITIVE_Y):
         edgeVector = zDir;
-        edgeTranslation = negate(xDir) + yDir;
+        edgeTranslation = -xDir + yDir;
         break;
 
     case ENCODE_EDGE(AXIS_Z, REGION_POSITIVE_X, REGION_POSITIVE_Y):
@@ -257,12 +214,12 @@ bool CubeGravity::calcEdgeGravity(const TVec3f& rPosition, s32 area, TVec3f* pDe
 
     case ENCODE_EDGE(AXIS_X, REGION_NEGATIVE_Y, REGION_POSITIVE_Z):
         edgeVector = xDir;
-        edgeTranslation = negate(yDir) + zDir;
+        edgeTranslation = -yDir + zDir;
         break;
 
     case ENCODE_EDGE(AXIS_Y, REGION_NEGATIVE_X, REGION_POSITIVE_Z):
         edgeVector = yDir;
-        edgeTranslation = negate(xDir) + zDir;
+        edgeTranslation = -xDir + zDir;
         break;
 
     case ENCODE_EDGE(AXIS_Y, REGION_POSITIVE_X, REGION_POSITIVE_Z):
@@ -305,7 +262,7 @@ bool CubeGravity::calcCornerGravity(const TVec3f& rPosition, s32 area, TVec3f* p
 
     switch (area) {
     case ENCODE_CORNER(-1, -1, -1):
-        vertex = negate(xDir) - yDir - zDir;
+        vertex = -xDir - yDir - zDir;
         break;
 
     case ENCODE_CORNER(1, -1, -1):
@@ -313,7 +270,7 @@ bool CubeGravity::calcCornerGravity(const TVec3f& rPosition, s32 area, TVec3f* p
         break;
 
     case ENCODE_CORNER(-1, 1, -1):
-        vertex = negate(xDir) + yDir - zDir;
+        vertex = -xDir + yDir - zDir;
         break;
 
     case ENCODE_CORNER(1, 1, -1):
@@ -321,7 +278,7 @@ bool CubeGravity::calcCornerGravity(const TVec3f& rPosition, s32 area, TVec3f* p
         break;
 
     case ENCODE_CORNER(-1, -1, 1):
-        vertex = negate(xDir) - yDir + zDir;
+        vertex = -xDir - yDir + zDir;
         break;
 
     case ENCODE_CORNER(1, -1, 1):
@@ -329,7 +286,7 @@ bool CubeGravity::calcCornerGravity(const TVec3f& rPosition, s32 area, TVec3f* p
         break;
 
     case ENCODE_CORNER(-1, 1, 1):
-        vertex = negate(xDir) + yDir + zDir;
+        vertex = -xDir + yDir + zDir;
         break;
 
     case ENCODE_CORNER(1, 1, 1):
@@ -352,4 +309,41 @@ bool CubeGravity::calcCornerGravity(const TVec3f& rPosition, s32 area, TVec3f* p
     }
 
     return true;
+}
+
+bool CubeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const {
+    int area = calcGravityArea(rPosition);
+    if (area < 0) {
+        return false;
+    }
+    TVec3f gravityForce;
+    f32 scalar;
+    if (!calcFaceGravity(rPosition, area, &gravityForce, &scalar) && !calcEdgeGravity(rPosition, area, &gravityForce, &scalar) &&
+        !calcCornerGravity(rPosition, area, &gravityForce, &scalar)) {
+        return false;
+    }
+
+    if (!isInRangeDistance(scalar)) {
+        return false;
+    }
+
+    if (pDest != nullptr) {
+        *pDest = gravityForce;
+    }
+
+    if (pScalar != nullptr) {
+        *pScalar = scalar;
+    }
+    return true;
+}
+
+void CubeGravity::updateMtx(const TPos3f& rMtx) {
+    mPosition.concat(rMtx, mCube);
+    TVec3f dir;
+    mPosition.getXDir(dir);
+    lenX = dir.length();
+    mPosition.getYDir(dir);
+    lenY = dir.length();
+    mPosition.getZDir(dir);
+    lenZ = dir.length();
 }

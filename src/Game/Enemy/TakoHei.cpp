@@ -811,15 +811,7 @@ void TakoHei::exePunchDown() {
 }
 
 void TakoHei::updatePose() {
-    TVec3f* up;
-
-    if (MR::isBindedGround(this)) {
-        up = const_cast< TVec3f* >(MR::getGroundNormal(this));
-    } else {
-        up = &mGravity.invertOperatorInternal();
-    }
-
-    MR::blendQuatUpFront(&_94, *up, _B0, 0.1f, 0.2f);
+    MR::blendQuatUpFront(&_94, MR::isBindedGround(this) ? *MR::getGroundNormal(this) : -mGravity, _B0, 0.1f, 0.2f);
 }
 
 void TakoHei::updateNormalVelocity() {
@@ -930,4 +922,4 @@ bool TakoHei::isInSightMario() const {
     }
 }
 
-TakoHei::~TakoHei() {};
+TakoHei::~TakoHei(){};

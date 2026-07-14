@@ -1305,7 +1305,7 @@ config.libs = [
             Object(Matching, "Game/Gravity/ConeGravity.cpp"),
             Object(NonMatching, "Game/Gravity/CubeGravity.cpp"),
             Object(Matching, "Game/Gravity/DiskGravity.cpp"),
-            Object(NonMatching, "Game/Gravity/DiskTorusGravity.cpp"),
+            Object(Matching, "Game/Gravity/DiskTorusGravity.cpp"),
             Object(Matching, "Game/Gravity/GlobalGravityObj.cpp"),
             Object(Matching, "Game/Gravity/GraviryFollower.cpp"),
             Object(Matching, "Game/Gravity/GravityCreator.cpp"),

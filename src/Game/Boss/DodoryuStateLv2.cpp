@@ -685,11 +685,10 @@ bool DodoryuStateLv2::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
 
         if (!calcVerticalizedDir(&_A0, _A0)) {
             mHost->mBaseMtx.getZDir(_A0);
-            _A0.negateInternal();
+            _A0.negate();
         }
 
-        _A0.negateInternal();
-        turnToward(_A0, 1.0f);
+        turnToward(-_A0, 1.0f);
         MR::tryRumblePadMiddle(this, 0);
         MR::stopScene(::sStopSceneFrame);
         setNerve(&::DodoryuStateLv2NrvKnockDown::sInstance);

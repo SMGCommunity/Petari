@@ -603,9 +603,7 @@ void WaterBazooka::exeStorm() {
 
     f32 deg = MR::calcNerveEaseOutValue(this, 150, 25.0f, 0.0f);
     MR::rotateVecDegree(&side, mGravity, deg);
-    TVec3f up;
-    JGeometry::negateInternal(&mGravity.x, &up.x);
-    MR::makeMtxSideUpPos(&mBaseMtx, side, up, pos);
+    MR::makeMtxSideUpPos(&mBaseMtx, side, -mGravity, pos);
 
     MR::startLevelSound(this, "SE_EM_LV_WATERBAZ_STORM", (deg * 100.0f) / 25.0f);
 
@@ -708,7 +706,7 @@ bool WaterBazooka::aimAtMario() {
     mBaseMtx.getTrans(cannonPos);
 
     TVec3f aimPos;
-    aimPos.scaleAdd(mGravity.negateOperatorInternal(), *MR::getPlayerPos(), 100.0f);
+    aimPos.scaleAdd(-mGravity, *MR::getPlayerPos(), 100.0f);
 
     TVec3f aim;
     aim.sub(aimPos, cannonPos);
@@ -716,14 +714,14 @@ bool WaterBazooka::aimAtMario() {
     MR::turnVecToVecCos(&side, side, aim, MR::cosDegree(1.2f), mGravity, 0.02f);
 
     TVec3f v1;
-    MR::turnVecToPlane(&v1, side, mGravity.negateOperatorInternal());
+    MR::turnVecToPlane(&v1, side, -mGravity);
     MR::clampVecAngleDeg(&side, v1, 15.0f);
 
-    if (side.dot(mGravity.negateOperatorInternal()) > 0.0f) {
-        MR::turnVecToPlane(&side, side, mGravity.negateOperatorInternal());
+    if (side.dot(-mGravity) > 0.0f) {
+        MR::turnVecToPlane(&side, side, -mGravity);
     }
 
-    MR::makeMtxSideUpPos(&mBaseMtx, side, mGravity.negateOperatorInternal(), cannonPos);
+    MR::makeMtxSideUpPos(&mBaseMtx, side, -mGravity, cannonPos);
 
     TVec3f side2;
     mBaseMtx.getXDir(side2);
@@ -965,10 +963,9 @@ bool WaterBazooka::tryJumpBackPlayerFromBazooka() const {
     calcNearDropPoint(&dropPoint);
     TVec3f jumpDir;
     jumpDir.sub(dropPoint, *MR::getPlayerPos());
-    const TVec3f& grav = mGravity;
     TVec3f rej;
-    rej.rejection(jumpDir, grav);
-    TVec3f rej2(rej.negateOperatorInternal());
+    rej.rejection(jumpDir, mGravity);
+    TVec3f rej2 = -rej;
 
     MR::offBind(MR::getPlayerDemoActor());
     MR::unlockPlayerAnimation();
@@ -999,7 +996,7 @@ void WaterBazooka::calcNearDropPoint(TVec3f* pPos) const {
 
     if (MR::isNearZero(toPlayer)) {
         MR::getPlayerFrontVec(&toPlayer);
-        toPlayer.negateInternal();
+        toPlayer.negate();
     }
 
     pPos->scaleAdd(toPlayer, mPosition, 800.0f);

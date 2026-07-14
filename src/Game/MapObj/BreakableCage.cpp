@@ -241,9 +241,7 @@ void BreakableCage::initBaseMtxForCage() {
     f32 y = stack_20.mMtx[1][2];
     f32 x = stack_20.mMtx[0][2];
     stack_14.set(x, y, z);
-    TVec3f stack_8;
-    stack_8.negateInline_2(mGravity);
-    MR::makeMtxUpFrontPos(&mMtx, stack_8, stack_14, mPosition);
+    MR::makeMtxUpFrontPos(&mMtx, -mGravity, stack_14, mPosition);
 }
 */
 

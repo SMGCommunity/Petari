@@ -81,7 +81,7 @@ bool AstroDomeCameraController::receiveOtherMsg(u32 v1, HitSensor* pSender, HitS
 }
 
 void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
-    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, -22000.0f), _8C.negateInline(), TVec3f(0.0f, 1.0f, 0.0f));
+    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, -22000.0f), -_8C, TVec3f(0.0f, 1.0f, 0.0f));
 }
 
 void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) const {
@@ -184,7 +184,7 @@ void AstroDomeCameraController::exeGalaxyConfirmCancel() {
     MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, frame);
 }
 
-AstroDomeCameraController::~AstroDomeCameraController() {};
+AstroDomeCameraController::~AstroDomeCameraController(){};
 
 AstroDomeCameraController::Position::Position() {
     _0.zero();

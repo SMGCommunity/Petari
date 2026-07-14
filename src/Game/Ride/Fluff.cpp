@@ -423,7 +423,7 @@ bool Fluff::updateRide() {
 
     mVelocity.mult(0.98f);
 
-    MR::vecBlend(mUp, mGravity.negateInline(), &mUp, 0.01f);
+    MR::vecBlend(mUp, -mGravity, &mUp, 0.01f);
     MR::normalize(&mUp);
 
     TVec3f worldStickDirection(0.0f, 0.0f, 0.0f);

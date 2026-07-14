@@ -177,7 +177,7 @@ void PoltaRock::exeMove() {
     }
     MR::addVelocityToGravity(this, -0.02f);
     MR::attenuateVelocity(this, 0.99f);
-    MR::rotateQuatRollBall(&_90, mVelocity, mGravity.negateInline(), 120.0f);
+    MR::rotateQuatRollBall(&_90, mVelocity, -mGravity, 120.0f);
     if (MR::isBinded(this)) {
         MR::sendMsgEnemyAttackToBindedSensor(this, getSensor("Body"));
         MR::tryRumbleDefaultHit(this, 0);

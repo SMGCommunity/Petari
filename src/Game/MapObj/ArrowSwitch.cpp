@@ -39,8 +39,7 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
     MR::connectToSceneNoShadowedMapObjStrongLight(this);
     TVec3f up_vec;
     MR::calcUpVec(&up_vec, this);
-    TVec3f neg_up_vec;
-    neg_up_vec.negateInlineAndStore(up_vec, mGravity);
+    mGravity = -up_vec;
     MR::initShadowFromCSV(this, "Shadow");
     MR::onCalcShadow(this, nullptr);
     MR::onCalcGravity(this);
