@@ -5547,7 +5547,7 @@ Game/MapObj/Sandstorm.cpp:
 Game/MapObj/SandUpDownEffectObj.cpp:
 	.text       start:0x80221104 end:0x802219BC
 	.ctors      start:0x8052EE60 end:0x8052EE64
-	.rodata     start:0x80533678 end:0x805336D0
+	.rodata     start:0x80533678 end:0x805336C0
 	.data       start:0x8059E2A8 end:0x8059E3D0
 	.sbss       start:0x806B5760 end:0x806B5778
 	.sdata2     start:0x806BDDC8 end:0x806BDDD8
@@ -5562,6 +5562,7 @@ Game/MapObj/SandUpDownTriRock.cpp:
 Game/MapObj/ScrewSwitch.cpp:
 	.text       start:0x80221F00 end:0x8022263C
 	.ctors      start:0x8052EE68 end:0x8052EE6C
+	.rodata     start:0x805336C0 end:0x805336C8
 	.data       start:0x8059E500 end:0x8059E660
 	.sbss       start:0x806B5790 end:0x806B57A0
 	.sdata2     start:0x806BDDD8 end:0x806BDDE8
@@ -5569,6 +5570,7 @@ Game/MapObj/ScrewSwitch.cpp:
 Game/MapObj/ScrewSwitchReverse.cpp:
 	.text       start:0x8022263C end:0x80222D44
 	.ctors      start:0x8052EE6C end:0x8052EE70
+	.rodata     start:0x805336C8 end:0x805336D0
 	.data       start:0x8059E660 end:0x8059E7B8
 	.sbss       start:0x806B57A0 end:0x806B57B0
 	.sdata2     start:0x806BDDE8 end:0x806BDE08
