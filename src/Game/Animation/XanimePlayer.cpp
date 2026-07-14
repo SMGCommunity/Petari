@@ -364,3 +364,72 @@ void XanimePlayer::updateBeforeMovement() {
         runDefaultAnimation();
     }
 }
+
+void XanimePlayer::updateAfterMovement() {
+    prepareAnimation(_68);
+    _68 = nullptr;
+
+    if (_7C == 0) {
+        return;
+    }
+
+    s32 cast;
+    if ((_20->mState & 1) != 0) {
+        cast = _20->mEnd;
+        // This convertion happens but nothing is done with it, and gets optimized out.
+        // TODO: make it not optimize out.
+    } else if (_88 == 0) {
+        f32 rate = _20->mRate;
+        f32 frame = _20->mFrame;
+
+        _20->update();
+        _84 = frame;
+        _88 = 1;
+
+        if ((_20->mState & 1) != 0) {
+            _20->mRate = rate;
+        }
+    }
+
+    updateInterpoleRatio();
+
+    for (u32 i = 0; i < mCurrentAnimation->mBckTableVariant; i++) {
+        mCore->setWeight(i, mWeights[i]);
+    }
+
+    mCore->_1C = _08;
+    mCore->_20 = _0C;
+}
+
+void XanimePlayer::updateInterpoleRatio() {
+    XanimeFrameCtrl* frameCtrl = _20;
+    if (frameCtrl->mRate != 0.0f || frameCtrl->mAttribute == 1) {
+        if (frameCtrl->_14 != 0) {
+            // TODO: instruction swap
+            f32 cast = frameCtrl->_14;
+            cast -= _08;
+            cast = 1.0f / cast;
+            _08 += cast;
+            _20->_14 -= 1;
+        } else {
+            _08 = 1.0f;
+        }
+        return;
+    }
+
+    _08 = 1.0f;
+    frameCtrl->_14 = 0;
+}
+
+bool XanimePlayer::isRun(const char* pName) const {
+    if (mCurrentAnimation == nullptr) {
+        return false;
+    }
+
+    XanimeGroupInfo* group = getSimpleGroup();
+    if (mCurrentAnimation == group) {
+        return mResourceTable->findResMotion(pName) == getSimpleGroup()->_20[0];
+    }
+
+    return mCurrentAnimation == mResourceTable->getGroupInfo(pName);
+}
