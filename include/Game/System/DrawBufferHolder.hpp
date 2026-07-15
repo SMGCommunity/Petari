@@ -55,8 +55,7 @@ public:
     // TODO: see .cpp
     void dummy(s32);
 
-    /* 0x00 */ DrawBufferGroup* mBufferGroups;
-    /* 0x04 */ s32 mBufferGroupCount;
+    /* 0x00 */ MR::AssignableArray< DrawBufferGroup > mBufferGroups;
     /* 0x08 */ ExecutorList mExecuteLists[3];
     /* 0x2C */ bool mTableInitialized;
 };

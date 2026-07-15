@@ -10,15 +10,14 @@ namespace {
     bool isExcludedCheckMultiRegistCategory(s32);
 };  // namespace
 
-DrawBufferHolder::DrawBufferHolder() : mBufferGroups(nullptr), mBufferGroupCount(0), mTableInitialized(false) {
+DrawBufferHolder::DrawBufferHolder() : mTableInitialized(false) {
 }
 
 void DrawBufferHolder::initTable(const DrawBufferInitialTable* pInitialTable, s32 numGroups) {
     // FIXME : regswap and load order
     // https://decomp.me/scratch/RnE7Q
 
-    mBufferGroups = new DrawBufferGroup[numGroups];
-    mBufferGroupCount = numGroups;
+    mBufferGroups.init(numGroups);
 
     s32 cameraTypeCounts[3];
     MR::zeroMemory(cameraTypeCounts, 3 * sizeof(s32));
@@ -47,7 +46,7 @@ void DrawBufferHolder::allocateActorListBuffer() {
     mTableInitialized = false;
     // NOTE: this symbol does not appear in the debug map, instead it likely uses std::for_each. However the current std::for_each does not support
     // flat array iteration
-    std::for_each_array(&mBufferGroups[0], &mBufferGroups[mBufferGroupCount], std::mem_func(&DrawBufferGroup::allocateActorListBuffer));
+    std::for_each_array(mBufferGroups.begin(), mBufferGroups.end(), std::mem_func(&DrawBufferGroup::allocateActorListBuffer));
 }
 
 s32 DrawBufferHolder::registerDrawBuffer(LiveActor* pActor, s32 drawBufferType) {
