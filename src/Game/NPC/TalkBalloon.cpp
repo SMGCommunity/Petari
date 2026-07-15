@@ -119,7 +119,7 @@ void TalkBalloon::updateBalloon() {
 
         MR::normalizeOrZero(&v2);
 
-        f32 cosine = JMAAcosRadian(v2.x * v3.x + v2.y * v3.y) * 57.29578f;
+        f32 cosine = MR::acos(v2.x * v3.x + v2.y * v3.y) * _180_PI;
 
         f32 paneAnimFrameMax = MR::getPaneAnimFrameMax(this, "Balloon", 0);
         f32 paneAnimFrame = MR::getPaneAnimFrame(this, "Balloon", 0);

@@ -6,7 +6,6 @@ class ItemBlock : public LiveActor {
 public:
     ItemBlock(const char*);
 
-    virtual ~ItemBlock();
     virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
     virtual void appear();
@@ -25,10 +24,10 @@ public:
     void exeAppearItemSplash();
     void decTimer();
 
-    s32 mKind;                // 0x8C
-    s32 mTimer;               // 0x90
-    s32 mItemCount;           // 0x94
-    u8 _98;                   // 0x98
-    bool mCalcShadowOneTime;  // 0x99
-    bool mNoCalcAnim;         // 0x9A
+    s32 mKind;         // 0x8C
+    s32 mTimer;        // 0x90
+    s32 mItemCount;    // 0x94
+    u8 _98;            // 0x98
+    bool mCalcShadow;  // 0x99
+    bool mNoCalcAnim;  // 0x9A
 };

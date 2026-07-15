@@ -155,10 +155,8 @@ Poihana::~Poihana() {
 }*/
 
 void Poihana::initAfterPlacement() {
-    TVec3f gravityNegated;
-    JGeometry::negateInternal((f32*)&mGravity, (f32*)&gravityNegated);
     TPos3f baseMtx;
-    MR::makeMtxUpNoSupportPos(&baseMtx, gravityNegated, mPosition);
+    MR::makeMtxUpNoSupportPos(&baseMtx, -mGravity, mPosition);
     MR::setBaseTRMtx(this, baseMtx);
     MR::calcFrontVec(&mFrontVec, this);
     MR::trySetMoveLimitCollision(this);
@@ -964,8 +962,7 @@ bool Poihana::isNeedForGetUp() const {
 bool Poihana::isBackAttack(HitSensor* pMySensor) const {
     TVec3f frontVec;
     MR::calcFrontVec(&frontVec, this);
-    JGeometry::negateInternal((f32*)&frontVec, (f32*)&frontVec);
+    frontVec.negate();
 
-    TVec3f sensorRelative(pMySensor->mPosition - mPosition);
-    return sensorRelative.dot(frontVec) > 0.0f;
+    return (pMySensor->mPosition - mPosition).dot(frontVec) > 0.0f;
 }

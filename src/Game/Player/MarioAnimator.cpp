@@ -656,11 +656,11 @@ bool MarioAnimator::isMirrorAnimation() {
     if (mActor->_468) {
         return false;
     }
-    TVec3f camDir(getCamDirX());
+    TVec3f camDir = getCamDirX();
     Mario* player = getPlayer();
-    f32 dot = getCamDirY().dot(player->_1FC);
+    f32 dot = player->_1FC.dot(getCamDirY());
     if (dot < 0.0f) {
-        camDir = camDir.negateInline();
+        camDir = -camDir;
     }
     if (isAnimationRun("WallWalkL") || isAnimationRun("WallWalkR")) {
         if (!_10C) {

@@ -75,7 +75,7 @@ void KoopaFunction::setKoopaPos(Koopa* pKoopa, const char* pDemoName) {
     TVec3f yDir;
     transform.getYDir(yDir);
 
-    pKoopa->mGravity.set(yDir.negateInline());
+    pKoopa->mGravity.set(-yDir);
     transform.getZDir(pKoopa->mFront);
     transform.getTrans(pKoopa->mPosition);
 

@@ -127,7 +127,7 @@ void ScenarioSelectStar::updatePos() {
     // TODO: MR::repeat should probably be MR::repeatDegree?
     // https://decomp.me/scratch/0gALW
 
-    TVec3f offset(JMASinDegree(MR::repeat((mRotateTime * 360.0f) / ::cMoveInterval, 0.0f, 360.0f)) * ::cMoveDistance, 0.0f, 0.0f);
+    TVec3f offset(MR::sinDegree(MR::repeat((mRotateTime * 360.0f) / ::cMoveInterval, 0.0f, 360.0f)) * ::cMoveDistance, 0.0f, 0.0f);
     mTranslation.add(mBasePos, offset);
 }
 

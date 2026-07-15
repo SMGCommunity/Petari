@@ -55,7 +55,7 @@ void DynamicCollisionObj::updateTriangle() {
             continue;
         }
 
-        TVec3f cross2 = a.negateInline().cross(cross);
+        TVec3f cross2 = (-a).cross(cross);
         TVec3f cross3 = b.cross(cross);
         TVec3f cross4 = c.cross(cross);
 

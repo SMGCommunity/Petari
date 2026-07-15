@@ -318,11 +318,11 @@ void Petari::exeSpinOut() {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }
 
-    MR::turnDirectionDegree(this, &mFront, mVelocity.negateOperatorInternal(), 180.0f);
+    MR::turnDirectionDegree(this, &mFront, -mVelocity, 180.0f);
 
     TVec3f v8;
     if (MR::isOnGround(this)) {
-        v8.set(MR::getGroundNormal(this)->negateOperatorInternal());
+        v8.set(-*MR::getGroundNormal(this));
     } else {
         v8.set(mGravity);
     }
@@ -388,7 +388,7 @@ void Petari::control() {
         groundQuat.transform(upVec);
     } else {
         TQuat4f gravityQuat;
-        gravityQuat.setRotate(upVec, mGravity.negateOperatorInternal(), 0.1f);
+        gravityQuat.setRotate(upVec, -mGravity, 0.1f);
         gravityQuat.transform(upVec);
     }
     TPos3f v11;
@@ -621,7 +621,7 @@ void Petari::calcSpinOutVelocity(f32 speed) {
     deltaDir.rejection(mGravity);
 
     if (!MR::isNearZero(deltaDir)) {
-        mFront.set(deltaDir.negateOperatorInternal());
+        mFront.set(-deltaDir);
         MR::normalize(&mFront);
     }
 
@@ -651,23 +651,21 @@ void Petari::calcEscapeDirection() {
 }
 
 void Petari::avoidPlayer() {
-    // FIXME: float regswap in setRotate line
-    // https://decomp.me/scratch/TFtfj
-    TVec3f crossVec(mTargetDir.cross(mFront));
+    TVec3f crossVec = mTargetDir.cross(mFront);
     f32 turnSign;
     if (crossVec.dot(mGravity) < 0.0f) {
         turnSign = -1.0f;
     } else {
         turnSign = 1.0f;
     }
-    TVec3f dirToPlayer(*MR::getPlayerCenterPos());
-    dirToPlayer -= mBodyCenter;
+
+    TVec3f dirToPlayer = *MR::getPlayerCenterPos() - mBodyCenter;
     if (!MR::isNearZero(dirToPlayer)) {
         f32 avoidWeight = 3.0f / (dirToPlayer * 0.1f).squared();
         MR::clamp01(&avoidWeight);
         MR::normalize(&dirToPlayer);
-        JGeometry::negateInternal((f32*)&dirToPlayer, (f32*)&dirToPlayer);
-        TVec3f playerVelocity(*MR::getPlayerVelocity());
+        dirToPlayer.negate();
+        TVec3f playerVelocity = *MR::getPlayerVelocity();
         MR::normalizeOrZero(&playerVelocity);
         f32 approaching = dirToPlayer.dot(playerVelocity);
         if (approaching < 0.0f) {
@@ -675,7 +673,7 @@ void Petari::avoidPlayer() {
         }
         avoidWeight *= approaching;
         TQuat4f quat;
-        quat.setRotate(mGravity, ((avoidWeight * ((90.0f * turnSign) * PI)) / 180.0f));
+        quat.setRotate(mGravity, ((avoidWeight * ((90.0f * turnSign) * MR::pi())) / 180.0f));
         quat.transform(mTargetDir);
     }
 }
@@ -708,15 +706,13 @@ void Petari::calcCenter() {
 }
 
 void Petari::meander() {
-    // FIXME: instruction swap
-    // https://decomp.me/scratch/rnnDM
     if (MR::isStep(this, mMeanderStep)) {
         mMeanderAngle = MR::getRandom(-90.0f, 90.0f);
         mMeanderStep = getNerveStep() + MR::getRandom((s32)60, 120);
     }
 
     TQuat4f v5;
-    v5.setRotate(mGravity.negateOperatorInternal(), (PI * mMeanderAngle) / 180.0f);
+    v5.setRotate(-mGravity, MR::pi() * mMeanderAngle / 180.0f);
     v5.transform(mTargetDir);
 }
 

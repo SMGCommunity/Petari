@@ -237,11 +237,11 @@ void KoopaJrShipCannonShell::exeDown() {
         MR::onCalcGravity(this);
         MR::startSound(this, "SE_EM_STOMPED_S");
         if (isNerve(&NrvKoopaJrShipCannonShell::HostTypeHipDropDown::sInstance)) {
-            MR::jumpPlayer(mGravity.negateInline());
+            MR::jumpPlayer(-mGravity);
         }
     }
 
-    mVelocity.add(mGravity * (::sGravity));
+    mVelocity.add(mGravity * ::sGravity);
     if (MR::reboundVelocityFromCollision(this, ::sReboundRate, ::sReboundMinSpeed, 1.0f))
         MR::deleteEffect(this, "LocusSmoke");
 

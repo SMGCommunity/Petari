@@ -189,7 +189,7 @@ void ItemBubble::kill() {
                 break;
             case 1:
                 StarPiece* piece = getStarPiece(i);
-                piece->launch(getRotPartsPosition(i), grav.negateInline().multInLine(::cShootStarSpeed), false, false);
+                piece->launch(getRotPartsPosition(i), (-grav).multInLine(::cShootStarSpeed), false, false);
                 MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
                 break;
             }

@@ -5,6 +5,17 @@
 #include "Game/Screen/NoteCounter.hpp"
 #include "Game/Util.hpp"
 
+void Note_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)-1.0f;
+}
+
+namespace {
+    static const f32 sRotateSpeed = 8.0f;
+    static const s32 sStepFlyUp = 10;
+    static const f32 sFlyUpSpeed = 30.0f;
+};  // namespace
+
 namespace NrvNote {
     NEW_NERVE(NoteNrvWait, Note, Wait);
     NEW_NERVE(NoteNrvCountDown, Note, CountDown);
@@ -23,7 +34,7 @@ Note::Note(const char* pName, const TVec3f& rRailDirection, NoteFairy* pParent) 
 
 void Note::init(const JMapInfoIter& rIter) {
     MR::createSceneObj(SceneObj_NoteGroup);
-    _90.set< f32 >(mPosition);
+    _90.set(mPosition);
     initModelManagerWithAnm("Note", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
     initHitSensor(1);
@@ -35,9 +46,7 @@ void Note::init(const JMapInfoIter& rIter) {
     MR::calcGravityAndDropShadowVector(this, &mGravity, nullptr, 0);
 
     if (MR::isNearZero(mGravity)) {
-        mGravity.x = 0.0f;
-        mGravity.y = -1.0f;
-        mGravity.z = 0.0f;
+        mGravity.set(0.0f, -1.0f, 0.0);
     }
 
     MR::initShadowVolumeSphere(this, 30.0f);
@@ -50,20 +59,17 @@ void Note::startCountDown() {
     mIsCountdown = true;
 }
 
-/*
 void Note::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "Note");
         f32 framemax = MR::getBrkFrameMax(this, "Note");
-        f32 rpt = MR::repeat(_AC, 0.0f, framemax);
-        MR::setBrkFrame(this, rpt);
+        MR::setBrkFrame(this, MR::repeat(_AC, 0.0f, framemax));
     }
 
     if (mIsCountdown) {
         setNerve(&NrvNote::NoteNrvCountDown::sInstance);
     }
 }
-*/
 
 void Note::exeCountDown() {
     if (MR::isFirstStep(this)) {
@@ -78,41 +84,33 @@ void Note::exeCountDown() {
     }
 }
 
-/*
 void Note::exeFlyUp() {
     if (MR::isFirstStep(this)) {
-        mVelocity.set<f32>(mGravity);
-        mVelocity.scaleInline(-30.0f);
+        mVelocity.set(mGravity);
+        mVelocity *= -::sFlyUpSpeed;
         MR::invalidateHitSensors(this);
         mFlashCtrl->end();
     }
 
-    if (MR::isStep(this, 10)) {
+    if (MR::isStep(this, ::sStepFlyUp)) {
         kill();
     }
 }
-*/
 
 void Note::control() {
     mRotation.y = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
 }
 
-/*
 void Note::calcAndSetBaseMtx() {
-    TVec3f stack_8;
-    stack_8.negateInline_2(mGravity);
     TPos3f stack_44;
-    MR::makeMtxUpFront(&stack_44, stack_8, mRailDirection);
+    MR::makeMtxUpFront(&stack_44, -mGravity, mRailDirection);
     Mtx mtxRotateY;
     f32 val = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
     MR::makeMtxRotateY(mtxRotateY, val);
     PSMTXConcat(stack_44.toMtxPtr(), mtxRotateY, stack_44.toMtxPtr());
-    stack_44.mMtx[0][3] = mPosition.x;
-    stack_44.mMtx[1][3] = mPosition.y;
-    stack_44.mMtx[2][3] = mPosition.z;
+    stack_44.setTrans(mPosition);
     MR::setBaseTRMtx(this, stack_44);
 }
-*/
 
 void Note::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayerOrRide(pReceiver)) {
@@ -133,16 +131,7 @@ void NoteGroup::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
 }
 
-/*
 void NoteGroup::movement() {
-    f32 v1 = MR::subtractFromSum(8.0f, mRotation, 0.0f);
-    mRotation = mRotation + 8.0f;
-    mRotation = MR::modAndAdd(0.0f, v1);
-}
-*/
-
-Note::~Note() {
-}
-
-NoteGroup::~NoteGroup() {
+    mRotation += ::sRotateSpeed;
+    MR::repeatDegree(&mRotation);
 }

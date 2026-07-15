@@ -6,23 +6,11 @@
 
 class NoteFairy;
 
-class NoteGroup : public LiveActorGroup {
-public:
-    NoteGroup();
-
-    virtual ~NoteGroup();
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
-
-    f32 mRotation;  // 0x18
-};
-
 /// @brief Class that represents a single note in a NoteFairy actor.
 class Note : public LiveActor {
 public:
     Note(const char*, const TVec3f&, NoteFairy*);
 
-    virtual ~Note();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
@@ -48,4 +36,14 @@ public:
     bool mIsCountdown;                    // 0xB0
     /* 0xB4 */ FlashingCtrl* mFlashCtrl;  // A pointer to the FlashingCtrl instance that handles the "fading away" effects.
     u32 _B8;
+};
+
+class NoteGroup : public LiveActorGroup {
+public:
+    NoteGroup();
+
+    virtual void init(const JMapInfoIter&);
+    virtual void movement();
+
+    f32 mRotation;  // 0x18
 };

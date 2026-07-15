@@ -95,7 +95,7 @@ void BombHeiLauncher::initAfterPlacement() {
     TVec3f up;
     MR::calcUpVec(&up, this);
     MR::resetPosition(mBomb, mPosition + up * 30.0f);
-    mBomb->mGravity.set(up.invertOperatorInternal());
+    mBomb->mGravity.set(-up);
     mBomb->initAfterPlacement();
     mConnector->attachToUnder();
     makeActorAppeared();

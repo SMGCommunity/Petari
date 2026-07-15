@@ -17,10 +17,6 @@ namespace NrvCocoNut {
     NEW_NERVE(CocoNutNrvReplaceReady, CocoNut, ReplaceReady);
 };  // namespace NrvCocoNut
 
-inline void negateInternalInline(const TVec3f& src, TVec3f* dst) {
-    JGeometry::negateInternal((f32*)&src, (f32*)dst);
-}
-
 CocoNut::CocoNut(const char* pName)
     : LiveActor(pName), _8C(0.0f), _90(0.0f),
       //_94(0.0f, 1.0f),
@@ -81,11 +77,8 @@ void CocoNut::initAfterPlacement() {
     _94.set(stack_50.mMtx[0][2], stack_50.mMtx[1][2], stack_50.mMtx[2][2]);
 
     if (MR::isSameDirection(_94, gravity, 0.01f)) {
-        TVec3f gravityNegated;
-        negateInternalInline(gravity, &gravityNegated);
-
         TPos3f stack_20;
-        MR::makeMtxUpNoSupport(&stack_20, gravityNegated);
+        MR::makeMtxUpNoSupport(&stack_20, -gravity);
         _94.set(stack_20.mMtx[0][2], stack_20.mMtx[1][2], stack_20.mMtx[2][2]);
     }
 }
@@ -190,9 +183,8 @@ void CocoNut::initEffect() {
 void CocoNut::updateRotate(f32 a1) {
     TPos3f stack_38;
     TVec3f stack_2C;
-    TVec3f stack_20;
+    TVec3f stack_20 = -mGravity;
 
-    negateInternalInline(mGravity, &stack_20);
     if (!MR::normalizeOrZero(mVelocity, &stack_2C) && !MR::isSameDirection(stack_2C, stack_20, 0.01f)) {
         TVec3f stack_14 = stack_2C.cross(stack_20);
 
@@ -407,7 +399,7 @@ void CocoNut::reviseFrontVec() {
         MR::normalize(&stack_8);
         f32 temp_f31 = stack_8.dot(_94);
         if (MR::cosDegree(15.0f) < temp_f31) {
-            JMAVECLerp(&_94, &stack_8, &_94, 0.8f);
+            _94.lerp(_94, stack_8, 0.8f);
         }
     }
 }
@@ -504,7 +496,7 @@ void CocoNut::calcHitSpeedAndFrontVec(f32* arg0, f32* arg1, TVec3f* arg2, TVec3f
     }
     f32 var_f30 = stack_8.dot(*arg2);
     if (var_f30 < 0.0f) {
-        negateInternalInline(stack_14, &stack_14);
+        stack_14.negate();
         arg2->cross(*arg3, stack_14);
         MR::normalize(arg2);
         var_f30 = stack_8.dot(*arg2);
@@ -773,7 +765,7 @@ void CocoNut::statusToHide() {
 
 void CocoNut::emitEffectSpinHit(const HitSensor* pOtherSensor, const HitSensor* pMySensor) {
     TVec3f point;  // point 70% of the way between pOtherSensor and pMySensor
-    JMAVECLerp(&pOtherSensor->mPosition, &pMySensor->mPosition, &point, 0.7f);
+    point.lerp(pOtherSensor->mPosition, pMySensor->mPosition, 0.7f);
     _108.mMtx[0][0] = 1.0f;
     _108.mMtx[1][0] = 0.0f;
     _108.mMtx[2][0] = 0.0f;
@@ -781,8 +773,8 @@ void CocoNut::emitEffectSpinHit(const HitSensor* pOtherSensor, const HitSensor* 
     _108.mMtx[1][1] = 1.0f;
     _108.mMtx[2][1] = 0.0f;
     _108.mMtx[0][2] = 0.0f;
-    _108.mMtx[1][3] = 0.0f;
-    _108.mMtx[2][3] = 1.0f;
+    _108.mMtx[1][2] = 0.0f;
+    _108.mMtx[2][2] = 1.0f;
     _108.mMtx[0][3] = point.x;
     _108.mMtx[1][3] = point.y;
     _108.mMtx[2][3] = point.z;
@@ -854,15 +846,13 @@ void CocoNut::exeInWater() {
         MR::invalidateHitSensors(this);
         MR::clearHitSensors(this);
         MR::deleteEffectAll(this);
-        TVec3f gravityNegated;
-        negateInternalInline(mGravity, &gravityNegated);
-        MR::makeMtxUpNoSupportPos(&_D8, gravityNegated, mPosition);
+        MR::makeMtxUpNoSupportPos(&_D8, -mGravity, mPosition);
         MR::emitEffect(this, "WaterColumn");
         MR::startSound(this, "SE_OJ_FALL_IN_WATER_M");
         MR::releaseSoundHandle(this, "SE_OJ_FALL_IN_WATER_M");
     }
     if (!MR::isEffectValid(this, "WaterColumn")) {
-        mPosition.set< f32 >(mSpawnPosition);
+        mPosition.set(mSpawnPosition);
         setNerve(&NrvCocoNut::CocoNutNrvReplaceReady::sInstance);
     }
 }
@@ -870,13 +860,11 @@ void CocoNut::exeInWater() {
 void CocoNut::exeBreak() {
     if (MR::isFirstStep(this)) {
         statusToHide();
-        TVec3f gravityNegated;
-        negateInternalInline(mGravity, &gravityNegated);
-        MR::makeMtxUpNoSupportPos(&_D8, gravityNegated, mPosition);
+        MR::makeMtxUpNoSupportPos(&_D8, -mGravity, mPosition);
         MR::emitEffect(this, getBreakEffectName());
     }
     if (!MR::isEffectValid(this, getBreakEffectName())) {
-        mPosition.set< f32 >(mSpawnPosition);
+        mPosition.set(mSpawnPosition);
         setNerve(&NrvCocoNut::CocoNutNrvReplaceReady::sInstance);
     }
 }

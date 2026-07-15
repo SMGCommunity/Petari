@@ -31,6 +31,12 @@ void HammerHeadPackun_FORCE_MATCH_SDATA2() {
     (void)3.1415927f;
 }
 
+void DUMMY() {
+    // to emit operator-
+    TVec3f a, b;
+    TVec3f c = a - b;
+}
+
 HammerHeadPackun::HammerHeadPackun(const char* pName) : LiveActor(pName) {
     mLeafModel = nullptr;
     mImmunityTime = 0;
@@ -455,7 +461,7 @@ void HammerHeadPackun::initSensor() {
 
 void HammerHeadPackun::initShadow() {
     MR::initShadowFromCSV(this, "Shadow");
-    mGravity.set(_94.negateInline());
+    mGravity.set(-_94);
 }
 
 inline s32 JMapInfo_getEntries(const JMapInfo* jmap) {
@@ -531,9 +537,7 @@ bool HammerHeadPackun::isChance() const {
 }
 
 bool HammerHeadPackun::calcPlayerDir(TVec3f* pPos) const {
-    // https://decomp.me/scratch/yaccF
-    // it's (*MR::getPlayerPos() - mPosition), but it gets inlined
-    pPos->set(-*MR::getPlayerPos());
+    pPos->set(*MR::getPlayerPos() - mPosition);
     f32 dot = _94.dot(*pPos);
     JMAVECScaleAdd(_94, pPos, pPos, -dot);
     if (MR::isNearZero(*pPos, 0.001f)) {
@@ -545,13 +549,9 @@ bool HammerHeadPackun::calcPlayerDir(TVec3f* pPos) const {
 }
 
 void HammerHeadPackun::turnTo(const TVec3f& rFrom, f32 rate) {
-    f32 crossMag = _A0.cross(rFrom).length();
-    f32 dotResult = _A0.dot(rFrom);
-    f32 absAngle = __fabsf(JMath::sAtanTable.atan2_(crossMag, dotResult));
+    f32 absAngle = _A0.angle(rFrom);
     f32 ratio = 1.0f;
-    f32 maxAngle = rate;
-    maxAngle *= PI;
-    maxAngle = maxAngle / 180.0f;
+    f32 maxAngle = rate * MR::pi() / 180.0f;
     if (absAngle > maxAngle) {
         ratio = maxAngle / absAngle;
     }

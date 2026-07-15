@@ -69,7 +69,7 @@ void KoopaStateJumpAway::exeJump() {
     if (!MR::isNearZero(newFront)) {
         MR::normalize(&newFront);
 
-        KoopaFunction::getKoopaFrontPtr(mHost)->set(newFront.negateInline());
+        KoopaFunction::getKoopaFrontPtr(mHost)->set(-newFront);
     }
 
     Koopa* pKoopa = mHost;

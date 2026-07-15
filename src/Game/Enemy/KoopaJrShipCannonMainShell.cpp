@@ -112,7 +112,7 @@ void KoopaJrShipCannonMainShell::launch(const TVec3f& rStartPos, const TVec3f& r
     MR::normalize(&dir);
 
     TPos3f mtx;
-    MR::makeMtxFrontUp(&mtx, dir, mGravity.invertOperatorInternal());
+    MR::makeMtxFrontUp(&mtx, dir, -mGravity);
     mtx.getQuat(_8C);
     mVelocity.set< f32 >(rVelocity);
     setNerve(&NrvKoopaJrShipCannonMainShell::HostTypeFly::sInstance);

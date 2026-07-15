@@ -79,9 +79,9 @@ void CamKarikariEffector::update(CameraMan* pCameraMan) {
 
     // Blend FovY
     f32 dist = diffPlayerPos.length();
-    f32 fovAngle = JMAAsinRadian(75.0f / dist);
+    f32 fovAngle = MR::asin(75.0f / dist);
 
-    f32 fovy = JMAATan2((dist * MR::tan(fovAngle)) / 0.3f, dist);
+    f32 fovy = MR::atan2((dist * MR::tan(fovAngle)) / 0.3f, dist);
 
     if (fovy < CameraLocalUtil::getFovy(pCameraMan) * MR::pi() / 180.0f) {
         CameraLocalUtil::setFovy(pCameraMan, (fovy * 180.0f * fovRate) / MR::pi() + (1.0f - fovRate) * CameraLocalUtil::getFovy(pCameraMan));

@@ -251,12 +251,10 @@ void BasaBasa::exeAttackStart() {
     MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.55f);
     TVec3f v3;
     JMAVECScaleAdd(&_9C, &mGravity, &v3, 2.0f);
-    JGeometry::negateInternal(&v3.x, &v3.x);
+    v3.negate();
     MR::normalizeOrZero(&v3);
     if (MR::isNearZero(v3)) {
-        TVec3f gravityNeg;
-        JGeometry::negateInternal(&mGravity.x, &gravityNeg.x);
-        v3.set< f32 >(gravityNeg);
+        v3.set(-mGravity);
     }
 
     JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 0.2f);
@@ -322,7 +320,7 @@ void BasaBasa::exeAttackEndRecover() {
 
     TVec3f v3;
     JMAVECScaleAdd(&_9C, &mGravity, &v3, -0.5f);
-    JGeometry::negateInternal(&v3.x, &v3.x);
+    v3.negate();
     MR::normalize(&v3);
     if (MR::getBckFrame(this) >= 116.0f) {
         JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 0.3f);
@@ -346,12 +344,10 @@ void BasaBasa::exeHitBack() {
     if (MR::isLessEqualStep(this, 5)) {
         TVec3f v3;
         v3.add(_9C, mGravity);
-        JGeometry::negateInternal(&v3.x, &v3.x);
+        v3.negate();
         MR::normalizeOrZero(&v3);
         if (MR::isNearZero(v3)) {
-            TVec3f v2;
-            JGeometry::negateInternal(&mGravity.x, &v2.x);
-            v3.set< f32 >(v2);
+            v3.set(-mGravity);
         }
         JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 15.0f);
     }

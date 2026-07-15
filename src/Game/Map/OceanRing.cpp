@@ -533,7 +533,7 @@ void OceanRing::calcClippingBox() {
     TVec3f v7(mWidthMax);
     mClippingBox.i.sub(v7);
     mClippingBox.f.add(v7);
-    JMAVECLerp(&mClippingBox.f, &mClippingBox.i, &_108, 0.5f);
+    _108.lerp(mClippingBox.f, mClippingBox.i, 0.5f);
     f32 dist = _108.distance(mClippingBox.i);
     MR::setClippingTypeSphere(this, (100.0f + dist), &_108);
     MR::setClippingFarMax(this);

@@ -112,7 +112,6 @@ void Mario::recordRelativePosition() {
     const f32 floorDotThreshold = 0.707f;
     const f32 wallNormalDotThreshold = 0.9f;
     const Triangle* sameSensorFloor = nullptr;
-    TVec3f negGravity = -*getGravityVec();
 
     for (u32 i = 0; i < strikeNum; i++) {
         const HitInfo* hitInfo = Collision::getStrikeInfoMap(i);
@@ -126,7 +125,7 @@ void Mario::recordRelativePosition() {
             continue;
         }
 
-        if (tri->getNormal(0)->dot(negGravity) < floorDotThreshold) {
+        if (tri->getNormal(0)->dot(-*getGravityVec()) < floorDotThreshold) {
             if (!_8CC[0]->isValid()) {
                 *_8CC[0] = *tri;
                 continue;

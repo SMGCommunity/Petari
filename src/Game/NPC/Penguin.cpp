@@ -186,7 +186,7 @@ void Penguin::initAfterPlacement() {
     case Behavior_SwimSurface:
     case Behavior_Dive: {
         MR::calcGravity(this);
-        MR::turnQuatYDirRad(&_A0, _A0, mGravity.negateInline(), PI);
+        MR::turnQuatYDirRad(&_A0, _A0, -mGravity, PI);
 
         TVec3f pos;
         TVec3f grav = mGravity;

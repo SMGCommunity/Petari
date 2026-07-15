@@ -58,9 +58,9 @@ void AstroDomeCameraController::kill() {
 }
 
 void AstroDomeCameraController::control() {
-    JMAVECLerp(&_98._0, &_98._C, &_98._18, _104);
-    JMAVECLerp(&_BC._0, &_BC._C, &_BC._18, _104);
-    JMAVECLerp(&_E0._0, &_E0._C, &_E0._18, _104);
+    _98._18.lerp(_98._0, _98._C, _104);
+    _BC._18.lerp(_BC._0, _BC._C, _104);
+    _E0._18.lerp(_E0._0, _E0._C, _104);
     MR::setProgrammableCameraParam(this, _BC._18, _98._18, _E0._18);
     MR::setProgrammableCameraParamFovy(this, 60.0f);
 }
@@ -81,7 +81,7 @@ bool AstroDomeCameraController::receiveOtherMsg(u32 v1, HitSensor* pSender, HitS
 }
 
 void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
-    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, -22000.0f), _8C.negateInline(), TVec3f(0.0f, 1.0f, 0.0f));
+    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, -22000.0f), -_8C, TVec3f(0.0f, 1.0f, 0.0f));
 }
 
 void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) const {
@@ -184,7 +184,7 @@ void AstroDomeCameraController::exeGalaxyConfirmCancel() {
     MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, frame);
 }
 
-AstroDomeCameraController::~AstroDomeCameraController() {};
+AstroDomeCameraController::~AstroDomeCameraController(){};
 
 AstroDomeCameraController::Position::Position() {
     _0.zero();

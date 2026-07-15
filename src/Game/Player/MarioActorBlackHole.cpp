@@ -96,7 +96,7 @@ void MarioActor::exeGameOverBlackHole2() {
     PSMTXRotAxisRad(rotationMatrix, &mBlackHoleRotateAxis, angle);
     PSMTXMultVec(rotationMatrix, &mPosRelativeToBlackHole, &mPosRelativeToBlackHole);
 
-    MR::vecBlendSphere(mBlackHoleRotateAxis, mCamDirZ.negateInline(), &mBlackHoleRotateAxis, 0.01f);
+    MR::vecBlendSphere(mBlackHoleRotateAxis, -mCamDirZ, &mBlackHoleRotateAxis, 0.01f);
 
     f32 distChangeFactor = 180 - getNerveStep();
 

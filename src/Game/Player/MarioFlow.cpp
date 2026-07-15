@@ -30,7 +30,7 @@ bool MarioFlow::start() {
     getPlayer()->mMovementStates._2B = true;
 
     _18 = getFrontVec() * mActor->mConst->getTable()->mJumpDistFlow;
-    _18 += mActor->_240.negateInline() * mActor->mConst->getTable()->mJumpHeightFlow;
+    _18 += -mActor->_240 * mActor->mConst->getTable()->mJumpHeightFlow;
     getPlayer()->mJumpVec = _18;
 
     addVelocity(_18);

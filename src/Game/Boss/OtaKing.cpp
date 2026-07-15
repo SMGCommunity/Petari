@@ -365,9 +365,7 @@ void OtaKing::dirToPlayer() {
     TVec3f vec;
     vec.sub(*MR::getPlayerPos(), mPosition);
 
-    f32 angle = JMAATan2(vec.x, vec.z);
-
-    angle = MR::repeat(MR::toDegree(angle), mRotation.y - 180.0f, 360.0f);
+    f32 angle = MR::repeat(MR::toDegree(MR::atan2(vec.x, vec.z)), mRotation.y - 180.0f, 360.0f);
 
     f32 angleMinRotY = angle - mRotation.y;
 
@@ -537,9 +535,7 @@ void OtaKing::throwCocoNut() {
     TVec3f vec;
     vec.sub(*MR::getPlayerPos(), mPosition);
 
-    f32 angle = JMAATan2(vec.x, vec.z);
-
-    angle = mRotation.y - MR::repeat(MR::toDegree(angle), mRotation.y - 180.0f, 360.0f);
+    f32 angle = mRotation.y - MR::repeat(MR::toDegree(MR::atan2(vec.x, vec.z)), mRotation.y - 180.0f, 360.0f);
     f32 random = MR::getRandom(::cThrowAngleMin, ::cThrowAngleMax);
 
     cocoNut->appearAndThrow(trans, angle + (_EC % 2 == mHits % 2 ? random : -random));
@@ -555,8 +551,7 @@ void OtaKing::throwFireBall() {
     TVec3f vec;
     vec.sub(*MR::getPlayerPos(), mPosition);
 
-    f32 angle = JMAATan2(vec.x, vec.z);
-    angle = mRotation.y - MR::repeat(MR::toDegree(angle), mRotation.y - 180.0f, 360.0f);
+    f32 angle = mRotation.y - MR::repeat(MR::toDegree(MR::atan2(vec.x, vec.z)), mRotation.y - 180.0f, 360.0f);
 
     for (int i = 0; i < ::cFireBallThrowNum; i++) {
         FireBall* currentFireBall = getDisappearedFireBall();
@@ -796,8 +791,7 @@ void OtaKing::exeAppearDemo() {
         TVec3f vec;
         vec.sub(*MR::getPlayerPos(), mPosition);
 
-        f32 angle = JMAATan2(vec.x, vec.z);
-        mRotation.y = MR::repeatDegree(MR::toDegree(angle));
+        mRotation.y = MR::repeatDegree(MR::toDegree(MR::atan2(vec.x, vec.z)));
 
         setNerve(&NrvOtaKing::OtaKingNrvThrowFireBallWait::sInstance);
     }

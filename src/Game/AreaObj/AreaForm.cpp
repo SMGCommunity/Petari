@@ -75,12 +75,7 @@ void AreaFormCube::calcWorldRotate(TVec3f* pOut) const {
         TPos3f stack = _48;
         stack.zeroTrans();
         stack.concat(*_4, stack);
-        if (stack[2][0] - 1.0f >= -0.0000038146973f) {
-            pOut->set(JMAATan2(-stack[1][0], stack[2][0]), HALF_PI, 0.0f);
-        } else if (stack[2][0] + 1.0f <= 0.0000038146973f) {
-            pOut->set(JMAATan2(stack[1][0], stack[2][0]), HALF_PI, 0.0f);
-        } else {
-        }
+        stack.getEulerXYZ(*pOut);
         *pOut = *pOut * _180_PI;
     } else {
         pOut->set(mRotation);

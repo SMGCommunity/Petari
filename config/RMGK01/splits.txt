@@ -4901,7 +4901,7 @@ Game/MapObj/HipDropSwitch.cpp:
 Game/MapObj/HipDropTimerSwitch.cpp:
 	.text       start:0x801E6224 end:0x801E6C20
 	.ctors      start:0x8052ED4C end:0x8052ED50
-	.rodata     start:0x80533360 end:0x80533398
+	.rodata     start:0x80533360 end:0x80533380
 	.data       start:0x80595C80 end:0x80595E18
 	.sdata      start:0x806B1E50 end:0x806B1E60
 	.sbss       start:0x806B5258 end:0x806B5268
@@ -4918,6 +4918,7 @@ Game/MapObj/HitWallTimerSwitch.cpp:
 Game/MapObj/IceStep.cpp:
 	.text       start:0x801E73E0 end:0x801E79DC
 	.ctors      start:0x8052ED54 end:0x8052ED58
+	.rodata     start:0x80533380 end:0x80533388
 	.data       start:0x80595F38 end:0x80596048
 	.sdata      start:0x806B1E70 end:0x806B1E78
 	.sbss       start:0x806B5278 end:0x806B5280
@@ -4954,6 +4955,7 @@ Game/MapObj/ItemAppearStone.cpp:
 Game/MapObj/ItemBlock.cpp:
 	.text       start:0x801E89D0 end:0x801E9760
 	.ctors      start:0x8052ED60 end:0x8052ED64
+	.rodata     start:0x80533388 end:0x80533390
 	.data       start:0x805964D0 end:0x80596640
 	.sbss       start:0x806B52A0 end:0x806B52B8
 	.sdata2     start:0x806BD270 end:0x806BD290
@@ -4961,6 +4963,7 @@ Game/MapObj/ItemBlock.cpp:
 Game/MapObj/ItemBubble.cpp:
 	.text       start:0x801E9760 end:0x801EA864
 	.ctors      start:0x8052ED64 end:0x8052ED68
+	.rodata     start:0x80533390 end:0x80533398
 	.data       start:0x80596640 end:0x805967E8
 	.sbss       start:0x806B52B8 end:0x806B52C0
 	.sdata2     start:0x806BD290 end:0x806BD300
@@ -5210,7 +5213,7 @@ Game/MapObj/MeteorStrikeLauncher.cpp:
 Game/MapObj/MiniatureGalaxy.cpp:
 	.text       start:0x801FEDEC end:0x80200808
 	.ctors      start:0x8052EDD0 end:0x8052EDD4
-	.rodata     start:0x80533500 end:0x80533578
+	.rodata     start:0x80533500 end:0x80533530
 	.data       start:0x805999C0 end:0x80599DA0
 	.sdata      start:0x806B1EB8 end:0x806B1EC0
 	.sbss       start:0x806B5488 end:0x806B54A0
@@ -5223,6 +5226,7 @@ Game/MapObj/MiniatureGalaxyHolder.cpp:
 Game/MapObj/MorphItemObjNeo.cpp:
 	.text       start:0x80200E78 end:0x80202CF8
 	.ctors      start:0x8052EDD4 end:0x8052EDD8
+	.rodata     start:0x80533530 end:0x80533540
 	.data       start:0x80599ED0 end:0x8059A2F0
 	.sdata      start:0x806B1EC0 end:0x806B1ED0
 	.sbss       start:0x806B54A0 end:0x806B54B8
@@ -5237,6 +5241,7 @@ Game/MapObj/NeedlePlant.cpp:
 
 Game/MapObj/NormalMapBase.cpp:
 	.text       start:0x8020332C end:0x80206910
+	.rodata     start:0x80533540 end:0x80533558
 	.data       start:0x8059A408 end:0x8059A5C8
 	.sdata      start:0x806B1ED0 end:0x806B1ED8
 	.sdata2     start:0x806BD848 end:0x806BD888
@@ -5248,6 +5253,7 @@ Game/MapObj/NormalMapTestObj.cpp:
 Game/MapObj/Note.cpp:
 	.text       start:0x80206A10 end:0x8020710C
 	.ctors      start:0x8052EDDC end:0x8052EDE0
+	.rodata     start:0x80533558 end:0x80533568
 	.data       start:0x8059A668 end:0x8059A770
 	.sdata      start:0x806B1ED8 end:0x806B1EE0
 	.sbss       start:0x806B54C8 end:0x806B54D8
@@ -5256,6 +5262,7 @@ Game/MapObj/Note.cpp:
 Game/MapObj/NoteFairy.cpp:
 	.text       start:0x8020710C end:0x802085A0
 	.ctors      start:0x8052EDE0 end:0x8052EDE4
+	.rodata     start:0x80533568 end:0x80533570
 	.data       start:0x8059A770 end:0x8059A960
 	.sbss       start:0x806B54D8 end:0x806B5500
 	.sdata2     start:0x806BD8A8 end:0x806BD8E0
@@ -5270,6 +5277,7 @@ Game/MapObj/OceanFloaterLandParts.cpp:
 Game/MapObj/OceanSmallTurtle.cpp:
 	.text       start:0x80208CFC end:0x80209AE4
 	.ctors      start:0x8052EDE8 end:0x8052EDEC
+	.rodata     start:0x80533570 end:0x80533578
 	.data       start:0x8059AAB8 end:0x8059AC70
 	.sbss       start:0x806B5510 end:0x806B5528
 	.sdata2     start:0x806BD8E8 end:0x806BD928
@@ -5539,7 +5547,7 @@ Game/MapObj/Sandstorm.cpp:
 Game/MapObj/SandUpDownEffectObj.cpp:
 	.text       start:0x80221104 end:0x802219BC
 	.ctors      start:0x8052EE60 end:0x8052EE64
-	.rodata     start:0x80533678 end:0x805336D0
+	.rodata     start:0x80533678 end:0x805336C0
 	.data       start:0x8059E2A8 end:0x8059E3D0
 	.sbss       start:0x806B5760 end:0x806B5778
 	.sdata2     start:0x806BDDC8 end:0x806BDDD8
@@ -5554,6 +5562,7 @@ Game/MapObj/SandUpDownTriRock.cpp:
 Game/MapObj/ScrewSwitch.cpp:
 	.text       start:0x80221F00 end:0x8022263C
 	.ctors      start:0x8052EE68 end:0x8052EE6C
+	.rodata     start:0x805336C0 end:0x805336C8
 	.data       start:0x8059E500 end:0x8059E660
 	.sbss       start:0x806B5790 end:0x806B57A0
 	.sdata2     start:0x806BDDD8 end:0x806BDDE8
@@ -5561,6 +5570,7 @@ Game/MapObj/ScrewSwitch.cpp:
 Game/MapObj/ScrewSwitchReverse.cpp:
 	.text       start:0x8022263C end:0x80222D44
 	.ctors      start:0x8052EE6C end:0x8052EE70
+	.rodata     start:0x805336C8 end:0x805336D0
 	.data       start:0x8059E660 end:0x8059E7B8
 	.sbss       start:0x806B57A0 end:0x806B57B0
 	.sdata2     start:0x806BDDE8 end:0x806BDE08
@@ -6770,7 +6780,7 @@ Game/NPC/TalkSupportPlayerWatcher.cpp:
 
 Game/NPC/TalkTextFormer.cpp:
 	.text       start:0x802A3738 end:0x802A3D3C
-	.data       start:0x805B6DE0 end:0x805B6E90
+	.data       start:0x805B6DE0 end:0x805B6E10
 	.sdata2     start:0x806BF390 end:0x806BF3B0
 
 Game/NPC/TimeAttackEventKeeper.cpp:
@@ -6779,7 +6789,7 @@ Game/NPC/TimeAttackEventKeeper.cpp:
 Game/Player/FireMarioBall.cpp:
 	.text       start:0x802A3D8C end:0x802A4544
 	.ctors      start:0x8052F04C end:0x8052F050
-	.data       start:0x805B6E90 end:0x805B75C0
+	.data       start:0x805B6E10 end:0x805B6F18
 	.sdata      start:0x806B21E8 end:0x806B2200
 	.sbss       start:0x806B6258 end:0x806B6260
 	.sdata2     start:0x806BF3B0 end:0x806BF3C0
@@ -6801,13 +6811,13 @@ Game/Player/GroupChecker.cpp:
 
 Game/Player/J3DModelX.cpp:
 	.text       start:0x802A6A70 end:0x802A876C
-	.data       start:0x805B7828 end:0x805B7858
+	.data       start:0x805B7828 end:0x805B7850
 	.sdata      start:0x806B2200 end:0x806B2208
 	.sdata2     start:0x806BF408 end:0x806BF420
 
 Game/Player/JetTurtleShadow.cpp:
 	.text       start:0x802A876C end:0x802A895C
-	.data       start:0x805B7858 end:0x805B78D0
+	.data       start:0x805B7850 end:0x805B78D0
 	.sdata2     start:0x806BF420 end:0x806BF428
 
 Game/Player/MarineSnow.cpp:
@@ -7305,13 +7315,13 @@ Game/Player/MarioMagic.cpp:
 Game/Player/MarioWarp.cpp:
 	.text       start:0x803105B0 end:0x80311B40
 	.ctors      start:0x8052F180 end:0x8052F184
-	.data       start:0x805CD1D0 end:0x805CD408
+	.data       start:0x805CD1D0 end:0x805CD3D8
 	.sdata2     start:0x806C0528 end:0x806C0560
 
 Game/Player/MarioFpView.cpp:
 	.text       start:0x80311B40 end:0x803120B0
 	.ctors      start:0x8052F184 end:0x8052F188
-	.data       start:0x805CD408 end:0x805CD450
+	.data       start:0x805CD3D8 end:0x805CD450
 	.sdata2     start:0x806C0560 end:0x806C0578
 
 Game/Player/Mario2D.cpp:

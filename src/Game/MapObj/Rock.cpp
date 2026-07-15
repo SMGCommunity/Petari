@@ -276,7 +276,7 @@ void Rock::calcAndSetBaseMtx() {
         if (isNerve(&NrvRock::RockNrvMove::sInstance)) {
             up.set(*MR::getGroundNormal(this));
         } else {
-            up.negateOtherInternal(grav);
+            up.negate(grav);
         }
 
         TVec3f pos;
@@ -381,14 +381,11 @@ bool Rock::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiv
 }
 
 void Rock::initMapToolInfo(const JMapInfoIter& rIter) {
-    // FIXME: float regswap
-    // https://decomp.me/scratch/QfKvF
-
     MR::initDefaultPos(this, rIter);
     mAppearPos.set(mPosition);
 
     mRadius = getRadius() * ::cBinderRadius;
-    mRotateSpeed = (mMoveSpeed * 180.0f * ::cRotateSpeedRate) / (PI * mRadius);  // regswap
+    mRotateSpeed = (mMoveSpeed * 180.0f * ::cRotateSpeedRate) / (MR::pi() * mRadius);  // regswap
 
     MR::getJMapInfoArg3NoInit(rIter, &mAppearTime);
     if (mRockType == NormalRock) {
@@ -401,7 +398,7 @@ void Rock::initMapToolInfo(const JMapInfoIter& rIter) {
         TPos3f mtx;
         MR::makeMtxTR(mtx, this);
         mtx.getYDir(mGravity);
-        mGravity.negateInternal();
+        mGravity.negate();
     }
 }
 
@@ -508,8 +505,7 @@ bool Rock::move(f32 speed) {
 }
 
 void Rock::calcBaseMtx(TPos3f* pMtx) const {
-    TVec3f up;
-    up.negateOtherInternal(mGravity);
+    TVec3f up = -mGravity;
 
     if (MR::isSameDirection(up, mFront, 0.01f)) {
         MR::makeMtxUpNoSupportPos(pMtx, up, mPosition);
@@ -636,8 +632,8 @@ void Rock::updateRotateX(f32 angle) {
 }
 
 void Rock::appearStarPiece() {
-    TVec3f pieceDir(mGravity);
-    pieceDir.negateInternal();
+    TVec3f pieceDir = mGravity;
+    pieceDir.negate();
     if (MR::appearStarPieceToDirection(mCreator, mPosition, pieceDir, getAppearStarPieceNum(mRockType), 10.0f, 40.0f, false)) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
     }

@@ -112,7 +112,7 @@ void KoopaShockWave::exeWaveAttack() {
 
         vec2.add(KoopaFunction::getPlanetCenterPos(mKoopa));
 
-        MR::makeMtxUpFrontPos(&_94, mKoopa->mGravity.negateInline(), mKoopa->mFront, vec2);
+        MR::makeMtxUpFrontPos(&_94, -mKoopa->mGravity, mKoopa->mFront, vec2);
 
         MR::startSound(mKoopa, "SE_BM_KOOPA_SWAVE_SHOOT");
 
@@ -148,7 +148,7 @@ void KoopaShockWave::updateHitSensor(HitSensor* pSensor) {
     TVec3f playerPos = *MR::getPlayerPos();
     MR::calcLocalVec(&playerPos, _94);
 
-    f32 degree = MR::toDegree(JMAATan2(-playerPos.z, playerPos.x)) + 180.0f;
+    f32 degree = MR::toDegree(MR::atan2(-playerPos.z, playerPos.x)) + 180.0f;
 
     TPos3f matrix = _94;
     matrix.setTrans(KoopaFunction::getPlanetCenterPos(mKoopa));

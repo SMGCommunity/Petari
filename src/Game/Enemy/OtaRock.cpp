@@ -158,7 +158,7 @@ void OtaRock::initSensor() {
 }
 
 void OtaRock::updateBaseMtx() {
-    TVec3f up = mGravity.negateInline();
+    TVec3f up = -mGravity;
     TVec3f front;
     if (MR::isStageStateScenarioOpeningCamera()) {
         front.set(_D4);
