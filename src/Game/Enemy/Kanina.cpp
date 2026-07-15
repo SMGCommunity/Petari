@@ -97,13 +97,13 @@ namespace {
 namespace {
     u32 getRunAwayBreakTimeRandom() {
         f32 random = MR::getRandom();
-        if (random >= 0.0f && random < 0.25f) {
+        if (0.0f <= random && random < 0.25f) {
             return ::sRunAwayIntervalTime1;
         }
-        if (random >= 0.25f && random < 0.5f) {
+        if (0.25f <= random && random < 0.5f) {
             return ::sRunAwayIntervalTime2;
         }
-        if (random >= 0.5f && random < 0.75f) {
+        if (0.5f <= random && random < 0.75f) {
             return ::sRunAwayIntervalTime3;
         }
         return ::sRunAwayIntervalTime4;
