@@ -46,14 +46,14 @@ void AstroCore::exeWait() {
 
 void AstroCore::exeGrow() {
     if (MR::isFirstStep(this)) {
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormalWeak();
         MR::emitEffect(this, "ShockWave");
     }
 
     if (MR::isStep(this, 40)) {
         MR::startSound(this, "SE_OJ_ASTRO_CORE_GROW");
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormalWeak();
         startAnimGrow();
     }

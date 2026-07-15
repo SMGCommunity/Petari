@@ -178,7 +178,7 @@ bool CrystalCageMoving::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
 }
 
 void CrystalCageMoving::crashMario(HitSensor* pSender, HitSensor* pReceiver) {
-    MR::tryRumblePadVeryStrong(this, 0);
+    MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
     MR::shakeCameraVeryStrong();
 
     if (_108) {

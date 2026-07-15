@@ -90,7 +90,7 @@ void Jiraira::exeStepped() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Stepped", nullptr);
         MR::startBrk(this, "Stepped");
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::startSound(this, "SE_OJ_JIRAIRA_STEPPED");
     }
 

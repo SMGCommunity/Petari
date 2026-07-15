@@ -148,7 +148,7 @@ void BallRail::exeSetUp() {
     }
 
     if (MR::isStep(this, 15)) {
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
     }
 
     MR::subtractAndSet(_90->mHost->mVelocity, v7, &_90->mPosition);

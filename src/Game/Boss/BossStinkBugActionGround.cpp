@@ -64,7 +64,7 @@ void BossStinkBugActionGround::attackSensor(HitSensor* pSender, HitSensor* pRece
 
 bool BossStinkBugActionGround::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg) && isEnableHipDrop()) {
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
         MR::emitEffectHit(getHost(), MR::getSensorPos(pSender), "Hit");
         BossStinkBugFunction::invalidateAttack(getHost());

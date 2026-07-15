@@ -309,7 +309,7 @@ void OtaRock::exeDown() {
         MR::startSound(this, "SE_EM_OTAROCK_LAST_DAMAGE");
         MR::startSound(this, "SE_EV_OTAROCK_DIE");
         MR::invalidateHitSensors(this);
-        MR::tryRumblePadVeryStrong(this, 0);
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
 
         if (!mNoThrowCocoNut) {
             for (s32 i = 0; i < 4; i++) {

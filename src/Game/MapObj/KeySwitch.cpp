@@ -189,7 +189,7 @@ bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 
     if (MR::isMsgItemGet(msg)) {
         MR::startSound(this, "SE_OJ_KEY_SWITCH_GET");
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         kill();
         return true;
     }

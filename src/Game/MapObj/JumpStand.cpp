@@ -195,7 +195,7 @@ bool JumpStand::tryToStartBind(HitSensor* pSensor) {
         return false;
     }
 
-    MR::tryRumblePadMiddle(this, 0);
+    MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     MR::invalidateCollisionParts(this);
     MR::invalidateClipping(this);
     mBindedActor = pSensor->mHost;

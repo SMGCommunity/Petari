@@ -469,7 +469,7 @@ void TicoFat::setMessage(s32 msg) {
 void TicoFat::shootStarPiece() {
     if (MR::giftStarPieceToTarget(getSensor("Mouth"), 1)) {
         mCurrentFed++;
-        MR::tryRumblePadVeryWeak(this, 0);
+        MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
     }
 }
 
@@ -484,7 +484,7 @@ void TicoFat::receiveStarPiece(s32 num) {
     addStarPieceSaveData(val);
     setScale(calcScale());
     mMeter->setNumber(_1E4 - _1E0);
-    MR::tryRumblePadVeryWeak(this, 0);
+    MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
     startAbsorbSound();
     MR::setMessageArg(mMsgCtrl, _1E0);
     MR::setMessageArg(_16C, _1E0);
@@ -858,10 +858,10 @@ void TicoFat::exeFly() {
         MR::startMultiActorCameraTargetSelf(this, mCameraInfo, "飛行", -1);
         MR::startAction(this, getActionName("Fly"));
         MR::startSound(this, "SE_DM_TICOFAT_MORPH_FLY");
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
 
-    MR::tryRumblePadVeryWeak(this, 0);
+    MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
     f32 v4 = _1F8 / mShootPath->getTotalLength();
     if (1.0f >= v4) {
         v4 = v4;
@@ -897,7 +897,7 @@ void TicoFat::exeWipeOut() {
         MR::startSystemSE("SE_DM_TICOFAT_MORPH_WIPE_OUT");
         emitScreenEffect();
         MR::closeWipeWhiteFade(60);
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
 

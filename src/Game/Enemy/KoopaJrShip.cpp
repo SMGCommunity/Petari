@@ -721,7 +721,7 @@ void KoopaJrShip::exeBreakStart() {
 void KoopaJrShip::exeBreak() {
     if (MR::isFirstStep(this)) {
         MR::deleteEffect(this, "EyeLight");
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
         MR::startSound(this, "SE_BM_KOOPAJR_SHIP_BREAK_S");
         mJr->setStateShipBattleEscape();

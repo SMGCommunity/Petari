@@ -62,7 +62,7 @@ void BossStinkBugFinishDemo::exeAppearPowerStar() {
         MR::emitEffect(getHost(), "Death");
         MR::startSound(getHost(), "SE_BM_BOSS_BUG_EXPLODE");
         MR::hideModel(getHost());
-        MR::tryRumblePadVeryStrong(getHost(), 0);
+        MR::tryRumblePadVeryStrong(getHost(), WPAD_CHAN0);
     }
 
     if (MR::isStep(this, ::sAppearPowerStarStep)) {

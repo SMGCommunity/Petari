@@ -684,7 +684,7 @@ void TripodBoss::exePainDemo() {
 
 void TripodBoss::exeBreakDownDemo() {
     if (MR::isFirstStep(this)) {
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraStrong();
         MR::startSound(this, "SE_BM_TRIPOD_ALL_BREAK");
     }
@@ -696,7 +696,7 @@ void TripodBoss::exeBreakDownDemo() {
 
 void TripodBoss::exeExplosionDemo() {
     if (MR::isFirstStep(this)) {
-        MR::tryRumblePadVeryStrongLong(this, 0);
+        MR::tryRumblePadVeryStrongLong(this, WPAD_CHAN0);
     }
 
     if (MR::isStep(this, ::sHeadExplodeSeTiming)) {

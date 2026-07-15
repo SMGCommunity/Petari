@@ -74,7 +74,7 @@ void Tsukidashikun::exeSign() {
     TVec3f pos;
     MR::calcPerpendicFootToLineInside(&pos, *MR::getPlayerPos(), MR::getRailPointPosStart(this), MR::getRailPointPosEnd(this));
     if (MR::isNearPlayer(pos, 700.0f)) {
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
     MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_VIB");
     if (MR::isStep(this, 60)) {

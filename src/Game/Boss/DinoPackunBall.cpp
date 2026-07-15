@@ -252,7 +252,7 @@ void DinoPackunBall::exeWait() {
 void DinoPackunBall::exeShoot() {
     if (MR::isFirstStep(this)) {
         MR::stopScene(3);
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::startBlowHitSound(this);
         MR::deleteEffect(this, _124 ? "TailDragBlack" : "TailDrag");
     }

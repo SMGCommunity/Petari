@@ -616,7 +616,7 @@ void BombTeresa::exeDrift() {
     MR::turnDirectionToTarget(this, &_AC, *MR::getPlayerPos(), 0.0f);
     if (_E8 <= 0) {
         if (MR::isPadSwing(WPAD_CHAN0)) {
-            MR::tryRumblePadMiddle(this, 0);
+            MR::tryRumblePadMiddle(this, WPAD_CHAN0);
             _E8 = 40;
             _E0 += 20.0f;
             _E4 += 20.0f;
@@ -647,7 +647,7 @@ void BombTeresa::exeDrift() {
 void BombTeresa::exeDriftRelease() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Drift");
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::startSound(this, "SE_EM_BOMBTERE_THROW");
     }
     _DC = MR::calcNerveEaseInOutValue(this, 12, 1.0f, 0.0f);
@@ -672,7 +672,7 @@ void BombTeresa::endBindStarPointer() {
 void BombTeresa::exeExplosion() {
     if (MR::isFirstStep(this)) {
         MR::shakeCameraNormalStrong();
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::deleteEffect(this, "SpinBlur");
         MR::emitEffect(this, "Explosion");
         MR::hideModel(this);

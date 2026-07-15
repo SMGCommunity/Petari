@@ -126,7 +126,7 @@ void TitleSequenceProduct::exeLogoDisplay() {
         MR::stopStageBGM(75);
         MR::startSystemSE("SE_SY_GAME_START");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, 0);
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         setNerve(&TitleSequenceProductDecide::sInstance);
     } else {
         updateButtonReaction(mAButtonChecker, "ReactionA");

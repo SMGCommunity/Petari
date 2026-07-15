@@ -222,7 +222,7 @@ void FileSelectItem::onPointing() {
         _A0->onSelectIn();
         _144 = 1;
         mScaleCtrl->setNerve(&FileSelectItemSub::ScaleControllerNrvToBig::sInstance);
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
 }
 
@@ -256,7 +256,7 @@ void FileSelectItem::exeFormat() {
         emitVanish();
         killAllModels();
         mPlanetMapObj->makeActorAppeared();
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
 
@@ -289,7 +289,7 @@ void FileSelectItem::exeChangeFellow() {
             emitOpen();
         }
 
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
 
@@ -327,7 +327,7 @@ void FileSelectItem::exeChangeMii() {
             emitOpen();
         }
 
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
 

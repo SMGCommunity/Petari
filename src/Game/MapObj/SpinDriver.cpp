@@ -417,7 +417,7 @@ void SpinDriver::exeCapture() {
         _11C = MR::calcNerveRate(this, 40);
         updateBindActorMatrix(_11C);
         _108 += 0.008f;
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
         _13C = 60;
 
         if (!tryStartShoot()) {
@@ -456,7 +456,7 @@ void SpinDriver::exeShootStart() {
         _B8.set(MR::multAndAddVec(stack_50, _F4, v5, 1.0f - v5));
         updateBindActorMatrix((v5 + (_11C * (1.0f - v5))));
         _108 += 0.04f;
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         if (tryShoot()) {
             return;
         }
@@ -484,7 +484,7 @@ void SpinDriver::exeShoot() {
 
             MR::startBckPlayer("SpaceFlyShortStart", "SpinDriverFlyStart");
             MR::shakeCameraNormal();
-            MR::tryRumblePadVeryStrong(this, 0);
+            MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
         }
 
         if (mShootPath) {

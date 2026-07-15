@@ -687,7 +687,7 @@ bool Poihana::tryToStartBind(HitSensor* pSender) {
         return false;
     }
 
-    MR::tryRumblePadMiddle(this, 0);
+    MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     mBindedActor = pSender->mHost;
     MR::startBckPlayer("Rise", (const char*)nullptr);
     MR::invalidateClipping(this);

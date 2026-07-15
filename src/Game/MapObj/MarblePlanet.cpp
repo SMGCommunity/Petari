@@ -50,7 +50,7 @@ void MarblePlanet::exeWait() {
 
 void MarblePlanet::exeScaleUpCore() {
     if (MR::isFirstStep(this)) {
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
         mRemainingElectrons = mRemainingElectrons - 1;
         switch (mRemainingElectrons) {
@@ -99,7 +99,7 @@ void MarblePlanet::exeBreakCore() {
     }
 
     if (MR::isStep(this, 1)) {
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraStrong();
         MR::startAfterBossBGM();
         MR::requestAppearPowerStar(this, mPosition);
@@ -257,7 +257,7 @@ void MarblePlanetElectron::attackSensor(HitSensor* pSender, HitSensor* pReceiver
 
             if (!isNear) {
                 if (MR::sendMsgPush(pReceiver, pSender)) {
-                    MR::tryRumblePadVeryWeak(this, 0);
+                    MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
 
                     if (!MR::isEffectValid(this, "HitMarkNormal")) {
                         MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, 0);
