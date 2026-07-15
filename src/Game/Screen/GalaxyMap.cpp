@@ -9,6 +9,7 @@
 #include "Game/Screen/GalaxyMapTicoIcon.hpp"
 #include "Game/Screen/GalaxyMapTitle.hpp"
 #include "Game/Screen/IconAButton.hpp"
+#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Screen/LayoutManager.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
 #include "Game/Util/GamePadUtil.hpp"
@@ -19,18 +20,6 @@
 #include <cstdio>
 
 namespace {
-    const char* const cDomes[] = {
-        "Dome1", "Dome2", "Dome3", "Dome4", "Dome5", "Dome6",
-    };
-    const char* const cDomeShowHidePanes[] = {
-        "Base1", "Base2", "Base3", "Base4", "Base5", "Base6",
-    };
-    const char* const cMarioIconPositions[] = {
-        "Mario7", "Mario1", "Mario2", "Mario3", "Mario4", "Mario5", "Mario6",
-    };
-    const char* const cMarioIconPositionsInDome[] = {
-        nullptr, "GMario1", "GMario2", "GMario3", "GMario4", "GMario5", "GMario6",
-    };
     static const s32 sFocusKeepFrame = 30;
     static const f32 sPointingRange = 20.0f;
 };  // namespace
@@ -44,7 +33,10 @@ namespace {
     NEW_NERVE(GalaxyMapShowDetail, GalaxyMap, ShowDetail);
 };  // namespace
 
-// GalaxyMap::GalaxyMap
+GalaxyMap::GalaxyMap()
+    : LayoutActor("ギャラクシー・天文台マップ", true), mMarioIcon1(), mMarioIcon2(), mGalaxyPlain(), mGalaxyDetail(), mPointingIcon(), mGalaxyName(),
+      mIconAButton(), _70(), _71(true) {
+}
 
 void GalaxyMap::init(const JMapInfoIter& rIter) {
     initLayoutManager("MapGrandGalaxy", 1);
@@ -132,10 +124,10 @@ void GalaxyMap::movement() {
 void GalaxyMap::calcAnim() {
     LayoutActor::calcAnim();
 
-    std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::mem_func(&GalaxyMapDomeIcon::calcAnim));
-    std::for_each(mIcon.begin(), mIcon.end(), std::mem_func(&GalaxyMapIcon::calcAnim));
-    std::for_each(mCometIcon.begin(), mCometIcon.end(), std::mem_func(&GalaxyMapCometIcon::calcAnim));
-    std::for_each(mTicoIcon.begin(), mTicoIcon.end(), std::mem_func(&GalaxyMapTicoIcon::calcAnim));
+    std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::mem_func(&LayoutActor::calcAnim));
+    std::for_each(mIcon.begin(), mIcon.end(), std::mem_func(&LayoutActor::calcAnim));
+    std::for_each(mCometIcon.begin(), mCometIcon.end(), std::mem_func(&LayoutActor::calcAnim));
+    std::for_each(mTicoIcon.begin(), mTicoIcon.end(), std::mem_func(&LayoutActor::calcAnim));
 
     mMarioIcon1->calcAnim();
     mGalaxyDetail->calcAnim();
@@ -155,18 +147,18 @@ void GalaxyMap::draw() const {
 
     LayoutActor::draw();
 
-    // std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::mem_func(&GalaxyMapDomeIcon::draw));
+    std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::mem_func(&GalaxyMapDomeIcon::draw));
     mMarioIcon1->draw();
     drawGalaxyIconWithOrder(1);
     mTitle->draw();
-    // std::for_each(mTicoIcon.begin(), mTicoIcon.end(), std::mem_func(&GalaxyMapTicoIcon::draw));
+    std::for_each(mTicoIcon.begin(), mTicoIcon.end(), std::mem_func(&GalaxyMapTicoIcon::draw));
 
     if (mMarioIcon2 != nullptr) {
         mMarioIcon2->draw();
     }
 
     drawGalaxyIconWithOrder(3);
-    // std::for_each(mCometIcon.begin(), mCometIcon.end(), std::mem_func(&GalaxyMapCometIcon::draw));
+    std::for_each(mCometIcon.begin(), mCometIcon.end(), std::mem_func(&GalaxyMapCometIcon::draw));
     drawGalaxyIconWithOrder(2);
     mIconAButton->draw();
 }
@@ -184,14 +176,20 @@ void GalaxyMap::movementForCapture() {
     std::for_each(mCometIcon.begin(), mCometIcon.end(), std::mem_func(&GalaxyMapCometIcon::movement));
 }
 
-void GalaxyMap::drawForCapture(const nw4r::lyt::DrawInfo& rDrawInfo) {
+void GalaxyMap::calcAnimForCapture(const nw4r::lyt::DrawInfo& rDrawInfo) {
     MR::calcAnimLayoutWithDrawInfo(this, rDrawInfo);
-    std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::mem_func(&GalaxyMapDomeIcon::calcAnim));
-    std::for_each(mIcon.begin(), mIcon.end(), std::mem_func(&GalaxyMapIcon::calcAnim));
-    std::for_each(mCometIcon.begin(), mCometIcon.end(), std::mem_func(&GalaxyMapCometIcon::calcAnim));
+    std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::bind2nd(std::mem_func(&GalaxyMapDomeIcon::calcAnimForCapture), rDrawInfo));
+    std::for_each(mIcon.begin(), mIcon.end(), std::bind2nd(std::mem_func(&GalaxyMapIcon::calcAnimForCapture), rDrawInfo));
+    std::for_each(mCometIcon.begin(), mCometIcon.end(), std::bind2nd(std::mem_func(&GalaxyMapCometIcon::calcAnimForCapture), rDrawInfo));
 }
 
-// GalaxyMap::drawForCapture
+void GalaxyMap::drawForCapture(const nw4r::lyt::DrawInfo& rDrawInfo) {
+    // FIXME: bind2nd is inlining here very stubbornly.
+    MR::drawLayoutWithDrawInfoWithoutProjectionSetup(this, rDrawInfo);
+    std::for_each(mDomeIcon.begin(), mDomeIcon.end(), std::bind2nd(std::ptr_fun(MR::drawLayoutWithDrawInfoWithoutProjectionSetup), rDrawInfo));
+    std::for_each(mIcon.begin(), mIcon.end(), std::bind2nd(std::ptr_fun(MR::drawLayoutWithDrawInfoWithoutProjectionSetup), rDrawInfo));
+    std::for_each(mCometIcon.begin(), mCometIcon.end(), std::bind2nd(std::ptr_fun(MR::drawLayoutWithDrawInfoWithoutProjectionSetup), rDrawInfo));
+}
 
 void GalaxyMap::setModeNormal() {
     std::for_each(mIcon.begin(), mIcon.end(), std::mem_func(&GalaxyMapIcon::setModeNormal));
@@ -369,6 +367,21 @@ void GalaxyMap::exeShowDetail() {
 }
 
 // GalaxyMap::initPaneCtrlPointing
+
+namespace {
+    const char* const cDomes[] = {
+        "Dome1", "Dome2", "Dome3", "Dome4", "Dome5", "Dome6",
+    };
+    const char* const cDomeShowHidePanes[] = {
+        "Base1", "Base2", "Base3", "Base4", "Base5", "Base6",
+    };
+    const char* const cMarioIconPositions[] = {
+        "Mario7", "Mario1", "Mario2", "Mario3", "Mario4", "Mario5", "Mario6",
+    };
+    const char* const cMarioIconPositionsInDome[] = {
+        nullptr, "GMario1", "GMario2", "GMario3", "GMario4", "GMario5", "GMario6",
+    };
+};  // namespace
 
 void GalaxyMap::initDomeIcon() {
     GalaxyMapDomeIcon* domeIcon;
