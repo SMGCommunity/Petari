@@ -1024,10 +1024,10 @@ namespace MR {
         turnVecToVecCosOnPlane(a2, stack_8, pActor->mGravity, cosDegree(a4));
     }
 
-    void turnDirectionToTargetUseGroundNormalDegree(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
+    bool turnDirectionToTargetUseGroundNormalDegree(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_8 = a3 - pActor->mPosition;
         a4 = cosDegree(a4);
-        turnVecToVecCosOnPlane(a2, stack_8, isBindedGround(pActor) ? *getGroundNormal(pActor) : (pActor->mGravity), a4);
+        return turnVecToVecCosOnPlane(a2, stack_8, isBindedGround(pActor) ? *getGroundNormal(pActor) : (pActor->mGravity), a4);
     }
 
     void turnDirectionToPlayerDegree(const LiveActor* pActor, TVec3f* a2, f32 a3) {
