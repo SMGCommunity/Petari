@@ -86,6 +86,7 @@ public:
     void freezeCopy(J3DModelData*, XanimeCore*, u32, u32);
     void initT(J3DModelData*);
     void reconfigJointTransform(J3DModelData*);
+    void updateFrame();
 
     void enableJointTransform(J3DModelData*);
 
@@ -94,16 +95,16 @@ public:
     XjointTransform* getJointTransform(u32);
 
     u8 _4;
-    u8 mTrackCount;  // 0x5
+    /* 0x5 */ u8 mTrackCount;
     u8 _6;
-    u32 mJointCount;  // 0x8
+    /* 0x8 */ u32 mJointCount;
     u16 _C;
-    XjointInfo* mJointList;           // 0x10
-    XjointTransform* mTransformList;  // 0x14  // this is an array
-    XanimeTrack* mTrackList;          // 0x18
+    /* 0x10 */ XjointInfo* mJointList;
+    /* 0x14 */ XjointTransform* mTransformList;  // this is an array
+    /* 0x18 */ XanimeTrack* mTrackList;
     f32 _1C;
     f32 _20;
-    f32 _24;
+    /* 0x24 */ f32 mFrameRatio;
     u8 _28;
     u8 _29;
 };

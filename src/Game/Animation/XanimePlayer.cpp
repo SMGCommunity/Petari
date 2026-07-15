@@ -5,6 +5,11 @@
 #include "JSystem/J3DGraphAnimator/J3DJoint.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModel.hpp"
 #include "JSystem/J3DGraphAnimator/J3DMtxCalc.hpp"
+#include "revolution/types.h"
+
+namespace {
+    const char* dummy_name = "NULL";
+};  // namespace
 
 XanimePlayer::XanimePlayer(J3DModel* pModel, XanimeResourceTable* pRessource) {
     init();
@@ -81,6 +86,7 @@ XanimePlayer::XanimePlayer(J3DModel* pModel, XanimeResourceTable* pRessource, Xa
 }
 
 void XanimePlayer::init() {
+    mModel = nullptr;
     mModelData = nullptr;
     mCurrentBckName = nullptr;
     _68 = nullptr;
@@ -94,6 +100,10 @@ void XanimePlayer::init() {
     mCurrent_24 = 0;
     _54 = 0;
 
+    // Unknown float shenanigans
+    _0C = 0.0f;
+    _08 = 0.0f;
+
     _78 = 0;
     _7F = 0;
     _7E = 0;
@@ -102,7 +112,7 @@ void XanimePlayer::init() {
     _88 = 0;
     _80 = 0;
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < ARRAY_SIZE(mWeights); i++) {
         mWeights[i] = 0.0f;
     }
     _74 = 0;
@@ -191,7 +201,7 @@ void XanimePlayer::changeAnimationByHash(u32 hash) {
     }
 }
 
-/*void XanimePlayer::swapFrameCtrl(const XanimeGroupInfo* pInfo) {
+void XanimePlayer::swapFrameCtrl(const XanimeGroupInfo* pInfo) {
     if (pInfo == nullptr) {
         return;
     }
@@ -199,7 +209,16 @@ void XanimePlayer::changeAnimationByHash(u32 hash) {
     if (pInfo->_20[0] == nullptr) {
         return;
     }
-}*/
+
+    mCurrent_24 = 1 - _54;
+    _20 = &_24[mCurrent_24];
+    _20->init(reinterpret_cast< J3DAnmTransform* >(pInfo->_20[0])->mFrameMax);
+
+    _20->mRate = pInfo->_4;
+
+    _20->_14 = pInfo->_8;
+    _88 = 0;
+}
 
 void XanimePlayer::changeAnimation(const XanimeGroupInfo* pInfo) {
     if (pInfo == nullptr) {
@@ -335,6 +354,31 @@ bool XanimePlayer::changeTrackWeight(u32 track, f32 weight) {
     return true;
 }
 
+void XanimePlayer::calcAnm(u16 arg) {
+    if (_80 == 0) {
+        f32 currentFrame;
+        if ((_20->mState & 0x1) != 0) {
+            currentFrame = _20->mEnd;
+        } else if (_88 != 0) {
+            currentFrame = _84;
+        } else {
+            currentFrame = _20->mFrame;
+        }
+
+        if (mCurrentAnimation != nullptr && mCurrentAnimation->_20[0] != nullptr) {
+            s16 maxFrame = static_cast< J3DAnmTransform* >(mCurrentAnimation->_20[0])->mFrameMax;
+            if (static_cast< J3DAnmTransform* >(mCurrentAnimation->_20[0])->mFrameMax == 0) {
+                maxFrame = 1;
+            }
+            mCore->mFrameRatio = currentFrame / maxFrame;
+        }
+    }
+
+    mCore->updateFrame();
+    mModelData->mJointTree.mJointNodePointer[arg]->mMtxCalc = mCore;
+    _88 = 0;
+}
+
 void XanimePlayer::overWriteMtxCalc(u16 arg) {
     mModelData->mJointTree.mJointNodePointer[arg]->mMtxCalc = mCore;
 }
@@ -463,18 +507,16 @@ bool XanimePlayer::isAnimationRunSimple() const {
 
 const char* XanimePlayer::getCurrentAnimationName() const {
     if (mCurrentAnimation == nullptr) {
-        return nullptr;
+        return dummy_name;
     }
-
-    return "";
+    return mCurrentAnimation->mParent.animationName;
 }
 
 const char* XanimePlayer::getDefaultAnimationName() const {
     if (mDefaultAnimation == nullptr) {
-        return nullptr;
+        return dummy_name;
     }
-
-    return "";
+    return mDefaultAnimation->mParent.animationName;
 }
 
 const char* XanimePlayer::getCurrentBckName() const {

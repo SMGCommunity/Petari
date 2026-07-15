@@ -169,7 +169,7 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
 
             firstFilename = reinterpret_cast< XanimeBckTable4* >(bckTables[0])->mEntries[0].mFileName;
         }
-        entry->mName = firstFilename;
+        entry->mBckName = firstFilename;
 
         XanimeBckTable* auxTables[1];
         auxTables[0] = reinterpret_cast< XanimeBckTable* >(pAuxInfo);
