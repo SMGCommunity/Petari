@@ -10,17 +10,15 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
-#include "revolution/types.h"
 
 namespace {
     f32 cSensorRadius = 80.0f;
     f32 cBinderRadius = 50.0f;
-    f32 cThrowSpeed = 30.0f;
     f32 cForceKillDistance = 3000.0f;
     f32 cBoundReduction = 0.9f;
     f32 cGravityAcc = 2.0f;
+    f32 cThrowSpeed = 30.0f;
 };  // namespace
 
 namespace NrvFireMarioBall {
@@ -66,7 +64,7 @@ void FireMarioBall::kill() {
 void FireMarioBall::appearAndThrow(const TVec3f& v1, const TVec3f& v2) {
     mPosition.set< f32 >(v1);
     mVelocity.set< f32 >(v2 * ::cThrowSpeed);
-    mRotation.set< f32 >(0.0f, 57.295776f * JMath::sAtanTable.atan2_(mVelocity.x, mVelocity.z), 0.0f);
+    mRotation.set< f32 >(0.0f, MR::toDegree(JMAATan2(mVelocity.x, mVelocity.z)), 0.0f);
     MR::tryRumblePadWeak(this, 0);
     appear();
 }

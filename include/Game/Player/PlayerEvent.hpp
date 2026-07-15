@@ -8,28 +8,6 @@ class EventSequence;
 typedef void (EventSequence::*EventFunc1)(u16 eventFrame, u16 sequenceFrame);
 typedef bool (EventSequence::*EventFunc2)(u16 sequenceFrame);
 
-class EventSequencer : public NameObj {
-public:
-    /// @brief Creates a new `EventSequencer`.
-    EventSequencer();
-
-    virtual ~EventSequencer();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
-
-    void startEvent(const char* pName);
-
-    template < typename T >
-    void addEventSequence(const char* pName) {
-        mHashTable->add(pName, reinterpret_cast< u32 >(new T()), false);
-    }
-
-private:
-    /* 0x0C */ HashSortTable* mHashTable;
-    /* 0x10 */ EventSequence* mSequence;
-    /* 0x14 */ u16 mSequenceFrame;
-};
-
 class EventSequence {
 private:
     /* 0x00 */ u16 mEventNumMax;
@@ -97,4 +75,26 @@ public:
     u16 getPhase() const {
         return mPhase;
     }
+};
+
+class EventSequencer : public NameObj {
+public:
+    /// @brief Creates a new `EventSequencer`.
+    EventSequencer();
+
+    virtual ~EventSequencer();
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void movement();
+
+    void startEvent(const char* pName);
+
+    template < typename T >
+    void addEventSequence(const char* pName) {
+        mHashTable->add(pName, reinterpret_cast< u32 >(new T()), false);
+    }
+
+private:
+    /* 0x0C */ HashSortTable* mHashTable;
+    /* 0x10 */ EventSequence* mSequence;
+    /* 0x14 */ u16 mSequenceFrame;
 };
