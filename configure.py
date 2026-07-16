@@ -1258,7 +1258,7 @@ config.libs = [
             ),
             Object(NonMatching, "Game/Enemy/Teresa.cpp"),
             Object(NonMatching, "Game/Enemy/TeresaWater.cpp"),
-            Object(NonMatching, "Game/Enemy/TerritoryMover.cpp"),
+            Object(Matching, "Game/Enemy/TerritoryMover.cpp"),
             Object(NonMatching, "Game/Enemy/Unizo.cpp"),
             Object(NonMatching, "Game/Enemy/UnizoLauncher.cpp"),
             Object(

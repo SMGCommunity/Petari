@@ -963,7 +963,7 @@ bool WaterBazooka::tryJumpBackPlayerFromBazooka() const {
     TVec3f jumpDir;
     jumpDir.sub(dropPoint, *MR::getPlayerPos());
     TVec3f rej;
-    rej.rejection(jumpDir, mGravity);
+    rej.killElement(jumpDir, mGravity);
     TVec3f rej2 = -rej;
 
     MR::offBind(MR::getPlayerDemoActor());
@@ -990,7 +990,7 @@ void WaterBazooka::calcNearDropPoint(TVec3f* pPos) const {
 
     TVec3f toPlayer;
     toPlayer.sub(*MR::getPlayerPos(), mPosition);
-    toPlayer.rejection(toPlayer, mGravity);
+    toPlayer.orthogonalize(mGravity);
     MR::normalizeOrZero(&toPlayer);
 
     if (MR::isNearZero(toPlayer)) {

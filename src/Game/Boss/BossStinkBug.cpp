@@ -224,7 +224,7 @@ void BossStinkBug::updateAction() {
 
 void BossStinkBug::updatePose() {
     if (!_110) {
-        _EC.rejection(mGravity);
+        _EC.orthogonalize(mGravity);
         if (MR::isNearZero(_EC)) {
             _DC.getZDir(_EC);
         } else {

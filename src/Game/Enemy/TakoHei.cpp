@@ -188,7 +188,7 @@ void TakoHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             TVec3f sensorDirection;
             MR::calcSensorDirectionNormalize(&sensorDirection, pReceiver, pSender);
             if (mVelocity.dot(sensorDirection) < 0.0f) {
-                mVelocity.rejection(sensorDirection);
+                mVelocity.orthogonalize(sensorDirection);
             }
         }
     }
@@ -368,7 +368,7 @@ bool TakoHei::tryWalk() {
 
 bool TakoHei::tryWalkEnd() {
     TVec3f scaleAdd;
-    scaleAdd.rejection(_BC - mPosition, mGravity);
+    scaleAdd.killElement(_BC - mPosition, mGravity);
 
     if (MR::isGreaterStep(this, ::sWalkEndTime) || scaleAdd.squared() < ::sWalkTerritoryRadius) {
         setNerve(&NrvTakoHei::TakoHeiNrvWait::sInstance);
@@ -839,7 +839,7 @@ void TakoHei::updateSwoonVelocity() {
 void TakoHei::decideNextTargetPos() {
     MR::getRandomVector(&_BC, ::sWalkGoalDistance);
 
-    _BC.rejection(mGravity);
+    _BC.orthogonalize(mGravity);
 
     _BC += _D4;
 }

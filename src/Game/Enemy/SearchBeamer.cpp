@@ -474,7 +474,7 @@ void SearchBeamer::initBeamPos() {
 void SearchBeamer::reformDirection(bool a1) {
     if (_94.dot(_A0) != 0.0f) {
         TVec3f v8;
-        _A0.rejection(_94, v8);
+        v8.killElement2(_94, _A0);
         MR::normalize(&v8);
         f32 deg = a1 ? 15.0f : 3.0f;
         MR::turnVecToVecDegree(&_94, _94, v8, deg, TVec3f(0, 1, 0));
@@ -489,11 +489,9 @@ void SearchBeamer::bowToPlayer() {
     JMAVECScaleAdd(v6, MR::getPlayerCenterPos(), &v12, -20.0f);
     TVec3f v11;
     v11.sub(v12, mPosition);
-    _A0.rejection(_A0, v11);
+    v11.orthogonalize(_A0);
     MR::normalize(&v11);
-    TVec3f v10;
-    v10.negate(_A0);
-    MR::turnVecToVecDegree(&v11, v11, v10, 35.0f, TVec3f(0, 1, 0));
+    MR::turnVecToVecDegree(&v11, v11, -_A0, 35.0f, TVec3f(0, 1, 0));
     MR::turnVecToVecDegree(&_94, _94, v11, 3.0f, TVec3f(0, 1, 0));
     TVec3f v9;
     MR::turnVecToPlane(&v9, _94, _A0);

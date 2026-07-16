@@ -531,15 +531,13 @@ namespace MR {
     }
 
     void calcVelocityMoveToDirectionHorizon(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4) {
-        TVec3f* pGravity = const_cast< TVec3f* >(&pActor->mGravity);
-        a1->rejection(a3, *pGravity);
+        a1->killElement(a3, pActor->mGravity);
         normalizeOrZero(a1);
         a1->scale(a4);
     }
 
     void calcVelocityMoveToDirectionHorizon(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
-        TVec3f* pGravity = const_cast< TVec3f* >(&pActor->mGravity);
-        a1->rejection(a3, *pGravity);
+        a1->killElement(a3, pActor->mGravity);
         f32 stack_8;
         separateScalarAndDirection(&stack_8, a1, *a1);
         a1->scale(getInterpolateValue(normalize(stack_8, a6, a7), a4, a5));
@@ -726,7 +724,7 @@ namespace MR {
 
     void addVelocitySeparateHV(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4) {
         TVec3f stack_2c;
-        stack_2c.rejection(a2, pActor->mGravity);
+        stack_2c.killElement(a2, pActor->mGravity);
         normalizeOrZero(&stack_2c);
         TVec3f stack_20 = stack_2c * a3 - pActor->mGravity * a4;
         pActor->mVelocity.add(stack_20);
@@ -734,7 +732,7 @@ namespace MR {
 
     void setVelocitySeparateHV(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4) {
         TVec3f stack_2c;
-        stack_2c.rejection(a2, pActor->mGravity);
+        stack_2c.killElement(a2, pActor->mGravity);
         normalizeOrZero(&stack_2c);
         TVec3f stack_20 = stack_2c * a3 - pActor->mGravity * a4;
         pActor->mVelocity.set(stack_20);
@@ -750,7 +748,7 @@ namespace MR {
 
         TVec3f* pVelocity = &pActor->mVelocity;
         TVec3f stack_8;
-        stack_8.rejection(pActor->mVelocity, a2);
+        stack_8.killElement(pActor->mVelocity, a2);
         stack_8.scale(a3);
         pVelocity->scale(a2.dot(pActor->mVelocity), a2);
         pVelocity->add(stack_8);
@@ -776,14 +774,13 @@ namespace MR {
         }
     }
 
-    // Minor mismatch: Wrong register used for pVelocity
     void killVelocityToTarget(LiveActor* pActor, const TVec3f& a2) {
         TVec3f stack_8;
         stack_8.sub(a2, pActor->mPosition);
         normalize(&stack_8);
         if (pActor->mVelocity.dot(stack_8) > 0.0f) {
             TVec3f* pVelocity = &pActor->mVelocity;
-            pVelocity->rejection(*pVelocity, stack_8);
+            pActor->mVelocity.killElement(*pVelocity, stack_8);
         }
     }
 
@@ -888,7 +885,7 @@ namespace MR {
         }
         TVec3f* pVelocity = &pActor->mVelocity;
         TVec3f* pGravThenVel = &pActor->mGravity;
-        stack_38.rejection(*pVelocity, *pGravThenVel);
+        stack_38.killElement(*pVelocity, *pGravThenVel);
         stack_2c.scale(pGravThenVel->dot(*pVelocity), *pGravThenVel);
         if (isOnGround(pActor)) {
             stack_38.scale(groundedScalar);
@@ -902,7 +899,7 @@ namespace MR {
         if (isOnGround(pActor)) {
             TVec3f stack_20(*getGroundNormal(pActor));
             TVec3f* pVelocity2 = &pActor->mVelocity;
-            stack_38.rejection(pActor->mVelocity, stack_20);
+            stack_38.killElement(*pVelocity2, stack_20);
             if (stack_38.squared() < a6 * a6) {
                 pVelocity2->scale(stack_20.dot(pActor->mVelocity), stack_20);
             }
@@ -917,14 +914,13 @@ namespace MR {
         addVelocityJump(pActor, a3);
     }
 
-    // Minor mismatch: Two instructions swapped in rejection
     bool sendMsgPushAndKillVelocityToTarget(LiveActor* pActor, HitSensor* pSensor1, HitSensor* pSensor2) {
         if (sendMsgPush(pSensor1, pSensor2)) {
             TVec3f stack_8 = pSensor2->mPosition - pSensor1->mPosition;
             normalizeOrZero(&stack_8);
             if (pActor->mVelocity.dot(stack_8) < 0.0f) {
                 TVec3f* pVelocity = &pActor->mVelocity;
-                pVelocity->rejection(*pVelocity, stack_8);
+                pActor->mVelocity.killElement(*pVelocity, stack_8);
             }
             return true;
         }

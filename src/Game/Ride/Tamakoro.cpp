@@ -348,7 +348,7 @@ bool Tamakoro::requestBind(HitSensor* pSensor) {
     MR::makeQuatRotateDegree(&mMarioRotateQuat, *MR::getPlayerRotate());
     mMarioPos.set(*MR::getPlayerPos());
     mMarioRotateQuat.getZDir(mMarioFront);
-    mMarioFront.rejection(mGravity);
+    mMarioFront.orthogonalize(mGravity);
     if (MR::normalizeOrZero(&mMarioFront)) {
         MR::makeAxisVerticalZX(&mMarioFront, mGravity);
     }
@@ -377,7 +377,7 @@ bool Tamakoro::requestBind(HitSensor* pSensor) {
         TVec3f v3;  // vec order shenanigans... not used
         TVec3f vPlayerToThis;
         vPlayerToThis = mPosition - mMarioPos;
-        vPlayerToThis.rejection(mGravity);
+        vPlayerToThis.orthogonalize(mGravity);
 
         if (!MR::normalizeOrZero(&vPlayerToThis)) {
             if (vPlayerToThis.dot(mMarioFront) > 0.0f) {
@@ -947,7 +947,7 @@ void Tamakoro::updateAirTime() {
 }
 
 void Tamakoro::updateMarioPose(f32 degree) {
-    // TODO : rejection
+    // TODO : killElement
 
     TVec3f velH = mVelocity.killElement(mGravity);  // FIXME
 

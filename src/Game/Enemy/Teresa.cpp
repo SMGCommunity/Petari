@@ -709,7 +709,7 @@ void Teresa::exeWalk() {
 
 void Teresa::exeRailWalk() {
     TVec3f v7;
-    v7.rejection(MR::getRailPos(this) - mPosition, mGravity);
+    v7.killElement(MR::getRailPos(this) - mPosition, mGravity);
 
     if (v7.length() < 10.0f) {
         MR::moveCoord(this, 10.0f);

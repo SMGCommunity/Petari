@@ -315,7 +315,7 @@ namespace MR {
 
     f32 calcDistanceHorizonToCurrentPos(const LiveActor* pActor) {
         TVec3f horizontal;
-        horizontal.rejection(getRailPos(pActor) - pActor->mPosition, pActor->mGravity);
+        horizontal.killElement(getRailPos(pActor) - pActor->mPosition, pActor->mGravity);
         return horizontal.length();
     }
 
