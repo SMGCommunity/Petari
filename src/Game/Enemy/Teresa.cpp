@@ -221,10 +221,8 @@ void Teresa::control() {
 
 void Teresa::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _94);
-
     TVec3f scale;
-    // regswap
-    JMathInlineVEC::PSVECMultiply(&_D4, &mScale, &scale);
+    scale.mul(_D4, mScale);
     MR::setBaseScale(this, scale);
 }
 

@@ -322,14 +322,12 @@ void StinkBugSmall::control() {
 }
 
 void StinkBugSmall::calcAndSetBaseMtx() {
-    TPos3f v9;
-    MR::calcMtxFromGravityAndZAxis(&v9, this, mGravity, _8C);
-    MtxPtr v2 = getBaseMtx();
-    MR::blendMtx(v2, v9, 0.3f, v9);
-    MR::setBaseTRMtx(this, v9);
+    TPos3f mtx;
+    MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, _8C);
+    MR::blendMtx(getBaseMtx(), mtx, 0.3f, mtx);
+    MR::setBaseTRMtx(this, mtx);
     TVec3f scale;
-    JMathInlineVEC::PSVECMultiply(mScaleController->_C, mScale, scale);
-
+    scale.mul(mScaleController->_C, mScale);
     MR::setBaseScale(this, scale);
 }
 

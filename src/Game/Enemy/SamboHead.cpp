@@ -454,7 +454,7 @@ void SamboHead::calcAndSetBaseMtx() {
     MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, _98);
     MR::setBaseTRMtx(this, mtx);
     TVec3f scale;
-    JMathInlineVEC::PSVECMultiply(&mScaleController->_C, &mScale, &scale);
+    scale.mul(mScaleController->_C, mScale);
     MR::setBaseScale(this, scale);
 }
 

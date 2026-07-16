@@ -37,6 +37,10 @@ public:
     void changeHeadAngry();
     void changeHeadCalmDown();
 
+    TQuat4f getRot() const {
+        return _AC;
+    }
+
     Hanachan* mParent;  // 0x8C
     TVec3f _90;
     TVec3f _9C;

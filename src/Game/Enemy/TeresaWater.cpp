@@ -126,7 +126,7 @@ void TeresaWater::calcAndSetBaseMtx() {
     MR::calcMtxFromGravityAndZAxis(&mtx, this, up, _94);
     MR::setBaseTRMtx(this, mtx);
     TVec3f scale;
-    JMathInlineVEC::PSVECMultiply(_8C->_C, &mScale, &scale);
+    scale.mul(_8C->_C, mScale);
     MR::setBaseScale(this, scale);
 }
 

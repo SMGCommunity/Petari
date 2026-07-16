@@ -541,6 +541,10 @@ namespace JGeometry {
             return ret;
         }
 
+        inline void mul(const TVec3< f32 >& a) {
+            mul(*this, a);
+        }
+
         template < typename T >
         void setAll(f32);
 
@@ -684,10 +688,6 @@ namespace JGeometry {
         f32 normalize(const TVec3& rSrc) {
             set(rSrc);
             return normalize();
-        }
-
-        inline void mul(const TVec3< f32 >& a) {
-            mul(*this, a);
         }
 
         void cross(const TVec3< f32 >& a, const TVec3< f32 >& b) {
@@ -856,6 +856,13 @@ namespace JGeometry {
             this->y = _y;
             this->z = _z;
             this->w = _w;
+        }
+
+        TQuat4(const TQuat4& rOther) {
+            this->x = rOther.x;
+            this->y = rOther.y;
+            this->z = rOther.z;
+            this->w = rOther.w;
         }
 
         inline TVec3< T >* toTvec() {

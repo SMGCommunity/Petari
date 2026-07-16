@@ -520,20 +520,16 @@ bool Mogu::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor* pSens
 }
 
 void Mogu::calcAndSetBaseMtx() {
-    TPos3f p1;
-    MR::makeMtxUpFrontPos(&p1, _A8, mSight, mPosition);
-    MR::setBaseTRMtx(this, p1);
-    TVec3f v2;
-    // f0 f1 regswap
-    JMathInlineVEC::PSVECMultiply(&mAnimScaleController->_C, &mScale, &v2);
-    MR::setBaseScale(this, v2);
+    TPos3f mtx;
+    MR::makeMtxUpFrontPos(&mtx, _A8, mSight, mPosition);
+    MR::setBaseTRMtx(this, mtx);
+    TVec3f scale;
+    scale.mul(mAnimScaleController->_C, mScale);
+    MR::setBaseScale(this, scale);
 
     if (isNerve(&NrvMogu::HostTypeNrvThrow::sInstance) && MR::isLessStep(this, 47)) {
         _90->calc();
-        f32 z = _90->mMtx[2][3];
-        f32 y = _90->mMtx[1][3];
-        f32 x = _90->mMtx[0][3];
-        mStone->mPosition.set< f32 >(x, y, z);
+        _90->mMtx.getTrans(mStone->mPosition);
     }
 }
 

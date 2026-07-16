@@ -150,11 +150,11 @@ bool HanachanParts::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 
 void HanachanParts::calcAndSetBaseMtx() {
     TPos3f mtx;
-    mtx.setQT(_AC, mPosition);
+    mtx.makeQuat(getRot());
+    mtx.setTrans(mPosition);
+
     MR::setBaseTRMtx(this, mtx);
-    TVec3f scale;
-    JMathInlineVEC::PSVECMultiply(&mParent->mScaleCtrl->_C, mScale, scale);
-    MR::setBaseScale(this, scale);
+    MR::setBaseScale(this, mParent->mScaleCtrl->_C.mult(mScale));
 }
 
 void HanachanParts::exeWalk() {
