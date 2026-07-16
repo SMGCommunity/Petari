@@ -7,7 +7,7 @@ namespace DodoryuUtil {
         TVec3f yDir;
         pDodoryu->mBaseMtx.getYDir(yDir);
 
-        pVec->scaleAdd(yDir, rVec, -yDir.dot(rVec));
+        pVec->killElement(rVec, yDir);
 
         if (MR::isNearZero(*pVec)) {
             return false;
@@ -22,8 +22,8 @@ namespace DodoryuUtil {
 
     void accelerate(Dodoryu* pDodoryu, const TVec3f& rVec, f32 param3, f32 param4, f32 param5) {
         TVec3f auStack_40;
-        TVec3f auStack_34 = TVec3f(rVec);
-        auStack_40.scaleAdd(auStack_34, pDodoryu->mVelocity, -auStack_34.dot(pDodoryu->mVelocity));
+        TVec3f auStack_34 = rVec;
+        auStack_40.killElement(pDodoryu->mVelocity, rVec);
         pDodoryu->mVelocity -= auStack_40;
         auStack_40 *= param4;
         pDodoryu->mVelocity += auStack_40;
@@ -35,7 +35,7 @@ namespace DodoryuUtil {
 
         TVec3f yDir;
         pDodoryu->mBaseMtx.getYDir(yDir);
-        pDodoryu->mVelocity.scaleAdd(yDir, pDodoryu->mVelocity, -yDir.dot(pDodoryu->mVelocity));
+        pDodoryu->mVelocity.orthogonalize(yDir);
     }
 
     void addVelocity(Dodoryu* pDodoryu, bool isSnap) {
@@ -53,13 +53,12 @@ namespace DodoryuUtil {
     }
 
     void rotateVelocityByWall(Dodoryu* pDodoryu) {
-        TVec3f auStack_38;
         TVec3f auStack_2c;
         pDodoryu->mBaseMtx.getYDir(auStack_2c);
 
         f32 speed = pDodoryu->mVelocity.length();
-
-        auStack_38.scaleAdd(pDodoryu->_134, auStack_38, -pDodoryu->_134.dot(auStack_38));
+        TVec3f auStack_38 = pDodoryu->mVelocity;
+        auStack_38.orthogonalize(pDodoryu->_134);
 
         if (MR::isNearZero(auStack_38)) {
             auStack_38.cross(auStack_2c, pDodoryu->_134);

@@ -205,7 +205,7 @@ bool KoopaStateDamageEscape::tryDamage(u32 msg, HitSensor* pSender, HitSensor* p
             (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEnd::sInstance) && MR::isLessStep(this, 60)) ||
             isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunFinal::sInstance) ||
             (isNerve(&NrvKoopaStateDamageEscape::KoopaStateDamageEscapeNrvDamageTailRunEndFinal::sInstance) && MR::isLessStep(this, 60))) {
-            MR::tryRumblePadVeryStrong(this, 0);
+            MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
             MR::startSpinHitSound(mHost);
             MR::startBlowHitSound(mHost);
             MR::startSound(mHost, "SE_BM_KOOPA_DAMAGE_L");

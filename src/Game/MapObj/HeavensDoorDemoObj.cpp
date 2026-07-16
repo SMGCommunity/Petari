@@ -101,7 +101,7 @@ void HeavensDoorDemoObj::kill() {
 
 void HeavensDoorDemoObj::control() {
     if (_C4) {
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
 }
 

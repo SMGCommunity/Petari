@@ -117,11 +117,9 @@ void SkeletalFishGuard::exeAppear() {
 
     MR::calcGravityVector(this, _10C, &v32, nullptr, false);
     TVec3f v31 = _10C - v32 * 1000.0f;
-    s32 v5 = 300 - getNerveStep();
-    calcTarget(&_E8, &_F4, &_100, v5);
+    calcTarget(&_E8, &_F4, &_100, 300 - getNerveStep());
     TVec3f v30 = _DC;
-    f32 v6 = v32.dot(v30);
-    JMAVECScaleAdd(v32, v30, v30, -v6);
+    v30.orthogonalize(v32);
     MR::normalizeOrZero(&v30);
     v31 += v30 * 500.0f;
     v30 += TVec3f(0.0f, 1.0f, 0.0f);
@@ -170,11 +168,8 @@ void SkeletalFishGuard::exeNormal() {
 
 void SkeletalFishGuard::exeApart() {
     if (MR::isFirstStep(this)) {
-        TVec3f* grav = &mGravity;
-        f32 dot = grav->dot(_A4);
-        TVec3f v15;
-        JMAVECScaleAdd(grav, &_A4, &v15, -dot);
-        _B0 = grav->dot(_A4 - v15);
+        TVec3f v15 = _A4.killElement(mGravity);
+        _B0 = mGravity.dot(_A4 - v15);
         _A4.set(v15);
         MR::startBck(this, "Turn", nullptr);
         MR::startBrk(this, "Attack");
@@ -438,17 +433,13 @@ void SkeletalFishGuard::calcTransAndFront() {
 }
 
 void SkeletalFishGuard::rotateHorizontal(const TVec3f& a2, f32 scalar) {
-    TVec3f* grav = &mGravity;
-    f32 dot = grav->dot(a2);
-    TVec3f v10;
-    JMAVECScaleAdd(grav, &a2, &v10, -dot);
+    TVec3f v10 = a2.killElement(mGravity);
     if (!MR::isNearZero(v10)) {
         MR::normalize(&v10);
+        // TODO: this looks like an inline. Possible fakematch.
         TVec3f* v11 = &_D0;
         TVec3f* g = &mGravity;
-        f32 v8 = g->dot(*v11);
-        TVec3f v9;
-        JMAVECScaleAdd(g, &_D0, &v9, -v8);
+        TVec3f v9 = _D0.killElement(*g);
         if (!MR::isNearZero(v9)) {
             MR::normalize(&v9);
             turn(v11, v9, v10, scalar);
@@ -597,10 +588,9 @@ bool SkeletalFishGuard::isLineOfSightClear() const {
     }
 
     TVec3f v11 = _E8 - mPosition;
-    f32 v4 = _100.dot(v11);
-    JMAVECScaleAdd(&_100, &v11, &v11, -v4);
-    f32 v5 = _100.dot(v12);
-    JMAVECScaleAdd(&_100, &v12, &v12, -v5);
+    v11.orthogonalize2(_100);
+    v12.orthogonalize2(_100);
+
     bool ret = true;
 
     if (!MR::isNearZero(v11) && !MR::isNearZero(v12)) {

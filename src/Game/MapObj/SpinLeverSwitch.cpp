@@ -94,7 +94,7 @@ void SpinLeverSwitch::exeSwitchOn() {
         } else {
             MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_HIT");
         }
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
     if (MR::isStep(this, 8)) {

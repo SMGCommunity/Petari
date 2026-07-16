@@ -228,8 +228,7 @@ void Polta::updateAction() {
 }
 
 void Polta::updatePose(f32 param1, f32 param2) {
-    TVec3f* mGravTemp = &mGravity;
-    JMAVECScaleAdd(mGravTemp, &_C4, &_C4, -mGravTemp->dot(_C4));
+    _C4.orthogonalize(mGravity);
     if (MR::isNearZero(_C4)) {
         _B4.getZDir(_C4);
     } else {

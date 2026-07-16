@@ -352,7 +352,7 @@ bool Dodoryu::snapToWall() {
     f32 cylinderRadius = MR::getCylinderRadius(mClosedAreaObj);
 
     TVec3f v1 = mPosition - cylinderPos;
-    v1.scaleAdd(v1, cylinderUpVec, cylinderUpVec.dot(v1));
+    v1.orthogonalize(cylinderUpVec);
 
     if (MR::isNearZero(v1)) {
         return false;
@@ -360,8 +360,8 @@ bool Dodoryu::snapToWall() {
 
     MR::normalize(&v1);
     _134.set(v1);
-
-    TVec3f v2 = cylinderPos + v1 * cylinderRadius;
+    v1 *= cylinderRadius;
+    TVec3f v2 = cylinderPos + v1;
     mPosition.set(v2);
     mBaseMtx.setTrans(v2);
 
@@ -460,7 +460,7 @@ bool Dodoryu::checkWallWithVelocity() {
     MR::calcCylinderUpVec(&cylinderUpVec, closedAreaObj);
 
     TVec3f deltaPos = mPosition - cylinderPos;
-    deltaPos.scaleAdd(cylinderUpVec, deltaPos, -cylinderUpVec.dot(deltaPos));
+    deltaPos.orthogonalize(cylinderUpVec);
 
     if (MR::isNearZero(deltaPos)) {
         return false;
@@ -496,9 +496,9 @@ void Dodoryu::tryRumblePad() {
     f32 playerDistance = MR::calcDistanceToPlayer(this);
 
     if (playerDistance < ::sRumblePadNearDist) {
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
     } else if (playerDistance < ::sRumblePadFarDist) {
-        MR::tryRumblePadVeryWeak(this, 0);
+        MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
     }
 }
 
@@ -616,7 +616,7 @@ void Dodoryu::resetRabbit() {
 
 void Dodoryu::calcRabbitDir(TVec3f* pDir) const {
     pDir->set(mRabbit->mPosition - mPosition);
-    pDir->scaleAdd(*pDir, mGravity, -mGravity.dot(*pDir));
+    pDir->orthogonalize(mGravity);
     MR::normalizeOrZero(pDir);
 }
 
@@ -726,7 +726,7 @@ void Dodoryu::updateRumblePad() {
 
     _154++;
 
-    MR::tryRumblePadWeak(this, 0);
+    MR::tryRumblePadWeak(this, WPAD_CHAN0);
 }
 
 void Dodoryu::updateCameraTarget() {

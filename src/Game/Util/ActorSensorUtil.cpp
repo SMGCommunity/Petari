@@ -456,7 +456,7 @@ namespace MR {
 
     void calcSensorHorizon(TVec3f* pHorizon, const TVec3f& rGravity, const HitSensor* pSensor1, const HitSensor* pSensor2) {
         TVec3f horizon = pSensor2->mPosition - pSensor1->mPosition;
-        pHorizon->rejection(horizon, rGravity);
+        pHorizon->killElement(horizon, rGravity);
     }
 
     void calcSensorHorizonNormalize(TVec3f* pHorizon, const TVec3f& rGravity, const HitSensor* pSensor1, const HitSensor* pSensor2) {

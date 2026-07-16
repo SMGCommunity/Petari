@@ -751,29 +751,29 @@ void OtaKing::exeAppearDemo() {
         mMagma->appearDemo();
     }
 
-    MR::tryRumblePadVeryWeak(this, 0);
+    MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
 
     if (MR::isStep(this, ::cAppearDemoRumblePad01)) {
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
 
     if (MR::isStep(this, ::cAppearDemoRumblePad02)) {
-        MR::tryRumblePadVeryStrong(this, 0);
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
         MR::shakeCameraWeak();
     }
     if (MR::isStep(this, ::cAppearDemoRumblePad03)) {
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
     if (MR::isStep(this, ::cAppearDemoRumblePad04)) {
         MR::shakeCameraStrong();
     }
     if (MR::isGreaterStep(this, ::cAppearDemoRumblePad04) && MR::isLessStep(this, ::cAppearDemoRumblePad05)) {
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
     if (MR::isStep(this, ::cAppearDemoRumblePad06)) {
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }
 
     if (MR::isBckStopped(this)) {
@@ -824,7 +824,7 @@ void OtaKing::exeThrowCocoNut() {
     if (MR::isStep(this, ::cThrowCocoNutStep)) {
         throwCocoNut();
         MR::emitEffect(this, "OtaKingCocoAttack");
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
     }
 
     if (MR::isStep(this, ::cCocoNutRippleStep)) {
@@ -871,7 +871,7 @@ void OtaKing::exeThrowFireBall() {
         throwFireBall();
         MR::emitEffect(this, "OtaKingFireAttack");
         MR::startSound(this, "SE_BM_OTAKING_FIRE_OUT");
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
     }
 
     if (MR::isStep(this, ::cFireBallRippleStep)) {
@@ -892,7 +892,7 @@ void OtaKing::exeThrowFireBall() {
 void OtaKing::exeDamage() {
     if (MR::isFirstStep(this)) {
         startBckWithFrontFoot("Damage");
-        MR::tryRumblePadVeryStrong(this, 0);
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
         appearStarPiece();
         mMagma->damage();
     }
@@ -921,7 +921,7 @@ void OtaKing::exePowerUp() {
         startBckWithFrontFoot("CrownDamage");
         MR::startBrk(this, "CrownDamage");
         MR::startBpk(this, "CrownDamage");
-        MR::tryRumblePadVeryStrong(this, 0);
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
         appearStarPiece();
         mMagma->damage();
     }
@@ -936,13 +936,13 @@ void OtaKing::exePowerUp() {
 
     if (MR::isStep(this, ::cDamageCrownFallFrame)) {
         MR::startSoundObject(mSoundObj, "SE_BM_OTAKING_CROWN_FALL");
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
         mMagma->damage();
     }
 
     if (MR::isGreaterStep(this, ::cDamageCrownFallFrame)) {
-        MR::tryRumblePadVeryWeak(this, 0);
+        MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
     }
 
     if (MR::isStep(this, 83)) {
@@ -964,7 +964,7 @@ void OtaKing::exePowerUp() {
     }
 
     if (MR::isGreaterStep(this, ::cBlurStartStep) && MR::isLessStep(this, 215)) {
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
 
     if (MR::isStep(this, ::cBlurStartStep)) {
@@ -1011,7 +1011,7 @@ void OtaKing::exeDown() {
         MR::startSound(this, "SE_BM_OTAKING_DIE");
         MR::startSound(this, "SE_BV_OTAKING_DIE");
         MR::startSystemSE("SE_SY_VS_BOSS_LAST_HIT");
-        MR::tryRumblePadVeryStrong(this, 0);
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
         MR::invalidateHitSensors(this);
         MR::stopStageBGM(60);
 
@@ -1082,7 +1082,7 @@ void OtaKing::exeDownDemo() {
     }
 
     mRotation.set(::cDownDemoRotate);
-    MR::tryRumblePadWeak(this, 0);
+    MR::tryRumblePadWeak(this, WPAD_CHAN0);
 
     if (MR::isStep(this, 0)) {
         MR::shakeCameraStrong();
@@ -1090,12 +1090,12 @@ void OtaKing::exeDownDemo() {
 
     if (MR::isStep(this, ::cDownDemoRumbleFrame1)) {
         MR::shakeCameraNormal();
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
     }
 
     if (MR::isStep(this, ::cDownDemoRumbleFrame2)) {
         MR::shakeCameraNormal();
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
     }
 
     if (MR::isStep(this, ::cPowerStarExistBgmStartStep)) {
@@ -1149,7 +1149,7 @@ void OtaKing::exeHitBack() {
     if (MR::isFirstStep(this)) {
         startBckWithFrontFoot("HitBack");
         MR::deleteEffectAll(this);
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         mMagma->hitBack();
     }
 
@@ -1201,7 +1201,7 @@ void OtaKing::exeBubbleAttack() {
 
     if (MR::isStep(this, ::cBubbleAppearStep)) {
         appearBubble();
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
 

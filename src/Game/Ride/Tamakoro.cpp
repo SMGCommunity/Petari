@@ -199,9 +199,9 @@ void Tamakoro::calcAndSetBaseMtx() {
 
 void Tamakoro::updateBindActorMatrix() {
     if (isUseMarioOffset()) {
-        JMAVECScaleAdd(&mDirectionToMario, &mPosition, &mMarioPos, mBaseRadius);
+        mMarioPos.scaleAdd(mBaseRadius, mDirectionToMario, mPosition);
         if (mMarioOffset > 0.0f) {
-            JMAVECScaleAdd(&mGravity, &mMarioPos, &mMarioPos, -mMarioOffset);
+            mMarioPos.scaleAdd(-mMarioOffset, mGravity, mMarioPos);
         }
     }
 
@@ -217,7 +217,7 @@ void Tamakoro::updateRingUpVec() {
     if (!MR::isNearZero(mAccelDir)) {
         TVec3f v1;
         TVec3f up2 = -mGravity;
-        JMAVECScaleAdd(&mAccelDir, &up2, &v1, mAccelRate);
+        v1.scaleAdd(mAccelRate, mAccelDir, up2);
         MR::normalizeOrZero(&v1);
         MR::turnVecToVecDegree(&up, up, v1, ::sRingMaxDegree, TVec3f(0, 1, 0));
     }
@@ -348,7 +348,7 @@ bool Tamakoro::requestBind(HitSensor* pSensor) {
     MR::makeQuatRotateDegree(&mMarioRotateQuat, *MR::getPlayerRotate());
     mMarioPos.set(*MR::getPlayerPos());
     mMarioRotateQuat.getZDir(mMarioFront);
-    mMarioFront.rejection(mGravity);
+    mMarioFront.orthogonalize(mGravity);
     if (MR::normalizeOrZero(&mMarioFront)) {
         MR::makeAxisVerticalZX(&mMarioFront, mGravity);
     }
@@ -377,7 +377,7 @@ bool Tamakoro::requestBind(HitSensor* pSensor) {
         TVec3f v3;  // vec order shenanigans... not used
         TVec3f vPlayerToThis;
         vPlayerToThis = mPosition - mMarioPos;
-        vPlayerToThis.rejection(mGravity);
+        vPlayerToThis.orthogonalize(mGravity);
 
         if (!MR::normalizeOrZero(&vPlayerToThis)) {
             if (vPlayerToThis.dot(mMarioFront) > 0.0f) {
@@ -550,7 +550,7 @@ void Tamakoro::exeBindStart() {
     // to top of the ball using the nerve rate as time
     f32 time = MR::calcNerveRate(this, ::sBindStartTime);
     TVec3f expectMario;
-    JMAVECScaleAdd(&mDirectionToMario, &mPosition, &expectMario, mBaseRadius);
+    expectMario.scaleAdd(mBaseRadius, mDirectionToMario, mPosition);
     TVec3f horizontalVec;
     MR::vecBlend(mMarioBindRequestPos, expectMario, &horizontalVec, time);
     time = (time * 2.0f) - 1.0f;
@@ -584,7 +584,7 @@ void Tamakoro::exeBindStartLand() {
         if (MR::normalizeOrZero(&mDirectionToMario)) {
             mDirectionToMario.set(-mGravity);
         }
-        JMAVECScaleAdd(&mDirectionToMario, &mPosition, &mMarioPos, mBaseRadius);
+        mMarioPos.scaleAdd(mBaseRadius, mDirectionToMario, mPosition);
 
         mMarioUp = (mDirectionToMario - mGravity).multiplyOperatorInline(0.5f);
         if (MR::normalizeOrZero(&mMarioUp)) {
@@ -625,7 +625,7 @@ void Tamakoro::exeTutorial() {
 
     mAccelRate = mAccelSensorCtrl->calcMoveVector(&mAccelDir, mGravity);
 
-    JMAVECScaleAdd(&mAccelDir, &mKickVel, &mKickVel, mAccelRate * ::sTutorialAccel);
+    mKickVel.scaleAdd(mAccelRate * ::sTutorialAccel, mAccelDir, mKickVel);
 
     TVec3f moment;
     MR::calcMomentRollBall(&moment, mKickVel, -mGravity, mBaseRadius);
@@ -891,7 +891,7 @@ void Tamakoro::addVelocityOperate() {
     mAccelRate = mAccelSensorCtrl->calcMoveVector(&mAccelDir, mGravity);
 
     TVec3f* vel = &mVelocity;  // this needs to be like this to match...
-    JMAVECScaleAdd(&mAccelDir, vel, &mVelocity, mAccelRate * (MR::isBindedGround(this) ? 0.4f : 0.2f));
+    mVelocity.scaleAdd(mAccelRate * (MR::isBindedGround(this) ? 0.4f : 0.2f), mAccelDir, *vel);
 }
 
 f32 Tamakoro::updateRideRail() {
@@ -947,14 +947,7 @@ void Tamakoro::updateAirTime() {
 }
 
 void Tamakoro::updateMarioPose(f32 degree) {
-    // TODO : rejection
-    TVec3f velH;
-
-    // these *need* to be pointers to match...
-    TVec3f* vel = &mVelocity;
-    TVec3f* grav = &mGravity;
-    f32 dot = grav->dot(*vel);
-    JMAVECScaleAdd(grav, vel, &velH, -dot);  // velH.rejection(vel, grav);
+    TVec3f velH = MR::getVelocityHorizon(this);
 
     if (MR::isNearZero(velH)) {
         if (mAccelRate > 0.001f) {

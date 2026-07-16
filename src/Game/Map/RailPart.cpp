@@ -2,6 +2,11 @@
 #include "Game/Map/BezierRail.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
+void DUMMY() {
+    TVec3f a, b;
+    a.set(b);
+}
+
 RailPart::RailPart() : mRailPartLinear(nullptr), mRailPartBezier(nullptr) {
 }
 
@@ -21,22 +26,19 @@ void RailPart::initForBezier(const TVec3f& rPoint1, const TVec3f& rPoint1Ctrl, c
 
 void RailPart::calcPos(TVec3f* pOut, f32 t) const {
     if (mRailPartLinear) {
-        JMAVECScaleAdd(&mRailPartLinear->mCtrlDegree1, &mRailPartLinear->mStart, pOut, t);
+        pOut->scaleAdd(t, mRailPartLinear->mCtrlDegree1, mRailPartLinear->mStart);
     } else {
         mRailPartBezier->calcPos(pOut, t);
     }
 }
 
-#pragma dont_inline on
 void RailPart::calcVelocity(TVec3f* pOut, f32 t) const {
     if (mRailPartLinear) {
-        const TVec3f& velocity = mRailPartLinear->mCtrlDegree1;
-        pOut->set(velocity);
+        pOut->set(mRailPartLinear->mCtrlDegree1);
     } else {
         mRailPartBezier->calcVelocity(pOut, t);
     }
 }
-#pragma dont_inline off
 
 f32 RailPart::getLength(f32 t1, f32 t2, int k) const {
     if (mRailPartLinear) {

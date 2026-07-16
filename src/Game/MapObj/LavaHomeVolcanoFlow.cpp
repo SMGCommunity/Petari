@@ -61,7 +61,7 @@ void LavaHomeVolcanoFlow::exeMove() {
         MR::emitEffect(this, "Active");
         MR::emitEffect(this, "Loop");
         MR::startSound(this, "SE_OJ_VOLCANO_EXPLODE");
-        MR::tryRumblePadVeryStrong(this, 0);
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
         setNerve(&NrvLavaHomeVolcanoFlow::HostTypeDone::sInstance);
     }
 }

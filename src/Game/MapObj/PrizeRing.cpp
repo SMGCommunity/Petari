@@ -126,7 +126,7 @@ void PrizeRing::exePass() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "End", nullptr);
         MR::startBrk(this, "End");
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         playSound();
     }
 

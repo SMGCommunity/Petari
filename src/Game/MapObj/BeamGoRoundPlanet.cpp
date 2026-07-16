@@ -42,9 +42,9 @@ void BeamGoRoundBeam::updateHitSensor(HitSensor* pSensor) {
     TVec3f up;
     MR::calcUpVec(&up, this);
     TVec3f v7;
-    JMAVECScaleAdd(&up, &mPosition, &v7, radius);
+    v7.scaleAdd(radius, up, mPosition);
     TVec3f v6;
-    JMAVECScaleAdd(&up, &v7, &v6, (2700.0f - radius));
+    v6.scaleAdd(2700.0f - radius, up, v7);
     MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), v7, v6);
 }
 

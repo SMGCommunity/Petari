@@ -627,7 +627,7 @@ void MiniatureGalaxy::exeOpen() {
         MR::startSystemSE("SE_SY_NEW_GALAXY_OPEN");
         MR::emitEffect(mUnknownModel, "MiniatureGalaxyNewOpen");
 
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
 
@@ -656,7 +656,7 @@ void MiniatureGalaxy::exeOpen() {
     }
 
     if (MR::isLessStep(this, 75)) {
-        MR::tryRumblePadVeryWeak(this, 0);
+        MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
     }
 
     if (MR::isStep(this, 150)) {

@@ -459,10 +459,9 @@ void BombTeresa::exeBallAppear() {
     }
     if (MR::isLessStep(this, 160)) {
         MR::rotateQuatRollBall(&_9C, mVelocity, -mGravity, 70.0f);
-        _AC.set< f32 >((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z), (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y),
-                       (1.0f - (2.0f * _9C.y * _9C.y) - (2.0f * _9C.z * _9C.z)));
+        _9C.getZDir(_AC);
     } else {
-        JMAVECScaleAdd(&mGravity, &_AC, &_AC, -mGravity.dot(_AC));
+        _AC.orthogonalize(mGravity);
         if (MR::normalizeOrZero(&_AC)) {
             MR::makeAxisVerticalZX(&_AC, mGravity);
         }
@@ -610,13 +609,13 @@ void BombTeresa::exeDrift() {
     TVec3f v12;
     v16.getZDir(v12);
     if (!MR::normalizeOrZero(&v12)) {
-        JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
+        v13.scaleAdd(20.0f, v12, v13);
     }
     MR::vecBlend(_C4, v13, &_C4, MR::calcNerveEaseInRate(this, 15));
     MR::turnDirectionToTarget(this, &_AC, *MR::getPlayerPos(), 0.0f);
     if (_E8 <= 0) {
         if (MR::isPadSwing(WPAD_CHAN0)) {
-            MR::tryRumblePadMiddle(this, 0);
+            MR::tryRumblePadMiddle(this, WPAD_CHAN0);
             _E8 = 40;
             _E0 += 20.0f;
             _E4 += 20.0f;
@@ -647,7 +646,7 @@ void BombTeresa::exeDrift() {
 void BombTeresa::exeDriftRelease() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Drift");
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::startSound(this, "SE_EM_BOMBTERE_THROW");
     }
     _DC = MR::calcNerveEaseInOutValue(this, 12, 1.0f, 0.0f);
@@ -672,7 +671,7 @@ void BombTeresa::endBindStarPointer() {
 void BombTeresa::exeExplosion() {
     if (MR::isFirstStep(this)) {
         MR::shakeCameraNormalStrong();
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::deleteEffect(this, "SpinBlur");
         MR::emitEffect(this, "Explosion");
         MR::hideModel(this);

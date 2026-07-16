@@ -62,7 +62,7 @@ void MechaKoopaPartsArm::exeMoveStart() {
         MR::startSound(this, "SE_OJ_M_KOOPA_ARM_START");
         if (MR::isOnPlayer(this)) {
             MR::shakeCameraNormal();
-            MR::tryRumblePadMiddle(this, 0);
+            MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         }
     }
 

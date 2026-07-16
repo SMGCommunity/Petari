@@ -110,7 +110,7 @@ void DodoryuStateLv2::exeReadyChase() {
         MR::stopBck(mHost);
         MR::emitEffect(mHost, "AttackSign");
         MR::startSound(mHost, "SE_BM_DODORYU_SAND_SPLASH");
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
         mHost->shiftMoveStateNull();
     }
@@ -689,7 +689,7 @@ bool DodoryuStateLv2::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
         }
 
         turnToward(-_A0, 1.0f);
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::stopScene(::sStopSceneFrame);
         setNerve(&::DodoryuStateLv2NrvKnockDown::sInstance);
 
@@ -836,14 +836,10 @@ void DodoryuStateLv2::calcRandomVelocity(s32 time) {
 }
 
 void DodoryuStateLv2::keepVerticalizedVelocity() {
-    f32 velMag = mHost->mVelocity.length();
-    TVec3f* pVel = &mHost->mVelocity;
-    TVec3f* pGrav = &mHost->mGravity;
-    f32 dotResult = pGrav->dot(*pVel);
-    TVec3f newVel;
-    JMAVECScaleAdd(pGrav, pVel, &newVel, -dotResult);
-    newVel.setLength(velMag);
-    mHost->mVelocity.set(newVel);
+    f32 speed = mHost->mVelocity.length();
+    TVec3f velH = mHost->mVelocity.killElement(mHost->mGravity);
+    velH.setLength(speed);
+    mHost->mVelocity.set(velH);
 }
 
 void DodoryuStateLv2::attackStrongToDir(HitSensor* pSender, HitSensor* pReceiver) {

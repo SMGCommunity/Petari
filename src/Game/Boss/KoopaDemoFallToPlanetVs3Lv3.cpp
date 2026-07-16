@@ -126,7 +126,7 @@ void KoopaDemoFallToPlanetVs3Lv3::exeLand() {
         MR::startSound(mHost, "SE_BM_KOOPA_FLIP_RECOVER_END");
         MR::startSound(mHost, "SE_BV_KOOPA_LAND_HEAVY");
 
-        MR::tryRumblePadStrong(mHost, 0);
+        MR::tryRumblePadStrong(mHost, WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
     }
 

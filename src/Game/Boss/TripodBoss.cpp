@@ -684,7 +684,7 @@ void TripodBoss::exePainDemo() {
 
 void TripodBoss::exeBreakDownDemo() {
     if (MR::isFirstStep(this)) {
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraStrong();
         MR::startSound(this, "SE_BM_TRIPOD_ALL_BREAK");
     }
@@ -696,7 +696,7 @@ void TripodBoss::exeBreakDownDemo() {
 
 void TripodBoss::exeExplosionDemo() {
     if (MR::isFirstStep(this)) {
-        MR::tryRumblePadVeryStrongLong(this, 0);
+        MR::tryRumblePadVeryStrongLong(this, WPAD_CHAN0);
     }
 
     if (MR::isStep(this, ::sHeadExplodeSeTiming)) {
@@ -851,15 +851,11 @@ TripodBossStepSequence* TripodBoss::getNextStepSequence() {
 }
 
 void TripodBoss::calcLegUpVector(TVec3f* pUp, const TVec3f& a2) {
-    TVec3f* center = &mMovableArea->mCenter;
-    TVec3f v8(a2);
-    v8 -= *center;
+    TVec3f v8 = a2 - mMovableArea->mCenter;
     MR::normalizeOrZero(&v8);
-    TVec3f* axis = &mMovableArea->mBaseAxis;
-    f32 v7 = axis->dot(v8);
-    JMAVECScaleAdd(axis, &v8, &v8, -v7);
+    v8.orthogonalize(mMovableArea->mBaseAxis);
     MR::normalizeOrZero(&v8);
-    pUp->set< f32 >(v8);
+    pUp->set(v8);
 }
 
 void TripodBoss::calcDemoMovement() {
@@ -903,9 +899,6 @@ void TripodBoss::addAccelToWeightPosition() {
     TBox3f v21;
     TVec3f v20;
     TVec3f v19;
-    TVec3f v18;
-    TVec3f* center;
-    TVec3f* axis;
 
     v22.i.set< f32 >(_5C8);
     v22.f.set< f32 >(_5C8);
@@ -921,30 +914,19 @@ void TripodBoss::addAccelToWeightPosition() {
     }
 
     v20.lerp(v22.f, v22.i, 0.5f);
-
     v19.lerp(v21.f, v21.i, 0.5f);
 
+    TVec3f v18;
     MR::vecBlend(v19, v20, &v18, 0.3f);
-    center = &mMovableArea->mCenter;
-    TVec3f v14(v18);
-    v14 -= *center;
-    axis = &mMovableArea->mBaseAxis;
-    f32 v7 = axis->dot(v14);
-    JMAVECScaleAdd(axis, &v14, &v18, -v7);
+
+    TVec3f v14 = v18 - mMovableArea->mCenter;
+    v18.killElement(v14, mMovableArea->mBaseAxis);
     f32 v9 = mMovableArea->mRadius;
     v9 = _604 + v9;
     v9 = _5FC + v9;
-    TVec3f v13(mMovableArea->mBaseAxis);
-    v13 *= v9;
-    TVec3f v17(v13);
-    v17 += v18;
+    TVec3f v17 = mMovableArea->mBaseAxis * v9 + v18;
     MR::normalizeOrZero(&v17);
-    TVec3f v12(v17);
-    v12 *= v9;
-    TVec3f v16(mMovableArea->mCenter);
-    v16 += v12;
-    TVec3f v15(v16);
-    v15 -= _5D4;
+    TVec3f v15 = mMovableArea->mCenter + v17 * v9 - _5D4;
     f32 v10 = v15.length();
     if (v10 < 500.0f) {
         v10 = 500.0f;
