@@ -500,13 +500,12 @@ void SearchBeamer::bowToPlayer() {
     MR::clampVecAngleDeg(&_94, v9, 35.0f);
 }
 
-// TODO -- float issues
 bool SearchBeamer::checkBeamDistiny(TVec3f* a1, TVec3f a2) const {
     TVec3f v12;
     v12.scale(_140, a2);
 
     if (!MR::getFirstPolyOnLineToMap(a1, nullptr, mPosition, v12)) {
-        JMathInlineVEC::PSVECAdd(&mPosition, &v12, a1);
+        a1->add(v12, mPosition);
         return false;
     }
 

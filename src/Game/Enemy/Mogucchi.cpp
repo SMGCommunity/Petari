@@ -197,11 +197,8 @@ void Mogucchi::exeScatter() {
     MR::normalizeOrZero(&mScatterNormal);
 
     if (!MR::isNearZero(mScatterNormal)) {
-        TVec3f v2;
-        PSVECCrossProduct(railGravity, mScatterNormal, &v2);
-
         TRot3f mtx;
-        mtx.setXDir(v2);
+        mtx.setXDir(railGravity->cross(mScatterNormal));
         mtx.setYDir(-mRailGravity);
         mtx.setZDir(-mScatterNormal);
         mtx.getEulerXYZ(mRotation);
