@@ -314,7 +314,7 @@ void StinkBugSmall::control() {
             mGravity.set(mGravity);
         }
         mVelocity.orthogonalize(mGravity);
-        JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 2.0f);
+        mVelocity.scaleAdd(2.0f, mGravity, mVelocity);
         TVec3f a;
         a = _8C;
         MR::turnVecToPlane(&_8C, a, mGravity);

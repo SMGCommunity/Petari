@@ -19,7 +19,7 @@ StinkBugBase::StinkBugBase(const char* pName)
 void StinkBugBase::setDashVelocity(f32 velocity) {
     TVec3f result;
     f32 radius = mRadius;
-    JMAVECScaleAdd(&_8C, &_98, &result, radius);
+    result.scaleAdd(radius, _8C, _98);
     f32 distance = result.distance(mPosition);
     // Illogical branching in the ASM. Possible inline?
     if (velocity >= distance) {
@@ -62,9 +62,8 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
     }
 
     TVec3f v1;
-    TVec3f* playerPos = MR::getPlayerPos();
     // r5 goes through r31 before MR::getPlayerPos()
-    v1.sub(*playerPos, mPosition);
+    v1.sub(*MR::getPlayerPos(), mPosition);
 
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
@@ -96,7 +95,7 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
 
     TVec3f scaledAdded;
     // r3 and r4's assembly are in the wrong order
-    JMAVECScaleAdd(&_A4, &mPosition, &scaledAdded, (-arg4) / f1);
+    scaledAdded.scaleAdd(-arg4 / f1, _A4, mPosition);
 
     TVec3f v3;
     v3.sub(*MR::getPlayerPos(), scaledAdded);

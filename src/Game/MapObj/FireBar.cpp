@@ -112,7 +112,7 @@ void FireBar::init(const JMapInfoIter& rIter) {
         shadow_box.z = 100.0f;
         MR::initShadowVolumeBox(this, shadow_box);
         MR::calcUpVec(&up_vec, this);
-        JMAVECScaleAdd((const Vec*)&up_vec, (const Vec*)&mPosition, (Vec*)&scaled_vec, 50.0f);
+        scaled_vec.scaleAdd(50.0f, up_vec, mPosition);
         MR::setShadowDropPosition(this, 0, scaled_vec);
         MR::setShadowVolumeStartDropOffset(this, 0, 100.0f);
         MR::setShadowDropLength(this, 0, shadowDropDist);
@@ -220,8 +220,8 @@ void FireBar::fixFireBarBall() {
             MR::rotateVecDegree(&scaled, up_vec, 360.0f / mStickCount);
             TVec3f norm;
             MR::normalize(scaled, &norm);
-            JMAVECScaleAdd((const Vec*)&norm, (const Vec*)&mPosition, (Vec*)&final_pos, mStickDistance);
-            JMAVECScaleAdd((const Vec*)&up_vec, (const Vec*)&final_pos, (Vec*)&final_pos, 50.0f);
+            final_pos.scaleAdd(mStickDistance, norm, mPosition);
+            final_pos.scaleAdd(50.0f, up_vec, final_pos);
         } else {
             final_pos.add(scaled);
         }

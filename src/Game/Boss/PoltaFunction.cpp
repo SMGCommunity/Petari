@@ -162,7 +162,7 @@ namespace PoltaFunction {
             v28 = pPolta->_C4;
         }
         MR::rotateVecDegree(&v28, pPolta->mGravity, param2);
-        JMAVECScaleAdd(v28, pPolta->mPosition, v28, param3);
+        v28.scaleAdd(param3, v28, pPolta->mPosition);
         deadMember->start(pPolta, v28);
         return true;
     }
@@ -184,7 +184,7 @@ namespace PoltaFunction {
     // All the params besides pPolta go unused.
     bool appearBombTeresaFromRoot(Polta* pPolta, f32 param2, f32 param3, s32 param4) {
         TVec3f v8;
-        JMAVECScaleAdd(pPolta->mGravity, pPolta->mPosition, &v8, -120.0f);
+        v8.scaleAdd(-120.0f, pPolta->mGravity, pPolta->mPosition);
         BombTeresa* deadMember = pPolta->mBombTeresaHolder->getDeadMember();
         if (!deadMember) {
             return false;

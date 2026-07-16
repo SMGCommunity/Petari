@@ -21,7 +21,7 @@ void RailPart::initForBezier(const TVec3f& rPoint1, const TVec3f& rPoint1Ctrl, c
 
 void RailPart::calcPos(TVec3f* pOut, f32 t) const {
     if (mRailPartLinear) {
-        JMAVECScaleAdd(&mRailPartLinear->mCtrlDegree1, &mRailPartLinear->mStart, pOut, t);
+        pOut->scaleAdd(t, mRailPartLinear->mCtrlDegree1, mRailPartLinear->mStart);
     } else {
         mRailPartBezier->calcPos(pOut, t);
     }

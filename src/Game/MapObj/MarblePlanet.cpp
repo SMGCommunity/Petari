@@ -174,7 +174,7 @@ void MarblePlanet::initCoreAndElectron() {
             }
 
             TVec3f position;
-            JMAVECScaleAdd(&front, pos, &position, 1000.0f);
+            position.scaleAdd(1000.0f, front, *pos);
             TVec3f rotation;
             rotation.setAll< f32 >((360.0f * i) / mNumElectrons);
             mPlanetElectrons[i] = new MarblePlanetElectron(this, position, rotation, "ビー玉惑星電子");
@@ -297,7 +297,7 @@ void MarblePlanetElectron::crashElectron(HitSensor* pSensor) {
     TVec3f stack_8;
     stack_8.sub(pSensor->mHost->mPosition, mPosition);
     MR::normalize(&stack_8);
-    JMAVECScaleAdd(&stack_8, &mVelocity, &mVelocity, -5.0f);
+    mVelocity.scaleAdd(-5.0f, stack_8, mVelocity);
     MR::normalize(mVelocity, &_94);
     mVelocity.x *= 1.2f;
     mVelocity.y *= 1.2f;

@@ -98,7 +98,7 @@ void JumpStand::exeHipDropBound() {
         f32 v2 = (6.0f - MR::calcNerveEaseOutRate(this, 15));
         TVec3f v3;
         MR::calcUpVec(&v3, this);
-        JMAVECScaleAdd(&v3, &mBindedActor->mPosition, &mBindedActor->mPosition, -v2);
+        mBindedActor->mPosition.scaleAdd(-v2, v3, mBindedActor->mPosition);
     }
 
     if (MR::isStep(this, 15)) {

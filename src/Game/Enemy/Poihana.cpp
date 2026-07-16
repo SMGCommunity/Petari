@@ -231,7 +231,7 @@ bool Poihana::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEnemy(pSender) || MR::isSensorMapObj(pSender)) {
         TVec3f pushOffset(mPosition - pSender->mHost->mPosition);
         MR::normalizeOrZero(&pushOffset);
-        JMAVECScaleAdd(&pushOffset, &mVelocity, &mVelocity, 1.5f);
+        mVelocity.scaleAdd(1.5f, pushOffset, mVelocity);
 
         return true;
     }
@@ -384,7 +384,7 @@ void Poihana::exeWalkAround() {
     }
 
     MR::rotateVecDegree(&mFrontVec, mGravity, mRandDir);
-    JMAVECScaleAdd(&mFrontVec, &mVelocity, &mVelocity, 0.5f);
+    mVelocity.scaleAdd(0.5f, mFrontVec, mVelocity);
 
     if (isNeedForBackHome()) {
         setNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
@@ -461,7 +461,7 @@ void Poihana::exeChasePlayer() {
     }
 
     MR::turnDirectionToTargetUseGroundNormalDegree(this, &mFrontVec, *MR::getPlayerPos(), 4.0f);
-    JMAVECScaleAdd(&mFrontVec, &mVelocity, &mVelocity, 0.5f);
+    mVelocity.scaleAdd(0.5f, mFrontVec, mVelocity);
 
     if (isNeedForBackHome()) {
         setNerve(&NrvPoihana::PoihanaNrvGoBack::sInstance);
@@ -530,7 +530,7 @@ void Poihana::exeGoBack() {
     }
 
     MR::turnDirectionToTargetUseGroundNormalDegree(this, &mFrontVec, mHomePos, 2.0f);
-    JMAVECScaleAdd(&mFrontVec, &mVelocity, &mVelocity, 0.5f);
+    mVelocity.scaleAdd(0.5f, mFrontVec, mVelocity);
 
     if (MR::isNearPlayer(this, 800.0f) && MR::isGreaterStep(this, 120)) {
         setNerve(&NrvPoihana::PoihanaNrvSearch::sInstance);
@@ -785,7 +785,7 @@ void Poihana::controlVelocity() {
         mVelocity.scale(0.95f);
     }
 
-    JMAVECScaleAdd(gravity, mVelocity, mVelocity, 2.0f);
+    mVelocity.scaleAdd(2.0f, gravity, mVelocity);
 
     if (!isNerve(&NrvPoihana::PoihanaNrvShock::sInstance)) {
         f32 magVel = isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ? 10.0f : 5.0f;
@@ -811,7 +811,7 @@ void Poihana::calcMyGravity() {
 
     TVec3f upVec, gravityPos;
     MR::calcUpVec(&upVec, this);
-    JMAVECScaleAdd(&upVec, &mPosition, &gravityPos, 20.0f);
+    gravityPos.scaleAdd(20.0f, upVec, mPosition);
     MR::calcGravity(this, gravityPos);
 }
 

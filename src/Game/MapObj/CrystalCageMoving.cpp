@@ -109,7 +109,7 @@ void CrystalCageMoving::exeDemoTicoMove() {
 
     f32 nerveRate = MR::calcNerveRate(this, 30);
     TVec3f stack_8;
-    JMAVECScaleAdd(&stack_14, &mPosition, &stack_8, nerveRate);
+    stack_8.scaleAdd(nerveRate, stack_14, mPosition);
     _C8.setTrans(stack_8);
 
     if (MR::isStep(this, 30)) {
@@ -208,9 +208,9 @@ void CrystalCageMoving::updateHitSensor(HitSensor* pSensor) {
         f32 x = joint_mtx.mMtx[0][1];
         joint_pos.set< f32 >(x, y, z);
         TVec3f stack_14;
-        JMAVECScaleAdd(&joint_pos, &mPosition, &stack_14, (-450.0f + radius));
+        stack_14.scaleAdd(-450.0f + radius, joint_pos, mPosition);
         TVec3f stack_8;
-        JMAVECScaleAdd(&joint_pos, &mPosition, &stack_8, (450.0f - radius));
+        stack_8.scaleAdd(450.0f - radius, joint_pos, mPosition);
         MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), stack_14, stack_8);
     }
 }

@@ -551,7 +551,7 @@ bool Teresa::tryDriftEnd() {
 
 bool Teresa::tryHideWater() {
     TVec3f v4;
-    JMAVECScaleAdd(&mGravity, &mPosition, &v4, (70.0f * mScale.y));
+    v4.scaleAdd(70.0f * mScale.y, mGravity, mPosition);
 
     if (isCheckWater() && MR::isInWater(v4)) {
         TPos3f effectMtx;

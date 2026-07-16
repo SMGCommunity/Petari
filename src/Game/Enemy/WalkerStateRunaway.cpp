@@ -123,7 +123,7 @@ void WalkerStateRunaway::exeRunaway() {
     }
 
     TVec3f v13;
-    JMAVECScaleAdd(MR::getPlayerVelocity(), MR::getPlayerPos(), &v13, mRunawayParam->mPlayerFrontLineLength);
+    v13.scaleAdd(mRunawayParam->mPlayerFrontLineLength, *MR::getPlayerVelocity(), *MR::getPlayerPos());
     TVec3f* actorPos = &mHost->mPosition;
     MR::calcPerpendicFootToLineInside(&v13, *actorPos, *MR::getPlayerPos(), v13);
     MR::turnDirectionFromTargetDegree(mHost, mDirection, v13,

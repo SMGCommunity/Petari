@@ -81,7 +81,7 @@ void Snakehead::initAfterPlacement() {
     headPos -= MR::getRailPointPosStart(this);
     headPos += MR::getRailPointPosEnd(this);  // TODO: this is probably single-lined in scaleadd
     TVec3f v7;
-    JMAVECScaleAdd(&mGravity, &headPos, &v7, -50.0f);
+    v7.scaleAdd(-50.0f, mGravity, headPos);
     MR::getFirstPolyOnLineToMapExceptSensor(&_C4, nullptr, v7, mGravity * 1000.0f, getSensor("body"));
     _94.set(MR::getJointMtx(this, "Body04"));
 }

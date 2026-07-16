@@ -231,7 +231,7 @@ void PackunPetit::exePunchDown() {
         MR::startBlowHitSound(this);
     }
 
-    JMAVECScaleAdd(&mGravity, &mBlownModel->mVelocity, &mBlownModel->mVelocity, 2.5f);
+    mBlownModel->mVelocity.scaleAdd(2.5f, mGravity, mBlownModel->mVelocity);
 
     if (!MR::isHiddenModel(mBlownModel) && (MR::isStep(this, 20) || MR::checkStrikeBallToMap(mBlownModel->mPosition, 50.0f))) {
         MR::emitEffect(mBlownModel, "Death");
@@ -446,7 +446,7 @@ void PackunPetit::punchDown(HitSensor* pSender, HitSensor* pReceiver) {
 
     TVec3f v5;
     v5.scale(20.0f, v6);
-    JMAVECScaleAdd(mGravity, v5, v5, -40.0f);
+    v5.scaleAdd(-40.0f, mGravity, v5);
     mBlownModel->mVelocity.set(v5);
     setNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 }

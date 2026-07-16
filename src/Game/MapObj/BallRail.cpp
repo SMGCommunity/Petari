@@ -138,11 +138,11 @@ void BallRail::exeSetUp() {
 
     if (MR::isLessStep(this, 15)) {
         TVec3f v6;
-        JMAVECScaleAdd(&mGravity, &mPosition, &v6, -_90->mRadius);
+        v6.scaleAdd(-_90->mRadius, mGravity, mPosition);
         f32 rate = MR::calcNerveEaseInRate(this, 15);
         MR::vecBlend(_94, v6, &v7, rate);
     } else {
-        JMAVECScaleAdd(&mGravity, &mPosition, &v7, -_90->mRadius);
+        v7.scaleAdd(-_90->mRadius, mGravity, mPosition);
     }
 
     if (MR::isStep(this, 15)) {
@@ -177,7 +177,7 @@ void BallRail::exeRun() {
     MR::moveRailRider(this);
     MR::moveTransToCurrentRailPos(this);
     TVec3f v12;
-    JMAVECScaleAdd(&mGravity, &mPosition, &v12, -_90->mRadius);
+    v12.scaleAdd(-_90->mRadius, mGravity, mPosition);
     LiveActor* host = _90->mHost;
     host->mVelocity.set(v12 - _90->mPosition);
 

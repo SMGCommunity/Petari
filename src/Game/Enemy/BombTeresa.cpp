@@ -609,7 +609,7 @@ void BombTeresa::exeDrift() {
     TVec3f v12;
     v16.getZDir(v12);
     if (!MR::normalizeOrZero(&v12)) {
-        JMAVECScaleAdd(&v12, &v13, &v13, 20.0f);
+        v13.scaleAdd(20.0f, v12, v13);
     }
     MR::vecBlend(_C4, v13, &_C4, MR::calcNerveEaseInRate(this, 15));
     MR::turnDirectionToTarget(this, &_AC, *MR::getPlayerPos(), 0.0f);

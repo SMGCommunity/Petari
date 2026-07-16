@@ -43,7 +43,7 @@ void FirePressure::calcGunPointFromCannon(TPos3f* pOutPoint) {
     jointMtx.getXDir(stack_2C);
     TVec3f stack_20;
     jointMtx.getTrans(stack_20);
-    JMAVECScaleAdd(&stack_2C, &stack_20, &stack_20, 200.0f);
+    stack_20.scaleAdd(200.0f, stack_2C, stack_20);
     pOutPoint->setInline(jointMtx);
     TVec3f stack_14;
     jointMtx.getYDir(stack_14);

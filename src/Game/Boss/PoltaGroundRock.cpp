@@ -60,7 +60,7 @@ void PoltaGroundRock::start(LiveActor* pOwner, const TVec3f& rVec1) {
     setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvSign::sInstance);
     _A4.set(rVec1);
     MR::calcGravity(this, rVec1);
-    JMAVECScaleAdd(&mGravity, &_A4, &mPosition, 500.0f);
+    mPosition.scaleAdd(500.0f, mGravity, _A4);
     TPos3f v9;
     MR::makeMtxUpNoSupportPos(&v9, -mGravity, mPosition);
     MR::rotateMtxLocalY(v9, MR::getRandom(0.0f, TWO_PI));
@@ -133,7 +133,7 @@ void PoltaGroundRock::exeJut() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_POLTA_G_ROCK_JUT");
     }
-    JMAVECScaleAdd(&mGravity, &_A4, &mPosition, MR::calcNerveEaseOutValue(this, 20, 500.0f, 0.0f));
+    mPosition.scaleAdd(MR::calcNerveEaseOutValue(this, 20, 500.0f, 0.0f), mGravity, _A4);
     if (MR::isGreaterStep(this, 20)) {
         MR::tryRumblePadAndCameraDistanceMiddle(this, 800.0f, 1200.0f, 2000.0f);
         setNerve(&NrvPoltaGroundRock::PoltaGroundRockNrvWait::sInstance);

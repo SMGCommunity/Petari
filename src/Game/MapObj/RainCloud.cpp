@@ -104,7 +104,7 @@ void RainCloud::init(const JMapInfoIter& rIter) {
         boundRadius += v11;
     }
 
-    JMAVECScaleAdd(&mGravity, &mPosition, &_F8, (0.5f * _104));
+    _F8.scaleAdd(0.5f * _104, mGravity, mPosition);
     MR::setClippingTypeSphere(this, boundRadius, &_F8);
     MR::setGroupClipping(this, rIter, 16);
     MR::joinToGroupArray(this, rIter, "雲集団", 16);
@@ -250,9 +250,9 @@ void RainCloud::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 void RainCloud::updateHitSensor(HitSensor* pSensor) {
     f32 radius = pSensor->mRadius;
     TVec3f v7;
-    JMAVECScaleAdd(&mGravity, &mPosition, &v7, radius);
+    v7.scaleAdd(radius, mGravity, mPosition);
     TVec3f v6;
-    JMAVECScaleAdd(&mGravity, &mPosition, &v6, (_104 - radius));
+    v6.scaleAdd(_104 - radius, mGravity, mPosition);
     MR::calcPerpendicFootToLineInside(&pSensor->mPosition, *MR::getPlayerPos(), v7, v6);
 }
 

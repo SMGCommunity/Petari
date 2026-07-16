@@ -69,7 +69,7 @@ void CollectTico::exeCompleteDemo() {
         mPosition.set(*MR::getPlayerPos());
         MR::calcGravity(this);
 
-        JMAVECScaleAdd(&-mGravity, &mPosition, &_94, 300.0f);
+        _94.scaleAdd(300.0f, -mGravity, mPosition);
         mPosition.set(_94);
 
         for (s32 i = 0; i < mTicoNum; i++) {

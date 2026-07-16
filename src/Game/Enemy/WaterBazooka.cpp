@@ -416,7 +416,7 @@ void WaterBazooka::exeDemoCrackCapsule() {
         TVec3f starPieceSpawnPos;
         TVec3f up;
         MR::calcUpVec(&up, this);
-        JMAVECScaleAdd(&up, &mPosition, &starPieceSpawnPos, 600.0f);
+        starPieceSpawnPos.scaleAdd(600.0f, up, mPosition);
         MR::appearStarPiece(this, starPieceSpawnPos, 8, 25.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::validateCollisionParts(mCapsule);
@@ -461,7 +461,7 @@ void WaterBazooka::exeDemoAnger() {
         TVec3f starPieceSpawnPos;
         TVec3f up;
         MR::calcUpVec(&up, this);
-        JMAVECScaleAdd(&up, &mPosition, &starPieceSpawnPos, 600.0f);
+        starPieceSpawnPos.scaleAdd(600.0f, up, mPosition);
         MR::appearStarPiece(this, starPieceSpawnPos, 16, 25.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::validateCollisionParts(mCapsule);
@@ -1007,7 +1007,7 @@ void WaterBazooka::calcGunPointFromCannon(TPos3f* pMtx) {
     mtx.getXDir(side);
     TVec3f pos;
     mtx.getTrans(pos);
-    JMAVECScaleAdd(&side, &pos, &pos, 550.0f);
+    pos.scaleAdd(550.0f, side, pos);
     pMtx->setInline(mtx);
     TVec3f up;
     mtx.getYDir(up);

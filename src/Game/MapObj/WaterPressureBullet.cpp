@@ -138,7 +138,7 @@ void WaterPressureBullet::exeFly() {
     }
 
     if (!_B0) {
-        JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 0.4f);
+        mVelocity.scaleAdd(0.4f, mGravity, mVelocity);
     }
 
     if (MR::isPadSwing(WPAD_CHAN0) && mHostActor != nullptr && !_B2) {

@@ -218,7 +218,7 @@ bool FlipPanel::calcJointMove(TPos3f* pPos, const JointControllerInfo& rInfo) {
     MR::copyJointPos(this, "Panel", &jointPos);
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
-    JMAVECScaleAdd((const Vec*)&upVec, (const Vec*)&jointPos, (Vec*)&jointPos, -25.0f);
+    jointPos.scaleAdd(-25.0f, upVec, jointPos);
     pPos->setTrans(jointPos);
     return true;
 }

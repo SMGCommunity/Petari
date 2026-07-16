@@ -202,7 +202,7 @@ void SearchBeamer::exeBeamAim() {
     TVec3f up;
     MR::getPlayerUpVec(&up);
 
-    JMAVECScaleAdd(&up, MR::getPlayerCenterPos(), &v14, -20.0f);
+    v14.scaleAdd(-20.0f, up, *MR::getPlayerCenterPos());
     TVec3f v13;
     v13.sub(v14, mPosition);
     MR::normalize(&v13);
@@ -212,7 +212,7 @@ void SearchBeamer::exeBeamAim() {
     v11.sub(v12, mBeamEnd);
     MR::normalizeOrZero(&v11);
     TVec3f v10;
-    JMAVECScaleAdd(&v11, &mBeamEnd, &v10, _138);
+    v10.scaleAdd(_138, v11, mBeamEnd);
     _94.sub(v10, mPosition);
     MR::normalize(&_94);
     TVec3f v9;
@@ -486,7 +486,7 @@ void SearchBeamer::bowToPlayer() {
     TVec3f v6;
     MR::getPlayerUpVec(&v6);
     TVec3f v12;
-    JMAVECScaleAdd(v6, MR::getPlayerCenterPos(), &v12, -20.0f);
+    v12.scaleAdd(-20.0f, v6, *MR::getPlayerCenterPos());
     TVec3f v11;
     v11.sub(v12, mPosition);
     v11.orthogonalize(_A0);

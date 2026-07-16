@@ -196,7 +196,7 @@ namespace MR {
         TVec3f* stack_c = a1;
         MR::calcUpVec(&stack_8, pActor);
 
-        JMAVECScaleAdd((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)stack_c, a3);
+        stack_c->scaleAdd(a3, stack_8, pActor->mPosition);
     }
 
     void calcVecToPlayerH(TVec3f* pToPlayerHVec, const LiveActor* pActor, const TVec3f* a3) {
@@ -646,7 +646,7 @@ namespace MR {
 
     void addVelocityToGravityOrGround(LiveActor* pActor, f32 a2) {
         if (isBindedGround(pActor)) {
-            JMAVECScaleAdd((Vec*)getGroundNormal(pActor), (Vec*)&(pActor->mVelocity), (Vec*)&(pActor->mVelocity), -a2);
+            pActor->mVelocity.scaleAdd(-a2, *getGroundNormal(pActor), pActor->mVelocity);
         } else {
             addVelocityToGravity(pActor, a2);
         }
