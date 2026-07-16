@@ -603,8 +603,32 @@ namespace JGeometry {
 #else
         void setPSZeroVec();
 #endif
+        f32 dot(const TVec3& rOther) const NO_INLINE {
+            // TODO: this is *never* uninlined except in the specific
+            // case of TQuat4f::setRotate(const TVec3f&, const TVec3f&)
+#ifdef __MWERKS__
+            const register Vec* b = &rOther;
+            const register Vec* a = this;
 
-        f32 dot(const TVec3&) const;
+            register f32 _fp5, _fp4, _fp3, _fp2, _fp1;
+
+            asm {
+
+                psq_l    _fp2, 4(a), 0, 0;
+                psq_l    _fp3, 4(b), 0, 0;
+
+                ps_mul   _fp2, _fp2, _fp3;
+
+                psq_l    _fp5, 0(a), 0, 0;
+                psq_l    _fp4, 0(b), 0, 0;
+
+                ps_madd  _fp3, _fp5, _fp4, _fp2;
+                ps_sum0  _fp1, _fp3, _fp2, _fp2;
+            }
+
+            return _fp1;
+#endif
+        }
 
         bool epsilonEquals(const TVec3< f32 >& a1, f32 a2) const {
             bool ret = false;
@@ -634,6 +658,39 @@ namespace JGeometry {
         inline void rejection(const TVec3& rNormal) {
             const TVec3& norm = rNormal;
             JMAVECScaleAdd(&norm, this, this, -norm.dot(*this));
+        }
+
+        void orthogonalize(const TVec3& rKillDir) {
+            const TVec3& kill = rKillDir;
+            JMAVECScaleAdd(kill, this, this, -kill.dot(*this));
+        }
+
+        void orthogonalize2(const TVec3& rKillDir) {
+            // sometimes this pattern specifically is used??
+            JMAVECScaleAdd(rKillDir, this, this, -rKillDir.dot(*this));
+        }
+
+        TVec3 killElement(const TVec3& rKillDir) const {
+            TVec3 ret;
+            // JMAVECScaleAdd(rKillDir, this, ret, -rKillDir.dot(*this));
+            ret.killElement(*this, rKillDir);
+            return ret;
+        }
+
+        TVec3 killElement2(const TVec3& rKillDir) const {
+            TVec3 ret(*this);
+            JMAVECScaleAdd(rKillDir, this, ret, -rKillDir.dot(*this));
+            // ret.killElement2(*this, rKillDir);
+            return ret;
+        }
+
+        void killElement(const TVec3& rVec, const TVec3& rKillDir) {
+            const TVec3& kill = rKillDir;
+            JMAVECScaleAdd(kill, rVec, this, -kill.dot(rVec));
+        }
+
+        void killElement2(const TVec3& rVec, const TVec3& rKillDir) {
+            JMAVECScaleAdd(rKillDir, rVec, this, -rKillDir.dot(rVec));
         }
 
         f32 normalize() {

@@ -157,10 +157,7 @@ void WaterPressureBullet::exeFly() {
 
     if (v2) {
         if (_B1 && mHostActor != nullptr && MR::isBindedGroundSand(this)) {
-            TVec3f* vel = &mVelocity;
-            TVec3f* grav = &mGravity;
-            f32 dot = grav->dot(mVelocity);
-            JMAVECScaleAdd(grav, vel, vel, -dot);
+            mVelocity.orthogonalize(mGravity);  // FIXME
         } else {
             kill();
             return;
@@ -263,10 +260,7 @@ bool WaterPressureBullet::inviteMario(HitSensor* pSensor) {
 
     if (MR::isOnGroundPlayer() && MR::isNearAngleDegree(mVelocity, mGravity, 60.0f)) {
         if (_B1) {
-            TVec3f* vel = &mVelocity;
-            TVec3f* grav = &mGravity;
-            f32 dot = grav->dot(mVelocity);
-            JMAVECScaleAdd(grav, vel, vel, -dot);
+            mVelocity.orthogonalize(mGravity);  // FIXME
         } else {
             kill();
             MR::sendArbitraryMsg(ACTMES_ENEMY_ATTACK_FLIP_VERYWEAK, pSensor, getSensor("body"));

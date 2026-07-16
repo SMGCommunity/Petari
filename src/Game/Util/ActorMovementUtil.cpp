@@ -261,14 +261,8 @@ namespace MR {
     }
 
     bool isFaceToTargetHorizontalDegree(const LiveActor* pActor, const TVec3f& a2, const TVec3f& a3, f32 a4) {
-        TVec3f stack_20;
-        TVec3f stack_14;
-
-        TVec3f stack_8 = a2 - pActor->mPosition;
-
-        const TVec3f* grav = &pActor->mGravity;
-        JMAVECScaleAdd((Vec*)grav, (Vec*)&stack_8, (Vec*)&stack_20, -pActor->mGravity.dot(stack_8));
-        JMAVECScaleAdd((Vec*)grav, (Vec*)&a3, (Vec*)&stack_14, -pActor->mGravity.dot(a3));
+        TVec3f stack_20 = (a2 - pActor->mPosition).killElement(pActor->mGravity);
+        TVec3f stack_14 = a3.killElement(pActor->mGravity);
 
         return MR::isNearAngleDegree(stack_20, stack_14, a4);
     }
@@ -554,16 +548,14 @@ namespace MR {
     void calcVelocityMoveToDirection(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4);
         if (isOnGround(pActor)) {
-            const TVec3f* pGroundNormal = getGroundNormal(pActor);
-            JMAVECScaleAdd((Vec*)pGroundNormal, (Vec*)a1, (Vec*)a1, -pGroundNormal->dot(*a1));
+            a1->orthogonalize(*getGroundNormal(pActor));
         }
     }
 
     void calcVelocityMoveToDirection(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4, a5, a6, a7);
         if (isOnGround(pActor)) {
-            const TVec3f* pGroundNormal = getGroundNormal(pActor);
-            JMAVECScaleAdd((Vec*)pGroundNormal, (Vec*)a1, (Vec*)a1, -pGroundNormal->dot(*a1));
+            a1->orthogonalize(*getGroundNormal(pActor));
         }
     }
 
@@ -1095,7 +1087,7 @@ namespace MR {
         } else {
             stack_8.set(pActor->mGravity);
         }
-        JMAVECScaleAdd((Vec*)&stack_8, (Vec*)a2, (Vec*)a2, -stack_8.dot(*a2));
+        a2->orthogonalize(stack_8);
         normalize(a2);
     }
 

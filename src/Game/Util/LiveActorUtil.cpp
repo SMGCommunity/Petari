@@ -1998,8 +1998,7 @@ namespace MR {
     void calcWallNormalHorizontal(TVec3f* pVec, const LiveActor* pActor) {
         const TVec3f* normal = getWallNormal(pActor);
         const TVec3f* grav = &pActor->mGravity;
-        f32 dot = grav->dot(*normal);
-        JMAVECScaleAdd(grav, normal, pVec, -dot);
+        pVec->killElement(*normal, *grav);
     }
 
     f32 calcHitPowerToGround(const LiveActor* pActor) {

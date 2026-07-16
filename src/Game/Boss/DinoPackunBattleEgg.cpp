@@ -65,9 +65,7 @@ bool DinoPackunBattleEgg::receiveMsgPush(HitSensor* a2, HitSensor* a3) {
         MR::calcSensorHorizonNormalize(&v11, getHost()->mGravity, a3, a2);
 
         if (getHost()->mVelocity.dot(v11) < 0.0f) {
-            TVec3f* vel = &getHost()->mVelocity;
-            f32 v8 = v11.dot(*vel);
-            JMAVECScaleAdd(&v11, vel, vel, -v8);
+            getHost()->mVelocity.orthogonalize(v11);
         }
 
         if (isNerve(&NrvDinoPackunBattleEgg::DinoPackunBattleEggNrvWalk::sInstance) && getHost()->_E8.dot(v11) < 0.0f) {

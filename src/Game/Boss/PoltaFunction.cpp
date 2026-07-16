@@ -157,7 +157,7 @@ namespace PoltaFunction {
         }
 
         TVec3f v28 = *MR::getPlayerPos() - pPolta->mPosition;
-        JMAVECScaleAdd(pPolta->mGravity, v28, v28, -pPolta->mGravity.dot(v28));
+        v28.orthogonalize(pPolta->mGravity);
         if (MR::normalizeOrZero(&v28)) {
             v28 = pPolta->_C4;
         }

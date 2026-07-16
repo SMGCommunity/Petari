@@ -201,12 +201,8 @@ void TripodBossGuardWall::updateCameraTarget() {
     front.y = fromPlayer.y;
     front.z = fromPlayer.z;
 
-    f32 z = mBaseMtx.mMtx[2][1];
-    f32 y = mBaseMtx.mMtx[1][1];
-    f32 x = mBaseMtx.mMtx[0][1];
     mBaseMtx.getYDir(up);
-    f32 v9 = up.dot(front);
-    JMAVECScaleAdd(&up, &front, &front, -v9);
+    front.orthogonalize(up);
 
     if (MR::isNearZero(front)) {
         mBaseMtx.getZDir(front);
@@ -217,5 +213,5 @@ void TripodBossGuardWall::updateCameraTarget() {
     TPos3f pos;
     pos.identity();
     MR::makeMtxUpFrontPos(&pos, up, front, mPosition);
-    mCameraTargetMtx->mMatrix.setInline(pos);
+    mCameraTargetMtx->mMatrix.set(pos);
 }

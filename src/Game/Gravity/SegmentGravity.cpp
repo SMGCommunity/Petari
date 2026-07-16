@@ -116,7 +116,8 @@ void SegmentGravity::updateLocalParam() {
         mOppositeSideVecOrtho.zero();
         return;
     }
-    JMAVECScaleAdd(&localAxis, &mSideVector, &mOppositeSideVecOrtho, -localAxis.dot(mSideVector));
+
+    mOppositeSideVecOrtho.killElement2(mSideVector, localAxis);
     MR::normalizeOrZero(&mOppositeSideVecOrtho);
     if (MR::isNearZero(mOppositeSideVecOrtho)) {
         mOppositeSideVecOrtho.zero();

@@ -371,9 +371,7 @@ void DinoPackun::calcAndSetBaseMtx() {
 }
 
 void DinoPackun::updatePose() {
-    TVec3f* grav = &mGravity;
-    f32 v3 = mGravity.dot(_E8);
-    JMAVECScaleAdd(grav, &_E8, &_E8, -v3);
+    _E8.orthogonalize(mGravity);
     if (MR::isNearZero(_E8)) {
         _BC.getZDir(_E8);
     } else {

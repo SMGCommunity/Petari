@@ -932,10 +932,8 @@ void TrickRabbit::controlRouteLevel() {
 }
 
 void TrickRabbit::addMovingAccel(const TVec3f& rVec, f32 f) {
-    TVec3f stack_20(mGravity);
-    f32 dot = stack_20.dot(rVec);
-    TVec3f stack_14;
-    JMAVECScaleAdd(&stack_20, &rVec, &stack_14, -dot);
+    TVec3f stack_20 = mGravity;
+    TVec3f stack_14 = rVec.killElement(stack_20);
     MR::separateScalarAndDirection(&_D0, &stack_14, stack_14);
 
     if (!MR::isNearZero(stack_14))
@@ -958,11 +956,8 @@ void TrickRabbit::addKeepRouteRange(f32 f1, f32 f2, f32 f3) {
         stack_3C.set(*MR::getNextNodePosition(mRailGraphIter));
     }
 
-    TVec3f stack_30;
-    TVec3f stack_24(stack_3C - mPosition);
-    TVec3f* grav = &mGravity;
-    f32 dot = -grav->dot(stack_24);
-    JMAVECScaleAdd(grav, &stack_24, &stack_30, dot);
+    TVec3f stack_30 = (stack_3C - mPosition).killElement(mGravity);  // FIXME
+
     f32 scalar;
     MR::separateScalarAndDirection(&scalar, &stack_30, stack_30);
     f32 norm = MR::normalize(scalar, f2, f3);

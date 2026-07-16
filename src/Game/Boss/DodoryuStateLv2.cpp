@@ -836,14 +836,10 @@ void DodoryuStateLv2::calcRandomVelocity(s32 time) {
 }
 
 void DodoryuStateLv2::keepVerticalizedVelocity() {
-    f32 velMag = mHost->mVelocity.length();
-    TVec3f* pVel = &mHost->mVelocity;
-    TVec3f* pGrav = &mHost->mGravity;
-    f32 dotResult = pGrav->dot(*pVel);
-    TVec3f newVel;
-    JMAVECScaleAdd(pGrav, pVel, &newVel, -dotResult);
-    newVel.setLength(velMag);
-    mHost->mVelocity.set(newVel);
+    f32 speed = mHost->mVelocity.length();
+    TVec3f velH = mHost->mVelocity.killElement(mHost->mGravity);
+    velH.setLength(speed);
+    mHost->mVelocity.set(velH);
 }
 
 void DodoryuStateLv2::attackStrongToDir(HitSensor* pSender, HitSensor* pReceiver) {

@@ -51,11 +51,8 @@ void JumpHole::control() {
 bool JumpHole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_SPHERE_PLAYER_BINDED) {
         f32 v6 = pReceiver->mRadius * pReceiver->mRadius;
-        TVec3f v10(pReceiver->mPosition);
-        v10 -= pSender->mPosition;
-        f32 v7 = _B0.dot(v10);
-        TVec3f v9;
-        JMAVECScaleAdd(&_B0, &v10, &v9, -v7);
+        TVec3f v10 = pReceiver->mPosition - pSender->mPosition;
+        TVec3f v9 = v10.killElement(_B0);
 
         if (v9.squared() > v6 || v10.squared(v9) > 25600.0f) {
             return false;

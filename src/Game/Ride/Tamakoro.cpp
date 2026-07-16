@@ -948,13 +948,8 @@ void Tamakoro::updateAirTime() {
 
 void Tamakoro::updateMarioPose(f32 degree) {
     // TODO : rejection
-    TVec3f velH;
 
-    // these *need* to be pointers to match...
-    TVec3f* vel = &mVelocity;
-    TVec3f* grav = &mGravity;
-    f32 dot = grav->dot(*vel);
-    JMAVECScaleAdd(grav, vel, &velH, -dot);  // velH.rejection(vel, grav);
+    TVec3f velH = mVelocity.killElement(mGravity);  // FIXME
 
     if (MR::isNearZero(velH)) {
         if (mAccelRate > 0.001f) {

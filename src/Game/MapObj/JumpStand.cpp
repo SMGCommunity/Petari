@@ -252,7 +252,7 @@ void JumpStand::endBindAndShootUp(f32 v1, JumpType type) {
             MR::calcPlayerWorldPadDir(&v26, MR::getSubPadStickX(0), MR::getSubPadStickY(0));
             TVec3f v25;
             v25.scale(3.0f * v14, v26);
-            JMAVECScaleAdd(&v27, &v25, &v25, -v27.dot(v25));
+            v25.orthogonalize(v27);
             v28.add(v25);
         }
 

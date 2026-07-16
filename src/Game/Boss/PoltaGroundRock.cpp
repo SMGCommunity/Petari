@@ -63,7 +63,7 @@ void PoltaGroundRock::start(LiveActor* pOwner, const TVec3f& rVec1) {
     JMAVECScaleAdd(&mGravity, &_A4, &mPosition, 500.0f);
     TPos3f v9;
     MR::makeMtxUpNoSupportPos(&v9, -mGravity, mPosition);
-    MR::rotateMtxLocalY(v9, MR::getRandom(0.0f, 6.2831855f));
+    MR::rotateMtxLocalY(v9, MR::getRandom(0.0f, TWO_PI));
     v9.getQuat(_94);
     MR::validateCollisionParts(this);
     MR::showModel(this);

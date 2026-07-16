@@ -190,11 +190,6 @@ void Poihana::calcAndSetBaseMtx() {
     MR::setBaseScale(this, newScale);
 }
 
-// This inline function might be used elsewhere too? It seems unusual for it to be used once
-inline void calcRepelVector(const TVec3f& agent, const TVec3f& object, TVec3f& dst) {
-    JMAVECScaleAdd(&agent, &object, &dst, -agent.dot(object));
-}
-
 void Poihana::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     bool ret = MR::isSensorPlayer(pReceiver) || MR::isSensorEnemy(pReceiver) || MR::isSensorMapObj(pReceiver);
 
@@ -223,14 +218,12 @@ void Poihana::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         }
     }
 
-    TVec3f pushVelocity;
-    pushVelocity.sub(mPosition, pReceiver->mHost->mPosition);
+    TVec3f pushVelocity = mPosition - pReceiver->mHost->mPosition;
 
     MR::normalizeOrZero(&pushVelocity);
 
     if (mVelocity.dot(pushVelocity) < 0.0f) {
-        const TVec3f& velocity = mVelocity;
-        calcRepelVector(pushVelocity, velocity, mVelocity);
+        mVelocity.orthogonalize(pushVelocity);
     }
 }
 
@@ -766,37 +759,27 @@ void Poihana::contactMario(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 // Needs review
-/*void Poihana::controlVelocity() {
-    if (!mIsActive) {
+void Poihana::controlVelocity() {
+    if (isNerve(&NrvPoihana::PoihanaNrvNonActive::sInstance)) {
         return;
     }
 
     // Calculate front vector
-    TVec3f gravity;
-    if (MR::isBindedGround(this)) {
-        gravity.set(-*MR::getGroundNormal(this));
-    }
-    else {
-        gravity.set(mGravity);
-    }
+    TVec3f gravity = MR::isBindedGround(this) ? -*MR::getGroundNormal(this) : mGravity;
 
     TVec3f frontVec(mFrontVec);
     MR::turnVecToPlane(&mFrontVec, frontVec, gravity);
 
     // Calculate velocity
     if (MR::isBindedGround(this)) {
-        f32 dot = mFrontVec.dot(mVelocity) * -1.0f;
-
-        TVec3f addVel;
-        JMAVECScaleAdd(mFrontVec, mVelocity, addVel, dot);
+        TVec3f addVel = mVelocity.killElement(mFrontVec);
         addVel.scale(0.8f);
 
         mVelocity.scale(mFrontVec.dot(mVelocity), mFrontVec);
         mVelocity.add(addVel);
 
         if (mVelocity.dot(gravity) > 0.0f) {
-            dot = gravity.dot(mVelocity) * -1.0f;
-            JMAVECScaleAdd(gravity, mVelocity, mVelocity, dot);
+            mVelocity.orthogonalize(gravity);
         }
 
         mVelocity.scale(0.95f);
@@ -811,7 +794,7 @@ void Poihana::contactMario(HitSensor* pSender, HitSensor* pReceiver) {
             f32 squared = mVelocity.squared();
 
             if (squared > 0.0000038146973f) {
-                mVelocity.scale(JGeometry::TUtil<f32>::inv_sqrt(squared));
+                mVelocity.scale(JGeometry::TUtil< f32 >::inv_sqrt(squared));
             }
         }
 
@@ -819,7 +802,7 @@ void Poihana::contactMario(HitSensor* pSender, HitSensor* pReceiver) {
             mVelocity.zero();
         }
     }
-}*/
+}
 
 void Poihana::calcMyGravity() {
     if (!mIsActive) {

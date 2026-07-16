@@ -1,6 +1,7 @@
 #include "Game/Enemy/PackunPetit.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -13,6 +14,7 @@
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
@@ -437,22 +439,17 @@ void PackunPetit::initBlowModel() {
     mBlownModel->makeActorDead();
 }
 
-/*
-void PackunPetit::punchDown(HitSensor *pSender, HitSensor *pReceiver) {
-    TVec3f v6;
-    v6.subtract(pReceiver->mPosition, pSender->mPosition);
-    TVec3f* grav = &mGravity;
-    f32 dot = grav->dot(v6);
-    JMAVECScaleAdd(grav, v6, v6, -dot);
+void PackunPetit::punchDown(HitSensor* pSender, HitSensor* pReceiver) {
+    TVec3f v6 = pReceiver->mPosition - pSender->mPosition;
+    v6.orthogonalize(mGravity);
     MR::normalize(&v6);
 
     TVec3f v5;
     v5.scale(20.0f, v6);
     JMAVECScaleAdd(mGravity, v5, v5, -40.0f);
-    mBlownModel->mVelocity.setInline(v5);
+    mBlownModel->mVelocity.set(v5);
     setNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);
 }
-*/
 
 void PackunPetit::selectNrvWait() {
     if (!MR::isNearPlayer(this, 1700.0f)) {

@@ -250,9 +250,7 @@ bool Teresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorEnemy(pSender)) {
         TVec3f v9 = MR::getSensorPos(pSender) - MR::getSensorPos(pReceiver);
         MR::normalizeOrZero(&v9);
-        TVec3f v8(v9);
-        v8 *= 0.1f;
-        mVelocity.add(v8);
+        mVelocity.add(v9 * 0.1f);
         return true;
     }
 
@@ -400,11 +398,9 @@ bool Teresa::tryWalk() {
         TVec3f v6;
         MR::getRandomVector(&v6, 1.0f);
         MR::normalizeOrZero(&v6);
-        TVec3f* grav = &mGravity;
-        JMAVECScaleAdd(grav, &v6, &v6, -grav->dot(v6));
+        v6.orthogonalize(mGravity);
         v6 *= _F0;
-        v6.add(_C8);
-        _E0 = v6;
+        _E0 = v6 + _C8;
         setNerve(&NrvTeresa::TeresaNrvWalk::sInstance);
         return true;
     }

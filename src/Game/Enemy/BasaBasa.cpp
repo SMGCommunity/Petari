@@ -167,9 +167,7 @@ void BasaBasa::exeChase() {
 
     TVec3f v5;
     v5.sub(*_B4, mPosition);
-    TVec3f* gravityPtr = &mGravity;
-    f32 dot = gravityPtr->dot(v5);
-    JMAVECScaleAdd(gravityPtr, &v5, &v5, -dot);
+    v5.orthogonalize(mGravity);
     MR::normalizeOrZero(&v5);
     if (!MR::isNearZero(v5)) {
         TVec3f v4;
@@ -280,8 +278,7 @@ void BasaBasa::exeAttack() {
     if (mIsIceModel) {
         TVec3f v8;
         MR::calcUpVec(&v8, this);
-        TVec3f v7;
-        JMAVECScaleAdd(&v8, &v9, &v7, -v8.dot(v9));
+        TVec3f v7 = v9.killElement(v8);
         TVec3f v6;
         v6.scale(v8.dot(v9), v8);
         JMAVECScaleAdd(&v6, &v7, &v9, 5.0f);
@@ -541,9 +538,7 @@ void BasaBasa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             v10.sub(mPosition, pReceiver->mHost->mPosition);
             MR::normalizeOrZero(&v10);
             if (mVelocity.dot(v10) < 0.0f) {
-                TVec3f* velocityPtr = &mVelocity;
-                f32 dot = v10.dot(mVelocity);
-                JMAVECScaleAdd(&v10, velocityPtr, velocityPtr, -dot);
+                mVelocity.orthogonalize(v10);
             }
         }
     }
@@ -736,9 +731,7 @@ void BasaBasa::controlVelocity() {
     TVec3f v14;
     v14.scale(v3, v15);
     v14.scale(0.5f);
-    TVec3f* velocity = &mVelocity;
-    f32 v4 = v15.dot(*velocity);
-    JMAVECScaleAdd(&v15, velocity, velocity, -v4);
+    mVelocity.orthogonalize(v15);
     mVelocity.add(v14);
     f32 v5 = 0.95f;
     if (isNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance)) {
@@ -762,11 +755,7 @@ void BasaBasa::controlVelocity() {
     }
 
     if (mVelocity.length() > v6) {
-        TVec3f* velocityPtr = &mVelocity;
-        f32 sqr = velocityPtr->squared();
-        if (sqr <= 0.0000038146973f) {
-            velocityPtr->scale(v6 * JGeometry::TUtil< f32 >::inv_sqrt(sqr));
-        }
+        mVelocity.setLength(v6);
     } else {
         if (MR::isNearZero(mVelocity)) {
             mVelocity.zero();

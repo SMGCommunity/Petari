@@ -459,10 +459,9 @@ void BombTeresa::exeBallAppear() {
     }
     if (MR::isLessStep(this, 160)) {
         MR::rotateQuatRollBall(&_9C, mVelocity, -mGravity, 70.0f);
-        _AC.set< f32 >((2.0f * _9C.y * _9C.x) + (2.0f * _9C.y * _9C.z), (2.0f * _9C.z * _9C.x) - (2.0f * _9C.y * _9C.y),
-                       (1.0f - (2.0f * _9C.y * _9C.y) - (2.0f * _9C.z * _9C.z)));
+        _9C.getZDir(_AC);
     } else {
-        JMAVECScaleAdd(&mGravity, &_AC, &_AC, -mGravity.dot(_AC));
+        _AC.orthogonalize(mGravity);
         if (MR::normalizeOrZero(&_AC)) {
             MR::makeAxisVerticalZX(&_AC, mGravity);
         }

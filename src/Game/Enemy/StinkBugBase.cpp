@@ -101,11 +101,7 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
     TVec3f v3;
     v3.sub(*MR::getPlayerPos(), scaledAdded);
 
-    const TVec3f* gravity = &mGravity;
-    f32 f2 = -gravity->dot(v3);
-
-    TVec3f v5;
-    JMAVECScaleAdd(gravity, &v3, &v5, f2);
+    TVec3f v5 = v3.killElement(mGravity);
 
     return MR::isNearAngleDegree(v5, _A4, _B0);
 }
