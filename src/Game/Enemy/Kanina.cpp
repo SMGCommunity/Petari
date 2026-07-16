@@ -5,6 +5,7 @@
 #include "Game/MapObj/BenefitItemObj.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/JointRumbler.hpp"
+#include "revolution/wpad.h"
 
 namespace NrvKanina {
     NEW_NERVE(HostTypeAppear, Kanina, Appear);
@@ -30,7 +31,7 @@ namespace NrvKanina {
     NEW_NERVE(HostTypeRunAwayReboundDirection, Kanina, RunAwayReboundDirection);
     NEW_NERVE(HostTypeHitWall, Kanina, HitWall);
 
-}  // namespace NrvKanina
+};  // namespace NrvKanina
 
 namespace {
     static const f32 sSensorRadius = 100.0f;
@@ -53,10 +54,10 @@ namespace {
     static const s32 sStopSceneTimePunchBackword = 8;
     static const s32 sWaitUnderGroundTime = 120.0f;
     static const f32 sKeepUnderGroundDistance = 500.0f;
-    // static const f32 sSearchRadius;
+    static const f32 sSearchRadius = 1000.0f;
     static const f32 sWalkSpeedRunAway = 13.0f;
     static const f32 sAnimRateRunAway = 1.0f;
-    // static const f32 sSafetyDistance;
+    static const f32 sSafetyDistance = 2000.0f;
     static const s32 sRunAwayRunningTime1 = 15;
     static const s32 sRunAwayRunningTime2 = 30;
     static const s32 sRunAwayRunningTime3 = 60;
@@ -276,7 +277,7 @@ bool Kanina::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
             return true;
         }
         if (receiveTrample(pSender, pReceiver)) {
-            MR::tryRumblePad(this, "中", 0);
+            MR::tryRumblePad(this, "中", WPAD_CHAN0);
             return true;
         }
     }
@@ -436,7 +437,7 @@ void Kanina::startRunAwayLevelSound() {
 
 bool Kanina::receiveHipDrop(HitSensor* pSender, HitSensor* pReceiver) {
     if (receiveTrample(pSender, pReceiver)) {
-        MR::tryRumblePad(this, "中", 0);
+        MR::tryRumblePad(this, "中", WPAD_CHAN0);
         MR::sendMsgAwayJump(pSender, pReceiver);
         return true;
     }
@@ -514,11 +515,11 @@ void Kanina::initForType(const JMapInfoIter& rIter, KaninaType type) {
     }
 }
 
-bool Kanina::isPlayerBackward(f32 f1) const {
+bool Kanina::isPlayerBackward(f32 angle) const {
     TVec3f frontVec;
     MR::calcFrontVec(&frontVec, this);
-    f1 = f1 * 2.0f;
-    return MR::isInSightFanPlayer(this, -frontVec, 800.0f, f1, 30.0f);
+    angle = angle * 2.0f;
+    return MR::isInSightFanPlayer(this, -frontVec, 800.0f, angle, 30.0f);
 }
 
 bool Kanina::isStatePossibleToAttack() const {
@@ -594,7 +595,7 @@ bool Kanina::tryFindPlayer() {
 
     TVec3f front;
     MR::calcFrontVec(&front, this);
-    if (!MR::isInSightFanPlayer(this, front, 1000.0f, 180.0f, 30.0f)) {
+    if (!MR::isInSightFanPlayer(this, front, ::sSearchRadius, 180.0f, 30.0f)) {
         return false;
     }
 
@@ -719,7 +720,7 @@ void Kanina::exeRunAway() {
     startRunAwayLevelSound();
 
     if (!tryHitWall() && !tryPointing()) {
-        if (2000.0f < MR::calcDistanceToPlayerH(this)) {
+        if (::sSafetyDistance < MR::calcDistanceToPlayerH(this)) {
             MR::zeroVelocity(this);
             if ((mType == KaninaType_Red && MR::isHalfProbability()) || mType == KaninaType_Blue) {
                 setNerve(&NrvKanina::HostTypeDig::sInstance);
@@ -750,7 +751,7 @@ void Kanina::exeRunAwayReboundDirection() {
     startRunAwayLevelSound();
 
     if (!tryHitWall() && !tryPointing()) {
-        if (2000.0f < MR::calcDistanceToPlayer(this)) {
+        if (::sSafetyDistance < MR::calcDistanceToPlayer(this)) {
             setNerve(&NrvKanina::HostTypeWait::sInstance);
             return;
         }
@@ -859,7 +860,7 @@ void Kanina::exeDamageHipDrop() {
 
         MR::startBtp(this, "Swoon");
         MR::startSound(this, "SE_EM_STOMPED_S");
-        MR::tryRumblePad(this, "強", 0);
+        MR::tryRumblePad(this, "強", WPAD_CHAN0);
         MR::invalidateHitSensors(this);
     }
 
