@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/LiveActor/LiveActor.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <revolution/types.h>
@@ -156,4 +157,22 @@ namespace MR {
     void moveAndTurnToTarget(LiveActor*, const TVec3f&, f32, f32, f32, f32) NO_INLINE;
     void moveAndTurnToPlayer(LiveActor*, f32, f32, f32, f32);
     void moveAndTurnAlongRail(LiveActor*, f32, f32, f32, f32, f32, bool*);
+
+    // NOTE: symbols dont exist for these, however the exact logic is used various places
+    // If a suitable symbol is found, these can be replaced.
+    inline TVec3f getVelocityHorizon(LiveActor* pActor) {
+        TVec3f velH;
+        velH.scaleAdd(-pActor->mGravity.dot(pActor->mVelocity), pActor->mGravity, pActor->mVelocity);
+        return velH;
+    }
+
+    inline void killVelocityVertical(LiveActor* pActor) {
+        pActor->mVelocity.scaleAdd(-pActor->mGravity.dot(pActor->mVelocity), pActor->mGravity, pActor->mVelocity);
+    }
+
+    inline TVec3f killGravity(LiveActor* pActor, const TVec3f& rVec) {
+        TVec3f velH;
+        velH.scaleAdd(-pActor->mGravity.dot(rVec), pActor->mGravity, rVec);
+        return velH;
+    }
 };  // namespace MR

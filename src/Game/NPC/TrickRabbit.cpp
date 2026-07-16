@@ -956,7 +956,7 @@ void TrickRabbit::addKeepRouteRange(f32 f1, f32 f2, f32 f3) {
         stack_3C.set(*MR::getNextNodePosition(mRailGraphIter));
     }
 
-    TVec3f stack_30 = (stack_3C - mPosition).killElement(mGravity);  // FIXME
+    TVec3f stack_30 = MR::killGravity(this, stack_3C - mPosition);  // FIXME
 
     f32 scalar;
     MR::separateScalarAndDirection(&scalar, &stack_30, stack_30);

@@ -538,7 +538,8 @@ void BasaBasa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             v10.sub(mPosition, pReceiver->mHost->mPosition);
             MR::normalizeOrZero(&v10);
             if (mVelocity.dot(v10) < 0.0f) {
-                mVelocity.orthogonalize(v10);
+                const TVec3f& vel = mVelocity;
+                mVelocity.scaleAdd(-v10.dot(vel), v10, vel);
             }
         }
     }
@@ -731,7 +732,8 @@ void BasaBasa::controlVelocity() {
     TVec3f v14;
     v14.scale(v3, v15);
     v14.scale(0.5f);
-    mVelocity.orthogonalize(v15);
+    const TVec3f& vel = mVelocity;
+    mVelocity.scaleAdd(-v15.dot(vel), v15, vel);
     mVelocity.add(v14);
     f32 v5 = 0.95f;
     if (isNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance)) {

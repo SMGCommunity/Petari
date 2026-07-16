@@ -489,7 +489,7 @@ void SearchBeamer::bowToPlayer() {
     v12.scaleAdd(-20.0f, v6, *MR::getPlayerCenterPos());
     TVec3f v11;
     v11.sub(v12, mPosition);
-    v11.orthogonalize(_A0);
+    v11.orthogonalize2(_A0);
     MR::normalize(&v11);
     MR::turnVecToVecDegree(&v11, v11, -_A0, 35.0f, TVec3f(0, 1, 0));
     MR::turnVecToVecDegree(&_94, _94, v11, 3.0f, TVec3f(0, 1, 0));

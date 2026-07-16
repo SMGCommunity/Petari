@@ -223,7 +223,8 @@ void Poihana::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     MR::normalizeOrZero(&pushVelocity);
 
     if (mVelocity.dot(pushVelocity) < 0.0f) {
-        mVelocity.orthogonalize(pushVelocity);
+        const TVec3f& vel = mVelocity;
+        mVelocity.scaleAdd(-pushVelocity.dot(vel), pushVelocity, vel);
     }
 }
 

@@ -644,30 +644,12 @@ namespace JGeometry {
         }
 
         void scaleAdd(f32 sc, const TVec3& a, const TVec3& b) {
-            JMAVECScaleAdd(&a, &b, this, sc);
-        }
-
-        void orthogonalize(const TVec3& rKillDir) {
-            const TVec3& kill = rKillDir;
-            JMAVECScaleAdd(kill, this, this, -kill.dot(*this));
-        }
-
-        void orthogonalize2(const TVec3& rKillDir) {
-            // sometimes this pattern specifically is used??
-            JMAVECScaleAdd(rKillDir, this, this, -rKillDir.dot(*this));
+            JMAVECScaleAdd(a, b, this, sc);
         }
 
         TVec3 killElement(const TVec3& rKillDir) const {
             TVec3 ret;
-            // JMAVECScaleAdd(rKillDir, this, ret, -rKillDir.dot(*this));
             ret.killElement(*this, rKillDir);
-            return ret;
-        }
-
-        TVec3 killElement2(const TVec3& rKillDir) const {
-            TVec3 ret(*this);
-            JMAVECScaleAdd(rKillDir, this, ret, -rKillDir.dot(*this));
-            // ret.killElement2(*this, rKillDir);
             return ret;
         }
 
@@ -677,7 +659,20 @@ namespace JGeometry {
         }
 
         void killElement2(const TVec3& rVec, const TVec3& rKillDir) {
+            // TODO: sometimes this pattern specifically is used?
+            // is this just written directly instead?
             JMAVECScaleAdd(rKillDir, rVec, this, -rKillDir.dot(rVec));
+        }
+
+        void orthogonalize(const TVec3& rKillDir) {
+            const TVec3& kill = rKillDir;
+            JMAVECScaleAdd(kill, this, this, -kill.dot(*this));
+        }
+
+        void orthogonalize2(const TVec3& rKillDir) {
+            // TODO: sometimes this pattern specifically is used?
+            // is this just written directly instead?
+            JMAVECScaleAdd(rKillDir, this, this, -rKillDir.dot(*this));
         }
 
         f32 normalize() {

@@ -3,6 +3,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
@@ -157,7 +158,9 @@ void WaterPressureBullet::exeFly() {
 
     if (v2) {
         if (_B1 && mHostActor != nullptr && MR::isBindedGroundSand(this)) {
-            mVelocity.orthogonalize(mGravity);  // FIXME
+            const TVec3f& vel = mVelocity;
+            const TVec3f& grav = mGravity;
+            mVelocity.scaleAdd(-grav.dot(vel), grav, vel);
         } else {
             kill();
             return;
@@ -260,7 +263,7 @@ bool WaterPressureBullet::inviteMario(HitSensor* pSensor) {
 
     if (MR::isOnGroundPlayer() && MR::isNearAngleDegree(mVelocity, mGravity, 60.0f)) {
         if (_B1) {
-            mVelocity.orthogonalize(mGravity);  // FIXME
+            MR::killVelocityVertical(this);
         } else {
             kill();
             MR::sendArbitraryMsg(ACTMES_ENEMY_ATTACK_FLIP_VERYWEAK, pSensor, getSensor("body"));

@@ -947,9 +947,7 @@ void Tamakoro::updateAirTime() {
 }
 
 void Tamakoro::updateMarioPose(f32 degree) {
-    // TODO : killElement
-
-    TVec3f velH = mVelocity.killElement(mGravity);  // FIXME
+    TVec3f velH = MR::getVelocityHorizon(this);
 
     if (MR::isNearZero(velH)) {
         if (mAccelRate > 0.001f) {

@@ -747,9 +747,7 @@ void BegomanBase::reboundWallAndGround(TVec3f* pOut, bool emitEffect) {
 }
 
 bool BegomanBase::isFallNextMove(f32 f1, f32 f2) {
-    TVec3f ScaleAddResult = mVelocity.killElement(mGravity);
-
-    if (MR::isNearZero(ScaleAddResult)) {
+    if (MR::isNearZero(MR::getVelocityHorizon(this))) {
         f32 scaledBinderRadius = MR::getBinderRadius(this);
         scaledBinderRadius = scaledBinderRadius * mScale.y * 2.0f;
         return MR::isFallNextMove(mPosition, mFaceVec, mGravity, f1, scaledBinderRadius, f2, nullptr);

@@ -309,8 +309,6 @@ void Petari::exeSmash() {
 }
 
 void Petari::exeSpinOut() {
-    // FIXME: issue with orthogonalize
-    // https://decomp.me/scratch/5nfwd
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::startBck(this, "Damage", nullptr);
@@ -327,7 +325,8 @@ void Petari::exeSpinOut() {
         v8.set(mGravity);
     }
 
-    mVelocity.orthogonalize(v8);
+    const TVec3f& vel = mVelocity;
+    mVelocity.scaleAdd(-v8.dot(vel), v8, vel);
     mVelocity.add(v8 * 1.3f);
 
     calcCenter();

@@ -127,7 +127,9 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& 
             }
         }
 
-        TVec3f v15 = v16.killElement2(mBaseAxis);
+        // TVec3f v15 = v16.killElement2(mBaseAxis);
+        TVec3f v15 = v16;
+        v15.killElement2(v16, mBaseAxis);
         if (MR::isNearZero(v15)) {
             v15.zero();
             int idx = MR::getMinAbsElementIndex(mBaseAxis);
@@ -148,7 +150,7 @@ void TripodBossMovableArea::calcLandingNormal(TVec3f* pNorm, const TVec3f& a2) c
         norm = mBaseAxis;
     }
 
-    pNorm->set< f32 >(norm);
+    pNorm->set(norm);
 }
 
 void TripodBossMovableArea::calcLandingFront(TVec3f* pFront, const TVec3f& a2) const {
