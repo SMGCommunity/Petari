@@ -7,18 +7,18 @@ class AnimScaleController;
 
 class HanachanParts : public LiveActor {
 public:
-    HanachanParts(Hanachan*, const char*, const char*);
+    HanachanParts(Hanachan*, s32, const char*, const char*);
 
     virtual ~HanachanParts();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void calcAndSetBaseMtx();
     virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPush(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
-    TVec3f* getCommonGravity() const;
+    const TVec3f* getCommonGravity() const;
     void exeWalk();
     void exeTrample();
     void exeBecomeAngry();
@@ -40,10 +40,9 @@ public:
     Hanachan* mParent;  // 0x8C
     TVec3f _90;
     TVec3f _9C;
-    s32 _A8;
-    TVec3f _AC;
-    f32 _B8;
-    u32 _BC;
+    u32 _A8;
+    TQuat4f _AC;
+    s32 _BC;
     s32 _C0;
     u8 _C4;
 };
