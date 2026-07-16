@@ -706,7 +706,7 @@ bool WaterBazooka::aimAtMario() {
     mBaseMtx.getTrans(cannonPos);
 
     TVec3f aimPos;
-    aimPos.scaleAdd(-mGravity, *MR::getPlayerPos(), 100.0f);
+    aimPos.scaleAdd(100.0f, -mGravity, *MR::getPlayerPos());
 
     TVec3f aim;
     aim.sub(aimPos, cannonPos);
@@ -998,7 +998,7 @@ void WaterBazooka::calcNearDropPoint(TVec3f* pPos) const {
         toPlayer.negate();
     }
 
-    pPos->scaleAdd(toPlayer, mPosition, 800.0f);
+    pPos->scaleAdd(800.0f, toPlayer, mPosition);
 }
 
 void WaterBazooka::calcGunPointFromCannon(TPos3f* pMtx) {

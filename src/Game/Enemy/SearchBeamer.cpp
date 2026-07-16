@@ -383,7 +383,7 @@ void SearchBeamer::updateHitSensor(HitSensor* pSensor) {
     TVec3f v7;
     TVec3f up;
     MR::getPlayerUpVec(&up);
-    v7.scaleAdd(up, *MR::getPlayerCenterPos(), -20.0f);
+    v7.scaleAdd(-20.0f, up, *MR::getPlayerCenterPos());
     MR::calcPerpendicFootToLineInside(&pSensor->mPosition, v7, mPosition, mBeamEnd);
 }
 

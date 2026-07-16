@@ -643,12 +643,8 @@ namespace JGeometry {
             return ret;
         }
 
-        void scaleAdd(__REGISTER f32 sc, const TVec3< f32 >& a, const TVec3< f32 >& b) {
+        void scaleAdd(f32 sc, const TVec3& a, const TVec3& b) {
             JMAVECScaleAdd(&a, &b, this, sc);
-        }
-
-        inline void scaleAdd(const TVec3& scaleVec, const TVec3& addVec, f32 scale) {
-            JMAVECScaleAdd(&scaleVec, &addVec, this, scale);
         }
 
         void orthogonalize(const TVec3& rKillDir) {

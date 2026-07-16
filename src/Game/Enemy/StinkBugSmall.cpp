@@ -15,6 +15,11 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+void DUMMY() {
+    TVec3f a, b;
+    a.set(b);
+}
+
 namespace NrvStinkBugSmall {
     NEW_NERVE(StinkBugSmallNrvWait, StinkBugSmall, Wait);
     NEW_NERVE(StinkBugSmallNrvSearch, StinkBugSmall, Search);
@@ -128,14 +133,12 @@ void StinkBugSmall::exeDash() {
         MR::validateHitSensors(this);
     }
     MR::startLevelSound(this, "SE_EM_LV_STINKBUG_S_DASH");
-    if (MR::isNear(this, _98, mRadius)) {
-        if (!MR::isBindedWall(this)) {
-            return;
-        }
+    if (!MR::isNear(this, _98, mRadius) || MR::isBindedWall(this)) {
+        mVelocity.zero();
+        setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashEnd::sInstance);
+        MR::startSound(this, "SE_EM_STINKBUG_S_DASH_END");
+        return;
     }
-    mVelocity.zero();
-    setNerve(&NrvStinkBugSmall::StinkBugSmallNrvDashEnd::sInstance);
-    MR::startSound(this, "SE_EM_STINKBUG_S_DASH_END");
     setDashVelocity(20.0f);
 }
 void StinkBugSmall::exeDashEnd() {
@@ -157,7 +160,8 @@ void StinkBugSmall::exeBack() {
         setNerve(&NrvStinkBugSmall::StinkBugSmallNrvWait::sInstance);
         return;
     }
-    TVec3f tvf(_98 - mPosition);
+    TVec3f tvf;
+    tvf.sub(_98, mPosition);
     MR::normalize(&tvf);
     MR::turnVecToPlane(&tvf, tvf, mGravity);
     mVelocity.scale(5.0f, tvf);
@@ -276,44 +280,45 @@ void StinkBugSmall::initAfterPlacement() {
     TVec3f v8;
     TVec3f v7;
     MR::calcUpVec(&v8, this);
-    v8.scaleAdd(v7, mPosition, 50.0f);
-    MR::calcUpVec(&v7, this);
-    v7.x *= -200.0f;
-    v7.y *= -200.0f;
-    v7.z *= -200.0f;
+    v7.scaleAdd(50.0f, v8, mPosition);
+    TVec3f up;
+    MR::calcUpVec(&up, this);
+    up.scale(-200.0f);
     HitSensor* pSensor = getSensor("body");
-    MR::getFirstPolyOnLineToMapExceptSensor(&_98, nullptr, v8, v7, pSensor);
+    MR::getFirstPolyOnLineToMapExceptSensor(&_98, nullptr, v7, up, pSensor);
     MR::resetPosition(this, _98);
 }
 
 void StinkBugSmall::control() {
+    // FIXME
     if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
         kill();
         return;
     }
     mScaleController->updateNerve();
-    if (tryDPDSwoon() || !tryForceFall()) {
-        return;
+    if (!tryDPDSwoon() && !tryForceFall()) {
+        bool b1 = isNerve(&NrvStinkBugSmall::StinkBugSmallNrvForceFall::sInstance);
+        if (b1 != false) {
+            return;
+        }
+        bool b2 = isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) || isNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance);
+        if (b2 == false) {
+            MR::offBind(this);
+            return;
+        }
+
+        MR::onBind(this);
+        if (MR::isBindedGround(this)) {
+            mGravity.set(-*MR::getGroundNormal(this));
+        } else {
+            mGravity.set(mGravity);
+        }
+        mVelocity.orthogonalize(mGravity);
+        JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 2.0f);
+        TVec3f a;
+        a = _8C;
+        MR::turnVecToPlane(&_8C, a, mGravity);
     }
-    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvForceFall::sInstance)) {
-        return;
-    }
-    if (isNerve(&NrvStinkBugSmall::StinkBugSmallNrvDash::sInstance) || isNerve(&NrvStinkBugSmall::StinkBugSmallNrvBack::sInstance)) {
-        MR::offBind(this);
-        return;
-    }
-    TVec3f v9;
-    MR::onBind(this);
-    if (MR::isBindedGround(this)) {
-        MR::getGroundNormal(this);
-        v9.negate();
-        v9.z = -v9.y;
-        mGravity.set(v9);
-    } else {
-        mGravity.set(mGravity);
-    }
-    JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, -mGravity.dot(mVelocity));
-    JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 2.0f);
 }
 
 void StinkBugSmall::calcAndSetBaseMtx() {
