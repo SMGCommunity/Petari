@@ -320,10 +320,6 @@ namespace MR {
     /// @return The result of linear interpolation.
     GXColor lerp(GXColor start, GXColor end, f32 t);
 
-    f32 lerp(f32 start, f32 end, f32 t) {
-        return start + (end - start) * t;
-    }
-
     void sortSmall(s32, f32*, s32*);
     void sortSmall(s32, u32*, s32*);
     f32 vecKillElement(const TVec3f&, const TVec3f&, TVec3f*);

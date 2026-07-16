@@ -116,6 +116,10 @@ namespace NrvMeramera {
     NEW_NERVE(MerameraNrvReadyRestart, Meramera, ReadyRestart);
 }  // namespace NrvMeramera
 
+f32 lerp(f32 start, f32 end, f32 t) {
+    return start + (end - start) * t;
+}
+
 inline bool Meramera::isSensor(const HitSensor* pSensor, const char* pName) const {
     return getSensor(pName) == pSensor;
 }
@@ -1318,9 +1322,9 @@ void Meramera::addRunawayJumpPower() {
     MR::normalizeOrZero(&vec);
     MR::addRandomVector(&vec, vec, 0.5f * val);
 
-    val = 20.0f * MR::lerp(val, 1.0f, 0.1f);
+    val = 20.0f * lerp(val, 1.0f, 0.1f);
     f32 randomVal = MR::getRandom(45.0f, 900.0f);
-    f32 val2 = MR::lerp(val, 1.0f, 0.2f) * randomVal;
+    f32 val2 = lerp(val, 1.0f, 0.2f) * randomVal;
     addMovingAccel(vec, val, -1.0f);
     mPosition -= mGravity * val2;
 }
