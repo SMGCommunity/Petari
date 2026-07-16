@@ -143,7 +143,7 @@ void BasaBasa::exeChaseStart() {
     }
 
     if (MR::isLessStep(this, 15)) {
-        JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 15.0f);
+        mVelocity.scaleAdd(15.0f, mGravity, mVelocity);
     }
 
     if (MR::isStep(this, 15)) {
@@ -167,9 +167,7 @@ void BasaBasa::exeChase() {
 
     TVec3f v5;
     v5.sub(*_B4, mPosition);
-    TVec3f* gravityPtr = &mGravity;
-    f32 dot = gravityPtr->dot(v5);
-    JMAVECScaleAdd(gravityPtr, &v5, &v5, -dot);
+    v5.orthogonalize(mGravity);
     MR::normalizeOrZero(&v5);
     if (!MR::isNearZero(v5)) {
         TVec3f v4;
@@ -178,7 +176,7 @@ void BasaBasa::exeChase() {
         MR::turnDirectionDegree(this, &_9C, v4, 1.7f);
     }
 
-    JMAVECScaleAdd(&_9C, &mVelocity, &mVelocity, 2.0f);
+    mVelocity.scaleAdd(2.0f, _9C, mVelocity);
     tuneHeight();
     if (!trySetNerveDPDSwoon()) {
         if (MR::isNearPlayer(_CC, _E4) && MR::isNearPlayer(this, _AC)) {
@@ -194,7 +192,7 @@ void BasaBasa::exeChase() {
 }
 
 void BasaBasa::exeQuickTurnStart() {
-    JMAVECScaleAdd(&_9C, &mVelocity, &mVelocity, 2.0f);
+    mVelocity.scaleAdd(2.0f, _9C, mVelocity);
     if (MR::isStep(this, 45)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvQuickTurn::sInstance);
     } else {
@@ -203,7 +201,7 @@ void BasaBasa::exeQuickTurnStart() {
 }
 
 void BasaBasa::exeQuickTurn() {
-    JMAVECScaleAdd(&_9C, &mVelocity, &mVelocity, 2.0f);
+    mVelocity.scaleAdd(2.0f, _9C, mVelocity);
     MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.55f);
     if (MR::isFaceToTargetHorizontalDegree(this, *_B4, _9C, 2.55f)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvChase::sInstance);
@@ -250,14 +248,14 @@ void BasaBasa::exeAttackStart() {
 
     MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.55f);
     TVec3f v3;
-    JMAVECScaleAdd(&_9C, &mGravity, &v3, 2.0f);
+    v3.scaleAdd(2.0f, _9C, mGravity);
     v3.negate();
     MR::normalizeOrZero(&v3);
     if (MR::isNearZero(v3)) {
         v3.set(-mGravity);
     }
 
-    JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 0.2f);
+    mVelocity.scaleAdd(0.2f, v3, mVelocity);
     if (MR::isBckStopped(this)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvAttack::sInstance);
     } else {
@@ -271,7 +269,7 @@ void BasaBasa::exeAttack() {
         MR::startSound(this, "SE_EV_BASABASA_ATTACK");
         TVec3f playerUp;
         MR::getPlayerUpVec(&playerUp);
-        JMAVECScaleAdd(&playerUp, MR::getPlayerPos(), &_BC, 100.0f);
+        _BC.scaleAdd(100.0f, playerUp, *MR::getPlayerPos());
     }
 
     MR::startLevelSound(this, "SE_EM_LV_BASABASA_ATTACK");
@@ -280,16 +278,15 @@ void BasaBasa::exeAttack() {
     if (mIsIceModel) {
         TVec3f v8;
         MR::calcUpVec(&v8, this);
-        TVec3f v7;
-        JMAVECScaleAdd(&v8, &v9, &v7, -v8.dot(v9));
+        TVec3f v7 = v9.killElement(v8);
         TVec3f v6;
         v6.scale(v8.dot(v9), v8);
-        JMAVECScaleAdd(&v6, &v7, &v9, 5.0f);
+        v9.scaleAdd(5.0f, v6, v7);
     }
     TVec3f v5;
     MR::normalize(v9, &v5);
     MR::turnDirectionToTargetDegree(this, &_9C, _BC, 2.55f);
-    JMAVECScaleAdd(&v5, &mVelocity, &mVelocity, 10.0f);
+    mVelocity.scaleAdd(10.0f, v5, mVelocity);
     if (MR::isNear(this, _BC, 40.0f) || MR::isBindedWall(this) || MR::isStep(this, 180)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance);
     } else {
@@ -305,7 +302,7 @@ void BasaBasa::exeAttackEnd() {
         }
     }
 
-    JMAVECScaleAdd(&_9C, &mVelocity, &mVelocity, 0.1f);
+    mVelocity.scaleAdd(0.1f, _9C, mVelocity);
     if (MR::isStep(this, 50)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvAttackEndRecover::sInstance);
     } else {
@@ -319,11 +316,11 @@ void BasaBasa::exeAttackEndRecover() {
     }
 
     TVec3f v3;
-    JMAVECScaleAdd(&_9C, &mGravity, &v3, -0.5f);
+    v3.scaleAdd(-0.5f, _9C, mGravity);
     v3.negate();
     MR::normalize(&v3);
     if (MR::getBckFrame(this) >= 116.0f) {
-        JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 0.3f);
+        mVelocity.scaleAdd(0.3f, v3, mVelocity);
     }
 
     if (MR::isBckStopped(this)) {
@@ -349,7 +346,7 @@ void BasaBasa::exeHitBack() {
         if (MR::isNearZero(v3)) {
             v3.set(-mGravity);
         }
-        JMAVECScaleAdd(&v3, &mVelocity, &mVelocity, 15.0f);
+        mVelocity.scaleAdd(15.0f, v3, mVelocity);
     }
 
     if (MR::isBckStopped(this)) {
@@ -378,7 +375,7 @@ void BasaBasa::exeComeHome() {
     }
 
     MR::turnDirectionToTargetDegree(this, &_9C, *_B4, 2.55f);
-    JMAVECScaleAdd(&_9C, &mVelocity, &mVelocity, 2.0f);
+    mVelocity.scaleAdd(2.0f, _9C, mVelocity);
     tuneHeight();
     if (isNearTarget(300.0f)) {
         if (_EC) {
@@ -448,7 +445,7 @@ void BasaBasa::exeStun() {
         MR::startSound(this, "SE_EV_BASABASA_DAMAGE");
     }
 
-    JMAVECScaleAdd(&mGravity, &mVelocity, &mVelocity, 1.0f);
+    mVelocity.scaleAdd(1.0f, mGravity, mVelocity);
     if (MR::isBckStopped(this)) {
         setNerve(&NrvBasaBasa::BasaBasaNrvChase::sInstance);
     }
@@ -457,7 +454,7 @@ void BasaBasa::exeStun() {
 void BasaBasa::initAfterPlacement() {
     MR::trySetMoveLimitCollision(this);
     TVec3f v4;
-    JMAVECScaleAdd(&mGravity, &mPosition, &v4, 20.0f);
+    v4.scaleAdd(20.0f, mGravity, mPosition);
     TVec3f v3;
     v3.scale(-30.0f, mGravity);
     _EC = MR::getFirstPolyOnLineToMap(&mPosition, nullptr, v4, v3);
@@ -541,9 +538,8 @@ void BasaBasa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             v10.sub(mPosition, pReceiver->mHost->mPosition);
             MR::normalizeOrZero(&v10);
             if (mVelocity.dot(v10) < 0.0f) {
-                TVec3f* velocityPtr = &mVelocity;
-                f32 dot = v10.dot(mVelocity);
-                JMAVECScaleAdd(&v10, velocityPtr, velocityPtr, -dot);
+                const TVec3f& vel = mVelocity;
+                mVelocity.scaleAdd(-v10.dot(vel), v10, vel);
             }
         }
     }
@@ -609,7 +605,7 @@ bool BasaBasa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
         TVec3f v7;
         v7.sub(mPosition, pSender->mHost->mPosition);
         MR::normalizeOrZero(&v7);
-        JMAVECScaleAdd(&v7, &mVelocity, &mVelocity, 1.5f);
+        mVelocity.scaleAdd(1.5f, v7, mVelocity);
         return true;
     }
 
@@ -736,9 +732,8 @@ void BasaBasa::controlVelocity() {
     TVec3f v14;
     v14.scale(v3, v15);
     v14.scale(0.5f);
-    TVec3f* velocity = &mVelocity;
-    f32 v4 = v15.dot(*velocity);
-    JMAVECScaleAdd(&v15, velocity, velocity, -v4);
+    const TVec3f& vel = mVelocity;
+    mVelocity.scaleAdd(-v15.dot(vel), v15, vel);
     mVelocity.add(v14);
     f32 v5 = 0.95f;
     if (isNerve(&NrvBasaBasa::BasaBasaNrvAttackEnd::sInstance)) {
@@ -762,11 +757,7 @@ void BasaBasa::controlVelocity() {
     }
 
     if (mVelocity.length() > v6) {
-        TVec3f* velocityPtr = &mVelocity;
-        f32 sqr = velocityPtr->squared();
-        if (sqr <= 0.0000038146973f) {
-            velocityPtr->scale(v6 * JGeometry::TUtil< f32 >::inv_sqrt(sqr));
-        }
+        mVelocity.setLength(v6);
     } else {
         if (MR::isNearZero(mVelocity)) {
             mVelocity.zero();
@@ -791,7 +782,7 @@ void BasaBasa::tuneHeight() {
             TVec3f v4;
             v4.set< f32 >(v5);
             MR::normalize(&v4);
-            JMAVECScaleAdd(&v4, &mVelocity, &mVelocity, 2.0f);
+            mVelocity.scaleAdd(2.0f, v4, mVelocity);
         }
     }
 }

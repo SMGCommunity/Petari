@@ -1258,7 +1258,7 @@ config.libs = [
             ),
             Object(NonMatching, "Game/Enemy/Teresa.cpp"),
             Object(NonMatching, "Game/Enemy/TeresaWater.cpp"),
-            Object(NonMatching, "Game/Enemy/TerritoryMover.cpp"),
+            Object(Matching, "Game/Enemy/TerritoryMover.cpp"),
             Object(NonMatching, "Game/Enemy/Unizo.cpp"),
             Object(NonMatching, "Game/Enemy/UnizoLauncher.cpp"),
             Object(
@@ -1775,7 +1775,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/WarpPod.cpp"),
             Object(NonMatching, "Game/MapObj/WatchTowerRotateStep.cpp"),
             Object(NonMatching, "Game/MapObj/WaterfallCaveCover.cpp"),
-            Object(NonMatching, "Game/MapObj/WaterLeakPipe.cpp"),
+            Object(Matching, "Game/MapObj/WaterLeakPipe.cpp"),
             Object(NonMatching, "Game/MapObj/WaterPressure.cpp"),
             Object(NonMatching, "Game/MapObj/WaterPressureBullet.cpp"),
             Object(Matching, "Game/MapObj/WaterPressureBulletHolder.cpp"),

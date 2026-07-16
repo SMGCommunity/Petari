@@ -196,7 +196,7 @@ namespace MR {
         TVec3f* stack_c = a1;
         MR::calcUpVec(&stack_8, pActor);
 
-        JMAVECScaleAdd((Vec*)&stack_8, (Vec*)&pActor->mPosition, (Vec*)stack_c, a3);
+        stack_c->scaleAdd(a3, stack_8, pActor->mPosition);
     }
 
     void calcVecToPlayerH(TVec3f* pToPlayerHVec, const LiveActor* pActor, const TVec3f* a3) {
@@ -261,14 +261,8 @@ namespace MR {
     }
 
     bool isFaceToTargetHorizontalDegree(const LiveActor* pActor, const TVec3f& a2, const TVec3f& a3, f32 a4) {
-        TVec3f stack_20;
-        TVec3f stack_14;
-
-        TVec3f stack_8 = a2 - pActor->mPosition;
-
-        const TVec3f* grav = &pActor->mGravity;
-        JMAVECScaleAdd((Vec*)grav, (Vec*)&stack_8, (Vec*)&stack_20, -pActor->mGravity.dot(stack_8));
-        JMAVECScaleAdd((Vec*)grav, (Vec*)&a3, (Vec*)&stack_14, -pActor->mGravity.dot(a3));
+        TVec3f stack_20 = (a2 - pActor->mPosition).killElement(pActor->mGravity);
+        TVec3f stack_14 = a3.killElement(pActor->mGravity);
 
         return MR::isNearAngleDegree(stack_20, stack_14, a4);
     }
@@ -537,15 +531,13 @@ namespace MR {
     }
 
     void calcVelocityMoveToDirectionHorizon(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4) {
-        TVec3f* pGravity = const_cast< TVec3f* >(&pActor->mGravity);
-        a1->rejection(a3, *pGravity);
+        a1->killElement(a3, pActor->mGravity);
         normalizeOrZero(a1);
         a1->scale(a4);
     }
 
     void calcVelocityMoveToDirectionHorizon(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
-        TVec3f* pGravity = const_cast< TVec3f* >(&pActor->mGravity);
-        a1->rejection(a3, *pGravity);
+        a1->killElement(a3, pActor->mGravity);
         f32 stack_8;
         separateScalarAndDirection(&stack_8, a1, *a1);
         a1->scale(getInterpolateValue(normalize(stack_8, a6, a7), a4, a5));
@@ -554,16 +546,14 @@ namespace MR {
     void calcVelocityMoveToDirection(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4);
         if (isOnGround(pActor)) {
-            const TVec3f* pGroundNormal = getGroundNormal(pActor);
-            JMAVECScaleAdd((Vec*)pGroundNormal, (Vec*)a1, (Vec*)a1, -pGroundNormal->dot(*a1));
+            a1->orthogonalize(*getGroundNormal(pActor));
         }
     }
 
     void calcVelocityMoveToDirection(TVec3f* a1, const LiveActor* pActor, const TVec3f& a3, f32 a4, f32 a5, f32 a6, f32 a7) {
         calcVelocityMoveToDirectionHorizon(a1, pActor, a3, a4, a5, a6, a7);
         if (isOnGround(pActor)) {
-            const TVec3f* pGroundNormal = getGroundNormal(pActor);
-            JMAVECScaleAdd((Vec*)pGroundNormal, (Vec*)a1, (Vec*)a1, -pGroundNormal->dot(*a1));
+            a1->orthogonalize(*getGroundNormal(pActor));
         }
     }
 
@@ -656,7 +646,7 @@ namespace MR {
 
     void addVelocityToGravityOrGround(LiveActor* pActor, f32 a2) {
         if (isBindedGround(pActor)) {
-            JMAVECScaleAdd((Vec*)getGroundNormal(pActor), (Vec*)&(pActor->mVelocity), (Vec*)&(pActor->mVelocity), -a2);
+            pActor->mVelocity.scaleAdd(-a2, *getGroundNormal(pActor), pActor->mVelocity);
         } else {
             addVelocityToGravity(pActor, a2);
         }
@@ -734,7 +724,7 @@ namespace MR {
 
     void addVelocitySeparateHV(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4) {
         TVec3f stack_2c;
-        stack_2c.rejection(a2, pActor->mGravity);
+        stack_2c.killElement(a2, pActor->mGravity);
         normalizeOrZero(&stack_2c);
         TVec3f stack_20 = stack_2c * a3 - pActor->mGravity * a4;
         pActor->mVelocity.add(stack_20);
@@ -742,7 +732,7 @@ namespace MR {
 
     void setVelocitySeparateHV(LiveActor* pActor, const TVec3f& a2, f32 a3, f32 a4) {
         TVec3f stack_2c;
-        stack_2c.rejection(a2, pActor->mGravity);
+        stack_2c.killElement(a2, pActor->mGravity);
         normalizeOrZero(&stack_2c);
         TVec3f stack_20 = stack_2c * a3 - pActor->mGravity * a4;
         pActor->mVelocity.set(stack_20);
@@ -758,7 +748,7 @@ namespace MR {
 
         TVec3f* pVelocity = &pActor->mVelocity;
         TVec3f stack_8;
-        stack_8.rejection(pActor->mVelocity, a2);
+        stack_8.killElement(pActor->mVelocity, a2);
         stack_8.scale(a3);
         pVelocity->scale(a2.dot(pActor->mVelocity), a2);
         pVelocity->add(stack_8);
@@ -784,14 +774,13 @@ namespace MR {
         }
     }
 
-    // Minor mismatch: Wrong register used for pVelocity
     void killVelocityToTarget(LiveActor* pActor, const TVec3f& a2) {
         TVec3f stack_8;
         stack_8.sub(a2, pActor->mPosition);
         normalize(&stack_8);
         if (pActor->mVelocity.dot(stack_8) > 0.0f) {
             TVec3f* pVelocity = &pActor->mVelocity;
-            pVelocity->rejection(*pVelocity, stack_8);
+            pActor->mVelocity.killElement(*pVelocity, stack_8);
         }
     }
 
@@ -896,7 +885,7 @@ namespace MR {
         }
         TVec3f* pVelocity = &pActor->mVelocity;
         TVec3f* pGravThenVel = &pActor->mGravity;
-        stack_38.rejection(*pVelocity, *pGravThenVel);
+        stack_38.killElement(*pVelocity, *pGravThenVel);
         stack_2c.scale(pGravThenVel->dot(*pVelocity), *pGravThenVel);
         if (isOnGround(pActor)) {
             stack_38.scale(groundedScalar);
@@ -910,7 +899,7 @@ namespace MR {
         if (isOnGround(pActor)) {
             TVec3f stack_20(*getGroundNormal(pActor));
             TVec3f* pVelocity2 = &pActor->mVelocity;
-            stack_38.rejection(pActor->mVelocity, stack_20);
+            stack_38.killElement(*pVelocity2, stack_20);
             if (stack_38.squared() < a6 * a6) {
                 pVelocity2->scale(stack_20.dot(pActor->mVelocity), stack_20);
             }
@@ -925,14 +914,13 @@ namespace MR {
         addVelocityJump(pActor, a3);
     }
 
-    // Minor mismatch: Two instructions swapped in rejection
     bool sendMsgPushAndKillVelocityToTarget(LiveActor* pActor, HitSensor* pSensor1, HitSensor* pSensor2) {
         if (sendMsgPush(pSensor1, pSensor2)) {
             TVec3f stack_8 = pSensor2->mPosition - pSensor1->mPosition;
             normalizeOrZero(&stack_8);
             if (pActor->mVelocity.dot(stack_8) < 0.0f) {
                 TVec3f* pVelocity = &pActor->mVelocity;
-                pVelocity->rejection(*pVelocity, stack_8);
+                pActor->mVelocity.killElement(*pVelocity, stack_8);
             }
             return true;
         }
@@ -1024,10 +1012,10 @@ namespace MR {
         turnVecToVecCosOnPlane(a2, stack_8, pActor->mGravity, cosDegree(a4));
     }
 
-    void turnDirectionToTargetUseGroundNormalDegree(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
+    bool turnDirectionToTargetUseGroundNormalDegree(const LiveActor* pActor, TVec3f* a2, const TVec3f& a3, f32 a4) {
         TVec3f stack_8 = a3 - pActor->mPosition;
         a4 = cosDegree(a4);
-        turnVecToVecCosOnPlane(a2, stack_8, isBindedGround(pActor) ? *getGroundNormal(pActor) : (pActor->mGravity), a4);
+        return turnVecToVecCosOnPlane(a2, stack_8, isBindedGround(pActor) ? *getGroundNormal(pActor) : (pActor->mGravity), a4);
     }
 
     void turnDirectionToPlayerDegree(const LiveActor* pActor, TVec3f* a2, f32 a3) {
@@ -1095,7 +1083,7 @@ namespace MR {
         } else {
             stack_8.set(pActor->mGravity);
         }
-        JMAVECScaleAdd((Vec*)&stack_8, (Vec*)a2, (Vec*)a2, -stack_8.dot(*a2));
+        a2->orthogonalize(stack_8);
         normalize(a2);
     }
 

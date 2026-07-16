@@ -202,7 +202,7 @@ void SearchBeamer::exeBeamAim() {
     TVec3f up;
     MR::getPlayerUpVec(&up);
 
-    JMAVECScaleAdd(&up, MR::getPlayerCenterPos(), &v14, -20.0f);
+    v14.scaleAdd(-20.0f, up, *MR::getPlayerCenterPos());
     TVec3f v13;
     v13.sub(v14, mPosition);
     MR::normalize(&v13);
@@ -212,7 +212,7 @@ void SearchBeamer::exeBeamAim() {
     v11.sub(v12, mBeamEnd);
     MR::normalizeOrZero(&v11);
     TVec3f v10;
-    JMAVECScaleAdd(&v11, &mBeamEnd, &v10, _138);
+    v10.scaleAdd(_138, v11, mBeamEnd);
     _94.sub(v10, mPosition);
     MR::normalize(&_94);
     TVec3f v9;
@@ -383,7 +383,7 @@ void SearchBeamer::updateHitSensor(HitSensor* pSensor) {
     TVec3f v7;
     TVec3f up;
     MR::getPlayerUpVec(&up);
-    v7.scaleAdd(up, *MR::getPlayerCenterPos(), -20.0f);
+    v7.scaleAdd(-20.0f, up, *MR::getPlayerCenterPos());
     MR::calcPerpendicFootToLineInside(&pSensor->mPosition, v7, mPosition, mBeamEnd);
 }
 
@@ -474,7 +474,7 @@ void SearchBeamer::initBeamPos() {
 void SearchBeamer::reformDirection(bool a1) {
     if (_94.dot(_A0) != 0.0f) {
         TVec3f v8;
-        _A0.rejection(_94, v8);
+        v8.killElement2(_94, _A0);
         MR::normalize(&v8);
         f32 deg = a1 ? 15.0f : 3.0f;
         MR::turnVecToVecDegree(&_94, _94, v8, deg, TVec3f(0, 1, 0));
@@ -486,27 +486,24 @@ void SearchBeamer::bowToPlayer() {
     TVec3f v6;
     MR::getPlayerUpVec(&v6);
     TVec3f v12;
-    JMAVECScaleAdd(v6, MR::getPlayerCenterPos(), &v12, -20.0f);
+    v12.scaleAdd(-20.0f, v6, *MR::getPlayerCenterPos());
     TVec3f v11;
     v11.sub(v12, mPosition);
-    _A0.rejection(_A0, v11);
+    v11.orthogonalize2(_A0);
     MR::normalize(&v11);
-    TVec3f v10;
-    v10.negate(_A0);
-    MR::turnVecToVecDegree(&v11, v11, v10, 35.0f, TVec3f(0, 1, 0));
+    MR::turnVecToVecDegree(&v11, v11, -_A0, 35.0f, TVec3f(0, 1, 0));
     MR::turnVecToVecDegree(&_94, _94, v11, 3.0f, TVec3f(0, 1, 0));
     TVec3f v9;
     MR::turnVecToPlane(&v9, _94, _A0);
     MR::clampVecAngleDeg(&_94, v9, 35.0f);
 }
 
-// TODO -- float issues
 bool SearchBeamer::checkBeamDistiny(TVec3f* a1, TVec3f a2) const {
     TVec3f v12;
     v12.scale(_140, a2);
 
     if (!MR::getFirstPolyOnLineToMap(a1, nullptr, mPosition, v12)) {
-        JMathInlineVEC::PSVECAdd(&mPosition, &v12, a1);
+        a1->add(v12, mPosition);
         return false;
     }
 

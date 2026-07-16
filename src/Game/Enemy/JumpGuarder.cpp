@@ -47,9 +47,7 @@ void JumpEmitter::updateEventCamera() {
             mMultEventCamera->nextForce();
         }
 
-        f32 dist = JMathInlineVEC::PSVECSquareDistance(&_C4, MR::getPlayerCenterPos());
-
-        if (6250000.0f < dist || MR::isOnGroundPlayer() || MR::isPlayerInRush()) {
+        if (6250000.0f < _C4.squared(*MR::getPlayerCenterPos()) || MR::isOnGroundPlayer() || MR::isPlayerInRush()) {
             endEventCamera();
         }
     }

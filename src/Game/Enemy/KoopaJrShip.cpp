@@ -447,9 +447,7 @@ void KoopaJrShip::emitDamageHitEffect() {
     v7.identity();
     TVec3f up;
     MR::calcUpVec(&up, this);
-    TVec3f v5;
-    JMathInlineVEC::PSVECNegate(&_E0, &v5);
-    MR::makeMtxSideUpPos(&v7, v5, up, _D4);
+    MR::makeMtxSideUpPos(&v7, -_E0, up, _D4);
     MR::emitEffectHit(this, v7, "DamageFire");
     MR::startSound(this, "SE_BM_KOOPAJR_SHIP_IGNIT");
 }

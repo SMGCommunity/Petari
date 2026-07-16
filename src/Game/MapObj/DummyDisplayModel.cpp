@@ -149,7 +149,6 @@ void DummyDisplayModel::calcAndSetBaseMtx() {
     TPos3f* m = (TPos3f*)getBaseMtx();
 
     TVec3f v19 = mModelInfo->_4;
-    // JMathInlineVEC::PSVECNegate(mModelInfo->_4, &v19);
     PSMTXMultVec((MtxPtr)m, -v19, &mPosition);
     m->setTrans(mPosition);
 

@@ -125,10 +125,7 @@ void TicoRail::exeMoveSign() {
     }
 
     f32 rate = MR::calcNerveRate(this, MR::getBckFrameMax(this));
-    const TVec3f* railDirection = &MR::getRailDirection(this);
-    TVec3f reversedDir;
-    JMathInlineVEC::PSVECNegate(railDirection, &reversedDir);
-    MR::blendVec(&_8C, reversedDir, MR::getRailDirection(this), rate);
+    MR::blendVec(&_8C, -MR::getRailDirection(this), MR::getRailDirection(this), rate);
 
     if (MR::isBckStopped(this)) {
         setNerve(&NrvTicoRail::TicoRailNrvMove::sInstance);
@@ -141,7 +138,7 @@ void TicoRail::exeMove() {
     }
 
     MR::moveCoordAndFollowTrans(this, MR::calcNerveValue(this, 0, 200.0f, 15.0f));
-    _8C.set< f32 >(MR::getRailDirection(this));
+    _8C.set(MR::getRailDirection(this));
 
     if (isGreaterEqualStepAndRandom(::sStepForMove)) {
         setNerve(&NrvTicoRail::TicoRailNrvStop::sInstance);

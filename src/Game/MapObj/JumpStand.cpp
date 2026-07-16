@@ -98,7 +98,7 @@ void JumpStand::exeHipDropBound() {
         f32 v2 = (6.0f - MR::calcNerveEaseOutRate(this, 15));
         TVec3f v3;
         MR::calcUpVec(&v3, this);
-        JMAVECScaleAdd(&v3, &mBindedActor->mPosition, &mBindedActor->mPosition, -v2);
+        mBindedActor->mPosition.scaleAdd(-v2, v3, mBindedActor->mPosition);
     }
 
     if (MR::isStep(this, 15)) {
@@ -222,7 +222,7 @@ void JumpStand::endBindAndShootUp(f32 v1, JumpType type) {
         if (type == UNK_2) {
             MR::calcUpVec(&v28, this);
         } else {
-            JMathInlineVEC::PSVECNegate(&mGravity, &v28);
+            v28.negate(mGravity);
         }
 
         v28.x *= v1;
@@ -252,7 +252,7 @@ void JumpStand::endBindAndShootUp(f32 v1, JumpType type) {
             MR::calcPlayerWorldPadDir(&v26, MR::getSubPadStickX(0), MR::getSubPadStickY(0));
             TVec3f v25;
             v25.scale(3.0f * v14, v26);
-            JMAVECScaleAdd(&v27, &v25, &v25, -v27.dot(v25));
+            v25.orthogonalize(v27);
             v28.add(v25);
         }
 

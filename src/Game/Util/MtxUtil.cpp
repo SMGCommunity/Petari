@@ -327,15 +327,15 @@ namespace MR {
 
     void flattenMtx(MtxPtr dst, MtxPtr src, const TVec3f& rNormal) {
         TVec3f axisX, axisY, axisZ;
-        ((TRot3f*)src)->getXDir(axisX);
-        ((TRot3f*)src)->getYDir(axisY);
-        ((TRot3f*)src)->getZDir(axisZ);
+        MR::extractMtxXDir(src, &axisX);
+        MR::extractMtxYDir(src, &axisY);
+        MR::extractMtxZDir(src, &axisZ);
 
-        JMAVECScaleAdd(&rNormal, &axisX, &axisX, -rNormal.dot(axisX));
-        JMAVECScaleAdd(&rNormal, &axisY, &axisY, -rNormal.dot(axisY));
-        JMAVECScaleAdd(&rNormal, &axisZ, &axisZ, -rNormal.dot(axisZ));
+        axisX.orthogonalize(rNormal);
+        axisY.orthogonalize(rNormal);
+        axisZ.orthogonalize(rNormal);
 
-        ((TRot3f*)dst)->setXYZDir(axisX, axisY, axisZ);
+        MR::setMtxAxisXYZ(dst, axisX, axisY, axisZ);
     }
 
     void flattenMtx(MtxPtr mtx, const TVec3f& rNormal) {

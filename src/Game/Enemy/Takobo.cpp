@@ -48,7 +48,7 @@ Takobo::Takobo(const char* pName) : LiveActor(pName), _8C(0), _90(0, 0, 1), _A0(
 
 void Takobo::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    _A4.set< f32 >(mPosition);
+    _A4.set(mPosition);
     s32 arg = -1;
     MR::getJMapInfoArg0NoInit(rIter, &arg);
 
@@ -63,16 +63,14 @@ void Takobo::init(const JMapInfoIter& rIter) {
     MR::connectToSceneEnemy(this);
 
     TPos3f mtx;
-    mtx.setInline(getBaseMtx());
+    mtx.set(getBaseMtx());
     TVec3f zDir;
     mtx.getZDir(zDir);
 
     TVec3f stack_24;
-    stack_24.set< f32 >(mtx(0, 1), mtx(1, 1), mtx(2, 1));
+    mtx.getYDir(stack_24);
 
-    TVec3f stack_18;
-    JMathInlineVEC::PSVECNegate(&stack_24, &stack_18);
-    mGravity.set< f32 >(stack_18);
+    mGravity.set(-stack_24);
 
     s32 dir = -1;
     MR::getJMapInfoArg1NoInit(rIter, &dir);

@@ -256,7 +256,7 @@ void BigBubble::generate(const TVec3f& rPos, const TVec3f& rUp, f32 volume, bool
     makeActorAppeared();
 
     MR::getRandomVector(&mCoriolisAccel, 1.0f);
-    mCoriolisAccel.rejection(mGravity);
+    mCoriolisAccel.orthogonalize(mGravity);
     MR::onBind(this);
     MR::offCalcGravity(this);
     mGravity.set(-rUp);
@@ -894,7 +894,7 @@ void BigBubble::addDeformVelocityRebound() {
 
 void BigBubble::addCoriolisAccel() {
     MR::rotateVecDegree(&mCoriolisAccel, mGravity, 3.0f);
-    mCoriolisAccel.rejection(mGravity);
+    mCoriolisAccel.orthogonalize(mGravity);
     if (MR::isNearZero(mCoriolisAccel)) {
         MR::getRandomVector(&mCoriolisAccel, 1.0f);
     }

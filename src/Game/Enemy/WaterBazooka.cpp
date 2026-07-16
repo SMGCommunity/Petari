@@ -416,7 +416,7 @@ void WaterBazooka::exeDemoCrackCapsule() {
         TVec3f starPieceSpawnPos;
         TVec3f up;
         MR::calcUpVec(&up, this);
-        JMAVECScaleAdd(&up, &mPosition, &starPieceSpawnPos, 600.0f);
+        starPieceSpawnPos.scaleAdd(600.0f, up, mPosition);
         MR::appearStarPiece(this, starPieceSpawnPos, 8, 25.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::validateCollisionParts(mCapsule);
@@ -461,7 +461,7 @@ void WaterBazooka::exeDemoAnger() {
         TVec3f starPieceSpawnPos;
         TVec3f up;
         MR::calcUpVec(&up, this);
-        JMAVECScaleAdd(&up, &mPosition, &starPieceSpawnPos, 600.0f);
+        starPieceSpawnPos.scaleAdd(600.0f, up, mPosition);
         MR::appearStarPiece(this, starPieceSpawnPos, 16, 25.0f, 40.0f, false);
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
         MR::validateCollisionParts(mCapsule);
@@ -706,7 +706,7 @@ bool WaterBazooka::aimAtMario() {
     mBaseMtx.getTrans(cannonPos);
 
     TVec3f aimPos;
-    aimPos.scaleAdd(-mGravity, *MR::getPlayerPos(), 100.0f);
+    aimPos.scaleAdd(100.0f, -mGravity, *MR::getPlayerPos());
 
     TVec3f aim;
     aim.sub(aimPos, cannonPos);
@@ -963,7 +963,7 @@ bool WaterBazooka::tryJumpBackPlayerFromBazooka() const {
     TVec3f jumpDir;
     jumpDir.sub(dropPoint, *MR::getPlayerPos());
     TVec3f rej;
-    rej.rejection(jumpDir, mGravity);
+    rej.killElement(jumpDir, mGravity);
     TVec3f rej2 = -rej;
 
     MR::offBind(MR::getPlayerDemoActor());
@@ -990,7 +990,7 @@ void WaterBazooka::calcNearDropPoint(TVec3f* pPos) const {
 
     TVec3f toPlayer;
     toPlayer.sub(*MR::getPlayerPos(), mPosition);
-    toPlayer.rejection(toPlayer, mGravity);
+    toPlayer.orthogonalize(mGravity);
     MR::normalizeOrZero(&toPlayer);
 
     if (MR::isNearZero(toPlayer)) {
@@ -998,7 +998,7 @@ void WaterBazooka::calcNearDropPoint(TVec3f* pPos) const {
         toPlayer.negate();
     }
 
-    pPos->scaleAdd(toPlayer, mPosition, 800.0f);
+    pPos->scaleAdd(800.0f, toPlayer, mPosition);
 }
 
 void WaterBazooka::calcGunPointFromCannon(TPos3f* pMtx) {
@@ -1007,7 +1007,7 @@ void WaterBazooka::calcGunPointFromCannon(TPos3f* pMtx) {
     mtx.getXDir(side);
     TVec3f pos;
     mtx.getTrans(pos);
-    JMAVECScaleAdd(&side, &pos, &pos, 550.0f);
+    pos.scaleAdd(550.0f, side, pos);
     pMtx->setInline(mtx);
     TVec3f up;
     mtx.getYDir(up);

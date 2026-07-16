@@ -1998,8 +1998,7 @@ namespace MR {
     void calcWallNormalHorizontal(TVec3f* pVec, const LiveActor* pActor) {
         const TVec3f* normal = getWallNormal(pActor);
         const TVec3f* grav = &pActor->mGravity;
-        f32 dot = grav->dot(*normal);
-        JMAVECScaleAdd(grav, normal, pVec, -dot);
+        pVec->killElement(*normal, *grav);
     }
 
     f32 calcHitPowerToGround(const LiveActor* pActor) {
@@ -2208,7 +2207,7 @@ namespace MR {
         calcGravityVector(pActor, pActor->mPosition, &gravity, nullptr, 0);
 
         if (!isNearZero(gravity)) {
-            pActor->mGravity = gravity;
+            pActor->mGravity.set(gravity);
         }
     }
 
@@ -2217,7 +2216,7 @@ namespace MR {
         calcGravityVector(pActor, rPos, &gravity, nullptr, 0);
 
         if (!isNearZero(gravity)) {
-            pActor->mGravity = gravity;
+            pActor->mGravity.set(gravity);
         }
     }
 
@@ -2235,9 +2234,7 @@ namespace MR {
 
         if (isBindedGround(pActor)) {
             const TVec3f* normal = pActor->mBinder->mGroundInfo.mParentTriangle.getNormal(0);
-            TVec3f bindGravity;
-            JMathInlineVEC::PSVECNegate(normal, &bindGravity);
-            pActor->mGravity.set(bindGravity);
+            pActor->mGravity.set(-*normal);
         }
     }
 

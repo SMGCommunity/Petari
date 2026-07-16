@@ -81,7 +81,7 @@ void Snakehead::initAfterPlacement() {
     headPos -= MR::getRailPointPosStart(this);
     headPos += MR::getRailPointPosEnd(this);  // TODO: this is probably single-lined in scaleadd
     TVec3f v7;
-    JMAVECScaleAdd(&mGravity, &headPos, &v7, -50.0f);
+    v7.scaleAdd(-50.0f, mGravity, headPos);
     MR::getFirstPolyOnLineToMapExceptSensor(&_C4, nullptr, v7, mGravity * 1000.0f, getSensor("body"));
     _94.set(MR::getJointMtx(this, "Body04"));
 }
@@ -152,10 +152,8 @@ void Snakehead::calcAndSetBaseMtx() {
     TVec3f endPntDir;
     MR::calcRailEndPointDirection(&endPntDir, this);
     TVec3f stack_14;
-    TVec3f stack_8;
-    JMathInlineVEC::PSVECNegate(&mGravity, &stack_8);
     TPos3f frontUp;
-    MR::makeMtxFrontUpPos(&frontUp, endPntDir, stack_8, mPosition);
+    MR::makeMtxFrontUpPos(&frontUp, endPntDir, -mGravity, mPosition);
     MR::setBaseTRMtx(this, frontUp);
     JMathInlineVEC::PSVECMultiply(mController->_C, mScale, &stack_14);
     MR::setBaseScale(this, stack_14);

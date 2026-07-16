@@ -538,9 +538,8 @@ bool HammerHeadPackun::isChance() const {
 
 bool HammerHeadPackun::calcPlayerDir(TVec3f* pPos) const {
     pPos->set(*MR::getPlayerPos() - mPosition);
-    f32 dot = _94.dot(*pPos);
-    JMAVECScaleAdd(_94, pPos, pPos, -dot);
-    if (MR::isNearZero(*pPos, 0.001f)) {
+    pPos->orthogonalize2(_94);
+    if (MR::isNearZero(*pPos)) {
         return false;
     }
 
@@ -576,8 +575,7 @@ void HammerHeadPackun::turnToAttackVec(s32 rate) {
 }
 
 void HammerHeadPackun::verticalizeFrontVec() {
-    f32 dot = _94.dot(_A0);
-    JMAVECScaleAdd(&_94, &_A0, &_A0, -dot);
+    _A0.orthogonalize2(_94);
     MR::normalize(&_A0);
 }
 

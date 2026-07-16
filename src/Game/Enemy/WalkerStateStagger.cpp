@@ -64,7 +64,7 @@ void WalkerStateStagger::exeStagger() {
     }
 
     TVec3f dir;
-    dir.rejection(mVelH, getHost()->mGravity);
+    dir.killElement(mVelH, getHost()->mGravity);
 
     if (!MR::isNearZero(dir)) {
         MR::normalize(dir, &mVelH);
@@ -105,7 +105,7 @@ void WalkerStateStagger::reboundWall() {
 
     if (MR::calcReboundVelocity(&getHost()->mVelocity, *MR::getWallNormal(getHost()), 0.9f)) {
         TVec3f velH;
-        velH.rejection(getHost()->mVelocity, getHost()->mGravity);
+        velH.killElement(getHost()->mVelocity, getHost()->mGravity);
         if (!MR::normalizeOrZero(&velH)) {
             mVelH.set(velH);
         }

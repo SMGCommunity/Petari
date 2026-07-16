@@ -371,9 +371,7 @@ void DinoPackun::calcAndSetBaseMtx() {
 }
 
 void DinoPackun::updatePose() {
-    TVec3f* grav = &mGravity;
-    f32 v3 = mGravity.dot(_E8);
-    JMAVECScaleAdd(grav, &_E8, &_E8, -v3);
+    _E8.orthogonalize(mGravity);
     if (MR::isNearZero(_E8)) {
         _BC.getZDir(_E8);
     } else {
@@ -441,7 +439,7 @@ void DinoPackun::updateCameraInfo() {
         TVec3f v6(0, 0, 0);
         TVec3f v5;
         _BC.getYDir(v5);
-        JMAVECScaleAdd(&v5, &mPosition, &v6, 300.0f);
+        v6.scaleAdd(300.0f, v5, mPosition);
 
         if (_108 > 0.0f) {
             TVec3f v4;

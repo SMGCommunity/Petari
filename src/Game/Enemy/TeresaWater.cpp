@@ -46,7 +46,7 @@ void TeresaWater::init(const JMapInfoIter& rIter) {
     f32 arg0 = 800.0f;
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
     _AC.set(mPosition);
-    JMAVECScaleAdd(&_94, &_AC, &_A0, arg0);
+    _A0.scaleAdd(arg0, _94, _AC);
     _B8 = &_A0;
     MR::initShadowVolumeCylinder(this, 100.0f);
     initNerve(&NrvTeresaWater::TeresaWaterNrvMove::sInstance);
@@ -121,7 +121,7 @@ void TeresaWater::control() {
 void TeresaWater::calcAndSetBaseMtx() {
     TVec3f up;
     MR::calcUpVec(&up, this);
-    JMathInlineVEC::PSVECNegate(&up, &up);
+    up.negate();
     TPos3f mtx;
     MR::calcMtxFromGravityAndZAxis(&mtx, this, up, _94);
     MR::setBaseTRMtx(this, mtx);

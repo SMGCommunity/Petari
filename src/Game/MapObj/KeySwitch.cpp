@@ -220,8 +220,7 @@ bool KeySwitch::tryAvoid() {
     MR::calcUpVec(&up, sensorActor);
     TVec3f thing;
     thing.sub(mPosition, sensorActor->mPosition);
-    TVec3f stack_8;
-    JMAVECScaleAdd(&up, &thing, &stack_8, -up.dot(thing));
+    TVec3f stack_8 = thing.killElement(up);
 
     if (MR::normalizeOrZero(&stack_8)) {
         MR::calcFrontVec(&stack_8, sensorActor);
