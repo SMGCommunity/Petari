@@ -167,9 +167,7 @@ void KoopaFireStairs::exeBreak() {
 void KoopaFireStairs::calcAndSetBaseMtx() {
     TPos3f v5;
     v5.identity();
-    TVec3f v4;
-    JMathInlineVEC::PSVECNegate(&mGravity, &v4);
-    MR::makeMtxFrontUpPos(&v5, _94, v4, mPosition);
+    MR::makeMtxFrontUpPos(&v5, _94, -mGravity, mPosition);
     MR::rotateMtxLocalXDegree(v5, mRotation.x);
     MR::setBaseTRMtx(this, v5);
 }

@@ -688,9 +688,7 @@ void Kuribo::exeBlowDown() {
     }
 
     calcPassiveMovement();
-    TVec3f invVelocity;
-    JMathInlineVEC::PSVECNegate(&mVelocity, &invVelocity);
-    MR::turnDirectionDegree(this, &_B8, invVelocity, 30.0f);
+    MR::turnDirectionDegree(this, &_B8, -mVelocity, 30.0f);
     if (MR::isGreaterStep(this, 30)) {
         kill();
     }

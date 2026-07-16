@@ -121,9 +121,7 @@ bool JumpBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
 
         return true;
     } else if (MR::isMsgPlayerHipDrop(msg)) {
-        TVec3f force;
-        JMathInlineVEC::PSVECNegate(&mGravity, &force);
-        MR::forceJumpPlayer(force);
+        MR::forceJumpPlayer(-mGravity);
         return true;
     } else if (MR::isMsgPlayerSpinAttack(msg)) {
         if (!isNerve(&NrvJumpBeamer::JumpBeamerNrvHopStart::sInstance)) {

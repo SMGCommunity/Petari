@@ -66,13 +66,11 @@ void CollectTico::exeWait() {
 
 void CollectTico::exeCompleteDemo() {
     if (MR::isFirstStep(this)) {
-        mPosition.set< f32 >(*MR::getPlayerPos());
+        mPosition.set(*MR::getPlayerPos());
         MR::calcGravity(this);
 
-        TVec3f v13;
-        JMathInlineVEC::PSVECNegate(&mGravity, &v13);
-        JMAVECScaleAdd(&v13, &mPosition, &_94, 300.0f);
-        mPosition.set< f32 >(_94);
+        JMAVECScaleAdd(&-mGravity, &mPosition, &_94, 300.0f);
+        mPosition.set(_94);
 
         for (s32 i = 0; i < mTicoNum; i++) {
             MR::requestMovementOn(mStrayTicos[i]);

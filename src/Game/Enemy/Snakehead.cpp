@@ -152,10 +152,8 @@ void Snakehead::calcAndSetBaseMtx() {
     TVec3f endPntDir;
     MR::calcRailEndPointDirection(&endPntDir, this);
     TVec3f stack_14;
-    TVec3f stack_8;
-    JMathInlineVEC::PSVECNegate(&mGravity, &stack_8);
     TPos3f frontUp;
-    MR::makeMtxFrontUpPos(&frontUp, endPntDir, stack_8, mPosition);
+    MR::makeMtxFrontUpPos(&frontUp, endPntDir, -mGravity, mPosition);
     MR::setBaseTRMtx(this, frontUp);
     JMathInlineVEC::PSVECMultiply(mController->_C, mScale, &stack_14);
     MR::setBaseScale(this, stack_14);

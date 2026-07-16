@@ -53,7 +53,7 @@ void StinkBugBase::init(const JMapInfoIter& rIter) {
     _A4.set(_8C);
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
-    JMathInlineVEC::PSVECNegate(&upVec, &mGravity);
+    mGravity.negate(upVec);
 }
 
 bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) const {

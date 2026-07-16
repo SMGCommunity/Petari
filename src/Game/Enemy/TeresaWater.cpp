@@ -121,7 +121,7 @@ void TeresaWater::control() {
 void TeresaWater::calcAndSetBaseMtx() {
     TVec3f up;
     MR::calcUpVec(&up, this);
-    JMathInlineVEC::PSVECNegate(&up, &up);
+    up.negate();
     TPos3f mtx;
     MR::calcMtxFromGravityAndZAxis(&mtx, this, up, _94);
     MR::setBaseTRMtx(this, mtx);

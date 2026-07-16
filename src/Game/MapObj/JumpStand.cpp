@@ -222,7 +222,7 @@ void JumpStand::endBindAndShootUp(f32 v1, JumpType type) {
         if (type == UNK_2) {
             MR::calcUpVec(&v28, this);
         } else {
-            JMathInlineVEC::PSVECNegate(&mGravity, &v28);
+            v28.negate(mGravity);
         }
 
         v28.x *= v1;

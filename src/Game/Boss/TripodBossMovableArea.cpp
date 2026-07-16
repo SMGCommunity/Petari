@@ -144,8 +144,7 @@ void TripodBossMovableArea::calcNearLandingPosition(TVec3f* pPos, const TVec3f& 
 }
 
 void TripodBossMovableArea::calcLandingNormal(TVec3f* pNorm, const TVec3f& a2) const {
-    TVec3f norm(a2);
-    norm -= mCenter;
+    TVec3f norm = a2 - mCenter;
     MR::normalizeOrZero(&norm);
     if (MR::isNearZero(norm)) {
         norm = mBaseAxis;
@@ -155,12 +154,10 @@ void TripodBossMovableArea::calcLandingNormal(TVec3f* pNorm, const TVec3f& a2) c
 }
 
 void TripodBossMovableArea::calcLandingFront(TVec3f* pFront, const TVec3f& a2) const {
-    TVec3f v11(a2);
-    v11 -= mCenter;
+    TVec3f v11 = a2 - mCenter;
     MR::normalizeOrZero(&v11);
     TVec3f v10;
-    TVec3f v9;
-    JMathInlineVEC::PSVECNegate(&mBaseAxis, &v9);
+    TVec3f v9 = -mBaseAxis;
     f32 v7 = v11.dot(v9);
     JMAVECScaleAdd(&v11, &v9, &v10, -v7);
     MR::normalizeOrZero(&v10);
