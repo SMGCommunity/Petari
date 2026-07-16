@@ -529,6 +529,11 @@ namespace JGeometry {
             this->mMtx[2][3] = 0.0f;
         }
 
+        inline void identityAndSetTrans(const TVec3f& rSrc) {
+            this->identity();
+            this->setTrans(rSrc);
+        }
+
         void setTR(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {
             this->mMtx[0][0] = a1.x;
             this->mMtx[1][0] = a1.y;
