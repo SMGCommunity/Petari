@@ -116,10 +116,6 @@ namespace NrvMeramera {
     NEW_NERVE(MerameraNrvReadyRestart, Meramera, ReadyRestart);
 }  // namespace NrvMeramera
 
-inline f32 scaleAdd(f32 val, f32 t) {
-    return t + (1.0f - t) * val;
-}
-
 inline bool Meramera::isSensor(const HitSensor* pSensor, const char* pName) const {
     return getSensor(pName) == pSensor;
 }
@@ -534,6 +530,7 @@ bool Meramera::sendMsgElementAttack(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
 bool Meramera::tryWalk() {
+    // FIXME
     if (getNerveStep() > 120) {
         TVec3f randomVec;
         MR::getRandomVector(&randomVec, 1.0f);
@@ -1034,6 +1031,7 @@ void Meramera::exeStartDiving() {
 }
 
 void Meramera::exeDiving() {
+    // FIXME: stack
     if (MR::isFirstStep(this)) {
         mParabolicPath->initFromUpVector(mPosition, _180, _198, 300.0f);
 
@@ -1320,9 +1318,9 @@ void Meramera::addRunawayJumpPower() {
     MR::normalizeOrZero(&vec);
     MR::addRandomVector(&vec, vec, 0.5f * val);
 
-    val = 20.0f * scaleAdd(val, 0.1f);
+    val = 20.0f * MR::lerp(val, 1.0f, 0.1f);
     f32 randomVal = MR::getRandom(45.0f, 900.0f);
-    f32 val2 = scaleAdd(val, 0.2f) * randomVal;
+    f32 val2 = MR::lerp(val, 1.0f, 0.2f) * randomVal;
     addMovingAccel(vec, val, -1.0f);
     mPosition -= mGravity * val2;
 }
