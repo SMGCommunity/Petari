@@ -349,7 +349,7 @@ namespace MR {
         return (a3 < upVec.dot(stack_2c));
     }
 
-    bool isExistPlayerDown(const LiveActor* pActor, f32 a2, f32 a3) {
+    bool isPlayerExistDown(const LiveActor* pActor, f32 a2, f32 a3) {
         TVec3f stack_38 = *getPlayerCenterPos();
         TVec3f upVec;
         calcUpVec(&upVec, pActor);
