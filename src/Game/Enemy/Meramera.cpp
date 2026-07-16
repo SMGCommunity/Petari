@@ -537,7 +537,7 @@ bool Meramera::tryWalk() {
         TVec3f randomVec;
         MR::getRandomVector(&randomVec, 1.0f);
         MR::normalizeOrZero(&randomVec);
-        randomVec.rejection(mGravity);
+        randomVec.killElement(mGravity);
         randomVec *= 200.0f;
         _174 = randomVec + mHomePosition;
 
@@ -971,7 +971,7 @@ void Meramera::exeRunaway() {
             TVec3f vec;
             TVec3f& vec1 = mVelocity;
             TVec3f& vec2 = mGravity;
-            vec.scaleAdd(vec2, vec1, -vec2.dot(vec1));  // Looks like rejection but I can't make it match
+            vec.scaleAdd(-vec2.dot(vec1), vec2, vec1);  // Looks like killElement but I can't make it match
 
             f32 scalar;
             MR::separateScalarAndDirection(&scalar, &vec, vec);
@@ -1305,7 +1305,7 @@ void Meramera::addToTargetMovingAccel(const TVec3f& rVec, f32 f1, f32 f2) {
 void Meramera::addMovingAccel(const TVec3f& rVec, f32 f1, f32 f2) {
     TVec3f vec(mGravity);
     TVec3f vec2;
-    vec2.rejection(rVec, vec);
+    vec2.killElement(rVec, vec);
 
     MR::separateScalarAndDirection(&_1A4, &vec2, vec2);
 
@@ -1329,7 +1329,7 @@ void Meramera::addRunawayJumpPower() {
         vec.set(_180 - mPosition);
 
         TVec3f vec2;
-        vec2.rejection(mGravity, vec);
+        vec2.killElement(mGravity, vec);
 
         val = MR::normalize(vec2.length(), 10.0f, 500.0f);
     } else if (MR::isNearPlayer(this, 1000.0f)) {
@@ -1353,7 +1353,7 @@ void Meramera::addOverWallAccel(const TVec3f& rVec) {
     gravity.set(mGravity);
 
     TVec3f vec;
-    vec.rejection(rVec, gravity);
+    vec.killElement(rVec, gravity);
     MR::normalizeOrZero(&vec);
 
     if (MR::getFirstPolyOnLineToMap(nullptr, nullptr, mPosition, vec * 200.0f) && MR::getShadowNearProjectionLength(this) < 250.0f) {
@@ -1480,7 +1480,7 @@ bool Meramera::findDivingPoint(TVec3f vec, const TVec3f& rVec) {
             _180.set(vec84);
             _198.set(-mGravity);
 
-            _18C.rejection(vec84 - mPosition, _198);
+            _18C.killElement(vec84 - mPosition, _198);
             MR::normalizeOrZero(&_18C);
         }
         break;
