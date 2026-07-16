@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JSupport/JSUList.hpp"
 #include <revolution.h>
 
 class JKRDvdFile;
@@ -16,6 +17,11 @@ struct SYaz0Header {
     u32 length;
 };
 
+class JKRDMCommand {
+    JKRDMCommand();
+    ~JKRDMCommand();
+};
+
 class JKRDvdRipper {
 public:
     enum EAllocDirection {
@@ -30,11 +36,14 @@ public:
     static void* loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch, unsigned long, JKRHeap*, EAllocDirection, unsigned long, int*,
                                unsigned long*);
 
-    static bool isErrorRetry();
+    static bool isErrorRetry(void) {
+        return errorRetry;
+    }
     inline static u32 getSZSBufferSize() {
         return sSZSBufferSize;
     }
 
+    static JSUList< JKRDMCommand > sDvdAsyncList;
     static bool errorRetry;
     static u32 sSZSBufferSize;
 };
