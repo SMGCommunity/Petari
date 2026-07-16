@@ -5,7 +5,9 @@
 #include "JSystem/JUtility/TColor.hpp"
 #include <revolution.h>
 
-void JUTWarningConsole_f(const char*, ...);
+extern "C" void JUTWarningConsole_f(const char*, ...);
+
+extern "C" void JUTReportConsole_f(const char*, ...);
 
 class JUTFont;
 
