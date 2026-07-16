@@ -38,7 +38,7 @@ namespace {
     static const f32 sBinderRadius = 100.0f;
     static const f32 sBinderOffsetY = 100.0f;
     static const f32 sShadowRadius = 80.0f;
-    // static const f32 sTerritoryRadius;
+    static const f32 sTerritoryRadius = 2000.0f;
     static const s32 sStarPieceNum = 3;
     static const s32 sCoinNum = 1;
     static const f32 sPoseLerpRate = 0.3f;
@@ -57,7 +57,7 @@ namespace {
     static const f32 sSearchRadius = 1000.0f;
     static const f32 sWalkSpeedRunAway = 13.0f;
     static const f32 sAnimRateRunAway = 1.0f;
-    static const f32 sSafetyDistance = 2000.0f;
+    static const f32 sSafetyDistance = 800.0f;
     static const s32 sRunAwayRunningTime1 = 15;
     static const s32 sRunAwayRunningTime2 = 30;
     static const s32 sRunAwayRunningTime3 = 60;
@@ -519,7 +519,7 @@ bool Kanina::isPlayerBackward(f32 angle) const {
     TVec3f frontVec;
     MR::calcFrontVec(&frontVec, this);
     angle = angle * 2.0f;
-    return MR::isInSightFanPlayer(this, -frontVec, 800.0f, angle, 30.0f);
+    return MR::isInSightFanPlayer(this, -frontVec, ::sSafetyDistance, angle, 30.0f);
 }
 
 bool Kanina::isStatePossibleToAttack() const {
@@ -720,7 +720,7 @@ void Kanina::exeRunAway() {
     startRunAwayLevelSound();
 
     if (!tryHitWall() && !tryPointing()) {
-        if (::sSafetyDistance < MR::calcDistanceToPlayerH(this)) {
+        if (::sTerritoryRadius < MR::calcDistanceToPlayerH(this)) {
             MR::zeroVelocity(this);
             if ((mType == KaninaType_Red && MR::isHalfProbability()) || mType == KaninaType_Blue) {
                 setNerve(&NrvKanina::HostTypeDig::sInstance);
@@ -751,7 +751,7 @@ void Kanina::exeRunAwayReboundDirection() {
     startRunAwayLevelSound();
 
     if (!tryHitWall() && !tryPointing()) {
-        if (::sSafetyDistance < MR::calcDistanceToPlayer(this)) {
+        if (::sTerritoryRadius < MR::calcDistanceToPlayer(this)) {
             setNerve(&NrvKanina::HostTypeWait::sInstance);
             return;
         }
