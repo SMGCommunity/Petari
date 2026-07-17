@@ -9,8 +9,9 @@ public:
 
     virtual ~JSUOutputStream();
     virtual s32 skip(s32, s8);
+    virtual s32 writeData(const void*, s32) = 0;
 
-    void write(const void*, s32);
+    s32 write(const void*, s32);
 
     inline void writeU8(u8 val) {
         write(&val, sizeof(u8));

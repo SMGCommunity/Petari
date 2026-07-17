@@ -13,6 +13,16 @@ public:
     virtual ~JKRFile() {
     }
 
+    /* vt[03] */ virtual bool open(const char*) = 0;
+    /* vt[04] */ virtual void close() = 0;
+    /* vt[05] */ virtual s32 readData(void*, s32, s32) = 0;
+    /* vt[06] */ virtual s32 writeData(const void*, s32, s32) = 0;
+    /* vt[07] */ virtual s32 getFileSize() const = 0;
+
+    bool isAvailable() const {
+        return mIsAvailable;
+    }
+
     bool mIsAvailable;  // 0x18
 };
 
