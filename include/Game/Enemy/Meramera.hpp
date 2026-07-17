@@ -1,16 +1,12 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class Triangle;
 class AnimScaleController;
 class WalkerStateBindStarPointer;
 class ParabolicPath;
-
-enum { Meramera_FIRE, Meramera_ICE };
-enum { Effect_NULL, Effect_WAIT, Effect_CHASE, Effect_ESCAPE };
-enum { Effect_HEAT = 0x1, Effect_COOLDOWN = 0x2, Effect_COLD = 0x3 };
 
 class Meramera : public LiveActor {
 public:
@@ -139,12 +135,12 @@ public:
     /* 0x198 */ TVec3f _198;
     /* 0x1A4 */ f32 _1A4;
     /* 0x1A8 */ f32 mChaseDistance;
-    /* 0x1AC */ s32 mInitialBehaviour;  // Obj_arg0
+    /* 0x1AC */ s32 mAppearStatus;  // Obj_arg0
     /* 0x1B0 */ s32 mElementType;
     /* 0x1B4 */ s32 mEffectType;
-    /* 0x1B8 */ s32 mBodyEffect;
+    /* 0x1B8 */ s32 mBodyEffectType;
     /* 0x1BC */ s32 mRunawayTimer;
     /* 0x1C0 */ bool mCanDive;
     /* 0x1C1 */ bool _1C1;
-    /* 0x1C2 */ bool mRespawnEnable;  // Obj_arg2
+    /* 0x1C2 */ bool mIsValidRestart;  // Obj_arg2
 };
