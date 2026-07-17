@@ -314,12 +314,12 @@ void PackunPetit::kill() {
 void PackunPetit::calcAndSetBaseMtx() {
     TVec3f up;
     MR::calcUpVec(&up, this);
-    TPos3f mtxUp;
-    mtxUp.identity();
-    MR::makeMtxUpFrontPos(&mtxUp, up, _94, mPosition);
-    TVec3f mult;
-    mult.multPS(mScale, mScaleController->_C);
-    MR::setBaseScale(this, mult);
+    TPos3f mtx;
+    mtx.identity();
+    MR::makeMtxUpFrontPos(&mtx, up, _94, mPosition);
+    MR::setBaseTRMtx(this, mtx);
+    TVec3f scale = mScaleController->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void PackunPetit::control() {

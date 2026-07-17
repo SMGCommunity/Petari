@@ -197,7 +197,8 @@ void OtaKing::control() {
 
 void OtaKing::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
-    MR::setBaseScale(this, mScaleController->_C.mult(mScale));
+    TVec3f scale = mScaleController->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 bool OtaKing::isSensorBodyOrFace(HitSensor* pSensor) {

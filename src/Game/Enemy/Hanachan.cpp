@@ -154,7 +154,7 @@ void HanachanParts::calcAndSetBaseMtx() {
     mtx.setTrans(mPosition);
 
     MR::setBaseTRMtx(this, mtx);
-    MR::setBaseScale(this, mParent->mScaleCtrl->_C.mult(mScale));
+    MR::setBaseScale(this, mParent->mScaleCtrl->_C * mScale);
 }
 
 void HanachanParts::exeWalk() {

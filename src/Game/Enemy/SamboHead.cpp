@@ -453,8 +453,7 @@ void SamboHead::calcAndSetBaseMtx() {
     TPos3f mtx;
     MR::calcMtxFromGravityAndZAxis(&mtx, this, mGravity, _98);
     MR::setBaseTRMtx(this, mtx);
-    TVec3f scale;
-    scale.mul(mScaleController->_C, mScale);
+    TVec3f scale = mScaleController->_C * mScale;
     MR::setBaseScale(this, scale);
 }
 

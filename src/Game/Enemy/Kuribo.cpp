@@ -225,7 +225,8 @@ void Kuribo::control() {
 
 void Kuribo::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _A8);
-    MR::setBaseScale(this, mScaleController->_C.mult(mScale));
+    TVec3f scale = mScaleController->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void Kuribo::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {

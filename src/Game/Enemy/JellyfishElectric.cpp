@@ -119,8 +119,7 @@ void JellyfishElectric::calcAndSetBaseMtx() {
     TPos3f pos;
     MR::makeMtxFrontUpPos(&pos, _98, -mGravity, mPosition);
     MR::setBaseTRMtx(this, pos);
-    TVec3f scale;
-    scale.mul(mController->_C, mScale);
+    TVec3f scale = mController->_C * mScale;
     MR::setBaseScale(this, scale);
 }
 

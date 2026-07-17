@@ -264,6 +264,7 @@ cflags_jsys_j3d = [*cflags_jsys, "-O4,p"]
 
 cflags_jsys_jaudio = [*cflags_jsys, "-ipa file"]
 cflags_jsys_jasdsp = [*cflags_jsys_jaudio, "-func_align 32"]
+cflags_jsys_jpa = [*cflags_jsys, "-ipa file"]
 
 cflags_trk = [
     "-nodefaults",
@@ -561,6 +562,14 @@ def JSys_JAudioLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+def JSys_JParticleLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_jsys_jpa,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
 
 Matching = True  # Object matches and should be linked
 NonMatching = False  # Object does not match and should not be linked
@@ -3250,7 +3259,7 @@ config.libs = [
             Object(NonMatching, "JSystem/JMath/JMATrigonometric.cpp"),
         ],
     ),
-    JSysLib(
+    JSys_JParticleLib(
         "JParticle",
         [
             Object(NonMatching, "JSystem/JParticle/JPAResourceManager.cpp"),

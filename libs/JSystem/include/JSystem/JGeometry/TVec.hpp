@@ -41,6 +41,21 @@ namespace JGeometry {
     static void subInternal(const f32* vec1, const f32* vec2, f32* dst);
 #endif
 
+#ifdef __MWERKS__
+    ALWAYS_INLINE inline void mulInternal(register const f32* vec1, register const f32* vec2, register f32* dst) {
+        register f32 xy1, xy2, res;
+        __asm {
+                psq_l xy1, 0(vec1), 0, 0
+                psq_l xy2, 0(vec2), 0, 0
+                ps_mul res, xy1, xy2
+                psq_st res, 0(dst), 0, 0
+        }
+        dst[2] = vec1[2] * vec2[2];
+    }
+#else
+    void mulInternal(const f32* vec1, const f32* vec2, f32* dst);
+#endif
+
     template < typename T >
     struct TVec2 {
     public:
@@ -399,6 +414,9 @@ namespace JGeometry {
             x = val;
         }
 
+        template < typename T >
+        void setAll(f32);
+
         void setTrans(MtxPtr mtx) {
             set< f32 >((*mtx)[3], (*mtx)[7], (*mtx)[11]);
         }
@@ -459,10 +477,6 @@ namespace JGeometry {
             scale(1.0f / scalar);
         }
 
-        void operator*=(const TVec3& op) {
-            mulInternal(&this->x, &op.x, &this->x);
-        }
-
         // Same reason to expect to merge as translate()
         TVec3 multiplyOperatorInline(f32 scalar) const {
             TVec3 ret(*this);
@@ -512,51 +526,29 @@ namespace JGeometry {
             return ret;
         }
 
-        void mul(const TVec3< f32 >& a, const TVec3< f32 >& b) {
-            mulInternal(&a.x, &b.x, &this->x);
-        }
-
-#ifdef __MWERKS__
-        inline void mulInternal(register const f32* vec1, register const f32* vec2, register f32* dst) {
-            register f32 xy1, xy2, res;
-            __asm {
-                psq_l xy1, 0(vec1), 0, 0
-                psq_l xy2, 0(vec2), 0, 0
-                ps_mul res, xy1, xy2
-                psq_st res, 0(dst), 0, 0
-            }
-            dst[2] = vec1[2] * vec2[2];
-        }
-#else
-        void mulInternal(const f32* vec1, const f32* vec2, f32* dst);
-#endif
-
-        void mult(const Vec& src1, const Vec& src2, Vec& dest) {
-            mulInternal(&src1.x, &src2.x, &dest.x);
-        }
-
-        TVec3 mult(const Vec& rOther) {
-            TVec3 ret;
-            mulInternal(&this->x, &rOther.x, &ret.x);
-            return ret;
-        }
-
-        inline void mul(const TVec3< f32 >& a) {
-            mul(*this, a);
-        }
-
-        template < typename T >
-        void setAll(f32);
-
         inline void mult(f32 val) {
             x *= val;
             y *= val;
             z *= val;
         }
 
-        // Required for multiple objects to match?
-        inline void multPS(TVec3< f32 >& a, TVec3< f32 >& b) {
-            mulInternal(&b.x, &a.x, &this->x);
+        // Vec-Vec mult
+        TVec3 operator*(const TVec3& rOther) const {
+            TVec3 ret;
+            mulInternal(&this->x, &rOther.x, &ret.x);
+            return ret;
+        }
+
+        void operator*=(const TVec3& op) {
+            mulInternal(&this->x, &op.x, &this->x);
+        }
+
+        void mul(const TVec3& a) {
+            mul(*this, a);
+        }
+
+        void mul(const TVec3& a, const TVec3& b) {
+            mulInternal(&a.x, &b.x, &this->x);
         }
 
         inline void lerp(const TVec3& a, const TVec3& b, f32 t) {

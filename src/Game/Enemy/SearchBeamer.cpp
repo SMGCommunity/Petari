@@ -305,8 +305,7 @@ void SearchBeamer::calcAndSetBaseMtx() {
     TPos3f mtx;
     MR::makeMtxFrontUpPos(&mtx, _94, _A0, mPosition);
     MR::setBaseTRMtx(this, mtx);
-    TVec3f scale;
-    scale.mul(mScaleController->_C, mScale);
+    TVec3f scale = mScaleController->_C * mScale;
     MR::setBaseScale(this, scale);
     mPropellerJointCtrl->registerCallBack();
     mBeanStartJointCtrl->registerCallBack();

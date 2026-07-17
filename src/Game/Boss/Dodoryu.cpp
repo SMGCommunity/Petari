@@ -626,7 +626,8 @@ void Dodoryu::displayRabbitMessage() {
 
 void Dodoryu::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mBaseMtx);
-    MR::setBaseScale(this, mAnimScaleCtrl->_C.mult(mScale));
+    TVec3f scale = mAnimScaleCtrl->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void Dodoryu::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {

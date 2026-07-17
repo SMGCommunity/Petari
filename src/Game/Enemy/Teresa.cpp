@@ -221,8 +221,7 @@ void Teresa::control() {
 
 void Teresa::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _94);
-    TVec3f scale;
-    scale.mul(_D4, mScale);
+    TVec3f scale = _D4 * mScale;
     MR::setBaseScale(this, scale);
 }
 

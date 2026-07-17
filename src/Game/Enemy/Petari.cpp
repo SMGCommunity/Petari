@@ -399,11 +399,8 @@ void Petari::control() {
 }
 
 void Petari::calcAndSetBaseMtx() {
-    // FIXME: regswap in TVec3::mulInternal
-    // https://decomp.me/scratch/3mmtT
-    TVec3f v1;
-    v1.mult(mScale, mAnimScaleCtrl->_C, v1);
-    MR::setBaseScale(this, v1);
+    TVec3f scale = mAnimScaleCtrl->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void Petari::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {

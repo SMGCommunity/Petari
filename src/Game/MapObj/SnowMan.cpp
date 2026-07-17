@@ -117,10 +117,9 @@ void SnowMan::damageBody() {
 }
 
 void SnowMan::calcAndSetBaseMtx() {
-    TVec3f mtx;
     LiveActor::calcAndSetBaseMtx();
-    mtx.multPS(mScale, mAnimScaleCtrl->_C);
-    MR::setBaseScale(this, mtx);
+    TVec3f scale = mAnimScaleCtrl->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void SnowMan::exeWait() {

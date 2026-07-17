@@ -523,8 +523,7 @@ void Mogu::calcAndSetBaseMtx() {
     TPos3f mtx;
     MR::makeMtxUpFrontPos(&mtx, _A8, mSight, mPosition);
     MR::setBaseTRMtx(this, mtx);
-    TVec3f scale;
-    scale.mul(mAnimScaleController->_C, mScale);
+    TVec3f scale = mAnimScaleController->_C * mScale;
     MR::setBaseScale(this, scale);
 
     if (isNerve(&NrvMogu::HostTypeNrvThrow::sInstance) && MR::isLessStep(this, 47)) {
