@@ -43,6 +43,10 @@ public:
         drawString_size_scale(posX, posY, getWidth(), getHeight(), str, len, visible);
     }
 
+    f32 drawString_scale(f32 posX, f32 posY, f32 width, f32 height, const char* str, bool visible) {
+        return (int)drawString_size_scale(posX, posY, width, height, str, strlen(str), visible);
+    }
+
     bool mValid;               // 0x04
     bool mFixed;               // 0x05
     int mFixedWidth;           // 0x08

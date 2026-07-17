@@ -6,6 +6,8 @@
 
 class JUTDirectPrint {
 public:
+    JUTDirectPrint();
+
     static JUTDirectPrint* start();
 
     void erase(int, int, int, int);
@@ -44,4 +46,8 @@ public:
     u16 field_0x2A;
 
     static JUTDirectPrint* sDirectPrint;
+
+    static u8 sAsciiTable[128];
+    static u32 sFontData[64];
+    static u32 sFontData2[77];
 };
