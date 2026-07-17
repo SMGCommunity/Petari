@@ -544,7 +544,7 @@ namespace JGeometry {
         }
 
         void mul(const TVec3& a) {
-            mul(*this, a);
+            mulInternal(&this->x, &a.x, &this->x);
         }
 
         void mul(const TVec3& a, const TVec3& b) {
