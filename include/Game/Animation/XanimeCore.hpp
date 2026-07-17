@@ -1,6 +1,6 @@
 #pragma once
 
-#include <JSystem/J3DGraphAnimator/J3DMtxCalc.hpp>
+#include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 
 class J3DModelData;
