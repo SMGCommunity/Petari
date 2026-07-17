@@ -61,7 +61,7 @@ void JumpBeamer::init(const JMapInfoIter& rIter) {
     initHitSensor(2);
     MR::addHitSensorMtx(this, "Jump", ATYPE_PLAYER_AUTO_JUMP, 8, 145.0f, MR::getJointMtx(mHeadModel, "SpringJoint3"), TVec3f(0.0f, -100.0f, 0.0f));
     MR::addHitSensorMtxEnemy(this, "Body", 8, 145.0f, MR::getJointMtx(this, "Body"), TVec3f(0.0f, 35.0f, 0.0f));
-    getSensor("Body")->setType(29);
+    getSensor("Body")->setType(ATYPE_BEGOMAN);
     getSensor("Body")->validate();
     getSensor("Jump")->invalidate();
     MR::initShadowVolumeSphere(this, 140.0f);

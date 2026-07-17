@@ -8,7 +8,6 @@ class AstroDomeComet : public LiveActor {
 public:
     AstroDomeComet(const char*);
 
-    virtual ~AstroDomeComet();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();
@@ -20,7 +19,7 @@ public:
     void exeSelect();
     void exeConfirm();
 
-    PartsModel* mBloomModel;      // 0x8C
-    LiveActor* mMiniGalaxy;       // 0x90
-    LiveActor** mPointingActors;  // 0x94
+    /* 0x8C */ PartsModel* mBloomModel;
+    /* 0x90 */ LiveActor* mMiniGalaxy;
+    /* 0x94 */ LiveActor** mPointingActors;
 };

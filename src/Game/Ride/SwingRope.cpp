@@ -635,7 +635,6 @@ void SwingRope::updateHangLowerPointPos(s32 index) {
 }
 
 namespace {
-
     void sendPoint(const TVec3f& pos, const TVec3f& side, const TVec3f& front, f32 x, f32 y, u32 color, f32 texX, f32 texY) {
         GXPosition3f32(pos.x + side.x * x + front.x * y, pos.y + side.y * x + front.y * y, pos.z + side.z * x + front.z * y);
         GXColor1u32(color);
@@ -646,24 +645,26 @@ namespace {
         // FIXME: register swap
 
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (pRope->mNumPoints + 1) * 2);
+        {
+            const TVec3f& front = pRope->mPoints[0]->mFront;
+            const TVec3f& side = pRope->mPoints[0]->mSide;
+            const TVec3f& pos = pRope->mBasePos;
 
-        const TVec3f& front = pRope->mPoints[0]->mFront;
-        const TVec3f& side = pRope->mPoints[0]->mSide;
-        const TVec3f& pos = pRope->mBasePos;
+            sendPoint(pos, side, front, x1, y1, color1, 0.0f, 0.0f);
+            sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.0f);
 
-        sendPoint(pos, side, front, x1, y1, color1, 0.0f, 0.0f);
-        sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.0f);
+            SwingRopePoint* point;
+            for (s32 idx = 0; idx < pRope->mNumPoints; idx++) {
+                point = pRope->mPoints[idx];
+                const TVec3f& front = point->mFront;
+                const TVec3f& side = point->mSide;
+                const TVec3f& pos = point->mPosition;
 
-        SwingRopePoint* point;
-        for (s32 idx = 0; idx < pRope->mNumPoints; idx++) {
-            point = pRope->mPoints[idx];
-            const TVec3f& front = point->mFront;
-            const TVec3f& side = point->mSide;
-            const TVec3f& pos = point->mPosition;
-
-            sendPoint(pos, side, front, x1, y1, color1, 0.0f, 0.13f * (idx + 1));
-            sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.13f * (idx + 1));
+                sendPoint(pos, side, front, x1, y1, color1, 0.0f, 0.13f * (idx + 1));
+                sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.13f * (idx + 1));
+            }
         }
+        GXEnd();
     }
 
     void drawLineAtHanging(const SwingRope* pRope, u32 color1, u32 color2, f32 texY1, f32 texY2, f32 x1, f32 y1, f32 x2, f32 y2) {
@@ -671,24 +672,26 @@ namespace {
         // FIXME: register swap
 
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (pRope->mNumPoints + 1) * 2);
+        {
+            const TVec3f& front = pRope->mPoints[0]->mFront;
+            const TVec3f& side = pRope->mPoints[0]->mSide;
+            const TVec3f& pos = pRope->mBasePos;
 
-        const TVec3f& front = pRope->mPoints[0]->mFront;
-        const TVec3f& side = pRope->mPoints[0]->mSide;
-        const TVec3f& pos = pRope->mBasePos;
+            sendPoint(pos, side, front, x1, y1, color1, 0.0f, 0.0f);
+            sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.0f);
 
-        sendPoint(pos, side, front, x1, y1, color1, 0.0f, 0.0f);
-        sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.0f);
+            SwingRopePoint* point;
+            for (s32 idx = 0; idx < pRope->mNumPoints; idx++) {
+                point = pRope->mPoints[idx];
+                const TVec3f& front = point->mFront;
+                const TVec3f& side = point->mSide;
+                const TVec3f& pos = point->mPosition;
 
-        SwingRopePoint* point;
-        for (s32 idx = 0; idx < pRope->mNumPoints; idx++) {
-            point = pRope->mPoints[idx];
-            const TVec3f& front = point->mFront;
-            const TVec3f& side = point->mSide;
-            const TVec3f& pos = point->mPosition;
-
-            sendPoint(pos, side, front, x1, y1, color1, 0.0f, 0.13f * (idx + 1));
-            sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.13f * (idx + 1));
+                sendPoint(pos, side, front, x1, y1, color1, 0.0f, 0.13f * (idx + 1));
+                sendPoint(pos, side, front, x2, y2, color2, 1.0f, 0.13f * (idx + 1));
+            }
         }
+        GXEnd();
     }
 };  // namespace
 
@@ -705,26 +708,35 @@ void SwingRope::drawStop() const {
     color1 = ::sColorPlusX;
     color2 = ::sColorPlusZ;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    ::sendPoint(mBasePos, side, front, -30.0f, 43.0f, color1, 0.0f, 0.0f);
-    ::sendPoint(mBasePos, side, front, 33.0f, -43.0f, color2, 1.0f, 0.0f);
-    ::sendPoint(bottom, side, front, -30.0f, 43.0f, color1, 0.0f, texY);
-    ::sendPoint(bottom, side, front, 33.0f, -43.0f, color2, 1.0f, texY);
+    {
+        ::sendPoint(mBasePos, side, front, -30.0f, 43.0f, color1, 0.0f, 0.0f);
+        ::sendPoint(mBasePos, side, front, 33.0f, -43.0f, color2, 1.0f, 0.0f);
+        ::sendPoint(bottom, side, front, -30.0f, 43.0f, color1, 0.0f, texY);
+        ::sendPoint(bottom, side, front, 33.0f, -43.0f, color2, 1.0f, texY);
+    }
+    GXEnd();
 
     color1 = ::sColorPlusZ;
     color2 = ::sColorMinusX;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    ::sendPoint(mBasePos, side, front, -33.0f, -43.0f, color1, 0.0f, 0.0f);
-    ::sendPoint(mBasePos, side, front, 30.0f, 43.0f, color2, 1.0f, 0.0f);
-    ::sendPoint(bottom, side, front, -33.0f, -43.0f, color1, 0.0f, texY);
-    ::sendPoint(bottom, side, front, 30.0f, 43.0f, color2, 1.0f, texY);
+    {
+        ::sendPoint(mBasePos, side, front, -33.0f, -43.0f, color1, 0.0f, 0.0f);
+        ::sendPoint(mBasePos, side, front, 30.0f, 43.0f, color2, 1.0f, 0.0f);
+        ::sendPoint(bottom, side, front, -33.0f, -43.0f, color1, 0.0f, texY);
+        ::sendPoint(bottom, side, front, 30.0f, 43.0f, color2, 1.0f, texY);
+    }
+    GXEnd();
 
     color1 = ::sColorMinusX;
     color2 = ::sColorPlusX;
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    ::sendPoint(mBasePos, side, front, 43.0f, -3.0f, color1, 0.0f, 0.0f);
-    ::sendPoint(mBasePos, side, front, -43.0f, -3.0f, color2, 1.0f, 0.0f);
-    ::sendPoint(bottom, side, front, 43.0f, -3.0f, color1, 0.0f, texY);
-    ::sendPoint(bottom, side, front, -43.0f, -3.0f, color2, 1.0f, texY);
+    {
+        ::sendPoint(mBasePos, side, front, 43.0f, -3.0f, color1, 0.0f, 0.0f);
+        ::sendPoint(mBasePos, side, front, -43.0f, -3.0f, color2, 1.0f, 0.0f);
+        ::sendPoint(bottom, side, front, 43.0f, -3.0f, color1, 0.0f, texY);
+        ::sendPoint(bottom, side, front, -43.0f, -3.0f, color2, 1.0f, texY);
+    }
+    GXEnd();
 }
 
 void SwingRope::drawFree() const {

@@ -155,16 +155,23 @@ namespace MR {
         GXSetAlphaUpdate(GX_FALSE);
         GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
         GXSetCullMode(GX_CULL_BACK);
+
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        GXPosition2u16(0, 0);
-        GXTexCoord2u8(0, 0);
-        GXPosition2u16(width, 0);
-        GXTexCoord2u8(1, 0);
-        GXPosition2u16(width, height);
-        GXTexCoord2u8(1, 1);
-        GXPosition2u16(0, height);
-        GXTexCoord2u8(0, 1);
+        {
+            GXPosition2u16(0, 0);
+            GXTexCoord2u8(0, 0);
+
+            GXPosition2u16(width, 0);
+            GXTexCoord2u8(1, 0);
+
+            GXPosition2u16(width, height);
+            GXTexCoord2u8(1, 1);
+
+            GXPosition2u16(0, height);
+            GXTexCoord2u8(0, 1);
+        }
         GXEnd();
+
         GXSetZTexture(GX_ZT_DISABLE, GX_TF_Z24X8, 0);
         GXSetZCompLoc(GX_TRUE);
         GXSetColorUpdate(GX_TRUE);
@@ -201,14 +208,17 @@ namespace MR {
 
     void fillScreenArea(const TVec2s& rMin, const TVec2s& rMax) {
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        u16 maxX = rMax.x;
-        u16 minX = rMin.x;
-        u16 minY = rMin.y;
-        u16 maxY = rMax.y;
-        GXPosition2u16(minX, minY);
-        GXPosition2u16(maxX, minY);
-        GXPosition2u16(maxX, maxY);
-        GXPosition2u16(minX, maxY);
+        {
+            u16 maxX = rMax.x;
+            u16 minX = rMin.x;
+            u16 minY = rMin.y;
+            u16 maxY = rMax.y;
+
+            GXPosition2u16(minX, minY);
+            GXPosition2u16(maxX, minY);
+            GXPosition2u16(maxX, maxY);
+            GXPosition2u16(minX, maxY);
+        }
         GXEnd();
     }
 
@@ -297,18 +307,26 @@ namespace MR {
         GXSetDstAlpha(GX_TRUE, 0);
         GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
         GXSetTevColor(GX_TEVREG0, Color8(0x00000080));
+
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-        u16 width = MR::getScreenWidth();
-        u16 height = MR::getScreenHeight();
-        GXPosition2u16(0, 0);
-        GXTexCoord2f32(0.0f, 0.0f);
-        GXPosition2u16(width, 0);
-        GXTexCoord2f32(1.0f, 0.0f);
-        GXPosition2u16(0, height);
-        GXTexCoord2f32(0.0f, 1.0f);
-        GXPosition2u16(width, height);
-        GXTexCoord2f32(1.0f, 1.0f);
+        {
+            u16 width = MR::getScreenWidth();
+            u16 height = MR::getScreenHeight();
+
+            GXPosition2u16(0, 0);
+            GXTexCoord2f32(0.0f, 0.0f);
+
+            GXPosition2u16(width, 0);
+            GXTexCoord2f32(1.0f, 0.0f);
+
+            GXPosition2u16(0, height);
+            GXTexCoord2f32(0.0f, 1.0f);
+
+            GXPosition2u16(width, height);
+            GXTexCoord2f32(1.0f, 1.0f);
+        }
         GXEnd();
+
         GXSetDstAlpha(GX_FALSE, 0);
         GXSetAlphaUpdate(GX_FALSE);
     }

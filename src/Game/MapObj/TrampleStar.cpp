@@ -639,13 +639,16 @@ void TrampleStar::drawSelf() const {
     }
 
     GXBegin(GX_TRIANGLES, GX_VTXFMT0, mNumDrawVtxs);
-    TVec3f* pos = mDrawPos;
-    TVec3f* norm = mDrawNorm;
-    TVec2f* tex = mDrawTex;
-    for (u32 vtx = 0; vtx < mNumDrawVtxs; vtx++) {
-        MR::ddSendVtxData(*pos, *norm, *tex);
-        pos++;
-        norm++;
-        tex++;
+    {
+        TVec3f* pos = mDrawPos;
+        TVec3f* norm = mDrawNorm;
+        TVec2f* tex = mDrawTex;
+        for (u32 vtx = 0; vtx < mNumDrawVtxs; vtx++) {
+            MR::ddSendVtxData(*pos, *norm, *tex);
+            pos++;
+            norm++;
+            tex++;
+        }
     }
+    GXEnd();
 }

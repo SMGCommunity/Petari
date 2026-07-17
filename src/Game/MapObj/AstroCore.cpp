@@ -14,6 +14,7 @@
 
 namespace {
     static const f32 sSensorSizeTable[] = {100.0f, 300.0f, 350.0f, 420.0f, 480.0f, 540.0f, 600.0f, 0.0f};
+    static const s32 sGrowTimeLag = 40;
 };  // namespace
 
 namespace NrvAstroCore {
@@ -51,7 +52,7 @@ void AstroCore::exeGrow() {
         MR::emitEffect(this, "ShockWave");
     }
 
-    if (MR::isStep(this, 40)) {
+    if (MR::isStep(this, ::sGrowTimeLag)) {
         MR::startSound(this, "SE_OJ_ASTRO_CORE_GROW");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormalWeak();
@@ -70,19 +71,19 @@ void AstroCore::startDemo() {
 void AstroCore::startAnimGrow() {
     s32 v3 = MR::clamp(AstroDemoFunction::getOpenedAstroDomeNum() + 1, 0, 6);
     s32 v4 = MR::clamp(v3, 0, 6);
-    char buf[32];
-    snprintf(buf, sizeof(buf), "Revival%d", v4);
-    MR::startAllAnim(this, buf);
+    char animName[32];
+    snprintf(animName, sizeof(animName), "Revival%d", v4);
+    MR::startAllAnim(this, animName);
     getSensor(nullptr)->mRadius = ::sSensorSizeTable[v3];
 }
 
 void AstroCore::setStateBeforeGrow() {
     s32 v3 = MR::clamp(AstroDemoFunction::getOpenedAstroDomeNum(), 0, 6);
     s32 v4 = MR::clamp(v3, 0, 6);
-    char buf[32];
-    snprintf(buf, sizeof(buf), "Revival%d", v4);
-    MR::startAllAnim(this, buf);
-    MR::setAllAnimFrameAtEnd(this, buf);
+    char animName[32];
+    snprintf(animName, sizeof(animName), "Revival%d", v4);
+    MR::startAllAnim(this, animName);
+    MR::setAllAnimFrameAtEnd(this, animName);
     getSensor(nullptr)->mRadius = ::sSensorSizeTable[v3];
 }
 
@@ -90,7 +91,4 @@ void AstroCore::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
     }
-}
-
-AstroCore::~AstroCore() {
 }

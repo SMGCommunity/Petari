@@ -139,19 +139,21 @@ void MarineSnow::draw(const TVec3f& rVec1, const TVec3f& rVec2, f32 myFloat) con
 
                 while (a < b) {
                     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+                    {
+                        TVec3f vec;
+                        TDDraw::sendPoint(_4[a] - vec1CC);
+                        GXPosition2f32(0.0f, 0.0f);
 
-                    TVec3f vec;
-                    TDDraw::sendPoint(_4[a] - vec1CC);
-                    GXPosition2f32(0.0f, 0.0f);
+                        TDDraw::sendPoint(_4[a] + vec1C0);
+                        GXPosition2f32(1.0f, 0.0f);
 
-                    TDDraw::sendPoint(_4[a] + vec1C0);
-                    GXPosition2f32(1.0f, 0.0f);
+                        TDDraw::sendPoint(_4[a] + vec1CC);
+                        GXPosition2f32(0.0f, 1.0f);
 
-                    TDDraw::sendPoint(_4[a] + vec1CC);
-                    GXPosition2f32(0.0f, 1.0f);
-
-                    TDDraw::sendPoint(_4[a] - vec1C0);
-                    GXPosition2f32(1.0f, 1.0f);
+                        TDDraw::sendPoint(_4[a] - vec1C0);
+                        GXPosition2f32(1.0f, 1.0f);
+                    }
+                    GXEnd();
 
                     a += unk1;
                 }

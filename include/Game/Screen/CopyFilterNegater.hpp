@@ -1,11 +1,14 @@
 #pragma once
 
-#include <JSystem/JUtility/JUTVideo.hpp>
+#include <revolution/gx.h>
 
 class CopyFilterNegater {
 public:
+    /// @brief Creates a new `CopyFilterNegater`.
     CopyFilterNegater();
+
+    /// @brief Destroys the `CopyFilterNegater`.
     ~CopyFilterNegater();
 
-    GXRenderModeObj* mRenderObj;  // 0x0
+    /* 0x00 */ GXRenderModeObj* mRenderObj;
 };

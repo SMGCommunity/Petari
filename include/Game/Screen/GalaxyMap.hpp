@@ -17,14 +17,13 @@ namespace nw4r {
     namespace lyt {
         class DrawInfo;
     };  // namespace lyt
-};      // namespace nw4r
+};  // namespace nw4r
 
 class GalaxyMap : public LayoutActor {
 public:
     /// @brief Creates a new `GalaxyMap`.
     GalaxyMap();
 
-    virtual ~GalaxyMap(){};
     virtual void init(const JMapInfoIter& rIter);
     virtual void movement();
     virtual void draw() const;

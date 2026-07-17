@@ -173,6 +173,7 @@ void PlantStalk::drawGrowUp() const {
         GXColor1u32(::sColorPlusX);
         GXTexCoord2f32(1.0f, idx);
     }
+    GXEnd();
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mGrownPlantPoints * 2);
     for (s32 idx = 0; idx < mGrownPlantPoints; idx++) {
@@ -191,6 +192,7 @@ void PlantStalk::drawGrowUp() const {
         GXColor1u32(::sColorPlusZ);
         GXTexCoord2f32(1.0f, idx);
     }
+    GXEnd();
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mGrownPlantPoints * 2);
     for (s32 idx = 0; idx < mGrownPlantPoints; idx++) {
@@ -210,6 +212,7 @@ void PlantStalk::drawGrowUp() const {
         GXColor1u32(::sColorMinusX);
         GXTexCoord2f32(1.0f, idx);
     }
+    GXEnd();
 }
 
 PlantStalkDrawInit::PlantStalkDrawInit(const char* pName) : NameObj(pName) {

@@ -210,8 +210,8 @@ void OceanRingPartDrawer::drawDynamic() const {
         f32 f17 = 0.0f;
         f32 f16 = 0.0f;
         f32 f15 = 0.0f;
-        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (u16)mOceanRing->mStride << 1);
 
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mOceanRing->mStride * 2);
         for (s32 j = 0; j < mOceanRing->mStride; j++) {
             WaterPoint* pPoint = mOceanRing->getPoint(j, index);
             GXPosition3f32(pPoint->mPosition.x, pPoint->mPosition.y, pPoint->mPosition.z);
@@ -234,6 +234,7 @@ void OceanRingPartDrawer::drawDynamic() const {
             f19 += f28;
             f18 += f29;
         }
+        GXEnd();
 
         f27 = f26;
         f25 = f24;
@@ -273,8 +274,8 @@ void OceanRingPartDrawer::drawDynamicBloom() const {
         f32 f19 = 0.0f;
         f32 f17 = 0.0f;
         f32 f16 = 0.0f;
-        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (u16)mOceanRing->mStride << 1);
 
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, mOceanRing->mStride * 2);
         for (s32 j = 0; j < mOceanRing->mStride; j++) {
             WaterPoint* pPoint = mOceanRing->getPoint(j, index);
             WaterPoint* pPoint2 = mOceanRing->getPoint(j, indexPlusOne);
@@ -291,6 +292,7 @@ void OceanRingPartDrawer::drawDynamicBloom() const {
             f20 += f28;
             f19 += f28;
         }
+        GXEnd();
 
         f27 = f26;
         f25 = f24;
@@ -423,7 +425,7 @@ void OceanRingDrawer::drawGD() const {
     f32 V10 = 0.05f * m;
     f32 V20 = 0.1f * m;
 
-    GDBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (u16)(flag + mRing->mSegCount) << 1);
+    GDBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (flag + mRing->mSegCount) * 2);
 
     scalex = 1.0f;
     f32 V0 = V00 * scalex;

@@ -81,6 +81,7 @@ void ClipFieldFillDraw::setUpFillScreen() const {
 
 void ClipFieldFillDraw::sendFillScreen(GXColor color) const {
     GXSetTevColor(GX_TEVREG0, color);
+
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
     {
         u16 screenWidth = MR::getScreenWidth();

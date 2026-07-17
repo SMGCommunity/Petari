@@ -177,6 +177,7 @@ void StarPointerBlur::draw2() const {
             GXPosition2f32(pos.x + offset.x, pos.y + offset.y);
             GXTexCoord2f32(1.0f, mBlurTexCoords[point]);
         }
+        GXEnd();
 
         start = end;
     }
@@ -200,6 +201,7 @@ void StarPointerBlur::draw2() const {
             GXPosition2f32(pos.x + offset.x, pos.y + offset.y);
             GXTexCoord2f32(1.0f, mBlurTexCoords[point]);
         }
+        GXEnd();
 
         start = end;
     }
