@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/MapObj/MapObjActorInitInfo.hpp"
+
+class CollisionParts;
 
 class TypicalDoor : public MapObjActor {
 public:
@@ -12,23 +12,20 @@ public:
     virtual void init(const JMapInfoIter&) override;
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) override;
 
+    void open();
+    void close();
     void exeClose();
     void exeOpen();
 
-    void open();
-    void close();
-    inline void listenForClose();
-
-    CollisionParts* mCloseCollision;  // 0xC4
-    CollisionParts* mOpenCollision;   // 0xC8
+    /* 0xC4 */ CollisionParts* mCloseCollision;
+    /* 0xC8 */ CollisionParts* mOpenCollision;
 };
 
 class TypicalDoorOpen : public TypicalDoor {
 public:
-    inline TypicalDoorOpen(const char* pName) : TypicalDoor(pName) {
+    TypicalDoorOpen(const char* pName) : TypicalDoor(pName) {
     }
 
-    virtual ~TypicalDoorOpen();
     virtual void init(const JMapInfoIter&) override;
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) override;
 };
@@ -37,13 +34,12 @@ class DarknessRoomDoor : public TypicalDoor {
 public:
     DarknessRoomDoor(const char*);
 
-    void validateCollision();
-    void invalidateCollision();
-
-    virtual ~DarknessRoomDoor();
     virtual void init(const JMapInfoIter&) override;
     virtual void control() override;
     virtual void connectToScene(const MapObjActorInitInfo&) override;
 
-    bool _CC;
+    void validateCollision();
+    void invalidateCollision();
+
+    /* 0xCC */ bool _CC;
 };

@@ -2,12 +2,19 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/MapObj/StageEffectDataTable.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+
+namespace {
+    static const s32 sCollisionChangeTimeOpen = 30;
+};  // namespace
 
 namespace NrvTypicalDoor {
     NEW_NERVE(HostTypeClose, TypicalDoor, Close);
@@ -15,9 +22,7 @@ namespace NrvTypicalDoor {
     NEW_NERVE(HostTypeOpen, TypicalDoor, Open);
 };  // namespace NrvTypicalDoor
 
-TypicalDoor::TypicalDoor(const char* pName) : MapObjActor(pName) {
-    mCloseCollision = nullptr;
-    mOpenCollision = nullptr;
+TypicalDoor::TypicalDoor(const char* pName) : MapObjActor(pName), mCloseCollision(), mOpenCollision() {
 }
 
 void TypicalDoor::init(const JMapInfoIter& rIter) {
@@ -58,10 +63,6 @@ void TypicalDoor::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
     MR::listenStageSwitchOnB(this, MR::Functor(this, &TypicalDoor::open));
 }
 
-void TypicalDoor::listenForClose() {
-    MR::listenStageSwitchOnB(this, MR::Functor(this, &TypicalDoor::close));
-}
-
 void TypicalDoor::open() {
     setNerve(&NrvTypicalDoor::HostTypeOpen::sInstance);
 }
@@ -73,8 +74,10 @@ void TypicalDoor::close() {
 void TypicalDoor::exeClose() {
     if (MR::isFirstStep(this)) {
         MR::tryStartAllAnim(this, "Close");
+
         if (MR::StageEffect::isExistStageEffectSeData(mObjectName)) {
             const char* stopSe = MR::StageEffect::getStopSe(mObjectName);
+
             if (stopSe != nullptr) {
                 MR::startSound(this, stopSe);
             }
@@ -95,15 +98,17 @@ void TypicalDoor::exeClose() {
 void TypicalDoor::exeOpen() {
     if (MR::isFirstStep(this)) {
         MR::tryStartAllAnim(this, "Open");
+
         if (MR::StageEffect::isExistStageEffectSeData(mObjectName)) {
             const char* startSe = MR::StageEffect::getStartSe(mObjectName);
+
             if (startSe != nullptr) {
                 MR::startSound(this, startSe);
             }
         }
     }
 
-    if (MR::isStep(this, 30)) {
+    if (MR::isStep(this, ::sCollisionChangeTimeOpen)) {
         if (mCloseCollision != nullptr) {
             MR::invalidateCollisionParts(mCloseCollision);
         }
@@ -120,11 +125,10 @@ void TypicalDoorOpen::init(const JMapInfoIter& rIter) {
 }
 
 void TypicalDoorOpen::initCaseUseSwitchB(const MapObjActorInitInfo& rInfo) {
-    listenForClose();
+    MR::listenStageSwitchOnB(this, MR::Functor< TypicalDoor >(this, &TypicalDoor::close));
 }
 
-DarknessRoomDoor::DarknessRoomDoor(const char* pName) : TypicalDoor(pName) {
-    _CC = false;
+DarknessRoomDoor::DarknessRoomDoor(const char* pName) : TypicalDoor(pName), _CC() {
 }
 
 TypicalDoor::~TypicalDoor() {
@@ -191,10 +195,4 @@ void DarknessRoomDoor::invalidateCollision() {
             MR::invalidateCollisionParts(mOpenCollision);
         }
     }
-}
-
-TypicalDoorOpen::~TypicalDoorOpen() {
-}
-
-DarknessRoomDoor::~DarknessRoomDoor() {
 }

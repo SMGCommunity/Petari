@@ -3,6 +3,12 @@
 #include "Game/MapObj/StarPiece.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    // const f32 hMoveSpeed = _;
+    const f32 hAddRandomVectorValue = 0.5f;
+    const f32 hAddRotateY = 10.0f;
+};  // namespace
+
 namespace NrvStarPieceMother {
     NEW_NERVE(HostTypeNrvMoveOnRail, StarPieceMother, MoveOnRail);
     NEW_NERVE(HostTypeNrvWait, StarPieceMother, Wait);
@@ -11,13 +17,11 @@ namespace NrvStarPieceMother {
 StarPieceMother::StarPieceMother(const char* pName) : LiveActor(pName), mStarPieceArray(), _90(), _94(6), _98(), _9C(), _A0() {
 }
 
-StarPieceMother::~StarPieceMother() {
-}
-
 void StarPieceMother::init(const JMapInfoIter& rIter) {
-    s32 notRailConnected = false;
+    s32 isRailNotConnected = false;
+
     if (!MR::isValidInfo(rIter) || !MR::isConnectedWithRail(rIter)) {
-        notRailConnected = true;
+        isRailNotConnected = true;
 
         MR::initDefaultPos(this, rIter);
 
@@ -64,7 +68,7 @@ void StarPieceMother::init(const JMapInfoIter& rIter) {
         }
     }
 
-    if (notRailConnected) {
+    if (isRailNotConnected) {
         initNerve(&NrvStarPieceMother::HostTypeNrvWait::sInstance);
         initHitSensor(1);
         MR::addHitSensorMapObj(this, "body", 8, 100.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -100,7 +104,7 @@ void StarPieceMother::kill() {
 }
 
 void StarPieceMother::control() {
-    mRotation.y += 10.0f;
+    mRotation.y += ::hAddRotateY;
 }
 
 void StarPieceMother::exeMoveOnRail() {
@@ -169,7 +173,7 @@ void StarPieceMother::emitStarPieces() {
         position.set(*MR::getPlayerCenterPos());
         position.sub(mPosition);
         MR::normalizeOrZero(&position);
-        MR::addRandomVector(&position, position, 0.5f);
+        MR::addRandomVector(&position, position, ::hAddRandomVectorValue);
         MR::normalizeOrZero(&position);
 
         if (MR::isNearZero(position)) {

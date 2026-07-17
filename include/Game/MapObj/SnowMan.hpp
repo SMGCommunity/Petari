@@ -1,13 +1,14 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
+
+class AnimScaleController;
+class AnimScaleParam;
 
 class SnowMan : public LiveActor {
 public:
     SnowMan(const char*);
 
-    virtual ~SnowMan();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();
@@ -24,8 +25,8 @@ public:
     void exeWaitBody();
     void exeWaitHead();
 
-    CollisionParts* mHeadCollisionParts; /* 0x8C */
-    CollisionParts* mBodyCollisionParts; /* 0x90 */
-    AnimScaleController* mAnimScaleCtrl; /* 0x94 */
-    AnimScaleParam* mAnimScaleParam;     /* 0x98 */
+    /* 0x8C */ CollisionParts* mHeadCollisionParts;
+    /* 0x90 */ CollisionParts* mBodyCollisionParts;
+    /* 0x94 */ AnimScaleController* mAnimScaleCtrl;
+    /* 0x98 */ AnimScaleParam* mAnimScaleParam;
 };

@@ -1,6 +1,13 @@
 #include "Game/MapObj/SpinLeverSwitch.hpp"
+#include "Game/MapObj/MapObjConnector.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+
+namespace {
+    static const s32 sStepToOnSwitch = 15;
+    static const s32 sStepOnSE = 8;
+    static const s32 sStepForHitStop = 8;
+};  // namespace
 
 namespace NrvSpinLeverSwitch {
     NEW_NERVE(SpinLeverSwitchNrvWait, SpinLeverSwitch, Wait);
@@ -8,12 +15,8 @@ namespace NrvSpinLeverSwitch {
     NEW_NERVE(SpinLeverSwitchNrvEnd, SpinLeverSwitch, End);
 };  // namespace NrvSpinLeverSwitch
 
-SpinLeverSwitch::SpinLeverSwitch(const char* pName) : LiveActor(pName) {
-    mConnector = nullptr;
+SpinLeverSwitch::SpinLeverSwitch(const char* pName) : LiveActor(pName), mConnector() {
     mConnector = new MapObjConnector(this);
-}
-
-SpinLeverSwitch::~SpinLeverSwitch() {
 }
 
 void SpinLeverSwitch::init(const JMapInfoIter& rIter) {
@@ -26,17 +29,19 @@ void SpinLeverSwitch::init(const JMapInfoIter& rIter) {
     MR::initCollisionParts(this, "SpinLeverSwitch", getSensor("body"), nullptr);
     initEffectKeeper(0, 0, false);
     initSound(4, false);
-    bool returnedValue = MR::useStageSwitchWriteA(this, rIter);
+    bool isWait = MR::useStageSwitchWriteA(this, rIter);
     MR::setGroupClipping(this, rIter, 16);
-    if (returnedValue) {
+
+    if (isWait) {
         initNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvWait::sInstance);
     } else {
-        MR::startBck(this, "On", 0);
+        MR::startBck(this, "On", nullptr);
         MR::setBckFrameAndStop(this, MR::getBckFrameMax(this));
         MR::startBrk(this, "On");
         MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this));
         initNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvEnd::sInstance);
     }
+
     makeActorAppeared();
 }
 
@@ -50,12 +55,16 @@ void SpinLeverSwitch::calcAndSetBaseMtx() {
 }
 
 void SpinLeverSwitch::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isSensorPlayer(pReceiver)) {
-        if (pSender == (getSensor("spin"))) {
-            if (MR::sendMsgPush(pReceiver, pSender)) {
-                return;
-            }
-        }
+    if (!MR::isSensorPlayer(pReceiver)) {
+        return;
+    }
+
+    if (pSender != (getSensor("spin"))) {
+        return;
+    }
+
+    if (MR::sendMsgPush(pReceiver, pSender)) {
+        return;
     }
 }
 
@@ -70,7 +79,7 @@ bool SpinLeverSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
 
     if (MR::isMsgPlayerHitAll(msg)) {
         setNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvSwitchOn::sInstance);
-        MR::stopSceneForDefaultHit(8);
+        MR::stopSceneForDefaultHit(::sStepForHitStop);
         return true;
     }
 
@@ -79,7 +88,7 @@ bool SpinLeverSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSen
 
 void SpinLeverSwitch::exeWait() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "Wait", 0);
+        MR::startBck(this, "Wait", nullptr);
         MR::startBrk(this, "On");
         MR::setBrkFrameAndStop(this, 0.0f);
     }
@@ -87,26 +96,31 @@ void SpinLeverSwitch::exeWait() {
 
 void SpinLeverSwitch::exeSwitchOn() {
     if (MR::isFirstStep(this)) {
-        MR::startBck(this, "On", 0);
+        MR::startBck(this, "On", nullptr);
         MR::startBrk(this, "On");
+
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
             MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_HIT_W");
         } else {
             MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_HIT");
         }
+
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
-    if (MR::isStep(this, 8)) {
+
+    if (MR::isStep(this, ::sStepOnSE)) {
         if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
             MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_ON_W");
         } else {
             MR::startSound(this, "SE_OJ_SPIN_LEVER_SW_ON");
         }
     }
-    if (MR::isStep(this, 15)) {
+
+    if (MR::isStep(this, ::sStepToOnSwitch)) {
         MR::onSwitchA(this);
     }
+
     if (MR::isBckStopped(this)) {
         setNerve(&NrvSpinLeverSwitch::SpinLeverSwitchNrvEnd::sInstance);
     }

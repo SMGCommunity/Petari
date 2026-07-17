@@ -8,7 +8,6 @@ class SimpleTimerObj : public MapObjActor {
 public:
     SimpleTimerObj(const char*);
 
-    virtual ~SimpleTimerObj();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();
@@ -16,7 +15,7 @@ public:
 
     void exeTimer();
 
-    FlashingCtrl* mFlashingCtrl;  // 0xC4
-    s32 mTimer;                   // 0xC8
-    s32 mTimeLeft;                // 0xCC
+    /* 0xC4 */ FlashingCtrl* mFlashingCtrl;
+    /* 0xC8 */ s32 mTimeLimit;
+    /* 0xCC */ s32 mTimeLeft;
 };

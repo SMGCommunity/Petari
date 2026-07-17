@@ -2,14 +2,17 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "revolution/types.h"
+#include "Game/Util/SoundUtil.hpp"
+
+namespace {
+    static const s32 sStepForMelt = 20;
+};  // namespace
 
 namespace NrvSnowMan {
     NEW_NERVE(SnowManNrvWait, SnowMan, Wait);
@@ -21,14 +24,7 @@ namespace NrvSnowMan {
     NEW_NERVE(SnowManNrvDownBody, SnowMan, DownBody);
 };  // namespace NrvSnowMan
 
-SnowMan::SnowMan(const char* pName) : LiveActor(pName) {
-    mHeadCollisionParts = nullptr;
-    mBodyCollisionParts = nullptr;
-    mAnimScaleCtrl = nullptr;
-    mAnimScaleParam = nullptr;
-}
-
-SnowMan::~SnowMan() {
+SnowMan::SnowMan(const char* pName) : LiveActor(pName), mHeadCollisionParts(), mBodyCollisionParts(), mAnimScaleCtrl(), mAnimScaleParam() {
 }
 
 void SnowMan::init(const JMapInfoIter& rrIter) {
@@ -142,7 +138,7 @@ void SnowMan::exeMeltHead() {
         }
     }
 
-    if (MR::isStep(this, 20)) {
+    if (MR::isStep(this, ::sStepForMelt)) {
         MR::hideMaterial(this, "SnowManBucketMat_v");
         setNerve(&NrvSnowMan::SnowManNrvWaitBody::sInstance);
     }
@@ -163,7 +159,7 @@ void SnowMan::exeMeltBody() {
         }
     }
 
-    if (MR::isStep(this, 20)) {
+    if (MR::isStep(this, ::sStepForMelt)) {
         setNerve(&NrvSnowMan::SnowManNrvWaitHead::sInstance);
     }
 }

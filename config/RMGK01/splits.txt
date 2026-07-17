@@ -5864,7 +5864,7 @@ Game/MapObj/StarPieceDirector.cpp:
 Game/MapObj/StarPieceFollowGroup.cpp:
 	.text       start:0x802422D8 end:0x80242F84
 	.ctors      start:0x8052EEE0 end:0x8052EEE4
-	.rodata     start:0x80534C50 end:0x80534C80
+	.rodata     start:0x80534C50 end:0x80534C58
 	.data       start:0x805A3BF0 end:0x805A3CC0
 	.sbss       start:0x806B5968 end:0x806B5970
 	.sdata2     start:0x806BE480 end:0x806BE4A8
@@ -5872,6 +5872,7 @@ Game/MapObj/StarPieceFollowGroup.cpp:
 Game/MapObj/StarPieceGroup.cpp:
 	.text       start:0x80242F84 end:0x80244088
 	.ctors      start:0x8052EEE4 end:0x8052EEE8
+	.rodata     start:0x80534C58 end:0x80534C60
 	.data       start:0x805A3CC0 end:0x805A3DF8
 	.sbss       start:0x806B5970 end:0x806B5978
 	.sdata2     start:0x806BE4A8 end:0x806BE4D0
@@ -5879,6 +5880,7 @@ Game/MapObj/StarPieceGroup.cpp:
 Game/MapObj/StarPieceMother.cpp:
 	.text       start:0x80244088 end:0x80244ADC
 	.ctors      start:0x8052EEE8 end:0x8052EEEC
+	.rodata     start:0x80534C60 end:0x80534C68
 	.data       start:0x805A3DF8 end:0x805A3F58
 	.sbss       start:0x806B5978 end:0x806B5980
 	.sdata2     start:0x806BE4D0 end:0x806BE4F0
@@ -5911,6 +5913,7 @@ Game/MapObj/Sun.cpp:
 Game/MapObj/SuperSpinDriver.cpp:
 	.text       start:0x80245B5C end:0x80248C58
 	.ctors      start:0x8052EEF4 end:0x8052EEF8
+	.rodata     start:0x80534C68 end:0x80534C78
 	.data       start:0x805A4288 end:0x805A4728
 	.sdata      start:0x806B2068 end:0x806B2080
 	.sbss       start:0x806B5990 end:0x806B59C0
@@ -5948,6 +5951,7 @@ Game/MapObj/TimeAppearObj.cpp:
 Game/MapObj/TimerMoveWall.cpp:
 	.text       start:0x8024A53C end:0x8024A95C
 	.ctors      start:0x8052EF04 end:0x8052EF08
+	.rodata     start:0x80534C78 end:0x80534C80
 	.data       start:0x805A4BD8 end:0x805A4D18
 	.sbss       start:0x806B59D8 end:0x806B59E8
 	.sdata2     start:0x806BE5E0 end:0x806BE5E8
@@ -5968,14 +5972,14 @@ Game/MapObj/TreasureBoxCracked.cpp:
 	.text       start:0x8024CD84 end:0x8024E0E0
 	.ctors      start:0x8052EF0C end:0x8052EF10
 	.rodata     start:0x80534C80 end:0x80534CE0
-	.data       start:0x805A4F60 end:0x805A52B0
+	.data       start:0x805A4F60 end:0x805A5280
 	.sbss       start:0x806B59F8 end:0x806B5A10
 	.sdata2     start:0x806BE638 end:0x806BE660
 
 Game/MapObj/TreasureSpot.cpp:
 	.text       start:0x8024E0E0 end:0x8024E55C
 	.ctors      start:0x8052EF10 end:0x8052EF14
-	.data       start:0x805A52B0 end:0x805A5370
+	.data       start:0x805A5280 end:0x805A5370
 	.sbss       start:0x806B5A10 end:0x806B5A20
 	.sdata2     start:0x806BE660 end:0x806BE678
 
@@ -6928,13 +6932,13 @@ Game/Player/MarioActorShadow.cpp:
 Game/Player/MarioActorSpecialDraw.cpp:
 	.text       start:0x802C1384 end:0x802C43B8
 	.ctors      start:0x8052F090 end:0x8052F094
-	.data       start:0x805B8F28 end:0x805B8FDC
+	.data       start:0x805B8F28 end:0x805B8F58
 	.sdata2     start:0x806BF7E8 end:0x806BF888
 
 Game/Player/MarioActorMatrix.cpp:
 	.text       start:0x802C43B8 end:0x802C48A4
 	.ctors      start:0x8052F094 end:0x8052F098
-	.data       start:0x805B8FDC end:0x805BA468
+	.data       start:0x805B8F58 end:0x805BA468
 	.sdata      start:0x806B2248 end:0x806B2258
 	.sdata2     start:0x806BF888 end:0x806BF890
 
