@@ -1,7 +1,7 @@
 #include "Game/Animation/XanimeCore.hpp"
 
 void XanimeTrack::init() {
-    _0 = 0;
+    _0 = nullptr;
     mWeight = 0.0f;
     _C = 0;
     _8 = 0.0f;

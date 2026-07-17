@@ -15,7 +15,7 @@ public:
     /// @brief Creates a new `XanimeFrameCtrl`.
     XanimeFrameCtrl();
 
-    /* 0x14 */ u32 _14;
+    /* 0x14 */ s32 _14;
 };
 
 class XanimePlayer {
@@ -64,6 +64,7 @@ public:
     XanimeGroupInfo* getSimpleGroup() const;
     void duplicateSimpleGroup();
     void changeCurrentAnimation(const XanimeGroupInfo*);
+    inline bool inLine() const;
 
     inline XanimeCore* getCore() {
         return mCore;
@@ -77,7 +78,7 @@ public:
     /* 0x20 */ XanimeFrameCtrl* _20;
     /* 0x24 */ XanimeFrameCtrl _24[2];
     /* 0x54 */ u8 _54;
-    /* 0x55 */ u8 mCurrent_24;
+    /* 0x55 */ u8 _55;
     /* 0x58 */ const char* mCurrentBckName;
     /* 0x5C */ const XanimeGroupInfo* mDefaultAnimation;
     /* 0x60 */ const XanimeGroupInfo* mCurrentAnimation;

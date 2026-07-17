@@ -4,6 +4,7 @@
 #include <JSystem/JGeometry/TVec.hpp>
 
 class J3DModelData;
+class J3DAnmTransform;
 
 class XtransformInfo {
 public:
@@ -64,8 +65,8 @@ class XanimeTrack {
 public:
     void init();
 
-    u32 _0;
-    f32 mWeight;  // 0x4
+    /* 0x0 */ J3DAnmTransform* _0;
+    /* 0x4 */ f32 mWeight;  // 0x4
     f32 _8;
     u8 _C;
 };

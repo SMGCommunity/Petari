@@ -13,7 +13,7 @@ public:
 
 class XanimeBckTable {
 public:
-    const char* animationName;
+    /* 0x0 */ const char* mAnimationName;
 };
 
 // Size is 0x14
