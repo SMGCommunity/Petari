@@ -286,7 +286,7 @@ void TeresaRacer::loseRacer() {
 }
 
 void TeresaRacer::resetRacer(const RaceManager* pRaceManager) {
-    if (pRaceManager->mCurrentRace == 1) {
+    if (pRaceManager->mCurrentRace == RaceID_TeresaPhantom) {
         MR::setDefaultPose(this);
     } else {
         MR::setNPCActorPos(this, "レース終了後位置テレサ");
