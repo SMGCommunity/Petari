@@ -6,8 +6,25 @@
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
+
+namespace {
+    static const f32 sMarioWorldOffset = 120.0f;
+    static const f32 sMarioScreenOffsetX = 32.0f;
+    static const f32 sMarioScreenOffsetY = -38.0f;
+    static const s32 sMoveToBasePositionTime = 25;
+    static const f32 sMinAlpha = 0.3f;
+    static const f32 sMaxAlpha = 1.2f;
+    // static const f32 sHideSpeed = _;
+    // static const f32 sShowSpeed = _;
+    static const s32 sAppearTime = 120;
+    static const s32 sBreakDelayTime = 40;
+    static const s32 sPowerUpWaitTime = 60;
+    // static const s32 sRecoveryCountInterval = _;
+    // static const s32 sRecoveryCountStartTime = _;
+};
 
 namespace NrvSuddenDeathMeter {
     NEW_NERVE(SuddenDeathMeterNrvAppear, SuddenDeathMeter, Appear);
@@ -20,10 +37,10 @@ namespace NrvSuddenDeathMeter {
     NEW_NERVE(SuddenDeathMeterNrvZeroMeterBreak, SuddenDeathMeter, ZeroMeterBreak);
 };  // namespace NrvSuddenDeathMeter
 
-SuddenDeathMeter::SuddenDeathMeter(const char* a1, const char* a2)
-    : LayoutActor(a1, true), mCountUpPaneRumbler(nullptr), mFollowPosW(0.0f, 0.0f), _2C(0.0f, 0.0f), mCount(1), _38(0.0f), _3C(1.0f) {
+SuddenDeathMeter::SuddenDeathMeter(const char* pName, const char* pArcName)
+    : LayoutActor(pName, true), mCountUpPaneRumbler(), mFollowPosW(0.0f, 0.0f), _2C(0.0f, 0.0f), mCount(1), mAlpha(0.0f), mShowHideRate(1.0f) {
     MR::connectToSceneLayout(this);
-    initLayoutManager(a2, 3);
+    initLayoutManager(pArcName, 3);
 }
 
 void SuddenDeathMeter::init(const JMapInfoIter& rIter) {
@@ -45,26 +62,32 @@ void SuddenDeathMeter::init(const JMapInfoIter& rIter) {
 
 void SuddenDeathMeter::control() {
     if (isNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvAppear::sInstance)) {
-        _38 = 1.0f;
+        mAlpha = 1.0f;
     }
-    _38 = MR::clamp(_38, 0.3f, 1.2f);
-    MR::setAnimFrameAndStop(this, MR::normalize(_38, 0.0f, 1.0f) * _3C * 20.0f, 2);
+
+    mAlpha = MR::clamp(mAlpha, ::sMinAlpha, ::sMaxAlpha);
+
+    MR::setAnimFrameAndStop(this, MR::normalize(mAlpha, 0.0f, 1.0f) * mShowHideRate * 20.0f, 2);
     mCountUpPaneRumbler->update();
 }
 
 void SuddenDeathMeter::requestActive() {
-    if (MR::isDead(this)) {
-        appear();
-        mCountUpPaneRumbler->reset();
-        MR::showLayout(this);
-        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvWait::sInstance);
+    if (!MR::isDead(this)) {
+        return;
     }
+
+    appear();
+    mCountUpPaneRumbler->reset();
+    MR::showLayout(this);
+    setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvWait::sInstance);
 }
 
 void SuddenDeathMeter::requestDeactivate() {
-    if (!MR::isDead(this)) {
-        kill();
+    if (MR::isDead(this)) {
+        return;
     }
+
+    kill();
 }
 
 void SuddenDeathMeter::requestPowerUp() {
@@ -84,7 +107,8 @@ void SuddenDeathMeter::exeAppear() {
         mFollowPosW.x = mFollowPosW.y = 0.0f;
         setCountAnimFrame();
     }
-    if (MR::isGreaterStep(this, 120)) {
+
+    if (MR::isGreaterStep(this, ::sAppearTime)) {
         setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvWait::sInstance);
     }
 }
@@ -102,15 +126,29 @@ void SuddenDeathMeter::exePowerUp() {
         MR::setAnimFrameAndStop(this, 0.0f, 1);
         setRecoveryCountAnimFrame();
     }
+
     TVec2f position;
     calcMarioHeadPosition(&position);
     setPowerUpMeterPosition(position);
-    if (MR::isGreaterStep(this, 60)) {
+
+    if (MR::isGreaterStep(this, ::sPowerUpWaitTime)) {
         setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvMeterMove::sInstance);
     }
 }
 
-// void SuddenDeathMeter::exeMeterMove()
+void SuddenDeathMeter::exeMeterMove() {
+    if (MR::isFirstStep(this)) {
+        _2C = mFollowPosW;
+    }
+
+    f32 rate = MR::calcNerveEaseInRate(this, ::sMoveToBasePositionTime);
+
+    mFollowPosW = _2C * (1.0f - rate);
+
+    if (MR::isGreaterStep(this, ::sMoveToBasePositionTime)) {
+        setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvCounterMove::sInstance);
+    }
+}
 
 void SuddenDeathMeter::exeCounterMove() {
     if (MR::isFirstStep(this)) {
@@ -129,7 +167,8 @@ void SuddenDeathMeter::exeBreakMeter() {
         MR::startAnim(this, "Damage2", 1);
         mFollowPosW.x = mFollowPosW.y = 0.0f;
     }
-    if (MR::isStep(this, 40)) {
+
+    if (MR::isStep(this, ::sBreakDelayTime)) {
         MR::startSystemSE("SE_SY_LIFE_PLATE_DEC");
         MR::startAnim(this, "FontPosition2to1", 1);
         setCountAnimFrame();
@@ -142,6 +181,7 @@ void SuddenDeathMeter::exeZeroMeter() {
         mFollowPosW.x = mFollowPosW.y = 0.0f;
         setCountAnimFrame();
     }
+
     if (MR::isAnimStopped(this, 1)) {
         setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvZeroMeterBreak::sInstance);
     }
@@ -151,7 +191,8 @@ void SuddenDeathMeter::exeZeroMeterBreak() {
     if (MR::isFirstStep(this)) {
         mFollowPosW.x = mFollowPosW.y = 0.0f;
     }
-    if (MR::isStep(this, 40)) {
+
+    if (MR::isStep(this, ::sBreakDelayTime)) {
         MR::hideLayout(this);
     }
 }
@@ -162,9 +203,13 @@ void SuddenDeathMeter::initCount(s32 count) {
 
 void SuddenDeathMeter::setCount(s32 count) {
     s32 prevCount = mCount;
+
     mCount = count;
-    if (count >= prevCount)
+
+    if (count >= prevCount) {
         return;
+    }
+
     if (count == 0) {
         setNerve(&NrvSuddenDeathMeter::SuddenDeathMeterNrvZeroMeter::sInstance);
     } else {
@@ -172,14 +217,29 @@ void SuddenDeathMeter::setCount(s32 count) {
     }
 }
 
-// void SuddenDeathMeter::calcMarioHeadPosition(TVec2f *pos) const;
+void SuddenDeathMeter::calcMarioHeadPosition(TVec2f* pHeadPosition) const {
+    TVec2f screenPos;
+    MR::calcScreenPosition(&screenPos, *MR::getPlayerCenterPos());
+    f32 radius = MR::calcPointRadius2D(*MR::getPlayerCenterPos(), ::sMarioWorldOffset);
 
-void SuddenDeathMeter::calcPowerUpMeterBasePosition(TVec2f* pos) const {
-    pos->x = MR::getPaneTransX(this, "MoveMeterW");
-    pos->y = MR::getPaneTransY(this, "MoveMeterW");
+    screenPos.y = screenPos.y - radius;
+    screenPos.x += ::sMarioScreenOffsetX;
+    screenPos.y += ::sMarioScreenOffsetY;
+
+    pHeadPosition->x = screenPos.x;
+    pHeadPosition->y = screenPos.y;
 }
 
-// void SuddenDeathMeter::setPowerUpMeterPosition(const TVec2f &pos);
+void SuddenDeathMeter::calcPowerUpMeterBasePosition(TVec2f* pBasePosition) const {
+    pBasePosition->x = MR::getPaneTransX(this, "MoveMeterW");
+    pBasePosition->y = MR::getPaneTransY(this, "MoveMeterW");
+}
+
+void SuddenDeathMeter::setPowerUpMeterPosition(const TVec2f &rPosition) {
+    TVec2f basePosition;
+    calcPowerUpMeterBasePosition(&basePosition);
+    mFollowPosW.set(rPosition - basePosition);
+}
 
 void SuddenDeathMeter::setCountAnimFrame() {
     MR::setTextBoxNumberRecursive(this, "HitPointNumber", mCount);
