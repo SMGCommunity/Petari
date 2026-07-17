@@ -12,8 +12,26 @@ class JKRHeap : public JKRDisposer {
 public:
     class TState {
     public:
-        u32 _0;
-        u32 _4;
+        /* 0x00 */ u32 mUsedSize;
+        /* 0x04 */ u32 mCheckCode;
+        /* 0x08 */ u32 mBuf;
+        /* 0x0C */ u32 field_0xc;
+        /* 0x10 */ JKRHeap* mHeap;
+        /* 0x14 */ u32 mId;
+
+    public:
+        u32 getUsedSize() const {
+            return mUsedSize;
+        }
+        u32 getCheckCode() const {
+            return mCheckCode;
+        }
+        JKRHeap* getHeap() const {
+            return mHeap;
+        }
+        u32 getId() const {
+            return mId;
+        }
     };
 
     JKRHeap(void*, u32, JKRHeap*, bool);
@@ -73,6 +91,43 @@ public:
 
     inline u8* getEnd() const {
         return mEnd;
+    }
+
+    static void* getState_buf_(TState* state) {
+        return &state->mBuf;
+    }
+
+    JKRHeap* getParent() {
+        return mChildTree.getParent()->getObject();
+    }
+
+    void lock() const {
+        OSLockMutex(const_cast< OSMutex* >(&mMutex));
+    }
+    void unlock() const {
+        OSUnlockMutex(const_cast< OSMutex* >(&mMutex));
+    }
+
+    bool getErrorFlag() const {
+        return mErrorFlag;
+    }
+
+    void callErrorHandler(void* heap, u32 size, int alignment) {
+        if (mErrorHandler) {
+            (*mErrorHandler)(heap, size, alignment);
+        }
+    }
+
+    static void setState_u32ID_(TState* state, u32 id) {
+        state->mId = id;
+    }
+
+    static void setState_uUsedSize_(TState* state, u32 usedSize) {
+        state->mUsedSize = usedSize;
+    }
+
+    static void setState_u32CheckCode_(TState* state, u32 checkCode) {
+        state->mCheckCode = checkCode;
     }
 
     static void destroy(JKRHeap*);

@@ -40,7 +40,7 @@ public:
     static void decode(unsigned char*, unsigned char*, unsigned long, unsigned long);
     static void decodeSZP(unsigned char*, unsigned char*, unsigned long, unsigned long);
     static void decodeSZS(u8*, u8*, u32, u32);
-    static EJKRCompression checkCompressed(unsigned char*);
+    static EJKRCompression checkCompressed(unsigned char*) NO_INLINE;
 };
 
 inline void JKRDecompress(u8* srcBuffer, u8* dstBuffer, u32 srcLength, u32 dstLength) {
