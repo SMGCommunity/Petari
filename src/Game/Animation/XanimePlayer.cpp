@@ -100,7 +100,6 @@ void XanimePlayer::init() {
     _55 = 0;
     _54 = 0;
 
-    // Fakematch. This float value goes through a convertion from u8 to f32, but I am unsure of its value.
     f32 f1 = _54;
     _0C = f1;
     _08 = f1;
@@ -500,10 +499,6 @@ bool XanimePlayer::isRun(const char* pName) const {
     }
 
     return mCurrentAnimation == mResourceTable->getGroupInfo(pName);
-}
-
-bool XanimePlayer::inLine() const {
-    return _24[_54].checkState(0x1) == 0;
 }
 
 bool XanimePlayer::isTerminate(const char* pName) const {

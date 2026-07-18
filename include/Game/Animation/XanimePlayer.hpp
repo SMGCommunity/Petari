@@ -64,8 +64,6 @@ public:
     XanimeGroupInfo* getSimpleGroup() const;
     void duplicateSimpleGroup();
     void changeCurrentAnimation(const XanimeGroupInfo*);
-    inline bool inLine() const;
-
     inline XanimeCore* getCore() {
         return mCore;
     }
