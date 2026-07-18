@@ -29,12 +29,12 @@ public:
 class XanimeGroupInfo {
 public:
     /* 0x0 */ XanimeBckTable mParent;
-    f32 _4;
+    /* 0x4 */ f32 mRate;
     u32 _8;
-    f32 _C;
-    f32 _10;
-    f32 _14;
-    u32 _18;
+    /* 0xC */ f32 mStart;
+    /* 0x10 */ f32 mEnd;
+    /* 0x14 */ f32 mLoop;
+    /* 0x18 */ u32 mAttribute;
     /* 0x1C */ u8 mBckTableVariant;
     u8 _1D;
     void* _20[4];

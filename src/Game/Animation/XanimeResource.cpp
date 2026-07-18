@@ -24,7 +24,7 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pArg) {
 
     _1C.init();
 
-    _1C._4 = 1.0f;
+    _1C.mRate = 1.0f;
     _1C.mParent.mAnimationName = "non-group";
     _1C._8 = 1;
     _1C.mBckTableVariant = 1;
@@ -57,7 +57,7 @@ XanimeResourceTable::XanimeResourceTable(ResourceHolder* pResourceHolder, Xanime
     mAmountOfBckTables = i;
 
     _1C.init();
-    _1C._4 = 1.0f;
+    _1C.mRate = 1.0f;
     _1C.mParent.mAnimationName = "non-group";
     _1C._8 = 1;
     _1C.mBckTableVariant = 1;
@@ -181,26 +181,26 @@ u32 XanimeResourceTable::initGroupInfo(ResourceHolder* pResourceHolder, XanimeGr
             entry->_40 = nullptr;
         }
 
-        entry->_C = 0.0f;
+        entry->mStart = 0.0f;
         if (entry->_20[0] == nullptr) {
-            entry->_10 = 0.0f;
-            entry->_14 = 0.0f;
-            entry->_18 = 0;
+            entry->mEnd = 0.0f;
+            entry->mLoop = 0.0f;
+            entry->mAttribute = 0;
         } else {
             // Unsure of what is happening there.
-            entry->_18 = static_cast< u8* >(entry->_20[0])[4];
-            entry->_14 = 0.0f;
-            entry->_10 = static_cast< f32 >(reinterpret_cast< const s16* >(entry->_20[0])[3]);
+            entry->mAttribute = static_cast< u8* >(entry->_20[0])[4];
+            entry->mLoop = 0.0f;
+            entry->mEnd = static_cast< f32 >(reinterpret_cast< const s16* >(entry->_20[0])[3]);
         }
 
         XanimeBckTable* ofsTables[1];
         ofsTables[0] = reinterpret_cast< XanimeBckTable* >(pOfsInfo);
 
         if (search(ofsTables, entry->mParent.mAnimationName, sizeof(XanimeOfsInfo))) {
-            entry->_C = reinterpret_cast< XanimeOfsInfo* >(ofsTables[0])->_4;
-            entry->_14 = reinterpret_cast< XanimeOfsInfo* >(ofsTables[0])->_C;
-            entry->_10 = reinterpret_cast< XanimeOfsInfo* >(ofsTables[0])->_8;
-            entry->_18 = reinterpret_cast< XanimeOfsInfo* >(ofsTables[0])->_10;
+            entry->mStart = reinterpret_cast< XanimeOfsInfo* >(ofsTables[0])->_4;
+            entry->mLoop = reinterpret_cast< XanimeOfsInfo* >(ofsTables[0])->_C;
+            entry->mEnd = reinterpret_cast< XanimeOfsInfo* >(ofsTables[0])->_8;
+            entry->mAttribute = reinterpret_cast< XanimeOfsInfo* >(ofsTables[0])->_10;
         }
 
         i++;
@@ -449,13 +449,13 @@ bool XanimeResourceTable::search(XanimeBckTable** pArray, const char* pTarget, u
 }
 
 void XanimeGroupInfo::init() {
-    _4 = 0.0f;
+    mRate = 0.0f;
     mParent.mAnimationName = "not-initialized";
     _8 = 0;
-    _C = 0.0f;
-    _10 = 0.0f;
-    _14 = 0.0f;
-    _18 = 0;
+    mStart = 0.0f;
+    mEnd = 0.0f;
+    mLoop = 0.0f;
+    mAttribute = 0;
     mBckTableVariant = 0;
     _1D = 0;
     for (u32 i = 0; i < ARRAY_SIZE(_20); i++) {

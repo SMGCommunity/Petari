@@ -215,15 +215,15 @@ void XanimePlayer::swapFrameCtrl(const XanimeGroupInfo* pInfo) {
 
     _20 = &_24[_55];
     _20->init(reinterpret_cast< J3DAnmTransform* >(pInfo->_20[0])->getFrameMax());
-    _20->setRate(pInfo->_4);
-    _20->setStart(pInfo->_C);
-    _20->setFrame(pInfo->_C);
-    _20->setLoop(pInfo->_14);
-    _20->setEnd(pInfo->_10);
-    _20->setAttribute(pInfo->_18);
+    _20->setRate(pInfo->mRate);
+    _20->setStart(pInfo->mStart);
+    _20->setFrame(pInfo->mStart);
+    _20->setLoop(pInfo->mLoop);
+    _20->setEnd(pInfo->mEnd);
+    _20->setAttribute(pInfo->mAttribute);
     _20->_14 = pInfo->_8;
 
-    _84 = pInfo->_C;
+    _84 = pInfo->mStart;
     _88 = 0;
 }
 
@@ -604,7 +604,7 @@ void XanimePlayer::duplicateSimpleGroup() {
     _74 = new XanimeGroupInfo();
     _74->init();
     _74->mParent.mAnimationName = "dup-non-group";
-    _74->_4 = 1.0f;
+    _74->mRate = 1.0f;
     _74->_8 = 1;
     _74->mBckTableVariant = 1;
     _74->_1D = 0;
