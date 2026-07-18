@@ -1,8 +1,6 @@
 #include "Game/Boss/OtaKingLongFoot.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 

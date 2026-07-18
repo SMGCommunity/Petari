@@ -2,7 +2,6 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/MapObj/GCapture.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 class MapPartsRailMover;
 class MapPartsRotator;

@@ -9,7 +9,6 @@
 #include "Game/Screen/GalaxyMapTicoIcon.hpp"
 #include "Game/Screen/GalaxyMapTitle.hpp"
 #include "Game/Screen/IconAButton.hpp"
-#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Screen/LayoutManager.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
 #include "Game/Util/GamePadUtil.hpp"

@@ -1,7 +1,8 @@
 #include "Game/MapObj/MapPartsBreaker.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
 namespace NrvMapPartsBreaker {
     NEW_NERVE(HostTypeWait, MapPartsBreaker, Wait);
