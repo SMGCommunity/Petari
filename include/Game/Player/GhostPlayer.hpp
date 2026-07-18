@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 
 class ActorCameraInfo;
 class CameraTargetMtx;
@@ -21,7 +20,7 @@ namespace MR {
     void convToFloat(TVec3Sc&, s8, TVec3f*);
     void convToFloat(s16, s8, f32*);
     void convToFloat(s8, s8, f32*);
-}  // namespace MR
+};  // namespace MR
 
 class GhostPlayer : public LiveActor {
 public:
