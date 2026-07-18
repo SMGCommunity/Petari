@@ -227,7 +227,7 @@ namespace StarPointerFunction {
     }
 
     StarPointerDirector* getStarPointerDirector() {
-        return SingletonHolder< GameSystem >::get()->mObjHolder->mStarPointerDir;
+        return SingletonHolder< GameSystem >::get()->mObjHolder->mStarPointerDirector;
     }
 
     s32 getNumStarPointer() {

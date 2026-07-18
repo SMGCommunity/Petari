@@ -19,6 +19,7 @@ class WPadHolder;
 
 class GameSystemObjHolder {
 public:
+    /// @brief Creates a new `GameSystemObjHolder`.
     GameSystemObjHolder();
 
     void initAfterStationedResourceLoaded();
@@ -44,19 +45,19 @@ public:
     void initStarPointerDirector();
     void initDisplay();
 
-    NameObjHolder* mObjHolder;                   // 0x0
-    ParticleResourceHolder* mParticleResHolder;  // 0x4
-    GXRenderModeObj* mRenderModeObj;             // 0x8
-    void* _C;
-    void* _10;
-    void* _14;
-    CaptureScreenDirector* mCaptureScreenDir;  // 0x18
-    ScreenPreserver* mScreenPreserver;         // 0x1C
-    AudSystemWrapper* mSysWrapper;             // 0x20
-    WPadHolder* mWPadHolder;                   // 0x24
-    FunctionAsyncExecutor* mAsyncExec;         // 0x28
-    MessageHolder* mMsgHolder;                 // 0x2C
-    StarPointerDirector* mStarPointerDir;      // 0x30
-    JMath::TRandom_fast_ mRandom;              // 0x34
-    u32 mLanguage;                             // 0x38
+    /* 0x00 */ NameObjHolder* mObjHolder;
+    /* 0x04 */ ParticleResourceHolder* mParticleResHolder;
+    /* 0x08 */ GXRenderModeObj* mRenderModeObj;
+    /* 0x0C */ void* _C;
+    /* 0x10 */ void* _10;
+    /* 0x14 */ void* _14;
+    /* 0x18 */ CaptureScreenDirector* mCaptureScreenDirector;
+    /* 0x1C */ ScreenPreserver* mScreenPreserver;
+    /* 0x20 */ AudSystemWrapper* mAudioSystem;
+    /* 0x24 */ WPadHolder* mWPadHolder;
+    /* 0x28 */ FunctionAsyncExecutor* mFunctionAsyncExecutor;
+    /* 0x2C */ MessageHolder* mMessageHolder;
+    /* 0x30 */ StarPointerDirector* mStarPointerDirector;
+    /* 0x34 */ JMath::TRandom_fast_ mRandom;
+    /* 0x38 */ u32 mLanguage;
 };
