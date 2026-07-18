@@ -396,7 +396,7 @@ void XanimePlayer::clearMtxCalc(u16 arg) {
 }
 
 void XanimePlayer::clearAnm(u16 arg) {
-    if (_7C == 0) {
+    if (!_7C) {
         return;
     }
 
@@ -404,7 +404,7 @@ void XanimePlayer::clearAnm(u16 arg) {
 }
 
 void XanimePlayer::updateBeforeMovement() {
-    if (_7C == 0) {
+    if (!_7C) {
         return;
     }
 
@@ -422,7 +422,7 @@ void XanimePlayer::updateAfterMovement() {
     prepareAnimation(_68);
     _68 = nullptr;
 
-    if (_7C == 0) {
+    if (!_7C) {
         return;
     }
 
