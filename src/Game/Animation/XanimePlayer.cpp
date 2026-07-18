@@ -409,7 +409,6 @@ void XanimePlayer::updateBeforeMovement() {
         return;
     }
 
-    // _20.checkState(1) will not match because of cmpwi comparison
     if ((_20->getState() & 1) == 1 && !_7E && (_20->getAttribute() == 0 || _20->getAttribute() == 3)) {
         runDefaultAnimation();
     }
@@ -471,7 +470,7 @@ void XanimePlayer::getMainAnimationTrans(u32 arg1, TVec3f* pOut) const {
     u8 index = 0;
     f32 f2 = mCore->mTrackList[0].getWeight() + 0.01f;
     for (u8 i = 1; i < mCore->mTrackCount; i++) {
-        // r6 alternates between mCore and mCore->mTrackList
+        // nonmatching, r6 alternates between mCore and mCore->mTrackList
         if (mCore->mTrackList[i]._0 != nullptr && mCore->mTrackList[i].getWeight() > f2) {
             f2 = mCore->mTrackList[i].getWeight() + 0.01f;
             index = i;
