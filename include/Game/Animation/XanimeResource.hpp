@@ -38,7 +38,7 @@ public:
     /* 0x1C */ u8 mBckTableVariant;
     u8 _1D;
     void* _20[4];
-    f32 _30[4];
+    /* 0x30 */ f32 mWeights[4];
     XanimeOfsInfo** _40;
     /* 0x44 */ u32 mHash;
     /* 0x48 */ const char* mBckName;

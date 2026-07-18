@@ -116,7 +116,7 @@ void XanimePlayer::init() {
     for (int i = 0; i < ARRAY_SIZE(mWeights); i++) {
         mWeights[i] = 0.0f;
     }
-    _74 = 0;
+    mSimpleGroup = nullptr;
     _84 = 0.0f;
 }
 
@@ -160,11 +160,13 @@ void XanimePlayer::changeTrackAnimation(u8 arg1, const char* pName) {
 }
 
 void XanimePlayer::changeTrackAnimation(u8 arg1, u32 index) {
-    if (arg1 <= mCurrentAnimation->mBckTableVariant) {
-        J3DAnmTransform* resMotion = static_cast< J3DAnmTransform* >(mResourceTable->findResMotion(mResourceTable->mBckTables[index].mFileName));
-        if (resMotion != nullptr) {
-            mCore->setBck(arg1, resMotion);
-        }
+    if (arg1 > mCurrentAnimation->mBckTableVariant) {
+        return;
+    }
+
+    J3DAnmTransform* resMotion = static_cast< J3DAnmTransform* >(mResourceTable->findResMotion(mResourceTable->mBckTables[index].mFileName));
+    if (resMotion != nullptr) {
+        mCore->setBck(arg1, resMotion);
     }
 }
 
@@ -267,10 +269,10 @@ void XanimePlayer::runNextAnimation() {
     _7F = false;
 
     const XanimeGroupInfo* curAnim = mCurrentAnimation;
-    u32 i = 0;
-    for (; i < curAnim->mBckTableVariant; i++) {
+    u32 i;
+    for (i = 0; i < curAnim->mBckTableVariant; i++) {
         mCore->setBck(i & 0xFF, static_cast< J3DAnmTransform* >(curAnim->_20[i]));
-        mWeights[i] = curAnim->_30[i];
+        mWeights[i] = curAnim->mWeights[i];
     }
 
     for (u32 j = i; j < mResourceTable->mMaxGroupInfoTableSize; j++) {
@@ -554,15 +556,17 @@ bool XanimePlayer::isAnimationRunSimple() const {
 
 const char* XanimePlayer::getCurrentAnimationName() const {
     if (mCurrentAnimation == nullptr) {
-        return dummy_name;
+        return ::dummy_name;
     }
+
     return mCurrentAnimation->mParent.mAnimationName;
 }
 
 const char* XanimePlayer::getDefaultAnimationName() const {
     if (mDefaultAnimation == nullptr) {
-        return dummy_name;
+        return ::dummy_name;
     }
+
     return mDefaultAnimation->mParent.mAnimationName;
 }
 
@@ -593,21 +597,21 @@ bool XanimePlayer::checkPass(f32 arg) const {
 }
 
 XanimeGroupInfo* XanimePlayer::getSimpleGroup() const {
-    if (_74 != nullptr) {
-        return _74;
+    if (mSimpleGroup != nullptr) {
+        return mSimpleGroup;
     }
 
     return &mResourceTable->_1C;
 }
 
 void XanimePlayer::duplicateSimpleGroup() {
-    _74 = new XanimeGroupInfo();
-    _74->init();
-    _74->mParent.mAnimationName = "dup-non-group";
-    _74->mRate = 1.0f;
-    _74->_8 = 1;
-    _74->mBckTableVariant = 1;
-    _74->_1D = 0;
+    mSimpleGroup = new XanimeGroupInfo();
+    mSimpleGroup->init();
+    mSimpleGroup->mParent.mAnimationName = "dup-non-group";
+    mSimpleGroup->mRate = 1.0f;
+    mSimpleGroup->_8 = 1;
+    mSimpleGroup->mBckTableVariant = 1;
+    mSimpleGroup->_1D = 0;
 }
 
 XanimeFrameCtrl::XanimeFrameCtrl() : _14(0) {

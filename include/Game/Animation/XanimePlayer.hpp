@@ -86,7 +86,7 @@ public:
     /* 0x68 */ const XanimeGroupInfo* _68;
     /* 0x6C */ XanimeCore* mCore;
     /* 0x70 */ XanimeResourceTable* mResourceTable;
-    /* 0x74 */ XanimeGroupInfo* _74;
+    /* 0x74 */ XanimeGroupInfo* mSimpleGroup;
     /* 0x78 */ s32 _78;
     /* 0x7C */ bool _7C;
     /* 0x7D */ bool _7D;
