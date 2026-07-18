@@ -69,7 +69,7 @@ public:
     }
 
     /* 0x0 */ J3DAnmTransform* _0;
-    /* 0x4 */ f32 mWeight;  // 0x4
+    /* 0x4 */ f32 mWeight;
     f32 _8;
     u8 _C;
 };
