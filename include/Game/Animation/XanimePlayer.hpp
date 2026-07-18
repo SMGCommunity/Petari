@@ -89,10 +89,10 @@ public:
     /* 0x74 */ XanimeGroupInfo* _74;
     /* 0x78 */ s32 _78;
     /* 0x7C */ bool _7C;
-    /* 0x7D */ u8 _7D;
-    /* 0x7E */ u8 _7E;
-    /* 0x7F */ u8 _7F;
-    /* 0x80 */ u8 _80;
+    /* 0x7D */ bool _7D;
+    /* 0x7E */ bool _7E;
+    /* 0x7F */ bool _7F;
+    /* 0x80 */ bool _80;
     /* 0x84 */ f32 _84;
-    /* 0x88 */ u8 _88;
+    /* 0x88 */ bool _88;
 };
