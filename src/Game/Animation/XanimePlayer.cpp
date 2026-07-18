@@ -117,7 +117,7 @@ void XanimePlayer::init() {
         mWeights[i] = 0.0f;
     }
     _74 = 0;
-    _84 = -2.0f;
+    _84 = 0.0f;
 }
 
 void XanimePlayer::setDefaultAnimation(const char* pAnimationName) {
