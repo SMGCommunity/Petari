@@ -177,8 +177,8 @@ namespace MR {
         pActor->initActorStarPointerTarget(radius, nullptr, mtx, TVec3f(rOffset));
     }
 
-    void addStarPointerTargetCircle(LayoutActor* pLayout, const char* pLayoutName, f32 radius, const TVec2f& rPosition, const char* pPaneName) {
-        pLayout->mStarPointerTargetKeeper->addTargetCircle(pLayout, pLayoutName, radius, rPosition, pPaneName);
+    void addStarPointerTargetCircle(LayoutActor* pActor, const char* pLayoutName, f32 radius, const TVec2f& rPosition, const char* pPaneName) {
+        pActor->mPointingTarget->addTargetCircle(pActor, pLayoutName, radius, rPosition, pPaneName);
     }
 
     bool isStarPointerValid(s32 channel) {
@@ -201,14 +201,14 @@ namespace MR {
         return MR::isStarPointerPointing1Por2P(pActor, nullptr, enableTouch, false);
     }
 
-    bool isStarPointerPointingPane(const LayoutActor* pLayout, const char* pLayoutName, s32 channel, bool enableTouch, const char* pStrength) {
+    bool isStarPointerPointingPane(const LayoutActor* pActor, const char* pLayoutName, s32 channel, bool enableTouch, const char* pStrength) {
         if (::getStarPointerLayout(channel)->mIsPointerValid) {
-            return isStarPointerPointingPaneForMeterLayout(pLayout, pLayoutName, channel, enableTouch, pStrength);
+            return isStarPointerPointingPaneForMeterLayout(pActor, pLayoutName, channel, enableTouch, pStrength);
         }
         return false;
     }
 
-    bool isStarPointerPointingPaneForMeterLayout(const LayoutActor* pLayout, const char* pLayoutName, s32 channel, bool enableTouch,
+    bool isStarPointerPointingPaneForMeterLayout(const LayoutActor* pActor, const char* pLayoutName, s32 channel, bool enableTouch,
                                                  const char* pStrength) {
         if (!MR::isConnectedWPad(channel)) {
             return false;
@@ -227,12 +227,12 @@ namespace MR {
         }
 
         TVec2f pos = getStarPointerScreenPositionOrEdge(channel);
-        if (pLayout->getLayoutManager()->isPointing(pLayoutName, pos)) {
-            ::onReaction(reinterpret_cast< u64 >(pLayout) + reinterpret_cast< u64 >(pLayoutName), channel, enableTouch, false, false);
+        if (pActor->getLayoutManager()->isPointing(pLayoutName, pos)) {
+            ::onReaction(reinterpret_cast< u64 >(pActor) + reinterpret_cast< u64 >(pLayoutName), channel, enableTouch, false, false);
 
             if (pStrength != nullptr) {
                 if (::getStarPointerLayout(channel)->isChanceToRumble()) {
-                    MR::tryRumblePad(pLayout, pStrength, channel);
+                    MR::tryRumblePad(pActor, pStrength, channel);
                 }
             }
             return true;
@@ -241,7 +241,7 @@ namespace MR {
         return false;
     }
 
-    bool isStarPointerPointingTarget(const LayoutActor* pLayout, const char* pLayoutName, s32 channel, bool enableTouch, const char* pStrength) {
+    bool isStarPointerPointingTarget(const LayoutActor* pActor, const char* pLayoutName, s32 channel, bool enableTouch, const char* pStrength) {
         if (!MR::isConnectedWPad(channel)) {
             return false;
         }
@@ -262,14 +262,14 @@ namespace MR {
             return false;
         }
 
-        StarPointerLayoutTarget* target = pLayout->mStarPointerTargetKeeper->getTarget(pLayoutName);
+        StarPointerLayoutTarget* target = pActor->mPointingTarget->getTarget(pLayoutName);
         TVec2f pos = getStarPointerScreenPositionOrEdge(channel);
         if (target->isPointing(pos)) {
-            ::onReaction(reinterpret_cast< u64 >(pLayout) + reinterpret_cast< u64 >(pLayoutName), channel, enableTouch, false, false);
+            ::onReaction(reinterpret_cast< u64 >(pActor) + reinterpret_cast< u64 >(pLayoutName), channel, enableTouch, false, false);
 
             if (pStrength != nullptr) {
                 if (::getStarPointerLayout(channel)->isChanceToRumble()) {
-                    MR::tryRumblePad(pLayout, pStrength, channel);
+                    MR::tryRumblePad(pActor, pStrength, channel);
                 }
             }
             return true;

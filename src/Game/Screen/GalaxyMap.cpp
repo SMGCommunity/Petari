@@ -164,7 +164,7 @@ void GalaxyMap::draw() const {
 }
 
 void GalaxyMap::movementForCapture() {
-    if (mManager != nullptr && !MR::isStopAnimFrame(this)) {
+    if (mLayoutManager != nullptr && !MR::isStopAnimFrame(this)) {
         getLayoutManager()->movement();
     }
 
