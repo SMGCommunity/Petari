@@ -5,7 +5,6 @@
 #include "Game/NPC/TalkState.hpp"
 #include "Game/NPC/TalkTextFormer.hpp"
 #include "Game/Screen/IconAButton.hpp"
-#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"

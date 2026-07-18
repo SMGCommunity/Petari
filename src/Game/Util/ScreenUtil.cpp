@@ -35,7 +35,7 @@
 
 namespace {
     CaptureScreenDirector* getCaptureScreenDirector() NO_INLINE {
-        return SingletonHolder< GameSystem >::get()->mObjHolder->mCaptureScreenDir;
+        return SingletonHolder< GameSystem >::get()->mObjHolder->mCaptureScreenDirector;
     }
 
     PlayTimerScene* getPlayTimerScene() NO_INLINE {

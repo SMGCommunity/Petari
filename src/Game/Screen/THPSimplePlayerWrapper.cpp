@@ -1,14 +1,7 @@
 #include "Game/Screen/THPSimplePlayerWrapper.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/System/NerveExecutor.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
-#include "revolution/dvd.h"
-#include "revolution/gx/GXStruct.h"
-#include "revolution/os.h"
-#include "revolution/os/OSInterrupt.h"
-#include "revolution/sc.h"
-#include "revolution/thp.h"
 #include <JSystem/JAudio2/JASAiCtrl.hpp>
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <cstring>
@@ -546,6 +539,9 @@ namespace {
         player->readAsyncCallBack(a1);
     }
 };  // namespace
+
+void THPSimplePlayerWrapper::exeWait() {
+}
 
 void THPSimplePlayerWrapper::exeReadHeader() {
     if (MR::isFirstStep(this)) {

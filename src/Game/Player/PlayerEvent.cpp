@@ -1,5 +1,4 @@
 #include "Game/Player/PlayerEvent.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Player/PlayerEventAbyss.hpp"
 #include "Game/Player/PlayerEventDown.hpp"
 #include "Game/Player/PlayerEventFireDown.hpp"
@@ -13,7 +12,7 @@
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SequenceUtil.hpp"
 
-EventSequencer::EventSequencer() : NameObj("イベントシーケンサー"), mSequence(nullptr) {
+EventSequencer::EventSequencer() : NameObj("イベントシーケンサー"), mSequence() {
     MR::connectToSceneMapObjMovement(this);
     mHashTable = new HashSortTable(16);
 }
@@ -30,13 +29,15 @@ void EventSequencer::init(const JMapInfoIter& rIter) {
 }
 
 void EventSequencer::movement() {
-    if (mSequence != nullptr) {
-        if (mSequence->checkAndRun(mSequenceFrame)) {
-            mSequence = nullptr;
-        }
-
-        mSequenceFrame++;
+    if (mSequence == nullptr) {
+        return;
     }
+
+    if (mSequence->checkAndRun(mSequenceFrame)) {
+        mSequence = nullptr;
+    }
+
+    mSequenceFrame++;
 }
 
 void EventSequencer::startEvent(const char* pName) {

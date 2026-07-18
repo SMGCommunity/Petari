@@ -1,9 +1,7 @@
 #include "Game/Map/GravityDust.hpp"
-#include "Game/Effect/MultiEmitterParticleCallBack.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Util/GravityUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "JSystem/JParticle/JPAParticle.hpp"
 
 GravityDustParticleCallBack::GravityDustParticleCallBack(const LiveActor* pActor) : MultiEmitterParticleCallBack(), mActor(pActor) {
 }
