@@ -64,6 +64,9 @@ public:
 class XanimeTrack {
 public:
     void init();
+    f32 getWeight() const {
+        return mWeight;
+    }
 
     /* 0x0 */ J3DAnmTransform* _0;
     /* 0x4 */ f32 mWeight;  // 0x4

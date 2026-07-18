@@ -470,12 +470,11 @@ void XanimePlayer::updateInterpoleRatio() {
 
 void XanimePlayer::getMainAnimationTrans(u32 arg1, TVec3f* pOut) const {
     u8 index = 0;
-    // float regswap
-    f32 f2 = 0.01f + mCore->mTrackList[0].mWeight;
+    f32 f2 = mCore->mTrackList[0].getWeight() + 0.01f;
     for (u8 i = 1; i < mCore->mTrackCount; i++) {
         // r6 alternates between mCore and mCore->mTrackList
-        if (mCore->mTrackList[i]._0 != nullptr && mCore->mTrackList[i].mWeight > f2) {
-            f2 = 0.01f + mCore->mTrackList[i].mWeight;
+        if (mCore->mTrackList[i]._0 != nullptr && mCore->mTrackList[i].getWeight() > f2) {
+            f2 = mCore->mTrackList[i].getWeight() + 0.01f;
             index = i;
         }
     }
