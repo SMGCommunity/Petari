@@ -219,6 +219,9 @@ namespace JGeometry {
         T y;
         T z;
 
+        TVec3() {
+        }
+
         TVec3< T >(T _x, T _y, T _z) {
             x = _x;
             y = _y;
