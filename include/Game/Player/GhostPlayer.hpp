@@ -28,7 +28,6 @@ public:
 
     GhostPlayer(const char*);
 
-    virtual ~GhostPlayer();
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void appear();

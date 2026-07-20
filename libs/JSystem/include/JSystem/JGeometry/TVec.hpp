@@ -219,7 +219,7 @@ namespace JGeometry {
         T y;
         T z;
 
-        inline TVec3() {
+        TVec3() {
         }
 
         TVec3< T >(T _x, T _y, T _z) {

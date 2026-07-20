@@ -78,7 +78,7 @@ namespace {
                                              {"氷上力行左", nullptr, "SE_BV_GHOST_MARIO_JUMP_S"},
                                              {"ショートジャンプ", "SE_BM_GHOST_MARIO_JUMP_S", "SE_BV_GHOST_MARIO_JUMP_S"}};
 
-    static inline const AnimSoundInfo* getAnimSoundInfo(const char* pAnimName) {
+    static const AnimSoundInfo* getAnimSoundInfo(const char* pAnimName) {
         for (u32 i = 0; i < ARRAY_SIZE(sAnimSoundTable); i++) {
             if (MR::isEqualString(pAnimName, sAnimSoundTable[i].pAnimName)) {
                 return &sAnimSoundTable[i];
@@ -246,7 +246,7 @@ void GhostPlayer::control() {
     if (strcmp("powerstarget", MR::getPlayerCurrentBckName()) == 0 && isNerve(&NrvGhostPlayer::HostTypeNrvRun::sInstance)) {
         setNerve(&NrvGhostPlayer::HostTypeNrvLostDemo::sInstance);
         mKilledByStar = true;
-    } else if (mCurrentPacket) {
+    } else if (mCurrentPacket != nullptr) {
         u32 packetDelayTimer = 0;
         while (true) {
             GhostPacket packet(mCurrentPacket, 0);
@@ -266,10 +266,10 @@ void GhostPlayer::control() {
             packetDelayTimer--;
         }
 
-        if (mAppearStarPieceCooldown) {
+        if (mAppearStarPieceCooldown != 0) {
             mAppearStarPieceCooldown--;
         }
-        if (mPlayerTrampleCooldown) {
+        if (mPlayerTrampleCooldown != 0) {
             mPlayerTrampleCooldown--;
         }
     }
@@ -456,12 +456,12 @@ void GhostPlayer::exeWinDemo() {
         MR::tryStartDemo(this, "レース終了");
         MR::requestMovementOn(this);
         MR::requestMovementOnPlayer();
-        if (mPowerStarTarget) {
+        if (mPowerStarTarget != nullptr) {
             MR::requestMovementOn(mPowerStarTarget);
         }
     }
 
-    if (mPowerStarTarget) {
+    if (mPowerStarTarget != nullptr) {
         PSMTXCopy(mPowerStarTarget->getBaseMtx(), getBaseMtx());
         PSMTXCopy(getBaseMtx(), mTargetRotationMtx);
         MR::extractMtxTrans(getBaseMtx(), &mPosition);
@@ -526,18 +526,18 @@ void GhostPlayer::setAnimation(const char* pName) {
     }
 }
 
-void GhostPlayer::setAnimationWeight(const f32* pWeight) {
-    mXanimePlayer->changeTrackWeight(0, pWeight[0]);
-    mXanimePlayer->changeTrackWeight(1, pWeight[1]);
-    mXanimePlayer->changeTrackWeight(2, pWeight[2]);
-    mXanimePlayer->changeTrackWeight(3, pWeight[3]);
+void GhostPlayer::setAnimationWeight(const f32* pWeights) {
+    mXanimePlayer->changeTrackWeight(0, pWeights[0]);
+    mXanimePlayer->changeTrackWeight(1, pWeights[1]);
+    mXanimePlayer->changeTrackWeight(2, pWeights[2]);
+    mXanimePlayer->changeTrackWeight(3, pWeights[3]);
 }
 
 void GhostPlayer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (pReceiver->isType(ATYPE_POWER_STAR_BIND)) {
         HitSensor* currentRushSensor = MR::getCurrentRushSensor();
         if ((currentRushSensor == nullptr || !currentRushSensor->isType(ATYPE_POWER_STAR_BIND)) && (!MR::isPlayerConfrontDeath() && !mKilledByStar)) {
-            if (strcmp("powerstarget", MR::getPlayerCurrentBckName())) {
+            if (strcmp("powerstarget", MR::getPlayerCurrentBckName()) != 0) {
                 setNerve(&NrvGhostPlayer::HostTypeNrvWinDemo::sInstance);
                 mKilledByStar = true;
                 MR::preventPlayerRush();
@@ -634,25 +634,25 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
 
     pPacket->mCurOffs = 4;
 
-    if ((updateFlags & 1) != 0) {
+    if ((updateFlags & 0x0001) != 0) {
         TVec3s rawPos;
         pPacket->read(&rawPos);
         MR::convToFloat(rawPos, -2, &mPosition);
     }
 
-    if ((updateFlags & 0x800) != 0) {
+    if ((updateFlags & 0x0800) != 0) {
         TVec3Sc rawVel;
         pPacket->read(&rawVel);
         MR::convToFloat(rawVel, 0, &mVelocity);
     }
 
-    if ((updateFlags & 0x400) != 0) {
+    if ((updateFlags & 0x0400) != 0) {
         TVec3Sc rawScale;
         pPacket->read(&rawScale);
         MR::convToFloat(rawScale, 3, &mScale);
     }
 
-    if ((updateFlags & 2) != 0) {
+    if ((updateFlags & 0x0002) != 0) {
         s8 rawRotX;
         f32 rotX;
         pPacket->read(&rawRotX);
@@ -662,7 +662,7 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
         mTargetRotation.x = rotX;
     }
 
-    if ((updateFlags & 4) != 0) {
+    if ((updateFlags & 0x0004) != 0) {
         s8 rawRotY;
         f32 rotY;
         pPacket->read(&rawRotY);
@@ -672,7 +672,7 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
         mTargetRotation.y = rotY;
     }
 
-    if ((updateFlags & 8) != 0) {
+    if ((updateFlags & 0x0008) != 0) {
         s8 rawRotZ;
         f32 rotZ;
         pPacket->read(&rawRotZ);
@@ -682,11 +682,11 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
         mTargetRotation.z = rotZ;
     }
 
-    if ((updateFlags & 0x0E) != 0) {
+    if ((updateFlags & 0x000E) != 0) {
         MR::makeMtxRotate(mTargetRotationMtx, mTargetRotation);
     }
 
-    if ((updateFlags & 0x10) != 0) {
+    if ((updateFlags & 0x0010) != 0) {
         char* animName;
         pPacket->read(&animName);
         setAnimation(animName);
@@ -695,7 +695,7 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
         bool isSpecialAnim = false;
         if (strcmp(animName, "基本") == 0) {
             isSpecialAnim = true;
-            setAnimationWeight(&mAnimTrackWeights[0]);
+            setAnimationWeight(mAnimTrackWeights);
         } else if (strcmp(animName, "壁押し") == 0) {
             isSpecialAnim = true;
         } else if (strcmp(animName, "しゃがみ歩き") == 0) {
@@ -720,7 +720,7 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
 
         if (strcmp(currentAnimName, "基本") == 0) {
             isSpecialAnim = true;
-            setAnimationWeight(&mAnimTrackWeights[0]);
+            setAnimationWeight(mAnimTrackWeights);
         }
         if (strcmp(currentAnimName, "壁押し") == 0) {
             isSpecialAnim = true;
@@ -741,17 +741,17 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
             isSpecialAnim = true;
         }
 
-        if (strstr(currentAnimName, "水泳ジェット")) {
+        if (strstr(currentAnimName, "水泳ジェット") != nullptr) {
             mHasJetTurtle = true;
-        } else if (strstr(currentAnimName, "カメ持ち")) {
+        } else if (strstr(currentAnimName, "カメ持ち") != nullptr) {
             mHasJetTurtle = true;
-        } else if (strstr(currentAnimName, "投げ")) {
+        } else if (strstr(currentAnimName, "投げ") != nullptr) {
             mHasJetTurtle = false;
             mXanimePlayerUpper->stopAnimation();
             MR::getJ3DModelData(this)->getJointTree().getJointNodePointer(MR::getJointIndex(this, "Spine1"))->setMtxCalc(nullptr);
         }
 
-        if (mHasJetTurtle && (strcmp(currentAnimName, "基本") || strcmp(currentAnimName, "ジャンプ"))) {
+        if (mHasJetTurtle && (strcmp(currentAnimName, "基本") != 0 || strcmp(currentAnimName, "ジャンプ") != 0)) {
             mXanimePlayerUpper->changeAnimation("ひろいウエイト");
             mXanimePlayerUpper->overWriteMtxCalc(MR::getJointIndex(this, "PartsControl"));
         }
@@ -761,7 +761,7 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
         }
     }
 
-    if ((updateFlags & 0x20) != 0) {
+    if ((updateFlags & 0x0020) != 0) {
         s16 rawAnimFrame;
         f32 animFrame;
         pPacket->read(&rawAnimFrame);
@@ -770,7 +770,7 @@ u32 GhostPlayer::receiveGhostPacket(GhostPacket* pPacket) {
     }
 
     for (u32 i = 0; i < ARRAY_SIZE(mAnimTrackWeights); i++) {
-        if ((updateFlags & (0x40 << i)) == 0) {
+        if ((updateFlags & (0x0040 << i)) == 0) {
             continue;
         }
 
@@ -828,9 +828,6 @@ namespace MR {
         *pOutFloat = static_cast< f32 >(inS8) * factor;
     }
 };  // namespace MR
-
-GhostPlayer::~GhostPlayer() {
-}
 
 // Unused; Unknown data structure
 struct BallData {
