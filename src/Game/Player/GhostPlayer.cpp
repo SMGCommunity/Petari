@@ -252,7 +252,7 @@ void GhostPlayer::control() {
             GhostPacket packet(mCurrentPacket, 0);
             mCurrentPacket = reinterpret_cast< GhostPacket* >(reinterpret_cast< char* >(mCurrentPacket) + receiveGhostPacket(&packet));
             if (_112) {
-                if (mXanimePlayer->_10[3] > 0.9f) {
+                if (mXanimePlayer->mWeights[3] > 0.9f) {
                     continue;
                 }
                 _112 = false;
