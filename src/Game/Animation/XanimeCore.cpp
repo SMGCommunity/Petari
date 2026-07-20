@@ -1,7 +1,7 @@
 #include "Game/Animation/XanimeCore.hpp"
 
 void XanimeTrack::init() {
-    _0 = 0;
+    _0 = nullptr;
     mWeight = 0.0f;
     _C = 0;
     _8 = 0.0f;
@@ -30,7 +30,7 @@ void XanimeCore::shareJointTransform(const XanimeCore* pOther) {
 void XanimeCore::initMember(u32 trackCount) {
     _1C = 1.0f;
     _20 = 1.0f;
-    _24 = 0.0f;
+    mFrameRatio = 0.0f;
     _28 = 0;
     _29 = 0;
     _6 = 0;

@@ -99,8 +99,8 @@ void MarioAnimator::change(const char* name) {
     const char* bck = mXanimePlayer->getCurrentBckName();
     if (bck) {
         const XanimeGroupInfo* info = mXanimePlayer->mCurrentAnimation;
-        if (info->_18 == 2) {
-            f32 arg1 = info->_14, arg2 = info->_10;
+        if (info->mAttribute == 2) {
+            f32 arg1 = info->mLoop, arg2 = info->mEnd;
             getPlayer()->startBas(bck, false, arg1, arg2);
         } else {
             getPlayer()->startBas(bck, false, 0.0f, 0.0f);
