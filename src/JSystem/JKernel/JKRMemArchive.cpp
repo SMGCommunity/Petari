@@ -204,7 +204,6 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
     } else {
         RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
         mEntries = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
-        ;
         mDirs = reinterpret_cast< SDIDirEntry* >(&mEntries[infoBlock->mDirOffset]);
         mFiles = reinterpret_cast< SDIFileEntry* >(&mEntries[infoBlock->mFileOffset]);
         mStringTable = reinterpret_cast< char* >(&mEntries[infoBlock->mStringTableOffset]);
@@ -220,7 +219,6 @@ bool JKRMemArchive::open(void* pData, unsigned long a2, JKRMemBreakFlag breakFla
     RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
     mHeader = reinterpret_cast< RarcHeader* >(pData);
     mEntries = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
-    ;
     mDirs = reinterpret_cast< SDIDirEntry* >(&mEntries[infoBlock->mDirOffset]);
     mFiles = reinterpret_cast< SDIFileEntry* >(&mEntries[infoBlock->mFileOffset]);
     mStringTable = reinterpret_cast< char* >(&mEntries[infoBlock->mStringTableOffset]);
