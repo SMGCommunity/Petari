@@ -36,6 +36,6 @@ public:
     bool isHitChild() const;
     bool isNrvEnableStarPieceAttack() const;
 
-    /* 0xBC */ CollisionParts* _mParent;
+    /* 0xBC */ CollisionParts* mParent;
     /* 0xC0 */ bool _C0;
 };
