@@ -51,16 +51,19 @@ macOS
   brew install ninja
   ```
 
-- Install [wine-crossover](https://github.com/Gcenx/homebrew-wine):
+- Install [wine-stable](https://github.com/Gcenx/macOS_Wine_builds):
 
   ```sh
-  brew install --cask --no-quarantine gcenx/wine/wine-crossover
+  brew install --cask wine-stable
   ```
 
-After OS upgrades, if macOS complains about `Wine Crossover.app` being unverified, you can unquarantine it using:
+> [!NOTE]
+> The previously recommended `wine-crossover` cask has been discontinued; its cask was removed from the `gcenx/wine` tap and its downloads are no longer hosted. Current WineHQ builds support running 32-bit Windows binaries out of the box. If the `wine-stable` cask is unavailable, official builds can be downloaded from [Gcenx/macOS_Wine_builds](https://github.com/Gcenx/macOS_Wine_builds/releases).
+
+Since the WineHQ builds are not notarized, macOS may block `Wine Stable.app` from running. If `wine` is killed on launch, unquarantine it using:
 
 ```sh
-sudo xattr -rd com.apple.quarantine '/Applications/Wine Crossover.app'
+sudo xattr -rd com.apple.quarantine '/Applications/Wine Stable.app'
 ```
 
 Linux
