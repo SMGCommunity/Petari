@@ -2,6 +2,8 @@
 
 #include "JSystem/JKernel/JKRArchive.hpp"
 
+class JKRDvdFile;
+
 class JKRDvdArchive : public JKRArchive {
 public:
     JKRDvdArchive(long, EMountDirection);
@@ -15,6 +17,6 @@ public:
     void fetchResource_subroutine(long, unsigned long, unsigned long, unsigned char*, unsigned long, int, int);
     void fetchResource_subroutine(long, unsigned long, unsigned long, JKRHeap*, int, int, unsigned char**);
 
-    u8 _64[4];
-    void* _68;
+    u32 _64;
+    /* 0x68 */ JKRDvdFile* mFile;
 };

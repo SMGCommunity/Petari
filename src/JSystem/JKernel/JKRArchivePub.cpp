@@ -103,10 +103,10 @@ u32 JKRArchive::readResource(void* a1, unsigned long a2, unsigned long a3, const
 }
 
 void JKRArchive::removeResourceAll() {
-    if (mInfoBlock != nullptr && mMountMode != MOUNT_MODE_DVD) {
+    if (mEntries != nullptr && mMountMode != MOUNT_MODE_DVD) {
         SDIFileEntry* current = mFiles;
-
-        for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
+        RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
+        for (u32 i = 0; i < infoBlock->mNrFiles; i++) {
             if (current->mFileData != nullptr) {
                 JKRHeap::free(current->mFileData, mHeap);
                 current->mFileData = nullptr;
@@ -329,7 +329,8 @@ u32 JKRArchive::readResource(void* pResource, unsigned long a2, unsigned short f
 u32 JKRArchive::countResource() const {
     u32 count = 0;
 
-    for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
+    RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
+    for (u32 i = 0; i < infoBlock->mNrFiles; i++) {
         if ((mFiles[i].mFlag & FILE_FLAG_FILE) != 0) {
             count++;
         }

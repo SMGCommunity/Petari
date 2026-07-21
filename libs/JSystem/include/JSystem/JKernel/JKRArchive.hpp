@@ -34,7 +34,9 @@ public:
         FILE_FLAG_IS_YAZ0 = 1 << FILE_FLAG_IS_YAZ0_SHIFT
     };
 
-    struct RarcHeader {
+    struct ArchiveEntry {};
+
+    struct RarcHeader : ArchiveEntry {
         u32 mMagic;           // 0x0
         u32 mFileSize;        // 0x4
         u32 mHeaderSize;      // 0x8
@@ -45,7 +47,7 @@ public:
         u32 _1C;
     };
 
-    struct RarcInfoBlock {
+    struct RarcInfoBlock : ArchiveEntry {
         u32 mNrDirs;               // 0x0
         u32 mDirOffset;            // 0x4
         u32 mNrFiles;              // 0x8
@@ -57,7 +59,7 @@ public:
         u32 _1C;
     };
 
-    struct SDIFileEntry {
+    struct SDIFileEntry : ArchiveEntry {
         u16 mFileID;           // 0x0
         u16 mHash;             // 0x2
         u32 mFlag : 8;         // 0x4
@@ -72,7 +74,7 @@ public:
         void* mFileData;  // 0x10
     };
 
-    struct SDIDirEntry {
+    struct SDIDirEntry : ArchiveEntry {
         u32 mID;              // 0x0
         u32 mNameOffset;      // 0x4
         u16 mHash;            // 0x8
@@ -80,7 +82,7 @@ public:
         u32 mFirstFileIndex;  // 0xC
     };
 
-    struct SDirEntry {
+    struct SDirEntry : ArchiveEntry {
         u8 mFileFlag;  // 0x0
         u8 _1;
         u16 mFileID;  // 0x2
@@ -146,13 +148,13 @@ public:
     JKRHeap* mHeap;  // 0x38
     u8 mMountMode;   // 0x3C
     u8 _3D[3];
-    s32 mEntryNum;              // 0x40
-    RarcInfoBlock* mInfoBlock;  // 0x44
-    SDIDirEntry* mDirs;         // 0x48
-    SDIFileEntry* mFiles;       // 0x4C
-    u32* mExpandSizes;          // 0x50
-    char* mStringTable;         // 0x54
+    s32 mEntryNum;           // 0x40
+    ArchiveEntry* mEntries;  // 0x44
+    SDIDirEntry* mDirs;      // 0x48
+    SDIFileEntry* mFiles;    // 0x4C
+    u32* mExpandSizes;       // 0x50
+    char* mStringTable;      // 0x54
     u32 _58;
-    s32 _5C;
+    int _5C;
     EMountDirection mMountDir;  // 0x60
 };
