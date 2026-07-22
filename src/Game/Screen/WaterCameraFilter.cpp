@@ -195,9 +195,9 @@ void WaterCameraFilter::loadMaterial() const {
     TPos3f v17;
     v17.identity();
     MR::makeMtxRotate(v18, 0.0f, 0.0f, mWavePhase);
-    PSMTXConcat(v18, v17, v19);
+    MR::multMtx(v19, v17, v18);
     v17.setTrans(TVec3f(0.5f, 0.5f, 0.0f));
-    PSMTXConcat(v17, v19, v19);
+    MR::multMtx(v19, v19, v17);
     GXLoadTexMtxImm(v19, 0x1E, GX_MTX3x4);
     mFilterTex->load(GX_TEXMAP0);
     mScreenTex->load(GX_TEXMAP1);

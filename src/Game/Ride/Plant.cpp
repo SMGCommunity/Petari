@@ -19,6 +19,7 @@
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
@@ -28,6 +29,17 @@
 #include <revolution/mtx.h>
 #include <revolution/types.h>
 #include <revolution/wpad.h>
+
+void Plant_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
+void DUMMY() {
+    f32 a;
+    MR::clampMax(&a, 0.0f);
+}
 
 namespace NrvPlant {
     NEW_NERVE(PlantNrvWaitFar, Plant, WaitFar);
@@ -162,7 +174,6 @@ void Plant::exeGrowUp() {
         MR::startSound(this, "SE_OJ_PLANT_GROW_START");
     }
 
-    // interesting...
     if (updateGrowUp()) {
         return;
     }
@@ -336,7 +347,7 @@ void Plant::initLeaf() {
     TVec3f baseRotate(0.0f, 0.0f, 1.0f);
     leafPos = MR::getRailTotalLength(this) - 100.0f;
 
-    MR::getRailTotalLength(this);  // ?????
+    MR::getRailTotalLength(this);
 
     for (s32 leaf = 0; leaf < mNumLeaves; leaf++) {
         leafRatio = static_cast< f32 >(leaf) / static_cast< f32 >(mNumLeaves);
@@ -367,19 +378,13 @@ void Plant::initLeaf() {
 }
 
 void Plant::calcAnim() {
-    // register alloc mismatch
-    // https://decomp.me/scratch/A8p2y
-
     if (!MR::isValidCalcViewAndEntry(this) || isNerve(&NrvPlant::PlantNrvWaitFar::sInstance) || isNerve(&NrvPlant::PlantNrvSeedWait::sInstance)) {
         return;
     }
-    // FIXME
-    MtxPtr posMtx, camViewMtx, leafBaseMtx;
+
     for (s32 leaf = 0; leaf < mNumLeaves; leaf++) {
-        posMtx = mLeaves[leaf]->mPosMtx;
-        camViewMtx = MR::getCameraViewMtx();
-        leafBaseMtx = mLeaves[leaf]->getBaseMtx();
-        PSMTXConcat(camViewMtx, leafBaseMtx, posMtx);
+        MtxPtr mtx = mLeaves[leaf]->getPosMtx();
+        MR::multMtx(mtx, mLeaves[leaf]->getBaseMtx(), MR::getCameraViewMtx());
     }
 }
 
@@ -429,9 +434,8 @@ bool Plant::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
             mTopPartsModel->appear();
             startGrowUp();
             return true;
-        } else {
-            return false;  // necessary to match
         }
+        return false;
     }
 
     return false;
@@ -467,7 +471,7 @@ bool Plant::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
             mGrabbedTop = true;
             setNerve(&NrvPlant::PlantNrvHangStart::sInstance);
         } else {
-            if (mRideVelocity >= 2.0f) {
+            if (mRideVelocity >= -2.0f) {
                 mRideVelocity = MR::clamp(mRideVelocity, 15.0f, 35.0f);
                 MR::setRailDirectionToEnd(this);
                 setNerve(&NrvPlant::PlantNrvHangStart::sInstance);
@@ -689,21 +693,4 @@ void Plant::draw() const {
         GXLoadNrmMtxImm(mLeaves[leaf]->mPosMtx, 0);
         mShapeDraw->draw();
     }
-}
-
-namespace MR {
-    // should this be in MathUtil?
-    void clampMax(f32* val, f32 max) {
-        f32 ret;
-        if (*val >= max) {
-            ret = max;
-        } else {
-            ret = *val;
-        }
-        *val = ret;
-    }
-};  // namespace MR
-
-MtxPtr PlantLeaf::getBaseMtx() const {
-    return (MtxPtr)&mBaseMtx;
 }

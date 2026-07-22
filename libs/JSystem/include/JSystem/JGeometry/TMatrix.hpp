@@ -716,6 +716,10 @@ namespace JGeometry {
             JMath::gekko_ps_copy16(this, rSrc);
         }
 
+        TProjection3(const TProjection3& rSrc) {
+            JMath::gekko_ps_copy16(this, rSrc);
+        }
+
         void identity44();
     };
 

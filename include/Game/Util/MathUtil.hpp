@@ -548,6 +548,16 @@ namespace MR {
 
     inline void clampBoth(f32* value, f32 min, f32 max);
 
+    inline void clampMax(f32* val, f32 max) {
+        f32 ret;
+        if (*val >= max) {
+            ret = max;
+        } else {
+            ret = *val;
+        }
+        *val = ret;
+    }
+
     inline f32 repeat(f32 value, f32 min, f32 max) {
         return min + (f32)fmod(max + (value - min), max);
     }

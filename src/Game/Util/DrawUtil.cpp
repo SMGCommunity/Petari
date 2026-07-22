@@ -3,6 +3,7 @@
 #include "Game/Screen/ScreenAlphaCapture.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/Color.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
@@ -351,11 +352,8 @@ namespace MR {
         mShadowVec = rVec;
     }
 
-    // TODO
-    // The TPos3f here is actually a Mtx44
     void loadTexProjectionMtx(u32 id) {
-        TProj3f cameraProjection;
-        cameraProjection.setInline(MR::getCameraProjectionMtx());
+        TProj3f cameraProjection = *MR::getCameraProjectionMtx();
         cameraProjection.mMtx[2][0] = 0.0f;
         cameraProjection.mMtx[2][1] = 0.0f;
         cameraProjection.mMtx[2][2] = -1.0f;
@@ -365,14 +363,14 @@ namespace MR {
         cameraProjection.mMtx[3][2] = 0.0f;
         cameraProjection.mMtx[3][3] = 1.0f;
         Mtx matrix;
-        PSMTXConcat(cameraProjection.toMtx44Ptr(), MR::getCameraViewMtx(), matrix);
+        MR::multMtx(matrix, MR::getCameraViewMtx(), cameraProjection);
         TMtx34f mat;
         mat.identity();
         mat[0][0] = 0.5f;
         mat[0][2] = 0.5f;
         mat[1][1] = -0.5f;
         mat[1][2] = 0.5f;
-        PSMTXConcat(mat, matrix, matrix);
+        MR::multMtx(matrix, matrix, mat);
         GXLoadTexMtxImm(matrix, id, GX_MTX3x4);
     }
 

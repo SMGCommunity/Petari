@@ -20,6 +20,7 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SchedulerUtil.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
@@ -760,9 +761,9 @@ void MarioActor::calcViewMainModel() {
 
     Mtx invView;
     Mtx invBase;
-    PSMTXInverse(_BF8.toMtxPtr(), invView);
+    PSMTXInverse(_BF8, invView);
     PSMTXInverse(mModels[mCurrModel]->mBaseTransformMtx, invBase);
-    PSMTXConcat(invView, invBase, _BC8.toMtxPtr());
+    MR::multMtx(_BC8, invBase, invView);
 }
 
 void MarioActor::draw() const {
@@ -964,7 +965,7 @@ void MarioActor::drawModelBlur() const {
 
     Mtx inv;
     PSMTXInverse(const_cast< TMtx34f& >(_AB0).toMtxPtr(), inv);
-    PSMTXConcat(MR::getCameraViewMtx(), inv, inv);
+    MR::multMtx(inv, inv, MR::getCameraViewMtx());
     for (u32 i = 1; i < 8; i++) {
         const u32 idx = static_cast< u32 >(i + _B12) & 7;
         model->setDrawViewBuffer(reinterpret_cast< MtxPtr >(_A70[idx + (static_cast< u32 >(_B10) << 3)]));
@@ -975,7 +976,7 @@ void MarioActor::drawModelBlur() const {
                 const u32 currBuffer = idx + (static_cast< u32 >(_B10) << 3);
                 Mtx* src = _A70[prevBuffer];
                 Mtx* dst = _A70[currBuffer];
-                PSMTXConcat(inv, src[joint], dst[joint]);
+                MR::multMtx(dst[joint], src[joint], inv);
             }
         }
 
