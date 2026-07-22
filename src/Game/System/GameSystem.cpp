@@ -122,7 +122,7 @@ void GameSystem::exeInitializeAudio() {
 
     updateSceneController();
 
-    if (MR::isEndFunctionAsyncExecute(INIT_AUDIO_KEY) && mObjHolder->mSysWrapper->isLoadDoneWaveDataAtSystemInit()) {
+    if (MR::isEndFunctionAsyncExecute(INIT_AUDIO_KEY) && mObjHolder->mAudioSystem->isLoadDoneWaveDataAtSystemInit()) {
         MR::waitForEndFunctionAsyncExecute(INIT_AUDIO_KEY);
         setNerve(&NrvGameSystem::GameSystemInitializeLogoScene::sInstance);
     }

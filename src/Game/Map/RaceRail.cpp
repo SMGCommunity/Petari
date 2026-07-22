@@ -121,8 +121,9 @@ void PlayerRacer::prepRacer(const RaceManager* pRaceManager) {
 
     TPos3f mtx;
     TVec3f pos;
+
     switch (pRaceManager->mCurrentRace) {
-    case 0: {  // RaceName_Penguin
+    case RaceID_Penguin: {
         TVec3f s = mPosition - grav * 500.f;
         TVec3f pos(mPosition);
         MR::getFirstPolyOnLineToWaterSurface(&pos, nullptr, s, grav * 1000.0f);
@@ -131,14 +132,14 @@ void PlayerRacer::prepRacer(const RaceManager* pRaceManager) {
         MR::startBckPlayer("SwimDrift", 1);
         break;
     }
-    case 1: {  // RaceName_TeresaPhantom
+    case RaceID_TeresaPhantom: {
         pos = mPosition;
         MR::convertPosOnGround(&pos, grav * 1000.0f);
         MR::makeMtxFrontUpPos(&mtx, MR::getRailDirection(this), -grav, pos);
         MR::startBckPlayer("BattleWait", 1);
         break;
     }
-    case 2: {  // RaceName_TeresaDeathPromenade
+    case RaceID_TeresaDeathPromenade: {
         pos = mPosition;
         MR::makeMtxFrontUpPos(&mtx, MR::getRailDirection(this), -grav, pos);
         MR::startBckPlayer("Wait", 1);
@@ -155,14 +156,15 @@ void PlayerRacer::prepRacer(const RaceManager* pRaceManager) {
 void PlayerRacer::resetRacer(const RaceManager* pRaceManager) {
     MR::tryPlayerKillTakingActor();
     MR::setPlayerPosOnGround("レース終了後位置");
+
     switch (pRaceManager->mCurrentRace) {
-    case 0:  // RaceName_Penguin
-    case 1:  // RaceName_TeresaPhantom
-    case 3:  // RaceName_SurfingTrial
-    case 4:  // RaceName_SurfingChallenge
+    case RaceID_Penguin:
+    case RaceID_TeresaPhantom:
+    case RaceID_SurfingTrial:
+    case RaceID_SurfingChallenge:
         MR::startBckPlayer("Watch", 0L);
         break;
-    case 2:  // RaceName_TeresaDeathPromenade
+    case RaceID_TeresaDeathPromenade:
         MR::onFollowDemoEffect();
         if (pRaceManager->mRank != 1) {
             MR::startBckPlayer("Sad", 0L);

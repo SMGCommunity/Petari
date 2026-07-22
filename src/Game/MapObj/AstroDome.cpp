@@ -19,8 +19,7 @@ AstroDome::AstroDome(const char* pName) : MapObjActor(pName) {
 
 void AstroDome::init(const JMapInfoIter& rIter) {
     MapObjActorInitInfo info;
-    s32 domeId = AstroMapObjFunction::getDomeIdFromArg0(rIter);
-    info.setupModelName(AstroMapObjFunction::getModelName("AstroDome", domeId));
+    info.setupModelName(AstroMapObjFunction::getModelName("AstroDome", AstroMapObjFunction::getDomeIdFromArg0(rIter)));
     info.setupNerve(&NrvAstroDome::AstroDomeNrvWait::sInstance);
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupNoAppearRiddleSE();
@@ -67,12 +66,14 @@ void AstroDome::exeAppear() {
 }
 
 void AstroDome::control() {
-    if (MR::isEqualString(mObjectName, "AstroDomeObservatory")) {
-        if (MR::isTimeKeepDemoActive()) {
-            MR::hideMaterial(this, "Z_SpotLight_v");
-        } else {
-            MR::showMaterial(this, "Z_SpotLight_v");
-        }
+    if (!MR::isEqualString(mObjectName, "AstroDomeObservatory")) {
+        return;
+    }
+
+    if (MR::isTimeKeepDemoActive()) {
+        MR::hideMaterial(this, "Z_SpotLight_v");
+    } else {
+        MR::showMaterial(this, "Z_SpotLight_v");
     }
 }
 
@@ -80,13 +81,12 @@ bool AstroDome::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
     if (SphereSelectorFunction::isMsgSelectStart(msg)) {
         setNerve(&NrvAstroDome::AstroDomeNrvDisappear::sInstance);
         return true;
-    } else if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
+    }
+
+    if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
         appear();
         return true;
     }
 
     return false;
-}
-
-AstroDome::~AstroDome() {
 }

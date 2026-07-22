@@ -142,6 +142,3 @@ bool AirBubble::canSpinGet() const {
 
     return false;
 }
-
-AirBubble::~AirBubble() {
-}

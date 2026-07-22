@@ -6,7 +6,6 @@ class AirBubble : public LiveActor {
 public:
     AirBubble(const char*);
 
-    virtual ~AirBubble();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();

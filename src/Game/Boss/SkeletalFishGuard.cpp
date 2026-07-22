@@ -330,9 +330,8 @@ void SkeletalFishGuard::waitAttack(s32 time) {
 }
 
 void SkeletalFishGuard::calcAndSetBaseMtx() {
-    TVec3f stack_64;
-    stack_64.multPS(mScale, mScaleController->_C);
-    MR::setBaseScale(this, stack_64);
+    TVec3f scale = mScaleController->_C * mScale;
+    MR::setBaseScale(this, scale);
 
     if (isNerve(&::SkeletalFishGuardNrvAppear::sInstance)) {
         TVec3f gravityVec;

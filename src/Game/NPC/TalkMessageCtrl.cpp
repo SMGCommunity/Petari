@@ -2,7 +2,6 @@
 #include "Game/AreaObj/MessageArea.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkDirector.hpp"
 #include "Game/NPC/TalkMessageFunc.hpp"
 #include "Game/NPC/TalkMessageInfo.hpp"

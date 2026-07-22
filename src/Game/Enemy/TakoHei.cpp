@@ -171,7 +171,8 @@ void TakoHei::control() {
 
 void TakoHei::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _94);
-    MR::setBaseScale(this, _8C->_C.mult(mScale));
+    TVec3f scale = _8C->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void TakoHei::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {

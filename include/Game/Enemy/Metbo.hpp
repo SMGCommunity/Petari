@@ -24,11 +24,13 @@ public:
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeNonActive();
+    void endNonActive();
     void exeWait();
     void exeWalkAround();
     void exeSearch();
     void exeChaseStart();
     void exeChase();
+    void endChase();
     void exeGuard();
     void exeTrampleDown();
     void exeBlowDown();
@@ -39,6 +41,8 @@ public:
     void exeSwoonSpin();
     void exeSwoonWait();
     void exeRecover();
+    void exeDPDSwoon();
+    void endDPDSwoon();
     void moveOrFall(const MR::ActorMoveParam&, const TVec3f*);
     void startSwoon(bool);
     bool tryNonActive();
@@ -46,14 +50,14 @@ public:
     bool tryDPDSwoon();
     bool isNrvNormal() const;
 
+    inline bool isNrvDown() const;
+    inline bool isNrvSwoon() const;
+
     /* 0x8C */ SpinHitController* mSpinHitController;
     /* 0x90 */ AnimScaleController* mAnimScaleController;
     /* 0x94 */ WalkerStateBindStarPointer* mStarPointerBind;
     /* 0x98 */ TVec3f _98;
     /* 0xA4 */ TVec3f _A4;
     /* 0xB0 */ TVec3f _B0;
-    /* 0xBC */ bool _BC;
-
-private:
-    u8 mPad[(0xC0) - sizeof(LiveActor)];
+    /* 0xBC */ bool mIsClipped;
 };

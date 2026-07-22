@@ -107,7 +107,7 @@ void Note::calcAndSetBaseMtx() {
     Mtx mtxRotateY;
     f32 val = MR::getSceneObj< NoteGroup >(SceneObj_NoteGroup)->mRotation;
     MR::makeMtxRotateY(mtxRotateY, val);
-    PSMTXConcat(stack_44.toMtxPtr(), mtxRotateY, stack_44.toMtxPtr());
+    MR::multMtx(stack_44, mtxRotateY, stack_44);
     stack_44.setTrans(mPosition);
     MR::setBaseTRMtx(this, stack_44);
 }

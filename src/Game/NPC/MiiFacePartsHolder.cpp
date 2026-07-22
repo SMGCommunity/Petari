@@ -1,6 +1,5 @@
 #include "Game/NPC/MiiFacePartsHolder.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/MiiDatabase.hpp"
 #include "Game/NPC/MiiFaceParts.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
@@ -18,7 +17,7 @@
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 
 MiiFacePartsHolder::MiiFacePartsHolder(int numParts)
-    : LiveActorGroup("Mii顔モデル保持", numParts), JKRDisposer(), mRFLWorkBuffer(nullptr), _34(nullptr) {
+    : LiveActorGroup("Mii顔モデル保持", numParts), JKRDisposer(), mRFLWorkBuffer(), _34() {
 }
 
 MiiFacePartsHolder::~MiiFacePartsHolder() {

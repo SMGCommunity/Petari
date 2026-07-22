@@ -597,8 +597,8 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         posMtx.setXYZDir(mSide, mUp, mFront);
 
         rotMtx.identity();
-        MR::makeMtxTransRotateY(rotMtx.toMtxPtr(), this);
-        PSMTXConcat(posMtx.toMtxPtr(), rotMtx.toMtxPtr(), posMtx.toMtxPtr());
+        MR::makeMtxTransRotateY(rotMtx, this);
+        MR::multMtx(posMtx, rotMtx, posMtx);
         posMtx.setTrans(mPosition);
         MR::setBaseTRMtx(mRider, posMtx);
         return true;

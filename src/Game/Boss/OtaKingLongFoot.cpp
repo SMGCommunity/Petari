@@ -1,8 +1,6 @@
 #include "Game/Boss/OtaKingLongFoot.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 
@@ -65,7 +63,8 @@ void OtaKingLongFoot::control() {
 
 void OtaKingLongFoot::calcAndSetBaseMtx() {
     PartsModel::calcAndSetBaseMtx();
-    MR::setBaseScale(this, mScaleController->_C.mult(mScale));
+    TVec3f scale = mScaleController->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void OtaKingLongFoot::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {

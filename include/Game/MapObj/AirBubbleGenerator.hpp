@@ -13,7 +13,7 @@ public:
     void exeWait();
     void exeGenerate();
 
-    u32 _8C;
-    s32 mSpawnDelay;      // 0x90
-    s32 mBubbleDuration;  // 0x94
+    /* 0x8C */ u32 _8C;
+    /* 0x90 */ s32 mWaitTime;
+    /* 0x94 */ s32 mBubbleLifeTime;
 };

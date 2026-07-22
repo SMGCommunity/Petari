@@ -1,32 +1,38 @@
 #include "Game/MapObj/AirBubbleHolder.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/AirBubble.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
 
-AirBubbleHolder::AirBubbleHolder(const char* pName) : LiveActorGroup(pName, 64) {
+namespace {
+    static const s32 sAirBubbleMax = 64;
+    static const s32 sCreateAirBubbleNum = 32;
+};  // namespace
+
+AirBubbleHolder::AirBubbleHolder(const char* pName) : LiveActorGroup(pName, ::sAirBubbleMax) {
 }
 
-// AirBubble isn't finished so the size is wrong
 void AirBubbleHolder::init(const JMapInfoIter& rIter) {
-    for (s32 i = 0; i < 32; i++) {
-        AirBubble* bubble = new AirBubble("空気アワ(共用)");
-        bubble->initWithoutIter();
-        bubble->makeActorAppeared();
-        registerActor(bubble);
+    AirBubble* airBubble;
+
+    for (s32 i = 0; i < ::sCreateAirBubbleNum; i++) {
+        airBubble = new AirBubble("空気アワ(共用)");
+        airBubble->initWithoutIter();
+        airBubble->makeActorDead();
+
+        registerActor(airBubble);
     }
 }
 
 void AirBubbleHolder::appearAirBubble(const TVec3f& a1, s32 a2) {
-    AirBubble* bubble;
-    if (getDeadActor()) {
-        bubble = static_cast< AirBubble* >(getDeadActor());
+    AirBubble* airBubble;
+
+    if (getDeadActor() != nullptr) {
+        airBubble = static_cast< AirBubble* >(getDeadActor());
     } else {
-        bubble = nullptr;
+        airBubble = nullptr;
     }
 
-    if (bubble) {
-        bubble->appearMove(a1, a2);
+    if (airBubble != nullptr) {
+        airBubble->appearMove(a1, a2);
     }
 }
 

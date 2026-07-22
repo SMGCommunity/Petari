@@ -185,9 +185,8 @@ void Poihana::calcAndSetBaseMtx() {
 
     MR::setBaseTRMtx(this, baseMtx);
 
-    TVec3f newScale;
-    newScale.multPS(mScale, mAnimScaleCtrl->_C);
-    MR::setBaseScale(this, newScale);
+    TVec3f scale = mAnimScaleCtrl->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void Poihana::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {

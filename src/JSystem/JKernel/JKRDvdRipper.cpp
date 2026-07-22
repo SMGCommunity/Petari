@@ -189,6 +189,8 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* dvdFile, u8* dst, JKRExpandSwitch 
     return nullptr;
 }
 
+JSUList< JKRDMCommand > JKRDvdRipper::sDvdAsyncList;
+
 static u8 lit_491[12];
 static OSMutex decompMutex;
 u32 JKRDvdRipper::sSZSBufferSize = 0x00000400;

@@ -15,9 +15,8 @@ namespace NrvBegomanSpringHead {
 
 void BegomanHead::calcAndSetBaseMtx() {
     PartsModel::calcAndSetBaseMtx();
-    TVec3f v7;
-    JMathInlineVEC::PSVECMultiply(_9C, mScale, v7);
-    MR::setBaseScale(this, v7);
+    TVec3f scale = *_9C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 BegomanSpringHead::BegomanSpringHead(LiveActor* pActor, MtxPtr pMtx)

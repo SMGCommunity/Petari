@@ -47,7 +47,7 @@ void DriftWood::init(const JMapInfoIter& rIter) {
     initialize(rIter, info);
     MR::moveCoordAndTransToNearestRailPos(this);
     mRailDirection.set(MR::getRailDirection(this));
-    getSensor(nullptr)->setType(127);
+    getSensor(nullptr)->setType(ATYPE_EYE);
     mWaveSoundTimer = MR::getRandom(30l, 90l);
     f32 radius = 0.0f;
     MR::calcModelBoundingRadius(&radius, this);

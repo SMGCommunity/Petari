@@ -221,11 +221,11 @@ namespace MR {
 
         TPos3f invMtx;
         invMtx.invert(baseCopy);
-        preScaleMtx(baseCopy.toMtxPtr(), rScale.x, rScale.y, rScale.z);
+        preScaleMtx(baseCopy, rScale.x, rScale.y, rScale.z);
 
         extractMtxTrans(src, &srcTrans);
-        PSMTXConcat(invMtx.toMtxPtr(), src, dst);
-        PSMTXConcat(baseCopy.toMtxPtr(), dst, dst);
+        multMtx(dst, src, invMtx);
+        multMtx(dst, dst, baseCopy);
         setMtxTrans(dst, srcTrans.x, srcTrans.y, srcTrans.z);
     }
 
@@ -932,8 +932,8 @@ namespace MR {
             break;
         }
 
-        PSMTXConcat(first, second, dst);
-        PSMTXConcat(third, dst, dst);
+        MR::multMtx(dst, second, first);
+        MR::multMtx(dst, dst, third);
     }
 
     void rotAxisVecRad(const TVec3f& rAxis, const TVec3f& rVec, TVec3f* pOut, f32 rad) {

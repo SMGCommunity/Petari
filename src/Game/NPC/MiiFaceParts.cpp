@@ -42,7 +42,7 @@ void MiiFaceParts::calcViewAndEntry() {
         return;
     }
 
-    PSMTXConcat(j3dSys.mViewMtx, _98, viewMtx);
+    MR::multMtx(viewMtx, _98, j3dSys.mViewMtx);
     RFLSetMtx(mCharModel, viewMtx);
 }
 

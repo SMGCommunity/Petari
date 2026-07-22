@@ -90,9 +90,8 @@ void CollapsePlane::calcAndSetBaseMtx() {
     }
 
     if (MR::isInitializeStateEnd()) {
-        TVec3f new_scale;
-        new_scale.mult(mScaleController->_C, mScale, new_scale);
-        MR::setBaseScale(this, new_scale);
+        TVec3f scale = mScaleController->_C * mScale;
+        MR::setBaseScale(this, scale);
     }
 }
 
@@ -103,13 +102,11 @@ void CollapsePlane::control() {
 
 bool CollapsePlane::calcJointPlane(TPos3f* pPos, const JointControllerInfo&) {
     f32 new_scale = (1.0f - ((0.7f * _D0)) / mTimer);
-    TMtx34f mtx;
+    TPos3f mtx;
     mtx.identity();
-    MR::preScaleMtx(mtx.toMtxPtr(), new_scale, 1.0f, new_scale);
+    MR::preScaleMtx(mtx, new_scale, 1.0f, new_scale);
     pPos->concat(mtx);
-    pPos->mMtx[0][3] = mPosition.x;
-    pPos->mMtx[1][3] = mPosition.y;
-    pPos->mMtx[2][3] = mPosition.z;
+    pPos->setTrans(mPosition);
     return true;
 }
 

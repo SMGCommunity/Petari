@@ -155,8 +155,8 @@ void Snakehead::calcAndSetBaseMtx() {
     TPos3f frontUp;
     MR::makeMtxFrontUpPos(&frontUp, endPntDir, -mGravity, mPosition);
     MR::setBaseTRMtx(this, frontUp);
-    JMathInlineVEC::PSVECMultiply(mController->_C, mScale, &stack_14);
-    MR::setBaseScale(this, stack_14);
+    TVec3f scale = mController->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void Snakehead::exeWaylay() {

@@ -1,6 +1,7 @@
 #include "Game/MapObj/ClipAreaShape.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include <Game/Util.hpp>
 
 ClipAreaShape::ClipAreaShape(const char* pName) : mModelData(nullptr) {
@@ -33,8 +34,8 @@ void ClipAreaShape::drawVolumeShape(const TPos3f& rMtx, const TVec3f& rPos) cons
     TPos3f volMtx;
     volMtx.identity();
     calcVolumeMatrix(&volMtx, rMtx, rPos);
-    PSMTXConcat(MR::getCameraViewMtx(), *volMtx.toCMtx(), *volMtx.toMtx());
-    GXLoadPosMtxImm(volMtx.toMtxPtr(), 0);
+    MR::multMtx(volMtx, volMtx, MR::getCameraViewMtx());
+    GXLoadPosMtxImm(volMtx, 0);
     MR::drawSimpleModel(mModelData);
 }
 

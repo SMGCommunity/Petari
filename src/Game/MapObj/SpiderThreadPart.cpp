@@ -561,19 +561,28 @@ namespace {
 
 void SpiderThreadPart::drawLine() const {
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    ::sendPointsUpper(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
-    ::sendPointsUpper(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV,
-                      mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
-
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    ::sendPointsRightLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
-    ::sendPointsRightLower(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV,
-                           mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
-
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    ::sendPointsLeftLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
-    ::sendPointsLeftLower(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV,
+    {
+        ::sendPointsUpper(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
+        ::sendPointsUpper(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV,
                           mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+    }
+    GXEnd();
+
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+    {
+        ::sendPointsRightLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
+        ::sendPointsRightLower(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV,
+                               mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+    }
+    GXEnd();
+
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+    {
+        ::sendPointsLeftLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
+        ::sendPointsLeftLower(mPointB->mPosition, mSide, mUp, mDistBetweenMainPoints * ::sTexRateV,
+                              mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+    }
+    GXEnd();
 }
 
 void SpiderThreadPart::drawPoints() const {
@@ -582,42 +591,51 @@ void SpiderThreadPart::drawPoints() const {
     f32 delta2 = (mDistBetweenMainPoints * ::sIndirectTexRateV) / (mNumPoints + 1);
 
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (mNumPoints + 2) * 2);
-    ::sendPointsUpper(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
+    {
+        ::sendPointsUpper(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
 
-    offset1 = delta1;
-    offset2 = delta2 + mTextureOffset;
-    for (s32 idx = 0; idx < mNumPoints; idx++) {
-        ::sendPointsUpper(getPoint(idx)->mPosition, mSide, getPoint(idx)->mUp, offset1, offset2);
-        offset1 += delta1;
-        offset2 += delta2;
-    }
+        offset1 = delta1;
+        offset2 = delta2 + mTextureOffset;
+        for (s32 idx = 0; idx < mNumPoints; idx++) {
+            ::sendPointsUpper(getPoint(idx)->mPosition, mSide, getPoint(idx)->mUp, offset1, offset2);
+            offset1 += delta1;
+            offset2 += delta2;
+        }
 
-    ::sendPointsUpper(mPointB->mPosition, mSide, getPoint(mNumPoints - 1)->mUp, mDistBetweenMainPoints * ::sTexRateV,
-                      mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
-
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (mNumPoints + 2) * 2);
-    ::sendPointsRightLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
-    offset1 = delta1;
-    offset2 = delta2 + mTextureOffset;
-    for (s32 idx = 0; idx < mNumPoints; idx++) {
-        ::sendPointsRightLower(getPoint(idx)->mPosition, mSide, getPoint(idx)->mUp, offset1, offset2);
-        offset1 += delta1;
-        offset2 += delta2;
-    }
-
-    ::sendPointsRightLower(mPointB->mPosition, mSide, getPoint(mNumPoints - 1)->mUp, mDistBetweenMainPoints * ::sTexRateV,
-                           mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
-
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (mNumPoints + 2) * 2);
-    ::sendPointsLeftLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
-    offset1 = delta1;
-    offset2 = delta2 + mTextureOffset;
-    for (s32 idx = 0; idx < mNumPoints; idx++) {
-        ::sendPointsLeftLower(getPoint(idx)->mPosition, mSide, getPoint(idx)->mUp, offset1, offset2);
-        offset1 += delta1;
-        offset2 += delta2;
-    }
-
-    ::sendPointsLeftLower(mPointB->mPosition, mSide, getPoint(mNumPoints - 1)->mUp, mDistBetweenMainPoints * ::sTexRateV,
+        ::sendPointsUpper(mPointB->mPosition, mSide, getPoint(mNumPoints - 1)->mUp, mDistBetweenMainPoints * ::sTexRateV,
                           mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+    }
+    GXEnd();
+
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (mNumPoints + 2) * 2);
+    {
+        ::sendPointsRightLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
+        offset1 = delta1;
+        offset2 = delta2 + mTextureOffset;
+        for (s32 idx = 0; idx < mNumPoints; idx++) {
+            ::sendPointsRightLower(getPoint(idx)->mPosition, mSide, getPoint(idx)->mUp, offset1, offset2);
+            offset1 += delta1;
+            offset2 += delta2;
+        }
+
+        ::sendPointsRightLower(mPointB->mPosition, mSide, getPoint(mNumPoints - 1)->mUp, mDistBetweenMainPoints * ::sTexRateV,
+                               mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+    }
+    GXEnd();
+
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (mNumPoints + 2) * 2);
+    {
+        ::sendPointsLeftLower(mPointA->mPosition, mSide, mUp, 0.0f, mTextureOffset);
+        offset1 = delta1;
+        offset2 = delta2 + mTextureOffset;
+        for (s32 idx = 0; idx < mNumPoints; idx++) {
+            ::sendPointsLeftLower(getPoint(idx)->mPosition, mSide, getPoint(idx)->mUp, offset1, offset2);
+            offset1 += delta1;
+            offset2 += delta2;
+        }
+
+        ::sendPointsLeftLower(mPointB->mPosition, mSide, getPoint(mNumPoints - 1)->mUp, mDistBetweenMainPoints * ::sTexRateV,
+                              mTextureOffset + mDistBetweenMainPoints * ::sIndirectTexRateV);
+    }
+    GXEnd();
 }

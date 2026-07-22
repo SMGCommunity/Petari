@@ -97,19 +97,19 @@ void MessageHolder::destroySceneData() {
 }
 
 bool MessageSystem::getSystemMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessageId) {
-    return MR::getGameSystemObjHolder()->mMsgHolder->mSystemMessageData->getMessageDirect(pMessageInfo, pMessageId);
+    return MR::getGameSystemObjHolder()->mMessageHolder->mSystemMessageData->getMessageDirect(pMessageInfo, pMessageId);
 }
 
 bool MessageSystem::getGameMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessageId) {
-    return MR::getGameSystemObjHolder()->mMsgHolder->mGameMessageData->getMessageDirect(pMessageInfo, pMessageId);
+    return MR::getGameSystemObjHolder()->mMessageHolder->mGameMessageData->getMessageDirect(pMessageInfo, pMessageId);
 }
 
 bool MessageSystem::getLayoutMessageDirect(TalkMessageInfo* pMessageInfo, const char* pMessageId) {
-    return MR::getGameSystemObjHolder()->mMsgHolder->mGameMessageData->getMessageDirect(pMessageInfo, pMessageId);
+    return MR::getGameSystemObjHolder()->mMessageHolder->mGameMessageData->getMessageDirect(pMessageInfo, pMessageId);
 }
 
 MessageData* MessageSystem::getSceneMessageData() {
-    return MR::getGameSystemObjHolder()->mMsgHolder->mSceneMessageData;
+    return MR::getGameSystemObjHolder()->mMessageHolder->mSceneMessageData;
 }
 
 MessageData::MessageData(const char* pArchiveName)

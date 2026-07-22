@@ -11,6 +11,26 @@ class MapPartsRailRotator;
 class LiveActor;
 
 namespace MR {
+    const HitSensor* getBodySensor(LiveActor*);
+    void setBodySensorType(LiveActor*, u32);
+    void setBodySensorTypeMapObj(LiveActor*);
+    void setBodySensorTypePress(LiveActor*);
+    void setBodySensorTypeMoveCollision(LiveActor*);
+    bool isBodySensorTypeMapObj(const LiveActor*);
+    bool receiveMapPartsRotateMsg(LiveActor*, u32, MapPartsRailMover*, MapPartsRailRotator*);
+    bool tryStartMapPartsRotateAtPoint(LiveActor*, MapPartsRailMover*, MapPartsRailRotator*);
+    bool tryEndMapPartsRotateAtPoint(LiveActor*, MapPartsRailMover*, MapPartsRailRotator*);
+    bool tryStartMapPartsRotateBetweenPoints(LiveActor*, MapPartsRailMover*, MapPartsRailRotator*);
+    bool isMapPartsRailMovePassedStartPointRepeat(const MapPartsRailMover*);
+    bool isMapPartsRailMovePassedEndPointRepeat(const MapPartsRailMover*);
+    void getMapPartsObjectName(char*, u32, const JMapInfoIter&);
+    void getMapPartsObjectNameIfExistShapeID(char*, u32, const JMapInfoIter&);
+    void getMapPartsObjectName(char*, u32, const char*, s32);
+    void initMapPartsClipping(LiveActor*, const JMapInfoIter&, TVec3f*, bool);
+    bool isMapPartsPressOn(const JMapInfoIter&);
+    MapPartsRailGuideDrawer* createMapPartsRailGuideDrawer(LiveActor*, const char*, const JMapInfoIter&);
+    void initMapPartsShadow(LiveActor*, const JMapInfoIter&);
+
     bool getMapPartsArgMoveConditionType(s32*, const JMapInfoIter&);
     bool getMapPartsArgRotateSpeed(f32*, const JMapInfoIter&);
     bool getMapPartsArgRotateTime(s32*, const JMapInfoIter&);
@@ -33,41 +53,17 @@ namespace MR {
     bool getMapPartsArgRailRotateSpeed(f32*, const JMapInfoIter&);
     bool getMapPartsArgRailRotateTime(s32*, const JMapInfoIter&);
 
-    void getMapPartsObjectName(char*, u32, const char*, s32);
-    void getMapPartsObjectName(char*, u32, const JMapInfoIter&);
-    void getMapPartsObjectNameIfExistShapeID(char*, u32, const JMapInfoIter&);
-
-    bool hasMapPartsShadow(s32);
-
-    bool hasMapPartsMoveStartSignMotion(s32);
-
-    bool hasMapPartsVanishSignMotion(s32);
-
-    bool isMapPartsShadowTypeNone(s32);
-
-    void setBodySensorType(LiveActor*, u32);
-
-    const HitSensor* getBodySensor(LiveActor*);
-
-    void initMapPartsClipping(LiveActor*, const JMapInfoIter&, TVec3f*, bool);
-
-    MapPartsRailGuideDrawer* createMapPartsRailGuideDrawer(LiveActor*, const char*, const JMapInfoIter&);
-
-    bool isMapPartsPressOn(const JMapInfoIter&);
-
-    void setBodySensorTypePress(LiveActor*);
-    void setBodySensorTypeMoveCollision(LiveActor*);
-    void setBodySensorTypeMapObj(LiveActor*);
-
+    bool isMapPartsSignMotionTypeMoveStart(s32);
     bool isMapPartsSignMotionTypeMoveWait(s32);
-
+    bool hasMapPartsMoveStartSignMotion(s32);
+    bool hasMapPartsVanishSignMotion(s32);
+    bool isMapPartsShadowTypeNone(s32);
+    bool hasMapPartsShadow(s32);
     bool isMoveStartTypeUnconditional(s32);
+    bool isMoveStartTypePlayerOnStopEnd(s32);
+    bool isMapPartsRailInitPosTypeRailPos(s32);
+    bool isMapPartsRailInitPosTypeRailPoint(s32);
+    bool isMapPartsRailInitPosTypePoint0(s32);
+    bool isMapPartsRailSpeedCalcTypeTime(s32);
 
-    bool receiveMapPartsRotateMsg(LiveActor*, u32, MapPartsRailMover*, MapPartsRailRotator*);
-
-    void initMapPartsShadow(LiveActor*, const JMapInfoIter&);
-
-    bool isMapPartsRailMovePassedEndPointRepeat(const MapPartsRailMover*);
-
-    bool isMapPartsRailMovePassedStartPointRepeat(const MapPartsRailMover*);
 };  // namespace MR

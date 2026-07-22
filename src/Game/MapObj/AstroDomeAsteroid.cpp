@@ -5,12 +5,16 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
+namespace {
+    const f32 cBckRate = 1.0f;
+};  // namespace
+
 namespace NrvAstroDomeAsteroid {
     NEW_NERVE(AstroDomeAsteroidNrvWait, AstroDomeAsteroid, Wait);
 };  // namespace NrvAstroDomeAsteroid
 
 AstroDomeAsteroid::AstroDomeAsteroid(const char* pName) : LiveActor(pName) {
-    mRotationMtx.identity();
+    mBaseMtx.identity();
 }
 
 void AstroDomeAsteroid::init(const JMapInfoIter& rIter) {
@@ -26,7 +30,7 @@ void AstroDomeAsteroid::init(const JMapInfoIter& rIter) {
 
 void AstroDomeAsteroid::appear() {
     LiveActor::appear();
-    mRotationMtx.identity();
+    mBaseMtx.identity();
 }
 
 void AstroDomeAsteroid::exeWait() {
@@ -34,26 +38,21 @@ void AstroDomeAsteroid::exeWait() {
         MR::startBck(this, "AstroDomeAsteroid", nullptr);
     }
 
-    MR::setBckRate(this, 1.0f);
+    MR::setBckRate(this, ::cBckRate);
 }
 
 void AstroDomeAsteroid::control() {
     SphereSelectorFunction::calcHandledTrans(TVec3f(0.0f, 0.0f, 0.0f), &mPosition);
-    SphereSelectorFunction::calcHandledRotateMtx(TVec3f(0.0f, 0.0f, 0.0f), &mRotationMtx);
+    SphereSelectorFunction::calcHandledRotateMtx(TVec3f(0.0f, 0.0f, 0.0f), &mBaseMtx);
 }
 
 void AstroDomeAsteroid::calcAndSetBaseMtx() {
-    TPos3f other;
-    other = mRotationMtx;
-    other.mMtx[0][3] = mPosition.x;
-    other.mMtx[1][3] = mPosition.y;
-    other.mMtx[2][3] = mPosition.z;
-    MR::setBaseTRMtx(this, other);
+    TPos3f mtx;
+    mtx = mBaseMtx;
+    mtx.setTrans(mPosition);
+    MR::setBaseTRMtx(this, mtx);
 }
 
 bool AstroDomeAsteroid::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return SphereSelectorFunction::trySyncAppearMsgSelectStart(this, msg);
-}
-
-AstroDomeAsteroid::~AstroDomeAsteroid() {
 }

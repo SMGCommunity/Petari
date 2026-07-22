@@ -7,7 +7,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include <revolution/gx/GXVert.h>
 
-OceanBowlBloomDrawer::OceanBowlBloomDrawer(OceanBowl* pOwner) : NameObj("オーシャンボウル[ブルーム描画]"), mOwner(pOwner) {
+OceanBowlBloomDrawer::OceanBowlBloomDrawer(OceanBowl* pHost) : NameObj("オーシャンボウル[ブルーム描画]"), mHost(pHost) {
 }
 
 void OceanBowlBloomDrawer::init(const JMapInfoIter&) {
@@ -15,32 +15,31 @@ void OceanBowlBloomDrawer::init(const JMapInfoIter&) {
 }
 
 void OceanBowlBloomDrawer::draw() const {
-    if (mOwner->mIsClipped || !MR::isValidDraw(mOwner) || !MR::isCameraInWater())
+    if (mHost->mIsClipped || !MR::isValidDraw(mHost) || !MR::isCameraInWater()) {
         return;
+    }
 
-    mOwner->loadMaterialBloom();
+    mHost->loadMaterialBloom();
 
     OceanBowlPoint* pPoint2;
     u16 zero = 0;
     u16 one = 1;
     for (s32 x = 0; x < 24; x++) {
-        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x32);
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 50);
         for (s32 y = 0; y < 25; y++) {
-            pPoint2 = mOwner->getPoint(x, y);
-            OceanBowlPoint* pPoint = mOwner->getPoint(x + 1, y);
+            pPoint2 = mHost->getPoint(x, y);
+            OceanBowlPoint* pPoint = mHost->getPoint(x + 1, y);
             GXPosition3f32(pPoint->mVertexPosition.x, pPoint->mVertexPosition.y, pPoint->mVertexPosition.z);
-            GXColor4u8(0xFF, 0xFF, 0xFF, mOwner->getPoint(x + 1, y)->mAlpha);
+            GXColor4u8(0xFF, 0xFF, 0xFF, mHost->getPoint(x + 1, y)->mAlpha);
             GXTexCoord2s16(zero, zero);
 
             GXPosition3f32(pPoint2->mVertexPosition.x, pPoint2->mVertexPosition.y, pPoint2->mVertexPosition.z);
-            GXColor4u8(0xFF, 0xFF, 0xFF, mOwner->getPoint(x, y)->mAlpha);
+            GXColor4u8(0xFF, 0xFF, 0xFF, mHost->getPoint(x, y)->mAlpha);
             GXTexCoord2s16(one, one);
 
             zero += 2;
             one += 2;
         }
+        GXEnd();
     }
-}
-
-OceanBowlBloomDrawer::~OceanBowlBloomDrawer() {
 }

@@ -8,7 +8,6 @@ class StarPieceMother : public LiveActor {
 public:
     StarPieceMother(const char*);
 
-    virtual ~StarPieceMother();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();

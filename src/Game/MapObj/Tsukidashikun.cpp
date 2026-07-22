@@ -1,8 +1,6 @@
 #include "Game/MapObj/Tsukidashikun.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/Functor.hpp"
@@ -14,6 +12,13 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sDefaultMoveSpeed = 10.0f;
+    static const s32 sDefaultWaitTime = 120;
+    static const s32 sStepForSign = 60;
+    static const f32 sRumblePadLength = 700.0f;
+};  // namespace
+
 namespace NrvTsukidashikun {
     NEW_NERVE(TsukidashikunNrvRelax, Tsukidashikun, Relax);
     NEW_NERVE(TsukidashikunNrvWaitBack, Tsukidashikun, Wait);
@@ -24,7 +29,7 @@ namespace NrvTsukidashikun {
     NEW_NERVE(TsukidashikunNrvMoveForward, Tsukidashikun, Move);
 };  // namespace NrvTsukidashikun
 
-Tsukidashikun::Tsukidashikun(const char* pName) : MapObjActor(pName), _C4(10.0f), mTimer(120) {
+Tsukidashikun::Tsukidashikun(const char* pName) : MapObjActor(pName), mMoveSpeed(::sDefaultMoveSpeed), mWaitTimer(::sDefaultWaitTime) {
 }
 
 void Tsukidashikun::init(const JMapInfoIter& rIter) {
@@ -39,8 +44,8 @@ void Tsukidashikun::init(const JMapInfoIter& rIter) {
     info.setupNerve(&NrvTsukidashikun::TsukidashikunNrvRelax::sInstance);
     initialize(rIter, info);
     MR::initLightCtrl(this);
-    MR::getJMapInfoArg0NoInit(rIter, &_C4);
-    MR::getJMapInfoArg1NoInit(rIter, &mTimer);
+    MR::getJMapInfoArg0NoInit(rIter, &mMoveSpeed);
+    MR::getJMapInfoArg1NoInit(rIter, &mWaitTimer);
     MR::moveCoordToNearestPos(this, mPosition);
 }
 
@@ -52,7 +57,8 @@ void Tsukidashikun::exeWait() {
             MR::startBva(this, "FWait");
         }
     }
-    if (MR::isGreaterEqualStep(this, mTimer)) {
+
+    if (MR::isGreaterEqualStep(this, mWaitTimer)) {
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvWaitBack::sInstance)) {
             setNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance);
         } else {
@@ -64,6 +70,7 @@ void Tsukidashikun::exeWait() {
 void Tsukidashikun::exeSign() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "BWait", nullptr);
+
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance)) {
             MR::startBva(this, "FSign");
         } else {
@@ -73,12 +80,16 @@ void Tsukidashikun::exeSign() {
 
     TVec3f pos;
     MR::calcPerpendicFootToLineInside(&pos, *MR::getPlayerPos(), MR::getRailPointPosStart(this), MR::getRailPointPosEnd(this));
-    if (MR::isNearPlayer(pos, 700.0f)) {
+
+    if (MR::isNearPlayer(pos, ::sRumblePadLength)) {
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
+
     MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_VIB");
-    if (MR::isStep(this, 60)) {
+
+    if (MR::isStep(this, ::sStepForSign)) {
         MR::setBckFrameAndStop(this, 0.0f);
+
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvSignForward::sInstance)) {
             setNerve(&NrvTsukidashikun::TsukidashikunNrvMoveForward::sInstance);
         } else {
@@ -91,11 +102,14 @@ void Tsukidashikun::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_TSUKIDASHI_START");
     }
-    MR::moveCoordAndFollowTrans(this, _C4);
+
+    MR::moveCoordAndFollowTrans(this, mMoveSpeed);
     MR::startLevelSound(this, "SE_OJ_LV_TSUKIDASHI_MOVE");
+
     if (MR::isRailReachedGoal(this)) {
         MR::startLevelSound(this, "SE_OJ_TSUKIDASHI_STOP");
         MR::reverseRailDirection(this);
+
         if (isNerve(&NrvTsukidashikun::TsukidashikunNrvMoveForward::sInstance)) {
             setNerve(&NrvTsukidashikun::TsukidashikunNrvWaitForward::sInstance);
         } else {

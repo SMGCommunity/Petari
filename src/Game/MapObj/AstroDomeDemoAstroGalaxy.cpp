@@ -1,5 +1,4 @@
 #include "Game/MapObj/AstroDomeDemoAstroGalaxy.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -14,18 +13,15 @@ void AstroDomeDemoAstroGalaxy::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoTypical(&info, mObjectName);
     initialize(rIter, info);
 
-    f32 color;
+    f32 frame;
 
     if (MR::hasGrandStar(5)) {
-        color = 2.0f;
+        frame = 2.0f;
     } else if (MR::hasGrandStar(3)) {
-        color = 1.0f;
+        frame = 1.0f;
     } else {
-        color = 0.0f;
+        frame = 0.0f;
     }
 
-    MR::setBrkFrameAndStop(this, color);
-}
-
-AstroDomeDemoAstroGalaxy::~AstroDomeDemoAstroGalaxy() {
+    MR::setBrkFrameAndStop(this, frame);
 }

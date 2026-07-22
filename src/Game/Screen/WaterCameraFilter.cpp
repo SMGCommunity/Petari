@@ -111,64 +111,50 @@ void WaterCameraFilter::control() {
 }
 
 void WaterCameraFilter::draw() const {
-    if (!isNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance)) {
-        GXRenderModeObj* renderObj = JUTVideo::getManager()->getRenderMode();
-        GXSetCopyFilter(GX_FALSE, renderObj->sample_pattern, GX_FALSE, renderObj->vfilter);
-        mScreenTex->capture(0, 0, GX_TF_RGB565, false, 0);
-        GXSetCopyFilter(GX_FALSE, renderObj->sample_pattern, GX_TRUE, renderObj->vfilter);
-        loadMaterial();
-        TVec2f pos;
-        pos.x = 0.0f;
-        pos.y = 0.0f;
-        TVec3f* playerCenter = MR::getPlayerCenterPos();
-        MR::calcScreenPosition(&pos, *playerCenter);
-        pos.x /= MR::getScreenWidth();
-        pos.y /= MR::getScreenHeight();
-
-        f32 f1 = 1.0f;
-        f32 f31 = 0.5f;
-        f32 centerU = 1.0f - pos.x;
-        f32 centerV = 1.0f - pos.y;
-
-        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-
-        // top left
-        GX_WRITE_U16(0);
-        GX_WRITE_U16(0);
-        GX_WRITE_F32(centerU - f31);
-        GX_WRITE_F32(centerV - f31);
-        GX_WRITE_F32(0.0f);
-        GX_WRITE_F32(0.0f);
-
-        // top right
-        GX_WRITE_S16(MR::getFrameBufferWidth());
-        GX_WRITE_U16(0);
-        GX_WRITE_F32(centerU + f31);
-        GX_WRITE_F32(centerV - f31);
-        GX_WRITE_F32(1.0f);
-        GX_WRITE_F32(0.0f);
-
-        // bottom left
-        s32 h = MR::getScreenHeight();
-        GX_WRITE_S16(0);
-        GX_WRITE_S16(h);
-        GX_WRITE_F32(centerU - f31);
-        GX_WRITE_F32(centerV + f31);
-        GX_WRITE_F32(0.0f);
-        GX_WRITE_F32(1.0f);
-
-        // bottom right
-        s32 height = MR::getScreenHeight();
-        GX_WRITE_S16(MR::getFrameBufferWidth());
-        GX_WRITE_S16(height);
-        GX_WRITE_F32(centerU + f31);
-        GX_WRITE_F32(centerV + f31);
-        GX_WRITE_F32(1.0f);
-        GX_WRITE_F32(1.0f);
-        MR::loadProjectionMtx();
-        MR::loadViewMtx();
-        GXEnd();
+    if (isNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAir::sInstance)) {
+        return;
     }
+
+    GXRenderModeObj* renderObj = JUTVideo::getManager()->getRenderMode();
+    GXSetCopyFilter(GX_FALSE, renderObj->sample_pattern, GX_FALSE, renderObj->vfilter);
+    mScreenTex->capture(0, 0, GX_TF_RGB565, false, 0);
+    GXSetCopyFilter(GX_FALSE, renderObj->sample_pattern, GX_TRUE, renderObj->vfilter);
+    loadMaterial();
+    TVec2f pos;
+    pos.x = 0.0f;
+    pos.y = 0.0f;
+    TVec3f* playerCenter = MR::getPlayerCenterPos();
+    MR::calcScreenPosition(&pos, *playerCenter);
+    pos.x /= MR::getScreenWidth();
+    pos.y /= MR::getScreenHeight();
+
+    f32 f1 = 1.0f;
+    f32 f31 = 0.5f;
+    f32 centerU = 1.0f - pos.x;
+    f32 centerV = 1.0f - pos.y;
+
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
+    {
+        GXPosition2u16(0, 0);
+        GXTexCoord2f32(centerU - f31, centerV - f31);
+        GXTexCoord2f32(0.0f, 0.0f);
+
+        GXPosition2u16(MR::getFrameBufferWidth(), 0);
+        GXTexCoord2f32(centerU + f31, centerV - f31);
+        GXTexCoord2f32(1.0f, 0.0f);
+
+        GXPosition2u16(0, MR::getScreenHeight());
+        GXTexCoord2f32(centerU - f31, centerV + f31);
+        GXTexCoord2f32(0.0f, 1.0f);
+
+        GXPosition2u16(MR::getFrameBufferWidth(), MR::getScreenHeight());
+        GXTexCoord2f32(centerU + f31, centerV + f31);
+        GXTexCoord2f32(1.0f, 1.0f);
+    }
+    GXEnd();
+
+    MR::loadProjectionMtx();
+    MR::loadViewMtx();
 }
 
 void WaterCameraFilter::loadMaterial() const {
@@ -209,9 +195,9 @@ void WaterCameraFilter::loadMaterial() const {
     TPos3f v17;
     v17.identity();
     MR::makeMtxRotate(v18, 0.0f, 0.0f, mWavePhase);
-    PSMTXConcat(v18, v17, v19);
+    MR::multMtx(v19, v17, v18);
     v17.setTrans(TVec3f(0.5f, 0.5f, 0.0f));
-    PSMTXConcat(v17, v19, v19);
+    MR::multMtx(v19, v19, v17);
     GXLoadTexMtxImm(v19, 0x1E, GX_MTX3x4);
     mFilterTex->load(GX_TEXMAP0);
     mScreenTex->load(GX_TEXMAP1);
@@ -256,7 +242,4 @@ void WaterCameraFilter::exeAir() {
     if (MR::isCameraInWater()) {
         setNerve(&NrvWaterCameraFilter::WaterCameraFilterNrvAirToWater::sInstance);
     }
-}
-
-WaterCameraFilter::~WaterCameraFilter() {
 }

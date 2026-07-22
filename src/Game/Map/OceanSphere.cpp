@@ -845,6 +845,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
             sendVertex(getPlanePointLeftUpper(i + 1, j), useEnvMap, useGD);
             sendVertex(p0, useEnvMap, useGD);
         }
+        GXEnd();
 
         ::beginDrawPolygon(i, mPointCount, useGD);
 
@@ -856,6 +857,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
         }
 
         sendVertex(getPlanePointLeftUpper(i, i), useEnvMap, useGD);
+        GXEnd();
 
         ::beginDrawPolygon(i, mPointCount, useGD);
         sendVertex(getPlanePointRightUpper(i, i), useEnvMap, useGD);
@@ -865,6 +867,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
             sendVertex(getPlanePointRightUpper(i + 1, j), useEnvMap, useGD);
             sendVertex(p0, useEnvMap, useGD);
         }
+        GXEnd();
 
         ::beginDrawPolygon(i, mPointCount, useGD);
 
@@ -876,6 +879,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
         }
 
         sendVertex(getPlanePointRightUpper(i, i), useEnvMap, useGD);
+        GXEnd();
 
         ::beginDrawPolygon(i, mPointCount, useGD);
         sendVertex(getPlanePointLeftLower(i, i), useEnvMap, useGD);
@@ -885,6 +889,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
             sendVertex(getPlanePointLeftLower(i + 1, j), useEnvMap, useGD);
             sendVertex(p0, useEnvMap, useGD);
         }
+        GXEnd();
 
         ::beginDrawPolygon(i, mPointCount, useGD);
 
@@ -896,6 +901,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
         }
 
         sendVertex(getPlanePointLeftLower(i, i), useEnvMap, useGD);
+        GXEnd();
 
         ::beginDrawPolygon(i, mPointCount, useGD);
         sendVertex(getPlanePointRightLower(i, i), useEnvMap, useGD);
@@ -905,6 +911,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
             sendVertex(getPlanePointRightLower(i + 1, j), useEnvMap, useGD);
             sendVertex(p0, useEnvMap, useGD);
         }
+        GXEnd();
 
         ::beginDrawPolygon(i, mPointCount, useGD);
 
@@ -916,6 +923,7 @@ void OceanSphere::drawSphere(bool useEnvMap, bool useGD) const {
         }
 
         sendVertex(getPlanePointRightLower(i, i), useEnvMap, useGD);
+        GXEnd();
     }
 }
 

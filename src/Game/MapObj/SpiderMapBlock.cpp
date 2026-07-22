@@ -1,6 +1,5 @@
 #include "Game/MapObj/SpiderMapBlock.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -10,9 +9,9 @@
 
 namespace {
     static const f32 sCoinSpeed = 35.0f;
-}
+};  // namespace
 
-SpiderMapBlock::SpiderMapBlock(const char* pName) : LiveActor(pName), mPosZ(0.0f) {
+SpiderMapBlock::SpiderMapBlock(const char* pName) : LiveActor(pName), mPosZ() {
 }
 
 bool SpiderMapBlock::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {

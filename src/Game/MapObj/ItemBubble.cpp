@@ -238,7 +238,7 @@ void ItemBubble::exeWait() {
     }
 
     PSMTXScale(_9C, mScale.x, mScale.y, mScale.z);
-    PSMTXConcat(_9C, MR::tmpMtxRotZDeg(mRotation.z), _9C);
+    MR::multMtx(_9C, MR::tmpMtxRotZDeg(mRotation.z), _9C);
 
     mPosition = _108 + TVec3f(0.0f, 1.0f, 0.0f).multInLine2(_8C).multInLine2(30.0f);
 

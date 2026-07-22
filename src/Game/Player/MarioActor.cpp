@@ -627,8 +627,8 @@ XjointTransform* MarioActor::getJointCtrl(const char* pName) const {
 
 void MarioActor::updateRotationInfo() {
     TRot3f stack_44;
-    PSMTXConcat(getBaseMtx(), _E3C.toMtxPtr(), stack_44.toMtxPtr());
-    MR::makeRTFromMtxPtr(nullptr, &mRotation, stack_44.toMtxPtr(), true);
+    MR::multMtx(stack_44, _E3C, getBaseMtx());
+    MR::makeRTFromMtxPtr(nullptr, &mRotation, stack_44, true);
     if (mRotation.z > 90.0f && mRotation.x > 90.0f) {
         f32 diff = 180.0f - mRotation.y;
         mRotation.z = 0.0f;
@@ -645,7 +645,7 @@ void MarioActor::updateRotationInfo() {
         TPos3f stack_14;
         TVec3f stack_8 = -_240;
         MR::makeMtxUpFront(&stack_14, stack_8, mMario->mFrontVec);
-        MR::makeRTFromMtxPtr(nullptr, &_A18, stack_14.toMtxPtr(), true);
+        MR::makeRTFromMtxPtr(nullptr, &_A18, stack_14, true);
         if (_A18.z > 90.0f && _A18.x > 90.0f) {
             f32 diff = 180.0f - _A18.y;
             _A18.z = 0.0f;
@@ -1566,7 +1566,7 @@ void MarioActor::updateBaseScaleMtx() {
 }
 
 void MarioActor::getRealMtx(MtxPtr mtx, const char* pName) const {
-    PSMTXConcat(MR::getJointMtx(this, pName), _BF8, mtx);
+    MR::multMtx(mtx, (MtxPtr)&_BF8, MR::getJointMtx(this, pName));
     TVec3f stack_8(mMario->_13C);
     MR::addTransMtx(mtx, stack_8);
 }
@@ -2079,7 +2079,7 @@ void MarioActor::calcAndSetBaseMtx() {
         }
     }
 
-    PSMTXConcat(mtx2, MR::tmpMtxRotYRad(mMario->mYAngleOffset), mtx2);
+    MR::multMtx(mtx2, MR::tmpMtxRotYRad(mMario->mYAngleOffset), mtx2);
 
     if (mPlayerMode == 6) {
         // updateBaseMtxTeresa(mtx2);
@@ -2123,9 +2123,9 @@ void MarioActor::calcAndSetBaseMtx() {
         }
         MtxPtr mtx3;
         PSMTXRotAxisRad(mtx3, &vec5, dot);
-        PSMTXConcat(mtxD8, mtx2, mtx2);
-        PSMTXConcat(mtx3, mtx2, mtx2);
-        PSMTXConcat(MR::tmpMtxTrans(vec), mtx2, mtx2);
+        MR::multMtx(mtx2, mtx2, mtxD8);
+        MR::multMtx(mtx2, mtx2, mtx3);
+        MR::multMtx(mtx2, mtx2, MR::tmpMtxTrans(vec));
 
         TVec3f vec240(_9F4);
         vec240.scale(mConst->getTable()->mBeePoseDelayAccel);
@@ -2245,7 +2245,7 @@ void MarioActor::calcAndSetBaseMtx() {
         MtxPtr mtx168;
         MtxPtr mtxA8;
         PSMTXInverse(mtxD8, mtx168);
-        PSMTXConcat(mtx168, mtxA8, _E3C);
+        MR::multMtx(_E3C, mtxA8, mtx168);
         mMarioAnim->mXanimePlayer->mCore->getJointTransform(0)->_64 = _E3C;
     }
 

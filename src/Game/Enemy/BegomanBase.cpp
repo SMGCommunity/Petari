@@ -963,12 +963,12 @@ void BegomanBase::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _C0);
 
     if (mScaleControler != nullptr) {
-        TVec3f stack8;
+        TVec3f scale;
 
-        stack8.set(mScaleControler->_C);
-        _B4.set(stack8);
-        stack8.multPS(mScale, stack8);
-        MR::setBaseScale(this, stack8);
+        scale.set(mScaleControler->_C);
+        _B4.set(scale);
+        scale *= mScale;
+        MR::setBaseScale(this, scale);
     }
 
     mBaseDelegator->registerCallBack();

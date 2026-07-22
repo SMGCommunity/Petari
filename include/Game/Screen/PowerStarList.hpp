@@ -19,7 +19,7 @@ public:
 
     /// @brief Creates a new `PowerStarList`.
     PowerStarList();
-    virtual ~PowerStarList();
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void calcAnim();
     virtual void appear();

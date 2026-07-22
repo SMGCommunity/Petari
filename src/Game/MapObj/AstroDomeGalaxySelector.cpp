@@ -1,5 +1,4 @@
 #include "Game/MapObj/AstroDomeGalaxySelector.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/AstroDomeCameraController.hpp"
@@ -22,8 +21,14 @@
 #include "Game/Util/StarPointerUtil.hpp"
 
 namespace {
-    const char* cDemoNameDomeLecture = "ドームレクチャー２";
-    const char* cDemoNameJumpOut = "マリオ飛び出し";
+    const char* const cDemoNameDomeLecture = "ドームレクチャー２";
+    const char* const cDemoNameJumpOut = "マリオ飛び出し";
+};  // namespace
+
+namespace {
+    MiniatureGalaxy* getSelectedMiniatureGalaxy() {
+        return static_cast< MiniatureGalaxy* >(SphereSelectorFunction::getSelectedTarget());
+    }
 };  // namespace
 
 namespace NrvAstroDomeGalaxySelector {
@@ -39,25 +44,26 @@ namespace NrvAstroDomeGalaxySelector {
     NEW_NERVE(AstroDomeGalaxySelectorNrvWaitStartDemo, AstroDomeGalaxySelector, WaitStartDemo);
 };  // namespace NrvAstroDomeGalaxySelector
 
-AstroDomeGalaxySelector::AstroDomeGalaxySelector(const char* pName) : LiveActor(pName) {
-    pDomeCamCtrl = 0;
-    pGSBackButton = 0;
-    pGSInfo = 0;
-    pGConfirmLayout = 0;
-    _9C = 0;
+AstroDomeGalaxySelector::AstroDomeGalaxySelector(const char* pName)
+    : LiveActor(pName), mCameraController(), mBackButton(), mInfo(), mConfirmLayout(), _9C() {
 }
 
 void AstroDomeGalaxySelector::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
     MR::invalidateClipping(this);
-    pDomeCamCtrl = new AstroDomeCameraController("天文ドームカメラ制御");
-    pDomeCamCtrl->initWithoutIter();
-    pGSBackButton = new GalaxySelectBackButton();
-    pGSBackButton->initWithoutIter();
-    pGSInfo = new GalaxySelectInfo(false);
-    pGSInfo->initWithoutIter();
-    pGConfirmLayout = new GalaxyConfirmLayout();
-    pGConfirmLayout->initWithoutIter();
+
+    mCameraController = new AstroDomeCameraController("天文ドームカメラ制御");
+    mCameraController->initWithoutIter();
+
+    mBackButton = new GalaxySelectBackButton();
+    mBackButton->initWithoutIter();
+
+    mInfo = new GalaxySelectInfo(false);
+    mInfo->initWithoutIter();
+
+    mConfirmLayout = new GalaxyConfirmLayout();
+    mConfirmLayout->initWithoutIter();
+
     MR::needStageSwitchWriteA(this, rIter);
     MR::onSwitchA(this);
     initNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelectStart::sInstance);
@@ -76,7 +82,7 @@ void AstroDomeGalaxySelector::kill() {
     MR::resetYesNoSelectorSE();
     MR::onSwitchA(this);
     LiveActor::kill();
-    pGSInfo->kill();
+    mInfo->kill();
     MR::disappearStarCounter();
 }
 
@@ -85,22 +91,26 @@ bool AstroDomeGalaxySelector::receiveOtherMsg(u32 v1, HitSensor* pSender, HitSen
         appear();
         return true;
     }
+
     if (SphereSelectorFunction::isMsgConfirmStart(v1)) {
         setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirmStart::sInstance);
         return true;
     }
+
     if (SphereSelectorFunction::isMsgTargetSelected(v1)) {
-        pGSBackButton->decide();
+        mBackButton->decide();
         SphereSelectorFunction::selectCancel(false);
         setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelectCancel::sInstance);
         return true;
     }
+
     return false;
 }
 
 void AstroDomeGalaxySelector::showGalaxyInfo(const MiniatureGalaxy* pMiniGalaxy) {
     s32 state = 3;
     s32 cometID = -1;
+
     if (pMiniGalaxy->mState == 2) {
         state = 2;
     } else if (pMiniGalaxy->mState == 1) {
@@ -112,7 +122,8 @@ void AstroDomeGalaxySelector::showGalaxyInfo(const MiniatureGalaxy* pMiniGalaxy)
     if (state == 3 && pMiniGalaxy == MiniatureGalaxyFunction::getCometLandMiniatureGalaxy()) {
         cometID = MiniatureGalaxyFunction::getCometNameId();
     }
-    pGSInfo->show(pMiniGalaxy->mName, state, cometID);
+
+    mInfo->show(pMiniGalaxy->mName, state, cometID);
 }
 
 bool AstroDomeGalaxySelector::tryStartLectureDemo(const Nerve* pNerve) {
@@ -129,56 +140,70 @@ bool AstroDomeGalaxySelector::tryStartLectureDemo(const Nerve* pNerve) {
             return true;
         }
     }
+
     return false;
 }
 
 void AstroDomeGalaxySelector::exeGalaxySelectStart() {
-    if (SphereSelectorFunction::isSelectWait()) {
-        if (!tryStartLectureDemo(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvDemoDomeLecture::sInstance)) {
-            MR::appearStarCounter();
-            setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelect::sInstance);
-        }
+    if (!SphereSelectorFunction::isSelectWait()) {
+        return;
     }
+
+    if (tryStartLectureDemo(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvDemoDomeLecture::sInstance)) {
+        return;
+    }
+
+    MR::appearStarCounter();
+    setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelect::sInstance);
 }
 
 void AstroDomeGalaxySelector::exeGalaxySelect() {
     if (MR::isFirstStep(this)) {
-        pGSBackButton->appear();
+        mBackButton->appear();
     }
+
     if (SphereSelectorFunction::isValidPointing() && MR::testCorePadTriggerB(WPAD_CHAN0)) {
         MR::startSystemSE("SE_SY_GALAXY_DECIDE_CANCEL");
-        if (pGSBackButton->isAppearing()) {
-            pGSBackButton->kill();
+
+        if (mBackButton->isAppearing()) {
+            mBackButton->kill();
         } else {
-            pGSBackButton->disappear();
+            mBackButton->disappear();
         }
+
         SphereSelectorFunction::selectCancel(false);
         setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelectCancel::sInstance);
     } else {
         if (!MR::isOnGameEventFlagOffAstroDomeGuidance()) {
             MR::requestPointerGuidanceNoInformation();
         }
-        if (!SphereSelectorFunction::isHandleHolding() && pGSBackButton->isPointing()) {
+
+        if (!SphereSelectorFunction::isHandleHolding() && mBackButton->isPointing()) {
             SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(2));
+
             if (!_9C) {
                 MR::startSystemSE("SE_SY_BUTTON_CURSOR_ON");
             }
+
             _9C = true;
         } else {
             _9C = false;
         }
+
         if (SphereSelectorFunction::isPointingTarget(this)) {
-            pGSBackButton->tryPointing();
+            mBackButton->tryPointing();
         }
-        MiniatureGalaxy* miniGalaxy = MiniatureGalaxyFunction::getPointingMiniatureGalaxy();
-        if (miniGalaxy) {
-            showGalaxyInfo(miniGalaxy);
+
+        MiniatureGalaxy* pointingMiniatureGalaxy = MiniatureGalaxyFunction::getPointingMiniatureGalaxy();
+
+        if (pointingMiniatureGalaxy != nullptr) {
+            showGalaxyInfo(pointingMiniatureGalaxy);
         }
     }
 }
 
 void AstroDomeGalaxySelector::exeGalaxySelectCancel() {
-    if (pGSBackButton->isDisappearing() || MR::isDead(pGSBackButton)) {
+    if (mBackButton->isDisappearing() || MR::isDead(mBackButton)) {
         SphereSelectorFunction::selectEnd();
         kill();
     }
@@ -186,9 +211,11 @@ void AstroDomeGalaxySelector::exeGalaxySelectCancel() {
 
 void AstroDomeGalaxySelector::exeGalaxyConfirmStart() {
     if (MR::isFirstStep(this)) {
-        pGSBackButton->disappear();
+        mBackButton->disappear();
     }
-    showGalaxyInfo((MiniatureGalaxy*)SphereSelectorFunction::getSelectedTarget());
+
+    showGalaxyInfo(::getSelectedMiniatureGalaxy());
+
     if (SphereSelectorFunction::isConfirmWait() &&
         !tryStartLectureDemo(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyMoveLecture::sInstance)) {
         setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirm::sInstance);
@@ -197,19 +224,23 @@ void AstroDomeGalaxySelector::exeGalaxyConfirmStart() {
 
 void AstroDomeGalaxySelector::exeGalaxyConfirm() {
     if (MR::isFirstStep(this)) {
-        pGConfirmLayout->appear();
+        mConfirmLayout->appear();
     }
-    showGalaxyInfo((MiniatureGalaxy*)SphereSelectorFunction::getSelectedTarget());
-    if (pGConfirmLayout->isSelected()) {
-        if (pGConfirmLayout->isSelectedYes()) {
-            SphereSelectorFunction::confirmed();
-            MR::requestStartTimeKeepDemoMarioPuppetable(this, ::cDemoNameJumpOut,
-                                                        &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvDemoJumpOut::sInstance,
-                                                        &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
-        } else {
-            SphereSelectorFunction::confirmCancel(false);
-            setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirmCancel::sInstance);
-        }
+
+    showGalaxyInfo(::getSelectedMiniatureGalaxy());
+
+    if (!mConfirmLayout->isSelected()) {
+        return;
+    }
+
+    if (mConfirmLayout->isSelectedYes()) {
+        SphereSelectorFunction::confirmed();
+        MR::requestStartTimeKeepDemoMarioPuppetable(this, ::cDemoNameJumpOut,
+                                                    &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvDemoJumpOut::sInstance,
+                                                    &NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvWaitStartDemo::sInstance, 0);
+    } else {
+        SphereSelectorFunction::confirmCancel(false);
+        setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirmCancel::sInstance);
     }
 }
 
@@ -222,44 +253,51 @@ void AstroDomeGalaxySelector::exeGalaxyConfirmCancel() {
 void AstroDomeGalaxySelector::exeDemoJumpOut() {
     if (MR::isFirstStep(this)) {
         MR::disappearStarCounter();
-        pGConfirmLayout->requestMovementOn();
-        MR::requestMovementOn(pGSInfo);
+        mConfirmLayout->requestMovementOn();
+        MR::requestMovementOn(mInfo);
     }
 
-    if (!MR::isDemoActive(::cDemoNameJumpOut)) {
-        MiniatureGalaxy* pMiniGalaxy = static_cast< MiniatureGalaxy* >(SphereSelectorFunction::getSelectedTarget());
-        const char* pGalaxyName = pMiniGalaxy->mName;
-
-        MiniatureGalaxy* pCometGalaxy = MiniatureGalaxyFunction::getCometLandMiniatureGalaxy();
-        if (pCometGalaxy != nullptr && pCometGalaxy == SphereSelectorFunction::getSelectedTarget()) {
-            MR::requestStartScenarioSelectForComet(pGalaxyName, MR::getEncounterGalaxyCometPowerStarId(pGalaxyName));
-        } else {
-            MR::requestStartScenarioSelect(pGalaxyName);
-        }
-
-        kill();
+    if (MR::isDemoActive(::cDemoNameJumpOut)) {
+        return;
     }
+
+    const char* pGalaxyName = ::getSelectedMiniatureGalaxy()->mName;
+    MiniatureGalaxy* pCometGalaxy = MiniatureGalaxyFunction::getCometLandMiniatureGalaxy();
+
+    if (pCometGalaxy != nullptr && pCometGalaxy == SphereSelectorFunction::getSelectedTarget()) {
+        MR::requestStartScenarioSelectForComet(pGalaxyName, MR::getEncounterGalaxyCometPowerStarId(pGalaxyName));
+    } else {
+        MR::requestStartScenarioSelect(pGalaxyName);
+    }
+
+    kill();
 }
 
 void AstroDomeGalaxySelector::exeDemoDomeLecture() {
     if (MR::isFirstStep(this)) {
         MR::requestMovementOnPlayer();
     }
-    if (!MR::isTimeKeepDemoActive()) {
-        MR::onGameEventFlagEndButlerDomeLecture();
-        MR::appearStarCounter();
-        setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelect::sInstance);
+
+    if (MR::isTimeKeepDemoActive()) {
+        return;
     }
+
+    MR::onGameEventFlagEndButlerDomeLecture();
+    MR::appearStarCounter();
+    setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelect::sInstance);
 }
 
 void AstroDomeGalaxySelector::exeGalaxyMoveLecture() {
     if (MR::isFirstStep(this)) {
         MR::requestMovementOnPlayer();
     }
-    if (!MR::isTimeKeepDemoActive()) {
-        MR::onGameEventFlagEndButlerGalaxyMoveLecture();
-        setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirm::sInstance);
+
+    if (MR::isTimeKeepDemoActive()) {
+        return;
     }
+
+    MR::onGameEventFlagEndButlerGalaxyMoveLecture();
+    setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirm::sInstance);
 }
 
 void AstroDomeGalaxySelector::exeWaitStartDemo() {

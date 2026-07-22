@@ -305,9 +305,8 @@ void SearchBeamer::calcAndSetBaseMtx() {
     TPos3f mtx;
     MR::makeMtxFrontUpPos(&mtx, _94, _A0, mPosition);
     MR::setBaseTRMtx(this, mtx);
-    TVec3f v7;
-    JMathInlineVEC::PSVECMultiply(&mScale, &mScaleController->_C, &v7);
-    MR::setBaseScale(this, v7);
+    TVec3f scale = mScaleController->_C * mScale;
+    MR::setBaseScale(this, scale);
     mPropellerJointCtrl->registerCallBack();
     mBeanStartJointCtrl->registerCallBack();
     mBeamEndJointCtrl->registerCallBack();

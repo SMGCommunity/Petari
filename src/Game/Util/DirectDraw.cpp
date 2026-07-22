@@ -3,6 +3,7 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
 #include "math_types.hpp"
@@ -29,7 +30,7 @@ namespace TDDraw {
     }
 
     void setModelMtx(MtxPtr mtx) {
-        PSMTXConcat(MR::getCameraViewMtx(), mtx, mViewMtx);
+        MR::multMtx(mViewMtx, mtx, MR::getCameraViewMtx());
         GXLoadPosMtxImm(mViewMtx, 0);
     }
 
@@ -160,10 +161,11 @@ namespace TDDraw {
 
     void drawLine(const TVec3f& a1, const TVec3f& a2, u32 a3) {
         GXBegin(GX_LINES, GX_VTXFMT0, 2);
-        GXPosition3f32(a1.x, a1.y, a1.z);
-        GXCmd1u32(a3);
-        GXPosition3f32(a2.x, a2.y, a2.z);
-        GXCmd1u32(a3);
+        {
+            sendPoint(a1, a3);
+            sendPoint(a2, a3);
+        }
+        GXEnd();
     }
 
     void drawCircle(const TVec3f& a1, const TVec3f& a2, f32 a3, u32 a4, u32 a5) {
@@ -184,8 +186,8 @@ namespace TDDraw {
         TVec3f v14(a3);
         Mtx v15;
         PSMTXRotAxisRad(v15, a2, 6.2831855f / a6);
-        GXBegin(GX_LINESTRIP, GX_VTXFMT0, a6 + 1);
 
+        GXBegin(GX_LINESTRIP, GX_VTXFMT0, a6 + 1);
         for (u32 i = 0; i <= a6; i++) {
             TVec3f v12(v14);
             v12 *= a4;
@@ -195,19 +197,23 @@ namespace TDDraw {
             GXCmd1u32(a5);
             PSMTXMultVec(v15, v14, v14);
         }
+        GXEnd();
     }
 
     void drawFillCircle(const TVec3f& a1, f32 a2, u32 a3, u32 a4, u32 a5) {
         GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, a5 + 2);
-        GXPosition3f32(a1.x, a1.y, a1.z);
-        GXCmd1u32(a3);
+        {
+            GXPosition3f32(a1.x, a1.y, a1.z);
+            GXCmd1u32(a3);
 
-        for (u32 i = 0; i <= a5; i++) {
-            f32 v12 = a1.x - (a2 * MR::cos(2.0f * (i) / (a5 * PI)));
-            f32 v13 = a1.y + (a2 * MR::sin(2.0f * (i) / (a5 * PI)));
-            GXPosition3f32(v12, v13, a1.z);
-            GXCmd1u32(a4);
+            for (u32 i = 0; i <= a5; i++) {
+                f32 v12 = a1.x - (a2 * MR::cos(2.0f * (i) / (a5 * PI)));
+                f32 v13 = a1.y + (a2 * MR::sin(2.0f * (i) / (a5 * PI)));
+                GXPosition3f32(v12, v13, a1.z);
+                GXCmd1u32(a4);
+            }
         }
+        GXEnd();
     }
 
     // tvec inlines
@@ -222,19 +228,23 @@ namespace TDDraw {
         MR::normalizeOrZero(&v14);
         Mtx v15;
         PSMTXRotAxisRad(v15, a2, (6.2831855f / a5));
-        GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, a5 + 2);
-        GXPosition3f32(a1.x, a1.y, a1.z);
-        GXCmd1u32(a4);
 
-        for (u32 i = 0; i <= a5; i++) {
-            TVec3f v12(v14);
-            v12 *= a3;
-            TVec3f v13(a1);
-            v13 += v12;
-            PSMTXMultVec(v15, v14, v14);
-            GXPosition3f32(v13.x, v13.y, v13.z);
+        GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, a5 + 2);
+        {
+            GXPosition3f32(a1.x, a1.y, a1.z);
             GXCmd1u32(a4);
+
+            for (u32 i = 0; i <= a5; i++) {
+                TVec3f v12(v14);
+                v12 *= a3;
+                TVec3f v13(a1);
+                v13 += v12;
+                PSMTXMultVec(v15, v14, v14);
+                GXPosition3f32(v13.x, v13.y, v13.z);
+                GXCmd1u32(a4);
+            }
         }
+        GXEnd();
     }
 
     void drawFillFan(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, u32 a4, f32 a5, f32 a6, u32 a7) {
@@ -244,51 +254,59 @@ namespace TDDraw {
         PSMTXRotAxisRad(v17, a2, (a6 - a5) / (a7));
         TVec3f v16;
         PSMTXMultVec(v18, a3, v16);
-        GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, a7 + 2);
-        GXPosition3f32(a1.x, a1.y, a1.z);
-        GXCmd1u32(a4);
 
-        for (u32 i = 0; i <= a7; i++) {
-            TVec3f v15(v16);
-            v15 += a1;
-            GXPosition3f32(v15.x, v15.y, v15.z);
+        GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, a7 + 2);
+        {
+            GXPosition3f32(a1.x, a1.y, a1.z);
             GXCmd1u32(a4);
-            PSMTXMultVec(v17, v16, v16);
+
+            for (u32 i = 0; i <= a7; i++) {
+                TVec3f v15(v16);
+                v15 += a1;
+                GXPosition3f32(v15.x, v15.y, v15.z);
+                GXCmd1u32(a4);
+                PSMTXMultVec(v17, v16, v16);
+            }
         }
+        GXEnd();
     }
 
     void drawCylinder(const TVec3f& a1, const TVec3f& a2, f32 a3, u32 a4, u32 a5, u32 a6) {
         TVec3f v19;
+
         if (a2.x != 0.0f) {
             v19.set< f32 >(a2.y, -a2.x, 0.0f);
         } else {
             v19.set< f32 >(0.0f, -a2.z, a2.y);
         }
 
-        if (!MR::isNearZero(v19)) {
-            MR::normalizeOrZero(&v19);
-            TVec3f v18(a1);
-            v18 += a2;
-            Mtx v20;
-            PSMTXRotAxisRad(v20, a2, (TWO_PI / a6));
-            GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * (a6 + 1));
-
-            for (u32 i = 0; i <= a6; i++) {
-                TVec3f v15(v19);
-                v15 *= a3;
-                TVec3f v17(a1);
-                v17 += v15;
-                TVec3f v14(v19);
-                v14 *= a3;
-                TVec3f v16(v18);
-                v16 += v14;
-                GXPosition3f32(v17.x, v17.y, v17.z);
-                GXCmd1u32(a4);
-                GXPosition3f32(v16.x, v16.y, v16.z);
-                GXCmd1u32(a5);
-                PSMTXMultVec(v20, v19, v19);
-            }
+        if (MR::isNearZero(v19)) {
+            return;
         }
+
+        MR::normalizeOrZero(&v19);
+        TVec3f v18(a1);
+        v18 += a2;
+        Mtx v20;
+        PSMTXRotAxisRad(v20, a2, (TWO_PI / a6));
+
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * (a6 + 1));
+        for (u32 i = 0; i <= a6; i++) {
+            TVec3f v15(v19);
+            v15 *= a3;
+            TVec3f v17(a1);
+            v17 += v15;
+            TVec3f v14(v19);
+            v14 *= a3;
+            TVec3f v16(v18);
+            v16 += v14;
+            GXPosition3f32(v17.x, v17.y, v17.z);
+            GXCmd1u32(a4);
+            GXPosition3f32(v16.x, v16.y, v16.z);
+            GXCmd1u32(a5);
+            PSMTXMultVec(v20, v19, v19);
+        }
+        GXEnd();
     }
 
     void drawSpherePart(const TPos3f& a1, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, u32 a7, u32 a8, u32 a9) {
@@ -326,7 +344,6 @@ namespace TDDraw {
             v42 *= a2;
 
             GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * (a9 + 1));
-
             for (s32 j = 0; j <= a9; j++) {
                 f32 v29 = (a5 + (j / a9) * v23);
                 f32 v30 = MR::sin(v29);
@@ -346,6 +363,7 @@ namespace TDDraw {
                 GXPosition3f32(v39.x, v39.y, v39.z);
                 GXCmd1u32(a7);
             }
+            GXEnd();
 
             v43 = v42;
         }
@@ -365,45 +383,51 @@ namespace TDDraw {
 
     void drawTexture(const TVec2f& a1, JUTTexture* a2, const TVec2f& a3) {
         a2->load(GX_TEXMAP0);
+
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        GXPosition3f32(a1.x, a1.y, 0.0f);
-        GXCmd1f32(0.0f);
-        GXCmd1f32(0.0f);
-        GXPosition3f32(a1.x + a3.x, a1.y, 0.0f);
-        GXCmd1f32(1.0f);
-        GXCmd1f32(0.0f);
-        GXPosition3f32(a1.x + a3.x, a1.y + a3.y, 0.0f);
-        GXCmd1f32(1.0f);
-        GXCmd1f32(1.0f);
-        GXPosition3f32(a1.x, a1.y + a3.y, 0.0f);
-        GXCmd1f32(0.0f);
-        GXCmd1f32(1.0f);
+        {
+            GXPosition3f32(a1.x, a1.y, 0.0f);
+            GXTexCoord2f32(0.0f, 0.0f);
+            GXPosition3f32(a1.x + a3.x, a1.y, 0.0f);
+            GXTexCoord2f32(1.0f, 0.0f);
+            GXPosition3f32(a1.x + a3.x, a1.y + a3.y, 0.0f);
+            GXTexCoord2f32(1.0f, 1.0f);
+            GXPosition3f32(a1.x, a1.y + a3.y, 0.0f);
+            GXTexCoord2f32(0.0f, 1.0f);
+        }
+        GXEnd();
     }
 
     // TDDraw::drawTexture3D
 
     void drawFillBox(const TVec3f& a1, const TVec3f& a2, u32 a3) {
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        GXPosition3f32(a1.x, a1.y, a1.z);
-        GXCmd1u32(a3);
-        GXPosition3f32(a2.x, a1.y, a1.z);
-        GXCmd1u32(a3);
-        GXPosition3f32(a2.x, a2.y, a2.z);
-        GXCmd1u32(a3);
-        GXPosition3f32(a1.x, a2.y, a2.z);
-        GXCmd1u32(a3);
+        {
+            GXPosition3f32(a1.x, a1.y, a1.z);
+            GXCmd1u32(a3);
+            GXPosition3f32(a2.x, a1.y, a1.z);
+            GXCmd1u32(a3);
+            GXPosition3f32(a2.x, a2.y, a2.z);
+            GXCmd1u32(a3);
+            GXPosition3f32(a1.x, a2.y, a2.z);
+            GXCmd1u32(a3);
+        }
+        GXEnd();
     }
 
     void drawFillBox(const TVec2f& a1, const TVec2f& a2, u32 a3) {
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        GXPosition3f32(a1.x, a1.y, 0.0f);
-        GXCmd1u32(a3);
-        GXPosition3f32(a2.x, a1.y, 0.0f);
-        GXCmd1u32(a3);
-        GXPosition3f32(a2.x, a2.y, 0.0f);
-        GXCmd1u32(a3);
-        GXPosition3f32(a1.x, a2.y, 0.0f);
-        GXCmd1u32(a3);
+        {
+            GXPosition3f32(a1.x, a1.y, 0.0f);
+            GXCmd1u32(a3);
+            GXPosition3f32(a2.x, a1.y, 0.0f);
+            GXCmd1u32(a3);
+            GXPosition3f32(a2.x, a2.y, 0.0f);
+            GXCmd1u32(a3);
+            GXPosition3f32(a1.x, a2.y, 0.0f);
+            GXCmd1u32(a3);
+        }
+        GXEnd();
     }
 
     //  TDDraw::drawFillBox3D

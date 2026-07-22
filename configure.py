@@ -264,6 +264,7 @@ cflags_jsys_j3d = [*cflags_jsys, "-O4,p"]
 
 cflags_jsys_jaudio = [*cflags_jsys, "-ipa file"]
 cflags_jsys_jasdsp = [*cflags_jsys_jaudio, "-func_align 32"]
+cflags_jsys_jpa = [*cflags_jsys, "-ipa file"]
 
 cflags_trk = [
     "-nodefaults",
@@ -561,6 +562,14 @@ def JSys_JAudioLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+def JSys_JParticleLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a3",
+        "cflags": cflags_jsys_jpa,
+        "progress_category": "jsys",
+        "objects": objects,
+    }
 
 Matching = True  # Object matches and should be linked
 NonMatching = False  # Object does not match and should not be linked
@@ -1496,7 +1505,7 @@ config.libs = [
                 cflags=[*cflags_game, "-sym off"],
             ),
             Object(NonMatching, "Game/MapObj/AssemblyBlock.cpp"),
-            Object(NonMatching, "Game/MapObj/AstroCore.cpp"),
+            Object(Matching, "Game/MapObj/AstroCore.cpp"),
             Object(NonMatching, "Game/MapObj/AstroCountDownPlate.cpp"),
             Object(Matching, "Game/MapObj/AstroDome.cpp"),
             Object(Matching, "Game/MapObj/AstroDomeAsteroid.cpp"),
@@ -1504,7 +1513,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/AstroDomeCameraController.cpp"),
             Object(NonMatching, "Game/MapObj/AstroDomeComet.cpp"),
             Object(NonMatching, "Game/MapObj/AstroDomeDemoAstroGalaxy.cpp"),
-            Object(NonMatching, "Game/MapObj/AstroDomeGalaxySelector.cpp"),
+            Object(Matching, "Game/MapObj/AstroDomeGalaxySelector.cpp"),
             Object(NonMatching, "Game/MapObj/AstroDomeOrbit.cpp"),
             Object(NonMatching, "Game/MapObj/AstroDomeSky.cpp"),
             Object(Matching, "Game/MapObj/AstroMapBoard.cpp"),
@@ -1708,14 +1717,14 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SeaBottomTriplePropeller.cpp"),
             Object(NonMatching, "Game/MapObj/SeesawMoveNut.cpp"),
             Object(NonMatching, "Game/MapObj/Shellfish.cpp"),
-            Object(NonMatching, "Game/MapObj/ShockWaveGenerator.cpp"),
+            Object(Matching, "Game/MapObj/ShockWaveGenerator.cpp"),
             Object(NonMatching, "Game/MapObj/ShootingStar.cpp"),
             Object(NonMatching, "Game/MapObj/SideSpikeMoveStep.cpp"),
             Object(NonMatching, "Game/MapObj/SimpleBreakableObj.cpp"),
             Object(NonMatching, "Game/MapObj/SimpleClipPartsObj.cpp"),
             Object(NonMatching, "Game/MapObj/SimpleFloaterObj.cpp"),
             Object(NonMatching, "Game/MapObj/SimpleMapObj.cpp"),
-            Object(NonMatching, "Game/MapObj/SimpleNormalMapObj.cpp"),
+            Object(Matching, "Game/MapObj/SimpleNormalMapObj.cpp"),
             Object(Matching, "Game/MapObj/SimpleTimerObj.cpp"),
             Object(NonMatching, "Game/MapObj/SmallStone.cpp"),
             Object(NonMatching, "Game/MapObj/SnowCapsulePlanet.cpp"),
@@ -3250,7 +3259,7 @@ config.libs = [
             Object(NonMatching, "JSystem/JMath/JMATrigonometric.cpp"),
         ],
     ),
-    JSysLib(
+    JSys_JParticleLib(
         "JParticle",
         [
             Object(NonMatching, "JSystem/JParticle/JPAResourceManager.cpp"),
