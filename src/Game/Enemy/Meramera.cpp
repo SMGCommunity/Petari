@@ -84,17 +84,6 @@ enum { Status_Runaway, Status_Float };
 namespace {
     const char* sElementArcName[] = {"Meramera", "IceMeramera", "ChildMeramera", "ChildIceMeramera"};
     s32 sElementList[] = {ElementType_Fire, ElementType_Ice, ElementType_Fire, ElementType_Ice};
-
-    s32 getElementList(const JMapInfoIter& rIter) {
-        for (s32 idx = 0; idx < ARRAY_SIZE(::sElementArcName); idx++) {
-            if (MR::isEqualObjectName(rIter, ::sElementArcName[idx])) {
-                return ::sElementList[idx];
-            }
-        }
-
-        return 0;
-    }
-
     const TVec3f sAttackHitOffset = TVec3f(50.0f, 0.0f, 0.0f);
 
     static const f32 sBodyHitRadius = 55.0f;
@@ -193,7 +182,7 @@ namespace {
     static f32 sDamageFloatAccel;
     static f32 sDamageHeight;
     static f32 sDamageAirFreq;
-    static f32 sDownStopFrame;
+    static const s32 sDownStopFrame = 2;
     static f32 sDownScale;
     static f32 sDownUpPower;
     static const f32 sDownGravityAccel = 0.5f;
@@ -202,6 +191,18 @@ namespace {
     static f32 sMinExtinguishDistance;
     static f32 sExtinguishSpeedRate;
     static f32 sTurnSmokeToGravityDegree;
+};  // namespace
+
+namespace {
+    s32 getElementList(const JMapInfoIter& rIter) {
+        for (s32 idx = 0; idx < ARRAY_SIZE(::sElementArcName); idx++) {
+            if (MR::isEqualObjectName(rIter, ::sElementArcName[idx])) {
+                return ::sElementList[idx];
+            }
+        }
+
+        return 0;
+    }
 };  // namespace
 
 namespace NrvMeramera {
@@ -322,10 +323,10 @@ void Meramera::initSensor() {
 
     LiveActor::initHitSensor(3);
 
-    MR::addHitSensorEnemy(this, "body", 8, scale * sBodyHitRadius, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::addHitSensorEnemy(this, "break", 8, scale * sBreakHitRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemy(this, "body", 8, scale * ::sBodyHitRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEnemy(this, "break", 8, scale * ::sBreakHitRadius, TVec3f(0.0f, 0.0f, 0.0f));
 
-    MR::addHitSensorAtJointEnemy(this, "attack", "JointRoot", 8, scale * sAttackHitRadius, ::sAttackHitOffset * scale);
+    MR::addHitSensorAtJointEnemy(this, "attack", "JointRoot", 8, scale * ::sAttackHitRadius, ::sAttackHitOffset * scale);
 
     MR::invalidateHitSensor(this, "break");
 
@@ -334,7 +335,7 @@ void Meramera::initSensor() {
 
 void Meramera::initBind() {
     f32 scale = mScale.x;
-    initBinder(scale * sBindRadius, 0.0f, 0);
+    initBinder(scale * ::sBindRadius, 0.0f, 0);
 
     MR::onCalcGravity(this);
 }
@@ -344,9 +345,9 @@ void Meramera::initShadow() {
 
     MR::initShadowController(this, 2);
 
-    MR::addShadowSurfaceCircle(this, "水面用", scale * sShadowRadius);
-    MR::setShadowDropStartOffset(this, "水面用", sBaseScale);
-    MR::addShadowVolumeSphere(this, "地面用", scale * sShadowRadius);
+    MR::addShadowSurfaceCircle(this, "水面用", scale * ::sShadowRadius);
+    MR::setShadowDropStartOffset(this, "水面用", ::sBaseScale);
+    MR::addShadowVolumeSphere(this, "地面用", scale * ::sShadowRadius);
 }
 
 void Meramera::initAppearState(const JMapInfoIter& rIter) {
@@ -514,7 +515,7 @@ bool Meramera::requestDamage(HitSensor* pSender, HitSensor* pReceiver) {
 
     bool isFar = MR::isNear(pSender, pReceiver, 300.0f) == false;
     if (isFar) {
-        emitEffectHead(1);
+        emitEffectHead(EffectType_Wait);
         turnFireDirectionToSpin(5.0f);
 
         return false;
@@ -646,7 +647,7 @@ bool Meramera::sendMsgElementAttack(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool Meramera::tryWalk() {
     // FIXME
-    if (getNerveStep() > sWalkTime) {
+    if (getNerveStep() > ::sWalkTime) {
         TVec3f randomVec;
         MR::getRandomVector(&randomVec, 1.0f);
         MR::normalizeOrZero(&randomVec);
@@ -663,7 +664,7 @@ bool Meramera::tryWalk() {
 }
 
 bool Meramera::tryWalkEnd() {
-    if (getNerveStep() > sWaitTime || (0.0f <= _1A4 && _1A4 <= 100.0f)) {
+    if (getNerveStep() > ::sWaitTime || (0.0f <= _1A4 && _1A4 <= 100.0f)) {
         setNerve(&NrvMeramera::MerameraNrvWait::sInstance);
 
         return true;
@@ -673,7 +674,7 @@ bool Meramera::tryWalkEnd() {
 }
 
 bool Meramera::tryEndShrink() {
-    if (MR::isGreaterStep(this, sShrinkTime)) {
+    if (MR::isGreaterStep(this, ::sShrinkTime)) {
         if (isEnableChase()) {
             setNerve(&NrvMeramera::MerameraNrvChaseStart::sInstance);
         } else {
@@ -724,7 +725,7 @@ bool Meramera::tryChaseTurnToDash() {
 
 bool Meramera::tryEndChase() {
     bool isFarFromPlayer = MR::isNearPlayer(this, mChaseDistance) == false;
-    if (isFarFromPlayer || MR::isGreaterStep(this, sChaseEndTime) || mHomePosition.distance(mPosition) > sTerritoryChaseRange) {
+    if (isFarFromPlayer || MR::isGreaterStep(this, ::sChaseEndTime) || mHomePosition.distance(mPosition) > ::sTerritoryChaseRange) {
         setNerve(&NrvMeramera::MerameraNrvWait::sInstance);
         return true;
     }
@@ -733,7 +734,7 @@ bool Meramera::tryEndChase() {
 }
 
 bool Meramera::tryRunaway() {
-    if (MR::isGreaterStep(this, MR::getRandom(0L, 0L) + sRunawayTime)) {
+    if (MR::isGreaterStep(this, MR::getRandom(0L, 0L) + ::sRunawayTime)) {
         setNerve(&NrvMeramera::MerameraNrvRunaway::sInstance);
         return true;
     }
@@ -754,7 +755,7 @@ bool Meramera::tryStartDiving() {
 }
 
 bool Meramera::tryDiving() {
-    if (MR::isGreaterStep(this, sDivingDelayTime)) {
+    if (MR::isGreaterStep(this, ::sDivingDelayTime)) {
         setNerve(&NrvMeramera::MerameraNrvDiving::sInstance);
         return true;
     }
@@ -763,7 +764,7 @@ bool Meramera::tryDiving() {
 }
 
 bool Meramera::tryEndDiving() {
-    if (MR::isGreaterStep(this, sDivingTime)) {
+    if (MR::isGreaterStep(this, ::sDivingTime)) {
         setNerve(&NrvMeramera::MerameraNrvRunaway::sInstance);
         return true;
     }
@@ -781,7 +782,7 @@ bool Meramera::tryFloat() {
 }
 
 bool Meramera::tryEndFloat() {
-    if (MR::isGreaterStep(this, sFloatTime)) {
+    if (MR::isGreaterStep(this, ::sFloatTime)) {
         setNerve(&NrvMeramera::MerameraNrvIgnition::sInstance);
         return true;
     }
@@ -790,7 +791,7 @@ bool Meramera::tryEndFloat() {
 }
 
 bool Meramera::tryEndIgnition() {
-    if (MR::isGreaterStep(this, sIgnitionTime)) {
+    if (MR::isGreaterStep(this, ::sIgnitionTime)) {
         if (isEnableChase()) {
             setNerve(&NrvMeramera::MerameraNrvChaseDash::sInstance);
         } else {
@@ -817,9 +818,9 @@ bool Meramera::tryForceSink() {
 
 bool Meramera::tryRecovery() {
     f32 scale = mScale.x;
-    bool isThisFarFromPlayer = MR::isNearPlayer(this, sRecoveryDistance) == false;
+    bool isThisFarFromPlayer = MR::isNearPlayer(this, ::sRecoveryDistance) == false;
     if (isThisFarFromPlayer) {
-        bool isHomeFarFromPlayer = MR::isNearPlayer(mHomePosition, sRecoveryDistance) == false;
+        bool isHomeFarFromPlayer = MR::isNearPlayer(mHomePosition, ::sRecoveryDistance) == false;
         if (isHomeFarFromPlayer && MR::isJudgedToClipFrustum(mPosition, scale * 100.0f) && MR::isJudgedToClipFrustum(mHomePosition, scale * 100.0f)) {
             resetAppear();
 
@@ -831,7 +832,7 @@ bool Meramera::tryRecovery() {
 }
 
 bool Meramera::tryEndAttackSuccess() {
-    if (MR::isGreaterStep(this, sAttackSuccessTime)) {
+    if (MR::isGreaterStep(this, ::sAttackSuccessTime)) {
         setNerve(&NrvMeramera::MerameraNrvWait::sInstance);
         return true;
     }
@@ -864,7 +865,7 @@ void Meramera::exeWait() {
 
         MR::startBck(this, "Wait", nullptr);
 
-        emitEffectHead(1);
+        emitEffectHead(EffectType_Wait);
         emitEffectHeatBody();
     }
 
@@ -883,7 +884,7 @@ void Meramera::exeWalk() {
     if (MR::isFirstStep(this)) {
         MR::validateClipping(this);
 
-        emitEffectHead(1);
+        emitEffectHead(EffectType_Wait);
         emitEffectHeatBody();
     }
 
@@ -906,7 +907,7 @@ void Meramera::exeShrink() {
 
         MR::startBck(this, "Wait", nullptr);
 
-        emitEffectHead(1);
+        emitEffectHead(EffectType_Wait);
         emitEffectHeatBody();
     }
 
@@ -931,7 +932,7 @@ void Meramera::exeChaseStart() {
         if (mElementType == ElementType_Ice) {
             MR::startSound(this, "SE_EM_ICEMERA_POWER_UP");
         } else {
-            MR::startSound(this, "SE_EM_ElementType_FirePOWER_UP");
+            MR::startSound(this, "SE_EM_MERAMERA_FIREPOWER_UP");
         }
 
         deleteEffectHead(false);
@@ -961,7 +962,7 @@ void Meramera::exeChaseDash() {
         mPlayerPosition = *MR::getPlayerPos();
         _15C = mPlayerPosition - mPosition;
 
-        emitEffectHead(2);
+        emitEffectHead(EffectType_Chase);
         emitEffectHeatBody();
     }
 
@@ -973,9 +974,9 @@ void Meramera::exeChaseDash() {
         MR::addVelocityKeepHeightUseShadow(this, 190.0f, 0.5f, 0.2f, 20.0f, nullptr);
     }
 
-    addMovingAccel(_15C, 0.175f, sChaseDashAccel);
+    addMovingAccel(_15C, 0.175f, ::sChaseDashAccel);
     addOverWallAccel(_15C);
-    MR::attenuateVelocity(this, sChaseDashAccel);
+    MR::attenuateVelocity(this, ::sChaseDashAccel);
     MR::reboundVelocityFromCollision(this);
 
     if (tryChaseDashToTurn()) {
@@ -989,15 +990,15 @@ void Meramera::exeChaseTurn() {
 
         MR::startBck(this, "ChaseTurn", nullptr);
 
-        emitEffectHead(2);
+        emitEffectHead(EffectType_Chase);
         emitEffectHeatBody();
     }
 
     startChaseLevelSound();
 
     MR::addVelocityKeepHeightUseShadow(this, 190.0f, 0.3f, 0.3f, 20.0f, nullptr);
-    addToTargetMovingAccel(*MR::getPlayerPos(), sChaseTurnFloatAccel, sChaseTurnGravityAccel);
-    MR::attenuateVelocity(this, sChaseTurnAccel);
+    addToTargetMovingAccel(*MR::getPlayerPos(), ::sChaseTurnFloatAccel, ::sChaseTurnGravityAccel);
+    MR::attenuateVelocity(this, ::sChaseTurnAccel);
     MR::reboundVelocityFromCollision(this);
 
     if (!tryEndChase() && tryChaseTurnToDash()) {
@@ -1019,7 +1020,7 @@ void Meramera::exeDamage() {
             MR::startSound(this, "SE_EM_MERAMERA_BLOW_FIRE");
         }
 
-        emitEffectHead(2);
+        emitEffectHead(EffectType_Chase);
         emitEffectHeatBody();
     }
 
@@ -1067,7 +1068,7 @@ void Meramera::exeRunaway() {
     f32 dot = mGravity.dot(mVelocity);
 
     if (MR::isStep(this, 10)) {
-        emitEffectHead(3);
+        emitEffectHead(EffectType_Escape);
     }
 
     if (MR::isBindedGround(this) && dot > 12.0f) {
@@ -1261,7 +1262,7 @@ void Meramera::exeIgnitionForce() {
 
         MR::setVelocityJump(this, 15.0f);
 
-        emitEffectHead(1);
+        emitEffectHead(EffectType_Wait);
         emitEffectHeatBody();
     }
 
@@ -1301,7 +1302,7 @@ void Meramera::exeDown() {
 
         MR::startBck(this, "Down", nullptr);
 
-        MR::stopScene(2);
+        MR::stopScene(::sDownStopFrame);
 
         MR::startSound(this, "SE_EM_MERAMERA_STOMPED");
 
@@ -1317,7 +1318,7 @@ void Meramera::exeDown() {
 
     if (MR::isGreaterEqualStep(this, 0)) {
         if (!MR::isBindedGround(this)) {
-            MR::addVelocityToGravity(this, sDownGravityAccel);
+            MR::addVelocityToGravity(this, ::sDownGravityAccel);
         }
 
         MR::attenuateVelocity(this, 0.99f);
@@ -1339,7 +1340,7 @@ void Meramera::exeFlatDown() {
 
         MR::startBck(this, "FlatDown", nullptr);
 
-        MR::stopScene(2);
+        MR::stopScene(::sDownStopFrame);
 
         MR::startSound(this, "SE_EM_MERAMERA_STOMPED");
 
@@ -1448,8 +1449,8 @@ void Meramera::addOverWallAccel(const TVec3f& rVec) {
     vec.killElement(rVec, gravity);
     MR::normalizeOrZero(&vec);
 
-    if (MR::getFirstPolyOnLineToMap(nullptr, nullptr, mPosition, vec * 200.0f) && MR::getShadowNearProjectionLength(this) < sMaxOverWallHeight) {
-        mVelocity -= gravity * sOverWallAccel;
+    if (MR::getFirstPolyOnLineToMap(nullptr, nullptr, mPosition, vec * 200.0f) && MR::getShadowNearProjectionLength(this) < ::sMaxOverWallHeight) {
+        mVelocity -= gravity * ::sOverWallAccel;
     }
 }
 
@@ -1770,7 +1771,4 @@ void Meramera::exeReadyRestart() {
 
     MR::showModel(this);
     resetAppear();
-}
-
-Meramera::~Meramera() {
 }

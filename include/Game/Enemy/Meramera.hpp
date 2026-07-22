@@ -12,7 +12,6 @@ class Meramera : public LiveActor {
 public:
     Meramera(const char*);
 
-    virtual ~Meramera();
     virtual void init(const JMapInfoIter&);
     virtual void makeActorAppeared();
     virtual void kill();
