@@ -3826,7 +3826,7 @@ Game/Map/KoopaBattleMapCoinPlate.cpp:
 Game/Map/KoopaBattleMapDamagePlate.cpp:
 	.text       start:0x80186060 end:0x80186550
 	.ctors      start:0x8052EBC8 end:0x8052EBCC
-	.data       start:0x8058A550 end:0x8058A6E0
+	.data       start:0x8058A550 end:0x8058A650
 	.sbss       start:0x806B4BA0 end:0x806B4BB0
 	.sdata2     start:0x806BC078 end:0x806BC088
 
@@ -3834,7 +3834,7 @@ Game/Map/KoopaBattleMapPlanet.cpp:
 	.text       start:0x80186550 end:0x80186CC4
 	.ctors      start:0x8052EBCC end:0x8052EBD0
 	.rodata     start:0x80532B28 end:0x80532B98
-	.data       start:0x8058A6E0 end:0x8058A778
+	.data       start:0x8058A650 end:0x8058A778
 	.sbss       start:0x806B4BB0 end:0x806B4BB8
 	.sdata2     start:0x806BC088 end:0x806BC0A8
 
