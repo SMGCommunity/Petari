@@ -113,7 +113,7 @@ namespace MR {
     void killVelocityToTarget(LiveActor*, const TVec3f&);
     void forceBindOnGround(LiveActor*, f32, f32);
     bool reboundVelocityFromEachCollision(LiveActor*, f32, f32, f32, f32);
-    bool reboundVelocityFromCollision(LiveActor*, f32, f32, f32);
+    bool reboundVelocityFromCollision(LiveActor*, f32 = 0.0f, f32 = 0.0f, f32 = 1.0f);
     void zeroVelocity(LiveActor*);
     void setVelocity(LiveActor*, const TVec3f&);
     void addVelocity(LiveActor*, const TVec3f&);
