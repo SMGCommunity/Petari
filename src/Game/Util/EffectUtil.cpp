@@ -86,7 +86,7 @@ namespace MR {
             return nullptr;
         }
 
-        return emitEffect(pActor, pEffectName);;
+        return emitEffect(pActor, pEffectName);
     }
 
     bool tryDeleteEffect(LiveActor* pActor, const char* pEffectName) {
@@ -244,30 +244,32 @@ namespace MR {
         updateEffectFloorCodeLineToMap(pActor, sumPosScaledGrav, gravity * (a2 - a3));
     }
 
-    // Not byte-matching but does the same thing
     void initEffectSyncBck(LiveActor* pActor, const char* pEffectName, const char* const* pStrList) {
-        int i = 0;
-        const char* const* tempStrList = pStrList;
         const char* str;
-        while (str = tempStrList[0], tempStrList = &tempStrList[1], str) {
-            i++;
+        const char* const* current = pStrList;
+
+        int size = 0;
+        while (str = *current, current++, str) {
+            size++;
         }
-        Effect::initEffectSyncBck(::getEffectKeeper(pActor), pActor->mModelManager, pEffectName, pStrList[0], i, 0.0f, -1.0f, false);
+
+        Effect::initEffectSyncBck(::getEffectKeeper(pActor), pActor->mModelManager, pEffectName, *pStrList, size, 0.0f, -1.0f, false);
+
         pStrList = &pStrList[1];
-        ModelManager* pModelManager;
-        while (pStrList[0]) {
-            pModelManager = pActor->mModelManager;
-            Effect::addEffectSyncBck(::getEffectKeeper(pActor)->getEmitter(pEffectName), pModelManager, pStrList[0]);
-            pStrList = &pStrList[1];
+        while (*pStrList != nullptr) {
+            ModelManager* pModelManager = pActor->mModelManager;
+            MultiEmitter* pEmitter = ::getEffectKeeper(pActor)->getEmitter(pEffectName);
+            Effect::addEffectSyncBck(pEmitter, pModelManager, *pStrList);
+            pStrList++;
         }
     }
 
-    // Instructionswap for some reason
     void addEffectHitNormal(LiveActor* pActor, const char* pEffectName) {
-        addEffect(pActor, "HitMarkNormal");
+        char* effectName = "HitMarkNormal";
+        ::getEffectKeeper(pActor)->addEffect(effectName, pActor);
 
         if (pEffectName != nullptr) {
-            setEffectName(pActor, "HitMarkNormal", pEffectName);
+            setEffectName(pActor, effectName, pEffectName);
         }
     }
 };  // namespace MR
