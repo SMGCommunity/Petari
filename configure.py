@@ -1426,7 +1426,7 @@ config.libs = [
             Object(NonMatching, "Game/Map/KCollision.cpp"),
             Object(NonMatching, "Game/Map/KCollisionPlus.cpp"),
             Object(Matching, "Game/Map/KoopaBattleMapCoinPlate.cpp"),
-            Object(NonMatching, "Game/Map/KoopaBattleMapDamagePlate.cpp"),
+            Object(Matching, "Game/Map/KoopaBattleMapDamagePlate.cpp"),
             Object(Matching, "Game/Map/KoopaBattleMapPlanet.cpp"),
             Object(Matching, "Game/Map/KoopaBattleMapPlate.cpp"),
             Object(NonMatching, "Game/Map/KoopaBattleMapStair.cpp"),
