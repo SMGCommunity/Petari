@@ -35,6 +35,12 @@ public:
     /// @param pName A pointer to the new null-terminated name of the object.
     void setName(const char* pName);
 
+    /// @brief Returns the name of the `NameObj`.
+    /// @return A pointer to the null-terminated name of the object.
+    const char* getName() const {
+        return mName;
+    }
+
     u16 getFlag() const {
         return mFlag;
     }

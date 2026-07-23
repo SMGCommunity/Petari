@@ -48,20 +48,55 @@ public:
     virtual MtxPtr getTakingMtx() const;
     virtual void startClipped();
     virtual void endClipped();
-    virtual void control();
+
+    virtual void control() {
+    }
 
     /// @brief Calculates and sets the base matrix of the actor.
     virtual void calcAndSetBaseMtx();
-    virtual void updateHitSensor(HitSensor* pSensor);
+
+    virtual void updateHitSensor(HitSensor* pSensor) {
+    }
+
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgTake(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgTaken(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgThrow(HitSensor* pSender, HitSensor* pReceiver);
+
+    virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
+
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
+
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
+
+    virtual bool receiveMsgTake(HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
+
+    virtual bool receiveMsgTaken(HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
+
+    virtual bool receiveMsgThrow(HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
+
     virtual bool receiveMsgApart(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
+
+    HitSensorKeeper* getSensorKeeper() const {
+        return mSensorKeeper;
+    }
+
+    Binder* getBinder() const {
+        return mBinder;
+    }
 
     void calcAnmMtx();
     void setNerve(const Nerve* pNerve);
