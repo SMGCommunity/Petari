@@ -57,7 +57,4 @@ public:
     /* 0x94 */ MapPartsRotator* mRotator;
     /* 0x98 */ const char* mName;
     /* 0x9C */ bool mIsStepUpdatable;
-
-private:
-    u8 mPad[(0xA0) - sizeof(LiveActor)];
 };
