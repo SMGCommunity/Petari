@@ -33,17 +33,17 @@ public:
     void exeFall();
     void exeDisappear();
 
-    /* 0x8C */ s32 mTimeToBreak;
+    /* 0x8C */ s32 mTimeToBreak;  // Obj_arg0
     /* 0x90 */ s32 mFireAttackStep;
-    /* 0x94 */ s32 mArg1;
-    /* 0x98 */ s32 mArg5;
-    /* 0x9C */ bool mArg6;
-    /* 0xA0 */ s32 mType;
+    /* 0x94 */ s32 mArg1;   // Obj_arg1
+    /* 0x98 */ s32 mArg5;   // Obj_arg5
+    /* 0x9C */ bool mArg6;  // Obj_arg6
+    /* 0xA0 */ s32 mType;   // Obj_arg2
     /* 0xA4 */ bool mIsBig;
     /* 0xA5 */ bool mIsTurn;
     /* 0xA6 */ bool _A6;
     /* 0xA8 */ s32 _A8;
     /* 0xAC */ TVec3f _AC;
-    /* 0xB8 */ s32 mWaitFallStep;
-    /* 0xBC */ s32 mFallStep;
+    /* 0xB8 */ s32 mWaitFallStep;  // Obj_arg3
+    /* 0xBC */ s32 mFallStep;      // Obj_arg4
 };
