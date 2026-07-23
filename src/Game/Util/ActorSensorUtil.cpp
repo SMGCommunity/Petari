@@ -14,7 +14,6 @@
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include <JSystem/JMath/JMath.hpp>
 
 namespace MR {
     HitSensor* addHitSensor(LiveActor* pActor, const char* pName, u32 type, u16 groupSize, f32 radius, const TVec3f& rOffset) {
@@ -248,7 +247,7 @@ namespace MR {
 
     bool tryUpdateHitSensorsAll(LiveActor* pActor) {
         if (pActor->mSensorKeeper != nullptr) {
-            pActor->mSensorKeeper->update();
+            updateHitSensorsAll(pActor);
 
             return true;
         }
@@ -658,7 +657,6 @@ namespace MR {
             return false;
         }
 
-        // FIXME: getGroundSensor should not be inlined.
         return getGroundSensor(getSensorHost(pSender))->receiveMessage(msg, pSender);
     }
 
@@ -667,7 +665,6 @@ namespace MR {
             return false;
         }
 
-        // FIXME: getWallSensor should not be inlined.
         return getWallSensor(getSensorHost(pSender))->receiveMessage(msg, pSender);
     }
 
