@@ -2471,7 +2471,7 @@ void MarioSwim::updateTilt() {
     Mtx mtxRotX, mtxRotZ;
     PSMTXRotRad(mtxRotX, 'X', mCurrentTiltX);
     PSMTXRotRad(mtxRotZ, 'Z', mCurrentTiltY);
-    PSMTXConcat(mtxRotX, mtxRotZ, mUpperBodyJointMtx);
+    MR::multMtx(mUpperBodyJointMtx, mtxRotZ, mtxRotX);
 
     u16 jointID = getAnimator()->getUpperJointID();
     setJointGlobalMtx(jointID, mUpperBodyJointMtx);

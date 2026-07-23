@@ -5604,7 +5604,7 @@ Game/MapObj/ShockWaveGenerator.cpp:
 	.text       start:0x8022474C end:0x80224E88
 	.ctors      start:0x8052EE7C end:0x8052EE80
 	.data       start:0x8059ED00 end:0x8059EE08
-	.sdata      start:0x806B1F70 end:0x806B1F80
+	.sdata      start:0x806B1F70 end:0x806B1F78
 	.sbss       start:0x806B57E0 end:0x806B57F0
 	.sdata2     start:0x806BDE60 end:0x806BDE80
 
@@ -5626,6 +5626,7 @@ Game/MapObj/SimpleBreakableObj.cpp:
 	.text       start:0x80225CA4 end:0x802269FC
 	.ctors      start:0x8052EE88 end:0x8052EE8C
 	.data       start:0x8059F098 end:0x8059F2E8
+	.sdata      start:0x806B1F78 end:0x806B1F80
 	.sbss       start:0x806B5810 end:0x806B5820
 	.sdata2     start:0x806BDEC0 end:0x806BDEE0
 

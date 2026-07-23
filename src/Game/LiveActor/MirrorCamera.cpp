@@ -2,6 +2,7 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MtxUtil.hpp"
 
 void MirrorCamera::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, MR::MovementType_MirrorCamera, -1, -1, -1);
@@ -30,7 +31,7 @@ void MirrorCamera::updateViewMtx() {
 }
 
 void MirrorCamera::updateModelTexMtx() {
-    TProj3f mtx((Mtx44Ptr)MR::getCameraProjectionMtx());
+    TProj3f mtx = *MR::getCameraProjectionMtx();
     mtx[2][0] = 0.0f;
     mtx[2][1] = 0.0f;
     mtx[2][2] = -1.0f;
@@ -39,7 +40,7 @@ void MirrorCamera::updateModelTexMtx() {
     mtx[3][1] = 0.0f;
     mtx[3][2] = 0.0f;
     mtx[3][3] = 1.0f;
-    PSMTXConcat(mtx, mViewMtx.mMtx, mModelTexMtx.mMtx);
+    MR::multMtx(mModelTexMtx.mMtx, mViewMtx.mMtx, mtx);
 }
 
 f32 MirrorCamera::getDistance(const TVec3f& a1) const {

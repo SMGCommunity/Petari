@@ -123,7 +123,8 @@ void MarineSnow::draw(const TVec3f& rVec1, const TVec3f& rVec2, f32 myFloat) con
                 GXSetTevColor(GX_TEVREG0, color);
 
                 TMtx34f mtx;
-                PSMTXConcat(MR::getCameraViewMtx(), MR::tmpMtxTrans(vec1D8), mtx);
+                MtxPtr transMtx = MR::tmpMtxTrans(vec1D8);
+                MR::multMtx(mtx, transMtx, MR::getCameraViewMtx());
                 GXLoadPosMtxImm(mtx, 0);
 
                 u16 a;

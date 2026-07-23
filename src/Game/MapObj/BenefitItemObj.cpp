@@ -3,6 +3,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "JSystem/JGeometry/TUtil.hpp"
 
 s16 def = 600;
@@ -726,8 +727,7 @@ void BenefitItemObj::calcAndSetBaseMtxInMovement() {
             MR::extractMtxTrans(mFollowMtx, &mPosition);
         }
 
-        MtxPtr mtx = MR::tmpMtxRotYRad(_EC);
-        PSMTXConcat(_F0, mtx, getBaseMtx());
+        MR::multMtx(getBaseMtx(), MR::tmpMtxRotYRad(_EC), _F0);
     } else {
         if (MR::isBindedGround(this)) {
             _A4 = *MR::getGroundNormal(this);
@@ -748,9 +748,8 @@ void BenefitItemObj::calcAndSetBaseMtxInMovement() {
             } else {
                 TPos3f pos;
                 MR::makeMtxUpFrontPos(&pos, _A4, stack_8, mPosition);
-                MR::blendMtx(_F0, pos.toMtxPtr(), 0.2f, _F0);
-                MtxPtr mtx = MR::tmpMtxRotYRad(_EC);
-                PSMTXConcat(_F0, mtx, getBaseMtx());
+                MR::blendMtx(_F0, pos, 0.2f, _F0);
+                MR::multMtx(getBaseMtx(), MR::tmpMtxRotYRad(_EC), _F0);
                 MR::setMtxTrans(getBaseMtx(), mPosition);
             }
         }

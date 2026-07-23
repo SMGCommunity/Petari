@@ -62,3 +62,12 @@ void IsbnManager::reset() {
     _68 = 0;
     _0 = true;
 }
+
+void IsbnManager::calculateView() {
+    nw4r::math::MTX34 mtx;
+    nw4r::ut::Rect rect = mpLayout->GetLayoutRect();
+
+    PSMTXIdentity(mtx);
+    mDrawInfo.mViewMtx = mtx;
+    mDrawInfo.mViewRect = rect;
+}

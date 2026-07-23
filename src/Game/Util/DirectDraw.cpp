@@ -3,6 +3,7 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
 #include "math_types.hpp"
@@ -29,7 +30,7 @@ namespace TDDraw {
     }
 
     void setModelMtx(MtxPtr mtx) {
-        PSMTXConcat(MR::getCameraViewMtx(), mtx, mViewMtx);
+        MR::multMtx(mViewMtx, mtx, MR::getCameraViewMtx());
         GXLoadPosMtxImm(mViewMtx, 0);
     }
 

@@ -588,7 +588,7 @@ void TrampleStar::drawSelf() const {
     MR::makeMtxUpFront(&mtx2, -MR::getMarioShadowVec(), -front);
     PSMTXInverse(mtx2, mtx2);
 
-    PSMTXConcat(mtx2, mtx, mtx3);
+    MR::multMtx(mtx3, mtx, mtx2);
     TPos3f mtx4;
     for (u32 idx = 0; idx < 12; idx++) {
         reinterpret_cast< f32* >(&mtx4)[idx] = 0;
@@ -598,7 +598,7 @@ void TrampleStar::drawSelf() const {
     mtx4[2][3] = debug3;
     mtx4[0][3] = debug4;
     mtx4[1][3] = debug5;
-    PSMTXConcat(mtx4, mtx3, mtx3);
+    MR::multMtx(mtx3, mtx3, mtx4);
 
     GXLoadTexMtxImm(mtx3, GX_TEXMTX1, GX_MTX3x4);
     GXSetNumTevStages(3);
