@@ -3759,7 +3759,7 @@ Game/Map/FileSelector.cpp:
 	.ctors      start:0x8052EBB8 end:0x8052EBBC
 	.rodata     start:0x80532A68 end:0x80532AA8
 	.data       start:0x80589638 end:0x80589EB8
-	.sdata      start:0x806B1BA8 end:0x806B1BC0
+	.sdata      start:0x806B1BA8 end:0x806B1BC8
 	.sbss       start:0x806B4AB8 end:0x806B4B78
 	.sdata2     start:0x806BBEF8 end:0x806BBF30
 
@@ -3803,7 +3803,7 @@ Game/Map/Halo.cpp:
 	.text       start:0x80182094 end:0x80182920
 	.ctors      start:0x8052EBC4 end:0x8052EBC8
 	.rodata     start:0x80532AF0 end:0x80532B28
-	.data       start:0x8058A318 end:0x8058A4D8
+	.data       start:0x8058A318 end:0x8058A4A0
 	.sbss       start:0x806B4B90 end:0x806B4BA0
 	.sdata2     start:0x806BC030 end:0x806BC040
 
@@ -3820,13 +3820,15 @@ Game/Map/KCollisionPlus.cpp:
 
 Game/Map/KoopaBattleMapCoinPlate.cpp:
 	.text       start:0x80185D58 end:0x80186060
-	.data       start:0x8058A4D8 end:0x8058A550
+	.data       start:0x8058A4A0 end:0x8058A550
+	.sdata      start:0x806B1BC8 end:0x806B1BD0
 	.sdata2     start:0x806BC060 end:0x806BC078
 
 Game/Map/KoopaBattleMapDamagePlate.cpp:
 	.text       start:0x80186060 end:0x80186550
 	.ctors      start:0x8052EBC8 end:0x8052EBCC
 	.data       start:0x8058A550 end:0x8058A650
+	.sdata      start:0x806B1BD0 end:0x806B1BD8
 	.sbss       start:0x806B4BA0 end:0x806B4BB0
 	.sdata2     start:0x806BC078 end:0x806BC088
 
