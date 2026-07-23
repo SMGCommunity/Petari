@@ -3,14 +3,16 @@
 #include "Game/Util/Array.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
-class MultiEmitterCallBackBase;
+class AutoEffectInfo;
 class EffectSystem;
-class ParticleEmitter;
-class XanimePlayer;
-class SingleEmitter;
 class JPAParticleCallBack;
 class MultiEmitterCallBack;
+class MultiEmitterCallBackBase;
 class MultiEmitterParticleCallBack;
+class ParticleEmitter;
+class SingleEmitter;
+class SyncBckEffectInfo;
+class XanimePlayer;
 
 class MultiEmitter {
 public:
@@ -108,8 +110,8 @@ public:
     /* 0x08 */ MR::Vector< MR::FixedArray< MultiEmitter*, 4 > > mChildren;
     /* 0x1C */ MultiEmitterCallBack* mCallBack;
     /* 0x20 */ MultiEmitterParticleCallBack* mParticleCallBack;
-    /* 0x24 */ void* _24;
-    /* 0x28 */ void* _28;
+    /* 0x24 */ SyncBckEffectInfo* _24;
+    /* 0x28 */ AutoEffectInfo* _28;
     /* 0x2C */ f32 _2C;
     /* 0x30 */ f32 _30;
     /* 0x34 */ u16 mHash;

@@ -3467,19 +3467,19 @@ Game/LiveActor/DisplayListMaker.cpp:
 Game/LiveActor/DynamicJointCtrl.cpp:
 	.text       start:0x801612D8 end:0x801621C0
 	.rodata     start:0x805329C0 end:0x805329C8
-	.data       start:0x80587A38 end:0x80587AE0
+	.data       start:0x80587A38 end:0x80587AD8
 	.sdata      start:0x806B1B48 end:0x806B1B50
 	.sdata2     start:0x806BBC30 end:0x806BBC40
 
 Game/LiveActor/EffectKeeper.cpp:
 	.text       start:0x801621C0 end:0x80163388
-	.data       start:0x80587AE0 end:0x80587B60
+	.data       start:0x80587AD8 end:0x80587B50
 	.sdata      start:0x806B1B50 end:0x806B1B60
 	.sdata2     start:0x806BBC40 end:0x806BBC48
 
 Game/LiveActor/FaceJointCtrl.cpp:
 	.text       start:0x80163388 end:0x80163808
-	.data       start:0x80587B60 end:0x80587BA0
+	.data       start:0x80587B50 end:0x80587BA0
 	.sdata      start:0x806B1B60 end:0x806B1B68
 	.sdata2     start:0x806BBC48 end:0x806BBC58
 
