@@ -156,7 +156,9 @@ namespace JGeometry {
         T squared(const TVec2< T >& rOther) const;  //{ return (x - rOther.x) * (x - rOther.x) + (y - rOther.y) * (y - rOther.y); };
         T dot(const TVec2< T >& rOther) const;
         T distance(const TVec2< T >& rOther) const;
-        void zero();
+        void zero() {
+            x = y = 0.0f;
+        }
 
         inline T squareDist(const TVec2< T >& rOther) const {
             return ((x - rOther.x) * (x - rOther.x)) + ((y - rOther.y) * (y - rOther.y));

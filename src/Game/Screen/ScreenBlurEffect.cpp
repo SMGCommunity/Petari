@@ -42,8 +42,8 @@ void ScreenBlurEffect::drawBlur() const {
         return;
     }
 
-    Mtx44 projectionMtx;
-    C_MTXPerspective(projectionMtx, MR::getFovy(), MR::getAspect(), MR::getNearZ(), MR::getFarZ());
+    TProj3f projectionMtx;
+    projectionMtx.makePerspective(MR::getFovy(), MR::getAspect(), MR::getNearZ(), MR::getFarZ());
     GXSetProjection(projectionMtx, GX_PERSPECTIVE);
 
     GXClearVtxDesc();
@@ -84,7 +84,7 @@ void ScreenBlurEffect::drawBlur() const {
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
     GXSetZCompLoc(GX_TRUE);
     GXSetDither(GX_FALSE);
-    GXSetChanMatColor(GX_COLOR0A0, Color8(255, 255, 255, _10 * mIntensity * 220.0f));
+    GXSetChanMatColor(GX_COLOR0A0, Color8(255, 255, 255, get_10() * 220.0f * mIntensity));
     GXSetChanAmbColor(GX_COLOR0A0, Color8(255, 255, 255, 255));
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetTevKColor(GX_KCOLOR0, Color8(240, 240, 240, 240));

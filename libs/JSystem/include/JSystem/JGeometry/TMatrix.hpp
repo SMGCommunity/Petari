@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry/TQuat.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
 #include "revolution/mtx.h"
@@ -559,6 +560,35 @@ namespace JGeometry {
 
         void setPositionFromLookAt(const TPosition3< T >& rLookAt);
 
+        void setPositionFromLookAt(const TVec3f& rLookAtPos, const TVec3f& rUp, const TVec3f& rPos) {
+            TVec3f aim;
+            aim.sub(rPos, rLookAtPos);
+
+            TVec3f front, up, side;
+            front.set(aim);
+            front.normalize();
+            front.negate();
+
+            side.cross(rUp, front);
+            up.cross(front, side);
+            side.normalize();
+            up.normalize();
+
+            this->mMtx[0][0] = side.x;
+            this->mMtx[0][1] = side.y;
+            this->mMtx[0][2] = side.z;
+            this->mMtx[1][0] = up.x;
+            this->mMtx[1][1] = up.y;
+            this->mMtx[1][2] = up.z;
+            this->mMtx[2][0] = front.x;
+            this->mMtx[2][1] = front.y;
+            this->mMtx[2][2] = front.z;
+
+            this->mMtx[0][3] = rLookAtPos.x * -this->mMtx[0][0] - rLookAtPos.y * this->mMtx[0][1] - rLookAtPos.z * this->mMtx[0][2];
+            this->mMtx[1][3] = rLookAtPos.x * -this->mMtx[1][0] - rLookAtPos.y * this->mMtx[1][1] - rLookAtPos.z * this->mMtx[1][2];
+            this->mMtx[2][3] = rLookAtPos.x * -this->mMtx[2][0] - rLookAtPos.y * this->mMtx[2][1] - rLookAtPos.z * this->mMtx[2][2];
+        }
+
         void setQT(const TQuat4f& rSrcQuat, const TVec3f& rSrcTrans) {
             TRotation3< T >::setQuat(rSrcQuat);
             setTrans(rSrcTrans);
@@ -646,7 +676,27 @@ namespace JGeometry {
         typedef f32 ArrType[4];
         void set(const ArrType*);
         void set(const SMatrix44C< T >& rSrc);
-        void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz, T wx, T wy, T wz, T ww);
+        void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz, T wx, T wy, T wz, T ww) {
+            mMtx[0][0] = rxx;
+            mMtx[0][1] = ryx;
+            mMtx[0][2] = rzx;
+            mMtx[0][3] = tx;
+
+            mMtx[1][0] = rxy;
+            mMtx[1][1] = ryy;
+            mMtx[1][2] = rzy;
+            mMtx[1][3] = ty;
+
+            mMtx[2][0] = rxz;
+            mMtx[2][1] = ryz;
+            mMtx[2][2] = rzz;
+            mMtx[2][3] = tz;
+
+            mMtx[3][0] = wx;
+            mMtx[3][1] = wy;
+            mMtx[3][2] = wz;
+            mMtx[3][3] = ww;
+        }
 
         inline Mtx44Ptr toMtx44() {
             return (Mtx44Ptr)mMtx;
@@ -694,9 +744,76 @@ namespace JGeometry {
     template < typename T >
     struct TMatrix44 : public T {
     public:
-        void identity();
-        void concat(const T& rSrcA, const T& rSrcB);
+        void identity() {
+            this->mMtx[0][0] = 1.0f;
+            this->mMtx[0][1] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[0][3] = 0.0f;
+
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[1][1] = 1.0f;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[2][2] = 1.0f;
+            this->mMtx[2][3] = 0.0f;
+
+            this->mMtx[3][0] = 0.0f;
+            this->mMtx[3][1] = 0.0f;
+            this->mMtx[3][2] = 0.0f;
+            this->mMtx[3][3] = 1.0f;
+        }
+
+        void concat(const T& rA, const T& rB) {
+            f32 m00, m01, m02, m03;
+            f32 m10, m11, m12, m13;
+            f32 m20, m21, m22, m23;
+            f32 m30, m31, m32, m33;
+
+            m00 = rA[0][0] * rB[0][0] + rA[0][1] * rB[1][0] + rA[0][2] * rB[2][0] + rA[0][3] * rB[3][0];
+            m01 = rA[0][0] * rB[0][1] + rA[0][1] * rB[1][1] + rA[0][2] * rB[2][1] + rA[0][3] * rB[3][1];
+            m02 = rA[0][0] * rB[0][2] + rA[0][1] * rB[1][2] + rA[0][2] * rB[2][2] + rA[0][3] * rB[3][2];
+            m03 = rA[0][0] * rB[0][3] + rA[0][1] * rB[1][3] + rA[0][2] * rB[2][3] + rA[0][3] * rB[3][3];
+
+            m10 = rA[1][0] * rB[0][0] + rA[1][1] * rB[1][0] + rA[1][2] * rB[2][0] + rA[1][3] * rB[3][0];
+            m11 = rA[1][0] * rB[0][1] + rA[1][1] * rB[1][1] + rA[1][2] * rB[2][1] + rA[1][3] * rB[3][1];
+            m12 = rA[1][0] * rB[0][2] + rA[1][1] * rB[1][2] + rA[1][2] * rB[2][2] + rA[1][3] * rB[3][2];
+            m13 = rA[1][0] * rB[0][3] + rA[1][1] * rB[1][3] + rA[1][2] * rB[2][3] + rA[1][3] * rB[3][3];
+
+            m20 = rA[2][0] * rB[0][0] + rA[2][1] * rB[1][0] + rA[2][2] * rB[2][0] + rA[2][3] * rB[3][0];
+            m21 = rA[2][0] * rB[0][1] + rA[2][1] * rB[1][1] + rA[2][2] * rB[2][1] + rA[2][3] * rB[3][1];
+            m22 = rA[2][0] * rB[0][2] + rA[2][1] * rB[1][2] + rA[2][2] * rB[2][2] + rA[2][3] * rB[3][2];
+            m23 = rA[2][0] * rB[0][3] + rA[2][1] * rB[1][3] + rA[2][2] * rB[2][3] + rA[2][3] * rB[3][3];
+
+            m30 = rA[3][0] * rB[0][0] + rA[3][1] * rB[1][0] + rA[3][2] * rB[2][0] + rA[3][3] * rB[3][0];
+            m31 = rA[3][0] * rB[0][1] + rA[3][1] * rB[1][1] + rA[3][2] * rB[2][1] + rA[3][3] * rB[3][1];
+            m32 = rA[3][0] * rB[0][2] + rA[3][1] * rB[1][2] + rA[3][2] * rB[2][2] + rA[3][3] * rB[3][2];
+            m33 = rA[3][0] * rB[0][3] + rA[3][1] * rB[1][3] + rA[3][2] * rB[2][3] + rA[3][3] * rB[3][3];
+
+            this->mMtx[0][0] = m00;
+            this->mMtx[0][1] = m01;
+            this->mMtx[0][2] = m02;
+            this->mMtx[0][3] = m03;
+
+            this->mMtx[1][0] = m10;
+            this->mMtx[1][1] = m11;
+            this->mMtx[1][2] = m12;
+            this->mMtx[1][3] = m13;
+
+            this->mMtx[2][0] = m20;
+            this->mMtx[2][1] = m21;
+            this->mMtx[2][2] = m22;
+            this->mMtx[2][3] = m23;
+
+            this->mMtx[3][0] = m30;
+            this->mMtx[3][1] = m31;
+            this->mMtx[3][2] = m32;
+            this->mMtx[3][3] = m33;
+        }
         void concat(const T& rSrc);
+
         void invert(const TMatrix44< T >& rDest);
 
         inline void mult(const TVec3f& rSrc, TVec3f& rDest) const {
@@ -720,7 +837,86 @@ namespace JGeometry {
             JMath::gekko_ps_copy16(this, rSrc);
         }
 
-        void identity44();
+        f32 getFocalLength(f32 fov) {
+            return 1.0f / (f32)::tan(((2.0f * JGeometry::TUtil< f32 >::PI()) * fov) / (360.0f * 2.0f));
+        }
+
+        f32 getPower(f32 fov) {
+            return ::tan(((2.0f * JGeometry::TUtil< f32 >::PI()) * fov) / (360.0f * 2.0f));
+        }
+
+        void makePerspective(f32 fov, f32 aspect, f32 near, f32 far) {
+            // FIXME: float regswap
+            // https://decomp.me/scratch/hUiFs
+            f32 power = ::tan(((2.0f * JGeometry::TUtil< f32 >::PI()) * fov) / (360.0f * 2.0f));
+            f32 focalLen = 1.0f / power;
+            f32 aperature = focalLen / aspect;
+            f32 scale = 1.0f / (far - near);
+
+            this->mMtx[0][0] = aperature;
+            this->mMtx[0][1] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[0][3] = 0.0f;
+
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[1][1] = focalLen;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[1][3] = 0.0f;
+
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[2][2] = -near * scale;
+            this->mMtx[2][3] = -(far * near) * scale;
+
+            this->mMtx[3][0] = 0.0f;
+            this->mMtx[3][1] = 0.0f;
+            this->mMtx[3][2] = -1.0f;
+            this->mMtx[3][3] = 0.0f;
+        }
+
+        void makeTrans(const TVec2f& offset) {
+            this->mMtx[0][0] = 1.0f;
+            this->mMtx[0][1] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[0][3] = offset.x;
+
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[1][1] = 1.0f;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[1][3] = offset.y;
+
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[2][2] = 1.0f;
+            this->mMtx[2][3] = 0.0f;
+
+            this->mMtx[3][0] = 0.0f;
+            this->mMtx[3][1] = 0.0f;
+            this->mMtx[3][2] = 0.0f;
+            this->mMtx[3][3] = 1.0f;
+        }
+
+        void makeTrans(f32 offsetX, f32 offsetY) {
+            this->mMtx[0][0] = 1.0f;
+            this->mMtx[0][1] = 0.0f;
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[0][3] = offsetX;
+
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[1][1] = 1.0f;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[1][3] = offsetY;
+
+            this->mMtx[2][0] = 0.0f;
+            this->mMtx[2][1] = 0.0f;
+            this->mMtx[2][2] = 1.0f;
+            this->mMtx[2][3] = 0.0f;
+
+            this->mMtx[3][0] = 0.0f;
+            this->mMtx[3][1] = 0.0f;
+            this->mMtx[3][2] = 0.0f;
+            this->mMtx[3][3] = 1.0f;
+        }
     };
 
 };  // namespace JGeometry
