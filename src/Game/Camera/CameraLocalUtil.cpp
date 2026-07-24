@@ -220,14 +220,14 @@ namespace CameraLocalUtil {
         if (pCamera->mIsLOfsErpOff || pCamera->mCameraMan->_15) {
             offset = 1.0f;
         } else {
-            offset = pTarget->getLastMove()->length() * scale;
+            offset = pTarget->getLastMove().length() * scale;
             if (offset > 1.0f) {
                 offset = 1.0f;
             }
         }
 
         TVec3f localOffs = getLocalOffset(pCamera);
-        localOffs += (*pTarget->getFrontVec() * getFrontOffset(pCamera) + *pTarget->getUpVec() * getUpperOffset(pCamera) - localOffs) * offset;
+        localOffs += (pTarget->getFrontVec() * getFrontOffset(pCamera) + pTarget->getUpVec() * getUpperOffset(pCamera) - localOffs) * offset;
         setLocalOffset(pCamera, localOffs);
 
         TVec3f globalOffs = getGlobalOffset(pCamera);
@@ -241,7 +241,7 @@ namespace CameraLocalUtil {
     }
 
     void makeWatchOffsetImm(TVec3f* pDst, Camera* pCamera, CameraTargetObj* pTarget) {
-        TVec3f offs = *pTarget->getFrontVec() * getFrontOffset(pCamera) + *pTarget->getUpVec() * getUpperOffset(pCamera);
+        TVec3f offs = pTarget->getFrontVec() * getFrontOffset(pCamera) + pTarget->getUpVec() * getUpperOffset(pCamera);
         setLocalOffset(pCamera, offs);
 
         TVec3f globOffs = getGlobalOffset(pCamera);

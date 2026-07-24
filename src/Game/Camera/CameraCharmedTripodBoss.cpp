@@ -46,7 +46,7 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     TPos3f finalrot;
     finalrot.concat(rotY, rotX);
 
-    TVec3f subvec = *CameraLocalUtil::getTarget(this)->getPosition() - renameme;
+    TVec3f subvec = CameraLocalUtil::getTarget(this)->getPosition() - renameme;
     if (MR::isNearZero(subvec)) {
         return result;
     }

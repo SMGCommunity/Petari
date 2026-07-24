@@ -10,13 +10,13 @@ public:
 
     virtual void movement();
 
-    virtual const TVec3f* getPosition() const;
-    virtual const TVec3f* getUpVec() const;
-    virtual const TVec3f* getFrontVec() const;
-    virtual const TVec3f* getSideVec() const;
-    virtual const TVec3f* getLastMove() const;
-    virtual const TVec3f* getGroundPos() const;
-    virtual const TVec3f* getGravityVector() const;
+    virtual const TVec3f& getPosition() const;
+    virtual const TVec3f& getUpVec() const;
+    virtual const TVec3f& getFrontVec() const;
+    virtual const TVec3f& getSideVec() const;
+    virtual const TVec3f& getLastMove() const;
+    virtual const TVec3f& getGroundPos() const;
+    virtual const TVec3f& getGravityVector() const;
 
     virtual CubeCameraArea* getCubeCameraArea() const;
 
