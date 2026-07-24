@@ -14,7 +14,7 @@ public:
     /* 0x4 */ TVec3f mPosition;          ///< The position of the NamePos.
     /* 0x10 */ TVec3f mRotation;         ///< The rotation of the NamePos.
     /* 0x1C */ JMapLinkInfo* mLinkInfo;  ///< The information to link this NamePos to other objects.
-    u32 _20;
+    /* 0x20 */ const NameObj* _20;
 };
 
 /// @brief Class that contains the array of NamePosInfo instances.
@@ -26,7 +26,7 @@ public:
 
     bool tryRegisterLinkObj(const NameObj*, const JMapInfoIter&);
 
-    bool find(const NameObj*, const char*, TVec3f*, const TVec3f*) const;
+    bool find(const NameObj*, const char*, TVec3f*, TVec3f*) const;
 
     /* 0xC */ s32 mPosNum;           ///< The number of NamePosInfo instances.
     /* 0x10 */ NamePosInfo* mInfos;  ///< The array of NamePosInfo instances.
