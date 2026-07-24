@@ -64,7 +64,7 @@ CameraTargetObj* CameraCharmedTripodBoss::calc() {
     TPos3f mtx;
     mtx.identity();
     mtx.setXYZDir(cross, vec, subvec);
-    mtx.setTrans(*CameraLocalUtil::getTarget(this)->getPosition());
+    mtx.setTrans(CameraLocalUtil::getTarget(this)->getPosition());
     mtx.concat(mtx, finalrot);
     mtx.getZDir(subvec);
     mtx.getYDir(vec);

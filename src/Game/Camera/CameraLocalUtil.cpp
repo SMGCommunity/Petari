@@ -237,7 +237,7 @@ namespace CameraLocalUtil {
 
     void makeWatchPoint(TVec3f* pDst, Camera* pCamera, CameraTargetObj* pTarget, f32 param4) {
         makeWatchOffset(pDst, pCamera, pTarget, param4);
-        pDst->add(*pTarget->getPosition());
+        pDst->add(pTarget->getPosition());
     }
 
     void makeWatchOffsetImm(TVec3f* pDst, Camera* pCamera, CameraTargetObj* pTarget) {
@@ -251,7 +251,7 @@ namespace CameraLocalUtil {
 
     void makeWatchPointImm(TVec3f* pDst, Camera* pCamera, CameraTargetObj* pTarget) {
         makeWatchOffsetImm(pDst, pCamera, pTarget);
-        pDst->add(*pTarget->getPosition());
+        pDst->add(pTarget->getPosition());
     }
 
     bool tryCameraReset() {
