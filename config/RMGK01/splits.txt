@@ -3759,7 +3759,7 @@ Game/Map/FileSelector.cpp:
 	.ctors      start:0x8052EBB8 end:0x8052EBBC
 	.rodata     start:0x80532A68 end:0x80532AA8
 	.data       start:0x80589638 end:0x80589EB8
-	.sdata      start:0x806B1BA8 end:0x806B1BC8
+	.sdata      start:0x806B1BA8 end:0x806B1BC0
 	.sbss       start:0x806B4AB8 end:0x806B4B78
 	.sdata2     start:0x806BBEF8 end:0x806BBF30
 
@@ -3776,6 +3776,7 @@ Game/Map/FishGroup.cpp:
 	.ctors      start:0x8052EBC0 end:0x8052EBC4
 	.rodata     start:0x80532AB0 end:0x80532AC8
 	.data       start:0x80589F58 end:0x8058A0E8
+	.sdata		start:0x806B1BC0 end:0x806B1BC8
 	.sbss       start:0x806B4B80 end:0x806B4B90
 	.sdata2     start:0x806BBF58 end:0x806BBFA0
 
