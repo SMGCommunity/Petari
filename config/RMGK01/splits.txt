@@ -3119,7 +3119,7 @@ Game/Enemy/StinkBugBase.cpp:
 Game/Enemy/StinkBugParent.cpp:
 	.text       start:0x8013F72C end:0x80140F78
 	.ctors      start:0x8052EB48 end:0x8052EB4C
-	.rodata     start:0x80532558 end:0x80532588
+	.rodata     start:0x80532558 end:0x80532570
 	.data       start:0x80584660 end:0x80584A48
 	.sbss       start:0x806B47A8 end:0x806B47F0
 	.sdata2     start:0x806BB600 end:0x806BB650
@@ -3178,7 +3178,7 @@ Game/Enemy/Teresa.cpp:
 Game/Enemy/TeresaWater.cpp:
 	.text       start:0x8014C790 end:0x8014CFE0
 	.ctors      start:0x8052EB64 end:0x8052EB68
-	.rodata     start:0x80532588 end:0x805325A8
+	.rodata     start:0x80532570 end:0x805325A8
 	.data       start:0x80585A70 end:0x80585BB0
 	.sdata      start:0x806B1A98 end:0x806B1AA0
 	.sbss       start:0x806B4938 end:0x806B4948

@@ -4,6 +4,14 @@
 
 class CollisionParts;
 
+namespace {
+    struct Param {
+        f32 mDashVelocity;  // 0x0
+        f32 mDashDistance;  // 0x4
+        s32 mPanicStep;     // 0x8
+    };
+};  // namespace
+
 class StinkBugParent : public StinkBugBase {
 public:
     StinkBugParent(const char*);
@@ -20,6 +28,7 @@ public:
     void exeWait();
     void exeSearch();
     void exeDashSign();
+    void exeDashSignEnd();
     void exeDash();
     void exeDashEnd();
     void exeBack();
@@ -29,6 +38,8 @@ public:
     void exePanic();
     void exeRecover();
     void exeShakeStart();
+    void exeShake();
+    void exeDemoPrepare();
     void exeDemoChildDown();
     void exeDemoAnger();
     void jumpBackPlayerFromChild() const;
@@ -36,6 +47,9 @@ public:
     bool isHitChild() const;
     bool isNrvEnableStarPieceAttack() const;
 
+    inline bool isNrvMoving() const;
+    inline bool isNrvDemo() const;
+
     /* 0xBC */ CollisionParts* mParent;
-    /* 0xC0 */ bool _C0;
+    /* 0xC0 */ bool mIsChildAlive;
 };
