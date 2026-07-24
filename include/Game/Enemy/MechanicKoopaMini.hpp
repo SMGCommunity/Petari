@@ -42,5 +42,5 @@ public:
     /* 0x8C */ bool _8C;
     /* 0x8D */ bool _8D;
     /* 0x90 */ AnimScaleController* mScaleController;
-    /* 0x94 */ WalkerStateBindStarPointer* mBindStarPointer ;
+    /* 0x94 */ WalkerStateBindStarPointer* mBindStarPointer;
 };
