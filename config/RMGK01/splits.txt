@@ -3776,7 +3776,7 @@ Game/Map/FishGroup.cpp:
 	.ctors      start:0x8052EBC0 end:0x8052EBC4
 	.rodata     start:0x80532AB0 end:0x80532AC8
 	.data       start:0x80589F58 end:0x8058A0E8
-	.sdata		start:0x806B1BC0 end:0x806B1BC8
+	.sdata      start:0x806B1BC0 end:0x806B1BC8
 	.sbss       start:0x806B4B80 end:0x806B4B90
 	.sdata2     start:0x806BBF58 end:0x806BBFA0
 

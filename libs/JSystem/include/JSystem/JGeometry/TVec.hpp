@@ -866,37 +866,11 @@ namespace JGeometry {
             return (TVec3< T >*)this;
         }
 
-        void set(T, T, T, T);
-
-#ifdef __MWERKS__
-        template < typename A >
-        inline void set(A _x, A _y, A _z, A _w) {
-            TVec4< T >::set(_x, _y, _z, _w);
-        }
-#else
-        template < typename A >
-        inline void set(A _x, A _y, A _z, A _w) {
-            TVec4< T >::set(_x, _y, _z, _w);
-        }
-#endif
-
-#ifdef __MWERKS__
-        template < typename A >
-        inline void set(const TVec4< T >& rOther) {
-            TVec4< T >::set(rOther);
-        }
-#else
-        template < typename A >
-        inline void set(const TVec4< T >& rOther) {
-            TVec4< T >::set(rOther);
-        }
-#endif
-
         /* General operations */
         void normalize() {
             f32 length = squared();
             if (length <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
-                set< T >(0.0f, 0.0f, 0.0f, 1.0f);
+                TVec4< T >::template set< T >(0.0f, 0.0f, 0.0f, 1.0f);
                 return;
             }
             f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(length);
