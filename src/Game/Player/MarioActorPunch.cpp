@@ -172,7 +172,7 @@ bool MarioActor::tryPunchAirAfter(HitSensor* pSensor) {
         TVec3f vec(pSensor->mPosition - getSensor("body")->mPosition);
         MR::vecKillElement(vec, getGravityVector(), &vec);
 
-        if (MR::diffAngleAbs(vec, mMario->mFrontVec) >= PI_4) {
+        if (MR::diffAngleAbs(vec, mMario->mFrontVec) >= MR::pi() / 4.0f) {
             return false;
         }
     }

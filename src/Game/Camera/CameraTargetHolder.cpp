@@ -34,8 +34,7 @@ bool CameraTargetHolder::isOnGround() const {
 }
 
 bool CameraTargetHolder::isMoving() const {
-    const TVec3f* lastMove = mTarget->getLastMove();
-    return lastMove->length() > 1.0f;
+    return mTarget->getLastMove().length() > 1.0f;
 }
 
 CameraTargetHolder::~CameraTargetHolder() {

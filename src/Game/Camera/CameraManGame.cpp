@@ -623,10 +623,8 @@ void CameraManGame::updateWaterSurface() {
 
 void CameraManGame::updateGCapture() {
     CubeCameraArea::setCurrentCategory(CubeCameraArea::CATEGORY_UNKNOWN_3);
-    CameraTargetObj* target = CameraLocalUtil::getTarget(this);
-    const TVec3f* position = target->getPosition();
 
-    CubeCameraArea* area = reinterpret_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", *position));
+    CubeCameraArea* area = reinterpret_cast< CubeCameraArea* >(MR::getAreaObj("CubeCamera", CameraLocalUtil::getTarget(this)->getPosition()));
 
     if (area != nullptr) {
         CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
