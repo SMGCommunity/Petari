@@ -42,6 +42,12 @@ public:
     void exeMoveStart();
     void exeStopAtPoint();
     void exeStopAtEnd();
+    void exeWait();
+    void exeVanish();
+    void exeRotateAtPoint();
+    void exeWaitForRestartByPlayerOn();
+    void exeStopAtEndWithPlayerOn();
+    void exeRotateAtEndPoint();
 
     MapPartsRailPointPassChecker* mRailPointPassChecker;  // 0x18
     s32 mMoveConditionType;                               // 0x1C
