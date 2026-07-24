@@ -1013,7 +1013,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CamTranslatorWonderPlanet.cpp"),
             Object(Matching, "Game/Camera/Camera.cpp"),
             Object(NonMatching, "Game/Camera/CameraAnim.cpp"),
-            Object(NonMatching, "Game/Camera/CameraBehind.cpp"),
+            Object(Matching, "Game/Camera/CameraBehind.cpp"),
             Object(Matching, "Game/Camera/CameraBlackHole.cpp"),
             Object(NonMatching, "Game/Camera/CameraCalc.cpp"),
             Object(NonMatching, "Game/Camera/CameraCharmedFix.cpp"),
