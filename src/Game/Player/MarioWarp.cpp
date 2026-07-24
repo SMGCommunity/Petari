@@ -144,7 +144,7 @@ void MarioWarp::calcAxis() {
 
     MR::normalizeOrZero(&vec64);
 
-    f32 val = _45 == 3 ? _4_PI : PI_4;
+    f32 val = _45 == 3 ? MR::pi() * 0.25f : MR::pi() * 0.4f;
 
     _5C = vec58;
     _68 = vec7C + vec64 * sqrt(sin(val));

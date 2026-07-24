@@ -81,7 +81,7 @@ void MarioActor::syncJumpBeeStickMode() {
         _9F2 = 30;
     }
 
-    if (!(MR::diffAngleAbs(_360, getGravityVec()) < PI_36)) {
+    if (!(MR::diffAngleAbs(_360, getGravityVec()) < MR::pi() / 36.0f)) {
         return;
     }
 
