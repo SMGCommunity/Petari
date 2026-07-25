@@ -622,6 +622,7 @@ namespace MR {
     T sqrt(T x) {
         return fastSqrtf(x);
     }
+
 };  // namespace MR
 
 f32 PSVECKillElement(const Vec*, const Vec*, const Vec*);
