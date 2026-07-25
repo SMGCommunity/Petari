@@ -1018,7 +1018,7 @@ config.libs = [
             Object(NonMatching, "Game/Camera/CameraCalc.cpp"),
             Object(Matching, "Game/Camera/CameraCharmedFix.cpp"),
             Object(NonMatching, "Game/Camera/CameraCharmedTripodBoss.cpp"),
-            Object(NonMatching, "Game/Camera/CameraCharmedVecReg.cpp"),
+            Object(Matching, "Game/Camera/CameraCharmedVecReg.cpp"),
             Object(NonMatching, "Game/Camera/CameraCharmedVecRegTower.cpp"),
             Object(NonMatching, "Game/Camera/CameraContext.cpp"),
             Object(

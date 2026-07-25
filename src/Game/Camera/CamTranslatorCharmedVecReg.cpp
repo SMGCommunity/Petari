@@ -6,17 +6,17 @@ void CamTranslatorCharmedVecReg::setParam(const CameraParamChunk* pChunk) {
 
     const char* string;
     f32 dist;
-    f32 axisX;
-    f32 axisY;
-    f32 axisZ;
-    f32 angleA;
-    f32 angleB;
+    f32 pitch;
+    f32 angleYMax;
+    f32 angleYMin;
+    f32 distRatio;
+    f32 camAngleRate;
 
-    angleB = general->mAngleB;
-    angleA = general->mAngleA;
-    axisZ = general->mAxis.z;
-    axisY = general->mAxis.y;
-    axisX = general->mAxis.x;
+    camAngleRate = general->mAngleB;
+    distRatio = general->mAngleA;
+    angleYMin = general->mAxis.z;
+    angleYMax = general->mAxis.y;
+    pitch = general->mAxis.x;
     dist = general->mDist;
     string = general->mString.getCharPtr();
 
@@ -29,11 +29,11 @@ void CamTranslatorCharmedVecReg::setParam(const CameraParamChunk* pChunk) {
         camera->mDist = 300.0f;
     }
 
-    camera->mAxisX = axisX;
-    camera->mAxisZ = axisZ;
-    camera->mAxisY = axisY;
-    camera->mAngleA = angleA;
-    camera->mAngleB = angleB;
+    camera->mPitch = pitch;
+    camera->mAngleYMin = angleYMin;
+    camera->mAngleYMax = angleYMax;
+    camera->mCamDistRatio = distRatio;
+    camera->mCamAngleRate = camAngleRate;
 }
 
 Camera* CamTranslatorCharmedVecReg::getCamera() const {

@@ -63,7 +63,7 @@ namespace MR {
         return true;
     }
 
-    inline void projectVecOnPlane(TVec3f* pDst, const TVec3f& rSrc, const TVec3f& rNorm) {
+    inline void projectVecOnPlane(TVec3f* pDst, const TVec3f& rSrc, const TVec3f& rNorm) NO_INLINE {
         pDst->set(rSrc - rNorm * rNorm.dot(rSrc));
     }
 
