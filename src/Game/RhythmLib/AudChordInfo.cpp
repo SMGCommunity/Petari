@@ -252,7 +252,6 @@ u8 AudChordInfo::getSixth() {
 }
 
 u8 AudChordInfo::getNinth() {
-    // FIXME: missing clrlwi
     if (!isAvailable()) {
         return NULL_NOTE;
     }
@@ -268,11 +267,11 @@ u8 AudChordInfo::getNinth() {
             continue;
         }
 
+        note &= 0xFF;
+
         if (note < root) {
             note += OCTAVE;
         }
-
-        note &= 0xFF;
 
         if (note >= lo && note <= hi) {
             if (note != getThird()) {
@@ -419,18 +418,19 @@ u8 AudChordInfo::getNearestChordNote(u8 note) {
 }
 
 u8 AudChordInfo::getUpperNoteOnChord(u8 note, s32 steps) {
-    // FIXME: missing clrlwi
-    if (!isOnChord(note, true, true)) {
-        note = getNearestChordNoteDir(note, true) & 0xFF;
+    s32 n = note;
+
+    if (!isOnChord(n, true, true)) {
+        n = getNearestChordNoteDir(note, true);
         steps--;
     }
 
     if (steps <= 0) {
-        return note;
+        return n;
     }
 
-    s32 pitchClass = note % OCTAVE;
-    s32 octave = note / OCTAVE;
+    s32 pitchClass = n % OCTAVE;
+    s32 octave = n / OCTAVE;
 
     s32 idx = getChordNoteIndex(pitchClass);
     s32 wrapCount;
@@ -442,18 +442,19 @@ u8 AudChordInfo::getUpperNoteOnChord(u8 note, s32 steps) {
 }
 
 u8 AudChordInfo::getLowerNoteOnChord(u8 note, s32 steps) {
-    // FIXME: missing clrlwi
-    if (!isOnChord(note, true, true)) {
-        note = getNearestChordNoteDir(note, false) & 0xFF;
+    s32 n = note;
+
+    if (!isOnChord(n, true, true)) {
+        n = getNearestChordNoteDir(note, false);
         steps--;
     }
 
     if (steps <= 0) {
-        return note;
+        return n;
     }
 
-    s32 pitchClass = note % OCTAVE;
-    s32 octave = note / OCTAVE;
+    s32 pitchClass = n % OCTAVE;
+    s32 octave = n / OCTAVE;
 
     s32 idx = getChordNoteIndex(pitchClass);
     s32 wrapCount;
@@ -576,18 +577,19 @@ u8 AudChordInfo::getNearestScaleNote(u8 note) {
 }
 
 u8 AudChordInfo::getUpperNoteOnScale(u8 note, s32 steps) {
-    // FIXME: missing clrlwi
-    if ((getOnScaleType(note) & 1) == 0) {  // not up
-        note = getNearestScaleNoteDir(note, true) & 0xFF;
+    s32 n = note;
+
+    if ((getOnScaleType(n) & 1) == 0) {  // not up
+        n = getNearestScaleNoteDir(note, true);
         steps--;
     }
 
     if (steps <= 0) {
-        return note;
+        return n;
     }
 
-    s32 pitchClass = note % OCTAVE;
-    s32 octave = note / OCTAVE;
+    s32 pitchClass = n % OCTAVE;
+    s32 octave = n / OCTAVE;
 
     s32 idx = getScaleNoteIndex(pitchClass, true);
     s32 wrapCount;
@@ -599,18 +601,19 @@ u8 AudChordInfo::getUpperNoteOnScale(u8 note, s32 steps) {
 }
 
 u8 AudChordInfo::getLowerNoteOnScale(u8 note, s32 steps) {
-    // FIXME: missing clrlwi
-    if ((getOnScaleType(note) & 2) == 0) {  // not down
-        note = getNearestScaleNoteDir(note, false) & 0xFF;
+    s32 n = note;
+
+    if ((getOnScaleType(n) & 2) == 0) {  // not down
+        n = getNearestScaleNoteDir(note, false);
         steps--;
     }
 
     if (steps <= 0) {
-        return note;
+        return n;
     }
 
-    s32 pitchClass = note % OCTAVE;
-    s32 octave = note / OCTAVE;
+    s32 pitchClass = n % OCTAVE;
+    s32 octave = n / OCTAVE;
 
     s32 idx = getScaleNoteIndex(pitchClass, false);
     s32 wrapCount;
@@ -767,65 +770,67 @@ s32 AudChordInfo::getScaleNoteIndex(u8 pClass, bool up) {
 }
 
 s32 AudChordInfo::addIndexInScaleNoteList(s32 idx, s32 count, s32& wrapCount) {
+    s32 ret = idx;
     wrapCount = 0;
 
     for (s32 c = 0; c < count; c++) {
-        idx++;
+        ret++;
 
-        if (idx >= OCTAVE) {
+        if (ret >= OCTAVE) {
             wrapCount++;
-            idx = 0;
+            ret = 0;
         }
 
         s32 skip = 0;
 
-        while (getScaleNoteUp(idx) == NULL_NOTE) {
+        while (getScaleNoteUp(ret) == NULL_NOTE) {
             skip++;
-            idx++;
+            ret++;
 
             if (skip >= OCTAVE) {
                 return -1;
             }
 
-            if (idx >= OCTAVE) {
+            if (ret >= OCTAVE) {
                 wrapCount++;
-                idx = 0;
+                ret = 0;
             }
         }
     }
 
-    return idx;
+    return ret;
 }
 
 s32 AudChordInfo::subIndexInScaleNoteList(s32 idx, s32 count, s32& wrapCount) {
+    s32 ret = idx;
     wrapCount = 0;
 
     for (s32 c = 0; c < count; c++) {
-        idx--;
+        ret--;
 
-        if (idx < 0) {
+        if (ret < 0) {
             wrapCount--;
-            idx = OCTAVE - 1;
+            ret = OCTAVE - 1;
         }
 
         s32 skip = 0;
 
-        while (getScaleNoteDown(idx) == NULL_NOTE) {
+        while (getScaleNoteDown(ret) == NULL_NOTE) {
             skip++;
-            idx--;
+            ret--;
 
             if (skip >= OCTAVE) {
                 return -1;
             }
 
-            if (idx < 0) {
+            if (ret < 0) {
                 wrapCount--;
-                idx = OCTAVE - 1;
+                ret = OCTAVE - 1;
             }
         }
     }
 
-    return idx;
+    return ret;
 }
 
 void AudChordInfo::initParams() {
