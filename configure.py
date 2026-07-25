@@ -973,7 +973,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CamTranslatorCharmedFix.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorCharmedTripodBoss.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorCharmedVecReg.cpp"),
-            Object(NonMatching, "Game/Camera/CamTranslatorCharmedVecRegTower.cpp"),
+            Object(Matching, "Game/Camera/CamTranslatorCharmedVecRegTower.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorCubePlanet.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorDPD.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorDead.cpp"),
@@ -1019,7 +1019,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraCharmedFix.cpp"),
             Object(NonMatching, "Game/Camera/CameraCharmedTripodBoss.cpp"),
             Object(Matching, "Game/Camera/CameraCharmedVecReg.cpp"),
-            Object(NonMatching, "Game/Camera/CameraCharmedVecRegTower.cpp"),
+            Object(Matching, "Game/Camera/CameraCharmedVecRegTower.cpp"),
             Object(NonMatching, "Game/Camera/CameraContext.cpp"),
             Object(
                 Matching,

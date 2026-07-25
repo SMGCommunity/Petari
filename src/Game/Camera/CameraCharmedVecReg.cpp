@@ -12,11 +12,11 @@ void CameraCharmedVecReg_FORCE_MATCH_SDATA2() {
 }
 
 namespace {
-    // static const f32 sRate =
+    static const f32 sRate = 0.02f;
 };  // namespace
 
 CameraCharmedVecReg::CameraCharmedVecReg(const char* pName)
-    : Camera(pName), mString(), mDist(1000.0f), mPitch(), mAngleYMin(), mAngleYMax(), mCamDistRatio(0.5f), mCamAngleRate(0.02f) {
+    : Camera(pName), mString(), mDist(1000.0f), mPitch(), mAngleYMin(), mAngleYMax(), mCamDistRatio(0.5f), mCamAngleRate(::sRate) {
 }
 
 void CameraCharmedVecReg::reset() {

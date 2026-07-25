@@ -785,6 +785,12 @@ namespace JGeometry {
             TVec3 ret(*this);
             return ret;
         }
+
+        // required for CameraCharmedVecRegTower.
+        // TODO: better name
+        inline bool orientation(const TVec3& rA, const TVec3& rB) const {
+            return rA.cross(rB).dot(*this) < 0.0f;
+        }
     };
 
     template < typename T >

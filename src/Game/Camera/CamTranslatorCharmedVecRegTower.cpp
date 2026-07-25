@@ -8,17 +8,14 @@ void CamTranslatorCharmedVecRegTower_FORCE_MATCH_SDATA2() {
 }
 
 void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
-    // FIXME: regswap
-    // https://decomp.me/scratch/bEuU7
-
-    CameraGeneralParam* general = pChunk->mGeneralParam;
-
-    TVec3f axis;
     const char* string;
     f32 angleA;
     f32 angleB;
     f32 dist;
     bool uVar3;
+    TVec3f axis;
+
+    CameraGeneralParam* general = pChunk->mGeneralParam;
 
     axis = general->mAxis;
 
@@ -42,7 +39,7 @@ void CamTranslatorCharmedVecRegTower::setParam(const CameraParamChunk* pChunk) {
     camera->mAngleA = angleA;
     camera->mAngleB = angleB;
     camera->mDist = dist;
-    camera->_70 = uVar3;
+    camera->mArrange = uVar3;
 }
 
 Camera* CamTranslatorCharmedVecRegTower::getCamera() const {
