@@ -966,7 +966,7 @@ config.libs = [
                 "Game/Camera/CamKarikariEffector.cpp",
                 cflags=[*cflags_game, "-sym off"],
             ),
-            Object(NonMatching, "Game/Camera/CamPoseSphereInterpolator.cpp"),
+            Object(Matching, "Game/Camera/CamPoseSphereInterpolator.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorAnim.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorBehind.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorBlackHole.cpp"),
