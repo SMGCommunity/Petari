@@ -462,20 +462,11 @@ namespace JGeometry {
         }
 
         void mult33(const TVec3f& rSrc, TVec3f& rDst) const {
-            f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
-            a32 = this->mMtx[2][1];
-            a22 = this->mMtx[1][1];
-            a12 = this->mMtx[0][1];
-            a31 = this->mMtx[2][0];
-            a21 = this->mMtx[1][0];
-            a11 = this->mMtx[0][0];
-            a33 = this->mMtx[2][2];
-            a13 = this->mMtx[0][2];
-            a23 = this->mMtx[1][2];
-            f32 x, y;
-            vx = rSrc.x;
-            vy = rSrc.y;
-            rDst.set< f32 >(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
+            rDst.set< f32 >(rSrc.x * get(0, 0) + rSrc.y * get(0, 1) + rSrc.z * get(0, 2),
+
+                            rSrc.x * get(1, 0) + rSrc.y * get(1, 1) + rSrc.z * get(1, 2),
+
+                            rSrc.x * get(2, 0) + rSrc.y * get(2, 1) + rSrc.z * get(2, 2));
         }
     };
 
