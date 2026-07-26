@@ -5,7 +5,6 @@
 class CameraFixedPoint : public Camera {
 public:
     CameraFixedPoint(const char* pName = "定点カメラ");
-    virtual ~CameraFixedPoint();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
@@ -13,8 +12,6 @@ public:
 
     void setParam(const TVec3f&, u32);
 
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    u8 _58[4];
+    /* 0x4C */ TVec3f mPos;
+    /* 0x58 */ u32 _58;
 };
