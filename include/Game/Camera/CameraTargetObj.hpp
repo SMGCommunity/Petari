@@ -24,7 +24,9 @@ public:
     virtual const TVec3f& getGroundPos() const = 0;
     virtual const TVec3f& getGravityVector() const = 0;
 
-    virtual f32 getRadius() const;
+    virtual f32 getRadius() const {
+        return 150.0f;
+    }
     virtual bool isTurning() const {
         return false;
     }
