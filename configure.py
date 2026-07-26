@@ -1030,7 +1030,7 @@ config.libs = [
             Object(NonMatching, "Game/Camera/CameraDPD.cpp"),
             Object(Matching, "Game/Camera/CameraDead.cpp"),
             Object(NonMatching, "Game/Camera/CameraDirector.cpp"),
-            Object(NonMatching, "Game/Camera/CameraFix.cpp"),
+            Object(Matching, "Game/Camera/CameraFix.cpp"),
             Object(NonMatching, "Game/Camera/CameraFixedPoint.cpp"),
             Object(NonMatching, "Game/Camera/CameraFixedThere.cpp"),
             Object(NonMatching, "Game/Camera/CameraFollow.cpp"),

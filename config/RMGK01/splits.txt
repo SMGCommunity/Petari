@@ -1874,14 +1874,14 @@ Game/Camera/CameraDirector.cpp:
 	.text       start:0x80099220 end:0x8009B5E4
 	.ctors      start:0x8052E9EC end:0x8052E9F0
 	.rodata     start:0x80531600 end:0x80531608
-	.data       start:0x80574800 end:0x80574A40
+	.data       start:0x80574800 end:0x80574A28
 	.sdata      start:0x806B17F8 end:0x806B1808
 	.sbss       start:0x806B3A28 end:0x806B3A30
 	.sdata2     start:0x806B93A0 end:0x806B93D0
 
 Game/Camera/CameraFix.cpp:
 	.text       start:0x8009B5E4 end:0x8009B93C
-	.data       start:0x80574A40 end:0x80574A98
+	.data       start:0x80574A28 end:0x80574A98
 	.sdata2     start:0x806B93D0 end:0x806B93E8
 
 Game/Camera/CameraFixedPoint.cpp:

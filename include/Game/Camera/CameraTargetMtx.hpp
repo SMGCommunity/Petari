@@ -22,7 +22,7 @@ public:
 
     void invalidateLastMove();
 
-    void setMtx(register MtxPtr mtx) {
+    void setMtx(MtxPtr mtx) {
         mMatrix.set(mtx);
     }
 
@@ -34,6 +34,5 @@ public:
     /* 0x70 */ TVec3f mFront;
     /* 0x7C */ TVec3f mSide;
     /* 0x88 */ bool mInvalidLastMove;
-    /* 0x89 */ u8 _89[3];
     /* 0x8C */ CubeCameraArea* mCameraArea;
 };
