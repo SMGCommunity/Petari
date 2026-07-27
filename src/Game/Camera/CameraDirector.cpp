@@ -670,12 +670,12 @@ void CameraDirector::resetCameraMan() {
     target2 = mTargetHolder->get();
     target3 = mTargetHolder->get();
 
-    TVec3f newPos = *target3->getPosition() - *target2->getFrontVec() * 800.0f + *target1->getUpVec() * 300.0f;
+    TVec3f newPos = target3->getPosition() - target2->getFrontVec() * 800.0f + target1->getUpVec() * 300.0f;
 
     CameraLocalUtil::setPos(man, newPos);
-    CameraLocalUtil::setWatchPos(man, *mTargetHolder->get()->getPosition());
-    CameraLocalUtil::setUpVec(man, *mTargetHolder->get()->getUpVec());
-    CameraLocalUtil::setWatchUpVec(man, *mTargetHolder->get()->getUpVec());
+    CameraLocalUtil::setWatchPos(man, mTargetHolder->get()->getPosition());
+    CameraLocalUtil::setUpVec(man, mTargetHolder->get()->getUpVec());
+    CameraLocalUtil::setWatchUpVec(man, mTargetHolder->get()->getUpVec());
 
     man->deactivate(this);
     man->activate(this);

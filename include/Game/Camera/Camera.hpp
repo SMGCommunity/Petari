@@ -23,7 +23,7 @@ class Camera : public NameObj {
 public:
     Camera(const char*);
 
-    virtual void reset() {};
+    virtual void reset(){};
     virtual CameraTargetObj* calc() = 0;
     virtual bool isInterpolationOff() const {
         return false;
@@ -40,8 +40,8 @@ public:
     virtual bool isCorrectingErpPositionOff() const {
         return false;
     }
-    virtual void roundLeft() {};
-    virtual void roundRight() {};
+    virtual void roundLeft(){};
+    virtual void roundRight(){};
     virtual bool isEnableToRoundLeft() const {
         return false;
     }
@@ -60,11 +60,11 @@ public:
         return mVPan != nullptr;
     }
 
-    CameraMan* mCameraMan;        // 0xC
-    CameraPoseParam* mPoseParam;  // 0x10
-    CameraHeightArrange* mVPan;   // 0x14
-    bool mIsLOfsErpOff;           // 0x18
-    TMtx34f mZoneMatrix;          // 0x1C
+    /* 0x0C */ CameraMan* mCameraMan;
+    /* 0x10 */ CameraPoseParam* mPoseParam;
+    /* 0x14 */ CameraHeightArrange* mVPan;
+    /* 0x18 */ bool mIsLOfsErpOff;
+    /* 0x1C */ TPos3f mZoneMatrix;
 };
 
 class CamTranslatorDummy : public CamTranslatorBase {
@@ -72,10 +72,10 @@ public:
     CamTranslatorDummy(Camera* pCamera) : mCamera(pCamera) {
     }
 
-    virtual void setParam(const CameraParamChunk*) {};
+    virtual void setParam(const CameraParamChunk*){};
     virtual Camera* getCamera() const {
         return mCamera;
     }
 
-    Camera* mCamera;  // 0x4
+    /* 0x04 */ Camera* mCamera;
 };

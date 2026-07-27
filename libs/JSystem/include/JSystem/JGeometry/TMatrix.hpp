@@ -462,20 +462,11 @@ namespace JGeometry {
         }
 
         void mult33(const TVec3f& rSrc, TVec3f& rDst) const {
-            f32 a32, a22, a12, a11, a21, vx, a31, vy, a23, a33, a13;
-            a32 = this->mMtx[2][1];
-            a22 = this->mMtx[1][1];
-            a12 = this->mMtx[0][1];
-            a31 = this->mMtx[2][0];
-            a21 = this->mMtx[1][0];
-            a11 = this->mMtx[0][0];
-            a33 = this->mMtx[2][2];
-            a13 = this->mMtx[0][2];
-            a23 = this->mMtx[1][2];
-            f32 x, y;
-            vx = rSrc.x;
-            vy = rSrc.y;
-            rDst.set< f32 >(rSrc.z * a13 + (vx * a11 + vy * a12), rSrc.z * a23 + (vx * a21 + vy * a22), rSrc.z * a33 + (rSrc.x * a31 + rSrc.y * a32));
+            rDst.set< f32 >(rSrc.x * get(0, 0) + rSrc.y * get(0, 1) + rSrc.z * get(0, 2),
+
+                            rSrc.x * get(1, 0) + rSrc.y * get(1, 1) + rSrc.z * get(1, 2),
+
+                            rSrc.x * get(2, 0) + rSrc.y * get(2, 1) + rSrc.z * get(2, 2));
         }
     };
 
@@ -530,9 +521,27 @@ namespace JGeometry {
             this->mMtx[2][3] = 0.0f;
         }
 
-        inline void identityAndSetTrans(const TVec3f& rSrc) {
+        inline void makeTrans(const TVec3f& rTrans) {
             this->identity();
-            this->setTrans(rSrc);
+            setTrans(rTrans);
+        }
+
+        inline void makeTrans(f32 x, f32 y, f32 z) {
+            this->mMtx[0][0] = 1.0f;
+            this->mMtx[1][0] = 0.0f;
+            this->mMtx[2][0] = 0.0f;
+
+            this->mMtx[0][1] = 0.0f;
+            this->mMtx[1][1] = 1.0f;
+            this->mMtx[2][1] = 0.0f;
+
+            this->mMtx[0][2] = 0.0f;
+            this->mMtx[1][2] = 0.0f;
+            this->mMtx[2][2] = 1.0f;
+
+            this->mMtx[0][3] = x;
+            this->mMtx[1][3] = y;
+            this->mMtx[2][3] = z;
         }
 
         void setTR(const TVec3f& a1, const TVec3f& a2, const TVec3f& a3, const TVec3f& a4) {

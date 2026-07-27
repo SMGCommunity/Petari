@@ -8,33 +8,33 @@ void CamTranslatorDPD::setParam(const CameraParamChunk* pChunk) {
     camera = mCamera;
 
     f32 dist;
-    f32 angleA;
-    f32 angleB;
-    f32 wPointZ;
-    f32 wPointX;
-    f32 wPointY;
-    f32 upX;
+    f32 angleXRate;
+    f32 angleYRate;
+    f32 rotate;
+    f32 speedBlendRate;
+    f32 blendFriction;
+    f32 arg_B8;
     s32 num2;
 
     num2 = general->mNum2;
-    bool uVar8 = !(num2 != 1);
-    upX = general->mUp.x;
-    wPointY = general->mWPoint.y;
-    wPointX = general->mWPoint.x;
-    wPointZ = general->mWPoint.z;
-    angleB = general->mAngleB;
-    angleA = general->mAngleA;
+    bool uVar8 = !(num2 != CameraDPD::CameraState_1);
+    arg_B8 = general->mUp.x;
+    blendFriction = general->mWPoint.y;
+    speedBlendRate = general->mWPoint.x;
+    rotate = general->mWPoint.z;
+    angleYRate = general->mAngleB;
+    angleXRate = general->mAngleA;
     dist = general->mDist;
 
-    camera->_94 = general->mNum1;
+    camera->mCameraState = general->mNum1;
     camera->mDist = dist;
-    camera->mAngleA = angleA;
-    camera->mAngleB = angleB;
-    camera->mWPointZ = wPointZ;
-    camera->mWPointX = wPointX;
-    camera->mWPointY = wPointY;
+    camera->mAngleXRange = angleXRate;
+    camera->mAngleYRange = angleYRate;
+    camera->mRotate = rotate;
+    camera->mSpeedBlendRate = speedBlendRate;
+    camera->mBlendFriction = blendFriction;
     camera->_B4 = uVar8;
-    camera->mUpX = upX;
+    camera->_B8 = arg_B8;
 }
 
 Camera* CamTranslatorDPD::getCamera() const {

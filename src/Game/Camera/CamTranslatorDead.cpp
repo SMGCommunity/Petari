@@ -19,7 +19,7 @@ void CamTranslatorDead::setParam(const CameraParamChunk* pChunk) {
     dist = general->mDist;
 
     camera->mDist = dist;
-    camera->_54 = num1;
+    camera->mDeadTime = num1;
     camera->_58 = num2;
 }
 

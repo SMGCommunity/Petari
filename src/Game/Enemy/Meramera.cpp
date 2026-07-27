@@ -1025,7 +1025,7 @@ void Meramera::exeDamage() {
     }
 
     if (MR::isStep(this, 3)) {
-        mExtinguishMtx.identityAndSetTrans(MR::getJointPos(this, "Sin"));
+        mExtinguishMtx.makeTrans(MR::getJointPos(this, "Sin"));
 
         deleteEffectHead(true);
         emitEffectCoolDownBody();

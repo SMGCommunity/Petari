@@ -5,6 +5,11 @@
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 
+void CameraBehind_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
 CameraBehind::~CameraBehind() {
 }
 
@@ -36,12 +41,12 @@ CamTranslatorBase* CameraBehind::createTranslator() {
 }
 
 void CameraBehind::calcPosAndUp(f32 accel) {
-    TVec3f watchpos(CameraLocalUtil::getWatchPos(this));
+    TVec3f watchpos = CameraLocalUtil::getWatchPos(this);
     TPos3f matrix;
-    matrix.setZDir(-*CameraLocalUtil::getTarget(this)->getFrontVec());
-    matrix.setYDir(*CameraLocalUtil::getTarget(this)->getUpVec());
-    matrix.setXDir(-*CameraLocalUtil::getTarget(this)->getSideVec());
-    matrix.setTrans(*CameraLocalUtil::getTarget(this)->getPosition());
+    matrix.setZDir(-CameraLocalUtil::getTarget(this)->getFrontVec());
+    matrix.setYDir(CameraLocalUtil::getTarget(this)->getUpVec());
+    matrix.setXDir(-CameraLocalUtil::getTarget(this)->getSideVec());
+    matrix.setTrans(CameraLocalUtil::getTarget(this)->getPosition());
     TPos3f matrix2;
     matrix2.invert(matrix);
     TVec3f multresult;

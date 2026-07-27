@@ -546,6 +546,16 @@ namespace MR {
         *pX = *pX < 0.0f ? 0.0f : *pX > 1.0f ? 1.0f : *pX;
     }
 
+    inline f32 clamp01(f32 x) {
+        if (x < 0.0f) {
+            x = 0.0f;
+        }
+        if (x > 1.0f) {
+            x = 1.0f;
+        }
+        return x;
+    }
+
     inline void clampBoth(f32* value, f32 min, f32 max);
 
     inline void clampMax(f32* val, f32 max) {
@@ -612,6 +622,7 @@ namespace MR {
     T sqrt(T x) {
         return fastSqrtf(x);
     }
+
 };  // namespace MR
 
 f32 PSVECKillElement(const Vec*, const Vec*, const Vec*);
