@@ -25,10 +25,9 @@ CameraTargetObj* CameraCharmedVecRegTower::calc() {
     TVec3f wPoint = mWPoint;
     TVec3f axis = mAxis;
 
-    // TODO: TPos3f copy ctor doesnt use gekko copy?
-    TMtx34f zoneMtx = mZoneMatrix;
+    TPos3f zoneMtx = mZoneMatrix;
     zoneMtx.mult(wPoint, wPoint);
-    static_cast< TPos3f* >(&zoneMtx)->mult33(axis, axis);
+    zoneMtx.mult33(axis, axis);
 
     TVec3f watchDir = CameraLocalUtil::getTarget(this)->getPosition() - wPoint;
     if (MR::isNearZero(watchDir)) {

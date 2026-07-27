@@ -30,7 +30,9 @@ public:
     virtual bool isTurning() const {
         return false;
     }
-    virtual bool isJumping() const;
+    virtual bool isJumping() const {
+        return false;
+    }
     virtual bool isLongDrop() const {
         return false;
     }
