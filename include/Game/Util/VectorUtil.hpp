@@ -45,7 +45,7 @@ namespace MR {
         return diff;
     }
 
-    inline bool diffRadianAroundAxis(f32* pAngle, const TVec3f& rAxis, const TVec3f& rA, const TVec3f& rB) {
+    inline bool diffRadianAroundAxis(f32* pAngle, const TVec3f& rAxis, const TVec3f& rA, const TVec3f& rB) NO_INLINE {
         TVec3f dirA = rA.killElement(rAxis);
         if (MR::isNearZero(dirA)) {
             return false;

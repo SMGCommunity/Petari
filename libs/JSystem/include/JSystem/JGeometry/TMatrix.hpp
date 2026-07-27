@@ -389,7 +389,10 @@ namespace JGeometry {
             //    BreakableCage::calcAndSetBaseMtx (regswap)
             //    CocoNut::updateRotate (regswap)
             //    FirePressureRadiate::calcJointCannon (regswap)
+            //
+            //    CameraFixedThere::updateNormalUpVec (instruction mismatch!!)
             // }
+            //
 
             f32 s = sin(angle);
             f32 c = cos(angle);
