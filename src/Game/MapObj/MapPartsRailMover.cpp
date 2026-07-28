@@ -233,7 +233,6 @@ void MapPartsRailMover::setStateStopAtEndBeforeRotate() {
     }
 }
 
-// https://decomp.me/scratch/WuSDZ
 void MapPartsRailMover::calcTimeToNextRailPoint(f32* pTime) const {
     f32 distance = 0.0f;
     MR::calcDistanceToNextRailPoint(mHost, &distance);
@@ -245,32 +244,17 @@ void MapPartsRailMover::calcTimeToNextRailPoint(f32* pTime) const {
         return;
     }
 
-    f32 accelTime = mAccelTime;
-    f32 accelDistance = mSpeed * accelTime + 0.5f * mAcceleration * accelTime * accelTime;
+    f32 accelDistance = mSpeed * mAccelTime + 0.5f * mAcceleration * mAccelTime * mAccelTime;
 
-    if (accelDistance >= distance) {
-        f32 discriminant = mSpeed * mSpeed + 2.0f * mAcceleration * distance;
-
-        f32 sqrtDiscriminant;
-
-        if (discriminant <= 0.0f) {
-            sqrtDiscriminant = discriminant;
-        } else {
-            f32 invSqrt = __frsqrte(discriminant);
-            sqrtDiscriminant = (-(((invSqrt * discriminant) * invSqrt) - 3.0f) * (invSqrt * discriminant)) / 2.0f;
-        }
+    if (accelDistance < distance) {
+        *pTime = mAccelTime + (distance - accelDistance) / (mAcceleration * mAccelTime);
+    } else {
+        f32 sqrtDiscriminant = MR::sqrt(mSpeed * mSpeed + 2.0f * mAcceleration * distance);
 
         f32 t0 = (-mSpeed + sqrtDiscriminant) / mAcceleration;
         f32 t1 = (-mSpeed - sqrtDiscriminant) / mAcceleration;
 
-        if (t0 < t1) {
-            t0 = t1;
-        }
-
-        *pTime = t0;
-
-    } else {
-        *pTime = accelTime + (distance - accelDistance) / (mAcceleration * accelTime);
+        *pTime = MR::max(t0, t1);
     }
 }
 

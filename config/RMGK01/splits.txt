@@ -6139,11 +6139,12 @@ Game/MapObj/FloaterFloatingForceTypeSpring.cpp:
 
 Game/MapObj/FloaterFunction.cpp:
 	.text       start:0x80259524 end:0x802596CC
-	.rodata     start:0x80534D40 end:0x80534E70
+	.rodata     start:0x80534D40 end:0x80534E30
 
 Game/MapObj/LavaHomeSeesawRotator.cpp:
 	.text       start:0x802596CC end:0x8025A8FC
 	.ctors      start:0x8052EF4C end:0x8052EF50
+	.rodata     start:0x80534E30 end:0x80534E38
 	.data       start:0x805A6E50 end:0x805A6F18
 	.sbss       start:0x806B5B08 end:0x806B5B20
 	.sdata2     start:0x806BE860 end:0x806BE8B0
@@ -6167,6 +6168,7 @@ Game/MapObj/MapPartsFloatingForce.cpp:
 	.data       start:0x805A6FE8 end:0x805A7068
 	.sbss       start:0x806B5B38 end:0x806B5B48
 	.sdata2     start:0x806BE8C0 end:0x806BE8F0
+	.rodata		start:0x80534E38 end:0x80534E40
 
 Game/MapObj/MapPartsFunction.cpp:
 	.text       start:0x8025BCE4 end:0x8025BEEC
@@ -6194,6 +6196,7 @@ Game/MapObj/MapPartsRailMover.cpp:
 	.data       start:0x805A7228 end:0x805A7330
 	.sbss       start:0x806B5B58 end:0x806B5B88
 	.sdata2     start:0x806BE910 end:0x806BE938
+	.rodata		start:0x80534E40 end:0x80534E48
 
 Game/MapObj/MapPartsRailPointPassChecker.cpp:
 	.text       start:0x8025DC7C end:0x8025DEA4
@@ -6236,7 +6239,7 @@ Game/MapObj/MapPartsSeesaw2AxisRotator.cpp:
 
 Game/NameObj/ModelChangableObjFactory.cpp:
 	.text       start:0x80261080 end:0x8026144C
-	.rodata     start:0x80534E70 end:0x80534F00
+	.rodata     start:0x80534E48 end:0x80534F00
 	.data       start:0x805A7660 end:0x805A7730
 
 Game/NameObj/MovementOnOffGroupHolder.cpp:
