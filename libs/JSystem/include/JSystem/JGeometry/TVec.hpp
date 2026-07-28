@@ -978,6 +978,10 @@ namespace JGeometry {
             PSQUATMultiply(&q, this, this);
         }
 
+        void mult(const TQuat4& q1, const TQuat4& q2) {
+            PSQUATMultiply(q1, q2, this);
+        }
+
         f32 dot(const TQuat4& q) const {
             return PSQUATDotProduct(this, &q);
         }
