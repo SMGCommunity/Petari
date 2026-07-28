@@ -55,9 +55,9 @@ public:
     s32 mSignMotionType;                                  // 0x24
     TVec3f _28;
     f32 _34;
-    s32 mStopTime;  // 0x38
-    f32 _3C;
-    s32 _40;
-    f32 _44;
+    s32 mStopTime;      // 0x38
+    f32 mSpeed;         // 0x3C
+    s32 mAccelTime;     // 0x40
+    f32 mAcceleration;  // 0x44
     f32 _48;
 };

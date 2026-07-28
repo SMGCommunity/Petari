@@ -48,7 +48,7 @@ namespace MR {
     bool getMapPartsArgMoveSpeed(f32*, const JMapInfoIter&);
     bool getMapPartsArgMoveSpeed(f32*, const LiveActor*);
     bool getMapPartsArgStopTime(s32*, const LiveActor*);
-    bool getMapPartsArgAccelTime(s32*, const JMapInfoIter&);
+    bool getMapPartsArgAccelTime(s32*, const LiveActor*);
     bool getMapPartsArgSpeedCalcType(s32*, const LiveActor*);
     bool getMapPartsArgRailRotateSpeed(f32*, const JMapInfoIter&);
     bool getMapPartsArgRailRotateTime(s32*, const JMapInfoIter&);

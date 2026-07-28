@@ -6191,13 +6191,13 @@ Game/MapObj/MapPartsRailGuidePoint.cpp:
 Game/MapObj/MapPartsRailMover.cpp:
 	.text       start:0x8025C8A0 end:0x8025DC7C
 	.ctors      start:0x8052EF60 end:0x8052EF64
-	.data       start:0x805A7228 end:0x805A7348
+	.data       start:0x805A7228 end:0x805A7330
 	.sbss       start:0x806B5B58 end:0x806B5B88
 	.sdata2     start:0x806BE910 end:0x806BE938
 
 Game/MapObj/MapPartsRailPointPassChecker.cpp:
 	.text       start:0x8025DC7C end:0x8025DEA4
-	.data       start:0x805A7348 end:0x805A7380
+	.data       start:0x805A7330 end:0x805A7380
 
 Game/MapObj/MapPartsRailPosture.cpp:
 	.text       start:0x8025DEA4 end:0x8025E28C
