@@ -332,9 +332,9 @@ namespace JGeometry {
             f32 xz = 2.0f * q.x * q.z;
             f32 yz = 2.0f * q.y * q.z;
 
+            f32 wz = 2.0f * q.w * q.z;
             f32 wx = 2.0f * q.w * q.x;
             f32 wy = 2.0f * q.w * q.y;
-            f32 wz = 2.0f * q.w * q.z;
 
             this->mMtx[0][0] = 1.0f - yy - zz;
             this->mMtx[0][1] = xy - wz;

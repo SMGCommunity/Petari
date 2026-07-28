@@ -16,9 +16,9 @@ void CamTranslatorFooFighterPlanet::setParam(const CameraParamChunk* pChunk) {
     axisY = general->mAxis.y;
     axisX = general->mAxis.x;
 
-    camera->mAxisX = axisX;
-    camera->mAxisY = axisY;
-    camera->mAngleA = angleA;
+    camera->mDistMin = axisX;
+    camera->mDistMax = axisY;
+    camera->mPitchMax = angleA;
 }
 
 Camera* CamTranslatorFooFighterPlanet::getCamera() const {
