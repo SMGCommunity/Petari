@@ -2927,7 +2927,7 @@ Game/Enemy/KuriboMini.cpp:
 Game/Enemy/MechanicKoopaMini.cpp:
 	.text       start:0x8011CE88 end:0x8011EA28
 	.ctors      start:0x8052EAF8 end:0x8052EAFC
-	.rodata     start:0x805322B0 end:0x80532388
+	.rodata     start:0x805322B0 end:0x80532380
 	.data       start:0x805811B0 end:0x80581480
 	.bss        start:0x8060A9E0 end:0x8060A9F0
 	.sbss       start:0x806B43E8 end:0x806B4428
@@ -2945,7 +2945,7 @@ Game/Enemy/Meramera.cpp:
 Game/Enemy/Metbo.cpp:
 	.text       start:0x80122D94 end:0x80124C6C
 	.ctors      start:0x8052EB00 end:0x8052EB04
-	.rodata     start:0x80532388 end:0x805323E8
+	.rodata     start:0x80532380 end:0x805323E8
 	.data       start:0x80581950 end:0x80581C30
 	.sdata      start:0x806B1A18 end:0x806B1A20
 	.sbss       start:0x806B4478 end:0x806B44C0

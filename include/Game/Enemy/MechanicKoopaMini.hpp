@@ -20,10 +20,10 @@ public:
     virtual void attackSensor(HitSensor*, HitSensor*);
     virtual bool receiveMsgPush(HitSensor*, HitSensor*);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);    
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);    
+    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    void onAppearsSwitchOn();
+    void onAppearSwitchOn();
     void exeWait();
     void exeWalkOnRail();
     void exeTurn();
@@ -33,14 +33,17 @@ public:
     void exePursue();
     void exePreFireAttack();
     void exeFireAttack();
+    void endFireAttack();
     void exeFireAttackEnd();
     void exeAttackHit();
     void exeSpinHit();
     void exeTrample();
     void exeHipDropped();
+    void exeBindStarPointer();
+    void endBindStarPointer();
 
-    /* 0x8C */ bool _8C;
-    /* 0x8D */ bool _8D;
+    /* 0x8C */ bool mIsAppearJumping;
+    /* 0x8D */ bool mIsForbidPause;
     /* 0x90 */ AnimScaleController* mScaleController;
     /* 0x94 */ WalkerStateBindStarPointer* mBindStarPointer;
 };
