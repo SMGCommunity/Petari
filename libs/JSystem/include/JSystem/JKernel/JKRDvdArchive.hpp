@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JKernel/JKRArchive.hpp"
+#include "revolution/types.h"
 
 class JKRDvdFile;
 
@@ -14,8 +15,8 @@ public:
     virtual void* fetchResource(void*, unsigned long, SDIFileEntry*, unsigned long*);
 
     bool open(long);
-    void fetchResource_subroutine(long, unsigned long, unsigned long, unsigned char*, unsigned long, int, int);
-    void fetchResource_subroutine(long, unsigned long, unsigned long, JKRHeap*, int, int, unsigned char**);
+    static u32 fetchResource_subroutine(long, unsigned long, unsigned long, unsigned char*, unsigned long, int, int);
+    static u32 fetchResource_subroutine(long, unsigned long, unsigned long, JKRHeap*, int, int, unsigned char**);
 
     u32 _64;
     /* 0x68 */ JKRDvdFile* mFile;

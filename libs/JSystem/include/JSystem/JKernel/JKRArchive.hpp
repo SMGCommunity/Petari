@@ -120,7 +120,7 @@ public:
     virtual s32 getExpandedResSize(const void*) const;
     virtual void* fetchResource(SDIFileEntry*, unsigned long*) = 0;
     virtual void* fetchResource(void*, unsigned long, SDIFileEntry*, unsigned long*) = 0;
-    virtual void setExpandSize(SDIFileEntry*, unsigned long);
+    virtual void setExpandSize(SDIFileEntry*, unsigned long) const;
     virtual u32 getExpandSize(SDIFileEntry*) const;
 
     static JKRArchive* check_mount_already(long);
