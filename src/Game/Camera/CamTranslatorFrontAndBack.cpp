@@ -31,8 +31,8 @@ void CamTranslatorFrontAndBack::setParam(const CameraParamChunk* pChunk) {
 
     camera->mWPoint = general->mWPoint;
     camera->mAxis = axis;
-    camera->mAngleA = angleA2;
-    camera->mAngleB = angleB2;
+    camera->mRotateRate = angleA2;
+    camera->mMaxDipAngle = angleB2;
     camera->mDist = dist;
 }
 

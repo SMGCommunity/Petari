@@ -10,11 +10,11 @@ class CameraMan : public NameObj {
 public:
     CameraMan(const char*);
 
-    virtual void init(const JMapInfoIter&) {};
+    virtual void init(const JMapInfoIter&){};
     virtual void movement();
-    virtual void calc() {};
-    virtual void notifyActivate() {};
-    virtual void notifyDeactivate() {};
+    virtual void calc(){};
+    virtual void notifyActivate(){};
+    virtual void notifyDeactivate(){};
     virtual bool isInterpolationOff() const;
     virtual bool isCollisionOff() const;
     virtual bool isZeroFrameMoveOff() const;
@@ -36,5 +36,5 @@ public:
     bool mIsActivated;            // 0x14
     bool _15;
     u8 _16[2];
-    TMtx34f mMatrix;  // 0x18
+    TPos3f mMatrix;  // 0x18
 };

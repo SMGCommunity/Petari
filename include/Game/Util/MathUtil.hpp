@@ -384,6 +384,18 @@ namespace MR {
     /// @return The remainder of the division.
     f32 mod(f32 x, f32 y);
 
+    /// @brief Computes the angle in radians mapped from [0, TWO_PI).
+    /// @param angle The angle, in radians.
+    /// @return The mapped angle.
+    inline f32 modRadian(f32 angle) {
+        return fmod(angle, TWO_PI);
+    }
+
+    inline bool isOppositeDirectionRadian(f32 angle, f32 target) {
+        f32 modRad = MR::modRadian(angle - target + TWO_PI);
+        return target + modRad < -HALF_PI || target + modRad > HALF_PI;
+    }
+
     /// @brief Converts a three-dimensional floating-point vector into a fixed-point vector.
     /// @param[out] pDst A pointer to the three-dimensional fixed-point vector to initialize.
     /// @param[in] rSrc A reference to the three-dimensional floating-point vector to evaluate.

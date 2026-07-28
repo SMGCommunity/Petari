@@ -8,17 +8,17 @@ void CamTranslatorFooFighter::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
     CameraFooFighter* camera = mCamera;
 
-    f32 axisY;
-    f32 axisX;
-    f32 dist;
+    f32 distMin;
+    f32 distMax;
+    f32 rate;
 
-    dist = general->mDist;
-    axisX = general->mAxis.x;
-    axisY = general->mAxis.y;
+    rate = general->mDist;
+    distMax = general->mAxis.x;
+    distMin = general->mAxis.y;
 
-    camera->mAxisY = axisY;
-    camera->mAxisX = axisX;
-    camera->mDist = dist;
+    camera->mDistMin = distMin;
+    camera->mDistMax = distMax;
+    camera->_54 = rate;
 }
 
 Camera* CamTranslatorFooFighter::getCamera() const {

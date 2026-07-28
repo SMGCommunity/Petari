@@ -10,25 +10,25 @@ namespace MR {
                          ((2.0f * (rQuat.y * rQuat.z)) + (2.0f * (rQuat.w * rQuat.x))));
     }
 
-    inline void crossToPolar(const TVec3f& rA, const TVec3f& rB, f32* pX, f32* pY, f32* pZ) NO_INLINE {
+    inline void crossToPolar(const TVec3f& rA, const TVec3f& rB, f32* pLength, f32* pAngleX, f32* pAngleY) NO_INLINE {
         f32 dx = rB.x - rA.x;
         f32 dy = rB.y - rA.y;
         f32 dz = rB.z - rA.z;
-        *pX = MR::sqrt(dx * dx + dy * dy + dz * dz);
-        *pY = MR::atan2(dy, MR::sqrt(dx * dx + dz * dz));
-        *pZ = MR::atan2(dx, dz);
+        *pLength = MR::sqrt(dx * dx + dy * dy + dz * dz);
+        *pAngleX = MR::atan2(dy, MR::sqrt(dx * dx + dz * dz));
+        *pAngleY = MR::atan2(dx, dz);
     }
 
-    inline void polarToCross(const TVec3f& rSrc, TVec3f* pDst, f32 angleX, f32 angleY, f32 angleZ) NO_INLINE {
-        pDst->x = rSrc.x + angleX * MR::cos(angleY) * MR::sin(angleZ);
-        pDst->y = rSrc.y + angleX * MR::sin(angleY);
-        pDst->z = rSrc.z + angleX * MR::cos(angleY) * MR::cos(angleZ);
+    inline void polarToCross(const TVec3f& rSrc, TVec3f* pDst, f32 length, f32 angleX, f32 angleY) NO_INLINE {
+        pDst->x = rSrc.x + length * MR::cos(angleX) * MR::sin(angleY);
+        pDst->y = rSrc.y + length * MR::sin(angleX);
+        pDst->z = rSrc.z + length * MR::cos(angleX) * MR::cos(angleY);
     }
 
-    inline void polarToCrossDegree(const TVec3f& rSrc, TVec3f* pDst, f32 angleX, f32 angleY, f32 angleZ) NO_INLINE {
-        pDst->x = rSrc.x + angleX * MR::cosDegree(angleY) * MR::sinDegree(angleZ);
-        pDst->y = rSrc.y + angleX * MR::sinDegree(angleY);
-        pDst->z = rSrc.z + angleX * MR::cosDegree(angleY) * MR::cosDegree(angleZ);
+    inline void polarToCrossDegree(const TVec3f& rSrc, TVec3f* pDst, f32 length, f32 angleX, f32 angleY) NO_INLINE {
+        pDst->x = rSrc.x + length * MR::cosDegree(angleX) * MR::sinDegree(angleY);
+        pDst->y = rSrc.y + length * MR::sinDegree(angleX);
+        pDst->z = rSrc.z + length * MR::cosDegree(angleX) * MR::cosDegree(angleY);
     }
 
     inline f32 diffRadian(f32 angleA, f32 angleB) {
@@ -45,7 +45,7 @@ namespace MR {
         return diff;
     }
 
-    inline bool diffRadianAroundAxis(f32* pAngle, const TVec3f& rAxis, const TVec3f& rA, const TVec3f& rB) {
+    inline bool diffRadianAroundAxis(f32* pAngle, const TVec3f& rAxis, const TVec3f& rA, const TVec3f& rB) NO_INLINE {
         TVec3f dirA = rA.killElement(rAxis);
         if (MR::isNearZero(dirA)) {
             return false;
