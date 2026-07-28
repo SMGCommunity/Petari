@@ -191,13 +191,15 @@ s32 JKRDvdArchive::getExpandedResSize(const void* pArg) const {
         return size;
     }
 
-    u8 out[0x20];
-    JKRDvdRipper::loadToMainRAM(mEntryNum, static_cast< u8* >(fileEntry->mFileData), EXPAND_SWITCH_UNKNOWN2, 0x20, mHeap,
-                                JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0, 0, 0);
+    u8 buff[0x20];
+    u8* alignedPointer = reinterpret_cast< u8* >((ALIGN_NEXT(reinterpret_cast< int >(buff), 32)));
 
-    DCInvalidateRange(out, 0x20);
+    JKRDvdRipper::loadToMainRAM(mEntryNum, alignedPointer, EXPAND_SWITCH_UNKNOWN2, 0x20, nullptr, JKRDvdRipper::ALLOC_DIRECTION_FORWARD,
+                                _64 + fileEntry->mDataOffset, 0, 0);
 
-    u32 size2 = JKRDecompExpandSize(out);
+    DCInvalidateRange(alignedPointer, 0x20);
+
+    u32 size2 = JKRDecompExpandSize(alignedPointer);
     setExpandSize(fileEntry, size2);
 
     return size2;
