@@ -6165,10 +6165,10 @@ Game/MapObj/MapPartsBreaker.cpp:
 Game/MapObj/MapPartsFloatingForce.cpp:
 	.text       start:0x8025B194 end:0x8025BCE4
 	.ctors      start:0x8052EF58 end:0x8052EF5C
+	.rodata     start:0x80534E38 end:0x80534E40
 	.data       start:0x805A6FE8 end:0x805A7068
 	.sbss       start:0x806B5B38 end:0x806B5B48
 	.sdata2     start:0x806BE8C0 end:0x806BE8F0
-	.rodata		start:0x80534E38 end:0x80534E40
 
 Game/MapObj/MapPartsFunction.cpp:
 	.text       start:0x8025BCE4 end:0x8025BEEC
@@ -6193,10 +6193,10 @@ Game/MapObj/MapPartsRailGuidePoint.cpp:
 Game/MapObj/MapPartsRailMover.cpp:
 	.text       start:0x8025C8A0 end:0x8025DC7C
 	.ctors      start:0x8052EF60 end:0x8052EF64
+	.rodata     start:0x80534E40 end:0x80534E48
 	.data       start:0x805A7228 end:0x805A7330
 	.sbss       start:0x806B5B58 end:0x806B5B88
 	.sdata2     start:0x806BE910 end:0x806BE938
-	.rodata		start:0x80534E40 end:0x80534E48
 
 Game/MapObj/MapPartsRailPointPassChecker.cpp:
 	.text       start:0x8025DC7C end:0x8025DEA4
@@ -6212,6 +6212,7 @@ Game/MapObj/MapPartsRailPosture.cpp:
 Game/MapObj/MapPartsRailRotator.cpp:
 	.text       start:0x8025E28C end:0x8025EC6C
 	.ctors      start:0x8052EF68 end:0x8052EF6C
+	.rodata     start:0x80534E48 end:0x80534E50
 	.data       start:0x805A73F0 end:0x805A7478
 	.sbss       start:0x806B5B90 end:0x806B5BA0
 	.sdata2     start:0x806BE948 end:0x806BE960
@@ -6219,6 +6220,7 @@ Game/MapObj/MapPartsRailRotator.cpp:
 Game/MapObj/MapPartsRotator.cpp:
 	.text       start:0x8025EC6C end:0x8025F98C
 	.ctors      start:0x8052EF6C end:0x8052EF70
+	.rodata     start:0x80534E50 end:0x80534E60
 	.data       start:0x805A7478 end:0x805A7530
 	.sbss       start:0x806B5BA0 end:0x806B5BB8
 	.sdata2     start:0x806BE960 end:0x806BE988
@@ -6226,6 +6228,7 @@ Game/MapObj/MapPartsRotator.cpp:
 Game/MapObj/MapPartsSeesaw1AxisRotator.cpp:
 	.text       start:0x8025F98C end:0x802608D8
 	.ctors      start:0x8052EF70 end:0x8052EF74
+	.rodata     start:0x80534E60 end:0x80534E68
 	.data       start:0x805A7530 end:0x805A75D8
 	.sbss       start:0x806B5BB8 end:0x806B5BD0
 	.sdata2     start:0x806BE988 end:0x806BE9C8
@@ -6233,13 +6236,14 @@ Game/MapObj/MapPartsSeesaw1AxisRotator.cpp:
 Game/MapObj/MapPartsSeesaw2AxisRotator.cpp:
 	.text       start:0x802608D8 end:0x80261080
 	.ctors      start:0x8052EF74 end:0x8052EF78
+	.rodata     start:0x80534E68 end:0x80534E70
 	.data       start:0x805A75D8 end:0x805A7660
 	.sbss       start:0x806B5BD0 end:0x806B5BE0
 	.sdata2     start:0x806BE9C8 end:0x806BE9E8
 
 Game/NameObj/ModelChangableObjFactory.cpp:
 	.text       start:0x80261080 end:0x8026144C
-	.rodata     start:0x80534E48 end:0x80534F00
+	.rodata     start:0x80534E70 end:0x80534F00
 	.data       start:0x805A7660 end:0x805A7730
 
 Game/NameObj/MovementOnOffGroupHolder.cpp:
