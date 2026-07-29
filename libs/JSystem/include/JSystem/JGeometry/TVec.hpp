@@ -379,10 +379,6 @@ namespace JGeometry {
 #endif
         }
 
-        inline void setPS(const TVec3< f32 >& rSrc) {
-            *this = rSrc;
-        }
-
         template < typename T >
         void set(const TVec3< T >& rVec) {
             x = rVec.x;

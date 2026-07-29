@@ -288,7 +288,7 @@ namespace MR {
     }
 
     void setSensorOffset(LiveActor* pActor, const char* pName, const TVec3f& rOffset) {
-        pActor->mSensorKeeper->getSensorInfo(pName)->_C.setPS(rOffset);
+        pActor->mSensorKeeper->getSensorInfo(pName)->setOffset(rOffset);
     }
 
     void setSensorRadius(LiveActor* pActor, const char* pName, f32 radius) {

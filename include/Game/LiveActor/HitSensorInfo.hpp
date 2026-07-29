@@ -12,6 +12,10 @@ public:
     void update();
     void doObjCol();
 
+    void setOffset(const TVec3f& rOffset) {
+        _C = rOffset;
+    }
+
     const char* mName;   // 0x0
     s32 mHashCode;       // 0x4
     HitSensor* mSensor;  // 0x8
