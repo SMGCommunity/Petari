@@ -41,7 +41,7 @@ void BeeFlowerHover::init(const JMapInfoIter& rIter) {
         mRailMover->start();
 
         mRailPosture = new MapPartsRailPosture(this);
-        mRailPosture->_48 = 2;
+        mRailPosture->mMovePosture = 2;
         mRailPosture->initWithoutIter();
         mRailMover->start();
     }

@@ -41,7 +41,7 @@ namespace MR {
     bool getMapPartsArgRotateType(s32*, const JMapInfoIter&);
     s32 getMapPartsArgShadowType(s32*, const JMapInfoIter&);
     bool getMapPartsArgSignMotionType(s32*, const JMapInfoIter&);
-    bool getMapPartsArgMovePosture(s32*, const JMapInfoIter&);
+    bool getMapPartsArgMovePosture(s32*, const LiveActor*);
     bool getMapPartsArgMoveStopType(s32*, const LiveActor*);
     bool getMapPartsArgRailGuideType(s32*, const JMapInfoIter&);
     bool getMapPartsArgRailInitPosType(s32*, const LiveActor*);

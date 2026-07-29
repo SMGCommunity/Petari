@@ -562,6 +562,7 @@ def JSys_JAudioLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "objects": objects,
     }
 
+
 def JSys_JParticleLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -570,6 +571,7 @@ def JSys_JParticleLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "progress_category": "jsys",
         "objects": objects,
     }
+
 
 Matching = True  # Object matches and should be linked
 NonMatching = False  # Object does not match and should not be linked
@@ -1262,8 +1264,8 @@ config.libs = [
             Object(Matching, "Game/Enemy/TakoHeiInk.cpp"),
             Object(
                 Matching,
-                "Game/Enemy/TakoHeiInkHolder.cpp", 
-                cflags=[*cflags_game, "-sym off"]
+                "Game/Enemy/TakoHeiInkHolder.cpp",
+                cflags=[*cflags_game, "-sym off"],
             ),
             Object(NonMatching, "Game/Enemy/Teresa.cpp"),
             Object(NonMatching, "Game/Enemy/TeresaWater.cpp"),
@@ -1810,7 +1812,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/MapPartsFunction.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailGuideDrawer.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailGuideHolder.cpp"),
-            Object(Matching, "Game/MapObj/MapPartsRailGuidePoint.cpp"),
+            Object(NonMatching, "Game/MapObj/MapPartsRailGuidePoint.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailMover.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailPointPassChecker.cpp"),
             Object(NonMatching, "Game/MapObj/MapPartsRailPosture.cpp"),
