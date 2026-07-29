@@ -11,8 +11,8 @@
 #include <JSystem/JMath/JMath.hpp>
 
 namespace JGeometry {
-    inline void negateInternal(register const f32* rSrc, register f32* rDest) {
 #ifdef __MWERKS__
+    inline void negateInternal(register const f32* rSrc, register f32* rDest) {
         register f32 xy;
         __asm {
             psq_l xy, 0(rSrc), 0, 0
@@ -20,8 +20,10 @@ namespace JGeometry {
             psq_st xy, 0(rDest), 0, 0
         }
         rDest[2] = -rSrc[2];
-#endif
     }
+#else
+    inline void negateInternal(const f32* rSrc, f32* rDest);
+#endif
 
 #ifdef __MWERKS__
     inline static void subInternal(register const f32* vec1, register const f32* vec2, register f32* dst) {
