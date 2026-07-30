@@ -36,8 +36,12 @@ public:
     virtual bool isLongDrop() const {
         return false;
     }
-    virtual bool isFastDrop() const;
-    virtual bool isFastRise() const;
+    virtual bool isFastDrop() const {
+        return false;
+    }
+    virtual bool isFastRise() const {
+        return false;
+    }
     virtual bool isWaterMode() const;
     virtual bool isOnWaterSurface() const;
     virtual bool isBeeMode() const {

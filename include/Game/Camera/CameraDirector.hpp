@@ -38,7 +38,9 @@ public:
     inline CameraParamChunkID_Tmp() : CameraParamChunkID() {
     }
 
-    virtual char* getBuffer(u32);
+    virtual char* getBuffer(u32 size) {
+        return &mBuffer[0];
+    }
 
     char mBuffer[0x100];  // 0xC
 };

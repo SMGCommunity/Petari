@@ -17,12 +17,11 @@ void Camera::setZoneMtx(s32 zoneID) {
         mZoneMatrix.identity();
     } else {
         mZoneMatrix.identity();
-        TMtx34f* matrix = MR::getZonePlacementMtx(zoneID);
-        mZoneMatrix.setInline(*matrix);
+        mZoneMatrix.set(*MR::getZonePlacementMtx(zoneID));
     }
 
     if (doesVPanExist()) {
-        mVPan->_60 = 1;
+        mVPan->mUpdateGlobalAxis = true;
     }
 }
 

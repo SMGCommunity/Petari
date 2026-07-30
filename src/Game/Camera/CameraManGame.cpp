@@ -373,14 +373,14 @@ void CameraManGame::applyParameter() {
         CameraHeightArrange* vPan = camera->mVPan;
         vPan->resetParameter();
 
-        vPan->mUpper = mChunk->mExParam.mUpper;
-        vPan->mLower = mChunk->mExParam.mLower;
+        vPan->mFocalScaleUpper = mChunk->mExParam.mUpper;
+        vPan->mFocalScaleLower = mChunk->mExParam.mLower;
         vPan->mGndInt = mChunk->mExParam.mGndInt;
-        vPan->mUPlay = mChunk->mExParam.mUPlay;
-        vPan->mLPlay = mChunk->mExParam.mLPlay;
-        vPan->mPushDelay = mChunk->mExParam.mPushDelay;
-        vPan->mPushDelayLow = mChunk->mExParam.mPushDelayLow;
-        vPan->mUDown = mChunk->mExParam.mUDown;
+        vPan->mPosOffsetMinRiseLag = mChunk->mExParam.mUPlay;
+        vPan->mPosOffsetMinDropLag = mChunk->mExParam.mLPlay;
+        vPan->mRiseDelay = mChunk->mExParam.mPushDelay;
+        vPan->mDropDelay = mChunk->mExParam.mPushDelayLow;
+        vPan->mMaxRiseEaseTime = mChunk->mExParam.mUDown;
         vPan->mVPanUse = mChunk->mExParam.mVPanUse != 0;
 
         TVec3f axis;
@@ -388,7 +388,7 @@ void CameraManGame::applyParameter() {
 
         vPan->mVPanAxis.set(axis);
 
-        vPan->_60 = 1;
+        vPan->mUpdateGlobalAxis = true;
     }
 }
 

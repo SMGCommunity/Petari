@@ -38,23 +38,6 @@ namespace {
     static s32 sUpdateCounter;
 };  // namespace
 
-void CameraPoseParam::copyFrom(const CameraPoseParam& rOther) {
-    mWatchUpVec.set< f32 >(rOther.mWatchUpVec);
-    mWatchPos.set< f32 >(rOther.mWatchPos);
-    mUpVec.set< f32 >(rOther.mUpVec);
-    mPos.set< f32 >(rOther.mPos);
-    mFovy = rOther.mFovy;
-    mGlobalOffset.set< f32 >(rOther.mGlobalOffset);
-    mLocalOffset.set< f32 >(rOther.mLocalOffset);
-    mFrontOffset = rOther.mFrontOffset;
-    mUpperOffset = rOther.mUpperOffset;
-    mRoll = rOther.mRoll;
-}
-
-char* CameraParamChunkID_Tmp::getBuffer(u32 size) {
-    return &mBuffer[0];
-}
-
 bool CameraMan::isInterpolationOff() const {
     return false;
 }

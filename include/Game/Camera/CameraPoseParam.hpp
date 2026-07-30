@@ -7,7 +7,18 @@ class CameraPoseParam {
 public:
     CameraPoseParam();
 
-    void copyFrom(const CameraPoseParam&);
+    void copyFrom(const CameraPoseParam& rParam) {
+        mWatchUpVec.set(rParam.mWatchUpVec);
+        mWatchPos.set(rParam.mWatchPos);
+        mUpVec.set(rParam.mUpVec);
+        mPos.set(rParam.mPos);
+        mFovy = rParam.mFovy;
+        mGlobalOffset.set(rParam.mGlobalOffset);
+        mLocalOffset.set(rParam.mLocalOffset);
+        mFrontOffset = rParam.mFrontOffset;
+        mUpperOffset = rParam.mUpperOffset;
+        mRoll = rParam.mRoll;
+    }
 
     /* 0x00 */ TVec3f mWatchUpVec;
     /* 0x0C */ TVec3f mWatchPos;
