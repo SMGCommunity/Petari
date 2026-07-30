@@ -3,6 +3,13 @@
 #include "Game/MapObj/StarPiece.hpp"
 #include "Game/Util.hpp"
 
+void StarPieceMother_FORCE_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)10.0f;
+}
+
 namespace {
     // const f32 hMoveSpeed = _;
     const f32 hAddRandomVectorValue = 0.5f;
