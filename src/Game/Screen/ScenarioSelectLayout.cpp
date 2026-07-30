@@ -201,7 +201,7 @@ void ScenarioSelectLayout::appear() {
     MR::setPaneAnimFrameAndStop(this, "BestTime", 0.0f, 0);
 
     mScenarioSky->mTranslation = ::cSkyTrans;
-    mScenarioSky->mScale = scale;
+    mScenarioSky->mScale.set(scale, scale, scale);
     mScenarioSky->appear();
     MultiScene::startBtk(mScenarioSky, "ScenarioSelectSky");
     MR::hidePaneRecursive(this, "CometAppear");

@@ -76,11 +76,7 @@ void BasaBasa::init(const JMapInfoIter& rIter) {
     MR::declareStarPiece(this, 3);
     MR::declareCoin(this, 1);
     MR::onCalcGravity(this);
-    TVec3f offs;
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::initStarPointerTarget(this, 100.0f, offs);
+    MR::initStarPointerTarget(this, 100.0f, TVec3f(0.0f));
     mScaleController = new AnimScaleController(nullptr);
     mStampController = new AnimStampController();
     mSpinHitController = new SpinHitController(this, 20, 20, 5, 0.0f, 20.0f, 10.0f, 3, false);

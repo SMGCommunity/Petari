@@ -322,7 +322,6 @@ namespace JGeometry {
         TVec3(const TVec3< f32 >& vec);
 #endif
 
-        // Can't be NO_INLINE (gets inlined in DiskGravity::DiskGravity())
         template < typename T >
         TVec3(T _x, T _y, T _z) {
             x = _x;
@@ -336,8 +335,8 @@ namespace JGeometry {
             z = xz;
         }
 
-        TVec3(f32 val) NO_INLINE {
-            z = y = x = val;
+        TVec3(f32 val) {
+            set(val, val, val);
         }
 
         template < typename T >
