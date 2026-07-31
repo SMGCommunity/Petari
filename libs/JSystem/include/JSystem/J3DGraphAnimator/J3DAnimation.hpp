@@ -846,8 +846,14 @@ public:
     u8 getState() const {
         return mState;
     }
+    u8 andState(u8 state) const {
+        return mState & state;
+    }
     bool checkState(u8 state) const {
-        return mState & state ? true : false;
+        if (andState(state) == 0) {
+            return true;
+        }
+        return false;
     }
     s16 getStart() const {
         return mStart;

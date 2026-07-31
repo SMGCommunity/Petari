@@ -67,6 +67,9 @@ public:
     inline XanimeCore* getCore() {
         return mCore;
     }
+    inline f32 getRate() {
+        return _20->getRate();
+    }
 
     /* 0x00 */ J3DModel* mModel;
     /* 0x04 */ J3DModelData* mModelData;
