@@ -37,8 +37,6 @@ bool JKRDvdArchive::open(long arg) {
     JKRDvdFile* file = new (JKRHeap::getSystemHeap(), 0) JKRDvdFile(arg);
     mFile = file;
 
-    RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
-
     if (file == nullptr) {
         mMountMode = 0;
         return false;
@@ -56,7 +54,7 @@ bool JKRDvdArchive::open(long arg) {
         if (mMountDir == 1) {
             r28 = 0x20;
         }
-        RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(JKRHeap::alloc((u32)mLink.mPtrList, r28, mHeap));
+        RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(JKRHeap::alloc(reinterpret_cast< u32 >(mLink.mPtrList), r28, mHeap));
         mEntries = infoBlock;
         if (mEntries == nullptr) {
             mMountMode = 0;

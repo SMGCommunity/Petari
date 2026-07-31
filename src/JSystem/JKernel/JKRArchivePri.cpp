@@ -80,8 +80,7 @@ JKRArchive::~JKRArchive() {
 
 void JKRArchive::setExpandSize(SDIFileEntry* pFile, unsigned long size) {
     u32 fileIndex = static_cast< u32 >(pFile - mFiles);
-    RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
-    if (mExpandSizes == nullptr || fileIndex >= infoBlock->mNrFiles) {
+    if (mExpandSizes == nullptr || fileIndex >= mEntries->mNrFiles) {
         return;
     }
 
@@ -90,8 +89,7 @@ void JKRArchive::setExpandSize(SDIFileEntry* pFile, unsigned long size) {
 
 u32 JKRArchive::getExpandSize(SDIFileEntry* pFile) const {
     u32 fileIndex = static_cast< u32 >(pFile - mFiles);
-    RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
-    if (mExpandSizes == nullptr || fileIndex >= infoBlock->mNrFiles) {
+    if (mExpandSizes == nullptr || fileIndex >= mEntries->mNrFiles) {
         return 0;
     }
 
@@ -108,8 +106,7 @@ bool JKRArchive::isSameName(CArcName& rName, unsigned long nameOffset, unsigned 
 
 JKRArchive::SDIDirEntry* JKRArchive::findResType(unsigned long a1) const {
     SDIDirEntry* current = mDirs;
-    RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
-    for (u32 i = 0; i < infoBlock->mNrDirs; i++) {
+    for (u32 i = 0; i < mEntries->mNrDirs; i++) {
         if (current->mID == a1) {
             return current;
         }
@@ -206,8 +203,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* pName, unsigned
 }
 
 JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(unsigned long index) const {
-    RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
-    if (index < infoBlock->mNrFiles) {
+    if (index < mEntries->mNrFiles) {
         return &mFiles[index];
     }
 
@@ -219,8 +215,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* pName) const 
 
     CArcName name;
     name.store(pName);
-    RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
-    for (s32 i = 0; i < infoBlock->mNrFiles; i++) {
+    for (s32 i = 0; i < mEntries->mNrFiles; i++) {
         if (isSameName(name, current->mNameOffset, current->mHash)) {
             return current;
         }
@@ -233,8 +228,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* pName) const 
 
 JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void* pResource) const {
     SDIFileEntry* current = mFiles;
-    RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
-    for (s32 i = 0; i < infoBlock->mNrFiles; i++) {
+    for (s32 i = 0; i < mEntries->mNrFiles; i++) {
         if (current->mFileData == pResource) {
             return current;
         }
@@ -254,8 +248,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findIdResource(unsigned short fileID) cons
             return indexed;
         }
 
-        RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(&mEntries[0]);
-        for (s32 i = 0; i < infoBlock->mNrFiles; i++) {
+        for (s32 i = 0; i < mEntries->mNrFiles; i++) {
             if (current->mFileID == fileID && (current->mFlag & FILE_FLAG_FILE) != 0) {
                 return current;
             }
