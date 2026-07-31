@@ -89,7 +89,7 @@ bool JKRDvdArchive::open(s32 arg) {
                 }
             }
             // Optimized out
-            //_64 = alloc-> + alloc->;
+            //_64 = alloc->?? + alloc->??;
         }
     }
 
@@ -136,32 +136,31 @@ void* JKRDvdArchive::fetchResource(JKRArchive::SDIFileEntry* pArg1, u32* pSize) 
 }
 
 void* JKRDvdArchive::fetchResource(void* pArg1, u32 arg2, JKRArchive::SDIFileEntry* pEntry, u32* pSize) {
-    u32 res = pEntry->mDataSize;
+    u32 fetchedSize = pEntry->mDataSize;
     JKRCompression compression = JKRConvertAttrToCompressionType(pEntry->mFlag);
 
     if (pEntry->mFileData == nullptr) {
-        // swri instead of clrrwi
-        res = fetchResource_subroutine(mEntryNum, _64 + pEntry->mDataOffset, pEntry->mDataSize, static_cast< u8* >(pArg1), ALIGN_PREV(arg2, 32),
-                                       compression, _5C);
+        fetchedSize = fetchResource_subroutine(mEntryNum, _64 + pEntry->mDataOffset, pEntry->mDataSize, static_cast< u8* >(pArg1),
+                                               ALIGN_PREV(arg2, 32), compression, _5C);
 
     } else {
         if (compression == 2) {
             u32 size = getExpandSize(pEntry);
 
             if (size != 0) {
-                res = size;
+                fetchedSize = size;
             }
         }
 
-        if (res > arg2) {
-            res = arg2;
+        if (fetchedSize > arg2) {
+            fetchedSize = arg2;
         }
 
-        JKRHeap::copyMemory(pArg1, pEntry->mFileData, res);
+        JKRHeap::copyMemory(pArg1, pEntry->mFileData, fetchedSize);
     }
 
     if (pSize != nullptr) {
-        *pSize = res;
+        *pSize = fetchedSize;
     }
 
     return pArg1;
@@ -221,7 +220,9 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 arg1, u32 arg2, u32 arg3, u8* pA
             return r30;
         }
 
-        case 1: {
+        case 1:
+
+        case 2: {
             u8 buff[0x40];
             u8* alignedPointer = reinterpret_cast< u8* >((ALIGN_NEXT(reinterpret_cast< u32 >(buff), 32)));
 
@@ -281,7 +282,10 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 arg1, u32 arg2, u32 arg3, JKRHea
             *pArg7 = alloc;
             return r30;
         }
-        case 1: {
+
+        case 1:
+
+        case 2: {
             u8 buff[0x40];
             u8* alignedPointer = reinterpret_cast< u8* >((ALIGN_NEXT(reinterpret_cast< u32 >(buff), 32)));
 
@@ -297,6 +301,7 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 arg1, u32 arg2, u32 arg3, JKRHea
             *pArg7 = alloc;
             return r30;
         }
+
         default: {
             u8* alloc = static_cast< u8* >(pArg4->alloc(r30, 0x20, pArg4));
             JKRDvdRipper::loadToMainRAM(arg1, alloc, EXPAND_SWITCH_UNKNOWN1, arg3, nullptr, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, arg2, 0, 0);
@@ -308,12 +313,12 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 arg1, u32 arg2, u32 arg3, JKRHea
     }
     case 1: {
         const char* SZP_ERROR_TYPO = "Sorry, not applied SZP archive.\n";
-        JUTException::panic_f(__FILE__, 0x289, "%", SZP_ERROR_TYPO);
+        JUTException::panic_f(__FILE__, 0x2F2, "%", SZP_ERROR_TYPO);
     }
 
     case 2: {
         const char* SEQUENCE_ERROR = "??? bad sequence\n";
-        JUTException::panic_f(__FILE__, 0x289, "%", SEQUENCE_ERROR);
+        JUTException::panic_f(__FILE__, 0x2F6, "%", SEQUENCE_ERROR);
         return 0;
     }
     }
