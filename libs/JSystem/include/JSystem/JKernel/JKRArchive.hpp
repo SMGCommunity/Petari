@@ -34,59 +34,57 @@ public:
         FILE_FLAG_IS_YAZ0 = 1 << FILE_FLAG_IS_YAZ0_SHIFT
     };
 
-    struct ArchiveEntry {};
-
     struct RarcHeader {
-        u32 mMagic;           // 0x0
-        u32 mFileSize;        // 0x4
-        u32 mHeaderSize;      // 0x8
-        u32 mFileDataOffset;  // 0xC
-        u32 mTotalDataSize;   // 0x10
-        u32 mMRamDataSize;    // 0x14
-        u32 mARamDataSize;    // 0x18
+        /* 0x0 */ u32 mMagic;
+        /* 0x4 */ u32 mFileSize;
+        /* 0x8 */ u32 mHeaderSize;
+        /* 0xC */ u32 mFileDataOffset;
+        /* 0x10 */ u32 mTotalDataSize;
+        /* 0x14 */ u32 mMRamDataSize;
+        /* 0x18 */ u32 mARamDataSize;
         u32 _1C;
     };
 
     struct RarcInfoBlock {
-        u32 mNrDirs;               // 0x0
-        u32 mDirOffset;            // 0x4
-        u32 mNrFiles;              // 0x8
-        u32 mFileOffset;           // 0xC
-        u32 mStringTableSize;      // 0x10
-        u32 mStringTableOffset;    // 0x14
-        u16 mNextAvailableFileID;  // 0x18
-        u16 mFileIDIsIndex;        // 0x1A
-        u32 _1C;
+        /* 0x0 */ u32 mNrDirs;
+        /* 0x4 */ u32 mDirOffset;
+        /* 0x8 */ u32 mNrFiles;
+        /* 0xC */ u32 mFileOffset;
+        /* 0x10 */ u32 mStringTableSize;
+        /* 0x14 */ u32 mStringTableOffset;
+        /* 0x18 */ u16 mNextAvailableFileID;
+        /* 0x1A */ u16 mFileIDIsIndex;
+        /* 0x1C */ u32 _1C;
     };
 
     struct SDIFileEntry {
-        u16 mFileID;           // 0x0
-        u16 mHash;             // 0x2
-        u32 mFlag : 8;         // 0x4
-        u32 mNameOffset : 24;  // 0x5
+        /* 0x0 */ u16 mFileID;
+        /* 0x2 */ u16 mHash;
+        /* 0x4 */ u32 mFlag : 8;
+        /* 0x5 */ u32 mNameOffset : 24;
         union {
-            u32 mDataOffset;  // 0x8
-            u32 mDirIndex;    // 0x8
+            /* 0x8 */ u32 mDataOffset;
+            /* 0x8 */ u32 mDirIndex;
         };
         union {
-            u32 mDataSize;  // 0xC
+            /* 0xC */ u32 mDataSize;
         };
-        void* mFileData;  // 0x10
+        void* /* 0x10 */ mFileData;
     };
 
     struct SDIDirEntry {
-        u32 mID;              // 0x0
-        u32 mNameOffset;      // 0x4
-        u16 mHash;            // 0x8
-        u16 mNrFiles;         // 0xA
-        u32 mFirstFileIndex;  // 0xC
+        /* 0x0 */ u32 mID;
+        /* 0x4 */ u32 mNameOffset;
+        /* 0x8 */ u16 mHash;
+        /* 0xA */ u16 mNrFiles;
+        /* 0xC */ u32 mFirstFileIndex;
     };
 
     struct SDirEntry {
-        u8 mFileFlag;  // 0x0
+        /* 0x0 */ u8 mFileFlag;
         u8 _1;
-        u16 mFileID;  // 0x2
-        char* mName;  // 0x4
+        /* 0x2 */ u16 mFileID;
+        /* 0x4 */ char* mName;
     };
 
     class CArcName {
@@ -97,9 +95,9 @@ public:
         const char* store(const char*);
         const char* store(const char*, char);
 
-        u16 mHash;                        // 0x0
-        u16 mLength;                      // 0x2
-        char mName[MAX_NAME_LENGTH + 1];  // 0x4
+        /* 0x0 */ u16 mHash;
+        /* 0x2 */ u16 mLength;
+        /* 0x4 */ char mName[MAX_NAME_LENGTH + 1];
     };
 
     JKRArchive();
@@ -145,16 +143,16 @@ public:
 
     static u32 sCurrentDirIndex;  // 0x806B7148
 
-    JKRHeap* mHeap;  // 0x38
-    u8 mMountMode;   // 0x3C
+    /* 0x38 */ JKRHeap* mHeap;
+    /* 0x3C */ u8 mMountMode;
     u8 _3D[3];
-    s32 mEntryNum;              // 0x40
-    RarcInfoBlock* mInfoBlock;  // 0x44
-    SDIDirEntry* mDirs;         // 0x48
-    SDIFileEntry* mFiles;       // 0x4C
-    u32* mExpandSizes;          // 0x50
-    char* mStringTable;         // 0x54
+    /* 0x40 */ s32 mEntryNum;
+    /* 0x44 */ RarcInfoBlock* mInfoBlock;
+    /* 0x48 */ SDIDirEntry* mDirs;
+    /* 0x4C */ SDIFileEntry* mFiles;
+    /* 0x50 */ u32* mExpandSizes;
+    /* 0x54 */ char* mStringTable;
     u32 _58;
     int _5C;
-    EMountDirection mMountDir;  // 0x60
+    /* 0x60 */ EMountDirection mMountDir;
 };
