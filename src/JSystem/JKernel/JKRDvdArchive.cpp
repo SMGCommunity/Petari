@@ -63,20 +63,19 @@ bool JKRDvdArchive::open(long arg) {
                                         0x20, nullptr, nullptr);
             DCInvalidateRange(mEntries, infoBlock->mFileOffset);
 
-            mDirs = reinterpret_cast< SDIDirEntry* >(&mEntries[infoBlock->mDirOffset]);
-            mFiles = reinterpret_cast< SDIFileEntry* >(&mEntries[infoBlock->mFileOffset]);
-            mStringTable = reinterpret_cast< char* >(&mEntries[infoBlock->mStringTableOffset]);
+            mDirs = reinterpret_cast< SDIDirEntry* >(&reinterpret_cast< u8* >(mEntries)[infoBlock->mDirOffset]);
+            mFiles = reinterpret_cast< SDIFileEntry* >(&reinterpret_cast< u8* >(mEntries)[infoBlock->mFileOffset]);
+            mStringTable = reinterpret_cast< char* >(&reinterpret_cast< u8* >(mEntries)[infoBlock->mStringTableOffset]);
             mExpandSizes = 0;
 
             u32 loopValue = 0;
-            // mInfoBlock[infoBlock->mStringTableOffset]
-            for (int i = 0; i < infoBlock->mStringTableOffset; i++) {
+            // Gets optimized for now, as mFlag is always 8. Very probably wrong code, but the optimization makes it very hard to test.
+            /* for (int i = 0; i < infoBlock->mStringTableOffset; i++) {
                 SDIFileEntry* entry = reinterpret_cast< SDIFileEntry* >(&mEntries[i]);
-                // Gets optimized for now, as mFlag is always 8
                 if (((entry->mFlag >> 24) & 1) != 0) {
                     loopValue |= ((entry->mFlag >> 24) & 4);
                 }
-            }
+            } */
 
             if (loopValue != 0 || true) {
                 u32* expandSizes = static_cast< u32* >(JKRHeap::alloc(arg * 4, abs(r28), mHeap));
@@ -117,7 +116,7 @@ void* JKRDvdArchive::fetchResource(JKRArchive::SDIFileEntry* pArg1, u32* pSize) 
     if (pArg1->mFileData == nullptr) {
         u8* out;
         u32 size = fetchResource_subroutine(mEntryNum, _64 + pArg1->mDataOffset, pArg1->mDataSize, mHeap, compression, _5C, &out);
-        *pSize = (u32)size;
+        *pSize = size;
         if (size == 0) {
             return nullptr;
         }
@@ -261,7 +260,8 @@ u32 JKRDvdArchive::fetchResource_subroutine(long arg1, unsigned long arg2, unsig
     }
 
     case 2: {
-        JUTException::panic_f(__FILE__, 0x289, "%", "??? bad sequence\n");
+        const char* SEQUENCE_ERROR = "??? bad sequence\n";
+        JUTException::panic_f(__FILE__, 0x289, "%", SEQUENCE_ERROR);
         return 0;
     }
     }
@@ -309,11 +309,13 @@ u32 JKRDvdArchive::fetchResource_subroutine(long arg1, unsigned long arg2, unsig
         }
     }
     case 1: {
-        JUTException::panic_f(__FILE__, 0x289, "%", "Sorry, not applied SZP archive.\n");
+        const char* SZP_ERROR_TYPO = "Sorry, not applied SZP archive.\n";
+        JUTException::panic_f(__FILE__, 0x289, "%", SZP_ERROR_TYPO);
     }
 
     case 2: {
-        JUTException::panic_f(__FILE__, 0x289, "%", "??? bad sequence\n");
+        const char* SEQUENCE_ERROR = "??? bad sequence\n";
+        JUTException::panic_f(__FILE__, 0x289, "%", SEQUENCE_ERROR);
         return 0;
     }
     }
