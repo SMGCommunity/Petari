@@ -56,7 +56,7 @@ JKRArchive::JKRArchive() {
     mMountDir = MOUNT_DIRECTION_1;
 }
 
-JKRArchive::JKRArchive(long entryNum, EMountMode mountMode) {
+JKRArchive::JKRArchive(s32 entryNum, EMountMode mountMode) {
     mIsMounted = false;
     mMountMode = mountMode;
     _34 = 1;
@@ -78,7 +78,7 @@ JKRArchive::JKRArchive(long entryNum, EMountMode mountMode) {
 JKRArchive::~JKRArchive() {
 }
 
-void JKRArchive::setExpandSize(SDIFileEntry* pFile, unsigned long size) {
+void JKRArchive::setExpandSize(SDIFileEntry* pFile, u32 size) {
     u32 fileIndex = static_cast< u32 >(pFile - mFiles);
     if (mExpandSizes == nullptr || fileIndex >= mEntries->mNrFiles) {
         return;
@@ -96,7 +96,7 @@ u32 JKRArchive::getExpandSize(SDIFileEntry* pFile) const {
     return mExpandSizes[fileIndex];
 }
 
-bool JKRArchive::isSameName(CArcName& rName, unsigned long nameOffset, unsigned short hash) const {
+bool JKRArchive::isSameName(CArcName& rName, u32 nameOffset, u16 hash) const {
     if (rName.mHash != hash) {
         return false;
     }
@@ -104,7 +104,7 @@ bool JKRArchive::isSameName(CArcName& rName, unsigned long nameOffset, unsigned 
     return strcmp(mStringTable + nameOffset, rName.mName) == 0;
 }
 
-JKRArchive::SDIDirEntry* JKRArchive::findResType(unsigned long a1) const {
+JKRArchive::SDIDirEntry* JKRArchive::findResType(u32 a1) const {
     SDIDirEntry* current = mDirs;
     for (u32 i = 0; i < mEntries->mNrDirs; i++) {
         if (current->mID == a1) {
@@ -118,7 +118,7 @@ JKRArchive::SDIDirEntry* JKRArchive::findResType(unsigned long a1) const {
 }
 
 // Register mismatch
-JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* pName, unsigned long dirIndex) const {
+JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* pName, u32 dirIndex) const {
     SDIDirEntry* dir;
     SDIFileEntry* currentFile;
     s32 i;
@@ -148,7 +148,7 @@ JKRArchive::SDIDirEntry* JKRArchive::findDirectory(const char* pName, unsigned l
     return nullptr;
 }
 
-JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(unsigned long a1, const char* pName) const {
+JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 a1, const char* pName) const {
     if (a1 != 0) {
         CArcName name;
         name.store(pName);
@@ -172,7 +172,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(unsigned long a1, const c
 }
 
 // Register mismatch
-JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* pName, unsigned long dirIndex) const {
+JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* pName, u32 dirIndex) const {
     if (pName != nullptr) {
         SDIDirEntry* dir;
         SDIFileEntry* currentFile;
@@ -202,7 +202,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* pName, unsigned
     return nullptr;
 }
 
-JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(unsigned long index) const {
+JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(u32 index) const {
     if (index < mEntries->mNrFiles) {
         return &mFiles[index];
     }
@@ -239,7 +239,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void* pResource) con
     return nullptr;
 }
 
-JKRArchive::SDIFileEntry* JKRArchive::findIdResource(unsigned short fileID) const {
+JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16 fileID) const {
     if (fileID != 0xFFFF) {
         SDIFileEntry* current = mFiles;
         SDIFileEntry* indexed = &mFiles[fileID];

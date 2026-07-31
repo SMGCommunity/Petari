@@ -12,7 +12,7 @@
 #include <cstring>
 #include <mem.h>
 
-JKRDvdArchive::JKRDvdArchive(long entryNum, EMountDirection mountDir) : JKRArchive(entryNum, MOUNT_MODE_DVD) {
+JKRDvdArchive::JKRDvdArchive(s32 entryNum, EMountDirection mountDir) : JKRArchive(entryNum, MOUNT_MODE_DVD) {
     mMountDir = mountDir;
 
     if (!open(entryNum)) {
@@ -27,7 +27,7 @@ JKRDvdArchive::JKRDvdArchive(long entryNum, EMountDirection mountDir) : JKRArchi
     mIsMounted = true;
 }
 
-bool JKRDvdArchive::open(long arg) {
+bool JKRDvdArchive::open(s32 arg) {
     mEntries = nullptr;
     _64 = 0;
     mDirs = nullptr;
@@ -188,7 +188,7 @@ s32 JKRDvdArchive::getExpandedResSize(const void* pArg) const {
     }
 
     u8 buff[0x20];
-    u8* alignedPointer = reinterpret_cast< u8* >((ALIGN_NEXT(reinterpret_cast< int >(buff), 32)));
+    u8* alignedPointer = reinterpret_cast< u8* >((ALIGN_NEXT(reinterpret_cast< u32 >(buff), 32)));
 
     JKRDvdRipper::loadToMainRAM(mEntryNum, alignedPointer, EXPAND_SWITCH_UNKNOWN2, 0x20, nullptr, JKRDvdRipper::ALLOC_DIRECTION_FORWARD,
                                 _64 + fileEntry->mDataOffset, 0, 0);
@@ -202,8 +202,7 @@ s32 JKRDvdArchive::getExpandedResSize(const void* pArg) const {
     return size2;
 }
 
-u32 JKRDvdArchive::fetchResource_subroutine(long arg1, unsigned long arg2, unsigned long arg3, unsigned char* pArg4, unsigned long arg5, int arg6,
-                                            int arg7) {
+u32 JKRDvdArchive::fetchResource_subroutine(s32 arg1, u32 arg2, u32 arg3, u8* pArg4, u32 arg5, int arg6, int arg7) {
     u32 r30 = ALIGN_NEXT(arg3, 32);
     u32 r29 = ALIGN_PREV(arg5, 32);
 
@@ -224,7 +223,7 @@ u32 JKRDvdArchive::fetchResource_subroutine(long arg1, unsigned long arg2, unsig
 
         case 1: {
             u8 buff[0x40];
-            u8* alignedPointer = reinterpret_cast< u8* >((ALIGN_NEXT(reinterpret_cast< int >(buff), 32)));
+            u8* alignedPointer = reinterpret_cast< u8* >((ALIGN_NEXT(reinterpret_cast< u32 >(buff), 32)));
 
             JKRDvdRipper::loadToMainRAM(arg1, alignedPointer, EXPAND_SWITCH_UNKNOWN2, 0x20, nullptr, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, arg2,
                                         nullptr, nullptr);
@@ -267,8 +266,7 @@ u32 JKRDvdArchive::fetchResource_subroutine(long arg1, unsigned long arg2, unsig
     }
 }
 
-u32 JKRDvdArchive::fetchResource_subroutine(long arg1, unsigned long arg2, unsigned long arg3, JKRHeap* pArg4, int arg5, int arg6,
-                                            unsigned char** pArg7) {
+u32 JKRDvdArchive::fetchResource_subroutine(s32 arg1, u32 arg2, u32 arg3, JKRHeap* pArg4, int arg5, int arg6, u8** pArg7) {
     u32 r30 = ALIGN_NEXT(arg3, 32);
 
     switch (arg6) {
