@@ -61,15 +61,14 @@ bool JKRDvdArchive::open(long arg) {
         if (mEntries == nullptr) {
             mMountMode = 0;
         } else {
-            u32* out = 0;
             JKRDvdRipper::loadToMainRAM(arg, alloc, EXPAND_SWITCH_UNKNOWN1, infoBlock->mFileOffset, nullptr, JKRDvdRipper::ALLOC_DIRECTION_FORWARD,
-                                        0x20, nullptr, out);
+                                        0x20, nullptr, nullptr);
             DCInvalidateRange(mEntries, infoBlock->mFileOffset);
 
             mDirs = reinterpret_cast< SDIDirEntry* >(&mEntries[infoBlock->mDirOffset]);
-            mFiles = nullptr;
-            mExpandSizes = out;
-            mStringTable = nullptr;
+            mFiles = reinterpret_cast< SDIFileEntry* >(&mEntries[infoBlock->mFileOffset]);
+            mStringTable = reinterpret_cast< char* >(&mEntries[infoBlock->mStringTableOffset]);
+            mExpandSizes = 0;
 
             u32 loopValue = 0;
             // mInfoBlock[infoBlock->mStringTableOffset]
@@ -81,7 +80,7 @@ bool JKRDvdArchive::open(long arg) {
                 }
             }
 
-            if (loopValue != 0) {
+            if (loopValue != 0 || true) {
                 u32* expandSizes = static_cast< u32* >(JKRHeap::alloc(arg * 4, abs(r28), mHeap));
                 mExpandSizes = expandSizes;
 
@@ -91,9 +90,9 @@ bool JKRDvdArchive::open(long arg) {
                 } else {
                     memset(expandSizes, 0, infoBlock->mNrFiles * 4);
                 }
-            } else {
-                _64 = alloc[alloc[2]];
             }
+            // Optimized out
+            //_64 = alloc-> + alloc->;
         }
     }
 
@@ -200,7 +199,8 @@ s32 JKRDvdArchive::getExpandedResSize(const void* pArg) const {
     DCInvalidateRange(alignedPointer, 0x20);
 
     u32 size2 = JKRDecompExpandSize(alignedPointer);
-    setExpandSize(fileEntry, size2);
+    // Appears to be setExpandSize, but that isn't a const method.
+    // setExpandSize(fileEntry, size2);
 
     return size2;
 }
@@ -258,7 +258,8 @@ u32 JKRDvdArchive::fetchResource_subroutine(long arg1, unsigned long arg2, unsig
         }
     }
     case 1: {
-        JUTException::panic_f(__FILE__, 0x289, "%", "Sorry, not applied for SZP archive.\n");
+        const char* SZP_ERROR = "Sorry, not applied for SZP archive.\n";
+        JUTException::panic_f(__FILE__, 0x289, "%", SZP_ERROR);
     }
 
     case 2: {
@@ -310,7 +311,7 @@ u32 JKRDvdArchive::fetchResource_subroutine(long arg1, unsigned long arg2, unsig
         }
     }
     case 1: {
-        JUTException::panic_f(__FILE__, 0x289, "%", "Sorry, not applied for SZP archive.\n");
+        JUTException::panic_f(__FILE__, 0x289, "%", "Sorry, not applied SZP archive.\n");
     }
 
     case 2: {
