@@ -25,7 +25,7 @@ namespace {
 namespace MR {
 
     void FORCE_MATCH_FUNCTION_ORDER1() {
-        //needed to get function to show up in this file
+        // needed to get function to show up in this file
         J3DTevBlock* block;
         block->getTevKColor(1);
     }
@@ -433,7 +433,7 @@ namespace MR {
     }
 
     void FORCE_FUNCTION_ORDER2() {
-        //needed to get ::isUseLight ChanNo to show up in the correct place in the function order
+        // needed to get ::isUseLight ChanNo to show up in the correct place in the function order
         J3DMaterial* mat;
         ::isUseLightChanNo(mat, 1, 1);
     }
@@ -580,7 +580,6 @@ namespace MR {
         snprintf(buff, sizeof(buff), "%s%s", pModelName, pSubModelName);
         return isExistModel(buff);
     }
-    
 
     J3DModel* newJ3DModel(const ResourceHolder* pResourceHolder, const char* pChar, J3DMdlFlag mdlFlag) {
         J3DModelData* modelData = static_cast< J3DModelData* >(pResourceHolder->mModelResTable->getRes(pChar));
