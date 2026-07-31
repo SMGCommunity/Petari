@@ -31,8 +31,8 @@ public:
     void initState();
     void initKeySwitch(const JMapInfoIter&);
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
-    void requestStagger(HitSensor*, HitSensor*);
-    void requestBlowDown(HitSensor*, HitSensor*);
+    bool requestStagger(HitSensor*, HitSensor*);
+    bool requestBlowDown(HitSensor*, HitSensor*);
     bool tryFind();
     bool tryPointBind();
     void exeWander();
@@ -40,12 +40,14 @@ public:
     void exeChase();
     void exeStagger();
     void exeTrample();
+    void exeBindStarPointer();
+    void endBindStarPointer();
     void exeAttackSuccess();
     void exeBlowDown();
     void exeBlowDownLand();
-    bool isEnableAttack();
-    bool isEnableKick();
-    bool isDown();
+    bool isEnableAttack() const;
+    bool isEnableKick() const;
+    bool isDown() const;
 
     /* 0x8C */ AnimScaleController* mScaleController;
     /* 0x90 */ WalkerStateWander* mStateWander;
@@ -53,7 +55,7 @@ public:
     /* 0x98 */ WalkerStateChase* mStateChase;
     /* 0x9C */ WalkerStateStagger* mStateStagger;
     /* 0xA0 */ WalkerStateBindStarPointer* mStateBindStarPointer;
-    /* 0xA4 */ ItemGenerator* mItemGenerator;    
+    /* 0xA4 */ ItemGenerator* mItemGenerator;
     /* 0xA8 */ KeySwitch* mKeySwitch;
     /* 0xAC */ TQuat4f _AC;
     /* 0xBC */ TVec3f _BC;
