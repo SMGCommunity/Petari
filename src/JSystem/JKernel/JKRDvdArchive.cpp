@@ -28,7 +28,7 @@ JKRDvdArchive::JKRDvdArchive(s32 entryNum, EMountDirection mountDir) : JKRArchiv
 }
 
 bool JKRDvdArchive::open(s32 arg) {
-    mEntries = nullptr;
+    mInfoBlock = nullptr;
     _64 = 0;
     mDirs = nullptr;
     mFiles = nullptr;
@@ -55,17 +55,17 @@ bool JKRDvdArchive::open(s32 arg) {
             r28 = 0x20;
         }
         RarcInfoBlock* infoBlock = static_cast< RarcInfoBlock* >(JKRHeap::alloc(reinterpret_cast< u32 >(mLink.mPtrList), r28, mHeap));
-        mEntries = infoBlock;
-        if (mEntries == nullptr) {
+        mInfoBlock = infoBlock;
+        if (mInfoBlock == nullptr) {
             mMountMode = 0;
         } else {
             JKRDvdRipper::loadToMainRAM(arg, alloc, EXPAND_SWITCH_UNKNOWN1, infoBlock->mFileOffset, nullptr, JKRDvdRipper::ALLOC_DIRECTION_FORWARD,
                                         0x20, nullptr, nullptr);
-            DCInvalidateRange(mEntries, infoBlock->mFileOffset);
+            DCInvalidateRange(mInfoBlock, infoBlock->mFileOffset);
 
-            mDirs = reinterpret_cast< SDIDirEntry* >(&reinterpret_cast< u8* >(mEntries)[infoBlock->mDirOffset]);
-            mFiles = reinterpret_cast< SDIFileEntry* >(&reinterpret_cast< u8* >(mEntries)[infoBlock->mFileOffset]);
-            mStringTable = reinterpret_cast< char* >(&reinterpret_cast< u8* >(mEntries)[infoBlock->mStringTableOffset]);
+            mDirs = reinterpret_cast< SDIDirEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[infoBlock->mDirOffset]);
+            mFiles = reinterpret_cast< SDIFileEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[infoBlock->mFileOffset]);
+            mStringTable = reinterpret_cast< char* >(&reinterpret_cast< u8* >(mInfoBlock)[infoBlock->mStringTableOffset]);
             mExpandSizes = 0;
 
             u32 loopValue = 0;
@@ -82,7 +82,7 @@ bool JKRDvdArchive::open(s32 arg) {
                 mExpandSizes = expandSizes;
 
                 if (expandSizes == nullptr) {
-                    JKRHeap::getSystemHeap()->free(mEntries);
+                    JKRHeap::getSystemHeap()->free(mInfoBlock);
                     mMountMode = 0;
                 } else {
                     memset(expandSizes, 0, infoBlock->mNrFiles * 4);

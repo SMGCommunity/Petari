@@ -80,7 +80,7 @@ JKRArchive::~JKRArchive() {
 
 void JKRArchive::setExpandSize(SDIFileEntry* pFile, u32 size) {
     u32 fileIndex = static_cast< u32 >(pFile - mFiles);
-    if (mExpandSizes == nullptr || fileIndex >= mEntries->mNrFiles) {
+    if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
         return;
     }
 
@@ -89,7 +89,7 @@ void JKRArchive::setExpandSize(SDIFileEntry* pFile, u32 size) {
 
 u32 JKRArchive::getExpandSize(SDIFileEntry* pFile) const {
     u32 fileIndex = static_cast< u32 >(pFile - mFiles);
-    if (mExpandSizes == nullptr || fileIndex >= mEntries->mNrFiles) {
+    if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
         return 0;
     }
 
@@ -106,7 +106,7 @@ bool JKRArchive::isSameName(CArcName& rName, u32 nameOffset, u16 hash) const {
 
 JKRArchive::SDIDirEntry* JKRArchive::findResType(u32 a1) const {
     SDIDirEntry* current = mDirs;
-    for (u32 i = 0; i < mEntries->mNrDirs; i++) {
+    for (u32 i = 0; i < mInfoBlock->mNrDirs; i++) {
         if (current->mID == a1) {
             return current;
         }
@@ -203,7 +203,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* pName, u32 dirI
 }
 
 JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(u32 index) const {
-    if (index < mEntries->mNrFiles) {
+    if (index < mInfoBlock->mNrFiles) {
         return &mFiles[index];
     }
 
@@ -215,7 +215,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* pName) const 
 
     CArcName name;
     name.store(pName);
-    for (s32 i = 0; i < mEntries->mNrFiles; i++) {
+    for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
         if (isSameName(name, current->mNameOffset, current->mHash)) {
             return current;
         }
@@ -228,7 +228,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char* pName) const 
 
 JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void* pResource) const {
     SDIFileEntry* current = mFiles;
-    for (s32 i = 0; i < mEntries->mNrFiles; i++) {
+    for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
         if (current->mFileData == pResource) {
             return current;
         }
@@ -248,7 +248,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16 fileID) const {
             return indexed;
         }
 
-        for (s32 i = 0; i < mEntries->mNrFiles; i++) {
+        for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
             if (current->mFileID == fileID && (current->mFlag & FILE_FLAG_FILE) != 0) {
                 return current;
             }

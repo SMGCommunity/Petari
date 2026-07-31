@@ -17,9 +17,9 @@ JKRCompArchive::JKRCompArchive(s32 entryNum, JKRArchive::EMountDirection eMountD
 }
 
 JKRCompArchive::~JKRCompArchive() {
-    if (mEntries != NULL) {
+    if (mInfoBlock != NULL) {
         SDIFileEntry* file = mFiles;
-        for (int i = 0; i < mEntries->mNrFiles; i++) {
+        for (int i = 0; i < mInfoBlock->mNrFiles; i++) {
             if (!((file->mNameOffset)) && file->mFileData != NULL) {
                 JKRFreeToHeap(mHeap, file->mFileData);
             }
@@ -27,8 +27,8 @@ JKRCompArchive::~JKRCompArchive() {
             file++;
         }
 
-        JKRFreeToHeap(mHeap, mEntries);
-        mEntries = NULL;
+        JKRFreeToHeap(mHeap, mInfoBlock);
+        mInfoBlock = NULL;
     }
 
     if (mAramPart != NULL) {

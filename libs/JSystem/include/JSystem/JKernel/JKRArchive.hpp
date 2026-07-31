@@ -148,12 +148,12 @@ public:
     JKRHeap* mHeap;  // 0x38
     u8 mMountMode;   // 0x3C
     u8 _3D[3];
-    s32 mEntryNum;            // 0x40
-    RarcInfoBlock* mEntries;  // 0x44
-    SDIDirEntry* mDirs;       // 0x48
-    SDIFileEntry* mFiles;     // 0x4C
-    u32* mExpandSizes;        // 0x50
-    char* mStringTable;       // 0x54
+    s32 mEntryNum;              // 0x40
+    RarcInfoBlock* mInfoBlock;  // 0x44
+    SDIDirEntry* mDirs;         // 0x48
+    SDIFileEntry* mFiles;       // 0x4C
+    u32* mExpandSizes;          // 0x50
+    char* mStringTable;         // 0x54
     u32 _58;
     int _5C;
     EMountDirection mMountDir;  // 0x60
