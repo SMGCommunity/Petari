@@ -15,9 +15,11 @@
 #include "revolution/types.h"
 
 namespace {
-    Vec cDefaultUp;
-    Vec cZoomInPos;
-    Vec cZoomOutPos;
+    const Vec cDefaultUp = {0.0f, 1.0f, 0.0f};
+    const Vec cZoomInPos = {0.0f, 3000.0f, -8500.0f};
+    const f32 cFovy = 60.0f;
+    const f32 cZoomOutPosZ = -22000.0f;
+    const f32 cZoomInTargetOffsetY = 200.0f;
 };  // namespace
 
 namespace NrvAstroDomeCameraController {
@@ -28,7 +30,7 @@ namespace NrvAstroDomeCameraController {
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirmCancel, AstroDomeCameraController, GalaxyConfirmCancel);
 };  // namespace NrvAstroDomeCameraController
 
-AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), _8C(gZeroVec), _104(0.0f), _108(gZeroVec) {
+AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), _8C(gZeroVec), _104(), _108(gZeroVec) {
 }
 
 void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
@@ -62,7 +64,7 @@ void AstroDomeCameraController::control() {
     _BC._18.lerp(_BC._0, _BC._C, _104);
     _E0._18.lerp(_E0._0, _E0._C, _104);
     MR::setProgrammableCameraParam(this, _BC._18, _98._18, _E0._18);
-    MR::setProgrammableCameraParamFovy(this, 60.0f);
+    MR::setProgrammableCameraParamFovy(this, ::cFovy);
 }
 
 bool AstroDomeCameraController::receiveOtherMsg(u32 v1, HitSensor* pSender, HitSensor* pReceiver) {
@@ -81,7 +83,7 @@ bool AstroDomeCameraController::receiveOtherMsg(u32 v1, HitSensor* pSender, HitS
 }
 
 void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
-    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, -22000.0f), -_8C, TVec3f(0.0f, 1.0f, 0.0f));
+    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, ::cZoomOutPosZ), -_8C, TVec3f(0.0f, 1.0f, 0.0f));
 }
 
 void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) const {
@@ -94,7 +96,7 @@ void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) cons
 
 void AstroDomeCameraController::calcZoomInTarget(TVec3f* vec1, const TVec3f& vec2) const {
     TVec3f offset;
-    offset.scale(200.0f, vec2);
+    offset.scale(::cZoomInTargetOffsetY, vec2);
     vec1->add(SphereSelectorFunction::getSelectedActorTrans(), offset);
 }
 
@@ -117,7 +119,7 @@ void AstroDomeCameraController::exeGalaxySelectStart() {
         _BC._0.set< f32 >(_BC._18);
         _BC._C.set< f32 >(_108);
     }
-    _104 = MR::getEaseInOutValue(MR::calcNerveRate(this, STF), 0.0, 1.0, 1.0);
+    _104 = MR::getEaseInOutValue(MR::calcNerveRate(this, STF), 0.0f, 1.0f, 1.0f);
     MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, STF);
 }
 
@@ -182,18 +184,4 @@ void AstroDomeCameraController::exeGalaxyConfirmCancel() {
     }
     _104 = MR::calcNerveEaseInRate(this, frame);
     MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, frame);
-}
-
-AstroDomeCameraController::~AstroDomeCameraController(){};
-
-AstroDomeCameraController::Position::Position() {
-    _0.zero();
-    _C.zero();
-    _18.zero();
-}
-
-void AstroDomeCameraController::Position::reset(const TVec3f& vec) {
-    _0.set(vec);
-    _C.set(vec);
-    _18.set(vec);
 }

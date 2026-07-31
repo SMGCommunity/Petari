@@ -7,6 +7,7 @@
 #include "Game/Util.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
@@ -149,14 +150,13 @@ void DummyDisplayModel::calcAndSetBaseMtx() {
     TPos3f* m = (TPos3f*)getBaseMtx();
 
     TVec3f v19 = mModelInfo->_4;
-    // JMathInlineVEC::PSVECNegate(mModelInfo->_4, &v19);
     PSMTXMultVec((MtxPtr)m, -v19, &mPosition);
     m->setTrans(mPosition);
 
     switch (mItemType) {
     case ITEM_TYPE_COIN:
         if (!_AC) {
-            PSMTXConcat((MtxPtr)m, MR::getCoinRotateYMatrix(), (MtxPtr)m);
+            MR::multMtx(*m, MR::getCoinRotateYMatrix(), *m);
         }
 
         break;
@@ -165,7 +165,7 @@ void DummyDisplayModel::calcAndSetBaseMtx() {
         if (!_AC) {
             TPos3f rot;
             rot.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), MR::toRadian(mRotation.y));
-            PSMTXConcat((MtxPtr)m, rot, (MtxPtr)m);
+            MR::multMtx(*m, rot, *m);
         }
 
         break;

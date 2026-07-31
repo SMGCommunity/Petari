@@ -88,7 +88,7 @@ void PoltaArm::exeDamage() {
         f32 bvaFrame = (1.0f - ratio) * 2.0f;
         MR::setBvaFrameAndStop(this, bvaFrame);
         MR::startSound(this, "SE_BM_POLTA_ROCK_DAMAGE");
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(5);
         appearBreakModel();
@@ -104,7 +104,7 @@ void PoltaArm::exeBreak() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Break");
         MR::startSound(this, "SE_BM_POLTA_ROCK_BREAK");
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(5);
         appearBreakModel();

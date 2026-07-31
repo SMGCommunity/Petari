@@ -168,12 +168,12 @@ namespace MR {
     void makeAxisVerticalZX(TVec3f* pParam1, const TVec3f& rParam2) {
         TVec3f z(0.0f, 0.0f, 1.0f);
 
-        pParam1->rejection(z, rParam2);
+        pParam1->killElement(z, rParam2);
 
         if (isNearZero(*pParam1)) {
             TVec3f x(1.0f, 0.0f, 0.0f);
 
-            pParam1->rejection(x, rParam2);
+            pParam1->killElement(x, rParam2);
         }
 
         normalize(pParam1);
@@ -862,7 +862,7 @@ namespace MR {
             return false;
         }
 
-        v4.rejection(rParam1, rParam3);
+        v4.killElement(rParam1, rParam3);
         normalizeOrZero(&v4);
 
         f32 cos = JMACosRadian(param4);

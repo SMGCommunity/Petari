@@ -4,6 +4,7 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SchedulerUtil.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
@@ -63,8 +64,7 @@ void OceanRingPipeOutside::draw() const {
 }
 
 const GXColor sFogCol = {0xFF, 0xFF, 0xFF, 0xFF};
-const Mtx sMtx = {0.5f, 0.0f, 0.0f, 0.5f, 0.0f, -0.5f,
-                  0.0f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f};  // this is being put into .rodata and not .data as intended
+
 void OceanRingPipeOutside::loadMaterial() const {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_NRM_XYZ, GX_S16, 0x10);
@@ -85,7 +85,7 @@ void OceanRingPipeOutside::loadMaterial() const {
     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x1E, 0, 0x7D);
     GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX2x4, GX_TG_NRM, 0x21, 0, 0x7D);
 
-    TMtx34f mtx;
+    TPos3f mtx;
     mtx.identity();
     mtx.mMtx[0][2] = mTexU;
     mtx.mMtx[1][2] = 0.0f;
@@ -93,18 +93,18 @@ void OceanRingPipeOutside::loadMaterial() const {
 
     TPos3f mtx2;
     mtx2.identity();
-    mtx2.setInline(MR::getCameraViewMtx());
-    // this should be mtx2.zeroTrans(), but its refusing to inline
-    mtx2[0][3] = 0.0f;
-    mtx2[1][3] = 0.0f;
-    mtx2[2][3] = 0.0f;
-    TMtx34f mtx3;
-    mtx3.identity();
-    TMtx34f* ptrmtx = &mtx2;
-    mtx3.scale(::sEnvMapScale);
-    PSMTXConcat(*ptrmtx, mtx3, *ptrmtx);
-    PSMTXConcat(*ptrmtx, sMtx, mtx2);
-    GXLoadTexMtxImm(ptrmtx->toMtxPtr(), 0x21, GX_MTX2x4);
+    mtx2.set(MR::getCameraViewMtx());
+    mtx2.zeroTrans();
+
+    TPos3f scaleMtx;
+    scaleMtx.identity();
+    scaleMtx.scale(::sEnvMapScale);
+
+    static Mtx qMtx2 = {0.5f, 0.0f, 0.0f, 0.5f, 0.0f, -0.5f, 0.0f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f};
+
+    MR::multMtx(mtx2, scaleMtx, mtx2);
+    MR::multMtx(mtx2, qMtx2, mtx2);
+    GXLoadTexMtxImm(mtx2, 0x21, GX_MTX2x4);
 
     mWaterPipeIndirectTex->load(GX_TEXMAP0);
     mWaterPipeHighLightTex->load(GX_TEXMAP1);

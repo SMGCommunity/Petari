@@ -17,11 +17,14 @@ public:
 
 class TriangleFilterFunc : public TriangleFilterBase {
 public:
-    /*TriangleFilterFunc(TriangleFunc func) : TriangleFilterBase(func) {
+    TriangleFilterFunc(TriangleFunc func) : mFunction(func) {
+    }
 
-    }*/
+    virtual bool isInvalidTriangle(const Triangle* pTriangle) const {
+        return mFunction(pTriangle);
+    }
 
-    virtual bool isInvalidTriangle(const Triangle*) const;
+    /* 0x04 */ TriangleFunc mFunction;
 };
 
 namespace MR {

@@ -20,7 +20,7 @@ void TransparentWall::init(const JMapInfoIter& rrIter) {
     _C0 = false;
     MR::invalidateCollisionParts(this);
     HitSensor* sensor = getSensor("body");
-    sensor->setType(87);
+    sensor->setType(ATYPE_ICEJUMP_WALL);
 }
 
 void TransparentWall::control() {

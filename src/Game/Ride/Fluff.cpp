@@ -197,7 +197,7 @@ void Fluff::exeRideFlyOnWind() {
     if (!updateRide()) {
         mWindSpinTimer = 30;
         if (!trySpinUp(0)) {
-            MR::tryRumblePadWeak(this, 0);
+            MR::tryRumblePadWeak(this, WPAD_CHAN0);
             if (mWindStrength > 400.0f) {
                 setNerve(&NrvFluff::FluffNrvRideFly::sInstance);
             }
@@ -213,7 +213,7 @@ void Fluff::exeRideSpinUp() {
             MR::startSound(mRider, "SE_PV_TWIST_START");
         }
 
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::startBckPlayer("FluffSpin", (const char*)nullptr);
         MR::tryPlayerCoinPull();
         if (mSpinsRemaining > 0) {
@@ -248,7 +248,7 @@ void Fluff::exeRideSpinUp() {
             liftImpulse.scale(0.8f);
         }
         mVelocity.add(liftImpulse);
-        MR::tryRumblePadVeryWeak(this, 0);
+        MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
     }
 
     if (mWindStrength > 0.0f && mWindStrength < 300.0f) {

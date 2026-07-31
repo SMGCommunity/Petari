@@ -155,22 +155,17 @@ void BossKameck::killAllBeam() {
     mActorList->killAll();
 }
 
-/* stack is off */
-
 void BossKameck::updatePose() {
     TVec3f v19;
     TVec3f v18;
-    v19.set< f32 >(-mGravity);
-    TVec3f v16(mVelocity - _C8);
-    TVec3f* gravPtr = &mGravity;
-    f32 dot = gravPtr->dot(v16);
-    JMAVECScaleAdd(gravPtr, &v16, &v18, -dot);
+    v19.set(-mGravity);
+    v18.killElement(mVelocity - _C8, mGravity);
     f32 mag = v18.length();
 
     if (!MR::isNearZero(mag)) {
         f32 v4 = MR::normalize(mag, 0.0f, 3.0f);
 
-        v19.add(v18 * ((4.0f * v4) / mag));
+        v19 += v18 * ((4.0f * v4) / mag);
 
         if (!MR::isNearZero(v19)) {
             MR::normalize(&v19);

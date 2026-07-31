@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JGeometry.hpp"
+#include "revolution/mtx.h"
 #include <revolution.h>
 
 class LiveActor;
@@ -91,4 +92,9 @@ namespace MR {
     void setMtxTrans(MtxPtr mtx, const TVec3f& rVec); /*{
         MR::setMtxTrans(mtx, rVec.x, rVec.y, rVec.z);
     }*/
+
+    // Non-official symbol.
+    inline void multMtx(MtxPtr pOut, const MtxPtr pA, const MtxPtr pB) {
+        PSMTXConcat(pB, pA, pOut);
+    }
 };  // namespace MR

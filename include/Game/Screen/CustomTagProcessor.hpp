@@ -1,9 +1,9 @@
 #pragma once
 
 #include "Game/Screen/MessageTagSkipTagProcessor.hpp"
-#include "nw4r/ut/TagProcessorBase.h"
-#include "revolution/gx/GXStruct.h"
 #include <nw4r/lyt/textBox.h>
+#include <nw4r/ut/TagProcessorBase.h>
+#include <revolution/gx/GXStruct.h>
 
 namespace {
     u8 clampU8(s32 val) {
@@ -35,7 +35,7 @@ public:
     /* 0x04 */ u32 _4;
     /* 0x08 */ u32 _8;
     /* 0x0C */ u32 _C;
-    /* 0x10 */ _GXColorS10 _10;
+    /* 0x10 */ GXColorS10 _10;
     /* 0x18 */ u8 _18;
     /* 0x1C */ f32 _1C;
     /* 0x20 */ f32 _20;
@@ -49,6 +49,5 @@ public:
     virtual nw4r::ut::TagProcessorBase< wchar_t >::Operation CalcRect(nw4r::ut::Rect*, u16, nw4r::ut::PrintContext< wchar_t >*);
 
     /* 0x04 */ CustomTagAlphaCtrl mAlphaCtrl;
-    /* 0x28 */ u8 pad[0x28];
-    /* 0x*/
+    /* 0x28 */ u8 _28[0x28];
 };

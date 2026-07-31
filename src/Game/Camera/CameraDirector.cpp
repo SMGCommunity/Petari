@@ -38,23 +38,6 @@ namespace {
     static s32 sUpdateCounter;
 };  // namespace
 
-void CameraPoseParam::copyFrom(const CameraPoseParam& rOther) {
-    mWatchUpVec.set< f32 >(rOther.mWatchUpVec);
-    mWatchPos.set< f32 >(rOther.mWatchPos);
-    mUpVec.set< f32 >(rOther.mUpVec);
-    mPos.set< f32 >(rOther.mPos);
-    mFovy = rOther.mFovy;
-    mGlobalOffset.set< f32 >(rOther.mGlobalOffset);
-    mLocalOffset.set< f32 >(rOther.mLocalOffset);
-    mFrontOffset = rOther.mFrontOffset;
-    mUpperOffset = rOther.mUpperOffset;
-    mRoll = rOther.mRoll;
-}
-
-char* CameraParamChunkID_Tmp::getBuffer(u32 size) {
-    return &mBuffer[0];
-}
-
 bool CameraMan::isInterpolationOff() const {
     return false;
 }
@@ -670,12 +653,12 @@ void CameraDirector::resetCameraMan() {
     target2 = mTargetHolder->get();
     target3 = mTargetHolder->get();
 
-    TVec3f newPos = *target3->getPosition() - *target2->getFrontVec() * 800.0f + *target1->getUpVec() * 300.0f;
+    TVec3f newPos = target3->getPosition() - target2->getFrontVec() * 800.0f + target1->getUpVec() * 300.0f;
 
     CameraLocalUtil::setPos(man, newPos);
-    CameraLocalUtil::setWatchPos(man, *mTargetHolder->get()->getPosition());
-    CameraLocalUtil::setUpVec(man, *mTargetHolder->get()->getUpVec());
-    CameraLocalUtil::setWatchUpVec(man, *mTargetHolder->get()->getUpVec());
+    CameraLocalUtil::setWatchPos(man, mTargetHolder->get()->getPosition());
+    CameraLocalUtil::setUpVec(man, mTargetHolder->get()->getUpVec());
+    CameraLocalUtil::setWatchUpVec(man, mTargetHolder->get()->getUpVec());
 
     man->deactivate(this);
     man->activate(this);

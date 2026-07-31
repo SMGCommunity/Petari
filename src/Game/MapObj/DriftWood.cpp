@@ -47,7 +47,7 @@ void DriftWood::init(const JMapInfoIter& rIter) {
     initialize(rIter, info);
     MR::moveCoordAndTransToNearestRailPos(this);
     mRailDirection.set(MR::getRailDirection(this));
-    getSensor(nullptr)->setType(127);
+    getSensor(nullptr)->setType(ATYPE_EYE);
     mWaveSoundTimer = MR::getRandom(30l, 90l);
     f32 radius = 0.0f;
     MR::calcModelBoundingRadius(&radius, this);
@@ -121,8 +121,7 @@ void DriftWood::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         TVec3f upVec;
         MR::calcUpVec(&upVec, this);
 
-        TVec3f result;
-        JMAVECScaleAdd(&upVec, &delta, &result, -upVec.dot(delta));
+        TVec3f result = delta.killElement(upVec);
 
         f32 radius = pReceiver->mRadius;
         f32 magnitude = result.length();
@@ -137,7 +136,7 @@ void DriftWood::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             }
         }
     } else if (MR::isSensorMapObj(pReceiver) && MR::sendMsgEnemyAttack(pReceiver, pSender) && MR::isOnPlayer(this)) {
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }
 }
 

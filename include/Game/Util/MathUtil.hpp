@@ -384,6 +384,18 @@ namespace MR {
     /// @return The remainder of the division.
     f32 mod(f32 x, f32 y);
 
+    /// @brief Computes the angle in radians mapped from [0, TWO_PI).
+    /// @param angle The angle, in radians.
+    /// @return The mapped angle.
+    inline f32 modRadian(f32 angle) {
+        return fmod(angle, TWO_PI);
+    }
+
+    inline bool isOppositeDirectionRadian(f32 angle, f32 target) {
+        f32 modRad = MR::modRadian(angle - target + TWO_PI);
+        return target + modRad < -HALF_PI || target + modRad > HALF_PI;
+    }
+
     /// @brief Converts a three-dimensional floating-point vector into a fixed-point vector.
     /// @param[out] pDst A pointer to the three-dimensional fixed-point vector to initialize.
     /// @param[in] rSrc A reference to the three-dimensional floating-point vector to evaluate.
@@ -546,7 +558,27 @@ namespace MR {
         *pX = *pX < 0.0f ? 0.0f : *pX > 1.0f ? 1.0f : *pX;
     }
 
+    inline f32 clamp01(f32 x) {
+        if (x < 0.0f) {
+            x = 0.0f;
+        }
+        if (x > 1.0f) {
+            x = 1.0f;
+        }
+        return x;
+    }
+
     inline void clampBoth(f32* value, f32 min, f32 max);
+
+    inline void clampMax(f32* val, f32 max) {
+        f32 ret;
+        if (*val >= max) {
+            ret = max;
+        } else {
+            ret = *val;
+        }
+        *val = ret;
+    }
 
     inline f32 repeat(f32 value, f32 min, f32 max) {
         return min + (f32)fmod(max + (value - min), max);
@@ -602,6 +634,7 @@ namespace MR {
     T sqrt(T x) {
         return fastSqrtf(x);
     }
+
 };  // namespace MR
 
 f32 PSVECKillElement(const Vec*, const Vec*, const Vec*);

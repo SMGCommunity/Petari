@@ -25,7 +25,7 @@ namespace MR {
 
 namespace {
     FunctionAsyncExecutor* getFunctionAsyncExecutor() NO_INLINE {
-        return MR::getGameSystemObjHolder()->mAsyncExec;
+        return MR::getGameSystemObjHolder()->mFunctionAsyncExecutor;
     }
 };  // namespace
 
@@ -144,11 +144,11 @@ namespace MR {
     // isScreen16Per9
 
     void initSceneMessage() {
-        getGameSystemObjHolder()->mMsgHolder->initSceneData();
+        getGameSystemObjHolder()->mMessageHolder->initSceneData();
     }
 
     void destroySceneMessage() {
-        getGameSystemObjHolder()->mMsgHolder->destroySceneData();
+        getGameSystemObjHolder()->mMessageHolder->destroySceneData();
     }
 
     void resetSystemAndGameStatus() {
@@ -158,7 +158,7 @@ namespace MR {
     }
 
     void stopAllSound(u32 param1) {
-        getGameSystemObjHolder()->mSysWrapper->stopAllSound(param1);
+        getGameSystemObjHolder()->mAudioSystem->stopAllSound(param1);
     }
 
     void setLayoutDefaultAllocator() {

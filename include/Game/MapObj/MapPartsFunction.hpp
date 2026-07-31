@@ -35,7 +35,7 @@ public:
     virtual void control() {
     }
 
-    void sendMsgToHost(u32);
+    bool sendMsgToHost(u32);
     void initNerve(const Nerve*);
     void setNerve(const Nerve*);
     s32 getStep() const;

@@ -1,13 +1,15 @@
 #include "Game/MapObj/HipDropRock.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/NameObj/NameObj.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "revolution/mtx.h"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 void HipDropRock_FORCE_MATCHSDATA2() {
     f32 v1 = 1.0f;

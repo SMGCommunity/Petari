@@ -225,7 +225,8 @@ void Kuribo::control() {
 
 void Kuribo::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _A8);
-    MR::setBaseScale(this, mScaleController->_C.mult(mScale));
+    TVec3f scale = mScaleController->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void Kuribo::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -688,9 +689,7 @@ void Kuribo::exeBlowDown() {
     }
 
     calcPassiveMovement();
-    TVec3f invVelocity;
-    JMathInlineVEC::PSVECNegate(&mVelocity, &invVelocity);
-    MR::turnDirectionDegree(this, &_B8, invVelocity, 30.0f);
+    MR::turnDirectionDegree(this, &_B8, -mVelocity, 30.0f);
     if (MR::isGreaterStep(this, 30)) {
         kill();
     }

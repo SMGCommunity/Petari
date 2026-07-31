@@ -1,25 +1,20 @@
 #include "Game/NPC/TimeAttackEventKeeper.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 
-TimeAttackEventKeeper::TimeAttackEventKeeper() : _0(nullptr) {
+TimeAttackEventKeeper::TimeAttackEventKeeper() : _0() {
 }
 
 void TimeAttackEventKeeper::init(bool) {
 }
 
 void TimeAttackEventKeeper::startEventIfExecute() {
-    if (_0 == nullptr) {
-        return;
+    if (_0 != nullptr) {
+        _0->appear();
     }
-
-    _0->appear();
 }
 
 void TimeAttackEventKeeper::endEvent() {
-    if (_0 == nullptr) {
-        return;
+    if (_0 != nullptr) {
+        _0->kill();
     }
-
-    _0->kill();
 }

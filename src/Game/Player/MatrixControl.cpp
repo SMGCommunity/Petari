@@ -1,5 +1,4 @@
 #include "Game/Player/MatrixControl.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/HashUtil.hpp"
 
 MatrixControl::MatrixControl(const char* pName, MatrixMap* pMap, MatrixSelectList* pSelectList, s32 myInt)

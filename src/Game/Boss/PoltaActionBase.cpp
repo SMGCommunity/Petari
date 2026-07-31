@@ -43,7 +43,7 @@ bool PoltaActionBase::updateDamageBody(bool isFirst) {
         MR::startSystemSE("SE_SY_VS_BOSS_DAMAGE_1");
         MR::startSound(getHost(), "SE_BM_POLTA_ROCK_DAMAGE");
         MR::startSound(getHost(), "SE_BV_POLTA_DAMAGE_BODY");
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
         getHost()->_EC = 0.0f;
@@ -75,7 +75,7 @@ bool PoltaActionBase::updateBreakBody() {
         PoltaFunction::breakRightArm(getHost());
         PoltaFunction::killPoltaRock(getHost());
         PoltaFunction::breakGroundRock(getHost());
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::zeroVelocity(getHost());
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
@@ -104,7 +104,7 @@ const char* repairUnusued = "Repair";
 bool PoltaActionBase::updateDamageCore() {
     if (MR::isFirstStep(this)) {
         PoltaFunction::startAction(getHost(), "DamageCore", 1);
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(3);
         getHost()->_EC = 0.0f;

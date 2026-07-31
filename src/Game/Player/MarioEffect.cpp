@@ -178,7 +178,7 @@ void MarioEffect::updateFollowMtx(MovingFollowMtx* pFollow) {
 
     if (pFollow->_0 == 0) {
         Mtx temp;
-        PSMTXCopy(_24.toMtxPtr(), temp);
+        PSMTXCopy(_24, temp);
 
         const TVec3f& rTrans = getTrans();
         MR::setMtxTrans(temp, rTrans.x, rTrans.y, rTrans.z);
@@ -192,13 +192,13 @@ void MarioEffect::updateFollowMtx(MovingFollowMtx* pFollow) {
 
         Mtx inv;
         PSMTXInverse(pFollow->_64, inv);
-        PSMTXConcat(inv, temp, pFollow->_4.toMtxPtr());
-        PSMTXCopy(temp, pFollow->_34.toMtxPtr());
+        MR::multMtx(pFollow->_4, temp, inv);
+        PSMTXCopy(temp, pFollow->_34);
     } else {
-        PSMTXConcat(pFollow->_64, pFollow->_4.toMtxPtr(), pFollow->_34.toMtxPtr());
+        MR::multMtx(pFollow->_34, pFollow->_4, pFollow->_64);
     }
 
-    JPASetRMtxTVecfromMtx(pFollow->_34.toMtxPtr(), pFollow->_68->mGlobalRot, &pFollow->_68->mGlobalTrs);
+    JPASetRMtxTVecfromMtx(pFollow->_34, pFollow->_68->mGlobalRot, &pFollow->_68->mGlobalTrs);
 
     pFollow->_0++;
     if (pFollow->_0 == 2) {

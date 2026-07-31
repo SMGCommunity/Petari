@@ -3,8 +3,8 @@
 #include "Game/Util/MathUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-TerritoryMover::TerritoryMover(f32 a1) {
-    _0 = a1;
+TerritoryMover::TerritoryMover(f32 radius) {
+    mRadius = radius;
 }
 
 void TerritoryMover::decideNextTargetPos(const LiveActor* pActor) {
@@ -12,17 +12,15 @@ void TerritoryMover::decideNextTargetPos(const LiveActor* pActor) {
     MR::getRandomVector(&randVec, 1.0f);
     MR::normalizeOrZero(&randVec);
 
-    randVec.rejection(pActor->mGravity);
-    randVec *= _0;
+    randVec.orthogonalize(pActor->mGravity);
+    randVec *= mRadius;
     randVec += mCenter;
-    _10 = randVec;
+    mTarget = randVec;
 }
 
 bool TerritoryMover::isReachedTarget(const LiveActor* pActor, f32 range) {
-    // FIXME: come back during rejection pass
-    // https://decomp.me/scratch/z8igI
-
     TVec3f planar;
-    planar.rejection(_10 - pActor->mPosition, pActor->mGravity);
+    TVec3f diff = mTarget - pActor->mPosition;
+    planar.killElement(diff, pActor->mGravity);
     return planar.length() < range;
 }

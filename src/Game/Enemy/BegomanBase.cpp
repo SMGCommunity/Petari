@@ -747,15 +747,7 @@ void BegomanBase::reboundWallAndGround(TVec3f* pOut, bool emitEffect) {
 }
 
 bool BegomanBase::isFallNextMove(f32 f1, f32 f2) {
-    TVec3f* velocityCopy = &mVelocity;
-    TVec3f* GravityCopy = &mGravity;
-
-    f32 dot = GravityCopy->dot(*velocityCopy);
-    TVec3f ScaleAddResult;
-
-    JMAVECScaleAdd(GravityCopy, velocityCopy, &ScaleAddResult, -dot);
-
-    if (MR::isNearZero(ScaleAddResult)) {
+    if (MR::isNearZero(MR::getVelocityHorizon(this))) {
         f32 scaledBinderRadius = MR::getBinderRadius(this);
         scaledBinderRadius = scaledBinderRadius * mScale.y * 2.0f;
         return MR::isFallNextMove(mPosition, mFaceVec, mGravity, f1, scaledBinderRadius, f2, nullptr);
@@ -971,12 +963,12 @@ void BegomanBase::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _C0);
 
     if (mScaleControler != nullptr) {
-        TVec3f stack8;
+        TVec3f scale;
 
-        stack8.set(mScaleControler->_C);
-        _B4.set(stack8);
-        stack8.multPS(mScale, stack8);
-        MR::setBaseScale(this, stack8);
+        scale.set(mScaleControler->_C);
+        _B4.set(scale);
+        scale *= mScale;
+        MR::setBaseScale(this, scale);
     }
 
     mBaseDelegator->registerCallBack();

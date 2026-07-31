@@ -122,8 +122,7 @@ void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
         v16.y -= (0.5f * a4);
     }
 
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x82);
-
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 130);
     for (s32 i = 0; i < 65; i++) {
         f32 v10 = TWO_PI * i / 64;
 
@@ -144,6 +143,7 @@ void AstroDomeOrbit::drawCelling(f32 a2, bool a3, f32 a4) const {
             GXPosition3f32(v14.x, v14.y, v14.z);
         }
     }
+    GXEnd();
 }
 
 void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
@@ -158,8 +158,7 @@ void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
         v9 = _8C - (0.5f * a2);
     }
 
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x82);
-
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 130);
     for (s32 i = 0; i < 65; i++) {
         f32 v11 = TWO_PI * i / 64;
 
@@ -182,6 +181,7 @@ void AstroDomeOrbit::drawSide(f32 a2, bool a3, f32 a4) const {
             GXPosition3f32(v16.x, v16.y, v16.z);
         }
     }
+    GXEnd();
 }
 
 f32 AstroDomeOrbit::calcRepeatedRotateCoord(f32 coord) const {

@@ -17,6 +17,6 @@ public:
     void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
     void startMove();
 
-    /* 0xC4 */ f32 _C4;
-    /* 0xC8 */ s32 mTimer;
+    /* 0xC4 */ f32 mMoveSpeed;
+    /* 0xC8 */ s32 mWaitTimer;
 };

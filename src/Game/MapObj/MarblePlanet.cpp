@@ -50,7 +50,7 @@ void MarblePlanet::exeWait() {
 
 void MarblePlanet::exeScaleUpCore() {
     if (MR::isFirstStep(this)) {
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
         mRemainingElectrons = mRemainingElectrons - 1;
         switch (mRemainingElectrons) {
@@ -99,7 +99,7 @@ void MarblePlanet::exeBreakCore() {
     }
 
     if (MR::isStep(this, 1)) {
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraStrong();
         MR::startAfterBossBGM();
         MR::requestAppearPowerStar(this, mPosition);
@@ -174,7 +174,7 @@ void MarblePlanet::initCoreAndElectron() {
             }
 
             TVec3f position;
-            JMAVECScaleAdd(&front, pos, &position, 1000.0f);
+            position.scaleAdd(1000.0f, front, *pos);
             TVec3f rotation;
             rotation.setAll< f32 >((360.0f * i) / mNumElectrons);
             mPlanetElectrons[i] = new MarblePlanetElectron(this, position, rotation, "ビー玉惑星電子");
@@ -257,7 +257,7 @@ void MarblePlanetElectron::attackSensor(HitSensor* pSender, HitSensor* pReceiver
 
             if (!isNear) {
                 if (MR::sendMsgPush(pReceiver, pSender)) {
-                    MR::tryRumblePadVeryWeak(this, 0);
+                    MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
 
                     if (!MR::isEffectValid(this, "HitMarkNormal")) {
                         MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, 0);
@@ -297,7 +297,7 @@ void MarblePlanetElectron::crashElectron(HitSensor* pSensor) {
     TVec3f stack_8;
     stack_8.sub(pSensor->mHost->mPosition, mPosition);
     MR::normalize(&stack_8);
-    JMAVECScaleAdd(&stack_8, &mVelocity, &mVelocity, -5.0f);
+    mVelocity.scaleAdd(-5.0f, stack_8, mVelocity);
     MR::normalize(mVelocity, &_94);
     mVelocity.x *= 1.2f;
     mVelocity.y *= 1.2f;

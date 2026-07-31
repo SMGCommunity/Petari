@@ -41,7 +41,7 @@ void TicoGalaxy::shootStarPiece() {
 
     if (MR::giftStarPieceToTarget(getSensor("Mouth"), v5)) {
         mCurrentFed += v5;
-        MR::tryRumblePadVeryWeak(this, 0);
+        MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
     }
 }
 

@@ -2,7 +2,6 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/TalkTextFormer.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"

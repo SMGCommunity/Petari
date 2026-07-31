@@ -8,7 +8,6 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
-#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -39,8 +38,8 @@ namespace NrvTalkDirector {
 };  // namespace NrvTalkDirector
 
 TalkDirector::TalkDirector(const char* pArg)
-    : LayoutActor(pArg, true), mMsgCtrl(nullptr), _3C(nullptr), _40(nullptr), _44(nullptr), mTalkState(nullptr), _4C(false), _4D(false), _4E(false),
-      mIsInvalidClipping(false), mDemoType(0), _58(false), _59(false) {
+    : LayoutActor(pArg, true), mMsgCtrl(), _3C(), _40(), _44(), mTalkState(), _4C(), _4D(), _4E(),
+      mIsInvalidClipping(), mDemoType(), _58(), _59() {
 }
 
 TalkDirector::~TalkDirector() {

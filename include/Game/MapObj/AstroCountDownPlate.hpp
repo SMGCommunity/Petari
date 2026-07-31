@@ -7,7 +7,6 @@ class AstroCountDownPlate : public LiveActor {
 public:
     AstroCountDownPlate(const char*);
 
-    virtual ~AstroCountDownPlate();
     virtual void init(const JMapInfoIter&);
 
     void exeWait();
@@ -20,7 +19,7 @@ public:
     void startDemoStartCountDown();
     void startDemoLastBattle();
 
-    J3DTexMtx _8C;
-    J3DTexMtx _120;
-    u8 _1B4;
+    /* 0x08C */ J3DTexMtx _8C;
+    /* 0x120 */ J3DTexMtx _120;
+    /* 0x1B4 */ bool _1B4;
 };

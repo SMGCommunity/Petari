@@ -10,7 +10,6 @@ public:
     MarioMeter(const char*);
 
     virtual ~MarioMeter();
-
     virtual void init(const JMapInfoIter& rIter);
 
     void initLifeCount(s32);
@@ -22,7 +21,7 @@ public:
     void activate();
     void deactivate();
 
-    MeterLayout* mHitPointMeter;          // 0xC
-    SuddenDeathMeter* mSuddenDeathMeter;  // 0x10
-    bool mUseSuddenDeath;                 // 0x14
+    /* 0x0C */ MeterLayout* mHitPointMeter;
+    /* 0x10 */ SuddenDeathMeter* mSuddenDeathMeter;
+    /* 0x14 */ bool mUseSuddenDeath;
 };

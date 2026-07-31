@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 
 class StarPieceSpot : public LiveActor {
 public:

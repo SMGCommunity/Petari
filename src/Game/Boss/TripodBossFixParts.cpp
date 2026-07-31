@@ -130,19 +130,19 @@ void TripodBossFixParts::kill() {
     case 1:
         MR::emitEffect(this, "ExplosionM");
         MR::startSound(this, "SE_BM_TRIPOD_KILL_M");
-        MR::tryRumblePadVeryWeak(this, 0);
+        MR::tryRumblePadVeryWeak(this, WPAD_CHAN0);
         break;
     case 2:
         MR::emitEffect(this, "ExplosionM");
         MR::startSound(this, "SE_BM_TRIPOD_KILL_M");
         MR::shakeCameraVeryWeak();
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         break;
     case 3:
         MR::emitEffect(this, "ExplosionL");
         MR::startSound(this, "SE_BM_TRIPOD_KILL_L");
         MR::shakeCameraStrong();
-        MR::tryRumblePadVeryStrong(this, 0);
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
         break;
     }
 

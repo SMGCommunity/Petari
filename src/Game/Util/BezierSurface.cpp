@@ -726,6 +726,7 @@ void BezierSurface::drawTrianglePatchPos() const {
         u16 vertexIndex = vertexOrder[idx];
         GXPosition3f32(vertices[vertexIndex].x, vertices[vertexIndex].y, vertices[vertexIndex].z);
     }
+    GXEnd();
 }
 
 void BezierSurface::drawTrianglePatchPosNorm() const {
@@ -753,6 +754,7 @@ void BezierSurface::drawTrianglePatchPosNorm() const {
         GXPosition3f32(vertices[vertexIndex].x, vertices[vertexIndex].y, vertices[vertexIndex].z);
         GXNormal3f32(normal[vertexIndex].x, normal[vertexIndex].y, normal[vertexIndex].z);
     }
+    GXEnd();
 }
 
 void BezierSurface::drawTrianglePatchPosST() const {
@@ -780,6 +782,7 @@ void BezierSurface::drawTrianglePatchPosST() const {
         TVec2f texCoord(mSTPoints[0] * vec->x + mSTPoints[1] * vec->y + mSTPoints[2] * vec->z);
         GXTexCoord2f32(texCoord.x, texCoord.y);
     }
+    GXEnd();
 }
 
 void BezierSurface::drawTrianglePatchPosNormST() const {
@@ -814,4 +817,5 @@ void BezierSurface::drawTrianglePatchPosNormST() const {
             (mSTPoints[0] * triangleST[vertexIndex].x + mSTPoints[1] * triangleST[vertexIndex].y + mSTPoints[2] * triangleST[vertexIndex].z);
         GXTexCoord2f32(texCoord.x, texCoord.y);
     }
+    GXEnd();
 }

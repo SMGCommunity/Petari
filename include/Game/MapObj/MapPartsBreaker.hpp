@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapPartsFunction.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 

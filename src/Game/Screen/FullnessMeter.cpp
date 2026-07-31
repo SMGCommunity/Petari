@@ -29,13 +29,13 @@ void FullnessMeter::init(const JMapInfoIter& rIter) {
 }
 
 void FullnessMeter::control() {
-    // const TVec2f& pos = ;
     setTrans(MR::getStarPointerScreenPositionOrEdge(0));
 }
 
 void FullnessMeter::setNumber(s32 num) {
     _20 = num;
-    s32 frame = 128 - (u16)(128.0f * (1.0f - ((f32)num / (f32)_24)));
+
+    s32 frame = 128 - (u16)(128.0f * (1.0f - (static_cast< f32 >(_20) / _24)));
 
     MR::startPaneAnim(this, "TargetMeter", "Count", 0);
     MR::setPaneAnimFrameAndStop(this, "TargetMeter", frame, 0);
@@ -49,25 +49,27 @@ void FullnessMeter::setNumber(s32 num) {
 }
 
 void FullnessMeter::requestAppear() {
-    if (MR::isDead(this)) {
-        appear();
-        mTargetCounter->appear();
-        MR::showScreen(this);
-        setNerve(&NrvFullnessMeter::FullnessMeterNrvAppear::sInstance);
-        MR::startStarPointerModeStarPieceTarget(this);
-        MR::startSystemSE("SE_SY_TICOFAT_POINT");
+    if (!MR::isDead(this)) {
+        return;
     }
+
+    appear();
+    mTargetCounter->appear();
+    MR::showScreen(this);
+    setNerve(&NrvFullnessMeter::FullnessMeterNrvAppear::sInstance);
+    MR::startStarPointerModeStarPieceTarget(this);
+    MR::startSystemSE("SE_SY_TICOFAT_POINT");
 }
 
 void FullnessMeter::requestDisappear() {
     if (MR::isDead(this) || isNerve(&NrvFullnessMeter::FullnessMeterNrvEnd::sInstance)) {
         return;
-    } else {
-        setNerve(&NrvFullnessMeter::FullnessMeterNrvEnd::sInstance);
-        MR::hideScreen(this);
-        MR::startAnim(mTargetCounter, "End", 0);
-        MR::endStarPointerMode(this);
     }
+
+    setNerve(&NrvFullnessMeter::FullnessMeterNrvEnd::sInstance);
+    MR::hideScreen(this);
+    MR::startAnim(mTargetCounter, "End", 0);
+    MR::endStarPointerMode(this);
 }
 
 void FullnessMeter::pauseOff() {

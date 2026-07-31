@@ -857,6 +857,3 @@ void PowerStarList::exeCaptureSend() {
         setNerve(&NrvPowerStarList::PowerStarListNrvWait::sInstance);
     }
 }
-
-PowerStarList::~PowerStarList() {
-}

@@ -286,43 +286,45 @@ namespace MR {
         return pInfo->mCameraSetID != -1;
     }
 
-    void startRumbleWithShakeCameraWeak(const LiveActor* pActor, const char* a2, const char* a3, f32 a4, f32 a5) {
+    void startRumbleWithShakeCameraWeak(const LiveActor* pActor, const char* pRumbleStrengthStrong, const char* pRumbleStrengthWeak, f32 a4, f32 a5) {
         f32 dist = MR::calcDistanceToPlayer(pActor);
 
         if (dist <= a4) {
-            MR::tryRumblePad(pActor, a2, 0);
+            MR::tryRumblePad(pActor, pRumbleStrengthStrong, WPAD_CHAN0);
             MR::shakeCameraNormal();
         } else {
             if (dist <= a5) {
-                MR::tryRumblePad(pActor, a3, 0);
+                MR::tryRumblePad(pActor, pRumbleStrengthWeak, WPAD_CHAN0);
                 MR::shakeCameraWeak();
             }
         }
     }
 
-    void startRumbleWithShakeCameraNormalWeak(const LiveActor* pActor, const char* a2, const char* a3, f32 a4, f32 a5) {
+    void startRumbleWithShakeCameraNormalWeak(const LiveActor* pActor, const char* pRumbleStrengthStrong, const char* pRumbleStrengthWeak, f32 a4,
+                                              f32 a5) {
         f32 dist = MR::calcDistanceToPlayer(pActor);
 
         if (dist <= a4) {
-            MR::tryRumblePad(pActor, a2, 0);
+            MR::tryRumblePad(pActor, pRumbleStrengthStrong, WPAD_CHAN0);
             MR::shakeCameraNormalWeak();
         } else {
             if (dist <= a5) {
-                MR::tryRumblePad(pActor, a3, 0);
+                MR::tryRumblePad(pActor, pRumbleStrengthWeak, WPAD_CHAN0);
                 MR::shakeCameraWeak();
             }
         }
     }
 
-    void startRumbleWithShakeCameraStrong(const LiveActor* pActor, const char* a2, const char* a3, f32 a4, f32 a5) {
+    void startRumbleWithShakeCameraStrong(const LiveActor* pActor, const char* pRumbleStrengthStrong, const char* pRumbleStrengthWeak, f32 a4,
+                                          f32 a5) {
         f32 dist = MR::calcDistanceToPlayer(pActor);
 
         if (dist <= a4) {
-            MR::tryRumblePad(pActor, a2, 0);
+            MR::tryRumblePad(pActor, pRumbleStrengthStrong, WPAD_CHAN0);
             MR::shakeCameraStrong();
         } else {
             if (dist <= a5) {
-                MR::tryRumblePad(pActor, a3, 0);
+                MR::tryRumblePad(pActor, pRumbleStrengthWeak, WPAD_CHAN0);
                 MR::shakeCameraNormal();
             }
         }

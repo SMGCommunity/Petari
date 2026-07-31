@@ -168,7 +168,7 @@ bool ParallelGravity::isInCylinderRange(const TVec3f& rPosition, f32* pScalar) c
     TVec3f positionOnWorldPlane;
 
     // Check radius range
-    positionOnWorldPlane.rejection(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
+    positionOnWorldPlane.killElement(rPosition - mWorldPlanePosition, mWorldPlaneUpVec);
 
     f32 radius = positionOnWorldPlane.length();
 

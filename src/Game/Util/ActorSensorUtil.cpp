@@ -14,7 +14,6 @@
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include <JSystem/JMath/JMath.hpp>
 
 namespace MR {
     HitSensor* addHitSensor(LiveActor* pActor, const char* pName, u32 type, u16 groupSize, f32 radius, const TVec3f& rOffset) {
@@ -248,7 +247,7 @@ namespace MR {
 
     bool tryUpdateHitSensorsAll(LiveActor* pActor) {
         if (pActor->mSensorKeeper != nullptr) {
-            pActor->mSensorKeeper->update();
+            updateHitSensorsAll(pActor);
 
             return true;
         }
@@ -289,7 +288,7 @@ namespace MR {
     }
 
     void setSensorOffset(LiveActor* pActor, const char* pName, const TVec3f& rOffset) {
-        pActor->mSensorKeeper->getSensorInfo(pName)->_C.setPS(rOffset);
+        pActor->mSensorKeeper->getSensorInfo(pName)->setOffset(rOffset);
     }
 
     void setSensorRadius(LiveActor* pActor, const char* pName, f32 radius) {
@@ -456,7 +455,7 @@ namespace MR {
 
     void calcSensorHorizon(TVec3f* pHorizon, const TVec3f& rGravity, const HitSensor* pSensor1, const HitSensor* pSensor2) {
         TVec3f horizon = pSensor2->mPosition - pSensor1->mPosition;
-        pHorizon->rejection(horizon, rGravity);
+        pHorizon->killElement(horizon, rGravity);
     }
 
     void calcSensorHorizonNormalize(TVec3f* pHorizon, const TVec3f& rGravity, const HitSensor* pSensor1, const HitSensor* pSensor2) {
@@ -658,7 +657,6 @@ namespace MR {
             return false;
         }
 
-        // FIXME: getGroundSensor should not be inlined.
         return getGroundSensor(getSensorHost(pSender))->receiveMessage(msg, pSender);
     }
 
@@ -667,7 +665,6 @@ namespace MR {
             return false;
         }
 
-        // FIXME: getWallSensor should not be inlined.
         return getWallSensor(getSensorHost(pSender))->receiveMessage(msg, pSender);
     }
 

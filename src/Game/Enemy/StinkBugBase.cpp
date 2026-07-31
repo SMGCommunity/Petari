@@ -19,7 +19,7 @@ StinkBugBase::StinkBugBase(const char* pName)
 void StinkBugBase::setDashVelocity(f32 velocity) {
     TVec3f result;
     f32 radius = mRadius;
-    JMAVECScaleAdd(&_8C, &_98, &result, radius);
+    result.scaleAdd(radius, _8C, _98);
     f32 distance = result.distance(mPosition);
     // Illogical branching in the ASM. Possible inline?
     if (velocity >= distance) {
@@ -53,7 +53,7 @@ void StinkBugBase::init(const JMapInfoIter& rIter) {
     _A4.set(_8C);
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
-    JMathInlineVEC::PSVECNegate(&upVec, &mGravity);
+    mGravity.negate(upVec);
 }
 
 bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) const {
@@ -62,9 +62,8 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
     }
 
     TVec3f v1;
-    TVec3f* playerPos = MR::getPlayerPos();
     // r5 goes through r31 before MR::getPlayerPos()
-    v1.sub(*playerPos, mPosition);
+    v1.sub(*MR::getPlayerPos(), mPosition);
 
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
@@ -96,16 +95,12 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
 
     TVec3f scaledAdded;
     // r3 and r4's assembly are in the wrong order
-    JMAVECScaleAdd(&_A4, &mPosition, &scaledAdded, (-arg4) / f1);
+    scaledAdded.scaleAdd(-arg4 / f1, _A4, mPosition);
 
     TVec3f v3;
     v3.sub(*MR::getPlayerPos(), scaledAdded);
 
-    const TVec3f* gravity = &mGravity;
-    f32 f2 = -gravity->dot(v3);
-
-    TVec3f v5;
-    JMAVECScaleAdd(gravity, &v3, &v5, f2);
+    TVec3f v5 = v3.killElement(mGravity);
 
     return MR::isNearAngleDegree(v5, _A4, _B0);
 }

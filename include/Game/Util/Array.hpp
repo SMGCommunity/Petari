@@ -68,6 +68,18 @@ namespace MR {
             return &mArr[0];
         }
 
+        /// @brief Returns an iterator to the reverse first element.
+        /// @return The pointer to the reverse first element.
+        T* rbegin() {
+            return &mArr[mMaxSize - 1];
+        }
+
+        /// @brief Returns an iterator to the reverse first element.
+        /// @return The pointer to the reverse first element.
+        const T* rbegin() const {
+            return &mArr[mMaxSize - 1];
+        }
+
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
         T* end() {
@@ -78,6 +90,18 @@ namespace MR {
         /// @return The pointer past the last element.
         const T* end() const {
             return &mArr[mMaxSize];
+        }
+
+        /// @brief Returns an iterator past the reverse last element.
+        /// @return The pointer past the reverse last element.
+        T* rend() {
+            return &mArr[0] - 1;
+        }
+
+        /// @brief Returns an iterator past the reverse last element.
+        /// @return The pointer past the reverse last element.
+        const T* rend() const {
+            return &mArr[0] - 1;
         }
 
         /// @brief The pointer to the array of elements.
@@ -100,7 +124,7 @@ namespace MR {
         struct RemovePtr< X* > {
             typedef X Type;
         };
-        typedef RemovePtr< T >::Type Base;
+        typedef typename RemovePtr< T >::Type Base;
 
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
@@ -165,6 +189,8 @@ namespace MR {
     template < class T >
     class Vector {
     public:
+        typedef typename T::Item Item;
+
         /// @brief Creates a new `Vector`.
         Vector() {
             clear();
@@ -177,14 +203,14 @@ namespace MR {
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
         /// @return The reference to the element.
-        T::Item& operator[](int idx) {
+        Item& operator[](int idx) {
             return mArray[idx];
         }
 
         /// @brief Returns the element at the given position.
         /// @param idx The position of the element.
         /// @return The reference to the element.
-        const T::Item& operator[](int idx) const {
+        const Item& operator[](int idx) const {
             return mArray[idx];
         }
 
@@ -208,7 +234,7 @@ namespace MR {
 
         /// @brief Appends a copy of `rItem` to the end of the container.
         /// @param rItem The reference to the value to append.
-        void push_back(const T::Item& rItem) {
+        void push_back(const Item& rItem) {
             u32 index = mCount;
 
             mCount++;
@@ -218,9 +244,9 @@ namespace MR {
         /// @brief Removes the value at the given position from the container.
         /// @param pIter The pointer to the position where the value should be removed.
         /// @return The pointer to the position of the removed value.
-        T::Item* erase(T::Item* pIter) {
+        Item* erase(Item* pIter) {
             if (end() - pIter - 1 > 0) {
-                for (T::Item* p = pIter; p + 1 != end(); p++) {
+                for (Item* p = pIter; p + 1 != end(); p++) {
                     *p = *(p + 1);
                 }
             }
@@ -237,26 +263,50 @@ namespace MR {
 
         /// @brief Returns an iterator to the first element.
         /// @return The pointer to the first element.
-        T::Item* begin() {
+        Item* begin() {
             return &mArray[0];
         }
 
         /// @brief Returns an iterator to the first element.
         /// @return The pointer to the first element.
-        const T::Item* begin() const {
+        const Item* begin() const {
             return &mArray[0];
         }
 
+        /// @brief Returns an iterator to the reverse first element.
+        /// @return The pointer to the reverse first element.
+        Item* rbegin() {
+            return end() - 1;
+        }
+
+        /// @brief Returns an iterator to the reverse first element.
+        /// @return The pointer to the reverse first element.
+        const Item* rbegin() const {
+            return end() - 1;
+        }
+
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
-        T::Item* end() {
+        Item* end() {
             return &mArray[mCount];
         }
 
         /// @brief Returns an iterator past the last element.
         /// @return The pointer past the last element.
-        const T::Item* end() const {
+        const Item* end() const {
             return &mArray[mCount];
+        }
+
+        /// @brief Returns an iterator past the reverse last element.
+        /// @return The pointer past the reverse last element.
+        Item* rend() {
+            return begin() - 1;
+        }
+
+        /// @brief Returns an iterator past the reverse last element.
+        /// @return The pointer past the reverse last element.
+        const Item* rend() const {
+            return begin() - 1;
         }
 
         /// @brief The array of elements.

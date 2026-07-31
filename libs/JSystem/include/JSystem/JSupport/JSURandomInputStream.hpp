@@ -7,7 +7,7 @@ public:
     JSURandomInputStream() {
     }
 
-    virtual ~JSURandomInputStream() {};
+    virtual ~JSURandomInputStream(){};
 
     virtual s32 getAvailable() const {
         return getLength() - getPosition();

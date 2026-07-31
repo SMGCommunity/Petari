@@ -338,7 +338,7 @@ void JKRHeap::state_register(TState*, u32) const {
 }
 
 bool JKRHeap::state_compare(const TState& lhs, const TState& rhs) const {
-    return lhs._4 == rhs._4;
+    return lhs.mCheckCode == rhs.mCheckCode;
 }
 
 void JKRHeap::state_dump(const TState&) const {

@@ -460,10 +460,7 @@ void Butler::exeDemo() {
 }
 
 void Butler::exeDemoDomeLecture2() {
-    TVec3f neg;
-    TVec3f dir = MR::getCamZdir();
-    JMathInlineVEC::PSVECNegate(&dir, &neg);
-    MR::setNPCActorPose(this, neg, MR::getCamYdir(), MR::getCamPos());
+    MR::setNPCActorPose(this, -MR::getCamZdir(), MR::getCamYdir(), MR::getCamPos());
     exeDemo();
 }
 

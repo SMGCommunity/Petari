@@ -33,8 +33,8 @@ public:
     void fadeOutText();
     bool trySelect();
     ScenarioSelectStar* getSelectedStar() const;
-    void calcWorldPositionFromScreenPos(TVec3f*, const TVec2f&, f32);
-    s32 calcDisplayScenarioNum(s32*, s32*) const;
+    void calcWorldPositionFromScreenPos(TVec3f*, const TVec2f&, f32) const;
+    bool calcDisplayScenarioNum(s32*, s32*) const;
     void appearAllStar(s32, s32, bool);
     void appearStar(s32, s32, int);
     bool isAppearStarEndAll() const;
@@ -56,7 +56,7 @@ public:
     void exeDisappearCometWarning();
 
     /* 0x20 */ s32 mSelectedScenarioNo;
-    /* 0x24 */ u32 _24;
+    /* 0x24 */ s32 _24;
     /* 0x28 */ bool _28;
     /* 0x2C */ TMtx34f mEffectHostMtx;
     /* 0x5C */ ScenarioSelectStar** mStar;
@@ -70,6 +70,6 @@ public:
     /* 0x94 */ BackButton* mBackButton;
     /* 0x98 */ TVec2f mMarioPaneFollowPos;
     /* 0xA0 */ const char* mMarioPaneName;
-    /* 0xA4 */ u32 _A4;
+    /* 0xA4 */ s32 _A4;
     /* 0xA8 */ s32 _A8;
 };

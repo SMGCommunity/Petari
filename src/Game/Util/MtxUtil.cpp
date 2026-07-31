@@ -221,11 +221,11 @@ namespace MR {
 
         TPos3f invMtx;
         invMtx.invert(baseCopy);
-        preScaleMtx(baseCopy.toMtxPtr(), rScale.x, rScale.y, rScale.z);
+        preScaleMtx(baseCopy, rScale.x, rScale.y, rScale.z);
 
         extractMtxTrans(src, &srcTrans);
-        PSMTXConcat(invMtx.toMtxPtr(), src, dst);
-        PSMTXConcat(baseCopy.toMtxPtr(), dst, dst);
+        multMtx(dst, src, invMtx);
+        multMtx(dst, dst, baseCopy);
         setMtxTrans(dst, srcTrans.x, srcTrans.y, srcTrans.z);
     }
 
@@ -327,15 +327,15 @@ namespace MR {
 
     void flattenMtx(MtxPtr dst, MtxPtr src, const TVec3f& rNormal) {
         TVec3f axisX, axisY, axisZ;
-        ((TRot3f*)src)->getXDir(axisX);
-        ((TRot3f*)src)->getYDir(axisY);
-        ((TRot3f*)src)->getZDir(axisZ);
+        MR::extractMtxXDir(src, &axisX);
+        MR::extractMtxYDir(src, &axisY);
+        MR::extractMtxZDir(src, &axisZ);
 
-        JMAVECScaleAdd(&rNormal, &axisX, &axisX, -rNormal.dot(axisX));
-        JMAVECScaleAdd(&rNormal, &axisY, &axisY, -rNormal.dot(axisY));
-        JMAVECScaleAdd(&rNormal, &axisZ, &axisZ, -rNormal.dot(axisZ));
+        axisX.orthogonalize(rNormal);
+        axisY.orthogonalize(rNormal);
+        axisZ.orthogonalize(rNormal);
 
-        ((TRot3f*)dst)->setXYZDir(axisX, axisY, axisZ);
+        MR::setMtxAxisXYZ(dst, axisX, axisY, axisZ);
     }
 
     void flattenMtx(MtxPtr mtx, const TVec3f& rNormal) {
@@ -932,8 +932,8 @@ namespace MR {
             break;
         }
 
-        PSMTXConcat(first, second, dst);
-        PSMTXConcat(third, dst, dst);
+        MR::multMtx(dst, second, first);
+        MR::multMtx(dst, dst, third);
     }
 
     void rotAxisVecRad(const TVec3f& rAxis, const TVec3f& rVec, TVec3f* pOut, f32 rad) {

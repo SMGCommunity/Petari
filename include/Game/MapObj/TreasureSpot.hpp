@@ -6,7 +6,6 @@ class TreasureSpot : public MapObjActor {
 public:
     TreasureSpot(const char*);
 
-    virtual ~TreasureSpot();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
@@ -16,5 +15,5 @@ public:
     void exeSpout();
     void switchEmitGlow();
 
-    bool mIsCoinFlower;  // 0xC4
+    /* 0xC4 */ bool mIsCoinFlower;
 };

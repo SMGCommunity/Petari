@@ -7,7 +7,7 @@
 #define FLAG_SUSPEND 2u
 #define FLAG_RESUME 4u
 
-NameObj::NameObj(const char* pName) : mName(pName), mFlag(0), mExecutorIdx(-1) {
+NameObj::NameObj(const char* pName) : mName(pName), mFlag(), mExecutorIdx(-1) {
     SingletonHolder< NameObjRegister >::get()->add(this);
 }
 
@@ -49,7 +49,7 @@ void NameObj::executeMovement() {
 }
 
 void NameObj::requestSuspend() {
-    if ((mFlag & FLAG_RESUME) == FLAG_RESUME) {
+    if ((getFlag() & FLAG_RESUME) == FLAG_RESUME) {
         mFlag &= ~FLAG_RESUME;
     }
 
@@ -57,7 +57,7 @@ void NameObj::requestSuspend() {
 }
 
 void NameObj::requestResume() {
-    if ((mFlag & FLAG_SUSPEND) == FLAG_SUSPEND) {
+    if ((getFlag() & FLAG_SUSPEND) == FLAG_SUSPEND) {
         mFlag &= ~FLAG_SUSPEND;
     }
 
@@ -65,18 +65,14 @@ void NameObj::requestResume() {
 }
 
 void NameObj::syncWithFlags() {
-    u16 flag;
-
-    if ((mFlag & FLAG_SUSPEND) == FLAG_SUSPEND) {
-        flag = mFlag;
-        flag &= ~FLAG_SUSPEND;
-        mFlag = flag | FLAG_MOVEMENT_OFF;
+    if ((getFlag() & FLAG_SUSPEND) == FLAG_SUSPEND) {
+        mFlag &= ~FLAG_SUSPEND;
+        mFlag |= FLAG_MOVEMENT_OFF;
     }
 
-    if ((mFlag & FLAG_RESUME) == FLAG_RESUME) {
-        flag = mFlag;
-        flag &= ~FLAG_RESUME;
-        mFlag = flag & ~FLAG_MOVEMENT_OFF;
+    if ((getFlag() & FLAG_RESUME) == FLAG_RESUME) {
+        mFlag &= ~FLAG_RESUME;
+        mFlag &= ~FLAG_MOVEMENT_OFF;
     }
 }
 

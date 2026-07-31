@@ -83,7 +83,7 @@ void IKJointCtrlHolder::setEndDirection(const char* pName, const TVec3f& rDirect
 
 /*
 void IKJointCtrlHolder::endUpdate() {
-    for_each(mControls, &mControls[mNumControls], mem_fun(&IKJointCtrl::endCtrl));
+    std::for_each(mControls, &mControls[mNumControls], std::mem_fun(&IKJointCtrl::endCtrl));
     _10 = 1;
 }
 */

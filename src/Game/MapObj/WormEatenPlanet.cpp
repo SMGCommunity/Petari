@@ -5,8 +5,11 @@
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/GreenCaterpillarBig.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
-#include "cstdio"
+#include <cstdio>
+
+namespace {
+    static const s32 sNumWormEatenHill = 5;
+};  // namespace
 
 namespace NrvWormEatenPlanet {
     NEW_NERVE(WormEatenPlanetNrvFirstWait, WormEatenPlanet, FirstWait);
@@ -15,13 +18,8 @@ namespace NrvWormEatenPlanet {
     NEW_NERVE(WormEatenPlanetNrvFourthWait, WormEatenPlanet, FourthWait);
 };  // namespace NrvWormEatenPlanet
 
-WormEatenPlanet::WormEatenPlanet(const char* pName) : LiveActor(pName) {
-    mCaterpillar = nullptr;
-    mEatenHills = nullptr;
-    mSecondHill = nullptr;
-    mThirdHill = nullptr;
-    mFourthHill = nullptr;
-    mLodCtrl = nullptr;
+WormEatenPlanet::WormEatenPlanet(const char* pName)
+    : LiveActor(pName), mCaterpillar(), mWormEatenHill(), mSecondHill(), mThirdHill(), mFourthHill(), mLodCtrl() {
 }
 
 void WormEatenPlanet::init(const JMapInfoIter& rIter) {
@@ -48,10 +46,14 @@ void WormEatenPlanet::init(const JMapInfoIter& rIter) {
     MR::needStageSwitchReadB(this, rIter);
     MR::listenStageSwitchOnA(this, MR::Functor(this, &WormEatenPlanet::startSecondDemo));
     MR::listenStageSwitchOnB(this, MR::Functor(this, &WormEatenPlanet::startThirdDemo));
+
     mCaterpillar = new GreenCaterpillarBig("虫食い惑星オオムイムイ");
     mCaterpillar->init(rIter);
+
     initWormEatenHill();
+
     mLodCtrl = MR::createLodCtrlPlanet(this, rIter, -1.0f, -1);
+
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::tryRegisterDemoCast(mCaterpillar, rIter);
         MR::registerDemoActionNerve(this, &NrvWormEatenPlanet::WormEatenPlanetNrvSecondWait::sInstance, "オオムイムイ出現１回目");
@@ -125,24 +127,29 @@ void WormEatenPlanet::endClipped() {
 }
 
 void WormEatenPlanet::initWormEatenHill() {
-    mEatenHills = new PartsModel*[5];
-    for (s32 i = 0; i < 5; i++) {
+    mWormEatenHill = new PartsModel*[::sNumWormEatenHill];
+
+    for (s32 i = 0; i < ::sNumWormEatenHill; i++) {
         char jointName[256];
         snprintf(jointName, sizeof(jointName), "ConnectParts%c", i + 'A');
         MtxPtr jointMtx = MR::getJointMtx(this, jointName);
-        mEatenHills[i] = new PartsModel(this, "食い破り塚", "WormEatenHill", jointMtx, -1, false);
-        mEatenHills[i]->initWithoutIter();
-        mEatenHills[i]->makeActorDead();
+
+        mWormEatenHill[i] = new PartsModel(this, "食い破り塚", "WormEatenHill", jointMtx, -1, false);
+        mWormEatenHill[i]->initWithoutIter();
+        mWormEatenHill[i]->makeActorDead();
     }
 }
 
 bool WormEatenPlanet::tryGenerateWormEatenHill() {
-    for (s32 i = 0; i < 5; i++) {
-        if (MR::isDead(mEatenHills[i])) {
-            mEatenHills[i]->appear();
-            MR::emitEffect(mEatenHills[i], "Appear");
-            return true;
+    for (s32 i = 0; i < ::sNumWormEatenHill; i++) {
+        if (!MR::isDead(mWormEatenHill[i])) {
+            continue;
         }
+
+        mWormEatenHill[i]->appear();
+        MR::emitEffect(mWormEatenHill[i], "Appear");
+
+        return true;
     }
 
     return false;

@@ -1,6 +1,4 @@
 #include "Game/MapObj/SimpleNormalMapObj.hpp"
-#include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapPartsUtil.hpp"
@@ -9,22 +7,23 @@
 
 SimpleNormalMapObj::SimpleNormalMapObj(const char* pName) : NormalMapBase(pName) {
 }
-SimpleNormalMapObj::~SimpleNormalMapObj() {
-}
 
 void SimpleNormalMapObj::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    char v6[0x100];
-    MR::getMapPartsObjectNameIfExistShapeID(v6, sizeof(v6), rIter);
-    initModelManagerWithAnm(v6, nullptr, false);
+
+    char objectName[256];
+    MR::getMapPartsObjectNameIfExistShapeID(objectName, sizeof(objectName), rIter);
+
+    initModelManagerWithAnm(objectName, nullptr, false);
     MR::connectToSceneNormalMapObj(this);
     MR::initLightCtrlNoDrawMapObj(this);
     initNormalMap();
-    if (MR::isExistCollisionResource(this, v6)) {
+
+    if (MR::isExistCollisionResource(this, objectName)) {
         initHitSensor(1);
-        HitSensor* sensor = MR::addBodyMessageSensorMapObj(this);
-        MR::initCollisionParts(this, v6, sensor, nullptr);
+        MR::initCollisionParts(this, objectName, MR::addBodyMessageSensorMapObj(this), nullptr);
     }
+
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     makeActorAppeared();
 }

@@ -58,7 +58,4 @@ public:
     /* 0xAC */ TVec3f _AC;
     /* 0xB8 */ JointRumbler* mJointRumbler;
     /* 0xBC */ s32 mNumbTime;
-
-private:
-    u8 mPad[(0xC0) - sizeof(LiveActor)];
 };

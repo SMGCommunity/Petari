@@ -2,20 +2,21 @@
 #include "Game/LiveActor/FlashingCtrl.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
+namespace {
+    static const s32 sDefaultTimeLimit = 600;
+    static const s32 sBlinkTime = 120;
+};  // namespace
+
 namespace NrvSimpleTimerObj {
     NEW_NERVE(SimpleTimerObjNrvTimer, SimpleTimerObj, Timer);
 };  // namespace NrvSimpleTimerObj
 
-SimpleTimerObj::SimpleTimerObj(const char* pName) : MapObjActor(pName) {
-    mFlashingCtrl = 0;
-    mTimer = 600;
-    mTimeLeft = 0;
+SimpleTimerObj::SimpleTimerObj(const char* pName) : MapObjActor(pName), mFlashingCtrl(), mTimeLimit(::sDefaultTimeLimit), mTimeLeft() {
 }
 
 void SimpleTimerObj::init(const JMapInfoIter& rIter) {
@@ -24,14 +25,14 @@ void SimpleTimerObj::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     info.setupNerve(&NrvSimpleTimerObj::SimpleTimerObjNrvTimer::sInstance);
     initialize(rIter, info);
-    MR::getJMapInfoArg7NoInit(rIter, &mTimer);
+    MR::getJMapInfoArg7NoInit(rIter, &mTimeLimit);
     mFlashingCtrl = new FlashingCtrl(this, true);
     MR::invalidateShadow(this, 0);
 }
 
 void SimpleTimerObj::exeTimer() {
     if (MR::isFirstStep(this)) {
-        mTimeLeft = mTimer;
+        mTimeLeft = mTimeLimit;
     }
 }
 
@@ -50,15 +51,11 @@ void SimpleTimerObj::kill() {
 }
 
 void SimpleTimerObj::control() {
-    s32 curTime = mTimeLeft;
-    mTimeLeft = curTime - 1;
+    mTimeLeft--;
 
-    if (mTimeLeft == 120) {
-        mFlashingCtrl->start(120);
+    if (mTimeLeft == ::sBlinkTime) {
+        mFlashingCtrl->start(::sBlinkTime);
     } else if (mTimeLeft == 0) {
         kill();
     }
-}
-
-SimpleTimerObj::~SimpleTimerObj() {
 }

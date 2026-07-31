@@ -80,7 +80,7 @@ void AirBubble::exeBreak() {
         MR::startSound(this, "SE_OJ_AIR_BUBBLE_BREAK");
         MR::emitEffect(this, "RecoveryBubbleBreak");
         MR::incPlayerOxygen(8);
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         kill();
     }
 }
@@ -141,7 +141,4 @@ bool AirBubble::canSpinGet() const {
     }
 
     return false;
-}
-
-AirBubble::~AirBubble() {
 }

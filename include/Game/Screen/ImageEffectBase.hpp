@@ -19,6 +19,10 @@ public:
         return _C || _D;
     }
 
+    f32 get_10() const {
+        return _10;
+    }
+
     /* 0x0C */ bool _C;
     /* 0x0D */ bool _D;
     /* 0x10 */ f32 _10;

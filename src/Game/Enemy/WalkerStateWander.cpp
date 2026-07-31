@@ -64,9 +64,9 @@ void WalkerStateWander::exeWalk() {
         MR::startAction(getHost(), "Walk");
     }
 
-    MR::turnDirectionToTargetUseGroundNormalDegree(getHost(), mDirection, mTerritoryMover->_10, mWanderParam->mTurnMaxRateDegree);
+    MR::turnDirectionToTargetUseGroundNormalDegree(getHost(), mDirection, mTerritoryMover->mTarget, mWanderParam->mTurnMaxRateDegree);
 
-    if (MR::isFaceToTargetHorizontalDegree(getHost(), mTerritoryMover->_10, *mDirection, 8.0f)) {
+    if (MR::isFaceToTargetHorizontalDegree(getHost(), mTerritoryMover->mTarget, *mDirection, 8.0f)) {
         MR::addVelocityMoveToDirection(getHost(), *mDirection, mWanderParam->mSpeed);
     }
 

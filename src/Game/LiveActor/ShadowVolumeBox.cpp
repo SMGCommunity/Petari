@@ -133,37 +133,48 @@ void ShadowVolumeBox::makeVertexBuffer() const {
 }
 
 void ShadowVolumeBox::drawShape() const {
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0xE);
-    TDDraw::sendPoint(mPoints[0]);
-    TDDraw::sendPoint(mPoints[1]);
-    TDDraw::sendPoint(mPoints[2]);
-    TDDraw::sendPoint(mPoints[3]);
-    TDDraw::sendPoint(mPoints[10]);
-    TDDraw::sendPoint(mPoints[11]);
-    TDDraw::sendPoint(mPoints[6]);
-    TDDraw::sendPoint(mPoints[7]);
-    TDDraw::sendPoint(mPoints[4]);
-    TDDraw::sendPoint(mPoints[5]);
-    TDDraw::sendPoint(mPoints[8]);
-    TDDraw::sendPoint(mPoints[9]);
-    TDDraw::sendPoint(mPoints[0]);
-    TDDraw::sendPoint(mPoints[1]);
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 14);
+    {
+        TDDraw::sendPoint(mPoints[0]);
+        TDDraw::sendPoint(mPoints[1]);
+        TDDraw::sendPoint(mPoints[2]);
+        TDDraw::sendPoint(mPoints[3]);
+        TDDraw::sendPoint(mPoints[10]);
+        TDDraw::sendPoint(mPoints[11]);
+        TDDraw::sendPoint(mPoints[6]);
+        TDDraw::sendPoint(mPoints[7]);
+        TDDraw::sendPoint(mPoints[4]);
+        TDDraw::sendPoint(mPoints[5]);
+        TDDraw::sendPoint(mPoints[8]);
+        TDDraw::sendPoint(mPoints[9]);
+        TDDraw::sendPoint(mPoints[0]);
+        TDDraw::sendPoint(mPoints[1]);
+    }
+    GXEnd();
+
     GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 8);
-    TDDraw::sendPoint(mPoints[12]);
-    TDDraw::sendPoint(mPoints[0]);
-    TDDraw::sendPoint(mPoints[2]);
-    TDDraw::sendPoint(mPoints[10]);
-    TDDraw::sendPoint(mPoints[6]);
-    TDDraw::sendPoint(mPoints[4]);
-    TDDraw::sendPoint(mPoints[8]);
-    TDDraw::sendPoint(mPoints[0]);
+    {
+        TDDraw::sendPoint(mPoints[12]);
+        TDDraw::sendPoint(mPoints[0]);
+        TDDraw::sendPoint(mPoints[2]);
+        TDDraw::sendPoint(mPoints[10]);
+        TDDraw::sendPoint(mPoints[6]);
+        TDDraw::sendPoint(mPoints[4]);
+        TDDraw::sendPoint(mPoints[8]);
+        TDDraw::sendPoint(mPoints[0]);
+    }
+    GXEnd();
+
     GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 8);
-    TDDraw::sendPoint(mPoints[13]);
-    TDDraw::sendPoint(mPoints[1]);
-    TDDraw::sendPoint(mPoints[9]);
-    TDDraw::sendPoint(mPoints[5]);
-    TDDraw::sendPoint(mPoints[7]);
-    TDDraw::sendPoint(mPoints[11]);
-    TDDraw::sendPoint(mPoints[3]);
-    TDDraw::sendPoint(mPoints[1]);
+    {
+        TDDraw::sendPoint(mPoints[13]);
+        TDDraw::sendPoint(mPoints[1]);
+        TDDraw::sendPoint(mPoints[9]);
+        TDDraw::sendPoint(mPoints[5]);
+        TDDraw::sendPoint(mPoints[7]);
+        TDDraw::sendPoint(mPoints[11]);
+        TDDraw::sendPoint(mPoints[3]);
+        TDDraw::sendPoint(mPoints[1]);
+    }
+    GXEnd();
 }

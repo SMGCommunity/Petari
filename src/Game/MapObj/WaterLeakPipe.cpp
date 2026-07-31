@@ -3,6 +3,16 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
 
+void WaterLeakPipe_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)0.5f;
+}
+
+namespace {
+    static const f32 sDefaultHeight = 500.0f;
+    static const s32 sLifeTime = 15;
+};  // namespace
+
 namespace NrvIceStepNoSlip {
     NEW_NERVE(IceStepNoSlipNrvAppear, IceStepNoSlip, Appear);
     NEW_NERVE(IceStepNoSlipNrvBreak, IceStepNoSlip, Break);
@@ -51,18 +61,12 @@ void IceStepNoSlip::exeBreak() {
     }
 }
 
-WaterLeakPipe::WaterLeakPipe(const char* pName) : LiveActor(pName) {
-    mIceStep = nullptr;
-    mPipeHeight = 500.0f;
-    mTopMtx = nullptr;
-    mBottomMtx = nullptr;
-    _9C.x = 0.0f;
-    _9C.y = 0.0f;
-    _9C.z = 0.0f;
+WaterLeakPipe::WaterLeakPipe(const char* pName)
+    : LiveActor(pName), mIceStep(), mPipeHeight(::sDefaultHeight), mTopMtx(), mBottomMtx(), _9C(0.0f, 0.0f, 0.0f) {
 }
 
 void WaterLeakPipe::init(const JMapInfoIter& rIter) {
-    TVec3f upVec, offs;
+    TVec3f upVec;
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("WaterLeakPipe", nullptr, false);
     mTopMtx = MR::getJointMtx(this, "Top");
@@ -71,14 +75,11 @@ void WaterLeakPipe::init(const JMapInfoIter& rIter) {
     initPipeHeight();
     MR::connectToSceneMapObjNoCalcAnim(this);
     initHitSensor(1);
-    offs.x = 0.0f;
-    offs.y = 0.0f;
-    offs.z = 0.0f;
-    MR::addHitSensorAtJointMapObj(this, "ice", "Top", 8, 120.0f, offs);
+    MR::addHitSensorAtJointMapObj(this, "ice", "Top", 8, 120.0f, TVec3f(0.0f, 0.0f, 0.0f));
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     MR::calcUpVec(&upVec, this);
-    JMAVECScaleAdd(&upVec, &mPosition, &_9C, (0.5f * mPipeHeight));
+    _9C.scaleAdd(0.5f * mPipeHeight, upVec, mPosition);
     MR::setClippingTypeSphere(this, (0.5f * mPipeHeight), &_9C);
     mIceStep = new IceStepNoSlip(mTopMtx);
     mIceStep->initWithoutIter();
@@ -103,7 +104,7 @@ void WaterLeakPipe::exeFreeze() {
         MR::invalidateClipping(this);
     } else if (MR::isOnPlayer(mIceStep) && MR::isPlayerElementModeIce()) {
         setNerve(&NrvWaterLeakPipe::WaterLeakPipeNrvFreeze::sInstance);
-    } else if (MR::isStep(this, 15)) {
+    } else if (MR::isStep(this, ::sLifeTime)) {
         mIceStep->setNerve(&NrvIceStepNoSlip::IceStepNoSlipNrvBreak::sInstance);
         MR::startSound(this, "SE_OJ_ICE_FLOOR_MELT");
         MR::validateClipping(this);
@@ -111,8 +112,7 @@ void WaterLeakPipe::exeFreeze() {
     }
 }
 
-/*
-bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!MR::isPlayerElementModeIce()) {
         return false;
     }
@@ -125,7 +125,7 @@ bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSenso
         TVec3f upVec;
         MR::calcUpVec(&upVec, this);
         TVec3f v8;
-        v8.subInline2(*MR::getPlayerPos(), mPosition);
+        v8.sub(*MR::getPlayerPos(), mPosition);
 
         if (v8.dot(upVec) < 0.0f) {
             return false;
@@ -141,21 +141,15 @@ bool WaterLeakPipe::receiveMsgPlayerAttack(u32 msg, HitSensor *pSender, HitSenso
 
     return false;
 }
-*/
 
 void WaterLeakPipe::initPipeHeight() {
-    TMtx34f mtx;
-    mtx.setInline(mTopMtx);
+    TPos3f mtx;
+    mtx.set(mTopMtx);
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
     TVec3f v10;
-    JMAVECScaleAdd(&upVec, &mPosition, &v10, mPipeHeight);
-    mtx.mMtx[0][3] = v10.x;
-    mtx.mMtx[1][3] = v10.y;
-    mtx.mMtx[2][3] = v10.z;
-    PSMTXCopy(mtx.toMtxPtr(), mTopMtx);
+    v10.scaleAdd(mPipeHeight, upVec, mPosition);
+    mtx.setTrans(v10);
+    PSMTXCopy(mtx, mTopMtx);
     calcAndSetBaseMtx();
-}
-
-void WaterLeakPipe::calcAnim() {
 }

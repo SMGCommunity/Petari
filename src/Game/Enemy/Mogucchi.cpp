@@ -191,17 +191,12 @@ void Mogucchi::exeScatter() {
         MR::invalidateClipping(this);
     }
 
-    TVec3f* railGravity = &mRailGravity;
-
-    JMAVECScaleAdd(railGravity, &mScatterNormal, &mScatterNormal, -mRailGravity.dot(mScatterNormal));
+    mScatterNormal.orthogonalize(mRailGravity);
     MR::normalizeOrZero(&mScatterNormal);
 
     if (!MR::isNearZero(mScatterNormal)) {
-        TVec3f v2;
-        PSVECCrossProduct(railGravity, mScatterNormal, &v2);
-
         TRot3f mtx;
-        mtx.setXDir(v2);
+        mtx.setXDir(mRailGravity.cross(mScatterNormal));
         mtx.setYDir(-mRailGravity);
         mtx.setZDir(-mScatterNormal);
         mtx.getEulerXYZ(mRotation);
@@ -338,11 +333,10 @@ void Mogucchi::createHole() {
 
 void Mogucchi::calcAttackDir(TVec3f* pDir, const TVec3f& senderPos, const TVec3f& receiverPos) const {
     pDir->sub(receiverPos, senderPos);
-    const TVec3f* railGravity = &mRailGravity;
-    JMAVECScaleAdd(railGravity, pDir, pDir, -railGravity->dot(*pDir));
+    pDir->orthogonalize(mRailGravity);
     MR::normalizeOrZero(pDir);
 
-    if (MR::isNearZero(*pDir, 0.001f)) {
+    if (MR::isNearZero(*pDir)) {
         pDir->set< f32 >(getBaseMtx()[0][1], getBaseMtx()[1][1], getBaseMtx()[2][1]);
     }
 
@@ -359,8 +353,7 @@ void Mogucchi::makeEulerRotation() {
 
 void Mogucchi::calcScatterVec(const TVec3f& p1, const TVec3f& p2) {
     mScatterNormal.sub(p2, p1);
-    const TVec3f* railGravity = &mRailGravity;
-    JMAVECScaleAdd(railGravity, mScatterNormal, mScatterNormal, -railGravity->dot(mScatterNormal));
+    mScatterNormal.orthogonalize(mRailGravity);
     MR::normalizeOrZero(&mScatterNormal);
 }
 
@@ -386,7 +379,7 @@ bool Mogucchi::receiveAttackBySpinSensor(u32 msg, HitSensor* pSender, HitSensor*
     }
 
     MR::stopScene(8);
-    MR::tryRumblePadMiddle(this, 0);
+    MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     calcScatterVec(pSender->mPosition, pReceiver->mPosition);
     setNerve(&MogucchiNrvScatter::sInstance);
 
@@ -426,7 +419,7 @@ bool Mogucchi::receiveAttackByBodySensor(u32 msg, HitSensor* pSender, HitSensor*
 
     if (MR::isMsgPlayerHitAll(msg)) {
         MR::stopScene(8);
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         calcScatterVec(pSender->mPosition, pReceiver->mPosition);
         setNerve(&MogucchiNrvScatter::sInstance);
         return true;

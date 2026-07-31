@@ -3,6 +3,7 @@
 #include "Game/Screen/ScreenAlphaCapture.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/Color.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
@@ -155,16 +156,23 @@ namespace MR {
         GXSetAlphaUpdate(GX_FALSE);
         GXSetZMode(GX_TRUE, GX_ALWAYS, GX_TRUE);
         GXSetCullMode(GX_CULL_BACK);
+
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        GXPosition2u16(0, 0);
-        GXTexCoord2u8(0, 0);
-        GXPosition2u16(width, 0);
-        GXTexCoord2u8(1, 0);
-        GXPosition2u16(width, height);
-        GXTexCoord2u8(1, 1);
-        GXPosition2u16(0, height);
-        GXTexCoord2u8(0, 1);
+        {
+            GXPosition2u16(0, 0);
+            GXTexCoord2u8(0, 0);
+
+            GXPosition2u16(width, 0);
+            GXTexCoord2u8(1, 0);
+
+            GXPosition2u16(width, height);
+            GXTexCoord2u8(1, 1);
+
+            GXPosition2u16(0, height);
+            GXTexCoord2u8(0, 1);
+        }
         GXEnd();
+
         GXSetZTexture(GX_ZT_DISABLE, GX_TF_Z24X8, 0);
         GXSetZCompLoc(GX_TRUE);
         GXSetColorUpdate(GX_TRUE);
@@ -201,14 +209,17 @@ namespace MR {
 
     void fillScreenArea(const TVec2s& rMin, const TVec2s& rMax) {
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-        u16 maxX = rMax.x;
-        u16 minX = rMin.x;
-        u16 minY = rMin.y;
-        u16 maxY = rMax.y;
-        GXPosition2u16(minX, minY);
-        GXPosition2u16(maxX, minY);
-        GXPosition2u16(maxX, maxY);
-        GXPosition2u16(minX, maxY);
+        {
+            u16 maxX = rMax.x;
+            u16 minX = rMin.x;
+            u16 minY = rMin.y;
+            u16 maxY = rMax.y;
+
+            GXPosition2u16(minX, minY);
+            GXPosition2u16(maxX, minY);
+            GXPosition2u16(maxX, maxY);
+            GXPosition2u16(minX, maxY);
+        }
         GXEnd();
     }
 
@@ -297,18 +308,26 @@ namespace MR {
         GXSetDstAlpha(GX_TRUE, 0);
         GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP);
         GXSetTevColor(GX_TEVREG0, Color8(0x00000080));
+
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-        u16 width = MR::getScreenWidth();
-        u16 height = MR::getScreenHeight();
-        GXPosition2u16(0, 0);
-        GXTexCoord2f32(0.0f, 0.0f);
-        GXPosition2u16(width, 0);
-        GXTexCoord2f32(1.0f, 0.0f);
-        GXPosition2u16(0, height);
-        GXTexCoord2f32(0.0f, 1.0f);
-        GXPosition2u16(width, height);
-        GXTexCoord2f32(1.0f, 1.0f);
+        {
+            u16 width = MR::getScreenWidth();
+            u16 height = MR::getScreenHeight();
+
+            GXPosition2u16(0, 0);
+            GXTexCoord2f32(0.0f, 0.0f);
+
+            GXPosition2u16(width, 0);
+            GXTexCoord2f32(1.0f, 0.0f);
+
+            GXPosition2u16(0, height);
+            GXTexCoord2f32(0.0f, 1.0f);
+
+            GXPosition2u16(width, height);
+            GXTexCoord2f32(1.0f, 1.0f);
+        }
         GXEnd();
+
         GXSetDstAlpha(GX_FALSE, 0);
         GXSetAlphaUpdate(GX_FALSE);
     }
@@ -333,11 +352,8 @@ namespace MR {
         mShadowVec = rVec;
     }
 
-    // TODO
-    // The TPos3f here is actually a Mtx44
     void loadTexProjectionMtx(u32 id) {
-        TProj3f cameraProjection;
-        cameraProjection.setInline(MR::getCameraProjectionMtx());
+        TProj3f cameraProjection = *MR::getCameraProjectionMtx();
         cameraProjection.mMtx[2][0] = 0.0f;
         cameraProjection.mMtx[2][1] = 0.0f;
         cameraProjection.mMtx[2][2] = -1.0f;
@@ -347,14 +363,14 @@ namespace MR {
         cameraProjection.mMtx[3][2] = 0.0f;
         cameraProjection.mMtx[3][3] = 1.0f;
         Mtx matrix;
-        PSMTXConcat(cameraProjection.toMtx44Ptr(), MR::getCameraViewMtx(), matrix);
+        MR::multMtx(matrix, MR::getCameraViewMtx(), cameraProjection);
         TMtx34f mat;
         mat.identity();
         mat[0][0] = 0.5f;
         mat[0][2] = 0.5f;
         mat[1][1] = -0.5f;
         mat[1][2] = 0.5f;
-        PSMTXConcat(mat, matrix, matrix);
+        MR::multMtx(matrix, matrix, mat);
         GXLoadTexMtxImm(matrix, id, GX_MTX3x4);
     }
 

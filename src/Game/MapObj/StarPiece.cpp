@@ -571,9 +571,9 @@ void StarPiece::exeToTarget() {
         f32 dot = _8C.dot(velNormalized);
         if (0.0f < dot) {
             if (mFlags.isGoToPlayer) {
-                mVelocity += *MR::getPlayerVelocity() *_9C * dot;
+                mVelocity += *MR::getPlayerVelocity() * _9C * dot;
             } else {
-                mVelocity += mTargetSensor->mHost->mVelocity *_9C * dot;
+                mVelocity += mTargetSensor->mHost->mVelocity * _9C * dot;
             }
         }
     }
@@ -674,8 +674,7 @@ void StarPiece::exeThrow() {
     playerCenterPos -= camPos;
 
     if (MR::isNoBind(this)) {
-        if (1500.0f < MR::getCamPos().distance(mPosition) || camZDir.dot(playerCenterPos) < camZDir.dot(vec10) ||
-            MR::isGreaterStep(this, 28)) {
+        if (1500.0f < MR::getCamPos().distance(mPosition) || camZDir.dot(playerCenterPos) < camZDir.dot(vec10) || MR::isGreaterStep(this, 28)) {
             MR::onBind(this);
         }
     }
@@ -715,7 +714,7 @@ void StarPiece::exeThrowFall() {
 
     tryCalcGravity();
     mVelocity *= 0.97f;
-    mVelocity +=  mGravity * 1.0f;
+    mVelocity += mGravity * 1.0f;
 
     mRotation.y += 15.0f;
     MR::repeatDegree(&mRotation.y);
@@ -1208,7 +1207,7 @@ bool StarPiece::touchPlayer() {
                 MR::emitEffect(this, "StarPieceGet");
             }
         }
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }
     MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY_W");
     MR::stopSound(this, "SE_OJ_STAR_PIECE_FLY");

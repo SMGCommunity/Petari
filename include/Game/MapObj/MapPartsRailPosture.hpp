@@ -13,8 +13,11 @@ public:
     virtual void start();
     virtual void end();
 
+    bool isPostureTypeRailDirRailUseShadowGravity() const;
+
+    void exeDoNothing();
     void exeMove();
 
-    TMtx34f _18;
-    u32 _48;
+    TPos3f _18;
+    s32 mMovePosture;  // 0x48
 };

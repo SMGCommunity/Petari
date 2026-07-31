@@ -60,7 +60,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
 
     TVec3f relativePosition = rPos - worldBaseCenter;
     TVec3f positionOnBasePlane;
-    positionOnBasePlane.rejection(relativePosition, unitWorldCentralAxis);
+    positionOnBasePlane.killElement(relativePosition, unitWorldCentralAxis);
 
     if (MR::isNearZero(positionOnBasePlane)) {
         f32 positionOnCentralAxis;
@@ -160,7 +160,7 @@ bool ConeGravity::calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f
         MR::normalizeOrZero(&generatrixDirection);
 
         TVec3f gravity;
-        gravity.rejection((-positionOnBasePlane), generatrixDirection);
+        gravity.killElement((-positionOnBasePlane), generatrixDirection);
 
         if (MR::isNearZero(gravity)) {
             *pDest = -unitWorldCentralAxis;

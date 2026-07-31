@@ -54,7 +54,7 @@ void MarioSearchLight::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (pReceiver != _A4) {
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
     _A4 = pReceiver;
     _A0 = 30;
@@ -171,7 +171,7 @@ void MarioActor::calcViewSearchLight() {
 
         // The search light is has three scaled cone "shells" to fake a blur effect.
         Mtx modelMdx;
-        PSMTXConcat(J3DSys::mCurrentMtx, model->getBaseTRMtx(), modelMdx);
+        MR::multMtx(modelMdx, model->getBaseTRMtx(), J3DSys::mCurrentMtx);
 
         Mtx invBaseMtx;
         PSMTXInverse(model->getBaseTRMtx(), invBaseMtx);
@@ -183,8 +183,8 @@ void MarioActor::calcViewSearchLight() {
             f32 scale = mConst->getTable()->mSearchLightBlurScale[i];
             PSMTXScale(scaledMtx, scale, scale, scale);
 
-            PSMTXConcat(modelMdx, scaledMtx, scaledMtx);
-            PSMTXConcat(scaledMtx, invBaseMtx, J3DSys::mCurrentMtx);
+            MR::multMtx(scaledMtx, scaledMtx, modelMdx);
+            MR::multMtx(J3DSys::mCurrentMtx, invBaseMtx, scaledMtx);
 
             model->viewCalc3(i + 1, nullptr);
         }

@@ -48,6 +48,10 @@ namespace JGadget {
         TLinkListNode* getNext() const {
             return mNext;
         }
+        TLinkListNode* getPrev() const {
+            return mPrev;
+        }
+
         TLinkListNode* mNext;
         TLinkListNode* mPrev;
     };
@@ -55,8 +59,8 @@ namespace JGadget {
     class TNodeLinkList {
     public:
         struct iterator {
-            iterator() {};
-            explicit iterator(TLinkListNode* node) : curr(node) {};
+            iterator(){};
+            explicit iterator(TLinkListNode* node) : curr(node){};
             iterator& operator=(const iterator& other) {
                 curr = other.curr;
                 return *this;
@@ -76,6 +80,17 @@ namespace JGadget {
             }
             TLinkListNode& operator*() const {
                 return *curr;
+            }
+
+            iterator operator--(int) {
+                const iterator old(*this);
+                (void)--*this;
+                return old;
+            }
+
+            iterator& operator--() {
+                curr = curr->getPrev();
+                return *this;
             }
 
             TLinkListNode* curr;
@@ -119,6 +134,10 @@ namespace JGadget {
             }
         }
 
+        u32 size() const {
+            return mLen;
+        }
+
         template < typename T >
         inline void remove_if(T p) {
             TNodeLinkList removed;
@@ -133,11 +152,11 @@ namespace JGadget {
     class TLinkList : public TNodeLinkList {
     public:
         struct iterator : public TIterator< std::bidirectional_iterator_tag, T >, public TNodeLinkList::iterator {
-            iterator() {};
+            iterator(){};
 
-            iterator(TLinkListNode* iter) : TNodeLinkList::iterator(iter) {};
+            iterator(TLinkListNode* iter) : TNodeLinkList::iterator(iter){};
 
-            explicit iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter) {};
+            explicit iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter){};
 
             const iterator& operator=(const iterator& rOther) {
                 TIterator< std::bidirectional_iterator_tag, T >::operator=(rOther);
@@ -163,6 +182,17 @@ namespace JGadget {
 
             T* operator*() const {
                 return operator->();
+            }
+
+            iterator& operator--() {
+                TNodeLinkList::iterator::operator--();
+                return *this;
+            }
+
+            iterator operator--(int) {
+                const iterator old(*this);
+                --*this;
+                return old;
             }
         };
 
@@ -191,6 +221,14 @@ namespace JGadget {
 
         static T* Element_toValue(TLinkListNode* element) NO_INLINE {
             return (T*)((u8*)element + NODE_OFFSET);
+        }
+
+        T& front() {
+            return *begin();
+        }
+
+        T& back() {
+            return *--end();
         }
 
         void Remove(T* element) NO_INLINE {

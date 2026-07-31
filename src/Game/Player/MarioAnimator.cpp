@@ -99,8 +99,8 @@ void MarioAnimator::change(const char* name) {
     const char* bck = mXanimePlayer->getCurrentBckName();
     if (bck) {
         const XanimeGroupInfo* info = mXanimePlayer->mCurrentAnimation;
-        if (info->_18 == 2) {
-            f32 arg1 = info->_14, arg2 = info->_10;
+        if (info->mAttribute == 2) {
+            f32 arg1 = info->mLoop, arg2 = info->mEnd;
             getPlayer()->startBas(bck, false, arg1, arg2);
         } else {
             getPlayer()->startBas(bck, false, 0.0f, 0.0f);
@@ -619,35 +619,35 @@ HitSensor* MarioActor::getLookTargetSensor() const {
 }
 
 void MarioAnimator::switchMirrorMode() {
+    f32 scale = 1.0f;
     J3DModelX* model = static_cast< J3DModelX* >(MR::getJ3DModel(mActor));
-    f32 one = 1.0f;
     if (isMirrorAnimation()) {
         u32* modelFlags = (u32*)&model->mFlags;
         *modelFlags |= 1;
         XjointTransform* jt = mXanimePlayer->mCore->getJointTransform(0);
         TVec3f mirrorScale;
-        mirrorScale.x = one;
-        mirrorScale.y = one;
-        mirrorScale.z = -one;
+        mirrorScale.x = scale;
+        mirrorScale.y = scale;
+        mirrorScale.z = -scale;
         jt->_14 = mirrorScale;
 
         Mtx invBase;
         MtxPtr base = mActor->getBaseMtx();
         PSMTXInverse(base, invBase);
-        PSMTXConcat(MR::tmpMtxRotYRad(PI), invBase, _DC.toMtxPtr());
+        MR::multMtx(_DC, invBase, MR::tmpMtxRotYRad(PI));
 
         base = mActor->getBaseMtx();
-        PSMTXConcat(base, _DC.toMtxPtr(), _DC.toMtxPtr());
+        MR::multMtx(_DC, _DC, base);
 
-        jt->_6C = _DC.toMtxPtr();
+        jt->_6C = _DC;
     } else {
         u32* modelFlags = (u32*)&model->mFlags;
         *modelFlags &= ~1;
         XjointTransform* jt = mXanimePlayer->mCore->getJointTransform(0);
         TVec3f normalScale;
-        normalScale.x = one;
-        normalScale.y = one;
-        normalScale.z = one;
+        normalScale.x = scale;
+        normalScale.y = scale;
+        normalScale.z = scale;
         jt->_14 = normalScale;
         jt->_6C = 0;
     }

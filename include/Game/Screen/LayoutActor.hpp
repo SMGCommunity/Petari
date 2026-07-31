@@ -43,9 +43,9 @@ public:
     void initPointingTarget(int);
     void updateSpine();
 
-    /* 0x0C */ LayoutManager* mManager;
+    /* 0x0C */ LayoutManager* mLayoutManager;
     /* 0x10 */ Spine* mSpine;
-    /* 0x14 */ PaneEffectKeeper* mPaneEffectKeeper;
-    /* 0x18 */ StarPointerLayoutTargetKeeper* mStarPointerTargetKeeper;
+    /* 0x14 */ PaneEffectKeeper* mEffectKeeper;
+    /* 0x18 */ StarPointerLayoutTargetKeeper* mPointingTarget;
     /* 0x1C */ LayoutActorFlag mFlag;
 };

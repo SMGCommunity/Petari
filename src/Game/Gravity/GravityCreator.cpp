@@ -310,7 +310,7 @@ PlanetGravity* PointGravityCreator::createInstance() {
 
 void PointGravityCreator::settingFromSRT(const TVec3f& rTrans, const TVec3f& rRotate, const TVec3f& rScale) {
     mGravityInstance->mDistant = 500.0f * rScale.x;
-    mGravityInstance->mOrigPosition.setPS(rTrans);
+    mGravityInstance->setOrig(rTrans);
 }
 
 PlanetGravity* PointGravityCreator::getGravity() {

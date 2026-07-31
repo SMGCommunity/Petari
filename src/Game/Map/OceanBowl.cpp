@@ -356,7 +356,7 @@ void OceanBowl::draw() const {
     u16 zero = 0;
     u16 one = 1;
     for (s32 x = 0; x < 24; x++) {
-        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 0x32);
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 50);
         for (s32 y = 0; y < 25; y++) {
             pPoint2 = getPoint(x, y);
             OceanBowlPoint* pPoint = getPoint(x + 1, y);
@@ -373,6 +373,7 @@ void OceanBowl::draw() const {
             zero += 2;
             one += 2;
         }
+        GXEnd();
     }
 }
 
@@ -547,7 +548,4 @@ void OceanBowl::loadMaterialBloom() const {
     GXSetZCompLoc(GX_TRUE);
     GXSetCullMode(GX_CULL_NONE);
     GXSetClipMode(GX_CLIP_ENABLE);
-}
-
-OceanBowl::~OceanBowl() {
 }

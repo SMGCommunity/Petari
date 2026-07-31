@@ -20,3 +20,6 @@ public:
     f32 mNear;      // 0xCC
     f32 mFar;       // 0xD0
 };
+
+void J2DFillBox(f32 x, f32 y, f32 width, f32 height, JUtility::TColor color);
+void J2DFillBox(JGeometry::TBox2< f32 > const& box, JUtility::TColor color);

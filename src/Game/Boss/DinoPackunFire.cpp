@@ -93,9 +93,7 @@ void DinoPackunFire::exeShot() {
         MR::startAction(this, "Move");
     }
 
-    TVec3f v5;
-    JMathInlineVEC::PSVECNegate(&mGravity, &v5);
-    MR::rotateQuatRollBall(&_8C, mVelocity, v5, (150.0f * mScale.x));
+    MR::rotateQuatRollBall(&_8C, mVelocity, -mGravity, (150.0f * mScale.x));
     MR::addVelocityToGravity(this, 2.0f);
     MR::attenuateVelocity(this, 0.98f);
     MR::reboundVelocityFromCollision(this, 0.80f, 15.0f, 0.40f);

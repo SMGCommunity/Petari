@@ -46,14 +46,14 @@ void JetTurtle::initAfterPlacement() {
 }
 
 void JetTurtle::becomeSlowType() {
-    getSensor("body")->setType(0x10);
+    getSensor("body")->setType(ATYPE_JET_TURTLE_SLOW);
     MR::startBrk(this, "Koura");
     MR::setBrkFrameAndStop(this, 0.0f);
     mShellType = 0;
 }
 
 void JetTurtle::becomeFastType() {
-    getSensor("body")->setType(0xF);
+    getSensor("body")->setType(ATYPE_JET_TURTLE);
     MR::startBrk(this, "Koura");
     MR::setBrkFrameAndStop(this, 0.0f);
     mShellType = 1;
@@ -576,17 +576,17 @@ bool JetTurtle::isRestart() const {
 void GoldenTurtle::init(const JMapInfoIter& rIter) {
     init2(rIter, 1);
     MR::startBtk(this, "KouraShine");
-    getSensor("body")->setType(0x10);
+    getSensor("body")->setType(ATYPE_JET_TURTLE_SLOW);
 }
 
 void GoldenTurtle::resetPosition() {
     JetTurtle::resetPosition();
-    getSensor("body")->setType(0x10);
+    getSensor("body")->setType(ATYPE_JET_TURTLE_SLOW);
 }
 
 void GoldenTurtle::exeThrowing() {
     if (MR::isFirstStep(this)) {
-        getSensor("body")->setType(0x11);
+        getSensor("body")->setType(ATYPE_SPECIAL_WEAPON);
 
         if (mShellType == 2) {
             MR::deleteEffect(this, "HandyGlow");
@@ -598,7 +598,7 @@ void GoldenTurtle::exeThrowing() {
 
 void GoldenTurtle::reset(u32 a1) {
     JetTurtle::reset(a1);
-    getSensor("body")->setType(0x10);
+    getSensor("body")->setType(ATYPE_JET_TURTLE_SLOW);
 }
 
 JetTurtle::~JetTurtle() {

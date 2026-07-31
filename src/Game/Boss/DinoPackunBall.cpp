@@ -118,14 +118,9 @@ void DinoPackunBall::requestUnLockPosition() {
 }
 
 void DinoPackunBall::addDodgeTargetVelocity() {
-    const TVec3f* weakPos = &MR::getSensorPos(mWeakSensor);
-    TVec3f v12(mPosition);
     TVec3f v13;
-    v12.sub(*weakPos);
-    v13.set< f32 >(v12);
-    TVec3f* grav = &MR::getSensorHost(mWeakSensor)->mGravity;
-    f32 v4 = grav->dot(v13);
-    JMAVECScaleAdd(grav, &v13, &v13, -v4);
+    v13.set(mPosition - MR::getSensorPos(mWeakSensor));
+    v13.killElement(v13, MR::getSensorHost(mWeakSensor)->mGravity);
     f32 v7;
     MR::separateScalarAndDirection(&v7, &v13, v13);
     f32 v5 = mVelocity.dot(v13);
@@ -252,7 +247,7 @@ void DinoPackunBall::exeWait() {
 void DinoPackunBall::exeShoot() {
     if (MR::isFirstStep(this)) {
         MR::stopScene(3);
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::startBlowHitSound(this);
         MR::deleteEffect(this, _124 ? "TailDragBlack" : "TailDrag");
     }

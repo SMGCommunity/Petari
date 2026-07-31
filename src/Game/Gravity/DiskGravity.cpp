@@ -128,7 +128,7 @@ void DiskGravity::updateLocalParam() {
         mOppositeSideVecOrtho.zero();
         return;
     }
-    JMAVECScaleAdd(&mLocalNormal, &mSideDirection, &mOppositeSideVecOrtho, -mLocalNormal.dot(mSideDirection));
+    mOppositeSideVecOrtho.killElement2(mSideDirection, mLocalNormal);
     MR::normalizeOrZero(&mOppositeSideVecOrtho);
     if (MR::isNearZero(mOppositeSideVecOrtho)) {
         mOppositeSideVecOrtho.zero();

@@ -189,7 +189,7 @@ bool KeySwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
 
     if (MR::isMsgItemGet(msg)) {
         MR::startSound(this, "SE_OJ_KEY_SWITCH_GET");
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         kill();
         return true;
     }
@@ -220,8 +220,7 @@ bool KeySwitch::tryAvoid() {
     MR::calcUpVec(&up, sensorActor);
     TVec3f thing;
     thing.sub(mPosition, sensorActor->mPosition);
-    TVec3f stack_8;
-    JMAVECScaleAdd(&up, &thing, &stack_8, -up.dot(thing));
+    TVec3f stack_8 = thing.killElement(up);
 
     if (MR::normalizeOrZero(&stack_8)) {
         MR::calcFrontVec(&stack_8, sensorActor);

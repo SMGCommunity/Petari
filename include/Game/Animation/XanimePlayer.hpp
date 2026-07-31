@@ -15,7 +15,7 @@ public:
     /// @brief Creates a new `XanimeFrameCtrl`.
     XanimeFrameCtrl();
 
-    /* 0x14 */ u32 _14;
+    /* 0x14 */ s32 _14;
 };
 
 class XanimePlayer {
@@ -61,10 +61,9 @@ public:
     const char* getNameStringPointer(const char*) const;
     bool checkPass(f32) const;
     f32 tellAnimationFrame() const;
-    const XanimeGroupInfo* getSimpleGroup() const;
+    XanimeGroupInfo* getSimpleGroup() const;
     void duplicateSimpleGroup();
     void changeCurrentAnimation(const XanimeGroupInfo*);
-
     inline XanimeCore* getCore() {
         return mCore;
     }
@@ -73,7 +72,7 @@ public:
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ f32 _08;
     /* 0x0C */ f32 _0C;
-    /* 0x10 */ f32 _10[4];
+    /* 0x10 */ f32 mWeights[4];
     /* 0x20 */ XanimeFrameCtrl* _20;
     /* 0x24 */ XanimeFrameCtrl _24[2];
     /* 0x54 */ u8 _54;
@@ -85,13 +84,13 @@ public:
     /* 0x68 */ const XanimeGroupInfo* _68;
     /* 0x6C */ XanimeCore* mCore;
     /* 0x70 */ XanimeResourceTable* mResourceTable;
-    /* 0x74 */ XanimeGroupInfo* _74;
+    /* 0x74 */ XanimeGroupInfo* mSimpleGroup;
     /* 0x78 */ s32 _78;
-    /* 0x7C */ u8 _7C;
-    /* 0x7D */ u8 _7D;
-    /* 0x7E */ u8 _7E;
-    /* 0x7F */ u8 _7F;
-    /* 0x80 */ u8 _80;
+    /* 0x7C */ bool _7C;
+    /* 0x7D */ bool _7D;
+    /* 0x7E */ bool _7E;
+    /* 0x7F */ bool _7F;
+    /* 0x80 */ bool _80;
     /* 0x84 */ f32 _84;
-    /* 0x88 */ u8 _88;
+    /* 0x88 */ bool _88;
 };

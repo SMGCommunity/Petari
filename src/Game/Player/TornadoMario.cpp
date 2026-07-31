@@ -1,5 +1,4 @@
 #include "Game/Player/TornadoMario.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"

@@ -68,7 +68,7 @@ void BossStinkBugActionFlyHigh::control() {
 bool BossStinkBugActionFlyHigh::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerHipDropFloor(msg) && isEnableHipDrop()) {
         getHost()->offBindLeg();
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
         MR::emitEffectHit(getHost(), MR::getSensorPos(pSender), "Hit");
 

@@ -76,6 +76,7 @@ void RingBeamShadowDrawer::drawShape() const {
 
         PSMTXMultVec(mtx, &XDirScaled, &XDirScaled);
     }
+
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 64);
     for (int i = 0; i < 32; i++) {
         MtxList[i].getXDir(listXDir);
@@ -87,6 +88,8 @@ void RingBeamShadowDrawer::drawShape() const {
         GXPosition3f32(temp2.x, temp2.y, temp2.z);
         GXPosition3f32(temp.x, temp.y, temp.z);
     }
+    GXEnd();
+
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 64);
     for (int i = 0; i < 32; i++) {
         MtxList[i].getXDir(listXDir);
@@ -103,6 +106,8 @@ void RingBeamShadowDrawer::drawShape() const {
         GXPosition3f32(temp.x, temp.y, temp.z);
         GXPosition3f32(temp2.x, temp2.y, temp2.z);
     }
+    GXEnd();
+
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 64);
     for (int i = 0; i < 32; i++) {
         MtxList[i].getXDir(listXDir);
@@ -117,6 +122,8 @@ void RingBeamShadowDrawer::drawShape() const {
         GXPosition3f32(temp.x, temp.y, temp.z);
         GXPosition3f32(temp2.x, temp2.y, temp2.z);
     }
+    GXEnd();
+
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 64);
     for (int i = 0; i < 32; i++) {
         MtxList[i].getXDir(listXDir);
@@ -131,6 +138,7 @@ void RingBeamShadowDrawer::drawShape() const {
         GXPosition3f32(temp2.x, temp2.y, temp2.z);
         GXPosition3f32(temp.x, temp.y, temp.z);
     }
+    GXEnd();
 }
 
 void RingBeamShadowDrawer::loadModelDrawMtx() const {

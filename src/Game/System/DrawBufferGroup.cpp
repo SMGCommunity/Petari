@@ -84,7 +84,7 @@ void DrawBufferGroup::drawOpa() const {
         if (mLightLoadType != -1) {
             MR::loadLight(mLightLoadType);
         }
-        std::for_each(mActiveExecutors.begin(), mActiveExecutors.end(), std::const_mem_func(&DrawBufferExecuter::drawOpa));
+        std::for_each(mActiveExecutors.begin(), mActiveExecutors.end(), std::mem_func(&DrawBufferExecuter::drawOpa));
     }
 }
 
@@ -94,7 +94,7 @@ void DrawBufferGroup::drawXlu() const {
         if (mLightLoadType != -1) {
             MR::loadLight(mLightLoadType);
         }
-        std::for_each(mActiveExecutors.begin(), mActiveExecutors.end(), std::const_mem_func(&DrawBufferExecuter::drawXlu));
+        std::for_each(mActiveExecutors.begin(), mActiveExecutors.end(), std::mem_func(&DrawBufferExecuter::drawXlu));
     }
 }
 

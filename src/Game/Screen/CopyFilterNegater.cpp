@@ -1,4 +1,5 @@
 #include "Game/Screen/CopyFilterNegater.hpp"
+#include <JSystem/JUtility/JUTVideo.hpp>
 
 CopyFilterNegater::CopyFilterNegater() {
     mRenderObj = JUTVideo::getManager()->getRenderMode();

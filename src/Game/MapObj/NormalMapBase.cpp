@@ -100,7 +100,7 @@ void NormalMapBase::draw() const {
         Mtx mtx;
         PSMTXIdentity(mtx);
         MR::makeMtxTRS(mtx, this);
-        PSMTXConcat(cameraViewMtx, mtx, mtx);
+        MR::multMtx(mtx, mtx, cameraViewMtx);
         PSMTXCopy((const MtxPtr)mtx, (MtxPtr)_F4);
 
         MR::makeMtxTR(v7, this);

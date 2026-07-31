@@ -668,69 +668,78 @@ void Trapeze::drawRope(const TVec3f& rPosA, const TVec3f& rPosB, const TVec3f& r
 
     // strip 1
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    GXPosition3f32(rPosA.x - rSide.x * 12.0f + rFront.x * 19.0f, rPosA.y - rSide.y * 12.0f + rFront.y * 19.0f,
-                   rPosA.z - rSide.z * 12.0f + rFront.z * 19.0f);
-    GXColor1u32(::sColorPlusZ);
-    GXTexCoord2f32(0.0f, texA);
+    {
+        GXPosition3f32(rPosA.x - rSide.x * 12.0f + rFront.x * 19.0f, rPosA.y - rSide.y * 12.0f + rFront.y * 19.0f,
+                       rPosA.z - rSide.z * 12.0f + rFront.z * 19.0f);
+        GXColor1u32(::sColorPlusZ);
+        GXTexCoord2f32(0.0f, texA);
 
-    GXPosition3f32(rPosA.x + rSide.x * 19.0f - rFront.x * 19.0f, rPosA.y + rSide.y * 19.0f - rFront.y * 19.0f,
-                   rPosA.z + rSide.z * 19.0f - rFront.z * 19.0f);
-    GXColor1u32(::sColorPlusX);
-    GXTexCoord2f32(1.0f, texA);
+        GXPosition3f32(rPosA.x + rSide.x * 19.0f - rFront.x * 19.0f, rPosA.y + rSide.y * 19.0f - rFront.y * 19.0f,
+                       rPosA.z + rSide.z * 19.0f - rFront.z * 19.0f);
+        GXColor1u32(::sColorPlusX);
+        GXTexCoord2f32(1.0f, texA);
 
-    GXPosition3f32(rPosB.x - rSide.x * 12.0f + rFront.x * 19.0f, rPosB.y - rSide.y * 12.0f + rFront.y * 19.0f,
-                   rPosB.z - rSide.z * 12.0f + rFront.z * 19.0f);
-    GXColor1u32(::sColorPlusZ);
-    GXTexCoord2f32(0.0f, texB);
+        GXPosition3f32(rPosB.x - rSide.x * 12.0f + rFront.x * 19.0f, rPosB.y - rSide.y * 12.0f + rFront.y * 19.0f,
+                       rPosB.z - rSide.z * 12.0f + rFront.z * 19.0f);
+        GXColor1u32(::sColorPlusZ);
+        GXTexCoord2f32(0.0f, texB);
 
-    GXPosition3f32(rPosB.x + rSide.x * 19.0f - rFront.x * 19.0f, rPosB.y + rSide.y * 19.0f - rFront.y * 19.0f,
-                   rPosB.z + rSide.z * 19.0f - rFront.z * 19.0f);
-    GXColor1u32(::sColorPlusX);
-    GXTexCoord2f32(1.0f, texB);
+        GXPosition3f32(rPosB.x + rSide.x * 19.0f - rFront.x * 19.0f, rPosB.y + rSide.y * 19.0f - rFront.y * 19.0f,
+                       rPosB.z + rSide.z * 19.0f - rFront.z * 19.0f);
+        GXColor1u32(::sColorPlusX);
+        GXTexCoord2f32(1.0f, texB);
+    }
+    GXEnd();
 
     // strip 2
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    GXPosition3f32(rPosA.x - rSide.x * 19.0f - rFront.x * 19.0f, rPosA.y - rSide.y * 19.0f - rFront.y * 19.0f,
-                   rPosA.z - rSide.z * 19.0f - rFront.z * 19.0f);
-    GXColor1u32(::sColorMinusX);
-    GXTexCoord2f32(0.0f, texA + 0.7f);
+    {
+        GXPosition3f32(rPosA.x - rSide.x * 19.0f - rFront.x * 19.0f, rPosA.y - rSide.y * 19.0f - rFront.y * 19.0f,
+                       rPosA.z - rSide.z * 19.0f - rFront.z * 19.0f);
+        GXColor1u32(::sColorMinusX);
+        GXTexCoord2f32(0.0f, texA + 0.7f);
 
-    GXPosition3f32(rPosA.x + rSide.x * 12.0f + rFront.x * 19.0f, rPosA.y + rSide.y * 12.0f + rFront.y * 19.0f,
-                   rPosA.z + rSide.z * 12.0f + rFront.z * 19.0f);
-    GXColor1u32(::sColorPlusZ);
-    GXTexCoord2f32(1.0f, texA + 0.7f);
+        GXPosition3f32(rPosA.x + rSide.x * 12.0f + rFront.x * 19.0f, rPosA.y + rSide.y * 12.0f + rFront.y * 19.0f,
+                       rPosA.z + rSide.z * 12.0f + rFront.z * 19.0f);
+        GXColor1u32(::sColorPlusZ);
+        GXTexCoord2f32(1.0f, texA + 0.7f);
 
-    GXPosition3f32(rPosB.x - rSide.x * 19.0f - rFront.x * 19.0f, rPosB.y - rSide.y * 19.0f - rFront.y * 19.0f,
-                   rPosB.z - rSide.z * 19.0f - rFront.z * 19.0f);
-    GXColor1u32(::sColorMinusX);
-    GXTexCoord2f32(0.0f, texB + 0.7f);
+        GXPosition3f32(rPosB.x - rSide.x * 19.0f - rFront.x * 19.0f, rPosB.y - rSide.y * 19.0f - rFront.y * 19.0f,
+                       rPosB.z - rSide.z * 19.0f - rFront.z * 19.0f);
+        GXColor1u32(::sColorMinusX);
+        GXTexCoord2f32(0.0f, texB + 0.7f);
 
-    GXPosition3f32(rPosB.x + rSide.x * 12.0f + rFront.x * 19.0f, rPosB.y + rSide.y * 12.0f + rFront.y * 19.0f,
-                   rPosB.z + rSide.z * 12.0f + rFront.z * 19.0f);
-    GXColor1u32(::sColorPlusZ);
-    GXTexCoord2f32(1.0f, texB + 0.7f);
+        GXPosition3f32(rPosB.x + rSide.x * 12.0f + rFront.x * 19.0f, rPosB.y + rSide.y * 12.0f + rFront.y * 19.0f,
+                       rPosB.z + rSide.z * 12.0f + rFront.z * 19.0f);
+        GXColor1u32(::sColorPlusZ);
+        GXTexCoord2f32(1.0f, texB + 0.7f);
+    }
+    GXEnd();
 
     // strip 3
     GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 4);
-    GXPosition3f32(rPosA.x + rSide.x * 19.0f - rFront.x * 7.0f, rPosA.y + rSide.y * 19.0f - rFront.y * 7.0f,
-                   rPosA.z + rSide.z * 19.0f - rFront.z * 7.0f);
-    GXColor1u32(::sColorPlusX);
-    GXTexCoord2f32(0.0f, texA + 0.5f);
+    {
+        GXPosition3f32(rPosA.x + rSide.x * 19.0f - rFront.x * 7.0f, rPosA.y + rSide.y * 19.0f - rFront.y * 7.0f,
+                       rPosA.z + rSide.z * 19.0f - rFront.z * 7.0f);
+        GXColor1u32(::sColorPlusX);
+        GXTexCoord2f32(0.0f, texA + 0.5f);
 
-    GXPosition3f32(rPosA.x - rSide.x * 19.0f - rFront.x * 7.0f, rPosA.y - rSide.y * 19.0f - rFront.y * 7.0f,
-                   rPosA.z - rSide.z * 19.0f - rFront.z * 7.0f);
-    GXColor1u32(::sColorMinusX);
-    GXTexCoord2f32(1.0f, texA + 0.5f);
+        GXPosition3f32(rPosA.x - rSide.x * 19.0f - rFront.x * 7.0f, rPosA.y - rSide.y * 19.0f - rFront.y * 7.0f,
+                       rPosA.z - rSide.z * 19.0f - rFront.z * 7.0f);
+        GXColor1u32(::sColorMinusX);
+        GXTexCoord2f32(1.0f, texA + 0.5f);
 
-    GXPosition3f32(rPosB.x + rSide.x * 19.0f - rFront.x * 7.0f, rPosB.y + rSide.y * 19.0f - rFront.y * 7.0f,
-                   rPosB.z + rSide.z * 19.0f - rFront.z * 7.0f);
-    GXColor1u32(::sColorPlusX);
-    GXTexCoord2f32(0.0f, texB + 0.5f);
+        GXPosition3f32(rPosB.x + rSide.x * 19.0f - rFront.x * 7.0f, rPosB.y + rSide.y * 19.0f - rFront.y * 7.0f,
+                       rPosB.z + rSide.z * 19.0f - rFront.z * 7.0f);
+        GXColor1u32(::sColorPlusX);
+        GXTexCoord2f32(0.0f, texB + 0.5f);
 
-    GXPosition3f32(rPosB.x - rSide.x * 19.0f - rFront.x * 7.0f, rPosB.y - rSide.y * 19.0f - rFront.y * 7.0f,
-                   rPosB.z - rSide.z * 19.0f - rFront.z * 7.0f);
-    GXColor1u32(::sColorMinusX);
-    GXTexCoord2f32(1.0f, texB + 0.5f);
+        GXPosition3f32(rPosB.x - rSide.x * 19.0f - rFront.x * 7.0f, rPosB.y - rSide.y * 19.0f - rFront.y * 7.0f,
+                       rPosB.z - rSide.z * 19.0f - rFront.z * 7.0f);
+        GXColor1u32(::sColorMinusX);
+        GXTexCoord2f32(1.0f, texB + 0.5f);
+    }
+    GXEnd();
 }
 
 TrapezeRopeDrawInit::TrapezeRopeDrawInit(const char* pName) : NameObj(pName) {

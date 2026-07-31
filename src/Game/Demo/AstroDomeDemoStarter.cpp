@@ -153,13 +153,13 @@ void AstroDomeDemoStarter::exeSpinDriverStart() {
         MR::startBck(this, "Start", nullptr);
         MR::startBckPlayer("SuperSpinDriverStart", static_cast< const char* >(nullptr));
         MR::setPlayerBaseMtx(_94);
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::startCSSound("CS_SPIN_DRIVE_LONG", "SE_SY_CS_S_SPIN_DRV_START", 0);
         MR::startSoundPlayer("SE_PM_SPIN_ATTACK", -1);
     }
 
     if (MR::isLessStep(this, 43)) {
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     } else {
         MR::setBckRate(this, 0.0f);
         MR::setBckRate(MR::getPlayerDemoActor(), 0.0f);
@@ -174,7 +174,7 @@ void AstroDomeDemoStarter::exeSpinDriverShoot() {
         MR::startBckPlayer("SpaceFlyStart", static_cast< const char* >(nullptr));
         MR::emitEffect(MR::getPlayerDemoActor(), "SuperSpinDriverFlyGlow");
         MR::shakeCameraNormal();
-        MR::tryRumblePadVeryStrong(this, 0);
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
 
         if (MR::isKoopaFortressAppearInGalaxy()) {
             MR::startSystemSE("SE_SY_ASTRO_DEPERTURE_ME_KP");

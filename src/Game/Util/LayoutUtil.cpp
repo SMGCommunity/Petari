@@ -318,9 +318,9 @@ namespace MR {
 
     bool isRegisteredEffect(const LayoutActor* pActor, const char* pParam2) {
         if (pParam2 != nullptr) {
-            return pActor->mPaneEffectKeeper->getEmitter(pParam2) != nullptr;
+            return pActor->mEffectKeeper->getEmitter(pParam2) != nullptr;
         } else {
-            return pActor->mPaneEffectKeeper != nullptr;
+            return pActor->mEffectKeeper != nullptr;
         }
     }
 
@@ -453,7 +453,7 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mManager == nullptr) {
+        if (pActor->mLayoutManager == nullptr) {
             return false;
         }
 
@@ -465,7 +465,7 @@ namespace MR {
             return false;
         }
 
-        if (pActor->mManager == nullptr) {
+        if (pActor->mLayoutManager == nullptr) {
             return false;
         }
 

@@ -8,6 +8,17 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+namespace {
+    static const s32 sStepTalk = 150;
+    static const s32 sStepToSuccess = 90;
+    static const s32 sStepToOK = 10;
+    static const f32 sPadAccelStraightMinX = 0.25f;
+    static const f32 sPadAccelStraightMinY = 0.45f;
+    static const f32 sPadAccelTurnMinX = 0.65f;
+    // static const f32 sPadAccelTurnLimitZ = _;
+    static const f32 sPadAccelTurnLimitY = 0.5f;
+};  // namespace
+
 namespace NrvSurfRayTutorial {
     NEW_NERVE(SurfRayTutorialNrvTutorialAllStart, SurfRayTutorial, TutorialAllStart);
     NEW_NERVE(SurfRayTutorialNrvTutorialStraightStart, SurfRayTutorial, TutorialStraightStart);
@@ -25,20 +36,8 @@ namespace NrvSurfRayTutorial {
     NEW_NERVE(SurfRayTutorialNrvTutorialAllEnd, SurfRayTutorial, TutorialAllEnd);
 };  // namespace NrvSurfRayTutorial
 
-namespace {
-    static const s32 sStepTalk = 150;
-    static const s32 sStepToSuccess = 90;
-    static const s32 sStepToOK = 10;
-    static const f32 sPadAccelStraightMinX = 0.25f;
-    static const f32 sPadAccelStraightMinY = 0.45f;
-    // static const f32 sPadAccelTurnMinX = _;
-    // static const f32 sPadAccelTurnLimitZ = _;
-    // static const f32 sPadAccelTurnLimitY = _;
-};  // namespace
-
 SurfRayTutorial::SurfRayTutorial(LiveActor* pHost, TalkMessageCtrl* pTalkCtrl, const JMapInfoIter& rIter)
-    : NerveExecutor("チュートリアル演出"), mHost(pHost), mIsTutorialPass(false), mPadAccel(0.0f, 0.0f, 0.0f), mTalkCtrl(pTalkCtrl), mChangeStep(0),
-      _28(0) {
+    : NerveExecutor("チュートリアル演出"), mHost(pHost), mIsTutorialPass(), mPadAccel(0.0f, 0.0f, 0.0f), mTalkCtrl(pTalkCtrl), mChangeStep(), _28() {
     initNerve(&NrvSurfRayTutorial::SurfRayTutorialNrvTutorialAllStart::sInstance);
 
     mSurfingGuidance = new SurfingGuidance();
@@ -323,15 +322,15 @@ bool SurfRayTutorial::isSuccessTurnRight() const {
 }
 
 bool SurfRayTutorial::isFailureTwistLeftMore() const {
-    return mPadAccel.x > -0.65f;
+    return mPadAccel.x > -::sPadAccelTurnMinX;
 }
 
 bool SurfRayTutorial::isFailureTwistRightMore() const {
-    return mPadAccel.x < 0.65f;
+    return mPadAccel.x < ::sPadAccelTurnMinX;
 }
 
 bool SurfRayTutorial::isFailureStand() const {
-    return mPadAccel.y < -0.5f;
+    return mPadAccel.y < -::sPadAccelTurnLimitY;
 }
 
 void SurfRayTutorial::omitTutorial() const {

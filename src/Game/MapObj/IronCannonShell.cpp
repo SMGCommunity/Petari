@@ -92,7 +92,7 @@ bool IronCannonLauncherPoint::tryShotBullet(f32 offset) {
     mtx.getZDir(vec);
 
     TVec3f vec2;
-    vec2.scaleAdd(vec, mPosition, ::sGunPointOffset + offset);
+    vec2.scaleAdd(::sGunPointOffset + offset, vec, mPosition);
     pShell->launch(vec2, vec * mBulletSpeed);
 
     TVec3f shadowdir;
@@ -118,7 +118,7 @@ void IronCannonLauncher::init(const JMapInfoIter& rIter) {
     MR::setClippingTypeSphereContainsModelBoundingBox(this, ::sGunPointModelOffset);
     TVec3f front;
     MR::calcFrontVec(&front, this);
-    mEffectMtx.scaleAdd(front, mPosition, ::sGunPointModelOffset);
+    mEffectMtx.scaleAdd(::sGunPointModelOffset, front, mPosition);
     MR::setEffectHostSRT(this, "Shoot", &mEffectMtx, nullptr, nullptr);
     setNerve(&NrvIronCannonLauncher::IronCannonLauncherNrvWait::sInstance);
 }

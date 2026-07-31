@@ -264,7 +264,7 @@ void SuperSpinDriver::exeCapture() {
         _134 = rate;
         updateBindActorPoseToShoot((f64)rate);
         _144 += 0.0040f;
-        MR::tryRumblePadWeak(this, 0);
+        MR::tryRumblePadWeak(this, WPAD_CHAN0);
         _178 = 60;
 
         if (!tryEndCapture()) {

@@ -12,9 +12,9 @@ public:
 
     void loadModelDrawMtx() const NO_INLINE;
 
-    MtxPtr mMtx;               // 0xC
-    J3DModelData* mModelData;  // 0x10
-    _GXColor mColor;           // 0x14
+    /* 0x0C */ MtxPtr mMtx;
+    /* 0x10 */ J3DModelData* mModelData;
+    /* 0x14 */ GXColor mColor;
 };
 
 class VolumeModelDrawInit : public NameObj {

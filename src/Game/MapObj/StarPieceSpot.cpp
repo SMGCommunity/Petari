@@ -1,6 +1,5 @@
 #include "Game/MapObj/StarPieceSpot.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/Functor.hpp"
@@ -9,12 +8,17 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sRandomPieceValue = 15.0f;
+    static const f32 sLaunchYVel = 40.0f;
+};  // namespace
+
 StarPieceSpot::StarPieceSpot(const char* pName) : LiveActor(pName) {
 }
 
 void StarPieceSpot::emit() {
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
-    MR::appearStarPiece(this, mPosition, MR::getDeclareRemnantStarPieceCount(this), 15.0f, 40.0f, false);
+    MR::appearStarPiece(this, mPosition, MR::getDeclareRemnantStarPieceCount(this), ::sRandomPieceValue, ::sLaunchYVel, false);
 }
 
 void StarPieceSpot::init(const JMapInfoIter& rIter) {
@@ -39,7 +43,7 @@ void StarPieceSpot::init(const JMapInfoIter& rIter) {
 bool StarPieceSpot::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
-        MR::appearStarPiece(this, mPosition, MR::getDeclareRemnantStarPieceCount(this), 15.0f, 40.0f, false);
+        MR::appearStarPiece(this, mPosition, MR::getDeclareRemnantStarPieceCount(this), ::sRandomPieceValue, ::sLaunchYVel, false);
         kill();
         return false;
     } else {

@@ -5,21 +5,22 @@
 class CameraGround : public Camera {
 public:
     CameraGround(const char* pName = "地面カメラ");
-    virtual ~CameraGround();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
     virtual CamTranslatorBase* createTranslator();
 
-    f32 mAngleA;  // 0x4C
-    f32 mAngleB;  // 0x50
-    f32 mDist;    // 0x54
-    f32 mUpX;     // 0x58
-    f32 mUpY;     // 0x5C
-    f32 mUpZ;     // 0x60
-    f32 _64;
-    f32 _68;
-    f32 _6C;
-    bool _70;
-    u8 _71[3];
+    void setParam(const TVec2f& angle, f32 dist, const TVec3f& rUp) {
+        mAngleA = angle.x;
+        mAngleB = angle.y;
+        mDist = dist;
+        mUp.set(rUp);
+    }
+
+    /* 0x4C */ f32 mAngleA;
+    /* 0x50 */ f32 mAngleB;
+    /* 0x54 */ f32 mDist;
+    /* 0x58 */ TVec3f mUp;
+    /* 0x64 */ TVec3f mLastWatchPoint;
+    /* 0x70 */ bool mIsNotInitialized;
 };

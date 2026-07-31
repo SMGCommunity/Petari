@@ -20,7 +20,7 @@ public:
 
     virtual ~WaterLeakPipe();
     virtual void init(const JMapInfoIter&);
-    virtual void calcAnim();
+    virtual void calcAnim(){};
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void initPipeHeight();

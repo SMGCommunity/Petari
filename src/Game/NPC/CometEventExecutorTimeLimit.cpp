@@ -6,6 +6,10 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
+namespace {
+    static const s32 sCometTimeLimitDefault = 1800;
+};  // namespace
+
 namespace NrvCometEventExecutorTimeLimit {
     NEW_NERVE(CometEventExecutorTimeLimitStartEvent, CometEventExecutorTimeLimit, StartEvent);
 };  // namespace NrvCometEventExecutorTimeLimit
@@ -54,5 +58,5 @@ u32 CometEventExecutorTimeLimit::getTimeLimit() const {
         return mTimeLimit * 60;
     }
 
-    return 108000;
+    return ::sCometTimeLimitDefault * 60;
 }

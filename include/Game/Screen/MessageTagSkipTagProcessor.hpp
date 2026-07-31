@@ -1,6 +1,6 @@
 #pragma once
 
-#include "nw4r/ut/TagProcessorBase.h"
+#include <nw4r/ut/TagProcessorBase.h>
 
 class MessageTagSkipTagProcessor : public nw4r::ut::TagProcessorBase< wchar_t > {
 public:
@@ -27,5 +27,5 @@ public:
     u32 getParam32(int) const;
     wchar_t* getParamPtr(int) const;
 
-    const wchar_t* mMessage;  // 0x0
+    /* 0x00 */ const wchar_t* mMessage;
 };

@@ -350,7 +350,7 @@ bool DodoryuStateLv1::catchPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* 
             _98.negate();
         }
 
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::stopScene(::sStopSceneFrame);
         setNerve(&::DodoryuStateLv1NrvSpinOut::sInstance);
 

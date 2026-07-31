@@ -7,6 +7,14 @@
 class PlayerRacer;
 class RaceManager;
 
+enum RaceID {
+    /* 0x00 */ RaceID_Penguin,
+    /* 0x01 */ RaceID_TeresaPhantom,
+    /* 0x02 */ RaceID_TeresaDeathPromenade,
+    /* 0x03 */ RaceID_SurfingTrial,
+    /* 0x04 */ RaceID_SurfingChallenge,
+};
+
 class RaceManagerLayout : public LayoutActor {
 public:
     /// @brief Creates a new `RaceManagerLayout`.

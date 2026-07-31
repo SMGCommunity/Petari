@@ -25,9 +25,10 @@ namespace {
     const char* cMaterialName10 = "StarNumber01_v_x(2)";
     const char* cLastBattleDemoName = "ロゼッタ最終決戦デモ";
     const char* cStartCountDownDemoName = "ロゼッタカウントダウン開始デモ";
+    static const s32 sStepForCountToZero = 50;
 };  // namespace
 
-AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName), _1B4(0) {
+AstroCountDownPlate::AstroCountDownPlate(const char* pName) : LiveActor(pName), _1B4() {
 }
 
 void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
@@ -58,7 +59,8 @@ void AstroCountDownPlate::init(const JMapInfoIter& rIter) {
 void AstroCountDownPlate::exeWait() {
     if (MR::isFirstStep(this) && isNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvAlive::sInstance) && !MR::isEffectValid(this, "Light")) {
         MR::emitEffect(this, "Light");
-        _1B4 = 1;
+
+        _1B4 = true;
     }
 
     if (_1B4) {
@@ -72,7 +74,8 @@ void AstroCountDownPlate::exeRevival() {
         MR::showMaterial(this, ::cMaterialName10);
         MR::tryStartAllAnim(this, "Revival");
         MR::emitEffect(this, "Light");
-        _1B4 = 1;
+
+        _1B4 = true;
     }
 
     if (_1B4) {
@@ -91,7 +94,7 @@ void AstroCountDownPlate::exeCountToZero() {
         MR::startSound(this, "SE_OJ_CDN_PLATE_ONE_TO_ZERO");
     }
 
-    f32 v2 = MR::calcNerveRate(this, 50);
+    f32 v2 = MR::calcNerveRate(this, ::sStepForCountToZero);
     f32 v3 = MR::getConvergeVibrationValue(v2, 0.1f, 0.0f, 0.3f, 4.0f);
     _8C.getTexMtxInfo().mSRT.mTranslationY = v3;
 
@@ -99,7 +102,7 @@ void AstroCountDownPlate::exeCountToZero() {
         MR::startLevelSound(this, "SE_OJ_LV_CDN_PLATE_LIGHT");
     }
 
-    if (MR::isStep(this, 50)) {
+    if (MR::isStep(this, ::sStepForCountToZero)) {
         setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvAlive::sInstance);
     }
 }
@@ -134,6 +137,7 @@ void AstroCountDownPlate::setupStateWait() {
     } else {
         MR::showMaterial(this, ::cMaterialName01);
         MR::showMaterial(this, ::cMaterialName10);
+
         if (!MR::isOnGameEventFlagViewNormalEnding()) {
             MR::startBrk(this, "Red");
         } else {
@@ -148,7 +152,4 @@ void AstroCountDownPlate::startDemoStartCountDown() {
 
 void AstroCountDownPlate::startDemoLastBattle() {
     setNerve(&NrvAstroCountDownPlate::AstroCountDownPlateNrvCountToZero::sInstance);
-}
-
-AstroCountDownPlate::~AstroCountDownPlate() {
 }

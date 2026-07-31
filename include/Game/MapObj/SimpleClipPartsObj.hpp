@@ -6,7 +6,6 @@ class SimpleClipPartsObj : public MapObjActor {
 public:
     SimpleClipPartsObj(const char*);
 
-    virtual ~SimpleClipPartsObj();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void connectToScene(const MapObjActorInitInfo&);

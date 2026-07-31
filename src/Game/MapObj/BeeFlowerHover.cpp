@@ -41,7 +41,7 @@ void BeeFlowerHover::init(const JMapInfoIter& rIter) {
         mRailMover->start();
 
         mRailPosture = new MapPartsRailPosture(this);
-        mRailPosture->_48 = 2;
+        mRailPosture->mMovePosture = 2;
         mRailPosture->initWithoutIter();
         mRailMover->start();
     }
@@ -115,7 +115,7 @@ void BeeFlowerHover::exeHardTouch() {
         MR::invalidateCollisionParts(this);
         MR::invalidateShadow(this, 0);
         MR::onCalcShadowOneTime(this, 0);
-        MR::tryRumblePadMiddle(this, 0);
+        MR::tryRumblePadMiddle(this, WPAD_CHAN0);
         MR::shakeCameraNormal();
     }
 

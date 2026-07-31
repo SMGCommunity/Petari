@@ -309,8 +309,6 @@ void Petari::exeSmash() {
 }
 
 void Petari::exeSpinOut() {
-    // FIXME: issue with rejection
-    // https://decomp.me/scratch/5nfwd
     if (MR::isFirstStep(this)) {
         MR::showModel(this);
         MR::startBck(this, "Damage", nullptr);
@@ -327,7 +325,8 @@ void Petari::exeSpinOut() {
         v8.set(mGravity);
     }
 
-    v8.rejection(mVelocity);
+    const TVec3f& vel = mVelocity;
+    mVelocity.scaleAdd(-v8.dot(vel), v8, vel);
     mVelocity.add(v8 * 1.3f);
 
     calcCenter();
@@ -400,11 +399,8 @@ void Petari::control() {
 }
 
 void Petari::calcAndSetBaseMtx() {
-    // FIXME: regswap in TVec3::mulInternal
-    // https://decomp.me/scratch/3mmtT
-    TVec3f v1;
-    v1.mult(mScale, mAnimScaleCtrl->_C, v1);
-    MR::setBaseScale(this, v1);
+    TVec3f scale = mAnimScaleCtrl->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void Petari::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -613,12 +609,8 @@ void Petari::updateFootPrint() {
 }
 
 void Petari::calcSpinOutVelocity(f32 speed) {
-    TVec3f* playerPos = MR::getPlayerCenterPos();
-
-    TVec3f deltaDir(mBodyCenter);
-    deltaDir -= *playerPos;
-
-    deltaDir.rejection(mGravity);
+    TVec3f deltaDir = mBodyCenter - *MR::getPlayerCenterPos();
+    deltaDir.orthogonalize(mGravity);
 
     if (!MR::isNearZero(deltaDir)) {
         mFront.set(-deltaDir);
@@ -679,15 +671,15 @@ void Petari::avoidPlayer() {
 }
 
 void Petari::avoidWall() {
-    TVec3f planarDir(mTargetDir);
-    planarDir.rejection(mGravity);
+    TVec3f planarDir = mTargetDir;
+    planarDir.orthogonalize(mGravity);
     if (!MR::isNearZero(planarDir)) {
         MR::normalize(&planarDir);
         Triangle rayHitTri;
         TVec3f v19;
         if (MR::getFirstPolyOnLineToMapAndMoveLimit(&v19, &rayHitTri, mBodyCenter, planarDir * 600.0f)) {
-            TVec3f wallNormal(*rayHitTri.getNormal(0));
-            wallNormal.rejection(mGravity);
+            TVec3f wallNormal = *rayHitTri.getNormal(0);
+            wallNormal.orthogonalize(mGravity);
             if (!MR::isNearZero(wallNormal)) {
                 MR::normalize(&wallNormal);
                 f32 proximity = 1.0f - (v19.distance(mBodyCenter) / 600.0f);

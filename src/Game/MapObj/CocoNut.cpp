@@ -276,7 +276,7 @@ void CocoNut::processMove() {
         stack_8.normalize(stack_20);
 
         f32 ok2 = -2.0f * stack_14.dot(stack_8);
-        JMAVECScaleAdd(&stack_8, &_94, &_94, ok2);
+        _94.scaleAdd(ok2, stack_8, _94);
 
         _94.normalize();
         MR::normalize(&_94);

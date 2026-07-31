@@ -552,12 +552,10 @@ bool TripodBossLeg::bindEndPosition() {
     TVec3f endJointPos;
     mJoint->getEndJointPosition(&endJointPos);
     HitResult hitResult;
-    TVec3f v4(endJointPos - v6);
-    if (mMoveArea->collideSphere(&hitResult, v6, 0.0f, v4)) {
+    if (mMoveArea->collideSphere(&hitResult, v6, 0.0f, endJointPos - v6)) {
         mForceEndPoint = hitResult._C;
         if (_234.dot(hitResult._18) < 0.0f) {
-            f32 dot = hitResult._18.dot(_234);
-            JMAVECScaleAdd(&hitResult._18, &_234, &_234, -dot);
+            _234.orthogonalize2(hitResult._18);
         }
 
         return true;

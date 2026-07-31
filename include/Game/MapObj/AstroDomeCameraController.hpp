@@ -6,23 +6,25 @@ class AstroDomeCameraController : public LiveActor {
 public:
     class Position {
     public:
-        Position();
-
-        void reset(const TVec3f&);
-        void set(TVec3f vec) {
-            _0.set< f32 >(vec);
-            _C.set< f32 >(vec);
-            _18.set< f32 >(vec);
+        Position() {
+            _0.zero();
+            _C.zero();
+            _18.zero();
         }
 
-        TVec3f _0;
-        TVec3f _C;
-        TVec3f _18;
+        void reset(const TVec3f& rVec) {
+            _0.set(rVec);
+            _C.set(rVec);
+            _18.set(rVec);
+        }
+
+        /* 0x00 */ TVec3f _0;
+        /* 0x0C */ TVec3f _C;
+        /* 0x18 */ TVec3f _18;
     };
 
     AstroDomeCameraController(const char*);
 
-    virtual ~AstroDomeCameraController();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();
@@ -40,10 +42,10 @@ public:
     void exeGalaxyConfirm();
     void exeGalaxyConfirmCancel();
 
-    TVec3f _8C;
-    Position _98;
-    Position _BC;
-    Position _E0;
-    f32 _104;
-    TVec3f _108;
+    /* 0x08C */ TVec3f _8C;
+    /* 0x098 */ Position _98;
+    /* 0x0BC */ Position _BC;
+    /* 0x0E0 */ Position _E0;
+    /* 0x104 */ f32 _104;
+    /* 0x108 */ TVec3f _108;
 };

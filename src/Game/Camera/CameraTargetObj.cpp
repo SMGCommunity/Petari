@@ -1,6 +1,7 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/AreaObj/CubeCamera.hpp"
 #include "Game/Gravity/GravityInfo.hpp"
+#include "Game/Player/MarioActor.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -54,35 +55,35 @@ void CameraTargetActor::movement() {
     }
 }
 
-const TVec3f* CameraTargetActor::getPosition() const {
-    return &mActor->mPosition;
+const TVec3f& CameraTargetActor::getPosition() const {
+    return mActor->mPosition;
 }
 
-const TVec3f* CameraTargetActor::getUpVec() const {
-    return &mUp;
+const TVec3f& CameraTargetActor::getUpVec() const {
+    return mUp;
 }
 
-const TVec3f* CameraTargetActor::getFrontVec() const {
-    return &mFront;
+const TVec3f& CameraTargetActor::getFrontVec() const {
+    return mFront;
 }
 
-const TVec3f* CameraTargetActor::getSideVec() const {
-    return &mSide;
+const TVec3f& CameraTargetActor::getSideVec() const {
+    return mSide;
 }
 
-const TVec3f* CameraTargetActor::getLastMove() const {
-    return &mActor->mVelocity;
+const TVec3f& CameraTargetActor::getLastMove() const {
+    return mActor->mVelocity;
 }
 
-const TVec3f* CameraTargetActor::getGroundPos() const {
-    return &mActor->mPosition;
+const TVec3f& CameraTargetActor::getGroundPos() const {
+    return mActor->mPosition;
 }
 
-const TVec3f* CameraTargetActor::getGravityVector() const {
+const TVec3f& CameraTargetActor::getGravityVector() const {
     if (getGravityInfo() != nullptr) {
-        return &getGravityInfo()->mGravityVector;
+        return getGravityInfo()->mGravityVector;
     } else {
-        return &mUp;
+        return mUp;
     }
 }
 
@@ -114,24 +115,28 @@ CameraTargetPlayer::CameraTargetPlayer(const char* pName) : CameraTargetObj(pNam
 CameraTargetPlayer::~CameraTargetPlayer() {
 }
 
-const TVec3f* CameraTargetPlayer::getUpVec() const {
-    return &mUp;
+const TVec3f& CameraTargetPlayer::getPosition() const {
+    return mActor->getTransForCamera();
 }
 
-const TVec3f* CameraTargetPlayer::getFrontVec() const {
-    return &mFront;
+const TVec3f& CameraTargetPlayer::getUpVec() const {
+    return mUp;
 }
 
-const TVec3f* CameraTargetPlayer::getSideVec() const {
-    return &mSide;
+const TVec3f& CameraTargetPlayer::getFrontVec() const {
+    return mFront;
 }
 
-const TVec3f* CameraTargetPlayer::getGroundPos() const {
-    return &mGroundPos;
+const TVec3f& CameraTargetPlayer::getSideVec() const {
+    return mSide;
 }
 
-const TVec3f* CameraTargetPlayer::getGravityVector() const {
-    return &mGravity;
+const TVec3f& CameraTargetPlayer::getGroundPos() const {
+    return mGroundPos;
+}
+
+const TVec3f& CameraTargetPlayer::getGravityVector() const {
+    return mGravity;
 }
 
 CameraTargetDemoActor::CameraTargetDemoActor(MtxPtr pMtx, const char* pName) : LiveActor(pName) {

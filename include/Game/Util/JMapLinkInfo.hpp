@@ -7,6 +7,7 @@ public:
     JMapLinkInfo(const JMapInfoIter&, bool);
 
     void invalidate();
+    bool isValid() const;
     void setLinkedInfo(const JMapInfoIter&);
     void setLinkInfo(const JMapInfoIter&);
 

@@ -50,9 +50,7 @@ void DinoPackunTrackFire::init(const JMapInfoIter& rIter) {
 }
 
 void DinoPackunTrackFire::control() {
-    TVec3f v1;
-    JMathInlineVEC::PSVECNegate(&mGravity, &v1);
-    MR::makeMtxUpNoSupportPos(&_8C, v1, mPosition);
+    MR::makeMtxUpNoSupportPos(&_8C, -mGravity, mPosition);
 
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         kill();

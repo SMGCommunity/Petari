@@ -1,18 +1,6 @@
 #include "Game/Enemy/FireBubble.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
-
-namespace NrvFireBubble {
-    NEW_NERVE(FireBubbleNrvAppear, FireBubble, Appear);
-    NEW_NERVE(FireBubbleNrvWait, FireBubble, Wait);
-    NEW_NERVE(FireBubbleNrvChase, FireBubble, Chase);
-    NEW_NERVE(FireBubbleNrvReflect, FireBubble, Reflect);
-    NEW_NERVE(FireBubbleNrvReflectLand, FireBubble, ReflectLand);
-    NEW_NERVE(FireBubbleNrvReflectWait, FireBubble, ReflectWait);
-    NEW_NERVE(FireBubbleNrvDown, FireBubble, Down);
-    NEW_NERVE(FireBubbleNrvWaitToAppear, FireBubble, WaitToAppear);
-};  // namespace NrvFireBubble
 
 namespace {
     const f32 cSensorRadius = 30.0f;
@@ -35,6 +23,17 @@ namespace {
     const Vec cAppearVelocity = {0.0f, 35.0f, 6.0f};
     const Vec cReflectVelocity = {0.0f, 40.0f, -15.0f};
 };  // namespace
+
+namespace NrvFireBubble {
+    NEW_NERVE(FireBubbleNrvAppear, FireBubble, Appear);
+    NEW_NERVE(FireBubbleNrvWait, FireBubble, Wait);
+    NEW_NERVE(FireBubbleNrvChase, FireBubble, Chase);
+    NEW_NERVE(FireBubbleNrvReflect, FireBubble, Reflect);
+    NEW_NERVE(FireBubbleNrvReflectLand, FireBubble, ReflectLand);
+    NEW_NERVE(FireBubbleNrvReflectWait, FireBubble, ReflectWait);
+    NEW_NERVE(FireBubbleNrvDown, FireBubble, Down);
+    NEW_NERVE(FireBubbleNrvWaitToAppear, FireBubble, WaitToAppear);
+};  // namespace NrvFireBubble
 
 FireBubble::FireBubble(const char* pName)
     : LiveActor(pName), mIsValidInfo(false), _90(gZeroVec), _9C(0.0f, 0.0f, 1.0f), _A8(cAppearVelocity), _B4(0.0f, 0.0f, 1.0f), mActFrame(0),

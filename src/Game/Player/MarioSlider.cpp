@@ -119,9 +119,7 @@ bool MarioSlider::start() {
 }
 
 bool MarioSlider::update() {
-    if (getPlayer()->checkSliderMode()) {
-        _40 = 10;
-    } else {
+    if (!getPlayer()->checkSliderMode()) {
         if (getPlayer()->mMovementStates._1 != 0) {
             if (isSlipPolygon(getGroundPolygon())) {
                 Mario* player = getPlayer();
@@ -136,6 +134,8 @@ bool MarioSlider::update() {
             getPlayer()->mJumpVec = mActor->getLastMove();
             return false;
         }
+    } else {
+        _40 = 10;
     }
 
     calcGroundAccel();
@@ -186,10 +186,7 @@ bool MarioSlider::update() {
 
             addVelocity(_14);
 
-            TVec3f v38;
-            JMathInlineVEC::PSVECNegate(&getPlayer()->_368, &v38);
-
-            TVec3f v45(v38 * 15.0f);
+            TVec3f v45(-getPlayer()->_368 * 15.0f);
 
             f32 v31 = MR::vecKillElement(v45, getFrontVec(), &v45);
             addVelocity(v45, v31);

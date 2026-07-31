@@ -232,7 +232,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosLoop() {
     MR::turnDirectionDegree(mKoopa, &mKoopa->mFront, mNewDirection, ::sTurnSpeed);
 
     if (MR::isStep(this, ::sStepJumpToNextPosLoop)) {
-        MR::tryRumblePadStrong(mKoopa, 0);
+        MR::tryRumblePadStrong(mKoopa, WPAD_CHAN0);
         MR::shakeCameraNormal();
         setNerve(&NrvKoopaBattleStairsVs1::KoopaBattleStairsVs1NrvJumpToNextPosEnd::sInstance);
     }

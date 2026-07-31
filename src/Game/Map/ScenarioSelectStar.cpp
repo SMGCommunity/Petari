@@ -36,7 +36,7 @@ namespace NrvScenarioSelectStar {
 };  // namespace NrvScenarioSelectStar
 
 ScenarioSelectStar::ScenarioSelectStar(EffectSystem* pSystem)
-    : MultiSceneActor("シナリオ選択のスター", "PowerStar", false), mStarCollectedStatus(0), mStageID(1), mStarIdx(0), mIsPointing(false),
+    : MultiSceneActor("シナリオ選択のスター", "PowerStar", false), mStarCollectedStatus(0), mScenarioNo(1), mStarId(0), mIsPointing(false),
       mRotateSpeed(0.0f), mBasePos(gZeroVec), mTranslationOnSelect(gZeroVec), mAppearFrame(::cAppearFrame), mScaleOnSelect(1.0f) {
     initEffect(pSystem, 0, "ScenarioStar");
 }
@@ -58,7 +58,7 @@ void ScenarioSelectStar::appear() {
     updatePos();
     MultiScene::startBtp(this, "PowerStar");
     MultiScene::startBva(this, "PowerStar");
-    MultiScene::setBtpFrameAndStop(this, PowerStar::getBtpFrameCurrentStage(mStageID));
+    MultiScene::setBtpFrameAndStop(this, PowerStar::getBtpFrameCurrentStage(mScenarioNo));
     MultiScene::setBvaFrameAndStop(this, mStarCollectedStatus == 0 ? 1.0f : 0.0f);
     MultiSceneActor::appear();
     setNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvAppear::sInstance);
@@ -90,15 +90,15 @@ bool ScenarioSelectStar::isAppearEnd() const {
     return !_30 && !isNerve(&NrvScenarioSelectStar::ScenarioSelectStarNrvAppear::sInstance);
 }
 
-void ScenarioSelectStar::setup(s32 stageID, int starCollectedStatus, const TVec3f& rPos, s32 starIdx) {
+void ScenarioSelectStar::setup(s32 scenarioNo, int starCollectedStatus, const TVec3f& rPos, s32 starId) {
     mStarCollectedStatus = starCollectedStatus;
-    mStageID = stageID;
+    mScenarioNo = scenarioNo;
     mBasePos.set(rPos);
-    mStarIdx = starIdx;
+    mStarId = starId;
 
-    mRotation.set< f32 >(0.0f, 0.0f, 150.0f * mStarIdx);
-    mAppearFrame = mStarIdx * ::cAppearDelayFrame + ::cAppearWaitFrame;
-    mRotateTime = mStarIdx * 15 + (mStarIdx % 2 ? 0 : 90);
+    mRotation.set< f32 >(0.0f, 0.0f, 150.0f * mStarId);
+    mAppearFrame = mStarId * ::cAppearDelayFrame + ::cAppearWaitFrame;
+    mRotateTime = mStarId * 15 + (mStarId % 2 ? 0 : 90);
 }
 
 void ScenarioSelectStar::control() {
@@ -227,7 +227,7 @@ void ScenarioSelectStar::exeSelectedMove() {
 }
 
 void ScenarioSelectStar::exeNotSelected() {
-    s32 hideDelay = ::cHideDelayFrame * mStarIdx;
+    s32 hideDelay = ::cHideDelayFrame * mStarId;
 
     if (MultiScene::isFirstStep(this)) {
         mRotateSpeed = ::cNotPointingRotateSpeedZ;
@@ -235,7 +235,7 @@ void ScenarioSelectStar::exeNotSelected() {
 
     if (MultiScene::isStep(this, hideDelay)) {
         mRotateSpeed = 0.0f;
-        mRotation.z = 150.0f * mStarIdx;
+        mRotation.z = 150.0f * mStarId;
         MultiScene::startBck(this, "ScenarioHide");
         MultiScene::deleteEffectAll(this);
     }
@@ -245,7 +245,4 @@ void ScenarioSelectStar::exeNotSelected() {
             kill();
         }
     }
-}
-
-ScenarioSelectStar::~ScenarioSelectStar() {
 }

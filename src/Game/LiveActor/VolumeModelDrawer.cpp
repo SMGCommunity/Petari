@@ -5,6 +5,7 @@
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/Functor.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 
@@ -59,7 +60,7 @@ void VolumeModelDrawer::draw() const {
 }
 
 void VolumeModelDrawer::loadModelDrawMtx() const {
-    Mtx dest;
-    PSMTXConcat(MR::getCameraViewMtx(), mMtx, dest);
-    GXLoadPosMtxImm(dest, 0);
+    Mtx drawMtx;
+    MR::multMtx(drawMtx, mMtx, MR::getCameraViewMtx());
+    GXLoadPosMtxImm(drawMtx, 0);
 }

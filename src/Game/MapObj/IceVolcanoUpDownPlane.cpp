@@ -30,8 +30,7 @@ bool IceVolcanoUpDownPlane::tryCalcNearestPosToPlayer(TVec3f* pArg) const {
         return false;
     }
 
-    TVec3f scaledAdded;
-    JMAVECScaleAdd(&upVec, &vec, &scaledAdded, -upVec.dot(vec));
+    TVec3f scaledAdded = vec.killElement(upVec);
 
     f32 radius;
     MR::calcModelBoundingRadius(&radius, this);

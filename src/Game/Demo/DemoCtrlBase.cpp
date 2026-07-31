@@ -38,7 +38,7 @@ void DemoCtrlBase::end() {
 void DemoCtrlBase::update() {
     if (mCurrentFrame >= 0 && (MR::getActorCameraFrames(mActor, mCameraInfo) <= 0 || mCurrentFrame >= 0)) {
         if (MR::Demo::isExistPadRumble(mDemoName)) {
-            MR::tryRumblePad(mActor, MR::Demo::getPadRumble(mDemoName), 0);
+            MR::tryRumblePad(mActor, MR::Demo::getPadRumble(mDemoName), WPAD_CHAN0);
         }
 
         s32 frames = MR::getActorCameraFrames(mActor, mCameraInfo);

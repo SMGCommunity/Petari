@@ -140,7 +140,7 @@ void DinoPackunStateDamage::exeEggBroken() {
         MR::startSound(getHost(), "SE_BV_D_PAKKUN_EGG_BREAK");
         MR::startSound(getHost(), "SE_BM_D_PAKKUN_SLAVER");
         MR::shakeCameraStrong();
-        MR::tryRumblePadMiddle(getHost(), 0);
+        MR::tryRumblePadMiddle(getHost(), WPAD_CHAN0);
         MR::zeroVelocity(getHost());
         MR::startBva(getHost()->getEggShell(), "EggBroken");
         MR::invalidateHitSensor(getHost(), "egg");
@@ -160,7 +160,7 @@ void DinoPackunStateDamage::exeEggBroken() {
         getHost()->mTail->unlockEndNodePosition();
         getHost()->mTail->unlockNodePosition(1);
         MR::shakeCameraStrong();
-        MR::tryRumblePadStrong(getHost(), 0);
+        MR::tryRumblePadStrong(getHost(), WPAD_CHAN0);
     }
 
     if (MR::isGreaterStep(this, 120)) {
@@ -219,7 +219,7 @@ void DinoPackunStateDamage::exeLastDamage() {
 
 void DinoPackunStateDamage::updateDamage() {
     if (MR::isFirstStep(this)) {
-        MR::tryRumblePadVeryStrong(getHost(), 0);
+        MR::tryRumblePadVeryStrong(getHost(), WPAD_CHAN0);
         MR::shakeCameraNormalStrong();
         MR::stopScene(15);
         MR::zeroVelocity(getHost());

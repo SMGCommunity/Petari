@@ -1,13 +1,17 @@
 #pragma once
 
+#include "Game/Util/Array.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
-#include <revolution.h>
+#include <revolution/types.h>
 
 class Binder;
+class HashSortTable;
+class LiveActor;
 class MultiEmitter;
 class ResourceHolder;
+class SyncBckEffectChecker;
 class Triangle;
-class LiveActor;
+class XanimePlayer;
 
 class EffectKeeper {
 public:
@@ -21,44 +25,43 @@ public:
     void registerEffect(const char*, MtxPtr, const char*, const char*);
     void registerEffect(const char*, MtxPtr, const TVec3f*, const char*, const char*);
     void registerEffectWithoutSRT(const char*, const char*);
-
-    void changeEffectName(const char*, const char*);
-
-    void enableSort();
-    void finalizeSort();
-    void playEmitterOffClipped();
-    void stopEmitterOnClipped();
-
-    void clear();
-
-    MultiEmitter* getEmitter(const char*) const;
+    void registerSyncBckEffect(XanimePlayer*, const char*, const char*, s32, f32, f32, bool);
     MultiEmitter* createEmitter(const char*);
     void deleteEmitter(const char*);
     void forceDeleteEmitter(const char*);
     void deleteEmitterAll();
     void forceDeleteEmitterAll();
-
-    bool isRegisteredEmitter(const char*) const;
-
+    MultiEmitter* getEmitter(const char*) const;
+    MultiEmitter* getEmitter(s32) const;
+    void changeEffectName(const char*, const char*);
     void update();
+    void updateSyncBckEffect();
+    void syncEffectBck(MultiEmitter*);
+    void updateAttributeEffect();
+    void stopEmitterOnClipped();
+    void playEmitterOffClipped();
+    void clear();
     void changeBck();
-
     void onDraw();
     void offDraw();
-
+    void enableSort();
+    void finalizeSort();
+    bool isRegisteredEmitter(const char*) const;
+    void checkExistenceAttributeEffect();
+    void registMultiEmitter(MultiEmitter*, const char*, const char*);
+    void updateFloorCode();
     void updateFloorCode(const Triangle*);
+    bool isTypeAttributeEffect(const char*) const;
 
-    const char* _0;
-    ResourceHolder* mResourceHolder;  // 0x4
-    const char* mResourceName;        // 0x8
-    u32 _C;
-    u32 _10;
-    u32 _14;
-    u32 _18;
-    u32 _1C;
-    u32 _20;
-    u32 _24;
-    u32 _28;
-    u32 _2C;
-    u8 _30;
+    /* 0x00 */ const char* _0;
+    /* 0x04 */ ResourceHolder* _4; // mResourceHolder
+    /* 0x08 */ const char* _8; // mResourceName
+    /* 0x0C */ MR::Vector< MR::AssignableArray< MultiEmitter* > > _C;
+    /* 0x18 */ HashSortTable* _18;
+    /* 0x1C */ u32 _1C;
+    /* 0x20 */ SyncBckEffectChecker* _20;
+    /* 0x24 */ const Binder* mBinder;
+    /* 0x28 */ s32 _28;
+    /* 0x2C */ s32 _2C;
+    /* 0x30 */ bool _30;
 };

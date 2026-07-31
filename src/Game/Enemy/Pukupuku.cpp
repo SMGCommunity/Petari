@@ -553,9 +553,9 @@ void Pukupuku::control() {
 
 void Pukupuku::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _A8);
-    TVec3f v7(mScale);
-    JMathInlineVEC::PSVECMultiply(&v7, &mScaleCtrl->_C, &v7);
-    MR::setBaseScale(this, v7);
+    TVec3f scale = mScale;
+    scale.mul(scale, mScaleCtrl->_C);
+    MR::setBaseScale(this, scale);
 }
 
 PukupukuStateLanding::~PukupukuStateLanding() {

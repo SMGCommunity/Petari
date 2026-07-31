@@ -163,7 +163,7 @@ void SimpleEffectObj::exeMove() {
             v15 = nullptr;
         }
         if (v15) {
-            MR::tryRumblePad(this, v15, 0);
+            MR::tryRumblePad(this, v15, WPAD_CHAN0);
         }
     }
 }

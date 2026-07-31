@@ -94,7 +94,8 @@ void OtaRock::control() {
 
 void OtaRock::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _A4);
-    MR::setBaseScale(this, mAnimScaleController->_C.mult(mScale));
+    TVec3f scale = mAnimScaleController->_C * mScale;
+    MR::setBaseScale(this, scale);
 }
 
 void OtaRock::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -309,7 +310,7 @@ void OtaRock::exeDown() {
         MR::startSound(this, "SE_EM_OTAROCK_LAST_DAMAGE");
         MR::startSound(this, "SE_EV_OTAROCK_DIE");
         MR::invalidateHitSensors(this);
-        MR::tryRumblePadVeryStrong(this, 0);
+        MR::tryRumblePadVeryStrong(this, WPAD_CHAN0);
 
         if (!mNoThrowCocoNut) {
             for (s32 i = 0; i < 4; i++) {

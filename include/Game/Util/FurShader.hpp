@@ -16,7 +16,7 @@ public:
 
         void setLengthMap(const ResTIMG*);
         void refer(f32, f32) const;
-        s32 getTexelOrder(u16, f32, _GXTexWrapMode) const;
+        s32 getTexelOrder(u16, f32, GXTexWrapMode) const;
 
         const ResTIMG* _0;
         u32 _4;
@@ -40,15 +40,15 @@ public:
     void makeIndexData(J3DShape*) const;
     void checkBorderVtx(J3DModelData*, u32);
 
-    u32 _4;
-    f32 _8;
-    CShader::CIndex* mIndexArray;    // 0xC
-    CShader::CLengthMap mLengthMap;  // 0x10
-    f32 _1C;
-    u8 _20;
-    u8 _21;
-    u8 _22;
-    u8 _23;
-    u8 _24;
-    u8 _25;
+    /* 0x04 */ u32 _4;
+    /* 0x08 */ f32 _8;
+    /* 0x0C */ CShader::CIndex* mIndexArray;
+    /* 0x10 */ CShader::CLengthMap mLengthMap;
+    /* 0x1C */ f32 _1C;
+    /* 0x20 */ u8 _20;
+    /* 0x21 */ u8 _21;
+    /* 0x22 */ u8 _22;
+    /* 0x23 */ u8 _23;
+    /* 0x24 */ u8 _24;
+    /* 0x25 */ u8 _25;
 };

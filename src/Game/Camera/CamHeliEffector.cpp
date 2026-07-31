@@ -30,26 +30,27 @@ void CamHeliEffector::update(CameraMan* pCamera) {
         _0++;
     }
 
-    TVec3f up(*CameraLocalUtil::getTarget(pCamera)->getUpVec());
-    TVec3f diff(CameraLocalUtil::getPos(pCamera) - CameraLocalUtil::getWatchPos(pCamera));
+    TVec3f up = CameraLocalUtil::getTarget(pCamera)->getUpVec();
+    TVec3f diff = CameraLocalUtil::getPos(pCamera) - CameraLocalUtil::getWatchPos(pCamera);
 
     if (MR::isNearZero(diff)) {
         return;
     }
 
-    TVec3f direction(diff);
+    TVec3f direction = diff;
     MR::normalize(&direction);
 
     f32 angle = direction.angle(up);
-    if (angle >= PI_6) {
-        TQuat4f quat;
-        quat.setRotate(direction, up, (angle - PI_6) / angle * _4);
-        quat.transform(diff);
-
-        CameraLocalUtil::setPos(pCamera, diff + CameraLocalUtil::getWatchPos(pCamera));
-
-        TVec3f newUp(CameraLocalUtil::getUpVec(pCamera));
-        quat.transform(newUp);
-        CameraLocalUtil::setUpVec(pCamera, newUp);
+    if (angle < MR::pi() / 6.0f) {
+        return;
     }
+    TQuat4f quat;
+    quat.setRotate(direction, up, (angle - MR::pi() / 6.0f) / angle * _4);
+    quat.transform(diff);
+
+    CameraLocalUtil::setPos(pCamera, diff + CameraLocalUtil::getWatchPos(pCamera));
+
+    TVec3f newUp(CameraLocalUtil::getUpVec(pCamera));
+    quat.transform(newUp);
+    CameraLocalUtil::setUpVec(pCamera, newUp);
 }

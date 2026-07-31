@@ -159,7 +159,7 @@ void UFOBase::control() {
             }
         }
         if (mRailMover->isDone() && !_B0) {
-            MR::tryRumblePadMiddle(this, 0);
+            MR::tryRumblePadMiddle(this, WPAD_CHAN0);
             MR::shakeCameraNormal();
             if (MR::isEqualString("UFOBattleStageC", _B4)) {
                 MR::startSound(this, "SE_OJ_UFO_BTL_C_STOP");

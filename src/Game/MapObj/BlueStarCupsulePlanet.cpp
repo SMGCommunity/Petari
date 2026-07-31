@@ -1,7 +1,5 @@
 #include "Game/MapObj/BlueStarCupsulePlanet.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/GCapture.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/MapObj/MapPartsRotator.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -19,11 +17,9 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
+#include <JSystem/JGeometry/TMatrix.hpp>
+#include <JSystem/JMath/JMath.hpp>
+#include <revolution/mtx.h>
 
 void BlueStarCupsulePlanet_FORCE_MATCH_SDATA2() {
     (void)0.0f;
@@ -44,11 +40,7 @@ namespace {
     }
 };  // namespace
 
-BlueStarCupsulePlanet::BlueStarCupsulePlanet(const char* pName) : LiveActor(pName) {
-    mRailMover = nullptr;
-    mRotator = nullptr;
-    mName = nullptr;
-    mIsStepUpdatable = false;
+BlueStarCupsulePlanet::BlueStarCupsulePlanet(const char* pName) : LiveActor(pName), mRailMover(), mRotator(), mName(), mIsStepUpdatable() {
     MR::createGCapture();
 }
 

@@ -4,9 +4,6 @@
 #include "JSystem/JGeometry.hpp"
 #include <revolution.h>
 
-const Mtx qMtx2_1 = {};
-const Mtx qMtx2_2 = {};
-
 class WaterRoad : public LiveActor {
 public:
     WaterRoad(const char*);

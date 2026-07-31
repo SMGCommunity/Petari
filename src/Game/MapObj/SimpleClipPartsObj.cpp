@@ -1,9 +1,8 @@
 #include "Game/MapObj/SimpleClipPartsObj.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/Functor.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -16,9 +15,6 @@ namespace NrvSimpleClipPartsObj {
 SimpleClipPartsObj::SimpleClipPartsObj(const char* pName) : MapObjActor(pName) {
 }
 
-SimpleClipPartsObj::~SimpleClipPartsObj() {
-}
-
 void SimpleClipPartsObj::init(const JMapInfoIter& rrIter) {
     MapObjActor::init(rrIter);
     MapObjActorInitInfo info;
@@ -27,7 +23,7 @@ void SimpleClipPartsObj::init(const JMapInfoIter& rrIter) {
     MapObjActorUtil::setupInitInfoSimpleMapObj(&info);
     MapObjActorUtil::setupInitInfoTypical(&info, mObjectName);
     MapObjActor::initialize(rrIter, info);
-    getSensor("body")->setType(73);
+    getSensor("body")->setType(ATYPE_CLIP_FIELD_MAP_PARTS);
 }
 
 void SimpleClipPartsObj::control() {

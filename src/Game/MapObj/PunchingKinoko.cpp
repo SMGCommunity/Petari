@@ -301,7 +301,7 @@ bool PunchingKinoko::requestPunch(HitSensor* pOtherSensor, HitSensor* pMySensor)
         mGroundChecker->mVelocity.add(stack_14 * 50.0f);
         MR::startSpinHitSound(this);
         MR::startBlowHitSound(this);
-        MR::tryRumblePadStrong(this, 0);
+        MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::stopScene(5);
         setNerve(&NrvPunchingKinoko::PunchingKinokoNrvPunched::sInstance);
 
@@ -365,7 +365,7 @@ void PunchingKinoko::exeWait() {
                 mGroundChecker->mVelocity.add(stack_2C * 35.0f);
                 MR::startBlowHitSound(this);
                 MR::start2PAttackAssistSound();
-                MR::tryRumblePadWeak(this, 1);
+                MR::tryRumblePadWeak(this, WPAD_CHAN1);
                 mStarPointerHitCoolDown = 30;
                 setNerve(&NrvPunchingKinoko::PunchingKinokoNrvPointSnaped::sInstance);
                 return;

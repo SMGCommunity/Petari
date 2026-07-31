@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/MapObj/MapObjConnector.hpp"
+
+class MapObjConnector;
 
 class SpinLeverSwitch : public LiveActor {
 public:
     SpinLeverSwitch(const char*);
 
-    virtual ~SpinLeverSwitch();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void calcAndSetBaseMtx();
@@ -18,5 +18,5 @@ public:
     void exeSwitchOn();
     void exeEnd();
 
-    MapObjConnector* mConnector;  //_8C
+    /* 0x8C */ MapObjConnector* mConnector;
 };

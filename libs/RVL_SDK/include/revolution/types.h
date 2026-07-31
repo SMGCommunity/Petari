@@ -111,6 +111,17 @@ typedef int BOOL;
 #define IS_ALIGNED(x, align) (((unsigned long)(x) & ((align) - 1)) == 0)
 #define IS_NOT_ALIGNED(X, N) (((X) & ((N) - 1)) != 0)
 
+// Comparing a non-volatile reference type to NULL is tautological
+// and triggers a warning on modern compilers, but in some cases is
+// required to match the original assembly.
+#if defined(__MWERKS__) || defined(DECOMPCTX)
+#define IS_REF_NULL(r) (&(r) == NULL)
+#define IS_REF_NONNULL(r) (&(r) != NULL)
+#else
+#define IS_REF_NULL(r) (0)
+#define IS_REF_NONNULL(r) (1)
+#endif
+
 /* just some common intrinsics */
 
 #ifndef __MWERKS__

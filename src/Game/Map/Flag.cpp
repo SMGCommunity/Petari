@@ -392,28 +392,31 @@ void Flag::draw() const {
         const TVec3f& posA = mFixPoints[idxV + 0].mPos;
         const TVec3f& posB = mFixPoints[idxV + 1].mPos;
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (mNumPointsU + 1) * 2);
-        GXPosition3f32(posB.x, posB.y, posB.z);
-        GXPosition1x8(gxPosB);
-        GXPosition1x8(gxPosB);
-        GXPosition3f32(posA.x, posA.y, posA.z);
-        GXPosition1x8(gxPosA);
-        GXPosition1x8(gxPosA);
-        gxPosB++;
-        gxPosA++;
-
-        for (s32 idxU = 0; idxU < mNumPointsU; idxU++) {
-            const TVec3f& posA = mFixPoints[idxV].mPoints[idxU]->mPosition;
-            const TVec3f& posB = mFixPoints[idxV + 1].mPoints[idxU]->mPosition;
+        {
             GXPosition3f32(posB.x, posB.y, posB.z);
             GXPosition1x8(gxPosB);
             GXPosition1x8(gxPosB);
             GXPosition3f32(posA.x, posA.y, posA.z);
             GXPosition1x8(gxPosA);
             GXPosition1x8(gxPosA);
-
             gxPosB++;
             gxPosA++;
+
+            for (s32 idxU = 0; idxU < mNumPointsU; idxU++) {
+                const TVec3f& posA = mFixPoints[idxV].mPoints[idxU]->mPosition;
+                const TVec3f& posB = mFixPoints[idxV + 1].mPoints[idxU]->mPosition;
+                GXPosition3f32(posB.x, posB.y, posB.z);
+                GXPosition1x8(gxPosB);
+                GXPosition1x8(gxPosB);
+                GXPosition3f32(posA.x, posA.y, posA.z);
+                GXPosition1x8(gxPosA);
+                GXPosition1x8(gxPosA);
+
+                gxPosB++;
+                gxPosA++;
+            }
         }
+        GXEnd();
     }
 
     if (mStickLength > 0.0f) {
@@ -445,6 +448,7 @@ void Flag::draw() const {
             GXPosition1x8(idx);
             GXPosition1x8(0);
         }
+        GXEnd();
     }
 }
 

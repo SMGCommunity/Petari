@@ -37,5 +37,6 @@ public:
 };
 
 namespace MR {
-    JMapIdInfo& createJMapIdInfoFromClippingGroupId(const JMapInfoIter&);
+    JMapIdInfo createJMapIdInfoFromGroupId(const JMapInfoIter&);
+    JMapIdInfo createJMapIdInfoFromClippingGroupId(const JMapInfoIter&);
 };  // namespace MR

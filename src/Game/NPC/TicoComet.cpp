@@ -164,11 +164,7 @@ void TicoEat::exeEatPre() {
         MR::startBva(this, "Big0");
     }
 
-    TVec3f neg;
-    TVec3f dir = MR::getCamZdir();
-
-    JMathInlineVEC::PSVECNegate(&dir, &neg);
-    if (MR::turnQuatZDirRad(&_A0, _A0, neg, 0.034906585f)) {
+    if (MR::turnQuatZDirRad(&_A0, _A0, -MR::getCamZdir(), MR::toRadian(2.0f))) {
         popAndPushNerve(&NrvTicoEat::TicoEatNrvEatNow::sInstance);
     }
 }

@@ -7,6 +7,7 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>
+#include <JSystem/JUtility/JUTVideo.hpp>
 
 namespace {
     // static const s32 sFirstBlurCount = _;
@@ -88,6 +89,7 @@ void DepthOfFieldBlur::drawZAlphaTex() const {
     GXSetDither(GX_FALSE);
     GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_CLEAR);
     GXSetLineWidth(12, GX_TO_ZERO);
+
     GXBegin(GX_LINESTRIP, GX_VTXFMT1, 4);
     {
         u8 blurMaxDist = 248;
