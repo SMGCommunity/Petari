@@ -13,14 +13,16 @@ public:
 
     void calcGravityCenter();
 
-    f32 mDist;    // 0x4C
-    f32 mAngleA;  // 0x50
-    f32 mAngleB;  // 0x54
-    f32 _58;
-    f32 _5C;
-    f32 _60;
-    f32 _64;
-    f32 _68;
-    f32 _6C;
-    u8 _70[12];
+    void setParam(f32 minDist, f32 maxDist, f32 distBase) {
+        mDistMin = minDist;
+        mDistMax = maxDist;
+        mDistBase = distBase;
+    }
+
+    /* 0x4C */ f32 mDistMax;
+    /* 0x50 */ f32 mDistMin;
+    /* 0x54 */ f32 mDistBase;
+    /* 0x58 */ TVec3f mVelocity;
+    /* 0x64 */ TVec3f mPos;
+    /* 0x70 */ TVec3f mGravityCenter;
 };
