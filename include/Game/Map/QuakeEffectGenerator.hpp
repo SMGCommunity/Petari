@@ -4,9 +4,9 @@
 
 class QuakeEffectGenerator : public LiveActor {
 public:
+    /// @brief Creates a new `QuakeEffectGenerator`.
     QuakeEffectGenerator();
 
-    virtual ~QuakeEffectGenerator();
     virtual void init(const JMapInfoIter&);
 
     void exeWaitInArea();

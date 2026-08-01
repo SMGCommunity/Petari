@@ -6,6 +6,13 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sQuakeInterval = 400;
+    static const f32 sCamShakeIntensity = 0.05f;
+    static const f32 sCamShakeSpeed = 1.5f;
+    static const s32 sCamShakeFrame = 120;
+};  // namespace
+
 namespace NrvQuakeEffectGenerator {
     NEW_NERVE(HostTypeWait, QuakeEffectGenerator, Wait);
     NEW_NERVE(HostTypeWaitInArea, QuakeEffectGenerator, WaitInArea);
@@ -22,40 +29,36 @@ void QuakeEffectGenerator::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void QuakeEffectGenerator::exeWaitInArea() {
-    if (!MR::isPlayerInAreaObj("QuakeEffectArea")) {
-        setNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
-    } else {
-        if (!MR::isFirstStep(this)) {
-            if (getNerveStep() % 400 == 0) {
-                setNerve(&NrvQuakeEffectGenerator::HostTypeQuaking::sInstance);
-            }
-        }
-    }
-}
-
-void QuakeEffectGenerator::exeQuaking() {
-    if (MR::isFirstStep(this)) {
-        MR::shakeCameraInfinity(this, 0.05f, 1.5f);
-    }
-
-    MR::startAtmosphereLevelSE("SE_AT_LV_EARTHQUAKE");
-
-    if (MR::isStep(this, 120)) {
-        MR::stopShakingCamera(this);
-        if (MR::isPlayerInAreaObj("QuakeEffectArea")) {
-            setNerve(&NrvQuakeEffectGenerator::HostTypeWaitInArea::sInstance);
-        } else {
-            setNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
-        }
-    }
-}
-
 void QuakeEffectGenerator::exeWait() {
     if (MR::isPlayerInAreaObj("QuakeEffectArea")) {
         setNerve(&NrvQuakeEffectGenerator::HostTypeWaitInArea::sInstance);
     }
 }
 
-QuakeEffectGenerator::~QuakeEffectGenerator() {
+void QuakeEffectGenerator::exeWaitInArea() {
+    if (!MR::isPlayerInAreaObj("QuakeEffectArea")) {
+        setNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
+    } else if (!MR::isFirstStep(this)) {
+        if (getNerveStep() % ::sQuakeInterval == 0) {
+            setNerve(&NrvQuakeEffectGenerator::HostTypeQuaking::sInstance);
+        }
+    }
+}
+
+void QuakeEffectGenerator::exeQuaking() {
+    if (MR::isFirstStep(this)) {
+        MR::shakeCameraInfinity(this, ::sCamShakeIntensity, ::sCamShakeSpeed);
+    }
+
+    MR::startAtmosphereLevelSE("SE_AT_LV_EARTHQUAKE");
+
+    if (MR::isStep(this, ::sCamShakeFrame)) {
+        MR::stopShakingCamera(this);
+
+        if (MR::isPlayerInAreaObj("QuakeEffectArea")) {
+            setNerve(&NrvQuakeEffectGenerator::HostTypeWaitInArea::sInstance);
+        } else {
+            setNerve(&NrvQuakeEffectGenerator::HostTypeWait::sInstance);
+        }
+    }
 }
