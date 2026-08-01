@@ -4,23 +4,12 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class ActorCameraInfo;
-class BossKameck;
-
-class BossKameckDemoPosition : public LiveActor {
-public:
-    BossKameckDemoPosition();
-
-    virtual ~BossKameckDemoPosition();
-    virtual void init(const JMapInfoIter&);
-
-    ActorCameraInfo* mCameraInfo;  // 0x8C
-};
+class BossKameckDemoPosition;
 
 class BossKameckBattleDemo : public BossKameckAction {
 public:
     BossKameckBattleDemo(BossKameck*, const JMapInfoIter&);
 
-    virtual ~BossKameckBattleDemo();
     virtual void init();
     virtual void appear();
     virtual void kill();
@@ -43,7 +32,16 @@ public:
     void exeDownVs2();
     void updateCastPose();
 
-    BossKameckDemoPosition* mDemoPos;  // 0x10
-    const Nerve* mDemoNerve;           // 0x14
-    const char* mCurDemoName;          // 0x18
+    /* 0x10 */ BossKameckDemoPosition* mDemoPos;
+    /* 0x14 */ const Nerve* mDemoNerve;
+    /* 0x18 */ const char* mCurDemoName;
+};
+
+class BossKameckDemoPosition : public LiveActor {
+public:
+    BossKameckDemoPosition();
+
+    virtual void init(const JMapInfoIter&);
+
+    /* 0x8C */ ActorCameraInfo* mCameraInfo;
 };

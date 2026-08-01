@@ -11,7 +11,6 @@ class BossBegomanHead : public PartsModel {
 public:
     BossBegomanHead(LiveActor*, MtxPtr);
 
-    virtual ~BossBegomanHead();
     virtual void init(const JMapInfoIter&);
     virtual void calcAndSetBaseMtx();
 

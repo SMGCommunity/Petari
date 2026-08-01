@@ -8,6 +8,3 @@ void LightArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
     mPlacedZoneID = MR::getPlacedZoneId(rIter);
 }
-
-LightArea::~LightArea() {
-}

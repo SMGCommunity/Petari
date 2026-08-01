@@ -20,9 +20,6 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     AreaObjContainer(const char* pName);
 
-    /// @brief Destroys the `AreaObjContainer`.
-    virtual ~AreaObjContainer();
-
     /// @brief Intializes the `AreaObjContainer` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
     virtual void init(const JMapInfoIter& rIter);

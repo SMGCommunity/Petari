@@ -394,6 +394,3 @@ namespace MR {
         return MR::getSceneObj< AreaObjContainer >(SceneObj_AreaObjContainer);
     }
 };  // namespace MR
-
-AreaObjContainer::~AreaObjContainer() {
-}

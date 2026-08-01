@@ -222,7 +222,8 @@ void BossStinkBugActionBase::updateSoundFly() {
     }
 }
 
-BossStinkBugActionBase::~BossStinkBugActionBase(){};
+BossStinkBugActionBase::~BossStinkBugActionBase() {
+}
 
 bool BossStinkBugActionBase::updateGroundRegainRail(f32 f1) {
     if (MR::isFirstStep(this)) {
