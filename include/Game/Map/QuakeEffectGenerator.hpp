@@ -9,7 +9,7 @@ public:
 
     virtual void init(const JMapInfoIter&);
 
+    void exeWait();
     void exeWaitInArea();
     void exeQuaking();
-    void exeWait();
 };
