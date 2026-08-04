@@ -25,7 +25,6 @@ CameraInwardSphere::CameraInwardSphere(const char* pName)
 }
 
 void CameraInwardSphere::reset() {
-    // FIXME CHECK
     CameraLocalUtil::setPos(this, CameraLocalUtil::getPos(mCameraMan));
     calcGravityCenter();
     f32 dist = CameraLocalUtil::getTarget(this)->getPosition().distance(mGravityCenter);
@@ -37,8 +36,6 @@ void CameraInwardSphere::reset() {
 }
 
 CameraTargetObj* CameraInwardSphere::calc() {
-    // FIXME
-
     TVec3f watchPoint;
     CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
     CameraLocalUtil::setWatchPos(this, watchPoint);

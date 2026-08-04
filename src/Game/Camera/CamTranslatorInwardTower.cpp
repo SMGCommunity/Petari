@@ -18,16 +18,7 @@ void CamTranslatorInwardTower::setParam(const CameraParamChunk* pChunk) {
         MR::normalize(&axis);
     }
 
-    TVec2f angle = TVec2f(general->mAngleB, general->mAngleA);
-    f32 dist = general->mDist;
-
-    CameraInwardTower* camera = mCamera;
-
-    camera->mWPoint.set< f32 >(general->mWPoint);
-    camera->mAxis.set< f32 >(axis);
-    camera->mAngleB = angle.x;
-    camera->mAngleA = angle.y;
-    camera->mDist = dist;
+    mCamera->setParam(general->mWPoint, axis, TVec2f(general->mAngleB, general->mAngleA), general->mDist);
 }
 
 Camera* CamTranslatorInwardTower::getCamera() const {
