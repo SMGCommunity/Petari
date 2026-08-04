@@ -10,9 +10,6 @@ public:
     /// @brief Creates a new `BossAccessor`
     BossAccessor();
 
-    /// @brief Destroys the `BossAccessor`.
-    virtual ~BossAccessor();
-
     LiveActor* getBoss() const {
         return mBoss;
     }
@@ -22,7 +19,7 @@ public:
     }
 
 private:
-    /* 0x0 */ LiveActor* mBoss;
+    /* 0x00 */ LiveActor* mBoss;
 };
 
 namespace BossAccess {

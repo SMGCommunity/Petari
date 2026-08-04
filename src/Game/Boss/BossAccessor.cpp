@@ -25,6 +25,3 @@ namespace BossAccess {
         return nullptr;
     }
 };  // namespace BossAccess
-
-BossAccessor::~BossAccessor() {
-}

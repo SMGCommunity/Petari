@@ -5545,7 +5545,7 @@ Game/MapObj/SandCapsulePressGround.cpp:
 Game/MapObj/Sandstorm.cpp:
 	.text       start:0x8021F714 end:0x80221104
 	.ctors      start:0x8052EE5C end:0x8052EE60
-	.data       start:0x8059DF10 end:0x8059E2A8
+	.data       start:0x8059DF10 end:0x8059E218
 	.sbss       start:0x806B5740 end:0x806B5760
 	.sdata2     start:0x806BDD68 end:0x806BDDC8
 
@@ -5553,7 +5553,7 @@ Game/MapObj/SandUpDownEffectObj.cpp:
 	.text       start:0x80221104 end:0x802219BC
 	.ctors      start:0x8052EE60 end:0x8052EE64
 	.rodata     start:0x80533678 end:0x805336C0
-	.data       start:0x8059E2A8 end:0x8059E3D0
+	.data       start:0x8059E218 end:0x8059E3D0
 	.sbss       start:0x806B5760 end:0x806B5778
 	.sdata2     start:0x806BDDC8 end:0x806BDDD8
 

@@ -4,14 +4,15 @@
 
 class SandCapsuleInsidePlanet : public MapObjActor {
 public:
-    SandCapsuleInsidePlanet(const char*);
+    /// @brief Creates a new `SandCapsuleInsidePlanet`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    SandCapsuleInsidePlanet(const char* pName);
 
-    virtual ~SandCapsuleInsidePlanet();
     virtual void init(const JMapInfoIter&);
     virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
 
-    void exeWait();
-
     void startOn();
     void startOff();
+
+    void exeWait();
 };

@@ -26,9 +26,6 @@ void SandCapsuleInsidePlanet::initCaseUseSwitchA(const MapObjActorInitInfo& rInf
     MR::listenStageSwitchOnOffA(this, MR::Functor(this, &SandCapsuleInsidePlanet::startOn), MR::Functor(this, &SandCapsuleInsidePlanet::startOff));
 }
 
-void SandCapsuleInsidePlanet::exeWait() {
-}
-
 void SandCapsuleInsidePlanet::startOn() {
     MR::startBrk(this, "On");
 }
@@ -37,5 +34,5 @@ void SandCapsuleInsidePlanet::startOff() {
     MR::startBrk(this, "Off");
 }
 
-SandCapsuleInsidePlanet::~SandCapsuleInsidePlanet() {
+void SandCapsuleInsidePlanet::exeWait() {
 }

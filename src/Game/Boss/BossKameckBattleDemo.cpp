@@ -374,9 +374,3 @@ void BossKameckBattleDemo::updateCastPose() {
     BossKameck* boss = mHost;
     boss->setPose(MR::getJointMtx(mDemoPos, "KameckPosition"));
 }
-
-BossKameckBattleDemo::~BossKameckBattleDemo() {
-}
-
-BossKameckDemoPosition::~BossKameckDemoPosition() {
-}

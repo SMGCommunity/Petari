@@ -8,7 +8,6 @@ class BossKameckVs1 : public BossKameckSequencer {
 public:
     BossKameckVs1();
 
-    virtual ~BossKameckVs1();
     virtual void start();
     virtual void init(BossKameck*, const JMapInfoIter&);
     virtual void attackSensor(HitSensor*, HitSensor*);
@@ -22,5 +21,5 @@ public:
     void exeEndDemo();
     bool isBattle() const;
 
-    BossKameckStateBattle* mStateBattle;  // 0x14
+    /* 0x14 */ BossKameckStateBattle* mStateBattle;
 };

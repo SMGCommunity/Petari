@@ -1,7 +1,26 @@
 #include "Game/MapObj/SandCapsulePressGround.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
+#include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapPartsUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+
+namespace {
+    // static const f32 sMoveUpDepth = _;
+    static const s32 sStepForMove = 1200;
+    static const s32 sStepForMoveStart = 120;
+    static const s32 sStepForMoveEnd = 180;
+    static const s32 sStepToStop = 30;
+};
 
 namespace NrvSandCapsulePressGround {
     NEW_NERVE(SandCapsulePressGroundNrvWaitBottom, SandCapsulePressGround, Wait);
@@ -58,10 +77,10 @@ void SandCapsulePressGround::exeMoveStart() {
         MR::emitEffect(this, "FallSand");
     }
 
-    if (MR::isLessStep(this, 120)) {
+    if (MR::isLessStep(this, ::sStepForMoveStart)) {
         MR::tryRumblePadWeak(this, 0);
         MR::startLevelSound(this, "SE_OJ_LV_DESERT_LAND_SIGN");
-    } else if (MR::isStep(this, 120)) {
+    } else if (MR::isStep(this, ::sStepForMoveStart)) {
         MR::stopShakingCamera(this);
 
         if (isNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveStartUp))) {
@@ -79,22 +98,24 @@ void SandCapsulePressGround::exeMove() {
         calcMoveVelocity();
     }
 
-    if (!tryStop()) {
-        MR::startLevelSound(this, "SE_OJ_LV_DESERT_LAND_MOVE");
-        _DC.setTrans(mPosition);
+    if (tryStop()) {
+        return;
+    }
 
-        if (MR::isStep(this, 1200)) {
-            mVelocity.zero();
-            MR::deleteEffect(this, "FallSand");
-            MR::startSound(this, "SE_OJ_DESERT_LAND_MOVE_ED");
+    MR::startLevelSound(this, "SE_OJ_LV_DESERT_LAND_MOVE");
+    _DC.setTrans(mPosition);
 
-            if (isNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveUp))) {
-                mPosition.set< f32 >(_D0);
-                setNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveUpEnd));
-            } else {
-                mPosition.set< f32 >(_C4);
-                setNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveDownEnd));
-            }
+    if (MR::isStep(this, ::sStepForMove)) {
+        mVelocity.zero();
+        MR::deleteEffect(this, "FallSand");
+        MR::startSound(this, "SE_OJ_DESERT_LAND_MOVE_ED");
+
+        if (isNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveUp))) {
+            mPosition.set< f32 >(_D0);
+            setNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveUpEnd));
+        } else {
+            mPosition.set< f32 >(_C4);
+            setNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveDownEnd));
         }
     }
 }
@@ -104,7 +125,7 @@ void SandCapsulePressGround::exeMoveEnd() {
         MR::offSwitchA(this);
     }
 
-    if (MR::isStep(this, 180)) {
+    if (MR::isStep(this, ::sStepForMoveEnd)) {
         if (isNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvMoveUpEnd))) {
             setNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvWaitTop));
         } else {
@@ -143,7 +164,7 @@ void SandCapsulePressGround::exeStop() {
         MR::invalidateHitSensors(this);
     }
 
-    if (MR::isStep(this, 30)) {
+    if (MR::isStep(this, ::sStepToStop)) {
         mVelocity.zero();
     }
 }
@@ -161,8 +182,6 @@ bool SandCapsulePressGround::tryStop() {
     }
 
     setNerve(GET_NERVE(SandCapsulePressGround, SandCapsulePressGroundNrvStop));
-    return true;
-}
 
-SandCapsulePressGround::~SandCapsulePressGround() {
+    return true;
 }

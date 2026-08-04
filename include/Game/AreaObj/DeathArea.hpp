@@ -8,7 +8,6 @@ public:
 
     DeathArea(int, const char*);
 
-    virtual ~DeathArea();
     virtual void init(const JMapInfoIter&);
     virtual void movement();
 

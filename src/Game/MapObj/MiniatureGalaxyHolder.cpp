@@ -22,11 +22,14 @@ MiniatureGalaxyHolder::MiniatureGalaxyHolder() : LiveActor("ミニチュアギ�
 void MiniatureGalaxyHolder::registerActor(LiveActor* pActor, const JMapInfoIter& rIter) {
     _8C->registerActor(pActor);
 
-    if (!_90) {
-        MR::tryRegisterDemoCast(this, rIter);
-        MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &MiniatureGalaxyHolder::killAllMiniatureGalaxy), "飛び出す");
-        _90 = true;
+    if (_90) {
+        return;
     }
+
+    MR::tryRegisterDemoCast(this, rIter);
+    MR::registerDemoActionFunctor(this, MR::Functor_Inline(this, &MiniatureGalaxyHolder::killAllMiniatureGalaxy), "飛び出す");
+
+    _90 = true;
 }
 
 void MiniatureGalaxyHolder::init(const JMapInfoIter& rIter) {
@@ -36,25 +39,29 @@ void MiniatureGalaxyHolder::init(const JMapInfoIter& rIter) {
 #pragma push
 #pragma ppc_iro_level 1
 
-bool MiniatureGalaxyHolder::isRegisteredActor(const LiveActor* mActor) {
+bool MiniatureGalaxyHolder::isRegisteredActor(const LiveActor* pActor) {
     for (int i = 0; i < _8C->mObjectCount; i++) {
-        if (_8C->getActor(i) == mActor) {
+        if (_8C->getActor(i) == pActor) {
             return true;
         }
     }
+
     return false;
 }
 
 #pragma ppc_iro_level 2
 
-MiniatureGalaxy* MiniatureGalaxyHolder::findMiniatureGalaxy(const char* v1) const {
-    MiniatureGalaxy* mMiniGalaxy;
+MiniatureGalaxy* MiniatureGalaxyHolder::findMiniatureGalaxy(const char* pGalaxyName) const {
+    MiniatureGalaxy* miniatureGalaxy;
+
     for (int i = 0; i < _8C->mObjectCount; i++) {
-        mMiniGalaxy = (MiniatureGalaxy*)_8C->getActor(i);
-        if (MR::isEqualString(mMiniGalaxy->mName, v1)) {
-            return mMiniGalaxy;
+        miniatureGalaxy = static_cast< MiniatureGalaxy* >(_8C->getActor(i));
+
+        if (MR::isEqualString(miniatureGalaxy->mName, pGalaxyName)) {
+            return miniatureGalaxy;
         }
     }
+
     return nullptr;
 }
 
@@ -64,23 +71,26 @@ void MiniatureGalaxyHolder::killAllMiniatureGalaxy() {
     }
 }
 
-s32 MiniatureGalaxyHolder::calcIndex(const LiveActor* mActor) const {
-    const char* mString = ((MiniatureGalaxy*)mActor)->mName;
+s32 MiniatureGalaxyHolder::calcIndex(const LiveActor* pActor) const {
+    const char* mString = static_cast< const MiniatureGalaxy* >(pActor)->mName;
     s32 mStarNum = MR::getPowerStarNumToOpenGalaxy(mString);
-    s32 x = 0;
+    s32 index = 0;
     MiniatureGalaxy* mMiniGalaxy2 = findMiniatureGalaxy(mString);
     MiniatureGalaxy* mMiniGalaxy3;
+
     for (int i = 0; i < _8C->mObjectCount; i++) {
-        mMiniGalaxy3 = (MiniatureGalaxy*)_8C->getActor(i);
-        if (mMiniGalaxy3->mGalaxyType != 2 && mMiniGalaxy3 != mMiniGalaxy2) {
-            if (mMiniGalaxy2->mGalaxyType == 2) {
-                x++;
+        mMiniGalaxy3 = static_cast< MiniatureGalaxy* >(_8C->getActor(i));
+
+        if (mMiniGalaxy3->mType != 2 && mMiniGalaxy3 != mMiniGalaxy2) {
+            if (mMiniGalaxy2->mType == 2) {
+                index++;
             } else if (MR::getPowerStarNumToOpenGalaxy(mMiniGalaxy3->mName) < mStarNum) {
-                x++;
+                index++;
             }
         }
     }
-    return x;
+
+    return index;
 }
 
 #pragma ppc_iro_level 1
@@ -89,30 +99,34 @@ void MiniatureGalaxyHolder::updateCometStatus() {
     mCometGalaxy = nullptr;
     mCometID = -1;
     _9C = 0;
-    MiniatureGalaxy* mMiniGalaxy;
+
+    MiniatureGalaxy* miniatureGalaxy;
+
     for (int i = 0; i < _8C->mObjectCount; i++) {
-        mMiniGalaxy = (MiniatureGalaxy*)_8C->getActor(i);
-        if (MR::isGalaxyCometLandInStage(mMiniGalaxy->mName)) {
-            mCometGalaxy = mMiniGalaxy;
+        miniatureGalaxy = static_cast< MiniatureGalaxy* >(_8C->getActor(i));
+
+        if (MR::isGalaxyCometLandInStage(miniatureGalaxy->mName)) {
+            mCometGalaxy = miniatureGalaxy;
             break;
         }
     }
+
     if (mCometGalaxy != nullptr) {
         mCometID = MR::getEncounterGalaxyCometNameId(mCometGalaxy->mName);
     }
 }
 
-void MiniatureGalaxyFunction::registerMiniatureGalaxyToHolder(LiveActor* mActor, const JMapInfoIter& rIter) {
+void MiniatureGalaxyFunction::registerMiniatureGalaxyToHolder(LiveActor* pActor, const JMapInfoIter& rIter) {
     MR::createSceneObj(SceneObj_MiniatureGalaxyHolder);
-    ::getHolder()->registerActor(mActor, rIter);
+    ::getHolder()->registerActor(pActor, rIter);
 }
 
 s32 MiniatureGalaxyFunction::getMiniatureGalaxyNum() {
     return ::getHolder()->_8C->mObjectCount;
 }
 
-s32 MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(const LiveActor* mActor) {
-    return ::getHolder()->calcIndex(mActor);
+s32 MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(const LiveActor* pActor) {
+    return ::getHolder()->calcIndex(pActor);
 }
 
 void MiniatureGalaxyFunction::updateCometStatus() {

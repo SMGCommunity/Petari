@@ -11,7 +11,7 @@ LightAreaHolder::LightAreaHolder(s32 maxNum, const char* pName) : AreaObjMgr(max
 bool LightAreaHolder::tryFindLightID(const TVec3f& rArea, ZoneLightID* pLightID) const {
     const LightArea* lightArea = static_cast< LightArea* >(find_in(rArea));
 
-    if (!lightArea) {
+    if (lightArea == nullptr) {
         if (pLightID->isOutOfArea()) {
             pLightID->clear();
             return false;
@@ -32,7 +32,4 @@ bool LightAreaHolder::tryFindLightID(const TVec3f& rArea, ZoneLightID* pLightID)
 
 void LightAreaHolder::initAfterPlacement() {
     sort();
-}
-
-LightAreaHolder::~LightAreaHolder() {
 }
