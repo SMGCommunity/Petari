@@ -390,99 +390,125 @@ void Takobo::exeDpdPointed() {
     }
 }
 
-void Takobo::attackSensor(HitSensor* a1, HitSensor* a2) {
+void Takobo::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvTakobo::HostTypeNrvIce::sInstance)) {
         return;
     }
-    if (MR::isSensorEnemyAttack(a1)) {
-        if (MR::isSensorPlayer(a2)) {
-            MR::sendMsgEnemyAttackStrong(a2, a1);
+
+    if (MR::isSensorEnemyAttack(pSender)) {
+        if (MR::isSensorPlayer(pReceiver)) {
+            MR::sendMsgEnemyAttackStrong(pReceiver, pSender);
         }
+
         return;
     }
-    if (MR::isSensorPlayer(a2)) {
+
+    if (MR::isSensorPlayer(pReceiver)) {
         if (MR::isPlayerHipDropFalling() || MR::isPlayerHipDropLand()) {
             return;
         }
+
         if (isNerve(&NrvTakobo::HostTypeNrvMove::sInstance) || isNerve(&NrvTakobo::HostTypeNrvAttack::sInstance)) {
-            if (MR::isPlayerExistUp(this, getSensor("body")->mRadius, 0.25)) {
-                MR::sendMsgPush(a2, a1);
+            if (MR::isPlayerExistUp(this, getSensor("body")->mRadius, 0.25f)) {
+                MR::sendMsgPush(pReceiver, pSender);
                 return;
             }
-            if (MR::sendMsgEnemyAttack(a2, a1)) {
+
+            if (MR::sendMsgEnemyAttack(pReceiver, pSender)) {
                 mScaleController->startHitReaction();
                 setNerve(&NrvTakobo::HostTypeNrvHitReaction::sInstance);
             } else {
-                MR::sendMsgPush(a2, a1);
+                MR::sendMsgPush(pReceiver, pSender);
             }
-
         } else if (!isNerve(&NrvTakobo::HostTypeNrvPress::sInstance) && !isNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance)) {
-            MR::sendMsgPush(a2, a1);
+            MR::sendMsgPush(pReceiver, pSender);
         }
     }
 
-    if (MR::isSensorEnemy(a2) || MR::isSensorMapObj(a2)) {
-        MR::sendMsgPush(a2, a1);
+    if (MR::isSensorEnemy(pReceiver) || MR::isSensorMapObj(pReceiver)) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool Takobo::receiveOtherMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
+bool Takobo::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerKick(msg) && isNerve(&NrvTakobo::HostTypeNrvStun::sInstance)) {
-        mSpinController->start(this, a2->mPosition, a3->mPosition);
+        mSpinController->start(this, pSender->mPosition, pReceiver->mPosition);
         setNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance);
+
         return true;
     }
 
     return false;
 }
 
-bool Takobo::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
+bool Takobo::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerTrample(msg)) {
-        if (MR::isSensorEnemyAttack(a3)) {
-            return 0;
-        } else if (isNerve(&NrvTakobo::HostTypeNrvPress::sInstance)) {
-            return 0;
-        } else {
-            return tryPress();
+        if (MR::isSensorEnemyAttack(pReceiver)) {
+            return false;
         }
-    } else if (MR::isMsgPlayerHipDrop(msg)) {
-        if (MR::isSensorEnemyAttack(a3)) {
-            return 0;
-        } else if (isNerve(&NrvTakobo::HostTypeNrvPress::sInstance)) {
-            return 0;
-        } else if (isNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance)) {
-            return 0;
-        } else {
-            MR::startSound(this, "SE_EM_TAKOBO_STOMPED");
-            setNerve(&NrvTakobo::HostTypeNrvPress::sInstance);
-            return 1;
+
+        if (isNerve(&NrvTakobo::HostTypeNrvPress::sInstance)) {
+            return false;
         }
-    } else if (MR::isMsgFreezeAttack(msg)) {
-        if (MR::isSensorEnemyAttack(a3)) {
-            return 0;
-        } else {
-            mBox->generateIceBox(a2, a3);
-            setNerve(&NrvTakobo::HostTypeNrvIce::sInstance);
-            return 1;
-        }
-    } else if (isNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance) || isNerve(&NrvTakobo::HostTypeNrvPress::sInstance)) {
-        return 0;
-    } else if (MR::isMsgLockOnStarPieceShoot(msg)) {
-        return 1;
-    } else if (MR::isMsgStarPieceAttack(msg)) {
-        setNerve(&NrvTakobo::HostTypeNrvStunStart::sInstance);
-        return 1;
-    } else if (MR::isMsgPlayerHitAll(msg)) {
-        setNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance);
-        mSpinController->start(this, a2->mPosition, a3->mPosition);
-        return 1;
-    } else {
-        return 0;
+
+        return tryPress();
     }
+
+    if (MR::isMsgPlayerHipDrop(msg)) {
+        if (MR::isSensorEnemyAttack(pReceiver)) {
+            return false;
+        }
+
+        if (isNerve(&NrvTakobo::HostTypeNrvPress::sInstance)) {
+            return false;
+        }
+
+        if (isNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance)) {
+            return false;
+        }
+
+        MR::startSound(this, "SE_EM_TAKOBO_STOMPED");
+        setNerve(&NrvTakobo::HostTypeNrvPress::sInstance);
+
+        return true;
+    }
+
+    if (MR::isMsgFreezeAttack(msg)) {
+        if (MR::isSensorEnemyAttack(pReceiver)) {
+            return false;
+        }
+        mBox->generateIceBox(pSender, pReceiver);
+        setNerve(&NrvTakobo::HostTypeNrvIce::sInstance);
+
+        return true;
+    }
+
+    if (isNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance) || isNerve(&NrvTakobo::HostTypeNrvPress::sInstance)) {
+        return false;
+    }
+
+    if (MR::isMsgLockOnStarPieceShoot(msg)) {
+        return true;
+    }
+
+    if (MR::isMsgStarPieceAttack(msg)) {
+        setNerve(&NrvTakobo::HostTypeNrvStunStart::sInstance);
+
+        return true;
+    }
+
+    if (MR::isMsgPlayerHitAll(msg)) {
+        setNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance);
+        mSpinController->start(this, pSender->mPosition, pReceiver->mPosition);
+
+        return true;
+    }
+
+    return false;
 }
 
-bool Takobo::receiveMsgEnemyAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
-    if (!a3->isType(ATYPE_TAKOBO)) {
+bool Takobo::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (!pReceiver->isType(ATYPE_TAKOBO)) {
         return false;
     }
 
@@ -493,16 +519,22 @@ bool Takobo::receiveMsgEnemyAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
     if (MR::isMsgToEnemyAttackTrample(msg)) {
         if (isNerve(&NrvTakobo::HostTypeNrvPress::sInstance)) {
             return false;
-        } else {
-            return tryPress();
         }
-    } else if (MR::isMsgToEnemyAttackBlow(msg)) {
-        mSpinController->startWithoutStopScene(this, a2->mPosition, a3->mPosition);
+
+        return tryPress();
+    }
+
+    if (MR::isMsgToEnemyAttackBlow(msg)) {
+        mSpinController->startWithoutStopScene(this, pSender->mPosition, pReceiver->mPosition);
         setNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance);
+
         return true;
-    } else if (MR::isMsgExplosionAttack(msg)) {
-        mSpinController->startWithoutStopScene(this, a2->mPosition, a3->mPosition);
+    }
+
+    if (MR::isMsgExplosionAttack(msg)) {
+        mSpinController->startWithoutStopScene(this, pSender->mPosition, pReceiver->mPosition);
         setNerve(&NrvTakobo::HostTypeNrvHitPunch::sInstance);
+
         return true;
     }
 

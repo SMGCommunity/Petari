@@ -256,11 +256,10 @@ bool MogucchiHillPiece::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSe
     return true;
 }
 
-bool MogucchiHillPiece::isTargetGoingAway(HitSensor* pSensor1, HitSensor* pSensor2) const {
-    TVec3f deltaTrans = pSensor2->mPosition - pSensor1->mPosition;
-    f32 dotP = deltaTrans.dot(pSensor2->mHost->mVelocity);
+bool MogucchiHillPiece::isTargetGoingAway(HitSensor* pSender, HitSensor* pReceiver) const {
+    TVec3f toReceiver = pReceiver->mPosition - pSender->mPosition;
 
-    return dotP >= 0.0f;
+    return toReceiver.dot(pReceiver->mHost->mVelocity) >= 0.0f;
 }
 
 MogucchiHill::MogucchiHill(LiveActor* pHost, s32 param2, const char* pName)

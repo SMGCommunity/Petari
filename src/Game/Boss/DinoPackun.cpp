@@ -286,45 +286,45 @@ PartsModel* DinoPackun::getBallModel() {
     return mTailBall;
 }
 
-void DinoPackun::attackSensor(HitSensor* a1, HitSensor* a2) {
+void DinoPackun::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequence != nullptr) {
-        mSequence->attackSensor(a1, a2);
+        mSequence->attackSensor(pSender, pReceiver);
     }
 }
 
-bool DinoPackun::receiveMsgPlayerAttack(u32 msg, HitSensor* a1, HitSensor* a2) {
+bool DinoPackun::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequence != nullptr) {
-        return mSequence->receiveMsgPlayerAttack(msg, a1, a2);
-    }
-
-    return false;
-}
-
-bool DinoPackun::receiveMsgPush(HitSensor* a1, HitSensor* a2) {
-    if (mSequence != nullptr) {
-        return mSequence->receiveMsgPush(a1, a2);
+        return mSequence->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
 
     return false;
 }
 
-bool DinoPackun::receiveOtherMsg(u32 msg, HitSensor* a1, HitSensor* a2) {
+bool DinoPackun::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequence != nullptr) {
-        return mSequence->receiveOtherMsg(msg, a1, a2);
+        return mSequence->receiveMsgPush(pSender, pReceiver);
     }
 
     return false;
 }
 
-void DinoPackun::attackSensorTail(HitSensor* a1, HitSensor* a2) {
+bool DinoPackun::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequence != nullptr) {
-        mSequence->attackSensorTail(a1, a2);
+        return mSequence->receiveOtherMsg(msg, pSender, pReceiver);
+    }
+
+    return false;
+}
+
+void DinoPackun::attackSensorTail(HitSensor* pSender, HitSensor* pReceiver) {
+    if (mSequence != nullptr) {
+        mSequence->attackSensorTail(pSender, pReceiver);
     }
 }
 
-bool DinoPackun::receiveMsgPlayerAttackTail(u32 msg, HitSensor* a1, HitSensor* a2) {
+bool DinoPackun::receiveMsgPlayerAttackTail(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequence != nullptr) {
-        return mSequence->receiveMsgPlayerAttackTail(msg, a1, a2);
+        return mSequence->receiveMsgPlayerAttackTail(msg, pSender, pReceiver);
     }
 
     return false;

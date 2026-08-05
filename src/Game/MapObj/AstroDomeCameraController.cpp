@@ -67,15 +67,15 @@ void AstroDomeCameraController::control() {
     MR::setProgrammableCameraParamFovy(this, ::cFovy);
 }
 
-bool AstroDomeCameraController::receiveOtherMsg(u32 v1, HitSensor* pSender, HitSensor* pReceiver) {
-    if (SphereSelectorFunction::trySyncAppearMsgSelectStart(this, v1)) {
+bool AstroDomeCameraController::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (SphereSelectorFunction::trySyncAppearMsgSelectStart(this, msg)) {
         return true;
     }
-    if (SphereSelectorFunction::isMsgConfirmStart(v1)) {
+    if (SphereSelectorFunction::isMsgConfirmStart(msg)) {
         setNerve(&NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxyConfirmStart::sInstance);
         return true;
     }
-    if (SphereSelectorFunction::isMsgConfirmCancel(v1)) {
+    if (SphereSelectorFunction::isMsgConfirmCancel(msg)) {
         setNerve(&NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxyConfirmCancel::sInstance);
         return true;
     }

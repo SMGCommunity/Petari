@@ -131,27 +131,27 @@ bool MarioActor::tryVectorAttackMsg(u32 msg, const TVec3f& rVec) {
     return out;
 }
 
-bool MarioActor::receiveMsgTaken(HitSensor* pReceiver, HitSensor* pSender) {
+bool MarioActor::receiveMsgTaken(HitSensor* pSender, HitSensor* pReceiver) {
     if (_934) {
         return false;
     }
 
     if (mMario->isSwimming() && !mMario->isStatusActive(MarioStatus_Foo)) {
         u32 type = 0;
-        if (pReceiver->isType(ATYPE_JET_TURTLE_SLOW)) {
+        if (pSender->isType(ATYPE_JET_TURTLE_SLOW)) {
             type = 1;
         }
 
         if (!mMario->mSwim->startJet(type)) {
             return false;
         }
-    } else if (pReceiver != _424) {
+    } else if (pSender != _424) {
         return false;
     } else if (_B92 == 0) {
-        mMarioAnim->updateTakingAnimation(pReceiver);
+        mMarioAnim->updateTakingAnimation(pSender);
     }
 
-    memorizeSensorThrow(pReceiver);
+    memorizeSensorThrow(pSender);
 
     return true;
 }

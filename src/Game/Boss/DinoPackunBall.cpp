@@ -139,16 +139,16 @@ void DinoPackunBall::addDodgeTargetVelocity() {
     }
 }
 
-void DinoPackunBall::attackSensor(HitSensor* a1, HitSensor* a2) {
+void DinoPackunBall::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (_125) {
-        MR::sendMsgEnemyAttackFire(a2, a1);
+        MR::sendMsgEnemyAttackFire(pReceiver, pSender);
     } else if (isNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance) || isNerve(&NrvDinoPackunBall::DinoPackunBallNrvRebound::sInstance)) {
-        if (MR::sendMsgPush(a2, a1)) {
+        if (MR::sendMsgPush(pReceiver, pSender)) {
             TVec3f v13;
-            MR::calcSensorDirectionNormalize(&v13, a2, a1);
+            MR::calcSensorDirectionNormalize(&v13, pReceiver, pSender);
             f32 v6 = mVelocity.dot(v13);
 
-            if (MR::isSensorPlayer(a2)) {
+            if (MR::isSensorPlayer(pReceiver)) {
                 if (v6 < 5.0f) {
                     mVelocity.add(v13 * 1.0f);
                 }
@@ -157,10 +157,10 @@ void DinoPackunBall::attackSensor(HitSensor* a1, HitSensor* a2) {
             }
         }
 
-    } else if (a2 == mWeakSensor && isNerve(&NrvDinoPackunBall::DinoPackunBallNrvReverse::sInstance) &&
-               MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_BALL_ATTACK, a2, a1)) {
+    } else if (pReceiver == mWeakSensor && isNerve(&NrvDinoPackunBall::DinoPackunBallNrvReverse::sInstance) &&
+               MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_BALL_ATTACK, pReceiver, pSender)) {
         TVec3f v12;
-        MR::calcSensorDirection(&v12, a2, a1);
+        MR::calcSensorDirection(&v12, pReceiver, pSender);
         MR::normalizeOrZero(&v12);
         f32 v7 = mVelocity.length();
         mVelocity.set< f32 >((v12 * v7) * 0.3f);
@@ -168,7 +168,7 @@ void DinoPackunBall::attackSensor(HitSensor* a1, HitSensor* a2) {
     }
 }
 
-bool DinoPackunBall::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
+bool DinoPackunBall::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return true;
     }
@@ -181,22 +181,22 @@ bool DinoPackunBall::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSensor* a
     }
 
     if (MR::isMsgPlayerSpinAttack(msg)) {
-        return requestPunch(a3, a2);
+        return requestPunch(pReceiver, pSender);
     }
 
     return false;
 }
 
-bool DinoPackunBall::receiveMsgEnemyAttack(u32 msg, HitSensor*, HitSensor*) {
+bool DinoPackunBall::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgEnemyAttackFire(msg)) {
     }
 
     return false;
 }
 
-bool DinoPackunBall::requestPunch(HitSensor* a1, HitSensor* a2) {
-    if (isNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance) && MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_PUNCHED_BALL, mWeakSensor, a1)) {
-        MR::addVelocitySeparateHV(this, a2, a1, 120.0f, 40.0f);
+bool DinoPackunBall::requestPunch(HitSensor* pReceiver, HitSensor* pSender) {
+    if (isNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance) && MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_PUNCHED_BALL, mWeakSensor, pReceiver)) {
+        MR::addVelocitySeparateHV(this, pSender, pReceiver, 120.0f, 40.0f);
         setNerve(&NrvDinoPackunBall::DinoPackunBallNrvShoot::sInstance);
         return true;
     }

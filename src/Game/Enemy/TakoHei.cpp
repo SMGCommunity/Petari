@@ -314,11 +314,11 @@ bool TakoHei::requestSwoon() {
     return false;
 }
 
-bool TakoHei::requestPunch(HitSensor* pSensor1, HitSensor* pSensor2) {
+bool TakoHei::requestPunch(HitSensor* pReceiver, HitSensor* pSender) {
     if (!isDown()) {
         MR::clearHitSensors(this);
         MR::invalidateHitSensors(this);
-        MR::addVelocitySeparateHV(this, pSensor2, pSensor1, ::sPunchHorizonPower, ::sPunchVerticalPower);
+        MR::addVelocitySeparateHV(this, pSender, pReceiver, ::sPunchHorizonPower, ::sPunchVerticalPower);
         setNerve(&NrvTakoHei::TakoHeiNrvPunchDown::sInstance);
         _E0 = 2;
         return true;
@@ -327,9 +327,9 @@ bool TakoHei::requestPunch(HitSensor* pSensor1, HitSensor* pSensor2) {
     return false;
 }
 
-bool TakoHei::requestAttackSuccess(HitSensor* pSensor1, HitSensor* pSensor2) {
+bool TakoHei::requestAttackSuccess(HitSensor* pSender, HitSensor* pReceiver) {
     if (canAttack()) {
-        MR::addVelocityMoveToDirection(this, pSensor1->mPosition - pSensor2->mPosition, ::sAttackSuccessHitPower);
+        MR::addVelocityMoveToDirection(this, pSender->mPosition - pReceiver->mPosition, ::sAttackSuccessHitPower);
         setNerve(&NrvTakoHei::TakoHeiNrvAttackSuccess::sInstance);
         return true;
     }

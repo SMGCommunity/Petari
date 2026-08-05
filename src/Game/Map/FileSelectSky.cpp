@@ -41,7 +41,7 @@ void FileSelectSky::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, mBaseMtx);
 }
 
-bool FileSelectSky::receiveOtherMsg(u32, HitSensor* pSender, HitSensor* pReceiver) {
+bool FileSelectSky::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 

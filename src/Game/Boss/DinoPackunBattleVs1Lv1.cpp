@@ -43,9 +43,9 @@ void DinoPackunBattleVs1Lv1::appear() {
     setNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvStart::sInstance);
 }
 
-void DinoPackunBattleVs1Lv1::attackSensor(HitSensor* a1, HitSensor* a2) {
-    if (MR::isSensorPlayer(a2)) {
-        if (isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvChase::sInstance) && sendBlowAttackMessage(a1, a2, false)) {
+void DinoPackunBattleVs1Lv1::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        if (isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvChase::sInstance) && sendBlowAttackMessage(pSender, pReceiver, false)) {
             setNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvAttackHit::sInstance);
             return;
         }
@@ -55,23 +55,23 @@ void DinoPackunBattleVs1Lv1::attackSensor(HitSensor* a1, HitSensor* a2) {
                   isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvFind::sInstance) ||
                   isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvCoolDown::sInstance);
 
-        if (v6 && sendHitAttackMessage(a1, a2, false)) {
+        if (v6 && sendHitAttackMessage(pSender, pReceiver, false)) {
             setNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvAttackHit::sInstance);
             return;
         } else {
-            MR::sendMsgPush(a2, a1);
+            MR::sendMsgPush(pReceiver, pSender);
         }
     } else {
         bool v7 = isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvWalk::sInstance) ||
                   isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvChase::sInstance);
 
         if (v7) {
-            MR::sendMsgEnemyAttack(a2, a1);
+            MR::sendMsgEnemyAttack(pReceiver, pSender);
         }
     }
 }
 
-bool DinoPackunBattleVs1Lv1::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
+bool DinoPackunBattleVs1Lv1::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return true;
     }
@@ -79,17 +79,17 @@ bool DinoPackunBattleVs1Lv1::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitS
     if (MR::isMsgStarPieceAttack(msg)) {
         getHost()->startHitReaction();
         return true;
-    } else if (MR::isMsgPlayerSpinAttack(msg) && MR::sendMsgEnemyAttackFlipWeakJump(a2, a3)) {
-        MR::emitEffectHitBetweenSensors(getHost(), a2, a3, 0.0f, "InvalidHitMark");
+    } else if (MR::isMsgPlayerSpinAttack(msg) && MR::sendMsgEnemyAttackFlipWeakJump(pSender, pReceiver)) {
+        MR::emitEffectHitBetweenSensors(getHost(), pSender, pReceiver, 0.0f, "InvalidHitMark");
         return false;
     }
 
     return false;
 }
 
-bool DinoPackunBattleVs1Lv1::receiveOtherMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
+bool DinoPackunBattleVs1Lv1::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvDinoPackunBattleVs1Lv1::DinoPackunBattleVs1Lv1NrvDamage::sInstance)) {
-        return mStateDamage->receiveOtherMsg(msg, a2, a3);
+        return mStateDamage->receiveOtherMsg(msg, pSender, pReceiver);
     }
 
     if (mStateDamage->isDamageMessage(msg)) {

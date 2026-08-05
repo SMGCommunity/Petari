@@ -324,7 +324,7 @@ bool Kanina::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return true;
 }
 
-bool Kanina::receiveTrample(HitSensor*, HitSensor*) {
+bool Kanina::receiveTrample(HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvKanina::HostTypeAttack::sInstance)) {
         setNerve(&NrvKanina::HostTypeGuard::sInstance);
         return true;
