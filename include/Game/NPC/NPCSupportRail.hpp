@@ -4,8 +4,9 @@
 
 class NPCSupportRail : public LiveActor {
 public:
-    NPCSupportRail(const char*);
+    /// @brief Creates a new `NPCSupportRail`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    NPCSupportRail(const char* pName);
 
-    virtual ~NPCSupportRail();
     virtual void init(const JMapInfoIter&);
 };
