@@ -57,7 +57,9 @@ public:
     virtual void copy(const CameraParamChunk*);
     virtual void load(DotCamReader*, CameraHolder*);
     virtual void initiate();
-    virtual const char* getClassName() const;
+    virtual const char* getClassName() const {
+        return "Base";
+    }
 
     s32 getZoneID() const;
     bool isOnNoReset() const;
@@ -77,7 +79,6 @@ public:
 
     CameraParamChunkID* mParamChunkID;  // 0x4
     u8 mCameraTypeIndex;                // 0x8
-    u8 _9[3];
     ExParam mExParam;                   // 0xC
     CameraGeneralParam* mGeneralParam;  // 0x60
     bool _64;

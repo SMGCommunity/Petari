@@ -1961,13 +1961,13 @@ Game/Camera/CameraMan.cpp:
 
 Game/Camera/CameraManEvent.cpp:
 	.text       start:0x800A3DB8 end:0x800A4F84
-	.data       start:0x805757C0 end:0x80575918
+	.data       start:0x805757C0 end:0x80575828
 	.sdata2     start:0x806B95F8 end:0x806B9608
 
 Game/Camera/CameraManGame.cpp:
 	.text       start:0x800A4F84 end:0x800A6BB8
-	.data       start:0x80575918 end:0x80575978
-	.sdata      start:0x806B1818 end:0x806B1840
+	.data       start:0x80575828 end:0x80575978
+	.sdata      start:0x806B1818 end:0x806B1830
 	.sdata2     start:0x806B9608 end:0x806B9660
 
 Game/Camera/CameraManPause.cpp:
@@ -2009,11 +2009,13 @@ Game/Camera/CameraParamChunk.cpp:
 	.ctors      start:0x8052E9F4 end:0x8052E9F8
 	.data       start:0x80575C50 end:0x80575EE8
 	.bss        start:0x8060A6F8 end:0x8060A788
+	.sdata      start:0x806B1830 end:0x806B1838
 	.sdata2     start:0x806B9770 end:0x806B97A0
 
 Game/Camera/CameraParamChunkHolder.cpp:
 	.text       start:0x800AA55C end:0x800AAFBC
 	.data       start:0x80575EE8 end:0x80575FE0
+	.sdata      start:0x806B1838 end:0x806B1840
 	.sdata2     start:0x806B97A0 end:0x806B97D0
 
 Game/Camera/CameraParamChunkID.cpp:

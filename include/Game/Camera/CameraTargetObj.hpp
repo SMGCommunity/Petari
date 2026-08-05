@@ -42,20 +42,30 @@ public:
     virtual bool isFastRise() const {
         return false;
     }
-    virtual bool isWaterMode() const;
-    virtual bool isOnWaterSurface() const;
+    virtual bool isWaterMode() const {
+        return false;
+    }
+    virtual bool isOnWaterSurface() const {
+        return false;
+    }
     virtual bool isBeeMode() const {
         return false;
     }
-    virtual bool isFooFighterMode() const;
+    virtual bool isFooFighterMode() const {
+        return false;
+    }
     virtual u32 getSpecialMode() const {
         return 0;
     }
     virtual bool isCameraStateOn(u32) const {
         return false;
     };
-    virtual CubeCameraArea* getCubeCameraArea() const;
-    virtual Triangle* getGroundTriangle() const;
+    virtual CubeCameraArea* getCubeCameraArea() const {
+        return nullptr;
+    }
+    virtual Triangle* getGroundTriangle() const {
+        return nullptr;
+    }
     virtual GravityInfo* getGravityInfo() const {
         return nullptr;
     }

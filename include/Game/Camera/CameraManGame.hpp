@@ -47,7 +47,7 @@ public:
     void checkReset();
     void setSafePose();
     void keepAwayWatchPos(TVec3f*, const TVec3f&);
-    void calcSafeUpVec(TVec3f*, const TVec3f&, const TVec3f&);  // TODO
+    void calcSafeUpVec(TVec3f*, const TVec3f&, const TVec3f&);
     void createDefaultCamera();
     void createDefaultWaterCamera();
     void createDefaultWaterSurfaceCamera();
@@ -58,7 +58,7 @@ public:
     bool tryShiftToGCapture();
     bool tryShiftToSwimOrWaterSurface();
     bool tryShiftToFooFighter();
-    void updateNormal();  // TODO
+    void updateNormal();
     void updateSwim();
     void updateWaterSurface();
     void updateGCapture();
