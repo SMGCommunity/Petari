@@ -254,7 +254,7 @@ bool Teresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-bool Teresa::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
+bool Teresa::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgSearchlightAttack(msg) || MR::isMsgFireBallAttack(msg) || MR::isMsgInvincibleAttack(msg)) {
         return requestSearchLightDead();
     }

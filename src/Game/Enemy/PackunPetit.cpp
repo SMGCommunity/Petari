@@ -328,7 +328,7 @@ void PackunPetit::control() {
 }
 
 /*
-void PackunPetit::attackSensor(HitSensor *pSender, HitSensor *pReceiver) {
+void PackunPetit::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         bool isTrampleOrPunch = isNerve(&NrvPackunPetit::PackunPetitNrvTrampleDown::sInstance)
             || isNerve(&NrvPackunPetit::PackunPetitNrvPunchDown::sInstance);

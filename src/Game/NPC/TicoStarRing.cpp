@@ -11,10 +11,7 @@ namespace NrvTicoStarRing {
     NEW_NERVE(TicoStarRingNrvWait, TicoStarRing, Wait);
 };  // namespace NrvTicoStarRing
 
-TicoStarRing::TicoStarRing(const char* pName) : Tico(pName) {
-    mGalaxy = nullptr;
-    _194 = nullptr;
-    mTicoGalaxy = nullptr;
+TicoStarRing::TicoStarRing(const char* pName) : Tico(pName), mGalaxyName(), _194(), mTicoGalaxy() {
 }
 
 void TicoStarRing::init(const JMapInfoIter& rIter) {
@@ -27,29 +24,31 @@ void TicoStarRing::init(const JMapInfoIter& rIter) {
     initMessage("AstroGalaxy_TicoCommon000");
 
     if (MR::isValidInfo(rIter)) {
-        s32 galaxy = 0;
-        MR::getJMapInfoArg0NoInit(rIter, &galaxy);
-        switch (galaxy) {
+        s32 challengeGalaxy = 0;
+        MR::getJMapInfoArg0NoInit(rIter, &challengeGalaxy);
+
+        switch (challengeGalaxy) {
         case 0:
-            mGalaxy = "TamakoroExLv2Galaxy";
+            mGalaxyName = "TamakoroExLv2Galaxy";
             break;
         case 1:
-            mGalaxy = "SurfingLv2Galaxy";
+            mGalaxyName = "SurfingLv2Galaxy";
             break;
         case 2:
-            mGalaxy = "CubeBubbleExLv2Galaxy";
+            mGalaxyName = "CubeBubbleExLv2Galaxy";
             break;
         case 3:
-            mGalaxy = "PeachCastleFinalGalaxy";
+            mGalaxyName = "PeachCastleFinalGalaxy";
             break;
         }
 
-        MR::setMessageArgToCurrentGalaxyName(mMsgCtrl, mGalaxy);
-        if (!MR::isAppearGalaxy(mGalaxy)) {
+        MR::setMessageArgToCurrentGalaxyName(mMsgCtrl, mGalaxyName);
+
+        if (!MR::isAppearGalaxy(mGalaxyName)) {
             makeActorDead();
         }
     } else {
-        mGalaxy = "unknown";
+        mGalaxyName = "unknown";
     }
 
     setNerve(&NrvTicoStarRing::TicoStarRingNrvWait::sInstance);
@@ -57,6 +56,7 @@ void TicoStarRing::init(const JMapInfoIter& rIter) {
 
 void TicoStarRing::kill() {
     NPCActor::kill();
+
     if (_194 != nullptr) {
         _194->appear();
     }
@@ -68,11 +68,11 @@ void TicoStarRing::kill() {
     }
 }
 
-void TicoStarRing::initialize(LiveActor* pGalaxy, LiveActor* a2, const char* pGalaxyName) {
-    mTicoGalaxy = pGalaxy;
+void TicoStarRing::initialize(LiveActor* pTicoGalaxy, LiveActor* a2, const char* pGalaxyName) {
+    mTicoGalaxy = pTicoGalaxy;
     _194 = a2;
-    mGalaxy = pGalaxyName;
-    setBaseMtx(pGalaxy->getBaseMtx());
+    mGalaxyName = pGalaxyName;
+    setBaseMtx(pTicoGalaxy->getBaseMtx());
     mPosition.set(a2->mPosition);
     makeActorDead();
     MR::setMessageArgToCurrentGalaxyName(mMsgCtrl, pGalaxyName);
@@ -84,7 +84,4 @@ void TicoStarRing::exeWait() {
             setNerveMeta();
         }
     }
-}
-
-TicoStarRing::~TicoStarRing() {
 }

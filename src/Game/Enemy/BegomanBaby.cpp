@@ -411,7 +411,7 @@ void BegomanBaby::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-bool BegomanBaby::receiveMsgPush(HitSensor*, HitSensor*) {
+bool BegomanBaby::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
@@ -533,7 +533,7 @@ bool BegomanBaby::receiveMsgTrample(HitSensor* pSender, HitSensor* pReceiver) {
     return true;
 }
 
-bool BegomanBaby::receiveOtherMsg(u32 msg, HitSensor*, HitSensor*) {
+bool BegomanBaby::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return MR::isMsgHitmarkEmit(msg);
 }
 

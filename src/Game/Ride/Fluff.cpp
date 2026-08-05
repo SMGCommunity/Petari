@@ -272,7 +272,7 @@ void Fluff::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-bool Fluff::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
+bool Fluff::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
         if (isNerve(&NrvFluff::FluffNrvFreeBloom::sInstance) && MR::isGreaterStep(this, 15) ||
             isNerve(&NrvFluff::FluffNrvFreeWaitOnGround::sInstance)) {
@@ -295,7 +295,7 @@ bool Fluff::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
     return false;
 }
 
-bool Fluff::receiveMsgEnemyAttack(u32, HitSensor*, HitSensor* pReceiver) {
+bool Fluff::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mRider != nullptr &&
         (MR::isSensor(pReceiver, "DamageMario") || MR::isSensor(pReceiver, "DamageMiddle") || MR::isSensor(pReceiver, "DamageHead"))) {
         endBind(0.0f);

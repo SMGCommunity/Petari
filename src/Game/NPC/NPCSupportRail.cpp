@@ -1,13 +1,7 @@
 #include "Game/NPC/NPCSupportRail.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "revolution/types.h"
-#include <cstddef>
 
 NPCSupportRail::NPCSupportRail(const char* pName) : LiveActor(pName) {
-}
-
-NPCSupportRail::~NPCSupportRail() {
 }
 
 void NPCSupportRail::init(const JMapInfoIter& rIter) {

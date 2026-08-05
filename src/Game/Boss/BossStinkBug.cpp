@@ -353,9 +353,9 @@ void BossStinkBug::appearStarPiece(s32 num) {
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
-void BossStinkBug::attackSensor(HitSensor* pSender, HitSensor* pReciever) {
+void BossStinkBug::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (mActionSequencer != nullptr) {
-        mActionSequencer->attackSensor(pSender, pReciever);
+        mActionSequencer->attackSensor(pSender, pReceiver);
     }
 }
 

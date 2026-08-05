@@ -45,7 +45,7 @@ void SubmarineSteam::initAfterPlacement() {
 }
 
 // todo -- what
-void SubmarineSteam::attackSensor(HitSensor* pSensor, HitSensor* pReceiver) {
+void SubmarineSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(GET_NERVE(SubmarineSteam, HostTypeWaitForSwitchOn))) {
         if (MR::isSensorPlayer(pReceiver)) {
             TVec3f vec = _8C * 600.0f;

@@ -20,6 +20,15 @@
 #include "Game/Util/StringUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+namespace {
+    static const s32 sLiftUpSeTiming = 87;
+    static const f32 sAfraidSeRange = 600.0f;
+    static const f32 sTreeDist = 16.0f;
+    static const f32 sShadowOffset = -25.0f;
+    static const f32 sHitJump = 20.0f;
+    static const f32 sHitMove = 4.0f;
+};  // namespace
+
 namespace NrvLuigiNPC {
     NEW_NERVE(LuigiNPCNrvWait, LuigiNPC, Wait);
     NEW_NERVE(LuigiNPCNrvReaction, LuigiNPC, Reaction);
@@ -35,12 +44,7 @@ namespace NrvLuigiNPC {
     NEW_NERVE(LuigiNPCNrvOnTreeLand, LuigiNPC, OnTreeLand);
 };  // namespace NrvLuigiNPC
 
-LuigiNPC::LuigiNPC(const char* pName) : NPCActor(pName) {
-    mTakeOutStar = nullptr;
-    _160 = -1;
-}
-
-LuigiNPC::~LuigiNPC() {
+LuigiNPC::LuigiNPC(const char* pName) : NPCActor(pName), mTakeOutStar(), mType(Type_Invalid) {
 }
 
 void LuigiNPC::makeArchiveList(NameObjArchiveListCollector* pArchive, const JMapInfoIter& rIter) {
@@ -76,6 +80,7 @@ void LuigiNPC::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 bool LuigiNPC::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStartPowerStarGet(msg)) {
         makeActorDead();
+
         return true;
     }
 
@@ -83,7 +88,7 @@ bool LuigiNPC::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver
 }
 
 bool LuigiNPC::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (_160 == 3) {
+    if (mType == Type_OnTree) {
         if (MR::isMsgPlayerTrample(msg) || MR::isMsgPlayerHipDrop(msg)) {
             MR::startSound(this, "SE_SM_NPC_TRAMPLED");
         }
@@ -102,15 +107,18 @@ bool LuigiNPC::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pR
 }
 
 void LuigiNPC::init(const JMapInfoIter& rIter) {
-    const char* objectName;
-    MR::getObjectName(&objectName, rIter);
-    NPCActorCaps caps(objectName);
+    const char* objName;
+    MR::getObjectName(&objName, rIter);
+
+    NPCActorCaps caps(objName);
     caps.setDefault();
     caps.mObjectName = "LuigiNPC";
     caps.mWaitNerve = &NrvLuigiNPC::LuigiNPCNrvWait::sInstance;
-    MR::getJMapInfoArg0NoInit(rIter, &_160);
-    if (MR::isEqualString(objectName, "LuigiEvent")) {
-        _160 += 2;
+
+    MR::getJMapInfoArg0NoInit(rIter, &mType);
+
+    if (MR::isEqualString(objName, "LuigiEvent")) {
+        mType += Type_Event;
     }
 
     NPCActor::initialize(rIter, caps);
@@ -118,37 +126,32 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
     MR::registerEventFunc(mMsgCtrl, TalkMessageFunc(this, &LuigiNPC::eventFunc));
     setWaitAction();
     setNerve(&NrvLuigiNPC::LuigiNPCNrvWait::sInstance);
-    switch (_160) {
-    case 0:
+
+    switch (mType) {
+    case Type_Afraid:
         setNerve(&NrvLuigiNPC::LuigiNPCNrvAfraidWait::sInstance);
         setAfraidAction();
         break;
-
-    case 1:
+    case Type_Normal:
         if (!MR::isOnGameEventFlagLuigiRescued() || MR::isLuigiDisappearFromAstroGalaxyOrHiding()) {
             makeActorDead();
         }
+
         AstroDemoFunction::tryRegisterDemoForLuigiAndKinopio(this, rIter);
         break;
-
-    case 2:
+    case Type_Event:
         break;
-
-    case 4:
+    case Type_Arrested:
         MR::useStageSwitchReadA(this, rIter);
         MR::useStageSwitchWriteB(this, rIter);
         setNerve(&NrvLuigiNPC::LuigiNPCNrvArrestedWait::sInstance);
         break;
-
-    case 3:
+    case Type_OnTree:
         MR::onCalcShadowDropPrivateGravity(this, nullptr);
-        {
-            TVec3f v3(0.0f, 0.0f, -25.0f);
-            MR::setShadowDropPositionAtJoint(this, nullptr, "Center", &v3);
-        }
+        TVec3f offset(0.0f, 0.0f, ::sShadowOffset);
+        MR::setShadowDropPositionAtJoint(this, nullptr, "Center", offset);
         setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance);
         break;
-
     default:
         break;
     }
@@ -158,31 +161,40 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
         mTakeOutStar = new TakeOutStar(this, "TakeOutStar", "TakeOutStar", &NrvLuigiNPC::LuigiNPCNrvTakeOutStar::sInstance);
     }
 
-    bool stat = (_160 > 1) && (_160 < 5);
-    if (stat) {
-        if (MR::isOnLuigiHidingCurrentStage()) {
-            makeActorAppeared();
-            if (MR::isValidSwitchB(this)) {
-                MR::onSwitchB(this);
-            }
-        } else {
-            makeActorDead();
+    bool stat = mType > Type_Afraid && mType < Type_Count;
+
+    if (!stat) {
+        return;
+    }
+
+    if (MR::isOnLuigiHidingCurrentStage()) {
+        makeActorAppeared();
+
+        if (MR::isValidSwitchB(this)) {
+            MR::onSwitchB(this);
         }
+    } else {
+        makeActorDead();
     }
 }
 
 void LuigiNPC::initAfterPlacement() {
     NPCActor::initAfterPlacement();
-    if (_160 == 3) {
-        Triangle tri;
-        TVec3f v1, v3;
-        MR::calcFrontVec(&v1, this);
-        TVec3f vec(v1 * 500.0f);
-        if (MR::getFirstPolyOnLineToMap(&v3, &tri, mPosition, vec)) {
-            mPosition.set(v3 - (v1 * 16.0f));
-            MR::onCalcShadow(this, nullptr);
-            MR::offBind(this);
-        }
+
+    if (mType != Type_OnTree) {
+        return;
+    }
+
+    TVec3f front;
+    TVec3f result;
+    Triangle poly;
+
+    MR::calcFrontVec(&front, this);
+
+    if (MR::getFirstPolyOnLineToMap(&result, &poly, mPosition, front * 500.0f)) {
+        mPosition.set(result - (front * ::sTreeDist));
+        MR::onCalcShadow(this, nullptr);
+        MR::offBind(this);
     }
 }
 
@@ -197,9 +209,9 @@ bool LuigiNPC::trySetNerveAfraid() {
 
     if (MR::isNearPlayer(mMsgCtrl, -1.0f) && MR::isPlayerElementModeTeresa()) {
         return MR::trySetNerve(this, &NrvLuigiNPC::LuigiNPCNrvAfraidSquat::sInstance);
-    } else {
-        return MR::trySetNerve(this, &NrvLuigiNPC::LuigiNPCNrvAfraidWait::sInstance);
     }
+
+    return MR::trySetNerve(this, &NrvLuigiNPC::LuigiNPCNrvAfraidWait::sInstance);
 }
 
 void LuigiNPC::setWaitAction() {
@@ -232,11 +244,12 @@ bool LuigiNPC::trySetNerveArrested() {
     if (isNerve(&NrvLuigiNPC::LuigiNPCNrvArrestedJump::sInstance) && MR::isBckOneTimeAndStopped(this)) {
         return MR::trySetNerve(this, &NrvLuigiNPC::LuigiNPCNrvWait::sInstance);
     }
+
     return false;
 }
 
 bool LuigiNPC::isDeclarePowerStarType() {
-    return (_160 == 0) || (_160 >= 2) && (_160 < 5);
+    return mType == Type_Afraid || mType >= Type_Event && mType < Type_Count;
 }
 
 void LuigiNPC::exeWait() {
@@ -245,6 +258,7 @@ void LuigiNPC::exeWait() {
     }
 
     MR::tryTalkNearPlayerAndStartTalkAction(this);
+
     if (MR::tryStartReactionAndPushNerve(this, &NrvLuigiNPC::LuigiNPCNrvReaction::sInstance)) {
         return;
     }
@@ -278,13 +292,12 @@ void LuigiNPC::exeTakeOutStar() {
     if (MR::isFirstStep(this)) {
     }
 
-    if (MR::isStep(this, 87)) {
+    if (MR::isStep(this, ::sLiftUpSeTiming)) {
         MR::startSound(this, "SE_SV_LUIGI_LIFT_UP");
     }
 
-    if (MR::isGreaterStep(this, 87)) {
-        ModelObj* starModel = mTakeOutStar->mStarModel;
-        MR::startLevelSound(starModel, "SE_OJ_LV_POW_STAR_EXIST");
+    if (MR::isGreaterStep(this, ::sLiftUpSeTiming)) {
+        MR::startLevelSound(mTakeOutStar->mStarModel, "SE_OJ_LV_POW_STAR_EXIST");
     }
 }
 
@@ -350,7 +363,7 @@ void LuigiNPC::exeOnTreeWait() {
         MR::startAction(this, "TreeWait");
     }
 
-    if (MR::calcDistanceToPlayer(mPosition) <= 600.0f) {
+    if (MR::calcDistanceToPlayer(mPosition) <= ::sAfraidSeRange) {
         MR::startLevelSound(this, "SE_SV_LV_LUIGI_AFRAID");
     }
 }
@@ -368,23 +381,23 @@ void LuigiNPC::exeOnTreeTouch() {
 
 void LuigiNPC::exeOnTreeFall() {
     if (MR::isFirstStep(this)) {
-        TVec3f v1;
+        TVec3f front;
+
         MR::onBind(this);
         MR::startAction(this, "TreeHit");
         MR::onCalcGravity(this);
-        MR::calcFrontVec(&v1, this);
-        MR::addVelocityMoveToDirection(this, v1, -4.0f);
-        MR::addVelocityJump(this, 20.0f);
-        TVec3f v2(0.0f, 0.0f, 0.0f);
-        MR::setShadowDropPositionAtJoint(this, nullptr, "Center", &v2);
+        MR::calcFrontVec(&front, this);
+        MR::addVelocityMoveToDirection(this, front, -::sHitMove);
+        MR::addVelocityJump(this, ::sHitJump);
+        TVec3f offset(0.0f, 0.0f, 0.0f);
+        MR::setShadowDropPositionAtJoint(this, nullptr, "Center", offset);
         MR::startSound(this, "SE_SV_LUIGI_FALL");
     }
 
     MR::addVelocityToGravity(this, 1.0f);
+
     if (MR::isOnGround(this)) {
-        mVelocity.z = 0.0f;
-        mVelocity.y = 0.0f;
-        mVelocity.x = 0.0f;
+        mVelocity.zeroInline();
         setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeLand::sInstance);
     }
 }

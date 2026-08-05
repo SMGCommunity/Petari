@@ -1001,6 +1001,7 @@ Game/Boss/KoopaFireShort.cpp:
 	.text       start:0x8005DE18 end:0x8005E874
 	.ctors      start:0x8052E908 end:0x8052E90C
 	.data       start:0x8056CCD8 end:0x8056CE28
+	.sdata      start:0x806B1740 end:0x806B1748
 	.sbss       start:0x806B3458 end:0x806B3468
 	.sdata2     start:0x806B8860 end:0x806B8898
 
@@ -1008,6 +1009,7 @@ Game/Boss/KoopaFireStairs.cpp:
 	.text       start:0x8005E874 end:0x8005F0F8
 	.ctors      start:0x8052E90C end:0x8052E910
 	.data       start:0x8056CE28 end:0x8056CF70
+	.sdata      start:0x806B1748 end:0x806B1750
 	.sbss       start:0x806B3468 end:0x806B3470
 	.sdata2     start:0x806B8898 end:0x806B88D0
 
@@ -1096,6 +1098,7 @@ Game/Boss/KoopaStateAttackHipDrop.cpp:
 	.text       start:0x80064AC8 end:0x800655E8
 	.ctors      start:0x8052E92C end:0x8052E930
 	.data       start:0x8056DF38 end:0x8056E118
+	.sdata      start:0x806B1750 end:0x806B1758
 	.sbss       start:0x806B3520 end:0x806B3540
 	.sdata2     start:0x806B8978 end:0x806B89A8
 
@@ -1117,6 +1120,7 @@ Game/Boss/KoopaStateAttackSpin.cpp:
 	.text       start:0x80066840 end:0x800670D8
 	.ctors      start:0x8052E938 end:0x8052E93C
 	.data       start:0x8056E408 end:0x8056E578
+	.sdata      start:0x806B1758 end:0x806B1760
 	.sbss       start:0x806B3568 end:0x806B3580
 	.sdata2     start:0x806B89E0 end:0x806B8A00
 
@@ -1160,6 +1164,7 @@ Game/Boss/OtaKing.cpp:
 	.ctors      start:0x8052E94C end:0x8052E950
 	.rodata     start:0x80530FC8 end:0x80531030
 	.data       start:0x8056EEB0 end:0x8056F3B8
+	.sdata      start:0x806B1760 end:0x806B1770
 	.sbss       start:0x806B35F8 end:0x806B3640
 	.sdata2     start:0x806B8A70 end:0x806B8B28
 
@@ -1299,6 +1304,7 @@ Game/Boss/SkeletalFishBaby.cpp:
 	.ctors      start:0x8052E988 end:0x8052E98C
 	.rodata     start:0x80531430 end:0x80531470
 	.data       start:0x805709D0 end:0x80570BC8
+	.sdata      start:0x806B1770 end:0x806B1778
 	.sbss       start:0x806B3768 end:0x806B3778
 	.sdata2     start:0x806B8C90 end:0x806B8CC0
 
@@ -1315,21 +1321,23 @@ Game/Boss/SkeletalFishBoss.cpp:
 	.ctors      start:0x8052E98C end:0x8052E990
 	.rodata     start:0x80531470 end:0x805314F8
 	.data       start:0x80570C68 end:0x805717C8
+	.sdata      start:0x806B1778 end:0x806B1780
 	.sbss       start:0x806B3778 end:0x806B37B8
 	.sdata2     start:0x806B8CC0 end:0x806B8D18
 
 Game/Boss/SkeletalFishBossBattleDirector.cpp:
 	.text       start:0x8007AE78 end:0x8007B4A8
-	.data       start:0x805717C8 end:0x80571880
+	.data       start:0x805717C8 end:0x805717F0
 
 Game/Boss/SkeletalFishBossFunc.cpp:
 	.text       start:0x8007B4A8 end:0x8007B5B0
-	.sdata      start:0x806B1740 end:0x806B1788
+	.data       start:0x805717F0 end:0x80571808
+	.sdata      start:0x806B1780 end:0x806B1788
 	.sdata2     start:0x806B8D18 end:0x806B8D20
 
 Game/Boss/SkeletalFishBossInfo.cpp:
 	.text       start:0x8007B5B0 end:0x8007BACC
-	.data       start:0x80571880 end:0x805718A8
+	.data       start:0x80571808 end:0x805718A8
 	.sdata      start:0x806B1788 end:0x806B17B8
 	.sdata2     start:0x806B8D20 end:0x806B8D30
 
@@ -6560,14 +6568,14 @@ Game/NPC/RunawayRabbitCollect.cpp:
 Game/NPC/RunawayTico.cpp:
 	.text       start:0x80286FD8 end:0x80287EA0
 	.ctors      start:0x8052EFF4 end:0x8052EFF8
-	.data       start:0x805B3498 end:0x805B37A8
+	.data       start:0x805B3498 end:0x805B3798
 	.sbss       start:0x806B5F70 end:0x806B5F90
 	.sdata2     start:0x806BEEE8 end:0x806BEEF8
 
 Game/NPC/SignBoard.cpp:
 	.text       start:0x80287EA0 end:0x80288130
 	.ctors      start:0x8052EFF8 end:0x8052EFFC
-	.data       start:0x805B37A8 end:0x805B3830
+	.data       start:0x805B3798 end:0x805B3830
 	.sbss       start:0x806B5F90 end:0x806B5F98
 	.sdata2     start:0x806BEEF8 end:0x806BEF20
 

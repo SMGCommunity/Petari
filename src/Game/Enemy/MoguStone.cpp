@@ -148,8 +148,8 @@ bool MoguStone::isTaken() {
     return isNerve(&NrvMoguStone::MoguStoneNrvTaken::sInstance);
 }
 
-void MoguStone::attackSensor(HitSensor* pSensor1, HitSensor* pSensor2) {
-    if (pSensor1 == getSensor("body") && MR::isSensorPlayer(pSensor2) && MR::sendMsgEnemyAttack(pSensor2, pSensor1) == true) {
+void MoguStone::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (pSender == getSensor("body") && MR::isSensorPlayer(pReceiver) && MR::sendMsgEnemyAttack(pReceiver, pSender) == true) {
         MR::emitEffect(this, "Break");
         MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK");
         kill();
@@ -159,7 +159,7 @@ void MoguStone::attackSensor(HitSensor* pSensor1, HitSensor* pSensor2) {
 void MoguStone::exeTaken() {
 }
 
-bool MoguStone::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor* pSensor2) {
+bool MoguStone::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance)) {
         return false;
     }
@@ -234,9 +234,9 @@ void ThrowingIce::doBehavior() {
     mVelocity.set(v3);
 }
 
-void ThrowingIce::attackSensor(HitSensor* pSensor1, HitSensor* pSensor2) {
-    if (pSensor1 == getSensor("body") && MR::isSensorPlayer(pSensor2) &&
-        (MR::isPlayerElementModeIce() ? MR::sendMsgEnemyAttackStrong(pSensor2, pSensor1) : MR::sendMsgEnemyAttackFreeze(pSensor2, pSensor1))) {
+void ThrowingIce::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (pSender == getSensor("body") && MR::isSensorPlayer(pReceiver) &&
+        (MR::isPlayerElementModeIce() ? MR::sendMsgEnemyAttackStrong(pReceiver, pSender) : MR::sendMsgEnemyAttackFreeze(pReceiver, pSender))) {
         MR::emitEffect(this, "Break");
         MR::startSound(this, "SE_BM_ICEMERAKING_STONE_BREAK");
         MR::deleteEffect(this, "Smoke");
@@ -244,7 +244,7 @@ void ThrowingIce::attackSensor(HitSensor* pSensor1, HitSensor* pSensor2) {
     }
 }
 
-bool ThrowingIce::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor* pSensor2) {
+bool ThrowingIce::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (!isNerve(&NrvMoguStone::MoguStoneNrvThrow::sInstance)) {
         return false;
     }
@@ -253,7 +253,7 @@ bool ThrowingIce::receiveMsgPlayerAttack(u32 msg, HitSensor* pSensor1, HitSensor
         return false;
     }
 
-    MoguStone::receiveMsgPlayerAttack(msg, pSensor1, pSensor2);
+    MoguStone::receiveMsgPlayerAttack(msg, pSender, pReceiver);
     return false;
 }
 

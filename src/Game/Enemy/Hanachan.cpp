@@ -118,7 +118,7 @@ void HanachanParts::kill() {
 // HanachanParts::attackSensor
 // HanachanParts::receiveMsgPlayerAttack
 
-bool HanachanParts::receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*) {
+bool HanachanParts::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return true;
 }
 

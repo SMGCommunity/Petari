@@ -166,34 +166,32 @@ bool DinoPackunAction::updateAttackHit() {
     return false;
 }
 
-bool DinoPackunAction::receiveOtherMsgTail(u32, HitSensor*, HitSensor*) {
+bool DinoPackunAction::receiveOtherMsgTail(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-bool DinoPackunAction::receiveMsgPlayerAttackTail(u32, HitSensor*, HitSensor*) {
+bool DinoPackunAction::receiveMsgPlayerAttackTail(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-void DinoPackunAction::attackSensorTail(HitSensor*, HitSensor*) {
-    return;
+void DinoPackunAction::attackSensorTail(HitSensor* pSender, HitSensor* pReceiver) {
 }
 
-bool DinoPackunAction::receiveOtherMsg(u32, HitSensor*, HitSensor*) {
+bool DinoPackunAction::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-bool DinoPackunAction::receiveMsgPush(HitSensor*, HitSensor*) {
+bool DinoPackunAction::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-bool DinoPackunAction::receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*) {
+bool DinoPackunAction::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-bool DinoPackunAction::receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*) {
+bool DinoPackunAction::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-void DinoPackunAction::attackSensor(HitSensor*, HitSensor*) {
-    return;
+void DinoPackunAction::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 }

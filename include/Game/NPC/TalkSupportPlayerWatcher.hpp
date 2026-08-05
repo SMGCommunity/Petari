@@ -1,9 +1,10 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 class TalkSupportPlayerWatcher {
 public:
+    /// @brief Creates a new `TalkSupportPlayerWatcher`.
     TalkSupportPlayerWatcher();
 
     void update();
@@ -11,6 +12,6 @@ public:
     bool isEnableTalkPlayerStateEvent() const;
     bool isEnableTalkPlayerSpeed() const NO_INLINE;
 
-    u32 _00;  // Counts consecutive frames where Mario has a velocity < 4.0f
-    u32 _04;  // Counts consecutive frames where Mario has a velocity >= 4.0f
+    /* 0x00 */ u32 mEnableTalkCounter;
+    /* 0x04 */ u32 mDisableTalkCounter;
 };

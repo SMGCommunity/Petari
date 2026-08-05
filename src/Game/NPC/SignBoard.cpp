@@ -2,8 +2,9 @@
 #include "Game/AreaObj/FollowCollisionArea.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
-#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/VectorUtil.hpp"
 
 namespace NrvSignBoard {
     NEW_NERVE(SignBoardNrvWait, SignBoard, Wait);
@@ -13,7 +14,7 @@ SignBoard::SignBoard(const char* pName) : NPCActor(pName) {
 }
 
 void SignBoard::init(const JMapInfoIter& rIter) {
-    NPCActorCaps caps("Signboard");
+    NPCActorCaps caps("SignBoard");
     caps.setDefault();
     caps.mWaitNerve = &NrvSignBoard::SignBoardNrvWait::sInstance;
     caps.mShadowSize = 30.0f;
@@ -24,11 +25,15 @@ void SignBoard::init(const JMapInfoIter& rIter) {
     caps.mLightCtrl = false;
     caps.mBinder = 0;
     initialize(rIter, caps);
+
     getSensor("Body")->setType(ATYPE_EYE);
+
     FollowCollisionArea* area = new FollowCollisionArea(TVec3f(130.0f, 160.0f, 20.0f), getBaseMtx(), 80.0f);
-    TVec3f v8;
-    MR::getUpVecFromQuat(&v8, _A0);
-    MR::setShadowProjection(this, nullptr, mPosition, v8, true);
+
+    TVec3f up;
+    MR::getUpVecFromQuat(&up, _A0);
+
+    MR::setShadowProjection(this, nullptr, mPosition, up, true);
     MR::offCalcShadow(this, nullptr);
 }
 
@@ -43,7 +48,4 @@ void SignBoard::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 
 void SignBoard::exeWait() {
     MR::tryTalkNearPlayer(mMsgCtrl);
-}
-
-SignBoard::~SignBoard() {
 }

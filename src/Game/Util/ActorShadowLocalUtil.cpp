@@ -17,17 +17,17 @@
 #include "Game/Util/StringUtil.hpp"
 
 namespace {
-    static const char* sShadowDefineFileName[10] = {"SurfaceCircle",  "SurfaceOval",    "SurfaceBox", "VolumeSphere",    "VolumeOval",
-                                                    "VolumeOvalPole", "VolumeCylinder", "VolumeBox",  "VolumeFlatModel", "VolumeLine"};
-};
+    static const char* sShadowDefineFileName[] = {"SurfaceCircle",  "SurfaceOval",    "SurfaceBox", "VolumeSphere",    "VolumeOval",
+                                                  "VolumeOvalPole", "VolumeCylinder", "VolumeBox",  "VolumeFlatModel", "VolumeLine"};
+};  // namespace
 
 namespace ActorShadow {
     u32 getShadowControllerCount(const LiveActor* pActor) {
         return pActor->mShadowControllerList->getControllerCount();
     }
 
-    ShadowController* getShadowController(const LiveActor* pActor, u32 a2) {
-        return pActor->mShadowControllerList->getController(a2);
+    ShadowController* getShadowController(const LiveActor* pActor, u32 index) {
+        return pActor->mShadowControllerList->getController(index);
     }
 
     ShadowController* getShadowController(const LiveActor* pActor, const char* pName) {
@@ -39,7 +39,7 @@ namespace ActorShadow {
             return false;
         }
 
-        return pActor->mShadowControllerList->getController(pName) != nullptr;
+        return getShadowController(pActor, pName) != nullptr;
     }
 
     ShadowController* createShadowControllerVolumeParam(LiveActor* pActor, const char* pName) {
@@ -49,6 +49,7 @@ namespace ActorShadow {
         pController->setDropLength(1000.0f);
         pController->setDropTypeNormal();
         pActor->mShadowControllerList->addController(pController);
+
         return pController;
     }
 
@@ -59,46 +60,49 @@ namespace ActorShadow {
         pController->setDropLength(1000.0f);
         pController->setDropTypeSurface();
         pActor->mShadowControllerList->addController(pController);
+
         return pController;
     }
 
-    ShadowDrawer* getShadowSurfaceOval(const LiveActor* pActor, const char* pName) {
-        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
+    ShadowSurfaceOval* getShadowSurfaceOval(const LiveActor* pActor, const char* pName) {
+        return static_cast< ShadowSurfaceOval* >(pActor->mShadowControllerList->getController(pName)->getShadowDrawer());
     }
 
-    ShadowDrawer* getShadowVolumeSphere(const LiveActor* pActor, const char* pName) {
-        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
+    ShadowVolumeSphere* getShadowVolumeSphere(const LiveActor* pActor, const char* pName) {
+        return static_cast< ShadowVolumeSphere* >(pActor->mShadowControllerList->getController(pName)->getShadowDrawer());
     }
 
-    ShadowDrawer* getShadowVolumeCylinder(const LiveActor* pActor, const char* pName) {
-        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
+    ShadowVolumeCylinder* getShadowVolumeCylinder(const LiveActor* pActor, const char* pName) {
+        return static_cast< ShadowVolumeCylinder* >(pActor->mShadowControllerList->getController(pName)->getShadowDrawer());
     }
 
-    ShadowDrawer* getShadowVolumeBox(const LiveActor* pActor, const char* pName) {
-        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
+    ShadowVolumeBox* getShadowVolumeBox(const LiveActor* pActor, const char* pName) {
+        return static_cast< ShadowVolumeBox* >(pActor->mShadowControllerList->getController(pName)->getShadowDrawer());
     }
 
-    ShadowDrawer* getShadowVolumeDrawer(const LiveActor* pActor, const char* pName) {
-        return pActor->mShadowControllerList->getController(pName)->getShadowDrawer();
+    ShadowVolumeDrawer* getShadowVolumeDrawer(const LiveActor* pActor, const char* pName) {
+        return static_cast< ShadowVolumeDrawer* >(pActor->mShadowControllerList->getController(pName)->getShadowDrawer());
     }
 
     bool getJointNameFromCSV(const char** pJointName, const JMapInfoIter& rIter) {
         *pJointName = "";
+
         if (rIter.getValue< const char* >("Joint", pJointName)) {
-            return *pJointName[0] != 0;
-        } else {
-            return false;
+            return *pJointName[0] != '\0';
         }
+
+        return false;
     }
 
     s32 getShadowTypeFromCSV(const JMapInfoIter& rIter) {
-        const char* type = 0;
+        const char* type = nullptr;
+
         if (!rIter.getValue< const char* >("Type", &type)) {
             return -1;
         }
 
-        for (s32 i = 0; i < ARRAY_SIZE(sShadowDefineFileName); i++) {
-            if (MR::isEqualString(type, sShadowDefineFileName[i])) {
+        for (s32 i = 0; i < ARRAY_SIZE(::sShadowDefineFileName); i++) {
+            if (MR::isEqualString(type, ::sShadowDefineFileName[i])) {
                 return i;
             }
         }
@@ -107,14 +111,14 @@ namespace ActorShadow {
     }
 
     void setUpShadowControlBaseMtxFromCSV(ShadowController* pCtrl, LiveActor* pActor, const JMapInfoIter& rIter) {
-        TVec3f dropOffs;
-        if (!MR::getJMapInfoV3f(rIter, "DropOffset", &dropOffs)) {
-            dropOffs.z = 0.0f;
-            dropOffs.y = 0.0f;
-            dropOffs.x = 0.0f;
+        TVec3f dropOffset;
+
+        if (!MR::getJMapInfoV3f(rIter, "DropOffset", &dropOffset)) {
+            dropOffset.zeroInline();
         }
 
         const char* jointName;
+
         if (getJointNameFromCSV(&jointName, rIter)) {
             if (MR::isEqualString(jointName, "::ACTOR_TRANS")) {
                 pCtrl->setDropPosPtr(&pActor->mPosition);
@@ -122,7 +126,7 @@ namespace ActorShadow {
             }
 
             if (MR::isEqualString(jointName, "::BASE_MATRIX")) {
-                pCtrl->setDropPosMtxPtr(pActor->getBaseMtx(), dropOffs);
+                pCtrl->setDropPosMtxPtr(pActor->getBaseMtx(), dropOffset);
                 return;
             }
 
@@ -130,26 +134,27 @@ namespace ActorShadow {
                 pCtrl->setDropPosFix(pActor->mPosition);
                 return;
             }
+
             if (MR::isEqualString(jointName, "::OTHER_TRANS")) {
                 pCtrl->setDropPosPtr(&pActor->mPosition);
                 return;
             }
 
             if (MR::isEqualString(jointName, "::OTHER_MATRIX")) {
-                pCtrl->setDropPosMtxPtr(pActor->getBaseMtx(), dropOffs);
+                pCtrl->setDropPosMtxPtr(pActor->getBaseMtx(), dropOffset);
             } else {
-                pCtrl->setDropPosMtxPtr(MR::getJointMtx(pActor, jointName), dropOffs);
+                pCtrl->setDropPosMtxPtr(MR::getJointMtx(pActor, jointName), dropOffset);
             }
         } else {
             pCtrl->setDropPosPtr(&pActor->mPosition);
-            return;
         }
     }
 
     void setUpShadowControlIsFollowScaleFromCSV(ShadowController* pController, const JMapInfoIter& rIter) {
-        bool stack_8(true);
-        rIter.getValue("FollowScale", &stack_8);
-        if (stack_8) {
+        bool followScale = true;
+        rIter.getValue("FollowScale", &followScale);
+
+        if (followScale) {
             pController->onFollowHostScale();
         } else {
             pController->offFollowHostScale();
@@ -157,9 +162,10 @@ namespace ActorShadow {
     }
 
     void setUpShadowControlIsSyncShowFromCSV(ShadowController* pController, const JMapInfoIter& rIter) {
-        bool stack_8(true);
-        rIter.getValue("SyncShow", &stack_8);
-        if (stack_8) {
+        bool syncShow = true;
+        rIter.getValue("SyncShow", &syncShow);
+
+        if (syncShow) {
             pController->onVisibleSyncHost();
         } else {
             pController->offVisibleSyncHost();
@@ -167,10 +173,10 @@ namespace ActorShadow {
     }
 
     void setUpShadowControlCalcCollisionFromCSV(ShadowController* pCtrl, const JMapInfoIter& rIter) {
-        s32 col = 0;
-        rIter.getValue< s32 >("Collision", &col);
+        s32 collision = 0;
+        rIter.getValue< s32 >("Collision", &collision);
 
-        switch (col) {
+        switch (collision) {
         case 0:
             pCtrl->offCalcCollision();
             break;
@@ -205,16 +211,19 @@ namespace ActorShadow {
             break;
         case 5:
             pCtrl->onCalcDropPrivateGravityOneTime();
+            break;
         }
     }
 
     void setUpShadowControlFromCSV(ShadowController* pController, LiveActor* pActor, const JMapInfoIter& rIter) {
-        f32 dropLength(1000.0f);
+        f32 dropLength = 1000.0f;
         rIter.getValue("DropLength", &dropLength);
         pController->setDropLength(dropLength);
-        f32 dropOffset(0.0f);
+
+        f32 dropOffset = 0.0f;
         rIter.getValue("DropStart", &dropOffset);
         pController->setDropStartOffset(dropOffset);
+
         setUpShadowControlBaseMtxFromCSV(pController, pActor, rIter);
         setUpShadowControlIsFollowScaleFromCSV(pController, rIter);
         setUpShadowControlIsSyncShowFromCSV(pController, rIter);
@@ -226,12 +235,15 @@ namespace ActorShadow {
         const char* name = "";
         rIter.getValue("Name", &name);
         ShadowController* pController = new ShadowController(pActor, name);
+
         const char* groupName = "";
         rIter.getValue("GroupName", &groupName);
         pController->setGroupName(groupName);
+
         pController->setDropDirPtr(&pActor->mGravity);
         setUpShadowControlFromCSV(pController, pActor, rIter);
         pActor->mShadowControllerList->addController(pController);
+
         return pController;
     }
 
@@ -258,9 +270,11 @@ namespace ActorShadow {
 
         ShadowSurfaceCircle* shadow = new ShadowSurfaceCircle();
         ctrl->setShadowDrawer(shadow);
+
         f32 radius = 100.0f;
         rIter.getValue< f32 >("Radius", &radius);
         shadow->setRadius(radius);
+
         return shadow;
     }
 
@@ -275,6 +289,7 @@ namespace ActorShadow {
         size.set< f32 >(100.0f, 100.0f, 100.0f);
         MR::getJMapInfoV3f(rIter, "Size", &size);
         shadow->setSize(size);
+
         return shadow;
     }
 
@@ -289,6 +304,7 @@ namespace ActorShadow {
         size.set< f32 >(100.0f, 100.0f, 100.0f);
         MR::getJMapInfoV3f(rIter, "Size", &size);
         shadow->setSize(size);
+
         return shadow;
     }
 
@@ -303,6 +319,7 @@ namespace ActorShadow {
         f32 radius = 100.0f;
         rIter.getValue< f32 >("Radius", &radius);
         shadow->setRadius(radius);
+
         return shadow;
     }
 
@@ -318,6 +335,7 @@ namespace ActorShadow {
         size.set< f32 >(100.0f, 100.0f, 100.0f);
         MR::getJMapInfoV3f(rIter, "Size", &size);
         shadow->setSize(size);
+
         return shadow;
     }
 
@@ -333,6 +351,7 @@ namespace ActorShadow {
         size.set< f32 >(100.0f, 100.0f, 100.0f);
         MR::getJMapInfoV3f(rIter, "Size", &size);
         shadow->setSize(size);
+
         return shadow;
     }
 
@@ -347,6 +366,7 @@ namespace ActorShadow {
         f32 radius = 100.0f;
         rIter.getValue< f32 >("Radius", &radius);
         shadow->setRadius(radius);
+
         return shadow;
     }
 
@@ -362,6 +382,7 @@ namespace ActorShadow {
         size.set< f32 >(100.0f, 100.0f, 100.0f);
         MR::getJMapInfoV3f(rIter, "Size", &size);
         shadow->setSize(size);
+
         return shadow;
     }
 
@@ -390,10 +411,13 @@ namespace ActorShadow {
 
         const char* lineStart = nullptr;
         rIter.getValue< const char* >("LineStart", &lineStart);
+
         const char* lineEnd = nullptr;
         rIter.getValue< const char* >("LineEnd", &lineEnd);
+
         f32 lineStartRadius = 100.0f;
         rIter.getValue< f32 >("LineStartRadius", &lineStartRadius);
+
         f32 lineEndRadius = 100.0f;
         rIter.getValue< f32 >("LineEndRadius", &lineEndRadius);
 
@@ -402,6 +426,7 @@ namespace ActorShadow {
 
         shadow->setFromShadowController(pActor->mShadowControllerList->getController(lineStart));
         shadow->setToShadowController(pActor->mShadowControllerList->getController(lineEnd));
+
         return shadow;
     }
 

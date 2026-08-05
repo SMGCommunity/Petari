@@ -8,20 +8,32 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sTicoAppearFrame = 110;
+    static const s32 sTicoAppearEndFrame = 140;
+    static const s32 sTicoAppearVoiceFrame = 180;
+    static const s32 sFanfareFrame = 10;
+    static const s32 sWaitSeStopFrame = 65;
+    static const s32 sFlashSpinSeFrame = 72;
+    static const s32 sFlashLightSeFrame = 170;
+    static const s32 sFusionSeFrame = 255;
+    static const s32 sMarioJumpFrame = 420;
+};  // namespace
+
 namespace NrvTicoDemoGetPower {
     NEW_NERVE(TicoDemoGetPowerNrvWait, TicoDemoGetPower, Wait);
     NEW_NERVE(TicoDemoGetPowerNrvDemo, TicoDemoGetPower, Demo);
 };  // namespace NrvTicoDemoGetPower
 
-TicoDemoGetPower::TicoDemoGetPower(Tico* pTico, const JMapInfoIter& rIter) : NerveExecutor("チコゲットパワーデモ実行者"), mTico(pTico) {
+TicoDemoGetPower::TicoDemoGetPower(Tico* pHost, const JMapInfoIter& rIter) : NerveExecutor("チコゲットパワーデモ実行者"), mHost(pHost) {
     initNerve(&NrvTicoDemoGetPower::TicoDemoGetPowerNrvWait::sInstance);
-    DemoFunction::tryCreateDemoTalkAnimCtrlForScene(mTico, rIter, "DemoGetPower", "スピンゲット[デモ1]", 0, 0);
-    MR::registerDemoActionFunctor(mTico, MR::Functor_Inline(this, &TicoDemoGetPower::startDemo), "スピンゲット[デモ1]");
-    mTico->makeActorDead();
+    DemoFunction::tryCreateDemoTalkAnimCtrlForScene(mHost, rIter, "DemoGetPower", "スピンゲット[デモ1]", 0, 0);
+    MR::registerDemoActionFunctor(mHost, MR::Functor_Inline(this, &TicoDemoGetPower::startDemo), "スピンゲット[デモ1]");
+    mHost->makeActorDead();
 }
 
 void TicoDemoGetPower::startDemo() {
-    mTico->makeActorAppeared();
+    mHost->makeActorAppeared();
     setNerve(&NrvTicoDemoGetPower::TicoDemoGetPowerNrvDemo::sInstance);
     exeDemo();
 }
@@ -31,49 +43,49 @@ void TicoDemoGetPower::exeWait() {
 
 void TicoDemoGetPower::exeDemo() {
     if (MR::isDemoPartFirstStep("スピンゲット[デモ5]")) {
-        MR::explainEnableToSpin(mTico);
+        MR::explainEnableToSpin(mHost);
     }
 
     if (MR::isDemoPartActive("スピンゲット[デモ3]")) {
         s32 partStep = MR::getDemoPartStep("スピンゲット[デモ3]");
 
-        if (partStep == 110) {
-            MR::startSound(mTico, "SE_SM_TICO_OP_APPEAR");
+        if (partStep == ::sTicoAppearFrame) {
+            MR::startSound(mHost, "SE_SM_TICO_OP_APPEAR");
         }
 
-        if (partStep == 140) {
-            MR::startSound(mTico, "SE_SM_TICO_OP_APPEAR_END");
+        if (partStep == ::sTicoAppearEndFrame) {
+            MR::startSound(mHost, "SE_SM_TICO_OP_APPEAR_END");
         }
 
-        if (partStep == 180) {
-            MR::startSound(mTico, "SE_SV_TICO_OP_APPEAR");
+        if (partStep == ::sTicoAppearVoiceFrame) {
+            MR::startSound(mHost, "SE_SV_TICO_OP_APPEAR");
         }
     }
 
     if (MR::isDemoPartActive("スピンゲット[デモ4]")) {
         s32 partStep = MR::getDemoPartStep("スピンゲット[デモ4]");
 
-        if (partStep == 10) {
+        if (partStep == ::sFanfareFrame) {
             MR::startSubBGM("BGM_STAR_POW_GET", false);
         }
 
-        if (partStep <= 65) {
-            MR::startLevelSound(mTico, "SE_SM_LV_TICO_WAIT");
+        if (partStep <= ::sWaitSeStopFrame) {
+            MR::startLevelSound(mHost, "SE_SM_LV_TICO_WAIT");
         }
 
-        if (partStep == 72) {
-            MR::startSound(mTico, "SE_SM_TICO_FLASH_SPIN");
+        if (partStep == ::sFlashSpinSeFrame) {
+            MR::startSound(mHost, "SE_SM_TICO_FLASH_SPIN");
         }
 
-        if (partStep == 170) {
-            MR::startSound(mTico, "SE_SM_TICO_FLASH_LIGHT");
+        if (partStep == ::sFlashLightSeFrame) {
+            MR::startSound(mHost, "SE_SM_TICO_FLASH_LIGHT");
         }
 
-        if (partStep == 255) {
-            MR::startSound(mTico, "SE_SM_TICO_FUSION");
+        if (partStep == ::sFusionSeFrame) {
+            MR::startSound(mHost, "SE_SM_TICO_FUSION");
         }
 
-        if (partStep == 420) {
+        if (partStep == ::sMarioJumpFrame) {
             MR::startSoundPlayer("SE_PV_POWER_STAR_GET", -1);
         }
     }

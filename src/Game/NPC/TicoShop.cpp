@@ -12,15 +12,19 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const s32 sStarPieceNeed = 30;
+    static const f32 sMouthSize = 30.0f;
+    static const f32 sSensorSize = 100.0f;
+    static const f32 sSensorOffset = 100.0f;
+    static const f32 sShadowLength = 500.0f;
+};  // namespace
+
 namespace NrvTicoShop {
     NEW_NERVE(TicoShopNrvDemo, TicoShop, Demo);
 };  // namespace NrvTicoShop
 
-TicoShop::TicoShop(const char* pName) : TicoComet(pName) {
-    mOneUp = nullptr;
-    mLifeUp = nullptr;
-    mChoseOneUp = false;
-    mChoseLifeUp = false;
+TicoShop::TicoShop(const char* pName) : TicoComet(pName), mOneUp(), mLifeUp(), mChoseOneUp(), mChoseLifeUp() {
 }
 
 void TicoShop::kill() {
@@ -39,15 +43,15 @@ void TicoShop::init(const JMapInfoIter& rIter) {
     NPCActorCaps caps("TicoShop");
     NPCActorItem item("TicoShop");
     caps.setDefault();
-    caps.mSensorSize = 100.0f;
-    caps.mSensorOffset.y = 100.0f;
+    caps.mSensorSize = ::sSensorSize;
+    caps.mSensorOffset.y = ::sSensorOffset;
     caps._5D = true;
     caps.mSoundSize = 6;
     caps.mSensorMax = 2;
     caps.mSensorJoint = "Center";
     caps._6C = "Center";
     initialize(rIter, caps);
-    MR::addHitSensorAtJointEye(this, "Mouth", "Mouth", 8, 30.0f, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorAtJointEye(this, "Mouth", "Mouth", 8, ::sMouthSize, TVec3f(0.0f, 0.0f, 0.0f));
     MR::getNPCItemData(&item, 0);
     equipment(item, false);
 
@@ -59,9 +63,9 @@ void TicoShop::init(const JMapInfoIter& rIter) {
         MR::startAction(_98, "Shake");
     }
 
-    s32 starbits = 30;
-    MR::getJMapInfoArg0NoInit(rIter, &starbits);
-    initStarPiece(starbits);
+    s32 starPieceNeed = ::sStarPieceNeed;
+    MR::getJMapInfoArg0NoInit(rIter, &starPieceNeed);
+    initStarPiece(starPieceNeed);
     initMessage("Common_TicoShop000");
     MR::setMessageArg(mMsgCtrl, _194);
     MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc(this, &TicoShop::branchFunc));
@@ -70,8 +74,8 @@ void TicoShop::init(const JMapInfoIter& rIter) {
     _180 = &NrvTicoShop::TicoShopNrvDemo::sInstance;
     mOneUp = MR::createKinokoOneUp();
     mLifeUp = MR::createKinokoSuper();
-    MR::setShadowDropLength(mOneUp, nullptr, 500.0f);
-    MR::setShadowDropLength(mLifeUp, nullptr, 500.0f);
+    MR::setShadowDropLength(mOneUp, nullptr, ::sShadowLength);
+    MR::setShadowDropLength(mLifeUp, nullptr, ::sShadowLength);
     MR::startBva(this, "Small0");
     MR::startBrk(this, "Metamorphosis");
     MR::setBrkFrameAndStop(this, 0.0f);
@@ -131,7 +135,4 @@ void TicoShop::exeDemo() {
         MR::startSound(this, "SE_SM_METAMORPHOSE_SMOKE");
         kill();
     }
-}
-
-TicoShop::~TicoShop() {
 }

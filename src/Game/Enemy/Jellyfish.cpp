@@ -313,11 +313,11 @@ bool Jellyfish::faceToMario() {
     return true;
 }
 
-void Jellyfish::knockOut(HitSensor* a2, HitSensor* a3) {
-    TVec3f v6;
-    MR::normalize(a3->mPosition - a2->mPosition, &v6);
-    mVelocity.scale(50.0f, v6);
-    _98.negate(v6);
+void Jellyfish::knockOut(HitSensor* pSender, HitSensor* pReceiver) {
+    TVec3f toReceiverDir;
+    MR::normalize(pReceiver->mPosition - pSender->mPosition, &toReceiverDir);
+    mVelocity.scale(50.0f, toReceiverDir);
+    _98.negate(toReceiverDir);
     setNerve(&NrvJellyfish::JellyfishNrvDeath::sInstance);
 }
 

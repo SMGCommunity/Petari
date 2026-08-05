@@ -10,8 +10,9 @@ public:
     TicoDemoGetPower(Tico*, const JMapInfoIter&);
 
     void startDemo();
+
     void exeWait();
     void exeDemo();
 
-    Tico* mTico;  // 0x08
+    /* 0x08 */ Tico* mHost;
 };
