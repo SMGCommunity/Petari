@@ -144,7 +144,7 @@ void LuigiNPC::init(const JMapInfoIter& rIter) {
         MR::onCalcShadowDropPrivateGravity(this, nullptr);
         {
             TVec3f v3(0.0f, 0.0f, -25.0f);
-            MR::setShadowDropPositionAtJoint(this, nullptr, "Center", &v3);
+            MR::setShadowDropPositionAtJoint(this, nullptr, "Center", v3);
         }
         setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeWait::sInstance);
         break;
@@ -376,7 +376,7 @@ void LuigiNPC::exeOnTreeFall() {
         MR::addVelocityMoveToDirection(this, v1, -4.0f);
         MR::addVelocityJump(this, 20.0f);
         TVec3f v2(0.0f, 0.0f, 0.0f);
-        MR::setShadowDropPositionAtJoint(this, nullptr, "Center", &v2);
+        MR::setShadowDropPositionAtJoint(this, nullptr, "Center", v2);
         MR::startSound(this, "SE_SV_LUIGI_FALL");
     }
 

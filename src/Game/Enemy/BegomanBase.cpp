@@ -128,7 +128,7 @@ void BegomanBase::initShadow(f32 shadowRadius, const char* pShadowName) {
     MR::initShadowVolumeSphere(this, shadowRadius);
 
     TVec3f zeroVec = TVec3f(0.0f, 0.0f, 0.0f);
-    MR::setShadowDropPositionAtJoint(this, nullptr, pShadowName, &zeroVec);
+    MR::setShadowDropPositionAtJoint(this, nullptr, pShadowName, zeroVec);
 }
 
 void BegomanBase::initEffect(s32 a1) {
