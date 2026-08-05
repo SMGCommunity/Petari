@@ -1,21 +1,43 @@
 #include "Game/NPC/TalkSupportPlayerWatcher.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-TalkSupportPlayerWatcher::TalkSupportPlayerWatcher() : _00(0), _04(0) {
+namespace {
+    static const f32 sPlayerSpeedMin = 4.0f;
+    // static const s32 sStepToTalkStart = _;
+    // static const s32 sStepToTalkEnd = _;
+    // static const s32 sStepToTalkRestart = _;
+};  // namespace
+
+TalkSupportPlayerWatcher::TalkSupportPlayerWatcher() : mEnableTalkCounter(), mDisableTalkCounter() {
 }
 
 void TalkSupportPlayerWatcher::update() {
     if (isEnableTalkPlayerSpeed()) {
-        _00++;
-        _04 = 0;
+        mEnableTalkCounter++;
+        mDisableTalkCounter = 0;
     } else {
-        _04++;
-        _00 = 0;
+        mDisableTalkCounter++;
+        mEnableTalkCounter = 0;
     }
+}
+
+bool TalkSupportPlayerWatcher::isEnableTalkPlayerStateNormal() const {
+    if (MR::isPlayerInWaterMode()) {
+        return false;
+    }
+
+    if (MR::isOffPlayerControl()) {
+        return false;
+    }
+
+    if (!MR::isNearZero(MR::getSubPadStickX(WPAD_CHAN0)) || !MR::isNearZero(MR::getSubPadStickY(WPAD_CHAN0))) {
+        return false;
+    }
+
+    return isEnableTalkPlayerStateEvent();
 }
 
 bool TalkSupportPlayerWatcher::isEnableTalkPlayerStateEvent() const {
@@ -38,22 +60,6 @@ bool TalkSupportPlayerWatcher::isEnableTalkPlayerStateEvent() const {
     return MR::isOnGroundPlayer();
 }
 
-bool TalkSupportPlayerWatcher::isEnableTalkPlayerStateNormal() const {
-    if (MR::isPlayerInWaterMode()) {
-        return false;
-    }
-
-    if (MR::isOffPlayerControl()) {
-        return false;
-    }
-
-    if (!MR::isNearZero(MR::getSubPadStickX(0)) || !MR::isNearZero(MR::getSubPadStickY(0))) {
-        return false;
-    }
-
-    return isEnableTalkPlayerStateEvent();
-}
-
 bool TalkSupportPlayerWatcher::isEnableTalkPlayerSpeed() const {
-    return MR::getPlayerVelocity()->length() < 4.0f;
+    return MR::getPlayerVelocity()->length() < ::sPlayerSpeedMin;
 }
