@@ -6,19 +6,21 @@
 class CameraManPause : public CameraMan {
 public:
     CameraManPause(const char*);
-    virtual ~CameraManPause();
 
     virtual void init(const JMapInfoIter&);
 
-    virtual void calc();            // TODO
-    virtual void notifyActivate();  // TODO
+    virtual void calc();
+    virtual void notifyActivate();
     virtual void notifyDeactivate();
-    virtual bool isCollisionOff() const;
-    virtual bool isZeroFrameMoveOff() const;
+    virtual bool isCollisionOff() const {
+        return true;
+    }
+    virtual bool isZeroFrameMoveOff() const {
+        return true;
+    }
 
-    f32 _48;
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    TVec3f _58;
+    /* 0x48 */ f32 mDistBase;
+    /* 0x4C */ f32 mDistOffset;
+    /* 0x50 */ TVec2f mAngle;
+    /* 0x58 */ TVec3f mBasePos;
 };

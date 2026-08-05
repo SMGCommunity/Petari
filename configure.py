@@ -1049,7 +1049,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraMan.cpp"),
             Object(NonMatching, "Game/Camera/CameraManEvent.cpp"),
             Object(NonMatching, "Game/Camera/CameraManGame.cpp"),
-            Object(NonMatching, "Game/Camera/CameraManPause.cpp"),
+            Object(Matching, "Game/Camera/CameraManPause.cpp"),
             Object(Matching, "Game/Camera/CameraManSubjective.cpp"),
             Object(NonMatching, "Game/Camera/CameraMedianPlanet.cpp"),
             Object(NonMatching, "Game/Camera/CameraMedianTower.cpp"),

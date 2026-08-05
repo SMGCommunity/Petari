@@ -1,10 +1,15 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
-void CameraCalc_DUMMY() {
-    TVec3f a, b, c;
-    b *= 2.0f;
+void CameraCalc_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+    (void)MR::pi();
+    (void)1023.5f;
+    (void)(MR::pi() / 2.0f);
 }
 
 namespace MR {
@@ -65,3 +70,9 @@ namespace MR {
         pDst->set(rSrc - rNorm * rNorm.dot(rSrc));
     }
 };  // namespace MR
+
+void CameraCalc_DUMMY() {
+    TVec3f d(JMAAcosRadian(0.0f));
+    TVec3f a, b, c;
+    b *= 2.0f;
+}
