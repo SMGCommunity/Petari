@@ -97,8 +97,8 @@ namespace CameraLocalUtil {
         return getCameraDirector()->mRegisterHolder->getMtx(pRegName);
     }
 
-    const TVec3f* getVecReg(const char* pRegName) {
-        return getCameraDirector()->mRegisterHolder->getVec(pRegName);
+    const TVec3f& getVecReg(const char* pRegName) {
+        return *getCameraDirector()->mRegisterHolder->getVec(pRegName);
     }
 
     const char* getDummyVecRegName() {

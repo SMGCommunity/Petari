@@ -6,7 +6,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
 
-
 void CameraCharmedVecReg_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
@@ -33,12 +32,12 @@ CameraTargetObj* CameraCharmedVecReg::calc() {
 
     TVec3f watchOffs = watchPoint - CameraLocalUtil::getTarget(this)->getPosition();
 
-    const TVec3f* vecReg = CameraLocalUtil::getVecReg(mString);
+    const TVec3f& vecReg = CameraLocalUtil::getVecReg(mString);
 
-    TVec3f basePos = CameraLocalUtil::getTarget(this)->getPosition() * (1.0f - mCamDistRatio) + *vecReg * mCamDistRatio;
+    TVec3f basePos = CameraLocalUtil::getTarget(this)->getPosition() * (1.0f - mCamDistRatio) + vecReg * mCamDistRatio;
 
     TVec3f up = -CameraLocalUtil::getTarget(this)->getGravityVector();
-    TVec3f front = CameraLocalUtil::getTarget(this)->getPosition() - *vecReg;
+    TVec3f front = CameraLocalUtil::getTarget(this)->getPosition() - vecReg;
     MR::projectVecOnPlane(&front, front, up);
 
     if (MR::isNearZero(front)) {

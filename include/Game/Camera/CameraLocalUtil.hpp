@@ -28,7 +28,7 @@ namespace CameraLocalUtil {
     void setRoll(CameraMan*, f32) NO_INLINE;
     CameraTargetObj* getTarget(const CameraMan*);
     const MtxPtr getMtxReg(const char*);
-    const TVec3f* getVecReg(const char*);
+    const TVec3f& getVecReg(const char*);
     const char* getDummyVecRegName();
     bool isForceCameraChange();
     CameraDirector* getCameraDirector();

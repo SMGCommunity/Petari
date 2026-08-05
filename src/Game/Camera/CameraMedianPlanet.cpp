@@ -98,7 +98,7 @@ void CameraMedianPlanet::peepMtx(TPos3f* pMtx) {
     TVec3f up;
     pMtx->getYDir(up);
 
-    TVec3f front = CameraLocalUtil::getTarget(this)->getPosition() - *CameraLocalUtil::getVecReg(mString);
+    TVec3f front = CameraLocalUtil::getTarget(this)->getPosition() - CameraLocalUtil::getVecReg(mString);
     if (MR::isNearZero(front)) {
         return;
     }
@@ -148,7 +148,7 @@ f32 CameraMedianPlanet::getMaxRate() {
 }
 
 void CameraMedianPlanet::getRegisterUpVec(TVec3f* pUp) {
-    MR::calcGravityVector(this, *CameraLocalUtil::getVecReg(mString), pUp, nullptr, 0);
+    MR::calcGravityVector(this, CameraLocalUtil::getVecReg(mString), pUp, nullptr, 0);
     pUp->negate();
     if (MR::isNearZero(*pUp)) {
         pUp->set(CameraLocalUtil::getTarget(this)->getUpVec());
@@ -160,7 +160,7 @@ void CameraMedianPlanet::calcWatchPos(TVec3f* pWatchPos) {
     CameraLocalUtil::makeWatchPoint(&watchOffset, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
     watchOffset.sub(CameraLocalUtil::getTarget(this)->getPosition());
 
-    pWatchPos->set(CameraLocalUtil::getTarget(this)->getPosition() * (1.0f - mPartialRate) + *CameraLocalUtil::getVecReg(mString) * mPartialRate +
+    pWatchPos->set(CameraLocalUtil::getTarget(this)->getPosition() * (1.0f - mPartialRate) + CameraLocalUtil::getVecReg(mString) * mPartialRate +
                    watchOffset);
 }
 
