@@ -5,7 +5,6 @@
 class CameraMedianTower : public Camera {
 public:
     CameraMedianTower(const char* pName = "中点塔カメラ");
-    virtual ~CameraMedianTower();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
@@ -16,17 +15,24 @@ public:
     void calcDistance(TVec3f*, const TVec3f&);
     void updateReset(const TVec3f&, const TVec3f&, const TVec3f&);
 
-    const char* mString;  // 0x4C
-    TVec3f mWPoint;       // 0x50
-    TVec3f mAxis;         // 0x5C
-    f32 mAngleA;          // 0x68
-    f32 mUpX;             // 0x6C
-    f32 mUpY;             // 0x70
-    f32 mUpZ;             // 0x74
-    f32 _78;
-    f32 _7C;
-    f32 _80;
-    u8 _84;
-    u8 _85[3];
-    u32 _88;
+    void setParam(const char* pName, const TVec3f& wPoint, const TVec3f& axis, f32 angle, f32 dist, f32 maxDist, f32 partialRate) {
+        mString = pName;
+        mWPoint.set(wPoint);
+        mAxis.set(axis);
+        mAngleA = angle;
+        mDist = dist;
+        mMaxFocusDist = maxDist;
+        mPartialRate = partialRate;
+    }
+
+    /* 0x4C */ const char* mString;
+    /* 0x50 */ TVec3f mWPoint;
+    /* 0x5C */ TVec3f mAxis;
+    /* 0x68 */ f32 mAngleA;
+    /* 0x6C */ f32 mDist;
+    /* 0x70 */ f32 mMaxFocusDist;
+    /* 0x74 */ f32 mPartialRate;
+    /* 0x78 */ TVec3f mBaseFront;
+    /* 0x84 */ bool mIsResetting;
+    /* 0x88 */ s32 mInterpolateTime;
 };

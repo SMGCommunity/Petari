@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TQuat.hpp>
@@ -417,6 +418,10 @@ namespace MR {
     /// @brief Returns the value of pi (3.14159274f)
     inline f32 pi() {
         return PI;  // TODO: test if actually JGeometry::TUtil<f32>::PI();
+    }
+
+    inline f32 epsilon() {
+        return (f32)JGeometry::TUtil< f32 >::epsilon();
     }
 
     /// @brief Computes the cosine of a number, in radians.

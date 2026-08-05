@@ -991,7 +991,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CamTranslatorInwardSphere.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorInwardTower.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorMedianPlanet.cpp"),
-            Object(NonMatching, "Game/Camera/CamTranslatorMedianTower.cpp"),
+            Object(Matching, "Game/Camera/CamTranslatorMedianTower.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorMtxRegParallel.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorObjParallel.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorParallel.cpp"),

@@ -390,6 +390,7 @@ namespace JGeometry {
             //    CocoNut::updateRotate (regswap)
             //    FirePressureRadiate::calcJointCannon (regswap)
             //    CameraMedianPlanet::rotate33 (regswap)
+            //    CameraMedianTower::calc (regswap)
             //
             //    CameraFixedThere::updateNormalUpVec (instruction mismatch!!)
             // }
