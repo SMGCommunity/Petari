@@ -455,7 +455,7 @@ f32 CameraDirector::getDefaultFovy() const {
 void CameraDirector::startStartAnimCamera() {
     if (mStartCameraCreated) {
         ActorCameraInfo info = ActorCameraInfo();
-        CameraTargetArg targetArg = CALL_INLINE_FUNC(CameraTargetArg, mTargetMatrix);
+        CameraTargetArg targetArg(mTargetMatrix);
 
         MR::startEventCamera(&info, ::sStartAnimCameraName, targetArg, 0);
     }
@@ -498,7 +498,7 @@ void CameraDirector::startTalkCamera(const TVec3f& rPosition, const TVec3f& rUp,
         generalParam->mAxis.y = axisY;
         generalParam->mAxis.z = 0.0f;
 
-        CameraTargetArg targetArg = CALL_INLINE_FUNC_NO_ARG(CameraTargetArg);
+        CameraTargetArg targetArg;
 
         MR::setCameraTargetToPlayer(&targetArg);
         startEvent(0, ::sTalkCameraName, targetArg, a5);
