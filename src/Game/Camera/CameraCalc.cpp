@@ -13,7 +13,7 @@ void CameraCalc_FORCE_MATCH_SDATA2() {
 }
 
 namespace MR {
-    void crossToPolar(const TVec3f& rA, const TVec3f& rB, f32* pLength, f32* pAngleX, f32* pAngleY) NO_INLINE {
+    void crossToPolar(const TVec3f& rA, const TVec3f& rB, f32* pLength, f32* pAngleX, f32* pAngleY) {
         f32 dx = rB.x - rA.x;
         f32 dy = rB.y - rA.y;
         f32 dz = rB.z - rA.z;
@@ -22,13 +22,13 @@ namespace MR {
         *pAngleY = MR::atan2(dx, dz);
     }
 
-    void polarToCross(const TVec3f& rSrc, TVec3f* pDst, f32 length, f32 angleX, f32 angleY) NO_INLINE {
+    void polarToCross(const TVec3f& rSrc, TVec3f* pDst, f32 length, f32 angleX, f32 angleY) {
         pDst->x = rSrc.x + length * MR::cos(angleX) * MR::sin(angleY);
         pDst->y = rSrc.y + length * MR::sin(angleX);
         pDst->z = rSrc.z + length * MR::cos(angleX) * MR::cos(angleY);
     }
 
-    void polarToCrossDegree(const TVec3f& rSrc, TVec3f* pDst, f32 length, f32 angleX, f32 angleY) NO_INLINE {
+    void polarToCrossDegree(const TVec3f& rSrc, TVec3f* pDst, f32 length, f32 angleX, f32 angleY) {
         pDst->x = rSrc.x + length * MR::cosDegree(angleX) * MR::sinDegree(angleY);
         pDst->y = rSrc.y + length * MR::sinDegree(angleX);
         pDst->z = rSrc.z + length * MR::cosDegree(angleX) * MR::cosDegree(angleY);
@@ -48,7 +48,7 @@ namespace MR {
         return diff;
     }
 
-    bool diffRadianAroundAxis(f32* pAngle, const TVec3f& rAxis, const TVec3f& rA, const TVec3f& rB) NO_INLINE {
+    bool diffRadianAroundAxis(f32* pAngle, const TVec3f& rAxis, const TVec3f& rA, const TVec3f& rB) {
         TVec3f dirA = rA.killElement(rAxis);
         if (MR::isNearZero(dirA)) {
             return false;
