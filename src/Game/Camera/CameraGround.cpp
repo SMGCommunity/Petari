@@ -1,8 +1,10 @@
 #include "Game/Camera/CameraGround.hpp"
 #include "Game/Camera/CamTranslatorGround.hpp"
+#include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/VectorUtil.hpp"
+
 
 void CameraGround_FORCE_MATCH_SDATA2() {
     (void)1.0f;

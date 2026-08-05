@@ -1,11 +1,13 @@
 #include "Game/Camera/CameraFixedThere.hpp"
 #include "Game/Camera/CamTranslatorFixedThere.hpp"
 #include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraMan.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
+
 
 void CameraFixedThere_FORCE_MATCH_SDATA2() {
     (void)1.0f;

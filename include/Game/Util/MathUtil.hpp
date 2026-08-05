@@ -568,7 +568,9 @@ namespace MR {
         return x;
     }
 
-    inline void clampBoth(f32* value, f32 min, f32 max);
+    inline void clampBoth(f32* value, f32 min, f32 max) {
+        *value = clamp(*value, min, max);
+    }
 
     inline void clampMax(f32* val, f32 max) {
         f32 ret;

@@ -1,9 +1,11 @@
 #include "Game/Camera/CameraCharmedVecReg.hpp"
 #include "Game/Camera/CamTranslatorCharmedVecReg.hpp"
+#include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
+
 
 void CameraCharmedVecReg_FORCE_MATCH_SDATA2() {
     (void)1.0f;

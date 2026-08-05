@@ -1,10 +1,12 @@
 #include "Game/Camera/CameraFooFighterPlanet.hpp"
 #include "Game/Camera/CamTranslatorFooFighterPlanet.hpp"
+#include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
+
 
 void CameraFooFighterPlanet_FORCE_MATCH_SDATA2() {
     (void)1.0f;

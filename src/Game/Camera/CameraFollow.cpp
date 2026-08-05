@@ -1,6 +1,7 @@
 #include "Game/Camera/CameraFollow.hpp"
 #include "Game/Camera/CamTranslatorFollow.hpp"
 #include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraHeightArrange.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
@@ -11,6 +12,7 @@
 #include "Game/Util/TriangleFilter.hpp"
 #include "Game/Util/VectorUtil.hpp"
 #include <JSystem/JGeometry/TUtil.hpp>
+
 
 void CameraFollow_FORCE_MATCH_SDATA2() {
     (void)1.0f;

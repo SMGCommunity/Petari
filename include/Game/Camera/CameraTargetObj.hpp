@@ -81,7 +81,9 @@ public:
     virtual bool isDebugMode() const {
         return false;
     }
-    virtual TMtx34f* getMapBaseMtx() const;
+    virtual TPos3f* getMapBaseMtx() const {
+        return nullptr;
+    }
     virtual void resetStatus() {
     }
 
@@ -142,7 +144,7 @@ public:
     virtual Triangle* getGroundTriangle() const;
     virtual GravityInfo* getGravityInfo() const;
     virtual bool isDebugMode() const;
-    virtual TMtx34f* getMapBaseMtx() const;
+    virtual TPos3f* getMapBaseMtx() const;
 
     const MarioActor* mActor;     // 0x10
     TVec3f mSide;                 // 0x14
