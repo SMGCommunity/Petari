@@ -89,7 +89,7 @@ void TripodBossLeg::control() {
 }
 
 void TripodBossLeg::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (pReceiver->receiveMessage(0xA9, pSender)) {
+    if (pReceiver->receiveMessage(ACTMES_TRIPODBOSS_LEG_IS_DAMAGE, pSender)) {
         _254 = 1;
     }
 

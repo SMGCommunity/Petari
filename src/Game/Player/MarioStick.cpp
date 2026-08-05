@@ -60,7 +60,7 @@ bool MarioStick::setStickSensor(const HitSensor* pSensor) {
         return false;
     }
 
-    if (pSensor->isType(83)) {
+    if (pSensor->isType(ATYPE_BEE_FLOWER)) {
         TVec3f v12;
         MR::getRotatedAxisY(&v12, pSensor->mHost->mRotation);
         TVec3f v11(mActor->_2A0 - pSensor->mPosition);

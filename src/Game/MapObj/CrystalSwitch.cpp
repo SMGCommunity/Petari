@@ -47,7 +47,7 @@ void CrystalSwitch::control() {
 
 void CrystalSwitch::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
-        pReceiver->receiveMessage(41, pSender);
+        pReceiver->receiveMessage(ACTMES_PUSH, pSender);
     }
 }
 

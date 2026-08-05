@@ -184,7 +184,7 @@ void BallRail::exeRun() {
     if (MR::isRailReachedGoal(this)) {
         LiveActor* host = _90->mHost;
         host->mVelocity.set(MR::getRailDirection(this) * MR::getRailCoordSpeed(this));
-        getSensor("bind")->receiveMessage(178, _90);
+        getSensor("bind")->receiveMessage(ACTMES_END_BALL_RAIL, _90);
         _90 = nullptr;
         setNerve(&NrvBallRail::BallRailNrvNoBind::sInstance);
     }

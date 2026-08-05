@@ -132,7 +132,7 @@ void SwitchBox::doHit(HitSensor* pSender, HitSensor* pReceiver) {
 bool SwitchBox::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerUpperPunch(msg) && _90 != 0) {
         doHit(pSender, pReceiver);
-        pSender->receiveMessage(0x40, pReceiver);
+        pSender->receiveMessage(ACTMES_REFLECT_V, pReceiver);
         return true;
     }
 

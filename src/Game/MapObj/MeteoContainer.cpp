@@ -63,7 +63,7 @@ void MeteoContainer::control() {
 
 void MeteoContainer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
-        pReceiver->receiveMessage(41, pSender);
+        pReceiver->receiveMessage(ACTMES_PUSH, pSender);
     }
 }
 
