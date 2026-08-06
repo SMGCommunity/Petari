@@ -8,7 +8,6 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
 
-
 void CameraFixedThere_FORCE_MATCH_SDATA2() {
     (void)1.0f;
 }
@@ -99,7 +98,7 @@ void CameraFixedThere::makeAxisAndRoll() {
         return;
     }
 
-    if (__fabsf(mAxis.dot(mUp)) > MR::cosDegree(30.0f)) {
+    if (MR::abs(mAxis.dot(mUp)) > MR::cosDegree(30.0f)) {
         mUp = CameraLocalUtil::getUpVec(this);
         return;
     }

@@ -526,7 +526,7 @@ bool Pole::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         MR::vecKillElement(velHoriz, mUp, &velHoriz);
         f32 horizSpeed = velHoriz.length();
         f32 velUpProj = mUp.dot(*MR::getPlayerVelocity());
-        if (__fabsf(horizSpeed) < 5.0f && velUpProj > 1.0f) {
+        if (MR::abs(horizSpeed) < 5.0f && velUpProj > 1.0f) {
             return false;
         }
 
@@ -705,7 +705,7 @@ bool Pole::tryHandstandTurn() {
 }
 
 bool Pole::isEnableTurn() const {
-    if (__fabsf(getPoleSubPadStickX()) > 0.8f) {
+    if (MR::abs(getPoleSubPadStickX()) > 0.8f) {
         return true;
     }
     return false;

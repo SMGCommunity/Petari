@@ -313,10 +313,10 @@ void CameraManEvent::setSafePose() {
     MR::normalize(&camWatchDir);
     MR::normalizeOrZero(&up);
 
-    if (MR::isNearZero(up) || __fabsf(camWatchDir.dot(up)) > 0.98f) {
+    if (MR::isNearZero(up) || MR::abs(camWatchDir.dot(up)) > 0.98f) {
         TVec3f watchDir = CameraLocalUtil::getWatchPos(this) - CameraLocalUtil::getPos(this);
         MR::normalize(&watchDir);
-        if (__fabsf(camWatchDir.dot(watchDir)) > 0.98f) {
+        if (MR::abs(camWatchDir.dot(watchDir)) > 0.98f) {
             up.set(CameraLocalUtil::getUpVec(this));
         } else {
             TQuat4f rot;

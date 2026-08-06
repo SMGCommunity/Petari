@@ -345,7 +345,7 @@ void RingBeam::exeSpread() {
             TVec3f temp15 = temp12 - temp13 * (temp12.dot(temp13));
             MR::normalizeOrZero(&temp15);
             MR::normalizeOrZero(&temp12);
-            float2 = 1.0f - __fabsf(temp13.dot(temp12));
+            float2 = 1.0f - MR::abs(temp13.dot(temp12));
             radius = getSensor("Beam")->mRadius;
             _cc = ec + temp15 * radius * float2;
         } else {

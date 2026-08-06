@@ -904,19 +904,13 @@ void Mario::addTrans(const TVec3f& rShift, const char* a2) {
     mPosition += rShift;
     TVec3f _148shift(_148);
     _148shift -= rShift;
-    f32 _148shiftTemp = __fabsf(_148shift.x);
-    f32 _148Temp = __fabsf(_148.x);
-    if (_148Temp <= _148shiftTemp) {
+    if (MR::abs(_148.x) <= MR::abs(_148shift.x)) {
         _148.x = 0.0f;
     }
-    _148shiftTemp = __fabsf(_148shift.y);
-    _148Temp = __fabsf(_148.y);
-    if (_148Temp <= _148shiftTemp) {
+    if (MR::abs(_148.y) <= MR::abs(_148shift.y)) {
         _148.y = 0.0f;
     }
-    _148shiftTemp = __fabsf(_148shift.z);
-    _148Temp = __fabsf(_148.z);
-    if (_148Temp <= _148shiftTemp) {
+    if (MR::abs(_148.z) <= MR::abs(_148shift.z)) {
         _148.z = 0.0f;
     }
 }
@@ -927,19 +921,13 @@ void Mario::setTrans(const TVec3f& rShift, const char* a2) {
     mPosition = rShift;
     TVec3f _148shift(_148);
     _148shift -= reqShift;
-    f32 _148shiftTemp = __fabsf(_148shift.x);
-    f32 _148Temp = __fabsf(_148.x);
-    if (_148Temp <= _148shiftTemp) {
+    if (MR::abs(_148.x) <= MR::abs(_148shift.x)) {
         _148.x = 0.0f;
     }
-    _148shiftTemp = __fabsf(_148shift.y);
-    _148Temp = __fabsf(_148.y);
-    if (_148Temp <= _148shiftTemp) {
+    if (MR::abs(_148.y) <= MR::abs(_148shift.y)) {
         _148.y = 0.0f;
     }
-    _148shiftTemp = __fabsf(_148shift.z);
-    _148Temp = __fabsf(_148.z);
-    if (_148Temp <= _148shiftTemp) {
+    if (MR::abs(_148.z) <= MR::abs(_148shift.z)) {
         _148.z = 0.0f;
     }
 }
@@ -989,9 +977,9 @@ void Mario::setGravityVec(const TVec3f& rGravity) {
     } else {
         _1E4.cross(mAirGravityVec, rGravity);
         MR::normalizeOrZero(&_1E4);
-        f32 frontDot = __fabsf(mFrontVec.dot(_1E4));
-        f32 sideDot = __fabsf(mSideVec.dot(_1E4));
-        f32 headDot = __fabsf(mHeadVec.dot(_1E4));
+        f32 frontDot = MR::abs(mFrontVec.dot(_1E4));
+        f32 sideDot = MR::abs(mSideVec.dot(_1E4));
+        f32 headDot = MR::abs(mHeadVec.dot(_1E4));
         if (frontDot > sideDot && frontDot > headDot) {
             _10._A = 0;
             _10._26 = 1;

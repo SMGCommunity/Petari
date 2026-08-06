@@ -231,23 +231,22 @@ TVec3f& MarioModule::getWorldPadDir() const {
     return mActor->mMario->mWorldPadDir;
 }
 
-// regswap
 bool MarioModule::calcWorldPadDir(TVec3f* pDest, f32 a2, f32 a3, bool a4) {
     pDest->zero();
     if (MR::isNearZero(a2) && MR::isNearZero(a3)) {
         return false;
     }
     if (!mActor->mMario->_10._11) {
-        if (__fabsf(a3) > mActor->mConst->getTable()->mStickMarginYstart) {
-            if (__fabsf(a2) < mActor->mConst->getTable()->mStickMarginX) {
+        if (MR::abs(a3) > mActor->mConst->getTable()->mStickMarginYstart) {
+            if (MR::abs(a2) < mActor->mConst->getTable()->mStickMarginX) {
                 a2 = 0.0f;
             } else if (a2 > 0.0f) {
                 a2 = (a2 - mActor->mConst->getTable()->mStickMarginX) / (1.0f - mActor->mConst->getTable()->mStickMarginX);
             } else {
                 a2 = (a2 + mActor->mConst->getTable()->mStickMarginX) / (1.0f - mActor->mConst->getTable()->mStickMarginX);
             }
-        } else if (__fabsf(a2) > mActor->mConst->getTable()->mStickMarginXstart) {
-            if (__fabsf(a3) < mActor->mConst->getTable()->mStickMarginY) {
+        } else if (MR::abs(a2) > mActor->mConst->getTable()->mStickMarginXstart) {
+            if (MR::abs(a3) < mActor->mConst->getTable()->mStickMarginY) {
                 a3 = 0.0f;
             } else if (a3 > 0.0f) {
                 a3 = (a3 - mActor->mConst->getTable()->mStickMarginY) / (1.0f - mActor->mConst->getTable()->mStickMarginY);

@@ -110,7 +110,7 @@ void IKJoint::getEndJointPosition(TVec3f* pPos) const {
 }
 
 f32 IKJoint::getMinLimitDistance() const {
-    return __fabsf(mRootBoneLength - mMiddleBoneLength);
+    return MR::abs(mRootBoneLength - mMiddleBoneLength);
 }
 
 f32 IKJoint::getMaxLimitDistance() const {

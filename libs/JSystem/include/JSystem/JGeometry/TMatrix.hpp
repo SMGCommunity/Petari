@@ -263,13 +263,13 @@ namespace JGeometry {
         }
 
         void getEulerXYZ(TVec3f& rDest) const {
-            if (this->mMtx[2][0] - 1.0f >= -JGeometry::TUtil< f32 >::epsilon()) {
+            if (this->mMtx[2][0] - 1.0f >= -(f32)JGeometry::TUtil< f32 >::epsilon()) {
                 rDest.set(JMAATan2(-this->mMtx[0][1], this->mMtx[1][1]), -HALF_PI, 0.0f);
                 return;
             }
 
             f32 f1 = 1.0f;  // TODO: this is a hack to fix the float regswap
-            if (this->mMtx[2][0] + f1 <= JGeometry::TUtil< f32 >::epsilon()) {
+            if (this->mMtx[2][0] + f1 <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
                 rDest.set(JMAATan2(this->mMtx[0][1], this->mMtx[1][1]), HALF_PI, 0.0f);
                 return;
             }
@@ -836,8 +836,13 @@ namespace JGeometry {
         void invert(const TMatrix44< T >& rDest);
 
         inline void mult(const TVec3f& rSrc, TVec3f& rDest) const {
-            TVec4f pos(rSrc.x * this->mMtx[0][0] + rSrc.z * this->mMtx[0][2], rSrc.y * this->mMtx[1][1] + rSrc.z * this->mMtx[1][2],
-                       rSrc.z * this->mMtx[2][2] + this->mMtx[2][3], -rSrc.z);
+            TVec4f pos(rSrc.x * this->mMtx[0][0] + rSrc.z * this->mMtx[0][2],
+
+                       rSrc.y * this->mMtx[1][1] + rSrc.z * this->mMtx[1][2],
+
+                       rSrc.z * this->mMtx[2][2] + this->mMtx[2][3],
+
+                       -rSrc.z);
 
             rDest.scale(1.0f / pos.w, *pos.toTVec3());
         }

@@ -145,7 +145,7 @@ void TalkBalloon::updateBalloon() {
             paneAnimFrameMax -= 1.0f;
         }
 
-        if (__fabsf(paneAnimFrame - paneAnimFrameMax) < 2.0f) {
+        if (MR::abs(paneAnimFrame - paneAnimFrameMax) < 2.0f) {
             _29 = false;
         }
 

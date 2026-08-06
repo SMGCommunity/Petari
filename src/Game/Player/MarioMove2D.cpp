@@ -120,7 +120,7 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
     TVec3f stack_2C(1.0f, 0.0f, 0.0f);
     camDirZ = &getCamDirZ();
     const f32 absHorizontal = MR::diffAngleAbsHorizontal(getCamDirX(), stack_2C, *camDirZ);
-    if (absHorizontal <= 3.0415928f && __fabsf(angle) <= 3.0415928f) {
+    if (absHorizontal <= 3.0415928f && MR::abs(angle) <= 3.0415928f) {
         angle = 0.0f;
         rStickX = -rStickX;
     }
@@ -190,7 +190,7 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
         }
     }
 
-    if (__fabsf(rStickY) > __fabsf(rStickX)) {
+    if (MR::abs(rStickY) > MR::abs(rStickX)) {
         isMainY = true;
         rStickX = 0.0f;
         rStickY = rStickY > 0.0f ? mStickPos.z : -mStickPos.z;
@@ -211,7 +211,7 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
             if (_611 == 0) {
                 if (_620 == 0.0f) {
                     rStickY = 0.0f;
-                    if (isMainY && __fabsf(stickXInput) > 0.3f) {
+                    if (isMainY && MR::abs(stickXInput) > 0.3f) {
                         rStickX = stickXInput < 0.0f ? -mStickPos.z : mStickPos.z;
                         lockX = 1;
                     }
@@ -227,7 +227,7 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
             if ((angleMove <= 1.3962635f || angleMove >= 1.7453294f) && _611 == 0) {
             } else if (_610 == 0 && _61C == 0.0f) {
                 rStickX = 0.0f;
-                if (isMainX && __fabsf(stickYInput) > 0.3f) {
+                if (isMainX && MR::abs(stickYInput) > 0.3f) {
                     rStickY = stickYInput < 0.0f ? -mStickPos.z : mStickPos.z;
                     lockY = 1;
                 }
@@ -298,10 +298,10 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
 
     if (!isNearHalfPi) {
         rStickY = 0.0f;
-        mStickPos.z = __fabsf(rStickX);
+        mStickPos.z = MR::abs(rStickX);
     } else {
         rStickX = 0.0f;
-        mStickPos.z = __fabsf(rStickY);
+        mStickPos.z = MR::abs(rStickY);
     }
 }
 

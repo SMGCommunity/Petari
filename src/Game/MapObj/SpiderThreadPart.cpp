@@ -62,7 +62,7 @@ SpiderThreadPart::SpiderThreadPart(SpiderThreadMainPoint* pPointA, SpiderThreadM
         pos.add(mPointA->mPosition);
 
         s32 halfNumPoints = mNumPoints / 2;
-        s32 index = __abs(halfNumPoints - idx);
+        s32 index = MR::abs(halfNumPoints - idx);
         f32 indexNormalized = 1.0f - (static_cast< f32 >(index) / static_cast< f32 >(halfNumPoints));
 
         f32 length = mDistBetweenMainPoints - ::sFricitonLengthMin;

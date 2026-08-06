@@ -365,7 +365,7 @@ void OceanRing::initPoints() {
             v21.scale((currentWidthRate * (171.42857f * j)));
             v21.add(MR::getRailPos(this));
             f32 ease = 1.0f;
-            s32 v19 = __abs(j);
+            s32 v19 = MR::abs(j);
             if ((7 - v19) < ::sEdgePointNum) {
                 f32 x = ::sEdgePointNum;
                 f32 y = (7 - v19) / x;

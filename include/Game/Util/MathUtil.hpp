@@ -424,7 +424,7 @@ namespace MR {
         return JGeometry::TUtil< f32 >::epsilon();
     }
 
-    inline f32 fabsf(f32 x) {
+    inline f32 abs(f32 x) {
         return __fabsf(x);
     }
 

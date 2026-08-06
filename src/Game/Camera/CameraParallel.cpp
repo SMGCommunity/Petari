@@ -119,7 +119,7 @@ void CameraParallel::calcRound() {
     }
 
     if (CameraLocalUtil::testCameraPadTriggerRoundLeft()) {
-        s32 divNum = (mRoundAngle < 0.0f ? -1 : 1) * (s32)(((roundInterval / 2) + MR::fabsf(mRoundAngle)) / roundInterval) - 1;
+        s32 divNum = (mRoundAngle < 0.0f ? -1 : 1) * (s32)(((roundInterval / 2) + MR::abs(mRoundAngle)) / roundInterval) - 1;
 
         if (divNum < -::sRoundDiv / 2) {
             divNum += ::sRoundDiv;
@@ -133,7 +133,7 @@ void CameraParallel::calcRound() {
     }
 
     if (CameraLocalUtil::testCameraPadTriggerRoundRight()) {
-        s32 divNum = (mRoundAngle < 0.0f ? -1 : 1) * (s32)(((roundInterval / 2) + MR::fabsf(mRoundAngle)) / roundInterval) + 1;
+        s32 divNum = (mRoundAngle < 0.0f ? -1 : 1) * (s32)(((roundInterval / 2) + MR::abs(mRoundAngle)) / roundInterval) + 1;
 
         if (divNum > ::sRoundDiv / 2) {
             divNum -= ::sRoundDiv;

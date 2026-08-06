@@ -122,7 +122,7 @@ bool SpiderThreadPoint::tryPush(const TVec3f& rPos, f32 radius) {
 void SpiderThreadPoint::startThreadLevelSound() {
     f32 stretchDist = mBasePos.distance(mPosition);
     if (mPrevStretchDist > 0.0f && stretchDist > 50.0f) {
-        f32 diff = __fabsf(mPrevStretchDist - stretchDist);
+        f32 diff = MR::abs(mPrevStretchDist - stretchDist);
         if (diff > 1.0f) {
             MR::startSystemLevelSE("SE_OJ_LV_SPIDER_THREAD_PULL", systemLevelParam(stretchDist, diff * 100.0f));
         }

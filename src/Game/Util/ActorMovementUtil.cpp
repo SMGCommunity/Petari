@@ -159,7 +159,7 @@ namespace MR {
         TVec3f stack_14;
         ((TRot3f*)pActor->getBaseMtx())->getYDir(stack_20);
         TVec3f stack_8 = pActor->mPosition - *MR::getPlayerPos();
-        f32 f0 = __fabsf(vecKillElement(stack_8, stack_20, &stack_14));
+        f32 f0 = MR::abs(vecKillElement(stack_8, stack_20, &stack_14));
         if (a3 < f0) {
             return false;
         }

@@ -51,7 +51,7 @@ namespace MR {
     }
 
     bool isWallPolygon(f32 param1) {
-        return __fabsf(param1) < 0.34202015f;
+        return MR::abs(param1) < 0.34202015f;
     }
 
     bool isFloorPolygon(f32 param1) {

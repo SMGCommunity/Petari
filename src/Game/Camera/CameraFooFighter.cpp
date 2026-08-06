@@ -118,7 +118,7 @@ CameraTargetObj* CameraFooFighter::calc() {
         MR::normalize(&targetSide);
         f32 angle = targetSide.angle(newSide);
 
-        f32 rate = _54 * __fabsf(gravUp.dot(newFront));
+        f32 rate = _54 * MR::abs(gravUp.dot(newFront));
         _58 *= 0.995f;
         if (_58 < rate) {
             _58 = rate;

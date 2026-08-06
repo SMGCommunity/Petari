@@ -240,7 +240,7 @@ void MapPartsRailMover::calcTimeToNextRailPoint(f32* pTime) const {
     bool res = MR::isNearZero(mAcceleration, 0.000099999997f) == false;
 
     if (!res) {
-        *pTime = __fabsf(distance / mSpeed);
+        *pTime = MR::abs(distance / mSpeed);
         return;
     }
 

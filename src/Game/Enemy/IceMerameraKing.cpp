@@ -836,7 +836,7 @@ void IceMerameraKingShockWave::attackSensor(HitSensor* pSender, HitSensor* pRece
         TVec3f v16;
         MR::calcUpVec(&v16, this);
 
-        if (__fabsf(v15.dot(v16)) < 200.0f) {
+        if (MR::abs(v15.dot(v16)) < 200.0f) {
             MR::vecKillElement(v15, v16, &v15);
             MR::sendMsgEnemyAttackFlipMaximumToDir(pReceiver, pSender, v15);
         }

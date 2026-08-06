@@ -80,7 +80,7 @@ void Mario::checkStep() {
             MR::vecKillElement(stepOffset, negGravity, &horizontal);
 
             if (horizontal.length() < 20.0f) {
-                if (__fabsf(frontDot) < 0.3926991f) {
+                if (MR::abs(frontDot) < 0.3926991f) {
                     TVec3f negGravity2 = -*getGravityVec();
                     TVec3f stepOffset2 = _50C - mPosition;
                     f32 stepHeight = stepOffset2.dot(negGravity2);
@@ -90,7 +90,7 @@ void Mario::checkStep() {
                         startStep(_50C);
                     }
                 }
-            } else if (__fabsf(frontDot) < 1.0471976f) {
+            } else if (MR::abs(frontDot) < 1.0471976f) {
                 Mtx rotMtx;
                 PSMTXRotAxisRad(rotMtx, &mSideVec, frontDot);
                 PSMTXMultVec(rotMtx, &mVelocity, &mVelocity);

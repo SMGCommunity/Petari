@@ -675,7 +675,7 @@ void BezierSurface::calcTrianglePatchVertix(TVec3f* pVertexPatch) const {
         pVertexPatch[idx].zero();
         for (i = 0; i < 13; i++) {
             f32 scale = coefTable[idx][i];
-            if (scale > __fabsf(0.000001f)) {
+            if (scale > MR::abs(0.000001f)) {
                 MR::vecScaleAdd(&pVertexPatch[idx], &mCtrlPts[i], scale);
             }
         }
@@ -696,11 +696,11 @@ void BezierSurface::calcTrianglePatchNormal(TVec3f* pNormalPatch) const {
         TVec3f tangentS(0.0f, 0.0f, 0.0f);
         for (i = 0; i < 13; i++) {
             f32 scaleS = tangentSTable[idx][i];
-            if (__fabsf(scaleS) > 0.000001f) {
+            if (MR::abs(scaleS) > 0.000001f) {
                 MR::vecScaleAdd(&tangentS, &mCtrlPts[i], scaleS);
             }
             f32 scaleT = tangentTTable[idx][i];
-            if (__fabsf(scaleT) > 0.000001f) {
+            if (MR::abs(scaleT) > 0.000001f) {
                 MR::vecScaleAdd(&tangentT, &mCtrlPts[i], scaleT);
             }
         }

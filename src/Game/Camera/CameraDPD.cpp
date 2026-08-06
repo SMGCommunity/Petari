@@ -79,9 +79,6 @@ void CameraDPD::reset() {
 }
 
 CameraTargetObj* CameraDPD::calc() {
-    // FIXME: float regswap
-    // https://decomp.me/scratch/bUvS4
-
     if (mCameraState == CameraState_1) {
         mMtx.identity();
         mMtx.setXDir(CameraLocalUtil::getTarget(this)->getSideVec());
@@ -96,9 +93,8 @@ CameraTargetObj* CameraDPD::calc() {
     MR::getCorePadPointingPos(&pointPos, WPAD_CHAN0);
 
     if (mResetPointingPos) {
-        // FIXME: float regswap
         pointPos.set(0.0f, 0.0f);
-        if (__fabsf(mRealPointPos.x) < 0.5f && __fabsf(mRealPointPos.y) < 0.5f) {
+        if (MR::abs(mRealPointPos.x) < 0.5f && MR::abs(mRealPointPos.y) < 0.5f) {
             mResetPointingPos = false;
         }
     }

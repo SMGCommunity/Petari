@@ -77,7 +77,7 @@ void CameraInwardTower::calcIdealPose() {
 
     f32 speed, angle;
     angle = mAngleY;
-    speed = mAngleMax * __fabsf(rate) / ::sAttenuation;
+    speed = mAngleMax * MR::abs(rate) / ::sAttenuation;
     if (CameraLocalUtil::tryCameraResetTrigger()) {
         mIsResetting = true;
     }

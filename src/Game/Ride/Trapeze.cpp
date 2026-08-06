@@ -137,7 +137,7 @@ void Trapeze::exeFree() {
     updateStickMtx();
 
     if (isNerve(&NrvTrapeze::TrapezeNrvFree::sInstance)) {
-        if (mSwingPoint->mVelocity.squared() < 1.0f && 1.0f - __fabsf(mSwingPoint->mUp.y) < 0.001f) {
+        if (mSwingPoint->mVelocity.squared() < 1.0f && 1.0f - MR::abs(mSwingPoint->mUp.y) < 0.001f) {
             setNerve(&NrvTrapeze::TrapezeNrvStop::sInstance);
         }
     }
@@ -379,7 +379,7 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         TVec3f posDiff(pSender->mHost->mPosition);
         posDiff.sub(pReceiver->mPosition);
 
-        if (__fabsf(posDiff.dot(mFront)) > 80.0f) {
+        if (MR::abs(posDiff.dot(mFront)) > 80.0f) {
             return false;
         }
 
@@ -409,13 +409,13 @@ bool Trapeze::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver)
         f32 vel = MR::getPlayerVelocity()->dot(mFront);
 
         TVec3f swingVel(mFront);
-        if (__fabsf(vel) < 3.0f && 3.0f < projGrabPointVel) {  // is this a bug??
+        if (MR::abs(vel) < 3.0f && 3.0f < projGrabPointVel) {  // is this a bug??
             vel = projGrabPointVel;
         }
         swingVel.scale(vel);
 
         TVec3f grabFront(mFront);
-        if (__fabsf(mPosition.y - grabPos.y) < 1.0f) {
+        if (MR::abs(mPosition.y - grabPos.y) < 1.0f) {
             grabFront.set< f32 >(0.0f, -1.0f, 0.0f);
         }
 
@@ -615,7 +615,7 @@ bool Trapeze::updateSwing() {
         return true;
     }
 
-    if (!mIsSwingFront && !mIsSwingBack && __fabsf(mSwingVel) < 10.0f && mGrabPoint->mUp.y >= 0.99f) {
+    if (!mIsSwingFront && !mIsSwingBack && MR::abs(mSwingVel) < 10.0f && mGrabPoint->mUp.y >= 0.99f) {
         setNerve(&NrvTrapeze::TrapezeNrvSwingWait::sInstance);
         return true;
     }

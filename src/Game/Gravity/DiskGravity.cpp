@@ -75,7 +75,7 @@ bool DiskGravity::calcOwnGravityVector(TVec3f* pDest, f32* pDistance, const TVec
 
     if (distanceToCentralAxis <= mWorldRadius) {
         gravity = centralAxisY >= 0.0f ? -mWorldNormal : mWorldNormal;
-        distance = __fabsf(centralAxisY);
+        distance = MR::abs(centralAxisY);
     } else {
         if (!mEnableEdgeGravity) {
             return false;

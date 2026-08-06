@@ -819,13 +819,13 @@ void MarioAnimator::setTilt() {
     tiltAngle *= ratio;
 
     const f32 maxTilt = HALF_PI;
-    f32 absTilt = __fabsf(tiltAngle);
+    f32 absTilt = MR::abs(tiltAngle);
     if (absTilt >= maxTilt) {
         tiltAngle *= (maxTilt / absTilt);
     }
 
-    f32 absNew = __fabsf(tiltAngle);
-    f32 absOld = __fabsf(_58);
+    f32 absNew = MR::abs(tiltAngle);
+    f32 absOld = MR::abs(_58);
 
     if (absNew > absOld) {
         _58 = 0.9f * _58 + 0.1f * tiltAngle;

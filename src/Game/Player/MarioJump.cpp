@@ -1528,7 +1528,7 @@ void Mario::moveWallSlide(f32 a1) {
 
     if (!MR::normalizeOrZero(&crossVec) && isStickOn()) {
         f32 dot = crossVec.dot(getWorldPadDir());
-        const f32 absDot = __fabsf(dot);
+        const f32 absDot = MR::abs(dot);
         if (absDot > 0.2f) {
             if (dot < -0.2f) {
                 dot = (0.2f + dot) / 0.8f;
@@ -2245,7 +2245,7 @@ void Mario::doLanding() {
     _3CE = 0;
     _1C_WORD |= 0x2000;
 
-    f32 deltadot = __fabsf((mPosition - _4B0).dot(*getGravityVec()));
+    f32 deltadot = MR::abs((mPosition - _4B0).dot(*getGravityVec()));
     if (_3BC <= 3 && deltadot < 1.0f && mJumpVec.length() < 10.0f) {
         stopAnimation(static_cast< const char* >(nullptr), "基本");
         return;

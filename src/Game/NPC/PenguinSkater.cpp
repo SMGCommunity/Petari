@@ -137,7 +137,7 @@ f32 PenguinSkater::calcLead() const {
     f32 length = MR::getRailTotalLength(mRail);
 
     f32 half = length / 2;
-    f32 diff = __fabsf(coord - playerRailCoord);
+    f32 diff = MR::abs(coord - playerRailCoord);
     bool ahead = coord > playerRailCoord;
 
     if (MR::isRailGoingToEnd(mRail)) {
@@ -166,17 +166,17 @@ void PenguinSkater::stopRail(f32 blendRate) {
 }
 
 bool PenguinSkater::inProvokeRangeIn(f32 dist) const {
-    f32 absDist = __fabsf(dist);
-    return (__fabsf((MR::getRailTotalLength(mRail) / 2) - absDist) < ::sProvokeRangeIn);
+    f32 absDist = MR::abs(dist);
+    return (MR::abs((MR::getRailTotalLength(mRail) / 2) - absDist) < ::sProvokeRangeIn);
 }
 
 bool PenguinSkater::inProvokeRangeOut(f32 dist) const {
-    f32 absDist = __fabsf(dist);
-    return (__fabsf((MR::getRailTotalLength(mRail) / 2) - absDist) < ::sProvokeRangeOut);
+    f32 absDist = MR::abs(dist);
+    return (MR::abs((MR::getRailTotalLength(mRail) / 2) - absDist) < ::sProvokeRangeOut);
 }
 
 bool PenguinSkater::inSwitchRange(f32 dist) const {
-    if (__fabsf(dist) > ::sSwitchRange) {
+    if (MR::abs(dist) > ::sSwitchRange) {
         return false;
     }
     return mCrossPoint != -1;

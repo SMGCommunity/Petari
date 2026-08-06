@@ -1,6 +1,7 @@
 #include "Game/System/WPadAcceleration.hpp"
 #include "Game/System/WPad.hpp"
-#include "revolution/wpad.h"
+#include "Game/Util/MathUtil.hpp"
+#include <revolution/wpad.h>
 
 bool WPadAcceleration::getPastAcceleration(TVec3f* pOut, s32 idx) const {
     if (idx >= _628) {
@@ -110,7 +111,7 @@ void WPadAcceleration::updateIsStable() {
     TVec3f v2 = mHistory[0] - _10;
     _20 = 1;
 
-    if (__fabsf(v2.x) >= 0.30f || __fabsf(v2.y) >= 0.30f || __fabsf(v2.z) >= 0.30f) {
+    if (MR::abs(v2.x) >= 0.30f || MR::abs(v2.y) >= 0.30f || MR::abs(v2.z) >= 0.30f) {
         _10 = mHistory[0];
         _20 = 0;
     }

@@ -39,7 +39,7 @@ CameraTargetObj* CameraFix::calc() {
     }
     MR::normalize(&front);
 
-    if (__fabsf(front.dot(up)) > 0.98f) {
+    if (MR::abs(front.dot(up)) > 0.98f) {
         up.set< f32 >(front.y, front.z, front.x);
     }
 

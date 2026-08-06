@@ -61,7 +61,7 @@ void CameraTripodBossJoint::calcIdealPose() {
             _6C = _70;
         } else if (CameraLocalUtil::testCameraPadTriggerRoundLeft()) {
             f32 f = _70;
-            f32 fa = __fabsf(_70);
+            f32 fa = MR::abs(_70);
             s32 dir;
             if (f < 0.0f) {
                 dir = -1;
@@ -84,7 +84,7 @@ void CameraTripodBossJoint::calcIdealPose() {
             _6C = mulint * common;
         } else if (CameraLocalUtil::testCameraPadTriggerRoundRight()) {
             f32 f = _70;
-            f32 fa = __fabsf(_70);
+            f32 fa = MR::abs(_70);
             s32 dir;
             if (f < 0.0f) {
                 dir = -1;

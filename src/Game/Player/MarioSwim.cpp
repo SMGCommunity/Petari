@@ -1272,7 +1272,7 @@ void MarioSwim::decideVelocity() {
                     isSpinning = false;
                 }
                 if (!isSpinning) {
-                    f32 stickX = __fabsf(MarioModule::getStickX());
+                    f32 stickX = MR::abs(MarioModule::getStickX());
                     f32 stickFactor = 1.0f - (0.3f * stickX);
                     f32 threshold = 0.75f * stickFactor;
 
@@ -1280,7 +1280,7 @@ void MarioSwim::decideVelocity() {
                         f32 stickY = getStickY();
                         f32 normalizedY = (stickY - threshold) / (1.0f - threshold);
                         mVerticalAngle = ((1.0f - normalizedY) * DEG_TO_RAD(120)) + (normalizedY * DEG_TO_RAD(150));
-                    } else if (mVerticalAngle < PI / 2 && __fabsf(getStickY()) < 0.1f && mActionLockTimer == 0 && _1E != 0) {
+                    } else if (mVerticalAngle < PI / 2 && MR::abs(getStickY()) < 0.1f && mActionLockTimer == 0 && _1E != 0) {
                         mVerticalAngle = PI / 2;
                     }
 
@@ -1430,7 +1430,7 @@ void MarioSwim::decideAnimation() {
     }
 
     if (isAnimationRun(nullptr) && !isAnimationRun("水泳上昇呼吸")) {
-        if (__fabsf(getStickX()) < 0.1f) {
+        if (MR::abs(getStickX()) < 0.1f) {
             stopAnimation("水泳ターン左");
             stopAnimation("水泳ターン右");
         }
@@ -1454,7 +1454,7 @@ void MarioSwim::decideAnimation() {
                 if (getStickP() > 0.1f) {
                     animIndex = 1;
                 }
-            } else if (__fabsf(getStickX()) > 0.1f && mVerticalAngle < 1.6534699f && mForwardSpeed < ::cTurnMotionSpeed) {
+            } else if (MR::abs(getStickX()) > 0.1f && mVerticalAngle < 1.6534699f && mForwardSpeed < ::cTurnMotionSpeed) {
                 if (getStickX() < 0.0f) {
                     changeAnimation("水泳ターン左", static_cast< const char* >(nullptr));
                 } else {
@@ -2407,7 +2407,7 @@ void MarioSwim::updateTilt() {
             f32 stickX = getStickX();
 
             f32 angle = (stickX * PI) / 6.0f;
-            f32 absAngle = __fabsf(angle);
+            f32 absAngle = MR::abs(angle);
 
             TVec3f padDir = getWorldPadDir();
             f32 dot = mFrontVec.dot(padDir);
@@ -2420,7 +2420,7 @@ void MarioSwim::updateTilt() {
                 targetTiltX = -targetTiltX;
             }
 
-            if (__fabsf(mCurrentTiltX) < __fabsf(targetTiltX)) {
+            if (MR::abs(mCurrentTiltX) < MR::abs(targetTiltX)) {
                 blendX = 0.01f;
             } else {
                 blendX = 0.03f;
