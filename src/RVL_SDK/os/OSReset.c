@@ -1,25 +1,23 @@
-#include <revolution/os.h>
-#include <revolution/dvd.h>
-#include <revolution/pad.h>
-#include <revolution/sc.h>
-#include <revolution/os/OSExecParams.h>
-#include <private/flipper.h>
 #include <mem.h>
 #include <private/OSLoMem.h>
+#include <private/flipper.h>
+#include <revolution/dvd.h>
+#include <revolution/os.h>
+#include <revolution/os/OSExecParams.h>
+#include <revolution/pad.h>
+#include <revolution/sc.h>
 
 extern BOOL __OSInNandBoot;
 extern BOOL __OSInReboot;
 
 extern OSExecParams __OSRebootParams;
 #ifdef __MWERKS__
-OSThreadQueue        __OSActiveThreadQueue : (OS_BASE_CACHED | OS_ACTIVETHREADQUEUE_ADDR);
+OSThreadQueue __OSActiveThreadQueue : (OS_BASE_CACHED | OS_ACTIVETHREADQUEUE_ADDR);
 #else
 OSThreadQueue __OSActiveThreadQueue;
 #endif
 
-
-typedef struct OSShutdownFunctionQueue
-{
+typedef struct OSShutdownFunctionQueue {
     OSShutdownFunctionInfo* head;
     OSShutdownFunctionInfo* tail;
 } OSShutdownFunctionQueue;
@@ -28,42 +26,40 @@ static OSShutdownFunctionQueue ShutdownFunctionQueue;
 static u32 bootThisDol = 0;
 volatile BOOL __OSIsReturnToIdle = FALSE;
 
-#define EnqueueTail(queue, info)                            \
-do {                                                        \
-    OSShutdownFunctionInfo* __prev;                         \
-                                                            \
-    __prev = (queue)->tail;                                 \
-    if (__prev == NULL)                                     \
-        (queue)->head = (info);                             \
-    else                                                    \
-        __prev->next = (info);                              \
-    (info)->prev = __prev;                                  \
-    (info)->next = NULL;                                    \
-    (queue)->tail = (info);                                 \
-} while (0)
+#define EnqueueTail(queue, info)                                                                                                                     \
+    do {                                                                                                                                             \
+        OSShutdownFunctionInfo* __prev;                                                                                                              \
+                                                                                                                                                     \
+        __prev = (queue)->tail;                                                                                                                      \
+        if (__prev == NULL)                                                                                                                          \
+            (queue)->head = (info);                                                                                                                  \
+        else                                                                                                                                         \
+            __prev->next = (info);                                                                                                                   \
+        (info)->prev = __prev;                                                                                                                       \
+        (info)->next = NULL;                                                                                                                         \
+        (queue)->tail = (info);                                                                                                                      \
+    } while (0)
 
-#define EnqueuePrio(queue, info)                            \
-do {                                                        \
-    OSShutdownFunctionInfo* __prev;                         \
-    OSShutdownFunctionInfo* __next;                         \
-                                                            \
-    for (__next = (queue)->head;                            \
-         __next && __next->priority <= info->priority;      \
-         __next = __next->next)                             \
-            ;                                               \
-    if (__next == NULL)                                     \
-        EnqueueTail(queue, info);                           \
-    else {                                                  \
-        (info)->next = __next;                              \
-        __prev = __next->prev;                              \
-        __next->prev = (info);                              \
-        (info)->prev = __prev;                              \
-        if (__prev == NULL)                                 \
-            (queue)->head = (info);                         \
-        else                                                \
-            __prev->next = (info);                          \
-    }                                                       \
-} while (0)
+#define EnqueuePrio(queue, info)                                                                                                                     \
+    do {                                                                                                                                             \
+        OSShutdownFunctionInfo* __prev;                                                                                                              \
+        OSShutdownFunctionInfo* __next;                                                                                                              \
+                                                                                                                                                     \
+        for (__next = (queue)->head; __next && __next->priority <= info->priority; __next = __next->next)                                            \
+            ;                                                                                                                                        \
+        if (__next == NULL)                                                                                                                          \
+            EnqueueTail(queue, info);                                                                                                                \
+        else {                                                                                                                                       \
+            (info)->next = __next;                                                                                                                   \
+            __prev = __next->prev;                                                                                                                   \
+            __next->prev = (info);                                                                                                                   \
+            (info)->prev = __prev;                                                                                                                   \
+            if (__prev == NULL)                                                                                                                      \
+                (queue)->head = (info);                                                                                                              \
+            else                                                                                                                                     \
+                __prev->next = (info);                                                                                                               \
+        }                                                                                                                                            \
+    } while (0)
 
 void OSRegisterShutdownFunction(OSShutdownFunctionInfo* info) {
     EnqueuePrio(&ShutdownFunctionQueue, info);
@@ -95,17 +91,17 @@ static void KillThreads(void);
 void __OSShutdownDevices(u32 event) {
     BOOL rc, disableRecalibration, doRecal;
 
-    switch(event) {
-      case 0:
-      case 5:
-      case 6:
+    switch (event) {
+    case 0:
+    case 5:
+    case 6:
         doRecal = FALSE;
         break;
-      case 2:
-      case 3:
-      case 4:
-      case 1:
-      default:
+    case 2:
+    case 3:
+    case 4:
+    case 1:
+    default:
         doRecal = TRUE;
         break;
     }
@@ -116,9 +112,11 @@ void __OSShutdownDevices(u32 event) {
         disableRecalibration = __PADDisableRecalibration(TRUE);
     }
 
-    while (!__OSCallShutdownFunctions(FALSE, event));
+    while (!__OSCallShutdownFunctions(FALSE, event))
+        ;
 
-    while (!__OSSyncSram());
+    while (!__OSSyncSram())
+        ;
 
     OSDisableInterrupts();
     rc = __OSCallShutdownFunctions(TRUE, event);
@@ -147,8 +145,7 @@ u32 OSGetResetCode(void) {
 
     if (__OSRebootParams.valid) {
         code = (0x80000000 | __OSRebootParams.restartCode);
-    }
-    else {
+    } else {
         code = (__PIRegs[9] & 0xFFFFFFF8) >> 3;
     }
 
@@ -164,12 +161,10 @@ u8 __OSGetDiscState(u8 last) {
 
     if (__DVDGetCoverStatus() != 2) {
         return 3;
-    }
-    else {
+    } else {
         if ((last == 1) && (__OSGetRTCFlags(&flags) && !flags)) {
             return 1;
-        }
-        else {
+        } else {
             return 2;
         }
     }
@@ -199,8 +194,8 @@ void OSShutdownSystem(void) {
     memset(&idleModeInfo, 0, sizeof(SCIdleModeInfo));
 
     SCInit();
-    while ( SCCheckStatus() == 1 )
-    {}
+    while (SCCheckStatus() == 1) {
+    }
 
     SCGetIdleMode(&idleModeInfo);
     __OSStopPlayRecord();
@@ -209,26 +204,24 @@ void OSShutdownSystem(void) {
     __OSReadStateFlags(&state);
     state.lastDiscState = __OSGetDiscState(state.lastDiscState);
 
-    if(idleModeInfo.mode == 1) {
-        state.lastShutdown  = 5;
-    }
-    else {
-        state.lastShutdown  = 1;
+    if (idleModeInfo.mode == 1) {
+        state.lastShutdown = 5;
+    } else {
+        state.lastShutdown = 1;
     }
 
     __OSClearRTCFlags();
     __OSWriteStateFlags(&state);
     __OSGetIOSRev(&iosRev);
 
-    if ( idleModeInfo.mode == 1 ) {
+    if (idleModeInfo.mode == 1) {
         __OSIsReturnToIdle = TRUE;
 
         OSDisableScheduler();
         __OSShutdownDevices(5);
         OSEnableScheduler();
         __OSLaunchMenu();
-    }
-    else {
+    } else {
         OSDisableScheduler();
         __OSShutdownDevices(2);
         __OSShutdownToSBY();
@@ -245,8 +238,7 @@ void OSRestart(u32 resetCode) {
         __OSShutdownDevices(4);
         OSEnableScheduler();
         __OSRelaunchTitle(resetCode);
-    }
-    else if (type == 0x80) {
+    } else if (type == 0x80) {
         OSDisableScheduler();
         __OSShutdownDevices(4);
         OSEnableScheduler();
@@ -262,18 +254,15 @@ static void KillThreads(void) {
     OSThread* thread;
     OSThread* next;
 
-    for (thread = __OSActiveThreadQueue.head;
-         thread;
-         thread = next)
-    {
+    for (thread = __OSActiveThreadQueue.head; thread; thread = next) {
         next = thread->linkActive.next;
 
         switch (thread->state) {
-          case 1:
-          case 4:
+        case 1:
+        case 4:
             OSCancelThread(thread);
             break;
-          default:
+        default:
             break;
         }
     }
@@ -303,4 +292,60 @@ void __OSReturnToMenu(u8 menuMode) {
 void OSReturnToMenu(void) {
     __OSReturnToMenu(0);
     OSPanic(__FILE__, 0x348, "OSReturnToMenu(): Falied to boot system menu.\n");
+}
+
+void OSReturnToSetting(u8 setting) {
+    char* url;
+
+    switch (setting) {
+    case OS_SETTING_CALENDAR: {
+        url = OS_SYSLAUNCH_URL_CALENDAR;
+        break;
+    }
+    case OS_SETTING_DISPLAY: {
+        url = OS_SYSLAUNCH_URL_DISPLAY;
+        break;
+    }
+    case OS_SETTING_SOUND: {
+        url = OS_SYSLAUNCH_URL_SOUND;
+        break;
+    }
+    case OS_SETTING_PARENTAL: {
+        url = OS_SYSLAUNCH_URL_PARENTAL;
+        break;
+    }
+    case OS_SETTING_INTERNET: {
+        url = OS_SYSLAUNCH_URL_INTERNET;
+        break;
+    }
+    case OS_SETTING_WC24: {
+        url = OS_SYSLAUNCH_URL_WC24;
+        break;
+    }
+    case OS_SETTING_UPDATE: {
+        url = OS_SYSLAUNCH_URL_UPDATE;
+        break;
+    }
+    default: {
+        OSReport("OSReturnToSetting(): You can't specify %d.  \n", setting);
+        OSPanic(__FILE__, 0x394, "");
+        // NOT REACHED
+    }
+    }
+
+    __OSReturnToMenul(1, url, NULL);
+}
+
+void __OSReturnToMenuForError(void) {
+    OSStateFlags state;
+    __OSReadStateFlags(&state);
+    state.lastDiscState = 2;
+    state.lastShutdown = 3;
+    __OSClearRTCFlags();
+    __OSWriteStateFlags(&state);
+    __OSLaunchMenu();
+    OSDisableScheduler();
+    __VISetRGBModeImm();
+    __OSHotResetForError();
+    OSPanic(__FILE__, 0x3BB, "__OSReturnToMenu(): Falied to boot system menu.\n");
 }
