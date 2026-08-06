@@ -2,6 +2,8 @@
 
 #include "Game/NameObj/NameObj.hpp"
 
+class RailRider;
+
 class CameraRailHolder : public NameObj {
 public:
     class ZoneRail {
@@ -24,7 +26,7 @@ public:
 
     virtual ~CameraRailHolder();
 
-    // getRider(s32, s32) const;
+    RailRider* getRider(s32, s32) const;
     // find(s32, s32) const;
 
     ZoneRail* mRails;  // 0xC
