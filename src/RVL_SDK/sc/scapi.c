@@ -1,5 +1,19 @@
 #include <revolution/sc.h>
 
+u8 SCGetAspectRatio(void) {
+    u8 ratio;
+
+    if (!SCFindU8Item(&ratio, SC_ITEM_ID_IPL_ASPECT_RATIO)) {
+        ratio = SC_ASPECT_RATIO_DEFAULT;
+    } else {
+        if (ratio != SC_ASPECT_RATIO_16x9) {
+            ratio = SC_ASPECT_RATIO_4x3;
+        }
+    }
+
+    return ratio;
+}
+
 s8 SCGetDisplayOffsetH(void) {
     s8 offset;
 
