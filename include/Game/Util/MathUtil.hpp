@@ -421,7 +421,7 @@ namespace MR {
     }
 
     inline f32 epsilon() {
-        return (f32)JGeometry::TUtil< f32 >::epsilon();
+        return JGeometry::TUtil< f32 >::epsilon();
     }
 
     /// @brief Computes the cosine of a number, in radians.

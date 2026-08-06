@@ -263,13 +263,13 @@ namespace JGeometry {
         }
 
         void getEulerXYZ(TVec3f& rDest) const {
-            if (this->mMtx[2][0] - 1.0f >= -(f32)JGeometry::TUtil< f32 >::epsilon()) {
+            if (this->mMtx[2][0] - 1.0f >= -JGeometry::TUtil< f32 >::epsilon()) {
                 rDest.set(JMAATan2(-this->mMtx[0][1], this->mMtx[1][1]), -HALF_PI, 0.0f);
                 return;
             }
 
             f32 f1 = 1.0f;  // TODO: this is a hack to fix the float regswap
-            if (this->mMtx[2][0] + f1 <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
+            if (this->mMtx[2][0] + f1 <= JGeometry::TUtil< f32 >::epsilon()) {
                 rDest.set(JMAATan2(this->mMtx[0][1], this->mMtx[1][1]), HALF_PI, 0.0f);
                 return;
             }

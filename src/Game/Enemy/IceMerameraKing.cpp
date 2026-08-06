@@ -32,7 +32,7 @@
 void IceMerameraKing_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
-    f32 f3 = JGeometry::TUtil< f32 >::epsilon();
+    f32 f3 = MR::epsilon();
     (void)0.5f;
     (void)3.0f;
     (void)2.0f;
@@ -722,16 +722,7 @@ void IceMerameraKing::addVelocityToInitPos() {
     if (0.0f < mGravity.dot(v12)) {
         MR::vecKillElement(v12, mGravity, &v12);
     }
-    f32 squared = v12.squared();
-    f32 half = 0.5f;
-
-    if (squared <= 0.0000038146973f) {
-        squared = squared;
-    } else {
-        f32 inv = JGeometry::TUtil< f32 >::inv_sqrt(squared);
-        f32 v9 = inv * half;
-        v12.scale(v9);
-    }
+    v12.setLength(0.5f);
     mVelocity.add(v12);
 }
 

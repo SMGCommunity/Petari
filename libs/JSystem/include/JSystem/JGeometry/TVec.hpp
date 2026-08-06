@@ -122,7 +122,7 @@ namespace JGeometry {
         }
 
         inline bool isZero() const {
-            return dot(*this) <= (f32)JGeometry::TUtil< f32 >::epsilon();
+            return dot(*this) <= JGeometry::TUtil< f32 >::epsilon();
         }
 
         void sub(const TVec2< T >& rOther) {
@@ -206,7 +206,7 @@ namespace JGeometry {
 
         f32 setLength(f32 newlength) {
             f32 oldlength = squared();
-            if (oldlength <= 0.0000038146973f) {
+            if (oldlength <= JGeometry::TUtil< f32 >::epsilon()) {
                 return 0.0f;
             }
             f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
@@ -558,8 +558,13 @@ namespace JGeometry {
         }
 
         bool operator==(const TVec3& rVec) const {
-            return TUtil< f32 >::epsilonEquals(x, rVec.x, 0.0000038146973f) && TUtil< f32 >::epsilonEquals(y, rVec.y, 0.0000038146973f) &&
-                   TUtil< f32 >::epsilonEquals(z, rVec.z, 0.0000038146973f);
+            return TUtil< f32 >::epsilonEquals(x, rVec.x, JGeometry::TUtil< f32 >::epsilon()) &&
+                   TUtil< f32 >::epsilonEquals(y, rVec.y, JGeometry::TUtil< f32 >::epsilon()) &&
+                   TUtil< f32 >::epsilonEquals(z, rVec.z, JGeometry::TUtil< f32 >::epsilon());
+        }
+
+        bool operator!=(const TVec3& rVec) const {
+            return !(*this == rVec);
         }
 
         TVec3 operator-() const {
@@ -737,12 +742,12 @@ namespace JGeometry {
         }
 
         bool isZero() const {
-            return squared() <= 0.0000038146973f;
+            return squared() <= JGeometry::TUtil< f32 >::epsilon();
         }
 
         f32 setLength(f32 newlength) {
             f32 oldlength = squared();
-            if (oldlength <= 0.0000038146973f) {
+            if (oldlength <= JGeometry::TUtil< f32 >::epsilon()) {
                 return 0.0f;
             }
             f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(oldlength);
@@ -752,7 +757,7 @@ namespace JGeometry {
 
         f32 setLength(const TVec3& rVec, f32 newlength) {
             f32 oldlength = rVec.squared();
-            if (oldlength <= 0.0000038146973f) {
+            if (oldlength <= JGeometry::TUtil< f32 >::epsilon()) {
                 zero();
                 return 0.0f;
             }
@@ -872,7 +877,7 @@ namespace JGeometry {
         /* General operations */
         void normalize() {
             f32 length = squared();
-            if (length <= (f32)JGeometry::TUtil< f32 >::epsilon()) {
+            if (length <= JGeometry::TUtil< f32 >::epsilon()) {
                 TVec4< T >::template set< T >(0.0f, 0.0f, 0.0f, 1.0f);
                 return;
             }
@@ -907,7 +912,7 @@ namespace JGeometry {
         void setRotate(const TVec3< f32 >& rA, const TVec3< f32 >& rB, f32 ratio) {
             TVec3< f32 > dir = rA.cross(rB);
             f32 crossPart = dir.length();
-            if (crossPart <= 0.0000038146973f) {
+            if (crossPart <= JGeometry::TUtil< f32 >::epsilon()) {
                 set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
             } else {
                 f32 dotPart = rA.dot(rB);

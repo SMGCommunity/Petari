@@ -597,7 +597,7 @@ bool MarioSwim::update() {
                 }
 
                 if (getStickY() <= 0) {
-                    mVerticalAngle = 0.00000381469726562f;
+                    mVerticalAngle = MR::epsilon();
                     mStickInputYInertia = 1.0f;
                 }
             } else {
@@ -1032,10 +1032,7 @@ bool MarioSwim::update() {
                 TVec3f stack_F8;
                 MR::extractMtxTrans(followMtx->toMtxPtr(), &stack_F8);
 
-                bool cond = JGeometry::TUtil< f32 >::epsilonEquals(stack_F8.x, mAreaFollowMtxPos.x, 0.000003814697265625f) &&
-                            JGeometry::TUtil< f32 >::epsilonEquals(stack_F8.y, mAreaFollowMtxPos.y, 0.000003814697265625f) &&
-                            JGeometry::TUtil< f32 >::epsilonEquals(stack_F8.z, mAreaFollowMtxPos.z, 0.000003814697265625f);
-                if (!cond) {
+                if (stack_F8 != mAreaFollowMtxPos) {
                     // TVec3f diff = stack_F8 - _154;
                     if ((stack_F8 - mAreaFollowMtxPos).length() < 10.0f) {
                         addVelocity(stack_F8 - mAreaFollowMtxPos);

@@ -286,7 +286,7 @@ namespace MR {
         if (rSrc.squared() > length * length) {
             f32 sqr = rSrc.squared();
 
-            if (length <= 0.0000038146973f) {
+            if (length <= MR::epsilon()) {
                 pDst->zero();
             } else {
                 f32 invSqrt = JGeometry::TUtil< f32 >::inv_sqrt(sqr);

@@ -12,7 +12,7 @@ void CameraMedianPlanet_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
     (void)0.5f;
-    (void)(f32) JGeometry::TUtil< f32 >::epsilon();
+    (void)MR::epsilon();
     (void)MR::pi();
 }
 

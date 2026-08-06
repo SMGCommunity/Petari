@@ -30,7 +30,7 @@
 void Metbo_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
-    f32 a = JGeometry::TUtil< f32 >::epsilon();
+    f32 a = MR::epsilon();
     (void)-1.0f;
 }
 

@@ -784,11 +784,7 @@ void Poihana::controlVelocity() {
         f32 magVel = isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ? 10.0f : 5.0f;
 
         if (mVelocity.length() > magVel) {
-            f32 squared = mVelocity.squared();
-
-            if (squared > 0.0000038146973f) {
-                mVelocity.scale(JGeometry::TUtil< f32 >::inv_sqrt(squared));
-            }
+            mVelocity.setLength(magVel);
         }
 
         if (MR::isNearZero(mVelocity)) {

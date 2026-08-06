@@ -79,7 +79,7 @@ namespace JGeometry {
             return outVal * 0.5f * (3.0f - outVal * outVal * val);
         }
 
-        static inline double epsilon() {
+        static inline f32 epsilon() {
             return 32.0f * FLT_EPSILON;
         }
     };
