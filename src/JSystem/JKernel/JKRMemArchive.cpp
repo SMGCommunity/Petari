@@ -202,11 +202,10 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
         mMountMode = MOUNT_MODE_0;
     } else {
         mInfoBlock = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
-        ;
-        mDirs = reinterpret_cast< SDIDirEntry* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mDirOffset);
-        mFiles = reinterpret_cast< SDIFileEntry* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mFileOffset);
-        mStringTable = reinterpret_cast< char* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mStringTableOffset);
-        mFileDataStart = reinterpret_cast< u8* >(mHeader) + mHeader->mFileDataOffset + mHeader->mHeaderSize;
+        mDirs = reinterpret_cast< SDIDirEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mDirOffset]);
+        mFiles = reinterpret_cast< SDIFileEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mFileOffset]);
+        mStringTable = reinterpret_cast< char* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mStringTableOffset]);
+        mFileDataStart = &reinterpret_cast< u8* >(mHeader)[mHeader->mFileDataOffset + mHeader->mHeaderSize];
         _6C = true;
     }
 
@@ -217,10 +216,9 @@ bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
 bool JKRMemArchive::open(void* pData, unsigned long a2, JKRMemBreakFlag breakFlag) {
     mHeader = reinterpret_cast< RarcHeader* >(pData);
     mInfoBlock = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
-    ;
-    mDirs = reinterpret_cast< SDIDirEntry* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mDirOffset);
-    mFiles = reinterpret_cast< SDIFileEntry* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mFileOffset);
-    mStringTable = reinterpret_cast< char* >(reinterpret_cast< u8* >(mInfoBlock) + mInfoBlock->mStringTableOffset);
+    mDirs = reinterpret_cast< SDIDirEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mDirOffset]);
+    mFiles = reinterpret_cast< SDIFileEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mFileOffset]);
+    mStringTable = reinterpret_cast< char* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mStringTableOffset]);
     mFileDataStart = reinterpret_cast< u8* >(mHeader) + mHeader->mFileDataOffset + mHeader->mHeaderSize;
     _6C = breakFlag == JKR_MEM_BREAK_FLAG_1;
     mHeap = JKRHeap::findFromRoot(pData);

@@ -17,6 +17,14 @@ JKRAramArchive::JKRAramArchive(long entryNum, EMountDirection mountDir) : JKRArc
     mIsMounted = true;
 }
 
+int JKRConvertAttrToCompressionType(int arg) {
+    if ((arg & 0b100) == 0) {
+        return 0;
+    }
+
+    return ((arg & 0b10000000) != 0) + 1;
+}
+
 /*JKRAramArchive::~JKRAramArchive() {
     if (mIsMounted == true) {
         if (mInfoBlock != nullptr) {
