@@ -89,7 +89,7 @@ typedef struct SCBtDeviceInfoArray {
 } SCBtDeviceInfoArray;
 
 typedef void (*SCReloadConfFileCallback)(s32 result);
-typedef void (*SCFlushCallback)(SCStatus status);
+typedef void (*SCFlushCallback)(u32 result);
 
 typedef enum {
     SC_ITEM_ID_IPL_COUNTER_BIAS,

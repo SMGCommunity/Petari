@@ -212,7 +212,7 @@ static void ReverseAddr(BD_ADDR_PTR pDst, BD_ADDR src) {
     OSRestoreInterrupts(enabled);
 }
 
-static void SyncFlushCallback(SCStatus status) {
+static void SyncFlushCallback(u32 status) {
     WUDCB* p = &_wcb;
 
     DEBUGPrint("SyncFlushCallback() : %d, Sync: %d\n", status, _wcb.syncState);
@@ -228,7 +228,7 @@ static void SyncFlushCallback(SCStatus status) {
     }
 }
 
-static void DeleteFlushCallback(SCStatus status) {
+static void DeleteFlushCallback(u32 status) {
     WUDCB* p = &_wcb;
 
     DEBUGPrint("DeleteFlushCallback() : %d, Delete: %d\n", status, _wcb.deleteState);
@@ -244,7 +244,7 @@ static void DeleteFlushCallback(SCStatus status) {
     }
 }
 
-static void ShutFlushCallback(SCStatus status) {
+static void ShutFlushCallback(u32 status) {
     WUDCB* p = &_wcb;
 
     DEBUGPrint("ShutFlushCallback() : %d, Shutdown: %d\n", status, _wcb.shutdownState);

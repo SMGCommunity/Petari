@@ -1,9 +1,11 @@
-#include <revolution/sc.h>
 #include <cstring>
 #include <mem.h>
+#include <revolution/sc.h>
+
+static void __SCFlushSyncCallback(u32 result);
 
 typedef struct {
-    char *name;
+    char* name;
     SCItemID id;
 } NameAndID;
 
@@ -36,13 +38,13 @@ static NameAndID NameAndIDTbl[36] = {
     "DEV.VIM",  SC_ITEM_ID_DEV_VIDEO_MODE,
     "DEV.CTC",  SC_ITEM_ID_DEV_COUNTRY_CODE,
     "DEV.DSM",  SC_ITEM_ID_DEV_DRIVESAVING_MODE,
-    "BT.DINF", SC_ITEM_ID_BT_DEVICE_INFO,
-    "BT.CDIF", SC_ITEM_ID_BT_CMPDEV_INFO,
-    "BT.SENS", SC_ITEM_ID_BT_DPD_SENSIBILITY,
-    "BT.SPKV", SC_ITEM_ID_BT_SPEAKER_VOLUME,
-    "BT.MOT",  SC_ITEM_ID_BT_MOTOR_MODE,
-    "BT.BAR",  SC_ITEM_ID_BT_SENSOR_BAR_POSITION,
-    "DVD.CNF", SC_ITEM_ID_DVD_CONFIG,
+    "BT.DINF",  SC_ITEM_ID_BT_DEVICE_INFO,
+    "BT.CDIF",  SC_ITEM_ID_BT_CMPDEV_INFO,
+    "BT.SENS",  SC_ITEM_ID_BT_DPD_SENSIBILITY,
+    "BT.SPKV",  SC_ITEM_ID_BT_SPEAKER_VOLUME,
+    "BT.MOT",   SC_ITEM_ID_BT_MOTOR_MODE,
+    "BT.BAR",   SC_ITEM_ID_BT_SENSOR_BAR_POSITION,
+    "DVD.CNF",  SC_ITEM_ID_DVD_CONFIG,
     "WWW.RST",  SC_ITEM_ID_WWW_RESTRICTION,
 };
 
@@ -50,12 +52,12 @@ static const char ConfDirName[] = "/shared2/sys";
 static const char ConfFileName[] = "/shared2/sys/SYSCONF";
 static const char ProductInfoFileName[] = "/title/00000001/00000002/data/setting.txt";
 
-static u8 ConfBuf         [16384] __attribute__ ((aligned (32)));
-static u8 ConfBufForFlush [16384] __attribute__ ((aligned (32)));
+static u8 ConfBuf[16384] __attribute__((aligned(32)));
+static u8 ConfBufForFlush[16384] __attribute__((aligned(32)));
 
-static u8  Initialized;
+static u8 Initialized;
 static u8 DirtyFlag;
-static u8  IsDevKit;
+static u8 IsDevKit;
 static vu8 BgJobStatus = 0;
 static u32 ItemIDOffsetTblOffset;
 static u32 ItemIDMaxPlus1;
@@ -65,13 +67,13 @@ static SCControl Control;
 
 const char* __SCVersion = "<< RVL_SDK - SC \trelease build: Feb 22 2008 06:21:38 (0x4199_60831) >>";
 
-static void OpenCallbackFromReload(s32, NANDCommandBlock *);
-static void ReadCallbackFromReload(s32 result, NANDCommandBlock *block);
-static void CloseCallbackFromReloadError(s32 result, NANDCommandBlock *block);
-static void CloseCallbackFromReload(s32 result, NANDCommandBlock *block);
+static void OpenCallbackFromReload(s32, NANDCommandBlock*);
+static void ReadCallbackFromReload(s32 result, NANDCommandBlock* block);
+static void CloseCallbackFromReloadError(s32 result, NANDCommandBlock* block);
+static void CloseCallbackFromReload(s32 result, NANDCommandBlock* block);
 static void ErrorFromReload(s32 result);
 void FinishFromReload(void);
-BOOL UnpackItem(const u8 *, SCItem *);
+static BOOL UnpackItem(const u8*, SCItem*);
 
 static u8* __SCGetConfBuf(void) {
     return ConfBuf;
@@ -138,7 +140,7 @@ void SCInit(void) {
 }
 
 u32 ParseConfBuf(u8* bufp, u32 bufSize) {
-    u8* bufTop, *bufEndp;
+    u8 *bufTop, *bufEndp;
     u32 numItems, loopItem;
     SCItem item;
     u32 itemOffset;
@@ -200,12 +202,12 @@ u32 ParseConfBuf(u8* bufp, u32 bufSize) {
 
     runtimeRefp = (u16*)(bufEndp - 2 * (35));
 
-    if ((u8*)(bufTop + itemOffset) > (u8*)runtimeRefp){
+    if ((u8*)(bufTop + itemOffset) > (u8*)runtimeRefp) {
         goto error;
     }
 
-    restSize = (u32)((u8 *)runtimeRefp - (u8 *)(bufTop + itemOffset));
-    memset(runtimeRefp, 0, (u32)(bufEndp - (u8 *)runtimeRefp));
+    restSize = (u32)((u8*)runtimeRefp - (u8*)(bufTop + itemOffset));
+    memset(runtimeRefp, 0, (u32)(bufEndp - (u8*)runtimeRefp));
     runtimeRefp = (u16*)(bufEndp - 2);
     tblEndp = tblp + ItemIDMaxPlus1;
 
@@ -219,7 +221,7 @@ u32 ParseConfBuf(u8* bufp, u32 bufSize) {
             p = bufTop + itemOfsp[loopItem];
 
             if (nameLen == (u32)(((*p) & ~0xE0) + 1) && memcmp(name, p + sizeof(SCType), nameLen) == 0) {
-                runtimeRefp[-tblp->id] = (u16)((u8 *)(&itemOfsp[loopItem]) - bufTop);
+                runtimeRefp[-tblp->id] = (u16)((u8*)(&itemOfsp[loopItem]) - bufTop);
                 break;
             }
         }
@@ -246,41 +248,40 @@ static BOOL UnpackItem(const u8* bufp, SCItem* itemp) {
     itemp->data = (u8*)(bufp + sizeof(SCType) + itemp->nameLen);
 
     switch (type) {
-        case 0x60:
-        case 0xE0:
-            itemp->dataSize = sizeof(u8);
-            break;
-        case 0x80:
-            itemp->dataSize = sizeof(u16);
-            break;
-        case 0xA0:
-            itemp->dataSize = sizeof(u32);
-            break;
-        case 0xC0:
-            itemp->dataSize = sizeof(u64);
-            break;
-        case 0x40:
-            itemp->dataSize = (u32)(*(itemp->data) + 1);
-            itemp->data++;
-            itemp->packedSize++;
-            break;
-        case 0x20:
-            itemp->dataSize = (u32)((((*(itemp->data)) << 8) | (*(itemp->data + 1))) + 1);
-            itemp->data += 2;
-            itemp->packedSize += 2;
-            break;
-        default:
-            goto err;
+    case 0x60:
+    case 0xE0:
+        itemp->dataSize = sizeof(u8);
+        break;
+    case 0x80:
+        itemp->dataSize = sizeof(u16);
+        break;
+    case 0xA0:
+        itemp->dataSize = sizeof(u32);
+        break;
+    case 0xC0:
+        itemp->dataSize = sizeof(u64);
+        break;
+    case 0x40:
+        itemp->dataSize = (u32)(*(itemp->data) + 1);
+        itemp->data++;
+        itemp->packedSize++;
+        break;
+    case 0x20:
+        itemp->dataSize = (u32)((((*(itemp->data)) << 8) | (*(itemp->data + 1))) + 1);
+        itemp->data += 2;
+        itemp->packedSize += 2;
+        break;
+    default:
+        goto err;
     }
 
     if (type == 0x40 || type == 0x20) {
         itemp->typeByteArray = 0x40;
-    }
-    else {
+    } else {
         itemp->typeInteger = type;
         memcpy(&itemp->integer, itemp->data, itemp->dataSize);
     }
-    
+
     itemp->packedSize += sizeof(SCType) + itemp->nameLen + itemp->dataSize;
 
 err:
@@ -306,15 +307,15 @@ static void __SCSetDirtyFlag(void);
 void DeleteItemByID(SCItemID id) {
     u8* conf = __SCGetConfBuf();
     u32 targetRef, initialTopOfFreeSpace, moveSize, shrinkSize, i;
-    u16* refp, *itemOfsTop, *itemOfsTargetp, *itemOfsEndp, *itemOfsp;
+    u16 *refp, *itemOfsTop, *itemOfsTargetp, *itemOfsEndp, *itemOfsp;
 
     if (id < ItemIDMaxPlus1 && ItemIDOffsetTblOffset != 0) {
-        refp = (u16 *)(conf + ItemIDOffsetTblOffset);
+        refp = (u16*)(conf + ItemIDOffsetTblOffset);
         targetRef = refp[-id];
 
         if (targetRef != 0 && ItemNumTotal != 0) {
             itemOfsTop = (u16*)(conf + 4);
-            itemOfsTargetp = (u16 *)(conf + targetRef);
+            itemOfsTargetp = (u16*)(conf + targetRef);
             itemOfsEndp = itemOfsTop + ItemNumTotal;
             initialTopOfFreeSpace = *itemOfsEndp;
             shrinkSize = 2 + (itemOfsTargetp[1] - itemOfsTargetp[0]);
@@ -350,41 +351,39 @@ void DeleteItemByID(SCItemID id) {
     }
 }
 
-BOOL CreateItemByID(SCItemID id, SCType type, const u8 *data, u32 size)
-{
-    u8  *conf = __SCGetConfBuf();
-    u8  *p;
+BOOL CreateItemByID(SCItemID id, SCType type, const u8* data, u32 size) {
+    u8* conf = __SCGetConfBuf();
+    u8* p;
     u32 nameLen;
     u32 packedSize = sizeof(SCType);
-    NameAndID   *tblp = NameAndIDTbl;
-    char        *name;
+    NameAndID* tblp = NameAndIDTbl;
+    char* name;
     u32 topOfFreeSpace;
-    u16 *refp;
-    u16 *itemOfsTop;
-    u16 *itemOfsEndp;
-    u16 *itemOfsp;
+    u16* refp;
+    u16* itemOfsTop;
+    u16* itemOfsEndp;
+    u16* itemOfsp;
 
     if (id < ItemIDMaxPlus1 && data != NULL && ItemNumTotal < 0xFFFF && ItemIDOffsetTblOffset != 0) {
-
         switch (type) {
-          case 0xE0:
-          case 0x60:
+        case 0xE0:
+        case 0x60:
             size = 1;
             break;
 
-          case 0x80:
+        case 0x80:
             size = 2;
             break;
 
-          case 0xA0:
+        case 0xA0:
             size = 4;
             break;
 
-          case 0xC0:
+        case 0xC0:
             size = 8;
             break;
 
-          case 0x40:
+        case 0x40:
             if (size == 0 || size > 65536) {
                 goto error;
             }
@@ -396,7 +395,7 @@ BOOL CreateItemByID(SCItemID id, SCType type, const u8 *data, u32 size)
             }
             break;
 
-          default:
+        default:
             goto error;
         }
 
@@ -424,8 +423,7 @@ BOOL CreateItemByID(SCItemID id, SCType type, const u8 *data, u32 size)
             goto error;
         }
 
-
-        itemOfsTop  = (u16 *)(conf + 6);
+        itemOfsTop = (u16*)(conf + 6);
         itemOfsEndp = itemOfsTop + ItemNumTotal;
         topOfFreeSpace = *itemOfsEndp;
         memmove(conf + (itemOfsTop[0] + 2), conf + itemOfsTop[0], topOfFreeSpace - itemOfsTop[0]);
@@ -437,7 +435,7 @@ BOOL CreateItemByID(SCItemID id, SCType type, const u8 *data, u32 size)
         } while (itemOfsp <= itemOfsEndp);
 
         topOfFreeSpace = *itemOfsEndp;
-        p = (u8 *)(conf + topOfFreeSpace);
+        p = (u8*)(conf + topOfFreeSpace);
 
         *p = (SCType)(type | (nameLen - 1));
         memcpy(p + sizeof(SCType), name, nameLen);
@@ -451,12 +449,12 @@ BOOL CreateItemByID(SCItemID id, SCType type, const u8 *data, u32 size)
         memcpy(p, data, size);
         p += size;
 
-        refp = (u16 *)(conf + ItemIDOffsetTblOffset);
-        refp[-id] = (u16)((u8 *)itemOfsEndp - conf);
+        refp = (u16*)(conf + ItemIDOffsetTblOffset);
+        refp[-id] = (u16)((u8*)itemOfsEndp - conf);
         itemOfsEndp[1] = (u16)(itemOfsEndp[0] + packedSize);
         ItemRestSize -= 2 + packedSize;
         ItemNumTotal++;
-        *(u16 *)(conf + 4) = (u16)ItemNumTotal;
+        *(u16*)(conf + 4) = (u16)ItemNumTotal;
         __SCSetDirtyFlag();
 
         return TRUE;
@@ -481,9 +479,9 @@ BOOL SCFindByteArrayItem(void* data, u32 size, SCItemID id) {
 }
 
 BOOL SCReplaceByteArrayItem(const void* data, u32 size, SCItemID id) {
-    SCItem  item;
-    BOOL    result = FALSE;
-    BOOL    enabled = OSDisableInterrupts();
+    SCItem item;
+    BOOL result = FALSE;
+    BOOL enabled = OSDisableInterrupts();
 
     if (data != NULL) {
         if (FindItemByID(id, &item)) {
@@ -495,8 +493,7 @@ BOOL SCReplaceByteArrayItem(const void* data, u32 size, SCItemID id) {
 
                 result = TRUE;
                 goto finish;
-            } 
-            else {
+            } else {
                 DeleteItemByID(id);
             }
         }
@@ -536,8 +533,7 @@ BOOL SCReplaceIntegerItem(const void* data, SCItemID id, SCType type) NO_INLINE 
 
             result = TRUE;
             goto finish;
-        } 
-        else {
+        } else {
             DeleteItemByID(id);
         }
     }
@@ -593,8 +589,7 @@ u32 SCCheckStatus(void) {
 
             __SCClearDirtyFlag();
             OSRestoreInterrupts(enabled);
-        }
-        else {
+        } else {
             enabled = OSDisableInterrupts();
             ClearConfBuf(Control.reloadBufp[0]);
             __SCClearDirtyFlag();
@@ -603,8 +598,7 @@ u32 SCCheckStatus(void) {
 
         ret = 0;
         SetBgJobStatus(ret);
-    }
-    else {
+    } else {
         OSRestoreInterrupts(enabled);
     }
 
@@ -612,7 +606,7 @@ u32 SCCheckStatus(void) {
 }
 
 static s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback callback) {
-   u32 i;
+    u32 i;
 
     if (bufSize < __SCGetConfBufSize()) {
         return -128;
@@ -638,18 +632,16 @@ static s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback
     ItemNumTotal = 0;
     ItemRestSize = 0;
     Control.nandNeedClose = FALSE;
-    return NANDPrivateOpenAsync(Control.reloadFileName[Control.reloadFileCount], &Control.nandFileInfo, 1,OpenCallbackFromReload, &Control.nandCommandBlock);    
+    return NANDPrivateOpenAsync(Control.reloadFileName[Control.reloadFileCount], &Control.nandFileInfo, 1, OpenCallbackFromReload,
+                                &Control.nandCommandBlock);
 }
 
 static void OpenCallbackFromReload(s32 result, NANDCommandBlock* block) {
     if (result == 0) {
         Control.nandNeedClose = TRUE;
 
-        if (NANDReadAsync(&Control.nandFileInfo, 
-            Control.reloadBufp[Control.reloadFileCount], 
-            Control.reloadSizeExpected[Control.reloadFileCount], 
-            ReadCallbackFromReload, 
-            &Control.nandCommandBlock) == 0) {
+        if (NANDReadAsync(&Control.nandFileInfo, Control.reloadBufp[Control.reloadFileCount], Control.reloadSizeExpected[Control.reloadFileCount],
+                          ReadCallbackFromReload, &Control.nandCommandBlock) == 0) {
             return;
         }
     }
@@ -688,9 +680,8 @@ nextFile:
     if (Control.reloadFileCount < 2) {
         Control.nandNeedClose = FALSE;
 
-        if (NANDPrivateOpenAsync(Control.reloadFileName[Control.reloadFileCount],
-        &Control.nandFileInfo, 1, OpenCallbackFromReload,
-        &Control.nandCommandBlock) == 0) {
+        if (NANDPrivateOpenAsync(Control.reloadFileName[Control.reloadFileCount], &Control.nandFileInfo, 1, OpenCallbackFromReload,
+                                 &Control.nandCommandBlock) == 0) {
             return;
         }
 
@@ -698,15 +689,15 @@ nextFile:
     }
 
     switch (Control.reloadResult) {
-        case 0:
-            status = 3;
-            break;
-        default:
-        case -12:
-            ClearConfBuf(Control.reloadBufp[0]);
-            Control.reloadedSize[0] = Control.reloadSizeExpected[0];
-            status = 3;
-            break;
+    case 0:
+        status = 3;
+        break;
+    default:
+    case -12:
+        ClearConfBuf(Control.reloadBufp[0]);
+        Control.reloadedSize[0] = Control.reloadSizeExpected[0];
+        status = 3;
+        break;
     }
 
     *(u8*)((u8*)OSPhysicalToCached(0x3800) + 0x100 - 1) = '\0';
@@ -727,8 +718,7 @@ static void ErrorFromReload(s32 result) {
     Control.reloadedSize[Control.reloadFileCount] = 0;
 
     if (Control.nandNeedClose) {
-        if (NANDCloseAsync(&Control.nandFileInfo, CloseCallbackFromReloadError,
-        &Control.nandCommandBlock) == 0) {
+        if (NANDCloseAsync(&Control.nandFileInfo, CloseCallbackFromReloadError, &Control.nandCommandBlock) == 0) {
             return;
         }
     }
@@ -738,4 +728,217 @@ static void ErrorFromReload(s32 result) {
 
 static void CloseCallbackFromReloadError(s32 result, NANDCommandBlock* block) {
     FinishFromReload();
+}
+
+static void __SCFlushSyncCallback(u32) {
+    OSWakeupThread(&Control.threadQueue);
+}
+
+static u32 __SCFlushSync(void) {
+    BOOL enabled = OSDisableInterrupts();
+    u32 ret;
+    SCControl* cp = &Control;
+
+    while ((volatile SCFlushCallback)cp->flushCallback) {
+        OSSleepThread(&cp->threadQueue);
+    }
+    ret = cp->flushResult;
+    OSRestoreInterrupts(enabled);
+    return ret;
+}
+
+static void FinishFromFlush(void);
+static void ErrorFromFlush(void);
+
+enum {
+    MY_STEP_FLUSH_GETTYPE_FILE,
+    MY_STEP_FLUSH_GETSTATUS_FILE,
+    MY_STEP_FLUSH_DELETE_FILE,
+    MY_STEP_FLUSH_GETTYPE_DIR,
+    MY_STEP_FLUSH_CREATE_DIR,
+    MY_STEP_FLUSH_CREATE_FILE,
+    MY_STEP_FLUSH_OPEN_FILE,
+    MY_STEP_FLUSH_WRITE_FILE,
+    MY_STEP_FLUSH_CLOSE_FILE,
+    MY_STEP_FLUSH_CLOSE_FILE_FROM_ERROR
+};
+
+static void MyNandCallback(s32 result, NANDCommandBlock* block) {
+    SCControl* cp = &Control;
+
+    switch (cp->nandStep) {
+    case MY_STEP_FLUSH_GETTYPE_FILE:
+        if (result == NAND_RESULT_OK && cp->u.nandType == 1) {
+            cp->nandStep = MY_STEP_FLUSH_GETSTATUS_FILE;
+            if (NANDPrivateGetStatusAsync(ConfFileName, &cp->u.nandStatus, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+                goto error;
+            }
+            break;
+        } else {
+            goto fileDelete;
+        }
+        break;
+
+    case MY_STEP_FLUSH_GETSTATUS_FILE:
+        if (result == NAND_RESULT_OK && cp->u.nandStatus.permission == 63) {
+            goto fileAndDirCheckDone;
+        }
+    fileDelete:
+        cp->nandStep = MY_STEP_FLUSH_DELETE_FILE;
+        if (NANDPrivateDeleteAsync(ConfFileName, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+            goto error;
+        }
+        break;
+
+    case MY_STEP_FLUSH_DELETE_FILE:
+        cp->nandStep = MY_STEP_FLUSH_GETTYPE_DIR;
+        if (NANDPrivateGetTypeAsync(ConfDirName, &cp->u.nandType, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+            goto error;
+        }
+        break;
+
+    case MY_STEP_FLUSH_GETTYPE_DIR:
+        if (result == NAND_RESULT_OK && cp->u.nandType == 2) {
+            goto dirCheckDone;
+        } else {
+            cp->nandStep = MY_STEP_FLUSH_CREATE_DIR;
+            if (NANDPrivateCreateDirAsync(ConfDirName, 63, 0, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+                goto error;
+            }
+            break;
+        }
+        break;
+
+    case MY_STEP_FLUSH_CREATE_DIR:
+    dirCheckDone:
+        cp->nandStep = MY_STEP_FLUSH_CREATE_FILE;
+        if (NANDPrivateCreateAsync(ConfFileName, 63, 0, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+            goto error;
+        }
+        break;
+
+    case MY_STEP_FLUSH_CREATE_FILE:
+    fileAndDirCheckDone:
+        cp->nandStep = MY_STEP_FLUSH_OPEN_FILE;
+        if (NANDPrivateOpenAsync(ConfFileName, &cp->nandFileInfo, NAND_ACCESS_WRITE, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+            goto error;
+        }
+        break;
+
+    case MY_STEP_FLUSH_OPEN_FILE:
+        if (result != NAND_RESULT_OK) {
+            goto error;
+        }
+        cp->nandNeedClose = TRUE;
+        cp->nandStep = MY_STEP_FLUSH_WRITE_FILE;
+        if (NANDWriteAsync(&cp->nandFileInfo, ConfBufForFlush, cp->flushSize, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+            goto error;
+        }
+        break;
+
+    case MY_STEP_FLUSH_WRITE_FILE:
+        if (result == cp->flushSize) {
+            cp->nandNeedClose = FALSE;
+            cp->nandStep = MY_STEP_FLUSH_CLOSE_FILE;
+            if (NANDCloseAsync(&cp->nandFileInfo, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+                goto error;
+            }
+            break;
+        } else {
+            goto error;
+        }
+        break;
+
+    case MY_STEP_FLUSH_CLOSE_FILE:
+        if (result != NAND_RESULT_OK) {
+            goto error;
+        }
+
+    case MY_STEP_FLUSH_CLOSE_FILE_FROM_ERROR:
+        FinishFromFlush();
+        break;
+
+    default:
+        break;
+    }
+
+    return;
+
+error:
+    ErrorFromFlush();
+}
+
+static void FinishFromFlush(void) {
+    SCControl* cp = &Control;
+    SCFlushCallback callback;
+
+    if (cp->flushResult == SC_STATUS_OK) {
+    } else {
+        __SCSetDirtyFlag();
+    }
+    callback = cp->flushCallback;
+    if (callback) {
+        cp->flushCallback = NULL;
+        callback(cp->flushResult);
+        if (cp->threadQueue.head != NULL) {
+            OSWakeupThread(&cp->threadQueue);
+        }
+    }
+    SetBgJobStatus(cp->flushResult);
+}
+
+static void ErrorFromFlush(void) {
+    SCControl* cp = &Control;
+
+    cp->flushResult = SC_STATUS_ERROR;
+    if (cp->nandNeedClose) {
+        cp->nandStep = MY_STEP_FLUSH_CLOSE_FILE_FROM_ERROR;
+        if (NANDCloseAsync(&cp->nandFileInfo, MyNandCallback, &cp->nandCommandBlock) == NAND_RESULT_OK) {
+            return;
+        }
+    }
+    FinishFromFlush();
+}
+
+BOOL __SCIsDirty(void) {
+    return DirtyFlag ? TRUE : FALSE;
+}
+
+void SCFlushAsync(SCFlushCallback callback) {
+    SCControl* cp = &Control;
+    BOOL enabled;
+    u32 ret;
+
+    enabled = OSDisableInterrupts();
+    ret = BgJobStatus;
+    if (ret == SC_STATUS_OK) {
+        SetBgJobStatus(SC_STATUS_BUSY);
+        if (callback == NULL) {
+            callback = __SCFlushSyncCallback;
+        }
+        cp->flushCallback = callback;
+        cp->flushResult = SC_STATUS_OK;
+        cp->nandNeedClose = FALSE;
+        cp->flushSize = __SCGetConfBufSize();
+
+        if (__SCIsDirty() == FALSE) {
+            OSRestoreInterrupts(enabled);
+            FinishFromFlush();
+            return;
+        }
+        __SCClearDirtyFlag();
+        memcpy(ConfBufForFlush, __SCGetConfBuf(), sizeof(ConfBufForFlush));
+        OSRestoreInterrupts(enabled);
+
+        cp->nandStep = MY_STEP_FLUSH_GETTYPE_FILE;
+        if (NANDPrivateGetTypeAsync(ConfFileName, &cp->u.nandType, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+            ErrorFromFlush();
+            return;
+        }
+    } else {
+        if (callback) {
+            callback((ret == SC_STATUS_BUSY) ? ret : SC_STATUS_ERROR);
+        }
+        OSRestoreInterrupts(enabled);
+    }
 }
