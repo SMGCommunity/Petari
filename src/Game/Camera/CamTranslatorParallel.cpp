@@ -7,21 +7,9 @@ void CamTranslatorParallel_FORCE_MATCH_SDATA2() {
 }
 
 void CamTranslatorParallel::setParam(const CameraParamChunk* pChunk) {
-    TVec2f angle;
-    f32 dist;
-    f32 axisX;
+    CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    dist = pChunk->mGeneralParam->mDist;
-    angle.y = 180.0f * pChunk->mGeneralParam->mAngleA / MR::pi();
-    angle.x = 180.0f * pChunk->mGeneralParam->mAngleB / MR::pi();
-    bool var = !(pChunk->mGeneralParam->mNum1 != 1);
-
-    CameraParallel* camera = mCamera;
-
-    camera->mAngleB = angle.x;
-    camera->mAngleA = angle.y;
-    camera->mDist = dist;
-    camera->_58 = var;
+    mCamera->setParam(TVec2f(180.0f * general->mAngleB / MR::pi(), 180.0f * general->mAngleA / MR::pi()), general->mDist, general->mNum1 == 1);
 }
 
 Camera* CamTranslatorParallel::getCamera() const {

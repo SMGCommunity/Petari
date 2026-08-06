@@ -424,6 +424,14 @@ namespace MR {
         return JGeometry::TUtil< f32 >::epsilon();
     }
 
+    inline f32 fabsf(f32 x) {
+        return __fabsf(x);
+    }
+
+    inline s32 abs(s32 x) {
+        return __abs(x);
+    }
+
     /// @brief Computes the cosine of a number, in radians.
     /// @param x The number of radians to evaluate.
     /// @return The ratio of the length of the adjacent to that of the hypotenuse.

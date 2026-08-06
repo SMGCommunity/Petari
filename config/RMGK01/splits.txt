@@ -2009,13 +2009,14 @@ Game/Camera/CameraObjParallel.cpp:
 
 Game/Camera/CameraParallel.cpp:
 	.text       start:0x800A91C8 end:0x800A97B8
-	.data       start:0x80575B98 end:0x80575C50
+	.rodata     start:0x805318F0 end:0x805318F8
+	.data       start:0x80575B98 end:0x80575BF0
 	.sdata2     start:0x806B9738 end:0x806B9770
 
 Game/Camera/CameraParamChunk.cpp:
 	.text       start:0x800A97B8 end:0x800AA55C
 	.ctors      start:0x8052E9F4 end:0x8052E9F8
-	.data       start:0x80575C50 end:0x80575EE8
+	.data       start:0x80575BF0 end:0x80575EE8
 	.bss        start:0x8060A6F8 end:0x8060A788
 	.sdata      start:0x806B1830 end:0x806B1838
 	.sdata2     start:0x806B9770 end:0x806B97A0
@@ -2047,11 +2048,13 @@ Game/Camera/CameraRaceFollow.cpp:
 
 Game/Camera/CameraRailDemo.cpp:
 	.text       start:0x800ABC10 end:0x800AC0D8
+	.rodata     start:0x805318F8 end:0x80531900
 	.data       start:0x80576070 end:0x805760C8
 	.sdata2     start:0x806B9800 end:0x806B9810
 
 Game/Camera/CameraRailFollow.cpp:
 	.text       start:0x800AC0D8 end:0x800AC648
+	.rodata     start:0x80531900 end:0x80531908
 	.data       start:0x805760C8 end:0x80576128
 	.sdata2     start:0x806B9810 end:0x806B9830
 
@@ -2061,6 +2064,7 @@ Game/Camera/CameraRailHolder.cpp:
 
 Game/Camera/CameraRailWatch.cpp:
 	.text       start:0x800ACA60 end:0x800AD0E0
+	.rodata     start:0x80531908 end:0x80531910
 	.data       start:0x80576150 end:0x805761D8
 	.sdata2     start:0x806B9830 end:0x806B9848
 
@@ -2078,6 +2082,7 @@ Game/Camera/CameraRotChecker.cpp:
 
 Game/Camera/CameraShakePatternImpl.cpp:
 	.text       start:0x800AD650 end:0x800AD994
+	.rodata     start:0x80531910 end:0x80531928
 	.data       start:0x80576200 end:0x80576238
 	.sdata2     start:0x806B9878 end:0x806B9890
 

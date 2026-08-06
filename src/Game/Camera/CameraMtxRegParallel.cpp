@@ -49,8 +49,7 @@ void CameraMtxRegParallel::calcIdealPose() {
     TVec3f up;
     mtx.getYDir(up);
 
-    TVec3f wPoint;
-    wPoint = mWPoint;
+    TVec3f wPoint = mWPoint;
     mtx.mult33(wPoint);
 
     watchPoint.add(wPoint);
