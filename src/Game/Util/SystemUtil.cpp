@@ -3,12 +3,15 @@
 #include "Game/System/AudSystemWrapper.hpp"
 #include "Game/System/FunctionAsyncExecutor.hpp"
 #include "Game/System/GameDataFunction.hpp"
+#include "Game/System/GameDataTemporaryInGalaxy.hpp"
+#include "Game/System/GameSequenceDirector.hpp"
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemFontHolder.hpp"
 #include "Game/System/GameSystemFunction.hpp"
 #include "Game/System/GameSystemObjHolder.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/System/MessageHolder.hpp"
+#include "Game/System/RenderMode.hpp"
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
@@ -27,9 +30,11 @@ namespace {
     FunctionAsyncExecutor* getFunctionAsyncExecutor() NO_INLINE {
         return MR::getGameSystemObjHolder()->mFunctionAsyncExecutor;
     }
-};  // namespace
 
-namespace {
+    GameDataTemporaryInGalaxy* getGameDataTemporaryInGalaxy() {
+        return SingletonHolder< GameSystem >::get()->mSequenceDirector->mGameDataTemporaryInGalaxy;
+    }
+
     NameObjHolder* getSceneNameObjHolder() NO_INLINE {
         return SingletonHolder< GameSystem >::get()->mSceneController->mObjHolder;
     }
@@ -141,7 +146,9 @@ namespace MR {
         return OSIsThreadSuspended(pThread);
     }
 
-    // isScreen16Per9
+    bool isScreen16Per9() {
+        return isAspectRatioFlag16Per9();
+    }
 
     void initSceneMessage() {
         getGameSystemObjHolder()->mMessageHolder->initSceneData();
@@ -166,6 +173,14 @@ namespace MR {
     }
 
     bool isDisplayEncouragePal60Window() {
-        return VIGetTvFormat() == 1;
+        return VIGetTvFormat() == VI_PAL;
+    }
+
+    JMapIdInfo* getPlayerRestartIdInfo() {
+        return ::getGameDataTemporaryInGalaxy()->mPlayerRestartIdInfo;
+    }
+
+    void setPlayerRestartIdInfo(const JMapIdInfo& rInfo) {
+        ::getGameDataTemporaryInGalaxy()->setPlayerRestartIdInfo(rInfo);
     }
 };  // namespace MR
