@@ -54,16 +54,16 @@ bool CameraParamChunkID::operator==(const CameraParamChunkID& other) const {
     return mZoneID == other.mZoneID && strcmp(mName, other.mName) == 0;
 }
 
-char* CameraParamChunkID::getBuffer(u32 length) {
-    return new char[length];
-}
-
 bool CameraParamChunkID::equals(s32 zoneID, const char* pName) const {
     if (mName != nullptr) {
         return zoneID == mZoneID && strcmp(mName, pName) == 0;
     }
 
     return false;
+}
+
+char* CameraParamChunkID::getBuffer(u32 length) {
+    return new char[length];
 }
 
 void CameraParamChunkID::createCubeID(s32 zoneID, u16 id) {

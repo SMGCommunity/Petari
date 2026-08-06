@@ -22,11 +22,10 @@ public:
     void loadFile(s32);
     void arrangeChunk(CameraParamChunk*);
 
-    CameraHolder* mCameraHolder;  // 0xC
-    u32 mChunkCapacity;           // 0x10
-    u32 mNrChunks;                // 0x14
-    CameraParamChunk** mChunks;   // 0x18
-    u32 mCameraVersion;           // 0x1C
-    u8 mIsSorted;                 // 0x20
-    u8 _21[3];
+    /* 0x0C */ CameraHolder* mCameraHolder;
+    /* 0x10 */ u32 mChunkCapacity;
+    /* 0x14 */ u32 mNrChunks;
+    /* 0x18 */ CameraParamChunk** mChunks;
+    /* 0x1C */ u32 mCameraVersion;
+    /* 0x20 */ bool mIsSorted;
 };

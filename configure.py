@@ -1058,7 +1058,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraParallel.cpp"),
             Object(NonMatching, "Game/Camera/CameraParamChunk.cpp"),
             Object(NonMatching, "Game/Camera/CameraParamChunkHolder.cpp"),
-            Object(NonMatching, "Game/Camera/CameraParamChunkID.cpp"),
+            Object(Matching, "Game/Camera/CameraParamChunkID.cpp"),
             Object(Matching, "Game/Camera/CameraParamString.cpp"),
             Object(NonMatching, "Game/Camera/CameraPolygonCodeUtil.cpp"),
             Object(Matching, "Game/Camera/CameraPoseParam.cpp"),

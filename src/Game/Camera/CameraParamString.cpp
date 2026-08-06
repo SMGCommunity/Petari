@@ -1,5 +1,5 @@
 #include "Game/Camera/CameraParamString.hpp"
-#include "revolution.h"
+#include <revolution.h>
 
 CameraParamString::CameraParamString() {
     mString = nullptr;

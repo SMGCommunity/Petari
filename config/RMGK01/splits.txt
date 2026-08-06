@@ -2023,13 +2023,13 @@ Game/Camera/CameraParamChunk.cpp:
 
 Game/Camera/CameraParamChunkHolder.cpp:
 	.text       start:0x800AA55C end:0x800AAFBC
-	.data       start:0x80575EE8 end:0x80575FE0
+	.data       start:0x80575EE8 end:0x80575FE8
 	.sdata      start:0x806B1838 end:0x806B1840
 	.sdata2     start:0x806B97A0 end:0x806B97D0
 
 Game/Camera/CameraParamChunkID.cpp:
 	.text       start:0x800AAFBC end:0x800AB4AC
-	.data       start:0x80575FE0 end:0x80576018
+	.data       start:0x80575FE8 end:0x80576018
 
 Game/Camera/CameraParamString.cpp:
 	.text       start:0x800AB4AC end:0x800AB520
