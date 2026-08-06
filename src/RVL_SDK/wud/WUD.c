@@ -471,14 +471,14 @@ static u8 WUDiSaveDeviceToNand(void) {
         return WUD_STATE_SYNC_STORED_DEV_INFO_TO_NAND;
     }
 
-    memset(&_scArray.regist, 0, sizeof(SCBtDeviceInfo) * WUD_MAX_DEV_ENTRY_FOR_STD);
+    memset(&_scArray.info, 0, sizeof(SCBtDeviceInfo) * WUD_MAX_DEV_ENTRY_FOR_STD);
 
     _scArray.num = WUDiGetDevNumber();
 
     for (pIt = _wcb.stdListHead, i = 0; pIt != NULL; i++, pIt = pIt->next) {
-        WUD_BDCPY(_scArray.regist[i].addr, pIt->devInfo->devAddr);
+        WUD_BDCPY(_scArray.info[i].bd_addr, pIt->devInfo->devAddr);
 
-        memcpy(&_scArray.regist[i].info, &pIt->devInfo->conf, sizeof(SCDevInfo));
+        memcpy(&_scArray.info[i].bd_name, &pIt->devInfo->conf, sizeof(SCDevInfo));
     }
 
     DEBUGPrint("%d devices is stored into SC.\n", i);
@@ -1041,9 +1041,9 @@ static WUDInitState WUDiGetRegisteredDevice(void) {
     for (i = 0; i < _scArray.num; i++) {
         pInfo = WUDiGetNewDevInfo();
 
-        WUD_BDCPY(pInfo->devAddr, _scArray.regist[i].addr);
+        WUD_BDCPY(pInfo->devAddr, _scArray.info[i].bd_addr);
 
-        memcpy(&pInfo->conf, &_scArray.regist[i].info, sizeof(SCDevInfo));
+        memcpy(&pInfo->conf, &_scArray.info[i].bd_name, sizeof(SCDevInfo));
 
         pInfo->status = 1;
         pInfo->sync_type = 0;
@@ -1073,7 +1073,7 @@ static WUDInitState WUDiInitComplete(void) {
     p->libStatus = WUD_LIB_STATUS_1;
 
     BTA_EnableBluetooth(WUDSecurityCallback);
-    return WUD_STATE_INIT_INITIALIZED;
+    return 5;
 }
 
 static void InitHandler(void) {
@@ -1086,11 +1086,11 @@ static void InitHandler(void) {
     }
 
     case WUD_STATE_INIT_GET_DEV_INFO: {
-        p->initState = WUDiGetRegisteredDevice();
+        WUDiGetRegisteredDevice();
         break;
     }
 
-    case WUD_STATE_INIT_DONE: {
+    case 4: {
         p->initState = WUDiInitComplete();
         break;
     }
@@ -1348,7 +1348,7 @@ WUDClearDeviceCallback WUDSetClearDeviceCallback(WUDClearDeviceCallback pCallbac
     return pOldCallback;
 }
 
-static BOOL StartSyncDevice(u8 syncType, s8 syncLoopNum, BOOL syncSkipChecks) {
+static BOOL StartSyncDevice(u8 syncType, s8 syncLoopNum, BOOL syncSkipChecks, BOOL unk) {
     WUDCB* p = &_wcb;
     BOOL success = FALSE;
     BOOL enabled;
@@ -1379,7 +1379,7 @@ static BOOL StartSyncDevice(u8 syncType, s8 syncLoopNum, BOOL syncSkipChecks) {
 }
 
 static BOOL StartSyncStandard(BOOL syncSkipChecks) {
-    return StartSyncDevice(WUD_SYNC_TYPE_STANDARD, 3, syncSkipChecks);
+    return StartSyncDevice(WUD_SYNC_TYPE_STANDARD, 3, syncSkipChecks, FALSE);
 }
 
 BOOL WUDStartSyncDevice(void) {
@@ -1403,7 +1403,7 @@ BOOL WUDStartSyncDevice(void) {
 }
 
 static BOOL StartSyncSimple(BOOL syncSkipChecks) {
-    return StartSyncDevice(WUD_SYNC_TYPE_SIMPLE, -1, syncSkipChecks);
+    return StartSyncDevice(WUD_SYNC_TYPE_SIMPLE, -1, syncSkipChecks, TRUE);
 }
 
 BOOL WUDStartFastSyncSimple(void) {
@@ -1413,16 +1413,7 @@ BOOL WUDStartFastSyncSimple(void) {
     WUDSyncDeviceCallback pSyncCallback;
 
     DEBUGPrint("WUDStartSyncSimple()\n");
-    success = StartSyncSimple(TRUE);
-
-    enabled = OSDisableInterrupts();
-    pSyncCallback = p->syncSmpCB;
-    OSRestoreInterrupts(enabled);
-
-    if (!success && pSyncCallback != NULL) {
-        pSyncCallback(WUD_RESULT_SYNC_BUSY, 0);
-    }
-
+    success = StartSyncSimple(FALSE);
     return success;
 }
 

@@ -76,15 +76,8 @@ typedef struct SCBtDeviceInfo {
     SCDevInfo info;  // at 0x6
 } SCBtDeviceInfo;
 
-typedef struct SCBtDeviceInfoArray {
+typedef struct {
     u8 num;
-
-    union {
-        struct {
-            SCBtDeviceInfo regist[SC_MAX_DEV_ENTRY_FOR_STD];  // at 0x1
-            SCBtDeviceInfo active[SC_MAX_DEV_ENTRY_FOR_SMP];  // at 0x2BD
-        };
-    };
     SCBtDeviceInfoSingle info[16];
 } SCBtDeviceInfoArray;
 
@@ -227,12 +220,16 @@ u8 SCGetWpadSensorBarPosition(void);
 u8 SCGetWpadMotorMode(void);
 u8 SCGetWpadSpeakerVolume(void);
 
-void SCGetBtDeviceInfoArray(SCBtDeviceInfoArray* info);
+BOOL SCGetBtDeviceInfoArray(SCBtDeviceInfoArray* info);
 BOOL SCSetBtDeviceInfoArray(const SCBtDeviceInfoArray*);
 void SCFlushAsync(SCFlushCallback);
 
 BOOL SCSetWpadSpeakerVolume(u8 volume);
 BOOL SCSetWpadMotorMode(u8 mode);
+
+BOOL SCReplaceByteArrayItem(const void*, u32, SCItemID);
+
+BOOL SCReplaceU8Item(u8, SCItemID);
 
 #ifdef __cplusplus
 }
