@@ -2447,7 +2447,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/SchedulerUtil.cpp"),
             Object(NonMatching, "Game/Util/ScreenUtil.cpp"),
             Object(NonMatching, "Game/Util/SequenceUtil.cpp"),
-            Object(NonMatching, "Game/Util/ShareUtil.cpp"),
+            Object(Matching, "Game/Util/ShareUtil.cpp"),
             Object(NonMatching, "Game/Util/SoundUtil.cpp"),
             Object(NonMatching, "Game/Util/StarPointerUtil.cpp"),
             Object(NonMatching, "Game/Util/StringUtil.cpp"),
