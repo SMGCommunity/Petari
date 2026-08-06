@@ -1066,7 +1066,11 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraRaceFollow.cpp"),
             Object(Matching, "Game/Camera/CameraRailDemo.cpp"),
             Object(Matching, "Game/Camera/CameraRailFollow.cpp"),
-            Object(NonMatching, "Game/Camera/CameraRailHolder.cpp"),
+            Object(
+                Matching, 
+                "Game/Camera/CameraRailHolder.cpp", 
+                cflags=[*cflags_game, "-sym off"],
+            ),
             Object(NonMatching, "Game/Camera/CameraRailWatch.cpp"),
             Object(NonMatching, "Game/Camera/CameraRegisterHolder.cpp"),
             Object(NonMatching, "Game/Camera/CameraRotChecker.cpp"),
