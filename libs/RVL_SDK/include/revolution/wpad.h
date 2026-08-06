@@ -449,7 +449,7 @@ void __WPADReconnect(BOOL);
 BOOL WPADStopSimpleSync();
 BOOL WPADCancelSyncDevice();
 
-void WPADiShutdown(BOOL);
+static void WPADiShutdown(BOOL);
 void WPADiDisconnect(s32, BOOL);
 
 s32 WPADControlLed(s32, u8, WPADCallback);

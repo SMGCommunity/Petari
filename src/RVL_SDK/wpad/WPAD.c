@@ -2443,3 +2443,9 @@ void __WPADReconnect(BOOL exec) {
     DEBUGPrint("Wait for %d ms until start reconnect!\n", _recCnt);
     OSRestoreInterrupts(enable);
 }
+
+static void WPADiShutdown(BOOL exec) {
+    OSCancelAlarm(&_managerAlarm);
+    WUDSetHidRecvCallback(NULL);
+    WUDShutdown(exec);
+}

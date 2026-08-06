@@ -1243,7 +1243,7 @@ u32 WUDGetAllocatedMemSize(void) {
     return __ntd_get_allocated_mem_size();
 }
 
-void WUDShutdown(void) {
+void WUDShutdown(BOOL exec) {
     WUDCB* p = &_wcb;
     BOOL enabled;
     int i;

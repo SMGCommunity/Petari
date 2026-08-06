@@ -288,6 +288,7 @@ cflags_trk = [
     "-i libs/MetroTRK/include",
     "-i libs/RVL_SDK/include",
     "-i libs/MSL_C/include",
+    "-DMETRO_TRK",
     f"-i build/{config.version}/include",
     f"-DVERSION={version_num}",
 ]
