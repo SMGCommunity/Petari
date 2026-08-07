@@ -2435,7 +2435,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/MessageUtil.cpp"),
             Object(NonMatching, "Game/Util/ModelUtil.cpp"),
             Object(NonMatching, "Game/Util/MtxUtil.cpp"),
-            Object(NonMatching, "Game/Util/MultiEventCamera.cpp"),
+            Object(Matching, "Game/Util/MultiEventCamera.cpp"),
             Object(Matching, "Game/Util/NerveUtil.cpp"),
             Object(NonMatching, "Game/Util/NPCUtil.cpp"),
             Object(NonMatching, "Game/Util/ObjUtil.cpp"),
