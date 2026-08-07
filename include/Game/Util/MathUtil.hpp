@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JGeometry/TUtil.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 #include <JSystem/JGeometry/TQuat.hpp>
@@ -419,6 +420,18 @@ namespace MR {
         return PI;  // TODO: test if actually JGeometry::TUtil<f32>::PI();
     }
 
+    inline f32 epsilon() {
+        return JGeometry::TUtil< f32 >::epsilon();
+    }
+
+    inline f32 abs(f32 x) {
+        return __fabsf(x);
+    }
+
+    inline s32 abs(s32 x) {
+        return __abs(x);
+    }
+
     /// @brief Computes the cosine of a number, in radians.
     /// @param x The number of radians to evaluate.
     /// @return The ratio of the length of the adjacent to that of the hypotenuse.
@@ -568,7 +581,9 @@ namespace MR {
         return x;
     }
 
-    inline void clampBoth(f32* value, f32 min, f32 max);
+    inline void clampBoth(f32* value, f32 min, f32 max) {
+        *value = clamp(*value, min, max);
+    }
 
     inline void clampMax(f32* val, f32 max) {
         f32 ret;

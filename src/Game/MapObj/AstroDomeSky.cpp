@@ -6,6 +6,7 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
@@ -69,7 +70,7 @@ bool AstroDomeSky::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 }
 
 bool AstroDomeSky::tryRotateAppearence() {
-    if (0.1f < __fabsf(SphereSelectorFunction::getHandleRotateSpeed())) {
+    if (0.1f < MR::abs(SphereSelectorFunction::getHandleRotateSpeed())) {
         if (!isNerve(&NrvAstroDomeSky::AstroDomeNrvRotateDisappear::sInstance)) {
             if (isNerve(&NrvAstroDomeSky::AstroDomeNrvRotateAppear::sInstance) && !MR::isBrkStopped(this)) {
                 _8C = 59.0f - MR::getBrkFrame(this);

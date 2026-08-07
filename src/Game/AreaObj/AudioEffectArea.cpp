@@ -38,6 +38,3 @@ void AudioEffectArea::movement() {
         MR::setAudioEffectType(0, 0);
     }
 }
-
-AudioEffectArea::~AudioEffectArea() {
-}

@@ -24,16 +24,16 @@ public:
 
     s32 searchName(const char* const*, u32, const char*) const;
 
-    u32 mNrMatrices;                         // 0xC
-    MtxPtr mMatrices[NR_REGISTERS];          // 0x10
-    const char* mMatrixNames[NR_REGISTERS];  // 0x110
-    u32 mNrVectors;                          // 0x210
-    const TVec3f* mVectors[NR_REGISTERS];    // 0x214
-    const char* mVectorNames[NR_REGISTERS];  // 0x314
-    u32 mNrFloats;                           // 0x414
-    const f32* mFloats[NR_REGISTERS];        // 0x418
-    const char* mFloatNames[NR_REGISTERS];   // 0x518
-    TMtx34f mDummyMatrix;                    // 0x618
-    TVec3f mDummyVector;                     // 0x648
-    f32 mDummyFloat;                         // 0x654
+    /* 0x00C */ u32 mNrMatrices;
+    /* 0x010 */ MtxPtr mMatrices[NR_REGISTERS];
+    /* 0x110 */ const char* mMatrixNames[NR_REGISTERS];
+    /* 0x210 */ u32 mNrVectors;
+    /* 0x214 */ const TVec3f* mVectors[NR_REGISTERS];
+    /* 0x314 */ const char* mVectorNames[NR_REGISTERS];
+    /* 0x414 */ u32 mNrFloats;
+    /* 0x418 */ const f32* mFloats[NR_REGISTERS];
+    /* 0x518 */ const char* mFloatNames[NR_REGISTERS];
+    /* 0x618 */ TMtx34f mDummyMatrix;
+    /* 0x648 */ TVec3f mDummyVector;
+    /* 0x654 */ f32 mDummyFloat;
 };

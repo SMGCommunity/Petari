@@ -5,23 +5,21 @@
 #include "Game/Util/MathUtil.hpp"
 #include <cstring>
 
-// String constructor called first instead of last
-CameraGeneralParam::CameraGeneralParam() : mString() {
-    mDist = 1200.0f;
-    mAxis.x = 0.0f;
-    mAxis.y = 1.0f;
-    mAxis.z = 0.0f;
-    mWPoint.x = 0.0f;
-    mWPoint.y = 0.0f;
-    mWPoint.z = 0.0f;
-    mUp.x = 0.0f;
-    mUp.y = 0.0f;
-    mUp.z = 0.0f;
-    mAngleA = 0.0f;
-    mAngleB = 0.3f;
-    mNum1 = 0;
-    mNum2 = 0;
+void CameraParamChunk_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
 }
+
+namespace {
+    static const char* sFlagName[] = {"flag.noreset",     "flag.nofovy",       "flag.lofserpoff",
+                                      "flag.antibluroff", "flag.collisionoff", "flag.subjectiveoff"};
+
+    static CameraParamChunk::ExParam sUndoExParam = CameraParamChunk::ExParam();
+    static CameraGeneralParam sUndoParam = CameraGeneralParam();
+    // static const ___ sUndoCamera =
+    // static const ___ sClipChunk =
+    // static const ___ sLastUndoPtr =
+};  // namespace
 
 CameraGeneralParam& CameraGeneralParam::operator=(const CameraGeneralParam& rOther) {
     mDist = rOther.mDist;
@@ -37,130 +35,12 @@ CameraGeneralParam& CameraGeneralParam::operator=(const CameraGeneralParam& rOth
     return *this;
 }
 
-CameraParamChunk::ExParam::ExParam() {
-}
-
-void CameraParamChunk::ExParam::init() {
-    mWOffset.set(0.0f, 100.0f, 0.0f);
-    mLOffset = 0.0f;
-    mLOffsetV = 0.0f;
-    mRoll = 0.0f;
-    mFovy = 45.0f;
-    mCamInt = 120;
-    mFlag = 0;
-    mUpper = 0.3f;
-    mLower = 0.1f;
-    mGndInt = 160;
-    mUPlay = 300.0f;
-    mLPlay = 800.0f;
-    mPushDelay = 120;
-    mPushDelayLow = 120;
-    mUDown = 120;
-    mVPanUse = 1;
-    mVPanAxis.x = 0.0f;
-    mVPanAxis.y = 1.0f;
-    mVPanAxis.z = 0.0f;
-}
-
 CameraParamChunk::CameraParamChunk(CameraHolder* pHolder, const CameraParamChunkID& rChunk) {
     mParamChunkID = new CameraParamChunkID(rChunk);
     mCameraTypeIndex = pHolder->getIndexOfDefault();
     mGeneralParam = new CameraGeneralParam();
     _64 = false;
     mExParam.init();
-}
-
-void CameraParamChunk::copy(const CameraParamChunk* pOther) {
-    mCameraTypeIndex = pOther->mCameraTypeIndex;
-    mExParam.mWOffset = pOther->mExParam.mWOffset;
-    mExParam.mLOffset = pOther->mExParam.mLOffset;
-    mExParam.mLOffsetV = pOther->mExParam.mLOffsetV;
-    mExParam.mRoll = pOther->mExParam.mRoll;
-    mExParam.mFovy = pOther->mExParam.mFovy;
-    mExParam.mCamInt = pOther->mExParam.mCamInt;
-    mExParam.mFlag = pOther->mExParam.mFlag;
-    mExParam.mUpper = pOther->mExParam.mUpper;
-    mExParam.mLower = pOther->mExParam.mLower;
-    mExParam.mGndInt = pOther->mExParam.mGndInt;
-    mExParam.mUPlay = pOther->mExParam.mUPlay;
-    mExParam.mLPlay = pOther->mExParam.mLPlay;
-    mExParam.mPushDelay = pOther->mExParam.mPushDelay;
-    mExParam.mPushDelayLow = pOther->mExParam.mPushDelayLow;
-    mExParam.mUDown = pOther->mExParam.mUDown;
-    mExParam.mVPanUse = pOther->mExParam.mVPanUse;
-    mExParam.mVPanAxis = pOther->mExParam.mVPanAxis;
-    *mGeneralParam = *pOther->mGeneralParam;
-}
-
-void CameraParamChunk::initiate() {
-    mExParam.init();
-    CameraGeneralParam generalParam = CameraGeneralParam();
-    *mGeneralParam = generalParam;
-}
-
-// Register mismatch
-void CameraParamChunk::load(DotCamReader* pReader, CameraHolder* pHolder) {
-    const char* camType = "";
-    pReader->getValueString("camtype", &camType);
-
-    arrangeCamTypeName(pReader->getVersion(), &camType);
-
-    bool isNotPlanet = !strcmp(camType, "CAM_TYPE_PLANET");
-
-    s32 index = pHolder->getIndexOf(camType);
-
-    if (index == -1) {
-        mCameraTypeIndex = pHolder->getIndexOfDefault();
-    } else {
-        mCameraTypeIndex = index;
-    }
-
-    pReader->getValueVec("woffset", &mExParam.mWOffset);
-    pReader->getValueFloat("loffset", &mExParam.mLOffset);
-    pReader->getValueFloat("loffsetv", &mExParam.mLOffsetV);
-    pReader->getValueFloat("roll", &mExParam.mRoll);
-    pReader->getValueFloat("fovy", &mExParam.mFovy);
-    pReader->getValueInt("camint", &mExParam.mCamInt);
-    pReader->getValueFloat("upper", &mExParam.mUpper);
-    pReader->getValueFloat("lower", &mExParam.mLower);
-    pReader->getValueInt("gndint", &mExParam.mGndInt);
-    pReader->getValueFloat("uplay", &mExParam.mUPlay);
-    pReader->getValueFloat("lplay", &mExParam.mLPlay);
-    pReader->getValueInt("pushdelay", &mExParam.mPushDelay);
-    pReader->getValueInt("pushdelaylow", &mExParam.mPushDelayLow);
-    pReader->getValueInt("udown", &mExParam.mUDown);
-    pReader->getValueInt("vpanuse", &mExParam.mVPanUse);
-    pReader->getValueVec("vpanaxis", &mExParam.mVPanAxis);
-
-    static const char* sFlagNames[] = {"flag.noreset",     "flag.nofovy",       "flag.lofserpoff",
-                                       "flag.antibluroff", "flag.collisionoff", "flag.subjectiveoff"};
-
-    for (u32 i = 0; i < 6; i++) {
-        s32 flag;
-
-        if (pReader->getValueInt(sFlagNames[i], &flag)) {
-            mExParam.mFlag |= flag << i;
-        }
-    }
-
-    pReader->getValueFloat("dist", &mGeneralParam->mDist);
-    pReader->getValueVec("axis", &mGeneralParam->mAxis);
-    pReader->getValueVec("wpoint", &mGeneralParam->mWPoint);
-    pReader->getValueVec("up", &mGeneralParam->mUp);
-
-    if (!pReader->getValueFloat("angleA", &mGeneralParam->mAngleA) && isNotPlanet) {
-        mGeneralParam->mAngleA = 30.0f;
-    }
-
-    pReader->getValueFloat("angleB", &mGeneralParam->mAngleB);
-    pReader->getValueInt("num1", &mGeneralParam->mNum1);
-    pReader->getValueInt("num2", &mGeneralParam->mNum2);
-
-    const char* stringParam = nullptr;
-
-    if (pReader->getValueString("string", &stringParam)) {
-        mGeneralParam->mString.setCharPtr(stringParam);
-    }
 }
 
 s32 CameraParamChunk::getZoneID() const {
@@ -192,12 +72,10 @@ bool CameraParamChunk::isSubjectiveCameraOff() const {
 }
 
 void CameraParamChunk::getVPanAxis(TVec3f* pOut) const {
-    pOut->x = mExParam.mVPanAxis.x;
-    pOut->y = mExParam.mVPanAxis.y;
-    pOut->z = mExParam.mVPanAxis.z;
+    pOut->set(mExParam.mVPanAxis);
 
     if (MR::isNearZero(*pOut)) {
-        pOut->set(0.0f, 1.0f, 0.0f);
+        pOut->set< f32 >(0.0f, 1.0f, 0.0f);
     }
 
     MR::normalize(pOut);
@@ -237,57 +115,137 @@ void CameraParamChunk::setCollisionOff(bool value) {
     mExParam.mFlag |= 1 << 4;
 }
 
+void CameraParamChunk::copy(const CameraParamChunk* pOther) {
+    mCameraTypeIndex = pOther->mCameraTypeIndex;
+    mExParam.mWOffset = pOther->mExParam.mWOffset;
+    mExParam.mLOffset = pOther->mExParam.mLOffset;
+    mExParam.mLOffsetV = pOther->mExParam.mLOffsetV;
+    mExParam.mRoll = pOther->mExParam.mRoll;
+    mExParam.mFovy = pOther->mExParam.mFovy;
+    mExParam.mCamInt = pOther->mExParam.mCamInt;
+    mExParam.mFlag = pOther->mExParam.mFlag;
+    mExParam.mUpper = pOther->mExParam.mUpper;
+    mExParam.mLower = pOther->mExParam.mLower;
+    mExParam.mGndInt = pOther->mExParam.mGndInt;
+    mExParam.mUPlay = pOther->mExParam.mUPlay;
+    mExParam.mLPlay = pOther->mExParam.mLPlay;
+    mExParam.mPushDelay = pOther->mExParam.mPushDelay;
+    mExParam.mPushDelayLow = pOther->mExParam.mPushDelayLow;
+    mExParam.mUDown = pOther->mExParam.mUDown;
+    mExParam.mVPanUse = pOther->mExParam.mVPanUse;
+    mExParam.mVPanAxis = pOther->mExParam.mVPanAxis;
+    *mGeneralParam = *pOther->mGeneralParam;
+}
+
+void CameraParamChunk::load(DotCamReader* pReader, CameraHolder* pHolder) {
+    const char* camType = "";
+    pReader->getValueString("camtype", &camType);
+
+    arrangeCamTypeName(pReader->getVersion(), &camType);
+
+    bool isPlanet = strcmp(camType, "CAM_TYPE_PLANET") == 0;
+
+    s32 index = pHolder->getIndexOf(camType);
+
+    if (index == -1) {
+        mCameraTypeIndex = pHolder->getIndexOfDefault();
+    } else {
+        mCameraTypeIndex = index;
+    }
+
+    pReader->getValueVec("woffset", &mExParam.mWOffset);
+    pReader->getValueFloat("loffset", &mExParam.mLOffset);
+    pReader->getValueFloat("loffsetv", &mExParam.mLOffsetV);
+    pReader->getValueFloat("roll", &mExParam.mRoll);
+    pReader->getValueFloat("fovy", &mExParam.mFovy);
+    pReader->getValueInt("camint", &mExParam.mCamInt);
+    pReader->getValueFloat("upper", &mExParam.mUpper);
+    pReader->getValueFloat("lower", &mExParam.mLower);
+    pReader->getValueInt("gndint", &mExParam.mGndInt);
+    pReader->getValueFloat("uplay", &mExParam.mUPlay);
+    pReader->getValueFloat("lplay", &mExParam.mLPlay);
+    pReader->getValueInt("pushdelay", &mExParam.mPushDelay);
+    pReader->getValueInt("pushdelaylow", &mExParam.mPushDelayLow);
+    pReader->getValueInt("udown", &mExParam.mUDown);
+    pReader->getValueInt("vpanuse", &mExParam.mVPanUse);
+    pReader->getValueVec("vpanaxis", &mExParam.mVPanAxis);
+
+    for (u32 i = 0; i < 6; i++) {
+        s32 flag;
+
+        if (pReader->getValueInt(::sFlagName[i], &flag)) {
+            mExParam.mFlag |= flag << i;
+        }
+    }
+
+    pReader->getValueFloat("dist", &mGeneralParam->mDist);
+    pReader->getValueVec("axis", &mGeneralParam->mAxis);
+    pReader->getValueVec("wpoint", &mGeneralParam->mWPoint);
+    pReader->getValueVec("up", &mGeneralParam->mUp);
+
+    if (!pReader->getValueFloat("angleA", &mGeneralParam->mAngleA) && isPlanet) {
+        mGeneralParam->mAngleA = 30.0f;
+    }
+
+    pReader->getValueFloat("angleB", &mGeneralParam->mAngleB);
+    pReader->getValueInt("num1", &mGeneralParam->mNum1);
+    pReader->getValueInt("num2", &mGeneralParam->mNum2);
+
+    const char* stringParam = nullptr;
+
+    if (pReader->getValueString("string", &stringParam)) {
+        mGeneralParam->mString.setCharPtr(stringParam);
+    }
+}
+
+void CameraParamChunk::initiate() {
+    mExParam.init();
+    CameraGeneralParam generalParam = CameraGeneralParam();
+    *mGeneralParam = generalParam;
+}
+
 void CameraParamChunk::arrangeCamTypeName(u32 version, const char** ppType) {
     const char*& type = *ppType;
 
     if (version < 0x30004) {
-        if (strcmp(type, "CAM_TYPE_DONKETSU_TEST")) {
+        if (strcmp(type, "CAM_TYPE_DONKETSU_TEST") == 0) {
             type = "CAM_TYPE_BOSS_DONKETSU";
         }
     } else if (version < 0x30006) {
-        if (strcmp(type, "CAM_TYPE_BEHIND_DEBUG")) {
+        if (strcmp(type, "CAM_TYPE_BEHIND_DEBUG") == 0) {
             type = "CAM_TYPE_SLIDER";
-        } else if (strcmp(type, "CAM_TYPE_INWARD_TOWER_TEST")) {
+        } else if (strcmp(type, "CAM_TYPE_INWARD_TOWER_TEST") == 0) {
             type = "CAM_TYPE_INWARD_TOWER";
-        } else if (strcmp(type, "CAM_TYPE_EYE_FIXED_THERE_TEST")) {
+        } else if (strcmp(type, "CAM_TYPE_EYE_FIXED_THERE_TEST") == 0) {
             type = "CAM_TYPE_EYEPOS_FIX_THERE";
         }
     } else if (version < 0x30009) {
-        if (strcmp(type, "CAM_TYPE_ICECUBE_PLANET")) {
+        if (strcmp(type, "CAM_TYPE_ICECUBE_PLANET") == 0) {
             type = "CAM_TYPE_CUBE_PLANET";
         }
     }
 }
 
-CameraParamChunkGame::CameraParamChunkGame(CameraHolder* pHolder, const CameraParamChunkID& rChunk) : CameraParamChunk(pHolder, rChunk) {
-    mThru = 1;
-    mEnableEndErpFrame = 0;
-    mCamEndInt = 120;
-}
-
-void CameraParamChunkGame::copy(const CameraParamChunk* pOther) {
-    CameraParamChunk::copy(pOther);
+CameraParamChunkGame::CameraParamChunkGame(CameraHolder* pHolder, const CameraParamChunkID& rChunk)
+    : CameraParamChunk(pHolder, rChunk), mThru(1), mEnableEndErpFrame(), mCamEndInt(120) {
 }
 
 void CameraParamChunkGame::load(DotCamReader* pReader, CameraHolder* pHolder) {
     CameraParamChunk::load(pReader, pHolder);
 
-    s32 thru;
-    s32 enableEndErpFrame;
-    s32 camEndInt;
-
-    if (pReader->getValueInt("gflag.thru", &thru)) {
-        mThru = thru;
+    s32 val;
+    if (pReader->getValueInt("gflag.thru", &val)) {
+        mThru = val;
     } else {
         mThru = 0;
     }
 
-    if (pReader->getValueInt("gflag.enableEndErpFrame", &enableEndErpFrame)) {
-        mEnableEndErpFrame = enableEndErpFrame;
+    if (pReader->getValueInt("gflag.enableEndErpFrame", &val)) {
+        mEnableEndErpFrame = val;
     }
 
-    if (pReader->getValueInt("gflag.camendint", &camEndInt)) {
-        mCamEndInt = camEndInt;
+    if (pReader->getValueInt("gflag.camendint", &val)) {
+        mCamEndInt = val;
     }
 }
 
@@ -299,49 +257,37 @@ void CameraParamChunkGame::initiate() {
     mEnableEndErpFrame = 0;
 }
 
-const char* CameraParamChunkGame::getClassName() const {
-    return "Game";
-}
-
-CameraParamChunkEvent::CameraParamChunkEvent(CameraHolder* pHolder, const CameraParamChunkID& rChunk) : CameraParamChunk(pHolder, rChunk) {
-    mEnableErpFrame = 0;
-    mEvFrame = 0;
-    mEnableEndErpFrame = 0;
-    mCamEndInt = 120;
-    mEvPriority = 1;
-}
-
-void CameraParamChunkEvent::copy(const CameraParamChunk* pOther) {
+void CameraParamChunkGame::copy(const CameraParamChunk* pOther) {
     CameraParamChunk::copy(pOther);
+}
+
+CameraParamChunkEvent::CameraParamChunkEvent(CameraHolder* pHolder, const CameraParamChunkID& rChunk)
+    : CameraParamChunk(pHolder, rChunk), mEnableErpFrame(), mEvFrame(), mEnableEndErpFrame(), mCamEndInt(120), mEvPriority(1) {
 }
 
 void CameraParamChunkEvent::load(DotCamReader* pReader, CameraHolder* pHolder) {
     CameraParamChunk::load(pReader, pHolder);
 
-    s32 enableErpFrame;
-    s32 enableEndErpFrame;
-    s32 camEndInt;
-    s32 evFrm;
-    s32 evPriority;
+    s32 val;
 
-    if (pReader->getValueInt("eflag.enableErpFrame", &enableErpFrame)) {
-        mEnableErpFrame = enableErpFrame;
+    if (pReader->getValueInt("eflag.enableErpFrame", &val)) {
+        mEnableErpFrame = val;
     }
 
-    if (pReader->getValueInt("eflag.enableEndErpFrame", &enableEndErpFrame)) {
-        mEnableEndErpFrame = enableEndErpFrame;
+    if (pReader->getValueInt("eflag.enableEndErpFrame", &val)) {
+        mEnableEndErpFrame = val;
     }
 
-    if (pReader->getValueInt("camendint", &camEndInt)) {
-        mCamEndInt = camEndInt;
+    if (pReader->getValueInt("camendint", &val)) {
+        mCamEndInt = val;
     }
 
-    if (pReader->getValueInt("evfrm", &evFrm)) {
-        mEvFrame = evFrm;
+    if (pReader->getValueInt("evfrm", &val)) {
+        mEvFrame = val;
     }
 
-    if (pReader->getValueInt("evpriority", &evPriority)) {
-        mEvPriority = evPriority;
+    if (pReader->getValueInt("evpriority", &val)) {
+        mEvPriority = val;
     }
 }
 
@@ -354,6 +300,6 @@ void CameraParamChunkEvent::initiate() {
     mEvPriority = 1;
 }
 
-const char* CameraParamChunkEvent::getClassName() const {
-    return "Event";
+void CameraParamChunkEvent::copy(const CameraParamChunk* pOther) {
+    CameraParamChunk::copy(pOther);
 }

@@ -1001,6 +1001,7 @@ Game/Boss/KoopaFireShort.cpp:
 	.text       start:0x8005DE18 end:0x8005E874
 	.ctors      start:0x8052E908 end:0x8052E90C
 	.data       start:0x8056CCD8 end:0x8056CE28
+	.sdata      start:0x806B1740 end:0x806B1748
 	.sbss       start:0x806B3458 end:0x806B3468
 	.sdata2     start:0x806B8860 end:0x806B8898
 
@@ -1008,6 +1009,7 @@ Game/Boss/KoopaFireStairs.cpp:
 	.text       start:0x8005E874 end:0x8005F0F8
 	.ctors      start:0x8052E90C end:0x8052E910
 	.data       start:0x8056CE28 end:0x8056CF70
+	.sdata      start:0x806B1748 end:0x806B1750
 	.sbss       start:0x806B3468 end:0x806B3470
 	.sdata2     start:0x806B8898 end:0x806B88D0
 
@@ -1096,6 +1098,7 @@ Game/Boss/KoopaStateAttackHipDrop.cpp:
 	.text       start:0x80064AC8 end:0x800655E8
 	.ctors      start:0x8052E92C end:0x8052E930
 	.data       start:0x8056DF38 end:0x8056E118
+	.sdata      start:0x806B1750 end:0x806B1758
 	.sbss       start:0x806B3520 end:0x806B3540
 	.sdata2     start:0x806B8978 end:0x806B89A8
 
@@ -1117,6 +1120,7 @@ Game/Boss/KoopaStateAttackSpin.cpp:
 	.text       start:0x80066840 end:0x800670D8
 	.ctors      start:0x8052E938 end:0x8052E93C
 	.data       start:0x8056E408 end:0x8056E578
+	.sdata      start:0x806B1758 end:0x806B1760
 	.sbss       start:0x806B3568 end:0x806B3580
 	.sdata2     start:0x806B89E0 end:0x806B8A00
 
@@ -1160,6 +1164,7 @@ Game/Boss/OtaKing.cpp:
 	.ctors      start:0x8052E94C end:0x8052E950
 	.rodata     start:0x80530FC8 end:0x80531030
 	.data       start:0x8056EEB0 end:0x8056F3B8
+	.sdata      start:0x806B1760 end:0x806B1770
 	.sbss       start:0x806B35F8 end:0x806B3640
 	.sdata2     start:0x806B8A70 end:0x806B8B28
 
@@ -1299,6 +1304,7 @@ Game/Boss/SkeletalFishBaby.cpp:
 	.ctors      start:0x8052E988 end:0x8052E98C
 	.rodata     start:0x80531430 end:0x80531470
 	.data       start:0x805709D0 end:0x80570BC8
+	.sdata      start:0x806B1770 end:0x806B1778
 	.sbss       start:0x806B3768 end:0x806B3778
 	.sdata2     start:0x806B8C90 end:0x806B8CC0
 
@@ -1315,21 +1321,23 @@ Game/Boss/SkeletalFishBoss.cpp:
 	.ctors      start:0x8052E98C end:0x8052E990
 	.rodata     start:0x80531470 end:0x805314F8
 	.data       start:0x80570C68 end:0x805717C8
+	.sdata      start:0x806B1778 end:0x806B1780
 	.sbss       start:0x806B3778 end:0x806B37B8
 	.sdata2     start:0x806B8CC0 end:0x806B8D18
 
 Game/Boss/SkeletalFishBossBattleDirector.cpp:
 	.text       start:0x8007AE78 end:0x8007B4A8
-	.data       start:0x805717C8 end:0x80571880
+	.data       start:0x805717C8 end:0x805717F0
 
 Game/Boss/SkeletalFishBossFunc.cpp:
 	.text       start:0x8007B4A8 end:0x8007B5B0
-	.sdata      start:0x806B1740 end:0x806B1788
+	.data       start:0x805717F0 end:0x80571808
+	.sdata      start:0x806B1780 end:0x806B1788
 	.sdata2     start:0x806B8D18 end:0x806B8D20
 
 Game/Boss/SkeletalFishBossInfo.cpp:
 	.text       start:0x8007B5B0 end:0x8007BACC
-	.data       start:0x80571880 end:0x805718A8
+	.data       start:0x80571808 end:0x805718A8
 	.sdata      start:0x806B1788 end:0x806B17B8
 	.sdata2     start:0x806B8D20 end:0x806B8D30
 
@@ -1961,13 +1969,13 @@ Game/Camera/CameraMan.cpp:
 
 Game/Camera/CameraManEvent.cpp:
 	.text       start:0x800A3DB8 end:0x800A4F84
-	.data       start:0x805757C0 end:0x80575918
+	.data       start:0x805757C0 end:0x80575828
 	.sdata2     start:0x806B95F8 end:0x806B9608
 
 Game/Camera/CameraManGame.cpp:
 	.text       start:0x800A4F84 end:0x800A6BB8
-	.data       start:0x80575918 end:0x80575978
-	.sdata      start:0x806B1818 end:0x806B1840
+	.data       start:0x80575828 end:0x80575978
+	.sdata      start:0x806B1818 end:0x806B1830
 	.sdata2     start:0x806B9608 end:0x806B9660
 
 Game/Camera/CameraManPause.cpp:
@@ -2001,24 +2009,27 @@ Game/Camera/CameraObjParallel.cpp:
 
 Game/Camera/CameraParallel.cpp:
 	.text       start:0x800A91C8 end:0x800A97B8
-	.data       start:0x80575B98 end:0x80575C50
+	.rodata     start:0x805318F0 end:0x805318F8
+	.data       start:0x80575B98 end:0x80575BF0
 	.sdata2     start:0x806B9738 end:0x806B9770
 
 Game/Camera/CameraParamChunk.cpp:
 	.text       start:0x800A97B8 end:0x800AA55C
 	.ctors      start:0x8052E9F4 end:0x8052E9F8
-	.data       start:0x80575C50 end:0x80575EE8
+	.data       start:0x80575BF0 end:0x80575EE8
 	.bss        start:0x8060A6F8 end:0x8060A788
+	.sdata      start:0x806B1830 end:0x806B1838
 	.sdata2     start:0x806B9770 end:0x806B97A0
 
 Game/Camera/CameraParamChunkHolder.cpp:
 	.text       start:0x800AA55C end:0x800AAFBC
-	.data       start:0x80575EE8 end:0x80575FE0
+	.data       start:0x80575EE8 end:0x80575FE8
+	.sdata      start:0x806B1838 end:0x806B1840
 	.sdata2     start:0x806B97A0 end:0x806B97D0
 
 Game/Camera/CameraParamChunkID.cpp:
 	.text       start:0x800AAFBC end:0x800AB4AC
-	.data       start:0x80575FE0 end:0x80576018
+	.data       start:0x80575FE8 end:0x80576018
 
 Game/Camera/CameraParamString.cpp:
 	.text       start:0x800AB4AC end:0x800AB520
@@ -2037,26 +2048,29 @@ Game/Camera/CameraRaceFollow.cpp:
 
 Game/Camera/CameraRailDemo.cpp:
 	.text       start:0x800ABC10 end:0x800AC0D8
+	.rodata     start:0x805318F8 end:0x80531900
 	.data       start:0x80576070 end:0x805760C8
 	.sdata2     start:0x806B9800 end:0x806B9810
 
 Game/Camera/CameraRailFollow.cpp:
 	.text       start:0x800AC0D8 end:0x800AC648
-	.data       start:0x805760C8 end:0x80576128
+	.rodata     start:0x80531900 end:0x80531908
+	.data       start:0x805760C8 end:0x80576120
 	.sdata2     start:0x806B9810 end:0x806B9830
 
 Game/Camera/CameraRailHolder.cpp:
 	.text       start:0x800AC648 end:0x800ACA60
-	.data       start:0x80576128 end:0x80576150
+	.data       start:0x80576120 end:0x80576150
 
 Game/Camera/CameraRailWatch.cpp:
 	.text       start:0x800ACA60 end:0x800AD0E0
-	.data       start:0x80576150 end:0x805761D8
+	.rodata     start:0x80531908 end:0x80531910
+	.data       start:0x80576150 end:0x805761A8
 	.sdata2     start:0x806B9830 end:0x806B9848
 
 Game/Camera/CameraRegisterHolder.cpp:
 	.text       start:0x800AD0E0 end:0x800AD44C
-	.data       start:0x805761D8 end:0x80576200
+	.data       start:0x805761A8 end:0x80576200
 	.sdata      start:0x806B1840 end:0x806B1850
 	.sdata2     start:0x806B9848 end:0x806B9850
 
@@ -2068,6 +2082,7 @@ Game/Camera/CameraRotChecker.cpp:
 
 Game/Camera/CameraShakePatternImpl.cpp:
 	.text       start:0x800AD650 end:0x800AD994
+	.rodata     start:0x80531910 end:0x80531928
 	.data       start:0x80576200 end:0x80576238
 	.sdata2     start:0x806B9878 end:0x806B9890
 
@@ -5545,7 +5560,7 @@ Game/MapObj/SandCapsulePressGround.cpp:
 Game/MapObj/Sandstorm.cpp:
 	.text       start:0x8021F714 end:0x80221104
 	.ctors      start:0x8052EE5C end:0x8052EE60
-	.data       start:0x8059DF10 end:0x8059E2A8
+	.data       start:0x8059DF10 end:0x8059E218
 	.sbss       start:0x806B5740 end:0x806B5760
 	.sdata2     start:0x806BDD68 end:0x806BDDC8
 
@@ -5553,7 +5568,7 @@ Game/MapObj/SandUpDownEffectObj.cpp:
 	.text       start:0x80221104 end:0x802219BC
 	.ctors      start:0x8052EE60 end:0x8052EE64
 	.rodata     start:0x80533678 end:0x805336C0
-	.data       start:0x8059E2A8 end:0x8059E3D0
+	.data       start:0x8059E218 end:0x8059E3D0
 	.sbss       start:0x806B5760 end:0x806B5778
 	.sdata2     start:0x806BDDC8 end:0x806BDDD8
 
@@ -5781,13 +5796,14 @@ Game/MapObj/SpinDriver.cpp:
 	.text       start:0x8023493C end:0x802369B4
 	.ctors      start:0x8052EEC0 end:0x8052EEC4
 	.rodata     start:0x80533898 end:0x805338A8
-	.data       start:0x805A09B8 end:0x805A0D30
+	.data       start:0x805A09B8 end:0x805A0D08
 	.sdata      start:0x806B2020 end:0x806B2028
 	.sbss       start:0x806B58C0 end:0x806B58E0
 	.sdata2     start:0x806BE1C0 end:0x806BE228
 
 Game/MapObj/SpinDriverCamera.cpp:
 	.text       start:0x802369B4 end:0x80236F68
+	.data       start:0x805A0D08 end:0x805A0D30
 	.sdata2     start:0x806BE228 end:0x806BE238
 
 Game/MapObj/SpinDriverOperateRing.cpp:
@@ -6558,14 +6574,14 @@ Game/NPC/RunawayRabbitCollect.cpp:
 Game/NPC/RunawayTico.cpp:
 	.text       start:0x80286FD8 end:0x80287EA0
 	.ctors      start:0x8052EFF4 end:0x8052EFF8
-	.data       start:0x805B3498 end:0x805B37A8
+	.data       start:0x805B3498 end:0x805B3798
 	.sbss       start:0x806B5F70 end:0x806B5F90
 	.sdata2     start:0x806BEEE8 end:0x806BEEF8
 
 Game/NPC/SignBoard.cpp:
 	.text       start:0x80287EA0 end:0x80288130
 	.ctors      start:0x8052EFF8 end:0x8052EFFC
-	.data       start:0x805B37A8 end:0x805B3830
+	.data       start:0x805B3798 end:0x805B3830
 	.sbss       start:0x806B5F90 end:0x806B5F98
 	.sdata2     start:0x806BEEF8 end:0x806BEF20
 
@@ -9339,7 +9355,7 @@ Game/Util/NPCUtil.cpp:
 	.text       start:0x803EE208 end:0x803F03A8
 	.ctors      start:0x8052F3B0 end:0x8052F3B4
 	.data       start:0x805E1B60 end:0x805E1DD8
-	.sdata      start:0x806B2668 end:0x806B26B0
+	.sdata      start:0x806B2668 end:0x806B26A8
 	.sbss       start:0x806B7020 end:0x806B7050
 	.sdata2     start:0x806C1800 end:0x806C1840
 
@@ -9358,6 +9374,7 @@ Game/Util/PlayerUtil.cpp:
 	.text       start:0x803F3500 end:0x803F4BF0
 	.ctors      start:0x8052F3B8 end:0x8052F3BC
 	.data       start:0x805E1DD8 end:0x805E1E20
+	.sdata      start:0x806B26A8 end:0x806B26B0
 	.sdata2     start:0x806C1878 end:0x806C1888
 
 Game/Util/RailGraphUtil.cpp:
@@ -9387,10 +9404,11 @@ Game/Util/ScreenUtil.cpp:
 
 Game/Util/SequenceUtil.cpp:
 	.text       start:0x803F9848 end:0x803F9C18
+	.data       start:0x805E2048 end:0x805E2060
 
 Game/Util/ShareUtil.cpp:
 	.text       start:0x803F9C18 end:0x803F9CD4
-	.data       start:0x805E2070 end:0x805E2098
+	.data       start:0x805E2060 end:0x805E2098
 
 Game/Util/SoundUtil.cpp:
 	.text       start:0x803F9CD4 end:0x803FBA80

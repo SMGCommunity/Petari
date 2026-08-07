@@ -8,16 +8,7 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CameraParamChunkHolder.hpp"
 #include "Game/Util/CameraUtil.hpp"
-
-// Constructor for mTargetArg is called. The constructor exists in the symbol so
-// it's not fully inlined. It also exists in the code (not inlined), but the code below
-// matches the constructor exactly.
-CameraManEvent::ChunkFIFOItem::ChunkFIFOItem() {
-    mTargetArg.mTargetObj = nullptr;
-    mTargetArg.mTargetMtx = nullptr;
-    mTargetArg.mLiveActor = nullptr;
-    mTargetArg.mMarioActor = nullptr;
-}
+#include "Game/Util/MathUtil.hpp"
 
 CameraManEvent::CameraManEvent(CameraHolder* pHolder, CameraParamChunkHolder* pChunkHolder, const char* pName)
     : CameraMan(pName), mHolder(pHolder), mChunkHolder(pChunkHolder), mCamera(nullptr) {
@@ -31,7 +22,7 @@ CameraManEvent::CameraManEvent(CameraHolder* pHolder, CameraParamChunkHolder* pC
     }
 }
 
-CameraManEvent::~CameraManEvent() {
+CameraManEvent::ChunkFIFOItem::ChunkFIFOItem() {
 }
 
 void CameraManEvent::init(const JMapInfoIter& rIter) {
@@ -45,50 +36,6 @@ void CameraManEvent::calc() {
     CameraTargetObj* target = mCamera->calc();
     CameraLocalUtil::setUsedTarget(this, target);
     setSafePose();
-}
-
-void CameraManEvent::notifyActivate() {
-    _BC = true;
-}
-
-void CameraManEvent::notifyDeactivate() {
-    mCamera = nullptr;
-}
-
-bool CameraManEvent::isInterpolationOff() const {
-    if (mCamera != nullptr && mCamera->isInterpolationOff()) {
-        return true;
-    }
-
-    if (mChunk != nullptr && mChunk->isAntiBlurOff()) {
-        return true;
-    }
-
-    return false;
-}
-
-bool CameraManEvent::isCollisionOff() const {
-    if (mCamera != nullptr && mCamera->isCollisionOff()) {
-        return true;
-    }
-
-    if (mChunk != nullptr && mChunk->isCollisionOff()) {
-        return true;
-    }
-
-    return false;
-}
-
-bool CameraManEvent::isZeroFrameMoveOff() const {
-    if (mCamera != nullptr) {
-        return mCamera->isZeroFrameMoveOff();
-    }
-
-    return false;
-}
-
-bool CameraManEvent::isCorrectingErpPositionOff() const {
-    return mCamera != nullptr && mCamera->isCorrectingErpPositionOff();
 }
 
 void CameraManEvent::start(s32 zoneID, const char* pName, const CameraTargetArg& rTargetArg, s32 a4) {
@@ -137,6 +84,38 @@ bool CameraManEvent::isActive() const {
     return !isChunkFIFOEmpty();
 }
 
+bool CameraManEvent::isInterpolationOff() const {
+    if (mCamera != nullptr && mCamera->isInterpolationOff()) {
+        return true;
+    }
+
+    if (mChunk != nullptr && mChunk->isAntiBlurOff()) {
+        return true;
+    }
+
+    return false;
+}
+
+bool CameraManEvent::isCollisionOff() const {
+    if (mCamera != nullptr && mCamera->isCollisionOff()) {
+        return true;
+    }
+
+    if (mChunk != nullptr && mChunk->isCollisionOff()) {
+        return true;
+    }
+
+    return false;
+}
+
+bool CameraManEvent::isZeroFrameMoveOff() const {
+    if (mCamera != nullptr) {
+        return mCamera->isZeroFrameMoveOff();
+    }
+
+    return false;
+}
+
 bool CameraManEvent::doesNextChunkHaveInterpolation() const {
     const ChunkFIFOItem* item = nullptr;
 
@@ -156,6 +135,10 @@ bool CameraManEvent::doesNextChunkHaveInterpolation() const {
     }
 
     return false;
+}
+
+bool CameraManEvent::isCorrectingErpPositionOff() const {
+    return mCamera != nullptr && mCamera->isCorrectingErpPositionOff();
 }
 
 u32 CameraManEvent::getAnimCameraFrame(s32 zoneID, const char* pName) const {
@@ -186,9 +169,10 @@ void CameraManEvent::pauseOffAnimCamera(s32 zoneID, const char* pName) {
     }
 }
 
-#ifdef NON_MATCH
-// LWZ wrong instruction order, register mismatch
 void CameraManEvent::updateChunkFIFO() {
+    // FIXME: LWZ wrong instruction order, register mismatch
+    // https://decomp.me/scratch/qHkVX
+
     for (u32 i = 0; i < NR_FIFO_ITEMS; i++) {
         CameraParamChunkEvent* chunk = mItems[i].mSecond.mChunk;
 
@@ -213,7 +197,6 @@ void CameraManEvent::updateChunkFIFO() {
         }
     }
 }
-#endif
 
 void CameraManEvent::applyChunk() {
     ChunkFIFOItem* item = nullptr;
@@ -310,21 +293,48 @@ void CameraManEvent::resetCameraIfRequested() {
     }
 }
 
-/*void CameraManEvent::setSafePose() {
-    TVec3f pos = TVec3f(*CameraLocalUtil::getPos(mCamera));
-    TVec3f watchPos = TVec3f(*CameraLocalUtil::getWatchPos(mCamera));
-    TVec3f up = TVec3f(*CameraLocalUtil::getUpVec(mCamera));
+void CameraManEvent::setSafePose() {
+    TVec3f pos = CameraLocalUtil::getPos(mCamera);
+    TVec3f watchPos = CameraLocalUtil::getWatchPos(mCamera);
+    TVec3f up = CameraLocalUtil::getUpVec(mCamera);
 
-    TVec3f dir = watchPos - pos;
-
-    f32 length = dir.length();
-
-    if (length < 300.0f) {
-        if (length < 1.0f) {
-
+    TVec3f watchOffset = watchPos - pos;
+    f32 dist = watchOffset.length();
+    if (dist < 300.0f) {
+        if (dist < 1.0f) {
+            watchPos.set(pos + CameraLocalUtil::getWatchPos(this) - CameraLocalUtil::getPos(this));
+        } else {
+            watchOffset.normalize();
+            watchPos.set(pos + watchOffset * 300.0f);
         }
     }
-}*/
+
+    TVec3f camWatchDir = watchPos - pos;
+    MR::normalize(&camWatchDir);
+    MR::normalizeOrZero(&up);
+
+    if (MR::isNearZero(up) || MR::abs(camWatchDir.dot(up)) > 0.98f) {
+        TVec3f watchDir = CameraLocalUtil::getWatchPos(this) - CameraLocalUtil::getPos(this);
+        MR::normalize(&watchDir);
+        if (MR::abs(camWatchDir.dot(watchDir)) > 0.98f) {
+            up.set(CameraLocalUtil::getUpVec(this));
+        } else {
+            TQuat4f rot;
+            rot.setRotate(watchDir, camWatchDir);
+            rot.transform(CameraLocalUtil::getUpVec(this), up);
+        }
+        CameraLocalUtil::recalcUpVec(&up, camWatchDir);
+    }
+
+    CameraLocalUtil::setPos(this, pos);
+    CameraLocalUtil::setUpVec(this, up);
+    CameraLocalUtil::setWatchPos(this, watchPos);
+    CameraLocalUtil::setWatchUpVec(this, CameraLocalUtil::getWatchUpVec(mCamera));
+    CameraLocalUtil::setGlobalOffset(this, CameraLocalUtil::getGlobalOffset(mCamera));
+    CameraLocalUtil::setLocalOffset(this, CameraLocalUtil::getLocalOffset(mCamera));
+    CameraLocalUtil::setFovy(this, CameraLocalUtil::getFovy(mCamera));
+    CameraLocalUtil::setRoll(this, CameraLocalUtil::getRoll(mCamera));
+}
 
 CameraParamChunkEvent* CameraManEvent::findChunk(s32 zoneID, const char* pName) const {
     CameraParamChunkID_Tmp chunkID = CameraParamChunkID_Tmp();
@@ -453,13 +463,26 @@ bool CameraManEvent::isInFIFO(CameraParamChunk* pChunk) const {
     return false;
 }
 
+void CameraManEvent::notifyActivate() {
+    _BC = true;
+}
+
+void CameraManEvent::notifyDeactivate() {
+    mCamera = nullptr;
+}
+
+CameraManEvent::~CameraManEvent() {
+}
+
 bool CameraManEvent::isAnimCameraEnd(s32 zoneID, const char* pName) const {
     mHolder->getIndexOf("CAM_TYPE_ANIM");
     CameraParamChunkEvent* chunk = findChunk(zoneID, pName);
 
     if (isInFIFO(chunk)) {
-        if (chunk == mChunk && mCamera != nullptr) {
-            return reinterpret_cast< CameraAnim* >(mCamera)->isAnimEnd();
+        if (chunk == mChunk) {
+            if (mCamera != nullptr) {
+                return reinterpret_cast< CameraAnim* >(mCamera)->isAnimEnd();
+            }
         } else {
             return false;
         }

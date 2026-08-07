@@ -32,7 +32,7 @@ void ConeGravity::setTopCutRate(f32 val) {
 
 inline f32 absfInline(f32& orig, f32 v) {
     orig = v;
-    return __fabsf(v);
+    return MR::abs(v);
 }
 
 void ConeGravity::updateMtx(const TPos3f& rMtx) {

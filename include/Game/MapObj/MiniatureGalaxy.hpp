@@ -48,18 +48,18 @@ public:
     void exeConfirmed();
     void exeOpen();
 
-    /* 0x8C */ s32 mGalaxyType;  // 0 = major, 1 = minor, 2 = bowser (obj_arg0)
-    /* 0x90 */ s32 mState;       // 0 = hidden, 1 = can't open, 2 = can open, 3 = open
-    /* 0x94 */ ModelObj* mUnknownModel;
-    /* 0x98 */ ModelObj* mShadowModel;
-    /* 0x9C */ ModelObj* mSelectModel;
-    /* 0xA0 */ ModelObj* mStarPlateModel;
-    /* 0xA4 */ TMtx34f _A4;
-    /* 0xD4 */ TMtx34f _D4;
+    /* 0x08C */ s32 mType;
+    /* 0x090 */ s32 mState;
+    /* 0x094 */ ModelObj* mUnknownModel;
+    /* 0x098 */ ModelObj* mShadowModel;
+    /* 0x09C */ ModelObj* mSelectModel;
+    /* 0x0A0 */ ModelObj* mStarPlateModel;
+    /* 0x0A4 */ TMtx34f _A4;
+    /* 0x0D4 */ TMtx34f _D4;
     /* 0x104 */ ProjmapEffectMtxSetter* mProjmapEffectMtxSetter;
     /* 0x108 */ TVec3f _108;
-    /* 0x114 */ const char* mMiniatureName;
-    /* 0x118 */ const char* mName;
+    /* 0x114 */ const char* mObjectName;
+    /* 0x118 */ const char* mName;  // mGalaxyName
     /* 0x11C */ s32 mCanZoomIn;
     /* 0x120 */ s32 mZoomLevel;
     /* 0x124 */ J3DTexMtx _124;

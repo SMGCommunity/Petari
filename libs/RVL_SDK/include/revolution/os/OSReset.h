@@ -7,6 +7,22 @@
 extern "C" {
 #endif
 
+#define OS_SETTING_CALENDAR 1u
+#define OS_SETTING_DISPLAY 2u
+#define OS_SETTING_SOUND 3u
+#define OS_SETTING_PARENTAL 4u
+#define OS_SETTING_INTERNET 5u
+#define OS_SETTING_WC24 6u
+#define OS_SETTING_UPDATE 7u
+
+#define OS_SYSLAUNCH_URL_CALENDAR "Calendar/Calendar_index.html"
+#define OS_SYSLAUNCH_URL_DISPLAY "Display/Display_index.html"
+#define OS_SYSLAUNCH_URL_SOUND "Sound/Sound_index.html"
+#define OS_SYSLAUNCH_URL_PARENTAL "Parental_Control/Parental_Control_index.html"
+#define OS_SYSLAUNCH_URL_INTERNET "Internet/Internet_index.html"
+#define OS_SYSLAUNCH_URL_WC24 "WiiConnect24/Wiiconnect24_index.html"
+#define OS_SYSLAUNCH_URL_UPDATE "Update/Update_index.html"
+
 typedef BOOL (*OSShutdownFunction)(BOOL, u32);
 typedef struct OSShutdownFunctionInfo OSShutdownFunctionInfo;
 
@@ -17,7 +33,7 @@ struct OSShutdownFunctionInfo {
     OSShutdownFunctionInfo* prev;
 };
 
-void OSRegisterShutdownFunction(OSShutdownFunctionInfo *);
+void OSRegisterShutdownFunction(OSShutdownFunctionInfo*);
 
 void OSRebootSystem(void);
 void OSShutdownSystem(void);
@@ -35,11 +51,12 @@ u8 __OSGetDiscState(u8);
 void __OSShutdownDevices(u32);
 void __OSHotResetForError(void);
 
-#define OSIsRestart()   \
-            ((OSGetResetCode() & 0x80000000) ? TRUE : FALSE)
+void __OSReturnToMenul(u32, const char*, ...);
+
+#define OSIsRestart() ((OSGetResetCode() & 0x80000000) ? TRUE : FALSE)
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // OSRESET_H
+#endif  // OSRESET_H

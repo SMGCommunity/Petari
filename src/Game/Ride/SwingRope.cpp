@@ -251,7 +251,7 @@ bool SwingRope::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceive
         TVec3f front;
         MR::getPlayerFrontVec(&front);
 
-        if (__fabsf(mRider->mPosition.y - mBasePos.y) < 1.0f) {
+        if (MR::abs(mRider->mPosition.y - mBasePos.y) < 1.0f) {
             front.set< f32 >(0.0f, -1.0f, 0.0f);
         }
         mSledPoint->mFront.set(front);
@@ -342,7 +342,7 @@ void SwingRope::restrictPointToHead(s32 index, const TVec3f& rAnchor, f32 length
 
 bool SwingRope::isAllPointsStop() const {
     for (s32 idx = 0; idx < mNumPoints; idx++) {
-        if (__fabsf(mPoints[idx]->mVelocity.x) > 0.1f || __fabsf(mPoints[idx]->mVelocity.y) > 0.1f || __fabsf(mPoints[idx]->mVelocity.z) > 0.1f) {
+        if (MR::abs(mPoints[idx]->mVelocity.x) > 0.1f || MR::abs(mPoints[idx]->mVelocity.y) > 0.1f || MR::abs(mPoints[idx]->mVelocity.z) > 0.1f) {
             return false;
         }
 
@@ -355,7 +355,7 @@ bool SwingRope::isAllPointsStop() const {
 }
 
 bool SwingRope::isStretched() const {
-    return __fabsf(mGrabCoord - mBasePos.distance(mSledPoint->mPosition)) < 1.0f;
+    return MR::abs(mGrabCoord - mBasePos.distance(mSledPoint->mPosition)) < 1.0f;
 }
 
 bool SwingRope::tryJump() {

@@ -37,7 +37,7 @@ namespace MR {
     }
 
     f32 acosEx(f32 x) {
-        if (__fabsf(x) < 0.98f) {
+        if (MR::abs(x) < 0.98f) {
             return MR::acos(x);
         } else if (x < 0.0f) {
             u32 index = static_cast< u32 >((-x - 0.98f) * 255.0f * 50.0f);
@@ -286,7 +286,7 @@ namespace MR {
         if (rSrc.squared() > length * length) {
             f32 sqr = rSrc.squared();
 
-            if (length <= 0.0000038146973f) {
+            if (length <= MR::epsilon()) {
                 pDst->zero();
             } else {
                 f32 invSqrt = JGeometry::TUtil< f32 >::inv_sqrt(sqr);
@@ -436,15 +436,15 @@ namespace MR {
     // calcReflectionVector
 
     bool isSameDirection(const TVec3f& rVec1, const TVec3f& rVec2, f32 tolerance) {
-        if (__fabsf(rVec1.y * rVec2.z - rVec1.z * rVec2.y) > tolerance) {
+        if (MR::abs(rVec1.y * rVec2.z - rVec1.z * rVec2.y) > tolerance) {
             return false;
         }
 
-        if (__fabsf(rVec1.z * rVec2.x - rVec1.x * rVec2.z) > tolerance) {
+        if (MR::abs(rVec1.z * rVec2.x - rVec1.x * rVec2.z) > tolerance) {
             return false;
         }
 
-        if (__fabsf(rVec1.x * rVec2.y - rVec1.y * rVec2.x) > tolerance) {
+        if (MR::abs(rVec1.x * rVec2.y - rVec1.y * rVec2.x) > tolerance) {
             return false;
         }
 
@@ -872,8 +872,8 @@ namespace MR {
             return false;
         }
 
-        f32 sin = __fabsf(JMASinRadian(param5));
-        f32 dot2 = __fabsf(v1.dot(v3));
+        f32 sin = MR::abs(JMASinRadian(param5));
+        f32 dot2 = MR::abs(v1.dot(v3));
 
         return !(dot2 > sin);
     }
@@ -888,7 +888,7 @@ namespace MR {
     // createBoundingBox
 
     bool isNormalize(const TVec3f& rVec, f32 tolerance) {
-        return __fabsf(1.0f - rVec.length()) <= tolerance;
+        return MR::abs(1.0f - rVec.length()) <= tolerance;
     }
 
     // Matches with no consequences, but I am not exactly sure if *THIS* is what Nintendo would've done...

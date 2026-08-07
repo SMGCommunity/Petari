@@ -105,7 +105,6 @@ u32 JKRArchive::readResource(void* a1, unsigned long a2, unsigned long a3, const
 void JKRArchive::removeResourceAll() {
     if (mInfoBlock != nullptr && mMountMode != MOUNT_MODE_DVD) {
         SDIFileEntry* current = mFiles;
-
         for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
             if (current->mFileData != nullptr) {
                 JKRHeap::free(current->mFileData, mHeap);

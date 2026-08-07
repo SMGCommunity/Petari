@@ -20,7 +20,7 @@
 void RingBeam_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
-    f32 f3 = JGeometry::TUtil< f32 >::epsilon();
+    f32 f3 = MR::epsilon();
 }
 
 namespace NrvRingBeam {
@@ -345,7 +345,7 @@ void RingBeam::exeSpread() {
             TVec3f temp15 = temp12 - temp13 * (temp12.dot(temp13));
             MR::normalizeOrZero(&temp15);
             MR::normalizeOrZero(&temp12);
-            float2 = 1.0f - __fabsf(temp13.dot(temp12));
+            float2 = 1.0f - MR::abs(temp13.dot(temp12));
             radius = getSensor("Beam")->mRadius;
             _cc = ec + temp15 * radius * float2;
         } else {

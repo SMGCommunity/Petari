@@ -8,12 +8,7 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-DemoCtrlBase::DemoCtrlBase(LiveActor* pActor, const char* pName) {
-    mActor = pActor;
-    mCameraInfo = nullptr;
-    mDemoName = pName;
-    mCurrentFrame = -1;
-    _10 = false;
+DemoCtrlBase::DemoCtrlBase(LiveActor* pActor, const char* pName) : mActor(pActor), mCameraInfo(), mDemoName(pName), mCurrentFrame(-1), _10() {
 }
 
 void DemoCtrlBase::init(const JMapInfoIter& rIter) {
@@ -28,6 +23,7 @@ void DemoCtrlBase::end() {
     }
 
     MR::endActorCamera(mActor, mCameraInfo, false, -1);
+
     if (MR::Demo::isExistCameraShaking(mDemoName)) {
         MR::stopShakingCamera(mActor);
     }
@@ -72,13 +68,13 @@ bool DemoCtrlBase::tryStart() {
     }
 
     MR::startActorCameraNoTarget(mActor, mCameraInfo, -1);
+
     if (MR::Demo::isExistCameraShaking(mDemoName)) {
-        f32 shakeSpeed = MR::Demo::getCameraShakeSpeed(mDemoName);
-        f32 shakeIntensity = MR::Demo::getCameraShakeIntensity(mDemoName);
-        MR::shakeCameraInfinity(mActor, shakeIntensity, shakeSpeed);
+        MR::shakeCameraInfinity(mActor, MR::Demo::getCameraShakeIntensity(mDemoName), MR::Demo::getCameraShakeSpeed(mDemoName));
     }
 
     MR::startSystemSE("SE_SY_READ_RIDDLE_S");
     MR::emitEffect(mActor, MR::Demo::getStartEffect(mDemoName));
+
     return true;
 }

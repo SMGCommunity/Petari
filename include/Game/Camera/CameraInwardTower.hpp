@@ -9,20 +9,27 @@ public:
 
     virtual void reset();
     virtual CameraTargetObj* calc();
-    virtual bool isEnableToReset() const;
+    virtual bool isEnableToReset() const {
+        return true;
+    }
     virtual CamTranslatorBase* createTranslator();
 
     void calcIdealPose();
 
-    TVec3f mWPoint;  // 0x4C
-    TVec3f mAxis;    // 0x58
-    f32 mAngleB;     // 0x64
-    f32 mAngleA;     // 0x68
-    f32 mDist;       // 0x6C
-    f32 _70;
-    f32 _74;
-    f32 _78;
-    f32 _7C;
-    u8 _80;
-    u8 _81[3];
+    void setParam(const TVec3f& rWPoint, const TVec3f& rAxis, const TVec2f& angle, f32 dist) {
+        mWPoint.set(rWPoint);
+        mAxis.set(rAxis);
+        mAngleX = angle.x;
+        mAngleMax = angle.y;
+        mDist = dist;
+    }
+
+    /* 0x4C */ TVec3f mWPoint;
+    /* 0x58 */ TVec3f mAxis;
+    /* 0x64 */ f32 mAngleX;
+    /* 0x68 */ f32 mAngleMax;
+    /* 0x6C */ f32 mDist;
+    /* 0x70 */ TVec3f mPos;
+    /* 0x7C */ f32 mAngleY;
+    /* 0x80 */ bool mIsResetting;
 };

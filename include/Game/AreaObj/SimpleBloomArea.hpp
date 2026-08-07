@@ -4,11 +4,15 @@
 
 class SimpleBloomArea : public ImageEffectArea {
 public:
-    enum EMaskFilterColor { MASK_FILTER_ALL, MASK_FILTER_RED, MASK_FILTER_GREEN, MASK_FILTER_BLUE };
+    enum EMaskFilterColor {
+        /* 0x00 */ MASK_FILTER_ALL,
+        /* 0x01 */ MASK_FILTER_RED,
+        /* 0x02 */ MASK_FILTER_GREEN,
+        /* 0x03 */ MASK_FILTER_BLUE,
+    };
 
     SimpleBloomArea(int, const char*);
 
-    virtual ~SimpleBloomArea();
     virtual void init(const JMapInfoIter&);
 
     virtual const char* getManagerName() const {

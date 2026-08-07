@@ -2,6 +2,22 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/MathUtil.hpp"
 
+void DUMMY_KColloision() {
+    TVec3f a, b, c;
+
+    if (a == b) {
+        c = a + b;
+    }
+}
+
+void DUMMY_KColloision2() {
+    TVec3f a, b, c;
+
+    if (a == b) {
+        c = a + b;
+    }
+}
+
 Fxyz& Fxyz::operator=(const Fxyz& rOther) {
     x = rOther.x;
     y = rOther.y;

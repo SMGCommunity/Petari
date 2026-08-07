@@ -473,7 +473,7 @@ void FileSelectItem::updateRotate() {
                 bool v14;
                 bool v13;
 
-                if (__fabsf(v12) >= 900.0f) {
+                if (MR::abs(v12) >= 900.0f) {
                     v13 = false;
                 } else {
                     TVec3f v29;
@@ -593,7 +593,7 @@ namespace FileSelectItemSub {
             _10 = 0;
         }
 
-        f32 v2 = __fabsf(mItem->_160);
+        f32 v2 = MR::abs(mItem->_160);
 
         if (v2 > 10.0f) {
             _10 += 2;
@@ -633,7 +633,7 @@ namespace FileSelectItemSub {
 
         _10++;
 
-        if (__fabsf(mItem->_160) > 2.0f) {
+        if (MR::abs(mItem->_160) > 2.0f) {
             _10 = 0;
         }
 

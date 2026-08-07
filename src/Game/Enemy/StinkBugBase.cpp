@@ -91,7 +91,7 @@ bool StinkBugBase::isPlayerInTerritory(f32 arg1, f32 arg2, f32 arg3, f32 arg4) c
         return true;
     }
 
-    f32 f1 = __fabsf(MR::sin(_B0));
+    f32 f1 = MR::abs(MR::sin(_B0));
 
     TVec3f scaledAdded;
     // r3 and r4's assembly are in the wrong order
@@ -128,20 +128,21 @@ bool StinkBugBase::tryTurnDashSign(f32 angle) {
     return true;
 }
 
-bool StinkBugBase::isHitHorn(HitSensor* pSensor1, HitSensor* pSensor2, f32 arg3) const {
-    TVec3f sensorDistance;
-    sensorDistance.sub(pSensor2->mPosition, pSensor1->mPosition);
+bool StinkBugBase::isHitHorn(HitSensor* pSender, HitSensor* pReceiver, f32 arg3) const {
+    TVec3f toReceiver;
+    toReceiver.sub(pReceiver->mPosition, pSender->mPosition);
 
-    if (sensorDistance.dot(_8C) < 0.0f) {
+    if (toReceiver.dot(_8C) < 0.0f) {
         return false;
     }
 
-    TVec3f upVec;
-    MR::calcUpVec(&upVec, this);
+    TVec3f up;
+    MR::calcUpVec(&up, this);
 
     TVec3f v2;
-    v2.scale(upVec.dot(sensorDistance), upVec);
+    v2.scale(up.dot(toReceiver), up);
 
-    f32 radius = pSensor2->mRadius;
+    f32 radius = pReceiver->mRadius;
+
     return v2.length() <= arg3 + radius;
 }

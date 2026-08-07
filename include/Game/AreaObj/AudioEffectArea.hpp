@@ -6,7 +6,6 @@ class AudioEffectArea : public AreaObj {
 public:
     AudioEffectArea(int, const char*);
 
-    virtual ~AudioEffectArea();
     virtual void init(const JMapInfoIter&);
     virtual void movement();
 
@@ -15,5 +14,5 @@ public:
     }
 
     /* 0x3C */ s32 _3C;
-    /* 0x3C */ s32 _40;
+    /* 0x40 */ s32 _40;
 };

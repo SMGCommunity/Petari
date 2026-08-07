@@ -9,6 +9,7 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 
 void CameraLocalUtil_FORCE_SDATA2() {
     (void)1.0f;
@@ -97,8 +98,8 @@ namespace CameraLocalUtil {
         return getCameraDirector()->mRegisterHolder->getMtx(pRegName);
     }
 
-    const TVec3f* getVecReg(const char* pRegName) {
-        return getCameraDirector()->mRegisterHolder->getVec(pRegName);
+    const TVec3f& getVecReg(const char* pRegName) {
+        return *getCameraDirector()->mRegisterHolder->getVec(pRegName);
     }
 
     const char* getDummyVecRegName() {
@@ -407,10 +408,40 @@ namespace CameraLocalUtil {
         setPos(pCamera, getWatchPos(pCamera) + viewDir);
     }
 
-    void calcSafePose(CameraMan* pCameraMan, Camera* pCamera) {
-        // FIXME: TVec stack order
-        // https://decomp.me/scratch/HxpaL
+    inline void keepAwayWatchPos(CameraMan* pCameraMan, Camera* pCamera, TVec3f* watchPos, const TVec3f& pos) {
+        TVec3f dir = *watchPos - pos;
+        f32 length = dir.length();
 
+        if (length < 300.0f) {
+            if (length < 1.0f) {
+                watchPos->set(pos + CameraLocalUtil::getWatchPos(pCameraMan) - CameraLocalUtil::getPos(pCameraMan));
+            } else {
+                dir.normalize();
+                watchPos->set(pos + dir * 300.0f);
+            }
+        }
+    }
+
+    inline void calcSafeUpVec(CameraMan* pCameraMan, Camera* pCamera, TVec3f* up, const TVec3f& watchPos, const TVec3f& pos) {
+        TVec3f camWatchDir = watchPos - pos;
+        MR::normalize(&camWatchDir);
+        MR::normalizeOrZero(up);
+
+        if (MR::isNearZero(*up) || MR::abs(camWatchDir.dot(*up)) > 0.98f) {
+            TVec3f watchDir = getWatchPos(pCameraMan) - getPos(pCameraMan);
+            MR::normalize(&watchDir);
+            if (MR::abs(camWatchDir.dot(watchDir)) > 0.98f) {
+                up->set(getUpVec(pCameraMan));
+            } else {
+                TQuat4f rot;
+                rot.setRotate(watchDir, camWatchDir);
+                rot.transform(getUpVec(pCameraMan), *up);
+            }
+            recalcUpVec(up, camWatchDir);
+        }
+    }
+
+    void calcSafePose(CameraMan* pCameraMan, Camera* pCamera) {
         TVec3f pos = getPos(pCamera);
         TVec3f watchPos = getWatchPos(pCamera);
         TVec3f up = getUpVec(pCamera);
@@ -419,33 +450,8 @@ namespace CameraLocalUtil {
             return;
         }
 
-        TVec3f watchOffset = watchPos - pos;
-        f32 dist = watchOffset.length();
-        if (dist < 300.0f) {
-            if (dist < 1.0f) {
-                watchPos.set(pos + getWatchPos(pCameraMan) - getPos(pCameraMan));
-            } else {
-                watchOffset.normalize();
-                watchPos.set(pos + watchOffset * 300.0f);
-            }
-        }
-
-        TVec3f camWatchDir = watchPos - pos;
-        MR::normalize(&camWatchDir);
-        MR::normalizeOrZero(&up);
-
-        if (MR::isNearZero(up) || __fabsf(camWatchDir.dot(up)) > 0.98f) {
-            TVec3f watchDir = getWatchPos(pCameraMan) - getPos(pCameraMan);
-            MR::normalize(&watchDir);
-            if (__fabsf(camWatchDir.dot(watchDir)) > 0.98f) {
-                up.set(getUpVec(pCameraMan));
-            } else {
-                TQuat4f rot;
-                rot.setRotate(watchDir, camWatchDir);
-                rot.transform(getUpVec(pCameraMan), up);
-            }
-            recalcUpVec(&up, camWatchDir);
-        }
+        keepAwayWatchPos(pCameraMan, pCamera, &watchPos, pos);
+        calcSafeUpVec(pCameraMan, pCamera, &up, watchPos, pos);
 
         setPos(pCameraMan, pos);
         setUpVec(pCameraMan, up);
@@ -465,4 +471,5 @@ void DUMMY() {
     m.setYDir(b);
     m.setZDir(c);
     m.setTrans(d);
+    (void)JMAAcosRadian(1.0f);
 }

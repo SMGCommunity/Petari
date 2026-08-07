@@ -33,6 +33,3 @@ void BossKameckBarrier::exeWait() {
         MR::startBtk(this, "Wait");
     }
 }
-
-BossKameckBarrier::~BossKameckBarrier() {
-}

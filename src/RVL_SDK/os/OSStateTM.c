@@ -59,6 +59,22 @@ OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
     }
 }
 
+BOOL OSGetResetButtonState(void) {
+    BOOL state;
+    int enabled;
+
+    enabled = OSDisableInterrupts();
+    state = ResetDown;
+    ResetDown = FALSE;
+    OSRestoreInterrupts(enabled);
+
+    if (!StmEhRegistered) {
+        __OSRegisterStateEvent();
+    }
+
+    return state;
+}
+
 // from a debug build of the OS lib, this function is inlined in __OSSetVIForceDimming
 static int AccessVIDimRegs(void) {
     int res;
@@ -142,6 +158,8 @@ s32 __OSVIDimReplyHandler(s32 ret, void* pUnused) {
     return 0;
 }
 
+// this function is the culprit of a lot of codeegen diffs
+// todo -- fix me
 static void __OSRegisterStateEvent(void) {
     int err, enabled;
     enabled = OSDisableInterrupts();
@@ -157,9 +175,11 @@ static void __OSRegisterStateEvent(void) {
     OSRestoreInterrupts(enabled);
 }
 
-void __OSDefaultResetCallback(void) {}
+void __OSDefaultResetCallback(void) {
+}
 
-void __OSDefaultPowerCallback(void) {}
+void __OSDefaultPowerCallback(void) {
+}
 
 // arg seems to be unused and it's only there so we can register our states
 static s32 __OSStateEventHandler(s32 ret, void* pUnused) {
@@ -228,6 +248,21 @@ int __OSInitSTM(void) {
 }
 
 static void LockUp(void);
+
+void __OSShutdownToSBY(void) {
+    int result;
+
+    __VIRegs[1] = 0;
+
+    if (!StmReady) {
+        OSPanic(__FILE__, 0x13C, "Error: The firmware doesn't support shutdown feature.\n");
+    }
+
+    StmImInBuf[0] = 0;
+    result = IOS_Ioctl(StmImDesc, 0x2003, StmImInBuf, sizeof(StmImInBuf), StmImOutBuf, sizeof(StmImOutBuf));
+
+    LockUp();
+}
 
 void __OSHotReset(void) {
     int result;

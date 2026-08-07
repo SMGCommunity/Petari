@@ -4,6 +4,22 @@
 #include <revolution/os.h>
 #include <stdbool.h>
 
+static volatile bool requestInProgress = false;
+static bool breakRequested;
+static bool callbackInProgress = false;
+
+IOSFd DiFD = -1;
+
+static int freeCommandBuf = 0;
+
+static int freeDvdContext = 0;
+static bool dvdContextsInited = false;
+static bool DVDLowInitCalled = false;
+static char* pathBuf;
+
+static u32 readLength;
+static u32 spinUpValue;
+
 typedef enum callbackType { BOGUS_TYPE = 0, TRANSACTION_CB, COVER_CB, COVER_REG_CB } callbackType_t;
 
 typedef struct dvdContext {
@@ -15,30 +31,14 @@ typedef struct dvdContext {
     u32 pad[3];
 } dvdContext_t;
 
-static u32 registerBuf[8] __attribute__((aligned(32)));
 static dvdContext_t dvdContexts[4] __attribute__((aligned(32)));
 static diRegVals_t diRegValCache __attribute__((aligned(32)));
-
-IOSFd DiFD = -1;
-
-static volatile bool requestInProgress = false;
-static bool breakRequested;
-static bool callbackInProgress;
+static u32 registerBuf[8] __attribute__((aligned(32)));
 
 static u32 statusRegister[8] __attribute__((aligned(32)));
 static s32 lastTicketError[8] __attribute__((aligned(32)));
 
-static u32 readLength;
-static u32 spinUpValue;
-
-static bool DVDLowInitCalled = false;
-
-static int freeCommandBuf = 0;
 static diCommand_t* diCommand;
-static char* pathBuf;
-
-static int freeDvdContext = 0;
-static bool dvdContextsInited = false;
 
 static IOSIoVector ioVec[10] __attribute__((aligned(32)));
 

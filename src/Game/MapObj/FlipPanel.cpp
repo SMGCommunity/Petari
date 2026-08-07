@@ -241,13 +241,7 @@ bool FlipPanel::checkPlayerOnTop() {
         return false;
     }
 
-    TVec3f* groundNormal = MR::getPlayerGroundNormal();
-
-    bool ret = JGeometry::TUtil< f32 >::epsilonEquals(upVec.x, groundNormal->x, 0.0000038146973f) &&
-               JGeometry::TUtil< f32 >::epsilonEquals(upVec.y, groundNormal->y, 0.0000038146973f) &&
-               JGeometry::TUtil< f32 >::epsilonEquals(upVec.z, groundNormal->z, 0.0000038146973f);
-
-    if (!ret) {
+    if (upVec != *MR::getPlayerGroundNormal()) {
         _D0 = 0;
         return false;
     }

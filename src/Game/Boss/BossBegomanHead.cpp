@@ -140,6 +140,3 @@ bool BossBegomanHead::calcJointEdge(TPos3f* pMtx, const JointControllerInfo&) {
 
     return true;
 }
-
-BossBegomanHead::~BossBegomanHead() {
-}

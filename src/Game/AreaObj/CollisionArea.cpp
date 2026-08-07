@@ -18,7 +18,7 @@ AreaPolygon::AreaPolygon() : DynamicCollisionObj("エリアポリゴン") {
 AreaPolygon::~AreaPolygon() {
 }
 
-//this is needed to get setLength to match
+// this is needed to get setLength to match
 void FORCE_SCALE() {
     TVec3f vec(0.0f);
     vec.scale(5.0f);
@@ -46,8 +46,7 @@ void FORCE_SCALE() {
     setSurface(0);
     initHitSensor(1);
 
-    TVec3f local28 = CALL_INLINE_FUNC(TVec3f, 1.0f, 1.0f, 1.0f);
-    MR::addHitSensorEye(this, "body", 8, 1.0f, local28);
+    MR::addHitSensorEye(this, "body", 8, 1.0f, TVec3f(1.0f, 1.0f, 1.0f));
 
     mIndices = new TriangleIndexing[_94];
     _9C = new TVec3f[_94];

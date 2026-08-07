@@ -571,7 +571,7 @@ bool MechanicKoopaMini::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver)
     return false;
 }
 
-void MechanicKoopaMini::updateHitSensor(HitSensor* pSender) {
+void MechanicKoopaMini::updateHitSensor(HitSensor* pSensor) {
     TVec3f up, front;
     MR::calcUpVec(&up, this);
     MR::calcFrontVec(&front, this);
@@ -579,9 +579,9 @@ void MechanicKoopaMini::updateHitSensor(HitSensor* pSender) {
     f32 nerveRate = 400.0f * MR::calcNerveRate(this, 10, 30);
     f32 frontDist = MR::clamp(dot, 0.0f, nerveRate);
 
-    pSender->mPosition.set(mPosition);
-    pSender->mPosition.add(up * getSensor("body")->getRadius());
-    pSender->mPosition.add(front * frontDist);
+    pSensor->mPosition.set(mPosition);
+    pSensor->mPosition.add(up * getSensor("body")->getRadius());
+    pSensor->mPosition.add(front * frontDist);
 }
 
 void MechanicKoopaMini::calcAndSetBaseMtx() {

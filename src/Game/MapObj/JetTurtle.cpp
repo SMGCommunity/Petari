@@ -414,7 +414,7 @@ void JetTurtle::exeDrop() {
 
 // JetTurtle::attackSensor
 
-bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
+bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgItemGet(msg)) {
         if (mFlag.mIsDead) {
             return false;
@@ -426,7 +426,7 @@ bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
             }
 
             if (v7 || isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserve::sInstance)) {
-                _94 = a2;
+                _94 = pSender;
                 setNerve(&NrvJetTurtle::JetTurtleNrvTakenReserveD::sInstance);
                 return true;
             } else {
@@ -488,16 +488,16 @@ bool JetTurtle::receiveOtherMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
     }
 }
 
-bool JetTurtle::receiveMsgThrow(HitSensor* a1, HitSensor* a2) {
+bool JetTurtle::receiveMsgThrow(HitSensor* pSender, HitSensor* pReceiver) {
     setNerve(&NrvJetTurtle::JetTurtleNrvThrowing::sInstance);
     MR::deleteEffect(this, "BrakeLamp");
 
-    if (MR::isSensorPlayer(a1)) {
+    if (MR::isSensorPlayer(pSender)) {
         MR::getPlayerThrowVec(&_9C);
         _98 = nullptr;
     } else {
-        if (MR::isExistInAttributeGroupSearchTurtle(a1->mHost)) {
-            _98 = a1;
+        if (MR::isExistInAttributeGroupSearchTurtle(pSender->mHost)) {
+            _98 = pSender;
         } else {
             _98 = nullptr;
         }
@@ -506,7 +506,7 @@ bool JetTurtle::receiveMsgThrow(HitSensor* a1, HitSensor* a2) {
             _98 = nullptr;
         }
 
-        _9C = a1->mPosition - mPosition;
+        _9C = pSender->mPosition - mPosition;
         MR::normalizeOrZero(&_9C);
     }
 
@@ -522,7 +522,7 @@ bool JetTurtle::receiveMsgThrow(HitSensor* a1, HitSensor* a2) {
     return true;
 }
 
-bool JetTurtle::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
+bool JetTurtle::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         return true;
     }
@@ -544,16 +544,16 @@ bool JetTurtle::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
         }
     }
 
-    return 0;
+    return false;
 }
 
-bool JetTurtle::receiveMsgEnemyAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
+bool JetTurtle::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserve::sInstance) || isNerve(&NrvJetTurtle::JetTurtleNrvTakenReserveD::sInstance) ||
         isNerve(&NrvJetTurtle::JetTurtleNrvTakenStart::sInstance)) {
         return false;
     }
 
-    MR::sendArbitraryMsg(ACTMES_JET_TURTLE_ATTACK, a2, getSensor("eye"));
+    MR::sendArbitraryMsg(ACTMES_JET_TURTLE_ATTACK, pSender, getSensor("eye"));
     MR::shakeCameraWeak();
     reset(0);
     return true;

@@ -6,7 +6,7 @@
 
 #include <cstring>
 
-CubeCameraArea::CubeCameraArea(int formType, const char* pName) : AreaObj(formType, pName), _3C(0), mZoneID(0) {
+CubeCameraArea::CubeCameraArea(int formType, const char* pName) : AreaObj(formType, pName), _3C(), mZoneID() {
 }
 
 // needed to get sCubeCategory emitted in sbss;
@@ -16,10 +16,9 @@ void CubeCameraArea::init(const JMapInfoIter& rIter) {
     AreaObj::init(rIter);
 
     const char* valid;
-    bool retVal = rIter.getValue("Validity", &valid);
 
-    if (retVal) {
-        if (!strcmp(valid, "Invalid")) {
+    if (rIter.getValue("Validity", &valid)) {
+        if (strcmp(valid, "Invalid") == 0) {
             mIsValid = false;
         }
     }
@@ -87,26 +86,25 @@ void CubeCameraMgr::initAfterLoad() {
 }
 
 void CubeCameraMgr::sort() {
-    if (mArray.size() != 0) {
-        for (u32 i = 0; i < mArray.size() - 1; i++) {
-            int swapIndex = i;
-            AreaObj* swapObj = getAreaObj(i);
-            AreaObj* curObj = swapObj;
-            for (u32 j = i + 1; j < mArray.size(); j++) {
-                AreaObj* nextObj = getAreaObj(j);
-                if (swapObj->mObjArg2 > nextObj->mObjArg2) {
-                    swapIndex = j;
-                    swapObj = nextObj;
-                }
-            }
+    if (mArray.size() == 0) {
+        return;
+    }
 
-            if (swapIndex != i) {
-                mArray[i] = swapObj;
-                mArray[swapIndex] = curObj;
+    for (u32 i = 0; i < mArray.size() - 1; i++) {
+        int swapIndex = i;
+        AreaObj* swapObj = getAreaObj(i);
+        AreaObj* curObj = swapObj;
+        for (u32 j = i + 1; j < mArray.size(); j++) {
+            AreaObj* nextObj = getAreaObj(j);
+            if (swapObj->mObjArg2 > nextObj->mObjArg2) {
+                swapIndex = j;
+                swapObj = nextObj;
             }
         }
-    }
-}
 
-CubeCameraMgr::~CubeCameraMgr() {
+        if (swapIndex != i) {
+            mArray[i] = swapObj;
+            mArray[swapIndex] = curObj;
+        }
+    }
 }

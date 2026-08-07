@@ -9,11 +9,21 @@ public:
     ImageEffectBase(const char* pName);
 
     virtual void calcAnim();
-    virtual void calcAnimSub();
-    virtual void notifyTurnOn();
-    virtual void notifyTurnOff();
-    virtual void notifyForceOn();
-    virtual void notifyForceOff();
+
+    virtual void calcAnimSub() {
+    }
+
+    virtual void notifyTurnOn() {
+    }
+
+    virtual void notifyTurnOff() {
+    }
+
+    virtual void notifyForceOn() {
+    }
+
+    virtual void notifyForceOff() {
+    }
 
     bool isSomething() const {
         return _C || _D;

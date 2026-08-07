@@ -86,18 +86,18 @@ void AstroDomeGalaxySelector::kill() {
     MR::disappearStarCounter();
 }
 
-bool AstroDomeGalaxySelector::receiveOtherMsg(u32 v1, HitSensor* pSender, HitSensor* pReceiver) {
-    if (SphereSelectorFunction::isMsgSelectStart(v1)) {
+bool AstroDomeGalaxySelector::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (SphereSelectorFunction::isMsgSelectStart(msg)) {
         appear();
         return true;
     }
 
-    if (SphereSelectorFunction::isMsgConfirmStart(v1)) {
+    if (SphereSelectorFunction::isMsgConfirmStart(msg)) {
         setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxyConfirmStart::sInstance);
         return true;
     }
 
-    if (SphereSelectorFunction::isMsgTargetSelected(v1)) {
+    if (SphereSelectorFunction::isMsgTargetSelected(msg)) {
         mBackButton->decide();
         SphereSelectorFunction::selectCancel(false);
         setNerve(&NrvAstroDomeGalaxySelector::AstroDomeGalaxySelectorNrvGalaxySelectCancel::sInstance);

@@ -70,7 +70,7 @@ void Mario::moveSlopeSlide() {
 
         if (isStickOn() && _3C4 == 0) {
             f32 dot = _284.dot(*pWorldPadDir);
-            if (__fabsf(dot) > 0.2f) {
+            if (MR::abs(dot) > 0.2f) {
                 MarioConstTable* pConstTable = mActor->getConst().getTable();
                 f32 sideInertia = pConstTable->mSlopeSideMoveInertia;
                 _280 = (_280 * sideInertia) + (dot * (1.0f - sideInertia));

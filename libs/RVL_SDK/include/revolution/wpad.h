@@ -16,7 +16,7 @@ typedef void* (*WPADAlloc)(u32 size);
 typedef u8 (*WPADFree)(void* ptr);
 typedef void (*WPADSyncDeviceCallback)(s32 result, s32 num);
 typedef void (*WPADSamplingCallback)(s32 chan);
-typedef void (*WPADFlushCallback)(SCStatus result);
+typedef void (*WPADFlushCallback)(u32 result);
 
 typedef u32 WPADDeviceType;
 typedef s32 WPADChannel;
@@ -449,7 +449,7 @@ void __WPADReconnect(BOOL);
 BOOL WPADStopSimpleSync();
 BOOL WPADCancelSyncDevice();
 
-void WPADiShutdown(BOOL);
+static void WPADiShutdown(BOOL);
 void WPADiDisconnect(s32, BOOL);
 
 s32 WPADControlLed(s32, u8, WPADCallback);

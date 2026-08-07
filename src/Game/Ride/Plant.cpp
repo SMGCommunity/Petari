@@ -356,7 +356,7 @@ void Plant::initLeaf() {
 
         TVec3f growDirection(baseRotate);
         f32 dot = growDirection.dot(railDirection);
-        if (__fabsf(dot) > 0.7f) {
+        if (MR::abs(dot) > 0.7f) {
             if (dot > 0.0f) {
                 growDirection.cross(TVec3f(0.0f, 1.0f, 0.0f), railDirection);
             } else {

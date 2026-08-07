@@ -19,10 +19,10 @@ void TicoReading::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("Tico", nullptr, false);
     MR::connectToSceneNpc(this);
     MR::initLightCtrl(this);
-    s32 color = 0;
-    MR::getJMapInfoArg0NoInit(rIter, &color);
+    s32 animFrame = 0;
+    MR::getJMapInfoArg0NoInit(rIter, &animFrame);
     MR::startBrk(this, "ColorChange");
-    MR::setBrkFrameAndStop(this, color);
+    MR::setBrkFrameAndStop(this, animFrame);
     initEffectKeeper(0, nullptr, false);
     MR::initShadowFromCSV(this, "Shadow");
     MR::tryRegisterDemoCast(this, rIter);
@@ -45,7 +45,4 @@ void TicoReading::exeWait() {
         MR::startBck(this, "DemoRosettaReadingWait", nullptr);
         MR::setBckFrameAtRandom(this);
     }
-}
-
-TicoReading::~TicoReading() {
 }

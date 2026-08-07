@@ -12,7 +12,7 @@ public:
     void updateSwingMtx(const TVec3f&);
 
     const TVec3f* _0;
-    MtxPtr _4;
+    TPos3f* _4;
     TVec3f _8;
     TVec3f mAcceleration;  // 0x14
     TVec3f _20;

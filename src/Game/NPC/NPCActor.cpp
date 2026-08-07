@@ -23,6 +23,12 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
+#include "JSystem/JGeometry/TUtil.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
+
+void NPCActor_DUMMY() {
+    (void)JGeometry::TUtil< f32 >::acos(1.0f);
+}
 
 namespace NrvNPCActor {
     NEW_NERVE(NPCActorNrvReaction, NPCActor, Reaction);
@@ -640,7 +646,7 @@ bool NPCActor::turnToDefault(f32 f1) {
     f32 dot = zDir.dot(zDir2);
     dot = MR::clamp(dot, -1.0f, 1.0f);
 
-    f32 flt = __fabsf((f1 * 0.17453294f) / MR::acos(dot));
+    f32 flt = MR::abs((f1 * 0.17453294f) / MR::acos(dot));
     flt = MR::clamp(flt, 0.0f, 1.0f);
 
     MR::blendQuatUpFront(&_A0, yDir, zDir, flt, flt);

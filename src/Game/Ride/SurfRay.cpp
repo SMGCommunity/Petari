@@ -395,7 +395,7 @@ void SurfRay::exeTutorial() {
             MR::startBckPlayerJ("サーフィン傾き開始");
         }
 
-        f32 rot = __fabsf((mRotation.z / 70.0f) * 0.6f);
+        f32 rot = MR::abs((mRotation.z / 70.0f) * 0.6f);
 
         if (mRotation.z < 0.0f) {
             MR::setBckBlendWeight(1.0f - rot, rot, 0.0f);
@@ -843,7 +843,7 @@ void SurfRay::updateRotate() {
         TVec3f accel(0.0f, 0.0f, 0.0f);
         MR::getCorePadAcceleration(&accel, mPadChannel);
 
-        if (accel.z > -0.7f || __fabsf(accel.x) > 0.15f) {
+        if (accel.z > -0.7f || MR::abs(accel.x) > 0.15f) {
             f32 twistAngle = accel.x;
             f32 accelZ = MR::clamp(-accel.z, 0.0f, 1.0f);
 
@@ -877,7 +877,7 @@ void SurfRay::updateRotate() {
     }
 
     mSteerRate *= 0.95f;
-    f32 abs = __fabsf(mSteerRate);
+    f32 abs = MR::abs(mSteerRate);
 
     if (abs < 0.1f) {
         mSteerRate = 0.0f;
@@ -950,7 +950,7 @@ void SurfRay::updateSound() {
         MR::startLevelSound(this, "SE_SM_SURF_RAY_MOVE_WIND", lvl * 1000.0f);
     }
 
-    f32 rotateRate = __fabsf(mRotation.z) / 70.0f;
+    f32 rotateRate = MR::abs(mRotation.z) / 70.0f;
 
     if (mInWater && rotateRate > 0.45f) {
         lvl = MR::getLinerValueFromMinMax(mSurfSpeed, 0.0f, 25.0f, 100.0f, 1000.0f);
@@ -1015,7 +1015,7 @@ bool SurfRay::tryInWater() {
 
 bool SurfRay::tryJumpOrFall() {
     if (MR::isPadSwing(WPAD_CHAN0) && (MR::isBinded(this) || mWaterInfo.isInWater() || mAirTime < 15)) {
-        f32 f0 = (mSurfSpeed / 40.0f) * (((70.0f - __fabsf(mRotation.z)) * 5.0f) / 70.0f) + 15.0f;
+        f32 f0 = (mSurfSpeed / 40.0f) * (((70.0f - MR::abs(mRotation.z)) * 5.0f) / 70.0f) + 15.0f;
         TVec3f v1(mGroundNormal);
 
         if (mWaterInfo.isInWater()) {
@@ -1056,7 +1056,7 @@ bool SurfRay::isTwistStart() const {
     f32 maxTwist = 0.0f;
 
     for (s32 i = 1; i < mTwistBufferSize; i++) {
-        f32 twistDiff = __fabsf(mTwistBuffer[0] - mTwistBuffer[i]);
+        f32 twistDiff = MR::abs(mTwistBuffer[0] - mTwistBuffer[i]);
 
         if (twistDiff > maxTwist) {
             maxTwist = twistDiff;

@@ -1,6 +1,7 @@
 #include "Game/Camera/CameraFixedThere.hpp"
 #include "Game/Camera/CamTranslatorFixedThere.hpp"
 #include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraMan.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
@@ -97,7 +98,7 @@ void CameraFixedThere::makeAxisAndRoll() {
         return;
     }
 
-    if (__fabsf(mAxis.dot(mUp)) > MR::cosDegree(30.0f)) {
+    if (MR::abs(mAxis.dot(mUp)) > MR::cosDegree(30.0f)) {
         mUp = CameraLocalUtil::getUpVec(this);
         return;
     }

@@ -360,7 +360,7 @@ bool SearchBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
     return false;
 }
 
-bool SearchBeamer::receiveOtherMsg(u32 msg, HitSensor*, HitSensor*) {
+bool SearchBeamer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgFloorTouch(msg)) {
         if (isNerve(GET_NERVE(SearchBeamer, SearchBeamerNrvStopForPlayerOff))) {
             setNerve(GET_NERVE(SearchBeamer, SearchBeamerNrvStopForPlayerOff));

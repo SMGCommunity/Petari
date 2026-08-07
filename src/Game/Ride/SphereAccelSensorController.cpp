@@ -5,6 +5,10 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <revolution/wpad.h>
 
+void SphereAccelSensorController_DUMMY() {
+    (void)JGeometry::TUtil< f32 >::acos(1.0f);
+}
+
 namespace {
     // sMinStableValue
     // sMaxStableValue
@@ -40,7 +44,7 @@ SphereAccelSensorController::SphereAccelSensorController()
       _A4(-1.0f), _A8(0.0f), _AC(1.0f), _B0(0), _B4(0.0f), _B8(0) {
 }
 
-void SphereAccelSensorController::getPadAcceleration(TVec3f* pAccel) {
+void SphereAccelSensorController::getPadAcceleration(TVec3f* pAccel) const {
     if (_B8 == 0) {
         MR::getCorePadAcceleration(pAccel, WPAD_CHAN0);
     } else {
@@ -81,7 +85,7 @@ void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
     getPadAcceleration(&padAccel);
 
     f32 angleXY = 0.0f;
-    TVec2f accelXY(padAccel.x, __fabsf(padAccel.y));
+    TVec2f accelXY(padAccel.x, MR::abs(padAccel.y));
     if (!accelXY.isZero()) {
         MR::normalizeOrZero(&accelXY);
         angleXY = MR::asin(accelXY.x);
@@ -94,7 +98,7 @@ void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
         angleYZ = diffAngleAbs(accelYZ, TVec2f(MR::cos(baseDegreeYZ), MR::sin(baseDegreeYZ)));
     }
 
-    if (__fabsf(angleXY) < accelDegreMargine) {
+    if (MR::abs(angleXY) < accelDegreMargine) {
         angleXY = 0.0f;
     } else {
         if (angleXY > 0.0f) {
@@ -105,7 +109,7 @@ void SphereAccelSensorController::clacXY(f32* pX, f32* pY) {
         angleXY /= (accelDegreeRange - accelDegreMargine);
     }
 
-    if (__fabsf(angleYZ) < accelDegreMargine) {
+    if (MR::abs(angleYZ) < accelDegreMargine) {
         angleYZ = 0.0f;
     } else {
         if (angleYZ > 0.0f) {

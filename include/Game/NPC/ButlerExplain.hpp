@@ -1,16 +1,17 @@
 #pragma once
 
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/Util/NPCUtil.hpp"
 
 class ButlerExplain : public NPCActor {
 public:
-    ButlerExplain(const char*);
+    /// @brief Creates a new `ButlerExplain`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    ButlerExplain(const char* pName);
 
-    virtual ~ButlerExplain();
     virtual void init(const JMapInfoIter&);
     virtual void control();
 
     void startDemo();
-    inline void exeDemo();
+
+    void exeDemo();
 };

@@ -3,10 +3,12 @@
 #include "Game/Screen/SurfingGuidance.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/NerveUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
+
 
 namespace {
     static const s32 sStepTalk = 150;
@@ -298,7 +300,7 @@ void SurfRayTutorial::exeTutorialAllEnd() {
 }
 
 bool SurfRayTutorial::isSuccessStraight() const {
-    if (__fabsf(mPadAccel.x) < ::sPadAccelStraightMinX && __fabsf(mPadAccel.y) < ::sPadAccelStraightMinY) {
+    if (MR::abs(mPadAccel.x) < ::sPadAccelStraightMinX && MR::abs(mPadAccel.y) < ::sPadAccelStraightMinY) {
         return true;
     }
 

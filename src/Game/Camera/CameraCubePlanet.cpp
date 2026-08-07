@@ -8,7 +8,7 @@
 void CameraCubePlanet_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
-    f32 f3 = JGeometry::TUtil< f32 >::epsilon();
+    f32 f3 = MR::epsilon();
     (void)0.5f;
 }
 

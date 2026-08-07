@@ -400,7 +400,7 @@ namespace MR {
             }
         } else {
             f32 coord = railRider->mCoord;
-            *pDist = __fabsf(pActor->mRailRider->getNextPointCoord() - coord);
+            *pDist = MR::abs(pActor->mRailRider->getNextPointCoord() - coord);
         }
     }
 
@@ -423,7 +423,7 @@ namespace MR {
             }
         } else {
             f32 coord = railRider->mCoord;
-            *pCurrDist = __fabsf(coord - currPointCoord);
+            *pCurrDist = MR::abs(coord - currPointCoord);
         }
 
         if (isNearZero(nextPointCoord)) {
@@ -436,7 +436,7 @@ namespace MR {
             }
         } else {
             f32 coord = railRider->mCoord;
-            *pNextDist = __fabsf(railRider->getNextPointCoord() - coord);
+            *pNextDist = MR::abs(railRider->getNextPointCoord() - coord);
         }
     }
 
@@ -510,7 +510,7 @@ namespace MR {
     }
 
     void setRailCoordSpeed(LiveActor* pActor, f32 speed) {
-        pActor->mRailRider->setSpeed(__fabsf(speed));
+        pActor->mRailRider->setSpeed(MR::abs(speed));
     }
 
     void accelerateRailCoordSpeed(LiveActor* pActor, f32 accel) {
@@ -525,7 +525,7 @@ namespace MR {
     void adjustmentRailCoordSpeed(LiveActor* pActor, f32 target, f32 rate) {
         f32 speed = pActor->mRailRider->mSpeed;
 
-        if (__fabsf(speed - target) < rate) {
+        if (MR::abs(speed - target) < rate) {
             speed = target;
         } else if (speed < target) {
             speed += rate;

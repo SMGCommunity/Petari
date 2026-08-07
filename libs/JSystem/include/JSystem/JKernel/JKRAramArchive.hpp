@@ -21,3 +21,5 @@ public:
     JKRAramBlock* mBlock;
     JKRFile* mDvdFile;
 };
+
+int JKRConvertAttrToCompressionType(int);

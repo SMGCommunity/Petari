@@ -353,7 +353,7 @@ f32 CameraHeightArrange::calcOffset(f32 focalScale) {
 
     up.cross(front, side);
     f32 cosBetween = up.dot(globalAxis);
-    if (__fabsf(cosBetween) < 0.1f) {
+    if (MR::abs(cosBetween) < 0.1f) {
         return 0.0f;
     }
 

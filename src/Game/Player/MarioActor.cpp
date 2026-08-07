@@ -44,6 +44,10 @@
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
+void MarioActor_DUMMY() {
+    (void)JGeometry::TUtil< f32 >::acos(1.0f);
+}
+
 bool gIsLuigi;
 static f32 BASE_ROTATION = 0.0f;
 
@@ -1081,7 +1085,7 @@ bool MarioActor::doRush() {
             }
         }
         if (mMario->isForceStopRush()) {
-            bool received = _924->receiveMessage(0x95, getSensor("body"));
+            bool received = _924->receiveMessage(ACTMES_RUSH_DAMAGE_CANCEL, getSensor("body"));
             if (_934 && received) {
                 RushEndInfo stack_20(nullptr, 4, TVec3f(0.0f, 0.0f, 0.0f), false, 0);
                 endRush(&stack_20);

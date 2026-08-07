@@ -134,7 +134,7 @@ void JumpStand::control() {
     _90.setTrans(pos);
 }
 
-bool JumpStand::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
+bool JumpStand::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (isNerve(&NrvJumpStand::JumpStandNrvTrampleBound::sInstance)) {
         return false;
     }
@@ -151,7 +151,7 @@ bool JumpStand::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
     return false;
 }
 
-bool JumpStand::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiving) {
+bool JumpStand::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgUpdateBaseMtx(msg) && mBindedActor != nullptr) {
         updateBindActorMtx();
         return true;

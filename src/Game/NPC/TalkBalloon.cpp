@@ -17,6 +17,10 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "JSystem/JUtility/JUTVideo.hpp"
 
+void TalkBalloon_DUMMY() {
+    (void)JGeometry::TUtil< f32 >::acos(1.0f);
+}
+
 namespace NrvTalkBalloonShort {
     NEW_NERVE(TalkBalloonShortNrvOpen, TalkBalloonShort, Open);
     NEW_NERVE(TalkBalloonShortNrvTalk, TalkBalloonShort, Talk);
@@ -145,7 +149,7 @@ void TalkBalloon::updateBalloon() {
             paneAnimFrameMax -= 1.0f;
         }
 
-        if (__fabsf(paneAnimFrame - paneAnimFrameMax) < 2.0f) {
+        if (MR::abs(paneAnimFrame - paneAnimFrameMax) < 2.0f) {
             _29 = false;
         }
 

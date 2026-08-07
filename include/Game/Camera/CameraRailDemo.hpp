@@ -2,10 +2,11 @@
 
 #include "Game/Camera/Camera.hpp"
 
+class RailRider;
+
 class CameraRailDemo : public Camera {
 public:
     CameraRailDemo(const char* pName = "レールデモカメラ");
-    virtual ~CameraRailDemo();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
@@ -16,10 +17,10 @@ public:
     void calcEaseInOut();
     void calcDamp();
 
-    u32* _4C;
-    s32 _50;
-    s32 _54;
-    u32 _58;
-    f32 _5C;
-    f32 _60;
+    /* 0x4C */ RailRider* mRailRider;
+    /* 0x50 */ s32 mCalcType;
+    /* 0x54 */ s32 mDemoTime;
+    /* 0x58 */ s32 mDemoTimer;
+    /* 0x5C */ f32 mDampRatio;
+    /* 0x60 */ f32 mCoord;
 };

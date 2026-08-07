@@ -11,19 +11,19 @@ public:
     virtual CameraTargetObj* calc();
     virtual CamTranslatorBase* createTranslator();
 
-    void setParam(const char* str, f32 f1, const TVec2f& v2, const TVec3f& vec) {
+    void setParam(const char* str, f32 dist, const TVec2f& angle, const TVec3f& wPoint) {
         mString = str;
-        mAngleB = v2.x;
-        mAngleA = v2.y;
-        mDist = f1;
-        mWPoint = vec;
+        mAngleX = angle.x;
+        mAngleY = angle.y;
+        mDist = dist;
+        mWPoint = wPoint;
     }
 
     void calcIdealPose();
 
-    const char* mString;  // 0x4C
-    f32 mAngleB;          // 0x50
-    f32 mAngleA;          // 0x54
-    f32 mDist;            // 0x58
-    TVec3f mWPoint;       // 0x5C
+    /* 0x4C */ const char* mString;
+    /* 0x50 */ f32 mAngleX;
+    /* 0x54 */ f32 mAngleY;
+    /* 0x58 */ f32 mDist;
+    /* 0x5C */ TVec3f mWPoint;
 };

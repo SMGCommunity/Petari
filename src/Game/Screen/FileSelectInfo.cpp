@@ -270,7 +270,7 @@ namespace FileSelectInfoSub {
 
     void CharaState::exeToLuigi() {
         if (MR::isFirstStep(this)) {
-            MR::startAnim(mHost, "MariotoLuigi", 2);
+            MR::startAnim(mHost, "MariottoLuigi", 2);
         }
 
         if (MR::isStep(this, 10)) {

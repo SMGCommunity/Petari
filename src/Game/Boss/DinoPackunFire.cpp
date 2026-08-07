@@ -71,11 +71,11 @@ void DinoPackunFire::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _8C);
 }
 
-void DinoPackunFire::attackSensor(HitSensor* a1, HitSensor* a2) {
-    if (MR::isSensorPlayer(a2)) {
+void DinoPackunFire::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
     }
 
-    MR::sendMsgEnemyAttackFire(a2, a1);
+    MR::sendMsgEnemyAttackFire(pReceiver, pSender);
 }
 
 void DinoPackunFire::appearShot(const TVec3f& rPos, const TVec3f& rVelocity) {

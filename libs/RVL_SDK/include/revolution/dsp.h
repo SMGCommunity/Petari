@@ -5,10 +5,10 @@
 extern "C" {
 #endif
 
-#include <revolution/types.h>
 #include <revolution/os.h>
+#include <revolution/types.h>
 
-typedef void (*DSPCallback)(void *);
+typedef void (*DSPCallback)(void*);
 
 typedef struct DSPTaskStruct {
     u32 state;
@@ -43,4 +43,4 @@ void DSPInit(void);
 }
 #endif
 
-#endif // DSP_H
+#endif  // DSP_H

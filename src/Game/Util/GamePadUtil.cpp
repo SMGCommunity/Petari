@@ -6,6 +6,7 @@
 #include "Game/System/WPadHolder.hpp"
 #include "Game/System/WPadPointer.hpp"
 #include "Game/System/WPadStick.hpp"
+#include "Game/Util/MathUtil.hpp"
 
 namespace MR {
     void getCorePadPointingPosBasedOnScreen(TVec2f* pPos, s32 channel) {
@@ -259,7 +260,7 @@ namespace MR {
         f32 x = getSubPadStickX(channel);
         f32 y = getSubPadStickY(channel);
 
-        return __fabsf(x) + __fabsf(y) > 0.0f;
+        return MR::abs(x) + MR::abs(y) > 0.0f;
     }
 
     // calcWorldStickDirectionXZ

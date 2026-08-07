@@ -169,20 +169,19 @@ bool BombTeresa::rootTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& 
     if (_DC == 0.0f) {
         return false;
     }
-    TVec3f v11;
-    TVec3f v12;
-    TVec3f v13;
-    TVec3f v14;
-    arg0->getTrans(v11);
-    MR::copyJointPos(this, "Tongue2", &v12);
-    arg0->getXDir(v13);
-    if (MR::normalizeOrZero(&(v12 - v11))) {
-        v14.set(v13);
+    TVec3f pos;
+    TVec3f tonguePos;
+    TVec3f side;
+    arg0->getTrans(pos);
+    MR::copyJointPos(this, "Tongue2", &tonguePos);
+    arg0->getXDir(side);
+    TVec3f dir = tonguePos - pos;
+    if (MR::normalizeOrZero(&dir)) {
+        dir.set(side);
     }
-    MR::turnMtxToXDirRate(arg0, v14, (0.5f * _DC));
-    v14.x = MR::getEaseInOutValue(MR::normalize(v11.distance(v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
-    v14.y = 1.0f;
-    MR::preScaleMtx(arg0->toMtxPtr(), v14);
+    MR::turnMtxToXDirRate(arg0, dir, (0.5f * _DC));
+    f32 dist = MR::getEaseInOutValue(MR::normalize(pos.distance(tonguePos), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
+    MR::preScaleMtx(arg0->toMtxPtr(), TVec3f(1.0f, dist, dist));
     return true;
 }
 
@@ -190,31 +189,24 @@ bool BombTeresa::endTongueMtxCallBack(TPos3f* arg0, const JointControllerInfo& a
     if (_DC == 0.0f) {
         return false;
     }
-    TVec3f v11;
-    TVec3f v12;
-    TVec3f v13;
-    TVec3f v14;
-    arg0->getTrans(v11);
-    MR::copyJointPos(this, "Tongue1", &v12);
-    MR::vecBlend(v12, _C4, &v12, _DC);
-    arg0->getXDir(v13);
-    if (MR::normalizeOrZero(&(v12 - v11))) {
-        v14.set(v13);
+    TVec3f pos;
+    TVec3f tonguePos;
+    TVec3f side;
+    arg0->getTrans(pos);
+    MR::copyJointPos(this, "Tongue1", &tonguePos);
+    MR::vecBlend(pos, _C4, &pos, _DC);
+    arg0->getXDir(side);
+    TVec3f dir = pos - tonguePos;
+    if (MR::normalizeOrZero(&dir)) {
+        dir.set(side);
     }
-    MR::turnMtxToXDirRate(arg0, v14, _DC);
-    arg0->getXDir(v13);
-    f32 v7 = _DC;
-    TVec3f v15(v14);
-    v15 *= 0.35f;
-    TVec3f v16(v15);
-    v16 *= v7;
-    v13 += v16;
-    arg0->mMtx[0][1] = v13.x;
-    arg0->mMtx[0][2] = v13.y;
-    arg0->mMtx[0][3] = v13.z;
-    v14.x = MR::getEaseInOutValue(MR::normalize(v11.distance(v12), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
-    v14.y = 1.0f;
-    MR::preScaleMtx(arg0->toMtxPtr(), v14);
+    MR::turnMtxToXDirRate(arg0, dir, _DC);
+    TVec3f side2;
+    arg0->getXDir(side2);
+    pos += side2 * -35.0f * _DC;
+    arg0->setTrans(pos);
+    f32 dist = MR::getEaseInOutValue(MR::normalize(pos.distance(tonguePos), 400.0f, 1000.0f), 1.0f, 0.5f, 1.0f);
+    MR::preScaleMtx(arg0->toMtxPtr(), TVec3f(1.0f, dist, dist));
     return true;
 }
 
@@ -231,7 +223,7 @@ void BombTeresa::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
             }
         } else if (isEnableHitExplosionToEnemy()) {
             if (MR::sendMsgEnemyAttackExplosion(pReceiver, pSender)) {
-                MR::tryRumbleDefaultHit(this, 0);
+                MR::tryRumbleDefaultHit(this, WPAD_CHAN0);
                 MR::zeroVelocity(this);
                 setNerve(&NrvBombTeresa::BombTeresaNrvExplosion::sInstance);
             } else {
@@ -256,11 +248,7 @@ bool BombTeresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
             MR::normalizeOrZero(&deltaPos);
         }
 
-        TVec3f v8(deltaPos);
-        v8.x *= 3.0f;
-        v8.y *= 3.0f;
-        v8.z *= 3.0f;
-        mVelocity += v8;
+        mVelocity += deltaPos * 3.0f;
         return true;
     }
 
@@ -296,7 +284,7 @@ bool BombTeresa::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* p
         TVec3f uVar1;
         MR::calcSensorDirectionNormalize(&uVar1, pSender, pReceiver);
         TVec3f v16(uVar1);
-        v16.mult(20.0f);
+        v16 *= 20.0f;
         mVelocity.set< f32 >(v16);
         setNerve(&NrvBombTeresa::BombTeresaNrvShock::sInstance);
         return false;

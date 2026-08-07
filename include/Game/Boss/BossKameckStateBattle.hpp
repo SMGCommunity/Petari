@@ -14,7 +14,6 @@ class BossKameckStateBattle : public ActorStateBase< BossKameck > {
 public:
     BossKameckStateBattle(BossKameck*);
 
-    virtual ~BossKameckStateBattle();
     virtual void init();
     virtual void appear();
     virtual void control();

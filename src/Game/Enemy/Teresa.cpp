@@ -254,7 +254,7 @@ bool Teresa::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 
-bool Teresa::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
+bool Teresa::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgSearchlightAttack(msg) || MR::isMsgFireBallAttack(msg) || MR::isMsgInvincibleAttack(msg)) {
         return requestSearchLightDead();
     }
@@ -996,7 +996,7 @@ void Teresa::updateDriftAnimScale() {
     TVec3f v4;
     _94.getXDir(v4);
     f32 v2 = v4.dot(mVelocity);
-    f32 v3 = (1.0f + (0.30f * MR::normalize(__fabsf(v2), 3.0f, 53.0f)));
+    f32 v3 = (1.0f + (0.30f * MR::normalize(MR::abs(v2), 3.0f, 53.0f)));
     _D4.x = v3;
     _D4.z = 1.0f / v3;
 }

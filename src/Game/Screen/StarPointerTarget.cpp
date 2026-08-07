@@ -83,7 +83,7 @@ bool StarPointerTarget::calcScreenPositionFromView(TVec2f* pScreenPos, const TVe
     mtx.mult(rViewPos, pos);
     pos.y = -pos.y;
 
-    if (1.0f < __fabsf(pos.x) || 1.0f < __fabsf(pos.y)) {
+    if (1.0f < MR::abs(pos.x) || 1.0f < MR::abs(pos.y)) {
         return false;
     }
 

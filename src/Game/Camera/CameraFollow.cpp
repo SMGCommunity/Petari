@@ -1,6 +1,7 @@
 #include "Game/Camera/CameraFollow.hpp"
 #include "Game/Camera/CamTranslatorFollow.hpp"
 #include "Game/Camera/Camera.hpp"
+#include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraHeightArrange.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
@@ -16,7 +17,7 @@ void CameraFollow_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
     (void)0.5f;
-    f32 f4 = JGeometry::TUtil< f32 >::epsilon();
+    f32 f4 = MR::epsilon();
     f32 f5 = JGeometry::TUtil< f32 >::PI();
     f32 f6 = JGeometry::TUtil< f32 >::PI() / 2.0f;
     f32 f7 = -JGeometry::TUtil< f32 >::PI() / 2.0f;

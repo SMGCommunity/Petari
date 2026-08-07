@@ -155,7 +155,7 @@ void AstroMapObj::control() {
     }
 }
 
-bool AstroMapObj::receiveOtherMsg(u32, HitSensor* pSender, HitSensor* pReceiver) {
+bool AstroMapObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     return false;
 }
 

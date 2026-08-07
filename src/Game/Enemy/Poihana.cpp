@@ -288,40 +288,33 @@ bool Poihana::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRec
     return false;
 }
 
-/*bool Poihana::receiveOtherMsg(u32 msg, HitSensor *pSender, HitSensor *pReceiver) {
+bool Poihana::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg) && MR::isSensorPlayer(pSender)) {
         if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)) {
             return false;
-        }
-        else if (MR::isOnGroundPlayer()) {
+        } else if (MR::isOnGroundPlayer()) {
             if (isNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance)) {
                 if (getNerveStep() < 30) {
                     if (!tryToStartBind(pSender)) {
                         return false;
                     }
                 }
-            }
-            else if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance)
-                || !MR::isNear(pSender, pReceiver, 100.0f))
-            {
+            } else if (isNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance) || !MR::isNear(pSender, pReceiver, 100.0f)) {
                 return false;
-            }
-            else {
+            } else {
                 setNerve(&NrvPoihana::PoihanaNrvShootUpCharge::sInstance);
             }
-        }
-        else if (tryToStartBind(pSender)) {
+        } else if (tryToStartBind(pSender)) {
             setNerve(&NrvPoihana::PoihanaNrvShootUp::sInstance);
             return true;
         }
-    }
-    else if (MR::isMsgUpdateBaseMtx(msg) && mBindedActor != nullptr) {
+    } else if (MR::isMsgUpdateBaseMtx(msg) && mBindedActor != nullptr) {
         updateBindActorMtx();
         return true;
     }
 
     return false;
-}*/
+}
 
 void Poihana::exeNonActive() {
     if (MR::isFirstStep(this)) {
@@ -791,11 +784,7 @@ void Poihana::controlVelocity() {
         f32 magVel = isNerve(&NrvPoihana::PoihanaNrvChasePlayer::sInstance) ? 10.0f : 5.0f;
 
         if (mVelocity.length() > magVel) {
-            f32 squared = mVelocity.squared();
-
-            if (squared > 0.0000038146973f) {
-                mVelocity.scale(JGeometry::TUtil< f32 >::inv_sqrt(squared));
-            }
+            mVelocity.setLength(magVel);
         }
 
         if (MR::isNearZero(mVelocity)) {

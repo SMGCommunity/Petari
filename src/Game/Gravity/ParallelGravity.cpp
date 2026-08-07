@@ -137,15 +137,15 @@ bool ParallelGravity::isInBoxRange(const TVec3f& rPosition, f32* pScalar) const 
         f32 abs;
         switch (mDistanceCalcType) {
         case DistanceCalcType_X:
-            abs = __fabsf(dotX);
+            abs = MR::abs(dotX);
             *pScalar = mBaseDistance + abs / MR::sqrt(mExtentX);
             break;
         case DistanceCalcType_Y:
-            abs = __fabsf(dotY);
+            abs = MR::abs(dotY);
             *pScalar = mBaseDistance + abs / MR::sqrt(mExtentY);
             break;
         case DistanceCalcType_Z:
-            abs = __fabsf(dotZ);
+            abs = MR::abs(dotZ);
             *pScalar = mBaseDistance + abs / MR::sqrt(mExtentZ);
             break;
         case DistanceCalcType_Default:

@@ -18,21 +18,7 @@ void CamTranslatorInnerCylinder::setParam(const CameraParamChunk* pChunk) {
         MR::normalize(&axis);
     }
 
-    CameraInnerCylinder* camera = mCamera;
-
-    TVec2f angle = TVec2f(general->mAngleA, general->mAngleB);
-    f32 dist;
-    f32 upX;
-
-    upX = general->mUp.x;
-    dist = general->mDist;
-
-    camera->mWPoint.set< f32 >(general->mWPoint);
-    camera->mAxis.set< f32 >(axis);
-    camera->mAngleA = angle.x;
-    camera->mAngleB = angle.y;
-    camera->mDist = dist;
-    camera->mUpX = upX;
+    mCamera->setParam(general->mWPoint, axis, TVec2f(general->mAngleA, general->mAngleB), general->mDist, general->mUp.x);
 }
 
 Camera* CamTranslatorInnerCylinder::getCamera() const {

@@ -101,15 +101,15 @@ void JumpBeamer::init(const JMapInfoIter& rIter) {
     }
 }
 
-void JumpBeamer::attackSensor(HitSensor* a1, HitSensor* a2) {
-    if (MR::isSensorPlayer(a2)) {
-        MR::sendMsgPush(a2, a1);
+void JumpBeamer::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
-bool JumpBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor* a2, HitSensor* a3) {
+bool JumpBeamer::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerTrample(msg)) {
-        if (a3->isType(ATYPE_PLAYER_AUTO_JUMP)) {
+        if (pReceiver->isType(ATYPE_PLAYER_AUTO_JUMP)) {
             TVec3f up;
             MR::calcUpVec(&up, this);
             MR::setPlayerJumpVec(up);
@@ -142,7 +142,7 @@ void JumpBeamer::syncSwitchOffB() {
     }
 }
 
-bool JumpBeamer::receiveOtherMsg(u32 msg, HitSensor* a2, HitSensor* a3) {
+bool JumpBeamer::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_GROUP_ATTACK) {
         MR::invalidateClipping(this);
         setNerve(&NrvJumpBeamer::JumpBeamerNrvUp::sInstance);

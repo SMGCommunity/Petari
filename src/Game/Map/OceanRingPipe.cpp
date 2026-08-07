@@ -111,7 +111,7 @@ void OceanRingPipe::initPoints() {
             f3 = diva / divb;
             f32 fff = flt - flt2;
 
-            if (__fabsf(fff) > 0.0001f) {
+            if (MR::abs(fff) > 0.0001f) {
                 TVec3f v2(side);
                 TVec3f v3(side);
                 v2.scale(flt);

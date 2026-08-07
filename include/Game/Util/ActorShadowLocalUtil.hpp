@@ -1,6 +1,6 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 class JMapInfoIter;
 class LiveActor;
@@ -11,6 +11,7 @@ class ShadowSurfaceCircle;
 class ShadowSurfaceOval;
 class ShadowVolumeBox;
 class ShadowVolumeCylinder;
+class ShadowVolumeDrawer;
 class ShadowVolumeFlatModel;
 class ShadowVolumeLine;
 class ShadowVolumeOval;
@@ -23,12 +24,12 @@ namespace ActorShadow {
     ShadowController* getShadowController(const LiveActor*, const char*);
     bool isExistShadowController(const LiveActor*, const char*);
     ShadowController* createShadowControllerVolumeParam(LiveActor*, const char*);
-    ShadowController* createShadowControllerSuefaceParam(LiveActor*, const char*);  // Not a typo
-    ShadowDrawer* getShadowSurfaceOval(const LiveActor*, const char*);
-    ShadowDrawer* getShadowVolumeSphere(const LiveActor*, const char*);
-    ShadowDrawer* getShadowVolumeCylinder(const LiveActor*, const char*);
-    ShadowDrawer* getShadowVolumeBox(const LiveActor*, const char*);
-    ShadowDrawer* getShadowVolumeDrawer(const LiveActor*, const char*);
+    ShadowController* createShadowControllerSuefaceParam(LiveActor*, const char*);
+    ShadowSurfaceOval* getShadowSurfaceOval(const LiveActor*, const char*);
+    ShadowVolumeSphere* getShadowVolumeSphere(const LiveActor*, const char*);
+    ShadowVolumeCylinder* getShadowVolumeCylinder(const LiveActor*, const char*);
+    ShadowVolumeBox* getShadowVolumeBox(const LiveActor*, const char*);
+    ShadowVolumeDrawer* getShadowVolumeDrawer(const LiveActor*, const char*);
     bool getJointNameFromCSV(const char**, const JMapInfoIter&);
     s32 getShadowTypeFromCSV(const JMapInfoIter&);
     void setUpShadowControlBaseMtxFromCSV(ShadowController*, LiveActor*, const JMapInfoIter&);

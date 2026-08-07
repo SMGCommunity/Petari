@@ -121,7 +121,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
         TVec3f posDiff(pSender->mHost->mPosition);
         posDiff.sub(pReceiver->mPosition);
 
-        if (__fabsf(posDiff.dot(mFront)) > 70.0f) {
+        if (MR::abs(posDiff.dot(mFront)) > 70.0f) {
             return false;
         }
 
@@ -188,7 +188,7 @@ bool JumpBranch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiv
             swingFront.scale(-1.0f);
         }
 
-        if (__fabsf(diff.y - mPosition.y) < 1.0f) {
+        if (MR::abs(diff.y - mPosition.y) < 1.0f) {
             swingFront.set< f32 >(0.0f, -1.0f, 0.0f);
         }
 

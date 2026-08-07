@@ -850,8 +850,8 @@ namespace MR {
         getCameraDirector()->mShaker->shakeVertical(CameraShaker::SINGLY_VERTICAL_POWER_VERY_WEAK);
     }
 
-    void shakeCameraInfinity(NameObj* pObj, f32 param2, f32 param3) {
-        getCameraDirector()->mShaker->shakeInfinity(pObj, param2, 15.0f / param3);
+    void shakeCameraInfinity(NameObj* pObj, f32 intensity, f32 speed) {
+        getCameraDirector()->mShaker->shakeInfinity(pObj, intensity, 15.0f / speed);
     }
 
     void stopShakingCamera(NameObj* pObj) {

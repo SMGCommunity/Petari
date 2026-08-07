@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class CameraRotChecker {
 public:
@@ -8,7 +8,6 @@ public:
 
     void update();
 
-    TMtx34f _0;
-    bool _30;
-    u8 _31[3];
+    /* 0x00 */ TPos3f mMtx;
+    /* 0x30 */ bool mIsRotatingHard;
 };

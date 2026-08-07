@@ -1,9 +1,14 @@
 #include "Game/Camera/CameraRegisterHolder.hpp"
 #include <cstring>
 
-const char* sDummyMatrixName = "ダミーマトリクス";
-const char* sDummyVectorName = "ダミーベクトル";
-const char* sDummyFloatName = "ダミー浮動小数";
+namespace {
+    // static const char* sMtxRegHioName =
+    // static const char* sVecRegHioName =
+    // static const char* sFltRegHioName =
+    static const char* sDummyMtxRegName = "ダミーマトリクス";
+    static const char* sDummyVecRegName = "ダミーベクトル";
+    static const char* sDummyFloatRegName = "ダミー浮動小数";
+};  // namespace
 
 CameraRegisterHolder::CameraRegisterHolder(const char* pName) : NameObj(pName) {
     initMtx();
@@ -52,7 +57,7 @@ void CameraRegisterHolder::declareFloatReg(const char* pName, const f32* pValue)
 }
 
 const char* CameraRegisterHolder::getDummyVecRegName() const {
-    return sDummyVectorName;
+    return ::sDummyVecRegName;
 }
 
 void CameraRegisterHolder::initMtx() {
@@ -84,15 +89,15 @@ void CameraRegisterHolder::initFloat() {
 
 void CameraRegisterHolder::initDummyRegister() {
     mDummyMatrix.identity();
-    declareMtxReg(sDummyMatrixName, reinterpret_cast< MtxPtr >(&mDummyMatrix));
+    declareMtxReg(::sDummyMtxRegName, reinterpret_cast< MtxPtr >(&mDummyMatrix));
 
     mDummyVector.z = 0.0f;
     mDummyVector.y = 0.0f;
     mDummyVector.x = 0.0f;
-    declareVecReg(sDummyVectorName, &mDummyVector);
+    declareVecReg(::sDummyVecRegName, &mDummyVector);
 
     mDummyFloat = 0.0f;
-    declareFloatReg(sDummyFloatName, &mDummyFloat);
+    declareFloatReg(::sDummyFloatRegName, &mDummyFloat);
 }
 
 s32 CameraRegisterHolder::searchName(const char* const* pNames, u32 count, const char* pName) const {

@@ -69,7 +69,7 @@ namespace NrvSpinningBox {
 void FORCE_MATCH_SDATA2() {
     f32 f1 = 1.0f;
     f32 f2 = 0.0f;
-    f32 f3 = JGeometry::TUtil< f32 >::epsilon();
+    f32 f3 = MR::epsilon();
     f32 f4 = 0.5f;
     f32 f5 = 3.0f;
     f32 f6 = 2.0f;

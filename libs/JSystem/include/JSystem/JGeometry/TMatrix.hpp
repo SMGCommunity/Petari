@@ -349,6 +349,12 @@ namespace JGeometry {
             this->mMtx[2][2] = 1.0f - xx - yy;
         }
 
+        f32 getRotate(TVec3f& rAxis) const {
+            TQuat4f rot;
+            getQuat(rot);
+            return (f64)rot.getRotate(rAxis);
+        }
+
         void getScale(TVec3f& rDest) const;
         void setScale(const TVec3f& rSrc);
         void setScale(f32 x, f32 y, f32 z) NO_INLINE {
@@ -389,6 +395,9 @@ namespace JGeometry {
             //    BreakableCage::calcAndSetBaseMtx (regswap)
             //    CocoNut::updateRotate (regswap)
             //    FirePressureRadiate::calcJointCannon (regswap)
+            //    CameraMedianPlanet::rotate33 (regswap)
+            //    CameraMedianTower::calc (regswap)
+            //    CameraRailWatch::calc (regswap)
             //
             //    CameraFixedThere::updateNormalUpVec (instruction mismatch!!)
             // }
@@ -834,8 +843,13 @@ namespace JGeometry {
         void invert(const TMatrix44< T >& rDest);
 
         inline void mult(const TVec3f& rSrc, TVec3f& rDest) const {
-            TVec4f pos(rSrc.x * this->mMtx[0][0] + rSrc.z * this->mMtx[0][2], rSrc.y * this->mMtx[1][1] + rSrc.z * this->mMtx[1][2],
-                       rSrc.z * this->mMtx[2][2] + this->mMtx[2][3], -rSrc.z);
+            TVec4f pos(rSrc.x * this->mMtx[0][0] + rSrc.z * this->mMtx[0][2],
+
+                       rSrc.y * this->mMtx[1][1] + rSrc.z * this->mMtx[1][2],
+
+                       rSrc.z * this->mMtx[2][2] + this->mMtx[2][3],
+
+                       -rSrc.z);
 
             rDest.scale(1.0f / pos.w, *pos.toTVec3());
         }
