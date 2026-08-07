@@ -74,10 +74,6 @@ RSOHash RSOGetHash(const char* symbolName) {
     return hash;
 }
 
-int RSOGetJumpCodeSize(const RSOObjectHeader* pHeader) {
-    return RSO_FAR_JUMP_SIZE * (pHeader->mExpHeader.mTableSize >> 4);
-}
-
 void RSORelocateSmallDataSection(RSOObjectHeader* rsoImp, int impIndex, RSOObjectHeader* rsoExp);
 
 void* RSOGetExportSymbolAddr(const RSOObjectHeader* rso, int index) {
@@ -94,41 +90,43 @@ char* RSOGetExportSymbolName(const RSOSymbolHeader* exp, int index) {
 }
 
 static int FindExportIndex(const RSOObjectHeader* rso, const char* name) {
-    unsigned long a_hash = RSOGetHash(name);
+    u32 a_hash = RSOGetHash(name);
+    int i;
+    const char* expName;
     int s_max = RSOGetNumExportSymbols(&rso->mExpHeader);
     RSOExportTable* expTab = (RSOExportTable*)rso->mExpHeader.mTableOffset;
+    RSOExportTable* a_expTab;
     int a_top = 0;
     int a_last = s_max - 1;
     int a_idx = -1;
-    const char* expName;
-    RSOExportTable* a_expTab;
-    int i;
 
     if (s_max <= 0) {
         return -1;
     }
 
     while (a_idx == -1) {
-        a_expTab = &expTab[(a_top + a_last) >> 1];
+        i = (a_top + a_last) >> 1;
+        a_expTab = &expTab[i];
 
         if (a_hash > a_expTab->hash) {
-            if (a_top == ((a_top + a_last) >> 1)) {
+            if (a_top == i) {
                 a_idx = a_last;
             } else {
-                a_top = (a_top + a_last) >> 1;
+                a_top = i;
             }
         } else if (a_hash < a_expTab->hash) {
-            if (a_top == ((a_top + a_last) >> 1)) {
+            if (a_top == i) {
                 a_idx = a_top;
             } else {
-                a_last = (a_top + a_last) >> 1;
+                a_last = i;
             }
         } else {
-            a_idx = (a_top + a_last) >> 1;
+            a_idx = i;
         }
     }
 
-    if (expTab[a_idx].hash != a_hash) {
+    a_expTab = &expTab[a_idx];
+    if (a_hash != a_expTab->hash) {
         return -1;
     }
 
@@ -138,7 +136,8 @@ static int FindExportIndex(const RSOObjectHeader* rso, const char* name) {
     }
 
     for (i = a_idx + 1; i <= a_last; i++) {
-        if (expTab[i].hash == a_hash) {
+        a_expTab = &expTab[i];
+        if (a_hash == a_expTab->hash) {
             expName = RSOGetExportSymbolName(&rso->mExpHeader, i);
             if (!strcmp(name, expName)) {
                 return i;
@@ -149,7 +148,8 @@ static int FindExportIndex(const RSOObjectHeader* rso, const char* name) {
     }
 
     for (i = a_idx - 1; i >= a_top; i--) {
-        if (expTab[i].hash == a_hash) {
+        a_expTab = &expTab[i];
+        if (a_hash == a_expTab->hash) {
             expName = RSOGetExportSymbolName(&rso->mExpHeader, i);
             if (!strcmp(name, expName)) {
                 return i;
@@ -161,7 +161,6 @@ static int FindExportIndex(const RSOObjectHeader* rso, const char* name) {
 
     return -1;
 }
-
 void* RSOFindExportSymbolAddr(const RSOObjectHeader* rso, const char* name) {
     int a_idx = FindExportIndex(rso, name);
 
@@ -204,4 +203,14 @@ int RSOLink(RSOObjectHeader* rsoImp, const RSOObjectHeader* rsoExp) {
 
     RSONotifyPostRSOLink(rsoImp, rsoExp);
     return count;
+}
+
+static int LinkList(void* i_newRso, void* i_bss, int i_fixed_level);
+
+BOOL RSOLinkList(void* i_newRso, void* i_bss) {
+    return LinkList(i_newRso, i_bss, 0);
+}
+
+int RSOGetJumpCodeSize(const RSOObjectHeader* pHeader) {
+    return RSO_FAR_JUMP_SIZE * (pHeader->mExpHeader.mTableSize >> 4);
 }
