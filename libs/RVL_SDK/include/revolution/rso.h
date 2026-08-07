@@ -42,6 +42,13 @@ struct RSOObjectLink {
     RSOObjectInfo* mPrev;
 };
 
+struct RSOExportTable {
+    unsigned long strOffset;
+    unsigned long value;
+    unsigned long section;
+    unsigned long hash;
+};
+
 struct RSOObjectInfo {
     RSOObjectLink mLink;
     u32 mNumSections;
@@ -89,7 +96,7 @@ int RSOGetJumpCodeSize(const RSOObjectHeader*);
 int RSOGetJumpCodeSize(const RSOObjectHeader*);
 void RSOMakeJumpCode(const RSOObjectHeader*, void*);
 
-const void* RSOFindExportSymbolAddr(const RSOObjectHeader*, const char*);
+void* RSOFindExportSymbolAddr(const RSOObjectHeader*, const char*);
 int RSOLinkJump(RSOObjectHeader*, const RSOObjectHeader*, void*);
 
 #ifdef __cplusplus

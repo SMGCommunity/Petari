@@ -4,11 +4,11 @@ void RSONotifyModuleLoaded() {
     return;
 }
 
-void RSONotifyPreRSOLink() {
+void RSONotifyPreRSOLink(RSOObjectHeader*, const RSOObjectHeader*) NO_INLINE {
     return;
 }
 
-void RSONotifyPostRSOLink() {
+void RSONotifyPostRSOLink(RSOObjectHeader*, const RSOObjectHeader*) NO_INLINE {
     return;
 }
 
@@ -76,4 +76,132 @@ RSOHash RSOGetHash(const char* symbolName) {
 
 int RSOGetJumpCodeSize(const RSOObjectHeader* pHeader) {
     return RSO_FAR_JUMP_SIZE * (pHeader->mExpHeader.mTableSize >> 4);
+}
+
+void RSORelocateSmallDataSection(RSOObjectHeader* rsoImp, int impIndex, RSOObjectHeader* rsoExp);
+
+void* RSOGetExportSymbolAddr(const RSOObjectHeader* rso, int index) {
+    RSOExportTable* expTab = &((RSOExportTable*)rso->mExpHeader.mTableOffset)[index];
+    RSOSectionInfo* expSec = &((RSOSectionInfo*)rso->mInfo.mSectionInfoOffset)[expTab->section];
+    return (void*)(expSec->mOffset + expTab->value);
+}
+
+static void RSOResolveImportSymbol(RSOObjectHeader* rsoImp, int index, void* addr);
+
+char* RSOGetExportSymbolName(const RSOSymbolHeader* exp, int index) {
+    RSOExportTable* expTab = (RSOExportTable*)exp->mTableOffset + index;
+    return (char*)(exp->mStringOffset + expTab->strOffset);
+}
+
+static int FindExportIndex(const RSOObjectHeader* rso, const char* name) {
+    unsigned long a_hash = RSOGetHash(name);
+    int s_max = RSOGetNumExportSymbols(&rso->mExpHeader);
+    RSOExportTable* expTab = (RSOExportTable*)rso->mExpHeader.mTableOffset;
+    int a_top = 0;
+    int a_last = s_max - 1;
+    int a_idx = -1;
+    const char* expName;
+    RSOExportTable* a_expTab;
+    int i;
+
+    if (s_max <= 0) {
+        return -1;
+    }
+
+    while (a_idx == -1) {
+        a_expTab = &expTab[(a_top + a_last) >> 1];
+
+        if (a_hash > a_expTab->hash) {
+            if (a_top == ((a_top + a_last) >> 1)) {
+                a_idx = a_last;
+            } else {
+                a_top = (a_top + a_last) >> 1;
+            }
+        } else if (a_hash < a_expTab->hash) {
+            if (a_top == ((a_top + a_last) >> 1)) {
+                a_idx = a_top;
+            } else {
+                a_last = (a_top + a_last) >> 1;
+            }
+        } else {
+            a_idx = (a_top + a_last) >> 1;
+        }
+    }
+
+    if (expTab[a_idx].hash != a_hash) {
+        return -1;
+    }
+
+    expName = RSOGetExportSymbolName(&rso->mExpHeader, a_idx);
+    if (!strcmp(name, expName)) {
+        return a_idx;
+    }
+
+    for (i = a_idx + 1; i <= a_last; i++) {
+        if (expTab[i].hash == a_hash) {
+            expName = RSOGetExportSymbolName(&rso->mExpHeader, i);
+            if (!strcmp(name, expName)) {
+                return i;
+            }
+        } else {
+            i = a_last + 1;
+        }
+    }
+
+    for (i = a_idx - 1; i >= a_top; i--) {
+        if (expTab[i].hash == a_hash) {
+            expName = RSOGetExportSymbolName(&rso->mExpHeader, i);
+            if (!strcmp(name, expName)) {
+                return i;
+            }
+        } else {
+            return -1;
+        }
+    }
+
+    return -1;
+}
+
+void* RSOFindExportSymbolAddr(const RSOObjectHeader* rso, const char* name) {
+    int a_idx = FindExportIndex(rso, name);
+
+    if (a_idx == -1) {
+        return NULL;
+    } else {
+        return RSOGetExportSymbolAddr(rso, a_idx);
+    }
+}
+
+int RSOLink(RSOObjectHeader* rsoImp, const RSOObjectHeader* rsoExp) {
+    RSOSymbolHeader* imp;
+    int i, count, s_max;
+    const char* impName;
+    const u32* addr;
+    RSOImportTable* impTab;
+
+    imp = &rsoImp->mImpHeader;
+    count = 0;
+    s_max = RSOGetNumImportSymbols(&rsoImp->mImpHeader);
+    impTab = (RSOImportTable*)imp->mTableOffset;
+
+    RSONotifyPreRSOLink(rsoImp, rsoExp);
+
+    for (i = 0; i < s_max; i++) {
+        const char* v9 = (const char*)(impTab->strOffset + imp->mStringOffset);
+
+        if (v9 != 0) {
+            RSORelocateSmallDataSection(rsoImp, i, (RSOObjectHeader*)rsoExp);
+            addr = RSOFindExportSymbolAddr(rsoExp, v9);
+
+            if (addr != 0) {
+                RSOResolveImportSymbol(rsoImp, i, (void*)addr);
+                count++;
+            }
+        }
+
+        impTab++;
+    }
+
+    RSONotifyPostRSOLink(rsoImp, rsoExp);
+    return count;
 }
