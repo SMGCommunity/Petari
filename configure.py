@@ -1072,7 +1072,7 @@ config.libs = [
                 cflags=[*cflags_game, "-sym off"],
             ),
             Object(NonMatching, "Game/Camera/CameraRailWatch.cpp"),
-            Object(NonMatching, "Game/Camera/CameraRegisterHolder.cpp"),
+            Object(Matching, "Game/Camera/CameraRegisterHolder.cpp"),
             Object(NonMatching, "Game/Camera/CameraRotChecker.cpp"),
             Object(NonMatching, "Game/Camera/CameraShakePatternImpl.cpp"),
             Object(Matching, "Game/Camera/CameraShakeTask.cpp"),
