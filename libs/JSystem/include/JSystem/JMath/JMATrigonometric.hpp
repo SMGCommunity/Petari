@@ -184,7 +184,10 @@ inline f32 JMASSin(s16 v) {
     return JMASinShort(v);
 }
 
-f32 JMAAcosRadian(f32 v);
+inline f32 JMAAcosRadian(f32 v) {
+    return JMath::sAsinAcosTable.acos_(v);
+}
+
 f32 JMAAsinRadian(f32 v);
 
 inline f32 JMACosDegree(f32 angle) {

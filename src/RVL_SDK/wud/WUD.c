@@ -43,6 +43,7 @@ u16 _dev_handle_notack_num[WUD_MAX_DEV_ENTRY];
 
 static BOOL _initialized = FALSE;
 static u8 __bte_trace_level = 0;
+static u8 _normalTarget;
 
 static OSAlarm _arm;
 
@@ -1348,7 +1349,7 @@ WUDClearDeviceCallback WUDSetClearDeviceCallback(WUDClearDeviceCallback pCallbac
     return pOldCallback;
 }
 
-static BOOL StartSyncDevice(u8 syncType, s8 syncLoopNum, BOOL syncSkipChecks, BOOL unk) {
+static BOOL StartSyncDevice(u8 syncType, s8 syncLoopNum, u8 target, BOOL fast) {
     WUDCB* p = &_wcb;
     BOOL success = FALSE;
     BOOL enabled;
@@ -1360,11 +1361,11 @@ static BOOL StartSyncDevice(u8 syncType, s8 syncLoopNum, BOOL syncSkipChecks, BO
 
     if (libStatus == WUD_LIB_STATUS_3 && !WUDIsBusy()) {
         enabled = OSDisableInterrupts();
-
+        _normalTarget = target;
         p->syncState = WUD_STATE_SYNC_PREPARE_SEARCH;
         p->syncLoopNum = syncLoopNum;
         p->syncType = syncType;
-        p->syncSkipChecks = syncSkipChecks ? TRUE : FALSE;
+        p->syncSkipChecks = fast ? TRUE : FALSE;
         p->syncedNum = 0;
 
         OSCreateAlarm(&p->alarm);

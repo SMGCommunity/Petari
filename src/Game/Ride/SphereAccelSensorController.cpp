@@ -5,6 +5,10 @@
 #include <JSystem/JMath/JMath.hpp>
 #include <revolution/wpad.h>
 
+void SphereAccelSensorController_DUMMY() {
+    (void)JGeometry::TUtil< f32 >::acos(1.0f);
+}
+
 namespace {
     // sMinStableValue
     // sMaxStableValue
@@ -40,7 +44,7 @@ SphereAccelSensorController::SphereAccelSensorController()
       _A4(-1.0f), _A8(0.0f), _AC(1.0f), _B0(0), _B4(0.0f), _B8(0) {
 }
 
-void SphereAccelSensorController::getPadAcceleration(TVec3f* pAccel) {
+void SphereAccelSensorController::getPadAcceleration(TVec3f* pAccel) const {
     if (_B8 == 0) {
         MR::getCorePadAcceleration(pAccel, WPAD_CHAN0);
     } else {

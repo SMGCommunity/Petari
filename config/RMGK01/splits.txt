@@ -2055,22 +2055,22 @@ Game/Camera/CameraRailDemo.cpp:
 Game/Camera/CameraRailFollow.cpp:
 	.text       start:0x800AC0D8 end:0x800AC648
 	.rodata     start:0x80531900 end:0x80531908
-	.data       start:0x805760C8 end:0x80576128
+	.data       start:0x805760C8 end:0x80576120
 	.sdata2     start:0x806B9810 end:0x806B9830
 
 Game/Camera/CameraRailHolder.cpp:
 	.text       start:0x800AC648 end:0x800ACA60
-	.data       start:0x80576128 end:0x80576150
+	.data       start:0x80576120 end:0x80576150
 
 Game/Camera/CameraRailWatch.cpp:
 	.text       start:0x800ACA60 end:0x800AD0E0
 	.rodata     start:0x80531908 end:0x80531910
-	.data       start:0x80576150 end:0x805761D8
+	.data       start:0x80576150 end:0x805761A8
 	.sdata2     start:0x806B9830 end:0x806B9848
 
 Game/Camera/CameraRegisterHolder.cpp:
 	.text       start:0x800AD0E0 end:0x800AD44C
-	.data       start:0x805761D8 end:0x80576200
+	.data       start:0x805761A8 end:0x80576200
 	.sdata      start:0x806B1840 end:0x806B1850
 	.sdata2     start:0x806B9848 end:0x806B9850
 

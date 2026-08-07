@@ -16,7 +16,7 @@ public:
     // void drawDebug(); // DEBUG
     // virtual void genMessage(JORMContext*); // DEBUG
 
-    void getPadAcceleration(TVec3f*);
+    void getPadAcceleration(TVec3f*) const;
     bool testBrake() const;
     // void listenPropertyEvent(const JORPropertyEvent*); // DEBUG
 

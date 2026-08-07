@@ -1,5 +1,6 @@
 #pragma once
 
+#include "JSystem/JMath/JMATrigonometric.hpp"
 #include <cmath>
 #include <revolution/types.h>
 
@@ -53,6 +54,10 @@ namespace JGeometry {
             }
 
             return flt_80630CA0[(u32)(1023.5f * val)];
+        }
+
+        static f32 acos(f32 val) NO_INLINE {
+            return JMAAcosRadian(val);
         }
 
         static f32 PI() {

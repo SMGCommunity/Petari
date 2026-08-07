@@ -2,10 +2,11 @@
 
 #include "Game/Camera/Camera.hpp"
 
+class RailRider;
+
 class CameraRailWatch : public Camera {
 public:
     CameraRailWatch(const char* pName = "レール注目カメラ");
-    virtual ~CameraRailWatch();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
@@ -13,10 +14,10 @@ public:
 
     void setParam(s32, s32, s32, f32, f32, f32);
 
-    u32 _4C;
-    u32 _50;
-    u32 _54;
-    f32 _58;
-    f32 _5C;
-    f32 _60;
+    /* 0x4C */ RailRider* mRailRider;
+    /* 0x50 */ s32 mDirection;
+    /* 0x54 */ s32 mSetDirection;
+    /* 0x58 */ f32 mRailCoordOffset;
+    /* 0x5C */ f32 mDist;
+    /* 0x60 */ f32 mAngleX;
 };

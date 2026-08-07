@@ -381,7 +381,7 @@ void CameraDirector::setTargetPlayer(const MarioActor* pActor) {
 }
 
 bool CameraDirector::isRotatingHard() const {
-    return mRotChecker->_30;
+    return mRotChecker->mIsRotatingHard;
 }
 
 bool CameraDirector::isSubjectiveCamera() const {

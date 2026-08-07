@@ -2,30 +2,29 @@
 
 #include "Game/NameObj/NameObj.hpp"
 
+class RailRider;
+
 class CameraRailHolder : public NameObj {
 public:
-    class ZoneRail {
+    struct RailSet {
     public:
-        ZoneRail();
-
-        u32 _0;
-        u32 _4;
+        /* 0x0 */ s32 mRailId;
+        /* 0x4 */ RailRider* mRailRider;
     };
 
-    class RailSet {
+    class ZoneRail {
     public:
-        RailSet& operator=(const RailSet&);
+        ZoneRail() : mNumRails(), mRails() {
+        }
 
-        u32 _0;
-        u32 _4;
+        /* 0x0 */ u32 mNumRails;
+        /* 0x4 */ RailSet* mRails;
     };
 
     CameraRailHolder(const char*);
 
-    virtual ~CameraRailHolder();
+    RailRider* getRider(s32 zoneId, s32 railId) const;
+    s32 find(s32 zoneId, s32 railId) const;
 
-    // getRider(s32, s32) const;
-    // find(s32, s32) const;
-
-    ZoneRail* mRails;  // 0xC
+    /* 0xC */ ZoneRail* mRails;
 };

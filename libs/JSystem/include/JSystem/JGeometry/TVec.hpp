@@ -909,6 +909,18 @@ namespace JGeometry {
         }
         void setEulerZ(T _z);
 
+        f32 getRotate(TVec3< T >& rAxis) {
+            f32 length = toTvec()->squared();
+            if (length <= JGeometry::TUtil< f32 >::epsilon()) {
+                rAxis.zero();
+                return 0.0f;
+            }
+
+            f32 lengthinv = JGeometry::TUtil< f32 >::inv_sqrt(length);
+            rAxis.scale(lengthinv, *toTvec());
+            return JGeometry::TUtil< f32 >::acos(this->w) * 2.0f;
+        }
+
         void setRotate(const TVec3< f32 >& rA, const TVec3< f32 >& rB, f32 ratio) {
             TVec3< f32 > dir = rA.cross(rB);
             f32 crossPart = dir.length();
