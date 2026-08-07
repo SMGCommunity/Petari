@@ -1,6 +1,6 @@
 #include "Game/Screen/ImageEffectBase.hpp"
 
-ImageEffectBase::ImageEffectBase(const char* pName) : NameObj(pName), _C(false), _D(false), _10(0.0f) {
+ImageEffectBase::ImageEffectBase(const char* pName) : NameObj(pName), _C(), _D(), _10() {
 }
 
 void ImageEffectBase::calcAnim() {
@@ -21,19 +21,4 @@ void ImageEffectBase::calcAnim() {
     }
 
     calcAnimSub();
-}
-
-void ImageEffectBase::calcAnimSub() {
-}
-
-void ImageEffectBase::notifyTurnOn() {
-}
-
-void ImageEffectBase::notifyTurnOff() {
-}
-
-void ImageEffectBase::notifyForceOn() {
-}
-
-void ImageEffectBase::notifyForceOff() {
 }
