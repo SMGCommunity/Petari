@@ -349,6 +349,12 @@ namespace JGeometry {
             this->mMtx[2][2] = 1.0f - xx - yy;
         }
 
+        f32 getRotate(TVec3f& rAxis) const {
+            TQuat4f rot;
+            getQuat(rot);
+            return (f64)rot.getRotate(rAxis);
+        }
+
         void getScale(TVec3f& rDest) const;
         void setScale(const TVec3f& rSrc);
         void setScale(f32 x, f32 y, f32 z) NO_INLINE {

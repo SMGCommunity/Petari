@@ -9,6 +9,7 @@
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 
 void CameraLocalUtil_FORCE_SDATA2() {
     (void)1.0f;
@@ -470,4 +471,5 @@ void DUMMY() {
     m.setYDir(b);
     m.setZDir(c);
     m.setTrans(d);
+    (void)JMAAcosRadian(1.0f);
 }
