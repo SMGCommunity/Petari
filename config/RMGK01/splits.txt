@@ -5796,13 +5796,14 @@ Game/MapObj/SpinDriver.cpp:
 	.text       start:0x8023493C end:0x802369B4
 	.ctors      start:0x8052EEC0 end:0x8052EEC4
 	.rodata     start:0x80533898 end:0x805338A8
-	.data       start:0x805A09B8 end:0x805A0D30
+	.data       start:0x805A09B8 end:0x805A0D08
 	.sdata      start:0x806B2020 end:0x806B2028
 	.sbss       start:0x806B58C0 end:0x806B58E0
 	.sdata2     start:0x806BE1C0 end:0x806BE228
 
 Game/MapObj/SpinDriverCamera.cpp:
 	.text       start:0x802369B4 end:0x80236F68
+	.data       start:0x805A0D08 end:0x805A0D30
 	.sdata2     start:0x806BE228 end:0x806BE238
 
 Game/MapObj/SpinDriverOperateRing.cpp:
