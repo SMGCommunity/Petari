@@ -124,35 +124,37 @@ void Mogu::control() {
 
 void Mogu::endClipped() {
     LiveActor::endClipped();
+
     if (isNerve(&NrvMogu::HostTypeNrvTurn::sInstance)) {
         setNerve(&NrvMogu::HostTypeNrvTurn::sInstance);
     }
 }
 
 void Mogu::exeHideWait() {
-    TVec3f normalToPlayer(*MR::getPlayerPos());
-    normalToPlayer -= mPosition;
-    MR::normalizeOrZero(&normalToPlayer);
-    f32 dot = mGravity.dot(normalToPlayer);
-    if (!(dot < -0.75f)) {
-        f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
-        if (MR::isGreaterStep(this, 120) && 400.0f < distanceToPlayer && distanceToPlayer < 2000.0f) {
-            setNerve(&NrvMogu::HostTypeNrvAppear::sInstance);
-        }
+    TVec3f toPlayerDir = *MR::getPlayerPos() - mPosition;
+    MR::normalizeOrZero(&toPlayerDir);
+
+    if (mGravity.dot(toPlayerDir) < -0.75f) {
+        return;
+    }
+
+    f32 distanceToPlayer = MR::calcDistanceToPlayer(this);
+
+    if (MR::isGreaterStep(this, 120) && 400.0f < distanceToPlayer && distanceToPlayer < 2000.0f) {
+        setNerve(&NrvMogu::HostTypeNrvAppear::sInstance);
     }
 }
 
 bool Mogu::isPlayerExistUp() {
-    TVec3f vecToPlayer(*MR::getPlayerCenterPos());
-    vecToPlayer -= mPosition;
-    f32 dot = _A8.dot(vecToPlayer);
-    if (dot < 0.0f) {
+    TVec3f toPlayerCenter = *MR::getPlayerCenterPos() - mPosition;
+
+    if (_A8.dot(toPlayerCenter) < 0.0f) {
         return false;
     }
 
-    TVec3f* playerGravity = MR::getPlayerGravity();
-    MR::vecKillElement(vecToPlayer, *playerGravity, &vecToPlayer);
-    return vecToPlayer.length() < 400.0f;
+    MR::vecKillElement(toPlayerCenter, *MR::getPlayerGravity(), &toPlayerCenter);
+
+    return toPlayerCenter.length() < 400.0f;
 }
 
 void Mogu::tearDownThrow() {

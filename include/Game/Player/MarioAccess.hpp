@@ -3,6 +3,7 @@
 #include <JSystem/JGeometry/TVec.hpp>
 
 class BckCtrlData;
+class CubeCameraArea;
 class HitSensor;
 class LiveActor;
 class MarioActor;
@@ -23,7 +24,7 @@ public:
     static bool isTeresaDisappear();
     static bool isFlying();
     static bool isNeedBrakingCamera();
-    static s32 getCameraCubeCode();
+    static CubeCameraArea* getCameraCubeCode();
     static bool isSwimming();
     static bool isSkating();
     static Triangle* getGroundingPolygon(u32);
