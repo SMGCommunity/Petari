@@ -391,6 +391,7 @@ namespace JGeometry {
             //    FirePressureRadiate::calcJointCannon (regswap)
             //    CameraMedianPlanet::rotate33 (regswap)
             //    CameraMedianTower::calc (regswap)
+            //    CameraRailWatch::calc (regswap)
             //
             //    CameraFixedThere::updateNormalUpVec (instruction mismatch!!)
             // }
