@@ -1,6 +1,10 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/GamePadUtil.hpp"
+#include "revolution/wud/wud.h"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class LiveActorGroup;
@@ -32,10 +36,24 @@ public:
     void exeConfirmCancel();
     void exeConfirm();
 
+    inline bool isDecideTrigger() {
+        return MR::testDPDMenuPadDecideTrigger() && !MR::isDemoActive();
+    }
+
+    inline bool isButtonAPressed() {
+        return MR::testCorePadButtonA(0) && !MR::isDemoActive();
+    }
+
+    inline void sendSelectedMsgAndSetTarget(LiveActor* pTarget) {
+        if (MR::sendSimpleMsgToActor(ACTMES_SPHERE_SELECTOR_TARGET_SELECTED, pTarget)) {
+            mSelectedTarget = pTarget;
+        }
+    }
+
     /* 0x8C */ LiveActorGroup* mSphereGroup;
     /* 0x90 */ SphereSelectorHandle* mHandle;
     /* 0x94 */ LiveActor* mSelectedTarget;
-    /* 0x98 */ u32 _98;
+    /* 0x98 */ LiveActor* _98;
     /* 0x9C */ u32 _9C;  // This doesn't seem to exist
     /* 0xA0 */ LiveActor* mPointingTarget;
     /* 0xA4 */ s32 _A4;
