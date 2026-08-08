@@ -14,11 +14,11 @@ public:
     void playLose();
     void playTimeUp();
     void playRank(u32);
-    void isAllAnimStopped();
+    bool isAllAnimStopped();
     void hideRecordPane();
     void hideBestRecordPane();
     void hideAllPane();
-    void isPlayCountAnim() const;
-    void isPlayCountAndGoAnim() const;
+    bool isPlayCountAnim() const;
+    bool isPlayCountAndGoAnim() const;
     void setTime(u32);
 };
