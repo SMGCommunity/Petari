@@ -15,7 +15,7 @@
 class GalaxyMap : public LayoutActor {
 public:
 
-    GalaxyMap( const char* pName);
+    GalaxyMap();
 
     virtual ~GalaxyMap();
     virtual void init(const JMapInfoIter &);
@@ -42,6 +42,7 @@ public:
     void changeToAstroMap();
     void forceToGalaxyMap();
     void forceToAstroMap();
+    void exeIdle();
     void exeFocusIn();
     void exeFocusOut();
     void exeFadeinGalaxyMap();
