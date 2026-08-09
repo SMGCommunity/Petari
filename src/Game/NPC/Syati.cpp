@@ -2,6 +2,7 @@
 #include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "JSystem/JMath/JMATrigonometric.hpp"
 
 namespace {
     const char* strTurn = "Turn";
@@ -42,9 +43,9 @@ PlayerPoseSetterInWater::PlayerPoseSetterInWater() {
 
 Syati::Syati(const char* pName) : LiveActor(pName) {
     _A8 = 0.0f;
-    _AC = 0.0f;
-    _B0 = 0.0f;
-    _B4 = 0.0f;
+    _AC.x = 0.0f;
+    _AC.y = 0.0f;
+    _AC.z = 0.0f;
     _B8 = 0;
     _BC = 0;
     _C0 = -1;
@@ -505,8 +506,173 @@ void Syati::updatePoseByRail() {
     }
 }
 
+void Syati::updateNumRingPassed() { // 100%
+    bool b = 0;
+    for (int i = 0; i < _140->mObjectCount; i++) {
+        PrizeRing* pPrizeRing = (PrizeRing*)_140->getActor(i);
+        
+        if (MR::isDead(pPrizeRing))
+            continue;
+
+        if (pPrizeRing->isReadyToPass()) {
+            pPrizeRing->setNervePass();
+            b = true;
+            _154++;
+            MR::incPlayerLife(1);
+        }
+
+        if (pPrizeRing->isReadyToKill()) {
+            pPrizeRing->kill();
+        }
+        else
+            continue;
+
+        if (_154 == _144) {
+            killAllRings();
+            setNerve(&NrvSyati::SyatiWaitStarAppeared::sInstance);
+        }
+    }   
+
+    if (b && _154 != _144)
+        syncNumRingLeftToActiveRings();
+}
+
+void Syati::updateBlink() {
+    if ((_C8-=1) < 0) {
+        MR::startBva(this, "Blink");
+        s16 frame = MR::getBvaCtrl(this)->mEnd;
+        u32 rand = MR::getRandom((s32)0x78, (s32)0xF0);
+        _C8 = frame+rand;
+    }
+    else if (MR::isBvaStopped(this)) {
+        MR::startBva(this, "Open");
+    }
+}
+
+bool Syati::isReadyToEmitRing() const {
+    if (_154 == _144)
+        return false;
+
+    if (!_140->getDeadActor())
+        return false;
+
+    if (MR::getCurrentRailPointNo(this) == _158)
+        return false;
+
+    f32 dist = 0.0f;
+    MR::calcDistanceToNextRailPoint(this, &dist);
+
+    if (600.0f < dist) {
+        return false;
+    }
+
+    s32 arg = -1;
+    s32 point = MR::getNextRailPointNo(this);
+    MR::getRailPointArg0NoInit(this, point, &arg);
+    return (bool)!arg;
+}
+
+void Syati::syncNumRingLeftToActiveRings() {
+    PrizeRing* pPrizeRing;
+
+    for (int i = 0; i < 5; i++) {
+        pPrizeRing = (PrizeRing*)_140->getActor(i);
+        if (MR::isDead(pPrizeRing))
+            continue;
+
+        if (pPrizeRing->isPassed())
+            continue;
+
+        pPrizeRing->setNumber(_144-_154);
+    }
+}
+
+void Syati::resetScore() {
+    _154 = 0;
+    _158 = -1;
+    MR::resetNode(_B8);
+    killAllRings();
+    MR::moveCoordToRailPoint(this, 0);
+}
+
+void Syati::killAllRings() {
+    for (int i = 0; i < 5; i++) {
+        PrizeRing* pPrizeRing = (PrizeRing*)_140->getActor(i);
+
+        if (!MR::isDead(pPrizeRing))
+            pPrizeRing->kill();
+    }
+}
+
+void Syati::emitRing() {
+    PrizeRing* pPrizeRing = (PrizeRing*)_140->getDeadActor();
+    TVec3f stack_20;
+    f32 coord = MR::getRailCoord(this);
+    f32 f = coord+600.0f;
+    MR::calcRailPosAtCoord(&stack_20, this, f);
+    pPrizeRing->mPosition.set(stack_20);
+    TVec3f stack_14;
+    MR::calcRailDirectionAtCoord(&stack_14, this, f);
+    TPos3f stack_2C;
+    MR::calcMtxFromGravityAndZAxis(&stack_2C, this, mGravity, stack_14);
+    TVec3f stack_8;
+
+    f32 stack_2C20 = stack_2C[2][0];
+    if (stack_2C20 - 1.0f >= -0.0000038146973f) {
+        stack_8.x = JMath::sAtanTable.atan2_(-stack_2C[0][1], stack_2C[1][1]);
+        stack_8.y = -PI/2;
+        stack_8.z = 0.0f;
+    }
+    else if (1.0f + stack_2C20 <= 0.0000038146973f) {
+        f32 s2C_11 = stack_2C[1][1];
+        stack_8.x = JMath::sAtanTable.atan2_(stack_2C[0][1], s2C_11);
+        stack_8.y = -PI/2;
+        stack_8.z = 0.0f;
+    }
+    else {
+        f32 atan22 = JMath::sAtanTable.atan2_(stack_2C[2][2], stack_2C[2][1]);
+        stack_8.x = atan22;
+        f32 atan33 = JMath::sAtanTable.atan2_(stack_2C[3][3], stack_2C[3][3]);
+        stack_8.z = atan33;
+        f32 asin20 = JGeometry::TUtil<f32>::asin(-stack_2C[2][0]);
+        stack_8.y = asin20;
+    }
+
+    f32 num = 57.29578f;
+    pPrizeRing->mRotation.set(stack_8.x*num, stack_8.y*num, stack_8.z*num);
+    pPrizeRing->appear();
+    pPrizeRing->setNumber(_144-_154);
+
+    if (_150 > 0)
+        pPrizeRing->setLife(_150);
+
+    _158 = MR::getCurrentRailPointNo(this);
+}
+
+void Syati::setupBalloonFollowMtx(const TVec3f& rVec) {
+    _D8.setQuat(_8C);
+    _D8.setTrans(mPosition);
+    TVec3f stack_8(rVec);
+    _D8.mult(stack_8, stack_8);
+    _D8.setTrans(stack_8);
+}
+
 bool Syati::calcHeadJoint(TPos3f*, const JointControllerInfo& info) {
     return 0;
+}
+
+void Syati::control() {
+    MR::setClippingRangeIncludeShadow(this, &_AC, _A8);
+    updateNumRingPassed();
+}
+
+void Syati::calcAndSetBaseMtx() {
+    MR::setBaseTRMtx(this, _8C);
+    _108->registerCallBack();
+}
+
+void Syati::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+
 }
 
 Syati::~Syati() {

@@ -67,16 +67,14 @@ public:
     TQuat4f _8C;
     TVec3f _9C;
     f32 _A8; // some radius
-    f32 _AC;
-    f32 _B0;
-    f32 _B4;
+    TVec3f _AC;
     TalkMessageCtrl* _B8;
     ActorCameraInfo* _BC;
     s32 _C0;
     PlayerPoseSetterInWater* _C4;
     s32 _C8;
     TVec3f _CC;
-    TMtx34f _D8;
+    TPos3f _D8;
     JointControlDelegator<Syati>* _108;
     TMtx34f _10C;
     RaceManagerLayout* _13C;
