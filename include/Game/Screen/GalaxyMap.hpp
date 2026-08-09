@@ -1,29 +1,36 @@
 #pragma once
-#include "Game/Screen/LayoutActor.hpp"
-#include "nw4r/lyt/drawInfo.h"
 
-#include "Game/Screen/GalaxyMapGalaxyPlain.hpp"
-#include "Game/Screen/GalaxyMapGalaxyDetail.hpp"
-#include "Game/Screen/GalaxyMapTitle.hpp"
-#include "Game/Screen/GalaxyMapIcon.hpp"
-#include "Game/Screen/GalaxyMapMarioIcon.hpp"
-#include "Game/Screen/GalaxyMapTicoIcon.hpp"
-#include "Game/Screen/GalaxyMapDomeIcon.hpp"
-#include "Game/Screen/GalaxyMapCometIcon.hpp"
+#include "Game/Screen/LayoutActor.hpp"
 #include "Game/Util/Array.hpp"
+
+class GalaxyMapCometIcon;
+class GalaxyMapDomeIcon;
+class GalaxyMapGalaxyDetail;
+class GalaxyMapGalaxyPlain;
+class GalaxyMapIcon;
+class GalaxyMapMarioIcon;
+class GalaxyMapTicoIcon;
+class GalaxyMapTitle;
+class IconAButton;
+
+namespace nw4r {
+    namespace lyt {
+        class DrawInfo;
+    };  // namespace lyt
+};  // namespace nw4r
 
 class GalaxyMap : public LayoutActor {
 public:
-
+    /// @brief Creates a new `GalaxyMap`.
     GalaxyMap();
 
-    virtual ~GalaxyMap();
-    virtual void init(const JMapInfoIter &);
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void movement();
+    virtual void draw() const;
+    virtual void calcAnim();
     virtual void appear();
     virtual void kill();
-    virtual void movement();
-    virtual void calcAnim();
-    virtual void draw() const;
+
     void movementForCapture();
     void calcAnimForCapture(const nw4r::lyt::DrawInfo&);
     void drawForCapture(const nw4r::lyt::DrawInfo&);
@@ -34,41 +41,42 @@ public:
     void setModeTicoCometPray();
     void setModeCapture();
     void drawGalaxyInfo() const;
-    void isTransition() const;
-    void isPointingAnything() const;
-    void isShowDetail() const;
+    bool isTransition() const;
+    bool isPointingAnything() const;
+    bool isShowDetail() const;
     void dispIconAButton();
     void changeToGalaxyMap();
     void changeToAstroMap();
     void forceToGalaxyMap();
     void forceToAstroMap();
+    void initPaneCtrlPointing();
+    void initDomeIcon();
+    void initMarioIcon();
+    void initTicoIcon();
+    bool tryFocusIn();
+    void updateGalaxyName();
+    void drawGalaxyIconWithOrder(int) const;
+    GalaxyMapIcon* getPointingGalaxyIcon() const;
+
     void exeIdle();
     void exeFocusIn();
     void exeFocusOut();
     void exeFadeinGalaxyMap();
     void exeFadeinAstroMap();
     void exeShowDetail();
-    void initPaneCtrlPointing();
-    void initDomeIcon();
-    void initMarioIcon();
-    void initTicoIcon();
-    void tryFocusIn();
-    void updateGalaxyName();
-    void drawGalaxyIconWithOrder(int) const;
-    void getPointingGalaxyIcon() const;
 
-    MR::Vector<MR::AssignableArray< GalaxyMapIcon* > > mGalaxyMapIconArray; // 0x20
-    MR::Vector<MR::AssignableArray< GalaxyMapCometIcon* > > mGalaxyMapCometIconArray; // 0x2C
-    MR::Vector<MR::AssignableArray< GalaxyMapDomeIcon* > > mGalaxyMapDomeIconArray; // 0x38
-    MR::Vector<MR::AssignableArray< GalaxyMapTicoIcon* > > mGalaxyMapTicoIconArray; // 0x44
-    GalaxyMapMarioIcon* mGalaxyMapMarioIcon;
-    u32 _54;
-    GalaxyMapGalaxyPlain* mGalaxyMapGalaxyPlain; // 0x58
-    GalaxyMapGalaxyDetail* mGalaxyMapGalaxyDetail; // 0x5C
-    u32 _60;
-    GalaxyMapTitle* mGalaxyMapTitle; // 0x64
-    IconAButton* mIconAButton;
-    u32 _6C;
-    bool _70;
-    bool _71;
+    /* 0x20 */ MR::Vector< MR::AssignableArray< GalaxyMapIcon* > > mIcon;
+    /* 0x2C */ MR::Vector< MR::AssignableArray< GalaxyMapCometIcon* > > mCometIcon;
+    /* 0x38 */ MR::Vector< MR::AssignableArray< GalaxyMapDomeIcon* > > mDomeIcon;
+    /* 0x44 */ MR::Vector< MR::AssignableArray< GalaxyMapTicoIcon* > > mTicoIcon;
+    /* 0x50 */ GalaxyMapMarioIcon* mMarioIcon1;
+    /* 0x54 */ GalaxyMapMarioIcon* mMarioIcon2;
+    /* 0x58 */ GalaxyMapGalaxyPlain* mGalaxyPlain;
+    /* 0x5C */ GalaxyMapGalaxyDetail* mGalaxyDetail;
+    /* 0x60 */ GalaxyMapIcon* mPointingIcon;
+    /* 0x64 */ GalaxyMapTitle* mTitle;
+    /* 0x68 */ IconAButton* mIconAButton;
+    /* 0x6C */ const char* mGalaxyName;
+    /* 0x70 */ bool _70;
+    /* 0x71 */ bool _71;
 };

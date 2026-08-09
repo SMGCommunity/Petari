@@ -5,7 +5,7 @@
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include <JSystem/JGeometry.hpp>
 #include "Game/Util/JointController.hpp"
-#include "Game/Screen/RaceManagerLayout.hpp"
+#include "Game/Map/RaceManager.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
