@@ -11,6 +11,7 @@ class Kameck;
 
 class SmallKameckBeamEventListener : public KameckBeamEventListener {
 public:
+    SmallKameckBeamEventListener(Kameck* kameck) : _4(kameck) {}
     virtual void hitBeam(s32);
     Kameck* _4;
 };
@@ -53,7 +54,7 @@ public:
     void startDemoAppear();
     void killForce();
     void resetBeam();
-    bool isEnableAttack() const; 
+    bool isEnableAttack() const;
     bool isEnableDown() const;
     bool isEnableGurad() const;
     bool tryNonActive();
@@ -78,18 +79,18 @@ public:
     void setBeamType(s32);
     void makeActorDeadForce();
 
-    /* 0x8C */  KameckBeam* _8C;
-    /* 0x90 */  ActiveActorList* _90;
-    /* 0x94 */  SmallKameckBeamEventListener* _94;
-    /* 0x98 */  AnimScaleController* _98;
-    /* 0x9C */  WalkerStateBindStarPointer* _9C;
-    /* 0xA0 */  TQuat4f _A0;
-    /* 0xB0 */  TVec3f _B0;
-    /* 0xBC */  s32 mBeamType;
-    /* 0xC0 */  s32 _C0;
-    /* 0xC4 */  f32 mRailCoord;
-    /* 0xC8 */  f32 mRailNextPointCoord;
-    /* 0xCC */  f32 _CC;
+    /* 0x8C */ KameckBeam* _8C;
+    /* 0x90 */ ActiveActorList* _90;
+    /* 0x94 */ SmallKameckBeamEventListener* _94;
+    /* 0x98 */ AnimScaleController* _98;
+    /* 0x9C */ WalkerStateBindStarPointer* _9C;
+    /* 0xA0 */ TQuat4f _A0;
+    /* 0xB0 */ TVec3f _B0;
+    /* 0xBC */ s32 mBeamType;
+    /* 0xC0 */ s32 _C0;
+    /* 0xC4 */ f32 mRailCoord;
+    /* 0xC8 */ f32 mRailNextPointCoord;
+    /* 0xCC */ f32 _CC;
 };
 
 namespace MR {

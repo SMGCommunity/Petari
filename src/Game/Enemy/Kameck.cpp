@@ -57,9 +57,7 @@ Kameck::Kameck(const char* pName) : LiveActor(pName), _8C(), _90(), _94(), _98()
     mRailNextPointCoord = 0.0f;
     _CC = 3000.0f;
     _90 = new ActiveActorList(8);
-    SmallKameckBeamEventListener* p = new SmallKameckBeamEventListener();
-    p->_4 = this;
-    _94 = p;
+    _94 = new SmallKameckBeamEventListener(this);
 }
 
 void Kameck::init(const JMapInfoIter& rIter) {
@@ -255,7 +253,6 @@ bool Kameck::requestGuard(HitSensor* pSender, HitSensor* pReceiver) {
         TVec3f vec = -pSender->mHost->mVelocity;
         TVec3f* pGravity = &mGravity;
         vec2.scaleAdd(-pGravity->dot(vec), *pGravity, vec);
-
         if (!MR::normalizeOrZero(&vec2)) {
             _B0.set(vec2);
         }
@@ -433,7 +430,9 @@ void Kameck::exeOpeningDemo() {
         MR::validateHitSensors(this);
         MR::validateClipping(this);
     }
-    tryOpeningDemoEnd();
+    if (tryOpeningDemoEnd()) {
+        return;
+    }
 }
 
 void Kameck::exeDemoAppear() {
@@ -567,7 +566,9 @@ void Kameck::exeMove() {
         MR::moveTransToCurrentRailPos(this);
     }
     MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), 0.98f);
-    tryMoveEnd();
+    if (tryMoveEnd()) {
+        return;
+    }
 }
 
 void Kameck::exeDown() {

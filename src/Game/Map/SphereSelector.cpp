@@ -83,12 +83,12 @@ void SphereSelector::sendMsgToAllActor(u32 msg) {
     }
 }
 
-bool SphereSelector::isMoveClickedPos() const {
+/* bool SphereSelector::isMoveClickedPos() const {
     TVec2f pos = MR::getStarPointerScreenPositionOrEdge(0);
     pos.x = _A8 - pos.x;
     pos.y = _AC - pos.y;
-    JGeometry::TUtil<f32>::sqrt(_AC * _AC + pos.y * pos.y);
-}
+    return 80.0f < JGeometry::TUtil<f32>::sqrt(_AC * _AC + pos.y * pos.y);
+} */
 
 void SphereSelector::playSelectedME() {
     switch (MR::getRandom(0L, 4L)) {
