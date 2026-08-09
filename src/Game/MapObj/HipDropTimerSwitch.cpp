@@ -2,25 +2,28 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/CollisionParts.hpp"
 #include "Game/MapObj/MapObjConnector.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
-#include "Game/Util/NerveUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/SpringValue.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JAudio2/JAISound.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
+#include "revolution/mtx.h"
 #include "revolution/types.h"
 
 namespace {
-    static const char* sTimerSeSet[4] = {0, 0, 0, 0};
+    const char* const sTimerSeSet[2][4] = {{"SE_SY_TIMER_A_2", "SE_SY_TIMER_A_1", "SE_SY_TIMER_A_QUASI_0", "SE_SY_TIMER_A_0"},
+                                           {"SE_SY_TIMER_B_2", "SE_SY_TIMER_B_1", "SE_SY_TIMER_B_QUASI_0", "SE_SY_TIMER_B_0"}};
 };
 
 namespace NrvHipDropSwitch {
@@ -31,14 +34,12 @@ namespace NrvHipDropSwitch {
 };  // namespace NrvHipDropSwitch
 
 HipDropTimerSwitch::HipDropTimerSwitch(const char* pName)
-    : LiveActor(pName), _8C(0), _94(nullptr), _98(nullptr), mTimerMax(0x12C), _D0(0), _D5(0), _D6(0) {
-    _90 = new SpringValue;
-    _94 = new MapObjConnector(this);
-    _90->setParam(0.0f, 0.0f, 0.2f, 0.9f, 0.0f);
+    : LiveActor(pName), _8C(0), mMapObjConnector(nullptr), mCollisionParts(nullptr), mTimerMax(0x12C), mTimerType(0), mWasLightPressed(false),
+      mIsLightPressed(false) {
+    mSpring = new SpringValue;
+    mMapObjConnector = new MapObjConnector(this);
+    mSpring->setParam(0.0f, 0.0f, 0.2f, 0.9f, 0.0f);
     _9C.identity();
-}
-
-HipDropTimerSwitch::~HipDropTimerSwitch() {
 }
 
 void HipDropTimerSwitch::init(const JMapInfoIter& rIter) {
@@ -51,17 +52,17 @@ void HipDropTimerSwitch::init(const JMapInfoIter& rIter) {
     MR::addHitSensorMapObj(this, "body", 16, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::addHitSensorMapObj(this, "hit", 16, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initStarPointerTarget(this, 150.0f, TVec3f(0.0f));
-    MR::initCollisionParts(this, "body", getSensor("hit"), nullptr);
-    _98 = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("Move"), MR::CollisionScaleType_Unk2);
-    MR::validateCollisionParts(_98);
+    MR::initCollisionParts(this, "HipDropTimerSwitch", getSensor("body"), nullptr);
+    mCollisionParts = MR::createCollisionPartsFromLiveActor(this, "Move", getSensor("hit"), MR::CollisionScaleType_Unk2);
+    MR::validateCollisionParts(mCollisionParts);
     initNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvOff::sInstance);
     MR::needStageSwitchWriteA(this, rIter);
     MR::tryRegisterDemoCast(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &mTimerMax);
-    MR::getJMapInfoArg1NoInit(rIter, &_D0);
+    MR::getJMapInfoArg1NoInit(rIter, &mTimerType);
 
-    if (_D0 <= 0) {
-        _D0 = 0;
+    if (mTimerType <= 0) {
+        mTimerType = 0;
     }
 
     initEffectKeeper(0, nullptr, false);
@@ -75,17 +76,36 @@ void HipDropTimerSwitch::init(const JMapInfoIter& rIter) {
 }
 
 void HipDropTimerSwitch::initAfterPlacement() {
-    _94->attachToUnder();
+    mMapObjConnector->attachToUnder();
 }
 
 void HipDropTimerSwitch::control() {
-    _D5 = _D6;
-    _D6 = 0;
+    mWasLightPressed = mIsLightPressed;
+    mIsLightPressed = false;
+}
+
+void HipDropTimerSwitch::calcAnim() {
+    LiveActor::calcAnim();
+    MtxPtr mtx = MR::getJointMtx(this, "Move");
+    TPos3f mtx2;
+    mtx2.setInline(mtx);
+    f32 val = mSpring->mSpringValue;
+
+    if (!MR::isNearZero(val)) {
+        TVec3f pos, up;
+        mtx2.getTrans(pos);
+        MR::calcUpVec(&up, this);
+        pos += up * val;
+        mtx2.setTrans(pos);
+        PSMTXCopy(mtx2, mtx);
+    }
+
+    mCollisionParts->setMtx(mtx2);
 }
 
 void HipDropTimerSwitch::calcAndSetBaseMtx() {
     LiveActor::calcAndSetBaseMtx();
-    _94->connect();
+    mMapObjConnector->connect();
 }
 
 void HipDropTimerSwitch::updateTimerSE() {
@@ -110,8 +130,8 @@ void HipDropTimerSwitch::updateTimerSE() {
 
     frame = mTimerMax;
 
-    if (mTimerMax < getNerveStep()) {
-        MR::startSystemSE(::sTimerSeSet[3]);
+    if (frame == getNerveStep()) {
+        MR::startSystemSE(::sTimerSeSet[mTimerType][3]);
         return;
     }
 
@@ -120,31 +140,32 @@ void HipDropTimerSwitch::updateTimerSE() {
     }
 
     if (nerveStep < frame - 0x258) {
-        MR::startSystemSE(::sTimerSeSet[0]);
+        MR::startSystemSE(::sTimerSeSet[mTimerType][0]);
         return;
     }
 
     if (nerveStep < frame - 0x78) {
-        MR::startSystemSE(::sTimerSeSet[1]);
+        MR::startSystemSE(::sTimerSeSet[mTimerType][1]);
         return;
     }
 
     if (nerveStep < frame) {
-        MR::startSystemSE(::sTimerSeSet[2]);
+        MR::startSystemSE(::sTimerSeSet[mTimerType][2]);
         return;
     }
 }
 
 bool HipDropTimerSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
-        _D6 = true;
+        mIsLightPressed = true;
         return true;
     }
 
-    if (MR::isMsgPlayerHipDropFloor(msg) && _98->mHitSensor == pReceiver && isNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvOff::sInstance)) {
+    if (MR::isMsgPlayerHipDropFloor(msg) && mCollisionParts->mHitSensor == pReceiver &&
+        isNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvOff::sInstance)) {
         MR::invalidateClipping(this);
         setNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvSwitchDown::sInstance);
-        _90->reset();
+        mSpring->reset();
         return true;
     }
 
@@ -152,9 +173,9 @@ bool HipDropTimerSwitch::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, Hit
 }
 
 bool HipDropTimerSwitch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::isMsgFloorTouch(msg) && _98->mHitSensor == pReceiver) {
-        _D6 = true;
-        return !_D5;
+    if (MR::isMsgFloorTouch(msg) && mCollisionParts->mHitSensor == pReceiver) {
+        mIsLightPressed = true;
+        return !mWasLightPressed;
     }
 
     return false;
@@ -166,19 +187,19 @@ void HipDropTimerSwitch::exeOff() {
         MR::offSwitchA(this);
         MR::startBck(this, "Wait", nullptr);
         MR::startBrk(this, "Off");
-        _90->reset();
+        mSpring->reset();
     }
 
     // "Weak"
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
-        _D6 = true;
+        mIsLightPressed = true;
     }
 
-    if (!_D5 && _D6) {
-        _90->mVelocity += -10.0f;
+    if (!mWasLightPressed && mIsLightPressed) {
+        mSpring->mVelocity += -10.0f;
         MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND");
     }
-    _90->update();
+    mSpring->update();
 }
 
 void HipDropTimerSwitch::exeSwitchDown() {
@@ -215,4 +236,7 @@ void HipDropTimerSwitch::exeSwitchUp() {
     if (MR::isBckStopped(this)) {
         setNerve(&NrvHipDropSwitch::HipDropTimerSwitchNrvOff::sInstance);
     }
+}
+
+HipDropTimerSwitch::~HipDropTimerSwitch() {
 }
