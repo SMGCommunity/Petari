@@ -1,8 +1,11 @@
 #include "Game/MapObj/GCapture.hpp"
+#include "Game/Camera/CameraTargetMtx.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/BlueStarCupsulePlanet.hpp"
 #include "Game/MapObj/GCaptureRibbon.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
 namespace NrvGCapture {
     NEW_NERVE(GCaptureNrvWait, GCapture, Wait);
@@ -58,11 +61,68 @@ void GCapture::updateRibbonPointEffectMatrix(const TVec3f& rVec) {
 
 void GCapture::addRotateAccelPointing() {
     TVec3f rotate;
-    if (MR::calcStarPointerStrokeRotateMoment(&rotate, mRotation, 200.0f, 0)) {
+    if (MR::calcStarPointerStrokeRotateMoment(&rotate, mPosition, 200.0f, 0)) {
         _F0 += rotate * 0.055104f;
         f32 mag = _F0.length();
         if (mag > 0.2f) {
             _F0.scale(0.2f / mag);
         }
     }
+}
+
+bool GCapture::tryAddVelocityReflectJumpCollision() {
+    bool ret = MR::sendMsgToBindedSensor(196, this, getSensor("body"));
+    if (ret) {
+        MR::addVelocityToCollisionNormal(this, 25.0f);
+
+        f32 len = mVelocity.length();
+
+        if (len > 25.0f) {
+            mVelocity.scale(25.0f / len);
+        }
+    }
+
+    return ret;
+}
+
+// GCapture::requestTarget
+
+bool GCapture::isRequestedTarget(GCaptureTargetable* pTarget) {
+    if (pTarget == nullptr) {
+        return false;
+    }
+
+    return mTarget == pTarget;
+}
+
+void GCapture::decideTractTarget() {
+    if (_110 != mTarget) {
+        releaseTractTarget();
+        mTarget->canEndHold();
+        _110 = mTarget;
+        mCaptureRibbon->reset();
+        mTarget = nullptr;
+    }
+}
+
+void GCapture::releaseTractTarget() {
+    if (_110 != nullptr) {
+        _110->isReleaseForce();
+        mCaptureRibbon->reset();
+    }
+
+    _110 = nullptr;
+}
+
+void GCapture::updateCameraTargetMatrix() {
+    TPos3f mtx;
+    mtx.identity();
+
+    if (_108) {
+        mtx.setTrans(*MR::getPlayerPos());
+    } else {
+        mtx.setTrans(_CC);
+    }
+
+    mTargetMtx->mMatrix.set(mtx);
 }

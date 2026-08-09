@@ -70,7 +70,7 @@ public:
     TVec3f _FC;
     u32 _108;
     GCaptureTargetable* mTarget;  // 0x10C
-    u32 _110;
+    GCaptureTargetable* _110;
     GCaptureRibbon* mCaptureRibbon;  // 0x114
     CameraTargetMtx* mTargetMtx;     // 0x118
     SpringValue* mSpringValue;       // 0x11C
