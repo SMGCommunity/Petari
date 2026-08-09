@@ -31,7 +31,7 @@ public:
     MapObjConnector* _94;
     CollisionParts* _98;
     TPos3f _9C;
-    s32 _CC;
+    /* 0xCC */ s32 mTimerMax;
     s32 _D0;
     u8 _D4;
     u8 _D5;
