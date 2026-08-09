@@ -3142,14 +3142,14 @@ Game/Enemy/StinkBugParent.cpp:
 Game/Enemy/StinkBugSmall.cpp:
 	.text       start:0x80140F78 end:0x801427AC
 	.ctors      start:0x8052EB4C end:0x8052EB50
-	.data       start:0x80584A48 end:0x80584ED0
+	.data       start:0x80584A48 end:0x80584D40
 	.sbss       start:0x806B47F0 end:0x806B4830
 	.sdata2     start:0x806BB650 end:0x806BB698
 
 Game/Enemy/StringSpider.cpp:
 	.text       start:0x801427AC end:0x80145210
 	.ctors      start:0x8052EB50 end:0x8052EB54
-	.data       start:0x80584ED0 end:0x805850A0
+	.data       start:0x80584D40 end:0x805850A0
 	.sdata      start:0x806B1A70 end:0x806B1A80
 	.sbss       start:0x806B4830 end:0x806B4868
 	.sdata2     start:0x806BB698 end:0x806BB748
