@@ -907,7 +907,14 @@ namespace JGeometry {
         void setEulerDegree(T _x, T _y, T _z) {
             setEuler(_x * PI_180, _y * PI_180, _z * PI_180);
         }
-        void setEulerZ(T _z);
+        void setEulerZ(T _z) {
+            f32 new_z = sin(_z*0.5f);
+            f32 new_w = cos(_z*0.5f);
+            this->z = new_z;
+            this->x = 0.0f;
+            this->y = 0.0f;
+            this->w = new_w;
+        };
 
         f32 getRotate(TVec3< T >& rAxis) {
             f32 length = toTvec()->squared();
