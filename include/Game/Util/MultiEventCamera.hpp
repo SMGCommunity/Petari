@@ -1,10 +1,17 @@
 #pragma once
 
 #include "Game/Camera/CameraTargetArg.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
+
+class ActorCameraInfo;
 
 class MultiEventCamera {
 public:
+    enum CameraType {
+        /* 0x00 */ CameraType_Soon,
+        /* 0x01 */ CameraType_AtLanding,
+    };
+
+    /// @brief Creates a new `MultiEventCamera`.
     MultiEventCamera();
 
     bool isEnd() const;
@@ -22,15 +29,15 @@ public:
     bool isActive(s32) const;
     void declareEventCamera(s32);
     void startCamera();
-    void endCamera();
+    void endCamera(s32);
     void changeTarget(const CameraTargetArg&);
 
-    const char* mName;  // 0x0
-    s32 mCameraCount;   // 0x4
-    s32 _8;
-    u32 _C;
-    u32 _10;
-    u32 mCameraType;               // 0x14
-    ActorCameraInfo* mCameraInfo;  // 0x18
-    CameraTargetArg mTarget;       // 0x1C
+    /* 0x00 */ const char* mName;
+    /* 0x04 */ s32 mCameraNum;
+    /* 0x08 */ s32 _8;
+    /* 0x0C */ s32 _C;
+    /* 0x10 */ s32 _10;
+    /* 0x14 */ s32 mCameraType;
+    /* 0x18 */ const ActorCameraInfo* mCameraInfo;
+    /* 0x1C */ CameraTargetArg mTarget;
 };

@@ -21,7 +21,7 @@ typedef struct NWC24Work {
     char WORK_0x880[0x900 - 0x880];
     u8 readBuffer[NWC24_IO_BUFFER_SIZE];   // at 0x900
     u8 writeBuffer[NWC24_IO_BUFFER_SIZE];  // at 0xB00
-    u8 config[WORK_SIZE(NWC24Config)];     // at 0xD00
+    u8 config[WORK_SIZE(NWC24MsgConfig)];  // at 0xD00
     char WORK_0x1100[128];
     char WORK_0x1180[128];
     char WORK_0x1200[128];

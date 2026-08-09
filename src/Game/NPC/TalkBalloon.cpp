@@ -17,6 +17,10 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "JSystem/JUtility/JUTVideo.hpp"
 
+void TalkBalloon_DUMMY() {
+    (void)JGeometry::TUtil< f32 >::acos(1.0f);
+}
+
 namespace NrvTalkBalloonShort {
     NEW_NERVE(TalkBalloonShortNrvOpen, TalkBalloonShort, Open);
     NEW_NERVE(TalkBalloonShortNrvTalk, TalkBalloonShort, Talk);

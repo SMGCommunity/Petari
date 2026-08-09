@@ -5,6 +5,7 @@
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class AreaObj;
+class CubeCameraArea;
 class FloorCode;
 class GravityInfo;
 class HashSortTable;
@@ -155,7 +156,7 @@ public:
     void updateBinderInfo();
     bool isThroughWall(const Triangle*) const;
     void checkGround();
-    void getCameraCubeCode() const;
+    CubeCameraArea* getCameraCubeCode() const;
     void updateCubeCode();
 
     bool isDamaging() const;

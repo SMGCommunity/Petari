@@ -5,6 +5,10 @@
 #include "Game/Screen/ImageEffectSystemHolder.hpp"
 #include "Game/Util/DrawUtil.hpp"
 
+void BloomEffectSimple_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     // static const s32 sLen = _;
     // static const s32 sDivNum = _;
@@ -87,7 +91,7 @@ void BloomEffectSimple::draw() const {
     ImageEffectLocalUtil::blurTexture(texSpec._0, texSpec._4, texSpec._8, 8, 0.009f, 1.0f);
     ImageEffectLocalUtil::capture(_28, texSpec._4, texSpec._8, texSpec._C, false, 0);
     ImageEffectLocalUtil::drawTexture(_20, 4, 0, 255, ImageEffectLocalUtil::TexDrawType_0);
-    ImageEffectLocalUtil::drawTexture(_28, 1, 0, mThreshold * _10 * 255.0f, ImageEffectLocalUtil::TexDrawType_1);
+    ImageEffectLocalUtil::drawTexture(_28, 1, 0, 255.0f * mIntensity * get_10(), ImageEffectLocalUtil::TexDrawType_1);
 }
 
 void TexSpec::set(JUTTexture* pParam1, s32 param2, s32 param3, GXTexFmt param4) {

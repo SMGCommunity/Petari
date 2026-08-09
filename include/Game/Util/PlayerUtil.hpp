@@ -1,7 +1,6 @@
 #pragma once
 
 #include <JSystem/JGeometry/TMatrix.hpp>
-#include <JSystem/JGeometry/TVec.hpp>
 
 class BckCtrlData;
 class CameraTargetArg;
@@ -24,7 +23,6 @@ namespace MR {
     bool isPlayerRefuseTalk();
     bool isPlayerTeresaDisappear();
     bool isPlayerInAreaObj(const char*);
-    bool isPlayerTakingActor(const char*);
     TVec3f* getPlayerPos();
     TVec3f* getPlayerCenterPos();
     void getPlayerTakePos(TVec3f*);
@@ -37,7 +35,7 @@ namespace MR {
     void setPlayerJumpVec(const TVec3f&);
     f32 getPlayerHitRadius();
     void setPlayerWalkingResist(f32);
-    TVec3f* getPlayerGravity();
+    const TVec3f* getPlayerGravity();
     void calcPlayerSpinPullVelocity(TVec3f*, const TVec3f&);
     bool checkPlayerActionTrigger();
     bool checkPlayerSwingTrigger();
@@ -47,7 +45,7 @@ namespace MR {
     void getPlayerSideVec(TVec3f*);
     void getPlayerThrowVec(TVec3f*);
     void getPlayerGroundPos(TVec3f*);
-    TVec3f* getPlayerGroundNormal();
+    const TVec3f* getPlayerGroundNormal();
     void setPlayerFrontTargetVec(const TVec3f&, s32);
     void setPlayerFrontVec(const TVec3f&, s32);
     void setPlayerSwingInhibitTimer(u16);
@@ -79,7 +77,7 @@ namespace MR {
     bool isActorOnPlayer(const LiveActor*);
     bool isOnPlayerShadow(const LiveActor*);
     f32 getPlayerShadowHeight();
-    void setPlayerPos(const char*);
+    void setPlayerPos(const char*) NO_INLINE;
     void setPlayerPosAndWait(const TVec3f&);
     void setPlayerPosAndWait(const char*);
     void setPlayerLinkPosAndWait(const NameObj*, const char*);

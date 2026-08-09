@@ -53,10 +53,18 @@ bool ClipAreaShapeSphere::isInArea(register const TVec3f &rVec) const {
         fcmpo, cr0, f2, f0
         mfcr r3
         srwi r3, r3, 31
-        blr
     };
 }
 // clang-format on
+
+void ClipAreaShapeSphere::calcVolumeMatrix(TPos3f* pPos, const TPos3f& rPos, const TVec3f& rVec) const {
+    pPos->set(rPos);
+    f32 f = mRadius;
+
+    TVec3f stack_14 = (TVec3f(rVec.scaleInline(mRadius)));
+    stack_14.scale(0.0099999998f);
+    MR::preScaleMtx((MtxPtr)pPos, stack_14);
+}
 
 ClipAreaShapeCone::ClipAreaShapeCone(s32 a1) : ClipAreaShape("ClipVolumeSphere") {
     _8 = 500.0f;
@@ -82,4 +90,32 @@ bool ClipAreaShapeCone::isInArea(const TVec3f& rVec) const {
 
 bool ClipAreaShape::isInArea(const TVec3f&) const {
     return false;
+}
+
+ClipAreaShapeBox::ClipAreaShapeBox(s32 u1) : ClipAreaShape("VolumeBox") {
+    mRadius = 0.0f;
+    _C = u1;
+}
+
+bool ClipAreaShapeBox::isInArea(const TVec3f& rVec) const {
+    switch (_C) {
+        case 0:
+            return (MR::isInRange(rVec.x, -mRadius, mRadius) && MR::isInRange(rVec.y, -mRadius, mRadius) && MR::isInRange(rVec.z, -mRadius, mRadius));
+        break;
+        case 1:
+            return (MR::isInRange(rVec.x, -mRadius, mRadius) && MR::isInRange(rVec.y, 0.0f, 2.0f*mRadius) && MR::isInRange(rVec.z, -mRadius, mRadius));
+        break;
+    }
+
+    return false;
+
+}
+
+void ClipAreaShapeBox::calcVolumeMatrix(TPos3f* pPos, const TPos3f& rPos, const TVec3f& rVec) const {
+    pPos->set(rPos);
+    if (_C == 1) {
+        MR::addTransMtxLocalY((MtxPtr)pPos, mRadius*rVec.y);
+    }
+
+    MR::preScaleMtx((MtxPtr)pPos, rVec);
 }

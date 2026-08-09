@@ -2055,22 +2055,22 @@ Game/Camera/CameraRailDemo.cpp:
 Game/Camera/CameraRailFollow.cpp:
 	.text       start:0x800AC0D8 end:0x800AC648
 	.rodata     start:0x80531900 end:0x80531908
-	.data       start:0x805760C8 end:0x80576128
+	.data       start:0x805760C8 end:0x80576120
 	.sdata2     start:0x806B9810 end:0x806B9830
 
 Game/Camera/CameraRailHolder.cpp:
 	.text       start:0x800AC648 end:0x800ACA60
-	.data       start:0x80576128 end:0x80576150
+	.data       start:0x80576120 end:0x80576150
 
 Game/Camera/CameraRailWatch.cpp:
 	.text       start:0x800ACA60 end:0x800AD0E0
 	.rodata     start:0x80531908 end:0x80531910
-	.data       start:0x80576150 end:0x805761D8
+	.data       start:0x80576150 end:0x805761A8
 	.sdata2     start:0x806B9830 end:0x806B9848
 
 Game/Camera/CameraRegisterHolder.cpp:
 	.text       start:0x800AD0E0 end:0x800AD44C
-	.data       start:0x805761D8 end:0x80576200
+	.data       start:0x805761A8 end:0x80576200
 	.sdata      start:0x806B1840 end:0x806B1850
 	.sdata2     start:0x806B9848 end:0x806B9850
 
@@ -3142,14 +3142,14 @@ Game/Enemy/StinkBugParent.cpp:
 Game/Enemy/StinkBugSmall.cpp:
 	.text       start:0x80140F78 end:0x801427AC
 	.ctors      start:0x8052EB4C end:0x8052EB50
-	.data       start:0x80584A48 end:0x80584ED0
+	.data       start:0x80584A48 end:0x80584D40
 	.sbss       start:0x806B47F0 end:0x806B4830
 	.sdata2     start:0x806BB650 end:0x806BB698
 
 Game/Enemy/StringSpider.cpp:
 	.text       start:0x801427AC end:0x80145210
 	.ctors      start:0x8052EB50 end:0x8052EB54
-	.data       start:0x80584ED0 end:0x805850A0
+	.data       start:0x80584D40 end:0x805850A0
 	.sdata      start:0x806B1A70 end:0x806B1A80
 	.sbss       start:0x806B4830 end:0x806B4868
 	.sdata2     start:0x806BB698 end:0x806BB748
@@ -5796,13 +5796,14 @@ Game/MapObj/SpinDriver.cpp:
 	.text       start:0x8023493C end:0x802369B4
 	.ctors      start:0x8052EEC0 end:0x8052EEC4
 	.rodata     start:0x80533898 end:0x805338A8
-	.data       start:0x805A09B8 end:0x805A0D30
+	.data       start:0x805A09B8 end:0x805A0D08
 	.sdata      start:0x806B2020 end:0x806B2028
 	.sbss       start:0x806B58C0 end:0x806B58E0
 	.sdata2     start:0x806BE1C0 end:0x806BE228
 
 Game/MapObj/SpinDriverCamera.cpp:
 	.text       start:0x802369B4 end:0x80236F68
+	.data       start:0x805A0D08 end:0x805A0D30
 	.sdata2     start:0x806BE228 end:0x806BE238
 
 Game/MapObj/SpinDriverOperateRing.cpp:
@@ -9354,7 +9355,7 @@ Game/Util/NPCUtil.cpp:
 	.text       start:0x803EE208 end:0x803F03A8
 	.ctors      start:0x8052F3B0 end:0x8052F3B4
 	.data       start:0x805E1B60 end:0x805E1DD8
-	.sdata      start:0x806B2668 end:0x806B26B0
+	.sdata      start:0x806B2668 end:0x806B26A8
 	.sbss       start:0x806B7020 end:0x806B7050
 	.sdata2     start:0x806C1800 end:0x806C1840
 
@@ -9373,6 +9374,7 @@ Game/Util/PlayerUtil.cpp:
 	.text       start:0x803F3500 end:0x803F4BF0
 	.ctors      start:0x8052F3B8 end:0x8052F3BC
 	.data       start:0x805E1DD8 end:0x805E1E20
+	.sdata      start:0x806B26A8 end:0x806B26B0
 	.sdata2     start:0x806C1878 end:0x806C1888
 
 Game/Util/RailGraphUtil.cpp:
@@ -9402,10 +9404,11 @@ Game/Util/ScreenUtil.cpp:
 
 Game/Util/SequenceUtil.cpp:
 	.text       start:0x803F9848 end:0x803F9C18
+	.data       start:0x805E2048 end:0x805E2060
 
 Game/Util/ShareUtil.cpp:
 	.text       start:0x803F9C18 end:0x803F9CD4
-	.data       start:0x805E2070 end:0x805E2098
+	.data       start:0x805E2060 end:0x805E2098
 
 Game/Util/SoundUtil.cpp:
 	.text       start:0x803F9CD4 end:0x803FBA80

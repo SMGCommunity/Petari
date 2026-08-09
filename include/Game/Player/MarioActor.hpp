@@ -504,6 +504,10 @@ public:
         return mHealth;
     }
 
+    inline void setB90(bool param1) {
+        _B90 = param1;
+    }
+
     inline const Mario::MovementStates& getMovementStates() const {
         return mMario->mMovementStates;
     }
@@ -572,7 +576,7 @@ public:
     /* 0x1D8 */ FBO* _1D8;
     /* 0x1DC */ FBO* _1DC;
     /* 0x1E0 */ bool _1E0;
-    /* 0x1E1 */ u8 _1E1;
+    /* 0x1E1 */ bool _1E1;
     /* 0x1E2 */ u8 _1E2;
     /* 0x1E4 */ f32 _1E4;
     /* 0x1E8 */ u16 _1E8;
@@ -655,7 +659,7 @@ public:
     /* 0x3D8 */ u16 _3D8;
     /* 0x3DA */ u16 _3DA;
     /* 0x3DC */ u16 _3DC;
-    /* 0x3De */ u8 _3DE;
+    /* 0x3DE */ u8 _3DE;
     /* 0x3DF */ u8 _3DF;
     /* 0x3E0 */ u32 mMaxHealth;
     /* 0x3E4 */ bool _3E4;

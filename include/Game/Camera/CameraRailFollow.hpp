@@ -2,10 +2,11 @@
 
 #include "Game/Camera/Camera.hpp"
 
+class RailRider;
+
 class CameraRailFollow : public Camera {
 public:
     CameraRailFollow(const char* pName = "レールフォローカメラ");
-    virtual ~CameraRailFollow();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
@@ -13,11 +14,15 @@ public:
 
     void setParam(s32, s32, f32, f32, f32, s32);
 
-    u32 _4C;
-    f32 _50;
-    f32 _54;
-    f32 _58;
-    f32 _5C;
-    f32 _60;
-    u8 _64[4];
+    f32 getStopLength() {
+        return mRailSpeed * mRailSpeed / (mRailAccel * 2.0f);
+    }
+
+    /* 0x4C */ RailRider* mRailRider;
+    /* 0x50 */ f32 mRailCoord;
+    /* 0x54 */ f32 mRailSpeed;
+    /* 0x58 */ f32 mTargetMargin;
+    /* 0x5C */ f32 mRailSpeedMax;
+    /* 0x60 */ f32 mRailAccel;
+    /* 0x64 */ s32 mMarginScale;
 };

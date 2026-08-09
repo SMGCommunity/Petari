@@ -44,6 +44,10 @@
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTVideo.hpp>
 
+void MarioActor_DUMMY() {
+    (void)JGeometry::TUtil< f32 >::acos(1.0f);
+}
+
 bool gIsLuigi;
 static f32 BASE_ROTATION = 0.0f;
 
