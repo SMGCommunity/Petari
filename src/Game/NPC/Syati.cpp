@@ -38,7 +38,7 @@ namespace {
 };
 
 PlayerPoseSetterInWater::PlayerPoseSetterInWater() {
-
+    
 }
 
 Syati::Syati(const char* pName) : LiveActor(pName) {
@@ -163,9 +163,6 @@ void Syati::exeWaitBlank() { // 26%
         _CC.set(*pVec);
         
     }
-}
-
-void PlayerPoseSetterInWater::update() {
 }
 
 void Syati::exeFadeinBeforeTalk() { // 87%
@@ -331,7 +328,7 @@ void Syati::exeTalkRetryMission() {
         MR::startBck(this, "Failure", nullptr);
         MR::startBtk(this, "Failure");
 
-        if (MR::isEqualStageName("OceanPhantomCaveGalaxy") && !MR::isPlayingStageBgmName("STM_GALAXY_05"))
+        if (MR::isEqualStageName("OceanPhantomCaveGalaxy") && !MR::isPlayingStageBgmName("STM_GALAXY_05")) {}
             MR::startStageBGM("MBGM_GALAXY_05", false);
 
         _C4->update();
@@ -410,6 +407,11 @@ void Syati::exeTalkNormal() {
 
     if (MR::isNearPlayer(_B8, -1.0f))
         setNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance);
+}
+
+void Syati::exeKill() {
+    if (MR::isFirstStep(this))
+        MR::forceKillPlayerByWaterRace();
 }
 
 void Syati::initRings(const JMapInfoIter& rIter) { // 100%
@@ -657,8 +659,47 @@ void Syati::setupBalloonFollowMtx(const TVec3f& rVec) {
     _D8.setTrans(stack_8);
 }
 
-bool Syati::calcHeadJoint(TPos3f*, const JointControllerInfo& info) {
-    return 0;
+bool Syati::calcHeadJoint(TPos3f* pPos, const JointControllerInfo& rInfo) {
+    bool nrv = false;
+    nrv = isNerve(&NrvSyati::SyatiWaitOnShore::sInstance)
+     || isNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance)
+     || isNerve(&NrvSyati::SyatiTalkNormal::sInstance);
+
+     
+     if (!nrv)
+     return false;
+    
+    TRot3f stack_3C;
+    TVec3f stack_30(*MR::getPlayerPos());
+    stack_30.sub(mPosition);
+    MR::normalizeOrZero(&stack_30);
+    
+    if (MR::isNearZero(stack_30, 0.001f))
+        return false;
+
+    TVec3f stack_24(stack_30);
+    stack_24.y = 0.0f;
+    MR::normalizeOrZero(&stack_24); 
+
+    if (MR::isNearZero(stack_24, 0.001f))
+        return false; 
+
+    TVec3f stack_18;
+    stack_18.set(
+    (2.0f * (_8C.x * _8C.z)) + (2.0f * (_8C.w * _8C.y)),
+    (2.0f * (_8C.y * _8C.z)) - (2.0f * (_8C.w * _8C.x)),
+    (1.0f - (2.0f * (_8C.x * _8C.x))) - (2.0f * (_8C.y * _8C.y)));
+    MR::normalize(&stack_18);
+    TQuat4f stack_8;
+    stack_8.set(0.0f, 0.0f, 0.0f, 1.0f);
+    MR::turnQuat(&stack_8, stack_8, stack_18, stack_24, 0.52359879f);
+    stack_3C.setQuat(stack_8);
+    stack_3C[0][3] = 0.0f;
+    stack_3C[1][3] = 0.0f;
+    stack_3C[2][3] = 0.0f;
+    pPos->concat(*pPos, stack_3C);
+    return true;
+
 }
 
 void Syati::control() {
@@ -672,7 +713,20 @@ void Syati::calcAndSetBaseMtx() {
 }
 
 void Syati::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        if (MR::sendMsgEnemyAttackFlipMaximum(pReceiver, pSender)) {
+            MR::startSound(this, "SE_SM_SYATI_TRAMPLED", -1, -1);
+        }
+    }
+    else
+        MR::sendMsgPush(pReceiver, pSender);
+}
 
+bool Syati::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgJetTurtleAttack(msg) || MR::isMsgStarPieceReflect(msg))
+        return true;
+
+    return false;
 }
 
 Syati::~Syati() {
