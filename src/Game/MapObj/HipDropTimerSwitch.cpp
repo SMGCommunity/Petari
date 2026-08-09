@@ -34,7 +34,7 @@ namespace NrvHipDropSwitch {
 };  // namespace NrvHipDropSwitch
 
 HipDropTimerSwitch::HipDropTimerSwitch(const char* pName)
-    : LiveActor(pName), _8C(0), mMapObjConnector(nullptr), mCollisionParts(nullptr), mTimerMax(0x12C), mTimerType(0), mWasLightPressed(false),
+    : LiveActor(pName), _8C(0), mMapObjConnector(nullptr), mCollisionParts(nullptr), mTimerMax(300), mTimerSFXType(0), mWasLightPressed(false),
       mIsLightPressed(false) {
     mSpring = new SpringValue;
     mMapObjConnector = new MapObjConnector(this);
@@ -59,10 +59,10 @@ void HipDropTimerSwitch::init(const JMapInfoIter& rIter) {
     MR::needStageSwitchWriteA(this, rIter);
     MR::tryRegisterDemoCast(this, rIter);
     MR::getJMapInfoArg0NoInit(rIter, &mTimerMax);
-    MR::getJMapInfoArg1NoInit(rIter, &mTimerType);
+    MR::getJMapInfoArg1NoInit(rIter, &mTimerSFXType);
 
-    if (mTimerType <= 0) {
-        mTimerType = 0;
+    if (mTimerSFXType <= 0) {
+        mTimerSFXType = 0;
     }
 
     initEffectKeeper(0, nullptr, false);
@@ -117,41 +117,36 @@ void HipDropTimerSwitch::updateTimerSE() {
         return;
     }
 
-    s32 frame = mTimerMax % 0x3C;
-    s32 nerveStep = getNerveStep() - frame;
+    s32 subSecond = mTimerMax % 60;
+    s32 timeElapsed = getNerveStep() - subSecond;
 
-    if (frame != 0) {
-        nerveStep += 0x3C;
+    if (subSecond != 0) {
+        timeElapsed += 60;
     }
 
-    if (nerveStep < 0x3C) {
+    if (timeElapsed < 60) {
         return;
     }
 
-    frame = mTimerMax;
-
-    if (frame == getNerveStep()) {
-        MR::startSystemSE(::sTimerSeSet[mTimerType][3]);
+    if (mTimerMax == getNerveStep()) {
+        // Time's up
+        MR::startSystemSE(::sTimerSeSet[mTimerSFXType][3]);
         return;
     }
 
-    if (nerveStep % 0x3C != 0) {
+    if (timeElapsed % 60 != 0) {
         return;
     }
 
-    if (nerveStep < frame - 0x258) {
-        MR::startSystemSE(::sTimerSeSet[mTimerType][0]);
-        return;
-    }
-
-    if (nerveStep < frame - 0x78) {
-        MR::startSystemSE(::sTimerSeSet[mTimerType][1]);
-        return;
-    }
-
-    if (nerveStep < frame) {
-        MR::startSystemSE(::sTimerSeSet[mTimerType][2]);
-        return;
+    if (timeElapsed < mTimerMax - 600) {
+        // > 10s remaining
+        MR::startSystemSE(::sTimerSeSet[mTimerSFXType][0]);
+    } else if (timeElapsed < mTimerMax - 120) {
+        // 8 to 2s remaining
+        MR::startSystemSE(::sTimerSeSet[mTimerSFXType][1]);
+    } else if (timeElapsed < mTimerMax) {
+        // < 2 seconds remaining
+        MR::startSystemSE(::sTimerSeSet[mTimerSFXType][2]);
     }
 }
 
@@ -199,6 +194,7 @@ void HipDropTimerSwitch::exeOff() {
         mSpring->mVelocity += -10.0f;
         MR::startSound(this, "SE_OJ_PNC_KINOKO_BOUND");
     }
+
     mSpring->update();
 }
 

@@ -31,8 +31,8 @@ public:
     /* 0x94 */ MapObjConnector* mMapObjConnector;
     /* 0x98 */ CollisionParts* mCollisionParts;
     TPos3f _9C;
-    /* 0xCC */ s32 mTimerMax;
-    /* 0xD0 */ s32 mTimerType;
+    /* 0xCC */ s32 mTimerMax;      // In frames
+    /* 0xD0 */ s32 mTimerSFXType;  // 0: A ticking, 1: B ticking
     u8 _D4;
     /* 0xD5 */ bool mWasLightPressed;
     /* 0xD6 */ bool mIsLightPressed;
