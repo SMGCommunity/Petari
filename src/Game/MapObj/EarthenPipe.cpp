@@ -437,10 +437,10 @@ bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRecei
         MR::setBaseTRMtx(mHostActor, _F0);
         return true;
     }
-    if (msg == 240) {  // Do we have an inline for this?
+    if (msg == ACTMES_HEAVENSDOOR_RUNAWAY_RABBIT_WAIT) {  // Do we have an inline for this?
         _194 = true;
     }
-    if (msg == 241) {
+    if (msg == ACTMES_HEAVENSDOOR_RUNAWAY_RABBIT_START) {
         _194 = false;
         return true;
     }

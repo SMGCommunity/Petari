@@ -32,7 +32,7 @@ namespace NrvSphereSelector {
 };  // namespace NrvSphereSelector
 
 SphereSelector::SphereSelector()
-    : LiveActor("スフィアセレクター"), mSphereGroup(), mHandle(), mSelectedTarget(), _98(), mPointingTarget(), _A4(), _A8(), _AC(),
+    : LiveActor("スフィアセレクター"), mSphereGroup(), mHandle(), mSelectedTarget(), _98(), mPointingTarget(), _A4(), _A8(0.0f, 0.0f),
       mIsPointingInvalid(), _B1() {
 }
 
@@ -83,12 +83,9 @@ void SphereSelector::sendMsgToAllActor(u32 msg) {
     }
 }
 
-/* bool SphereSelector::isMoveClickedPos() const {
-    TVec2f pos = MR::getStarPointerScreenPositionOrEdge(0);
-    pos.x = _A8 - pos.x;
-    pos.y = _AC - pos.y;
-    return 80.0f < JGeometry::TUtil<f32>::sqrt(_AC * _AC + pos.y * pos.y);
-} */
+bool SphereSelector::isMoveClickedPos() const {
+    return 80.0f < JGeometry::TUtil<f32>::sqrt(_A8.squareDist(MR::getStarPointerScreenPositionOrEdge(0)));
+}
 
 void SphereSelector::playSelectedME() {
     switch (MR::getRandom(0L, 4L)) {

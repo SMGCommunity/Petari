@@ -1,24 +1,25 @@
 #pragma once
 
-#include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/Enemy/KameckBeam.hpp"
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
-#include "Game/LiveActor/ActiveActorList.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
-#include "revolution/types.h"
 
+class AnimScaleController;
+class WalkerStateBindStarPointer;
+class ActiveActorList;
 class Kameck;
 
 class SmallKameckBeamEventListener : public KameckBeamEventListener {
 public:
-    SmallKameckBeamEventListener(Kameck* kameck) : _4(kameck) {}
+    SmallKameckBeamEventListener(Kameck* kameck) : mHost(kameck) {}
+
     virtual void hitBeam(s32);
-    Kameck* _4;
+
+    Kameck* mHost;
 };
 
 class Kameck : public LiveActor {
 public:
     Kameck(const char*);
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void makeActorDead();
     virtual void appear();
@@ -79,7 +80,7 @@ public:
     void setBeamType(s32);
     void makeActorDeadForce();
 
-    /* 0x8C */ KameckBeam* _8C;
+    /* 0x8C */ KameckBeam* mBeam;
     /* 0x90 */ ActiveActorList* _90;
     /* 0x94 */ SmallKameckBeamEventListener* _94;
     /* 0x98 */ AnimScaleController* _98;
@@ -87,10 +88,10 @@ public:
     /* 0xA0 */ TQuat4f _A0;
     /* 0xB0 */ TVec3f _B0;
     /* 0xBC */ s32 mBeamType;
-    /* 0xC0 */ s32 _C0;
+    /* 0xC0 */ s32 mMoveStep;
     /* 0xC4 */ f32 mRailCoord;
     /* 0xC8 */ f32 mRailNextPointCoord;
-    /* 0xCC */ f32 _CC;
+    /* 0xCC */ f32 mActiveDistance;
 };
 
 namespace MR {

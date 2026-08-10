@@ -4,7 +4,6 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/GamePadUtil.hpp"
-#include "revolution/wud/wud.h"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 class LiveActorGroup;
@@ -36,15 +35,15 @@ public:
     void exeConfirmCancel();
     void exeConfirm();
 
-    inline bool isDecideTrigger() {
+    bool isDecideTrigger() {
         return MR::testDPDMenuPadDecideTrigger() && !MR::isDemoActive();
     }
 
-    inline bool isButtonAPressed() {
-        return MR::testCorePadButtonA(0) && !MR::isDemoActive();
+    bool isButtonAPressed() {
+        return MR::testCorePadButtonA(WPAD_CHAN0) && !MR::isDemoActive();
     }
 
-    inline void sendSelectedMsgAndSetTarget(LiveActor* pTarget) {
+    void sendSelectedMsgAndSetTarget(LiveActor* pTarget) {
         if (MR::sendSimpleMsgToActor(ACTMES_SPHERE_SELECTOR_TARGET_SELECTED, pTarget)) {
             mSelectedTarget = pTarget;
         }
@@ -57,8 +56,7 @@ public:
     /* 0x9C */ u32 _9C;  // This doesn't seem to exist
     /* 0xA0 */ LiveActor* mPointingTarget;
     /* 0xA4 */ s32 _A4;
-    /* 0xA8 */ f32 _A8;
-    /* 0xAC */ f32 _AC;
+    /* 0xA8 */ TVec2f _A8;
     /* 0xB0 */ bool mIsPointingInvalid;
     /* 0xB1 */ bool _B1;  // Something for playing sounds the first time you click on a galaxy or cancel the selection
 };
