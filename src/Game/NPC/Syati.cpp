@@ -38,13 +38,9 @@ namespace {
 f32 JMAAcosRadian_dummy(f32 f) {
     TVec3f _dummy;
     _dummy.set(sMarioMoveLocalOffsetDeepSea);
+    _dummy.add(0.0f);
     return JMAAcosRadian(f);
 }
-
-PlayerPoseSetterInWater::PlayerPoseSetterInWater() {
-    
-}
-
 
 Syati::Syati(const char* pName) : LiveActor(pName) {
     _A8 = 0.0f;
@@ -171,6 +167,42 @@ void Syati::exeWaitBlank() {
         else
             setNerve(&NrvSyati::SyatiFadeinRetryEvent::sInstance);
     }
+}
+
+void PlayerPoseSetterInWater::update() {
+    s32 v7 = (_1C+91)%90;
+    _1C = v7;
+
+    f32 lhs = ((2*PI) * (((f32)v7/90.0f))) / 90.0f;
+
+    if (lhs < 0.0f)
+        lhs = -1.0f*lhs;
+
+    TPos3f stack_74;
+    lhs = lhs*2607.5945f;
+    stack_74.setQuat(_C);
+    stack_74.setTrans(_0);
+    TPos3f stack_44;
+    TVec3f stack_38;
+    stack_38.zero();
+    if (_20) {
+        stack_38.set(*_20);
+    }
+    stack_74.mult(stack_38, stack_38);
+    TVec3f stack_2C(_0);
+    TVec3f stack_20;
+    stack_20.set<f32>(stack_74[0][1], stack_74[1][1], stack_74[2][1]);
+    stack_20.x*=450.0f;
+    stack_20.y*=450.0f;
+    stack_20.z*=450.0f;
+    stack_2C.add(stack_20);
+    stack_2C.sub(stack_38);
+    TVec3f stack_14;
+    TVec3f stack_8(stack_38);
+    stack_14.zero();
+    stack_8.add(stack_14);
+    MR::makeMtxUpFrontPos(&stack_44, stack_2C, *MR::getPlayerGravity(), stack_8);
+    MR::setPlayerBaseMtx((MtxPtr)&stack_44);
 }
 
 void Syati::exeFadeinBeforeTalk() {
@@ -433,8 +465,14 @@ void Syati::initRings(const JMapInfoIter& rIter) {
     }
 }
 
-void Syati::initPose() {
+PlayerPoseSetterInWater::PlayerPoseSetterInWater(const TVec3f& rVec, Syati* pSyati) : _0(rVec), _C(pSyati->_8C), _1C(0), _20(pSyati->_CC){
+    
+}
 
+
+void Syati::initPose() {
+    MR::makeQuatFromRotate(&_8C, this);
+    _C4 = new PlayerPoseSetterInWater(mPosition, this);
 }
 
 void Syati::initTalking(const JMapInfoIter& rIter) {

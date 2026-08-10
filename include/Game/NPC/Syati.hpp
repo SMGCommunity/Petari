@@ -10,15 +10,7 @@
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/NPC/TalkMessageCtrl.hpp"
 
-class PlayerPoseSetterInWater : public TVec3f {
-public:
-    inline PlayerPoseSetterInWater();
-    void update();
-
-    TQuat4f _C;
-    s32 _1C;
-    Vec* _20;
-};
+class PlayerPoseSetterInWater;
 
 class Syati : public LiveActor {
 public:
@@ -63,7 +55,6 @@ public:
     void setupBalloonFollowMtx(const TVec3f&);
     bool calcHeadJoint(TPos3f *,const JointControllerInfo &);
 
-    private:
     /* 0x8C */ TQuat4f _8C;
     /* 0x9C */ TVec3f _9C;
     /* 0xA8 */ f32 _A8;
@@ -86,6 +77,17 @@ public:
     /* 0x154 */ s32 _154;
     /* 0x158 */ s32 _158;
 
+};
+
+class PlayerPoseSetterInWater{
+public:
+    inline PlayerPoseSetterInWater(const TVec3f& rVec, Syati* pSyati);
+    void update();
+
+    TVec3f _0;
+    TQuat4f _C;
+    s32 _1C;
+    Vec* _20;
 };
 
 namespace NrvSyati {
