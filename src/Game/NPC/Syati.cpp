@@ -173,13 +173,13 @@ void PlayerPoseSetterInWater::update() {
     s32 v7 = (_1C+91)%90;
     _1C = v7;
 
-    f32 lhs = ((2*PI) * (((f32)v7/90.0f))) / 90.0f;
+    f32 lhs = ((2*PI) * ((f32)v7 / 90.0f));
 
     if (lhs < 0.0f)
-        lhs = -1.0f*lhs;
-
+        lhs = -lhs;
+    
     TPos3f stack_74;
-    lhs = lhs*2607.5945f;
+    f32 f = 2607.5945f;
     stack_74.setQuat(_C);
     stack_74.setTrans(_0);
     TPos3f stack_44;
@@ -191,17 +191,17 @@ void PlayerPoseSetterInWater::update() {
     stack_74.mult(stack_38, stack_38);
     TVec3f stack_2C(_0);
     TVec3f stack_20;
-    stack_20.set<f32>(stack_74[0][1], stack_74[1][1], stack_74[2][1]);
+    stack_20.set<f32>(stack_74[2][1], stack_74[1][1], stack_74[0][1]);
     stack_20.x*=450.0f;
     stack_20.y*=450.0f;
     stack_20.z*=450.0f;
     stack_2C.add(stack_20);
     stack_2C.sub(stack_38);
     TVec3f stack_14;
-    TVec3f stack_8(stack_38);
     stack_14.zero();
+    TVec3f stack_8(stack_38);
     stack_8.add(stack_14);
-    MR::makeMtxUpFrontPos(&stack_44, stack_2C, *MR::getPlayerGravity(), stack_8);
+    MR::makeMtxUpFrontPos(&stack_44, stack_2C, *MR::getPlayerGravity(), _0);
     MR::setPlayerBaseMtx((MtxPtr)&stack_44);
 }
 
