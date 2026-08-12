@@ -1,14 +1,14 @@
 #pragma once
 
+#include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/RaceManager.hpp"
+#include "Game/NPC/TalkMessageCtrl.hpp"
+#include "Game/Util/JointController.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include <JSystem/JGeometry.hpp>
-#include "Game/Util/JointController.hpp"
-#include "Game/Map/RaceManager.hpp"
-#include "Game/LiveActor/Nerve.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
-#include "Game/NPC/TalkMessageCtrl.hpp"
 
 class PlayerPoseSetterInWater;
 
@@ -16,12 +16,12 @@ class Syati : public LiveActor {
 public:
     Syati(const char*);
     virtual ~Syati();
-    
+
     virtual void init(const JMapInfoIter& rIter);
     virtual void control();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor *,HitSensor *);
-    virtual bool receiveMsgPlayerAttack(u32 ,HitSensor *,HitSensor *);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     void exeWait();
     void exeFadeoutBeforeTalk();
     void exeWaitBlank();
@@ -35,14 +35,14 @@ public:
     void exeReachToEnd();
     void exeWaitAllRingDisappear();
     void exeTalkRetryMission();
-    void exeForceKill(); 
+    void exeForceKill();
     void exeHideOnShore();
     void exeWaitOnShore();
     void exeWaitTalkNormal();
     void exeTalkNormal();
-    void initRings(JMapInfoIter const &);
+    void initRings(JMapInfoIter const&);
     void initPose();
-    void initTalking(JMapInfoIter const &);
+    void initTalking(JMapInfoIter const&);
     void updateSwimCommon();
     void updatePoseByRail();
     void updateNumRingPassed();
@@ -53,7 +53,7 @@ public:
     void killAllRings();
     void emitRing();
     void setupBalloonFollowMtx(const TVec3f&);
-    bool calcHeadJoint(TPos3f *,const JointControllerInfo &);
+    bool calcHeadJoint(TPos3f*, const JointControllerInfo&);
 
     /* 0x8C */ TQuat4f _8C;
     /* 0x9C */ TVec3f _9C;
@@ -66,7 +66,7 @@ public:
     /* 0xC8 */ s32 _C8;
     /* 0xCC */ TVec3f _CC;
     /* 0xD8 */ TPos3f _D8;
-    /* 0x108 */ JointControlDelegator<Syati>* _108;
+    /* 0x108 */ JointControlDelegator< Syati >* _108;
     /* 0x10C */ TMtx34f _10C;
     /* 0x13C */ RaceManagerLayout* _13C;
     /* 0x140 */ LiveActorGroup* _140;
@@ -76,10 +76,9 @@ public:
     /* 0x150 */ s32 _150;
     /* 0x154 */ s32 _154;
     /* 0x158 */ s32 _158;
-
 };
 
-class PlayerPoseSetterInWater{
+class PlayerPoseSetterInWater {
 public:
     inline PlayerPoseSetterInWater(const TVec3f& rVec, Syati* pSyati);
     void update();
@@ -113,4 +112,4 @@ namespace NrvSyati {
     NERVE_DECL_EXE(SyatiWaitTalkNormal, Syati, WaitTalkNormal);
     NERVE_DECL_EXE(SyatiTalkNormal, Syati, TalkNormal);
     NERVE_DECL_NULL(SyatiWaitDemoStart);
-};
+};  // namespace NrvSyati

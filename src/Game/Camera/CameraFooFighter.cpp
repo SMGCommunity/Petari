@@ -105,8 +105,8 @@ CameraTargetObj* CameraFooFighter::calc() {
         TQuat4f rot2;
         mtx2.getQuat(rot2);
 
-        TQuat4f rotQ = rot2;
-        rotQ.slerp(rot1, ::sRateWhenBraking);
+        TQuat4f rotQ;
+        rotQ.slerp(rot2, rot1, ::sRateWhenBraking);
 
         mtx2.makeQuat(rotQ);
         mtx2.getXDir(newSide);

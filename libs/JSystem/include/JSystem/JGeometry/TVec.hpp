@@ -863,7 +863,7 @@ namespace JGeometry {
             this->w = _w;
         }
 
-        TQuat4(const TQuat4& rOther) {
+        TQuat4(const Quaternion& rOther) {
             this->x = rOther.x;
             this->y = rOther.y;
             this->z = rOther.z;
@@ -908,12 +908,12 @@ namespace JGeometry {
             setEuler(_x * PI_180, _y * PI_180, _z * PI_180);
         }
         void setEulerZ(T _z) {
-            f32 new_z = sin(_z*0.5f);
-            f32 new_w = cos(_z*0.5f);
-            this->z = new_z;
+            f32 s = sin(_z * 0.5f);
+            f32 c = cos(_z * 0.5f);
             this->x = 0.0f;
             this->y = 0.0f;
-            this->w = new_w;
+            this->z = s;
+            this->w = c;
         };
 
         f32 getRotate(TVec3< T >& rAxis) {

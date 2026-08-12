@@ -37,15 +37,11 @@ public:
     void changeHeadAngry();
     void changeHeadCalmDown();
 
-    TQuat4f getRot() const {
-        return _AC;
-    }
-
     Hanachan* mParent;  // 0x8C
     TVec3f _90;
     TVec3f _9C;
     u32 _A8;
-    TQuat4f _AC;
+    Quaternion _AC;
     s32 _BC;
     s32 _C0;
     u8 _C4;

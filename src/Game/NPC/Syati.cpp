@@ -1,39 +1,26 @@
 #include "Game/NPC/Syati.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/MapObj/PrizeRing.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/MathUtil.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
-#include "Game/MapObj/PrizeRing.hpp"
 
 namespace {
-    const char* cBckForRipple[5] = {
-        "WaitReverse",
-        "Talk",
-        "StartWait",
-        "StartTalk",
-        "Delight"
-    };
+    const char* cBckForRipple[5] = {"WaitReverse", "Talk", "StartWait", "StartTalk", "Delight"};
 
-    const char* cBckForTurn[5] = {
-       "Turn",
-       "TurnReverse"
-    };
+    const char* cBckForTurn[5] = {"Turn", "TurnReverse"};
 
+    const char* cBckForTurnSplash[5] = {"Turn", "TurnReverse"};
 
-    const char* cBckForTurnSplash[5] = {
-       "Turn",
-       "TurnReverse"
-    };
+    static const Vec sMarioMoveLocalOffsetRing = {6.0f, -33.0f, -776.0f};
+    static const Vec sMarioMoveLocalOffsetDeepSea = {6.0, -176.0, -590.0};
 
-    static const Vec sMarioMoveLocalOffsetRing = {6.0f, -33.0f, -776.0f}; 
-    static const Vec sMarioMoveLocalOffsetDeepSea = {6.0, -176.0, -590.0}; 
-
-    static const Vec sTalkOffset = {16.0f, 192.0f, -300.0f}; 
-    static const Vec sTalkOffsetDeepSea = {47.0f, 179.0f, -300.0f}; 
+    static const Vec sTalkOffset = {16.0f, 192.0f, -300.0f};
+    static const Vec sTalkOffsetDeepSea = {47.0f, 179.0f, -300.0f};
 
     static const Vec sTalkOffsetOnShore = {61.0f, 384.0f, 250.0f};
     static const Vec sTalkOffsetDelightDeepSea = {152.0f, 240.0f, 250.0f};
-};
+};  // namespace
 
 f32 JMAAcosRadian_dummy(f32 f) {
     TVec3f _dummy;
@@ -99,8 +86,7 @@ void Syati::init(const JMapInfoIter& rIter) {
     if (_14C) {
         MR::initEffectSyncBck(this, "Ripple", ::cBckForRipple);
         MR::initEffectSyncBck(this, "TurnSplash", ::cBckForTurnSplash);
-    }
-    else
+    } else
         MR::initEffectSyncBck(this, "Turn", ::cBckForTurn);
 
     MR::initShadowVolumeFlatModel(this, "ShadowVolumeOval");
@@ -120,11 +106,10 @@ void Syati::init(const JMapInfoIter& rIter) {
 void Syati::exeWait() {
     if (MR::isFirstStep(this)) {
         const char* pStr;
-        
+
         if (_14C) {
             pStr = "WaitReverse";
-        }
-        else
+        } else
             pStr = "WaitDeepSea";
 
         MR::startBck(this, pStr, NULL);
@@ -141,7 +126,7 @@ void Syati::exeFadeoutBeforeTalk() {
         MR::closeWipeFade(-1);
         return;
     }
-    
+
     if (!MR::isWipeActive()) {
         if (isNerve(&NrvSyati::SyatiFadeoutStartEvent::sInstance))
             setNerve(&NrvSyati::SyatiWaitBlankStartEvent::sInstance);
@@ -160,7 +145,7 @@ void Syati::exeWaitBlank() {
         MR::startBckPlayer("SwimWait", (const char*)nullptr);
         MR::makeQuatFromRotate(&_8C, this);
     }
-    
+
     if (MR::isStep(this, 0x1E)) {
         if (isNerve(&NrvSyati::SyatiWaitBlankStartEvent::sInstance))
             setNerve(&NrvSyati::SyatiFadeinStartEvent::sInstance);
@@ -170,39 +155,40 @@ void Syati::exeWaitBlank() {
 }
 
 void PlayerPoseSetterInWater::update() {
-    s32 v7 = (_1C+91)%90;
-    _1C = v7;
+    // FIXME: pre-calulation for MR::cos happening but not table access
+    // FIXME: out-of-order register transfer for result of offsetPos + offset
+    // https://decomp.me/scratch/loE96
 
-    f32 lhs = ((2*PI) * ((f32)v7 / 90.0f));
+    _1C = (++_1C + 90) % 90;
 
-    if (lhs < 0.0f)
-        lhs = -lhs;
-    
-    TPos3f stack_74;
-    f32 f = 2607.5945f;
-    stack_74.setQuat(_C);
-    stack_74.setTrans(_0);
-    TPos3f stack_44;
-    TVec3f stack_38;
-    stack_38.zero();
-    if (_20) {
-        stack_38.set(*_20);
+    f32 f = MR::cos((_1C / 90.0f) * TWO_PI);
+
+    TPos3f syatiMtx;
+    syatiMtx.setQuat(_C);
+    syatiMtx.setTrans(_0);
+
+    TVec3f offsetPos;
+    offsetPos.zero();
+    if (_20 != nullptr) {
+        offsetPos.set(*_20);
     }
-    stack_74.mult(stack_38, stack_38);
-    TVec3f stack_2C(_0);
-    TVec3f stack_20;
-    stack_20.set<f32>(stack_74[2][1], stack_74[1][1], stack_74[0][1]);
-    stack_20.x*=450.0f;
-    stack_20.y*=450.0f;
-    stack_20.z*=450.0f;
-    stack_2C.add(stack_20);
-    stack_2C.sub(stack_38);
-    TVec3f stack_14;
-    stack_14.zero();
-    TVec3f stack_8(stack_38);
-    stack_8.add(stack_14);
-    MR::makeMtxUpFrontPos(&stack_44, stack_2C, *MR::getPlayerGravity(), _0);
-    MR::setPlayerBaseMtx((MtxPtr)&stack_44);
+    syatiMtx.mult(offsetPos, offsetPos);
+
+    // Player model "up" is forward movement direction
+    // Player model "front" is downwards to gravity
+    TVec3f forward = _0;
+    TVec3f syatiUp;
+    syatiMtx.getYDir(syatiUp);
+    syatiUp.scale(450.0f);
+    forward.add(syatiUp);
+    forward.sub(offsetPos);
+
+    TVec3f offset;
+    offset.zero();
+
+    TPos3f baseMtx;
+    MR::makeMtxUpFrontPos(&baseMtx, forward, *MR::getPlayerGravity(), offsetPos + offset);
+    MR::setPlayerBaseMtx(baseMtx);
 }
 
 void Syati::exeFadeinBeforeTalk() {
@@ -212,18 +198,17 @@ void Syati::exeFadeinBeforeTalk() {
         MR::startBck(this, "Talk", nullptr);
         MR::startBtk(this, "Talk");
 
-        if (isNerve(&NrvSyati::SyatiFadeinRetryEvent::sInstance) && MR::isEqualStageName("OceanPhantomCaveGalaxy") && !MR::isPlayingStageBgmName("STM_GALAXY_05"))
+        if (isNerve(&NrvSyati::SyatiFadeinRetryEvent::sInstance) && MR::isEqualStageName("OceanPhantomCaveGalaxy") &&
+            !MR::isPlayingStageBgmName("STM_GALAXY_05"))
             MR::stopStageBGM(0x3C);
-
     }
-        _C4->update();
+    _C4->update();
 
     if (!MR::isWipeActive()) {
         if (isNerve(&NrvSyati::SyatiFadeinStartEvent::sInstance))
             setNerve(&NrvSyati::SyatiTalkStartMission::sInstance);
         else
             setNerve(&NrvSyati::SyatiTalkRetryMission::sInstance);
-
     }
 }
 
@@ -231,16 +216,15 @@ void Syati::exeTalkStartMission() {
     if (MR::isFirstStep(this)) {
         setupBalloonFollowMtx(TVec3f(_14C == 0 ? sTalkOffset : sTalkOffsetDeepSea));
     }
-    
+
     updateBlink();
     _C4->update();
-    
+
     if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(_B8)) {
         MR::endMultiActorCamera(this, _BC, "会話", false, -1);
         setNerve(&NrvSyati::SyatiReadyToStart::sInstance);
     }
 }
-
 
 void Syati::exeReadyToStart() {
     if (MR::isFirstStep(this)) {
@@ -278,7 +262,7 @@ void Syati::exeCountDown() {
     MR::setBckRate(this, 0.5f);
     updateSwimCommon();
     _C4->update();
-    
+
     if (!_13C->isPlayCountAnim()) {
         MR::endDemo(this, "開始デモ");
         MR::endMultiActorCamera(this, _BC, "開始デモ", true, -1);
@@ -297,8 +281,7 @@ void Syati::exeSwim() {
 
     if (isReadyToEmitRing()) {
         setNerve(&NrvSyati::SyatiEmitRing::sInstance);
-    }
-    else {
+    } else {
         if (MR::isRailReachedGoal(this)) {
             setNerve(&NrvSyati::SyatiReachToEnd::sInstance);
         }
@@ -316,8 +299,7 @@ void Syati::exeEmitRing() {
 
     if (isReadyToEmitRing()) {
         setNerve(&NrvSyati::SyatiEmitRing::sInstance);
-    }
-    else {
+    } else {
         if (MR::isBckStopped(this)) {
             setNerve(&NrvSyati::SyatiSwim::sInstance);
         }
@@ -359,7 +341,8 @@ void Syati::exeWaitAllRingDisappear() {
     }
 
     if (_140->getLivingActorNum() == 0 && _154 != _144)
-        MR::requestStartDemoMarioPuppetable(this, "再挑戦デモ", &NrvSyati::SyatiFadeoutRetryEvent::sInstance, &NrvSyati::SyatiWaitDemoStart::sInstance);
+        MR::requestStartDemoMarioPuppetable(this, "再挑戦デモ", &NrvSyati::SyatiFadeoutRetryEvent::sInstance,
+                                            &NrvSyati::SyatiWaitDemoStart::sInstance);
 }
 
 void Syati::exeTalkRetryMission() {
@@ -372,14 +355,14 @@ void Syati::exeTalkRetryMission() {
             MR::startStageBGM("MBGM_GALAXY_05", false);
     }
 
-        _C4->update();
-        updateBlink();
+    _C4->update();
+    updateBlink();
 
-        if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(_B8)) {
-            MR::endDemo(this, "再挑戦デモ");
-            MR::endMultiActorCamera(this, _BC, "会話", true, -1);
-            setNerve(&NrvSyati::SyatiForceKill::sInstance);
-        }
+    if (MR::tryTalkForceWithoutDemoMarioPuppetableAtEnd(_B8)) {
+        MR::endDemo(this, "再挑戦デモ");
+        MR::endMultiActorCamera(this, _BC, "会話", true, -1);
+        setNerve(&NrvSyati::SyatiForceKill::sInstance);
+    }
 }
 
 void Syati::exeForceKill() {
@@ -399,12 +382,12 @@ void Syati::exeHideOnShore() {
     }
 
     switch (_C0) {
-        case 0:
-            if (MR::isStageStatePowerStarAppeared())
-                setNerve(&NrvSyati::SyatiWaitOnShore::sInstance);
+    case 0:
+        if (MR::isStageStatePowerStarAppeared())
+            setNerve(&NrvSyati::SyatiWaitOnShore::sInstance);
         break;
-        case 1:
-            setNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance);
+    case 1:
+        setNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance);
         break;
     }
 }
@@ -465,10 +448,8 @@ void Syati::initRings(const JMapInfoIter& rIter) {
     }
 }
 
-PlayerPoseSetterInWater::PlayerPoseSetterInWater(const TVec3f& rVec, Syati* pSyati) : _0(rVec), _C(pSyati->_8C), _1C(0), _20(pSyati->_CC){
-    
+PlayerPoseSetterInWater::PlayerPoseSetterInWater(const TVec3f& rVec, Syati* pSyati) : _0(rVec), _C(pSyati->_8C), _1C(0), _20(&pSyati->_CC) {
 }
-
 
 void Syati::initPose() {
     MR::makeQuatFromRotate(&_8C, this);
@@ -524,20 +505,18 @@ void Syati::updatePoseByRail() {
         stack_40.set(stack_4C);
 
     MR::vecBlend(_9C, stack_40, &_9C, 0.04f);
-    TVec3f stack_34;
-    stack_34.cross(stack_4C, _9C);
+    TVec3f stack_34 = stack_4C.cross(_9C);
     MR::normalizeOrZero(&stack_34);
     TQuat4f stack_24;
     stack_24.set(0.0f, 0.0f, 0.0f, 1.0f);
-    TVec3f stack_18(-mGravity);
+    TVec3f stack_18 = -mGravity;
     f32 dot = stack_4C.dot(_9C);
-    f32 rad = JMAAcosRadian(dot);
+    f32 rad = MR::acos(dot);
     if (dot < 1.0f) {
         f32 dot2 = stack_34.dot(mGravity);
         if (dot2 < 0.0f) {
-            stack_24.setEulerZ(-1.0f*rad);
-        }
-        else {
+            stack_24.setEulerZ(-1.0f * rad);
+        } else {
             if (0.0f < dot2) {
                 stack_24.setEulerZ(rad);
             }
@@ -547,7 +526,7 @@ void Syati::updatePoseByRail() {
     if (!MR::isSameDirection(stack_64, stack_18, 0.001f)) {
         TQuat4f stack_8;
         MR::makeQuatFromVec(&stack_8, stack_64, stack_18);
-        PSQUATMultiply(&stack_8, &stack_24, &stack_8);
+        stack_8.mult(stack_8, stack_24);
         _8C.slerp(stack_8, 0.04);
     }
 }
@@ -556,7 +535,7 @@ void Syati::updateNumRingPassed() {
     bool b = 0;
     for (int i = 0; i < _140->mObjectCount; i++) {
         PrizeRing* pPrizeRing = (PrizeRing*)_140->getActor(i);
-        
+
         if (MR::isDead(pPrizeRing))
             continue;
 
@@ -569,28 +548,26 @@ void Syati::updateNumRingPassed() {
 
         if (pPrizeRing->isReadyToKill()) {
             pPrizeRing->kill();
-        }
-        else
+        } else
             continue;
 
         if (_154 == _144) {
             killAllRings();
             setNerve(&NrvSyati::SyatiWaitStarAppeared::sInstance);
         }
-    }   
+    }
 
     if (b && _154 != _144)
         syncNumRingLeftToActiveRings();
 }
 
 void Syati::updateBlink() {
-    if ((_C8-=1) < 0) {
+    if ((_C8 -= 1) < 0) {
         MR::startBva(this, "Blink");
         s16 frame = MR::getBvaCtrl(this)->mEnd;
         u32 rand = MR::getRandom((s32)0x78, (s32)0xF0);
-        _C8 = frame+rand;
-    }
-    else if (MR::isBvaStopped(this)) {
+        _C8 = frame + rand;
+    } else if (MR::isBvaStopped(this)) {
         MR::startBva(this, "Open");
     }
 }
@@ -629,7 +606,7 @@ void Syati::syncNumRingLeftToActiveRings() {
         if (pPrizeRing->isPassed())
             continue;
 
-        pPrizeRing->setNumber(_144-_154);
+        pPrizeRing->setNumber(_144 - _154);
     }
 }
 
@@ -654,44 +631,17 @@ void Syati::emitRing() {
     PrizeRing* pPrizeRing = (PrizeRing*)_140->getDeadActor();
     TVec3f stack_20;
     f32 coord = MR::getRailCoord(this);
-    coord+=600.0f;
+    coord += 600.0f;
     MR::calcRailPosAtCoord(&stack_20, this, coord);
     pPrizeRing->mPosition.set(stack_20);
     TVec3f stack_14;
     MR::calcRailDirectionAtCoord(&stack_14, this, coord);
     TPos3f stack_2C;
     MR::calcMtxFromGravityAndZAxis(&stack_2C, this, mGravity, stack_14);
-    TVec3f stack_8;
 
-    f32 one;
-    f32 stack_2C20 = stack_2C[2][0];
-    one = 1.0f;
-    if (stack_2C20 - one >= -0.0000038146973f) {
-        stack_8.x = JMath::sAtanTable.atan2_(-stack_2C[0][1], stack_2C[1][1]);
-        stack_8.y = -PI/2;
-        stack_8.z = 0.0f;
-    }
-    else if (stack_2C20 + one <= 0.0000038146973f) {
-        f32 s2C_11 = stack_2C[1][1];
-        stack_8.x = JMath::sAtanTable.atan2_(stack_2C[0][1], s2C_11);
-        stack_8.y = -PI/2;
-        stack_8.z = 0.0f;
-    }
-    else {
-        f32 s2C_22 = stack_2C[2][2];
-        f32 atan22 = JMath::sAtanTable.atan2_(stack_2C[2][1], s2C_22);
-        f32 s2C_10 = stack_2C[1][0];
-        stack_8.x = atan22;
-        f32 atan33 = JMath::sAtanTable.atan2_(s2C_10, stack_2C[0][0]);
-        stack_8.z = atan33;
-        f32 asin20 = JGeometry::TUtil<f32>::asin(-stack_2C[2][0]);
-        stack_8.y = asin20;
-    }
-
-    f32 _180overpi = 180.0f/PI;
-    pPrizeRing->mRotation.set<f32>(_180overpi*stack_8.x, _180overpi*stack_8.y, _180overpi*stack_8.z);
+    stack_2C.getEulerDegree(pPrizeRing->mRotation);
     pPrizeRing->appear();
-    pPrizeRing->setNumber(_144-_154);
+    pPrizeRing->setNumber(_144 - _154);
 
     if (_150 > 0)
         pPrizeRing->setLife(_150);
@@ -709,41 +659,35 @@ void Syati::setupBalloonFollowMtx(const TVec3f& rVec) {
 
 bool Syati::calcHeadJoint(TPos3f* pPos, const JointControllerInfo& rInfo) {
     bool nrv = false;
-    nrv = isNerve(&NrvSyati::SyatiWaitOnShore::sInstance)
-     || isNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance)
-     || isNerve(&NrvSyati::SyatiTalkNormal::sInstance);
+    nrv = isNerve(&NrvSyati::SyatiWaitOnShore::sInstance) || isNerve(&NrvSyati::SyatiWaitTalkNormal::sInstance) ||
+          isNerve(&NrvSyati::SyatiTalkNormal::sInstance);
 
     if (!nrv)
         return false;
-    
-    TRot3f stack_3C;
+
+    TPos3f stack_3C;
     TVec3f stack_30(*MR::getPlayerPos());
     stack_30.sub(mPosition);
     MR::normalizeOrZero(&stack_30);
-    
+
     if (MR::isNearZero(stack_30, 0.001f))
         return false;
 
     TVec3f stack_24(stack_30);
     stack_24.y = 0.0f;
-    MR::normalizeOrZero(&stack_24); 
+    MR::normalizeOrZero(&stack_24);
 
     if (MR::isNearZero(stack_24, 0.001f))
-        return false; 
+        return false;
 
     TVec3f stack_18;
-    stack_18.set<f32>(
-    (2.0f * (_8C.x * _8C.z)) + (2.0f * (_8C.w * _8C.y)),
-    (2.0f * (_8C.y * _8C.z)) - (2.0f * (_8C.w * _8C.x)),
-    (1.0f - (2.0f * (_8C.x * _8C.x))) - (2.0f * (_8C.y * _8C.y)));
+    _8C.getZDir(stack_18);
     MR::normalize(&stack_18);
     TQuat4f stack_8;
     stack_8.set(0.0f, 0.0f, 0.0f, 1.0f);
     MR::turnQuat(&stack_8, stack_8, stack_18, stack_24, 0.52359879f);
     stack_3C.setQuat(stack_8);
-    stack_3C[0][3] = 0.0f;
-    stack_3C[1][3] = 0.0f;
-    stack_3C[2][3] = 0.0f;
+    stack_3C.zeroTrans();
     pPos->concat(*pPos, stack_3C);
     return true;
 }
@@ -763,8 +707,7 @@ void Syati::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         if (MR::sendMsgEnemyAttackFlipMaximum(pReceiver, pSender)) {
             MR::startSound(this, "SE_SM_SYATI_TRAMPLED", -1, -1);
         }
-    }
-    else
+    } else
         MR::sendMsgPush(pReceiver, pSender);
 }
 
@@ -801,4 +744,4 @@ namespace NrvSyati {
     SyatiWaitTalkNormal(SyatiWaitTalkNormal::sInstance);
     SyatiTalkNormal(SyatiTalkNormal::sInstance);
     SyatiWaitDemoStart(SyatiWaitDemoStart::sInstance);
-};
+};  // namespace NrvSyati
