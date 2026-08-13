@@ -9,7 +9,8 @@ class Kameck;
 
 class SmallKameckBeamEventListener : public KameckBeamEventListener {
 public:
-    SmallKameckBeamEventListener(Kameck* kameck) : mHost(kameck) {}
+    SmallKameckBeamEventListener(Kameck* kameck) : mHost(kameck) {
+    }
 
     virtual void hitBeam(s32);
 
@@ -18,6 +19,7 @@ public:
 
 class Kameck : public LiveActor {
 public:
+    enum BeamType { BeamType_None, BeamType_Turtle, BeamType_Fire, BeamType_3, BeamType_4 };
     Kameck(const char*);
 
     virtual void init(const JMapInfoIter& rIter);

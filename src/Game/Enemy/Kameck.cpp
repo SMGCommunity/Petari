@@ -67,14 +67,14 @@ void Kameck::init(const JMapInfoIter& rIter) {
 void Kameck::initBeam() {
     MR::createKameckBeamHolder();
     switch (mBeamType) {
-    case 0:
+    case BeamType_None:
         break;
-    case 1:
+    case BeamType_Turtle:
         MR::createKameckBeamTurtleHolder();
         break;
-    case 2:
-    case 3:
-    case 4:
+    case BeamType_Fire:
+    case BeamType_3:
+    case BeamType_4:
         MR::createKameckFireBallHolder();
         break;
     }
@@ -84,15 +84,15 @@ void Kameck::initJMapParam(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
         MR::getJMapInfoArg3NoInit(rIter, &mActiveDistance);
-        if (mBeamType == 2) {
+        if (mBeamType == BeamType_Fire) {
             s32 objCastCount;
             MR::getJMapInfoArg0WithInit(rIter, &objCastCount);
             if (objCastCount >= 3) {
-                mBeamType = 4;
+                mBeamType = BeamType_4;
             } else if (objCastCount >= 2) {
-                mBeamType = 3;
+                mBeamType = BeamType_3;
             } else {
-                mBeamType = 2;
+                mBeamType = BeamType_Fire;
             }
         }
     }
@@ -628,13 +628,13 @@ bool Kameck::isEnableDown() const {
 namespace MR {
     NameObj* createFireBallBeamKameck(const char* pName) {
         Kameck* kmck = new Kameck(pName);
-        kmck->mBeamType = 2;
+        kmck->mBeamType = Kameck::BeamType_Fire;
         return kmck;
     }
 
     NameObj* createTurtleBeamKameck(const char* pName) {
         Kameck* kmck = new Kameck(pName);
-        kmck->mBeamType = 1;
+        kmck->mBeamType = Kameck::BeamType_Turtle;
         return kmck;
     }
 };  // namespace MR
