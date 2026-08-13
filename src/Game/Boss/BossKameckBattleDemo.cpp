@@ -12,7 +12,18 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-BossKameckDemoPosition::BossKameckDemoPosition() : LiveActor("キャスト位") {
+namespace {
+    static const s32 sAppearKameckTime = 120;
+    static const s32 sVs1DemoAppearSeStopTime = 270;
+    static const s32 sDeadVoiceSeTiming = 18;
+    static const s32 sDeadMotionSeTiming = 150;
+    static const s32 sAfterBossBgmTiming = 285;
+    static const s32 sAppearPowerStarSeTiming = 345;
+    static const s32 sVs2DemoAppearSeStopTime = 155;
+    static const s32 sVs2DemoAppearVoiceTiming = 60;
+};  // namespace
+
+BossKameckDemoPosition::BossKameckDemoPosition() : LiveActor("キャスト位置") {
     makeActorDead();
 }
 
@@ -44,16 +55,14 @@ namespace NrvBossKamecBattleDemo {
     NEW_NERVE(BossKameckBattleDemoNrvDownVs2, BossKameckBattleDemo, DownVs2);
 };  // namespace NrvBossKamecBattleDemo
 
-BossKameckBattleDemo::BossKameckBattleDemo(BossKameck* pBoss, const JMapInfoIter& rIter) : BossKameckAction("ボスカメック戦デモ", pBoss) {
-    mDemoPos = nullptr;
-    mCurDemoName = nullptr;
-    mDemoNerve = nullptr;
+BossKameckBattleDemo::BossKameckBattleDemo(BossKameck* pBoss, const JMapInfoIter& rIter)
+    : BossKameckAction("ボスカメック戦デモ", pBoss), mDemoPos(), mCurDemoName(), mDemoNerve() {
     mDemoPos = new BossKameckDemoPosition();
     mDemoPos->init(rIter);
 }
 
 void BossKameckBattleDemo::init() {
-    initNerve(&NrvBossKamecBattleDemo::BossKameckBattleDemoNrvWaitAppearVs1::sInstance);
+    initNerve(&NrvBossKamecBattleDemo::BossKameckBattleDemoNrvAppearVs1::sInstance);
 }
 
 void BossKameckBattleDemo::appear() {
@@ -118,12 +127,12 @@ void BossKameckBattleDemo::startDemoDownVs2() {
 
 void BossKameckBattleDemo::exeWaitAppearVs1() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BattleWait", (const char*)nullptr);
+        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
         MR::stopStageBGM(90);
         mHost->startDemo();
     }
 
-    if (MR::isGreaterStep(this, 120)) {
+    if (MR::isGreaterStep(this, ::sAppearKameckTime)) {
         setNerve(&NrvBossKamecBattleDemo::BossKameckBattleDemoNrvAppearVs1::sInstance);
     }
 }
@@ -141,11 +150,11 @@ void BossKameckBattleDemo::exeAppearVs1() {
         MR::startStageBGM("MBGM_BOSS_04", false);
     }
 
-    if (MR::isLessStep(this, 270)) {
+    if (MR::isLessStep(this, ::sVs1DemoAppearSeStopTime)) {
         MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_DEMO_PRE_APPEAR");
     }
 
-    if (MR::isStep(this, 270)) {
+    if (MR::isStep(this, ::sVs1DemoAppearSeStopTime)) {
         MR::startSound(mHost, "SE_BM_KAMECK_DEMO_SMOKE");
         MR::startSound(mHost, "SE_BV_KAMECK_APPEAR");
         MR::validateShadowAll(mHost);
@@ -165,12 +174,12 @@ void BossKameckBattleDemo::exeAppearVs1() {
 
 void BossKameckBattleDemo::exeWaitAppearVs2() {
     if (MR::isFirstStep(this)) {
-        MR::startBckPlayer("BattleWait", (const char*)0);
+        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
         MR::stopStageBGM(90);
         mHost->startDemo();
     }
 
-    if (MR::isGreaterStep(this, 120)) {
+    if (MR::isGreaterStep(this, ::sAppearKameckTime)) {
         setNerve(&NrvBossKamecBattleDemo::BossKameckBattleDemoNrvAppearVs2::sInstance);
     }
 }
@@ -188,15 +197,15 @@ void BossKameckBattleDemo::exeAppearVs2() {
         MR::startStageBGM("MBGM_BOSS_04", false);
     }
 
-    if (MR::isStep(this, 60)) {
+    if (MR::isStep(this, ::sVs2DemoAppearVoiceTiming)) {
         MR::startSound(mHost, "SE_BV_KAMECK_APPEAR");
     }
 
-    if (MR::isLessStep(this, 155)) {
+    if (MR::isLessStep(this, ::sVs2DemoAppearSeStopTime)) {
         MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_DEMO_APPEAR");
     }
 
-    if (MR::isStep(this, 155)) {
+    if (MR::isStep(this, ::sVs2DemoAppearSeStopTime)) {
         MR::startSound(mHost, "SE_BM_KAMECK_DEMO_APPEA_END");
         MR::validateShadowAll(mHost);
     }
@@ -221,7 +230,7 @@ void BossKameckBattleDemo::exePowerUpVs1() {
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
         MR::startBck(pos, powerUpName, nullptr);
         MR::startAction(mHost, powerUpName);
-        MR::startBckPlayer("BattleWait", (const char*)0);
+        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
         mHost->startDemo();
     }
 
@@ -251,7 +260,7 @@ void BossKameckBattleDemo::exePowerUpVs2() {
         MR::startAnimCameraTargetSelf(pos, pos->mCameraInfo, powerUpName, 0, 1.0f);
         MR::startBck(pos, powerUpName, nullptr);
         MR::startAction(mHost, powerUpName);
-        MR::startBckPlayer("BattleWait", (const char*)0);
+        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
         mHost->startDemo();
     }
 
@@ -285,25 +294,25 @@ void BossKameckBattleDemo::exeDownVs1() {
         MR::startAction(mHost, powerUpName);
         mHost->deadKameck();
         mHost->startDemo();
-        MR::startBckPlayer("BattleWait", (const char*)0);
+        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
         MR::stopStageBGM(30);
     }
 
     updateCastPose();
 
-    if (MR::isStep(this, 18)) {
+    if (MR::isStep(this, ::sDeadVoiceSeTiming)) {
         MR::startSound(mHost, "SE_BV_KAMECK_DEAD");
     }
 
-    if (MR::isStep(this, 150)) {
+    if (MR::isStep(this, ::sDeadMotionSeTiming)) {
         MR::startSound(mHost, "SE_BM_KAMECK_DEAD");
     }
 
-    if (MR::isStep(this, 285)) {
+    if (MR::isStep(this, ::sAfterBossBgmTiming)) {
         MR::startAfterBossBGM();
     }
 
-    if (MR::isStep(this, 345)) {
+    if (MR::isStep(this, ::sAppearPowerStarSeTiming)) {
         MR::startSound(mHost, "SE_BM_KAMECK_DEMO_STAFF_BREAK");
         MR::startSystemSE("SE_SY_POW_STAR_APPEAR");
     }
@@ -331,25 +340,25 @@ void BossKameckBattleDemo::exeDownVs2() {
         MR::startAction(mHost, powerUpName);
         mHost->deadKameck();
         mHost->startDemo();
-        MR::startBckPlayer("BattleWait", (const char*)0);
+        MR::startBckPlayer("BattleWait", static_cast< const char* >(nullptr));
         MR::stopStageBGM(30);
     }
 
     updateCastPose();
 
-    if (MR::isStep(this, 18)) {
+    if (MR::isStep(this, ::sDeadVoiceSeTiming)) {
         MR::startSound(mHost, "SE_BV_KAMECK_DEAD");
     }
 
-    if (MR::isStep(this, 150)) {
+    if (MR::isStep(this, ::sDeadMotionSeTiming)) {
         MR::startSound(mHost, "SE_BM_KAMECK_DEAD");
     }
 
-    if (MR::isStep(this, 285)) {
+    if (MR::isStep(this, ::sAfterBossBgmTiming)) {
         MR::startAfterBossBGM();
     }
 
-    if (MR::isStep(this, 345)) {
+    if (MR::isStep(this, ::sAppearPowerStarSeTiming)) {
         MR::startSound(mHost, "SE_BM_KAMECK_DEMO_STAFF_BREAK");
         MR::startSystemSE("SE_SY_POW_STAR_APPEAR");
     }
