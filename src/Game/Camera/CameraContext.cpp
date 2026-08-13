@@ -39,12 +39,12 @@ void CameraContext::initParams() {
     updateProjectionMtx();
 }
 
-const TPos3f* CameraContext::getViewMtx() const {
-    return &mView;
+const TPos3f& CameraContext::getViewMtx() const {
+    return mView;
 }
 
-const TPos3f* CameraContext::getInvViewMtx() const {
-    return &mViewInv;
+const TPos3f& CameraContext::getInvViewMtx() const {
+    return mViewInv;
 }
 
 f32 CameraContext::getAspect() const {

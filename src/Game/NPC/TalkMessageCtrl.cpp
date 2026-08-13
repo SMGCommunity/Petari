@@ -526,7 +526,7 @@ void TalkMessageCtrl::updateBalloonPos() {
         pos.set(mMtx);
     }
 
-    TPos3f tPos = *MR::getCameraInvViewMtx();
+    TPos3f tPos = MR::getCameraInvViewMtx();
     TVec3f v3;
     TVec3f nullVec(0.0f, 0.0f, 0.0f);
     MR::setMtxTrans(tPos, nullVec.x, nullVec.y, nullVec.z);

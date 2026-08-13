@@ -9,8 +9,8 @@ public:
     virtual ~CameraContext();
 
     void initParams();
-    const TPos3f* getViewMtx() const;
-    const TPos3f* getInvViewMtx() const;
+    const TPos3f& getViewMtx() const;
+    const TPos3f& getInvViewMtx() const;
     f32 getAspect() const;
     void setViewMtx(const TPos3f&, bool, bool, const TVec3f&);
     void setNearZ(f32);

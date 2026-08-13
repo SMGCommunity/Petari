@@ -133,7 +133,7 @@ void CameraDirector::movement() {
     updateCameraMan();
     calcPose();
     createViewMtx();
-    getCurrentCameraMan()->mMatrix.setInline(MR::getCameraInvViewMtx());
+    getCurrentCameraMan()->mMatrix.set(MR::getCameraInvViewMtx());
     mPoseParam2->copyFrom(*getCurrentCameraMan()->mPoseParam);
     calcSubjective();
     mShaker->movement();
@@ -182,10 +182,9 @@ CameraMan* CameraDirector::pop() {
 void CameraDirector::backLastMtx() {
     if (_1F0) {
         MR::setCameraViewMtx(_1C0, false, false, TVec3f(0.0f, 0.0f, 0.0f));
-        TPos3f* invView = MR::getCameraInvViewMtx();
 
         TVec3f invTrans;
-        invView->getTrans(invTrans);
+        MR::getCameraInvViewMtx().getTrans(invTrans);
     }
 }
 
@@ -275,7 +274,7 @@ void CameraDirector::startEvent(s32 zoneID, const char* pName, const CameraTarge
 
             if (getCurrentCameraMan() == gameMan) {
                 mCameraManEvent->mPoseParam->copyFrom(*gameMan->mPoseParam);
-                mCameraManEvent->mMatrix.setInline(MR::getCameraInvViewMtx());
+                mCameraManEvent->mMatrix.set(MR::getCameraInvViewMtx());
             }
         }
 
@@ -294,7 +293,7 @@ void CameraDirector::endEvent(s32 zoneID, const char* pName, bool a3, s32 a4) {
 
             if (!mViewInterpolator->_9 && a3 && getCurrentCameraMan() == mCameraManGame) {
                 mCameraManGame->mPoseParam->copyFrom(*mPoseParam1);
-                mCameraManGame->mMatrix.setInline(MR::getCameraInvViewMtx());
+                mCameraManGame->mMatrix.set(MR::getCameraInvViewMtx());
             }
 
             mViewInterpolator->_A = true;
