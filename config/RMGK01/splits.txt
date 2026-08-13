@@ -5612,7 +5612,7 @@ Game/MapObj/SeesawMoveNut.cpp:
 Game/MapObj/Shellfish.cpp:
 	.text       start:0x80223778 end:0x8022474C
 	.ctors      start:0x8052EE78 end:0x8052EE7C
-	.rodata     start:0x805336D0 end:0x80533728
+	.rodata     start:0x805336D0 end:0x80533718
 	.data       start:0x8059EA00 end:0x8059ED00
 	.sdata      start:0x806B1F60 end:0x806B1F70
 	.sbss       start:0x806B57C0 end:0x806B57E0
@@ -5629,14 +5629,15 @@ Game/MapObj/ShockWaveGenerator.cpp:
 Game/MapObj/ShootingStar.cpp:
 	.text       start:0x80224E88 end:0x8022571C
 	.ctors      start:0x8052EE80 end:0x8052EE84
-	.data       start:0x8059EE08 end:0x8059EFD8
+	.rodata     start:0x80533718 end:0x80533728
+	.data       start:0x8059EE08 end:0x8059EF90
 	.sbss       start:0x806B57F0 end:0x806B5800
 	.sdata2     start:0x806BDE80 end:0x806BDEB0
 
 Game/MapObj/SideSpikeMoveStep.cpp:
 	.text       start:0x8022571C end:0x80225CA4
 	.ctors      start:0x8052EE84 end:0x8052EE88
-	.data       start:0x8059EFD8 end:0x8059F098
+	.data       start:0x8059EF90 end:0x8059F098
 	.sbss       start:0x806B5800 end:0x806B5810
 	.sdata2     start:0x806BDEB0 end:0x806BDEC0
 
