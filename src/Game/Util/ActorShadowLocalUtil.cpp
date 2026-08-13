@@ -114,7 +114,7 @@ namespace ActorShadow {
         TVec3f dropOffset;
 
         if (!MR::getJMapInfoV3f(rIter, "DropOffset", &dropOffset)) {
-            dropOffset.zeroInline();
+            dropOffset.zero();
         }
 
         const char* jointName;

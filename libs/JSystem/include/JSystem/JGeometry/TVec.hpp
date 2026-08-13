@@ -581,10 +581,8 @@ namespace JGeometry {
             JGeometry::negateInternal(&rVec.x, &this->x);
         }
 
-        static inline TVec3 makeZeroVec() {
-            TVec3 v;
-            v.set(0.0f, 0.0f, 0.0f);
-            return v;
+        void zero() {
+            x = y = z = 0;
         }
 
 #ifdef __MWERKS__
@@ -734,12 +732,6 @@ namespace JGeometry {
 #else
         f32 squared(const TVec3& rB) const;
 #endif
-
-        void zero();
-
-        inline void zeroInline() {
-            x = y = z = 0;
-        }
 
         bool isZero() const {
             return squared() <= JGeometry::TUtil< f32 >::epsilon();

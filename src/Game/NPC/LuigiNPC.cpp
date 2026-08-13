@@ -397,7 +397,7 @@ void LuigiNPC::exeOnTreeFall() {
     MR::addVelocityToGravity(this, 1.0f);
 
     if (MR::isOnGround(this)) {
-        mVelocity.zeroInline();
+        mVelocity.zero();
         setNerve(&NrvLuigiNPC::LuigiNPCNrvOnTreeLand::sInstance);
     }
 }

@@ -26,7 +26,7 @@ CameraFooFighter::CameraFooFighter(const char* pName)
 void CameraFooFighter::reset() {
     mCollideCount = 0;
     _58 = _54;
-    mTargetLastMoveDir.zeroInline();
+    mTargetLastMoveDir.zero();
 
     CameraLocalUtil::setWatchPos(this, CameraLocalUtil::getWatchPos(mCameraMan));
     CameraLocalUtil::setPos(this, CameraLocalUtil::getPos(mCameraMan));

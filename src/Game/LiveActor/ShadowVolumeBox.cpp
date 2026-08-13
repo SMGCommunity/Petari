@@ -11,7 +11,7 @@ void FORCE_MATCH_SDATA2() {
 
 ShadowVolumeBox::ShadowVolumeBox() : ShadowVolumeDrawer("影描画[ボリュームボックス]"), mSize(100.0f, 100.0f, 100.0f) {
     for (u32 idx = 0; idx < ARRAY_SIZE(mPoints); idx++) {
-        mPoints[idx].zeroInline();
+        mPoints[idx].zero();
     }
 }
 

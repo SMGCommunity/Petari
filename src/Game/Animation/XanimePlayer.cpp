@@ -478,7 +478,7 @@ void XanimePlayer::getMainAnimationTrans(u32 arg1, TVec3f* pOut) const {
     }
 
     if (mCore->mTrackList[index]._0 == nullptr) {
-        pOut->zeroInline();
+        pOut->zero();
         return;
     }
 

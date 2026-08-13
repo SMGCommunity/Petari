@@ -95,7 +95,7 @@ void AstroDomeBlueStar::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     MR::initActorCamera(this, rIter, &_F0);
     initSound(6, false);
-    MR::initStarPointerTarget(this, 200.0f, TVec3f::makeZeroVec());
+    MR::initStarPointerTarget(this, 200.0f);
     mCaptureRibbon = new GCaptureRibbon("Gキャプチャーリボン");
     mCaptureRibbon->initWithoutIter();
 
