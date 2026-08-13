@@ -769,7 +769,7 @@ config.libs = [
                 "Game/Boss/BossKameck.cpp",
                 cflags=[*cflags_game, "-sym off"],
             ),
-            Object(NonMatching, "Game/Boss/BossKameckAction.cpp"),
+            Object(Matching, "Game/Boss/BossKameckAction.cpp"),
             Object(Matching, "Game/Boss/BossKameckBarrier.cpp"),
             Object(NonMatching, "Game/Boss/BossKameckBattleDemo.cpp"),
             Object(Matching, "Game/Boss/BossKameckBattlePattarn.cpp"),
