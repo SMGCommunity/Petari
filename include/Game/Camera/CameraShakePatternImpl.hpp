@@ -29,7 +29,7 @@ public:
 
     void setDirection(const TVec2f&);
 
-    /* 0x08 */ f32 mShakeAmplitude;
+    /* 0x08 */ f32 mIntensity;
     /* 0x0C */ TVec2f mOffset;
     /* 0x14 */ TVec2f mDirection;
 };
@@ -43,7 +43,7 @@ public:
     virtual void start();
     virtual void update();
 
-    /* 0x08 */ f32 mShakeAmplitude;
-    /* 0x0C */ f32 mMaxTime;
+    /* 0x08 */ f32 mIntensity;
+    /* 0x0C */ f32 mSpeed;
     /* 0x10 */ TVec2f mOffset;
 };

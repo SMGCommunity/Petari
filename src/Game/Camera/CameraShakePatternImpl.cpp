@@ -12,7 +12,7 @@ namespace {
     static const s32 sSinglyMaxFrame = 25;
 }
 
-CameraShakePatternSingly::CameraShakePatternSingly(f32 amplitude) : CameraShakePattern(), mShakeAmplitude(amplitude), mDirection(0.0f, 1.0f) {
+CameraShakePatternSingly::CameraShakePatternSingly(f32 intensity) : CameraShakePattern(), mIntensity(intensity), mDirection(0.0f, 1.0f) {
 }
 
 bool CameraShakePatternSingly::isEnd() const {
@@ -34,7 +34,7 @@ void CameraShakePatternSingly::update() {
         framesLeft = 0;
     }
 
-    f32 amount = mShakeAmplitude * MR::sin(MR::pi() * 4.0f * framesLeft / ::sSinglyMaxFrame);
+    f32 amount = mIntensity * MR::sin(MR::pi() * 4.0f * framesLeft / ::sSinglyMaxFrame);
     amount *= MR::sin(MR::pi() * 0.5f * framesLeft / ::sSinglyMaxFrame);
 
     mOffset.set(mDirection * amount);
@@ -45,12 +45,11 @@ void CameraShakePatternSingly::setDirection(const TVec2f& rDir) {
     MR::normalize(&mDirection);
 }
 
-CameraShakePatternVerticalSin::CameraShakePatternVerticalSin(f32 amplitude, f32 maxTime)
-    : mShakeAmplitude(amplitude), mMaxTime(maxTime), mOffset(0.0f, 0.0f) {
+CameraShakePatternVerticalSin::CameraShakePatternVerticalSin(f32 intensity, f32 speed) : mIntensity(intensity), mSpeed(speed), mOffset(0.0f, 0.0f) {
 }
 
 bool CameraShakePatternVerticalSin::isEnd() const {
-    return mFrame >= mMaxTime;
+    return mFrame >= mSpeed;
 }
 
 void CameraShakePatternVerticalSin::getOffset(TVec2f* pOffset) const {
@@ -62,12 +61,12 @@ void CameraShakePatternVerticalSin::start() {
 }
 
 void CameraShakePatternVerticalSin::update() {
-    if (mMaxTime < 0.01) {
+    if (mSpeed < 0.01) {
         mOffset.zero();
         return;
     }
 
-    f32 amount = mShakeAmplitude * -MR::sin(TWO_PI * mFrame / mMaxTime);
+    f32 amount = mIntensity * -MR::sin(TWO_PI * mFrame / mSpeed);
 
     mOffset.set(0.0f, amount);
 }

@@ -2,18 +2,18 @@
 #include "Game/Camera/CameraShakePatternImpl.hpp"
 #include "Game/Camera/CameraShakeTask.hpp"
 #include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "JSystem/JUtility/JUTVideo.hpp"
 
-f32 sVerticalTaskTable[] = {0.08f, 0.2f, 0.5f, 1.0f, 3.0f, 6.0f, 9.0f};
-
-f32 sHorizontalTable[] = {0.3f, 1.0f, 3.0f};
+namespace {
+    static const f32 sInfinityIntensity = 1.0f;
+    static const f32 sInfinitySpeed = 15.0f;
+}  // namespace
 
 CameraShaker::CameraShaker(const char* pName) : NameObj(pName) {
     createSinglyVerticalTask();
     createSinglyHorizontalTask();
     createInfinityTask();
-}
-
-CameraShaker::~CameraShaker() {
 }
 
 void CameraShaker::movement() {
@@ -29,10 +29,10 @@ void CameraShaker::shakeVertical(ESinglyVerticalPower power) {
     }
 }
 
-void CameraShaker::shakeInfinity(NameObj* pNameObj, f32 a2, f32 a3) {
+void CameraShaker::shakeInfinity(NameObj* pNameObj, f32 intesity, f32 speed) {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
         if (mInfinityTasks[i]->isEnd()) {
-            startInfinity(i, a2, a3);
+            startInfinity(i, intesity, speed);
             mInfinityNameObjs[i] = pNameObj;
             break;
         }
@@ -50,8 +50,10 @@ void CameraShaker::stopShakingInfinity(NameObj* pNameObj) {
 }
 
 void CameraShaker::createSinglyVerticalTask() {
+    static const f32 cSinglyIntensity[] = {0.08f, 0.2f, 0.5f, 1.0f, 3.0f, 6.0f, 9.0f};
+
     for (u32 i = 0; i < NR_VERTICAL_TASKS; i++) {
-        CameraShakePatternSingly* singly = new CameraShakePatternSingly(sVerticalTaskTable[i]);
+        CameraShakePatternSingly* singly = new CameraShakePatternSingly(cSinglyIntensity[i]);
         CameraShakeTask* task = new CameraShakeTask(singly);
 
         mVerticalTasks[i] = task;
@@ -65,15 +67,13 @@ void CameraShaker::createSinglyHorizontalTask() {
     // the horizontal float table and will set infinity tasks for values out of range,
     // but it works because the infinity tasks are created afterwards and then set correctly.
 
+    static const f32 cSinglyIntensity[] = {0.3f, 1.0f, 3.0f};
+
     // Should be i < NR_HORIZONTAL_TASKS
     for (u32 i = 0; i < NR_VERTICAL_TASKS; i++) {
-        CameraShakePatternSingly* singly = new CameraShakePatternSingly(sHorizontalTable[i]);
+        CameraShakePatternSingly* singly = new CameraShakePatternSingly(cSinglyIntensity[i]);
 
-        TVec2f dir;
-        dir.x = 1.0f;
-        dir.y = 0.0f;
-
-        singly->setDirection(dir);
+        singly->setDirection(TVec2f(1.0f, 0.0f));
 
         CameraShakeTask* task = new CameraShakeTask(singly);
 
@@ -83,7 +83,7 @@ void CameraShaker::createSinglyHorizontalTask() {
 
 void CameraShaker::createInfinityTask() {
     for (u32 i = 0; i < NR_INFINITY_TASKS; i++) {
-        CameraShakePatternVerticalSin* sin = new CameraShakePatternVerticalSin(1.0f, 15.0f);
+        CameraShakePatternVerticalSin* sin = new CameraShakePatternVerticalSin(::sInfinityIntensity, sInfinitySpeed);
         CameraShakeTask* task = new CameraShakeTask(sin);
 
         mInfinityTasks[i] = task;
@@ -155,11 +155,16 @@ void CameraShaker::addInfinityTaskOffset(TVec2f* pOffset) {
     }
 }
 
-void CameraShaker::startInfinity(u32 index, f32 a2, f32 a3) {
+void CameraShaker::adjustOffsetToScreen(TVec2f* pOffset) {
+    pOffset->y *= 30.0f / (s32)JUTVideo::getManager()->getEfbHeight();
+    pOffset->x *= 30.0f / MR::getScreenWidth();
+}
+
+void CameraShaker::startInfinity(u32 index, f32 intesity, f32 speed) {
     CameraShakePatternVerticalSin* sin = static_cast< CameraShakePatternVerticalSin* >(mInfinityTasks[index]->mPattern);
 
-    sin->mShakeAmplitude = a2;
-    sin->mMaxTime = a3;
+    sin->mIntensity = intesity;
+    sin->mSpeed = speed;
 
     mInfinityTasks[index]->startInfinity(0);
 }
