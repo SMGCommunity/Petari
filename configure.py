@@ -494,6 +494,16 @@ def SDKLib_OS(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def SDKLib_NWC24(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5.2",
+        "cflags": cflags_sdk,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
 def RFLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -1067,8 +1077,8 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraRailDemo.cpp"),
             Object(Matching, "Game/Camera/CameraRailFollow.cpp"),
             Object(
-                Matching, 
-                "Game/Camera/CameraRailHolder.cpp", 
+                Matching,
+                "Game/Camera/CameraRailHolder.cpp",
                 cflags=[*cflags_game, "-sym off"],
             ),
             Object(NonMatching, "Game/Camera/CameraRailWatch.cpp"),
@@ -2690,7 +2700,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/net/netmemset.c"),
         ],
     ),
-    SDKLib(
+    SDKLib_NWC24(
         "nwc24",
         [
             Object(NonMatching, "RVL_SDK/nwc24/NWC24StdAPI.c"),
