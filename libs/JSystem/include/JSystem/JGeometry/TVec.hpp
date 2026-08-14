@@ -1030,7 +1030,13 @@ namespace JGeometry {
         }
 
         /* Operators */
-        TQuat4< T >& operator=(const TQuat4< T >& rSrc);
+        TQuat4< T >& operator=(const TQuat4< T >& rSrc) {
+            this->x = rSrc.x;
+            this->y = rSrc.y;
+            this->z = rSrc.z;
+            this->w = rSrc.w;
+            return *this;
+        }
     };
 
 };  // namespace JGeometry
