@@ -94,8 +94,8 @@ namespace MR {
     void disappearInformationMessage();
     bool isDeadInformationMessage();
     void appearYesNoSelector(const char*, const char*, const char*);
-    bool isYesNoSelected();
-    bool isYesNoSelectedYes();
+    bool isYesNoSelected() NO_INLINE;
+    bool isYesNoSelectedYes() NO_INLINE;
     void setYesNoSelectorSE(const char*, const char*, const char*);
     void resetYesNoSelectorSE();
     void startMoviePlayer(const char*);
