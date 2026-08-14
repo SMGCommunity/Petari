@@ -158,8 +158,8 @@ void CameraShaker::addInfinityTaskOffset(TVec2f* pOffset) {
 void CameraShaker::startInfinity(u32 index, f32 a2, f32 a3) {
     CameraShakePatternVerticalSin* sin = static_cast< CameraShakePatternVerticalSin* >(mInfinityTasks[index]->mPattern);
 
-    sin->_8 = a2;
-    sin->_C = a3;
+    sin->mShakeAmplitude = a2;
+    sin->mMaxTime = a3;
 
     mInfinityTasks[index]->startInfinity(0);
 }

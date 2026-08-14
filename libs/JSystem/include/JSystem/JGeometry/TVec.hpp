@@ -91,7 +91,10 @@ namespace JGeometry {
 
         /* General operations */
         template < typename A >
-        void set(const JGeometry::TVec2< A >& rSrc);
+        void set(const JGeometry::TVec2< A >& rSrc) NO_INLINE {
+            x = rSrc.x;
+            y = rSrc.y;
+        }
 
         void set(T v) {
             y = x = v;

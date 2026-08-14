@@ -387,6 +387,7 @@ namespace JGeometry {
             //    SegmentGravity::updateLocalParam
             //    SurfRay::updateRotate
             //    Plant::initLeaf
+            //    WaterRoadModelInfo::initPoints
             // }
             //
             // DOES NOT MATCH {

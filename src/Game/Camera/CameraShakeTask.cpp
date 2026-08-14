@@ -56,14 +56,14 @@ void CameraShakeTask::startCommon(u32 a1) {
     _C = a1;
     CameraShakePattern* pattern = mPattern;
     mHasEnded = false;
-    pattern->_4 = 0;
+    pattern->mFrame = 0;
     pattern->start();
 }
 
 void CameraShakeTask::updatePattern() {
     CameraShakePattern* pattern = mPattern;
 
-    pattern->_4++;
+    pattern->mFrame++;
     pattern->update();
 
     if (mPattern->isEnd()) {
@@ -83,7 +83,7 @@ void CameraShakeTask::updateInterval() {
 
         CameraShakePattern* pattern = mPattern;
 
-        pattern->_4 = 0;
+        pattern->mFrame = 0;
         pattern->start();
     } else {
         mHasEnded = true;
