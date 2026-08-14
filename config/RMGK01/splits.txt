@@ -4034,6 +4034,7 @@ Game/Map/RailPart.cpp:
 Game/Map/ScenarioSelectStar.cpp:
 	.text       start:0x801998CC end:0x8019A4E0
 	.ctors      start:0x8052EBE4 end:0x8052EBE8
+	.rodata     start:0x80532ED0 end:0x80532EE0
 	.data       start:0x8058C1A8 end:0x8058C2F0
 	.sbss       start:0x806B4C38 end:0x806B4C58
 	.sdata2     start:0x806BC390 end:0x806BC3C8
@@ -4041,6 +4042,7 @@ Game/Map/ScenarioSelectStar.cpp:
 Game/Map/SeaGull.cpp:
 	.text       start:0x8019A4E0 end:0x8019B0A0
 	.ctors      start:0x8052EBE8 end:0x8052EBEC
+	.rodata     start:0x80532EE0 end:0x80532EE8
 	.data       start:0x8058C2F0 end:0x8058C438
 	.sdata      start:0x806B1C80 end:0x806B1C88
 	.sbss       start:0x806B4C58 end:0x806B4C68
@@ -4077,6 +4079,7 @@ Game/Map/SphereSelector.cpp:
 Game/Map/SphereSelectorHandle.cpp:
 	.text       start:0x8019D404 end:0x8019E5E8
 	.ctors      start:0x8052EBF8 end:0x8052EBFC
+	.rodata     start:0x80532EE8 end:0x80532EF0
 	.data       start:0x8058C978 end:0x8058CAD0
 	.sdata      start:0x806B1C90 end:0x806B1CC0
 	.sbss       start:0x806B4C98 end:0x806B4CC8
@@ -4123,9 +4126,10 @@ Game/Map/WaterInfo.cpp:
 Game/Map/WaterPlant.cpp:
 	.text       start:0x801A0230 end:0x801A14F4
 	.ctors      start:0x8052EBFC end:0x8052EC00
+	.rodata     start:0x80532EF0 end:0x80532EF8
 	.data       start:0x8058CD40 end:0x8058CEC0
 	.bss        start:0x8060ADA0 end:0x8060ADB0
-	.sdata      start:0x806B1CC0 end:0x806B1CE8
+	.sdata      start:0x806B1CC0 end:0x806B1CD0
 	.sdata2     start:0x806BC498 end:0x806BC500
 
 Game/Map/WaterPoint.cpp:
@@ -4135,13 +4139,17 @@ Game/Map/WaterPoint.cpp:
 Game/Map/WaterRoad.cpp:
 	.text       start:0x801A17E0 end:0x801A455C
 	.ctors      start:0x8052EC00 end:0x8052EC04
-	.data       start:0x8058CEC0 end:0x8058D200
+	.rodata     start:0x80532EF8 end:0x80532F08
+	.data       start:0x8058CEC0 end:0x8058D1D0
+	.sdata      start:0x806B1CD0 end:0x806B1CE0
 	.sbss       start:0x806B4CC8 end:0x806B4CF0
 	.sdata2     start:0x806BC528 end:0x806BC588
 
 Game/Map/WhirlPoolAccelerator.cpp:
 	.text       start:0x801A455C end:0x801A53D8
-	.data       start:0x8058D200 end:0x8058D2B8
+	.rodata     start:0x80532F08 end:0x80532F20
+	.data       start:0x8058D1D0 end:0x8058D2B8
+	.sdata      start:0x806B1CE0 end:0x806B1CE8
 	.sdata2     start:0x806BC588 end:0x806BC5E0
 
 Game/MapObj/AirBubble.cpp:
