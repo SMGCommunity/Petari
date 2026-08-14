@@ -1,21 +1,62 @@
 #include "Game/Camera/CameraSlide.hpp"
 #include "Game/Camera/CamTranslatorSlide.hpp"
+#include "Game/Camera/CameraLocalUtil.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/Util/MathUtil.hpp"
 
-CameraSlide::CameraSlide(const char* pName) : Camera(pName) {
-    mAxis.x = 1.0f;
-    mAxis.y = 0.0f;
-    mAxis.z = 0.0f;
-    mUp.x = 0.0f;
-    mUp.y = 1.0f;
-    mUp.z = 0.0f;
-    mWPoint.x = 0.0f;
-    mWPoint.y = 0.0f;
-    mWPoint.z = 0.0f;
-    mAngleA = 0.0f;
-    mDist = 1000.0f;
+void CameraSlide_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+    (void)MR::pi();
 }
 
-CameraSlide::~CameraSlide() {
+CameraSlide::CameraSlide(const char* pName)
+    : Camera(pName), mAxis(1.0f, 0.0f, 0.0f), mUp(0.0f, 1.0f, 0.0f), mWPoint(0.0f, 0.0f, 0.0f), mAngleA(0.0f), mDist(1000.0f) {
+}
+
+void CameraSlide::reset() {
+}
+
+CameraTargetObj* CameraSlide::calc() {
+    TVec3f front = mAxis.cross(mUp);
+    if (MR::isNearZero(front)) {
+        return nullptr;
+    }
+    MR::normalize(&front);
+
+    TVec3f up = front.cross(mAxis);
+    MR::normalize(&up);
+
+    TQuat4f rot;
+    rot.setRotate(front, mAngleA * MR::pi() / 180.0f);
+
+    TVec3f side = mAxis;
+    rot.transform(side);
+
+    const TPos3f& mtx = mZoneMatrix;
+
+    mtx.mult33(front);
+    mtx.mult33(up);
+    mtx.mult33(side);
+
+    TVec3f watchPoint = mWPoint;
+    mtx.mult(watchPoint, watchPoint);
+
+    TVec3f camZ = CameraLocalUtil::getTarget(this)->getPosition() - watchPoint;
+    TVec3f watchPos = side * side.dot(camZ) + watchPoint;
+
+    TVec3f watchOffset;
+    CameraLocalUtil::makeWatchOffset(&watchOffset, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    watchPos.add(watchOffset);
+
+    TVec3f pos = watchPos + front * mDist;
+    CameraLocalUtil::setWatchPos(this, watchPos);
+    CameraLocalUtil::setPos(this, pos);
+    CameraLocalUtil::setUpVec(this, up);
+    CameraLocalUtil::setWatchUpVec(this, CameraLocalUtil::getTarget(this)->getUpVec());
+
+    return CameraLocalUtil::getTarget(this);
 }
 
 CamTranslatorBase* CameraSlide::createTranslator() {
