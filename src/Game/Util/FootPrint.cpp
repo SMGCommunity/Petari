@@ -13,7 +13,6 @@
 
 namespace {
     static const s32 sFadeOutTime = 60;
-    static const f32 sMinPrintDistance = 80.0f;
 }  // namespace
 
 FootPrint::FootPrint(const char* pName, s32 amount, s32 drawType) : NameObj(pName) {
@@ -34,7 +33,7 @@ void FootPrint::initMember(s32 amount, s32 drawType) {
     _2C = 20.0f;
     _30 = 20.0f;
     _34 = 20.0f;
-    mMinPrintDistance = ::sMinPrintDistance;
+    mMinPrintDistance = 80.0f;
 
     mLastPrintPos.set2(0.0f);
 
