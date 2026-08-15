@@ -34,7 +34,7 @@ void FootPrint::initMember(s32 amount, s32 drawType) {
     _2C = 20.0f;
     _30 = 20.0f;
     _34 = 20.0f;
-    mMinPrintDistance = sMinPrintDistance;
+    mMinPrintDistance = ::sMinPrintDistance;
 
     mLastPrintPos.set2(0.0f);
 
@@ -102,7 +102,7 @@ bool FootPrint::addPrint(const TVec3f& rPos, const TVec3f& rArg2, const TVec3f& 
     mPrints[mRotatingPrintIndex].mPos = rPos;
     mPrints[mRotatingPrintIndex]._C = rArg2;
     mPrints[mRotatingPrintIndex]._18 = rArg3;
-    mPrints[mRotatingPrintIndex].mTimeLeft = sMaxStepLifespan;
+    mPrints[mRotatingPrintIndex].mTimeLeft = ::sMaxStepLifespan;
     mPrints[mRotatingPrintIndex].mValid = 1;
     mPrints[mRotatingPrintIndex]._29 = arg4;
 
@@ -136,7 +136,7 @@ void FootPrint::draw() const {
             continue;
         }
 
-        color.a = 255.0f * MR::normalize(mPrints[i].mTimeLeft, 0.0f, sMaxStepLifespan);
+        color.a = 255.0f * MR::normalize(mPrints[i].mTimeLeft, 0.0f, ::sMaxStepLifespan);
         GXSetTevColor(GX_TEVREG0, color);
 
         TVec3f cross = mPrints[i]._C.cross(mPrints[i]._18);
