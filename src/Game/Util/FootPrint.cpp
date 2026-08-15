@@ -12,7 +12,7 @@
 #include "revolution/gx/GXStruct.h"
 
 namespace {
-    static const f32 sMaxStepLifespan = 60.0f;
+    static const s32 sFadeOutTime = 60;
     static const f32 sMinPrintDistance = 80.0f;
 }  // namespace
 
@@ -102,7 +102,7 @@ bool FootPrint::addPrint(const TVec3f& rPos, const TVec3f& rArg2, const TVec3f& 
     mPrints[mRotatingPrintIndex].mPos = rPos;
     mPrints[mRotatingPrintIndex]._C = rArg2;
     mPrints[mRotatingPrintIndex]._18 = rArg3;
-    mPrints[mRotatingPrintIndex].mTimeLeft = ::sMaxStepLifespan;
+    mPrints[mRotatingPrintIndex].mTimeLeft = ::sFadeOutTime;
     mPrints[mRotatingPrintIndex].mValid = true;
     mPrints[mRotatingPrintIndex]._29 = arg4;
 
@@ -136,7 +136,7 @@ void FootPrint::draw() const {
             continue;
         }
 
-        color.a = 255.0f * MR::normalize(mPrints[i].mTimeLeft, 0.0f, ::sMaxStepLifespan);
+        color.a = 255.0f * MR::normalize(mPrints[i].mTimeLeft, 0.0f, ::sFadeOutTime);
         GXSetTevColor(GX_TEVREG0, color);
 
         TVec3f cross = mPrints[i]._C.cross(mPrints[i]._18);
@@ -149,7 +149,7 @@ void FootPrint::draw() const {
 
         v1 += mPrints[i]._18 * 5.0f;
 
-        TDDraw::drawTexture3D(v1, mPrints[i]._18, mPrints[i]._C, _34, _30, nullptr, mPrints[i]._29, false);
+        TDDraw::drawTexture3D(v1, mPrints[i]._18, mPrints[i]._C, _34, _30, nullptr, mPrints[i]._29 != false, false);
     }
 
     TDDraw::close();
