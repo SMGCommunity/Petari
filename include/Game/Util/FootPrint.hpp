@@ -11,8 +11,8 @@ class FootPrintInfo {
 public:
     FootPrintInfo();
 
-    /* 0x0 */ TVec3f mPos;
-    /* 0xC */ TVec3f _C;
+    /* 0x00 */ TVec3f mPos;
+    /* 0x0C */ TVec3f _C;
     /* 0x18 */ TVec3f _18;
 
     /// @brief Frames left before becoming invalid. Also controls the footprint's alpha.
