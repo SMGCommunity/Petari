@@ -10,19 +10,21 @@ public:
     virtual void reset();
     virtual CameraTargetObj* calc();
 
-    void calcIdealPoseOfTowerBase();
-    void resetBegin();
-    void resetPreVPan();
-    void resetPostVPan();
-    void arrangePreVPan();
-    void arrangePostVPan();
+    virtual void resetBegin() {
+    }
+    virtual void resetPreVPan() {
+    }
+    virtual void resetPostVPan() {
+    }
+    virtual void arrangePreVPan() {
+    }
+    virtual void arrangePostVPan() {
+    }
 
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    f32 _58;
-    f32 _5C;
-    f32 _60;
-    f32 _64;
-    f32 _68;
+    void calcIdealPoseOfTowerBase();
+
+    /* 0x4C */ TVec3f mWPoint;
+    /* 0x58 */ TVec3f mAxis;
+    /* 0x64 */ f32 mAngleX;
+    /* 0x68 */ f32 mDist;
 };
