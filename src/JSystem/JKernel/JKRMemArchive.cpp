@@ -66,7 +66,7 @@ bool JKRMemArchive::removeResource(void* pResource) {
     return true;
 }
 
-s32 JKRMemArchive::getExpandedResSize(const void* pResource) const {
+u32 JKRMemArchive::getExpandedResSize(const void* pResource) const {
     SDIFileEntry* file = findPtrResource(pResource);
 
     if (file == nullptr) {

@@ -42,12 +42,12 @@ public:
     u32 getMessageID() const;
     bool requestTalk();
     bool requestTalkForce();
-    void startTalk();
-    void startTalkForce();
-    void startTalkForcePuppetable();
-    void startTalkForceWithoutDemo();
-    void startTalkForceWithoutDemoPuppetable();
-    void endTalk();
+    bool startTalk();
+    bool startTalkForce();
+    bool startTalkForcePuppetable();
+    bool startTalkForceWithoutDemo();
+    bool startTalkForceWithoutDemoPuppetable();
+    bool endTalk();
     void updateBalloonPos();
     bool isNearPlayer(const TalkMessageCtrl*);
     bool isNearPlayer(f32) const;
@@ -63,8 +63,12 @@ public:
     void readMessage();
     bool isSelectYesNo() const;
 
-    void setMessageArg(const CustomTagArg& rArg) {
+    void setMessageArg(const CustomTagArg& rArg) NO_INLINE {
         mTagArg = rArg;
+    }
+
+    void setMessageBallonFollowOffs(const TVec3f& rVec) {
+        mMsgBalloonFollowOffs = rVec;
     }
 
     bool inMessageArea() const;
@@ -76,9 +80,9 @@ public:
     s32 mZoneID;              // 0x14
     u32 _18;
     TVec3f _1C;
-    MtxPtr mMtx;  // 0x28
-    TVec3f _2C;
-    f32 mTalkDistance;  // 0x38
+    MtxPtr mMtx;                   // 0x28
+    TVec3f mMsgBalloonFollowOffs;  // 0x2C
+    f32 mTalkDistance;             // 0x38
     u32 _3C;
     u32 mAlreadyDoneFlags;             // 0x40
     bool mIsOnRootNodeAuto;            // 0x44
@@ -100,8 +104,8 @@ public:
     static bool isEventNode(const TalkMessageCtrl*);
 
     static bool requestTalkSystem(TalkMessageCtrl*, bool);
-    static void startTalkSystem(TalkMessageCtrl*, bool, bool, bool);
-    static void endTalkSystem(TalkMessageCtrl*);
+    static bool startTalkSystem(TalkMessageCtrl*, bool, bool, bool);
+    static bool endTalkSystem(TalkMessageCtrl*);
     static bool isTalkSystemStart(const TalkMessageCtrl*);
     static bool isTalkSystemEnd(const TalkMessageCtrl*);
     static bool getBranchAstroGalaxyResult(u16);

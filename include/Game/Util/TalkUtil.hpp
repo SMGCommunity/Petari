@@ -107,7 +107,7 @@ namespace MR {
     void forwardNodeNextBranchRight(TalkMessageCtrl*);
     void forwardNodeCurrentBranchLeft(TalkMessageCtrl*);
     void forwardNodeCurrentBranchRight(TalkMessageCtrl*);
-    void tryForwardNode(TalkMessageCtrl*);
+    bool tryForwardNode(TalkMessageCtrl*);
     bool isExistNextNode(const TalkMessageCtrl*);
     bool isShortTalk(const TalkMessageCtrl*);
     void setDistanceToTalk(TalkMessageCtrl*, f32);

@@ -78,7 +78,7 @@ bool JKRDvdArchive::open(s32 arg) {
             } */
 
             if (loopValue != 0 || true) {
-                u32* expandSizes = static_cast< u32* >(JKRHeap::alloc(arg * 4, abs(r28), mHeap));
+                s32* expandSizes = static_cast< s32* >(JKRHeap::alloc(arg * 4, abs(r28), mHeap));
                 mExpandSizes = expandSizes;
 
                 if (expandSizes == nullptr) {
@@ -166,7 +166,7 @@ void* JKRDvdArchive::fetchResource(void* pArg1, u32 arg2, JKRArchive::SDIFileEnt
     return pArg1;
 }
 
-s32 JKRDvdArchive::getExpandedResSize(const void* pArg) const {
+u32 JKRDvdArchive::getExpandedResSize(const void* pArg) const {
     if (mExpandSizes == nullptr) {
         return getResSize(pArg);
     }

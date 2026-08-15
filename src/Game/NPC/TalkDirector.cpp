@@ -38,8 +38,7 @@ namespace NrvTalkDirector {
 };  // namespace NrvTalkDirector
 
 TalkDirector::TalkDirector(const char* pArg)
-    : LayoutActor(pArg, true), mMsgCtrl(), _3C(), _40(), _44(), mTalkState(), _4C(), _4D(), _4E(),
-      mIsInvalidClipping(), mDemoType(), _58(), _59() {
+    : LayoutActor(pArg, true), mMsgCtrl(), _3C(), _40(), _44(), mTalkState(), _4C(), _4D(), _4E(), mIsInvalidClipping(), mDemoType(), _58(), _59() {
 }
 
 TalkDirector::~TalkDirector() {
@@ -576,15 +575,13 @@ bool TalkFunction::requestTalkSystem(TalkMessageCtrl* pCtrl, bool force) {
     return ::getTalkDirector()->request(pCtrl, force);
 }
 
-void TalkFunction::startTalkSystem(TalkMessageCtrl* pCtrl, bool force, bool demo, bool notPuppetable) {
-    ::getTalkDirector()->start(pCtrl, force, demo, notPuppetable);
+bool TalkFunction::startTalkSystem(TalkMessageCtrl* pCtrl, bool force, bool demo, bool notPuppetable) {
+    return ::getTalkDirector()->start(pCtrl, force, demo, notPuppetable);
 }
 
-void TalkFunction::endTalkSystem(TalkMessageCtrl* pCtrl) {
+bool TalkFunction::endTalkSystem(TalkMessageCtrl* pCtrl) {
     ::getTalkDirector();
-
-    if (MR::isTalkEnableEnd(pCtrl)) {
-    }
+    return MR::isTalkEnableEnd(pCtrl);
 }
 
 bool TalkFunction::isTalkSystemStart(const TalkMessageCtrl* pCtrl) {
