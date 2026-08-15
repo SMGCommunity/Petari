@@ -41,7 +41,7 @@ public:
     void invalidate(u32);
     bool isValid(u32) const;
 
-    JUTTexture* _C;
+    /* 0x0C */ JUTTexture* _C;
 
     /// @brief Array of footprints.
     /* 0x10 */ FootPrintInfo* mPrints;
@@ -57,12 +57,12 @@ public:
     /// @brief The index used when adding a new footprint. Will wrap around and overwrite the oldest footprints.
     /* 0x28 */ s32 mRotatingPrintIndex;
 
-    f32 _2C;
-    f32 _30;
-    f32 _34;
+    /* 0x2C */ f32 _2C;
+    /* 0x30 */ f32 _30;
+    /* 0x34 */ f32 _34;
 
     /// @brief The minimum distance for a new print to be registered.
     /* 0x38 */ f32 mMinPrintDistance;
 
-    bool _3C;
+    /* 0x3C */ bool _3C;
 };
