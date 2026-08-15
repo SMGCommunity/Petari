@@ -46,6 +46,7 @@ public:
 
     /// @brief Array of footprints.
     /* 0x10 */ FootPrintInfo* mPrints;
+
     /* 0x14 */ TVec3f mLastPrintPos;
 
     /// @brief Size of the mPrints array.
