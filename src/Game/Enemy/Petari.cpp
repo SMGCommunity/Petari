@@ -462,7 +462,7 @@ void Petari::initFootPrint(const JMapInfoIter& rIter) {
     mFootPrint->_2C = 25.0f;
     mFootPrint->_30 = 30.0f;
     mFootPrint->_34 = 40.0f;
-    mFootPrint->_38 = 100.0f;
+    mFootPrint->mMinPrintDistance = 100.0f;
 
     MR::getJMapInfoArg0NoInit(rIter, &mFootprintYOffs);
 }
