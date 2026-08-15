@@ -13,6 +13,7 @@
 
 namespace {
     static const s32 sFadeOutTime = 60;
+    static const s32 sFadeBufferCount = 10;
 }  // namespace
 
 FootPrint::FootPrint(const char* pName, s32 amount, s32 drawType) : NameObj(pName) {
@@ -72,7 +73,7 @@ void FootPrint::movement() {
         return;
     }
 
-    for (s32 i = mRotatingPrintIndex; i < mRotatingPrintIndex + 10; i++) {
+    for (s32 i = mRotatingPrintIndex; i < mRotatingPrintIndex + ::sFadeBufferCount; i++) {
         s32 rotatedIndex = i;
         if (i >= mPrintMaxNum) {
             rotatedIndex -= mPrintMaxNum;
