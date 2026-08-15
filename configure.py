@@ -1079,7 +1079,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraShaker.cpp"),
             Object(Matching, "Game/Camera/CameraSlide.cpp"),
             Object(NonMatching, "Game/Camera/CameraSpiral.cpp"),
-            Object(NonMatching, "Game/Camera/CameraSubjective.cpp"),
+            Object(Matching, "Game/Camera/CameraSubjective.cpp"),
             Object(NonMatching, "Game/Camera/CameraTalk.cpp"),
             Object(NonMatching, "Game/Camera/CameraTargetArg.cpp"),
             Object(Matching, "Game/Camera/CameraTargetHolder.cpp"),
