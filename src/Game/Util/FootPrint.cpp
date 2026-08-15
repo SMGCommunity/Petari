@@ -55,7 +55,7 @@ void FootPrint::setTexture(ResTIMG* img) {
 }
 
 void FootPrint::movement() {
-    if (_3C != false) {
+    if (_3C) {
         for (int i = 0; i < mPrintNum; i++) {
             if (!mPrints[i].mIsValid) {
                 continue;
