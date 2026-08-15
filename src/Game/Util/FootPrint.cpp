@@ -16,15 +16,15 @@ namespace {
     static const f32 sMinPrintDistance = 80.0f;
 }  // namespace
 
-FootPrint::FootPrint(const char* pName, s32 arg2, s32 arg3) : NameObj(pName) {
-    initMember(arg2, arg3);
+FootPrint::FootPrint(const char* pName, s32 amount, s32 drawType) : NameObj(pName) {
+    initMember(amount, drawType);
 }
 
-FootPrint::FootPrint(const char* pName, s32 arg2) : NameObj(pName) {
-    initMember(arg2, 23);
+FootPrint::FootPrint(const char* pName, s32 amount) : NameObj(pName) {
+    initMember(amount, MR::DrawType_0x17);
 }
 
-void FootPrint::initMember(s32 amount, s32 arg2) {
+void FootPrint::initMember(s32 amount, s32 drawType) {
     _C = nullptr;
     mPrints = nullptr;
     mMaxAmountOfPrints = 0;
@@ -45,7 +45,7 @@ void FootPrint::initMember(s32 amount, s32 arg2) {
         mPrints[i].mValid = 0;
     }
 
-    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, arg2);
+    MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, drawType);
 }
 
 FootPrintInfo::FootPrintInfo() {
