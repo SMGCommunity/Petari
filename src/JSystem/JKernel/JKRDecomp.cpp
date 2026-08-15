@@ -101,7 +101,9 @@ bool JKRDecomp::orderSync(unsigned char* pSrc, unsigned char* pDst, unsigned lon
     OSSendMessage(&gMessageQueue, command, OS_MESSAGE_NOBLOCK);
     bool received = sync(command, 0);
 
-    delete command;
+    if (command) {
+        delete command;
+    }
 
     return received;
 }
