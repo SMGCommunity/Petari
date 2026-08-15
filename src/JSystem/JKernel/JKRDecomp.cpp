@@ -116,9 +116,78 @@ void JKRDecomp::decode(unsigned char* pSrc, unsigned char* pDst, unsigned long c
     }
 }
 
-/*void JKRDecomp::decodeSZP(unsigned char *pSrc, unsigned char *pDst, unsigned long compressedSize, unsigned long decompressedSize) {
+#define READU32_BE(ptr, offset) (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
 
-}*/
+void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
+    int srcChunkOffset;
+    int count;
+    int dstOffset;
+    u32 length = srcLength;
+    int linkInfo;
+    int offset;
+    int i;
+
+    int decodedSize = READU32_BE(src, 4);
+    int linkTableOffset = READU32_BE(src, 8);
+    int srcDataOffset = READU32_BE(src, 12);
+
+    dstOffset = 0;
+    u32 counter = 0;
+    srcChunkOffset = 16;
+
+    u32 chunkBits;
+    if (srcLength == 0)
+        return;
+    if (dstLength > decodedSize)
+        return;
+
+    do {
+        if (counter == 0) {
+            chunkBits = READU32_BE(src, srcChunkOffset);
+            srcChunkOffset += sizeof(u32);
+            counter = sizeof(u32) * 8;
+        }
+
+        if (chunkBits & 0x80000000) {
+            if (dstLength == 0) {
+                dst[dstOffset] = src[srcDataOffset];
+                length--;
+                if (length == 0)
+                    return;
+            } else {
+                dstLength--;
+            }
+            dstOffset++;
+            srcDataOffset++;
+        } else {
+            linkInfo = src[linkTableOffset] << 8 | src[linkTableOffset + 1];
+            linkTableOffset += sizeof(u16);
+
+            offset = dstOffset - (linkInfo & 0xFFF);
+            count = (linkInfo >> 12);
+            if (count == 0) {
+                count = (u32)src[srcDataOffset++] + 0x12;
+            } else
+                count += 2;
+
+            if (count > decodedSize - dstOffset)
+                count = decodedSize - dstOffset;
+
+            for (i = 0; i < count; i++, dstOffset++, offset++) {
+                if (dstLength == 0) {
+                    dst[dstOffset] = dst[offset - 1];
+                    length--;
+                    if (length == 0)
+                        return;
+                } else
+                    dstLength--;
+            }
+        }
+
+        chunkBits <<= 1;
+        counter--;
+    } while (dstOffset < decodedSize);
+}
 
 // Wrong registers
 void JKRDecomp::decodeSZS(u8* pSrc, u8* pDst, u32 compressedSize, u32 a4) {

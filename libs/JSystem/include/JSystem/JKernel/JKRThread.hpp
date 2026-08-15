@@ -83,7 +83,7 @@ public:
         OSJamMessage(&mMessageQueue, message, OS_MESSAGE_BLOCK);
     }
 
-    void* start(void* pData);
+    static void* start(void* pData);
 
     static JKRThread* searchThread(OSThread*);
 
