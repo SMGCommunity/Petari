@@ -56,7 +56,7 @@ void FootPrint::setTexture(ResTIMG* img) {
 }
 
 void FootPrint::movement() {
-    if (_3C != 0) {
+    if (_3C != false) {
         for (int i = 0; i < mPrintNum; i++) {
             if (!mPrints[i].mValid) {
                 continue;
@@ -91,7 +91,7 @@ void FootPrint::movement() {
 }
 
 bool FootPrint::addPrint(const TVec3f& rPos, const TVec3f& rArg2, const TVec3f& rArg3, bool arg4) {
-    _3C = 0;
+    _3C = false;
 
     if (mPrintNum > 0 && rPos.distance(mLastPrintPos) < mMinPrintDistance) {
         return false;
@@ -155,7 +155,7 @@ void FootPrint::draw() const {
 }
 
 void FootPrint::clear() {
-    _3C = 1;
+    _3C = true;
 }
 
 void FootPrint::clearForce() {

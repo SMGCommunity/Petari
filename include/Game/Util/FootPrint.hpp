@@ -64,5 +64,5 @@ public:
     /// @brief The minimum distance for a new print to be registered.
     /* 0x38 */ f32 mMinPrintDistance;
 
-    u8 _3C;
+    bool _3C;
 };
