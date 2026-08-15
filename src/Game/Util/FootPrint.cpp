@@ -6,10 +6,10 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JUtility/JUTTexture.hpp"
-#include "revolution/gx/GXEnum.h"
-#include "revolution/gx/GXStruct.h"
+#include <JSystem/JGeometry/TVec.hpp>
+#include <JSystem/JUtility/JUTTexture.hpp>
+#include <revolution/gx/GXEnum.h>
+#include <revolution/gx/GXStruct.h>
 
 namespace {
     static const s32 sFadeOutTime = 60;
