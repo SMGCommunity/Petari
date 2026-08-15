@@ -1,12 +1,10 @@
 #include "Game/Util/FootPrint.hpp"
-#include "Game/NameObj/NameObj.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util/Color.hpp"
 #include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 #include <revolution/gx/GXEnum.h>
 #include <revolution/gx/GXStruct.h>
