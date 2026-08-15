@@ -14,7 +14,7 @@
 namespace {
     static const s32 sFadeOutTime = 60;
     static const s32 sFadeBufferCount = 10;
-}  // namespace
+};  // namespace
 
 FootPrint::FootPrint(const char* pName, s32 amount, s32 drawType) : NameObj(pName) {
     initMember(amount, drawType);
