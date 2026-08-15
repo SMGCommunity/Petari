@@ -2,25 +2,14 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorTripodBoss::setParam(const CameraParamChunk* pChunk) {
-    // FIXME: float swap
-    CameraTripodBoss* camera;
+    CameraTripodBoss* camera = mCamera;
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    f32 dist;
-    TVec2f up;
+    f32 angleB = general->mUp.y;
+    f32 angleA = general->mUp.x;
 
-    up.y = general->mUp.y;
-    up.x = general->mUp.x;
-    dist = general->mDist;
-
-    camera = mCamera;
-
-    camera->mWPoint.set< f32 >(general->mWPoint);
-    camera->mAxis.set< f32 >(general->mAxis);
-    camera->mDist = dist;
-    camera->mAngleB = up.x;
-    camera->mAngleA = up.y;
-    camera->upZ = general->mUp.z;
+    camera->setParam(general->mWPoint, general->mAxis, general->mDist, TVec2f(angleA, angleB));
+    camera->mAngleY = general->mUp.z;
 }
 
 Camera* CamTranslatorTripodBoss::getCamera() const {
