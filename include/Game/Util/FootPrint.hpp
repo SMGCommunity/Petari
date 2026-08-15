@@ -19,16 +19,15 @@ public:
     /* 0x24 */ s32 mTimeLeft;
 
     /// @brief Invalid prints will no longer be updated nor drawn.
-    /* 0x28 */ u8 mValid;
+    /* 0x28 */ bool mValid;
 
-    u8 _29;
+    /* 0x29 */ bool _29;
 };
 
 class FootPrint : public NameObj {
 public:
     FootPrint(const char*, s32);
     FootPrint(const char*, s32, s32);
-    ~FootPrint();
 
     virtual void movement();
     virtual void draw() const;

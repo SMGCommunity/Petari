@@ -42,7 +42,7 @@ void FootPrint::initMember(s32 amount, s32 drawType) {
     mMaxAmountOfPrints = amount;
 
     for (int i = 0; i < mMaxAmountOfPrints; i++) {
-        mPrints[i].mValid = 0;
+        mPrints[i].mValid = false;
     }
 
     MR::connectToScene(this, MR::MovementType_MapObj, -1, -1, drawType);
@@ -59,14 +59,14 @@ void FootPrint::setTexture(ResTIMG* img) {
 void FootPrint::movement() {
     if (_3C != 0) {
         for (int i = 0; i < mAmountOfPrints; i++) {
-            if (mPrints[i].mValid == 0) {
+            if (!mPrints[i].mValid) {
                 continue;
             }
 
             mPrints[i].mTimeLeft--;
 
             if (mPrints[i].mTimeLeft <= 0) {
-                mPrints[i].mValid = 0;
+                mPrints[i].mValid = false;
             }
         }
 
@@ -79,14 +79,14 @@ void FootPrint::movement() {
             rotatedIndex -= mMaxAmountOfPrints;
         }
 
-        if (mPrints[rotatedIndex].mValid == 0) {
+        if (!mPrints[rotatedIndex].mValid) {
             continue;
         }
 
         mPrints[rotatedIndex].mTimeLeft--;
 
         if (mPrints[rotatedIndex].mTimeLeft <= 0) {
-            mPrints[rotatedIndex].mValid = 0;
+            mPrints[rotatedIndex].mValid = false;
         }
     }
 }
@@ -103,7 +103,7 @@ bool FootPrint::addPrint(const TVec3f& rPos, const TVec3f& rArg2, const TVec3f& 
     mPrints[mRotatingPrintIndex]._C = rArg2;
     mPrints[mRotatingPrintIndex]._18 = rArg3;
     mPrints[mRotatingPrintIndex].mTimeLeft = ::sMaxStepLifespan;
-    mPrints[mRotatingPrintIndex].mValid = 1;
+    mPrints[mRotatingPrintIndex].mValid = true;
     mPrints[mRotatingPrintIndex]._29 = arg4;
 
     mRotatingPrintIndex++;
@@ -132,7 +132,7 @@ void FootPrint::draw() const {
     Color8 color(0, 0, 0, 255.0f);
 
     for (int i = 0; i < mAmountOfPrints; i++) {
-        if (mPrints[i].mValid == 0) {
+        if (!mPrints[i].mValid) {
             continue;
         }
 
@@ -169,12 +169,9 @@ TVec3f* FootPrint::getPrintPos(u32 index) const {
 }
 
 void FootPrint::invalidate(u32 index) {
-    mPrints[index % mMaxAmountOfPrints].mValid = 0;
+    mPrints[index % mMaxAmountOfPrints].mValid = false;
 }
 
 bool FootPrint::isValid(u32 index) const {
-    return mPrints[index % mMaxAmountOfPrints].mValid != 0;
-}
-
-FootPrint::~FootPrint() {
+    return mPrints[index % mMaxAmountOfPrints].mValid != false;
 }
