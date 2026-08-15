@@ -129,7 +129,7 @@ void FootPrint::draw() const {
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_FALSE);
     _C->load(GX_TEXMAP0);
 
-    Color8 color(0, 0, 0, 255.0f);
+    Color8 color(0, 0, 0, 255);
 
     for (int i = 0; i < mPrintNum; i++) {
         if (!mPrints[i].mValid) {
