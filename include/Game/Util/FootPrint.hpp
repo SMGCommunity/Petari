@@ -19,7 +19,7 @@ public:
     /* 0x24 */ s32 mTimeLeft;
 
     /// @brief Invalid prints will no longer be updated nor drawn.
-    /* 0x28 */ bool mValid;
+    /* 0x28 */ bool mIsValid;
 
     /* 0x29 */ bool _29;
 };
