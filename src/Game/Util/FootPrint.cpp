@@ -89,8 +89,6 @@ void FootPrint::movement() {
             mPrints[rotatedIndex].mValid = 0;
         }
     }
-
-    return;
 }
 
 bool FootPrint::addPrint(const TVec3f& rPos, const TVec3f& rArg2, const TVec3f& rArg3, bool arg4) {
