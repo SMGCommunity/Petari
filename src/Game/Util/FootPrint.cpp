@@ -27,8 +27,8 @@ FootPrint::FootPrint(const char* pName, s32 amount) : NameObj(pName) {
 void FootPrint::initMember(s32 amount, s32 drawType) {
     _C = nullptr;
     mPrints = nullptr;
-    mMaxAmountOfPrints = 0;
-    mAmountOfPrints = 0;
+    mPrintMaxNum = 0;
+    mPrintNum = 0;
     mRotatingPrintIndex = 0;
 
     _2C = 20.0f;
@@ -39,9 +39,9 @@ void FootPrint::initMember(s32 amount, s32 drawType) {
     mLastPrintPos.set2(0.0f);
 
     mPrints = new FootPrintInfo[amount];
-    mMaxAmountOfPrints = amount;
+    mPrintMaxNum = amount;
 
-    for (int i = 0; i < mMaxAmountOfPrints; i++) {
+    for (int i = 0; i < mPrintMaxNum; i++) {
         mPrints[i].mValid = false;
     }
 
@@ -58,7 +58,7 @@ void FootPrint::setTexture(ResTIMG* img) {
 
 void FootPrint::movement() {
     if (_3C != 0) {
-        for (int i = 0; i < mAmountOfPrints; i++) {
+        for (int i = 0; i < mPrintNum; i++) {
             if (!mPrints[i].mValid) {
                 continue;
             }
@@ -75,8 +75,8 @@ void FootPrint::movement() {
 
     for (s32 i = mRotatingPrintIndex; i < mRotatingPrintIndex + 10; i++) {
         s32 rotatedIndex = i;
-        if (i >= mMaxAmountOfPrints) {
-            rotatedIndex -= mMaxAmountOfPrints;
+        if (i >= mPrintMaxNum) {
+            rotatedIndex -= mPrintMaxNum;
         }
 
         if (!mPrints[rotatedIndex].mValid) {
@@ -94,7 +94,7 @@ void FootPrint::movement() {
 bool FootPrint::addPrint(const TVec3f& rPos, const TVec3f& rArg2, const TVec3f& rArg3, bool arg4) {
     _3C = 0;
 
-    if (mAmountOfPrints > 0 && rPos.distance(mLastPrintPos) < mMinPrintDistance) {
+    if (mPrintNum > 0 && rPos.distance(mLastPrintPos) < mMinPrintDistance) {
         return false;
     }
 
@@ -107,21 +107,21 @@ bool FootPrint::addPrint(const TVec3f& rPos, const TVec3f& rArg2, const TVec3f& 
     mPrints[mRotatingPrintIndex]._29 = arg4;
 
     mRotatingPrintIndex++;
-    mAmountOfPrints++;
+    mPrintNum++;
 
-    if (mRotatingPrintIndex >= mMaxAmountOfPrints) {
-        mRotatingPrintIndex -= mMaxAmountOfPrints;
+    if (mRotatingPrintIndex >= mPrintMaxNum) {
+        mRotatingPrintIndex -= mPrintMaxNum;
     }
 
-    if (mAmountOfPrints > mMaxAmountOfPrints) {
-        mAmountOfPrints = mMaxAmountOfPrints;
+    if (mPrintNum > mPrintMaxNum) {
+        mPrintNum = mPrintMaxNum;
     }
 
     return true;
 }
 
 void FootPrint::draw() const {
-    if (mAmountOfPrints <= 0) {
+    if (mPrintNum <= 0) {
         return;
     }
 
@@ -131,7 +131,7 @@ void FootPrint::draw() const {
 
     Color8 color(0, 0, 0, 255.0f);
 
-    for (int i = 0; i < mAmountOfPrints; i++) {
+    for (int i = 0; i < mPrintNum; i++) {
         if (!mPrints[i].mValid) {
             continue;
         }
@@ -160,18 +160,18 @@ void FootPrint::clear() {
 }
 
 void FootPrint::clearForce() {
-    mAmountOfPrints = 0;
+    mPrintNum = 0;
     mRotatingPrintIndex = 0;
 }
 
 TVec3f* FootPrint::getPrintPos(u32 index) const {
-    return &mPrints[index % mMaxAmountOfPrints].mPos;
+    return &mPrints[index % mPrintMaxNum].mPos;
 }
 
 void FootPrint::invalidate(u32 index) {
-    mPrints[index % mMaxAmountOfPrints].mValid = false;
+    mPrints[index % mPrintMaxNum].mValid = false;
 }
 
 bool FootPrint::isValid(u32 index) const {
-    return mPrints[index % mMaxAmountOfPrints].mValid != false;
+    return mPrints[index % mPrintMaxNum].mValid != false;
 }

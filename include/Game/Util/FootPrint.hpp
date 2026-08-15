@@ -49,10 +49,10 @@ public:
     /* 0x14 */ TVec3f mLastPrintPos;
 
     /// @brief Size of the mPrints array.
-    /* 0x20 */ s32 mMaxAmountOfPrints;
+    /* 0x20 */ s32 mPrintMaxNum;
 
-    /// @brief Amount of active footprints (counting invalid ones). Caps at mMaxAmountOfPrints.
-    /* 0x24 */ s32 mAmountOfPrints;
+    /// @brief Amount of active footprints (counting invalid ones). Caps at mPrintMaxNum.
+    /* 0x24 */ s32 mPrintNum;
 
     /// @brief The index used when adding a new footprint. Will wrap around and overwrite the oldest footprints.
     /* 0x28 */ s32 mRotatingPrintIndex;
