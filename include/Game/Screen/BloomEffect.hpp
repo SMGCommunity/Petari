@@ -23,10 +23,10 @@ public:
     bool isForEachModel() const;
     void initDraw() const;
     void drawTexture(JUTTexture*, s32, s32, u8, BLOOM_TEX_DRAW_TYPE) const;
-    void blurTexture(JUTTexture*, MtxPtr, s32, s32, u32, f32, u32, const f32*) const;
-    void initBlurMtx(MtxPtr, u32, f32, f32) const;
+    void blurTexture(JUTTexture*, Mtx*, s32, s32, u32, f32, u32, const f32*) const;
+    void initBlurMtx(Mtx*, u32, f32, f32) const;
     void initBlur(JUTTexture*, u32, f32) const;
-    void drawBlur(s32, s32, MtxPtr, u32, u32) const;
+    void drawBlur(s32, s32, Mtx*, u32, u32) const;
 
     /* 0x14 */ u8 _14;
     /* 0x18 */ f32 _18;
@@ -41,6 +41,6 @@ public:
     /* 0x3C */ JUTTexture* _3C;
     /* 0x40 */ JUTTexture* _40;
     /* 0x44 */ JUTTexture* _44;
-    /* 0x48 */ void* _48;
-    /* 0x4C */ void* _4C;
+    /* 0x48 */ Mtx* _48;
+    /* 0x4C */ Mtx* _4C;
 };

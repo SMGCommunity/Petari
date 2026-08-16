@@ -797,8 +797,7 @@ void OceanSphere::loadMaterialBack() const {
     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_NRM, GX_TEXMTX0, GX_FALSE, GX_PTIDENTITY);
 
     TPos3f pos;
-    MtxPtr camMtx = MR::getCameraViewMtx();
-    pos.set(camMtx);
+    pos.set(MR::getCameraViewMtx());
     f32 sc = 0.779175f;
     pos.mMtx[0][0] *= sc;
     pos.mMtx[0][1] *= sc;

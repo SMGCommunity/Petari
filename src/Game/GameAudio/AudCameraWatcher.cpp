@@ -25,7 +25,7 @@ void AudCameraWatcher::init(const JMapInfoIter& rIter) {
 }
 
 void AudCameraWatcher::movement() {
-    MR::setMicMtx(MR::getCameraViewMtx(), 0);
+    MR::setMicMtx(const_cast< TPos3f& >(MR::getCameraViewMtx()), 0);
 
     // They could've just done something like setFarCamera(MR::getFovy() < 20.0f), but oh well.
     if (MR::getFovy() < 20.0f) {

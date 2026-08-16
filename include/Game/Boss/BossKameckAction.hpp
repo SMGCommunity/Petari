@@ -9,10 +9,22 @@ class BossKameckAction : public ActorStateBase< BossKameck > {
 public:
     BossKameckAction(const char*, BossKameck*);
 
-    virtual ~BossKameckAction();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    }
+
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
+
+    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
+
+    virtual bool receiveMsgPush(HitSensor*, HitSensor*) {
+        return false;
+    }
+
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+        return false;
+    }
 };

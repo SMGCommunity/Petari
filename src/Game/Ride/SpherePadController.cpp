@@ -44,7 +44,7 @@ f32 SpherePadController::calcDirSphereMove(TVec3f* pMoveDir, const TVec3f& rBase
     mag = JGeometry::TUtil< f32 >::sqrt(mag);
 
     if (mag >= 0.0001f) {
-        TRot3f invMtx = *MR::getCameraInvViewMtx();
+        TRot3f invMtx = MR::getCameraInvViewMtx();
 
         TVec3f dirX;
         TVec3f dirY;

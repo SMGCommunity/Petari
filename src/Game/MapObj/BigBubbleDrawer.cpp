@@ -36,17 +36,14 @@ void BigBubbleDrawer::setUpTexture() const {
     GXSetNumTexGens(2);
     GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x1E, 0, 0x7D);
     GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX3x4, GX_TG_NRM, 0x21, 0, 0x7D);
-    TMtx34f mtx;
+    TPos3f mtx;
     mtx.identity();
-    GXLoadTexMtxImm(mtx.toMtxPtr(), 0x1E, GX_MTX2x4);
+    GXLoadTexMtxImm(mtx, 0x1E, GX_MTX2x4);
 
-    const MtxPtr cameraMtx = MR::getCameraViewMtx();
-    mtx.setInline(cameraMtx);
+    mtx.set(MR::getCameraViewMtx());
+    mtx.setTrans(::sEnvMatTrans);
 
-    mtx.mMtx[0][3] = ::sEnvMatTrans.x;
-    mtx.mMtx[1][3] = ::sEnvMatTrans.y;
-    mtx.mMtx[2][3] = ::sEnvMatTrans.z;
-    GXLoadTexMtxImm(mtx.toMtxPtr(), 0x21, GX_MTX3x4);
+    GXLoadTexMtxImm(mtx, 0x21, GX_MTX3x4);
     mRainbowTexture->load(GX_TEXMAP0);
     mBubbleTexture->load(GX_TEXMAP1);
 }

@@ -5,6 +5,7 @@
 #include <revolution.h>
 
 class J3DTexMtx;
+class ResourceHolder;
 
 class MaterialCtrl {
 public:
@@ -57,9 +58,13 @@ public:
     J3DTexMtx* mMatricies[8];  // 0xC
 };
 
-class ProjmapEffectMtxSetter {
+class ProjmapEffectMtxSetter : public MaterialCtrl {
 public:
+    ProjmapEffectMtxSetter(J3DModel*, const ResourceHolder*);
+
     void updateMtxUseBaseMtx();
 
     void updateMtxUseBaseMtxWithLocalOffset(const TVec3f&);
+
+    u8 temp[0x3C];
 };

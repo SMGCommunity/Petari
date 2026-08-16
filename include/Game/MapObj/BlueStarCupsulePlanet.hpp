@@ -18,13 +18,13 @@ public:
     GCaptureTargetable() {
     }
 
+    virtual void decidedTarget();
+    virtual void releasedTarget();
+    virtual void getTargetPosition(TVec3f*);
     virtual bool canEndHold() const;
     virtual bool isReleaseForce() const;
     virtual f32 releaseDistance() const;
     virtual f32 getPointableRange() const;
-    virtual void getTargetPosition(TVec3f*);
-    virtual void releasedTarget();
-    virtual void decidedTarget();
 };
 
 class BlueStarCupsulePlanet : public LiveActor, public GCaptureTargetable {

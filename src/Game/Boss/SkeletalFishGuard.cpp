@@ -185,7 +185,7 @@ void SkeletalFishGuard::exeApart() {
 
         f32 v6 = _A4.squared();
         if (v14.squared() >= v6) {
-            _A4.zeroInline();
+            _A4.zero();
         } else {
             _A4.sub(v14 * 0.3f);
         }

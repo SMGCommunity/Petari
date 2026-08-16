@@ -2,35 +2,13 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorSpiral::setParam(const CameraParamChunk* pChunk) {
-    CameraSpiral* camera = mCamera;
-    s32 uVar8;
     CameraGeneralParam* general = pChunk->mGeneralParam;
-    s32 sVar7;
-    f32 wPointY;
-    f32 axisY;
-    f32 wPointZ;
-    f32 axisZ;
-    f32 wPointX;
-    f32 axisX;
 
-    sVar7 = reinterpret_cast< s16* >(&general->mNum1)[1];
-    axisX = general->mAxis.x;
-    wPointX = general->mWPoint.x;
-    axisZ = general->mAxis.z;
-    wPointZ = general->mWPoint.z;
-    axisY = general->mAxis.y;
-    wPointY = general->mWPoint.y;
-    uVar8 = general->mNum2;
+    s32 startTime = reinterpret_cast< s16* >(&general->mNum1)[0];
+    s32 endTime = reinterpret_cast< s16* >(&general->mNum1)[1];
 
-    camera->_4C = reinterpret_cast< s16* >(&general->mNum1)[0];
-    camera->_54 = sVar7;
-    camera->_58 = uVar8;
-    camera->mWPointY = wPointY;
-    camera->mAxisY = axisY;
-    camera->mWPointZ = wPointZ;
-    camera->mAxisZ = axisZ;
-    camera->mWPointX = wPointX;
-    camera->mAxisX = axisX;
+    mCamera->setParam(general->mNum2, startTime, endTime, general->mWPoint.y, general->mAxis.y, general->mWPoint.z, general->mAxis.z,
+                      general->mWPoint.x, general->mAxis.x);
 }
 
 Camera* CamTranslatorSpiral::getCamera() const {

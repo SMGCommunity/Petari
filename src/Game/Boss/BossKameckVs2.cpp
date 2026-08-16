@@ -10,13 +10,12 @@
 #include "Game/Util/ObjUtil.hpp"
 
 namespace {
-    s32 sBeamPatternLv1[] = {2, 1, -1};
-    s32 sBeamPatternLv2[] = {3, 1, -1};
-    s32 sBeamPatternLv3[] = {4, 1, 3, -1};
-
-    BossKameckBattlePattarn sPatternLv1 = BossKameckBattlePattarn(sBeamPatternLv1, false);
-    BossKameckBattlePattarn sPatternLv2 = BossKameckBattlePattarn(sBeamPatternLv2, false);
-    BossKameckBattlePattarn sPatternLv3 = BossKameckBattlePattarn(sBeamPatternLv3, true);
+    static s32 sBeamPatternLv1[] = {2, 1, -1};
+    static s32 sBeamPatternLv2[] = {3, 1, -1};
+    static s32 sBeamPatternLv3[] = {4, 1, 3, -1};
+    static BossKameckBattlePattarn sPatternLv1 = BossKameckBattlePattarn(sBeamPatternLv1, false);
+    static BossKameckBattlePattarn sPatternLv2 = BossKameckBattlePattarn(sBeamPatternLv2, false);
+    static BossKameckBattlePattarn sPatternLv3 = BossKameckBattlePattarn(sBeamPatternLv3, true);
 };  // namespace
 
 namespace NrvBossKameckVs2 {
@@ -29,18 +28,19 @@ namespace NrvBossKameckVs2 {
     NEW_NERVE(BossKameckVs2NrvEndDemo, BossKameckVs2, EndDemo);
 };  // namespace NrvBossKameckVs2
 
-BossKameckVs2::BossKameckVs2() : BossKameckSequencer("ボスカメックVs2") {
-    mStateBattle = nullptr;
-    mBarrier = nullptr;
+BossKameckVs2::BossKameckVs2() : BossKameckSequencer("ボスカメックVs2"), mStateBattle(), mBarrier() {
 }
 
 void BossKameckVs2::init(BossKameck* pBoss, const JMapInfoIter& rIter) {
     BossKameckSequencer::init(pBoss, rIter);
+
     mStateBattle = new BossKameckStateBattle(pBoss);
     mStateBattle->init();
-    mStateBattle->_3D = true;
+    mStateBattle->mIsVs2 = true;
+
     mBarrier = new BossKameckBarrier("カメックバリア", "BossKameckBarrier");
     mBarrier->init(rIter);
+
     initNerve(&NrvBossKameckVs2::BossKameckVs2NrvOpeningDemo::sInstance);
     MR::declareStarPiece(mBossKameck, 24);
 }
@@ -78,7 +78,7 @@ void BossKameckVs2::exeBattleLv1() {
     if (MR::isFirstStep(this)) {
         mStateBattle->setMoveRail(mBossKameck->getMoveRail(0));
         mStateBattle->setBattlePattarn(&::sPatternLv1);
-        mStateBattle->_3C = 0;
+        mStateBattle->mIsFinal = false;
         mStateBattle->_30 = 3;
     }
 
@@ -90,7 +90,7 @@ void BossKameckVs2::exeBattleLv2() {
         mBossKameck->appearStarPieceToPlayer(8);
         mStateBattle->setMoveRail(mBossKameck->getMoveRail(1));
         mStateBattle->setBattlePattarn(&::sPatternLv2);
-        mStateBattle->_3C = 0;
+        mStateBattle->mIsFinal = false;
         mStateBattle->_30 = 3;
     }
 
@@ -111,7 +111,7 @@ void BossKameckVs2::exeBattleLv3() {
     if (MR::isFirstStep(this)) {
         mStateBattle->setMoveRail(mBossKameck->getMoveRail(2));
         mStateBattle->setBattlePattarn(&::sPatternLv3);
-        mStateBattle->_3C = 0;
+        mStateBattle->mIsFinal = false;
         mStateBattle->_30 = 3;
     }
 
@@ -123,7 +123,7 @@ void BossKameckVs2::exeBattleLv4() {
         mBossKameck->appearStarPieceToPlayer(16);
         mStateBattle->setMoveRail(mBossKameck->getMoveRail(3));
         mStateBattle->setBattlePattarn(&::sPatternLv3);
-        mStateBattle->_3C = 1;
+        mStateBattle->mIsFinal = true;
         mStateBattle->_30 = 4;
     }
 
@@ -144,5 +144,6 @@ bool BossKameckVs2::isBattle() const {
         isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv3::sInstance) || isNerve(&NrvBossKameckVs2::BossKameckVs2NrvBattleLv4::sInstance)) {
         return true;
     }
+
     return false;
 }

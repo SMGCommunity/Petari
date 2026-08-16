@@ -95,7 +95,7 @@ void NormalMapBase::draw() const {
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_POS_XY, GX_F32, 0);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
-        MtxPtr cameraViewMtx = MR::getCameraViewMtx();
+        const TPos3f& cameraViewMtx = MR::getCameraViewMtx();
         TPos3f v7;
         Mtx mtx;
         PSMTXIdentity(mtx);

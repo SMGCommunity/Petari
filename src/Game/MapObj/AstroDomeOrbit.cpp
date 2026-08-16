@@ -95,7 +95,7 @@ void AstroDomeOrbit::initDraw(const Color8& rColor) const {
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
     TPos3f v9;
     SphereSelectorFunction::calcHandledRotateMtx(mRotation, &v9);
-    v9.concat(*(TMtx34f*)MR::getCameraViewMtx(), v9);
+    v9.concat(MR::getCameraViewMtx(), v9);
     GXLoadPosMtxImm(v9.mMtx, 0);
     GXSetCurrentMtx(0);
     GXSetNumChans(1);

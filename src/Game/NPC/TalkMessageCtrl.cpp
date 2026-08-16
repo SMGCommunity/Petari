@@ -270,28 +270,29 @@ bool TalkMessageCtrl::requestTalkForce() {
     return TalkFunction::requestTalkSystem(this, true);
 }
 
-void TalkMessageCtrl::startTalk() {
-    TalkFunction::startTalkSystem(this, false, true, true);
+bool TalkMessageCtrl::startTalk() {
+    return TalkFunction::startTalkSystem(this, false, true, true);
 }
 
-void TalkMessageCtrl::startTalkForce() {
-    TalkFunction::startTalkSystem(this, true, true, true);
+bool TalkMessageCtrl::startTalkForce() {
+    return TalkFunction::startTalkSystem(this, true, true, true);
 }
 
-void TalkMessageCtrl::startTalkForcePuppetable() {
-    TalkFunction::startTalkSystem(this, true, true, false);
+bool TalkMessageCtrl::startTalkForcePuppetable() {
+    return TalkFunction::startTalkSystem(this, true, true, false);
 }
 
-void TalkMessageCtrl::startTalkForceWithoutDemo() {
+bool TalkMessageCtrl::startTalkForceWithoutDemo() {
+    return false;
     TalkFunction::startTalkSystem(this, true, false, true);
 }
 
-void TalkMessageCtrl::startTalkForceWithoutDemoPuppetable() {
-    TalkFunction::startTalkSystem(this, true, false, false);
+bool TalkMessageCtrl::startTalkForceWithoutDemoPuppetable() {
+    return TalkFunction::startTalkSystem(this, true, false, false);
 }
 
-void TalkMessageCtrl::endTalk() {
-    TalkFunction::endTalkSystem(this);
+bool TalkMessageCtrl::endTalk() {
+    return TalkFunction::endTalkSystem(this);
 }
 
 bool TalkMessageCtrl::isNearPlayer(const TalkMessageCtrl* pCtrl) {
@@ -526,11 +527,11 @@ void TalkMessageCtrl::updateBalloonPos() {
         pos.set(mMtx);
     }
 
-    TPos3f tPos = *MR::getCameraInvViewMtx();
+    TPos3f tPos = MR::getCameraInvViewMtx();
     TVec3f v3;
     TVec3f nullVec(0.0f, 0.0f, 0.0f);
     MR::setMtxTrans(tPos, nullVec.x, nullVec.y, nullVec.z);
-    MR::addTransMtxLocal(tPos, _2C);
+    MR::addTransMtxLocal(tPos, mMsgBalloonFollowOffs);
 
     v3.set< f32 >(pos[0][3], pos[1][3], pos[2][3]);
     v3.add(TVec3f(tPos[0][3], tPos[1][3], tPos[2][3]));
@@ -538,9 +539,10 @@ void TalkMessageCtrl::updateBalloonPos() {
 }
 
 TalkMessageCtrl::TalkMessageCtrl(LiveActor* pHost, const TVec3f& arg2, MtxPtr pArg3)
-    : NameObj("会話制御"), mHostActor(pHost), mNodeCtrl(nullptr), mZoneID(-1), _1C(0.0f, 0.0f, 0.0f), _2C(arg2), mTalkDistance(240.0f), _3C(0),
-      mIsOnReadNodeAuto(true), mAlreadyDoneFlags(0), mIsStartOnlyFront(false), mCameraInfo(nullptr), mBranchFunc(nullptr), mEventFunc(nullptr),
-      mAnimeFunc(nullptr), mKillFunc(nullptr), mMtx(pArg3), mIsOnRootNodeAuto(false), _18(false), mTagArg(nullptr, CustomTagArg::Type_Uninitialized) {
+    : NameObj("会話制御"), mHostActor(pHost), mNodeCtrl(nullptr), mZoneID(-1), _1C(0.0f, 0.0f, 0.0f), mMsgBalloonFollowOffs(arg2),
+      mTalkDistance(240.0f), _3C(0), mIsOnReadNodeAuto(true), mAlreadyDoneFlags(0), mIsStartOnlyFront(false), mCameraInfo(nullptr),
+      mBranchFunc(nullptr), mEventFunc(nullptr), mAnimeFunc(nullptr), mKillFunc(nullptr), mMtx(pArg3), mIsOnRootNodeAuto(false), _18(false),
+      mTagArg(nullptr, CustomTagArg::Type_Uninitialized) {
     mTagArg.mArgType = CustomTagArg::Type_Uninitialized;
     mTagArg.mIntArg = 0;
     MR::createSceneObj(SceneObj_TalkDirector);

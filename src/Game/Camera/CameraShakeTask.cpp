@@ -1,26 +1,21 @@
 #include "Game/Camera/CameraShakeTask.hpp"
 #include "Game/Camera/CameraShakePatternImpl.hpp"
 
-CameraShakeTask::CameraShakeTask(CameraShakePattern* pPattern) {
-    mPattern = pPattern;
-    mHasEnded = true;
-    mIsInfinite = false;
-    _8 = 0;
-    _C = 0;
-    _10 = 0;
+CameraShakeTask::CameraShakeTask(CameraShakePattern* pPattern)
+    : mPattern(pPattern), mHasEnded(true), mIsInfinite(), mTime(), mDelay(), mDelayTimer() {
 }
 
-void CameraShakeTask::start(u32 a1, u32 a2) {
-    _8 = a1;
+void CameraShakeTask::start(u32 time, u32 delay) {
+    mTime = time;
     mIsInfinite = false;
 
-    startCommon(a2);
+    startCommon(delay);
 }
 
-void CameraShakeTask::startInfinity(u32 a1) {
+void CameraShakeTask::startInfinity(u32 delay) {
     mIsInfinite = true;
 
-    startCommon(a1);
+    startCommon(delay);
 }
 
 void CameraShakeTask::endForce() {
@@ -41,8 +36,7 @@ void CameraShakeTask::movement() {
 
 void CameraShakeTask::getOffset(TVec2f* pOffset) const {
     if (mHasEnded || mPattern->isEnd()) {
-        pOffset->x = 0.0f;
-        pOffset->y = 0.0f;
+        pOffset->set(0.0f, 0.0f);
     } else {
         mPattern->getOffset(pOffset);
     }
@@ -52,38 +46,38 @@ bool CameraShakeTask::isEnd() const {
     return mHasEnded;
 }
 
-void CameraShakeTask::startCommon(u32 a1) {
-    _C = a1;
+void CameraShakeTask::startCommon(u32 delay) {
+    mDelay = delay;
     CameraShakePattern* pattern = mPattern;
     mHasEnded = false;
-    pattern->_4 = 0;
+    pattern->mFrame = 0;
     pattern->start();
 }
 
 void CameraShakeTask::updatePattern() {
     CameraShakePattern* pattern = mPattern;
 
-    pattern->_4++;
+    pattern->mFrame++;
     pattern->update();
 
     if (mPattern->isEnd()) {
         if (!mIsInfinite) {
-            _8--;
+            mTime--;
         }
 
-        _10 = 0;
+        mDelayTimer = 0;
     }
 }
 
 void CameraShakeTask::updateInterval() {
-    if (mIsInfinite || _8 != 0) {
-        if (++_10 < _C) {
+    if (mIsInfinite || mTime != 0) {
+        if (++mDelayTimer < mDelay) {
             return;
         }
 
         CameraShakePattern* pattern = mPattern;
 
-        pattern->_4 = 0;
+        pattern->mFrame = 0;
         pattern->start();
     } else {
         mHasEnded = true;

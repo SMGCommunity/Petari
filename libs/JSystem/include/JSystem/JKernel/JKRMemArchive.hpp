@@ -12,7 +12,7 @@ public:
 
     virtual void removeResourceAll();
     virtual bool removeResource(void*);
-    virtual s32 getExpandedResSize(const void*) const;
+    virtual u32 getExpandedResSize(const void*) const;
     virtual void* fetchResource(SDIFileEntry*, unsigned long*);
     virtual void* fetchResource(void*, unsigned long, SDIFileEntry*, unsigned long*);
 
