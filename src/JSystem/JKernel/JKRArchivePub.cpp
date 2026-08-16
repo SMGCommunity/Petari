@@ -103,7 +103,7 @@ u32 JKRArchive::readResource(void* a1, unsigned long a2, unsigned long a3, const
 }
 
 void JKRArchive::removeResourceAll() {
-    if (mInfoBlock != nullptr && mMountMode != MOUNT_MODE_DVD) {
+    if (mInfoBlock != nullptr && mMountMode != MOUNT_MODE_MEM) {
         SDIFileEntry* current = mFiles;
         for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
             if (current->mFileData != nullptr) {
@@ -234,12 +234,14 @@ JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* pHeap) {
     return nullptr;
 }
 
-void JKRArchive::mount(const char* pName, EMountMode mountMode, JKRHeap* pHeap, EMountDirection mountDir) {
+JKRArchive* JKRArchive::mount(const char* pName, EMountMode mountMode, JKRHeap* pHeap, EMountDirection mountDir) {
     s32 entryNum = DVDConvertPathToEntrynum(pName);
 
-    if (entryNum >= 0) {
-        mount(entryNum, mountMode, pHeap, mountDir);
+    if (entryNum < 0) {
+        return nullptr;
     }
+
+    return mount(entryNum, mountMode, pHeap, mountDir);
 }
 
 JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* pHeap, EMountDirection mountDir) {

@@ -130,7 +130,7 @@ public:
 
     static JKRArchive* check_mount_already(s32);
     static JKRArchive* check_mount_already(s32, JKRHeap*);
-    static void mount(const char*, EMountMode, JKRHeap*, EMountDirection);
+    static JKRArchive* mount(const char*, EMountMode, JKRHeap*, EMountDirection);
     static JKRArchive* mount(s32, EMountMode, JKRHeap*, EMountDirection);
     bool getDirEntry(SDirEntry*, u32) const;
     void* getIdxResource(u32);
