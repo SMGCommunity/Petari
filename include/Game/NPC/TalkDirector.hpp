@@ -20,7 +20,7 @@ public:
 
     void setDrawSyncToken();
 
-    /* 0x04 */ u16 _4;
+    /* 0x04 */ u16 mDrawSync;
     /* 0x06 */ u16 _6;
     /* 0x08 */ u32 _8;
     /* 0x0C */ TVec2f mScreenPos;
