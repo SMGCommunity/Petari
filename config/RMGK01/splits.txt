@@ -2183,7 +2183,7 @@ Game/Camera/CameraTrundle.cpp:
 
 Game/Camera/CameraTwistedPassage.cpp:
 	.text       start:0x800B35C4 end:0x800B3C48
-	.data       start:0x80576970 end:0x805769E0
+	.data       start:0x80576970 end:0x805769C8
 	.sdata2     start:0x806B9AA8 end:0x806B9AC8
 
 Game/Camera/CameraViewInterpolator.cpp:
@@ -2194,7 +2194,7 @@ Game/Camera/CameraViewInterpolator.cpp:
 Game/Camera/CameraWaterFollow.cpp:
 	.text       start:0x800B4B0C end:0x800B52D0
 	.rodata     start:0x80531980 end:0x80531988
-	.data       start:0x805769E0 end:0x80576A38
+	.data       start:0x805769C8 end:0x80576A38
 	.sdata2     start:0x806B9B20 end:0x806B9B50
 
 Game/Camera/CameraWaterPlanet.cpp:
