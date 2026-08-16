@@ -31,6 +31,9 @@ namespace {
     TalkDirector* getTalkDirector() {
         return MR::getSceneObj< TalkDirector >(SceneObj_TalkDirector);
     }
+
+    static const f32 sTalkDistanceScale = 1.0f;
+    static const f32 sNearScale = 1.2f;
 };  // namespace
 
 namespace NrvTalkDirector {
@@ -140,7 +143,7 @@ bool TalkDirector::request(TalkMessageCtrl* pArg1, bool force) {
             mMsgCtrl = pArg1;
         }
     } else {
-        f32 scale = var31 ? 1.2f : 1.0f;
+        f32 scale = var31 ? ::sNearScale : ::sTalkDistanceScale;
         f32 talkDistance = pArg1->mTalkDistance;
 
         if (!pArg1->isNearPlayer(scale * talkDistance)) {
