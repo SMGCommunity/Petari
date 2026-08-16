@@ -34,7 +34,7 @@ namespace MR {
     JKRSolidHeap* getSceneHeapGDDR3();
     JKRHeap* getHeapNapa(const JKRHeap* pHeap);
     JKRHeap* getHeapGDDR3(const JKRHeap* pHeap);
-    void becomeCurrentHeap(JKRHeap* pHeap);
+    void becomeCurrentHeap(JKRHeap* pHeap) NO_INLINE;
     bool isEqualCurrentHeap(JKRHeap* pHeap);
     void adjustHeapSize(JKRExpHeap* pHeap, const char* pParam2);
 

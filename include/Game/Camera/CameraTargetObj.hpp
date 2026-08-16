@@ -87,14 +87,12 @@ public:
     virtual void resetStatus() {
     }
 
-    bool mCameraWall;  // 0xC
-    u8 _D[3];
+    /* 0xC */ bool mCameraWall;
 };
 
 class CameraTargetActor : public CameraTargetObj {
 public:
     CameraTargetActor(const char*);
-    virtual ~CameraTargetActor();
 
     virtual void movement();
 
@@ -106,21 +104,24 @@ public:
     virtual const TVec3f& getGroundPos() const;
     virtual const TVec3f& getGravityVector() const;
 
-    virtual f32 getRadius() const;
+    virtual f32 getRadius() const {
+        return 150.0f;
+    }
     virtual CubeCameraArea* getCubeCameraArea() const;
     virtual Triangle* getGroundTriangle() const;
 
-    const LiveActor* mActor;      // 0x10
-    TVec3f mUp;                   // 0x14
-    TVec3f mFront;                // 0x20
-    TVec3f mSide;                 // 0x2C
-    CubeCameraArea* mCameraArea;  // 0x38
+    /* 0x10 */ const LiveActor* mActor;
+    /* 0x14 */ TVec3f mUp;
+    /* 0x20 */ TVec3f mFront;
+    /* 0x2C */ TVec3f mSide;
+    /* 0x38 */ CubeCameraArea* mCameraArea;
 };
 
 class CameraTargetPlayer : public CameraTargetObj {
 public:
     CameraTargetPlayer(const char*);
-    virtual ~CameraTargetPlayer();
+
+    virtual void movement();
 
     virtual const TVec3f& getPosition() const;
     virtual const TVec3f& getUpVec() const;
@@ -146,17 +147,16 @@ public:
     virtual bool isDebugMode() const;
     virtual TPos3f* getMapBaseMtx() const;
 
-    const MarioActor* mActor;     // 0x10
-    TVec3f mSide;                 // 0x14
-    TVec3f mUp;                   // 0x20
-    TVec3f mFront;                // 0x2C
-    TVec3f mGravity;              // 0x38
-    TVec3f mGroundPos;            // 0x44
-    CubeCameraArea* mCameraArea;  // 0x50
-    Triangle* mGroundTriangle;    // 0x54
-    u16 _58;
-    bool _5A;
-    u8 _5B;
+    /* 0x10 */ const MarioActor* mActor;
+    /* 0x14 */ TVec3f mSide;
+    /* 0x20 */ TVec3f mUp;
+    /* 0x2C */ TVec3f mFront;
+    /* 0x38 */ TVec3f mGravity;
+    /* 0x44 */ TVec3f mGroundPos;
+    /* 0x50 */ CubeCameraArea* mCameraArea;
+    /* 0x54 */ Triangle* mGroundTriangle;
+    /* 0x58 */ u16 mPlayerMovementTimer;
+    /* 0x5A */ bool mIsPlayerMoving;
 };
 
 class CameraTargetDemoActor : public LiveActor {
@@ -164,9 +164,11 @@ public:
     CameraTargetDemoActor(MtxPtr, const char*);
 
     virtual void init(const JMapInfoIter& rIter);
-    virtual MtxPtr getBaseMtx() const;
+    virtual MtxPtr getBaseMtx() const {
+        return (const MtxPtr)mMtx.mMtx;
+    }
 
     void setTargetMtx(MtxPtr);
 
-    TPos3f mMtx;
+    /* 0x8C */ TPos3f mMtx;
 };

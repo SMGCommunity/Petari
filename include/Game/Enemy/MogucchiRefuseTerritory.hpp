@@ -6,4 +6,5 @@ class MogucchiRefuseTerritory : public LiveActor {
 public:
     MogucchiRefuseTerritory(const char*);
     virtual ~MogucchiRefuseTerritory();
+    virtual void init(const JMapInfoIter&);
 };

@@ -397,7 +397,7 @@ namespace CameraLocalUtil {
 
         if (viewDist < push) {
             if (MR::isNearZero(viewDir)) {
-                MR::getCameraInvViewMtx()->getZDir(viewDir);
+                MR::getCameraInvViewMtx().getZDir(viewDir);
                 viewDir.negate();
             }
             viewDir.setLength(push);

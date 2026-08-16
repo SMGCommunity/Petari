@@ -15,6 +15,33 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sTurnPlayerDegree = 6.0f;
+    static const s32 sWaitTime = 60;
+    // static const _32 sNextMoveDistance = _;
+    // static const _32 sChangeTargetDistance = _;
+    // static const _32 sMoveAccel = _;
+    // static const _32 sMoveFreq = _;
+    // static const _32 sBrakeFreq = _;
+    static const s32 sMoveTime = 90;
+    // static const _32 sChangeTargetTime = _;
+    static const s32 sFinalMoveTime = 40;
+    // static const _32 sFinalChangeTargetTime = _;
+    // static const _32 sHideMoveAccel = _;
+    // static const _32 sHideMoveAccelLast = _;
+    // static const _32 sHideMoveFreq = _;
+    static const s32 sAttackWaitTime = 60;
+    static const s32 sAttackTime = 30;
+    // static const _32 sFinalAttackWaitTime = _;
+    // static const _32 sFinalAttackTime = _;
+    // static const _32 sAttackWaitFreq = _;
+    static const s32 sShootTiming = 23;
+    // static const _32 sWandLength = _;
+    static const f32 sBeamSpeed = 20.0f;
+    static const s32 sRecoverMoveStartTime = 60;
+    static const s32 sSwingSeTiming = 12;
+};  // namespace
+
 namespace NrvBossKameckStateBattle {
     NEW_NERVE(BossKameckStateBattleNrvWait, BossKameckStateBattle, Wait);
     NEW_NERVE(BossKameckStateBattleNrvMove, BossKameckStateBattle, Move);
@@ -30,18 +57,9 @@ namespace NrvBossKameckStateBattle {
     NEW_NERVE(BossKameckStateBattleNrvGuard, BossKameckStateBattle, Guard);
 };  // namespace NrvBossKameckStateBattle
 
-BossKameckStateBattle::BossKameckStateBattle(BossKameck* pBoss) : ActorStateBase< BossKameck >("ボスカメック戦闘状態", pBoss) {
-    mMoveRail = nullptr;
-    mBattlePattarn = nullptr;
-    mBeam = nullptr;
-    mBeamListener = nullptr;
-    _20.set(0.0f);
-    _2C = -1;
-    _30 = 1;
-    _34 = 0;
-    _38 = 0;
-    _3C = 0;
-    _3D = 0;
+BossKameckStateBattle::BossKameckStateBattle(BossKameck* pBoss)
+    : ActorStateBase< BossKameck >("ボスカメック戦闘状態", pBoss), mMoveRail(), mBattlePattarn(), mBeam(), mBeamEventListener(),
+      _20(0.0f, 0.0f, 0.0f), _2C(-1), _30(1), _34(), _38(), mIsFinal(), mIsVs2() {
 }
 
 void BossKameckStateBattle::init() {
@@ -50,6 +68,7 @@ void BossKameckStateBattle::init() {
 
 void BossKameckStateBattle::appear() {
     mIsDead = false;
+
     startMove();
     MR::onCalcGravity(mHost);
 }
@@ -58,8 +77,8 @@ void BossKameckStateBattle::setMoveRail(BossKameckMoveRail* pMoveRail) {
     mMoveRail = pMoveRail;
 }
 
-void BossKameckStateBattle::setBattlePattarn(BossKameckBattlePattarn* pPattarn) {
-    mBattlePattarn = pPattarn;
+void BossKameckStateBattle::setBattlePattarn(BossKameckBattlePattarn* pBattlePattarn) {
+    mBattlePattarn = pBattlePattarn;
 }
 
 void BossKameckStateBattle::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -102,6 +121,7 @@ bool BossKameckStateBattle::requestDamage(HitSensor* pSender, HitSensor* pReceiv
         mHost->killAllBeam();
         MR::emitEffectHitBetweenSensors(mHost, pSender, pReceiver, 0.0f, "HitMarkNormal");
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvDamage::sInstance);
+
         return true;
     }
 
@@ -116,6 +136,7 @@ bool BossKameckStateBattle::requestGuard(HitSensor* pSender, HitSensor* pReceive
         }
 
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvGuard::sInstance);
+
         return true;
     }
 
@@ -162,13 +183,11 @@ bool BossKameckStateBattle::tryChargeBram() {
         return false;
     }
 
-    TVec3f v6;
-    v6.set(0.0f);
-    MtxPtr jointMtx = MR::getJointMtx(mHost, "PowerStarC");
-    mBeam = MR::startFollowKameckBeam(mBattlePattarn->goNextPattarn(), jointMtx, 1.0f, v6, mBeamListener);
+    mBeam = MR::startFollowKameckBeam(mBattlePattarn->goNextPattarn(), MR::getJointMtx(mHost, "PowerStarC"), 1.0f, TVec3f(0.0f, 0.0f, 0.0f),
+                                      mBeamEventListener);
 
     if (mBeam != nullptr) {
-        mBeam->setEventListener(mHost->mBeamListener);
+        mBeam->setEventListener(mHost->mBeamEventListener);
 
         if (mHost->getLivingKameckNum() == 0) {
             _38++;
@@ -183,7 +202,7 @@ bool BossKameckStateBattle::tryChargeBram() {
 }
 
 void BossKameckStateBattle::startMove() {
-    if (_3D) {
+    if (mIsVs2) {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveStart::sInstance);
     } else {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvMove::sInstance);
@@ -197,7 +216,7 @@ void BossKameckStateBattle::exeWait() {
 
     MR::attenuateVelocity(mHost, 0.96f);
 
-    if (MR::isGreaterStep(this, 60)) {
+    if (MR::isGreaterStep(this, ::sWaitTime)) {
         startMove();
     }
 }
@@ -209,12 +228,11 @@ void BossKameckStateBattle::exeMove() {
         selectPosition();
     }
 
-    f32 mag = 100.0f * mHost->mVelocity.length();
-    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_FLOAT", mag);
+    MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_FLOAT", mHost->mVelocity.length() * 100.0f);
 
-    s32 v2 = (_3C) ? 40 : 90;
+    s32 step = mIsFinal ? ::sFinalMoveTime : ::sMoveTime;
 
-    if (MR::isLessEqualStep(this, v2)) {
+    if (MR::isLessEqualStep(this, step)) {
         if (MR::isNear(mHost, _20, 100.0f) || MR::isNearPlayer(_20, 400.0f)) {
             selectPosition();
         }
@@ -223,10 +241,11 @@ void BossKameckStateBattle::exeMove() {
         MR::addVelocityAwayFromTarget(boss, *MR::getPlayerPos(), 1.5f, 0.0f, 0.0f, 500.0f);
     }
 
-    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, 6.0f);
+    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
     MR::addVelocityMoveToTarget(mHost, _20, 0.09f, 0.9f, 0.0f, 400.0f);
     MR::addVelocityKeepHeight(mHost, _20, 0.0f, 0.5f, 50.0f);
     MR::attenuateVelocity(mHost, 0.96f);
+
     if (tryAttackWait()) {
         return;
     }
@@ -239,7 +258,7 @@ void BossKameckStateBattle::exeHideMoveStart() {
     }
 
     MR::zeroVelocity(mHost);
-    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, 6.0f);
+    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
 
     if (MR::isActionEnd(mHost)) {
         MR::startSound(mHost, "SE_BM_KAMECK_HIDE_SMOKE");
@@ -259,20 +278,21 @@ void BossKameckStateBattle::exeHideMove() {
 
     f32 v2;
 
-    if (_3C) {
+    if (mIsFinal) {
         v2 = 20.0f;
     } else {
         v2 = 15.0f;
     }
 
-    MR::addVelocityMoveToTarget(mHost, _20, (0.1f * v2), v2, 0.0f, 400.0f);
+    MR::addVelocityMoveToTarget(mHost, _20, v2 * 0.1f, v2, 0.0f, 400.0f);
     MR::addVelocityKeepHeight(mHost, _20, 0.0f, 0.5f, 50.0f);
     MR::attenuateVelocity(mHost, 0.9f);
-    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, 6.0f);
+    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
 
     if (MR::isNear(mHost, _20, 100.0f)) {
         s32 v3 = _30;
         s32 v4 = _34;
+
         if (v4 <= v3) {
             setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvHideMoveEnd::sInstance);
         } else {
@@ -296,7 +316,7 @@ void BossKameckStateBattle::exeHideMoveEnd() {
     }
 
     MR::zeroVelocity(mHost);
-    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, 6.0f);
+    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
 
     if (MR::isActionEnd(mHost)) {
         if (trySummonKameck()) {
@@ -315,7 +335,7 @@ void BossKameckStateBattle::exeSummonKameckWait() {
     }
 
     MR::zeroVelocity(mHost);
-    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, 6.0f);
+    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
 
     if (MR::isActionEnd(mHost)) {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvSummonKameck::sInstance);
@@ -339,12 +359,12 @@ void BossKameckStateBattle::exeAttackWait() {
     }
 
     MR::startLevelSound(mHost, "SE_BM_LV_KAMECK_STAFF_TURN");
-    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, 6.0f);
+    MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
     MR::addVelocityMoveToTarget(mHost, _20, 0.09f, 0.9f, 0.0f, 400.0f);
     MR::addVelocityKeepHeight(mHost, _20, 0.0f, 0.2f, 50.0f);
     MR::attenuateVelocity(mHost, 0.9f);
 
-    if (MR::isGreaterStep(this, 60)) {
+    if (MR::isGreaterStep(this, ::sAttackWaitTime)) {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvAttack::sInstance);
     }
 }
@@ -354,13 +374,13 @@ void BossKameckStateBattle::exeAttack() {
         MR::startAction(mHost, "Attack");
     }
 
-    if (MR::isStep(this, 12)) {
+    if (MR::isStep(this, ::sSwingSeTiming)) {
         MR::startSound(mHost, "SE_BM_KAMECK_STAFF_SWING");
         MR::startSound(mHost, "SE_BV_KAMECK_STAFF_SWING");
     }
 
-    if (MR::isStep(this, 23)) {
-        mBeam->requestShootToPlayerGround(20.0f);
+    if (MR::isStep(this, ::sShootTiming)) {
+        mBeam->requestShootToPlayerGround(::sBeamSpeed);
         mHost->mActorList->addActor(mBeam);
         mBeam = nullptr;
         MR::startSound(mHost, "SE_BM_KAMECK_STAFF_EFFECT");
@@ -368,7 +388,7 @@ void BossKameckStateBattle::exeAttack() {
 
     MR::attenuateVelocity(mHost, 0.96f);
 
-    if (MR::isGreaterStep(this, 30)) {
+    if (MR::isGreaterStep(this, ::sAttackTime)) {
         setNerve(&NrvBossKameckStateBattle::BossKameckStateBattleNrvWait::sInstance);
     }
 }
@@ -377,7 +397,7 @@ void BossKameckStateBattle::exeDamage() {
     if (MR::isFirstStep(this)) {
         MR::zeroVelocity(mHost);
 
-        if (_3C) {
+        if (mIsFinal) {
             MR::stopStageBGM(30);
             MR::startAction(mHost, "Down");
             MR::startSound(mHost, "SE_BV_KAMECK_LAST_DAMAGE");
@@ -400,14 +420,14 @@ void BossKameckStateBattle::exeRecover() {
         MR::startSound(mHost, "SE_BM_KAMECK_RECOVER");
     }
 
-    if (MR::isGreaterStep(this, 60)) {
-        MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, 6.0f);
+    if (MR::isGreaterStep(this, ::sRecoverMoveStartTime)) {
+        MR::turnDirectionToPlayerDegree(mHost, &mHost->_A0, ::sTurnPlayerDegree);
         MR::addVelocityMoveToTarget(mHost, _20, 0.09f, 0.9f, 0.0f, 400.0f);
         MR::addVelocityKeepHeight(mHost, _20, 0.0f, 0.5f, 50.0f);
         MR::attenuateVelocity(mHost, 0.96f);
     }
 
-    if (MR::isGreaterStep(this, 60)) {
+    if (MR::isGreaterStep(this, ::sRecoverMoveStartTime)) {
         if (MR::isNear(mHost, _20, 100.0f)) {
             MR::validateHitSensors(mHost);
             startMove();

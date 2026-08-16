@@ -161,7 +161,7 @@ void Kanina::init(const JMapInfoIter& rIter) {
         initForType(rIter, KaninaType_Blue);
     }
 
-    MR::initStarPointerTarget(this, ::sSensorRadius, TVec3f::makeZeroVec());
+    MR::initStarPointerTarget(this, ::sSensorRadius);
     initNerve(&NrvKanina::HostTypeAppear::sInstance);
     MR::needStageSwitchReadAppear(this, rIter);
     MR::syncStageSwitchAppear(this);

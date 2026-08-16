@@ -5,6 +5,8 @@
 
 class BindSphere {
 public:
+    BindSphere(const TVec3f&, f32);
+
     TVec3f _0;
     f32 _C;
 };
@@ -15,7 +17,7 @@ public:
 
     bool isInPoint(const TVec3f&) const;
     void calcVertexPosition();
-    void calcGeneratixLength();
+    void calcGeneratrixLength();
     void setPosition(const TVec3f&);
     void setDirection(const TVec3f&);
 

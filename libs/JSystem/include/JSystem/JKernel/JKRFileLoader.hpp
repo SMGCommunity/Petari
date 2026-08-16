@@ -22,7 +22,7 @@ public:
     virtual s32 getResSize(const void*) const = 0;
     virtual s32 countFile(const char*) const = 0;
     virtual JKRArcFinder* getFirstFile(const char*) const = 0;
-    virtual s32 getExpandedResSize(const void*) const = 0;
+    virtual u32 getExpandedResSize(const void*) const = 0;
 
     static void* getGlbResource(const char*, JKRFileLoader*);
     static void initializeVolumeList();

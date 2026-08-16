@@ -36,15 +36,22 @@ void BossKameck_FORCE_MATCH_SDATA2() {
     (void)40.0f;
 }
 
-BossKameck::BossKameck(const char* pName, const char* pType)
-    : LiveActor(pName), _8C(pType), _90(0.0f, 1.0f), _A0(0, 0, 1), mSequencer(nullptr), mKameckHolder(nullptr), mJointCtrl(nullptr),
-      mActorList(nullptr), mBeamListener(nullptr), mMoveRail(nullptr), _C4(0), _C8(0, 0, 0), _D4(-1) {
-    mBeamListener = new BossKameckBeamEventListener(this);
+namespace {
+    static const f32 sFrontVecBlendRate = 0.2f;
+    static const f32 sUpVecBlendRate = 0.04f;
+    // static const f32 sMaxBendAccel = _;
+    // static const f32 sMaxBendPose = _;
+};  // namespace
+
+BossKameck::BossKameck(const char* pName, const char* pModelName)
+    : LiveActor(pName), mModelName(pModelName), _90(0.0f, 1.0f), _A0(0, 0, 1), mSequencer(), mKameckHolder(), mJointCtrl(), mActorList(),
+      mBeamEventListener(), mMoveRail(), mMoveRailNum(), _C8(0, 0, 0), mObjArg7(-1) {
+    mBeamEventListener = new BossKameckBeamEventListener(this);
     mActorList = new ActiveActorList(8);
 }
 
 BossKameckMoveRail* BossKameck::getMoveRail(s32 no) {
-    for (s32 i = 0; i < _C4; i++) {
+    for (s32 i = 0; i < mMoveRailNum; i++) {
         if (mMoveRail[i]->_8C == no) {
             return mMoveRail[i];
         }
@@ -143,11 +150,11 @@ void BossKameck::endDemo() {
     mJointCtrl->startDynamicCtrl("Cap1", -1);
 }
 
-void BossKameck::setPose(MtxPtr mtx) {
-    TPos3f pos;
-    pos.setInline(mtx);
-    pos.getQuat(_90);
-    pos.getTrans(mPosition);
+void BossKameck::setPose(MtxPtr pPoseMtx) {
+    TPos3f mtx;
+    mtx.set(pPoseMtx);
+    mtx.getQuat(_90);
+    mtx.getTrans(mPosition);
     _90.getZDir(_A0);
 }
 
@@ -174,12 +181,12 @@ void BossKameck::updatePose() {
         }
     }
 
-    MR::blendQuatUpFront(&_90, v19, _A0, 0.04f, 0.2f);
+    MR::blendQuatUpFront(&_90, v19, _A0, ::sUpVecBlendRate, ::sFrontVecBlendRate);
 }
 
 void BossKameck::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm(_8C, nullptr, false);
+    initModelManagerWithAnm(mModelName, nullptr, false);
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
     MR::makeQuatAndFrontFromRotate(&_90, &_A0, this);
@@ -195,10 +202,10 @@ void BossKameck::init(const JMapInfoIter& rIter) {
     MR::createKameckBeamTurtleHolder();
     initKameckHolder(rIter);
     initMoveRail(rIter);
-    MR::getJMapInfoArg7WithInit(rIter, &_D4);
+    MR::getJMapInfoArg7WithInit(rIter, &mObjArg7);
 
-    if (_D4 != -1) {
-        MR::declareCameraRegisterVec(this, _D4, &mPosition);
+    if (mObjArg7 != -1) {
+        MR::declareCameraRegisterVec(this, mObjArg7, &mPosition);
     }
 
     mJointCtrl = new ActorJointCtrl(this);
@@ -216,66 +223,70 @@ void BossKameck::init(const JMapInfoIter& rIter) {
 
 void BossKameck::initKameckHolder(const JMapInfoIter& rIter) {
     s32 childNum = MR::getChildObjNum(rIter);
-    s32 kameckChildNum = 0;
+    s32 childKameckNum = 0;
     const char* objName;
 
     for (s32 i = 0; i < childNum; i++) {
         MR::getChildObjName(&objName, rIter, i);
 
         if (MR::isEqualString(objName, "ChildKameck")) {
-            kameckChildNum++;
+            childKameckNum++;
         }
     }
 
-    if (kameckChildNum > 0) {
-        mKameckHolder = new KameckHolder(kameckChildNum);
+    if (childKameckNum <= 0) {
+        return;
+    }
 
-        for (s32 j = 0; j < childNum; j++) {
-            MR::getChildObjName(&objName, rIter, j);
+    mKameckHolder = new KameckHolder(childKameckNum);
 
-            if (MR::isEqualString(objName, "ChildKameck")) {
-                Kameck* kameck = new Kameck("カメック[保持用]");
-                kameck->setBeamType(2);
-                MR::initChildObj(kameck, rIter, j);
-                kameck->makeActorDead();
-                mKameckHolder->registerActor(kameck);
-            }
+    for (s32 j = 0; j < childNum; j++) {
+        MR::getChildObjName(&objName, rIter, j);
+
+        if (MR::isEqualString(objName, "ChildKameck")) {
+            Kameck* kameck = new Kameck("カメック[保持用]");
+            kameck->setBeamType(2);
+            MR::initChildObj(kameck, rIter, j);
+            kameck->makeActorDead();
+            mKameckHolder->registerActor(kameck);
         }
     }
 }
 
 void BossKameck::initMoveRail(const JMapInfoIter& rIter) {
-    s32 childNum = MR::getChildObjNum(rIter);
-    _C4 = 0;
+    s32 childObjNum = MR::getChildObjNum(rIter);
+    mMoveRailNum = 0;
     const char* objName;
 
-    for (s32 i = 0; i < childNum; i++) {
+    for (s32 i = 0; i < childObjNum; i++) {
         MR::getChildObjName(&objName, rIter, i);
 
         if (MR::isEqualString(objName, "BossKameckMoveRail")) {
-            _C4++;
+            mMoveRailNum++;
         }
     }
 
-    if (_C4 > 0) {
-        mMoveRail = new BossKameckMoveRail*[_C4];
-        s32 curRails = 0;
+    if (mMoveRailNum <= 0) {
+        return;
+    }
 
-        for (s32 j = 0; j < childNum; j++) {
-            MR::getChildObjName(&objName, rIter, j);
+    mMoveRail = new BossKameckMoveRail*[mMoveRailNum];
 
-            if (MR::isEqualString(objName, "BossKameckMoveRail")) {
-                mMoveRail[curRails] = new BossKameckMoveRail("ボスカメック移動経路");
-                MR::initChildObj(mMoveRail[curRails], rIter, j);
-                curRails++;
-            }
+    s32 moveRailNo = 0;
+
+    for (s32 j = 0; j < childObjNum; j++) {
+        MR::getChildObjName(&objName, rIter, j);
+
+        if (MR::isEqualString(objName, "BossKameckMoveRail")) {
+            mMoveRail[moveRailNo] = new BossKameckMoveRail("ボスカメック移動経路");
+            MR::initChildObj(mMoveRail[moveRailNo], rIter, j);
+            moveRailNo++;
         }
     }
 }
 
 void BossKameck::appearStarPieceToUp(s32 num) {
-    TVec3f neg = -mGravity;
-    MR::appearStarPieceToDirection(this, mPosition, neg, num, 30.0f, 40.0f, false);
+    MR::appearStarPieceToDirection(this, mPosition, -mGravity, num, 30.0f, 40.0f, false);
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
@@ -306,14 +317,20 @@ void BossKameck::hitBeam(s32 beamType) {
 
 namespace MR {
     NameObj* createBossKameck1(const char* pName) {
-        BossKameck* boss = new BossKameck(pName, "BossKameck");
-        boss->mSequencer = new BossKameckVs1();
-        return boss;
+        BossKameck* bossKameck1;
+
+        bossKameck1 = new BossKameck(pName, "BossKameck");
+        bossKameck1->mSequencer = new BossKameckVs1();
+
+        return bossKameck1;
     }
 
     NameObj* createBossKameck2(const char* pName) {
-        BossKameck* boss = new BossKameck(pName, "BossKameck");
-        boss->mSequencer = new BossKameckVs2();
-        return boss;
+        BossKameck* bossKameck2;
+
+        bossKameck2 = new BossKameck(pName, "BossKameck");
+        bossKameck2->mSequencer = new BossKameckVs2();
+
+        return bossKameck2;
     }
 };  // namespace MR

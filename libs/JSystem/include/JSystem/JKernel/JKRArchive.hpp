@@ -115,7 +115,7 @@ public:
     virtual s32 getResSize(const void*) const;
     virtual s32 countFile(const char*) const;
     JKRArcFinder* getFirstFile(const char*) const;
-    virtual s32 getExpandedResSize(const void*) const;
+    virtual u32 getExpandedResSize(const void*) const;
     virtual void* fetchResource(SDIFileEntry*, u32*) = 0;
     virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
     virtual void setExpandSize(SDIFileEntry*, u32);
@@ -150,7 +150,7 @@ public:
     /* 0x44 */ RarcInfoBlock* mInfoBlock;
     /* 0x48 */ SDIDirEntry* mDirs;
     /* 0x4C */ SDIFileEntry* mFiles;
-    /* 0x50 */ u32* mExpandSizes;
+    /* 0x50 */ s32* mExpandSizes;
     /* 0x54 */ char* mStringTable;
     u32 _58;
     int _5C;

@@ -100,7 +100,7 @@ namespace {
     static const f32 hSpinSeMinNoteLength = 0.0f;
     static const f32 hSpinSeMaxNoteLength = 1.0f;
     static const f32 hSpinSeLimitMinVolume = 40.0f;
-}  // namespace
+};  // namespace
 
 namespace NrvStringSpider {
     NEW_NERVE_ONEND(HostTypeNrvWait, StringSpider, Wait, Wait);
@@ -653,7 +653,7 @@ void StringSpider::exeDpdGripped() {
         }
     }
 
-    s32 channel = 0;
+    s32 channel = WPAD_CHAN0;
     if (!MR::testCorePadButtonA(channel = *MR::getStarPointerLastPointedPort(this))) {
         setNerve(&NrvStringSpider::HostTypeNrvSearch::sInstance);
     } else {

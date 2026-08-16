@@ -26,7 +26,7 @@ CameraFooFighter::CameraFooFighter(const char* pName)
 void CameraFooFighter::reset() {
     mCollideCount = 0;
     _58 = _54;
-    mTargetLastMoveDir.zeroInline();
+    mTargetLastMoveDir.zero();
 
     CameraLocalUtil::setWatchPos(this, CameraLocalUtil::getWatchPos(mCameraMan));
     CameraLocalUtil::setPos(this, CameraLocalUtil::getPos(mCameraMan));
@@ -105,8 +105,8 @@ CameraTargetObj* CameraFooFighter::calc() {
         TQuat4f rot2;
         mtx2.getQuat(rot2);
 
-        TQuat4f rotQ = rot2;
-        rotQ.slerp(rot1, ::sRateWhenBraking);
+        TQuat4f rotQ;
+        rotQ.slerp(rot2, rot1, ::sRateWhenBraking);
 
         mtx2.makeQuat(rotQ);
         mtx2.getXDir(newSide);

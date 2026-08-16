@@ -11,5 +11,5 @@ public:
 
     void exeWait();
 
-    /* 0x8C */ const char* mBossName;
+    /* 0x8C */ const char* mModelName;
 };

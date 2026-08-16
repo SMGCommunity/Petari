@@ -4,11 +4,11 @@
 #include <JSystem/JGeometry/TVec.hpp>
 
 class BossKameck;
-class BossKameckMoveRail;
 class BossKameckBattlePattarn;
-class KameckBeamEventListener;
+class BossKameckMoveRail;
 class HitSensor;
 class KameckBeam;
+class KameckBeamEventListener;
 
 class BossKameckStateBattle : public ActorStateBase< BossKameck > {
 public:
@@ -45,15 +45,15 @@ public:
     bool isEnableDamage() const;
     bool isEnableGuard() const;
 
-    BossKameckMoveRail* mMoveRail;            // 0x10
-    BossKameckBattlePattarn* mBattlePattarn;  // 0x14
-    KameckBeam* mBeam;                        // 0x18
-    KameckBeamEventListener* mBeamListener;   // 0x1C
-    TVec3f _20;
-    s32 _2C;
-    s32 _30;
-    s32 _34;
-    s32 _38;
-    u8 _3C;
-    u8 _3D;
+    /* 0x10 */ BossKameckMoveRail* mMoveRail;
+    /* 0x14 */ BossKameckBattlePattarn* mBattlePattarn;
+    /* 0x18 */ KameckBeam* mBeam;
+    /* 0x1C */ KameckBeamEventListener* mBeamEventListener;
+    /* 0x20 */ TVec3f _20;
+    /* 0x2C */ s32 _2C;
+    /* 0x30 */ s32 _30;
+    /* 0x34 */ s32 _34;
+    /* 0x38 */ s32 _38;
+    /* 0x3C */ bool mIsFinal;
+    /* 0x3D */ bool mIsVs2;
 };

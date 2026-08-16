@@ -217,7 +217,7 @@ f32 CameraFollow::getMagnitudeOfMovingRound() const {
 
     TVec3f moveH = move.killElement(CameraLocalUtil::getTarget(this)->getUpVec());
     if (CameraLocalUtil::getTarget(this)->isJumping()) {
-        moveH.zeroInline();
+        moveH.zero();
     }
 
     return mAngleYRoundSpeed * MR::clamp(moveH.length() / ::sCameraRadius, 0.0f, 1.0f);
