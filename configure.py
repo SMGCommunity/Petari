@@ -356,6 +356,7 @@ cflags_sdk = [
 cflags_sdk_exi = ["-O3" if flag == "-O4,p" else flag for flag in cflags_sdk]
 cflags_sdk_wpad = ["-fp off" if flag == "-fp hardware" else flag for flag in cflags_sdk]
 cflags_sdk_net = ["-O4,s" if flag == "-O4,p" else flag for flag in cflags_sdk]
+cflags_sdk_aralt = ["-O4,s" if flag == "-O4,p" else flag for flag in cflags_sdk]
 
 cflags_rfl = [
     "-nodefaults",
@@ -2494,7 +2495,9 @@ config.libs = [
         ],
     ),
     SDKLib("ai", [Object(NonMatching, "RVL_SDK/ai/ai.c")]),
-    SDKLib("aralt", [Object(NonMatching, "RVL_SDK/aralt/aralt.c")]),
+    SDKLib(
+        "aralt", [Object(NonMatching, "RVL_SDK/aralt/aralt.c", cflags=cflags_sdk_aralt)]
+    ),
     SDKLib("arc", [Object(NonMatching, "RVL_SDK/arc/arc.c")]),
     SDKLib(
         "ax",
