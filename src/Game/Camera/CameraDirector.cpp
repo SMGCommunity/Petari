@@ -210,11 +210,11 @@ void CameraDirector::calcPose() {
     switchAntiOscillation();
 
     if (getCurrentCameraMan()->isCollisionOff()) {
-        mViewInterpolator->_7C = true;
+        mViewInterpolator->mIsCollisionOff = true;
     }
 
     if (getCurrentCameraMan()->isCorrectingErpPositionOff()) {
-        mViewInterpolator->_8A = false;
+        mViewInterpolator->mIsCorrectErpPositionOn = false;
     }
 
     if (getCurrentCameraMan()->isZeroFrameMoveOff()) {
@@ -233,14 +233,14 @@ void CameraDirector::calcPose() {
 }*/
 
 bool CameraDirector::isInterpolationOff() {
-    return getCurrentCameraMan()->isInterpolationOff() || mViewInterpolator->_9;
+    return getCurrentCameraMan()->isInterpolationOff() || mViewInterpolator->mIsForceCameraChange;
 }
 
 void CameraDirector::switchAntiOscillation() {
     if (isInterpolationOff()) {
-        mViewInterpolator->_8 = false;
+        mViewInterpolator->mIsAntiOscillation = false;
     } else {
-        mViewInterpolator->_8 = true;
+        mViewInterpolator->mIsAntiOscillation = true;
     }
 }
 
@@ -265,7 +265,7 @@ void CameraDirector::checkStartCondition() {
 }
 
 void CameraDirector::startEvent(s32 zoneID, const char* pName, const CameraTargetArg& rTargetArg, s32 a4) {
-    mViewInterpolator->_A = false;
+    mViewInterpolator->mIsInterpolationOff = false;
     removeEndEventAtLanding(zoneID, pName);
 
     if (getCurrentCameraMan() != mCameraManEvent) {
@@ -291,12 +291,12 @@ void CameraDirector::endEvent(s32 zoneID, const char* pName, bool a3, s32 a4) {
         if (!mCameraManEvent->isActive()) {
             pop();
 
-            if (!mViewInterpolator->_9 && a3 && getCurrentCameraMan() == mCameraManGame) {
+            if (!mViewInterpolator->mIsForceCameraChange && a3 && getCurrentCameraMan() == mCameraManGame) {
                 mCameraManGame->mPoseParam->copyFrom(*mPoseParam1);
                 mCameraManGame->mMatrix.set(MR::getCameraInvViewMtx());
             }
 
-            mViewInterpolator->_A = true;
+            mViewInterpolator->mIsInterpolationOff = true;
         }
     }
 }
@@ -321,11 +321,11 @@ void CameraDirector::requestToResetCameraMan() {
     mRequestCameraManReset = true;
 }
 
-void CameraDirector::setInterpolation(u32 a1) {
-    mViewInterpolator->setInterpolation(a1);
+void CameraDirector::setInterpolation(u32 time) {
+    mViewInterpolator->setInterpolation(time);
 
-    if (a1 == 0 && !_170) {
-        mViewInterpolator->_7C = true;
+    if (time == 0 && !_170) {
+        mViewInterpolator->mIsCollisionOff = true;
         mCover->cover(2);
     }
 }
@@ -444,7 +444,7 @@ bool CameraDirector::isInterpolatingNearlyEnd() const {
 }
 
 bool CameraDirector::isForceCameraChange() const {
-    return mViewInterpolator->_9;
+    return mViewInterpolator->mIsForceCameraChange;
 }
 
 f32 CameraDirector::getDefaultFovy() const {

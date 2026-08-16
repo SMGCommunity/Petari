@@ -847,7 +847,7 @@ namespace JGeometry {
         }
         void concat(const T& rSrc);
 
-        void invert(const TMatrix44< T >& rDest);
+        void invert(const TMatrix44< T >& rSrc);
 
         inline void mult(const TVec3f& rSrc, TVec3f& rDest) const {
             TVec4f pos(rSrc.x * this->mMtx[0][0] + rSrc.z * this->mMtx[0][2],
