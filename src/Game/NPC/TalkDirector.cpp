@@ -21,9 +21,9 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
-#include "JSystem/JUtility/JUTVideo.hpp"
-#include "revolution/gx/GXGet.h"
+#include <JSystem/JUtility/JUTVideo.hpp>
 #include <cstdio>
+#include <revolution/gx/GXGet.h>
 
 namespace {
     TalkDirector* getTalkDirector() {
