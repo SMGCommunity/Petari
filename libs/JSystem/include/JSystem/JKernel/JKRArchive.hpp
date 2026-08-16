@@ -92,12 +92,19 @@ public:
         inline CArcName() {
         }
 
-        const char* store(const char*);
+        CArcName(char const* data) {
+            this->store(data);
+        }
+        CArcName(char const** data, char endChar) {
+            *data = this->store(*data, endChar);
+        }
+
+        void store(const char*);
         const char* store(const char*, char);
 
         /* 0x0 */ u16 mHash;
         /* 0x2 */ u16 mLength;
-        /* 0x4 */ char mName[MAX_NAME_LENGTH + 1];
+        /* 0x4 */ char mName[256];
     };
 
     JKRArchive();
@@ -141,7 +148,7 @@ public:
     SDIFileEntry* findPtrResource(const void*) const;
     SDIFileEntry* findIdResource(u16) const;
 
-    static u32 sCurrentDirIndex;  // 0x806B7148
+    static u32 sCurrentDirID;  // 0x806B7148
 
     /* 0x38 */ JKRHeap* mHeap;
     /* 0x3C */ u8 mMountMode;
