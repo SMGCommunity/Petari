@@ -58,6 +58,8 @@ void TalkPeekZ::drawSyncCallback(u16 arg) {
         return;
     }
 
+    JUTVideo::getManager();
+    // Strange instruction flow
     if (!MR::isInRange(_C.y, 0.0f, JUTVideo::getManager()->getEfbHeight() - 1)) {
         return;
     }
@@ -213,41 +215,6 @@ bool TalkDirector::start(TalkMessageCtrl* pArg1, bool arg2, bool arg3, bool arg4
     return true;
 }
 
-bool TalkDirector::isInvalidTalk() const {
-    if (_4E) {
-        return true;
-    }
-
-    if (MR::isStarPointerModeBlueStarReady()) {
-        return true;
-    }
-
-    if (MR::isFirstPersonCamera()) {
-        return true;
-    }
-
-    return MR::isPlayerDead();
-}
-
-void TalkDirector::appearYesNoSelector(const TalkMessageCtrl* pArg) const {
-    const char* branchID = pArg->getBranchID();
-
-    char buff[256];
-    snprintf(buff, sizeof(buff), "Select_%s_Yes", branchID);
-
-    char buff2[256];
-    snprintf(buff2, sizeof(buff2), "Select_%s_No", branchID);
-
-    if (pArg->isSelectYesNo()) {
-        MR::resetYesNoSelectorSE();
-    } else {
-        MR::setYesNoSelectorSE("SE_SY_TALK_FOCUS_ITEM", "SE_SY_TALK_SELECT_YES", "SE_SY_TALK_SELECT_YES");
-    }
-
-    MR::requestMovementOn((LayoutActor*)MR::getGameSceneLayoutHolder()->mYesNoLayout);
-    MR::appearYesNoSelector(buff, buff2, nullptr);
-}
-
 void TalkDirector::updateMessage() {
     mBalloonHolder->update();
     mStateHolder->update();
@@ -274,7 +241,10 @@ void TalkDirector::updateMessage() {
 
     if (_3C != nullptr) {
         _3C->updateBalloonPos();
-        // mPeekZ stuff to do
+
+        // Regswap
+        TVec2f v1(_3C->_1C.x, _3C->_1C.y);
+        mPeekZ->_C.set(v1.x, v1.y);
     }
 
     if (MR::isPowerStarGetDemoActive()) {
@@ -364,6 +334,41 @@ TalkState* TalkDirector::initState(TalkMessageCtrl* pArg) {
     return state;
 }
 
+bool TalkDirector::isInvalidTalk() const {
+    if (_4E) {
+        return true;
+    }
+
+    if (MR::isStarPointerModeBlueStarReady()) {
+        return true;
+    }
+
+    if (MR::isFirstPersonCamera()) {
+        return true;
+    }
+
+    return MR::isPlayerDead();
+}
+
+void TalkDirector::appearYesNoSelector(const TalkMessageCtrl* pArg) const {
+    const char* branchID = pArg->getBranchID();
+
+    char buff[256];
+    snprintf(buff, sizeof(buff), "Select_%s_Yes", branchID);
+
+    char buff2[256];
+    snprintf(buff2, sizeof(buff2), "Select_%s_No", branchID);
+
+    if (pArg->isSelectYesNo()) {
+        MR::resetYesNoSelectorSE();
+    } else {
+        MR::setYesNoSelectorSE("SE_SY_TALK_FOCUS_ITEM", "SE_SY_TALK_SELECT_YES", "SE_SY_TALK_SELECT_YES");
+    }
+
+    MR::requestMovementOn((LayoutActor*)MR::getGameSceneLayoutHolder()->mYesNoLayout);
+    MR::appearYesNoSelector(buff, buff2, nullptr);
+}
+
 s32 TalkDirector::getDemoType(const TalkMessageCtrl* pArg, bool arg2) const {
     s32 demoType;
 
@@ -431,20 +436,6 @@ void TalkDirector::initBranchResult() {
     mIsOnGameEventFlagViewNormalEnding = MR::isOnGameEventFlagViewNormalEnding();
 }
 
-void TalkDirector::exePrep() {
-    if (MR::isLessStep(this, 4)) {
-    }
-
-    if (mTalkState->prep(mMsgCtrl)) {
-        TalkFunction::onTalkStateEnableStart(mTalkState->_04);
-        return;
-    }
-
-    TalkFunction::onTalkStateNone(mTalkState->_04);
-    mTalkState = nullptr;
-    setNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
-}
-
 void TalkDirector::pauseOff() {
     MR::requestMovementOn(this);
     mBalloonHolder->pauseOff();
@@ -477,6 +468,20 @@ LiveActor* TalkDirector::getTalkingActor() const {
     }
 
     return nullptr;
+}
+
+void TalkDirector::exePrep() {
+    if (MR::isLessStep(this, 4)) {
+    }
+
+    if (mTalkState->prep(mMsgCtrl)) {
+        TalkFunction::onTalkStateEnableStart(mTalkState->_04);
+        return;
+    }
+
+    TalkFunction::onTalkStateNone(mTalkState->_04);
+    mTalkState = nullptr;
+    setNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
 }
 
 void TalkDirector::exeWait() {
@@ -579,32 +584,6 @@ void TalkDirector::exeTerm() {
     setNerve(&NrvTalkDirector::TalkDirectorNrvWait::sInstance);
 }
 
-void MR::pauseOffTalkDirector() {
-    ::getTalkDirector()->pauseOff();
-}
-
-void MR::balloonOffTalkDirector() {
-    ::getTalkDirector()->balloonOff();
-}
-
-void MR::invalidateTalkDirector() {
-    ::getTalkDirector()->_4E = true;
-}
-
-void MR::setTalkDirectorDrawSyncToken() {
-    if (::getTalkDirector() != nullptr) {
-        ::getTalkDirector()->mPeekZ->setDrawSyncToken();
-    }
-}
-
-bool MR::isActiveTalkBalloonShort() {
-    if (::getTalkDirector() != nullptr) {
-        return ::getTalkDirector()->mBalloonHolder->isActiveBalloonShort();
-    }
-
-    return false;
-}
-
 bool TalkFunction::requestTalkSystem(TalkMessageCtrl* pCtrl, bool force) {
     return ::getTalkDirector()->request(pCtrl, force);
 }
@@ -636,4 +615,30 @@ bool TalkFunction::getBranchAstroGalaxyResult(u16 arg) {
 
 void TalkFunction::registerTalkSystem(TalkMessageCtrl* pCtrl) {
     ::getTalkDirector()->mMsgControls.push_back(pCtrl);
+}
+
+void MR::pauseOffTalkDirector() {
+    ::getTalkDirector()->pauseOff();
+}
+
+void MR::balloonOffTalkDirector() {
+    ::getTalkDirector()->balloonOff();
+}
+
+void MR::invalidateTalkDirector() {
+    ::getTalkDirector()->_4E = true;
+}
+
+void MR::setTalkDirectorDrawSyncToken() {
+    if (::getTalkDirector() != nullptr) {
+        ::getTalkDirector()->mPeekZ->setDrawSyncToken();
+    }
+}
+
+bool MR::isActiveTalkBalloonShort() {
+    if (::getTalkDirector() != nullptr) {
+        return ::getTalkDirector()->mBalloonHolder->isActiveBalloonShort();
+    }
+
+    return false;
 }
