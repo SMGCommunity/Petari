@@ -6788,7 +6788,7 @@ Game/NPC/TalkBalloon.cpp:
 	.text       start:0x8029D368 end:0x8029EB24
 	.ctors      start:0x8052F044 end:0x8052F048
 	.rodata     start:0x805398B8 end:0x805398C0
-	.data       start:0x805B65A8 end:0x805B69D8
+	.data       start:0x805B65A8 end:0x805B6978
 	.sdata      start:0x806B21E0 end:0x806B21E8
 	.sbss       start:0x806B6220 end:0x806B6240
 	.sdata2     start:0x806BF308 end:0x806BF328
@@ -6797,7 +6797,7 @@ Game/NPC/TalkDirector.cpp:
 	.text       start:0x8029EB24 end:0x802A0400
 	.ctors      start:0x8052F048 end:0x8052F04C
 	.rodata     start:0x805398C0 end:0x805398D0
-	.data       start:0x805B69D8 end:0x805B6A80
+	.data       start:0x805B6978 end:0x805B6A80
 	.sbss       start:0x806B6240 end:0x806B6258
 	.sdata2     start:0x806BF328 end:0x806BF338
 
