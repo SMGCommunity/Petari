@@ -355,6 +355,7 @@ cflags_sdk = [
 
 cflags_sdk_exi = ["-O3" if flag == "-O4,p" else flag for flag in cflags_sdk]
 cflags_sdk_wpad = ["-fp off" if flag == "-fp hardware" else flag for flag in cflags_sdk]
+cflags_sdk_net = ["-O4,s" if flag == "-O4,p" else flag for flag in cflags_sdk]
 
 cflags_rfl = [
     "-nodefaults",
@@ -2694,10 +2695,10 @@ config.libs = [
     SDKLib(
         "net",
         [
-            Object(NonMatching, "RVL_SDK/net/nettime.c"),
-            Object(NonMatching, "RVL_SDK/net/NETVersion.c"),
-            Object(NonMatching, "RVL_SDK/net/netmemcpy.c"),
-            Object(NonMatching, "RVL_SDK/net/netmemset.c"),
+            Object(NonMatching, "RVL_SDK/net/nettime.c", cflags=cflags_sdk_net),
+            Object(NonMatching, "RVL_SDK/net/NETVersion.c", cflags=cflags_sdk_net),
+            Object(NonMatching, "RVL_SDK/net/netmemcpy.c", cflags=cflags_sdk_net),
+            Object(NonMatching, "RVL_SDK/net/netmemset.c", cflags=cflags_sdk_net),
         ],
     ),
     SDKLib_NWC24(

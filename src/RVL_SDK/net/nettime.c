@@ -2,26 +2,24 @@
 #include "revolution/nwc24/NWC24Time.h"
 #include "revolution/os.h"
 
+static s64 whenCached = 0;
+
 // https://decomp.me/scratch/Gda4L
 BOOL NETGetUniversalCalendar(OSCalendarTime* time) {
-    static s64 whenCached = 0;
     NWC24iDate date;
     s64 universalTime;
-    s64 now;
-
-    now = __OSGetSystemTime();
-    if (whenCached + OSSecondsToTicks(60) >= now) {
-        goto use_cache;
-    }
 
     if (whenCached == 0) {
         goto update;
     }
 
+    if (whenCached + OSSecondsToTicks(60) >= __OSGetSystemTime()) {
+        goto use_cache;
+    }
+
 update:
     NWC24iSynchronizeRtcCounter(FALSE);
-    now = __OSGetSystemTime();
-    whenCached = now;
+    whenCached = __OSGetSystemTime();
 use_cache:
     if (NWC24iGetUniversalTime(&universalTime) < 0) {
         goto error;

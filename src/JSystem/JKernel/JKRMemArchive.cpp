@@ -135,7 +135,7 @@ void JKRMemArchive::fixedInit(long entryNum) {
     }
 
     gCurrentFileLoader = this;
-    sCurrentDirIndex = 0;
+    sCurrentDirID = 0;
 }
 
 bool JKRMemArchive::mountFixed(void* a1, JKRMemBreakFlag breakFlag) {

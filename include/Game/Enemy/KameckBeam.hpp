@@ -6,7 +6,7 @@ class KameckBeamEventListener {
 public:
     KameckBeamEventListener();
 
-    virtual void hitBeam(s32);
+    virtual void hitBeam(s32) = 0;
 };
 
 class KameckBeamCollisionFilter {
@@ -33,6 +33,7 @@ public:
 
     void setEventListener(KameckBeamEventListener*);
 
+    void requestShootToPlayerCenter(f32);
     void requestShootToPlayerGround(f32);
 
     u32 _8C;
