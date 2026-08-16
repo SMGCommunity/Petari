@@ -26,8 +26,9 @@ public:
     /* 0x0C */ TVec2f _C;
     /* 0x14 */ TVec3f _14;
     /* 0x20 */ f32 _20;
-    /* 0x24 */ u8 _pad3[0x18];
+    /* 0x24 */ u8 _pad[0x18];
     /* 0x3C */ f32 _3C;
+    /* 0x40 */ u8 _pad2[0x14];
 };
 
 class TalkDirector : public LayoutActor {
