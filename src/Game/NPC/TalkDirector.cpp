@@ -57,23 +57,23 @@ void TalkPeekZ::setDrawSyncToken() {
 }
 
 void TalkPeekZ::drawSyncCallback(u16 arg) {
-    if (!MR::isInRange(_C.x, 0.0f, MR::getScreenWidth() - 1)) {
+    if (!MR::isInRange(mScreenPos.x, 0.0f, MR::getScreenWidth() - 1)) {
         return;
     }
 
     JUTVideo::getManager();
     // Strange instruction flow
-    if (!MR::isInRange(_C.y, 0.0f, JUTVideo::getManager()->getEfbHeight() - 1)) {
+    if (!MR::isInRange(mScreenPos.y, 0.0f, JUTVideo::getManager()->getEfbHeight() - 1)) {
         return;
     }
 
     TVec2f pos;
-    MR::convertScreenPosToFrameBufferPos(&pos, _C);
+    MR::convertScreenPosToFrameBufferPos(&pos, mScreenPos);
 
     GXPeekZ(pos.x, pos.y, &_8);
 
     // MR::getStarPointerViewMtx() is actually MR::getCameraViewMtx(), but I cannot get it to accept the type
-    TDDraw::invProject(&_14, TVec3f(_C.x, _C.y, static_cast< f32 >(_8)), MR::getStarPointerViewMtx(), &_20, &_3C, false);
+    TDDraw::invProject(&_14, TVec3f(mScreenPos.x, mScreenPos.y, static_cast< f32 >(_8)), MR::getStarPointerViewMtx(), &_20, &_3C, false);
 }
 
 TalkDirector::TalkDirector(const char* pArg)
@@ -247,7 +247,7 @@ void TalkDirector::updateMessage() {
 
         // Regswap
         TVec2f v1(_3C->_1C.x, _3C->_1C.y);
-        mPeekZ->_C.set(v1.x, v1.y);
+        mPeekZ->mScreenPos.set(v1.x, v1.y);
     }
 
     if (MR::isPowerStarGetDemoActive()) {

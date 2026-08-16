@@ -23,7 +23,7 @@ public:
     /* 0x04 */ u16 _4;
     /* 0x06 */ u16 _6;
     /* 0x08 */ u32 _8;
-    /* 0x0C */ TVec2f _C;
+    /* 0x0C */ TVec2f mScreenPos;
     /* 0x14 */ TVec3f _14;
     /* 0x20 */ f32 _20;
     /* 0x24 */ u8 _pad[0x18];
