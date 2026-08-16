@@ -178,7 +178,7 @@ void DinoPackun::initFootPrint() {
     mFootPrint->_2C = 0.0f;
     mFootPrint->_30 = 100.0f;
     mFootPrint->_34 = 100.0f;
-    mFootPrint->_38 = 10.0f;
+    mFootPrint->mMinPrintDistance = 10.0f;
 }
 
 void DinoPackun::initDemoPosition(const JMapInfoIter& rIter) {

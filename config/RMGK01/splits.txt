@@ -2776,7 +2776,7 @@ Game/Enemy/JumpGuarder.cpp:
 Game/Enemy/JumpSpider.cpp:
 	.text       start:0x80100ED8 end:0x8010243C
 	.ctors      start:0x8052EAB0 end:0x8052EAB4
-	.data       start:0x8057E3F8 end:0x8057E748
+	.data       start:0x8057E3F8 end:0x8057E688
 	.sdata      start:0x806B1968 end:0x806B1970
 	.sbss       start:0x806B40E0 end:0x806B4120
 	.sdata2     start:0x806BA900 end:0x806BA948
@@ -2784,7 +2784,7 @@ Game/Enemy/JumpSpider.cpp:
 Game/Enemy/Kabokuri.cpp:
 	.text       start:0x8010243C end:0x80103864
 	.ctors      start:0x8052EAB4 end:0x8052EAB8
-	.data       start:0x8057E748 end:0x8057E8A8
+	.data       start:0x8057E688 end:0x8057E8A8
 	.sbss       start:0x806B4120 end:0x806B4148
 	.sdata2     start:0x806BA948 end:0x806BA990
 

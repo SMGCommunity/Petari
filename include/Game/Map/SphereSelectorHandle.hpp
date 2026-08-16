@@ -14,6 +14,7 @@ public:
     void validateRotate();
     void invalidateRotate();
     bool isHolding() const;
+    bool isPointing() const;
 
 public:
     /* 0x08C */ u32 _8C;
