@@ -21,13 +21,13 @@ public:
 
     void selectNextNerve();
     void knockOut(HitSensor*, HitSensor*);
-    void clipAndInitPos();
-    void calcWalkMove(s32);
-    void calcSinkMove(s32);
+    bool clipAndInitPos();
+    bool calcWalkMove(s32);
+    bool calcSinkMove(s32);
     void calcAndSetVelocity(f32, f32, f32);
     void calcAndSetUpVecTarget(f32, f32, f32);
     bool isMarioUp() const;
-    bool isMarioLeft() const;
+    bool isMarioLeft() const NO_INLINE;
     bool tryChangeHighSpeedMode();
     bool tryDPDSwoon();
 
@@ -41,16 +41,19 @@ public:
     void exeAttack();
     void exePunchDown();
     void exeComeBack();
+    void exeDPDSwoon();
+    void endDPDSwoon();
     void exeRotate();
 
-    /* 0x8C */ AnimScaleController* mScaleController;    
+private:
+    /* 0x8C */ AnimScaleController* mScaleController;
     /* 0x90 */ WalkerStateBindStarPointer* mStateBindStarPointer;
-    /* 0x94 */ TVec3f _94;    
-    /* 0xA0 */ TVec3f _A0;    
-    /* 0xAC */ TVec3f _AC;    
-    /* 0xB8 */ TVec3f _B8;    
+    /* 0x94 */ TVec3f _94;
+    /* 0xA0 */ TVec3f _A0;
+    /* 0xAC */ TVec3f _AC;
+    /* 0xB8 */ TVec3f _B8;
     /* 0xC4 */ s32 _C4;
-    /* 0xC8 */ TVec3f _C8;    
-    /* 0xD4 */ bool _D4;    
-    /* 0xD5 */ bool _D5;    
+    /* 0xC8 */ TVec3f _C8;
+    /* 0xD4 */ bool mIsMarioLeft;
+    /* 0xD5 */ bool mIsHighSpeedMode;
 };

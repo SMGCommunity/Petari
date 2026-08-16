@@ -2679,7 +2679,7 @@ Game/Enemy/FireBubble.cpp:
 	.text       start:0x800ECC34 end:0x800EDDCC
 	.ctors      start:0x8052EA84 end:0x8052EA88
 	.rodata     start:0x80531F48 end:0x80531F78
-	.data       start:0x8057C2D0 end:0x8057C558
+	.data       start:0x8057C2D0 end:0x8057C478
 	.sdata      start:0x806B1928 end:0x806B1930
 	.sbss       start:0x806B3EA0 end:0x806B3EC0
 	.sdata2     start:0x806BA488 end:0x806BA4C0
@@ -2687,7 +2687,7 @@ Game/Enemy/FireBubble.cpp:
 Game/Enemy/Gesso.cpp:
 	.text       start:0x800EDDCC end:0x800EF9F4
 	.ctors      start:0x8052EA88 end:0x8052EA8C
-	.data       start:0x8057C558 end:0x8057C690
+	.data       start:0x8057C478 end:0x8057C690
 	.sbss       start:0x806B3EC0 end:0x806B3EF0
 	.sdata2     start:0x806BA4C0 end:0x806BA548
 
