@@ -19,7 +19,14 @@ public:
 
 class Kameck : public LiveActor {
 public:
-    enum BeamType { BeamType_None, BeamType_Turtle, BeamType_Fire, BeamType_3, BeamType_4 };
+    enum BeamType {
+        /* 0x0 */ BeamType_None,
+        /* 0x1 */ BeamType_Turtle,
+        /* 0x2 */ BeamType_Fire,
+        /* 0x3 */ BeamType_3,
+        /* 0x4 */ BeamType_4
+    };
+
     Kameck(const char*);
 
     virtual void init(const JMapInfoIter& rIter);
