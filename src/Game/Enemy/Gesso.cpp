@@ -61,6 +61,7 @@ Gesso::Gesso(const char* pName)
 
 void Gesso::init(const JMapInfoIter& rIter) {
     // FIXME: TVec ctor inlining
+    // https://decomp.me/scratch/TEB6E
     MR::initDefaultPos(this, rIter);
     _94 = mPosition;
     MR::useStageSwitchReadAppear(this, rIter);
@@ -106,6 +107,7 @@ void Gesso::kill() {
 
 void Gesso::control() {
     // FIXME: killElement inline issues
+    // https://decomp.me/scratch/cCHgO
     mScaleController->updateNerve();
     if (tryDPDSwoon()) {
         return;
@@ -427,6 +429,7 @@ bool Gesso::clipAndInitPos() {
 
 bool Gesso::calcWalkMove(s32 step) {
     // FIXME: float regswaps
+    // https://decomp.me/scratch/LSPgj
     f32 a;
     if (mIsMarioLeft) {
         a = 1.0f;
@@ -478,6 +481,7 @@ bool Gesso::calcWalkMove(s32 step) {
 
 bool Gesso::calcSinkMove(s32 step) {
     // FIXME: float regswaps
+    // https://decomp.me/scratch/SpPn3
     f32 a;
     if (mIsMarioLeft) {
         a = 1.0f;
