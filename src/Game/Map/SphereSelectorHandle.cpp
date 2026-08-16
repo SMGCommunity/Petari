@@ -35,7 +35,7 @@ namespace NrvSphereSelectorHandle {
 };  // namespace NrvSphereSelectorHandle
 
 SphereSelectorHandle::SphereSelectorHandle(const char* pName)
-    : LiveActor(pName), mIsFileSelectMode(), _C0(0.0f, 0.0f, -1.0f), _CC(), _D0(), _D4(), _D8(), _DC(1.0f, 0.0f, 0.0f), _E8(0.0f, 1.0f, 0.0f), _F4(),
+    : LiveActor(pName), mIsFileSelectMode(), _C0(0.0f, 0.0f, -1.0f), mRotateSpeed(), _D0(), _D4(), _D8(), _DC(1.0f, 0.0f, 0.0f), _E8(0.0f, 1.0f, 0.0f), _F4(),
       _10C(), _110(gZeroVec), _11C(0.0f, 1.0f, 0.0f), _128() {
         clearPointerVelocity();
         _90.identity();
@@ -174,17 +174,17 @@ TVec2f* SphereSelectorHandle::getPointerVelocity() {
 }
 
 void SphereSelectorHandle::resetRotateParam() {
-    _CC = 0.0f;
+    mRotateSpeed = 0.0f;
     _D0 = 0.0f;
     _D4 = 0.0f;
     _D8 = 0.0f;
 }
 
 void SphereSelectorHandle::rotateAxisY() {
-    MR::clampBoth(&_CC, _D0 - 0.2f, _D0 + 0.2f);
-    MR::clampBoth(&_CC, -5.0f, 5.0f);
-    _D0 = _CC;
-    mRotation.y = MR::repeatDegree(mRotation.y + _CC);
+    MR::clampBoth(&mRotateSpeed, _D0 - 0.2f, _D0 + 0.2f);
+    MR::clampBoth(&mRotateSpeed, -5.0f, 5.0f);
+    _D0 = mRotateSpeed;
+    mRotation.y = MR::repeatDegree(mRotation.y + mRotateSpeed);
 }
 
 void SphereSelectorHandle::rotateAxisX() {
@@ -217,7 +217,7 @@ void SphereSelectorHandle::updateBaseMtx() {
 }
 
 void SphereSelectorHandle::changeBgmRotateState() {
-    if (MR::abs(_D4) > 0.03f || MR::abs(_CC) > 0.03f) {
+    if (MR::abs(_D4) > 0.03f || MR::abs(mRotateSpeed) > 0.03f) {
         if (!_128) {
             MR::setStageBGMState(cBgmRotateState, cBgmRotateFrames);
         }
@@ -231,9 +231,9 @@ void SphereSelectorHandle::changeBgmRotateState() {
 }
 
 void SphereSelectorHandle::playRotateSE() {
-    if (__fabsf(_D4) > 0.03f || __fabsf(_CC) > 0.03f) {
-        MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_DOME_WIND_1", static_cast< s32 >(100.0f * MR::clamp01(__fabsf(_D4) * (__fabsf(_CC) / 5.0f))), -1);
-        if (__fabsf(_CC) >= 4.0f || __fabsf(_D4) >= 1.6f) {
+    if (__fabsf(_D4) > 0.03f || __fabsf(mRotateSpeed) > 0.03f) {
+        MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_DOME_WIND_1", static_cast< s32 >(100.0f * MR::clamp01(__fabsf(_D4) * (__fabsf(mRotateSpeed) / 5.0f))), -1);
+        if (__fabsf(mRotateSpeed) >= 4.0f || __fabsf(_D4) >= 1.6f) {
             MR::startAtmosphereLevelSE("SE_AT_LV_ASTRO_DOME_WIND_2");
         }
     }
@@ -266,16 +266,16 @@ void SphereSelectorHandle::exeHold() {
     }
     if (isPointing()) {
         stackPointerVelocity();
-        _CC = 0.2f * getPointerVelocity()->x;
-        if (_CC * _D0 < 0.0f || __fabsf(_D0) < __fabsf(_CC)) {
-            _CC = MR::getLinerValue(0.9f, _CC, _D0, 0.0f);
+        mRotateSpeed = 0.2f * getPointerVelocity()->x;
+        if (mRotateSpeed * _D0 < 0.0f || __fabsf(_D0) < __fabsf(mRotateSpeed)) {
+            mRotateSpeed = MR::getLinerValue(0.9f, mRotateSpeed, _D0, 0.0f);
         }
         _D4 = 0.75f * getPointerVelocity()->y;
         if (_D4 * _D8 < 0.0f || __fabsf(_D8) > __fabsf(_D4)) {
             _D4 = MR::getLinerValue(0.9f, _D4, _D8, 1.0f);
         }
     } else if (_10C > 5) {
-        _CC *= 0.95f;
+        mRotateSpeed *= 0.95f;
         _D4 *= 0.95f;
     }
     if (tryRelease()) {
@@ -284,18 +284,18 @@ void SphereSelectorHandle::exeHold() {
 }
 
 void SphereSelectorHandle::exeSpin() {
-    _CC *= 0.95f;
+    mRotateSpeed *= 0.95f;
     _D4 *= 0.95f;
     if (MR::isStarPointerInScreen(0)) {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }
-    if (MR::isNearZero(_CC) && MR::isNearZero(_D4)) {
+    if (MR::isNearZero(mRotateSpeed) && MR::isNearZero(_D4)) {
         setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance);
     }
 }
 
 void SphereSelectorHandle::exeDemoRotate() {
-    _CC = 0.03f;
+    mRotateSpeed = 0.03f;
     if (isPointing()) {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }

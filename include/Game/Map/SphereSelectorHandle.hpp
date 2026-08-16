@@ -50,7 +50,7 @@ public:
     /* 0x08C */ bool mIsFileSelectMode;
     /* 0x090 */ TPos3f _90;
     /* 0x0C0 */ TVec3f _C0;
-    /* 0x0CC */ f32 _CC;
+    /* 0x0CC */ f32 mRotateSpeed;
     /* 0x0D0 */ f32 _D0;
     /* 0x0D4 */ f32 _D4;
     /* 0x0D8 */ f32 _D8;
