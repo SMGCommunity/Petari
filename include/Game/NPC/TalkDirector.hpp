@@ -2,6 +2,7 @@
 
 #include "Game/NPC/TalkMessageInfo.hpp"
 #include "Game/Screen/LayoutActor.hpp"
+#include "Game/System/DrawSyncManager.hpp"
 #include "Game/Util/Array.hpp"
 
 class ActorCameraInfo;
@@ -9,8 +10,25 @@ class LiveActor;
 class TalkMessageCtrl;
 class TalkBalloonHolder;
 class TalkStateHolder;
-class TalkPeekZ;
 class TalkState;
+
+class TalkPeekZ : DrawSyncCallback {
+public:
+    TalkPeekZ();
+
+    virtual void drawSyncCallback(u16);
+
+    void setDrawSyncToken();
+
+    /* 0x04 */ u16 _4;
+    /* 0x06 */ u16 _6;
+    /* 0x08 */ u32 _8;
+    /* 0x0C */ TVec2f _C;
+    /* 0x14 */ TVec3f _14;
+    /* 0x20 */ f32 _20;
+    /* 0x24 */ u8 _pad3[0x18];
+    /* 0x3C */ f32 _3C;
+};
 
 class TalkDirector : public LayoutActor {
 public:
@@ -44,11 +62,11 @@ public:
     void exeTerm();
     void exeWait();
 
-    MR::Vector< MR::AssignableArray< TalkMessageCtrl* > > mMsgControls;  // 0x20
-    TalkPeekZ* mPeekZ;                                                   // 0x2C
-    TalkBalloonHolder* mBalloonHolder;                                   // 0x30
-    TalkStateHolder* mStateHolder;                                       // 0x34
-    TalkMessageCtrl* mMsgCtrl;                                           // 0x38
+    MR::Vector< MR::AssignableArray< TalkMessageCtrl* > > mMsgControls;
+    TalkPeekZ* mPeekZ;                  // 0x2C
+    TalkBalloonHolder* mBalloonHolder;  // 0x30
+    TalkStateHolder* mStateHolder;      // 0x34
+    TalkMessageCtrl* mMsgCtrl;          // 0x38
     TalkMessageCtrl* _3C;
     TalkMessageCtrl* _40;
     TalkMessageCtrl* _44;
@@ -94,13 +112,6 @@ public:
     bool mIsRosettaTalkAstroDemoRecover;      // 0x89
     bool mIsRosettaTalkTorchProgress;         // 0x8A
     bool mIsOnGameEventFlagViewNormalEnding;  // 0x8B
-};
-
-class TalkPeekZ {
-public:
-    TalkPeekZ();
-    void setDrawSyncToken();
-    void drawSyncCallback(u16);
 };
 
 namespace MR {

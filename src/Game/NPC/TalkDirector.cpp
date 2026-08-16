@@ -8,18 +8,23 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
+#include "Game/System/DrawSyncManager.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/DirectDraw.hpp"
 #include "Game/Util/EventUtil.hpp"
 #include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
+#include "JSystem/JUtility/JUTVideo.hpp"
+#include "revolution/gx/GXGet.h"
 #include <cstdio>
 
 namespace {
@@ -36,6 +41,35 @@ namespace NrvTalkDirector {
     NEW_NERVE(TalkDirectorNrvNext, TalkDirector, Next);
     NEW_NERVE(TalkDirectorNrvTerm, TalkDirector, Term);
 };  // namespace NrvTalkDirector
+
+TalkPeekZ::TalkPeekZ() : _4(DrawSyncManager::sInstance->setCallback(4, 1, this)) {
+}
+
+void TalkPeekZ::setDrawSyncToken() {
+    GXGetProjectionv(&_20);
+    GXGetViewportv(&_3C);
+    _8 = 0;
+    DrawSyncManager::sInstance->pushBreakPoint();
+    GXSetDrawSync(_4);
+}
+
+void TalkPeekZ::drawSyncCallback(u16 arg) {
+    if (!MR::isInRange(_C.x, 0.0f, MR::getScreenWidth() - 1)) {
+        return;
+    }
+
+    if (!MR::isInRange(_C.y, 0.0f, JUTVideo::getManager()->getEfbHeight() - 1)) {
+        return;
+    }
+
+    TVec2f pos;
+    MR::convertScreenPosToFrameBufferPos(&pos, _C);
+
+    GXPeekZ(pos.x, pos.y, &_8);
+
+    // MR::getStarPointerViewMtx() is actually MR::getCameraViewMtx(), but I cannot get it to accept the type
+    TDDraw::invProject(&_14, TVec3f(_C.x, _C.y, static_cast< f32 >(_8)), MR::getStarPointerViewMtx(), &_20, &_3C, false);
+}
 
 TalkDirector::TalkDirector(const char* pArg)
     : LayoutActor(pArg, true), mMsgCtrl(), _3C(), _40(), _44(), mTalkState(), _4C(), _4D(), _4E(), mIsInvalidClipping(), mDemoType(), _58(), _59() {
