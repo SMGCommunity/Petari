@@ -349,11 +349,11 @@ bool TalkDirector::isInvalidTalk() const {
 void TalkDirector::appearYesNoSelector(const TalkMessageCtrl* pCtrl) const {
     const char* branchID = pCtrl->getBranchID();
 
-    char buff[256];
-    snprintf(buff, sizeof(buff), "Select_%s_Yes", branchID);
+    char buffYes[256];
+    snprintf(buffYes, sizeof(buffYes), "Select_%s_Yes", branchID);
 
-    char buff2[256];
-    snprintf(buff2, sizeof(buff2), "Select_%s_No", branchID);
+    char buffNo[256];
+    snprintf(buffNo, sizeof(buffNo), "Select_%s_No", branchID);
 
     if (pCtrl->isSelectYesNo()) {
         MR::resetYesNoSelectorSE();
@@ -362,7 +362,7 @@ void TalkDirector::appearYesNoSelector(const TalkMessageCtrl* pCtrl) const {
     }
 
     MR::requestMovementOn((LayoutActor*)MR::getGameSceneLayoutHolder()->mYesNoLayout);
-    MR::appearYesNoSelector(buff, buff2, nullptr);
+    MR::appearYesNoSelector(buffYes, buffNo, nullptr);
 }
 
 s32 TalkDirector::getDemoType(const TalkMessageCtrl* pCtrl, bool arg2) const {
