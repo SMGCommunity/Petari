@@ -2785,14 +2785,14 @@ Game/Enemy/JumpSpider.cpp:
 Game/Enemy/Kabokuri.cpp:
 	.text       start:0x8010243C end:0x80103864
 	.ctors      start:0x8052EAB4 end:0x8052EAB8
-	.data       start:0x8057E688 end:0x8057E8A8
+	.data       start:0x8057E688 end:0x8057E860
 	.sbss       start:0x806B4120 end:0x806B4148
 	.sdata2     start:0x806BA948 end:0x806BA990
 
 Game/Enemy/KabokuriFire.cpp:
 	.text       start:0x80103864 end:0x80103BC0
 	.ctors      start:0x8052EAB8 end:0x8052EABC
-	.data       start:0x8057E8A8 end:0x8057E930
+	.data       start:0x8057E860 end:0x8057E930
 	.sbss       start:0x806B4148 end:0x806B4150
 	.sdata2     start:0x806BA990 end:0x806BA9A0
 
