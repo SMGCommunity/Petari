@@ -405,6 +405,7 @@ namespace JGeometry {
             //    CameraMedianPlanet::rotate33 (regswap)
             //    CameraMedianTower::calc (regswap)
             //    CameraRailWatch::calc (regswap)
+            //    CameraDirector::calcViewMtxFromPoseParam (regswap)
             //
             //    CameraFixedThere::updateNormalUpVec (instruction mismatch!!)
             // }

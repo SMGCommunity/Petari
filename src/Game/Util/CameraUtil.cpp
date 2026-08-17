@@ -322,7 +322,7 @@ namespace MR {
     }
 
     bool isStartPosCameraEnd() {
-        return !getCameraDirector()->_170;
+        return !getCameraDirector()->mIsStartCameraActive;
     }
 
     bool hasStartAnimCamera() {
@@ -363,7 +363,7 @@ namespace MR {
 
     bool isCameraControlNG() {
         bool ret = true;
-        if (getCameraDirector()->_1F2 == false && isFpViewChangingFailure() == false) {
+        if (getCameraDirector()->mIsCameraNG == false && isFpViewChangingFailure() == false) {
             ret = false;
         }
         return ret;

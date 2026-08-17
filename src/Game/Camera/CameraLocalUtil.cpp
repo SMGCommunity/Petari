@@ -115,7 +115,7 @@ namespace CameraLocalUtil {
     }
 
     void setUsedTarget(const CameraMan* pCameraMan, CameraTargetObj* pUsedTarget) {
-        pCameraMan->mDirector->mUsedTarget = pUsedTarget;
+        pCameraMan->mDirector->mTargetObj = pUsedTarget;
     }
 
     CameraTargetObj* getTarget(const Camera* pCamera) {
