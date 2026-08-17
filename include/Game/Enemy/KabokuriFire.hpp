@@ -3,12 +3,10 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-
 class KabokuriFire : public LiveActor {
 public:
     KabokuriFire(const char* pName);
 
-    virtual ~KabokuriFire();
     virtual void init(const JMapInfoIter& rIter);
     virtual MtxPtr getBaseMtx() const { return const_cast<TPos3f*>(&_8C)->toMtxPtr(); }
     virtual void control();
@@ -17,6 +15,7 @@ public:
 
     void start(const TVec3f&, bool);
     void exeWait();
+
 private:
     /* 0x8C */ TPos3f _8C;
 };

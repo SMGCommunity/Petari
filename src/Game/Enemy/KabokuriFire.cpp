@@ -9,7 +9,13 @@
 
 namespace NrvKabokuriFire {
     NEW_NERVE(KabokuriFireNrvWait, KabokuriFire, Wait);
-};
+}; // namespace NrvKabokuriFire
+
+namespace {
+    static const f32 sBodyHitSize = 90.0f;
+    static const f32 sBodyHitYOffset = 40.0f;
+    static const s32 sFireTime = 320;
+}  // namespace
 
 KabokuriFire::KabokuriFire(const char* pName) : LiveActor(pName) {
     _8C.identity();
@@ -22,7 +28,7 @@ void KabokuriFire::init(const JMapInfoIter& rIter) {
     initSound(2, false);
     initHitSensor(1);
 
-    MR::addHitSensorEnemy(this, "body", 8, 90.0f, TVec3f(0.0f, 40.0f, 0.0f));
+    MR::addHitSensorEnemy(this, "body", 8, ::sBodyHitSize, TVec3f(0.0f, ::sBodyHitYOffset, 0.0f));
     MR::invalidateClipping(this);
     makeActorDead();
 }
@@ -40,7 +46,8 @@ void KabokuriFire::start(const TVec3f& rPosition, bool gravitySet) {
     appear();
 }
 
-void KabokuriFire::control() { }
+void KabokuriFire::control() {
+}
 
 // https://decomp.me/scratch/G5kR9
 void KabokuriFire::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -62,10 +69,8 @@ void KabokuriFire::exeWait() {
     }
     MR::startLevelSound(this, "SE_OJ_LV_PHANTOM_TOACH_BURN");
 
-    if (MR::isGreaterStep(this, 320)) {
+    if (MR::isGreaterStep(this, ::sFireTime)) {
         MR::deleteEffectAll(this);
         kill();
     }
 }
-
-KabokuriFire::~KabokuriFire() { }
