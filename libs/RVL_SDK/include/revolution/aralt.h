@@ -21,9 +21,9 @@ typedef struct ARQRequest {
     ARQCallback callback;
 } ARQRequest;
 
-void ARStartDMA(u32, u32, u32,  u32);
+void ARStartDMA(u32, u32, u32, u32) NO_INLINE;
 u32 ARAlloc(u32);
-u32 ARInit(u32 *, u32);
+u32 ARInit(u32*, u32);
 u32 ARGetBaseAddress(void);
 u32 ARGetSize(void);
 
@@ -33,4 +33,4 @@ void ARQInit(void);
 }
 #endif
 
-#endif // ARALT_H
+#endif  // ARALT_H
