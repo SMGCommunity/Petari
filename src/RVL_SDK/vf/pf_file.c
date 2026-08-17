@@ -488,29 +488,29 @@ void VFiPFFILE_Cursor_MoveToClusterEnd(PF_FILE* p_file, u32 size) {
     PF_VOLUME* p_vol;
     u32 cluster;
 
-    if (!p_file)
-        p_vol = 0;
-    else
+    if (p_file)
         p_vol = p_file->p_sfd->dir_entry.p_vol;
+    else
+        p_vol = 0;
 
     VFiPFFAT_CountAllocatedClusters(&p_file->p_sfd->ffd, size, &cluster);
 
-    if (cluster <= 0xFFFFFFFF >> (p_vol->bpb.log2_bytes_per_sector + p_vol->bpb.log2_sectors_per_cluster))
-        VFiPFFILE_Cursor_SetPosition(p_file, cluster << (p_vol->bpb.log2_bytes_per_sector + p_vol->bpb.log2_sectors_per_cluster));
-    else
+    if (cluster > (0xFFFFFFFF >> (p_vol->bpb.log2_bytes_per_sector + p_vol->bpb.log2_sectors_per_cluster)))
         VFiPFFILE_Cursor_SetPosition(p_file, 0xFFFFFFFF);
+    else
+        VFiPFFILE_Cursor_SetPosition(p_file, cluster << (p_vol->bpb.log2_bytes_per_sector + p_vol->bpb.log2_sectors_per_cluster));
 }
 
 static u32 VFiPFFILE_Cursor_IsOutOfFile(PF_FILE* p_file) {
     return p_file->cursor.position >= p_file->p_sfd->dir_entry.file_size;
 }
 
-void VFiPFFILE_InitSFD(PF_SFD* p_sfd, PF_DIR_ENT* p_dir_entry) {
-    PF_VOLUME** p_p_vol;  // r5
-    u16* p_entry_offset;  // r4
-    int v6;               // ctr
-    PF_VOLUME* v7;        // r3
-    PF_VOLUME* v8;        // r0
+static void VFiPFFILE_InitSFD(PF_SFD* p_sfd, PF_DIR_ENT* p_dir_entry) {
+    PF_VOLUME** p_p_vol;
+    u16* p_entry_offset;
+    int v6;
+    PF_VOLUME* v7;
+    PF_VOLUME* v8;
 
     p_sfd->stat = 268435459;
     p_sfd->num_handlers = 1;
@@ -655,23 +655,9 @@ static void VFiPFFILE_EmptyFile(PF_FFD* p_ffd, PF_DIR_ENT* p_ent) {
     p_ent->access_date = p_ent->modify_date;
 }
 
-s32 VFiPFFILE_GetOpenedFile(PF_DIR_ENT* p_ent, PF_DIR_ENT** pp_open_ent) {
-    int i;
+s32 VFiPFFILE_GetOpenedFile(PF_DIR_ENT* p_ent, PF_DIR_ENT** pp_open_ent);
 
-    if (!p_ent || !pp_open_ent || !p_ent->p_vol)
-        return 10;
-    *pp_open_ent = 0;
-    for (i = 0; i < 5; ++i) {
-        if ((p_ent->p_vol->sfds[i].stat & 1) != 0 && (p_ent->p_vol->sfds[i].stat & 2) != 0 && p_ent->p_vol == p_ent->p_vol->sfds[i].dir_entry.p_vol &&
-            p_ent->entry_sector == p_ent->p_vol->sfds[i].dir_entry.entry_sector &&
-            p_ent->entry_offset == p_ent->p_vol->sfds[i].dir_entry.entry_offset) {
-            *pp_open_ent = &p_ent->p_vol->sfds[i].dir_entry;
-        }
-    }
-    return 0;
-}
-
-u32 VFiPFFILE_IsOpened(PF_DIR_ENT* p_ent) {
+static inline u32 VFiPFFILE_IsOpened(PF_DIR_ENT* p_ent) {
     PF_DIR_ENT* p_open_ent;
 
     p_open_ent = 0;
@@ -879,6 +865,22 @@ s32 VFiPFFILE_p_finfo(PF_FILE* p_file, PF_INFO* p_info) {
     return 0;
 }
 
+s32 VFiPFFILE_GetOpenedFile(PF_DIR_ENT* p_ent, PF_DIR_ENT** pp_open_ent) {
+    int i;
+
+    if (!p_ent || !pp_open_ent || !p_ent->p_vol)
+        return 10;
+    *pp_open_ent = 0;
+    for (i = 0; i < 5; ++i) {
+        if ((p_ent->p_vol->sfds[i].stat & 1) != 0 && (p_ent->p_vol->sfds[i].stat & 2) != 0 && p_ent->p_vol == p_ent->p_vol->sfds[i].dir_entry.p_vol &&
+            p_ent->entry_sector == p_ent->p_vol->sfds[i].dir_entry.entry_sector &&
+            p_ent->entry_offset == p_ent->p_vol->sfds[i].dir_entry.entry_offset) {
+            *pp_open_ent = &p_ent->p_vol->sfds[i].dir_entry;
+        }
+    }
+    return 0;
+}
+
 void VFiPFFILE_FinalizeSFD(PF_SFD* p_sfd) {
     p_sfd->stat &= 0xFFFFFFF8;
     VFiPFFAT_FinalizeFFD(&p_sfd->ffd);
@@ -904,66 +906,47 @@ void VFiPFFILE_FinalizeAllFiles(PF_VOLUME* p_vol) {
     p_vol->num_opened_files = 0;
 }
 
-static s32 VFiPFFILE_DoRemoveFile(PF_DIR_ENT* p_ent, PF_ENT_ITER* p_iter) {
-    u32 start_cluster;
-    int err;
-
-    start_cluster = p_ent->start_cluster;
-    err = VFiPFENT_RemoveEntry(p_ent, p_iter);
-    if (!err) {
-        err = VFiPFFAT_FreeChain(&p_iter->ffd, start_cluster, -1, p_ent->file_size);
-        if (!err)
-            return 0;
-    }
-    return err;
-}
-
-s32 VFiPFFILE_RemoveFile(PF_VOLUME* p_vol, PF_DIR_ENT* p_ent, PF_ENT_ITER* p_iter) {
-    int err;
-
-    if ((p_ent->attr & 0x19) != 0)
-        return 11;
-    if (VFiPFFILE_IsOpened(p_ent))
-        return 19;
-    err = VFiPFFILE_DoRemoveFile(p_ent, p_iter);
-    if (!err)
-        return 0;
-    return err;
-}
-
-s32 VFiPFFILE_p_remove(PF_VOLUME* p_vol, PF_STR* p_path_str) {
-    int err;
-    PF_FAT_HINT hint;
-    PF_ENT_ITER iter;
-    PF_DIR_ENT ent;
-
-    err = VFiPFENT_ITER_GetEntryOfPath(&iter, &ent, p_vol, p_path_str, 0);
-    if (!err) {
-        VFiPFFAT_InitFFD(&iter.ffd, &hint, p_vol, iter.ffd.p_start_cluster);
-        err = VFiPFFILE_RemoveFile(p_vol, &ent, &iter);
-        if (!err)
-            return 0;
-    }
-    return err;
-}
-
 s32 VFiPFFILE_remove(PF_STR* p_path_str) {
     int err;
     PF_VOLUME* VolumeFromPath;
     PF_VOLUME* p_vol;
     int v5;
+    PF_FAT_HINT hint;
+    PF_ENT_ITER iter;
+    PF_DIR_ENT ent;
+    u32 start_cluster;
 
-    if (p_path_str) {
+    if (!p_path_str) {
+        err = 10;
+        VFipf_vol_set.last_error = 10;
+    } else {
         VolumeFromPath = VFiPFPATH_GetVolumeFromPath(p_path_str);
         p_vol = VolumeFromPath;
-        if (VolumeFromPath) {
+        if (!VolumeFromPath) {
+            err = 10;
+            VFipf_vol_set.last_error = 10;
+        } else {
             err = VFiPFVOL_CheckForWrite(VolumeFromPath);
             if (err) {
                 VFipf_vol_set.last_error = err;
                 p_vol->last_error = err;
             } else {
                 p_vol->cache.signature = 0;
-                err = VFiPFFILE_p_remove(p_vol, p_path_str);
+                err = VFiPFENT_ITER_GetEntryOfPath(&iter, &ent, p_vol, p_path_str, 0);
+                if (!err) {
+                    VFiPFFAT_InitFFD(&iter.ffd, &hint, p_vol, iter.ffd.p_start_cluster);
+                    if ((ent.attr & 0x19) != 0) {
+                        err = 11;
+                    } else if (VFiPFFILE_IsOpened(&ent)) {
+                        err = 19;
+                    } else {
+                        start_cluster = ent.start_cluster;
+                        err = VFiPFENT_RemoveEntry(&ent, &iter);
+                        if (!err) {
+                            err = VFiPFFAT_FreeChain(&iter.ffd, start_cluster, -1, ent.file_size);
+                        }
+                    }
+                }
                 if (err) {
                     VFipf_vol_set.last_error = err;
                     p_vol->last_error = err;
@@ -982,13 +965,7 @@ s32 VFiPFFILE_remove(PF_STR* p_path_str) {
                     return v5;
                 }
             }
-        } else {
-            err = 10;
-            VFipf_vol_set.last_error = 10;
         }
-    } else {
-        err = 10;
-        VFipf_vol_set.last_error = 10;
     }
     return err;
 }
@@ -999,17 +976,30 @@ s32 VFiPFFILE_fopen(PF_STR* p_path_str, u32 mode, PF_FILE** pp_file) {
     PF_VOLUME* p_vol;
     int v9;
 
-    if (pp_file) {
+    if (!pp_file) {
+        err = 10;
+        VFipf_vol_set.last_error = 10;
+    } else {
         *pp_file = 0;
-        if (p_path_str) {
+        if (!p_path_str) {
+            err = 10;
+            VFipf_vol_set.last_error = 10;
+        } else {
             VolumeFromPath = VFiPFPATH_GetVolumeFromPath(p_path_str);
             p_vol = VolumeFromPath;
-            if (VolumeFromPath) {
+            if (!VolumeFromPath) {
+                err = 10;
+                VFipf_vol_set.last_error = 10;
+            } else {
                 err = VFiPFVOL_CheckForRead(VolumeFromPath);
                 if (err) {
                     VFipf_vol_set.last_error = err;
                     p_vol->last_error = err;
-                } else if (!VFiPFDRV_IsWProtected(p_vol) || mode == 2) {
+                } else if (VFiPFDRV_IsWProtected(p_vol) && mode != 2) {
+                    err = 11;
+                    VFipf_vol_set.last_error = 11;
+                    p_vol->last_error = 11;
+                } else {
                     v9 = VFiPFFILE_p_fopen(p_vol, p_path_str, mode, pp_file);
                     if (v9) {
                         VFipf_vol_set.last_error = v9;
@@ -1018,22 +1008,9 @@ s32 VFiPFFILE_fopen(PF_STR* p_path_str, u32 mode, PF_FILE** pp_file) {
                         ++p_vol->num_opened_files;
                     }
                     return v9;
-                } else {
-                    err = 11;
-                    VFipf_vol_set.last_error = 11;
-                    p_vol->last_error = 11;
                 }
-            } else {
-                err = 10;
-                VFipf_vol_set.last_error = 10;
             }
-        } else {
-            err = 10;
-            VFipf_vol_set.last_error = 10;
         }
-    } else {
-        err = 10;
-        VFipf_vol_set.last_error = 10;
     }
     return err;
 }
@@ -1045,94 +1022,90 @@ s32 VFiPFFILE_fclose(PF_FILE* p_file) {
     int v5;
     PF_VOLUME* p_vol;
 
-    if (VFiPFFILE_CheckUFD(p_file)) {
+    if (!VFiPFFILE_CheckUFD(p_file)) {
+        err = 10;
+        VFipf_vol_set.last_error = 10;
+    } else {
         if (p_file)
             p_vol = p_file->p_sfd->dir_entry.p_vol;
         else
             p_vol = 0;
-        if (p_vol) {
+        if (!p_vol) {
+            err = 10;
+            VFipf_vol_set.last_error = 10;
+        } else {
             err = VFiPFVOL_CheckForRead(p_vol);
             updated = err;
             if (err) {
                 VFipf_vol_set.last_error = err;
                 p_vol->last_error = err;
-            } else if (!VFiPFDRV_IsWProtected(p_vol) || p_file->open_mode == 2) {
-                if (p_file && p_file->p_sfd && (p_file->stat & 1) != 0 && (p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0) {
-                    if ((p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0) {
-                        p_vol->cache.signature = p_file;
-                        if (p_file->p_sfd->num_handlers - 1 <= 0 && (p_file->p_sfd->dir_entry.attr & 0x19) == 0 && !VFiPFDRV_IsWProtected(p_vol) &&
-                            ((p_file->p_sfd->stat & 4) != 0 || (p_vol->file_config & 1) != 1)) {
-                            updated = VFiPFENT_UpdateSFNEntry(&p_file->p_sfd->dir_entry, 1);
-                        }
-                        if (p_file->lock_count) {
-                            if ((p_file->p_sfd->lock.mode & 1) != 0) {
-                                p_file->p_sfd->lock.count -= p_file->lock_count;
-                                p_file->lock_count = 0;
-                                if (!p_file->p_sfd->lock.count)
-                                    VFiPF_UnLockFile(p_file);
-                                p_file->p_sfd->lock.mode &= 0xFFFCu;
-                            } else if (p_file->p_sfd->lock.owner == p_file) {
-                                p_file->p_sfd->lock.count = 0;
-                                p_file->lock_count = 0;
-                                p_file->p_sfd->lock.owner = 0;
-                                VFiPF_UnLockFile(p_file);
-                                p_file->p_sfd->lock.mode &= 0xFFFCu;
-                            } else {
-                                updated = 25;
-                            }
-                        }
-                        if (updated) {
-                            VFipf_vol_set.last_error = updated;
-                            p_file->p_sfd->ffd.p_vol->last_error = updated;
-                            p_file->last_error = updated;
-                        } else {
-                            if ((p_vol->cache.mode & 2) != 0) {
-                                v4 = VFiPFCACHE_FlushFATCache(p_vol);
-                                updated = v4;
-                                if (v4) {
-                                    VFipf_vol_set.last_error = v4;
-                                    p_file->p_sfd->ffd.p_vol->last_error = v4;
-                                    p_file->last_error = v4;
-                                } else {
-                                    v5 = VFiPFCACHE_FlushDataCacheSpecific(p_vol, p_file);
-                                    updated = v5;
-                                    if (v5) {
-                                        VFipf_vol_set.last_error = v5;
-                                        p_file->p_sfd->ffd.p_vol->last_error = v5;
-                                        p_file->last_error = v5;
-                                    }
-                                }
-                            }
-                            if (!updated) {
-                                VFiPFFILE_ReleaseSFD(p_file->p_sfd);
-                                VFiPFFILE_ReleaseUFD(p_file);
-                                --p_vol->num_opened_files;
-                            }
-                        }
-                        p_vol->cache.signature = 0;
-                        return updated;
-                    } else {
-                        err = 10;
-                        VFipf_vol_set.last_error = 10;
-                        p_vol->last_error = 10;
-                    }
-                } else {
-                    err = 10;
-                    VFipf_vol_set.last_error = 10;
-                    p_vol->last_error = 10;
-                }
-            } else {
+            } else if (VFiPFDRV_IsWProtected(p_vol) && p_file->open_mode != 2) {
                 err = 11;
                 VFipf_vol_set.last_error = 11;
                 p_vol->last_error = 11;
+            } else if (!(p_file && p_file->p_sfd && (p_file->stat & 1) != 0 && (p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0)) {
+                err = 10;
+                VFipf_vol_set.last_error = 10;
+                p_vol->last_error = 10;
+            } else if (!((p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0)) {
+                err = 10;
+                VFipf_vol_set.last_error = 10;
+                p_vol->last_error = 10;
+            } else {
+                p_vol->cache.signature = p_file;
+                if (p_file->p_sfd->num_handlers - 1 <= 0 && (p_file->p_sfd->dir_entry.attr & 0x19) == 0 && !VFiPFDRV_IsWProtected(p_vol) &&
+                    ((p_file->p_sfd->stat & 4) != 0 || (p_vol->file_config & 1) != 1)) {
+                    updated = VFiPFENT_UpdateSFNEntry(&p_file->p_sfd->dir_entry, 1);
+                }
+                if (p_file->lock_count) {
+                    if ((p_file->p_sfd->lock.mode & 1) != 0) {
+                        p_file->p_sfd->lock.count -= p_file->lock_count;
+                        p_file->lock_count = 0;
+                        if (!p_file->p_sfd->lock.count)
+                            VFiPF_UnLockFile(p_file);
+                        p_file->p_sfd->lock.mode &= 0xFFFCu;
+                    } else if (p_file->p_sfd->lock.owner == p_file) {
+                        p_file->p_sfd->lock.count = 0;
+                        p_file->lock_count = 0;
+                        p_file->p_sfd->lock.owner = 0;
+                        VFiPF_UnLockFile(p_file);
+                        p_file->p_sfd->lock.mode &= 0xFFFCu;
+                    } else {
+                        updated = 25;
+                    }
+                }
+                if (updated) {
+                    VFipf_vol_set.last_error = updated;
+                    p_file->p_sfd->ffd.p_vol->last_error = updated;
+                    p_file->last_error = updated;
+                } else {
+                    if ((p_vol->cache.mode & 2) != 0) {
+                        v4 = VFiPFCACHE_FlushFATCache(p_vol);
+                        updated = v4;
+                        if (v4) {
+                            VFipf_vol_set.last_error = v4;
+                            p_file->p_sfd->ffd.p_vol->last_error = v4;
+                            p_file->last_error = v4;
+                        } else {
+                            v5 = VFiPFCACHE_FlushDataCacheSpecific(p_vol, p_file);
+                            updated = v5;
+                            if (v5) {
+                                VFipf_vol_set.last_error = v5;
+                                p_file->p_sfd->ffd.p_vol->last_error = v5;
+                                p_file->last_error = v5;
+                            }
+                        }
+                    }
+                    if (!updated) {
+                        VFiPFFILE_ReleaseSFD(p_file->p_sfd);
+                        VFiPFFILE_ReleaseUFD(p_file);
+                        --p_vol->num_opened_files;
+                    }
+                }
+                p_vol->cache.signature = 0;
+                return updated;
             }
-        } else {
-            err = 10;
-            VFipf_vol_set.last_error = 10;
         }
-    } else {
-        err = 10;
-        VFipf_vol_set.last_error = 10;
     }
     return err;
 }
@@ -1142,59 +1115,56 @@ s32 VFiPFFILE_fread(u8* p_buf, u32 size, u32 count, struct PF_FILE* p_file, u32*
     PF_VOLUME* p_vol;
     u32 count_read;
 
-    if (p_count_read) {
+    if (!p_count_read) {
+        err = 10;
+        VFipf_vol_set.last_error = 10;
+    } else {
         *p_count_read = 0;
-        if (VFiPFFILE_CheckUFD(p_file)) {
+        if (!VFiPFFILE_CheckUFD(p_file)) {
+            err = 10;
+            VFipf_vol_set.last_error = 10;
+        } else {
             if (p_file)
                 p_vol = p_file->p_sfd->dir_entry.p_vol;
             else
                 p_vol = 0;
-            if (p_vol) {
-                err = VFiPFVOL_CheckForRead(p_vol);
-                if (err) {
-                    VFipf_vol_set.last_error = err;
-                    p_vol->last_error = err;
-                } else if (p_file && p_file->p_sfd && (p_file->stat & 1) != 0 && (p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0) {
-                    if ((p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0) {
-                        if (p_buf && count && size) {
-                            p_vol->cache.signature = p_file;
-                            err = VFiPFFILE_p_fread(p_vol, p_buf, size, count, p_file, &count_read);
-                            *p_count_read = count_read;
-                            p_vol->cache.signature = 0;
-                            if (err) {
-                                VFipf_vol_set.last_error = err;
-                                p_file->p_sfd->ffd.p_vol->last_error = err;
-                                p_file->last_error = err;
-                            }
-                        } else {
-                            err = 10;
-                            VFipf_vol_set.last_error = 10;
-                            p_file->p_sfd->ffd.p_vol->last_error = 10;
-                            p_file->last_error = 10;
-                        }
-                    } else {
-                        err = 38;
-                        VFipf_vol_set.last_error = 38;
-                        p_vol->last_error = 38;
-                    }
-                } else {
-                    err = 38;
-                    VFipf_vol_set.last_error = 38;
-                    p_vol->last_error = 38;
-                }
-            } else {
+            if (!p_vol) {
                 err = 38;
                 VFipf_vol_set.last_error = 38;
                 p_file->p_sfd->ffd.p_vol->last_error = 38;
                 p_file->last_error = 38;
+            } else {
+                err = VFiPFVOL_CheckForRead(p_vol);
+                if (err) {
+                    VFipf_vol_set.last_error = err;
+                    p_vol->last_error = err;
+                } else if (!(p_file && p_file->p_sfd && (p_file->stat & 1) != 0 && (p_file->p_sfd->stat & 1) != 0 &&
+                             (p_file->p_sfd->stat & 2) != 0)) {
+                    err = 38;
+                    VFipf_vol_set.last_error = 38;
+                    p_vol->last_error = 38;
+                } else if (!((p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0)) {
+                    err = 38;
+                    VFipf_vol_set.last_error = 38;
+                    p_vol->last_error = 38;
+                } else if (!(p_buf && count && size)) {
+                    err = 10;
+                    VFipf_vol_set.last_error = 10;
+                    p_file->p_sfd->ffd.p_vol->last_error = 10;
+                    p_file->last_error = 10;
+                } else {
+                    p_vol->cache.signature = p_file;
+                    err = VFiPFFILE_p_fread(p_vol, p_buf, size, count, p_file, &count_read);
+                    *p_count_read = count_read;
+                    p_vol->cache.signature = 0;
+                    if (err) {
+                        VFipf_vol_set.last_error = err;
+                        p_file->p_sfd->ffd.p_vol->last_error = err;
+                        p_file->last_error = err;
+                    }
+                }
             }
-        } else {
-            err = 10;
-            VFipf_vol_set.last_error = 10;
         }
-    } else {
-        err = 10;
-        VFipf_vol_set.last_error = 10;
     }
     return err;
 }
@@ -1206,69 +1176,66 @@ s32 VFiPFFILE_fwrite(u8* p_buf, u32 size, u32 count, PF_FILE* p_file, u32* p_cou
     int err;
     u32 count_written;
 
-    if (p_count_written) {
+    if (!p_count_written) {
+        result = 10;
+        VFipf_vol_set.last_error = 10;
+    } else {
         *p_count_written = 0;
-        if (VFiPFFILE_CheckUFD(p_file)) {
+        if (!VFiPFFILE_CheckUFD(p_file)) {
+            result = 10;
+            VFipf_vol_set.last_error = 10;
+        } else {
             if (p_file)
                 p_vol = p_file->p_sfd->dir_entry.p_vol;
             else
                 p_vol = 0;
-            if (p_vol) {
-                result = VFiPFVOL_CheckForWrite(p_vol);
-                if (result) {
-                    VFipf_vol_set.last_error = result;
-                    p_vol->last_error = result;
-                } else if (p_file && p_file->p_sfd && (p_file->stat & 1) != 0 && (p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0) {
-                    if ((p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0) {
-                        if (p_buf && count && size) {
-                            p_vol->cache.signature = p_file;
-                            v12 = VFiPFFILE_p_fwrite(p_vol, p_buf, size, count, p_file, &count_written);
-                            err = v12;
-                            *p_count_written = count_written;
-                            p_vol->cache.signature = 0;
-                            if (v12) {
-                                VFipf_vol_set.last_error = v12;
-                                p_file->p_sfd->ffd.p_vol->last_error = v12;
-                                p_file->last_error = v12;
-                            }
-                            if (count_written) {
-                                VFiPFENT_getcurrentDateTimeForEnt(&p_file->p_sfd->dir_entry.modify_date, &p_file->p_sfd->dir_entry.modify_time);
-                                p_file->p_sfd->dir_entry.access_date = p_file->p_sfd->dir_entry.modify_date;
-                                if ((p_vol->cache.mode & 1) != 0)
-                                    return VFiPFENT_UpdateSFNEntry(&p_file->p_sfd->dir_entry, 1);
-                                else
-                                    p_file->p_sfd->stat |= 4u;
-                            }
-                            return err;
-                        } else {
-                            result = 10;
-                            VFipf_vol_set.last_error = 10;
-                            p_file->p_sfd->ffd.p_vol->last_error = 10;
-                            p_file->last_error = 10;
-                        }
-                    } else {
-                        result = 38;
-                        VFipf_vol_set.last_error = 38;
-                        p_vol->last_error = 38;
-                    }
-                } else {
-                    result = 38;
-                    VFipf_vol_set.last_error = 38;
-                    p_vol->last_error = 38;
-                }
-            } else {
+            if (!p_vol) {
                 result = 38;
                 VFipf_vol_set.last_error = 38;
                 p_file->p_sfd->ffd.p_vol->last_error = 38;
                 p_file->last_error = 38;
+            } else {
+                result = VFiPFVOL_CheckForWrite(p_vol);
+                if (result) {
+                    VFipf_vol_set.last_error = result;
+                    p_vol->last_error = result;
+                } else if (!(p_file && p_file->p_sfd && (p_file->stat & 1) != 0 && (p_file->p_sfd->stat & 1) != 0 &&
+                             (p_file->p_sfd->stat & 2) != 0)) {
+                    result = 38;
+                    VFipf_vol_set.last_error = 38;
+                    p_vol->last_error = 38;
+                } else if (!((p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0)) {
+                    result = 38;
+                    VFipf_vol_set.last_error = 38;
+                    p_vol->last_error = 38;
+                } else if (!(p_buf && count && size)) {
+                    result = 10;
+                    VFipf_vol_set.last_error = 10;
+                    p_file->p_sfd->ffd.p_vol->last_error = 10;
+                    p_file->last_error = 10;
+                } else {
+                    p_vol->cache.signature = p_file;
+                    v12 = VFiPFFILE_p_fwrite(p_vol, p_buf, size, count, p_file, &count_written);
+                    err = v12;
+                    *p_count_written = count_written;
+                    p_vol->cache.signature = 0;
+                    if (v12) {
+                        VFipf_vol_set.last_error = v12;
+                        p_file->p_sfd->ffd.p_vol->last_error = v12;
+                        p_file->last_error = v12;
+                    }
+                    if (count_written) {
+                        VFiPFENT_getcurrentDateTimeForEnt(&p_file->p_sfd->dir_entry.modify_date, &p_file->p_sfd->dir_entry.modify_time);
+                        p_file->p_sfd->dir_entry.access_date = p_file->p_sfd->dir_entry.modify_date;
+                        if ((p_vol->cache.mode & 1) != 0)
+                            return VFiPFENT_UpdateSFNEntry(&p_file->p_sfd->dir_entry, 1);
+                        else
+                            p_file->p_sfd->stat |= 4u;
+                    }
+                    return err;
+                }
             }
-        } else {
-            result = 10;
-            VFipf_vol_set.last_error = 10;
         }
-    } else {
-        result = 10;
-        VFipf_vol_set.last_error = 10;
     }
     return result;
 }
@@ -1361,58 +1328,54 @@ s32 VFiPFFILE_finfo(PF_FILE* p_file, PF_INFO* p_info) {
     PF_FAT_HINT hint;
     PF_CURSOR save_cursor;
 
-    if (VFiPFFILE_CheckUFD(p_file)) {
+    if (!VFiPFFILE_CheckUFD(p_file)) {
+        result = 10;
+        VFipf_vol_set.last_error = 10;
+    } else {
         if (p_file)
             p_vol = p_file->p_sfd->dir_entry.p_vol;
         else
             p_vol = 0;
-        if (p_vol) {
+        if (!p_vol) {
+            result = 38;
+            VFipf_vol_set.last_error = 38;
+        } else {
             result = VFiPFVOL_CheckForRead(p_vol);
             if (result) {
                 VFipf_vol_set.last_error = result;
                 p_file->p_sfd->ffd.p_vol->last_error = result;
                 p_file->last_error = result;
-            } else if (p_file && p_file->p_sfd && (p_file->stat & 1) != 0 && (p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0) {
-                if ((p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0) {
-                    if (p_info) {
-                        p_vol->cache.signature = p_file;
-                        save_cursor = p_file->cursor;
-                        hint = p_file->hint;
-                        err = VFiPFFILE_p_finfo(p_file, p_info);
-                        p_file->cursor = save_cursor;
-                        p_file->hint = hint;
-                        p_vol->cache.signature = 0;
-                        if (err) {
-                            VFipf_vol_set.last_error = err;
-                            p_file->p_sfd->ffd.p_vol->last_error = err;
-                            p_file->last_error = err;
-                            return err;
-                        } else {
-                            return 0;
-                        }
-                    } else {
-                        result = 10;
-                        VFipf_vol_set.last_error = 10;
-                        p_file->p_sfd->ffd.p_vol->last_error = 10;
-                        p_file->last_error = 10;
-                    }
-                } else {
-                    result = 38;
-                    VFipf_vol_set.last_error = 38;
-                    p_vol->last_error = 38;
-                }
-            } else {
+            } else if (!(p_file && p_file->p_sfd && (p_file->stat & 1) != 0 && (p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0)) {
                 result = 38;
                 VFipf_vol_set.last_error = 38;
                 p_vol->last_error = 38;
+            } else if (!((p_file->p_sfd->stat & 1) != 0 && (p_file->p_sfd->stat & 2) != 0)) {
+                result = 38;
+                VFipf_vol_set.last_error = 38;
+                p_vol->last_error = 38;
+            } else if (!p_info) {
+                result = 10;
+                VFipf_vol_set.last_error = 10;
+                p_file->p_sfd->ffd.p_vol->last_error = 10;
+                p_file->last_error = 10;
+            } else {
+                p_vol->cache.signature = p_file;
+                save_cursor = p_file->cursor;
+                hint = p_file->hint;
+                err = VFiPFFILE_p_finfo(p_file, p_info);
+                p_file->cursor = save_cursor;
+                p_file->hint = hint;
+                p_vol->cache.signature = 0;
+                if (err) {
+                    VFipf_vol_set.last_error = err;
+                    p_file->p_sfd->ffd.p_vol->last_error = err;
+                    p_file->last_error = err;
+                    return err;
+                } else {
+                    return 0;
+                }
             }
-        } else {
-            result = 38;
-            VFipf_vol_set.last_error = 38;
         }
-    } else {
-        result = 10;
-        VFipf_vol_set.last_error = 10;
     }
     return result;
 }
