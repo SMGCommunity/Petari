@@ -1108,7 +1108,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraTwistedPassage.cpp"),
             Object(NonMatching, "Game/Camera/CameraViewInterpolator.cpp"),
             Object(NonMatching, "Game/Camera/CameraWaterFollow.cpp"),
-            Object(NonMatching, "Game/Camera/CameraWaterPlanet.cpp"),
+            Object(Matching, "Game/Camera/CameraWaterPlanet.cpp"),
             Object(NonMatching, "Game/Camera/CameraWaterPlanetBoss.cpp"),
             Object(NonMatching, "Game/Camera/CameraWonderPlanet.cpp"),
             Object(NonMatching, "Game/Camera/DotCamParams.cpp"),
