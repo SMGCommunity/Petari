@@ -2,6 +2,11 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class AnimScaleController;
+class WalkerStateBindStarPointer;
+class Kuribo;
+class ModelObj;
+
 class Kabokuri : public LiveActor {
 public:
     Kabokuri(const char*);
@@ -37,6 +42,13 @@ public:
     bool isEnableTrampled() const;
     bool isEnablePush() const;
 
-private:
-    u8 mPad[(0xC0) - sizeof(LiveActor)];
+    /* 0x8C */ Kuribo* mKuribo;
+    /* 0x90 */ ModelObj* _90;
+    /* 0x94 */ AnimScaleController* _94;
+    /* 0x98 */ WalkerStateBindStarPointer* _98;
+    /* 0x9C */ TQuat4f _9C;
+    /* 0xAC */ TVec3f _AC;
+    /* 0xB8 */ u32 _B8;
+    /* 0xBC */ bool _BC;
+    /* 0xBD */ u8 _BD;
 };

@@ -1,5 +1,22 @@
 #include "Game/Enemy/Kabokuri.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/KabokuriFireHolder.hpp"
+#include "Game/Enemy/Kuribo.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "revolution/types.h"
 
 namespace NrvKabokuri {
     NEW_NERVE(KabokuriNrvWait, Kabokuri, Wait);
@@ -14,7 +31,149 @@ namespace NrvKabokuri {
     NEW_NERVE(KabokuriNrvBreak, Kabokuri, Break);
 };  // namespace NrvKabokuri
 
-Kabokuri::Kabokuri(const char* pName) : LiveActor(pName) {
+Kabokuri::Kabokuri(const char* pName)
+    : LiveActor(pName), mKuribo(0), _90(nullptr), _94(nullptr), _98(nullptr), _9C(0.0f, 0.0f, 0.0f, 1.0f), _AC(0.0f, 0.0f, 1.0f), _B8(-1), _BD(0) {
+    KabokuriFireHolderFunc::createHolder();
 }
+
+void Kabokuri::init(const JMapInfoIter& rIter) {
+    MR::initDefaultPos(this, rIter);
+    initRailRider(rIter);
+    MR::moveCoordAndTransToNearestRailPos(this);
+    MR::makeQuatAndFrontFromRotate(&_9C, &_AC, this);
+    initModelManagerWithAnm("Kabokuri", nullptr, false);
+    MR::connectToSceneEnemy(this);
+    MR::initLightCtrl(this);
+    MR::getJMapInfoArg0WithInit(rIter, &_BC);
+
+    if (!_BC) {
+        MR::onCalcGravity(this);
+        MR::calcGravity(this);
+    } else {
+        MR::offCalcGravity(this);
+
+        TVec3f v1;
+        _9C.getYDir(v1);
+        mGravity.set(-v1);
+    }
+
+    initBinder(90.0f * mScale.y, 90.0f * mScale.y, 0);
+    initEffectKeeper(1, nullptr, false);
+    initSound(2, false);
+    initSensor();
+    MR::initShadowVolumeSphere(this, 90.0f);
+    initNerve(&NrvKabokuri::KabokuriNrvWait::sInstance);
+    MR::initStarPointerTarget(this, 90.0f * mScale.y, TVec3f(0.0f, 90.0f * mScale.y, 0.0f));
+
+    _94 = new AnimScaleController(nullptr);
+    _94->setParamTight();
+
+    _98 = new WalkerStateBindStarPointer(this, _94);
+
+    // "Kabokurikuribo"
+    mKuribo = new Kuribo("カボクリクリボー");
+
+    if (_BC) {
+        mKuribo->onNoGravitySupport();
+    }
+
+    mKuribo->initWithoutIter();
+    mKuribo->makeActorDead();
+    // "Broken model"
+    _90 = MR::createModelObjMapObjStrongLight("壊れモデル", "KabokuriBreak", getBaseMtx());
+    _90->kill();
+
+    MR::useStageSwitchWriteDead(this, rIter);
+
+    if (MR::useStageSwitchReadAppear(this, rIter)) {
+        MR::syncStageSwitchAppear(this);
+        makeActorDead();
+        return;
+    }
+
+    makeActorAppeared();
+}
+
+void Kabokuri::initSensor() {
+    f32 scale = mScale.y;
+
+    initHitSensor(2);
+
+    MR::addHitSensorEnemy(this, "body", 8, 100.0f * scale, TVec3f(0.0f, 100.0f * scale, 0.0f));
+    MR::addHitSensorEnemyAttack(this, "attack", 8, 70.0f * scale, TVec3f(0.0f, 70.0f * scale, 0.0f));
+}
+
+void Kabokuri::control() {
+    _94->updateNerve();
+
+    if (_BC) {
+        MR::calcGravityOrZero(this);
+    }
+
+    updatePose();
+    tryPointBind();
+}
+
+void Kabokuri::calcAndSetBaseMtx() {
+    MR::setBaseTRMtx(this, _9C);
+    MR::setBaseScale(this, _94->_C * mScale);
+}
+
+void Kabokuri::updatePose() {
+    TVec3f* gravity = &mGravity;
+    _AC.scaleAdd(-gravity->dot(_AC), *gravity, _AC);
+
+    if (MR::isNearZero(_AC)) {
+        _9C.getZDir(_AC);
+    } else {
+        MR::normalize(&_AC);
+    }
+
+    TVec3f* upVec;
+    if (MR::isBindedGround(this)) {
+        upVec = const_cast< TVec3f* >(MR::getGroundNormal(this));
+    } else {
+        TVec3f v2 = -mGravity;
+        upVec = &v2;
+    }
+
+    MR::blendQuatUpFront(&_9C, *upVec, _AC, 0.1f, 0.2f);
+}
+
+void Kabokuri::addVelocityBase() {
+    if (MR::isBindedGround(this)) {
+        MR::attenuateVelocity(this, 0.9f);
+    } else {
+        MR::addVelocityToGravity(this, 0.2f);
+        MR::attenuateVelocity(this, 0.9f);
+    }
+
+    MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
+}
+
+void Kabokuri::addVelocityToRailPoint(f32 vel) {
+    if (MR::isRailReachedHorizonCurrentPos(this, 50.0f) && !_BD) {
+        MR::moveCoord(this, 50.0f);
+
+        s32 nextRailPoint = -1;
+        MR::getNextRailPointArg0WithInit(this, &nextRailPoint);
+
+        if (nextRailPoint != 0 && MR::isRailReachedNearNextPoint(this, 50.0f)) {
+            MR::moveCoordToRailPoint(this, MR::getNextRailPointNo(this));
+            _BD = 1;
+        }
+
+        if (MR::isRailReachedEdge(this)) {
+            MR::reverseRailDirection(this);
+        }
+    }
+
+    TVec3f velocity;
+    MR::calcVelocityMoveToTarget(&velocity, this, MR::getRailPos(this), 1.0f);
+    if (velocity.dot(_AC) > 0.4f) {
+        mVelocity.add(velocity * vel);
+    }
+}
+
 Kabokuri::~Kabokuri() {
 }
