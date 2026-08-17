@@ -66,9 +66,9 @@ u32 ARInit(u32*, u32) {
 
     memLo = OSGetMEM2ArenaLo();
     memHi = OSGetMEM2ArenaHi();
-    diff = (u32)memLo - (u32)memHi;
+    diff = (u32)memHi - (u32)memLo;
 
-    __ARH_MemoryTop = (u32)memHi + ARGetBaseAddress();
+    __ARH_MemoryTop = (u32)memLo + ARGetBaseAddress();
     __ARH_BaseAdr = (u32)memLo;
     OSReport("ARInit : Dummy ARAM enabled (RVL), area %p -> %p (size 0x%x)\n", memLo, memHi, diff);
     __AR_Size = diff;
@@ -108,25 +108,24 @@ void __ARQServiceQueueLo() {
 
     if (!__ARQRequestPendingLo && __ARQRequestQueueLo) {
         __ARQRequestPendingLo = __ARQRequestQueueLo;
-        __ARQRequestQueueLo = __ARQRequestQueueLo;
+        __ARQRequestQueueLo = __ARQRequestQueueLo->next;
     }
     if (__ARQRequestPendingLo) {
-        length = __ARQRequestPendingLo->length;
-        if (length > __ARQChunkSize) {
-            type = __ARQRequestPendingLo->type;
-            if (type) {
-                ARStartDMA(type, __ARQRequestPendingLo->dest, __ARQRequestPendingLo->source, __ARQChunkSize);
-            } else {
-                ARStartDMA(0, __ARQRequestPendingLo->source, __ARQRequestPendingLo->dest, __ARQChunkSize);
-            }
-        } else {
+        if ((length = __ARQRequestPendingLo->length) <= __ARQChunkSize) {
             v1 = __ARQRequestPendingLo->type;
-            if (v1) {
-                ARStartDMA(v1, __ARQRequestPendingLo->dest, __ARQRequestPendingLo->source, length);
+            if (!v1) {
+                ARStartDMA(v1, __ARQRequestPendingLo->source, __ARQRequestPendingLo->dest, length);
             } else {
-                ARStartDMA(0, __ARQRequestPendingLo->source, __ARQRequestPendingLo->dest, length);
+                ARStartDMA(v1, __ARQRequestPendingLo->dest, __ARQRequestPendingLo->source, length);
             }
             __ARQCallbackLo = __ARQRequestPendingLo->callback;
+        } else {
+            type = __ARQRequestPendingLo->type;
+            if (!type) {
+                ARStartDMA(type, __ARQRequestPendingLo->source, __ARQRequestPendingLo->dest, __ARQChunkSize);
+            } else {
+                ARStartDMA(type, __ARQRequestPendingLo->dest, __ARQRequestPendingLo->source, __ARQChunkSize);
+            }
         }
         __ARQRequestPendingLo->length -= __ARQChunkSize;
         __ARQRequestPendingLo->source += __ARQChunkSize;
