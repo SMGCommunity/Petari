@@ -24,9 +24,14 @@
 #include "revolution/types.h"
 
 namespace {
+    const f32 sBinderRadius = 90.0f;
+    const f32 sShadowRadius = 90.0f;
     const f32 sNormalGravity = 0.2f;
     const u32 sWaitTime = 60;
+    const f32 sWalkSpeed = 0.2f;
+    const f32 sWalkTurnDegree = 2.0f;
     const f32 sWalkGoalRange = 25.0f;
+    const f32 sHitAttackedGravity = 1.6f;
 };  // namespace
 
 namespace NrvKabokuri {
@@ -56,24 +61,24 @@ void Kabokuri::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("Kabokuri", nullptr, false);
     MR::connectToSceneEnemy(this);
     MR::initLightCtrl(this);
-    MR::getJMapInfoArg0WithInit(rIter, &_BC);
+    MR::getJMapInfoArg0WithInit(rIter, &mIsFloating);
 
-    if (!_BC) {
+    if (!mIsFloating) {
         MR::onCalcGravity(this);
         MR::calcGravity(this);
     } else {
         MR::offCalcGravity(this);
 
-        TVec3f v1;
-        _9C.getYDir(v1);
-        mGravity.set(-v1);
+        TVec3f upVec;
+        _9C.getYDir(upVec);
+        mGravity.set(-upVec);
     }
 
-    initBinder(90.0f * mScale.y, 90.0f * mScale.y, 0);
+    initBinder(::sBinderRadius * mScale.y, ::sBinderRadius * mScale.y, 0);
     initEffectKeeper(1, nullptr, false);
     initSound(2, false);
     initSensor();
-    MR::initShadowVolumeSphere(this, 90.0f);
+    MR::initShadowVolumeSphere(this, ::sShadowRadius);
     initNerve(&NrvKabokuri::KabokuriNrvWait::sInstance);
     MR::initStarPointerTarget(this, 90.0f * mScale.y, TVec3f(0.0f, 90.0f * mScale.y, 0.0f));
 
@@ -85,12 +90,13 @@ void Kabokuri::init(const JMapInfoIter& rIter) {
     // "Kabokuri kuribo"
     mKuribo = new Kuribo("カボクリクリボー");
 
-    if (_BC) {
+    if (mIsFloating) {
         mKuribo->onNoGravitySupport();
     }
 
     mKuribo->initWithoutIter();
     mKuribo->makeActorDead();
+
     // "Broken model"
     _90 = MR::createModelObjMapObjStrongLight("壊れモデル", "KabokuriBreak", getBaseMtx());
     _90->kill();
@@ -118,7 +124,7 @@ void Kabokuri::initSensor() {
 void Kabokuri::control() {
     _94->updateNerve();
 
-    if (_BC) {
+    if (mIsFloating) {
         MR::calcGravityOrZero(this);
     }
 
@@ -302,8 +308,8 @@ void Kabokuri::exeWalk() {
         _BD = 0;
     }
 
-    MR::turnDirectionToTargetDegree(this, &_AC, MR::getRailPos(this), 2.0f);
-    addVelocityToRailPoint(0.2f);
+    MR::turnDirectionToTargetDegree(this, &_AC, MR::getRailPos(this), ::sWalkTurnDegree);
+    addVelocityToRailPoint(::sWalkSpeed);
     addVelocityBase();
 
     if (_BD && MR::isRailReachedHorizonCurrentPos(this, ::sWalkGoalRange)) {
@@ -319,7 +325,7 @@ void Kabokuri::exeDropFire() {
 
     if (MR::isActionEnd(this)) {
         setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
-        KabokuriFireHolderFunc::generateFire(mPosition, mGravity, _BC);
+        KabokuriFireHolderFunc::generateFire(mPosition, mGravity, mIsFloating);
     }
 }
 
@@ -377,7 +383,7 @@ void Kabokuri::exeHitAttacked() {
         }
     }
 
-    MR::addVelocityToGravity(this, 1.6f);
+    MR::addVelocityToGravity(this, ::sHitAttackedGravity);
     MR::attenuateVelocity(this, 0.99f);
     MR::reboundVelocityFromCollision(this, 0.9f);
 

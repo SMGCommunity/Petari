@@ -50,6 +50,6 @@ public:
     /* 0x9C */ TQuat4f _9C;
     /* 0xAC */ TVec3f _AC;
     /* 0xB8 */ u32 _B8;
-    /* 0xBC */ bool _BC;
+    /* 0xBC */ bool mIsFloating;
     /* 0xBD */ u8 _BD;
 };
