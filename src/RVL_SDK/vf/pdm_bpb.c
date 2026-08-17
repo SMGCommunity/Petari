@@ -2,8 +2,9 @@
 
 void VFipdm_bpb_calculate_common_bpb_fields(struct PDM_BPB* p_bpb) {
     u32 num_data_sectors;
-    u32 val;   // Should be u16
-    u32 temp;  // Present in DWARF but unused here.
+    u16 val;
+    u32 fat_max_cluster_count;
+    u32 temp;
 
     p_bpb->log2_bytes_per_sector = 0;
     temp = p_bpb->bytes_per_sector;
@@ -26,12 +27,19 @@ void VFipdm_bpb_calculate_common_bpb_fields(struct PDM_BPB* p_bpb) {
     num_data_sectors = p_bpb->total_sectors - val;
     p_bpb->num_clusters = num_data_sectors >> p_bpb->log2_sectors_per_cluster;
 
-    if ((num_data_sectors >> p_bpb->log2_sectors_per_cluster) < 0xFF5) {
+    if (p_bpb->num_clusters < 0xFF5) {
         p_bpb->fat_type = PDM_FAT_12;
-    } else if ((num_data_sectors >> p_bpb->log2_sectors_per_cluster) < 0xFFF5) {
+        fat_max_cluster_count = ((p_bpb->sectors_per_FAT << p_bpb->log2_bytes_per_sector) * 2 / 3) - 2;
+    } else if (p_bpb->num_clusters < 0xFFF5) {
         p_bpb->fat_type = PDM_FAT_16;
+        fat_max_cluster_count = ((p_bpb->sectors_per_FAT << p_bpb->log2_bytes_per_sector) >> 1) - 2;
     } else {
         p_bpb->fat_type = PDM_FAT_32;
+        fat_max_cluster_count = ((p_bpb->sectors_per_FAT << p_bpb->log2_bytes_per_sector) >> 2) - 2;
+    }
+
+    if (p_bpb->num_clusters > fat_max_cluster_count) {
+        p_bpb->num_clusters = fat_max_cluster_count;
     }
 }
 
