@@ -10,6 +10,7 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
@@ -17,12 +18,14 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "revolution/types.h"
 
 namespace {
     const f32 sNormalGravity = 0.2f;
-    const f32 sWalkGoalRange = 50.0f;
+    const u32 sWaitTime = 60;
+    const f32 sWalkGoalRange = 25.0f;
 };  // namespace
 
 namespace NrvKabokuri {
@@ -160,13 +163,13 @@ void Kabokuri::addVelocityBase() {
 }
 
 void Kabokuri::addVelocityToRailPoint(f32 vel) {
-    if (MR::isRailReachedHorizonCurrentPos(this, ::sWalkGoalRange) && !_BD) {
-        MR::moveCoord(this, ::sWalkGoalRange);
+    if (MR::isRailReachedHorizonCurrentPos(this, 50.0f) && !_BD) {
+        MR::moveCoord(this, 50.0f);
 
         s32 nextRailPoint = -1;
         MR::getNextRailPointArg0WithInit(this, &nextRailPoint);
 
-        if (nextRailPoint != 0 && MR::isRailReachedNearNextPoint(this, ::sWalkGoalRange)) {
+        if (nextRailPoint != 0 && MR::isRailReachedNearNextPoint(this, 50.0f)) {
             MR::moveCoordToRailPoint(this, MR::getNextRailPointNo(this));
             _BD = 1;
         }
@@ -238,6 +241,129 @@ bool Kabokuri::requestTrampled() {
     }
 
     return false;
+}
+
+bool Kabokuri::requestStarPieceHitted() {
+    if (isEnableTrampled()) {
+        MR::forceDeleteEffectAll(this);
+        setNerve(&NrvKabokuri::KabokuriNrvStarPieceHitted::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+bool Kabokuri::requestHipDropped() {
+    if (isEnableTrampled()) {
+        MR::zeroVelocity(this);
+        setNerve(&NrvKabokuri::KabokuriNrvHipDropped::sInstance);
+        MR::invalidateHitSensors(this);
+        return true;
+    }
+
+    return false;
+}
+
+bool Kabokuri::requestHitAttacked(HitSensor* pSender, HitSensor* pReceived) {
+    if (isEnableTrampled()) {
+        MR::setVelocityBlowAttack(this, pSender, pReceived, 15.0f, 30.0f, 4);
+        setNerve(&NrvKabokuri::KabokuriNrvHitAttacked::sInstance);
+        MR::invalidateHitSensors(this);
+        return true;
+    }
+
+    return false;
+}
+
+bool Kabokuri::tryPointBind() {
+    if (isEnablePointBind() && _98->tryStartPointBind()) {
+        setNerve(&NrvKabokuri::KabokuriNrvBindStarPointer::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+void Kabokuri::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Wait");
+        MR::zeroVelocity(this);
+    }
+
+    if (MR::isGreaterStep(this, ::sWaitTime)) {
+        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+    }
+}
+
+void Kabokuri::exeWalk() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Walk");
+        _BD = 0;
+    }
+
+    MR::turnDirectionToTargetDegree(this, &_AC, MR::getRailPos(this), 2.0f);
+    addVelocityToRailPoint(0.2f);
+    addVelocityBase();
+
+    if (_BD && MR::isRailReachedHorizonCurrentPos(this, ::sWalkGoalRange)) {
+        setNerve(&NrvKabokuri::KabokuriNrvDropFire::sInstance);
+    }
+}
+
+void Kabokuri::exeDropFire() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "DropFire");
+        MR::zeroVelocity(this);
+    }
+
+    if (MR::isActionEnd(this)) {
+        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+        KabokuriFireHolderFunc::generateFire(mPosition, mGravity, _BC);
+    }
+}
+
+void Kabokuri::exeAttackSuccess() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Attacksuccess");
+        MR::zeroVelocity(this);
+    }
+
+    if (MR::isActionEnd(this)) {
+        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+    }
+}
+
+void Kabokuri::exeTrampled() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Trampled");
+        MR::startSound(this, "SE_EM_KABOKURI_TRAMPLE");
+        MR::zeroVelocity(this);
+    }
+
+    if (MR::isActionEnd(this)) {
+        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+    }
+}
+
+void Kabokuri::exeStarPieceHitted() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "StarPieceHit");
+        MR::zeroVelocity(this);
+    }
+
+    if (MR::isActionEnd(this)) {
+        setNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance);
+    }
+}
+
+void Kabokuri::exeHipDropped() {
+    if (MR::isFirstStep(this)) {
+        MR::startSound(this, "SE_EM_STOMPED_S");
+        mKuribo->appearHipDropped(mPosition, _9C);
+        mKuribo->mGravity.set(mGravity);
+        MR::invalidateClipping(this);
+        setNerve(&NrvKabokuri::KabokuriNrvBreak::sInstance);
+    }
 }
 
 Kabokuri::~Kabokuri() {
