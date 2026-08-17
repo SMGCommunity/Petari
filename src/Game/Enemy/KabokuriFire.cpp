@@ -9,13 +9,13 @@
 
 namespace NrvKabokuriFire {
     NEW_NERVE(KabokuriFireNrvWait, KabokuriFire, Wait);
-}; // namespace NrvKabokuriFire
+};  // namespace NrvKabokuriFire
 
 namespace {
     static const f32 sBodyHitSize = 90.0f;
     static const f32 sBodyHitYOffset = 40.0f;
     static const s32 sFireTime = 320;
-}  // namespace
+};  // namespace
 
 KabokuriFire::KabokuriFire(const char* pName) : LiveActor(pName) {
     _8C.identity();
