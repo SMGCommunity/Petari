@@ -366,5 +366,80 @@ void Kabokuri::exeHipDropped() {
     }
 }
 
+void Kabokuri::exeHitAttacked() {
+    if (MR::isFirstStep(this)) {
+        MR::startAction(this, "Wait");
+
+        for (int i = 0; i < 6; i++) {
+            MR::turnDirectionToPlayerDegree(this, &_AC, 160.0f);
+            updatePose();
+        }
+    }
+
+    MR::addVelocityToGravity(this, 1.6f);
+    MR::attenuateVelocity(this, 0.99f);
+    MR::reboundVelocityFromCollision(this, 0.9f);
+
+    if (MR::isGreaterStep(this, 1) || (MR::isGreaterStep(this, 1) && MR::isBinded(this))) {
+        mKuribo->appearBlowed(mPosition, _9C, mVelocity);
+        mKuribo->mGravity.set(mGravity);
+        MR::invalidateClipping(this);
+        setNerve(&NrvKabokuri::KabokuriNrvBreak::sInstance);
+    }
+}
+
+void Kabokuri::exeBreak() {
+    if (MR::isFirstStep(this)) {
+        MR::hideModel(this);
+        _90->appear();
+        MR::startAction(_90, "Break");
+        MR::startSound(this, "SE_EM_KABOKURI_BREAK_PUMP");
+        MR::startBlowHitSound(this);
+        MR::zeroVelocity(this);
+    }
+
+    if (MR::isActionEnd(_90)) {
+        kill();
+        _90->kill();
+    }
+}
+
+bool Kabokuri::isEnableAttack() const {
+    if (isNerve(&NrvKabokuri::KabokuriNrvWait::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance) ||
+        isNerve(&NrvKabokuri::KabokuriNrvDropFire::sInstance)) {
+        return true;
+    }
+
+    return false;
+}
+
+bool Kabokuri::isEnablePointBind() const {
+    if (isNerve(&NrvKabokuri::KabokuriNrvWait::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance) ||
+        isNerve(&NrvKabokuri::KabokuriNrvDropFire::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvAttacksuccess::sInstance)) {
+        return true;
+    }
+
+    return false;
+}
+
+bool Kabokuri::isEnableTrampled() const {
+    if (isNerve(&NrvKabokuri::KabokuriNrvWait::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvWalk::sInstance) ||
+        isNerve(&NrvKabokuri::KabokuriNrvAttacksuccess::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvDropFire::sInstance) ||
+        isNerve(&NrvKabokuri::KabokuriNrvTrampled::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvBindStarPointer::sInstance) ||
+        isNerve(&NrvKabokuri::KabokuriNrvStarPieceHitted::sInstance)) {
+        return true;
+    }
+
+    return false;
+}
+
+bool Kabokuri::isEnablePush() const {
+    if (isNerve(&NrvKabokuri::KabokuriNrvHipDropped::sInstance) || isNerve(&NrvKabokuri::KabokuriNrvBreak::sInstance)) {
+        return false;
+    }
+
+    return true;
+}
+
 Kabokuri::~Kabokuri() {
 }
