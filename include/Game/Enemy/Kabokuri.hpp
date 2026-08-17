@@ -22,11 +22,11 @@ public:
     void updatePose();
     void addVelocityBase();
     void addVelocityToRailPoint(f32);
-    void requestTrampled();
-    void requestStarPieceHitted();
-    void requestHipDropped();
-    void requestHitAttacked(HitSensor*, HitSensor*);
-    void tryPointBind();
+    bool requestTrampled();
+    bool requestStarPieceHitted();
+    bool requestHipDropped();
+    bool requestHitAttacked(HitSensor*, HitSensor*);
+    bool tryPointBind();
     void exeWait();
     void exeWalk();
     void exeDropFire();

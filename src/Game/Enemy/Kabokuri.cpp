@@ -3,6 +3,7 @@
 #include "Game/Enemy/KabokuriFireHolder.hpp"
 #include "Game/Enemy/Kuribo.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/ModelObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -14,9 +15,15 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 #include "revolution/types.h"
+
+namespace {
+    const f32 sNormalGravity = 0.2f;
+    const f32 sWalkGoalRange = 50.0f;
+};  // namespace
 
 namespace NrvKabokuri {
     NEW_NERVE(KabokuriNrvWait, Kabokuri, Wait);
@@ -32,7 +39,8 @@ namespace NrvKabokuri {
 };  // namespace NrvKabokuri
 
 Kabokuri::Kabokuri(const char* pName)
-    : LiveActor(pName), mKuribo(0), _90(nullptr), _94(nullptr), _98(nullptr), _9C(0.0f, 0.0f, 0.0f, 1.0f), _AC(0.0f, 0.0f, 1.0f), _B8(-1), _BD(0) {
+    : LiveActor(pName), mKuribo(nullptr), _90(nullptr), _94(nullptr), _98(nullptr), _9C(0.0f, 0.0f, 0.0f, 1.0f), _AC(0.0f, 0.0f, 1.0f), _B8(-1),
+      _BD(0) {
     KabokuriFireHolderFunc::createHolder();
 }
 
@@ -70,7 +78,7 @@ void Kabokuri::init(const JMapInfoIter& rIter) {
 
     _98 = new WalkerStateBindStarPointer(this, _94);
 
-    // "Kabokurikuribo"
+    // "Kabokuri kuribo"
     mKuribo = new Kuribo("カボクリクリボー");
 
     if (_BC) {
@@ -144,7 +152,7 @@ void Kabokuri::addVelocityBase() {
     if (MR::isBindedGround(this)) {
         MR::attenuateVelocity(this, 0.9f);
     } else {
-        MR::addVelocityToGravity(this, 0.2f);
+        MR::addVelocityToGravity(this, ::sNormalGravity);
         MR::attenuateVelocity(this, 0.9f);
     }
 
@@ -152,13 +160,13 @@ void Kabokuri::addVelocityBase() {
 }
 
 void Kabokuri::addVelocityToRailPoint(f32 vel) {
-    if (MR::isRailReachedHorizonCurrentPos(this, 50.0f) && !_BD) {
-        MR::moveCoord(this, 50.0f);
+    if (MR::isRailReachedHorizonCurrentPos(this, ::sWalkGoalRange) && !_BD) {
+        MR::moveCoord(this, ::sWalkGoalRange);
 
         s32 nextRailPoint = -1;
         MR::getNextRailPointArg0WithInit(this, &nextRailPoint);
 
-        if (nextRailPoint != 0 && MR::isRailReachedNearNextPoint(this, 50.0f)) {
+        if (nextRailPoint != 0 && MR::isRailReachedNearNextPoint(this, ::sWalkGoalRange)) {
             MR::moveCoordToRailPoint(this, MR::getNextRailPointNo(this));
             _BD = 1;
         }
@@ -173,6 +181,63 @@ void Kabokuri::addVelocityToRailPoint(f32 vel) {
     if (velocity.dot(_AC) > 0.4f) {
         mVelocity.add(velocity * vel);
     }
+}
+
+void Kabokuri::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorEnemyAttack(pSender)) {
+        if (!MR::isSensorPlayer(pReceiver)) {
+            return;
+        }
+
+        if (!isEnableAttack()) {
+            return;
+        }
+
+        if (!MR::isPlayerHipDropFalling() && MR::sendMsgEnemyAttack(pReceiver, pSender)) {
+            setNerve(&NrvKabokuri::KabokuriNrvAttacksuccess::sInstance);
+            return;
+        }
+
+        MR::sendMsgPush(pReceiver, pSender);
+        return;
+    }
+
+    if ((MR::isSensorPlayer(pReceiver) && !isEnableAttack() || MR::isSensorEnemy(pReceiver)) && isEnablePush()) {
+        MR::sendMsgPush(pReceiver, pSender);
+    }
+}
+
+bool Kabokuri::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgLockOnStarPieceShoot(msg)) {
+        return true;
+    }
+
+    if (MR::isMsgStarPieceAttack(msg)) {
+        return requestStarPieceHitted();
+    }
+
+    if (MR::isMsgPlayerTrample(msg)) {
+        return requestTrampled();
+    }
+
+    if (MR::isMsgPlayerHitAll(msg)) {
+        return requestHitAttacked(pSender, pReceiver);
+    }
+
+    if (MR::isMsgPlayerHipDrop(msg)) {
+        return requestHipDropped();
+    }
+
+    return false;
+}
+
+bool Kabokuri::requestTrampled() {
+    if (isEnableTrampled()) {
+        setNerve(&NrvKabokuri::KabokuriNrvTrampled::sInstance);
+        return true;
+    }
+
+    return false;
 }
 
 Kabokuri::~Kabokuri() {
