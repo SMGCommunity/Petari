@@ -27,7 +27,7 @@ static u32 VFiPFENT_ITER_IsAtPhysicalEnd(PF_ENT_ITER* p_iter);
 static void VFiPFENT_ITER_MakeLongFileName(PF_ENT_ITER* p_iter, PF_DIR_ENT* p_ent);
 static s32 VFiPFENT_ITER_GetEntry(PF_DIR_ENT* p_ent, PF_ENT_ITER* p_iter, PF_STR* p_pattern, u8 attr_required, u32* p_lpos, u32 is_reverse);
 static s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent, struct PF_STR* p_pattern, u8 attr_required,
-                                     u8 attr_unwanted, u32* p_is_found, u32 is_skip);
+                                     u32* p_is_found, u32* p_ppos, u32* p_lpos, u32 is_skip);
 static s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_ffd, u32* p_prev_chain, PF_STR* p_filename, u8 attr_required,
                                          u32* p_pos);
 static s32 VFiPFENT_ITER_DoGetEntryOfPath(PF_ENT_ITER* p_iter, PF_DIR_ENT* p_ent, PF_VOLUME* p_vol, PF_STR* p_path, u32 wildcard, u32 is_parent);

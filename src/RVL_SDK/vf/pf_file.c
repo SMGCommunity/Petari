@@ -506,11 +506,11 @@ static u32 VFiPFFILE_Cursor_IsOutOfFile(PF_FILE* p_file) {
 }
 
 static void VFiPFFILE_InitSFD(PF_SFD* p_sfd, PF_DIR_ENT* p_dir_entry) {
-    PF_VOLUME** p_p_vol;
-    u16* p_entry_offset;
-    int v6;
-    PF_VOLUME* v7;
-    PF_VOLUME* v8;
+    PF_VOLUME** p_p_vol;  // r5
+    u16* p_entry_offset;  // r4
+    int v6;               // ctr
+    PF_VOLUME* v7;        // r3
+    PF_VOLUME* v8;        // r0
 
     p_sfd->stat = 268435459;
     p_sfd->num_handlers = 1;

@@ -653,7 +653,7 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
             entry_sector = p_ent->entry_sector;
             entry_offset = p_ent->entry_offset;
             chain_offset = (s32)p_prev_chain;
-            buf[0] = 0xE5;
+            buf[0] = 0xE5;  // FAT deleted mark
 
             for (ent_cnt = 0; ent_cnt < success_cnt; ++ent_cnt) {
                 err2 = VFiPFSEC_WriteData(p_vol, buf, entry_sector, entry_offset, 1, &success_size, 0, 0);
