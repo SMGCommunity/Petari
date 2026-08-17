@@ -30,7 +30,7 @@ public:
     void exeWait();
     void exeWalk();
     void exeDropFire();
-    void exeAttackSuccess();
+    void exeAttacksuccess();
     void exeTrampled();
     void exeStarPieceHitted();
     void exeHipDropped();
@@ -41,6 +41,7 @@ public:
     bool isEnablePointBind() const;
     bool isEnableTrampled() const;
     bool isEnablePush() const;
+    void endBindStarPointer() const;
 
     /* 0x8C */ Kuribo* mKuribo;
     /* 0x90 */ ModelObj* _90;

@@ -9,6 +9,7 @@
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorStateUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/JMapInfo.hpp"
@@ -32,10 +33,10 @@ namespace NrvKabokuri {
     NEW_NERVE(KabokuriNrvWait, Kabokuri, Wait);
     NEW_NERVE(KabokuriNrvWalk, Kabokuri, Walk);
     NEW_NERVE(KabokuriNrvDropFire, Kabokuri, DropFire);
-    NEW_NERVE(KabokuriNrvAttacksuccess, Kabokuri, AttackSuccess);
+    NEW_NERVE(KabokuriNrvAttacksuccess, Kabokuri, Attacksuccess);
     NEW_NERVE(KabokuriNrvTrampled, Kabokuri, Trampled);
     NEW_NERVE(KabokuriNrvStarPieceHitted, Kabokuri, StarPieceHitted);
-    NEW_NERVE(KabokuriNrvBindStarPointer, Kabokuri, BindStarPointer);
+    NEW_NERVE_ONEND(KabokuriNrvBindStarPointer, Kabokuri, BindStarPointer, BindStarPointer);
     NEW_NERVE(KabokuriNrvHitAttacked, Kabokuri, HitAttacked);
     NEW_NERVE(KabokuriNrvHipDropped, Kabokuri, HipDropped);
     NEW_NERVE(KabokuriNrvBreak, Kabokuri, Break);
@@ -322,7 +323,7 @@ void Kabokuri::exeDropFire() {
     }
 }
 
-void Kabokuri::exeAttackSuccess() {
+void Kabokuri::exeAttacksuccess() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Attacksuccess");
         MR::zeroVelocity(this);
@@ -439,6 +440,14 @@ bool Kabokuri::isEnablePush() const {
     }
 
     return true;
+}
+
+void Kabokuri::endBindStarPointer() const {
+    _98->kill();
+}
+
+void Kabokuri::exeBindStarPointer() {
+    MR::updateActorStateAndNextNerve(this, _98, &NrvKabokuri::KabokuriNrvWalk::sInstance);
 }
 
 Kabokuri::~Kabokuri() {
