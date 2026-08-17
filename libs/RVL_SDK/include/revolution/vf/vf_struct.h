@@ -480,16 +480,16 @@ typedef struct PDM_INIT_DISK {
 
 typedef struct PDM_DISK {
     // total size: 0x38
-    unsigned long status;                   // offset 0x0, size 0x4
-    struct PDM_DISK_TBL disk_tbl;           // offset 0x4, size 0x8
-    unsigned long signature;                // offset 0xC, size 0x4
-    unsigned short open_disk_cnt;           // offset 0x10, size 0x2
-    unsigned short disk_lock_cnt;           // offset 0x12, size 0x2
-    struct PDM_DISK* disk_lock_handle;      // offset 0x14, size 0x4
-    struct PDM_DISK_INFO disk_info;         // offset 0x18, size 0x14
-    struct PDM_INIT_DISK* p_init_disk_tbl;  // offset 0x2C, size 0x4
-    struct PDM_PARTITION* p_cur_part;       // offset 0x30, size 0x4
-    void (*p_erase_func)();                 // offset 0x34, size 0x4
+    unsigned long status;                                // offset 0x0, size 0x4
+    struct PDM_DISK_TBL disk_tbl;                        // offset 0x4, size 0x8
+    unsigned long signature;                             // offset 0xC, size 0x4
+    unsigned short open_disk_cnt;                        // offset 0x10, size 0x2
+    unsigned short disk_lock_cnt;                        // offset 0x12, size 0x2
+    struct PDM_DISK* disk_lock_handle;                   // offset 0x14, size 0x4
+    struct PDM_DISK_INFO disk_info;                      // offset 0x18, size 0x14
+    struct PDM_INIT_DISK* p_init_disk_tbl;               // offset 0x2C, size 0x4
+    struct PDM_PARTITION* p_cur_part;                    // offset 0x30, size 0x4
+    long (*p_erase_func)(unsigned long, unsigned long);  // offset 0x34, size 0x4
 } PDM_DISK;
 
 struct PDM_DISK_HANDLE {
