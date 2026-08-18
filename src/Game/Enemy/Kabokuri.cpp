@@ -151,8 +151,7 @@ void Kabokuri::calcAndSetBaseMtx() {
 }
 
 void Kabokuri::updatePose() {
-    TVec3f* gravity = &mGravity;
-    mFrontVec.scaleAdd(-gravity->dot(mFrontVec), *gravity, mFrontVec);
+    mFrontVec.orthogonalize(mGravity);
 
     if (MR::isNearZero(mFrontVec)) {
         mRotationQuat.getZDir(mFrontVec);
