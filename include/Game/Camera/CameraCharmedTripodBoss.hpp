@@ -5,7 +5,6 @@
 class CameraCharmedTripodBoss : public Camera {
 public:
     CameraCharmedTripodBoss(const char* pName = "三脚ボスジョイント注視カメラ");
-    virtual ~CameraCharmedTripodBoss();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
@@ -13,8 +12,9 @@ public:
 
     void setParam(s32, TVec3f, const TVec3f&, const TVec2f&);
 
-    s32 _4C;
-    TVec3f _50;
-    TVec3f _5C;
-    TVec2f _68;
+    /* 0x4C */ s32 mJointId;
+    /* 0x50 */ TVec3f mUp;
+    /* 0x5C */ TVec3f mWPoint;
+    /* 0x68 */ f32 mAngleX;
+    /* 0x6C */ f32 mAngleY;
 };
