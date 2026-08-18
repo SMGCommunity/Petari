@@ -35,9 +35,6 @@ void CameraWaterFollow::reset() {
 }
 
 CameraTargetObj* CameraWaterFollow::calc() {
-    // FIXME: float reg alloc
-    // https://decomp.me/scratch/yjWBL
-
     TVec3f watchPos;
     CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
 
@@ -96,12 +93,11 @@ CameraTargetObj* CameraWaterFollow::calc() {
         gravSide = mSide;
         mRoundingFrame++;
 
-        // FIXME: float reg alloc
         f32 rate = static_cast< f32 >(mRoundingFrame) / static_cast< f32 >(::sRoundingFrame);
         if (rate > 1.0f) {
             rate = 1.0f;
         }
-        rate = rate * rate;
+        rate *= rate;
 
         f32 angle = gravSide.angle(side) * 10000.0f;
         f32 angle2 = angle - angle * rate;
