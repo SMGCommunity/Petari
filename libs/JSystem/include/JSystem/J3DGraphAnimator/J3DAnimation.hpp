@@ -850,10 +850,7 @@ public:
         return mState & state;
     }
     bool checkState(u8 state) const {
-        if (andState(state) == 0) {
-            return true;
-        }
-        return false;
+        return mState & state ? true : false;
     }
     s16 getStart() const {
         return mStart;

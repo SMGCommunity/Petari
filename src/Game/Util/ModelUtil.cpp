@@ -101,7 +101,7 @@ namespace MR {
     }
 
     bool isBckPlaying(XanimePlayer* pAnimePlayer, const char* pBckName) {
-        return pAnimePlayer->_24[pAnimePlayer->_54].checkState(1) && pAnimePlayer->isRun(pBckName) && pAnimePlayer->getRate() != 0.0f;
+        return !pAnimePlayer->isTerminate() && pAnimePlayer->isRun(pBckName) && pAnimePlayer->getRate() != 0.0f;
     }
 
     bool findBckNameStringInResource(const char** pOut, const ResourceHolder* pHolder, const char* pNameString) {
