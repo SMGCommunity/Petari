@@ -50,7 +50,7 @@ public:
     /* 0x98 */ WalkerStateBindStarPointer* mStateBindStartPointer;
     /* 0x9C */ TQuat4f mRotationQuat;
     /* 0xAC */ TVec3f mFrontVec;
-    /* 0xB8 */ u32 _B8;
+    /* 0xB8 */ s32 _B8;
     /* 0xBC */ bool mIsFloating;
 
     /// @brief Generates fire on every point of the rail reached, except the first one.
