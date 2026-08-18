@@ -679,6 +679,12 @@ namespace JGeometry {
             JMAVECScaleAdd(rKillDir, this, this, -rKillDir.dot(*this));
         }
 
+        TVec3 getOrthogonal(const TVec3& rVec) const {
+            TVec3 ret;
+            ret.killElement(rVec, *this);
+            return ret;
+        }
+
         f32 normalize() {
             f32 magnitude = length();
             PSVECNormalize(this, this);
