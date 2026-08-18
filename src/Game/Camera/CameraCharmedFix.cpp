@@ -23,7 +23,7 @@ CameraTargetObj* CameraCharmedFix::calc() {
 
     const TPos3f& zoneMtx = mZoneMatrix;
     TVec3f watchPoint;
-    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
     TVec3f pos = mBasePos;
     zoneMtx.mult(pos, pos);

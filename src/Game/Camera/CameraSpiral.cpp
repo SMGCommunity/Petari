@@ -22,7 +22,7 @@ CameraTargetObj* CameraSpiral::calc() {
     // https://decomp.me/scratch/lv4im
 
     TVec3f watchPoint;
-    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
     f32 easeTime = mTimer < mStartTime ? 0.0f : mTimer - mStartTime;
 

@@ -17,7 +17,7 @@ void CameraTripodPlanet::reset() {
 
 CameraTargetObj* CameraTripodPlanet::calc() {
     TVec3f watchPos;
-    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
     TPos3f mtx = mZoneMatrix;
     TPos3f inv = mtx;

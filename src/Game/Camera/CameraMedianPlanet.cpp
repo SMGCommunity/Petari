@@ -84,7 +84,7 @@ void CameraMedianPlanet::constrainDipAngle(TVec3f* pPos) {
 }
 
 void CameraMedianPlanet_FORCE_MATCH_SDATA2_2() {
-    (void)(1.0f / 150.0f);
+    (void)(0.1f / 15.0f);
 }
 
 void CameraMedianPlanet::makeTargetMtx(TPos3f* pMtx) {
@@ -157,7 +157,7 @@ void CameraMedianPlanet::getRegisterUpVec(TVec3f* pUp) {
 
 void CameraMedianPlanet::calcWatchPos(TVec3f* pWatchPos) {
     TVec3f watchOffset;
-    CameraLocalUtil::makeWatchPoint(&watchOffset, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchOffset, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
     watchOffset.sub(CameraLocalUtil::getTarget(this)->getPosition());
 
     pWatchPos->set(CameraLocalUtil::getTarget(this)->getPosition() * (1.0f - mPartialRate) + CameraLocalUtil::getVecReg(mString) * mPartialRate +

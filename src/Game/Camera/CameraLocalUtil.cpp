@@ -236,8 +236,8 @@ namespace CameraLocalUtil {
         pDst->set(globalOffs + localOffs);
     }
 
-    void makeWatchPoint(TVec3f* pDst, Camera* pCamera, CameraTargetObj* pTarget, f32 param4) {
-        makeWatchOffset(pDst, pCamera, pTarget, param4);
+    void makeWatchPoint(TVec3f* pDst, Camera* pCamera, CameraTargetObj* pTarget, f32 scale) {
+        makeWatchOffset(pDst, pCamera, pTarget, scale);
         pDst->add(pTarget->getPosition());
     }
 

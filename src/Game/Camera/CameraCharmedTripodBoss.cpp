@@ -24,7 +24,7 @@ void CameraCharmedTripodBoss::reset() {
 CameraTargetObj* CameraCharmedTripodBoss::calc() {
     CameraTargetObj* obj = CameraLocalUtil::getTarget(this);
     TVec3f watchPos;
-    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
     TVec3f up = mUp;
     TVec3f jointPos(0.0f, 0.0f, 0.0f);

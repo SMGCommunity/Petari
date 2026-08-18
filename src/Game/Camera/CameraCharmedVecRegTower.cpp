@@ -20,7 +20,7 @@ void CameraCharmedVecRegTower::reset() {
 
 CameraTargetObj* CameraCharmedVecRegTower::calc() {
     TVec3f watchOffset;
-    CameraLocalUtil::makeWatchOffset(&watchOffset, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchOffset(&watchOffset, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
     TVec3f wPoint = mWPoint;
     TVec3f axis = mAxis;
