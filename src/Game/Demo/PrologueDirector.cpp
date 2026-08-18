@@ -275,7 +275,7 @@ void PrologueDirector::createMarioPosDummyModel() {
     MR::invalidateClipping(mMarioPosDummyModel);
 
     mMarioPosDummyModel->kill();
-    mMarioPosDummyModel->mPosition.zeroInline();
+    mMarioPosDummyModel->mPosition.zero();
 
     ActorCameraInfo cameraInfo = ActorCameraInfo();
 

@@ -870,11 +870,11 @@ namespace MR {
         return MR::getNamePosHolder()->tryRegisterLinkObj(pObj, rIter);
     }
 
-    void findNamePos(const char* pName, MtxPtr pMtx) {
+    bool findNamePos(const char* pName, MtxPtr pMtx) {
         MR::tryFindLinkNamePos(nullptr, pName, pMtx);
     }
 
-    void findNamePos(const char* pName, TVec3f* a2, TVec3f* a3) {
+    bool findNamePos(const char* pName, TVec3f* a2, TVec3f* a3) {
         getNamePosHolder()->find(nullptr, pName, a2, a3);
     }
 

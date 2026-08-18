@@ -22,7 +22,6 @@ public:
     };
 
     CameraShaker(const char*);
-    virtual ~CameraShaker();
 
     virtual void movement();
 

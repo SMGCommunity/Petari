@@ -10,7 +10,7 @@ public:
     JKRDvdArchive(s32, EMountDirection);
     virtual ~JKRDvdArchive();
 
-    virtual s32 getExpandedResSize(const void*) const;
+    virtual u32 getExpandedResSize(const void*) const;
     virtual void* fetchResource(SDIFileEntry*, u32*);
     virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*);
 

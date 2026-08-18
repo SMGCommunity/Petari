@@ -12,10 +12,10 @@ CameraRotChecker::CameraRotChecker() {
 
 void CameraRotChecker::update() {
     TPos3f mtx;
-    mtx.concat(*reinterpret_cast< TPos3f* >(MR::getCameraViewMtx()), mMtx);
+    mtx.concat(MR::getCameraViewMtx(), mMtx);
 
     TVec3f axis;
     mIsRotatingHard = MR::abs(mtx.getRotate(axis)) > ::sThreshold;
 
-    mMtx.set(*MR::getCameraInvViewMtx());
+    mMtx.set(MR::getCameraInvViewMtx());
 }

@@ -4,23 +4,34 @@
 #include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraLocalUtil.hpp"
 
-CameraTripodBossJoint::CameraTripodBossJoint(const char* pName) : Camera(pName) {
-    mAngleB = 0.0f;
-    mAngleA = 0.0f;
-    mDist = 3000.0f;
-    _68 = false;
-    _6C = 0.0f;
-    _70 = 0.0f;
+void CameraTripodBossJoint_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
+namespace {
+    static const f32 sDistance = 300.0f;
+    static const f32 sAtternuation = 0.7f;
+    static const f32 sRoundDiv = 8.0f;
+    static const f32 sRoundAddition = 0.08f;
+};  // namespace
+
+CameraTripodBossJoint::~CameraTripodBossJoint() {
+}
+
+CameraTripodBossJoint::CameraTripodBossJoint(const char* pName)
+    : Camera(pName), mAngleX(), mAngleY(), mDist(3000.0f), mIsRounding(), mRoundTarget(), mRoundAngle() {
 }
 
 void CameraTripodBossJoint::reset() {
-    TVec3f watchPoint;
-    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 0.0066666668f);
-    CameraLocalUtil::setWatchPos(this, watchPoint);
+    TVec3f watchPos;
+    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::setWatchPos(this, watchPos);
     calcIdealPose();
-    _68 = 0;
-    _6C = 0.0f;
-    _70 = 0.0f;
+    mIsRounding = false;
+    mRoundTarget = 0.0f;
+    mRoundAngle = 0.0f;
 }
 
 CameraTargetObj* CameraTripodBossJoint::calc() {
@@ -28,117 +39,85 @@ CameraTargetObj* CameraTripodBossJoint::calc() {
     return CameraLocalUtil::getTarget(this);
 }
 
-CameraTripodBossJoint::~CameraTripodBossJoint() {
-}
-
 CamTranslatorBase* CameraTripodBossJoint::createTranslator() {
     return new CamTranslatorTripodBossJoint(this);
 }
 
 void CameraTripodBossJoint::calcIdealPose() {
-    if (mDist < 300.0f) {
-        mDist = 300.0f;
+    if (mDist < ::sDistance) {
+        mDist = ::sDistance;
     }
 
-    if (_68) {
-        if (_6C > _70) {
-            _70 += 0.079999998f;
-            if (_70 >= _6C) {
-                _70 = _6C;
-                _68 = 0;
+    if (mIsRounding) {
+        if (mRoundTarget > mRoundAngle) {
+            mRoundAngle += ::sRoundAddition;
+            if (mRoundAngle >= mRoundTarget) {
+                mRoundAngle = mRoundTarget;
+                mIsRounding = false;
             }
         } else {
-            _70 -= 0.079999998f;
-            if (_70 <= _6C) {
-                _70 = _6C;
-                _68 = 0;
+            mRoundAngle -= ::sRoundAddition;
+            if (mRoundAngle <= mRoundTarget) {
+                mRoundAngle = mRoundTarget;
+                mIsRounding = false;
             }
         }
     } else {
-        f32 common = 0.78539819f;
+        f32 roundInterval = MR::toRadian(360.0f / ::sRoundDiv);
+
         if (CameraLocalUtil::tryCameraReset()) {
-            _70 *= 0.69999999f;
-            _6C = _70;
+            mRoundAngle *= ::sAtternuation;
+            mRoundTarget = mRoundAngle;
         } else if (CameraLocalUtil::testCameraPadTriggerRoundLeft()) {
-            f32 f = _70;
-            f32 fa = MR::abs(_70);
-            s32 dir;
-            if (f < 0.0f) {
-                dir = -1;
-            } else {
-                dir = 1;
-            }
-            f32 p5 = 0.5f;
-            f32 muls = common * p5;
-            muls += fa;
-            muls /= common;
-            s32 mulint = (dir * static_cast< s32 >(muls)) - 1;
-            if (static_cast< f32 >(mulint) < -4.0f) {
-                f32 asd = static_cast< f32 >(mulint) + 8.0f;
-                _70 = _70 + 6.2831855f;
-                muls = asd;
-                mulint = static_cast< s32 >(asd);
+            s32 divNum = (mRoundAngle < 0.0f ? -1 : 1) * (s32)(((roundInterval / 2) + MR::abs(mRoundAngle)) / roundInterval) - 1;
+
+            if (divNum < -::sRoundDiv / 2) {
+                divNum += ::sRoundDiv;
+                mRoundAngle += MR::pi() * 2.0f;
             }
 
-            _68 = 1;
-            _6C = mulint * common;
+            mRoundTarget = divNum * roundInterval;
+            mIsRounding = true;
         } else if (CameraLocalUtil::testCameraPadTriggerRoundRight()) {
-            f32 f = _70;
-            f32 fa = MR::abs(_70);
-            s32 dir;
-            if (f < 0.0f) {
-                dir = -1;
-            } else {
-                dir = 1;
-            }
-            f32 p5 = 0.5f;
-            f32 muls = common * p5;
-            muls += fa;
-            muls /= common;
-            s32 mulint = (dir * static_cast< s32 >(muls)) + 1;
-            if (static_cast< f32 >(mulint) > 4.0f) {
-                f32 asd = static_cast< f32 >(mulint) - 8.0f;
-                _70 = _70 - 6.2831855f;
-                muls = asd;
-                mulint = static_cast< s32 >(asd);
+            s32 divNum = (mRoundAngle < 0.0f ? -1 : 1) * (s32)(((roundInterval / 2) + MR::abs(mRoundAngle)) / roundInterval) + 1;
+
+            if (divNum > ::sRoundDiv / 2) {
+                divNum -= ::sRoundDiv;
+                mRoundAngle -= MR::pi() * 2.0f;
             }
 
-            _68 = 1;
-            _6C = mulint * common;
+            mRoundTarget = divNum * roundInterval;
+            mIsRounding = true;
         }
     }
 
-    TVec3f polecrossdegree;
-    MR::polarToCrossDegree(TVec3f(0.0f, 0.0f, 0.0f), &polecrossdegree, mDist, mAngleB, (mAngleA - 90.0f) + _70);
+    TVec3f pos;
+    MR::polarToCrossDegree(TVec3f(0.0f, 0.0f, 0.0f), &pos, mDist, mAngleX, (mAngleY - 90.0f) + mRoundAngle);
 
-    TVec3f axis;
+    TVec3f up;
     if (MR::isCreatedTripodBoss()) {
-        TPos3f pos;
-        MR::getTripodBossJointMatrix(&pos, _58);
-        pos.mult33(polecrossdegree, polecrossdegree);
-        pos.getYDir(axis);
+        TPos3f mtx;
+        MR::getTripodBossJointMatrix(&mtx, mJointID);
+        mtx.mult33(pos, pos);
+        mtx.getYDir(up);
     } else {
-        axis.set< f32 >(0.0f, 1.0f, 0.0f);
+        up.set< f32 >(0.0f, 1.0f, 0.0f);
     }
 
-    TVec3f watchpoint;
-    CameraLocalUtil::makeWatchPoint(&watchpoint, this, CameraLocalUtil::getTarget(this), 0.0066666668f);
+    TVec3f watchPoint;
+    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
 
     if (MR::isCreatedTripodBoss()) {
-        TPos3f pos;
-        MR::getTripodBossJointMatrix(&pos, _58);
-        TVec3f vec;
-        pos.mult33(mAxis, vec);
-        watchpoint.add(vec);
+        TPos3f mtx;
+        MR::getTripodBossJointMatrix(&mtx, mJointID);
+        TVec3f offset;
+        mtx.mult33(mAxis, offset);
+        watchPoint.add(offset);
     }
 
-    polecrossdegree.add(watchpoint);
-    CameraLocalUtil::setPos(this, polecrossdegree);
-    CameraLocalUtil::setUpVec(this, axis);
-    CameraLocalUtil::setWatchPos(this, watchpoint);
-    CameraLocalUtil::setWatchUpVec(this, axis);
-}
-
-bool CameraTripodBossJoint::isEnableToReset() const {
-    return true;
+    pos.add(watchPoint);
+    CameraLocalUtil::setPos(this, pos);
+    CameraLocalUtil::setUpVec(this, up);
+    CameraLocalUtil::setWatchPos(this, watchPoint);
+    CameraLocalUtil::setWatchUpVec(this, up);
 }

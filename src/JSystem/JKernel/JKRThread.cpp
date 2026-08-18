@@ -4,6 +4,25 @@
 JSUList< JKRThread > JKRThread::sThreadList = JSUList< JKRThread >(false);
 JSUList< JKRTask > JKRThread::sTaskList = JSUList< JKRTask >();
 
+JKRThread::JKRThread(u32 stack_size, int message_count, int param_3) : mThreadListLink(this) {
+    JKRHeap* heap = JKRHeap::findFromRoot(this);
+    if (heap == NULL) {
+        heap = JKRGetSystemHeap();
+    }
+
+    setCommon_heapSpecified(heap, stack_size, param_3);
+    setCommon_mesgQueue(mHeap, message_count);
+}
+
+JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param_4) : mThreadListLink(this) {
+    if (heap == NULL) {
+        heap = JKRGetCurrentHeap();
+    }
+
+    setCommon_heapSpecified(heap, stack_size, param_4);
+    setCommon_mesgQueue(mHeap, message_count);
+}
+
 JKRThread::TLoad::TLoad() {
     clear();
 
@@ -42,20 +61,16 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* pHeap, int msgCount) {
     mCurrentHeapError = 0;
 }
 
-/*
-void JKRThread::setCommon_heapSpecified(JKRHeap *pHeap, u32 a2, int a3) {
-    mHeap = pHeap;
-    _5C = (void*)(a3 & 0xFFFFFFE0);
-    mStackMemory = JKRHeap::alloc(*(u32*)_5C, 32, pHeap);
-    OSThread* thread = reinterpret_cast<OSThread*>(JKRHeap::alloc(0x318, 0x20, mHeap));
-    mThreadRecord = thread;
-    OSCreateThread(thread, JKRThread::start, this, 0, 0, 0, 0);
-    //OSCreateThread(thread, JKRThread::start, this, (u8*)_5C + mStackMemory, _5C, a3, 1);
+void JKRThread::setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3) {
+    mHeap = heap;
+    mStackSize = stack_size & 0xffffffe0;
+    mStackMemory = JKRAllocFromHeap(mHeap, mStackSize, 0x20);
+    mThread = (OSThread*)JKRAllocFromHeap(mHeap, sizeof(OSThread), 0x20);
+    OSCreateThread(mThread, start, this, (u8*)mStackMemory + mStackSize, mStackSize, param_3, 1);
 }
-*/
 
-void* JKRThread::start(void* pData) {
-    return run();
+void* JKRThread::start(void* thread) {
+    return ((JKRThread*)thread)->run();
 }
 
 JKRThread* JKRThread::searchThread(OSThread* pThread) {
@@ -90,4 +105,8 @@ JKRThread* JKRThreadSwitch::enter(JKRThread* pThread, int a2) {
     inf->_0 = 1;
 
     return thread;
+}
+
+void* JKRThread::run() {
+    return nullptr;
 }

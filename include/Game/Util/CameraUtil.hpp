@@ -21,11 +21,11 @@ namespace MR {
 
     void cleanEventCameraTarget_temporally();
 
-    TProj3f* getCameraProjectionMtx();
-    const MtxPtr getCameraViewMtx();
-    const MtxPtr getMirrorCameraViewMtx();
-    const MtxPtr getMirrorModelTexMtx();
-    TPos3f* getCameraInvViewMtx();
+    const TProj3f& getCameraProjectionMtx();
+    const TPos3f& getCameraViewMtx();
+    const TPos3f& getMirrorCameraViewMtx();
+    const TPos3f& getMirrorModelTexMtx();
+    const TPos3f& getCameraInvViewMtx();
 
     void loadViewMtx();
     void loadProjectionMtx();

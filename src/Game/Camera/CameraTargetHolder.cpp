@@ -1,6 +1,10 @@
 #include "Game/Camera/CameraTargetHolder.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 
+namespace {
+    static const f32 sMovingThreshold = 1.0f;
+};  // namespace
+
 CameraTargetHolder::CameraTargetHolder() {
     mTarget = nullptr;
     mTargetActor = new CameraTargetActor("アクター注目");
@@ -34,11 +38,5 @@ bool CameraTargetHolder::isOnGround() const {
 }
 
 bool CameraTargetHolder::isMoving() const {
-    return mTarget->getLastMove().length() > 1.0f;
+    return mTarget->getLastMove().length() > ::sMovingThreshold;
 }
-
-CameraTargetHolder::~CameraTargetHolder() {
-}
-
-const u32 sCameraTargetHolderDataPad = 0;
-const f32 sCameraTargetHolderSdata2Pad = 0.0f;

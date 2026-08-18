@@ -119,7 +119,7 @@ void MarioActor::exeGameOverBlackHole2() {
 
     mPosition = mBlackHolePosition + mPosRelativeToBlackHole;
 
-    mVelocity.zeroInline();
+    mVelocity.zero();
 }
 
 namespace NrvMarioActor {

@@ -13,7 +13,7 @@ namespace MR {
     void onStarPointerSceneOut();
     void setStarPointerModeBase();
     void setStarPointerCameraMtxAtGameScene();
-    void initStarPointerTarget(LiveActor*, f32, const TVec3f&);
+    void initStarPointerTarget(LiveActor*, f32, const TVec3f& rOffset = TVec3f(0.0f));
     void initStarPointerTargetAtPos(LiveActor*, f32, const TVec3f*, const TVec3f&);
     void initStarPointerTargetAtMtx(LiveActor*, f32, MtxPtr, const TVec3f&);
     void initStarPointerTargetAtJoint(LiveActor*, const char*, f32, const TVec3f&);
@@ -109,4 +109,14 @@ namespace MR {
     bool requestFileSelectGuidance();
     bool requestFileSelectCopyGuidance();
     bool requestStarPieceLectureGuidance();
+
+    /*
+    inline void initStarPointerTarget(LiveActor* pActor, f32 radius) {
+        TVec3f zeroOffset;
+        zeroOffset.x = 0.0f;
+        zeroOffset.y = 0.0f;
+        zeroOffset.z = 0.0f;
+        initStarPointerTarget(pActor, radius, zeroOffset);
+    }
+    */
 };  // namespace MR

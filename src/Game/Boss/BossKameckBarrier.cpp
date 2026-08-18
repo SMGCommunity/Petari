@@ -8,17 +8,16 @@ namespace NrvBossKameckBarrier {
     NEW_NERVE(BossKameckBarrierNrvWait, BossKameckBarrier, Wait);
 };  // namespace NrvBossKameckBarrier
 
-BossKameckBarrier::BossKameckBarrier(const char* pName, const char* pBossName) : LiveActor(pName) {
-    mBossName = pBossName;
+BossKameckBarrier::BossKameckBarrier(const char* pName, const char* pModelName) : LiveActor(pName), mModelName(pModelName) {
 }
 
 void BossKameckBarrier::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm(mBossName, nullptr, false);
+    initModelManagerWithAnm(mModelName, nullptr, false);
     MR::connectToSceneEnemy(this);
     initHitSensor(1);
     MR::addHitSensor(this, "body", ATYPE_KAMECK_BARRIER, 0, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    MR::initCollisionParts(this, mBossName, getSensor("body"), nullptr);
+    MR::initCollisionParts(this, mModelName, getSensor("body"), nullptr);
     initNerve(&NrvBossKameckBarrier::BossKameckBarrierNrvWait::sInstance);
     MR::invalidateClipping(this);
     makeActorDead();

@@ -61,23 +61,22 @@ public:
     void updateCameraTargetMatrix();
 
     TPos3f _8C;
-    f32 _BC;
-    TVec3f _C0;
+    TQuat4f _BC;
     TVec3f _CC;
     TVec3f _D8;
     TVec3f _E4;
     TVec3f _F0;
     TVec3f _FC;
-    u32 _108;
+    LiveActor* _108;
     GCaptureTargetable* mTarget;  // 0x10C
-    u32 _110;
+    GCaptureTargetable* _110;
     GCaptureRibbon* mCaptureRibbon;  // 0x114
     CameraTargetMtx* mTargetMtx;     // 0x118
     SpringValue* mSpringValue;       // 0x11C
     f32 mTractPower;                 // 0x120
     f32 _124;
     f32 _128;
-    u32 _122C;
+    u32 _12C;
     f32 _130;
     u32 _134;
     u8 _138;

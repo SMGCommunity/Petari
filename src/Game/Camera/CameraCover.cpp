@@ -67,7 +67,7 @@ bool CameraCover::isCameraHopping() const {
 }
 
 void CameraCover::copyCamera() {
-    _C.setInline(*MR::getCameraInvViewMtx());
+    _C.set(MR::getCameraInvViewMtx());
 }
 
 CameraCover::~CameraCover() {

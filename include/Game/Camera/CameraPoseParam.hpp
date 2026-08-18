@@ -20,6 +20,10 @@ public:
         mRoll = rParam.mRoll;
     }
 
+    const TVec3f& getWatchPos() const {
+        return mWatchPos;
+    }
+
     /* 0x00 */ TVec3f mWatchUpVec;
     /* 0x0C */ TVec3f mWatchPos;
     /* 0x18 */ TVec3f mUpVec;

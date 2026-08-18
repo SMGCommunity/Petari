@@ -115,7 +115,7 @@ namespace CameraLocalUtil {
     }
 
     void setUsedTarget(const CameraMan* pCameraMan, CameraTargetObj* pUsedTarget) {
-        pCameraMan->mDirector->mUsedTarget = pUsedTarget;
+        pCameraMan->mDirector->mTargetObj = pUsedTarget;
     }
 
     CameraTargetObj* getTarget(const Camera* pCamera) {
@@ -397,7 +397,7 @@ namespace CameraLocalUtil {
 
         if (viewDist < push) {
             if (MR::isNearZero(viewDir)) {
-                MR::getCameraInvViewMtx()->getZDir(viewDir);
+                MR::getCameraInvViewMtx().getZDir(viewDir);
                 viewDir.negate();
             }
             viewDir.setLength(push);

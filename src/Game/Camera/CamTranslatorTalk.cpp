@@ -2,7 +2,8 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorTalk::setParam(const CameraParamChunk* pChunk) {
-    mCamera->setParam(pChunk->mGeneralParam->mWPoint, pChunk->mGeneralParam->mUp, pChunk->mGeneralParam->mAxis.x, pChunk->mGeneralParam->mAxis.y);
+    CameraGeneralParam* general = pChunk->mGeneralParam;
+    mCamera->setParam(general->mWPoint, general->mUp, general->mAxis.x, general->mAxis.y);
 }
 
 Camera* CamTranslatorTalk::getCamera() const {

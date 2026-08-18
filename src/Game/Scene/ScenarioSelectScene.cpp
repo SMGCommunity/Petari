@@ -130,7 +130,7 @@ void ScenarioSelectScene::draw() const {
         _24->draw();
         _24->frameInit();
         OSUnlockMutex(&MR::MutexHolder< 0 >::sMutex);
-        MR::Effect::drawEffect3D(mEffectSystem, *mCameraContext->getViewMtx());
+        MR::Effect::drawEffect3D(mEffectSystem, mCameraContext->getViewMtx());
         mScenarioLayout->draw();
         MR::Effect::drawEffect2D(mEffectSystem);
         mCinemaFrame->draw();
@@ -174,7 +174,7 @@ bool ScenarioSelectScene::isResetEnd() const {
 }
 
 void ScenarioSelectScene::setupCameraMtx() const {
-    PSMTXCopy(*mCameraContext->getViewMtx(), j3dSys.mViewMtx);
+    PSMTXCopy(mCameraContext->getViewMtx(), j3dSys.mViewMtx);
     GXSetProjection(mCameraContext->mProjection, GX_PERSPECTIVE);
 }
 

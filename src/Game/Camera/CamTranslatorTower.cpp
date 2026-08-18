@@ -9,23 +9,9 @@ void CamTranslatorTower_FORCE_MATCH_SDATA2() {
 }
 
 void CamTranslatorTower::setParam(const CameraParamChunk* pChunk) {
-    CameraTower* camera;
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    f32 dist;
-    TVec2f angle;
-
-    angle.x = general->mAngleB;
-    angle.y = MR::pi() * (1.0f - general->mAngleA) * 0.5f;
-    dist = general->mDist;
-
-    camera = mCamera;
-
-    camera->mWPoint.set(general->mWPoint);
-    camera->mAxis.set(general->mAxis);
-    camera->mDist = dist;
-    camera->mAngleB = angle.x;
-    camera->mAngleA = angle.y;
+    mCamera->setParam(general->mWPoint, general->mAxis, general->mDist, TVec2f(general->mAngleB, MR::pi() * (1.0f - general->mAngleA) * 0.5f));
 }
 
 Camera* CamTranslatorTower::getCamera() const {

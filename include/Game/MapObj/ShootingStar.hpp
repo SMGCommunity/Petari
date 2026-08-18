@@ -2,13 +2,10 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-static f32 zero = 0.0f;
-
 class ShootingStar : public LiveActor {
 public:
     ShootingStar(const char*);
 
-    virtual ~ShootingStar();
     virtual void init(const JMapInfoIter&);
     virtual void control();
 
@@ -17,10 +14,10 @@ public:
     void exeShooting();
     void exeWaitForNextShoot();
 
-    TVec3f _8C;
-    TVec3f _98;
-    TVec3f _A4;
-    s32 _B0;
-    s32 _B4;
-    f32 _B8;
+    /* 0x8C */ TVec3f mBasePos;
+    /* 0x98 */ TVec3f mFallAxis;
+    /* 0xA4 */ TVec3f mGravityPreShoot;
+    /* 0xB0 */ s32 mNumBurstStarPiece;
+    /* 0xB4 */ s32 mWaitForNextShootTime;
+    /* 0xB8 */ f32 mFallHeight;
 };

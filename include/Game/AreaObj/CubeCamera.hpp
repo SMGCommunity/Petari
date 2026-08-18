@@ -26,6 +26,10 @@ public:
 
     static s32 sCubeCategory;
 
+    u32 getZoneID() const {
+        return mZoneID;
+    }
+
     /* 0x3C */ s32 _3C;
     /* 0x40 */ u32 mZoneID;
 };

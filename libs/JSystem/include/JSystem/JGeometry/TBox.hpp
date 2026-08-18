@@ -100,6 +100,21 @@ namespace JGeometry {
             i.set(a);
             f.set(b);
         }
+
+        void zero() {
+            i.zero();
+            f.zero();
+        }
+
+        void pad(f32 padding) {
+            TVec3f p(padding);
+            i.sub(p);
+            f.add(p);
+        }
+
+        void getCenter(TVec3f* pCenter) {
+            pCenter->lerp(f, i, 0.5f);
+        }
     };
 
     template < typename T >

@@ -38,7 +38,7 @@ void CameraMedianPlanet::reset() {
 
 CameraTargetObj* CameraMedianPlanet::calc() {
     TVec3f pos;
-    reinterpret_cast< TPos3f* >(MR::getCameraInvViewMtx())->getTrans(pos);
+    MR::getCameraInvViewMtx().getTrans(pos);
     constrainDipAngle(&pos);
     constrainLength(&pos);
     TVec3f watchPos;
@@ -60,7 +60,7 @@ CamTranslatorBase* CameraMedianPlanet::createTranslator() {
 }
 
 void CameraMedianPlanet::getPrevFront(TVec3f* pPrevFront) {
-    reinterpret_cast< TPos3f* >(MR::getCameraInvViewMtx())->getZDir(*pPrevFront);
+    MR::getCameraInvViewMtx().getZDir(*pPrevFront);
     pPrevFront->negate();
 }
 
@@ -165,7 +165,7 @@ void CameraMedianPlanet::calcWatchPos(TVec3f* pWatchPos) {
 }
 
 bool CameraMedianPlanet::calcUpVec(TVec3f* pUp, const TVec3f& watchPos, const TVec3f& pos) {
-    reinterpret_cast< TPos3f* >(MR::getCameraInvViewMtx())->getYDir(*pUp);
+    MR::getCameraInvViewMtx().getYDir(*pUp);
     TVec3f prevFront;
     getPrevFront(&prevFront);
 

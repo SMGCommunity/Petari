@@ -3,33 +3,15 @@
 #include "Game/Util/MathUtil.hpp"
 
 void CamTranslatorTrundle::setParam(const CameraParamChunk* pChunk) {
-    CameraTrundle* camera;
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
     TVec3f axis = general->mAxis;
-
-    if (!MR::isNearZero(axis)) {
-        MR::normalize(&axis);
-
-        f32 dist;
-        f32 angleA;
-        f32 angleB;
-        f32 upX;
-
-        upX = general->mUp.x;
-        angleB = general->mAngleB;
-        angleA = general->mAngleA;
-        dist = general->mDist;
-
-        camera = mCamera;
-
-        camera->mWPoint.set< f32 >(general->mWPoint);
-        camera->mAxis.set< f32 >(axis);
-        camera->mDist = dist;
-        camera->mAngleA = angleA;
-        camera->mAngleB = angleB;
-        camera->mUpX = upX;
+    if (MR::isNearZero(axis)) {
+        return;
     }
+    MR::normalize(&axis);
+
+    mCamera->setParam(general->mWPoint, axis, general->mDist, general->mAngleA, general->mAngleB, general->mUp.x);
 }
 
 Camera* CamTranslatorTrundle::getCamera() const {

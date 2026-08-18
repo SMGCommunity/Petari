@@ -15,7 +15,8 @@ void MirrorCamera::setMirrorMapInfo(const TVec3f& a1, const TVec3f& a2) {
 }
 
 void MirrorCamera::updateViewMtx() {
-    TPos3f cameraInv(MR::getCameraInvViewMtx());
+    TPos3f cameraInv;
+    cameraInv.set(MR::getCameraInvViewMtx());
     TVec3f y;
     TVec3f z;
     TVec3f trans;
@@ -31,7 +32,7 @@ void MirrorCamera::updateViewMtx() {
 }
 
 void MirrorCamera::updateModelTexMtx() {
-    TProj3f mtx = *MR::getCameraProjectionMtx();
+    TProj3f mtx = MR::getCameraProjectionMtx();
     mtx[2][0] = 0.0f;
     mtx[2][1] = 0.0f;
     mtx[2][2] = -1.0f;

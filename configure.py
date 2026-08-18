@@ -355,6 +355,8 @@ cflags_sdk = [
 
 cflags_sdk_exi = ["-O3" if flag == "-O4,p" else flag for flag in cflags_sdk]
 cflags_sdk_wpad = ["-fp off" if flag == "-fp hardware" else flag for flag in cflags_sdk]
+cflags_sdk_net = ["-O4,s" if flag == "-O4,p" else flag for flag in cflags_sdk]
+cflags_sdk_aralt = ["-O4,s" if flag == "-O4,p" else flag for flag in cflags_sdk]
 
 cflags_rfl = [
     "-nodefaults",
@@ -485,6 +487,16 @@ def SDKLib_WENC(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
 
 
 def SDKLib_OS(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5.2",
+        "cflags": cflags_sdk,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
+def SDKLib_NWC24(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
         "mw_version": "GC/3.0a5.2",
@@ -769,7 +781,7 @@ config.libs = [
                 "Game/Boss/BossKameck.cpp",
                 cflags=[*cflags_game, "-sym off"],
             ),
-            Object(NonMatching, "Game/Boss/BossKameckAction.cpp"),
+            Object(Matching, "Game/Boss/BossKameckAction.cpp"),
             Object(Matching, "Game/Boss/BossKameckBarrier.cpp"),
             Object(NonMatching, "Game/Boss/BossKameckBattleDemo.cpp"),
             Object(Matching, "Game/Boss/BossKameckBattlePattarn.cpp"),
@@ -1000,19 +1012,19 @@ config.libs = [
             Object(Matching, "Game/Camera/CamTranslatorRailDemo.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorRailFollow.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorRailWatch.cpp"),
-            Object(NonMatching, "Game/Camera/CamTranslatorSlide.cpp"),
+            Object(Matching, "Game/Camera/CamTranslatorSlide.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorSpiral.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorTalk.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorTower.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorTowerPos.cpp"),
-            Object(NonMatching, "Game/Camera/CamTranslatorTripodBoss.cpp"),
+            Object(Matching, "Game/Camera/CamTranslatorTripodBoss.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorTripodBossJoint.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorTripodPlanet.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorTrundle.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorTwistedPassage.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorWaterFollow.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorWaterPlanet.cpp"),
-            Object(NonMatching, "Game/Camera/CamTranslatorWaterPlanetBoss.cpp"),
+            Object(Matching, "Game/Camera/CamTranslatorWaterPlanetBoss.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorWonderPlanet.cpp"),
             Object(Matching, "Game/Camera/Camera.cpp"),
             Object(NonMatching, "Game/Camera/CameraAnim.cpp"),
@@ -1020,7 +1032,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraBlackHole.cpp"),
             Object(NonMatching, "Game/Camera/CameraCalc.cpp"),
             Object(Matching, "Game/Camera/CameraCharmedFix.cpp"),
-            Object(NonMatching, "Game/Camera/CameraCharmedTripodBoss.cpp"),
+            Object(Matching, "Game/Camera/CameraCharmedTripodBoss.cpp"),
             Object(Matching, "Game/Camera/CameraCharmedVecReg.cpp"),
             Object(Matching, "Game/Camera/CameraCharmedVecRegTower.cpp"),
             Object(NonMatching, "Game/Camera/CameraContext.cpp"),
@@ -1067,41 +1079,41 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraRailDemo.cpp"),
             Object(Matching, "Game/Camera/CameraRailFollow.cpp"),
             Object(
-                Matching, 
-                "Game/Camera/CameraRailHolder.cpp", 
+                Matching,
+                "Game/Camera/CameraRailHolder.cpp",
                 cflags=[*cflags_game, "-sym off"],
             ),
             Object(NonMatching, "Game/Camera/CameraRailWatch.cpp"),
             Object(Matching, "Game/Camera/CameraRegisterHolder.cpp"),
             Object(NonMatching, "Game/Camera/CameraRotChecker.cpp"),
-            Object(NonMatching, "Game/Camera/CameraShakePatternImpl.cpp"),
+            Object(Matching, "Game/Camera/CameraShakePatternImpl.cpp"),
             Object(Matching, "Game/Camera/CameraShakeTask.cpp"),
-            Object(NonMatching, "Game/Camera/CameraShaker.cpp"),
-            Object(NonMatching, "Game/Camera/CameraSlide.cpp"),
+            Object(Matching, "Game/Camera/CameraShaker.cpp"),
+            Object(Matching, "Game/Camera/CameraSlide.cpp"),
             Object(NonMatching, "Game/Camera/CameraSpiral.cpp"),
-            Object(NonMatching, "Game/Camera/CameraSubjective.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTalk.cpp"),
+            Object(Matching, "Game/Camera/CameraSubjective.cpp"),
+            Object(Matching, "Game/Camera/CameraTalk.cpp"),
             Object(NonMatching, "Game/Camera/CameraTargetArg.cpp"),
             Object(Matching, "Game/Camera/CameraTargetHolder.cpp"),
             Object(Matching, "Game/Camera/CameraTargetMtx.cpp"),
             Object(NonMatching, "Game/Camera/CameraTargetObj.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTestObj.cpp"),
+            Object(Matching, "Game/Camera/CameraTestObj.cpp"),
             Object(NonMatching, "Game/Camera/CameraTower.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTowerBase.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTowerPos.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTripodBoss.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTripodBossJoint.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTripodPlanet.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTrundle.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTwistedPassage.cpp"),
+            Object(Matching, "Game/Camera/CameraTowerBase.cpp"),
+            Object(Matching, "Game/Camera/CameraTowerPos.cpp"),
+            Object(Matching, "Game/Camera/CameraTripodBoss.cpp"),
+            Object(Matching, "Game/Camera/CameraTripodBossJoint.cpp"),
+            Object(Matching, "Game/Camera/CameraTripodPlanet.cpp"),
+            Object(Matching, "Game/Camera/CameraTrundle.cpp"),
+            Object(Matching, "Game/Camera/CameraTwistedPassage.cpp"),
             Object(NonMatching, "Game/Camera/CameraViewInterpolator.cpp"),
-            Object(NonMatching, "Game/Camera/CameraWaterFollow.cpp"),
-            Object(NonMatching, "Game/Camera/CameraWaterPlanet.cpp"),
-            Object(NonMatching, "Game/Camera/CameraWaterPlanetBoss.cpp"),
-            Object(NonMatching, "Game/Camera/CameraWonderPlanet.cpp"),
+            Object(Matching, "Game/Camera/CameraWaterFollow.cpp"),
+            Object(Matching, "Game/Camera/CameraWaterPlanet.cpp"),
+            Object(Matching, "Game/Camera/CameraWaterPlanetBoss.cpp"),
+            Object(Matching, "Game/Camera/CameraWonderPlanet.cpp"),
             Object(NonMatching, "Game/Camera/DotCamParams.cpp"),
             Object(NonMatching, "Game/Camera/GameCameraCreator.cpp"),
-            Object(NonMatching, "Game/Camera/OnlyCamera.cpp"),
+            Object(Matching, "Game/Camera/OnlyCamera.cpp"),
         ],
     ),
     GameLib(
@@ -2483,7 +2495,9 @@ config.libs = [
         ],
     ),
     SDKLib("ai", [Object(NonMatching, "RVL_SDK/ai/ai.c")]),
-    SDKLib("aralt", [Object(NonMatching, "RVL_SDK/aralt/aralt.c")]),
+    SDKLib(
+        "aralt", [Object(NonMatching, "RVL_SDK/aralt/aralt.c", cflags=cflags_sdk_aralt)]
+    ),
     SDKLib("arc", [Object(NonMatching, "RVL_SDK/arc/arc.c")]),
     SDKLib(
         "ax",
@@ -2684,13 +2698,13 @@ config.libs = [
     SDKLib(
         "net",
         [
-            Object(NonMatching, "RVL_SDK/net/nettime.c"),
-            Object(NonMatching, "RVL_SDK/net/NETVersion.c"),
-            Object(NonMatching, "RVL_SDK/net/netmemcpy.c"),
-            Object(NonMatching, "RVL_SDK/net/netmemset.c"),
+            Object(NonMatching, "RVL_SDK/net/nettime.c", cflags=cflags_sdk_net),
+            Object(NonMatching, "RVL_SDK/net/NETVersion.c", cflags=cflags_sdk_net),
+            Object(NonMatching, "RVL_SDK/net/netmemcpy.c", cflags=cflags_sdk_net),
+            Object(NonMatching, "RVL_SDK/net/netmemset.c", cflags=cflags_sdk_net),
         ],
     ),
-    SDKLib(
+    SDKLib_NWC24(
         "nwc24",
         [
             Object(NonMatching, "RVL_SDK/nwc24/NWC24StdAPI.c"),

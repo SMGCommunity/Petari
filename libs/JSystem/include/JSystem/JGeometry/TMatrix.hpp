@@ -258,6 +258,12 @@ namespace JGeometry {
             this->mMtx[2][2] = rSrcZ.z;
         }
 
+        void getEulerDegree(TVec3f& rDest) const {
+            TVec3f rot;
+            getEulerXYZ(rot);
+            rDest.set< f32 >(rot.x * (180.0f / PI), rot.y * (180.0f / PI), rot.z * (180.0f / PI));
+        }
+
         void getEuler(TVec3f& rDest) const {
             getEulerXYZ(rDest);
         }
@@ -381,6 +387,7 @@ namespace JGeometry {
             //    SegmentGravity::updateLocalParam
             //    SurfRay::updateRotate
             //    Plant::initLeaf
+            //    WaterRoadModelInfo::initPoints
             // }
             //
             // DOES NOT MATCH {
@@ -398,6 +405,7 @@ namespace JGeometry {
             //    CameraMedianPlanet::rotate33 (regswap)
             //    CameraMedianTower::calc (regswap)
             //    CameraRailWatch::calc (regswap)
+            //    CameraDirector::calcViewMtxFromPoseParam (regswap)
             //
             //    CameraFixedThere::updateNormalUpVec (instruction mismatch!!)
             // }
@@ -840,7 +848,7 @@ namespace JGeometry {
         }
         void concat(const T& rSrc);
 
-        void invert(const TMatrix44< T >& rDest);
+        void invert(const TMatrix44< T >& rSrc);
 
         inline void mult(const TVec3f& rSrc, TVec3f& rDest) const {
             TVec4f pos(rSrc.x * this->mMtx[0][0] + rSrc.z * this->mMtx[0][2],
