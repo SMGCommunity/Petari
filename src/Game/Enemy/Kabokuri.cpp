@@ -21,7 +21,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "revolution/types.h"
 
 namespace {
     static const f32 sBodyHitRadius = 100.0f;
