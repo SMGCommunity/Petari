@@ -159,15 +159,8 @@ void Kabokuri::updatePose() {
         MR::normalize(&mFrontVec);
     }
 
-    TVec3f* upVec;
-    if (MR::isBindedGround(this)) {
-        upVec = const_cast< TVec3f* >(MR::getGroundNormal(this));
-    } else {
-        TVec3f v2 = -mGravity;
-        upVec = &v2;
-    }
-
-    MR::blendQuatUpFront(&mRotationQuat, *upVec, mFrontVec, ::sUpVecBlendRate, ::sFrontVecBlendRate);
+    MR::blendQuatUpFront(&mRotationQuat, MR::isBindedGround(this) ? *MR::getGroundNormal(this) : -mGravity, mFrontVec, ::sUpVecBlendRate,
+                         ::sFrontVecBlendRate);
 }
 
 void Kabokuri::addVelocityBase() {
