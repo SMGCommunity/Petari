@@ -1671,7 +1671,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/MapObjConnector.cpp"),
             Object(NonMatching, "Game/MapObj/MarblePlanet.cpp"),
             Object(NonMatching, "Game/MapObj/MarioLauncher.cpp"),
-            Object(NonMatching, "Game/MapObj/MarioLauncherAttractor.cpp"),
+            Object(Matching, "Game/MapObj/MarioLauncherAttractor.cpp"),
             Object(NonMatching, "Game/MapObj/MechaKoopaPartsArm.cpp"),
             Object(NonMatching, "Game/MapObj/MechaKoopaPartsHead.cpp"),
             Object(Matching, "Game/MapObj/MercatorFixParts.cpp"),
