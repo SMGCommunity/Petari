@@ -61,7 +61,7 @@ namespace NrvKabokuri {
 };  // namespace NrvKabokuri
 
 Kabokuri::Kabokuri(const char* pName)
-    : LiveActor(pName), mKuribo(nullptr), mBreakModel(nullptr), mAnimeScale(nullptr), mBindStarPointer(nullptr),
+    : LiveActor(pName), mKuribo(nullptr), mBreakModel(nullptr), mAnimeScale(nullptr), mStateBindStartPointer(nullptr),
       mRotationQuat(0.0f, 0.0f, 0.0f, 1.0f), mFrontVec(0.0f, 0.0f, 1.0f), _B8(-1), mWillGenerateFire(false) {
     KabokuriFireHolderFunc::createHolder();
 }
@@ -98,7 +98,7 @@ void Kabokuri::init(const JMapInfoIter& rIter) {
     mAnimeScale = new AnimScaleController(nullptr);
     mAnimeScale->setParamTight();
 
-    mBindStarPointer = new WalkerStateBindStarPointer(this, mAnimeScale);
+    mStateBindStartPointer = new WalkerStateBindStarPointer(this, mAnimeScale);
 
     // "Kabokuri kuribo"
     mKuribo = new Kuribo("カボクリクリボー");
@@ -288,7 +288,7 @@ bool Kabokuri::requestHitAttacked(HitSensor* pSender, HitSensor* pReceived) {
 }
 
 bool Kabokuri::tryPointBind() {
-    if (isEnablePointBind() && mBindStarPointer->tryStartPointBind()) {
+    if (isEnablePointBind() && mStateBindStartPointer->tryStartPointBind()) {
         setNerve(&NrvKabokuri::KabokuriNrvBindStarPointer::sInstance);
         return true;
     }
@@ -454,11 +454,11 @@ bool Kabokuri::isEnablePush() const {
 }
 
 void Kabokuri::endBindStarPointer() const {
-    mBindStarPointer->kill();
+    mStateBindStartPointer->kill();
 }
 
 void Kabokuri::exeBindStarPointer() {
-    MR::updateActorStateAndNextNerve(this, mBindStarPointer, &NrvKabokuri::KabokuriNrvWalk::sInstance);
+    MR::updateActorStateAndNextNerve(this, mStateBindStartPointer, &NrvKabokuri::KabokuriNrvWalk::sInstance);
 }
 
 Kabokuri::~Kabokuri() {

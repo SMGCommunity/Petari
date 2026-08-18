@@ -46,7 +46,7 @@ public:
     /* 0x8C */ Kuribo* mKuribo;
     /* 0x90 */ ModelObj* mBreakModel;
     /* 0x94 */ AnimScaleController* mAnimeScale;
-    /* 0x98 */ WalkerStateBindStarPointer* mBindStarPointer;
+    /* 0x98 */ WalkerStateBindStarPointer* mStateBindStartPointer;
     /* 0x9C */ TQuat4f mRotationQuat;
     /* 0xAC */ TVec3f mFrontVec;
     /* 0xB8 */ u32 _B8;
