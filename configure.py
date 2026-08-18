@@ -1113,7 +1113,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraWonderPlanet.cpp"),
             Object(NonMatching, "Game/Camera/DotCamParams.cpp"),
             Object(NonMatching, "Game/Camera/GameCameraCreator.cpp"),
-            Object(NonMatching, "Game/Camera/OnlyCamera.cpp"),
+            Object(Matching, "Game/Camera/OnlyCamera.cpp"),
         ],
     ),
     GameLib(

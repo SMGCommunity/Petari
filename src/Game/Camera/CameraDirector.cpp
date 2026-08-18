@@ -208,7 +208,7 @@ void CameraDirector::calcPose() {
     }
 
     if (getCurrentCameraMan()->isZeroFrameMoveOff()) {
-        mOnlyCamera->_3C = true;
+        mOnlyCamera->mIsZeroFrameMoveOff = true;
     }
 
     mOnlyCamera->calcPose(getCurrentCameraMan());
@@ -817,7 +817,7 @@ void CameraDirector::resetCameraMan() {
     man->deactivate(this);
     man->activate(this);
 
-    mOnlyCamera->_3D = true;
+    mOnlyCamera->mIsResetting = true;
 }
 
 void CameraDirector::createStartAnimCamera() {
