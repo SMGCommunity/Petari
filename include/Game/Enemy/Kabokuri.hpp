@@ -44,12 +44,12 @@ public:
     void endBindStarPointer() const;
 
     /* 0x8C */ Kuribo* mKuribo;
-    /* 0x90 */ ModelObj* _90;
+    /* 0x90 */ ModelObj* mBreakModel;
     /* 0x94 */ AnimScaleController* mAnimeScale;
-    /* 0x98 */ WalkerStateBindStarPointer* _98;
-    /* 0x9C */ TQuat4f _9C;
+    /* 0x98 */ WalkerStateBindStarPointer* mBindStarPointer;
+    /* 0x9C */ TQuat4f mRotationQuat;
     /* 0xAC */ TVec3f mFrontVec;
     /* 0xB8 */ u32 _B8;
     /* 0xBC */ bool mIsFloating;
-    /* 0xBD */ u8 _BD;
+    /* 0xBD */ bool mWillGenerateFire;
 };
