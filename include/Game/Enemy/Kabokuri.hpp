@@ -7,6 +7,7 @@ class WalkerStateBindStarPointer;
 class Kuribo;
 class ModelObj;
 
+/// @brief Jack O'Goomba
 class Kabokuri : public LiveActor {
 public:
     Kabokuri(const char*);
@@ -51,5 +52,7 @@ public:
     /* 0xAC */ TVec3f mFrontVec;
     /* 0xB8 */ u32 _B8;
     /* 0xBC */ bool mIsFloating;
+
+    /// @brief Generates fire on every point of the rail reached, except the first one.
     /* 0xBD */ bool mWillGenerateFire;
 };
