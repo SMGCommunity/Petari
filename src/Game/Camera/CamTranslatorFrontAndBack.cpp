@@ -19,21 +19,7 @@ void CamTranslatorFrontAndBack::setParam(const CameraParamChunk* pChunk) {
         MR::normalize(&axis);
     }
 
-    f32 angleA2;
-    f32 angleB2;
-    f32 dist;
-
-    angleB2 = MR::pi() * general->mAngleB / 180.0f;
-    angleA2 = MR::pi() * general->mAngleA / 180.0f;
-    dist = general->mDist;
-
-    CameraFrontAndBack* camera = mCamera;
-
-    camera->mWPoint = general->mWPoint;
-    camera->mAxis = axis;
-    camera->mRotateRate = angleA2;
-    camera->mMaxDipAngle = angleB2;
-    camera->mDist = dist;
+    mCamera->setParam(general->mWPoint, axis, MR::pi() * general->mAngleA / 180.0f, MR::pi() * general->mAngleB / 180.0f, general->mDist);
 }
 
 Camera* CamTranslatorFrontAndBack::getCamera() const {
