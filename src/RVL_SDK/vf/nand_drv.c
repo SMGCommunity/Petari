@@ -27,7 +27,7 @@ static inline void _SleepAfewMiliSec(void) {
     OSSleepTicks((s64)VF_nand_sleep_msec * ((*(u32*)0x800000F8 / 4) / 1000));
 }
 
-s32 VFi_NandCreate(const char* path, u8 perm, u8 attr) {
+s32 VFi_NandPrivateCreate(const char* path, u8 perm, u8 attr) {
     s32 challenge;
     s32 error;
 
@@ -44,7 +44,7 @@ s32 VFi_NandCreate(const char* path, u8 perm, u8 attr) {
     return error;
 }
 
-s32 VFi_NandDelete(const char* path) {
+s32 VFi_NandPrivateDelete(const char* path) {
     s32 challenge;
     s32 error;
 
@@ -78,7 +78,7 @@ s32 VFi_NandClose(struct NANDFileInfo* info) {
     return error;
 }
 
-s32 VFi_NandOpen(const char* path, struct NANDFileInfo* info, u8 accType) {
+static s32 VFi_NandOpen(const char* path, struct NANDFileInfo* info, u8 accType) {
     s32 challenge;
     s32 error;
 
@@ -95,7 +95,7 @@ s32 VFi_NandOpen(const char* path, struct NANDFileInfo* info, u8 accType) {
     return error;
 }
 
-s32 VFi_NANDPrivateOpen(const char* path, struct NANDFileInfo* info, u8 accType) {
+s32 VFi_NandPrivateOpen(const char* path, struct NANDFileInfo* info, u8 accType) {
     s32 challenge;
     s32 error;
 
@@ -112,7 +112,7 @@ s32 VFi_NANDPrivateOpen(const char* path, struct NANDFileInfo* info, u8 accType)
     return error;
 }
 
-s32 VFi_NandWrite(struct NANDFileInfo* info, void* buf, u32 length) {
+static s32 VFi_NandWrite(struct NANDFileInfo* info, void* buf, u32 length) {
     s32 challenge;
     s32 error;
 
@@ -129,7 +129,7 @@ s32 VFi_NandWrite(struct NANDFileInfo* info, void* buf, u32 length) {
     return error;
 }
 
-s32 VFi_NandSeek(struct NANDFileInfo* info, s32 offset, s32 whence) {
+static s32 VFi_NandSeek(struct NANDFileInfo* info, s32 offset, s32 whence) {
     s32 challenge;
     s32 error;
 
@@ -163,7 +163,7 @@ s32 VFi_NandRead(struct NANDFileInfo* info, void* buf, u32 length) {
     return error;
 }
 
-s32 VFi_NandCreateDir(const char* path, u8 perm, u8 attr) {
+s32 VFi_NandPrivateCreateDir(const char* path, u8 perm, u8 attr) {
     s32 challenge;
     s32 error;
 
@@ -171,7 +171,7 @@ s32 VFi_NandCreateDir(const char* path, u8 perm, u8 attr) {
     error = 0;
     while (challenge-- > 0) {
         error = NANDPrivateCreateDir(path, perm, attr);
-        if (error != NAND_RESULT_BUSY) {
+        if (error != NAND_RESULT_BUSY && error != NAND_RESULT_ALLOC_FAILED) {
             return error;
         } else {
             _SleepAfewMiliSec();
@@ -212,16 +212,16 @@ s32 VFi_NandOpenSp(const char* path, void* info, u8 accType, u32 i_handleIdx) {
     } else if (i_handleIdx == 0xFFFFFFF6) {
         return VFi_NandOpen(path, info_p, accType);
     } else {
-        return VFi_NANDPrivateOpen(path, info_p, accType);
+        return VFi_NandPrivateOpen(path, info_p, accType);
     }
 }
 
-void VFi_NandSetNANDFuncNormal(u32 i_handleIdx) {
+void VFi_NandSetNANDFuncEx(u32 i_handleIdx) {
     if (i_handleIdx < 26) {
-        l_nandFunc[i_handleIdx].create = VFi_NandCreate;
-        l_nandFunc[i_handleIdx].open = VFi_NandOpen;
-        l_nandFunc[i_handleIdx].createDir = VFi_NandCreateDir;
-        l_nandFunc[i_handleIdx].delete = VFi_NandDelete;
+        l_nandFunc[i_handleIdx].create = VFi_NandPrivateCreate;
+        l_nandFunc[i_handleIdx].open = VFi_NandPrivateOpen;
+        l_nandFunc[i_handleIdx].createDir = VFi_NandPrivateCreateDir;
+        l_nandFunc[i_handleIdx].delete = VFi_NandPrivateDelete;
     }
 }
 
@@ -355,7 +355,7 @@ s32 VFi_NandFlushNANDFromHandleIdx(s32 i_handleIdx, int i_setLastDeviceError) {
         } else if (i_handleIdx == 0xFFFFFFF6) {
             NANDError = VFi_NandOpen(sys_name_p, fileInfo_p, 3);
         } else {
-            NANDError = VFi_NANDPrivateOpen(sys_name_p, fileInfo_p, 3);
+            NANDError = VFi_NandPrivateOpen(sys_name_p, fileInfo_p, 3);
         }
 
         if (NANDError < 0) {
@@ -388,7 +388,18 @@ static s32 _MountPrfFile(struct PDM_DISK* p_disk, s8* i_fullpath_p) {
 
     fileInfo_p = drive_p->file_p;
 
-    nandError = VFi_NandOpenSp((const char*)i_fullpath_p, fileInfo_p, 1, handleIdx);
+    if (handleIdx < 26) {
+        s32 (*tmpOpen)(const char*, struct NANDFileInfo*, u8) = (s32(*)(const char*, struct NANDFileInfo*, u8))l_nandFunc[handleIdx].open;
+        if (tmpOpen != NULL) {
+            nandError = tmpOpen((const char*)i_fullpath_p, fileInfo_p, 1);
+        } else {
+            nandError = VFi_NandOpen((const char*)i_fullpath_p, fileInfo_p, 1);
+        }
+    } else if (handleIdx == 0xFFFFFFF6) {
+        nandError = VFi_NandOpen((const char*)i_fullpath_p, fileInfo_p, 1);
+    } else {
+        nandError = VFi_NandPrivateOpen((const char*)i_fullpath_p, fileInfo_p, 1);
+    }
     if (nandError == 0) {
         VFipf_memset(&header, 0, 0x20);
         nandError = A32_NANDRead(fileInfo_p, &header, 0x20);
@@ -418,7 +429,18 @@ static s32 _MountPrfFile(struct PDM_DISK* p_disk, s8* i_fullpath_p) {
         return nandError;
     }
 
-    nandError = VFi_NandOpenSp((const char*)i_fullpath_p, fileInfo_p, 3, handleIdx);
+    if (handleIdx < 26) {
+        s32 (*tmpOpen)(const char*, struct NANDFileInfo*, u8) = (s32(*)(const char*, struct NANDFileInfo*, u8))l_nandFunc[handleIdx].open;
+        if (tmpOpen != NULL) {
+            nandError = tmpOpen((const char*)i_fullpath_p, fileInfo_p, 3);
+        } else {
+            nandError = VFi_NandOpen((const char*)i_fullpath_p, fileInfo_p, 3);
+        }
+    } else if (handleIdx == 0xFFFFFFF6) {
+        nandError = VFi_NandOpen((const char*)i_fullpath_p, fileInfo_p, 3);
+    } else {
+        nandError = VFi_NandPrivateOpen((const char*)i_fullpath_p, fileInfo_p, 3);
+    }
     if (nandError == 0) {
         return 0;
     }
@@ -453,7 +475,7 @@ static s32 nanddrv_BuildUpBootSector(struct PDM_DISK* p_disk, u8* buf, enum FatT
     struct PDM_DISK* realDisk_p;
     u32 drvSPU;
 
-    realDisk_p = (struct PDM_DISK*)((u8*)&VFipdm_disk_set + ((u32)p_disk & 0xFF) * 0x34);
+    realDisk_p = (struct PDM_DISK*)((u8*)&VFipdm_disk_set + ((u32)p_disk & 0xFF) * sizeof(struct PDM_DISK));
     drvSPU = *(u32*)((u8*)realDisk_p + 0x1BC);
 
     dCommon_MakeBootSector(buf, type, drvSPU, 1, 0x200, 0xEB, 0x90, 0x3F, dCommon_getResvSecNumFromDisk(p_disk),
