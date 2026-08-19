@@ -133,6 +133,15 @@ namespace MR {
     bool isAnimCameraEnd(const ActorCameraInfo*, const char*);
 
     void startBlackHoleCamera(const char*, const TVec3f&, const TVec3f&);
+
+    void declareLauncherCamera();
+    void endLauncherCamera();
+    void setLauncherCameraAngle(f32, f32, f32, f32);
+    void declareLauncherFlightCamera();
+    void endLauncherFlightCamera();
+    bool isActiveLauncherCamera();
+    bool isActiveLauncherFlightCamera();
+
     void startSubjectiveCamera(s32);
     void endSubjectiveCamera(s32);
 
@@ -155,4 +164,7 @@ namespace MR {
     void zoomOutTargetGameCamera();
 
     void changeEventCameraTarget(const ActorCameraInfo*, const char*, const CameraTargetArg&);
+
+    void startLauncherCamera(const CameraTargetArg&);
+    void startLauncherFlightCamera(s32);
 };  // namespace MR
