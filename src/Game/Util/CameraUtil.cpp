@@ -345,7 +345,7 @@ namespace MR {
         getCameraDirector()->endStartAnimCamera();
     }
 
-    bool isCameraInterpolateNearlyEnd() {
+    bool isCameraInterpolatingNearlyEnd() {
         return getCameraDirector()->isInterpolatingNearlyEnd();
     }
 
