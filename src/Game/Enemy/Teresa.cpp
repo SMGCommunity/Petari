@@ -150,7 +150,7 @@ void Teresa::initSensor() {
 
 void Teresa::initBind() {
     initBinder(60.0f * mScale.x, 0.0f, 0);
-    MR::setBindTriangleFilter(this, TriangleFilterDelegator< Teresa >::allocateDelegator(this, &Teresa::filterBind));
+    MR::setBindTriangleFilter(this, MR::createTriangleFilterDelegator(this, &Teresa::filterBind));
 }
 
 void Teresa::makeActorAppeared() {
