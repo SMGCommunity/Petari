@@ -91,7 +91,7 @@ CameraDirector::CameraDirector(const char* pName) : NameObj(pName) {
     mStartCameraCreated = false;
     mCameraTargetMtx = new CameraTargetMtx("カメラターゲットダミー");
     mRequestCameraManReset = false;
-    _1B1 = false;
+    mRequestCameraLocalOffsetReset = false;
     mIsSubjectiveCamera = false;
     mIsStartSubjectiveCamera = false;
     mSubjectiveFrame = 0;
@@ -130,7 +130,7 @@ void CameraDirector::movement() {
     mRotChecker->update();
 
     mRequestCameraManReset = false;
-    _1B1 = false;
+    mRequestCameraLocalOffsetReset = false;
 }
 
 void CameraDirector::setTarget(CameraTargetObj* pTarget) {
@@ -187,7 +187,7 @@ void CameraDirector::updateCameraMan() {
         resetCameraMan();
     }
 
-    if (_1B1) {
+    if (mRequestCameraLocalOffsetReset) {
         CameraMan* man = getCurrentCameraMan();
         man->_15 = true;
     }
@@ -323,7 +323,7 @@ void CameraDirector::checkStartCondition() {
     }
 }
 
-void CameraDirector::startEvent(s32 zoneID, const char* pName, const CameraTargetArg& rTargetArg, s32 a4) {
+void CameraDirector::startEvent(s32 zoneID, const char* pName, const CameraTargetArg& rTargetArg, s32 frame) {
     mViewInterpolator->mIsInterpolationOff = false;
     removeEndEventAtLanding(zoneID, pName);
 
@@ -338,12 +338,12 @@ void CameraDirector::startEvent(s32 zoneID, const char* pName, const CameraTarge
         push(mCameraManEvent);
     }
 
-    mCameraManEvent->start(zoneID, pName, rTargetArg, a4);
+    mCameraManEvent->start(zoneID, pName, rTargetArg, frame);
 }
 
-void CameraDirector::endEvent(s32 zoneID, const char* pName, bool resetView, s32 a4) {
+void CameraDirector::endEvent(s32 zoneID, const char* pName, bool resetView, s32 frame) {
     if (getCurrentCameraMan() == mCameraManEvent) {
-        mCameraManEvent->end(zoneID, pName, a4);
+        mCameraManEvent->end(zoneID, pName, frame);
 
         if (!mCameraManEvent->isActive()) {
             pop();
@@ -358,11 +358,11 @@ void CameraDirector::endEvent(s32 zoneID, const char* pName, bool resetView, s32
     }
 }
 
-void CameraDirector::endEventAtLanding(s32 zoneID, const char* pName, s32 a3) {
+void CameraDirector::endEventAtLanding(s32 zoneID, const char* pName, s32 frame) {
     if (getCurrentCameraMan() == mCameraManEvent) {
         mEvents[mEventNum].mZoneID = zoneID;
         strcpy(mEvents[mEventNum].mName, pName);
-        mEvents[mEventNum]._84 = a3;
+        mEvents[mEventNum].mFrame = frame;
         mEventNum++;
     }
 }
@@ -387,8 +387,8 @@ void CameraDirector::setInterpolation(u32 time) {
     }
 }
 
-void CameraDirector::cover(u32 a1) {
-    mCover->cover(a1);
+void CameraDirector::cover(u32 time) {
+    mCover->cover(time);
 }
 
 void CameraDirector::closeCreatingCameraChunk() {
@@ -487,9 +487,9 @@ bool CameraDirector::isEventCameraActive() const {
     return getCurrentCameraMan() == mCameraManEvent;
 }
 
-void CameraDirector::startStartPosCamera(bool a1) {
+void CameraDirector::startStartPosCamera(bool interpolate) {
     mIsStartCameraActive = true;
-    mCameraManGame->startStartPosCamera(a1);
+    mCameraManGame->startStartPosCamera(interpolate);
 }
 
 bool CameraDirector::isInterpolatingNearlyEnd() const {
@@ -537,7 +537,7 @@ void CameraDirector::endStartAnimCamera() {
     MR::endEventCamera(&info, ::sStartAnimCameraName, true, 0);
 }
 
-void CameraDirector::startTalkCamera(const TVec3f& rPosition, const TVec3f& rUp, f32 axisX, f32 axisY, s32 a5) {
+void CameraDirector::startTalkCamera(const TVec3f& rPosition, const TVec3f& rUp, f32 axisX, f32 axisY, s32 frame) {
     CameraParamChunkEvent* chunk = getEventParameter(0, ::sTalkCameraName);
 
     if (chunk != nullptr) {
@@ -551,12 +551,12 @@ void CameraDirector::startTalkCamera(const TVec3f& rPosition, const TVec3f& rUp,
 
         CameraTargetArg targetArg;
         MR::setCameraTargetToPlayer(&targetArg);
-        startEvent(0, ::sTalkCameraName, targetArg, a5);
+        startEvent(0, ::sTalkCameraName, targetArg, frame);
     }
 }
 
-void CameraDirector::endTalkCamera(bool resetView, s32 a2) {
-    endEvent(0, ::sTalkCameraName, resetView, a2);
+void CameraDirector::endTalkCamera(bool resetView, s32 frame) {
+    endEvent(0, ::sTalkCameraName, resetView, frame);
 }
 
 void CameraDirector::startSubjectiveCamera(s32 camType) {
@@ -637,7 +637,7 @@ void CameraDirector::zoomOutGameCamera() {
 void CameraDirector::checkEndOfEventCamera() {
     if (mEventNum != 0 && mTargetHolder->isOnGround()) {
         for (u32 i = 0; i < mEventNum; i++) {
-            endEvent(mEvents[i].mZoneID, mEvents[i].mName, true, mEvents[i]._84);
+            endEvent(mEvents[i].mZoneID, mEvents[i].mName, true, mEvents[i].mFrame);
         }
 
         mEventNum = 0;
@@ -734,7 +734,7 @@ void CameraDirector::removeEndEventAtLanding(s32 zoneID, const char* pName) {
 
             mEvents[idx].mZoneID = mEvents[mEventNum - 1].mZoneID;
             strcpy(mEvents[idx].mName, mEvents[mEventNum - 1].mName);
-            mEvents[idx]._84 = mEvents[mEventNum - 1]._84;
+            mEvents[idx].mFrame = mEvents[mEventNum - 1].mFrame;
             mEventNum--;
             return;
         }

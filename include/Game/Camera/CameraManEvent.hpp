@@ -21,9 +21,9 @@ public:
     public:
         ChunkFIFOItem();
 
-        CameraParamChunkEvent* mChunk;  // 0x0
-        CameraTargetArg mTargetArg;     // 0x4
-        u32 _14;
+        /* 0x00 */ CameraParamChunkEvent* mChunk;
+        /* 0x04 */ CameraTargetArg mTargetArg;
+        /* 0x14 */ u32 mFrame;
     };
 
     class ChunkFIFOItemPair {

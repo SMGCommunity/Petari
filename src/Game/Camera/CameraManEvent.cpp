@@ -39,9 +39,9 @@ void CameraManEvent::calc() {
     setSafePose();
 }
 
-void CameraManEvent::start(s32 zoneID, const char* pName, const CameraTargetArg& rTargetArg, s32 a4) {
+void CameraManEvent::start(s32 zoneID, const char* pName, const CameraTargetArg& rTargetArg, s32 frame) {
     CameraParamChunkEvent* chunk = findChunk(zoneID, pName);
-    requestChunk(chunk, static_cast< EPriority >(chunk->mEvPriority), rTargetArg, a4);
+    requestChunk(chunk, static_cast< EPriority >(chunk->mEvPriority), rTargetArg, frame);
     rTargetArg.setTarget();
 }
 
@@ -131,7 +131,7 @@ bool CameraManEvent::doesNextChunkHaveInterpolation() const {
         }
     }
 
-    if (item != nullptr && getInterpolateFrame(item->mChunk, item->_14) > 0) {
+    if (item != nullptr && getInterpolateFrame(item->mChunk, item->mFrame) > 0) {
         return true;
     }
 
@@ -192,7 +192,7 @@ void CameraManEvent::updateChunkFIFO() {
             mItems[i].mFirst.mTargetArg.mLiveActor = liveActor;
             mItems[i].mFirst.mTargetArg.mMarioActor = marioActor;
 
-            mItems[i].mFirst._14 = mItems[i].mSecond._14;
+            mItems[i].mFirst.mFrame = mItems[i].mSecond.mFrame;
 
             mItems[i].mSecond.mChunk = nullptr;
         }
@@ -218,7 +218,7 @@ void CameraManEvent::checkReset(ChunkFIFOItem* pItem) {
 
     if (mChunk != itemChunk) {
         _BC = true;
-        sendStartInterpolateFrame(pItem->mChunk, pItem->_14);
+        sendStartInterpolateFrame(pItem->mChunk, pItem->mFrame);
         pItem->mTargetArg.setTarget();
     } else {
         u8 cameraIndex = itemChunk->mCameraTypeIndex;
@@ -344,13 +344,13 @@ CameraParamChunkEvent* CameraManEvent::findChunk(s32 zoneID, const char* pName) 
     return reinterpret_cast< CameraParamChunkEvent* >(mChunkHolder->getChunk(chunkID));
 }
 
-void CameraManEvent::requestChunk(CameraParamChunkEvent* pChunk, EPriority priority, const CameraTargetArg& rArg, s32 a4) {
+void CameraManEvent::requestChunk(CameraParamChunkEvent* pChunk, EPriority priority, const CameraTargetArg& rArg, s32 frame) {
     mItems[priority].mSecond.mChunk = pChunk;
     mItems[priority].mSecond.mTargetArg.mTargetObj = rArg.mTargetObj;
     mItems[priority].mSecond.mTargetArg.mTargetMtx = rArg.mTargetMtx;
     mItems[priority].mSecond.mTargetArg.mLiveActor = rArg.mLiveActor;
     mItems[priority].mSecond.mTargetArg.mMarioActor = rArg.mMarioActor;
-    mItems[priority].mSecond._14 = a4;
+    mItems[priority].mSecond.mFrame = frame;
 }
 
 bool CameraManEvent::cleanChunkFIFO(CameraParamChunk* pChunk) {
@@ -390,8 +390,8 @@ bool CameraManEvent::isChunkFIFOEmpty() const {
     return true;
 }
 
-void CameraManEvent::sendStartInterpolateFrame(CameraParamChunkEvent* pChunk, s32 a2) {
-    u32 frames = getInterpolateFrame(pChunk, a2);
+void CameraManEvent::sendStartInterpolateFrame(CameraParamChunkEvent* pChunk, s32 frame) {
+    u32 frames = getInterpolateFrame(pChunk, frame);
 
     if (frames == 0) {
         _15 = 1;
@@ -400,15 +400,15 @@ void CameraManEvent::sendStartInterpolateFrame(CameraParamChunkEvent* pChunk, s3
     mDirector->setInterpolation(frames);
 }
 
-s32 CameraManEvent::getInterpolateFrame(CameraParamChunkEvent* pChunk, s32 a2) const {
+s32 CameraManEvent::getInterpolateFrame(CameraParamChunkEvent* pChunk, s32 frame) const {
     s32 frames = -1;
 
     if (pChunk->mEnableErpFrame != 0) {
         frames = pChunk->mExParam.mCamInt;
     }
 
-    if (frames < 0 && a2 >= 0) {
-        frames = a2;
+    if (frames < 0 && frame >= 0) {
+        frames = frame;
     }
 
     if (frames < 0) {
@@ -418,7 +418,7 @@ s32 CameraManEvent::getInterpolateFrame(CameraParamChunkEvent* pChunk, s32 a2) c
     return frames;
 }
 
-void CameraManEvent::sendFinishInterpolateFrame(CameraParamChunkEvent* pChunk, s32 a2) {
+void CameraManEvent::sendFinishInterpolateFrame(CameraParamChunkEvent* pChunk, s32 frame) {
     s32 frames = -1;
 
     if (pChunk->mEnableEndErpFrame) {
@@ -427,8 +427,8 @@ void CameraManEvent::sendFinishInterpolateFrame(CameraParamChunkEvent* pChunk, s
         frames = pChunk->mExParam.mCamInt;
     }
 
-    if (frames < 0 && a2 >= 0) {
-        frames = a2;
+    if (frames < 0 && frame >= 0) {
+        frames = frame;
     }
 
     if (frames < 0) {
