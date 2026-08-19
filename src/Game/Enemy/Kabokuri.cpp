@@ -172,7 +172,7 @@ void Kabokuri::addVelocityBase() {
     MR::reboundVelocityFromCollision(this, 0.0f, 0.0f, 1.0f);
 }
 
-void Kabokuri::addVelocityToRailPoint(f32 vel) {
+void Kabokuri::addVelocityToRailPoint(f32 speed) {
     if (MR::isRailReachedHorizonCurrentPos(this, ::sRailCoordStepInterval) && !mWillGenerateFire) {
         MR::moveCoord(this, ::sRailCoordStepInterval);
 
@@ -192,7 +192,7 @@ void Kabokuri::addVelocityToRailPoint(f32 vel) {
     TVec3f velocity;
     MR::calcVelocityMoveToTarget(&velocity, this, MR::getRailPos(this), 1.0f);
     if (velocity.dot(mFrontVec) > 0.4f) {
-        mVelocity.add(velocity * vel);
+        mVelocity.add(velocity * speed);
     }
 }
 
