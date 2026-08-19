@@ -9213,7 +9213,7 @@ Game/Util/ActorShadowLocalUtil.cpp:
 
 Game/Util/ActorShadowUtil.cpp:
 	.text       start:0x803C61B8 end:0x803C7A98
-	.data       start:0x805E0AB0 end:0x805E0BC0
+	.data       start:0x805E0AB0 end:0x805E0B28
 	.sdata2     start:0x806C1578 end:0x806C1588
 
 Game/Util/ActorStateUtil.cpp:
@@ -9229,6 +9229,7 @@ Game/Util/CameraUtil.cpp:
 	.text       start:0x803C8378 end:0x803CA518
 	.ctors      start:0x8052F3A4 end:0x8052F3A8
 	.rodata     start:0x8053EB28 end:0x8053EB30
+	.data       start:0x805E0B28 end:0x805E0BC0
 	.sdata      start:0x806B2608 end:0x806B2610
 	.sdata2     start:0x806C1588 end:0x806C15C0
 

@@ -2,10 +2,12 @@
 #include "Game/Camera/CameraAnim.hpp"
 #include "Game/Camera/CameraCalc.hpp"
 #include "Game/Camera/CameraContext.hpp"
+#include "Game/Camera/CameraDPD.hpp"
 #include "Game/Camera/CameraDirector.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CameraPoseParam.hpp"
 #include "Game/Camera/CameraRegisterHolder.hpp"
+#include "Game/Camera/CameraTargetArg.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/MirrorCamera.hpp"
 #include "Game/Map/WaterAreaHolder.hpp"
@@ -17,6 +19,9 @@
 #include "revolution/mtx.h"
 
 namespace {
+    static const char* sLauncherCameraName = "大砲";
+    static const char* sLauncherFlightCameraName = "大砲飛行";
+
     void calcNormalizedScreenPosToScreenPos(TVec3f*, const TVec3f&);
     char* createRegisterName(const NameObj*, u32);
 
@@ -256,6 +261,80 @@ namespace MR {
         }
     }
 
+    void declareLauncherCamera() {
+        if (getCameraDirector()->getEventParameter(0, ::sLauncherCameraName) != nullptr) {
+            return;
+        }
+
+        getCameraDirector()->declareEvent(0, ::sLauncherCameraName);
+        CameraParamChunkEvent* chunk = getCameraDirector()->getEventParameter(0, ::sLauncherCameraName);
+        if (chunk != nullptr) {
+            chunk->setCameraType("CAM_TYPE_DPD", getCameraDirector()->mHolder);
+            chunk->mGeneralParam->mDist = 120.0f;
+            chunk->mGeneralParam->mNum1 = CameraDPD::CameraState_1;
+            chunk->mGeneralParam->mAngleA = MR::pi() / 3.0f;
+            chunk->mGeneralParam->mAngleB = MR::pi() / 6.0f;
+            chunk->mGeneralParam->mWPoint.z = 0.0f;
+            chunk->mGeneralParam->mWPoint.x = 0.05f;
+            chunk->mGeneralParam->mWPoint.y = 0.99f;
+            chunk->mGeneralParam->mUp.zero();
+            chunk->mGeneralParam->mNum2 = 0;
+            chunk->_64 = true;
+        }
+    }
+
+    void endLauncherCamera() {
+        getCameraDirector()->endEvent(0, ::sLauncherCameraName, true, -1);
+    }
+
+    void setLauncherCameraAngle(f32 angleY, f32 angleX, f32 elevation, f32 f4) {
+        CameraParamChunkEvent* chunk = getCameraDirector()->getEventParameter(0, ::sLauncherCameraName);
+        if (chunk == nullptr) {
+            return;
+        }
+
+        chunk->mGeneralParam->mAngleA = angleX;
+        chunk->mGeneralParam->mAngleB = angleY;
+        chunk->mGeneralParam->mWPoint.z = elevation;
+        if (f4 < 0.0f) {
+            chunk->mGeneralParam->mNum2 = 0;
+        } else {
+            chunk->mGeneralParam->mNum2 = 1;
+            chunk->mGeneralParam->mUp.x = f4;
+        }
+    }
+
+    void declareLauncherFlightCamera() {
+        if (getCameraDirector()->getEventParameter(0, ::sLauncherFlightCameraName) != nullptr) {
+            return;
+        }
+
+        getCameraDirector()->declareEvent(0, ::sLauncherFlightCameraName);
+        CameraParamChunkEvent* chunk = getCameraDirector()->getEventParameter(0, ::sLauncherFlightCameraName);
+        if (chunk != nullptr) {
+            chunk->setCameraType("CAM_TYPE_OBJ_PARALLEL", getCameraDirector()->mHolder);
+            chunk->mExParam.mWOffset.set(TVec3f(0.0f, 0.0f, 0.0f));
+            chunk->mExParam.mLOffset = 0.0f;
+            chunk->mGeneralParam->mDist = 900.0f;
+            chunk->mGeneralParam->mAngleA = 1.4f;
+            chunk->mGeneralParam->mAngleB = MR::pi();
+            chunk->setCollisionOff(true);
+            chunk->_64 = true;
+        }
+    }
+
+    void endLauncherFlightCamera() {
+        getCameraDirector()->endEvent(0, ::sLauncherFlightCameraName, true, -1);
+    }
+
+    bool isActiveLauncherCamera() {
+        return getCameraDirector()->isEventCameraActive(0, ::sLauncherCameraName);
+    }
+
+    bool isActiveLauncherFlightCamera() {
+        return getCameraDirector()->isEventCameraActive(0, ::sLauncherFlightCameraName);
+    }
+
     void startSubjectiveCamera(s32 a1) {
         getCameraDirector()->startSubjectiveCamera(a1);
     }
@@ -455,6 +534,14 @@ namespace MR {
             pChunk->mGeneralParam->mDist = a5;
         }
         getCameraDirector()->startEvent(pInfo->mZoneID, pEventName, rCamTarget, a4);
+    }
+
+    void startLauncherCamera(const CameraTargetArg& rTargetArg) {
+        startGlobalEventCamera(::sLauncherCameraName, rTargetArg, 0);
+    }
+
+    void startLauncherFlightCamera(s32 time) {
+        startGlobalEventCameraTargetPlayer(::sLauncherFlightCameraName, time);
     }
 
     void cleanEventCameraTarget_temporally() {
