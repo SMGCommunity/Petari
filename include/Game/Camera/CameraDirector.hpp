@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Camera/CameraHolder.hpp"
 #include "Game/NameObj/NameObj.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
 
@@ -35,7 +36,7 @@ namespace MR {
 struct CameraEvent {
     /* 0x00 */ s32 mZoneID;
     /* 0x04 */ char mName[128];
-    /* 0x84 */ s32 _84;  // TODO: name. every case so far has been -1
+    /* 0x84 */ s32 mFrame;
 };
 
 #define CAMERA_MAN_CAPACITY 8
@@ -130,6 +131,14 @@ public:
         return mTargetObj;
     }
 
+    CameraHolder* getHolder() const {
+        return mHolder;
+    }
+
+    void requestLocalOffsetReset() {
+        mRequestCameraLocalOffsetReset = true;
+    }
+
     /* 0x00C */ CameraTargetObj* mTargetObj;
     /* 0x010 */ CameraManStack* mStack;
     /* 0x014 */ OnlyCamera* mOnlyCamera;
@@ -158,7 +167,7 @@ public:
     /* 0x17C */ CameraTargetMtx* mCameraTargetMtx;
     /* 0x180 */ TPos3f mTargetMtx;
     /* 0x1B0 */ bool mRequestCameraManReset;
-    /* 0x1B1 */ bool _1B1;
+    /* 0x1B1 */ bool mRequestCameraLocalOffsetReset;
     /* 0x1B2 */ bool mIsSubjectiveCamera;
     /* 0x1B3 */ bool mIsStartSubjectiveCamera;
     /* 0x1B4 */ s32 mSubjectiveFrame;

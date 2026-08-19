@@ -66,7 +66,7 @@ namespace JGeometry {
         }
 
         template < typename A >
-        inline TVec2(A _x, A _y) {
+        TVec2(A _x, A _y) {
             x = _x;
             y = _y;
         }

@@ -22,6 +22,10 @@ public:
     void createCameras();
     Camera* getCameraInner(s32) const;
 
+    bool isCameraIndexType(s32 index, const char* pType) const {
+        return getIndexOf(pType) == index;
+    }
+
     /* 0x0C */ s32 mDefaultCameraIndex;
     /* 0x10 */ Camera** mCameras;
     /* 0x14 */ CamTranslatorBase** mTranslators;
