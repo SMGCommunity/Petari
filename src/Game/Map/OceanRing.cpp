@@ -311,7 +311,7 @@ void OceanRing::movement() {
     mRingDrawer->update();
 
     TVec3f nearPos;
-    calcNearestPos(*MR::getCameraWatchPos(), &nearPos, nullptr, &mNearestToWatchCam);
+    calcNearestPos(MR::getCameraWatchPos(), &nearPos, nullptr, &mNearestToWatchCam);
     MR::startSoundObjectLevel(mSoundObj1, "SE_AT_LV_OCEAN_RING");
     mSoundObj1->process();
 

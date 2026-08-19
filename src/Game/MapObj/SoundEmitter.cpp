@@ -63,7 +63,7 @@ void SoundEmitter::exePlaySound() {
         case 0xd:
         case 0x11:
         case 0x12: {
-            rider->moveToNearestPos(*MR::getCameraWatchPos());
+            rider->moveToNearestPos(MR::getCameraWatchPos());
         } break;
         default: {
             rider->moveToNearestPos(MR::getCamPos());

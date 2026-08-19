@@ -616,8 +616,8 @@ namespace MR {
         requestMovementOn(getCameraDirector());
     }
 
-    TVec3f* getCameraWatchPos() {
-        return &getCameraDirector()->mPoseParam1->mWatchPos;
+    const TVec3f& getCameraWatchPos() {
+        return getCameraDirector()->mPoseParam1->mWatchPos;
     }
 
     void zoomInTargetGameCamera() {
