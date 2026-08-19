@@ -118,10 +118,9 @@ void Kabokuri::init(const JMapInfoIter& rIter) {
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
-        return;
+    } else {
+        makeActorAppeared();
     }
-
-    makeActorAppeared();
 }
 
 void Kabokuri::initSensor() {
