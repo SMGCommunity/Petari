@@ -459,6 +459,3 @@ void Kabokuri::endBindStarPointer() const {
 void Kabokuri::exeBindStarPointer() {
     MR::updateActorStateAndNextNerve(this, mStateBindStartPointer, &NrvKabokuri::KabokuriNrvWalk::sInstance);
 }
-
-Kabokuri::~Kabokuri() {
-}

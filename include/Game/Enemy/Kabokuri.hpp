@@ -11,7 +11,6 @@ class ModelObj;
 class Kabokuri : public LiveActor {
 public:
     Kabokuri(const char*);
-    virtual ~Kabokuri();
 
     virtual void init(const JMapInfoIter&);
     virtual void control();
