@@ -588,6 +588,7 @@ s32 VFiPFENT_UpdateSFNEntry(PF_DIR_ENT* p_ent, u32 flag) {
     }
 }
 
+// regswaps
 s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) {
     s32 err;
     s32 err2;
