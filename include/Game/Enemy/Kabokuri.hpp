@@ -52,6 +52,6 @@ public:
     /* 0xB8 */ s32 _B8;
     /* 0xBC */ bool mIsFloating;
 
-    /// @brief Generates fire on every point of the rail reached, except the first one.
-    /* 0xBD */ bool mWillGenerateFire;
+    /// @brief Drops fire on every point of the rail reached, except the first one.
+    /* 0xBD */ bool mIsValidDropFire;
 };

@@ -61,7 +61,7 @@ namespace NrvKabokuri {
 
 Kabokuri::Kabokuri(const char* pName)
     : LiveActor(pName), mKuribo(), mBreakModel(), mAnimeScale(), mStateBindStartPointer(), mRotationQuat(0.0f, 0.0f, 0.0f, 1.0f),
-      mFrontVec(0.0f, 0.0f, 1.0f), _B8(-1), mWillGenerateFire() {
+      mFrontVec(0.0f, 0.0f, 1.0f), _B8(-1), mIsValidDropFire() {
     KabokuriFireHolderFunc::createHolder();
 }
 
@@ -173,7 +173,7 @@ void Kabokuri::addVelocityBase() {
 }
 
 void Kabokuri::addVelocityToRailPoint(f32 speed) {
-    if (MR::isRailReachedHorizonCurrentPos(this, ::sRailCoordStepInterval) && !mWillGenerateFire) {
+    if (MR::isRailReachedHorizonCurrentPos(this, ::sRailCoordStepInterval) && !mIsValidDropFire) {
         MR::moveCoord(this, ::sRailCoordStepInterval);
 
         s32 nextRailPoint = -1;
@@ -181,7 +181,7 @@ void Kabokuri::addVelocityToRailPoint(f32 speed) {
 
         if (nextRailPoint != 0 && MR::isRailReachedNearNextPoint(this, ::sRailCoordStepInterval)) {
             MR::moveCoordToRailPoint(this, MR::getNextRailPointNo(this));
-            mWillGenerateFire = true;
+            mIsValidDropFire = true;
         }
 
         if (MR::isRailReachedEdge(this)) {
@@ -308,14 +308,14 @@ void Kabokuri::exeWait() {
 void Kabokuri::exeWalk() {
     if (MR::isFirstStep(this)) {
         MR::startAction(this, "Walk");
-        mWillGenerateFire = false;
+        mIsValidDropFire = false;
     }
 
     MR::turnDirectionToTargetDegree(this, &mFrontVec, MR::getRailPos(this), ::sWalkTurnDegree);
     addVelocityToRailPoint(::sWalkSpeed);
     addVelocityBase();
 
-    if (mWillGenerateFire && MR::isRailReachedHorizonCurrentPos(this, ::sWalkGoalRange)) {
+    if (mIsValidDropFire && MR::isRailReachedHorizonCurrentPos(this, ::sWalkGoalRange)) {
         setNerve(&NrvKabokuri::KabokuriNrvDropFire::sInstance);
     }
 }
