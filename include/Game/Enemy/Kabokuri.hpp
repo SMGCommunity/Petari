@@ -3,9 +3,9 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class AnimScaleController;
-class WalkerStateBindStarPointer;
 class Kuribo;
 class ModelObj;
+class WalkerStateBindStarPointer;
 
 /// @brief Jack O'Goomba
 class Kabokuri : public LiveActor {
