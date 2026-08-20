@@ -17,6 +17,8 @@ void VFiPFVOL_LoadVolumeLabelFromBuf(const u8* buf, PF_VOLUME* p_vol);
 
 PF_VOLUME* VFiPFVOL_GetCurrentVolume();
 
+void VFiPFVOL_SetCurrentVolume(PF_VOLUME* p_vol);
+
 PF_VOLUME* VFiPFVOL_GetVolumeFromDrvChar(s8 drv_char);
 
 s32 VFiPFVOL_GetCurrentDir(struct PF_VOLUME* p_vol, struct PF_DIR_ENT* p_current_dir);

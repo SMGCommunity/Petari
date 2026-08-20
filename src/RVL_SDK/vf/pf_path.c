@@ -213,7 +213,7 @@ u16 VFiPFPATH_GetNextCharOfPattern(struct PF_STR* p_pattern, u32 is_long_name) {
     return twc;
 }
 
-u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p_name, u16 c_pat, struct PF_STR* p_pattern, u32 is_long_name) {
+u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p_name, u16 c_pat, struct PF_STR* p_pattern) {
     struct PF_FILE_NAME_ITER name;
     struct PF_STR pattern;
 
@@ -226,9 +226,9 @@ u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p
             break;
         }
         case '*': {
-            c_pat = VFiPFPATH_GetNextCharOfPattern(p_pattern, is_long_name);
+            c_pat = VFiPFPATH_GetNextCharOfPattern(p_pattern, p_name->kind);
             while (c_pat == '*' || c_pat == '?') {
-                c_pat = VFiPFPATH_GetNextCharOfPattern(p_pattern, is_long_name);
+                c_pat = VFiPFPATH_GetNextCharOfPattern(p_pattern, p_name->kind);
             }
             if (c_pat == '\0') {
                 return 1;
@@ -240,9 +240,9 @@ u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p
                     pattern = *p_pattern;
 
                     c_name = VFiPFPATH_GetNextCharOfFileName(&name);
-                    c_pat = VFiPFPATH_GetNextCharOfPattern(&pattern, is_long_name);
+                    c_pat = VFiPFPATH_GetNextCharOfPattern(&pattern, name.kind);
 
-                    if (VFiPFPATH_DoMatchFileNameWithPattern(c_name, &name, c_pat, &pattern, is_long_name)) {
+                    if (VFiPFPATH_DoMatchFileNameWithPattern(c_name, &name, c_pat, &pattern)) {
                         return 1;
                     }
                 }
@@ -258,139 +258,9 @@ u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p
         }
         }
         c_name = VFiPFPATH_GetNextCharOfFileName(p_name);
-        c_pat = VFiPFPATH_GetNextCharOfPattern(p_pattern, is_long_name);
+        c_pat = VFiPFPATH_GetNextCharOfPattern(p_pattern, p_name->kind);
     }
     return c_name == '\0';
-}
-
-s32 VFiPFPATH_cmpNameImpl(const s8* sName, const s8* sPattern, u32* p_is_end) {
-    s32 pw;
-    s32 nw;
-    s32 ret;
-    u16 p;
-    u16 n;
-    u16 tp;
-    u16 tn;
-
-    while (*sPattern != '\0') {
-        pw = VFipf_vol_set.codeset.oem_char_width(sPattern);
-        nw = VFipf_vol_set.codeset.oem_char_width(sName);
-
-        p = (pw == 1) ? (VFipf_toupper(*sPattern)) : ((u16)VFiPF_GET_LE_U16((const u8*)sPattern));
-        n = (nw == 1) ? (VFipf_toupper(*sName)) : ((u16)VFiPF_GET_LE_U16((const u8*)sName));
-
-        if (pw == 2 && VFiPFPATH_OEM_ConvertFWchar(sPattern, &tp) == 1) {
-            p = tp;
-        }
-
-        if (nw == 2 && VFiPFPATH_OEM_ConvertFWchar(sName, &tn) == 1) {
-            n = tn;
-        }
-
-        sPattern += pw;
-
-        switch (p) {
-        case '?': {
-            if (n == 0) {
-                return 1;
-            }
-            break;
-        }
-        case '*': {
-            do {
-                pw = VFipf_vol_set.codeset.oem_char_width(sPattern);
-                p = (pw == 1) ? (VFipf_toupper(*sPattern)) : ((u16)VFiPF_GET_LE_U16((const u8*)sPattern));
-
-                sPattern += pw;
-
-                if (p == '?') {
-                    if (n == 0) {
-                        return 1;
-                    }
-                    sName += nw;
-                    nw = VFipf_vol_set.codeset.oem_char_width(sName);
-                    n = (nw == 1) ? (VFipf_toupper(*sName)) : ((u16)VFiPF_GET_LE_U16((const u8*)sName));
-                }
-            } while (p == '?' || p == '*');
-
-            if (p == 0) {
-                return 0;
-            }
-
-            while (n != 0) {
-                sName += nw;
-                if (n == p) {
-                    ret = VFiPFPATH_cmpNameImpl(sName, sPattern, p_is_end);
-                    if (ret == 0) {
-                        return 0;
-                    }
-                    if (*p_is_end != 0) {
-                        return ret;
-                    }
-                }
-
-                nw = VFipf_vol_set.codeset.oem_char_width(sName);
-                n = (nw == 1) ? (VFipf_toupper(*sName)) : ((u16)VFiPF_GET_LE_U16((const u8*)sName));
-            }
-
-            if (*sName == '\0' || *sPattern == '\0') {
-                *p_is_end = 1;
-            }
-        }
-
-        default: {
-            if (n != p) {
-                return 1;
-            }
-            break;
-        }
-        }
-
-        sName += nw;
-    }
-
-    return *sName != '\0';
-}
-
-/*
-s32 VFiPFPATH_cmpNameUni(const u16* p_name, struct PF_STR* sPattern) {
-    return VFiPFPATH_MatchFileNameWithPattern((const s8*)p_name, sPattern, 1) == 0;
-}
-    */
-
-s32 VFiPFPATH_cmpName(const s8* sShort, struct PF_STR* p_pattern, u32 is_short_search) {
-    u32 is_end;
-    s8 tmpBuf[13];
-    s8* p_tmpBuf;
-    const s8* sPattern;
-
-    is_end = 0;
-    p_tmpBuf = tmpBuf;
-    sPattern = VFiPFSTR_GetStrPos(p_pattern, 3);
-    VFipf_strcpy(tmpBuf, sShort);
-
-    if (((VFipf_vol_set.setting & 2) == 2) && VFiPFSTR_GetCodeMode(p_pattern) == 2 && VFipf_strcmp(tmpBuf, (const s8*)".") != 0 &&
-        VFipf_strcmp(tmpBuf, (const s8*)"..") != 0 && VFiPFPATH_CheckExtShortName(p_pattern, 3, 1) == 0 && is_short_search == 0) {
-        return 1;
-    }
-
-    if (VFipf_strcmp(sPattern, (const s8*)"*.*") == 0) {
-        for (; *p_tmpBuf != '\0' && *p_tmpBuf != '.'; p_tmpBuf++) {
-        }
-        if (*p_tmpBuf == '\0') {
-            *p_tmpBuf = '.';
-            p_tmpBuf[1] = '\0';
-        }
-    } else {
-        if (*sPattern == '\0') {
-            return 1;
-        }
-        if (tmpBuf[0] == '\0') {
-            return 1;
-        }
-    }
-
-    return VFiPFPATH_cmpNameImpl(tmpBuf, sPattern, &is_end);
 }
 
 s32 VFiPFPATH_cmpTailSFN(const s8* sfn_name, const s8* pattern) {
