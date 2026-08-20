@@ -69,7 +69,6 @@ s32 VFiPFSEC_ReadData(PF_VOLUME* p_vol, u8* p_buf, u32 sector, u16 offset, u32 s
 }
 
 s32 VFiPFSEC_ReadDataSector(PF_VOLUME* p_vol, u8* p_buf, u32 sector, u32 size, u32* p_success_size, u32 set_sig) {
-    u32 v9;
     int err;
     u32 v12;
     u32 v13;
@@ -78,7 +77,6 @@ s32 VFiPFSEC_ReadDataSector(PF_VOLUME* p_vol, u8* p_buf, u32 sector, u32 size, u
     u32 num_success;
     u32 rest_sector;
 
-    v9 = size;
     if (!p_vol || !p_buf || !p_success_size)
         return 10;
     if (!size || size < p_vol->bpb.bytes_per_sector)
@@ -86,30 +84,30 @@ s32 VFiPFSEC_ReadDataSector(PF_VOLUME* p_vol, u8* p_buf, u32 sector, u32 size, u
     *p_success_size = 0;
     if ((p_vol->flags & 1) == 0 || !VFiPFDRV_IsInserted(p_vol))
         return 9;
-    if ((v9 & (p_vol->bpb.bytes_per_sector - 1)) == 0) {
-        err = VFiPFCACHE_ReadDataNumSector(p_vol, p_buf, sector, v9 >> p_vol->bpb.log2_bytes_per_sector, &num_success);
+    if ((size & (p_vol->bpb.bytes_per_sector - 1)) == 0) {
+        err = VFiPFCACHE_ReadDataNumSector(p_vol, p_buf, sector, size >> p_vol->bpb.log2_bytes_per_sector, &num_success);
         if (err)
             return err;
         *p_success_size += num_success << p_vol->bpb.log2_bytes_per_sector;
-        if (num_success != v9 >> p_vol->bpb.log2_bytes_per_sector)
+        if (num_success != size >> p_vol->bpb.log2_bytes_per_sector)
             return 17;
     } else {
         p_page = VFiPFCACHE_SearchDataCache(p_vol, sector);
         if (p_page) {
             v12 = p_page->sector + p_page->size - sector;
-            if (v12 <= v9 >> p_vol->bpb.log2_bytes_per_sector) {
+            if (v12 <= size >> p_vol->bpb.log2_bytes_per_sector) {
                 VFipf_memcpy(p_buf, p_page->p_buf, v12 << p_vol->bpb.log2_bytes_per_sector);
                 *p_success_size += v12 << p_vol->bpb.log2_bytes_per_sector;
-                v9 -= v12 << p_vol->bpb.log2_bytes_per_sector;
+                size -= v12 << p_vol->bpb.log2_bytes_per_sector;
                 sector += v12;
             } else {
-                VFipf_memcpy(p_buf, p_page->p_buf, v9);
-                *p_success_size += v9;
-                v9 = 0;
+                VFipf_memcpy(p_buf, p_page->p_buf, size);
+                *p_success_size += size;
+                size = 0;
             }
         }
-        if (v9) {
-            v13 = v9 >> p_vol->bpb.log2_bytes_per_sector;
+        if (size) {
+            v13 = size >> p_vol->bpb.log2_bytes_per_sector;
             rest_sector = (sector + v13) % p_vol->cache.data_buff_size;
             if (v13 > rest_sector) {
                 adjust_sector = v13 - rest_sector;
@@ -120,7 +118,7 @@ s32 VFiPFSEC_ReadDataSector(PF_VOLUME* p_vol, u8* p_buf, u32 sector, u32 size, u
                 if (num_success != adjust_sector)
                     return 17;
                 sector += adjust_sector;
-                v13 = rest_sector;
+                v13 -= adjust_sector;
             }
             if (v13) {
                 err = VFiPFCACHE_ReadDataPage(p_vol, sector, &p_page, set_sig);
@@ -186,36 +184,36 @@ s32 VFiPFSEC_WriteDataSector(PF_VOLUME* p_vol, const u8* p_buf, u32 sector, u32 
         *p_success_size = num_success << p_vol->bpb.log2_bytes_per_sector;
         if (num_success != size >> p_vol->bpb.log2_bytes_per_sector)
             return 17;
-        return 0;
-    }
-    num_sector = size >> p_vol->bpb.log2_bytes_per_sector;
-    rest_sector = (sector + num_sector) % p_vol->cache.data_buff_size;
-    if (num_sector > rest_sector) {
-        adjust_sector = num_sector - rest_sector;
-        err = VFiPFCACHE_WriteDataNumSectorAndFreeIfNeeded(p_vol, p_buf, sector, num_sector - rest_sector, &num_success);
-        if (err)
-            return err;
-        *p_success_size = num_success << p_vol->bpb.log2_bytes_per_sector;
-        if (num_success != adjust_sector)
-            return 17;
-        sector += adjust_sector;
-        num_sector = rest_sector;
-    }
-    if (!num_sector)
-        return 0;
-    if (is_direct)
-        v16 = VFiPFCACHE_AllocateDataPage(p_vol, sector, &p_page);
-    else
-        v16 = VFiPFCACHE_ReadDataPageAndFlushIfNeeded(p_vol, sector, &p_page, set_sig);
-    if (v16)
-        return v16;
-    VFipf_memcpy(p_page->p_buf, (void*)&p_buf[*p_success_size], num_sector << p_vol->bpb.log2_bytes_per_sector);
-    VFiPFCACHE_UpdateModifiedSector(p_vol, p_page, num_sector);
-    err = VFiPFCACHE_WriteDataPage(p_vol, p_page, set_sig);
-    if (err) {
-        return err;
-    }
+    } else {
+        num_sector = size >> p_vol->bpb.log2_bytes_per_sector;
+        rest_sector = (sector + num_sector) % p_vol->cache.data_buff_size;
+        if (num_sector > rest_sector) {
+            adjust_sector = num_sector - rest_sector;
+            err = VFiPFCACHE_WriteDataNumSectorAndFreeIfNeeded(p_vol, p_buf, sector, num_sector - rest_sector, &num_success);
+            if (err)
+                return err;
+            *p_success_size = num_success << p_vol->bpb.log2_bytes_per_sector;
+            if (num_success != adjust_sector)
+                return 17;
+            sector += adjust_sector;
+            num_sector -= adjust_sector;
+        }
+        if (num_sector) {
+            if (is_direct)
+                v16 = VFiPFCACHE_AllocateDataPage(p_vol, sector, &p_page);
+            else
+                v16 = VFiPFCACHE_ReadDataPageAndFlushIfNeeded(p_vol, sector, &p_page, set_sig);
+            if (v16)
+                return v16;
+            VFipf_memcpy(p_page->p_buf, (void*)&p_buf[*p_success_size], num_sector << p_vol->bpb.log2_bytes_per_sector);
+            VFiPFCACHE_UpdateModifiedSector(p_vol, p_page, num_sector);
+            err = VFiPFCACHE_WriteDataPage(p_vol, p_page, set_sig);
+            if (err) {
+                return err;
+            }
 
-    *p_success_size += num_sector << p_vol->bpb.log2_bytes_per_sector;
+            *p_success_size += num_sector << p_vol->bpb.log2_bytes_per_sector;
+        }
+    }
     return 0;
 }

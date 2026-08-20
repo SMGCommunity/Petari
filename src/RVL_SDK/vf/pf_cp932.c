@@ -5,7 +5,7 @@ static u16 cp932_to_unicode[45][189];
 
 int VFiPFCODE_CP932_OEM2Unicode(const char* cp932_src, unsigned short* uc_dst) {
     int lead_index;
-    unsigned int trail_index;
+    int trail_index;
     unsigned char c0;
     unsigned char c1;
 
@@ -18,11 +18,16 @@ int VFiPFCODE_CP932_OEM2Unicode(const char* cp932_src, unsigned short* uc_dst) {
     }
 
     if (c0 >= 0xA1u && c0 <= 0xDFu) {
-        *uc_dst = c0 - 320;
+        *uc_dst = c0 + 0xFEC0;
         return VFiPFCODE_Combine_Width(1, 2);
     }
 
-    if (c0 == 128 || c0 == 133 || c0 == 134 || c0 == 160 || c0 == 235 || c0 == 236 || (c0 >= 0xEFu && c0 <= 0xF9u) || c0 == 255 || c1 >= 0xFDu) {
+    if (c0 == 128 || c0 == 133 || c0 == 134 || c0 == 160 || c0 == 235 || c0 == 236 || (c0 >= 0xEFu && c0 <= 0xF9u) || (c0 >= 0xFDu && c0 == 0xFFu)) {
+        *uc_dst = 95;
+        return VFiPFCODE_Combine_Width(1, 2);
+    }
+
+    if (c1 >= 0xFDu) {
         *uc_dst = 95;
         return VFiPFCODE_Combine_Width(1, 2);
     }
@@ -44,7 +49,12 @@ int VFiPFCODE_CP932_OEM2Unicode(const char* cp932_src, unsigned short* uc_dst) {
 
     trail_index = c1 - 64;
 
-    if (trail_index > 0xBC || (*uc_dst = cp932_to_unicode[lead_index][trail_index]) == 0) {
+    if (trail_index < 0 || trail_index >= 189) {
+        *uc_dst = 95;
+        return VFiPFCODE_Combine_Width(1, 2);
+    }
+
+    if ((*uc_dst = cp932_to_unicode[lead_index][trail_index]) == 0) {
         *uc_dst = 95;
         return VFiPFCODE_Combine_Width(1, 2);
     }
@@ -52,62 +62,78 @@ int VFiPFCODE_CP932_OEM2Unicode(const char* cp932_src, unsigned short* uc_dst) {
     return VFiPFCODE_Combine_Width(2, 2);
 }
 
-int VFiPFCODE_CP932_Unicode2OEM(const unsigned short* uc_src, signed char* cp932_dst) {
-    int v2;
-    int i;
-    s16 v5;
-    unsigned char v6;
-    unsigned char v7;
-    unsigned short* j;
+s32 VFiPFCODE_CP932_Unicode2OEM(const u16* uc_src, s8* cp932_dst) {
+    s32 i;
+    s32 j;
+    u16* p_table;
+    u8 uc_lead;
+    u8 uc_trail;
+    u16 uc;
+    u16 cp932;
 
-    v2 = 0;
-    v7 = (*uc_src >> 8) & 0xFF;
-    v6 = *uc_src;
-    if (v6 < 0x80u && !v7) {
-        *cp932_dst = v6;
+    u16 temp;  // Extra variable. Not in DWARF.
+
+    uc_lead = *uc_src & 0xFF;
+    uc_trail = *uc_src >> 8;
+
+    if ((uc_lead < 0x80) && (uc_trail == 0)) {
+        cp932_dst[0] = (u8)uc_lead;
         cp932_dst[1] = 0;
         return VFiPFCODE_Combine_Width(1, 2);
     }
-    if (((v7 << 8) + v6) >= 0xFF61u && ((v7 << 8) + v6) <= 0xFF9Fu) {
-        *cp932_dst = v6 + 64;
+
+    uc = (u16)((uc_trail << 8) + uc_lead);
+    if ((0xFF61 <= uc) && (uc <= 0xFF9F)) {
+        temp = (u16)(uc - 0xFEC0);
+        cp932_dst[0] = (u8)(temp);
         cp932_dst[1] = 0;
         return VFiPFCODE_Combine_Width(1, 2);
     }
-    if (((v7 << 8) + v6) == 95)
-        goto LABEL_8;
-    for (i = 0; i < 45; ++i) {
-        v2 = 0;
-        for (j = cp932_to_unicode[i]; v2 < 189 && *j != ((v7 << 8) + v6); ++j)
-            ++v2;
-        if (v2 < 189)
+
+    if (uc == 0x5F) {
+        cp932_dst[0] = 0x5F;
+        return VFiPFCODE_Combine_Width(1, 2);
+    }
+
+    i = 0;
+    while (i < 45) {
+        p_table = (u16*)cp932_to_unicode[i];
+        j = 0;
+        while (j < 189) {
+            if (*p_table == uc) {
+                break;
+            }
+            j++;
+            p_table++;
+        }
+        if (j < 189) {
             break;
+        }
+        i++;
     }
-    if (v2 == 189)
-        goto LABEL_8;
-    if (i >= 4) {
-        if (i >= 4 && i <= 28) {
-            v5 = ((i + 131) << 8) | (v2 + 64);
-            goto LABEL_33;
-        }
-        if (i >= 29 && i <= 39) {
-            v5 = ((i + 195) << 8) | (v2 + 64);
-            goto LABEL_33;
-        }
-        if (i >= 40 && i <= 41) {
-            v5 = ((i + 197) << 8) | (v2 + 64);
-            goto LABEL_33;
-        }
-        if (i >= 42 && i <= 44) {
-            v5 = ((i + 208) << 8) | (v2 + 64);
-            goto LABEL_33;
-        }
-    LABEL_8:
-        *cp932_dst = 95;
+
+    if (j == 189) {
+        cp932_dst[0] = 0x5F;
         return VFiPFCODE_Combine_Width(1, 2);
     }
-    v5 = ((i + 129) << 8) | (v2 + 64);
-LABEL_33:
-    *cp932_dst = v5;
+
+    if ((i >= 0) && (i <= 3)) {
+        cp932 = ((i + 0x81) << 8) | (j + 0x40);
+    } else if ((i >= 4) && (i <= 0x1C)) {
+        cp932 = ((i + 0x83) << 8) | (j + 0x40);
+    } else if ((i >= 0x1D) && (i <= 0x27)) {
+        cp932 = ((i + 0xC3) << 8) | (j + 0x40);
+    } else if ((i >= 0x28) && (i <= 0x29)) {
+        cp932 = ((i + 0xC5) << 8) | (j + 0x40);
+    } else if ((i >= 0x2A) && (i <= 0x2C)) {
+        cp932 = ((i + 0xD0) << 8) | (j + 0x40);
+    } else {
+        cp932_dst[0] = 0x5F;
+        return VFiPFCODE_Combine_Width(1, 2);
+    }
+
+    cp932_dst[1] = (u8)(cp932 & 0xFF);
+    cp932_dst[0] = (cp932 >> 8) & 0xFF;
     return VFiPFCODE_Combine_Width(2, 2);
 }
 
@@ -122,68 +148,30 @@ int VFiPFCODE_CP932_OEMCharWidth(const char* buf) {
     return oem_width;
 }
 
-u16 VFiPFCODE_CP932_isOEMMBchar(short cp932, unsigned int num) {
-    unsigned int v2;
-    char v3;
-    char v4;
-    unsigned int v6;
-    char v7;
-    char v8;
+u32 VFiPFCODE_CP932_isOEMMBchar(s8 cp932, u32 num) {
+    u8 code;
+    u32 is_mb;
 
-    if (num == 2) {
-        v6 = 1;
-        v7 = 0;
-        if (cp932 >= 0x40u) {
-            if (cp932 <= 0x7F) {
-                v7 = 1;
-            } else {
-                v7 = 0;
-            }
-        }
+    code = (u8)cp932;
+    is_mb = 0;
 
-        if (!v7) {
-            v8 = 0;
-            if (cp932 >= 0x80u) {
-                if (cp932 <= 0xFC) {
-                    v8 = 1;
-                } else {
-                    v8 = 0;
-                }
-            }
+    switch (num) {
+    case 1:
+        is_mb = 0;
+        if ((code >= 0x81 && code <= 0x9F) || (code >= 0xE0 && code <= 0xFC)) {
+            is_mb = 1;
+        }
+        return is_mb;
 
-            if (!v8)
-                return 0;
+    case 2:
+        is_mb = 0;
+        if ((code >= 0x40 && code <= 0x7E) || (code >= 0x80 && code <= 0xFC)) {
+            is_mb = 1;
         }
-        return v6;
-    } else if (num == 1) {
-        v2 = 1;
-        v3 = 0;
-        if (cp932 >= 0x81u) {
-            if (cp932 <= 0x9F) {
-                v3 = 1;
-            } else {
-                v3 = 0;
-            }
-        }
-        if (!v3) {
-            v4 = 0;
-            if (cp932 >= 0xE0u) {
-                if (cp932 <= 0xFC) {
-                    v4 = 1;
-                } else {
-                    v4 = 0;
-                }
-            }
-
-            if (!v4)
-                return 0;
-        }
-        return v2;
-    } else {
-        return 0;
+        return is_mb;
     }
+    return is_mb;
 }
-
 s32 VFiPFCODE_CP932_UnicodeCharWidth() {
     return 2;
 }

@@ -643,29 +643,26 @@ void MarioActor::updateFace() {
 }
 
 void MarioActor::swapTexture(const char* pMaterialName, u8 texNo) const {
-    const s16 mode = static_cast< s16 >(mPlayerMode);
-    if (mode == 5) {
+
+    switch (mPlayerMode) {
+    case 4:
+        if (texNo > 7) {
+            return;
+        }
+        break;
+    case 5:
         if (texNo > 11) {
             return;
         }
-    } else if (mode >= 5) {
+        break;
+    default:
         if (texNo > 3) {
             return;
-        }
-    } else {
-        if (mode >= 4) {
-            if (texNo > 7) {
-                return;
-            }
-        } else {
-            if (texNo > 3) {
-                return;
-            }
         }
     }
 
     J3DModelData* modelData = MR::getJ3DModelData(this);
-    u32 materialNo = MR::getMaterialNo(modelData, pMaterialName);
+    u16 materialNo = MR::getMaterialNo(modelData, pMaterialName);
 
     const DLholder* holder = _B6C;
     const u8 modelIdx = mCurrModel;

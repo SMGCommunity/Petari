@@ -70,6 +70,27 @@ namespace JGeometry {
             }
         }
 
+        void extend(const TVec3f& rPos1, const TVec3f& rPos2) {
+            if (i.x >= rPos1.x) {
+                i.x = rPos1.x;
+            }
+            if (i.y >= rPos1.y) {
+                i.y = rPos1.y;
+            }
+            if (i.z >= rPos1.z) {
+                i.z = rPos1.z;
+            }
+            if (f.x <= rPos2.x) {
+                f.x = rPos2.x;
+            }
+            if (f.y <= rPos2.y) {
+                f.y = rPos2.y;
+            }
+            if (f.z <= rPos2.z) {
+                f.z = rPos2.z;
+            }
+        }
+
         bool intersectsPoint(const TVec3f& rPos) const {
             return (rPos.x >= this->i.x && rPos.y >= this->i.y && rPos.z >= this->i.z && rPos.x < this->f.x && rPos.y < this->f.y &&
                     rPos.z < this->f.z);
