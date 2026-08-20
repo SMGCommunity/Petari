@@ -920,7 +920,7 @@ void MarioActor::updateEffect() {
     }
 
     if (mMario->mMovementStates._2A || mMario->mMovementStates._29) {
-        if (mMario->_278 > 0.001f) {
+        if (mMario->mWalkSpeed > 0.001f) {
             effectA = 1;
         }
     }

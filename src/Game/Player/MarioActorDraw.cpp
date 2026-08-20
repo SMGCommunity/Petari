@@ -1043,7 +1043,7 @@ void MarioActor::drawMarioModel() const {
             }
         }
 
-        if (mAlphaEnable) {
+        if (mBeeWallWalk) {
             GXSetAlphaUpdate(1);
             GXSetDstAlpha(1, 0);
         }
@@ -1066,7 +1066,7 @@ void MarioActor::drawMarioModel() const {
         cool->directDraw(nullptr);
     }
 
-    if (mAlphaEnable) {
+    if (mBeeWallWalk) {
         GXSetAlphaUpdate(0);
         GXSetDstAlpha(0, 0);
     }

@@ -101,7 +101,7 @@ void Mario::slopeMove() {
         return;
     }
 
-    f32 blendRate = MR::clamp(_278, 0.0f, 1.0f);
+    f32 blendRate = MR::clamp(mWalkSpeed, 0.0f, 1.0f);
 
     TVec3f stack_170;
     stack_170.cross(_368, getAirGravityVec());
@@ -180,11 +180,11 @@ void Mario::slopeMove() {
             TVec3f stack_158;
             const f32 sideSpeed = MR::vecKillElement(mVelocity, stack_17C, &stack_158);
 
-            if (_278 < 0.1f) {
+            if (mWalkSpeed < 0.1f) {
                 _8F0 = 10.0f;
             }
 
-            if (_71C == 0 && !isAnimationRun("すべり着地")) {
+            if (mTargetWalkSpeedIndex == 0 && !isAnimationRun("すべり着地")) {
                 _8F0 = 10.0f;
             }
 

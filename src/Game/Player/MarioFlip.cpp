@@ -56,8 +56,8 @@ bool MarioFlip::start() {
 
     changeAnimation("はねとばされ", static_cast< const char* >(nullptr));
 
-    playSound("声小ダメージ", -1);
-    playSound("壁衝突", -1);
+    playSound("声小ダメージ");
+    playSound("壁衝突");
     playEffect("ダメージ");
     startPadVib(2);
 

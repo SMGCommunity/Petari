@@ -534,7 +534,7 @@ public:
     }
 
     inline const bool isBeeMarioOnFur() const {
-        return mMario->getMovementStates()._1 && !strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) && mAlphaEnable == 0;
+        return mMario->getMovementStates()._1 && !strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) && mBeeWallWalk == 0;
     }
 
     inline const bool is481or482On() const {
@@ -761,7 +761,7 @@ public:
     /* 0x9E8 */ MarioParts* _9E8;
     /* 0x9EC */ LiveActor* _9EC;
     /* 0x9F0 */ u8 _9F0;
-    /* 0x9F1 */ u8 mAlphaEnable;
+    /* 0x9F1 */ u8 mBeeWallWalk;
     /* 0x9F2 */ u16 _9F2;
     /* 0x9F4 */ TVec3f _9F4;
     /* 0xA00 */ ModelHolder* _A00;

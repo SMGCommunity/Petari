@@ -50,9 +50,9 @@ void MarioActor::reactionPunch(HitSensor* pSensor) {
         _38C = 5;
     } else {
         _38C = 5;
-        if (mMario->_278 > 0.1f) {
-            mMario->_278 = 0.1f;
-            mMario->_71C = true;
+        if (mMario->mWalkSpeed > 0.1f) {
+            mMario->mWalkSpeed = 0.1f;
+            mMario->mTargetWalkSpeedIndex = 1;
         }
     }
 
@@ -118,7 +118,7 @@ bool MarioActor::trySpinPunch() {
     if (mMario->getMovementStates().jumping) {
         changeAnimation("空パンチ", static_cast< const char* >(nullptr));
         setPunchHitTimer(15);
-        mMario->_278 = 0.0f;
+        mMario->mWalkSpeed = 0.0f;
     } else if (isEnableSpinPunch()) {
         if (mMario->isStatusActive(MarioStatus_Bury)) {
             playSound("スケキヨ終了スピン", -1);

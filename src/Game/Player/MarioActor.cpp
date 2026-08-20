@@ -152,7 +152,7 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
 
     _9D8.zero();
 
-    mAlphaEnable = false;
+    mBeeWallWalk = false;
     _9F2 = false;
     _EA4 = false;
     _EA5 = false;
@@ -465,7 +465,7 @@ void MarioActor::changeAnimationNonStop(const char* pName) {
 }
 
 void MarioActor::changeAnimationUpper(const char* pName) {
-    if (!mMario->_71C && isAnimationRun("基本")) {
+    if (mMario->mTargetWalkSpeedIndex != 0 && isAnimationRun("基本")) {
         mMario->changeAnimation(pName, static_cast< const char* >(nullptr));
         return;
     }
@@ -738,7 +738,7 @@ void MarioActor::movement() {
                 mMario->mDrawStates._2 = true;
             }
         }
-        if (getMovementStates().jumping && !mAlphaEnable) {
+        if (getMovementStates().jumping && !mBeeWallWalk) {
             if (stack_128.dot(getGravityVec()) < -40.0f) {
                 TVec3f stack_EC(mPosition - getGravityVec() * 100.0f);
                 TVec3f stack_E0;
@@ -1118,7 +1118,7 @@ void MarioActor::updateSwingTimer() {
         }
         if (_94E && --_94E == 0) {
             mMario->startPadVib((u32)0);
-            mMario->playSound("スピン回復終了", -1);
+            mMario->playSound("スピン回復終了");
             Color8 stack_8(80, 128, 200, 0);
             _1AA = 0xf;
             _1AC = 1.5f;
@@ -1232,17 +1232,17 @@ void MarioActor::updateSwingAction() {
             }
             _974 = 0;
             if (pLastAnimationName != mMarioAnim->mXanimePlayerUpper->getCurrentAnimationName()) {
-                mMario->playSound("パンチ風切り", -1);
+                mMario->playSound("パンチ風切り");
             }
         }
         if (mPlayerMode == 4) {
             if (isJumping()) {
                 if (!mMario->isAnimationRun("ハチスピン空中")) {
-                    mMario->playSound("声スピン", -1);
-                    mMario->playSound("スピンジャンプ", -1);
+                    mMario->playSound("声スピン");
+                    mMario->playSound("スピンジャンプ");
                 }
                 mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
-            } else if (getMovementStates()._A || mAlphaEnable) {
+            } else if (getMovementStates()._A || mBeeWallWalk) {
                 mMario->changeAnimation("サマーソルト", (const char*)nullptr);
             } else {
                 mMario->changeAnimation("ハチスピン", (const char*)nullptr);
@@ -1278,7 +1278,7 @@ void MarioActor::updateSwingAction() {
         if (isJumping()) {
             mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
         } else {
-            if (getMovementStates()._A || mAlphaEnable) {
+            if (getMovementStates()._A || mBeeWallWalk) {
                 mMario->changeAnimation("サマーソルト", (const char*)nullptr);  // Summersault
             } else {
                 mMario->changeAnimation("ハチスピン", (const char*)nullptr);
@@ -1414,7 +1414,7 @@ void MarioActor::incLife(u32 amt) {
     if (isEnableNerveChange() && !_3E4) {
         const u32 health = getHealth();
         if (mHealth != mMaxHealth) {
-            mMario->playSound("ライフ回復", -1);
+            mMario->playSound("ライフ回復");
         }
         mHealth += amt;
         if (mHealth >= mMaxHealth) {
@@ -1890,7 +1890,7 @@ void MarioActor::calcAnim() {
     updateRealMtx();
 
     if ((mMario->mMovementStates_LOW_WORD >> 16 & 1) == 0 || mMario->_544 <= 1) {
-        if (mAlphaEnable != 0) {
+        if (mBeeWallWalk != 0) {
             _214->setMode(0);
         } else {
             _214->setMode(2);
@@ -2028,8 +2028,8 @@ void MarioActor::calcAndSetBaseMtx() {
         reinterpret_cast< TRot3f* >(getBaseMtx())->getZDir(frontVec);
         mMario->setFrontVecKeepUp(frontVec);
 
-        mMario->_278 = 0.0f;
-        mMario->_71C = 0;
+        mMario->mWalkSpeed = 0.0f;
+        mMario->mTargetWalkSpeedIndex = 0;
         mMario->stopJump();
         mMario->_334 = mMario->mFrontVec;
 
@@ -2194,7 +2194,7 @@ void MarioActor::calcAndSetBaseMtx() {
         }
 
         f32 friction = mConst->getTable()->mBeePoseFrictionStop;
-        if (mMario->_71C == 0 && !isJumping()) {
+        if (mMario->mTargetWalkSpeedIndex == 0 && !isJumping()) {
             friction = mConst->getTable()->mBeePoseFrictionMove;
         }
 
@@ -2210,7 +2210,7 @@ void MarioActor::calcAndSetBaseMtx() {
             MR::makeMtxUpFront(&mtxD8, -_360, mMario->mFrontVec);
         }
 
-        if (mMario->_71C < 3 && !isJumping()) {
+        if (mMario->mTargetWalkSpeedIndex < 3 && !isJumping()) {
             _348.scale(mConst->getTable()->mBeePoseTransBlendingRatioStop);
             MR::setMtxTrans(mtxD8, _348);
         } else {
@@ -2664,8 +2664,8 @@ void MarioActor::setPress(u8 myChar, s32 myInt) {
     _39C = myChar;
     _F44 = false;
 
-    mMario->playSound("プレスダメージ", -1);
-    mMario->playSound("声大ダメージ", -1);
+    mMario->playSound("プレスダメージ");
+    mMario->playSound("声大ダメージ");
 
     _FB4 = &NrvMarioActor::MarioActorNrvGameOver::sInstance;
     _FB8 = 60;
