@@ -92,12 +92,19 @@ public:
         inline CArcName() {
         }
 
-        const char* store(const char*);
+        CArcName(char const* data) {
+            this->store(data);
+        }
+        CArcName(char const** data, char endChar) {
+            *data = this->store(*data, endChar);
+        }
+
+        void store(const char*);
         const char* store(const char*, char);
 
         /* 0x0 */ u16 mHash;
         /* 0x2 */ u16 mLength;
-        /* 0x4 */ char mName[MAX_NAME_LENGTH + 1];
+        /* 0x4 */ char mName[256];
     };
 
     JKRArchive();
@@ -115,7 +122,7 @@ public:
     virtual s32 getResSize(const void*) const;
     virtual s32 countFile(const char*) const;
     JKRArcFinder* getFirstFile(const char*) const;
-    virtual s32 getExpandedResSize(const void*) const;
+    virtual u32 getExpandedResSize(const void*) const;
     virtual void* fetchResource(SDIFileEntry*, u32*) = 0;
     virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;
     virtual void setExpandSize(SDIFileEntry*, u32);
@@ -123,7 +130,7 @@ public:
 
     static JKRArchive* check_mount_already(s32);
     static JKRArchive* check_mount_already(s32, JKRHeap*);
-    static void mount(const char*, EMountMode, JKRHeap*, EMountDirection);
+    static JKRArchive* mount(const char*, EMountMode, JKRHeap*, EMountDirection);
     static JKRArchive* mount(s32, EMountMode, JKRHeap*, EMountDirection);
     bool getDirEntry(SDirEntry*, u32) const;
     void* getIdxResource(u32);
@@ -141,7 +148,7 @@ public:
     SDIFileEntry* findPtrResource(const void*) const;
     SDIFileEntry* findIdResource(u16) const;
 
-    static u32 sCurrentDirIndex;  // 0x806B7148
+    static u32 sCurrentDirID;  // 0x806B7148
 
     /* 0x38 */ JKRHeap* mHeap;
     /* 0x3C */ u8 mMountMode;
@@ -150,7 +157,7 @@ public:
     /* 0x44 */ RarcInfoBlock* mInfoBlock;
     /* 0x48 */ SDIDirEntry* mDirs;
     /* 0x4C */ SDIFileEntry* mFiles;
-    /* 0x50 */ u32* mExpandSizes;
+    /* 0x50 */ s32* mExpandSizes;
     /* 0x54 */ char* mStringTable;
     u32 _58;
     int _5C;

@@ -11,7 +11,8 @@ class MarioActor;
 class CameraTargetHolder {
 public:
     CameraTargetHolder();
-    virtual ~CameraTargetHolder();
+    virtual ~CameraTargetHolder() {
+    }
 
     void movement();
     CameraTargetObj* get();
@@ -21,7 +22,7 @@ public:
     bool isOnGround() const;
     bool isMoving() const;
 
-    CameraTargetObj* mTarget;           // 0x4
-    CameraTargetActor* mTargetActor;    // 0x8
-    CameraTargetPlayer* mTargetPlayer;  // 0xC
+    /* 0x4 */ CameraTargetObj* mTarget;
+    /* 0x8 */ CameraTargetActor* mTargetActor;
+    /* 0xC */ CameraTargetPlayer* mTargetPlayer;
 };

@@ -3,7 +3,17 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/BigFanHolder.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JMath/JMath.hpp"
+#include <JSystem/JMath/JMath.hpp>
+
+void BigFan_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
+namespace {
+    static const f32 sBaseWindWidth = 400.0f;
+};  // namespace
 
 namespace NrvBigFan {
     NEW_NERVE(BigFanNrvStop, BigFan, Stop);
@@ -11,14 +21,8 @@ namespace NrvBigFan {
     NEW_NERVE(BigFanNrvWait, BigFan, Wait);
 };  // namespace NrvBigFan
 
-BigFan::BigFan(const char* pName) : LiveActor(pName) {
-    mWindModel = 0;
-    _90.x = 0.0f;
-    _90.y = 0.0f;
-    _90.z = 0.0f;
-    mWindLength = 4000.0f;
-    _A0 = 100.0f;
-    mIsTeresaGalaxy = false;
+BigFan::BigFan(const char* pName)
+    : LiveActor(pName), mWindModel(), mClippingCenter(0.0f, 0.0f, 0.0f), mWindLength(4000.0f), mWindSpeed(100.0f), mIsTeresaGalaxy() {
     BigFanFunction::createBigFanHolder();
     BigFanFunction::registerBigFan(this);
 }
@@ -37,12 +41,12 @@ void BigFan::init(const JMapInfoIter& rIter) {
     }
 
     MR::getJMapInfoArg0NoInit(rIter, &mWindLength);
-    MR::getJMapInfoArg1NoInit(rIter, &_A0);
+    MR::getJMapInfoArg1NoInit(rIter, &mWindSpeed);
     initWindModel();
     TVec3f front;
     MR::calcFrontVec(&front, this);
-    _90.scaleAdd(0.5f * mWindLength, front, mPosition);
-    MR::setClippingTypeSphere(this, 400.0f + mWindLength, &_90);
+    mClippingCenter.scaleAdd(0.5f * mWindLength, front, mPosition);
+    MR::setClippingTypeSphere(this, 400.0f + mWindLength, &mClippingCenter);
     initSound(4, false);
 
     if (MR::isEqualStageName("TeresaMario2DGalaxy")) {
@@ -53,7 +57,7 @@ void BigFan::init(const JMapInfoIter& rIter) {
 
     initNerve(&NrvBigFan::BigFanNrvWait::sInstance);
     if (MR::useStageSwitchReadAppear(this, rIter)) {
-        MR::listenStageSwitchOnAppear(this, MR::Functor(this, &BigFan::start));
+        MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &BigFan::start));
         setNerve(&NrvBigFan::BigFanNrvStop::sInstance);
         mWindModel->kill();
     }
@@ -71,48 +75,46 @@ void BigFan::initWindModel() {
     mWindModel->mScale.z = mWindLength / 2000.0f;
 }
 
-/*
-void BigFan::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2) {
-    if (MR::isDead(this) || isStartOrWait()) {
+void BigFan::calcWindInfo(TVec3f* pWindInfo, const TVec3f& rPos) {
+    if (MR::isDead(this) || !isStartOrWait()) {
         pWindInfo->zero();
-    }
-    else {
-        if (mWindLength <= 0.0f) {
-            pWindInfo->zero();
-            return;
-        }
-
-        TVec3f front_vec;
-        MR::calcFrontVec(&front_vec, this);
-        MR::normalize(&front_vec);
-        TVec3f stack_38 = a2 - mPosition;
-        f32 dot = front_vec.dot(stack_38);
-
-        if (dot < 0.0f) {
-            pWindInfo->zero();
-            return;
-        }
-
-        TVec3f stack_2C;
-        stack_2C = stack_38 - (front_vec * dot);
-        f32 mag = stack_2C.length();
-
-        if (mag >= 400.0f * mScale.x) {
-            pWindInfo->zero();
-            return;
-        }
-
-        f32 scalar = (1.0f - (dot / mWindLength));
-        if (scalar < 0.0f) {
-            pWindInfo->zero();
-            return;
-        }
-
-        front_vec.multAndSet(pWindInfo, scalar);
         return;
     }
+
+    if (mWindLength <= 0.0f) {
+        pWindInfo->zero();
+        return;
+    }
+
+    TVec3f front_vec;
+    MR::calcFrontVec(&front_vec, this);
+    MR::normalize(&front_vec);
+    TVec3f offset = rPos - mPosition;
+    f32 dot = front_vec.dot(offset);
+
+    if (dot < 0.0f) {
+        pWindInfo->zero();
+        return;
+    }
+
+    TVec3f ortho;
+    ortho = offset - (front_vec * dot);
+    f32 mag = ortho.length();
+
+    if (mag >= ::sBaseWindWidth * mScale.x) {
+        pWindInfo->zero();
+        return;
+    }
+
+    f32 scalar = (1.0f - (dot / mWindLength));
+    if (scalar < 0.0f) {
+        pWindInfo->zero();
+        return;
+    }
+
+    pWindInfo->set(front_vec * scalar);
+    return;
 }
-*/
 
 void BigFan::control() {
 }
@@ -168,7 +170,4 @@ inline bool BigFan::isStartOrWait() {
     }
 
     return flag;
-}
-
-BigFan::~BigFan() {
 }

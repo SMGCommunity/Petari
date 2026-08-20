@@ -5,16 +5,15 @@
 class CameraSubjective : public Camera {
 public:
     CameraSubjective(const char* pName = "主観カメラ");
-    virtual ~CameraSubjective();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
-    virtual bool isCollisionOff() const;
+    virtual bool isCollisionOff() const {
+        return true;
+    }
     virtual CamTranslatorBase* createTranslator();
 
-    f32 _4C;
-    f32 _50;
-    f32 _54;
-    f32 _58;
-    TMtx34f _5C;
+    /* 0x4C */ TVec2f mAngleVel;
+    /* 0x54 */ TVec2f mAngle;
+    /* 0x5C */ TPos3f mMtx;
 };

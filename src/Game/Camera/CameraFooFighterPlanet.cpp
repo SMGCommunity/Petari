@@ -7,7 +7,6 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/VectorUtil.hpp"
 
-
 void CameraFooFighterPlanet_FORCE_MATCH_SDATA2() {
     (void)1.0f;
     (void)0.0f;
@@ -165,9 +164,8 @@ void CameraFooFighterPlanet::goRoundBehind(TVec3f& rPos, TVec3f& rWatchPos, TVec
     TQuat4f targetRot;
     targetMtx.getQuat(targetRot);
 
-    TQuat4f rot = rot1;
-    f32 rate = ::sRateWhenBraking;
-    rot.slerp(targetRot, rate);
+    TQuat4f rot;
+    rot.slerp(rot1, targetRot, ::sRateWhenBraking);
     rotMtx.makeQuat(rot);
     rotMtx.getZDir(front);
     rotMtx.getYDir(rUp);

@@ -588,7 +588,7 @@ namespace MR {
         f32 focalDist = (static_cast< s32 >(JUTVideo::getManager()->getEfbHeight()) * 0.5f) / tan;
 
         TVec3f viewPos;
-        reinterpret_cast< TPos3f* >(MR::getCameraViewMtx())->mult(rPosition, viewPos);
+        MR::getCameraViewMtx().mult(rPosition, viewPos);
 
         return radius * focalDist / -viewPos.z;
     }
@@ -655,7 +655,7 @@ namespace MR {
         rot.setRotate(front, stroke);
         rot.rotate(moment);
 
-        MR::getCameraInvViewMtx()->mult33(moment, *pMoment);
+        MR::getCameraInvViewMtx().mult33(moment, *pMoment);
         return true;
     }
 

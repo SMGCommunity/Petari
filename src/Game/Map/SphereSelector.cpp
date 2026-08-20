@@ -32,7 +32,7 @@ namespace NrvSphereSelector {
 };  // namespace NrvSphereSelector
 
 SphereSelector::SphereSelector()
-    : LiveActor("スフィアセレクター"), mSphereGroup(), mHandle(), mSelectedTarget(), _98(), mPointingTarget(), _A4(), _A8(), _AC(),
+    : LiveActor("スフィアセレクター"), mSphereGroup(), mHandle(), mSelectedTarget(), _98(), mPointingTarget(), _A4(), _A8(0.0f, 0.0f),
       mIsPointingInvalid(), _B1() {
 }
 
@@ -83,6 +83,10 @@ void SphereSelector::sendMsgToAllActor(u32 msg) {
     }
 }
 
+bool SphereSelector::isMoveClickedPos() const {
+    return 80.0f < JGeometry::TUtil<f32>::sqrt(_A8.squareDist(MR::getStarPointerScreenPositionOrEdge(0)));
+}
+
 void SphereSelector::playSelectedME() {
     switch (MR::getRandom(0L, 4L)) {
     case 0:
@@ -117,6 +121,44 @@ void SphereSelector::playCanceledME() {
     case 4:
         MR::startSystemME("ME_ASTRO_DOME_CALCEL5");
         break;
+    }
+}
+
+void SphereSelector::exeSelectWait() {
+    if (MR::isFirstStep(this)) {
+        mPointingTarget = nullptr;
+        _98 = 0;
+        _A4 = -1;
+        MR::startStarPointerModeSphereSelectorOnReaction(this);
+    }
+
+    if (_A4 < 0) {
+        if (mPointingTarget && isDecideTrigger()) {
+            sendSelectedMsgAndSetTarget(mPointingTarget);
+        } 
+        else if (isButtonAPressed()) {
+            if (mHandle->isPointing()) {
+                sendSelectedMsgAndSetTarget(mHandle);
+            }
+        }
+    } else {
+        _A4++;
+        if (isMoveClickedPos() || _A4 > 30) {
+            sendSelectedMsgAndSetTarget(mHandle);
+            _A4 = -1;
+        } 
+        else if (!isButtonAPressed()) {
+            sendSelectedMsgAndSetTarget(mPointingTarget);
+            _A4 = -1;
+        }
+    }
+
+    if (_A4 < 0) {
+        if (_98 && _98 != mPointingTarget && _98 != mHandle) {
+            MR::tryRumblePadWeak(this, 0);
+        }
+        mPointingTarget = _98;
+        _98 = 0;
     }
 }
 
@@ -351,7 +393,15 @@ TVec3f& SphereSelectorFunction::getSelectedActorTrans() {
     return getSelectedTarget()->mPosition;
 }
 
-// void SphereSelectorFunction::calcOffsetPos(TVec3f * dst, const TVec3f & vec2, const TVec3f & vec3, const TVec3f & vec4, const TVec3f & vec5) {}
+void SphereSelectorFunction::calcOffsetPos(TVec3f* pDst, const TVec3f& vec2, const TVec3f& vec3, const TVec3f& vec4, const TVec3f& vec5) {
+    TVec3f vec(vec4);
+    TPos3f mtx;
+    if (MR::normalizeOrZero(&vec) || MR::isSameDirection(vec5, vec, 0.01f)) {
+        vec.set< f32 >(0.0f, 0.0f, 1.0f);
+    }
+    MR::makeMtxUpFrontPos(&mtx, vec5, vec, vec2);
+    mtx.mult(vec3, *pDst);
+}
 
 SphereSelector::~SphereSelector() {
 }

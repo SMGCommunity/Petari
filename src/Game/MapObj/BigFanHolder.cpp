@@ -4,65 +4,63 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util.hpp"
 
-BigFanHolder::BigFanHolder() : DeriveActorGroup("大型扇風機管理", 0x20) {
+namespace {
+    static const s32 sMaxBigFan = 32;
+
+    BigFanHolder* getBigFanHolder() {
+        return MR::getSceneObj< BigFanHolder >(SceneObj_BigFanHolder);
+    }
+};  // namespace
+
+BigFanHolder::BigFanHolder() : DeriveActorGroup("大型扇風機管理", ::sMaxBigFan) {
 }
 
-/*
-void BigFanHolder::calcWindInfo(TVec3f *pWindInfo, const TVec3f &a2, f32 *a3) {
+void BigFanHolder::calcWindInfo(TVec3f* pWindInfo, const TVec3f& rPos, f32* pWindSpeed) {
     s32 count = mObjectCount;
     TVec3f stack_2C;
     stack_2C.zero();
 
     for (int i = 0; i < count; i++) {
-        TVec3f stack_20;
-        stack_20.zero();
-        BigFan* fan = static_cast<BigFan*>(getActor(i));
-        fan->calcWindInfo(&stack_20, a2);
-        f32 val = static_cast<BigFan*>(getActor(i))->_A0;
-        TVec3f stack_14 = stack_20 * (val / 100.0f);
-        stack_2C.addInline3(stack_14);
+        TVec3f windVec;
+        windVec.zero();
+        BigFan* fan = static_cast< BigFan* >(getActor(i));
+        fan->calcWindInfo(&windVec, rPos);
+        f32 speed = static_cast< BigFan* >(getActor(i))->mWindSpeed;
+        stack_2C.add(windVec * (speed / 100.0f));
     }
 
     f32 mag = stack_2C.length();
     if (MR::isNearZero(mag)) {
         pWindInfo->zero();
 
-        if (a3) {
-            *a3 = 0.0f;
+        if (pWindSpeed != nullptr) {
+            *pWindSpeed = 0.0f;
         }
-    }
-    else {
-        TVec3f stack_8 = stack_2C * (1.0f / mag);
-        pWindInfo->x = stack_8.x;
-        pWindInfo->y = stack_8.y;
-        pWindInfo->z = stack_8.z;
+    } else {
+        pWindInfo->set(stack_2C * (1.0f / mag));
 
-        if (a3) {
-            *a3 = mag;
+        if (pWindSpeed != nullptr) {
+            *pWindSpeed = mag;
         }
     }
 }
-*/
 
 void BigFanFunction::createBigFanHolder() {
     MR::createSceneObj(SceneObj_BigFanHolder);
 }
 
-void BigFanFunction::calcWindInfo(TVec3f* a1, const TVec3f& a2, f32* a3) {
+void BigFanFunction::calcWindInfo(TVec3f* pWindInfo, const TVec3f& rPos, f32* pWindSpeed) {
     if (!MR::isExistSceneObj(SceneObj_BigFanHolder)) {
-        a1->zero();
+        pWindInfo->zero();
 
-        if (a3) {
-            *a3 = 0.0f;
+        if (pWindSpeed != nullptr) {
+            *pWindSpeed = 0.0f;
         }
     } else {
-        MR::getSceneObj< BigFanHolder >(SceneObj_BigFanHolder)->calcWindInfo(a1, a2, a3);
+        ::getBigFanHolder()->calcWindInfo(pWindInfo, rPos, pWindSpeed);
     }
 }
 
 void BigFanFunction::registerBigFan(BigFan* pFan) {
-    MR::getSceneObj< BigFanHolder >(SceneObj_BigFanHolder)->registerActor(pFan);
-}
-
-BigFanHolder::~BigFanHolder() {
+    ::getBigFanHolder()->registerActor(pFan);
 }

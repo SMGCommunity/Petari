@@ -220,7 +220,7 @@ void KoopaBattleMapStair::exeWaitFall() {
     MR::startLevelSound(this, "SE_OJ_LV_STAIR_BREAK");
 
     if (MR::isStep(this, mWaitFallStep)) {
-        mVelocity.zeroInline();
+        mVelocity.zero();
         setNerve(&NrvKoopaBattleMapStair::KoopaBattleMapStairNrvFall::sInstance);
     }
 }

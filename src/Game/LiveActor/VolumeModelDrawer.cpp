@@ -13,9 +13,7 @@ VolumeModelDrawInit::VolumeModelDrawInit() : NameObj("ボリュームモデル�
     MR::registerPreDrawFunction(MR::Functor_Inline(&MR::setupShadowVolumeDraw), MR::DrawType_VolumeModel);
 }
 
-VolumeModelDrawer::VolumeModelDrawer(const char* pName, const char* pFileName, MtxPtr mtx) : NameObj(pName) {
-    mMtx = 0;
-    mModelData = 0;
+VolumeModelDrawer::VolumeModelDrawer(const char* pName, const char* pFileName, MtxPtr mtx) : NameObj(pName), mMtx(), mModelData() {
     mColor.r = 0xFF;
     mColor.g = 0xA9;
     mColor.b = 0;
@@ -24,8 +22,7 @@ VolumeModelDrawer::VolumeModelDrawer(const char* pName, const char* pFileName, M
     mMtx = mtx;
     char buf[0x100];
     snprintf(buf, sizeof(buf), "%s.arc", pFileName);
-    ResourceHolder* resHolder = MR::createAndAddResourceHolder(buf);
-    mModelData = (J3DModelData*)resHolder->mModelResTable->getRes(pFileName);
+    mModelData = (J3DModelData*)MR::createAndAddResourceHolder(buf)->mModelResTable->getRes(pFileName);
 }
 
 void VolumeModelDrawer::draw() const {
@@ -61,6 +58,6 @@ void VolumeModelDrawer::draw() const {
 
 void VolumeModelDrawer::loadModelDrawMtx() const {
     Mtx drawMtx;
-    MR::multMtx(drawMtx, mMtx, MR::getCameraViewMtx());
+    MR::multMtx(drawMtx, mMtx, MR::getCameraViewMtx().mMtx);
     GXLoadPosMtxImm(drawMtx, 0);
 }

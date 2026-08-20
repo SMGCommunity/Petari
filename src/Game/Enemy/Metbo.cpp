@@ -130,8 +130,7 @@ void Metbo::init(const JMapInfoIter& rIter) {
     MR::onCalcGravity(this);
     MR::declareCoin(this, 1);
     MR::declareStarPiece(this, 3);
-    TVec3f offset;
-    MR::initStarPointerTarget(this, 100.0f, offset.makeZeroVec());
+    MR::initStarPointerTarget(this, 100.0f);
     mAnimScaleController = new AnimScaleController(nullptr);
     mAnimScaleController->setParamTight();
     mStarPointerBind = new WalkerStateBindStarPointer(this, mAnimScaleController);

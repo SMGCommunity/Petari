@@ -353,7 +353,7 @@ namespace MR {
     }
 
     void loadTexProjectionMtx(u32 id) {
-        TProj3f cameraProjection = *MR::getCameraProjectionMtx();
+        TProj3f cameraProjection = MR::getCameraProjectionMtx();
         cameraProjection.mMtx[2][0] = 0.0f;
         cameraProjection.mMtx[2][1] = 0.0f;
         cameraProjection.mMtx[2][2] = -1.0f;
@@ -362,9 +362,9 @@ namespace MR {
         cameraProjection.mMtx[3][1] = 0.0f;
         cameraProjection.mMtx[3][2] = 0.0f;
         cameraProjection.mMtx[3][3] = 1.0f;
-        Mtx matrix;
+        TPos3f matrix;
         MR::multMtx(matrix, MR::getCameraViewMtx(), cameraProjection);
-        TMtx34f mat;
+        TPos3f mat;
         mat.identity();
         mat[0][0] = 0.5f;
         mat[0][2] = 0.5f;

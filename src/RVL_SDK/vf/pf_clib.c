@@ -11,35 +11,39 @@ void* VFipf_memcpy(void* dst, const void* src, u32 length) {
     u32* ld;
     const u32* ls;
     s8* d;
-    const u32* s;
+    const s8* s;
 
     ld = dst;
     ls = src;
-    if ((*((u8*)dst) & 3) == 0 && (*((u8*)src) & 3) == 0) {
+    if (((u32)dst & 3) == 0 && ((u32)src & 3) == 0) {
         while (length > 3) {
             *ld++ = *ls++;
             length -= 4;
         }
     }
     d = (s8*)ld;
-    for (s = ls; length-- != 0; s = (s + 1)) {
+    for (s = (const s8*)ls; length-- != 0; s = (s + 1)) {
         *d++ = *s;
     }
     return dst;
 }
 
 void* VFipf_memset(void* dst, s32 c, u32 length) {
-    s8* d;    // r31
-    u32* ld;  // r30
-    s8* v1;   // r31
+    s8* d;
+    u32* ld;
+    u32 lc;
+    s8* v1;
 
-    for (d = dst; (*((u8*)d) & 3) != 0 && length; ++d) {
+    d = dst;
+    while (((u32)d & 3) != 0 && length) {
         *d = c;
-        --length;
+        d++;
+        length--;
     }
     ld = (u32*)d;
+    lc = (c | (c << 8)) | ((c << 24) | (c << 16));
     while (length > 3) {
-        *ld++ = c | (c << 8) | (c << 24) | (c << 16);
+        *ld++ = lc;
         length -= 4;
     }
     for (v1 = (s8*)ld; length-- != 0; ++v1)
@@ -56,9 +60,13 @@ u32 VFipf_strlen(const s8* s) {
 }
 
 s8* VFipf_strcpy(s8* dst, const s8* src) {
-    s8* i = dst;
-    while ((*i++ = *src++))
-        ;
+    s8* d = dst;
+
+    while ((*d = *src) != 0) {
+        src++;
+        d++;
+    }
+
     return dst;
 }
 

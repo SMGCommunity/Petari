@@ -10,6 +10,7 @@
 #include "Game/Camera/CameraLocalUtil.hpp"
 #include "Game/Camera/CameraParamChunk.hpp"
 #include "Game/Camera/CameraParamChunkHolder.hpp"
+#include "Game/Camera/CameraParamChunkID.hpp"
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Map/HitInfo.hpp"
 #include "Game/MapObj/GCapture.hpp"

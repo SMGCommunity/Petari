@@ -94,7 +94,7 @@ namespace MR {
     }*/
 
     // Non-official symbol.
-    inline void multMtx(MtxPtr pOut, const MtxPtr pA, const MtxPtr pB) {
+    inline void multMtx(Mtx pOut, const Mtx pA, const Mtx pB) {
         PSMTXConcat(pB, pA, pOut);
     }
 };  // namespace MR

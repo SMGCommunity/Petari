@@ -1,7 +1,6 @@
 #pragma once
 
 #include <JSystem/JGeometry.hpp>
-#include <revolution.h>
 
 class CameraShakePattern;
 
@@ -19,11 +18,10 @@ public:
     void updatePattern();
     void updateInterval();
 
-    CameraShakePattern* mPattern;  // 0x0
-    bool mHasEnded;                // 0x4
-    bool mIsInfinite;              // 0x5
-    u8 _6[2];
-    u32 _8;
-    u32 _C;
-    u32 _10;
+    /* 0x00 */ CameraShakePattern* mPattern;
+    /* 0x04 */ bool mHasEnded;
+    /* 0x05 */ bool mIsInfinite;
+    /* 0x08 */ u32 mTime;
+    /* 0x0C */ u32 mDelay;
+    /* 0x10 */ u32 mDelayTimer;
 };

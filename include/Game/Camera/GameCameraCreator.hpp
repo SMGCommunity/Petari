@@ -11,11 +11,11 @@ public:
     void initCameraCodeCollection(const char*, s32);
     void registerCameraCode(u32);
     void termCameraCodeCollection();
-    void scanStartPos();  // TODO
-    void scanArea();      // TODO
+    void scanStartPos();
+    void scanArea();
 
-    CameraParamChunkHolder* mChunkHolder;  // 0x0
-    const char* _4;
-    s32 _8;
-    u8 mCodes[0x100];  // 0xC
+    /* 0x0 */ CameraParamChunkHolder* mChunkHolder;
+    /* 0x4 */ const char* mName;
+    /* 0x8 */ s32 _8;
+    /* 0xC */ u8 mCodes[0x100];
 };

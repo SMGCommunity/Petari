@@ -7,19 +7,7 @@ CamTranslatorWonderPlanet::CamTranslatorWonderPlanet(CameraWonderPlanet* pCamera
 void CamTranslatorWonderPlanet::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    f32 axisX;
-    f32 axisY;
-    f32 angleA;
-
-    angleA = general->mAngleA;
-    axisY = general->mAxis.y;
-    axisX = general->mAxis.x;
-
-    CameraWonderPlanet* camera = mCamera;
-
-    camera->mAxisX = axisX;
-    camera->mAxisY = axisY;
-    camera->mAngleA = angleA;
+    mCamera->setParam(general->mAxis.x, general->mAxis.y, general->mAngleA);
 }
 
 Camera* CamTranslatorWonderPlanet::getCamera() const {

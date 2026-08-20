@@ -150,7 +150,7 @@ bool HanachanParts::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
 
 void HanachanParts::calcAndSetBaseMtx() {
     TPos3f mtx;
-    mtx.makeQuat(getRot());
+    mtx.makeQuat(_AC);
     mtx.setTrans(mPosition);
 
     MR::setBaseTRMtx(this, mtx);

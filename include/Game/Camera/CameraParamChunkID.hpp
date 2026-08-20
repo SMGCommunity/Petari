@@ -22,3 +22,15 @@ public:
     /* 0x04 */ s8 mZoneID;
     /* 0x08 */ char* mName;
 };
+
+class CameraParamChunkID_Tmp : public CameraParamChunkID {
+public:
+    inline CameraParamChunkID_Tmp() : CameraParamChunkID() {
+    }
+
+    virtual char* getBuffer(u32 size) {
+        return &mBuffer[0];
+    }
+
+    /* 0x0C */ char mBuffer[0x100];
+};

@@ -2,17 +2,21 @@
 #include "Game/AreaObj/MercatorTransformCube.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-CameraShakePatternSingly::CameraShakePatternSingly(f32 a1) : CameraShakePattern() {
-    _8 = a1;
-    mDirection.x = 0.0f;
-    mDirection.y = 1.0f;
+void CameraShakePatternImpl_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)(MR::pi() * 0.5f);
 }
 
-CameraShakePatternSingly::~CameraShakePatternSingly() {
+namespace {
+    static const s32 sSinglyMaxFrame = 25;
+}
+
+CameraShakePatternSingly::CameraShakePatternSingly(f32 intensity) : CameraShakePattern(), mIntensity(intensity), mDirection(0.0f, 1.0f) {
 }
 
 bool CameraShakePatternSingly::isEnd() const {
-    return _4 >= 25;
+    return mFrame >= ::sSinglyMaxFrame;
 }
 
 void CameraShakePatternSingly::getOffset(TVec2f* pOffset) const {
@@ -20,35 +24,20 @@ void CameraShakePatternSingly::getOffset(TVec2f* pOffset) const {
 }
 
 void CameraShakePatternSingly::start() {
-    mOffset.y = 0.0f;
-    mOffset.x = 0.0f;
+    mOffset.zero();
 }
 
-// Stack issue, fmuls operations order
 void CameraShakePatternSingly::update() {
-    s32 uStack44 = 25 - static_cast< s32 >(_4);
+    s32 framesLeft = ::sSinglyMaxFrame - mFrame;
 
-    if (uStack44 < 0) {
-        uStack44 = 0;
+    if (framesLeft < 0) {
+        framesLeft = 0;
     }
 
-    f32 dVar2 = MR::sin((12.566371f * static_cast< f32 >(uStack44)) / 25.0f);
-    f32 dVar3 = _8 * dVar2;
+    f32 amount = mIntensity * MR::sin(MR::pi() * 4.0f * framesLeft / ::sSinglyMaxFrame);
+    amount *= MR::sin(MR::pi() * 0.5f * framesLeft / ::sSinglyMaxFrame);
 
-    f32 dVar2_2 = MR::sin((1.5707964f * static_cast< f32 >(uStack44)) / 25.0f);
-
-    dVar3 *= dVar2_2;
-
-    f32 offsetX = mDirection.x * dVar3;
-    f32 offsetY = mDirection.y * dVar3;
-
-    TVec2f newOffset;
-    newOffset.x = offsetX;
-    newOffset.y = offsetY;
-
-    TVec2f newOffset2 = newOffset;
-
-    mOffset.set(newOffset2);
+    mOffset.set(mDirection * amount);
 }
 
 void CameraShakePatternSingly::setDirection(const TVec2f& rDir) {
@@ -56,20 +45,11 @@ void CameraShakePatternSingly::setDirection(const TVec2f& rDir) {
     MR::normalize(&mDirection);
 }
 
-CameraShakePatternVerticalSin::CameraShakePatternVerticalSin(f32 a1, f32 a2) {
-    _8 = a1;
-    _C = a2;
-    mOffset.x = 0.0f;
-    mOffset.y = 0.0f;
-}
-
-CameraShakePatternVerticalSin::~CameraShakePatternVerticalSin() {
+CameraShakePatternVerticalSin::CameraShakePatternVerticalSin(f32 intensity, f32 speed) : mIntensity(intensity), mSpeed(speed), mOffset(0.0f, 0.0f) {
 }
 
 bool CameraShakePatternVerticalSin::isEnd() const {
-    f32 var = static_cast< f32 >(_4);
-
-    return _C <= var;
+    return mFrame >= mSpeed;
 }
 
 void CameraShakePatternVerticalSin::getOffset(TVec2f* pOffset) const {
@@ -77,21 +57,16 @@ void CameraShakePatternVerticalSin::getOffset(TVec2f* pOffset) const {
 }
 
 void CameraShakePatternVerticalSin::start() {
-    mOffset.x = 0.0f;
-    mOffset.y = 0.0f;
+    mOffset.set(0.0f, 0.0f);
 }
 
 void CameraShakePatternVerticalSin::update() {
-    if (_C < 0.01) {
-        mOffset.y = 0.0f;
-        mOffset.x = 0.0f;
-    } else {
-        f32 dVar2 = MR::sin((6.2831855f * static_cast< f32 >(_4)) / _C);
-
-        f32 nVar2 = -dVar2;
-        f32 var = _8 * nVar2;
-
-        mOffset.x = 0.0f;
-        mOffset.y = var;
+    if (mSpeed < 0.01) {
+        mOffset.zero();
+        return;
     }
+
+    f32 amount = mIntensity * -MR::sin(TWO_PI * mFrame / mSpeed);
+
+    mOffset.set(0.0f, amount);
 }

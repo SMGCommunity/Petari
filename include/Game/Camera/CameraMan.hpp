@@ -10,31 +10,52 @@ class CameraMan : public NameObj {
 public:
     CameraMan(const char*);
 
-    virtual void init(const JMapInfoIter&){};
+    virtual void init(const JMapInfoIter&) {
+    }
     virtual void movement();
-    virtual void calc(){};
-    virtual void notifyActivate(){};
-    virtual void notifyDeactivate(){};
-    virtual bool isInterpolationOff() const;
-    virtual bool isCollisionOff() const;
-    virtual bool isZeroFrameMoveOff() const;
-    virtual bool isSubjectiveCameraOff() const;
-    virtual bool isCorrectingErpPositionOff() const;
-    virtual bool isEnableToReset() const;
-    virtual bool isEnableToRoundLeft() const;
-    virtual bool isEnableToRoundRight() const;
-    virtual void roundLeft();
-    virtual void roundRight();
+    virtual void calc() {
+    }
+    virtual void notifyActivate() {
+    }
+    virtual void notifyDeactivate() {
+    }
+    virtual bool isInterpolationOff() const {
+        return false;
+    }
+    virtual bool isCollisionOff() const {
+        return false;
+    }
+    virtual bool isZeroFrameMoveOff() const {
+        return false;
+    }
+    virtual bool isSubjectiveCameraOff() const {
+        return false;
+    }
+    virtual bool isCorrectingErpPositionOff() const {
+        return false;
+    }
+    virtual bool isEnableToReset() const {
+        return false;
+    }
+    virtual bool isEnableToRoundLeft() const {
+        return false;
+    }
+    virtual bool isEnableToRoundRight() const {
+        return false;
+    }
+    virtual void roundLeft() {
+    }
+    virtual void roundRight() {
+    }
 
     void owned(CameraDirector*);
     void released(CameraDirector*);
     void activate(CameraDirector*);
     void deactivate(CameraDirector*);
 
-    CameraDirector* mDirector;    // 0xC
-    CameraPoseParam* mPoseParam;  // 0x10
-    bool mIsActivated;            // 0x14
-    bool _15;
-    u8 _16[2];
-    TPos3f mMatrix;  // 0x18
+    /* 0x0C */ CameraDirector* mDirector;
+    /* 0x10 */ CameraPoseParam* mPoseParam;
+    /* 0x14 */ bool mIsActivated;
+    /* 0x15 */ bool _15;
+    /* 0x18 */ TPos3f mMatrix;
 };

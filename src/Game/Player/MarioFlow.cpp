@@ -110,5 +110,5 @@ bool MarioFlow::close() {
 }
 
 MarioFlow::MarioFlow(MarioActor* pActor) : MarioState(pActor, MarioStatus_Flow), _12(), _14() {
-    _18.zeroInline();
+    _18.zero();
 }

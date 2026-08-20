@@ -9,18 +9,27 @@ public:
 
     virtual void reset();
     virtual CameraTargetObj* calc();
-    virtual bool isEnableToReset() const;
+    virtual bool isEnableToReset() const {
+        return true;
+    }
     virtual CamTranslatorBase* createTranslator();
+
+    void setParam(const TVec2f& angle, f32 dist, s32 jointID, const TVec3f& axis) {
+        mAngleX = angle.x;
+        mAngleY = angle.y;
+        mDist = dist;
+        mJointID = jointID;
+        mAxis.set(axis);
+    }
 
     void calcIdealPose();
 
-    f32 mAngleB;   // 0x4C
-    f32 mAngleA;   // 0x50
-    f32 mDist;     // 0x54
-    s32 _58;       // 0x58 : Joint ID
-    TVec3f mAxis;  // 0x5C
-    bool _68;
-    u8 _69[3];
-    f32 _6C;
-    f32 _70;
+    /* 0x4C */ f32 mAngleX;
+    /* 0x50 */ f32 mAngleY;
+    /* 0x54 */ f32 mDist;
+    /* 0x58 */ s32 mJointID;
+    /* 0x5C */ TVec3f mAxis;
+    /* 0x68 */ bool mIsRounding;
+    /* 0x6C */ f32 mRoundTarget;
+    /* 0x70 */ f32 mRoundAngle;
 };
