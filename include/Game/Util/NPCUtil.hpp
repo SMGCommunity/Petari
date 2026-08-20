@@ -13,21 +13,34 @@ class TalkMessageCtrl;
 
 namespace MR {
     bool getNPCItemData(NPCActorItem*, s32);
-
     bool isNPCItemFileExist(const char*);
-
+    void initDefaultPose(NPCActor*, const JMapInfoIter&);
+    void turnPlayerToActor(const LiveActor*, f32);
+    void decidePose(NPCActor*, const TVec3f&, const TVec3f&, const TVec3f&, f32, f32, f32);
+    void setNPCActorPos(NPCActor*, const char*);
+    void setNPCActorPos(NPCActor*, const TVec3f&);
+    void setNPCActorPose(NPCActor*, const TVec3f&, const TVec3f&, const TVec3f&);
+    void followRailPose(NPCActor*, f32, f32);
+    void followRailPoseOnGround(NPCActor*, f32);
+    void followRailPoseOnGround(NPCActor*, const LiveActor*, f32);
+    void setDefaultPose(NPCActor*);
+    bool convertPosOnGround(TVec3f*, const TVec3f&);
+    void timeKeepDemoFadeIn();
+    void timeKeepDemoFadeOut();
     void startNPCTalkCamera(const TalkMessageCtrl*, MtxPtr, f32, s32);
     void startNPCTalkCamera(const TalkMessageCtrl*, MtxPtr, MtxPtr, f32, s32);
-
+    void endNPCTalkCamera(bool, s32);
     void initDefaultPosAndQuat(NPCActor*, const JMapInfoIter&);
-    void initDefaultPose(NPCActor*, const JMapInfoIter&);
     PartsModel* createNPCGoods(LiveActor*, const char*, const char*);
     PartsModel* createIndirectNPCGoods(LiveActor*, const char*, const char*);
-
-    void calcPlayerFaceStarePos(TVec3f*, MtxPtr, MtxPtr);
-
+    bool calcPlayerFaceStareVector(TVec3f*, MtxPtr, MtxPtr);
+    bool calcPlayerFaceStarePos(TVec3f*, MtxPtr, MtxPtr);
+    bool isActionContinuous(const LiveActor*);
+    bool isActionLoopedOrStopped(const LiveActor*);
     void invalidateLodCtrl(const NPCActor*);
     void startMoveAction(NPCActor*);
+    bool tryStartTalkAction(NPCActor*);
+    bool tryStartMoveTalkAction(NPCActor*);
     bool tryStartTurnAction(NPCActor*);
     bool tryStartMoveTurnAction(NPCActor*);
     bool tryStartReaction(NPCActor*);
@@ -42,23 +55,6 @@ namespace MR {
     bool tryChangeTalkActionRandom(NPCActor*, const char*, const char*, const char*);
     f32 calcFloatOffset(const NPCActor*, f32, f32);
     void calcAndSetFloatBaseMtx(NPCActor*, f32);
-
-    bool tryStartTalkAction(NPCActor*);
-    bool tryStartMoveTalkAction(NPCActor*);
-
-    void turnPlayerToActor(const LiveActor*, f32);
-    void decidePose(NPCActor*, const TVec3f&, const TVec3f&, const TVec3f&, f32, f32, f32);
-
-    void setNPCActorPos(NPCActor*, const TVec3f&);
-    void setNPCActorPos(NPCActor*, const char*);
-    void setNPCActorPose(NPCActor*, const TVec3f&, const TVec3f&, const TVec3f&);
-    void followRailPose(NPCActor*, f32, f32);
-    void followRailPoseOnGround(NPCActor*, const LiveActor*, f32);
-
-    void setDefaultPose(NPCActor*);
-    void convertPosOnGround(TVec3f*, const TVec3f&);
-
-    bool isActionContinuous(const LiveActor*);
 };  // namespace MR
 
 class DemoStarter : public NerveExecutor {
@@ -72,7 +68,7 @@ public:
     void exeWait();
     void exeTerm();
 
-    /* 0x8 */ NPCActor* mActor;
+    /* 0x08 */ NPCActor* mActor;
 };
 
 class TakeOutStar : public NerveExecutor {
