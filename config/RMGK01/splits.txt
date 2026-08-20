@@ -3744,15 +3744,16 @@ Game/Map/CollisionParts.cpp:
 Game/Map/FileSelectCameraController.cpp:
 	.text       start:0x80177614 end:0x80177DC4
 	.ctors      start:0x8052EBA8 end:0x8052EBAC
-	.rodata     start:0x80532A08 end:0x80532A48
-	.data       start:0x80588F20 end:0x80589010
+	.rodata     start:0x80532A08 end:0x80532A40
+	.data       start:0x80588F20 end:0x80588FE8
 	.sbss       start:0x806B4A48 end:0x806B4A60
 	.sdata2     start:0x806BBE88 end:0x806BBEA0
 
 Game/Map/FileSelectEffect.cpp:
 	.text       start:0x80177DC4 end:0x801782B4
 	.ctors      start:0x8052EBAC end:0x8052EBB0
-	.data       start:0x80589010 end:0x805890B8
+	.rodata     start:0x80532A40 end:0x80532A48
+	.data       start:0x80588FE8 end:0x805890B8
 	.sbss       start:0x806B4A60 end:0x806B4A70
 	.sdata2     start:0x806BBEA0 end:0x806BBEA8
 
