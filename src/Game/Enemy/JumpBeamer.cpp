@@ -41,7 +41,7 @@ void JumpBeamer::control() {
     TMtx34f mtx;
     mtx.identity();
     MR::makeMtxTRS(mtx, TVec3f(0.0f, 0.0f, 0.0f), head->mRotation, head->mScale);
-    _90.setInline(_8C);
+    _90.setInline(mBodyJointMtx);
     TMtx34f v5;
     v5.concat(_90, mtx);
     _90.setInline(v5);
@@ -70,7 +70,7 @@ void JumpBeamer::init(const JMapInfoIter& rIter) {
     MR::startBckWithInterpole(this, "Down", 0);
     MR::setBckFrame(this, MR::getBckCtrl(this)->getEnd() - 1);
     MR::calcAnimDirect(this);
-    _8C = MR::getJointMtx(this, "Top");
+    mBodyJointMtx = MR::getJointMtx(this, "Top");
     MR::useStageSwitchReadA(this, rIter);
 
     if (MR::useStageSwitchReadB(this, rIter)) {

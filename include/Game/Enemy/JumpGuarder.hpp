@@ -19,7 +19,7 @@ public:
     void endEventCamera();
     void updateRotate();
 
-    /* 0x8C */ MtxPtr _8C;
+    /* 0x8C */ MtxPtr mBodyJointMtx;
     /* 0x90 */ TMtx34f _90;
     /* 0xC0 */ PartsModel* mHeadModel;
     /* 0xC4 */ TVec3f _C4;
@@ -67,6 +67,6 @@ public:
     /* 0x0E4 */ u32 _E4;
     /* 0x0E8 */ LiveActor* _E8[4];
     /* 0x0F8 */ u32 _F8;
-    /* 0x0FC */ u32 _FC;
+    /* 0x0FC */ s32 mNumCoins;
     /* 0x100 */ f32 _100;
 };

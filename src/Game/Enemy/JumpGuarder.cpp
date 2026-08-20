@@ -1,12 +1,20 @@
 #include "Game/Enemy/JumpGuarder.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MultiEventCamera.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
@@ -17,22 +25,22 @@ namespace {
     // static const ??? sRotateDegree = ???;
     // static const ??? sHopStep = ???;
     // static const ??? sOpenInt = ???;
-    // static const ??? sAttack = ???;
+    static const s32 sAttack = 360;
     // static const ??? sSensorRes = ???;
-    // static const ??? sBabyNum = ???;
+    static const s32 sBabyNum = 4;
     // static const ??? sAppearHeight = ???;
     // static const ??? sAppearDistance = ???;
     // static const ??? sDisappearDistance = ???;
-    // static const ??? sHeadOffset = ???;
+    static const f32 sHeadOffset = -100.0f;
     // static const ??? sBabyVelocity = ???;
     // static const ??? sBabyOffset = ???;
-    // static const ??? sShadowRadius = ???;
+    static const f32 sShadowRadius = 145.0f;
     // static const ??? sHideShadowRadius = ???;
     // static const ??? sHitInt = ???;
     // static const ??? sCoinDefault = ???;
     // static const ??? sCameraLimitLength = ???;
     // static const ??? sOpen = ???;
-};
+};  // namespace
 
 namespace NrvJumpGuarder {
     NEW_NERVE(JumpGuarderNrvHide, JumpGuarder, Hide);
@@ -50,7 +58,7 @@ namespace NrvJumpGuarder {
 };  // namespace NrvJumpGuarder
 
 JumpEmitter::JumpEmitter(const char* pName) : LiveActor(pName) {
-    _8C = 0;
+    mBodyJointMtx = 0;
     mHeadModel = nullptr;
     _C4.x = 0.0f;
     _C4.y = 0.0f;
@@ -134,8 +142,67 @@ void JumpEmitter::updateRotate() {
     head->mRotation.y = MR::repeatDegree(head->mRotation.y);
 }
 
-JumpGuarder::JumpGuarder(const char* pName) : JumpEmitter(pName), mBabies(), mNumBabies(4), _E4(), _FC(4), _100(16.0f) {
+JumpGuarder::JumpGuarder(const char* pName) : JumpEmitter(pName), mBabies(), mNumBabies(::sBabyNum), _E4(), mNumCoins(::sBabyNum), _100(16.0f) {
     _F8 = 0;
+}
+
+void JumpGuarder::init(const JMapInfoIter& rIter) {
+    initModelManagerWithAnm("JumpGuarder", nullptr, false);
+    // "Jump guarder head"
+    mHeadModel = MR::createPartsModelNoSilhouettedMapObj(this, "ジャンプガーダー頭", "JumpGuarderHead", _90);
+    MR::initLightCtrl(mHeadModel);
+    MR::initDefaultPos(this, rIter);
+    MR::connectToSceneEnemy(this);
+    MR::initLightCtrl(this);
+    initHitSensor(2);
+
+    TVec3f offset(0.0f, ::sHeadOffset, 0.0f);
+    MR::addHitSensorMtx(this, "Jump", 31, 8, ::sShadowRadius, MR::getJointMtx(mHeadModel, "SpringJoint3"), offset);
+    MR::addHitSensorMtxEnemy(this, "SpringJoint3", 8, ::sShadowRadius, MR::getJointMtx(mHeadModel, "SpringJoint3"), offset);
+    getSensor("SpringJoint3")->setType(31);
+    getSensor("SpringJoint3")->validate();
+    getSensor("Jump")->invalidate();
+    MR::initShadowVolumeSphere(this, ::sShadowRadius);
+    initEffectKeeper(1, nullptr, false);
+    initSound(8, false);
+    MR::invalidateClipping(this);
+    initNerve(&NrvJumpGuarder::JumpGuarderNrvHide::sInstance);
+    MR::startBckWithInterpole(this, "Down", 0);
+    MR::setBckFrame(this, MR::getBckCtrl(this)->getEnd() - 1);
+    MR::calcAnimDirect(this);
+    mBodyJointMtx = MR::getJointMtx(this, "Body");
+    MR::useStageSwitchReadA(this, rIter);
+    MR::useStageSwitchReadB(this, rIter);
+    initEventCamera(rIter);
+    MR::joinToGroupArray(this, rIter, nullptr, 32);
+    makeActorAppeared();
+    s32 JMapArg2 = 0;
+    MR::getJMapInfoArg0NoInit(rIter, &mNumCoins);
+    MR::getJMapInfoArg1NoInit(rIter, &JMapArg2);
+    MR::getJMapInfoArg2NoInit(rIter, &mNumBabies);
+
+    switch (JMapArg2) {
+    case 0:
+        _100 = 16.0f;
+        break;
+    case 1:
+        _100 = 8.0f;
+        break;
+    case 2:
+        _100 = 4.0f;
+        break;
+    }
+
+    mBabies = new JumpGuarderBaby[::sBabyNum];
+    MR::declareCoin(this, mNumCoins);
+
+    for (int i = 0; i < ::sBabyNum; i++) {
+        JumpGuarderBaby* baby = &mBabies[i];
+        baby->mParent = this;
+        baby->mPosition.set(mPosition);
+        baby->initWithoutIter();
+        baby->makeActorDead();
+    }
 }
 
 // "Baby Begoman"
@@ -151,10 +218,7 @@ void JumpGuarder::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
                 MR::startSound(this, "SE_EM_JGUARDER_HIT");
             }
         }
-        return;
-    }
-
-    if (MR::isSensorPlayer(pReceiver)) {
+    } else if (MR::isSensorPlayer(pReceiver)) {
         MR::sendMsgPush(pReceiver, pSender);
         if ((isNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance) || isNerve(&NrvJumpGuarder::JumpGuarderNrvHopWait::sInstance)) &&
             MR::isPlayerStaggering() && _E4 == 0) {
@@ -171,7 +235,7 @@ bool JumpGuarder::enableAttack() {
             continue;
         }
 
-        return getNerveStep() % 0x168 == 0;
+        return getNerveStep() % ::sAttack == 0;
     }
 
     return false;
@@ -185,4 +249,28 @@ bool JumpGuarder::isHit(const LiveActor* pActor) const {
     }
 
     return true;
+}
+
+bool MR::enableGroupAttack(LiveActor* pActor, f32 arg2, f32 arg3) {
+    LiveActorGroup* group = MR::getGroupFromArray(pActor);
+
+    if (isValidSwitchA(pActor) && !isOnSwitchA(pActor)) {
+        return false;
+    }
+
+    if (isValidSwitchB(pActor) && !isOnSwitchB(pActor)) {
+        return false;
+    }
+
+    LiveActor* closest = pActor;
+    if (group != nullptr) {
+        for (int i = 0; i < group->getObjectCount(); i++) {
+            LiveActor* actor = group->getActor(i);
+            if (MR::calcDistanceToPlayer(actor) < MR::calcDistanceToPlayer(closest)) {
+                closest = actor;
+            }
+        }
+    }
+
+    return isNearPlayerPose(closest, arg2, arg3);
 }
