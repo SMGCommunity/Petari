@@ -465,7 +465,7 @@ void MarioActor::changeAnimationNonStop(const char* pName) {
 }
 
 void MarioActor::changeAnimationUpper(const char* pName) {
-    if (mMario->mTargetWalkSpeedIndex != 0 && isAnimationRun("基本")) {
+    if (mMario->mTargetWalkSpeedIndex == 0 && isAnimationRun("基本")) {
         mMario->changeAnimation(pName, static_cast< const char* >(nullptr));
         return;
     }
