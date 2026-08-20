@@ -466,6 +466,16 @@ def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
+def SDKLib_NET(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5.2",
+        "cflags": cflags_sdk_net,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
 def SDKLib_KPAD(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     return {
         "lib": lib_name,
@@ -2695,13 +2705,13 @@ config.libs = [
             Object(Matching, "RVL_SDK/nand/NANDLogging.c"),
         ],
     ),
-    SDKLib(
+    SDKLib_NET(
         "net",
         [
-            Object(NonMatching, "RVL_SDK/net/nettime.c", cflags=cflags_sdk_net),
-            Object(NonMatching, "RVL_SDK/net/NETVersion.c", cflags=cflags_sdk_net),
-            Object(NonMatching, "RVL_SDK/net/netmemcpy.c", cflags=cflags_sdk_net),
-            Object(NonMatching, "RVL_SDK/net/netmemset.c", cflags=cflags_sdk_net),
+            Object(NonMatching, "RVL_SDK/net/nettime.c"),
+            Object(NonMatching, "RVL_SDK/net/NETVersion.c"),
+            Object(NonMatching, "RVL_SDK/net/netmemcpy.c"),
+            Object(NonMatching, "RVL_SDK/net/netmemset.c"),
         ],
     ),
     SDKLib_NWC24(
