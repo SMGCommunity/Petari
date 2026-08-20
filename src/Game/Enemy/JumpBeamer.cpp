@@ -36,9 +36,6 @@ namespace NrvJumpBeamer {
 JumpBeamer::JumpBeamer(const char* pName) : JumpEmitter(pName) {
 }
 
-JumpEmitter::~JumpEmitter() {
-}
-
 void JumpBeamer::control() {
     PartsModel* head = mHeadModel;
     TMtx34f mtx;
