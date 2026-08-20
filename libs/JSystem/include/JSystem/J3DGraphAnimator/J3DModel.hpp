@@ -131,6 +131,9 @@ public:
     void setAnmMtx(int jointNo, Mtx m) {
         mMtxBuffer->setAnmMtx(jointNo, m);
     }
+    void setWeightAnmMtx(int i, Mtx m) {
+        mMtxBuffer->setWeightAnmMtx(i, m);
+    }
     MtxPtr getAnmMtx(int jointNo) {
         return mMtxBuffer->getAnmMtx(jointNo);
     }
