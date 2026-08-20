@@ -26,7 +26,7 @@ CameraTargetObj* CameraRaceFollow::calc() {
     TVec3f camDirPrev = CameraLocalUtil::getPos(this) - CameraLocalUtil::getWatchPos(this);
 
     TVec3f watchPoint;
-    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
     CameraLocalUtil::setWatchPos(this, watchPoint);
 
     CameraLocalUtil::arrangeDistanceByPushAndPull(this, mDistMin, mDistMax);

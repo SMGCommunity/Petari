@@ -19,7 +19,7 @@ void CameraWaterPlanet::reset() {
     TVec3f up = CameraLocalUtil::getUpVec(mCameraMan);
 
     TVec3f watchPoint;
-    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
     TVec3f front = watchPos - pos;
     if (MR::isNearZero(front)) {
@@ -52,7 +52,7 @@ CameraTargetObj* CameraWaterPlanet::calc() {
     TVec3f up = CameraLocalUtil::getUpVec(this);
 
     TVec3f watchPos;
-    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
     TVec3f front = currWatchPos - pos;
     if (MR::isNearZero(front)) {

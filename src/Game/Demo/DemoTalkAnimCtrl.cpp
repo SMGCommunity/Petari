@@ -135,6 +135,7 @@ bool DemoTalkAnimCtrl::updateDemo() {
     if (ok) {
         s32 totalsteps = MR::getDemoPartTotalStep(name);
         BckCtrlData bck;
+        bck.mLoopMode = 0xFF;
         _36 = MR::isDemoPartTalk(name);
         _14 = name;
         createBckCtrlData(&bck, totalsteps);

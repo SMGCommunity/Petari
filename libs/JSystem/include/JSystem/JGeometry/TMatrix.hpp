@@ -709,7 +709,11 @@ namespace JGeometry {
     public:
         typedef f32 ArrType[4];
         void set(const ArrType*);
-        void set(const SMatrix44C< T >& rSrc);
+
+        void set(const SMatrix44C< T >& rSrc) {
+            JMath::gekko_ps_copy16(this, rSrc);
+        }
+
         void set(T rxx, T ryx, T rzx, T tx, T rxy, T ryy, T rzy, T ty, T rxz, T ryz, T rzz, T tz, T wx, T wy, T wz, T ww) {
             mMtx[0][0] = rxx;
             mMtx[0][1] = ryx;

@@ -36,7 +36,7 @@ void CameraWaterFollow::reset() {
 
 CameraTargetObj* CameraWaterFollow::calc() {
     TVec3f watchPos;
-    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
     TVec3f gravUp = -CameraLocalUtil::getTarget(this)->getGravityVector();
     TVec3f watchFront = watchPos - CameraLocalUtil::getPos(this);

@@ -33,8 +33,8 @@ void CamTranslatorDPD::setParam(const CameraParamChunk* pChunk) {
     camera->mRotate = rotate;
     camera->mSpeedBlendRate = speedBlendRate;
     camera->mBlendFriction = blendFriction;
-    camera->_B4 = uVar8;
-    camera->_B8 = arg_B8;
+    camera->mIsVertical = uVar8;
+    camera->mAngleYMin = arg_B8;
 }
 
 Camera* CamTranslatorDPD::getCamera() const {

@@ -218,7 +218,7 @@ namespace CameraLocalUtil {
 
     void makeWatchOffset(TVec3f* pDst, Camera* pCamera, CameraTargetObj* pTarget, f32 scale) {
         f32 offset;
-        if (pCamera->mIsLOfsErpOff || pCamera->mCameraMan->_15) {
+        if (pCamera->mIsLOfsErpOff || pCamera->mCameraMan->mRequestLOfsReset) {
             offset = 1.0f;
         } else {
             offset = pTarget->getLastMove().length() * scale;
@@ -236,8 +236,8 @@ namespace CameraLocalUtil {
         pDst->set(globalOffs + localOffs);
     }
 
-    void makeWatchPoint(TVec3f* pDst, Camera* pCamera, CameraTargetObj* pTarget, f32 param4) {
-        makeWatchOffset(pDst, pCamera, pTarget, param4);
+    void makeWatchPoint(TVec3f* pDst, Camera* pCamera, CameraTargetObj* pTarget, f32 scale) {
+        makeWatchOffset(pDst, pCamera, pTarget, scale);
         pDst->add(pTarget->getPosition());
     }
 

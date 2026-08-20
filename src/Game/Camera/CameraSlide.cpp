@@ -47,7 +47,7 @@ CameraTargetObj* CameraSlide::calc() {
     TVec3f watchPos = side * side.dot(camZ) + watchPoint;
 
     TVec3f watchOffset;
-    CameraLocalUtil::makeWatchOffset(&watchOffset, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchOffset(&watchOffset, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
     watchPos.add(watchOffset);
 
     TVec3f pos = watchPos + front * mDist;

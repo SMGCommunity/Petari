@@ -54,6 +54,10 @@ public:
             mVPanAxis.set(0.0f, 1.0f, 0.0f);
         }
 
+        void setWOffset(const TVec3f& rWOffset) {
+            mWOffset.set(rWOffset);
+        }
+
         /* 0x00 */ TVec3f mWOffset;
         /* 0x0C */ f32 mLOffset;
         /* 0x10 */ f32 mLOffsetV;
@@ -97,6 +101,14 @@ public:
     void setCollisionOff(bool);
 
     void arrangeCamTypeName(u32, const char**);
+
+    CameraGeneralParam* getGeneralParam() {
+        return mGeneralParam;
+    }
+
+    u8 getCameraTypeIndex() const {
+        return mCameraTypeIndex;
+    }
 
     /* 0x04 */ CameraParamChunkID* mParamChunkID;
     /* 0x08 */ u8 mCameraTypeIndex;

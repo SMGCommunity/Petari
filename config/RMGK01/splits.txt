@@ -5169,7 +5169,7 @@ Game/MapObj/MapObjActor.cpp:
 
 Game/MapObj/MapObjActorInitInfo.cpp:
 	.text       start:0x801F8364 end:0x801F8970
-	.rodata     start:0x80533460 end:0x80533500
+	.rodata     start:0x80533460 end:0x805334D8
 	.sdata2     start:0x806BD638 end:0x806BD648
 
 Game/MapObj/MapObjConnector.cpp:
@@ -5179,6 +5179,7 @@ Game/MapObj/MapObjConnector.cpp:
 Game/MapObj/MarblePlanet.cpp:
 	.text       start:0x801F8BDC end:0x801F9C7C
 	.ctors      start:0x8052EDB0 end:0x8052EDB4
+	.rodata     start:0x805334D8 end:0x805334E0
 	.data       start:0x80598868 end:0x80598BA0
 	.sbss       start:0x806B53F0 end:0x806B5408
 	.sdata2     start:0x806BD650 end:0x806BD6A0
@@ -5186,14 +5187,15 @@ Game/MapObj/MarblePlanet.cpp:
 Game/MapObj/MarioLauncher.cpp:
 	.text       start:0x801F9C7C end:0x801FB94C
 	.ctors      start:0x8052EDB4 end:0x8052EDB8
-	.data       start:0x80598BA0 end:0x80598FC8
+	.rodata     start:0x805334E0 end:0x805334E8
+	.data       start:0x80598BA0 end:0x80598FB0
 	.sbss       start:0x806B5408 end:0x806B5430
 	.sdata2     start:0x806BD6A0 end:0x806BD6F0
 
 Game/MapObj/MarioLauncherAttractor.cpp:
 	.text       start:0x801FB94C end:0x801FBB2C
 	.ctors      start:0x8052EDB8 end:0x8052EDBC
-	.data       start:0x80598FC8 end:0x80599050
+	.data       start:0x80598FB0 end:0x80599050
 	.sbss       start:0x806B5430 end:0x806B5438
 	.sdata2     start:0x806BD6F0 end:0x806BD6F8
 
@@ -5235,6 +5237,7 @@ Game/MapObj/MeteoContainer.cpp:
 Game/MapObj/MeteorStrike.cpp:
 	.text       start:0x801FD7A0 end:0x801FE770
 	.ctors      start:0x8052EDC8 end:0x8052EDCC
+	.rodata     start:0x805334E8 end:0x805334F8
 	.data       start:0x80599728 end:0x80599928
 	.sdata      start:0x806B1EB0 end:0x806B1EB8
 	.sbss       start:0x806B5478 end:0x806B5480
@@ -5243,6 +5246,7 @@ Game/MapObj/MeteorStrike.cpp:
 Game/MapObj/MeteorStrikeLauncher.cpp:
 	.text       start:0x801FE770 end:0x801FEDEC
 	.ctors      start:0x8052EDCC end:0x8052EDD0
+	.rodata     start:0x805334F8 end:0x80533500
 	.data       start:0x80599928 end:0x805999C0
 	.sbss       start:0x806B5480 end:0x806B5488
 	.sdata2     start:0x806BD790 end:0x806BD798
@@ -9209,7 +9213,7 @@ Game/Util/ActorShadowLocalUtil.cpp:
 
 Game/Util/ActorShadowUtil.cpp:
 	.text       start:0x803C61B8 end:0x803C7A98
-	.data       start:0x805E0AB0 end:0x805E0BC0
+	.data       start:0x805E0AB0 end:0x805E0B28
 	.sdata2     start:0x806C1578 end:0x806C1588
 
 Game/Util/ActorStateUtil.cpp:
@@ -9225,6 +9229,7 @@ Game/Util/CameraUtil.cpp:
 	.text       start:0x803C8378 end:0x803CA518
 	.ctors      start:0x8052F3A4 end:0x8052F3A8
 	.rodata     start:0x8053EB28 end:0x8053EB30
+	.data       start:0x805E0B28 end:0x805E0BC0
 	.sdata      start:0x806B2608 end:0x806B2610
 	.sdata2     start:0x806C1588 end:0x806C15C0
 

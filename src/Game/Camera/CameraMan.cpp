@@ -6,7 +6,7 @@ CameraMan::CameraMan(const char* pName) : NameObj(pName) {
     mDirector = nullptr;
     mPoseParam = new CameraPoseParam();
     mIsActivated = false;
-    _15 = false;
+    mRequestLOfsReset = false;
     mMatrix.identity();
 }
 
@@ -31,6 +31,6 @@ void CameraMan::deactivate(CameraDirector* pDirector) {
 void CameraMan::movement() {
     if (mIsActivated) {
         calc();
-        _15 = false;
+        mRequestLOfsReset = false;
     }
 }

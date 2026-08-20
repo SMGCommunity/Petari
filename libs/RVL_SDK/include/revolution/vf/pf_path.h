@@ -29,13 +29,13 @@ u32 VFiPFPATH_CheckExtShortNameSignature(PF_STR* p_str);
 u32 VFiPFPATH_CheckExtShortName(PF_STR* p_str, u32 target, u32 wildcard);
 u32 VFiPFPATH_GetExtShortNameIndex(PF_STR* p_str, u32* p_index);
 
-static s32 VFiPFPATH_DoSplitPath(PF_STR* p_path, PF_STR* p_dir_path, PF_STR* p_filename, u32 wildcard);
+s32 VFiPFPATH_DoSplitPath(PF_STR* p_path, PF_STR* p_dir_path, PF_STR* p_filename, u32 wildcard);
 static u32 VFiPFPATH_UNI_ConvertFWchar(u16 src, u16* dst);
 static u32 VFiPFPATH_OEM_ConvertFWchar(const s8* src, u16* dst);
 static u16 VFiPFPATH_GetNextCharOfShortName(PF_FILE_NAME_ITER* p_name);
 static u16 VFiPFPATH_GetNextCharOfLongName(PF_FILE_NAME_ITER* p_name);
 static u16 VFiPFPATH_GetNextCharOfFileName(PF_FILE_NAME_ITER* p_name);
-static u16 VFiPFPATH_GetNextCharOfPattern(struct PF_STR* p_pattern, u32 is_long_name);
-static u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p_name, u16 c_pat, struct PF_STR* p_pattern, u32 is_long_name);
+u16 VFiPFPATH_GetNextCharOfPattern(struct PF_STR* p_pattern, u32 is_long_name);
+u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p_name, u16 c_pat, struct PF_STR* p_pattern);
 
 #endif  // PF_PATH_H

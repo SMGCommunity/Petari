@@ -8,7 +8,7 @@ class XanimePlayer;
 class BckCtrlData {
 public:
     // some callers inline this and some do not
-    BckCtrlData() : mName(""), mPlayFrame(-1), mStartFrame(-1), mEndFrame(-1), mRepeatFrame(-1), mInterpole(-1), mLoopMode(0xff) {
+    BckCtrlData() : mName(""), mPlayFrame(-1), mStartFrame(-1), mEndFrame(-1), mRepeatFrame(-1), mInterpole(-1), mLoopMode(-1) {
     }
 
     void operator=(const BckCtrlData&);
