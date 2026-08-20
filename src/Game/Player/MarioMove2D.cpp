@@ -18,7 +18,7 @@ void Mario::check2DMode() {
         MR::calcCubeRotate(area, &rotate);
         MR::makeMtxTR(_F4, 0.0f, 0.0f, 0.0f, rotate.x, rotate.y, rotate.z);
 
-        if (!(_24 & 0x100)) {
+        if (!(_20._37)) {
             _688 = mPosition;
             MR::getRotatedAxisZ(&_6A0, rotate);
             MR::calcCubePos(area, &_694);

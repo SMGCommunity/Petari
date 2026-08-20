@@ -784,7 +784,7 @@ void Mario::tryWallJump(const TVec3f& rVec, bool a2) {
     mMovementStates._B = false;
     mMovementStates._6 = false;
     mMovementStates._28 = false;
-    _24 &= 0xFF7FFFFF;
+    _20._28 = false;
     mMovementStates._29 = false;
 
     if (a2) {
@@ -833,8 +833,8 @@ void Mario::tryStickJump(const TVec3f& rVec) {
     _430 = 0;
     mMovementStates._6 = false;
     mMovementStates._9 = true;
-    _24 &= 0xFF7FFFFF;
     mMovementStates._28 = false;
+    _20._28 = false;
     mMovementStates._29 = false;
     mJumpVec = rVec;
     _3CA = 0;
