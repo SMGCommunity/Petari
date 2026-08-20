@@ -1,50 +1,91 @@
 #pragma once
 
 #include "Game/Camera/Camera.hpp"
-#include "revolution.h"
 
 struct CanmFileHeader {
-    u8 mMagic[4];  // 0x0
-    u8 mType[4];   // 0x4
-    s32 _8;
-    s32 _C;
-    s32 _10;
-    s32 _14;
-    u32 mNrFrames;     // 0x18
-    u32 mValueOffset;  // 0x1C
+    /* 0x00 */ u8 mMagic[4];
+    /* 0x04 */ u8 mType[4];
+    /* 0x08 */ s32 _8;
+    /* 0x0C */ s32 _C;
+    /* 0x10 */ s32 _10;
+    /* 0x14 */ s32 _14;
+    /* 0x18 */ u32 mNrFrames;
+    /* 0x1C */ u32 mValueOffset;
 };
 
 struct CanmKeyFrameComponentInfo {
-    u32 mCount;   // 0x0
-    u32 mOffset;  // 0x4
-    u32 mType;    // 0x8
+    /* 0x0 */ u32 mCount;
+    /* 0x4 */ u32 mOffset;
+    /* 0x8 */ u32 mType;
 };
 
 struct CanmKeyFrameInfo {
-    CanmKeyFrameComponentInfo mPosX;       // 0x0
-    CanmKeyFrameComponentInfo mPosY;       // 0xC
-    CanmKeyFrameComponentInfo mPosZ;       // 0x18
-    CanmKeyFrameComponentInfo mWatchPosX;  // 0x24
-    CanmKeyFrameComponentInfo mWatchPosY;  // 0x30
-    CanmKeyFrameComponentInfo mWatchPosZ;  // 0x3C
-    CanmKeyFrameComponentInfo mTwist;      // 0x48
-    CanmKeyFrameComponentInfo mFovy;       // 0x54
+    /* 0x00 */ CanmKeyFrameComponentInfo mPosX;
+    /* 0x0C */ CanmKeyFrameComponentInfo mPosY;
+    /* 0x18 */ CanmKeyFrameComponentInfo mPosZ;
+    /* 0x24 */ CanmKeyFrameComponentInfo mWatchPosX;
+    /* 0x30 */ CanmKeyFrameComponentInfo mWatchPosY;
+    /* 0x3C */ CanmKeyFrameComponentInfo mWatchPosZ;
+    /* 0x48 */ CanmKeyFrameComponentInfo mTwist;
+    /* 0x54 */ CanmKeyFrameComponentInfo mFovy;
 };
 
 struct CamnFrameComponentInfo {
-    u32 mCount;   // 0x0
-    u32 mOffset;  // 0x4
+    /* 0x0 */ u32 mCount;
+    /* 0x4 */ u32 mOffset;
 };
 
 struct CanmFrameInfo {
-    CamnFrameComponentInfo mPosX;       // 0x0
-    CamnFrameComponentInfo mPosY;       // 0x8
-    CamnFrameComponentInfo mPosZ;       // 0x10
-    CamnFrameComponentInfo mWatchPosX;  // 0x18
-    CamnFrameComponentInfo mWatchPosY;  // 0x20
-    CamnFrameComponentInfo mWatchPosZ;  // 0x28
-    CamnFrameComponentInfo mTwist;      // 0x30
-    CamnFrameComponentInfo mFovy;       // 0x38
+    /* 0x00 */ CamnFrameComponentInfo mPosX;
+    /* 0x08 */ CamnFrameComponentInfo mPosY;
+    /* 0x10 */ CamnFrameComponentInfo mPosZ;
+    /* 0x18 */ CamnFrameComponentInfo mWatchPosX;
+    /* 0x20 */ CamnFrameComponentInfo mWatchPosY;
+    /* 0x28 */ CamnFrameComponentInfo mWatchPosZ;
+    /* 0x30 */ CamnFrameComponentInfo mTwist;
+    /* 0x38 */ CamnFrameComponentInfo mFovy;
+};
+
+class BaseCamAnmDataAccessor;
+class CamAnmDataAccessor;
+class KeyCamAnmDataAccessor;
+
+class CameraAnim : public Camera {
+public:
+    CameraAnim(const char* pName = "アニメーションカメラ");
+
+    virtual void reset();
+    virtual CameraTargetObj* calc();
+    virtual bool isInterpolationOff() const {
+        return true;
+    }
+
+    virtual bool isCollisionOff() const {
+        return true;
+    }
+    virtual bool isZeroFrameMoveOff() const {
+        return true;
+    }
+    virtual CamTranslatorBase* createTranslator();
+
+    void setParam(u8*, f32);
+    bool isAnimEnd() const;
+    static u32 getAnimFrame(u8*);
+    bool loadBin(u8*);
+
+    /* 0x4C */ s32 _4C;
+    /* 0x50 */ s32 _50;
+    /* 0x54 */ u32 mNrFrames;
+    /* 0x58 */ bool mIsKey;
+    /* 0x5C */ f32 mSpeed;
+    /* 0x60 */ f32 mCurrentFrame;
+    /* 0x64 */ BaseCamAnmDataAccessor* mFileDataAccessor;
+    /* 0x68 */ CamAnmDataAccessor* mDataAccessor;
+    /* 0x6C */ KeyCamAnmDataAccessor* mKeyDataAccessor;
+    /* 0x70 */ u32 mNrValues;
+    /* 0x74 */ s32 _74;
+    /* 0x78 */ u8* mFileData;
+    /* 0x7C */ bool mIsPaused;
 };
 
 class BaseCamAnmDataAccessor {
@@ -62,14 +103,35 @@ public:
     virtual f32 getFovy(f32) const = 0;
 };
 
+class CamAnmDataAccessor : public BaseCamAnmDataAccessor {
+public:
+    inline CamAnmDataAccessor() {
+        mInfo = nullptr;
+        mValues = nullptr;
+    }
+
+    virtual void set(void*, void*);
+    virtual void getPos(TVec3f*, f32) const;
+    virtual void getWatchPos(TVec3f*, f32) const;
+    virtual f32 getTwist(f32) const;
+    virtual f32 getFovy(f32) const;
+
+    f32 get(f32, u32, u32) const;
+
+    f32 getValue(int index) const {
+        return mValues[index];
+    }
+
+    /* 0x4 */ CanmFrameInfo* mInfo;
+    /* 0x8 */ f32* mValues;
+};
+
 class KeyCamAnmDataAccessor : public BaseCamAnmDataAccessor {
 public:
     inline KeyCamAnmDataAccessor() {
         mInfo = nullptr;
         mValues = nullptr;
     }
-
-    virtual ~KeyCamAnmDataAccessor();
 
     virtual void set(void*, void*);
     virtual void getPos(TVec3f*, f32) const;
@@ -83,61 +145,6 @@ public:
     f32 get4f(f32, u32, u32) const;
     f32 calcHermite(f32, f32, f32, f32, f32, f32, f32) const;
 
-    CanmKeyFrameInfo* mInfo;  // 0x4
-    f32* mValues;             // 0x8
-};
-
-class CamAnmDataAccessor : public BaseCamAnmDataAccessor {
-public:
-    inline CamAnmDataAccessor() {
-        mInfo = nullptr;
-        mValues = nullptr;
-    }
-
-    virtual ~CamAnmDataAccessor();
-
-    virtual void set(void*, void*);
-    virtual void getPos(TVec3f*, f32) const;
-    virtual void getWatchPos(TVec3f*, f32) const;
-    virtual f32 getTwist(f32) const;
-    virtual f32 getFovy(f32) const;
-
-    f32 get(f32, u32, u32) const;
-
-    CanmFrameInfo* mInfo;  // 0x4
-    f32* mValues;          // 0x8
-};
-
-class CameraAnim : public Camera {
-public:
-    CameraAnim(const char* pName = "アニメーションカメラ");
-    virtual ~CameraAnim();
-
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isZeroFrameMoveOff() const;
-    virtual bool isCollisionOff() const;
-    virtual bool isInterpolationOff() const;
-    virtual CamTranslatorBase* createTranslator();
-
-    void setParam(u8*, f32);
-    bool isAnimEnd() const;
-    static u32 getAnimFrame(u8*);
-    bool loadBin(u8*);
-
-    s32 _4C;
-    s32 _50;
-    u32 mNrFrames;  // 0x54
-    u8 mIsKey;      // 0x58
-    u8 _59[3];
-    f32 mSpeed;                                 // 0x5C
-    f32 mCurrentFrame;                          // 0x60
-    BaseCamAnmDataAccessor* mFileDataAccessor;  // 0x64
-    CamAnmDataAccessor* mDataAccessor;          // 0x68
-    KeyCamAnmDataAccessor* mKeyDataAccessor;    // 0x6C
-    u32 mNrValues;
-    s32 _74;
-    u8* mFileData;  // 0x78
-    u8 _7C;
-    u8 _7D[3];
+    /* 0x4 */ CanmKeyFrameInfo* mInfo;
+    /* 0x8 */ f32* mValues;
 };
