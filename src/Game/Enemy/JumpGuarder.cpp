@@ -1,8 +1,32 @@
 #include "Game/Enemy/JumpGuarder.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/Nerve.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MultiEventCamera.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
+
+namespace NrvJumpGuarder {
+    NEW_NERVE(JumpGuarderNrvHide, JumpGuarder, Hide);
+    NEW_NERVE(JumpGuarderNrvUp, JumpGuarder, Up);
+    NEW_NERVE(JumpGuarderNrvWait, JumpGuarder, Wait);
+    NEW_NERVE(JumpGuarderNrvDown, JumpGuarder, Down);
+    NEW_NERVE(JumpGuarderNrvHopStart, JumpGuarder, HopStart);
+    NEW_NERVE(JumpGuarderNrvHopWait, JumpGuarder, HopWait);
+    NEW_NERVE(JumpGuarderNrvHopJump, JumpGuarder, HopJump);
+    NEW_NERVE(JumpGuarderNrvHopEnd, JumpGuarder, HopEnd);
+    NEW_NERVE(JumpGuarderNrvPreOpen, JumpGuarder, PreOpen);
+    NEW_NERVE(JumpGuarderNrvOpen, JumpGuarder, Open);
+    NEW_NERVE(JumpGuarderNrvClose, JumpGuarder, Close);
+    NEW_NERVE(JumpGuarderNrvInter, JumpGuarder, Inter);
+};  // namespace NrvJumpGuarder
 
 JumpEmitter::JumpEmitter(const char* pName) : LiveActor(pName) {
     _8C = 0;
@@ -62,9 +86,82 @@ void JumpEmitter::endEventCamera() {
     }
 }
 
-// JumpEmitter::updateRotate
-
-JumpGuarder::JumpGuarder(const char* pName) : NameObj(pName) {
+void null() {
+    TRot3f mtx;
+    JMath::gekko_ps_copy12(mtx, mtx);
+    TVec3f playerPos(*MR::getPlayerPos());
 }
-JumpGuarder::~JumpGuarder() {
+
+void JumpEmitter::updateRotate() {
+    PartsModel* head = mHeadModel;
+    TRot3f mtx;
+    mtx.identity();
+    JMath::gekko_ps_copy12(mtx, getBaseMtx());
+    mtx.invert(mtx);
+    TVec3f playerPos(*MR::getPlayerPos());
+    mtx.mult(playerPos, playerPos);
+
+    playerPos.y = 0.0f;
+    if (MR::isNearZero(playerPos)) {
+        return;
+    }
+
+    MR::normalize(&playerPos);
+    mtx.getEuler(head->mRotation);
+
+    // mtx.getEuler(playerPos);
+    head->mRotation.y = MR::repeatDegree(head->mRotation.y);
+}
+
+JumpGuarder::JumpGuarder(const char* pName) : JumpEmitter(pName), mBabies(), mNumBabies(4), _E4(), _FC(4), _100(16.0f) {
+    _F8 = 0;
+}
+
+// "Baby Begoman"
+JumpGuarderBaby::JumpGuarderBaby() : BegomanBaby("ベビーベーゴマン") {
+}
+
+void JumpGuarder::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorEnemy(pReceiver)) {
+        if (isHit(pReceiver->mHost)) {
+            MR::sendMsgEnemyAttack(pReceiver, pSender);
+            if (isNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance) && !MR::isOnGround(pReceiver->mHost)) {
+                MR::startBck(this, "Hit", nullptr);
+                MR::startSound(this, "SE_EM_JGUARDER_HIT");
+            }
+        }
+        return;
+    }
+
+    if (MR::isSensorPlayer(pReceiver)) {
+        MR::sendMsgPush(pReceiver, pSender);
+        if ((isNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance) || isNerve(&NrvJumpGuarder::JumpGuarderNrvHopWait::sInstance)) &&
+            MR::isPlayerStaggering() && _E4 == 0) {
+            _E4 = 60;
+            MR::startBck(this, "Hit", nullptr);
+            MR::startSound(this, "SE_EM_JGUARDER_HIT");
+        }
+    }
+}
+
+bool JumpGuarder::enableAttack() {
+    for (int i = 0; i < mNumBabies; i++) {
+        if (!MR::isDead(&mBabies[i])) {
+            continue;
+        }
+
+        return getNerveStep() % 0x168 == 0;
+    }
+
+    return false;
+}
+
+bool JumpGuarder::isHit(const LiveActor* pActor) const {
+    for (int i = 0; i < _F8; i++) {
+        if (_E8[i] == pActor) {
+            return false;
+        }
+    }
+
+    return true;
 }
