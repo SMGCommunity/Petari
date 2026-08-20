@@ -120,6 +120,8 @@ static s32 VFiPFVOL_p_attach(PF_VOLUME* p_vol, PF_DRV_TBL* p_drv, s16 vol_idx) {
     s32 err;
 
     VFipf_memset(p_vol, 0, sizeof(PF_VOLUME));
+    p_vol->num_free_clusters = -1;
+    p_vol->last_free_cluster = -1;
     p_vol->p_part = p_drv->p_part;
     p_vol->drv_char = vol_idx + 'A';
     p_vol->tail_entry.tracker_size = 1;
@@ -465,12 +467,30 @@ s32 VFiPFVOL_getdev(s8 drv_char, PF_DEV_INF* dev_inf) {
 }
 
 s32 VFiPFVOL_attach(PF_DRV_TBL* p_drv) {
-    s32 vol_idx;
+    s16 vol_idx;
     PF_VOLUME* p_vol;
+    s8 drv_char;
     s32 err;
 
-    if (p_drv == 0 || p_drv->cache->num_fat_pages < 1 || p_drv->cache->num_data_pages < 2 || p_drv->cache->pages == 0 || p_drv->cache->buffers == 0 ||
-        ((u32)p_drv->cache->pages & 3) != 0 || ((u32)p_drv->cache->buffers & 3) != 0) {
+    vol_idx = 0;
+
+    if (p_drv == 0) {
+        VFipf_vol_set.last_error = 10;
+        return 10;
+    }
+
+    drv_char = p_drv->drive;
+    p_drv->stat = 0;
+    p_drv->drive = 0;
+
+    if (VFipf_vol_set.num_attached_drives < 0 || VFipf_vol_set.num_attached_drives >= 26) {
+        VFipf_vol_set.last_error = 4;
+        return 4;
+    }
+
+    if (p_drv == 0 || p_drv->p_part == 0 || p_drv->cache == 0 || p_drv->cache->num_fat_buf_size > 0xFFFF ||
+        p_drv->cache->num_data_buf_size > 0x7FFF || p_drv->cache->num_fat_pages < 1 || p_drv->cache->num_data_pages < 2 || p_drv->cache->pages == 0 ||
+        p_drv->cache->buffers == 0 || ((u32)p_drv->cache->pages & 3) != 0 || ((u32)p_drv->cache->buffers & 3) != 0) {
         VFipf_vol_set.last_error = 10;
         return 10;
     }
@@ -492,23 +512,34 @@ s32 VFiPFVOL_attach(PF_DRV_TBL* p_drv) {
         return 10;
     }
 
-    p_drv->stat = 0;
-    p_drv->drive = 0;
+    if (drv_char != 0) {
+        if ((drv_char < 'a' || drv_char > 'z') && (drv_char < 'A' || drv_char > 'Z')) {
+            VFipf_vol_set.last_error = 10;
+            return 10;
+        }
+        vol_idx = VFipf_toupper(drv_char) - 'A';
 
-    for (vol_idx = 0; vol_idx < 26; vol_idx++) {
+        if (vol_idx < 0 || vol_idx >= 26) {
+            VFipf_vol_set.last_error = 18;
+            return 18;
+        }
         p_vol = &VFipf_vol_set.volumes[vol_idx];
-        if ((p_vol->flags & 1) == 0) {
-            break;
+        if ((p_vol->flags & 1) != 0) {
+            VFipf_vol_set.last_error = 18;
+            return 18;
+        }
+    } else {
+        for (; vol_idx < 26; vol_idx++) {
+            p_vol = &VFipf_vol_set.volumes[vol_idx];
+            if ((p_vol->flags & 1) == 0) {
+                break;
+            }
+        }
+        if (vol_idx < 0 || vol_idx >= 26) {
+            VFipf_vol_set.last_error = 4;
+            return 4;
         }
     }
-
-    if (vol_idx < 0 || vol_idx >= 26 || VFipf_vol_set.num_attached_drives < 0 || VFipf_vol_set.num_attached_drives >= 26) {
-        VFipf_vol_set.last_error = 4;
-        return 4;
-    }
-
-    p_vol->num_free_clusters = -1;
-    p_vol->last_free_cluster = -1;
 
     err = VFiPFVOL_p_attach(p_vol, p_drv, vol_idx);
     if (err != 0) {
@@ -516,28 +547,39 @@ s32 VFiPFVOL_attach(PF_DRV_TBL* p_drv) {
         return err;
     }
 
-    p_vol->flags |= 1;
     p_drv->stat |= 1;
-    p_vol->drv_char = vol_idx + 'A';
-    p_drv->drive = vol_idx + 'A';
-
+    p_drv->drive = p_vol->drv_char;
     VFipf_vol_set.num_attached_drives++;
 
     err = VFiPFVOL_CheckMediaInsert(p_vol);
     if (err != 0) {
+        if (VFiPFDRV_IsInserted(p_vol)) {
+            p_drv->stat |= 4;
+        }
         VFipf_vol_set.last_error = err;
         p_vol->last_error = err;
         return 0;
     }
 
-    err = VFiPFDRV_IsInserted(p_vol);
-    if (err != 0) {
-        err = VFiPFVOL_p_mount(p_vol);
+    if (VFiPFDRV_IsInserted(p_vol)) {
+        p_drv->stat |= 4;
+
+        if ((p_vol->flags & 2) == 0) {
+            err = VFiPFVOL_DoMountVolume(p_vol);
+            if (err == 0) {
+                p_vol->fsi_flag &= ~7;
+                VFipf_vol_set.num_mounted_volumes++;
+            }
+        } else {
+            err = 0;
+        }
+
         if (err != 0) {
             VFipf_vol_set.last_error = err;
             p_vol->last_error = err;
             return 0;
         }
+
         p_drv->stat |= 2;
     }
 

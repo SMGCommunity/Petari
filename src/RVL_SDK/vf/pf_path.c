@@ -170,10 +170,10 @@ u16 VFiPFPATH_GetNextCharOfPattern(struct PF_STR* p_pattern, u32 is_long_name) {
             pattern[1] = *p_pattern->p_head++;
             twc = ((u8)pattern[0] << 8) + (u8)pattern[1];
         } else {
-            twc = pattern[0];
+            twc = (u8)pattern[0];
         }
 
-        if (is_long_name != 0) {
+        if (is_long_name == 1) {
             VFipf_vol_set.codeset.oem2unicode(pattern, &twc);
         }
     } else {
