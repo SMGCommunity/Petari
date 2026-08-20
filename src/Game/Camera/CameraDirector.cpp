@@ -189,7 +189,7 @@ void CameraDirector::updateCameraMan() {
 
     if (mRequestCameraLocalOffsetReset) {
         CameraMan* man = getCurrentCameraMan();
-        man->_15 = true;
+        man->mRequestLOfsReset = true;
     }
 
     getCurrentCameraMan()->movement();
