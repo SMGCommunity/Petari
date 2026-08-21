@@ -1462,7 +1462,7 @@ config.libs = [
             Object(Matching, "Game/Map/LavaShellTower.cpp"),
             Object(Matching, "Game/Map/LavaSunPlanet.cpp"),
             Object(NonMatching, "Game/Map/LightDataHolder.cpp"),
-            Object(NonMatching, "Game/Map/LightDirector.cpp"),
+            Object(Matching, "Game/Map/LightDirector.cpp"),
             Object(NonMatching, "Game/Map/LightFunction.cpp"),
             Object(NonMatching, "Game/Map/LightPointCtrl.cpp"),
             Object(Matching, "Game/Map/LightZoneDataHolder.cpp"),
