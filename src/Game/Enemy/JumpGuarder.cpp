@@ -13,6 +13,7 @@
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/MultiEventCamera.hpp"
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
@@ -20,6 +21,7 @@
 #include "JSystem/JGeometry/TMatrix.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
 #include "JSystem/JMath/JMath.hpp"
+#include "revolution/types.h"
 
 namespace {
     // static const ??? sRotateDegree = ???;
@@ -35,7 +37,7 @@ namespace {
     // static const ??? sBabyVelocity = ???;
     // static const ??? sBabyOffset = ???;
     static const f32 sShadowRadius = 145.0f;
-    // static const ??? sHideShadowRadius = ???;
+    static const f32 sHideShadowRadius = 110.0f;
     // static const ??? sHitInt = ???;
     // static const ??? sCoinDefault = ???;
     // static const ??? sCameraLimitLength = ???;
@@ -140,6 +142,163 @@ void JumpEmitter::updateRotate() {
 
     // mtx.getEuler(playerPos);
     head->mRotation.y = MR::repeatDegree(head->mRotation.y);
+}
+
+bool JumpGuarder::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgPlayerTrample(msg)) {
+        if (pReceiver->isType(31)) {
+            TVec3f upVec;
+            MR::calcUpVec(&upVec, this);
+            MR::setPlayerJumpVec(upVec);
+            startEventCamera();
+            setNerve(&NrvJumpGuarder::JumpGuarderNrvHopJump::sInstance);
+        } else {
+            setNerve(&NrvJumpGuarder::JumpGuarderNrvHopStart::sInstance);
+        }
+        return true;
+    }
+
+    if (MR::isMsgPlayerHipDrop(msg)) {
+        MR::forceJumpPlayer(-mGravity);
+        return true;
+    }
+
+    if (MR::isMsgPlayerSpinAttack(msg)) {
+        if (!isNerve(&NrvJumpGuarder::JumpGuarderNrvHopStart::sInstance)) {
+            setNerve(&NrvJumpGuarder::JumpGuarderNrvHopStart::sInstance);
+        }
+
+        return true;
+    }
+
+    return MR::isMsgStarPieceReflect(msg);
+}
+
+bool JumpGuarder::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (msg == 0x6A) {
+        MR::invalidateClipping(this);
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvUp::sInstance);
+        return true;
+    }
+
+    if (msg == 0x6C) {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvDown::sInstance);
+        return true;
+    }
+
+    return false;
+}
+
+void JumpGuarder::control() {
+    PartsModel* head = mHeadModel;
+    TMtx34f mtx;
+    mtx.identity();
+
+    MR::makeMtxTRS(mtx.mMtx, TVec3f(0.0f, 44.0f, 0.0f), head->mRotation, head->mScale);
+
+    JMath::gekko_ps_copy12(_90, mBodyJointMtx);
+
+    TMtx34f mtx2;
+    mtx2.concat(_90, mtx);
+    JMath::gekko_ps_copy12(_90, mtx2);
+
+    // Probable fakematch. Decreases by one without overflow?
+    _E4 = (_E4 - 1) & (((_E4 - 1) >> 31) - 1);
+
+    updateEventCamera();
+}
+
+void JumpGuarder::exeHide() {
+    updateRotate();
+
+    if (MR::isFirstStep(this)) {
+        MR::startBck(mHeadModel, "Wait", nullptr);
+        MR::startBrk(mHeadModel, "Green");
+        MR::validateClipping(this);
+        MR::setShadowVolumeSphereRadius(this, nullptr, ::sHideShadowRadius);
+    }
+
+    if (MR::enableGroupAttack(this, 2000.0f, 500.0f)) {
+        MR::sendMsgToGroupMember(0x6A, this, getSensor("Body"), "Body");
+    }
+}
+
+void JumpGuarder::exeUp() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Up", nullptr);
+        MR::startSound(this, "SE_EM_JGUARDER_APPEAR");
+    }
+
+    f32 ratio = MR::getBckFrame(this) / MR::getBckCtrl(this)->getEnd();
+    MR::setShadowVolumeSphereRadius(this, nullptr, 30.0f * ratio + ::sHideShadowRadius);
+
+    if (MR::isBckStopped(this)) {
+        MR::setShadowVolumeSphereRadius(this, nullptr, ::sHideShadowRadius);
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance);
+    }
+}
+
+void JumpGuarder::exeWait() {
+    updateRotate();
+
+    if (!MR::enableGroupAttack(this, 2000.0f, 500.0f)) {
+        MR::sendMsgToGroupMember(0x6C, this, getSensor("Body"), "Body");
+    } else if (enableAttack()) {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvPreOpen::sInstance);
+    }
+}
+
+void JumpGuarder::exeDown() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Down", nullptr);
+        MR::startSound(this, "SE_EM_JGUARDER_HIDE");
+    }
+
+    f32 ratio = 1.0f - MR::getBckFrame(this) / MR::getBckCtrl(this)->getEnd();
+    MR::setShadowVolumeSphereRadius(this, nullptr, 30.0f * ratio + ::sHideShadowRadius);
+
+    if (MR::isBckStopped(this)) {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvHide::sInstance);
+    }
+}
+
+void JumpGuarder::exeHopStart() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(mHeadModel, "HopStart", nullptr);
+        MR::startBrk(mHeadModel, "OnAndOff");
+        MR::startBck(this, "Damage", nullptr);
+        MR::startSound(this, "SE_EM_JGUARDER_HIT");
+        HitSensor* body = getSensor("Body");
+        body->mRadius = 120.0f;
+    }
+
+    MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHAKE");
+
+    if (MR::isStep(this, 10)) {
+        for (int i = 0; i < _F8; i++) {
+            _E8[i]->makeActorDead();
+        }
+
+        _F8 = 0;
+    }
+
+    if (MR::isBckStopped(mHeadModel)) {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvHopWait::sInstance);
+    }
+}
+
+void JumpGuarder::exeHopWait() {
+    if (MR::isFirstStep(this)) {
+        MR::stopBck(this);
+        MR::startBck(mHeadModel, "HopWait", nullptr);
+        getSensor("Jump")->validate();
+    }
+
+    MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHAKE");
+
+    if (MR::isStep(this, 0x12C)) {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvHopEnd::sInstance);
+    }
 }
 
 JumpGuarder::JumpGuarder(const char* pName) : JumpEmitter(pName), mBabies(), mNumBabies(::sBabyNum), _E4(), mNumCoins(::sBabyNum), _100(16.0f) {
