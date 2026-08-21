@@ -6778,11 +6778,12 @@ Game/NPC/NPCParameter.cpp:
 
 Game/NPC/NPCDirector.cpp:
 	.text       start:0x8029D03C end:0x8029D150
-	.data       start:0x805B64E8 end:0x805B6530
+	.data       start:0x805B64E8 end:0x805B6520
 	.sdata      start:0x806B21D8 end:0x806B21E0
 
 Game/NPC/NPCFunction.cpp:
 	.text       start:0x8029D150 end:0x8029D258
+	.data       start:0x805B6520 end:0x805B6530
 
 Game/NPC/NPCSupportRail.cpp:
 	.text       start:0x8029D258 end:0x8029D35C
