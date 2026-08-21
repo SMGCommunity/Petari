@@ -6,6 +6,7 @@
 class ActorCameraInfo;
 class PartsModel;
 class MultiEventCamera;
+class JumpGuarderBaby;
 
 class JumpEmitter : public LiveActor {
 public:
@@ -31,11 +32,6 @@ public:
 namespace MR {
     bool enableGroupAttack(LiveActor*, f32, f32);
 };  // namespace MR
-
-class JumpGuarderBaby : public BegomanBaby {
-public:
-    JumpGuarderBaby();
-};
 
 class JumpGuarder : public JumpEmitter {
 public:
@@ -69,4 +65,9 @@ public:
     /* 0x0F8 */ s32 _F8;
     /* 0x0FC */ s32 mNumCoins;
     /* 0x100 */ f32 _100;
+};
+
+class JumpGuarderBaby : public BegomanBaby {
+public:
+    JumpGuarderBaby();
 };

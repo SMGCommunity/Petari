@@ -27,7 +27,7 @@
 #include "revolution/types.h"
 
 namespace {
-    // static const ??? sRotateDegree = ???;
+    static const f32 sRotateDegree = 3.0f;
     // static const ??? sHopStep = ???;
     // static const ??? sOpenInt = ???;
     static const s32 sAttack = 360;
@@ -122,10 +122,12 @@ void JumpEmitter::endEventCamera() {
 
 void JumpEmitter::updateRotate() {
     PartsModel* head = mHeadModel;
+
     TRot3f mtx;
     mtx.identity();
     JMath::gekko_ps_copy12(mtx, getBaseMtx());
     mtx.invert(mtx);
+
     TVec3f playerPos(*MR::getPlayerPos());
     mtx.mult(playerPos, playerPos);
 
@@ -136,11 +138,29 @@ void JumpEmitter::updateRotate() {
 
     MR::normalize(&playerPos);
 
-    // Inlined function I do not know
-    mtx.getEuler(head->mRotation);
+    // Possible inline.
+    f32 newAngle;
+    if (playerPos.z == 0.0f) {
+        if (playerPos.x >= 0.0f) {
+            newAngle = 90.0f;
+        } else {
+            newAngle = -90.0f;
+        }
+    } else if (playerPos.z >= 0.0f) {
+        newAngle = MR::toDegree(MR::atan2(playerPos.x, playerPos.z));
+    } else {
+        newAngle = 180.0f - MR::toDegree(MR::atan2(playerPos.x, -playerPos.z));
+    }
 
-    // mtx.getEuler(playerPos);
-    head->mRotation.y = MR::repeatDegree(head->mRotation.y);
+    f32 angleDiff = MR::repeat(newAngle - head->mRotation.y, -180.0f, 360.0f);
+
+    if (__fabsf(angleDiff) < ::sRotateDegree) {
+        head->mRotation.y = newAngle;
+    } else {
+        head->mRotation.y += ::sRotateDegree * MR::sign(angleDiff);
+    }
+
+    head->mRotation.y = MR::repeat(head->mRotation.y, -180.0f, 360.0f);
 }
 
 bool JumpGuarder::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
@@ -274,7 +294,7 @@ void JumpGuarder::exeHopStart() {
     MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHAKE");
 
     if (MR::isStep(this, 10)) {
-        for (int i = 0; i < _F8; i++) {
+        for (u32 i = 0; i < _F8; i++) {
             _E8[i]->makeActorDead();
         }
 
@@ -541,7 +561,7 @@ bool JumpGuarder::enableAttack() {
 }
 
 bool JumpGuarder::isHit(const LiveActor* pActor) const {
-    for (int i = 0; i < _F8; i++) {
+    for (u32 i = 0; i < _F8; i++) {
         if (_E8[i] == pActor) {
             return false;
         }
