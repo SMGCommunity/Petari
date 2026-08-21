@@ -45,36 +45,36 @@ RosettaMonologue::RosettaMonologue() : SimpleLayout("ロゼッタの語り", "Pr
     MR::createAndAddPaneCtrl(this, "CrossFade2", 1);
     MR::createAndAddPaneCtrl(this, "CrossFade3", 1);
 
-    mIcon = new IconAButton(true, false);
-    mIcon->initWithoutIter();
-    mIcon->kill();
-    mMsgID = 0;
+    mIconAButton = new IconAButton(true, false);
+    mIconAButton->initWithoutIter();
+    mIconAButton->kill();
+    mMessageNo = 0;
 }
 
 void RosettaMonologue::appear() {
     LayoutActor::appear();
-    mMsgID = 0;
+    mMessageNo = 0;
 
     MR::startAnim(this, "FadeIn", 0);
     MR::startPaneAnim(this, "TalkBalloon", "WinFadeIn", 0);
 
-    char buff[256];
-    snprintf(buff, 256, "RosettaMonologue%03d", mMsgID);
-    mTextFormer.formMessage(MR::getGameMessageDirect(buff), 1);
+    char messageId[256];
+    snprintf(messageId, sizeof(messageId), "RosettaMonologue%03d", mMessageNo);
+    mTextFormer.formMessage(MR::getGameMessageDirect(messageId), 1);
 }
 
 void RosettaMonologue::calcAnim() {
     LayoutActor::calcAnim();
-    mIcon->calcAnim();
+    mIconAButton->calcAnim();
 }
 
 void RosettaMonologue::movement() {
     LayoutActor::movement();
-    mIcon->movement();
+    mIconAButton->movement();
 }
 
 void RosettaMonologue::control() {
-    if (mMsgID >= 4) {
+    if (mMessageNo >= 4) {
         if (MR::isAnimStopped(this, 0)) {
             MR::forceCloseWipeFade();
             kill();
@@ -88,35 +88,38 @@ void RosettaMonologue::control() {
         return;
     }
 
-    if (!mIcon->isOpen()) {
-        mIcon->openWithoutMessage();
+    if (!mIconAButton->isOpen()) {
+        mIconAButton->openWithoutMessage();
     }
 
-    MR::setLayoutPosAtPaneTrans(mIcon, this, "AButtonPosition");
+    MR::setLayoutPosAtPaneTrans(mIconAButton, this, "AButtonPosition");
 
     if (!MR::testCorePadTriggerA(WPAD_CHAN0)) {
         return;
     }
 
-    mIcon->term();
+    mIconAButton->term();
 
     if (mTextFormer.nextPage()) {
         MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
         return;
     }
 
-    mMsgID++;
-    if (mMsgID == 4) {
+    mMessageNo++;
+
+    if (mMessageNo == 4) {
         MR::startSystemSE("SE_SY_TALK_OK");
         MR::startCSSound("CS_CLICK_CLOSE", nullptr, WPAD_CHAN0);
     } else {
         MR::startSystemSE("SE_SY_TALK_FOCUS_ITEM");
-        char buff[256];
-        snprintf(buff, 256, "RosettaMonologue%03d", mMsgID);
-        mTextFormer.formMessage(MR::getGameMessageDirect(buff), 1);
+
+        char messageId[256];
+        snprintf(messageId, sizeof(messageId), "RosettaMonologue%03d", mMessageNo);
+
+        mTextFormer.formMessage(MR::getGameMessageDirect(messageId), 1);
     }
 
-    switch (mMsgID) {
+    switch (mMessageNo) {
     case 1:
         MR::startPaneAnim(this, "CrossFade1", "CrossFade1", 0);
         break;

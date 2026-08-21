@@ -15,8 +15,10 @@
 
 namespace {
     const s32 cOverlayStartStep = 122;
-    // const s32 cOverlayFrame
+    const s32 cOverlayFrame = 1;
+};  // namespace
 
+namespace {
     s32 getChapterNumberMin() {
         return MR::getPictureBookChapterAlreadyRead() + 1;
     }
@@ -32,7 +34,7 @@ namespace NrvRosettaReading {
     NEW_NERVE(RosettaReadingNrvPictureBookAfter, RosettaReading, PictureBookAfter);
 };  // namespace NrvRosettaReading
 
-RosettaReading::RosettaReading(const char* pName) : LiveActor(pName), mPictureBookLayout(nullptr) {
+RosettaReading::RosettaReading(const char* pName) : LiveActor(pName), mPictureBookLayout() {
 }
 
 void RosettaReading::init(const JMapInfoIter& rIter) {
@@ -117,7 +119,7 @@ void RosettaReading::exePictureBookAfter() {
     }
 
     if (MR::isDemoPartStep("絵本デモ終了", ::cOverlayStartStep)) {
-        MR::overlayWithPreviousScreen(1);
+        MR::overlayWithPreviousScreen(::cOverlayFrame);
     }
 
     if (MR::isTimeKeepDemoActive()) {
