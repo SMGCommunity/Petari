@@ -8,8 +8,8 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 
 EventDirector::EventDirector()
-    : NameObj("イベント指揮"), mPowerStarEventKeeper(nullptr), mStageStateKeeper(nullptr), mPowerStarHolder(nullptr), mCometEventKeeper(nullptr),
-      mTimeAttackEventKeeper(nullptr) {
+    : NameObj("イベント指揮"), mPowerStarEventKeeper(), mStageStateKeeper(), mPowerStarHolder(), mCometEventKeeper(),
+      mTimeAttackEventKeeper() {
 }
 
 void EventDirector::init(const JMapInfoIter& rIter) {
@@ -23,47 +23,45 @@ void EventDirector::init(const JMapInfoIter& rIter) {
     mTimeAttackEventKeeper->init(mCometEventKeeper->isStartTimeLimitEvent());
 }
 
-namespace EventFunction {
-    PowerStarEventKeeper* getPowerStarEventKeeper() {
-        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mPowerStarEventKeeper;
-    }
+void MR::declareEventPowerStar(const char* pParam1, s32 param2, bool param3) {
+    EventFunction::getPowerStarEventKeeper()->declareStar(pParam1, "ゾーン無し", param2, param3);
+}
 
-    StageStateKeeper* getStageStateKeeper() {
-        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mStageStateKeeper;
-    }
+PowerStarEventKeeper* EventFunction::getPowerStarEventKeeper() {
+    return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mPowerStarEventKeeper;
+}
 
-    PowerStarHolder* getPowerStarHolder() {
-        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mPowerStarHolder;
-    }
+StageStateKeeper* EventFunction::getStageStateKeeper() {
+    return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mStageStateKeeper;
+}
 
-    CometEventKeeper* getCometEventKeeper() {
-        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mCometEventKeeper;
-    }
+PowerStarHolder* EventFunction::getPowerStarHolder() {
+    return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mPowerStarHolder;
+}
 
-    TimeAttackEventKeeper* getTimeAttackEventKeeper() {
-        return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mTimeAttackEventKeeper;
-    }
+CometEventKeeper* EventFunction::getCometEventKeeper() {
+    return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mCometEventKeeper;
+}
 
-    bool isStartCometEvent(const char* pParam1) {
-        return getCometEventKeeper()->isStartEvent(pParam1);
-    }
+TimeAttackEventKeeper* EventFunction::getTimeAttackEventKeeper() {
+    return MR::getSceneObj< EventDirector >(SceneObj_EventDirector)->mTimeAttackEventKeeper;
+}
 
-    void startCometEvent() {
-        getCometEventKeeper()->startCometEventIfExist();
-        getTimeAttackEventKeeper()->startEventIfExecute();
-    }
+bool EventFunction::isStartCometEvent(const char* pParam1) {
+    return getCometEventKeeper()->isStartEvent(pParam1);
+}
 
-    void endCometEvent() {
-        getCometEventKeeper()->endCometEvent();
-        getTimeAttackEventKeeper()->endEvent();
-    }
-};  // namespace EventFunction
+void EventFunction::startCometEvent() {
+    getCometEventKeeper()->startCometEventIfExist();
+    getTimeAttackEventKeeper()->startEventIfExecute();
+}
+
+void EventFunction::endCometEvent() {
+    getCometEventKeeper()->endCometEvent();
+    getTimeAttackEventKeeper()->endEvent();
+}
 
 namespace MR {
-    void declareEventPowerStar(const char* pParam1, s32 param2, bool param3) {
-        EventFunction::getPowerStarEventKeeper()->declareStar(pParam1, "ゾーン無し", param2, param3);
-    }
-
     void initEventSystemAfterPlacement() {
         EventFunction::getPowerStarEventKeeper()->initStarInfoTableAfterPlacement();
     }

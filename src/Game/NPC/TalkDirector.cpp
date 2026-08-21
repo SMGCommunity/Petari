@@ -7,6 +7,7 @@
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Screen/GameSceneLayoutHolder.hpp"
+#include "Game/Screen/YesNoLayout.hpp"
 #include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -361,7 +362,7 @@ void TalkDirector::appearYesNoSelector(const TalkMessageCtrl* pCtrl) const {
         MR::setYesNoSelectorSE("SE_SY_TALK_FOCUS_ITEM", "SE_SY_TALK_SELECT_YES", "SE_SY_TALK_SELECT_YES");
     }
 
-    MR::requestMovementOn(reinterpret_cast< LiveActor* >(MR::getGameSceneLayoutHolder()->mYesNoLayout));
+    MR::requestMovementOn(MR::getGameSceneLayoutHolder()->mYesNoLayout);
     MR::appearYesNoSelector(buffYes, buffNo, nullptr);
 }
 
