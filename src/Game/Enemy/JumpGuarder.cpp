@@ -117,12 +117,6 @@ void JumpEmitter::endEventCamera() {
     }
 }
 
-void null() {
-    TRot3f mtx;
-    JMath::gekko_ps_copy12(mtx, mtx);
-    TVec3f playerPos(*MR::getPlayerPos());
-}
-
 void JumpEmitter::updateRotate() {
     PartsModel* head = mHeadModel;
     TRot3f mtx;
@@ -138,6 +132,8 @@ void JumpEmitter::updateRotate() {
     }
 
     MR::normalize(&playerPos);
+
+    // Inlined function I do not know
     mtx.getEuler(head->mRotation);
 
     // mtx.getEuler(playerPos);
@@ -202,7 +198,7 @@ void JumpGuarder::control() {
     mtx2.concat(_90, mtx);
     JMath::gekko_ps_copy12(_90, mtx2);
 
-    // Probable fakematch. Decreases by one without overflow?
+    // Probable fakematch. Decreases by one without underflow?
     _E4 = (_E4 - 1) & (((_E4 - 1) >> 31) - 1);
 
     updateEventCamera();
@@ -301,7 +297,67 @@ void JumpGuarder::exeHopWait() {
     }
 }
 
-JumpGuarder::JumpGuarder(const char* pName) : JumpEmitter(pName), mBabies(), mNumBabies(::sBabyNum), _E4(), mNumCoins(::sBabyNum), _100(16.0f) {
+void JumpGuarder::exeHopJump() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(mHeadModel, "HopJump", nullptr);
+        MR::startSound(this, "SE_EM_JGUARDER_TRAMPLE");
+    }
+
+    if (MR::isBckStopped(mHeadModel)) {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvHopWait::sInstance);
+    }
+}
+
+void JumpGuarder::exeHopEnd() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "HopEnd", nullptr);
+        MR::startBck(mHeadModel, "HopEnd", nullptr);
+        MR::startBrk(mHeadModel, "Green");
+        MR::startSound(this, "SE_EM_JGUARDER_CLOSE_SPRING");
+    }
+
+    if (MR::isBckStopped(this) && MR::isBckStopped(mHeadModel)) {
+        HitSensor* body = getSensor("Body");
+        body->mRadius = 145.0f;
+        getSensor("Jump")->invalidate();
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance);
+    }
+}
+
+void JumpGuarder::exePreOpen() {
+    updateRotate();
+
+    if (!MR::enableGroupAttack(this, 2000.0f, 500.0f)) {
+        MR::sendMsgToGroupMember(0x6C, this, getSensor("Body"), "Body");
+    } else if (MR::isStep(this, 0)) {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvOpen::sInstance);
+    }
+}
+
+void JumpGuarder::exeClose() {
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Close", nullptr);
+    }
+
+    MR::startLevelSound(this, "SE_EM_LV_JGUARDER_SHUTTER_CLOSE");
+
+    if (MR::isBckStopped(this)) {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvInter::sInstance);
+    }
+}
+
+void JumpGuarder::exeInter() {
+    updateRotate();
+
+    if (!MR::enableGroupAttack(this, 2200.0f, 500.0f)) {
+        MR::sendMsgToGroupMember(0x6C, this, getSensor("Body"), "Body");
+    } else {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance);
+    }
+}
+
+JumpGuarder::JumpGuarder(const char* pName)
+    : JumpEmitter(pName), mBabies(), mNumBabies(::sBabyNum), _E4(), _F8(), mNumCoins(::sBabyNum), _100(16.0f) {
     _F8 = 0;
 }
 
@@ -315,10 +371,10 @@ void JumpGuarder::init(const JMapInfoIter& rIter) {
     MR::initLightCtrl(this);
     initHitSensor(2);
 
-    TVec3f offset(0.0f, ::sHeadOffset, 0.0f);
-    MR::addHitSensorMtx(this, "Jump", 31, 8, ::sShadowRadius, MR::getJointMtx(mHeadModel, "SpringJoint3"), offset);
-    MR::addHitSensorMtxEnemy(this, "SpringJoint3", 8, ::sShadowRadius, MR::getJointMtx(mHeadModel, "SpringJoint3"), offset);
-    getSensor("SpringJoint3")->setType(31);
+    MR::addHitSensorMtx(this, "Jump", 31, 8, ::sShadowRadius, MR::getJointMtx(mHeadModel, "SpringJoint3"), TVec3f(0.0f, ::sHeadOffset, 0.0f));
+
+    MR::addHitSensorMtxEnemy(this, "SpringJoint3", 8, ::sShadowRadius, MR::getJointMtx(this, "SpringJoint3"), TVec3f(0.0f, 35.0f, 0.0f));
+    getSensor("SpringJoint3")->setType(29);
     getSensor("SpringJoint3")->validate();
     getSensor("Jump")->invalidate();
     MR::initShadowVolumeSphere(this, ::sShadowRadius);
