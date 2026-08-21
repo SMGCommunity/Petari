@@ -1,6 +1,8 @@
 #include "Game/Enemy/JumpGuarder.hpp"
+#include "Game/Enemy/BegomanBaby.hpp"
 #include "Game/LiveActor/ActorCameraInfo.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/LiveActor/PartsModel.hpp"
@@ -11,6 +13,7 @@
 #include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
+#include "Game/Util/LayoutUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
@@ -331,6 +334,87 @@ void JumpGuarder::exePreOpen() {
         MR::sendMsgToGroupMember(0x6C, this, getSensor("Body"), "Body");
     } else if (MR::isStep(this, 0)) {
         setNerve(&NrvJumpGuarder::JumpGuarderNrvOpen::sInstance);
+    }
+}
+
+void JumpGuarder::exeOpen() {
+    if (MR::isLessStep(this, 70)) {
+        updateRotate();
+    }
+
+    if (MR::isFirstStep(this)) {
+        MR::startBck(this, "Open", nullptr);
+        MR::startSound(this, "SE_EM_JGUARDER_SHUTTER_OPEN");
+        _F8 = 0;
+
+        for (int i = 0; i < mNumBabies; i++) {
+            if (!MR::isDead(&mBabies[i])) {
+                continue;
+            }
+
+            // regswap
+            _F8++;
+            _E8[_F8] = &mBabies[i];
+        }
+
+        TVec3f yDir;
+        MR::extractMtxYDir(mHeadModel->getBaseMtx(), &yDir);
+        TVec3f zDir;
+        MR::extractMtxZDir(mHeadModel->getBaseMtx(), &zDir);
+
+        for (u32 i = 0; i < _F8; i++) {
+            JumpGuarderBaby* baby = _E8[i];
+            MR::rotateVecDegree(&zDir, yDir, 360.0f / _F8);
+
+            baby->mPosition.set(mPosition + zDir * 64.0f);
+            baby->mVelocity.set(TVec3f(0.0f, 0.0f, 0.0f));
+
+            if (mNumCoins > 0) {
+                mNumCoins -= 1;
+                baby->appearFromGuarder();
+            } else {
+                baby->appearFromGuarder();
+            }
+        }
+    }
+
+    if (MR::isLessStep(this, 70)) {
+        TVec3f yDir;
+        MR::extractMtxYDir(mHeadModel->getBaseMtx(), &yDir);
+        TVec3f zDir;
+        MR::extractMtxZDir(mHeadModel->getBaseMtx(), &zDir);
+
+        for (u32 i = 0; i < _F8; i++) {
+            BegomanBaby* baby = _E8[i];
+            MR::rotateVecDegree(&zDir, yDir, 360.0f / _F8);
+
+            baby->mPosition.set(mPosition + zDir * 64.0f);
+            baby->mVelocity.set(TVec3f(0.0f, 0.0f, 0.0f));
+        }
+    }
+
+    if (MR::isStep(this, 70)) {
+        TVec3f yDir;
+        MR::extractMtxYDir(mHeadModel->getBaseMtx(), &yDir);
+        TVec3f zDir;
+        MR::extractMtxZDir(mHeadModel->getBaseMtx(), &zDir);
+
+        for (u32 i = 0; i < _F8; i++) {
+            BegomanBaby* baby = _E8[i];
+            MR::rotateVecDegree(&zDir, yDir, 360.0f / _F8);
+
+            baby->mVelocity.set(zDir * _100);
+        }
+
+        MR::startSound(this, "SE_EM_JGUARDER_LAUNCH_BABY");
+    }
+
+    if (MR::isStep(this, 74)) {
+        _F8 = 0;
+    }
+
+    if (MR::isBckStopped(this)) {
+        setNerve(&NrvJumpGuarder::JumpGuarderNrvClose::sInstance);
     }
 }
 

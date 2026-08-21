@@ -65,8 +65,8 @@ public:
     /* 0x0DC */ JumpGuarderBaby* mBabies;
     /* 0x0E0 */ s32 mNumBabies;
     /* 0x0E4 */ u32 _E4;
-    /* 0x0E8 */ LiveActor* _E8[4];
-    /* 0x0F8 */ u32 _F8;
+    /* 0x0E8 */ JumpGuarderBaby* _E8[4];
+    /* 0x0F8 */ s32 _F8;
     /* 0x0FC */ s32 mNumCoins;
     /* 0x100 */ f32 _100;
 };
