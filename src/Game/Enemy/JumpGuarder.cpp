@@ -33,16 +33,16 @@ namespace {
     static const s32 sAttack = 360;
     // static const ??? sSensorRes = ???;
     static const s32 sBabyNum = 4;
-    // static const ??? sAppearHeight = ???;
-    // static const ??? sAppearDistance = ???;
-    // static const ??? sDisappearDistance = ???;
+    static const f32 sAppearHeight = 500.0f;
+    static const f32 sAppearDistance = 2000.0f;
+    static const f32 sDisappearDistance = 2200.0f;
     static const f32 sHeadOffset = -100.0f;
     // static const ??? sBabyVelocity = ???;
-    // static const ??? sBabyOffset = ???;
+    static const f32 sBabyOffset = 64.0f;
     static const f32 sShadowRadius = 145.0f;
     static const f32 sHideShadowRadius = 110.0f;
     // static const ??? sHitInt = ???;
-    // static const ??? sCoinDefault = ???;
+    static const s32 sCoinDefault = 4;
     // static const ??? sCameraLimitLength = ???;
     // static const ??? sOpen = ???;
 };  // namespace
@@ -194,13 +194,13 @@ bool JumpGuarder::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor*
 }
 
 bool JumpGuarder::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (msg == 0x6A) {
+    if (msg == ACTMES_GROUP_ATTACK) {
         MR::invalidateClipping(this);
         setNerve(&NrvJumpGuarder::JumpGuarderNrvUp::sInstance);
         return true;
     }
 
-    if (msg == 0x6C) {
+    if (msg == ACTMES_GROUP_HIDE) {
         setNerve(&NrvJumpGuarder::JumpGuarderNrvDown::sInstance);
         return true;
     }
@@ -237,8 +237,8 @@ void JumpGuarder::exeHide() {
         MR::setShadowVolumeSphereRadius(this, nullptr, ::sHideShadowRadius);
     }
 
-    if (MR::enableGroupAttack(this, 2000.0f, 500.0f)) {
-        MR::sendMsgToGroupMember(0x6A, this, getSensor("Body"), "Body");
+    if (MR::enableGroupAttack(this, ::sAppearDistance, ::sAppearHeight)) {
+        MR::sendMsgToGroupMember(ACTMES_GROUP_ATTACK, this, getSensor("Body"), "Body");
     }
 }
 
@@ -260,8 +260,8 @@ void JumpGuarder::exeUp() {
 void JumpGuarder::exeWait() {
     updateRotate();
 
-    if (!MR::enableGroupAttack(this, 2000.0f, 500.0f)) {
-        MR::sendMsgToGroupMember(0x6C, this, getSensor("Body"), "Body");
+    if (!MR::enableGroupAttack(this, ::sAppearDistance, ::sAppearHeight)) {
+        MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
     } else if (enableAttack()) {
         setNerve(&NrvJumpGuarder::JumpGuarderNrvPreOpen::sInstance);
     }
@@ -350,8 +350,8 @@ void JumpGuarder::exeHopEnd() {
 void JumpGuarder::exePreOpen() {
     updateRotate();
 
-    if (!MR::enableGroupAttack(this, 2000.0f, 500.0f)) {
-        MR::sendMsgToGroupMember(0x6C, this, getSensor("Body"), "Body");
+    if (!MR::enableGroupAttack(this, ::sAppearDistance, ::sAppearHeight)) {
+        MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
     } else if (MR::isStep(this, 0)) {
         setNerve(&NrvJumpGuarder::JumpGuarderNrvOpen::sInstance);
     }
@@ -386,7 +386,7 @@ void JumpGuarder::exeOpen() {
             JumpGuarderBaby* baby = _E8[i];
             MR::rotateVecDegree(&zDir, yDir, 360.0f / _F8);
 
-            baby->mPosition.set(mPosition + zDir * 64.0f);
+            baby->mPosition.set(mPosition + zDir * ::sBabyOffset);
             baby->mVelocity.set(TVec3f(0.0f, 0.0f, 0.0f));
 
             if (mNumCoins > 0) {
@@ -405,10 +405,10 @@ void JumpGuarder::exeOpen() {
         MR::extractMtxZDir(mHeadModel->getBaseMtx(), &zDir);
 
         for (u32 i = 0; i < _F8; i++) {
-            BegomanBaby* baby = _E8[i];
+            JumpGuarderBaby* baby = _E8[i];
             MR::rotateVecDegree(&zDir, yDir, 360.0f / _F8);
 
-            baby->mPosition.set(mPosition + zDir * 64.0f);
+            baby->mPosition.set(mPosition + zDir * ::sBabyOffset);
             baby->mVelocity.set(TVec3f(0.0f, 0.0f, 0.0f));
         }
     }
@@ -420,7 +420,7 @@ void JumpGuarder::exeOpen() {
         MR::extractMtxZDir(mHeadModel->getBaseMtx(), &zDir);
 
         for (u32 i = 0; i < _F8; i++) {
-            BegomanBaby* baby = _E8[i];
+            JumpGuarderBaby* baby = _E8[i];
             MR::rotateVecDegree(&zDir, yDir, 360.0f / _F8);
 
             baby->mVelocity.set(zDir * _100);
@@ -453,15 +453,15 @@ void JumpGuarder::exeClose() {
 void JumpGuarder::exeInter() {
     updateRotate();
 
-    if (!MR::enableGroupAttack(this, 2200.0f, 500.0f)) {
-        MR::sendMsgToGroupMember(0x6C, this, getSensor("Body"), "Body");
+    if (!MR::enableGroupAttack(this, ::sDisappearDistance, ::sAppearHeight)) {
+        MR::sendMsgToGroupMember(ACTMES_GROUP_HIDE, this, getSensor("Body"), "Body");
     } else {
         setNerve(&NrvJumpGuarder::JumpGuarderNrvWait::sInstance);
     }
 }
 
 JumpGuarder::JumpGuarder(const char* pName)
-    : JumpEmitter(pName), mBabies(), mNumBabies(::sBabyNum), _E4(), _F8(), mNumCoins(::sBabyNum), _100(16.0f) {
+    : JumpEmitter(pName), mBabies(), mNumBabies(::sBabyNum), _E4(), _F8(), mNumCoins(::sCoinDefault), _100(16.0f) {
     _F8 = 0;
 }
 
@@ -477,9 +477,9 @@ void JumpGuarder::init(const JMapInfoIter& rIter) {
 
     MR::addHitSensorMtx(this, "Jump", 31, 8, ::sShadowRadius, MR::getJointMtx(mHeadModel, "SpringJoint3"), TVec3f(0.0f, ::sHeadOffset, 0.0f));
 
-    MR::addHitSensorMtxEnemy(this, "SpringJoint3", 8, ::sShadowRadius, MR::getJointMtx(this, "SpringJoint3"), TVec3f(0.0f, 35.0f, 0.0f));
-    getSensor("SpringJoint3")->setType(29);
-    getSensor("SpringJoint3")->validate();
+    MR::addHitSensorMtxEnemy(this, "Body", 8, ::sShadowRadius, MR::getJointMtx(this, "Body"), TVec3f(0.0f, 35.0f, 0.0f));
+    getSensor("Body")->setType(29);
+    getSensor("Body")->validate();
     getSensor("Jump")->invalidate();
     MR::initShadowVolumeSphere(this, ::sShadowRadius);
     initEffectKeeper(1, nullptr, false);
