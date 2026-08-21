@@ -1138,7 +1138,7 @@ config.libs = [
             Object(Matching, "Game/Demo/DemoCastGroupHolder.cpp"),
             Object(Matching, "Game/Demo/DemoCastSubGroup.cpp"),
             Object(Matching, "Game/Demo/DemoCtrlBase.cpp"),
-            Object(NonMatching, "Game/Demo/DemoDirector.cpp"),
+            Object(Matching, "Game/Demo/DemoDirector.cpp"),
             Object(NonMatching, "Game/Demo/DemoExecutor.cpp"),
             Object(Matching, "Game/Demo/DemoExecutorFunction.cpp"),
             Object(Matching, "Game/Demo/DemoFunction.cpp"),
