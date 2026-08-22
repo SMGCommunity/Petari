@@ -104,7 +104,7 @@ void BossBegoman::init(const JMapInfoIter& rIter) {
     for (int i = 0; i < mBabyFollowerNum; i++) {
         BegomanBaby* newBaby = new BegomanBaby("子分ベビー");
         mBabyFollowers[i] = newBaby;
-        newBaby->_134 = this;
+        newBaby->mParent = this;
         newBaby->mPosition.set(this->mPosition);
         newBaby->initWithoutIter();
         newBaby->makeActorDead();
