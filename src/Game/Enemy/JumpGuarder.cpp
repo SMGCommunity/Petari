@@ -165,7 +165,7 @@ void JumpEmitter::updateRotate() {
 
 bool JumpGuarder::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerTrample(msg)) {
-        if (pReceiver->isType(31)) {
+        if (pReceiver->isType(ATYPE_PLAYER_AUTO_JUMP)) {
             TVec3f upVec;
             MR::calcUpVec(&upVec, this);
             MR::setPlayerJumpVec(upVec);
@@ -221,8 +221,7 @@ void JumpGuarder::control() {
     mtx2.concat(_90, mtx);
     JMath::gekko_ps_copy12(_90, mtx2);
 
-    // Probable fakematch. Decreases by one without underflow?
-    _E4 = (_E4 - 1) & (((_E4 - 1) >> 31) - 1);
+    _E4 = MR::max(_E4 - 1, 0);
 
     updateEventCamera();
 }
@@ -373,8 +372,7 @@ void JumpGuarder::exeOpen() {
             }
 
             // regswap
-            _F8++;
-            _E8[_F8] = &mBabies[i];
+            _E8[++_F8] = &mBabies[i];
         }
 
         TVec3f yDir;
@@ -475,7 +473,8 @@ void JumpGuarder::init(const JMapInfoIter& rIter) {
     MR::initLightCtrl(this);
     initHitSensor(2);
 
-    MR::addHitSensorMtx(this, "Jump", 31, 8, ::sShadowRadius, MR::getJointMtx(mHeadModel, "SpringJoint3"), TVec3f(0.0f, ::sHeadOffset, 0.0f));
+    MR::addHitSensorMtx(this, "Jump", ATYPE_PLAYER_AUTO_JUMP, 8, ::sShadowRadius, MR::getJointMtx(mHeadModel, "SpringJoint3"),
+                        TVec3f(0.0f, ::sHeadOffset, 0.0f));
 
     MR::addHitSensorMtxEnemy(this, "Body", 8, ::sShadowRadius, MR::getJointMtx(this, "Body"), TVec3f(0.0f, 35.0f, 0.0f));
     getSensor("Body")->setType(29);
