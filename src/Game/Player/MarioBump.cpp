@@ -74,7 +74,7 @@ MarioBump::MarioBump(MarioActor* pActor) : MarioState(pActor, MarioStatus_Bump) 
 }
 
 bool MarioBump::start() {
-    _14 = getPlayer()->_278;
+    _14 = getPlayer()->mWalkSpeed;
 
     if (_14 >= 0.0f) {
         if (_14 < 1.0f) {
@@ -104,13 +104,13 @@ bool MarioBump::update() {
         return false;
     } else {
         clearVelocity();
-        f32 val = getPlayer()->_278;
+        f32 val = getPlayer()->mWalkSpeed;
 
         if (val < 0.1f) {
             val = 0.1f;
         }
 
-        getPlayer()->_278 = val;
+        getPlayer()->mWalkSpeed = val;
         getPlayer()->updateWalkSpeed();
 
         if (_12) {

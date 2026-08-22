@@ -55,8 +55,8 @@ bool MarioMagic::start() {
     stopEffect("パンチブラー左");
     stopEffect("パンチブラー右");
     playEffect("共通地上スピン");
-    playSound("声スピン", -1);
-    playSound("スピンジャンプ", -1);
+    playSound("声スピン");
+    playSound("スピンジャンプ");
     startPadVib(2);
     _12 = 0;
     return true;

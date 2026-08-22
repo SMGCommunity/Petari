@@ -7286,7 +7286,7 @@ Game/Player/MarioHang.cpp:
 Game/Player/MarioSwim.cpp:
 	.text       start:0x802FA024 end:0x80302870
 	.ctors      start:0x8052F148 end:0x8052F14C
-	.rodata     start:0x80539C08 end:0x80539C30
+	.rodata     start:0x80539C08 end:0x80539C28
 	.data       start:0x805CBC80 end:0x805CC2B4
 	.sdata      start:0x806B22D0 end:0x806B22D8
 	.sbss       start:0x806B62A0 end:0x806B62B0
@@ -7315,7 +7315,7 @@ Game/Player/MarioSlope.cpp:
 Game/Player/MarioWalk.cpp:
 	.text       start:0x80306B68 end:0x80308E04
 	.ctors      start:0x8052F15C end:0x8052F160
-	.rodata     start:0x80539C30 end:0x80539C58
+	.rodata     start:0x80539C28 end:0x80539C58
 	.data       start:0x805CC540 end:0x805CC8B8
 	.sdata2     start:0x806C02F8 end:0x806C0370
 

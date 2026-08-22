@@ -280,7 +280,7 @@ bool Mario::taskOnHandy(u32) {
         return false;
     }
 
-    if (_71C > 2) {
+    if (mTargetWalkSpeedIndex > 2) {
         playEffect("いい汗");
     } else {
         stopEffect("いい汗");

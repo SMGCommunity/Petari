@@ -191,7 +191,7 @@ MarioStep::MarioStep(MarioActor* pActor) : MarioState(pActor, MarioStatus_Step) 
 }
 
 bool MarioStep::start() {
-    _18 = getPlayer()->_278;
+    _18 = getPlayer()->mWalkSpeed;
     f32 v2 = (16.0f * _18);
     u16 v3 = 20 - v2;
 
@@ -220,12 +220,12 @@ bool MarioStep::update() {
     getPlayer()->mainMove();
     clearVelocity();
 
-    f32 _278 = getPlayer()->_278;
+    f32 _278 = getPlayer()->mWalkSpeed;
     if (_278 < 0.1f) {
         _278 = 0.1f;
     }
 
-    getPlayer()->_278 = _278;
+    getPlayer()->mWalkSpeed = _278;
     getPlayer()->updateWalkSpeed();
 
     if (_278 < 0.5f) {
