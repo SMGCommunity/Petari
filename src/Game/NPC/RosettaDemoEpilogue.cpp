@@ -12,7 +12,7 @@ namespace NrvRosettaDemoEpilogue {
 };  // namespace NrvRosettaDemoEpilogue
 
 RosettaDemoEpilogue::RosettaDemoEpilogue(Rosetta* pRosetta, const JMapInfoIter& rIter)
-    : NerveExecutor("ロゼッタデモ実行者"), mRosetta(pRosetta), mIsFadeOut(false) {
+    : NerveExecutor("ロゼッタデモ実行者"), mRosetta(pRosetta), mIsFadeOut() {
     DemoFunction::tryCreateDemoTalkAnimCtrlForScene(pRosetta, rIter, "DemoEpilogueB", nullptr, 0, 0);
     DemoFunction::registerDemoTalkMessageCtrl(mRosetta, mRosetta->mMsgCtrl);
     MR::registerDemoActionFunctor(mRosetta, MR::Functor_Inline(this, &RosettaDemoEpilogue::startDemo), "エピローグ[開始]");

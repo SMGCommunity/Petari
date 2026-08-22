@@ -17,7 +17,7 @@ void CameraTargetObj_FORCE_MATCH_SDATA2() {
 }
 
 namespace {
-    static Vec sZeroVec = {0.0f, 0.0f, 0.0f};
+    static TVec3f sZeroVec(0.0f, 0.0f, 0.0f);
 };  // namespace
 
 CameraTargetObj::CameraTargetObj(const char* pName) : NameObj(pName), mCameraWall() {
@@ -174,7 +174,7 @@ const TVec3f& CameraTargetPlayer::getGravityVector() const {
 
 const TVec3f& CameraTargetPlayer::getLastMove() const {
     if (MR::isDemoActive() && !mIsPlayerMoving) {
-        return *reinterpret_cast< TVec3f* >(&::sZeroVec);
+        return sZeroVec;
     } else {
         return *MR::getPlayerLastMove();
     }

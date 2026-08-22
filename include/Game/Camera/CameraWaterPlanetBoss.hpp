@@ -5,34 +5,40 @@
 class CameraWaterPlanetBoss : public Camera {
 public:
     CameraWaterPlanetBoss(const char* pName = "水中プラネットボス");
-    virtual ~CameraWaterPlanetBoss();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
-    virtual bool isEnableToReset() const;
+    virtual bool isEnableToReset() const {
+        return true;
+    }
     virtual CamTranslatorBase* createTranslator();
 
-    f32 mAxisY;  // 0x4C
-    f32 mAxisX;  // 0x50
-    f32 mDist;   // 0x54
-    f32 _58;
-    u32 _5C;
-    f32 _60;
-    f32 _64;
-    f32 _68;
-    bool _6C;
-    u8 _6D[3];
-    f32 mWPointX;  // 0x70
-    f32 mWPointY;  // 0x74
-    f32 mWPointZ;  // 0x78
-    f32 mAxisZ;    // 0x7C
-    f32 mUpY;      // 0x80
-    f32 mUpX;      // 0x84
-    f32 mUpZ;      // 0x88
-    bool _8C;
-    u8 _8D[3];
-    u32 _90;
-    f32 _94;
-    f32 _98;
-    f32 _9C;
+    void setParam(f32 distMin, f32 distMax, f32 blendRateMin, bool blendUpEnabled, const TVec3f wPoint, f32 dotFrontMin, f32 dotFrontMax,
+                  f32 angleXMin, f32 angleXMax) {
+        mDistMin = distMin;
+        mDistMax = distMax;
+        mSideBlendRateMin = blendRateMin;
+        mIsBlendUpEnabled = blendUpEnabled;
+        mWPoint.set(wPoint);
+        mDotFrontMin = dotFrontMin;
+        mDotFrontMax = dotFrontMax;
+        mAngleXMin = angleXMin;
+        mAngleXMax = angleXMax;
+    }
+
+    /* 0x4C */ f32 mDistMin;
+    /* 0x50 */ f32 mDistMax;
+    /* 0x54 */ f32 mSideBlendRateMin;
+    /* 0x58 */ f32 mSideBlendRate;
+    /* 0x5C */ s32 mCollideCount;
+    /* 0x60 */ TVec3f mLastMoveDir;
+    /* 0x6C */ bool mIsBlendUpEnabled;
+    /* 0x70 */ TVec3f mWPoint;
+    /* 0x7C */ f32 mDotFrontMin;
+    /* 0x80 */ f32 mAngleXMin;
+    /* 0x84 */ f32 mDotFrontMax;
+    /* 0x88 */ f32 mAngleXMax;
+    /* 0x8C */ bool mIsRounding;
+    /* 0x90 */ s32 mRoundingFrame;
+    /* 0x94 */ TVec3f mSide;
 };

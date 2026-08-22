@@ -1,85 +1,83 @@
 #include "revolution/types.h"
 #include <cstdio>
 
-void* NETMemSet(void* buf, int ch, u32 size) {
-    u8* p;
-    u8* ret;
-    u32 v;
-    u32 align;
-    u32 head;
-    u32 blocks;
-    u32 words;
-    u32 bytes;
+void* NETMemSet(void* buf, int ch, unsigned long size) {
+    unsigned long headSize;
+    unsigned long accBlkSize;
+    unsigned long fill;
+    unsigned char* buf_u8;
+    unsigned long numWords;
+    unsigned long remainBytes;
 
-    ret = (u8*)buf;
-    p = (u8*)buf;
+    if (size == 0) {
+        return buf;
+    }
 
-    if (size == 0)
-        return ret;
-
-    v = (u8)ch;
-    v |= v << 8;
-    v |= v << 16;
+    fill = (unsigned char)ch;
+    fill |= fill << 8;
+    fill |= fill << 16;
 
     if (size >= 0x40) {
-        align = (u32)p & 0x1F;
+        headSize = (unsigned long)buf & 0x1F;
+        if (headSize != 0) {
+            headSize = 0x20 - headSize;
 
-        if (align) {
-            head = 32 - align;
-            if (head > size)
-                head = size;
-
-            words = head >> 2;
-            while (words--) {
-                *(u32*)p = v;
-                p += 4;
+            buf_u8 = (unsigned char*)buf;
+            numWords = headSize >> 2;
+            remainBytes = headSize & 3;
+            while (numWords--) {
+                *(unsigned long*)buf_u8 = fill;
+                buf_u8 += 4;
+            }
+            while (remainBytes--) {
+                *buf_u8++ = (unsigned char)fill;
             }
 
-            bytes = head & 3;
-            while (bytes--) {
-                *p++ = (u8)v;
-            }
-
-            size -= head;
+            buf = (unsigned char*)buf + headSize;
+            size -= headSize;
         }
 
-        blocks = size >> 5;
+        accBlkSize = size & ~0x1F;
 
-        if (v != 0) {
-            while (blocks--) {
-                __dcbz(p, 0);
+        {
+            unsigned char* p = (unsigned char*)buf;
+            unsigned long loopSize = size >> 5;
 
-                ((u32*)p)[0] = v;
-                ((u32*)p)[1] = v;
-                ((u32*)p)[2] = v;
-                ((u32*)p)[3] = v;
-                ((u32*)p)[4] = v;
-                ((u32*)p)[5] = v;
-                ((u32*)p)[6] = v;
-                ((u32*)p)[7] = v;
-
-                p += 32;
-            }
-        } else {
-            while (blocks--) {
-                __dcbz(p, 0);
-                p += 32;
+            if (fill != 0) {
+                while (loopSize--) {
+                    __dcbz(p, 0);
+                    ((unsigned long*)p)[0] = fill;
+                    ((unsigned long*)p)[1] = fill;
+                    ((unsigned long*)p)[2] = fill;
+                    ((unsigned long*)p)[3] = fill;
+                    ((unsigned long*)p)[4] = fill;
+                    ((unsigned long*)p)[5] = fill;
+                    ((unsigned long*)p)[6] = fill;
+                    ((unsigned long*)p)[7] = fill;
+                    p += 0x20;
+                }
+            } else {
+                while (loopSize--) {
+                    __dcbz(p, 0);
+                    p += 0x20;
+                }
             }
         }
 
-        size &= 31;
+        buf = (unsigned char*)buf + accBlkSize;
+        size -= accBlkSize;
     }
 
-    words = size >> 2;
-    while (words--) {
-        *(u32*)p = v;
-        p += 4;
+    buf_u8 = (unsigned char*)buf;
+    numWords = size >> 2;
+    remainBytes = size & 3;
+    while (numWords--) {
+        *(unsigned long*)buf_u8 = fill;
+        buf_u8 += 4;
+    }
+    while (remainBytes--) {
+        *buf_u8++ = (unsigned char)fill;
     }
 
-    bytes = size & 3;
-    while (bytes--) {
-        *p++ = (u8)v;
-    }
-
-    return ret;
+    return buf;
 }

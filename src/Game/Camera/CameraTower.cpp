@@ -18,7 +18,6 @@ namespace {
     static const f32 sAttenuation = 0.05f;
     static const f32 sRoundAddition = 0.08f;
     static f32 sRoundInterval = JGeometry::TUtil< f32 >::PI() / 4.0f;
-
 };  // namespace
 
 CameraTower::CameraTower(const char* pName)

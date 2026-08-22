@@ -5,19 +5,15 @@
 
 int VFipf2_attach(PF_DRV_TBL** drv_tbl) {
     int v2;
+    PF_DRV_TBL* tbl;
 
     if (drv_tbl == 0 || !*drv_tbl) {
         v2 = 10;
         VFipf_vol_set.last_error = v2;
     } else {
         v2 = 0;
-
-        while (1) {
-            PF_DRV_TBL* tbl = *drv_tbl;
-            if (!tbl) {
-                break;
-            }
-
+        while (*drv_tbl) {
+            tbl = *drv_tbl;
             if (!v2) {
                 v2 = VFiPFVOL_attach(tbl);
             } else {

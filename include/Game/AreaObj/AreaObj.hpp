@@ -75,6 +75,10 @@ public:
         return mArray[index];
     }
 
+    s32 getNumAreaObj() const {
+        return mArray.size();
+    }
+
     /* 0x0C */ MR::Vector< MR::AssignableArray< AreaObj* > > mArray;
     /* 0x18 */ s32 _18;
 };

@@ -31,6 +31,10 @@ public:
     TPos3f* getBaseInvMtx() const;
     TPos3f* getPrevBaseMtx() const;
 
+    HitSensor* getSensor() const {
+        return mSensor;
+    }
+
     CollisionParts* mParts;  // 0x0
     u32 mIdx;                // 0x4
     HitSensor* mSensor;      // 0x8

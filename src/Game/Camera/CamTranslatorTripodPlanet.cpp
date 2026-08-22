@@ -18,16 +18,7 @@ void CamTranslatorTripodPlanet::setParam(const CameraParamChunk* pChunk) {
         MR::normalize(&axis);
     }
 
-    TVec2f angle = TVec2f(general->mAngleA, general->mAngleB);
-    f32 dist = general->mDist;
-
-    CameraTripodPlanet* camera = mCamera;
-
-    camera->mWPoint.set< f32 >(general->mWPoint);
-    camera->mAxis.set< f32 >(axis);
-    camera->mAngleA = angle.x;
-    camera->mAngleB = angle.y;
-    camera->mDist = dist;
+    mCamera->setParam(general->mWPoint, axis, TVec2f(general->mAngleA, general->mAngleB), general->mDist);
 }
 
 Camera* CamTranslatorTripodPlanet::getCamera() const {

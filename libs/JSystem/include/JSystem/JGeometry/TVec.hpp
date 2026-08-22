@@ -66,7 +66,7 @@ namespace JGeometry {
         }
 
         template < typename A >
-        inline TVec2(A _x, A _y) {
+        TVec2(A _x, A _y) {
             x = _x;
             y = _y;
         }
@@ -677,6 +677,12 @@ namespace JGeometry {
             // TODO: sometimes this pattern specifically is used?
             // is this just written directly instead?
             JMAVECScaleAdd(rKillDir, this, this, -rKillDir.dot(*this));
+        }
+
+        TVec3 getOrthogonal(const TVec3& rVec) const {
+            TVec3 ret;
+            ret.killElement(rVec, *this);
+            return ret;
         }
 
         f32 normalize() {

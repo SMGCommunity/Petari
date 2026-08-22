@@ -7,8 +7,7 @@ namespace NrvMarioLauncherAttractor {
     NEW_NERVE(MarioLauncherAttractorNrvWait, MarioLauncherAttractor, Wait);
 };  // namespace NrvMarioLauncherAttractor
 
-MarioLauncherAttractor::MarioLauncherAttractor(const char* pName) : LiveActor(pName) {
-    mGravityCreator = nullptr;
+MarioLauncherAttractor::MarioLauncherAttractor(const char* pName) : LiveActor(pName), mGravityCreator() {
 }
 
 void MarioLauncherAttractor::init(const JMapInfoIter& rIter) {
@@ -22,17 +21,11 @@ void MarioLauncherAttractor::init(const JMapInfoIter& rIter) {
     pGravity->mGravityType = GRAVITY_TYPE_MARIO_LAUNCHER;
 
     // Set clipping & scale
-    f32 clipping = pGravity->mRange / 1000.0f;
+    f32 scale = pGravity->mRange / 1000.0f;
     MR::setClippingTypeSphere(this, pGravity->mRange);
     MR::setClippingFar200m(this);
 
-    TVec3f _8;  // unused
-    _8.x = clipping;
-    _8.y = clipping;
-    _8.z = clipping;
-    mScale.x = clipping;
-    mScale.y = clipping;
-    mScale.z = clipping;
+    mScale.set(TVec3f(scale));
 
     // Connect to executor, init nerve and start animation
     MR::connectToSceneMapObj(this);

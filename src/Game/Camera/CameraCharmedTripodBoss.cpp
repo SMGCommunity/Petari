@@ -5,16 +5,14 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char* pName) : Camera(pName) {
-    _4C = -1;
-    _50.x = 0.0f;
-    _50.y = 1.0f;
-    _50.z = 0.0f;
-    _5C.x = 0.0f;
-    _5C.y = 0.0f;
-    _5C.z = 1000.0f;
-    _68.x = 0.0f;
-    _68.y = 0.0f;
+void CameraCharmedTripodBoss_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
+CameraCharmedTripodBoss::CameraCharmedTripodBoss(const char* pName)
+    : Camera(pName), mJointId(-1), mUp(0.0f, 1.0f, 0.0f), mWPoint(0.0f, 0.0f, 1000.0f), mAngleX(), mAngleY() {
 }
 
 void CameraCharmedTripodBoss::reset() {
@@ -24,71 +22,69 @@ void CameraCharmedTripodBoss::reset() {
 }
 
 CameraTargetObj* CameraCharmedTripodBoss::calc() {
-    CameraTargetObj* result = CameraLocalUtil::getTarget(this);
-    TVec3f watchpoint;
-    CameraLocalUtil::makeWatchPoint(&watchpoint, this, CameraLocalUtil::getTarget(this), 0.0066666668f);
+    CameraTargetObj* obj = CameraLocalUtil::getTarget(this);
+    TVec3f watchPos;
+    CameraLocalUtil::makeWatchPoint(&watchPos, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
-    TVec3f vec(_50);
-    TVec3f renameme(0.0f, 0.0f, 0.0f);
+    TVec3f up = mUp;
+    TVec3f jointPos(0.0f, 0.0f, 0.0f);
 
-    if (_4C >= 0) {
-        TPos3f pos;
-        MR::getTripodBossJointMatrix(&pos, _4C);
-        pos.getTrans(renameme);
-        pos.mult33(vec, vec);
+    if (mJointId >= 0) {
+        TPos3f jointMtx;
+        MR::getTripodBossJointMatrix(&jointMtx, mJointId);
+        jointMtx.getTrans(jointPos);
+        jointMtx.mult33(up, up);
     }
 
     TPos3f rotX;
-    rotX.makeRotate(TVec3f(-1.0f, 0.0f, 0.0f), _68.x);
+    rotX.makeRotate(TVec3f(-1.0f, 0.0f, 0.0f), mAngleX);
     TPos3f rotY;
-    rotY.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), _68.y);
+    rotY.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), mAngleY);
 
-    TPos3f finalrot;
-    finalrot.concat(rotY, rotX);
+    TPos3f rotMtx;
+    rotMtx.concat(rotY, rotX);
 
-    TVec3f subvec = CameraLocalUtil::getTarget(this)->getPosition() - renameme;
-    if (MR::isNearZero(subvec)) {
-        return result;
+    TVec3f front = CameraLocalUtil::getTarget(this)->getPosition() - jointPos;
+    if (MR::isNearZero(front)) {
+        return obj;
     }
+    MR::normalize(&front);
 
-    MR::normalize(&subvec);
-    TVec3f cross = vec.cross(subvec);
-
-    if (MR::isNearZero(cross)) {
-        return result;
+    TVec3f side = up.cross(front);
+    if (MR::isNearZero(side)) {
+        return obj;
     }
+    MR::normalize(&side);
 
-    MR::normalize(&cross);
-    vec.cross(subvec, cross);
-    MR::normalize(&subvec);
+    up.cross(front, side);
+    MR::normalize(&front);
+
     TPos3f mtx;
     mtx.identity();
-    mtx.setXYZDir(cross, vec, subvec);
+    mtx.setXYZDir(side, up, front);
     mtx.setTrans(CameraLocalUtil::getTarget(this)->getPosition());
-    mtx.concat(mtx, finalrot);
-    mtx.getZDir(subvec);
-    mtx.getYDir(vec);
+    mtx.concat(mtx, rotMtx);
+    mtx.getZDir(front);
+    mtx.getYDir(up);
 
-    TVec3f v20(_5C);
-    mtx.mult(v20, v20);
+    TVec3f pos = mWPoint;
+    mtx.mult(pos, pos);
 
-    watchpoint = v20 - subvec * _5C.z;
-    CameraLocalUtil::setPos(this, v20);
-    CameraLocalUtil::setWatchPos(this, watchpoint);
-    CameraLocalUtil::setUpVec(this, vec);
-    CameraLocalUtil::setWatchUpVec(this, _50);
-    return result;
+    watchPos = pos - front * mWPoint.z;
+    CameraLocalUtil::setPos(this, pos);
+    CameraLocalUtil::setWatchPos(this, watchPos);
+    CameraLocalUtil::setUpVec(this, up);
+    CameraLocalUtil::setWatchUpVec(this, mUp);
+
+    return obj;
 }
 
-void CameraCharmedTripodBoss::setParam(s32 a1, TVec3f a2, const TVec3f& a3, const TVec2f& a4) {
-    _68.x = a4.x;
-    _68.y = a4.y;
-    _50.set< f32 >(a2);
-    _5C.set< f32 >(a3);
-    _4C = a1;
-}
-
-CameraCharmedTripodBoss::~CameraCharmedTripodBoss() {
+void CameraCharmedTripodBoss::setParam(s32 jointID, TVec3f up, const TVec3f& wPoint, const TVec2f& angle) {
+    mAngleX = angle.x;
+    mAngleY = angle.y;
+    mUp.set(up);
+    mWPoint.set(wPoint);
+    mJointId = jointID;
 }
 
 CamTranslatorBase* CameraCharmedTripodBoss::createTranslator() {

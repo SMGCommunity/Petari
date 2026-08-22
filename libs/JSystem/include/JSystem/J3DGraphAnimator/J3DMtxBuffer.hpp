@@ -34,6 +34,9 @@ public:
     MtxPtr getWeightAnmMtx(int idx) {
         return mpWeightEvlpMtx[idx];
     }
+    void setWeightAnmMtx(int i, Mtx m) {
+        PSMTXCopy(m, (MtxPtr)mpWeightEvlpMtx[i]);
+    }
     MtxPtr getUserAnmMtx(int idx) {
         return mpUserAnmMtx[idx];
     }

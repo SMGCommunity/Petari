@@ -29,14 +29,23 @@ void StarReturnDemoStarter_FORCE_MATCH_SDATA2() {
 }
 
 namespace {
+    const s32 cDemoAppearEffectStep = 30;
+    const s32 cDemoAppearWaitFrame = 45;
+    const s32 cFadeOutFrame = 60;
+    const s32 cOverlayFrame = 3;
+    // const s32 cFlyAwayFrame = _;
+    const s32 cCapHideStartStep = 21;
+    const s32 cCapHideEndStep = 221;
+    const s32 cFallStartFrameGrandStar = 360;
     const char* const cDemoMovePartName = "移動";
     const char* const cDemoWaitPartName = "ウェイト";
 };  // namespace
 
-StarReturnDemoStarter::StarReturnDemoStarter(const char* pName)
-    : LiveActor(pName), mReturnDemoRailMove(), mStageResultInformer(), mPosition(gZeroVec), mPowerStar(), mLuma(), mHair(), mFrame() {
-    mTransform.identity();
-}
+namespace {
+    bool isGrandStar() {
+        return GameSequenceFunction::isGrandStarAtResultSequence();
+    }
+};  // namespace
 
 namespace NrvStarReturnDemoStarter {
     NEW_NERVE(StarReturnDemoStarterNrvAppearWait, StarReturnDemoStarter, AppearWait);
@@ -51,7 +60,9 @@ namespace NrvStarReturnDemoStarter {
     NEW_NERVE(StarReturnDemoStarterNrvStageResultAfter, StarReturnDemoStarter, StageResultAfter);
 };  // namespace NrvStarReturnDemoStarter
 
-StarReturnDemoStarter::~StarReturnDemoStarter() {
+StarReturnDemoStarter::StarReturnDemoStarter(const char* pName)
+    : LiveActor(pName), mReturnDemoRailMove(), mStageResultInformer(), mPosition(gZeroVec), mPowerStar(), mLuma(), mHair(), mFrame() {
+    mTransform.identity();
 }
 
 void StarReturnDemoStarter::init(const JMapInfoIter& rIter) {
@@ -62,15 +73,14 @@ void StarReturnDemoStarter::init(const JMapInfoIter& rIter) {
     mStageResultInformer = new StageResultInformer();
     mStageResultInformer->initWithoutIter();
 
-    mPowerStar = reinterpret_cast< PowerStar* >(
-        createSubModel("スターモデル", GameSequenceFunction::isGrandStarAtResultSequence() ? "GrandStar" : "PowerStar", false));
+    mPowerStar = createSubModel("スターモデル", ::isGrandStar() ? "GrandStar" : "PowerStar", false);
     mLuma = createSubModel("チコモデル", "SpinTico", false);
 
     if (!MR::isPlayerLuigi()) {
         mHair = createSubModel("髪の毛モデル", "MarioHair", true);
     }
 
-    mReturnDemoRailMove = new ReturnDemoRailMove(this, mPowerStar, rIter, GameSequenceFunction::isGrandStarAtResultSequence(), &mTransform);
+    mReturnDemoRailMove = new ReturnDemoRailMove(this, mPowerStar, rIter, ::isGrandStar(), &mTransform);
 
     tryRegisterDemo("グランドスター帰還[２回目以降]", rIter);
     tryRegisterDemo("パワースター帰還", rIter);
@@ -83,7 +93,7 @@ void StarReturnDemoStarter::init(const JMapInfoIter& rIter) {
 void StarReturnDemoStarter::appear() {
     LiveActor::appear();
     mReturnDemoRailMove->posToStart();
-    mPowerStar->setupColorAtResultSequence(mPowerStar, GameSequenceFunction::isGrandStarAtResultSequence());
+    PowerStar::setupColorAtResultSequence(mPowerStar, ::isGrandStar());
 
     if (MR::isDemoActive("天文ドームスター帰還")) {
         MR::onDrawSpinDriverPathAtOpa();
@@ -106,7 +116,7 @@ void StarReturnDemoStarter::kill() {
 }
 
 void StarReturnDemoStarter::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter&) {
-    if (GameSequenceFunction::isGrandStarAtResultSequence()) {
+    if (::isGrandStar()) {
         pArchiveList->addArchive("GrandStar");
     }
 
@@ -121,18 +131,18 @@ void StarReturnDemoStarter::control() {
     }
 }
 
-ModelObj* StarReturnDemoStarter::createSubModel(const char* pName, const char* pModelName, bool isPlayerDecoration) {
-    ModelObj* pSubModel =
+LiveActor* StarReturnDemoStarter::createSubModel(const char* pName, const char* pModelName, bool isPlayerDecoration) {
+    LiveActor* subModel =
         isPlayerDecoration ? MR::createModelObjPlayerDecoration(pName, pModelName, mTransform) : MR::createModelObjNpc(pName, pModelName, mTransform);
 
-    if (MR::getLightNumMax(pSubModel) > 0) {
-        MR::initLightCtrl(pSubModel);
+    if (MR::getLightNumMax(subModel) > 0) {
+        MR::initLightCtrl(subModel);
     }
 
-    MR::invalidateClipping(pSubModel);
-    pSubModel->kill();
+    MR::invalidateClipping(subModel);
+    subModel->kill();
 
-    return pSubModel;
+    return subModel;
 }
 
 void StarReturnDemoStarter::tryRegisterDemo(const char* pDemoName, const JMapInfoIter& rIter) {
@@ -162,11 +172,11 @@ void StarReturnDemoStarter::tryStartResultWait() {
     if (MR::isBckOneTimeAndStoppedPlayer()) {
         MR::startBckPlayer("ResultWait", static_cast< const char* >(nullptr));
     } else if (mHair != nullptr) {
-        if (mFrame == 21) {
+        if (mFrame == ::cCapHideStartStep) {
             MR::hidePlayerJoint("Cap0");
         }
 
-        if (mFrame == 221) {
+        if (mFrame == ::cCapHideEndStep) {
             MR::showPlayerJoint("Cap0");
         }
 
@@ -189,12 +199,12 @@ void StarReturnDemoStarter::exeAppearWait() {
         }
     }
 
-    if (MR::isStep(this, 30)) {
+    if (MR::isStep(this, ::cDemoAppearEffectStep)) {
         MR::emitEffect(mPowerStar, "DemoFlyLightDemo");
         MR::startSound(mPowerStar, "SE_PM_DEMO_RETURN_LIGHT");
     }
 
-    MR::setNerveAtStep(this, &NrvStarReturnDemoStarter::StarReturnDemoStarterNrvMove::sInstance, 45);
+    MR::setNerveAtStep(this, &NrvStarReturnDemoStarter::StarReturnDemoStarterNrvMove::sInstance, ::cDemoAppearWaitFrame);
 }
 
 void StarReturnDemoStarter::exeMove() {
@@ -208,13 +218,12 @@ void StarReturnDemoStarter::exeMove() {
     int partStep = MR::getDemoPartStep(pDemoName) - 44;
     int totalStep = MR::getDemoPartTotalStep(pDemoName) - 45;
     mReturnDemoRailMove->update(partStep, totalStep);
-    mPowerStar->requestPointLightAtResultSequence(mPowerStar);
+    PowerStar::requestPointLightAtResultSequence(mPowerStar);
     MR::startLevelSoundPlayer("SE_PM_LV_SPIN_DRV_FLY", -1);
 
     if (MR::isDemoPartLastStep(pDemoName)) {
-        GameSequenceFunction::isGrandStarAtResultSequence() ?
-            setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFlyWaitGrandStar::sInstance) :
-            setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFlyWaitPowerStar::sInstance);
+        ::isGrandStar() ? setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFlyWaitPowerStar::sInstance) :
+                          setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFlyWaitGrandStar::sInstance);
     }
 }
 
@@ -226,6 +235,7 @@ void StarReturnDemoStarter::exeFlyWaitPowerStar() {
     PowerStar::requestPointLightAtResultSequence(mPowerStar);
 
     int brakeFrame = mReturnDemoRailMove->getDemoFlyBrakeFrame();
+
     if (MR::isLessStep(this, 115 - brakeFrame)) {
         MR::startLevelSound(mPowerStar, "SE_OJ_LV_RET_POW_STAR_FLY");
     }
@@ -257,7 +267,7 @@ void StarReturnDemoStarter::exeFlyWaitGrandStar() {
         MR::tryRumblePadWeak(this, WPAD_CHAN0);
     }
 
-    if (MR::isStep(this, 360)) {
+    if (MR::isStep(this, ::cFallStartFrameGrandStar)) {
         setNerve(&NrvStarReturnDemoStarter::StarReturnDemoStarterNrvFall::sInstance);
     }
 }
@@ -299,12 +309,12 @@ void StarReturnDemoStarter::exeLand() {
     }
 
     if (MR::isBckStoppedPlayer()) {
-        ModelObj* lumaModel = mLuma;
+        LiveActor* lumaModel = mLuma;
         lumaModel->appear();
         MR::startAllAnim(lumaModel, playerAnimName());
 
-        ModelObj* hairModel = mHair;
-        if (hairModel) {
+        LiveActor* hairModel = mHair;
+        if (hairModel != nullptr) {
             hairModel->appear();
             MR::startAllAnim(hairModel, playerAnimName());
         }
@@ -318,6 +328,7 @@ void StarReturnDemoStarter::exeWait() {
         MR::startBckPlayer(playerAnimName(), static_cast< const char* >(nullptr));
 
         mFrame = 0;
+
         if (MR::isEqualStageName("AstroGalaxy")) {
             MR::stopStageBGM(90);
         }
@@ -339,7 +350,7 @@ void StarReturnDemoStarter::exeStageResult() {
 
 void StarReturnDemoStarter::exeFadeOut() {
     if (MR::isFirstStep(this)) {
-        MR::closeWipeFade(60);
+        MR::closeWipeFade(::cFadeOutFrame);
     }
 
     if (!MR::isWipeActive()) {
@@ -354,7 +365,7 @@ void StarReturnDemoStarter::exeStageResultAfter() {
 
         if (MR::isEqualStageName("AstroGalaxy")) {
             MR::startCurrentStageBGM();
-            MR::overlayWithPreviousScreen(3);
+            MR::overlayWithPreviousScreen(::cOverlayFrame);
             MR::endStartPosCamera();
         }
     }

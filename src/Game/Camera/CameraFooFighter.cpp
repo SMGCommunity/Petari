@@ -20,12 +20,13 @@ namespace {
 }  // namespace
 
 CameraFooFighter::CameraFooFighter(const char* pName)
-    : Camera(pName), mDistMin(300.0f), mDistMax(1200.0f), _54(0.03f), _58(0.03f), mCollideCount(), mTargetLastMoveDir(0.0f, 0.0f, 0.0f) {
+    : Camera(pName), mDistMin(300.0f), mDistMax(1200.0f), mAngleXRateMin(0.03f), mAngleXRate(0.03f), mCollideCount(),
+      mTargetLastMoveDir(0.0f, 0.0f, 0.0f) {
 }
 
 void CameraFooFighter::reset() {
     mCollideCount = 0;
-    _58 = _54;
+    mAngleXRate = mAngleXRateMin;
     mTargetLastMoveDir.zero();
 
     CameraLocalUtil::setWatchPos(this, CameraLocalUtil::getWatchPos(mCameraMan));
@@ -35,7 +36,7 @@ void CameraFooFighter::reset() {
 
 CameraTargetObj* CameraFooFighter::calc() {
     TVec3f watchPoint;
-    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 1.0f / 150.0f);
+    CameraLocalUtil::makeWatchPoint(&watchPoint, this, CameraLocalUtil::getTarget(this), 0.1f / 15.0f);
 
     TVec3f gravUp = -CameraLocalUtil::getTarget(this)->getGravityVector();
     TVec3f watchFront = watchPoint - CameraLocalUtil::getPos(this);
@@ -118,10 +119,10 @@ CameraTargetObj* CameraFooFighter::calc() {
         MR::normalize(&targetSide);
         f32 angle = targetSide.angle(newSide);
 
-        f32 rate = _54 * MR::abs(gravUp.dot(newFront));
-        _58 *= 0.995f;
-        if (_58 < rate) {
-            _58 = rate;
+        f32 rate = mAngleXRateMin * MR::abs(gravUp.dot(newFront));
+        mAngleXRate *= 0.995f;
+        if (mAngleXRate < rate) {
+            mAngleXRate = rate;
         }
 
         TQuat4f rot;

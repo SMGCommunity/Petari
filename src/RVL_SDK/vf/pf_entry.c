@@ -65,14 +65,16 @@ s32 VFiPFENT_searchEmptyTailSFN(PF_FFD* p_ffd, u32 tail_index, const s8* pattern
                     i = sfn_baselen - sfn_taillen - 1;
                     bit_pos = 0;
                     while (i) {
-                        bit_pos = -48 + bit_pos * 10 + sfnbuf[sfn_baselen - i];
+                        bit_pos *= 10;
+                        bit_pos += sfnbuf[sfn_baselen - i] - 48;
                         i--;
                     }
                     VFipf_strcpy(patbuf, pattern);
                     VFiPFPATH_parseShortNameNumeric(patbuf, bit_pos);
                     if (!VFiPFPATH_cmpTailSFN(sfnbuf, patbuf) && bit_pos >= tail_index &&
                         bit_pos < 32 * p_vol->tail_entry.tracker_size + tail_index) {
-                        p_tail_bit[(bit_pos - tail_index) >> 5] |= 1 << (bit_pos - tail_index);
+                        bit_pos -= tail_index;
+                        p_tail_bit[bit_pos >> 5] |= 1 << bit_pos;
                     }
                 }
             }
@@ -171,7 +173,7 @@ s32 VFiPFENT_LoadLFNEntryFieldsFromBuf(PF_DIR_ENT* p_ent, const u8* buf, u32 is_
     u8 check_sum;
     u32 is_first;
     u32 is_last_LFN_ent;
-    u16* p_name_slot;
+    u8* p;
     u16* q;
     u16* q_after;
 
@@ -223,20 +225,20 @@ s32 VFiPFENT_LoadLFNEntryFieldsFromBuf(PF_DIR_ENT* p_ent, const u8* buf, u32 is_
     p_ent->ordinal = ordinal;
     p_ent->check_sum = check_sum;
 
-    p_name_slot = p_ent->long_name + (ordinal - 1) * 13;
+    p = (u8*)p_ent->long_name + (ordinal - 1) * 26;
 
-    VFipf_memcpy(p_name_slot, buf + 1, 10);
-    VFipf_memcpy(p_name_slot + 5, buf + 14, 12);
-    VFipf_memcpy(p_name_slot + 11, buf + 28, 4);
+    VFipf_memcpy(p, buf + 1, 10);
+    VFipf_memcpy(p + 10, buf + 14, 12);
+    VFipf_memcpy(p + 22, buf + 28, 4);
 
-    VFiPF_LE16_TO_U16_STR((u8*)p_name_slot, 10);
-    VFiPF_LE16_TO_U16_STR((u8*)p_name_slot + 5, 12);
-    VFiPF_LE16_TO_U16_STR((u8*)p_name_slot + 11, 4);
+    VFiPF_LE16_TO_U16_STR(p, 10);
+    VFiPF_LE16_TO_U16_STR(p + 10, 12);
+    VFiPF_LE16_TO_U16_STR(p + 22, 4);
 
     if (is_last_LFN_ent) {
-        p_name_slot[13] = 0;
-        q = p_name_slot;
-        q_after = p_name_slot + 13;
+        ((u16*)p)[13] = 0;
+        q = (u16*)p;
+        q_after = (u16*)p + 13;
 
         while (q < q_after) {
             if (*q == 0x0000) {
@@ -363,11 +365,7 @@ s32 VFiPFENT_findEntry(PF_FFD* p_ffd, PF_DIR_ENT* p_ent, u32 index_search_from, 
         return err;
     }
 
-    if (!is_found) {
-        return 3;
-    } else {
-        return 0;
-    }
+    return !is_found ? 3 : 0;
 }
 
 s32 VFiPFENT_allocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_ffd, u32* p_prev_chain, PF_STR* p_filename, u8 attr_required, u32* p_pos) {
@@ -590,15 +588,16 @@ s32 VFiPFENT_UpdateSFNEntry(PF_DIR_ENT* p_ent, u32 flag) {
     }
 }
 
+// regswaps
 s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) {
     s32 err;
     s32 err2;
     PF_VOLUME* p_vol;
     s32 ent_cnt;
+    s32 chain_offset;
     s32 success_cnt;
     u32 entry_sector;
     u16 entry_offset;
-    s32 chain_offset;
     u32 success_size;
     u8 buf[32];
 
@@ -620,7 +619,7 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
         if (p_ent->long_name[0] != 0 && p_ent->num_entry_LFNs != 0 && (p_ent->small_letter_flag & 0x18) == 0) {
             entry_sector = p_ent->entry_sector;
             entry_offset = p_ent->entry_offset;
-            chain_offset = 0;
+            chain_offset = (s32)p_prev_chain;
 
             for (ent_cnt = 1; ent_cnt <= p_ent->num_entry_LFNs; ++ent_cnt) {
                 success_cnt++;
@@ -630,7 +629,8 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
                     if (!p_prev_chain) {
                         err = VFiPFFAT_GetBeforeSector(&entry_sector, p_vol, entry_sector);
                     } else {
-                        entry_sector = p_prev_chain[chain_offset++];
+                        entry_sector = *(u32*)chain_offset;
+                        chain_offset += 4;
                     }
                 } else {
                     entry_offset -= 32;
@@ -652,7 +652,7 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
         if (err != 0) {
             entry_sector = p_ent->entry_sector;
             entry_offset = p_ent->entry_offset;
-            chain_offset = 0;
+            chain_offset = (s32)p_prev_chain;
             buf[0] = 0xE5;  // FAT deleted mark
 
             for (ent_cnt = 0; ent_cnt < success_cnt; ++ent_cnt) {
@@ -668,7 +668,8 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
                         if (!p_prev_chain) {
                             err2 = VFiPFFAT_GetBeforeSector(&entry_sector, p_vol, entry_sector);
                         } else {
-                            entry_sector = p_prev_chain[chain_offset++];
+                            entry_sector = *(u32*)chain_offset;
+                            chain_offset += 4;
                         }
                     } else {
                         entry_offset -= 32;

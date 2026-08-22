@@ -157,7 +157,7 @@ void StarPiece::init(const JMapInfoIter& rIter) {
     MR::initStarPointerTarget(this, 28.0f, TVec3f(0, 0, 0));
     MR::offCalcGravity(this);
 
-    mDelegator = TriangleFilterDelegator< StarPiece >::allocateDelegator(this, &isIgnoreTriOnThrow);
+    mDelegator = MR::createTriangleFilterDelegator(this, &StarPiece::isIgnoreTriOnThrow);
 
     MR::tryCreateMirrorActor(this, "StarPiece");
     MR::startBtk(this, "Gift");

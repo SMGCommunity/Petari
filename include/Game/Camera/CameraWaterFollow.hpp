@@ -5,25 +5,27 @@
 class CameraWaterFollow : public Camera {
 public:
     CameraWaterFollow(const char* pName = "水中フォロー");
-    virtual ~CameraWaterFollow();
 
     virtual void reset();
     virtual CameraTargetObj* calc();
-    virtual bool isEnableToReset() const;
+    virtual bool isEnableToReset() const {
+        return true;
+    }
     virtual CamTranslatorBase* createTranslator();
 
-    f32 mAxisY;  // 0x4C
-    f32 mAxisX;  // 0x50
-    f32 mDist;   // 0x54
-    f32 _58;
-    u32 _5C;
-    f32 _60;
-    f32 _64;
-    f32 _68;
-    u8 _6C;
-    u8 _6D[3];
-    u32 _70;
-    f32 _74;
-    f32 _78;
-    f32 _7C;
+    void setParam(f32 distMin, f32 distMax, f32 blendRateMin) {
+        mDistMin = distMin;
+        mDistMax = distMax;
+        mSideBlendRateMin = blendRateMin;
+    }
+
+    /* 0x4C */ f32 mDistMin;
+    /* 0x50 */ f32 mDistMax;
+    /* 0x54 */ f32 mSideBlendRateMin;
+    /* 0x58 */ f32 mSideBlendRate;
+    /* 0x5C */ s32 mCollideCount;
+    /* 0x60 */ TVec3f mLastMoveDir;
+    /* 0x6C */ bool mIsRounding;
+    /* 0x70 */ s32 mRoundingFrame;
+    /* 0x74 */ TVec3f mSide;
 };

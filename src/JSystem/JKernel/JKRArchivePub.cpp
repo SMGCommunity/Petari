@@ -19,14 +19,14 @@ bool JKRArchive::becomeCurrent(const char* pName) {
 
         dir = findDirectory(pDir, 0);
     } else {
-        dir = findDirectory(pName, sCurrentDirIndex);
+        dir = findDirectory(pName, sCurrentDirID);
     }
 
     bool validDir = dir != nullptr;
 
     if (validDir) {
         JKRFileLoader::gCurrentFileLoader = this;
-        sCurrentDirIndex = static_cast< u32 >(dir - mDirs);
+        sCurrentDirID = static_cast< u32 >(dir - mDirs);
     }
 
     return validDir;
@@ -38,7 +38,7 @@ void* JKRArchive::getResource(const char* pName) {
     if (*pName == '/') {
         file = findFsResource(pName + 1, 0);
     } else {
-        file = findFsResource(pName, sCurrentDirIndex);
+        file = findFsResource(pName, sCurrentDirID);
     }
 
     if (file != nullptr) {
@@ -70,7 +70,7 @@ u32 JKRArchive::readResource(void* a1, unsigned long a2, const char* pName) {
     if (*pName == '/') {
         file = findFsResource(pName + 1, 0);
     } else {
-        file = findFsResource(pName, sCurrentDirIndex);
+        file = findFsResource(pName, sCurrentDirID);
     }
 
     if (file != nullptr) {
@@ -103,7 +103,7 @@ u32 JKRArchive::readResource(void* a1, unsigned long a2, unsigned long a3, const
 }
 
 void JKRArchive::removeResourceAll() {
-    if (mInfoBlock != nullptr && mMountMode != MOUNT_MODE_DVD) {
+    if (mInfoBlock != nullptr && mMountMode != MOUNT_MODE_MEM) {
         SDIFileEntry* current = mFiles;
         for (u32 i = 0; i < mInfoBlock->mNrFiles; i++) {
             if (current->mFileData != nullptr) {
@@ -163,7 +163,7 @@ s32 JKRArchive::countFile(const char* pName) const {
 
         dir = findDirectory(pName, 0);
     } else {
-        dir = findDirectory(pName, sCurrentDirIndex);
+        dir = findDirectory(pName, sCurrentDirID);
     }
 
     if (dir != nullptr) {
@@ -185,7 +185,7 @@ JKRArcFinder* JKRArchive::getFirstFile(const char* pName) const {
 
         dir = findDirectory(pName, 0);
     } else {
-        dir = findDirectory(pName, sCurrentDirIndex);
+        dir = findDirectory(pName, sCurrentDirID);
     }
 
     if (dir != nullptr) {
@@ -234,12 +234,14 @@ JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* pHeap) {
     return nullptr;
 }
 
-void JKRArchive::mount(const char* pName, EMountMode mountMode, JKRHeap* pHeap, EMountDirection mountDir) {
+JKRArchive* JKRArchive::mount(const char* pName, EMountMode mountMode, JKRHeap* pHeap, EMountDirection mountDir) {
     s32 entryNum = DVDConvertPathToEntrynum(pName);
 
-    if (entryNum >= 0) {
-        mount(entryNum, mountMode, pHeap, mountDir);
+    if (entryNum < 0) {
+        return nullptr;
     }
+
+    return mount(entryNum, mountMode, pHeap, mountDir);
 }
 
 JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* pHeap, EMountDirection mountDir) {

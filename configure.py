@@ -355,6 +355,8 @@ cflags_sdk = [
 
 cflags_sdk_exi = ["-O3" if flag == "-O4,p" else flag for flag in cflags_sdk]
 cflags_sdk_wpad = ["-fp off" if flag == "-fp hardware" else flag for flag in cflags_sdk]
+cflags_sdk_net = ["-O4,s" if flag == "-O4,p" else flag for flag in cflags_sdk]
+cflags_sdk_aralt = ["-O4,s" if flag == "-O4,p" else flag for flag in cflags_sdk]
 
 cflags_rfl = [
     "-nodefaults",
@@ -459,6 +461,16 @@ def SDKLib(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
         "lib": lib_name,
         "mw_version": "GC/3.0a3",
         "cflags": cflags_sdk,
+        "progress_category": "sdk",
+        "objects": objects,
+    }
+
+
+def SDKLib_NET(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
+    return {
+        "lib": lib_name,
+        "mw_version": "GC/3.0a5.2",
+        "cflags": cflags_sdk_net,
         "progress_category": "sdk",
         "objects": objects,
     }
@@ -1022,7 +1034,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CamTranslatorTwistedPassage.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorWaterFollow.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorWaterPlanet.cpp"),
-            Object(NonMatching, "Game/Camera/CamTranslatorWaterPlanetBoss.cpp"),
+            Object(Matching, "Game/Camera/CamTranslatorWaterPlanetBoss.cpp"),
             Object(Matching, "Game/Camera/CamTranslatorWonderPlanet.cpp"),
             Object(Matching, "Game/Camera/Camera.cpp"),
             Object(NonMatching, "Game/Camera/CameraAnim.cpp"),
@@ -1030,7 +1042,7 @@ config.libs = [
             Object(Matching, "Game/Camera/CameraBlackHole.cpp"),
             Object(NonMatching, "Game/Camera/CameraCalc.cpp"),
             Object(Matching, "Game/Camera/CameraCharmedFix.cpp"),
-            Object(NonMatching, "Game/Camera/CameraCharmedTripodBoss.cpp"),
+            Object(Matching, "Game/Camera/CameraCharmedTripodBoss.cpp"),
             Object(Matching, "Game/Camera/CameraCharmedVecReg.cpp"),
             Object(Matching, "Game/Camera/CameraCharmedVecRegTower.cpp"),
             Object(NonMatching, "Game/Camera/CameraContext.cpp"),
@@ -1059,7 +1071,7 @@ config.libs = [
             Object(NonMatching, "Game/Camera/CameraLocalUtil.cpp"),
             Object(Matching, "Game/Camera/CameraMan.cpp"),
             Object(NonMatching, "Game/Camera/CameraManEvent.cpp"),
-            Object(NonMatching, "Game/Camera/CameraManGame.cpp"),
+            Object(Matching, "Game/Camera/CameraManGame.cpp"),
             Object(Matching, "Game/Camera/CameraManPause.cpp"),
             Object(Matching, "Game/Camera/CameraManSubjective.cpp"),
             Object(NonMatching, "Game/Camera/CameraMedianPlanet.cpp"),
@@ -1097,21 +1109,21 @@ config.libs = [
             Object(NonMatching, "Game/Camera/CameraTargetObj.cpp"),
             Object(Matching, "Game/Camera/CameraTestObj.cpp"),
             Object(NonMatching, "Game/Camera/CameraTower.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTowerBase.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTowerPos.cpp"),
+            Object(Matching, "Game/Camera/CameraTowerBase.cpp"),
+            Object(Matching, "Game/Camera/CameraTowerPos.cpp"),
             Object(Matching, "Game/Camera/CameraTripodBoss.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTripodBossJoint.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTripodPlanet.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTrundle.cpp"),
-            Object(NonMatching, "Game/Camera/CameraTwistedPassage.cpp"),
+            Object(Matching, "Game/Camera/CameraTripodBossJoint.cpp"),
+            Object(Matching, "Game/Camera/CameraTripodPlanet.cpp"),
+            Object(Matching, "Game/Camera/CameraTrundle.cpp"),
+            Object(Matching, "Game/Camera/CameraTwistedPassage.cpp"),
             Object(NonMatching, "Game/Camera/CameraViewInterpolator.cpp"),
-            Object(NonMatching, "Game/Camera/CameraWaterFollow.cpp"),
-            Object(NonMatching, "Game/Camera/CameraWaterPlanet.cpp"),
-            Object(NonMatching, "Game/Camera/CameraWaterPlanetBoss.cpp"),
-            Object(NonMatching, "Game/Camera/CameraWonderPlanet.cpp"),
+            Object(Matching, "Game/Camera/CameraWaterFollow.cpp"),
+            Object(Matching, "Game/Camera/CameraWaterPlanet.cpp"),
+            Object(Matching, "Game/Camera/CameraWaterPlanetBoss.cpp"),
+            Object(Matching, "Game/Camera/CameraWonderPlanet.cpp"),
             Object(NonMatching, "Game/Camera/DotCamParams.cpp"),
             Object(NonMatching, "Game/Camera/GameCameraCreator.cpp"),
-            Object(NonMatching, "Game/Camera/OnlyCamera.cpp"),
+            Object(Matching, "Game/Camera/OnlyCamera.cpp"),
         ],
     ),
     GameLib(
@@ -1126,7 +1138,7 @@ config.libs = [
             Object(Matching, "Game/Demo/DemoCastGroupHolder.cpp"),
             Object(Matching, "Game/Demo/DemoCastSubGroup.cpp"),
             Object(Matching, "Game/Demo/DemoCtrlBase.cpp"),
-            Object(NonMatching, "Game/Demo/DemoDirector.cpp"),
+            Object(Matching, "Game/Demo/DemoDirector.cpp"),
             Object(NonMatching, "Game/Demo/DemoExecutor.cpp"),
             Object(Matching, "Game/Demo/DemoExecutorFunction.cpp"),
             Object(Matching, "Game/Demo/DemoFunction.cpp"),
@@ -1450,7 +1462,7 @@ config.libs = [
             Object(Matching, "Game/Map/LavaShellTower.cpp"),
             Object(Matching, "Game/Map/LavaSunPlanet.cpp"),
             Object(NonMatching, "Game/Map/LightDataHolder.cpp"),
-            Object(NonMatching, "Game/Map/LightDirector.cpp"),
+            Object(Matching, "Game/Map/LightDirector.cpp"),
             Object(NonMatching, "Game/Map/LightFunction.cpp"),
             Object(NonMatching, "Game/Map/LightPointCtrl.cpp"),
             Object(Matching, "Game/Map/LightZoneDataHolder.cpp"),
@@ -1669,7 +1681,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/MapObjConnector.cpp"),
             Object(NonMatching, "Game/MapObj/MarblePlanet.cpp"),
             Object(NonMatching, "Game/MapObj/MarioLauncher.cpp"),
-            Object(NonMatching, "Game/MapObj/MarioLauncherAttractor.cpp"),
+            Object(Matching, "Game/MapObj/MarioLauncherAttractor.cpp"),
             Object(NonMatching, "Game/MapObj/MechaKoopaPartsArm.cpp"),
             Object(NonMatching, "Game/MapObj/MechaKoopaPartsHead.cpp"),
             Object(Matching, "Game/MapObj/MercatorFixParts.cpp"),
@@ -1901,10 +1913,10 @@ config.libs = [
             Object(NonMatching, "Game/NPC/TrickRabbitUtil.cpp"),
             Object(Matching, "Game/NPC/CometEventExecutorTimeLimit.cpp"),
             Object(Matching, "Game/NPC/CometEventKeeper.cpp"),
-            Object(NonMatching, "Game/NPC/EventDirector.cpp"),
+            Object(Matching, "Game/NPC/EventDirector.cpp"),
             Object(NonMatching, "Game/NPC/NPCActor.cpp"),
             Object(NonMatching, "Game/NPC/NPCParameter.cpp"),
-            Object(NonMatching, "Game/NPC/NPCDirector.cpp"),
+            Object(Matching, "Game/NPC/NPCDirector.cpp"),
             Object(NonMatching, "Game/NPC/NPCFunction.cpp"),
             Object(Matching, "Game/NPC/NPCSupportRail.cpp"),
             Object(Matching, "Game/NPC/StageStateKeeper.cpp"),
@@ -1912,7 +1924,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/TalkDirector.cpp"),
             Object(NonMatching, "Game/NPC/TalkMessageCtrl.cpp"),
             Object(Matching, "Game/NPC/TalkMessageInfo.cpp"),
-            Object(NonMatching, "Game/NPC/TalkNodeCtrl.cpp"),
+            Object(Matching, "Game/NPC/TalkNodeCtrl.cpp"),
             Object(NonMatching, "Game/NPC/TurnJointCtrl.cpp"),
             Object(NonMatching, "Game/NPC/TalkState.cpp"),
             Object(NonMatching, "Game/NPC/TalkSupportPlayerWatcher.cpp"),
@@ -2493,7 +2505,9 @@ config.libs = [
         ],
     ),
     SDKLib("ai", [Object(NonMatching, "RVL_SDK/ai/ai.c")]),
-    SDKLib("aralt", [Object(NonMatching, "RVL_SDK/aralt/aralt.c")]),
+    SDKLib(
+        "aralt", [Object(NonMatching, "RVL_SDK/aralt/aralt.c", cflags=cflags_sdk_aralt)]
+    ),
     SDKLib("arc", [Object(NonMatching, "RVL_SDK/arc/arc.c")]),
     SDKLib(
         "ax",
@@ -2691,7 +2705,7 @@ config.libs = [
             Object(Matching, "RVL_SDK/nand/NANDLogging.c"),
         ],
     ),
-    SDKLib(
+    SDKLib_NET(
         "net",
         [
             Object(NonMatching, "RVL_SDK/net/nettime.c"),

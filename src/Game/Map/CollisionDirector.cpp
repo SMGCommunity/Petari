@@ -5,23 +5,17 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-#define NR_CATEGORIZED_KEEPERS 4
+#define CATEGORY_KEEPER_NUM 4
 
-CollisionDirector::CollisionDirector() : NameObj("地形コリジョン") {
-    mKeepers = nullptr;
-    mCode = nullptr;
-
+CollisionDirector::CollisionDirector() : NameObj("地形コリジョン"), mCategoryKeeper(), mCode() {
     mCode = new CollisionCode();
-    mKeepers = new CollisionCategorizedKeeper*[NR_CATEGORIZED_KEEPERS];
+    mCategoryKeeper = new CollisionCategorizedKeeper*[CATEGORY_KEEPER_NUM];
 
-    for (s32 i = 0; i < NR_CATEGORIZED_KEEPERS; i++) {
-        mKeepers[i] = new CollisionCategorizedKeeper(i);
+    for (s32 i = 0; i < CATEGORY_KEEPER_NUM; i++) {
+        mCategoryKeeper[i] = new CollisionCategorizedKeeper(i);
     }
 
     MR::connectToScene(this, MR::MovementType_CollisionDirector, -1, -1, -1);
-}
-
-CollisionDirector::~CollisionDirector() {
 }
 
 void CollisionDirector::init(const JMapInfoIter& rIter) {
@@ -31,8 +25,8 @@ void CollisionDirector::initAfterPlacement() {
 }
 
 void CollisionDirector::movement() {
-    for (s32 i = 0; i < NR_CATEGORIZED_KEEPERS; i++) {
-        mKeepers[i]->movement();
+    for (s32 i = 0; i < CATEGORY_KEEPER_NUM; i++) {
+        mCategoryKeeper[i]->movement();
     }
 }
 

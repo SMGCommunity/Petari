@@ -3,9 +3,15 @@
 #include "JSystem/JGeometry.hpp"
 
 class CameraTargetObj;
+class Binder;
 
 class CameraViewInterpolator {
 public:
+    enum CalcState {
+        /* 0x0 */ CalcState_Ready,
+        /* 0x1 */ CalcState_Invalid,
+    };
+
     CameraViewInterpolator();
 
     void updateCameraMtx(MtxPtr, const TVec3f&, const CameraTargetObj*, f32);
@@ -13,47 +19,40 @@ public:
     bool isInterpolating() const;
     bool isInterpolatingNearlyEnd() const;
     void lookAtCenter();
-    void calcCollision(const TPos3f&);
-    void calcBinder(TVec3f*, const TVec3f&, const TVec3f&);
+    bool calcCollision(const TPos3f&);
+    bool calcBinder(TVec3f*, const TVec3f&, const TVec3f&);
     void reduceOscillation();
     void updateCalcState(const CameraTargetObj*);
     void interpolateCameraSwitching(MtxPtr, const TVec3f&, f32);
     void checkNearlyEnd(MtxPtr);
-    void translateByRepulsion();
+    bool translateByRepulsion();
 
-    u32 _0;
-    u32 _4;
-    bool _8;
-    bool _9;
-    bool _A;
-    u8 _B;
-    TMtx34f _C;
-    TMtx34f _3C;
-    f32 _6C;
-    f32 _70;
-    f32 _74;
-    f32 _78;
-    bool _7C;
-    bool _7D;
-    u8 _7E[2];
-    f32 _80;
-    f32 _84;
-    bool _88;
-    bool _89;
-    bool _8A;
-    u8 _8B;
-    u32 _8C;
-    u32 _90;
-    u32 _94;
-    f32 _98;
-    f32 _9C;
-    f32 _A0;
-    f32 _A4;
-    f32 _A8;
-    f32 _AC;
-    bool _B0;
-    u8 _B1[3];
-    f32 _B4;
-    f32 _B8;
-    f32 _BC;
+    void resetGravity() {
+        TVec3f grav(0.0f, -1.0f, 0.0f);
+        mGravity.set(grav);
+    }
+
+    /* 0x00 */ u32 mInterpolateTimer;
+    /* 0x04 */ u32 mInterpolateTime;
+    /* 0x08 */ bool mIsAntiOscillation;
+    /* 0x09 */ bool mIsForceCameraChange;
+    /* 0x0A */ bool mIsInterpolationOff;
+    /* 0x0C */ TPos3f mTargetMtx;
+    /* 0x3C */ TPos3f mMtx;
+    /* 0x6C */ TVec3f mTargetPosition;
+    /* 0x78 */ f32 mRate;
+    /* 0x7C */ bool mIsCollisionOff;
+    /* 0x7D */ bool mIsRepulsionOff;
+    /* 0x80 */ f32 mTargetFovy;
+    /* 0x84 */ f32 mFovy;
+    /* 0x88 */ bool mIsInterpolatingNearlyEnd;
+    /* 0x89 */ bool mIsInterpolating;
+    /* 0x8A */ bool mIsCorrectErpPositionOn;
+    /* 0x8C */ u32 mCalcState;
+    /* 0x90 */ const CameraTargetObj* mTargetObj;
+    /* 0x94 */ Binder* mBinder;
+    /* 0x98 */ TVec3f mPosition;
+    /* 0xA4 */ TVec3f mGravity;
+    /* 0xB0 */ bool mIsCollided;
+    /* 0xB4 */ TVec3f mLErpOffset;  // TODO: is this name correct?
 };
