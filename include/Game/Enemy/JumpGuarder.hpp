@@ -54,17 +54,20 @@ public:
     void exeHopJump();
     void exeHopEnd();
     void exePreOpen();
+    void addBaby(JumpGuarderBaby*);
     void exeOpen();
     void exeClose();
     void exeInter();
 
+    /// @brief Allocated array of `mNumBabies` babies.
     /* 0x0DC */ JumpGuarderBaby* mBabies;
+
     /* 0x0E0 */ s32 mNumBabies;
-    /* 0x0E4 */ s32 _E4;
-    /* 0x0E8 */ JumpGuarderBaby* _E8[4];
-    /* 0x0F8 */ s32 _F8;
+    /* 0x0E4 */ s32 mBumpCooldown;
+    /* 0x0E8 */ JumpGuarderBaby* mBabiesToLaunch[4];
+    /* 0x0F8 */ s32 mNumBabiesToLaunch;
     /* 0x0FC */ s32 mNumCoins;
-    /* 0x100 */ f32 _100;
+    /* 0x100 */ f32 mBabyVelocity;
 };
 
 class JumpGuarderBaby : public BegomanBaby {
