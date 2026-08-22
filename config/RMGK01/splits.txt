@@ -2868,7 +2868,7 @@ Game/Enemy/KarikariDirector.cpp:
 Game/Enemy/Karon.cpp:
 	.text       start:0x8010E608 end:0x80110298
 	.ctors      start:0x8052EAD4 end:0x8052EAD8
-	.rodata     start:0x80532178 end:0x805321F8
+	.rodata     start:0x80532178 end:0x805321E8
 	.data       start:0x8057F920 end:0x8057FBB8
 	.sbss       start:0x806B4260 end:0x806B42A0
 	.sdata2     start:0x806BAB88 end:0x806BABE0
@@ -2889,7 +2889,7 @@ Game/Enemy/KirairaChain.cpp:
 Game/Enemy/KoopaJrShip.cpp:
 	.text       start:0x801123BC end:0x8011479C
 	.ctors      start:0x8052EADC end:0x8052EAE0
-	.rodata     start:0x805321F8 end:0x80532298
+	.rodata     start:0x805321E8 end:0x80532298
 	.data       start:0x8057FEA8 end:0x805803F8
 	.sdata      start:0x806B19B8 end:0x806B19D0
 	.sbss       start:0x806B42C0 end:0x806B42F8
