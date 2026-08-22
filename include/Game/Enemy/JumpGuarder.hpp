@@ -24,7 +24,7 @@ public:
     /* 0x90 */ TMtx34f _90;
     /* 0xC0 */ PartsModel* mHeadModel;
     /* 0xC4 */ TVec3f _C4;
-    /* 0xD0 */ u8 _D0;
+    /* 0xD0 */ bool mIsEventCamera;
     /* 0xD4 */ ActorCameraInfo* mCameraInfo;
     /* 0xD8 */ MultiEventCamera* mMultEventCamera;
 };
@@ -64,8 +64,8 @@ public:
 
     /* 0x0E0 */ s32 mNumBabies;
     /* 0x0E4 */ s32 mBumpCooldown;
-    /* 0x0E8 */ JumpGuarderBaby* mBabiesToLaunch[4];
-    /* 0x0F8 */ s32 mNumBabiesToLaunch;
+    /* 0x0E8 */ JumpGuarderBaby* mActiveBabies[4];
+    /* 0x0F8 */ s32 mNumActiveBabies;
     /* 0x0FC */ s32 mNumCoins;
     /* 0x100 */ f32 mBabyVelocity;
 };
