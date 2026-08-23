@@ -29,6 +29,6 @@ public:
     /* 0xA8 */ f32 mRotate;
     /* 0xAC */ f32 mSpeedBlendRate;
     /* 0xB0 */ f32 mBlendFriction;
-    /* 0xB4 */ bool _B4;
-    /* 0xB8 */ f32 _B8;
+    /* 0xB4 */ bool mIsVertical;
+    /* 0xB8 */ f32 mAngleYMin;
 };

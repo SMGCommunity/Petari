@@ -14,26 +14,13 @@ void FORCE_SCALE() {
     vec.scale(1.0f);
 }
 
-CollisionParts::CollisionParts() {
-    _0 = nullptr;
-    mHitSensor = nullptr;
-    _CC = false;
-    _CD = true;
-    _CE = false;
-    _CF = false;
-    _D0 = false;
-    _D4 = 0;
-    _D8 = -1.0f;
-    _DC = 1.0f;
-    mKeeperIndex = -1;
-    mZone = nullptr;
-
+CollisionParts::CollisionParts() : _0(), mHitSensor(), _CC(), _CD(true), _CE(), _CF(), _D0(), _D4(), _D8(-1.0f), _DC(1.0f), mKeeperIndex(-1), mZone() {
     mServer = new KCollisionServer();
 
     mPrevBaseMatrix.identity();
     mBaseMatrix.identity();
     mMatrix.identity();
-    PSMTXInverse(reinterpret_cast< MtxPtr >(&mBaseMatrix), reinterpret_cast< MtxPtr >(&mInvBaseMatrix));
+    PSMTXInverse(mBaseMatrix.toMtxPtr(), mInvBaseMatrix.toMtxPtr());
 }
 
 void CollisionParts::init(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex, bool a6) {
@@ -45,11 +32,7 @@ void CollisionParts::init(const TPos3f& a1, HitSensor* pHitSensor, const void* p
     TVec3f scale;
     mBaseMatrix.getScale(scale);
 
-    CollisionDirector* director = MR::getCollisionDirector();
-    CollisionCategorizedKeeper* keeper = director->mKeepers[keeperIndex];
-    s32 zoneID = MR::getCurrentPlacementZoneId();
-
-    mZone = keeper->getZone(zoneID);
+    mZone = MR::getCollisionDirector()->getCategoryKeeper(keeperIndex)->getZone(MR::getCurrentPlacementZoneId());
 
     MR::initCameraCodeCollection(pHitSensor->mHost->mName, mZone->mZoneID);
     mServer->calcFarthestVertexDistance();
@@ -60,19 +43,15 @@ void CollisionParts::init(const TPos3f& a1, HitSensor* pHitSensor, const void* p
 }
 
 void CollisionParts::addToBelongZone() {
-    s32 index = mKeeperIndex;
     s32 zoneID = mZone->mZoneID;
 
-    CollisionDirector* director = MR::getCollisionDirector();
-    director->mKeepers[index]->addToZone(this, zoneID);
+    MR::getCollisionDirector()->getCategoryKeeper(mKeeperIndex)->addToZone(this, zoneID);
 }
 
 void CollisionParts::removeFromBelongZone() {
-    s32 index = mKeeperIndex;
     s32 zoneID = mZone->mZoneID;
 
-    CollisionDirector* director = MR::getCollisionDirector();
-    director->mKeepers[index]->removeFromZone(this, zoneID);
+    MR::getCollisionDirector()->getCategoryKeeper(mKeeperIndex)->removeFromZone(this, zoneID);
 }
 
 void CollisionParts::initWithAutoEqualScale(const TPos3f& a1, HitSensor* pHitSensor, const void* pKclData, const void* pMapInfo, s32 keeperIndex,

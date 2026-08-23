@@ -1,7 +1,58 @@
 #include "Game/Camera/CameraAnim.hpp"
 #include "Game/Camera/CamTranslatorAnim.hpp"
+#include "Game/Camera/CameraLocalUtil.hpp"
+#include "Game/Camera/CameraTargetObj.hpp"
+#include "Game/Util/MathUtil.hpp"
 
-KeyCamAnmDataAccessor::~KeyCamAnmDataAccessor() {
+void CameraAnim_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)MR::pi();
+}
+
+void CamAnmDataAccessor::set(void* pInfo, void* pValues) {
+    mInfo = reinterpret_cast< CanmFrameInfo* >(pInfo);
+    mValues = reinterpret_cast< f32* >(pValues);
+}
+
+void CamAnmDataAccessor::getPos(TVec3f* pPos, f32 key) const {
+    pPos->set< f32 >(get(key, mInfo->mPosX.mOffset, mInfo->mPosX.mCount),  //
+                     get(key, mInfo->mPosY.mOffset, mInfo->mPosY.mCount),  //
+                     get(key, mInfo->mPosZ.mOffset, mInfo->mPosZ.mCount));
+}
+
+void CamAnmDataAccessor::getWatchPos(TVec3f* pWatchPos, f32 key) const {
+    pWatchPos->set< f32 >(get(key, mInfo->mWatchPosX.mOffset, mInfo->mWatchPosX.mCount),
+                          get(key, mInfo->mWatchPosY.mOffset, mInfo->mWatchPosY.mCount),
+                          get(key, mInfo->mWatchPosZ.mOffset, mInfo->mWatchPosZ.mCount));
+}
+
+f32 CamAnmDataAccessor::getTwist(f32 key) const {
+    CamnFrameComponentInfo& info = mInfo->mTwist;
+
+    return get(key, info.mOffset, info.mCount);
+}
+
+f32 CamAnmDataAccessor::getFovy(f32 key) const {
+    CamnFrameComponentInfo& info = mInfo->mFovy;
+
+    return get(key, info.mOffset, info.mCount);
+}
+
+f32 CamAnmDataAccessor::get(f32 key, u32 offset, u32 count) const {
+    // FIXME: regswap
+    // https://decomp.me/scratch/7ESHr
+
+    u32 keyFloor = key;
+
+    f32 rate = MR::clamp(key - keyFloor, 0.0f, 1.0f);
+
+    if (keyFloor < count - 1) {
+        return (1.0f - rate) * mValues[offset + keyFloor] + rate * mValues[offset + keyFloor + 1];
+    } else {
+        s32 idx = offset + count;
+        return getValue(idx - 1);
+    }
 }
 
 void KeyCamAnmDataAccessor::set(void* pInfo, void* pValues) {
@@ -10,35 +61,15 @@ void KeyCamAnmDataAccessor::set(void* pInfo, void* pValues) {
 }
 
 void KeyCamAnmDataAccessor::getPos(TVec3f* pPos, f32 key) const {
-    CanmKeyFrameComponentInfo& infoZ = mInfo->mPosZ;
-    CanmKeyFrameComponentInfo& infoY = mInfo->mPosY;
-    CanmKeyFrameComponentInfo& infoX = mInfo->mPosX;
-
-    f32 x;
-    f32 y;
-    f32 z;
-
-    z = get(key, infoZ.mOffset, infoZ.mCount, infoZ.mType);
-    y = get(key, infoY.mOffset, infoY.mCount, infoY.mType);
-    x = get(key, infoX.mOffset, infoX.mCount, infoX.mType);
-
-    pPos->set(x, y, z);
+    pPos->set< f32 >(get(key, mInfo->mPosX.mOffset, mInfo->mPosX.mCount, mInfo->mPosX.mType),
+                     get(key, mInfo->mPosY.mOffset, mInfo->mPosY.mCount, mInfo->mPosY.mType),
+                     get(key, mInfo->mPosZ.mOffset, mInfo->mPosZ.mCount, mInfo->mPosZ.mType));
 }
 
 void KeyCamAnmDataAccessor::getWatchPos(TVec3f* pWatchPos, f32 key) const {
-    CanmKeyFrameComponentInfo& infoZ = mInfo->mWatchPosZ;
-    CanmKeyFrameComponentInfo& infoY = mInfo->mWatchPosY;
-    CanmKeyFrameComponentInfo& infoX = mInfo->mWatchPosX;
-
-    f32 x;
-    f32 y;
-    f32 z;
-
-    z = get(key, infoZ.mOffset, infoZ.mCount, infoZ.mType);
-    y = get(key, infoY.mOffset, infoY.mCount, infoY.mType);
-    x = get(key, infoX.mOffset, infoX.mCount, infoX.mType);
-
-    pWatchPos->set(x, y, z);
+    pWatchPos->set< f32 >(get(key, mInfo->mWatchPosX.mOffset, mInfo->mWatchPosX.mCount, mInfo->mWatchPosX.mType),
+                          get(key, mInfo->mWatchPosY.mOffset, mInfo->mWatchPosY.mCount, mInfo->mWatchPosY.mType),
+                          get(key, mInfo->mWatchPosZ.mOffset, mInfo->mWatchPosZ.mCount, mInfo->mWatchPosZ.mType));
 }
 
 f32 KeyCamAnmDataAccessor::getTwist(f32 key) const {
@@ -93,113 +124,67 @@ f32 KeyCamAnmDataAccessor::get4f(f32 key, u32 offset, u32 count) const {
     u32 index = searchKeyFrameIndex(key, offset, count, 4);
     f32* values = mValues + offset + index * 4;
 
-    return calcHermite(key, values[0], values[1], values[2], values[3], values[4], values[5]);
+    return calcHermite(key, values[0], values[1], values[3], values[4], values[5], values[6]);
 }
 
-// Float instruction order, register mismatch
-f32 KeyCamAnmDataAccessor::calcHermite(f32 key, f32 a2, f32 a3, f32 a4, f32 a5, f32 a6, f32 a7) const {
-    f32 fVar1 = a4 / 30.0f;
-    f32 fVar2 = (key - a2) / (a5 - a2);
-    f32 fVar3 = fVar2 * fVar2 - fVar2;
-
-    return -(key - a2) * (fVar2 * fVar1 - a7 / 30.0f * fVar3 + fVar1 * fVar3 + fVar1) - (((fVar2 + fVar2) * fVar3 - fVar2 * fVar2) * (a3 - a6) + a3);
+f32 KeyCamAnmDataAccessor::calcHermite(f32 key, f32 tA, f32 pA, f32 mA, f32 tB, f32 pB, f32 mB) const {
+    return JMAHermiteInterpolation(key, tA, pA, mA / 30.0f, tB, pB, mB / 30.0f);
 }
 
-CamAnmDataAccessor::~CamAnmDataAccessor() {
+CameraAnim::CameraAnim(const char* pName)
+    : Camera(pName), _4C(), _50(1), mNrFrames(), mIsKey(), mSpeed(1.0f), mFileDataAccessor(), mDataAccessor(new CamAnmDataAccessor()),
+      mKeyDataAccessor(new KeyCamAnmDataAccessor()), mNrValues(), _74(), mFileData(), mIsPaused() {
 }
 
-void CamAnmDataAccessor::set(void* pInfo, void* pValues) {
-    mInfo = reinterpret_cast< CanmFrameInfo* >(pInfo);
-    mValues = reinterpret_cast< f32* >(pValues);
+void CameraAnim::reset() {
+    CameraLocalUtil::setFovy(this, CameraLocalUtil::getFovy(mCameraMan));
+    CameraLocalUtil::setWatchPos(this, CameraLocalUtil::getWatchPos(mCameraMan));
+    CameraLocalUtil::setPos(this, CameraLocalUtil::getPos(mCameraMan));
+    CameraLocalUtil::setUpVec(this, CameraLocalUtil::getUpVec(mCameraMan));
+    mIsPaused = false;
+    mCurrentFrame = 0.0f;
 }
 
-void CamAnmDataAccessor::getPos(TVec3f* pPos, f32 key) const {
-    CamnFrameComponentInfo& infoZ = mInfo->mPosZ;
-    CamnFrameComponentInfo& infoY = mInfo->mPosY;
-    CamnFrameComponentInfo& infoX = mInfo->mPosX;
+CameraTargetObj* CameraAnim::calc() {
+    // FIXME: out of order load
+    // https://decomp.me/scratch/1E1xy
 
-    f32 x;
-    f32 y;
-    f32 z;
+    TPos3f mtx;
+    mtx.identity();
+    mtx.setXDir(CameraLocalUtil::getTarget(this)->getSideVec());
+    mtx.setYDir(CameraLocalUtil::getTarget(this)->getUpVec());
+    mtx.setZDir(CameraLocalUtil::getTarget(this)->getFrontVec());
+    mtx.setTrans(CameraLocalUtil::getTarget(this)->getPosition());
 
-    z = get(key, infoZ.mOffset, infoZ.mCount);
-    y = get(key, infoY.mOffset, infoY.mCount);
-    x = get(key, infoX.mOffset, infoX.mCount);
+    if (mNrFrames != 0 && mNrFrames > mCurrentFrame) {
+        TVec3f pos;
+        mFileDataAccessor->getPos(&pos, mCurrentFrame);
+        mtx.mult(pos, pos);
+        CameraLocalUtil::setPos(this, pos);
 
-    pPos->set(x, y, z);
-}
+        TVec3f watchPos;
+        mFileDataAccessor->getWatchPos(&watchPos, mCurrentFrame);
+        mtx.mult(watchPos, watchPos);
+        CameraLocalUtil::setWatchPos(this, watchPos);
 
-void CamAnmDataAccessor::getWatchPos(TVec3f* pWatchPos, f32 key) const {
-    CamnFrameComponentInfo& infoZ = mInfo->mWatchPosZ;
-    CamnFrameComponentInfo& infoY = mInfo->mWatchPosY;
-    CamnFrameComponentInfo& infoX = mInfo->mWatchPosX;
+        TVec3f up;
+        mtx.getYDir(up);
+        CameraLocalUtil::setUpVec(this, up);
+        CameraLocalUtil::setWatchUpVec(this, up);
 
-    f32 x;
-    f32 y;
-    f32 z;
+        CameraLocalUtil::setRoll(this, mFileDataAccessor->getTwist(mCurrentFrame) * MR::pi() / 180.0f);
+        CameraLocalUtil::setFovy(this, mFileDataAccessor->getFovy(mCurrentFrame));
 
-    z = get(key, infoZ.mOffset, infoZ.mCount);
-    y = get(key, infoY.mOffset, infoY.mCount);
-    x = get(key, infoX.mOffset, infoX.mCount);
-
-    pWatchPos->set(x, y, z);
-}
-
-f32 CamAnmDataAccessor::getTwist(f32 key) const {
-    CamnFrameComponentInfo& info = mInfo->mTwist;
-
-    return get(key, info.mOffset, info.mCount);
-}
-
-f32 CamAnmDataAccessor::getFovy(f32 key) const {
-    CamnFrameComponentInfo& info = mInfo->mFovy;
-
-    return get(key, info.mOffset, info.mCount);
-}
-
-/*f32 CamAnmDataAccessor::get(f32 key, u32 offset, u32 count) const {
-    u32 intKey = static_cast<u32>(key);
-    f32 fKey = static_cast<f32>(intKey);
-
-    f32 diff = key - fKey;
-
-    if (diff < 0.0f) {
-
+        if (!mIsPaused) {
+            mCurrentFrame += mSpeed;
+        }
+    } else {
+        // FIXME: out of order
+        CameraLocalUtil::setRoll(this, mFileDataAccessor->getTwist(mNrFrames - 1) * MR::pi() / 180.0f);
+        CameraLocalUtil::setFovy(this, mFileDataAccessor->getFovy(mNrFrames - 1));
     }
-}*/
 
-CameraAnim::CameraAnim(const char* pName) : Camera(pName) {
-    _4C = 0;
-    _50 = 1;
-    mNrFrames = 0;
-    mIsKey = 0;
-    mSpeed = 1.0f;
-    mFileDataAccessor = nullptr;
-    mDataAccessor = new CamAnmDataAccessor();
-    mKeyDataAccessor = new KeyCamAnmDataAccessor();
-    mNrValues = 0;
-    _74 = 0;
-    mFileData = nullptr;
-    _7C = 0;
-}
-
-CameraAnim::~CameraAnim() {
-}
-
-bool CameraAnim::isZeroFrameMoveOff() const {
-    return true;
-}
-
-bool CameraAnim::isCollisionOff() const {
-    return true;
-}
-
-bool CameraAnim::isInterpolationOff() const {
-    return true;
-}
-
-CamTranslatorBase* CameraAnim::createTranslator() {
-    return new CamTranslatorAnim(this);
+    return nullptr;
 }
 
 void CameraAnim::setParam(u8* pFile, f32 speed) {
@@ -209,16 +194,7 @@ void CameraAnim::setParam(u8* pFile, f32 speed) {
 }
 
 bool CameraAnim::isAnimEnd() const {
-    bool hasEnded = true;
-    u32 nrFrames = mNrFrames;
-
-    if (nrFrames != 0) {
-        if (!(mCurrentFrame >= nrFrames)) {
-            hasEnded = false;
-        }
-    }
-
-    return hasEnded;
+    return mNrFrames == 0 || mCurrentFrame >= mNrFrames;
 }
 
 u32 CameraAnim::getAnimFrame(u8* pFile) {
@@ -244,6 +220,10 @@ u32 CameraAnim::getAnimFrame(u8* pFile) {
     return pHeader->mNrFrames;
 }
 
+CamTranslatorBase* CameraAnim::createTranslator() {
+    return new CamTranslatorAnim(this);
+}
+
 bool CameraAnim::loadBin(u8* pFile) {
     CanmFileHeader* pHeader = reinterpret_cast< CanmFileHeader* >(pFile);
 
@@ -252,10 +232,10 @@ bool CameraAnim::loadBin(u8* pFile) {
     }
 
     if (pHeader->mType[0] == 'C' && pHeader->mType[1] == 'A' && pHeader->mType[2] == 'N' && pHeader->mType[3] == 'M') {
-        mIsKey = 0;
+        mIsKey = false;
         mFileDataAccessor = mDataAccessor;
     } else if (pHeader->mType[0] == 'C' && pHeader->mType[1] == 'K' && pHeader->mType[2] == 'A' && pHeader->mType[3] == 'N') {
-        mIsKey = 1;
+        mIsKey = true;
         mFileDataAccessor = mKeyDataAccessor;
     } else {
         return false;

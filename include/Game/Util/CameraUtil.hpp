@@ -108,7 +108,7 @@ namespace MR {
     void pauseOnCameraDirector();
     void pauseOffCameraDirector();
 
-    TVec3f* getCameraWatchPos();
+    const TVec3f& getCameraWatchPos();
 
     void zoomInTargetGameCamera();
     void zoomOutTargetGameCamera();

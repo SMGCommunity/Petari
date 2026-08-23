@@ -3,24 +3,24 @@
 #include "Game/LiveActor/LiveActor.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
-class ModelObj;
 class NameObjArchiveListCollector;
-class PowerStar;
 class ReturnDemoRailMove;
 class StageResultInformer;
 
 class StarReturnDemoStarter : public LiveActor {
 public:
-    StarReturnDemoStarter(const char*);
+    /// @brief Creates a new `StarReturnDemoStarter`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    StarReturnDemoStarter(const char* pName);
 
-    virtual ~StarReturnDemoStarter();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void kill();
-    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
     virtual void control();
 
-    ModelObj* createSubModel(const char*, const char*, bool);
+    static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
+
+    LiveActor* createSubModel(const char*, const char*, bool);
     void tryRegisterDemo(const char*, const JMapInfoIter&);
     void tryStartStageResult();
     void tryStartResultWait();
@@ -41,8 +41,8 @@ private:
     /* 0x90 */ StageResultInformer* mStageResultInformer;
     /* 0x94 */ TPos3f mTransform;
     /* 0xC4 */ TVec3f mPosition;
-    /* 0xD0 */ PowerStar* mPowerStar;
-    /* 0xD4 */ ModelObj* mLuma;
-    /* 0xD8 */ ModelObj* mHair;
+    /* 0xD0 */ LiveActor* mPowerStar;
+    /* 0xD4 */ LiveActor* mLuma;
+    /* 0xD8 */ LiveActor* mHair;
     /* 0xDC */ s32 mFrame;
 };

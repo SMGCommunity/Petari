@@ -141,21 +141,21 @@ namespace MR {
     }
 
     bool isExistMapCollision(const TVec3f& rParam1, const TVec3f& rParam2) {
-        return getCollisionDirector()->mKeepers[0]->checkStrikeLine(rParam1, rParam2, 1, nullptr, nullptr) != 0;
+        return getCollisionDirector()->getCategoryKeeper(0)->checkStrikeLine(rParam1, rParam2, 1, nullptr, nullptr) != 0;
     }
 
     bool isExistMoveLimitCollision(const TVec3f& rParam1, const TVec3f& rParam2) {
-        return getCollisionDirector()->mKeepers[3]->checkStrikeLine(rParam1, rParam2, 1, nullptr, nullptr) != 0;
+        return getCollisionDirector()->getCategoryKeeper(3)->checkStrikeLine(rParam1, rParam2, 1, nullptr, nullptr) != 0;
     }
 
     // isExistMapCollisionExceptActor
 
     bool checkStrikePointToMap(const TVec3f& rParam1, HitInfo* pParam2) {
-        return getCollisionDirector()->mKeepers[0]->checkStrikePoint(rParam1, pParam2) != 0;
+        return getCollisionDirector()->getCategoryKeeper(0)->checkStrikePoint(rParam1, pParam2) != 0;
     }
 
     bool checkStrikeBallToMap(const TVec3f& rParam1, f32 param2) {
-        return getCollisionDirector()->mKeepers[0]->checkStrikeBall(rParam1, param2, false, nullptr, nullptr) != 0;
+        return getCollisionDirector()->getCategoryKeeper(0)->checkStrikeBall(rParam1, param2, false, nullptr, nullptr) != 0;
     }
 
     // calcMapGround
@@ -171,11 +171,11 @@ namespace MR {
     // calcVelocityMovingPoint
 
     u32 createAreaPolygonList(Triangle* pTriangle, u32 param2, const TVec3f& rParam3, const TVec3f& rParam4) {
-        return getCollisionDirector()->mKeepers[0]->createAreaPolygonList(pTriangle, param2, rParam3, rParam4);
+        return getCollisionDirector()->getCategoryKeeper(0)->createAreaPolygonList(pTriangle, param2, rParam3, rParam4);
     }
 
     u32 createAreaPolygonListArray(Triangle* pTriangle, u32 param2, TVec3f* pParam3, u32 param4) {
-        return getCollisionDirector()->mKeepers[0]->createAreaPolygonListArray(pTriangle, param2, pParam3, param4);
+        return getCollisionDirector()->getCategoryKeeper(0)->createAreaPolygonListArray(pTriangle, param2, pParam3, param4);
     }
 
     // trySetMoveLimitCollision

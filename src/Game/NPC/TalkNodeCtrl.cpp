@@ -26,11 +26,47 @@ bool TalkMessageHistory::search(u16 msgID) const {
     return false;
 }
 
-TalkNodeCtrl::TalkNodeCtrl() : _0(0), mCurrentNodeIdx(-1), mMessageInfo() {
+TalkNodeCtrl::TalkNodeCtrl() : _0(), mCurrentNodeIdx(-1), mMessageInfo() {
     mHistory.mCount = 0;
     _38 = nullptr;
     mCurrentNode = nullptr;
     mNodeData = -1;
+}
+
+// Inexplicable 0x130 bytes large stack
+void TalkNodeCtrl::createFlowNodeDirect(TalkMessageCtrl* pMsgCtrl, const JMapInfoIter& rIter, const char* pName, ActorCameraInfo** pCameraInf) {
+    TalkNode* node = MessageSystem::getSceneMessageData()->findNode(pName);
+    _38 = node;
+    mCurrentNode = node;
+    mFlowNode = node;
+    _0 = new char[strlen(pName) + 1];
+    MR::copyString(_0, pName, strlen(pName) + 1);
+
+    if (mCurrentNode == nullptr) {
+        char* name = _0;
+        MessageData* msgData = MessageSystem::getSceneMessageData();
+        msgData->getMessageDirect(&mMessageInfo, name);
+    } else {
+        updateMessage();
+    }
+
+    if (mMessageInfo.isFlowTalk()) {
+        forwardFlowNode();
+        _38 = mCurrentNode;
+        mFlowNode = mCurrentNode;
+    }
+
+    RecursiveHelper helper;
+    helper.mIndex = 0;
+
+    if (!MR::isValidInfo(rIter)) {
+        *pCameraInf = new ActorCameraInfo(0, 0);
+    } else {
+        *pCameraInf = new ActorCameraInfo(rIter);
+        initNodeRecursive(pMsgCtrl, rIter, *pCameraInf, &helper);
+    }
+
+    resetFlowNode();
 }
 
 void TalkNodeCtrl::resetFlowNode() {
@@ -215,6 +251,29 @@ void TalkNodeCtrl::readMessage() {
     }
 }
 
+const wchar_t* TalkNodeCtrl::getSubMessage() const {
+    const TalkMessageInfo info = mMessageInfo;
+
+    if (*((wchar_t*)info._0) != 0x1A) {
+        return nullptr;
+    }
+
+    MessageEditorMessageTag messageTag = MessageEditorMessageTag((const wchar_t*)&info._0[2]);
+
+    if (((char*)messageTag.mMessage)[1] != 8 || messageTag.mMessage[1] != 0) {
+        return nullptr;
+    }
+
+    TalkMessageInfo info2 = TalkMessageInfo();
+    u16 param = messageTag.getParam32(0);
+
+    if (MessageSystem::getSceneMessageData()->getMessage(&info2, 0, param)) {
+        return (const wchar_t*)info2._0;
+    }
+
+    return nullptr;
+}
+
 void TalkNodeCtrl::forwardCurrentBranchNode(bool storeCurrent) {
     TalkNode* cur = mCurrentNode;
 
@@ -237,65 +296,6 @@ void TalkNodeCtrl::createFlowNode(TalkMessageCtrl* pMsgCtrl, const JMapInfoIter&
     const char* zoneName = MR::getCurrentPlacementZoneName();
     snprintf(buf, sizeof(buf), "%s_%s%03d", zoneName, pName, msgID);
     createFlowNodeDirect(pMsgCtrl, rIter, buf, pCameraInf);
-}
-
-// Inexplicable 0x130 bytes large stack
-void TalkNodeCtrl::createFlowNodeDirect(TalkMessageCtrl* pMsgCtrl, const JMapInfoIter& rIter, const char* pName, ActorCameraInfo** pCameraInf) {
-    TalkNode* node = MessageSystem::getSceneMessageData()->findNode(pName);
-    _38 = node;
-    mCurrentNode = node;
-    mFlowNode = node;
-    _0 = new char[strlen(pName) + 1];
-    MR::copyString(_0, pName, strlen(pName) + 1);
-
-    if (mCurrentNode == nullptr) {
-        char* name = _0;
-        MessageData* msgData = MessageSystem::getSceneMessageData();
-        msgData->getMessageDirect(&mMessageInfo, name);
-    } else {
-        updateMessage();
-    }
-
-    if (mMessageInfo.isFlowTalk()) {
-        forwardFlowNode();
-        _38 = mCurrentNode;
-        mFlowNode = mCurrentNode;
-    }
-
-    RecursiveHelper helper;
-    helper.mIndex = 0;
-
-    if (!MR::isValidInfo(rIter)) {
-        *pCameraInf = new ActorCameraInfo(0, 0);
-    } else {
-        *pCameraInf = new ActorCameraInfo(rIter);
-        initNodeRecursive(pMsgCtrl, rIter, *pCameraInf, &helper);
-    }
-
-    resetFlowNode();
-}
-
-const wchar_t* TalkNodeCtrl::getSubMessage() const {
-    const TalkMessageInfo info = mMessageInfo;
-
-    if (*((wchar_t*)info._0) != 0x1A) {
-        return nullptr;
-    }
-
-    MessageEditorMessageTag messageTag = MessageEditorMessageTag((const wchar_t*)&info._0[2]);
-
-    if (((char*)messageTag.mMessage)[1] != 8 || messageTag.mMessage[1] != 0) {
-        return nullptr;
-    }
-
-    TalkMessageInfo info2 = TalkMessageInfo();
-    u16 param = messageTag.getParam32(0);
-
-    if (MessageSystem::getSceneMessageData()->getMessage(&info2, 0, param)) {
-        return (const wchar_t*)info2._0;
-    }
-
-    return nullptr;
 }
 
 bool RecursiveHelper::hasNode(const TalkNode* pNode) const {

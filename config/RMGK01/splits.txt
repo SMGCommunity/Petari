@@ -2868,7 +2868,7 @@ Game/Enemy/KarikariDirector.cpp:
 Game/Enemy/Karon.cpp:
 	.text       start:0x8010E608 end:0x80110298
 	.ctors      start:0x8052EAD4 end:0x8052EAD8
-	.rodata     start:0x80532178 end:0x805321F8
+	.rodata     start:0x80532178 end:0x805321E8
 	.data       start:0x8057F920 end:0x8057FBB8
 	.sbss       start:0x806B4260 end:0x806B42A0
 	.sdata2     start:0x806BAB88 end:0x806BABE0
@@ -2889,7 +2889,7 @@ Game/Enemy/KirairaChain.cpp:
 Game/Enemy/KoopaJrShip.cpp:
 	.text       start:0x801123BC end:0x8011479C
 	.ctors      start:0x8052EADC end:0x8052EAE0
-	.rodata     start:0x805321F8 end:0x80532298
+	.rodata     start:0x805321E8 end:0x80532298
 	.data       start:0x8057FEA8 end:0x805803F8
 	.sdata      start:0x806B19B8 end:0x806B19D0
 	.sbss       start:0x806B42C0 end:0x806B42F8
@@ -3744,15 +3744,16 @@ Game/Map/CollisionParts.cpp:
 Game/Map/FileSelectCameraController.cpp:
 	.text       start:0x80177614 end:0x80177DC4
 	.ctors      start:0x8052EBA8 end:0x8052EBAC
-	.rodata     start:0x80532A08 end:0x80532A48
-	.data       start:0x80588F20 end:0x80589010
+	.rodata     start:0x80532A08 end:0x80532A40
+	.data       start:0x80588F20 end:0x80588FE8
 	.sbss       start:0x806B4A48 end:0x806B4A60
 	.sdata2     start:0x806BBE88 end:0x806BBEA0
 
 Game/Map/FileSelectEffect.cpp:
 	.text       start:0x80177DC4 end:0x801782B4
 	.ctors      start:0x8052EBAC end:0x8052EBB0
-	.data       start:0x80589010 end:0x805890B8
+	.rodata     start:0x80532A40 end:0x80532A48
+	.data       start:0x80588FE8 end:0x805890B8
 	.sbss       start:0x806B4A60 end:0x806B4A70
 	.sdata2     start:0x806BBEA0 end:0x806BBEA8
 
@@ -6777,11 +6778,12 @@ Game/NPC/NPCParameter.cpp:
 
 Game/NPC/NPCDirector.cpp:
 	.text       start:0x8029D03C end:0x8029D150
-	.data       start:0x805B64E8 end:0x805B6530
+	.data       start:0x805B64E8 end:0x805B6520
 	.sdata      start:0x806B21D8 end:0x806B21E0
 
 Game/NPC/NPCFunction.cpp:
 	.text       start:0x8029D150 end:0x8029D258
+	.data       start:0x805B6520 end:0x805B6530
 
 Game/NPC/NPCSupportRail.cpp:
 	.text       start:0x8029D258 end:0x8029D35C

@@ -56,6 +56,6 @@ public:
     /* 0x0C */ CameraDirector* mDirector;
     /* 0x10 */ CameraPoseParam* mPoseParam;
     /* 0x14 */ bool mIsActivated;
-    /* 0x15 */ bool _15;
+    /* 0x15 */ bool mRequestLOfsReset;
     /* 0x18 */ TPos3f mMatrix;
 };
