@@ -6,11 +6,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 
-ChipHolder::ChipHolder(const char* pName, s32 chipType) : NameObj(pName) {
-    mChipCounter = nullptr;
-    mChipGroups = nullptr;
-    mNumChipGroups = 0;
-    mChipType = chipType;
+ChipHolder::ChipHolder(const char* pName, s32 chipType) : NameObj(pName), mChipCounter(), mChipGroups(), mNumChipGroups(), mChipType(chipType) {
 }
 
 void ChipHolder::registerChipGroup(ChipGroup* pChipGroup) {

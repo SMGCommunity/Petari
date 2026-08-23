@@ -4507,11 +4507,11 @@ Game/MapObj/ChipGroup.cpp:
 
 Game/MapObj/ChipHolder.cpp:
 	.text       start:0x801BFF48 end:0x801C0464
-	.data       start:0x805913E8 end:0x805914A0
+	.data       start:0x805913E8 end:0x80591440
 
 Game/MapObj/ChooChooTrain.cpp:
 	.text       start:0x801C0464 end:0x801C0C2C
-	.data       start:0x805914A0 end:0x80591518
+	.data       start:0x80591440 end:0x80591518
 	.sdata2     start:0x806BCA28 end:0x806BCA50
 
 Game/MapObj/CircleCoinGroup.cpp:

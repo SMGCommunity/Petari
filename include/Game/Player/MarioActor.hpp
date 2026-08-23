@@ -480,8 +480,8 @@ public:
     void memorizeSensorThrow(HitSensor*);
     bool tryThrow();
     void tryReleaseDirect(const HitSensor*);
-    bool damageDropThrowMemoSensor();
-    bool rushDropThrowMemoSensor();
+    void damageDropThrowMemoSensor();
+    void rushDropThrowMemoSensor();
     void trySetLockOnTarget(HitSensor*);
     void tryCoinPull();
     void tryCoinPullInRush();
@@ -491,7 +491,7 @@ public:
     bool releaseThrowMemoSensor();
     void tryReleaseWithMsg(u32);
     void tryTornadoPull(HitSensor*);
-    bool tryReleaseBombTeresa();
+    void tryReleaseBombTeresa();
 
     void runTeresaBaseAnimation();
     void getThrowVec(TVec3f*) const;

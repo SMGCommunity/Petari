@@ -111,32 +111,25 @@ void MarioActor::tryReleaseDirect(const HitSensor* pSensor) {
     }
 }
 
-bool MarioActor::damageDropThrowMemoSensor() {
+void MarioActor::damageDropThrowMemoSensor() {
     tryReleaseWithMsg(ACTMES_DAMAGEDROP);
     updateSearchLight();
-
-    bool out = tryReleaseBombTeresa();
+    tryReleaseBombTeresa();
 
     if (_424 != nullptr) {
-        out = _424->receiveMessage(ACTMES_DAMAGEDROP, getSensor("body"));
+        _424->receiveMessage(ACTMES_DAMAGEDROP, getSensor("body"));
         _424 = nullptr;
     }
-
-    return out;
 }
 
-bool MarioActor::rushDropThrowMemoSensor() {
+void MarioActor::rushDropThrowMemoSensor() {
     tryReleaseWithMsg(ACTMES_RUSHDROP);
-
     updateSearchLight();
 
-    bool out;
     if (_424 != nullptr) {
-        out = _424->receiveMessage(ACTMES_DAMAGEDROP, getSensor("body"));
+        _424->receiveMessage(ACTMES_DAMAGEDROP, getSensor("body"));
         _424 = nullptr;
     }
-
-    return out;
 }
 
 void MarioActor::trySetLockOnTarget(HitSensor* pSensor) {
@@ -316,7 +309,7 @@ void MarioActor::tryReleaseWithMsg(u32 msg) {
                 }
             }
         }
-        
+
         _428[idx] = nullptr;
         _468--;
     }
@@ -336,9 +329,9 @@ void MarioActor::tryReleaseWithMsg(u32 msg) {
     clearNullAnimation(0);
 }
 
-//void MarioActor::tryTornadoPull(HitSensor* pSensor) {}
+// void MarioActor::tryTornadoPull(HitSensor* pSensor) {}
 
-bool MarioActor::tryReleaseBombTeresa() {
+void MarioActor::tryReleaseBombTeresa() {
     if (_B94 == 0) {
         return;
     }
