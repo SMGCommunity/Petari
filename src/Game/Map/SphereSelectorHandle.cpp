@@ -19,13 +19,13 @@ namespace {
     const s32 cBgmNotConfirmState = 5;
     const s32 cBgmNotConfirmFrames = 60;
 
-    const f32 cRotateAppearX = 40.0f;
-    const f32 cRotateMaxX = 5.0f;
-    const f32 cRotateMinX = -5.0f;
-    const s32 cDemoRotateStartFrame = 60;
     const s32 cHoldReduceOutScreenFrame = 5;
     const f32 cSpinReduceRate = 0.95f;
-    const f32 cDemoRotateSpeedY = ::cDemoRotateSpeedY;
+    const s32 cDemoRotateStartFrame = 60;
+    const f32 cDemoRotateSpeedY = 0.03f;
+    const f32 cRotateAppearX = 40.0f;
+    const f32 cRotateMinX = -15.0f;
+    const f32 cRotateMaxX = 80.0f;
 };  // namespace
 
 namespace NrvSphereSelectorHandle {
@@ -75,9 +75,6 @@ void SphereSelectorHandle::appear() {
     MR::normalize(&_E8);
     MR::setStageBGMState(::cBgmAppearState, ::cBgmAppearFrames);
     setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance);
-}
-
-SphereSelectorHandle::~SphereSelectorHandle() {
 }
 
 bool SphereSelectorHandle::isPointing() const {
@@ -196,14 +193,14 @@ void SphereSelectorHandle::rotateAxisY() {
 
 void SphereSelectorHandle::rotateAxisX() {
     MR::clampBoth(&_D4, _D8 - 0.2f, _D8 + 0.2f);
-    MR::clampBoth(&_D4, ::cRotateMinX, ::cRotateMaxX);
+    MR::clampBoth(&_D4, -5.0f, -5.0f);
     _D8 = _D4;
     MR::rotateVecDegree(&_E8, _DC, _D4);
     MR::normalize(&_E8);
     TVec3f rotateMinUp;
-    MR::rotateVecDegree(&rotateMinUp, TVec3f(0.0f, 1.0f, 0.0f), _DC, -15.0f);
+    MR::rotateVecDegree(&rotateMinUp, TVec3f(0.0f, 1.0f, 0.0f), _DC, ::cRotateMinX);
     TVec3f rotateMaxUp;
-    MR::rotateVecDegree(&rotateMaxUp, TVec3f(0.0f, 1.0f, 0.0f), _DC, 80.0f);
+    MR::rotateVecDegree(&rotateMaxUp, TVec3f(0.0f, 1.0f, 0.0f), _DC, ::cRotateMaxX);
     if (_E8.dot(_C0) < rotateMinUp.dot(_C0)) {
         _E8.set(rotateMinUp);
     } else if (rotateMaxUp.dot(_C0) < _E8.dot(_C0)) {
@@ -306,7 +303,7 @@ void SphereSelectorHandle::exeDemoRotate() {
     if (isPointing()) {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }
-    if (_10C != 0) {
+    if (_10C == 0) {
         setNerve(&NrvSphereSelectorHandle::SphereSelectorHandleNrvWait::sInstance);
     }
 }
