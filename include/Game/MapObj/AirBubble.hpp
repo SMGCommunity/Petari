@@ -4,7 +4,9 @@
 
 class AirBubble : public LiveActor {
 public:
-    AirBubble(const char*);
+    /// @brief Creates a new `AirBubble`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    AirBubble(const char* pName);
 
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
@@ -21,15 +23,13 @@ public:
     void exeKillWait();
     bool canSpinGet() const;
 
-    TVec3f _8C;
-    TVec3f _98;
-    TVec3f _A4;
-    f32 _B0;
-    u32 _B4;
-    u32 _B8;
-    u32 _BC;
-    f32 _C0;
-    s32 _C4;
-    u8 _C8;
-    u8 _C9;
+    /* 0x8C */ TVec3f _8C;
+    /* 0x98 */ u8 _98[0xC];
+    /* 0xA4 */ TVec3f _A4;
+    /* 0xB0 */ f32 _B0;
+    /* 0xB4 */ u8 _B4[0xC];
+    /* 0xC0 */ f32 mRailMoveSpeed;
+    /* 0xC4 */ s32 mLife;
+    /* 0xC8 */ bool mIsFollowRail;
+    /* 0xC9 */ bool _C9;
 };

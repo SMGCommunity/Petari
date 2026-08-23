@@ -4158,14 +4158,14 @@ Game/Map/WaterRoad.cpp:
 Game/Map/WhirlPoolAccelerator.cpp:
 	.text       start:0x801A455C end:0x801A53D8
 	.rodata     start:0x80532F08 end:0x80532F20
-	.data       start:0x8058D1D0 end:0x8058D2B8
+	.data       start:0x8058D1D0 end:0x8058D278
 	.sdata      start:0x806B1CE0 end:0x806B1CE8
 	.sdata2     start:0x806BC588 end:0x806BC5E0
 
 Game/MapObj/AirBubble.cpp:
 	.text       start:0x801A53D8 end:0x801A5D80
 	.ctors      start:0x8052EC04 end:0x8052EC08
-	.data       start:0x8058D2B8 end:0x8058D370
+	.data       start:0x8058D278 end:0x8058D370
 	.sbss       start:0x806B4CF0 end:0x806B4D00
 	.sdata2     start:0x806BC5E0 end:0x806BC618
 
@@ -4193,14 +4193,16 @@ Game/MapObj/ArrowSwitch.cpp:
 	.ctors      start:0x8052EC10 end:0x8052EC14
 	.rodata     start:0x80532F20 end:0x80532F40
 	.data       start:0x8058D848 end:0x8058D9B8
+	.sdata      start:0x806B1CF8 end:0x806B1D00
 	.sbss       start:0x806B4D18 end:0x806B4D28
 	.sdata2     start:0x806BC628 end:0x806BC650
 
 Game/MapObj/ArrowSwitchMulti.cpp:
 	.text       start:0x801A7CA0 end:0x801A85C8
 	.ctors      start:0x8052EC14 end:0x8052EC18
-	.rodata     start:0x80532F40 end:0x80532F60
+	.rodata     start:0x80532F40 end:0x80532F58
 	.data       start:0x8058D9B8 end:0x8058DB00
+	.sdata      start:0x806B1D00 end:0x806B1D08
 	.sbss       start:0x806B4D28 end:0x806B4D30
 	.sdata2     start:0x806BC650 end:0x806BC678
 
@@ -4211,7 +4213,9 @@ Game/MapObj/ArrowSwitchMultiHolder.cpp:
 Game/MapObj/AssemblyBlock.cpp:
 	.text       start:0x801A87E0 end:0x801A926C
 	.ctors      start:0x8052EC18 end:0x8052EC1C
+	.rodata     start:0x80532F58 end:0x80532F60
 	.data       start:0x8058DB40 end:0x8058DD38
+	.sdata      start:0x806B1D08 end:0x806B1D10
 	.sbss       start:0x806B4D30 end:0x806B4D48
 	.sdata2     start:0x806BC678 end:0x806BC6A8
 
