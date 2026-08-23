@@ -53,6 +53,7 @@ public:
     /* 0x94 */ f32 mSegmentLength;
     /* 0x98 */ s32 mStackHeight;
     TPos3f _9C;
+    u32 _CC;
     /* 0xD0 */ TVec3f* mSensorOffsets;
     /* 0xD4 */ ElectricRailMovingPoint* mMovingPoints;
     u32 _D8;
