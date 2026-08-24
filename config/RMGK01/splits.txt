@@ -7123,7 +7123,7 @@ Game/Player/MarioFlip.cpp:
 Game/Player/MarioFrontStep.cpp:
 	.text       start:0x802DAA44 end:0x802DB028
 	.ctors      start:0x8052F0E4 end:0x8052F0E8
-	.data       start:0x805C6770 end:0x805C68E8
+	.data       start:0x805C6770 end:0x805C67E0
 	.sdata2     start:0x806BFB90 end:0x806BFBA8
 
 Game/Player/MarioBee.cpp:
@@ -7134,7 +7134,7 @@ Game/Player/MarioBee.cpp:
 Game/Player/MarioBlown.cpp:
 	.text       start:0x802DBAD8 end:0x802DC258
 	.ctors      start:0x8052F0EC end:0x8052F0F0
-	.data       start:0x805C68E8 end:0x805C6B28
+	.data       start:0x805C67E0 end:0x805C6B28
 	.sdata2     start:0x806BFBD8 end:0x806BFBF0
 
 Game/Player/MarioEffect.cpp:

@@ -45,6 +45,17 @@ class MatrixControl;
 
 enum SPECIAL_STATUS_FOR_CAMERA { CASE_0, CASE_1 };
 
+enum Player_Mode {
+    /* 0x0 */ PlayerMode_0,
+    /* 0x1 */ PlayerMode_Invincible,
+    /* 0x2 */ PlayerMode_2,
+    /* 0x3 */ PlayerMode_Ice,
+    /* 0x4 */ PlayerMode_Bee,
+    /* 0x5 */ PlayerMode_Hopper,
+    /* 0x6 */ PlayerMode_Teresa,
+    /* 0x7 */ PlayerMode_Foo
+};
+
 template < int SIZE, class T, class U >
 class AudGenericAudible;
 class JAUDopplerAudibleChannel;
