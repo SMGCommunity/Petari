@@ -264,7 +264,7 @@ namespace MR {
     f32 normalize(f32 x, f32 min, f32 max);
 
     f32 normalizeAbs(f32, f32, f32);
-    bool turnVecToVecCos(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&, f32);
+    bool turnVecToVecCos(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&, f32 = 0.02f);
     bool turnVecToVecCosOnPlane(TVec3f*, const TVec3f&, const TVec3f&, const TVec3f&, f32);
     bool turnVecToVecCosOnPlane(TVec3f*, const TVec3f&, const TVec3f&, f32);
     f32 turnVecToVecRadian(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&);
@@ -413,7 +413,15 @@ namespace MR {
     void getRotatedAxisZ(TVec3f*, const TVec3f&);
 
     template < typename T >
-    T converge(T, T, T);
+    T converge(T current, T target, T step) {
+        if (current < target) {
+            current += step;
+            return current > target ? target : current;
+        } else {
+            current -= step;
+            return current < target ? target : current;
+        }
+    }
 
     /// @brief Returns the value of pi (3.14159274f)
     inline f32 pi() {

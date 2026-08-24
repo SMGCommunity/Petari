@@ -1432,7 +1432,7 @@ config.libs = [
             Object(Matching, "Game/Map/ActorAppearSwitchListener.cpp"),
             Object(NonMatching, "Game/Map/Air.cpp"),
             Object(NonMatching, "Game/Map/BezierRail.cpp"),
-            Object(NonMatching, "Game/Map/Butterfly.cpp"),
+            Object(Matching, "Game/Map/Butterfly.cpp"),
             Object(NonMatching, "Game/Map/CollisionCategorizedKeeper.cpp"),
             Object(NonMatching, "Game/Map/CollisionCode.cpp"),
             Object(NonMatching, "Game/Map/CollisionDirector.cpp"),
