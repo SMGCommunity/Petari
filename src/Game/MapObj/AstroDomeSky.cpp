@@ -1,114 +1,183 @@
 #include "Game/MapObj/AstroDomeSky.hpp"
+#include "Game/LiveActor/MaterialCtrl.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/Scene/SceneFunction.hpp"
-#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ModelUtil.hpp"
+#include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    const char* cAstroDomeSkyTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
+    const Vec cJumpOutDemoRotate = {347.0f, 0.0f, 0.0};
+    const char* cAstroDomeSkyTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC", "AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
+
+    const f32 cAppearanceBrkTotalFrame = 200.0f;
+    const f32 cRotateDisappearBrkFrame = 30.0f;
+    const f32 cRotateAppearBrkFrame = 59.0f;
+    const f32 cAppearanceRotateSpeed = 0.1f;
+
+    const GXColor sColor1 = {0x00, 0x00, 0x00, 0xFF};
+    const GXColor sColor2 = {0x00, 0x00, 0x00, 0xFF};
 };  // namespace
 
 namespace NrvAstroDomeSky {
-    NEW_NERVE(AstroDomeNrvHide, AstroDomeSky, Hide);
-    NEW_NERVE(AstroDomeNrvAppear, AstroDomeSky, Appear);
-    NEW_NERVE(AstroDomeNrvWait, AstroDomeSky, Wait);
-    NEW_NERVE(AstroDomeNrvRotateAppear, AstroDomeSky, RotateAppear);
-    NEW_NERVE(AstroDomeNrvRotateDisappear, AstroDomeSky, RotateDisappear);
-    NEW_NERVE(AstroDomeNrvDisappear, AstroDomeSky, Disappear);
-    NEW_NERVE(AstroDomeNrvReturnDemoWait, AstroDomeSky, ReturnDemoWait);
-    NEW_NERVE(AstroDomeNrvJumpOutDemo, AstroDomeSky, JumpOutDemo);
+    NEW_NERVE(AstroDomeSkyNrvHide, AstroDomeSky, Hide);
+    NEW_NERVE(AstroDomeSkyNrvAppear, AstroDomeSky, Appear);
+    NEW_NERVE(AstroDomeSkyNrvWait, AstroDomeSky, Wait);
+    NEW_NERVE(AstroDomeSkyNrvRotateAppear, AstroDomeSky, RotateAppear);
+    NEW_NERVE(AstroDomeSkyNrvRotateDisappear, AstroDomeSky, RotateDisappear);
+    NEW_NERVE(AstroDomeSkyNrvDisappear, AstroDomeSky, Disappear);
+    NEW_NERVE(AstroDomeSkyNrvReturnDemoWait, AstroDomeSky, ReturnDemoWait);
+    NEW_NERVE(AstroDomeSkyNrvJumpOutDemo, AstroDomeSky, JumpOutDemo);
 };  // namespace NrvAstroDomeSky
 
-AstroDomeSky::AstroDomeSky(const char* pName) : LiveActor(pName) {
-    _8C = 0.0f;
-    _90.r = 0;
-    _90.g = 0;
-    _90.b = 0;
-    _90.a = 255;
-    _94 = nullptr;
+AstroDomeSky::AstroDomeSky(const char* pName) : LiveActor(pName), mBrkFrame(), mColor(0x00, 0x00, 0x00, 0xFF), mProjmap() {
 }
 
 void AstroDomeSky::init(const JMapInfoIter& rIter) {
-    s32 arg = -1;
-    MR::getJMapInfoArg0NoInit(rIter, &arg);
-    const char* arg2 = ::cAstroDomeSkyTable[arg - 1];
-    initModelManagerWithAnm(arg2, 0, true);
-    _94 = MR::initDLMakerProjmapEffectMtxSetter(this);
+    s32 arg0 = -1;
+    MR::getJMapInfoArg0NoInit(rIter, &arg0);
+
+    const char* pSkyName = ::cAstroDomeSkyTable[arg0 - 1];
+    initModelManagerWithAnm(pSkyName, nullptr, true);
+
+    mProjmap = MR::initDLMakerProjmapEffectMtxSetter(this);
     MR::newDifferedDLBuffer(this);
-    MR::startBtk(this, arg2);
+
+    MR::startBtk(this, pSkyName);
+
     MR::connectToScene(this, MR::MovementType_Sky, MR::CalcAnimType_MapObj, MR::DrawBufferType_AstroDomeSky, MR::DrawType_AstroDomeSkyClear);
     MR::invalidateClipping(this);
-    initNerve(&NrvAstroDomeSky::AstroDomeNrvHide::sInstance);
+
+    initNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvHide));
+
     MR::tryRegisterDemoCast(this, rIter);
-    MR::registerDemoActionNerve(this, &NrvAstroDomeSky::AstroDomeNrvReturnDemoWait::sInstance, "移動");
-    MR::registerDemoActionNerve(this, &NrvAstroDomeSky::AstroDomeNrvDisappear::sInstance, "ドーム出現");
+    MR::registerDemoActionNerve(this, GET_NERVE(AstroDomeSky, AstroDomeSkyNrvReturnDemoWait), "移動");
+    MR::registerDemoActionNerve(this, GET_NERVE(AstroDomeSky, AstroDomeSkyNrvDisappear), "ドーム出現");
     MR::registerDemoCast(this, "マリオ飛び出し", rIter);
     MR::registerDemoSimpleCastAll(this);
+
     SphereSelectorFunction::registerTarget(this);
+
     makeActorAppeared();
 }
 
 void AstroDomeSky::draw() const {
-    MR::fillScreen(_90);
+    MR::fillScreen(mColor.mGXColor);
+}
+
+void AstroDomeSky::calcAndSetBaseMtx() {
+    TPos3f rotateMtx;
+    if (isNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvJumpOutDemo))) {
+        MR::makeMtxRotate(rotateMtx, ::cJumpOutDemoRotate);
+    } else {
+        SphereSelectorFunction::calcHandledRotateMtx(TVec3f(0.0f, 0.0f, 0.0f), &rotateMtx);
+    }
+
+    rotateMtx.setTrans(MR::getCamPos());
+    MR::setBaseTRMtx(this, rotateMtx);
+
+    mProjmap->updateMtxUseBaseMtx();
 }
 
 bool AstroDomeSky::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (SphereSelectorFunction::isMsgSelectStart(msg)) {
-        setNerve(&NrvAstroDomeSky::AstroDomeNrvAppear::sInstance);
-        return true;
-    } else if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
-        setNerve(&NrvAstroDomeSky::AstroDomeNrvDisappear::sInstance);
+        setNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvAppear));
         return true;
     }
+
+    if (SphereSelectorFunction::isMsgSelectEnd(msg)) {
+        setNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvDisappear));
+        return true;
+    }
+
     return false;
 }
 
-bool AstroDomeSky::tryRotateAppearence() {
-    if (0.1f < MR::abs(SphereSelectorFunction::getHandleRotateSpeed())) {
-        if (!isNerve(&NrvAstroDomeSky::AstroDomeNrvRotateDisappear::sInstance)) {
-            if (isNerve(&NrvAstroDomeSky::AstroDomeNrvRotateAppear::sInstance) && !MR::isBrkStopped(this)) {
-                _8C = 59.0f - MR::getBrkFrame(this);
+bool AstroDomeSky::tryRotateAppearance() {
+    if (::cAppearanceRotateSpeed < MR::abs(SphereSelectorFunction::getHandleRotateSpeed())) {
+        if (!isNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateDisappear::sInstance)) {
+            if (isNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateAppear::sInstance) && !MR::isBrkStopped(this)) {
+                mBrkFrame = ::cRotateAppearBrkFrame - MR::getBrkFrame(this);
             } else {
-                _8C = 0.0f;
+                mBrkFrame = 0.0f;
             }
-            setNerve(&NrvAstroDomeSky::AstroDomeNrvRotateDisappear::sInstance);
+
+            setNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateDisappear::sInstance);
+
             return true;
         }
     } else {
-        if (isNerve(&NrvAstroDomeSky::AstroDomeNrvRotateDisappear::sInstance)) {
+        if (isNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateDisappear::sInstance)) {
             if (!MR::isBrkStopped(this)) {
-                _8C = 59.0f - MR::getBrkFrame(this);
+                mBrkFrame = ::cRotateAppearBrkFrame - MR::getBrkFrame(this);
             } else {
-                _8C = 29.0f;
+                mBrkFrame = ::cRotateDisappearBrkFrame - 1.0f;
             }
-            setNerve(&NrvAstroDomeSky::AstroDomeNrvRotateAppear::sInstance);
+
+            setNerve(&NrvAstroDomeSky::AstroDomeSkyNrvRotateAppear::sInstance);
+
             return true;
         }
     }
+
     return false;
 }
 
 void AstroDomeSky::exeHide() {
+    if (!MR::isFirstStep(this)) {
+        return;
+    }
+
+    MR::startBrk(this, "Disappear");
+    MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this, "Disappear"));
+
+    mColor.set(::sColor1);
+}
+
+void AstroDomeSky::exeAppear() {
     if (MR::isFirstStep(this)) {
-        MR::startBrk(this, "Disappear");
-        MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this, "Disappear"));
-        // Color8.set(GXColor)
+        MR::startBrk(this, "Appear");
+
+        MR::startSystemSE("SE_DM_ASTRO_HANDLE_OPEN_ST");
+    }
+
+    f32 t = MR::calcNerveRate(this, MR::getBrkFrameMax(this, "Appear"));
+    mColor.set(MR::lerp(::sColor1, ::sColor2, t));
+
+    if (!MR::isBrkStopped(this)) {
+        return;
+    }
+
+    MR::startSystemSE("SE_DM_ASTRO_HANDLE_OPEN_ED");
+
+    setNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvWait));
+}
+
+void AstroDomeSky::exeWait() {
+    if (MR::isFirstStep(this)) {
+        mColor.set(::sColor2);
+    }
+
+    if (tryRotateAppearance()) {
+        return;
     }
 }
 
 void AstroDomeSky::exeRotateAppear() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "Appear");
-        MR::setBrkFrame(this, _8C);
-        MR::setBrkRate(this, (59.0f - _8C) / 200.0f);
+        MR::setBrkFrame(this, mBrkFrame);
+        MR::setBrkRate(this, (::cRotateAppearBrkFrame - mBrkFrame) / ::cAppearanceBrkTotalFrame);
     }
-    if (tryRotateAppearence()) {
+
+    if (tryRotateAppearance()) {
         return;
     }
 }
@@ -116,13 +185,41 @@ void AstroDomeSky::exeRotateAppear() {
 void AstroDomeSky::exeRotateDisappear() {
     if (MR::isFirstStep(this)) {
         MR::startBrk(this, "Disappear");
-        MR::setBrkFrame(this, _8C);
-        MR::setBrkRate(this, (30.0f - _8C) / 20.0f);
+        MR::setBrkFrame(this, mBrkFrame);
+        MR::setBrkRate(this, (::cRotateDisappearBrkFrame - mBrkFrame) / 20.0f);
     }
-    if (30.0f <= MR::getBrkFrame(this)) {
-        MR::setBrkFrameAndStop(this, 30.0f);
+
+    if (::cRotateDisappearBrkFrame <= MR::getBrkFrame(this)) {
+        MR::setBrkFrameAndStop(this, ::cRotateDisappearBrkFrame);
     }
-    if (tryRotateAppearence()) {
+
+    if (tryRotateAppearance()) {
         return;
     }
+}
+
+void AstroDomeSky::exeDisappear() {
+    if (MR::isFirstStep(this)) {
+        MR::startBrk(this, "Disappear");
+    }
+
+    f32 t = MR::calcNerveRate(this, MR::getBrkFrameMax(this, "Disappear"));
+    mColor.set(MR::lerp(::sColor1, ::sColor2, t));
+
+    if (!MR::isBrkStopped(this)) {
+        return;
+    }
+
+    setNerve(GET_NERVE(AstroDomeSky, AstroDomeSkyNrvHide));
+}
+
+void AstroDomeSky::exeReturnDemoWait() {
+    if (!MR::isFirstStep(this)) {
+        return;
+    }
+
+    MR::startBrk(this, "Appear");
+    MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this, "Appear"));
+
+    mColor.set(::sColor1);
 }

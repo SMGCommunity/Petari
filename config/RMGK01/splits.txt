@@ -4298,7 +4298,7 @@ Game/MapObj/AstroDomeOrbit.cpp:
 Game/MapObj/AstroDomeSky.cpp:
 	.text       start:0x801AE3F8 end:0x801AEE08
 	.ctors      start:0x8052EC40 end:0x8052EC44
-	.rodata     start:0x80533018 end:0x80533048
+	.rodata     start:0x80533018 end:0x80533030
 	.data       start:0x8058E9B8 end:0x8058EB60
 	.sbss       start:0x806B4DF8 end:0x806B4E18
 	.sdata2     start:0x806BC758 end:0x806BC780
@@ -4439,7 +4439,7 @@ Game/MapObj/BlueChip.cpp:
 Game/MapObj/BlueStarCupsulePlanet.cpp:
 	.text       start:0x801B8E20 end:0x801B9C78
 	.ctors      start:0x8052EC80 end:0x8052EC84
-	.rodata     start:0x80533048 end:0x80533058
+	.rodata     start:0x80533030 end:0x80533058
 	.data       start:0x80590558 end:0x80590790
 	.sbss       start:0x806B4ED0 end:0x806B4EE0
 	.sdata2     start:0x806BC920 end:0x806BC938
