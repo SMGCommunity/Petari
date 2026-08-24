@@ -229,7 +229,7 @@ bool AstroDomeBlueStar::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* 
 
 bool AstroDomeBlueStar::tryStartBind(const LiveActor* pActor) {
     if (isNerve(GET_NERVE(AstroDomeBlueStar, AstroDomeBlueStarNrvTryStartBind))) {
-        mHostMtx.setInline(pActor->getBaseMtx());
+        mHostMtx.set(pActor->getBaseMtx());
 
         setNerve(GET_NERVE(AstroDomeBlueStar, AstroDomeBlueStarNrvBindTraction));
 
@@ -269,7 +269,7 @@ void AstroDomeBlueStar::exeAppear() {
         MR::startBck(this, "Appear", nullptr);
 
         MR::emitEffect(this, "TargetLight");
-        
+
         MR::startSystemSE("SE_SY_GCAPTURE_APPEAR");
         MR::startSound(this, "SE_OJ_GCAPTURE_APPEAR");
     }
@@ -283,27 +283,27 @@ void AstroDomeBlueStar::exeWait() {
 
         MR::tryStartBck(this, "Wait", nullptr);
         MR::setBckRate(this, 0.5f);
-        
+
         MR::deleteEffect(this, "Target");
         MR::deleteEffect(this, "Active");
         MR::deleteEffect(this, "Target");
         MR::deleteEffect(this, "TargetLight");
         MR::emitEffect(this, "Wait");
-        
+
         MR::validateClipping(this);
-        
+
         mCaptureRibbon->reset();
-        
+
         getSensor("bind")->invalidate();
-        
+
         mCaptureActor->setPosAll(mPosition);
-        
+
         mCaptureActor->kill();
-        
+
         MR::tryShowTimeoutedStarPointerGuidance();
     }
 
-    if (isValidBindStart() && MR::isStarPointerPointing(this, 0, true, "弱")) {
+    if (isValidBindStart() && MR::isStarPointerPointing(this, WPAD_CHAN0, true, "弱")) {
         setNerve(GET_NERVE(AstroDomeBlueStar, AstroDomeBlueStarNrvPointing));
     }
 }
@@ -313,22 +313,22 @@ void AstroDomeBlueStar::exePointing() {
         MR::setBckRate(this, 1.0f);
 
         MR::emitEffect(this, "Target");
-        
+
         MR::invalidateClipping(this);
-        
-        MR::startCSSound("CS_STAR_POWER", nullptr, 0);
+
+        MR::startCSSound("CS_STAR_POWER", nullptr, WPAD_CHAN0);
     }
 
     MR::requestStarPointerModeBlueStarReady(this);
-    
+
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_POINT");
 
     if (MR::isOnTractTrigger()) {
         setNerve(GET_NERVE(AstroDomeBlueStar, AstroDomeBlueStarNrvTryStartBind));
         return;
-    } 
-    
-    if (!isValidBindStart() || !MR::isStarPointerPointing(this, 0, true, "弱")) {
+    }
+
+    if (!isValidBindStart() || !MR::isStarPointerPointing(this, WPAD_CHAN0, true, "弱")) {
         setNerve(GET_NERVE(AstroDomeBlueStar, AstroDomeBlueStarNrvWait));
     }
 }
@@ -336,28 +336,28 @@ void AstroDomeBlueStar::exePointing() {
 void AstroDomeBlueStar::exeTryStartBind() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "React", nullptr);
-        
+
         MR::deleteEffect(this, "Target");
         MR::emitEffect(this, "Active");
-        
+
         MR::startSound(this, "SE_OJ_MAGIC_PNT_G_ON");
-        
+
         getSensor("bind")->validate();
-        
+
         mCaptureActor->setPosAll(mPosition);
-        
+
         mCaptureActor->appear();
-        
+
         MR::emitEffect(mCaptureActor, "RibbonPoint");
     }
 
     MR::requestStarPointerModeBlueStarReady(this);
-    
+
     TVec3f resultPoint;
     resultPoint.lerp(mCaptureActor->mPosition, *MR::getPlayerCenterPos(), MR::calcNerveRate(this, ::cTryStartBindFrame));
     mCaptureActor->setPosAll(resultPoint);
     mCaptureRibbon->lengthen(mPosition, resultPoint);
-    
+
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_PULL", MR::calcDistanceToPlayer(this));
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_POINT");
 
@@ -369,16 +369,16 @@ void AstroDomeBlueStar::exeTryStartBind() {
 void AstroDomeBlueStar::exeBindTraction() {
     if (MR::isFirstStep(this)) {
         getSensor("bind")->invalidate();
-        
+
         MR::deleteEffect(mCaptureActor, "RibbonPoint");
         MR::emitEffect(mCaptureActor, "RibbonBreak");
         MR::emitEffect(mCaptureActor, "LightGrow");
         MR::emitEffect(mCaptureActor, "LightSplash");
-        
+
         MR::startBckPlayer("SpaceStruggle", 20);
-        
-        mBindStartMtx.setInline(mHostMtx);
-        
+
+        mBindStartMtx.set(mHostMtx);
+
         MR::startActorCameraTargetPlayer(this, mCameraInfo, -1);
     }
 
@@ -387,11 +387,11 @@ void AstroDomeBlueStar::exeBindTraction() {
     mCaptureActor->updateTransTraction(trans, mPosition, getNerveStep());
 
     mHostMtx.setTrans(mCaptureActor->mPosition);
-    
+
     TVec3f trans2;
     mCaptureActor->mHostMtx.getTrans(trans2);
     mCaptureRibbon->shorten(mPosition, trans2);
-    
+
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_PULL", MR::calcDistanceToPlayer(this));
     MR::startLevelSound(this, "SE_OJ_LV_MAGIC_PNT_G_POINT");
 
@@ -409,17 +409,17 @@ void AstroDomeBlueStar::exeBindHold() {
 
     if (MR::isFirstStep(this)) {
         MR::hideModel(this);
-        
+
         MR::deleteEffectAll(this);
-        
+
         mCaptureRibbon->reset();
-        
+
         MR::deleteEffect(mCaptureActor, "LightSplash");
-        
+
         MR::startBckPlayer("SpaceWait", 20);
-        
+
         mCaptureActor->setPosAll(mPosition);
-        
+
         SphereSelectorFunction::selectStart();
     }
 
@@ -445,9 +445,10 @@ void AstroDomeBlueStar::exeBindEnd() {
 
 void AstroDomeBlueStar::exeGalaxySelect() {
     if (!MR::isFirstStep(this)) {
-        return;}
-        
-        mPosition.set2(0.0f);
+        return;
+    }
+
+    mPosition.zero();
 }
 
 void AstroDomeBlueStar::exeGalaxyConfirmStart() {
@@ -455,7 +456,7 @@ void AstroDomeBlueStar::exeGalaxyConfirmStart() {
 
     calcZoomInPos(&mZoomPos);
     mPosition.scale(MR::calcNerveEaseOutRate(this, frame), mZoomPos);
-    
+
     MR::setNerveAtStep(this, GET_NERVE(AstroDomeBlueStar, AstroDomeBlueStarNrvGalaxyConfirm), frame);
 }
 
@@ -464,7 +465,7 @@ void AstroDomeBlueStar::exeGalaxyConfirmCancel() {
     f32 rate = MR::calcNerveEaseInRate(this, frame);
 
     mPosition.scale(1.0f - rate, mZoomPos);
-    
+
     MR::setNerveAtStep(this, GET_NERVE(AstroDomeBlueStar, AstroDomeBlueStarNrvGalaxySelect), frame);
 }
 
