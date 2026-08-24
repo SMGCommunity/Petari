@@ -36,7 +36,7 @@ public:
     void drawRailGX(f32) const;
     void drawPlane(f32, f32, f32, f32) const;
     void drawPlaneGX(f32, f32, f32, f32) const;
-    void setVertexAttribute(int, int, f32, f32, f32, f32, f32, PosAttrFunc, TexAttrFunc);
+    void setVertexAttribute(int, int, f32, f32, f32, f32, PosAttrFunc, TexAttrFunc) const;
     void updateHitSensorPos();
     void updatePointPos();
     void updatePointPosAndModel();
@@ -56,10 +56,10 @@ public:
     u32 _CC;
     /* 0xD0 */ TVec3f* mSensorOffsets;
     /* 0xD4 */ ElectricRailMovingPoint* mMovingPoints;
-    u32 _D8;
-    u32 _DC;
+    s32 _D8;
+    void* _DC;
     u32 _E0;
-    u32 _E4;
+    s32 _E4;
     TVec3f* _E8;
     f32 _EC;
     f32 _F0;
