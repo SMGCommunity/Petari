@@ -187,7 +187,7 @@ void AstroDomeOrbit::drawSide(f32 width, bool isAddWidth, f32 height) const {
         v15.set(v16);
         v15.y -= height;
 
-        if (a3) {
+        if (isAddWidth) {
             GXPosition3f32(v16.x, v16.y, v16.z);
             GXPosition3f32(v15.x, v15.y, v15.z);
         } else {
