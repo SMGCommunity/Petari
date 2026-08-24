@@ -116,7 +116,7 @@ void JumpEmitter::updateRotate() {
 
     TRot3f mtx;
     mtx.identity();
-    JMath::gekko_ps_copy12(mtx, getBaseMtx());
+    mtx.set(getBaseMtx());
     mtx.invert(mtx);
 
     TVec3f playerPos(*MR::getPlayerPos());
@@ -207,11 +207,11 @@ void JumpGuarder::control() {
 
     MR::makeMtxTRS(mtx.mMtx, TVec3f(0.0f, 44.0f, 0.0f), head->mRotation, head->mScale);
 
-    JMath::gekko_ps_copy12(_90, mBodyJointMtx);
+    _90.set(mBodyJointMtx);
 
     TMtx34f mtx2;
     mtx2.concat(_90, mtx);
-    JMath::gekko_ps_copy12(_90, mtx2);
+    _90.set(mtx2);
 
     mBumpCooldown = MR::max(mBumpCooldown - 1, 0);
 
