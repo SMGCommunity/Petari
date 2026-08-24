@@ -14,9 +14,8 @@
 #include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    const Vec cJumpOutDemoRotate = {347.0f, 0.0f, 0.0};
+    const Vec cJumpOutDemoRotate = {347.0f, 0.0f, 0.0f};
     const char* cAstroDomeSkyTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC", "AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
-
     const s32 cAppearanceBrkTotalFrame = 200;
     const s32 cRotateDisappearBrkFrame = 30;
     const s32 cRotateAppearBrkFrame = 59;
@@ -69,7 +68,7 @@ void AstroDomeSky::init(const JMapInfoIter& rIter) {
 }
 
 void AstroDomeSky::draw() const {
-    MR::fillScreen(mColor.mGXColor);
+    MR::fillScreen(mColor);
 }
 
 void AstroDomeSky::calcAndSetBaseMtx() {
@@ -131,14 +130,12 @@ bool AstroDomeSky::tryRotateAppearance() {
 }
 
 void AstroDomeSky::exeHide() {
-    if (!MR::isFirstStep(this)) {
-        return;
+    if (MR::isFirstStep(this)) {
+        MR::startBrk(this, "Disappear");
+        MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this, "Disappear"));
+
+        mColor.set(::sColor1);
     }
-
-    MR::startBrk(this, "Disappear");
-    MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this, "Disappear"));
-
-    mColor.set(::sColor1);
 }
 
 void AstroDomeSky::exeAppear() {
