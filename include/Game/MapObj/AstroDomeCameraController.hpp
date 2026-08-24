@@ -7,20 +7,20 @@ public:
     class Position {
     public:
         Position() {
-            _0.zero();
-            _C.zero();
-            _18.zero();
+            mStart.zero();
+            mEnd.zero();
+            mTarget.zero();
         }
 
         void reset(const TVec3f& rVec) {
-            _0.set(rVec);
-            _C.set(rVec);
-            _18.set(rVec);
+            mStart.set(rVec);
+            mEnd.set(rVec);
+            mTarget.set(rVec);
         }
 
-        /* 0x00 */ TVec3f _0;
-        /* 0x0C */ TVec3f _C;
-        /* 0x18 */ TVec3f _18;
+        /* 0x00 */ TVec3f mStart;
+        /* 0x0C */ TVec3f mEnd;
+        /* 0x18 */ TVec3f mTarget;
     };
 
     AstroDomeCameraController(const char*);
@@ -42,10 +42,10 @@ public:
     void exeGalaxyConfirm();
     void exeGalaxyConfirmCancel();
 
-    /* 0x08C */ TVec3f _8C;
-    /* 0x098 */ Position _98;
-    /* 0x0BC */ Position _BC;
-    /* 0x0E0 */ Position _E0;
-    /* 0x104 */ f32 _104;
-    /* 0x108 */ TVec3f _108;
+    /* 0x08C */ TVec3f mStartPos;
+    /* 0x098 */ Position mZoomPos;
+    /* 0x0BC */ Position mTargetPos;
+    /* 0x0E0 */ Position mUpPos;
+    /* 0x104 */ f32 mEaseRate;
+    /* 0x108 */ TVec3f mZeroPos;
 };

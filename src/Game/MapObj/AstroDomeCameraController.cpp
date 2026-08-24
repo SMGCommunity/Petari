@@ -8,15 +8,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "math_types.hpp"
-#include "revolution/mtx.h"
-#include "revolution/types.h"
 
 namespace {
     const Vec cDefaultUp = {0.0f, 1.0f, 0.0f};
     const Vec cZoomInPos = {0.0f, 3000.0f, -8500.0f};
+
     const f32 cFovy = 60.0f;
     const f32 cZoomOutPosZ = -22000.0f;
     const f32 cZoomInTargetOffsetY = 200.0f;
@@ -30,28 +26,34 @@ namespace NrvAstroDomeCameraController {
     NEW_NERVE(AstroDomeCameraControllerNrvGalaxyConfirmCancel, AstroDomeCameraController, GalaxyConfirmCancel);
 };  // namespace NrvAstroDomeCameraController
 
-AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), _8C(gZeroVec), _104(), _108(gZeroVec) {
+AstroDomeCameraController::AstroDomeCameraController(const char* pName) : LiveActor(pName), mStartPos(gZeroVec), mEaseRate(), mZeroPos(gZeroVec) {
 }
 
 void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
+
     MR::invalidateClipping(this);
+    
     MR::initActorCameraProgrammable(this);
-    initNerve(&NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelectStart::sInstance);
+    initNerve(GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxySelectStart));
+    
     SphereSelectorFunction::registerTarget(this);
     MR::registerDemoSimpleCastAll(this);
+
     makeActorDead();
 }
 
 void AstroDomeCameraController::appear() {
     LiveActor::appear();
-    TVec3f pCamPos = MR::getCamPos();
-    _8C.set< f32 >(pCamPos);
-    _98.reset(_8C);
-    _BC.reset(_108);
-    _E0.reset(::cDefaultUp);
+
+    mStartPos.set< f32 >(MR::getCamPos());
+    mZoomPos.reset(mStartPos);
+    mTargetPos.reset(mZeroPos);
+    mUpPos.reset(::cDefaultUp);
+    
     MR::startActorCameraProgrammable(this, SphereSelectorFunction::getSelectStartFrame());
-    setNerve(&NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelectStart::sInstance);
+    
+    setNerve(GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxySelectStart));
 }
 
 void AstroDomeCameraController::kill() {
@@ -60,10 +62,11 @@ void AstroDomeCameraController::kill() {
 }
 
 void AstroDomeCameraController::control() {
-    _98._18.lerp(_98._0, _98._C, _104);
-    _BC._18.lerp(_BC._0, _BC._C, _104);
-    _E0._18.lerp(_E0._0, _E0._C, _104);
-    MR::setProgrammableCameraParam(this, _BC._18, _98._18, _E0._18);
+    mZoomPos.mTarget.lerp(mZoomPos.mStart, mZoomPos.mEnd, mEaseRate);
+    mTargetPos.mTarget.lerp(mTargetPos.mStart, mTargetPos.mEnd, mEaseRate);
+    mUpPos.mTarget.lerp(mUpPos.mStart, mUpPos.mEnd, mEaseRate);
+
+    MR::setProgrammableCameraParam(this, mTargetPos.mTarget, mZoomPos.mTarget, mUpPos.mTarget);
     MR::setProgrammableCameraParamFovy(this, ::cFovy);
 }
 
@@ -71,117 +74,135 @@ bool AstroDomeCameraController::receiveOtherMsg(u32 msg, HitSensor* pSender, Hit
     if (SphereSelectorFunction::trySyncAppearMsgSelectStart(this, msg)) {
         return true;
     }
+
     if (SphereSelectorFunction::isMsgConfirmStart(msg)) {
-        setNerve(&NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxyConfirmStart::sInstance);
+        setNerve(GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxyConfirmStart));
         return true;
     }
+
     if (SphereSelectorFunction::isMsgConfirmCancel(msg)) {
-        setNerve(&NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxyConfirmCancel::sInstance);
+        setNerve(GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxyConfirmCancel));
         return true;
     }
+
     return false;
 }
 
-void AstroDomeCameraController::calcZoomOutPos(TVec3f* v1) const {
-    SphereSelectorFunction::calcOffsetPos(v1, gZeroVec, TVec3f(0.0f, 0.0f, ::cZoomOutPosZ), -_8C, TVec3f(0.0f, 1.0f, 0.0f));
+void AstroDomeCameraController::calcZoomOutPos(TVec3f* pDst) const {
+    SphereSelectorFunction::calcOffsetPos(pDst, gZeroVec, TVec3f(0.0f, 0.0f, ::cZoomOutPosZ), -mStartPos, TVec3f(0.0f, 1.0f, 0.0f));
 }
 
-void AstroDomeCameraController::calcZoomInPos(TVec3f* v1, const TVec3f& v2) const {
+void AstroDomeCameraController::calcZoomInPos(TVec3f* pDst, const TVec3f& rUp) const {
     TVec3f zoomOutPos;
     calcZoomOutPos(&zoomOutPos);
+    
     TVec3f x;
     x.sub(SphereSelectorFunction::getSelectedActorTrans(), zoomOutPos);
-    SphereSelectorFunction::calcOffsetPos(v1, SphereSelectorFunction::getSelectedActorTrans(), ::cZoomInPos, x, v2);
+    SphereSelectorFunction::calcOffsetPos(pDst, SphereSelectorFunction::getSelectedActorTrans(), ::cZoomInPos, x, rUp);
 }
 
-void AstroDomeCameraController::calcZoomInTarget(TVec3f* vec1, const TVec3f& vec2) const {
+void AstroDomeCameraController::calcZoomInTarget(TVec3f* pDst, const TVec3f& vec2) const {
     TVec3f offset;
     offset.scale(::cZoomInTargetOffsetY, vec2);
-    vec1->add(SphereSelectorFunction::getSelectedActorTrans(), offset);
+    pDst->add(SphereSelectorFunction::getSelectedActorTrans(), offset);
 }
 
-void AstroDomeCameraController::calcZoomInUp(TVec3f* vec) const {
-    TPos3f pos;
-    SphereSelectorFunction::calcHandledRotateMtx(TVec3f(0.0f, 0.0f, 0.0f), &pos);
-    f32 v3 = pos[2][1];
-    f32 v2 = pos[1][1];
-    f32 v1 = pos[0][1];
-    vec->set< f32 >(v1, v2, v3);
+void AstroDomeCameraController::calcZoomInUp(TVec3f* pDst) const {
+    TPos3f rotateMtx;
+    SphereSelectorFunction::calcHandledRotateMtx(TVec3f(0.0f, 0.0f, 0.0f), &rotateMtx);
+    rotateMtx.getYDir(*pDst);
 }
 
 void AstroDomeCameraController::exeGalaxySelectStart() {
-    s32 STF = SphereSelectorFunction::getSelectStartFrame();
-    TVec3f stack;
+    s32 startFrame = SphereSelectorFunction::getSelectStartFrame();
+    TVec3f zoomOutPos;
+    
     if (MR::isFirstStep(this)) {
-        calcZoomOutPos(&stack);
-        _98._0.set< f32 >(_98._18);
-        _98._C.set< f32 >(stack);
-        _BC._0.set< f32 >(_BC._18);
-        _BC._C.set< f32 >(_108);
+        calcZoomOutPos(&zoomOutPos);
+
+        mZoomPos.mStart.set(mZoomPos.mTarget);
+        mZoomPos.mEnd.set(zoomOutPos);
+        mTargetPos.mStart.set(mTargetPos.mTarget);
+        mTargetPos.mEnd.set(mZeroPos);
     }
-    _104 = MR::getEaseInOutValue(MR::calcNerveRate(this, STF), 0.0f, 1.0f, 1.0f);
-    MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, STF);
+
+    mEaseRate = MR::getEaseInOutValue(MR::calcNerveRate(this, startFrame), 0.0f, 1.0f, 1.0f);
+    MR::setNerveAtStep(this, GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxySelect), startFrame);
 }
 
 void AstroDomeCameraController::exeGalaxySelect() {
     if (MR::isFirstStep(this)) {
-        _104 = 1.0f;
+        mEaseRate = 1.0f;
     }
-    TVec3f vec;
-    calcZoomOutPos(&vec);
-    _98.reset(vec);
-    _BC.reset(_108);
+
+    TVec3f zoomOutPos;
+    calcZoomOutPos(&zoomOutPos);
+
+    mZoomPos.reset(zoomOutPos);
+    mTargetPos.reset(mZeroPos);
 }
 
 void AstroDomeCameraController::exeGalaxyConfirmStart() {
-    TVec3f vecUp;
-    TVec3f vecTar;
-    TVec3f vecPos;
     s32 frame = SphereSelectorFunction::getConfirmStartCancelFrame();
+    
+    TVec3f vecUp;
     calcZoomInUp(&vecUp);
-    calcZoomInTarget(&vecTar, vecUp);
+    
+    TVec3f vecTarget;
+    calcZoomInTarget(&vecTarget, vecUp);
+
     if (MR::isFirstStep(this)) {
-        _BC._0.set(_BC._18);
-        _BC._C.set(vecTar);
-        calcZoomInPos(&vecPos, vecUp);
-        _98._0.set(_98._18);
-        _98._C.set(vecPos);
-        _E0._0.set(_E0._18);
-        _E0._C.set(vecUp);
+        mTargetPos.mStart.set(mTargetPos.mTarget);
+        mTargetPos.mEnd.set(vecTarget);
+
+        TVec3f zoomInPos;
+        calcZoomInPos(&zoomInPos, vecUp);
+
+        mZoomPos.mStart.set(mZoomPos.mTarget);
+        mZoomPos.mEnd.set(zoomInPos);
+        mUpPos.mStart.set(mUpPos.mTarget);
+        mUpPos.mEnd.set(vecUp);
     }
-    _104 = MR::calcNerveEaseOutRate(this, frame);
-    _BC._C.set(vecTar);
-    MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxyConfirm::sInstance, frame);
+
+    mEaseRate = MR::calcNerveEaseOutRate(this, frame);
+    mTargetPos.mEnd.set(vecTarget);
+    
+    MR::setNerveAtStep(this, GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxyConfirm), frame);
 }
 
 void AstroDomeCameraController::exeGalaxyConfirm() {
     TVec3f vecUp;
-    TVec3f vecPos;
-    TVec3f vecTar;
     calcZoomInUp(&vecUp);
+    
     if (MR::isFirstStep(this)) {
-        _104 = 1.0f;
+        mEaseRate = 1.0f;
     }
-    calcZoomInPos(&vecPos, vecUp);
-    _98.reset(vecPos);
-    calcZoomInTarget(&vecTar, vecUp);
-    _BC.reset(vecTar);
+    
+    TVec3f zoomInPos;
+    calcZoomInPos(&zoomInPos, vecUp);
+    mZoomPos.reset(zoomInPos);
+
+    TVec3f zoomInTarget;
+    calcZoomInTarget(&zoomInTarget, vecUp);
+    mTargetPos.reset(zoomInTarget);
 }
 
 void AstroDomeCameraController::exeGalaxyConfirmCancel() {
-    TVec3f vecUp;
-    TVec3f vecPos;
     s32 frame = SphereSelectorFunction::getConfirmStartCancelFrame();
+
     if (MR::isFirstStep(this)) {
-        calcZoomOutPos(&vecPos);
-        _98._0.set(_98._18);
-        _98._C.set(vecPos);
-        _BC._0.set(_BC._18);
-        _BC._C.set(_108);
-        TVec3f vec = TVec3f(::cDefaultUp);
-        _E0._0.set(_E0._18);
-        _E0._C.set(vec);
+        TVec3f zoomOutPos;
+        calcZoomOutPos(&zoomOutPos);
+        mZoomPos.mStart.set(mZoomPos.mTarget);
+        mZoomPos.mEnd.set(zoomOutPos);
+        mTargetPos.mStart.set(mTargetPos.mTarget);
+        mTargetPos.mEnd.set(mZeroPos);
+        
+        TVec3f vec(::cDefaultUp);
+        mUpPos.mStart.set(mUpPos.mTarget);
+        mUpPos.mEnd.set(vec);
     }
-    _104 = MR::calcNerveEaseInRate(this, frame);
-    MR::setNerveAtStep(this, &NrvAstroDomeCameraController::AstroDomeCameraControllerNrvGalaxySelect::sInstance, frame);
+    
+    mEaseRate = MR::calcNerveEaseInRate(this, frame);
+    MR::setNerveAtStep(this, GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxySelect), frame);
 }
