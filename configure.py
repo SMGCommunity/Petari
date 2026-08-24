@@ -1540,7 +1540,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/AstroDomeAsteroid.cpp"),
             Object(NonMatching, "Game/MapObj/AstroDomeBlueStar.cpp"),
             Object(NonMatching, "Game/MapObj/AstroDomeCameraController.cpp"),
-            Object(NonMatching, "Game/MapObj/AstroDomeComet.cpp"),
+            Object(Matching, "Game/MapObj/AstroDomeComet.cpp"),
             Object(NonMatching, "Game/MapObj/AstroDomeDemoAstroGalaxy.cpp"),
             Object(Matching, "Game/MapObj/AstroDomeGalaxySelector.cpp"),
             Object(NonMatching, "Game/MapObj/AstroDomeOrbit.cpp"),
