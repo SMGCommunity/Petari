@@ -13,7 +13,6 @@ namespace {
     const static Vec cRotateOutermost = {20.0f, 45.0f, 0.0f};
     const static f32 cRadius[] = {4000.0f, 6200.0f, 8100.0f, 10300.0f, 12000.0f};
     const static f32 cRadiusLastDome[] = {4000.0f, 6700.0f, 9100.0f, 11800.0f};
-
     const static s32 cDevideNum = 64;
     const static f32 cWidth = 100.0f;
     const static f32 cHeight = 50.0f;
@@ -26,15 +25,16 @@ namespace {
     const static Color8 cBloomColor(0x00, 0xB4, 0x64, 0xFF);
 };  // namespace
 
-AstroDomeOrbit::AstroDomeOrbit() : LiveActor("天文ドームの軌道") {
-    mOrbitRadius = 5000.0f;
-    mAngle = 0.0f;
+AstroDomeOrbit::AstroDomeOrbit() : LiveActor("天文ドームの軌道"), mOrbitRadius(5000.0f), mAngle() {
 }
 
 void AstroDomeOrbit::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, -1, -1, -1, MR::DrawType_AstroDomeOrbit);
+
     MR::invalidateClipping(this);
+
     MR::createAdaptorAndConnectToDrawBloomModel("天文ドーム軌道ブルーム描画", MR::Functor_InlineC(this, &AstroDomeOrbit::drawBloom));
+
     makeActorDead();
 }
 
@@ -87,8 +87,8 @@ void AstroDomeOrbit::moveCoord() {
 }
 
 void AstroDomeOrbit::calcGalaxyPos(TVec3f* pPos) const {
-    f32 v4 = TWO_PI * calcRepeatedRotateCoord(mAngle) / 360.0f;
-    pPos->set< f32 >(MR::cos(v4), 0.0f, MR::sin(v4));
+    f32 angle = calcRepeatedRotateCoord(mAngle) * TWO_PI / 360.0f;
+    pPos->set< f32 >(MR::cos(angle), 0.0f, MR::sin(angle));
     pPos->mult(mOrbitRadius);
     pPos->add(*pPos, SphereSelectorFunction::getHandleTrans());
 
@@ -105,8 +105,8 @@ void AstroDomeOrbit::initDraw(const Color8& rColor) const {
     TPos3f rotateMtx;
     SphereSelectorFunction::calcHandledRotateMtx(mRotation, &rotateMtx);
     rotateMtx.concat(MR::getCameraViewMtx(), rotateMtx);
-    GXLoadPosMtxImm(rotateMtx, 0);
-    GXSetCurrentMtx(0);
+    GXLoadPosMtxImm(rotateMtx, GX_PNMTX0);
+    GXSetCurrentMtx(GX_PNMTX0);
     GXSetNumChans(1);
     GXSetChanCtrl(GX_COLOR0A0, 0, GX_SRC_REG, GX_SRC_REG, 0, GX_DF_NONE, GX_AF_NONE);
     GXSetChanMatColor(GX_COLOR0A0, rColor);
@@ -121,11 +121,11 @@ void AstroDomeOrbit::initDraw(const Color8& rColor) const {
     GXSetCullMode(GX_CULL_BACK);
 }
 
-void AstroDomeOrbit::drawCelling(f32 width, bool a3, f32 height) const {
+void AstroDomeOrbit::drawCelling(f32 width, bool isAddHeight, f32 height) const {
     TVec3f handleTrans;
-    handleTrans.set< f32 >(SphereSelectorFunction::getHandleTrans());
+    handleTrans.set(SphereSelectorFunction::getHandleTrans());
 
-    if (a3) {
+    if (isAddHeight) {
         handleTrans.y += (0.5f * height);
     } else {
         handleTrans.y -= (0.5f * height);
@@ -159,19 +159,19 @@ void AstroDomeOrbit::drawCelling(f32 width, bool a3, f32 height) const {
     GXEnd();
 }
 
-void AstroDomeOrbit::drawSide(f32 width, bool a3, f32 height) const {
+void AstroDomeOrbit::drawSide(f32 width, bool isAddWidth, f32 height) const {
     TVec3f handleTrans;
-    handleTrans.set< f32 >(SphereSelectorFunction::getHandleTrans());
+    handleTrans.set(SphereSelectorFunction::getHandleTrans());
     handleTrans.y += 0.5f * height;
 
     f32 scale;
-    if (a3) {
+    if (isAddWidth) {
         scale = mOrbitRadius + (0.5f * width);
     } else {
         scale = mOrbitRadius - (0.5f * width);
     }
 
-    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 130);
+    GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, (::cDevideNum + 1) * 2);
 
     for (s32 i = 0; i < ::cDevideNum + 1; i++) {
         f32 angle = TWO_PI * i / ::cDevideNum;
@@ -184,7 +184,7 @@ void AstroDomeOrbit::drawSide(f32 width, bool a3, f32 height) const {
         v16.add(handleTrans);
 
         TVec3f v15;
-        v15.set< f32 >(v16);
+        v15.set(v16);
         v15.y -= height;
 
         if (a3) {
