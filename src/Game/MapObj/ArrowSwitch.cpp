@@ -4,50 +4,47 @@
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include <JSystem/JGeometry/TMatrix.hpp>
 
 namespace {
-    const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
+    static const f32 sRotYTargetList[] = {0.0f, 90.0f, 180.0f, -90.0f};
 };  // namespace
 
 namespace NrvArrowSwitch {
+    NEW_NERVE(ArrowSwitchNrvWait, ArrowSwitch, Wait);
     NEW_NERVE(ArrowSwitchNrvRotate, ArrowSwitch, Rotate);
     NEW_NERVE(ArrowSwitchNrvLock, ArrowSwitch, Lock);
-    NEW_NERVE(ArrowSwitchNrvWait, ArrowSwitch, Wait);
 };  // namespace NrvArrowSwitch
 
-ArrowSwitch::ArrowSwitch(const char* pName) : LiveActor(pName) {
-    _8C = 0.0f;
-    mRotationIdx = 0;
-    _94 = 0.0f;
-    _98 = -1;
-    _9C = 0;
-    _9D = 1;
-    _9E = 0;
-    _9F = 0;
+ArrowSwitch::ArrowSwitch(const char* pName) : LiveActor(pName), _8C(), mRotYTargetIndex(), _94(), mObjArg0(-1), mObjArg1(), _9D(true), _9E(), _9F() {
 }
 
-/*
-void ArrowSwitch::init(const JMapInfoIter &rIter) {
+void ArrowSwitch::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     mScale.x = 1.0f;
     mScale.y = 1.0f;
     mScale.z = 1.0f;
     initModelManagerWithAnm("ArrowSwitch", nullptr, false);
-    MR::connectToSceneNoShadowedMapObjStrongLight(this);
-    TVec3f up_vec;
-    MR::calcUpVec(&up_vec, this);
-    mGravity = -up_vec;
+    MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
+
+    TVec3f up;
+    MR::calcUpVec(&up, this);
+    mGravity = -up;
+
     MR::initShadowFromCSV(this, "Shadow");
     MR::onCalcShadow(this, nullptr);
     MR::onCalcGravity(this);
+
     if (MR::isInAreaObj("PlaneModeCube", mPosition)) {
         initHitSensor(1);
         MR::addHitSensorMapObj(this, "body", 8, 100.0f, TVec3f(0.0f, 50.0f, 250.0f));
-    }
-    else {
+    } else {
         initHitSensor(2);
         MR::addHitSensorMapObj(this, "body", 8, 100.0f, TVec3f(0.0f, 50.0f, 250.0f));
         MR::addHitSensorMapObjMoveCollision(this, "collision", 8, 0.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -56,24 +53,24 @@ void ArrowSwitch::init(const JMapInfoIter &rIter) {
 
     initSound(4, false);
     initNerve(&NrvArrowSwitch::ArrowSwitchNrvWait::sInstance);
-    MR::getJMapInfoArg0WithInit(rIter, &_98);
-    MR::getJMapInfoArg1WithInit(rIter, &_9C);
-    s32 arg = -1;
-    MR::getJMapInfoArg2WithInit(rIter, &arg);
+    MR::getJMapInfoArg0WithInit(rIter, &mObjArg0);
+    MR::getJMapInfoArg1WithInit(rIter, &mObjArg1);
 
-    if (arg >= 0) {
-        MR::setShadowDropLength(this, nullptr, arg);
+    s32 arg2 = -1;
+    MR::getJMapInfoArg2WithInit(rIter, &arg2);
+
+    if (arg2 >= 0) {
+        MR::setShadowDropLength(this, nullptr, arg2);
     }
 
     MR::needStageSwitchWriteA(this, rIter);
 
-    if (!_9C) {
-        MR::listenStageSwitchOnOffB(this, MR::Functor(this, &ArrowSwitch::listenOffSwitch), MR::Functor(this, &ArrowSwitch::listenOnSwitch));
+    if (!mObjArg1) {
+        MR::listenStageSwitchOnOffA(this, MR::Functor(this, &ArrowSwitch::listenOffSwitch), MR::Functor(this, &ArrowSwitch::listenOnSwitch));
     }
 
     makeActorAppeared();
 }
-*/
 
 void ArrowSwitch::control() {
 }
@@ -130,98 +127,100 @@ bool ArrowSwitch::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     TVec3f side;
-    TVec3f direction;
     MR::calcSideVec(&side, this);
-    MR::calcSensorDirection(&direction, pSender, pReceiver);
+
+    TVec3f sensorDir;
+    MR::calcSensorDirection(&sensorDir, pSender, pReceiver);
 
     if (isPlusLimit()) {
-        _9D = 0;
+        _9D = false;
     } else if (isMinusLimit()) {
-        _9D = 1;
+        _9D = true;
+    } else if (side.dot(sensorDir) > 0.0f) {
+        _9D = true;
     } else {
-        f32 dot = side.dot(direction);
-
-        if (dot > 0.0f) {
-            _9D = 1;
-        } else {
-            _9D = 0;
-        }
+        _9D = false;
     }
 
-    s32 step = _9D ? getOneStep() : -getOneStep();
-    mRotationIdx += step;
-    mRotationIdx = (mRotationIdx + 4) % 4;
+    mRotYTargetIndex += _9D ? getOneStep() : -getOneStep();
+    mRotYTargetIndex = (mRotYTargetIndex + ARRAY_SIZE(::sRotYTargetList)) % ARRAY_SIZE(::sRotYTargetList);
     _94 = _9D ? -6.0f : 6.0f;
-    _9F = 1;
+    _9F = true;
+
     MR::invalidateClipping(this);
     setNerve(&NrvArrowSwitch::ArrowSwitchNrvRotate::sInstance);
+
     return true;
 }
 
 void ArrowSwitch::listenOnSwitch() {
-    if (mRotationIdx == 0) {
-        switch (_98) {
-        case 2:
-        case -1:
-            _9D = 1;
-            _94 = 6.0f;
-            mRotationIdx = 2;
-            break;
-        case 3:
-            _9D = 0;
-            _94 = 6.0f;
-            mRotationIdx = 2;
-            break;
-        case 0:
-            _9D = 1;
-            _94 = -6.0f;
-            mRotationIdx = 1;
-            break;
-        case 1:
-            _9D = 0;
-            _94 = -6.0f;
-            mRotationIdx = 3;
-            break;
-        default:
-            return;
-        }
-
-        MR::invalidateClipping(this);
-        setNerve(&NrvArrowSwitch::ArrowSwitchNrvRotate::sInstance);
+    if (mRotYTargetIndex != 0) {
+        return;
     }
+
+    switch (mObjArg0) {
+    case 2:
+    case -1:
+        _9D = true;
+        _94 = 6.0f;
+        mRotYTargetIndex = 2;
+        break;
+    case 3:
+        _9D = false;
+        _94 = 6.0f;
+        mRotYTargetIndex = 2;
+        break;
+    case 0:
+        _9D = true;
+        _94 = -6.0f;
+        mRotYTargetIndex = 1;
+        break;
+    case 1:
+        _9D = false;
+        _94 = -6.0f;
+        mRotYTargetIndex = 3;
+        break;
+    default:
+        return;
+    }
+
+    MR::invalidateClipping(this);
+    setNerve(&NrvArrowSwitch::ArrowSwitchNrvRotate::sInstance);
 }
 
 void ArrowSwitch::listenOffSwitch() {
-    if (mRotationIdx != 0) {
-        mRotationIdx = 0;
-
-        switch (_98) {
-        case 2:
-        case 0:
-        case -1:
-            _9D = 0;
-            _94 = -6.0f;
-            break;
-        case 1:
-        case 3:
-            _9D = 1;
-            _94 = 6.0f;
-            break;
-        default:
-            return;
-        }
-
-        MR::invalidateClipping(this);
-        setNerve(&NrvArrowSwitch::ArrowSwitchNrvRotate::sInstance);
+    if (mRotYTargetIndex == 0) {
+        return;
     }
+
+    mRotYTargetIndex = 0;
+
+    switch (mObjArg0) {
+    case 2:
+    case 0:
+    case -1:
+        _9D = false;
+        _94 = -6.0f;
+        break;
+    case 1:
+    case 3:
+        _9D = true;
+        _94 = 6.0f;
+        break;
+    default:
+        return;
+    }
+
+    MR::invalidateClipping(this);
+    setNerve(&NrvArrowSwitch::ArrowSwitchNrvRotate::sInstance);
 }
 
 void ArrowSwitch::exeWait() {
     if (MR::isFirstStep(this)) {
-        if (mRotationIdx != 0) {
-            MR::startBtk(this, "On");
-        } else {
+        if (mRotYTargetIndex == 0) {
             MR::startBtk(this, "Off");
+        } else {
+            MR::startBtk(this, "On");
         }
 
         MR::validateClipping(this);
@@ -234,8 +233,9 @@ void ArrowSwitch::exeRotate() {
         MR::startSound(this, "SE_OJ_ARROW_SWITCH_ON");
         MR::onCalcShadow(this, nullptr);
 
-        if (_9C) {
+        if (mObjArg1) {
             MR::invalidateHitSensors(this);
+
             if (MR::isExistCollisionParts(this)) {
                 MR::invalidateCollisionParts(this);
             }
@@ -247,16 +247,17 @@ void ArrowSwitch::exeRotate() {
     _8C += _94;
     f32 v3 = fmod(360.0 + v2, 360.0);
     f32 v4 = (-180.0f + v3);
-    f32 v5 = (::sRotYTargetList[mRotationIdx] - (-180.0f + v3));
+    f32 v5 = (::sRotYTargetList[mRotYTargetIndex] - (-180.0f + v3));
     _8C = v4;
     f32 v6 = (-180.0 + fmod((360.0 + (v5 - -180.0)), 360.0));
 
     if (_9D && v6 < 0.0f || !_9D && v6 > 0.0f) {
-        f32 rot = ::sRotYTargetList[mRotationIdx];
+        f32 rot = ::sRotYTargetList[mRotYTargetIndex];
         _94 = 0.0f;
         _8C = rot;
+
         if (MR::isValidSwitchA(this) && _9F) {
-            if (mRotationIdx != 0) {
+            if (mRotYTargetIndex != 0) {
                 MR::onSwitchA(this);
             } else {
                 MR::offSwitchA(this);
@@ -266,8 +267,10 @@ void ArrowSwitch::exeRotate() {
         }
 
         MR::startSound(this, "SE_OJ_ARROW_SWITCH_STOP");
-        _9F = 0;
-        if (_9C) {
+
+        _9F = false;
+
+        if (mObjArg1) {
             setNerve(&NrvArrowSwitch::ArrowSwitchNrvLock::sInstance);
         } else {
             setNerve(&NrvArrowSwitch::ArrowSwitchNrvWait::sInstance);
@@ -277,7 +280,7 @@ void ArrowSwitch::exeRotate() {
 
 void ArrowSwitch::exeLock() {
     if (MR::isFirstStep(this)) {
-        if (mRotationIdx == 0) {
+        if (mRotYTargetIndex == 0) {
             MR::startBtk(this, "Off");
         } else {
             MR::startBtk(this, "On");
@@ -289,48 +292,45 @@ void ArrowSwitch::exeLock() {
 }
 
 bool ArrowSwitch::isPlusLimit() const {
-    switch (_98) {
+    switch (mObjArg0) {
     case 2:
-        return mRotationIdx == 2;
+        return mRotYTargetIndex == 2;
     case 0:
-        return mRotationIdx == 1;
+        return mRotYTargetIndex == 1;
     case 1:
-        return mRotationIdx == 0;
+        return mRotYTargetIndex == 0;
     case 3:
-        return mRotationIdx == 0;
+        return mRotYTargetIndex == 0;
     default:
         return false;
     }
 }
 
 bool ArrowSwitch::isMinusLimit() const {
-    switch (_98) {
+    switch (mObjArg0) {
     case 2:
-        return mRotationIdx == 0;
+        return mRotYTargetIndex == 0;
     case 0:
-        return mRotationIdx == 0;
+        return mRotYTargetIndex == 0;
     case 1:
-        return mRotationIdx == 3;
+        return mRotYTargetIndex == 3;
     case 3:
-        return mRotationIdx == 2;
+        return mRotYTargetIndex == 2;
     default:
         return false;
     }
 }
 
-/*
 s32 ArrowSwitch::getOneStep() const {
-    switch (_98) {
-        case 2:
-        case 3:
-            return 1;
-        case -1:
-            return 2;
+    switch (mObjArg0) {
+    case -1:
+    case 2:
+    case 3:
+        return 2;
+    case 0:
+    case 1:
+        return 1;
+    default:
+        return 0;
     }
-
-    return 0;
-}
-*/
-
-ArrowSwitch::~ArrowSwitch() {
 }

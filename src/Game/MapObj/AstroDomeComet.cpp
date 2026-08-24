@@ -4,7 +4,6 @@
 #include "Game/Map/SphereSelector.hpp"
 #include "Game/MapObj/MiniatureGalaxy.hpp"
 #include "Game/MapObj/MiniatureGalaxyHolder.hpp"
-#include "Game/Util/DemoUtil.hpp"
 #include "Game/Util/JointUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -30,7 +29,9 @@ void AstroDomeComet::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("AstroDomeComet", nullptr, false);
     initSubModel();
+
     MR::connectToSceneIndirectMapObj(this);
+
     mPointingActors = new LiveActor*[::cPointingActorNum];
 
     for (s32 i = 0; i < ::cPointingActorNum; i++) {
@@ -43,9 +44,12 @@ void AstroDomeComet::init(const JMapInfoIter& rIter) {
     }
 
     MR::invalidateClipping(this);
-    initNerve(&NrvAstroDomeComet::AstroDomeCometNrvSelect::sInstance);
+
+    initNerve(GET_NERVE(AstroDomeComet, AstroDomeCometNrvSelect));
+
     MR::tryRegisterDemoCast(this, rIter);
     SphereSelectorFunction::registerTarget(this);
+
     makeActorDead();
 }
 
@@ -53,19 +57,23 @@ void AstroDomeComet::appear() {
     MiniatureGalaxyFunction::updateCometStatus();
     mMiniGalaxy = MiniatureGalaxyFunction::getCometLandMiniatureGalaxy();
 
-    if (mMiniGalaxy != nullptr) {
-        LiveActor::appear();
-        const char* cometName = ::cCometBrkName[MiniatureGalaxyFunction::getCometNameId()];
-        MR::startBck(this, "AstroDomeComet", nullptr);
-        MR::startBtk(this, "AstroDomeComet");
-        MR::startBrk(this, cometName);
-        mBloomModel->appear();
-        MR::startBck(mBloomModel, "AstroDomeCometBloom", nullptr);
-        MR::startBrk(mBloomModel, cometName);
+    if (mMiniGalaxy == nullptr) {
+        return;
+    }
 
-        for (s32 i = 0; i < ::cPointingActorNum; i++) {
-            mPointingActors[i]->appear();
-        }
+    LiveActor::appear();
+
+    const char* cometName = ::cCometBrkName[MiniatureGalaxyFunction::getCometNameId()];
+    MR::startBck(this, "AstroDomeComet", nullptr);
+    MR::startBtk(this, "AstroDomeComet");
+    MR::startBrk(this, cometName);
+
+    mBloomModel->appear();
+    MR::startBck(mBloomModel, "AstroDomeCometBloom", nullptr);
+    MR::startBrk(mBloomModel, cometName);
+
+    for (s32 i = 0; i < ::cPointingActorNum; i++) {
+        mPointingActors[i]->appear();
     }
 }
 
@@ -100,11 +108,11 @@ bool AstroDomeComet::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
 
     if (SphereSelectorFunction::isMsgConfirmStart(msg)) {
         if (!MR::isDead(this)) {
-            setNerve(&NrvAstroDomeComet::AstroDomeCometNrvConfirm::sInstance);
+            setNerve(GET_NERVE(AstroDomeComet, AstroDomeCometNrvConfirm));
             return true;
         }
     } else if (SphereSelectorFunction::isMsgConfirmCancel(msg)) {
-        setNerve(&NrvAstroDomeComet::AstroDomeCometNrvSelect::sInstance);
+        setNerve(GET_NERVE(AstroDomeComet, AstroDomeCometNrvSelect));
         return true;
     }
 
@@ -123,7 +131,7 @@ void AstroDomeComet::tryPointing() {
 
     for (s32 i = 0; i < ::cPointingActorNum; i++) {
         if (MR::isStarPointerPointing1PWithoutCheckZ(mPointingActors[i], nullptr, true, false)) {
-            SphereSelectorFunction::registerPointingTarget(mMiniGalaxy, (HandlePointingPriority)0);
+            SphereSelectorFunction::registerPointingTarget(mMiniGalaxy, Unknown_0);
             break;
         }
     }

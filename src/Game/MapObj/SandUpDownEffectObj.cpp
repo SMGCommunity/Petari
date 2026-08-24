@@ -173,6 +173,8 @@ bool SandUpDownEffectObj::checkSandHit() {
     if (isHit) {
         _A0.setTrans(hitPos);
     }
+
+    return isHit;
 }
 
 bool SandUpDownEffectObj::isUfoTop() const {

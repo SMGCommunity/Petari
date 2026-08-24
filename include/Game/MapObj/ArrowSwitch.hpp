@@ -4,9 +4,10 @@
 
 class ArrowSwitch : public LiveActor {
 public:
-    ArrowSwitch(const char*);
+    /// @brief Creates a new `ArrowSwitch`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    ArrowSwitch(const char* pName);
 
-    virtual ~ArrowSwitch();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
@@ -24,12 +25,12 @@ public:
     bool isMinusLimit() const;
     s32 getOneStep() const;
 
-    f32 _8C;
-    s32 mRotationIdx;  // 0x90
-    f32 _94;
-    s32 _98;
-    bool _9C;
-    u8 _9D;
-    u8 _9E;
-    u8 _9F;
+    /* 0x8C */ f32 _8C;
+    /* 0x90 */ s32 mRotYTargetIndex;
+    /* 0x94 */ f32 _94;
+    /* 0x98 */ s32 mObjArg0;
+    /* 0x9C */ bool mObjArg1;
+    /* 0x9D */ bool _9D;
+    /* 0x9E */ bool _9E;
+    /* 0x9F */ bool _9F;
 };

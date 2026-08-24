@@ -45,6 +45,17 @@ class MatrixControl;
 
 enum SPECIAL_STATUS_FOR_CAMERA { CASE_0, CASE_1 };
 
+enum PlayerMode {
+    /* 0x0 */ PlayerMode_0,
+    /* 0x1 */ PlayerMode_Invincible,
+    /* 0x2 */ PlayerMode_2,
+    /* 0x3 */ PlayerMode_Ice,
+    /* 0x4 */ PlayerMode_Bee,
+    /* 0x5 */ PlayerMode_Hopper,
+    /* 0x6 */ PlayerMode_Teresa,
+    /* 0x7 */ PlayerMode_Foo
+};
+
 template < int SIZE, class T, class U >
 class AudGenericAudible;
 class JAUDopplerAudibleChannel;
@@ -480,8 +491,8 @@ public:
     void memorizeSensorThrow(HitSensor*);
     bool tryThrow();
     void tryReleaseDirect(const HitSensor*);
-    bool damageDropThrowMemoSensor();
-    bool rushDropThrowMemoSensor();
+    void damageDropThrowMemoSensor();
+    void rushDropThrowMemoSensor();
     void trySetLockOnTarget(HitSensor*);
     void tryCoinPull();
     void tryCoinPullInRush();
@@ -491,7 +502,7 @@ public:
     bool releaseThrowMemoSensor();
     void tryReleaseWithMsg(u32);
     void tryTornadoPull(HitSensor*);
-    bool tryReleaseBombTeresa();
+    void tryReleaseBombTeresa();
 
     void runTeresaBaseAnimation();
     void getThrowVec(TVec3f*) const;
