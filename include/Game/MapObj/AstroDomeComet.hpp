@@ -2,8 +2,8 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-class PartsModel;
 class MiniatureGalaxy;
+class PartsModel;
 
 class AstroDomeComet : public LiveActor {
 public:

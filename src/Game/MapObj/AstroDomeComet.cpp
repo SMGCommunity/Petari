@@ -11,7 +11,6 @@
 
 namespace {
     const char* const cCometBrkName[] = {"Red", "Blue", "White", "Yellow", "Purple"};
-
     const s32 cPointingActorNum = 6;
     const f32 cPointingRadius = 1000.0f;
     const f32 cPointingPosY = 2000.0f;
