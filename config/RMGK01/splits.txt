@@ -4158,14 +4158,14 @@ Game/Map/WaterRoad.cpp:
 Game/Map/WhirlPoolAccelerator.cpp:
 	.text       start:0x801A455C end:0x801A53D8
 	.rodata     start:0x80532F08 end:0x80532F20
-	.data       start:0x8058D1D0 end:0x8058D2B8
+	.data       start:0x8058D1D0 end:0x8058D278
 	.sdata      start:0x806B1CE0 end:0x806B1CE8
 	.sdata2     start:0x806BC588 end:0x806BC5E0
 
 Game/MapObj/AirBubble.cpp:
 	.text       start:0x801A53D8 end:0x801A5D80
 	.ctors      start:0x8052EC04 end:0x8052EC08
-	.data       start:0x8058D2B8 end:0x8058D370
+	.data       start:0x8058D278 end:0x8058D370
 	.sbss       start:0x806B4CF0 end:0x806B4D00
 	.sdata2     start:0x806BC5E0 end:0x806BC618
 
@@ -4193,14 +4193,16 @@ Game/MapObj/ArrowSwitch.cpp:
 	.ctors      start:0x8052EC10 end:0x8052EC14
 	.rodata     start:0x80532F20 end:0x80532F40
 	.data       start:0x8058D848 end:0x8058D9B8
+	.sdata      start:0x806B1CF8 end:0x806B1D00
 	.sbss       start:0x806B4D18 end:0x806B4D28
 	.sdata2     start:0x806BC628 end:0x806BC650
 
 Game/MapObj/ArrowSwitchMulti.cpp:
 	.text       start:0x801A7CA0 end:0x801A85C8
 	.ctors      start:0x8052EC14 end:0x8052EC18
-	.rodata     start:0x80532F40 end:0x80532F60
+	.rodata     start:0x80532F40 end:0x80532F58
 	.data       start:0x8058D9B8 end:0x8058DB00
+	.sdata      start:0x806B1D00 end:0x806B1D08
 	.sbss       start:0x806B4D28 end:0x806B4D30
 	.sdata2     start:0x806BC650 end:0x806BC678
 
@@ -4211,7 +4213,9 @@ Game/MapObj/ArrowSwitchMultiHolder.cpp:
 Game/MapObj/AssemblyBlock.cpp:
 	.text       start:0x801A87E0 end:0x801A926C
 	.ctors      start:0x8052EC18 end:0x8052EC1C
+	.rodata     start:0x80532F58 end:0x80532F60
 	.data       start:0x8058DB40 end:0x8058DD38
+	.sdata      start:0x806B1D08 end:0x806B1D10
 	.sbss       start:0x806B4D30 end:0x806B4D48
 	.sdata2     start:0x806BC678 end:0x806BC6A8
 
@@ -4503,11 +4507,11 @@ Game/MapObj/ChipGroup.cpp:
 
 Game/MapObj/ChipHolder.cpp:
 	.text       start:0x801BFF48 end:0x801C0464
-	.data       start:0x805913E8 end:0x805914A0
+	.data       start:0x805913E8 end:0x80591440
 
 Game/MapObj/ChooChooTrain.cpp:
 	.text       start:0x801C0464 end:0x801C0C2C
-	.data       start:0x805914A0 end:0x80591518
+	.data       start:0x80591440 end:0x80591518
 	.sdata2     start:0x806BCA28 end:0x806BCA50
 
 Game/MapObj/CircleCoinGroup.cpp:
@@ -5120,13 +5124,14 @@ Game/MapObj/LavaProminence.cpp:
 
 Game/MapObj/LavaProminenceTriple.cpp:
 	.text       start:0x801F3720 end:0x801F425C
-	.rodata     start:0x80533420 end:0x80533460
+	.rodata     start:0x80533420 end:0x80533448
 	.data       start:0x80597D08 end:0x80597E18
 	.sdata2     start:0x806BD4F8 end:0x806BD530
 
 Game/MapObj/LavaSteam.cpp:
 	.text       start:0x801F425C end:0x801F4C64
 	.ctors      start:0x8052ED98 end:0x8052ED9C
+	.rodata     start:0x80533448 end:0x80533450
 	.data       start:0x80597E18 end:0x80597F40
 	.sbss       start:0x806B53A0 end:0x806B53B0
 	.sdata2     start:0x806BD530 end:0x806BD560
@@ -5141,6 +5146,7 @@ Game/MapObj/LavaStrangeRock.cpp:
 Game/MapObj/LotusLeaf.cpp:
 	.text       start:0x801F5254 end:0x801F586C
 	.ctors      start:0x8052EDA0 end:0x8052EDA4
+	.rodata     start:0x80533450 end:0x80533458
 	.data       start:0x80598070 end:0x80598158
 	.sbss       start:0x806B53B8 end:0x806B53C8
 	.sdata2     start:0x806BD580 end:0x806BD5B8
@@ -5163,6 +5169,7 @@ Game/MapObj/ManholeCover.cpp:
 Game/MapObj/MapObjActor.cpp:
 	.text       start:0x801F66A4 end:0x801F8364
 	.ctors      start:0x8052EDAC end:0x8052EDB0
+	.rodata     start:0x80533458 end:0x80533460
 	.data       start:0x80598358 end:0x80598868
 	.sdata      start:0x806B1EA8 end:0x806B1EB0
 	.sbss       start:0x806B53E0 end:0x806B53F0
@@ -7119,7 +7126,7 @@ Game/Player/MarioFlip.cpp:
 Game/Player/MarioFrontStep.cpp:
 	.text       start:0x802DAA44 end:0x802DB028
 	.ctors      start:0x8052F0E4 end:0x8052F0E8
-	.data       start:0x805C6770 end:0x805C68E8
+	.data       start:0x805C6770 end:0x805C67E0
 	.sdata2     start:0x806BFB90 end:0x806BFBA8
 
 Game/Player/MarioBee.cpp:
@@ -7130,7 +7137,7 @@ Game/Player/MarioBee.cpp:
 Game/Player/MarioBlown.cpp:
 	.text       start:0x802DBAD8 end:0x802DC258
 	.ctors      start:0x8052F0EC end:0x8052F0F0
-	.data       start:0x805C68E8 end:0x805C6B28
+	.data       start:0x805C67E0 end:0x805C6B28
 	.sdata2     start:0x806BFBD8 end:0x806BFBF0
 
 Game/Player/MarioEffect.cpp:

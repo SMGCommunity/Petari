@@ -10,22 +10,21 @@
 #include "Game/Util/ObjUtil.hpp"
 
 namespace NrvArrowSwitchMulti {
-    NEW_NERVE(ArrowSwitchMultiNrvRotate, ArrowSwitchMulti, Rotate);
     NEW_NERVE(ArrowSwitchMultiNrvWait, ArrowSwitchMulti, Wait);
+    NEW_NERVE(ArrowSwitchMultiNrvRotate, ArrowSwitchMulti, Rotate);
 };  // namespace NrvArrowSwitchMulti
 
-ArrowSwitchTarget::ArrowSwitchTarget(const char* pName) : NameObj(pName) {
-    mJMapIDInfo = nullptr;
-    mStageSwitchCtrl = nullptr;
-    mTargetIdx = -1;
+ArrowSwitchTarget::ArrowSwitchTarget(const char* pName) : NameObj(pName), mIdInfo(), mStageSwitchCtrl(), mTargetIndex(-1) {
     MR::createArrowSwitchMultiHolder();
 }
 
 void ArrowSwitchTarget::init(const JMapInfoIter& rIter) {
-    s32 arg;
-    MR::getJMapInfoArg0WithInit(rIter, &arg);
-    mJMapIDInfo = new JMapIdInfo(arg, rIter);
-    MR::getJMapInfoArg1WithInit(rIter, &mTargetIdx);
+    s32 arg0;
+    MR::getJMapInfoArg0WithInit(rIter, &arg0);
+
+    mIdInfo = new JMapIdInfo(arg0, rIter);
+
+    MR::getJMapInfoArg1WithInit(rIter, &mTargetIndex);
     mStageSwitchCtrl = MR::createStageSwitchCtrl(this, rIter);
 }
 
@@ -53,31 +52,27 @@ void ArrowSwitchTarget::offTarget() {
     }
 }
 
-ArrowSwitchMulti::ArrowSwitchMulti(const char* pName) : LiveActor(pName) {
-    mIDInfo = nullptr;
-    _A0 = 0.0f;
-    _A4 = 0.0f;
-    _A8 = 0;
-    _AC = 0;
-    _B0 = 1;
+ArrowSwitchMulti::ArrowSwitchMulti(const char* pName) : LiveActor(pName), mIdInfo(), _A0(), _A4(), _A8(), _AC(), _B0(true) {
     MR::createArrowSwitchMultiHolder();
 
-    for (u32 i = 0; i < 4; i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(mTargetArray); i++) {
         mTargetArray[i] = nullptr;
     }
 }
 
 void ArrowSwitchMulti::registerTarget(ArrowSwitchTarget* pTarget) {
-    mTargetArray[pTarget->mTargetIdx] = pTarget;
+    mTargetArray[pTarget->mTargetIndex] = pTarget;
 }
 
 void ArrowSwitchMulti::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("ArrowSwitch", nullptr, false);
     MR::connectToSceneNoSilhouettedMapObjStrongLight(this);
-    s32 arg;
-    MR::getJMapInfoArg0WithInit(rIter, &arg);
-    mIDInfo = new JMapIdInfo(arg, rIter);
+
+    s32 arg0;
+    MR::getJMapInfoArg0WithInit(rIter, &arg0);
+
+    mIdInfo = new JMapIdInfo(arg0, rIter);
 
     if (MR::isInAreaObj("PlaneModeCube", mPosition)) {
         initHitSensor(1);
@@ -150,6 +145,7 @@ bool ArrowSwitchMulti::requestPunch(HitSensor* pSender, HitSensor* pReceiver) {
     _AC = (_AC + 4) % 4;
     MR::invalidateClipping(this);
     setNerve(&NrvArrowSwitchMulti::ArrowSwitchMultiNrvRotate::sInstance);
+
     return true;
 }
 
@@ -166,9 +162,3 @@ void ArrowSwitchMulti::exeWait() {
 }
 
 // ArrowSwitchMulti::exeRotate
-
-ArrowSwitchMulti::~ArrowSwitchMulti() {
-}
-
-ArrowSwitchTarget::~ArrowSwitchTarget() {
-}

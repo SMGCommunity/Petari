@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class MiniatureGalaxy;
 class PartsModel;
 
 class AstroDomeComet : public LiveActor {
@@ -20,6 +21,6 @@ public:
     void exeConfirm();
 
     /* 0x8C */ PartsModel* mBloomModel;
-    /* 0x90 */ LiveActor* mMiniGalaxy;
+    /* 0x90 */ MiniatureGalaxy* mMiniGalaxy;
     /* 0x94 */ LiveActor** mPointingActors;
 };

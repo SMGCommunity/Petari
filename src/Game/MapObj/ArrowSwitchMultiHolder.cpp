@@ -1,23 +1,26 @@
 #include "Game/MapObj/ArrowSwitchMultiHolder.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ArrowSwitchMulti.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/JMapIdInfo.hpp"
 
-ArrowSwitchMultiHolder::ArrowSwitchMultiHolder() : DeriveActorGroup("複数方向矢印スイッチ管理", 0x10) {
+namespace {
+    static const s32 sMaxArrowSwitchMulti = 16;
+};  // namespace
+
+namespace {
+    ArrowSwitchMultiHolder* getArrowSwitchMultiHolder() {
+        return MR::getSceneObj< ArrowSwitchMultiHolder >(SceneObj_ArrowSwitchMultiHolder);
+    }
+};  // namespace
+
+ArrowSwitchMultiHolder::ArrowSwitchMultiHolder() : DeriveActorGroup("複数方向矢印スイッチ管理", ::sMaxArrowSwitchMulti) {
 }
 
-ArrowSwitchMulti* ArrowSwitchMultiHolder::findSwitch(const JMapIdInfo* pInfo) {
+ArrowSwitchMulti* ArrowSwitchMultiHolder::findSwitch(const JMapIdInfo* pIdInfo) {
     for (s32 i = 0; i < mObjectCount; i++) {
         ArrowSwitchMulti* sw = static_cast< ArrowSwitchMulti* >(getActor(i));
-        JMapIdInfo* inf = sw->mIDInfo;
 
-        bool isSame = false;
-        if (inf->_0 == pInfo->_0 && inf->mZoneID == pInfo->mZoneID) {
-            isSame = true;
-        }
-
-        if (isSame) {
+        if (*sw->mIdInfo == *pIdInfo) {
             return sw;
         }
     }
@@ -31,10 +34,10 @@ namespace MR {
     }
 
     void registerArrowSwitchMulti(ArrowSwitchMulti* pSwitch) {
-        MR::getSceneObj< ArrowSwitchMultiHolder >(SceneObj_ArrowSwitchMultiHolder)->registerActor(pSwitch);
+        ::getArrowSwitchMultiHolder()->registerActor(pSwitch);
     }
 
     void registerArrowSwitchTarget(ArrowSwitchTarget* pTarget) {
-        MR::getSceneObj< ArrowSwitchMultiHolder >(SceneObj_ArrowSwitchMultiHolder)->findSwitch(pTarget->mJMapIDInfo)->registerTarget(pTarget);
+        ::getArrowSwitchMultiHolder()->findSwitch(pTarget->mIdInfo)->registerTarget(pTarget);
     }
 };  // namespace MR

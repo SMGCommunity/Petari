@@ -23,6 +23,10 @@ public:
         return mRadius;
     }
 
+    const TVec3f& getPosition() const {
+        return mPosition;
+    }
+
     inline bool isValid() const {
         return mValidByHost && mValidBySystem;
     }

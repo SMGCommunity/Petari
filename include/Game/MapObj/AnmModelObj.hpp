@@ -6,80 +6,105 @@ class ActorCameraInfo;
 
 class AnmModelObj : public MapObjActor {
 public:
-    AnmModelObj(const char*);
+    /// @brief Creates a new `AnmModelObj`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    AnmModelObj(const char* pName);
 
-    virtual ~AnmModelObj();
     virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
+    virtual void control() {
+    }
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {
+    }
+    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
+    }
+    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {
+    }
+    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+    }
     virtual bool isOnStartAnmTrigger() const = 0;
     virtual bool isDone() const;
-    virtual bool isKilledAtMoveDone() const;
-    virtual bool isRepeat() const;
-    virtual void startInner();
-    virtual inline void moveInner();
-    virtual void stopInner();
+    virtual bool isKilledAtMoveDone() const {
+        return false;
+    }
+    virtual bool isRepeat() const {
+        return false;
+    }
+    virtual void startInner() {
+    }
+    virtual void moveInner() {
+    }
+    virtual void stopInner() {
+    }
 
     void exeWait();
     void exeMove();
     void exeDone();
 
-    TVec3f mJointPos;  // 0xC4
+    /* 0xC4 */ TVec3f mJointPos;
 };
 
 class AnmModelSwitchMove : public AnmModelObj {
 public:
-    AnmModelSwitchMove(const char*);
+    /// @brief Creates a new `AnmModelSwitchMove`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    AnmModelSwitchMove(const char* pName);
 
-    virtual ~AnmModelSwitchMove();
     virtual void init(const JMapInfoIter&);
     virtual bool isOnStartAnmTrigger() const;
 };
 
 class AnmModelSwitchMoveEndKill : public AnmModelSwitchMove {
 public:
-    AnmModelSwitchMoveEndKill(const char* pName) : AnmModelSwitchMove(pName) {};
+    /// @brief Creates a new `AnmModelSwitchMoveEndKill`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    AnmModelSwitchMoveEndKill(const char* pName) : AnmModelSwitchMove(pName) {
+    }
 
-    virtual ~AnmModelSwitchMoveEndKill();
     virtual bool isKilledAtMoveDone() const;
 };
 
 class AnmModelGroundOnMove : public AnmModelObj {
 public:
-    AnmModelGroundOnMove(const char*);
+    /// @brief Creates a new `AnmModelGroundOnMove`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    AnmModelGroundOnMove(const char* pName);
 
-    virtual ~AnmModelGroundOnMove();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual bool isOnStartAnmTrigger() const;
-    virtual bool isKilledAtMoveDone() const;
+    virtual bool isKilledAtMoveDone() const {
+        return true;
+    }
 };
 
 class AnmModelBindMove : public AnmModelObj {
 public:
-    AnmModelBindMove(const char*);
+    /// @brief Creates a new `AnmModelBindMove`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    AnmModelBindMove(const char* pName);
 
-    virtual ~AnmModelBindMove();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     virtual bool isOnStartAnmTrigger() const;
-    virtual bool isKilledAtMoveDone() const;
-    virtual bool isRepeat() const;
+    virtual bool isKilledAtMoveDone() const {
+        return false;
+    }
+    virtual bool isRepeat() const {
+        return true;
+    }
 };
 
 class AnmModelSwitchMoveEventCamera : public AnmModelSwitchMove {
 public:
-    AnmModelSwitchMoveEventCamera(const char*);
+    /// @brief Creates a new `AnmModelSwitchMoveEventCamera`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    AnmModelSwitchMoveEventCamera(const char* pName);
 
-    virtual ~AnmModelSwitchMoveEventCamera();
     virtual void init(const JMapInfoIter&);
     virtual bool isDone() const;
     virtual void startInner();
     virtual void stopInner();
 
-    ActorCameraInfo* mCameraInfo;  // 0xD0
+    /* 0xD0 */ ActorCameraInfo* mCameraInfo;
 };

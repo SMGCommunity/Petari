@@ -1,60 +1,48 @@
 #include "Game/MapObj/Fountain.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/CollisionShapeUtil.hpp"
+
+void Fountain_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
+namespace {
+    static const f32 sSensorRadius = 300.0f;
+    static const f32 sSensorOffsetY = 300.0f;
+    static const f32 sHitCylinderRange = 10.0f;
+    static const f32 sHitSphereRadius = 70.0f;
+    static const f32 sHitSphereOffsetY = 350.0f;
+    static const f32 sClippingRadius = 3500.0f;
+    static const f32 sHitCylinderHeight = 280.0f;
+};  // namespace
 
 namespace NrvFountain {
     NEW_NERVE(HostTypeWait, Fountain, Wait);
     NEW_NERVE(HostTypeMove, Fountain, Move);
 };  // namespace NrvFountain
 
-void FORCE_OPERATOR() {
-    TVec3f vec;
-    vec * 1.0f;
-}
-
-Fountain::Fountain(const char* pName) : LiveActor(pName) {
-    mFountainName = nullptr;
-    _90.x = 0.0f;
-    _90.y = 1.0f;
-    _90.z = 0.0f;
+Fountain::Fountain(const char* pName) : LiveActor(pName), mFountainName(), mUp(0.0f, 1.0f, 0.0f) {
 }
 
 void Fountain::init(const JMapInfoIter& rIter) {
-    MR::initDefaultPos(this, rIter);
-    TMtx34f mtx;
-    mtx.identity();
-    TVec3f v30 = mRotation * 0.017453292f;
-    f32 v10 = v30.z;
-    f32 v11 = v30.y;
-    f32 v12 = v30.x;
-    f32 v13 = cos(v30.z);
-    f32 v14 = cos(v11);
-    f32 v15 = cos(v12);
-    f32 v16 = sin(v10);
-    f32 v17 = sin(v11);
-    f32 v18 = sin(v12);
-    f32 v19 = v18;
-    f32 v20 = (v18 * v14);
-    mtx.mMtx[0][0] = v14 * v13;
-    mtx.mMtx[2][1] = v18 * v14;
-    mtx.mMtx[1][0] = v14 * v16;
-    f32 v21 = ((v15 * v13) + ((v18 * v17) * v16));
-    f32 v22 = (((v18 * v17) * v13) - (v15 * v16));
-    mtx.mMtx[1][1] = v21;
-    mtx.mMtx[0][1] = v22;
-    mtx.mMtx[0][2] = ((v15 * v13) * v17) + (v19 * v16);
-    mtx.mMtx[2][0] = -v17;
-    mtx.mMtx[2][2] = v15 * v14;
-    mtx.mMtx[1][2] = ((v15 * v16) * v17) - (v19 * v13);
+    // FIXME: stack order issue
+    // https://decomp.me/scratch/y0a6l
 
-    _90.set(v22, v21, v20);
-    MR::normalize(&_90);
+    MR::initDefaultPos(this, rIter);
+    TPos3f mtx;
+    mtx.identity();
+    mtx.setRotateDegree(mRotation);
+    mtx.getYDir(mUp);
+    MR::normalize(&mUp);
     MR::getObjectName(&mFountainName, rIter);
     initEffectKeeper(0, mFountainName, false);
     initSound(4, false);
     initHitSensor(1);
-    MR::addHitSensorMapObj(this, "body", 16, 300.0f, TVec3f(0.0f, 300.0f, 0.0f));
-    MR::setClippingTypeSphere(this, 3500.0f);
+    MR::addHitSensorMapObj(this, "body", 16, ::sSensorRadius, TVec3f(0.0f, ::sSensorOffsetY, 0.0f));
+    MR::setClippingTypeSphere(this, ::sClippingRadius);
     MR::useStageSwitchReadA(this, rIter);
     initNerve(&NrvFountain::HostTypeMove::sInstance);
     MR::connectToSceneMapObjMovement(this);
@@ -93,7 +81,30 @@ void Fountain::endClipped() {
     }
 }
 
-// Fountain::attackSensor
+void Fountain::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isSensorPlayer(pReceiver)) {
+        f32 playerRadius = pReceiver->getRadius() * 1.0f;
+
+        HitSphere sphere(mPosition + mUp * ::sHitSphereOffsetY, ::sHitSphereRadius);
+
+        if (sphere.isHit(HitSphere(pReceiver->getPosition(), playerRadius))) {
+            if (MR::sendArbitraryMsg(ACTMES_FOUNTAINJUMP, pReceiver, pSender)) {
+                return;
+            }
+        }
+
+        HitCylinder cyl(mPosition, mUp * ::sHitCylinderHeight);
+
+        f32 proj, ortho;
+        cyl.getParams(pReceiver->getPosition(), &proj, &ortho);
+
+        if (0.0f <= proj && proj <= 1.0f && ortho < playerRadius + ::sHitCylinderRange) {
+            if (MR::sendArbitraryMsg(ACTMES_FOUNTAINJUMP, pReceiver, pSender)) {
+                return;
+            }
+        }
+    }
+}
 
 void Fountain::exeWait() {
     if (MR::isFirstStep(this)) {
@@ -112,7 +123,4 @@ void Fountain::exeMove() {
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_FOUNTAIN");
-}
-
-Fountain::~Fountain() {
 }

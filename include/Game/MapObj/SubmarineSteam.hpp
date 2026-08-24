@@ -6,7 +6,6 @@ class SubmarineSteam : public LiveActor {
 public:
     SubmarineSteam(const char*);
 
-    virtual ~SubmarineSteam();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void startClipped();
@@ -16,5 +15,5 @@ public:
     void exeSteam();
     void exeWaitForSwitchOn();
 
-    TVec3f _8C;
+    /* 0x8C */ TVec3f mUp;
 };
