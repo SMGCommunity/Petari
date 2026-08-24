@@ -12,7 +12,6 @@
 namespace {
     const Vec cDefaultUp = {0.0f, 1.0f, 0.0f};
     const Vec cZoomInPos = {0.0f, 3000.0f, -8500.0f};
-
     const f32 cFovy = 60.0f;
     const f32 cZoomOutPosZ = -22000.0f;
     const f32 cZoomInTargetOffsetY = 200.0f;
@@ -101,9 +100,9 @@ void AstroDomeCameraController::calcZoomInPos(TVec3f* pDst, const TVec3f& rUp) c
     SphereSelectorFunction::calcOffsetPos(pDst, SphereSelectorFunction::getSelectedActorTrans(), ::cZoomInPos, x, rUp);
 }
 
-void AstroDomeCameraController::calcZoomInTarget(TVec3f* pDst, const TVec3f& vec2) const {
+void AstroDomeCameraController::calcZoomInTarget(TVec3f* pDst, const TVec3f& rUp) const {
     TVec3f offset;
-    offset.scale(::cZoomInTargetOffsetY, vec2);
+    offset.scale(::cZoomInTargetOffsetY, rUp);
     pDst->add(SphereSelectorFunction::getSelectedActorTrans(), offset);
 }
 
