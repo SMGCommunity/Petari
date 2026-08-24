@@ -21,7 +21,6 @@
 
 namespace {
     const Vec cZoomInOffset = {400.0f, 2550.0f, -7600.0f};
-
     const s32 cTryStartBindFrame = 30;
     const s32 cBindTractionFrame = 90;
     const s32 cBubbleGrowFrame = 30;
@@ -252,7 +251,7 @@ bool AstroDomeBlueStar::isValidBindStart() const {
     return !isNerve(&NrvAstroDomeBlueStar::AstroDomeBlueStarNrvAppear::sInstance) && !isActiveBind() && !MR::isDemoActive();
 }
 
-void AstroDomeBlueStar::calcZoomInPos(TVec3f* zoomVec) const {
+void AstroDomeBlueStar::calcZoomInPos(TVec3f* pZoomVec) const {
     TVec3f cameraRelative;
     TPos3f rotateMtx;
     SphereSelectorFunction::calcHandledRotateMtx(TVec3f(0.0f, 0.0f, 0.0f), &rotateMtx);
@@ -261,7 +260,7 @@ void AstroDomeBlueStar::calcZoomInPos(TVec3f* zoomVec) const {
     rotateMtx.getYDir(yDir);
     cameraRelative.sub(SphereSelectorFunction::getSelectedActorTrans(), MR::getCamPos());
 
-    SphereSelectorFunction::calcOffsetPos(zoomVec, SphereSelectorFunction::getSelectedActorTrans(), ::cZoomInOffset, cameraRelative, yDir);
+    SphereSelectorFunction::calcOffsetPos(pZoomVec, SphereSelectorFunction::getSelectedActorTrans(), ::cZoomInOffset, cameraRelative, yDir);
 }
 
 void AstroDomeBlueStar::exeAppear() {
@@ -444,11 +443,9 @@ void AstroDomeBlueStar::exeBindEnd() {
 }
 
 void AstroDomeBlueStar::exeGalaxySelect() {
-    if (!MR::isFirstStep(this)) {
-        return;
+    if (MR::isFirstStep(this)) {
+        mPosition.zero();
     }
-
-    mPosition.zero();
 }
 
 void AstroDomeBlueStar::exeGalaxyConfirmStart() {
