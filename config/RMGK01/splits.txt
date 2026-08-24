@@ -5120,13 +5120,14 @@ Game/MapObj/LavaProminence.cpp:
 
 Game/MapObj/LavaProminenceTriple.cpp:
 	.text       start:0x801F3720 end:0x801F425C
-	.rodata     start:0x80533420 end:0x80533460
+	.rodata     start:0x80533420 end:0x80533448
 	.data       start:0x80597D08 end:0x80597E18
 	.sdata2     start:0x806BD4F8 end:0x806BD530
 
 Game/MapObj/LavaSteam.cpp:
 	.text       start:0x801F425C end:0x801F4C64
 	.ctors      start:0x8052ED98 end:0x8052ED9C
+	.rodata     start:0x80533448 end:0x80533450
 	.data       start:0x80597E18 end:0x80597F40
 	.sbss       start:0x806B53A0 end:0x806B53B0
 	.sdata2     start:0x806BD530 end:0x806BD560
@@ -5141,6 +5142,7 @@ Game/MapObj/LavaStrangeRock.cpp:
 Game/MapObj/LotusLeaf.cpp:
 	.text       start:0x801F5254 end:0x801F586C
 	.ctors      start:0x8052EDA0 end:0x8052EDA4
+	.rodata     start:0x80533450 end:0x80533458
 	.data       start:0x80598070 end:0x80598158
 	.sbss       start:0x806B53B8 end:0x806B53C8
 	.sdata2     start:0x806BD580 end:0x806BD5B8
@@ -5163,6 +5165,7 @@ Game/MapObj/ManholeCover.cpp:
 Game/MapObj/MapObjActor.cpp:
 	.text       start:0x801F66A4 end:0x801F8364
 	.ctors      start:0x8052EDAC end:0x8052EDB0
+	.rodata     start:0x80533458 end:0x80533460
 	.data       start:0x80598358 end:0x80598868
 	.sdata      start:0x806B1EA8 end:0x806B1EB0
 	.sbss       start:0x806B53E0 end:0x806B53F0
