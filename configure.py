@@ -1791,7 +1791,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/StarPieceGroup.cpp"),
             Object(NonMatching, "Game/MapObj/StarPieceMother.cpp"),
             Object(NonMatching, "Game/MapObj/StarPieceSpot.cpp"),
-            Object(NonMatching, "Game/MapObj/SubmarineSteam.cpp"),
+            Object(Matching, "Game/MapObj/SubmarineSteam.cpp"),
             Object(NonMatching, "Game/MapObj/SubmarineVolcanoBigColumn.cpp"),
             Object(Matching, "Game/MapObj/Sun.cpp"),
             Object(NonMatching, "Game/MapObj/SuperSpinDriver.cpp"),
