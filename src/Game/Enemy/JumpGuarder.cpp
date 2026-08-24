@@ -145,7 +145,7 @@ void JumpEmitter::updateRotate() {
 
     f32 angleDiff = MR::repeat(newAngle - head->mRotation.y, -180.0f, 360.0f);
 
-    if (__fabsf(angleDiff) < ::sRotateDegree) {
+    if (MR::abs(angleDiff) < ::sRotateDegree) {
         head->mRotation.y = newAngle;
     } else {
         head->mRotation.y += ::sRotateDegree * MR::sign(angleDiff);
