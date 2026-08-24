@@ -49,6 +49,7 @@ public:
     bool isActiveBind() const;
     bool isValidBindStart() const;
     void calcZoomInPos(TVec3f*) const;
+
     void exeAppear();
     void exeWait();
     void exePointing();
