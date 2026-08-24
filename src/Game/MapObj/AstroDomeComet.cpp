@@ -148,14 +148,10 @@ void AstroDomeComet::exeSelect() {
 }
 
 void AstroDomeComet::exeConfirm() {
-    if (!MR::isFirstStep(this)) {
-        return;
+    if (MR::isFirstStep(this)) {
+        if (mMiniGalaxy != SphereSelectorFunction::getSelectedTarget()) {
+            MR::hideModelIfShown(this);
+            MR::hideModelIfShown(mBloomModel);
+        }
     }
-
-    if (mMiniGalaxy == SphereSelectorFunction::getSelectedTarget()) {
-        return;
-    }
-
-    MR::hideModelIfShown(this);
-    MR::hideModelIfShown(mBloomModel);
 }
