@@ -56,6 +56,6 @@ public:
 
     /* 0x100 */ JointControlDelegator< BegomanBaby >* mBabyDelegator;
     /* 0x104 */ TPos3f mWaterColumnMatrix;
-    /* 0x134 */ NameObj* mParent;
+    /* 0x134 */ NameObj* mHost;
     /* 0x138 */ bool mAppearThreeStarPiece;
 };

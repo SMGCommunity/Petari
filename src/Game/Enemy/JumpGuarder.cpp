@@ -511,7 +511,7 @@ void JumpGuarder::init(const JMapInfoIter& rIter) {
 
     for (int i = 0; i < ::sBabyNum; i++) {
         JumpGuarderBaby* baby = &mBabies[i];
-        baby->mParent = this;
+        baby->mHost = this;
         baby->mPosition.set(mPosition);
         baby->initWithoutIter();
         baby->makeActorDead();
