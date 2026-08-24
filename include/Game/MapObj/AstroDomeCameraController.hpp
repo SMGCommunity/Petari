@@ -12,6 +12,11 @@ public:
             mTarget.zero();
         }
 
+        inline void setEnd(const TVec3f& rEnd) {
+            mStart.set(mTarget);
+            mEnd.set(rEnd);
+        }
+
         void reset(const TVec3f& rVec) {
             mStart.set(rVec);
             mEnd.set(rVec);

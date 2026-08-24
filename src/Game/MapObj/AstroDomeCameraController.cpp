@@ -46,7 +46,7 @@ void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
 void AstroDomeCameraController::appear() {
     LiveActor::appear();
 
-    mStartPos.set< f32 >(MR::getCamPos());
+    mStartPos.set(MR::getCamPos());
     mZoomPos.reset(mStartPos);
     mTargetPos.reset(mZeroPos);
     mUpPos.reset(::cDefaultUp);
@@ -120,10 +120,8 @@ void AstroDomeCameraController::exeGalaxySelectStart() {
     if (MR::isFirstStep(this)) {
         calcZoomOutPos(&zoomOutPos);
 
-        mZoomPos.mStart.set(mZoomPos.mTarget);
-        mZoomPos.mEnd.set(zoomOutPos);
-        mTargetPos.mStart.set(mTargetPos.mTarget);
-        mTargetPos.mEnd.set(mZeroPos);
+        mZoomPos.setEnd(zoomOutPos);
+        mTargetPos.setEnd(mZeroPos);
     }
 
     mEaseRate = MR::getEaseInOutValue(MR::calcNerveRate(this, startFrame), 0.0f, 1.0f, 1.0f);
@@ -152,16 +150,13 @@ void AstroDomeCameraController::exeGalaxyConfirmStart() {
     calcZoomInTarget(&vecTarget, vecUp);
 
     if (MR::isFirstStep(this)) {
-        mTargetPos.mStart.set(mTargetPos.mTarget);
-        mTargetPos.mEnd.set(vecTarget);
+        mTargetPos.setEnd(vecTarget);
 
         TVec3f zoomInPos;
         calcZoomInPos(&zoomInPos, vecUp);
 
-        mZoomPos.mStart.set(mZoomPos.mTarget);
-        mZoomPos.mEnd.set(zoomInPos);
-        mUpPos.mStart.set(mUpPos.mTarget);
-        mUpPos.mEnd.set(vecUp);
+        mZoomPos.setEnd(zoomInPos);
+        mUpPos.setEnd(vecUp);
     }
 
     mEaseRate = MR::calcNerveEaseOutRate(this, frame);
@@ -193,14 +188,10 @@ void AstroDomeCameraController::exeGalaxyConfirmCancel() {
     if (MR::isFirstStep(this)) {
         TVec3f zoomOutPos;
         calcZoomOutPos(&zoomOutPos);
-        mZoomPos.mStart.set(mZoomPos.mTarget);
-        mZoomPos.mEnd.set(zoomOutPos);
-        mTargetPos.mStart.set(mTargetPos.mTarget);
-        mTargetPos.mEnd.set(mZeroPos);
         
-        TVec3f vec(::cDefaultUp);
-        mUpPos.mStart.set(mUpPos.mTarget);
-        mUpPos.mEnd.set(vec);
+        mZoomPos.setEnd(zoomOutPos);
+        mTargetPos.setEnd(mZeroPos);
+        mUpPos.setEnd(::cDefaultUp);
     }
     
     mEaseRate = MR::calcNerveEaseInRate(this, frame);
