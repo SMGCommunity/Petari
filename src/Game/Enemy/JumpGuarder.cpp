@@ -554,7 +554,6 @@ bool JumpGuarder::enableAttack() {
     return false;
 }
 
-/// @brief Filters out their own babies.
 bool JumpGuarder::isHit(const LiveActor* pActor) const {
     for (u32 i = 0; i < mNumActiveBabies; i++) {
         if (mActiveBabies[i] == pActor) {

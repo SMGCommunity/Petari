@@ -43,7 +43,9 @@ public:
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
+    /// @brief Filters out their own babies.
     bool isHit(const LiveActor*) const;
+
     bool enableAttack();
     void exeHide();
     void exeUp();
