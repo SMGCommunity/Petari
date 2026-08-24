@@ -147,7 +147,7 @@ void AstroDomeOrbit::drawCelling(f32 width, bool isAddHeight, f32 height) const 
         posVec.scale(mOrbitRadius + (0.5f * width), rotateVec);
         posVec.add(handleTrans);
 
-        if (a3) {
+        if (isAddHeight) {
             GXPosition3f32(negVec.x, negVec.y, negVec.z);
             GXPosition3f32(posVec.x, posVec.y, posVec.z);
         } else {
