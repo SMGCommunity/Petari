@@ -17,9 +17,9 @@ namespace {
     const Vec cJumpOutDemoRotate = {347.0f, 0.0f, 0.0};
     const char* cAstroDomeSkyTable[] = {"AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC", "AstroDomeSkyA", "AstroDomeSkyB", "AstroDomeSkyC"};
 
-    const f32 cAppearanceBrkTotalFrame = 200.0f;
-    const f32 cRotateDisappearBrkFrame = 30.0f;
-    const f32 cRotateAppearBrkFrame = 59.0f;
+    const s32 cAppearanceBrkTotalFrame = 200;
+    const s32 cRotateDisappearBrkFrame = 30;
+    const s32 cRotateAppearBrkFrame = 59;
     const f32 cAppearanceRotateSpeed = 0.1f;
 
     const GXColor sColor1 = {0x00, 0x00, 0x00, 0xFF};
@@ -214,12 +214,10 @@ void AstroDomeSky::exeDisappear() {
 }
 
 void AstroDomeSky::exeReturnDemoWait() {
-    if (!MR::isFirstStep(this)) {
-        return;
+    if (MR::isFirstStep(this)) {
+        MR::startBrk(this, "Appear");
+        MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this, "Appear"));
+
+        mColor.set(::sColor1);
     }
-
-    MR::startBrk(this, "Appear");
-    MR::setBrkFrameAndStop(this, MR::getBrkFrameMax(this, "Appear"));
-
-    mColor.set(::sColor1);
 }
