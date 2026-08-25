@@ -152,7 +152,7 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
 
     _9D8.zero();
 
-    mBeeWallWalk = false;
+    mBeeWallWalk = 0;
     _9F2 = false;
     _EA4 = false;
     _EA5 = false;
@@ -738,7 +738,7 @@ void MarioActor::movement() {
                 mMario->mDrawStates._2 = true;
             }
         }
-        if (getMovementStates().jumping && !mBeeWallWalk) {
+        if (getMovementStates().jumping && mBeeWallWalk == 0) {
             if (stack_128.dot(getGravityVec()) < -40.0f) {
                 TVec3f stack_EC(mPosition - getGravityVec() * 100.0f);
                 TVec3f stack_E0;
@@ -1242,7 +1242,7 @@ void MarioActor::updateSwingAction() {
                     mMario->playSound("スピンジャンプ");
                 }
                 mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
-            } else if (getMovementStates()._A || mBeeWallWalk) {
+            } else if (getMovementStates()._A || mBeeWallWalk != 0) {
                 mMario->changeAnimation("サマーソルト", (const char*)nullptr);
             } else {
                 mMario->changeAnimation("ハチスピン", (const char*)nullptr);
@@ -1278,7 +1278,7 @@ void MarioActor::updateSwingAction() {
         if (isJumping()) {
             mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
         } else {
-            if (getMovementStates()._A || mBeeWallWalk) {
+            if (getMovementStates()._A || mBeeWallWalk != 0) {
                 mMario->changeAnimation("サマーソルト", (const char*)nullptr);  // Summersault
             } else {
                 mMario->changeAnimation("ハチスピン", (const char*)nullptr);

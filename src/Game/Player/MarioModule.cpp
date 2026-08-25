@@ -449,7 +449,7 @@ bool MarioModule::checkSquat(bool a1) {
     if (mActor->_B94 != 0) {
         return false;
     }
-    if (mActor->mBeeWallWalk) {
+    if (mActor->mBeeWallWalk != 0) {
         return false;
     }
     if (mActor->mMario->mMovementStates._21) {

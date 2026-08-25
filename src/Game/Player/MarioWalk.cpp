@@ -221,7 +221,7 @@ void Mario::decideWalkSpeed() {
         mTargetWalkSpeedIndex = 6;
     }
 
-    if (mActor->mBeeWallWalk && mTargetWalkSpeedIndex > 4) {
+    if (mActor->mBeeWallWalk != 0 && mTargetWalkSpeedIndex > 4) {
         mTargetWalkSpeedIndex = 4;
     }
 

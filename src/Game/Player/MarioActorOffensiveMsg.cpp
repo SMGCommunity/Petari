@@ -119,7 +119,7 @@ bool MarioActor::tryTornadoAttack(HitSensor* pSensor) {
 
 bool MarioActor::isUnderTarget(HitSensor* pSensor) {
     TVec3f down;
-    if (mBeeWallWalk) {
+    if (mBeeWallWalk != 0) {
         down = _240;
     } else {
         MR::calcGravityVectorOrZero(this, pSensor->mPosition, &down, mGravityInfo, 0);
