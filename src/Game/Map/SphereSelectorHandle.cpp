@@ -6,10 +6,6 @@
 #include "Game/Util.hpp"
 
 namespace {
-    //  const s32 cClickedIntervalFrameMax
-    //  const s32 cClickedMoveDistanceMax
-    //  const s32 cSelectStartFrame
-    //  const s32 cConfirmStartCancelFrame
     const s32 cHoldReduceOutScreenFrame = 5;
     //  const s32 cRotateSpeedChangeMax
     //  const f32 cHoldReduceRate
