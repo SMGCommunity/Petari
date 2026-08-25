@@ -568,7 +568,7 @@ void Mario::pushedByWind() {
         return;
     }
 
-    if (_71C == 0) {
+    if (mTargetWalkSpeedIndex == 0) {
         const MarioConstTable* table = mActor->getConst().getTable();
         if (windMag <= table->mWindSlideLimit) {
             return;

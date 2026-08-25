@@ -37,7 +37,7 @@ void MarioActor::attackOrPushSensorInDamage(HitSensor* pReceiver, f32 radius) {
             f1 += 10.0f;
         }
 
-        if (mMario->_71C >= 5) {
+        if (mMario->mTargetWalkSpeedIndex >= 5) {
             f2 += 15.0f;
         }
 
@@ -68,7 +68,7 @@ void MarioActor::attackOrPushSensorInDamage(HitSensor* pReceiver, f32 radius) {
         f1 += 10.0f;
     }
 
-    if (mMario->_71C >= 5) {
+    if (mMario->mTargetWalkSpeedIndex >= 5) {
         f2 += 15.0f;
     }
 
@@ -119,7 +119,7 @@ bool MarioActor::tryTornadoAttack(HitSensor* pSensor) {
 
 bool MarioActor::isUnderTarget(HitSensor* pSensor) {
     TVec3f down;
-    if (mAlphaEnable) {
+    if (mBeeWallWalk != 0) {
         down = _240;
     } else {
         MR::calcGravityVectorOrZero(this, pSensor->mPosition, &down, mGravityInfo, 0);

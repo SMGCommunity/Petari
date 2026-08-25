@@ -91,8 +91,8 @@ void Mario::startSlider() {
         if (getPlayer()->mMovementStates._B) {
             if (getPlayer()->mMovementStates.jumping) {
                 mDrawStates._4 = 1;
-                playSound("尻ドロップ着地", -1);
-                playSound("声尻ドロップ着地", -1);
+                playSound("尻ドロップ着地");
+                playSound("声尻ドロップ着地");
                 playEffectRT("属性尻ドロップ", _368, mPosition);
                 startPadVib("最強");
                 startCamVib(0);
@@ -142,7 +142,7 @@ bool MarioSlider::update() {
 
     if (checkTrgA()) {
         f32 v11 = (_14.length() / mActor->mConst->getTable()->mJumpFrontSpeed);
-        getPlayer()->_278 = v11;
+        getPlayer()->mWalkSpeed = v11;
         getPlayer()->tryJump();
         return false;
     } else {
@@ -201,7 +201,7 @@ bool MarioSlider::update() {
             }
 
             calcWallHit();
-            playSound("坂滑り", -1);
+            playSound("坂滑り");
             return true;
         }
     }
