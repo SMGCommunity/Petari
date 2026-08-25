@@ -17,8 +17,8 @@ namespace {
     static f32 sSpeedTableA[] = {0.15f, 0.3f, 0.45f, 0.6f, 0.7f, 0.85f, 0.99f};
     static f32 sSpeedTableB[] = {0.02f, 0.2f, 0.4f, 0.5f, 0.65f, 0.75f, 0.98f};
     static f32 sWalkTargetTable[] = {0.0f, 0.15f, 0.25f, 0.4f, 0.5f, 0.6f, 0.8f, 1.0f};
-    static f32 sWeightTable[] = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,  0.0f,  0.0f, 0.75f, 0.25f, 0.0f,  0.0f, 0.25f, 0.75f, 0.0f, 0.0f,
-                                 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.75f, 0.25f, 0.0f, 0.0f,  0.25f, 0.75f, 0.0f, 0.0f,  0.0f,  1.0f, 0.0f};
+    static f32 sWeightTable[8][4] = {{0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 0.0f,  0.0f,  0.0f}, {0.75f, 0.25f, 0.0f,  0.0f}, {0.25f, 0.75f, 0.0f, 0.0f},
+                                 {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.75f, 0.25f, 0.0f}, {0.0f,  0.25f, 0.75f, 0.0f}, {0.0f,  0.0f,  1.0f, 0.0f}};
     static f32 sFootStep[] = {1.2f, 1.5f, 1.3f, 0.0f};
     static f32 sFootStepBeeWallWalk[] = {0.5f, 0.5f, 0.5f, 0.0f};
 };  // namespace
@@ -196,7 +196,7 @@ void Mario::decideWalkSpeed() {
     bool canIndexDecrease = mTargetWalkSpeedIndex != 0 && mStickPos.z < ::sSpeedTableB[mTargetWalkSpeedIndex - 1];
 
     u32 i;
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < ARRAY_SIZE(::sSpeedTableA); i++) {
         if (mStickPos.z < ::sSpeedTableA[i]) {
             break;
         }
@@ -263,7 +263,7 @@ void Mario::decideWalkAnimation() {
             if (getPlayer()->mTargetWalkSpeedIndex != 0) {
                 getAnimator()->stopWaitAnimation();
             }
-            getAnimator()->setWalkWeight(&::sWeightTable[mTargetWalkSpeedIndex * 4]);
+            getAnimator()->setWalkWeight(::sWeightTable[mTargetWalkSpeedIndex]);
         } else {
             f32 weights[] = {0, 0, 0, 0};
             if (mTargetWalkSpeedIndex != 0) {
@@ -332,17 +332,15 @@ void Mario::decideWalkAnimation() {
 
     mPrevAnimFrame = animFrame;
 
-    f32* footStep = &::sFootStep[0];
+    f32* footStep = ::sFootStep;
     f32 f3 = 0.0f;
 
     if (mActor->mBeeWallWalk != 0) {
-        footStep = &::sFootStepBeeWallWalk[0];
+        footStep = ::sFootStepBeeWallWalk;
     }
 
-    f32* currentWeights = &::sWeightTable[mTargetWalkSpeedIndex * 4];
-
-    for (int i = 0; i < 4; i++) {
-        f3 += footStep[i] * currentWeights[i];
+    for (int i = 0; i < ARRAY_SIZE(*::sWeightTable); i++) {
+        f3 += footStep[i] * ::sWeightTable[mTargetWalkSpeedIndex][i];
     }
 
     f32 animationSpeed;
@@ -472,11 +470,7 @@ void Mario::checkWallPush() {
     bool sideStep = false;
     f32 wallPushAngleRange = mActor->getConst().getTable()->mWallPushAngleRange;
 
-    bool checkAngle = false;
-
-    if (mTargetWalkSpeedIndex != 0 && mMovementStates._8) {
-        checkAngle = true;
-    }
+    bool checkAngle = mTargetWalkSpeedIndex != 0 && mMovementStates._8;
 
     if (checkAngle && angle < MR::toRadian(wallPushAngleRange)) {
         sideStep = true;

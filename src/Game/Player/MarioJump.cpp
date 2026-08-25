@@ -56,12 +56,12 @@ void Mario::tryJump() {
 
     if (mSinkTimer != 0) {
         if (checkCurrentFloorCodeSevere(0x19)) {
-            if (mSinkTimer > 0x20) {
-                mSinkTimer -= 0x20;
+            if (mSinkTimer > 32) {
+                mSinkTimer -= 32;
             }
 
-            if (mSinkTimer < 0x40) {
-                mSinkTimer = 0x40;
+            if (mSinkTimer < 64) {
+                mSinkTimer = 64;
             }
 
             mMovementStates._38 = false;
@@ -73,11 +73,11 @@ void Mario::tryJump() {
         }
 
         if (mSinkTimer > 100) {
-            if (mSinkTimer > 0xC8) {
-                mSinkTimer = 0x80;
+            if (mSinkTimer > 200) {
+                mSinkTimer = 128;
                 changeAnimation("埋まりジャンプA", static_cast< const char* >(nullptr));
             } else {
-                mSinkTimer = 0x20;
+                mSinkTimer = 64;
                 changeAnimation("埋まりジャンプB", static_cast< const char* >(nullptr));
             }
 
@@ -2333,14 +2333,14 @@ void Mario::doLanding() {
         } else {
             if (isCurrentFloorSink()) {
                 stopAnimation(static_cast< const char* >(nullptr), "基本");
-                mSinkTimer = 0x40;
+                mSinkTimer = 64;
                 return;
             }
 
             if ((_960 == 0x1B || _960 == 0x1C)) {
                 if (!strcmp(MR::getSoundCodeString(_45C), "Sand")) {
                     stopAnimation(static_cast< const char* >(nullptr), "基本");
-                    mSinkTimer = 0x20;
+                    mSinkTimer = 32;
                     return;
                 }
             } else if (_3BC > 10) {
