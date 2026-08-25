@@ -68,7 +68,7 @@ void AstroDomeSky::init(const JMapInfoIter& rIter) {
 }
 
 void AstroDomeSky::draw() const {
-    MR::fillScreen(mColor);
+    MR::fillScreen(mColor.mGXColor);
 }
 
 void AstroDomeSky::calcAndSetBaseMtx() {
