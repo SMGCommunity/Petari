@@ -5246,7 +5246,7 @@ Game/MapObj/MeteorStrike.cpp:
 	.text       start:0x801FD7A0 end:0x801FE770
 	.ctors      start:0x8052EDC8 end:0x8052EDCC
 	.rodata     start:0x805334E8 end:0x805334F8
-	.data       start:0x80599728 end:0x80599928
+	.data       start:0x80599728 end:0x80599900
 	.sdata      start:0x806B1EB0 end:0x806B1EB8
 	.sbss       start:0x806B5478 end:0x806B5480
 	.sdata2     start:0x806BD738 end:0x806BD790
@@ -5255,7 +5255,7 @@ Game/MapObj/MeteorStrikeLauncher.cpp:
 	.text       start:0x801FE770 end:0x801FEDEC
 	.ctors      start:0x8052EDCC end:0x8052EDD0
 	.rodata     start:0x805334F8 end:0x80533500
-	.data       start:0x80599928 end:0x805999C0
+	.data       start:0x80599900 end:0x805999C0
 	.sbss       start:0x806B5480 end:0x806B5488
 	.sdata2     start:0x806BD790 end:0x806BD798
 
