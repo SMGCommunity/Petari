@@ -6,6 +6,23 @@
 #include "Game/Util.hpp"
 
 namespace {
+    //  const s32 cClickedIntervalFrameMax
+    //  const s32 cClickedMoveDistanceMax
+    //  const s32 cSelectStartFrame
+    //  const s32 cConfirmStartCancelFrame
+    const s32 cHoldReduceOutScreenFrame = 5;
+    //  const s32 cRotateSpeedChangeMax
+    //  const f32 cHoldReduceRate
+    const f32 cSpinReduceRate = 0.95f;
+    //  const s32 cRotateSpeedMaxY
+    //  const f32 cHoldRotateRateY
+    const s32 cDemoRotateStartFrame = 60;
+    const f32 cDemoRotateSpeedY = 0.03f;
+    //  const s32 cRotateSpeedMaxX
+    //  const f32 cHoldRotateRateX
+    const f32 cRotateAppearX = 40.0f;
+    const f32 cRotateMinX = -15.0f;
+    const f32 cRotateMaxX = 80.0f;
     const s32 cBgmAppearState = 2;
     const s32 cBgmAppearFrames = 60;
     const s32 cBgmDisappearState = 1;
@@ -18,14 +35,6 @@ namespace {
     const s32 cBgmConfirmFrames = 60;
     const s32 cBgmNotConfirmState = 5;
     const s32 cBgmNotConfirmFrames = 60;
-
-    const s32 cHoldReduceOutScreenFrame = 5;
-    const f32 cSpinReduceRate = 0.95f;
-    const s32 cDemoRotateStartFrame = 60;
-    const f32 cDemoRotateSpeedY = 0.03f;
-    const f32 cRotateAppearX = 40.0f;
-    const f32 cRotateMinX = -15.0f;
-    const f32 cRotateMaxX = 80.0f;
 };  // namespace
 
 namespace NrvSphereSelectorHandle {
