@@ -4366,6 +4366,7 @@ Game/MapObj/BeeFlowerHover.cpp:
 	.text       start:0x801B2D5C end:0x801B36E4
 	.ctors      start:0x8052EC60 end:0x8052EC64
 	.data       start:0x8058FAB0 end:0x8058FBF8
+	.rodata		start:0x80533030 end:0x80533038
 	.sbss       start:0x806B4E80 end:0x806B4E98
 	.sdata2     start:0x806BC810 end:0x806BC830
 
@@ -4386,6 +4387,7 @@ Game/MapObj/BenefitItemObj.cpp:
 	.text       start:0x801B4058 end:0x801B5D50
 	.ctors      start:0x8052EC6C end:0x8052EC70
 	.data       start:0x8058FE48 end:0x805900B8
+	.rodata		start:0x80533038 end:0x80533048
 	.sdata      start:0x806B1D60 end:0x806B1D80
 	.sbss       start:0x806B4E98 end:0x806B4EA0
 	.sdata2     start:0x806BC858 end:0x806BC8A0
@@ -4439,7 +4441,7 @@ Game/MapObj/BlueChip.cpp:
 Game/MapObj/BlueStarCupsulePlanet.cpp:
 	.text       start:0x801B8E20 end:0x801B9C78
 	.ctors      start:0x8052EC80 end:0x8052EC84
-	.rodata     start:0x80533030 end:0x80533058
+	.rodata     start:0x80533048 end:0x80533058
 	.data       start:0x80590558 end:0x80590790
 	.sbss       start:0x806B4ED0 end:0x806B4EE0
 	.sdata2     start:0x806BC920 end:0x806BC938
