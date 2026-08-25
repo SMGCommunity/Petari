@@ -1,6 +1,7 @@
 #include "Game/Player/MarioActor.hpp"
 
 void MarioActor::initMember() {
+    _8C = 0;
     mDLchanger = nullptr;
     for (int i = 0; i < ARRAY_SIZE(_94); i++) {
         _94[i] = 0;
