@@ -1220,7 +1220,7 @@ notSquat:
         player = getPlayer();
         player->decideWalkAnimation();
 
-        if (mActor->mBeeWallWalk) {
+        if (mActor->mBeeWallWalk != 0) {
             updateWalkBas("スケート待機", 59.0f);
         } else {
             updateWalkBas("走り待機", 59.0f);

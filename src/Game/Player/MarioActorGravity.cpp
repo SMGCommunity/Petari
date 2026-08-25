@@ -35,7 +35,7 @@ u8 MarioActor::getGravityLevel() const {
 }
 
 bool MarioActor::checkBeeWallStick(TVec3f& rVec) {
-    if (mMario->getMovementStates()._8 && mMario->checkWallCode("Fur", false) && !mBeeWallWalk && !_9F2) {
+    if (mMario->getMovementStates()._8 && mMario->checkWallCode("Fur", false) && mBeeWallWalk == 0 && !_9F2) {
         TVec3f vec20 = mMario->mHeadVec;
 
         mBeeWallWalk = 5;
