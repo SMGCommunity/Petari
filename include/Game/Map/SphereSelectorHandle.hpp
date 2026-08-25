@@ -7,7 +7,6 @@ class SphereSelectorHandle : public LiveActor {
 public:
     SphereSelectorHandle(const char*);
 
-    virtual ~SphereSelectorHandle();
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();
