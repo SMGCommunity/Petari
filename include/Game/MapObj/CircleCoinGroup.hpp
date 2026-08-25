@@ -8,7 +8,7 @@ public:
 
     virtual ~CircleCoinGroup();
     virtual void initCoinArray(const JMapInfoIter&);
-    virtual void placementCoin() const;
+    virtual void placementCoin();
     virtual const char* getCoinName() const;
 
     f32 mCoinRadius;  // 0xA0
