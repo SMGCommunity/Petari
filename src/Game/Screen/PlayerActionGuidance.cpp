@@ -14,12 +14,6 @@ namespace {
     static const s32 sChangeSoundFrame = 40;
 };  // namespace
 
-namespace MR {
-    PlayerActionGuidance* getPlayerActionGuidance() {
-        return MR::getSceneObj< PlayerActionGuidance >(SceneObj_PlayerActionGuidance);
-    }
-};  // namespace MR
-
 namespace {
     NEW_NERVE(PlayerActionGuidanceWaitFocusIn, PlayerActionGuidance, WaitFocusIn);
     NEW_NERVE(PlayerActionGuidanceFadein, PlayerActionGuidance, Fadein);
@@ -28,9 +22,15 @@ namespace {
     NEW_NERVE(PlayerActionGuidanceFadeout, PlayerActionGuidance, Fadeout);
 };  // namespace
 
+namespace MR {
+    PlayerActionGuidance* getPlayerActionGuidance() {
+        return MR::getSceneObj< PlayerActionGuidance >(SceneObj_PlayerActionGuidance);
+    }
+};  // namespace MR
+
 PlayerActionGuidance::PlayerActionGuidance()
-    : LayoutActor("プレイヤーアクションガイダンス", true), mSpinLayout(nullptr), mTamakoroLayout(nullptr), mCurrentLayout(nullptr), mGuidanceState(3),
-      mGuidancePrevState(3), _34(false), _35(false), _36(false), _37(false) {
+    : LayoutActor("プレイヤーアクションガイダンス", true), mSpinLayout(), mTamakoroLayout(), mCurrentLayout(), mGuidanceState(3),
+      mGuidancePrevState(3), _34(), _35(), _36(), _37() {
 }
 
 void PlayerActionGuidance::control() {
@@ -127,7 +127,7 @@ void PlayerActionGuidance::startWaitAnimTamakoro() {
         MR::startAnim(mTamakoroLayout, "WaitRaiseHold", 0);
         break;
     case 2:
-        MR::startAnim(mTamakoroLayout, "WaitRaiseOK", 0);
+        MR::startAnim(mTamakoroLayout, "RaiseOK", 0);
         break;
     case 3:
         MR::startAnim(mTamakoroLayout, "WaitRotation", 0);

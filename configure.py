@@ -2256,7 +2256,7 @@ config.libs = [
             Object(Matching, "Game/Screen/PeachLetter.cpp"),
             Object(Matching, "Game/Screen/PictureBookCloseButton.cpp"),
             Object(NonMatching, "Game/Screen/PictureBookLayout.cpp"),
-            Object(NonMatching, "Game/Screen/PlayerActionGuidance.cpp"),
+            Object(Matching, "Game/Screen/PlayerActionGuidance.cpp"),
             Object(NonMatching, "Game/Screen/PlayerLeft.cpp"),
             Object(NonMatching, "Game/Screen/PlayerMissLeft.cpp"),
             Object(NonMatching, "Game/Screen/PowerStarList.cpp"),
