@@ -2425,7 +2425,7 @@ config.libs = [
     GameLib(
         "Util",
         [
-            Object(NonMatching, "Game/Util/ActorCameraUtil.cpp"),
+            Object(Matching, "Game/Util/ActorCameraUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorMovementUtil.cpp"),
             Object(Matching, "Game/Util/ActorSensorUtil.cpp"),
             Object(NonMatching, "Game/Util/ActorShadowLocalUtil.cpp"),
