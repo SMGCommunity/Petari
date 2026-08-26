@@ -1286,7 +1286,7 @@ const TVec3f* Mario::getGravityVec() const {
         return &_790;
     }
     if (mMovementStates._1 && !isSlipFloorCode(_960)) {
-        if (mActor->mBeeWallWalk == 0) {
+        if (mActor->mBeeWallWalk != 0) {
             return &mAirGravityVec;
         }
         if (isAnimationRun("ハード着地")) {

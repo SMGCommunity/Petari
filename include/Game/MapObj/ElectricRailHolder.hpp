@@ -2,9 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-enum ElectricRailType {
-
-};
+enum ElectricRailType { TYPE_0, TYPE_1, TYPE_2, TYPE_3 };
 
 class ElectricRailHolder : public LiveActor {
 public:

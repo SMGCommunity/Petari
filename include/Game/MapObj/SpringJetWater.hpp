@@ -6,7 +6,6 @@ class SpringJetWater : public LiveActor {
 public:
     SpringJetWater(const char*);
 
-    virtual ~SpringJetWater();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void startClipped();
@@ -17,6 +16,6 @@ public:
     void exeJet();
     void exeEnd();
 
-    const char* mObjName;  // 0x8C
-    TVec3f _90;
+    /* 0x8C */ const char* mObjName;
+    /* 0x90 */ TVec3f mUp;
 };

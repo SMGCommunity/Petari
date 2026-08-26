@@ -444,8 +444,15 @@ namespace JGeometry {
             setQuat(q);
         }
 
+        void setRotateDegree(const TVec3f& rRot) {
+            setRotate(rRot * (PI / 180.0f));
+        }
+
         void setRotate(const TVec3f& rRot) {
-            setRotate(rRot.x, rRot.y, rRot.z);
+            f32 z = rRot.z;
+            f32 y = rRot.y;
+            f32 x = rRot.x;
+            setRotate(x, y, z);
         }
 
         void setRotate(f32 rx, f32 ry, f32 rz) {

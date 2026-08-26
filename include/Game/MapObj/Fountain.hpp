@@ -6,7 +6,6 @@ class Fountain : public LiveActor {
 public:
     Fountain(const char*);
 
-    virtual ~Fountain();
     virtual void init(const JMapInfoIter&);
     virtual void appear();
     virtual void startClipped();
@@ -16,6 +15,6 @@ public:
     void exeWait();
     void exeMove();
 
-    const char* mFountainName;  // 0x8C
-    TVec3f _90;
+    /* 0x8C */ const char* mFountainName;
+    /* 0x90 */ TVec3f mUp;
 };

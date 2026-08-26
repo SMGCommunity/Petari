@@ -166,8 +166,8 @@ s32 VFiPFFAT32_WriteFATEntryPage(struct PF_VOLUME* p_vol, u32 cluster, u32 value
     s32 err;
     u32 fat_offset;
     u32 fat_sector;
-    u32 offset_in_sector;
-    u32 dword;
+    u32 offset_in_sector;  // Present in DWARF but unused here.
+    u32 dword;             // Present in DWARF but unused here.
     u32 current_fat;
     s32 result;
 

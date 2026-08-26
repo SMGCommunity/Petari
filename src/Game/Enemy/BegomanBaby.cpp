@@ -48,11 +48,11 @@ namespace {
 
 };  // namespace
 
-BegomanBaby::BegomanBaby(const char* pName) : BegomanBase(pName), mBabyDelegator(nullptr), _134(nullptr), mAppearThreeStarPiece(false) {
+BegomanBaby::BegomanBaby(const char* pName) : BegomanBase(pName), mBabyDelegator(), mHost(), mAppearThreeStarPiece() {
     mWaterColumnMatrix.identity();
 }
 
-BegomanBaby::BegomanBaby(NameObj* pObj, const char* pName) : BegomanBase(pName), mBabyDelegator(nullptr), _134(pObj), mAppearThreeStarPiece(false) {
+BegomanBaby::BegomanBaby(NameObj* pHost, const char* pName) : BegomanBase(pName), mBabyDelegator(), mHost(pHost), mAppearThreeStarPiece() {
     mWaterColumnMatrix.identity();
 }
 
@@ -60,8 +60,8 @@ void BegomanBaby::init(const JMapInfoIter& rIter) {
     initCore(rIter, "BegomanBaby", false);
     MR::declareStarPiece(this, 3);
 
-    if (_134 == nullptr) {
-        _134 = this;
+    if (mHost == nullptr) {
+        mHost = this;
     }
     initBinder(45.0f, 45.0f, 0);
     initNerve(&NrvBegomanBaby::HostTypeNrvWait::sInstance);

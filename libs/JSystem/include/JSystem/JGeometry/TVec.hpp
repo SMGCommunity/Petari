@@ -729,8 +729,9 @@ namespace JGeometry {
             
                 psq_l    v0xy, 0(a), 0, 0
                 psq_l    v1xy, 0(b), 0, 0
-                ps_sub   dxy, v0xy, v1xy
+                
                 ps_mul   dyz, dyz, dyz
+                ps_sub   dxy, v0xy, v1xy
             
                 ps_madd  sqdist, dxy, dxy, dyz
                 ps_sum0  sqdist, sqdist, dyz, dyz

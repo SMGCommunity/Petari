@@ -193,7 +193,7 @@ public:
     bool doFlipLarge(const TVec3f&);
     bool doFlipRot(const TVec3f&);
 
-    void doFrontStep();
+    bool doFrontStep();
 
     void beeMarioOnGround();
     bool beeMarioOnAir();

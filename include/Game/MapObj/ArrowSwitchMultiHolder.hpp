@@ -8,6 +8,7 @@ class JMapIdInfo;
 
 class ArrowSwitchMultiHolder : public DeriveActorGroup< ArrowSwitchMulti > {
 public:
+    /// @brief Creates a new `ArrowSwitchMultiHolder`.
     ArrowSwitchMultiHolder();
 
     ArrowSwitchMulti* findSwitch(const JMapIdInfo*);

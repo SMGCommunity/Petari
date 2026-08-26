@@ -2557,6 +2557,17 @@ void WUDSecurityCallback(tBTA_DM_SEC_EVT event, tBTA_DM_SEC* pData) {
     }
 }
 
+static u8 write_ram_params[] = {
+    // bytes 0-3: destination address
+    (0x00083630) & 0xFF, (0x00083630 >> 8) & 0xFF, (0x00083630 >> 16) & 0xFF, (0x00083630 >> 24) & 0xFF,
+
+    // data (24 zeroes)
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+
+void WUDiResetAuthFailCount(void) {
+    BTM_VendorSpecificCommand(0xFC4C, sizeof(write_ram_params), (u8*)write_ram_params, NULL);
+}
+
 void WUDSearchCallback(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* pData) {
     s32 timeout;
 
@@ -2609,17 +2620,14 @@ void WUDSearchCallback(tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* pData) {
 
     case BTA_DM_DISC_CMPL_EVT: {
         DEBUGPrint("DISCOVER COMPLETED\n");
-
         _wcb.syncState = WUD_STATE_SYNC_CHECK_SEARCH_RESULT;
         break;
     }
 
     case BTA_DM_SEARCH_CANCEL_CMPL_EVT: {
         DEBUGPrint("SEARCH CANCEL\n\n");
-
-        _discNumResps = 0;
-        memset(&_discResp, 0, sizeof(WUDDiscResp));
-
+        WUDiResetAuthFailCount();
+        ClearDiscoverResult();
         _wcb.syncState = WUD_STATE_SYNC_CHECK_SEARCH_RESULT;
         break;
     }
@@ -2807,6 +2815,11 @@ void WUDPowerManagerCallback(BD_ADDR addr, tBTM_PM_STATUS status, UINT16 value, 
     if (pInfo == NULL) {
         if (WUD_BDCMP(_work.devAddr, addr) == 0) {
             pInfo = &_work;
+        } else {
+            DEBUGPrint("Unknown device is connected and changes the connection type!!!!\n");
+            DEBUGPrint(" addr = %02x:%02x:%02x:%02x:%02x:%02x,  status = %d\n", pInfo->devAddr[0], pInfo->devAddr[1], pInfo->devAddr[2],
+                       pInfo->devAddr[3], pInfo->devAddr[4], pInfo->devAddr[5], pInfo->status);
+            return;
         }
     }
 

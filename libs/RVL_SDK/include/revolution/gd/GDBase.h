@@ -73,6 +73,11 @@ static inline void GDWriteBPCmd(u32 regval) {
     GDWrite_u32(regval);
 }
 
+static inline void GDTexCoord2f32(f32 x, f32 y) {
+    GDWrite_f32(x);
+    GDWrite_f32(y);
+}
+
 static inline void GDWriteCPCmd(u8 addr, u32 val) {
     GDWrite_u8(8);
     GDWrite_u8(addr);

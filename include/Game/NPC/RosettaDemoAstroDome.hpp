@@ -56,6 +56,7 @@ public:
 
 class RosettaMonologue : public SimpleLayout {
 public:
+    /// @brief Creates a new `RosettaMonologue`.
     RosettaMonologue();
 
     virtual void movement();
@@ -63,7 +64,7 @@ public:
     virtual void appear();
     virtual void control();
 
-    /* 0x20 */ s32 mMsgID;
+    /* 0x20 */ s32 mMessageNo;
     /* 0x24 */ TalkTextFormer mTextFormer;
-    /* 0x34 */ IconAButton* mIcon;
+    /* 0x34 */ IconAButton* mIconAButton;
 };
