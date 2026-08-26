@@ -19,8 +19,12 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+void ButlerMap_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace {
-    const char* cDemoNameMapLecture = "バトラーマップレクチャー";
+    const char* const cDemoNameMapLecture = "バトラーマップレクチャー";
 };  // namespace
 
 namespace NrvButlerMap {
@@ -32,16 +36,12 @@ namespace NrvButlerMap {
     NEW_NERVE(ButlerMapNrvStarPieceReaction, ButlerMap, StarPieceReaction);
 };  // namespace NrvButlerMap
 
-ButlerMap::ButlerMap(const char* pName) : NPCActor(pName) {
-    _15C = nullptr;
-    _160 = false;
-}
-
-ButlerMap::~ButlerMap() {
+ButlerMap::ButlerMap(const char* pName) : NPCActor(pName), mStateStarPieceReaction(), mObjArg0() {
 }
 
 void ButlerMap::init(const JMapInfoIter& rIter) {
-    MR::getJMapInfoArg0NoInit(rIter, &_160);
+    MR::getJMapInfoArg0NoInit(rIter, &mObjArg0);
+
     NPCActorCaps caps("ButlerMap");
     caps.mObjectName = "Butler";
     caps.setDefault();
@@ -61,7 +61,7 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
     mParam._18 = wait;
     mParam._1C = talk;
     mParam._20 = talk;
-    MR::createSceneObj(119);
+    MR::createSceneObj(SceneObj_GalaxyMapController);
     MR::tryRegisterDemoCast(this, rIter);
     MR::tryRegisterDemoCast(this, "バトラー報告", rIter);
     TVec3f vec;
@@ -69,6 +69,7 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
     vec.setPSZeroVec();
     TalkMessageCtrl* talkMessage =
         MR::createTalkCtrlDirectOnRootNodeAutomatic(this, rIter, "AstroGalaxy_ButlerMap001", vec, MR::getJointMtx(this, "Body"));
+
     if (MR::tryInitDemoSheetTalkAnim(this, rIter, demoNameMapLecture, "DemoButlerMapLecture", talkMessage)) {
         const char* demoNameMapLecture = ::cDemoNameMapLecture;
         const MR::FunctorBase& func = MR::Functor(this, &ButlerMap::startLectureDemo);
@@ -78,12 +79,14 @@ void ButlerMap::init(const JMapInfoIter& rIter) {
 
     AstroDemoFunction::tryRegisterGrandStarReturnAndSimpleCast(this, rIter);
     AstroDemoFunction::tryRegisterDemo(this, "バトラーグリーンドライバ説明", rIter);
-    if (_160) {
+
+    if (mObjArg0) {
         SphereSelectorFunction::registerTarget(this);
     }
 
-    _15C = new ButlerStateStarPieceReaction(this, rIter, "AstroGalaxy_Butler000");
-    _15C->init();
+    mStateStarPieceReaction = new ButlerStateStarPieceReaction(this, rIter, "AstroGalaxy_Butler000");
+    mStateStarPieceReaction->init();
+
     if (MR::isButlerMapAppear()) {
         makeActorAppeared();
     } else {
@@ -127,6 +130,7 @@ void ButlerMap::control() {
         MR::startDPDHitSound();
         MR::startSound(this, "SE_SV_BUTLER_POINT");
     }
+
     NPCActor::control();
 }
 
@@ -143,30 +147,32 @@ bool ButlerMap::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
         if (isNerve(mWaitNerve) || isNerve(&NrvButlerMap::ButlerMapNrvStarPieceReaction::sInstance)) {
             setNerve(&NrvButlerMap::ButlerMapNrvStarPieceReaction::sInstance);
         }
+
         return true;
-    } else {
-        return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
+
+    return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
 bool ButlerMap::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (SphereSelectorFunction::trySyncKillMsgSelectStart(this, msg)) {
         return true;
-    } else {
-        return MR::isMsgHitmarkEmit(msg);
     }
+
+    return MR::isMsgHitmarkEmit(msg);
 }
 
 void ButlerMap::forceNerveToWait() {
     if (!NPCActor::isEmptyNerve()) {
         NPCActor::popNerve();
     }
+
     setNerve(mWaitNerve);
 }
 
 void ButlerMap::exeShowGalaxyMap() {
     if (MR::isFirstStep(this)) {
-        if (_160) {
+        if (mObjArg0) {
             MR::startGalaxyMapLayout();
         } else {
             MR::startAstroMapLayout();
@@ -198,10 +204,10 @@ void ButlerMap::exeLectureDemoShowMapAfter() {
 
 void ButlerMap::exeStarPieceReaction() {
     if (MR::isFirstStep(this)) {
-        _15C->appear();
+        mStateStarPieceReaction->appear();
     }
 
-    if (_15C->update()) {
+    if (mStateStarPieceReaction->update()) {
         forceNerveToWait();
     }
 }
