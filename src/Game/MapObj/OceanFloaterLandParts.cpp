@@ -1,8 +1,13 @@
+#include "Game/MapObj/OceanFloaterLandParts.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/MapObj/OceanFloaterLandParts.hpp"
 #include "Game/MapObj/MapPartsRailMover.hpp"
 #include "Game/Util.hpp"
+
+void OceanFloaterLandParts_FORCE_MATCH_SDATA2() {
+    (void)-1.0f;
+    (void)100.0f;
+}
 
 OceanFloaterLandParts::OceanFloaterLandParts(const char* pName)
     : LiveActor(pName), mRailMover(), mLodCtrl(), mRailEndPos(gZeroVec), mObjectName(), mIsMoving(), mIsRegisteredDemo(), mAlreadyDoneFlag(-1) {
@@ -13,11 +18,6 @@ namespace NrvOceanFloaterLandParts {
     NEW_NERVE(HostTypeMove, OceanFloaterLandParts, Move);
     NEW_NERVE(HostTypeDone, OceanFloaterLandParts, Done);
 };  // namespace NrvOceanFloaterLandParts
-
-void OceanFloaterLandParts_FORCE_MATCH_SDATA2() {
-    (void)-1.0f;
-    (void)100.0f;
-}
 
 void OceanFloaterLandParts::init(const JMapInfoIter& rIter) {
     MR::getObjectName(&mObjectName, rIter);
@@ -138,6 +138,9 @@ void OceanFloaterLandParts::endFloatUpDemo() {
     }
 }
 
+void OceanFloaterLandParts::exeWait() {
+}
+
 void OceanFloaterLandParts::exeMove() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_OJ_HUGE_FLOATER_MOVE_ST");
@@ -180,9 +183,6 @@ void OceanFloaterLandParts::exeMove() {
         endFloatUpDemo();
         setNerve(&NrvOceanFloaterLandParts::HostTypeDone::sInstance);
     }
-}
-
-void OceanFloaterLandParts::exeWait() {
 }
 
 void OceanFloaterLandParts::exeDone() {
