@@ -952,20 +952,19 @@ void MarioActor::drawModelBlur() const {
         return;
     }
 
-    const bool blurEnabled = _A6E;
     model->_1E4 = false;
-    if (!blurEnabled) {
+    if (!_A6E) {
         return;
     }
 
-    model->mFlags._C = true;
+    model->mFlags._13 = true;
 
     Mtx inv;
     PSMTXInverse(const_cast< TMtx34f& >(_AB0).toMtxPtr(), inv);
     MR::multMtx(inv, inv, MR::getCameraViewMtx());
     for (u32 i = 1; i < 8; i++) {
         const u32 idx = static_cast< u32 >(i + _B12) & 7;
-        model->setDrawViewBuffer(reinterpret_cast< MtxPtr >(_A70[idx + (static_cast< u32 >(_B10) << 3)]));
+        model->setDrawViewBuffer(reinterpret_cast< MtxPtr >(_A70[idx + (_B10 << 5)]));
 
         if (!_1C1) {
             for (u16 joint = 0; joint < getModelData()->getJointNum(); joint++) {
@@ -984,7 +983,7 @@ void MarioActor::drawModelBlur() const {
         model->directDraw(nullptr);
     }
 
-    model->mFlags._C = false;
+    model->mFlags._13 = false;
 }
 
 void MarioActor::drawMarioModel() const {

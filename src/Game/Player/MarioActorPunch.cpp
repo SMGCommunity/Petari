@@ -115,7 +115,7 @@ bool MarioActor::doFreezeAttack(HitSensor* pSensor) {
 
 bool MarioActor::trySpinPunch() {
     bool out = true;
-    if (mMario->getMovementStates().jumping) {
+    if (getMovementStates().jumping) {
         changeAnimation("空パンチ", static_cast< const char* >(nullptr));
         setPunchHitTimer(15);
         mMario->mWalkSpeed = 0.0f;
@@ -124,7 +124,7 @@ bool MarioActor::trySpinPunch() {
             playSound("スケキヨ終了スピン", -1);
         }
 
-        if (mMario->getMovementStates()._A) {
+        if (getMovementStates()._A) {
             if (mMario->calcDistToCeil(false) > 160.0f) {
                 changeAnimation("サマーソルト", static_cast< const char* >(nullptr));
                 playSound("スピンジャンプ", -1);
