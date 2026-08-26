@@ -32,8 +32,7 @@ void OceanFloaterLandParts::init(const JMapInfoIter& rIter) {
     initSound(4, false);
     initHitSensor(1);
 
-    HitSensor* pSensor = MR::addBodyMessageSensorMapObj(this);
-    MR::initCollisionParts(this, mObjectName, pSensor, nullptr);
+    MR::initCollisionParts(this, mObjectName, MR::addBodyMessageSensorMapObj(this), nullptr);
     MR::connectToSceneCollisionMapObj(this);
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     initLodCtrl(rIter);
