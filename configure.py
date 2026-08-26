@@ -1866,7 +1866,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/KoopaJr.cpp"),
             Object(NonMatching, "Game/NPC/LuigiNPC.cpp"),
             Object(NonMatching, "Game/NPC/MiiDatabase.cpp"),
-            Object(NonMatching, "Game/NPC/MiiFaceIcon.cpp"),
+            Object(Matching, "Game/NPC/MiiFaceIcon.cpp"),
             Object(Matching, "Game/NPC/MiiFaceIconHolder.cpp"),
             Object(Matching, "Game/NPC/MiiFaceParts.cpp"),
             Object(NonMatching, "Game/NPC/MiiFacePartsHolder.cpp"),
