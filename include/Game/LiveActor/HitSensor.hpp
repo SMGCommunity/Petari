@@ -19,12 +19,12 @@ public:
     void invalidateBySystem();
     void addHitSensor(HitSensor* pSensor);
 
-    f32 getRadius() const {
-        return mRadius;
-    }
-
     const TVec3f& getPosition() const {
         return mPosition;
+    }
+
+    f32 getRadius() const {
+        return mRadius;
     }
 
     inline bool isValid() const {

@@ -3717,14 +3717,14 @@ Game/Map/BezierRail.cpp:
 Game/Map/Butterfly.cpp:
 	.text       start:0x80172820 end:0x80173B6C
 	.ctors      start:0x8052EBA4 end:0x8052EBA8
-	.rodata     start:0x805329E8 end:0x80532A08
-	.data       start:0x80588B20 end:0x80588C80
+	.rodata     start:0x805329E8 end:0x80532A00
+	.data       start:0x80588B20 end:0x80588C60
 	.sbss       start:0x806B4A28 end:0x806B4A48
 	.sdata2     start:0x806BBDF8 end:0x806BBE58
 
 Game/Map/CollisionCategorizedKeeper.cpp:
 	.text       start:0x80173B6C end:0x801750F8
-	.data       start:0x80588C80 end:0x80588CA8
+	.data       start:0x80588C60 end:0x80588CA8
 	.sdata2     start:0x806BBE58 end:0x806BBE68
 
 Game/Map/CollisionCode.cpp:
@@ -3738,6 +3738,7 @@ Game/Map/CollisionDirector.cpp:
 
 Game/Map/CollisionParts.cpp:
 	.text       start:0x80175D4C end:0x80177614
+	.rodata     start:0x80532A00 end:0x80532A08
 	.data       start:0x80588F00 end:0x80588F20
 	.sdata2     start:0x806BBE68 end:0x806BBE88
 
