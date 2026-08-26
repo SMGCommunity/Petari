@@ -91,12 +91,12 @@ void MeteorStrike::initAfterPlacement() {
     gravityVec.scale(80.0f);
     pos1.add(gravityVec);
 
-    TVec3f vec;
-    vec.sub(pos1, pos0);
+    TVec3f toNextPos;
+    toNextPos.sub(pos1, pos0);
 
     Triangle triangle = Triangle();
     TVec3f nextPos;
-    if (!MR::getFirstPolyOnLineToMap(&nextPos, &triangle, pos0, vec)) {
+    if (!MR::getFirstPolyOnLineToMap(&nextPos, &triangle, pos0, toNextPos)) {
         nextPos.set(pos1);
 
         MR::offBind(this);
@@ -144,16 +144,16 @@ void MeteorStrike::kill() {
     MR::invalidateShadow(this, nullptr);
 }
 
-bool MeteorStrike::getMovedPos(TVec3f* pVec, s32 step) const {
+bool MeteorStrike::getMovedPos(TVec3f* pDst, s32 step) const {
     if (mTotalSteps < step) {
         return false;
     }
 
-    MR::calcRailPointPos(pVec, this, 0);
+    MR::calcRailPointPos(pDst, this, 0);
 
     TVec3f vec;
     vec.scale(mStepSize * step, mRailDir);
-    pVec->add(*pVec, vec);
+    pDst->add(*pDst, vec);
 
     return true;
 }
@@ -190,7 +190,7 @@ void MeteorStrike::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 
     if (MR::isSensorPlayer(pReceiver)) {
-        if ((!MR::sendMsgEnemyAttackStrong(pReceiver, pSender) && !MR::sendMsgPush(pReceiver, pSender))) {
+        if (!MR::sendMsgEnemyAttackStrong(pReceiver, pSender) && !MR::sendMsgPush(pReceiver, pSender)) {
             return;
         }
     } else {
@@ -211,16 +211,11 @@ bool MeteorStrike::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor
 void MeteorStrike::initMapToolInfo(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
 
-    f32 arg0 = 10.0f;
-    MR::getJMapInfoArg0NoInit(rIter, &arg0);
-    mStepSize = arg0;
+    mStepSize = getSpeed(rIter);
 
     if (MR::isEqualObjectName(rIter, "MeteorStrikeEnvironment")) {
         mType = MeteorStrikeType_Environment;
-        return;
-    }
-
-    if (MR::isEqualObjectName(rIter, "MeteorCannon")) {
+    } else if (MR::isEqualObjectName(rIter, "MeteorCannon")) {
         mType = MeteorStrikeType_Cannon;
     }
 }
@@ -271,9 +266,9 @@ void MeteorStrike::emitEffectColumn(const TPos3f& rPos) {
 }
 
 void MeteorStrike::startRumble() {
-    f32 f1 = mType == MeteorStrikeType_Cannon ? ::cRumbleDistanceCannonL : ::cRumbleDistance;
-    f32 f2 = mType == MeteorStrikeType_Cannon ? FLOAT_MAX : ::cRumbleDistance * 2;
-    MR::startRumbleWithShakeCameraWeak(this, "強", "中", f1, f2);
+    f32 strongDistMax = mType == MeteorStrikeType_Cannon ? ::cRumbleDistanceCannonL : ::cRumbleDistance;
+    f32 mediumDistMax = mType == MeteorStrikeType_Cannon ? FLOAT_MAX : ::cRumbleDistance * 2;
+    MR::startRumbleWithShakeCameraWeak(this, "強", "中", strongDistMax, mediumDistMax);
 }
 
 bool MeteorStrike::isInScreen() const {
@@ -383,7 +378,4 @@ void MeteorStrike::exeBreak() {
     if (MR::isBckStopped(mBrokenModel)) {
         kill();
     }
-}
-
-MeteorStrike::~MeteorStrike() {
 }

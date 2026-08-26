@@ -14,7 +14,6 @@ class MeteorStrike : public LiveActor {
 public:
     MeteorStrike(const char*);
 
-    virtual ~MeteorStrike();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
