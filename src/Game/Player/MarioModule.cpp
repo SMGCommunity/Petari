@@ -449,7 +449,7 @@ bool MarioModule::checkSquat(bool a1) {
     if (mActor->_B94 != 0) {
         return false;
     }
-    if (mActor->mBeeWallWalk) {
+    if (mActor->mBeeWallWalk != 0) {
         return false;
     }
     if (mActor->mMario->mMovementStates._21) {
@@ -575,7 +575,7 @@ bool MarioModule::isInputDisable() const {
     if (mActor->mMario->mMovementStates._22) {
         return true;
     }
-    if (mActor->mMario->isStatusActive(MarioStatus_AbyssDamage)) {
+    if (mActor->mMario->isStatusActive(MarioStatus_FpView)) {
         return true;
     }
     if (isAnimationRun("ハード着地")) {  // "Hard landing"

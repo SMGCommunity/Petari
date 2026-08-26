@@ -229,7 +229,7 @@ void MarioActor::initMember() {
     _9E8 = 0;
     _9EC = 0;
     _9F0 = 0;
-    mBeeWallWalk = false;
+    mBeeWallWalk = 0;
     _9F2 = 0;
     _9F4.zero();
     _A00 = 0;

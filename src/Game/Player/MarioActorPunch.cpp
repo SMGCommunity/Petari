@@ -22,7 +22,7 @@ bool MarioActor::isEnableSpinPunch() {
     }
 
     if (mMario->getCurrentStatus() == MarioStatus_Flip) {
-        return mMario->mFlip->_14;  // FIXME
+        return mMario->mFlip->_14 >= 2;  // FIXME
     }
 
     if (mMario->getCurrentStatus() == MarioStatus_Stun) {
@@ -132,9 +132,9 @@ bool MarioActor::trySpinPunch() {
             } else {
                 return false;
             }
+        } else {
+            mMario->startMagic();
         }
-
-        mMario->startMagic();
 
         setPunchHitTimer(25);
     } else {

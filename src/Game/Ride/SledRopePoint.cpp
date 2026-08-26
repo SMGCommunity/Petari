@@ -22,7 +22,7 @@ void SledRopePoint::updatePos(f32 vel) {
 bool SledRopePoint::bindToMapCollision(f32 rebound) {
     bool bound = false;
     for (u32 plane = 0; plane < mBinder->mPlaneNum; plane++) {
-        const TVec3f* normal = mBinder->getPlane(plane)->getNormal(0);
+        const TVec3f* normal = mBinder->getPlane(plane)->mParentTriangle.getNormal(0);
         f32 dot = mVelocity.dot(*normal);
         if (dot < 0.0f) {
             TVec3f v1(*normal);

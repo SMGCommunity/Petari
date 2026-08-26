@@ -125,7 +125,7 @@ void MarioEffect::execute(JPABaseEmitter* pEmitter) {
 }
 
 JPABaseEmitter* MarioEffect::addRequest(const char* pEffectName, MtxPtr pMtx) {
-    s32 requestIndex = 0;
+    u32 requestIndex = 0;
     for (; requestIndex < 256; requestIndex++) {
         if (!_54[requestIndex]._68) {
             break;
@@ -144,12 +144,11 @@ JPABaseEmitter* MarioEffect::addRequest(const char* pEffectName, MtxPtr pMtx) {
     MovingFollowMtx* target = &_54[requestIndex];
 
     MultiEmitter* emitter = MR::emitEffectWithEmitterCallBack(mActor, pEffectName, this);
-    ParticleEmitter* particle = emitter->getParticleEmitter(0);
-    if (!particle) {
+    if (emitter->getParticleEmitter(0) == nullptr) {
         return nullptr;
     }
 
-    JPABaseEmitter* baseEmitter = particle->mEmitter;
+    JPABaseEmitter* baseEmitter = emitter->getParticleEmitter(0)->mEmitter;
     target->_68 = baseEmitter;
 
     for (s32 i = 0; i < 256; i++) {
@@ -232,9 +231,8 @@ void MarioActor::initMaterialEffect() {
 
     _BA4 = new HashSortTable(entryCount);
     entry = cMaterialEffectTable;
-    while (entry->mName) {
-        _BA4->add(entry->mName, reinterpret_cast< u32 >(entry), false);
-        entry++;
+    for(int i = 0; i < entryCount; i++) {
+        _BA4->add(cMaterialEffectTable[i].mName, reinterpret_cast< u32 >(&cMaterialEffectTable[i]), false);
     }
 
     _BA4->sort();
@@ -257,25 +255,25 @@ s32 MarioActor::getFloorMaterialIndex(u32 flags) const {
     }
 
     if (mMario->isStatusActive(MarioStatus_Wall)) {
-        if (mMario->mMovementStates._1C) {
+        if (mMario->mMovementStates._8) {
             floor = mMario->_964[0];
-        } else if (mMario->mMovementStates._5) {
+        } else if (mMario->mMovementStates._19) {
             floor = mMario->_964[1];
-        } else if (mMario->mMovementStates._4) {
+        } else if (mMario->mMovementStates._1A) {
             floor = mMario->_964[2];
         }
     }
 
-    if (mMario->mDrawStates._C) {
+    if (mMario->mDrawStates.mIsUnderwater) {
         floor = 0x17;
     }
 
-    if (mMario->mDrawStates._B) {
+    if (mMario->mDrawStates._13) {
         floor = 0x17;
     }
 
     if (flags & 0x2) {
-        if (mMario->mDrawStates._1) {
+        if (mMario->mDrawStates._1D) {
             floor = 0x17;
         }
     }
@@ -321,11 +319,11 @@ s32 MarioActor::getFloorMaterialIndex(u32 flags) const {
         break;
     }
 
-    if (mMario->mDrawStates._C || mMario->mDrawStates._B) {
+    if (mMario->mDrawStates.mIsUnderwater || mMario->mDrawStates._13) {
         materialIndex = 1;
     }
 
-    if (!mMario->mMovementStates.digitalJump) {
+    if (!mMario->mMovementStates._1) {
         if (mMario->mSwim->_1B2 != 0) {
             if (mMario->mSwim->_1B8 < 0.0f) {
                 materialIndex = 1;

@@ -152,7 +152,7 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
 
     _9D8.zero();
 
-    mBeeWallWalk = false;
+    mBeeWallWalk = 0;
     _9F2 = false;
     _EA4 = false;
     _EA5 = false;
@@ -621,7 +621,7 @@ void MarioActor::changeGameOverAnimation() {
     }
     _B90 = true;
     stopEffect("無敵中");
-    _A6E = false;
+    _A6E = 0;
 }
 
 XjointTransform* MarioActor::getJointCtrl(const char* pName) const {
@@ -680,10 +680,8 @@ void MarioActor::movement() {
     _4A8 = 0;
     _4AC = HALF_PI / 2.0f;
     LiveActor::movement();
-    TVec3f stack_134(mPosition);
-    stack_134 -= _294;
-    TVec3f stack_128(stack_134);
-    stack_128 -= mVelocity;
+    TVec3f stack_134(mPosition - _294);
+    TVec3f stack_128(stack_134 - mVelocity);
     _27C = stack_134;
     TVec3f stack_11C(_288);
     _288 = stack_128;
@@ -697,9 +695,7 @@ void MarioActor::movement() {
     if (stack_128.length() > 0.1f) {
         if (!(getMovementStates()._A)) {
             if (!MR::isNearZero(mVelocity)) {
-                TVec3f stack_110(_294);
-                stack_110 -= _270;
-                f32 diffMag = stack_110.length();
+                f32 diffMag = (_294 - _270).length();
                 f32 vMag = mVelocity.length();
                 if (stack_128.length() > 2.0f * (diffMag + vMag)) {
                     mMario->stopWalk();
@@ -735,10 +731,10 @@ void MarioActor::movement() {
                 } else if (mMario->isAnimationRun("坂すべり上向きうつぶせ")) {
                     mMario->push(mMario->mFrontVec * -5.0f);
                 }
-                mMario->mDrawStates._2 = true;
+                mMario->_10._22 = true;
             }
         }
-        if (getMovementStates().jumping && !mBeeWallWalk) {
+        if (getMovementStates().jumping && mBeeWallWalk == 0) {
             if (stack_128.dot(getGravityVec()) < -40.0f) {
                 TVec3f stack_EC(mPosition - getGravityVec() * 100.0f);
                 TVec3f stack_E0;
@@ -763,7 +759,7 @@ void MarioActor::movement() {
                 } else {
                     const u32 stop = mBinder->mPlaneNum;
                     for (int i = 0; i < stop; i++) {
-                        if (MR::isSensorPressObj(mBinder->getPlane(i)->mSensor)) {
+                        if (MR::isSensorPressObj(mBinder->getPlane(i)->mParentTriangle.mSensor)) {
                             mMario->mDrawStates._1E = true;
                         }
                     }
@@ -798,7 +794,7 @@ void MarioActor::movement() {
             const u32 stop = mBinder->mPlaneNum;
             bool eject = false;
             for (u32 i = 0; i < stop; i++) {
-                const Triangle* plane = mBinder->getPlane(i);
+                const Triangle* plane = &mBinder->getPlane(i)->mParentTriangle;
                 if (!MR::isSensorPressObj(plane->mSensor)) {
                     continue;
                 }
@@ -993,9 +989,7 @@ void MarioActor::updateBindRatio() {
     // FIXME: wrong stack
     if (!_934 && !MR::isNearZero(_978 - mLastMove)) {
         f32 mag = _978.length();
-        TVec3f stack_38(_978);
-        stack_38 -= mLastMove;
-        if (mag / stack_38.length() < 2.0f) {
+        if (mag / (_978 - mLastMove).length() < 2.0f) {
             _984 += 0.1f;
         } else {
             _984 -= 0.01f;
@@ -1242,7 +1236,7 @@ void MarioActor::updateSwingAction() {
                     mMario->playSound("スピンジャンプ");
                 }
                 mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
-            } else if (getMovementStates()._A || mBeeWallWalk) {
+            } else if (getMovementStates()._A || mBeeWallWalk != 0) {
                 mMario->changeAnimation("サマーソルト", (const char*)nullptr);
             } else {
                 mMario->changeAnimation("ハチスピン", (const char*)nullptr);
@@ -1278,7 +1272,7 @@ void MarioActor::updateSwingAction() {
         if (isJumping()) {
             mMario->changeAnimation("ハチスピン空中", (const char*)nullptr);
         } else {
-            if (getMovementStates()._A || mBeeWallWalk) {
+            if (getMovementStates()._A || mBeeWallWalk != 0) {
                 mMario->changeAnimation("サマーソルト", (const char*)nullptr);  // Summersault
             } else {
                 mMario->changeAnimation("ハチスピン", (const char*)nullptr);
@@ -1668,7 +1662,7 @@ void MarioActor::calcAnimInMovement() {
                     scale = 700.0f;
                 }
 
-                if ((mMario->mMovementStates_LOW_WORD >> 20 & 1) != 0 && (mMario->mMovementStates_LOW_WORD >> 30 & 1) == 0) {
+                if ((mMario->mMovementStates._B) && !mMario->mMovementStates._1) {
                     vec += mMario->mJumpVec;
                 }
 
@@ -1774,11 +1768,7 @@ void MarioActor::calcAnim() {
             }
         }
 
-        u32 frame;
         switch (val) {
-        case 0:
-            changeDisplayMode(2);
-            break;
         case 1:
             changeDisplayMode(4);
             _9C8->calcAnim();
@@ -1787,33 +1777,25 @@ void MarioActor::calcAnim() {
                 _A6E = 2;
             }
             break;
-        case 2:
-            changeDisplayMode(0);
-            frame = 0;
-            if (val == 7) {
-                frame = 1;
-            } else if ((val < 7) && val == 2) {
-                frame = 2;
-            }
-            MR::startBtp(this, "ColorChange");
-            MR::setBtpFrameAndStop(this, frame);
-            break;
-        case 3:
-            changeDisplayMode(3);
-            break;
         case 4:
-            changeDisplayMode(10);
+            changeDisplayMode(2);
             break;
         case 5:
             _3DF = 0;
             changeDisplayMode(5);
             break;
-        case 6:
+        case 3:
+            changeDisplayMode(3);
+            break;
+
+        default:
             changeDisplayMode(0);
-            frame = 0;
-            if (val == 7) {
+            u32 frame = 0;
+            switch (val) {
+            case 7:
                 frame = 1;
-            } else if ((val < 7) && val == 2) {
+                break;
+            case 2:
                 frame = 2;
             }
             MR::startBtp(this, "ColorChange");
@@ -1861,7 +1843,7 @@ void MarioActor::calcAnim() {
             MR::updateModelDiffDL(_A40);
             MR::updateModelDiffDL(_A44);
             break;
-        case 2:
+        case 1:
             _9C8->mPosition.set(mPosition);
 
             MR::updateModelDiffDL(_9C8);
@@ -1873,7 +1855,7 @@ void MarioActor::calcAnim() {
 
             MR::updateModelDiffDL(_A00);
             break;
-        case 1:
+        default:
             if (mCurrModel != 1) {
                 MR::updateModelDiffDL(this);
             }
@@ -1889,16 +1871,14 @@ void MarioActor::calcAnim() {
 
     updateRealMtx();
 
-    if ((mMario->mMovementStates_LOW_WORD >> 16 & 1) == 0 || mMario->_544 <= 1) {
+    if (!mMario->mMovementStates._F || mMario->_544 <= 1) {
         if (mBeeWallWalk != 0) {
             _214->setMode(0);
         } else {
             _214->setMode(2);
         }
 
-        TVec3f shadowPos(mMario->mShadowPos);
-        shadowPos -= mPosition;
-        _214->_20 = 40.0f + shadowPos.dot(_240);
+        _214->_20 = 40.0f + (mMario->mShadowPos - mPosition).dot(_240);
         _214->_48 = mMario->mShadowPos;
 
         TMtx34f leftMtx;
@@ -1911,8 +1891,7 @@ void MarioActor::calcAnim() {
         getRealMtx(rightMtx, "HandR");
         MR::extractMtxTrans(rightMtx, &rightVec);
 
-        TVec3f stack114(rightVec);
-        stack114 -= leftVec;
+        TVec3f stack114(rightVec - leftVec);
 
         f32 length = stack114.length();
         MR::normalizeOrZero(&stack114);
@@ -1961,7 +1940,7 @@ void MarioActor::calcAnim() {
     updateFace();
     calcScreenBoxRange();
 
-    if (_946 || _F20 || _F21 || mMario->mMovementStates_HIGH_WORD >> 20 & 1) {
+    if (_946 || _F20 || _F21 || mMario->mMovementStates._2B) {
         _94A = 0;
     } else {
         _94A++;
@@ -2536,16 +2515,21 @@ void MarioActor::jumpHop() {
     if (!mMario->isRising()) {
         mMario->cutGravityElementFromJumpVec(true);
 
-        mMario->mJumpVec += _240 * getConst().getTable()->mClapJumpBonusFalling;
+        mMario->mJumpVec += -_240 * getConst().getTable()->mClapJumpBonusFalling;
     } else {
-        f32 val = MR::min(getConst().getTable()->mHopLimit, -mMario->cutGravityElementFromJumpVec(true));
-        // smth missing here
-        mMario->mJumpVec += _240 * val;
+        f32 val = -mMario->cutGravityElementFromJumpVec(true);
+        if(val < getConst().getTable()->mHopLimit) {
+            val += getConst().getTable()->mClapJumpBonusRising;
+            if(val > getConst().getTable()->mHopLimit) {
+                val = getConst().getTable()->mHopLimit;
+            }
+        }
+        mMario->mJumpVec += -_240 * val;
     }
 
     if (mMario->_430 == 5) {
         mMario->_430 = 0;
-        mMario->mMovementStates._1B = false;
+        mMario->mMovementStates._A = false;
 
         changeAnimation(nullptr, "落下");
     }

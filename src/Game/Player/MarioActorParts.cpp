@@ -60,7 +60,7 @@ void MarioActor::updateBeeWingAnimation() {
     getJointCtrl("HandR")->setLocalScale(0.9f);
     getJointCtrl("HandL")->setLocalScale(0.9f);
 
-    if (mMario->checkLvlA() && mMario->_402 && mMario->getMovementStates().jumping) {
+    if (mMario->checkLvlA() && mMario->_402 && getMovementStates().jumping) {
         if (_9F0 != 1) {
             MR::startBck(_9E8, "Fly", nullptr);
             MR::startBva(_9E8, "Fly");
@@ -71,11 +71,11 @@ void MarioActor::updateBeeWingAnimation() {
         return;
     }
 
-    s8 val;
-    if (mMario->getMovementStates()._1 || mMario->isStatusActive(MarioStatus_Stick)) {
+    s32 val;
+    if (getMovementStates()._1 || mMario->isStatusActive(MarioStatus_Stick)) {
         val = 0;
     } else {
-        val = mMario->_402 == 0;
+        val = mMario->_402 != 0 ? 2 : 3;
     }
 
     if (_9F0 == val) {

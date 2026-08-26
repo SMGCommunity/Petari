@@ -1,6 +1,7 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/Player/MarioActor.hpp"
 #include "Game/Player/MarioAnimator.hpp"
+#include "Game/Player/MarioSearchLight.hpp"
 #include "Game/Player/MarioState.hpp"
 #include "Game/Player/MarioSwim.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
@@ -22,7 +23,7 @@ void MarioActor::memorizeSensorThrow(HitSensor* pSensor) {
         _470 = nullptr;
     }
 
-    if (pSensor = _46C) {
+    if (pSensor == _46C) {
         _46C = nullptr;
     }
 }
@@ -86,8 +87,7 @@ void MarioActor::tryReleaseDirect(const HitSensor* pSensor) {
             continue;
         }
 
-        // Missing cmplwi somewhere
-        for (s32 innerIdx = 0; innerIdx < idx; innerIdx++) {
+        for (u32 innerIdx = 0; innerIdx < idx; innerIdx++) {
             if (_428[innerIdx] == nullptr) {
                 _428[innerIdx] = _428[idx];
                 _428[idx] = nullptr;
@@ -170,12 +170,10 @@ void MarioActor::trySetLockOnTarget(HitSensor* pSensor) {
     }
 
     f32 diffAngle = MR::diffAngleAbsFast(vec, front) * _180_PI;
-    if (_46C != nullptr && diffAngle > _478) {
-        return;
+    if (_46C == nullptr || diffAngle < _478) {
+        _46C = pSensor;
+        _478 = diffAngle;
     }
-
-    _46C = pSensor;
-    _478 = diffAngle;
 }
 
 void MarioActor::tryCoinPull() {
@@ -232,58 +230,60 @@ bool MarioActor::tryCoinPullOne(HitSensor* pSensor) {
 bool MarioActor::releaseThrowMemoSensor() {
     // FIXME: missing class at 0x988 that has HitSensor* at 0xA4
     if (_468 != 0) {
-        if (!mMario->isStatusActive(MarioStatus_Wall) && !mMario->isStatusActive(MarioStatus_SideStep)) {
-            if (!mMario->isSwimming() /* && _998->_A4 != nullptr */) {
-                /* _470 = _998->_A4; */
-            }
+        if (mMario->isStatusActive(MarioStatus_Wall) || mMario->isStatusActive(MarioStatus_SideStep)) {
+            return false;
+        }
 
-            s32 idx = _468;
-            if (_470 != nullptr) {
-                TVec3f diff = _470->mPosition - _2A0;
+        if (mMario->isSwimming() && mSearchLight->_A4 != nullptr) {
+            _470 = mSearchLight->_A4;
+        }
 
-                if (mMario->isSwimming()) {
-                    TVec3f throwVec;
-                    getThrowVec(&throwVec);
-                    if (MR::diffAngleAbs(diff, throwVec) > PI / 3.0f) {
-                        _470 = nullptr;
-                    }
-                } else if (MR::diffAngleAbs(diff, mMario->mFrontVec) > PI / 3.0f) {
+        s32 idx = _468 - 1;
+        if (_470 != nullptr) {
+            TVec3f diff = _470->mPosition - _2A0;
+
+            if (mMario->isSwimming()) {
+                TVec3f throwVec;
+                getThrowVec(&throwVec);
+                if (MR::diffAngleAbs(diff, throwVec) > PI / 3.0f) {
                     _470 = nullptr;
                 }
-            }
-
-            if (_470 == nullptr || !mMario->isSwimming()) {
-                if (_F24 != nullptr) {
-                    if (!_428[idx]->receiveMessage(ACTMES_THROW, _F24)) {
-                        return false;
-                    }
-                } else if (!_428[idx]->receiveMessage(ACTMES_THROW, getSensor("body"))) {
-                    return false;
-                }
-
-                _474 = 0;
-            } else {
-                if (!_428[idx]->receiveMessage(ACTMES_THROW, _470)) {
-                    return false;
-                }
-
-                _474 = _470;
-            }
-
-            _468--;
-
-            if (_468 == 0) {
+            } else if (MR::diffAngleAbs(diff, mMario->mFrontVec) > PI / 3.0f) {
                 _470 = nullptr;
-                _47C = 0;
-                _428[0] = nullptr;
+            }
+        }
+
+        if (_470 == nullptr || !mMario->isSwimming()) {
+            if (_F24 != nullptr) {
+                if (!_428[idx]->receiveMessage(ACTMES_THROW, _F24)) {
+                    return false;
+                }
+            } else if (!_428[idx]->receiveMessage(ACTMES_THROW, getSensor("body"))) {
+                return false;
             }
 
-            clearNullAnimation(0);
+            _474 = 0;
+        } else {
+            if (!_428[idx]->receiveMessage(ACTMES_THROW, _470)) {
+                return false;
+            }
 
-            _3AC = 60;
-
-            return true;
+            _474 = _470;
         }
+
+        _468--;
+
+        if (_468 == 0) {
+            _470 = nullptr;
+            _47C = 0;
+            _428[0] = nullptr;
+        }
+
+        clearNullAnimation(0);
+
+        _3AC = 60;
+
+        return true;
     }
 
     return false;
@@ -307,7 +307,7 @@ void MarioActor::tryReleaseWithMsg(u32 msg) {
                 continue;
             }
 
-            for (s32 innerIdx = 0; innerIdx < idx; innerIdx++) {
+            for (u32 innerIdx = 0; innerIdx < idx; innerIdx++) {
                 if (_428[innerIdx] == nullptr) {
                     _428[innerIdx] = _428[idx];
                     _428[idx] = nullptr;
@@ -315,10 +315,10 @@ void MarioActor::tryReleaseWithMsg(u32 msg) {
                     break;
                 }
             }
+        } else {
+            _428[idx] = nullptr;
+            _468--;
         }
-        
-        _428[idx] = nullptr;
-        _468--;
     }
 
     _474 = nullptr;
@@ -336,7 +336,7 @@ void MarioActor::tryReleaseWithMsg(u32 msg) {
     clearNullAnimation(0);
 }
 
-//void MarioActor::tryTornadoPull(HitSensor* pSensor) {}
+// void MarioActor::tryTornadoPull(HitSensor* pSensor) {}
 
 bool MarioActor::tryReleaseBombTeresa() {
     if (_B94 == 0) {

@@ -107,7 +107,7 @@ public:
     const TVec3f getAirFrontVec() const;
     const TVec3f* getGravityVec() const;
     void initAfterConst();
-    void writeBackPhysicalVector();
+    void writeBackPhyisicalVector();
     void update();
     void updateLookOfs();
     void actionMain();
@@ -373,7 +373,7 @@ public:
     bool isEnableSlopeMove() const;
     void moveSlopeSlide();
     void slopeMove();
-    void taskOnSlipTurn(u32);
+    bool taskOnSlipTurn(u32);
 
     void lockGroundCheck(void*, bool);
     void unlockGroundCheck(void*);
@@ -818,7 +818,7 @@ public:
     /* 0x618 */ f32 _618;
     /* 0x61C */ f32 _61C;
     /* 0x620 */ f32 _620;
-    /* 0x624 */ u8 _624;
+    /* 0x624 */ bool _624;
     /* 0x628 */ TVec3f _628;
     /* 0x634 */ f32 _634;
 

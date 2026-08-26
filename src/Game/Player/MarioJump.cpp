@@ -302,7 +302,7 @@ void Mario::tryJump() {
             changeAnimation("ジャンプ", "落下");
         }
 
-        if (mActor->mBeeWallWalk) {
+        if (mActor->mBeeWallWalk != 0) {
             playSound("ハチ壁ジャンプ");
         } else {
             playSound("小ジャンプ");
@@ -1603,7 +1603,7 @@ bool Mario::jumpToHipDrop() {
         _720 = getAnimationStringPointer("ハチヒップドロップ開始");
         _724 = getAnimationStringPointer("ハチヒップドロップ");
 
-        if (mActor->mBeeWallWalk) {
+        if (mActor->mBeeWallWalk != 0) {
             _728 = getAnimationStringPointer("ハチヒップドロップ壁着地");
         } else {
             _728 = getAnimationStringPointer("ハチヒップドロップ着地");
@@ -2258,7 +2258,7 @@ void Mario::doLanding() {
 
     resetTornado();
 
-    if (mActor->mBeeWallWalk) {
+    if (mActor->mBeeWallWalk != 0) {
         playSound("ハチ壁くっつき");
     } else {
         playSound("着地");
@@ -2542,7 +2542,7 @@ void Mario::doLanding() {
             _3CE += 0x10;
         }
 
-        if (mActor->mBeeWallWalk) {
+        if (mActor->mBeeWallWalk != 0) {
             changeAnimation("ハチ匍匐着地", "基本");
         }
     } else {

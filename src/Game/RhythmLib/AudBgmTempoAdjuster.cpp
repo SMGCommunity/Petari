@@ -49,9 +49,9 @@ f32 AudBgmTempoAdjuster::calcAdjustRate(f32 a1, f32 a2) {
         v5 = 1.0f;
     }
 
-    if (val) {
-        return (1.0f / (1.0f + v5));
+    if (!val) {
+        return v5 + 1.0f;
     }
 
-    return v5 + 1.0f;
+    return (1.0f / (1.0f + v5));
 }

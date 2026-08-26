@@ -22,7 +22,7 @@ void MarioActor::forceKill(u32 type) {
         return;
     }
 
-    _A6E = false;
+    _A6E = 0;
 
     if (!MR::isDead(_994)) {
         _994->kill();
@@ -86,12 +86,12 @@ void MarioActor::forceKill(u32 type) {
 }
 
 void MarioActor::exeGameOver() {
-    mPosition.zero();
+    mVelocity.zero();
     calcHeadPos();
     updateRealMtx();
 
     if (getNerveStep() == 32) {
-        _A6E = false;
+        _A6E = 0;
     }
 
     _46C = nullptr;
@@ -166,7 +166,7 @@ void MarioActor::exeGameOverFire() {
     updateRealMtx();
 
     if (getNerveStep() == 120) {
-        _A6E = false;
+        _A6E = 0;
     }
 
     if (!MR::isFirstStep(this)) {
@@ -193,7 +193,7 @@ void MarioActor::exeGameOverSink() {
     updateRealMtx();
 
     if (getNerveStep() == 120) {
-        _A6E = false;
+        _A6E = 0;
     }
 
     if (MR::isFirstStep(this)) {
