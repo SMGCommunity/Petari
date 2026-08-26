@@ -1698,7 +1698,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/NormalMapTestObj.cpp"),
             Object(Matching, "Game/MapObj/Note.cpp"),
             Object(NonMatching, "Game/MapObj/NoteFairy.cpp"),
-            Object(NonMatching, "Game/MapObj/OceanFloaterLandParts.cpp"),
+            Object(Matching, "Game/MapObj/OceanFloaterLandParts.cpp"),
             Object(NonMatching, "Game/MapObj/OceanSmallTurtle.cpp"),
             Object(NonMatching, "Game/MapObj/OceanWaveFloater.cpp"),
             Object(NonMatching, "Game/MapObj/PalmIsland.cpp"),
