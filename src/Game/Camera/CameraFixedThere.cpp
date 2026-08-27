@@ -12,7 +12,12 @@ void CameraFixedThere_FORCE_MATCH_SDATA2() {
     (void)1.0f;
 }
 
-CameraFixedThere::CameraFixedThere(const char* pName) : Camera(pName), _4C(), _50(), mUp(0.0f, 1.0f, 0.0f), mAxis(0.0f, 0.0f, 1.0f), mRoll() {
+namespace {
+    static const f32 sGroundFixAngle = 30.0f;
+}
+
+CameraFixedThere::CameraFixedThere(const char* pName)
+    : Camera(pName), mCameraType(), mIsFovyFixed(), mUp(0.0f, 1.0f, 0.0f), mAxis(0.0f, 0.0f, 1.0f), mRoll() {
 }
 
 void CameraFixedThere::reset() {
@@ -30,14 +35,14 @@ CameraTargetObj* CameraFixedThere::calc() {
 
     if (!calcEyeDir(&eyeDir)) {
         return CameraLocalUtil::getTarget(this);
-    } else {
-        updateUpVec(eyeDir);
-        CameraLocalUtil::setWatchUpVec(this, CameraLocalUtil::getTarget(this)->getUpVec());
-        if (!_50) {
-            CameraLocalUtil::setFovy(this, CameraLocalUtil::getFovy(mCameraMan));
-        }
-        return CameraLocalUtil::getTarget(this);
     }
+
+    updateUpVec(eyeDir);
+    CameraLocalUtil::setWatchUpVec(this, CameraLocalUtil::getTarget(this)->getUpVec());
+    if (!mIsFovyFixed) {
+        CameraLocalUtil::setFovy(this, CameraLocalUtil::getFovy(mCameraMan));
+    }
+    return CameraLocalUtil::getTarget(this);
 }
 
 CamTranslatorBase* CameraFixedThere::createTranslator() {
@@ -69,7 +74,7 @@ void CameraFixedThere::copyStatusFromPrevCamera() {
     mtx.getYDir(up);
     rot.transform(up);
     CameraLocalUtil::setUpVec(this, up);
-    if (!_50) {
+    if (!mIsFovyFixed) {
         CameraLocalUtil::setFovy(this, CameraLocalUtil::getFovy(mCameraMan));
     }
     CameraLocalUtil::setWatchPos(this, CameraLocalUtil::getWatchPos(mCameraMan));
@@ -87,7 +92,7 @@ bool CameraFixedThere::calcEyeDir(TVec3f* pDir) {
 
 void CameraFixedThere::makeAxisAndRoll() {
     mRoll = 0.0f;
-    if (_4C != 0) {
+    if (mCameraType != CameraType_GravityUp) {
         mUp = CameraLocalUtil::getUpVec(this);
         return;
     }
@@ -98,7 +103,7 @@ void CameraFixedThere::makeAxisAndRoll() {
         return;
     }
 
-    if (MR::abs(mAxis.dot(mUp)) > MR::cosDegree(30.0f)) {
+    if (MR::abs(mAxis.dot(mUp)) > MR::cosDegree(::sGroundFixAngle)) {
         mUp = CameraLocalUtil::getUpVec(this);
         return;
     }
@@ -110,8 +115,8 @@ void CameraFixedThere::makeAxisAndRoll() {
 }
 
 void CameraFixedThere::updateUpVec(const TVec3f& rAxis) {
-    switch (_4C) {
-    case 0: {
+    switch (mCameraType) {
+    case CameraType_GravityUp: {
         updateNormalUpVec(rAxis);
         break;
     }
@@ -125,16 +130,16 @@ void CameraFixedThere::updateUpVec(const TVec3f& rAxis) {
     mAxis.set(rAxis);
 }
 
-void CameraFixedThere::updateNormalUpVec(const TVec3f& rAxis) {
+void CameraFixedThere::updateNormalUpVec(const TVec3f& rFront) {
     // FIXME: TRot3f::setRotate
     TVec3f up = mUp;
-    TVec3f side = up.cross(rAxis);
+    TVec3f side = up.cross(rFront);
     up.cross(mAxis, side);
 
     MR::normalize(&up);
 
     TPos3f rot;
-    rot.makeRotate(rAxis, -mRoll);
+    rot.makeRotate(rFront, -mRoll);
     rot.mult33(up, up);
     CameraLocalUtil::setUpVec(this, up);
 }
