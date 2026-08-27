@@ -10,5 +10,5 @@ public:
     void setParam(const CameraParamChunk*);
     Camera* getCamera() const;
 
-    CameraDPD* mCamera;  // 0x4
+    /* 0x4 */ CameraDPD* mCamera;
 };
