@@ -17,6 +17,6 @@ public:
     virtual void initEscape();
     virtual void doEscape();
 
-    /* 0x13C */ TVec3f mFwdAxis;
-    /* 0x148 */ TVec3f mUpAxis;
+    /* 0x13C */ TVec3f mUpAxis;
+    /* 0x148 */ TVec3f mFwdAxis;
 };

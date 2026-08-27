@@ -46,10 +46,10 @@ void BenefitItemInvincible::init(const JMapInfoIter& rIter) {
 
     TVec3f axisY, axisZ;
     MR::getRotatedAxisZ(&axisZ, mRotation);
-    mUpAxis.set(axisZ);
+    mFwdAxis.set(axisZ);
 
     MR::getRotatedAxisY(&axisY, mRotation);
-    mFwdAxis.set(axisY);
+    mUpAxis.set(axisY);
 }
 
 void BenefitItemInvincible::initModelAndEfx() {
@@ -84,7 +84,7 @@ void BenefitItemInvincible::initEscape() {
     MR::calcGravity(this);
 
     _BC = -mGravity * ::cBoundUpSpd;
-    _BC += mUpAxis * 10.0f;
+    _BC += mFwdAxis * 10.0f;
 
     _13A = 60;
 }
@@ -94,10 +94,10 @@ void BenefitItemInvincible::doEscape() {
     MR::addVelocityToGravity(this, 1.0f);
 
     if (MR::isBindedGround(this)) {
-        MR::vecKillElement(mUpAxis, mGravity, &mUpAxis);
-        MR::normalizeOrZero(&mUpAxis);
+        MR::vecKillElement(mFwdAxis, mGravity, &mFwdAxis);
+        MR::normalizeOrZero(&mFwdAxis);
 
-        _BC = mUpAxis * 10.0f - mGravity * ::cBoundUpSpd;
+        _BC = mFwdAxis * 10.0f - mGravity * ::cBoundUpSpd;
 
         MR::startSound(this, "SE_OJ_POW_INVINCIBLE_BOUND");
 
