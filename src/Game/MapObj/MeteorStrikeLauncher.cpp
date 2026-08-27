@@ -13,7 +13,7 @@ namespace NrvMeteorStrikeLauncher {
 };  // namespace NrvMeteorStrikeLauncher
 
 MeteorStrikeLauncher::MeteorStrikeLauncher(const char* pName)
-    : LiveActor(pName), mMeteorStrikeArray(), mMeteorStrikeCount(), mSpawnDelay(-1), mSpawnDistance(), mIsMeteorStrike(), mAllowMultipleMeteors() {
+    : LiveActor(pName), mMeteorStrikeArray(), mMeteorStrikeCount(), mIntervalStep(-1), mCreateStep(), mIsMeteorStrike(), mIsValidMultiMeteor() {
 }
 
 void MeteorStrikeLauncher::init(const JMapInfoIter& rIter) {
@@ -32,10 +32,10 @@ void MeteorStrikeLauncher::init(const JMapInfoIter& rIter) {
     MR::needStageSwitchReadAppear(this, rIter);
     MR::syncStageSwitchAppear(this);
 
-    if (mIsMeteorStrike && mAllowMultipleMeteors) {
+    if (mIsMeteorStrike && mIsValidMultiMeteor) {
         f32 speed = MeteorStrike::getSpeed(rIter);
-        mMeteorStrikeCount = static_cast< s32 >(MR::getRailTotalLength(this) / (speed * mSpawnDelay)) + 2;
-    } else if (mIsMeteorStrike || mSpawnDelay < 0) {
+        mMeteorStrikeCount = static_cast< s32 >(MR::getRailTotalLength(this) / (speed * mIntervalStep)) + 2;
+    } else if (mIsMeteorStrike || mIntervalStep < 0) {
         mMeteorStrikeCount = 1;
     } else {
         mMeteorStrikeCount = 2;
@@ -62,7 +62,7 @@ void MeteorStrikeLauncher::appear() {
 void MeteorStrikeLauncher::kill() {
     LiveActor::kill();
 
-    if (mSpawnDelay < 0) {
+    if (mIntervalStep < 0) {
         return;
     }
 
@@ -78,13 +78,13 @@ void MeteorStrikeLauncher::initMapToolInfo(const JMapInfoIter& rIter) {
 
     MR::useStageSwitchReadAppear(this, rIter);
 
-    if (MR::getJMapInfoArg1NoInit(rIter, &mSpawnDelay)) {
-        mSpawnDelay *= 60;
+    if (MR::getJMapInfoArg1NoInit(rIter, &mIntervalStep)) {
+        mIntervalStep *= 60;
     }
 
     mIsMeteorStrike = MR::isEqualObjectName(rIter, "MeteorStrike");
 
-    MR::getJMapInfoArg2NoInit(rIter, &mAllowMultipleMeteors);
+    MR::getJMapInfoArg2NoInit(rIter, &mIsValidMultiMeteor);
 }
 
 MeteorStrike* MeteorStrikeLauncher::getUnusedMeteorStrike() {
@@ -104,7 +104,7 @@ bool isNotJudgedToClipFrustum(const TVec3f& pVec) {
 bool MeteorStrikeLauncher::create() {
     MeteorStrike* pUnusedStrike = getUnusedMeteorStrike();
     if (pUnusedStrike == nullptr) {
-        mSpawnDistance++;
+        mCreateStep++;
         return false;
     }
 
@@ -113,7 +113,7 @@ bool MeteorStrikeLauncher::create() {
         return true;
     }
 
-    if (mAllowMultipleMeteors) {
+    if (mIsValidMultiMeteor) {
         TVec3f movedPos;
         pUnusedStrike->getMovedPos(&movedPos, 0);
 
@@ -124,29 +124,35 @@ bool MeteorStrikeLauncher::create() {
         return true;
     }
 
-    for (; mSpawnDistance >= 0; mSpawnDistance -= mSpawnDelay) {
+    for (; mCreateStep >= 0; mCreateStep -= mIntervalStep) {
         TVec3f movedPos;
-        if (pUnusedStrike->getMovedPos(&movedPos, mSpawnDistance) && !isNotJudgedToClipFrustum(movedPos)) {
-            pUnusedStrike->appear(mSpawnDistance);
-            return true;
+        if (!pUnusedStrike->getMovedPos(&movedPos, mCreateStep)) {
+            continue;
         }
+
+        if (isNotJudgedToClipFrustum(movedPos)) {
+            continue;
+        }
+
+        pUnusedStrike->appear(mCreateStep);
+        return true;
     }
 
-    mSpawnDistance = 0;
+    mCreateStep = 0;
 
     return false;
 }
 
 void MeteorStrikeLauncher::exeCreate() {
     if (MR::isFirstStep(this)) {
-        mSpawnDistance = 0;
+        mCreateStep = 0;
     }
 
     if (!create()) {
         return;
     }
 
-    if (mSpawnDelay < 0) {
+    if (mIntervalStep < 0) {
         kill();
         return;
     }
@@ -155,7 +161,7 @@ void MeteorStrikeLauncher::exeCreate() {
 }
 
 void MeteorStrikeLauncher::exeInterval() {
-    if (MR::isStep(this, mSpawnDelay)) {
+    if (MR::isStep(this, mIntervalStep)) {
         setNerve(GET_NERVE(MeteorStrikeLauncher, MeteorStrikeLauncherNrvCreate));
     }
 }
