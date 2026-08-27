@@ -4,6 +4,8 @@
 #include "Game/MapObj/ElectricRailHolder.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/PlayerUtil.hpp"
+#include "revolution/gd/GDGeometry.h"
+#include "revolution/gx/GXEnum.h"
 
 namespace NrvElectricRail {
     NEW_NERVE(ElectricRailNrvWait, ElectricRail, Wait);
@@ -297,8 +299,57 @@ void ElectricRail::drawRailGX(f32 a1) const {
     drawPlaneGX(-a1, a1, a1, -a1);
 }
 
-// ElectricRail::drawPlane()
-// ElectricRail::drawPlaneGX()
+void ElectricRail::drawPlane(f32 a1, f32 a2, f32 a3, f32 a4) const {
+    for (s32 i = 0; i < mRailHeight; i++) {
+        GDBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * mSeparatorCount);
+
+        for (s32 j = 0; j < mSeparatorCount; j++) {
+            ElectricRailSeparator* s = &mSeparators[j];
+            TVec3f v21(s->_0);
+            f32 v15 = j / 2.0f;
+            TVec3f v20(s->mRotation);
+            v20.scale(100.0f * i);
+            v21 = v20 + v21;
+            GDPosition3f32(((v21.x + (s->mPosition.x * a1)) + (s->mRotation.x * a2)), ((v21.y + (s->mPosition.y * a1)) + (s->mRotation.y * a2)),
+                           ((v21.z + (s->mPosition.z * a1)) + (s->mRotation.z * a2)));
+
+            GDWrite_f32(v15);
+            GDWrite_f32(0.0f);
+
+            GDPosition3f32(((v21.x + (s->mPosition.x * a3)) + (s->mRotation.x * a4)), ((v21.y + (s->mPosition.y * a3)) + (s->mRotation.y * a4)),
+                           ((v21.z + (s->mPosition.z * a3)) + (s->mRotation.z * a4)));
+
+            GDWrite_f32(v15);
+            GDWrite_f32(0.0f);
+        }
+    }
+}
+
+void ElectricRail::drawPlaneGX(f32 a1, f32 a2, f32 a3, f32 a4) const {
+    for (s32 i = 0; i < mRailHeight; i++) {
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 2 * mSeparatorCount);
+
+        for (s32 j = 0; j < mSeparatorCount; j++) {
+            ElectricRailSeparator* s = &mSeparators[j];
+            TVec3f v21(s->_0);
+            f32 v15 = j / 2.0f;
+            TVec3f v20(s->mRotation);
+            v20.scale(100.0f * i);
+            v21 = v20 + v21;
+            GXPosition3f32(((v21.x + (s->mPosition.x * a1)) + (s->mRotation.x * a2)), ((v21.y + (s->mPosition.y * a1)) + (s->mRotation.y * a2)),
+                           ((v21.z + (s->mPosition.z * a1)) + (s->mRotation.z * a2)));
+
+            GXCmd1f32(v15);
+            GXCmd1f32(0.0f);
+
+            GXPosition3f32(((v21.x + (s->mPosition.x * a3)) + (s->mRotation.x * a4)), ((v21.y + (s->mPosition.y * a3)) + (s->mRotation.y * a4)),
+                           ((v21.z + (s->mPosition.z * a3)) + (s->mRotation.z * a4)));
+
+            GXCmd1f32(v15);
+            GXCmd1f32(0.0f);
+        }
+    }
+}
 
 void ElectricRail::initShadow(const JMapInfoIter& iter) {
     f32 arg_1;
