@@ -401,7 +401,7 @@ namespace MR {
         if (chunk != nullptr) {
             chunk->setCameraType("CAM_TYPE_DPD", getCameraDirector()->mHolder);
             chunk->mGeneralParam->mDist = 120.0f;
-            chunk->mGeneralParam->mNum1 = CameraDPD::CameraState_1;
+            chunk->mGeneralParam->mNum1 = CameraDPD::CameraType_UpdateWithTarget;
             chunk->mGeneralParam->mAngleA = MR::pi() / 3.0f;
             chunk->mGeneralParam->mAngleB = MR::pi() / 6.0f;
             chunk->mGeneralParam->mWPoint.z = 0.0f;

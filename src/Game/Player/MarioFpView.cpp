@@ -176,7 +176,7 @@ bool MarioFpView::close() {
 
     stopAnimation("見る");
 
-    // mActor->showBeeFur();
+    mActor->showBeeFur();
 
     return true;
 }

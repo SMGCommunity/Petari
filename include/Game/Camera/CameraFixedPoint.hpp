@@ -4,6 +4,12 @@
 
 class CameraFixedPoint : public Camera {
 public:
+    enum CameraType {
+        /* 0x0 */ CameraType_ZoneUp,
+        /* 0x1 */ CameraType_TurnUp,
+        /* 0x2 */ CameraType_PlayerUp,
+    };
+
     CameraFixedPoint(const char* pName = "定点カメラ");
 
     virtual void reset();
@@ -13,5 +19,5 @@ public:
     void setParam(const TVec3f&, u32);
 
     /* 0x4C */ TVec3f mPos;
-    /* 0x58 */ u32 _58;
+    /* 0x58 */ u32 mCameraType;
 };

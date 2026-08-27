@@ -17,7 +17,7 @@ namespace {
 };  // namespace
 
 CameraCharmedVecReg::CameraCharmedVecReg(const char* pName)
-    : Camera(pName), mString(), mDist(1000.0f), mPitch(), mAngleYMin(), mAngleYMax(), mCamDistRatio(0.5f), mCamAngleRate(::sRate) {
+    : Camera(pName), mName(), mDist(1000.0f), mAngleX(), mAngleYMin(), mAngleYMax(), mCamDistRatio(0.5f), mCamAngleRate(::sRate) {
 }
 
 void CameraCharmedVecReg::reset() {
@@ -32,7 +32,7 @@ CameraTargetObj* CameraCharmedVecReg::calc() {
 
     TVec3f watchOffs = watchPoint - CameraLocalUtil::getTarget(this)->getPosition();
 
-    const TVec3f& vecReg = CameraLocalUtil::getVecReg(mString);
+    const TVec3f& vecReg = CameraLocalUtil::getVecReg(mName);
 
     TVec3f basePos = CameraLocalUtil::getTarget(this)->getPosition() * (1.0f - mCamDistRatio) + vecReg * mCamDistRatio;
 
@@ -78,7 +78,7 @@ CameraTargetObj* CameraCharmedVecReg::calc() {
     angle = angleDiff * (1.0f - mCamAngleRate) + angle * mCamAngleRate;
 
     TPos3f rotX;
-    rotX.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), -mPitch);
+    rotX.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), -mAngleX);
 
     TPos3f rotY;
     rotY.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), angle);

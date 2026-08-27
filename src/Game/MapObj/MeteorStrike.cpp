@@ -31,7 +31,8 @@ namespace NrvMeteorStrike {
     NEW_NERVE(MeteorStrikeNrvBreak, MeteorStrike, Break);
 };  // namespace NrvMeteorStrike
 
-MeteorStrike::MeteorStrike(const char* pName) : LiveActor(pName), mType(), mStepSize(10.0f), mRailDir(0.0f, -1.0f, 0.0f), mBrokenModel(), mStepsLeft(), mTotalSteps() {
+MeteorStrike::MeteorStrike(const char* pName)
+    : LiveActor(pName), mType(), mStepSize(10.0f), mRailDir(0.0f, -1.0f, 0.0f), mBrokenModel(), mStepsLeft(), mTotalSteps() {
     mLavaColumnPos.identity();
 }
 
@@ -168,7 +169,7 @@ void MeteorStrike::calcAndSetBaseMtx() {
     TPos3f mtx;
     TVec3f negGravity;
     negGravity.negate(mGravity);
-    if (MR::isSameDirection(mRailDir, negGravity, 0.01f)) {
+    if (MR::isSameDirection(mRailDir, negGravity)) {
         MR::makeMtxFrontNoSupportPos(&mtx, mRailDir, mPosition);
     } else {
         MR::makeMtxFrontUpPos(&mtx, mRailDir, negGravity, mPosition);
@@ -286,7 +287,7 @@ void MeteorStrike::exeMove() {
         MR::startBrk(this, "MeteorStrike");
         mVelocity.scale(mStepSize, mRailDir);
     }
-    
+
     if (MR::isHiddenModel(this)) {
         if (isInScreen()) {
             MR::showModel(this);

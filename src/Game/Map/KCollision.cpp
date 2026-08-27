@@ -77,7 +77,7 @@ bool KCollisionServer::isNearParallelNormal(const KC_PrismData* pPrism) const {
 
     bool isNear = false;
 
-    if (MR::isSameDirection(edge0, edge1, 0.01f) || MR::isSameDirection(edge0, edge2, 0.01f) || MR::isSameDirection(edge1, edge2, 0.01f)) {
+    if (MR::isSameDirection(edge0, edge1) || MR::isSameDirection(edge0, edge2) || MR::isSameDirection(edge1, edge2)) {
         isNear = true;
     }
 

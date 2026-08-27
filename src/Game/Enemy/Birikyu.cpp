@@ -302,7 +302,7 @@ void BirikyuWithFace::calcAndSetBaseMtx() {
             vec.negate();
         }
         TVec3f vec2(_AC);
-        if (MR::isSameDirection(vec2, vec, 0.01f)) {
+        if (MR::isSameDirection(vec2, vec)) {
             MR::makeMtxSideFront(&vec3, vec, _B8);
         } else {
             MR::makeMtxSideUp(&vec3, vec, vec2);

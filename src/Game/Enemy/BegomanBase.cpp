@@ -85,9 +85,9 @@ namespace NrvBegomanAttackPermitter {
 };  // namespace NrvBegomanAttackPermitter
 
 BegomanBase::BegomanBase(const char* pName)
-    : LiveActor(pName), mBaseDelegator(), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f),
-      _B4(1.0f, 1.0f, 1.0f), _C0(0, 0, 0, 1), _D0(0, 0, 0, 1), mTiredCounter(), mElectricCounter(), mInitPos(0.0f, 0.0f, 0.0f),
-      mScaleControler(), mStarPointBind(), mCanTrySetReturn() {
+    : LiveActor(pName), mBaseDelegator(), mFaceVec(0.0f, 0.0f, 1.0f), mTargetVec(0.0f, 0.0f, 1.0f), _A8(0.0f, 0.0f, -1.0f), _B4(1.0f, 1.0f, 1.0f),
+      _C0(0, 0, 0, 1), _D0(0, 0, 0, 1), mTiredCounter(), mElectricCounter(), mInitPos(0.0f, 0.0f, 0.0f), mScaleControler(), mStarPointBind(),
+      mCanTrySetReturn() {
 }
 
 // needed to get a string to show up in .data, should be deadstripped.
@@ -183,7 +183,8 @@ void BegomanBase::initSensor(s32 extraSensorNum, f32 radius, f32 pushedRailRadiu
 
     MR::addHitSensor(this, "check", ATYPE_EYE, 1, radius * yScale, TVec3f(0.0f, 0.5f * radius * yScale, 1.5f * radius * yScale));
     MR::addHitSensorAtJoint(this, "body", sensorJointName, ATYPE_BEGOMAN, 32, radius * yScale, TVec3f(0.0f, 0.5f * radius * yScale, 0.0f));
-    MR::addHitSensorAtJoint(this, "pushed_rail", sensorJointName, ATYPE_EYE, 32, pushedRailRadius * yScale, TVec3f(0.0f, 0.5f * pushedRailRadius * yScale, 0.0f));
+    MR::addHitSensorAtJoint(this, "pushed_rail", sensorJointName, ATYPE_EYE, 32, pushedRailRadius * yScale,
+                            TVec3f(0.0f, 0.5f * pushedRailRadius * yScale, 0.0f));
 }
 
 void BegomanBase::initUseSwitchB(const JMapInfoIter& rIter, const MR::FunctorBase& rFunctor) {
@@ -677,8 +678,7 @@ void BegomanBase::launchBegomanCore(LiveActor* pActor, BegomanBase** begomanArra
     }
 }
 
-void BegomanBase::launchBegoman(LiveActor* pActor, BegomanBase** begomanArray, s32 numBegoman, f32 radius, f32 velH, f32 velV,
-                                const TVec3f* pVec) {
+void BegomanBase::launchBegoman(LiveActor* pActor, BegomanBase** begomanArray, s32 numBegoman, f32 radius, f32 velH, f32 velV, const TVec3f* pVec) {
     launchBegomanCore(pActor, begomanArray, numBegoman, radius, velH, velV, pVec);
 
     for (int i = 0; i < numBegoman; i++) {
@@ -985,7 +985,7 @@ void BegomanBase::calcAnimCore(TPos3f* pPos) {
     TVec3f yDir;
     pPos->getYDir(yDir);
 
-    if (!MR::isSameDirection(yDir, mTargetVec, 0.01f)) {
+    if (!MR::isSameDirection(yDir, mTargetVec)) {
         MR::makeMtxUpFront(pPos, yDir, mTargetVec);
     }
 }

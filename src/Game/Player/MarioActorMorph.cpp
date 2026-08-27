@@ -53,7 +53,7 @@ void MarioActor::setPlayerMode(u8 playerMode, bool myBool) {
     }
 
     _3DC = 0;
-    _A6E = false;
+    _A6E = 0;
 
     switch (mPlayerMode) {
     case 5:
@@ -110,7 +110,7 @@ void MarioActor::setPlayerMode(u8 playerMode, bool myBool) {
     case 1:
         stopEffect("無敵中");
 
-        _A6E = false;
+        _A6E = 0;
 
         MR::stopSubBGM(30);
 

@@ -19,7 +19,7 @@ void MarioActor::initShadow() {
     _A14 = reinterpret_cast< J3DModelX* >(MR::getJ3DModel(_A10));
     _A14->_DD = mModels[0]->_DD;
 
-    for (s32 idx = 0; idx < _A14->_DD; idx++) {
+    for (u32 idx = 0; idx < _A14->_DD; idx++) {
         _A14->mExtraMtxBuffer[idx] = mModels[0]->mExtraMtxBuffer[idx];
     }
 }

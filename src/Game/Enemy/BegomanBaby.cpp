@@ -576,7 +576,7 @@ bool BegomanBaby::calcHeadJoint(TPos3f* pPos, const JointControllerInfo& rInfo) 
     TVec3f yDir;
     pPos->getYDir(yDir);
 
-    if (!MR::isSameDirection(yDir, mTargetVec, 0.01f)) {
+    if (!MR::isSameDirection(yDir, mTargetVec)) {
         MR::makeMtxUpFront(pPos, yDir, mTargetVec);
     }
 

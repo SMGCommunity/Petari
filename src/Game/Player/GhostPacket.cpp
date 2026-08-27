@@ -9,9 +9,9 @@ GhostPacket::GhostPacket(void* pData, u32 len) {
 }
 
 void GhostPacket::read(u8* pOut, u32 len) {
-    for (; len != 0; len--) {
-        s32 offs = mCurOffs;
-        *pOut++ = mDataPtr[offs++];
+    for (int i = 0; i < len; i++) {
+        *pOut = mDataPtr[mCurOffs];
+        pOut++;
         mCurOffs++;
     }
 }

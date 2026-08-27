@@ -62,7 +62,7 @@ void RingBeamShadowDrawer::drawShape() const {
         MR::calcGravityVector(_1c, temp, &temp2, nullptr, 0);
         if (MR::normalizeOrZero(XDirScaled, &temp3)) {
             MtxList[i].setInline(baseMtxCopy);
-        } else if (MR::isSameDirection(-temp2, temp3, 0.01f)) {
+        } else if (MR::isSameDirection(-temp2, temp3)) {
             MR::makeMtxUpSide(&MtxList[i], -temp2, -YDir);
         } else if (temp2.dot(YDir) < f2) {
             MR::makeMtxUpSide(&MtxList[i], -temp2, temp3);
