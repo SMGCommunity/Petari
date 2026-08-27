@@ -189,7 +189,7 @@ MarioActor::MarioActor(const char* pName) : LiveActor(pName), _1B0(0xFFFFFFFF) {
     _EF6 = 0;
     _424 = 0;
     _4A4 = nullptr;
-    _6D0 = 0;
+    _6D0 = false;
     _3A0 = 0;
     _EFC = 0;
     _EF8 = 0;
@@ -1285,7 +1285,7 @@ void MarioActor::updateSwingAction() {
 
 bool MarioActor::checkClapCatchStart() {
     if (_6D0) {
-        _6D0 = 0;
+        _6D0 = false;
         tryCoinPullInRush();
         return true;
     } else {
