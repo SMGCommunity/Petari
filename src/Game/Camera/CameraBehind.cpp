@@ -13,11 +13,7 @@ void CameraBehind_FORCE_MATCH_SDATA2() {
 CameraBehind::~CameraBehind() {
 }
 
-CameraBehind::CameraBehind(const char* pName) : Camera(pName) {
-    mAngleB = 0.5235988f;
-    mAngleA = 0.0f;
-    mDist = 3000.0f;
-
+CameraBehind::CameraBehind(const char* pName) : Camera(pName), mAngleX(MR::toRadian(30.0f)), mAngleY(), mDist(3000.0f) {
     createVPanObj();
 }
 
@@ -31,7 +27,7 @@ void CameraBehind::reset() {
 CameraTargetObj* CameraBehind::calc() {
     mVPan->updateJump();
     mVPan->calcWatchPos(nullptr);
-    calcPosAndUp(mAxisX);
+    calcPosAndUp(mRate);
     mVPan->arrange();
     return CameraLocalUtil::getTarget(this);
 }
@@ -42,21 +38,26 @@ CamTranslatorBase* CameraBehind::createTranslator() {
 
 void CameraBehind::calcPosAndUp(f32 accel) {
     TVec3f watchpos = CameraLocalUtil::getWatchPos(this);
+
     TPos3f matrix;
     matrix.setZDir(-CameraLocalUtil::getTarget(this)->getFrontVec());
     matrix.setYDir(CameraLocalUtil::getTarget(this)->getUpVec());
     matrix.setXDir(-CameraLocalUtil::getTarget(this)->getSideVec());
     matrix.setTrans(CameraLocalUtil::getTarget(this)->getPosition());
-    TPos3f matrix2;
-    matrix2.invert(matrix);
-    TVec3f multresult;
-    matrix2.mult(watchpos, multresult);
-    TVec3f cross;
-    MR::polarToCrossDegree(multresult, &cross, mDist, mAngleB, mAngleA);
-    matrix.mult(cross, cross);
-    cross = cross * accel + CameraLocalUtil::getPos(this) * (1.0f - accel);
-    CameraLocalUtil::setPos(this, cross);
 
+    TPos3f inv;
+    inv.invert(matrix);
+
+    TVec3f watchPoint;
+    inv.mult(watchpos, watchPoint);
+
+    TVec3f pos;
+    MR::polarToCrossDegree(watchPoint, &pos, mDist, mAngleX, mAngleY);
+
+    matrix.mult(pos, pos);
+    pos = pos * accel + CameraLocalUtil::getPos(this) * (1.0f - accel);
+
+    CameraLocalUtil::setPos(this, pos);
     CameraLocalUtil::setWatchUpVec(this, TVec3f(0.0f, 1.0f, 0.0f));
     CameraLocalUtil::setUpVec(this, TVec3f(0.0f, 1.0f, 0.0f));
 }
