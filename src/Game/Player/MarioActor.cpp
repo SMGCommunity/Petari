@@ -2518,9 +2518,9 @@ void MarioActor::jumpHop() {
         mMario->mJumpVec += -_240 * getConst().getTable()->mClapJumpBonusFalling;
     } else {
         f32 val = -mMario->cutGravityElementFromJumpVec(true);
-        if(val < getConst().getTable()->mHopLimit) {
+        if (val < getConst().getTable()->mHopLimit) {
             val += getConst().getTable()->mClapJumpBonusRising;
-            if(val > getConst().getTable()->mHopLimit) {
+            if (val > getConst().getTable()->mHopLimit) {
                 val = getConst().getTable()->mHopLimit;
             }
         }

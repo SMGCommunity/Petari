@@ -65,7 +65,7 @@ bool MarioActor::checkBeeWallStick(TVec3f& rVec) {
 }
 
 bool MarioActor::checkBeeFloorStick(TVec3f& rVec) {
-    if (mMario->getMovementStates()._1 && !strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) && mBeeWallWalk == 0) {
+    if (mMario->getMovementStates()._1 && strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) == 0 && mBeeWallWalk == 0) {
         mBeeWallWalk = 5;
         rVec = -mMario->_368;
 
@@ -130,7 +130,7 @@ bool MarioActor::checkBeeCeilStick(TVec3f& rVec) {
             out = true;
         } else {
             const char* wallCodeString = MR::getWallCodeString(mMario->_4C8);
-            if (wallCodeString != nullptr && !strcmp(wallCodeString, "Fur")) {
+            if (wallCodeString != nullptr && strcmp(wallCodeString, "Fur") == 0) {
                 out = true;
             }
         }

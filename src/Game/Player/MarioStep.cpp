@@ -78,9 +78,7 @@ void Mario::checkStep() {
 
         if (horizontal.length() < 20.0f && MR::abs(frontDot) < 0.3926991f) {
             f32 stepHeight = (_50C - mPosition).dot(-*getGravityVec());
-            MarioConst* pConst = mActor->mConst;
-            MarioConstTable* pTable = pConst->mTable[pConst->mCurrentTable];
-            if (stepHeight < pTable->mWalkStepHeight) {
+            if (stepHeight < mActor->getConst().getTable()->mWalkStepHeight) {
                 startStep(_50C);
             }
         } else if (MR::abs(frontDot) < 1.0471976f) {
@@ -105,8 +103,6 @@ void Mario::checkStep() {
     }
 
     f32 stepHeight = (_4A4 - mPosition).dot(-*getGravityVec());
-    MarioConst* pConst = mActor->mConst;
-    MarioConstTable* pTable = pConst->mTable[pConst->mCurrentTable];
     if (stepHeight < mActor->getConst().getTable()->mWalkStepHeight) {
         startStep(_4A4);
     }

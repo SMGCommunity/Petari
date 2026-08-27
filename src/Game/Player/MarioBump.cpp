@@ -70,8 +70,7 @@ MarioBump::MarioBump(MarioActor* pActor) : MarioState(pActor, MarioStatus_Bump) 
 bool MarioBump::start() {
     _14 = getPlayer()->mWalkSpeed;
 
-
-    MR::clamp(_14,0.0f,1.0f);
+    MR::clamp(_14, 0.0f, 1.0f);
 
     s32 blendTimer = 0x14 - static_cast< s32 >(16.0f * _14);
 

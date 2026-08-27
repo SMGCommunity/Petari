@@ -90,8 +90,8 @@ void MarioActor::resetCondition() {
         mMario->closeStatus(nullptr);
     }
 
-    //reset mMovementstates and _10
-    //exept for mMovementStates._1F
+    // reset mMovementstates and _10
+    // exept for mMovementStates._1F
     bool was1F = mMario->mMovementStates._1F;
     mMario->mMovementStates_LOW_WORD = 0;
     mMario->mMovementStates_HIGH_WORD = 0;

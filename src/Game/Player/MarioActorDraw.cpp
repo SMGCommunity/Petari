@@ -643,7 +643,6 @@ void MarioActor::updateFace() {
 }
 
 void MarioActor::swapTexture(const char* pMaterialName, u8 texNo) const {
-
     switch (mPlayerMode) {
     case 4:
         if (texNo > 7) {

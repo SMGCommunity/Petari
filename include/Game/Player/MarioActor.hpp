@@ -545,7 +545,7 @@ public:
     }
 
     inline const bool isBeeMarioOnFur() const {
-        return mMario->getMovementStates()._1 && !strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) && mBeeWallWalk == 0;
+        return mMario->getMovementStates()._1 && strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) == 0 && mBeeWallWalk == 0;
     }
 
     inline const bool is481or482On() const {

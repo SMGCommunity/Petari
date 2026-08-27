@@ -1113,12 +1113,12 @@ void Mario::writeBackPhyisicalVector() {
                     }
                     if (isPlayerModeBee() && mActor->mBeeWallWalk == 0) {
                         const char* wallCodeString = MR::getWallCodeString(_57C[i]);
-                        if (wallCodeString != nullptr && !strcmp(wallCodeString, "Fur")) {
+                        if (wallCodeString != nullptr && strcmp(wallCodeString, "Fur") == 0) {
                             Triangle stack_110 = Triangle();
                             MarioActor* pActor = mActor;
                             if (MR::getFirstPolyOnLineToMap(&stack_bc, &stack_110, pActor->_2A0, -(*_57C[i]->getNormal(0)) * 300.0f)) {
                                 wallCodeString = MR::getWallCodeString(&stack_110);
-                                if (wallCodeString != nullptr && !strcmp(wallCodeString, "Fur")) {
+                                if (wallCodeString != nullptr && strcmp(wallCodeString, "Fur") == 0) {
                                     MarioActor* pActor2 = mActor;
                                     pActor2->entryWallWalkMode(stack_bc, *stack_110.getNormal(0));
                                 }

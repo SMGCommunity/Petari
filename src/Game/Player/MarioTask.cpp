@@ -49,7 +49,7 @@ void Mario::delTask(MarioModuleTask* pTask) {
     }
 
     while (true) {
-        if (!head) {
+        if (head == nullptr) {
             return;
         }
 
@@ -75,7 +75,7 @@ void Mario::execTask() {
     MarioModuleTask* task = _974;
 
     while (true) {
-        if (!task) {
+        if (task == nullptr) {
             return;
         }
 
@@ -96,7 +96,7 @@ void Mario::drawTask() const {
     MarioModuleTask* task = _974;
 
     while (true) {
-        if (!task) {
+        if (task == nullptr) {
             return;
         }
 
@@ -322,7 +322,7 @@ void Mario::startHipDropSlide(const HitSensor* pSensor) {
 
     if (MR::isSameDirection(dir, getAirGravityVec(), sSameDirEpsilon) || MR::isNearZero(dir, sNearZeroEpsilon)) {
         dir = -mFrontVec;
-    } 
+    }
 
     MR::normalizeOrZero(&dir);
 
@@ -346,7 +346,7 @@ void Mario::startJumpDropSlide(const HitSensor* pSensor) {
         return;
     }
 
-    TVec3f dir(mPosition - pSensor ->mPosition);
+    TVec3f dir(mPosition - pSensor->mPosition);
     MR::normalizeOrZero(&dir);
 
     f32 dot = dir.dot(-getAirGravityVec());

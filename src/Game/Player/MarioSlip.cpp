@@ -231,8 +231,8 @@ void Mario::slopeMove() {
                     _3FE = mActor->mConst->getTable()->mSlopeDashAccelTime;
                 }
 
-                _8F4 =
-                    (slopeAngle / mActor->mConst->getTable()->mSlopeDashAngleFactor) * (static_cast< f32 >(_3FE) / static_cast< f32 >(mActor->mConst->getTable()->mSlopeDashAccelTime));
+                _8F4 = (slopeAngle / mActor->mConst->getTable()->mSlopeDashAngleFactor) *
+                       (static_cast< f32 >(_3FE) / static_cast< f32 >(mActor->mConst->getTable()->mSlopeDashAccelTime));
                 _8F4 = 1.0f + (_8F4 * mActor->mConst->getTable()->mSlopeDashSpeedFactor);
 
                 mVelocity += -_904 * (1.0f + ((_8F4 - 1.0f) * mActor->mConst->getTable()->mSlopeDashAccelFactor));

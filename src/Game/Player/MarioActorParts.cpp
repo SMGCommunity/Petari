@@ -174,7 +174,7 @@ void MarioActor::hideFreezeModel() {
     mMario->startFreezeEnd();
 }
 
-//void MarioActor::updateFairyStar() {}
+// void MarioActor::updateFairyStar() {}
 
 void MarioActor::update2D() {
     GameSceneLayoutHolder* layoutHolder = MR::getGameSceneLayoutHolder();
@@ -193,7 +193,7 @@ void MarioActor::update2D() {
     }
 }
 
-//void MarioActor::updateThrowVector() {}
+// void MarioActor::updateThrowVector() {}
 
 void MarioActor::createIceFloor(const TVec3f& rVec) {
     TPos3f mtx;
@@ -241,7 +241,7 @@ void MarioActor::createIceWall(const TVec3f& rVec1, const TVec3f& rVec2) {
     }
 }
 
-//void MarioActor::updateBaseMtxTeresa(MtxPtr) {}
+// void MarioActor::updateBaseMtxTeresa(MtxPtr) {}
 
 bool MarioActor::finalizeFreezeModel() {
     if (MR::isBckStopped(_9C4)) {

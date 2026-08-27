@@ -231,7 +231,7 @@ void MarioActor::initMaterialEffect() {
 
     _BA4 = new HashSortTable(entryCount);
     entry = cMaterialEffectTable;
-    for(int i = 0; i < entryCount; i++) {
+    for (int i = 0; i < entryCount; i++) {
         _BA4->add(cMaterialEffectTable[i].mName, reinterpret_cast< u32 >(&cMaterialEffectTable[i]), false);
     }
 

@@ -250,7 +250,7 @@ void MarioActor::exeGameOverNonStop() {
         MR::startGlobalEventCameraNoTarget("昇天カメラ", -1);
     } else {
         MR::startPlayerEvent("マリオ炎ダウン");
-        MR::startGlobalEventCameraNoTarget("奈落カメラ", -1); 
+        MR::startGlobalEventCameraNoTarget("奈落カメラ", -1);
     }
 
     MR::startStarPointerModeDemoMarioDeath(this);
