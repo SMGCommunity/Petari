@@ -969,7 +969,7 @@ bool Mario::isCeiling() const {
 
 void Mario::setGravityVec(const TVec3f& rGravity) {
     if (MR::isSameDirection(mAirGravityVec, rGravity)) {
-        if (MR::isOppositeDirection(mAirGravityVec, rGravity, 0.01)) {
+        if (MR::isOppositeDirection(mAirGravityVec, rGravity)) {
             _10._24 = 1;
             _10._25 = 1;
         }

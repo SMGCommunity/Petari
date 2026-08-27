@@ -286,7 +286,7 @@ namespace MR {
     /// @param[in] rVec1 A reference to the first three-dimensional vector to evaluate.
     /// @param[in] rVec2 A reference to the second three-dimensional vector to evaluate.
     /// @param tolerance The maximum allowed difference from zero.
-    bool isOppositeDirection(const TVec3f& rVec1, const TVec3f& rVec2, f32 tolerance);
+    bool isOppositeDirection(const TVec3f& rVec1, const TVec3f& rVec2, f32 tolerance = 0.01f);
 
     /// @brief Determines if a number is approximately equal to zero.
     /// @param x The number to evaluate.

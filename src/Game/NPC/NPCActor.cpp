@@ -601,7 +601,7 @@ bool NPCActor::turnToPlayer(f32 f1) {
     ::calcVecToPlayer(&toPlayer, this);
     _A0.getZDir(zDir);
 
-    if (MR::isOppositeDirection(-zDir, toPlayer, 0.01f)) {
+    if (MR::isOppositeDirection(-zDir, toPlayer)) {
         return true;
     }
 
@@ -639,7 +639,7 @@ bool NPCActor::turnToDefault(f32 f1) {
     _B0.getYDir(yDir);
     _A0.getZDir(zDir2);
 
-    if (MR::isOppositeDirection(-zDir, zDir2, 0.01f)) {
+    if (MR::isOppositeDirection(-zDir, zDir2)) {
         return true;
     }
 

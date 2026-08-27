@@ -687,7 +687,7 @@ void MarioActor::movement() {
     _27C = stack_134;
     TVec3f stack_11C(_288);
     _288 = stack_128;
-    if (MR::isOppositeDirection(_288, stack_11C, 0.01f)) {
+    if (MR::isOppositeDirection(_288, stack_11C)) {
         f32 mag_288 = _288.length();
         f32 magStack_11C = stack_11C.length();
         if (!MR::isNearZero(mag_288) && !MR::isNearZero(magStack_11C) && MR::isNearZero(mag_288 - magStack_11C, 1.0f)) {

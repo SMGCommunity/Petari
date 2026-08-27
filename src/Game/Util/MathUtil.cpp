@@ -230,7 +230,7 @@ namespace MR {
 
     bool makeAxisAndCosignVecToVec(TVec3f* pAxis, f32* pCos, const TVec3f& rFrom, const TVec3f& rTo) {
         TVec3f from;
-        if (isOppositeDirection(rFrom, rTo, 0.01f)) {
+        if (isOppositeDirection(rFrom, rTo)) {
             turnRandomVector(&from, rFrom, 0.01f);
             normalize(&from);
         } else {
@@ -428,7 +428,7 @@ namespace MR {
         TVec3f up;
         q.getYDir(up);
 
-        bool isUpSame = up.dot(rUp) >= 0.0f ? false : isSameDirection(up, rUp, 0.001f);
+        bool isUpSame = up.dot(rUp) >= 0.0f ? false : isSameDirection(up, rUp);
         if (isUpSame) {
             turnRandomVector(&up, up, 0.001f);
         }
@@ -444,7 +444,7 @@ namespace MR {
         TVec3f targetFront = rFront.killElement(up);
         MR::normalizeOrZero(&targetFront);
 
-        bool isFrontSame = front.dot(targetFront) >= 0.0f ? false : isSameDirection(front, targetFront, 0.001f);
+        bool isFrontSame = front.dot(targetFront) >= 0.0f ? false : isSameDirection(front, targetFront);
         if (isFrontSame) {
             turnRandomVector(&front, front, 0.001f);
         }
@@ -469,7 +469,7 @@ namespace MR {
         TVec3f up;
         q.getZDir(up);
 
-        bool isUpSame = up.dot(rUp) >= 0.0f ? false : isSameDirection(up, rUp, 0.001f);
+        bool isUpSame = up.dot(rUp) >= 0.0f ? false : isSameDirection(up, rUp);
         if (isUpSame) {
             turnRandomVector(&up, up, 0.001f);
         }
@@ -485,7 +485,7 @@ namespace MR {
         TVec3f targetFront = rFront.killElement(up);
         MR::normalizeOrZero(&targetFront);
 
-        bool isFrontSame = front.dot(targetFront) >= 0.0f ? false : isSameDirection(front, targetFront, 0.001f);
+        bool isFrontSame = front.dot(targetFront) >= 0.0f ? false : isSameDirection(front, targetFront);
         if (isFrontSame) {
             turnRandomVector(&front, front, 0.001f);
         }
@@ -518,7 +518,7 @@ namespace MR {
         TVec3f from;
         TVec3f target = rTo;
 
-        bool isSameDir = rFrom.dot(rTo) >= 0.0f ? false : isSameDirection(rFrom, rTo, 0.001f);
+        bool isSameDir = rFrom.dot(rTo) >= 0.0f ? false : isSameDirection(rFrom, rTo);
         if (isSameDir) {
             turnRandomVector(&from, rFrom, 0.001f);
         } else {
@@ -885,7 +885,7 @@ namespace MR {
         }
 
         TQuat4f rot;
-        bool isSameDir = rFrom.dot(rTo) >= 0.0f ? false : isSameDirection(rFrom, rTo, 0.01f);
+        bool isSameDir = rFrom.dot(rTo) >= 0.0f ? false : isSameDirection(rFrom, rTo);
         if (isSameDir) {
             rot.setRotate(rAxis, angleClamped);
         } else {

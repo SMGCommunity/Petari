@@ -581,7 +581,7 @@ void TrampleStar::drawSelf() const {
     if (MR::isNearZero(MR::getMarioShadowVec())) {
         return;
     }
-    if (MR::isSameDirection(MR::getMarioShadowVec(), front) || MR::isOppositeDirection(MR::getMarioShadowVec(), front, 0.01f)) {
+    if (MR::isSameDirection(MR::getMarioShadowVec(), front) || MR::isOppositeDirection(MR::getMarioShadowVec(), front)) {
         return;
     }
 
