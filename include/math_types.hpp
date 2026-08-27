@@ -4,6 +4,7 @@
 #include <revolution.h>
 
 const f32 HALF_PI = 1.5707964f;
+const f64 HALF_PI_D = 1.57079637050628662109375;
 const f32 PI = 3.1415927f;
 const f32 TWO_PI = 6.2831855f;
 const f64 TWO_PI_D = 6.283185482025146;

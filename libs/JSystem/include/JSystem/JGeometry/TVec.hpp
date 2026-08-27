@@ -156,7 +156,7 @@ namespace JGeometry {
         }
 
         T squared() const {
-            return x * x + y * y;
+            return dot(*this);
         };
 
         T squared(const TVec2< T >& rOther) const;  //{ return (x - rOther.x) * (x - rOther.x) + (y - rOther.y) * (y - rOther.y); };
@@ -168,6 +168,7 @@ namespace JGeometry {
         T distance(const TVec2< T >& rOther) const {
             return JGeometry::TUtil< T >::sqrt(squareDist(rOther));
         }
+
         void zero() {
             x = y = 0.0f;
         }
@@ -475,9 +476,9 @@ namespace JGeometry {
             return ret;
         }
 
-        TVec3 operator/(f32 div) const NO_INLINE {
+        TVec3 operator/(f32 div) const {
             TVec3 ret(*this);
-            ret *= (1.0f / div);
+            ret /= div;
             return ret;
         }
 

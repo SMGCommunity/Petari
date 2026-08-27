@@ -150,6 +150,7 @@ namespace MR {
     bool calcReboundVelocity(TVec3f*, const TVec3f&, f32);
     bool calcReboundVelocity(TVec3f*, const TVec3f&, f32, f32);
     void calcParabolicFunctionParam(f32*, f32*, f32, f32);
+
     void makeQuatRotateRadian(TQuat4f*, const TVec3f&);
     void makeQuatRotateDegree(TQuat4f*, const TVec3f&);
     void makeQuatFromVec(TQuat4f*, const TVec3f&, const TVec3f&);
@@ -168,6 +169,7 @@ namespace MR {
     bool turnQuatYDirRad(TQuat4f*, const TQuat4f&, const TVec3f&, f32);
     void turnQuatYDirRate(TQuat4f*, const TQuat4f&, const TVec3f&, f32);
     bool turnQuatZDirRad(TQuat4f*, const TQuat4f&, const TVec3f&, f32);
+    void turnQuatZDirRate(TQuat4f*, const TQuat4f&, const TVec3f&, f32);
 
     /// @brief Returns a number representing the sign of a number.
     /// @param x The number to evaluate.
@@ -264,7 +266,9 @@ namespace MR {
     f32 normalize(f32 x, f32 min, f32 max);
 
     f32 normalizeAbs(f32, f32, f32);
+
     bool turnVecToVecCos(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&, f32 = 0.02f);
+
     bool turnVecToVecCosOnPlane(TVec3f*, const TVec3f&, const TVec3f&, const TVec3f&, f32);
     bool turnVecToVecCosOnPlane(TVec3f*, const TVec3f&, const TVec3f&, f32);
     f32 turnVecToVecRadian(TVec3f*, const TVec3f&, const TVec3f&, f32, const TVec3f&);
@@ -426,6 +430,11 @@ namespace MR {
     /// @brief Returns the value of pi (3.14159274f)
     inline f32 pi() {
         return PI;  // TODO: test if actually JGeometry::TUtil<f32>::PI();
+    }
+
+    /// @brief Returns the value of pi * 2 (6.2831855f)
+    inline f32 pi2() {
+        return PI * 2.0f;  // TODO: test if actually JGeometry::TUtil<f32>::PI() * 2.0f;
     }
 
     inline f32 epsilon() {
