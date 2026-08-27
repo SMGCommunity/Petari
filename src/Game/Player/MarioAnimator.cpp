@@ -322,7 +322,7 @@ void MarioAnimator::setWalkMode() {
         player = self->getPlayer();
         player->doBrakingAnimation();
         player = self->getPlayer();
-        player->_71C = zero;
+        player->mTargetWalkSpeedIndex = zero;
     } else {
         self->mXanimePlayer->stopAnimation("ブレーキ滑り床");
     }
@@ -815,7 +815,7 @@ void MarioAnimator::setTilt() {
     Mario* player = getPlayer();
     MarioConstTable* table = mActor->mConst->getTable();
 
-    f32 ratio = table->mTiltRatio * player->_278;
+    f32 ratio = table->mTiltRatio * player->mWalkSpeed;
     tiltAngle *= ratio;
 
     const f32 maxTilt = HALF_PI;
@@ -835,7 +835,7 @@ void MarioAnimator::setTilt() {
 
     table = mActor->mConst->getTable();
     Mario* player2 = getPlayer();
-    f32 lookDown = player2->_278 * table->mLookDownRatio;
+    f32 lookDown = player2->mWalkSpeed * table->mLookDownRatio;
 
     Mario* player3 = getPlayer();
     f32 vertAngle = -player3->_3F4 * PI;
@@ -1017,7 +1017,7 @@ void MarioAnimator::updateJointRumble() {
     }
 
     player = getPlayer();
-    if (player->_71C != 0) {
+    if (player->mTargetWalkSpeedIndex != 0) {
         goto setIdentity;
     }
 
@@ -1094,13 +1094,13 @@ void MarioAnimator::update() {
     u8 walkStateTable[] = {0, 1, 2, 3, 4, 5, 6, 7};
 
     Mario* player = getPlayer();
-    u8 prevWalkState = player->_71C;
+    u8 prevWalkState = player->mTargetWalkSpeedIndex;
     player = getPlayer();
     player->_71D = prevWalkState;
 
     if (isWalkOrWaitingMotion() || isAnimationRun("待機")) {
         player = getPlayer();
-        _14 = walkStateTable[player->_71C];
+        _14 = walkStateTable[player->mTargetWalkSpeedIndex];
     } else {
         _15 = 0xFF;
     }
@@ -1145,7 +1145,7 @@ void MarioAnimator::update() {
         player->decideWalkSpeed();
 
         player = getPlayer();
-        if (player->_71C != 0) {
+        if (player->mTargetWalkSpeedIndex != 0) {
             stopAnimation(nullptr);
         }
 
@@ -1162,7 +1162,7 @@ void MarioAnimator::update() {
     }
 
     player = getPlayer();
-    if (player->_20 & 0x00200000) {
+    if (player->_20._A) {
         player = getPlayer();
         if (!player->mMovementStates.jumping) {
             player = getPlayer();
@@ -1220,7 +1220,7 @@ notSquat:
         player = getPlayer();
         player->decideWalkAnimation();
 
-        if (mActor->mAlphaEnable) {
+        if (mActor->mBeeWallWalk != 0) {
             updateWalkBas("スケート待機", 59.0f);
         } else {
             updateWalkBas("走り待機", 59.0f);

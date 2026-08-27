@@ -10,9 +10,6 @@ class MapPartsFunction : public NameObj {
 public:
     MapPartsFunction(LiveActor*, const char*);
 
-    inline virtual ~MapPartsFunction() {
-    }
-
     virtual void init(const JMapInfoIter&) {
     }
 
@@ -29,7 +26,7 @@ public:
     }
 
     virtual bool receiveMsg(u32) {
-        return 0;
+        return false;
     }
 
     virtual void control() {
@@ -43,7 +40,7 @@ public:
     bool isNerve(const Nerve*) const;
     bool isFirstStep() const;
 
-    Spine* mSpine;     // 0xC
-    LiveActor* mHost;  // 0x10
-    bool mIsActive;    // 0x14
+    /* 0x0C */ Spine* mSpine;
+    /* 0x10 */ LiveActor* mHost;
+    /* 0x14 */ bool mIsActive;
 };

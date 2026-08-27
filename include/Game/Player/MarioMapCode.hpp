@@ -12,5 +12,5 @@ public:
     /// @brief Get the floor code for a triangle.
     /// @param triangle The triangle for which to get the floor code.
     /// @return The floor code for the triangle or -1 if a nullpointer or invalid triangle is provided.
-    u32 getCode(const Triangle*);
+    s32 getCode(const Triangle*);
 };

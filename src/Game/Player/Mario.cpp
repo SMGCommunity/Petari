@@ -72,8 +72,8 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     _944 = mFrontVec;
     _950 = mSideVec;
     _60D = 0;
-    _71C = 0;
-    _278 = 0.0f;
+    mTargetWalkSpeedIndex = 0;
+    mWalkSpeed = 0.0f;
     _2D0 = 0.0f;
     mJumpVec.zero();
     _2E0.zero();
@@ -125,10 +125,10 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     _3FE = 0;
     _400 = 0;
     _402 = 0;
-    _27C = 0.0f;
-    _734 = 0;
-    _735 = 0;
-    _748 = 0;
+    mPrevAnimFrame = 0.0f;
+    mIceAnimFoot = 0;
+    mSinkTimer = 0;
+    mPoisonTimer = 0;
     _71E = 0;
     _414 = 0;
     mMorphResetTimer = 0;
@@ -177,8 +177,8 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     _10_HIGH_WORD = 0;
     mDrawStates_WORD = 0;
     _1C_WORD = 0;
-    _20 = 0;
-    _24 = 0;
+    _20_LOW_WORD = 0;
+    _20_HIGH_WORD = 0;
     _28 = 0;
 
     _458 = MR::createTriangleFilterDelegator(this, &Mario::isIgnoreTriangle);
@@ -257,7 +257,7 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
 
     _72C = 200.0f;
 
-    _730 = 0;
+    _730 = nullptr;
 
     _8D8 = nullptr;
     _8D4 = nullptr;
@@ -352,8 +352,8 @@ void Mario::updateAndClearStrideParameter() {
     mPosition = mActor->mPosition;
     mVelocityAfter.zero();
     mVelocity.zero();
-    _20 = mMovementStates_LOW_WORD;
-    _24 = mMovementStates_HIGH_WORD;
+    _20_LOW_WORD = mMovementStates_LOW_WORD;
+    _20_HIGH_WORD = mMovementStates_HIGH_WORD;
     _28 = _10_LOW_WORD;
     _2C = _10_HIGH_WORD;
     mPrevDrawStates = mDrawStates;
@@ -1345,7 +1345,7 @@ const TVec3f* Mario::getGravityVec() const {
         return &_790;
     }
     if (mMovementStates._1 && !isSlipFloorCode(_960)) {
-        if (mActor->mAlphaEnable) {
+        if (mActor->mBeeWallWalk != 0) {
             return &mAirGravityVec;
         }
         if (isAnimationRun("ハード着地")) {

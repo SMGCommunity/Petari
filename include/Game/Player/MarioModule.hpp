@@ -73,7 +73,7 @@ public:
     void playEffectSRT(const char*, f32, const TVec3f&, const TVec3f&);
     void stopEFfect(const char*);
     void stopEffectForce(const char*);
-    void playSound(const char*, s32);
+    void playSound(const char*, s32 a2 = -1);
     void stopSound(const char*, u32);
     void startCamVib(u32);
     TVec3f& getCamPos() const;

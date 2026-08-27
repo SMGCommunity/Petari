@@ -254,13 +254,13 @@ public:
     void mainMove();
     bool isEnableTurn();
     void recordTurnSlipAngle();
-    void decideInertia(f32);
+    f32 decideInertia(f32);
     void decideInertiaOnIce(f32);
     void decideInertiaOnSlip(f32);
     void calcShadowDir(const TVec3f&, TVec3f*);
     void retainMoveDir(f32, f32, TVec3f*);
     void calcMoveDir(f32, f32, TVec3f*, bool);
-    void checkLockOnHoming();
+    bool checkLockOnHoming();
     void doLockOnHoming();
     void fixPositionInTower();
 
@@ -387,7 +387,7 @@ public:
     void decideWalkSpeed();
     void decideWalkAnimation();
     void doBrakingAnimation();
-    bool checkWallPush();
+    void checkWallPush();
     void updateBrakeAnimation();
     void updateWalkSpeed();
     void decideOnIceAnimation();
@@ -608,8 +608,13 @@ public:
         /* 0x01C */ DrawStates _1C;
         /* 0x01C */ u32 _1C_WORD;
     };
-    /* 0x020 */ u32 _20;
-    /* 0x024 */ u32 _24;
+    union {
+        /* 0x020 */ MovementStates _20;
+        struct {
+            /* 0x20 */ u32 _20_LOW_WORD;
+            /* 0x24 */ u32 _20_HIGH_WORD;
+        };
+    };
     /* 0x028 */ u32 _28;
     /* 0x02C */ u32 _2C;
 
@@ -658,8 +663,8 @@ public:
     /* 0x25C */ TVec3f _25C;
     /* 0x268 */ TVec3f _268;
     /* 0x274 */ u8 _274;
-    /* 0x278 */ f32 _278;
-    /* 0x27C */ f32 _27C;
+    /* 0x278 */ f32 mWalkSpeed;
+    /* 0x27C */ f32 mPrevAnimFrame;
     /* 0x280 */ f32 _280;
     /* 0x284 */ TVec3f _284;
     /* 0x290 */ TVec3f _290;
@@ -843,7 +848,7 @@ public:
     /* 0x700 */ TVec3f _700;
     /* 0x70C */ TVec3f _70C;
     /* 0x718 */ f32 _718;
-    /* 0x71C */ bool _71C;
+    /* 0x71C */ u8 mTargetWalkSpeedIndex;
     /* 0x71D */ u8 _71D;
     /* 0x71E */ u8 _71E;
     /* 0x71F */ u8 _71F;
@@ -851,12 +856,12 @@ public:
     /* 0x724 */ const char* _724;
     /* 0x728 */ const char* _728;
     /* 0x72C */ f32 _72C;
-    /* 0x730 */ u32 _730;
-    /* 0x734 */ u8 _734;
-    /* 0x735 */ u8 _735;
+    /* 0x730 */ HitSensor* _730;
+    /* 0x734 */ u8 mIceAnimFoot;
+    /* 0x735 */ u8 mSinkTimer;
     /* 0x738 */ f32 _738;
     /* 0x73C */ TVec3f _73C;
-    /* 0x748 */ u8 _748;
+    /* 0x748 */ u8 mPoisonTimer;
     /* 0x74C */ f32 _74C;
     /* 0x750 */ u32 _750;
     /* 0x754 */ u32 _754;

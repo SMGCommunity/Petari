@@ -93,7 +93,7 @@ bool MarioStick::start() {
     changeAnimation("ハチ壁くっつき", "ハチ壁くっつき中");
     startPadVib(0ul);
     playEffectTrans("ハチ花くっつき", _38);
-    playSound("ハチ壁くっつき", -1);
+    playSound("ハチ壁くっつき");
     mActor->_F44 = 0;
     getPlayer()->setFrontVecKeepSide(-_20);
     _6C = -_20;

@@ -4,11 +4,12 @@
 
 class PenguinMaster : public NPCActor {
 public:
-    PenguinMaster(const char*);
+    /// @brief Creates a new `PenguinMaster`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    PenguinMaster(const char* pName);
 
-    virtual ~PenguinMaster();
-    virtual void init(const JMapInfoIter&);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    virtual void init(const JMapInfoIter& rIter);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
     void exeReaction();

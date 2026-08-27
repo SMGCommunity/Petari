@@ -2,13 +2,14 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NPC/MiiFaceIconHolder.hpp"
 #include "Game/NPC/MiiFaceRecipe.hpp"
+#include "Game/Util/Color.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 #include <JSystem/JUtility/JUTTexture.hpp>
 
 MiiFaceIcon::MiiFaceIcon(u16 width, u16 height, const MiiFaceRecipe& rRecipe, const char* pName)
-    : NameObj(pName), mIndex(0), mIsFavoriteColorBG(false), mWidth(width), mHeight(height), mRecipe(new MiiFaceRecipe(rRecipe)),
-      mImageBuffer(nullptr), mIsCreated(false), mMakeIconResult(RFLErrcode_Unknown), mIsRequestMakeIcon(false) {
+    : NameObj(pName), mIndex(), mIsFavoriteColorBG(), mWidth(width), mHeight(height), mRecipe(new MiiFaceRecipe(rRecipe)), mImageBuffer(),
+      mIsCreated(), mMakeIconResult(RFLErrcode_Unknown), mIsRequestMakeIcon() {
     createImageBuffer();
     MR::registerMiiFaceIcon(this);
 }
@@ -19,7 +20,6 @@ void MiiFaceIcon::init(const JMapInfoIter& rIter) {
 void MiiFaceIcon::movement() {
 }
 
-// FIXME: Stack accesses are ordered incorrectly.
 void MiiFaceIcon::drawIcon() {
     if (mIsCreated) {
         return;
@@ -28,13 +28,7 @@ void MiiFaceIcon::drawIcon() {
     if (mIsFavoriteColorBG) {
         mMakeIconResult = mRecipe->makeIconWithFavoriteColor(mImageBuffer, mWidth, mHeight);
     } else {
-        GXColor bgColor;
-        bgColor.r = 0;
-        bgColor.g = 0;
-        bgColor.b = 0;
-        bgColor.a = 255;
-
-        mMakeIconResult = mRecipe->makeIcon(mImageBuffer, mWidth, mHeight, bgColor);
+        mMakeIconResult = mRecipe->makeIcon(mImageBuffer, mWidth, mHeight, Color8(0, 0, 0, 255));
     }
 
     mIsCreated = true;
@@ -63,8 +57,8 @@ void MiiFaceIcon::createImageBuffer() {
 
     height = mHeight;
     width = mWidth;
-    pImageBuffer = reinterpret_cast< ResTIMG* >(mImageBuffer);
 
+    pImageBuffer = reinterpret_cast< ResTIMG* >(mImageBuffer);
     pImageBuffer->mFormat = GX_TF_RGB5A3;
     pImageBuffer->mWidth = width;
     pImageBuffer->mHeight = height;
