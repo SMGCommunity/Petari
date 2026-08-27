@@ -44,6 +44,3 @@ void JetTurtleShadow::init(const JMapInfoIter& rIter) {
 
     makeActorDead();
 }
-
-JetTurtleShadow::~JetTurtleShadow() {
-}

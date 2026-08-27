@@ -56,11 +56,11 @@ u32 MarioActor::getSpecialMode() const {
         mode = 2;
     }
 
-    if (mMario->mVerticalSpeed < 800.0f) {
-        return mode;
+    if (mMario->mVerticalSpeed > 800.0f) {
+        return 3;
     }
 
-    return 3;
+    return mode;
 }
 
 bool MarioActor::isCameraStateOn(SPECIAL_STATUS_FOR_CAMERA status) const {
@@ -111,16 +111,16 @@ void MarioActor::updateTransForCamera() {
     }
 
     if (isNerve(&NrvMarioActor::MarioActorNrvGameOverBlackHole::sInstance)) {
-        mCameraTrans = mCameraTrans * 0.9f + mBlackHolePosition * 0.1f;
+        mCameraTrans = mBlackHolePosition * 0.1f + mCameraTrans * 0.9f;
         return;
     }
 
     if (mMario->isStatusActive(MarioStatus_Step) || mMario->isStatusActive(MarioStatus_Bump)) {
-        mCameraTrans = mPosition * 0.2f + mCameraTrans * 0.8f;
+        mCameraTrans = mCameraTrans * 0.8f + mPosition * 0.2f;
         return;
     }
 
-    mCameraTrans = mMario->_13C + mPosition;  // FIXME: missing TVec3f ctor
+    mCameraTrans = mPosition + TVec3f(mMario->_13C);  // matches now. result of getter?
 
     if (mMario->isSwimming() && mMario->mSwim->isOnWaterSurface()) {
         if (_332 < 100) {

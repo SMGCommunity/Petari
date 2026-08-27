@@ -572,15 +572,16 @@ namespace MR {
     /// @retval `max` if the integer is greater than or equal to `max`.
     /// @retval `x` if the integer is greater than `min` and less than `max`.
     inline s32 clamp(s32 x, s32 min, s32 max) {
+        s32 ret;
         if (x < min) {
-            return min;
+            ret = min;
+        } else if (x > max) {
+            ret = max;
+        } else {
+            ret = x;
         }
 
-        if (x > max) {
-            return max;
-        }
-
-        return x;
+        return ret;
     }
 
     /// @brief Restricts a number to the unit interval.
