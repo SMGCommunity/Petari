@@ -105,13 +105,11 @@ public:
     /* 0x8C */ LiveActor* _8C;
 };
 
-/*
 namespace NrvBenefitItemObj {
-    NEW_NERVE(HostTypeNrvWait, BenefitItemObj, Wait);
-    NEW_NERVE(HostTypeNrvShoot, BenefitItemObj, Shoot);
-    NEW_NERVE(HostTypeNrvCatch, BenefitItemObj, Catch);
-    NEW_NERVE(HostTypeNrvAppearGround, BenefitItemObj, AppearGround);
-    NEW_NERVE(HostTypeNrvPreEscape, BenefitItemObj, PreEscape);
-    NEW_NERVE(HostTypeNrvEscape, BenefitItemObj, Escape);
+    NERVE_DECL_EXE(HostTypeNrvWait, BenefitItemObj, Wait);
+    NERVE_DECL_EXE(HostTypeNrvShoot, BenefitItemObj, Shoot);
+    NERVE_DECL_EXE(HostTypeNrvCatch, BenefitItemObj, Catch);
+    NERVE_DECL_EXE(HostTypeNrvAppearGround, BenefitItemObj, AppearGround);
+    NERVE_DECL_EXE(HostTypeNrvPreEscape, BenefitItemObj, PreEscape);
+    NERVE_DECL_EXE(HostTypeNrvEscape, BenefitItemObj, Escape);
 };  // namespace NrvBenefitItemObj
-*/
