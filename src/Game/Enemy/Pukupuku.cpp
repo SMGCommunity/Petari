@@ -138,7 +138,7 @@ void PukupukuStateLanding::updatePoseByJumpPath(f32 a1) {
     MR::normalize(&direction);
     TVec3f v7 = -mHost->mVelocity;
     Pukupuku* parent = mHost;
-    if (!MR::isSameDirection(direction, v7, 0.009f)) {
+    if (!MR::isSameDirection(direction, v7)) {
         TQuat4f quat;
         MR::makeQuatFromVec(&quat, direction, v7);
         parent->_A8.slerp(quat, a1);
@@ -309,7 +309,7 @@ void Pukupuku::kill() {
 void Pukupuku::updatePoseByRailIgnoreUpScale() {
     TVec3f v4 = -mGravity;
     const TVec3f* railDir = &MR::getRailDirection(this);
-    if (!MR::isSameDirection(*railDir, v4, 0.009f)) {
+    if (!MR::isSameDirection(*railDir, v4)) {
         TQuat4f quat;
         MR::makeQuatFromVec(&quat, *railDir, v4);
         _A8.slerp(quat, 0.079f);
@@ -468,7 +468,7 @@ void Pukupuku::updatePoseByRail() {
     _A8.getYDir(yDir);
 
     const TVec3f* railDir = &MR::getRailDirection(this);
-    if (!MR::isSameDirection(*railDir, yDir, 0.009999999f)) {
+    if (!MR::isSameDirection(*railDir, yDir)) {
         TQuat4f quat;
         MR::makeQuatFromVec(&quat, *railDir, yDir);
         _A8.slerp(quat, 0.079999998f);

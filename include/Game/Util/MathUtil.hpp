@@ -280,7 +280,7 @@ namespace MR {
     /// @param[in] rVec1 A reference to the first three-dimensional vector to evaluate.
     /// @param[in] rVec2 A reference to the second three-dimensional vector to evaluate.
     /// @param tolerance The maximum allowed difference from zero.
-    bool isSameDirection(const TVec3f&, const TVec3f&, f32 tolerance);
+    bool isSameDirection(const TVec3f&, const TVec3f&, f32 tolerance = 0.01f);
 
     /// @brief Determines if a three-dimensional vector is not angled acutely or parallel to another vector.
     /// @param[in] rVec1 A reference to the first three-dimensional vector to evaluate.

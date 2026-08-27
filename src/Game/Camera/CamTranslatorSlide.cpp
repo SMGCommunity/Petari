@@ -18,7 +18,7 @@ void CamTranslatorSlide::setParam(const CameraParamChunk* pChunk) {
     MR::normalize(&axis);
 
     TVec3f up = general->mUp;
-    if (MR::isNearZero(axis) || MR::isSameDirection(axis, up, 0.01f)) {
+    if (MR::isNearZero(axis) || MR::isSameDirection(axis, up)) {
         up.set< f32 >(0.0f, 1.0f, 0.0f);
         TQuat4f rot;
         rot.setRotate(TVec3f(1.0f, 0.0f, 0.0f), axis);

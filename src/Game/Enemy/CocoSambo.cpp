@@ -47,7 +47,7 @@ void CocoSamboHead::calcAndSetBaseMtx() {
 
         TPos3f mtx;
 
-        if (MR::isSameDirection(mFrontVec, grav, 0.009f)) {
+        if (MR::isSameDirection(mFrontVec, grav)) {
             MR::makeMtxUpNoSupportPos(&mtx, grav, mPosition);
         } else {
             MR::makeMtxUpFrontPos(&mtx, grav, mFrontVec, mPosition);
@@ -65,7 +65,7 @@ void CocoSamboHead::updateFrontVecToPlayer(const TVec3f& rVec) {
     TVec3f v4 = -rVec;
     TVec3f v5 = *MR::getPlayerPos() - mPosition;
 
-    if (MR::isNearZero(v5) || MR::isSameDirection(v4, v5, 0.009f)) {
+    if (MR::isNearZero(v5) || MR::isSameDirection(v4, v5)) {
         if (MR::getMaxAbsElementIndex(v4) == 2) {
             v5.set< f32 >(0.0f, 1.0f, 0.0f);
         } else {

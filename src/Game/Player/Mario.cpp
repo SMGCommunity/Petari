@@ -849,7 +849,7 @@ void Mario::setHeadAndFrontVecFromRotate(const TVec3f& rRotate) {
 void Mario::forceSetHeadVecKeepSide(const TVec3f& rVec) {
     mHeadVec = rVec;
     _1FC = rVec;
-    if (MR::isSameDirection(rVec, mSideVec, 0.01f)) {
+    if (MR::isSameDirection(rVec, mSideVec)) {
         fixSideVecFromFrontUp();
     }
     fixFrontVecFromUpSide();
@@ -968,7 +968,7 @@ bool Mario::isCeiling() const {
 }
 
 void Mario::setGravityVec(const TVec3f& rGravity) {
-    if (MR::isSameDirection(mAirGravityVec, rGravity, 0.01)) {
+    if (MR::isSameDirection(mAirGravityVec, rGravity)) {
         if (MR::isOppositeDirection(mAirGravityVec, rGravity, 0.01)) {
             _10._24 = 1;
             _10._25 = 1;

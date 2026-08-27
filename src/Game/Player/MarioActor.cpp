@@ -643,7 +643,7 @@ void MarioActor::updateRotationInfo() {
     _318.mult(57.2957763672f);
     stack_44.getEuler(_324);
     _324.mult(57.2957763672f);
-    if (MR::isSameDirection(_240, mMario->mFrontVec, .01f)) {
+    if (MR::isSameDirection(_240, mMario->mFrontVec)) {
         _A18 = mRotation;
     } else {
         TPos3f stack_14;
@@ -2200,8 +2200,8 @@ void MarioActor::calcAndSetBaseMtx() {
 
         _354.scale(friction);
 
-        if (MR::isSameDirection(_360, mMario->mFrontVec, 0.01f)) {
-            if (MR::isSameDirection(mMario->_1FC, mMario->mFrontVec, 0.01f)) {
+        if (MR::isSameDirection(_360, mMario->mFrontVec)) {
+            if (MR::isSameDirection(mMario->_1FC, mMario->mFrontVec)) {
                 MR::makeMtxUpFront(&mtxD8, mMario->mHeadVec, mMario->mFrontVec);
             } else {
                 MR::makeMtxUpFront(&mtxD8, mMario->_1FC, mMario->mFrontVec);

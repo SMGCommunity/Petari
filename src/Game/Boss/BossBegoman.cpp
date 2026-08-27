@@ -908,7 +908,7 @@ void BossBegoman::calcAnim() {
     TVec3f vec;
     mHeadMtx.getYDir(vec);
 
-    if (!MR::isSameDirection(vec, mTargetVec, 0.01f)) {
+    if (!MR::isSameDirection(vec, mTargetVec)) {
         MR::makeMtxUpFront(&mHeadMtx, vec, mTargetVec);
     }
 }

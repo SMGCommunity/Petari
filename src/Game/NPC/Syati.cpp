@@ -523,7 +523,7 @@ void Syati::updatePoseByRail() {
         }
     }
 
-    if (!MR::isSameDirection(stack_64, stack_18, 0.001f)) {
+    if (!MR::isSameDirection(stack_64, stack_18)) {
         TQuat4f stack_8;
         MR::makeQuatFromVec(&stack_8, stack_64, stack_18);
         stack_8.mult(stack_8, stack_24);

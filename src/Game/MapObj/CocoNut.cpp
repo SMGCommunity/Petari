@@ -76,7 +76,7 @@ void CocoNut::initAfterPlacement() {
 
     _94.set(stack_50.mMtx[0][2], stack_50.mMtx[1][2], stack_50.mMtx[2][2]);
 
-    if (MR::isSameDirection(_94, gravity, 0.01f)) {
+    if (MR::isSameDirection(_94, gravity)) {
         TPos3f stack_20;
         MR::makeMtxUpNoSupport(&stack_20, -gravity);
         _94.set(stack_20.mMtx[0][2], stack_20.mMtx[1][2], stack_20.mMtx[2][2]);
@@ -185,7 +185,7 @@ void CocoNut::updateRotate(f32 a1) {
     TVec3f stack_2C;
     TVec3f stack_20 = -mGravity;
 
-    if (!MR::normalizeOrZero(mVelocity, &stack_2C) && !MR::isSameDirection(stack_2C, stack_20, 0.01f)) {
+    if (!MR::normalizeOrZero(mVelocity, &stack_2C) && !MR::isSameDirection(stack_2C, stack_20)) {
         TVec3f stack_14 = stack_2C.cross(stack_20);
 
         f32 angle = (mVelocity.length() * -180.0f * a1) / (_D0 * MR::pi());
@@ -301,7 +301,7 @@ void CocoNut::setFrontVec(const TVec3f& a1) {
     TVec3f stack_14;
     TVec3f stack_8(mGravity);
     if (!MR::normalizeOrZero(a1, &stack_14)) {
-        if (MR::isSameDirection(a1, stack_8, 0.01f)) {
+        if (MR::isSameDirection(a1, stack_8)) {
             _94.set< f32 >(stack_14);
         } else {
             MR::vecKillElement(stack_14, stack_8, &_94);
@@ -394,7 +394,7 @@ void CocoNut::reviseFrontVec() {
     TVec3f stack_8;
 
     stack_14.sub(found_actor->mPosition, this->mPosition);
-    if (!MR::isSameDirection(stack_14, stack_20, 0.01f)) {
+    if (!MR::isSameDirection(stack_14, stack_20)) {
         MR::vecKillElement(stack_14, stack_20, &stack_8);
         MR::normalize(&stack_8);
         f32 temp_f31 = stack_8.dot(_94);
@@ -604,7 +604,7 @@ void CocoNut::calcAndSetBaseMtx() {
         TVec3f stack_14;
         stack_14.sub(mPosition, stack_8);
 
-        if (MR::isSameDirection(*groundNormal, _94, 0.01f)) {
+        if (MR::isSameDirection(*groundNormal, _94)) {
             MR::makeMtxUpNoSupportPos(&_D8, *groundNormal, stack_14);
         } else {
             MR::makeMtxUpFrontPos(&_D8, *groundNormal, _94, stack_14);

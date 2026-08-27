@@ -407,7 +407,7 @@ void HomingKiller::updateRotateZ(const TVec3f& rDir) {
     TVec3f side;
 
     bool turn = false;
-    if (!MR::isSameDirection(mFront, grav, 0.01f) && !MR::isSameDirection(rDir, grav, 0.01f)) {
+    if (!MR::isSameDirection(mFront, grav) && !MR::isSameDirection(rDir, grav)) {
         MR::vecKillElement(mFront, grav, &front);
         MR::vecKillElement(rDir, grav, &side);
         if (front.dot(side) < ::cChaseRotateZDot) {
@@ -451,7 +451,7 @@ bool HomingKiller::processMove() {
 
     if (!isGravityIgnored()) {
         TVec3f front;
-        if (!MR::isSameDirection(mFront, mGravity, 0.01f)) {
+        if (!MR::isSameDirection(mFront, mGravity)) {
             MR::vecKillElement(mFront, mGravity, &front);
             MR::normalize(&front);
         } else {
@@ -490,7 +490,7 @@ bool HomingKiller::processChase() {
             if (MR::isNear(this, shadowPos, ::cChaseHeightMin)) {
                 TVec3f up;
                 mBaseMtx.getYDir(up);
-                if (!MR::isSameDirection(target, up, 0.01f)) {
+                if (!MR::isSameDirection(target, up)) {
                     MR::vecKillElement(target, up, &target);
                     MR::normalize(&target);
                 }
@@ -663,7 +663,7 @@ bool HomingKiller::isWaterBreak() const {
 }
 
 void HomingKiller::updateBaseMtxNoRotateZ() {
-    if (MR::isSameDirection(mFront, mUp, 0.01f)) {
+    if (MR::isSameDirection(mFront, mUp)) {
         mBaseMtx.setTrans(mPosition);
     } else {
         MR::makeMtxFrontUpPos(&mBaseMtx, mFront, mUp, mPosition);
@@ -886,7 +886,7 @@ void HomingKiller::exeBreak() {
                             shadowPos.set(mPosition);
                         }
 
-                        if (MR::isSameDirection(mFront, up, 0.01f)) {
+                        if (MR::isSameDirection(mFront, up)) {
                             MR::makeMtxUpNoSupportPos(&mEffectMtx, up, shadowPos);
                         } else {
                             MR::makeMtxUpFrontPos(&mEffectMtx, up, mFront, shadowPos);

@@ -96,7 +96,7 @@ void FireBubble::calcAndSetBaseMtx() {
     TPos3f baseMtx;
     minusGravity.negate(mGravity);
 
-    if (MR::isSameDirection(_B4, minusGravity, 0.01f)) {
+    if (MR::isSameDirection(_B4, minusGravity)) {
         baseMtx.set(getBaseMtx());
         baseMtx.setTrans(mPosition);
     } else {
@@ -169,7 +169,7 @@ void FireBubble::updateChaseFrontVec(f32 flt) {
             vec3.set(mGravity);
         }
 
-        if (!MR::isSameDirection(vec2, vec3, 0.01f)) {
+        if (!MR::isSameDirection(vec2, vec3)) {
             MR::vecKillElement(vec2, vec3, &vec2);
             MR::normalize(&vec2);
 
