@@ -105,6 +105,7 @@ public:
     /* 0x8C */ LiveActor* _8C;
 };
 
+/*
 namespace NrvBenefitItemObj {
     NEW_NERVE(HostTypeNrvWait, BenefitItemObj, Wait);
     NEW_NERVE(HostTypeNrvShoot, BenefitItemObj, Shoot);
@@ -113,3 +114,4 @@ namespace NrvBenefitItemObj {
     NEW_NERVE(HostTypeNrvPreEscape, BenefitItemObj, PreEscape);
     NEW_NERVE(HostTypeNrvEscape, BenefitItemObj, Escape);
 };  // namespace NrvBenefitItemObj
+*/
