@@ -512,7 +512,7 @@ namespace MR {
         s32 planeNum = pActor->mBinder->mPlaneNum;
         s32 last = planeNum - 1;
         for (s32 i = 0; i < last; ++i) {
-            HitInfo* plane1 = (HitInfo*)pActor->mBinder->getPlane(i);
+            const HitInfo* plane1 = pActor->mBinder->getPlane(i);
             if (!MR::isWallPolygon(*plane1->mParentTriangle.getFaceNormal(), pActor->mGravity)) {
                 continue;
             }
@@ -521,7 +521,7 @@ namespace MR {
             plane1->mParentTriangle.calcForceMovePower(&power1, plane1->mHitPos);
 
             for (s32 j = i + 1; j < planeNum; ++j) {
-                HitInfo* plane2 = (HitInfo*)pActor->mBinder->getPlane(j);
+                const HitInfo* plane2 = pActor->mBinder->getPlane(j);
                 if (!MR::isWallPolygon(*plane2->mParentTriangle.getFaceNormal(), pActor->mGravity)) {
                     continue;
                 }
@@ -2032,11 +2032,11 @@ namespace MR {
     }
 
     const TVec3f* getBindedPlaneNormal(const LiveActor* pActor, int planeIndex) {
-        return pActor->mBinder->getPlane(planeIndex)->getNormal(0);
+        return pActor->mBinder->getPlane(planeIndex)->mParentTriangle.getNormal(0);
     }
 
     HitSensor* getBindedPlaneSensor(const LiveActor* pActor, int planeIndex) {
-        return pActor->mBinder->getPlane(planeIndex)->mSensor;
+        return pActor->mBinder->getPlane(planeIndex)->mParentTriangle.mSensor;
     }
 
     TVec3f* getBindedFixReactionVector(const LiveActor* pActor) {

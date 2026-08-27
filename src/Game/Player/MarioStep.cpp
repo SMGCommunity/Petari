@@ -63,7 +63,7 @@ void Mario::checkStep() {
         return;
     }
 
-    if (mDrawStates.mIsUnderwater) {
+    if (mDrawStates._C) {
         return;
     }
 
@@ -71,32 +71,21 @@ void Mario::checkStep() {
         return;
     }
 
-    if (_4D8->isValid()) {
-        if (!mMovementStates._8 && mMovementStates._1) {
-            const f32 frontDot = mFrontVec.dot(*_4D8->getNormal(0));
-            TVec3f negGravity = -*getGravityVec();
-            TVec3f stepOffset = _50C - mPosition;
-            TVec3f horizontal;
-            MR::vecKillElement(stepOffset, negGravity, &horizontal);
+    if (_4D8->isValid() && !mMovementStates._8 && mMovementStates._1) {
+        const f32 frontDot = mFrontVec.dot(*_4D8->getNormal(0));
+        TVec3f horizontal;
+        MR::vecKillElement(_50C - mPosition, -*getGravityVec(), &horizontal);
 
-            if (horizontal.length() < 20.0f) {
-                if (MR::abs(frontDot) < 0.3926991f) {
-                    TVec3f negGravity2 = -*getGravityVec();
-                    TVec3f stepOffset2 = _50C - mPosition;
-                    f32 stepHeight = stepOffset2.dot(negGravity2);
-                    MarioConst* pConst = mActor->mConst;
-                    MarioConstTable* pTable = pConst->mTable[pConst->mCurrentTable];
-                    if (stepHeight < pTable->mWalkStepHeight) {
-                        startStep(_50C);
-                    }
-                }
-            } else if (MR::abs(frontDot) < 1.0471976f) {
-                Mtx rotMtx;
-                PSMTXRotAxisRad(rotMtx, &mSideVec, frontDot);
-                PSMTXMultVec(rotMtx, &mVelocity, &mVelocity);
+        if (horizontal.length() < 20.0f && MR::abs(frontDot) < 0.3926991f) {
+            f32 stepHeight = (_50C - mPosition).dot(-*getGravityVec());
+            if (stepHeight < mActor->getConst().getTable()->mWalkStepHeight) {
+                startStep(_50C);
             }
+        } else if (MR::abs(frontDot) < 1.0471976f) {
+            Mtx rotMtx;
+            PSMTXRotAxisRad(rotMtx, &mSideVec, frontDot);
+            PSMTXMultVec(rotMtx, &mVelocity, &mVelocity);
         }
-
         return;
     }
 
@@ -109,16 +98,12 @@ void Mario::checkStep() {
     }
 
     const TVec3f* worldPadDir = &getWorldPadDir();
-    if (worldPadDir->dot(*mFrontWallTriangle->getNormal(0)) >= -0.5f) {
+    if (!(worldPadDir->dot(*mFrontWallTriangle->getNormal(0)) < -0.5f)) {
         return;
     }
 
-    TVec3f negGravity = -*getGravityVec();
-    TVec3f stepOffset = _4A4 - mPosition;
-    f32 stepHeight = stepOffset.dot(negGravity);
-    MarioConst* pConst = mActor->mConst;
-    MarioConstTable* pTable = pConst->mTable[pConst->mCurrentTable];
-    if (stepHeight < pTable->mWalkStepHeight) {
+    f32 stepHeight = (_4A4 - mPosition).dot(-*getGravityVec());
+    if (stepHeight < mActor->getConst().getTable()->mWalkStepHeight) {
         startStep(_4A4);
     }
 }
@@ -192,15 +177,16 @@ MarioStep::MarioStep(MarioActor* pActor) : MarioState(pActor, MarioStatus_Step) 
 
 bool MarioStep::start() {
     _18 = getPlayer()->mWalkSpeed;
-    f32 v2 = (16.0f * _18);
-    u16 v3 = 20 - v2;
+    MR::clamp(_18, 0.0f, 1.0f);
 
-    if (v3 < 4) {
-        v3 = 4;
+    s32 v2 = 20 - static_cast< s32 >(16.0f * _18);
+
+    if (v2 < 4) {
+        v2 = 4;
     }
 
-    mActor->setBlendMtxTimer(v3);
-    _14 = v3;
+    mActor->setBlendMtxTimer(v2);
+    _14 = static_cast< u16 >(v2);
 
     if (isAnimationRun(nullptr) && !mActor->_3E5) {
         stopAnimation(nullptr);

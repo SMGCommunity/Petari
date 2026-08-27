@@ -54,7 +54,7 @@ void MarioActor::resetCondition() {
     TVec3f v8;
 
     if (_EA5) {
-        MR::extractMtxTrans(_EA8.mMtx, &v8);
+        MR::extractMtxTrans(_EA8.mMtx, &mPosition);
         mMario->mPosition = mPosition;
     }
 
@@ -73,9 +73,7 @@ void MarioActor::resetCondition() {
     mMario->forceStopTornado();
     updateTornado();
 
-    // supposed to store to 0xF0, which is a vector
-    // don't feel like dealing with unions right now
-    mMario->mSwim->_78 = 0;
+    mMario->mSwim->mColdWaterDamageInterval = 0;
     mMario->_1C._3 = 0;
 
     if (mMario->isStatusActive(MarioStatus_Swim) && v2) {
@@ -92,13 +90,14 @@ void MarioActor::resetCondition() {
         mMario->closeStatus(nullptr);
     }
 
-    /*
-    // not sure what is going on here
+    // reset mMovementstates and _10
+    // exept for mMovementStates._1F
+    bool was1F = mMario->mMovementStates._1F;
     mMario->mMovementStates_LOW_WORD = 0;
     mMario->mMovementStates_HIGH_WORD = 0;
     mMario->_10_LOW_WORD = 0;
     mMario->_10_HIGH_WORD = 0;
-    */
+    mMario->mMovementStates._1F = was1F;
 
     resetPadSwing();
 

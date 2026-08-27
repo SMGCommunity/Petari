@@ -28,8 +28,10 @@ void MarioActor::checkPriorRushTarget() {
         }
 
         u32 v = 0;
-        if ((s32)_7E4[idx]->mType != ACTMES_FORCE_KILL) {
+        switch (_7E4[idx]->mType) {
+        case ACTMES_FORCE_KILL:
             v = 10;
+            break;
         }
 
         if (maxVal >= v) {
@@ -123,7 +125,7 @@ HitSensor* MarioActor::getNearestRushTarget(bool myBool) const {
             size1 = size3;
         }
 
-        if ((_8E4[idx] || !myBool || _7E4[idx]->mRadius + 20.0f > size1) && size1 < maxRadius) {
+        if ((_8E4[idx] || !myBool || !(_7E4[idx]->mRadius + 20.0f < size1)) && size1 < maxRadius) {
             out = _7E4[idx];
             maxRadius = size1;
         }

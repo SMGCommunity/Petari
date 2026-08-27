@@ -23,7 +23,7 @@ bool MarioActor::isUseScreenBox() const {
     return !(_A08 - 7);
 }
 
-//void MarioActor::calcScreenBoxRange() {}
+// void MarioActor::calcScreenBoxRange() {}
 
 void MarioActor::captureScreenBox() const {
     if (!isUseScreenBox()) {
@@ -47,15 +47,20 @@ void MarioActor::captureScreenBox() const {
     GXSetDstAlpha(GX_FALSE, 0);
 }
 
-//void MarioActor::writeBackScreenBox() const {}
+// void MarioActor::writeBackScreenBox() const {}
 
 void MarioActor::calc1stPersonView() {
     f32 length = (mCamPos - mPosition).length();
+    f32 minVal = 300.0f;
     f32 maxVal = 1000.0f;
-    f32 val = 1.0f;
+    f32 val;
 
-    if (maxVal > length && length > 300.0f) {
-        val = 1.0f - (maxVal - length) / (maxVal - 300.0f);
+    if (length > maxVal) {
+        val = 1.0f;
+    } else if (length < minVal) {
+        val = 0.0f;
+    } else {
+        val = 1.0f - (maxVal - length) / (maxVal - minVal);
     }
 
     u8 compareVal = val * 255.0f;
@@ -68,9 +73,9 @@ void MarioActor::calc1stPersonView() {
     }
 }
 
-//void MarioActor::hideBeeFur() {}
+// void MarioActor::hideBeeFur() {}
 
-//void MarioActor::calcFogLighting() {}
+// void MarioActor::calcFogLighting() {}
 
 void MarioActor::resetFog() {
     // FIXME: contructing a color8, but never using it
@@ -80,27 +85,26 @@ void MarioActor::resetFog() {
     _1AA = 0;
 }
 
-//void MarioActor::updateAlphaDL(u8) {}
+// void MarioActor::updateAlphaDL(u8) {}
 
-//void MarioActor::updateSimpleAlphaDL(u8) {}
+// void MarioActor::updateSimpleAlphaDL(u8) {}
 
-//void MarioActor::updateReflectAlphaDL(u8) {}
+// void MarioActor::updateReflectAlphaDL(u8) {}
 
-//void MarioActor::updateLightDL(const Color8&, const Color8&, const Color8&, f32) {}
+// void MarioActor::updateLightDL(const Color8&, const Color8&, const Color8&, f32) {}
 
-//void MarioActor::createRainbowDL() {}
+// void MarioActor::createRainbowDL() {}
 
-//void MarioActor::drawScreenBlend() const {}
+// void MarioActor::drawScreenBlend() const {}
 
-//void MarioActor::updateRandomTexture(f32) {}
+// void MarioActor::updateRandomTexture(f32) {}
 
-//void MarioActor::drawWallShade(const TVec3f&, const TVec3f&, f32) const {}
+// void MarioActor::drawWallShade(const TVec3f&, const TVec3f&, f32) const {}
 
 void MarioActor::drawSpinInhibit() const {
-
 }
 
-//void MarioActor::drawColdWaterDamage() const {}
+// void MarioActor::drawColdWaterDamage() const {}
 
 void MarioActor::setRasterScroll(s32 i1, s32 i2, s32 i3) {
     // FIXME: regswap
@@ -111,7 +115,7 @@ void MarioActor::setRasterScroll(s32 i1, s32 i2, s32 i3) {
 }
 
 void MarioActor::updateRasterScroll() {
-    if (_1E2 ){
+    if (_1E2) {
         _1E2 = 0;
         return;
     }
@@ -123,29 +127,29 @@ void MarioActor::updateRasterScroll() {
         _1E4 = 0.0f;
     }
 
-    if (_1EC > 1.0f) {
-        return;
+    if (_1EC < 1.0f) {
+        _1EC = 0.0f;
     }
-
-    _1EC = 0.0f;
 }
 
-//void MarioActor::drawRasterScroll(f32, s16, f32) const {}
+// void MarioActor::drawRasterScroll(f32, s16, f32) const {}
 
-void MarioActor::drawMosaic() const {}
+void MarioActor::drawMosaic() const {
+}
 
-void MarioActor::drawLifeUp() const {}
+void MarioActor::drawLifeUp() const {
+}
 
-//void MarioActor::calcSpinEffect() {}
+// void MarioActor::calcSpinEffect() {}
 
-//void MarioActor::drawSpinEffect() const {}
+// void MarioActor::drawSpinEffect() const {}
 
-//void MarioActor::drawSphereMask() const {}
+// void MarioActor::drawSphereMask() const {}
 
-//void MarioActor::initDarkMask() {}
+// void MarioActor::initDarkMask() {}
 
-//void MarioActor::updateDarkMask(u16) {}
+// void MarioActor::updateDarkMask(u16) {}
 
-//bool MarioActor::drawDarkMask() const {}
+// bool MarioActor::drawDarkMask() const {}
 
-//void MarioActor::showBeeFur() {}
+// void MarioActor::showBeeFur() {}
