@@ -116,7 +116,7 @@ void Mario::slopeMove() {
         _904 = stack_17C;
     }
 
-    if (MR::isSameDirection(stack_17C, getAirGravityVec(), 0.01f) || MR::isOppositeDirection(stack_17C, getAirGravityVec(), 0.01f)) {
+    if (MR::isSameDirection(stack_17C, getAirGravityVec()) || MR::isOppositeDirection(stack_17C, getAirGravityVec())) {
         mMovementStates._23 = false;
         _904.zero();
         stack_17C.zero();

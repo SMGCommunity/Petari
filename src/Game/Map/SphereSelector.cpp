@@ -84,7 +84,7 @@ void SphereSelector::sendMsgToAllActor(u32 msg) {
 }
 
 bool SphereSelector::isMoveClickedPos() const {
-    return 80.0f < JGeometry::TUtil<f32>::sqrt(_A8.squareDist(MR::getStarPointerScreenPositionOrEdge(0)));
+    return 80.0f < JGeometry::TUtil< f32 >::sqrt(_A8.squareDist(MR::getStarPointerScreenPositionOrEdge(0)));
 }
 
 void SphereSelector::playSelectedME() {
@@ -135,8 +135,7 @@ void SphereSelector::exeSelectWait() {
     if (_A4 < 0) {
         if (mPointingTarget && isDecideTrigger()) {
             sendSelectedMsgAndSetTarget(mPointingTarget);
-        } 
-        else if (isButtonAPressed()) {
+        } else if (isButtonAPressed()) {
             if (mHandle->isPointing()) {
                 sendSelectedMsgAndSetTarget(mHandle);
             }
@@ -146,8 +145,7 @@ void SphereSelector::exeSelectWait() {
         if (isMoveClickedPos() || _A4 > 30) {
             sendSelectedMsgAndSetTarget(mHandle);
             _A4 = -1;
-        } 
-        else if (!isButtonAPressed()) {
+        } else if (!isButtonAPressed()) {
             sendSelectedMsgAndSetTarget(mPointingTarget);
             _A4 = -1;
         }
@@ -396,7 +394,7 @@ TVec3f& SphereSelectorFunction::getSelectedActorTrans() {
 void SphereSelectorFunction::calcOffsetPos(TVec3f* pDst, const TVec3f& vec2, const TVec3f& vec3, const TVec3f& vec4, const TVec3f& vec5) {
     TVec3f vec(vec4);
     TPos3f mtx;
-    if (MR::normalizeOrZero(&vec) || MR::isSameDirection(vec5, vec, 0.01f)) {
+    if (MR::normalizeOrZero(&vec) || MR::isSameDirection(vec5, vec)) {
         vec.set< f32 >(0.0f, 0.0f, 1.0f);
     }
     MR::makeMtxUpFrontPos(&mtx, vec5, vec, vec2);

@@ -156,11 +156,19 @@ namespace JGeometry {
         }
 
         T squared() const {
-            return x * x + y * y;
+            return dot(*this);
         };
+
         T squared(const TVec2< T >& rOther) const;  //{ return (x - rOther.x) * (x - rOther.x) + (y - rOther.y) * (y - rOther.y); };
-        T dot(const TVec2< T >& rOther) const;
-        T distance(const TVec2< T >& rOther) const;
+
+        T dot(const TVec2< T >& rOther) const {
+            return x * rOther.x + y * rOther.y;
+        }
+
+        T distance(const TVec2< T >& rOther) const {
+            return JGeometry::TUtil< T >::sqrt(squareDist(rOther));
+        }
+
         void zero() {
             x = y = 0.0f;
         }
@@ -468,9 +476,9 @@ namespace JGeometry {
             return ret;
         }
 
-        TVec3 operator/(f32 div) const NO_INLINE {
+        TVec3 operator/(f32 div) const {
             TVec3 ret(*this);
-            ret *= (1.0f / div);
+            ret /= div;
             return ret;
         }
 
@@ -906,6 +914,9 @@ namespace JGeometry {
 
         void getEuler(TVec3< T >& rDest) const;
         void setEuler(T _x, T _y, T _z);
+        void setEuler(const TVec3< T >& rpy) {
+            setEuler(rpy.x, rpy.y, rpy.z);
+        }
         void setEulerDegree(T _x, T _y, T _z) {
             setEuler(_x * PI_180, _y * PI_180, _z * PI_180);
         }

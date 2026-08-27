@@ -1,25 +1,26 @@
 #pragma once
 
-#include "Game/LiveActor/ActorStateBase.hpp"
-#include "Game/NPC/ButlerStateStarPieceReaction.hpp"
 #include "Game/NPC/NPCActor.hpp"
-#include "Game/Util/NPCUtil.hpp"
+
+class ButlerStateStarPieceReaction;
 
 class ButlerMap : public NPCActor {
 public:
-    ButlerMap(const char*);
+    /// @brief Creates a new `ButlerMap`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    ButlerMap(const char* pName);
 
-    virtual ~ButlerMap();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void kill();
     virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void startLectureDemo();
     void resetStatus();
     void forceNerveToWait();
+
     void exeTalk();
     void exeShowGalaxyMap();
     void exeLectureDemoShowMapBefore();
@@ -27,6 +28,6 @@ public:
     void exeLectureDemoShowMapAfter();
     void exeStarPieceReaction();
 
-    ButlerStateStarPieceReaction* _15C;
-    bool _160;
+    /* 0x15C */ ButlerStateStarPieceReaction* mStateStarPieceReaction;
+    /* 0x160 */ bool mObjArg0;
 };

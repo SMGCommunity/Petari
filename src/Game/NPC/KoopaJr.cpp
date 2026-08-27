@@ -11,6 +11,14 @@
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sSensorSize = 175.0f;
+    static const f32 sShadowRadius = 100.0f;
+    static const s32 sStarPieceNum = 20;
+    static const f32 sLodDistanceToMiddle = 5000.0f;
+    static const f32 sLodDistanceToLow = 10000.0f;
+};  // namespace
+
 namespace NrvKoopaJr {
     NEW_NERVE(HostTypeWait, KoopaJr, Wait);
     NEW_NERVE(HostTypeReaction, KoopaJr, Reaction);
@@ -23,58 +31,61 @@ namespace NrvKoopaJr {
     NEW_NERVE(HostTypeShipBattleDemoTalkWait, KoopaJr, ShipBattleDemoTalkWait);
 };  // namespace NrvKoopaJr
 
-KoopaJr::KoopaJr(const char* pName) : NPCActor(pName) {
-    _15C = 0;
-    _15D = 0;
+KoopaJr::KoopaJr(const char* pName) : NPCActor(pName), mIsInvalidAppearStarPiece(), mIsShipBattleTalk() {
 }
 
 void KoopaJr::init(const JMapInfoIter& rIter) {
     NPCActor::init(rIter);
     initModelManagerWithAnm("KoopaJr", nullptr, false);
+
     NPCActorCaps caps("KoopaJr");
-    caps.mHostIO = 1;
-    caps.mConnectTo = 1;
-    caps.mPosition = 1;
-    caps.mLodCtrl = 1;
-    caps.mLightCtrl = 1;
-    caps.mSound = 1;
+    caps.mHostIO = true;
+    caps.mConnectTo = true;
+    caps.mPosition = true;
+    caps.mLodCtrl = true;
+    caps.mLightCtrl = true;
+    caps.mSound = true;
     caps.mSoundSize = 4;
-    caps.mSensor = 1;
-    caps.mSensorSize = 175.0f;
-    caps.mSensorOffset.y = 175.0f;
-    caps.mNerve = 1;
+    caps.mSensor = true;
+    caps.mSensorSize = ::sSensorSize;
+    caps.mSensorOffset.y = ::sSensorSize;
+    caps.mNerve = true;
     caps.mWaitNerve = &NrvKoopaJr::HostTypeWait::sInstance;
-    caps.mMessage = 1;
-    caps.mShadow = 1;
-    caps.mShadowSize = 100.0f;
-    caps.mEffect = 1;
+    caps.mMessage = true;
+    caps.mShadow = true;
+    caps.mShadowSize = ::sShadowRadius;
+    caps.mEffect = true;
     mParam.setSingleAction("Wait");
     mParam._0 = 0;
     mParam._1 = 0;
     _13C = "Damage";
     initialize(rIter, caps);
-    MR::declareStarPiece(this, 20);
+
+    MR::declareStarPiece(this, ::sStarPieceNum);
+
     if (MR::tryRegisterDemoCast(this, rIter)) {
         MR::tryRegisterDemoActionFunctor(this, MR::Functor_Inline(this, &KoopaJr::startShipBattleTalk), "クッパJr会話");
+
         if (mLodCtrl != nullptr) {
-            if (mLodCtrl->_10) {
+            if (mLodCtrl->_10 != nullptr) {
                 MR::tryRegisterDemoCast(mLodCtrl->_10, rIter);
             }
 
-            if (mLodCtrl->_14) {
+            if (mLodCtrl->_14 != nullptr) {
                 MR::tryRegisterDemoCast(mLodCtrl->_14, rIter);
             }
         }
     }
 
     if (mLodCtrl != nullptr) {
-        mLodCtrl->setDistanceToMiddleAndLow(5000.0f, 10000.0f);
+        mLodCtrl->setDistanceToMiddleAndLow(::sLodDistanceToMiddle, ::sLodDistanceToLow);
     }
 
     MR::onCalcShadow(this, nullptr);
     MR::setShadowDropLength(this, nullptr, 200.0f);
     makeActorAppeared();
     MR::startBva(this, "Apron");
+
     if (mLodCtrl != nullptr) {
         if (mLodCtrl->_10 != nullptr) {
             MR::startBva(mLodCtrl->_10, "Apron");
@@ -124,11 +135,14 @@ void KoopaJr::calcAndSetBaseMtx() {
 }
 
 void KoopaJr::startShipBattleTalk() {
-    if (!_15D) {
-        _15D = 1;
-        MR::tryTalkTimeKeepDemo(mMsgCtrl);
-        setNerve(&NrvKoopaJr::HostTypeShipBattleDemoTalkStart::sInstance);
+    if (mIsShipBattleTalk) {
+        return;
     }
+
+    mIsShipBattleTalk = true;
+
+    MR::tryTalkTimeKeepDemo(mMsgCtrl);
+    setNerve(&NrvKoopaJr::HostTypeShipBattleDemoTalkStart::sInstance);
 }
 
 void KoopaJr::exeWait() {
@@ -147,7 +161,8 @@ void KoopaJr::exeReaction() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Damage", nullptr);
         MR::startSound(this, "SE_BV_KOOPAJR_DAMAGE_S");
-        if (!_15C) {
+
+        if (!mIsInvalidAppearStarPiece) {
             if (MR::appearStarPiece(this, mPosition, 20, 10.0f, 40.0f, false)) {
                 MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
             }
@@ -230,5 +245,6 @@ void KoopaJr::exeShipBattleDemoTalkWait() {
     }
 }
 
-KoopaJr::~KoopaJr() {
+void KoopaJr_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
 }

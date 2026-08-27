@@ -743,7 +743,7 @@ void BenefitItemObj::calcAndSetBaseMtxInMovement() {
         }
 
         if (!MR::isNearZero(stack_8)) {
-            if (MR::isSameDirection(_A4, stack_8, 0.01f)) {
+            if (MR::isSameDirection(_A4, stack_8)) {
                 MR::setMtxTrans(getBaseMtx(), mPosition);
             } else {
                 TPos3f pos;

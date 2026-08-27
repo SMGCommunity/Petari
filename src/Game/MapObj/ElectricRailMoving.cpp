@@ -266,7 +266,7 @@ void ElectricRailMoving::setVertexAttribute(int a2, int a3, f32 a4, f32 a5, f32 
     TVec3f axis2;
     TVec3f negRailDirection = -railDirection;
 
-    if (MR::isSameDirection(gravity, negRailDirection, 0.01f)) {
+    if (MR::isSameDirection(gravity, negRailDirection)) {
         MR::makeAxisCrossPlane(&axis1, &axis2, negRailDirection);
     } else {
         MR::makeAxisFrontUp(&axis1, &axis2, negRailDirection, gravity);

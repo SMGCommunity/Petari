@@ -462,7 +462,7 @@ void PowerStar::initPosture() {
         mtx.getZDir(zDir);
 
         TVec3f up = -mGravity;
-        if (!MR::isSameDirection(up, zDir, 0.01f)) {
+        if (!MR::isSameDirection(up, zDir)) {
             MR::makeMtxUpFront(&_B8, up, zDir);
         } else {
             MR::makeMtxUpNoSupport(&_B8, up);

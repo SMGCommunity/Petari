@@ -10,8 +10,7 @@ namespace NrvIconAButton {
     NEW_NERVE(IconAButtonNrvTerm, IconAButton, Term);
 };  // namespace NrvIconAButton
 
-IconAButton::IconAButton(bool connectToScene, bool connectToPause)
-    : LayoutActor("Aボタンアイコン", true), mFollowPos(0.0f, 0.0f), mFollowActor(nullptr) {
+IconAButton::IconAButton(bool connectToScene, bool connectToPause) : LayoutActor("Aボタンアイコン", true), mFollowPos(0.0f, 0.0f), mFollowActor() {
     if (connectToScene) {
         if (connectToPause) {
             MR::connectToSceneLayoutOnPause(this);
@@ -46,43 +45,51 @@ bool IconAButton::isWait() {
     return isNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance);
 }
 
-void IconAButton::openWithTalk() {
+void IconAButton::open() {
     appear();
     updateFollowPos();
     MR::showPane(this, "PicPlate");
     setNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance);
+}
+
+void IconAButton::openWithTalk() {
+    open();
     MR::setTextBoxLayoutMessageRecursive(this, "IconAButton", "Layout_SystemTalk");
 }
 
 void IconAButton::openWithRead() {
-    appear();
-    updateFollowPos();
-    MR::showPane(this, "PicPlate");
-    setNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance);
+    open();
     MR::setTextBoxLayoutMessageRecursive(this, "IconAButton", "Layout_SystemRead");
 }
 
+void IconAButton::openWithNext() {
+    open();
+    MR::setTextBoxLayoutMessageRecursive(this, "IconAButton", "Layout_SystemNext");
+}
+
+void IconAButton::openWithTerm() {
+    open();
+    MR::setTextBoxLayoutMessageRecursive(this, "IconAButton", "Layout_SystemTerm");
+}
+
+void IconAButton::openWithDecide() {
+    open();
+    MR::setTextBoxLayoutMessageRecursive(this, "IconAButton", "Layout_SystemDecide");
+}
+
 void IconAButton::openWithTurn() {
-    appear();
-    updateFollowPos();
-    MR::showPane(this, "PicPlate");
-    setNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance);
+    open();
     MR::setTextBoxLayoutMessageRecursive(this, "IconAButton", "Layout_SystemTurn");
 }
 
 void IconAButton::openWithoutMessage() {
-    appear();
-    updateFollowPos();
-    MR::showPane(this, "PicPlate");
-    setNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance);
+    open();
     MR::hidePane(this, "PicPlate");
     MR::clearTextBoxMessageRecursive(this, "IconAButton");
 }
 
 void IconAButton::term() {
-    bool isAlive = !MR::isDead(this);
-
-    if (isAlive && (isNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance) || isNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance))) {
+    if (isOpen() && (isNerve(&NrvIconAButton::IconAButtonNrvWait::sInstance) || isNerve(&NrvIconAButton::IconAButtonNrvOpen::sInstance))) {
         setNerve(&NrvIconAButton::IconAButtonNrvTerm::sInstance);
     }
 }

@@ -50,11 +50,11 @@ namespace {
     static const f32 cChaseRotateZDot = 0.95f;
     static const f32 cChaseHeightMin = 150.0f;
     static const f32 cUpVecRotateSpeed = 2.0f;
-    static const f32 cMoveRotateCosineMax = 0.02f;
+    static const f32 cMoveRotateCosineMax = 0.9995f;  // ~cos(1.8)
     static const s32 cFreezeFrame = 20;
     static const f32 cFreezeRumbleSpeed = 75.0f;
     static const f32 cFreezeRumbleWidth = 5.0f;
-    static const f32 cFreezeRotateCosineMax = 0.02f;
+    static const f32 cFreezeRotateCosineMax = 0.9997f;  // ~cos(1.4)
     static const s32 cAppearMoveFrame = 20;
     static const s32 cAppearRumbleFrame = 22;
     static const s32 cAppearStopFrame = 30;
@@ -267,7 +267,7 @@ void HomingKiller::control() {
             up.negate(mGravity);
             if (isNerve(&NrvHomingKiller::HomingKillerNrvChaseStart::sInstance) || isNerve(&NrvHomingKiller::HomingKillerNrvChase::sInstance) ||
                 isNerve(&NrvHomingKiller::HomingKillerNrvFreeze::sInstance) || isNerve(&NrvHomingKiller::HomingKillerNrvGoToTarget::sInstance)) {
-                MR::turnVecToVecCos(&mUp, mUp.copy(), up, MR::cosDegree(::cUpVecRotateSpeed), mFront, ::cMoveRotateCosineMax);
+                MR::turnVecToVecCos(&mUp, mUp.copy(), up, MR::cosDegree(::cUpVecRotateSpeed), mFront);
             } else {
                 mUp.set(up);
             }
@@ -407,7 +407,7 @@ void HomingKiller::updateRotateZ(const TVec3f& rDir) {
     TVec3f side;
 
     bool turn = false;
-    if (!MR::isSameDirection(mFront, grav, 0.01f) && !MR::isSameDirection(rDir, grav, 0.01f)) {
+    if (!MR::isSameDirection(mFront, grav) && !MR::isSameDirection(rDir, grav)) {
         MR::vecKillElement(mFront, grav, &front);
         MR::vecKillElement(rDir, grav, &side);
         if (front.dot(side) < ::cChaseRotateZDot) {
@@ -451,13 +451,13 @@ bool HomingKiller::processMove() {
 
     if (!isGravityIgnored()) {
         TVec3f front;
-        if (!MR::isSameDirection(mFront, mGravity, 0.01f)) {
+        if (!MR::isSameDirection(mFront, mGravity)) {
             MR::vecKillElement(mFront, mGravity, &front);
             MR::normalize(&front);
         } else {
             front.set(mFront);
         }
-        MR::turnVecToVecCos(&mFront, mFront.copy(), front, 0.9995f, mGravity, ::cMoveRotateCosineMax);
+        MR::turnVecToVecCos(&mFront, mFront.copy(), front, ::cMoveRotateCosineMax, mGravity);
     }
 
     updateVelocity();
@@ -490,7 +490,7 @@ bool HomingKiller::processChase() {
             if (MR::isNear(this, shadowPos, ::cChaseHeightMin)) {
                 TVec3f up;
                 mBaseMtx.getYDir(up);
-                if (!MR::isSameDirection(target, up, 0.01f)) {
+                if (!MR::isSameDirection(target, up)) {
                     MR::vecKillElement(target, up, &target);
                     MR::normalize(&target);
                 }
@@ -500,7 +500,7 @@ bool HomingKiller::processChase() {
 
     if (isUpdateChaseFrontVec(target)) {
         f32 rotateSpeed = mChaseRotateSpeed;
-        MR::turnVecToVecCos(&mFront, mFront.copy(), target, rotateSpeed, mGravity, ::cMoveRotateCosineMax);
+        MR::turnVecToVecCos(&mFront, mFront.copy(), target, rotateSpeed, mGravity);
     } else {
         target.set(mFront);
     }
@@ -663,7 +663,7 @@ bool HomingKiller::isWaterBreak() const {
 }
 
 void HomingKiller::updateBaseMtxNoRotateZ() {
-    if (MR::isSameDirection(mFront, mUp, 0.01f)) {
+    if (MR::isSameDirection(mFront, mUp)) {
         mBaseMtx.setTrans(mPosition);
     } else {
         MR::makeMtxFrontUpPos(&mBaseMtx, mFront, mUp, mPosition);
@@ -838,7 +838,7 @@ void HomingKiller::exeFreeze() {
     if (isChasing()) {
         TVec3f target;
         calcFrontVecToTarget(&target);
-        MR::turnVecToVecCos(&mFront, mFront.copy(), target, 0.9997f, mGravity, ::cFreezeRotateCosineMax);
+        MR::turnVecToVecCos(&mFront, mFront.copy(), target, ::cFreezeRotateCosineMax, mGravity);
         updateRotateZ(target);
     }
 
@@ -886,7 +886,7 @@ void HomingKiller::exeBreak() {
                             shadowPos.set(mPosition);
                         }
 
-                        if (MR::isSameDirection(mFront, up, 0.01f)) {
+                        if (MR::isSameDirection(mFront, up)) {
                             MR::makeMtxUpNoSupportPos(&mEffectMtx, up, shadowPos);
                         } else {
                             MR::makeMtxUpFrontPos(&mEffectMtx, up, mFront, shadowPos);

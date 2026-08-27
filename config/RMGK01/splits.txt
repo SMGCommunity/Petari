@@ -3717,14 +3717,14 @@ Game/Map/BezierRail.cpp:
 Game/Map/Butterfly.cpp:
 	.text       start:0x80172820 end:0x80173B6C
 	.ctors      start:0x8052EBA4 end:0x8052EBA8
-	.rodata     start:0x805329E8 end:0x80532A08
-	.data       start:0x80588B20 end:0x80588C80
+	.rodata     start:0x805329E8 end:0x80532A00
+	.data       start:0x80588B20 end:0x80588C60
 	.sbss       start:0x806B4A28 end:0x806B4A48
 	.sdata2     start:0x806BBDF8 end:0x806BBE58
 
 Game/Map/CollisionCategorizedKeeper.cpp:
 	.text       start:0x80173B6C end:0x801750F8
-	.data       start:0x80588C80 end:0x80588CA8
+	.data       start:0x80588C60 end:0x80588CA8
 	.sdata2     start:0x806BBE58 end:0x806BBE68
 
 Game/Map/CollisionCode.cpp:
@@ -3738,6 +3738,7 @@ Game/Map/CollisionDirector.cpp:
 
 Game/Map/CollisionParts.cpp:
 	.text       start:0x80175D4C end:0x80177614
+	.rodata     start:0x80532A00 end:0x80532A08
 	.data       start:0x80588F00 end:0x80588F20
 	.sdata2     start:0x806BBE68 end:0x806BBE88
 
@@ -5248,7 +5249,7 @@ Game/MapObj/MeteorStrike.cpp:
 	.text       start:0x801FD7A0 end:0x801FE770
 	.ctors      start:0x8052EDC8 end:0x8052EDCC
 	.rodata     start:0x805334E8 end:0x805334F8
-	.data       start:0x80599728 end:0x80599928
+	.data       start:0x80599728 end:0x80599900
 	.sdata      start:0x806B1EB0 end:0x806B1EB8
 	.sbss       start:0x806B5478 end:0x806B5480
 	.sdata2     start:0x806BD738 end:0x806BD790
@@ -5257,7 +5258,7 @@ Game/MapObj/MeteorStrikeLauncher.cpp:
 	.text       start:0x801FE770 end:0x801FEDEC
 	.ctors      start:0x8052EDCC end:0x8052EDD0
 	.rodata     start:0x805334F8 end:0x80533500
-	.data       start:0x80599928 end:0x805999C0
+	.data       start:0x80599900 end:0x805999C0
 	.sbss       start:0x806B5480 end:0x806B5488
 	.sdata2     start:0x806BD790 end:0x806BD798
 
@@ -6181,13 +6182,14 @@ Game/MapObj/FloaterFloatingForceTypeSpring.cpp:
 	.text       start:0x80258D4C end:0x80259524
 	.ctors      start:0x8052EF48 end:0x8052EF4C
 	.rodata     start:0x80534D38 end:0x80534D40
-	.data       start:0x805A6B90 end:0x805A6E50
+	.data       start:0x805A6B90 end:0x805A6C08
 	.sbss       start:0x806B5AF8 end:0x806B5B08
 	.sdata2     start:0x806BE848 end:0x806BE860
 
 Game/MapObj/FloaterFunction.cpp:
 	.text       start:0x80259524 end:0x802596CC
 	.rodata     start:0x80534D40 end:0x80534E30
+	.data       start:0x805A6C08 end:0x805A6E50
 
 Game/MapObj/LavaHomeSeesawRotator.cpp:
 	.text       start:0x802596CC end:0x8025A8FC

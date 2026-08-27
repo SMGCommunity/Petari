@@ -643,7 +643,7 @@ void MarioActor::updateRotationInfo() {
     _318.mult(57.2957763672f);
     stack_44.getEuler(_324);
     _324.mult(57.2957763672f);
-    if (MR::isSameDirection(_240, mMario->mFrontVec, .01f)) {
+    if (MR::isSameDirection(_240, mMario->mFrontVec)) {
         _A18 = mRotation;
     } else {
         TPos3f stack_14;
@@ -685,7 +685,7 @@ void MarioActor::movement() {
     _27C = stack_134;
     TVec3f stack_11C(_288);
     _288 = stack_128;
-    if (MR::isOppositeDirection(_288, stack_11C, 0.01f)) {
+    if (MR::isOppositeDirection(_288, stack_11C)) {
         f32 mag_288 = _288.length();
         f32 magStack_11C = stack_11C.length();
         if (!MR::isNearZero(mag_288) && !MR::isNearZero(magStack_11C) && MR::isNearZero(mag_288 - magStack_11C, 1.0f)) {
@@ -2179,8 +2179,8 @@ void MarioActor::calcAndSetBaseMtx() {
 
         _354.scale(friction);
 
-        if (MR::isSameDirection(_360, mMario->mFrontVec, 0.01f)) {
-            if (MR::isSameDirection(mMario->_1FC, mMario->mFrontVec, 0.01f)) {
+        if (MR::isSameDirection(_360, mMario->mFrontVec)) {
+            if (MR::isSameDirection(mMario->_1FC, mMario->mFrontVec)) {
                 MR::makeMtxUpFront(&mtxD8, mMario->mHeadVec, mMario->mFrontVec);
             } else {
                 MR::makeMtxUpFront(&mtxD8, mMario->_1FC, mMario->mFrontVec);

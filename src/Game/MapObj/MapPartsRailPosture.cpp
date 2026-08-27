@@ -51,7 +51,7 @@ void MapPartsRailPosture::exeMove() {
 
     TVec3f v11 = MR::getRailDirection(mHost);
 
-    if (!MR::isSameDirection(shadowVector, v11, 0.0099f)) {
+    if (!MR::isSameDirection(shadowVector, v11)) {
         if (!MR::isRailGoingToEnd(mHost)) {
             v11.negate();
         }
@@ -79,7 +79,7 @@ void MapPartsRailPosture::exeMove() {
         _18.getXDir(v7);
         MR::normalize(&v7);
 
-        if (MR::isSameDirection(v7, v8, 0.0099f)) {
+        if (MR::isSameDirection(v7, v8)) {
             MR::makeMtxFrontNoSupport(&_18, v8);
         } else {
             MR::makeMtxFrontUp(&_18, v8, v9);
