@@ -7,20 +7,9 @@ void CamTranslatorBehind_FORCE_MATCH_SDATA2() {
 }
 
 void CamTranslatorBehind::setParam(const CameraParamChunk* pChunk) {
-    TVec2f angle;
-    f32 dist;
-    f32 axisX;
-    angle.y = 180.0f * pChunk->mGeneralParam->mAngleA / MR::pi();
-    angle.x = 180.0f * pChunk->mGeneralParam->mAngleB / MR::pi();
-    axisX = pChunk->mGeneralParam->mAxis.x;
-    dist = pChunk->mGeneralParam->mDist;
+    CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    CameraBehind* camera = mCamera;
-
-    camera->mAngleB = angle.x;
-    camera->mAngleA = angle.y;
-    camera->mDist = dist;
-    camera->mAxisX = axisX;
+    mCamera->setParam(TVec2f(180.0f * general->mAngleB / MR::pi(), 180.0f * general->mAngleA / MR::pi()), general->mDist, general->mAxis.x);
 }
 
 Camera* CamTranslatorBehind::getCamera() const {

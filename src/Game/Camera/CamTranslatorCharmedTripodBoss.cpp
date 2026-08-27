@@ -18,9 +18,7 @@ void CamTranslatorCharmedTripodBoss::setParam(const CameraParamChunk* pChunk) {
         MR::normalize(&up);
     }
 
-    TVec2f axis = TVec2f(general->mAxis.x, general->mAxis.y);
-
-    mCamera->setParam(general->mNum1, up, general->mWPoint, axis);
+    mCamera->setParam(general->mNum1, up, general->mWPoint, TVec2f(general->mAxis.x, general->mAxis.y));
 }
 
 Camera* CamTranslatorCharmedTripodBoss::getCamera() const {
