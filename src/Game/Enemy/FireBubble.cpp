@@ -14,7 +14,7 @@ namespace {
     const f32 cChaseStartDistance = 2000.0f;
     const f32 cChaseSpeed = 4.0f;
     const f32 cChaseGravity = 2.0f;
-    const f32 cChaseRotateSpeed = 0.02f;
+    const f32 cChaseRotateSpeed = 1.0f;
     const s32 cChaseFrame = 30;
     const f32 cReflectGravity = 1.5f;
     const s32 cReflectWaitFrame = 60;
@@ -36,7 +36,7 @@ namespace NrvFireBubble {
 };  // namespace NrvFireBubble
 
 FireBubble::FireBubble(const char* pName)
-    : LiveActor(pName), mIsValidInfo(false), _90(gZeroVec), _9C(0.0f, 0.0f, 1.0f), _A8(cAppearVelocity), _B4(0.0f, 0.0f, 1.0f), mActFrame(0),
+    : LiveActor(pName), mIsValidInfo(false), _90(gZeroVec), _9C(0.0f, 0.0f, 1.0f), _A8(::cAppearVelocity), _B4(0.0f, 0.0f, 1.0f), mActFrame(0),
       mChaseCounter(0) {
 }
 
@@ -48,14 +48,14 @@ void FireBubble::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("FireBubble", nullptr, false);
     MR::connectToSceneEnemy(this);
     initHitSensor(1);
-    MR::addHitSensorAtJointEnemy(this, "body", "Body", 8, cSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
-    initBinder(cBinderRadius, 40.0f, 0);
+    MR::addHitSensorAtJointEnemy(this, "body", "Body", 8, ::cSensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    initBinder(::cBinderRadius, 40.0f, 0);
     initEffectKeeper(1, nullptr, false);
-    MR::initStarPointerTargetAtJoint(this, "Body", cStarWandRadius, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::initStarPointerTargetAtJoint(this, "Body", ::cStarWandRadius, TVec3f(0.0f, 0.0f, 0.0f));
     initSound(4, false);
     MR::initShadowVolumeCylinder(this, 40.0f);
     MR::invalidateClipping(this);
-    MR::declareCoin(this, cCoinMaxNum);
+    MR::declareCoin(this, ::cCoinMaxNum);
     initNerve(&NrvFireBubble::FireBubbleNrvAppear::sInstance);
 
     if (mIsValidInfo) {
@@ -175,7 +175,7 @@ void FireBubble::updateChaseFrontVec(f32 flt) {
 
             TVec3f copy(_B4);
 
-            MR::turnVecToVecCos(&_B4, copy, vec2, MR::cos(flt), vec3, cChaseRotateSpeed);
+            MR::turnVecToVecCos(&_B4, copy, vec2, MR::cos(flt), vec3);
         }
     }
 }
@@ -183,7 +183,7 @@ void FireBubble::updateChaseFrontVec(f32 flt) {
 void FireBubble::updateChaseFrontVecAndVelocity(f32 flt) {
     updateChaseFrontVec(flt);
     mVelocity.set(_B4);
-    mVelocity.mult(cChaseSpeed);
+    mVelocity.mult(::cChaseSpeed);
 }
 
 void FireBubble::updateGravity(f32 strength) {
@@ -205,7 +205,7 @@ void FireBubble::calcReflectVelocity(TVec3f* pOut) const {
 
     MR::makeMtxUpFront(&rotateMatrix, upVec, toPlayer);
 
-    rotateMatrix.mult33(TVec3f(cReflectVelocity), *pOut);
+    rotateMatrix.mult33(TVec3f(::cReflectVelocity), *pOut);
 }
 
 bool FireBubble::tryChaseEnd() {
@@ -223,7 +223,7 @@ bool FireBubble::tryChaseEnd() {
 bool FireBubble::tryReflect() {
     if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
         TVec2f starPointerScreenVelocity(*MR::getStarPointerScreenVelocity(*MR::getStarPointerLastPointedPort(this)));
-        if (cReflectCursorSpeed < starPointerScreenVelocity.length()) {
+        if (::cReflectCursorSpeed < starPointerScreenVelocity.length()) {
             MR::onCalcGravity(this);
             setNerve(&NrvFireBubble::FireBubbleNrvReflect::sInstance);
             return true;
@@ -270,7 +270,7 @@ void FireBubble::exeAppear() {
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP");
         setNerve(&NrvFireBubble::FireBubbleNrvWait::sInstance);
     } else {
-        updateGravity(cAppearGravity);
+        updateGravity(::cAppearGravity);
 
         if (MR::isNoBind(this) && !isMovingDown()) {
             MR::onBind(this);
@@ -282,16 +282,16 @@ void FireBubble::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Wait", 0);
         mVelocity.zero();
-        mActFrame = MR::getRandom((s32)0, cRandomActFrame) + cForceKillFrame;
+        mActFrame = MR::getRandom((s32)0, ::cRandomActFrame) + ::cForceKillFrame;
     }
 
-    if (MR::isNearPlayer(this, cChaseStartDistance) && tryReflect()) {
+    if (MR::isNearPlayer(this, ::cChaseStartDistance) && tryReflect()) {
         return;
     }
 
-    if (MR::isGreaterStep(this, cChaseFrame) && MR::isNearPlayer(this, cChaseStartDistance)) {
+    if (MR::isGreaterStep(this, ::cChaseFrame) && MR::isNearPlayer(this, ::cChaseStartDistance)) {
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP");
-        mActFrame = MR::getRandom((s32)0, cRandomActFrame) + cChaseInvalidFrame;
+        mActFrame = MR::getRandom((s32)0, ::cRandomActFrame) + ::cChaseInvalidFrame;
         setNerve(&NrvFireBubble::FireBubbleNrvChase::sInstance);
     } else if (MR::isStep(this, mActFrame)) {
         setNerve(&NrvFireBubble::FireBubbleNrvDown::sInstance);
@@ -304,8 +304,8 @@ void FireBubble::exeChase() {
         MR::emitEffect(this, "Wait");
     }
 
-    updateChaseFrontVecAndVelocity(1.0f);
-    updateGravity(cChaseGravity);
+    updateChaseFrontVecAndVelocity(::cChaseRotateSpeed);
+    updateGravity(::cChaseGravity);
 
     if (MR::checkPassBckFrame(this, 0.0f)) {
         MR::startSound(this, "SE_EM_FIRE_BUBBLE_JUMP");
@@ -327,13 +327,13 @@ void FireBubble::exeReflect() {
         MR::start2PAttackAssistSound();
     }
 
-    updateChaseFrontVec(1.0f);
+    updateChaseFrontVec(::cChaseRotateSpeed);
     mChaseCounter++;
 
     if (MR::isOnGround(this)) {
         setNerve(&NrvFireBubble::FireBubbleNrvReflectLand::sInstance);
     } else {
-        updateGravity(cReflectGravity);
+        updateGravity(::cReflectGravity);
     }
 }
 
@@ -354,7 +354,7 @@ void FireBubble::exeReflectWait() {
         MR::startBck(this, "DPDHitDownWait", nullptr);
     }
 
-    if (!tryChaseEnd() && !tryReflect() && MR::isStep(this, cReflectWaitFrame)) {
+    if (!tryChaseEnd() && !tryReflect() && MR::isStep(this, ::cReflectWaitFrame)) {
         MR::deleteEffect(this, "WaitS");
         MR::onCalcGravity(this);
         setNerve(&NrvFireBubble::FireBubbleNrvChase::sInstance);
@@ -370,9 +370,9 @@ void FireBubble::exeDown() {
         mVelocity.zero();
         MR::invalidateHitSensors(this);
     }
-    updateChaseFrontVecAndVelocity(1.0f);
+    updateChaseFrontVecAndVelocity(::cChaseRotateSpeed);
 
-    updateGravity(cChaseGravity);
+    updateGravity(::cChaseGravity);
     if (MR::isBckStopped(this)) {
         killOrWaitToApppear();
     }
@@ -386,10 +386,10 @@ void FireBubble::exeWaitToAppear() {
         MR::invalidateHitSensors(this);
     }
 
-    if (MR::isStep(this, cAppearInterval)) {
+    if (MR::isStep(this, ::cAppearInterval)) {
         mPosition.set(_90);
         _B4.set(_9C);
-        _A8.set(cAppearVelocity);
+        _A8.set(::cAppearVelocity);
         MR::calcGravity(this);
         setNerve(&NrvFireBubble::FireBubbleNrvAppear::sInstance);
     }

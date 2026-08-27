@@ -1404,7 +1404,7 @@ void Meramera::addMovingAccel(const TVec3f& rVec, f32 velocityAccel, f32 gravity
 
     if (!MR::isNearZero(vec2)) {
         if (-1.0f < gravityAccel && gravityAccel < 1.0f) {
-            MR::turnVecToVecCos(&_138, _138, vec2, gravityAccel, vec, 0.02f);
+            MR::turnVecToVecCos(&_138, _138, vec2, gravityAccel, vec);
         } else {
             _138 = vec2;
         }

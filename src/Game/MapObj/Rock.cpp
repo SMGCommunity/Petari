@@ -241,7 +241,7 @@ void Rock::control() {
         MR::showModel(this);
         if (updateFront) {
             TVec3f v2(mFront);
-            MR::turnVecToVecCos(&mFront, v2, front, ::cRotateCosineMax, mGravity, 0.02f);
+            MR::turnVecToVecCos(&mFront, v2, front, ::cRotateCosineMax, mGravity);
         }
     }
 

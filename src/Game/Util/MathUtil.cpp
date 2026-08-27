@@ -857,7 +857,7 @@ namespace MR {
         normalizeOrZero(&planarTo);
         if (!MR::isNearZero(planarTo)) {
             if (cosAngle > -1.0f) {
-                return turnVecToVecCos(pDst, rFrom, planarTo, cosAngle, rAxis, 0.02f);
+                return turnVecToVecCos(pDst, rFrom, planarTo, cosAngle, rAxis);
             }
 
             pDst->set(planarTo);

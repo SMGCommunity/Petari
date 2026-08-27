@@ -50,11 +50,11 @@ namespace {
     static const f32 cChaseRotateZDot = 0.95f;
     static const f32 cChaseHeightMin = 150.0f;
     static const f32 cUpVecRotateSpeed = 2.0f;
-    static const f32 cMoveRotateCosineMax = 0.02f;
+    static const f32 cMoveRotateCosineMax = 0.9995f;  // ~cos(1.8)
     static const s32 cFreezeFrame = 20;
     static const f32 cFreezeRumbleSpeed = 75.0f;
     static const f32 cFreezeRumbleWidth = 5.0f;
-    static const f32 cFreezeRotateCosineMax = 0.02f;
+    static const f32 cFreezeRotateCosineMax = 0.9997f;  // ~cos(1.4)
     static const s32 cAppearMoveFrame = 20;
     static const s32 cAppearRumbleFrame = 22;
     static const s32 cAppearStopFrame = 30;
@@ -267,7 +267,7 @@ void HomingKiller::control() {
             up.negate(mGravity);
             if (isNerve(&NrvHomingKiller::HomingKillerNrvChaseStart::sInstance) || isNerve(&NrvHomingKiller::HomingKillerNrvChase::sInstance) ||
                 isNerve(&NrvHomingKiller::HomingKillerNrvFreeze::sInstance) || isNerve(&NrvHomingKiller::HomingKillerNrvGoToTarget::sInstance)) {
-                MR::turnVecToVecCos(&mUp, mUp.copy(), up, MR::cosDegree(::cUpVecRotateSpeed), mFront, ::cMoveRotateCosineMax);
+                MR::turnVecToVecCos(&mUp, mUp.copy(), up, MR::cosDegree(::cUpVecRotateSpeed), mFront);
             } else {
                 mUp.set(up);
             }
@@ -457,7 +457,7 @@ bool HomingKiller::processMove() {
         } else {
             front.set(mFront);
         }
-        MR::turnVecToVecCos(&mFront, mFront.copy(), front, 0.9995f, mGravity, ::cMoveRotateCosineMax);
+        MR::turnVecToVecCos(&mFront, mFront.copy(), front, ::cMoveRotateCosineMax, mGravity);
     }
 
     updateVelocity();
@@ -500,7 +500,7 @@ bool HomingKiller::processChase() {
 
     if (isUpdateChaseFrontVec(target)) {
         f32 rotateSpeed = mChaseRotateSpeed;
-        MR::turnVecToVecCos(&mFront, mFront.copy(), target, rotateSpeed, mGravity, ::cMoveRotateCosineMax);
+        MR::turnVecToVecCos(&mFront, mFront.copy(), target, rotateSpeed, mGravity);
     } else {
         target.set(mFront);
     }
@@ -838,7 +838,7 @@ void HomingKiller::exeFreeze() {
     if (isChasing()) {
         TVec3f target;
         calcFrontVecToTarget(&target);
-        MR::turnVecToVecCos(&mFront, mFront.copy(), target, 0.9997f, mGravity, ::cFreezeRotateCosineMax);
+        MR::turnVecToVecCos(&mFront, mFront.copy(), target, ::cFreezeRotateCosineMax, mGravity);
         updateRotateZ(target);
     }
 
