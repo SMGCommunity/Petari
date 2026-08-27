@@ -10,8 +10,7 @@ void CamTranslatorCharmedFix_FORCE_MATCH_SDATA2() {
 void CamTranslatorCharmedFix::setParam(const CameraParamChunk* pChunk) {
     CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    TVec3f up;
-    up = general->mUp;
+    TVec3f up = general->mUp;
 
     if (MR::isNearZero(up)) {
         up.set< f32 >(0.0f, 1.0f, 0.0f);
@@ -19,11 +18,7 @@ void CamTranslatorCharmedFix::setParam(const CameraParamChunk* pChunk) {
         MR::normalize(&up);
     }
 
-    CameraCharmedFix* camera = mCamera;
-
-    camera->mBasePos.set< f32 >(general->mAxis);
-    camera->mUp.set< f32 >(up);
-    camera->mWPoint.set< f32 >(general->mWPoint);
+    mCamera->setParam(general->mAxis, up, general->mWPoint);
 }
 
 Camera* CamTranslatorCharmedFix::getCamera() const {
