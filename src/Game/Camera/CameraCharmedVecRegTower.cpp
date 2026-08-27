@@ -50,13 +50,13 @@ CameraTargetObj* CameraCharmedVecRegTower::calc() {
     TVec3f posOffs(0.0f, 0.0f, mDist);
     mtx.mult(posOffs, posOffs);
 
-    TVec3f regDir = CameraLocalUtil::getVecReg(mString) - posOffs;
+    TVec3f regDir = CameraLocalUtil::getVecReg(mName) - posOffs;
     regDir.orthogonalize(axis);
     MR::normalizeOrZero(&regDir);
 
     f32 angle = regDir.angle(-front);
-    if (angle > mAngleB) {
-        angle = mAngleB;
+    if (angle > mAngleYMax) {
+        angle = mAngleYMax;
     }
 
     if (regDir.orientation(axis, -front)) {
@@ -67,7 +67,7 @@ CameraTargetObj* CameraCharmedVecRegTower::calc() {
     transMtx.makeTrans(0.0f, 0.0f, mDist);
 
     TPos3f rotX;
-    rotX.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), -mAngleA);
+    rotX.makeRotate(TVec3f(1.0f, 0.0f, 0.0f), -mAngleX);
 
     TPos3f rotY;
     rotY.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), angle);
@@ -85,7 +85,7 @@ CameraTargetObj* CameraCharmedVecRegTower::calc() {
     CameraLocalUtil::setUpVecAndWatchUpVec(this, axis);
 
     if (mArrange) {
-        CameraLocalUtil::arrangeDistanceByFovy(this, CameraLocalUtil::getVecReg(mString), 200.0f);
+        CameraLocalUtil::arrangeDistanceByFovy(this, CameraLocalUtil::getVecReg(mName), 200.0f);
     }
 
     return CameraLocalUtil::getTarget(this);
