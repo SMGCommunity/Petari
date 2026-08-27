@@ -53,8 +53,8 @@ namespace MarioAccess {
     void addStarPiece();
     void getStarPieceDirect();
     MtxPtr getJointMtx(const char*);
-    const TVec3f* getVelocity();
-    const TVec3f* getLastMove();
+    TVec3f* getVelocity();
+    TVec3f* getLastMove();
     void hide();
     void show();
     HitSensor* getTakingSensor();

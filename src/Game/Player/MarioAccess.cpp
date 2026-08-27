@@ -327,16 +327,16 @@ namespace MarioAccess {
         return getPlayerActor()->getGlobalJointMtx(pName);
     }
 
-    const TVec3f* getVelocity() {
+    TVec3f* getVelocity() {
         if (getPlayerActor()->_934) {
-            return &getPlayerActor()->getLastMove();
+            return const_cast< TVec3f* >(&getPlayerActor()->getLastMove());
         }
 
         return &getPlayerActor()->getMario()->mVelocity;
     }
 
-    const TVec3f* getLastMove() {
-        return &getPlayerActor()->getLastMove();
+    TVec3f* getLastMove() {
+        return const_cast< TVec3f* >(&getPlayerActor()->getLastMove());
     }
 
     void hide() {
