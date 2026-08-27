@@ -108,12 +108,12 @@ namespace MR {
         pDst->set< f32 >(getRandom(-range, range), getRandom(-range, range), getRandom(-range, range));
     }
 
-    void addRandomVector(TVec3f* pOut, const TVec3f& rOtherVec, f32 range) {
+    void addRandomVector(TVec3f* pDst, const TVec3f& rSrc, f32 range) {
         f32 x = getRandom(-range, range);
         f32 y = getRandom(-range, range);
         f32 z = getRandom(-range, range);
 
-        pOut->set(rOtherVec + TVec3f(x, y, z));
+        pDst->set(rSrc + TVec3f(x, y, z));
     }
 
     void turnRandomVector(TVec3f* pDst, const TVec3f& rSrc, f32 range) {
@@ -1018,8 +1018,8 @@ namespace MR {
         return true;
     }
 
-    f32 diffAngleAbs(f32 a1, f32 a2) {
-        f32 normalize = normalizeAngleAbs(a1 - a2);
+    f32 diffAngleAbs(f32 angleA, f32 angleB) {
+        f32 normalize = normalizeAngleAbs(angleA - angleB);
 
         if (normalize > PI) {
             normalize = (TWO_PI - normalize);
@@ -1040,10 +1040,10 @@ namespace MR {
         }
     }
 
-    bool isAngleBetween(f32 a1, f32 a2, f32 a3) {
-        f32 a1_n = normalizeAngleAbs(a1);
-        f32 a2_n = normalizeAngleAbs(a2);
-        f32 a3_n = normalizeAngleAbs(a3);
+    bool isAngleBetween(f32 angle, f32 min, f32 max) {
+        f32 a1_n = normalizeAngleAbs(angle);
+        f32 a2_n = normalizeAngleAbs(min);
+        f32 a3_n = normalizeAngleAbs(max);
 
         if (a3_n > a2_n) {
             f32 val = a3_n;
@@ -1601,8 +1601,8 @@ namespace MR {
 
     void getRotatedAxisZ(TVec3f* pDst, const TVec3f& pSrc) {
         TVec3f vec(0.0f, 0.0f, 1.0f);
-        TMtx34f mtx;
-        MR::makeMtxTR(mtx.toMtxPtr(), 0.0f, 0.0f, 0.0f, pSrc.x, pSrc.y, pSrc.z);
+        TPos3f mtx;
+        MR::makeMtxTR(mtx, 0.0f, 0.0f, 0.0f, pSrc.x, pSrc.y, pSrc.z);
         PSMTXMultVec(mtx, &vec, pDst);
     }
 };  // namespace MR
