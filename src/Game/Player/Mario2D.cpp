@@ -2,6 +2,7 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
+#include "math_types.hpp"
 
 void FORCE_ADD() {
     TVec3f vec;
@@ -73,7 +74,8 @@ void Mario::stick2DadjustGround(f32& rX, f32& rY) {
 
     f32 diff = MR::diffAngleAbs(stickDir2D, vec2);
 
-    if (diff < MR::toRadian(30.0f) || diff > MR::toRadian(180.0f - 30.0f)) {
+    // explicit conversions to radian instead of calling MR::toRadian()
+    if (diff < 30.0f * MR::pi() / 180.0f || diff > 150.0f * MR::pi() / 180.0f) {
         rX = 0.0f;
         rY = 0.0f;
         mStickPos.z = 0.0f;
