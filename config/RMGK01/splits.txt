@@ -4687,6 +4687,7 @@ Game/MapObj/CutBushModelObj.cpp:
 
 Game/MapObj/DashRing.cpp:
 	.text       start:0x801CD4D8 end:0x801CDEC0
+	.rodata     start:0x80533128 end:0x80533130
 	.data       start:0x80592BC8 end:0x80592C78
 	.sdata      start:0x806B1DC8 end:0x806B1DD0
 	.sdata2     start:0x806BCCF8 end:0x806BCD40
@@ -4709,6 +4710,7 @@ Game/MapObj/DesertLandMoveSwitch.cpp:
 Game/MapObj/DesertMovingLand.cpp:
 	.text       start:0x801CEC3C end:0x801CF628
 	.ctors      start:0x8052ECDC end:0x8052ECE0
+	.rodata     start:0x80533130 end:0x80533138
 	.data       start:0x80592EB0 end:0x80593060
 	.sdata      start:0x806B1DD8 end:0x806B1DE0
 	.sbss       start:0x806B5050 end:0x806B5070
@@ -4717,6 +4719,7 @@ Game/MapObj/DesertMovingLand.cpp:
 Game/MapObj/DragonHeadFlower.cpp:
 	.text       start:0x801CF628 end:0x801D00EC
 	.ctors      start:0x8052ECE0 end:0x8052ECE4
+	.rodata     start:0x80533138 end:0x80533148
 	.data       start:0x80593060 end:0x80593160
 	.sdata      start:0x806B1DE0 end:0x806B1DF8
 	.sbss       start:0x806B5070 end:0x806B5080
@@ -4725,6 +4728,7 @@ Game/MapObj/DragonHeadFlower.cpp:
 Game/MapObj/DriftWood.cpp:
 	.text       start:0x801D00EC end:0x801D085C
 	.ctors      start:0x8052ECE4 end:0x8052ECE8
+	.rodata     start:0x80533148 end:0x80533150
 	.data       start:0x80593160 end:0x80593290
 	.sbss       start:0x806B5080 end:0x806B5090
 	.sdata2     start:0x806BCDC0 end:0x806BCDF8

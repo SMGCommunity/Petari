@@ -2973,9 +2973,9 @@ bool MarioSwim::passRing(const HitSensor* pSensor) {
     }
 
     DashRing* host = static_cast< DashRing* >(pSensor->mHost);
-    mRingDashMaxDuration = host->_AC;
-    mRingDashSpeedScale = host->_B0;
-    mRingDashTimer = host->_A8;
+    mRingDashMaxDuration = host->mMaxDuration;
+    mRingDashSpeedScale = host->mSpeedScale;
+    mRingDashTimer = host->mBoostTime;
 
     playSound("亀加速");
 
