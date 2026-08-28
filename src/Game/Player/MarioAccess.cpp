@@ -258,17 +258,17 @@ namespace MarioAccess {
         pOut->set(getPlayerActor()->_F3CVec[getPlayerActor()->_F40]);
     }
 
-    void setTrans(const TVec3f& rVec, u16) {
-        getPlayerActor()->mPosition.set(rVec);
-        getPlayerActor()->getMario()->mPosition = rVec;
+    void setTrans(const TVec3f& rTrans, u16) {
+        getPlayerActor()->mPosition.set(rTrans);
+        getPlayerActor()->getMario()->mPosition = rTrans;
 
         if (getPlayerActor()->getMovementStates()._37) {
-            getPlayerActor()->getMario()->_688 = rVec;
+            getPlayerActor()->getMario()->_688 = rTrans;
         }
 
         getPlayerActor()->_1C0 = true;
 
-        getPlayerActor()->mCameraTrans = rVec;
+        getPlayerActor()->mCameraTrans = rTrans;
         MR::updateHitSensorsAll(getPlayerActor());
     }
 
@@ -329,7 +329,7 @@ namespace MarioAccess {
 
     TVec3f* getVelocity() {
         if (getPlayerActor()->_934) {
-            return const_cast< TVec3f* >(&getPlayerActor()->getLastMove());
+            return getLastMove();
         }
 
         return &getPlayerActor()->getMario()->mVelocity;
@@ -447,8 +447,8 @@ namespace MarioAccess {
     }
 
     void keepCurrentAnimation() {
-        if (getPlayerActor()->mMarioAnim->getXanimePlayer()->_20->mAttribute == 0) {
-            getPlayerActor()->mMarioAnim->getXanimePlayer()->_20->mAttribute = 1;
+        if (getPlayerActor()->mMarioAnim->getXanimePlayer()->_20->getAttribute() == 0) {
+            getPlayerActor()->mMarioAnim->getXanimePlayer()->_20->setAttribute(1);
         }
     }
 
@@ -669,10 +669,19 @@ namespace MarioAccess {
     }
 
     void startDownWipe() {
-        if (!getPlayerActor()->isNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance) && !getPlayerActor()->isAnimationRun("氷結") &&
-            getPlayerActor()->_390 == 0) {
-            getPlayerActor()->_A61 = true;
+        if (getPlayerActor()->isNerve(&NrvMarioActor::MarioActorNrvGameOverSink::sInstance)) {
+            return;
         }
+
+        if (getPlayerActor()->isAnimationRun("氷結")) {
+            return;
+        }
+
+        if (getPlayerActor()->_390 != 0) {
+            return;
+        }
+
+        getPlayerActor()->_A61 = true;
     }
 
     void readyDemo() {
@@ -726,28 +735,28 @@ namespace MarioAccess {
         switch (a1) {
         case 0:
         case 8:
-            getPlayerActor()->setPlayerMode(0, true);
+            getPlayerActor()->setPlayerMode(PlayerMode_0, true);
             break;
         case 1:
-            getPlayerActor()->setPlayerMode(5, true);
+            getPlayerActor()->setPlayerMode(PlayerMode_Hopper, true);
             break;
         case 2:
-            getPlayerActor()->setPlayerMode(4, true);
+            getPlayerActor()->setPlayerMode(PlayerMode_Bee, true);
             break;
         case 3:
-            getPlayerActor()->setPlayerMode(6, true);
+            getPlayerActor()->setPlayerMode(PlayerMode_Teresa, true);
             break;
         case 4:
-            getPlayerActor()->setPlayerMode(3, true);
+            getPlayerActor()->setPlayerMode(PlayerMode_Ice, true);
             break;
         case 5:
-            getPlayerActor()->setPlayerMode(2, true);
+            getPlayerActor()->setPlayerMode(PlayerMode_2, true);
             break;
         case 6:
-            getPlayerActor()->setPlayerMode(7, true);
+            getPlayerActor()->setPlayerMode(PlayerMode_Foo, true);
             break;
         case 7:
-            getPlayerActor()->setPlayerMode(1, true);
+            getPlayerActor()->setPlayerMode(PlayerMode_Invincible, true);
             break;
         case 9:
             getPlayerActor()->getMario()->mMovementStates._F = true;
