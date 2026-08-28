@@ -8,7 +8,9 @@ public:
     }
 
     virtual ~DashRing();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter) {
+        initCommon(rIter, "DashRing");
+    }
     virtual void draw() const;
     virtual void control();
     virtual void calcAndSetBaseMtx();
@@ -18,16 +20,14 @@ public:
     void calcAxis();
     void calcSubAxis();
 
-    TVec3f mAxis;     // 0x8C
-    TVec3f mSubAxis;  // 0x98
-    u16 _A4;
-    u16 _A6;
-    s32 _A8;
-    s32 _AC;
-    f32 _B0;
-    u8 _B4;
-    u8 _B5;
-    u8 _B6;
-    u8 _B7;
-    TVec3f _B8;
+    /* 0x8C */ TVec3f mAxis;
+    /* 0x98 */ TVec3f mSubAxis;
+    /* 0xA4 */ u16 mActiveTime;
+    /* 0xA6 */ u16 mRevivalTime;
+    /* 0xA8 */ s32 mBoostTime;
+    /* 0xAC */ s32 mMaxDuration;
+    /* 0xB0 */ f32 mSpeedScale;
+    /* 0xB4 */ bool mDoLoop;
+    /* 0xB5 */ bool mDoTurn;
+    /* 0xB8 */ TVec3f mInitialPosition;
 };

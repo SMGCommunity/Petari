@@ -4374,30 +4374,28 @@ Game/MapObj/BeeFlowerHover.cpp:
 Game/MapObj/BenefitItemInvincible.cpp:
 	.text       start:0x801B36E4 end:0x801B3DC4
 	.ctors      start:0x8052EC64 end:0x8052EC68
-	.data       start:0x8058FBF8 end:0x8058FD78
-	.sdata      start:0x806B1D48 end:0x806B1D58
+	.data       start:0x8058FBF8 end:0x8058FDA0
+	.sdata      start:0x806B1D48 end:0x806B1D60
 	.sdata2     start:0x806BC830 end:0x806BC850
 
 Game/MapObj/BenefitItemLifeUp.cpp:
 	.text       start:0x801B3DC4 end:0x801B4058
 	.ctors      start:0x8052EC68 end:0x8052EC6C
-	.data       start:0x8058FD78 end:0x8058FE48
-	.sdata      start:0x806B1D58 end:0x806B1D60
+	.data       start:0x8058FDA0 end:0x8058FE48
 	.sdata2     start:0x806BC850 end:0x806BC858
 
 Game/MapObj/BenefitItemObj.cpp:
 	.text       start:0x801B4058 end:0x801B5D50
 	.ctors      start:0x8052EC6C end:0x8052EC70
 	.rodata     start:0x80533038 end:0x80533048
-	.data       start:0x8058FE48 end:0x80590090
-	.sdata      start:0x806B1D60 end:0x806B1D78
+	.data       start:0x8058FE48 end:0x805900B8
+	.sdata      start:0x806B1D60 end:0x806B1D80
 	.sbss       start:0x806B4E98 end:0x806B4EA0
 	.sdata2     start:0x806BC858 end:0x806BC8A0
 
 Game/MapObj/BigBubbleDrawer.cpp:
 	.text       start:0x801B5D50 end:0x801B6308
 	.ctors      start:0x8052EC70 end:0x8052EC74
-	.data       start:0x80590090 end:0x805900B8
 	.bss        start:0x8060ADB0 end:0x8060ADC0
 	.sbss       start:0x806B4EA0 end:0x806B4EA8
 	.sdata2     start:0x806BC8A0 end:0x806BC8B0
@@ -4446,21 +4444,21 @@ Game/MapObj/BlueStarCupsulePlanet.cpp:
 	.ctors      start:0x8052EC80 end:0x8052EC84
 	.rodata     start:0x80533048 end:0x80533058
 	.data       start:0x80590558 end:0x80590790
-	.sdata      start:0x806B1D78 end:0x806B1D80
 	.sbss       start:0x806B4ED0 end:0x806B4EE0
 	.sdata2     start:0x806BC920 end:0x806BC938
 
 Game/MapObj/BreakableCage.cpp:
 	.text       start:0x801B9C78 end:0x801BABB8
 	.ctors      start:0x8052EC84 end:0x8052EC88
-	.rodata     start:0x80533058 end:0x80533088
-	.data       start:0x80590790 end:0x80590910
+	.rodata     start:0x80533058 end:0x80533078
+	.data       start:0x80590790 end:0x80590908
 	.sbss       start:0x806B4EE0 end:0x806B4EF0
 	.sdata2     start:0x806BC938 end:0x806BC968
 
 Game/MapObj/BrightObj.cpp:
 	.text       start:0x801BABB8 end:0x801BC0FC
-	.data       start:0x80590910 end:0x80590A80
+	.rodata     start:0x80533078 end:0x80533088
+	.data       start:0x80590908 end:0x80590A80
 	.sdata2     start:0x806BC968 end:0x806BC9B8
 
 Game/MapObj/BumpAppearPlanet.cpp:
@@ -4686,6 +4684,7 @@ Game/MapObj/CutBushModelObj.cpp:
 
 Game/MapObj/DashRing.cpp:
 	.text       start:0x801CD4D8 end:0x801CDEC0
+	.rodata     start:0x80533128 end:0x80533130
 	.data       start:0x80592BC8 end:0x80592C78
 	.sdata      start:0x806B1DC8 end:0x806B1DD0
 	.sdata2     start:0x806BCCF8 end:0x806BCD40
@@ -4708,6 +4707,7 @@ Game/MapObj/DesertLandMoveSwitch.cpp:
 Game/MapObj/DesertMovingLand.cpp:
 	.text       start:0x801CEC3C end:0x801CF628
 	.ctors      start:0x8052ECDC end:0x8052ECE0
+	.rodata     start:0x80533130 end:0x80533138
 	.data       start:0x80592EB0 end:0x80593060
 	.sdata      start:0x806B1DD8 end:0x806B1DE0
 	.sbss       start:0x806B5050 end:0x806B5070
@@ -4716,6 +4716,7 @@ Game/MapObj/DesertMovingLand.cpp:
 Game/MapObj/DragonHeadFlower.cpp:
 	.text       start:0x801CF628 end:0x801D00EC
 	.ctors      start:0x8052ECE0 end:0x8052ECE4
+	.rodata     start:0x80533138 end:0x80533148
 	.data       start:0x80593060 end:0x80593160
 	.sdata      start:0x806B1DE0 end:0x806B1DF8
 	.sbss       start:0x806B5070 end:0x806B5080
@@ -4724,6 +4725,7 @@ Game/MapObj/DragonHeadFlower.cpp:
 Game/MapObj/DriftWood.cpp:
 	.text       start:0x801D00EC end:0x801D085C
 	.ctors      start:0x8052ECE4 end:0x8052ECE8
+	.rodata     start:0x80533148 end:0x80533150
 	.data       start:0x80593160 end:0x80593290
 	.sbss       start:0x806B5080 end:0x806B5090
 	.sdata2     start:0x806BCDC0 end:0x806BCDF8
