@@ -12,6 +12,6 @@ public:
     virtual bool close();
     virtual bool update();
     
-    u16 _12;
-    u16 mTimer;
+    /* 0x12 */ u16 _12;
+    /* 0x14 */ u16 mTimer;
 };
