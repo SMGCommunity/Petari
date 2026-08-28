@@ -210,6 +210,11 @@ namespace JGeometry {
             return ret;
         }
 
+        inline void operator+=(const TVec2< T >& rOther) {
+            x = x + rOther.x;
+            y = y + rOther.y;
+        }
+
         inline void operator-=(const TVec2< T >& rOther) {
             x = x - rOther.x;
             y = y - rOther.y;

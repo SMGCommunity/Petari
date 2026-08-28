@@ -49,9 +49,10 @@ void KabokuriFire::start(const TVec3f& rPosition, bool gravitySet) {
 void KabokuriFire::control() {
 }
 
-// https://decomp.me/scratch/G5kR9
 void KabokuriFire::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    MR::sendMsgEnemyAttackFire(pReceiver, pSender);
+    if (MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+        return;
+    }
 }
 
 bool KabokuriFire::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
