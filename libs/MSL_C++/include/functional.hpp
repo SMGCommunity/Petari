@@ -145,6 +145,32 @@ namespace std {
         return const_mem_fun1_t< Result, Type, Arg >(f);
     }
 
+    template < class S, class T >
+    class mem_fun_ref_t : public unary_function< T, S > {
+    public:
+        explicit mem_fun_ref_t(S (T::*mf)()) : mf_(mf) {
+        }
+        S operator()(T& p) const {
+            return (p.*mf_)();
+        }
+
+    private:
+        S (T::*mf_)();
+    };
+
+    template < class S, class T, class A >
+    class mem_fun1_ref_t : public binary_function< T, A, S > {
+    public:
+        explicit mem_fun1_ref_t(S (T::*mf)(A)) : mf_(mf) {
+        }
+        S operator()(T& p, A x) const {
+            return (p.*mf_)(x);
+        }
+
+    private:
+        S (T::*mf_)(A);
+    };
+
     template < class Predicate >
     struct unary_negate : public unary_function< typename Predicate::argument_type, bool > {
         explicit unary_negate(const Predicate& pred) : mPred(pred) {
