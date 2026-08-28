@@ -4398,13 +4398,14 @@ Game/MapObj/BigBubbleDrawer.cpp:
 	.text       start:0x801B5D50 end:0x801B6308
 	.ctors      start:0x8052EC70 end:0x8052EC74
 	.bss        start:0x8060ADB0 end:0x8060ADC0
+	.data		start:0x80590090 end:0x805900B8
 	.sbss       start:0x806B4EA0 end:0x806B4EA8
 	.sdata2     start:0x806BC8A0 end:0x806BC8B0
 
 Game/MapObj/BigBubbleGenerator.cpp:
 	.text       start:0x801B6308 end:0x801B6A90
 	.ctors      start:0x8052EC74 end:0x8052EC78
-	.data       start:0x80590090 end:0x80590198
+	.data       start:0x805900B8 end:0x80590198
 	.sbss       start:0x806B4EA8 end:0x806B4EB0
 	.sdata2     start:0x806BC8B0 end:0x806BC8C8
 
@@ -4446,6 +4447,7 @@ Game/MapObj/BlueStarCupsulePlanet.cpp:
 	.rodata     start:0x80533048 end:0x80533058
 	.data       start:0x80590558 end:0x80590790
 	.sbss       start:0x806B4ED0 end:0x806B4EE0
+	.sdata		start:0x806B1D78 end:0x806B1D80
 	.sdata2     start:0x806BC920 end:0x806BC938
 
 Game/MapObj/BreakableCage.cpp:
@@ -4486,7 +4488,7 @@ Game/MapObj/CapsuleCage.cpp:
 	.text       start:0x801BD770 end:0x801BDC50
 	.ctors      start:0x8052EC94 end:0x8052EC98
 	.data       start:0x80590F68 end:0x80591080
-	.sdata      start:0x806B1D78 end:0x806B1D88
+	.sdata      start:0x806B1D80 end:0x806B1D88
 	.sbss       start:0x806B4F28 end:0x806B4F38
 
 Game/MapObj/ChipBase.cpp:
