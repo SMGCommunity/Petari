@@ -87,12 +87,11 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void control();
-
+    
     virtual void calcBrightInfo(u16, const BrightCamInfo&);
     virtual void getNowCenter(TVec2f*) const;
 
-    void checkVisibilityOfSphere(u16 index, const BrightCamInfo&);
-    void getNowCenter(TVec2f*);
+    void checkVisibilityOfSphere(u16, const BrightCamInfo&);
 
     /* 0x10C */ f32 mRadius;
 };
