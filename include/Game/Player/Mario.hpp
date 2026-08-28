@@ -584,6 +584,10 @@ public:
         return mPrevDrawStates;
     }
 
+    inline void set3BC(u16 val) {
+        _3BC = val;
+    }
+
     union {
         /* 0x008 */ MovementStates mMovementStates;
         struct {
