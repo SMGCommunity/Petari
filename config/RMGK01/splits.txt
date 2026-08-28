@@ -4453,14 +4453,15 @@ Game/MapObj/BlueStarCupsulePlanet.cpp:
 Game/MapObj/BreakableCage.cpp:
 	.text       start:0x801B9C78 end:0x801BABB8
 	.ctors      start:0x8052EC84 end:0x8052EC88
-	.rodata     start:0x80533058 end:0x80533088
-	.data       start:0x80590790 end:0x80590910
+	.rodata     start:0x80533058 end:0x80533078
+	.data       start:0x80590790 end:0x80590908
 	.sbss       start:0x806B4EE0 end:0x806B4EF0
 	.sdata2     start:0x806BC938 end:0x806BC968
 
 Game/MapObj/BrightObj.cpp:
 	.text       start:0x801BABB8 end:0x801BC0FC
-	.data       start:0x80590910 end:0x80590A80
+	.rodata     start:0x80533078 end:0x80533088
+	.data       start:0x80590908 end:0x80590A80
 	.sdata2     start:0x806BC968 end:0x806BC9B8
 
 Game/MapObj/BumpAppearPlanet.cpp:

@@ -102,5 +102,5 @@ public:
 namespace MR {
     void addBrightObj(BrightObjBase* pBrightObj);
     void setLensFlareDrawSyncToken();
-    u16 getLensFlareDrawSyncTokenIndex();
+    u32 getLensFlareDrawSyncTokenIndex();
 };  // namespace MR
