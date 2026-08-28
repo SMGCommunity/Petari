@@ -183,7 +183,7 @@ public:
     bool doParalyze();
     bool doFreeze();
     bool requestCrush();
-    void tryCrush();
+    bool tryCrush();
 
     bool doFlipWeak(const TVec3f&);
     bool faint(const TVec3f&);
@@ -586,6 +586,10 @@ public:
 
     inline void set3BC(u16 val) {
         _3BC = val;
+    }
+
+    inline void set41E(u16 val) {
+        _41E = val;
     }
 
     union {
