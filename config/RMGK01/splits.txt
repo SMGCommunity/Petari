@@ -4744,6 +4744,7 @@ Game/MapObj/EarthenPipe.cpp:
 	.text       start:0x801D1864 end:0x801D301C
 	.ctors      start:0x8052ECE8 end:0x8052ECEC
 	.data       start:0x80593488 end:0x80593768
+	.sdata      start:0x806B1DE8 end:0x806B1DF0
 	.sbss       start:0x806B5090 end:0x806B50C0
 	.sdata2     start:0x806BCE18 end:0x806BCE58
 
@@ -4751,6 +4752,7 @@ Game/MapObj/ElectricBall.cpp:
 	.text       start:0x801D301C end:0x801D3C4C
 	.ctors      start:0x8052ECEC end:0x8052ECF0
 	.data       start:0x80593768 end:0x805938E0
+	.sdata      start:0x806B1DF0 end:0x806B1DF8
 	.sbss       start:0x806B50C0 end:0x806B50D0
 	.sdata2     start:0x806BCE58 end:0x806BCE78
 
@@ -4800,7 +4802,7 @@ Game/MapObj/FallOutFieldDraw.cpp:
 	.text       start:0x801D924C end:0x801D9AD8
 	.ctors      start:0x8052ED04 end:0x8052ED08
 	.data       start:0x805940F0 end:0x80594140
-	.sdata      start:0x806B1DE8 end:0x806B1E10
+	.sdata      start:0x806B1DF8 end:0x806B1E10
 	.sbss       start:0x806B5110 end:0x806B5118
 	.sdata2     start:0x806BCF68 end:0x806BCF80
 
