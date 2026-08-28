@@ -443,7 +443,7 @@ public:
     f32 getFaceLookHeight(const char*) const;
 
     // Defined in MarioActorMorph
-    void setPlayerMode(u8, bool);
+    void setPlayerMode(u16, bool);
     void resetPlayerModeOnDamage();
     void resetPlayerModeOnNoDamage();
     void updatePlayerMode();
@@ -550,6 +550,10 @@ public:
 
     inline const bool is481or482On() const {
         return _481 || _482;
+    }
+
+    inline Mario* getMario() {
+        return mMario;
     }
 
     struct FBO {
@@ -716,7 +720,7 @@ public:
     /* 0x4B8 */ TVec3f _4B8;
     /* 0x4C4 */ TVec3f _4C4;
     /* 0x4D0 */ HitSensor* _4D0[128];
-    /* 0x6D0 */ u8 _6D0;
+    /* 0x6D0 */ bool _6D0;
     /* 0x6D4 */ f32 _6D4;
     /* 0x6D8 */ f32 _6D8;
     /* 0x6DC */ HitSensor* _6DC[64];
@@ -878,7 +882,7 @@ public:
     /* 0xEA6 */ bool _EA6;
     /* 0xEA8 */ TMtx34f _EA8;
     /* 0xED8 */ TVec3f _ED8;
-    /* 0xEE4 */ u32 _EE4;
+    /* 0xEE4 */ const char* _EE4;
     /* 0xEE8 */ bool mSuperKinokoCollected;
     /* 0xEE9 */ bool mPowerupCollected;
     /* 0xEEA */ bool mTransforming;

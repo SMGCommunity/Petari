@@ -290,10 +290,10 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     _6B0.zero();
     _6BC.zero();
 
-    _63C.set(1.0f, 0.0f, 0.0f);
-    _648.set(0.0f, 1.0f, 0.0f);
-    _654.set(0.0f, 0.0f, 1.0f);
-    _6A0 = _654;
+    mSide2D.set(1.0f, 0.0f, 0.0f);
+    mUp2D.set(0.0f, 1.0f, 0.0f);
+    mNormal2D.set(0.0f, 0.0f, 1.0f);
+    _6A0 = mNormal2D;
 
     initSound();
 
@@ -346,7 +346,7 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     }
     _96A = 0;
     _574 = 0;
-    _898 = 0;
+    _898 = false;
 }
 
 void Mario::updateAndClearStrideParameter() {

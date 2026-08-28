@@ -4374,28 +4374,30 @@ Game/MapObj/BeeFlowerHover.cpp:
 Game/MapObj/BenefitItemInvincible.cpp:
 	.text       start:0x801B36E4 end:0x801B3DC4
 	.ctors      start:0x8052EC64 end:0x8052EC68
-	.data       start:0x8058FBF8 end:0x8058FDA0
-	.sdata      start:0x806B1D48 end:0x806B1D60
+	.data       start:0x8058FBF8 end:0x8058FD78
+	.sdata      start:0x806B1D48 end:0x806B1D58
 	.sdata2     start:0x806BC830 end:0x806BC850
 
 Game/MapObj/BenefitItemLifeUp.cpp:
 	.text       start:0x801B3DC4 end:0x801B4058
 	.ctors      start:0x8052EC68 end:0x8052EC6C
-	.data       start:0x8058FDA0 end:0x8058FE48
+	.data       start:0x8058FD78 end:0x8058FE48
+	.sdata      start:0x806B1D58 end:0x806B1D60
 	.sdata2     start:0x806BC850 end:0x806BC858
 
 Game/MapObj/BenefitItemObj.cpp:
 	.text       start:0x801B4058 end:0x801B5D50
 	.ctors      start:0x8052EC6C end:0x8052EC70
 	.rodata     start:0x80533038 end:0x80533048
-	.data       start:0x8058FE48 end:0x805900B8
-	.sdata      start:0x806B1D60 end:0x806B1D80
+	.data       start:0x8058FE48 end:0x80590090
+	.sdata      start:0x806B1D60 end:0x806B1D78
 	.sbss       start:0x806B4E98 end:0x806B4EA0
 	.sdata2     start:0x806BC858 end:0x806BC8A0
 
 Game/MapObj/BigBubbleDrawer.cpp:
 	.text       start:0x801B5D50 end:0x801B6308
 	.ctors      start:0x8052EC70 end:0x8052EC74
+	.data       start:0x80590090 end:0x805900B8
 	.bss        start:0x8060ADB0 end:0x8060ADC0
 	.sbss       start:0x806B4EA0 end:0x806B4EA8
 	.sdata2     start:0x806BC8A0 end:0x806BC8B0
@@ -4444,6 +4446,7 @@ Game/MapObj/BlueStarCupsulePlanet.cpp:
 	.ctors      start:0x8052EC80 end:0x8052EC84
 	.rodata     start:0x80533048 end:0x80533058
 	.data       start:0x80590558 end:0x80590790
+	.sdata      start:0x806B1D78 end:0x806B1D80
 	.sbss       start:0x806B4ED0 end:0x806B4EE0
 	.sdata2     start:0x806BC920 end:0x806BC938
 

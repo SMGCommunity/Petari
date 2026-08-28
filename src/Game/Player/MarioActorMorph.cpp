@@ -15,8 +15,8 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "revolution/types.h"
 
-void MarioActor::setPlayerMode(u8 playerMode, bool myBool) {
-    if (mPlayerMode == (u16)playerMode) {
+void MarioActor::setPlayerMode(u16 playerMode, bool myBool) {
+    if (mPlayerMode == playerMode) {
         if (playerMode == 1) {
             _3DC = mConst->getTable()->mMetalHoldTime;
             MR::startSubBGM("BGM_MUTEKI_A", false);
