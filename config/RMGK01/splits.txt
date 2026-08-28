@@ -4731,7 +4731,7 @@ Game/MapObj/DriftWood.cpp:
 
 Game/MapObj/DummyDisplayModel.cpp:
 	.text       start:0x801D085C end:0x801D119C
-	.rodata     start:0x80533150 end:0x80533320
+	.rodata     start:0x80533150 end:0x80533300
 	.data       start:0x80593290 end:0x80593410
 	.sdata2     start:0x806BCDF8 end:0x806BCE10
 
@@ -4743,6 +4743,7 @@ Game/MapObj/DynamicCollisionObj.cpp:
 Game/MapObj/EarthenPipe.cpp:
 	.text       start:0x801D1864 end:0x801D301C
 	.ctors      start:0x8052ECE8 end:0x8052ECEC
+	.rodata		start:0x80533300 end:0x80533308
 	.data       start:0x80593488 end:0x80593768
 	.sdata      start:0x806B1DE8 end:0x806B1DF0
 	.sbss       start:0x806B5090 end:0x806B50C0
@@ -4751,6 +4752,7 @@ Game/MapObj/EarthenPipe.cpp:
 Game/MapObj/ElectricBall.cpp:
 	.text       start:0x801D301C end:0x801D3C4C
 	.ctors      start:0x8052ECEC end:0x8052ECF0
+	.rodata		start:0x80533308 end:0x80533320
 	.data       start:0x80593768 end:0x805938E0
 	.sdata      start:0x806B1DF0 end:0x806B1DF8
 	.sbss       start:0x806B50C0 end:0x806B50D0
