@@ -2,8 +2,6 @@
 #include "Game/Player/Mario.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/mtx.h"
 
 void FORCE_ADD() {
     TVec3f vec;
