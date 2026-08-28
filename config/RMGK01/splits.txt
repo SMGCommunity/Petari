@@ -5078,14 +5078,14 @@ Game/MapObj/LavaBallRisingPlanetLava.cpp:
 
 Game/MapObj/LavaBreakColumn.cpp:
 	.text       start:0x801F0260 end:0x801F0594
-	.data       start:0x805973F8 end:0x80597610
+	.data       start:0x805973F8 end:0x80597580
 	.sdata2     start:0x806BD448 end:0x806BD458
 
 Game/MapObj/LavaFloater.cpp:
 	.text       start:0x801F0594 end:0x801F0CD0
 	.ctors      start:0x8052ED84 end:0x8052ED88
 	.rodata     start:0x80533408 end:0x80533420
-	.data       start:0x80597610 end:0x805976A8
+	.data       start:0x80597580 end:0x805976A8
 	.sbss       start:0x806B5340 end:0x806B5348
 	.sdata2     start:0x806BD458 end:0x806BD470
 
