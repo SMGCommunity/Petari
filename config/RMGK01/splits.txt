@@ -4397,8 +4397,8 @@ Game/MapObj/BenefitItemObj.cpp:
 Game/MapObj/BigBubbleDrawer.cpp:
 	.text       start:0x801B5D50 end:0x801B6308
 	.ctors      start:0x8052EC70 end:0x8052EC74
+	.data       start:0x80590090 end:0x805900B8
 	.bss        start:0x8060ADB0 end:0x8060ADC0
-	.data		start:0x80590090 end:0x805900B8
 	.sbss       start:0x806B4EA0 end:0x806B4EA8
 	.sdata2     start:0x806BC8A0 end:0x806BC8B0
 
@@ -4446,8 +4446,8 @@ Game/MapObj/BlueStarCupsulePlanet.cpp:
 	.ctors      start:0x8052EC80 end:0x8052EC84
 	.rodata     start:0x80533048 end:0x80533058
 	.data       start:0x80590558 end:0x80590790
+	.sdata      start:0x806B1D78 end:0x806B1D80
 	.sbss       start:0x806B4ED0 end:0x806B4EE0
-	.sdata		start:0x806B1D78 end:0x806B1D80
 	.sdata2     start:0x806BC920 end:0x806BC938
 
 Game/MapObj/BreakableCage.cpp:
