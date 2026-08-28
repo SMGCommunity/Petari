@@ -6,15 +6,15 @@ class CameraTower : public Camera {
 public:
     CameraTower(const char* pName = "塔カメラ");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isEnableToRoundLeft() const;
-    virtual bool isEnableToRoundRight() const;
-    virtual bool isEnableToReset() const {
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x48 */ virtual bool isEnableToRoundLeft() const;
+    /* 0x4C */ virtual bool isEnableToRoundRight() const;
+    /* 0x50 */ virtual bool isEnableToReset() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
-    virtual void arrangeRound();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
+    /* 0x58 */ virtual void arrangeRound();
 
     void setParam(const TVec3f& wPoint, const TVec3f& axis, f32 dist, const TVec2f& angle) {
         mWPoint.set(wPoint);

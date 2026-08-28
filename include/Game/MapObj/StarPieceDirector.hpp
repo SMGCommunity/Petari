@@ -32,7 +32,7 @@ class StarPieceDirector : public LiveActorGroup {
 public:
     StarPieceDirector(const char*);
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     void declare(const NameObj*, s32);
     void declareReceiveNum(const NameObj*, s32);
@@ -78,9 +78,9 @@ class StarPieceShooter : public LiveActor {
 public:
     StarPieceShooter(s32, const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
     void exeLockOn();

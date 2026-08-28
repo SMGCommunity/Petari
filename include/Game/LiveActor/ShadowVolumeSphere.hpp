@@ -6,9 +6,9 @@ class ShadowVolumeSphere : public ShadowVolumeModel {
 public:
     ShadowVolumeSphere();
 
-    virtual ~ShadowVolumeSphere();
-    virtual void loadModelDrawMtx() const;
-    virtual bool isDraw() const;
+    /* 0x08 */ virtual ~ShadowVolumeSphere();
+    /* 0x24 */ virtual void loadModelDrawMtx() const;
+    /* 0x2C */ virtual bool isDraw() const;
 
     void setRadius(f32);
 

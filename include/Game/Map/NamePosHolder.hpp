@@ -22,7 +22,7 @@ class NamePosHolder : public NameObj {
 public:
     NamePosHolder();
 
-    virtual ~NamePosHolder();
+    /* 0x08 */ virtual ~NamePosHolder();
 
     bool tryRegisterLinkObj(const NameObj*, const JMapInfoIter&);
 

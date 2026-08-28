@@ -9,10 +9,10 @@ class LavaSunPlanet : public LiveActor {
 public:
     LavaSunPlanet(const char*);
 
-    virtual ~LavaSunPlanet();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~LavaSunPlanet();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     MapPartsRotator* mRotator;  // 0x8C
     const char* mObjName;       // 0x90

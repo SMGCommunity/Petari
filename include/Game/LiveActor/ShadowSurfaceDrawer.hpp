@@ -6,7 +6,7 @@ class ShadowSurfaceDrawInit : public NameObj {
 public:
     ShadowSurfaceDrawInit(const char*);
 
-    virtual ~ShadowSurfaceDrawInit();
+    /* 0x08 */ virtual ~ShadowSurfaceDrawInit();
 
     static void initDraw();
 };
@@ -15,5 +15,5 @@ class ShadowSurfaceDrawer : public ShadowDrawer {
 public:
     ShadowSurfaceDrawer(const char*);
 
-    virtual ~ShadowSurfaceDrawer();
+    /* 0x08 */ virtual ~ShadowSurfaceDrawer();
 };

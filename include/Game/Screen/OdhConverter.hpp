@@ -15,10 +15,10 @@ public:
 
     /// @brief Intializes the `OdhConverter` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     /// @brief Draws the `OdhConverter` to the screen.
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
     void capture() {
         convert();

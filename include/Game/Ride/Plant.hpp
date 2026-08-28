@@ -13,17 +13,17 @@ class Plant : public LiveActor {
 public:
     Plant(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void updateHitSensor(HitSensor* pSensor);
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor* pSensor);
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWaitFar();
     void exeSeedWait();

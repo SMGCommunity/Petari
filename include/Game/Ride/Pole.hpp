@@ -9,13 +9,13 @@ class Pole : public LiveActor {
 public:
     Pole(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void calcAnim();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-    virtual MtxPtr getBaseMtx() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const;
 
     void exeDemoAppear();
     void exeFree();

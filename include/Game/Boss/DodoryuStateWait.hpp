@@ -6,7 +6,7 @@ class DodoryuStateWait : public DodoryuStateBase {
 public:
     DodoryuStateWait(Dodoryu* pHost, const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void exeWait();
 

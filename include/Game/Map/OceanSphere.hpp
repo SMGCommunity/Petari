@@ -35,10 +35,10 @@ class OceanSphere : public LiveActor {
 public:
     OceanSphere(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void control();
-    virtual void draw() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x48 */ virtual void control();
+    /* 0x18 */ virtual void draw() const;
 
     bool isInWater(const TVec3f& rPos) const;
     bool calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterInfo* pInfo) const;

@@ -23,20 +23,20 @@ class BegomanBase : public LiveActor {
 public:
     BegomanBase(const char*);
 
-    virtual void initAfterPlacement();
-    virtual void appear();
-    virtual void kill();
-    virtual void makeActorDead();
-    virtual void startClipped();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
     virtual u32 getKind() const = 0;
-    virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
-    virtual bool setNerveReturn() = 0;
-    virtual void setNerveLaunch();
-    virtual const Nerve* getNerveWait() = 0;
-    virtual void addVelocityOnPushedFromElectricRail(const TVec3f&, const TVec3f&);
-    virtual bool requestAttack();
+    /* 0x78 */ virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
+    /* 0x7C */ virtual bool setNerveReturn() = 0;
+    /* 0x80 */ virtual void setNerveLaunch();
+    /* 0x84 */ virtual const Nerve* getNerveWait() = 0;
+    /* 0x88 */ virtual void addVelocityOnPushedFromElectricRail(const TVec3f&, const TVec3f&);
+    /* 0x8C */ virtual bool requestAttack();
 
     const BegomanSound* getSoundBaby();
     const BegomanSound* getSoundNormal();
@@ -127,8 +127,8 @@ class BegomanAttackPermitter : public LiveActor {
 public:
     BegomanAttackPermitter(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     bool requestAttack(BegomanBase*);
 

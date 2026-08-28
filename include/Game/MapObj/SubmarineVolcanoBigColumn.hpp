@@ -8,10 +8,10 @@ class SubmarineVolcanoBigColumn : public LiveActor {
 public:
     SubmarineVolcanoBigColumn(const char*);
 
-    virtual ~SubmarineVolcanoBigColumn();
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~SubmarineVolcanoBigColumn();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void kill();
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeBreak();

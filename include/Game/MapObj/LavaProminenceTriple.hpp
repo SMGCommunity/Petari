@@ -9,13 +9,13 @@ class LavaProminenceTriple : public LiveActor {
 public:
     LavaProminenceTriple(const char*);
 
-    virtual ~LavaProminenceTriple();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~LavaProminenceTriple();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void updateEffectClipping();
     void updateEffectClippingIndividual(bool*, const char*, const char*);

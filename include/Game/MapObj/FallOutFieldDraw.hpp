@@ -8,8 +8,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     FallOutFieldDraw(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
 
     void setUpFillScreen() const;
     void setUpEdgeAndClearAlpha() const;

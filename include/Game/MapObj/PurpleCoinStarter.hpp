@@ -11,8 +11,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     PurpleCoinStarter(const char* pName);
 
-    virtual ~PurpleCoinStarter();
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x08 */ virtual ~PurpleCoinStarter();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void setHost(PurpleCoinHolder* pHost);
     void start();

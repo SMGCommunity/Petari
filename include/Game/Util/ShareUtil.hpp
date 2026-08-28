@@ -7,7 +7,7 @@ public:
     /// @brief Creates a new `ResourceShare`.
     ResourceShare();
 
-    virtual ~ResourceShare();
+    /* 0x08 */ virtual ~ResourceShare();
 
     /* 0x0C */ void* _C;
     /* 0x10 */ void* _10;

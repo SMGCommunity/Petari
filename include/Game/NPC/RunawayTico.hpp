@@ -5,6 +5,6 @@
 class RunawayTico : public Tico {
 public:
     RunawayTico(const char*);
-    virtual ~RunawayTico();
+    /* 0x08 */ virtual ~RunawayTico();
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 };

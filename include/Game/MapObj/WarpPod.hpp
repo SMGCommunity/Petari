@@ -15,12 +15,12 @@ public:
     WarpPod(const char* pName) : LiveActor(pName), _8C(nullptr) {
     }
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
-    virtual void draw() const;
-    virtual void appear();
-    virtual void control();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x24 */ virtual void appear();
+    /* 0x48 */ virtual void control();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void glowEffect();
     void initPair();
@@ -64,7 +64,7 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     WarpPodMgr(const char* pName);
 
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
     WarpPod* getPairPod(const LiveActor*);
     void startEventCamera(const LiveActor*);

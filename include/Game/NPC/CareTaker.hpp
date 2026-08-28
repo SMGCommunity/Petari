@@ -13,11 +13,11 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     Caretaker(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void initAfterPlacement();
-    virtual void kill();
-    virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 

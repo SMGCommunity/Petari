@@ -6,12 +6,12 @@ class CocoNutBall : public LiveActor {
 public:
     CocoNutBall(const char* pName = "ヤシの実弾");
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void kill();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void appearAndThrow(const TVec3f&, f32);
     void hitBackToPlayer();

@@ -9,8 +9,8 @@ class DinoPackunStateDamage : public ActorStateBase< DinoPackun > {
 public:
     DinoPackunStateDamage(DinoPackun*);
 
-    virtual ~DinoPackunStateDamage();
-    virtual void appear();
+    /* 0x08 */ virtual ~DinoPackunStateDamage();
+    /* 0x10 */ virtual void appear();
 
     bool isDamageMessage(u32) const;
     bool receiveOtherMsg(u32, HitSensor*, HitSensor*);

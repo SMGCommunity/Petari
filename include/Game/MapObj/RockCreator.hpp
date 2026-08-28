@@ -9,9 +9,9 @@ class RockCreator : public LiveActor {
 public:
     RockCreator(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void kill();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
 
     void invalidate();
     void initMapToolInfo(const JMapInfoIter& rIter);

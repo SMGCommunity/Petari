@@ -15,7 +15,7 @@ class WaterAreaHolder : public NameObj {
 public:
     WaterAreaHolder();
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     void entryOceanBowl(OceanBowl*);
     void entryOceanRing(OceanRing*);

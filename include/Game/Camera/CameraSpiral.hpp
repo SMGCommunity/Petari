@@ -10,9 +10,9 @@ public:
     };
     CameraSpiral(const char* pName = "螺旋カメラ（デモ用）");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(s32 easeType, s32 endTime, s32 startTime, f32 offYStart, f32 offYEnd, f32 distStart, f32 distEnd, f32 angleStart, f32 angleEnd) {
         mEndTime = endTime;

@@ -6,9 +6,9 @@ class TimerSwitch : public LiveActor {
 public:
     TimerSwitch(const char*);
 
-    virtual ~TimerSwitch();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x08 */ virtual ~TimerSwitch();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     s32 mTimerLength;  // 0x8C
     s32 mCurrentTime;  // 0x90

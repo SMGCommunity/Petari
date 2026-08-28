@@ -5,7 +5,7 @@
 class NokonokoLand : public LiveActor {
 public:
     NokonokoLand(const char*);
-    virtual ~NokonokoLand();
+    /* 0x08 */ virtual ~NokonokoLand();
 
 private:
     u8 mPad[(0xC8) - sizeof(LiveActor)];

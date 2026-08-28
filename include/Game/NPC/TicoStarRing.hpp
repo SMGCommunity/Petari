@@ -8,8 +8,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     TicoStarRing(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void kill();
 
     void initialize(LiveActor*, LiveActor*, const char*);
 

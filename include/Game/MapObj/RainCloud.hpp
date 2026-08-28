@@ -12,13 +12,13 @@ class RainCloud : public LiveActor {
 public:
     RainCloud(const char*);
 
-    virtual ~RainCloud();
-    virtual void init(const JMapInfoIter&);
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~RainCloud();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeAppear();
     void exeWait();

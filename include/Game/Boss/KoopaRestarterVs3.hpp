@@ -7,6 +7,6 @@ public:
     KoopaRestarterVs3(const char* pName);
 
     virtual ~KoopaRestarterVs3();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
 };

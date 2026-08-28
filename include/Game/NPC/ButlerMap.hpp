@@ -10,12 +10,12 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ButlerMap(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void startLectureDemo();
     void resetStatus();

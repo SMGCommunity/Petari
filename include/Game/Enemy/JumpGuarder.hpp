@@ -12,7 +12,7 @@ class JumpEmitter : public LiveActor {
 public:
     JumpEmitter(const char*);
 
-    virtual void kill();
+    /* 0x2C */ virtual void kill();
 
     void initEventCamera(const JMapInfoIter&);
     void startEventCamera();
@@ -37,11 +37,11 @@ class JumpGuarder : public JumpEmitter {
 public:
     JumpGuarder(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     /// @brief Filters out their own babies.
     bool isHit(const LiveActor*) const;

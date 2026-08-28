@@ -11,12 +11,12 @@ class BlackHole : public LiveActor {
 public:
     BlackHole(const char*);
 
-    virtual ~BlackHole();
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorAppeared();
-    virtual void kill();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~BlackHole();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x2C */ virtual void kill();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     bool tryStartDemoCamera();
     void initMapToolInfo(const JMapInfoIter&);

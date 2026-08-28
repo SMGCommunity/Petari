@@ -9,29 +9,29 @@ public:
     DodoryuStateBase(Dodoryu* pHost, const char* pName) : LiveActor(pName), mHost(pHost) {
     }
 
-    virtual void start() {
+    /* 0x78 */ virtual void start() {
     }
 
-    virtual void end() {
+    /* 0x7C */ virtual void end() {
     }
 
-    virtual void catchAttackSensor(HitSensor*, HitSensor*) {
+    /* 0x80 */ virtual void catchAttackSensor(HitSensor*, HitSensor*) {
     }
 
-    virtual void catchHipDrop() {
+    /* 0x84 */ virtual void catchHipDrop() {
     }
 
-    virtual bool catchPlayerAttack(u32, HitSensor*, HitSensor*) {
+    /* 0x88 */ virtual bool catchPlayerAttack(u32, HitSensor*, HitSensor*) {
         return false;
     }
 
-    virtual void catchStartClipped() {
+    /* 0x8C */ virtual void catchStartClipped() {
     }
 
-    virtual void catchEndClipped() {
+    /* 0x90 */ virtual void catchEndClipped() {
     }
 
-    virtual void catchSendPlayerFlying(HitSensor*, HitSensor*) {
+    /* 0x94 */ virtual void catchSendPlayerFlying(HitSensor*, HitSensor*) {
     }
 
     void calcAttackDir(TVec3f*, const TVec3f&, const TVec3f&);

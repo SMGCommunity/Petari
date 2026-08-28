@@ -14,13 +14,13 @@ class GalaxyMapDomeIcon : public LayoutActor {
 public:
     GalaxyMapDomeIcon(int, LayoutActor*, const char*, const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void kill();
+    /* 0x2C */ virtual void control();
 
     void calcAnimForCapture(const nw4r::lyt::DrawInfo&);
     void setModeNormal();

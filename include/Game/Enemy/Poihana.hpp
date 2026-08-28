@@ -11,16 +11,16 @@ class Poihana : public LiveActor {
 public:
     Poihana(const char* pName);
 
-    virtual ~Poihana();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void initAfterPlacement();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x08 */ virtual ~Poihana();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeNonActive();
     void endNonActive();

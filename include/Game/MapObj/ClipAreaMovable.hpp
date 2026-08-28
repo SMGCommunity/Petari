@@ -7,10 +7,10 @@
 
 class ClipAreaMovable : public ClipArea {
     ClipAreaMovable(const char* pName);
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
     void initMoveFunction(const JMapInfoIter& rIter);
     void startMoveFunction();
     void endMoveFunction();

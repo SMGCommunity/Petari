@@ -8,10 +8,10 @@ class PenguinStudent : public NPCActor {
 public:
     PenguinStudent(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     bool branchFunc(u32);
     bool tryReleaseTurtle();

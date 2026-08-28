@@ -6,12 +6,12 @@ class TripodBossFixParts : public TripodBossFixPartsBase {
 public:
     TripodBossFixParts(const char*);
 
-    virtual ~TripodBossFixParts();
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
+    /* 0x08 */ virtual ~TripodBossFixParts();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void kill();
 
-    virtual void activateTripodBoss();
-    virtual void exeWaitOwn();
+    /* 0x7C */ virtual void activateTripodBoss();
+    /* 0x80 */ virtual void exeWaitOwn();
 
     void initSensor(const JMapInfoIter&);
 

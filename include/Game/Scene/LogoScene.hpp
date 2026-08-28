@@ -13,12 +13,12 @@ public:
     LogoScene();
 
     /// @brief Destroys the `LogoScene`.
-    virtual ~LogoScene();
+    /* 0x08 */ virtual ~LogoScene();
 
-    virtual void init();
-    virtual void update();
-    virtual void calcAnim();
-    virtual void draw() const;
+    /* 0x0C */ virtual void init();
+    /* 0x14 */ virtual void update();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x18 */ virtual void draw() const;
 
     bool isDisplayStrapRemineder() const;
     void exeCensorshipFadein();

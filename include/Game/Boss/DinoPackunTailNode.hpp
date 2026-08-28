@@ -13,12 +13,12 @@ class DinoPackunTailNode : public LiveActor {
 public:
     DinoPackunTailNode(const char*, DinoPackun*);
 
-    virtual ~DinoPackunTailNode();
-    virtual const TVec3f* getNodeDirection() const;
-    virtual void requestLockPosition();
-    virtual void requestUnLockPosition();
-    virtual void addNodeVelocity(const TVec3f&);
-    virtual JointController* createJointControllerOwn(LiveActor*, const char*) = 0;
+    /* 0x08 */ virtual ~DinoPackunTailNode();
+    /* 0x78 */ virtual const TVec3f* getNodeDirection() const;
+    /* 0x7C */ virtual void requestLockPosition();
+    /* 0x80 */ virtual void requestUnLockPosition();
+    /* 0x84 */ virtual void addNodeVelocity(const TVec3f&);
+    /* 0x88 */ virtual JointController* createJointControllerOwn(LiveActor*, const char*) = 0;
 
     void createJointController(LiveActor*, const char*);
     void resetJoint();

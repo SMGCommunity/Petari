@@ -8,15 +8,15 @@ class AstroMapObj : public MapObjActor {
 public:
     AstroMapObj(const char*);
 
-    virtual ~AstroMapObj() {};
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~AstroMapObj() {};
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {};
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {};
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {};
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {};
+    /* 0x88 */ virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {};
+    /* 0x84 */ virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {};
+    /* 0x80 */ virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {};
+    /* 0x7C */ virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {};
 
     void exeOpen();
     void exeWait();
@@ -45,9 +45,9 @@ class AstroSimpleObj : public SimpleMapObjFarMax {
 public:
     AstroSimpleObj(const char*);
 
-    virtual ~AstroSimpleObj() {};
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x08 */ virtual ~AstroSimpleObj() {};
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     const JMapInfo* _C4;
     GalaxyNamePlate* _C8;

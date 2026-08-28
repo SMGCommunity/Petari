@@ -9,9 +9,9 @@ public:
     /// @brief Creates a new `GalaxySelectBackButton`.
     GalaxySelectBackButton();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void control();
 
     void disappear();
     void decide();

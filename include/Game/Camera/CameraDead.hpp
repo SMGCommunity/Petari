@@ -11,12 +11,12 @@ public:
 
     CameraDead(const char* pName = "通常死亡カメラ");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isInterpolationOff() const {
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x2C */ virtual bool isInterpolationOff() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(f32 dist, s32 deadTime, s32 cameraType) {
         mDist = dist;

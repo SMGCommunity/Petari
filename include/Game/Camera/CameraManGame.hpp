@@ -15,19 +15,19 @@ class CameraManGame : public CameraMan {
 public:
     CameraManGame(CameraHolder*, CameraParamChunkHolder*, const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
-    virtual void calc();
-    virtual void notifyActivate();
-    virtual void notifyDeactivate(){};
-    virtual bool isInterpolationOff() const;
-    virtual bool isCollisionOff() const;
-    virtual bool isZeroFrameMoveOff() const;
-    virtual bool isSubjectiveCameraOff() const;
-    virtual bool isCorrectingErpPositionOff() const;
-    virtual bool isEnableToReset() const;
-    virtual bool isEnableToRoundLeft() const;
-    virtual bool isEnableToRoundRight() const;
+    /* 0x24 */ virtual void calc();
+    /* 0x28 */ virtual void notifyActivate();
+    /* 0x2C */ virtual void notifyDeactivate(){};
+    /* 0x30 */ virtual bool isInterpolationOff() const;
+    /* 0x34 */ virtual bool isCollisionOff() const;
+    /* 0x38 */ virtual bool isZeroFrameMoveOff() const;
+    /* 0x3C */ virtual bool isSubjectiveCameraOff() const;
+    /* 0x40 */ virtual bool isCorrectingErpPositionOff() const;
+    /* 0x44 */ virtual bool isEnableToReset() const;
+    /* 0x48 */ virtual bool isEnableToRoundLeft() const;
+    /* 0x4C */ virtual bool isEnableToRoundRight() const;
 
     void closeCreatingCameraChunk();
     void startStartPosCamera(bool);

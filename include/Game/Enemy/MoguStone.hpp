@@ -8,15 +8,15 @@ class MoguStone : public ModelObj {
 public:
     MoguStone(const char*, const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
-    virtual void doBehavior();
-    virtual void startBreakSound();
-    virtual void startThrowLevelSound();
+    /* 0x78 */ virtual void doBehavior();
+    /* 0x7C */ virtual void startBreakSound();
+    /* 0x80 */ virtual void startThrowLevelSound();
 
     void exeTaken();
     void exeThrow();
@@ -35,12 +35,12 @@ class ThrowingIce : public MoguStone {
 public:
     ThrowingIce(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual void doBehavior();
-    virtual void startBreakSound();
-    virtual void startThrowLevelSound();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x78 */ virtual void doBehavior();
+    /* 0x7C */ virtual void startBreakSound();
+    /* 0x80 */ virtual void startThrowLevelSound();
 
     void emitIce(const TVec3f&, const TVec3f&, f32, const TVec3f&);
 

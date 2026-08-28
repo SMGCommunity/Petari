@@ -23,7 +23,7 @@ public:
 
     /// @brief Intializes the `RaceManagerLayout` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void playCountAndGo();
     void playGo();
@@ -49,19 +49,19 @@ public:
         initRacer();
     }
 
-    virtual void initRacer() {
+    /* 0x08 */ virtual void initRacer() {
         mRailCoord = 0.0f;
         _8 = 0.0f;
         mCurrPosition.zero();
         mPrevPosition.zero();
     }
-    virtual void prepRacer(const RaceManager* pRaceManager) = 0;
-    virtual void startRacer() = 0;
-    virtual bool updateRacer(const RaceManager* pRaceManager) = 0;
-    virtual bool goalRacer() = 0;
-    virtual void loseRacer() = 0;
-    virtual void resetRacer(const RaceManager* pRaceManager) = 0;
-    virtual void exitRacer() = 0;
+    /* 0x0C */ virtual void prepRacer(const RaceManager* pRaceManager) = 0;
+    /* 0x10 */ virtual void startRacer() = 0;
+    /* 0x14 */ virtual bool updateRacer(const RaceManager* pRaceManager) = 0;
+    /* 0x18 */ virtual bool goalRacer() = 0;
+    /* 0x1C */ virtual void loseRacer() = 0;
+    /* 0x20 */ virtual void resetRacer(const RaceManager* pRaceManager) = 0;
+    /* 0x24 */ virtual void exitRacer() = 0;
 
     static bool compRacer(const AbstractRacer* pRacerA, const AbstractRacer* pRacerB) {
         return pRacerA->mRailCoord > pRacerB->mRailCoord;
@@ -79,8 +79,8 @@ public:
     AbstractAudience() {
     }
 
-    virtual void prepAudience() = 0;
-    virtual void resetAudience() = 0;
+    /* 0x08 */ virtual void prepAudience() = 0;
+    /* 0x0C */ virtual void resetAudience() = 0;
 };
 
 class RaceManager : public LiveActor {
@@ -90,9 +90,9 @@ public:
 
     /// @brief Intializes the `RaceManager` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     void exeWait();
     void exePrep();

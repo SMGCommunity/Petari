@@ -12,79 +12,79 @@ class CameraTargetObj : public NameObj {
 public:
     CameraTargetObj(const char*);
 
-    virtual ~CameraTargetObj(){};
+    /* 0x08 */ virtual ~CameraTargetObj(){};
 
-    virtual void init(const JMapInfoIter&){};
+    /* 0x0C */ virtual void init(const JMapInfoIter&){};
 
-    virtual const TVec3f& getPosition() const = 0;
-    virtual const TVec3f& getUpVec() const = 0;
-    virtual const TVec3f& getFrontVec() const = 0;
-    virtual const TVec3f& getSideVec() const = 0;
-    virtual const TVec3f& getLastMove() const = 0;
-    virtual const TVec3f& getGroundPos() const = 0;
-    virtual const TVec3f& getGravityVector() const = 0;
+    /* 0x24 */ virtual const TVec3f& getPosition() const = 0;
+    /* 0x28 */ virtual const TVec3f& getUpVec() const = 0;
+    /* 0x2C */ virtual const TVec3f& getFrontVec() const = 0;
+    /* 0x30 */ virtual const TVec3f& getSideVec() const = 0;
+    /* 0x34 */ virtual const TVec3f& getLastMove() const = 0;
+    /* 0x38 */ virtual const TVec3f& getGroundPos() const = 0;
+    /* 0x3C */ virtual const TVec3f& getGravityVector() const = 0;
 
     virtual f32 getRadius() const {
         return 150.0f;
     }
-    virtual bool isTurning() const {
+    /* 0x40 */ virtual bool isTurning() const {
         return false;
     }
-    virtual bool isJumping() const {
+    /* 0x44 */ virtual bool isJumping() const {
         return false;
     }
-    virtual bool isLongDrop() const {
+    /* 0x48 */ virtual bool isLongDrop() const {
         return false;
     }
-    virtual bool isFastDrop() const {
+    /* 0x4C */ virtual bool isFastDrop() const {
         return false;
     }
-    virtual bool isFastRise() const {
+    /* 0x50 */ virtual bool isFastRise() const {
         return false;
     }
-    virtual bool isWaterMode() const {
+    /* 0x54 */ virtual bool isWaterMode() const {
         return false;
     }
-    virtual bool isOnWaterSurface() const {
+    /* 0x58 */ virtual bool isOnWaterSurface() const {
         return false;
     }
-    virtual bool isBeeMode() const {
+    /* 0x5C */ virtual bool isBeeMode() const {
         return false;
     }
-    virtual bool isFooFighterMode() const {
+    /* 0x60 */ virtual bool isFooFighterMode() const {
         return false;
     }
     virtual u32 getSpecialMode() const {
         return 0;
     }
-    virtual bool isCameraStateOn(u32) const {
+    /* 0x64 */ virtual bool isCameraStateOn(u32) const {
         return false;
     };
-    virtual CubeCameraArea* getCubeCameraArea() const {
+    /* 0x68 */ virtual CubeCameraArea* getCubeCameraArea() const {
         return nullptr;
     }
-    virtual Triangle* getGroundTriangle() const {
+    /* 0x6C */ virtual Triangle* getGroundTriangle() const {
         return nullptr;
     }
-    virtual GravityInfo* getGravityInfo() const {
+    /* 0x70 */ virtual GravityInfo* getGravityInfo() const {
         return nullptr;
     }
-    virtual void enableCameraWall() {
+    /* 0x74 */ virtual void enableCameraWall() {
         mCameraWall = true;
     }
-    virtual void disableCameraWall() {
+    /* 0x78 */ virtual void disableCameraWall() {
         mCameraWall = false;
     }
-    virtual void setCameraWall(bool enable) {
+    /* 0x7C */ virtual void setCameraWall(bool enable) {
         mCameraWall = enable;
     }
-    virtual bool isDebugMode() const {
+    /* 0x80 */ virtual bool isDebugMode() const {
         return false;
     }
     virtual TPos3f* getMapBaseMtx() const {
         return nullptr;
     }
-    virtual void resetStatus() {
+    /* 0x84 */ virtual void resetStatus() {
     }
 
     /* 0xC */ bool mCameraWall;
@@ -94,21 +94,21 @@ class CameraTargetActor : public CameraTargetObj {
 public:
     CameraTargetActor(const char*);
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
-    virtual const TVec3f& getPosition() const;
-    virtual const TVec3f& getUpVec() const;
-    virtual const TVec3f& getFrontVec() const;
-    virtual const TVec3f& getSideVec() const;
-    virtual const TVec3f& getLastMove() const;
-    virtual const TVec3f& getGroundPos() const;
-    virtual const TVec3f& getGravityVector() const;
+    /* 0x24 */ virtual const TVec3f& getPosition() const;
+    /* 0x28 */ virtual const TVec3f& getUpVec() const;
+    /* 0x2C */ virtual const TVec3f& getFrontVec() const;
+    /* 0x30 */ virtual const TVec3f& getSideVec() const;
+    /* 0x34 */ virtual const TVec3f& getLastMove() const;
+    /* 0x38 */ virtual const TVec3f& getGroundPos() const;
+    /* 0x3C */ virtual const TVec3f& getGravityVector() const;
 
     virtual f32 getRadius() const {
         return 150.0f;
     }
-    virtual CubeCameraArea* getCubeCameraArea() const;
-    virtual Triangle* getGroundTriangle() const;
+    /* 0x68 */ virtual CubeCameraArea* getCubeCameraArea() const;
+    /* 0x6C */ virtual Triangle* getGroundTriangle() const;
 
     /* 0x10 */ const LiveActor* mActor;
     /* 0x14 */ TVec3f mUp;
@@ -121,30 +121,30 @@ class CameraTargetPlayer : public CameraTargetObj {
 public:
     CameraTargetPlayer(const char*);
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
-    virtual const TVec3f& getPosition() const;
-    virtual const TVec3f& getUpVec() const;
-    virtual const TVec3f& getFrontVec() const;
-    virtual const TVec3f& getSideVec() const;
-    virtual const TVec3f& getLastMove() const;
-    virtual const TVec3f& getGroundPos() const;
-    virtual const TVec3f& getGravityVector() const;
+    /* 0x24 */ virtual const TVec3f& getPosition() const;
+    /* 0x28 */ virtual const TVec3f& getUpVec() const;
+    /* 0x2C */ virtual const TVec3f& getFrontVec() const;
+    /* 0x30 */ virtual const TVec3f& getSideVec() const;
+    /* 0x34 */ virtual const TVec3f& getLastMove() const;
+    /* 0x38 */ virtual const TVec3f& getGroundPos() const;
+    /* 0x3C */ virtual const TVec3f& getGravityVector() const;
 
-    virtual bool isTurning() const;
-    virtual bool isJumping() const;
-    virtual bool isLongDrop() const;
-    virtual bool isFastDrop() const;
-    virtual bool isFastRise() const;
-    virtual bool isWaterMode() const;
-    virtual bool isOnWaterSurface() const;
-    virtual bool isFooFighterMode() const;
+    /* 0x40 */ virtual bool isTurning() const;
+    /* 0x44 */ virtual bool isJumping() const;
+    /* 0x48 */ virtual bool isLongDrop() const;
+    /* 0x4C */ virtual bool isFastDrop() const;
+    /* 0x50 */ virtual bool isFastRise() const;
+    /* 0x54 */ virtual bool isWaterMode() const;
+    /* 0x58 */ virtual bool isOnWaterSurface() const;
+    /* 0x60 */ virtual bool isFooFighterMode() const;
     virtual u32 getSpecialMode() const;
-    virtual bool isCameraStateOn(u32) const;
-    virtual CubeCameraArea* getCubeCameraArea() const;
-    virtual Triangle* getGroundTriangle() const;
-    virtual GravityInfo* getGravityInfo() const;
-    virtual bool isDebugMode() const;
+    /* 0x64 */ virtual bool isCameraStateOn(u32) const;
+    /* 0x68 */ virtual CubeCameraArea* getCubeCameraArea() const;
+    /* 0x6C */ virtual Triangle* getGroundTriangle() const;
+    /* 0x70 */ virtual GravityInfo* getGravityInfo() const;
+    /* 0x80 */ virtual bool isDebugMode() const;
     virtual TPos3f* getMapBaseMtx() const;
 
     /* 0x10 */ const MarioActor* mActor;
@@ -163,8 +163,8 @@ class CameraTargetDemoActor : public LiveActor {
 public:
     CameraTargetDemoActor(MtxPtr, const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual MtxPtr getBaseMtx() const {
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const {
         return (const MtxPtr)mMtx.mMtx;
     }
 

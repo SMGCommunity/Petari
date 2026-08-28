@@ -9,10 +9,10 @@ class MirrorCamera : public NameObj {
 public:
     MirrorCamera(const char*);
 
-    virtual ~MirrorCamera();
+    /* 0x08 */ virtual ~MirrorCamera();
 
-    virtual void init(const JMapInfoIter&) override;
-    virtual void movement() override;
+    /* 0x0C */ virtual void init(const JMapInfoIter&) override;
+    /* 0x14 */ virtual void movement() override;
 
     void setMirrorMapInfo(const TVec3f&, const TVec3f&);
     void setMirrorMapInfo(J3DModelData*);

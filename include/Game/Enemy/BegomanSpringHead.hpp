@@ -5,8 +5,8 @@
 class BegomanHead : public PartsModel {
 public:
     BegomanHead(LiveActor*, const char*, const char*, MtxPtr, int, bool);
-    virtual ~BegomanHead();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~BegomanHead();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
 private:
     TVec3f* _9C;
@@ -15,8 +15,8 @@ private:
 class BegomanSpringHead : public BegomanHead {
 public:
     BegomanSpringHead(LiveActor*, MtxPtr);
-    virtual ~BegomanSpringHead();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~BegomanSpringHead();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     bool isSpringHop();
     void getHopEndBckFrameMax();

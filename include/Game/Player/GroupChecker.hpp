@@ -8,8 +8,8 @@ class GroupChecker : public NameObj {
 public:
     GroupChecker(const char*, u32);
 
-    virtual ~GroupChecker();
-    virtual void initAfterPlacement();
+    /* 0x08 */ virtual ~GroupChecker();
+    /* 0x10 */ virtual void initAfterPlacement();
 
     void add(const NameObj*);
 
@@ -20,7 +20,7 @@ class GroupCheckManager : public NameObj {
 public:
     GroupCheckManager(const char*);
 
-    virtual ~GroupCheckManager();
+    /* 0x08 */ virtual ~GroupCheckManager();
 
     void add(const NameObj*, s32);
     bool isExist(const NameObj*, s32);

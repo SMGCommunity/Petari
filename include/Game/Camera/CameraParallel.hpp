@@ -6,12 +6,12 @@ class CameraParallel : public Camera {
 public:
     CameraParallel(const char* pName = "平行カメラ");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
-    virtual bool isEnableToRoundLeft() const;
-    virtual bool isEnableToRoundRight() const;
-    virtual bool isEnableToReset() const;
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
+    /* 0x48 */ virtual bool isEnableToRoundLeft() const;
+    /* 0x4C */ virtual bool isEnableToRoundRight() const;
+    /* 0x50 */ virtual bool isEnableToReset() const;
 
     void calcIdealPose();
     void calcRound();

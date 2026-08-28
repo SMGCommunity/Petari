@@ -14,13 +14,13 @@ class MeteorStrike : public LiveActor {
 public:
     MeteorStrike(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void appear();
-    virtual void kill();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void appear(s32);
     bool getMovedPos(TVec3f*, s32) const;

@@ -6,10 +6,10 @@ class LavaGeyser : public LiveActor {
 public:
     LavaGeyser(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void startClipped();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x40 */ virtual void startClipped();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeWait();
     void exeWaitSwitch();

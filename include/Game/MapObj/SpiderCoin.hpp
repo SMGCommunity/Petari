@@ -9,9 +9,9 @@ class SpiderCoin : public LiveActor {
 public:
     SpiderCoin(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void kill();
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x2C */ virtual void kill();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void exeWait();
     void exeTouch();

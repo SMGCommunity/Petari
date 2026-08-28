@@ -10,26 +10,26 @@ class MapPartsFunction : public NameObj {
 public:
     MapPartsFunction(LiveActor*, const char*);
 
-    virtual void init(const JMapInfoIter&) {
+    /* 0x0C */ virtual void init(const JMapInfoIter&) {
     }
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
-    virtual bool isWorking() const {
+    /* 0x24 */ virtual bool isWorking() const {
         return true;
     }
 
-    virtual void start() {
+    /* 0x28 */ virtual void start() {
     }
 
-    virtual void end() {
+    /* 0x2C */ virtual void end() {
     }
 
-    virtual bool receiveMsg(u32) {
+    /* 0x30 */ virtual bool receiveMsg(u32) {
         return false;
     }
 
-    virtual void control() {
+    /* 0x34 */ virtual void control() {
     }
 
     bool sendMsgToHost(u32);

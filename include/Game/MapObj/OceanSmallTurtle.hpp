@@ -5,7 +5,7 @@
 class OceanSmallTurtle : public LiveActor {
 public:
     OceanSmallTurtle(const char*);
-    virtual ~OceanSmallTurtle();
+    /* 0x08 */ virtual ~OceanSmallTurtle();
 
 private:
     u8 mPad[(0x114) - sizeof(LiveActor)];

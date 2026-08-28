@@ -9,10 +9,10 @@ class ElectricPressureBullet : public LiveActor {
 public:
     ElectricPressureBullet(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
-    virtual void control();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void shotElectricBullet(LiveActor*, const TPos3f&, const f32&);
     void exeFly();

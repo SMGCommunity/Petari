@@ -9,7 +9,7 @@ class LiveActor;
 
 class BaseMatrixFollowValidater {
 public:
-    virtual bool isValid(s32) const = 0;
+    /* 0x08 */ virtual bool isValid(s32) const = 0;
 };
 
 class BaseMatrixFollowTarget {
@@ -31,10 +31,10 @@ class BaseMatrixFollower {
 public:
     BaseMatrixFollower(NameObj*, const JMapInfoIter&);
 
-    virtual void setGravityFollowHost(const NameObj*) {
+    /* 0x08 */ virtual void setGravityFollowHost(const NameObj*) {
     }
 
-    virtual void update();
+    /* 0x0C */ virtual void update();
 
     NameObj* getFollowTargetActor() const;
     void calcFollowMatrix(TPos3f*) const;
@@ -51,10 +51,10 @@ class BaseMatrixFollowTargetHolder : public NameObj {
 public:
     BaseMatrixFollowTargetHolder(const char*, s32, s32);
 
-    virtual ~BaseMatrixFollowTargetHolder();
+    /* 0x08 */ virtual ~BaseMatrixFollowTargetHolder();
 
-    virtual void initAfterPlacement();
-    virtual void movement();
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x14 */ virtual void movement();
 
     MR::Vector< MR::AssignableArray< BaseMatrixFollower* > > mFollowers;    // 0xC
     MR::Vector< MR::AssignableArray< BaseMatrixFollowTarget* > > mTargets;  // 0x18

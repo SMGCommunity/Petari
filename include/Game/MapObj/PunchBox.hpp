@@ -5,7 +5,7 @@
 class PunchBox : public LiveActor {
 public:
     PunchBox(const char*);
-    virtual ~PunchBox();
+    /* 0x08 */ virtual ~PunchBox();
 
 private:
     u8 mPad[(0xA0) - sizeof(LiveActor)];

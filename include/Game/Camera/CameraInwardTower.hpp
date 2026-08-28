@@ -5,14 +5,14 @@
 class CameraInwardTower : public Camera {
 public:
     CameraInwardTower(const char* pName = "塔内部カメラ");
-    virtual ~CameraInwardTower();
+    /* 0x08 */ virtual ~CameraInwardTower();
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isEnableToReset() const {
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x50 */ virtual bool isEnableToReset() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void calcIdealPose();
 

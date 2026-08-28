@@ -6,7 +6,7 @@ class TripodBossAccesser : public NameObj {
 public:
     TripodBossAccesser(const char*);
 
-    virtual ~TripodBossAccesser();
+    /* 0x08 */ virtual ~TripodBossAccesser();
 
     void setTriPodBoss(TripodBoss*);
     void addTripodBossParts(LiveActor*);

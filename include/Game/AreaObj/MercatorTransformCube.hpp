@@ -10,14 +10,14 @@ public:
     inline DivideMercatorRailPosInfo() {
     }
 
-    virtual void setPosition(s32, const TVec3f&) = 0;
+    /* 0x08 */ virtual void setPosition(s32, const TVec3f&) = 0;
 };
 
 class MercatorTransformCube : public AreaObj {
 public:
     MercatorTransformCube(int, const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void convertTransAndRotate(TVec3f*, TPos3f*, const TVec3f&, bool) const;
     f32 getSphereRadius() const;

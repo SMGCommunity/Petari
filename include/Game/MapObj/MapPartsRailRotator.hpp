@@ -7,11 +7,11 @@ class MapPartsRailRotator : public MapPartsFunction {
 public:
     MapPartsRailRotator(LiveActor*);
 
-    virtual ~MapPartsRailRotator();
-    virtual void init(const JMapInfoIter&);
-    virtual bool isWorking() const;
-    virtual void start();
-    virtual void end();
+    /* 0x08 */ virtual ~MapPartsRailRotator();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual bool isWorking() const;
+    /* 0x28 */ virtual void start();
+    /* 0x2C */ virtual void end();
     virtual f32 getJMapArgAngleFactor() const;
 
     bool hasRotation(s32) const;

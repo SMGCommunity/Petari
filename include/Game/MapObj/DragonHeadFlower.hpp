@@ -5,7 +5,7 @@
 class DragonHeadFlower : public LiveActor {
 public:
     DragonHeadFlower(const char*);
-    virtual ~DragonHeadFlower();
+    /* 0x08 */ virtual ~DragonHeadFlower();
 
 private:
     u8 mPad[(0xE0) - sizeof(LiveActor)];

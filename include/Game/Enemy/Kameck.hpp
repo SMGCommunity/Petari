@@ -12,7 +12,7 @@ public:
     SmallKameckBeamEventListener(Kameck* kameck) : mHost(kameck) {
     }
 
-    virtual void hitBeam(s32);
+    /* 0x08 */ virtual void hitBeam(s32);
 
     Kameck* mHost;
 };
@@ -29,17 +29,17 @@ public:
 
     Kameck(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void makeActorDead();
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
-    virtual void startClipped();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void initBeam();
     void initJMapParam(const JMapInfoIter& rIter);

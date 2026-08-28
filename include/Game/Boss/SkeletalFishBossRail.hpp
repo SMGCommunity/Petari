@@ -6,9 +6,9 @@ class SkeletalFishBossRail : public LiveActor {
 public:
     SkeletalFishBossRail(const char*);
 
-    virtual ~SkeletalFishBossRail();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
+    /* 0x08 */ virtual ~SkeletalFishBossRail();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
 
     bool isFillUpPoint(s32) const;
     s32 getFillUpNamePos(s32) const;

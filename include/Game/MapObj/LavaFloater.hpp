@@ -10,14 +10,14 @@ class LavaFloater : public LiveActor {
 public:
     LavaFloater(const char*);
 
-    virtual ~LavaFloater();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
+    /* 0x08 */ virtual ~LavaFloater();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
 
     void getCurrentSinkDepth() const;
 

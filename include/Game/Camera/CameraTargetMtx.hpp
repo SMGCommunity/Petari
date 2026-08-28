@@ -6,19 +6,19 @@
 class CameraTargetMtx : public CameraTargetObj {
 public:
     CameraTargetMtx(const char*);
-    virtual ~CameraTargetMtx();
+    /* 0x08 */ virtual ~CameraTargetMtx();
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
-    virtual const TVec3f& getPosition() const;
-    virtual const TVec3f& getUpVec() const;
-    virtual const TVec3f& getFrontVec() const;
-    virtual const TVec3f& getSideVec() const;
-    virtual const TVec3f& getLastMove() const;
-    virtual const TVec3f& getGroundPos() const;
-    virtual const TVec3f& getGravityVector() const;
+    /* 0x24 */ virtual const TVec3f& getPosition() const;
+    /* 0x28 */ virtual const TVec3f& getUpVec() const;
+    /* 0x2C */ virtual const TVec3f& getFrontVec() const;
+    /* 0x30 */ virtual const TVec3f& getSideVec() const;
+    /* 0x34 */ virtual const TVec3f& getLastMove() const;
+    /* 0x38 */ virtual const TVec3f& getGroundPos() const;
+    /* 0x3C */ virtual const TVec3f& getGravityVector() const;
 
-    virtual CubeCameraArea* getCubeCameraArea() const;
+    /* 0x68 */ virtual CubeCameraArea* getCubeCameraArea() const;
 
     void invalidateLastMove();
 

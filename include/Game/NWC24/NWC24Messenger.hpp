@@ -84,9 +84,9 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     NWC24Messenger(const char* pName);
 
-    virtual void movement();
-    virtual void draw() const;
-    virtual void calcAnim();
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
 
     void initAfterResourceLoaded();
     void send(const char*, const wchar_t*, const wchar_t*, const u8*, u32, bool, bool, u16, u8);

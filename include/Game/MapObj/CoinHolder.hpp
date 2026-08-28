@@ -11,10 +11,10 @@ class CoinHolder : public DeriveActorGroup< Coin > {
 public:
     CoinHolder(const char*);
 
-    virtual ~CoinHolder() {
+    /* 0x08 */ virtual ~CoinHolder() {
     }
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     bool hopCoin(const NameObj*, const TVec3f&, const TVec3f&);
     bool appearCoinFix(const NameObj*, const TVec3f&, s32);

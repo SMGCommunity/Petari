@@ -44,7 +44,7 @@ public:
 
     StageSwitchContainer();
 
-    virtual ~StageSwitchContainer();
+    /* 0x08 */ virtual ~StageSwitchContainer();
 
     void createAndAddZone(const SwitchIdInfo&);
     ZoneSwitch* getZoneSwitch(const SwitchIdInfo&);

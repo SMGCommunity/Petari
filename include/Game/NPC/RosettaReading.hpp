@@ -11,9 +11,9 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     RosettaReading(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void kill();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
 
     static void makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter);
 

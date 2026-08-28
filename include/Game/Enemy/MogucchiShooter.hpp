@@ -6,8 +6,8 @@ class MogucchiShooter : public PartsModel {
 public:
     MogucchiShooter(LiveActor*, const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void panicDeath();
     void explosion();

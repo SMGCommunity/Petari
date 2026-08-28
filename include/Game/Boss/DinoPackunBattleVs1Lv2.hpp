@@ -9,10 +9,10 @@ public:
     DinoPackunBattleVs1Lv2(DinoPackun*);
 
     virtual ~DinoPackunBattleVs1Lv2();
-    virtual void appear();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x10 */ virtual void appear();
+    /* 0x20 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x24 */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x30 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void setMiddleBattle();
     void setLastBattle();

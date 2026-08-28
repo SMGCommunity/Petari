@@ -8,7 +8,7 @@ class MovieSubtitles : public LayoutActor {
 public:
     MovieSubtitles(const char*, s32);
 
-    virtual void appear();
+    /* 0x24 */ virtual void appear();
 
     void exeWait();
     void exeTalk();

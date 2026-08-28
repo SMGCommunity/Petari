@@ -73,9 +73,9 @@ public:
     /// @brief Creates a new `BatteryLayout`.
     BatteryLayout();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void control();
 
 private:
     /* 0x20 */ BatteryInfo* mInfo1P;

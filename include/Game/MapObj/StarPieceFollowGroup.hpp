@@ -9,7 +9,7 @@ class StarPieceFollowGroup : public LiveActor {
 public:
     StarPieceFollowGroup(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     bool beginFollowPieces();
     void placementPiece(s32);

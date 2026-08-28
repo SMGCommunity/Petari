@@ -16,9 +16,9 @@ class ExterminationChecker : public LiveActor {
 public:
     ExterminationChecker(const char*);
 
-    virtual ~ExterminationChecker();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x08 */ virtual ~ExterminationChecker();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     void exeWatching();
     void exeTryStartDemoAppear();

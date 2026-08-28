@@ -8,8 +8,8 @@ class OtaKingMagma : public PartsModel {
 public:
     OtaKingMagma(LiveActor*, s32);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
 
     void appearDemo();
     void attack();

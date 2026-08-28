@@ -14,26 +14,26 @@ public:
     /// @param pModelName A pointer to the null-terminated name of the model.
     BenefitItemObj(const char* pName, const char* pModelName);
 
-    virtual ~BenefitItemObj();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void appear();
-    virtual void makeActorAppeared();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-    virtual void appearGround();
-    virtual void appearThrowUp();
-    virtual void appearThrowUpQuestionBox();
-    virtual void initModelAndEfx();
-    virtual void exeCatch();
-    virtual void runBck(const char*);
-    virtual void runEfx(const char*);
-    virtual void stopEfx(const char*);
-    virtual void doRotateY();
-    virtual void initEscape();
-    virtual void doEscape();
+    /* 0x08 */ virtual ~BenefitItemObj();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x78 */ virtual void appearGround();
+    /* 0x7C */ virtual void appearThrowUp();
+    /* 0x80 */ virtual void appearThrowUpQuestionBox();
+    /* 0x84 */ virtual void initModelAndEfx();
+    /* 0x88 */ virtual void exeCatch();
+    /* 0x8C */ virtual void runBck(const char*);
+    /* 0x90 */ virtual void runEfx(const char*);
+    /* 0x94 */ virtual void stopEfx(const char*);
+    /* 0x98 */ virtual void doRotateY();
+    /* 0x9C */ virtual void initEscape();
+    /* 0xA0 */ virtual void doEscape();
 
     void shoot(const TVec3f&, const TVec3f&, bool);
     void exeShoot();
@@ -99,8 +99,8 @@ public:
 
 class ShadowClipActor : public LiveActor {
 public:
-    virtual void endClipped();
-    virtual void control();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
 
     /* 0x8C */ LiveActor* _8C;
 };

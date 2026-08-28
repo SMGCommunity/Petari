@@ -5,14 +5,14 @@
 class CameraTripodBossJoint : public Camera {
 public:
     CameraTripodBossJoint(const char* pName = "三脚ボス関節カメラ");
-    virtual ~CameraTripodBossJoint();
+    /* 0x08 */ virtual ~CameraTripodBossJoint();
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isEnableToReset() const {
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x50 */ virtual bool isEnableToReset() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(const TVec2f& angle, f32 dist, s32 jointID, const TVec3f& axis) {
         mAngleX = angle.x;

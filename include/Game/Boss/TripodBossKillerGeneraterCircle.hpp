@@ -9,8 +9,8 @@ class TripodBossKillerGeneraterCircle : public NameObj {
 public:
     TripodBossKillerGeneraterCircle(const char*);
 
-    virtual ~TripodBossKillerGeneraterCircle();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~TripodBossKillerGeneraterCircle();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void placementGenerater();
 

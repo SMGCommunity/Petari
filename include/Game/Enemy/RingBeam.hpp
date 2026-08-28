@@ -10,12 +10,12 @@ class RingBeam : public LiveActor {
 public:
     RingBeam(const char*, LiveActor*, bool, bool);
 
-    virtual ~RingBeam() {};
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void kill();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x08 */ virtual ~RingBeam() {};
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void setSpeed(f32 speed);
     void setLife(s32 life);
@@ -43,10 +43,10 @@ class RingBeamShadowDrawer : public ShadowVolumeDrawer {
 public:
     RingBeamShadowDrawer(const LiveActor*);
 
-    virtual ~RingBeamShadowDrawer() {};
-    virtual void loadModelDrawMtx() const;
-    virtual void drawShape() const;
-    virtual bool isDraw() const;
+    /* 0x08 */ virtual ~RingBeamShadowDrawer() {};
+    /* 0x24 */ virtual void loadModelDrawMtx() const;
+    /* 0x28 */ virtual void drawShape() const;
+    /* 0x2C */ virtual bool isDraw() const;
 
     const LiveActor* _1c;
     f32 _20;

@@ -7,7 +7,7 @@ class AnimationRandomPlayer : public NerveExecutor {
 public:
     AnimationRandomPlayer(const LiveActor*, const char*, const char*, s32, f32);
 
-    virtual ~AnimationRandomPlayer();
+    /* 0x08 */ virtual ~AnimationRandomPlayer();
 
     void updateStartStep();
     void exeWait();

@@ -29,8 +29,8 @@ public:
     FootPrint(const char*, s32);
     FootPrint(const char*, s32, s32);
 
-    virtual void movement();
-    virtual void draw() const;
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
 
     void setTexture(ResTIMG*);
     bool addPrint(const TVec3f&, const TVec3f&, const TVec3f&, bool);

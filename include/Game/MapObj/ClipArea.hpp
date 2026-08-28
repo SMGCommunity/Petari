@@ -9,11 +9,11 @@ class ClipArea : public LiveActor {
 public:
     ClipArea(const char*);
 
-    virtual ~ClipArea();
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
-    virtual MtxPtr getBaseMtx() const;
-    virtual bool isInArea(const TVec3f&, f32) const;
+    /* 0x08 */ virtual ~ClipArea();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const;
+    /* 0x78 */ virtual bool isInArea(const TVec3f&, f32) const;
 
     void initBaseMatrix(const JMapInfoIter&);
     void setShape(ClipAreaShape*);

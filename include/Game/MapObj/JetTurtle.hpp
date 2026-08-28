@@ -9,25 +9,25 @@ class JetTurtle : public LiveActor {
 public:
     JetTurtle(const char*);
 
-    virtual ~JetTurtle();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void appear();
-    virtual void control();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgThrow(HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-    virtual void resetPosition();
-    virtual void reset(u32);
+    /* 0x08 */ virtual ~JetTurtle();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x24 */ virtual void appear();
+    /* 0x48 */ virtual void control();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x6C */ virtual bool receiveMsgThrow(HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x78 */ virtual void resetPosition();
+    /* 0x7C */ virtual void reset(u32);
 
     void exeWait();
     void endWait();
     void exeWait2();
     void endWait2();
     void exeThrowWait();
-    virtual void exeThrowing();
+    /* 0x80 */ virtual void exeThrowing();
     void exeTakenReserve();
     void exeTakenStart();
     void exeRestart();
@@ -67,9 +67,9 @@ public:
     GoldenTurtle(const char* pName) : JetTurtle(pName) {
     }
 
-    virtual ~GoldenTurtle();
-    virtual void init(const JMapInfoIter&);
-    virtual void resetPosition();
-    virtual void reset(u32);
-    virtual void exeThrowing();
+    /* 0x08 */ virtual ~GoldenTurtle();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x78 */ virtual void resetPosition();
+    /* 0x7C */ virtual void reset(u32);
+    /* 0x80 */ virtual void exeThrowing();
 };

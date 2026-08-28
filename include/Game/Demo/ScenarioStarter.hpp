@@ -11,9 +11,9 @@ class ScenarioStarter : public LiveActor {
 public:
     ScenarioStarter(const char*);
 
-    virtual ~ScenarioStarter();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x08 */ virtual ~ScenarioStarter();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void initShootPath(const JMapInfoIter&);
     void exeWaitScenarioCameraEnd();

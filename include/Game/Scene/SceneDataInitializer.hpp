@@ -9,7 +9,7 @@ class SceneDataInitializer : public NameObj {
 public:
     SceneDataInitializer();
 
-    virtual ~SceneDataInitializer();
+    /* 0x08 */ virtual ~SceneDataInitializer();
 
     void startStageFileLoad();
     void startStageFileLoadAfterScenarioSelected();

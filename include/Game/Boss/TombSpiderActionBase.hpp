@@ -8,8 +8,8 @@ class TombSpiderActionBase : public ActorStateBase< TombSpider > {
 public:
     TombSpiderActionBase(TombSpider*, const char*);
 
-    virtual void init();
-    virtual void appear();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
 
     bool updateChanceStart();
     bool updateChanceEnd();

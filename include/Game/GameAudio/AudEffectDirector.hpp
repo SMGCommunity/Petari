@@ -6,8 +6,8 @@ class AudEffectDirector : public NameObj {
 public:
     AudEffectDirector();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x14 */ virtual void movement();
 
     void setEffectType(s32, s32);
     void setAudioEffectParam(s32);

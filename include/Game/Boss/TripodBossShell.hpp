@@ -8,12 +8,12 @@ class TripodBossShell : public TripodBossFixPartsBase {
 public:
     TripodBossShell(const char*);
 
-    virtual ~TripodBossShell();
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~TripodBossShell();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void kill();
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
-    virtual void activateTripodBoss();
+    /* 0x7C */ virtual void activateTripodBoss();
 
     void exeNonActive();
     void exeWait();

@@ -8,9 +8,9 @@ class CollectCounter : public LayoutActor {
 public:
     CollectCounter(const char*);
 
-    virtual ~CollectCounter();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x08 */ virtual ~CollectCounter();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void control();
 
     void exeHide();
     void exeShow();

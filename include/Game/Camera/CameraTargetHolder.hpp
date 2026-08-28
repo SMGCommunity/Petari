@@ -11,7 +11,7 @@ class MarioActor;
 class CameraTargetHolder {
 public:
     CameraTargetHolder();
-    virtual ~CameraTargetHolder() {
+    /* 0x08 */ virtual ~CameraTargetHolder() {
     }
 
     void movement();

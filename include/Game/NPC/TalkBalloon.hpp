@@ -11,18 +11,18 @@ class TalkBalloon : public LayoutActor {
 public:
     TalkBalloon(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void kill();
 
-    virtual void open(TalkMessageCtrl*);
-    virtual void close();
-    virtual void updateBalloon();
-    virtual void updateTalking();
-    virtual void pauseOff();
-    virtual bool turnPage();
-    virtual bool hasNextPage();
-    virtual void skipMessage();
-    virtual bool isTextAppearedAll();
+    /* 0x30 */ virtual void open(TalkMessageCtrl*);
+    /* 0x34 */ virtual void close();
+    /* 0x38 */ virtual void updateBalloon();
+    /* 0x3C */ virtual void updateTalking();
+    /* 0x40 */ virtual void pauseOff();
+    /* 0x44 */ virtual bool turnPage();
+    /* 0x48 */ virtual bool hasNextPage();
+    /* 0x4C */ virtual void skipMessage();
+    /* 0x50 */ virtual bool isTextAppearedAll();
 
     void create(const char*, bool, bool);
 
@@ -36,10 +36,10 @@ class TalkBalloonShort : public TalkBalloon {
 public:
     TalkBalloonShort(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void open(TalkMessageCtrl*);
-    virtual void close();
-    virtual void updateBalloon();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x30 */ virtual void open(TalkMessageCtrl*);
+    /* 0x34 */ virtual void close();
+    /* 0x38 */ virtual void updateBalloon();
 
     void initInterval();
     void exeTalk();
@@ -53,12 +53,12 @@ class TalkBalloonEvent : public TalkBalloon {
 public:
     TalkBalloonEvent(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void open(TalkMessageCtrl*);
-    virtual void close();
-    virtual bool turnPage();
-    virtual void skipMessage();
-    virtual bool isTextAppearedAll();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x30 */ virtual void open(TalkMessageCtrl*);
+    /* 0x34 */ virtual void close();
+    /* 0x44 */ virtual bool turnPage();
+    /* 0x4C */ virtual void skipMessage();
+    /* 0x50 */ virtual bool isTextAppearedAll();
 
     void initInterval();
     void exeTalk();
@@ -75,26 +75,26 @@ class TalkBalloonSign : public TalkBalloonEvent {
 public:
     TalkBalloonSign(const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 };
 
 class TalkBalloonInfo : public TalkBalloon {
 public:
     TalkBalloonInfo(const char*);
 
-    virtual void open(TalkMessageCtrl*);
-    virtual void close();
-    virtual void updateBalloon();
-    virtual void updateTalking();
-    virtual bool isTextAppearedAll();
+    /* 0x30 */ virtual void open(TalkMessageCtrl*);
+    /* 0x34 */ virtual void close();
+    /* 0x38 */ virtual void updateBalloon();
+    /* 0x3C */ virtual void updateTalking();
+    /* 0x50 */ virtual bool isTextAppearedAll();
 };
 
 class TalkBalloonIcon : public TalkBalloonShort {
 public:
     TalkBalloonIcon(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void open(TalkMessageCtrl*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x30 */ virtual void open(TalkMessageCtrl*);
 };
 
 class TalkBalloonHolder {

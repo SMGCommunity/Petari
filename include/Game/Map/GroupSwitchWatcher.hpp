@@ -8,8 +8,8 @@ class GroupSwitchWatcher : public LiveActor {
 public:
     GroupSwitchWatcher(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     /* 0x8C */ StageSwitchCtrl* mSwitchCtrl;
     /* 0x90 */ s32 mNumSwitches;

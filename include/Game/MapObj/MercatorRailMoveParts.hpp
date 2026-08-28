@@ -11,12 +11,12 @@ class MercatorRailMoveParts : public LiveActor {
 public:
     MercatorRailMoveParts(const char*);
 
-    virtual ~MercatorRailMoveParts();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~MercatorRailMoveParts();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void startMove();
     void endMove();

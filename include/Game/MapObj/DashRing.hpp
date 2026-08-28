@@ -7,12 +7,12 @@ public:
     DashRing(const char* pName) : LiveActor(pName) {
     }
 
-    virtual ~DashRing();
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~DashRing();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void initCommon(const JMapInfoIter&, const char*);
     void calcAxis();

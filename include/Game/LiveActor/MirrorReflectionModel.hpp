@@ -6,12 +6,12 @@ class MirrorReflectionModel : public LiveActor {
 public:
     MirrorReflectionModel(const LiveActor*, const char*, const char*, MtxPtr);
 
-    virtual ~MirrorReflectionModel();
-    virtual void init(const JMapInfoIter&) override;
-    virtual void movement() override;
-    virtual void calcAnim() override;
-    virtual void calcViewAndEntry() override;
-    virtual void calcAndSetBaseMtx() override;
+    /* 0x08 */ virtual ~MirrorReflectionModel();
+    /* 0x0C */ virtual void init(const JMapInfoIter&) override;
+    /* 0x14 */ virtual void movement() override;
+    /* 0x1C */ virtual void calcAnim() override;
+    /* 0x20 */ virtual void calcViewAndEntry() override;
+    /* 0x4C */ virtual void calcAndSetBaseMtx() override;
 
     const LiveActor* _8C;
     MtxPtr _90;

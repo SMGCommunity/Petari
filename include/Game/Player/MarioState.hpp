@@ -55,19 +55,19 @@ class MarioState : public MarioModule {
 public:
     MarioState(MarioActor*, u32);
 
-    virtual void init();
-    virtual bool proc(u32);
-    virtual bool start();
-    virtual bool close();
-    virtual bool update();
-    virtual bool notice();
-    virtual bool keep();
-    virtual bool postureCtrl(MtxPtr);
-    virtual void hitWall(const TVec3f&, HitSensor*);
-    virtual void hitPoly(u8, const TVec3f&, HitSensor*);
-    virtual bool passRing(const HitSensor*);
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual bool proc(u32);
+    /* 0x14 */ virtual bool start();
+    /* 0x18 */ virtual bool close();
+    /* 0x1C */ virtual bool update();
+    /* 0x20 */ virtual bool notice();
+    /* 0x24 */ virtual bool keep();
+    /* 0x28 */ virtual bool postureCtrl(MtxPtr);
+    /* 0x2C */ virtual void hitWall(const TVec3f&, HitSensor*);
+    /* 0x30 */ virtual void hitPoly(u8, const TVec3f&, HitSensor*);
+    /* 0x34 */ virtual bool passRing(const HitSensor*);
     virtual f32 getBlurOffset() const;
-    virtual void draw3D() const;
+    /* 0x38 */ virtual void draw3D() const;
 
     u32 getNoticedStatus() const;
 

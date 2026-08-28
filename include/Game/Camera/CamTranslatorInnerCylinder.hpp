@@ -7,8 +7,8 @@ public:
     CamTranslatorInnerCylinder(CameraInnerCylinder* pCamera) : mCamera(pCamera) {
     }
 
-    virtual void setParam(const CameraParamChunk*);
-    virtual Camera* getCamera() const;
+    /* 0x08 */ virtual void setParam(const CameraParamChunk*);
+    /* 0x0C */ virtual Camera* getCamera() const;
 
     CameraInnerCylinder* mCamera;  // 0x4
 };

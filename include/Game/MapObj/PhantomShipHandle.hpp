@@ -5,7 +5,7 @@
 class PhantomShipHandle : public LiveActor {
 public:
     PhantomShipHandle(const char*);
-    virtual ~PhantomShipHandle();
+    /* 0x08 */ virtual ~PhantomShipHandle();
 
 private:
     u8 mPad[(0x90) - sizeof(LiveActor)];

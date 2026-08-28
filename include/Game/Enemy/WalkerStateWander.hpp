@@ -21,7 +21,7 @@ class WalkerStateWander : public ActorStateBase< LiveActor > {
 public:
     WalkerStateWander(LiveActor* pHost, TVec3f* pDirection, WalkerStateParam* pStateParam, WalkerStateWanderParam* pWanderParam);
 
-    virtual void appear();
+    /* 0x10 */ virtual void appear();
 
     void setWanderCenter(const TVec3f& rCenter);
     void exeWait();

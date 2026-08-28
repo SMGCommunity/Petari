@@ -7,10 +7,10 @@ class ClippingJudge : public NameObj {
 public:
     ClippingJudge(const char*);
 
-    virtual ~ClippingJudge();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~ClippingJudge();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     bool isJudgedToClipFrustum(const TVec3f&, f32) const;
     bool isJudgedToClipFrustum(const TVec3f&, f32, s32) const;

@@ -9,10 +9,10 @@ class SensorHitChecker : public NameObj {
 public:
     SensorHitChecker(const char*);
 
-    virtual ~SensorHitChecker();
+    /* 0x08 */ virtual ~SensorHitChecker();
 
-    virtual void init(const JMapInfoIter&) override;
-    virtual void movement() override;
+    /* 0x0C */ virtual void init(const JMapInfoIter&) override;
+    /* 0x14 */ virtual void movement() override;
 
     void initGroup(HitSensor*);
     void doObjColGroup(SensorGroup*, SensorGroup*) const;

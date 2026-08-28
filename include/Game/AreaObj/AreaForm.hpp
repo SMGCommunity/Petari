@@ -15,8 +15,8 @@ public:
         Type_Bowl,
     };
 
-    virtual void init(const JMapInfoIter&);
-    virtual bool isInVolume(const TVec3f&) const;
+    /* 0x08 */ virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual bool isInVolume(const TVec3f&) const;
 
     TPos3f* _4;
 };
@@ -25,8 +25,8 @@ class AreaFormCube : public AreaForm {
 public:
     AreaFormCube(int);
 
-    virtual void init(const JMapInfoIter&);
-    virtual bool isInVolume(const TVec3f&) const;
+    /* 0x08 */ virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual bool isInVolume(const TVec3f&) const;
 
     void calcWorldPos(TVec3f*) const;
     void calcWorldRotate(TVec3f*) const;
@@ -48,8 +48,8 @@ class AreaFormSphere : public AreaForm {
 public:
     AreaFormSphere();
 
-    virtual void init(const JMapInfoIter&);
-    virtual bool isInVolume(const TVec3f&) const;
+    /* 0x08 */ virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual bool isInVolume(const TVec3f&) const;
 
     void calcUpVec(TVec3f*) const;
     void calcPos(TVec3f*) const;
@@ -63,8 +63,8 @@ class AreaFormBowl : public AreaForm {
 public:
     AreaFormBowl();
 
-    virtual void init(const JMapInfoIter&);
-    virtual bool isInVolume(const TVec3f&) const;
+    /* 0x08 */ virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual bool isInVolume(const TVec3f&) const;
 
     void calcUpVec(const TVec3f&);
 
@@ -77,8 +77,8 @@ class AreaFormCylinder : public AreaForm {
 public:
     AreaFormCylinder();
 
-    virtual void init(const JMapInfoIter&);
-    virtual bool isInVolume(const TVec3f&) const;
+    /* 0x08 */ virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual bool isInVolume(const TVec3f&) const;
 
     void calcPos(TVec3f*) const;
     void calcCenterPos(TVec3f*) const;

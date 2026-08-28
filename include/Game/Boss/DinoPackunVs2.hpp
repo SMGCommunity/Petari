@@ -12,9 +12,9 @@ public:
     DinoPackunVs2(DinoPackun*);
 
     virtual ~DinoPackunVs2();
-    virtual void start();
-    virtual void init();
-    virtual bool isUseEggShell() const;
+    /* 0x0C */ virtual void start();
+    /* 0x10 */ virtual void init();
+    /* 0x14 */ virtual bool isUseEggShell() const;
     virtual s32 getVsCount() const;
 
     void exeWaitStart();

@@ -10,7 +10,7 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ScreenAlphaCapture(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void createScreenAlpha(s32, f32);
     void captureScreenAlpha(s32);

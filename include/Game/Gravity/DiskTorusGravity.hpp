@@ -6,8 +6,8 @@ class DiskTorusGravity : public PlanetGravity {
 public:
     DiskTorusGravity();
 
-    virtual void updateMtx(const TPos3f& rMtx);
-    virtual bool calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const;
+    /* 0x08 */ virtual void updateMtx(const TPos3f& rMtx);
+    /* 0x0C */ virtual bool calcOwnGravityVector(TVec3f* pDest, f32* pScalar, const TVec3f& rPosition) const;
 
     void setPosition(const TVec3f& rPosition);
     void setDirection(const TVec3f& rDirection);

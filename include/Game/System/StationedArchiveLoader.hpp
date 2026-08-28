@@ -10,9 +10,9 @@ class StationedArchiveLoader {
 public:
     class Condition {
     public:
-        virtual ~Condition();
-        virtual bool isExecute(const MR::StationedFileInfo*) const;
-        virtual JKRHeap* getProperHeap(const MR::StationedFileInfo*) const;
+        /* 0x08 */ virtual ~Condition();
+        /* 0x0C */ virtual bool isExecute(const MR::StationedFileInfo*) const;
+        /* 0x10 */ virtual JKRHeap* getProperHeap(const MR::StationedFileInfo*) const;
     };
 
     static JKRHeap* getProperHeap(const MR::StationedFileInfo*);

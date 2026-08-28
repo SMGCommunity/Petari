@@ -8,15 +8,15 @@ class KameckTurtle : public LiveActor {
 public:
     KameckTurtle(const char*);
 
-    virtual ~KameckTurtle();
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~KameckTurtle();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void initJetTurtle();
     void appearDirection(const TVec3f&);

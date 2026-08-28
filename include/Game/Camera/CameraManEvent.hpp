@@ -36,17 +36,17 @@ public:
     };
 
     CameraManEvent(CameraHolder*, CameraParamChunkHolder*, const char*);
-    virtual ~CameraManEvent();
+    /* 0x08 */ virtual ~CameraManEvent();
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
-    virtual void calc();
-    virtual void notifyActivate();
-    virtual void notifyDeactivate();
-    virtual bool isInterpolationOff() const;
-    virtual bool isCollisionOff() const;
-    virtual bool isZeroFrameMoveOff() const;
-    virtual bool isCorrectingErpPositionOff() const;
+    /* 0x10 */ virtual void calc();
+    /* 0x14 */ virtual void notifyActivate();
+    /* 0x18 */ virtual void notifyDeactivate();
+    /* 0x1C */ virtual bool isInterpolationOff() const;
+    /* 0x20 */ virtual bool isCollisionOff() const;
+    /* 0x24 */ virtual bool isZeroFrameMoveOff() const;
+    /* 0x28 */ virtual bool isCorrectingErpPositionOff() const;
 
     void start(s32, const char*, const CameraTargetArg&, s32);
     void end(s32, const char*, s32);

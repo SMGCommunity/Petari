@@ -7,17 +7,17 @@ class FloaterFloatingForce : public MapPartsFunction {
 public:
     FloaterFloatingForce(LiveActor*, const char*);
 
-    virtual ~FloaterFloatingForce();
-    virtual void init(const JMapInfoIter&);
-    virtual void start();
+    /* 0x08 */ virtual ~FloaterFloatingForce();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void start();
 
-    virtual void updateHostTrans(TVec3f*) const {
+    /* 0x38 */ virtual void updateHostTrans(TVec3f*) const {
     }
 
-    virtual void updateHostVelocity(TVec3f*) const {
+    /* 0x3C */ virtual void updateHostVelocity(TVec3f*) const {
     }
 
-    virtual const TVec3f& getCurrentVelocity() const {
+    /* 0x40 */ virtual const TVec3f& getCurrentVelocity() const {
         return TVec3f(0.0f, 0.0f, 0.0f);
     }
 

@@ -28,10 +28,10 @@ namespace nw4r {
 class TextBoxRecursiveOperation {
 public:
     /// @brief Destroys the `TextBoxRecursiveOperation`.
-    virtual ~TextBoxRecursiveOperation() {
+    /* 0x08 */ virtual ~TextBoxRecursiveOperation() {
     }
 
-    virtual void execute(nw4r::lyt::TextBox* pTextBox) const = 0;
+    /* 0x0C */ virtual void execute(nw4r::lyt::TextBox* pTextBox) const = 0;
 };
 
 class TextBoxRecursiveSetMessage : public TextBoxRecursiveOperation {
@@ -40,7 +40,7 @@ public:
     TextBoxRecursiveSetMessage(const wchar_t* pMessage) : mMessage(pMessage) {
     }
 
-    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
+    /* 0x0C */ virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ const wchar_t* mMessage;
@@ -52,7 +52,7 @@ public:
     TextBoxRecursiveSetArgNumber(s32 arg, s32 param2) : mArg(arg), _8(param2) {
     }
 
-    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
+    /* 0x0C */ virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ s32 mArg;
@@ -65,7 +65,7 @@ public:
     TextBoxRecursiveSetArgString(const wchar_t* pArg, s32 param2) : mArg(pArg), _8(param2) {
     }
 
-    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
+    /* 0x0C */ virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ const wchar_t* mArg;
@@ -78,7 +78,7 @@ public:
     TextBoxRecursiveSetVerticalPosition(u8 position) : mPosition(position) {
     }
 
-    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
+    /* 0x0C */ virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ u8 mPosition;
@@ -90,7 +90,7 @@ public:
     TextBoxRecursiveSetHorizontalPosition(u8 position) : mPosition(position) {
     }
 
-    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
+    /* 0x0C */ virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ u8 mPosition;
@@ -102,7 +102,7 @@ public:
     TextBoxRecursiveSetFont(nw4r::ut::Font* pFont) : mFont(pFont) {
     }
 
-    virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
+    /* 0x0C */ virtual void execute(nw4r::lyt::TextBox* pTextBox) const;
 
 private:
     /* 0x4 */ nw4r::ut::Font* mFont;

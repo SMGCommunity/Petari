@@ -11,13 +11,13 @@ class KoopaShockWave : public LiveActor {
 public:
     KoopaShockWave(Koopa*);
 
-    virtual ~KoopaShockWave();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void makeActorDead();
-    virtual void calcAndSetBaseMtx();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~KoopaShockWave();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeWaveAttack();
 

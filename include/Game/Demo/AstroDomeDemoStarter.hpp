@@ -11,11 +11,11 @@ class AstroDomeDemoStarter : public LiveActor {
 public:
     AstroDomeDemoStarter(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual MtxPtr getBaseMtx() const {
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const {
         return (MtxPtr)_94.mMtx;
     };
-    virtual void calcAndSetBaseMtx();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void startJumpOut();
     void movePlayer();

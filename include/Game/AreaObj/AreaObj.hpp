@@ -11,11 +11,11 @@ class AreaObj : public NameObj {
 public:
     AreaObj(int, const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
-    virtual bool isInVolume(const TVec3f&) const;
+    /* 0x24 */ virtual bool isInVolume(const TVec3f&) const;
 
-    virtual const char* getManagerName() const {
+    /* 0x28 */ virtual const char* getManagerName() const {
         return mName;
     }
 

@@ -8,8 +8,8 @@ class CoinReplica : public NameObj {
 public:
     CoinReplica(const char*);
 
-    virtual ~CoinReplica();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~CoinReplica();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void activeCoin();
     void activeCoinWithGravity();

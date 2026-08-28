@@ -19,10 +19,10 @@ public:
 
     StarPointerBlur(JUTTexture* pTexture);
 
-    virtual ~StarPointerBlur();
+    /* 0x08 */ virtual ~StarPointerBlur();
 
-    virtual void movement();
-    virtual void draw() const;
+    /* 0x0C */ virtual void movement();
+    /* 0x10 */ virtual void draw() const;
 
     void show();
     void hide();

@@ -7,11 +7,11 @@ class TripodBossBaseJointPosition : public LiveActor {
 public:
     TripodBossBaseJointPosition(const char*);
 
-    virtual ~TripodBossBaseJointPosition();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual MtxPtr getBaseMtx() const;
-    virtual void control();
+    /* 0x08 */ virtual ~TripodBossBaseJointPosition();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const;
+    /* 0x48 */ virtual void control();
 
     s32 _8C;
     TPos3f _90;

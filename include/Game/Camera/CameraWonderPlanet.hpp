@@ -5,14 +5,14 @@
 class CameraWonderPlanet : public Camera {
 public:
     CameraWonderPlanet(const char* pName = "ワンダープラネットカメラ");
-    virtual ~CameraWonderPlanet();
+    /* 0x08 */ virtual ~CameraWonderPlanet();
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isEnableToReset() const {
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x50 */ virtual bool isEnableToReset() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void updateCameraReset();
     void rotateCamera();

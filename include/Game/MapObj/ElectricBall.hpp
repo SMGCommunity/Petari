@@ -11,8 +11,8 @@ class ElectricBall : public LiveActor {
 public:
     ElectricBall(const char*);
 
-    virtual ~ElectricBall();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~ElectricBall();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void initBalls(const JMapInfoIter&);
     void startMove();

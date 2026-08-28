@@ -8,9 +8,9 @@ class KoopaStateAttackFireLong : public ActorStateBase< Koopa > {
 public:
     KoopaStateAttackFireLong(Koopa* pKoopa);
 
-    virtual ~KoopaStateAttackFireLong();
-    virtual void init();
-    virtual void appear();
+    /* 0x08 */ virtual ~KoopaStateAttackFireLong();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
 
     void exeStart();
     void exeEmit();

@@ -6,9 +6,9 @@ class ChangeBgmCube : public AreaObj {
 public:
     ChangeBgmCube(int, const char*);
 
-    virtual ~ChangeBgmCube();
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    /* 0x08 */ virtual ~ChangeBgmCube();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
 
     /* 0x3C */ u8 _3C;
 };

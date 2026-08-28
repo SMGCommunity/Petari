@@ -6,10 +6,10 @@ class FallingSmallRock : public LiveActor {
 public:
     FallingSmallRock(const char*);
 
-    virtual ~FallingSmallRock();
-    virtual void init(const JMapInfoIter&);
-    virtual void startClipped();
-    virtual void endClipped();
+    /* 0x08 */ virtual ~FallingSmallRock();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
 
     void exeMove();
     inline void exeWait();

@@ -18,7 +18,7 @@ public:
 
     BigBubbleMoveLimitter(const char*, s32);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     bool limitPosition(TVec3f*, f32) const;
     bool limitVelocity(TVec3f*, const TVec3f&, f32) const;

@@ -9,10 +9,10 @@ public:
     AirBubbleGenerator(const char* pName);
 
     /// @brief Destroys the `AirBubbleGenerator`.
-    virtual ~AirBubbleGenerator();
+    /* 0x08 */ virtual ~AirBubbleGenerator();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     void exeWait();
     void exeGenerate();

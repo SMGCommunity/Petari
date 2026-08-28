@@ -6,5 +6,5 @@ class MessageSensorHolder : public LiveActor {
 public:
     MessageSensorHolder(const char*);
 
-    virtual void init(const JMapInfoIter&) override;
+    /* 0x0C */ virtual void init(const JMapInfoIter&) override;
 };

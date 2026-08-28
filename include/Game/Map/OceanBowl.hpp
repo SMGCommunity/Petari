@@ -11,9 +11,9 @@ class OceanBowl : public LiveActor {
 public:
     OceanBowl(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
-    virtual void draw() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
 
     bool isInWater(const TVec3f& rPos) const;
     bool calcWaterInfo(const TVec3f& rPos, const TVec3f& rGravity, WaterInfo* pInfo) const;

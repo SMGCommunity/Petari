@@ -9,7 +9,7 @@ class BossStinkBugAngryDemo : public BossStinkBugActionBase {
 public:
     BossStinkBugAngryDemo(BossStinkBug* pHost, const JMapInfoIter& rIter);
 
-    virtual void appear();
+    /* 0x10 */ virtual void appear();
 
     void exeDemo();
     void exeTryStart();

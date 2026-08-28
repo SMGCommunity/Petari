@@ -7,7 +7,7 @@ class NameObjArchiveListCollector;
 class MorphItemObjNeo : public NameObj {
 public:
     MorphItemObjNeo(const char*, s32);
-    virtual ~MorphItemObjNeo();
+    /* 0x08 */ virtual ~MorphItemObjNeo();
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
     void exeWait();
     void exeAppear();
@@ -24,42 +24,42 @@ class MorphItemNeoBee : public MorphItemObjNeo {
 public:
     MorphItemNeoBee(const char* pName) : MorphItemObjNeo(pName, 2) {
     }
-    virtual ~MorphItemNeoBee();
+    /* 0x08 */ virtual ~MorphItemNeoBee();
 };
 
 class MorphItemNeoFire : public MorphItemObjNeo {
 public:
     MorphItemNeoFire(const char* pName) : MorphItemObjNeo(pName, 5) {
     }
-    virtual ~MorphItemNeoFire();
+    /* 0x08 */ virtual ~MorphItemNeoFire();
 };
 
 class MorphItemNeoFoo : public MorphItemObjNeo {
 public:
     MorphItemNeoFoo(const char* pName) : MorphItemObjNeo(pName, 6) {
     }
-    virtual ~MorphItemNeoFoo();
+    /* 0x08 */ virtual ~MorphItemNeoFoo();
 };
 
 class MorphItemNeoHopper : public MorphItemObjNeo {
 public:
     MorphItemNeoHopper(const char* pName) : MorphItemObjNeo(pName, 1) {
     }
-    virtual ~MorphItemNeoHopper();
+    /* 0x08 */ virtual ~MorphItemNeoHopper();
 };
 
 class MorphItemNeoIce : public MorphItemObjNeo {
 public:
     MorphItemNeoIce(const char* pName) : MorphItemObjNeo(pName, 4) {
     }
-    virtual ~MorphItemNeoIce();
+    /* 0x08 */ virtual ~MorphItemNeoIce();
 };
 
 class MorphItemNeoTeresa : public MorphItemObjNeo {
 public:
     MorphItemNeoTeresa(const char* pName) : MorphItemObjNeo(pName, 3) {
     }
-    virtual ~MorphItemNeoTeresa();
+    /* 0x08 */ virtual ~MorphItemNeoTeresa();
 };
 
 class EffectObj10x10x10SyncClipping : public SimpleEffectObj {
@@ -70,7 +70,7 @@ public:
     virtual f32 getClippingRadius() const;
     virtual f32 getFarClipDistance() const;
     virtual TVec3f* getClippingCenterOffset() const;
-    virtual bool isSyncClipping() const;
+    /* 0x78 */ virtual bool isSyncClipping() const;
 };
 
 class EffectObj20x20x10SyncClipping : public SimpleEffectObj {
@@ -81,7 +81,7 @@ public:
     virtual f32 getClippingRadius() const;
     virtual f32 getFarClipDistance() const;
     virtual TVec3f* getClippingCenterOffset() const;
-    virtual bool isSyncClipping() const;
+    /* 0x78 */ virtual bool isSyncClipping() const;
 };
 
 class EffectObj50x50x10SyncClipping : public SimpleEffectObj {
@@ -92,7 +92,7 @@ public:
     virtual f32 getClippingRadius() const;
     virtual f32 getFarClipDistance() const;
     virtual TVec3f* getClippingCenterOffset() const;
-    virtual bool isSyncClipping() const;
+    /* 0x78 */ virtual bool isSyncClipping() const;
 };
 
 class EffectObjR1000F50 : public SimpleEffectObj {
@@ -111,7 +111,7 @@ public:
     virtual ~EffectObjR100F50SyncClipping();
     virtual f32 getClippingRadius() const;
     virtual f32 getFarClipDistance() const;
-    virtual bool isSyncClipping() const;
+    /* 0x78 */ virtual bool isSyncClipping() const;
 };
 
 class EffectObjR500F50 : public SimpleEffectObj {

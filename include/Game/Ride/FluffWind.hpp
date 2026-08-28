@@ -8,9 +8,9 @@ class FluffWindEffect : public LiveActor {
 public:
     FluffWindEffect(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void makeActorDead();
-    virtual void startClipped();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x40 */ virtual void startClipped();
 
     void initEffectInfo(const TVec3f&, const TVec3f&, const TVec3f&, const char*, f32);
 
@@ -25,8 +25,8 @@ class FluffWind : public LiveActor {
 public:
     FluffWind(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void makeActorDead();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x30 */ virtual void makeActorDead();
 
     /* 0x8C */ s32 mNumEffects;
     /* 0x90 */ FluffWindEffect** mEffects;

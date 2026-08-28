@@ -11,8 +11,8 @@ class AnmPlayerBase {
 public:
     AnmPlayerBase(const ResTable*);
 
-    virtual void changeAnimation(J3DAnmBase*);
-    virtual void stopAnimation();
+    /* 0x08 */ virtual void changeAnimation(J3DAnmBase*);
+    /* 0x0C */ virtual void stopAnimation();
 
     void update();
     void reflectFrame();
@@ -30,8 +30,8 @@ class MaterialAnmPlayerBase : public AnmPlayerBase {
 public:
     MaterialAnmPlayerBase(const ResTable*, J3DModelData*);
 
-    virtual void attach(J3DAnmBase*, J3DModelData*) = 0;
-    virtual void detach(J3DAnmBase*, J3DModelData*) = 0;
+    /* 0x10 */ virtual void attach(J3DAnmBase*, J3DModelData*) = 0;
+    /* 0x14 */ virtual void detach(J3DAnmBase*, J3DModelData*) = 0;
 
     void beginDiff();
     void endDiff();

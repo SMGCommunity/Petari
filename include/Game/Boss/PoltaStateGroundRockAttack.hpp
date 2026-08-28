@@ -8,8 +8,8 @@ class PoltaStateGroundRockAttack : public ActorStateBase< Polta > {
 public:
     PoltaStateGroundRockAttack(Polta*);
 
-    virtual ~PoltaStateGroundRockAttack();
-    virtual void appear();
+    /* 0x08 */ virtual ~PoltaStateGroundRockAttack();
+    /* 0x10 */ virtual void appear();
 
     void exeSign();
     void exeGenerate();

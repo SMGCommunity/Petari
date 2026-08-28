@@ -6,10 +6,10 @@ class SimpleEffectObj : public LiveActor {
 public:
     SimpleEffectObj(const char*);
 
-    virtual ~SimpleEffectObj() {};
-    virtual void init(const JMapInfoIter&);
-    virtual void startClipped();
-    virtual void endClipped();
+    /* 0x08 */ virtual ~SimpleEffectObj() {};
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
 
     virtual f32 getClippingRadius() const {
         return 500.0f;
@@ -25,12 +25,12 @@ public:
         return &vec;
     };
 
-    virtual bool isSyncClipping() const {
+    /* 0x78 */ virtual bool isSyncClipping() const {
         return false;
     };
 
-    virtual void setStateWait();
-    virtual void setStateMove();
+    /* 0x7C */ virtual void setStateWait();
+    /* 0x80 */ virtual void setStateMove();
 
     bool isStateMove() const;
     void exeWait();

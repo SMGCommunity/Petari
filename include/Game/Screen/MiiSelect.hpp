@@ -28,11 +28,11 @@ public:
 
     /// @brief Intializes the `MiiSelect` while being placed into a scene.
     /// @param[in] rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void control();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void control();
 
     void disappear();
     bool isAppearing() const;

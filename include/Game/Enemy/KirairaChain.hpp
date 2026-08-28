@@ -5,11 +5,11 @@
 class KirairaChain : public LiveActor {
 public:
     KirairaChain(const LiveActor*);
-    virtual ~KirairaChain();
+    /* 0x08 */ virtual ~KirairaChain();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void draw() const;
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x18 */ virtual void draw() const;
+    /* 0x48 */ virtual void control();
 
     /* 0x8C */ s32 _8C;
     /* 0x90 */ bool _90;

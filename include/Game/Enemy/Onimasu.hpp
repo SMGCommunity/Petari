@@ -5,5 +5,5 @@
 class Onimasu : public LiveActor {
 public:
     Onimasu(const char*);
-    virtual ~Onimasu();
+    /* 0x08 */ virtual ~Onimasu();
 };

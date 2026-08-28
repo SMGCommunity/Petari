@@ -13,9 +13,9 @@ public:
 
     SimpleBloomArea(int, const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
-    virtual const char* getManagerName() const {
+    /* 0x28 */ virtual const char* getManagerName() const {
         return "ImageEffectArea";
     }
 

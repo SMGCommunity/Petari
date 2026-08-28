@@ -6,7 +6,7 @@ class ClipFieldSwitch : public LiveActor {
 public:
     ClipFieldSwitch(const char*);
 
-    virtual ~ClipFieldSwitch();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x08 */ virtual ~ClipFieldSwitch();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 };

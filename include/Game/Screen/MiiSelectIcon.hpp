@@ -16,8 +16,8 @@ class MiiSelectIcon : public LayoutActor {
 public:
     MiiSelectIcon(int, int, int, const char*);
 
-    virtual void appear();
-    virtual void control();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void control();
 
     void appear(const FileSelectIconID&);
     void appearMiiDummy();

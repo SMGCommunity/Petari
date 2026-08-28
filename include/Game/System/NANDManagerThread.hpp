@@ -8,7 +8,7 @@ class NANDManagerThread : public OSThreadWrapper {
 public:
     NANDManagerThread(int, int, JKRHeap*);
 
-    virtual void* run();
+    /* 0x0C */ virtual void* run();
 
     void executeWriteSequence(NANDRequestInfo*);
     void executeReadSequence(NANDRequestInfo*);

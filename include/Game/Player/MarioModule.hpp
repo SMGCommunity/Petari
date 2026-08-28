@@ -14,8 +14,8 @@ public:
     }
 
     virtual f32 getStickY() const;
-    virtual void addVelocity(const TVec3f&);
-    virtual void addVelocity(const TVec3f&, f32);
+    /* 0x08 */ virtual void addVelocity(const TVec3f&);
+    /* 0x08 */ virtual void addVelocity(const TVec3f&, f32);
 
     Mario* getPlayer() const;
     MarioAnimator* getAnimator() const;
@@ -110,13 +110,13 @@ public:
 
 class MarioModuleTask {
 public:
-    virtual void init() = 0;
-    virtual void start() = 0;
-    virtual void update() = 0;
-    virtual void calc() = 0;
-    virtual void end() = 0;
-    virtual bool exec() = 0;
-    virtual void draw() const = 0;
+    /* 0x08 */ virtual void init() = 0;
+    /* 0x0C */ virtual void start() = 0;
+    /* 0x10 */ virtual void update() = 0;
+    /* 0x14 */ virtual void calc() = 0;
+    /* 0x18 */ virtual void end() = 0;
+    /* 0x1C */ virtual bool exec() = 0;
+    /* 0x20 */ virtual void draw() const = 0;
 
     void* _4;
     MarioModuleTask* mNext;

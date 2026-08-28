@@ -6,9 +6,9 @@ class SpinDriverOperateRing : public LiveActor {
 public:
     SpinDriverOperateRing(const char*);
 
-    virtual ~SpinDriverOperateRing();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x08 */ virtual ~SpinDriverOperateRing();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     void exeWait();
 

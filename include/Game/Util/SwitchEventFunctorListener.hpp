@@ -10,8 +10,8 @@ class SwitchEventFunctorListener : public SwitchEventListener {
 public:
     SwitchEventFunctorListener();
 
-    virtual void listenSwitchOnEvent();
-    virtual void listenSwitchOffEvent();
+    /* 0x0C */ virtual void listenSwitchOnEvent();
+    /* 0x10 */ virtual void listenSwitchOffEvent();
 
     void setOnFunctor(const MR::FunctorBase&);
     void setOffFunctor(const MR::FunctorBase&);

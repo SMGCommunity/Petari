@@ -8,8 +8,8 @@ class GCaptureRibbon : public LiveActor {
 public:
     GCaptureRibbon(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
 
     void reset();
     void lengthen(const TVec3f&, const TVec3f&);

@@ -15,16 +15,16 @@ class LayoutActor : public NameObj {
 public:
     LayoutActor(const char*, bool);
 
-    virtual ~LayoutActor() {
+    /* 0x08 */ virtual ~LayoutActor() {
     }
 
-    virtual void movement();
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void kill();
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void kill();
 
-    virtual void control() {
+    /* 0x2C */ virtual void control() {
     }
 
     void setNerve(const Nerve*) const;

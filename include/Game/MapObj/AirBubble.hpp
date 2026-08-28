@@ -8,13 +8,13 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     AirBubble(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
-    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void appearMove(const TVec3f&, s32);
     void exeWait();

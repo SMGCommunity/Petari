@@ -13,10 +13,10 @@ public:
     /// @brief Creates a new `CounterLayoutController`.
     CounterLayoutController();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void kill();
+    /* 0x2C */ virtual void control();
 
     void forceAppear();
     void setHPMeter(MarioMeter*);

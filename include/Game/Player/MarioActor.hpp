@@ -68,24 +68,24 @@ class MarioActor : public LiveActor {
 public:
     MarioActor(const char*);
 
-    virtual ~MarioActor();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void movement();
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void calcViewAndEntry();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgTaken(HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-    virtual const TVec3f& getLastMove() const;
-    virtual void getLastMove(TVec3f*) const;
-    virtual void getFrontVec(TVec3f*) const;
+    /* 0x08 */ virtual ~MarioActor();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x20 */ virtual void calcViewAndEntry();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x68 */ virtual bool receiveMsgTaken(HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x78 */ virtual const TVec3f& getLastMove() const;
+    /* 0x7C */ virtual void getLastMove(TVec3f*) const;
+    /* 0x80 */ virtual void getFrontVec(TVec3f*) const;
 
     void init2(const TVec3f&, const TVec3f&, s32);
     void initAfterOpeningDemo();

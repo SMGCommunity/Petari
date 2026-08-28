@@ -5,7 +5,7 @@
 class FallDownBridge : public LiveActor {
 public:
     FallDownBridge(const char*);
-    virtual ~FallDownBridge();
+    /* 0x08 */ virtual ~FallDownBridge();
 
 private:
     u8 mPad[(0xAC) - sizeof(LiveActor)];

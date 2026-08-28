@@ -15,43 +15,43 @@ public:
     CamTranslatorBase() {
     }
 
-    virtual void setParam(const CameraParamChunk*) = 0;
-    virtual Camera* getCamera() const = 0;
+    /* 0x08 */ virtual void setParam(const CameraParamChunk*) = 0;
+    /* 0x0C */ virtual Camera* getCamera() const = 0;
 };
 
 class Camera : public NameObj {
 public:
     Camera(const char*);
 
-    virtual void reset(){};
-    virtual CameraTargetObj* calc() = 0;
-    virtual bool isInterpolationOff() const {
+    /* 0x24 */ virtual void reset(){};
+    /* 0x28 */ virtual CameraTargetObj* calc() = 0;
+    /* 0x2C */ virtual bool isInterpolationOff() const {
         return false;
     }
-    virtual bool isCollisionOff() const {
+    /* 0x30 */ virtual bool isCollisionOff() const {
         return false;
     }
-    virtual bool isZeroFrameMoveOff() const {
+    /* 0x34 */ virtual bool isZeroFrameMoveOff() const {
         return false;
     }
-    virtual bool isSubjectiveCameraOff() const {
+    /* 0x38 */ virtual bool isSubjectiveCameraOff() const {
         return false;
     }
-    virtual bool isCorrectingErpPositionOff() const {
+    /* 0x3C */ virtual bool isCorrectingErpPositionOff() const {
         return false;
     }
-    virtual void roundLeft(){};
-    virtual void roundRight(){};
-    virtual bool isEnableToRoundLeft() const {
+    /* 0x40 */ virtual void roundLeft(){};
+    /* 0x44 */ virtual void roundRight(){};
+    /* 0x48 */ virtual bool isEnableToRoundLeft() const {
         return false;
     }
-    virtual bool isEnableToRoundRight() const {
+    /* 0x4C */ virtual bool isEnableToRoundRight() const {
         return false;
     }
-    virtual bool isEnableToReset() const {
+    /* 0x50 */ virtual bool isEnableToReset() const {
         return false;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setZoneMtx(s32);
     void createVPanObj();
@@ -72,8 +72,8 @@ public:
     CamTranslatorDummy(Camera* pCamera) : mCamera(pCamera) {
     }
 
-    virtual void setParam(const CameraParamChunk*){};
-    virtual Camera* getCamera() const {
+    /* 0x08 */ virtual void setParam(const CameraParamChunk*){};
+    /* 0x0C */ virtual Camera* getCamera() const {
         return mCamera;
     }
 

@@ -6,8 +6,8 @@ class FlashingCtrl : public NameObj {
 public:
     FlashingCtrl(LiveActor*, bool);
 
-    virtual ~FlashingCtrl();
-    virtual void movement();
+    /* 0x08 */ virtual ~FlashingCtrl();
+    /* 0x14 */ virtual void movement();
 
     void start(int);
     void end();

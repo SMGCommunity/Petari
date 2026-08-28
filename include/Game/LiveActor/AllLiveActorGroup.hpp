@@ -6,7 +6,7 @@ class AllLiveActorGroup : public LiveActorGroup {
 public:
     AllLiveActorGroup();
 
-    virtual ~AllLiveActorGroup();
+    /* 0x08 */ virtual ~AllLiveActorGroup();
 
     void initActorSystemInfo(const JMapInfoIter&);
 

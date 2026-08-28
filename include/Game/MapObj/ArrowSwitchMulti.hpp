@@ -11,10 +11,10 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ArrowSwitchMulti(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void registerTarget(ArrowSwitchTarget*);
     bool requestPunch(HitSensor*, HitSensor*);
@@ -36,8 +36,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ArrowSwitchTarget(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
 
     void onTarget();
     void offTarget();

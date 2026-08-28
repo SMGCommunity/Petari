@@ -11,7 +11,7 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     SandUpDownEffectObj(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void startMoveUp();
     void startMoveDown();

@@ -45,9 +45,9 @@ class AudSoundObject : public JAUSoundObject, JKRDisposer {
 public:
     AudSoundObject(TVec3f*, u8, JKRHeap*);
 
-    virtual JAISoundHandle* startSound(JAISoundID);
-    virtual JAISoundHandle* startLevelSound(JAISoundID);
-    virtual ~AudSoundObject();
+    /* 0x08 */ virtual JAISoundHandle* startSound(JAISoundID);
+    /* 0x0C */ virtual JAISoundHandle* startLevelSound(JAISoundID);
+    /* 0x10 */ virtual ~AudSoundObject();
 
     void addToSoundObjHolder();
     void setTrans(TVec3f*);

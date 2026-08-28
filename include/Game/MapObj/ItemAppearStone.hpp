@@ -6,10 +6,10 @@ class ItemAppearStone : public LiveActor {
 public:
     ItemAppearStone(const char*);
 
-    virtual ~ItemAppearStone();
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~ItemAppearStone();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void kill();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void exeWait();
 };

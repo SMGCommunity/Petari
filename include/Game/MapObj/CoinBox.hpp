@@ -6,9 +6,9 @@ class CoinBox : public LiveActor {
 public:
     CoinBox(const char*);
 
-    virtual ~CoinBox();
-    virtual void init(const JMapInfoIter&);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~CoinBox();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeHit();

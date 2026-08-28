@@ -16,11 +16,11 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     WaterPlant(const char* pName);
 
-    virtual ~WaterPlant();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void initAfterPlacement();
-    virtual void movement();
-    virtual void draw() const;
+    /* 0x08 */ virtual ~WaterPlant();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
 
     void initPlant();
     void initPlantAfterPlacement();
@@ -40,9 +40,9 @@ public:
     /// @brief Creates a new `WaterPlantDrawInit`.
     WaterPlantDrawInit();
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
-    virtual void initDraw() const;
+    /* 0x24 */ virtual void initDraw() const;
 
     void loadTex(int);
     void updateSwingPos();

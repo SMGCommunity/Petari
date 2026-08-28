@@ -10,11 +10,11 @@ class PlantStalk : public LiveActor {
 public:
     PlantStalk();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void drawGrowUp() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x78 */ virtual void drawGrowUp() const;
 
     bool updateGrowUp();
     void calcPosAndAxisY(TVec3f*, TVec3f*, f32) const;
@@ -36,7 +36,7 @@ class PlantStalkDrawInit : public NameObj {
 public:
     PlantStalkDrawInit(const char*);
 
-    virtual void initDraw() const;
+    /* 0x24 */ virtual void initDraw() const;
 
     /* 0x0C */ JUTTexture* mTexture;
 };

@@ -13,12 +13,12 @@ class WaterRoad : public LiveActor {
 public:
     WaterRoad(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void movement();
-    virtual void draw() const;
-    virtual void updateHitSensor(HitSensor* pSensor);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x50 */ virtual void updateHitSensor(HitSensor* pSensor);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
     void exeWaitInvalid();

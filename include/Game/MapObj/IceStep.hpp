@@ -6,11 +6,11 @@ class IceStep : public LiveActor {
 public:
     IceStep(const char*);
 
-    virtual ~IceStep();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~IceStep();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeHit();

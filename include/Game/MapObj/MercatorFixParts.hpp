@@ -8,9 +8,9 @@ class MercatorFixParts : public LiveActor {
 public:
     MercatorFixParts(const char*);
 
-    virtual ~MercatorFixParts();
-    virtual void init(const JMapInfoIter&);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~MercatorFixParts();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     MapPartsAppearController* mAppearController;  // 0x8C
 };

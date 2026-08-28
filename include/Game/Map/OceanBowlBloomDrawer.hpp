@@ -8,8 +8,8 @@ class OceanBowlBloomDrawer : public NameObj {
 public:
     OceanBowlBloomDrawer(OceanBowl*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
 
     /* 0x0C */ OceanBowl* mHost;
 };

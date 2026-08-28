@@ -28,14 +28,14 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     Dodoryu(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void initAfterPlacement();
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void snapToGround();
     bool snapToWall();
@@ -112,7 +112,7 @@ public:
     /// @brief Creates a new `DodoryuBank`.
     DodoryuBank();
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void exeAppear();
 
@@ -123,10 +123,10 @@ class DodoryuRabbit : public ModelObj {
 public:
     DodoryuRabbit(Dodoryu* pDodoryu, const JMapInfoIter& rIter);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void reset(bool);
     void updatePos(f32);
@@ -158,9 +158,9 @@ class DodoryuLeadHill : public LiveActor {
 public:
     DodoryuLeadHill(Dodoryu* pHost);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void initJoint();
     bool calcJoint(TPos3f*, const JointControllerInfo&);

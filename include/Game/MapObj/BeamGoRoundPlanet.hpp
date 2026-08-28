@@ -9,12 +9,12 @@ class BeamGoRoundBeam : public LiveActor {
 public:
     BeamGoRoundBeam(MtxPtr);
 
-    virtual ~BeamGoRoundBeam();
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
-    virtual void calcAndSetBaseMtx();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~BeamGoRoundBeam();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     VolumeModelDrawer* mModelDrawer;  // 0x8C
     ModelObj* mBloomModel;            // 0x90
@@ -25,9 +25,9 @@ class BeamGoRoundPlanet : public MapObjActor {
 public:
     BeamGoRoundPlanet(const char*);
 
-    virtual ~BeamGoRoundPlanet();
-    virtual void init(const JMapInfoIter&);
-    virtual void connectToScene(const MapObjActorInitInfo&);
+    /* 0x08 */ virtual ~BeamGoRoundPlanet();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x78 */ virtual void connectToScene(const MapObjActorInitInfo&);
 
     void initBeam();
     void exeWait();

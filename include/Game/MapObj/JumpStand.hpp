@@ -9,11 +9,11 @@ public:
 
     enum JumpType { UNK_0 = 0, UNK_1 = 1, UNK_2 = 2 };
 
-    virtual ~JumpStand();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~JumpStand();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeTrampleBound();

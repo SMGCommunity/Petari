@@ -18,18 +18,18 @@ class DemoSoundKeeper : public DemoSheetKeeperBase, public DemoSheetKeeperInfoHo
 public:
     DemoSoundKeeper(DemoExecutor*);
 
-    virtual const char* getName() {
+    /* 0x08 */ virtual const char* getName() {
         return "サウンド";
     }
 
-    virtual const char* getTypeString() {
+    /* 0x0C */ virtual const char* getTypeString() {
         return "Sound";
     }
 
-    virtual void start();
-    virtual void update();
+    /* 0x10 */ virtual void start();
+    /* 0x14 */ virtual void update();
 
-    virtual void executeType(const DemoSoundInfo*);
+    /* 0x18 */ virtual void executeType(const DemoSoundInfo*);
 
     bool isPermitBgmChange();
 };

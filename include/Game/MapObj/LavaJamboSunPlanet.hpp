@@ -9,10 +9,10 @@ class LavaJamboSunPlanet : public LiveActor {
 public:
     LavaJamboSunPlanet(const char*);
 
-    virtual ~LavaJamboSunPlanet();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void control();
+    /* 0x08 */ virtual ~LavaJamboSunPlanet();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x48 */ virtual void control();
 
     void exeWait();
     void exeMove();

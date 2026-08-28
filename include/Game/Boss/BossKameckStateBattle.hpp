@@ -14,11 +14,11 @@ class BossKameckStateBattle : public ActorStateBase< BossKameck > {
 public:
     BossKameckStateBattle(BossKameck*);
 
-    virtual void init();
-    virtual void appear();
-    virtual void control();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
+    /* 0x1C */ virtual void control();
+    /* 0x20 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x24 */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void setMoveRail(BossKameckMoveRail*);
     void setBattlePattarn(BossKameckBattlePattarn*);

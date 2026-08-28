@@ -13,18 +13,18 @@ public:
 
     BigBubble(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void control();
-    virtual void calcAnim();
-    virtual void draw() const;
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual MtxPtr getBaseMtx() const {
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const {
         return (MtxPtr)&mBaseMtx;
     }
 

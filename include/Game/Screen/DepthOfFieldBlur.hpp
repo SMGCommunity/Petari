@@ -11,7 +11,7 @@ public:
     DepthOfFieldBlur(const char* pName);
 
     /// @brief Draws the `DepthOfFieldBlur` to the screen.
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
     void drawZAlphaTex() const;
     void createBlurTexture() const;

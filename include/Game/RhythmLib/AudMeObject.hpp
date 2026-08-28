@@ -24,8 +24,8 @@ class AudMeObject : public AudMeHandles, public JKRDisposer {
 public:
     AudMeObject(TVec3f*, u8, JKRHeap*);
 
-    virtual ~AudMeObject();
-    virtual void dispose();
+    /* 0x08 */ virtual ~AudMeObject();
+    /* 0x0C */ virtual void dispose();
 
     void startMe(u32);
     AudMeHandle* getLowestPrioHandle(u32);

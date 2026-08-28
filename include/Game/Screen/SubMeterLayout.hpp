@@ -6,8 +6,8 @@ class SubMeterLayout : public LayoutActor {
 public:
     SubMeterLayout(const char*, const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void control();
 
     void setLifeRatio(f32);
     void requestDeactivate();

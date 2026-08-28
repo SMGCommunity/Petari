@@ -5,7 +5,7 @@
 class LavaHomeSeesaw : public LiveActor {
 public:
     LavaHomeSeesaw(const char*);
-    virtual ~LavaHomeSeesaw();
+    /* 0x08 */ virtual ~LavaHomeSeesaw();
 
 private:
     u8 mPad[(0xA4) - sizeof(LiveActor)];

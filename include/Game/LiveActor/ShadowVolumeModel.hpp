@@ -9,7 +9,7 @@ public:
     ShadowVolumeModel(const char*);
 
     inline virtual ~ShadowVolumeModel();
-    virtual void drawShape() const;
+    /* 0x28 */ virtual void drawShape() const;
 
     void initVolumeModel(const char*);
 

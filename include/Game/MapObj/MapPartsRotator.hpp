@@ -9,15 +9,15 @@ public:
     inline MapPartsRotatorBase(LiveActor* pActor, const char* pName) : MapPartsFunction(pActor, pName) {
     }
 
-    virtual ~MapPartsRotatorBase();
+    /* 0x08 */ virtual ~MapPartsRotatorBase();
 
-    virtual const TMtx34f& getRotateMtx() const = 0;
+    /* 0x38 */ virtual const TMtx34f& getRotateMtx() const = 0;
 
-    virtual bool isMoving() const {
+    /* 0x3C */ virtual bool isMoving() const {
         return false;
     }
 
-    virtual bool isOnReverse() const {
+    /* 0x40 */ virtual bool isOnReverse() const {
         return false;
     }
 
@@ -34,16 +34,16 @@ public:
 
     };
 
-    virtual ~MapPartsRotator();
-    virtual void init(const JMapInfoIter&);
-    virtual bool isWorking() const;
-    virtual void start();
-    virtual void end();
-    virtual const TMtx34f& getRotateMtx() const {
+    /* 0x08 */ virtual ~MapPartsRotator();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual bool isWorking() const;
+    /* 0x28 */ virtual void start();
+    /* 0x2C */ virtual void end();
+    /* 0x38 */ virtual const TMtx34f& getRotateMtx() const {
         return _70;
     }
-    virtual bool isMoving() const;
-    virtual bool isOnReverse() const;
+    /* 0x3C */ virtual bool isMoving() const;
+    /* 0x40 */ virtual bool isOnReverse() const;
     virtual f32 getRotateSpeed() const;
 
     void startWithSignalMotion();

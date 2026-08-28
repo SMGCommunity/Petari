@@ -6,7 +6,7 @@ class ShadowVolumeOval : public ShadowVolumeModel {
 public:
     ShadowVolumeOval();
 
-    virtual bool isDraw() const;
+    /* 0x2C */ virtual bool isDraw() const;
 
     void setSize(const TVec3f&);
 

@@ -25,9 +25,9 @@ public:
     /// @brief Creates a new `StageResultInformer`.
     StageResultInformer();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void kill();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void kill();
 
     void exeAppearGetPowerStar();
     void exeWaitBeforeCountUpPowerStar();

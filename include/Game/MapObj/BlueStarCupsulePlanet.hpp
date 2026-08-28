@@ -18,11 +18,11 @@ public:
     GCaptureTargetable() {
     }
 
-    virtual void decidedTarget();
-    virtual void releasedTarget();
-    virtual void getTargetPosition(TVec3f*);
-    virtual bool canEndHold() const;
-    virtual bool isReleaseForce() const;
+    /* 0x08 */ virtual void decidedTarget();
+    /* 0x0C */ virtual void releasedTarget();
+    /* 0x10 */ virtual void getTargetPosition(TVec3f*);
+    /* 0x14 */ virtual bool canEndHold() const;
+    /* 0x18 */ virtual bool isReleaseForce() const;
     virtual f32 releaseDistance() const;
     virtual f32 getPointableRange() const;
 };
@@ -31,12 +31,12 @@ class BlueStarCupsulePlanet : public LiveActor, public GCaptureTargetable {
 public:
     BlueStarCupsulePlanet(const char*);
 
-    virtual ~BlueStarCupsulePlanet();
-    virtual void init(const JMapInfoIter&);
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x1C */ virtual ~BlueStarCupsulePlanet();
+    /* 0x20 */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void startClipped();
+    /* 0x28 */ virtual void endClipped();
+    /* 0x2C */ virtual void control();
+    /* 0x30 */ virtual void calcAndSetBaseMtx();
 
     void updatePose();
     void decidedTarget();

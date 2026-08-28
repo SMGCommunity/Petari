@@ -5,7 +5,7 @@
 class TrickRabbitSnowCollect : public LiveActor {
 public:
     TrickRabbitSnowCollect(const char*);
-    virtual ~TrickRabbitSnowCollect();
+    /* 0x08 */ virtual ~TrickRabbitSnowCollect();
 
 private:
     u8 mPad[(0xDC) - sizeof(LiveActor)];

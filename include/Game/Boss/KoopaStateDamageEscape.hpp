@@ -13,10 +13,10 @@ class KoopaStateDamageEscape : public ActorStateBase< Koopa > {
 public:
     KoopaStateDamageEscape(Koopa* pKoopa);
 
-    virtual ~KoopaStateDamageEscape();
-    virtual void init();
-    virtual void appear();
-    virtual void kill();
+    /* 0x08 */ virtual ~KoopaStateDamageEscape();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
+    /* 0x14 */ virtual void kill();
 
     void startDamageReverse();
     bool isDownEnd() const;

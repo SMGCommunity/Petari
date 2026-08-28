@@ -13,9 +13,9 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     KinopioAstro(const char* pName);
 
-    virtual ~KinopioAstro();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
+    /* 0x08 */ virtual ~KinopioAstro();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 

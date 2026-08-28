@@ -13,14 +13,14 @@ class Trapeze : public LiveActor {
 public:
     Trapeze(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void draw() const;
-    virtual void updateHitSensor(HitSensor* pSensor);
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x18 */ virtual void draw() const;
+    /* 0x50 */ virtual void updateHitSensor(HitSensor* pSensor);
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeStop();
-    virtual void exeFree();
+    /* 0x78 */ virtual void exeFree();
     void exeFreeInvalid();
     void exeSwingWait();
     void exeSwingSlideDownStart();
@@ -68,7 +68,7 @@ class TrapezeRopeDrawInit : public NameObj {
 public:
     TrapezeRopeDrawInit(const char*);
 
-    virtual void initDraw() const;
+    /* 0x24 */ virtual void initDraw() const;
 
     /* 0x0C */ JUTTexture* mTexture;
 };

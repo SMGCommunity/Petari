@@ -5,7 +5,7 @@
 class SwingLight : public MapObjActor {
 public:
     SwingLight(const char*);
-    virtual ~SwingLight();
+    /* 0x08 */ virtual ~SwingLight();
 
 private:
     u8 mPad[(0xC8) - sizeof(MapObjActor)];

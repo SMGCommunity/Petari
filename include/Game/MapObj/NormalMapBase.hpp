@@ -12,15 +12,15 @@ class NormalMapBase : public LiveActor {
 public:
     NormalMapBase(const char*);
 
-    virtual ~NormalMapBase();
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void control();
-    virtual void drawSetting(MtxPtr) const;
-    virtual void drawMaterialSetting(J3DMaterial*) const;
-    virtual void setTevForObject() const;
-    virtual void setTevForObject_Material() const;
-    virtual void setTevForDebug() const;
+    /* 0x08 */ virtual ~NormalMapBase();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x48 */ virtual void control();
+    /* 0x78 */ virtual void drawSetting(MtxPtr) const;
+    /* 0x7C */ virtual void drawMaterialSetting(J3DMaterial*) const;
+    /* 0x80 */ virtual void setTevForObject() const;
+    /* 0x84 */ virtual void setTevForObject_Material() const;
+    /* 0x88 */ virtual void setTevForDebug() const;
 
     void setup(const char*);
     void initNormalMap();

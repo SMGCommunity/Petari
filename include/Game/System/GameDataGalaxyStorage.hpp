@@ -75,7 +75,7 @@ public:
     virtual u32 getSignature() const;
     virtual s32 serialize(u8*, u32) const;
     virtual s32 deserialize(const u8*, u32);
-    virtual void initializeData();
+    /* 0x08 */ virtual void initializeData();
 
     bool isExistAccessor(const char*, int) const;
     GameDataSomeScenarioAccessor makeAccessor(const char*, int) const;

@@ -13,8 +13,8 @@ class ClippingActorHolder : public NameObj {
 public:
     ClippingActorHolder();
 
-    virtual ~ClippingActorHolder();
-    virtual void movement() override;
+    /* 0x08 */ virtual ~ClippingActorHolder();
+    /* 0x14 */ virtual void movement() override;
 
     void registerActor(LiveActor*);
     void initSystemInfo(LiveActor*, const JMapInfoIter&);

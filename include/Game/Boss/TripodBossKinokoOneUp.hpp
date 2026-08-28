@@ -9,10 +9,10 @@ class TripodBossKinokoOneUp : public LiveActor {
 public:
     TripodBossKinokoOneUp(const char*);
 
-    virtual ~TripodBossKinokoOneUp();
-    virtual void init(const JMapInfoIter&);
-    virtual MtxPtr getBaseMtx() const;
-    virtual void control();
+    /* 0x08 */ virtual ~TripodBossKinokoOneUp();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const;
+    /* 0x48 */ virtual void control();
 
     void exeActive();
     void exeEnd();

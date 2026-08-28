@@ -16,9 +16,9 @@ public:
     };
 
     DynamicCollisionObj(const char*);
-    virtual ~DynamicCollisionObj();
+    /* 0x08 */ virtual ~DynamicCollisionObj();
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void syncCollision();
     void updateTriangle();

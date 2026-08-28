@@ -35,7 +35,7 @@ class TalkMessageCtrl : public NameObj {
 public:
     TalkMessageCtrl(LiveActor*, const TVec3f&, MtxPtr);
 
-    virtual ~TalkMessageCtrl();
+    /* 0x08 */ virtual ~TalkMessageCtrl();
 
     void createMessage(const JMapInfoIter&, const char*);
     void createMessageDirect(const JMapInfoIter&, const char*);

@@ -13,13 +13,13 @@ class MultiSceneActor : public NameObj {
 public:
     MultiSceneActor(const char*, const char*, bool);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
-    virtual void calcAnim();
-    virtual void calcViewAndEntry();
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x20 */ virtual void calcViewAndEntry();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void kill();
+    /* 0x2C */ virtual void control();
 
     ModelManager* getModelManager() const;
     EffectSystem* getEffectSystem() const;

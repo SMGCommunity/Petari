@@ -25,14 +25,14 @@ class Coin : public LiveActor {
 public:
     Coin(const char*);
 
-    virtual ~Coin();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void appear();
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~Coin();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void initShadow(const JMapInfoIter&);
     void setShadowAndPoseModeFromJMapIter(const JMapInfoIter&);

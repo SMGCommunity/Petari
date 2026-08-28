@@ -7,9 +7,9 @@ class ShadowSurfaceBox : public ShadowSurfaceDrawer {
 public:
     ShadowSurfaceBox();
 
-    virtual ~ShadowSurfaceBox();
+    /* 0x08 */ virtual ~ShadowSurfaceBox();
 
-    virtual void draw() const override;
+    /* 0x18 */ virtual void draw() const override;
 
     void setSize(const TVec3f&);
 };

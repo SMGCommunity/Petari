@@ -7,7 +7,7 @@ class NameObjGroup : public NameObj {
 public:
     NameObjGroup(const char*, int);
 
-    virtual ~NameObjGroup();
+    /* 0x08 */ virtual ~NameObjGroup();
 
     void registerObj(NameObj*);
     void pauseOffAll() const;

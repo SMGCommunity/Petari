@@ -8,8 +8,8 @@ class BigFan : public LiveActor {
 public:
     BigFan(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     void initWindModel();
     void calcWindInfo(TVec3f*, const TVec3f&);

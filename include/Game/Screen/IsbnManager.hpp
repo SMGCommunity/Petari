@@ -35,7 +35,7 @@ public:
     IsbnManager(MEMAllocator* pAllocator);
 
     /// @brief Destroys the `IsbnManager`.
-    virtual ~IsbnManager();
+    /* 0x08 */ virtual ~IsbnManager();
 
     void setAdjustRate(f32, f32);
     void setNumber(const wchar_t* pIsbnNumber, const wchar_t* pRegistNumber, const wchar_t* pOtherNumber);

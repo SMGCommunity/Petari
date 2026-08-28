@@ -46,7 +46,7 @@ public:
 class BrightObj : public NameObj {
 public:
     BrightObj(const char*);
-    virtual ~BrightObj();
+    /* 0x08 */ virtual ~BrightObj();
 
 private:
     u8 mPad[(0x110) - sizeof(NameObj)];
@@ -55,7 +55,7 @@ private:
 class BrightSun : public NameObj {
 public:
     BrightSun(const char*);
-    virtual ~BrightSun();
+    /* 0x08 */ virtual ~BrightSun();
 
 private:
     u8 mPad[(0x110) - sizeof(NameObj)];

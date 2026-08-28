@@ -10,7 +10,7 @@ class DemoCastGroupHolder : public NameObjGroup {
 public:
     DemoCastGroupHolder();
 
-    virtual ~DemoCastGroupHolder();
+    /* 0x08 */ virtual ~DemoCastGroupHolder();
 
     bool tryRegisterDemoActor(LiveActor*, const JMapInfoIter&, const JMapIdInfo&) const;
     bool tryRegisterDemoActor(LiveActor*, const char*, const JMapInfoIter&) const;

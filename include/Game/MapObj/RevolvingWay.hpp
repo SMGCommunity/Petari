@@ -7,10 +7,10 @@ class RevolvingWay : public LiveActor {
 public:
     RevolvingWay(const char*);
 
-    virtual ~RevolvingWay();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~RevolvingWay();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void exeWait();
     void addAccelMoment();

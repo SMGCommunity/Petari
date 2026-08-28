@@ -9,12 +9,12 @@ public:
 
     /// @brief Intializes the `CenterScreenBlur` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     /// @brief Draws the `CenterScreenBlur` to the screen.
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
-    virtual void appear();
+    /* 0x24 */ virtual void appear();
 
     void start(s32, f32, u8, s32, s32);
     void exeFadeIn();

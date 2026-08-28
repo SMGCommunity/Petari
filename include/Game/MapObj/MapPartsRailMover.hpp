@@ -9,14 +9,14 @@ class MapPartsRailMover : public MapPartsFunction {
 public:
     MapPartsRailMover(LiveActor*);
 
-    virtual ~MapPartsRailMover();
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
-    virtual bool isWorking() const;
-    virtual void start();
-    virtual void end();
-    virtual bool receiveMsg(u32);
-    virtual void control();
+    /* 0x08 */ virtual ~MapPartsRailMover();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
+    /* 0x24 */ virtual bool isWorking() const;
+    /* 0x28 */ virtual void start();
+    /* 0x2C */ virtual void end();
+    /* 0x30 */ virtual bool receiveMsg(u32);
+    /* 0x34 */ virtual void control();
 
     void moveToInitPos();
     void startWithSignalMotion();

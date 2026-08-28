@@ -18,26 +18,26 @@ class TalkState {
 public:
     TalkState();
 
-    virtual void init(TalkMessageCtrl*, TalkBalloon*);
-    virtual bool prep(const TalkMessageCtrl*) {
+    /* 0x08 */ virtual void init(TalkMessageCtrl*, TalkBalloon*);
+    /* 0x0C */ virtual bool prep(const TalkMessageCtrl*) {
         return true;
     }
 
-    virtual bool test() {
+    /* 0x10 */ virtual bool test() {
         return true;
     }
 
-    virtual void open() {
+    /* 0x14 */ virtual void open() {
     }
 
-    virtual bool talk(const TalkMessageCtrl*) {
+    /* 0x18 */ virtual bool talk(const TalkMessageCtrl*) {
         return true;
     }
 
-    virtual void clos() {
+    /* 0x1C */ virtual void clos() {
     }
 
-    virtual bool term(const TalkMessageCtrl*) {
+    /* 0x20 */ virtual bool term(const TalkMessageCtrl*) {
         return true;
     }
 
@@ -56,22 +56,22 @@ class TalkStateShort : public TalkState {
 public:
     TalkStateShort();
 
-    virtual bool prep(const TalkMessageCtrl*);
-    virtual void open();
-    virtual bool talk(const TalkMessageCtrl*);
-    virtual void clos();
+    /* 0x0C */ virtual bool prep(const TalkMessageCtrl*);
+    /* 0x14 */ virtual void open();
+    /* 0x18 */ virtual bool talk(const TalkMessageCtrl*);
+    /* 0x1C */ virtual void clos();
 };
 
 class TalkStateEvent : public TalkState {
 public:
     TalkStateEvent();
 
-    virtual bool prep(const TalkMessageCtrl*);
-    virtual bool test() NO_INLINE;
-    virtual void open();
-    virtual bool talk(const TalkMessageCtrl*);
-    virtual void clos();
-    virtual bool term(const TalkMessageCtrl*);
+    /* 0x0C */ virtual bool prep(const TalkMessageCtrl*);
+    /* 0x10 */ virtual bool test() NO_INLINE;
+    /* 0x14 */ virtual void open();
+    /* 0x18 */ virtual bool talk(const TalkMessageCtrl*);
+    /* 0x1C */ virtual void clos();
+    /* 0x20 */ virtual bool term(const TalkMessageCtrl*);
     virtual u32 getPageCount() const;
 
     s32 _10;
@@ -86,10 +86,10 @@ class TalkStateNormal : public TalkStateEvent {
 public:
     TalkStateNormal();
 
-    virtual bool prep(const TalkMessageCtrl*);
-    virtual bool test();
-    virtual void clos();
-    virtual bool term(const TalkMessageCtrl*);
+    /* 0x0C */ virtual bool prep(const TalkMessageCtrl*);
+    /* 0x10 */ virtual bool test();
+    /* 0x1C */ virtual void clos();
+    /* 0x20 */ virtual bool term(const TalkMessageCtrl*);
     void updateButton();
 
     /* 0x24 */ IconAButton* mAButton;
@@ -99,10 +99,10 @@ class TalkStateCompose : public TalkStateNormal {
 public:
     TalkStateCompose();
 
-    virtual void init(TalkMessageCtrl*, TalkBalloon*);
-    virtual bool prep(const TalkMessageCtrl*);
-    virtual bool test();
-    virtual void open();
+    /* 0x08 */ virtual void init(TalkMessageCtrl*, TalkBalloon*);
+    /* 0x0C */ virtual bool prep(const TalkMessageCtrl*);
+    /* 0x10 */ virtual bool test();
+    /* 0x14 */ virtual void open();
 
     /* 0x28 */ TalkBalloon* mSecondBalloon;
 };

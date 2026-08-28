@@ -5,7 +5,7 @@
 class TimerMoveWall : public MapObjActor {
 public:
     TimerMoveWall(const char*);
-    virtual ~TimerMoveWall();
+    /* 0x08 */ virtual ~TimerMoveWall();
 
 private:
     u8 mPad[(0xCC) - sizeof(MapObjActor)];

@@ -28,7 +28,7 @@ public:
     virtual s32 deserialize(const u8* pBuffer, u32 size);
 
     /// @brief Initializes the member variables of this object.
-    virtual void initializeData();
+    /* 0x08 */ virtual void initializeData();
 
     /// @brief Returns the number of extra lives.
     /// @return The number of extra lives.

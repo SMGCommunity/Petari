@@ -6,9 +6,9 @@ class ShadowVolumeLine : public ShadowVolumeDrawer {
 public:
     ShadowVolumeLine();
 
-    virtual ~ShadowVolumeLine();
-    virtual void loadModelDrawMtx() const;
-    virtual void drawShape() const;
+    /* 0x08 */ virtual ~ShadowVolumeLine();
+    /* 0x24 */ virtual void loadModelDrawMtx() const;
+    /* 0x28 */ virtual void drawShape() const;
 
     void setFromShadowController(const ShadowController*);
     void setToShadowController(const ShadowController*);

@@ -8,8 +8,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     StarPointerGuidance(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x2C */ virtual void control();
 
     void checkRequest2P();
     void checkRequest1P();

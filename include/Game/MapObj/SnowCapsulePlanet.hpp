@@ -6,8 +6,8 @@ class SnowCapsulePlanet : public MapObjActor {
 public:
     SnowCapsulePlanet(const char*);
 
-    virtual ~SnowCapsulePlanet();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~SnowCapsulePlanet();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void exeCloseWait();
     void exeOpenWait();

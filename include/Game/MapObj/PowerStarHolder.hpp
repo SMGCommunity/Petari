@@ -12,8 +12,8 @@ class PowerStarHolder : public NameObj {
 public:
     PowerStarHolder(const char*);
 
-    virtual ~PowerStarHolder();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~PowerStarHolder();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void registerPowerStar(PowerStar*, int);
     void requestAppearPowerStar(int, const TVec3f*, bool);

@@ -11,12 +11,12 @@ class ElectricRail : public LiveActor {
 public:
     ElectricRail(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void draw() const;
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void disappear();
     void initMapToolInfo(const JMapInfoIter&);
@@ -56,9 +56,9 @@ class ElectricRailPoint : public LiveActor {
 public:
     ElectricRailPoint(const char* name = "電撃レール点");
 
-    virtual ~ElectricRailPoint();
-    virtual void init(const JMapInfoIter&);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~ElectricRailPoint();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     u8 _8C;
     u8 _8D;

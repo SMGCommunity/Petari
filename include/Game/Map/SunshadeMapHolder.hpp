@@ -7,7 +7,7 @@ class SunshadeMapHolder : public NameObj {
 public:
     SunshadeMapHolder();
 
-    virtual ~SunshadeMapHolder();
+    /* 0x08 */ virtual ~SunshadeMapHolder();
 
     TVec3f _C;
 };

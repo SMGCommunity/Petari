@@ -8,9 +8,9 @@ class MarioWarp : public MarioState {
 public:
     MarioWarp(MarioActor*);
 
-    virtual bool start();
-    virtual bool update();
-    virtual bool close();
+    /* 0x14 */ virtual bool start();
+    /* 0x1C */ virtual bool update();
+    /* 0x18 */ virtual bool close();
 
     void calcAxis();
     void updateJump();

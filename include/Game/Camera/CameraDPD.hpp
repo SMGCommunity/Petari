@@ -12,9 +12,9 @@ public:
     };
     CameraDPD(const char* pName = "DPD操作カメラ");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(s32 cameraType, f32 dist, f32 angleXRange, f32 angleYRange, f32 angleX, f32 speedBlendRate, f32 blendFriction, bool isVertical,
                   f32 angleYMin) {

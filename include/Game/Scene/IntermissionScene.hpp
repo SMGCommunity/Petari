@@ -6,8 +6,8 @@ class IntermissionScene : public Scene {
 public:
     IntermissionScene();
 
-    virtual void update();
-    virtual void draw() const;
+    /* 0x14 */ virtual void update();
+    /* 0x18 */ virtual void draw() const;
 
     void setCurrentSceneControllerState(const char*, ...);
 

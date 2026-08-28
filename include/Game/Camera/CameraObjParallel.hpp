@@ -6,9 +6,9 @@ class CameraObjParallel : public Camera {
 public:
     CameraObjParallel(const char* pName = "オブジェ並行カメラ");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(f32 dist, f32 angleX, f32 angleY) {
         mDist = dist;

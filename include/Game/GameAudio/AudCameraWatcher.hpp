@@ -6,8 +6,8 @@ class AudCameraWatcher : public NameObj {
 public:
     AudCameraWatcher();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x14 */ virtual void movement();
 
     void playAtmosphereSE();
 

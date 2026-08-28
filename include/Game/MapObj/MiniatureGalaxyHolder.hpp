@@ -9,8 +9,8 @@ class MiniatureGalaxyHolder : public LiveActor {
 public:
     MiniatureGalaxyHolder();
 
-    virtual ~MiniatureGalaxyHolder();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~MiniatureGalaxyHolder();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void registerActor(LiveActor*, const JMapInfoIter&);
     bool isRegisteredActor(const LiveActor*);

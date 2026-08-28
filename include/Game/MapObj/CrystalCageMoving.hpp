@@ -10,13 +10,13 @@ class CrystalCageMoving : public MapObjActor {
 public:
     CrystalCageMoving(const char*);
 
-    virtual ~CrystalCageMoving();
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
-    virtual void control();
-    virtual void updateHitSensor(HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-    virtual void connectToScene(const MapObjActorInitInfo&);
+    /* 0x08 */ virtual ~CrystalCageMoving();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x78 */ virtual void connectToScene(const MapObjActorInitInfo&);
 
     void exeWaitBig();
     void exeBreakBig();

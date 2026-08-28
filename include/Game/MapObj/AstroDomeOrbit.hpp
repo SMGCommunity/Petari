@@ -8,9 +8,9 @@ class AstroDomeOrbit : public LiveActor {
 public:
     AstroDomeOrbit();
 
-    virtual ~AstroDomeOrbit();
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
+    /* 0x08 */ virtual ~AstroDomeOrbit();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
 
     void drawBloom() const;
     void setup(s32);

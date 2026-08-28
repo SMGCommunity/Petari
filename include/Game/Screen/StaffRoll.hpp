@@ -16,8 +16,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     StaffRollLine(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
 
     void exeScroll();
 
@@ -31,7 +31,7 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     StaffRollPicture(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void initReplaceTexture();
     void startPictureAction(s32, const char*, const char*);
@@ -48,12 +48,12 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     StaffRoll(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void movement();
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void kill();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x28 */ virtual void kill();
 
     void startInfo();
     bool isPauseOrEnd() const;

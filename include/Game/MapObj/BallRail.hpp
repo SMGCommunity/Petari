@@ -16,10 +16,10 @@ class BallRail : public LiveActor {
 public:
     BallRail(const char*);
 
-    virtual ~BallRail();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~BallRail();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void initRailPoints();
     void exeWait();

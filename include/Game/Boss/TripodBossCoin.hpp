@@ -10,8 +10,8 @@ class TripodBossCoin : public NameObj {
 public:
     TripodBossCoin(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
 
     void exeNonActive();
     void exeActive();

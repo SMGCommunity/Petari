@@ -8,7 +8,7 @@ public:
     ScenePlayingResult();
 
     /// @brief Destroys the `ScenePlayingResult`.
-    virtual ~ScenePlayingResult();
+    /* 0x08 */ virtual ~ScenePlayingResult();
 
     /// @brief Adds to the number of coins by the given term.
     /// @param num The number of coins to add.

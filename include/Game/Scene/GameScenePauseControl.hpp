@@ -9,7 +9,7 @@ class GameScenePauseControl : public NerveExecutor {
 public:
     GameScenePauseControl(GameScene*);
 
-    virtual ~GameScenePauseControl();
+    /* 0x08 */ virtual ~GameScenePauseControl();
 
     void registerNervePauseMenu(const Nerve*);
     void requestPauseMenuOff();

@@ -9,8 +9,8 @@ class WalkerStateBindStarPointer : public ActorStateBase< LiveActor > {
 public:
     WalkerStateBindStarPointer(LiveActor* pHost, AnimScaleController* pController);
 
-    virtual void appear();
-    virtual void kill();
+    /* 0x10 */ virtual void appear();
+    /* 0x14 */ virtual void kill();
 
     bool tryStartPointBind() const;
     void exeBind();

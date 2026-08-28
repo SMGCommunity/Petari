@@ -6,11 +6,11 @@ class TornadoMario : public LiveActor {
 public:
     TornadoMario(const char* pName);
 
-    virtual ~TornadoMario();
-    virtual void init(const JMapInfoIter& rIter) override;
-    virtual void calcAnim() override;
-    virtual void control() override;
-    virtual void calcAndSetBaseMtx() override;
+    /* 0x08 */ virtual ~TornadoMario();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter) override;
+    /* 0x1C */ virtual void calcAnim() override;
+    /* 0x48 */ virtual void control() override;
+    /* 0x4C */ virtual void calcAndSetBaseMtx() override;
 
     void hideForce();
     void setTrHeight(const TVec3f& rPos, const TVec3f& rFront, const TVec3f& rUp, const TVec3f& rShadowDir);

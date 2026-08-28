@@ -8,7 +8,7 @@ class BossStinkBugOpeningDemo : public BossStinkBugActionBase {
 public:
     BossStinkBugOpeningDemo(BossStinkBug* pStinkBug, const JMapInfoIter& rIter);
 
-    virtual void appear();
+    /* 0x10 */ virtual void appear();
 
     void exeDemo();
     void exeTryStart();

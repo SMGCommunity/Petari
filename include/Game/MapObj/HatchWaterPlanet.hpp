@@ -9,9 +9,9 @@ class HatchWaterPlanet : public LiveActor {
 public:
     HatchWaterPlanet(const char*);
 
-    virtual ~HatchWaterPlanet();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x08 */ virtual ~HatchWaterPlanet();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     void exeWait();
     void exeOpen();

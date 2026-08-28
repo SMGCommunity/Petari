@@ -16,10 +16,10 @@ class TripodBossMovableArea {
 public:
     TripodBossMovableArea();
 
-    virtual bool collideSphere(HitResult*, const TVec3f&, f32, const TVec3f&) const;
-    virtual void calcNearLandingPosition(TVec3f*, const TVec3f&) const;
-    virtual void calcLandingNormal(TVec3f*, const TVec3f&) const;
-    virtual void calcLandingFront(TVec3f*, const TVec3f&) const;
+    /* 0x08 */ virtual bool collideSphere(HitResult*, const TVec3f&, f32, const TVec3f&) const;
+    /* 0x0C */ virtual void calcNearLandingPosition(TVec3f*, const TVec3f&) const;
+    /* 0x10 */ virtual void calcLandingNormal(TVec3f*, const TVec3f&) const;
+    /* 0x14 */ virtual void calcLandingFront(TVec3f*, const TVec3f&) const;
 
     void setCenter(const TVec3f&);
     void setBaseAxis(const TVec3f&);

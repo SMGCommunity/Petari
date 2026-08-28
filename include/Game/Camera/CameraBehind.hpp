@@ -5,11 +5,11 @@
 class CameraBehind : public Camera {
 public:
     CameraBehind(const char* pName = "後方カメラ");
-    virtual ~CameraBehind();
+    /* 0x08 */ virtual ~CameraBehind();
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void calcPosAndUp(f32 accel);
 

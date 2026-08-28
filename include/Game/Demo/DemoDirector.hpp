@@ -16,7 +16,7 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     DemoDirector(const char* pName);
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     void startDemoProgrammable(NameObj*, const char*, bool, s32);
     void startDemoTimeKeep(NameObj*, const char*, s32, bool, const char*);

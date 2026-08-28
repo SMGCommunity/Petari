@@ -8,7 +8,7 @@ class SkeletalFishBossRailHolder : public NameObj {
 public:
     SkeletalFishBossRailHolder(const char*);
 
-    virtual ~SkeletalFishBossRailHolder();
+    /* 0x08 */ virtual ~SkeletalFishBossRailHolder();
 
     void add(SkeletalFishBossRail*);
     SkeletalFishBossRail* getInOrder(s32) const;

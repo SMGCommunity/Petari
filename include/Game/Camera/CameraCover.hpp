@@ -8,9 +8,9 @@ class CameraCover : public NameObj {
 public:
     CameraCover(const char*);
 
-    virtual ~CameraCover();
-    virtual void movement();
-    virtual void draw() const;
+    /* 0x08 */ virtual ~CameraCover();
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
 
     void cover(u32);
     bool isCameraHopping() const;

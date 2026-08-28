@@ -59,10 +59,10 @@ public:
     /// @brief Creates a new `RosettaMonologue`.
     RosettaMonologue();
 
-    virtual void movement();
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void control();
+    /* 0x14 */ virtual void movement();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void control();
 
     /* 0x20 */ s32 mMessageNo;
     /* 0x24 */ TalkTextFormer mTextFormer;

@@ -6,7 +6,7 @@ class PlantPoint {
 public:
     PlantPoint(const TVec3f&, const TVec3f&, f32);
 
-    virtual void setAxisAndPos(const TVec3f&, const TVec3f&, const TVec3f&, const TVec3f&);
+    /* 0x08 */ virtual void setAxisAndPos(const TVec3f&, const TVec3f&, const TVec3f&, const TVec3f&);
 
     /* 0x04 */ TVec3f mPosition;
     /* 0x10 */ TVec3f mSide;

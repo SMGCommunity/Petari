@@ -6,9 +6,9 @@ class TripodBossStepPoint : public LiveActor {
 public:
     TripodBossStepPoint(const char*);
 
-    virtual ~TripodBossStepPoint();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
+    /* 0x08 */ virtual ~TripodBossStepPoint();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
 
     void setStepPosition(const TVec3f&);
     void setStepNormal(const TVec3f&);

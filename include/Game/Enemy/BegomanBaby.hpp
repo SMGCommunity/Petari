@@ -7,24 +7,24 @@ public:
     BegomanBaby(const char*);
     BegomanBaby(NameObj*, const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     virtual u32 getKind() const {
         return 3;
     }
 
-    virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
-    virtual bool setNerveReturn();
-    virtual const Nerve* getNerveWait();
+    /* 0x78 */ virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
+    /* 0x7C */ virtual bool setNerveReturn();
+    /* 0x84 */ virtual const Nerve* getNerveWait();
 
     bool receiveMsgTrample(HitSensor*, HitSensor*);
     void appearFromLaunch(const TVec3f&, const TVec3f&);

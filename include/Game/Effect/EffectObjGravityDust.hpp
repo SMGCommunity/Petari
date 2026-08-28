@@ -8,15 +8,15 @@ class EffectObjGravityDust : public SimpleEffectObj {
 public:
     EffectObjGravityDust(const char*);
 
-    virtual ~EffectObjGravityDust();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void endClipped();
+    /* 0x08 */ virtual ~EffectObjGravityDust();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x44 */ virtual void endClipped();
     virtual f32 getClippingRadius() const;
     virtual f32 getFarClipDistance() const {
         return 50.0f;
     }
     virtual TVec3f* getClippingCenterOffset() const;
-    virtual bool isSyncClipping() const {
+    /* 0x78 */ virtual bool isSyncClipping() const {
         return true;
     }
 

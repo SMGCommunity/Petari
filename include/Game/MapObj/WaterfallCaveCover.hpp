@@ -7,8 +7,8 @@ public:
     WaterfallCaveCover(const char* pName) : MapObjActor(pName) {
     }
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
     void exeBreak();

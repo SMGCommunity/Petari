@@ -16,7 +16,7 @@ namespace {
             mNameObjFunc = in_func;
         }
 
-        virtual void operator()(NameObj* pNameObj) {
+        /* 0x08 */ virtual void operator()(NameObj* pNameObj) {
             (pNameObj->*mNameObjFunc)();
         }
 

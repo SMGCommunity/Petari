@@ -9,10 +9,10 @@ class OceanRingPipeInside : public LiveActor {
 public:
     OceanRingPipeInside(const OceanRingPipe*);
 
-    virtual ~OceanRingPipeInside();
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
-    virtual void draw() const;
+    /* 0x08 */ virtual ~OceanRingPipeInside();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
 
     void initDisplayList();
     void loadMaterial() const;

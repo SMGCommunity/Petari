@@ -9,10 +9,10 @@ class MsgSharedGroup : public LiveActorGroup {
 public:
     MsgSharedGroup(const char*, s32, const JMapInfoIter&);
 
-    virtual ~MsgSharedGroup();
+    /* 0x08 */ virtual ~MsgSharedGroup();
 
-    virtual void init(const JMapInfoIter&) override;
-    virtual void movement() override;
+    /* 0x0C */ virtual void init(const JMapInfoIter&) override;
+    /* 0x14 */ virtual void movement() override;
 
     void sendMsgToGroupMember(u32, HitSensor*, const char*);
 
@@ -27,9 +27,9 @@ class LiveActorGroupArray : public NameObj {
 public:
     LiveActorGroupArray(const char* pName);
 
-    virtual ~LiveActorGroupArray();
+    /* 0x08 */ virtual ~LiveActorGroupArray();
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     LiveActorGroup* getLiveActorGroup(const LiveActor*) const;
     MsgSharedGroup* createGroup(const JMapInfoIter&, const char*, s32);

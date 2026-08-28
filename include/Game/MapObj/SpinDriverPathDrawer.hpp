@@ -8,7 +8,7 @@ class SpinDriverPathDrawInit : public NameObj {
 public:
     SpinDriverPathDrawInit();
 
-    virtual ~SpinDriverPathDrawInit();
+    /* 0x08 */ virtual ~SpinDriverPathDrawInit();
 
     void initDraw();
 
@@ -23,9 +23,9 @@ class SpinDriverPathDrawer : public LiveActor {
 public:
     SpinDriverPathDrawer(SpinDriverShootPath*);
 
-    virtual ~SpinDriverPathDrawer();
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
+    /* 0x08 */ virtual ~SpinDriverPathDrawer();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
 
     s32 calcPositionCount(f32, f32) const;
     void initPositionList(f32, f32);

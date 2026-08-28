@@ -8,19 +8,19 @@ class ShadowVolumeDrawInit : public NameObj {
 public:
     ShadowVolumeDrawInit();
 
-    virtual ~ShadowVolumeDrawInit();
+    /* 0x08 */ virtual ~ShadowVolumeDrawInit();
 };
 
 class ShadowVolumeDrawer : public ShadowDrawer {
 public:
     ShadowVolumeDrawer(const char*);
 
-    virtual ~ShadowVolumeDrawer();
+    /* 0x08 */ virtual ~ShadowVolumeDrawer();
 
-    virtual void draw() const override;
-    virtual void loadModelDrawMtx() const override;
-    virtual void drawShape() const override;
-    virtual bool isDraw() const;
+    /* 0x18 */ virtual void draw() const override;
+    /* 0x24 */ virtual void loadModelDrawMtx() const override;
+    /* 0x28 */ virtual void drawShape() const override;
+    /* 0x2C */ virtual bool isDraw() const;
 
     void setStartDrawShepeOffset(f32);
     void setEndDrawShepeOffset(f32);

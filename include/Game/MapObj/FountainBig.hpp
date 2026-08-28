@@ -6,10 +6,10 @@ class FountainBig : public LiveActor {
 public:
     FountainBig(const char*);
 
-    virtual ~FountainBig();
-    virtual void init(const JMapInfoIter&);
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~FountainBig();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeWait();
     void exeSign();

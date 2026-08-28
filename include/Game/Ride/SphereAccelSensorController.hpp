@@ -8,11 +8,11 @@ public:
 
     virtual f32 calcJumpPower() const;
     virtual f32 calcMoveVector(TVec3f*, const TVec3f&);
-    virtual bool doBrake() const;
-    virtual void update(const TVec3f&);
-    virtual void notifyActivate();
-    virtual void notifyDeactivate();
-    virtual void clacXY(f32*, f32*);
+    /* 0x08 */ virtual bool doBrake() const;
+    /* 0x0C */ virtual void update(const TVec3f&);
+    /* 0x10 */ virtual void notifyActivate();
+    /* 0x14 */ virtual void notifyDeactivate();
+    /* 0x18 */ virtual void clacXY(f32*, f32*);
     // void drawDebug(); // DEBUG
     // virtual void genMessage(JORMContext*); // DEBUG
 

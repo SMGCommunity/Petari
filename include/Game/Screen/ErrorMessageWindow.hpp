@@ -18,8 +18,8 @@ public:
     /// @brief Creates a new `ErrorMessageWindow`.
     ErrorMessageWindow();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
 
     bool isAnimEnd() const;
     void appearWithMessage(const char*, MessageType, const nw4r::lyt::TexMap*);

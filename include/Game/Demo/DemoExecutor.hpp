@@ -18,12 +18,12 @@ class TalkMessageCtrl;
 
 class DemoSheetKeeperBase {
 public:
-    virtual const char* getName() = 0;
-    virtual const char* getTypeString() = 0;
-    virtual void initCast(LiveActor*, const JMapInfoIter&) {};
-    virtual void start() {};
-    virtual void end() {};
-    virtual void update() {};
+    /* 0x08 */ virtual const char* getName() = 0;
+    /* 0x0C */ virtual const char* getTypeString() = 0;
+    /* 0x10 */ virtual void initCast(LiveActor*, const JMapInfoIter&) {};
+    /* 0x14 */ virtual void start() {};
+    /* 0x18 */ virtual void end() {};
+    /* 0x1C */ virtual void update() {};
 
     /* 0x04 */ DemoExecutor* mExecutor;
 };
@@ -31,7 +31,7 @@ public:
 template < class T >
 class DemoSheetKeeperInfoHolder {
 public:
-    virtual void executeType(T*);
+    /* 0x08 */ virtual void executeType(T*);
 
     /* 0x00 */ MR::Vector< MR::AssignableArray< T > > mInfo;
 };
@@ -46,10 +46,10 @@ public:
     /// @brief Creates a new `DemoExecutor`
     DemoExecutor(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x14 */ virtual void movement();
 
-    virtual void registerDemoActor(LiveActor*, const JMapInfoIter&);
+    /* 0x28 */ virtual void registerDemoActor(LiveActor*, const JMapInfoIter&);
 
     void start(NameObj*, const char*, s32);
     void startPart(NameObj*, const char*, const char*, s32);

@@ -18,11 +18,11 @@ public:
 
     MarioLauncher(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
     void exeReady();
@@ -66,8 +66,8 @@ public:
     MarioLauncherLayout() : LayoutActor("移動用砲台用レイアウト", true), mLayout() {
     }
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void kill();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x28 */ virtual void kill();
 
     void appearAt(const TVec2f& pos) {
         mLayout->appear();
@@ -90,10 +90,10 @@ public:
         mReboundDir.zero();
     }
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual MtxPtr getBaseMtx() const;
-    virtual void calcAndSetBaseMtx();
-    virtual void calcBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const;
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x78 */ virtual void calcBaseMtx();
 
     TVec3f& getPosition() {
         return mPosition;

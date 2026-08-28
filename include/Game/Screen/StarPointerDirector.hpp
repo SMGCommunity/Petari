@@ -12,7 +12,7 @@ class StarPointerPeekZ : public DrawSyncCallback {
 public:
     StarPointerPeekZ();
 
-    virtual void drawSyncCallback(u16);
+    /* 0x08 */ virtual void drawSyncCallback(u16);
 
     void setDrawSyncToken();
 

@@ -5,20 +5,20 @@
 class CameraTowerBase : public Camera {
 public:
     CameraTowerBase(const char*);
-    virtual ~CameraTowerBase();
+    /* 0x08 */ virtual ~CameraTowerBase();
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
 
-    virtual void resetBegin() {
+    /* 0x58 */ virtual void resetBegin() {
     }
-    virtual void resetPreVPan() {
+    /* 0x5C */ virtual void resetPreVPan() {
     }
-    virtual void resetPostVPan() {
+    /* 0x60 */ virtual void resetPostVPan() {
     }
-    virtual void arrangePreVPan() {
+    /* 0x64 */ virtual void arrangePreVPan() {
     }
-    virtual void arrangePostVPan() {
+    /* 0x68 */ virtual void arrangePostVPan() {
     }
 
     void calcIdealPoseOfTowerBase();

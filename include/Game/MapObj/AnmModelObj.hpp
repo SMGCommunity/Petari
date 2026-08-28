@@ -10,30 +10,30 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     AnmModelObj(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control() {
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control() {
     }
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {
+    /* 0x7C */ virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {
     }
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
+    /* 0x80 */ virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
     }
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {
+    /* 0x84 */ virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {
     }
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+    /* 0x88 */ virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
     }
-    virtual bool isOnStartAnmTrigger() const = 0;
-    virtual bool isDone() const;
-    virtual bool isKilledAtMoveDone() const {
+    /* 0x90 */ virtual bool isOnStartAnmTrigger() const = 0;
+    /* 0x94 */ virtual bool isDone() const;
+    /* 0x98 */ virtual bool isKilledAtMoveDone() const {
         return false;
     }
-    virtual bool isRepeat() const {
+    /* 0x9C */ virtual bool isRepeat() const {
         return false;
     }
-    virtual void startInner() {
+    /* 0xA0 */ virtual void startInner() {
     }
-    virtual void moveInner() {
+    /* 0xA4 */ virtual void moveInner() {
     }
-    virtual void stopInner() {
+    /* 0xA8 */ virtual void stopInner() {
     }
 
     void exeWait();
@@ -49,8 +49,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     AnmModelSwitchMove(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual bool isOnStartAnmTrigger() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x90 */ virtual bool isOnStartAnmTrigger() const;
 };
 
 class AnmModelSwitchMoveEndKill : public AnmModelSwitchMove {
@@ -60,7 +60,7 @@ public:
     AnmModelSwitchMoveEndKill(const char* pName) : AnmModelSwitchMove(pName) {
     }
 
-    virtual bool isKilledAtMoveDone() const;
+    /* 0x98 */ virtual bool isKilledAtMoveDone() const;
 };
 
 class AnmModelGroundOnMove : public AnmModelObj {
@@ -69,10 +69,10 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     AnmModelGroundOnMove(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual bool isOnStartAnmTrigger() const;
-    virtual bool isKilledAtMoveDone() const {
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x90 */ virtual bool isOnStartAnmTrigger() const;
+    /* 0x98 */ virtual bool isKilledAtMoveDone() const {
         return true;
     }
 };
@@ -83,14 +83,14 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     AnmModelBindMove(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-    virtual bool isOnStartAnmTrigger() const;
-    virtual bool isKilledAtMoveDone() const {
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x90 */ virtual bool isOnStartAnmTrigger() const;
+    /* 0x98 */ virtual bool isKilledAtMoveDone() const {
         return false;
     }
-    virtual bool isRepeat() const {
+    /* 0x9C */ virtual bool isRepeat() const {
         return true;
     }
 };
@@ -101,10 +101,10 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     AnmModelSwitchMoveEventCamera(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual bool isDone() const;
-    virtual void startInner();
-    virtual void stopInner();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x94 */ virtual bool isDone() const;
+    /* 0xA0 */ virtual void startInner();
+    /* 0xA8 */ virtual void stopInner();
 
     /* 0xD0 */ ActorCameraInfo* mCameraInfo;
 };

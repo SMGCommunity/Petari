@@ -6,14 +6,14 @@ class ItemBlock : public LiveActor {
 public:
     ItemBlock(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void kill();
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void checkKind(const JMapInfoIter&);
     void initBlock();

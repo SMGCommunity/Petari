@@ -13,21 +13,21 @@ class KameckBeamHolder : public DeriveActorGroup< KameckBeam > {
 public:
     KameckBeamHolder();
 
-    virtual ~KameckBeamHolder();
+    /* 0x08 */ virtual ~KameckBeamHolder();
 };
 
 class KameckFireBallHolder : public DeriveActorGroup< KameckFireBall > {
 public:
     KameckFireBallHolder();
 
-    virtual ~KameckFireBallHolder();
+    /* 0x08 */ virtual ~KameckFireBallHolder();
 };
 
 class KameckBeamTurtleHolder : public DeriveActorGroup< KameckTurtle > {
 public:
     KameckBeamTurtleHolder();
 
-    virtual ~KameckBeamTurtleHolder();
+    /* 0x08 */ virtual ~KameckBeamTurtleHolder();
 };
 
 namespace MR {

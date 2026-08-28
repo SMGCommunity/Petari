@@ -12,9 +12,9 @@ class KoopaBattleMain : public KoopaBattleBase {
 public:
     KoopaBattleMain(const char* pName, Koopa* pKoopa);
 
-    virtual ~KoopaBattleMain();
-    virtual void init();
-    virtual void appear();
+    /* 0x08 */ virtual ~KoopaBattleMain();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
 
     void exeChasePlayer();
     void exeWander();

@@ -5,7 +5,7 @@
 class SeesawMoveNut : public MapObjActor {
 public:
     SeesawMoveNut(const char*);
-    virtual ~SeesawMoveNut();
+    /* 0x08 */ virtual ~SeesawMoveNut();
 
 private:
     u8 mPad[(0xD0) - sizeof(MapObjActor)];

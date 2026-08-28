@@ -10,7 +10,7 @@ public:
     ShadowVolumeFlatModel();
 
     inline virtual ~ShadowVolumeFlatModel();
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
     void initModel(const char*);
     void setBaseMatrixPtr(MtxPtr);

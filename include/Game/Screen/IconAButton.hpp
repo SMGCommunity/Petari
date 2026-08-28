@@ -6,8 +6,8 @@ class IconAButton : public LayoutActor {
 public:
     IconAButton(bool, bool);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void control();
 
     void setFollowActorPane(LayoutActor*, const char*);
     bool isOpen();

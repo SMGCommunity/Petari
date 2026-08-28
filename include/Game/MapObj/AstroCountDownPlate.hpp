@@ -7,7 +7,7 @@ class AstroCountDownPlate : public LiveActor {
 public:
     AstroCountDownPlate(const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void exeWait();
     void exeRevival();

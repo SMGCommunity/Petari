@@ -7,13 +7,13 @@ class HipDropMoveObj : public LiveActor {
 public:
     HipDropMoveObj(const char*);
 
-    virtual ~HipDropMoveObj();
-    virtual void init(const JMapInfoIter&);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual void moveStart();
-    virtual void moving();
-    virtual void moveEnd();
-    virtual bool isEndMove() const;
+    /* 0x08 */ virtual ~HipDropMoveObj();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x78 */ virtual void moveStart();
+    /* 0x7C */ virtual void moving();
+    /* 0x80 */ virtual void moveEnd();
+    /* 0x84 */ virtual bool isEndMove() const;
 
     void exeWait();
     void exeMove();
@@ -26,9 +26,9 @@ class HipDropDemoMoveObj : public HipDropMoveObj {
 public:
     HipDropDemoMoveObj(const char*);
 
-    virtual ~HipDropDemoMoveObj();
-    virtual void moveStart();
-    virtual void moving();
+    /* 0x08 */ virtual ~HipDropDemoMoveObj();
+    /* 0x78 */ virtual void moveStart();
+    /* 0x7C */ virtual void moving();
 
     TMtx34f mMtx;  // 0x90
 };

@@ -9,11 +9,11 @@
 class FireMarioBall : public LiveActor {
 public:
     FireMarioBall(const char*);
-    virtual ~FireMarioBall();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void kill();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~FireMarioBall();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
     void initSensor();
 
     bool attackFire(HitSensor*);

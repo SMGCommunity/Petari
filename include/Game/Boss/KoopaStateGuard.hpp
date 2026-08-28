@@ -9,8 +9,8 @@ class KoopaStateGuard : public ActorStateBase< Koopa > {
 public:
     KoopaStateGuard(Koopa* pKoopa);
 
-    virtual ~KoopaStateGuard();
-    virtual void init();
+    /* 0x08 */ virtual ~KoopaStateGuard();
+    /* 0x0C */ virtual void init();
 
     bool tryStart(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 

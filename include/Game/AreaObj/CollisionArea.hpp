@@ -6,9 +6,9 @@
 class AreaPolygon : public DynamicCollisionObj {
 public:
     AreaPolygon();
-    virtual ~AreaPolygon();
+    /* 0x08 */ virtual ~AreaPolygon();
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void setMtx(MtxPtr, const TVec3f&, f32 a3);
     void setSurfaceAndSync(s32);
@@ -26,10 +26,10 @@ public:
 class CollisionArea : public AreaObj {
 public:
     CollisionArea(int, const char*);
-    virtual ~CollisionArea();
+    /* 0x08 */ virtual ~CollisionArea();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
 
     bool hitCheck(const TVec3f&, f32, TVec3f*, TVec3f*);
 

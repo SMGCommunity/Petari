@@ -5,9 +5,9 @@
 class CameraTripodBoss : public CameraTower {
 public:
     CameraTripodBoss(const char* pName = "三脚ボスカメラ");
-    virtual ~CameraTripodBoss();
+    /* 0x08 */ virtual ~CameraTripodBoss();
 
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void arrangeRound();
 

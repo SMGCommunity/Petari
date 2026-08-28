@@ -9,14 +9,14 @@ class TripodBossFixPartsBase : public LiveActor {
 public:
     TripodBossFixPartsBase(const char*);
 
-    virtual ~TripodBossFixPartsBase();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void makeActorDead();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-    virtual void calcTripodLocalMatrix(TPos3f*);
-    virtual void activateTripodBoss();
+    /* 0x08 */ virtual ~TripodBossFixPartsBase();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x78 */ virtual void calcTripodLocalMatrix(TPos3f*);
+    /* 0x7C */ virtual void activateTripodBoss();
 
     void initClippingSphere();
     void setClippingSphere(const TVec3f&, f32);

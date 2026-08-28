@@ -10,8 +10,8 @@ class PurpleCoinHolder : public DeriveActorGroup< Coin > {
 public:
     PurpleCoinHolder();
 
-    virtual ~PurpleCoinHolder();
-    virtual void initAfterPlacement();
+    /* 0x08 */ virtual ~PurpleCoinHolder();
+    /* 0x10 */ virtual void initAfterPlacement();
 
     void start();
 

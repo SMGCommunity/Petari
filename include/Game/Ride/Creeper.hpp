@@ -29,10 +29,10 @@ class Creeper : public LiveActor {
 public:
     Creeper(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void draw() const;
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeFree();
     void exeFreeInvalid();

@@ -7,7 +7,7 @@ public:
     DrawSyncCallback() {
     }
 
-    virtual void drawSyncCallback(u16) = 0;
+    /* 0x08 */ virtual void drawSyncCallback(u16) = 0;
 };
 
 class Fifo {

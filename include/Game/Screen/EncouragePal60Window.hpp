@@ -10,8 +10,8 @@ public:
     /// @brief Creates a new `EncouragePal60Window`.
     EncouragePal60Window();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
 
     /// @brief Updates the object when transitioning on screen.
     void exeAppear();

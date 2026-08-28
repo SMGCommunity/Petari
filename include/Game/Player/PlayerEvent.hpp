@@ -35,8 +35,8 @@ private:
 public:
     EventSequence(u32 eventNumMax);
 
-    virtual void updateBefore();
-    virtual void updateAfter();
+    /* 0x08 */ virtual void updateBefore();
+    /* 0x0C */ virtual void updateAfter();
 
     /// @brief Resets the sequence.
     void clearFlag();
@@ -82,9 +82,9 @@ public:
     /// @brief Creates a new `EventSequencer`.
     EventSequencer();
 
-    virtual ~EventSequencer();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
+    /* 0x08 */ virtual ~EventSequencer();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x14 */ virtual void movement();
 
     void startEvent(const char* pName);
 

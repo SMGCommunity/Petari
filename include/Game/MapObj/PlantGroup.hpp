@@ -5,7 +5,7 @@
 class PlantGroup : public LiveActor {
 public:
     PlantGroup(const char*);
-    virtual ~PlantGroup();
+    /* 0x08 */ virtual ~PlantGroup();
 
 private:
     u8 mPad[(0xBC) - sizeof(LiveActor)];

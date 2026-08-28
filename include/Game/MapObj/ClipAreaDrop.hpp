@@ -8,10 +8,10 @@
 class ClipAreaDrop : public ClipArea {
 public:
     ClipAreaDrop(const char*);
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void control();
-    virtual ~ClipAreaDrop();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x48 */ virtual void control();
+    /* 0x08 */ virtual ~ClipAreaDrop();
 
     void setBaseSize(f32);
     void exeWait();

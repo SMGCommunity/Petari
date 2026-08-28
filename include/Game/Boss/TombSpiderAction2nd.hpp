@@ -9,10 +9,10 @@ class TombSpiderAction2nd : public TombSpiderActionBase {
 public:
     TombSpiderAction2nd(TombSpider*);
 
-    virtual void init();
-    virtual void appear();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
+    /* 0x20 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x24 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
     void exeAttackStart();

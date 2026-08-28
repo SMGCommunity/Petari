@@ -6,9 +6,9 @@ class CameraRaceFollow : public Camera {
 public:
     CameraRaceFollow(const char* pName = "CameraRaceFollow");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void goRound();
 

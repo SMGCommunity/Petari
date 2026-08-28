@@ -40,8 +40,8 @@ class SkeletalFishBabyRailHolder : public NameObj {
 public:
     SkeletalFishBabyRailHolder(const char*);
 
-    virtual ~SkeletalFishBabyRailHolder();
-    virtual void initAfterPlacement();
+    /* 0x08 */ virtual ~SkeletalFishBabyRailHolder();
+    /* 0x10 */ virtual void initAfterPlacement();
 
     void add(SkeletalFishBabyRail*);
     SkeletalFishBabyRailGroupNode* createGroup(s32);

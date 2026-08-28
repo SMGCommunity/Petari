@@ -9,8 +9,8 @@ class PoltaStateStagger : public ActorStateBase< Polta > {
 public:
     PoltaStateStagger(Polta*);
 
-    virtual ~PoltaStateStagger();
-    virtual void appear();
+    /* 0x08 */ virtual ~PoltaStateStagger();
+    /* 0x10 */ virtual void appear();
 
     void exeWait();
 

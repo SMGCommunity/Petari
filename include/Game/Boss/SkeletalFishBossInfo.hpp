@@ -31,8 +31,8 @@ public:
 
     SkeletalFishBossInfo(SkeletalFishBoss*, s32, s32, const char*);
 
-    virtual ~SkeletalFishBossInfo();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~SkeletalFishBossInfo();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     LevelStatus* getLevelStatus(s32) const;
     void createLevelStatus();

@@ -13,14 +13,14 @@ public:
 
     /// @brief Intializes the `PauseMenu` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     /// @brief Draws the `PauseMenu` to the screen.
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void kill();
+    /* 0x2C */ virtual void control();
 
     void updateStarPane();
     void startPaneAnimWithoutButton(const char*);

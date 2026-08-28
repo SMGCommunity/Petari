@@ -8,10 +8,10 @@ class CollapsePlane : public MapObjActor {
 public:
     CollapsePlane(const char*);
 
-    virtual ~CollapsePlane();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~CollapsePlane();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void exeWait();
     void exeCollapse();

@@ -6,10 +6,10 @@ class SpaceInner : public LiveActor {
 public:
     SpaceInner(const char*);
 
-    virtual ~SpaceInner();
-    virtual void init(const JMapInfoIter&);
-    virtual void calcAnim();
-    virtual void appear();
+    /* 0x08 */ virtual ~SpaceInner();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
 
     void exeAppear();
     void exeDisappear();

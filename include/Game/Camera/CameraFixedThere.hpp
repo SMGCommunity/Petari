@@ -11,13 +11,13 @@ public:
 
     CameraFixedThere(const char* pName = "その場定点カメラ");
 
-    virtual ~CameraFixedThere();
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isCorrectingErpPositionOff() const {
+    /* 0x08 */ virtual ~CameraFixedThere();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x3C */ virtual bool isCorrectingErpPositionOff() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(u32 cameraType, bool isFovyFixed) {
         mCameraType = cameraType;

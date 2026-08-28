@@ -6,12 +6,12 @@ class FireBarBall : public ModelObj {
 public:
     FireBarBall(LiveActor*);
 
-    virtual ~FireBarBall();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
+    /* 0x08 */ virtual ~FireBarBall();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
 
     void controlEmitEffect();
 
@@ -22,12 +22,12 @@ class FireBar : public LiveActor {
 public:
     FireBar(const char*);
 
-    virtual ~FireBar();
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~FireBar();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeWait();
     void initFireBarBall(const JMapInfoIter&);

@@ -11,12 +11,12 @@ class UFOBase : public LiveActor {
 public:
     UFOBase(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
-    virtual void makeActorDead();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void initSensorType();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void kill();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x78 */ virtual void initSensorType();
 
     void initSubModel(const JMapInfoIter&, const char*) NO_INLINE;
     void exeWaitForPlayerOn();
@@ -44,6 +44,6 @@ class UFOBreakable : public UFOBase {
 public:
     UFOBreakable(const char*);
 
-    virtual void initSensorType();
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x78 */ virtual void initSensorType();
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 };

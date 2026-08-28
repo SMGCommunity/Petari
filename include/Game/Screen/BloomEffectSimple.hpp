@@ -10,7 +10,7 @@ public:
     BloomEffectSimple();
 
     /// @brief Draws the `BloomEffectSimple` to the screen.
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
     /* 0x14 */ JUTTexture* _14;
     /* 0x18 */ JUTTexture* _18;

@@ -14,10 +14,10 @@ class LayoutAnmPlayer {
 public:
     LayoutAnmPlayer(const LayoutManager*);
 
-    virtual void movement();
-    virtual void reflectFrame();
-    virtual void start(const char*);
-    virtual void stop();
+    /* 0x08 */ virtual void movement();
+    /* 0x0C */ virtual void reflectFrame();
+    /* 0x10 */ virtual void start(const char*);
+    /* 0x14 */ virtual void stop();
 
     bool isStop() const;
 

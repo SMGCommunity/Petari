@@ -7,8 +7,8 @@ class WatchTowerRotateStep : public LiveActor {
 public:
     WatchTowerRotateStep(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void exeWait();
     void exeMoveStart();

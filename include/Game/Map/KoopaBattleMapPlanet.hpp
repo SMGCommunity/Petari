@@ -9,11 +9,11 @@ class KoopaBattleMapPlanet : public LiveActor {
 public:
     KoopaBattleMapPlanet(const char*, const char*, bool, bool, bool);
 
-    virtual ~KoopaBattleMapPlanet();
-    virtual void init(const JMapInfoIter&);
-    virtual MtxPtr getBaseMtx() const { return (MtxPtr)&mBaseMtx; }
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~KoopaBattleMapPlanet();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const { return (MtxPtr)&mBaseMtx; }
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void startAnimPowerStarAppear();
     void createPlate();

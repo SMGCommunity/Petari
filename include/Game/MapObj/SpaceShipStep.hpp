@@ -6,20 +6,20 @@ class SpaceShipStep : public MapObjActor {
 public:
     SpaceShipStep(const char*);
 
-    virtual ~SpaceShipStep();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {
+    /* 0x08 */ virtual ~SpaceShipStep();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x7C */ virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {
         return;
     }
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
+    /* 0x80 */ virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
         return;
     }
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {
+    /* 0x84 */ virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {
         return;
     }
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+    /* 0x88 */ virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
         return;
     }
 

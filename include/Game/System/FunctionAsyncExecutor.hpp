@@ -35,7 +35,7 @@ class FunctionAsyncExecutorThread : public OSThreadWrapper {
 public:
     FunctionAsyncExecutorThread(JKRHeap*);
 
-    virtual void* run();
+    /* 0x0C */ virtual void* run();
 
     /* 0x3C */ bool mIsSuspended;
     /* 0x40 */ const char* mName;

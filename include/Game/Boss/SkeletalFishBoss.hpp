@@ -38,15 +38,15 @@ public:
 
     SkeletalFishBoss(const char*);
 
-    virtual ~SkeletalFishBoss();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void makeActorAppeared();
-    virtual void kill();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~SkeletalFishBoss();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     bool calcJoint(TPos3f*, const JointControllerInfo&);
     void damage(const HitSensor*, const TVec3f&);
@@ -138,21 +138,21 @@ class SkeletalFishBossScarFlash : public PartsModel {
 public:
     SkeletalFishBossScarFlash(LiveActor*);
 
-    virtual ~SkeletalFishBossScarFlash();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void control();
+    /* 0x08 */ virtual ~SkeletalFishBossScarFlash();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x48 */ virtual void control();
 };
 
 class SkeletalFishBossHead : public PartsModel {
 public:
     SkeletalFishBossHead(LiveActor*);
 
-    virtual ~SkeletalFishBossHead();
-    virtual void movement();
-    virtual void calcAnim();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~SkeletalFishBossHead();
+    /* 0x14 */ virtual void movement();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void updateCollisionMtx();
     void createSubModel();

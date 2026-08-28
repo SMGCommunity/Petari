@@ -8,9 +8,9 @@ class KoopaStateJumpAway : public ActorStateBase< Koopa > {
 public:
     KoopaStateJumpAway(Koopa* pKoopa);
 
-    virtual ~KoopaStateJumpAway();
-    virtual void init();
-    virtual void appear();
+    /* 0x08 */ virtual ~KoopaStateJumpAway();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
 
     void exeJumpStart();
     void exeJump();

@@ -20,24 +20,24 @@ public:
 
     BossBegoman(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
     virtual u32 getKind() const {
         return 0;
     };
-    virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
-    virtual bool setNerveReturn();
-    virtual const Nerve* getNerveWait();
-    virtual void addVelocityOnPushedFromElectricRail(const TVec3f&, const TVec3f&);
-    virtual bool requestAttack();
+    /* 0x78 */ virtual bool onTouchElectric(const TVec3f&, const TVec3f&);
+    /* 0x7C */ virtual bool setNerveReturn();
+    /* 0x84 */ virtual const Nerve* getNerveWait();
+    /* 0x88 */ virtual void addVelocityOnPushedFromElectricRail(const TVec3f&, const TVec3f&);
+    /* 0x8C */ virtual bool requestAttack();
 
     void setStepBackNerve();
 

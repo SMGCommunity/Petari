@@ -22,9 +22,9 @@ class MapPartsFloatingForce : public MapPartsFunction {
 public:
     MapPartsFloatingForce(LiveActor*);
 
-    virtual ~MapPartsFloatingForce();
-    virtual void init(const JMapInfoIter&);
-    virtual void start();
+    /* 0x08 */ virtual ~MapPartsFloatingForce();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void start();
 
     void setObjectName(const char*);
     void initForNormalMotion(const JMapInfoIter&);

@@ -6,14 +6,14 @@ class CameraFollow : public Camera {
 public:
     CameraFollow(const char* pName = "フォローカメラ");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isEnableToRoundLeft() const;
-    virtual bool isEnableToRoundRight() const;
-    virtual bool isEnableToReset() const {
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x48 */ virtual bool isEnableToRoundLeft() const;
+    /* 0x4C */ virtual bool isEnableToRoundRight() const;
+    /* 0x50 */ virtual bool isEnableToReset() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(f32, f32, f32, f32, f32, bool);
     void calcIdealPos();

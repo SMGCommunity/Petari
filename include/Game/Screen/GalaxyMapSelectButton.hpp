@@ -10,9 +10,9 @@ public:
     /// @brief Creates a new `GalaxyMapSelectButton`.
     GalaxyMapSelectButton();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void control();
 
     void startAstroMap();
     bool isPointingAnything() const;

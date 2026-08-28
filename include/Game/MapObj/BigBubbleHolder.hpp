@@ -10,9 +10,9 @@ class BigBubbleHolder : public NameObj {
 public:
     BigBubbleHolder(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
-    virtual void draw() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
 
     void addMoveLimitter(BigBubbleMoveLimitter*);
     BigBubble* generateBigBubble(LiveActor*, const TVec3f&, const TVec3f&, f32, bool, s32, s32, s32);

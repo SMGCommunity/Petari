@@ -7,18 +7,18 @@ class SandCapsulePressGround : public MapObjActor {
 public:
     SandCapsulePressGround(const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {
+    /* 0x7C */ virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {
     }
 
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {
+    /* 0x84 */ virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {
     }
 
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
+    /* 0x80 */ virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
     }
 
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
+    /* 0x88 */ virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
     }
 
     void exeWait();

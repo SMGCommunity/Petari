@@ -10,9 +10,9 @@ class OceanRingPipe : public LiveActor {
 public:
     OceanRingPipe(const OceanRing*, f32, f32);
 
-    virtual ~OceanRingPipe();
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    /* 0x08 */ virtual ~OceanRingPipe();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
 
     void initPoints();
     f32 getAngle() {

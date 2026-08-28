@@ -5,11 +5,11 @@
 class CameraFooFighterPlanet : public Camera {
 public:
     CameraFooFighterPlanet(const char* pName = "フーファイタープラネットカメラ");
-    virtual ~CameraFooFighterPlanet();
+    /* 0x08 */ virtual ~CameraFooFighterPlanet();
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void goRoundBehind(TVec3f&, TVec3f&, TVec3f&);
 

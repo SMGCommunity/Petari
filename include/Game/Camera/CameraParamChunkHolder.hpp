@@ -10,7 +10,7 @@ class JKRHeap;
 class CameraParamChunkHolder : public NameObj {
 public:
     CameraParamChunkHolder(CameraHolder* pCameraHolder, const char* pName);
-    virtual ~CameraParamChunkHolder();
+    /* 0x08 */ virtual ~CameraParamChunkHolder();
 
     CameraParamChunk* createChunk(const CameraParamChunkID&, JKRHeap*);
     CameraParamChunk* getChunk(const CameraParamChunkID&);

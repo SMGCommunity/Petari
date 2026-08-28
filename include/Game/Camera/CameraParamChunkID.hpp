@@ -10,7 +10,7 @@ public:
     bool operator>(const CameraParamChunkID&) const;
     bool operator==(const CameraParamChunkID&) const;
 
-    virtual char* getBuffer(u32);
+    /* 0x08 */ virtual char* getBuffer(u32);
 
     bool equals(s32, const char*) const;
     void createCubeID(s32, u16);
@@ -28,7 +28,7 @@ public:
     inline CameraParamChunkID_Tmp() : CameraParamChunkID() {
     }
 
-    virtual char* getBuffer(u32 size) {
+    /* 0x08 */ virtual char* getBuffer(u32 size) {
         return &mBuffer[0];
     }
 

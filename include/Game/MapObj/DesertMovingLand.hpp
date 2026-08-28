@@ -6,13 +6,13 @@
 class DesertMovingLand : public MapObjActor {
 public:
     DesertMovingLand(const char* pName);
-    virtual ~DesertMovingLand();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
-    virtual void connectToScene(const MapObjActorInitInfo& rIter);
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
+    /* 0x08 */ virtual ~DesertMovingLand();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
+    /* 0x78 */ virtual void connectToScene(const MapObjActorInitInfo& rIter);
+    /* 0x7C */ virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
+    /* 0x84 */ virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
+    /* 0x88 */ virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
     void startDemo();
     void updateDemoPlayerPos();
     void exeWait();

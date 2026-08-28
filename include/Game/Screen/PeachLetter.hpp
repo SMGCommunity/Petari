@@ -11,9 +11,9 @@ public:
     /// @param pName The pointer to the null-terminated name of the object.
     PeachLetter(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
-    virtual void appear();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
+    /* 0x24 */ virtual void appear();
 
     void exeAppear();
     void exeWait();

@@ -10,15 +10,15 @@ public:
 
     /// @brief Intializes the `SystemWipeHolder` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     /// @brief Draws the `SystemWipeHolder` to the screen.
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
-    virtual void calcAnim();
-    virtual void updateWipe(const char*);
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x50 */ virtual void updateWipe(const char*);
 
     void setWipeRingCenter(const TVec3f&);
     void startGameScreenCapture();

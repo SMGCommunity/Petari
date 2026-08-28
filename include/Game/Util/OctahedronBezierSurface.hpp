@@ -8,9 +8,9 @@ class OctahedronBezierSurface {
 public:
     OctahedronBezierSurface(u32);
 
-    virtual void movement();
-    virtual void calcAnim();
-    virtual void draw() const;
+    /* 0x08 */ virtual void movement();
+    /* 0x0C */ virtual void calcAnim();
+    /* 0x10 */ virtual void draw() const;
 
     const TVec3f& getVertex(s32) const;
     TVec3f* getVertexPtr(s32);

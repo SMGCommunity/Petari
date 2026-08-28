@@ -10,8 +10,8 @@ class PoltaStatePunch : public ActorStateBase< Polta > {
 public:
     PoltaStatePunch(Polta*);
 
-    virtual ~PoltaStatePunch();
-    virtual void appear();
+    /* 0x08 */ virtual ~PoltaStatePunch();
+    /* 0x10 */ virtual void appear();
 
     void exeStart();
     void exeToWait();

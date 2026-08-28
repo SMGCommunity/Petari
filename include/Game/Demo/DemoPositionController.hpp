@@ -8,7 +8,7 @@ class DemoPositionController : public LiveActor {
 public:
     DemoPositionController(const char*, const JMapInfoIter&);
 
-    virtual void control();
+    /* 0x48 */ virtual void control();
 
     void initAnimCamera(const char*);
     void startDemo(const char*);

@@ -10,7 +10,7 @@ public:
     /// @brief Creates a new `AudBgmRhythmStrategy`.
     AudBgmRhythmStrategy() {};
 
-    virtual bool set(AudBgm*, s32);
+    /* 0x08 */ virtual bool set(AudBgm*, s32);
 
     void reject();
     bool setDominant();

@@ -7,7 +7,7 @@ class RumbleCalculator {
 public:
     RumbleCalculator(f32, f32, f32, u32);
 
-    virtual void calcValues(TVec3f*, const TVec3f&) = 0;
+    /* 0x08 */ virtual void calcValues(TVec3f*, const TVec3f&) = 0;
 
     void start(u32);
     void calc();
@@ -25,5 +25,5 @@ class RumbleCalculatorCosMultLinear : public RumbleCalculator {
 public:
     RumbleCalculatorCosMultLinear(f32, f32, f32, u32);
 
-    virtual void calcValues(TVec3f*, const TVec3f&);
+    /* 0x08 */ virtual void calcValues(TVec3f*, const TVec3f&);
 };

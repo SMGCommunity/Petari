@@ -7,7 +7,7 @@ class IronCannonShell : public KoopaJrShipCannonShell {
 public:
     IronCannonShell(const char*);
 
-    virtual ~IronCannonShell();
+    /* 0x08 */ virtual ~IronCannonShell();
 
     virtual f32 getBaseScale() const;
     virtual s32 getLifeTime() const;
@@ -17,10 +17,10 @@ class IronCannonLauncherPoint : public LiveActor {
 public:
     IronCannonLauncherPoint(const char*);
 
-    virtual ~IronCannonLauncherPoint();
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x08 */ virtual ~IronCannonLauncherPoint();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual void initModelAndConnectToScene();
+    /* 0x78 */ virtual void initModelAndConnectToScene();
 
     void exeWait();
     void exeShot();
@@ -37,10 +37,10 @@ class IronCannonLauncher : public IronCannonLauncherPoint {
 public:
     IronCannonLauncher(const char*);
 
-    virtual ~IronCannonLauncher();
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x08 */ virtual ~IronCannonLauncher();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual void initModelAndConnectToScene();
+    /* 0x78 */ virtual void initModelAndConnectToScene();
 
     void exeRelax();
     void exeWait();

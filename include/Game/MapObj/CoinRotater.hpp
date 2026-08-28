@@ -7,8 +7,8 @@ class CoinRotater : public NameObj {
 public:
     CoinRotater(const char*);
 
-    virtual ~CoinRotater();
-    virtual void movement();
+    /* 0x08 */ virtual ~CoinRotater();
+    /* 0x14 */ virtual void movement();
 
     f32 _C;
     f32 _10;

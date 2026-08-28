@@ -14,8 +14,8 @@ public:
         /// @brief Creates a new `CaptureActor`.
         CaptureActor();
 
-        virtual void init(const JMapInfoIter&);
-        virtual void kill();
+        /* 0x0C */ virtual void init(const JMapInfoIter&);
+        /* 0x2C */ virtual void kill();
 
         void updateTransTraction(const TVec3f&, const TVec3f&, s32);
 
@@ -36,12 +36,12 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     AstroDomeBlueStar(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void draw() const;
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x18 */ virtual void draw() const;
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void waitAppear();
     void forceKill();

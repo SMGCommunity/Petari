@@ -30,11 +30,11 @@ public:
 
     AstroDomeCameraController(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void appear();
+    /* 0x10 */ virtual void kill();
+    /* 0x14 */ virtual void control();
+    /* 0x18 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void calcZoomOutPos(TVec3f*) const;
     void calcZoomInPos(TVec3f*, const TVec3f&) const;

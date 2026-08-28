@@ -8,8 +8,8 @@ class MarioMessenger : NameObj {
 public:
     MarioMessenger(HitSensor* pSender);
 
-    virtual ~MarioMessenger();
-    virtual void movement();
+    /* 0x08 */ virtual ~MarioMessenger();
+    /* 0x14 */ virtual void movement();
 
     void addRequest(HitSensor* pReceiver, u32 msg);
 

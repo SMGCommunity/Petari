@@ -12,8 +12,8 @@ public:
     /// @brief Creates a new `SwitchWatcherHolder`.
     SwitchWatcherHolder();
 
-    virtual ~SwitchWatcherHolder();
-    virtual void movement();
+    /* 0x08 */ virtual ~SwitchWatcherHolder();
+    /* 0x14 */ virtual void movement();
 
     void joinSwitchEventListenerA(const StageSwitchCtrl*, SwitchEventListener*);
     void joinSwitchEventListenerB(const StageSwitchCtrl*, SwitchEventListener*);

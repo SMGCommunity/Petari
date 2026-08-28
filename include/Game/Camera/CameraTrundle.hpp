@@ -6,9 +6,9 @@ class CameraTrundle : public Camera {
 public:
     CameraTrundle(const char* pName = "トランドルカメラ");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(const TVec3f& wPoint, const TVec3f& axis, f32 dist, f32 angleX, f32 angleY, f32 dotMax) {
         mWPoint.set(wPoint);

@@ -8,10 +8,10 @@ class BackButton : public LayoutActor {
 public:
     BackButton(const char* pName, bool param2);
 
-    virtual ~BackButton();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void control();
+    /* 0x08 */ virtual ~BackButton();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void control();
 
     void disappear();
     bool isHidden() const;

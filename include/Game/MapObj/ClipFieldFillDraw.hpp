@@ -9,8 +9,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ClipFieldFillDraw(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void draw() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x18 */ virtual void draw() const;
 
     void setModeSubColor();
     void setUpFillScreen() const;

@@ -8,8 +8,8 @@ class MarioSubMeter : public NameObj {
 public:
     MarioSubMeter(const char* pName);
 
-    virtual ~MarioSubMeter();
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x08 */ virtual ~MarioSubMeter();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void setBeeLifeRatio(f32);
     void setWaterLifeRatio(f32);

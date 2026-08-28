@@ -8,8 +8,8 @@ class CollectTico : public LiveActor {
 public:
     CollectTico(const char*);
 
-    virtual ~CollectTico();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~CollectTico();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void exeWait();
     void exeCompleteDemo();

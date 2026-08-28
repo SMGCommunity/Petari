@@ -7,8 +7,8 @@ class PalmIsland : public LiveActor {
 public:
     PalmIsland(const char*);
 
-    virtual ~PalmIsland();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~PalmIsland();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void exeFloat();
     void exeWait();

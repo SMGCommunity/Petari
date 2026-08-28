@@ -6,8 +6,8 @@
 namespace MR {
     class FunctorBase {
     public:
-        virtual void operator()() const = 0;
-        virtual FunctorBase* clone(JKRHeap*) const = 0;
+        /* 0x08 */ virtual void operator()() const = 0;
+        /* 0x0C */ virtual FunctorBase* clone(JKRHeap*) const = 0;
     };
 
     template < typename T, typename U >
@@ -19,11 +19,11 @@ namespace MR {
         inline FunctorV0M() {
         }
 
-        virtual void operator()() const {
+        /* 0x08 */ virtual void operator()() const {
             (mCaller->*mCallee)();
         }
 
-        virtual FunctorBase* clone(JKRHeap* pHeap) const {
+        /* 0x0C */ virtual FunctorBase* clone(JKRHeap* pHeap) const {
             return new (pHeap, 0) FunctorV0M(*this);
         };
 
@@ -43,11 +43,11 @@ namespace MR {
         inline FunctorV1M() {
         }
 
-        virtual void operator()() const {
+        /* 0x08 */ virtual void operator()() const {
             (mCaller->*mCallee)(mArg0);
         }
 
-        virtual FunctorBase* clone(JKRHeap* pHeap) const {
+        /* 0x0C */ virtual FunctorBase* clone(JKRHeap* pHeap) const {
             return new (pHeap, 0x16) FunctorV1M(*this);
         };
 
@@ -69,11 +69,11 @@ namespace MR {
         inline FunctorV2M() {
         }
 
-        virtual void operator()() const {
+        /* 0x08 */ virtual void operator()() const {
             (mCaller->*mCallee)(mArg0, mArg1);
         }
 
-        virtual FunctorBase* clone(JKRHeap* pHeap) const {
+        /* 0x0C */ virtual FunctorBase* clone(JKRHeap* pHeap) const {
             return new (pHeap, 0x16) FunctorV2M(*this);
         };
 
@@ -132,10 +132,10 @@ namespace MR {
         inline FunctorV0F() {
         }
 
-        virtual void operator()() const {
+        /* 0x08 */ virtual void operator()() const {
             (*mFunc)();
         }
-        virtual FunctorBase* clone(JKRHeap* pHeap) const {
+        /* 0x0C */ virtual FunctorBase* clone(JKRHeap* pHeap) const {
             return new (pHeap, 0) FunctorV0F(*this);
         }
 

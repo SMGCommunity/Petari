@@ -13,10 +13,10 @@ class MiiFaceParts : public LiveActor {
 public:
     MiiFaceParts(const char* pName, const MiiFaceRecipe& rRecipe);
 
-    virtual ~MiiFaceParts();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void calcAnim();
-    virtual void calcViewAndEntry();
+    /* 0x08 */ virtual ~MiiFaceParts();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x20 */ virtual void calcViewAndEntry();
 
     void drawOpa(const RFLDrawCoreSetting* pSetting) const;
     void drawXlu(const RFLDrawCoreSetting* pSetting) const;

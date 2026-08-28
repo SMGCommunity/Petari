@@ -8,8 +8,8 @@ class SkeletalFishBabyRail : public LiveActor {
 public:
     SkeletalFishBabyRail(const char*);
 
-    virtual ~SkeletalFishBabyRail();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~SkeletalFishBabyRail();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     s32 _8C;
 };

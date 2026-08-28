@@ -8,8 +8,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ClipFieldMapParts(const char* pName);
 
-    virtual ~ClipFieldMapParts();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
-    virtual void connectToScene();
+    /* 0x08 */ virtual ~ClipFieldMapParts();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
+    /* 0x78 */ virtual void connectToScene();
 };

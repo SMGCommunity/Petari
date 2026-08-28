@@ -9,7 +9,7 @@ public:
     /// @brief Creates a new `StopSceneDelayRequest`.
     StopSceneDelayRequest();
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     /* 0x0C */ s32 mFrame;
     /* 0x10 */ s32 mDelay;
@@ -20,7 +20,7 @@ public:
     /// @brief Creates a new `StopSceneController`.
     StopSceneController();
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     void requestStopScene(s32);
     void requestStopSceneDelay(s32, s32);

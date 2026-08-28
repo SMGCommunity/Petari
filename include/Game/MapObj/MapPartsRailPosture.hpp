@@ -7,11 +7,11 @@ class MapPartsRailPosture : public MapPartsFunction {
 public:
     MapPartsRailPosture(LiveActor*);
 
-    virtual ~MapPartsRailPosture();
-    virtual void init(const JMapInfoIter&);
-    virtual bool isWorking() const;
-    virtual void start();
-    virtual void end();
+    /* 0x08 */ virtual ~MapPartsRailPosture();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual bool isWorking() const;
+    /* 0x28 */ virtual void start();
+    /* 0x2C */ virtual void end();
 
     bool isPostureTypeRailDirRailUseShadowGravity() const;
 

@@ -6,7 +6,7 @@ class TombSpiderVitalSpot : public PartsModel {
 public:
     TombSpiderVitalSpot(LiveActor*, const char*, const TVec3f&, const TVec3f&, const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void startChance();
     void endChance();

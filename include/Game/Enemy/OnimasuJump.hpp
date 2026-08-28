@@ -5,7 +5,7 @@
 class OnimasuJump : public Onimasu {
 public:
     OnimasuJump(const char*);
-    virtual ~OnimasuJump();
+    /* 0x08 */ virtual ~OnimasuJump();
 
 private:
     u8 mPad[(0x110) - sizeof(Onimasu)];

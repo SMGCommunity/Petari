@@ -33,9 +33,9 @@ public:
 
     CShader(const J3DModelData*, const ResTIMG*);
 
-    virtual void calc(J3DModel*);
-    virtual void setup(J3DModelData*);
-    virtual ~CShader();
+    /* 0x08 */ virtual void calc(J3DModel*);
+    /* 0x0C */ virtual void setup(J3DModelData*);
+    /* 0x10 */ virtual ~CShader();
 
     void makeIndexData(J3DShape*) const;
     void checkBorderVtx(J3DModelData*, u32);

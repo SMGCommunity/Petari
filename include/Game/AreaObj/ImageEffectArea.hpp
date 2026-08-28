@@ -13,7 +13,7 @@ public:
 
     ImageEffectArea(EImageEffectType, int, const char*);
 
-    virtual bool isSyncWithPlayer() const {
+    /* 0x2C */ virtual bool isSyncWithPlayer() const {
         return false;
     }
 
@@ -24,7 +24,7 @@ class ImageEffectAreaMgr : public AreaObjMgr {
 public:
     ImageEffectAreaMgr(s32, const char*);
 
-    virtual void initAfterPlacement();
+    /* 0x10 */ virtual void initAfterPlacement();
 
     void sort();
 };

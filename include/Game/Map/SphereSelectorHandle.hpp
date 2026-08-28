@@ -6,8 +6,8 @@
 class SphereSelectorHandle : public LiveActor {
 public:
     SphereSelectorHandle(const char*);
-    virtual ~SphereSelectorHandle();
-    virtual MtxPtr getBaseMtx() const {
+    /* 0x08 */ virtual ~SphereSelectorHandle();
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const {
         return (MtxPtr)&_90;
     }
 

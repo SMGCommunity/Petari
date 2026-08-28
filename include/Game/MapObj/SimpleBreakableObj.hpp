@@ -5,7 +5,7 @@
 class SimpleBreakableObj : public MapObjActor {
 public:
     SimpleBreakableObj(const char*);
-    virtual ~SimpleBreakableObj();
+    /* 0x08 */ virtual ~SimpleBreakableObj();
 
 private:
     u8 mPad[(0xE8) - sizeof(MapObjActor)];

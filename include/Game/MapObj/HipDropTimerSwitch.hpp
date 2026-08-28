@@ -11,14 +11,14 @@ class HipDropTimerSwitch : public LiveActor {
 public:
     HipDropTimerSwitch(const char*);
 
-    virtual ~HipDropTimerSwitch();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void calcAnim();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~HipDropTimerSwitch();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void updateTimerSE();
     void exeOff();

@@ -7,10 +7,10 @@ class PoltaArm : public ModelObj {
 public:
     PoltaArm(const char* pName, const char* pModelName, MtxPtr pMtx);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void makeActorDead();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
 
     void initPartsModel();
     void exeDamage();

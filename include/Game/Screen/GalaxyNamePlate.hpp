@@ -8,9 +8,9 @@ class GalaxyNamePlate : public LayoutActor {
 public:
     GalaxyNamePlate(const char*, bool);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void kill();
+    /* 0x2C */ virtual void control();
 
     void showUnknown(bool);
     void showNew(bool);

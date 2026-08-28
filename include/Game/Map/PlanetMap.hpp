@@ -11,13 +11,13 @@ class PlanetMap : public LiveActor {
 public:
     PlanetMap(const char*, const char*);
 
-    virtual ~PlanetMap();
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
+    /* 0x08 */ virtual ~PlanetMap();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
     virtual f32 getFarClipDistance() const;
     virtual s32 getLowMovementType() const;
 
@@ -39,23 +39,23 @@ class FurPlanetMap : public PlanetMap {
 public:
     FurPlanetMap(const char*);
 
-    virtual ~FurPlanetMap();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~FurPlanetMap();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 };
 
 class RailPlanetMap : public PlanetMap {
 public:
     RailPlanetMap(const char*);
 
-    virtual ~RailPlanetMap();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~RailPlanetMap();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 };
 
 class PlanetMapAnimLow : public PlanetMap {
 public:
     PlanetMapAnimLow();
 
-    virtual ~PlanetMapAnimLow();
+    /* 0x08 */ virtual ~PlanetMapAnimLow();
     virtual s32 getLowMovementType() const;
 };
 

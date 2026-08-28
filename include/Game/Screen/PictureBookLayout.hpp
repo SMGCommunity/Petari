@@ -17,10 +17,10 @@ class PictureBookLayout : public LayoutActor {
 public:
     PictureBookLayout(s32 chapterMin, s32 chapterMax, bool isRosettaReading);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void kill();
+    /* 0x2C */ virtual void control();
 
     static void makeArchiveList(NameObjArchiveListCollector* pCollector, s32 chapterMin, s32 chapterMax, bool isRosettaReading);
     static s32 getChapterMax();

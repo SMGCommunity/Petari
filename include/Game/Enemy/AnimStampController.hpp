@@ -7,7 +7,7 @@ class AnimStampController : public NerveExecutor {
 public:
     AnimStampController();
 
-    virtual ~AnimStampController();
+    /* 0x08 */ virtual ~AnimStampController();
 
     void init(s32, f32, f32, f32, f32, f32, f32);
     void startAnim(const TVec3f&);

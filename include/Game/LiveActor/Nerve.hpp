@@ -7,10 +7,10 @@ class Nerve {
 public:
     /// @brief Executes a state based on the host actor.
     /// @param pSpine The spine that contains the host LiveActor to execute the state for.
-    virtual void execute(Spine* pSpine) const = 0;
+    /* 0x08 */ virtual void execute(Spine* pSpine) const = 0;
     /// @brief Executes after the last iteration of a state before it executes another state.
     /// @param pSpine The spine that contains the host LiveActor to execute the state for.
-    virtual void executeOnEnd(Spine* pSpine) const;
+    /* 0x0C */ virtual void executeOnEnd(Spine* pSpine) const;
 };
 
 /* Defines a basic nerve class */
@@ -18,7 +18,7 @@ public:
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
         name() NO_INLINE{};                                                                                                                          \
-        virtual void execute(Spine*) const;                                                                                                          \
+        /* 0x08 */ virtual void execute(Spine*) const;                                                                                                          \
         static name sInstance;                                                                                                                       \
     };
 
@@ -27,8 +27,8 @@ public:
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
         name() NO_INLINE{};                                                                                                                          \
-        virtual void execute(Spine*) const;                                                                                                          \
-        virtual void executeOnEnd(Spine*) const;                                                                                                     \
+        /* 0x08 */ virtual void execute(Spine*) const;                                                                                                          \
+        /* 0x0C */ virtual void executeOnEnd(Spine*) const;                                                                                                     \
         static name sInstance;                                                                                                                       \
     };
 
@@ -48,7 +48,7 @@ public:
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
         name() NO_INLINE{};                                                                                                                          \
-        virtual void execute(Spine* pSpine) const {                                                                                                  \
+        /* 0x08 */ virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->func();                                                                                                                           \
         };                                                                                                                                           \
@@ -60,7 +60,7 @@ public:
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
         name() NO_INLINE{};                                                                                                                          \
-        virtual void execute(Spine* pSpine) const {                                                                                                  \
+        /* 0x08 */ virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->exe##executor_name();                                                                                                             \
         };                                                                                                                                           \
@@ -72,11 +72,11 @@ public:
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
         name() NO_INLINE{};                                                                                                                          \
-        virtual void execute(Spine* pSpine) const {                                                                                                  \
+        /* 0x08 */ virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->func();                                                                                                                           \
         };                                                                                                                                           \
-        virtual void executeOnEnd(Spine* pSpine) const {                                                                                             \
+        /* 0x0C */ virtual void executeOnEnd(Spine* pSpine) const {                                                                                             \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->onEndFunc();                                                                                                                      \
         };                                                                                                                                           \
@@ -89,7 +89,7 @@ public:
     public:                                                                                                                                          \
         name() NO_INLINE {                                                                                                                           \
         }                                                                                                                                            \
-        virtual void execute(Spine* pSpine) const {                                                                                                  \
+        /* 0x08 */ virtual void execute(Spine* pSpine) const {                                                                                                  \
         }                                                                                                                                            \
         inline static name* get() {                                                                                                                  \
             return &sInstance;                                                                                                                       \
@@ -100,7 +100,7 @@ public:
 #define NEW_NERVE(name, parent_class, executor_name)                                                                                                 \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
-        virtual void execute(Spine* pSpine) const {                                                                                                  \
+        /* 0x08 */ virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->exe##executor_name();                                                                                                             \
         };                                                                                                                                           \
@@ -111,11 +111,11 @@ public:
 #define NEW_NERVE_ONEND(name, parent_class, executor_name, executorOnEnd_name)                                                                       \
     class name : public Nerve {                                                                                                                      \
     public:                                                                                                                                          \
-        virtual void execute(Spine* pSpine) const {                                                                                                  \
+        /* 0x08 */ virtual void execute(Spine* pSpine) const {                                                                                                  \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->exe##executor_name();                                                                                                             \
         };                                                                                                                                           \
-        virtual void executeOnEnd(Spine* pSpine) const {                                                                                             \
+        /* 0x0C */ virtual void executeOnEnd(Spine* pSpine) const {                                                                                             \
             parent_class* actor = reinterpret_cast< parent_class* >(pSpine->mExecutor);                                                              \
             actor->end##executorOnEnd_name();                                                                                                        \
         };                                                                                                                                           \

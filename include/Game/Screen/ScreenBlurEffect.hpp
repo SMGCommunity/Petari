@@ -11,10 +11,10 @@ public:
     ScreenBlurEffect(const char* pName);
 
     /// @brief Draws the `ScreenBlurEffect` to the screen.
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
-    virtual void calcAnimSub();
-    virtual void notifyTurnOn();
+    /* 0x24 */ virtual void calcAnimSub();
+    /* 0x28 */ virtual void notifyTurnOn();
 
     void drawBlur() const;
     void captureBlur() const;

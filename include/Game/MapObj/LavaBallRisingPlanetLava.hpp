@@ -6,8 +6,8 @@ class LavaBallRisingPlanetLava : public MapObjActor {
 public:
     LavaBallRisingPlanetLava(const char*);
 
-    virtual ~LavaBallRisingPlanetLava();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~LavaBallRisingPlanetLava();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void exeWait();
     void exeScaleUp();

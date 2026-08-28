@@ -6,9 +6,9 @@ class DinoPackunDemo : public DinoPackunAction {
 public:
     DinoPackunDemo(DinoPackun*);
 
-    virtual ~DinoPackunDemo();
-    virtual void init();
-    virtual void control();
+    /* 0x08 */ virtual ~DinoPackunDemo();
+    /* 0x0C */ virtual void init();
+    /* 0x1C */ virtual void control();
 
     void startOpeningDemo();
     void startCryDemo();

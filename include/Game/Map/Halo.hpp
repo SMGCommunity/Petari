@@ -13,10 +13,10 @@ class Halo : public MapObjActor {
 public:
     Halo(const char*);
 
-    virtual ~Halo();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void connectToScene(const MapObjActorInitInfo&);
+    /* 0x08 */ virtual ~Halo();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x78 */ virtual void connectToScene(const MapObjActorInitInfo&);
     virtual f32 getDistance() const;
 
     bool isDistanceAppear() const;
@@ -31,9 +31,9 @@ class PowerStarHalo : public Halo {
 public:
     PowerStarHalo(const char*);
 
-    virtual ~PowerStarHalo();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
+    /* 0x08 */ virtual ~PowerStarHalo();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
     virtual f32 getDistance() const;
 
     void exeWaitScenarioOpeningEnd();

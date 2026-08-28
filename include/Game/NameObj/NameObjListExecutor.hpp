@@ -10,14 +10,14 @@ class NameObjListExecutor {
 public:
     NameObjListExecutor();
 
-    virtual ~NameObjListExecutor();
-    virtual void initMovementList() {
+    /* 0x08 */ virtual ~NameObjListExecutor();
+    /* 0x0C */ virtual void initMovementList() {
     }
-    virtual void initCalcAnimList() {
+    /* 0x10 */ virtual void initCalcAnimList() {
     }
-    virtual void initCalcViewAndEntryList() {
+    /* 0x14 */ virtual void initCalcViewAndEntryList() {
     }
-    virtual void initDrawList() {
+    /* 0x18 */ virtual void initDrawList() {
     }
 
     void init();

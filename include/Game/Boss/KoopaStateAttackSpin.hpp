@@ -13,10 +13,10 @@ class KoopaStateAttackSpin : public ActorStateBase< Koopa > {
 public:
     KoopaStateAttackSpin(Koopa* pKoopa);
 
-    virtual ~KoopaStateAttackSpin();
-    virtual void init();
-    virtual void appear();
-    virtual void kill();
+    /* 0x08 */ virtual ~KoopaStateAttackSpin();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
+    /* 0x14 */ virtual void kill();
 
     bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     bool tryDamage(u32 msg, HitSensor* pSender, HitSensor* pReceiver);

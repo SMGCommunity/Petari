@@ -6,9 +6,9 @@ class CameraFooFighter : public Camera {
 public:
     CameraFooFighter(const char* pName = "フーファイター");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(f32 distMin, f32 distMax, f32 angleXRateMin) {
         mDistMin = distMin;

@@ -11,11 +11,11 @@ class RabbitStateWaitStart : public ActorStateBaseInterface {
 public:
     RabbitStateWaitStart(LiveActor* pHost, TVec3f* pHostRotateFront, TalkMessageCtrl* pTalkMessageCtrl);
 
-    virtual void init();
-    virtual void appear();
-    virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
+    /* 0x1C */ virtual void control();
+    /* 0x20 */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x24 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void setTalkActionName(const char* pName);
     bool requestTrample();

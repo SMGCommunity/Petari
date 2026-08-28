@@ -5,7 +5,7 @@
 class GravityLight : public LiveActor {
 public:
     GravityLight(const char*);
-    virtual ~GravityLight();
+    /* 0x08 */ virtual ~GravityLight();
 
 private:
     u8 mPad[(0xDC) - sizeof(LiveActor)];

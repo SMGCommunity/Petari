@@ -5,7 +5,7 @@
 class PhantomShipBoxFloater : public LiveActor {
 public:
     PhantomShipBoxFloater(const char*);
-    virtual ~PhantomShipBoxFloater();
+    /* 0x08 */ virtual ~PhantomShipBoxFloater();
 
 private:
     u8 mPad[(0xA4) - sizeof(LiveActor)];

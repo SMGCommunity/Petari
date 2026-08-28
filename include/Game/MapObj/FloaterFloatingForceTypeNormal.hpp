@@ -6,10 +6,10 @@ class FloaterFloatingForceTypeNormal : public FloaterFloatingForce {
 public:
     FloaterFloatingForceTypeNormal(LiveActor*, const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void start();
-    virtual void updateHostTrans(TVec3f*) const;
-    virtual const TVec3f& getCurrentVelocity() const {
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void start();
+    /* 0x38 */ virtual void updateHostTrans(TVec3f*) const;
+    /* 0x40 */ virtual const TVec3f& getCurrentVelocity() const {
         return mVelocity;
     }
 

@@ -9,8 +9,8 @@ class MapPartsRailGuideHolder : public NameObj {
 public:
     MapPartsRailGuideHolder();
 
-    virtual ~MapPartsRailGuideHolder();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~MapPartsRailGuideHolder();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     MapPartsRailGuideDrawer* createRailGuide(LiveActor*, const char*, const JMapInfoIter&);
     MapPartsRailGuideDrawer* find(s32);

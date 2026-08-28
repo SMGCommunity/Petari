@@ -17,7 +17,7 @@ namespace FileSelectItemSub {
     public:
         ScaleController();
 
-        virtual ~ScaleController();
+        /* 0x08 */ virtual ~ScaleController();
 
         void exeToSmall();
         void exeToBig();
@@ -31,7 +31,7 @@ namespace FileSelectItemSub {
     public:
         BlinkController(FileSelectItem*);
 
-        virtual ~BlinkController();
+        /* 0x08 */ virtual ~BlinkController();
 
         void exeOpen();
         void exeShut();
@@ -51,12 +51,12 @@ class FileSelectItem : public LiveActor {
 public:
     FileSelectItem(s32, bool, const FileSelectIconID&, const char*);
 
-    virtual ~FileSelectItem();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void control();
+    /* 0x08 */ virtual ~FileSelectItem();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
 
     bool isNew() const;
     bool isExist() const;

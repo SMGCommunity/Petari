@@ -42,8 +42,8 @@ class ConditionUsePlayerHeap : public StationedArchiveLoader::Condition {
 public:
     ConditionUsePlayerHeap();
 
-    virtual bool isExecute(const MR::StationedFileInfo*) const;
-    virtual JKRHeap* getProperHeap(const MR::StationedFileInfo*) const;
+    /* 0x0C */ virtual bool isExecute(const MR::StationedFileInfo*) const;
+    /* 0x10 */ virtual JKRHeap* getProperHeap(const MR::StationedFileInfo*) const;
 
     /* 0x4 */ JKRExpHeap* mNapaHeap;
     /* 0x8 */ JKRExpHeap* mGDDRHeap;
@@ -52,7 +52,7 @@ public:
 
 class ConditionIfIsNotPlayer : public StationedArchiveLoader::Condition {
 public:
-    virtual bool isExecute(const MR::StationedFileInfo*) const;
+    /* 0x0C */ virtual bool isExecute(const MR::StationedFileInfo*) const;
 };
 
 class ConditionIsEqualType : public StationedArchiveLoader::Condition {
@@ -67,7 +67,7 @@ public:
         _4 = var;
     }
 
-    virtual bool isExecute(const MR::StationedFileInfo*) const;
+    /* 0x0C */ virtual bool isExecute(const MR::StationedFileInfo*) const;
 
     /* 0x4 */ s32 _4;
 };

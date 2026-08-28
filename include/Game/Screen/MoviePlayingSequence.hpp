@@ -59,8 +59,8 @@ public:
 
     MoviePlayingSequence(const char*, s32);
 
-    virtual void appear();
-    virtual void kill();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void kill();
 
     static const char* getMovieName(MovieType);
 

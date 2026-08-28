@@ -9,10 +9,10 @@ public:
 
     virtual f32 calcMoveVector(TVec3f*, const TVec3f&);
     virtual f32 calcJumpPower() const;
-    virtual bool doBrake() const;
-    virtual void update(const TVec3f&);
-    virtual void notifyActivate();
-    virtual void notifyDeactivate();
+    /* 0x08 */ virtual bool doBrake() const;
+    /* 0x0C */ virtual void update(const TVec3f&);
+    /* 0x10 */ virtual void notifyActivate();
+    /* 0x14 */ virtual void notifyDeactivate();
     // void drawDebug(); // DEBUG
 
 protected:

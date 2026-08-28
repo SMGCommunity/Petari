@@ -11,10 +11,10 @@ public:
     /// @brief Creates a new `PlayTimerScene`.
     PlayTimerScene();
 
-    virtual void init();
-    virtual void start();
-    virtual void update();
-    virtual void draw() const;
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void start();
+    /* 0x14 */ virtual void update();
+    /* 0x18 */ virtual void draw() const;
 
     bool isActive() const;
     bool isEndGlobalTimer() const;

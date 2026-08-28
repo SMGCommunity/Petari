@@ -8,10 +8,10 @@ class SeaGull : public LiveActor {
 public:
     SeaGull(SeaGullGroup*);
 
-    virtual ~SeaGull();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~SeaGull();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void exeHoverFront();
     void exeHoverLeft();
@@ -38,8 +38,8 @@ class SeaGullGroup : public LiveActor {
 public:
     SeaGullGroup(const char*);
 
-    virtual ~SeaGullGroup();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~SeaGullGroup();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     TVec3f* updatePosInfo(s32*, bool) const;
 

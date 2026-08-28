@@ -8,10 +8,10 @@ class SimpleTimerObj : public MapObjActor {
 public:
     SimpleTimerObj(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
 
     void exeTimer();
 

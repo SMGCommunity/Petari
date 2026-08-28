@@ -13,13 +13,13 @@ public:
     }
 
     /// @brief Destroys the `ImageEffectState`.
-    virtual ~ImageEffectState() {
+    /* 0x08 */ virtual ~ImageEffectState() {
     }
 
-    virtual void update();
-    virtual bool doesEffectExist() const = 0;
-    virtual ImageEffectBase* getEffect() const = 0;
-    virtual void onChange() {
+    /* 0x0C */ virtual void update();
+    /* 0x10 */ virtual bool doesEffectExist() const = 0;
+    /* 0x14 */ virtual ImageEffectBase* getEffect() const = 0;
+    /* 0x18 */ virtual void onChange() {
     }
 
     void forceOff();
@@ -36,11 +36,11 @@ namespace ImageEffectStateImpl {
         StateNull(ImageEffectDirector* pHost) : ImageEffectState(pHost) {
         }
 
-        virtual bool doesEffectExist() const {
+        /* 0x10 */ virtual bool doesEffectExist() const {
             return true;
         }
 
-        virtual ImageEffectBase* getEffect() const {
+        /* 0x14 */ virtual ImageEffectBase* getEffect() const {
             return nullptr;
         }
     };
@@ -51,10 +51,10 @@ namespace ImageEffectStateImpl {
         /// @param pHost A pointer to the owning `ImageEffectDirector` instance.
         StateBloomNormal(ImageEffectDirector* pHost);
 
-        virtual void update();
-        virtual bool doesEffectExist() const;
-        virtual ImageEffectBase* getEffect() const;
-        virtual void onChange();
+        /* 0x0C */ virtual void update();
+        /* 0x10 */ virtual bool doesEffectExist() const;
+        /* 0x14 */ virtual ImageEffectBase* getEffect() const;
+        /* 0x18 */ virtual void onChange();
 
         void setBloomIntensity(u8 bloomIntensity);
         void setThreshold(u8 threshold);
@@ -83,8 +83,8 @@ namespace ImageEffectStateImpl {
         StateBloomSimple(ImageEffectDirector* pHost) : ImageEffectState(pHost) {
         }
 
-        virtual bool doesEffectExist() const;
-        virtual ImageEffectBase* getEffect() const;
+        /* 0x10 */ virtual bool doesEffectExist() const;
+        /* 0x14 */ virtual ImageEffectBase* getEffect() const;
 
         void setMaskFilterAll();
         void setMaskFilterRed();
@@ -101,8 +101,8 @@ namespace ImageEffectStateImpl {
         StateScreenBlur(ImageEffectDirector* pHost) : ImageEffectState(pHost) {
         }
 
-        virtual bool doesEffectExist() const;
-        virtual ImageEffectBase* getEffect() const;
+        /* 0x10 */ virtual bool doesEffectExist() const;
+        /* 0x14 */ virtual ImageEffectBase* getEffect() const;
 
         void setIntensity(f32 intensity);
     };
@@ -114,8 +114,8 @@ namespace ImageEffectStateImpl {
         StateDepthOfField(ImageEffectDirector* pHost) : ImageEffectState(pHost) {
         }
 
-        virtual bool doesEffectExist() const;
-        virtual ImageEffectBase* getEffect() const;
+        /* 0x10 */ virtual bool doesEffectExist() const;
+        /* 0x14 */ virtual ImageEffectBase* getEffect() const;
 
         void setIntensity(f32 intensity);
         void setBlurMaxDist(s32 blurMaxDist);

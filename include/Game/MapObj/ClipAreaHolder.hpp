@@ -11,7 +11,7 @@ class ClipAreaHolder : public DeriveActorGroup< ClipArea > {
 public:
     ClipAreaHolder(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     bool isInArea(const TVec3f&, f32) const;
 
@@ -22,7 +22,7 @@ class ClipAreaCollisionFilter : public CollisionPartsFilterBase {
 public:
     ClipAreaCollisionFilter(const TVec3f*, f32);
 
-    virtual bool isInvalidParts(const CollisionParts*) const;
+    /* 0x08 */ virtual bool isInvalidParts(const CollisionParts*) const;
 
     /* 0x04 */ const TVec3f* _04;
     /* 0x08 */ f32 _08;

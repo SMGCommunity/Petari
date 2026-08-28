@@ -12,20 +12,20 @@ class StringSpider : public LiveActor {
 public:
     StringSpider(const char*);
 
-    virtual ~StringSpider();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void calcAnim();
-    virtual void kill();
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPush(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~StringSpider();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x2C */ virtual void kill();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     s32 getSearchToAttackTime();
     void doSwingAction(f32, bool);
@@ -74,8 +74,8 @@ class StringSpiderString : public LiveActor {
 public:
     StringSpiderString(const char*);
 
-    virtual ~StringSpiderString();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~StringSpiderString();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     /* 0x8C */ TQuat4f _8C;
     /* 0x9C */ TVec3f _9C;

@@ -6,8 +6,8 @@ class TimeAppearObj : public MapObjActor {
 public:
     TimeAppearObj(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
 
     void exeHide();
     void exeEnd();

@@ -7,11 +7,11 @@ class FlexibleSphere : public LiveActor {
 public:
     FlexibleSphere(const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void kill();
-    virtual void control();
-    virtual void draw() const;
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     /* 0x8C */ u16 mShakeTimer;
     /* 0x8E */ bool mGrowDirection;  // true = grow, false = shrink

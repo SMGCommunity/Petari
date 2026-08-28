@@ -6,10 +6,10 @@ class GreenCaterpillarBigBody : public ModelObj {
 public:
     GreenCaterpillarBigBody(LiveActor*, MtxPtr);
 
-    virtual ~GreenCaterpillarBigBody();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~GreenCaterpillarBigBody();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void setPosAndDirection(LiveActor*);
     void calcBodyDir(LiveActor*, TVec3f*);
@@ -23,12 +23,12 @@ class GreenCaterpillarBig : public LiveActor {
 public:
     GreenCaterpillarBig(const char*);
 
-    virtual ~GreenCaterpillarBig();
-    virtual void init(const JMapInfoIter&);
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~GreenCaterpillarBig();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void startWriggle();
     void exeHide();

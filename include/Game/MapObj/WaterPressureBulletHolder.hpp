@@ -10,8 +10,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     WaterPressureBulletHolder(const char* pName);
 
-    virtual ~WaterPressureBulletHolder();
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x08 */ virtual ~WaterPressureBulletHolder();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     WaterPressureBullet* callEmptyBullet();
 

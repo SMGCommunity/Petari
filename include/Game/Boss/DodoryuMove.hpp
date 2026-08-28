@@ -11,7 +11,7 @@ namespace DodoryuSub {
     public:
         MoveState(MoveStateHolder* pHolder);
 
-        virtual void execute() = 0;
+        /* 0x08 */ virtual void execute() = 0;
 
         /* 0x04 */ MoveStateHolder* mHolder;
         /* 0x08 */ Dodoryu* mHost;
@@ -22,7 +22,7 @@ namespace DodoryuSub {
     public:
         MoveStateRail(MoveStateHolder* pHolder);
 
-        virtual void execute();
+        /* 0x08 */ virtual void execute();
 
         /* 0x10 */ f32 _10;
         /* 0x14 */ f32 _14;
@@ -33,7 +33,7 @@ namespace DodoryuSub {
         MoveStateChase(MoveStateHolder* pHolder) : MoveState(pHolder), _10(), _14(), _18(), _1C() {
         }
 
-        virtual void execute();
+        /* 0x08 */ virtual void execute();
 
         /* 0x10 */ f32 _10;
         /* 0x14 */ f32 _14;
@@ -45,7 +45,7 @@ namespace DodoryuSub {
     public:
         MoveStateDetour(MoveStateHolder* pHolder);
 
-        virtual void execute();
+        /* 0x08 */ virtual void execute();
 
         bool isPlayerOppositeFromWall() const;
 
@@ -59,7 +59,7 @@ namespace DodoryuSub {
     public:
         MoveStateEscape(MoveStateHolder* pHolder);
 
-        virtual void execute();
+        /* 0x08 */ virtual void execute();
 
         /* 0x10 */ s32 _10;
         /* 0x14 */ s32 _14;
@@ -75,7 +75,7 @@ namespace DodoryuSub {
     public:
         MoveStateJumpOut(MoveStateHolder* pHolder);
 
-        virtual void execute();
+        /* 0x08 */ virtual void execute();
 
         /* 0x10 */ f32 _10;
         /* 0x14 */ f32 _14;
@@ -85,7 +85,7 @@ namespace DodoryuSub {
     public:
         MoveStateNull(MoveStateHolder* pHolder);
 
-        virtual void execute();
+        /* 0x08 */ virtual void execute();
     };
 
     class MoveStateHolder {

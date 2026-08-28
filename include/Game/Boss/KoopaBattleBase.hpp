@@ -20,9 +20,9 @@ class KoopaBattleBase : public ActorStateBase< Koopa > {
 public:
     KoopaBattleBase(const char* pName, Koopa* pKoopa);
 
-    virtual ~KoopaBattleBase();
-    virtual void init();
-    virtual void kill();
+    /* 0x08 */ virtual ~KoopaBattleBase();
+    /* 0x0C */ virtual void init();
+    /* 0x14 */ virtual void kill();
 
     void updateChasePlayer(const MR::ActorMoveParam& rMoveParam);
     bool updateWander(const MR::ActorMoveParam& rMoveParam);

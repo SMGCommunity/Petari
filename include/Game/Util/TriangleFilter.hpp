@@ -10,7 +10,7 @@ public:
         mFunction = function;
     }*/
 
-    virtual bool isInvalidTriangle(const Triangle*) const = 0;
+    /* 0x08 */ virtual bool isInvalidTriangle(const Triangle*) const = 0;
 
     //    TriangleFunc mFunction; // 0x4
 };
@@ -20,7 +20,7 @@ public:
     TriangleFilterFunc(TriangleFunc func) : mFunction(func) {
     }
 
-    virtual bool isInvalidTriangle(const Triangle* pTriangle) const {
+    /* 0x08 */ virtual bool isInvalidTriangle(const Triangle* pTriangle) const {
         return mFunction(pTriangle);
     }
 
@@ -38,7 +38,7 @@ public:
     TriangleFilterDelegator(T* parent, DelegateFilter filter) : mParent(parent), mFunc(filter) {
     }
 
-    virtual bool isInvalidTriangle(const Triangle* pTriangle) const {
+    /* 0x08 */ virtual bool isInvalidTriangle(const Triangle* pTriangle) const {
         return (mParent->*mFunc)(pTriangle);
     }
 

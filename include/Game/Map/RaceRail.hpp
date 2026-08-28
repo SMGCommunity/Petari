@@ -30,8 +30,8 @@ class RaceRail : public NameObj {
 public:
     RaceRail(const char*);
 
-    virtual ~RaceRail();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~RaceRail();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     /* 0x0C */ PlayerRacer* mPlayerRacer;
 };

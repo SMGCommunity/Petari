@@ -9,15 +9,15 @@ class CoinGroup : public LiveActor {
 public:
     CoinGroup(const char*);
 
-    virtual ~CoinGroup() {
+    /* 0x08 */ virtual ~CoinGroup() {
     }
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
 
-    virtual void initCoinArray(const JMapInfoIter&) = 0;
-    virtual void placementCoin();
-    virtual const char* getCoinName() const;
+    /* 0x78 */ virtual void initCoinArray(const JMapInfoIter&) = 0;
+    /* 0x7C */ virtual void placementCoin();
+    /* 0x80 */ virtual const char* getCoinName() const;
 
     void killCoinAll();
     void appearCoinAll();

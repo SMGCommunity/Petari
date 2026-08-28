@@ -7,11 +7,11 @@ class DodoryuDemoOpening : public DodoryuStateBase {
 public:
     DodoryuDemoOpening(Dodoryu* pHost, const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
 
-    virtual void start();
-    virtual void end();
+    /* 0x78 */ virtual void start();
+    /* 0x7C */ virtual void end();
 
     bool tryFinish();
     void turnToRabbit();
@@ -31,10 +31,10 @@ class DodoryuDemoAppear : public DodoryuStateBase {
 public:
     DodoryuDemoAppear(Dodoryu* pHost, const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual void start();
-    virtual void end();
+    /* 0x78 */ virtual void start();
+    /* 0x7C */ virtual void end();
 
     void exeDemoWait();
     void exePlay();
@@ -46,10 +46,10 @@ class DodoryuDemoAngry : public DodoryuStateBase {
 public:
     DodoryuDemoAngry(Dodoryu* pHost, const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual void start();
-    virtual void end();
+    /* 0x78 */ virtual void start();
+    /* 0x7C */ virtual void end();
 
     void exeDemoWait();
     void exePlay();
@@ -61,10 +61,10 @@ class DodoryuDemoDown : public DodoryuStateBase {
 public:
     DodoryuDemoDown(Dodoryu* pHost, const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual void start();
-    virtual void end();
+    /* 0x78 */ virtual void start();
+    /* 0x7C */ virtual void end();
 
     void exeDemoWait();
     void exePlay();

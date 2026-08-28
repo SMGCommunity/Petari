@@ -9,16 +9,16 @@ class TripodBossGuardWall : public LiveActor {
 public:
     TripodBossGuardWall(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorAppeared();
-    virtual void kill();
-    virtual void makeActorDead();
-    virtual MtxPtr getBaseMtx() const {
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x2C */ virtual void kill();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const {
         return (MtxPtr)mBaseMtx.mMtx;
     }
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void initParts();
     void requestStart();

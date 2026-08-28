@@ -13,12 +13,12 @@ public:
     KoopaSequencerVs3();
 
     virtual ~KoopaSequencerVs3();
-    virtual void init(Koopa* pKoopa, const JMapInfoIter& rIter);
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(Koopa* pKoopa, const JMapInfoIter& rIter);
+    /* 0x14 */ virtual void calcAndSetBaseMtx();
+    /* 0x18 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x1C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x20 */ virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x24 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWaitPlayer();
     void exeBattleStairs();

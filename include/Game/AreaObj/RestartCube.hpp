@@ -8,8 +8,8 @@ class RestartCube : public AreaObj {
 public:
     RestartCube(int, const char*);
 
-    virtual ~RestartCube();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~RestartCube();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void updatePlayerRestartIdInfo();
     void changeBgm();

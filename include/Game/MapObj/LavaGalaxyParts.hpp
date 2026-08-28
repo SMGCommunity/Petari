@@ -8,12 +8,12 @@ class LavaGalaxyParts : public LiveActor {
 public:
     LavaGalaxyParts(const char*);
 
-    virtual ~LavaGalaxyParts();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void control();
+    /* 0x08 */ virtual ~LavaGalaxyParts();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
 
     LodCtrl* mLodCtrl;                   // 0x8C
     ProjmapEffectMtxSetter* mMtxSetter;  // 0x90

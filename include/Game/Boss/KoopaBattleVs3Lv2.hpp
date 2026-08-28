@@ -10,8 +10,8 @@ public:
     KoopaBattleVs3Lv2(Koopa* pKoopa);
 
     virtual ~KoopaBattleVs3Lv2();
-    virtual void init();
-    virtual void appear();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
 
     bool tryCalcAndSetBaseMtx();
     void attackSensor(HitSensor* pSender, HitSensor* pReceiver);

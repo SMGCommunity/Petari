@@ -8,8 +8,8 @@ class TombSpiderStateSwoon : public ActorStateBase< TombSpider > {
 public:
     TombSpiderStateSwoon(TombSpider*);
 
-    virtual void init();
-    virtual void appear();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
 
     void exeStart();
     void exeLoop();

@@ -15,16 +15,16 @@ class BossStinkBug : public LiveActor {
 public:
     BossStinkBug(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void calcAnim();
-    virtual void makeActorAppeared();
-    virtual void kill();
-    virtual void makeActorDead();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x2C */ virtual void kill();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void start();
     void initCamera(const JMapInfoIter&);
@@ -79,7 +79,7 @@ public:
         mStinkBug = pStinkBug;
     }
 
-    virtual bool isValid(s32 id) const {
+    /* 0x08 */ virtual bool isValid(s32 id) const {
         return mStinkBug->isValidFollowId(id);
     }
 

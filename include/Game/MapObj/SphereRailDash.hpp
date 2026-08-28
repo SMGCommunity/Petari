@@ -6,9 +6,9 @@ class SphereRailDash : public LiveActor {
 public:
     SphereRailDash(const char*);
 
-    virtual ~SphereRailDash();
-    virtual void init(const JMapInfoIter&);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~SphereRailDash();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeRailMove();

@@ -11,8 +11,8 @@ class MaterialCtrl {
 public:
     MaterialCtrl(J3DModelData*, const char*);
 
-    virtual void update();
-    virtual void updateMaterial(J3DMaterial*);
+    /* 0x08 */ virtual void update();
+    /* 0x0C */ virtual void updateMaterial(J3DMaterial*);
 
     J3DModelData* mModelData;  // 0x4
     J3DMaterial* mMaterial;    // 0x8
@@ -22,7 +22,7 @@ class FogCtrl : public MaterialCtrl {
 public:
     FogCtrl(J3DModelData*, bool);
 
-    virtual void update() override;
+    /* 0x08 */ virtual void update() override;
 
     J3DFogInfo mFogInfo;       // 0xC
     s32 mNumMaterials;         // 0x38
@@ -33,7 +33,7 @@ class MatColorCtrl : public MaterialCtrl {
 public:
     MatColorCtrl(J3DModelData*, const char*, u32, const J3DGXColor*);
 
-    virtual void updateMaterial(J3DMaterial*) override;
+    /* 0x0C */ virtual void updateMaterial(J3DMaterial*) override;
 
     u32 mColorChoice;          // 0xC
     const J3DGXColor* mColor;  // 0x10
@@ -43,7 +43,7 @@ class ViewProjmapEffectMtxSetter : public MaterialCtrl {
 public:
     ViewProjmapEffectMtxSetter(J3DModelData*);
 
-    virtual void update() override;
+    /* 0x08 */ virtual void update() override;
 
     J3DTexMtxInfo** mMatricies;  // 0xC
     s32 mNumMatricies;           // 0x10

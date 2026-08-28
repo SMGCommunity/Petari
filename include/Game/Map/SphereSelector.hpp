@@ -15,10 +15,10 @@ class SphereSelector : public LiveActor {
 public:
     SphereSelector();
 
-    virtual ~SphereSelector();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void kill();
+    /* 0x08 */ virtual ~SphereSelector();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
 
     void registerPointingTarget(LiveActor*, HandlePointingPriority);
     void validatePointing();

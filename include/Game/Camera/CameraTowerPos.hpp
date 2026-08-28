@@ -5,14 +5,14 @@
 class CameraTowerPos : public CameraTowerBase {
 public:
     CameraTowerPos(const char* pName = "塔カメラ（サブターゲット付き）");
-    virtual ~CameraTowerPos();
+    /* 0x08 */ virtual ~CameraTowerPos();
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isEnableToReset() const {
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x50 */ virtual bool isEnableToReset() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(const TVec3f& wPoint, const TVec3f& axis, f32 dist, const TVec2f& angle, f32 angleXRate) {
         mWPoint.set(wPoint);

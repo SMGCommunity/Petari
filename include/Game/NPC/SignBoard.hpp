@@ -10,9 +10,9 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     SignBoard(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeWait();
 

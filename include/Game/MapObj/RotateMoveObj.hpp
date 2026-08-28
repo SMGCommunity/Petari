@@ -7,9 +7,9 @@ public:
     inline RotateMoveObj(const char* pName) : MapObjActor(pName) {
     }
 
-    virtual void init(const JMapInfoIter&);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x84 */ virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
+    /* 0x88 */ virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
 
     void setStateMove();
     void exeMove();

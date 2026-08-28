@@ -59,8 +59,8 @@ public:
 
     CameraDirector(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    /* 0x08 */ virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void movement();
 
     void setTarget(CameraTargetObj*);
     CameraTargetObj* getTarget();

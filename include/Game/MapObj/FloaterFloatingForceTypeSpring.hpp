@@ -21,11 +21,11 @@ class FloaterFloatingForceTypeSpring : public FloaterFloatingForce {
 public:
     FloaterFloatingForceTypeSpring(LiveActor*, const char*);
 
-    virtual ~FloaterFloatingForceTypeSpring();
-    virtual void init(const JMapInfoIter&);
-    virtual void start();
-    virtual void updateHostVelocity(TVec3f*) const;
-    virtual const TVec3f& getCurrentVelocity() const {
+    /* 0x08 */ virtual ~FloaterFloatingForceTypeSpring();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void start();
+    /* 0x3C */ virtual void updateHostVelocity(TVec3f*) const;
+    /* 0x40 */ virtual const TVec3f& getCurrentVelocity() const {
         return mVelocity;
     }
 

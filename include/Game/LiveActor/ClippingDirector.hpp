@@ -12,7 +12,7 @@ class ClippingDirector : public NameObj {
 public:
     ClippingDirector();
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     void endInitActorSystemInfo();
     void registerActor(LiveActor*);

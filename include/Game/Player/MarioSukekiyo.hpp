@@ -8,11 +8,11 @@ class MarioSukekiyo : public MarioState {
 public:
     MarioSukekiyo(MarioActor*);
 
-    virtual bool start();
-    virtual bool close();
-    virtual bool update();
-    virtual bool notice();
-    virtual bool postureCtrl(MtxPtr);
+    /* 0x14 */ virtual bool start();
+    /* 0x18 */ virtual bool close();
+    /* 0x1C */ virtual bool update();
+    /* 0x20 */ virtual bool notice();
+    /* 0x28 */ virtual bool postureCtrl(MtxPtr);
 
     TVec3f _14;
     TVec3f _20;

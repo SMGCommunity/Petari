@@ -6,9 +6,9 @@ class DeadLeaves : public MapObjActor {
 public:
     DeadLeaves(const char*);
 
-    virtual ~DeadLeaves();
-    virtual void init(const JMapInfoIter&);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~DeadLeaves();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeSpin();

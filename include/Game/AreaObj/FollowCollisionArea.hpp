@@ -9,8 +9,8 @@ class FollowCollisionArea : public NameObj {
 public:
     FollowCollisionArea(const TVec3f&, MtxPtr, f32);
 
-    virtual ~FollowCollisionArea();
-    virtual void movement();
+    /* 0x08 */ virtual ~FollowCollisionArea();
+    /* 0x14 */ virtual void movement();
 
     bool hitCheck(const TVec3f&, f32, TVec3f*, TVec3f*);
 

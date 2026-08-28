@@ -9,14 +9,14 @@ class WoodBox : public LiveActor {
 public:
     WoodBox(const char*);
 
-    virtual ~WoodBox();
-    virtual void init(const JMapInfoIter&);
-    virtual void calcViewAndEntry();
-    virtual void kill();
-    virtual void control();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~WoodBox();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x20 */ virtual void calcViewAndEntry();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     void exeWait();
     void exeHit();

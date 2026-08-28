@@ -6,11 +6,11 @@ class BossStinkBugActionFlyLow : public BossStinkBugActionBase {
 public:
     BossStinkBugActionFlyLow(BossStinkBug* pStinkBug);
 
-    virtual void appear();
-    virtual void control();
-    virtual bool isValidFollowId(s32 id) const;
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x10 */ virtual void appear();
+    /* 0x1C */ virtual void control();
+    /* 0x20 */ virtual bool isValidFollowId(s32 id) const;
+    /* 0x28 */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x2C */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeFly();
     void exeShakeOffSign();

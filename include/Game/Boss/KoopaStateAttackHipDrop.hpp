@@ -10,10 +10,10 @@ class KoopaStateAttackHipDrop : public ActorStateBase< Koopa > {
 public:
     KoopaStateAttackHipDrop(Koopa* pKoopa);
 
-    virtual ~KoopaStateAttackHipDrop();
-    virtual void init();
-    virtual void appear();
-    virtual void kill();
+    /* 0x08 */ virtual ~KoopaStateAttackHipDrop();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
+    /* 0x14 */ virtual void kill();
 
     bool attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     bool isDamage() const;

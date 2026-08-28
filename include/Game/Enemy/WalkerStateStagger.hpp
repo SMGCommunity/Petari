@@ -28,7 +28,7 @@ class WalkerStateStagger : public ActorStateBase< LiveActor > {
 public:
     WalkerStateStagger(LiveActor* pHost, TVec3f* pDirection, WalkerStateParam* pStateParam, WalkerStateStaggerParam* pStaggerParam);
 
-    virtual void appear();
+    /* 0x10 */ virtual void appear();
 
     void setPunchDirection(HitSensor* pSender, HitSensor* pReceiver);
     void exeStagger();

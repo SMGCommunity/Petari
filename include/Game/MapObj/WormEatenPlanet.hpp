@@ -10,10 +10,10 @@ class WormEatenPlanet : public LiveActor {
 public:
     WormEatenPlanet(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
 
     void exeFirstWait();
     void exeSecondWait();

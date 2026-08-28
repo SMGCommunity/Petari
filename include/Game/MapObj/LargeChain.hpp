@@ -7,10 +7,10 @@ class LargeChain : public LiveActor {
 public:
     LargeChain(const char*);
 
-    virtual ~LargeChain();
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
+    /* 0x08 */ virtual ~LargeChain();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
 
     void exeWait();
     void exeBreak();

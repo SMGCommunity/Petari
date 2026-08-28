@@ -9,9 +9,9 @@ class DriftWood : public MapObjActor {
 public:
     DriftWood(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void connectToScene(const MapObjActorInitInfo&);
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x78 */ virtual void connectToScene(const MapObjActorInitInfo&);
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void attackSensor(HitSensor*, HitSensor*);
     bool tryVibrate();

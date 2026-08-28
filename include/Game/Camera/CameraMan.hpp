@@ -10,42 +10,42 @@ class CameraMan : public NameObj {
 public:
     CameraMan(const char*);
 
-    virtual void init(const JMapInfoIter&) {
+    /* 0x0C */ virtual void init(const JMapInfoIter&) {
     }
-    virtual void movement();
-    virtual void calc() {
+    /* 0x14 */ virtual void movement();
+    /* 0x24 */ virtual void calc() {
     }
-    virtual void notifyActivate() {
+    /* 0x28 */ virtual void notifyActivate() {
     }
-    virtual void notifyDeactivate() {
+    /* 0x2C */ virtual void notifyDeactivate() {
     }
-    virtual bool isInterpolationOff() const {
+    /* 0x30 */ virtual bool isInterpolationOff() const {
         return false;
     }
-    virtual bool isCollisionOff() const {
+    /* 0x34 */ virtual bool isCollisionOff() const {
         return false;
     }
-    virtual bool isZeroFrameMoveOff() const {
+    /* 0x38 */ virtual bool isZeroFrameMoveOff() const {
         return false;
     }
-    virtual bool isSubjectiveCameraOff() const {
+    /* 0x3C */ virtual bool isSubjectiveCameraOff() const {
         return false;
     }
-    virtual bool isCorrectingErpPositionOff() const {
+    /* 0x40 */ virtual bool isCorrectingErpPositionOff() const {
         return false;
     }
-    virtual bool isEnableToReset() const {
+    /* 0x44 */ virtual bool isEnableToReset() const {
         return false;
     }
-    virtual bool isEnableToRoundLeft() const {
+    /* 0x48 */ virtual bool isEnableToRoundLeft() const {
         return false;
     }
-    virtual bool isEnableToRoundRight() const {
+    /* 0x4C */ virtual bool isEnableToRoundRight() const {
         return false;
     }
-    virtual void roundLeft() {
+    /* 0x50 */ virtual void roundLeft() {
     }
-    virtual void roundRight() {
+    /* 0x54 */ virtual void roundRight() {
     }
 
     void owned(CameraDirector*);

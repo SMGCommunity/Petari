@@ -6,8 +6,8 @@ class ShadowVolumeOvalPole : public ShadowVolumeModel {
 public:
     ShadowVolumeOvalPole();
 
-    virtual ~ShadowVolumeOvalPole();
-    virtual void loadModelDrawMtx() const;
+    /* 0x08 */ virtual ~ShadowVolumeOvalPole();
+    /* 0x24 */ virtual void loadModelDrawMtx() const;
 
     void setSize(const TVec3f&);
 

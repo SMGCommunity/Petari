@@ -8,7 +8,7 @@ class MovementOnOffGroupHolder : public NameObj {
 public:
     MovementOnOffGroupHolder(const char*);
 
-    virtual ~MovementOnOffGroupHolder();
+    /* 0x08 */ virtual ~MovementOnOffGroupHolder();
 
     NameObjGroup* joinToGroup(const char*, NameObj*, u32);
     void onMovementGroup(const char*);

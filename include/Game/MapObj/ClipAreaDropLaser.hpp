@@ -9,10 +9,10 @@
 class ClipAreaDropLaser : public LiveActor {
 public:
     ClipAreaDropLaser(const char* pName);
-    virtual ~ClipAreaDropLaser();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
-    virtual void draw() const;
+    /* 0x08 */ virtual ~ClipAreaDropLaser();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
+    /* 0x18 */ virtual void draw() const;
     void exeWait();
     void exeMove();
     void incrementDrawCount();

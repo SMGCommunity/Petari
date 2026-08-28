@@ -6,12 +6,12 @@ class FlameGun : public LiveActor {
 public:
     FlameGun(const char*);
 
-    virtual ~FlameGun();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void endClipped();
-    virtual void updateHitSensor(HitSensor*);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~FlameGun();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void initSensor();
     void exeSwitchWait();

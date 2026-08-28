@@ -37,7 +37,7 @@ public:
     /// @brief Creates a new `SceneNameObjMovementController`.
     SceneNameObjMovementController();
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     void requestStopSceneFor(MR::MovementControlType, const NameObj*);
     void requestStopSceneOverwrite(const NameObj*);

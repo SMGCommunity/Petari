@@ -20,10 +20,10 @@ public:
     /// @brief Creates a new `PowerStarList`.
     PowerStarList();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void control();
+    /* 0x08 */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void calcAnim();
+    /* 0x10 */ virtual void appear();
+    /* 0x14 */ virtual void control();
 
     void drawForMessageBoardCapture();
     bool isAppearing() const;

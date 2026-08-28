@@ -6,7 +6,7 @@ class FileSelectItem;
 
 class FileSelectItemDelegatorBase {
 public:
-    virtual void notify(FileSelectItem*, s32) = 0;
+    /* 0x08 */ virtual void notify(FileSelectItem*, s32) = 0;
 };
 
 template < typename T >

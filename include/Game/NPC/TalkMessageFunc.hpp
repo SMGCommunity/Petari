@@ -5,9 +5,9 @@
 
 class TalkMessageFuncBase {
 public:
-    virtual bool operator()(u32) const = 0;
-    virtual TalkMessageFuncBase* clone() const = 0;
-    virtual TalkMessageFuncBase* clone(JKRHeap*) const = 0;
+    /* 0x08 */ virtual bool operator()(u32) const = 0;
+    /* 0x0C */ virtual TalkMessageFuncBase* clone() const = 0;
+    /* 0x0C */ virtual TalkMessageFuncBase* clone(JKRHeap*) const = 0;
 };
 
 template < typename T, typename U >
@@ -19,15 +19,15 @@ public:
     inline TalkMessageFuncM() {
     }
 
-    virtual bool operator()(u32 arg) const {
+    /* 0x08 */ virtual bool operator()(u32 arg) const {
         return (mCaller->*mCallee)(arg);
     }
 
-    virtual TalkMessageFuncM* clone() const {
+    /* 0x0C */ virtual TalkMessageFuncM* clone() const {
         return new TalkMessageFuncM(*this);
     }
 
-    virtual TalkMessageFuncM* clone(JKRHeap* pHeap) const {
+    /* 0x0C */ virtual TalkMessageFuncM* clone(JKRHeap* pHeap) const {
         return new (pHeap, 0) TalkMessageFuncM(*this);
     };
 

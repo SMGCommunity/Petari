@@ -7,7 +7,7 @@ public:
     /// @brief Creates a new `ScreenPreserver`.
     ScreenPreserver();
 
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
     void captureIfAllow();
     void activate();

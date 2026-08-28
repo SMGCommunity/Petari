@@ -6,8 +6,8 @@ class SaveIcon : public LayoutActor {
 public:
     SaveIcon(const LayoutActor* pActor);
 
-    virtual void calcAnim();
-    virtual void appear();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
 
 private:
     /* 0x20 */ const LayoutActor* mActor;

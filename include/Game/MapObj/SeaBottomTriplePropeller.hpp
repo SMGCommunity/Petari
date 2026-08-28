@@ -9,9 +9,9 @@ class SeaBottomTriplePropeller : public LiveActor {
 public:
     SeaBottomTriplePropeller(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void calcAnim();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x48 */ virtual void control();
 
     void exeWait();
     void exeBreak();

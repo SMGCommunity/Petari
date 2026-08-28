@@ -12,8 +12,8 @@ class CollisionCategorizedKeeper : public NameObj {
 public:
     CollisionCategorizedKeeper(s32);
 
-    virtual ~CollisionCategorizedKeeper();
-    virtual void movement();
+    /* 0x08 */ virtual ~CollisionCategorizedKeeper();
+    /* 0x14 */ virtual void movement();
 
     void addToZone(CollisionParts*, s32);
     void removeFromZone(CollisionParts*, s32);

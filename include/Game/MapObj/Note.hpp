@@ -11,12 +11,12 @@ class Note : public LiveActor {
 public:
     Note(const char*, const TVec3f&, NoteFairy*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     /// @brief Checks if the sensor is either a player or a rideable entity and if it is, it will "collect" the note.
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void startCountDown();
 
@@ -42,8 +42,8 @@ class NoteGroup : public LiveActorGroup {
 public:
     NoteGroup();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
 
     f32 mRotation;  // 0x18
 };

@@ -6,6 +6,6 @@ class CoconutTree : public LiveActor {
 public:
     CoconutTree(const char*);
 
-    virtual ~CoconutTree();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~CoconutTree();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 };

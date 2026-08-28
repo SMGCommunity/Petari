@@ -7,8 +7,8 @@ public:
     /// @brief Creates a new `MissLayout`.
     MissLayout();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void kill();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x28 */ virtual void kill();
 
     bool isActive() const;
     void start();

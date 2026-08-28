@@ -37,8 +37,8 @@ class FurDrawManager : public NameObj {
 public:
     FurDrawManager(u8);
 
-    virtual ~FurDrawManager();
-    virtual void draw() const;
+    /* 0x08 */ virtual ~FurDrawManager();
+    /* 0x18 */ virtual void draw() const;
 
     void add(FurCtrl*, u8);
 

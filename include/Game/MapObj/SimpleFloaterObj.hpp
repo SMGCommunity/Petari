@@ -7,8 +7,8 @@ class SimpleFloaterObj : public LiveActor {
 public:
     SimpleFloaterObj(const char*);
 
-    virtual ~SimpleFloaterObj();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~SimpleFloaterObj();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void exeWait();
     inline bool isVelocityClose() {

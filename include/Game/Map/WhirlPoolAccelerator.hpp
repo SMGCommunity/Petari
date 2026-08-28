@@ -5,7 +5,7 @@
 class WhirlPoolAccelerator : public LiveActor {
 public:
     WhirlPoolAccelerator(const char*);
-    virtual ~WhirlPoolAccelerator();
+    /* 0x08 */ virtual ~WhirlPoolAccelerator();
 
     bool calcInfo(const TVec3f&, TVec3f*) const;
 

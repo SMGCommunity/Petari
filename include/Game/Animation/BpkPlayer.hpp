@@ -6,6 +6,6 @@ class BpkPlayer : public MaterialAnmPlayerBase {
 public:
     BpkPlayer(const ResourceHolder*, J3DModelData*);
 
-    virtual void attach(J3DAnmBase*, J3DModelData*);
-    virtual void detach(J3DAnmBase*, J3DModelData*);
+    /* 0x10 */ virtual void attach(J3DAnmBase*, J3DModelData*);
+    /* 0x14 */ virtual void detach(J3DAnmBase*, J3DModelData*);
 };

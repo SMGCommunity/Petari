@@ -6,10 +6,10 @@ class BloomArea : public ImageEffectArea {
 public:
     BloomArea(int, const char*);
 
-    virtual ~BloomArea();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~BloomArea();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
-    virtual const char* getManagerName() const {
+    /* 0x28 */ virtual const char* getManagerName() const {
         return "ImageEffectArea";
     }
 

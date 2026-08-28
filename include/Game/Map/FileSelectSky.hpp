@@ -12,12 +12,12 @@ public:
     FileSelectSky(const char* pName);
 
     /// @brief Destroys the `FileSelectSky`.
-    virtual ~FileSelectSky();
+    /* 0x08 */ virtual ~FileSelectSky();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void calcAnim();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
 

@@ -6,5 +6,5 @@ class InvisiblePolygonObjGCapture : public InvisiblePolygonObj {
 public:
     InvisiblePolygonObjGCapture(const char*);
 
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 };

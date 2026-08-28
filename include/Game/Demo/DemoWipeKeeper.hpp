@@ -17,16 +17,16 @@ class DemoWipeKeeper : public DemoSheetKeeperBase, public DemoSheetKeeperInfoHol
 public:
     DemoWipeKeeper(DemoExecutor*);
 
-    virtual const char* getName() {
+    /* 0x08 */ virtual const char* getName() {
         return "ワイプ";
     }
 
-    virtual const char* getTypeString() {
+    /* 0x0C */ virtual const char* getTypeString() {
         return "Wipe";
     }
 
-    virtual void start();
-    virtual void update();
+    /* 0x10 */ virtual void start();
+    /* 0x14 */ virtual void update();
 
-    virtual void executeType(const DemoWipeInfo*);
+    /* 0x18 */ virtual void executeType(const DemoWipeInfo*);
 };

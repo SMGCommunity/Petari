@@ -8,9 +8,9 @@ class DinoPackunStateFire : public ActorStateBase< DinoPackun > {
 public:
     DinoPackunStateFire(DinoPackun*);
 
-    virtual ~DinoPackunStateFire();
-    virtual void init();
-    virtual void appear();
+    /* 0x08 */ virtual ~DinoPackunStateFire();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
 
     void exeNormal();
     void exeFireSign();

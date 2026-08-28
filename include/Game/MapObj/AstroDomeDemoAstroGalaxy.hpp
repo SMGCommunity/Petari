@@ -6,5 +6,5 @@ class AstroDomeDemoAstroGalaxy : public MapObjActor {
 public:
     AstroDomeDemoAstroGalaxy(const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 };

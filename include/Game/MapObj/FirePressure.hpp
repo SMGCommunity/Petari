@@ -6,10 +6,10 @@ class FirePressure : public PressureBase {
 public:
     FirePressure(const char*);
 
-    virtual ~FirePressure();
-    virtual void init(const JMapInfoIter&);
-    virtual void initBullet(const JMapInfoIter&);
-    virtual bool shotBullet(f32);
+    /* 0x08 */ virtual ~FirePressure();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x78 */ virtual void initBullet(const JMapInfoIter&);
+    /* 0x7C */ virtual bool shotBullet(f32);
 
     void calcGunPointFromCannon(TPos3f*);
 

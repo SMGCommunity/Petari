@@ -5,7 +5,7 @@
 class PomponPlant : public LiveActor {
 public:
     PomponPlant(const char*);
-    virtual ~PomponPlant();
+    /* 0x08 */ virtual ~PomponPlant();
 
 private:
     u8 mPad[(0x98) - sizeof(LiveActor)];

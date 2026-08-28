@@ -22,7 +22,7 @@ public:
 
     /// @brief Intializes the `AreaObjContainer` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     AreaObjMgr* getManager(const char*) const;
     AreaObj* getAreaObj(const char*, const TVec3f&) const;

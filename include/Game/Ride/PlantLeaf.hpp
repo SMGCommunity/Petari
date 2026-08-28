@@ -11,12 +11,12 @@ class PlantLeaf : public LiveActor {
 public:
     PlantLeaf(f32, const TVec3f&, const TVec3f&, f32);
 
-    virtual void init(const JMapInfoIter&);
-    virtual MtxPtr getBaseMtx() const {
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const {
         return (MtxPtr)&mBaseMtx;
     }
-    virtual void startClipped();
-    virtual void endClipped();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
 
     void updateGrowUp(const TVec3f&, const TVec3f&, f32, f32);
     bool updateSpring(const TVec3f&, f32, f32);
@@ -43,7 +43,7 @@ class PlantLeafDrawInit : public LiveActor {
 public:
     PlantLeafDrawInit(const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void initDraw() const;
 

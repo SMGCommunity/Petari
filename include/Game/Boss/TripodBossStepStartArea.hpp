@@ -6,10 +6,10 @@ class TripodBossStepStartArea : public AreaObj {
 public:
     TripodBossStepStartArea(int, const char*);
 
-    virtual ~TripodBossStepStartArea();
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
-    virtual const char* getManagerName() const;
+    /* 0x08 */ virtual ~TripodBossStepStartArea();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
+    /* 0x28 */ virtual const char* getManagerName() const;
 
     s32 _3C;
 };

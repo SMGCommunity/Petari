@@ -8,7 +8,7 @@ class SledRopePoint : public SwingRopePoint {
 public:
     SledRopePoint(const TVec3f&, f32);
 
-    virtual void updatePos(f32);
+    /* 0x08 */ virtual void updatePos(f32);
 
     bool bindToMapCollision(f32);
 

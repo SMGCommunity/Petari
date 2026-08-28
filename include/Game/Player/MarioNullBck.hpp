@@ -6,10 +6,10 @@ class MarioNullBck : public LiveActor {
 public:
     MarioNullBck(const char*);
 
-    virtual ~MarioNullBck();
+    /* 0x08 */ virtual ~MarioNullBck();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
 
     void getLastPos(TVec3f*);
     bool getFramePos(f32, TVec3f*, TVec3f*);

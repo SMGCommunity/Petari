@@ -8,11 +8,11 @@ class KoopaFireShort : public LiveActor {
 public:
     KoopaFireShort(const Koopa* pKoopa);
 
-    virtual ~KoopaFireShort();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x08 */ virtual ~KoopaFireShort();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
     void emitNormal();
     void emitFast();

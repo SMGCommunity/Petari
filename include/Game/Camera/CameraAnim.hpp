@@ -54,18 +54,18 @@ class CameraAnim : public Camera {
 public:
     CameraAnim(const char* pName = "アニメーションカメラ");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isInterpolationOff() const {
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x2C */ virtual bool isInterpolationOff() const {
         return true;
     }
-    virtual bool isCollisionOff() const {
+    /* 0x30 */ virtual bool isCollisionOff() const {
         return true;
     }
-    virtual bool isZeroFrameMoveOff() const {
+    /* 0x34 */ virtual bool isZeroFrameMoveOff() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(u8*, f32);
     bool isAnimEnd() const;
@@ -92,12 +92,12 @@ public:
     inline BaseCamAnmDataAccessor() {
     }
 
-    virtual inline ~BaseCamAnmDataAccessor() {
+    /* 0x08 */ virtual inline ~BaseCamAnmDataAccessor() {
     }
 
-    virtual void set(void*, void*) = 0;
-    virtual void getPos(TVec3f*, f32) const = 0;
-    virtual void getWatchPos(TVec3f*, f32) const = 0;
+    /* 0x0C */ virtual void set(void*, void*) = 0;
+    /* 0x10 */ virtual void getPos(TVec3f*, f32) const = 0;
+    /* 0x14 */ virtual void getWatchPos(TVec3f*, f32) const = 0;
     virtual f32 getTwist(f32) const = 0;
     virtual f32 getFovy(f32) const = 0;
 };
@@ -109,9 +109,9 @@ public:
         mValues = nullptr;
     }
 
-    virtual void set(void*, void*);
-    virtual void getPos(TVec3f*, f32) const;
-    virtual void getWatchPos(TVec3f*, f32) const;
+    /* 0x0C */ virtual void set(void*, void*);
+    /* 0x10 */ virtual void getPos(TVec3f*, f32) const;
+    /* 0x14 */ virtual void getWatchPos(TVec3f*, f32) const;
     virtual f32 getTwist(f32) const;
     virtual f32 getFovy(f32) const;
 
@@ -132,9 +132,9 @@ public:
         mValues = nullptr;
     }
 
-    virtual void set(void*, void*);
-    virtual void getPos(TVec3f*, f32) const;
-    virtual void getWatchPos(TVec3f*, f32) const;
+    /* 0x0C */ virtual void set(void*, void*);
+    /* 0x10 */ virtual void getPos(TVec3f*, f32) const;
+    /* 0x14 */ virtual void getWatchPos(TVec3f*, f32) const;
     virtual f32 getTwist(f32) const;
     virtual f32 getFovy(f32) const;
 

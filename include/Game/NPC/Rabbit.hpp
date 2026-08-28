@@ -5,7 +5,7 @@
 class Rabbit : public NPCActor {
 public:
     Rabbit(const char*);
-    virtual ~Rabbit();
+    /* 0x08 */ virtual ~Rabbit();
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 
 private:

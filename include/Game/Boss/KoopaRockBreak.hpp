@@ -6,7 +6,7 @@ class KoopaRockBreak : public PartsModel {
 public:
     KoopaRockBreak(LiveActor* pActor);
 
-    virtual ~KoopaRockBreak();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
+    /* 0x08 */ virtual ~KoopaRockBreak();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
 };

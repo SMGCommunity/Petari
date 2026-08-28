@@ -8,9 +8,9 @@ class TypicalDoor : public MapObjActor {
 public:
     TypicalDoor(const char*);
 
-    virtual ~TypicalDoor();
-    virtual void init(const JMapInfoIter&) override;
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) override;
+    /* 0x08 */ virtual ~TypicalDoor();
+    /* 0x0C */ virtual void init(const JMapInfoIter&) override;
+    /* 0x84 */ virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) override;
 
     void open();
     void close();
@@ -26,17 +26,17 @@ public:
     TypicalDoorOpen(const char* pName) : TypicalDoor(pName) {
     }
 
-    virtual void init(const JMapInfoIter&) override;
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) override;
+    /* 0x0C */ virtual void init(const JMapInfoIter&) override;
+    /* 0x84 */ virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) override;
 };
 
 class DarknessRoomDoor : public TypicalDoor {
 public:
     DarknessRoomDoor(const char*);
 
-    virtual void init(const JMapInfoIter&) override;
-    virtual void control() override;
-    virtual void connectToScene(const MapObjActorInitInfo&) override;
+    /* 0x0C */ virtual void init(const JMapInfoIter&) override;
+    /* 0x48 */ virtual void control() override;
+    /* 0x78 */ virtual void connectToScene(const MapObjActorInitInfo&) override;
 
     void validateCollision();
     void invalidateCollision();

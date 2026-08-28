@@ -9,8 +9,8 @@ class MarioMeter : public NameObj {
 public:
     MarioMeter(const char*);
 
-    virtual ~MarioMeter();
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x08 */ virtual ~MarioMeter();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void initLifeCount(s32);
     void setLifeCount(s32);

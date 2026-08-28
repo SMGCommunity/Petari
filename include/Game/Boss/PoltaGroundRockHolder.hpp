@@ -8,7 +8,7 @@ class PoltaGroundRockHolder : public DeriveActorGroup< PoltaGroundRock > {
 public:
     PoltaGroundRockHolder();
 
-    virtual ~PoltaGroundRockHolder() {};
+    /* 0x08 */ virtual ~PoltaGroundRockHolder() {};
 
     void breakAll();
 };

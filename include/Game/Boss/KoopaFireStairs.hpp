@@ -9,11 +9,11 @@ class KoopaFireStairs : public LiveActor {
 public:
     KoopaFireStairs(const char* pName, bool);
 
-    virtual ~KoopaFireStairs();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void makeActorDead();
-    virtual void calcAndSetBaseMtx();
+    /* 0x08 */ virtual ~KoopaFireStairs();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void setInfo(const KoopaBattleMapStair*, const TVec3f*);
     void exeFly();

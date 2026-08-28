@@ -16,9 +16,9 @@ public:
     /// @brief Creates a new `LuigiLetter`.
     LuigiLetter(bool, const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void movement();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x14 */ virtual void movement();
 
     void exeAppear();
     void exeWait();

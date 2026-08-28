@@ -5,7 +5,7 @@
 class SnowFloor : public LiveActor {
 public:
     SnowFloor(const char*);
-    virtual ~SnowFloor();
+    /* 0x08 */ virtual ~SnowFloor();
 
 private:
     u8 mPad[(0x120) - sizeof(LiveActor)];

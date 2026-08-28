@@ -8,7 +8,7 @@ class KameckHolder : public DeriveActorGroup< Kameck > {
 public:
     KameckHolder(s32);
 
-    virtual ~KameckHolder();
+    /* 0x08 */ virtual ~KameckHolder();
 
     void startDemoAppear();
     void endDemoAppear();

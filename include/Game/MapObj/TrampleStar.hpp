@@ -21,13 +21,13 @@ public:
 
     TrampleStar(const char*);
 
-    virtual ~TrampleStar();
+    /* 0x08 */ virtual ~TrampleStar();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void control();
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x10 */ virtual void draw() const;
+    /* 0x14 */ virtual void calcAnim();
+    /* 0x18 */ virtual void control();
+    /* 0x1C */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void toSphere(f32);
     void initCheckFlag(u32);

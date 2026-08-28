@@ -8,7 +8,7 @@ class LiveActorGroup : public NameObjGroup {
 public:
     LiveActorGroup(const char*, int);
 
-    virtual ~LiveActorGroup() {
+    /* 0x08 */ virtual ~LiveActorGroup() {
     }
 
     void registerActor(LiveActor*);

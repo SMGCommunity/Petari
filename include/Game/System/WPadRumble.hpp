@@ -23,7 +23,7 @@ class WPadRumble {
 public:
     WPadRumble(WPad*);
 
-    virtual ~WPadRumble();
+    /* 0x08 */ virtual ~WPadRumble();
 
     void registInstance();
     void pause();

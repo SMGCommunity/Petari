@@ -6,14 +6,14 @@ class DodoryuStateLv1 : public DodoryuStateBase {
 public:
     DodoryuStateLv1(Dodoryu* pHost, const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
 
-    virtual void start();
-    virtual void catchAttackSensor(HitSensor*, HitSensor*);
-    virtual void catchHipDrop();
-    virtual bool catchPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual void catchStartClipped();
+    /* 0x78 */ virtual void start();
+    /* 0x80 */ virtual void catchAttackSensor(HitSensor*, HitSensor*);
+    /* 0x84 */ virtual void catchHipDrop();
+    /* 0x88 */ virtual bool catchPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x8C */ virtual void catchStartClipped();
 
     bool isAttackable() const;
     void executeHideJump();

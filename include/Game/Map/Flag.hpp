@@ -20,12 +20,12 @@ public:
 
     Flag(const char*);
 
-    virtual ~Flag();
+    /* 0x08 */ virtual ~Flag();
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void movement();
-    virtual void draw() const;
-    virtual void appear();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x10 */ virtual void movement();
+    /* 0x14 */ virtual void draw() const;
+    /* 0x18 */ virtual void appear();
 
     void setInfoPos(const char* pObjName, const TVec3f* pPos, const TVec3f& rSide, f32 stickLength, f32 width, f32 height, s32 numPointsU,
                     s32 numPointsV, f32);

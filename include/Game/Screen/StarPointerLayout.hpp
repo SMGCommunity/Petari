@@ -33,11 +33,11 @@ class StarPointerLayout : public LayoutActor {
 public:
     StarPointerLayout(const char* pName = "スターポインタレイアウト");
 
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void appear();
-    virtual void kill();
-    virtual void control();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void kill();
+    /* 0x2C */ virtual void control();
 
     void initWithPort(s32);
     bool startCommandStream(const LiveActor*, const TVec3f*, bool);
@@ -148,7 +148,7 @@ class StarPointerNumber : public LayoutActor {
 public:
     StarPointerNumber(StarPointerLayout*, s32, const char*);
 
-    virtual void control();
+    /* 0x2C */ virtual void control();
 
     bool isOffState() const;
     void startAnimPosition(u32) NO_INLINE;

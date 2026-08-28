@@ -21,9 +21,9 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     HoneyBee(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 

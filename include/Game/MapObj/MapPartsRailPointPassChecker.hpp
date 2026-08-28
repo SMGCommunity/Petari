@@ -6,11 +6,11 @@ class MapPartsRailPointPassChecker : public MapPartsFunction {
 public:
     MapPartsRailPointPassChecker(LiveActor*);
 
-    virtual ~MapPartsRailPointPassChecker();
-    virtual void movement();
-    virtual bool isWorking() const;
-    virtual void start();
-    virtual void end() {
+    /* 0x08 */ virtual ~MapPartsRailPointPassChecker();
+    /* 0x14 */ virtual void movement();
+    /* 0x24 */ virtual bool isWorking() const;
+    /* 0x28 */ virtual void start();
+    /* 0x2C */ virtual void end() {
     }
 
     bool isPassed() const;

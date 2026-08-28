@@ -5,7 +5,7 @@
 class Balloonfish : public LiveActor {
 public:
     Balloonfish(const char*);
-    virtual ~Balloonfish();
+    /* 0x08 */ virtual ~Balloonfish();
 
 private:
     u8 mPad[(0xAC) - sizeof(LiveActor)];

@@ -6,10 +6,10 @@ class RailCoin : public CoinGroup {
 public:
     RailCoin(const char*);
 
-    virtual ~RailCoin();
-    virtual void initCoinArray(const JMapInfoIter&);
-    virtual void placementCoin();
-    virtual const char* getCoinName() const;
+    /* 0x08 */ virtual ~RailCoin();
+    /* 0x78 */ virtual void initCoinArray(const JMapInfoIter&);
+    /* 0x7C */ virtual void placementCoin();
+    /* 0x80 */ virtual const char* getCoinName() const;
 
     void placementNormalRail();
     void placementMercatorRail();

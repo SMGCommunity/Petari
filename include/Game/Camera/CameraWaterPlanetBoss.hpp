@@ -6,12 +6,12 @@ class CameraWaterPlanetBoss : public Camera {
 public:
     CameraWaterPlanetBoss(const char* pName = "水中プラネットボス");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual bool isEnableToReset() const {
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x50 */ virtual bool isEnableToReset() const {
         return true;
     }
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void setParam(f32 distMin, f32 distMax, f32 blendRateMin, bool blendUpEnabled, const TVec3f wPoint, f32 dotFrontMin, f32 dotFrontMax,
                   f32 angleXMin, f32 angleXMax) {

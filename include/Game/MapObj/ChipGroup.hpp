@@ -15,9 +15,9 @@ public:
         bool mIsGotten;   // 0x4
     };
 
-    virtual ~ChipGroup();
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    /* 0x08 */ virtual ~ChipGroup();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
 
     void updateUIRange();
     void registerChip(ChipBase*);
@@ -56,12 +56,12 @@ class BlueChipGroup : public ChipGroup {
 public:
     BlueChipGroup(const char*);
 
-    virtual ~BlueChipGroup();
+    /* 0x08 */ virtual ~BlueChipGroup();
 };
 
 class YellowChipGroup : public ChipGroup {
 public:
     YellowChipGroup(const char*);
 
-    virtual ~YellowChipGroup();
+    /* 0x08 */ virtual ~YellowChipGroup();
 };

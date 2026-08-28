@@ -7,11 +7,11 @@ class PrizeRing : public ModelObj {
 public:
     PrizeRing();
 
-    virtual ~PrizeRing();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void kill();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x08 */ virtual ~PrizeRing();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
     inline s32 getNumber() const;
 

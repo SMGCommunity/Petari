@@ -5,7 +5,7 @@
 class DharmaSambo : public LiveActor {
 public:
     DharmaSambo(const char*);
-    virtual ~DharmaSambo();
+    /* 0x08 */ virtual ~DharmaSambo();
 
 private:
     u8 mPad[(0xC8) - sizeof(LiveActor)];

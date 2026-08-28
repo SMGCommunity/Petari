@@ -79,10 +79,10 @@ public:
 
     CameraParamChunk(CameraHolder*, const CameraParamChunkID&);
 
-    virtual void copy(const CameraParamChunk*);
-    virtual void load(DotCamReader*, CameraHolder*);
-    virtual void initiate();
-    virtual const char* getClassName() const {
+    /* 0x08 */ virtual void copy(const CameraParamChunk*);
+    /* 0x0C */ virtual void load(DotCamReader*, CameraHolder*);
+    /* 0x10 */ virtual void initiate();
+    /* 0x14 */ virtual const char* getClassName() const {
         return "Base";
     }
 
@@ -121,10 +121,10 @@ class CameraParamChunkGame : public CameraParamChunk {
 public:
     CameraParamChunkGame(CameraHolder*, const CameraParamChunkID&);
 
-    virtual void copy(const CameraParamChunk*);
-    virtual void load(DotCamReader*, CameraHolder*);
-    virtual void initiate();
-    virtual const char* getClassName() const {
+    /* 0x08 */ virtual void copy(const CameraParamChunk*);
+    /* 0x0C */ virtual void load(DotCamReader*, CameraHolder*);
+    /* 0x10 */ virtual void initiate();
+    /* 0x14 */ virtual const char* getClassName() const {
         return "Game";
     }
 
@@ -137,10 +137,10 @@ class CameraParamChunkEvent : public CameraParamChunk {
 public:
     CameraParamChunkEvent(CameraHolder*, const CameraParamChunkID&);
 
-    virtual void copy(const CameraParamChunk*);
-    virtual void load(DotCamReader*, CameraHolder*);
-    virtual void initiate();
-    virtual const char* getClassName() const {
+    /* 0x08 */ virtual void copy(const CameraParamChunk*);
+    /* 0x0C */ virtual void load(DotCamReader*, CameraHolder*);
+    /* 0x10 */ virtual void initiate();
+    /* 0x14 */ virtual const char* getClassName() const {
         return "Event";
     }
 

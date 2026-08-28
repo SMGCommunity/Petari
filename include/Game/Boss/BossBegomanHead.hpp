@@ -11,8 +11,8 @@ class BossBegomanHead : public PartsModel {
 public:
     BossBegomanHead(LiveActor*, MtxPtr);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     bool isSwitchOn();
     bool isEdgeOut();

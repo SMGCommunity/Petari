@@ -24,7 +24,7 @@ class MatrixControl : public NameObj {
 public:
     MatrixControl(const char*, MatrixMap*, MatrixSelectList*, s32);
 
-    virtual ~MatrixControl();
+    /* 0x08 */ virtual ~MatrixControl();
 
     u8 getValue(const char*, u8) const;
     bool getValueOrNone(const char*, u8, u8*) const;
@@ -44,7 +44,7 @@ class MatrixValueGetter : public NameObj {
 public:
     MatrixValueGetter(const char*, MatrixValueTable*);
 
-    virtual ~MatrixValueGetter();
+    /* 0x08 */ virtual ~MatrixValueGetter();
 
     bool getValue(const char*, f32*) const;
 

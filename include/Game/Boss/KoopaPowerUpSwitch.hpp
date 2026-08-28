@@ -6,7 +6,7 @@ class KoopaPowerUpSwitch : public LiveActor {
 public:
     KoopaPowerUpSwitch(const char* pName);
 
-    virtual ~KoopaPowerUpSwitch();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void initAfterPlacement();
+    /* 0x08 */ virtual ~KoopaPowerUpSwitch();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x10 */ virtual void initAfterPlacement();
 };

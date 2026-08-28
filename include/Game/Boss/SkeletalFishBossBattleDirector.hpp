@@ -9,8 +9,8 @@ class SkeletalFishBossBattleDirector : public NameObj {
 public:
     SkeletalFishBossBattleDirector(SkeletalFishBoss*);
 
-    virtual ~SkeletalFishBossBattleDirector();
-    virtual void movement();
+    /* 0x08 */ virtual ~SkeletalFishBossBattleDirector();
+    /* 0x14 */ virtual void movement();
 
     void initiate();
     void startPowerUpDemo1();

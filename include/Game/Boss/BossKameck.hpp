@@ -15,12 +15,12 @@ class BossKameck : public LiveActor {
 public:
     BossKameck(const char*, const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorDead();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     BossKameckMoveRail* getMoveRail(s32);
     void startSequence();
@@ -59,7 +59,7 @@ public:
     BossKameckBeamEventListener(BossKameck* pBoss) : KameckBeamEventListener(), mBossKameck(pBoss) {
     }
 
-    virtual void hitBeam(s32 type) {
+    /* 0x08 */ virtual void hitBeam(s32 type) {
         mBossKameck->hitBeam(type);
     }
 

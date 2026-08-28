@@ -12,13 +12,13 @@ class ScenarioSelectScene : public Scene {
 public:
     ScenarioSelectScene();
 
-    virtual ~ScenarioSelectScene();
-    virtual void init();
-    virtual void start();
-    virtual void update();
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void calcViewAndEntry();
+    /* 0x08 */ virtual ~ScenarioSelectScene();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void start();
+    /* 0x14 */ virtual void update();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x20 */ virtual void calcViewAndEntry();
 
     void startBackground();
     bool isActive() const;

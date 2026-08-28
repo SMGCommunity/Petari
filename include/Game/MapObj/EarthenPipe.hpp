@@ -10,13 +10,13 @@ class EarthenPipe : public LiveActor {
 public:
     EarthenPipe(const char*);
 
-    virtual ~EarthenPipe();
-    virtual void init(const JMapInfoIter&);
-    virtual void calcAnim();
-    virtual void makeActorAppeared();
-    virtual MtxPtr getBaseMtx() const;
-    virtual void control();
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~EarthenPipe();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const;
+    /* 0x48 */ virtual void control();
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     bool tryShowUp();
     bool tryHideDown();
@@ -80,7 +80,7 @@ public:
         s32 mPipeID;      // 0x8
     };
 
-    virtual ~EarthenPipeMediator();
+    /* 0x08 */ virtual ~EarthenPipeMediator();
 
     void entry(EarthenPipe*, const JMapInfoIter&);
 

@@ -6,5 +6,5 @@ class YellowChip : public ChipBase {
 public:
     YellowChip(const char*);
 
-    virtual ~YellowChip();
+    /* 0x08 */ virtual ~YellowChip();
 };

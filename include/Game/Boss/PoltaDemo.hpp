@@ -8,9 +8,9 @@ class PoltaDemo : public PoltaActionBase {
 public:
     PoltaDemo(Polta*);
 
-    virtual ~PoltaDemo();
-    virtual void init();
-    virtual void control();
+    /* 0x08 */ virtual ~PoltaDemo();
+    /* 0x0C */ virtual void init();
+    /* 0x1C */ virtual void control();
 
     void startDemoSetting();
     void startOpeningDemo();

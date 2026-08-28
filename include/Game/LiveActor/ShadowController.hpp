@@ -30,9 +30,9 @@ class ShadowControllerHolder : public NameObj {
 public:
     ShadowControllerHolder();
 
-    virtual ~ShadowControllerHolder();
-    virtual void initAfterPlacement() override;
-    virtual void movement() override;
+    /* 0x08 */ virtual ~ShadowControllerHolder();
+    /* 0x10 */ virtual void initAfterPlacement() override;
+    /* 0x14 */ virtual void movement() override;
 
     void updateController();
 

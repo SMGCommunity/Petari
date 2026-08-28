@@ -59,7 +59,7 @@ public:
     typedef bool (Mario::*Task)(u32);
     Mario(MarioActor*);
 
-    virtual bool postureCtrl(MtxPtr);
+    /* 0x0C */ virtual bool postureCtrl(MtxPtr);
 
     void initMember();
 

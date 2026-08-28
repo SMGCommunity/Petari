@@ -6,7 +6,7 @@ class ShadowVolumeCylinder : public ShadowVolumeModel {
 public:
     ShadowVolumeCylinder();
 
-    virtual void loadModelDrawMtx() const;
+    /* 0x24 */ virtual void loadModelDrawMtx() const;
 
     void setRadius(f32);
 

@@ -8,8 +8,8 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ButlerExplain(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x48 */ virtual void control();
 
     void startDemo();
 

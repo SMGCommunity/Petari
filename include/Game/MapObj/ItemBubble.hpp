@@ -11,9 +11,9 @@ public:
     RotPartsModel(LiveActor* a1, const char* a2, const char* a3, MtxPtr a4, int a5, bool a6) : PartsModel(a1, a2, a3, a4, a5, a6) {
     }
 
-    virtual ~RotPartsModel() {
+    /* 0x08 */ virtual ~RotPartsModel() {
     }
-    virtual void calcAndSetBaseMtx() {
+    /* 0x4C */ virtual void calcAndSetBaseMtx() {
         PartsModel::calcAndSetBaseMtx();
         TRot3f mtx;
         mtx.identity();
@@ -46,14 +46,14 @@ class ItemBubble : public LiveActor {
 public:
     ItemBubble(const char*);
 
-    virtual ~ItemBubble();
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void initAfterPlacement();
-    virtual void appear();
-    virtual void kill();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x08 */ virtual ~ItemBubble();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     void exeWait();
     void exeBreak();

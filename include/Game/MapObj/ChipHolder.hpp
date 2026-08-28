@@ -11,8 +11,8 @@ class ChipHolder : public NameObj {
 public:
     ChipHolder(const char* pName, s32 chipType);
 
-    virtual ~ChipHolder();
-    virtual void init(const JMapInfoIter&);
+    /* 0x08 */ virtual ~ChipHolder();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void registerChipGroup(ChipGroup*);
     ChipGroup* findChipGroup(s32) const;

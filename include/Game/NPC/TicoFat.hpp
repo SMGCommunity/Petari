@@ -11,21 +11,21 @@ class TicoFat : public NPCActor {
 public:
     TicoFat(const char*);
 
-    virtual ~TicoFat();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void kill();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual void shootStarPiece();
-    virtual void receiveStarPiece(s32);
-    virtual void startEat();
-    virtual bool enableAppear();
-    virtual void initStarPieceSaveData(const JMapInfoIter&);
-    virtual void addStarPieceSaveData(s32);
-    virtual void disappear(bool);
-    virtual void appearInformation() const;
+    /* 0x08 */ virtual ~TicoFat();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x2C */ virtual void kill();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x78 */ virtual void shootStarPiece();
+    /* 0x7C */ virtual void receiveStarPiece(s32);
+    /* 0x80 */ virtual void startEat();
+    /* 0x84 */ virtual bool enableAppear();
+    /* 0x88 */ virtual void initStarPieceSaveData(const JMapInfoIter&);
+    /* 0x8C */ virtual void addStarPieceSaveData(s32);
+    /* 0x90 */ virtual void disappear(bool);
+    /* 0x94 */ virtual void appearInformation() const;
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 

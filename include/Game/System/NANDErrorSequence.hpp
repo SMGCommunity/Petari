@@ -9,7 +9,7 @@ class NANDErrorSequence : public ActorStateBase< SaveDataHandleSequence > {
 public:
     NANDErrorSequence(SaveDataHandleSequence*, SysInfoWindow*, SysInfoWindow*);
 
-    virtual void control();
+    /* 0x1C */ virtual void control();
 
     void startErrorToWiiMenu(const char*);
     void startErrorToFreeze(const char*);

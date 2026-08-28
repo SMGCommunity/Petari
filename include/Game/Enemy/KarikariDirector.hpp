@@ -10,7 +10,7 @@ class KarikariDirector : public LiveActorGroup {
 public:
     KarikariDirector(const char*);
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     bool isMaxNumCling() const;
     void removeAllClingingKarikari();

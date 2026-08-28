@@ -8,8 +8,8 @@ class OSThreadWrapper {
 public:
     OSThreadWrapper(u32, int, int, JKRHeap*);
 
-    virtual ~OSThreadWrapper();
-    virtual void* run();
+    /* 0x08 */ virtual ~OSThreadWrapper();
+    /* 0x0C */ virtual void* run();
 
     void initMessageQueue(JKRHeap*, int);
     void initHeapSpecified(JKRHeap*, u32, int);

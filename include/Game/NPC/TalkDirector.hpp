@@ -16,7 +16,7 @@ class TalkPeekZ : DrawSyncCallback {
 public:
     TalkPeekZ();
 
-    virtual void drawSyncCallback(u16);
+    /* 0x08 */ virtual void drawSyncCallback(u16);
 
     void setDrawSyncToken();
 
@@ -35,9 +35,9 @@ class TalkDirector : public LayoutActor {
 public:
     TalkDirector(const char*);
 
-    virtual ~TalkDirector();
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    /* 0x08 */ virtual ~TalkDirector();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
 
     bool request(TalkMessageCtrl*, bool);
     bool test(TalkMessageCtrl*, bool, bool);

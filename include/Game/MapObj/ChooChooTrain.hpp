@@ -8,10 +8,10 @@ class ChooChooTrain : public LiveActor {
 public:
     ChooChooTrain(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
 
     MR::Vector< MR::AssignableArray< ModelObj* > > mModelArray;  // 0x8C
     TVec3f _98;

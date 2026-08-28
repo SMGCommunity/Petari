@@ -10,11 +10,11 @@ public:
     WarpCube(int formType, const char* pName) : AreaObj(formType, pName), mMapIdInfo() {
     }
 
-    virtual ~WarpCube();
+    /* 0x08 */ virtual ~WarpCube();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
-    virtual void draw() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
+    /* 0x18 */ virtual void draw() const;
 
     JMapIdInfo* mMapIdInfo;        // 0x3C
     ActorCameraInfo* mCameraInfo;  // 0x40
@@ -28,7 +28,7 @@ public:
     WarpCubeMgr(s32 formType, const char* pName) : AreaObjMgr(formType, pName), mWarpCube() {
     }
 
-    virtual ~WarpCubeMgr() {
+    /* 0x08 */ virtual ~WarpCubeMgr() {
     }
 
     void setInvalidateTimer(AreaObj*, u16);

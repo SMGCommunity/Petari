@@ -6,8 +6,8 @@ class StarPointerCommandStream : public LayoutActor {
 public:
     StarPointerCommandStream(const TVec2f*);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x2C */ virtual void control();
 
     void start(const TVec3f*, bool);
     void show();

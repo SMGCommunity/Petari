@@ -20,7 +20,7 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ImageEffectDirector(const char* pName);
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     void setCurrentEffect(ImageEffectBase*);
     void turnOnNormal();

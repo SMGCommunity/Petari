@@ -8,8 +8,8 @@ class PoltaStateGenerateRock : public ActorStateBase< Polta > {
 public:
     PoltaStateGenerateRock(Polta*);
 
-    virtual ~PoltaStateGenerateRock();
-    virtual void appear();
+    /* 0x08 */ virtual ~PoltaStateGenerateRock();
+    /* 0x10 */ virtual void appear();
 
     void exeSign();
     void exeGenerate();

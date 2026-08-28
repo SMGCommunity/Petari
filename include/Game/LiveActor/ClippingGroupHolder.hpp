@@ -9,7 +9,7 @@ class ClippingInfoGroup : public NameObj {
 public:
     ClippingInfoGroup(const char*, int);
 
-    virtual ~ClippingInfoGroup();
+    /* 0x08 */ virtual ~ClippingInfoGroup();
 
     void setGroupNo(const JMapInfoIter&);
     void registerInfo(ClippingActorInfo*);
@@ -28,8 +28,8 @@ class ClippingGroupHolder : public NameObj {
 public:
     ClippingGroupHolder();
 
-    virtual ~ClippingGroupHolder();
-    virtual void movement();
+    /* 0x08 */ virtual ~ClippingGroupHolder();
+    /* 0x14 */ virtual void movement();
 
     void createAndAdd(ClippingActorInfo*, const JMapInfoIter&, int);
     ClippingInfoGroup* createGroup(ClippingActorInfo*, const JMapInfoIter&, int);

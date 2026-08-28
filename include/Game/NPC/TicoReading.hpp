@@ -6,9 +6,9 @@ class TicoReading : public LiveActor {
 public:
     TicoReading(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void kill();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
 
     void exeWait();
 };

@@ -5,7 +5,7 @@
 class RunawayRabbitCollect : public LiveActor {
 public:
     RunawayRabbitCollect(const char*);
-    virtual ~RunawayRabbitCollect();
+    /* 0x08 */ virtual ~RunawayRabbitCollect();
 
 private:
     u8 mPad[(0xB4) - sizeof(LiveActor)];

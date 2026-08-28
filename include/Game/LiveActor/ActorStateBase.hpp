@@ -7,23 +7,23 @@ public:
     ActorStateBaseInterface(const char* pName) : NerveExecutor(pName) {
     }
 
-    virtual ~ActorStateBaseInterface() {
+    /* 0x08 */ virtual ~ActorStateBaseInterface() {
     }
 
-    virtual void init() {
+    /* 0x0C */ virtual void init() {
     }
 
-    virtual void appear() {
+    /* 0x10 */ virtual void appear() {
         mIsDead = false;
     }
 
-    virtual void kill() {
+    /* 0x14 */ virtual void kill() {
         mIsDead = true;
     }
 
-    virtual bool update();
+    /* 0x18 */ virtual bool update();
 
-    virtual void control() {
+    /* 0x1C */ virtual void control() {
     }
 
     /* 0x8 */ bool mIsDead;
@@ -35,7 +35,7 @@ public:
     ActorStateBase(const char* pName, T* pActor) : ActorStateBaseInterface(pName), mHost(pActor) {
     }
 
-    virtual ~ActorStateBase() {
+    /* 0x08 */ virtual ~ActorStateBase() {
     }
 
     inline T* getHost() const {

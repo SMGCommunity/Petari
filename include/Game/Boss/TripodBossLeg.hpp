@@ -12,12 +12,12 @@ class TripodBossLeg : public LiveActor {
 public:
     TripodBossLeg(const char*);
 
-    virtual ~TripodBossLeg();
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void control();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~TripodBossLeg();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void initShadow(const char*);
     void setBody(TripodBoss*);

@@ -7,13 +7,13 @@ class CocoSamboHead : public PartsModel {
 public:
     CocoSamboHead(LiveActor*);
 
-    virtual ~CocoSamboHead();
-    virtual void init(const JMapInfoIter&);
-    virtual void kill();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~CocoSamboHead();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x2C */ virtual void kill();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
     void updateFrontVecToPlayer(const TVec3f&);
     void exeHeadConnectedBody();
@@ -29,7 +29,7 @@ public:
 class CocoSambo : public LiveActor {
 public:
     CocoSambo(const char*);
-    virtual ~CocoSambo();
+    /* 0x08 */ virtual ~CocoSambo();
 
 private:
     u8 mPad[(0xC8) - sizeof(LiveActor)];

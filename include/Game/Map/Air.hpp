@@ -6,10 +6,10 @@ class Air : public LiveActor {
 public:
     Air(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void initModel(const char*);
-    virtual void setFarClipping();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x78 */ virtual void initModel(const char*);
+    /* 0x7C */ virtual void setFarClipping();
 
     bool isDrawing() const;
     bool tryChange();
@@ -27,14 +27,14 @@ class AirFar100m : public Air {
 public:
     AirFar100m(const char*);
 
-    virtual void setFarClipping();
+    /* 0x7C */ virtual void setFarClipping();
 };
 
 class ProjectionMapAir : public Air {
 public:
     ProjectionMapAir(const char*);
 
-    virtual void initModel(const char*);
+    /* 0x78 */ virtual void initModel(const char*);
 };
 
 class PriorDrawAir : public Air {

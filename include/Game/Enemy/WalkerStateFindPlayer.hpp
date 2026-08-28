@@ -18,7 +18,7 @@ class WalkerStateFindPlayer : public ActorStateBase< LiveActor > {
 public:
     WalkerStateFindPlayer(LiveActor* pHost, TVec3f* pPosition, WalkerStateParam* pStateParam, WalkerStateFindPlayerParam* pFindPlayerParam);
 
-    virtual void appear();
+    /* 0x10 */ virtual void appear();
 
     void exeFind();
     void exeFindJumpStart();

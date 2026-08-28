@@ -5,7 +5,7 @@
 class LavaProminence : public LiveActor {
 public:
     LavaProminence(const char*);
-    virtual ~LavaProminence();
+    /* 0x08 */ virtual ~LavaProminence();
 
 private:
     u8 mPad[(0x1BC) - sizeof(LiveActor)];

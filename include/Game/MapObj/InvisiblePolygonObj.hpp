@@ -7,8 +7,8 @@ class InvisiblePolygonObj : public LiveActor {
 public:
     InvisiblePolygonObj(const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual MtxPtr getBaseMtx() const;
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const;
 
     void initBaseMtx();
     void initCollision(const JMapInfoIter&);

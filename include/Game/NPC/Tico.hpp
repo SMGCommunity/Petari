@@ -10,11 +10,11 @@ class Tico : public NPCActor {
 public:
     Tico(const char*);
 
-    virtual ~Tico();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x08 */ virtual ~Tico();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 

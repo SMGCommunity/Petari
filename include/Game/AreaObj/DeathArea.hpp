@@ -8,12 +8,12 @@ public:
 
     DeathArea(int, const char*);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void movement();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x14 */ virtual void movement();
 
-    virtual bool isInVolume(const TVec3f&) const;
+    /* 0x24 */ virtual bool isInVolume(const TVec3f&) const;
 
-    virtual const char* getManagerName() const {
+    /* 0x28 */ virtual const char* getManagerName() const {
         return "DeathArea";
     }
 

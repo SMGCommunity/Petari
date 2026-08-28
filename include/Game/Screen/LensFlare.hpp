@@ -14,11 +14,11 @@ public:
     /// @param pArcName The pointer to the null-terminated base name of the resource archive.
     LensFlareModel(const char* pName, const char* pArcName);
 
-    virtual void appear();
-    virtual void control();
-    virtual void appearAnim() {
+    /* 0x24 */ virtual void appear();
+    /* 0x48 */ virtual void control();
+    /* 0x78 */ virtual void appearAnim() {
     }
-    virtual void controlAnim() {
+    /* 0x7C */ virtual void controlAnim() {
     }
 
     void update(bool, bool);
@@ -42,8 +42,8 @@ public:
     /// @brief Creates a new `LensFlareRing`.
     LensFlareRing();
 
-    virtual void appearAnim();
-    virtual void controlAnim();
+    /* 0x78 */ virtual void appearAnim();
+    /* 0x7C */ virtual void controlAnim();
 
     /* 0xA0 */ f32 _A0;
 };
@@ -53,8 +53,8 @@ public:
     /// @brief Creates a new `LensFlareGlow`.
     LensFlareGlow();
 
-    virtual void appearAnim();
-    virtual void controlAnim();
+    /* 0x78 */ virtual void appearAnim();
+    /* 0x7C */ virtual void controlAnim();
 };
 
 class LensFlareLine : public LensFlareModel {
@@ -62,8 +62,8 @@ public:
     /// @brief Creates a new `LensFlareLine`.
     LensFlareLine();
 
-    virtual void appearAnim();
-    virtual void controlAnim();
+    /* 0x78 */ virtual void appearAnim();
+    /* 0x7C */ virtual void controlAnim();
 };
 
 class LensFlareDirector : public NameObj {
@@ -73,10 +73,10 @@ public:
 
     /// @brief Intializes the `LensFlareDirector` while being placed into a scene.
     /// @param rIter The reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual void movement();
-    virtual void drawSyncCallback(u16);
+    /* 0x14 */ virtual void movement();
+    /* 0x24 */ virtual void drawSyncCallback(u16);
 
     void pauseOff();
     void setDrawSyncToken();

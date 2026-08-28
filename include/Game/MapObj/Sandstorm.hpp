@@ -9,8 +9,8 @@ class SunakazeKunTrap : public ModelObj {
 public:
     SunakazeKunTrap(LiveActor*, const TVec3f&);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
 
     void exeTrap();
 
@@ -31,14 +31,14 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     Sandstorm(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void updateHitSensor(HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x50 */ virtual void updateHitSensor(HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x74 */ virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
     static void makeArchiveList(NameObjArchiveListCollector*, const JMapInfoIter&);
 

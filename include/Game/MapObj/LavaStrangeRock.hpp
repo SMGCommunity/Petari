@@ -8,9 +8,9 @@ class LavaStrangeRock : public LiveActor {
 public:
     LavaStrangeRock(const char*);
 
-    virtual ~LavaStrangeRock();
-    virtual void init(const JMapInfoIter&);
-    virtual void control();
+    /* 0x08 */ virtual ~LavaStrangeRock();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x48 */ virtual void control();
 
     void initModelAndClipping(const JMapInfoIter&);
     void initEffect();

@@ -11,10 +11,10 @@ class StageResultInformer;
 class GrandStarReturnDemoStarter : public LiveActor {
 public:
     GrandStarReturnDemoStarter(const char*);
-    virtual ~GrandStarReturnDemoStarter();
-    virtual void init(const JMapInfoIter&);
-    virtual void appear();
-    virtual void control();
+    /* 0x08 */ virtual ~GrandStarReturnDemoStarter();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x24 */ virtual void appear();
+    /* 0x48 */ virtual void control();
 
     void updateRailMoveEndDir();
     void calcOffsetStarToCore(TVec3f*) const;

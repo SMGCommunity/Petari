@@ -9,8 +9,8 @@ class SwitchWatcher : public NameObj {
 public:
     SwitchWatcher(const StageSwitchCtrl*);
 
-    virtual ~SwitchWatcher();
-    virtual void movement();
+    /* 0x08 */ virtual ~SwitchWatcher();
+    /* 0x14 */ virtual void movement();
 
     void checkSwitch(SwitchEventListener*, u32, bool);
     bool isSameSwitch(const StageSwitchCtrl*) const;

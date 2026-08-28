@@ -8,7 +8,7 @@ class VolumeModelDrawer : public NameObj {
 public:
     VolumeModelDrawer(const char*, const char*, MtxPtr);
 
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
     void loadModelDrawMtx() const NO_INLINE;
 

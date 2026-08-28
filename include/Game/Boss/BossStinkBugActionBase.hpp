@@ -11,19 +11,19 @@ class BossStinkBugActionBase : public ActorStateBase< BossStinkBug > {
 public:
     BossStinkBugActionBase(const char*, BossStinkBug*);
 
-    virtual ~BossStinkBugActionBase();
+    /* 0x08 */ virtual ~BossStinkBugActionBase();
 
-    virtual bool isValidFollowId(s32 id) const {
+    /* 0x20 */ virtual bool isValidFollowId(s32 id) const {
         return false;
     };
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver) {};
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    /* 0x24 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver) {};
+    /* 0x28 */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     };
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    /* 0x2C */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     };
-    virtual bool isAngry() const {
+    /* 0x30 */ virtual bool isAngry() const {
         return false;
     };
 

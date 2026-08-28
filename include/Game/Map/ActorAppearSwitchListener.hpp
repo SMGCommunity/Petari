@@ -6,7 +6,7 @@ class LiveActor;
 
 class SwitchEventListener {
 public:
-    virtual void refresh(bool useOn) {
+    /* 0x08 */ virtual void refresh(bool useOn) {
         if (useOn) {
             listenSwitchOnEvent();
         } else {
@@ -14,16 +14,16 @@ public:
         }
     }
 
-    virtual void listenSwitchOnEvent() = 0;
-    virtual void listenSwitchOffEvent() = 0;
+    /* 0x0C */ virtual void listenSwitchOnEvent() = 0;
+    /* 0x10 */ virtual void listenSwitchOffEvent() = 0;
 };
 
 class ActorAppearSwitchListener : public SwitchEventListener {
 public:
     ActorAppearSwitchListener(LiveActor*, bool, bool);
 
-    virtual void listenSwitchOnEvent();
-    virtual void listenSwitchOffEvent();
+    /* 0x0C */ virtual void listenSwitchOnEvent();
+    /* 0x10 */ virtual void listenSwitchOffEvent();
 
     LiveActor* mActor;  // 0x4
     bool mUsesOn;       // 0x8

@@ -9,8 +9,8 @@ class GraviryFollower : public BaseMatrixFollower {
 public:
     GraviryFollower(GlobalGravityObj* pGravityObj, const JMapInfoIter& rIter);
 
-    virtual void setGravityFollowHost(const NameObj* pHost);
-    virtual void update();
+    /* 0x08 */ virtual void setGravityFollowHost(const NameObj* pHost);
+    /* 0x0C */ virtual void update();
 
     /* 0x14 */ PlanetGravity* mGravity;
 };

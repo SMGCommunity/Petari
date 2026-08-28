@@ -6,7 +6,7 @@ class TombSpiderThreadAttacher : public LiveActor {
 public:
     TombSpiderThreadAttacher(LiveActor*, const char*, f32, f32);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     void exeFree();
     void exeAttach();

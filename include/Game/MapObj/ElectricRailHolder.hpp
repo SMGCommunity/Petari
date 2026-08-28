@@ -10,10 +10,10 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ElectricRailHolder(const char* pName);
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void draw() const;
-    virtual void calcAnim();
-    virtual void control();
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x48 */ virtual void control();
 
     bool isTouchRail(const HitSensor*, TVec3f*, TVec3f*) const;
     void initDraw() const;

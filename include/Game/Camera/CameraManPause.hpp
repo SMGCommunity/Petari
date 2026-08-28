@@ -7,15 +7,15 @@ class CameraManPause : public CameraMan {
 public:
     CameraManPause(const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
-    virtual void calc();
-    virtual void notifyActivate();
-    virtual void notifyDeactivate();
-    virtual bool isCollisionOff() const {
+    /* 0x24 */ virtual void calc();
+    /* 0x28 */ virtual void notifyActivate();
+    /* 0x2C */ virtual void notifyDeactivate();
+    /* 0x34 */ virtual bool isCollisionOff() const {
         return true;
     }
-    virtual bool isZeroFrameMoveOff() const {
+    /* 0x38 */ virtual bool isZeroFrameMoveOff() const {
         return true;
     }
 

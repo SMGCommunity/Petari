@@ -10,9 +10,9 @@ public:
     /// @brief Creates a new `CollisionDirector`.
     CollisionDirector();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void movement();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x14 */ virtual void movement();
 
     CollisionCategorizedKeeper* getCategoryKeeper(s32 index) {
         return mCategoryKeeper[index];

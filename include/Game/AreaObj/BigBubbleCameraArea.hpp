@@ -7,11 +7,11 @@ class BigBubbleCameraArea : public CubeCameraArea {
 public:
     BigBubbleCameraArea(int, const char*);
 
-    virtual ~BigBubbleCameraArea();
+    /* 0x08 */ virtual ~BigBubbleCameraArea();
 
-    virtual bool isInVolume(const TVec3f&) const;
+    /* 0x24 */ virtual bool isInVolume(const TVec3f&) const;
 
-    virtual const char* getManagerName() const {
+    /* 0x28 */ virtual const char* getManagerName() const {
         return "CubeCamera";
     }
 };
@@ -20,11 +20,11 @@ class BigBubbleSwitchArea : public SwitchArea {
 public:
     BigBubbleSwitchArea(int, const char*);
 
-    virtual ~BigBubbleSwitchArea();
+    /* 0x08 */ virtual ~BigBubbleSwitchArea();
 
-    virtual bool isInVolume(const TVec3f&) const;
+    /* 0x24 */ virtual bool isInVolume(const TVec3f&) const;
 
-    virtual const char* getManagerName() const {
+    /* 0x28 */ virtual const char* getManagerName() const {
         return "SwitchArea";
     }
 };

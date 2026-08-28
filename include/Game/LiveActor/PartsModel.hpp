@@ -8,13 +8,13 @@ class PartsModel : public LiveActor {
 public:
     PartsModel(LiveActor*, const char*, const char*, MtxPtr, int, bool);
 
-    virtual void init(const JMapInfoIter&) override;
-    virtual void movement() override;
-    virtual void calcAnim() override;
-    virtual void calcViewAndEntry() override;
-    virtual void makeActorAppeared() override;
-    virtual void makeActorDead() override;
-    virtual void calcAndSetBaseMtx() override;
+    /* 0x0C */ virtual void init(const JMapInfoIter&) override;
+    /* 0x14 */ virtual void movement() override;
+    /* 0x1C */ virtual void calcAnim() override;
+    /* 0x20 */ virtual void calcViewAndEntry() override;
+    /* 0x28 */ virtual void makeActorAppeared() override;
+    /* 0x30 */ virtual void makeActorDead() override;
+    /* 0x4C */ virtual void calcAndSetBaseMtx() override;
 
     void initFixedPosition(const TVec3f&, const TVec3f&, const char*);
     void initFixedPosition(const char*);

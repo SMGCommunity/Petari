@@ -11,12 +11,12 @@ class GameScene : public Scene {
 public:
     GameScene();
 
-    virtual ~GameScene();
-    virtual void init();
-    virtual void start();
-    virtual void update();
-    virtual void draw() const;
-    virtual void calcAnim();
+    /* 0x08 */ virtual ~GameScene();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void start();
+    /* 0x14 */ virtual void update();
+    /* 0x18 */ virtual void draw() const;
+    /* 0x1C */ virtual void calcAnim();
 
     void notifyEndScenarioStarter();
     void requestPlayMovieDemo();

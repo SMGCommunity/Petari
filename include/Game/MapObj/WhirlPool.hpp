@@ -5,7 +5,7 @@
 class WhirlPool : public LiveActor {
 public:
     WhirlPool(const char*);
-    virtual ~WhirlPool();
+    /* 0x08 */ virtual ~WhirlPool();
 
 private:
     u8 mPad[(0xD8) - sizeof(LiveActor)];

@@ -12,13 +12,13 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     MogucchiHillPiece(const char* pName = "モグッチ塚ピース");
 
-    virtual void init(const JMapInfoIter& rIter);
-    virtual void appear();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
-    virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
+    /* 0x24 */ virtual void appear();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x54 */ virtual void attackSensor(HitSensor*, HitSensor*);
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
 
     void initWithModelName(const char*, const char*, const char*, bool);
     void crumble();
@@ -44,13 +44,13 @@ class MogucchiHill : public LiveActor {
 public:
     MogucchiHill(LiveActor*, s32, const char*);
 
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
-    virtual bool notifyAppearAttackToPlayer(HitSensor*, HitSensor*) {
+    /* 0x78 */ virtual bool notifyAppearAttackToPlayer(HitSensor*, HitSensor*) {
         return false;
     }
 
-    virtual bool notifyWaitAttackToPlayer(HitSensor*, HitSensor*) {
+    /* 0x7C */ virtual bool notifyWaitAttackToPlayer(HitSensor*, HitSensor*) {
         return false;
     }
 

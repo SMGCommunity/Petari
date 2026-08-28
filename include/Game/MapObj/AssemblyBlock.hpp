@@ -11,8 +11,8 @@ public:
     /// @param A pointer to the null-terminated name of the object.
     AssemblyBlock(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     void exeWait();
     void exeAssemble();

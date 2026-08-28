@@ -8,21 +8,21 @@ public:
     /// @param pName A pointer to the null-terminated name of the object.
     ImageEffectBase(const char* pName);
 
-    virtual void calcAnim();
+    /* 0x1C */ virtual void calcAnim();
 
-    virtual void calcAnimSub() {
+    /* 0x24 */ virtual void calcAnimSub() {
     }
 
-    virtual void notifyTurnOn() {
+    /* 0x28 */ virtual void notifyTurnOn() {
     }
 
-    virtual void notifyTurnOff() {
+    /* 0x2C */ virtual void notifyTurnOff() {
     }
 
-    virtual void notifyForceOn() {
+    /* 0x30 */ virtual void notifyForceOn() {
     }
 
-    virtual void notifyForceOff() {
+    /* 0x34 */ virtual void notifyForceOff() {
     }
 
     bool isSomething() const {

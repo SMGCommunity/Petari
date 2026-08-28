@@ -20,20 +20,20 @@ public:
 
     inline virtual ~MapObjActor();
 
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-    virtual void appear();
-    virtual void kill();
-    virtual void startClipped();
-    virtual void endClipped();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
-    virtual void connectToScene(const MapObjActorInitInfo&);
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
-    virtual void makeSubModels(const JMapInfoIter&, const MapObjActorInitInfo&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x10 */ virtual void initAfterPlacement();
+    /* 0x24 */ virtual void appear();
+    /* 0x2C */ virtual void kill();
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
+    /* 0x78 */ virtual void connectToScene(const MapObjActorInitInfo&);
+    /* 0x7C */ virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
+    /* 0x80 */ virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&);
+    /* 0x84 */ virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
+    /* 0x88 */ virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
+    /* 0x8C */ virtual void makeSubModels(const JMapInfoIter&, const MapObjActorInitInfo&);
 
     void initialize(const JMapInfoIter&, const MapObjActorInitInfo&);
     bool isObjectName(const char*) const;

@@ -12,11 +12,11 @@ class PoltaBattleLv2 : public PoltaActionBase {
 public:
     PoltaBattleLv2(Polta*);
 
-    virtual void appear();
-    virtual void control();
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x10 */ virtual void appear();
+    /* 0x1C */ virtual void control();
+    /* 0x20 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x24 */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x28 */ virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     bool tryAttackGround();
     void setNerveGenerateRock();

@@ -7,7 +7,7 @@ class LotusLeaf : public LiveActor {
 public:
     LotusLeaf(const char*);
 
-    virtual void init(const JMapInfoIter&);
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
 
     void convergeToInitPos();
     void exeWait();

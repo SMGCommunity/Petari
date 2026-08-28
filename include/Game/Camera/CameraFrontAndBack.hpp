@@ -5,11 +5,11 @@
 class CameraFrontAndBack : public Camera {
 public:
     CameraFrontAndBack(const char* pName = "表裏カメラ");
-    virtual ~CameraFrontAndBack();
+    /* 0x08 */ virtual ~CameraFrontAndBack();
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void calcBaseQuat(TQuat4f*, const TVec3f&);
     void calcDipQuat(TQuat4f*, const TVec3f&, const TVec3f&);

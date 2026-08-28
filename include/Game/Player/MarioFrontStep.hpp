@@ -8,8 +8,8 @@ class MarioFrontStep : public MarioState {
 public:
     MarioFrontStep(MarioActor*);
 
-    virtual bool start();
-    virtual bool update();
-    virtual bool close();
-    virtual bool postureCtrl(MtxPtr);
+    /* 0x14 */ virtual bool start();
+    /* 0x1C */ virtual bool update();
+    /* 0x18 */ virtual bool close();
+    /* 0x28 */ virtual bool postureCtrl(MtxPtr);
 };

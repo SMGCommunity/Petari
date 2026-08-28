@@ -23,11 +23,11 @@ class DummyDisplayModel : public PartsModel {
 public:
     DummyDisplayModel(LiveActor*, const DummyDisplayModelInfo*, int, s32, s32);
 
-    virtual void init(const JMapInfoIter&);
-    virtual void makeActorAppeared();
-    virtual void makeActorDead();
-    virtual void control();
-    virtual void calcAndSetBaseMtx();
+    /* 0x0C */ virtual void init(const JMapInfoIter&);
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x48 */ virtual void control();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
     const DummyDisplayModelInfo* mModelInfo;  // 0x9C
     s32 mItemType;                            // 0xA0

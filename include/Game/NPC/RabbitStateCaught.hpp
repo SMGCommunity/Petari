@@ -11,9 +11,9 @@ class RabbitStateCaught : public ActorStateBaseInterface {
 public:
     RabbitStateCaught(LiveActor* pHost, TalkMessageCtrl* pTalkMessageCtrl);
 
-    virtual void init();
-    virtual void appear();
-    virtual void control();
+    /* 0x0C */ virtual void init();
+    /* 0x10 */ virtual void appear();
+    /* 0x1C */ virtual void control();
 
     void unusePowerStarModel();
     void exeTryStartDemo();

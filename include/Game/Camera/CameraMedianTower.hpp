@@ -6,9 +6,9 @@ class CameraMedianTower : public Camera {
 public:
     CameraMedianTower(const char* pName = "中点塔カメラ");
 
-    virtual void reset();
-    virtual CameraTargetObj* calc();
-    virtual CamTranslatorBase* createTranslator();
+    /* 0x24 */ virtual void reset();
+    /* 0x28 */ virtual CameraTargetObj* calc();
+    /* 0x54 */ virtual CamTranslatorBase* createTranslator();
 
     void calcFovyPos(TVec3f*, const TVec3f&, const TVec3f&, const TVec3f&);
     void limitAngularVelocity(TVec3f*, TVec3f*, const TVec3f&, const TVec3f&, const TVec3f&);
