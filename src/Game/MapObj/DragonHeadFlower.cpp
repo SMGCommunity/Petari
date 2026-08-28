@@ -36,13 +36,13 @@ DragonHeadFlower::DragonHeadFlower(const char* pName)
 }
 
 void DragonHeadFlower::init(const JMapInfoIter& rIter) {
-    const char* pName;
-    if (!MR::getObjectName(&pName, rIter)) {
-        pName = "DragonHeadFlower";
+    const char* pModelName;
+    if (!MR::getObjectName(&pModelName, rIter)) {
+        pModelName = "DragonHeadFlower";
     }
 
     MR::initDefaultPos(this, rIter);
-    initModelManagerWithAnm(pName, nullptr, false);
+    initModelManagerWithAnm(pModelName, nullptr, false);
 
     MR::connectToSceneMapObj(this);
 
