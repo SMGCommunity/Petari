@@ -4446,6 +4446,7 @@ Game/MapObj/BlueStarCupsulePlanet.cpp:
 	.ctors      start:0x8052EC80 end:0x8052EC84
 	.rodata     start:0x80533048 end:0x80533058
 	.data       start:0x80590558 end:0x80590790
+	.sdata      start:0x806B1D78 end:0x806B1D80
 	.sbss       start:0x806B4ED0 end:0x806B4EE0
 	.sdata2     start:0x806BC920 end:0x806BC938
 
