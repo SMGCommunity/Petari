@@ -19,7 +19,7 @@ public:
     virtual void endClipped();
     virtual void control();
 
-    void getCurrentSinkDepth() const;
+    f32 getCurrentSinkDepth() const;
 
     void exeFloat();
     void exeSink();
@@ -29,6 +29,5 @@ public:
     /* 0x94 */ LodCtrl* mLodCtrlPlanet;
     /* 0x98 */ const char* mObjectName;
     /* 0x9C */ TVec3f _9C;
-    /* 0xA4 */ f32 _A4;
     /* 0xA8 */ f32 _A8;
 };
