@@ -750,7 +750,7 @@ config.libs = [
             Object(Matching, "Game/AudioLib/AudSoundObject.cpp"),
             Object(Matching, "Game/AudioLib/AudSoundObject_Kawamura.cpp"),
             Object(NonMatching, "Game/AudioLib/AudSoundObject_Takezawa.cpp"),
-            Object(NonMatching, "Game/AudioLib/AudSoundObject_Gohara.cpp"),
+            Object(Matching, "Game/AudioLib/AudSoundObject_Gohara.cpp"),
             Object(NonMatching, "Game/AudioLib/AudAnmSoundObject.cpp"),
             Object(NonMatching, "Game/AudioLib/AudBgm.cpp"),
             Object(Matching, "Game/AudioLib/AudBgmKeeper.cpp"),
