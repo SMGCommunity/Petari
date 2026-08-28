@@ -346,7 +346,7 @@ Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     }
     _96A = 0;
     _574 = 0;
-    _898 = 0;
+    _898 = false;
 }
 
 void Mario::updateAndClearStrideParameter() {

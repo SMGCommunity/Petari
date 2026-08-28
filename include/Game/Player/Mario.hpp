@@ -913,7 +913,7 @@ public:
     /* 0x88C */ MarioStep* mStep;
     /* 0x890 */ MarioBump* mBump;
     /* 0x894 */ MarioMagic* mMagic;
-    /* 0x898 */ u8 _898;
+    /* 0x898 */ bool _898;
     /* 0x89C */ MarioFpView* mFpView;
     /* 0x8A0 */ MarioMove* mMove;
     /* 0x8A4 */ TVec3f _8A4;
