@@ -7,5 +7,11 @@ class MarioActor;
 class MarioCrush : public MarioState {
 public:
     MarioCrush(MarioActor*);
-    u8 _11[7];
+
+    virtual bool start();
+    virtual bool close();
+    virtual bool update();
+    
+    u16 _12;
+    u16 mTimer;
 };
