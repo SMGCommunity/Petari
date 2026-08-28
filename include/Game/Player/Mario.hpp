@@ -823,12 +823,11 @@ public:
     /* 0x634 */ f32 _634;
 
     /* 0x638 */ u8 _638;
-    /* 0x63C */ TVec3f _63C;
-    /* 0x648 */ TVec3f _648;
-    /* 0x654 */ TVec3f _654;
+    /* 0x63C */ TVec3f mSide2D;
+    /* 0x648 */ TVec3f mUp2D;
+    /* 0x654 */ TVec3f mNormal2D;
     /* 0x660 */ TVec3f _660;
-
-    /* 0x66C */ u8 _66C;
+    /* 0x66C */ bool _66C;
     /* 0x670 */ TVec3f _670;
     /* 0x67C */ TVec3f _67C;
 
