@@ -83,7 +83,7 @@ void SphereSelectorHandle::appear() {
 }
 
 bool SphereSelectorHandle::isPointing() const {
-    return MR::isStarPointerInScreen(0);
+    return MR::isStarPointerInScreen(WPAD_CHAN0);
 }
 
 bool SphereSelectorHandle::isHolding() const {
@@ -169,7 +169,7 @@ void SphereSelectorHandle::stackPointerVelocity() {
     for (u32 i = 1; i < ARRAY_SIZE(_F4); i++) {
         _F4[i].set(_F4[i - 1]);
     }
-    _F4[0].set(*MR::getStarPointerScreenVelocity(0));
+    _F4[0].set(*MR::getStarPointerScreenVelocity(WPAD_CHAN0));
 }
 
 TVec2f* SphereSelectorHandle::getPointerVelocity() {
@@ -295,7 +295,7 @@ void SphereSelectorHandle::exeHold() {
 void SphereSelectorHandle::exeSpin() {
     mRotateSpeed *= ::cSpinReduceRate;
     _D4 *= ::cSpinReduceRate;
-    if (MR::isStarPointerInScreen(0)) {
+    if (MR::isStarPointerInScreen(WPAD_CHAN0)) {
         SphereSelectorFunction::registerPointingTarget(this, HandlePointingPriority(1));
     }
     if (MR::isNearZero(mRotateSpeed) && MR::isNearZero(_D4)) {
