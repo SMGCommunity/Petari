@@ -4756,16 +4756,16 @@ Game/MapObj/EarthenPipe.cpp:
 Game/MapObj/ElectricBall.cpp:
 	.text       start:0x801D301C end:0x801D3C4C
 	.ctors      start:0x8052ECEC end:0x8052ECF0
-	.rodata     start:0x80533308 end:0x80533320
-	.data       start:0x80593768 end:0x805938E0
-	.sdata      start:0x806B1DF0 end:0x806B1DF8
+	.rodata     start:0x80533308 end:0x80533318
+	.data       start:0x80593768 end:0x805938B0
 	.sbss       start:0x806B50C0 end:0x806B50D0
 	.sdata2     start:0x806BCE58 end:0x806BCE78
 
 Game/MapObj/ElectricRail.cpp:
 	.text       start:0x801D3C4C end:0x801D5A7C
 	.ctors      start:0x8052ECF0 end:0x8052ECF4
-	.data       start:0x805938E0 end:0x80593AE8
+	.data       start:0x805938B0 end:0x80593AE8
+	.sdata      start:0x806B1DF0 end:0x806B1DF8
 	.sbss       start:0x806B50D0 end:0x806B50E0
 	.sdata2     start:0x806BCE78 end:0x806BCEB8
 
@@ -4784,7 +4784,7 @@ Game/MapObj/ElectricRailMoving.cpp:
 Game/MapObj/ExterminationChecker.cpp:
 	.text       start:0x801D80B0 end:0x801D8708
 	.ctors      start:0x8052ECF8 end:0x8052ECFC
-	.rodata     start:0x80533320 end:0x80533360
+	.rodata     start:0x80533318 end:0x80533360
 	.data       start:0x80593E10 end:0x80593F40
 	.sbss       start:0x806B50F0 end:0x806B5100
 	.sdata2     start:0x806BCF10 end:0x806BCF18

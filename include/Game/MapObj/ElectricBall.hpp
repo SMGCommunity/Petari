@@ -9,30 +9,42 @@ class PartsModel;
 
 class ElectricBall : public LiveActor {
 public:
-    ElectricBall(const char*);
-
-    virtual ~ElectricBall();
-    virtual void init(const JMapInfoIter&);
-
-    void initBalls(const JMapInfoIter&);
-    void startMove();
-    void exeWait();
-
     class Ball {
+    public:
         Ball();
-        void activate();
+
         void init(LiveActor*);
         void updatePosition(const TPos3f&);
+        void activate();
 
-        PartsModel* _0;
-        TVec3f mPosition;
-        bool _10;
+        /* 0x00 */ PartsModel* mHost;
+        /* 0x04 */ TVec3f mPosition;
+        /* 0x10 */ bool mIsActive;
     };
 
-    TMtx34f _8C;
-    MR::AssignableArray< Ball > _BC;
-    TVec3f _C4;
-    MapPartsRailMover* _4C;
-    f32 mArg1;  // _D0
-    f32 mArg2;  // _D4
+    ElectricBall(const char*);
+
+    virtual void init(const JMapInfoIter&);
+    virtual void initAfterPlacement();
+    virtual MtxPtr getBaseMtx() const {
+        return (MtxPtr)mBaseMtx.mMtx;
+    };
+    virtual void control();
+    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
+
+    void initBalls(const JMapInfoIter&);
+    Ball* getNearestBall();
+    void startMove();
+
+    void exeWait() {};
+    void exeMove() {};
+    void exeAttack();
+
+    /* 0x8C */ TPos3f mBaseMtx;
+    /* 0xBC */ MR::AssignableArray< Ball > mBalls;
+    /* 0xC4 */ TVec3f mClosestBallPos;
+    /* 0xD0 */ f32 mRadius;    // Obj_arg1
+    /* 0xD4 */ f32 mAngularSpeed;  // Obj_arg2
+    /* 0xD8 */ MapPartsRailMover* mRailMover;
 };

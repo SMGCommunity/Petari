@@ -87,6 +87,19 @@ namespace std {
     };
 
     template < class Return, class Type >
+    class mem_fun_ref_t : public unary_function< Type, Return > {
+    public:
+        explicit mem_fun_ref_t(Return (Type::*mf)()) : mf_(mf) {};
+
+        Return operator()(Type& t) const {
+            return (t.*mf_)();
+        }
+
+    private:
+        Return (Type::*mf_)();
+    };
+
+    template < class Return, class Type >
     class const_mem_fun_t : public unary_function< const Type*, Return > {
     public:
         explicit const_mem_fun_t(Return (Type::*mf)() const) : mf_(mf){};
@@ -106,6 +119,19 @@ namespace std {
 
         Result operator()(Type* t, Arg a) const {
             return (t->*mf_)(a);
+        }
+
+    private:
+        Result (Type::*mf_)(Arg);
+    };
+
+    template < class Result, class Type, class Arg >
+    class mem_fun1_ref_t : public binary_function< Type, Arg, Result > {
+    public:
+        explicit mem_fun1_ref_t(Result (Type::*mf)(Arg)) : mf_(mf) {};
+
+        Result operator()(Type& t, Arg a) const {
+            return (t.*mf_)(a);
         }
 
     private:
@@ -144,32 +170,6 @@ namespace std {
     inline const_mem_fun1_t< Result, Type, Arg > mem_func(Result (Type::*f)(Arg) const) {
         return const_mem_fun1_t< Result, Type, Arg >(f);
     }
-
-    template < class S, class T >
-    class mem_fun_ref_t : public unary_function< T, S > {
-    public:
-        explicit mem_fun_ref_t(S (T::*mf)()) : mf_(mf) {
-        }
-        S operator()(T& p) const {
-            return (p.*mf_)();
-        }
-
-    private:
-        S (T::*mf_)();
-    };
-
-    template < class S, class T, class A >
-    class mem_fun1_ref_t : public binary_function< T, A, S > {
-    public:
-        explicit mem_fun1_ref_t(S (T::*mf)(A)) : mf_(mf) {
-        }
-        S operator()(T& p, A x) const {
-            return (p.*mf_)(x);
-        }
-
-    private:
-        S (T::*mf_)(A);
-    };
 
     template < class Predicate >
     struct unary_negate : public unary_function< typename Predicate::argument_type, bool > {
