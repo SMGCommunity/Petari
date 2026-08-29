@@ -1,11 +1,47 @@
 #pragma once
 
-#include "Game/LiveActor.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/LiveActor/ShadowVolumeDrawer.hpp"
 
-class ElectricRailPoint;
-class ElectricRailSeparator;
-class ElectricRailShadowDrawer;
+class ElectricRailPoint : public LiveActor {
+public:
+    ElectricRailPoint(const char* name = "電撃レール点");
+
+    virtual ~ElectricRailPoint();
+    virtual void init(const JMapInfoIter&);
+    virtual void attackSensor(HitSensor*, HitSensor*);
+
+    /* 0x8C */ bool mHasShadow;
+    /* 0x8D */ bool mIsActive;
+};
+
+class ElectricRailSeparator {
+public:
+    ElectricRailSeparator();
+
+    void setup(const TVec3f&, const TVec3f&, const TVec3f&);
+
+    /* 0x00 */ TVec3f _0;
+    /* 0x0C */ TVec3f mSide;
+    /* 0x18 */ TVec3f mUp;
+    /* 0x24 */ TVec3f mFront;
+    /* 0x30 */ TVec3f _30;
+};
+
+class ElectricRailShadowDrawer : public ShadowVolumeDrawer {
+public:
+    ElectricRailShadowDrawer(const LiveActor*, ElectricRailSeparator*, s32);
+
+    virtual void loadModelDrawMtx() const;
+    virtual void drawShape() const;
+    virtual bool isDraw() const;
+
+    void drawShadowVolumeShape(ElectricRailSeparator*, s32) const;
+
+    /* 0x1C */ const LiveActor* mHost;
+    /* 0x20 */ void* _20;
+    /* 0x24 */ u32 _24;
+};
 
 class ElectricRail : public LiveActor {
 public:
@@ -30,54 +66,20 @@ public:
     void initShadow(const JMapInfoIter&);
     void updateHitSensorPos();
     void calcGravity(TVec3f*, const TVec3f&) const;
+
     void exeDisappear();
     void exeWait();
     void exeDisappeared();
 
-    ElectricRailPoint* mPoints;  // _8C
-    s32 mPointCount;             // _90
-    TVec3f* _94;
-    ElectricRailSeparator* mSeparators;  // _98
-    s32 mSeparatorCount;                 // _9C
-    void* _A0;
-    u32 mDLLength;                            // _A4
-    s32 mRailHeight;                          // _A8
-    f32 mEaseIn;                              // _AC
-    ElectricRailShadowDrawer* mShadowDrawer;  // _B0
-    bool _B4;                                 // related to gravity
-    u8 _B5;
-    u8 _B6;
-    u8 _B7;
-
-    static const char* cSensorNameTable[8];
-};
-
-class ElectricRailPoint : public LiveActor {
-public:
-    ElectricRailPoint(const char* name = "電撃レール点");
-
-    virtual ~ElectricRailPoint();
-    virtual void init(const JMapInfoIter&);
-    virtual void attackSensor(HitSensor*, HitSensor*);
-
-    u8 _8C;
-    u8 _8D;
-};
-
-class ElectricRailSeparator : public LiveActor {
-public:
-    ElectricRailSeparator();
-
-    void setup(const TVec3f&, const TVec3f&, const TVec3f&);
-
-    TVec3f _0;
-    TVec3f _C;
-    TVec3f _18;
-    TVec3f _24;
-    TVec3f _30;
-};
-
-class ElectricRailShadowDrawer {
-public:
-    ElectricRailShadowDrawer(const LiveActor*, ElectricRailSeparator*, s32);
+    /* 0x8C */ ElectricRailPoint* mPoints;
+    /* 0x90 */ s32 mPointCount;
+    /* 0x94 */ TVec3f* _94;
+    /* 0x98 */ ElectricRailSeparator* mSeparators;
+    /* 0x9C */ s32 mSeparatorCount;
+    /* 0xA0 */ void* _A0;
+    /* 0xA4 */ u32 mDLLength;
+    /* 0xA8 */ s32 mRailHeight; // Obj_arg0
+    /* 0xAC */ f32 mEaseIn;
+    /* 0xB0 */ ElectricRailShadowDrawer* mShadowDrawer;
+    /* 0xB4 */ bool mDoCalcGravity; // Obj_arg4
 };
