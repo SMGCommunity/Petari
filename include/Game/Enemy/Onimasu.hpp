@@ -17,3 +17,7 @@ public:
     TQuat4f _E8;
     TVec3f _F8;
 };
+
+namespace OnimasuFunction {
+    bool getPolygonOnRailPoint(TVec3f*, TVec3f*, const LiveActor*, int);
+};

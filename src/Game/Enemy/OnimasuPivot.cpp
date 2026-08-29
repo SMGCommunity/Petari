@@ -43,7 +43,15 @@ void OnimasuPivot::incrementNextPoint() {
     }
 }
 
-// OnimasuPivot::collectRailPointInfo
+// this function will (probably) match once the rest of the file is done. TVec3::set<f> inline.
+void OnimasuPivot::collectRailPointInfo() {
+    for (s32 i = 0; i < mNormals.size(); i++) {
+        TVec3f v5(gZeroVec);
+        TVec3f v4(gZeroVec);
+        OnimasuFunction::getPolygonOnRailPoint(&v4, &v5, this, i * 2);
+        mNormals[i].set< f32 >(v5);
+    }
+}
 
 OnimasuPivot::~OnimasuPivot() {
 }
