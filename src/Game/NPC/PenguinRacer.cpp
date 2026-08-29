@@ -460,7 +460,7 @@ void PenguinRacer::initRacer() {
 
 void PenguinRacer::prepRacer(const RaceManager* pRaceManager) {
     MR::invalidateClipping(this);
-    mBinder->_1C = 60.0f;
+    mBinder->mOffsetY = 60.0f;
 
     MR::moveCoordToStartPos(this);
     MR::moveTransToCurrentRailPos(this);
@@ -525,7 +525,7 @@ void PenguinRacer::loseRacer() {
 
 void PenguinRacer::resetRacer(const RaceManager* pRaceManager) {
     MR::onBind(this);
-    mBinder->_1C = 60.0f;
+    mBinder->mOffsetY = 60.0f;
     MR::setDefaultPose(this);
     mVelocity.zero();
     MR::calcGravity(this);
