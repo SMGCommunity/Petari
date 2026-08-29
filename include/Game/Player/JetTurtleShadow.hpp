@@ -6,7 +6,6 @@ class JetTurtleShadow : public LiveActor {
 public:
     JetTurtleShadow(const char*);
 
-    virtual ~JetTurtleShadow();
     virtual void init(const JMapInfoIter&);
 
     void calcType0(MtxPtr);

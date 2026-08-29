@@ -13,7 +13,7 @@ bool MarioStun::close() {
 bool MarioStun::start() {
     changeAnimationNonStop("しびれ");
     startPadVib("マリオ[しびれ]");
-    playSound("声しびれ", -1);
+    playSound("声しびれ");
     _14 = 0x3c;
     _12 = 0;
     return true;

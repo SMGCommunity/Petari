@@ -45,6 +45,17 @@ class MatrixControl;
 
 enum SPECIAL_STATUS_FOR_CAMERA { CASE_0, CASE_1 };
 
+enum PlayerMode {
+    /* 0x0 */ PlayerMode_0,
+    /* 0x1 */ PlayerMode_Invincible,
+    /* 0x2 */ PlayerMode_2,
+    /* 0x3 */ PlayerMode_Ice,
+    /* 0x4 */ PlayerMode_Bee,
+    /* 0x5 */ PlayerMode_Hopper,
+    /* 0x6 */ PlayerMode_Teresa,
+    /* 0x7 */ PlayerMode_Foo
+};
+
 template < int SIZE, class T, class U >
 class AudGenericAudible;
 class JAUDopplerAudibleChannel;
@@ -432,7 +443,7 @@ public:
     f32 getFaceLookHeight(const char*) const;
 
     // Defined in MarioActorMorph
-    void setPlayerMode(u8, bool);
+    void setPlayerMode(u16, bool);
     void resetPlayerModeOnDamage();
     void resetPlayerModeOnNoDamage();
     void updatePlayerMode();
@@ -480,8 +491,8 @@ public:
     void memorizeSensorThrow(HitSensor*);
     bool tryThrow();
     void tryReleaseDirect(const HitSensor*);
-    bool damageDropThrowMemoSensor();
-    bool rushDropThrowMemoSensor();
+    void damageDropThrowMemoSensor();
+    void rushDropThrowMemoSensor();
     void trySetLockOnTarget(HitSensor*);
     void tryCoinPull();
     void tryCoinPullInRush();
@@ -491,7 +502,7 @@ public:
     bool releaseThrowMemoSensor();
     void tryReleaseWithMsg(u32);
     void tryTornadoPull(HitSensor*);
-    bool tryReleaseBombTeresa();
+    void tryReleaseBombTeresa();
 
     void runTeresaBaseAnimation();
     void getThrowVec(TVec3f*) const;
@@ -534,11 +545,15 @@ public:
     }
 
     inline const bool isBeeMarioOnFur() const {
-        return mMario->getMovementStates()._1 && !strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) && mAlphaEnable == 0;
+        return mMario->getMovementStates()._1 && strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) == 0 && mBeeWallWalk == 0;
     }
 
     inline const bool is481or482On() const {
         return _481 || _482;
+    }
+
+    inline Mario* getMario() {
+        return mMario;
     }
 
     struct FBO {
@@ -705,7 +720,7 @@ public:
     /* 0x4B8 */ TVec3f _4B8;
     /* 0x4C4 */ TVec3f _4C4;
     /* 0x4D0 */ HitSensor* _4D0[128];
-    /* 0x6D0 */ u8 _6D0;
+    /* 0x6D0 */ bool _6D0;
     /* 0x6D4 */ f32 _6D4;
     /* 0x6D8 */ f32 _6D8;
     /* 0x6DC */ HitSensor* _6DC[64];
@@ -761,7 +776,7 @@ public:
     /* 0x9E8 */ MarioParts* _9E8;
     /* 0x9EC */ LiveActor* _9EC;
     /* 0x9F0 */ u8 _9F0;
-    /* 0x9F1 */ u8 mAlphaEnable;
+    /* 0x9F1 */ u8 mBeeWallWalk;
     /* 0x9F2 */ u16 _9F2;
     /* 0x9F4 */ TVec3f _9F4;
     /* 0xA00 */ ModelHolder* _A00;
@@ -794,7 +809,7 @@ public:
     /* 0xA64 */ u32 _A64;
     /* 0xA68 */ f32 _A68;
     /* 0xA6C */ u16 _A6C;
-    /* 0xA6E */ bool _A6E;
+    /* 0xA6E */ u8 _A6E;
     /* 0xA70 */ Mtx* _A70[8];
     /* 0xA90 */ Mtx* _A90[8];
     /* 0xAB0 */ TMtx34f _AB0;
@@ -867,7 +882,7 @@ public:
     /* 0xEA6 */ bool _EA6;
     /* 0xEA8 */ TMtx34f _EA8;
     /* 0xED8 */ TVec3f _ED8;
-    /* 0xEE4 */ u32 _EE4;
+    /* 0xEE4 */ const char* _EE4;
     /* 0xEE8 */ bool mSuperKinokoCollected;
     /* 0xEE9 */ bool mPowerupCollected;
     /* 0xEEA */ bool mTransforming;

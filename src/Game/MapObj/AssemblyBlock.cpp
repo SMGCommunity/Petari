@@ -17,27 +17,28 @@
 #include "Game/Util/StringUtil.hpp"
 
 namespace {
-    static const char* sReturnPosName = "合体ブロック故郷点";
+    static const s32 sDefaultTimer = 300;
+    static const s32 sStepForAssemble = 10;
+    static const s32 sStepForReturn = 10;
+    static const s32 sFlashTime = 100;
+    static const f32 sReturnOffset = 50.0f;
+    // static const f32 sFloatAccelMax = _;
+    // static const f32 sFloatCycleTune = _;
+    static const f32 sFloatRotSpeedNoSign = 0.1f;
+    static const char* const sReturnPosName = "合体ブロック故郷点";
 };  // namespace
 
 namespace NrvAssemblyBlock {
-    NEW_NERVE(AssemblyBlockNrvTimer, AssemblyBlock, Timer);
-    NEW_NERVE(AssemblyBlockNrvReturn, AssemblyBlock, Return);
-    NEW_NERVE(AssemblyBlockNrvAssembleWait, AssemblyBlock, AssembleWait);
-    NEW_NERVE(AssemblyBlockNrvAssemble, AssemblyBlock, Assemble);
     NEW_NERVE(AssemblyBlockNrvWait, AssemblyBlock, Wait);
+    NEW_NERVE(AssemblyBlockNrvAssemble, AssemblyBlock, Assemble);
+    NEW_NERVE(AssemblyBlockNrvAssembleWait, AssemblyBlock, AssembleWait);
+    NEW_NERVE(AssemblyBlockNrvReturn, AssemblyBlock, Return);
+    NEW_NERVE(AssemblyBlockNrvTimer, AssemblyBlock, Timer);
 };  // namespace NrvAssemblyBlock
 
-AssemblyBlock::AssemblyBlock(const char* pName) : LiveActor(pName) {
-    _11C = -1;
-    mActivationRange = -1.0f;
-    _124.x = 0.0f;
-    _124.y = 0.0f;
-    _124.z = 0.0f;
-    _130 = 0.0f;
-    mActivationTime = 300;
-    mBloomModel = nullptr;
-    _13C = false;
+AssemblyBlock::AssemblyBlock(const char* pName)
+    : LiveActor(pName), mObjArg7(-1), mPlayerSearchDistance(-1.0f), _124(0.0f, 0.0f, 0.0f), mFloatRotateSpeed(), mTimer(::sDefaultTimer),
+      mBloomModel(), _13C() {
     _8C.identity();
     _BC.identity();
     _EC.identity();
@@ -48,7 +49,7 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
     TVec3f stack_30;
     TVec3f stack_24;
     TVec3f stack_18;
-    char name[0x100];
+    char name[256];
 
     MR::initDefaultPos(this, rIter);
     MR::tryRegisterNamePosLinkObj(this, rIter);
@@ -70,8 +71,8 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
         _13C = false;
     }
 
-    _BC.setInline(getBaseMtx());
-    _8C.setInline(_EC);
+    _BC.set(getBaseMtx());
+    _8C.set(_EC);
     MR::setBaseTRMtx(this, _8C);
 
     if (MR::isEqualSubString(name, "PartsIce")) {
@@ -90,35 +91,32 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
     _124.x *= 0.5f;
     _124.y *= 0.5f;
     _124.z *= 0.5f;
-    f32 boundRadius;
-    MR::calcModelBoundingRadius(&boundRadius, this);
-    f32 dist = _124.distance(stack_24);
-    MR::setClippingTypeSphere(this, (boundRadius + dist), &_124);
-    MR::getJMapInfoArg0NoInit(rIter, &mActivationRange);
-    if (mActivationRange <= 0.0f) {
-        mActivationRange = 2.0f * boundRadius;
+    f32 boundingRadius;
+    MR::calcModelBoundingRadius(&boundingRadius, this);
+    MR::setClippingTypeSphere(this, boundingRadius + _124.distance(stack_24), &_124);
+    MR::getJMapInfoArg0NoInit(rIter, &mPlayerSearchDistance);
+
+    if (mPlayerSearchDistance <= 0.0f) {
+        mPlayerSearchDistance = boundingRadius * 2.0f;
     }
 
-    MR::getJMapInfoArg1NoInit(rIter, &mActivationTime);
-    MR::getJMapInfoArg7NoInit(rIter, &_11C);
-    if (MR::getRandom((s32)0, (s32)2)) {
-        _130 = 0.0f;
+    MR::getJMapInfoArg1NoInit(rIter, &mTimer);
+    MR::getJMapInfoArg7NoInit(rIter, &mObjArg7);
+
+    if (MR::getRandom(0l, 2l)) {
+        mFloatRotateSpeed = 0.0f;
     } else {
-        _130 = -0.1f;
+        mFloatRotateSpeed = -::sFloatRotSpeedNoSign;
     }
 
-    if (_11C == -1) {
+    if (mObjArg7 == -1) {
         initEffectKeeper(0, "AssemblyBlock", false);
     } else {
         initEffectKeeper(0, nullptr, false);
     }
 
     initSound(4, false);
-    TVec3f stack_C;
-    stack_C.x = 0.0f;
-    stack_C.y = 0.0f;
-    stack_C.z = 0.0f;
-    MR::initStarPointerTarget(this, 0.0f, stack_C);
+    MR::initStarPointerTarget(this, boundingRadius, TVec3f(0.0f, 0.0f, 0.0f));
 
     if (MR::isEqualString(name, "AssemblyBlockPartsTimerA")) {
         mBloomModel = MR::createBloomModel(this, getBaseMtx());
@@ -129,14 +127,36 @@ void AssemblyBlock::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-// AssemblyBlock::exeWait
+void AssemblyBlock::exeWait() {
+    if (MR::isFirstStep(this)) {
+        if (MR::isEffectValid(this, "Blur")) {
+            MR::deleteEffect(this, "Blur");
+        }
+
+        MR::validateCollisionParts(this);
+        MR::validateHitSensors(this);
+    }
+
+    MR::rotateMtxLocalXDegree(_8C.toMtxPtr(), mFloatRotateSpeed);
+    MR::rotateMtxLocalYDegree(_8C.toMtxPtr(), mFloatRotateSpeed);
+    MR::rotateMtxLocalZDegree(_8C.toMtxPtr(), mFloatRotateSpeed);
+
+    f32 scalar = MR::sin(getNerveStep());
+
+    TVec3f trans;
+    _8C.getTrans(trans);
+    trans.scaleAdd(scalar, mGravity, trans);
+    _8C.setTrans(trans);
+
+    tryStartAssemble();
+}
 
 void AssemblyBlock::exeAssemble() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Blur");
 
         if (_13C) {
-            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_ST_F_");
+            MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_ST_F");
         } else {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_START");
         }
@@ -145,9 +165,9 @@ void AssemblyBlock::exeAssemble() {
         MR::invalidateHitSensors(this);
     }
 
-    MR::blendMtx(_BC.toMtxPtr(), _EC.toMtxPtr(), MR::calcNerveRate(this, 10), _8C.toMtxPtr());
+    MR::blendMtx(_BC.toMtxPtr(), _EC.toMtxPtr(), MR::calcNerveRate(this, ::sStepForAssemble), _8C.toMtxPtr());
 
-    if (MR::isStep(this, 10)) {
+    if (MR::isStep(this, ::sStepForAssemble)) {
         if (_13C) {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_ED_F");
         } else {
@@ -169,7 +189,7 @@ void AssemblyBlock::exeAssembleWait() {
         MR::validateHitSensors(this);
     }
 
-    if (!_11C) {
+    if (mObjArg7 == 0) {
         setNerve(&NrvAssemblyBlock::AssemblyBlockNrvTimer::sInstance);
     } else {
         tryStartReturn();
@@ -191,19 +211,19 @@ void AssemblyBlock::exeReturn() {
         MR::invalidateHitSensors(this);
     }
 
-    MR::blendMtx(_BC.toMtxPtr(), _EC.toMtxPtr(), MR::calcNerveRate(this, 10), _8C.toMtxPtr());
+    MR::blendMtx(_BC.toMtxPtr(), _EC.toMtxPtr(), MR::calcNerveRate(this, ::sStepForReturn), _8C.toMtxPtr());
 
-    if (MR::isStep(this, 10)) {
+    if (MR::isStep(this, ::sStepForReturn)) {
         setNerve(&NrvAssemblyBlock::AssemblyBlockNrvWait::sInstance);
     }
 }
 
 void AssemblyBlock::exeTimer() {
-    if (MR::isStep(this, mActivationTime - 100)) {
+    if (MR::isStep(this, mTimer - ::sFlashTime)) {
         MR::tryStartAllAnim(this, "Disappear");
     }
 
-    if (MR::isStep(this, mActivationTime)) {
+    if (MR::isStep(this, mTimer)) {
         if (_13C) {
             MR::startSound(this, "SE_OJ_ASSEMBLE_BLOCK_VAN_F");
         } else {
@@ -223,7 +243,7 @@ void AssemblyBlock::calcAndSetBaseMtx() {
 }
 
 bool AssemblyBlock::tryStartAssemble() {
-    bool isNotNear = !MR::isNearPlayerAnyTime(this, mActivationRange);
+    bool isNotNear = !MR::isNearPlayerAnyTime(this, mPlayerSearchDistance);
 
     if (isNotNear) {
         return false;
@@ -234,6 +254,7 @@ bool AssemblyBlock::tryStartAssemble() {
     }
 
     setNerve(&NrvAssemblyBlock::AssemblyBlockNrvAssemble::sInstance);
+
     return true;
 }
 
@@ -242,7 +263,7 @@ bool AssemblyBlock::tryStartReturn() {
         return false;
     }
 
-    if (MR::isNearPlayerAnyTime(this, (mActivationRange + 50.0f))) {
+    if (MR::isNearPlayerAnyTime(this, mPlayerSearchDistance + ::sReturnOffset)) {
         return false;
     }
 
@@ -251,8 +272,6 @@ bool AssemblyBlock::tryStartReturn() {
     }
 
     setNerve(&NrvAssemblyBlock::AssemblyBlockNrvReturn::sInstance);
-    return true;
-}
 
-AssemblyBlock::~AssemblyBlock() {
+    return true;
 }

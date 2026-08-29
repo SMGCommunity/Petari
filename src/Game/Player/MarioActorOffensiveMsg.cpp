@@ -28,7 +28,7 @@ void MarioActor::attackOrPushSensorInDamage(HitSensor* pReceiver, f32 radius) {
         return;
     }
 
-    if (radius > sensorRadius + mSensorRadiusAttack) {
+    if (radius < sensorRadius + mSensorRadiusAttack) {
         bool b1 = false;
         f32 f1 = _4B4;
         f32 f2 = 20.0f + _4B0;
@@ -37,7 +37,7 @@ void MarioActor::attackOrPushSensorInDamage(HitSensor* pReceiver, f32 radius) {
             f1 += 10.0f;
         }
 
-        if (mMario->_71C >= 5) {
+        if (mMario->mTargetWalkSpeedIndex >= 5) {
             f2 += 15.0f;
         }
 
@@ -48,12 +48,12 @@ void MarioActor::attackOrPushSensorInDamage(HitSensor* pReceiver, f32 radius) {
                 return;
             }
 
-            // touchSensor(pReceiver);
+            touchSensor(pReceiver);
             MR::sendMsgPush(pReceiver, getSensor("dummy"));
             b1 = true;
         }
 
-        // addRushSensor(pReceiver, b1);
+        addRushSensor(pReceiver, b1);
         return;
     }
 
@@ -68,7 +68,7 @@ void MarioActor::attackOrPushSensorInDamage(HitSensor* pReceiver, f32 radius) {
         f1 += 10.0f;
     }
 
-    if (mMario->_71C >= 5) {
+    if (mMario->mTargetWalkSpeedIndex >= 5) {
         f2 += 15.0f;
     }
 
@@ -91,14 +91,14 @@ void MarioActor::attackOrPushSensorInRush(HitSensor* pSensor, f32 radius) {
             sendMsgToSensor(pSensor, ACTMES_RUSH_PLAYER_TOUCH);
         }
 
-        // addRushSensor(pSensor, false)
+        addRushSensor(pSensor, false);
     }
 
-    if (radius < sensorRadius + mSensorRadiusAttack) {
+    if (radius < sensorRadius + mSensorRadiusClapCatch) {
         tryAddClapCoin(pSensor);
     }
 
-    // trySetLockOnTarget(pSensor);
+    trySetLockOnTarget(pSensor);
 }
 
 void MarioActor::tryAddClapCoin(HitSensor* pSensor) {
@@ -119,7 +119,7 @@ bool MarioActor::tryTornadoAttack(HitSensor* pSensor) {
 
 bool MarioActor::isUnderTarget(HitSensor* pSensor) {
     TVec3f down;
-    if (mAlphaEnable) {
+    if (mBeeWallWalk != 0) {
         down = _240;
     } else {
         MR::calcGravityVectorOrZero(this, pSensor->mPosition, &down, mGravityInfo, 0);
@@ -165,7 +165,7 @@ bool MarioActor::tryTrampleAttack(HitSensor* pSensor) {
         _FCD = false;
 
         if (isReceiveMessage) {
-            // doTrampleJump(pSensor);
+            doTrampleJump(pSensor);
             tryGetItem(pSensor);
         }
 
@@ -231,19 +231,21 @@ void MarioActor::attackOrPushPolygons() {
     if (mMario->getMovementStates().jumping && !mMario->getMovementStates()._1 && mMario->getMovementStates()._B) {
         _3E8 = true;
     } else {
-        if (_3E8 && mMario->getMovementStates()._1) {
-            if (mMario->mGroundPolygon->isValid()) {
-                HitSensor* groundSensor = mMario->mGroundPolygon->mSensor;
+        if (_3E8) {
+            if (getMovementStates()._1) {
+                if (mMario->mGroundPolygon->isValid()) {
+                    HitSensor* groundSensor = mMario->mGroundPolygon->mSensor;
 
-                if (groundSensor != nullptr && !MR::isDead(groundSensor->mHost)) {
-                    groundSensor = mMario->mGroundPolygon->mSensor;
-                    if (!groundSensor->receiveMessage(ACTMES_PLAYER_HIP_DROP_FLOOR, getSensor("body"))) {
-                        _3E8 = false;
+                    if (groundSensor != nullptr && !MR::isDead(groundSensor->mHost)) {
+                        groundSensor = mMario->mGroundPolygon->mSensor;
+                        if (!groundSensor->receiveMessage(ACTMES_PLAYER_HIP_DROP_FLOOR, getSensor("body"))) {
+                            _3E8 = false;
+                        }
                     }
                 }
+            } else {
+                _3E8 = false;
             }
-        } else {
-            _3E8 = false;
         }
 
         if (!mMario->getMovementStates().jumping) {

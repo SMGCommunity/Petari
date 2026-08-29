@@ -260,7 +260,7 @@ void JetTurtle::exeThrowing() {
             return;
         }
 
-        if (!MR::isSameDirection(grav, mVelocity, 0.01f)) {
+        if (!MR::isSameDirection(grav, mVelocity)) {
             v20 = -grav;
         }
 

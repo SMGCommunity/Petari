@@ -955,7 +955,7 @@ void StringSpiderString::calcAndSetBaseMtx() {
     MR::separateScalarAndDirection(&v10.y, &v9, v9);
     v10.y *= 0.063f;
 
-    if (MR::isOppositeDirection(TVec3f(0, 1, 0), v9, 0.01f)) {
+    if (MR::isOppositeDirection(TVec3f(0, 1, 0), v9)) {
         _8C.setRotate(TVec3f(1, 0, 0), MR::pi());
     } else {
         _8C.setRotate(TVec3f(0, 1, 0), v9);

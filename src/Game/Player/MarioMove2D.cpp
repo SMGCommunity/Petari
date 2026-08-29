@@ -18,7 +18,7 @@ void Mario::check2DMode() {
         MR::calcCubeRotate(area, &rotate);
         MR::makeMtxTR(_F4, 0.0f, 0.0f, 0.0f, rotate.x, rotate.y, rotate.z);
 
-        if (!(_24 & 0x100)) {
+        if (!(_20._37)) {
             _688 = mPosition;
             MR::getRotatedAxisZ(&_6A0, rotate);
             MR::calcCubePos(area, &_694);
@@ -31,7 +31,7 @@ void Mario::check2DMode() {
             PSMTXCopy(MR::tmpMtxRotYDeg(rotate.y), _F4);
             _10._15 = true;
 
-            if (!(_28 & 0x400)) {
+            if (!((_28 >> 10) & 1)) {
                 _688 = mPosition;
                 MR::getRotatedAxisZ(&_6A0, rotate);
                 MR::calcCubePos(area, &_694);
@@ -57,21 +57,19 @@ void Mario::calcMoveDir2D(f32 a1, f32 a2, TVec3f* pOut) {
     TVec3f stack_68;
     TVec3f stack_5C;
 
-    stack_8C = _63C;
-    stack_80 = _648;
-    stack_74 = _654;
+    stack_8C = mSide2D;
+    stack_80 = mUp2D;
+    stack_74 = mNormal2D;
 
     TVec3f stack_50(_660);
     stack_68.cross(stack_74, stack_50);
     MR::normalize(&stack_68);
 
     if (stack_50.dot(stack_80) < 0.0f) {
-        TVec3f stack_38 = -stack_68;
-        stack_68 = stack_38;
+        stack_68 = -stack_68;
     }
 
-    TVec3f stack_2C = -stack_80;
-    stack_5C = stack_2C;
+    stack_5C = -stack_80;
     TVec3f stack_44(_398);
 
     if (_398.dot(stack_50) <= 0.0f) {
@@ -86,11 +84,7 @@ void Mario::calcMoveDir2D(f32 a1, f32 a2, TVec3f* pOut) {
         MR::normalize(&_398);
     }
 
-    TVec3f stack_8(stack_5C * a2);
-    TVec3f stack_14(stack_68 * a1);
-    TVec3f stack_20(stack_14);
-    stack_20.add(stack_8);
-    *pOut = stack_20;
+    *pOut = stack_68 * a1 - stack_5C * a2;
 }
 
 void Mario::calcShadowDir2D(const TVec3f& rVec, TVec3f* pOut) {
@@ -99,6 +93,8 @@ void Mario::calcShadowDir2D(const TVec3f& rVec, TVec3f* pOut) {
 }
 
 void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
+    bool isNearHalfPi = false;
+
     if (_10.turning && mMovementStates._1 && !mMovementStates.jumping) {
         _10.turning = false;
         clear2DStick();
@@ -107,11 +103,11 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
     f32 stickXInput = rStickX;
     f32 stickYInput = rStickY;
 
-    _63C.set(1.0f, 0.0f, 0.0f);
-    _648.set(0.0f, 1.0f, 0.0f);
-    _654.set(0.0f, 0.0f, -1.0f);
-    PSMTXMultVecSR(_F4, &_63C, &_63C);
-    PSMTXMultVecSR(_F4, &_654, &_654);
+    mSide2D.set(1.0f, 0.0f, 0.0f);
+    mUp2D.set(0.0f, 1.0f, 0.0f);
+    mNormal2D.set(0.0f, 0.0f, -1.0f);
+    PSMTXMultVecSR(_F4, &mSide2D, &mSide2D);
+    PSMTXMultVecSR(_F4, &mNormal2D, &mNormal2D);
 
     TVec3f stack_38(0.0f, 1.0f, 0.0f);
     TVec3f* camDirZ = &getCamDirZ();
@@ -120,43 +116,42 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
     TVec3f stack_2C(1.0f, 0.0f, 0.0f);
     camDirZ = &getCamDirZ();
     const f32 absHorizontal = MR::diffAngleAbsHorizontal(getCamDirX(), stack_2C, *camDirZ);
-    if (absHorizontal <= 3.0415928f && MR::abs(angle) <= 3.0415928f) {
+    if (absHorizontal >= 3.0415928f && MR::abs(angle) >= 3.0415928f) {
         angle = 0.0f;
         rStickX = -rStickX;
     }
 
     Mtx rotMtx;
     PSMTXRotAxisRad(rotMtx, &_6A0, angle);
-    PSMTXMultVecSR(rotMtx, &_63C, &_63C);
-    PSMTXMultVecSR(rotMtx, &_648, &_648);
+    PSMTXMultVecSR(rotMtx, &mSide2D, &mSide2D);
+    PSMTXMultVecSR(rotMtx, &mUp2D, &mUp2D);
 
     MR::vecKillElement(_368, _6A0, &_660);
     if (MR::normalizeOrZero(&_660)) {
         _660 = _368;
     }
 
-    set2Dmode(_660.dot(_648) >= 0.0f);
+    set2Dmode(_660.dot(mUp2D) >= 0.0f);
 
     bool isMainY = false;
     bool isMainX = false;
-    bool isNearHalfPi = false;
 
     if (_66C) {
         if (MR::isNearZero(mStickPos.z)) {
-            _66C = 0;
+            _66C = false;
         } else {
             TVec3f stickVec(rStickX, rStickY, 0.0f);
             const f32 diff = MR::diffAngleAbs(stickVec, _670);
 
             if (_670.x * rStickX < 0.0f) {
-                _66C = 0;
+                _66C = false;
             } else if (_670.y * rStickY < 0.0f) {
-                _66C = 0;
+                _66C = false;
             } else if (diff < 0.3f) {
                 rStickX = _67C.x;
                 rStickY = _67C.y;
             } else {
-                _66C = 0;
+                _66C = false;
             }
         }
     }
@@ -168,15 +163,14 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
 
         TVec3f invMove(-_660);
         const f32 diff = MR::diffAngleAbs(invMove, stickVec);
-        f32 clamp = 1.0f - (mStickPos.z * mStickPos.z);
-        if (clamp < 0.0f) {
-            clamp = 0.0f;
-        } else if (clamp > 1.0f) {
-            clamp = 1.0f;
-        }
+        f32 clamp = MR::clamp(1.0f - (mStickPos.z * mStickPos.z), 0.0f, 1.0f);
 
         const f32 threshold = MR::getInterpolateValue(clamp, 0.5f, 1.5f);
-        if (diff < threshold || diff > (3.1415927f - threshold)) {
+        if (diff < threshold) {
+            rStickX = 0.0f;
+            rStickY = 0.0f;
+            mStickPos.z = 0.0f;
+        } else if (diff > (3.1415927f - threshold)) {
             rStickX = 0.0f;
             rStickY = 0.0f;
             mStickPos.z = 0.0f;
@@ -186,49 +180,56 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
             rStickX = stickVec.x;
             rStickY = stickVec.y;
             _67C = stickVec;
-            _66C = 1;
+            _66C = true;
         }
     }
 
     if (MR::abs(rStickY) > MR::abs(rStickX)) {
         isMainY = true;
         rStickX = 0.0f;
-        rStickY = rStickY > 0.0f ? mStickPos.z : -mStickPos.z;
+        if (rStickY > 0.0f) {
+            rStickY = mStickPos.z;
+        } else {
+            rStickY = -mStickPos.z;
+        }
     } else {
         isMainX = true;
         rStickY = 0.0f;
-        rStickX = rStickX > 0.0f ? mStickPos.z : -mStickPos.z;
+        if (rStickX > 0.0f) {
+            rStickX = mStickPos.z;
+        } else {
+            rStickX = -mStickPos.z;
+        }
     }
 
-    const f32 angleMove = MR::diffAngleAbs(_660, _648);
+    const f32 angleMove = MR::diffAngleAbs(_660, mUp2D);
     u8 lockX = 0;
     u8 lockY = 0;
 
     if (!((_60E != 0 || _60F != 0) && _610 == 0 && _611 == 0)) {
         bool doSecondBlock = false;
 
-        if (angleMove < 0.5235988f || angleMove > 2.617994f || _610 != 0) {
-            if (_611 == 0) {
-                if (_620 == 0.0f) {
-                    rStickY = 0.0f;
-                    if (isMainY && MR::abs(stickXInput) > 0.3f) {
-                        rStickX = stickXInput < 0.0f ? -mStickPos.z : mStickPos.z;
-                        lockX = 1;
+        if ((angleMove < 0.5235988f || angleMove > 2.617994f || _610 != 0) && _611 == 0) {
+            if (_620 == 0.0f) {
+                rStickY = 0.0f;
+                if (isMainY && MR::abs(stickXInput) > 0.3f) {
+                    rStickX = mStickPos.z;
+                    if (stickXInput < 0.0f) {
+                        rStickX = -rStickX;
                     }
+                    lockX = 1;
                 }
-            } else {
-                doSecondBlock = true;
             }
-        } else {
-            doSecondBlock = true;
-        }
 
-        if (doSecondBlock) {
-            if ((angleMove <= 1.3962635f || angleMove >= 1.7453294f) && _611 == 0) {
+        } else {
+            if (!(angleMove > 1.3962635f && angleMove < 1.7453294f) && _611 == 0) {
             } else if (_610 == 0 && _61C == 0.0f) {
                 rStickX = 0.0f;
                 if (isMainX && MR::abs(stickYInput) > 0.3f) {
-                    rStickY = stickYInput < 0.0f ? -mStickPos.z : mStickPos.z;
+                    rStickY = mStickPos.z;
+                    if (stickYInput < 0.0f) {
+                        rStickY = -rStickY;
+                    }
                     lockY = 1;
                 }
             }
@@ -242,9 +243,17 @@ void Mario::stick2Dadjust(f32& rStickX, f32& rStickY) {
 
     if (!_60E && !_60F && rStickY != 0.0f) {
         if (MR::isInRange(angleMove, 0.19634955f, 1.5707964f)) {
-            _60F = _660.dot(_63C) < 0.0f ? 1 : 2;
+            if (_660.dot(mSide2D) < 0.0f) {
+                _60F = 1;
+            } else {
+                _60F = 2;
+            }
         } else if (MR::isInRange(angleMove, 1.5707964f, 2.9452431f)) {
-            _60F = _660.dot(_63C) < 0.0f ? 2 : 1;
+            if (_660.dot(mSide2D) < 0.0f) {
+                _60F = 2;
+            } else {
+                _60F = 1;
+            }
         }
     }
 
@@ -337,9 +346,9 @@ void Mario::clear2DStick() {
     _614 = 0.0f;
     _620 = 0.0f;
     _61C = 0.0f;
-    _624 = 0;
+    _624 = false;
     _628.zero();
-    _66C = 0;
+    _66C = false;
     _634 = 0.0f;
     _670.zero();
     _67C.zero();

@@ -941,7 +941,7 @@ s32 VFSysGetLastDeviceError(s32 i_handle_idx) {
 }
 
 void VFSysSetNandFuncEx(u32 i_handle_idx) {
-    VFi_NandSetNANDFuncNormal(i_handle_idx);
+    VFi_NandSetNANDFuncEx(i_handle_idx);
 }
 
 s32 VFSysSetSyncMode(s32 i_handle_idx, u32 i_mode) {

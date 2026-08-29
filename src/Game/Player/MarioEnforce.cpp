@@ -272,7 +272,7 @@ u32 Mario::moveRelativePosition(u32) {
 
         TVec3f rotAxis;
         MR::calcMtxRotAxis(&rotAxis, *rTri->getBaseMtx(), *rTri->getPrevBaseMtx());
-        if (MR::isSameDirection(rotAxis, getAirGravityVec(), 0.01f)) {
+        if (MR::isSameDirection(rotAxis, getAirGravityVec())) {
             _10._10 = 1;
         }
     }
@@ -568,7 +568,7 @@ void Mario::pushedByWind() {
         return;
     }
 
-    if (_71C == 0) {
+    if (mTargetWalkSpeedIndex == 0) {
         const MarioConstTable* table = mActor->getConst().getTable();
         if (windMag <= table->mWindSlideLimit) {
             return;

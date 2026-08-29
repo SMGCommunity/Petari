@@ -1,54 +1,100 @@
 #include "Game/MapObj/SubmarineSteam.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Map/HitInfo.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/CollisionShapeUtil.hpp"
+
+void SubmarineSteam_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
+namespace {
+    static const f32 sSensorRadius = 400.0f;
+    static const f32 sSensorOffsetY = 250.0f;
+    static const f32 sHitCylinderRange = 20.0f;
+    static const f32 sHitSphereRadius = 120.0f;
+    static const f32 sHitSphereOffsetY = 600.0f;
+    static const s32 sMaxNumGroupClipping = 16;
+    static const f32 sHitCylinderHeight = 480.0f;
+};  // namespace
 
 namespace NrvSubmarineSteam {
     NEW_NERVE(HostTypeWaitForSwitchOn, SubmarineSteam, WaitForSwitchOn);
     NEW_NERVE(HostTypeSteam, SubmarineSteam, Steam);
 };  // namespace NrvSubmarineSteam
 
-SubmarineSteam::SubmarineSteam(const char* pName) : LiveActor(pName), _8C(0.0f, 1.0f, 0.0f) {
+SubmarineSteam::SubmarineSteam(const char* pName) : LiveActor(pName), mUp(0.0f, 1.0f, 0.0f) {
 }
 
 void SubmarineSteam::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjMovement(this);
+
     const char* objName = nullptr;
     MR::getObjectName(&objName, rIter);
     initEffectKeeper(0, objName, false);
+
     initHitSensor(1);
-    TVec3f offs(0.0f, 250.0f, 0.0f);
-    HitSensor* sensor = MR::addHitSensorMapObj(this, "body", 8, 400.0f, offs);
+    HitSensor* sensor = MR::addHitSensorMapObj(this, "body", 8, ::sSensorRadius, TVec3f(0.0f, ::sSensorOffsetY, 0.0f));
+
     MR::setClippingTypeSphere(this, 800.0f, &sensor->mPosition);
-    MR::setGroupClipping(this, rIter, 16);
+    MR::setGroupClipping(this, rIter, ::sMaxNumGroupClipping);
     MR::joinToGroupArray(this, rIter, nullptr, 32);
+
     MR::useStageSwitchReadA(this, rIter);
+
     initSound(4, false);
 
     if (MR::isValidSwitchA(this)) {
-        initNerve(GET_NERVE(SubmarineSteam, HostTypeWaitForSwitchOn));
+        initNerve(&NrvSubmarineSteam::HostTypeWaitForSwitchOn::sInstance);
     } else {
-        initNerve(GET_NERVE(SubmarineSteam, HostTypeSteam));
+        initNerve(&NrvSubmarineSteam::HostTypeSteam::sInstance);
     }
 
     appear();
 }
 
-// todo -- nonmatching
 void SubmarineSteam::initAfterPlacement() {
-    TPos3f pos;
-    pos.identity();
-    pos.setRotate(mRotation * 0.0174);
-    pos.getTrans(_8C);
-    MR::normalize(&_8C);
+    TPos3f mtx;
+    mtx.identity();
+    mtx.setRotateDegree(mRotation);
+    mtx.getYDir(mUp);
+    MR::normalize(&mUp);
 }
 
-// todo -- what
 void SubmarineSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(GET_NERVE(SubmarineSteam, HostTypeWaitForSwitchOn))) {
-        if (MR::isSensorPlayer(pReceiver)) {
-            TVec3f vec = _8C * 600.0f;
+    if (isNerve(&NrvSubmarineSteam::HostTypeWaitForSwitchOn::sInstance)) {
+        return;
+    }
+
+    if (MR::isSensorPlayer(pReceiver)) {
+        f32 playerRadius = pReceiver->getRadius() * 0.7f;
+        bool hit = false;
+
+        if (!hit) {
+            HitSphere sphere(mPosition + mUp * ::sHitSphereOffsetY, ::sHitSphereRadius);
+
+            if (sphere.isHit(HitSphere(pReceiver->getPosition(), playerRadius))) {
+                hit = true;
+            }
+        }
+
+        if (!hit) {
+            HitCylinder cyl(mPosition, mUp * ::sHitCylinderHeight);
+
+            f32 proj, ortho;
+            cyl.getParams(pReceiver->getPosition(), &proj, &ortho);
+
+            if (0.0f <= proj && proj <= 1.0f && ortho < playerRadius + ::sHitCylinderRange) {
+                hit = true;
+            }
+        }
+
+        if (hit) {
+            if (MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
+                return;
+            }
         }
     }
 }
@@ -61,7 +107,7 @@ void SubmarineSteam::startClipped() {
 void SubmarineSteam::endClipped() {
     LiveActor::endClipped();
 
-    if (!isNerve(GET_NERVE(SubmarineSteam, HostTypeWaitForSwitchOn))) {
+    if (!isNerve(&NrvSubmarineSteam::HostTypeWaitForSwitchOn::sInstance)) {
         MR::emitEffect(this, "Steam");
     }
 }
@@ -80,9 +126,6 @@ void SubmarineSteam::exeSteam() {
 
 void SubmarineSteam::exeWaitForSwitchOn() {
     if (MR::isOnSwitchA(this)) {
-        setNerve(GET_NERVE(SubmarineSteam, HostTypeSteam));
+        setNerve(&NrvSubmarineSteam::HostTypeSteam::sInstance);
     }
-}
-
-SubmarineSteam::~SubmarineSteam() {
 }

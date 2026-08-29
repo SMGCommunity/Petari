@@ -8,5 +8,9 @@ class MarioClimb : public MarioState {
 public:
     MarioClimb(MarioActor*);
 
-    u8 _11[3];
+    virtual bool start();
+    virtual bool close();
+    virtual bool update();
+
+    /* 0x12 */ u16 mTimer;
 };

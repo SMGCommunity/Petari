@@ -6,31 +6,22 @@
 FloaterFloatingForce::~FloaterFloatingForce() {
 }
 
-FloaterFloatingForce::FloaterFloatingForce(LiveActor* pActor, const char* pName) : MapPartsFunction(pActor, "浮力"), _18(pName), _1C(gZeroVec) {
+FloaterFloatingForce::FloaterFloatingForce(LiveActor* pHost, const char* pName) : MapPartsFunction(pHost, "浮力"), _18(pName), _1C(gZeroVec) {
     _28 = TVec3f(0.0f, 1.0f, 0.0f);
-    mMoveCondition = 0.0f;
+    mMoveConditionType = 0.0f;
 }
 
 void FloaterFloatingForce::init(const JMapInfoIter& rIter) {
-    s32 moveType = 0;
-    MR::getMapPartsArgMoveConditionType(&moveType, rIter);
-    mMoveCondition = moveType;
+    s32 moveConditionType = 0;
+    MR::getMapPartsArgMoveConditionType(&moveConditionType, rIter);
+    mMoveConditionType = moveConditionType;
 }
 
 void FloaterFloatingForce::start() {
-    _1C.x = mHost->mPosition.x;
-    _1C.y = mHost->mPosition.y;
-    _1C.z = mHost->mPosition.z;
-    TSMtxf matrix;
-    f32 x, y, z;
-    matrix.setInline(mHost->getBaseMtx());
-    x = matrix.mMtx[0][1];
-    y = matrix.mMtx[1][1];
-    z = matrix.mMtx[2][1];
-    _28.set(x, y, z);
-    MR::normalize(&_28);
-}
+    _1C.set(mHost->mPosition);
 
-const TVec3f& FloaterFloatingForce::getCurrentVelocity() const {
-    return TVec3f(0.0f, 0.0f, 0.0f);
+    TPos3f mtx;
+    mtx.set(mHost->getBaseMtx());
+    mtx.getYDir(_28);
+    MR::normalize(&_28);
 }

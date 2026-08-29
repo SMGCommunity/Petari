@@ -10,6 +10,8 @@ class MarioHang : public MarioState {
 public:
     MarioHang(MarioActor*);
 
+    void forceDrop();
+
     u16 _12;
     u16 _14;
     u16 _16;

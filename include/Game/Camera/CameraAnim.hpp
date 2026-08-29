@@ -59,7 +59,6 @@ public:
     virtual bool isInterpolationOff() const {
         return true;
     }
-
     virtual bool isCollisionOff() const {
         return true;
     }

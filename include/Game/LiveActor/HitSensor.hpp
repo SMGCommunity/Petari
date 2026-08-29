@@ -19,6 +19,10 @@ public:
     void invalidateBySystem();
     void addHitSensor(HitSensor* pSensor);
 
+    const TVec3f& getPosition() const {
+        return mPosition;
+    }
+
     f32 getRadius() const {
         return mRadius;
     }

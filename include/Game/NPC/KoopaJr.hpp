@@ -4,10 +4,11 @@
 
 class KoopaJr : public NPCActor {
 public:
-    KoopaJr(const char*);
+    /// @brief Creates a new `KoopaJr`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    KoopaJr(const char* pName);
 
-    virtual ~KoopaJr();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void kill();
     virtual void control();
     virtual void calcAndSetBaseMtx();
@@ -18,6 +19,7 @@ public:
     void setStateShipBattleShipDamage();
     void endShipBattleTalk();
     void startShipBattleTalk();
+
     void exeWait();
     void exeReaction();
     void exeReactionEnd();
@@ -28,6 +30,7 @@ public:
     void exeShipBattleDemoTalkStart();
     void exeShipBattleDemoTalkWait();
 
-    u8 _15C;
-    u8 _15D;
+private:
+    /* 0x15C */ bool mIsInvalidAppearStarPiece;
+    /* 0x15D */ bool mIsShipBattleTalk;
 };

@@ -35,10 +35,10 @@ u8 MarioActor::getGravityLevel() const {
 }
 
 bool MarioActor::checkBeeWallStick(TVec3f& rVec) {
-    if (mMario->getMovementStates()._8 && mMario->checkWallCode("Fur", false) && !mAlphaEnable && !_9F2) {
+    if (getMovementStates()._8 && mMario->checkWallCode("Fur", false) && mBeeWallWalk == 0 && !_9F2) {
         TVec3f vec20 = mMario->mHeadVec;
 
-        mAlphaEnable = 5;
+        mBeeWallWalk = 5;
 
         rVec = -mMario->getWallNorm();
 
@@ -55,7 +55,7 @@ bool MarioActor::checkBeeWallStick(TVec3f& rVec) {
         setBlendMtxTimer(2);
 
         _38C = 5;
-        mMario->mMovementStates._31 = false;
+        mMario->mMovementStates._38 = false;
         _214->_305 = true;
 
         return true;
@@ -65,8 +65,8 @@ bool MarioActor::checkBeeWallStick(TVec3f& rVec) {
 }
 
 bool MarioActor::checkBeeFloorStick(TVec3f& rVec) {
-    if (mMario->getMovementStates()._1 && !strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) && mAlphaEnable == 0) {
-        mAlphaEnable = 5;
+    if (mMario->getMovementStates()._1 && strcmp("Fur", MR::getWallCodeString(mMario->getGroundPolygon())) == 0 && mBeeWallWalk == 0) {
+        mBeeWallWalk = 5;
         rVec = -mMario->_368;
 
         return true;
@@ -76,8 +76,8 @@ bool MarioActor::checkBeeFloorStick(TVec3f& rVec) {
 }
 
 void MarioActor::syncJumpBeeStickMode() {
-    if (mAlphaEnable != 0 && selectQuickResetBeeWallGravity(mMario->_45C->mSensor->mHost->mName)) {
-        mAlphaEnable = 0;
+    if (mBeeWallWalk != 0 && selectQuickResetBeeWallGravity(mMario->_45C->mSensor->mHost->mName)) {
+        mBeeWallWalk = 0;
         _9F2 = 30;
     }
 
@@ -92,7 +92,7 @@ void MarioActor::syncJumpBeeStickMode() {
 }
 
 void MarioActor::updateBeeModeGravity(TVec3f& rVec) {
-    u8 alpha = mAlphaEnable;
+    u8 alpha = mBeeWallWalk;
 
     if (_9F2 != 0) {
         _9F2--;
@@ -102,12 +102,12 @@ void MarioActor::updateBeeModeGravity(TVec3f& rVec) {
         updateBeeStickMode(rVec);
     }
 
-    if (mAlphaEnable == 5) {
+    if (mBeeWallWalk == 5) {
         MR::vecBlendSphere(_240, rVec, &rVec, 0.1f);
         return;
     }
 
-    if (mAlphaEnable != 0) {
+    if (mBeeWallWalk != 0) {
         MR::vecBlendSphere(_240, rVec, &rVec, 0.3f);
         return;
     }
@@ -124,13 +124,13 @@ bool MarioActor::isInZeroGravitySpot() const {
 // void MarioActor::updateGravityVec(bool, bool) {}
 
 bool MarioActor::checkBeeCeilStick(TVec3f& rVec) {
-    if ((mMario->isCeiling() || mMario->mDrawStates._15) && mAlphaEnable == 0 && _9F2 == 0) {
+    if ((mMario->isCeiling() || getDrawStates()._15) && mBeeWallWalk == 0 && _9F2 == 0) {
         bool out = false;
-        if (mMario->mDrawStates._15) {
+        if (getDrawStates()._15) {
             out = true;
         } else {
             const char* wallCodeString = MR::getWallCodeString(mMario->_4C8);
-            if (wallCodeString != nullptr && !strcmp(wallCodeString, "Fur")) {
+            if (wallCodeString != nullptr && strcmp(wallCodeString, "Fur") == 0) {
                 out = true;
             }
         }

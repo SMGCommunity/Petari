@@ -601,7 +601,7 @@ bool NPCActor::turnToPlayer(f32 f1) {
     ::calcVecToPlayer(&toPlayer, this);
     _A0.getZDir(zDir);
 
-    if (MR::isOppositeDirection(-zDir, toPlayer, 0.01f)) {
+    if (MR::isOppositeDirection(-zDir, toPlayer)) {
         return true;
     }
 
@@ -619,7 +619,7 @@ bool NPCActor::turnToPlayer(f32 f1, f32 f2, f32 f3) {
     _B0.getYDir(yDir);
     ::calcVecToPlayer(&toPlayer, this);
 
-    if (MR::isSameDirection(toPlayer, yDir, 0.01f)) {
+    if (MR::isSameDirection(toPlayer, yDir)) {
         return false;
     }
 
@@ -639,7 +639,7 @@ bool NPCActor::turnToDefault(f32 f1) {
     _B0.getYDir(yDir);
     _A0.getZDir(zDir2);
 
-    if (MR::isOppositeDirection(-zDir, zDir2, 0.01f)) {
+    if (MR::isOppositeDirection(-zDir, zDir2)) {
         return true;
     }
 
@@ -650,7 +650,7 @@ bool NPCActor::turnToDefault(f32 f1) {
     flt = MR::clamp(flt, 0.0f, 1.0f);
 
     MR::blendQuatUpFront(&_A0, yDir, zDir, flt, flt);
-    return MR::isSameDirection(zDir2, zDir, 0.01f);
+    return MR::isSameDirection(zDir2, zDir);
 }
 
 void NPCActor::setToDefault() {

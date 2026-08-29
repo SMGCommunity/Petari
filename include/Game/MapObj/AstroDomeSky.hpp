@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/Color.hpp"
 
 class ProjmapEffectMtxSetter;
 
@@ -8,13 +9,12 @@ class AstroDomeSky : public LiveActor {
 public:
     AstroDomeSky(const char*);
 
-    virtual ~AstroDomeSky();
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void calcAndSetBaseMtx();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
 
-    bool tryRotateAppearence();
+    bool tryRotateAppearance();
     void exeHide();
     void exeAppear();
     void exeWait();
@@ -24,7 +24,7 @@ public:
     void exeReturnDemoWait();
     void exeJumpOutDemo() {};
 
-    f32 _8C;
-    GXColor _90;
-    ProjmapEffectMtxSetter* _94;
+    /* 0x8C */ f32 mBrkFrame;
+    /* 0x90 */ Color8 mColor;
+    /* 0x94 */ ProjmapEffectMtxSetter* mProjmap;
 };

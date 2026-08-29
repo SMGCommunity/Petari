@@ -13,7 +13,7 @@ void CameraCubePlanet_FORCE_MATCH_SDATA2() {
 }
 
 CameraCubePlanet::CameraCubePlanet(const char* pName)
-    : Camera(pName), mDist(3000.0f), mAngleA(MR::pi() / 6.0f), mAngleB(0.35f), mUp(0.0f, 1.0f, 0.0f) {
+    : Camera(pName), mDist(3000.0f), mAngleX(MR::pi() / 6.0f), mAngleY(0.35f), mUp(0.0f, 1.0f, 0.0f) {
 }
 
 void CameraCubePlanet::reset() {
@@ -25,7 +25,7 @@ CameraTargetObj* CameraCubePlanet::calc() {
     TVec3f up = mUp;
 
     TQuat4f upRot;
-    upRot.setRotate(mUp, -CameraLocalUtil::getTarget(this)->getGravityVector(), CameraLocalUtil::isForceCameraChange() ? 1.0f : mAngleB);
+    upRot.setRotate(mUp, -CameraLocalUtil::getTarget(this)->getGravityVector(), CameraLocalUtil::isForceCameraChange() ? 1.0f : mAngleY);
     upRot.transform(up);
     mUp.set(up);
 
@@ -43,7 +43,7 @@ CameraTargetObj* CameraCubePlanet::calc() {
 
     TVec3f side = up.cross(front);
     TQuat4f rot;
-    rot.setRotate(side, mAngleA);
+    rot.setRotate(side, mAngleX);
     rot.transform(up);
     rot.transform(front);
     front.setLength(mDist);

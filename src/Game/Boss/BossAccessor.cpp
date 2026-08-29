@@ -8,7 +8,7 @@ namespace {
     }
 };  // namespace
 
-BossAccessor::BossAccessor() : NameObj("ボスへのアクセス"), mBoss(nullptr) {
+BossAccessor::BossAccessor() : NameObj("ボスへのアクセス"), mBoss() {
 }
 
 namespace BossAccess {

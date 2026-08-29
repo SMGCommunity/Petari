@@ -47,27 +47,27 @@ u16 MarioModule::getPlayerMode() const {
 }
 
 bool MarioModule::isPlayerModeBee() const {
-    return mActor->mPlayerMode == 4;
+    return mActor->mPlayerMode == PlayerMode_Bee;
 }
 
 bool MarioModule::isPlayerModeIce() const {
-    return mActor->mPlayerMode == 3;
+    return mActor->mPlayerMode == PlayerMode_Ice;
 }
 
 bool MarioModule::isPlayerModeTeresa() const {
-    return mActor->mPlayerMode == 6;
+    return mActor->mPlayerMode == PlayerMode_Teresa;
 }
 
 bool MarioModule::isPlayerModeHopper() const {
-    return mActor->mPlayerMode == 5;
+    return mActor->mPlayerMode == PlayerMode_Hopper;
 }
 
 bool MarioModule::isPlayerModeInvincible() const {
-    return mActor->mPlayerMode == 1;
+    return mActor->mPlayerMode == PlayerMode_Invincible;
 }
 
 bool MarioModule::isPlayerModeFoo() const {
-    return mActor->mPlayerMode == 7;
+    return mActor->mPlayerMode == PlayerMode_Foo;
 }
 
 void MarioModule::changeAnimation(const char* pAnim1, const char* pAnim2) {
@@ -449,7 +449,7 @@ bool MarioModule::checkSquat(bool a1) {
     if (mActor->_B94 != 0) {
         return false;
     }
-    if (mActor->mAlphaEnable) {
+    if (mActor->mBeeWallWalk != 0) {
         return false;
     }
     if (mActor->mMario->mMovementStates._21) {
@@ -575,7 +575,7 @@ bool MarioModule::isInputDisable() const {
     if (mActor->mMario->mMovementStates._22) {
         return true;
     }
-    if (mActor->mMario->isStatusActive(MarioStatus_AbyssDamage)) {
+    if (mActor->mMario->isStatusActive(MarioStatus_FpView)) {
         return true;
     }
     if (isAnimationRun("ハード着地")) {  // "Hard landing"

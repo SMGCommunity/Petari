@@ -795,7 +795,7 @@ void StarPiece::trySetGravityAndFront(const TVec3f& rVec1) {
         MR::normalizeOrZero(&mGravity);
     }
 
-    if (MR::isSameDirection(mGravity, _8C, 0.01f)) {
+    if (MR::isSameDirection(mGravity, _8C)) {
         _8C.set< f32 >(mGravity.x, mGravity.z, mGravity.y);
     }
 }
@@ -1227,7 +1227,7 @@ void StarPiece::calcAndSetBaseMtx() {
     } else if (MR::isNearZero(_8C)) {
         pos.set(getBaseMtx());
         pos.setTrans(mPosition);
-    } else if (MR::isSameDirection(mGravity, _8C, 0.01f)) {
+    } else if (MR::isSameDirection(mGravity, _8C)) {
         pos.set(getBaseMtx());
         pos.setTrans(mPosition);
     } else {
@@ -1237,7 +1237,7 @@ void StarPiece::calcAndSetBaseMtx() {
         if (MR::isNearZero(_8C)) {
         }
 
-        if (MR::isSameDirection(mGravity, _8C, 0.01f)) {
+        if (MR::isSameDirection(mGravity, _8C)) {
         }
 
         MR::calcMtxFromGravityAndZAxis(&pos, this, mGravity, _8C);

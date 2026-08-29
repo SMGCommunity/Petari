@@ -15,7 +15,7 @@
 #include "Game/Util/StringUtil.hpp"
 
 namespace {
-    const char* cFollowjointName = "Move";
+    const char* cFollowJointName = "Move";
     const char* cAnimFileName = "Move";
     const char* cEndLoopEffectName = "EndLoop";
 };  // namespace
@@ -26,10 +26,7 @@ namespace NrvAnmModelObj {
     NEW_NERVE(HostTypeDone, AnmModelObj, Done);
 };  // namespace NrvAnmModelObj
 
-AnmModelObj::AnmModelObj(const char* pName) : MapObjActor(pName) {
-    mJointPos.x = 0.0f;
-    mJointPos.y = 0.0f;
-    mJointPos.z = 0.0f;
+AnmModelObj::AnmModelObj(const char* pName) : MapObjActor(pName), mJointPos(0.0f, 0.0f, 0.0f) {
 }
 
 void AnmModelObj::init(const JMapInfoIter& rIter) {
@@ -40,10 +37,10 @@ void AnmModelObj::init(const JMapInfoIter& rIter) {
     MapObjActorUtil::setupInitInfoTypical(&info, mObjectName);
     initialize(rIter, info);
 
-    if (MR::isExistJoint(this, ::cFollowjointName)) {
-        MR::copyJointPos(this, ::cFollowjointName, &mJointPos);
+    if (MR::isExistJoint(this, ::cFollowJointName)) {
+        MR::copyJointPos(this, ::cFollowJointName, &mJointPos);
     } else {
-        mJointPos.set< f32 >(mPosition);
+        mJointPos.set(mPosition);
     }
 
     f32 boundRadius;
@@ -53,6 +50,12 @@ void AnmModelObj::init(const JMapInfoIter& rIter) {
 
 bool AnmModelObj::isDone() const {
     return MR::isBckOneTimeAndStopped(this);
+}
+
+void AnmModelObj::exeWait() {
+    if (isOnStartAnmTrigger()) {
+        setNerve(&NrvAnmModelObj::HostTypeMove::sInstance);
+    }
 }
 
 void AnmModelObj::exeMove() {
@@ -65,6 +68,7 @@ void AnmModelObj::exeMove() {
 
     s32 steps = MR::StageEffect::getStopSeSteps(mObjectName);
     const char* movingSE = MR::StageEffect::getMovingSe(mObjectName);
+
     if (movingSE != nullptr) {
         if (steps > 0) {
             if (MR::isLessStep(this, steps)) {
@@ -81,6 +85,7 @@ void AnmModelObj::exeMove() {
         if (steps >= 0) {
             if (MR::isStep(this, steps)) {
                 MR::startSound(this, stopSE);
+
                 if (MR::StageEffect::isRiddleSeTypeStop(mObjectName)) {
                     MR::startSystemSE("SE_SY_READ_RIDDLE_S");
                 }
@@ -90,10 +95,11 @@ void AnmModelObj::exeMove() {
 
     MR::StageEffect::rumblePadMoving(this, mObjectName);
     moveInner();
-    if (MR::isExistJoint(this, ::cFollowjointName)) {
-        MR::copyJointPos(this, ::cFollowjointName, &mJointPos);
+
+    if (MR::isExistJoint(this, ::cFollowJointName)) {
+        MR::copyJointPos(this, ::cFollowJointName, &mJointPos);
     } else {
-        mJointPos.set< f32 >(mPosition);
+        mJointPos.set(mPosition);
     }
 
     if (isDone()) {
@@ -120,22 +126,13 @@ void AnmModelObj::exeDone() {
     if (MR::isEqualString(mObjectName, "HeavenlyBeachUnderRock")) {
         const char* movingSE = MR::StageEffect::getMovingSe(mObjectName);
 
-        if (movingSE) {
+        if (movingSE != nullptr) {
             MR::startLevelSound(this, movingSE);
         }
     }
 }
 
-void AnmModelObj::exeWait() {
-    if (isOnStartAnmTrigger()) {
-        setNerve(&NrvAnmModelObj::HostTypeMove::sInstance);
-    }
-}
-
 AnmModelSwitchMove::AnmModelSwitchMove(const char* pName) : AnmModelObj(pName) {
-}
-
-AnmModelObj::~AnmModelObj() {
 }
 
 void AnmModelSwitchMove::init(const JMapInfoIter& rIter) {
@@ -197,24 +194,21 @@ bool AnmModelBindMove::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* p
 }
 
 bool AnmModelBindMove::isOnStartAnmTrigger() const {
-    LiveActor* rush = MR::getCurrentRushActor();
+    LiveActor* rushActor = MR::getCurrentRushActor();
 
-    if (rush != nullptr) {
-        return MR::isBinded(rush, getSensor("body"));
+    if (rushActor != nullptr) {
+        return MR::isBinded(rushActor, getSensor("body"));
     }
 
     return false;
 }
 
-AnmModelSwitchMoveEventCamera::AnmModelSwitchMoveEventCamera(const char* pName) : AnmModelSwitchMove(pName) {
-    mCameraInfo = nullptr;
-}
-
-AnmModelSwitchMove::~AnmModelSwitchMove() {
+AnmModelSwitchMoveEventCamera::AnmModelSwitchMoveEventCamera(const char* pName) : AnmModelSwitchMove(pName), mCameraInfo() {
 }
 
 void AnmModelSwitchMoveEventCamera::init(const JMapInfoIter& rIter) {
     AnmModelObj::init(rIter);
+
     if (MR::isDemoCast(this, nullptr) && MR::tryRegisterDemoActionNerve(this, &NrvAnmModelObj::HostTypeMove::sInstance, nullptr)) {
         setNerve(&NrvAnmModelObj::HostTypeWait::sInstance);
     }
@@ -224,13 +218,15 @@ void AnmModelSwitchMoveEventCamera::init(const JMapInfoIter& rIter) {
 
 bool AnmModelSwitchMoveEventCamera::isDone() const {
     ActorCameraInfo* info = mCameraInfo;
+
     if (info == nullptr) {
-        return MR::isBckOneTimeAndStopped(this);
+        return AnmModelObj::isDone();
     }
 
     s32 frames = MR::getActorCameraFrames(this, info);
+
     if (frames <= 0) {
-        return MR::isBckOneTimeAndStopped(this);
+        return AnmModelObj::isDone();
     } else {
         return MR::isGreaterEqualStep(this, frames);
     }
@@ -244,57 +240,4 @@ void AnmModelSwitchMoveEventCamera::startInner() {
 
 void AnmModelSwitchMoveEventCamera::stopInner() {
     MR::endActorCamera(this, mCameraInfo, false, -1);
-}
-
-AnmModelGroundOnMove::~AnmModelGroundOnMove() {
-}
-
-AnmModelBindMove::~AnmModelBindMove() {
-}
-
-AnmModelSwitchMoveEventCamera::~AnmModelSwitchMoveEventCamera() {
-}
-
-void AnmModelObj::startInner() {
-}
-
-void AnmModelObj::moveInner() {
-}
-
-void AnmModelObj::stopInner() {
-}
-
-bool AnmModelObj::isKilledAtMoveDone() const {
-    return false;
-}
-
-bool AnmModelObj::isRepeat() const {
-    return false;
-}
-
-void AnmModelObj::control() {
-}
-
-void AnmModelObj::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
-}
-
-void AnmModelObj::initCaseUseSwitchB(const MapObjActorInitInfo&) {
-}
-
-void AnmModelObj::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
-}
-
-void AnmModelObj::initCaseUseSwitchA(const MapObjActorInitInfo&) {
-}
-
-bool AnmModelBindMove::isRepeat() const {
-    return true;
-}
-
-bool AnmModelBindMove::isKilledAtMoveDone() const {
-    return false;
-}
-
-bool AnmModelGroundOnMove::isKilledAtMoveDone() const {
-    return true;
 }

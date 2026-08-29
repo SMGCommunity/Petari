@@ -2,21 +2,34 @@
 #include "Game/LiveActor/FlashingCtrl.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
+#include "Game/Util/ActorMovementUtil.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/CameraUtil.hpp"
+#include "Game/Util/DemoUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/EventUtil.hpp"
+#include "Game/Util/Functor.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MapUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
 #include "Game/Util/MtxUtil.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
-
-s16 def = 600;
-static f32 zero = 0.0f;
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/RailUtil.hpp"
+#include "Game/Util/ScreenUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
 
 namespace {
-    const f32 cAppearThrowFwdSpd = 5.0f;
-    const f32 cBoundUpSpd = 20.0f;
-    const f32 cAppearThrowUpSpd = 10.0f;
-    const f32 cAppearThrowUpSpd2 = 15.0f;
-    const f32 cGravity = 0.5f;
-    const f32 cReflectWallX = 0.3f;
+    f32 cAppearThrowUpSpd = 10.0f;
+    f32 cAppearThrowUpSpd2 = 15.0f;
+    f32 cGravity = 0.5f;
+    f32 cReflectWallX = 0.3f;
     static f32 cSpdRotateY = JGeometry::TUtil< f32 >::PI() / 60.0f;
+    static u16 sVal = 0x0258;
 };  // namespace
 
 void ShadowClipActor::endClipped() {
@@ -32,15 +45,14 @@ void ShadowClipActor::control() {
     }
 }
 
-BenefitItemObj::BenefitItemObj(const char* pName, const char* pPowerUp) : LiveActor(pName) {
-    _138 = 0;
+BenefitItemObj::BenefitItemObj(const char* pName, const char* pPowerUp) : LiveActor(pName), _138() {
     _D8 = 0;
     _E2 = 0;
     _E5 = 0;
     _E6 = 0;
     _E4 = 0;
     _12C = 0;
-    _EC = 0.0f;
+    _EC = 0;
     mFollowMtx = nullptr;
     _DD = 0;
     _DE = 0;
@@ -56,6 +68,7 @@ BenefitItemObj::BenefitItemObj(const char* pName, const char* pPowerUp) : LiveAc
 void BenefitItemObj::initModelAndEfx() {
     initModelManagerWithAnm(_120, nullptr, false);
     initEffectKeeper(5, _120, false);
+
     initBinder(50.0f, 50.0f, 0);
     initHitSensor(1);
     MR::addHitSensor(this, "body", ATYPE_KINOKO_ONEUP, 4, 50.0f, TVec3f(0.0f, 50.0f, 0.0f));
@@ -63,26 +76,37 @@ void BenefitItemObj::initModelAndEfx() {
 
 void BenefitItemObj::init(const JMapInfoIter& rIter) {
     LiveActor::init(rIter);
+
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
     }
 
     initModelAndEfx();
+
     MR::connectToSceneItemStrongLight(this);
+
     MR::offCalcGravity(this);
+
     MR::calcUpVec(&mGravity, this);
     mGravity = -mGravity;
+
     initSound(4, false);
+
     mFlashCtrl = new FlashingCtrl(this, true);
+
     MR::offBind(this);
+
     _E3 = 0;
 
     if (MR::isValidInfo(rIter)) {
         _E3 = MR::isConnectedWithRail(rIter);
+
         if (_E3) {
             initRailRider(rIter);
         }
+
         _E8 = 5.0f;
+
         s32 railArg;
         if (_E3 && MR::getRailArg0NoInit(this, &railArg)) {
             _E8 = railArg / 10.0f;
@@ -91,11 +115,14 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
 
     MR::setClippingFar100m(this);
     MR::setClippingTypeSphere(this, 100.0f);
+
     initNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance);
+
     _DF = 1;
     _D9 = 0;
     _DA = 0;
     _E1 = 0;
+
     s32 arg0 = -1;
     s32 arg1 = -1;
     s32 arg2 = -1;
@@ -132,9 +159,11 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
     case 1:
         _D9 = 1;
         break;
+
     case 2:
         _D9 = 2;
         break;
+
     case 3:
         _D9 = 3;
         break;
@@ -148,9 +177,11 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
     case 1:
         _DA = 1;
         break;
+
     case 2:
         _DA = 2;
         break;
+
     case 3:
         _DA = 3;
         break;
@@ -167,12 +198,15 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
     case -1:
         _DC = 1;
         break;
+
     case 1:
         _DC = 2;
         break;
+
     case 2:
         _DC = 3;
         break;
+
     case 3:
         _DC = 4;
         break;
@@ -193,70 +227,74 @@ void BenefitItemObj::init(const JMapInfoIter& rIter) {
         shadowDist = arg7;
     }
 
-    if (!_D8) {
-        if (MR::isValidInfo(rIter)) {
-            MR::useStageSwitchWriteDead(this, rIter);
+    if (!_D8 && MR::isValidInfo(rIter)) {
+        MR::useStageSwitchWriteDead(this, rIter);
 
-            if (MR::useStageSwitchReadAppear(this, rIter)) {
-                MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &BenefitItemObj::appear));
-                _E1 = 1;
-            }
+        if (MR::useStageSwitchReadAppear(this, rIter)) {
+            MR::listenStageSwitchOnAppear(this, MR::Functor_Inline(this, &BenefitItemObj::appear));
+            _E1 = 1;
         }
     }
 
     if (_D8) {
         _DF = 0;
+
         makeActorDead();
-    } else {
-        if (_DF) {
-            makeActorAppeared();
-            if (_E1) {
-                MR::invalidateHitSensors(this);
-            } else {
-                runEfx("Glow");
-            }
-        } else if (_E1) {
-            makeActorDead();
+
+        return;
+    }
+
+    if (_DF) {
+        makeActorAppeared();
+
+        if (_E1) {
+            MR::invalidateHitSensors(this);
         } else {
-            makeActorAppeared();
             runEfx("Glow");
         }
+    } else if (_E1) {
+        makeActorDead();
+    } else {
+        makeActorAppeared();
+        runEfx("Glow");
+    }
 
-        if (!MR::isDead(this) && MR::isValidInfo(rIter)) {
-            MR::useStageSwitchSleep(this, rIter);
+    if (!MR::isDead(this) && MR::isValidInfo(rIter)) {
+        MR::useStageSwitchSleep(this, rIter);
+    }
+
+    TVec3f rotY;
+    MR::getRotatedAxisY(&rotY, mRotation);
+    _A4.set(rotY);
+
+    if (!_DC) {
+        return;
+    }
+
+    MR::initShadowVolumeCylinder(this, 50.0f);
+    MR::setShadowDropLength(this, nullptr, shadowDist);
+
+    if (arg7 == -1) {
+        MR::onShadowVolumeCutDropLength(this, nullptr);
+        MR::setShadowVolumeEndDropOffset(this, nullptr, 50.0f);
+    }
+
+    if ((_DC & 0x1) != 0) {
+        if ((_DC & 0x2) != 0) {
+            MR::onCalcShadowDropPrivateGravity(this, nullptr);
+            MR::onCalcShadow(this, nullptr);
+        } else {
+            MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
+            MR::onCalcShadowOneTime(this, nullptr);
         }
+    } else if ((_DC & 0x2) != 0) {
+        MR::onCalcShadow(this, nullptr);
+    } else {
+        MR::onCalcShadowOneTime(this, nullptr);
+    }
 
-        TVec3f rotate_axis_y;
-        MR::getRotatedAxisY(&rotate_axis_y, mRotation);
-        _A4.set< f32 >(rotate_axis_y);
-
-        if (_DC) {
-            MR::initShadowVolumeCylinder(this, 50.0f);
-            MR::setShadowDropLength(this, nullptr, shadowDist);
-
-            if (arg7 == -1) {
-                MR::onShadowVolumeCutDropLength(this, nullptr);
-                MR::setShadowVolumeEndDropOffset(this, nullptr, 50.0f);
-            }
-
-            if ((_DC & 0x1) != 0) {
-                if ((_DC & 0x2) != 0) {
-                    MR::onCalcShadowDropPrivateGravity(this, nullptr);
-                    MR::onCalcShadow(this, nullptr);
-                } else {
-                    MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
-                    MR::onCalcShadowOneTime(this, nullptr);
-                }
-            } else if ((_DC & 0x2) != 0) {
-                MR::onCalcShadow(this, nullptr);
-            } else {
-                MR::onCalcShadowOneTime(this, nullptr);
-            }
-
-            if (setClipType) {
-                MR::setClippingTypeSphere(this, shadowDist);
-            }
-        }
+    if (setClipType) {
+        MR::setClippingTypeSphere(this, shadowDist);
     }
 }
 
@@ -273,6 +311,7 @@ void BenefitItemObj::makeActorAppeared() {
 
 void BenefitItemObj::appear() {
     LiveActor::appear();
+
     _E1 = 0;
     _DF = 1;
 
@@ -281,20 +320,25 @@ void BenefitItemObj::appear() {
         if (_DA) {
             setNerve(&NrvBenefitItemObj::HostTypeNrvPreEscape::sInstance);
         }
+
         MR::validateHitSensors(this);
         break;
+
     case 1:
         appearGround();
         break;
+
     case 2:
         appearThrowUp();
         break;
+
     case 3:
         appearThrowUpQuestionBox();
         break;
     }
 
     LiveActor::calcAndSetBaseMtx();
+
     PSMTXCopy(getBaseMtx(), _F0);
 
     if (_E4) {
@@ -313,37 +357,38 @@ void BenefitItemObj::appear() {
 
 void BenefitItemObj::appearGround() {
     MR::startSystemSE("SE_SY_ITEM_APPEAR");
-    setNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance);
+
+    setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvAppearGround));
+
     MR::hideModel(this);
+
     MR::invalidateClipping(this);
 }
 
-/*
 void BenefitItemObj::appearThrowUp() {
     MR::startSystemSE("SE_SY_ITEM_APPEAR");
+
     runBck("Appear");
-    TVec3f rotated_axis;
-    MR::getRotatedAxisY(&rotated_axis, mRotation);
-    _A4.set<f32>(rotated_axis);
-    setNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance);
+
+    TVec3f rotY;
+    MR::getRotatedAxisY(&rotY, mRotation);
+    _A4.set(rotY);
+
+    setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvShoot));
 
     if (!_DD) {
-        f32 speed = ::cAppearThrowUpSpd;
-        mVelocity = MR::createVecAndScale(rotated_axis, speed);
-    }
-    else {
-        f32 speed = ::cAppearThrowUpSpd2;
-        mVelocity = MR::createVecAndScale(rotated_axis, speed);
+        mVelocity = rotY * ::cAppearThrowUpSpd;
+    } else {
+        mVelocity = rotY * ::cAppearThrowUpSpd2;
     }
 
     MR::invalidateClipping(this);
 }
-*/
 
-void BenefitItemObj::shoot(const TVec3f& a2, const TVec3f& a3, bool a4) {
+void BenefitItemObj::shoot(const TVec3f& a2, const TVec3f&, bool) {
     mPosition = a2;
 
-    if (_D9) {
+    if (!_DD) {
         _D9 = 2;
     } else {
         _D9 = 3;
@@ -357,17 +402,17 @@ void BenefitItemObj::appearThrowUpQuestionBox() {
 }
 
 void BenefitItemObj::control() {
-    if (_E6) {
-        if (MR::tryStartDemoWithoutCinemaFrame(this, "出現")) {
-            _E6 = 0;
-            MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
-            MR::requestMovementOn(this);
-            MR::pauseOffCameraDirector();
-            _12C = MR::getActorCameraFrames(this, mCameraInfo);
+    if (_E6 && MR::tryStartDemoWithoutCinemaFrame(this, "出現")) {
+        _E6 = 0;
 
-            if (_12C == 0) {
-                _12C = 120;
-            }
+        MR::startActorCameraTargetSelf(this, mCameraInfo, -1);
+
+        MR::requestMovementOn(this);
+
+        MR::pauseOffCameraDirector();
+        _12C = MR::getActorCameraFrames(this, mCameraInfo);
+        if (_12C == 0) {
+            _12C = 120;
         }
     }
 
@@ -375,123 +420,131 @@ void BenefitItemObj::control() {
     MR::calcGravityOrZero(this);
     calcAndSetBaseMtxInMovement();
 
-    if (_E4) {
-        s32 v4 = _12C;
-        if (v4) {
-            s32 v5 = v4 - 1;
-            _12C = v5;
-            if (!v5) {
-                _E4 = 0;
-                MR::endActorCamera(this, mCameraInfo, false, -1);
-                MR::endDemo(this, "出現");
-                MR::validateClipping(this);
-            }
+    if (_E4 && _12C != 0) {
+        _12C--;
+
+        if (_12C == 0) {
+            _E4 = 0;
+
+            MR::endActorCamera(this, mCameraInfo, false, -1);
+            MR::endDemo(this, "出現");
+
+            MR::validateClipping(this);
         }
     }
 
-    if (!_E2) {
-        if (MR::isBindedGroundDamageFire(this)) {
-            runEfx("Vanish");
-            kill();
-        }
+    if (_E2) {
+        return;
+    }
 
-        if (!MR::isNearZero(mVelocity)) {
-            if (MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-                runEfx("Vanish");
-                kill();
-            }
-        }
+    if (MR::isBindedGroundDamageFire(this)) {
+        runEfx("Vanish");
+        kill();
+    }
+
+    if (!MR::isNearZero(mVelocity) && MR::isInDeath(this, TVec3f(0.0f, 0.0f, 0.0f))) {
+        runEfx("Vanish");
+        kill();
     }
 }
 
-// close but small diff
 void BenefitItemObj::exeWait() {
-    if (_DF && !_E1) {
-        if (_DB && !_E1) {
-            doRotateY();
-            return;
-        }
+    if (!_DF) {
+        return;
+    }
 
-        if (_DB & 0x2) {
-            doRotateY();
-            return;
-        }
+    if (_E1) {
+        return;
+    }
 
-        if (!(_DB & 0x1)) {
-            return;
-        }
-
+    if (_DB) {
         doRotateY();
         return;
+    }
+
+    if (_E1) {
+        return;
+    }
+
+    if (_DB & 0x2) {
+        doRotateY();
+        return;
+    }
+
+    if (_DB & 0x1) {
+        doRotateY();
     }
 }
 
 void BenefitItemObj::doRotateY() {
-    if (isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance)) {
+    if (isNerve(GET_NERVE(BenefitItemObj, HostTypeNrvAppearGround))) {
         _EC = 0.0f;
     } else {
-        _EC = (f32)fmod((6.2831855f + ((_EC + ::cSpdRotateY) - zero)), 6.283185482025146) + zero;
+        _EC = MR::repeat(_EC + ::cSpdRotateY, 0.0f, TWO_PI);
     }
 }
 
-/*
 void BenefitItemObj::exeShoot() {
-    f32 reflect, v2, gravity, v4;
-
+    //FIXME
     if (MR::isFirstStep(this)) {
         MR::onBind(this);
     }
 
-    TVec3f v9(mVelocity);
-    v2 = MR::vecKillElement(v9, mGravity, &v9);
+    TVec3f newVel(mVelocity);
+    f32 val = MR::vecKillElement(newVel, mGravity, &newVel);
+
     if (MR::isBindedGround(this)) {
         runBck("Land");
+
         MR::validateHitSensors(this);
+
         mVelocity.zero();
-        if (!_DA) {
+
+        if (_DA == 0) {
             if (MR::isGreaterStep(this, 10)) {
-                setNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance);
+                setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvWait));
             }
-        }
-        else
-            setNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance);
-    }
-    else {
-        gravity = v2;
-        gravity += ::cGravity;
-        if (getNerveStep() == 60) {
-            MR::validateHitSensors(this);
+        } else {
+            setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvEscape));
         }
 
-        if (MR::isBindedWall(this)) {
-            v4 = MR::vecKillElement(v9, *MR::getWallNormal(this), &v9);
-            reflect = ::cReflectWallX;
-            v9 -= MR::createVecAndScale(MR::createVecAndScale(*MR::getWallNormal(this), v4), reflect);
-        }
-
-        v9 += MR::createVecAndScale(mGravity, gravity);
-        mVelocity.set<f32>(v9);
+        return;
     }
+
+    //FIXME: regswap
+    val += ::cGravity;
+
+    if (getNerveStep() == 60) {
+        MR::validateHitSensors(this);
+    }
+
+    if (MR::isBindedWall(this)) {
+        newVel -= *MR::getWallNormal(this) * ::cReflectWallX * MR::vecKillElement(newVel, *MR::getWallNormal(this), &newVel);
+    }
+
+    newVel += mGravity * val;
+    mVelocity.set(newVel);
 }
-*/
 
 void BenefitItemObj::exeCatch() {
     if (MR::isFirstStep(this)) {
         runEfx("Get");
+
         MR::requestOneUp();
+
         MR::hideModel(this);
+
         MR::incPlayerLeft();
         MR::explainOneUpIfAtFirst();
+
         kill();
     }
 
-    mVelocity.x = 0.0f;
-    mVelocity.y = 0.0f;
-    mVelocity.z = 0.0f;
-    mPosition.set< f32 >(mHitSensorActor->mPosition);
+    mVelocity.set(0.0f);
+    mPosition.set(mHitSensorActor->mPosition);
 }
 
-bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+bool BenefitItemObj::receiveMsgPlayerAttack(u32 msg, HitSensor*, HitSensor*) {
     return MR::isMsgStarPieceReflect(msg);
 }
 
@@ -510,13 +563,11 @@ bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
 
     if (MR::isMsgItemStartMove(msg)) {
         _E2 = 1;
-
         return true;
     }
 
     if (MR::isMsgItemEndMove(msg)) {
         _E2 = 0;
-
         return true;
     }
 
@@ -525,10 +576,12 @@ bool BenefitItemObj::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRe
             return false;
         }
 
-        if (isNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance) || isNerve(&NrvBenefitItemObj::HostTypeNrvShoot::sInstance) ||
-            isNerve(&NrvBenefitItemObj::HostTypeNrvAppearGround::sInstance) || isNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance)) {
+        if (isNerve(GET_NERVE(BenefitItemObj, HostTypeNrvWait)) || isNerve(GET_NERVE(BenefitItemObj, HostTypeNrvShoot)) ||
+            isNerve(GET_NERVE(BenefitItemObj, HostTypeNrvAppearGround)) || isNerve(GET_NERVE(BenefitItemObj, HostTypeNrvEscape))) {
             mHitSensorActor = pSender->mHost;
-            setNerve(&NrvBenefitItemObj::HostTypeNrvCatch::sInstance);
+
+            setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvCatch));
+
             MR::tryRumblePadWeak(this, WPAD_CHAN0);
 
             return true;
@@ -543,73 +596,79 @@ void BenefitItemObj::exeAppearGround() {
         MR::onBind(this);
     }
 
-    if (getNerveStep() >= 60) {
-        if (getNerveStep() == 60) {
-            MR::showModel(this);
-            runBck("Appear");
-            MR::startSound(this, "SE_OJ_KINOKO_1UP_GROW");
-        }
-
-        if (MR::isBckStopped(this)) {
-            if (_DA) {
-                setNerve(&NrvBenefitItemObj::HostTypeNrvPreEscape::sInstance);
-            } else {
-                setNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance);
-            }
-
-            MR::validateHitSensors(this);
-        }
+    if (getNerveStep() < 60) {
+        return;
     }
+
+    if (getNerveStep() == 60) {
+        MR::showModel(this);
+
+        runBck("Appear");
+
+        MR::startSound(this, "SE_OJ_KINOKO_1UP_GROW");
+    }
+
+    if (!MR::isBckStopped(this)) {
+        return;
+    }
+
+    if (!_DA) {
+        setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvWait));
+    } else {
+        setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvPreEscape));
+    }
+
+    MR::validateHitSensors(this);
 }
 
 void BenefitItemObj::exePreEscape() {
     if (getNerveStep() >= 30) {
-        setNerve(&NrvBenefitItemObj::HostTypeNrvEscape::sInstance);
+        setNerve(GET_NERVE(BenefitItemObj, HostTypeNrvEscape));
     }
 }
 
 void BenefitItemObj::initEscape() {
-    _B0 = def;
+    _B0 = ::sVal;
     _B2 = 0;
     _B4 = 0;
     _B6 = 0;
     _B8 = 0;
-    TVec3f axis_z;
-    MR::getRotatedAxisZ(&axis_z, mRotation);
-    TVec3f stack_8(axis_z);
-    stack_8.scale(7.0f);
-    _BC = stack_8;
+
+    TVec3f rotZ;
+    MR::getRotatedAxisZ(&rotZ, mRotation);
+    _BC = rotZ * 7.0f;
+
     MR::startSound(this, "SE_OJ_KINOKO_1UP_RUN_START");
 }
 
 void BenefitItemObj::doEscape() {
     MR::startLevelSound(this, "SE_OJ_LV_KINOKO_1UP_RUN");
-    bool cond = false;
+
+    bool val = false;
     if (_DA == 2) {
-        cond = true;
+        val = true;
     }
 
     if (MR::isBindedGround(this)) {
-        f32 mag = _BC.length();
+        f32 length = _BC.length();
         MR::vecKillElement(_BC, mGravity, &_BC);
-        _BC.setLength(mag);
+        _BC.setLength(length);
 
-        if (cond) {
-            TVec3f* player_pos = MR::getPlayerPos();
-            TVec3f v22(mPosition);
-            v22 -= *player_pos;
-            MR::vecKillElement(v22, mGravity, &v22);
-            MR::normalizeOrZero(&v22);
-            if (_BC.dot(v22) < 0.0f) {
-                _BC += v22 * 0.2f;
+        if (val) {
+            TVec3f vec38(mPosition - *MR::getPlayerPos());
+            MR::vecKillElement(vec38, mGravity, &vec38);
+            MR::normalizeOrZero(&vec38);
+
+            if (_BC.dot(vec38) < 0.0f) {
+                _BC += vec38 * 0.01f;
                 _BC.x *= 1.1f;
                 _BC.y *= 1.1f;
                 _BC.z *= 1.1f;
             } else {
-                _BC += v22 * 0.01f;
-                _BC.x *= 0.01f;
-                _BC.y *= 0.01f;
-                _BC.z *= 0.01f;
+                _BC += vec38 * 0.02f;
+                _BC.x *= 1.1f;
+                _BC.y *= 1.1f;
+                _BC.z *= 1.1f;
             }
         }
 
@@ -623,12 +682,14 @@ void BenefitItemObj::doEscape() {
         }
 
         _C8 = mGravity * 5.0f;
+
         runEfx("Move");
     } else {
-        _E5 = 1;
         _BC.x *= 0.95f;
         _BC.y *= 0.95f;
         _BC.z *= 0.95f;
+        _E5 = 1;
+
         _C8 += mGravity * 1.0f;
 
         if (_C8.length() > 20.0f) {
@@ -638,20 +699,30 @@ void BenefitItemObj::doEscape() {
         stopEfx("Move");
     }
 
-    if (MR::isBindedWall(this) && !_E5) {
-        if (MR::getWallNormal(this)->dot(mGravity) < 0.0f) {
-            f32 scalar = MR::vecKillElement(_BC, *MR::getWallNormal(this), &_BC);
-            _BC += (-*MR::getWallNormal(this)) * scalar;
-            _C8 += (-mGravity) * 20.0f;
-            _E5 = 1;
-        }
+    if (!MR::isBindedWall(this)) {
+        return;
     }
+
+    if (_E5) {
+        return;
+    }
+
+    if (!(MR::getWallNormal(this)->dot(mVelocity) < 0.0f)) {
+        return;
+    }
+
+    _BC += -*MR::getWallNormal(this) * MR::vecKillElement(_BC, *MR::getWallNormal(this), &_BC);
+    _C8 += -mGravity * 20.0f;
+
+    _E5 = 1;
 }
 
 void BenefitItemObj::exeEscape() {
     if (MR::isFirstStep(this)) {
         MR::invalidateClipping(this);
+
         MR::onBind(this);
+
         initEscape();
     }
 
@@ -659,6 +730,7 @@ void BenefitItemObj::exeEscape() {
 
     if (_B0) {
         MR::showModel(this);
+
         _B0--;
 
         if (_B8 != 0) {
@@ -666,11 +738,9 @@ void BenefitItemObj::exeEscape() {
             MR::hideModel(this);
         }
 
-        if (_B6 != 0) {
-            if (--_B6 == 0) {
-                _B6 = _B2;
-                _B8 = _B4;
-            }
+        if (_B6 != 0 && --_B6 == 0) {
+            _B6 = _B2;
+            _B8 = _B4;
         }
 
         if (_B0 == 0x3C) {
@@ -694,9 +764,7 @@ void BenefitItemObj::exeEscape() {
 
     if (_E3) {
         MR::moveCoord(this, _E8);
-        TVec3f railPos(MR::getRailPos(this));
-        railPos -= mPosition;
-        _BC = railPos;
+        _BC = MR::getRailPos(this) - mPosition;
     }
 
     mVelocity = _BC;
@@ -706,12 +774,18 @@ void BenefitItemObj::exeEscape() {
         doRotateY();
     }
 
-    if (_DC && (_DC & 0x2) == 0) {
-        if ((_DC & 0x1) != 0) {
-            MR::onCalcShadowOneTime(this, nullptr);
-        } else {
-            MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
-        }
+    if (!_DC) {
+        return;
+    }
+
+    if ((_DC & 0x2) != 0) {
+        return;
+    }
+
+    if ((_DC & 0x1) != 0) {
+        MR::onCalcShadowOneTime(this, nullptr);
+    } else {
+        MR::onCalcShadowDropPrivateGravityOneTime(this, nullptr);
     }
 }
 
@@ -719,46 +793,53 @@ void BenefitItemObj::calcAndSetBaseMtx() {
 }
 
 void BenefitItemObj::calcAndSetBaseMtxInMovement() {
-    if (isNerve(&NrvBenefitItemObj::HostTypeNrvWait::sInstance)) {
+    if (isNerve(GET_NERVE(BenefitItemObj, HostTypeNrvWait))) {
         LiveActor::calcAndSetBaseMtx();
+
         PSMTXCopy(getBaseMtx(), _F0);
+
         if (mFollowMtx) {
             PSMTXCopy(mFollowMtx, _F0);
             MR::extractMtxTrans(mFollowMtx, &mPosition);
         }
 
         MR::multMtx(getBaseMtx(), MR::tmpMtxRotYRad(_EC), _F0);
-    } else {
-        if (MR::isBindedGround(this)) {
-            _A4 = *MR::getGroundNormal(this);
-        } else if (MR::isBindedWall(this)) {
-            _A4 = *MR::getWallNormal(this);
-        }
 
-        TVec3f stack_8(mVelocity);
-        MR::normalizeOrZero(&stack_8);
-        if (isNerve(&NrvBenefitItemObj::HostTypeNrvPreEscape::sInstance)) {
-            MR::vecBlendSphere(_98, stack_8, &stack_8, 0.1f);
-            _98 = stack_8;
-        }
-
-        if (!MR::isNearZero(stack_8)) {
-            if (MR::isSameDirection(_A4, stack_8, 0.01f)) {
-                MR::setMtxTrans(getBaseMtx(), mPosition);
-            } else {
-                TPos3f pos;
-                MR::makeMtxUpFrontPos(&pos, _A4, stack_8, mPosition);
-                MR::blendMtx(_F0, pos, 0.2f, _F0);
-                MR::multMtx(getBaseMtx(), MR::tmpMtxRotYRad(_EC), _F0);
-                MR::setMtxTrans(getBaseMtx(), mPosition);
-            }
-        }
+        return;
     }
+
+    if (MR::isBindedGround(this)) {
+        _A4 = *MR::getGroundNormal(this);
+    } else if (MR::isBindedWall(this)) {
+        _A4 = *MR::getWallNormal(this);
+    }
+
+    TVec3f stack_8(mVelocity);
+    MR::normalizeOrZero(&stack_8);
+    if (isNerve(GET_NERVE(BenefitItemObj, HostTypeNrvPreEscape))) {
+        MR::vecBlendSphere(_98, stack_8, &stack_8, 0.1f);
+        _98 = stack_8;
+    }
+
+    if (MR::isNearZero(stack_8)) {
+        return;
+    }
+
+    if (MR::isSameDirection(_A4, stack_8, 0.01f)) {
+        MR::setMtxTrans(getBaseMtx(), mPosition);
+        return;
+    }
+
+    TPos3f pos;
+    MR::makeMtxUpFrontPos(&pos, _A4, stack_8, mPosition);
+    MR::blendMtx(_F0, pos, 0.2f, _F0);
+    MR::multMtx(getBaseMtx(), MR::tmpMtxRotYRad(_EC), _F0);
+    MR::setMtxTrans(getBaseMtx(), mPosition);
 }
 
-void BenefitItemObj::setFollowMtx(MtxPtr mtx) {
-    mFollowMtx = mtx;
-    MR::extractMtxTrans(mtx, &mPosition);
+void BenefitItemObj::setFollowMtx(MtxPtr pMtx) {
+    mFollowMtx = pMtx;
+    MR::extractMtxTrans(pMtx, &mPosition);
 }
 
 void BenefitItemObj::runBck(const char* pBckName) {
@@ -771,4 +852,8 @@ void BenefitItemObj::runEfx(const char* pEfxName) {
 
 void BenefitItemObj::stopEfx(const char* pEfxName) {
     MR::deleteEffect(this, pEfxName);
+}
+
+void MR::setMtxTrans(MtxPtr pMtx, const TVec3f& rVec) {
+    setMtxTrans(pMtx, rVec.x, rVec.y, rVec.z);
 }

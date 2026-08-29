@@ -10,9 +10,22 @@ public:
     virtual CameraTargetObj* calc();
     virtual CamTranslatorBase* createTranslator();
 
-    /* 0x4C */ const char* mString;
+    void setParam(const char* pName, f32 dist, f32 angleX, f32 angleYMax, f32 angleYMin, f32 distRatio, f32 angleRate) {
+        mName = pName;
+        mDist = dist;
+        if (mDist < 300.0f) {
+            mDist = 300.0f;
+        }
+        mAngleX = angleX;
+        mAngleYMin = angleYMin;
+        mAngleYMax = angleYMax;
+        mCamDistRatio = distRatio;
+        mCamAngleRate = angleRate;
+    }
+
+    /* 0x4C */ const char* mName;
     /* 0x50 */ f32 mDist;
-    /* 0x54 */ f32 mPitch;
+    /* 0x54 */ f32 mAngleX;
     /* 0x58 */ f32 mAngleYMin;
     /* 0x5C */ f32 mAngleYMax;
     /* 0x60 */ f32 mCamDistRatio;

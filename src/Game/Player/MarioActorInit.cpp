@@ -165,7 +165,7 @@ void MarioActor::initMember() {
     for (int i = 0; i < ARRAY_SIZE(_4D0); i++) {
         _4D0[i] = 0;
     }
-    _6D0 = 0;
+    _6D0 = false;
     _6D4 = 0.0f;
     _6D8 = 0.0f;
     for (int i = 0; i < ARRAY_SIZE(_6DC); i++) {
@@ -229,7 +229,7 @@ void MarioActor::initMember() {
     _9E8 = 0;
     _9EC = 0;
     _9F0 = 0;
-    mAlphaEnable = false;
+    mBeeWallWalk = 0;
     _9F2 = 0;
     _9F4.zero();
     _A00 = 0;
@@ -339,7 +339,7 @@ void MarioActor::initMember() {
     _EA6 = 0;
     PSMTXIdentity(_EA8.toMtxPtr());
     _ED8.zero();
-    _EE4 = 0;
+    _EE4 = nullptr;
     mSuperKinokoCollected = false;
     mPowerupCollected = false;
     mTransforming = false;

@@ -43,7 +43,7 @@ bool Mario::isDisableStayHere() const {
         return true;
     }
 
-    if (_278 > 0.01f) {
+    if (mWalkSpeed > 0.01f) {
         return true;
     }
 
@@ -87,7 +87,7 @@ bool Mario::isDisableStayHere() const {
         return true;
     }
 
-    if (mActor->mAlphaEnable) {
+    if (mActor->mBeeWallWalk != 0) {
         return true;
     }
 
@@ -103,7 +103,7 @@ bool Mario::isDisableStayHere() const {
         return true;
     }
 
-    if (_735) {
+    if (mSinkTimer) {
         return true;
     }
 
@@ -176,7 +176,7 @@ bool MarioFpView::close() {
 
     stopAnimation("見る");
 
-    // mActor->showBeeFur();
+    mActor->showBeeFur();
 
     return true;
 }

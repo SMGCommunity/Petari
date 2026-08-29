@@ -26,7 +26,7 @@ public:
     void clear();
     void setCollisionPartsFilter(CollisionPartsFilterBase*);
     void setTriangleFilter(TriangleFilterBase*);
-    const Triangle* getPlane(int) const;
+    const HitInfo* getPlane(int) const;
     u32 copyPlaneArrayAndSortingSensor(HitInfo**, u32);
     const TVec3f bind(const TVec3f&);
 

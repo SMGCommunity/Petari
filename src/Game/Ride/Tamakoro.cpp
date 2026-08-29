@@ -169,7 +169,7 @@ bool Tamakoro::ringMtxCallBack(TPos3f* pMtx, const JointControllerInfo& pJointCt
     TVec3f trans;
     pMtx->getTrans(trans);
 
-    if (MR::isNearZero(mAccelDir) || MR::isSameDirection(mAccelDir, mRingUp, 0.01f)) {
+    if (MR::isNearZero(mAccelDir) || MR::isSameDirection(mAccelDir, mRingUp)) {
         MR::makeMtxUpNoSupport(pMtx, mRingUp);
     } else {
         MR::makeMtxUpFront(pMtx, mRingUp, mAccelDir);

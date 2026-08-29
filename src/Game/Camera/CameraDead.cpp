@@ -5,7 +5,7 @@
 #include "Game/Camera/CameraTargetObj.hpp"
 #include "Game/Util/MathUtil.hpp"
 
-CameraDead::CameraDead(const char* pName) : Camera(pName), mDist(0.5f), mDeadTime(), _58(), mDeadFrame() {
+CameraDead::CameraDead(const char* pName) : Camera(pName), mDist(0.5f), mDeadTime(), mCameraType(), mDeadFrame() {
 }
 
 void CameraDead::reset() {
@@ -30,7 +30,7 @@ CameraTargetObj* CameraDead::calc() {
         TVec3f watchPoint;
         CameraLocalUtil::makeWatchPointImm(&watchPoint, this, CameraLocalUtil::getTarget(this));
 
-        if (_58 != 0) {
+        if (mCameraType != CameraType_FixedPos) {
             f32 t = static_cast< f32 >(mDeadFrame) / mDeadTime;
             t *= t;
             t *= t;

@@ -104,7 +104,7 @@ void BossBegoman::init(const JMapInfoIter& rIter) {
     for (int i = 0; i < mBabyFollowerNum; i++) {
         BegomanBaby* newBaby = new BegomanBaby("子分ベビー");
         mBabyFollowers[i] = newBaby;
-        newBaby->_134 = this;
+        newBaby->mHost = this;
         newBaby->mPosition.set(this->mPosition);
         newBaby->initWithoutIter();
         newBaby->makeActorDead();
@@ -908,7 +908,7 @@ void BossBegoman::calcAnim() {
     TVec3f vec;
     mHeadMtx.getYDir(vec);
 
-    if (!MR::isSameDirection(vec, mTargetVec, 0.01f)) {
+    if (!MR::isSameDirection(vec, mTargetVec)) {
         MR::makeMtxUpFront(&mHeadMtx, vec, mTargetVec);
     }
 }

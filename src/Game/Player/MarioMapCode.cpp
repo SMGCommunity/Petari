@@ -5,8 +5,8 @@
 FloorCode::FloorCode() {
 }
 
-u32 FloorCode::getCode(const Triangle* triangle) {
-    u32 code;
+s32 FloorCode::getCode(const Triangle* triangle) {
+    s32 code;
     if (triangle == nullptr) {
         code = -1;
     } else {

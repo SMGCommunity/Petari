@@ -40,9 +40,7 @@ void MarioSlider::calcGroundAccel() {
 bool MarioSlider::postureCtrl(MtxPtr) {
     Mtx rotMtx;
     TVec3f& frontVec = getFrontVec();
-    f32 rotateAngle = _3C * 3.1415927f;
-    rotateAngle = 0.2f * (rotateAngle * 0.5f);
-    PSMTXRotAxisRad(rotMtx, &frontVec, rotateAngle);
+    PSMTXRotAxisRad(rotMtx, &frontVec, 0.2f * (0.5f * (MR::pi() * _3C)));
 
     TVec3f newHeadVec;
     PSMTXMultVec(rotMtx, &getPlayer()->_368, &newHeadVec);
@@ -90,9 +88,9 @@ void Mario::startSlider() {
     if (!isStatusActive(mSlider->mStatusId)) {
         if (getPlayer()->mMovementStates._B) {
             if (getPlayer()->mMovementStates.jumping) {
-                mDrawStates._4 = 1;
-                playSound("尻ドロップ着地", -1);
-                playSound("声尻ドロップ着地", -1);
+                mDrawStates._14 = true;
+                playSound("尻ドロップ着地");
+                playSound("声尻ドロップ着地");
                 playEffectRT("属性尻ドロップ", _368, mPosition);
                 startPadVib("最強");
                 startCamVib(0);
@@ -129,7 +127,8 @@ bool MarioSlider::update() {
             }
         }
 
-        if (_40-- == 0) {
+        _40--;
+        if (_40 == 0) {
             getPlayer()->tryDrop();
             getPlayer()->mJumpVec = mActor->getLastMove();
             return false;
@@ -141,8 +140,7 @@ bool MarioSlider::update() {
     calcGroundAccel();
 
     if (checkTrgA()) {
-        f32 v11 = (_14.length() / mActor->mConst->getTable()->mJumpFrontSpeed);
-        getPlayer()->_278 = v11;
+        getPlayer()->mWalkSpeed = (_14.length() / mActor->mConst->getTable()->mJumpFrontSpeed);
         getPlayer()->tryJump();
         return false;
     } else {
@@ -151,7 +149,8 @@ bool MarioSlider::update() {
         _38 = (stickY * (1.0f - mActor->mConst->getTable()->mSliderBrakeIne)) + (_38 * mActor->mConst->getTable()->mSliderBrakeIne);
         MarioConstTable* tbl = mActor->mConst->getTable();
         _3C = (stickX * (1.0f - tbl->mSliderWeightIne)) + (_3C * tbl->mSliderWeightIne);
-        f32 v18 = (_14.length() - mActor->mConst->getTable()->mSliderBrakePow);
+        f32 v18 = _14.length();
+        v18 -= mActor->mConst->getTable()->mSliderBrakePow;
 
         if (v18 > 20.0f) {
             v18 = (v18 * (1.0f - (0.1f * _38)));
@@ -160,8 +159,7 @@ bool MarioSlider::update() {
         TVec3f v48(_14);
 
         if (MR::isNearZero(v48)) {
-            f32 slopePow = mActor->mConst->getTable()->mSliderSlopePow;
-            v48 = _2C * slopePow;
+            v48 = _2C * mActor->mConst->getTable()->mSliderSlopePow;
         }
 
         if (MR::isNearZero(v48)) {
@@ -173,12 +171,9 @@ bool MarioSlider::update() {
             MR::vecKillElement(v46, getPlayer()->_368, &v46);
             MR::normalize(&v46);
             _14.setLength(v18);
-            f32 slopePow = mActor->mConst->getTable()->mSliderSlopePow;
-            _14 += _2C * slopePow;
+            _14 += _2C * mActor->mConst->getTable()->mSliderSlopePow;
 
-            f32 v23 = _3C;
-            f32 weightPow = mActor->mConst->getTable()->mSliderWeightPow;
-            _14 += v46 * v23 * weightPow;
+            _14 += v46 * _3C * mActor->mConst->getTable()->mSliderWeightPow;
             MR::vecKillElement(_14, getPlayer()->_368, &_14);
             if (_14.length() > mActor->mConst->getTable()->mSliderMaxSpeed) {
                 _14.setLength(mActor->mConst->getTable()->mSliderMaxSpeed);
@@ -188,8 +183,8 @@ bool MarioSlider::update() {
 
             TVec3f v45(-getPlayer()->_368 * 15.0f);
 
-            f32 v31 = MR::vecKillElement(v45, getFrontVec(), &v45);
-            addVelocity(v45, v31);
+            MR::vecKillElement(v45, getFrontVec(), &v45);
+            addVelocity(v45);
 
             TVec3f v44(getPlayer()->mFrontVec);
             TVec3f v43;
@@ -201,7 +196,7 @@ bool MarioSlider::update() {
             }
 
             calcWallHit();
-            playSound("坂滑り", -1);
+            playSound("坂滑り");
             return true;
         }
     }
@@ -212,7 +207,7 @@ bool MarioSlider::update() {
 bool MarioSlider::close() {
     if (getPlayer()->isSwimming()) {
         stopAnimation("スライダー尻");
-    } else if (getPlayer()->mMovementStates.jumping == 0) {
+    } else if (getPlayer()->mMovementStates.jumping) {
         stopAnimation("スライダー尻", "基本");
     } else {
         stopAnimation("スライダー尻", "落下");

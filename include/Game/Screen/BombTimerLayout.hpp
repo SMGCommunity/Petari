@@ -4,7 +4,7 @@
 
 class BombTimerLayout : public LayoutActor {
 public:
-    BombTimerLayout(bool param1);
+    BombTimerLayout(bool isConnectToScene);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
@@ -22,7 +22,6 @@ public:
     void exeDanger();
     void exeEnd();
 
-private:
     /* 0x20 */ u32 mTimeLimit;
     /* 0x24 */ u32 mDangerTransFrame;
     /* 0x28 */ u32 mFrame;

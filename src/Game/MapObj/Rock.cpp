@@ -241,7 +241,7 @@ void Rock::control() {
         MR::showModel(this);
         if (updateFront) {
             TVec3f v2(mFront);
-            MR::turnVecToVecCos(&mFront, v2, front, ::cRotateCosineMax, mGravity, 0.02f);
+            MR::turnVecToVecCos(&mFront, v2, front, ::cRotateCosineMax, mGravity);
         }
     }
 
@@ -282,7 +282,7 @@ void Rock::calcAndSetBaseMtx() {
         TVec3f pos;
         pos.sub(mPosition, up * mRadius);
 
-        if (MR::isSameDirection(up, mFront, 0.01f)) {
+        if (MR::isSameDirection(up, mFront)) {
             MR::makeMtxUpNoSupportPos(&mBaseMtx, up, pos);
         } else {
             MR::makeMtxUpFrontPos(&mBaseMtx, up, mFront, pos);
@@ -507,7 +507,7 @@ bool Rock::move(f32 speed) {
 void Rock::calcBaseMtx(TPos3f* pMtx) const {
     TVec3f up = -mGravity;
 
-    if (MR::isSameDirection(up, mFront, 0.01f)) {
+    if (MR::isSameDirection(up, mFront)) {
         MR::makeMtxUpNoSupportPos(pMtx, up, mPosition);
     } else {
         MR::makeMtxUpFrontPos(pMtx, up, mFront, mPosition);

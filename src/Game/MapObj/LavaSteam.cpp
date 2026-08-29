@@ -3,10 +3,27 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
-#include "JSystem/JGeometry/TUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "math_types.hpp"
-#include "revolution/types.h"
+#include "Game/Util/CollisionShapeUtil.hpp"
+
+void LavaSteam_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
+namespace {
+    // static const s32 sIntervalTime = 120;
+    static const s32 sSteamTime = 90;
+    static const s32 sAppearTime = 82;
+    static const s32 sDisappearTime = 90;
+    static const s32 sSteamWaitTime = 120;
+    static const s32 sSteamEndTime = 90;
+    static const f32 sSensorRadius = 250.0f;
+    static const f32 sSensorOffsetY = 250.0f;
+    static const f32 sHitCylinderRange = 10.0f;
+    static const f32 sHitSphereRadius = 70.0f;
+    static const f32 sHitSphereOffsetY = 400.0f;
+    static const s32 sMaxNumGroupClipping = 16;
+    static const f32 sHitCylinderHeight = 330.0f;
+};  // namespace
 
 namespace NrvLavaSteam {
     NEW_NERVE(HostTypeWait, LavaSteam, Wait);
@@ -15,27 +32,20 @@ namespace NrvLavaSteam {
     NEW_NERVE(HostTypeSteamEnd, LavaSteam, SteamEnd);
 };  // namespace NrvLavaSteam
 
-LavaSteam::LavaSteam(const char* pName) : LiveActor(pName) {
-    f32 f = 1.0f;
-    f32 g = 0.0f;
-    _8C.x = g;
-    _8C.y = f;
-    _8C.z = g;
-    _98.x = f;
-    _98.y = f;
-    _98.z = f;
+LavaSteam::LavaSteam(const char* pName) : LiveActor(pName), mUp(0.0f, 1.0f, 0.0f), mEffectScale(1.0f, 1.0f, 1.0f) {
 }
 
 void LavaSteam::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("LavaSteam", nullptr, false);
     initEffectKeeper(0, nullptr, false);
-    MR::setEffectHostSRT(this, "Sign", &mPosition, &mRotation, &_98);
-    initHitSensor(1);
-    HitSensor* pSensor = MR::addHitSensorMapObj(this, "body", 8, 250.0f, TVec3f(0.0f, 250.0f, 0.0f));
+    MR::setEffectHostSRT(this, "Sign", &mPosition, &mRotation, &mEffectScale);
 
-    MR::setClippingTypeSphere(this, 250.0f, &pSensor->mPosition);
-    MR::setGroupClipping(this, rIter, 0x10);
+    initHitSensor(1);
+    HitSensor* pSensor = MR::addHitSensorMapObj(this, "body", 8, ::sSensorRadius, TVec3f(0.0f, ::sSensorOffsetY, 0.0f));
+    MR::setClippingTypeSphere(this, ::sSensorRadius, &pSensor->mPosition);
+
+    MR::setGroupClipping(this, rIter, ::sMaxNumGroupClipping);
     initNerve(&NrvLavaSteam::HostTypeWait::sInstance);
 
     if (MR::useStageSwitchReadA(this, rIter)) {
@@ -46,85 +56,52 @@ void LavaSteam::init(const JMapInfoIter& rIter) {
         MR::registerDemoActionFunctor(this, MR::Functor(this, &LavaSteam::startSteam), nullptr);
     }
     MR::useStageSwitchSleep(this, rIter);
+
     initSound(4, false);
+
     MR::connectToSceneNoSilhouettedMapObj(this);
+
     makeActorAppeared();
 }
 
 void LavaSteam::initAfterPlacement() {
-    TRot3f mtx;
+    TPos3f mtx;
     mtx.identity();
-    TVec3f vec = mRotation * PI_180;
-
-    f32 vecz = vec.z;
-    f32 vecy = vec.y;
-    f32 vecx = vec.x;
-
-    f32 v11 = cos(vecz);
-    f32 v12 = cos(vecy);
-    f32 v13 = cos(vecx);
-    f32 v15 = sin(vecy);
-    f32 v14 = sin(vecz);
-    f32 v16 = sin(vecx);
-
-    mtx.mMtx[0][0] = v12 * v11;
-    mtx.mMtx[2][1] = v16 * v12;
-    mtx.mMtx[1][0] = v12 * v14;
-    mtx.mMtx[1][1] = (v13 * v11) + (v16 * v15 * v14);
-    mtx.mMtx[0][1] = (v16 * v15 * v11) - (v13 * v14);
-    mtx.mMtx[0][2] = (v13 * v11 * v15) + (v16 * v14);
-    mtx.mMtx[2][0] = -v15;
-    mtx.mMtx[2][2] = v12 * v13;
-    mtx.mMtx[1][2] = (v13 * v14 * v15) - (v16 * v11);
-
-    _8C.set(mtx.mMtx[0][1], mtx.mMtx[1][1], mtx.mMtx[2][1]);
-    MR::normalize(&_8C);
+    mtx.setRotateDegree(mRotation);
+    mtx.getYDir(mUp);
+    MR::normalize(&mUp);
 }
 
 void LavaSteam::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    TVec3f stack_64;
-    TVec3f stack_58;
-    f32 stack_2C, stack_54;
+    if (isNerve(&NrvLavaSteam::HostTypeWait::sInstance)) {
+        return;
+    }
 
-    if (!isNerve(&NrvLavaSteam::HostTypeWait::sInstance) && !isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
-        if (MR::isSensorPlayerOrRide(pReceiver)) {
-            f32 rad = pReceiver->mRadius;
-            f32 f31 = rad * 0.7f;
+    if (isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
+        return;
+    }
 
-            if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
-                TVec3f stack_48;
-                stack_48.set(mPosition + _8C * 400.0f);
+    if (MR::isSensorPlayerOrRide(pReceiver)) {
+        f32 playerRadius = pReceiver->getRadius() * 0.7f;
 
-                stack_54 = 70.0;
+        if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
+            HitSphere sphere(mPosition + mUp * ::sHitSphereOffsetY, ::sHitSphereRadius);
 
-                TVec3f stack_20;
-                stack_20.set(pReceiver->mPosition);
-
-                f32 dist = stack_48.squared(stack_20);
-                f32 s = (stack_54 + f31);
-                stack_2C = f31;
-                // w h a t
-                if (((dist <= s * s) & 3) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+            if (sphere.isHit(HitSphere(pReceiver->getPosition(), playerRadius))) {
+                if (MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
                     return;
                 }
             }
+        }
 
-            if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
-                TVec3f stack_14 = _8C * 330.0f;
+        if (isNerve(&NrvLavaSteam::HostTypeSteam::sInstance)) {
+            HitCylinder cyl(mPosition, mUp * ::sHitCylinderHeight);
 
-                stack_58.set(mPosition);
-                stack_64.set(stack_14);
+            f32 proj, ortho;
+            cyl.getParams(pReceiver->getPosition(), &proj, &ortho);
 
-                TVec3f stack_8;
-                stack_8.sub(pReceiver->mPosition, stack_58);
-                f32 sq1 = stack_8.squared();
-                f32 sq2 = stack_64.squared();
-                f32 _64dot8 = stack_64.dot(stack_8);
-                f32 ff1 = sq2 * sq1;
-                f32 ff2 = _64dot8 / sq2;
-                f32 squ3 = JGeometry::TUtil< f32 >::sqrt((ff1 - (_64dot8 * _64dot8)) / sq2);
-
-                if (0.0f <= ff2 && ff2 <= 1.0f && squ3 < (10.0f + f31) && MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
+            if (0.0f <= proj && proj <= 1.0f && ortho < playerRadius + ::sHitCylinderRange) {
+                if (MR::sendMsgEnemyAttackFire(pReceiver, pSender)) {
                     return;
                 }
             }
@@ -140,8 +117,9 @@ void LavaSteam::startClipped() {
 void LavaSteam::endClipped() {
     LiveActor::endClipped();
 
-    if (isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance))
+    if (isNerve(&NrvLavaSteam::HostTypeWaitForSwitchOn::sInstance)) {
         return;
+    }
 }
 
 void LavaSteam::startSteam() {
@@ -152,21 +130,21 @@ void LavaSteam::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::invalidateHitSensors(this);
         MR::emitEffect(this, "Sign");
-        _98.x = 1.0f;
-        _98.y = 1.0f;
-        _98.z = 1.0f;
+        mEffectScale.set(1.0f, 1.0f, 1.0f);
     }
 
-    if (MR::isGreaterStep(this, 82)) {
-        f32 c = 90 - getNerveStep();
-        _98.setAll< f32 >(MR::getEaseInValue(c *= 0.125f, 0.001, 1.0, 1.0));
+    if (MR::isGreaterStep(this, ::sAppearTime)) {
+        mEffectScale.setAll< f32 >(
+            MR::getEaseInValue(static_cast< f32 >(::sDisappearTime - getNerveStep()) / (::sDisappearTime - ::sAppearTime), 0.001f, 1.0f, 1.0f));
     }
 
-    if (MR::isStep(this, 90))
+    if (MR::isStep(this, ::sDisappearTime)) {
         MR::forceDeleteEffect(this, "Sign");
+    }
 
-    if (MR::isStep(this, 120))
+    if (MR::isStep(this, ::sSteamWaitTime)) {
         setNerve(&NrvLavaSteam::HostTypeSteam::sInstance);
+    }
 }
 
 void LavaSteam::exeWaitForSwitchOn() {
@@ -180,17 +158,14 @@ void LavaSteam::exeSteam() {
 
     MR::startLevelSound(this, "SE_OJ_LV_LAVA_STEAM_OUT");
 
-    if (MR::isStep(this, 90)) {
+    if (MR::isStep(this, ::sSteamTime)) {
         MR::deleteEffect(this, "Steam");
         setNerve(&NrvLavaSteam::HostTypeSteamEnd::sInstance);
     }
 }
 
 void LavaSteam::exeSteamEnd() {
-    if (MR::isStep(this, 90)) {
+    if (MR::isStep(this, ::sSteamEndTime)) {
         setNerve(&NrvLavaSteam::HostTypeWait::sInstance);
     }
-}
-
-LavaSteam::~LavaSteam() {
 }

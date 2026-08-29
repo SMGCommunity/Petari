@@ -2,9 +2,9 @@
 #include "Game/Camera/CameraParamChunk.hpp"
 
 void CamTranslatorFixedPoint::setParam(const CameraParamChunk* pChunk) {
-    CameraFixedPoint* camera = mCamera;
+    CameraGeneralParam* general = pChunk->mGeneralParam;
 
-    camera->setParam(pChunk->mGeneralParam->mWPoint, pChunk->mGeneralParam->mNum1);
+    mCamera->setParam(general->mWPoint, general->mNum1);
 }
 
 Camera* CamTranslatorFixedPoint::getCamera() const {

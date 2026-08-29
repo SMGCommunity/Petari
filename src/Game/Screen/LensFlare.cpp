@@ -241,7 +241,7 @@ namespace MR {
         }
     }
 
-    u16 getLensFlareDrawSyncTokenIndex() {
+    u32 getLensFlareDrawSyncTokenIndex() {
         return ::getLensFlareDirector()->mDrawSyncTokenIndex;
     }
 };  // namespace MR

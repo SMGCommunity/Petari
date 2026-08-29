@@ -27,8 +27,7 @@ void Mario::checkBump() {
 }
 
 void Mario::startBump(const TVec3f& rVec) {
-    TVec3f v18 = getTrans() - rVec;
-    if (v18.length() >= 100.0f) {
+    if ((getTrans() - rVec).length() >= 100.0f) {
         return;
     }
 
@@ -37,33 +36,28 @@ void Mario::startBump(const TVec3f& rVec) {
     const TVec3f* norm = _4DC->getNormal(0);
     MR::vecKillElement(*norm, *grav, &v21);
 
-    if (MR::normalizeOrZero(&v21)) {
-        return;
-    }
-
-    f32 diff = MR::diffAngleAbsHorizontal(mFrontVec, -v21, getAirGravityVec());
-
-    if (diff > 0.52359879f) {
+    if (!MR::normalizeOrZero(&v21) && MR::diffAngleAbsHorizontal(mFrontVec, -v21, getAirGravityVec()) > 0.52359879f) {
         TVec3f v20;
         if (MR::vecKillElement(getTrans() - rVec, getAirGravityVec(), &v20) > 0.0f) {
-        } else {
-            if (getCurrentStatus() == 30) {
-                closeStatus(mBump);
-            }
-
-            setTrans(rVec, "段差");
-            changeStatus(mBump);
-            mVelocity.zero();
-            _3D0 = 0;
-            mMovementStates._10 = 0;
-            _790 = -(*_4DC->getNormal(0));
-            TVec3f v19;
-            MR::vecKillElement(-(*_4DC->getNormal(0)), mSideVec, &v19);
-
-            if (!MR::normalizeOrZero(&v19)) {
-                _790 = v19;
-            }
+            return;
         }
+    }
+
+    if (getCurrentStatus() == 30) {
+        closeStatus(mBump);
+    }
+
+    setTrans(rVec, "段差");
+    changeStatus(mBump);
+    mVelocity.zero();
+    _3D0 = 0;
+    mMovementStates._10 = 0;
+    _790 = -(*_4DC->getNormal(0));
+    TVec3f v19;
+    MR::vecKillElement(-(*_4DC->getNormal(0)), mSideVec, &v19);
+
+    if (!MR::normalizeOrZero(&v19)) {
+        _790 = v19;
     }
 }
 
@@ -74,12 +68,9 @@ MarioBump::MarioBump(MarioActor* pActor) : MarioState(pActor, MarioStatus_Bump) 
 }
 
 bool MarioBump::start() {
-    _14 = getPlayer()->_278;
+    _14 = getPlayer()->mWalkSpeed;
 
-    if (_14 >= 0.0f) {
-        if (_14 < 1.0f) {
-        }
-    }
+    MR::clamp(_14, 0.0f, 1.0f);
 
     s32 blendTimer = 0x14 - static_cast< s32 >(16.0f * _14);
 
@@ -104,13 +95,13 @@ bool MarioBump::update() {
         return false;
     } else {
         clearVelocity();
-        f32 val = getPlayer()->_278;
+        f32 val = getPlayer()->mWalkSpeed;
 
         if (val < 0.1f) {
             val = 0.1f;
         }
 
-        getPlayer()->_278 = val;
+        getPlayer()->mWalkSpeed = val;
         getPlayer()->updateWalkSpeed();
 
         if (_12) {

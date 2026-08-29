@@ -26,6 +26,10 @@ public:
     JAISoundHandle* getLowPrioSound(JAISoundID);
     JAISoundHandle* getFreeHandleNotReserved();
 
+    const TVec3f* getPos() const {
+        return mPos;
+    }
+
     /* 0x0C */ bool mIsAllocated;
     /* 0x10 */ u32 _10;
     /* 0x14 */ TVec3f* mPos;

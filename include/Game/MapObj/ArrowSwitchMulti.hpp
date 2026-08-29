@@ -2,29 +2,15 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class ArrowSwitchTarget;
 class JMapIdInfo;
-
-class ArrowSwitchTarget : public NameObj {
-public:
-    ArrowSwitchTarget(const char*);
-
-    virtual ~ArrowSwitchTarget();
-    virtual void init(const JMapInfoIter&);
-    virtual void initAfterPlacement();
-
-    void onTarget();
-    void offTarget();
-
-    JMapIdInfo* mJMapIDInfo;            // 0xC
-    StageSwitchCtrl* mStageSwitchCtrl;  // 0x10
-    s32 mTargetIdx;                     // 0x14
-};
 
 class ArrowSwitchMulti : public LiveActor {
 public:
-    ArrowSwitchMulti(const char*);
+    /// @brief Creates a new `ArrowSwitchTarget`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    ArrowSwitchMulti(const char* pName);
 
-    virtual ~ArrowSwitchMulti();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
@@ -35,11 +21,28 @@ public:
     void exeWait();
     void exeRotate();
 
-    JMapIdInfo* mIDInfo;                 // 0x8C
-    ArrowSwitchTarget* mTargetArray[4];  // 0x90
-    f32 _A0;
-    f32 _A4;
-    u32 _A8;
-    s32 _AC;
-    u8 _B0;
+    /* 0x8C */ JMapIdInfo* mIdInfo;
+    /* 0x90 */ ArrowSwitchTarget* mTargetArray[4];
+    /* 0xA0 */ f32 _A0;
+    /* 0xA4 */ f32 _A4;
+    /* 0xA8 */ u32 _A8;
+    /* 0xAC */ s32 _AC;
+    /* 0xB0 */ bool _B0;
+};
+
+class ArrowSwitchTarget : public NameObj {
+public:
+    /// @brief Creates a new `ArrowSwitchTarget`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    ArrowSwitchTarget(const char* pName);
+
+    virtual void init(const JMapInfoIter&);
+    virtual void initAfterPlacement();
+
+    void onTarget();
+    void offTarget();
+
+    /* 0x0C */ JMapIdInfo* mIdInfo;
+    /* 0x10 */ StageSwitchCtrl* mStageSwitchCtrl;
+    /* 0x14 */ s32 mTargetIndex;
 };

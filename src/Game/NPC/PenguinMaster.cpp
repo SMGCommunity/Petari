@@ -5,6 +5,10 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+void PenguinMaster_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+}
+
 namespace NrvPenguinMaster {
     NEW_NERVE(PenguinMasterNrvWait, PenguinMaster, Wait);
     NEW_NERVE(PenguinMasterNrvReaction, PenguinMaster, Reaction);
@@ -13,11 +17,7 @@ namespace NrvPenguinMaster {
 PenguinMaster::PenguinMaster(const char* pName) : NPCActor(pName) {
 }
 
-PenguinMaster::~PenguinMaster() {
-}
-
 void PenguinMaster::init(const JMapInfoIter& rIter) {
-    f32 stack = 0.0f;
     NPCActorCaps caps = "PenguinMaster";
     caps.setDefault();
     caps.mSensor = false;
@@ -43,7 +43,8 @@ void PenguinMaster::init(const JMapInfoIter& rIter) {
     _13C = "Reaction";
     _130 = "Reaction";
     _138 = "Pointing";
-    if (mMsgCtrl) {
+
+    if (mMsgCtrl != nullptr) {
         MR::setDistanceToTalk(mMsgCtrl, 350.0f);
     }
 }
@@ -51,10 +52,11 @@ void PenguinMaster::init(const JMapInfoIter& rIter) {
 bool PenguinMaster::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgPlayerSpinAttack(msg)) {
         _E3 = true;
+
         return true;
-    } else {
-        return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
+
+    return NPCActor::receiveMsgPlayerAttack(msg, pSender, pReceiver);
 }
 
 void PenguinMaster::exeWait() {
@@ -81,9 +83,11 @@ void PenguinMaster::exeReaction() {
         MR::startSound(this, "SE_SV_PENGUIN_OLD_STAR_PIECE");
     }
 
-    if (!MR::tryStartReactionAndPopNerve(this)) {
-        if (MR::tryStartReactionAndPopNerve(this)) {
-            return;
-        }
+    if (MR::tryStartReactionAndPopNerve(this)) {
+        return;
+    }
+
+    if (MR::tryStartReactionAndPopNerve(this)) {
+        return;
     }
 }

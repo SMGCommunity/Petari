@@ -4,6 +4,7 @@
 #include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "revolution/mtx.h"
+#include "revolution/types.h"
 
 extern "C" {
 extern u8 lbl_806B6288;
@@ -37,20 +38,28 @@ void Mario::delTask(MarioModuleTask* pTask) {
 
     MarioModuleTask* head = _974;
     if (head == pTask) {
-        _974 = (next == pTask) ? nullptr : next;
+        if (next == pTask) {
+            _974 = nullptr;
+        } else {
+            _974 = next;
+        }
         pTask->mNext = nullptr;
         pTask->end();
         return;
     }
 
-    if (!head) {
-        return;
-    }
-
     while (true) {
+        if (head == nullptr) {
+            return;
+        }
+
         MarioModuleTask* headNext = head->mNext;
         if (headNext == pTask) {
-            head->mNext = (next == pTask) ? head : next;
+            if (next == pTask) {
+                head->mNext = head;
+            } else {
+                head->mNext = next;
+            }
             pTask->mNext = nullptr;
             pTask->end();
             return;
@@ -64,11 +73,12 @@ void Mario::delTask(MarioModuleTask* pTask) {
 
 void Mario::execTask() {
     MarioModuleTask* task = _974;
-    if (!task) {
-        return;
-    }
 
     while (true) {
+        if (task == nullptr) {
+            return;
+        }
+
         MarioModuleTask* next = task->mNext;
         if (!task->exec()) {
             delTask(task);
@@ -84,11 +94,12 @@ void Mario::execTask() {
 
 void Mario::drawTask() const {
     MarioModuleTask* task = _974;
-    if (!task) {
-        return;
-    }
 
     while (true) {
+        if (task == nullptr) {
+            return;
+        }
+
         MarioModuleTask* next = task->mNext;
         task->draw();
         if (next == task) {
@@ -108,7 +119,7 @@ void Mario::initTask() {
 }
 
 bool Mario::isActiveTask(Task task) {
-    for (int i = 0; i < ARRAY_SIZE(_984); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(_984); i++) {
         if (_984[i] == task) {
             return true;
         }
@@ -118,7 +129,7 @@ bool Mario::isActiveTask(Task task) {
 }
 
 bool Mario::isActiveTaskID(u32 id) {
-    for (int i = 0; i < ARRAY_SIZE(_984); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(_984); i++) {
         if (_984[i] != nullptr) {
             if (_A08[i] & id) {
                 return true;
@@ -134,7 +145,7 @@ bool Mario::pushTask(Task task, u32 flags) {
         return false;
     }
 
-    int index = 0;
+    u32 index = 0;
     for (; index < ARRAY_SIZE(_984); index++) {
         if (_984[index] == nullptr) {
             break;
@@ -147,7 +158,7 @@ bool Mario::pushTask(Task task, u32 flags) {
 }
 
 void Mario::popTask(Task task) {
-    for (int i = 0; i < ARRAY_SIZE(_984); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(_984); i++) {
         if (_984[i] == task) {
             _984[i] = nullptr;
             return;
@@ -158,7 +169,7 @@ void Mario::popTask(Task task) {
 void Mario::callExtraTasks(u32 flags) {
     execTask();
 
-    for (int i = 0; i < ARRAY_SIZE(_984); i++) {
+    for (u32 i = 0; i < ARRAY_SIZE(_984); i++) {
         if (_984[i] == nullptr) {
             continue;
         }
@@ -179,41 +190,29 @@ void Mario::startHandy() {
 }
 
 bool Mario::taskOnHipDropBlurHopper(u32) {
-    Mario* player = getPlayer();
-    if (player->mMovementStates._C) {
-        if (!mMovementStates._2) {
-            if (!isStatusActive(MarioStatus_Swim)) {
-                return true;
-            }
+    if (!getPlayer()->mMovementStates._B || mMovementStates._1 || isStatusActive(MarioStatus_Swim)) {
+        if (gIsLuigi) {
+            stopEffect("ホッパー尻落ルイージ");
+        } else {
+            stopEffect("ホッパー尻落");
         }
+        return false;
     }
 
-    if (lbl_806B6288) {
-        stopEffect("ホッパー尻落ルイージ");
-    } else {
-        stopEffect("ホッパー尻落");
-    }
-
-    return false;
+    return true;
 }
 
 bool Mario::taskOnHipDropBlur(u32) {
-    Mario* player = getPlayer();
-    if (player->mMovementStates._C) {
-        if (!mMovementStates._2) {
-            if (!isStatusActive(MarioStatus_Swim)) {
-                return true;
-            }
+    if (!getPlayer()->mMovementStates._B || mMovementStates._1 || isStatusActive(MarioStatus_Swim)) {
+        if (gIsLuigi) {
+            stopEffect("尻落ルイージ");
+        } else {
+            stopEffect("尻落");
         }
+        return false;
     }
 
-    if (lbl_806B6288) {
-        stopEffect("尻落ルイージ");
-    } else {
-        stopEffect("尻落");
-    }
-
-    return false;
+    return true;
 }
 
 bool Mario::taskOnHipDropSlide(u32 flags) {
@@ -280,7 +279,7 @@ bool Mario::taskOnHandy(u32) {
         return false;
     }
 
-    if (_71C > 2) {
+    if (mTargetWalkSpeedIndex > 2) {
         playEffect("いい汗");
     } else {
         stopEffect("いい汗");
@@ -319,21 +318,15 @@ void Mario::startHipDropSlide(const HitSensor* pSensor) {
 
     pushTask(sTaskHipDropSlide, 0x100);
 
-    TVec3f dir(mPosition);
-    dir -= pSensor->mPosition;
+    TVec3f dir(mPosition - pSensor->mPosition);
 
-    if (MR::isSameDirection(dir, getAirGravityVec(), sSameDirEpsilon)) {
-        TVec3f tmp = -mFrontVec;
-        dir = tmp;
-    } else if (MR::isNearZero(dir, sNearZeroEpsilon)) {
-        TVec3f tmp = -mFrontVec;
-        dir = tmp;
+    if (MR::isSameDirection(dir, getAirGravityVec(), sSameDirEpsilon) || MR::isNearZero(dir, sNearZeroEpsilon)) {
+        dir = -mFrontVec;
     }
 
     MR::normalizeOrZero(&dir);
 
-    TVec3f reverseGravity = -getAirGravityVec();
-    _A58.cross(reverseGravity, dir);
+    _A58.cross(-getAirGravityVec(), dir);
     MR::normalizeOrZero(&_A58);
 
     _A68 = const_cast< HitSensor* >(pSensor);
@@ -353,33 +346,25 @@ void Mario::startJumpDropSlide(const HitSensor* pSensor) {
         return;
     }
 
-    TVec3f dir(mPosition);
-    dir -= pSensor->mPosition;
+    TVec3f dir(mPosition - pSensor->mPosition);
     MR::normalizeOrZero(&dir);
 
-    TVec3f reverseGravity = -getAirGravityVec();
-    f32 dot = dir.dot(reverseGravity);
+    f32 dot = dir.dot(-getAirGravityVec());
     if (dot <= sJumpDropSlideDotMin) {
         return;
     }
 
     pushTask(sTaskJumpDropSlide, 0x200);
 
-    TVec3f slideDir(mPosition);
-    slideDir -= pSensor->mPosition;
+    TVec3f slideDir(mPosition - pSensor->mPosition);
 
-    if (MR::isSameDirection(slideDir, getAirGravityVec(), sSameDirEpsilon)) {
-        TVec3f tmp = -mFrontVec;
-        slideDir = tmp;
-    } else if (MR::isNearZero(slideDir, sNearZeroEpsilon)) {
-        TVec3f tmp = -mFrontVec;
-        slideDir = tmp;
+    if (MR::isSameDirection(slideDir, getAirGravityVec(), sSameDirEpsilon) || MR::isNearZero(slideDir, sNearZeroEpsilon)) {
+        slideDir = -mFrontVec;
     }
 
     MR::normalizeOrZero(&slideDir);
 
-    TVec3f slideReverseGravity = -getAirGravityVec();
-    _A58.cross(slideReverseGravity, slideDir);
+    _A58.cross(-getAirGravityVec(), slideDir);
     MR::normalizeOrZero(&_A58);
 
     _A68 = const_cast< HitSensor* >(pSensor);

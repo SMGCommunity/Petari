@@ -22,7 +22,7 @@ bool MarioActor::isEnableSpinPunch() {
     }
 
     if (mMario->getCurrentStatus() == MarioStatus_Flip) {
-        return mMario->mFlip->_14;  // FIXME
+        return mMario->mFlip->_14 >= 2;  // FIXME
     }
 
     if (mMario->getCurrentStatus() == MarioStatus_Stun) {
@@ -50,9 +50,9 @@ void MarioActor::reactionPunch(HitSensor* pSensor) {
         _38C = 5;
     } else {
         _38C = 5;
-        if (mMario->_278 > 0.1f) {
-            mMario->_278 = 0.1f;
-            mMario->_71C = true;
+        if (mMario->mWalkSpeed > 0.1f) {
+            mMario->mWalkSpeed = 0.1f;
+            mMario->mTargetWalkSpeedIndex = 1;
         }
     }
 
@@ -115,16 +115,16 @@ bool MarioActor::doFreezeAttack(HitSensor* pSensor) {
 
 bool MarioActor::trySpinPunch() {
     bool out = true;
-    if (mMario->getMovementStates().jumping) {
+    if (getMovementStates().jumping) {
         changeAnimation("空パンチ", static_cast< const char* >(nullptr));
         setPunchHitTimer(15);
-        mMario->_278 = 0.0f;
+        mMario->mWalkSpeed = 0.0f;
     } else if (isEnableSpinPunch()) {
         if (mMario->isStatusActive(MarioStatus_Bury)) {
             playSound("スケキヨ終了スピン", -1);
         }
 
-        if (mMario->getMovementStates()._A) {
+        if (getMovementStates()._A) {
             if (mMario->calcDistToCeil(false) > 160.0f) {
                 changeAnimation("サマーソルト", static_cast< const char* >(nullptr));
                 playSound("スピンジャンプ", -1);
@@ -132,9 +132,9 @@ bool MarioActor::trySpinPunch() {
             } else {
                 return false;
             }
+        } else {
+            mMario->startMagic();
         }
-
-        mMario->startMagic();
 
         setPunchHitTimer(25);
     } else {

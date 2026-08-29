@@ -21,8 +21,8 @@ bool Mario::doFlipJump(const TVec3f& rVec) {
     changeAnimation("壁はじき", static_cast< const char* >(nullptr));
 
     stopPunch();
-    _430 = 3;
     mMovementStates._2B = true;
+    _430 = 3;
     startPadVib(2);
 
     return true;
@@ -56,8 +56,8 @@ bool MarioFlip::start() {
 
     changeAnimation("はねとばされ", static_cast< const char* >(nullptr));
 
-    playSound("声小ダメージ", -1);
-    playSound("壁衝突", -1);
+    playSound("声小ダメージ");
+    playSound("壁衝突");
     playEffect("ダメージ");
     startPadVib(2);
 

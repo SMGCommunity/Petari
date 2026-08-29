@@ -2,6 +2,7 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class ActorCameraInfo;
 class FlashingCtrl;
@@ -22,7 +23,6 @@ public:
     virtual void calcAndSetBaseMtx();
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
-
     virtual void appearGround();
     virtual void appearThrowUp();
     virtual void appearThrowUpQuestionBox();
@@ -44,48 +44,48 @@ public:
     void setFollowMtx(MtxPtr);
     void calcAndSetBaseMtxInMovement();
 
-    u32 _8C;
-    u32 _90;
-    u32 _94;
-    TVec3f _98;
-    TVec3f _A4;
-    s16 _B0;
-    s16 _B2;
-    s16 _B4;
-    s16 _B6;
-    s16 _B8;
-    s16 _BA;
-    TVec3f _BC;
-    TVec3f _C8;
-    MtxPtr mFollowMtx;  // 0xD4
-    u8 _D8;
-    u8 _D9;
-    u8 _DA;
-    u8 _DB;
-    u8 _DC;
-    u8 _DD;
-    u8 _DE;
-    u8 _DF;
-    u8 _E0;
-    u8 _E1;
-    u8 _E2;
-    u8 _E3;
-    u8 _E4;
-    u8 _E5;
-    u8 _E6;
-    u8 _E7;
-    f32 _E8;
-    f32 _EC;
-    Mtx _F0;
-    const char* _120;
-    FlashingCtrl* mFlashCtrl;      // 0x124
-    ActorCameraInfo* mCameraInfo;  // 0x128
-    u32 _12C;
-    u32 _130;
-    LiveActor* mHitSensorActor;  // 0x134
-    u8 _138;
-    u8 _139;
-    u16 _13A;
+    /* 0x08C */ u32 _8C;
+    /* 0x090 */ u32 _90;
+    /* 0x094 */ u32 _94;
+    /* 0x098 */ TVec3f _98;
+    /* 0x0A4 */ TVec3f _A4;
+    /* 0x0B0 */ s16 _B0;
+    /* 0x0B2 */ s16 _B2;
+    /* 0x0B4 */ s16 _B4;
+    /* 0x0B6 */ s16 _B6;
+    /* 0x0B8 */ s16 _B8;
+    /* 0x0BA */ s16 _BA;
+    /* 0x0BC */ TVec3f _BC;
+    /* 0x0C8 */ TVec3f _C8;
+    /* 0x0D4 */ MtxPtr mFollowMtx;
+    /* 0x0D8 */ u8 _D8;
+    /* 0x0D9 */ u8 _D9;
+    /* 0x0DA */ u8 _DA;
+    /* 0x0DB */ u8 _DB;
+    /* 0x0DC */ u8 _DC;
+    /* 0x0DD */ u8 _DD;
+    /* 0x0DE */ u8 _DE;
+    /* 0x0DF */ u8 _DF;
+    /* 0x0E0 */ u8 _E0;
+    /* 0x0E1 */ u8 _E1;
+    /* 0x0E2 */ u8 _E2;
+    /* 0x0E3 */ u8 _E3;
+    /* 0x0E4 */ u8 _E4;
+    /* 0x0E5 */ u8 _E5;
+    /* 0x0E6 */ u8 _E6;
+    /* 0x0E7 */ u8 _E7;
+    /* 0x0E8 */ f32 _E8;
+    /* 0x0EC */ f32 _EC;
+    /* 0x0F0 */ TMtx34f _F0;
+    /* 0x120 */ const char* _120;
+    /* 0x124 */ FlashingCtrl* mFlashCtrl;
+    /* 0x128 */ ActorCameraInfo* mCameraInfo;
+    /* 0x12C */ u32 _12C;
+    /* 0x130 */ u32 _130;
+    /* 0x134 */ LiveActor* mHitSensorActor;
+    /* 0x138 */ u8 _138;
+    /* 0x139 */ u8 _139;
+    /* 0x13A */ u16 _13A;
 };
 
 class BenefitItemOneUp : public BenefitItemObj {
@@ -95,23 +95,16 @@ public:
     /// @param pModelName A pointer to the null-terminated name of the model.
     BenefitItemOneUp(const char* pName, const char* pModelName = "KinokoOneUp") : BenefitItemObj(pName, pModelName) {
     }
-
-    virtual ~BenefitItemOneUp() {
-    }
 };
 
 class ShadowClipActor : public LiveActor {
 public:
-    virtual ~ShadowClipActor() {
-    }
-
     virtual void endClipped();
     virtual void control();
 
-    LiveActor* _8C;
+    /* 0x8C */ LiveActor* _8C;
 };
 
-// These have not been updated to the new format due to linkage issues
 namespace NrvBenefitItemObj {
     NERVE_DECL_EXE(HostTypeNrvWait, BenefitItemObj, Wait);
     NERVE_DECL_EXE(HostTypeNrvShoot, BenefitItemObj, Shoot);
