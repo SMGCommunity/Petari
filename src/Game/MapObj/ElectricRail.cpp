@@ -40,9 +40,7 @@ namespace NrvElectricRail {
 ElectricRailPoint::~ElectricRailPoint() {
 }
 
-ElectricRailPoint::ElectricRailPoint(const char* pName) : LiveActor(pName) {
-    mHasShadow = true;
-    mIsActive = true;
+ElectricRailPoint::ElectricRailPoint(const char* pName) : LiveActor(pName), mHasShadow(true), mIsActive(true) {
 }
 
 void ElectricRailPoint::init(const JMapInfoIter& rIter) {
@@ -80,8 +78,7 @@ void ElectricRailSeparator::setup(const TVec3f& rVec1, const TVec3f& rVec2, cons
 
     mFront.negate();
 
-    TVec3f upVec;
-    upVec.negate(rVec3);
+    TVec3f upVec = -rVec3;
 
     if (MR::isSameDirection(upVec, mFront)) {
         MR::makeAxisCrossPlane(&mSide, &mUp, mFront);
@@ -91,27 +88,27 @@ void ElectricRailSeparator::setup(const TVec3f& rVec1, const TVec3f& rVec2, cons
 }
 
 ElectricRailShadowDrawer::ElectricRailShadowDrawer(const LiveActor* pActor, ElectricRailSeparator* pSeparator, s32 count)
-    : ShadowVolumeDrawer("影描画[電撃レールボリューム]"), mHost(pActor), _20(), _24() {
+    : ShadowVolumeDrawer("影描画[電撃レールボリューム]"), mHost(pActor), mDisplayListBuffer(), mDisplayListBufferSize() {
     MR::ProhibitSchedulerAndInterrupts pScheduler = MR::ProhibitSchedulerAndInterrupts(false);
-    _24 = 0;
+    mDisplayListBufferSize = 0;
 
-    _24 += ElectricRailFunction::calcDisplayListSize(0xC, count * 4 + 2);
-    _24 += ElectricRailFunction::calcDisplayListSize(0xC, count * 2);
-    _24 += ElectricRailFunction::calcDisplayListSize(0xC, count * 2);
+    mDisplayListBufferSize += ElectricRailFunction::calcDisplayListSize(12, count * 4 + 2);
+    mDisplayListBufferSize += ElectricRailFunction::calcDisplayListSize(12, count * 2);
+    mDisplayListBufferSize += ElectricRailFunction::calcDisplayListSize(12, count * 2);
 
-    _20 = new (0x20) u8[_24];
+    mDisplayListBuffer = new (32) u8[mDisplayListBufferSize];
 
     GDLObj pObj;
-    GDInitGDLObj(&pObj, _20, _24);
+    GDInitGDLObj(&pObj, mDisplayListBuffer, mDisplayListBufferSize);
     __GDCurrentDL = &pObj;
 
     drawShadowVolumeShape(pSeparator, count);
 
     GDPadCurr32();
 
-    _24 = pObj.ptr - pObj.start;
+    mDisplayListBufferSize = pObj.ptr - pObj.start;
 
-    DCStoreRange(_20, _24);
+    DCStoreRange(mDisplayListBuffer, mDisplayListBufferSize);
 }
 
 void ElectricRailShadowDrawer::loadModelDrawMtx() const {
@@ -123,7 +120,7 @@ void ElectricRailShadowDrawer::loadModelDrawMtx() const {
 }
 
 void ElectricRailShadowDrawer::drawShape() const {
-    GXCallDisplayList(_20, _24);
+    GXCallDisplayList(mDisplayListBuffer, mDisplayListBufferSize);
 }
 
 bool ElectricRailShadowDrawer::isDraw() const {
@@ -209,11 +206,13 @@ void ElectricRailShadowDrawer::drawShadowVolumeShape(ElectricRailSeparator* pSep
         GDPosition3f32(vec24.x, vec24.y, vec24.z);
         GDPosition3f32(vec30.x, vec30.y, vec30.z);
     }
+
+    GDEnd();
 }
 
 ElectricRail::ElectricRail(const char* name)
-    : LiveActor(name), mPoints(), mPointCount(), _94(), mSeparators(), _A0(), mDLLength(), mRailHeight(1), mEaseIn(), mShadowDrawer(),
-      mDoCalcGravity() {
+    : LiveActor(name), mPoints(), mPointCount(), _94(), mSeparators(), mDisplayListBuffer(), mDisplayListSize(), mRailHeight(1), mEaseIn(), mShadowDrawer(),
+      mIsCalcGravity() {
 }
 
 void ElectricRail::init(const JMapInfoIter& iter) {
@@ -230,9 +229,9 @@ void ElectricRail::init(const JMapInfoIter& iter) {
     MR::calcRailClippingInfo(&mPosition, &radius, this, 100.0f, 500.0f);
     MR::setClippingTypeSphere(this, radius, &mPosition);
 
-    MR::getJMapInfoArg4NoInit(iter, &mDoCalcGravity);
+    MR::getJMapInfoArg4NoInit(iter, &mIsCalcGravity);
 
-    if (mDoCalcGravity && !MR::calcGravityVectorOrZero(this, mPosition, &mGravity, nullptr, 0)) {
+    if (mIsCalcGravity && !MR::calcGravityVectorOrZero(this, mPosition, &mGravity, nullptr, 0)) {
         MR::calcDropShadowVector(this, mPosition, &mGravity, nullptr, 0);
     }
 
@@ -289,7 +288,7 @@ void ElectricRail::draw() const {
     }
 
     if (isNerve(GET_NERVE(ElectricRail, ElectricRailNrvWait))) {
-        GXCallDisplayList(_A0, mDLLength);
+        GXCallDisplayList(mDisplayListBuffer, mDisplayListSize);
     } else {
         drawRailGX(mEaseIn);
     }
@@ -453,20 +452,20 @@ void ElectricRail::initSeparators() {
 void ElectricRail::initDisplayList() {
     MR::ProhibitSchedulerAndInterrupts prohibitScheduler(0);
 
-    mDLLength = ElectricRailFunction::calcDisplayListSize(0x14, mSeparatorCount * 4 * mRailHeight);
+    mDisplayListSize = ElectricRailFunction::calcDisplayListSize(20, mSeparatorCount * 4 * mRailHeight);
 
-    _A0 = new (0x20) u8[mDLLength];
+    mDisplayListBuffer = new (32) u8[mDisplayListSize];
 
     GDLObj obj;
-    GDInitGDLObj(&obj, _A0, mDLLength);
+    GDInitGDLObj(&obj, mDisplayListBuffer, mDisplayListSize);
     __GDCurrentDL = &obj;
 
     drawPlane(30.0, 30.0, -30.0, -30.0);
     drawPlane(-30.0, 30.0, 30.0, -30.0);
     GDPadCurr32();
 
-    mDLLength = obj.ptr - obj.start;
-    DCStoreRange(_A0, mDLLength);
+    mDisplayListSize = obj.ptr - obj.start;
+    DCStoreRange(mDisplayListBuffer, mDisplayListSize);
 }
 
 void ElectricRail::drawRailGX(f32 a1) const {
@@ -596,7 +595,7 @@ void ElectricRail::updateHitSensorPos() {
 }
 
 void ElectricRail::calcGravity(TVec3f* pOut, const TVec3f& a2) const {
-    if (mDoCalcGravity) {
+    if (mIsCalcGravity) {
         pOut->set< f32 >(mGravity);
     } else if (!MR::calcGravityVectorOrZero(this, a2, pOut, nullptr, 0)) {
         MR::calcDropShadowVector(this, a2, pOut, nullptr, 0);

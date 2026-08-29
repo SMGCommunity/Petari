@@ -39,8 +39,8 @@ public:
     void drawShadowVolumeShape(ElectricRailSeparator*, s32) const;
 
     /* 0x1C */ const LiveActor* mHost;
-    /* 0x20 */ void* _20;
-    /* 0x24 */ u32 _24;
+    /* 0x20 */ void* mDisplayListBuffer;
+    /* 0x24 */ u32 mDisplayListBufferSize;
 };
 
 class ElectricRail : public LiveActor {
@@ -76,10 +76,10 @@ public:
     /* 0x94 */ TVec3f* _94;
     /* 0x98 */ ElectricRailSeparator* mSeparators;
     /* 0x9C */ s32 mSeparatorCount;
-    /* 0xA0 */ void* _A0;
-    /* 0xA4 */ u32 mDLLength;
+    /* 0xA0 */ void* mDisplayListBuffer;
+    /* 0xA4 */ u32 mDisplayListSize;
     /* 0xA8 */ s32 mRailHeight; // Obj_arg0
     /* 0xAC */ f32 mEaseIn;
     /* 0xB0 */ ElectricRailShadowDrawer* mShadowDrawer;
-    /* 0xB4 */ bool mDoCalcGravity; // Obj_arg4
+    /* 0xB4 */ bool mIsCalcGravity; // Obj_arg4
 };
