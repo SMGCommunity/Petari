@@ -12071,6 +12071,9 @@ MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c:
 	.text       start:0x8052CD90 end:0x8052CF08
 
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s:
+	.init       start:0x800044C0 end:0x800063F4
+
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
 	.init       start:0x800063F4 end:0x80006420
 	.text       start:0x8052CF08 end:0x8052D224
