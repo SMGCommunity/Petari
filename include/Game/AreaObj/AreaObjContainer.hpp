@@ -34,4 +34,9 @@ private:
 
 namespace MR {
     AreaObjContainer* getAreaObjContainer();
+
+    template < typename T >
+    T* getAreaObj(const char* pName, const TVec3f& rVec) {
+        return static_cast< T* >(getAreaObjContainer()->getAreaObj(pName, rVec));
+    }
 };  // namespace MR

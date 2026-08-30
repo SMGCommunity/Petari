@@ -48,6 +48,11 @@ public:
         mIsAwake = false;
     }
 
+    template < typename T >
+    T* getForm() const {
+        return static_cast< T* >(mForm);
+    }
+
     /* 0x0C */ AreaForm* mForm;
     /* 0x10 */ int mFormType;
     /* 0x14 */ bool mIsValid;
