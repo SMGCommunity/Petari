@@ -3,7 +3,8 @@
 #include "Game/AreaObj/AreaObj.hpp"
 #include "Game/AreaObj/AreaObjContainer.hpp"
 #include "Game/AreaObj/RestartCube.hpp"
-#include "Game/Map/WaterAreaHolder.hpp"
+#include "Game/AreaObj/WaterArea.hpp"
+#include "Game//Map/WaterAreaHolder.hpp"
 #include "Game/Util.hpp"
 
 namespace MR {
