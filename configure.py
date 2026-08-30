@@ -1907,7 +1907,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/TicoShop.cpp"),
             Object(Matching, "Game/NPC/TicoStarRing.cpp"),
             Object(NonMatching, "Game/NPC/TrickRabbit.cpp"),
-            Object(NonMatching, "Game/NPC/TrickRabbitFreeRun.cpp"),
+            Object(Matching, "Game/NPC/TrickRabbitFreeRun.cpp"),
             Object(NonMatching, "Game/NPC/TrickRabbitSnowCollect.cpp"),
             Object(NonMatching, "Game/NPC/TrickRabbitSnow.cpp"),
             Object(NonMatching, "Game/NPC/TrickRabbitUtil.cpp"),

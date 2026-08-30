@@ -6747,7 +6747,7 @@ Game/NPC/TrickRabbit.cpp:
 Game/NPC/TrickRabbitFreeRun.cpp:
 	.text       start:0x80296C54 end:0x80297A28
 	.ctors      start:0x8052F030 end:0x8052F034
-	.data       start:0x805B59A0 end:0x805B5C60
+	.data       start:0x805B59A0 end:0x805B5B30
 	.sdata      start:0x806B21B0 end:0x806B21B8
 	.sbss       start:0x806B6180 end:0x806B61A0
 	.sdata2     start:0x806BF1E0 end:0x806BF228
@@ -6755,7 +6755,7 @@ Game/NPC/TrickRabbitFreeRun.cpp:
 Game/NPC/TrickRabbitSnowCollect.cpp:
 	.text       start:0x80297A28 end:0x802989EC
 	.ctors      start:0x8052F034 end:0x8052F038
-	.data       start:0x805B5C60 end:0x805B5DF0
+	.data       start:0x805B5B30 end:0x805B5DF0
 	.sbss       start:0x806B61A0 end:0x806B61E0
 	.sdata2     start:0x806BF228 end:0x806BF238
 

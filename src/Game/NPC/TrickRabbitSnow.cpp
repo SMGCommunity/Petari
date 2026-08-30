@@ -455,8 +455,8 @@ void TrickRabbitSnow::startJumpSound() {
     if (MR::isBindedGroundWater(this)) {
         MR::startSound(this, "SE_SM_RABBIT_JUMP_WATER");
     } else if (MR::isBindedGroundBrake(this)) {
-        MR::startSound(this, "SE_SM_RABBIT_JUMP");
-    } else {
         MR::startSound(this, "SE_SM_RABBIT_JUMP_WATER");
+    } else {
+        MR::startSound(this, "SE_SM_RABBIT_JUMP");
     }
 }
