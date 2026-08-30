@@ -8,6 +8,10 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
+void RabbitStateWaitStart_FORCE_MATCH_SDATA2() {
+    (void)2.0f;
+}
+
 namespace {
     static const f32 sGravityAccel = 0.1f;
     static const s32 sSmallTurnTime = 30;
@@ -28,9 +32,9 @@ namespace NrvRabbitStateWaitStart {
     NEW_NERVE(RabbitStateWaitStartNrvTalk, RabbitStateWaitStart, Talk);
 };  // namespace NrvRabbitStateWaitStart
 
-RabbitStateWaitStart::RabbitStateWaitStart(LiveActor* pHost, TVec3f* pHostRotateFront, TalkMessageCtrl* pTalkMessageCtrl)
-    : ActorStateBaseInterface("うさぎ会話待ち状態"), mHost(pHost), mTalkActionName("Wait"), mHostRotateFront(pHostRotateFront),
-      mTalkMessageCtrl(pTalkMessageCtrl), _1C(false), _1D(true) {
+RabbitStateWaitStart::RabbitStateWaitStart(LiveActor* pHost, TVec3f* mHostFrontVec, TalkMessageCtrl* pTalkCtrl)
+    : ActorStateBase("うさぎ会話待ち状態", pHost), mTalkActionName("Wait"), mHostFrontVec(mHostFrontVec),
+      mTalkCtrl(pTalkCtrl), _1C(), _1D(true) {
 }
 
 void RabbitStateWaitStart::setTalkActionName(const char* pName) {
@@ -111,7 +115,7 @@ bool RabbitStateWaitStart::isEnableReaction() const {
     if (isNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance) ||
         isNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvSmallTurn::sInstance) ||
         isNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvTrample::sInstance) ||
-        isNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvTalk::sInstance) && MR::isShortTalk(mTalkMessageCtrl)) {
+        isNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvTalk::sInstance) && MR::isShortTalk(mTalkCtrl)) {
         return true;
     }
 
@@ -119,7 +123,7 @@ bool RabbitStateWaitStart::isEnableReaction() const {
 }
 
 bool RabbitStateWaitStart::trySmallTurn() {
-    if (MR::isGreaterStep(this, ::sSmallTurnTime) && !MR::isFaceToPlayerHorizontalDegree(mHost, *mHostRotateFront, ::sSmallTurnStartDegree)) {
+    if (MR::isGreaterStep(this, ::sSmallTurnTime) && !MR::isFaceToPlayerHorizontalDegree(mHost, *mHostFrontVec, ::sSmallTurnStartDegree)) {
         setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvSmallTurn::sInstance);
 
         return true;
@@ -129,7 +133,7 @@ bool RabbitStateWaitStart::trySmallTurn() {
 }
 
 bool RabbitStateWaitStart::tryTalk() {
-    if (MR::isNearPlayer(mHost, ::sInStartTalkRange) && MR::tryTalkNearPlayer(mTalkMessageCtrl)) {
+    if (MR::isNearPlayer(mHost, ::sInStartTalkRange) && MR::tryTalkNearPlayer(mTalkCtrl)) {
         setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvTalk::sInstance);
 
         return true;
@@ -185,7 +189,7 @@ void RabbitStateWaitStart::exeSmallTurn() {
         MR::startAction(mHost, "TurnSmall");
     }
 
-    MR::turnDirectionToPlayerDegree(mHost, mHostRotateFront, ::sSmallTurnDegree);
+    MR::turnDirectionToPlayerDegree(mHost, mHostFrontVec, ::sSmallTurnDegree);
     MR::zeroVelocity(mHost);
 
     if (!tryTalk() && MR::isGreaterStep(this, ::sSmallTurnStopTime)) {
@@ -229,7 +233,7 @@ void RabbitStateWaitStart::exeSpin() {
         MR::startSound(mHost, "SE_SM_RABBIT_SPIN");
     }
 
-    MR::turnDirectionToPlayerDegree(mHost, mHostRotateFront, ::sSpinDegree);
+    MR::turnDirectionToPlayerDegree(mHost, mHostFrontVec, ::sSpinDegree);
     MR::zeroVelocity(mHost);
 
     if (MR::isActionEnd(mHost)) {
@@ -246,7 +250,7 @@ void RabbitStateWaitStart::exePointing() {
     MR::startLevelSound(mHost, "SE_SM_LV_RABBIT_POINT");
     MR::zeroVelocity(mHost);
 
-    if ((MR::isShortTalk(mTalkMessageCtrl) || !tryTalk()) && MR::isActionEnd(mHost)) {
+    if ((MR::isShortTalk(mTalkCtrl) || !tryTalk()) && MR::isActionEnd(mHost)) {
         setNerve(&NrvRabbitStateWaitStart::RabbitStateWaitStartNrvWait::sInstance);
     }
 }
@@ -258,9 +262,9 @@ void RabbitStateWaitStart::exeTalk() {
         MR::zeroVelocity(mHost);
     }
 
-    MR::turnDirectionToPlayerDegreeHorizon(mHost, mHostRotateFront, 30.0f);
+    MR::turnDirectionToPlayerDegreeHorizon(mHost, mHostFrontVec, 30.0f);
 
-    if (MR::tryTalkNearPlayerAtEnd(mTalkMessageCtrl)) {
+    if (MR::tryTalkNearPlayerAtEnd(mTalkCtrl)) {
         if (_1C) {
             kill();
         } else {
