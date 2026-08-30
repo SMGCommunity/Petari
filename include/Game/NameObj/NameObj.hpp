@@ -11,22 +11,22 @@ public:
     NameObj(const char* pName);
 
     /// @brief Destroys the `NameObj`.
-    virtual ~NameObj();
+    /* 0x08 */ virtual ~NameObj();
 
     /// @brief Intializes the `NameObj` while being placed into a scene.
     /// @param rIter A reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter);
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter);
 
     /// @brief Intializes the `NameObj` after being placed into a scene.
-    virtual void initAfterPlacement();
+    /* 0x10 */ virtual void initAfterPlacement();
 
-    virtual void movement();
+    /* 0x14 */ virtual void movement();
 
     /// @brief Draws the `NameObj` to the screen.
-    virtual void draw() const;
+    /* 0x18 */ virtual void draw() const;
 
-    virtual void calcAnim();
-    virtual void calcViewAndEntry();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x20 */ virtual void calcViewAndEntry();
 
     /// @brief Initializes the `NameObj` without an iterator over a `JMapInfo`.
     void initWithoutIter();
