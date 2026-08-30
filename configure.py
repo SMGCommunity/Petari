@@ -1882,7 +1882,7 @@ config.libs = [
             Object(Matching, "Game/NPC/PowerStarEventKeeper.cpp"),
             Object(NonMatching, "Game/NPC/Rabbit.cpp"),
             Object(Matching, "Game/NPC/RabbitStateCaught.cpp"),
-            Object(NonMatching, "Game/NPC/RabbitStateWaitStart.cpp"),
+            Object(Matching, "Game/NPC/RabbitStateWaitStart.cpp"),
             Object(NonMatching, "Game/NPC/Rosetta.cpp"),
             Object(NonMatching, "Game/NPC/RosettaDemoAstroDome.cpp"),
             Object(NonMatching, "Game/NPC/RosettaDemoEpilogue.cpp"),

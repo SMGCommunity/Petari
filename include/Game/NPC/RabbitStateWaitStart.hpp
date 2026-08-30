@@ -7,9 +7,9 @@ class HitSensor;
 class LiveActor;
 class TalkMessageCtrl;
 
-class RabbitStateWaitStart : public ActorStateBaseInterface {
+class RabbitStateWaitStart : public ActorStateBase< LiveActor > {
 public:
-    RabbitStateWaitStart(LiveActor* pHost, TVec3f* pHostRotateFront, TalkMessageCtrl* pTalkMessageCtrl);
+    RabbitStateWaitStart(LiveActor* pHost, TVec3f* pHostFrontVec, TalkMessageCtrl* pTalkCtrl);
 
     virtual void init();
     virtual void appear();
@@ -33,10 +33,9 @@ public:
     void exePointing();
     void exeTalk();
 
-    /* 0x0C */ LiveActor* mHost;
     /* 0x10 */ const char* mTalkActionName;
-    /* 0x14 */ TVec3f* mHostRotateFront;
-    /* 0x18 */ TalkMessageCtrl* mTalkMessageCtrl;
+    /* 0x14 */ TVec3f* mHostFrontVec;
+    /* 0x18 */ TalkMessageCtrl* mTalkCtrl;
     /* 0x1C */ bool _1C;
     /* 0x1D */ bool _1D;
 };
