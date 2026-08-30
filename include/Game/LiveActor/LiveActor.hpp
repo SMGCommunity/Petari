@@ -31,62 +31,62 @@ public:
 
     /// @brief Intializes the `LiveActor` while being placed into a scene.
     /// @param rIter A reference to an iterator over a `JMapInfo`.
-    virtual void init(const JMapInfoIter& rIter) override;
+    /* 0x0C */ virtual void init(const JMapInfoIter& rIter) override;
 
-    virtual void movement();
-    virtual void calcAnim();
-    virtual void calcViewAndEntry();
-    virtual void appear();
-    virtual void makeActorAppeared();
-    virtual void kill();
-    virtual void makeActorDead();
-    virtual bool receiveMessage(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x14 */ virtual void movement();
+    /* 0x1C */ virtual void calcAnim();
+    /* 0x20 */ virtual void calcViewAndEntry();
+    /* 0x24 */ virtual void appear();
+    /* 0x28 */ virtual void makeActorAppeared();
+    /* 0x2C */ virtual void kill();
+    /* 0x30 */ virtual void makeActorDead();
+    /* 0x34 */ virtual bool receiveMessage(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
     /// @brief Gets the base matrix of the model used for the actor.
     /// @returns A MtxPtr to the base matrix. NULL if there is no model present.
-    virtual MtxPtr getBaseMtx() const;
-    virtual MtxPtr getTakingMtx() const;
-    virtual void startClipped();
-    virtual void endClipped();
+    /* 0x38 */ virtual MtxPtr getBaseMtx() const;
+    /* 0x3C */ virtual MtxPtr getTakingMtx() const;
+    /* 0x40 */ virtual void startClipped();
+    /* 0x44 */ virtual void endClipped();
 
-    virtual void control() {
+    /* 0x48 */ virtual void control() {
     }
 
     /// @brief Calculates and sets the base matrix of the actor.
-    virtual void calcAndSetBaseMtx();
+    /* 0x4C */ virtual void calcAndSetBaseMtx();
 
-    virtual void updateHitSensor(HitSensor* pSensor) {
+    /* 0x50 */ virtual void updateHitSensor(HitSensor* pSensor) {
     }
 
-    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x54 */ virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
-    virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
+    /* 0x58 */ virtual bool receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    /* 0x5C */ virtual bool receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    /* 0x60 */ virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    virtual bool receiveMsgTake(HitSensor* pSender, HitSensor* pReceiver) {
+    /* 0x64 */ virtual bool receiveMsgTake(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    virtual bool receiveMsgTaken(HitSensor* pSender, HitSensor* pReceiver) {
+    /* 0x68 */ virtual bool receiveMsgTaken(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    virtual bool receiveMsgThrow(HitSensor* pSender, HitSensor* pReceiver) {
+    /* 0x6C */ virtual bool receiveMsgThrow(HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
-    virtual bool receiveMsgApart(HitSensor* pSender, HitSensor* pReceiver);
+    /* 0x70 */ virtual bool receiveMsgApart(HitSensor* pSender, HitSensor* pReceiver);
 
-    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    /* 0x74 */ virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
         return false;
     }
 
