@@ -57,25 +57,25 @@ public:
 
     /* 0x8C */ TQuat4f _8C;
     /* 0x9C */ TVec3f _9C;
-    /* 0xA8 */ f32 _A8;
-    /* 0xAC */ TVec3f _AC;
-    /* 0xB8 */ TalkMessageCtrl* _B8;
-    /* 0xBC */ ActorCameraInfo* _BC;
-    /* 0xC0 */ s32 _C0;
-    /* 0xC4 */ PlayerPoseSetterInWater* _C4;
-    /* 0xC8 */ s32 _C8;
-    /* 0xCC */ TVec3f _CC;
-    /* 0xD8 */ TPos3f _D8;
-    /* 0x108 */ JointControlDelegator< Syati >* _108;
+    /* 0xA8 */ f32 mClippingRange;
+    /* 0xAC */ TVec3f mClippingVec;
+    /* 0xB8 */ TalkMessageCtrl* mTalkMessageCtrl;
+    /* 0xBC */ ActorCameraInfo* mActorCameraInfo;
+    /* 0xC0 */ s32 mHideOnShoreMode;
+    /* 0xC4 */ PlayerPoseSetterInWater* mPlayerPoseSetterInWater;
+    /* 0xC8 */ s32 mBlinkTimer;
+    /* 0xCC */ TVec3f mMarioMoveLocalOffsetVec;
+    /* 0xD8 */ TPos3f mBalloonFollowMtx;
+    /* 0x108 */ JointControlDelegator< Syati >* mJointControlDelegator;
     /* 0x10C */ TMtx34f _10C;
-    /* 0x13C */ RaceManagerLayout* _13C;
-    /* 0x140 */ LiveActorGroup* _140;
-    /* 0x144 */ s32 _144;
-    /* 0x148 */ s32 _148;
-    /* 0x14C */ s32 _14C;
-    /* 0x150 */ s32 _150;
-    /* 0x154 */ s32 _154;
-    /* 0x158 */ s32 _158;
+    /* 0x13C */ RaceManagerLayout* mRaceManagerLayout;
+    /* 0x140 */ LiveActorGroup* mPrizeRingGroup;
+    /* 0x144 */ s32 mNumRings; // Obj_arg0
+    /* 0x148 */ s32 mStarSpawnType;
+    /* 0x14C */ s32 mSwimMode;
+    /* 0x150 */ s32 mPrizeRingLife; // Obj_arg3
+    /* 0x154 */ s32 mPrizeRingCount;
+    /* 0x158 */ s32 mCurrentRailPointNo;
 };
 
 class PlayerPoseSetterInWater {
