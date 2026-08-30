@@ -5,4 +5,4 @@ class AnimScaleParam;
 
 namespace SamboFunction {
     AnimScaleController* createAnimScaleController(AnimScaleParam*);
-}
+};

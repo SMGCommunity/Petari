@@ -39,6 +39,7 @@ public:
     virtual void appear();
     virtual void kill();
     virtual void control();
+    virtual void calcAndSetBaseMtx();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*);
     virtual bool receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
@@ -71,15 +72,15 @@ public:
     inline bool isNerveDying();
     inline void startBckThisAndHead(const char*);
     inline bool isNerveDown();
-    inline bool isTryToTryFallHead(HitSensor* pSensor);
+    inline bool isSensorTryToFallHead(HitSensor* pSensor);
 
-    CocoSamboHead* _8C;
-    TVec3f _90;
-    TVec3f _9C;
-    TVec3f _A8;
-    f32 mArg0;
-    AnimScaleParam* _B8;
-    AnimScaleController* _BC;
-    const Nerve* _C0;
-    LiveActor* _C4[4];
+    /* 0x8C */ CocoSamboHead* _8C;
+    /* 0x90 */ TVec3f _90;
+    /* 0x9C */ TVec3f _9C;
+    /* 0xA8 */ TVec3f _A8;
+    /* 0xB4 */ f32 mArg0;
+    /* 0xB8 */ AnimScaleParam* _B8;
+    /* 0xBC */ AnimScaleController* _BC;
+    /* 0xC0 */ const Nerve* _C0;
+    /* 0xC4 */ LiveActor* _C4[4];
 };

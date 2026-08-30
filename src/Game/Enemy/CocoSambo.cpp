@@ -179,7 +179,7 @@ namespace NrvCocoSambo {
     NEW_NERVE(CocoSamboNrvPressY, CocoSambo, PressY);
     NEW_NERVE(CocoSamboNrvBlow, CocoSambo, Blow);
     NEW_NERVE_ONEND(CocoSamboNrvDpdPointing, CocoSambo, DpdPointing, DpdPointing);
-}  // namespace NrvCocoSambo
+};  // namespace NrvCocoSambo
 
 CocoSambo::CocoSambo(const char* pName)
     : LiveActor(pName), _8C(), _90(gZeroVec), _9C(0.0f, 0.0f, 1.0f), _A8(0.0f, 1.0f, 0.0f), mArg0(1800.0f), _B8(), _BC(), _C0() {
@@ -232,7 +232,7 @@ void CocoSambo::kill() {
     }
 }
 
-inline bool CocoSambo::isTryToTryFallHead(HitSensor* pSensor) {
+inline bool CocoSambo::isSensorTryToFallHead(HitSensor* pSensor) {
     return pSensor->isType(ATYPE_COCO_NUT) || pSensor->isType(ATYPE_KURIBO) || pSensor->isType(ATYPE_BEGOMAN);
 }
 
@@ -247,7 +247,7 @@ bool CocoSambo::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* p
 }
 
 bool CocoSambo::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (isTryToTryFallHead(pSender)) {
+    if (isSensorTryToFallHead(pSender)) {
         if (tryToFallHead(pReceiver, pSender)) {
             return true;
         }

@@ -2,7 +2,7 @@
 #include "Game/Enemy/AnimScaleController.hpp"
 
 namespace SamboFunction {
-    AnimScaleController* createAnimScaleController(AnimScaleParam * pParam) {
+    AnimScaleController* createAnimScaleController(AnimScaleParam* pParam) {
         pParam->_10 = 4.0f;
         pParam->_14 = 1.0f;
         pParam->_18 = 0.06f;
@@ -12,4 +12,4 @@ namespace SamboFunction {
         pParam->_28 = 0.8f;
         return new AnimScaleController(pParam);
     }
-}
+};  // namespace SamboFunction
