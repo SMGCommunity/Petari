@@ -1,13 +1,13 @@
 #include "Game/AudioLib/AudAudience.hpp"
 
 void AudAudience_withSetting::updateSetting() {
-    _3C = (mSetting._1C - mSetting._18) / mSetting._C;
-    _40 = (mSetting._14 - mSetting._18) / mSetting._10;
+    _3C = (mSetting.mMinDolby - mSetting.mCenterDolby) / mSetting.mFrontDolbyZ;
+    _40 = (mSetting.mMaxDolby - mSetting.mCenterDolby) / mSetting.mBehindDolbyZ;
 
-    f32 diff = mSetting._0 - mSetting._4;
+    f32 diff = mSetting.mFarDistance - mSetting.mNearDistance;
 
-    _44 = (mSetting._8 - 1.0f) / diff;
-    _48 = mSetting._34 / diff;
+    _44 = (mSetting.mMinVolume - 1.0f) / diff;
+    _48 = mSetting.mPriorityDownRange / diff;
     _4C = (mSetting._24 - mSetting._20) / diff;
 }
 

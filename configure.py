@@ -762,7 +762,7 @@ config.libs = [
             Object(Matching, "Game/AudioLib/AudFader.cpp"),
             Object(Matching, "Game/AudioLib/AudLimitedSound.cpp"),
             Object(NonMatching, "Game/AudioLib/AudMeNameConverter.cpp"),
-            Object(NonMatching, "Game/AudioLib/AudMicWrap.cpp"),
+            Object(Matching, "Game/AudioLib/AudMicWrap.cpp"),
             Object(Matching, "Game/AudioLib/AudRemixMgr.cpp"),
             Object(Matching, "Game/AudioLib/AudRemixSequencer.cpp"),
             Object(NonMatching, "Game/AudioLib/AudSceneMgr.cpp"),
@@ -2094,7 +2094,7 @@ config.libs = [
             Object(NonMatching, "Game/RhythmLib/AudMeHandles.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeObject.cpp"),
             Object(
-                NonMatching,
+                Matching,
                 "Game/RhythmLib/AudChordInfo.cpp",
                 cflags=[*cflags_game, "-sym on"],
             ),
