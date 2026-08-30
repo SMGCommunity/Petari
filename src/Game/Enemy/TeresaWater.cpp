@@ -3,7 +3,19 @@
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/ActorSensorUtil.hpp"
+
+void TeresaWater_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)0.5f;
+}
+
+namespace {
+    static const MR::ActorMoveParam sMoveParam = {0.5f, 0.0f, 0.9f, 1.5f};
+    static const f32 sDefaultMoveLength = 800.0f;
+    static const f32 sSideFriction = 0.5f;
+    static const f32 sTargetRadius = 30.0f;
+};  // namespace
 
 namespace NrvTeresaWater {
     NEW_NERVE(TeresaWaterNrvMove, TeresaWater, Move);
@@ -11,10 +23,6 @@ namespace NrvTeresaWater {
     NEW_NERVE(TeresaWaterNrvStun, TeresaWater, Stun);
     NEW_NERVE_ONEND(TeresaWaterNrvDPDSwoon, TeresaWater, DPDSwoon, DPDSwoon);
 };  // namespace NrvTeresaWater
-
-namespace {
-    const TeresaWaterMoveParam sMoveParam = {0.5f, 0.0f, 0.899f, 1.5f};
-};
 
 TeresaWater::TeresaWater(const char* pName) : LiveActor(pName), _8C(), _90() {
     _94.set(0.0f, 0.0f, 1.0f);
@@ -43,7 +51,7 @@ void TeresaWater::init(const JMapInfoIter& rIter) {
     _90 = new WalkerStateBindStarPointer(this, _8C);
     MR::declareCoin(this, 1);
     MR::calcFrontVec(&_94, this);
-    f32 arg0 = 800.0f;
+    f32 arg0 = ::sDefaultMoveLength;
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
     _AC.set(mPosition);
     _A0.scaleAdd(arg0, _94, _AC);
@@ -65,9 +73,9 @@ void TeresaWater::exeMove() {
     }
 
     MR::moveAndTurnToTarget(this, &_94, *_B8, sMoveParam._0, sMoveParam._4, sMoveParam._8, sMoveParam._C);
-    MR::attenuateVelocityExceptDirection(this, _94, 0.5f);
+    MR::attenuateVelocityExceptDirection(this, _94, ::sSideFriction);
 
-    if (MR::isNear(this, *_B8, 30.0f)) {
+    if (MR::isNear(this, *_B8, ::sTargetRadius)) {
         if (_B8 == &_A0) {
             _B8 = &_AC;
         } else {
@@ -79,7 +87,7 @@ void TeresaWater::exeMove() {
 void TeresaWater::exeHit() {
     if (MR::isFirstStep(this)) {
         MR::startBck(this, "Hit", nullptr);
-        mVelocity.x = mVelocity.y = mVelocity.z = 0.0f;
+        mVelocity.zero();
         MR::startSound(this, "SE_EV_TERESA_ATTACK_SUCCESS");
     }
 
@@ -122,31 +130,44 @@ void TeresaWater::calcAndSetBaseMtx() {
     TVec3f up;
     MR::calcUpVec(&up, this);
     up.negate();
+
     TPos3f mtx;
     MR::calcMtxFromGravityAndZAxis(&mtx, this, up, _94);
     MR::setBaseTRMtx(this, mtx);
-    TVec3f scale = _8C->_C * mScale;
-    MR::setBaseScale(this, scale);
+
+    MR::setBaseScale(this, _8C->_C * mScale);
 }
 
 void TeresaWater::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (!isNerve(&NrvTeresaWater::TeresaWaterNrvHit::sInstance) && MR::isSensorPlayerOrRide(pReceiver)) {
-        if (!isNerve(&NrvTeresaWater::TeresaWaterNrvDPDSwoon::sInstance) && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
-            setNerve(&NrvTeresaWater::TeresaWaterNrvHit::sInstance);
-        } else {
-            MR::sendMsgPush(pReceiver, pSender);
-        }
+    if (isNerve(&NrvTeresaWater::TeresaWaterNrvHit::sInstance)) {
+        return;
+    }
+
+    if (!MR::isSensorPlayerOrRide(pReceiver)) {
+        return;
+    }
+
+    if (!isNerve(&NrvTeresaWater::TeresaWaterNrvDPDSwoon::sInstance) && MR::sendMsgEnemyAttackStrong(pReceiver, pSender)) {
+        setNerve(&NrvTeresaWater::TeresaWaterNrvHit::sInstance);
+    } else {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
 bool TeresaWater::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceAttack(msg)) {
         setNerve(&NrvTeresaWater::TeresaWaterNrvStun::sInstance);
+
         return true;
-    } else if (MR::isMsgLockOnStarPieceShoot(msg)) {
+    }
+
+    if (MR::isMsgLockOnStarPieceShoot(msg)) {
         return true;
-    } else if (MR::isMsgSearchlightAttack(msg)) {
+    }
+
+    if (MR::isMsgSearchlightAttack(msg)) {
         kill();
+
         return true;
     }
 
@@ -167,6 +188,7 @@ bool TeresaWater::tryDPDSwoon() {
     }
 
     setNerve(&NrvTeresaWater::TeresaWaterNrvDPDSwoon::sInstance);
+
     return true;
 }
 
@@ -176,7 +198,4 @@ void TeresaWater::endDPDSwoon() {
 
 void TeresaWater::exeDPDSwoon() {
     MR::updateActorStateAndNextNerve(this, _90, &NrvTeresaWater::TeresaWaterNrvMove::sInstance);
-}
-
-TeresaWater::~TeresaWater() {
 }

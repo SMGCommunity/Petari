@@ -589,6 +589,16 @@ public:
         return mPrevDrawStates;
     }
 
+    inline void setJumpVec(const TVec3f& rVec) {
+        mJumpVec = rVec;
+    }
+
+    inline void resetInline() {
+        _74C = 0.0f;
+        _750 = 0;
+        _754 = 0;
+    }
+
     inline void set3BC(u16 val) {
         _3BC = val;
     }

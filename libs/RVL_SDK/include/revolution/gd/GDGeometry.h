@@ -158,6 +158,8 @@ extern "C" {
 #define XF_NUMTEX(numtex) ((((unsigned long)(numtex)) << XF_NUMTEX_SHIFT))
 
 static void GDBegin(GXPrimitive type, GXVtxFmt vtxfmt, u16 nverts);
+static void GDEnd(void) {
+}
 
 #define XF_REG_TEX(proj, form, tgType, row, embossRow, embossLit)                                                                                    \
     ((proj) << 1 | (form) << 2 | (tgType) << 4 | (row) << 7 | (embossRow) << 12 | (embossLit) << 15)

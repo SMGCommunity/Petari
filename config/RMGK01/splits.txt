@@ -3158,6 +3158,7 @@ Game/Enemy/StinkBugSmall.cpp:
 Game/Enemy/StringSpider.cpp:
 	.text       start:0x801427AC end:0x80145210
 	.ctors      start:0x8052EB50 end:0x8052EB54
+	.rodata     start:0x80532570 end:0x80532578
 	.data       start:0x80584D40 end:0x805850A0
 	.sdata      start:0x806B1A70 end:0x806B1A80
 	.sbss       start:0x806B4830 end:0x806B4868
@@ -3166,6 +3167,7 @@ Game/Enemy/StringSpider.cpp:
 Game/Enemy/Takobo.cpp:
 	.text       start:0x80145210 end:0x80146AEC
 	.ctors      start:0x8052EB54 end:0x8052EB58
+	.rodata     start:0x80532578 end:0x80532588
 	.data       start:0x805850A0 end:0x805852B0
 	.sdata      start:0x806B1A80 end:0x806B1A88
 	.sbss       start:0x806B4868 end:0x806B4898
@@ -3202,7 +3204,7 @@ Game/Enemy/Teresa.cpp:
 Game/Enemy/TeresaWater.cpp:
 	.text       start:0x8014C790 end:0x8014CFE0
 	.ctors      start:0x8052EB64 end:0x8052EB68
-	.rodata     start:0x80532570 end:0x805325A8
+	.rodata     start:0x80532588 end:0x80532598
 	.data       start:0x80585A70 end:0x80585BB0
 	.sdata      start:0x806B1A98 end:0x806B1AA0
 	.sbss       start:0x806B4938 end:0x806B4948
@@ -3215,6 +3217,7 @@ Game/Enemy/TerritoryMover.cpp:
 Game/Enemy/Unizo.cpp:
 	.text       start:0x8014D14C end:0x8014F86C
 	.ctors      start:0x8052EB68 end:0x8052EB6C
+	.rodata     start:0x80532598 end:0x805325A0
 	.data       start:0x80585BB0 end:0x80585EC8
 	.sbss       start:0x806B4948 end:0x806B4970
 	.sdata2     start:0x806BB900 end:0x806BB9B0
@@ -3222,6 +3225,7 @@ Game/Enemy/Unizo.cpp:
 Game/Enemy/UnizoLauncher.cpp:
 	.text       start:0x8014F86C end:0x8014FBD0
 	.ctors      start:0x8052EB6C end:0x8052EB70
+	.rodata     start:0x805325A0 end:0x805325A8
 	.data       start:0x80585EC8 end:0x80585F60
 	.sbss       start:0x806B4970 end:0x806B4978
 	.sdata2     start:0x806BB9B0 end:0x806BB9B8
@@ -4771,13 +4775,13 @@ Game/MapObj/ElectricRail.cpp:
 
 Game/MapObj/ElectricRailHolder.cpp:
 	.text       start:0x801D5A7C end:0x801D6464
-	.data       start:0x80593AE8 end:0x80593C58
+	.data       start:0x80593AE8 end:0x80593C28
 	.sdata2     start:0x806BCEB8 end:0x806BCEC8
 
 Game/MapObj/ElectricRailMoving.cpp:
 	.text       start:0x801D6464 end:0x801D80B0
 	.ctors      start:0x8052ECF4 end:0x8052ECF8
-	.data       start:0x80593C58 end:0x80593E10
+	.data       start:0x80593C28 end:0x80593E10
 	.sbss       start:0x806B50E0 end:0x806B50F0
 	.sdata2     start:0x806BCEC8 end:0x806BCF10
 

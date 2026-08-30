@@ -160,13 +160,13 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
 
 void IceMerameraKing::initAfterPlacement() {
     MR::trySetMoveLimitCollision(this);
-    u32 binderFlag = mBinder->_8;
+    CollisionParts* exCollisionParts = mBinder->mExCollisionParts;
 
     for (s32 i = 0; i < _F0; i++) {
         Binder* binder = mModelArray[i]->mBinder;
-        binder->_8 = binderFlag;
+        binder->mExCollisionParts = exCollisionParts;
 
-        if (!binderFlag) {
+        if (exCollisionParts == nullptr) {
             binder->_1EC._2 = false;
         } else {
             binder->_1EC._2 = true;
