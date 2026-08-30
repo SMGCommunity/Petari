@@ -126,10 +126,7 @@ bool MarioFrontStep::update() {
     }
 
     if (checkTrgA()) {
-        Mario* pMario = getPlayer();
-        pMario->_74C = 0.0f;
-        pMario->_750 = 0;
-        pMario->_754 = 0;
+        getPlayer()->resetInline();
 
         getPlayer()->setFrontVecKeepUp(-getPlayer()->getWallNorm());
 
