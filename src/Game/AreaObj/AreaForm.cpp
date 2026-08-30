@@ -126,7 +126,7 @@ AreaFormSphere::AreaFormSphere() {
     mTranslation.x = 0.0f;
     mTranslation.y = 0.0f;
     mTranslation.z = 0.0f;
-    _14 = 0.0f;
+    mRadius = 0.0f;
 }
 
 void AreaFormSphere::calcUpVec(TVec3f* pOut) const {
@@ -150,7 +150,7 @@ bool AreaFormSphere::isInVolume(const TVec3f& rVector) const {
     TVec3f pos;
     calcPos(&pos);
 
-    return (rVector - pos).length() < _14;
+    return (rVector - pos).length() < mRadius;
 }
 
 AreaFormBowl::AreaFormBowl() {
@@ -199,7 +199,7 @@ AreaFormCylinder::AreaFormCylinder() {
     mRotation.x = 0.0f;
     mRotation.y = 0.0f;
     mRotation.z = 0.0f;
-    _20 = 0.0f;
+    mRadius = 0.0f;
     _24 = 0.0f;
 }
 
@@ -241,7 +241,7 @@ bool AreaFormCylinder::isInVolume(const TVec3f& rVec) const {
 
     bool ret;
 
-    if (MR::isInRange(v6, 0.0f, _24) && (v7 < _20)) {
+    if (MR::isInRange(v6, 0.0f, _24) && (v7 < mRadius)) {
         ret = true;
     } else {
         ret = false;
@@ -270,8 +270,8 @@ void AreaFormSphere::init(const JMapInfoIter& rIter) {
     f32 scale_x;
     rIter.getValue< f32 >("scale_x", &scale_x);
 
-    _14 = scale_x;
-    _14 *= 500.0f;
+    mRadius = scale_x;
+    mRadius *= 500.0f;
 
     TVec3f rotation;
     MR::getJMapInfoRotate(rIter, &rotation);
@@ -294,8 +294,8 @@ void AreaFormCylinder::init(const JMapInfoIter& rIter) {
     f32 temp;
     rIter.getValue< f32 >("scale_x", &temp);
 
-    _20 = temp;
-    _20 *= 500.0f;
+    mRadius = temp;
+    mRadius *= 500.0f;
 
     rIter.getValue< f32 >("scale_y", &temp);
     _24 = temp;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/AreaObj/AreaObjContainer.hpp"
 #include "Game/Map/LightZoneDataHolder.hpp"
 #include "JSystem/JGeometry/TBox.hpp"
 #include "JSystem/JGeometry/TVec.hpp"
@@ -39,5 +40,10 @@ namespace MR {
 
     bool getWaterAreaObj(WaterInfo*, const TVec3f&);
     AreaInfo* getWaterAreaInfo(WaterInfo*, const TVec3f&, const TVec3f&, bool);
+
+    template < typename T >
+    T* getAreaObj(const char* pName, const TVec3f& rVec) {
+        return static_cast< T* >(getAreaObjContainer()->getAreaObj(pName, rVec));
+    }
 
 };  // namespace MR

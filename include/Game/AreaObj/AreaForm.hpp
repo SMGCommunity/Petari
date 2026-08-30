@@ -55,7 +55,7 @@ public:
     void calcPos(TVec3f*) const;
 
     TVec3f mTranslation;  // 0x8
-    f32 _14;
+    f32 mRadius;
     TVec3f mUp;  // 0x18
 };
 
@@ -87,6 +87,6 @@ public:
 
     TVec3f mTranslation;  // 0x8
     TVec3f mRotation;     // 0x14
-    f32 _20;
-    f32 _24;
+    f32 mRadius;
+    f32 _24;    // Maybe the height?
 };
