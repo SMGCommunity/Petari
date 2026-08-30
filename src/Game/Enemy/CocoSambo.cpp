@@ -147,10 +147,11 @@ void CocoSamboHead::exeSwoonEnd() {
 }
 
 void CocoSamboHead::exeBlow() {
+    TVec3f v6;
     if (MR::isFirstStep(this)) {
         MR::calcGravity(this);
         updateFrontVecToPlayer(mGravity);
-        TVec3f v6 = -mGravity;
+        JGeometry::negateInternal(&mGravity.x, &v6.x);
         TPos3f mtx;
         mtx.identity();
         MR::makeMtxUpFront(&mtx, v6, mFrontVec);
@@ -158,8 +159,9 @@ void CocoSamboHead::exeBlow() {
         mtx.mult33(mVelocity);
         MR::startBck(this, "Blow", nullptr);
     }
-
-    mVelocity += (mGravity * 1.0f);
+    TVec3f result;
+    result.scale(1.0f, mGravity);
+    JMathInlineVEC::PSVECAdd(mVelocity, result, mVelocity);
 }
 
 void CocoSamboHead::exeHeadConnectedBody() {
