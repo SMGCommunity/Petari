@@ -767,7 +767,7 @@ config.libs = [
             Object(Matching, "Game/AudioLib/AudRemixSequencer.cpp"),
             Object(NonMatching, "Game/AudioLib/AudSceneMgr.cpp"),
             Object(NonMatching, "Game/AudioLib/AudSeStrategy.cpp"),
-            Object(NonMatching, "Game/AudioLib/AudSoundNameConverter.cpp"),
+            Object(Matching, "Game/AudioLib/AudSoundNameConverter.cpp"),
             Object(Matching, "Game/AudioLib/AudSoundObjHolder.cpp"),
             Object(
                 Matching,

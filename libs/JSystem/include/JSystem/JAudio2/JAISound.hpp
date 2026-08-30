@@ -64,8 +64,14 @@ public:
         return mID.info.waveID;
     }
 
-    void getWaveID(u16 id) {
+    void setWaveID(u16 id) {
         mID.info.waveID = id;
+    }
+
+    void set(u8 sectionID, u8 groupID, u16 waveID) {
+        setSectionID(sectionID);
+        setGroupID(groupID);
+        setWaveID(waveID);
     }
 
     /* 0x00 */ union {
