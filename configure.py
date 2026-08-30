@@ -1910,7 +1910,7 @@ config.libs = [
             Object(Matching, "Game/NPC/TrickRabbitFreeRun.cpp"),
             Object(NonMatching, "Game/NPC/TrickRabbitSnowCollect.cpp"),
             Object(NonMatching, "Game/NPC/TrickRabbitSnow.cpp"),
-            Object(NonMatching, "Game/NPC/TrickRabbitUtil.cpp"),
+            Object(Matching, "Game/NPC/TrickRabbitUtil.cpp"),
             Object(Matching, "Game/NPC/CometEventExecutorTimeLimit.cpp"),
             Object(Matching, "Game/NPC/CometEventKeeper.cpp"),
             Object(Matching, "Game/NPC/EventDirector.cpp"),
