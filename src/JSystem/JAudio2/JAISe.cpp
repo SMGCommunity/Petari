@@ -14,7 +14,7 @@ void JAISe::mixOut_(const JASSoundParams& params) {
     mParams.mixOutAll(params, &mixParams, mFader.getIntensity());
 
     if (inner_.mSoundStrategy != nullptr) {
-        inner_.mSoundStrategy->mix(this, mixParams);
+        inner_.mSoundStrategy->mix(this, &mixParams);
     }
 
     if (mAudible != nullptr) {
@@ -135,7 +135,7 @@ void JAISe::JAISeMgr_startID_(JAISoundID id, const TVec3f* posPtr, JAIAudience* 
     start_JAISound_(id, posPtr, audience);
     inner_._26C = false;
     if (inner_.mSoundStrategyMgr != nullptr) {
-        inner_.mSoundStrategy = inner_.mSoundStrategyMgr->calc(id);
+        inner_.mSoundStrategy = inner_.mSoundStrategyMgr->newStrategy(id);
     } else {
         inner_.mSoundStrategy = nullptr;
     }
