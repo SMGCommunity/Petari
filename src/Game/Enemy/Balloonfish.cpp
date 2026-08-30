@@ -1,9 +1,26 @@
 #include "Game/Enemy/Balloonfish.hpp"
+#include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/Util/ActorSensorUtil.hpp"
+#include "Game/Util/ActorShadowUtil.hpp"
+#include "Game/Util/ActorSwitchUtil.hpp"
+#include "Game/Util/EffectUtil.hpp"
+#include "Game/Util/Functor.hpp"
 #include "Game/Util/JMapInfo.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
+#include "Game/Util/MathUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
+#include "Game/Util/SoundUtil.hpp"
+#include "Game/Util/StarPointerUtil.hpp"
+#include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
 
 namespace {
-    // static const ??? hWaitTime = ???;
+    static const s32 hWaitTime = 120;
     // static const ??? hAttackBeginTime = ???;
     // static const ??? hTargetPlayerVelocityMult = ???;
     // static const ??? hWaitMaxScale = ???;
@@ -12,19 +29,219 @@ namespace {
     // static const ??? hDashScale = ???;
     // static const ??? hDashEndTime = ???;
     // static const ??? hRotateAngle = ???;
-}
+}  // namespace
 
-namespace NrvBalloonFish {
-    NEW_NERVE(HostTypeNrvStarPointerBind, Balloonfish, StarPointerBind);
-    NEW_NERVE(HostTypeNrvDashEnd, Balloonfish, DashEnd);
-    NEW_NERVE(HostTypeNrvDash, Balloonfish, Dash);
+namespace NrvBalloonfish {
     NEW_NERVE(HostTypeNrvWait, Balloonfish, Wait);
-};  // namespace NrvBalloonFish
+    NEW_NERVE(HostTypeNrvDash, Balloonfish, Dash);
+    NEW_NERVE(HostTypeNrvDashEnd, Balloonfish, Dash);
+    NEW_NERVE_ONEND(HostTypeNrvStarPointerBind, Balloonfish, StarPointerBind, StarPointerBind);
+};  // namespace NrvBalloonfish
 
-Balloonfish::Balloonfish(const char* pName) : LiveActor(pName), _8C(), _90(), _98(0.0f, 0.0f, 0.0f, 1.0f), _A8() {
-}
-Balloonfish::~Balloonfish() {
+Balloonfish::Balloonfish(const char* pName) : LiveActor(pName), mAnimeScaleController(), mNerveBeforeBind(), mQuat(0.0f, 0.0f, 0.0f, 1.0f), _A8() {
 }
 
 void Balloonfish::init(const JMapInfoIter& rIter) {
+    if (MR::isValidInfo(rIter)) {
+        MR::initDefaultPos(this, rIter);
+        MR::needStageSwitchReadAppear(this, rIter);
+        MR::FunctorV0M< Balloonfish*, void (Balloonfish::*)() > functor = MR::Functor_Inline(this, &Balloonfish::exeWait);
+        MR::listenStageSwitchOnAppear(this, functor);
+    }
+
+    initModelManagerWithAnm("Balloonfish", nullptr, false);
+    mQuat.setEuler(mRotation);
+    MR::connectToSceneEnemy(this);
+    MR::initLightCtrl(this);
+
+    f32 scale = mScale.y;
+    initBinder(100.0f * scale, 0.0f, 0);
+    initHitSensor(1);
+    MR::addHitSensorEnemy(this, "body", 32, 100.0f * scale, TVec3f(0.0f, 60.0f * scale, 0.0f));
+    initEffectKeeper(0, "Balloonfish", false);
+    initSound(2, false);
+    initNerve(&NrvBalloonfish::HostTypeNrvWait::sInstance);
+    MR::initStarPointerTarget(this, 110.0f, TVec3f(0.0f, 80.0f, 0.0f));
+    mAnimeScaleController = new AnimScaleController(nullptr);
+    MR::onCalcGravity(this);
+    MR::initShadowVolumeSphere(this, 80.0f * mScale.y);
+    MR::declareCoin(this, 1);
+    MR::invalidateClipping(this);
+    makeActorDead();
+}
+
+void Balloonfish::appear() {
+    LiveActor::appear();
+    MR::emitEffect(this, "AppearFromBox");
+    MR::startSound(this, "SE_EM_BLNFISH_APPEAR");
+}
+
+void Balloonfish::kill() {
+    LiveActor::kill();
+    MR::emitEffect(this, "Death");
+    MR::startSound(this, "SE_EM_BLNFISH_EXPLOSION");
+}
+
+void Balloonfish::control() {
+    mAnimeScaleController->updateNerve();
+}
+
+void Balloonfish::exeWait() {
+    if (MR::isFirstStep(this)) {
+        mVelocity.zero();
+        if (mSpine->getCurrentNerve() != mNerveBeforeBind) {
+            mNotBoundStep = 0;
+            MR::startBck(this, "appearance", nullptr);
+            MR::startSound(this, "SE_EM_BLNFISH_PRE_DASH");
+        }
+
+        mNerveBeforeBind = nullptr;
+    }
+
+    TVec3f center(*MR::getPlayerCenterPos());
+    TVec3f up(*MR::getPlayerVelocity() * 10.0f + center - mPosition);
+    f32 ratio = mNotBoundStep / 120.0f;
+    mScale.set2(1.0f * (1.0f - ratio) + 1.5f * ratio);
+    MR::blendQuatFrontUp(&mQuat, -mGravity, up, 0.02f, 0.1f);
+
+    if (mNotBoundStep > ::hWaitTime) {
+        setNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance);
+        return;
+    }
+
+    // "weak"
+    if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
+        mNerveBeforeBind = mSpine->getCurrentNerve();
+        setNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance);
+        return;
+    }
+
+    mNotBoundStep++;
+}
+
+void Balloonfish::exeDash() {
+    if (MR::isFirstStep(this)) {
+        if (isNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance)) {
+            if (mNerveBeforeBind != mSpine->getCurrentNerve()) {
+                mNotBoundStep = 0;
+                MR::startBck(this, "Attack", nullptr);
+                MR::emitEffect(this, "SwimBubble");
+            }
+        } else {
+            if (mNerveBeforeBind != mSpine->getCurrentNerve()) {
+                mNotBoundStep = 0;
+                MR::startBck(this, "AttackEnd", nullptr);
+                MR::emitEffect(this, "SwimBubble");
+            }
+        }
+
+        TVec3f zDir;
+        mQuat.getZDir(zDir);
+        mVelocity.set(zDir * 10.0f);
+
+        mNerveBeforeBind = nullptr;
+    }
+
+    MR::startLevelSound(this, "SE_EM_LV_BLNFISH_DASH");
+
+    s32 nerveMaxDuration;
+    if (isNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance)) {
+        nerveMaxDuration = 180;
+        f32 ratio = static_cast< f32 >(mNotBoundStep) / nerveMaxDuration;
+        mScale.set(1.5f * (1.0f - ratio) + 0.5f * ratio);
+    } else {
+        nerveMaxDuration = 95;
+    }
+
+    if (nerveMaxDuration < mNotBoundStep) {
+        if (isNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance)) {
+            setNerve(&NrvBalloonfish::HostTypeNrvDashEnd::sInstance);
+            return;
+        } else {
+            kill();
+            return;
+        }
+    }
+
+    if (!MR::isInWater(getSensor("body")->mPosition)) {
+        kill();
+        return;
+    }
+
+    // "weak"
+    if (MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
+        mNerveBeforeBind = mSpine->getCurrentNerve();
+        setNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance);
+        return;
+    }
+
+    mNotBoundStep++;
+}
+
+void Balloonfish::exeStarPointerBind() {
+    if (MR::isFirstStep(this)) {
+        MR::startDPDHitSound();
+        MR::setBckRate(this, 0.0f);
+        mAnimeScaleController->startDpdHitVibration();
+        MR::emitEffect(this, "Touch");
+    }
+
+    MR::startDPDFreezeLevelSound(this);
+    mVelocity.zero();
+
+    // "weak"
+    if (!MR::isStarPointerPointing2POnPressButton(this, "弱", true, false)) {
+        setNerve(mNerveBeforeBind);
+    }
+}
+
+void Balloonfish::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
+    if (!MR::isSensorPlayer(pReceiver)) {
+        return;
+    }
+
+    if (isNerve(&NrvBalloonfish::HostTypeNrvWait::sInstance) && MR::isLessStep(this, 82) ||
+        isNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance)) {
+        MR::sendMsgPush(pReceiver, pSender);
+    } else if (MR::sendMsgEnemyAttackMaximum(pReceiver, pSender) != true) {
+        MR::sendMsgPush(pReceiver, pSender);
+    }
+}
+
+bool Balloonfish::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
+    if (MR::isMsgStarPieceReflect(msg)) {
+        if (!isNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance)) {
+            mAnimeScaleController->startHitReaction();
+        }
+        return true;
+    }
+
+    if (MR::isMsgJetTurtleAttack(msg)) {
+        kill();
+        return true;
+    }
+
+    return false;
+}
+
+void Balloonfish::calcAndSetBaseMtx() {
+    TPos3f mtx;
+    mtx.makeQuat(mQuat);
+
+    TPos3f mtx2;
+    f32 zero = 0.0f;
+    mtx2.makeRotate(TVec3f(zero, zero, 1.0f), _A8);
+    mtx2.concat(mtx, mtx);
+
+    mtx.setTrans(mPosition);
+    MR::setBaseTRMtx(this, mtx);
+
+    TVec3f scale(mAnimeScaleController->_C * mScale);
+    MR::setBaseScale(this, scale);
+}
+
+void Balloonfish::endStarPointerBind() {
+    MR::setBckRate(this, 1.0f);
+    mAnimeScaleController->startAnim();
+    MR::deleteEffect(this, "Touch");
 }

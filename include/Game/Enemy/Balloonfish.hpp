@@ -2,10 +2,11 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
+class AnimScaleController;
+
 class Balloonfish : public LiveActor {
 public:
     Balloonfish(const char*);
-    virtual ~Balloonfish();
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
@@ -19,10 +20,11 @@ public:
     void exeDash();
     void exeDashEnd();
     void exeStarPointerBind();
+    void endStarPointerBind();
 
-    /* _8C */ u32 _8C;
-    /* _90 */ u32 _90;
-    /* _94 */ u32 _94;
-    /* _98 */ TQuat4f _98;
-    /* _A8 */ f32 _A8;
+    /* 0x8C */ AnimScaleController* mAnimeScaleController;
+    /* 0x90 */ const Nerve* mNerveBeforeBind;
+    /* 0x94 */ s32 mNotBoundStep;
+    /* 0x98 */ TQuat4f mQuat;
+    /* 0xA8 */ f32 _A8;
 };
