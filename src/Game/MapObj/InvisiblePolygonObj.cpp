@@ -1,6 +1,7 @@
 #include "Game/MapObj/InvisiblePolygonObj.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 
 InvisiblePolygonObj::InvisiblePolygonObj(const char* pName) : LiveActor(pName) {
@@ -10,7 +11,7 @@ InvisiblePolygonObj::InvisiblePolygonObj(const char* pName) : LiveActor(pName) {
 void InvisiblePolygonObj::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initCollision(rIter);
-    MR::connectToSceneMapObj(this);
+    MR::connectToSceneMapObjMovement(this);
     MR::setClippingTypeSphere(this, MR::getCollisionBoundingSphereRange(this));
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);

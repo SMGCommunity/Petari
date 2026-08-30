@@ -3,8 +3,8 @@
 #include "Game/Util.hpp"
 
 namespace NrvIceStep {
-    NEW_NERVE(IceStepNrvHit, IceStep, Hit);
     NEW_NERVE(IceStepNrvWait, IceStep, Wait);
+    NEW_NERVE(IceStepNrvHit, IceStep, Hit);
 };  // namespace NrvIceStep
 
 IceStep::IceStep(const char* pName) : LiveActor(pName) {
