@@ -24,7 +24,7 @@ u32 JAUSoundAnimation::getEndSoundIndex(f32 time) const {
 
 JAUSoundAnimator::JAUSoundAnimator(JAISoundHandles* pHandles) : mSoundAnimation(nullptr) {
     mHandles = pHandles;
-    mReversed = false;
+    mIsReversed = false;
 }
 
 void JAUSoundAnimator::removeAnimation() {
@@ -67,15 +67,15 @@ void JAUSoundAnimator::startAnimation(const JAUSoundAnimation* pAnimation, bool 
         return;
     }
 
-    mReversed = reversed;
+    mIsReversed = reversed;
     mTime = 0;
 
-    if (mReversed) {
-        mMaxSoundNo = mSoundAnimation->getNumSounds() - 1;
-        _14 = FLOAT_MAX;
+    if (mIsReversed) {
+        mLoopSoundIndex = mSoundAnimation->getNumSounds() - 1;
+        mLifeTime = FLOAT_MAX;
     } else {
-        mMaxSoundNo = 0;
-        _14 = 0.0f;
+        mLoopSoundIndex = 0;
+        mLifeTime = 0.0f;
     }
 
     setLoopFrame(loopStartFrame, loopEndFrame);
@@ -131,7 +131,7 @@ void JAUSoundAnimator::updateSoundLifeTime_(f32 time, f32 speed) {
                 continue;
             }
 
-            if (anim->stopsWhenNoteOff() && anim->isNotingOff(time, mReversed)) {
+            if (anim->stopsWhenNoteOff() && anim->isNotingOff(time, mIsReversed)) {
                 handles->getSound(idx)->stop();
             }
         }
@@ -160,7 +160,7 @@ bool JAUSoundAnimator::playsSound(const JAUSoundAnimationSound* pAnimation, cons
         return false;
     }
 
-    if (mReversed) {
+    if (mIsReversed) {
         if (pAnimation->playsOnlyForward()) {
             return false;
         }

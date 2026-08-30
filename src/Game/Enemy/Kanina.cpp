@@ -473,9 +473,9 @@ void Kanina::control() {
     updateMovement();
 
     if (MR::isInWater(this, TVec3f(0.0f, 0.0f, 0.0f))) {
-        MR::setSeVersion(this, 1);
+        MR::setSeVersion(this, SeVersion_WATER);
     } else {
-        MR::setSeVersion(this, 0);
+        MR::setSeVersion(this, SeVersion_NORMAL);
     }
 
     if (isStateBlink()) {

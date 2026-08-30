@@ -13,7 +13,7 @@ void FORCE_MATCH_SDATA2() {
 }
 
 AudSoundObject::AudSoundObject(TVec3f* pPos, u8 numHandles, JKRHeap* pHeap)
-    : JAUSoundObject(pPos, numHandles, pHeap), JKRDisposer(), _30(0), mMapCode(0), mMapCodeExtra(0), mHashDatas(nullptr), mNumSounds(0) {
+    : JAUSoundObject(pPos, numHandles, pHeap), JKRDisposer(), mSeVersion(0), mMapCode(0), mMapCodeExtra(0), mHashDatas(nullptr), mNumSounds(0) {
     mNumHandles = numHandles;
     if (mNumHandles > 0) {
         mHashDatas = new AudSoundObjHashData[numHandles];
@@ -388,7 +388,7 @@ void AudSoundObject::setCutoffToPort(JAISoundHandle* pHandle, JAISoundID soundID
 }
 
 JAISoundID AudSoundObject::convertSoundIdFromSeVersion(JAISoundID soundID) const {
-    if (_30 == 1) {
+    if (mSeVersion == 1) {  // TODO: enum
         switch (soundID) {
         case SE_EM_KURIBO_LAND:
             return SE_EM_KURIBO_LAND_2D;
