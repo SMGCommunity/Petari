@@ -7,9 +7,6 @@ public:
     ActorStateBaseInterface(const char* pName) : NerveExecutor(pName) {
     }
 
-    virtual ~ActorStateBaseInterface() {
-    }
-
     virtual void init() {
     }
 
@@ -32,13 +29,10 @@ public:
 template < typename T >
 class ActorStateBase : public ActorStateBaseInterface {
 public:
-    ActorStateBase(const char* pName, T* pActor) : ActorStateBaseInterface(pName), mHost(pActor) {
+    ActorStateBase(const char* pName, T* pHost) : ActorStateBaseInterface(pName), mHost(pHost) {
     }
 
-    virtual ~ActorStateBase() {
-    }
-
-    inline T* getHost() const {
+    T* getHost() const {
         return mHost;
     }
 
