@@ -18,8 +18,6 @@ public:
     MapObjActor(const char*);
     MapObjActor(const char*, const char*);
 
-    inline virtual ~MapObjActor();
-
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
