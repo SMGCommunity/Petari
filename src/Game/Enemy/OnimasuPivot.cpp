@@ -1,5 +1,5 @@
 #include "Game/Enemy/OnimasuPivot.hpp"
-#include "Game/Util/RailUtil.hpp"
+#include "Game/Util.hpp"
 
 OnimasuPivot::OnimasuPivot(const char* pName) : Onimasu(pName), mCurNormal(), mNormals() {
     _110.set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
@@ -11,7 +11,40 @@ void OnimasuPivot::initFromRailPoint() {
     mNormals.init(railPointNum);
 }
 
-// OnimasuPivot::startMoveInner
+void OnimasuPivot::startMoveInner() {
+    TVec3f pivot = getPivotPointPos();
+    TVec3f toLastPoint = getLastPointPos() - pivot;
+    TVec3f toNextPoint = getNextPointPos() - pivot;
+
+    if (MR::isSameDirection(toLastPoint, toNextPoint)) {
+        TPos3f mtx;
+        mtx.identity();
+        mtx.setRotate(_BC, PI / 1000.0f);
+        mtx.mult(toLastPoint, toLastPoint);
+    }
+
+    MR::makeQuatFromVec(&_110, toLastPoint, _BC);
+    MR::makeQuatFromVec(&_120, toNextPoint, _BC);
+}
+
+const TVec3f OnimasuPivot::getLastPointPos() const {
+    TVec3f point;
+    MR::calcRailPointPos(&point, this, 2 * getLastPointNo());
+    return point;
+}
+
+const TVec3f OnimasuPivot::getPivotPointPos() const {
+    TVec3f point;
+    MR::calcRailPointPos(&point, this, (getLastPointNo() * 2) + 1);
+    return point;
+}
+
+const TVec3f OnimasuPivot::getNextPointPos() const {
+    TVec3f point;
+    MR::calcRailPointPos(&point, this, 2 * mCurNormal);
+    return point;
+}
+
 // OnimasuPivot::updatePoseInner
 
 s32 OnimasuPivot::getNextPointNo() const {

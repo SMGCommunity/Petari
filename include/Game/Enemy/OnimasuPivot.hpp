@@ -18,6 +18,10 @@ public:
     virtual void startMoveInner();
     virtual void updatePoseInner();
 
+    const TVec3f getLastPointPos() const;
+    const TVec3f getPivotPointPos() const;
+    const TVec3f getNextPointPos() const;
+
     /* 0x104 */ s32 mCurNormal;
     MR::AssignableArray< TVec3f > mNormals;
     TQuat4f _110;
