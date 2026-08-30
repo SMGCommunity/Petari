@@ -1646,7 +1646,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/HipDropSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/HipDropTimerSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/HitWallTimerSwitch.cpp"),
-            Object(NonMatching, "Game/MapObj/IceStep.cpp"),
+            Object(Matching, "Game/MapObj/IceStep.cpp"),
             Object(NonMatching, "Game/MapObj/IceVolcanoUpDownPlane.cpp"),
             Object(NonMatching, "Game/MapObj/InvisiblePolygonObj.cpp"),
             Object(Matching, "Game/MapObj/InvisiblePolygonObjGCapture.cpp"),
