@@ -503,12 +503,13 @@ Game/AudioLib/AudSceneMgr.cpp:
 	.text       start:0x80031A30 end:0x80032454
 	.ctors      start:0x8052E834 end:0x8052E838
 	.rodata     start:0x80530A68 end:0x80530E38
+	.data       start:0x805663D8 end:0x80566790
 	.bss        start:0x8060A4E8 end:0x8060A500
 
 Game/AudioLib/AudSeStrategy.cpp:
 	.text       start:0x80032454 end:0x800327BC
 	.ctors      start:0x8052E838 end:0x8052E83C
-	.data       start:0x805663D8 end:0x805667B8
+	.data       start:0x80566790 end:0x805667B8
 	.bss        start:0x8060A500 end:0x8060A510
 	.sdata2     start:0x806B80B8 end:0x806B80C0
 
@@ -3158,6 +3159,7 @@ Game/Enemy/StinkBugSmall.cpp:
 Game/Enemy/StringSpider.cpp:
 	.text       start:0x801427AC end:0x80145210
 	.ctors      start:0x8052EB50 end:0x8052EB54
+	.rodata     start:0x80532570 end:0x80532578
 	.data       start:0x80584D40 end:0x805850A0
 	.sdata      start:0x806B1A70 end:0x806B1A80
 	.sbss       start:0x806B4830 end:0x806B4868
@@ -3166,6 +3168,7 @@ Game/Enemy/StringSpider.cpp:
 Game/Enemy/Takobo.cpp:
 	.text       start:0x80145210 end:0x80146AEC
 	.ctors      start:0x8052EB54 end:0x8052EB58
+	.rodata     start:0x80532578 end:0x80532588
 	.data       start:0x805850A0 end:0x805852B0
 	.sdata      start:0x806B1A80 end:0x806B1A88
 	.sbss       start:0x806B4868 end:0x806B4898
@@ -3202,7 +3205,7 @@ Game/Enemy/Teresa.cpp:
 Game/Enemy/TeresaWater.cpp:
 	.text       start:0x8014C790 end:0x8014CFE0
 	.ctors      start:0x8052EB64 end:0x8052EB68
-	.rodata     start:0x80532570 end:0x805325A8
+	.rodata     start:0x80532588 end:0x80532598
 	.data       start:0x80585A70 end:0x80585BB0
 	.sdata      start:0x806B1A98 end:0x806B1AA0
 	.sbss       start:0x806B4938 end:0x806B4948
@@ -3215,6 +3218,7 @@ Game/Enemy/TerritoryMover.cpp:
 Game/Enemy/Unizo.cpp:
 	.text       start:0x8014D14C end:0x8014F86C
 	.ctors      start:0x8052EB68 end:0x8052EB6C
+	.rodata     start:0x80532598 end:0x805325A0
 	.data       start:0x80585BB0 end:0x80585EC8
 	.sbss       start:0x806B4948 end:0x806B4970
 	.sdata2     start:0x806BB900 end:0x806BB9B0
@@ -3222,6 +3226,7 @@ Game/Enemy/Unizo.cpp:
 Game/Enemy/UnizoLauncher.cpp:
 	.text       start:0x8014F86C end:0x8014FBD0
 	.ctors      start:0x8052EB6C end:0x8052EB70
+	.rodata     start:0x805325A0 end:0x805325A8
 	.data       start:0x80585EC8 end:0x80585F60
 	.sbss       start:0x806B4970 end:0x806B4978
 	.sdata2     start:0x806BB9B0 end:0x806BB9B8
@@ -4771,13 +4776,13 @@ Game/MapObj/ElectricRail.cpp:
 
 Game/MapObj/ElectricRailHolder.cpp:
 	.text       start:0x801D5A7C end:0x801D6464
-	.data       start:0x80593AE8 end:0x80593C58
+	.data       start:0x80593AE8 end:0x80593C28
 	.sdata2     start:0x806BCEB8 end:0x806BCEC8
 
 Game/MapObj/ElectricRailMoving.cpp:
 	.text       start:0x801D6464 end:0x801D80B0
 	.ctors      start:0x8052ECF4 end:0x8052ECF8
-	.data       start:0x80593C58 end:0x80593E10
+	.data       start:0x80593C28 end:0x80593E10
 	.sbss       start:0x806B50E0 end:0x806B50F0
 	.sdata2     start:0x806BCEC8 end:0x806BCF10
 
@@ -6743,7 +6748,7 @@ Game/NPC/TrickRabbit.cpp:
 Game/NPC/TrickRabbitFreeRun.cpp:
 	.text       start:0x80296C54 end:0x80297A28
 	.ctors      start:0x8052F030 end:0x8052F034
-	.data       start:0x805B59A0 end:0x805B5C60
+	.data       start:0x805B59A0 end:0x805B5B30
 	.sdata      start:0x806B21B0 end:0x806B21B8
 	.sbss       start:0x806B6180 end:0x806B61A0
 	.sdata2     start:0x806BF1E0 end:0x806BF228
@@ -6751,7 +6756,7 @@ Game/NPC/TrickRabbitFreeRun.cpp:
 Game/NPC/TrickRabbitSnowCollect.cpp:
 	.text       start:0x80297A28 end:0x802989EC
 	.ctors      start:0x8052F034 end:0x8052F038
-	.data       start:0x805B5C60 end:0x805B5DF0
+	.data       start:0x805B5B30 end:0x805B5DF0
 	.sbss       start:0x806B61A0 end:0x806B61E0
 	.sdata2     start:0x806BF228 end:0x806BF238
 
@@ -12066,6 +12071,9 @@ MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 
 MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c:
 	.text       start:0x8052CD90 end:0x8052CF08
+
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s:
+	.init       start:0x800044C0 end:0x800063F4
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
 	.init       start:0x800063F4 end:0x80006420

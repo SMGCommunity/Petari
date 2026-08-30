@@ -188,15 +188,15 @@ s32 BossStinkBugActionBase::calcIIRCutOff() const {
 void BossStinkBugActionBase::updateSound() {
     if (getHost()->isLegInWater()) {
         if (isAngry()) {
-            MR::setSeVersion(getHost(), 3);
+            MR::setSeVersion(getHost(), BossStinkBug::SeVersion_ANGRY_WATER);
         } else {
-            MR::setSeVersion(getHost(), 1);
+            MR::setSeVersion(getHost(), BossStinkBug::SeVersion_WATER);
         }
     } else {
         if (isAngry()) {
-            MR::setSeVersion(getHost(), 2);
+            MR::setSeVersion(getHost(), BossStinkBug::SeVersion_ANGRY);
         } else {
-            MR::setSeVersion(getHost(), 0);
+            MR::setSeVersion(getHost(), BossStinkBug::SeVersion_NORMAL);
         }
     }
 }

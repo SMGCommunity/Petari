@@ -9,9 +9,7 @@ public:
     virtual ~Onimasu();
 
     TPos3f _8C;
-    f32 _BC;
-    f32 _C0;
-    f32 _C4;
+    TVec3f _BC;
     TQuat4f _C8;
     TQuat4f _D8;
     TQuat4f _E8;

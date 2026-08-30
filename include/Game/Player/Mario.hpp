@@ -56,6 +56,11 @@ struct SoundList;
 
 class Mario : public MarioModule {
 public:
+    enum SeVersion {
+        SeVersion_NORMAL = 0,
+        SeVersion_DARK = 1,
+    };
+
     typedef bool (Mario::*Task)(u32);
     Mario(MarioActor*);
 
@@ -582,6 +587,16 @@ public:
     }
     inline const DrawStates& getPrevDrawStates() const {
         return mPrevDrawStates;
+    }
+
+    inline void setJumpVec(const TVec3f& rVec) {
+        mJumpVec = rVec;
+    }
+
+    inline void resetInline() {
+        _74C = 0.0f;
+        _750 = 0;
+        _754 = 0;
     }
 
     inline void set3BC(u16 val) {

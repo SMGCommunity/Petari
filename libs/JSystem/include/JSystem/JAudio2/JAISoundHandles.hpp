@@ -24,6 +24,10 @@ public:
         return getHandle(n)->getSound();
     }
 
+    int getNumHandles() const {
+        return mNumHandles;
+    }
+
     JAISoundHandle* getHandleSoundID(JAISoundID);
     JAISoundHandle* getFreeHandle();
     JAISoundHandle* getHandleUserData(u32);

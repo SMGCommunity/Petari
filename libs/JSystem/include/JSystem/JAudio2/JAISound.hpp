@@ -64,8 +64,14 @@ public:
         return mID.info.waveID;
     }
 
-    void getWaveID(u16 id) {
+    void setWaveID(u16 id) {
         mID.info.waveID = id;
+    }
+
+    void set(u8 sectionID, u8 groupID, u16 waveID) {
+        setSectionID(sectionID);
+        setGroupID(groupID);
+        setWaveID(waveID);
     }
 
     /* 0x00 */ union {
@@ -309,16 +315,16 @@ struct JAISoundFader {
 
 template < typename T >
 struct JAISoundStrategy {
-    virtual ~JAISoundStrategy();
+    virtual ~JAISoundStrategy(){};
     virtual void calc(T*);
-    virtual void mix(T*, const JASSoundParams&);
+    virtual void mix(T*, JASSoundParams*);
 };
 
 template < typename T >
 struct JAISoundStrategyMgr {
-    virtual ~JAISoundStrategyMgr();
-    virtual JAISoundStrategy< T >* calc(JAISoundID);
-    virtual void deleteStrategy(JAISoundStrategy< T >*);
+    virtual ~JAISoundStrategyMgr(){};
+    virtual JAISoundStrategy< T >* newStrategy(JAISoundID);
+    virtual bool deleteStrategy(JAISoundStrategy< T >*);
 };
 
 class JAISoundActivity {

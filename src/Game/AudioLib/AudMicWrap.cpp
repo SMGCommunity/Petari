@@ -12,18 +12,18 @@ namespace AudMicWrap {
     void setMicEnv() {
         AudSystem* pSystem = AudWrap::getSystem();
 
-        pSystem->mAudience.mSetting._0 = AudParams::micFarDistance;
-        pSystem->mAudience.mSetting._4 = AudParams::micNearDistance;
-        pSystem->mAudience.mSetting._8 = AudParams::micMinVolume;
-        pSystem->mAudience.mSetting._C = AudParams::micFrontDolbyZ;
-        pSystem->mAudience.mSetting._10 = AudParams::micBehindDolbyZ;
-        pSystem->mAudience.mSetting._14 = AudParams::micMaxDolby;
-        pSystem->mAudience.mSetting._18 = AudParams::micMinDolby;
-        pSystem->mAudience.mSetting._1C = AudParams::micCenterDolby;
-        pSystem->mAudience.mSetting._28 = AudParams::micPanAmplitude;
-        pSystem->mAudience.mSetting._2C = AudParams::micSonicSpeed;
-        pSystem->mAudience.mSetting._30 = AudParams::micPitchDeltaRatioRange;
-        pSystem->mAudience.mSetting._34 = AudParams::micPriorityDownRange;
+        pSystem->mAudience.mSetting.mFarDistance = AudParams::micFarDistance;
+        pSystem->mAudience.mSetting.mNearDistance = AudParams::micNearDistance;
+        pSystem->mAudience.mSetting.mMinVolume = AudParams::micMinVolume;
+        pSystem->mAudience.mSetting.mFrontDolbyZ = AudParams::micFrontDolbyZ;
+        pSystem->mAudience.mSetting.mBehindDolbyZ = AudParams::micBehindDolbyZ;
+        pSystem->mAudience.mSetting.mMaxDolby = AudParams::micMaxDolby;
+        pSystem->mAudience.mSetting.mMinDolby = AudParams::micMinDolby;
+        pSystem->mAudience.mSetting.mCenterDolby = AudParams::micCenterDolby;
+        pSystem->mAudience.mSetting.mPanAmplitude = AudParams::micPanAmplitude;
+        pSystem->mAudience.mSetting.mSonicSpeed = AudParams::micSonicSpeed;
+        pSystem->mAudience.mSetting.mPitchDeltaRatioRange = AudParams::micPitchDeltaRatioRange;
+        pSystem->mAudience.mSetting.mPriorityDownRange = AudParams::micPriorityDownRange;
 
         AudWrap::getSystem()->mAudience.updateSetting();
     }

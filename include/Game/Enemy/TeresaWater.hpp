@@ -5,18 +5,12 @@
 class AnimScaleController;
 class WalkerStateBindStarPointer;
 
-struct TeresaWaterMoveParam {
-    f32 _0;
-    f32 _4;
-    f32 _8;
-    f32 _C;
-};
-
 class TeresaWater : public LiveActor {
 public:
-    TeresaWater(const char*);
+    /// @brief Creates a new `TeresaWater`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TeresaWater(const char* pName);
 
-    virtual ~TeresaWater();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void control();
@@ -31,10 +25,10 @@ public:
     void endDPDSwoon();
     bool tryDPDSwoon();
 
-    AnimScaleController* _8C;
-    WalkerStateBindStarPointer* _90;
-    TVec3f _94;
-    TVec3f _A0;
-    TVec3f _AC;
-    TVec3f* _B8;
+    /* 0x8C */ AnimScaleController* _8C;
+    /* 0x90 */ WalkerStateBindStarPointer* _90;
+    /* 0x94 */ TVec3f _94;
+    /* 0xA0 */ TVec3f _A0;
+    /* 0xAC */ TVec3f _AC;
+    /* 0xB8 */ TVec3f* _B8;
 };

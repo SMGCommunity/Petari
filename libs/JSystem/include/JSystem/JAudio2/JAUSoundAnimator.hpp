@@ -30,7 +30,7 @@ public:
         return (mFlags & 0x20) != 0;  // 0x20
     }
     bool setsLifeTime() const {
-        return (mFlags >> 6) & 1;  // 0x40
+        return (mFlags & 0x40) != 0;  // 0x40
     }
     bool playsAtIntervals() const {
         return (mFlags & 0x80) != 0;  // 0x80
@@ -85,7 +85,20 @@ public:
     /* 0x04 */ f32 mNoteOnTime;
     /* 0x08 */ f32 mNoteOffTime;
     /* 0x0C */ f32 mBasePitch;
-    /* 0x10 */ u32 mFlags;
+    /* 0x10 */  // u32 mFlags;
+    union {
+        /* 0x10 */ struct {
+            bool mPlaysAtIntervals : 1;
+            bool mSetsLifeTime : 1;
+            bool mStopsWhenSpeedIsZero : 1;
+            bool mStopsWhenNoteOff : 1;
+            bool mPlaysOnlyOnce : 1;
+            bool mStopsWhenAnimationChanges : 1;
+            bool mPlaysOnlyReverse : 1;
+            bool mPlaysOnlyForward : 1;
+        };
+        /* 0x10 */ u32 mFlags;
+    };
     /* 0x14 */ u8 mBaseVolume;
     /* 0x15 */ s8 mPitchDelta;
     /* 0x16 */ u8 mPlayTime;
@@ -93,7 +106,7 @@ public:
     /* 0x18 */ s8 mVolumeDelta;
     /* 0x19 */ u8 mRepeatInterval;
     /* 0x1A */ s8 _1A;
-    /* 0x1B */ u8 _1B[5];
+    /* 0x1C */ u32 _1C;
 };
 
 class JAUSoundAnimation;
@@ -148,19 +161,23 @@ public:
     }
     void startAnimation(const JAUSoundAnimation* pAnimation, bool reversed, f32 loopStartFrame, f32 loopEndFrame);
     void removeAnimation();
-    void updateSoundLifeTime_(f32 loopStartFrame, f32 loopEndFrame);
+    void updateSoundLifeTime_(f32 time, f32 speed);
 
     JAISound* getSound(int index) {
         return mHandles->getHandle(index)->getSound();
     }
 
+    s32 getNumHandles() const {
+        return mHandles->mNumHandles;
+    }
+
     /* 0x04 */ JAISoundHandles* mHandles;
     /* 0x08 */ const JAUSoundAnimation* mSoundAnimation;
-    /* 0x0C */ bool mReversed;
-    /* 0x10 */ u32 mMaxSoundNo;
-    /* 0x14 */ f32 _14;  // something "max"
-    /* 0x18 */ u32 mLoopStartSoundIndex;
-    /* 0x1C */ u32 mLoopEndSoundIndex;
+    /* 0x0C */ bool mIsReversed;
+    /* 0x10 */ s32 mLoopSoundIndex;
+    /* 0x14 */ f32 mLifeTime;
+    /* 0x18 */ s32 mLoopStartSoundIndex;
+    /* 0x1C */ s32 mLoopEndSoundIndex;
     /* 0x20 */ f32 mLoopStartFrame;
     /* 0x24 */ f32 mLoopEndFrame;
     /* 0x28 */ s32 mTime;

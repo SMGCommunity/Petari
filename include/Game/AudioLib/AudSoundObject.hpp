@@ -80,7 +80,7 @@ public:
         return AudWrap::getSystem()->isEnableStartSound(soundID);
     }
 
-    /* 0x30 */ u32 _30;  // so far: mIsIn2D, is this an enum or an int-like bool?
+    /* 0x30 */ u32 mSeVersion;  // TODO: Kuribo and Metbo "_DARK"?
     /* 0x34 */ s32 mMapCode;
     /* 0x38 */ s32 mMapCodeExtra;
     /* 0x3C */ AudSoundObjHashData* mHashDatas;

@@ -3,8 +3,12 @@
 #include "Game/LiveActor/LiveActor.hpp"
 
 class FootPrint;
+class RabbitStateCaught;
+class RabbitStateWaitStart;
 class SpotMarkLight;
 class TalkMessageCtrl;
+class WalkerStateBlowDamage;
+class WalkerStateRunaway;
 
 class TrickRabbitFreeRun : public LiveActor {
 public:
@@ -26,6 +30,10 @@ public:
     void initState();
     bool receiveMsgBlowDamage(HitSensor* pSender, HitSensor* pReceiver);
     bool requestCaught();
+    bool isEnableCaught() const;
+    bool isEnableBlowDamage() const NO_INLINE;
+    void startJumpSound();
+
     void exeWaitStart();
     void exeTryDemo();
     void exeRunawayStart();
@@ -34,17 +42,14 @@ public:
     void exeCaught();
     void exePowerStarDemo();
     void exeGiveUp();
-    bool isEnableCaught() const;
-    bool isEnableBlowDamage() const;
-    void startJumpSound();
 
-    /* 0x8C */ TQuat4f _8C;
-    /* 0x9C */ TVec3f _9C;
-    /* 0xA8 */ s32 _A8;
-    /* 0xAC */ s32 _AC;
-    /* 0xB0 */ s32 _B0;
-    /* 0xB4 */ s32 _B4;
-    /* 0xB8 */ TalkMessageCtrl* mTalkMessageCtrl;
+    /* 0x8C */ TQuat4f mRotateQuat;
+    /* 0x9C */ TVec3f mFrontVec;
+    /* 0xA8 */ RabbitStateWaitStart* mStateWaitStart;
+    /* 0xAC */ WalkerStateRunaway* mStateRunaway;
+    /* 0xB0 */ WalkerStateBlowDamage* mStateBlowDamage;
+    /* 0xB4 */ RabbitStateCaught* mStateCaught;
+    /* 0xB8 */ TalkMessageCtrl* mTalkCtrl;
     /* 0xBC */ FootPrint* mFootPrint;
     /* 0xC0 */ SpotMarkLight* mSpotMarkLight;
 };

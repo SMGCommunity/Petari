@@ -23,5 +23,9 @@ public:
     }
     void updateAnimSound(f32, const TVec3f&, JAISoundStarter*);
     void startAnimSound(const TVec3f&, f32, JAISoundStarter*);
-    void releaseHandleIfNecessary(JAISoundHandle*, u32);
+    bool releaseHandleIfNecessary(JAISoundHandle*, u32);
+
+    JAISoundHandles* getAnimatorHandles() {
+        return JAUSoundAnimator::mHandles;
+    }
 };

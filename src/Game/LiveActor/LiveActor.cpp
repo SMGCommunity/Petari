@@ -80,7 +80,7 @@ void LiveActor::kill() {
 }
 
 void LiveActor::makeActorDead() {
-    mVelocity.x = mVelocity.y = mVelocity.z = 0.0f;
+    mVelocity.zero();
 
     MR::clearHitSensors(this);
 
@@ -269,9 +269,9 @@ s32 LiveActor::getNerveStep() const {
     return mSpine->mStep;
 }
 
-HitSensor* LiveActor::getSensor(const char* pSensorName) const {
+HitSensor* LiveActor::getSensor(const char* pName) const {
     if (mSensorKeeper != nullptr) {
-        return mSensorKeeper->getSensor(pSensorName);
+        return mSensorKeeper->getSensor(pName);
     }
 
     return nullptr;
@@ -326,9 +326,9 @@ void LiveActor::endClipped() {
     MR::connectToDrawTemporarily(this);
 }
 
-void LiveActor::initModelManagerWithAnm(const char* pModelArcName, const char* pAnimArcName, bool a3) {
+void LiveActor::initModelManagerWithAnm(const char* pModelName, const char* pAnimName, bool a3) {
     mModelManager = new ModelManager();
-    mModelManager->init(pModelArcName, pAnimArcName, a3);
+    mModelManager->init(pModelName, pAnimName, a3);
 
     MR::getJ3DModel(this)->setBaseScale(mScale);
     LiveActor::calcAndSetBaseMtx();
@@ -346,8 +346,8 @@ void LiveActor::initHitSensor(int numSensors) {
     mSensorKeeper = new HitSensorKeeper(numSensors);
 }
 
-void LiveActor::initBinder(f32 a, f32 b, u32 c) {
-    mBinder = new Binder(getBaseMtx(), &mPosition, &mGravity, a, b, c);
+void LiveActor::initBinder(f32 radius, f32 offsetY, u32 planeNum) {
+    mBinder = new Binder(getBaseMtx(), &mPosition, &mGravity, radius, offsetY, planeNum);
 
     MR::onBind(this);
 
@@ -374,16 +374,16 @@ void LiveActor::initEffectKeeper(int a1, const char* a2, bool doSort) {
     }
 }
 
-void LiveActor::initSound(int param1, bool param2) {
-    if (!param2) {
+void LiveActor::initSound(int param1, bool is2D) {
+    if (!is2D) {
         mSoundObject = new AudAnmSoundObject(&mPosition, param1, MR::getCurrentHeap());
     } else {
         mSoundObject = new AudAnmSoundObject(nullptr, param1, MR::getCurrentHeap());
     }
 }
 
-void LiveActor::initShadowControllerList(u32 numShadows) {
-    mShadowControllerList = new ShadowControllerList(this, numShadows);
+void LiveActor::initShadowControllerList(u32 shadowNum) {
+    mShadowControllerList = new ShadowControllerList(this, shadowNum);
 }
 
 void LiveActor::initActorCollisionParts(const char* pParam1, HitSensor* pParam2, ResourceHolder* pParam3, MtxPtr pParam4, bool param5, bool param6) {

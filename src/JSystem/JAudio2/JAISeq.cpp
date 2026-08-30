@@ -28,7 +28,7 @@ void JAISeq::JAISeqMgr_startID_(JAISoundID id, const TVec3f* posPtr, JAIAudience
     start_JAISound_(id, posPtr, audience);
 
     if (inner_.strategyMgr) {
-        soundStrategy = inner_.strategyMgr->calc(id);
+        soundStrategy = inner_.strategyMgr->newStrategy(id);
     } else {
         soundStrategy = nullptr;
     }
@@ -198,7 +198,7 @@ void JAISeq::mixOut_(const JASSoundParams& params, JAISoundActivity activity) {
     mParams.mixOutAll(params, &outParams, mFader.getIntensity());
 
     if (soundStrategy) {
-        soundStrategy->mix(this, outParams);
+        soundStrategy->mix(this, &outParams);
     }
 
     if (mAudible) {

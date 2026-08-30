@@ -7,6 +7,11 @@ class JAUSectionHeap;
 
 class AudSceneMgr {
 public:
+    enum PlayerMode {
+        PlayerMode_Mario = 1,
+        PlayerMode_Luigi = 2,
+    };
+
     AudSceneMgr(JAUSectionHeap*);
 
     bool isLoadDoneSystemInit();
@@ -29,12 +34,16 @@ public:
     void loadPlayerResource();
     bool isPlayerResourceLoaded();
 
+    bool isPlayerModeLuigi() {
+        return mPlayerMode == PlayerMode_Luigi;
+    }
+
     /* 0x00 */ JAUSectionHeap* _0;
     /* 0x04 */ u32 _4;
     /* 0x08 */ u32 _8;
     /* 0x0C */ s32 _C;
     /* 0x10 */ u32 _10;
-    /* 0x14 */ u32 mPlayerMode;
+    /* 0x14 */ s32 mPlayerMode;
     /* 0x18 */ u32 _18;
     /* 0x1C */ u8 _1C;
     /* 0x1D */ bool _1D;

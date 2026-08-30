@@ -77,7 +77,7 @@ s32 VFiPFVOL_DoMountVolume(PF_VOLUME* p_vol) {
 
     result = VFiPFCACHE_InitCaches(p_vol);
     if (result) {
-        return err;
+        return result;
     }
 
     p_vol->flags |= 2u;
