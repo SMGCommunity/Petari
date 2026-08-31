@@ -12,10 +12,7 @@ struct LightInfo {
 struct LightInfoCoin {
     LightInfo base;
     struct {
-        u8 _14;
-        u8 _15;
-        u8 _16;
-        u8 _17;
+        GXColor _14;
         f32 _18;
     };
 };
