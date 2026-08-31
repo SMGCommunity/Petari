@@ -69,7 +69,7 @@ namespace {
         snprintf(posBuf, sizeof(posBuf), "%sPos", pName);
         MR::getCsvDataVec(&pLightInfo->mPos, pInfo, posBuf, id);
         char camBuf[128];
-        snprintf(camBuf, sizeof(camBuf), "%sFollowCamra", pName);
+        snprintf(camBuf, sizeof(camBuf), "%sFollowCamera", pName);
         MR::getCsvDataBool(&pLightInfo->mIsFollowCamera, pInfo, camBuf, id);
     }
 
