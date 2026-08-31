@@ -12,7 +12,6 @@ class GCapture : public LiveActor {
 public:
     GCapture(const char*);
 
-    virtual ~GCapture();
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void control();
@@ -32,20 +31,11 @@ public:
     bool tryBreak();
     bool tryFireDamage();
     bool tryRelease();
-    void exeCoolDown();
-    void exeWait();
-    void exeCapture();
-    void endCapture();
-    void exeRecapture();
-    void endRecapture();
-    void exeTraction();
-    void exeHold();
-    void exeBreak();
     void endBindByDamage(s32);
     void endBindByFireDamage();
     void calcBindActorPose();
     void updateBindActorMatrix();
-    bool canRequestTarget() const;
+    bool canRequestTarget() const NO_INLINE;
     bool canCancelBind() const;
     void upTractPower();
     void downTractPower();
@@ -60,27 +50,37 @@ public:
     void releaseTractTarget();
     void updateCameraTargetMatrix();
 
-    TPos3f _8C;
-    TQuat4f _BC;
-    TVec3f _CC;
-    TVec3f _D8;
-    TVec3f _E4;
-    TVec3f _F0;
-    TVec3f _FC;
-    LiveActor* _108;
-    GCaptureTargetable* mTarget;  // 0x10C
-    GCaptureTargetable* _110;
-    GCaptureRibbon* mCaptureRibbon;  // 0x114
-    CameraTargetMtx* mTargetMtx;     // 0x118
-    SpringValue* mSpringValue;       // 0x11C
-    f32 mTractPower;                 // 0x120
-    f32 _124;
-    f32 _128;
-    u32 _12C;
-    f32 _130;
-    u32 _134;
-    u8 _138;
-    u8 _139;
+    void exeCoolDown();
+    void exeWait();
+    void exeCapture();
+    void endCapture();
+    void exeRecapture();
+    void endRecapture();
+    void exeTraction();
+    void exeHold();
+    void exeBreak();
+
+    /* 0x8C */ TPos3f _8C;
+    /* 0xBC */ TQuat4f _BC;
+    /* 0xCC */ TVec3f mEffectPos;
+    /* 0xD8 */ TVec3f _D8;
+    /* 0xE4 */ TVec3f _E4;
+    /* 0xF0 */ TVec3f _F0;
+    /* 0xFC */ TVec3f _FC;
+    /* 0x108 */ LiveActor* _108;
+    /* 0x10C */ GCaptureTargetable* mTarget;
+    /* 0x110 */ GCaptureTargetable* _110;
+    /* 0x114 */ GCaptureRibbon* mCaptureRibbon;
+    /* 0x118 */ CameraTargetMtx* mTargetMtx;
+    /* 0x11C */ SpringValue* mSpringValue;
+    /* 0x120 */ f32 mTractPower;
+    /* 0x124 */ f32 _124;
+    /* 0x128 */ f32 _128;
+    /* 0x12C */ s32 _12C;
+    /* 0x130 */ f32 _130;
+    /* 0x134 */ s32 mGuidanceTime;
+    /* 0x138 */ bool mIsStarPointerPointing;  // useless
+    /* 0x139 */ bool _139;                    // useless
 };
 
 namespace MR {
