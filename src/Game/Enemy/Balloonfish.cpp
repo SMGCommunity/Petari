@@ -1,14 +1,12 @@
 #include "Game/Enemy/Balloonfish.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
-#include "Game/LiveActor/LiveActor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/EffectUtil.hpp"
 #include "Game/Util/Functor.hpp"
-#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MathUtil.hpp"
@@ -16,18 +14,16 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 namespace {
     static const s32 hWaitTime = 120;
-    // static const ??? hAttackBeginTime = ???;
-    // static const ??? hTargetPlayerVelocityMult = ???;
-    // static const ??? hWaitMaxScale = ???;
-    // static const ??? hDashTime = ???;
-    // static const ??? hDashVel = ???;
-    // static const ??? hDashScale = ???;
-    // static const ??? hDashEndTime = ???;
+    static const s32 hAttackBeginTime = 82;
+    static const f32 hTargetPlayerVelocityMult = 10.0f;
+    static const f32 hWaitMaxScale = 1.5f;
+    static const s32 hDashTime = 180;
+    static const f32 hDashVel = 10.0f;
+    static const f32 hDashScale = 0.5f;
+    static const s32 hDashEndTime = 95;
     // static const ??? hRotateAngle = ???;
 }  // namespace
 
@@ -61,6 +57,7 @@ void Balloonfish::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, "Balloonfish", false);
     initSound(2, false);
     initNerve(&NrvBalloonfish::HostTypeNrvWait::sInstance);
+    // float regswap
     f32 offset = 80.0f;
     MR::initStarPointerTarget(this, 110.0f, TVec3f(0.0f, offset, 0.0f));
     mAnimeScaleController = new AnimScaleController(nullptr);
@@ -100,11 +97,11 @@ void Balloonfish::exeWait() {
     }
 
     TVec3f center(*MR::getPlayerCenterPos());
-    center += *MR::getPlayerVelocity() * 10.0f;
+    center += *MR::getPlayerVelocity() * ::hTargetPlayerVelocityMult;
     center -= mPosition;
 
-    f32 ratio = mNotBoundStep / 120.0f;
-    f32 scale = (1.0f - ratio) * 1.0f + ratio * 1.5f;
+    f32 ratio = static_cast< f32 >(mNotBoundStep) / ::hWaitTime;
+    f32 scale = (1.0f - ratio) * 1.0f + ratio * ::hWaitMaxScale;
     mScale.set(scale, scale, scale);
     MR::blendQuatFrontUp(&mQuat, -mGravity, center, 0.02f, 0.1f);
 
@@ -141,7 +138,7 @@ void Balloonfish::exeDash() {
 
         TVec3f zDir;
         mQuat.getZDir(zDir);
-        mVelocity.set(zDir * 10.0f);
+        mVelocity.set(zDir * ::hDashVel);
 
         mNerveBeforeBind = nullptr;
     }
@@ -150,11 +147,11 @@ void Balloonfish::exeDash() {
 
     s32 nerveMaxDuration;
     if (isNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance)) {
-        nerveMaxDuration = 180;
+        nerveMaxDuration = ::hDashTime;
         f32 ratio = static_cast< f32 >(mNotBoundStep) / nerveMaxDuration;
-        mScale.set(1.5f * (1.0f - ratio) + 0.5f * ratio);
+        mScale.set(::hWaitMaxScale * (1.0f - ratio) + ::hDashScale * ratio);
     } else {
-        nerveMaxDuration = 95;
+        nerveMaxDuration = ::hDashEndTime;
     }
 
     if (nerveMaxDuration < mNotBoundStep) {
@@ -204,10 +201,13 @@ void Balloonfish::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         return;
     }
 
-    if (isNerve(&NrvBalloonfish::HostTypeNrvWait::sInstance) && MR::isLessStep(this, 82) ||
+    if (isNerve(&NrvBalloonfish::HostTypeNrvWait::sInstance) && MR::isLessStep(this, ::hAttackBeginTime) ||
         isNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance)) {
         MR::sendMsgPush(pReceiver, pSender);
-    } else if (MR::sendMsgEnemyAttackMaximum(pReceiver, pSender) != true) {
+        return;
+    }
+
+    if (MR::sendMsgEnemyAttackMaximum(pReceiver, pSender) != true) {
         MR::sendMsgPush(pReceiver, pSender);
     }
 }

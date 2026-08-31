@@ -4,6 +4,7 @@
 
 class AnimScaleController;
 
+/// @brief Spiny Cheep Cheep
 class Balloonfish : public LiveActor {
 public:
     Balloonfish(const char*);
