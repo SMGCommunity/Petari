@@ -8,9 +8,6 @@ class RailMoveObj : public MapObjActor {
 public:
     RailMoveObj(const char*);
 
-    virtual ~RailMoveObj() {
-    }
-
     virtual void init(const JMapInfoIter&);
     virtual void startClipped();
     virtual void endClipped();
@@ -37,7 +34,6 @@ class RailMoveObjPress : public RailMoveObj {
 public:
     RailMoveObjPress(const char*);
 
-    virtual ~RailMoveObjPress();
     virtual void init(const JMapInfoIter&);
 };
 
@@ -45,7 +41,6 @@ class RailMoveObjBreakAtEnd : public RailMoveObj {
 public:
     RailMoveObjBreakAtEnd(const char*);
 
-    virtual ~RailMoveObjBreakAtEnd();
     virtual void doAtEndPoint();
 };
 
@@ -53,8 +48,6 @@ class RailMoveIndirectObj : public RailMoveObj {
 public:
     inline RailMoveIndirectObj(const char* pName) : RailMoveObj(pName) {
     }
-
-    virtual ~RailMoveIndirectObj();
 
     virtual void connectToScene(const MapObjActorInitInfo&);
 };
@@ -64,7 +57,6 @@ public:
     inline RailMoveObjSwitchShadow(const char* pName) : RailMoveObj(pName) {
     }
 
-    virtual ~RailMoveObjSwitchShadow();
     virtual void init(const JMapInfoIter&);
     virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
 
@@ -75,7 +67,6 @@ class RailDemoMoveObj : public RailMoveObj {
 public:
     RailDemoMoveObj(const char*);
 
-    virtual ~RailDemoMoveObj();
     virtual void init(const JMapInfoIter&);
     virtual bool tryStartMove();
     virtual void startMoveInner();
@@ -89,7 +80,6 @@ class RailRotateMoveObj : public RailMoveObj {
 public:
     RailRotateMoveObj(const char*);
 
-    virtual ~RailRotateMoveObj();
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
     virtual void setupInitInfo(const JMapInfoIter&, MapObjActorInitInfo*);

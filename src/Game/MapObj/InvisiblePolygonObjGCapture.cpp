@@ -1,6 +1,4 @@
 #include "Game/MapObj/InvisiblePolygonObjGCapture.hpp"
-#include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 
 InvisiblePolygonObjGCapture::InvisiblePolygonObjGCapture(const char* pName) : InvisiblePolygonObj(pName) {

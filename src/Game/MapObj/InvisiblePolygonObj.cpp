@@ -5,7 +5,7 @@
 #include <cstdio>
 
 InvisiblePolygonObj::InvisiblePolygonObj(const char* pName) : LiveActor(pName) {
-    mMatrix.identity();
+    mBaseMtx.identity();
 }
 
 void InvisiblePolygonObj::init(const JMapInfoIter& rIter) {
@@ -13,6 +13,7 @@ void InvisiblePolygonObj::init(const JMapInfoIter& rIter) {
     initCollision(rIter);
     MR::connectToSceneMapObjMovement(this);
     MR::setClippingTypeSphere(this, MR::getCollisionBoundingSphereRange(this));
+
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
@@ -23,24 +24,32 @@ void InvisiblePolygonObj::init(const JMapInfoIter& rIter) {
 
 void InvisiblePolygonObj::initBaseMtx() {
     if (0.0f == mRotation.x && 0.0f == mRotation.z) {
-        MR::makeMtxTransRotateY(mMatrix.toMtxPtr(), this);
+        MR::makeMtxTransRotateY(mBaseMtx.toMtxPtr(), this);
     } else {
-        MR::makeMtxTR(mMatrix.toMtxPtr(), this);
+        MR::makeMtxTR(mBaseMtx.toMtxPtr(), this);
     }
 }
 
-void InvisiblePolygonObj::initCollision(const JMapInfoIter& rIter) {
-    InvisiblePolygonObj::initBaseMtx();
-    const char* name = nullptr;
-    char pName[0x40];
-    MR::getObjectName(&name, rIter);
-    snprintf(pName, sizeof(pName), "%s.arc", name);
-    ResourceHolder* resource = MR::createAndAddResourceHolder(pName);
-    initHitSensor(1);
-    HitSensor* sensor = MR::addBodyMessageSensorMapObj(this);
-    MR::initCollisionPartsFromResourceHolder(this, name, sensor, resource, nullptr);
+InvisiblePolygonObj::~InvisiblePolygonObj() {
 }
 
 MtxPtr InvisiblePolygonObj::getBaseMtx() const {
-    return (MtxPtr)&mMatrix;
+    return (MtxPtr)&mBaseMtx;
+}
+
+void InvisiblePolygonObj::initCollision(const JMapInfoIter& rIter) {
+    initBaseMtx();
+
+    const char* pName = nullptr;
+    char fileName[0x40];
+    MR::getObjectName(&pName, rIter);
+    snprintf(fileName, sizeof(fileName), "%s.arc", pName);
+
+    ResourceHolder* resource = MR::createAndAddResourceHolder(fileName);
+
+    initHitSensor(1);
+
+    HitSensor* sensor = MR::addBodyMessageSensorMapObj(this);
+
+    MR::initCollisionPartsFromResourceHolder(this, pName, sensor, resource, nullptr);
 }
