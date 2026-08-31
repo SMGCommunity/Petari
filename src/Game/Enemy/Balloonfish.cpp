@@ -25,7 +25,7 @@ namespace {
     static const f32 hDashScale = 0.5f;
     static const s32 hDashEndTime = 95;
     // static const ??? hRotateAngle = ???;
-}  // namespace
+};  // namespace
 
 namespace NrvBalloonfish {
     NEW_NERVE(HostTypeNrvWait, Balloonfish, Wait);
