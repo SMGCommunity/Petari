@@ -53,16 +53,16 @@ public:
     /* 0x098 */ ModelObj* mShadowModel;
     /* 0x09C */ ModelObj* mSelectModel;
     /* 0x0A0 */ ModelObj* mStarPlateModel;
-    /* 0x0A4 */ TPos3f _A4;
-    /* 0x0D4 */ TPos3f _D4;
+    /* 0x0A4 */ TPos3f mPosMtx;
+    /* 0x0D4 */ TPos3f mShadowBaseMtx;
     /* 0x104 */ ProjmapEffectMtxSetter* mProjmapEffectMtxSetter;
-    /* 0x108 */ TVec3f _108;
+    /* 0x108 */ TVec3f mInitPos;
     /* 0x114 */ const char* mObjectName;
-    /* 0x118 */ const char* mName;  // mGalaxyName
+    /* 0x118 */ const char* mGalaxyName;
     /* 0x11C */ s32 mCanZoomIn;
     /* 0x120 */ s32 mZoomLevel;
-    /* 0x124 */ J3DTexMtx _124;
-    /* 0x1B8 */ J3DTexMtx _1B8;
+    /* 0x124 */ J3DTexMtx mOnesTexMtx;
+    /* 0x1B8 */ J3DTexMtx mTensTexMtx;
     /* 0x24C */ AstroDomeOrbit* mOrbit;
     /* 0x250 */ GalaxyNamePlate* mNamePlate;
 };

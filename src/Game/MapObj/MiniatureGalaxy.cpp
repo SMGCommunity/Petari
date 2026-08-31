@@ -84,18 +84,18 @@ namespace NrvMiniatureGalaxy {
 
 MiniatureGalaxy::MiniatureGalaxy(const char* pName)
     : LiveActor(pName), mType(-1), mState(MiniatureGalaxyState_Open), mUnknownModel(), mShadowModel(), mSelectModel(), mStarPlateModel(),
-      mProjmapEffectMtxSetter(), _108(gZeroVec), mObjectName(), mName(), mCanZoomIn(1), mZoomLevel(::cZoomFrame), _124(), _1B8(), mOrbit(),
-      mNamePlate() {
-    _D4.identity();
-    _A4.identity();
+      mProjmapEffectMtxSetter(), mInitPos(gZeroVec), mObjectName(), mGalaxyName(), mCanZoomIn(1), mZoomLevel(::cZoomFrame), mOnesTexMtx(),
+      mTensTexMtx(), mOrbit(), mNamePlate() {
+    mShadowBaseMtx.identity();
+    mPosMtx.identity();
 }
 
 void MiniatureGalaxy::init(const JMapInfoIter& rIter) {
     MR::getObjectName(&mObjectName, rIter);
-    mName = ::getGalayNameFromObjectName(mObjectName);
+    mGalaxyName = ::getGalayNameFromObjectName(mObjectName);
 
     MR::initDefaultPos(this, rIter);
-    _108.set(mPosition);
+    mInitPos.set(mPosition);
 
     s32 arg0 = -1;
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
@@ -130,7 +130,7 @@ void MiniatureGalaxy::init(const JMapInfoIter& rIter) {
     mOrbit = new AstroDomeOrbit();
     mOrbit->initWithoutIter();
 
-    mNamePlate = new GalaxyNamePlate(mName, true);
+    mNamePlate = new GalaxyNamePlate(mGalaxyName, true);
     mNamePlate->initWithoutIter();
 
     MR::registerDemoSimpleCastAll(mNamePlate);
@@ -150,11 +150,11 @@ void MiniatureGalaxy::appear() {
     mZoomLevel = ::cZoomFrame;
     setScale(::cZoomOutScale);
 
-    if (!MR::isAppearGalaxy(mName)) {
+    if (!MR::isAppearGalaxy(mGalaxyName)) {
         mState = MiniatureGalaxyState_Hatena;
-    } else if (MR::isOnGameEventFlagGalaxyOpen(mName)) {
+    } else if (MR::isOnGameEventFlagGalaxyOpen(mGalaxyName)) {
         mState = MiniatureGalaxyState_Open;
-    } else if (MR::canOpenGalaxy(mName)) {
+    } else if (MR::canOpenGalaxy(mGalaxyName)) {
         mState = MiniatureGalaxyState_New;
     } else {
         mState = MiniatureGalaxyState_Unknown;
@@ -253,7 +253,7 @@ void MiniatureGalaxy::makeArchiveList(NameObjArchiveListCollector* pArchiveList,
         }
 
         pArchiveList->addArchive(isUnknownKoopa ? "MiniKoopaGalaxy" : objectName);
-        //pArchiveList->addArchive(::isUseKoopaFaceModel(objectName, ::getGalayNameFromObjectName(objectName)) ? "MiniKoopaGalaxy" : objectName);
+        // pArchiveList->addArchive(::isUseKoopaFaceModel(objectName, ::getGalayNameFromObjectName(objectName)) ? "MiniKoopaGalaxy" : objectName);
         pArchiveList->addArchive("MiniatureGalaxyUnknownKoopa");
     }
 
@@ -292,7 +292,7 @@ void MiniatureGalaxy::calcAndSetBaseMtx() {
     upVec.set(MR::getCamYdir());
 
     if (!MR::normalizeOrZero(&frontVec) && !MR::isSameDirection(frontVec, upVec)) {
-        MR::makeMtxFrontUpPos(&_A4, frontVec, upVec, mPosition);
+        MR::makeMtxFrontUpPos(&mPosMtx, frontVec, upVec, mPosition);
     }
 
     TVec3f vec44;
@@ -308,11 +308,11 @@ void MiniatureGalaxy::calcAndSetBaseMtx() {
 
     vec38 -= vec2C;
 
-    _D4.set(rotMtx);
-    _D4.setTrans(vec38);
+    mShadowBaseMtx.set(rotMtx);
+    mShadowBaseMtx.setTrans(vec38);
 
-    MR::setBaseTRMtx(mShadowModel, _D4);
-    
+    MR::setBaseTRMtx(mShadowModel, mShadowBaseMtx);
+
     mProjmapEffectMtxSetter->updateMtxUseBaseMtx();
 }
 
@@ -371,39 +371,35 @@ void MiniatureGalaxy::initPartsModel() {
     mUnknownModel = ::createGalaxyPart("Unknownモデル", pModelName, getBaseMtx(), false);
     ::initGalaxyPart(mUnknownModel);
 
-    mShadowModel = ::createGalaxyPart("影モデル", "MiniatureGalaxyShadow", _D4, true);
+    mShadowModel = ::createGalaxyPart("影モデル", "MiniatureGalaxyShadow", mShadowBaseMtx, true);
     mProjmapEffectMtxSetter = MR::initDLMakerProjmapEffectMtxSetter(mShadowModel);
     MR::newDifferedDLBuffer(mShadowModel);
     ::initGalaxyPart(mShadowModel);
 
-    mSelectModel = ::createGalaxyPart("選択時モデル", "MiniatureGalaxySelect", _A4, false);
+    mSelectModel = ::createGalaxyPart("選択時モデル", "MiniatureGalaxySelect", mPosMtx, false);
     ::initGalaxyPart(mSelectModel);
 
     if (mType == MiniatureGalaxyType_Hatena) {
         return;
     }
 
-    mStarPlateModel = ::createGalaxyPart("スター数モデル", "MiniatureGalaxyStarNumber", _A4, true);
+    mStarPlateModel = ::createGalaxyPart("スター数モデル", "MiniatureGalaxyStarNumber", mPosMtx, true);
 
-    s32 powerStarNum = MR::getPowerStarNumToOpenGalaxy(mName);
+    s32 powerStarNum = MR::getPowerStarNumToOpenGalaxy(mGalaxyName);
     if (powerStarNum < 10) {
-        TexMtxCtrl* texMtxCtrl = MR::initDLMakerTexMtx(mStarPlateModel, "StarNumber1");
-        texMtxCtrl->setTexMtx(0, &_124);
+        MR::initDLMakerTexMtx(mStarPlateModel, "StarNumber1")->setTexMtx(0, &mOnesTexMtx);
 
         MR::hideMaterial(mStarPlateModel, "StarNumber01");
         MR::hideMaterial(mStarPlateModel, "StarNumber10");
     } else {
-        TexMtxCtrl* texMtxCtrl = MR::initDLMakerTexMtx(mStarPlateModel, "StarNumber01");
-        texMtxCtrl->setTexMtx(0, &_124);
-
-        texMtxCtrl = MR::initDLMakerTexMtx(mStarPlateModel, "StarNumber10");
-        texMtxCtrl->setTexMtx(0, &_1B8);
+        MR::initDLMakerTexMtx(mStarPlateModel, "StarNumber01")->setTexMtx(0, &mOnesTexMtx);
+        MR::initDLMakerTexMtx(mStarPlateModel, "StarNumber10")->setTexMtx(0, &mTensTexMtx);
 
         MR::hideMaterial(mStarPlateModel, "StarNumber1");
     }
 
-    _124.mTexMtxInfo.mSRT.mTranslationY = powerStarNum % 10 * 0.1f;
-    _1B8.mTexMtxInfo.mSRT.mTranslationY = powerStarNum / 10 * 0.1f;
+    mOnesTexMtx.mTexMtxInfo.mSRT.mTranslationY = powerStarNum % 10 * 0.1f;
+    mTensTexMtx.mTexMtxInfo.mSRT.mTranslationY = powerStarNum / 10 * 0.1f;
 
     MR::newDifferedDLBuffer(mStarPlateModel);
     ::initGalaxyPart(mStarPlateModel);
@@ -485,7 +481,7 @@ void MiniatureGalaxy::updateNamePlate() {
     if (MR::isDead(mNamePlate)) {
         return;
     }
-    
+
     TVec3f newPosition;
     newPosition.add(mPosition, ::cNamePlateOffset);
     mNamePlate->setPos3D(newPosition);
@@ -582,7 +578,7 @@ bool MiniatureGalaxy::isUseKoopaFaceModel() const {
         return false;
     }
 
-    return ::isUseKoopaFaceModel(mObjectName, mName);
+    return ::isUseKoopaFaceModel(mObjectName, mGalaxyName);
 }
 
 void MiniatureGalaxy::playPointedME() {
@@ -709,8 +705,8 @@ void MiniatureGalaxy::exeOpen() {
 
         disappearSelectModel();
 
-        MR::onGameEventFlagGalaxyOpen(mName);
-        GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(mName);
+        MR::onGameEventFlagGalaxyOpen(mGalaxyName);
+        GalaxyStatusAccessor accessor = MR::makeGalaxyStatusAccessor(mGalaxyName);
 
         if (accessor.isExistGrandStar()) {
             MR::stopStageBGM(30);
@@ -746,7 +742,7 @@ void MiniatureGalaxy::exeOpen() {
         mZoomLevel = ::cZoomFrame;
         setScale(::cZoomOutScale);
 
-        if (MR::makeGalaxyStatusAccessor(mName).isExistGrandStar()) {
+        if (MR::makeGalaxyStatusAccessor(mGalaxyName).isExistGrandStar()) {
             MR::startStageBGM("BGM_KOOPA_APPEAR", false);
             MR::setNextStageBGM("MBGM_ASTRO_DOME_2");
         }
@@ -759,7 +755,7 @@ void MiniatureGalaxy::exeOpen() {
     if (MR::isStep(this, ::cOpenTotalFrame)) {
         SphereSelectorFunction::validatePointing();
 
-        if (MR::makeGalaxyStatusAccessor(mName).isExistGrandStar()) {
+        if (MR::makeGalaxyStatusAccessor(mGalaxyName).isExistGrandStar()) {
             MR::startSystemSE("SE_SY_KOOPA_LAUGH");
         }
 
