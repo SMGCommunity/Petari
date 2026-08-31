@@ -4,6 +4,19 @@
 #include <JSystem/J3DGraphBase/J3DTexture.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
 
+enum MiniatureGalaxyType {
+    MiniatureGalaxyType_Normal,
+    MiniatureGalaxyType_Hatena,
+    MiniatureGalaxyType_Koopa,
+};
+
+enum MiniatureGalaxyState {
+    MiniatureGalaxyState_Hatena,
+    MiniatureGalaxyState_Unknown,
+    MiniatureGalaxyState_New,
+    MiniatureGalaxyState_Open,
+};
+
 class AstroDomeOrbit;
 class GalaxyNamePlate;
 class ModelObj;

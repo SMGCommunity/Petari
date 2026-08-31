@@ -24,19 +24,6 @@
 #include "Game/Util/StarPointerUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
 
-enum MiniatureGalaxyType {
-    MiniatureGalaxyType_Normal,
-    MiniatureGalaxyType_Hatena,
-    MiniatureGalaxyType_Koopa,
-};
-
-enum MiniatureGalaxyState {
-    MiniatureGalaxyState_Hatena,
-    MiniatureGalaxyState_Unknown,
-    MiniatureGalaxyState_New,
-    MiniatureGalaxyState_Open,
-};
-
 namespace {
     const Vec cNamePlateOffset = {0.0f, 1500.0f, 0.0f};
     const f32 cPointingRadius = 2500.0f;
