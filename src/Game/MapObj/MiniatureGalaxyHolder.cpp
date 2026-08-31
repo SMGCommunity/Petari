@@ -57,7 +57,7 @@ MiniatureGalaxy* MiniatureGalaxyHolder::findMiniatureGalaxy(const char* pGalaxyN
     for (int i = 0; i < _8C->mObjectCount; i++) {
         miniatureGalaxy = static_cast< MiniatureGalaxy* >(_8C->getActor(i));
 
-        if (MR::isEqualString(miniatureGalaxy->mName, pGalaxyName)) {
+        if (MR::isEqualString(miniatureGalaxy->mGalaxyName, pGalaxyName)) {
             return miniatureGalaxy;
         }
     }
@@ -72,7 +72,7 @@ void MiniatureGalaxyHolder::killAllMiniatureGalaxy() {
 }
 
 s32 MiniatureGalaxyHolder::calcIndex(const LiveActor* pActor) const {
-    const char* mString = static_cast< const MiniatureGalaxy* >(pActor)->mName;
+    const char* mString = static_cast< const MiniatureGalaxy* >(pActor)->mGalaxyName;
     s32 mStarNum = MR::getPowerStarNumToOpenGalaxy(mString);
     s32 index = 0;
     MiniatureGalaxy* mMiniGalaxy2 = findMiniatureGalaxy(mString);
@@ -84,7 +84,7 @@ s32 MiniatureGalaxyHolder::calcIndex(const LiveActor* pActor) const {
         if (mMiniGalaxy3->mType != 2 && mMiniGalaxy3 != mMiniGalaxy2) {
             if (mMiniGalaxy2->mType == 2) {
                 index++;
-            } else if (MR::getPowerStarNumToOpenGalaxy(mMiniGalaxy3->mName) < mStarNum) {
+            } else if (MR::getPowerStarNumToOpenGalaxy(mMiniGalaxy3->mGalaxyName) < mStarNum) {
                 index++;
             }
         }
@@ -105,14 +105,14 @@ void MiniatureGalaxyHolder::updateCometStatus() {
     for (int i = 0; i < _8C->mObjectCount; i++) {
         miniatureGalaxy = static_cast< MiniatureGalaxy* >(_8C->getActor(i));
 
-        if (MR::isGalaxyCometLandInStage(miniatureGalaxy->mName)) {
+        if (MR::isGalaxyCometLandInStage(miniatureGalaxy->mGalaxyName)) {
             mCometGalaxy = miniatureGalaxy;
             break;
         }
     }
 
     if (mCometGalaxy != nullptr) {
-        mCometID = MR::getEncounterGalaxyCometNameId(mCometGalaxy->mName);
+        mCometID = MR::getEncounterGalaxyCometNameId(mCometGalaxy->mGalaxyName);
     }
 }
 

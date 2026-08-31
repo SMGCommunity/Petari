@@ -123,7 +123,7 @@ void AstroDomeGalaxySelector::showGalaxyInfo(const MiniatureGalaxy* pMiniGalaxy)
         cometID = MiniatureGalaxyFunction::getCometNameId();
     }
 
-    mInfo->show(pMiniGalaxy->mName, state, cometID);
+    mInfo->show(pMiniGalaxy->mGalaxyName, state, cometID);
 }
 
 bool AstroDomeGalaxySelector::tryStartLectureDemo(const Nerve* pNerve) {
@@ -261,7 +261,7 @@ void AstroDomeGalaxySelector::exeDemoJumpOut() {
         return;
     }
 
-    const char* pGalaxyName = ::getSelectedMiniatureGalaxy()->mName;
+    const char* pGalaxyName = ::getSelectedMiniatureGalaxy()->mGalaxyName;
     MiniatureGalaxy* pCometGalaxy = MiniatureGalaxyFunction::getCometLandMiniatureGalaxy();
 
     if (pCometGalaxy != nullptr && pCometGalaxy == SphereSelectorFunction::getSelectedTarget()) {
