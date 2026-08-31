@@ -5,6 +5,11 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 
+namespace {
+    const f32 sDepth = 500.0f;
+    const f32 sOffset = 50.0f;
+};  // namespace
+
 MapObjConnector::MapObjConnector(LiveActor* pActor) : mHost(pActor), mParts() {
     _8.identity();
 }
@@ -25,14 +30,14 @@ bool MapObjConnector::attachToBack() {
 
 bool MapObjConnector::attach(const TVec3f& rVec) {
     Triangle triangle = Triangle();
-    
+
     TVec3f vec;
-    if (!MR::getFirstPolyOnLineToMapExceptActor(&vec, &triangle, mHost->mPosition + rVec * 50.0f, -rVec * 500.0f, mHost)) {
+    if (!MR::getFirstPolyOnLineToMapExceptActor(&vec, &triangle, mHost->mPosition + rVec * ::sOffset, -rVec * ::sDepth, mHost)) {
         return false;
     }
 
     mParts = triangle.mParts;
-    
+
     TPos3f baseMtx;
     baseMtx.set(mHost->getBaseMtx());
 
