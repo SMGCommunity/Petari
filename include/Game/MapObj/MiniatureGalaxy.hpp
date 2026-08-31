@@ -14,7 +14,6 @@ class MiniatureGalaxy : public LiveActor {
 public:
     MiniatureGalaxy(const char*);
 
-    virtual ~MiniatureGalaxy();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
@@ -54,8 +53,8 @@ public:
     /* 0x098 */ ModelObj* mShadowModel;
     /* 0x09C */ ModelObj* mSelectModel;
     /* 0x0A0 */ ModelObj* mStarPlateModel;
-    /* 0x0A4 */ TMtx34f _A4;
-    /* 0x0D4 */ TMtx34f _D4;
+    /* 0x0A4 */ TPos3f _A4;
+    /* 0x0D4 */ TPos3f _D4;
     /* 0x104 */ ProjmapEffectMtxSetter* mProjmapEffectMtxSetter;
     /* 0x108 */ TVec3f _108;
     /* 0x114 */ const char* mObjectName;

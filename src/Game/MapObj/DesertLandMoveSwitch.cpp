@@ -150,7 +150,7 @@ bool DesertLandMoveSwitch::trySwitchDown() {
 }
 
 bool DesertLandMoveSwitch::tryConnect() {
-    if (mMapObjConnector->_4 != 0)
+    if (mMapObjConnector->mParts != 0)
         return true;
 
     return mMapObjConnector->attachToUnder();
