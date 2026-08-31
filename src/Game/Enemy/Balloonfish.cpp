@@ -96,14 +96,14 @@ void Balloonfish::exeWait() {
         mNerveBeforeBind = nullptr;
     }
 
-    TVec3f center(*MR::getPlayerCenterPos());
-    center += *MR::getPlayerVelocity() * ::hTargetPlayerVelocityMult;
-    center -= mPosition;
+    TVec3f toPredictedPlayerPos(*MR::getPlayerCenterPos());
+    toPredictedPlayerPos += *MR::getPlayerVelocity() * ::hTargetPlayerVelocityMult;
+    toPredictedPlayerPos -= mPosition;
 
     f32 ratio = static_cast< f32 >(mNotBoundStep) / ::hWaitTime;
     f32 scale = (1.0f - ratio) * 1.0f + ratio * ::hWaitMaxScale;
     mScale.set(scale, scale, scale);
-    MR::blendQuatFrontUp(&mQuat, -mGravity, center, 0.02f, 0.1f);
+    MR::blendQuatFrontUp(&mQuat, -mGravity, toPredictedPlayerPos, 0.02f, 0.1f);
 
     if (mNotBoundStep > ::hWaitTime) {
         setNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance);
