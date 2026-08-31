@@ -41,7 +41,7 @@ public:
     /* 0x18 */ TVec3f mRotation;
     /* 0x24 */ TVec3f mScale;
     /* 0x30 */ TBox3f mBounding;
-    /* 0x30 */ TPos3f _48;
+    /* 0x48 */ TPos3f _48;
 };
 
 class AreaFormSphere : public AreaForm {

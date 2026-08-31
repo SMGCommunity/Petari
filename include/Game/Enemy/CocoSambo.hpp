@@ -82,5 +82,5 @@ public:
     /* 0xB8 */ AnimScaleParam* _B8;
     /* 0xBC */ AnimScaleController* _BC;
     /* 0xC0 */ const Nerve* _C0;
-    /* 0xC4 */ LiveActor* _C4[4];
+    /* 0xC4 */ LiveActor** _C4;
 };

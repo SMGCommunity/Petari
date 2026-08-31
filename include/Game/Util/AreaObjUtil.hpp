@@ -2,8 +2,7 @@
 
 #include "Game/AreaObj/AreaObjContainer.hpp"
 #include "Game/Map/LightZoneDataHolder.hpp"
-#include "JSystem/JGeometry/TBox.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TBox.hpp>
 
 class AreaObj;
 class AreaObjContainer;
@@ -40,5 +39,4 @@ namespace MR {
 
     bool getWaterAreaObj(WaterInfo*, const TVec3f&);
     AreaInfo* getWaterAreaInfo(WaterInfo*, const TVec3f&, const TVec3f&, bool);
-    
 };  // namespace MR

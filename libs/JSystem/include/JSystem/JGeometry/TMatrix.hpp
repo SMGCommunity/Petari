@@ -262,7 +262,6 @@ namespace JGeometry {
             this->mMtx[2][2] = rSrcZ.z;
         }
 
-
         void getEulerDegree(TVec3f& rDest) const {
             TVec3f rot;
             getEulerXYZ(rot);
