@@ -4884,14 +4884,14 @@ Game/MapObj/FountainBig.cpp:
 Game/MapObj/GCapture.cpp:
 	.text       start:0x801DF110 end:0x801E1420
 	.ctors      start:0x8052ED24 end:0x8052ED28
-	.data       start:0x80594D58 end:0x80594F88
+	.data       start:0x80594D58 end:0x80594F60
 	.sdata      start:0x806B1E18 end:0x806B1E20
 	.sbss       start:0x806B51A0 end:0x806B51C0
 	.sdata2     start:0x806BD0A8 end:0x806BD118
 
 Game/MapObj/GCaptureRibbon.cpp:
 	.text       start:0x801E1420 end:0x801E1B9C
-	.data       start:0x80594F88 end:0x80595000
+	.data       start:0x80594F60 end:0x80595000
 	.sdata2     start:0x806BD118 end:0x806BD138
 
 Game/MapObj/GCaptureTarget.cpp:
