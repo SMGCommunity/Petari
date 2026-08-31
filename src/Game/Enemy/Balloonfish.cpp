@@ -61,7 +61,8 @@ void Balloonfish::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, "Balloonfish", false);
     initSound(2, false);
     initNerve(&NrvBalloonfish::HostTypeNrvWait::sInstance);
-    MR::initStarPointerTarget(this, 110.0f, TVec3f(0.0f, 80.0f, 0.0f));
+    f32 offset = 80.0f;
+    MR::initStarPointerTarget(this, 110.0f, TVec3f(0.0f, offset, 0.0f));
     mAnimeScaleController = new AnimScaleController(nullptr);
     MR::onCalcGravity(this);
     MR::initShadowVolumeSphere(this, 80.0f * mScale.y);
@@ -89,7 +90,7 @@ void Balloonfish::control() {
 void Balloonfish::exeWait() {
     if (MR::isFirstStep(this)) {
         mVelocity.zero();
-        if (mSpine->getCurrentNerve() != mNerveBeforeBind) {
+        if (mNerveBeforeBind != mSpine->getCurrentNerve()) {
             mNotBoundStep = 0;
             MR::startBck(this, "appearance", nullptr);
             MR::startSound(this, "SE_EM_BLNFISH_PRE_DASH");
@@ -99,10 +100,13 @@ void Balloonfish::exeWait() {
     }
 
     TVec3f center(*MR::getPlayerCenterPos());
-    TVec3f up(*MR::getPlayerVelocity() * 10.0f + center - mPosition);
+    center += *MR::getPlayerVelocity() * 10.0f;
+    center -= mPosition;
+
     f32 ratio = mNotBoundStep / 120.0f;
-    mScale.set2(1.0f * (1.0f - ratio) + 1.5f * ratio);
-    MR::blendQuatFrontUp(&mQuat, -mGravity, up, 0.02f, 0.1f);
+    f32 scale = (1.0f - ratio) * 1.0f + ratio * 1.5f;
+    mScale.set(scale, scale, scale);
+    MR::blendQuatFrontUp(&mQuat, -mGravity, center, 0.02f, 0.1f);
 
     if (mNotBoundStep > ::hWaitTime) {
         setNerve(&NrvBalloonfish::HostTypeNrvDash::sInstance);
@@ -229,9 +233,8 @@ void Balloonfish::calcAndSetBaseMtx() {
     mtx.makeQuat(mQuat);
 
     TPos3f mtx2;
-    f32 zero = 0.0f;
-    mtx2.makeRotate(TVec3f(zero, zero, 1.0f), _A8);
-    mtx2.concat(mtx, mtx);
+    mtx2.makeRotate(TVec3f(0.0f, 0.0f, 1.0f), _A8);
+    mtx.concat(mtx, mtx2);
 
     mtx.setTrans(mPosition);
     MR::setBaseTRMtx(this, mtx);
