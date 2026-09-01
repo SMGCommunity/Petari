@@ -1,6 +1,7 @@
 #include "Game/LiveActor/ActorLightCtrl.hpp"
 #include "Game/Map/LightFunction.hpp"
 #include "Game/NameObj/NameObjExecuteHolder.hpp"
+#include "Game/System/DrawBuffer.hpp"
 #include "Game/Util.hpp"
 
 ActorLightCtrl::ActorLightCtrl(const LiveActor* pActor) : mActor(pActor), _4(-1), _8(0), _C(0), mAreaLightInf(0), mLightID() {
@@ -9,7 +10,6 @@ ActorLightCtrl::ActorLightCtrl(const LiveActor* pActor) : mActor(pActor), _4(-1)
     _54 = -1;
 }
 
-// initActorLightInfo call is getting inlined
 void ActorLightCtrl::init(int interpolate, bool /* unused */) {
     if (interpolate >= 0) {
         _4 = interpolate;
@@ -39,6 +39,31 @@ void ActorLightCtrl::loadLight() const {
     }
 }
 
+void ActorLightCtrl::reset() {
+    mLightID.clear();
+
+    if (LightFunction::tryFindNewAreaLightID(mActor->mPosition, &mLightID)) {
+        resetCurrentLightInfo();
+        _1C = nullptr;
+        mLightInfo = *getTargetActorLight(mAreaLightInf);
+    }
+
+    mAreaLightInf = LightFunction::getAreaLightInfo(mLightID);
+
+    if (!_C) {
+        _8->resetLightSort(this);
+    }
+}
+
+void ActorLightCtrl::copy(const ActorLightCtrl* pCtrl) {
+    mAreaLightInf = pCtrl->mAreaLightInf;
+    mLightID = pCtrl->mLightID;
+    _1C = pCtrl->_1C;
+    mLightInfo = pCtrl->mLightInfo;
+    mInterpolate = pCtrl->mInterpolate;
+    _54 = pCtrl->_54;
+}
+
 bool ActorLightCtrl::isSameLight(const ActorLightCtrl* pLight) const {
     if (_1C) {
         return false;
@@ -62,6 +87,54 @@ void ActorLightCtrl::initActorLightInfo() {
 
     MR::findActorLightInfo(mActor);
     return;
+}
+
+void ActorLightCtrl::tryFindNewAreaLight(bool a2) {
+    if (LightFunction::tryFindNewAreaLightID(mActor->mPosition, &mLightID)) {
+        if (mAreaLightInf != nullptr) {
+            const ActorLightInfo* inf = getTargetActorLight(mAreaLightInf);
+            _1C = inf;
+            mLightInfo = *inf;
+        }
+
+        resetCurrentLightInfo();
+
+        if (!mInterpolate || a2) {
+            mInterpolate = 0;
+            _1C = nullptr;
+            mLightInfo = *getTargetActorLight(mAreaLightInf);
+        }
+
+        if (mInterpolate < 0) {
+            mInterpolate = LightFunction::getDefaultStepInterpolate();
+        }
+
+        if (!_C) {
+            _8->resetLightSort(this);
+        }
+    }
+}
+
+void ActorLightCtrl::updateLightBlend() {
+    if (_1C) {
+        s32 v = _54;
+        _54++;
+
+        if (v + 1 >= mInterpolate) {
+            mLightInfo = *getTargetActorLight(mAreaLightInf);
+            _1C = nullptr;
+            _54 = -1;
+
+            if (!_C) {
+                _8->resetLightSort(this);
+            }
+
+        } else {
+            f32 v = (f32)_54 / mInterpolate;
+            const ActorLightInfo* info = getTargetActorLight(mAreaLightInf);
+            LightFunction::blendActorLightInfo(&mLightInfo, *_1C, *info, v);
+        }
+    }
 }
 
 void ActorLightCtrl::resetCurrentLightInfo() {
