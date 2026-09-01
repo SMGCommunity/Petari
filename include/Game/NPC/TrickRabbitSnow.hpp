@@ -12,6 +12,8 @@ class WalkerStateBlowDamage;
 class WalkerStateRunaway;
 
 class TrickRabbitSnow : public LiveActor {
+    friend class TrickRabbitSnowCollect;
+
 public:
     /// @brief Creates a new `TrickRabbitSnow`.
     /// @param pName A pointer to the null-terminated name of the object.
