@@ -12,6 +12,8 @@ class WalkerStateBlowDamage;
 class WalkerStateRunaway;
 
 class TrickRabbitSnow : public LiveActor {
+    friend class TrickRabbitSnowCollect;
+
 public:
     /// @brief Creates a new `TrickRabbitSnow`.
     /// @param pName A pointer to the null-terminated name of the object.
@@ -61,7 +63,7 @@ private:
     /* 0xC8 */ WalkerStateRunaway* mStateRunaway;
     /* 0xCC */ WalkerStateBlowDamage* mStateBlowDamage;
     /* 0xD0 */ RabbitStateCaught* mStateCaught;
-    /* 0xD4 */ TalkMessageCtrl* mTalkCtrl;
+    /* 0xD4 */ TalkMessageCtrl* mMsgCtrl;
     /* 0xD8 */ FootPrint* mFootPrint;
     /* 0xDC */ SpotMarkLight* mSpotMarkLight;
     /* 0xE0 */ TrickRabbitSnowListener* mListener;

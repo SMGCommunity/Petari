@@ -88,15 +88,12 @@ public:
     static void killBloomModel(MapObjActor*);
     static void appearBloomModel(MapObjActor*);
 
+    // Defined in MapObjActorInitInfo
     static void setupInitInfoTypical(MapObjActorInitInfo*, const char*);
-
-    static void setupInitInfoSimpleMapObj(MapObjActorInitInfo*);
-
-    static void setupInitInfoPlanet(MapObjActorInitInfo*);
-
-    static void setupInitInfoSeesaw(MapObjActorInitInfo*, const JMapInfoIter&, const char*, f32);
-
     static void setupInitInfoColorChangeArg0(MapObjActorInitInfo*, const JMapInfoIter&);
     static void setupInitInfoTextureChangeArg1(MapObjActorInitInfo*, const JMapInfoIter&);
     static void setupInitInfoShadowLengthArg2(MapObjActorInitInfo*, const JMapInfoIter&);
+    static void setupInitInfoSeesaw(MapObjActorInitInfo*, const JMapInfoIter&, const char*, f32);
+    static void setupInitInfoSimpleMapObj(MapObjActorInitInfo*);
+    static void setupInitInfoPlanet(MapObjActorInitInfo*);
 };

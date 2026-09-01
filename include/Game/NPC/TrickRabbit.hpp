@@ -13,10 +13,6 @@ class RailGraphNodeSelecter {};
 class SpotMarkLight;
 class TalkMessageCtrl;
 
-namespace TrickRabbitUtil {
-    FootPrint* createRabbitFootPrint(LiveActor* pActor);
-};  // namespace TrickRabbitUtil
-
 class TrickRabbit : public LiveActor {
 public:
     /// @brief Creates a new `TrickRabbit`.

@@ -5190,7 +5190,7 @@ Game/MapObj/MapObjActor.cpp:
 	.text       start:0x801F66A4 end:0x801F8364
 	.ctors      start:0x8052EDAC end:0x8052EDB0
 	.rodata     start:0x80533458 end:0x80533460
-	.data       start:0x80598358 end:0x80598868
+	.data       start:0x80598358 end:0x80598510
 	.sdata      start:0x806B1EA8 end:0x806B1EB0
 	.sbss       start:0x806B53E0 end:0x806B53F0
 	.sdata2     start:0x806BD608 end:0x806BD638
@@ -5198,6 +5198,7 @@ Game/MapObj/MapObjActor.cpp:
 Game/MapObj/MapObjActorInitInfo.cpp:
 	.text       start:0x801F8364 end:0x801F8970
 	.rodata     start:0x80533460 end:0x805334D8
+	.data       start:0x80598510 end:0x80598868
 	.sdata2     start:0x806BD638 end:0x806BD648
 
 Game/MapObj/MapObjConnector.cpp:
@@ -5296,7 +5297,7 @@ Game/MapObj/MorphItemObjNeo.cpp:
 	.text       start:0x80200E78 end:0x80202CF8
 	.ctors      start:0x8052EDD4 end:0x8052EDD8
 	.rodata     start:0x80533530 end:0x80533540
-	.data       start:0x80599ED0 end:0x8059A2F0
+	.data       start:0x80599E80 end:0x8059A2F0
 	.sdata      start:0x806B1EC0 end:0x806B1ED0
 	.sbss       start:0x806B54A0 end:0x806B54B8
 	.sdata2     start:0x806BD7D0 end:0x806BD830
