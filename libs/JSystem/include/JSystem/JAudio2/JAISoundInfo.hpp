@@ -4,7 +4,7 @@
 #include "JSystem/JAudio2/JASGlobal.hpp"
 
 struct JAISoundInfo : public JASGlobalInstance< JAISoundInfo > {
-    JAISoundInfo(bool);
+    JAISoundInfo(bool set);
 
     virtual int getSoundType(JAISoundID) const = 0;
     virtual int getCategory(JAISoundID) const = 0;

@@ -56,6 +56,10 @@ public:
         }
     }
 
+    JAISoundStrategyMgr< JAISeq >* getSoundStrategyMgr() {
+        return soundStrategyMgr;
+    }
+
     JAISoundParamsMove* getParams() {
         return &mMove;
     }
