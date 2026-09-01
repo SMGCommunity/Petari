@@ -1,21 +1,17 @@
 #pragma once
 
+#include "revolution/gx/GXEnum.h"
 #include <revolution.h>
 
 class PointLightInfo {
 public:
     void operator=(const PointLightInfo&);
 
-    u32 _0;
-    u32 _4;
-    u32 _8;
-    u8 _C;
-    u8 _D;
-    u8 _E;
-    u8 _F;
+    Vec _0;
+    GXColor _C;
     f32 _10;
     f32 _14;
-    u32 _18;
+    GXDistAttnFn _18;
 };
 
 class LightPointCtrl {

@@ -43,7 +43,7 @@ namespace NrvTrickRabbitFreeRun {
 
 TrickRabbitFreeRun::TrickRabbitFreeRun(const char* pName)
     : LiveActor(pName), mRotateQuat(0.0f, 0.0f, 0.0f, 1.0f), mFrontVec(0.0f, 0.0f, 1.0f), mStateWaitStart(), mStateRunaway(), mStateBlowDamage(),
-      mStateCaught(), mTalkCtrl(), mFootPrint(), mSpotMarkLight() {
+      mStateCaught(), mMsgCtrl(), mFootPrint(), mSpotMarkLight() {
 }
 
 void TrickRabbitFreeRun::init(const JMapInfoIter& rIter) {
@@ -66,7 +66,7 @@ void TrickRabbitFreeRun::init(const JMapInfoIter& rIter) {
     initSensor();
     initBinder(::sBindRadius, ::sBindYOffset, 0);
 
-    mTalkCtrl = MR::createTalkCtrl(this, rIter, "TrickRabbit", TVec3f(0.0f, 120.0f, 0.0f), nullptr);
+    mMsgCtrl = MR::createTalkCtrl(this, rIter, "TrickRabbit", TVec3f(0.0f, 120.0f, 0.0f), nullptr);
 
     initState();
     initSound(4, false);
@@ -88,10 +88,10 @@ void TrickRabbitFreeRun::initSensor() {
 }
 
 void TrickRabbitFreeRun::initState() {
-    mStateCaught = new RabbitStateCaught(this, mTalkCtrl);
+    mStateCaught = new RabbitStateCaught(this, mMsgCtrl);
     mStateCaught->init();
 
-    mStateWaitStart = new RabbitStateWaitStart(this, &mFrontVec, mTalkCtrl);
+    mStateWaitStart = new RabbitStateWaitStart(this, &mFrontVec, mMsgCtrl);
     mStateWaitStart->init();
 
     mStateRunaway = new WalkerStateRunaway(this, &mFrontVec, nullptr);
@@ -183,7 +183,7 @@ bool TrickRabbitFreeRun::receiveMsgBlowDamage(HitSensor* pSender, HitSensor* pRe
 bool TrickRabbitFreeRun::requestCaught() {
     if (isEnableCaught()) {
         MR::invalidateClipping(this);
-        MR::forwardNode(mTalkCtrl);
+        MR::forwardNode(mMsgCtrl);
         setNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvCaught::sInstance);
 
         return true;
@@ -277,7 +277,7 @@ void TrickRabbitFreeRun::exePowerStarDemo() {
     MR::zeroVelocity(this);
 
     if (MR::isEndPowerStarAppearDemo(this)) {
-        MR::forwardNode(mTalkCtrl);
+        MR::forwardNode(mMsgCtrl);
         setNerve(&NrvTrickRabbitFreeRun::TrickRabbitFreeRunNrvGiveUp::sInstance);
     }
 }

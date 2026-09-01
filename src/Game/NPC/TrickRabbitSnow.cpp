@@ -51,7 +51,7 @@ namespace NrvTrickRabbitFreeRun {
 
 TrickRabbitSnow::TrickRabbitSnow(const char* pName)
     : LiveActor(pName), mFinishQuat(0.0f, 0.0f, 0.0f, 1.0f), mFinishPos(0.0f, 0.0f, 0.0f), mRotateQuat(0.0f, 0.0f, 0.0f, 1.0f),
-      mFrontVec(0.0f, 0.0f, 1.0f), mStateWaitStart(), mStateRunaway(), mStateBlowDamage(), mStateCaught(), mTalkCtrl(), mFootPrint(),
+      mFrontVec(0.0f, 0.0f, 1.0f), mStateWaitStart(), mStateRunaway(), mStateBlowDamage(), mStateCaught(), mMsgCtrl(), mFootPrint(),
       mSpotMarkLight(), mListener(), mNotCaughtableTimer(), mIsValidAppearStarPiece(true) {
 }
 
@@ -81,7 +81,7 @@ void TrickRabbitSnow::init(const JMapInfoIter& rIter) {
     initSensor();
     initBinder(::sBindRadius, ::sBindYOffset, 0);
 
-    mTalkCtrl = MR::createTalkCtrl(this, rIter, "SnowRabbit", TVec3f(0.0f, 120.0f, 0.0f), nullptr);
+    mMsgCtrl = MR::createTalkCtrl(this, rIter, "SnowRabbit", TVec3f(0.0f, 120.0f, 0.0f), nullptr);
 
     initState();
     initSound(4, false);
@@ -110,11 +110,11 @@ void TrickRabbitSnow::initSensor() {
 }
 
 void TrickRabbitSnow::initState() {
-    mStateCaught = new RabbitStateCaught(this, mTalkCtrl);
+    mStateCaught = new RabbitStateCaught(this, mMsgCtrl);
     mStateCaught->unusePowerStarModel();
     mStateCaught->init();
 
-    mStateWaitStart = new RabbitStateWaitStart(this, &mFrontVec, mTalkCtrl);
+    mStateWaitStart = new RabbitStateWaitStart(this, &mFrontVec, mMsgCtrl);
     mStateWaitStart->setTalkActionName("GiveUpTalk");
     mStateWaitStart->_1C = false;
     mStateWaitStart->_1D = false;
@@ -279,7 +279,7 @@ void TrickRabbitSnow::setFinishPosition() {
     MR::zeroVelocity(this);
     MR::invalidateClipping(this);
     MR::requestMovementOn(this);
-    MR::forwardNode(mTalkCtrl);
+    MR::forwardNode(mMsgCtrl);
     mStateWaitStart->_1D = false;
     setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvGiveUp::sInstance);
 }
@@ -405,7 +405,7 @@ void TrickRabbitSnow::exeCaught() {
         setNerve(&NrvTrickRabbitFreeRun::TrickRabbitSnowNrvCaught::sInstance);
     } else if (MR::updateActorState(this, mStateCaught)) {
         MR::endDemo(this, "捕まり");
-        MR::forwardNode(mTalkCtrl);
+        MR::forwardNode(mMsgCtrl);
         mSpotMarkLight->kill();
         mFootPrint->clear();
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");

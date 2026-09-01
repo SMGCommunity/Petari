@@ -49,7 +49,7 @@ public:
     /* 0xAC */ WalkerStateRunaway* mStateRunaway;
     /* 0xB0 */ WalkerStateBlowDamage* mStateBlowDamage;
     /* 0xB4 */ RabbitStateCaught* mStateCaught;
-    /* 0xB8 */ TalkMessageCtrl* mTalkCtrl;
+    /* 0xB8 */ TalkMessageCtrl* mMsgCtrl;
     /* 0xBC */ FootPrint* mFootPrint;
     /* 0xC0 */ SpotMarkLight* mSpotMarkLight;
 };
