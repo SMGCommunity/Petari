@@ -412,31 +412,31 @@ namespace MR {
     }
 
     bool isPlayerElementModeTornado() {
-        return isPlayerElementMode(9);
+        return isPlayerElementMode(PlayerMode_Tornado);
     }
 
     bool isPlayerElementModeInvincible() {
-        return isPlayerElementMode(1);
+        return isPlayerElementMode(PlayerMode_Invincible);
     }
 
     bool isPlayerElementModeBee() {
-        return isPlayerElementMode(4);
+        return isPlayerElementMode(PlayerMode_Bee);
     }
 
     bool isPlayerElementModeHopper() {
-        return isPlayerElementMode(5);
+        return isPlayerElementMode(PlayerMode_Hopper);
     }
 
     bool isPlayerElementModeTeresa() {
-        return isPlayerElementMode(6);
+        return isPlayerElementMode(PlayerMode_Teresa);
     }
 
     bool isPlayerElementModeIce() {
-        return isPlayerElementMode(3);
+        return isPlayerElementMode(PlayerMode_Ice);
     }
 
     bool isPlayerElementModeNormal() {
-        return isPlayerElementMode(0);
+        return isPlayerElementMode(PlayerMode_Normal);
     }
 
     bool isPlayerSkating() {
