@@ -63,7 +63,7 @@ private:
     /* 0xC8 */ WalkerStateRunaway* mStateRunaway;
     /* 0xCC */ WalkerStateBlowDamage* mStateBlowDamage;
     /* 0xD0 */ RabbitStateCaught* mStateCaught;
-    /* 0xD4 */ TalkMessageCtrl* mTalkCtrl;
+    /* 0xD4 */ TalkMessageCtrl* mMsgCtrl;
     /* 0xD8 */ FootPrint* mFootPrint;
     /* 0xDC */ SpotMarkLight* mSpotMarkLight;
     /* 0xE0 */ TrickRabbitSnowListener* mListener;
