@@ -5,8 +5,17 @@
 class ScrewSwitchReverse : public LiveActor {
 public:
     ScrewSwitchReverse(const char*);
-    virtual ~ScrewSwitchReverse();
 
-private:
-    u8 mPad[(0x94) - sizeof(LiveActor)];
+    virtual void init(const JMapInfoIter&);
+    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+
+    void updateBindActorMtx();
+    void endBind();
+
+    void exeWait();
+    void exeAdjust();
+    void exeScrew();
+
+    /* 0x8C */ LiveActor* mHost;
+    /* 0x90 */ bool mIsForceJump;  // Obj_arg0
 };
