@@ -4,5 +4,3 @@
 
 GCaptureTarget::GCaptureTarget(const char* pName) : LiveActor(pName) {
 }
-GCaptureTarget::~GCaptureTarget() {
-}
