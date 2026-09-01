@@ -27,5 +27,5 @@ public:
     /* 0x90 */ const Nerve* mNerveBeforeBind;
     /* 0x94 */ s32 mNotBoundStep;
     /* 0x98 */ TQuat4f mQuat;
-    /* 0xA8 */ f32 _A8;
+    /* 0xA8 */ f32 mRotateAngle;
 };

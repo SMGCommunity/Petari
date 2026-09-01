@@ -24,7 +24,7 @@ namespace {
     static const f32 hDashVel = 10.0f;
     static const f32 hDashScale = 0.5f;
     static const s32 hDashEndTime = 95;
-    // static const ??? hRotateAngle = ???;
+    static const f32 hRotateAngle = 0.0f;
 };  // namespace
 
 namespace NrvBalloonfish {
@@ -34,7 +34,8 @@ namespace NrvBalloonfish {
     NEW_NERVE_ONEND(HostTypeNrvStarPointerBind, Balloonfish, StarPointerBind, StarPointerBind);
 };  // namespace NrvBalloonfish
 
-Balloonfish::Balloonfish(const char* pName) : LiveActor(pName), mAnimeScaleController(), mNerveBeforeBind(), mQuat(0.0f, 0.0f, 0.0f, 1.0f), _A8() {
+Balloonfish::Balloonfish(const char* pName)
+    : LiveActor(pName), mAnimeScaleController(), mNerveBeforeBind(), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mRotateAngle(::hRotateAngle) {
 }
 
 void Balloonfish::init(const JMapInfoIter& rIter) {
@@ -233,7 +234,7 @@ void Balloonfish::calcAndSetBaseMtx() {
     mtx.makeQuat(mQuat);
 
     TPos3f mtx2;
-    mtx2.makeRotate(TVec3f(0.0f, 0.0f, 1.0f), _A8);
+    mtx2.makeRotate(TVec3f(0.0f, 0.0f, 1.0f), mRotateAngle);
     mtx.concat(mtx, mtx2);
 
     mtx.setTrans(mPosition);
