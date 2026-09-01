@@ -23,7 +23,7 @@ public:
     void exeStarPointerBind();
     void endStarPointerBind();
 
-    /* 0x8C */ AnimScaleController* mAnimeScaleController;
+    /* 0x8C */ AnimScaleController* mAnimScaleController;
     /* 0x90 */ const Nerve* mNerveBeforeBind;
     /* 0x94 */ s32 mNotBoundStep;
     /* 0x98 */ TQuat4f mQuat;

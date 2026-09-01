@@ -35,7 +35,7 @@ namespace NrvBalloonfish {
 };  // namespace NrvBalloonfish
 
 Balloonfish::Balloonfish(const char* pName)
-    : LiveActor(pName), mAnimeScaleController(), mNerveBeforeBind(), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mRotateAngle(::hRotateAngle) {
+    : LiveActor(pName), mAnimScaleController(), mNerveBeforeBind(), mQuat(0.0f, 0.0f, 0.0f, 1.0f), mRotateAngle(::hRotateAngle) {
 }
 
 void Balloonfish::init(const JMapInfoIter& rIter) {
@@ -60,7 +60,7 @@ void Balloonfish::init(const JMapInfoIter& rIter) {
     // float regswap
     f32 offset = 80.0f;
     MR::initStarPointerTarget(this, 110.0f, TVec3f(0.0f, offset, 0.0f));
-    mAnimeScaleController = new AnimScaleController(nullptr);
+    mAnimScaleController = new AnimScaleController(nullptr);
     MR::onCalcGravity(this);
     MR::initShadowVolumeSphere(this, 80.0f * mScale.y);
     MR::declareCoin(this, 1);
@@ -81,7 +81,7 @@ void Balloonfish::kill() {
 }
 
 void Balloonfish::control() {
-    mAnimeScaleController->updateNerve();
+    mAnimScaleController->updateNerve();
 }
 
 void Balloonfish::exeWait() {
@@ -183,7 +183,7 @@ void Balloonfish::exeStarPointerBind() {
     if (MR::isFirstStep(this)) {
         MR::startDPDHitSound();
         MR::setBckRate(this, 0.0f);
-        mAnimeScaleController->startDpdHitVibration();
+        mAnimScaleController->startDpdHitVibration();
         MR::emitEffect(this, "Touch");
     }
 
@@ -215,7 +215,7 @@ void Balloonfish::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
 bool Balloonfish::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         if (!isNerve(&NrvBalloonfish::HostTypeNrvStarPointerBind::sInstance)) {
-            mAnimeScaleController->startHitReaction();
+            mAnimScaleController->startHitReaction();
         }
         return true;
     }
@@ -239,12 +239,12 @@ void Balloonfish::calcAndSetBaseMtx() {
     mtx.setTrans(mPosition);
     MR::setBaseTRMtx(this, mtx);
 
-    TVec3f scale(mAnimeScaleController->_C * mScale);
+    TVec3f scale(mAnimScaleController->_C * mScale);
     MR::setBaseScale(this, scale);
 }
 
 void Balloonfish::endStarPointerBind() {
     MR::setBckRate(this, 1.0f);
-    mAnimeScaleController->startAnim();
+    mAnimScaleController->startAnim();
     MR::deleteEffect(this, "Touch");
 }
