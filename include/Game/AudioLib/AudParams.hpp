@@ -30,13 +30,13 @@ namespace AudParams {
     extern const JAISeCategoryArrangementItem arrangeSE_PM;
     extern const JAISeCategoryArrangementItem arrangeSE_BV;
     extern const JAISeCategoryArrangementItem arrangeSE_BM;
-    extern const JAISeCategoryArrangementItem arrangeSE_OJ;
-    extern const JAISeCategoryArrangementItem arrangeSE_AT;
-    extern const JAISeCategoryArrangementItem arrangeSE_DM;
     extern const JAISeCategoryArrangementItem arrangeSE_EV;
     extern const JAISeCategoryArrangementItem arrangeSE_EM;
     extern const JAISeCategoryArrangementItem arrangeSE_SV;
     extern const JAISeCategoryArrangementItem arrangeSE_SM;
+    extern const JAISeCategoryArrangementItem arrangeSE_OJ;
+    extern const JAISeCategoryArrangementItem arrangeSE_AT;
+    extern const JAISeCategoryArrangementItem arrangeSE_DM;
     extern const JAISeCategoryArrangementItem arrangeSE_RS;
     extern const JAISeCategoryArrangementItem arrangeHOMESE;
     extern const s32 streamAramBlocks_perChunk;
