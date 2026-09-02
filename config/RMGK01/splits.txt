@@ -5648,14 +5648,14 @@ Game/MapObj/ScrewSwitchReverse.cpp:
 Game/MapObj/SeaBottomTriplePropeller.cpp:
 	.text       start:0x80222D44 end:0x80223160
 	.ctors      start:0x8052EE70 end:0x8052EE74
-	.data       start:0x8059E7B8 end:0x8059E950
+	.data       start:0x8059E7B8 end:0x8059E8C8
 	.sbss       start:0x806B57B0 end:0x806B57B8
 	.sdata2     start:0x806BDE08 end:0x806BDE10
 
 Game/MapObj/SeesawMoveNut.cpp:
 	.text       start:0x80223160 end:0x80223778
 	.ctors      start:0x8052EE74 end:0x8052EE78
-	.data       start:0x8059E950 end:0x8059EA00
+	.data       start:0x8059E8C8 end:0x8059EA00
 	.sbss       start:0x806B57B8 end:0x806B57C0
 	.sdata2     start:0x806BDE10 end:0x806BDE30
 
