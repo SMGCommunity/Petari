@@ -4,6 +4,19 @@
 #include <JSystem/J3DGraphBase/J3DTexture.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
 
+enum MiniatureGalaxyType {
+    MiniatureGalaxyType_Normal,
+    MiniatureGalaxyType_Hatena,
+    MiniatureGalaxyType_Koopa,
+};
+
+enum MiniatureGalaxyState {
+    MiniatureGalaxyState_Hatena,
+    MiniatureGalaxyState_Unknown,
+    MiniatureGalaxyState_New,
+    MiniatureGalaxyState_Open,
+};
+
 class AstroDomeOrbit;
 class GalaxyNamePlate;
 class ModelObj;
@@ -14,7 +27,6 @@ class MiniatureGalaxy : public LiveActor {
 public:
     MiniatureGalaxy(const char*);
 
-    virtual ~MiniatureGalaxy();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void appear();
@@ -54,16 +66,16 @@ public:
     /* 0x098 */ ModelObj* mShadowModel;
     /* 0x09C */ ModelObj* mSelectModel;
     /* 0x0A0 */ ModelObj* mStarPlateModel;
-    /* 0x0A4 */ TMtx34f _A4;
-    /* 0x0D4 */ TMtx34f _D4;
+    /* 0x0A4 */ TPos3f mPosMtx;
+    /* 0x0D4 */ TPos3f mShadowBaseMtx;
     /* 0x104 */ ProjmapEffectMtxSetter* mProjmapEffectMtxSetter;
-    /* 0x108 */ TVec3f _108;
+    /* 0x108 */ TVec3f mInitPos;
     /* 0x114 */ const char* mObjectName;
-    /* 0x118 */ const char* mName;  // mGalaxyName
+    /* 0x118 */ const char* mGalaxyName;
     /* 0x11C */ s32 mCanZoomIn;
     /* 0x120 */ s32 mZoomLevel;
-    /* 0x124 */ J3DTexMtx _124;
-    /* 0x1B8 */ J3DTexMtx _1B8;
+    /* 0x124 */ J3DTexMtx mOnesTexMtx;
+    /* 0x1B8 */ J3DTexMtx mTensTexMtx;
     /* 0x24C */ AstroDomeOrbit* mOrbit;
     /* 0x250 */ GalaxyNamePlate* mNamePlate;
 };

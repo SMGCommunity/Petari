@@ -15,18 +15,18 @@ const GXLightID cLightDataIDs[8] = {GX_LIGHT0, GX_LIGHT1, GX_LIGHT2, GX_LIGHT3, 
 namespace {};  // namespace
 
 void LightFunction::initLightRegisterAll() {
-    GXColor colors[4] = {{0xFF, 0xFF, 0xFF, 0xFF}, {0xFF, 0xFF, 0xFF, 0xFF}, {0xFF, 0xFF, 0xFF, 0xFF}, {0xFF, 0xFF, 0xFF, 0xFF}};
+    const GXLightID cLightDataIDs[8] = {GX_LIGHT0, GX_LIGHT1, GX_LIGHT2, GX_LIGHT3, GX_LIGHT4, GX_LIGHT5, GX_LIGHT6, GX_LIGHT7};
+    Color8 c(255, 255, 255, 255);
 
     for (s32 i = 0; i < 8; i++) {
-        GXColor c = {-1, -1, -1, -1};
         GXLightObj obj;
         GXInitLightColor(&obj, c);
         GXInitLightPos(&obj, 0.0f, 0.0f, 0.0f);
-        GXInitLightDir(&obj, 0.0, -1.0, 0.0);
-        GXInitLightAttn(&obj, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0);
-        GXInitSpecularDir(&obj, 0.0, -1.0, 0.0);
-        GXInitSpecularDirHA(&obj, 0.0, -1.0, 0.0, 0.0, -1.0, 0.0);
-        GXInitLightAttn(&obj, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0);
+        GXInitLightDir(&obj, 0.0f, -1.0f, 0.0f);
+        GXInitLightAttn(&obj, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f);
+        GXInitSpecularDir(&obj, 0.0f, -1.0f, 0.0f);
+        GXInitSpecularDirHA(&obj, 0.0f, -1.0f, 0.0f, 0.0f, -1.0f, 0.0f);
+        GXInitLightAttn(&obj, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f);
         GXLoadLightObjImm(&obj, cLightDataIDs[i]);
     }
 }

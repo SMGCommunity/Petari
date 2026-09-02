@@ -735,7 +735,7 @@ namespace MarioAccess {
         switch (a1) {
         case 0:
         case 8:
-            getPlayerActor()->setPlayerMode(PlayerMode_0, true);
+            getPlayerActor()->setPlayerMode(PlayerMode_Normal, true);
             break;
         case 1:
             getPlayerActor()->setPlayerMode(PlayerMode_Hopper, true);
