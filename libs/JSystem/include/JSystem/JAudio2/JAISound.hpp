@@ -323,8 +323,8 @@ struct JAISoundStrategy {
 template < typename T >
 struct JAISoundStrategyMgr {
     virtual ~JAISoundStrategyMgr(){};
-    virtual JAISoundStrategy< T >* newStrategy(JAISoundID);
-    virtual bool deleteStrategy(JAISoundStrategy< T >*);
+    virtual JAISoundStrategy< T >* newStrategy(JAISoundID) = 0;
+    virtual bool deleteStrategy(JAISoundStrategy< T >*) = 0;
 };
 
 class JAISoundActivity {

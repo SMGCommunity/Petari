@@ -2,8 +2,10 @@
 
 #include "Game/AudioLib/AudAudience.hpp"
 #include "Game/AudioLib/AudBgmMgr.hpp"
+#include "Game/AudioLib/AudLimitedSound.hpp"
 #include "JSystem/JAudio2/JAIAudible.hpp"
 #include "JSystem/JAudio2/JAIAudience.hpp"
+#include "JSystem/JAudio2/JAUStdSoundInfo.hpp"
 #include <JSystem/JAudio2/JASAudioReseter.hpp>
 #include <JSystem/JAudio2/JAUSoundMgr.hpp>
 #include <JSystem/JGeometry/TMatrix.hpp>
@@ -21,27 +23,35 @@ class AudSystemVolumeController;
 class JAISoundHandle;
 class JAISoundID;
 class JAUSectionHeap;
+class JAUStreamStaticAramMgr;
 class JKRArchive;
 class JKRSolidHeap;
 class SpkSystem;
 
 class AudSystem : public JAUSoundMgr {
 public:
-    struct MicData {
-        /* 0x00 */ TPos3f _0;
-        /* 0x30 */ TVec3f _30;
-        /* 0x3C */ TVec3f mPos;
-        /* 0x48 */ TVec3f _48;
+    enum MenuState {
+        MenuState_Off = 0,
+        MenuState_Enter = 1,
+        MenuState_Exit = 2,
+        MenuState_Active = 3,
+    };
+
+    enum MenuType {
+        MenuType_HomeButtonMenu = 0,
+        MenuType_Pause = 1,
+        MenuType_Error = 2,
     };
 
     AudSystem(JAUSectionHeap*, JKRArchive*, JKRArchive*, JKRArchive*);
 
+    virtual void frameWork();
+    virtual void calc();
+    virtual bool startSound(JAISoundID, JAISoundHandle*, const TVec3f*);
+    virtual bool startLevelSound(JAISoundID, JAISoundHandle*, const TVec3f*);
+
     AudChordInfo* getChordInfo();
     void setSpeakerResource(JKRArchive*);
-    void frameWork();
-    void calc();
-    bool startSound(JAISoundID, JAISoundHandle*, const TVec3f*);
-    bool startLevelSound(JAISoundID, JAISoundHandle*, const TVec3f*);
     void switchToLuigi(JAISoundID, JAISoundHandle*);
     bool isSubmitSeByVolumeSetting(JAISoundID);
     void updateOutputMode();
@@ -65,12 +75,13 @@ public:
     void doDvdErrorProcess();
     void exitDvdErrorProcess();
     s32 getNumOfPlaying(JAISoundID);
-    s32 getPlayCountMin(JAISoundID);
+    u32 getPlayCountMin(JAISoundID);
     void setMicMtx(MtxPtr, s32);
     const TVec3f& getMicPos(s32);
     void setFarCamera(bool);
     void setSeVolumeSet(s32, u32);
     void recoverSeVolumeSet(u32);
+    void setSeVolumeSetLevel(s32);
     void initVolumeSetting();
     void initCategoryArrangement();
     void setMeResource(JKRArchive*, u16, u16);
@@ -93,23 +104,21 @@ public:
 
     static AudSystem* msBasic;
 
-    /* 0x0814 */ u8 _814;
-    /* 0x0815 */ u8 _815;
-    /* 0x0816 */ u8 _816;
+    /* 0x0814 */ bool mIsResetReady;
+    /* 0x0815 */ bool mIsReset;
+    /* 0x0816 */ bool mStopThreads;
     /* 0x0818 */ JASAudioReseter mReseter;
-    /* 0x0828 */ u8 _828;
-    /* 0x0829 */ u8 _829;
-    /* 0x082A */ u8 _82A;
-    /* 0x082B */ bool _82B;
-    /* 0x082C */ bool _82C;
+    /* 0x0828 */ bool _828;
+    /* 0x0829 */ bool mIsPaused;
+    /* 0x082A */ bool _82A;
+    /* 0x082B */ bool _82B;  // blocks startSound
+    /* 0x082C */ bool _82C;  // blocks startLevelSound
     /* 0x0830 */ s32 _830;
-    /* 0x0834 */ u32 _834;
-    /* 0x0838 */ u32 _838;
-    /* 0x083C */ u32 _83C;
-    /* 0x0840 */ AudAudience_withSetting mAudience;
-    /* 0x0894 */ u8 _894[0x4];
-    /* 0x0898 */ MicData mMicData[WPAD_MAX_CONTROLLERS];
-    /* 0x09E8 */ u8 _9E8[0x4];
+    /* 0x0834 */ JAUStdSoundInfo* mSoundInfo;
+    /* 0x0838 */ JAUSectionHeap* mSectionHeap;
+    /* 0x083C */ JAUStreamStaticAramMgr* mStreamAramMgr;
+    /* 0x0840 */ AudAudience< 4 > mAudience;
+    /* 0x09E8 */ AudDopplerAudible< 4 >* mAudible;  // TODO: should this be merged into AudAudience<>??
     /* 0x09EC */ AudSoundObject* mSystemSeObject;
     /* 0x09F0 */ AudSoundObject* mAtmosphereSeObject;
     /* 0x09F4 */ AudMeObject* mSystemMeObject;
@@ -121,23 +130,14 @@ public:
     /* 0x1308 */ AudEffector* mAudEffector;
     /* 0x130C */ AudSeStrategyMgr* mSeStrategyMgr;
     /* 0x1310 */ AudSystemVolumeController* mVolumeController;
-    /* 0x1314 */ u32 _1314;
-    /* 0x1318 */ s32 _1318;
-    /* 0x131C */ u32 _131C;
-    /* 0x1320 */ s32 _1320;
-    /* 0x1324 */ u8 _1324;
-    /* 0x1328 */ u32 _1328;
+    /* 0x1314 */ s32 mHomeButtonMenuState;
+    /* 0x1318 */ s32 mHomeButtonToggleTime;
+    /* 0x131C */ s32 mPauseMenuState;
+    /* 0x1320 */ s32 mPauseMenuToggleTime;
+    /* 0x1324 */ bool mIsDvdError;
+    /* 0x1328 */ AudLimitedSoundInfo* mLimitedSoundInfo;
     /* 0x132C */ SpkSystem* mSpkSystem;
 };
 
-AudSystem* AudNewAudSystem(JKRSolidHeap*, void*, JKRArchive*, JKRArchive*, JKRArchive*, JKRArchive*);
-AudSystem* AudNewAudSystem_(JAUSectionHeap*, JKRArchive*, JKRArchive*, JKRArchive*, int);
-
-template < int SIZE, class T, class U >
-class AudGenericAudible : public JAIAudible {
-public:
-    // todo: finish, and properly classify template parameters
-    virtual ~AudGenericAudible();
-    virtual JASSoundParams* getOuterParams(int);
-    virtual void calc();
-};
+AudSystem* AudNewAudSystem(JKRSolidHeap*, void*, JKRArchive*, JKRArchive*, JKRArchive*, JKRArchive*) NO_INLINE;
+AudSystem* AudNewAudSystem_(JAUSectionHeap*, JKRArchive*, JKRArchive*, JKRArchive*, int) NO_INLINE;

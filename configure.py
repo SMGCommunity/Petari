@@ -742,7 +742,7 @@ config.libs = [
         "AudioLib",
         [
             Object(NonMatching, "Game/AudioLib/AudSystem.cpp"),
-            Object(NonMatching, "Game/AudioLib/AudParams.cpp"),
+            Object(Matching, "Game/AudioLib/AudParams.cpp"),
             Object(NonMatching, "Game/AudioLib/AudSystemVolumeController.cpp"),
             Object(NonMatching, "Game/AudioLib/AudAudience.cpp"),
             Object(Matching, "Game/AudioLib/AudSoundInfo.cpp"),
@@ -1743,7 +1743,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SandUpDownTriRock.cpp"),
             Object(Matching, "Game/MapObj/ScrewSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/ScrewSwitchReverse.cpp"),
-            Object(NonMatching, "Game/MapObj/SeaBottomTriplePropeller.cpp"),
+            Object(Matching, "Game/MapObj/SeaBottomTriplePropeller.cpp"),
             Object(NonMatching, "Game/MapObj/SeesawMoveNut.cpp"),
             Object(NonMatching, "Game/MapObj/Shellfish.cpp"),
             Object(Matching, "Game/MapObj/ShockWaveGenerator.cpp"),

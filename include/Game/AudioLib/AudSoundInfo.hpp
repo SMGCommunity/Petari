@@ -13,4 +13,8 @@ public:
     bool isFanfareSe(JAISoundID) const;
     bool isUseFxMix(JAISoundID) const;
     bool isUseLpf(JAISoundID) const;
+
+    static AudSoundInfo* getInstance() {
+        return static_cast< AudSoundInfo* >(JAUSoundInfo::getInstance());
+    }
 };
