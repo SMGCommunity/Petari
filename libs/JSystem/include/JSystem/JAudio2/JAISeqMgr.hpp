@@ -43,10 +43,10 @@ public:
         return seqDataMgr;
     }
 
-    void setSeqDataMgr(JAISeqDataMgr* seqDataMgr) {
+    void setSeqDataMgr(JAISeqDataMgr* seqDataMgr_) {
         resetSeqDataMgr();
-        seqDataMgr = seqDataMgr;
-        seqDataMgr->setSeqDataUser(this);
+        seqDataMgr = seqDataMgr_;
+        seqDataMgr_->setSeqDataUser(this);
     }
 
     void resetSeqDataMgr() {

@@ -19,8 +19,8 @@ public:
     /* 0x14 */ f32 mMaxDolby;
     /* 0x18 */ f32 mCenterDolby;
     /* 0x1C */ f32 mMinDolby;
-    /* 0x20 */ f32 _20;
-    /* 0x24 */ f32 _24;
+    /* 0x20 */ f32 mMinFxMix;
+    /* 0x24 */ f32 mMaxFxMix;
     /* 0x28 */ f32 mPanAmplitude;
     /* 0x2C */ f32 mSonicSpeed;
     /* 0x30 */ f32 mPitchDeltaRatioRange;

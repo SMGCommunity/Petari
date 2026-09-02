@@ -1,11 +1,12 @@
 #pragma once
 
-#include "JSystem/JAudio2/JASHeapCtrl.hpp"
 #include <JSystem/JAudio2/JASGlobal.hpp>
+#include <JSystem/JAudio2/JASHeapCtrl.hpp>
+#include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JSupport/JSUList.hpp>
 
+
 class AudMeHandle;
-class TVec3f;
 
 class AudMePlayingParamsHolder {
 public:

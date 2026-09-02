@@ -599,7 +599,29 @@ namespace JGeometry {
             TRotation3< T >::setQuat(rSrcQuat);
         }
 
-        void setPositionFromLookAt(const TPosition3< T >& rLookAt);
+        void setPositionFromLookAt(const TPosition3< T >& rLookAt) {
+            // FIXME: load order mixed
+            // https://decomp.me/scratch/YgGhi
+            this->mMtx[0][0] = -rLookAt.get(0, 0);
+            this->mMtx[1][1] = rLookAt.get(1, 1);
+            this->mMtx[2][2] = -rLookAt.get(2, 2);
+
+            this->mMtx[1][0] = -rLookAt.get(0, 1);
+            this->mMtx[0][1] = rLookAt.get(1, 0);
+
+            this->mMtx[2][0] = -rLookAt.get(0, 2);
+            this->mMtx[0][2] = -rLookAt.get(2, 0);
+
+            this->mMtx[1][2] = -rLookAt.get(2, 1);
+            this->mMtx[2][1] = rLookAt.get(1, 2);
+
+            TVec3f pos;
+            rLookAt.getTrans(pos);
+
+            this->mMtx[0][3] = pos.x * get(0, 0) - pos.y * get(0, 1) + pos.z * get(0, 2);
+            this->mMtx[1][3] = pos.x * get(1, 0) - pos.y * get(1, 1) + pos.z * get(1, 2);
+            this->mMtx[2][3] = pos.x * get(2, 0) - pos.y * get(2, 1) + pos.z * get(2, 2);
+        }
 
         void setPositionFromLookAt(const TVec3f& rLookAtPos, const TVec3f& rUp, const TVec3f& rPos) {
             TVec3f aim;

@@ -6,8 +6,8 @@ void JAUAudience3DSetting::init() {
     mMinVolume = 0.005f;
     mBehindDolbyZ = 8000.0f;
     mFrontDolbyZ = -4000.0f;
-    _24 = 0.1f;
-    _20 = 0.0f;
+    mMaxFxMix = 0.1f;
+    mMinFxMix = 0.0f;
     mMaxDolby = 1.0f;
     mCenterDolby = 0.8f;
     mMinDolby = 0.0f;

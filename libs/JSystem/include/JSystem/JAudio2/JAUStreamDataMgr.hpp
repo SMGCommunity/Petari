@@ -6,25 +6,33 @@
 #include <JSystem/JAudio2/JAUStreamFileTable.hpp>
 #include <bitset>
 
-template < size_t N >
+template < int N >
 class JAUStreamAramMgrBase_ : public JAIStreamAramMgr {
 public:
     JAUStreamAramMgrBase_() {
-        for (int i = 0; i < N; i++) {
+        for (u32 i = 0; i < N; i++) {
             mBits.reset(i);
         }
         mSize = 0;
     }
 
+    virtual ~JAUStreamAramMgrBase_() {
+        for (int i = N - 1; i >= 0; i--) {
+            if (mHeaps[i].mBase != nullptr) {
+                mHeaps[i].free();
+            }
+        }
+    }
+
     virtual void* newStreamAram(u32*) = 0;
     virtual bool deleteStreamAram(u32) = 0;
 
-    void alloc(JASHeap* pHeap, u32 size) {  // TODO name better?
+    void alloc(JASHeap* pHeap, u32 size) {
         for (int i = 0; i < N; i++) {
             if (!mHeaps[i].alloc(pHeap, size)) {
                 break;
             }
-            mSize++;
+            mSize = i + 1;
         }
     }
 
@@ -33,15 +41,32 @@ public:
     /* 0x90 */ u32 mSize;
 };
 
-template < size_t N >
+template < int N >
 class JAUStreamStaticAramMgr_ : public JAUStreamAramMgrBase_< N > {
 public:
-    virtual void* newStreamAram(u32*);
-    virtual bool deleteStreamAram(u32);
+    typedef JAUStreamAramMgrBase_< N > Base;
+    virtual void* newStreamAram(u32* pSize) {
+        for (s32 i = 0; i < Base::mSize; i++) {
+            if (!Base::mBits.test(i)) {
+                Base::mBits.set(i, true);
+                *pSize = Base::mHeaps[i].mSize;
+                return Base::mHeaps[i].mBase;
+            }
+        }
+        return nullptr;
+    }
+
+    virtual bool deleteStreamAram(u32 addr) {
+        for (s32 i = 0; i < Base::mSize; i++) {
+            if (Base::mBits.test(i) && addr == (u32)Base::mHeaps[i].mBase) {
+                Base::mBits.reset(i);
+                return true;
+            }
+        }
+        return false;
+    }
 };
 
 class JAUStreamStaticAramMgr : public JAUStreamStaticAramMgr_< 2 > {
 public:
-    virtual void* newStreamAram(u32*);
-    virtual bool deleteStreamAram(u32);
 };
