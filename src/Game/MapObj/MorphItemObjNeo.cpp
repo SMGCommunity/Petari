@@ -30,8 +30,8 @@ namespace {
     const char* cxNameList[] = {"-----", "PowerupHopper", "PowerUpBee", "PowerupTeresa", "PowerupIce", "PowerupFire", "PowerupFoo", "END"};
     static u16 sUnknown = 60;
     static u16 sUnknown2 = 30;
-    static const f32 cRotateRadiusPower = 2.0f;
-    static const f32 cRotateRadiusMini = 30.0f;
+    static f32 cRotateRadiusPower = 2.0f;
+    static f32 cRotateRadiusMini = 30.0f;
 };  // namespace
 
 namespace NrvMorphItemObjNeo {
@@ -473,7 +473,6 @@ void MorphItemObjNeo::calcAndSetBaseMtx() {
             TVec3f rotVec;
             PSMTXMultVec(rotMtx, mZRotation, rotVec);
 
-            // FIXME: regswap
             rotVec.setLength(mAppearMode * ::cRotateRadiusPower + ::cRotateRadiusMini);
             MR::addTransMtx(getBaseMtx(), rotVec);
         }
