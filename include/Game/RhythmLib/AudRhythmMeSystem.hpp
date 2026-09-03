@@ -2,11 +2,11 @@
 
 #include "Game/RhythmLib/AudChordInfo.hpp"
 #include "Game/RhythmLib/AudRhythmHolder.hpp"
+#include "Game/RhythmLib/AudRhythmSeqParser.hpp"
 #include <JSystem/JAudio2/JASGlobal.hpp>
 
 class JAISoundHandle;
 class JKRHeap;
-class AudRhythmSeqParser;
 class AudMeMgr;
 
 class AudRhythmMeSystem : public JASGlobalInstance< AudRhythmMeSystem > {
@@ -26,7 +26,11 @@ public:
         return mBgmIdx;
     }
 
-    /* 0x00 */ AudRhythmSeqParser* mSeqParsers;
+    AudRhythmSeqParser* getSeqParser(int index) const {
+        return mSeqParsers[index];
+    }
+
+    /* 0x00 */ AudRhythmSeqParser** mSeqParsers;
     /* 0x04 */ u32 mNumSeqParsers;
     /* 0x08 */ s32 mBgmIdx;
     /* 0x0C */ u32 _C;

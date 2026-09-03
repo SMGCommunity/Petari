@@ -54,6 +54,10 @@ public:
     void registScaleNumToInfo();
     void flushChordScale();
 
+    AudBgmTempoAdjuster* getTempoAdjuster() {
+        return &mTempoAdjuster;
+    }
+
     /* 0x004 */ f32 mTempo;
     /* 0x008 */ f32 mModifiedTempo;
     /* 0x00C */ bool _C;

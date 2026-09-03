@@ -62,17 +62,17 @@ void AudTrackController::unmute() {
 
 void AudTrackController::setMuteState(u8 state, s32 fadeTime, bool autoMute) {
     switch (state) {
-    case 0:
+    case AudFader::FadeState_FadeOut:
         mFader.set(0.0f, fadeTime);
         break;
-    case 1:
+    case AudFader::FadeState_FadeIn:
         unmute();
         mFader.set(1.0f, fadeTime);
         break;
-    case 2:
+    case AudFader::FadeState_Mute:
         mute();
         break;
-    case 3:
+    case AudFader::FadeState_Unmute:
         unmute();
         break;
     default:
