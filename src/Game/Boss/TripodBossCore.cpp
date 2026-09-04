@@ -14,6 +14,13 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sHitSensorRadius = 300.0f;
+    static const s32 sBreakStopStep = 2;
+    static const s32 sBreakStopFrame = 16;
+    // static const f32 sBreakStopDistance = _;
+};  // namespace
+
 namespace NrvTripodBossCore {
     NEW_NERVE(TripodBossCoreNrvNonActive, TripodBossCore, NonActive);
     NEW_NERVE(TripodBossCoreNrvWait, TripodBossCore, Wait);
@@ -22,9 +29,7 @@ namespace NrvTripodBossCore {
     NEW_NERVE(TripodBossCoreNrvBreak, TripodBossCore, Break);
 };  // namespace NrvTripodBossCore
 
-TripodBossCore::TripodBossCore(const char* pName) : TripodBossFixPartsBase(pName) {
-    mBreakModel = nullptr;
-    mBloomModel = nullptr;
+TripodBossCore::TripodBossCore(const char* pName) : TripodBossFixPartsBase(pName), mBreakModel(), mBloomModel() {
 }
 
 void TripodBossCore::init(const JMapInfoIter& rIter) {
@@ -33,19 +38,22 @@ void TripodBossCore::init(const JMapInfoIter& rIter) {
     MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
     initClippingSphere();
     initHitSensor(1);
-    MR::addHitSensor(this, "body", ATYPE_BREAKABLE_CAGE, 8, 300.0f * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensor(this, "body", ATYPE_BREAKABLE_CAGE, 8, ::sHitSensorRadius * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
     MR::initCollisionParts(this, "TripodBossCore", getSensor("body"), nullptr);
     initSound(4, false);
+
     mBreakModel = MR::createModelObjMapObjStrongLight("壊れモデル", "TripodBossCoreBreak", getBaseMtx());
     mBreakModel->initWithoutIter();
     MR::invalidateClipping(mBreakModel);
     mBreakModel->makeActorDead();
     MR::addTripodBossPartsMovement(mBreakModel);
+
     mBloomModel = MR::createModelObjBloomModel("ブルームモデル", "TripodBossCoreBloom", getBaseMtx());
     mBloomModel->initWithoutIter();
     MR::invalidateClipping(mBloomModel);
     mBloomModel->makeActorDead();
     MR::addTripodBossPartsMovement(mBloomModel);
+
     initNerve(&NrvTripodBossCore::TripodBossCoreNrvNonActive::sInstance);
     initEffectKeeper(0, "TripodBossCore", false);
     MR::setEffectHostMtx(this, "BlackSmoke", getBaseMtx());
@@ -77,6 +85,9 @@ void TripodBossCore::activateTripodBoss() {
     }
 }
 
+void TripodBossCore::exeNonActive() {
+}
+
 void TripodBossCore::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::tryStartAllAnim(this, "Wait");
@@ -85,6 +96,7 @@ void TripodBossCore::exeWait() {
 
     updateTripodMatrix();
     MR::requestPointLight(this, mPosition, (GXColor){0x96, 0x96, 0x96, 0xFF}, 1.0f, -1);
+
     if (MR::isDamageDemoTripodBoss()) {
         setNerve(&NrvTripodBossCore::TripodBossCoreNrvDamageDemo::sInstance);
     }
@@ -97,7 +109,8 @@ void TripodBossCore::exeDamageDemo() {
     }
 
     MR::requestPointLight(this, mPosition, (GXColor){0xFF, 0x96, 0x96, 0xFF}, 1.0f, -1);
-    if (MR::isDamageDemoTripodBoss()) {
+
+    if (!MR::isDamageDemoTripodBoss()) {
         setNerve(&NrvTripodBossCore::TripodBossCoreNrvWarning::sInstance);
     }
 }
@@ -109,6 +122,7 @@ void TripodBossCore::exeWarning() {
 
 void TripodBossCore::exeBreak() {
     updateTripodMatrix();
+
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_BM_TRIPOD_CORE_BREAK");
         MR::emitEffect(this, "BlackSmoke");
@@ -120,13 +134,14 @@ void TripodBossCore::exeBreak() {
         mBreakModel->appear();
         MR::startBck(mBreakModel, "Break", nullptr);
         MR::requestMovementOn(mBreakModel);
+
         if (MR::isValidSwitchDead(this)) {
             MR::onSwitchDead(this);
         }
     }
 
-    if (MR::isStep(this, 2)) {
-        MR::stopScene(16);
+    if (MR::isStep(this, ::sBreakStopStep)) {
+        MR::stopScene(::sBreakStopFrame);
         MR::shakeCameraNormal();
     }
 
@@ -134,10 +149,4 @@ void TripodBossCore::exeBreak() {
         kill();
         MR::deleteEffect(this, "BlackSmoke");
     }
-}
-
-void TripodBossCore::exeNonActive() {
-}
-
-TripodBossCore::~TripodBossCore() {
 }

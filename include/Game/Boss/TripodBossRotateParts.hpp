@@ -6,7 +6,9 @@ class MapPartsRotator;
 
 class TripodBossRotateParts : public TripodBossFixParts {
 public:
-    TripodBossRotateParts(const char*);
+    /// @brief Creates a new `TripodBossRotateParts`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TripodBossRotateParts(const char* pName);
 
     virtual ~TripodBossRotateParts();
     virtual void init(const JMapInfoIter&);
@@ -15,5 +17,5 @@ public:
     virtual void activateTripodBoss();
     virtual void exeWaitOwn();
 
-    MapPartsRotator* mRotator;  // 0xF0
+    /* 0xF0 */ MapPartsRotator* mRotator;
 };

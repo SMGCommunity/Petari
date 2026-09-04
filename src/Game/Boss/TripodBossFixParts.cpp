@@ -33,7 +33,7 @@ namespace {
                                                           {"TripodBossEyeLightBloom", 3}};
 
     TripodBossSetting* getSetting(const char* pObjName) {
-        for (u32 i = 0; i < 5; i++) {
+        for (u32 i = 0; i < ARRAY_SIZE(sTripodBossSettingTable); i++) {
             const char* partName = sTripodBossSettingTable[i].mPartName;
             if (MR::isEqualString(pObjName, partName)) {
                 return &sTripodBossSettingTable[i];
@@ -44,13 +44,8 @@ namespace {
     }
 };  // namespace
 
-TripodBossFixParts::TripodBossFixParts(const char* pName) : TripodBossFixPartsBase(pName) {
-    _E4 = -1;
-    _E8 = 180;
-    mHasCollision = false;
-    _ED = 1;
-    _EE = 0;
-    mIsPlayingWarning = false;
+TripodBossFixParts::TripodBossFixParts(const char* pName)
+    : TripodBossFixPartsBase(pName), _E4(-1), _E8(180), mHasCollision(), _ED(true), _EE(), mIsPlayingWarning() {
 }
 
 // https://decomp.me/scratch/UtuYP
@@ -78,11 +73,7 @@ void TripodBossFixParts::init(const JMapInfoIter& rIter) {
     }
 
     if (MR::isEqualString(objName, "TriPodBossBodyA")) {
-        TVec3f clip;
-        clip.x = 250.0f;
-        clip.y = 1000.0f;
-        clip.z = 0.0f;
-        setClippingSphere(clip, 3750.0f);
+        setClippingSphere(TVec3f(250.0f, 1000.0f, 0.0f), 3750.0f);
     } else {
         initClippingSphere();
     }
@@ -114,6 +105,7 @@ void TripodBossFixParts::init(const JMapInfoIter& rIter) {
 
 void TripodBossFixParts::initSensor(const JMapInfoIter& rIter) {
     initHitSensor(1);
+
     if (MR::isMapPartsPressOn(rIter)) {
         MR::addBodyMessageSensorMapObjPress(this);
     } else {
@@ -152,6 +144,7 @@ void TripodBossFixParts::kill() {
 void TripodBossFixParts::activateTripodBoss() {
     if (isNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvNonActive::sInstance)) {
         MR::onCalcAnim(this);
+
         if (mHasCollision) {
             MR::validateCollisionParts(this);
         }
@@ -165,6 +158,9 @@ void TripodBossFixParts::activateTripodBoss() {
             setNerve(&NrvTripodBossFixParts::TripodBossFixPartsNrvWait::sInstance);
         }
     }
+}
+
+void TripodBossFixParts::exeNonActive() {
 }
 
 void TripodBossFixParts::exeStartDemo() {
@@ -182,28 +178,31 @@ void TripodBossFixParts::exeStartDemo() {
 void TripodBossFixParts::exeWait() {
     if (MR::isFirstStep(this)) {
         MR::tryStartAllAnim(this, "Wait");
-        _EE = 0;
+        _EE = false;
     }
 
     exeWaitOwn();
     updateTripodMatrix();
+
     if (MR::isRideMarioTripodBoss() && MR::isOnGroundPlayer() && !_EE) {
         MR::tryStartAllAnim(this, "Warning");
-        _EE = 1;
+        _EE = true;
+
         if (MR::isExistAnim(this, "Warning") && !mIsPlayingWarning) {
             MR::startSound(this, "SE_BM_TRIPOD_MARKER");
-            mIsPlayingWarning = 1;
+            mIsPlayingWarning = true;
         }
     }
 
     if (MR::isLeaveMarioNowTripodBoss() && _EE) {
         MR::tryStartAllAnim(this, "Wait");
+
         if (mIsPlayingWarning) {
             MR::stopSound(this, "SE_BM_TRIPOD_MARKER", 60);
         }
 
         mIsPlayingWarning = false;
-        _EE = 0;
+        _EE = false;
     }
 
     if (MR::isEndBreakDownDemoTripodBoss()) {
@@ -218,22 +217,15 @@ void TripodBossFixParts::exeWait() {
 void TripodBossFixParts::exeBreak() {
     if (MR::isFirstStep(this)) {
         startBreakMovement();
+
         if (mHasCollision) {
             MR::invalidateCollisionParts(this);
         }
     }
 
     updateBreakMovementMatrix();
+
     if (MR::isGreaterStep(this, _E8)) {
         kill();
     }
-}
-
-void TripodBossFixParts::exeNonActive() {
-}
-
-TripodBossFixParts::~TripodBossFixParts() {
-}
-
-void TripodBossFixParts::exeWaitOwn() {
 }

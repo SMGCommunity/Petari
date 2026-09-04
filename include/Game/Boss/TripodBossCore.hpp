@@ -6,9 +6,10 @@ class ModelObj;
 
 class TripodBossCore : public TripodBossFixPartsBase {
 public:
-    TripodBossCore(const char*);
+    /// @brief Creates a new `TripodBossCore`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TripodBossCore(const char* pName);
 
-    virtual ~TripodBossCore();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);

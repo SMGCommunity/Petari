@@ -1508,13 +1508,13 @@ Game/Boss/TripodBossCore.cpp:
 Game/Boss/TripodBossFixParts.cpp:
 	.text       start:0x8008AFC0 end:0x8008B7A8
 	.ctors      start:0x8052E9C4 end:0x8052E9C8
-	.data       start:0x80573190 end:0x805733A8
+	.data       start:0x80573190 end:0x80573390
 	.sbss       start:0x806B3938 end:0x806B3948
 	.sdata2     start:0x806B8FB0 end:0x806B8FC0
 
 Game/Boss/TripodBossFixPartsBase.cpp:
 	.text       start:0x8008B7A8 end:0x8008BC40
-	.data       start:0x805733A8 end:0x80573428
+	.data       start:0x80573390 end:0x80573428
 	.sdata2     start:0x806B8FC0 end:0x806B8FC8
 
 Game/Boss/TripodBossGuardWall.cpp:

@@ -5,14 +5,19 @@
 
 class TripodBossBaseJointPosition : public LiveActor {
 public:
-    TripodBossBaseJointPosition(const char*);
+    /// @brief Creates a new `TripodBossBaseJointPosition`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TripodBossBaseJointPosition(const char* pName);
 
-    virtual ~TripodBossBaseJointPosition();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
-    virtual MtxPtr getBaseMtx() const;
+
+    virtual MtxPtr getBaseMtx() const {
+        return (MtxPtr)&mMtx;
+    }
+
     virtual void control();
 
-    s32 _8C;
-    TPos3f _90;
+    /* 0x8C */ s32 mID;
+    /* 0x90 */ TPos3f mMtx;
 };

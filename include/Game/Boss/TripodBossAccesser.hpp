@@ -4,24 +4,28 @@
 
 class TripodBossAccesser : public NameObj {
 public:
-    TripodBossAccesser(const char*);
+    /// @brief Creates a new `TripodBossAccesser`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TripodBossAccesser(const char* pName);
 
-    virtual ~TripodBossAccesser();
-
+    TripodBoss* getTriPodBoss() const;
     void setTriPodBoss(TripodBoss*);
     void addTripodBossParts(LiveActor*);
     void showTripodBossParts();
     void hideTripodBossParts();
     void activeTripodBossParts();
     bool isTripoddBossParts(const NameObj*) const;
+
     static TripodBossAccesser* createSceneObj();
 
-    TripodBoss* mBoss;         // 0xC
-    LiveActor* mParts[0x100];  // 0x10
-    s32 mNumParts;             // 0x410
+private:
+    /* 0x00C */ TripodBoss* mBoss;
+    /* 0x010 */ LiveActor* mParts[256];
+    /* 0x410 */ s32 mPartsNum;
 };
 
 namespace MR {
+    TripodBossAccesser* getTripodBossAccesser();
     void addTripodBossParts(LiveActor*);
     void addTripodBossPartsMovement(NameObj*);
     bool isTripoddBossParts(const NameObj*);

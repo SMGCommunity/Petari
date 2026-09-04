@@ -4,12 +4,12 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
-TripodBossRotateParts::TripodBossRotateParts(const char* pName) : TripodBossFixParts(pName) {
-    mRotator = nullptr;
+TripodBossRotateParts::TripodBossRotateParts(const char* pName) : TripodBossFixParts(pName), mRotator() {
 }
 
 void TripodBossRotateParts::init(const JMapInfoIter& rIter) {
     TripodBossFixParts::init(rIter);
+
     mRotator = new MapPartsRotator(this);
     mRotator->init(rIter);
 }
@@ -29,10 +29,8 @@ void TripodBossRotateParts::activateTripodBoss() {
 
 void TripodBossRotateParts::calcTripodLocalMatrix(TPos3f* pMtx) {
     if (mRotator->isWorking()) {
-        pMtx->setInline(mRotator->getRotateMtx());
-        pMtx->mMtx[0][3] = _BC.x;
-        pMtx->mMtx[1][3] = _BC.y;
-        pMtx->mMtx[2][3] = _BC.z;
+        pMtx->set(mRotator->getRotateMtx());
+        pMtx->setTrans(_BC);
     } else {
         MR::makeMtxTR(*pMtx, _BC, mRotation);
     }

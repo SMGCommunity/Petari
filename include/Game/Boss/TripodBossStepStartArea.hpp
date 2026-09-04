@@ -11,5 +11,5 @@ public:
     virtual void movement();
     virtual const char* getManagerName() const;
 
-    s32 _3C;
+    /* 0x3C */ s32 _3C;
 };

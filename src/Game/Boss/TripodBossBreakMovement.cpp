@@ -8,18 +8,35 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/SpringValue.hpp"
 
+namespace {
+    // static const s32 sMinBreakTimeLevel0 = _;
+    // static const s32 sMaxBreakTimeLevel0 = _;
+    // static const s32 sMinBreakTimeLevel1 = _;
+    // static const s32 sMaxBreakTimeLevel1 = _;
+    // static const s32 sMinBreakTimeLevel2 = _;
+    // static const s32 sMaxBreakTimeLevel2 = _;
+    // static const s32 sMinBreakTimeLevel3 = _;
+    // static const s32 sMaxBreakTimeLevel3 = _;
+    // static const f32 sMinBreakPower = _;
+    // static const f32 sMaxBreakPower = _;
+    static const f32 sBreakRandamaize = 1.0f;
+    static const f32 sMinStartMoment = 0.01f;
+    static const f32 sMaxStartMoment = 0.04f;
+    static const f32 sGravityAccel = 0.2f;
+    // static const f32 sMinAirFreq = _;
+    // static const f32 sMaxAirFreq = _;
+    // static const f32 sStartVibrationMinPower = _;
+    // static const f32 sStartVibrationMaxPower = _;
+};  // namespace
+
 namespace NrvTripodBossBreakMovement {
     NEW_NERVE(TripodBossBreakMovementNrvWait, TripodBossBreakMovement, Wait);
     NEW_NERVE(TripodBossBreakMovementNrvStartBreak, TripodBossBreakMovement, StartBreak);
     NEW_NERVE(TripodBossBreakMovementNrvBreak, TripodBossBreakMovement, Break);
 };  // namespace NrvTripodBossBreakMovement
 
-TripodBossBreakMovement::TripodBossBreakMovement(const char* pName) : LiveActor(pName), mSpring(nullptr), _CC(0, 0, 0), _D8(0, 0, 0), _E4(0, 1, 0) {
-    _F0 = 0.3f;
-    _F4 = 0.0f;
-    _F8 = 0.9f;
-    _FC = 0;
-    _100 = -1;
+TripodBossBreakMovement::TripodBossBreakMovement(const char* pName)
+    : LiveActor(pName), mSpring(), _CC(0, 0, 0), _D8(0, 0, 0), _E4(0, 1, 0), _F0(0.3f), _F4(), _F8(0.9f), _FC(), _100(-1) {
     _8C.identity();
     initNerve(&NrvTripodBossBreakMovement::TripodBossBreakMovementNrvWait::sInstance);
     MR::invalidateClipping(this);
@@ -29,36 +46,33 @@ TripodBossBreakMovement::TripodBossBreakMovement(const char* pName) : LiveActor(
 }
 
 void TripodBossBreakMovement::start(const TPos3f& a1, s32 a2) {
-    _8C.setInline(a1);
+    _8C.set(a1);
     _8C.getTrans(_C0);
-    _CC.z = 0.0f;
-    _CC.y = 0.0f;
-    _CC.x = 0.0f;
-    f32 v13 = MR::getRandom(-1.0f, 1.0f);
-    f32 v14 = MR::getRandom(-1.0f, 1.0f);
-    f32 v15 = MR::getRandom(-1.0f, 1.0f);
-    _CC.set< f32 >(v15, v14, v13);
+
+    _CC.zero();
+    _CC.set< f32 >(MR::getRandom(-::sBreakRandamaize, ::sBreakRandamaize), MR::getRandom(-::sBreakRandamaize, ::sBreakRandamaize),
+                   MR::getRandom(-::sBreakRandamaize, ::sBreakRandamaize));
     MR::normalizeOrZero(&_CC);
-    f32 v16 = MR::getRandom(0.01f, 0.04f);
-    _CC *= v16;
+    _CC *= MR::getRandom(::sMinStartMoment, ::sMaxStartMoment);
+
     _F8 = MR::getRandom(0.995f, 0.997f);
+
     MR::zeroVelocity(this);
+
     _100 = a2;
     _FC = 0;
+
     TPos3f jointMtx;
     MR::getTripodBossJointMatrix(&jointMtx, _100);
     jointMtx.getYDir(_E4);
 
-    f32 v17 = MR::getRandom(-1.0f, 1.0f);
-    f32 v18 = MR::getRandom(-1.0f, 1.0f);
-    f32 v19 = MR::getRandom(-1.0f, 1.0f);
     TVec3f v25;
-    v25.set< f32 >(v19, v18, v17);
-    f32 val = _F0;
-    TVec3f v24(v25);
-    v24 *= val;
-    _E4 += v24;
+    v25.set< f32 >(MR::getRandom(-::sBreakRandamaize, ::sBreakRandamaize), MR::getRandom(-::sBreakRandamaize, ::sBreakRandamaize),
+                   MR::getRandom(-::sBreakRandamaize, ::sBreakRandamaize));
+    _E4 += v25 * _F0;
+
     mSpring->mVelocity += MR::getRandom(20.0f, 25.0f);
+
     setNerve(&NrvTripodBossBreakMovement::TripodBossBreakMovementNrvStartBreak::sInstance);
     MR::invalidateClipping(this);
     appear();
@@ -72,6 +86,7 @@ void TripodBossBreakMovement::setBreakDownLevel(s32 level) {
     if (level < 0) {
         level = 0;
     }
+
     if (level >= 3) {
         level = 3;
     }
@@ -89,42 +104,35 @@ void TripodBossBreakMovement::setBreakDownLevel(s32 level) {
     }
 }
 
-/* stack issues */
+void TripodBossBreakMovement::exeWait() {
+}
+
 void TripodBossBreakMovement::exeStartBreak() {
-    TVec3f dir;
-    _8C.getYDir(dir);
-    f32 val = mSpring->mSpringValue;
-    TVec3f v5(dir);
-    v5 *= val;
-    TVec3f v6(_C0);
-    v6 += v5;
-    _8C.setTrans(v6);
+    TVec3f yDir;
+    _8C.getYDir(yDir);
+    _8C.setTrans(_C0 + yDir * mSpring->mSpringValue);
+
     mSpring->update();
+
     if (MR::isGreaterStep(this, 0)) {
         setNerve(&NrvTripodBossBreakMovement::TripodBossBreakMovementNrvBreak::sInstance);
     }
 }
 
-/* more stack issues */
 void TripodBossBreakMovement::exeBreak() {
     MR::rotateMtxMoment(&_8C, _8C, _CC);
+
     if (MR::isFirstStep(this)) {
         _8C.getTrans(_C0);
-        f32 val = _F4;
-        TVec3f v8(_E4);
-        v8 *= val;
-        _D8 += v8;
+        _D8 += _E4 * _F4;
     }
 
     _C0 += _D8;
     _8C.setTrans(_C0);
-    TVec3f grav;
-    MR::calcGravityVector(this, _C0, &grav, nullptr, MR::getTripodBossGravityHostID());
-    TVec3f v7(grav);
-    v7 *= 0.2f;
-    _D8 += v7;
-    _D8 *= _F8;
-}
 
-TripodBossBreakMovement::~TripodBossBreakMovement() {
+    TVec3f gravity;
+    MR::calcGravityVector(this, _C0, &gravity, nullptr, MR::getTripodBossGravityHostID());
+
+    _D8 += gravity * ::sGravityAccel;
+    _D8 *= _F8;
 }

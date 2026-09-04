@@ -1,11 +1,12 @@
 #pragma once
 
-#include <revolution.h>
+#include <revolution/types.h>
 
 class TripodBossStepPoint;
 
 class TripodBossStepSequence {
 public:
+    /// @brief Creates a new `TripodBossStepSequence`.
     TripodBossStepSequence();
 
     void addStepPoint(TripodBossStepPoint*);
@@ -16,8 +17,8 @@ public:
     bool isEmpty() const;
     void reset();
 
-    TripodBossStepPoint* mStepPoints[0x20];  // 0x00
-    s32 mCurrentPoint;                       // 0x80
-    s32 mPointNum;                           // 0x84
-    u8 _88;
+    /* 0x00 */ TripodBossStepPoint* mStepPoints[32];
+    /* 0x80 */ s32 mCurrentPoint;
+    /* 0x84 */ s32 mPointNum;
+    /* 0x88 */ bool _88;
 };

@@ -6,9 +6,10 @@ class HomingKiller;
 
 class TripodBossKillerGenerater : public TripodBossFixPartsBase {
 public:
+    /// @brief Creates a new `TripodBossKillerGenerater`.
+    /// @param pName A pointer to the null-terminated name of the object.
     TripodBossKillerGenerater(const char* pName = "三脚ボスキラー発生源");
 
-    virtual ~TripodBossKillerGenerater();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
@@ -40,8 +41,8 @@ public:
 
     /* 0x0E4 */ TPos3f _E4;
     /* 0x114 */ HomingKiller* mKiller;
-    /* 0x118 */ f32 _118;
+    /* 0x118 */ f32 mCanShootSettingPlayerDistance;
     /* 0x11C */ s32 mActiveLabel;
     /* 0x120 */ bool mHasCollision;
-    /* 0x121 */ u8 _121;
+    /* 0x121 */ bool _121;
 };

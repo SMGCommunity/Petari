@@ -1,27 +1,24 @@
 #include "Game/Boss/TripodBossStepSequence.hpp"
 #include "Game/Boss/TripodBossStepPoint.hpp"
 
-TripodBossStepSequence::TripodBossStepSequence() {
-    mCurrentPoint = 0;
-    mPointNum = 0;
-    _88 = 1;
-
+TripodBossStepSequence::TripodBossStepSequence() : mCurrentPoint(), mPointNum(), _88(true) {
     for (s32 i = 0; i < ARRAY_SIZE(mStepPoints); i++) {
         mStepPoints[i] = nullptr;
     }
 }
 
 void TripodBossStepSequence::addStepPoint(TripodBossStepPoint* pPoint) {
-    int temp = pPoint->_B4;
-    int pointNum = mPointNum++;
+    s32 sortPriority = pPoint->mSequencePriority;
 
-    for (int i = mPointNum - 1; i > 0; i--) {
-        if (mStepPoints[i - 1]->_B4 < temp) {
+    mPointNum++;
+
+    for (s32 i = mPointNum - 1; i > 0; i--) {
+        if (mStepPoints[i - 1]->mSequencePriority < sortPriority) {
             mStepPoints[i] = pPoint;
             return;
-        } else {
-            mStepPoints[i] = mStepPoints[i - 1];
         }
+
+        mStepPoints[i] = mStepPoints[i - 1];
     }
 
     mStepPoints[0] = pPoint;
@@ -41,6 +38,7 @@ TripodBossStepPoint* TripodBossStepSequence::getCurrentStepPoint() {
 
 void TripodBossStepSequence::nextStep() {
     mCurrentPoint++;
+
     if (mCurrentPoint >= mPointNum) {
         mCurrentPoint = 0;
     }

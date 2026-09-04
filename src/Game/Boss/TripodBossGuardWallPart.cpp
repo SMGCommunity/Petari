@@ -15,6 +15,12 @@ void TripodBossGuardWallPart_FORCE_MATCH_SDATA2() {
     (void)1.0f;
 }
 
+namespace {
+    static const f32 sRepairPlayerDistance = 1000.0f;
+    static const s32 sRepairTiming = 600;
+    static const s32 sMoveStopSeTiming = 38;
+};  // namespace
+
 namespace NrvTripodBossGuardWallPart {
     NEW_NERVE(TripodBossGuardWallPartNrvNonActive, TripodBossGuardWallPart, NonActive);
     NEW_NERVE(TripodBossGuardWallPartNrvDemo, TripodBossGuardWallPart, Demo);
@@ -23,20 +29,15 @@ namespace NrvTripodBossGuardWallPart {
     NEW_NERVE(TripodBossGuardWallPartNrvRepair, TripodBossGuardWallPart, Repair);
 };  // namespace NrvTripodBossGuardWallPart
 
-TripodBossGuardWallPart::TripodBossGuardWallPart(const char* pName) : LiveActor(pName) {
-    mHostMtx = nullptr;
-    mPlacementAngle = 0.0f;
-    mStartTiming = 0;
+TripodBossGuardWallPart::TripodBossGuardWallPart(const char* pName) : LiveActor(pName), mHostMtx(), mPlacementAngle(), mStartTiming() {
 }
 
 void TripodBossGuardWallPart::init(const JMapInfoIter& rIter) {
     initModelManagerWithAnm("TripodBossGuardWall", nullptr, false);
     MR::connectToScene(this, MR::MovementType_MapObjDecoration, MR::CalcAnimType_MapObjDecoration, MR::DrawBufferType_TripodBoss, -1);
     initHitSensor(2);
-    TVec3f sensorOffs;
-    sensorOffs.z = sensorOffs.y = sensorOffs.x = 0.0f;
-    MR::initCollisionParts(this, "TripodBossGuardWall", MR::addHitSensor(this, "collision", ATYPE_TRIPODBOSS_GUARD_WALL, 0, 1000.0f, sensorOffs),
-                           nullptr);
+    MR::initCollisionParts(this, "TripodBossGuardWall",
+                           MR::addHitSensor(this, "collision", ATYPE_TRIPODBOSS_GUARD_WALL, 0, 1000.0f, TVec3f(0.0f, 0.0f, 0.0f)), nullptr);
     initSound(4, false);
     initEffectKeeper(0, "TripodBoss", false);
     MR::invalidateClipping(this);
@@ -95,6 +96,18 @@ bool TripodBossGuardWallPart::isEndDemo() const {
     return isNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvActive::sInstance);
 }
 
+void TripodBossGuardWallPart::exeNonActive() {
+}
+
+void TripodBossGuardWallPart::exeDemo() {
+    if (MR::isGreaterStep(this, mStartTiming)) {
+        setNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvRepair::sInstance);
+    }
+}
+
+void TripodBossGuardWallPart::exeActive() {
+}
+
 void TripodBossGuardWallPart::exeBreak() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_BM_TRIPOD_C_COVER_BREAK");
@@ -106,9 +119,9 @@ void TripodBossGuardWallPart::exeBreak() {
         MR::setBckFrameAndStop(this, 0.0f);
     }
 
-    bool isNearPlayer = !MR::isNearPlayer(this, 1000.0f);
+    bool isNotNearPlayer = !MR::isNearPlayer(this, ::sRepairPlayerDistance);
 
-    if (isNearPlayer && MR::isGreaterStep(this, 600)) {
+    if (isNotNearPlayer && MR::isGreaterStep(this, ::sRepairTiming)) {
         setNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvRepair::sInstance);
     }
 }
@@ -119,7 +132,7 @@ void TripodBossGuardWallPart::exeRepair() {
         MR::startBck(this, "2ndDemo", nullptr);
     }
 
-    if (MR::isStep(this, 38)) {
+    if (MR::isStep(this, ::sMoveStopSeTiming)) {
         MR::startSound(this, "SE_BM_TRIPOD_WALL_UP_STOP");
     }
 
@@ -128,24 +141,13 @@ void TripodBossGuardWallPart::exeRepair() {
     }
 }
 
-void TripodBossGuardWallPart::exeActive() {
-}
-
-void TripodBossGuardWallPart::exeDemo() {
-    if (MR::isGreaterStep(this, mStartTiming)) {
-        setNerve(&NrvTripodBossGuardWallPart::TripodBossGuardWallPartNrvRepair::sInstance);
-    }
-}
-
-void TripodBossGuardWallPart::exeNonActive() {
-}
-
-void TripodBossGuardWallPart::setHostMatrix(const TPos3f* pPos) {
-    mHostMtx = pPos;
+void TripodBossGuardWallPart::setHostMatrix(const TPos3f* pMtx) {
+    mHostMtx = pMtx;
 }
 
 void TripodBossGuardWallPart::setPlacementAngle(f32 angle) {
     mPlacementAngle = angle;
+
     MR::repeatDegree(&mPlacementAngle);
 }
 
