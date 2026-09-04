@@ -414,9 +414,7 @@ void Mario::mainMove() {
             _10._C = false;
             mMovementStates.turning = false;
         } else if (MR::isNearZero(_244) && a4) {
-            a4 = _250 == stick;
-
-            if (a4) {
+            if (_250 != stick) {
                 mMovementStates.turning = true;
             }
 
