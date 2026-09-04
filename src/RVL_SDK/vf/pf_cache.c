@@ -89,13 +89,13 @@ int VFiPFCACHE_InitPageList(PF_VOLUME* p_vol, PF_CACHE_PAGE** pp_head, PF_CACHE_
     }
 }
 
-static void VFiPFCACHE_ClearPageModified(PF_CACHE_PAGE* p_page) {
+static inline void VFiPFCACHE_ClearPageModified(PF_CACHE_PAGE* p_page) {
     p_page->stat &= ~2u;
     p_page->p_mod_sbuf = 0;
     p_page->p_mod_ebuf = 0;
 }
 
-static PF_CACHE_PAGE* VFiPFCACHE_SearchForPage(PF_VOLUME* p_vol, PF_CACHE_PAGE* p_head, u32 sector) {
+static inline PF_CACHE_PAGE* VFiPFCACHE_SearchForPage(PF_VOLUME* p_vol, PF_CACHE_PAGE* p_head, u32 sector) {
     PF_CACHE_PAGE* p_page;
     if (sector == -1)
         return 0;
@@ -112,7 +112,7 @@ static PF_CACHE_PAGE* VFiPFCACHE_SearchForPage(PF_VOLUME* p_vol, PF_CACHE_PAGE* 
     return 0;
 }
 
-static u32 VFiPFCACHE_SearchForFreePage(PF_CACHE_PAGE* p_head, PF_CACHE_PAGE** pp_page) {
+static inline u32 VFiPFCACHE_SearchForFreePage(PF_CACHE_PAGE* p_head, PF_CACHE_PAGE** pp_page) {
     PF_CACHE_PAGE* p_page;
 
     p_page = p_head;
@@ -155,7 +155,7 @@ static s32 VFiPFCACHE_FlushPageIfNeeded(PF_VOLUME* p_vol, PF_CACHE_PAGE* p_page)
     return err;
 }
 
-static void VFiPFCACHE_MovePageToHead(PF_CACHE_PAGE** pp_head, PF_CACHE_PAGE* p_page) {
+static inline void VFiPFCACHE_MovePageToHead(PF_CACHE_PAGE** pp_head, PF_CACHE_PAGE* p_page) {
     if (p_page != *pp_head) {
         if (p_page == (*pp_head)->p_prev) {
             p_page->p_prev->p_next = p_page->p_next;
@@ -169,7 +169,7 @@ static void VFiPFCACHE_MovePageToHead(PF_CACHE_PAGE** pp_head, PF_CACHE_PAGE* p_
     }
 }
 
-static void VFiPFCACHE_MovePageToTail(PF_CACHE_PAGE** pp_head, PF_CACHE_PAGE* p_page) {
+static inline void VFiPFCACHE_MovePageToTail(PF_CACHE_PAGE** pp_head, PF_CACHE_PAGE* p_page) {
     if (p_page == *pp_head) {
         *pp_head = p_page->p_next;
     } else if (p_page != (*pp_head)->p_prev) {
@@ -231,7 +231,7 @@ s32 VFiPFCACHE_DoAllocatePage(PF_VOLUME* p_vol, PF_CACHE_PAGE** pp_head, u32 sec
     return 0;
 }
 
-static void VFiPFCACHE_DoFreeCachePage(PF_CACHE_PAGE** pp_head, PF_CACHE_PAGE* p_page) {
+static inline void VFiPFCACHE_DoFreeCachePage(PF_CACHE_PAGE** pp_head, PF_CACHE_PAGE* p_page) {
     VFiPFCACHE_ClearPageModified(p_page);
     p_page->stat &= ~1u;
     p_page->sector = -1;
@@ -272,7 +272,7 @@ s32 VFiPFCACHE_DoReadPage(PF_VOLUME* p_vol, PF_CACHE_PAGE** pp_head, u32 sector,
     return 0;
 }
 
-static PF_CACHE_PAGE* VFiPFCACHE_SearchForUsedPage(PF_VOLUME* p_vol, PF_CACHE_PAGE** pp_head, PF_CACHE_PAGE* p_page) {
+static inline PF_CACHE_PAGE* VFiPFCACHE_SearchForUsedPage(PF_VOLUME* p_vol, PF_CACHE_PAGE** pp_head, PF_CACHE_PAGE* p_page) {
     PF_CACHE_PAGE* p_next;
 
     if (!p_page) {
@@ -354,7 +354,7 @@ s32 VFiPFCACHE_DoReadNumSector(PF_VOLUME* p_vol, PF_CACHE_PAGE** pp_head, u8* p_
         if (v15 && v15->sector != -1) {
             if (v15->sector > sector || v15->sector + v15->size < sector + num_success_sector) {
                 if (v15->sector < sector || v15->sector + v15->size > sector + num_success_sector) {
-                    if (v15->sector <= sector || v15->sector >= sector + num_success_sector ||
+                    if (v15->sector >= sector + num_success_sector ||
                         v15->sector + v15->size < sector + num_success_sector) {
                         if (v15->sector < sector && v15->sector + v15->size > sector && v15->sector + v15->size <= sector + num_success_sector) {
                             VFipf_memcpy(p_buf, &v15->buffer[(sector - v15->sector) << p_vol->bpb.log2_bytes_per_sector],
@@ -416,7 +416,7 @@ s32 VFiPFCACHE_DoWritePage(PF_VOLUME* p_vol, PF_CACHE_PAGE** pp_head, PF_CACHE_P
     return 0;
 }
 
-static s32 VFiPFCACHE_UpdatePageModified(PF_CACHE_PAGE* p_page, u8* p_sbuf, u8* p_ebuf) {
+static inline s32 VFiPFCACHE_UpdatePageModified(PF_CACHE_PAGE* p_page, u8* p_sbuf, u8* p_ebuf) {
     p_page->stat |= 2u;
     if (p_sbuf)
         p_page->p_mod_sbuf = p_sbuf;
@@ -425,7 +425,7 @@ static s32 VFiPFCACHE_UpdatePageModified(PF_CACHE_PAGE* p_page, u8* p_sbuf, u8* 
     return 0;
 }
 
-static int VFiPFCACHE_ClearModified(PF_VOLUME* p_vol, PF_CACHE_PAGE* p_head) {
+static inline int VFiPFCACHE_ClearModified(PF_VOLUME* p_vol, PF_CACHE_PAGE* p_head) {
     PF_CACHE_PAGE* p_page;
 
     p_page = p_head;
@@ -760,7 +760,7 @@ s32 VFiPFCACHE_FlushAllCaches(PF_VOLUME* p_vol) {
     return err;
 }
 
-static void VFiPFCACHE_FreeFATPage(struct PF_VOLUME* p_vol, struct PF_CACHE_PAGE* p_page) {
+static inline void VFiPFCACHE_FreeFATPage(struct PF_VOLUME* p_vol, struct PF_CACHE_PAGE* p_page) {
     if (p_vol->cache.p_current_fat)
         VFiPFCACHE_DoFreeCachePage(&p_vol->cache.p_current_fat, p_page);
 }

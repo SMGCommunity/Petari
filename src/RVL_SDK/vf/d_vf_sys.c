@@ -957,3 +957,15 @@ s32 VFSysSetSyncMode(s32 i_handle_idx, u32 i_mode) {
     }
     return -1;
 }
+
+static void (*l_timeStampCallback)(struct VFSysTime*);
+
+void (*VFSysSetTimeStampCallback(void (*i_callback)(struct VFSysTime*)))(struct VFSysTime*) {
+    void (*old_callback)(struct VFSysTime*) = l_timeStampCallback;
+    l_timeStampCallback = i_callback;
+    return old_callback;
+}
+
+void (*VFSysGetTimeStampCallback())(struct VFSysTime*) {
+    return l_timeStampCallback;
+}
