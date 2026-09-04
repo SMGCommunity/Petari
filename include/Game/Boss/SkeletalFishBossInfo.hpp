@@ -11,8 +11,8 @@ public:
     public:
         GuardStatus();
 
-        TVec3f mGuardPosLevel;  // 0x0
-        s32 mGuardWaitLevelID;  // 0xC
+        /* 0x00 */ TVec3f mGuardPosLevel;
+        /* 0x0C */ s32 mGuardWaitLevelID;
     };
 
     struct LevelStatus {
@@ -21,17 +21,16 @@ public:
             return &mStatusArray[idx];
         }
 
-        s32 mEnergyLevel;                                 // 0x0
-        f32 mSpeedLevel;                                  // 0x4
-        s32 mRailIDLevel;                                 // 0x8
-        f32 mGuardOffsLevel;                              // 0xC
-        s32 mGuardAppearNumLevel;                         // 0x10
-        SkeletalFishBossInfo::GuardStatus* mStatusArray;  // 0x14
+        /* 0x00 */ s32 mEnergyLevel;
+        /* 0x04 */ f32 mSpeedLevel;
+        /* 0x08 */ s32 mRailIDLevel;
+        /* 0x0C */ f32 mGuardOffsLevel;
+        /* 0x10 */ s32 mGuardAppearNumLevel;
+        /* 0x14 */ SkeletalFishBossInfo::GuardStatus* mStatusArray;
     };
 
     SkeletalFishBossInfo(SkeletalFishBoss*, s32, s32, const char*);
 
-    virtual ~SkeletalFishBossInfo();
     virtual void init(const JMapInfoIter&);
 
     LevelStatus* getLevelStatus(s32) const;
@@ -39,8 +38,8 @@ public:
     void loadLevelStatus(const JMapInfoIter&);
     void loadGuardStatus(const JMapInfoIter&, s32, s32);
 
-    SkeletalFishBoss* mFishBoss;     // 0xC
-    s32 mLevelNum;                   // 0x10
-    s32 mGuardNum;                   // 0x14
-    LevelStatus* mLevelStatusArray;  // 0x18
+    /* 0x0C */ SkeletalFishBoss* mFishBoss;
+    /* 0x10 */ s32 mLevelNum;
+    /* 0x14 */ s32 mGuardNum;
+    /* 0x18 */ LevelStatus* mLevelStatusArray;
 };
