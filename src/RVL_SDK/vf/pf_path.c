@@ -263,6 +263,61 @@ u32 VFiPFPATH_DoMatchFileNameWithPattern(u16 c_name, struct PF_FILE_NAME_ITER* p
     return c_name == '\0';
 }
 
+u32 VFiPFPATH_MatchFileNameWithPattern(const s8* file_name, struct PF_STR* p_pattern, u32 is_short_search, u32 is_long_name) {
+    u16 c_name;
+    u16 c_pat;
+    struct PF_FILE_NAME_ITER name;
+    struct PF_STR pattern;
+    u32 is_match;
+    u32 is_adjust;
+    s8 sig[2] = "~1";
+
+    is_match = 1;
+    is_adjust = 0;
+
+    name.buf = file_name;
+    name.index = 0;
+    if (is_long_name) {
+        name.kind = 1;
+    } else {
+        name.kind = 0;
+    }
+
+    pattern = *p_pattern;
+
+    if ((u32)VFiPFSTR_GetCodeMode(p_pattern) == 1) {
+        if (is_long_name == 0 && (VFipf_vol_set.setting & 2) == 2 && (u32)VFiPFPATH_CheckExtShortNameSignature(&pattern) == 1 &&
+            VFipf_strncmp(file_name, sig, 2) == 0) {
+            name.index += 2;
+            pattern.p_head += 2;
+            is_adjust = 1;
+        }
+    } else {
+        if ((VFipf_vol_set.setting & 2) == 2 && is_long_name == 0 && is_short_search == 0 &&
+            VFiPFSTR_StrNCmp(p_pattern, (const s8*)".", 1, 0, 1) != 0 &&
+            VFiPFSTR_StrNCmp(p_pattern, (const s8*)"..", 1, 0, 2) != 0 && VFiPFPATH_CheckExtShortName(p_pattern, 1, 1) == 0) {
+            is_match = 0;
+        }
+    }
+
+    if (is_match == 1) {
+        if (is_long_name == 0 && is_adjust == 0 && VFiPFSTR_StrCmp(p_pattern, (const s8*)".") == 0) {
+            while (file_name[0] != 0 && file_name[0] != '.') {
+                file_name++;
+            }
+            if (file_name[0] == 0) {
+                return 1;
+            }
+        }
+
+        c_name = VFiPFPATH_GetNextCharOfFileName(&name);
+        c_pat = VFiPFPATH_GetNextCharOfPattern(&pattern, is_long_name);
+        is_match = VFiPFPATH_DoMatchFileNameWithPattern(c_name, &name, c_pat, &pattern);
+    }
+
+    return is_match;
+}
+
 s32 VFiPFPATH_cmpTailSFN(const s8* sfn_name, const s8* pattern) {
     return VFipf_strcmp(sfn_name, pattern) != 0;
 }
@@ -381,61 +436,6 @@ struct PF_VOLUME* VFiPFPATH_GetVolumeFromPath(struct PF_STR* p_path) {
         }
     }
     return p_vol;
-}
-
-u32 VFiPFPATH_MatchFileNameWithPattern(const s8* file_name, struct PF_STR* p_pattern, u32 is_short_search, u32 is_long_name) {
-    u16 c_name;
-    u16 c_pat;
-    struct PF_FILE_NAME_ITER name;
-    struct PF_STR pattern;
-    u32 is_match;
-    u32 is_adjust;
-    s8 sig[2] = "~1";
-
-    is_match = 1;
-    is_adjust = 0;
-
-    name.buf = file_name;
-    name.index = 0;
-    if (is_long_name) {
-        name.kind = 1;
-    } else {
-        name.kind = 0;
-    }
-
-    pattern = *p_pattern;
-
-    if ((u32)VFiPFSTR_GetCodeMode(p_pattern) == 1) {
-        if (is_long_name == 0 && (VFipf_vol_set.setting & 2) == 2 && (u32)VFiPFPATH_CheckExtShortNameSignature(&pattern) == 1 &&
-            VFipf_strncmp(file_name, sig, 2) == 0) {
-            name.index += 2;
-            pattern.p_head += 2;
-            is_adjust = 1;
-        }
-    } else {
-        if ((VFipf_vol_set.setting & 2) == 2 && is_long_name == 0 && is_short_search == 0 &&
-            VFiPFSTR_StrNCmp(p_pattern, (const s8*)".", 1, 0, 1) != 0 &&
-            VFiPFSTR_StrNCmp(p_pattern, (const s8*)"..", 1, 0, 2) != 0 && VFiPFPATH_CheckExtShortName(p_pattern, 1, 1) == 0) {
-            is_match = 0;
-        }
-    }
-
-    if (is_match == 1) {
-        if (is_long_name == 0 && is_adjust == 0 && VFiPFSTR_StrCmp(p_pattern, (const s8*)".") == 0) {
-            while (file_name[0] != 0 && file_name[0] != '.') {
-                file_name++;
-            }
-            if (file_name[0] == 0) {
-                return 1;
-            }
-        }
-
-        c_name = VFiPFPATH_GetNextCharOfFileName(&name);
-        c_pat = VFiPFPATH_GetNextCharOfPattern(&pattern, is_long_name);
-        is_match = VFiPFPATH_DoMatchFileNameWithPattern(c_name, &name, c_pat, &pattern);
-    }
-
-    return is_match;
 }
 
 s32 VFiPFPATH_putShortName(u8* pDirEntry, const s8* short_name, u8 attr) {

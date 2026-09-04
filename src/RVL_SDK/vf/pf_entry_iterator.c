@@ -179,7 +179,7 @@ s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_e
             }
             is_skip = 1;
         }
-        if (is_skip == 1) {
+        if (is_skip) {
             if (p_ppos) {
                 *p_ppos = 0;
             }
@@ -200,8 +200,9 @@ s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_e
         is_extsfn = VFiPFPATH_GetExtShortNameIndex(p_pattern, &index_search_from);
     }
 
-    if (is_extsfn == 1) {
-        for (err = VFiPFENT_ITER_IteratorInitialize(p_iter, index_search_from - 1);; err = VFiPFENT_ITER_Retreat(p_iter, 0)) {
+    if (is_extsfn) {
+        err = VFiPFENT_ITER_IteratorInitialize(p_iter, index_search_from - 1);
+        while (1) {
             if (err) {
                 return err;
             }
@@ -212,6 +213,7 @@ s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_e
             if ((p_iter->buf[0] & 0x40) != 0) {
                 break;
             }
+            err = VFiPFENT_ITER_Retreat(p_iter, 0);
         }
 
         err = VFiPFENT_ITER_IteratorInitialize(p_iter, index_search_from);

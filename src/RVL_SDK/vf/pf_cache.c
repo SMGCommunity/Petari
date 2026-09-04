@@ -131,7 +131,7 @@ static inline u32 VFiPFCACHE_SearchForFreePage(PF_CACHE_PAGE* p_head, PF_CACHE_P
     return 0;
 }
 
-static s32 VFiPFCACHE_FlushPageIfNeeded(PF_VOLUME* p_vol, PF_CACHE_PAGE* p_page) {
+s32 VFiPFCACHE_FlushPageIfNeeded(PF_VOLUME* p_vol, PF_CACHE_PAGE* p_page) {
     u8* p_buf;
     u32 sector;
     u32 size;
@@ -458,7 +458,7 @@ s32 VFiPFCACHE_DoWriteNumSectorAndFreeIfNeeded(PF_VOLUME* p_vol, PF_CACHE_PAGE**
         if (p_page && p_page->sector != -1) {
             if (p_page->sector > sector || p_page->sector + p_page->size < sector + num_sector) {
                 if (p_page->sector < sector || p_page->sector + p_page->size > sector + num_sector) {
-                    if (p_page->sector <= sector || p_page->sector >= sector + num_sector || p_page->sector + p_page->size < sector + num_sector) {
+                    if (p_page->sector >= sector + num_sector || p_page->sector + p_page->size < sector + num_sector) {
                         if (p_page->sector < sector && p_page->sector + p_page->size > sector &&
                             p_page->sector + p_page->size <= sector + num_sector) {
                             VFipf_memcpy(&p_page->buffer[(sector - p_page->sector) << p_vol->bpb.log2_bytes_per_sector], (void*)p_buf,
