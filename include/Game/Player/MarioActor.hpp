@@ -556,6 +556,10 @@ public:
         return mMario;
     }
 
+    inline bool isBeeWallWalk() const {
+        return mBeeWallWalk != 0;
+    }
+
     struct FBO {
         u32 _0;
         u32 _4;

@@ -21,7 +21,7 @@ struct MarioConstTable {
     /* 0x078 */ f32 mTurnJumpFrontSpeed;
     /* 0x07C */ f32 mMaxDropSpeed[5];
     /* 0x090 */ s16 mGrReductionDropTimer;
-    /* 0x092 */ s16 mDropWaitTime;
+    /* 0x092 */ u16 mDropWaitTime;
     /* 0x094 */ f32 mJumpFrontReduction;
     /* 0x098 */ s16 mJumpFrontReductionBeginTime;
     /* 0x09C */ f32 mSquatJumpFrontReduction;

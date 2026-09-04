@@ -950,7 +950,6 @@ public:
 
     /* 0x8F4 */ f32 _8F4;
 
-    // FAKE
     /* 0x8F8 */ TVec3f _8F8;
     /* 0x904 */ TVec3f _904;
     // NOT FAKE
