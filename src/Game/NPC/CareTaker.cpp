@@ -235,15 +235,21 @@ bool Caretaker::branchFuncComet(u32 msg) {
 bool Caretaker::eventFuncComet(u32 msg) {
     if (msg == 0) {
         return mTakeOutStar->takeOut();
-    } else if (msg == 1) {
+    }
+
+    if (msg == 1) {
         MR::forceKillPlayerByGroundRace();
 
         return true;
-    } else if (msg == 2) {
-        MR::setMessageArg(mMsgCtrl, MR::getPurpleCoinNum());
-
-        return true;
     }
+
+    if (msg == 2) {
+        TalkMessageCtrl* msgCtrl = mMsgCtrl;
+
+        MR::setMessageArg(msgCtrl, MR::getPurpleCoinNum());
+    }
+
+    return true;
 }
 
 bool Caretaker::animeFunc(u32 msg) {

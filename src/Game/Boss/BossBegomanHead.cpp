@@ -4,14 +4,14 @@
 #include "Game/Util/JointController.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 
+void BossBegomanHead_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     static const f32 hSpikeRotate = 0.23f;
     static const f32 hSpikeRotateTurn = 0.2f;
 };  // namespace
-
-void BossBegomanHead_FORCE_MATCH_SDATA2() {
-    (void)1.0f;
-}
 
 namespace NrvBossBegomanHead {
     NEW_NERVE(HostTypeNrvDemoWait, BossBegomanHead, DemoWait);
@@ -25,7 +25,7 @@ namespace NrvBossBegomanHead {
 };  // namespace NrvBossBegomanHead
 
 BossBegomanHead::BossBegomanHead(LiveActor* pParent, MtxPtr pMtx)
-    : PartsModel(pParent, "スイッチ頭", "BossBegomanHead", pMtx, MR::DrawBufferType_Enemy, false), _9C(0.0f), mJointDelegator(nullptr) {
+    : PartsModel(pParent, "スイッチ頭", "BossBegomanHead", pMtx, MR::DrawBufferType_Enemy, false), mAngle(), mJointDelegator() {
 }
 
 void BossBegomanHead::init(const JMapInfoIter& rIter) {
@@ -91,7 +91,7 @@ void BossBegomanHead::exeOffWait() {
         MR::startAction(this, "OffWait");
     }
 
-    _9C -= ::hSpikeRotate;
+    mAngle -= ::hSpikeRotate;
 }
 
 void BossBegomanHead::exeSwitchOn() {
@@ -115,7 +115,7 @@ void BossBegomanHead::exeTurn() {
         MR::startAction(this, "Turn");
     }
 
-    _9C -= ::hSpikeRotateTurn;
+    mAngle -= ::hSpikeRotateTurn;
 }
 
 void BossBegomanHead::exeTurnEnd() {
@@ -123,7 +123,7 @@ void BossBegomanHead::exeTurnEnd() {
         MR::startAction(this, "TurnEnd");
     }
 
-    _9C -= ::hSpikeRotate;
+    mAngle -= ::hSpikeRotate;
 
     MR::setNerveAtBckStopped(this, &NrvBossBegomanHead::HostTypeNrvOffWait::sInstance);
 }
@@ -135,7 +135,7 @@ void BossBegomanHead::calcAndSetBaseMtx() {
 
 bool BossBegomanHead::calcJointEdge(TPos3f* pMtx, const JointControllerInfo&) {
     TPos3f v9;
-    v9.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), _9C);
+    v9.makeRotate(TVec3f(0.0f, 1.0f, 0.0f), mAngle);
     pMtx->concat(*pMtx, v9);
 
     return true;

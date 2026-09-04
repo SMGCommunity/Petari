@@ -1,10 +1,13 @@
 #pragma once
 
+#include "Game/RhythmLib/AudChordInfo.hpp"
+#include "Game/RhythmLib/AudRhythmHolder.hpp"
+#include "Game/RhythmLib/AudRhythmSeqParser.hpp"
 #include <JSystem/JAudio2/JASGlobal.hpp>
 
 class JAISoundHandle;
 class JKRHeap;
-class AudRhythmSeqParser;
+class AudMeMgr;
 
 class AudRhythmMeSystem : public JASGlobalInstance< AudRhythmMeSystem > {
 public:
@@ -23,10 +26,15 @@ public:
         return mBgmIdx;
     }
 
-    // TODO: memory mapping
-    /* 0x00 */ AudRhythmSeqParser* mSeqParsers;
+    AudRhythmSeqParser* getSeqParser(int index) const {
+        return mSeqParsers[index];
+    }
+
+    /* 0x00 */ AudRhythmSeqParser** mSeqParsers;
     /* 0x04 */ u32 mNumSeqParsers;
     /* 0x08 */ s32 mBgmIdx;
     /* 0x0C */ u32 _C;
-    /* 0x10 */  // AudRhythmHolder mRhythmHolder[2];
+    /* 0x10 */ AudRhythmHolder* mRhythmHolders;
+    /* 0x14 */ AudMeMgr* mMeMgr;
+    /* 0x18 */ AudChordInfo mChordInfo;
 };

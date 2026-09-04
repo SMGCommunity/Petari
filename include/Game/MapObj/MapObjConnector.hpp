@@ -13,7 +13,7 @@ public:
     void connect();
     void connect(LiveActor*);
 
-    LiveActor* mHost;  // 0x0
-    u32 _4;
-    TMtx34f _8;
+    /* 0x0 */ LiveActor* mHost;
+    /* 0x4 */ CollisionParts* mParts;
+    /* 0x8 */ TMtx34f _8;
 };

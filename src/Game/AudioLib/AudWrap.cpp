@@ -11,7 +11,7 @@ namespace AudWrap {
     }
 
     AudSoundInfo* getSoundInfo() {
-        return static_cast< AudSoundInfo* >(JASGlobalInstance< JAUSoundInfo >::getInstance());
+        return AudSoundInfo::getInstance();
     }
 
     AudSceneMgr* getSceneMgr() {
@@ -30,12 +30,12 @@ namespace AudWrap {
         return getBgmMgr()->mBgm[AudBgmMgr::BgmType_Sub];
     }
 
-    JAISoundHandle* startStageBgm(u32 soundID, bool param2) {
-        return getBgmMgr()->start(AudBgmMgr::BgmType_Stage, soundID, param2);
+    JAISoundHandle* startStageBgm(u32 soundID, bool lock) {
+        return getBgmMgr()->start(AudBgmMgr::BgmType_Stage, soundID, lock);
     }
 
-    JAISoundHandle* startSubBgm(u32 soundID, bool param2) {
-        return getBgmMgr()->start(AudBgmMgr::BgmType_Sub, soundID, param2);
+    JAISoundHandle* startSubBgm(u32 soundID, bool lock) {
+        return getBgmMgr()->start(AudBgmMgr::BgmType_Sub, soundID, lock);
     }
 
     void setNextIdStageBgm(u32 soundID) {

@@ -1,7 +1,15 @@
 #include "Game/MapObj/WatchTowerRotateStep.hpp"
 #include "Game/LiveActor/Nerve.hpp"
+#include "Game/LiveActor/PartsModel.hpp"
 #include "Game/Util.hpp"
-#include "Inline.hpp"
+
+#define LIFT_NUM 4
+
+namespace {
+    static const f32 sRotateSpeed = 0.3f;
+    static const s32 sStepForMoveStart = 180;
+    static const f32 sClippingRadiusOffset = 1500.0f;
+};  // namespace
 
 namespace NrvWatchTowerRotateStep {
     NEW_NERVE(WatchTowerRotateStepNrvWait, WatchTowerRotateStep, Wait);
@@ -9,11 +17,7 @@ namespace NrvWatchTowerRotateStep {
     NEW_NERVE(WatchTowerRotateStepNrvMove, WatchTowerRotateStep, Move);
 };  // namespace NrvWatchTowerRotateStep
 
-WatchTowerRotateStep::WatchTowerRotateStep(const char* pName) : LiveActor(pName) {
-    mRotDeg.x = 0.0f;
-    mRotDeg.y = 0.0f;
-    mRotDeg.z = 0.0f;
-    mLifts = nullptr;
+WatchTowerRotateStep::WatchTowerRotateStep(const char* pName) : LiveActor(pName), mRotateVec(0.0f, 0.0f, 0.0f), mLift() {
 }
 
 void WatchTowerRotateStep::init(const JMapInfoIter& rIter) {
@@ -26,18 +30,18 @@ void WatchTowerRotateStep::init(const JMapInfoIter& rIter) {
     MR::initCollisionParts(this, "WatchTowerRotateStep", getSensor(nullptr), nullptr);
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
-    MR::setClippingTypeSphereContainsModelBoundingBox(this, 1500.0f);
+    MR::setClippingTypeSphereContainsModelBoundingBox(this, ::sClippingRadiusOffset);
 
-    bool demoCast = MR::tryRegisterDemoCast(this, rIter);
+    bool isRegisteredDemoCast = MR::tryRegisterDemoCast(this, rIter);
 
-    if (demoCast) {
-        MR::registerDemoActionNerve(this, &NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance, nullptr);
+    if (isRegisteredDemoCast) {
+        MR::registerDemoActionNerve(this, &NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMoveStart::sInstance, nullptr);
     }
 
-    MR::calcUpVec(&mRotDeg, this);
+    MR::calcUpVec(&mRotateVec, this);
     initLift(rIter);
 
-    if (demoCast) {
+    if (isRegisteredDemoCast) {
         initNerve(&NrvWatchTowerRotateStep::WatchTowerRotateStepNrvWait::sInstance);
     } else {
         initNerve(&NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove::sInstance);
@@ -46,67 +50,77 @@ void WatchTowerRotateStep::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void WatchTowerRotateStep::calcAndSetBaseMtx() {
-    TVec3f frontVec;
-    TPos3f baseMtx;
-
-    MR::calcFrontVec(&frontVec, this);
-    MR::makeMtxFrontUpPos(&baseMtx, frontVec, mRotDeg, mPosition);
-    MR::setBaseTRMtx(this, baseMtx);
-}
-
-/*
-void WatchTowerRotateStep::initLift(const JMapInfoIter &rIter) {
-    mLifts = new PartsModel*[4];
-
-    for (s32 i = 0; i < 4; i++) {
-        MtxPtr mtx = MR::getJointMtx(this, i + 1);
-        mLifts[i] = new PartsModel(this, "物見の塔リフト", "WatchTowerRotateStepLift", mtx, -1, false);
-        mLifts[i]->mCalcOwnMtx = false;
-
-        MR::initCollisionParts(mLifts[i], "WatchTowerRotateStepLift", getSensor(nullptr), nullptr);
-        MR::initShadowVolumeBox(mLifts[i], TVec3f(600.0f, 200.0f, 400.0f), mLifts[i]->getBaseMtx());
-        MR::setShadowVolumeStartDropOffset(mLifts[i], "WatchTowerRotateStepLift", 300.0f);
-        MR::setShadowDropLength(mLifts[i], "WatchTowerRotateStepLift", 370.0f);
-
-        if (MR::isDemoCast(this, nullptr)) {
-            MR::tryRegisterDemoCast(mLifts[i], rIter);
-        }
-
-        mLifts[i]->initWithoutIter();
-    }
-}
-*/
-
-// WatchTowerRotateStep::attachLift();
-
 void WatchTowerRotateStep::exeWait() {
 }
 
 void WatchTowerRotateStep::exeMoveStart() {
-    TVec3f upVec;
-
     if (MR::isFirstStep(this)) {
         MR::startSystemSE("SE_SY_READ_RIDDLE_S");
         MR::startSound(this, "SE_OJ_WATCH_TOWER_START");
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_WATCH_TOWER_ROTATE");
-    f32 easeIn = MR::getEaseInValue((s32)getNerveStep(), 0.0f, 0.3f, 180.0f);
+
+    f32 degree = MR::getEaseInValue(getNerveStep(), 0.0f, ::sRotateSpeed, 180.0f);
+    TVec3f upVec;
     MR::calcFrontVec(&upVec, this);
-    MR::rotateVecDegree(&mRotDeg, upVec, easeIn);
+    MR::rotateVecDegree(&mRotateVec, upVec, degree);
+
     attachLift();
 
-    if (MR::isStep(this, 180)) {
+    if (MR::isStep(this, ::sStepForMoveStart)) {
         setNerve(&NrvWatchTowerRotateStep::WatchTowerRotateStepNrvMove::sInstance);
     }
 }
 
 void WatchTowerRotateStep::exeMove() {
     TVec3f frontVec;
-
     MR::calcFrontVec(&frontVec, this);
-    MR::rotateVecDegree(&mRotDeg, frontVec, 0.3f);
+    MR::rotateVecDegree(&mRotateVec, frontVec, ::sRotateSpeed);
+
     attachLift();
     MR::startLevelSound(this, "SE_OJ_LV_WATCH_TOWER_ROTATE");
+}
+
+void WatchTowerRotateStep::calcAndSetBaseMtx() {
+    TVec3f frontVec;
+    MR::calcFrontVec(&frontVec, this);
+
+    TPos3f baseMtx;
+    MR::makeMtxFrontUpPos(&baseMtx, frontVec, mRotateVec, mPosition);
+    MR::setBaseTRMtx(this, baseMtx);
+}
+
+void WatchTowerRotateStep::initLift(const JMapInfoIter& rIter) {
+    mLift = new PartsModel*[LIFT_NUM];
+
+    for (s32 i = 0; i < LIFT_NUM; i++) {
+        MtxPtr mtx = MR::getJointMtx(this, i + 1);
+
+        mLift[i] = new PartsModel(this, "物見の塔リフト", "WatchTowerRotateStepLift", mtx, -1, false);
+        mLift[i]->mCalcOwnMtx = false;
+
+        MR::initCollisionParts(mLift[i], "WatchTowerRotateStepLift", getSensor(nullptr), nullptr);
+        MR::initShadowVolumeBox(mLift[i], TVec3f(600.0f, 200.0f, 400.0f), mLift[i]->getBaseMtx());
+        MR::setShadowVolumeStartDropOffset(mLift[i], "WatchTowerRotateStepLift", 300.0f);
+        MR::setShadowDropLength(mLift[i], "WatchTowerRotateStepLift", 370.0f);
+
+        if (MR::isDemoCast(this, nullptr)) {
+            MR::tryRegisterDemoCast(mLift[i], rIter);
+        }
+
+        mLift[i]->initWithoutIter();
+    }
+}
+
+void WatchTowerRotateStep::attachLift() {
+    for (s32 i = 0; i < LIFT_NUM; i++) {
+        TPos3f mtx;
+        mtx.set(MR::getJointMtx(this, i + 1));
+
+        TVec3f pos;
+        mtx.getTrans(pos);
+
+        mLift[i]->mPosition.set(pos);
+    }
 }

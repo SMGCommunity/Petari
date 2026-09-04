@@ -39,7 +39,7 @@ void JAIStream::JAIStreamMgr_startID_(JAISoundID id, s32 streamFileEntry, const 
     mPrepareState = 0;
 
     if (soundStrategyMgr != nullptr) {
-        soundStrategy = soundStrategyMgr->calc(id);
+        soundStrategy = soundStrategyMgr->newStrategy(id);
     } else {
         soundStrategy = nullptr;
     }
@@ -137,7 +137,7 @@ void JAIStream::JAIStreamMgr_mixOut_(const JASSoundParams& inParams, JAISoundAct
     mParams.mixOutAll(inParams, &outParams, (mStatus.isMute() || activity.isMute()) ? 0.0f : mFader.getIntensity());
 
     if (soundStrategy != nullptr) {
-        soundStrategy->mix(this, outParams);
+        soundStrategy->mix(this, &outParams);
     }
 
     JASSoundParams* mixParams = &outParams;

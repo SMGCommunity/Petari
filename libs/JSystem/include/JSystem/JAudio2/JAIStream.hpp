@@ -37,6 +37,10 @@ public:
         mIsStreamStopped = stop;
     }
 
+    bool isPaused() const {
+        return inner_.aramStream._0AE != 0;
+    }
+
     static const int NUM_CHILDREN = 6;
 
     /* 0x0A8 */ TInner inner_;

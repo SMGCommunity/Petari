@@ -9,6 +9,7 @@
 #include "Game/Map/RailGraphIter.hpp"
 #include "Game/NPC/RabbitStateCaught.hpp"
 #include "Game/NPC/RabbitStateWaitStart.hpp"
+#include "Game/NPC/TrickRabbitUtil.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorShadowUtil.hpp"

@@ -17,8 +17,8 @@ namespace std {
     public:
         __bitset_base();
 
-        void set(size_t pos, bool val);
-        void reset(size_t pos);
+        const __bitset_base& set(size_t pos, bool val);
+        const __bitset_base& reset(size_t pos);
         bool test(size_t pos) const;
         bool any() const;
 
@@ -34,22 +34,24 @@ namespace std {
         }
 
         bool test(size_t pos) const {
-            u32 r31 = 1UL << pos;
+            size_t r31 = 1UL << pos;
             return data & r31;
         }
         bool any() const {
             return data != 0;
         }
-        void set(size_t pos, bool val) {
-            u32 r31 = 1UL << pos;
+        const __bitset_base& set(size_t pos, bool val) {
+            size_t r31 = 1UL << pos;
             if (val) {
                 data |= r31;
             } else {
                 data &= ~r31;
             }
+            return *this;
         }
-        void reset(size_t pos) {
+        const __bitset_base& reset(size_t pos) {
             data &= ~(1UL << pos);
+            return *this;
         }
 
     private:
@@ -69,7 +71,7 @@ namespace std {
     }
 
     template < size_t N >
-    void __bitset_base< N >::set(size_t pos, bool val) {
+    const __bitset_base< N >& __bitset_base< N >::set(size_t pos, bool val) {
         size_t i = pos / (sizeof(size_t) * 8);
         size_t mask = 1 << (pos % (sizeof(size_t) * 8));
         if (val) {
@@ -77,13 +79,15 @@ namespace std {
         } else {
             data[i] &= ~mask;
         }
+        return *this;
     }
 
     template < size_t N >
-    void __bitset_base< N >::reset(size_t pos) {
+    const __bitset_base< N >& __bitset_base< N >::reset(size_t pos) {
         size_t i = pos / (sizeof(size_t) * 8);
         size_t mask = 1 << (pos % (sizeof(size_t) * 8));
         data[i] &= ~mask;
+        return *this;
     }
 
     template < size_t N >
@@ -103,17 +107,17 @@ namespace std {
 
         bitset(){};
 
-        void set(size_t pos, bool val) {
+        const base& set(size_t pos, bool val) {
             if (pos >= N) {
                 __msl_error("index out of range of bitset::set");
             }
-            base::set(pos, val);
+            return base::set(pos, val);
         }
-        void reset(size_t pos) {
+        const base& reset(size_t pos) {
             if (pos >= N) {
                 __msl_error("index out of range of bitset::reset");
             }
-            base::reset(pos);
+            return base::reset(pos);
         }
         bool test(size_t pos) const {
             if (pos >= N) {

@@ -16,9 +16,9 @@ void AudBgmMgr::movement() {
     volDownStageBgmWhenSubBgmPlaying();
     for (int idx = 0; idx < 2; idx++) {
         if (_8FC) {
-            mVolumeController[idx]._8C = true;
+            mVolumeController[idx].mIsMuted = true;
         } else {
-            mVolumeController[idx]._8C = false;
+            mVolumeController[idx].mIsMuted = false;
         }
         mVolumeController[idx].update();
         if (mBgm[idx] != nullptr) {
@@ -29,7 +29,7 @@ void AudBgmMgr::movement() {
     }
 }
 
-JAISoundHandle* AudBgmMgr::start(s32 bgmIndex, u32 soundID, bool b1) {
+JAISoundHandle* AudBgmMgr::start(s32 bgmIndex, u32 soundID, bool lock) {
     if (mBgm[bgmIndex] != nullptr) {
         mBgm[bgmIndex]->rejectFromSyncStream();
         mBgm[bgmIndex]->stop(false);
@@ -51,9 +51,9 @@ JAISoundHandle* AudBgmMgr::start(s32 bgmIndex, u32 soundID, bool b1) {
 
     JAISoundHandle* handle;
     if ((soundID & 0x10000) == 0) {
-        handle = mBgm[bgmIndex]->start(soundID, b1);
+        handle = mBgm[bgmIndex]->start(soundID, lock);
     } else {
-        handle = mBgm[bgmIndex]->start(soundID & 0xFEFEFFFF, b1);
+        handle = mBgm[bgmIndex]->start(soundID & 0xFEFEFFFF, lock);
     }
 
     if (handle != nullptr) {

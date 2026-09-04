@@ -18,6 +18,41 @@
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    // static const f32 sUpPower = _;
+    // static const f32 sUpEndNodeFreq = _;
+    // static const s32 sLeaveOutStartTime = _;
+    // static const f32 sLeaveOutPower = _;
+    // static const f32 sToTargetPower = _;
+    // static const f32 sEndNodeFreq = _;
+    // static const f32 sLandingPower = _;
+    // static const f32 sLandingEndNodeFreq = _;
+    // static const f32 sMaxToTargetDistance = _;
+    // static const f32 sStartTargetFreqDistance = _;
+    // static const f32 sMaxTargetFreqRate = _;
+    // static const f32 sLandStartPosFreq = _;
+    // static const f32 sStepHeight = _;
+    // static const f32 sLandStartPosRadius = _;
+    static const s32 sStampSignTime = 60;
+    static const s32 sStampSignVibrationTime = 20;
+    static const f32 sStampSignVibrationCycle = 10.0f;
+    static const f32 sStampSignVibrationAmplitude = 20.0f;
+    // static const s32 sStunTime = _;
+    // static const f32 sLandAnkleSlerpStart = _;
+    // static const f32 sLandAnkleSlerpEnd = _;
+    static const f32 sLandShakeStrongDistance = 2000.0f;
+    static const f32 sLandShakeMiddleDistance = 3500.0f;
+    static const s32 sDamageVibrationTime = 27;
+    static const f32 sDamageVibrationCycle = 25.0f;
+    static const f32 sDamageVibrationAmplitude = 40.0f;
+    // static const f32 sInLimitStartRate = _;
+    // static const f32 sOutLimitPower = _;
+    // static const f32 sOutLimitStartRate = _;
+    static const f32 sShadowDropLength = 2000.0f;
+    // static const f32 sShadowDropOffset = _;
+    // static const f32 sInLimitPower = _;
+};  // namespace
+
 namespace NrvTripodBossLeg {
     NEW_NERVE(TripodBossLegNrvHold, TripodBossLeg, Hold);
     NEW_NERVE(TripodBossLegNrvDemo, TripodBossLeg, Demo);
@@ -36,13 +71,8 @@ TripodBossLeg::~TripodBossLeg() {
 }
 
 TripodBossLeg::TripodBossLeg(const char* pName)
-    : LiveActor(pName), mBoss(nullptr), mMoveArea(nullptr), _94(0), _98(0), mJoint(new IKJoint()), _1F0(0, 0, 0, 1), _200(0, 0, 0, 1), _210(0, 0, 0),
-      _21C(0, 0, 0), mForceEndPoint(0, 0, 0), _234(0, 0, 0), _240(0, 0, 0) {
-    _254 = 0;
-    _24C = 1;
-    _250 = 0.0f;
-    mIsPressPlayer = false;
-    mDemoTiming = 0;
+    : LiveActor(pName), mBoss(), mMoveArea(), _94(), _98(), mJoint(new IKJoint()), _1F0(0, 0, 0, 1), _200(0, 0, 0, 1), _210(0, 0, 0), _21C(0, 0, 0),
+      mForceEndPoint(0, 0, 0), _234(0, 0, 0), _240(0, 0, 0), _24C(1), _250(), _254(), mIsPressPlayer(), mDemoEffectTiming() {
     _A0.identity();
     mEndJointMtx.identity();
     _1C0.identity();
@@ -67,7 +97,7 @@ void TripodBossLeg::init(const JMapInfoIter& rIter) {
 
 void TripodBossLeg::initShadow(const char* pName) {
     MR::initShadowVolumeFlatModel(this, pName, _1C0);
-    MR::setShadowDropLength(this, nullptr, 2000.0f);
+    MR::setShadowDropLength(this, nullptr, ::sShadowDropLength);
 }
 
 void TripodBossLeg::makeActorAppeared() {
@@ -79,7 +109,7 @@ void TripodBossLeg::makeActorDead() {
 }
 
 void TripodBossLeg::control() {
-    _254 = 0;
+    _254 = false;
     mIsPressPlayer = false;
     mEndJointMtx.setTrans(mForceEndPoint);
     separateAnkleJointLocalAxis();
@@ -90,11 +120,11 @@ void TripodBossLeg::control() {
 
 void TripodBossLeg::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (pReceiver->receiveMessage(ACTMES_TRIPODBOSS_LEG_IS_DAMAGE, pSender)) {
-        _254 = 1;
+        _254 = true;
     }
 
     if (MR::isSensorPlayer(pReceiver)) {
-        mIsPressPlayer = 1;
+        mIsPressPlayer = true;
     }
 }
 
@@ -141,13 +171,13 @@ void TripodBossLeg::setForceEndPoint(const TVec3f& rPoint) {
 
 void TripodBossLeg::setDemoEffectTiming(bool timg) {
     if (timg) {
-        if (mDemoTiming == 0) {
-            mDemoTiming = 1;
+        if (mDemoEffectTiming == 0) {
+            mDemoEffectTiming = 1;
         } else {
-            mDemoTiming = 2;
+            mDemoEffectTiming = 2;
         }
     } else {
-        mDemoTiming = 0;
+        mDemoEffectTiming = 0;
     }
 }
 
@@ -208,11 +238,13 @@ void TripodBossLeg::requestBreak() {
 
 void TripodBossLeg::requestStartDemo() {
     _24C = 1;
+
     setNerve(&NrvTripodBossLeg::TripodBossLegNrvDemo::sInstance);
 }
 
 void TripodBossLeg::requestEndDemo() {
     _24C = 0;
+
     setNerve(&NrvTripodBossLeg::TripodBossLegNrvHold::sInstance);
 }
 
@@ -255,7 +287,7 @@ void TripodBossLeg::exeDemo() {
         _234.zero();
     }
 
-    if (mDemoTiming == 1) {
+    if (mDemoEffectTiming == 1) {
         MR::startSoundObject(_260, "SE_BM_TRIPOD_LAND");
         MR::emitEffect(this, "LegSmoke");
     }
@@ -276,6 +308,7 @@ void TripodBossLeg::exeUp() {
     addAccelUpLeg(_94, 1.5f);
     f32 legHeight = calcLegHeight(_94);
     updateAnkleUp(legHeight);
+
     if (legHeight > 1000.0f) {
         setNerve(&NrvTripodBossLeg::TripodBossLegNrvMoveToLandingPos::sInstance);
     }
@@ -355,15 +388,17 @@ void TripodBossLeg::exeStampSign() {
     _234.y *= 0.9f;
     _234.z *= 0.9f;
 
-    if (MR::isGreaterStep(this, 20)) {
+    if (MR::isGreaterStep(this, ::sStampSignVibrationTime)) {
         TVec3f v8(_98->mStepNormal);
-        mForceEndPoint += v8 * (20.0f * MR::sin(getNerveStep() * 6.2831855f / 10.0f));
+        mForceEndPoint += v8 * (::sStampSignVibrationAmplitude * MR::sin(getNerveStep() * TWO_PI / ::sStampSignVibrationCycle));
     }
 
     updatePose();
     updateAnkleSlerpToBasePose();
-    if (MR::isGreaterStep(this, 60)) {
+
+    if (MR::isGreaterStep(this, ::sStampSignTime)) {
         _240 = _98->mStepPosition;
+
         setNerve(&NrvTripodBossLeg::TripodBossLegNrvLanding::sInstance);
     }
 }
@@ -397,12 +432,14 @@ void TripodBossLeg::exeLanding() {
     TVec3f endJointPos;
     mJoint->getEndJointPosition(&endJointPos);
     HitResult hitResult;
+
     if (mMoveArea->collideSphere(&hitResult, v12, 0.0f, endJointPos - v12)) {
         MR::startSoundObject(_260, "SE_BM_TRIPOD_LAND");
         f32 dist = mForceEndPoint.distance(*MR::getPlayerPos());
-        if (dist < 2000.0f) {
+
+        if (dist < ::sLandShakeStrongDistance) {
             MR::shakeCameraStrong();
-        } else if (dist < 3500.0f) {
+        } else if (dist < ::sLandShakeMiddleDistance) {
             MR::shakeCameraNormal();
         } else {
             MR::shakeCameraWeak();
@@ -411,6 +448,7 @@ void TripodBossLeg::exeLanding() {
         MR::emitEffect(this, "LegSmoke");
         mForceEndPoint = hitResult._0;
         _234.zero();
+
         if (_254) {
             setNerve(&NrvTripodBossLeg::TripodBossLegNrvDamageVibration::sInstance);
         } else {
@@ -432,10 +470,10 @@ void TripodBossLeg::exeDamageVibration() {
     }
 
     TVec3f v5(_98->mStepNormal);
-    mForceEndPoint = _240 + v5 * (MR::sin(((6.2831855f * getNerveStep() * 25.0f))) * 40.0f);
+    mForceEndPoint = _240 + v5 * (::sDamageVibrationAmplitude * MR::sin(((getNerveStep() * TWO_PI * ::sDamageVibrationCycle))));
     updateIKPose();
 
-    if (MR::isGreaterStep(this, 27)) {
+    if (MR::isGreaterStep(this, ::sDamageVibrationTime)) {
         mForceEndPoint = _240;
         setNerve(&NrvTripodBossLeg::TripodBossLegNrvDamage::sInstance);
     }
@@ -513,12 +551,12 @@ void TripodBossLeg::addAccelUpLeg(TripodBossStepPoint* pPoint, f32 a3) {
 }
 
 f32 TripodBossLeg::calcLegHeight(TripodBossStepPoint* pPoint) const {
-    TVec3f v4(mForceEndPoint - pPoint->mStepPosition);
-    return v4.dot(pPoint->mStepNormal);
+    return (mForceEndPoint - pPoint->mStepPosition).dot(pPoint->mStepNormal);
 }
 
 void TripodBossLeg::updatePose() {
     updateIKPose();
+
     if (bindEndPosition()) {
         updateIKPose();
     }
@@ -529,6 +567,7 @@ void TripodBossLeg::updatePose() {
 void TripodBossLeg::updateIKPose() {
     TPos3f bodyMtx;
     mBoss->getBodyMatrix(&bodyMtx);
+
     switch (_24C) {
     case 0: {
         TVec3f v4;

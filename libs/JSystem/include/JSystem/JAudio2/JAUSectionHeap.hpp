@@ -73,8 +73,15 @@ public:
         }
         return nullptr;
     }
+    JAUSectionHeap* getSectionHeap() {
+        return sectionHeap_;
+    }
     const TSectionData& getSectionData() const {
         return data_;
+    }
+
+    JSUList< JAUDisposer_ >& get_C4() {
+        return data_.field_0x8c;
     }
 
     JKRHeap* getHeap_();
@@ -108,7 +115,7 @@ public:
     JAUSection* getSection(int);
     bool setSeqDataUser(JAISeqDataUser*);
     bool newDynamicSeqBlock(u32);
-    int newDynamicSeqBlock(u32, int);
+    int newDynamicSeqBlocks(u32, int);
     SeqDataReturnValue getSeqData(JAISoundID, JAISeqData*);
     int releaseSeqData();
     bool isWaveLoaded(u32, u32);
@@ -128,7 +135,7 @@ public:
     JAUWaveBankTable& getWaveBankTable() {
         return sectionHeapData_.waveBankTable;
     }
-    JAUSoundTable* getSoundTable() {
+    JAUSoundTable* getSoundTable() NO_INLINE {
         return sectionHeapData_.soundTable;
     }
     JKRHeap* getHeap() {

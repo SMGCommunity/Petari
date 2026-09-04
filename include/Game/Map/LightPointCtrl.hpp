@@ -1,21 +1,22 @@
 #pragma once
 
+#include "Game/Util/Color.hpp"
+#include "revolution/gx/GXEnum.h"
+#include <JSystem/JGeometry.hpp>
 #include <revolution.h>
+
+
+class LiveActor;
 
 class PointLightInfo {
 public:
     void operator=(const PointLightInfo&);
 
-    u32 _0;
-    u32 _4;
-    u32 _8;
-    u8 _C;
-    u8 _D;
-    u8 _E;
-    u8 _F;
+    Vec _0;
+    GXColor _C;
     f32 _10;
     f32 _14;
-    u32 _18;
+    GXDistAttnFn _18;
 };
 
 class LightPointCtrl {
@@ -24,6 +25,7 @@ public:
 
     void loadPointLight();
     void update();
+    void requestPointLight(const LiveActor*, TVec3f, Color8, f32, s32);
     void clearPointLight(PointLightInfo*);
 
     bool tryBlendStart();

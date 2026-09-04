@@ -2,6 +2,7 @@
 
 #include "Game/MapObj/MapObjActor.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class DesertMovingLand : public MapObjActor {
 public:

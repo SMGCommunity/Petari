@@ -443,12 +443,11 @@ namespace MR {
     }
 
     bool isBindedRoof(const LiveActor* pActor) {
-        Binder* binder = pActor->mBinder;
-        if (binder == nullptr) {
+        if (pActor->mBinder == nullptr) {
             return false;
         }
 
-        return binder->isBindedRoof();
+        return pActor->mBinder->isBindedRoof();
     }
 
     bool isBindedRoof(const LiveActor* pActor, HitSensor* pSensor) {
@@ -610,26 +609,28 @@ namespace MR {
 
     void calcAnimDirect(LiveActor* pActor) {
         bool isNoCalcAnim = pActor->mFlag.mIsNoCalcAnim;
+
         pActor->mFlag.mIsNoCalcAnim = false;
         pActor->calcAnim();
+
         if (isNoCalcAnim) {
             pActor->mFlag.mIsNoCalcAnim = true;
         }
     }
 
-    void setClippingTypeSphere(LiveActor* pActor, f32 rad) {
-        MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, rad, 0);
+    void setClippingTypeSphere(LiveActor* pActor, f32 radius) {
+        MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, radius, nullptr);
     }
 
-    void setClippingTypeSphere(LiveActor* pActor, f32 rad, const TVec3f* a3) {
-        MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, rad, a3);
+    void setClippingTypeSphere(LiveActor* pActor, f32 radius, const TVec3f* pTrans) {
+        MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, radius, pTrans);
     }
 
-    void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 a2) {
-        f32 radius = 0.0f;
-        MR::calcModelBoundingRadius(&radius, pActor);
-        f32 rad = radius + a2;
-        MR::getClippingDirector()->mActorHolder->setTypeToSphere(pActor, rad, 0);
+    void setClippingTypeSphereContainsModelBoundingBox(LiveActor* pActor, f32 radiusOffset) {
+        f32 modelBoundingRadius = 0.0f;
+        MR::calcModelBoundingRadius(&modelBoundingRadius, pActor);
+
+        setClippingTypeSphere(pActor, modelBoundingRadius + radiusOffset, nullptr);
     }
 
     void setClippingFar50m(LiveActor* pActor) {

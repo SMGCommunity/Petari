@@ -13,6 +13,11 @@ public:
         KaninaType_Red = 1,
     };
 
+    enum SeVersion {
+        SeVersion_NORMAL = 0,
+        SeVersion_WATER = 1,
+    };
+
     Kanina(const char*);
 
     virtual ~Kanina();

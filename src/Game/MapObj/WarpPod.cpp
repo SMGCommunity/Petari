@@ -21,8 +21,8 @@ GXColor gGlowEffectEnvColor[] = {
 };
 
 namespace {
-    const f32 cSensorRadius0 = 120.0f;
-    const f32 cSensorRadius1 = 15.0f;
+    static f32 cSensorRadius0 = 120.0f;
+    static f32 cSensorRadius1 = 15.0f;
 };  // namespace
 
 namespace MR {
@@ -176,7 +176,7 @@ void WarpPod::init(const JMapInfoIter& rIter) {
     initHitSensor(1);
 
     f32 sensorRadiusCoef = mScale.x;
-    f32 sensorRadius = mArg1 == 0 ? sensorRadiusCoef * ::cSensorRadius1 : sensorRadiusCoef * ::cSensorRadius0;
+    f32 sensorRadius = mArg1 == 0 ? sensorRadiusCoef * ::cSensorRadius0 : sensorRadiusCoef * ::cSensorRadius1;
 
     MR::addHitSensorEye(this, "eye", 8, sensorRadius, TVec3f(0.0f, 0.0f, 0.0f));
 

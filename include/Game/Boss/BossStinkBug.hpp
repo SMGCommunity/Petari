@@ -13,6 +13,13 @@ class PartsModel;
 
 class BossStinkBug : public LiveActor {
 public:
+    enum SeVersion {
+        SeVersion_NORMAL = 0,
+        SeVersion_WATER = 1,
+        SeVersion_ANGRY = 2,
+        SeVersion_ANGRY_WATER = 3,
+    };
+
     BossStinkBug(const char*);
 
     virtual void init(const JMapInfoIter&);

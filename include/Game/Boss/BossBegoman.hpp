@@ -1,21 +1,19 @@
 #pragma once
 
-#include "Game/Boss/BossBegomanHead.hpp"
-#include "Game/Enemy/BegomanBaby.hpp"
 #include "Game/Enemy/BegomanBase.hpp"
-#include "Game/LiveActor/ActorCameraInfo.hpp"
-#include "Game/LiveActor/HitSensor.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "Game/Util/ParabolicPath.hpp"
 
+class ActorCameraInfo;
+class BegomanBaby;
 class BegomanSpike;
+class BossBegomanHead;
+class ParabolicPath;
 
 class BossBegoman : public BegomanBase {
 public:
     enum FollowerKind {
-        FollowerKind_BabyFollower = 0,
-        FollowerKind_SpikeFollower = 1,
-        FollowerKind_BothFollower = 2,
+        /* 0x00 */ FollowerKind_BabyFollower,
+        /* 0x01 */ FollowerKind_SpikeFollower,
+        /* 0x02 */ FollowerKind_BothFollower,
     };
 
     BossBegoman(const char*);
@@ -83,8 +81,7 @@ public:
     void startRotationLevelSound();
 
     /* 0x100 */ BegomanBaby** mBabyFollowers;
-    // should really be begomanSpike, but the class is not defined yet
-    /* 0x104 */ BegomanBase** mSpikeFollowers;
+    /* 0x104 */ BegomanSpike** mSpikeFollowers;
     /* 0x108 */ s32 mBabyFollowerNum;
     /* 0x10C */ s32 mSpikeFollowerNum;
     /* 0x110 */ FollowerKind mFollowerKind;
@@ -92,6 +89,6 @@ public:
     /* 0x118 */ BossBegomanHead* mHead;
     /* 0x11C */ TPos3f mHeadMtx;
     /* 0x14C */ s32 mHealth;
-    f32 _150;
+    /* 0x150 */ f32 _150;
     /* 0x154 */ ActorCameraInfo* mOpeningDemoInfo;
 };

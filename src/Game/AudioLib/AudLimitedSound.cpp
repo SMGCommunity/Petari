@@ -6,12 +6,12 @@ AudLimitedSoundInfo::AudLimitedSoundInfo() {
 
 void AudLimitedSoundInfo::init() {
     mSoundID.setAnonymous();
-    _4 = 0;
+    mDelay = 0;
 }
 
-void AudLimitedSoundInfo::set(JAISoundID soundID, s32 param2) {
+void AudLimitedSoundInfo::set(JAISoundID soundID, s32 delay) {
     mSoundID = soundID;
-    _4 = param2;
+    mDelay = delay;
 }
 
 void AudLimitedSoundInfo::update() {
@@ -19,9 +19,9 @@ void AudLimitedSoundInfo::update() {
         return;
     }
 
-    _4--;
+    mDelay--;
 
-    if (_4 > 0) {
+    if (mDelay > 0) {
         return;
     }
 

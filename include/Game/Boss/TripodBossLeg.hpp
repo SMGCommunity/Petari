@@ -10,7 +10,9 @@ class TripodBossStepPoint;
 
 class TripodBossLeg : public LiveActor {
 public:
-    TripodBossLeg(const char*);
+    /// @brief Creates a new `TripodBossLeg`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TripodBossLeg(const char* pName);
 
     virtual ~TripodBossLeg();
     virtual void init(const JMapInfoIter&);
@@ -92,13 +94,13 @@ public:
     /* 0x228 */ TVec3f mForceEndPoint;
     /* 0x234 */ TVec3f _234;
     /* 0x240 */ TVec3f _240;
-    /* 0x24C */ u32 _24C;
+    /* 0x24C */ s32 _24C;
     /* 0x250 */ f32 _250;
-    /* 0x254 */ u8 _254;
+    /* 0x254 */ bool _254;
     /* 0x255 */ bool mIsPressPlayer;
-    /* 0x256 */ u8 _256;
-    /* 0x257 */ u8 _257;
-    /* 0x258 */ s32 mDemoTiming;
+    /* 0x256 */ bool _256;
+    /* 0x257 */ bool _257;
+    /* 0x258 */ s32 mDemoEffectTiming;
     /* 0x25C */ AudAnmSoundObject* _25C;
     /* 0x260 */ AudAnmSoundObject* _260;
 };

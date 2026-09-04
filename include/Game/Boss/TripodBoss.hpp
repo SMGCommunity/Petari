@@ -23,24 +23,28 @@ public:
     /* 0x30 */ const TPos3f* _30;
 };
 
+/// @brief Megaleg
 class TripodBoss : public LiveActor {
 public:
     enum PART_ID {
-        LeftLeg = 0,
-        MiddleLeg = 1,
-        RightLeg = 2,
+        /* 0x00 */ PART_ID_LEFT_LEG,
+        /* 0x01 */ PART_ID_BACK_LEG,
+        /* 0x02 */ PART_ID_RIGHT_LEG,
+        /* 0x03 */ PART_ID_MAX,
     };
 
     enum SUB_PART_ID {
-        Part_RootLocalY = 0,
-        Part_RootLocalYZ = 1,
-        Part_RootJoint = 2,
-        Part_MiddleJoint = 3,
-        Part_AnkleLocalX = 4,
-        Part_AnkleLocalXZ = 5,
-        Part_EndJoint = 6
+        /* 0x00 */ SUB_PART_ID_ROOT_LOCAL_Y,
+        /* 0x01 */ SUB_PART_ID_ROOT_LOCAL_YZ,
+        /* 0x02 */ SUB_PART_ID_ROOT_JOINT,
+        /* 0x03 */ SUB_PART_ID_MIDDLE_JOINT,
+        /* 0x04 */ SUB_PART_ID_ANKLE_LOCAL_X,
+        /* 0x05 */ SUB_PART_ID_ANKLE_LOCAL_XZ,
+        /* 0x06 */ SUB_PART_ID_END_JOINT,
     };
 
+    /// @brief Creates a new `TripodBoss`.
+    /// @param pName A pointer to the null-terminated name of the object.
     TripodBoss(const char*);
 
     virtual ~TripodBoss();
@@ -133,41 +137,41 @@ public:
         return (_634 == 0) || (_634 == 1);
     }
 
-    TPos3f mBodyMtx;  // 0x8C
-    TPos3f _BC;
-    TPos3f _EC;
-    ModelObj* mLowModel;                    // 0x11C
-    TripodBossBone mBossBones[0x16];        // 0x120
-    TripodBossLeg* mLegs[3];                // 0x598
-    TripodBossStepPoint* mStepPoints[3];    // 0x5A4
-    TripodBossMovableArea* mMovableArea;    // 0x5B0
-    TripodBossStepSequence* mStepSequence;  // 0x5B4
-    DummyDisplayModel* mDummyModel;         // 0x5B8
-    TVec3f _5BC;
-    TVec3f _5C8;
-    TVec3f _5D4;
-    TVec3f _5E0;
-    TVec3f _5EC;
-    f32 _5F8;
-    f32 _5FC;
-    f32 _600;
-    f32 _604;
-    f32 _608;
-    f32 _60C;
-    f32 _610;
-    f32 _614;
-    f32 _618;
-    f32 _61C;
-    f32 _620;
-    s32 mCurrentStepSeq;  // 0x624
-    s32 mNextStepSeq;     // 0x628
-    s32 _62C;
-    s32 _630;
-    s32 _634;
-    u8 _638;
-    s32 _63C;
-    u8 _640;
-    ActorCameraInfo* mEventCamera;  // 0x644
+    /* 0x08C */ TPos3f mBodyMtx;
+    /* 0x0BC */ TPos3f _BC;
+    /* 0x0EC */ TPos3f _EC;
+    /* 0x11C */ ModelObj* mLowModel;
+    /* 0x120 */ TripodBossBone mBossBones[22];
+    /* 0x598 */ TripodBossLeg* mLegs[3];
+    /* 0x5A4 */ TripodBossStepPoint* mStepPoints[3];
+    /* 0x5B0 */ TripodBossMovableArea* mMovableArea;
+    /* 0x5B4 */ TripodBossStepSequence* mStepSequence;
+    /* 0x5B8 */ DummyDisplayModel* mDummyModel;
+    /* 0x5BC */ TVec3f _5BC;
+    /* 0x5C8 */ TVec3f _5C8;
+    /* 0x5D4 */ TVec3f _5D4;
+    /* 0x5E0 */ TVec3f _5E0;
+    /* 0x5EC */ TVec3f _5EC;
+    /* 0x5F8 */ f32 _5F8;
+    /* 0x5FC */ f32 _5FC;
+    /* 0x600 */ f32 _600;
+    /* 0x604 */ f32 _604;
+    /* 0x608 */ f32 _608;
+    /* 0x60C */ f32 _60C;
+    /* 0x610 */ f32 _610;
+    /* 0x614 */ f32 _614;
+    /* 0x618 */ f32 _618;
+    /* 0x61C */ f32 _61C;
+    /* 0x620 */ f32 _620;
+    /* 0x624 */ s32 mCurrentStepSeq;
+    /* 0x628 */ s32 mNextStepSeq;
+    /* 0x62C */ s32 _62C;
+    /* 0x630 */ s32 _630;
+    /* 0x634 */ s32 _634;
+    /* 0x638 */ u8 _638;
+    /* 0x63C */ s32 _63C;
+    /* 0x640 */ u8 _640;
+    /* 0x644 */ ActorCameraInfo* mEventCamera;
 };
 
 namespace MR {

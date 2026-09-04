@@ -262,9 +262,10 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 arg1, u32 arg2, u32 arg3, u8* pA
     case 2: {
         const char* SEQUENCE_ERROR = "??? bad sequence\n";
         JUTException::panic_f(__FILE__, 0x289, "%", SEQUENCE_ERROR);
-        return 0;
     }
     }
+
+    return 0;
 }
 
 u32 JKRDvdArchive::fetchResource_subroutine(s32 arg1, u32 arg2, u32 arg3, JKRHeap* pArg4, int arg5, int arg6, u8** pArg7) {
@@ -319,7 +320,8 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 arg1, u32 arg2, u32 arg3, JKRHea
     case 2: {
         const char* SEQUENCE_ERROR = "??? bad sequence\n";
         JUTException::panic_f(__FILE__, 0x2F6, "%", SEQUENCE_ERROR);
-        return 0;
     }
     }
+
+    return 0;
 }

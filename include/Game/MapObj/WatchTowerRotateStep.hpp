@@ -1,21 +1,25 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/LiveActor/PartsModel.hpp"
+
+class PartsModel;
 
 class WatchTowerRotateStep : public LiveActor {
 public:
-    WatchTowerRotateStep(const char*);
+    /// @brief Creates a new `WatchTowerRotateStep`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    WatchTowerRotateStep(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void calcAndSetBaseMtx();
+
+    void initLift(const JMapInfoIter& rIter);
+    void attachLift();
 
     void exeWait();
     void exeMoveStart();
     void exeMove();
-    void initLift(const JMapInfoIter&);
-    void attachLift();
 
-    TVec3f mRotDeg;       // 0x8C
-    PartsModel** mLifts;  // 0x98
+    /* 0x8C */ TVec3f mRotateVec;
+    /* 0x98 */ PartsModel** mLift;
 };

@@ -4,9 +4,10 @@
 
 class TripodBossStepPoint : public LiveActor {
 public:
-    TripodBossStepPoint(const char*);
+    /// @brief Creates a new `TripodBossStepPoint`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TripodBossStepPoint(const char* pName);
 
-    virtual ~TripodBossStepPoint();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
 
@@ -14,11 +15,11 @@ public:
     void setStepNormal(const TVec3f&);
     void setStepFront(const TVec3f&);
 
-    TVec3f mStepPosition;  // 0x8C
-    TVec3f mStepNormal;    // 0x98
-    TVec3f mStepFront;     // 0xA4
-    s32 mLeg;              // 0xB0
-    s32 _B4;
-    s32 _B8;
-    s32 mWaitTime;  // 0xBC
+    /* 0x8C */ TVec3f mStepPosition;
+    /* 0x98 */ TVec3f mStepNormal;
+    /* 0xA4 */ TVec3f mStepFront;
+    /* 0xB0 */ s32 mLeg;
+    /* 0xB4 */ s32 mSequencePriority;
+    /* 0xB8 */ s32 mArg3;
+    /* 0xBC */ s32 mWaitTime;
 };

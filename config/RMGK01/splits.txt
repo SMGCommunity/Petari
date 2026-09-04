@@ -503,12 +503,13 @@ Game/AudioLib/AudSceneMgr.cpp:
 	.text       start:0x80031A30 end:0x80032454
 	.ctors      start:0x8052E834 end:0x8052E838
 	.rodata     start:0x80530A68 end:0x80530E38
+	.data       start:0x805663D8 end:0x80566790
 	.bss        start:0x8060A4E8 end:0x8060A500
 
 Game/AudioLib/AudSeStrategy.cpp:
 	.text       start:0x80032454 end:0x800327BC
 	.ctors      start:0x8052E838 end:0x8052E83C
-	.data       start:0x805663D8 end:0x805667B8
+	.data       start:0x80566790 end:0x805667B8
 	.bss        start:0x8060A500 end:0x8060A510
 	.sdata2     start:0x806B80B8 end:0x806B80C0
 
@@ -1507,13 +1508,13 @@ Game/Boss/TripodBossCore.cpp:
 Game/Boss/TripodBossFixParts.cpp:
 	.text       start:0x8008AFC0 end:0x8008B7A8
 	.ctors      start:0x8052E9C4 end:0x8052E9C8
-	.data       start:0x80573190 end:0x805733A8
+	.data       start:0x80573190 end:0x80573390
 	.sbss       start:0x806B3938 end:0x806B3948
 	.sdata2     start:0x806B8FB0 end:0x806B8FC0
 
 Game/Boss/TripodBossFixPartsBase.cpp:
 	.text       start:0x8008B7A8 end:0x8008BC40
-	.data       start:0x805733A8 end:0x80573428
+	.data       start:0x80573390 end:0x80573428
 	.sdata2     start:0x806B8FC0 end:0x806B8FC8
 
 Game/Boss/TripodBossGuardWall.cpp:
@@ -3158,6 +3159,7 @@ Game/Enemy/StinkBugSmall.cpp:
 Game/Enemy/StringSpider.cpp:
 	.text       start:0x801427AC end:0x80145210
 	.ctors      start:0x8052EB50 end:0x8052EB54
+	.rodata     start:0x80532570 end:0x80532578
 	.data       start:0x80584D40 end:0x805850A0
 	.sdata      start:0x806B1A70 end:0x806B1A80
 	.sbss       start:0x806B4830 end:0x806B4868
@@ -3166,6 +3168,7 @@ Game/Enemy/StringSpider.cpp:
 Game/Enemy/Takobo.cpp:
 	.text       start:0x80145210 end:0x80146AEC
 	.ctors      start:0x8052EB54 end:0x8052EB58
+	.rodata     start:0x80532578 end:0x80532588
 	.data       start:0x805850A0 end:0x805852B0
 	.sdata      start:0x806B1A80 end:0x806B1A88
 	.sbss       start:0x806B4868 end:0x806B4898
@@ -3202,7 +3205,7 @@ Game/Enemy/Teresa.cpp:
 Game/Enemy/TeresaWater.cpp:
 	.text       start:0x8014C790 end:0x8014CFE0
 	.ctors      start:0x8052EB64 end:0x8052EB68
-	.rodata     start:0x80532570 end:0x805325A8
+	.rodata     start:0x80532588 end:0x80532598
 	.data       start:0x80585A70 end:0x80585BB0
 	.sdata      start:0x806B1A98 end:0x806B1AA0
 	.sbss       start:0x806B4938 end:0x806B4948
@@ -3215,6 +3218,7 @@ Game/Enemy/TerritoryMover.cpp:
 Game/Enemy/Unizo.cpp:
 	.text       start:0x8014D14C end:0x8014F86C
 	.ctors      start:0x8052EB68 end:0x8052EB6C
+	.rodata     start:0x80532598 end:0x805325A0
 	.data       start:0x80585BB0 end:0x80585EC8
 	.sbss       start:0x806B4948 end:0x806B4970
 	.sdata2     start:0x806BB900 end:0x806BB9B0
@@ -3222,6 +3226,7 @@ Game/Enemy/Unizo.cpp:
 Game/Enemy/UnizoLauncher.cpp:
 	.text       start:0x8014F86C end:0x8014FBD0
 	.ctors      start:0x8052EB6C end:0x8052EB70
+	.rodata     start:0x805325A0 end:0x805325A8
 	.data       start:0x80585EC8 end:0x80585F60
 	.sbss       start:0x806B4970 end:0x806B4978
 	.sdata2     start:0x806BB9B0 end:0x806BB9B8
@@ -4771,13 +4776,13 @@ Game/MapObj/ElectricRail.cpp:
 
 Game/MapObj/ElectricRailHolder.cpp:
 	.text       start:0x801D5A7C end:0x801D6464
-	.data       start:0x80593AE8 end:0x80593C58
+	.data       start:0x80593AE8 end:0x80593C28
 	.sdata2     start:0x806BCEB8 end:0x806BCEC8
 
 Game/MapObj/ElectricRailMoving.cpp:
 	.text       start:0x801D6464 end:0x801D80B0
 	.ctors      start:0x8052ECF4 end:0x8052ECF8
-	.data       start:0x80593C58 end:0x80593E10
+	.data       start:0x80593C28 end:0x80593E10
 	.sbss       start:0x806B50E0 end:0x806B50F0
 	.sdata2     start:0x806BCEC8 end:0x806BCF10
 
@@ -4879,14 +4884,14 @@ Game/MapObj/FountainBig.cpp:
 Game/MapObj/GCapture.cpp:
 	.text       start:0x801DF110 end:0x801E1420
 	.ctors      start:0x8052ED24 end:0x8052ED28
-	.data       start:0x80594D58 end:0x80594F88
+	.data       start:0x80594D58 end:0x80594F60
 	.sdata      start:0x806B1E18 end:0x806B1E20
 	.sbss       start:0x806B51A0 end:0x806B51C0
 	.sdata2     start:0x806BD0A8 end:0x806BD118
 
 Game/MapObj/GCaptureRibbon.cpp:
 	.text       start:0x801E1420 end:0x801E1B9C
-	.data       start:0x80594F88 end:0x80595000
+	.data       start:0x80594F60 end:0x80595000
 	.sdata2     start:0x806BD118 end:0x806BD138
 
 Game/MapObj/GCaptureTarget.cpp:
@@ -5185,7 +5190,7 @@ Game/MapObj/MapObjActor.cpp:
 	.text       start:0x801F66A4 end:0x801F8364
 	.ctors      start:0x8052EDAC end:0x8052EDB0
 	.rodata     start:0x80533458 end:0x80533460
-	.data       start:0x80598358 end:0x80598868
+	.data       start:0x80598358 end:0x80598510
 	.sdata      start:0x806B1EA8 end:0x806B1EB0
 	.sbss       start:0x806B53E0 end:0x806B53F0
 	.sdata2     start:0x806BD608 end:0x806BD638
@@ -5193,6 +5198,7 @@ Game/MapObj/MapObjActor.cpp:
 Game/MapObj/MapObjActorInitInfo.cpp:
 	.text       start:0x801F8364 end:0x801F8970
 	.rodata     start:0x80533460 end:0x805334D8
+	.data       start:0x80598510 end:0x80598868
 	.sdata2     start:0x806BD638 end:0x806BD648
 
 Game/MapObj/MapObjConnector.cpp:
@@ -5291,7 +5297,7 @@ Game/MapObj/MorphItemObjNeo.cpp:
 	.text       start:0x80200E78 end:0x80202CF8
 	.ctors      start:0x8052EDD4 end:0x8052EDD8
 	.rodata     start:0x80533530 end:0x80533540
-	.data       start:0x80599ED0 end:0x8059A2F0
+	.data       start:0x80599E80 end:0x8059A2F0
 	.sdata      start:0x806B1EC0 end:0x806B1ED0
 	.sbss       start:0x806B54A0 end:0x806B54B8
 	.sdata2     start:0x806BD7D0 end:0x806BD830
@@ -5642,14 +5648,14 @@ Game/MapObj/ScrewSwitchReverse.cpp:
 Game/MapObj/SeaBottomTriplePropeller.cpp:
 	.text       start:0x80222D44 end:0x80223160
 	.ctors      start:0x8052EE70 end:0x8052EE74
-	.data       start:0x8059E7B8 end:0x8059E950
+	.data       start:0x8059E7B8 end:0x8059E8C8
 	.sbss       start:0x806B57B0 end:0x806B57B8
 	.sdata2     start:0x806BDE08 end:0x806BDE10
 
 Game/MapObj/SeesawMoveNut.cpp:
 	.text       start:0x80223160 end:0x80223778
 	.ctors      start:0x8052EE74 end:0x8052EE78
-	.data       start:0x8059E950 end:0x8059EA00
+	.data       start:0x8059E8C8 end:0x8059EA00
 	.sbss       start:0x806B57B8 end:0x806B57C0
 	.sdata2     start:0x806BDE10 end:0x806BDE30
 
@@ -6743,7 +6749,7 @@ Game/NPC/TrickRabbit.cpp:
 Game/NPC/TrickRabbitFreeRun.cpp:
 	.text       start:0x80296C54 end:0x80297A28
 	.ctors      start:0x8052F030 end:0x8052F034
-	.data       start:0x805B59A0 end:0x805B5C60
+	.data       start:0x805B59A0 end:0x805B5B30
 	.sdata      start:0x806B21B0 end:0x806B21B8
 	.sbss       start:0x806B6180 end:0x806B61A0
 	.sdata2     start:0x806BF1E0 end:0x806BF228
@@ -6751,7 +6757,7 @@ Game/NPC/TrickRabbitFreeRun.cpp:
 Game/NPC/TrickRabbitSnowCollect.cpp:
 	.text       start:0x80297A28 end:0x802989EC
 	.ctors      start:0x8052F034 end:0x8052F038
-	.data       start:0x805B5C60 end:0x805B5DF0
+	.data       start:0x805B5B30 end:0x805B5DF0
 	.sbss       start:0x806B61A0 end:0x806B61E0
 	.sdata2     start:0x806BF228 end:0x806BF238
 
@@ -12066,6 +12072,9 @@ MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 
 MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c:
 	.text       start:0x8052CD90 end:0x8052CF08
+
+MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s:
+	.init       start:0x800044C0 end:0x800063F4
 
 MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
 	.init       start:0x800063F4 end:0x80006420

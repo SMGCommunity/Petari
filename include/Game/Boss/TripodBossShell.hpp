@@ -6,7 +6,9 @@ class ModelObj;
 
 class TripodBossShell : public TripodBossFixPartsBase {
 public:
-    TripodBossShell(const char*);
+    /// @brief Creates a new `TripodBossShell`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TripodBossShell(const char* pName);
 
     virtual ~TripodBossShell();
     virtual void init(const JMapInfoIter&);

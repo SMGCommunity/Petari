@@ -1,5 +1,5 @@
 #include "Game/Boss/SkeletalFishBossFunc.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include <cstdio>
 
 namespace {
@@ -7,18 +7,21 @@ namespace {
 };  // namespace
 
 s32 SkeletalFishBossFunc::getNearestGuardPosID(const TVec3f& rVec) {
-    f32 closest = 100000.0;
+    f32 closest = 100000.0f;
     s32 posID = -1;
 
     for (int i = 0; i < 16; i++) {
         TVec3f pos;
-        if (copyGuardPos(&pos, i)) {
-            f32 dist = rVec.distance(pos);
 
-            if (dist < closest) {
-                closest = dist;
-                posID = i;
-            }
+        if (!copyGuardPos(&pos, i)) {
+            continue;
+        }
+
+        f32 dist = rVec.distance(pos);
+
+        if (dist < closest) {
+            closest = dist;
+            posID = i;
         }
     }
 
@@ -26,7 +29,8 @@ s32 SkeletalFishBossFunc::getNearestGuardPosID(const TVec3f& rVec) {
 }
 
 bool SkeletalFishBossFunc::copyGuardPos(TVec3f* pOut, s32 idx) {
-    char buf[0x80];
-    snprintf(buf, sizeof(buf), "%s%d", ::sNamePosName, idx);
-    return MR::tryFindNamePos(buf, pOut, nullptr);
+    char name[128];
+    snprintf(name, sizeof(name), "%s%d", ::sNamePosName, idx);
+
+    return MR::tryFindNamePos(name, pOut, nullptr);
 }

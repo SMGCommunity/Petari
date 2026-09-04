@@ -181,7 +181,7 @@ namespace MR {
     }
 
     void setSeVersion(const LiveActor* pActor, u32 version) {
-        pActor->mSoundObject->_30 = version;
+        pActor->mSoundObject->mSeVersion = version;
     }
 
     void releaseSoundHandle(const LiveActor* pActor, const char* pName) {

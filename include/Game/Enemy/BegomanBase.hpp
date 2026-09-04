@@ -78,7 +78,7 @@ public:
     static void launchBegomanBabyLauncher(LiveActor*, BegomanBaby**, s32, f32, f32, f32, const TVec3f*);
 
     void updateTargetVec();
-    void updateRotateY(f32, f32);
+    void updateRotateY(f32 speed, f32 tolerance = 0.005f);
     void addVelocityEscapeToSide(f32);
     void calcDirectionAwayFromRail(TVec3f*, const TVec3f&, const TVec3f&);
     void pushedFromElectricRail(HitSensor*, const TVec3f&, const TVec3f&, f32, f32, bool);

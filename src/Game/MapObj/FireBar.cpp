@@ -1,4 +1,5 @@
 #include "Game/MapObj/FireBar.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 #include "Game/Util.hpp"
@@ -174,7 +175,54 @@ void FireBar::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-// updateHitSensor__7FireBarFP9HitSensor
+void FireBar::updateHitSensor(HitSensor* sensor) {
+    f32 minDistance = FLOAT_MAX;
+
+    TVec3f position;
+    position.z = mPosition.z;
+
+    s32 fireBallCount = mFireBallCount / mStickCount;
+
+    TVec3f up;
+    MR::calcUpVec(&up, this);
+
+    TVec3f start;
+    start.scale(mStickDistance, _94);
+    JMAVECScaleAdd(&up, &start, &start, 50.0f);
+
+    TVec3f end;
+    end.scale(mStickDistance + 100.0f * (fireBallCount - 1), _94);
+    JMAVECScaleAdd(&up, &end, &end, 50.0f);
+
+    for (s32 i = 0; i < mStickCount; ++i) {
+        TVec3f startWorld;
+        TVec3f endWorld;
+
+        JMathInlineVEC::PSVECAdd(&start, &mPosition, &startWorld);
+        JMathInlineVEC::PSVECAdd(&end, &mPosition, &endWorld);
+
+        MR::calcPerpendicFootToLineInside(&position, *MR::getPlayerCenterPos(), startWorld, endWorld);
+
+        const Vec* playerCenter = MR::getPlayerCenterPos();
+        f32 distance = PSVECDistance(&position, playerCenter);
+
+        if (minDistance > distance) {
+            position.set(position);
+            minDistance = distance;
+        }
+
+        if (i + 1 != mStickCount) {
+            MR::calcUpVec(&up, this);
+
+            f32 angle = 360.0f / mStickCount;
+
+            MR::rotateVecDegree(&start, up, angle);
+            MR::rotateVecDegree(&end, up, angle);
+        }
+    }
+
+    sensor->mPosition.set(position);
+}
 
 // meh
 void FireBar::initFireBarBall(const JMapInfoIter& rIter) {

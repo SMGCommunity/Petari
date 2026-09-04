@@ -8,6 +8,7 @@ class LightDataHolder;
 class LightPointCtrl;
 class LightZoneDataHolder;
 class ResourceHolder;
+class LightAreaHolder;
 
 class LightDirector : public NameObj {
 public:
@@ -21,11 +22,11 @@ public:
     void loadLightPlayer() const;
     void loadLightCoin() const;
 
-    /* 0x0C */ u32 _C;
+    /* 0x0C */ LightAreaHolder* _C;
     /* 0x10 */ LightDataHolder* mDataHolder;
     /* 0x14 */ LightZoneDataHolder* mZoneDataHolder;
     /* 0x18 */ AreaLightInfo* mDefaultAreaLight;
-    /* 0x1C */ ActorLightCtrl* _1C;
+    /* 0x1C */ const ActorLightCtrl* _1C;
     /* 0x20 */ LightPointCtrl* mPointCtrl;
     /* 0x24 */ ResourceHolder* mResourceHolder;
 };

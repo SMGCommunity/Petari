@@ -56,6 +56,11 @@ struct SoundList;
 
 class Mario : public MarioModule {
 public:
+    enum SeVersion {
+        SeVersion_NORMAL = 0,
+        SeVersion_DARK = 1,
+    };
+
     typedef bool (Mario::*Task)(u32);
     Mario(MarioActor*);
 
