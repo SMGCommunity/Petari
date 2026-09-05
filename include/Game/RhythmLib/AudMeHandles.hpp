@@ -48,7 +48,7 @@ public:
         return &mHandles[index];
     }
 
-    AudMe* getSound(int n) {
+    AudMe* getMe(int n) {
         return getHandle(n)->getMe();
     }
 

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Game/RhythmLib/AudMeTrack.hpp"
 #include <JSystem/JAudio2/JASGlobal.hpp>
 #include <JSystem/JAudio2/JASHeapCtrl.hpp>
 #include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JSupport/JSUList.hpp>
 
 class AudMeHandle;
+class AudMeTrack;
 
 struct AudMePlayingParams {
     /* 0x0 */ u8 mPriority;

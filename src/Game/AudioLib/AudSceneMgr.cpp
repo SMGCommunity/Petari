@@ -3,6 +3,7 @@
 #include "Game/AudioLib/AudEffector.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
 #include "Game/AudioLib/AudWrap.hpp"
+#include "Game/RhythmLib/AudRhythmWrap.hpp"
 #include "Game/Speaker/SpkSystem.hpp"
 #include <JSystem/JAudio2/JAUSectionHeap.hpp>
 

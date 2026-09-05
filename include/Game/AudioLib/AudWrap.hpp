@@ -10,6 +10,7 @@ class AudRemixSequencer;
 class AudRhythmMeSystem;
 class AudSceneMgr;
 class AudSoundInfo;
+class AudSoundNameConverter;
 class AudSoundObjHolder;
 class AudSoundObject;
 class AudSystem;
@@ -34,4 +35,5 @@ namespace AudWrap {
     AudRemixMgr* getRemixMgr();
     AudRemixSequencer* getRemixSequencer();
     AudSoundObject* getRemixSeqObject();
+    AudSoundNameConverter* getSoundNameConverter();
 };  // namespace AudWrap
