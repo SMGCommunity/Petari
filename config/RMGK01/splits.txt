@@ -2399,7 +2399,8 @@ Game/Effect/AutoEffectGroupHolder.cpp:
 
 Game/Effect/AutoEffectInfo.cpp:
 	.text       start:0x800C4D2C end:0x800C5328
-	.rodata     start:0x80531A48 end:0x80531AB0
+	.rodata     start:0x80531A48 end:0x80531A90
+	.sdata      start:0x806B1880 end:0x806B1890
 	.sdata2     start:0x806B9CF0 end:0x806B9CF8
 
 Game/Effect/EffectObjGravityDust.cpp:
@@ -2414,7 +2415,9 @@ Game/Effect/EffectSystem.cpp:
 
 Game/Effect/EffectSystemUtil.cpp:
 	.text       start:0x800C590C end:0x800C64F0
+	.rodata     start:0x80531A90 end:0x80531A98
 	.data       start:0x805784B8 end:0x80578540
+	.sdata      start:0x806B1890 end:0x806B18A0
 	.sdata2     start:0x806B9D18 end:0x806B9D28
 
 Game/Effect/MultiEmitter.cpp:
@@ -2428,6 +2431,7 @@ Game/Effect/MultiEmitterAccess.cpp:
 
 Game/Effect/MultiEmitterCallBack.cpp:
 	.text       start:0x800C81AC end:0x800C9008
+	.rodata     start:0x80531A98 end:0x80531AA0
 	.data       start:0x805785A0 end:0x805785E0
 	.sdata2     start:0x806B9D40 end:0x806B9D58
 
@@ -2441,6 +2445,7 @@ Game/Effect/ParticleCalcExecutor.cpp:
 
 Game/Effect/ParticleDrawExecutor.cpp:
 	.text       start:0x800C9580 end:0x800C9FB4
+	.rodata     start:0x80531AA0 end:0x80531AA8
 	.data       start:0x80578698 end:0x805787C8
 	.sdata2     start:0x806B9D58 end:0x806B9D70
 
@@ -2454,9 +2459,11 @@ Game/Effect/ParticleEmitterHolder.cpp:
 Game/Effect/ParticleResourceHolder.cpp:
 	.text       start:0x800CA47C end:0x800CA934
 	.data       start:0x805787D8 end:0x80578820
+	.sdata      start:0x806B18A0 end:0x806B18A8
 
 Game/Effect/RandomEffectObj.cpp:
 	.text       start:0x800CA934 end:0x800CAC10
+	.rodata     start:0x80531AA8 end:0x80531AB0
 	.data       start:0x80578820 end:0x805788F0
 	.sdata2     start:0x806B9D70 end:0x806B9D80
 
@@ -2513,6 +2520,7 @@ Game/Enemy/Balloonfish.cpp:
 	.ctors      start:0x8052EA30 end:0x8052EA34
 	.rodata     start:0x80531BE8 end:0x80531BF0
 	.data       start:0x80578E60 end:0x80578FF0
+	.sdata      start:0x806B18A8 end:0x806B18B0
 	.sbss       start:0x806B3B30 end:0x806B3B40
 	.sdata2     start:0x806B9E18 end:0x806B9E50
 
@@ -2520,6 +2528,7 @@ Game/Enemy/BasaBasa.cpp:
 	.text       start:0x800CDD78 end:0x800D013C
 	.ctors      start:0x8052EA34 end:0x8052EA38
 	.data       start:0x80578FF0 end:0x805792D8
+	.sdata      start:0x806B18B0 end:0x806B18B8
 	.sbss       start:0x806B3B40 end:0x806B3B88
 	.sdata2     start:0x806B9E50 end:0x806B9EF8
 

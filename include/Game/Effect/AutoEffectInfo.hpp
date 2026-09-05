@@ -6,6 +6,16 @@ class JMapInfoIter;
 
 class AutoEffectInfo {
 public:
+    enum Flag {
+        /* 0x01 */ FLAG_FOLLOW_TRANS = 1 << 0,
+        /* 0x02 */ FLAG_FOLLOW_ROTATE = 1 << 1,
+        /* 0x04 */ FLAG_FOLLOW_SCALE = 1 << 2,
+        /* 0x08 */ FLAG_AFFECT_TRANS = 1 << 3,
+        /* 0x10 */ FLAG_AFFECT_ROTATE = 1 << 4,
+        /* 0x20 */ FLAG_AFFECT_SCALE = 1 << 5,
+        /* 0x40 */ FLAG_CONTINUE_ANIM_END = 1 << 6,
+    };
+
     /// @brief Creates a new `AutoEffectInfo`.
     AutoEffectInfo();
 
@@ -31,5 +41,5 @@ public:
     /* 0x40 */ f32 mScaleValue;
     /* 0x44 */ f32 mRateValue;
     /* 0x48 */ f32 mLightAffectValue;
-    /* 0x4C */ const char* mDrawOrder;
+    /* 0x4C */ const void* mDrawOrderData;
 };
