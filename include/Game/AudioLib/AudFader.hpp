@@ -4,6 +4,13 @@
 
 class AudFader {
 public:
+    enum FadeState {
+        FadeState_FadeOut = 0,
+        FadeState_FadeIn = 1,
+        FadeState_Mute = 2,
+        FadeState_Unmute = 3,
+    };
+
     AudFader();
 
     ~AudFader(){};

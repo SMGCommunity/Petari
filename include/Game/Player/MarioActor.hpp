@@ -46,14 +46,16 @@ class MatrixControl;
 enum SPECIAL_STATUS_FOR_CAMERA { CASE_0, CASE_1 };
 
 enum PlayerMode {
-    /* 0x0 */ PlayerMode_0,
+    /* 0x0 */ PlayerMode_Normal,
     /* 0x1 */ PlayerMode_Invincible,
     /* 0x2 */ PlayerMode_2,
     /* 0x3 */ PlayerMode_Ice,
     /* 0x4 */ PlayerMode_Bee,
     /* 0x5 */ PlayerMode_Hopper,
     /* 0x6 */ PlayerMode_Teresa,
-    /* 0x7 */ PlayerMode_Foo
+    /* 0x7 */ PlayerMode_Foo,
+    /* 0x8 */ PlayerMode_8,
+    /* 0x9 */ PlayerMode_Tornado
 };
 
 template < int SIZE, class T, class U >
@@ -554,6 +556,10 @@ public:
 
     inline Mario* getMario() {
         return mMario;
+    }
+
+    inline bool isBeeWallWalk() const {
+        return mBeeWallWalk != 0;
     }
 
     struct FBO {

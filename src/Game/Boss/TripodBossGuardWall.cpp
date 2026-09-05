@@ -18,15 +18,19 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "JSystem/JMath/JMath.hpp"
 
-struct WallPart2Angle {
-    f32 angle;
-    s32 partNo;
-};
-
 namespace {
-    static WallPart2Angle sWallPartPlacementAngleTable[] = {{0.0f, 4},      {45.0f, 8},     {90.0f, 0xC},   {135.0f, 0x10},
-                                                            {180.0f, 0x14}, {225.0f, 0x18}, {270.0f, 0x1C}, {315.0f, 0x20}};
+    struct WallPartPlacementAngle {
+        /* 0x00 */ f32 mAngle;
+        /* 0x04 */ s32 mStartTiming;
+    };
 
+    static WallPartPlacementAngle sWallPartPlacementAngleTable[] = {{0.0f, 4},    {45.0f, 8},   {90.0f, 12},  {135.0f, 16},
+                                                                    {180.0f, 20}, {225.0f, 24}, {270.0f, 28}, {315.0f, 32}};
+    static const s32 sEventCameraStartTime = 150;
+    static const s32 sEventAnimeStartTime = 180;
+    static const s32 sStartCameraBlendTime = 20;
+    static const s32 sEndCameraBlendTime = 30;
+    static const f32 sRotateSpeed = -0.2f;
     static s32 sMoveSeLength = 58;
 };  // namespace
 
@@ -41,11 +45,7 @@ namespace NrvTriPodBossGuardWall {
     NEW_NERVE(TripodBossGuardWallNrvRotate, TripodBossGuardWall, Rotate);
 };  // namespace NrvTriPodBossGuardWall
 
-TripodBossGuardWall::TripodBossGuardWall(const char* pName) : LiveActor(pName), mCameraTargetMtx(nullptr) {
-    mCameraInfo = nullptr;
-    _580.x = 0.0f;
-    _580.y = 0.0f;
-    _580.z = 0.0f;
+TripodBossGuardWall::TripodBossGuardWall(const char* pName) : LiveActor(pName), mCameraTargetMtx(), mCameraInfo(), mStartTrans(0.0f, 0.0f, 0.0f) {
     mBaseMtx.identity();
 }
 
@@ -54,16 +54,16 @@ void TripodBossGuardWall::makeActorAppeared() {
 }
 
 void TripodBossGuardWall::makeActorDead() {
-    for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
-        mWallParts[i].makeActorDead();
+    for (s32 i = 0; i < ARRAY_SIZE(mParts); i++) {
+        mParts[i].makeActorDead();
     }
 
     LiveActor::makeActorDead();
 }
 
 void TripodBossGuardWall::kill() {
-    for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
-        mWallParts[i].kill();
+    for (s32 i = 0; i < ARRAY_SIZE(mParts); i++) {
+        mParts[i].kill();
     }
 
     LiveActor::kill();
@@ -72,9 +72,9 @@ void TripodBossGuardWall::kill() {
 void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneMapObjDecorationMovement(this);
-    _580 = mPosition;
+    mStartTrans = mPosition;
     initModelManagerWithAnm("TripodBossGuardWall", nullptr, false);
-    MR::getJMapInfoArg0NoInit(rIter, &_58C);
+    MR::getJMapInfoArg0NoInit(rIter, &mJointID);
     initSound(4, false);
     initNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvWait::sInstance);
     mCameraInfo = MR::createActorCameraInfo(rIter);
@@ -93,11 +93,11 @@ void TripodBossGuardWall::init(const JMapInfoIter& rIter) {
 }
 
 void TripodBossGuardWall::initParts() {
-    for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
-        mWallParts[i].setHostMatrix(&mBaseMtx);
-        mWallParts[i].setPlacementAngle(::sWallPartPlacementAngleTable[i].angle);
-        mWallParts[i].setStartTiming(::sWallPartPlacementAngleTable[i].partNo);
-        mWallParts[i].initWithoutIter();
+    for (s32 i = 0; i < ARRAY_SIZE(mParts); i++) {
+        mParts[i].setHostMatrix(&mBaseMtx);
+        mParts[i].setPlacementAngle(::sWallPartPlacementAngleTable[i].mAngle);
+        mParts[i].setStartTiming(::sWallPartPlacementAngleTable[i].mStartTiming);
+        mParts[i].initWithoutIter();
     }
 }
 
@@ -111,8 +111,8 @@ void TripodBossGuardWall::calcAndSetBaseMtx() {
 
 bool TripodBossGuardWall::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (msg == ACTMES_TRIPODBOSS_STARTED) {
-        for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
-            mWallParts[i].makeActorAppeared();
+        for (s32 i = 0; i < ARRAY_SIZE(mParts); i++) {
+            mParts[i].makeActorAppeared();
         }
 
         return true;
@@ -123,6 +123,7 @@ bool TripodBossGuardWall::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor
 
 void TripodBossGuardWall::requestStart() {
     setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvTryDemo::sInstance);
+
     if (MR::tryDamageDemoTripodBoss()) {
         setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvDemo::sInstance);
     }
@@ -137,38 +138,38 @@ void TripodBossGuardWall::exeTryDemo() {
     }
 }
 
-/* more small inlining issues */
 void TripodBossGuardWall::exeDemo() {
     if (MR::isFirstStep(this)) {
     }
 
-    if (MR::isStep(this, 150)) {
+    if (MR::isStep(this, ::sEventCameraStartTime)) {
         updateCameraTarget();
         CameraTargetArg arg(nullptr, mCameraTargetMtx, nullptr, nullptr);
-        MR::startAnimCameraTargetOther(this, mCameraInfo, "2ndDemo", arg, 20, 1.0f);
+        MR::startAnimCameraTargetOther(this, mCameraInfo, "2ndDemo", arg, ::sStartCameraBlendTime, 1.0f);
     }
 
-    if (MR::isStep(this, 180)) {
-        for (s32 i = 0; i < 8; i++) {
-            mWallParts[i].requestStartDemo();
+    if (MR::isStep(this, ::sEventAnimeStartTime)) {
+        for (s32 i = 0; i < ARRAY_SIZE(mParts); i++) {
+            mParts[i].requestStartDemo();
         }
     }
 
-    if (MR::isGreaterStep(this, 180)) {
-        bool isDemoEndAny = true;
-        for (s32 i = 0; i < ARRAY_SIZE(mWallParts); i++) {
-            if (!mWallParts[i].isEndDemo()) {
-                isDemoEndAny = false;
+    if (MR::isGreaterStep(this, ::sEventAnimeStartTime)) {
+        bool isAnyPartDemoEnd = true;
+
+        for (s32 i = 0; i < ARRAY_SIZE(mParts); i++) {
+            if (!mParts[i].isEndDemo()) {
+                isAnyPartDemoEnd = false;
                 break;
             }
         }
 
-        if (MR::isLessStep(this, ::sMoveSeLength + 180)) {
+        if (MR::isLessStep(this, ::sMoveSeLength + ::sEventAnimeStartTime)) {
             MR::startLevelSound(this, "SE_BM_LV_TRIPOD_WALL_UP");
         }
 
-        if (isDemoEndAny) {
-            MR::endAnimCamera(this, mCameraInfo, "2ndDemo", 30, true);
+        if (isAnyPartDemoEnd) {
+            MR::endAnimCamera(this, mCameraInfo, "2ndDemo", ::sEndCameraBlendTime, true);
             MR::requestEndDamageDemoTripodBoss();
             setNerve(&NrvTriPodBossGuardWall::TripodBossGuardWallNrvRotate::sInstance);
         }
@@ -176,21 +177,20 @@ void TripodBossGuardWall::exeDemo() {
 }
 
 void TripodBossGuardWall::exeRotate() {
-    mRotation.y += -0.2f;
+    mRotation.y += ::sRotateSpeed;
+
     MR::repeatDegree(&mRotation.y);
     MR::startLevelSound(this, "SE_BM_LV_TRIPOD_C_WALL_MOVE");
+
     if (MR::isEndBreakDownDemoTripodBoss()) {
         kill();
     }
 }
 
 void TripodBossGuardWall::updateMatrix() {
-    MR::makeMtxTR(mBaseMtx, _580, mRotation);
-    MR::concatTripodBossAttachJointMatrix(&mBaseMtx, _58C);
-    f32 z = mBaseMtx.mMtx[2][3];
-    f32 y = mBaseMtx.mMtx[1][3];
-    f32 x = mBaseMtx.mMtx[0][3];
-    mPosition.set< f32 >(x, y, z);
+    MR::makeMtxTR(mBaseMtx, mStartTrans, mRotation);
+    MR::concatTripodBossAttachJointMatrix(&mBaseMtx, mJointID);
+    mBaseMtx.getTrans(mPosition);
 }
 
 void TripodBossGuardWall::updateCameraTarget() {
@@ -210,8 +210,8 @@ void TripodBossGuardWall::updateCameraTarget() {
         MR::normalize(&front);
     }
 
-    TPos3f pos;
-    pos.identity();
-    MR::makeMtxUpFrontPos(&pos, up, front, mPosition);
-    mCameraTargetMtx->mMatrix.set(pos);
+    TPos3f mtx;
+    mtx.identity();
+    MR::makeMtxUpFrontPos(&mtx, up, front, mPosition);
+    mCameraTargetMtx->mMatrix.set(mtx);
 }

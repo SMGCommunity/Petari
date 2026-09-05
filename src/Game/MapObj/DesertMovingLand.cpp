@@ -38,7 +38,7 @@ void DesertMovingLand::init(const JMapInfoIter& rIter) {
     info.setupNerve(&NrvDesertMovingLand::HostTypeWaitTop::sInstance);
     info.setupBaseMtxFollowTarget();
     info.setupFarClipping(-1.0f);
-    info.mNoAppearRiddleSE = false;
+    info.mIsAppearRiddleSE = false;
     initialize(rIter, info);
 
     if (!MR::isValidSwitchA(this))

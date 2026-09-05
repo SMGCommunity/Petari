@@ -493,7 +493,7 @@ bool JAUSectionHeap::newDynamicSeqBlock(u32 size) {
     return false;
 }
 
-int JAUSectionHeap::newDynamicSeqBlock(u32 size, int n) {
+int JAUSectionHeap::newDynamicSeqBlocks(u32 size, int n) {
     int i;
     for (i = 0; i < n; i++) {
         if (!newDynamicSeqBlock(size)) {

@@ -51,7 +51,7 @@ namespace MR {
     s32 getGeneralPosNum();
     void getGeneralPosData(const char**, TVec3f*, TVec3f*, JMapLinkInfo**, int);
     s32 getChildObjNum(const JMapInfoIter&);
-    const char* getChildObjName(const char**, const JMapInfoIter&, int);
+    void getChildObjName(const char**, const JMapInfoIter&, int);
     void initChildObj(NameObj*, const JMapInfoIter&, int);
     const char* getAppearPowerStarObjName(s32);
     s32 getCurrentStageNormalScenarioNum();

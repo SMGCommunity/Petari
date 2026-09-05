@@ -58,7 +58,10 @@ s32 VFiPFFAT32_ReadFATEntry(struct PF_VOLUME* p_vol, u32 cluster, u32* p_value) 
     } while (err != 0);
 
     err = 0;
-    *p_value = (u32)(SWAP32(*(u32*)buf)) & 0x0FFFFFFF;
+    {
+        u32 v = *(u32*)buf;
+        *p_value = ((v & 0xff000000) >> 24 | (v & 0x00ff0000) >> 8 | (v & 0x0000ff00) << 8 | (v & 0x000000ff) << 24) & 0x0FFFFFFF;
+    }
 
     return err;
 }
@@ -123,7 +126,10 @@ s32 VFiPFFAT32_ReadFATEntryPage(struct PF_VOLUME* p_vol, u32 cluster, u32* p_val
     }
 
     offset &= (p_vol->bpb.bytes_per_sector - 1);
-    *p_value = (u32)(SWAP32(*((u32*)((*pp_page)->p_buf + offset)))) & 0x0FFFFFFF;
+    {
+        u32 v = *(u32*)((*pp_page)->p_buf + offset);
+        *p_value = ((v & 0xff000000) >> 24 | (v & 0x00ff0000) >> 8 | (v & 0x0000ff00) << 8 | (v & 0x000000ff) << 24) & 0x0FFFFFFF;
+    }
 
     return err;
 }
@@ -151,7 +157,12 @@ s32 VFiPFFAT32_WriteFATEntry(struct PF_VOLUME* p_vol, u32 cluster, u32 value) {
     err = VFiPFSEC_ReadFAT(p_vol, buf, fat_sector, offset_in_sector, 4);
     switch (err) {
     case 0: {
-        *(u32*)buf = SWAP32(((value & 0xFFFFFFF) | ((SWAP32(*(u32*)buf)) & 0xF0000000)));
+        {
+            u32 v = *(u32*)buf;
+            u32 old_swapped = (v & 0xff000000) >> 24 | (v & 0x00ff0000) >> 8 | (v & 0x0000ff00) << 8 | (v & 0x000000ff) << 24;
+            u32 new_val = (value & 0xFFFFFFF) | (old_swapped & 0xF0000000);
+            *(u32*)buf = (new_val & 0xff000000) >> 24 | (new_val & 0x00ff0000) >> 8 | (new_val & 0x0000ff00) << 8 | (new_val & 0x000000ff) << 24;
+        }
         err = VFiPFSEC_WriteFAT(p_vol, buf, fat_sector, offset_in_sector, 4);
         break;
     }
@@ -221,7 +232,13 @@ s32 VFiPFFAT32_WriteFATEntryPage(struct PF_VOLUME* p_vol, u32 cluster, u32 value
         }
     }
 
-    *(u32*)((*pp_page)->p_buf + fat_offset) = SWAP32((value & 0xFFFFFFF) | ((SWAP32(*(u32*)((*pp_page)->p_buf + fat_offset))) & 0xF0000000));
+    {
+        u32 v = *(u32*)((*pp_page)->p_buf + fat_offset);
+        u32 old_swapped = (v & 0xff000000) >> 24 | (v & 0x00ff0000) >> 8 | (v & 0x0000ff00) << 8 | (v & 0x000000ff) << 24;
+        u32 new_val = (value & 0xFFFFFFF) | (old_swapped & 0xF0000000);
+        *(u32*)((*pp_page)->p_buf + fat_offset) =
+            (new_val & 0xff000000) >> 24 | (new_val & 0x00ff0000) >> 8 | (new_val & 0x0000ff00) << 8 | (new_val & 0x000000ff) << 24;
+    }
     VFiPFCACHE_UpdateModifiedSector(p_vol, (*pp_page), 1);
 
     return err;

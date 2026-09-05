@@ -9,17 +9,16 @@ class MiniatureGalaxyHolder : public LiveActor {
 public:
     MiniatureGalaxyHolder();
 
-    virtual ~MiniatureGalaxyHolder();
     virtual void init(const JMapInfoIter&);
 
     void registerActor(LiveActor*, const JMapInfoIter&);
     bool isRegisteredActor(const LiveActor*);
-    MiniatureGalaxy* findMiniatureGalaxy(const char*) const;  // MiniatureGalaxy* ?
+    MiniatureGalaxy* findMiniatureGalaxy(const char*) const;
     void killAllMiniatureGalaxy();
     s32 calcIndex(const LiveActor*) const;
     void updateCometStatus();
 
-    /* 0x8C */ LiveActorGroup* _8C;
+    /* 0x8C */ LiveActorGroup* mMiniatureGalaxyGroup;
     /* 0x90 */ bool _90;
     /* 0x94 */ MiniatureGalaxy* mCometGalaxy;
     /* 0x98 */ s32 mCometID;

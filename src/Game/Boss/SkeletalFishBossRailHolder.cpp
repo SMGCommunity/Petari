@@ -5,7 +5,7 @@
 SkeletalFishBossRailHolder::SkeletalFishBossRailHolder(const char* pName) : NameObj(pName) {
     mNumRails = 0;
 
-    for (s32 i = 0; i < 3; i++) {
+    for (s32 i = 0; i < ARRAY_SIZE(mRails); i++) {
         mRails[i] = nullptr;
     }
 }
@@ -39,6 +39,3 @@ namespace MR {
         MR::createSceneObj(SceneObj_SkeletalFishBossRailHolder);
     }
 };  // namespace MR
-
-SkeletalFishBossRailHolder::~SkeletalFishBossRailHolder() {
-}

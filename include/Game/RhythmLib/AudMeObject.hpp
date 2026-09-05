@@ -29,4 +29,7 @@ public:
 
     void startMe(u32);
     AudMeHandle* getLowestPrioHandle(u32);
+
+    /* 0x24 */ TVec3f* _24;
+    /* 0x28 */ bool _28;
 };

@@ -5,6 +5,8 @@
 
 class TripodBossGuardWallPart : public LiveActor {
 public:
+    /// @brief Creates a new `TripodBossGuardWallPart`.
+    /// @param pName A pointer to the null-terminated name of the object.
     TripodBossGuardWallPart(const char* pName = "三脚ボスコア防壁部品");
 
     virtual void init(const JMapInfoIter&);

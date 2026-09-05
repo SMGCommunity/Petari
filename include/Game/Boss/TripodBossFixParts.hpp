@@ -4,14 +4,17 @@
 
 class TripodBossFixParts : public TripodBossFixPartsBase {
 public:
-    TripodBossFixParts(const char*);
+    /// @brief Creates a new `TripodBossFixParts`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TripodBossFixParts(const char* pName);
 
-    virtual ~TripodBossFixParts();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
 
     virtual void activateTripodBoss();
-    virtual void exeWaitOwn();
+
+    virtual void exeWaitOwn() {
+    }
 
     void initSensor(const JMapInfoIter&);
 
@@ -24,6 +27,6 @@ public:
     /* 0xE8 */ s32 _E8;
     /* 0xEC */ bool mHasCollision;
     /* 0xED */ bool _ED;
-    /* 0xEE */ u8 _EE;
+    /* 0xEE */ bool _EE;
     /* 0xEF */ bool mIsPlayingWarning;
 };

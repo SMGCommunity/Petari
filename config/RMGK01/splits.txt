@@ -1508,13 +1508,13 @@ Game/Boss/TripodBossCore.cpp:
 Game/Boss/TripodBossFixParts.cpp:
 	.text       start:0x8008AFC0 end:0x8008B7A8
 	.ctors      start:0x8052E9C4 end:0x8052E9C8
-	.data       start:0x80573190 end:0x805733A8
+	.data       start:0x80573190 end:0x80573390
 	.sbss       start:0x806B3938 end:0x806B3948
 	.sdata2     start:0x806B8FB0 end:0x806B8FC0
 
 Game/Boss/TripodBossFixPartsBase.cpp:
 	.text       start:0x8008B7A8 end:0x8008BC40
-	.data       start:0x805733A8 end:0x80573428
+	.data       start:0x80573390 end:0x80573428
 	.sdata2     start:0x806B8FC0 end:0x806B8FC8
 
 Game/Boss/TripodBossGuardWall.cpp:
@@ -4884,14 +4884,14 @@ Game/MapObj/FountainBig.cpp:
 Game/MapObj/GCapture.cpp:
 	.text       start:0x801DF110 end:0x801E1420
 	.ctors      start:0x8052ED24 end:0x8052ED28
-	.data       start:0x80594D58 end:0x80594F88
+	.data       start:0x80594D58 end:0x80594F60
 	.sdata      start:0x806B1E18 end:0x806B1E20
 	.sbss       start:0x806B51A0 end:0x806B51C0
 	.sdata2     start:0x806BD0A8 end:0x806BD118
 
 Game/MapObj/GCaptureRibbon.cpp:
 	.text       start:0x801E1420 end:0x801E1B9C
-	.data       start:0x80594F88 end:0x80595000
+	.data       start:0x80594F60 end:0x80595000
 	.sdata2     start:0x806BD118 end:0x806BD138
 
 Game/MapObj/GCaptureTarget.cpp:
@@ -5190,7 +5190,7 @@ Game/MapObj/MapObjActor.cpp:
 	.text       start:0x801F66A4 end:0x801F8364
 	.ctors      start:0x8052EDAC end:0x8052EDB0
 	.rodata     start:0x80533458 end:0x80533460
-	.data       start:0x80598358 end:0x80598868
+	.data       start:0x80598358 end:0x80598510
 	.sdata      start:0x806B1EA8 end:0x806B1EB0
 	.sbss       start:0x806B53E0 end:0x806B53F0
 	.sdata2     start:0x806BD608 end:0x806BD638
@@ -5198,6 +5198,7 @@ Game/MapObj/MapObjActor.cpp:
 Game/MapObj/MapObjActorInitInfo.cpp:
 	.text       start:0x801F8364 end:0x801F8970
 	.rodata     start:0x80533460 end:0x805334D8
+	.data       start:0x80598510 end:0x80598868
 	.sdata2     start:0x806BD638 end:0x806BD648
 
 Game/MapObj/MapObjConnector.cpp:
@@ -5296,7 +5297,7 @@ Game/MapObj/MorphItemObjNeo.cpp:
 	.text       start:0x80200E78 end:0x80202CF8
 	.ctors      start:0x8052EDD4 end:0x8052EDD8
 	.rodata     start:0x80533530 end:0x80533540
-	.data       start:0x80599ED0 end:0x8059A2F0
+	.data       start:0x80599E80 end:0x8059A2F0
 	.sdata      start:0x806B1EC0 end:0x806B1ED0
 	.sbss       start:0x806B54A0 end:0x806B54B8
 	.sdata2     start:0x806BD7D0 end:0x806BD830
@@ -5647,14 +5648,14 @@ Game/MapObj/ScrewSwitchReverse.cpp:
 Game/MapObj/SeaBottomTriplePropeller.cpp:
 	.text       start:0x80222D44 end:0x80223160
 	.ctors      start:0x8052EE70 end:0x8052EE74
-	.data       start:0x8059E7B8 end:0x8059E950
+	.data       start:0x8059E7B8 end:0x8059E8C8
 	.sbss       start:0x806B57B0 end:0x806B57B8
 	.sdata2     start:0x806BDE08 end:0x806BDE10
 
 Game/MapObj/SeesawMoveNut.cpp:
 	.text       start:0x80223160 end:0x80223778
 	.ctors      start:0x8052EE74 end:0x8052EE78
-	.data       start:0x8059E950 end:0x8059EA00
+	.data       start:0x8059E8C8 end:0x8059EA00
 	.sbss       start:0x806B57B8 end:0x806B57C0
 	.sdata2     start:0x806BDE10 end:0x806BDE30
 

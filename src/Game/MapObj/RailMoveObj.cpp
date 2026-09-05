@@ -347,21 +347,3 @@ bool RailRotateMoveObj::tryStartRotateBetweenPoints() {
     uhm->rotateBetweenPoints(new_point, next_time);
     return true;
 }
-
-RailMoveObjPress::~RailMoveObjPress() {
-}
-
-RailMoveObjBreakAtEnd::~RailMoveObjBreakAtEnd() {
-}
-
-RailMoveIndirectObj::~RailMoveIndirectObj() {
-}
-
-RailMoveObjSwitchShadow::~RailMoveObjSwitchShadow() {
-}
-
-RailDemoMoveObj::~RailDemoMoveObj() {
-}
-
-RailRotateMoveObj::~RailRotateMoveObj() {
-}

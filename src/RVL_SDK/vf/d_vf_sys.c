@@ -118,7 +118,7 @@ static void VFSys_free_cache(struct VF_HANDLE_CACHE* i_cache_p) {
     }
 }
 
-static void VFSys_create_cache(struct VF_HANDLE_TYPE* i_handle_p, u32 i_pages, struct MEMiHeapHead* i_heap_handle) {
+void VFSys_create_cache(struct VF_HANDLE_TYPE* i_handle_p, u32 i_pages, struct MEMiHeapHead* i_heap_handle) {
     struct VF_HANDLE_CACHE* cache_p;
     u32 pages_2;
     u32 cache_page_size;
@@ -557,7 +557,7 @@ s32 VFSysCheckExistPrfFile_nandflash_sub(const s8* i_prf_file_name_p, u32 i_hand
     return ret;
 }
 
-static s32 VFSysCheckExistPrfFile_nandflash(struct VF_HANDLE_DEVICE* i_device_p, const s8* i_prf_file_name_p, void* i_memory_p, u32 i_handle_idx) {
+s32 VFSysCheckExistPrfFile_nandflash(struct VF_HANDLE_DEVICE* i_device_p, const s8* i_prf_file_name_p, void* i_memory_p, u32 i_handle_idx) {
     return VFSysCheckExistPrfFile_nandflash_sub(i_prf_file_name_p, i_handle_idx);
 }
 
@@ -569,7 +569,7 @@ static s32 VFSysCheckExistPrfFile_ram_sub(void* i_memory_p) {
     return 0xB006;
 }
 
-static s32 VFSysCheckExistPrfFile_ram(struct VF_HANDLE_DEVICE* i_device_p, const s8* i_prf_file_name_p, void* i_memory_p, u32 i_handle_idx) {
+s32 VFSysCheckExistPrfFile_ram(struct VF_HANDLE_DEVICE* i_device_p, const s8* i_prf_file_name_p, void* i_memory_p, u32 i_handle_idx) {
     return VFSysCheckExistPrfFile_ram_sub(i_memory_p);
 }
 
@@ -600,7 +600,7 @@ static s32 VFSysCheckExistPrfFile_dvd_sub(const s8* i_prf_file_name_p) {
     return ret;
 }
 
-static s32 VFSysCheckExistPrfFile_dvd(struct VF_HANDLE_DEVICE* i_device_p, const s8* i_prf_file_name_p, void* i_memory_p, u32 i_handle_idx) {
+s32 VFSysCheckExistPrfFile_dvd(struct VF_HANDLE_DEVICE* i_device_p, const s8* i_prf_file_name_p, void* i_memory_p, u32 i_handle_idx) {
     return VFSysCheckExistPrfFile_dvd_sub(i_prf_file_name_p);
 }
 
@@ -956,4 +956,16 @@ s32 VFSysSetSyncMode(s32 i_handle_idx, u32 i_mode) {
         return 0;
     }
     return -1;
+}
+
+static void (*l_timeStampCallback)(struct VFSysTime*);
+
+void (*VFSysSetTimeStampCallback(void (*i_callback)(struct VFSysTime*)))(struct VFSysTime*) {
+    void (*old_callback)(struct VFSysTime*) = l_timeStampCallback;
+    l_timeStampCallback = i_callback;
+    return old_callback;
+}
+
+void (*VFSysGetTimeStampCallback())(struct VFSysTime*) {
+    return l_timeStampCallback;
 }

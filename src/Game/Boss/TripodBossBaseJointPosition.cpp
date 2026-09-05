@@ -6,16 +6,15 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-TripodBossBaseJointPosition::TripodBossBaseJointPosition(const char* pName) : LiveActor(pName) {
-    _8C = -1;
-    _90.identity();
+TripodBossBaseJointPosition::TripodBossBaseJointPosition(const char* pName) : LiveActor(pName), mID(-1) {
+    mMtx.identity();
 }
 
 void TripodBossBaseJointPosition::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     MR::connectToSceneCollisionEnemyMovement(this);
-    MR::getJMapInfoArg0NoInit(rIter, &_8C);
-    MR::getJMapInfoMatrixFromRT(rIter, &_90);
+    MR::getJMapInfoArg0NoInit(rIter, &mID);
+    MR::getJMapInfoMatrixFromRT(rIter, &mMtx);
     MR::addBaseMatrixFollowTarget(this, rIter, nullptr, nullptr);
     MR::addTripodBossParts(this);
     MR::invalidateClipping(this);
@@ -23,22 +22,16 @@ void TripodBossBaseJointPosition::init(const JMapInfoIter& rIter) {
 }
 
 void TripodBossBaseJointPosition::initAfterPlacement() {
-    MR::makeMtxTR(_90, this);
-    MR::setTripodBossJointAttachBaseMatrix(_90, _8C);
-    MR::concatTripodBossAttachJointMatrix(&_90, _8C);
+    MR::makeMtxTR(mMtx, this);
+    MR::setTripodBossJointAttachBaseMatrix(mMtx, mID);
+    MR::concatTripodBossAttachJointMatrix(&mMtx, mID);
 }
 
 void TripodBossBaseJointPosition::control() {
-    MR::makeMtxTR(_90, this);
-    MR::concatTripodBossAttachJointMatrix(&_90, _8C);
+    MR::makeMtxTR(mMtx, this);
+    MR::concatTripodBossAttachJointMatrix(&mMtx, mID);
+
     if (MR::isEndBreakDownDemoTripodBoss()) {
         kill();
     }
-}
-
-TripodBossBaseJointPosition::~TripodBossBaseJointPosition() {
-}
-
-MtxPtr TripodBossBaseJointPosition::getBaseMtx() const {
-    return (MtxPtr)&_90;
 }

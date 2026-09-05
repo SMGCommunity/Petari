@@ -6,6 +6,16 @@ class AudSystem;
 
 class AudSystemVolumeController {
 public:
+    enum VolumeSet {
+        VolumeSet_0 = 0,
+        VolumeSet_1 = 1,
+        VolumeSet_2 = 2,
+        VolumeSet_3 = 3,
+        VolumeSet_ScreenSaver = 4,
+        VolumeSet_HomeButtonMenu = 5,
+        VolumeSet_PauseMenu = 6,
+    };
+
     AudSystemVolumeController(AudSystem*);
 
     void init();

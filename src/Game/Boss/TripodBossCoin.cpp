@@ -12,17 +12,20 @@ namespace NrvTripodBossCoin {
     NEW_NERVE(TripodBossCoinNrvEnd, TripodBossCoin, End);
 };  // namespace NrvTripodBossCoin
 
-TripodBossCoin::TripodBossCoin(const char* pName) : NameObj(pName), mCoin(nullptr), mSpine(nullptr), _44(-1) {
+TripodBossCoin::TripodBossCoin(const char* pName) : NameObj(pName), mCoin(), mSpine(), mJointID(-1) {
     _14.identity();
 }
 
 void TripodBossCoin::init(const JMapInfoIter& rIter) {
     MR::getJMapInfoMatrixFromRT(rIter, &_14);
     MR::connectToSceneMapObjDecorationMovement(this);
-    MR::getJMapInfoArg0NoInit(rIter, &_44);
+    MR::getJMapInfoArg0NoInit(rIter, &mJointID);
+
     mCoin = static_cast< Coin* >(MR::createCoin(this, "コイン(三脚ボス用)"));
     mCoin->initWithoutIter();
+
     mSpine = new Spine(this, &NrvTripodBossCoin::TripodBossCoinNrvNonActive::sInstance);
+
     MR::addTripodBossPartsMovement(this);
 }
 
@@ -37,18 +40,15 @@ void TripodBossCoin::exeNonActive() {
 }
 
 void TripodBossCoin::exeActive() {
-    TPos3f pos;
-    pos.setInline(_14);
-    MR::concatTripodBossAttachJointMatrix(&pos, _44);
-    TVec3f coinPos;
-    f32 z = pos.mMtx[2][3];
-    f32 y = pos.mMtx[1][3];
-    f32 x = pos.mMtx[0][3];
-    coinPos.set< f32 >(x, y, z);
-    TVec3f* newPos = &mCoin->mPosition;
-    newPos->x = coinPos.x;
-    newPos->y = coinPos.y;
-    newPos->z = coinPos.z;
+    TPos3f mtx;
+    mtx.set(_14);
+
+    MR::concatTripodBossAttachJointMatrix(&mtx, mJointID);
+
+    TVec3f coinTrans;
+    mtx.getTrans(coinTrans);
+
+    mCoin->mPosition.set(coinTrans);
 
     if (mSpine->mStep == 0) {
         mCoin->appearControlPose();

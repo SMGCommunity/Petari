@@ -16,6 +16,6 @@ public:
     void exeWait();
     void exeBreak();
 
-    CollisionParts* mPropellerCollision[3];  // 0x8C
-    AudSeKeeper* mAudSeKeeper;               // 0x98
+    /* 0x8C */ CollisionParts* mPropellerCollision[3];
+    /* 0x98 */ AudSeKeeper* mAudSeKeeper;
 };

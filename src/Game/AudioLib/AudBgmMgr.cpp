@@ -29,7 +29,7 @@ void AudBgmMgr::movement() {
     }
 }
 
-JAISoundHandle* AudBgmMgr::start(s32 bgmIndex, u32 soundID, bool b1) {
+JAISoundHandle* AudBgmMgr::start(s32 bgmIndex, u32 soundID, bool lock) {
     if (mBgm[bgmIndex] != nullptr) {
         mBgm[bgmIndex]->rejectFromSyncStream();
         mBgm[bgmIndex]->stop(false);
@@ -51,9 +51,9 @@ JAISoundHandle* AudBgmMgr::start(s32 bgmIndex, u32 soundID, bool b1) {
 
     JAISoundHandle* handle;
     if ((soundID & 0x10000) == 0) {
-        handle = mBgm[bgmIndex]->start(soundID, b1);
+        handle = mBgm[bgmIndex]->start(soundID, lock);
     } else {
-        handle = mBgm[bgmIndex]->start(soundID & 0xFEFEFFFF, b1);
+        handle = mBgm[bgmIndex]->start(soundID & 0xFEFEFFFF, lock);
     }
 
     if (handle != nullptr) {

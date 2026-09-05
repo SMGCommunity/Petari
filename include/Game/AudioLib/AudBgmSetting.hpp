@@ -10,8 +10,8 @@ namespace AudBgmSetting {
 
     struct MuteState {
         /* 0x0 */ u8 mMuteStates[8];  // 16 nibbles
-        /* 0x8 */ u8 _8;              // rate 1
-        /* 0x9 */ u8 _9;              // rate 2
+        /* 0x8 */ u8 mVolumeA;
+        /* 0x9 */ u8 mVolumeB;
     };
 
     struct MultiBgmSet {

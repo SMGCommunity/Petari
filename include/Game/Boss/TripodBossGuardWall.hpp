@@ -7,7 +7,9 @@ class CameraTargetMtx;
 
 class TripodBossGuardWall : public LiveActor {
 public:
-    TripodBossGuardWall(const char*);
+    /// @brief Creates a new `TripodBossGuardWall`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    TripodBossGuardWall(const char* pName);
 
     virtual void init(const JMapInfoIter&);
     virtual void makeActorAppeared();
@@ -31,9 +33,9 @@ public:
     void exeRotate();
 
     /* 0x08C */ CameraTargetMtx* mCameraTargetMtx;
-    /* 0x090 */ TripodBossGuardWallPart mWallParts[8];
+    /* 0x090 */ TripodBossGuardWallPart mParts[8];
     /* 0x550 */ TPos3f mBaseMtx;
-    /* 0x580 */ TVec3f _580;
-    /* 0x58C */ s32 _58C;
+    /* 0x580 */ TVec3f mStartTrans;
+    /* 0x58C */ s32 mJointID;
     /* 0x590 */ ActorCameraInfo* mCameraInfo;
 };

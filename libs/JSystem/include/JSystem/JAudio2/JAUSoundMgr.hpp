@@ -25,6 +25,18 @@ public:
 
     int getNumActiveSounds() const;
 
+    JAISeMgr& getSeMgr() {
+        return mSeMgr;
+    }
+
+    JAISeqMgr& getSeqMgr() {
+        return mSeqMgr;
+    }
+
+    JAIStreamMgr& getStreamMgr() {
+        return mStreamMgr;
+    }
+
     /* 0x004 */ JAISeMgr mSeMgr;
     /* 0x72C */ JAISeqMgr mSeqMgr;
     /* 0x7A4 */ JAIStreamMgr mStreamMgr;

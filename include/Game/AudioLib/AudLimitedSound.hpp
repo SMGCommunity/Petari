@@ -14,5 +14,5 @@ public:
     bool isFree();
 
     /* 0x00 */ JAISoundID mSoundID;
-    /* 0x04 */ s32 _4;
+    /* 0x04 */ s32 mDelay;
 };
