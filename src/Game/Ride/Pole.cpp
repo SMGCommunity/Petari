@@ -473,35 +473,31 @@ void Pole::exeBindHandstandTurn() {
         MR::startBckPlayer("TreeHandstandTurn", static_cast< const char* >(nullptr));
     }
 
-    mRotation.y += 2.5f * getPoleSubPadStickX();
+    mRotation.y += getPoleSubPadStickX() * 2.5f;
     mRotation.y = MR::repeat(mRotation.y, 0.0f, 360.0f);
 
-    if (!tryJump(true, (0.0f)) && !isEnableTurn()) {
+    if (!tryJump(true, 0.0f) && !isEnableTurn()) {
         setNerve(&NrvPole::PoleNrvBindHandstandWait::sInstance);
     }
 }
 
 void Pole::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
-    if (mRider && MR::isSensorRide(pSender)) {
+    if (mRider != nullptr && MR::isSensorRide(pSender)) {
         MR::tryGetItem(pSender, pReceiver);
         return;
     }
 
-    if (MR::isSensorPush(pSender)) {
-        switch (isNerve(&NrvPole::PoleNrvFreeInvalid::sInstance)) {
-        case false:
-            if (MR::isOnGroundPlayer()) {
-                MR::sendMsgPush(pReceiver, pSender);
-            }
-            break;
-        default:
-            break;
-        }
+    if (!MR::isSensorPush(pSender) || isNerve(&NrvPole::PoleNrvFreeInvalid::sInstance)) {
+        return;
+    }
+
+    if (MR::isOnGroundPlayer()) {
+        MR::sendMsgPush(pReceiver, pSender);
     }
 }
 
 bool Pole::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
-    if (mRider && MR::isSensor(pReceiver, "bind")) {
+    if (mRider != nullptr && MR::isSensor(pReceiver, "bind")) {
         MR::endActorCamera(this, mCameraInfo, true, -1);
         MR::endBindAndPlayerDamageMsg(this, msg);
 

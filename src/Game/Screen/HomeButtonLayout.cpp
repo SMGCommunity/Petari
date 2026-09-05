@@ -188,34 +188,30 @@ void HomeButtonLayout::exeActive() {
 }
 
 void HomeButtonLayout::draw() const {
-    if (MR::isDead(this)) {
+    if (MR::isDead(this) || MR::isHiddenLayout(this)) {
         return;
     }
 
-    switch (MR::isHiddenLayout(this)) {
-    case false:
-        GXClearVtxDesc();
-        GXSetVtxAttrFmt(GX_VTXFMT4, GX_VA_POS, GX_POS_XY, GX_F32, 0);
-        GXSetVtxAttrFmt(GX_VTXFMT4, GX_VA_CLR0, GX_CLR_RGB, GX_S8, 0);
-        GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
-        GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
-        GXSetNumChans(1);
-        GXSetNumTexGens(0);
-        GXSetNumTevStages(1);
-        GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
-        GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
+    GXClearVtxDesc();
+    GXSetVtxAttrFmt(GX_VTXFMT4, GX_VA_POS, GX_POS_XY, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT4, GX_VA_CLR0, GX_CLR_RGB, GX_S8, 0);
+    GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+    GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+    GXSetNumChans(1);
+    GXSetNumTexGens(0);
+    GXSetNumTevStages(1);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+    GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
 
-        Mtx44 projectionMtx;
-        f32 screenHalfHeight = MR::getScreenHeight() / 2.0f;
-        f32 screenHalfWidth = MR::getScreenWidth() / 2.0f;
-        C_MTXOrtho(projectionMtx, screenHalfHeight, -screenHalfHeight, -screenHalfWidth, screenHalfWidth, 0.0f, 500.0f);
-        GXSetProjection(projectionMtx, GX_ORTHOGRAPHIC);
+    Mtx44 projectionMtx;
+    f32 screenHalfHeight = MR::getScreenHeight() / 2.0f;
+    f32 screenHalfWidth = MR::getScreenWidth() / 2.0f;
+    C_MTXOrtho(projectionMtx, screenHalfHeight, -screenHalfHeight, -screenHalfWidth, screenHalfWidth, 0.0f, 500.0f);
+    GXSetProjection(projectionMtx, GX_ORTHOGRAPHIC);
 
-        GXSetCullMode(GX_CULL_NONE);
-        GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
-        RSO::HBMDraw();
-        break;
-    }
+    GXSetCullMode(GX_CULL_NONE);
+    GXSetZMode(GX_FALSE, GX_NEVER, GX_FALSE);
+    RSO::HBMDraw();
 }
 
 void HomeButtonLayout::forceToDeactive() {

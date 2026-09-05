@@ -57,16 +57,12 @@ void SpinDriverCamera::start(const TVec3f& a1, const TVec3f& a2, const TVec3f& a
 }
 
 void SpinDriverCamera::update(const TVec3f& a1, const TVec3f& a2) {
-    if (mCamera == nullptr) {
+    if (mCamera == nullptr || mCamera->isEnd()) {
         return;
     }
 
-    switch (mCamera->isEnd()) {
-    case false:
-        mCamera->update();
-        updateTargetMatrix(a1, a2);
-        break;
-    }
+    mCamera->update();
+    updateTargetMatrix(a1, a2);
 }
 
 void SpinDriverCamera::cancel() {
