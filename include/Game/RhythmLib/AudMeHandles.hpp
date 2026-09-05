@@ -1,6 +1,41 @@
 #pragma once
 
-class AudMeHandle;
+#include "Game/RhythmLib/AudMePlayer.hpp"
+#include <JSystem/JAudio2/JAISoundHandles.hpp>
+
+class AudMe;
+
+class AudMeHandle {
+public:
+    /// @brief Creates a new `AudMeHandle`.
+    AudMeHandle() : mMe(nullptr){};
+
+    /// @brief Destroys the `AudMeHandle`.
+    ~AudMeHandle() {
+        releaseMe();
+    }
+
+    void releaseMe() {
+        if (isMeAttached()) {
+            mMe->_10 = 0;
+            mMe = nullptr;
+        }
+    }
+
+    bool isMeAttached() const {
+        return mMe != nullptr;
+    }
+
+    AudMe* getMe() {
+        return mMe;
+    }
+
+    AudMe* operator->() const {
+        return mMe;
+    }
+
+    /* 0x00 */ AudMe* mMe;
+};
 
 class AudMeHandles {
 public:
@@ -9,7 +44,18 @@ public:
     AudMeHandle* getHandleMeID(u32);
     AudMeHandle* getFreeHandle();
 
-private:
+    AudMeHandle* getHandle(int index) {
+        return &mHandles[index];
+    }
+
+    AudMe* getSound(int n) {
+        return getHandle(n)->getMe();
+    }
+
+    int getNumHandles() const {
+        return mNumHandles;
+    }
+
     /* 0x00 */ AudMeHandle* mHandles;
-    /* 0x04 */ int mHandleNum;
+    /* 0x04 */ int mNumHandles;
 };
