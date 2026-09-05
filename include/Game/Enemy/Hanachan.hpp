@@ -2,14 +2,19 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 
-class Hanachan;
 class AnimScaleController;
+class Hanachan;
 
 class HanachanParts : public LiveActor {
 public:
+    enum PartsType {
+        PartsType_Head = 0,
+        PartsType_Body = 1,
+        PartsType_BodyS = 2,
+    };
+
     HanachanParts(Hanachan*, s32, const char*, const char*);
 
-    virtual ~HanachanParts();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void calcAndSetBaseMtx();
@@ -28,7 +33,6 @@ public:
     void exeOverturn();
     void exeOverturnBound();
     void exeOverturnWait();
-    void exeOverturnHipDropped();
     void exeRecover();
     void exeHipDropped();
     void exeBlow();
@@ -36,22 +40,27 @@ public:
     bool isHeadHitWall();
     void changeHeadAngry();
     void changeHeadCalmDown();
+    inline void endBecomeAngry();
+    inline void endAngryPursue();
+    inline void endRecover();
+    inline void endStarPointerBind();
+    bool isLandedInNerve(const Nerve*) const;
+    bool isHipDroppedLanded() const;
 
-    Hanachan* mParent;  // 0x8C
-    TVec3f _90;
-    TVec3f _9C;
-    u32 _A8;
-    Quaternion _AC;
-    s32 _BC;
-    s32 _C0;
-    u8 _C4;
+    /* 0x8C */ Hanachan* mParent;
+    /* 0x90 */ TVec3f mPushVelocity;
+    /* 0x9C */ TVec3f mFallVelocity;
+    /* 0xA8 */ PartsType mPartsType;
+    /* 0xAC */ TQuat4f mRotation;
+    /* 0xBC */ s32 mSegmentIndex;
+    /* 0xC0 */ s32 mActionStartStep;
+    /* 0xC4 */ bool mIsLanded;
 };
 
 class Hanachan : public LiveActor {
 public:
     Hanachan(const char*);
 
-    virtual ~Hanachan();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void kill();
@@ -72,8 +81,6 @@ public:
     void exeHipDropped();
     void exeBlow();
     void exeStarPointerBind();
-    void exeStarPointerBindEnd();
-    void exeStarPointerBindOverturn();
     s32 calcNearestInfectionId();
     bool isOwnSensor(HitSensor*);
     void setNerveBlow(const TVec3f&);
@@ -84,10 +91,12 @@ public:
     void moveHeadAlongRail(f32);
     void moveHeadToPlayer(f32, f32);
     void moveBodyAlongHead();
+    inline void endStarPointerBind();
+    TVec3f calcSensorDirection(const HitSensor*, const HitSensor*) const;
 
-    HanachanParts* mBodyParts[5];  // 0x8C
-    TVec3f _A0;
-    TVec3f _AC;
-    u8 _B8;
-    AnimScaleController* mScaleCtrl;  // 0xBC
+    /* 0x8C */ HanachanParts* mBodyParts[5];
+    /* 0xA0 */ TVec3f mAttackPos;
+    /* 0xAC */ TVec3f mFrontDir;
+    /* 0xB8 */ bool mIsChasePlayer;
+    /* 0xBC */ AnimScaleController* mScaleController;
 };
