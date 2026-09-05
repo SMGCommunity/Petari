@@ -226,7 +226,7 @@ void Sandstorm::exeStormEnd() {
             MR::onSwitchA(this);
         }
 
-        if (isSunakazeKun()) {
+        if (isSunakazeKun) {
             MR::startSound(this, "SE_OJ_SANDSTORM_S_BIND_END");
         } else {
             MR::startSound(this, "SE_OJ_SANDSTORM_BIND_END");
