@@ -36,7 +36,7 @@ public:
     /* 0x14 */ AudMeTrack* mTrack;
     /* 0x18 */ u32 _18;
     /* 0x1C */ u32 _1C;
-    /* 0x20 */ s32 _20;
+    /* 0x20 */ s32 mMeId;
     /* 0x24 */ s32 _24;
     /* 0x28 */ u32 _28;
     /* 0x2C */ u8 pad[0x74 - 0x2C];

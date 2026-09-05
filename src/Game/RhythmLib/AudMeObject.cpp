@@ -53,11 +53,11 @@ AudMeHandle* AudMeObject::getLowestPrioHandle(u32 id) {
         if (me == nullptr) {
             return getHandle(i);
         }
-        if (me->_20 == 0xFFFFFFFF) {
+        if (me->mMeId == 0xFFFFFFFF) {
             return getHandle(i);
         }
 
-        u8 prio = AudMeMgr::getInstance()->getPriority(me->_20);
+        u8 prio = AudMeMgr::getInstance()->getPriority(me->mMeId);
         if (prio < lowestPrio) {
             lowestPrio = prio;
             lowestPrioHandle = getHandle(i);
