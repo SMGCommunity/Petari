@@ -19,7 +19,7 @@ public:
     bool ret();
 
     void jump(u32 addr) {
-        mSeqCursor = getAddr(addr);
+        mSeqCursor = mSeqBuff + addr;
     }
 
     void jump(void* pPtr) {
@@ -47,19 +47,21 @@ public:
     u8* getCur() {
         return mSeqCursor;
     }
-    inline u32 readByte() {
+    u32 read8() {
         return *mSeqCursor++;
     }
-    inline u32 read16() {
-        u32 a = readByte();
-        u32 b = readByte();
-        return (a << 8 | b);
+    u32 read16() {
+        u32 a = read8();
+        a <<= 8;
+        a |= read8();
+        // u32 b = read8();
+        // return (read8() << 8 | read8());
+        return a;
     }
-    inline u32 read24() {
-        u32 ret;
-        ret |= readByte() << 16;
-        ret |= readByte() << 8;
-        ret |= readByte() << 0;
+    u32 read24() {
+        u32 ret = read8() << 8 | read8();
+        ret <<= 8;
+        ret |= read8();
         return ret;
     }
     u16 getLoopCount() const {

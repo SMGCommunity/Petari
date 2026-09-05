@@ -17,34 +17,15 @@ public:
         /* 0x00 */ u8 mPitch;
         /* 0x02 */ u16 mBankNumber;
         /* 0x04 */ u16 mProgNumber;
-        /* 0x06 */ u8 _6;
+        /* 0x06 */ u8 mBendSense;
         /* 0x08 */ u16 mRelease;
         /* 0x0A */ u8 _A;
         /* 0x0B */ u8 _B;
-        /* 0x0C */ u32 _C;
-        /* 0x10 */ u8 _10;
-        /* 0x11 */ u8 _11;
-        /* 0x12 */ u8 _12;
+        /* 0x0C */ u32 mNoteReg;
+        /* 0x10 */ u8 mNoteRangeLower;
+        /* 0x11 */ u8 mNoteRangeUpper;
+        /* 0x12 */ u8 mNoteRangeStart;
     };
-
-    u16 getBankNumber() const {
-        return mTrackInfo.mBankNumber;
-    }
-    void setBankNumber(u16 bankNo) {
-        mTrackInfo.mBankNumber = bankNo;
-    }
-    u16 getProgNumber() const {
-        return mTrackInfo.mProgNumber;
-    }
-    void setProgNumber(u16 progNo) {
-        mTrackInfo.mProgNumber = progNo;
-    }
-    u16 getRelease() const {
-        return mTrackInfo.mRelease;
-    }
-    void setRelease(u16 release) {
-        mTrackInfo.mRelease = release;
-    }
 
     struct TList : JGadget::TLinkList< AudMeTrack, -0x384 > {
         TList() : mCallbackRegistered(false) {
@@ -108,9 +89,98 @@ public:
         return &mSeqCtrl;
     }
 
-    /* 0x000 */ u32 _0;
-    /* 0x004 */ u32 _4;
-    /* 0x008 */ AudMeSeqCtrl mSeqCtrl;
+    bool getFlagZ() const {
+        return mJumpFlag == 0;
+    }
+
+    bool getFlagNZ() const {
+        return mJumpFlag != 0;
+    }
+
+    void setJumpFlag(bool flag) {
+        mJumpFlag = flag;
+    }
+    void clearJumpFlag() {
+        mJumpFlag = false;
+    }
+
+    u8 getPitch() const {
+        return mTrackInfo.mPitch;
+    }
+    void setPitch(u8 pitch) {
+        mTrackInfo.mPitch = pitch;
+    }
+    u16 getBankNumber() const {
+        return mTrackInfo.mBankNumber;
+    }
+    void setBankNumber(u16 bankNo) {
+        mTrackInfo.mBankNumber = bankNo;
+    }
+    u16 getProgNumber() const {
+        return mTrackInfo.mProgNumber;
+    }
+    void setProgNumber(u16 progNo) {
+        mTrackInfo.mProgNumber = progNo;
+    }
+    u16 getRelease() const {
+        return mTrackInfo.mRelease;
+    }
+    void setRelease(u16 release) {
+        mTrackInfo.mRelease = release;
+    }
+    u8 getNoteRangeLower() const {
+        return mTrackInfo.mNoteRangeLower;
+    }
+    void setNoteRangeLower(u8 lower) {
+        mTrackInfo.mNoteRangeLower = lower;
+    }
+    u8 getNoteRangeUpper() const {
+        return mTrackInfo.mNoteRangeUpper;
+    }
+    void setNoteRangeUpper(u8 upper) {
+        mTrackInfo.mNoteRangeUpper = upper;
+    }
+    u8 getNoteRangeStart() const {
+        return mTrackInfo.mNoteRangeStart;
+    }
+    void setNoteRangeStart(u8 start) {
+        mTrackInfo.mNoteRangeStart = start;
+    }
+    void setNoteNoStartRange(bool noStart) {
+        mNoStartRange = noStart;
+    }
+    void setPan(u8 pan) {
+        mPan = pan / 127.0f;
+    }
+    void setDolby(u8 dolby) {
+        mDolby = dolby / 127.0f;
+    }
+    void setVolume(u16 volume) {
+        mVolume = volume / 32767.0f;
+    }
+    void setPitchBend(s16 bend) {
+        mPitchBend = bend / 32767.0f;
+    }
+    void setFxMix(u16 fxMix) {
+        mFxMix = fxMix / 32767.0f;
+    }
+    void setBendSense(u8 sense) {
+        mTrackInfo.mBendSense = sense;
+    }
+    void setNoteReg(u32 reg) {
+        mTrackInfo.mNoteReg = reg;
+    }
+
+    u8 getBaseNotePrev() const {
+        return mBaseNotePrev;
+    }
+    void setBaseNote(u8 note) {
+        mBaseNote = note;
+    }
+
+    static u8 sReg[0x40];
+
+    /* 0x000 */ AudMeSeqCtrl mSeqCtrl;
     /* 0x088 */ AudMeChannelMgr mChannelMgr;
     /* 0x0E8 */ u32 _E8;
     /* 0x0EC */ bool _EC;
@@ -119,15 +189,19 @@ public:
     /* 0x0F0 */ u32 _F4;
     /* 0x0F8 */ JASOscillator::Data mOscParam[OSC_NUM];
     /* 0x128 */ JASOscillator::Point mOscPoint[4];
-    /* 0x140 */ u8 pad_140[0x154 - 0x140];
-    /* 0x154 */ bool _154;
-    /* 0x155 */ bool _155;
+    /* 0x140 */ f32 mVolume;
+    /* 0x144 */ f32 mPitchBend;
+    /* 0x148 */ f32 mFxMix;
+    /* 0x14C */ f32 mPan;
+    /* 0x150 */ f32 mDolby;
+    /* 0x154 */ u8 mBaseNote;
+    /* 0x155 */ u8 mBaseNotePrev;
     /* 0x156 */ bool _156;
     /* 0x157 */ bool _157;
-    /* 0x158 */ bool _158;
+    /* 0x158 */ bool mNoStartRange;
     /* 0x15C */ u32 _15C;
     /* 0x160 */ u16 _160;
-    /* 0x162 */ u8 _162;
-    /* 0x164 */ u8 pad_164[0x16C - 0x164];
+    /* 0x162 */ bool mJumpFlag;
+    /* 0x163 */ u8 _163[8];  // AudMeSeqParser::cmdCmpCI
     /* 0x16C */ TrackInfo mTrackInfo;
 };

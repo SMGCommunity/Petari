@@ -14,10 +14,7 @@ public:
     void inherit(AudMeSeqCtrl*);
     void rhythmProc(AudMeTrack*, s32);
 
-    const AudMeSeqReader* getSeqReader() const {
-        return &mReader;
-    }
-    AudMeSeqReader* getSeqReader_no_const() {
+    AudMeSeqReader* getSeqReader() {
         return &mReader;
     }
     void* getBase() {
@@ -41,8 +38,8 @@ public:
     void* getCur() {
         return mReader.getCur();
     }
-    u32 readByte() {
-        return mReader.readByte();
+    u32 read8() {
+        return mReader.read8();
     }
     u32 read16() {
         return mReader.read16();
@@ -66,6 +63,22 @@ public:
         return mReader.loopEnd();
     }
 
-    /* 0x00 */ AudMeSeqReader mReader;
-    /* 0x3C */ u8 pad[0x80 - 0x3C];
+    void setProgress(s32 progress) {
+        mProgress = progress;
+    }
+
+    void lock() {
+        mIsLocked = true;
+    }
+    void unlock() {
+        mIsLocked = false;
+    }
+
+    /* 0x00 */ s32 mWaitTime;
+    /* 0x04 */ u32 mTime;
+    /* 0x08 */ AudMeSeqReader mReader;
+    /* 0x44 */ u32 _44;
+    /* 0x48 */ bool mIsLocked;
+    /* 0x4C */ s32 mProgress;
+    /* 0x50 */ u8 pad_50[0x88 - 0x50];
 };
