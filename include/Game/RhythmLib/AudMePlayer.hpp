@@ -32,6 +32,22 @@ class AudMe : public JSULink< AudMe >, public JASPoolAllocObject< AudMe > {
 public:
     AudMe();
 
+    ~AudMe();
+
+    void requestStart(void*, u32);
+    void start(void*, u32);
+    void stop(s32);
+    void release();
+    void attachHandle(AudMeHandle*);
+    void releaseHandle();
+    void update();
+    void setTimedParam(s32, f32, u32);
+    void initTimed();
+    void updateTimedParams(bool);
+    void setOuterPlayingParams(f32, f32, f32, s32, s32);
+    void doneStop();
+    void setPauseFlag(bool);
+
     /* 0x10 */ u32 _10;
     /* 0x14 */ AudMeTrack* mTrack;
     /* 0x18 */ u32 _18;
@@ -41,9 +57,14 @@ public:
     /* 0x28 */ u32 _28;
     /* 0x2C */ u8 pad[0x74 - 0x2C];
     /* 0x74 */ u32 _74;
-    /* 0x78 */ u32 _78;
+    /* 0x78 */ void* _78;
     /* 0x7C */ u32 _7C;
     /* 0x80 */ f32 _80;
+    /* 0x84 */ u32 _84;
+    /* 0x88 */ u32 _88;
+    /* 0x8C */ u32 _8C;
+    /* 0x90 */ f32 _90;
+    /* 0x94 */ u32 _94;
 };
 
 class AudMeMgr : public JASGlobalInstance< AudMeMgr > {
