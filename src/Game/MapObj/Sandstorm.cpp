@@ -240,6 +240,7 @@ void Sandstorm::exeStormEnd() {
             MR::onSwitchA(this);
         }
 
+        // BUG: Invokes `__ptmf_test` instead of calling the function.
         if (isSunakazeKun) {
             MR::startSound(this, "SE_OJ_SANDSTORM_S_BIND_END");
         } else {
