@@ -1,6 +1,5 @@
 #include "Game/MapObj/SurprisedGalaxy.hpp"
 #include "Game/LiveActor/Nerve.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/ActorSensorUtil.hpp"
 #include "Game/Util/ActorSwitchUtil.hpp"
 #include "Game/Util/DemoUtil.hpp"
@@ -22,30 +21,34 @@ SurprisedGalaxy::SurprisedGalaxy(const char* pName) : LiveActor(pName) {
 }
 
 void SurprisedGalaxy::init(const JMapInfoIter& rIter) {
-    const char* name;
-    MR::getObjectName(&name, rIter);
-    if (!strcmp(name, "SurprisedGalaxy")) {
+    const char* objName;
+    MR::getObjectName(&objName, rIter);
+
+    if (strcmp(objName, "SurprisedGalaxy") == 0) {
         mGalaxyName = "SurfingLv1Galaxy";
     } else {
-        mGalaxyName = &name[strlen("Surp")];
+        mGalaxyName = &objName[strlen("Surp")];
     }
+
     MR::initDefaultPos(this, rIter);
     initModelManagerWithAnm("MiniSurprisedGalaxy", nullptr, false);
     MR::connectToSceneMapObj(this);
-    f32 rad = 0.0f;
-    MR::calcModelBoundingRadius(&rad, this);
+    f32 boundingRadius = 0.0f;
+    MR::calcModelBoundingRadius(&boundingRadius, this);
     initHitSensor(1);
-    MR::addHitSensorMapObj(this, "Body", 8, rad, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorMapObj(this, "Body", 8, boundingRadius, TVec3f(0.0f, 0.0f, 0.0f));
     MR::setClippingFar200m(this);
     initNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvWait::sInstance);
     MR::useStageSwitchSleep(this, rIter);
     MR::startAction(this, "MiniSurprisedGalaxy");
     MR::registerDemoSimpleCastAll(this);
+
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         makeActorDead();
         MR::syncStageSwitchAppear(this);
     } else {
         makeActorAppeared();
+
         if (MR::isGalaxyAppearGreenDriver(mGalaxyName)) {
             if (!MR::isOnGameEventFlagGreenDriver()) {
                 makeActorDead();
@@ -81,12 +84,14 @@ void SurprisedGalaxy::exeExit() {
         MR::tryStartDemo(this, "ギャラクシー移動");
     }
 
-    if (!MR::isSystemWipeActive()) {
-        MR::onGameEventFlagGalaxyOpen(mGalaxyName);
-        MR::endDemo(this, "ギャラクシー移動");
-        MR::permitTrigSE();
-        MR::requestStartScenarioSelect(mGalaxyName);
+    if (MR::isSystemWipeActive()) {
+        return;
     }
+
+    MR::onGameEventFlagGalaxyOpen(mGalaxyName);
+    MR::endDemo(this, "ギャラクシー移動");
+    MR::permitTrigSE();
+    MR::requestStartScenarioSelect(mGalaxyName);
 }
 
 void SurprisedGalaxy::exeWait() {
@@ -94,13 +99,12 @@ void SurprisedGalaxy::exeWait() {
 
 bool SurprisedGalaxy::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     switch (msg) {
-    case 152:
+    case ACTMES_IS_RUSH_TAKEOVER:
         if (isNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvWait::sInstance)) {
             setNerve(&NrvSurprisedGalaxy::SurprisedGalaxyNrvExit::sInstance);
         }
         return false;
     default:
-        break;
+        return false;
     }
-    return false;
 }
