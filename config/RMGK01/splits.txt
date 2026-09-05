@@ -2453,11 +2453,11 @@ Game/Effect/ParticleEmitter.cpp:
 	.text       start:0x800C9FB4 end:0x800CA05C
 
 Game/Effect/ParticleEmitterHolder.cpp:
-	.text       start:0x800CA05C end:0x800CA47C
+	.text       start:0x800CA05C end:0x800CA448
 	.data       start:0x805787C8 end:0x805787D8
 
 Game/Effect/ParticleResourceHolder.cpp:
-	.text       start:0x800CA47C end:0x800CA934
+	.text       start:0x800CA448 end:0x800CA934
 	.data       start:0x805787D8 end:0x80578820
 	.sdata      start:0x806B18A0 end:0x806B18A8
 
