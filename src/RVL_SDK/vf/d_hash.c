@@ -145,7 +145,7 @@ int dHash_GetArg(const char* i_Name) {
     return -1;
 }
 
-int dHash_SetArg(const char* i_Name, u8 i_Arg) {
+static inline int dHash_GetNewHashW(const u16* i_Name) {
     int len;
     u32 n;
     u32 hash;
@@ -154,50 +154,63 @@ int dHash_SetArg(const char* i_Name, u8 i_Arg) {
     int newHash;
     int k;
     int hashval;
+
+    for (len = 0; i_Name[len] != 0; len++) {
+    }
+
+    if (len < 8) {
+        hash = 0;
+        n = 0;
+        for (i = 0; i < len; i++) {
+            if (n > 7) {
+                n = 0;
+            }
+            hash += i_Name[i] << (n * 4);
+            n++;
+        }
+        firstHash = hash % 31;
+    } else {
+        firstHash = -1;
+    }
+
+    if (firstHash != -1) {
+        if (hashTable[firstHash].Name[0] != 0) {
+            newHash = -1;
+            for (k = 1; k <= 7; k++) {
+                hashval = (firstHash + k * k) % 31;
+                if (hashTable[hashval].Name[0] == 0) {
+                    newHash = hashval;
+                    break;
+                }
+            }
+        } else {
+            newHash = firstHash;
+        }
+    } else {
+        newHash = -1;
+    }
+
+    return newHash;
+}
+
+static inline int dHash_SetArgW(const u16* i_Name, u8 i_Arg) {
+    int newHash;
     VF_HashTableEntry* entry;
 
+    newHash = dHash_GetNewHashW(i_Name);
+    if (newHash == -1) {
+        return 0;
+    }
+
+    entry = &hashTable[newHash];
+    VFipf_memcpy(entry->Name, i_Name, 16);
+    entry->arg = i_Arg;
+    return 1;
+}
+
+int dHash_SetArg(const char* i_Name, u8 i_Arg) {
     if (_MakeWStr(i_Name)) {
-        for (len = 0; l_tmpWName[len] != 0; len++) {
-        }
-
-        if (len < 8) {
-            hash = 0;
-            n = 0;
-            for (i = 0; i < len; i++) {
-                if (n > 7) {
-                    n = 0;
-                }
-                hash += l_tmpWName[i] << (n * 4);
-                n++;
-            }
-            firstHash = hash % 31;
-        } else {
-            firstHash = -1;
-        }
-
-        if (firstHash != -1) {
-            if (hashTable[firstHash].Name[0] != 0) {
-                newHash = -1;
-                for (k = 1; k <= 7; k++) {
-                    hashval = (firstHash + k * k) % 31;
-                    if (hashTable[hashval].Name[0] == 0) {
-                        newHash = hashval;
-                        break;
-                    }
-                }
-            } else {
-                newHash = firstHash;
-            }
-        } else {
-            newHash = -1;
-        }
-
-        if (newHash != -1) {
-            entry = &hashTable[newHash];
-            VFipf_memcpy(entry->Name, l_tmpWName, 16);
-            entry->arg = i_Arg;
-            return 1;
-        }
+        return dHash_SetArgW(_GetWStr(), i_Arg);
     }
 
     return 0;
