@@ -17,7 +17,7 @@ public:
 
     void releaseMe() {
         if (isMeAttached()) {
-            mMe->_10 = 0;
+            mMe->mHandle = nullptr;
             mMe = nullptr;
         }
     }

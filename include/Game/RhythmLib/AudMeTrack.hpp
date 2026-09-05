@@ -43,7 +43,8 @@ public:
         /* 0xC */ bool mCallbackRegistered;
     };
 
-    AudMeTrack() : mChannelMgr(this){};
+    AudMeTrack();
+    ~AudMeTrack();
 
     void init();
     void initPlayParam();
@@ -185,8 +186,8 @@ public:
     /* 0x0E8 */ u32 _E8;
     /* 0x0EC */ bool _EC;
     /* 0x0EF */ bool _ED;
-    /* 0x0F0 */ u32 _F0;
-    /* 0x0F0 */ u32 _F4;
+    /* 0x0F0 */ s32 _F0;
+    /* 0x0F4 */ u32 _F4;
     /* 0x0F8 */ JASOscillator::Data mOscParam[OSC_NUM];
     /* 0x128 */ JASOscillator::Point mOscPoint[4];
     /* 0x140 */ f32 mVolume;
@@ -199,9 +200,11 @@ public:
     /* 0x156 */ bool _156;
     /* 0x157 */ bool _157;
     /* 0x158 */ bool mNoStartRange;
-    /* 0x15C */ u32 _15C;
+    /* 0x15C */ u32 mMeId;
     /* 0x160 */ u16 _160;
     /* 0x162 */ bool mJumpFlag;
     /* 0x163 */ u8 _163[8];  // AudMeSeqParser::cmdCmpCI
     /* 0x16C */ TrackInfo mTrackInfo;
+    /* 0x180 */ u32 _180;
+    /* 0x184 */ u32 _184;
 };

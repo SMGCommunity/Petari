@@ -26,7 +26,7 @@ AudMeHandle* AudMeObject::startMe(u32 id) {
     }
 
     AudMeHandle* handle = getHandleMeID(id);
-    if (handle != nullptr && handle->isMeAttached() && handle->getMe()->_28 == 0) {
+    if (handle != nullptr && handle->isMeAttached() && handle->getMe()->mTimer == 0) {
         return nullptr;
     }
 
