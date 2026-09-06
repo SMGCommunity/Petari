@@ -4,7 +4,7 @@
 
 namespace {
     static const s32 sMaxKabokuriFire = 16;
-};
+};  // namespace
 
 // "Kabokuri flame holder"
 KabokuriFireHolder::KabokuriFireHolder() : DeriveActorGroup< KabokuriFire >("カボクリ炎管理", ::sMaxKabokuriFire) {
@@ -21,7 +21,7 @@ void KabokuriFireHolderFunc::createHolder() {
 }
 
 KabokuriFire* KabokuriFireHolderFunc::getDeadMember() {
-    KabokuriFireHolder* holder = static_cast< KabokuriFireHolder* >(MR::getSceneObjHolder()->getObj(SceneObj_KabokuriFireHolder));
+    KabokuriFireHolder* holder = MR::getSceneObj< KabokuriFireHolder >(SceneObj_KabokuriFireHolder);
 
     return holder->getDeadMember();
 }
