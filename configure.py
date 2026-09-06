@@ -2088,7 +2088,7 @@ config.libs = [
             Object(Matching, "Game/RhythmLib/AudMeSeqCtrl.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeSeqReader.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeSeqParser.cpp"),
-            Object(NonMatching, "Game/RhythmLib/AudMeTrackCallback.cpp"),
+            Object(Matching, "Game/RhythmLib/AudMeTrackCallback.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMePlayer.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudRhythmMeSystem.cpp"),
             Object(Matching, "Game/RhythmLib/AudMeHandles.cpp"),
