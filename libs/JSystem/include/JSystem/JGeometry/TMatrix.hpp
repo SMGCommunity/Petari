@@ -246,6 +246,10 @@ namespace JGeometry {
             rDest.set< f32 >(x, y, z);
         }
 
+        inline void getZDir2(TVec3f& rDest) const {
+            rDest.set< f32 >(this->mMtx[0][2], this->mMtx[1][2], this->mMtx[2][2]);
+        }
+        
         inline void setXYZDir2(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) {
             this->mMtx[0][0] = rSrcX.x;
             this->mMtx[0][1] = rSrcX.y;
