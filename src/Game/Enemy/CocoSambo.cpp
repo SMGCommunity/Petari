@@ -19,7 +19,33 @@ namespace {
     const Vec cHeadSensorOffset = {60.0f, 0.0f, 0.0f};
     const Vec cBlowVelocity = {0.0f, 20.0f, -100.0f};
     const Vec cSensorOffset = {40.0f, 0.0f, 0.0f};
+    const f32 cHeadSensorRadius = 100.0f;
+    const f32 cTrampleSensorRadius = 150.0f;
+    const s32 cFallFrame = 45;
+    // const f32 cFallGravity = 
+    const s32 cSwoonFrame = 180;
+    const s32 cSwoonEndDamagedFrame = 95;
+    // const s32 cRecoverWaitFrame = 
+    const s32 cPressFrame = 35;
+    // const s32 cAttackEffectEmitStep = 
+    // const s32 cHitStopSceneFrame = 
+    // const s32 cBlowStopSceneStep = 
+    // const s32 cBlowStopSceneFrame = 
+    // const f32 cBlowGravity = 
+    const s32 cBlowFrame = 20;
+    // const f32 cSensorRadius = 
+    // const f32 cAttackDistance = 
+    // const s32 cAttackInterval = 
+    // const f32 cRotateSpeed = 
+    // const s32 cAttackRotateFrame = 
+    const s32 cAppearUpFrame = 60;
+    const s32 cAppearLandFrame = 105;
+    // const s32 cHideDownFrame = 
+    // const s32 cSwoonEndHideShadowFrame =
     const s32 cPointingActorNum = 4;
+    // const f32 cPointingRadius = 
+    // const f32 cPointingOffset = 
+    // const f32 cAppearDistance = 
 };  // namespace
 
 CocoSamboHead::CocoSamboHead(LiveActor* pHost) : PartsModel(pHost, "ココサンボ[頭]", "CocoSamboHead", 0, 18, 0) {
@@ -30,8 +56,8 @@ void CocoSamboHead::init(const JMapInfoIter& rIter) {
     TVec3f sensorOffs(::cHeadSensorOffset);
     sensorOffs.scale(mScale.x);
     initHitSensor(2);
-    MR::addHitSensorAtJoint(this, "body", "Head", 37, 8, (100.0f * mScale.x), sensorOffs);
-    MR::addHitSensorAtJoint(this, "trample", "Head", 37, 8, (150.0f * mScale.x), sensorOffs);
+    MR::addHitSensorAtJoint(this, "body", "Head", ATYPE_SAMBO_HEAD, 8, (::cHeadSensorRadius * mScale.x), sensorOffs);
+    MR::addHitSensorAtJoint(this, "trample", "Head", ATYPE_SAMBO_HEAD, 8, (::cTrampleSensorRadius * mScale.x), sensorOffs);
     initFixedPosition(TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, -90.0f, -90.0f), "Head");
     initNerve(&NrvCocoSamboHead::CocoSamboHeadNrvHeadConnectedBody::sInstance);
     PartsModel::init(rIter);
@@ -104,7 +130,7 @@ void CocoSamboHead::exeFall() {
         mVelocity = v15 * (1.0f / 45.0f) + ((up * up.dot(v15)) * 2.0f - ((v16 * 45.0f)) * (1.0f / 90.0f));
     }
 
-    if (MR::isStep(this, 45)) {
+    if (MR::isStep(this, ::cFallFrame)) {
         mPosition.set< f32 >(mHost->mPosition);
         mVelocity.zero();
         setNerve(&NrvCocoSamboHead::CocoSamboHeadNrvHeadFallLand::sInstance);
@@ -129,7 +155,7 @@ void CocoSamboHead::exeSwoon() {
         MR::startBck(this, "Swoon", nullptr);
     }
 
-    if (MR::isStep(this, 0xB4)) {
+    if (MR::isStep(this, ::cSwoonFrame)) {
         setNerve(&NrvCocoSamboHead::CocoSamboHeadNrvHeadSwoonEnd::sInstance);
     }
 }
@@ -140,7 +166,7 @@ void CocoSamboHead::exeSwoonEnd() {
         MR::startBck(this, "SwoonEnd", nullptr);
     }
 
-    if (MR::isStep(this, 0x5F)) {
+    if (MR::isStep(this, ::cSwoonEndDamagedFrame)) {
         MR::invalidateShadow(mHost, nullptr);
         MR::tryRumblePadMiddle(this, 0);
         MR::shakeCameraNormal();
@@ -409,7 +435,7 @@ void CocoSambo::exeAppear() {
         MR::showMaterial(mHead, "SanboNeedleMat_v");
     }
 
-    if (MR::isStep(this, 60)) {
+    if (MR::isStep(this, ::cAppearUpFrame)) {
         MR::emitEffect(this, "CocoSamboSmoke");
         MR::startSound(this, "SE_EM_SFSAMBO_APPEAR");
         MR::validateShadow(this, nullptr);
@@ -417,13 +443,13 @@ void CocoSambo::exeAppear() {
         MR::shakeCameraNormal();
     }
 
-    if (MR::isStep(this, 105)) {
+    if (MR::isStep(this, ::cAppearLandFrame)) {
         MR::tryRumblePadWeak(this, 0);
         MR::shakeCameraWeak();
     }
 
     dirToPlayer(1.0f);
-    if (!MR::isGreaterStep(this, 105) || !tryDpdPointing(&NrvCocoSambo::CocoSamboNrvWait::sInstance)) {
+    if (!MR::isGreaterStep(this, ::cAppearLandFrame) || !tryDpdPointing(&NrvCocoSambo::CocoSamboNrvWait::sInstance)) {
         MR::setNerveAtBckStopped(this, &NrvCocoSambo::CocoSamboNrvWait::sInstance);
     }
 }
@@ -548,7 +574,7 @@ void CocoSambo::exePressY() {
         MR::startSound(this, "SE_EM_STOMPED_S");
         MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     }
-    if (MR::isStep(this, 35)) {
+    if (MR::isStep(this, ::cPressFrame)) {
         kill();
     }
 }
@@ -566,7 +592,7 @@ void CocoSambo::exeBlow() {
     if (MR::isStep(this, 2)) {
         MR::shakeCameraNormal();
     }
-    if (MR::isStep(this, 20)) {
+    if (MR::isStep(this, ::cBlowFrame)) {
         kill();
     }
 }
