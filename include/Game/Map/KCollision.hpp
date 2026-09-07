@@ -69,17 +69,17 @@ public:
 
     void init(void*, const void*);
     void setData(void*);
-    void calcFarthestVertexDistance();
-    static bool isBinaryInitialized(const void*);
-    void checkPoint(Fxyz*, f32, f32*);
-    void checkArea3D(Fxyz*, Fxyz*, KC_PrismData**, u32);
-    void checkSphere(Fxyz*, f32, f32, u32, KC_PrismData**, f32*, u8*);
-    void checkSphereWithThickness(Fxyz*, f32, f32, u32, KC_PrismData**, f32*, u8*, f32);
-    void checkArrow(const TVec3f, const TVec3f, f32*, u8*, u32*, KC_PrismData**, u32) const;
-    void KCHitSphere(KC_PrismData*, Fxyz*, f32, f32, f32*, u8*);
-    void KCHitSphereWithThickness(KC_PrismData*, Fxyz*, f32, f32, f32*, u8*, f32);
+    bool calcFarthestVertexDistance();
+    static bool isBinaryInitialized(const void*) NO_INLINE;
+    KC_PrismData* checkPoint(Fxyz*, f32, f32*);
+    u32 checkArea3D(Fxyz*, Fxyz*, KC_PrismData**, u32);
+    u32 checkSphere(Fxyz*, f32, f32, u32, KC_PrismData**, f32*, u8*);
+    u32 checkSphereWithThickness(Fxyz*, f32, f32, u32, KC_PrismData**, f32*, u8*, f32);
+    KC_PrismData* checkArrow(const TVec3f&, const TVec3f&, f32*, u8*, u32*, KC_PrismData**, u32) const;
+    bool KCHitSphere(KC_PrismData*, Fxyz*, f32, f32, f32*, u8*);
+    bool KCHitSphereWithThickness(KC_PrismData*, Fxyz*, f32, f32, f32*, u8*, f32);
     bool isNearParallelNormal(const KC_PrismData*) const;
-    void KCHitArrow(KC_PrismData*, const TVec3f, const TVec3f, f32*, u8*) const;
+    bool KCHitArrow(KC_PrismData*, const TVec3f&, const TVec3f&, f32*, u8*) const;
     s32 toIndex(const KC_PrismData*) const;
     TVec3f* getFaceNormal(const KC_PrismData*) const;
     TVec3f* getEdgeNormal1(const KC_PrismData*) const;

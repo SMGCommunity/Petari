@@ -94,7 +94,7 @@ void DemoExecutor::start(NameObj* pParam1, const char* pParam2, s32 param3) {
 
     mActor.clear();
 
-    for (s32 i = 0; i < mGroup->getObjectCount(); i++) {
+    for (s32 i = 0; i < mGroup->getObjNum(); i++) {
         LiveActor* actor = mGroup->getActor(i);
 
         MR::sendMsgStartDemo(actor);

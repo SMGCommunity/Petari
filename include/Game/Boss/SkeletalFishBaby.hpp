@@ -10,9 +10,10 @@ class SkeletalFishRailControl;
 
 class SkeletalFishBaby : public LiveActor {
 public:
+    /// @brief Creates a new `SkeletalFishBaby`.
+    /// @param pName A pointer to the null-terminated name of the object.
     SkeletalFishBaby(const char*);
 
-    virtual ~SkeletalFishBaby();
     virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
     virtual void appear();
@@ -38,13 +39,13 @@ public:
     bool isAttackable() const;
     bool isStarPointerPointing() const;
 
-    JointController* mControllers[4];  // 0x8C
-    s32* mJointIndicies;               // 0x9C
-    f32 _A0;
-    f32 _A4;
-    SkeletalFishRailControl* mRailControl;  // 0xA8
-    TPos3f _AC;
-    f32 _DC;
-    AnimScaleController* mScaleController;  // 0xE0
-    LiveActor* mStarPieceTargets[4];        // 0xE4
+    /* 0x8C */ JointController* mControllers[4];
+    /* 0x9C */ s32* mJointIndicies;
+    /* 0xA0 */ f32 mSpeedMax;
+    /* 0xA4 */ f32 mSpeed;
+    /* 0xA8 */ SkeletalFishRailControl* mRailControl;
+    /* 0xAC */ TPos3f _AC;
+    /* 0xDC */ f32 mObjArg1;
+    /* 0xE0 */ AnimScaleController* mScaleController;
+    /* 0xE4 */ LiveActor* mStarPieceTargets[4];
 };

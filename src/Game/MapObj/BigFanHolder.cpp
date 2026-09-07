@@ -16,16 +16,15 @@ BigFanHolder::BigFanHolder() : DeriveActorGroup("大型扇風機管理", ::sMaxB
 }
 
 void BigFanHolder::calcWindInfo(TVec3f* pWindInfo, const TVec3f& rPos, f32* pWindSpeed) {
-    s32 count = mObjectCount;
+    s32 count = getObjNum();
     TVec3f stack_2C;
     stack_2C.zero();
 
     for (int i = 0; i < count; i++) {
         TVec3f windVec;
         windVec.zero();
-        BigFan* fan = static_cast< BigFan* >(getActor(i));
-        fan->calcWindInfo(&windVec, rPos);
-        f32 speed = static_cast< BigFan* >(getActor(i))->mWindSpeed;
+        getMember(i)->calcWindInfo(&windVec, rPos);
+        f32 speed = getMember(i)->mWindSpeed;
         stack_2C.add(windVec * (speed / 100.0f));
     }
 

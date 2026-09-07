@@ -381,14 +381,7 @@ bool DinoPackunBattleVs2Lv1::emitFireMouth() {
         return false;
     }
 
-    DinoPackunFire* fire;
-    LiveActorGroup* group = mFireHolder;
-
-    if (group->getDeadActor() != nullptr) {
-        fire = static_cast< DinoPackunFire* >(group->getDeadActor());
-    } else {
-        fire = nullptr;
-    }
+    DinoPackunFire* fire = mFireHolder->getDeadMember();
 
     if (fire == nullptr) {
         return false;
@@ -417,14 +410,7 @@ bool DinoPackunBattleVs2Lv1::emitFireTail() {
         return false;
     }
 
-    DinoPackunTrackFire* fire;
-    LiveActorGroup* group = mTrackFireHolder;
-
-    if (group->getDeadActor() != nullptr) {
-        fire = static_cast< DinoPackunTrackFire* >(group->getDeadActor());
-    } else {
-        fire = nullptr;
-    }
+    DinoPackunTrackFire* fire = mTrackFireHolder->getDeadMember();
 
     if (fire != nullptr) {
         TVec3f v7(getHost()->mBall->mPosition);

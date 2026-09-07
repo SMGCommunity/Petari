@@ -4,22 +4,6 @@
 #include <JSystem/JGeometry/TVec.hpp>
 #include <JSystem/JKernel/JKRDisposer.hpp>
 
-class AudMe;
-
-class AudMeHandle {
-public:
-    /// @brief Creates a new `AudMeHandle`.
-    AudMeHandle();
-
-    /// @brief Destroys the `AudMeHandle`.
-    ~AudMeHandle();
-
-    void releaseMe();
-
-private:
-    /* 0x00 */ AudMe* mMe;
-};
-
 class AudMeObject : public AudMeHandles, public JKRDisposer {
 public:
     AudMeObject(TVec3f*, u8, JKRHeap*);
@@ -27,9 +11,9 @@ public:
     virtual ~AudMeObject();
     virtual void dispose();
 
-    void startMe(u32);
+    AudMeHandle* startMe(u32);
     AudMeHandle* getLowestPrioHandle(u32);
 
-    /* 0x24 */ TVec3f* _24;
-    /* 0x28 */ bool _28;
+    /* 0x24 */ TVec3f* mPos;
+    /* 0x28 */ bool mIsAllocated;
 };

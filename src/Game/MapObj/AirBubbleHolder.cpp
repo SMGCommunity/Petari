@@ -7,32 +7,26 @@ namespace {
     static const s32 sCreateAirBubbleNum = 32;
 };  // namespace
 
-AirBubbleHolder::AirBubbleHolder(const char* pName) : LiveActorGroup(pName, ::sAirBubbleMax) {
+AirBubbleHolder::AirBubbleHolder(const char* pName) : DeriveActorGroup< AirBubble >(pName, ::sAirBubbleMax) {
 }
 
 void AirBubbleHolder::init(const JMapInfoIter& rIter) {
-    AirBubble* airBubble;
+    AirBubble* pAirBubble;
 
     for (s32 i = 0; i < ::sCreateAirBubbleNum; i++) {
-        airBubble = new AirBubble("空気アワ(共用)");
-        airBubble->initWithoutIter();
-        airBubble->makeActorDead();
+        pAirBubble = new AirBubble("空気アワ(共用)");
+        pAirBubble->initWithoutIter();
+        pAirBubble->makeActorDead();
 
-        registerActor(airBubble);
+        registerActor(pAirBubble);
     }
 }
 
 void AirBubbleHolder::appearAirBubble(const TVec3f& rTrans, s32 lifeTime) {
-    AirBubble* airBubble;
+    AirBubble* pAirBubble = getDeadMember();
 
-    if (getDeadActor() != nullptr) {
-        airBubble = static_cast< AirBubble* >(getDeadActor());
-    } else {
-        airBubble = nullptr;
-    }
-
-    if (airBubble != nullptr) {
-        airBubble->appearMove(rTrans, lifeTime);
+    if (pAirBubble != nullptr) {
+        pAirBubble->appearMove(rTrans, lifeTime);
     }
 }
 

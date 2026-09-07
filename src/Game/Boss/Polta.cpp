@@ -26,16 +26,24 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include "JSystem/JMath/JMath.hpp"
-#include "revolution/types.h"
 
-BombTeresaHolder::BombTeresaHolder() : DeriveActorGroup< BombTeresa >("ポルタ地面岩管理", 6) {
-    for (int i = 0; i < 6; i++) {
-        BombTeresa* curBombTeresa = new BombTeresa("ポルタ用ボムテレサ");
-        curBombTeresa->initWithoutIter();
-        curBombTeresa->makeActorDead();
-        curBombTeresa->_EF = true;
-        registerActor(curBombTeresa);
+namespace {
+    static const s32 sBombTeresaBufferSize = 6;
+    static const f32 sTurnAccel = 0.1f;
+    static const f32 sTurnFric = 0.998f;
+    static const f32 sTurnBreakFric = 0.99f;
+    static const f32 sTurnMaxSpeed = 1.1f;
+};  // namespace
+
+BombTeresaHolder::BombTeresaHolder() : DeriveActorGroup< BombTeresa >("ポルタ地面岩管理", ::sBombTeresaBufferSize) {
+    BombTeresa* bombTeresa;
+
+    for (int i = 0; i < ::sBombTeresaBufferSize; i++) {
+        bombTeresa = new BombTeresa("ポルタ用ボムテレサ");
+        bombTeresa->initWithoutIter();
+        bombTeresa->makeActorDead();
+        bombTeresa->_EF = true;
+        registerActor(bombTeresa);
     }
 }
 
@@ -45,7 +53,7 @@ void Polta::init(const JMapInfoIter& rIter) {
     MR::connectToSceneCollisionEnemy(this);
     MR::initLightCtrl(this);
     MR::makeQuatAndFrontFromRotate(&_B4, &_C4, this);
-    _D0.set< f32 >(_B4);
+    _D0.set(_B4);
     _E0.set(mPosition);
     MR::addBaseMatrixFollowTarget(this, rIter, nullptr, nullptr);
     initArm();
@@ -58,9 +66,11 @@ void Polta::init(const JMapInfoIter& rIter) {
     initCamera(rIter);
     MR::onCalcGravity(this);
     MR::useStageSwitchWriteDead(this, rIter);
+
     if (MR::useStageSwitchReadA(this, rIter)) {
         MR::listenStageSwitchOnA(this, MR::Functor_Inline(this, &Polta::start));
     }
+
     MR::startBva(this, "BreakLevel");
     MR::setBvaFrameAndStop(this, 0.0f);
     MR::startBtk(this, "Inner");
@@ -94,9 +104,11 @@ void Polta::initPartsModel() {
 void Polta::initCamera(const JMapInfoIter& rIter) {
     s32 cameraRegisterIndex = -1;
     MR::getJMapInfoArg7WithInit(rIter, &cameraRegisterIndex);
+
     if (cameraRegisterIndex != -1) {
         MR::declareCameraRegisterVec(this, cameraRegisterIndex, &mPosition);
     }
+
     mCameraInfo = new ActorCameraInfo(rIter);
     MR::initAnimCamera(this, mCameraInfo, "OpeningDemo");
     MR::initAnimCamera(this, mCameraInfo, "PowerUpDemo");
@@ -115,25 +127,25 @@ void Polta::appearBreakModelLast(const TVec3f& rVec) {
     appearBreakModel(rVec, "BreakThird");
 }
 
-void Polta::appearStarPiece(s32 starPieceAmount) {
+void Polta::appearStarPiece(s32 appearNum) {
     TVec3f head3JointPos;
     MR::copyJointPos(this, "Head3", &head3JointPos);
-    MR::appearStarPieceToDirection(this, head3JointPos, -mGravity, starPieceAmount, 50.0f, 60.0f, false);
+    MR::appearStarPieceToDirection(this, head3JointPos, -mGravity, appearNum, 50.0f, 60.0f, false);
     MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
 }
 
 void BombTeresaHolder::disperseAll() {
-    s32 objectCount = mObjectCount;
-    for (s32 i = 0; i < objectCount; i++) {
-        BombTeresa* curBombTeresa = static_cast< BombTeresa* >(getActor(i));
-        curBombTeresa->requestDisperse();
+    s32 memberNum = getObjNum();
+
+    for (s32 i = 0; i < memberNum; i++) {
+        getMember(i)->requestDisperse();
     }
 }
 
 Polta::Polta(const char* pName)
-    : LiveActor(pName), mSensorCtrl(nullptr), mLeftArm(nullptr), mRightArm(nullptr), mSequencer(nullptr), mBombTeresaHolder(nullptr),
-      mRockHolder(nullptr), mGroundRockHolder(nullptr), mCameraInfo(nullptr), mBreakModel(nullptr), mFormationModel(nullptr), _B4(0, 0, 0, 1),
-      _C4(0, 0, 1), _D0(0, 0, 0, 1), _E0(0, 0, 0), _EC(0.0f) {
+    : LiveActor(pName), mSensorCtrl(), mLeftArm(), mRightArm(), mSequencer(), mBombTeresaHolder(),
+      mRockHolder(), mGroundRockHolder(), mCameraInfo(), mBreakModel(), mFormationModel(), _B4(0, 0, 0, 1),
+      _C4(0, 0, 1), _D0(0, 0, 0, 1), _E0(0, 0, 0), _EC() {
 }
 
 void Polta::initSensor() {
@@ -148,8 +160,7 @@ void Polta::initBombTeresaHolder() {
     mGroundRockHolder = new PoltaGroundRockHolder();
 }
 
-// rVec is left unused
-void Polta::appearBreakModel(const TVec3f& rVec, const char* pName) {
+void Polta::appearBreakModel(const TVec3f&, const char* pName) {
     mBreakModel->makeActorAppeared();
     MR::invalidateClipping(mBreakModel);
     MR::startAction(mBreakModel, pName);
@@ -165,29 +176,29 @@ void Polta::killBreakModel() {
 
 void Polta::rotateToPlayer() {
     _EC = calcToPlayerRotateSpeed();
+
     MR::rotateDirectionGravityDegree(this, &_C4, _EC);
 }
 
 f32 Polta::calcToPlayerRotateSpeed() const {
-    f32 v4 = _EC;
+    f32 speed = _EC;
+
     if (MR::isFaceToPlayerHorizontalDegree(this, _C4, 10.0f)) {
-        v4 *= 0.99f;
+        speed *= ::sTurnBreakFric;
     } else {
-        TVec3f v18;
-        MR::calcSideVec(&v18, this);
-        if (v18.dot(*MR::getPlayerPos() - mPosition) < 0.0f) {
-            v4 += 0.1f;
+        TVec3f sideVec;
+        MR::calcSideVec(&sideVec, this);
+
+        if (sideVec.dot(*MR::getPlayerPos() - mPosition) < 0.0f) {
+            speed += ::sTurnAccel;
         } else {
-            v4 -= 0.1f;
+            speed -= ::sTurnAccel;
         }
-        v4 *= 0.998f;
+
+        speed *= ::sTurnFric;
     }
-    if (v4 < -1.1f) {
-        return -1.1f;
-    } else if (v4 > 1.1f) {
-        return 1.1f;
-    }
-    return v4;
+
+    return MR::clamp(speed, -::sTurnMaxSpeed, ::sTurnMaxSpeed);
 }
 
 void Polta::makeActorAppeared() {
@@ -204,6 +215,7 @@ void Polta::kill() {
     mRightArm->kill();
     MR::startAfterBossBGM();
     MR::requestAppearPowerStar(this, mPosition);
+
     if (MR::isValidSwitchDead(this)) {
         MR::onSwitchDead(this);
     }
@@ -227,25 +239,28 @@ void Polta::updateAction() {
     }
 }
 
-void Polta::updatePose(f32 param1, f32 param2) {
+void Polta::updatePose(f32 upVecBlendRate, f32 frontVecBlendRate) {
     _C4.orthogonalize(mGravity);
+
     if (MR::isNearZero(_C4)) {
         _B4.getZDir(_C4);
     } else {
         MR::normalize(&_C4);
     }
-    MR::blendQuatUpFront(&_B4, -mGravity, _C4, param1, param2);
+
+    MR::blendQuatUpFront(&_B4, -mGravity, _C4, upVecBlendRate, frontVecBlendRate);
 }
 
 void Polta::start() {
     MR::invalidateClipping(this);
+
     if (mSequencer != nullptr) {
         mSequencer->startAction();
     }
 }
 
 void Polta::setStartPose() {
-    //_B4.set(_D0);
+    _B4.set(_D0);
     MR::resetPosition(this, _E0);
     _B4.getZDir(_C4);
 }
@@ -260,6 +275,7 @@ bool Polta::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pRece
     if (mSequencer != nullptr) {
         return mSequencer->receiveMsgPlayerAttack(msg, pSender, pReceiver);
     }
+
     return false;
 }
 
@@ -267,6 +283,7 @@ bool Polta::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pRecei
     if (mSequencer != nullptr) {
         return mSequencer->receiveMsgEnemyAttack(msg, pSender, pReceiver);
     }
+
     return false;
 }
 
@@ -274,5 +291,6 @@ bool Polta::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (mSequencer != nullptr) {
         return mSequencer->receiveOtherMsg(msg, pSender, pReceiver);
     }
+
     return false;
 }

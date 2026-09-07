@@ -11,7 +11,7 @@
 
 extern struct PF_VOLUME_SET VFipf_vol_set;
 
-static s32 VFiPFENT_ITER_RecalcEntryIterator(struct PF_ENT_ITER* p_iter, u32 may_allocate) {
+s32 VFiPFENT_ITER_RecalcEntryIterator(struct PF_ENT_ITER* p_iter, u32 may_allocate) {
     s32 err;
     u32 is_initialize;
     u32 file_sector_index;
@@ -39,7 +39,7 @@ static s32 VFiPFENT_ITER_RecalcEntryIterator(struct PF_ENT_ITER* p_iter, u32 may
     return err;
 }
 
-static s32 VFiPFENT_ITER_LoadEntry(struct PF_ENT_ITER* p_iter) {
+static inline s32 VFiPFENT_ITER_LoadEntry(struct PF_ENT_ITER* p_iter) {
     u32 success_size;
     s32 err;
 
@@ -53,7 +53,7 @@ static s32 VFiPFENT_ITER_LoadEntry(struct PF_ENT_ITER* p_iter) {
     return err;
 }
 
-static s32 VFiPFENT_ITER_DoMoveTo(struct PF_ENT_ITER* p_iter, u32 index, u32 may_allocate) {
+static inline s32 VFiPFENT_ITER_DoMoveTo(struct PF_ENT_ITER* p_iter, u32 index, u32 may_allocate) {
     u32 prev_index;
     s32 err;
 
@@ -71,11 +71,11 @@ static s32 VFiPFENT_ITER_DoMoveTo(struct PF_ENT_ITER* p_iter, u32 index, u32 may
     return err;
 }
 
-static u32 VFiPFENT_ITER_IsAtPhysicalEnd(struct PF_ENT_ITER* p_iter) {
+static inline u32 VFiPFENT_ITER_IsAtPhysicalEnd(struct PF_ENT_ITER* p_iter) {
     return p_iter->sector == 0xFFFFFFFF;
 }
 
-static s32 VFiPFENT_ITER_GetEntry(struct PF_DIR_ENT* p_ent, struct PF_ENT_ITER* p_iter, struct PF_STR* p_pattern, u8 attr_required, u32* p_lpos,
+s32 VFiPFENT_ITER_GetEntry(struct PF_DIR_ENT* p_ent, struct PF_ENT_ITER* p_iter, struct PF_STR* p_pattern, u8 attr_required, u32* p_lpos,
                                   u32 is_reverse) {
     u8 attr;
     s32 is_valid;
@@ -144,7 +144,7 @@ static s32 VFiPFENT_ITER_GetEntry(struct PF_DIR_ENT* p_ent, struct PF_ENT_ITER* 
     return 0;
 }
 
-static s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent, struct PF_STR* p_pattern, u8 attr_required,
+s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent, struct PF_STR* p_pattern, u8 attr_required,
                                      u32* p_is_found, u32* p_ppos, u32* p_lpos, u32 is_skip) {
     s32 err;
     u32 index_search_from;
@@ -179,7 +179,7 @@ static s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_E
             }
             is_skip = 1;
         }
-        if (is_skip == 1) {
+        if (is_skip) {
             if (p_ppos) {
                 *p_ppos = 0;
             }
@@ -200,8 +200,9 @@ static s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_E
         is_extsfn = VFiPFPATH_GetExtShortNameIndex(p_pattern, &index_search_from);
     }
 
-    if (is_extsfn == 1) {
-        for (err = VFiPFENT_ITER_IteratorInitialize(p_iter, index_search_from - 1);; err = VFiPFENT_ITER_Retreat(p_iter, 0)) {
+    if (is_extsfn) {
+        err = VFiPFENT_ITER_IteratorInitialize(p_iter, index_search_from - 1);
+        while (1) {
             if (err) {
                 return err;
             }
@@ -212,6 +213,7 @@ static s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_E
             if ((p_iter->buf[0] & 0x40) != 0) {
                 break;
             }
+            err = VFiPFENT_ITER_Retreat(p_iter, 0);
         }
 
         err = VFiPFENT_ITER_IteratorInitialize(p_iter, index_search_from);
@@ -256,7 +258,7 @@ static s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_E
     return 0;
 }
 
-static s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_ffd, u32* p_prev_chain, PF_STR* p_filename, u8 attr_required,
+s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_ffd, u32* p_prev_chain, PF_STR* p_filename, u8 attr_required,
                                          u32* p_pos) {
     s32 err;
     u32 is_found;
@@ -281,8 +283,8 @@ static s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_F
     if (p_pos) {
         *p_pos = 999999;
     }
-    p_prev_chain[0] = 0xFFFFFFFF;
     p_prev_chain[1] = 0xFFFFFFFF;
+    p_prev_chain[0] = 0xFFFFFFFF;
 
     iter.ffd = *p_ffd;
     iter.p_vol = iter.ffd.p_vol;
@@ -360,7 +362,7 @@ static s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_F
     return 0;
 }
 
-static s32 VFiPFENT_ITER_DoGetEntryOfPath(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent, struct PF_VOLUME* p_vol, struct PF_STR* p_path,
+s32 VFiPFENT_ITER_DoGetEntryOfPath(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent, struct PF_VOLUME* p_vol, struct PF_STR* p_path,
                                           u32 wildcard, u32 is_parent) {
     s8* p;
     struct PF_STR token;
@@ -527,7 +529,7 @@ u32 VFiPFENT_ITER_IsAtLogicalEnd(struct PF_ENT_ITER* p_iter) {
     return 0;
 }
 
-static s32 VFiPFENT_ITER_MoveTo(struct PF_ENT_ITER* p_iter, u32 index, u32 may_allocate) {
+static inline s32 VFiPFENT_ITER_MoveTo(struct PF_ENT_ITER* p_iter, u32 index, u32 may_allocate) {
     s32 err;
 
     if (p_iter->index != index || !VFiPFENT_ITER_IsAtPhysicalEnd(p_iter) || may_allocate == 0) {

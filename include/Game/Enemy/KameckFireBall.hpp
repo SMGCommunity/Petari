@@ -6,9 +6,10 @@ class KameckBeamEventListener;
 
 class KameckFireBall : public LiveActor {
 public:
-    KameckFireBall(const char*);
+    /// @brief Creates a new `KameckFireBall`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    KameckFireBall(const char* pName);
 
-    virtual ~KameckFireBall();
     virtual void init(const JMapInfoIter&);
     virtual void makeActorAppeared();
     virtual void kill();
@@ -21,9 +22,11 @@ public:
 
     void appearDirection(const TVec3f&);
     void setEventListener(KameckBeamEventListener*);
+
     void exeWait();
     void exeSweep();
 
-    TQuat4f _8C;
-    KameckBeamEventListener* mEventListener;  // 0x9C
+    /* 0x8C */ TQuat4f _8C;
+    /* 0x9C */ KameckBeamEventListener* mEventListener;
+    /* 0xA0 */ u8 _A0[4];
 };

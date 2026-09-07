@@ -309,7 +309,7 @@ void FlipPanelObserver::exeWait() {
         MR::startSound(this, "SE_OJ_FLIP_PANEL_APPEAR");
     }
 
-    if (_90 == _8C->mObjectCount - 1 && MR::tryStartDemo(this, "FlipPanelComplete")) {
+    if (_90 == _8C->getObjNum() - 1 && MR::tryStartDemo(this, "FlipPanelComplete")) {
         setNerve(&NrvFlipPanelObserver::FlipPanelObserverNrvComplete::sInstance);
     } else {
         ::sBloomSyncStep++;

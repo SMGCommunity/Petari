@@ -6,7 +6,7 @@ void JASSeqReader::init() {
     mNumStacks = 0;
     for (u32 i = 0; i < 8; i++) {
         mStackPtrs[i] = nullptr;
-        mLoopTimers[i] = nullptr;
+        mLoopCounts[i] = nullptr;
     }
 }
 
@@ -16,26 +16,26 @@ void JASSeqReader::init(void* buf) {
     mNumStacks = 0;
     for (u32 i = 0; i < 8; i++) {
         mStackPtrs[i] = nullptr;
-        mLoopTimers[i] = nullptr;
+        mLoopCounts[i] = 0;
     }
 }
 
-bool JASSeqReader::call(u32 num) {
+bool JASSeqReader::call(u32 addr) {
     if (mNumStacks >= 8)
         return false;
     else {
-        mStackPtrs[mNumStacks++] = (u16*)mSeqCursor;
-        mSeqCursor = (u8*)mSeqBuff + num;
+        mStackPtrs[mNumStacks++] = mSeqCursor;
+        mSeqCursor = getAddr(addr);
         return true;
     }
 }
 
-bool JASSeqReader::loopStart(u32 loopTimer) {
+bool JASSeqReader::loopStart(u32 loopCount) {
     if (mNumStacks >= 8)
         return false;
     else {
-        mStackPtrs[mNumStacks] = (u16*)mSeqCursor;
-        mLoopTimers[mNumStacks++] = loopTimer;
+        mStackPtrs[mNumStacks] = mSeqCursor;
+        mLoopCounts[mNumStacks++] = loopCount;
         return true;
     }
 }
@@ -44,15 +44,15 @@ bool JASSeqReader::loopEnd() {
     if (mNumStacks == 0)
         return false;
     else {
-        u16 loopTimer = mLoopTimers[mNumStacks - 1];
-        if (loopTimer > 0)
-            loopTimer--;
-        if (loopTimer == 0) {
+        u16 loopCount = mLoopCounts[mNumStacks - 1];
+        if (loopCount > 0)
+            loopCount--;
+        if (loopCount == 0) {
             mNumStacks--;
             return true;
         }
-        mLoopTimers[mNumStacks - 1] = loopTimer;
-        mSeqCursor = (u8*)mStackPtrs[mNumStacks - 1];
+        mLoopCounts[mNumStacks - 1] = loopCount;
+        mSeqCursor = mStackPtrs[mNumStacks - 1];
         return true;
     }
 }
@@ -61,7 +61,7 @@ bool JASSeqReader::ret() {
     if (mNumStacks == 0)
         return false;
     else {
-        mSeqCursor = (u8*)mStackPtrs[--mNumStacks];
+        mSeqCursor = mStackPtrs[--mNumStacks];
         return true;
     }
 }

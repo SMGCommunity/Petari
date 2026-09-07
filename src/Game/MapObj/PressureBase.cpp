@@ -109,13 +109,12 @@ void PressureBase::init(const JMapInfoIter& rIter) {
     }
 }
 
-// regswap
 void PressureBase::initAfterPlacement() {
     if (mMessenger != nullptr) {
         s32 waitTime = -1;
 
-        for (u16 i = 0; i < MR::getGroupFromArray(this)->mObjectCount; ++i) {
-            PressureBase* actor = (PressureBase*)MR::getGroupFromArray(this)->getActor(i);
+        for (u16 i = 0; i < MR::getGroupFromArray(this)->getObjNum(); i++) {
+            PressureBase* actor = static_cast< PressureBase* >(MR::getGroupFromArray(this)->getActor(i));
 
             if (actor->mWaitTime > waitTime) {
                 waitTime = actor->mWaitTime;

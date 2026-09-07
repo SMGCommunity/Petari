@@ -347,12 +347,12 @@ void dCommon_setRootEntNumToDisk(struct PDM_DISK* p_disk, u32 i_rootEntNum) {
     }
 }
 
-s32 dCommon_flush_from_handle_p(struct VF_HANDLE_TYPE* i_handle_p, int i_setLastDeviceError) {
-    struct VF_HANDLE_DRIVE* vol;  // Extra variable. Not in DWARF.
+static s32 dCommon_flush_from_handle_p(struct VF_HANDLE_TYPE* i_handle_p, int i_setLastDeviceError) {
+    struct VF_HANDLE_DRIVE* vol;
     s32 err;
     s32 handle_idx;
 
-    vol = (struct VF_HANDLE_DRIVE*)VFSysVol2HandleP((struct PF_VOLUME*)i_handle_p);
+    vol = (struct VF_HANDLE_DRIVE*)i_handle_p;
     err = -1;
     if (vol != NULL && vol->file_p != NULL) {
         if (((u32*)vol->file_p)[2] == 0) {
@@ -365,4 +365,8 @@ s32 dCommon_flush_from_handle_p(struct VF_HANDLE_TYPE* i_handle_p, int i_setLast
         }
     }
     return err;
+}
+
+s32 dCommon_FlushFromVol(struct PF_VOLUME* i_vol_p, int i_setLastDeviceError) {
+    return dCommon_flush_from_handle_p((struct VF_HANDLE_TYPE*)VFSysVol2HandleP(i_vol_p), i_setLastDeviceError);
 }

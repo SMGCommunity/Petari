@@ -7,12 +7,16 @@
 #include "Game/Util.hpp"
 
 namespace {
+    static const s32 sClipAreaMax = 64;
+};  // namespace
+
+namespace {
     ClipAreaHolder* getClipAreaHolder() {
         return MR::getSceneObj< ClipAreaHolder >(SceneObj_ClipAreaHolder);
     }
 };  // namespace
 
-ClipAreaHolder::ClipAreaHolder(const char* pName) : DeriveActorGroup< ClipArea >(pName, 64), mIsActive(true) {
+ClipAreaHolder::ClipAreaHolder(const char* pName) : DeriveActorGroup< ClipArea >(pName, ::sClipAreaMax), mIsActive(true) {
     MR::registerPreDrawFunction(MR::Functor_Inline(&MR::setupShadowVolumeDraw), MR::DrawType_ClipArea);
 }
 
@@ -23,15 +27,18 @@ bool ClipAreaHolder::isInArea(const TVec3f& rParam1, f32 param2) const {
     if (!mIsActive) {
         return false;
     }
-    s32 count = getObjectCount();
-    for (s32 i = 0; i < count; i++) {
+
+    s32 memberNum = getObjNum();
+
+    for (s32 i = 0; i < memberNum; i++) {
         if (MR::isDead(getActor(i))) {
             continue;
         }
-        ClipArea* area = static_cast< ClipArea* >(getActor(i));
-        if (!area->isInArea(rParam1, param2)) {
+
+        if (!getMember(i)->isInArea(rParam1, param2)) {
             continue;
         }
+
         return true;
     }
     return false;
@@ -41,9 +48,10 @@ ClipAreaCollisionFilter::ClipAreaCollisionFilter(const TVec3f* pParam1, f32 para
 }
 
 bool ClipAreaCollisionFilter::isInvalidParts(const CollisionParts* pParts) const {
-    if (!MR::isExistSceneObj(SceneObj_ClipAreaHolder)) {
+    if (!MR::isExistClipAreaHolder()) {
         return false;
     }
+
     if (pParts->mHitSensor->isType(ATYPE_CLIP_FIELD_MAP_PARTS)) {
         if (!MR::isInClipArea(*_04, _08)) {
             return true;
@@ -83,7 +91,6 @@ namespace MR {
     }
 
     void setBinderExceptSensorType(LiveActor* actor, const TVec3f* pParam1, f32 param2) {
-        ClipAreaCollisionFilter* filter = new ClipAreaCollisionFilter(pParam1, param2);
-        setBinderCollisionPartsFilter(actor, filter);
+        setBinderCollisionPartsFilter(actor, new ClipAreaCollisionFilter(pParam1, param2));
     }
 };  // namespace MR

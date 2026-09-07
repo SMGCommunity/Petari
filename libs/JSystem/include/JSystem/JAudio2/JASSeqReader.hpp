@@ -31,7 +31,7 @@ public:
     u32* getBase() {
         return (u32*)mSeqBuff;
     }
-    void* getAddr(u32 param_0) {
+    u8* getAddr(u32 param_0) {
         return mSeqBuff + param_0;
     }
     u8 getByte(u32 param_0) const {
@@ -72,12 +72,12 @@ public:
         if (mNumStacks == 0) {
             return 0;
         }
-        return mLoopTimers[mNumStacks - 1];
+        return mLoopCounts[mNumStacks - 1];
     }
 
     /* 0x00 */ u8* mSeqBuff;
     /* 0x04 */ u8* mSeqCursor;
     /* 0x08 */ u32 mNumStacks;
-    /* 0x0C */ u16* mStackPtrs[8];
-    /* 0x2C */ u16 mLoopTimers[8];
+    /* 0x0C */ u8* mStackPtrs[8];
+    /* 0x2C */ u16 mLoopCounts[8];
 };

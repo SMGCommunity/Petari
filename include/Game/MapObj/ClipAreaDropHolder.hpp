@@ -7,8 +7,8 @@ class ClipAreaDrop;
 
 class ClipAreaDropHolder : public DeriveActorGroup< ClipAreaDrop > {
 public:
+    /// @brief Creates a new `ClipAreaDropHolder`.
     ClipAreaDropHolder();
-    virtual ~ClipAreaDropHolder();
 };
 
 namespace MR {

@@ -11,7 +11,7 @@
 #include "revolution/vf/pf_sector.h"
 #include "revolution/vf/pf_system.h"
 
-static u32 VFiPFVOL_CheckContextRegistered(s32 context_id) {
+static inline u32 VFiPFVOL_CheckContextRegistered(s32 context_id) {
     u32 i;
     for (i = 1; i < 1; i++) {
         VFipf_vol_set.context[i].stat &= 1;
@@ -22,11 +22,11 @@ static u32 VFiPFVOL_CheckContextRegistered(s32 context_id) {
     return 0;
 }
 
-static s32 VFiPFVOL_SetUpVolumeForMount(PF_VOLUME* p_vol) {
+static inline s32 VFiPFVOL_SetUpVolumeForMount(PF_VOLUME* p_vol) {
     return 0;
 }
 
-static s32 VFiPFVOL_InitCurrentDir(PF_VOLUME* p_vol) {
+static inline s32 VFiPFVOL_InitCurrentDir(PF_VOLUME* p_vol) {
     int err;
     int i;
     s32 context_id;
@@ -48,7 +48,7 @@ static s32 VFiPFVOL_InitCurrentDir(PF_VOLUME* p_vol) {
     return 0;
 }
 
-static s32 VFiPFVOL_FinalizeCurrentDir(PF_VOLUME* p_vol) {
+static inline s32 VFiPFVOL_FinalizeCurrentDir(PF_VOLUME* p_vol) {
     u32 i;
 
     if ((p_vol->flags & 2) == 0) {
@@ -95,7 +95,7 @@ s32 VFiPFVOL_DoMountVolume(PF_VOLUME* p_vol) {
     return err;
 }
 
-static s32 VFiPFVOL_DoUnmountVolume(PF_VOLUME* p_vol, u32 mode) {
+static inline s32 VFiPFVOL_DoUnmountVolume(PF_VOLUME* p_vol, u32 mode) {
     int err;
 
     err = VFiPFDRV_unmount(p_vol, mode);
@@ -108,7 +108,7 @@ static s32 VFiPFVOL_DoUnmountVolume(PF_VOLUME* p_vol, u32 mode) {
     return 0;
 }
 
-static void VFiPFVOL_UnmountVolumeByEject(PF_VOLUME* p_vol) {
+static inline void VFiPFVOL_UnmountVolumeByEject(PF_VOLUME* p_vol) {
     VFiPFFILE_FinalizeAllFiles(p_vol);
     VFiPFDIR_FinalizeAllDirs(p_vol);
     VFiPFCACHE_FreeAllCaches(p_vol);
@@ -116,7 +116,7 @@ static void VFiPFVOL_UnmountVolumeByEject(PF_VOLUME* p_vol) {
     VFipf_vol_set.num_mounted_volumes--;
 }
 
-static s32 VFiPFVOL_p_attach(PF_VOLUME* p_vol, PF_DRV_TBL* p_drv, s16 vol_idx) {
+static inline s32 VFiPFVOL_p_attach(PF_VOLUME* p_vol, PF_DRV_TBL* p_drv, s16 vol_idx) {
     s32 err;
 
     VFipf_memset(p_vol, 0, sizeof(PF_VOLUME));
@@ -138,7 +138,7 @@ static s32 VFiPFVOL_p_attach(PF_VOLUME* p_vol, PF_DRV_TBL* p_drv, s16 vol_idx) {
     return 0;
 }
 
-static s32 VFiPFVOL_p_detach(PF_VOLUME* p_vol) {
+static inline s32 VFiPFVOL_p_detach(PF_VOLUME* p_vol) {
     s32 err;
     err = VFiPFDRV_finalize(p_vol);
     if (err) {
@@ -147,7 +147,7 @@ static s32 VFiPFVOL_p_detach(PF_VOLUME* p_vol) {
     return 0;
 }
 
-static s32 VFiPFVOL_p_mount(PF_VOLUME* p_vol) {
+static inline s32 VFiPFVOL_p_mount(PF_VOLUME* p_vol) {
     s32 err;
 
     if ((p_vol->flags & 2) == 0) {
@@ -193,7 +193,7 @@ s32 VFiPFVOL_p_unmount(PF_VOLUME* p_vol, u32 mode) {
     return err;
 }
 
-static s32 VFiPFVOL_CheckMediaInsert(PF_VOLUME* p_vol) {
+static inline s32 VFiPFVOL_CheckMediaInsert(PF_VOLUME* p_vol) {
     s32 err;
 
     if (VFiPFDRV_IsInserted(p_vol) != 0) {

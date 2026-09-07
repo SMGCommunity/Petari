@@ -577,7 +577,7 @@ bool MR::enableGroupAttack(LiveActor* pActor, f32 arg2, f32 arg3) {
 
     LiveActor* closest = pActor;
     if (group != nullptr) {
-        for (int i = 0; i < group->getObjectCount(); i++) {
+        for (int i = 0; i < group->getObjNum(); i++) {
             LiveActor* actor = group->getActor(i);
             if (MR::calcDistanceToPlayer(actor) < MR::calcDistanceToPlayer(closest)) {
                 closest = actor;

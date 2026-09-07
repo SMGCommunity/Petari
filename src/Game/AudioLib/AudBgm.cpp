@@ -10,6 +10,7 @@
 #include "Game/RhythmLib/AudBgmTempoAdjuster.hpp"
 #include "Game/RhythmLib/AudRhythmMeSystem.hpp"
 #include "Game/RhythmLib/AudRhythmSeqParser.hpp"
+#include "Game/RhythmLib/AudRhythmWrap.hpp"
 #include <JSystem/JAudio2/JAISound.hpp>
 #include <JSystem/JAudio2/JAISoundChild.hpp>
 #include <JSystem/JAudio2/JAISoundInfo.hpp>

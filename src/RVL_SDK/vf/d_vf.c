@@ -84,7 +84,7 @@ static s32 VFDetachDrive_common(const s8* i_drive, u8 i_set_err) {
     return err;
 }
 
-static s32 VF_activate_drive_common(s32 i_handle_idx, const char* i_sys_file_name_p, void* i_memory_p) {
+s32 VF_activate_drive_common(s32 i_handle_idx, const char* i_sys_file_name_p, void* i_memory_p) {
     s32 err;
     s32 errChk;  // Present in DWARF but unused here.
     struct VF_HANDLE_DRIVE* drive_p;
@@ -181,7 +181,7 @@ s32 VFUnmountDrive(const char* i_drive) {
     return err;
 }
 
-static s8* VF_path2handleidx(long* o_handle_idx_p, const char* i_path_p) {
+s8* VF_path2handleidx(long* o_handle_idx_p, const char* i_path_p) {
     s8 drive[8];
     const s8* str_p;
     s32 idx;

@@ -62,7 +62,7 @@ void TrampleStar::init(const JMapInfoIter& rIter) {
 
     bool isShareStar = false;
 
-    for (u32 actorIndex = 0; actorIndex < MR::getAllLiveActorGroup()->mObjectCount; actorIndex++) {
+    for (u32 actorIndex = 0; actorIndex < MR::getAllLiveActorGroup()->getObjNum(); actorIndex++) {
         LiveActor* actor = MR::getAllLiveActorGroup()->getActor(actorIndex);
 
         if (strcmp(actor->mName, "TrampleStarShare") == 0) {

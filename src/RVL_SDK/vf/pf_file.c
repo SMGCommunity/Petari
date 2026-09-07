@@ -11,7 +11,7 @@
 #include "revolution/vf/pf_str.h"
 #include "revolution/vf/pf_volume.h"
 
-static void VFiPFFILE_Cursor_Recalc(PF_FILE* p_file) {
+static inline void VFiPFFILE_Cursor_Recalc(PF_FILE* p_file) {
     PF_VOLUME* p_vol;
 
     if (p_file) {
@@ -24,7 +24,7 @@ static void VFiPFFILE_Cursor_Recalc(PF_FILE* p_file) {
     p_file->cursor.offset_in_sector = p_file->cursor.position & (p_vol->bpb.bytes_per_sector - 1);
 }
 
-static void VFiPFFILE_Cursor_SetPosition(PF_FILE* p_file, u32 pos) {
+static inline void VFiPFFILE_Cursor_SetPosition(PF_FILE* p_file, u32 pos) {
     PF_VOLUME* p_vol;
 
     if (p_file) {
@@ -338,7 +338,7 @@ s32 VFiPFFILE_Cursor_WriteTailSector(PF_VOLUME* p_vol, PF_FILE* p_file, u8* p_bu
     return err;
 }
 
-static s32 VFiPFFILE_Cursor_WriteBodySectors(PF_VOLUME* p_vol, PF_FILE* p_file, u8* p_buf, u32 size, u32* p_size_write) {
+static inline s32 VFiPFFILE_Cursor_WriteBodySectors(PF_VOLUME* p_vol, PF_FILE* p_file, u8* p_buf, u32 size, u32* p_size_write) {
     int result;
     u32 success_size;
 
@@ -384,7 +384,7 @@ s32 VFiPFFILE_Cursor_Write_Overwrite(struct PF_VOLUME* p_vol, struct PF_FILE* p_
     return err;
 }
 
-static s32 VFiPFFILE_Cursor_Write_Append(PF_VOLUME* p_vol, PF_FILE* p_file, u8* p_buf, u32 size, u32* p_size_write, u32* p_append_size) {
+static inline s32 VFiPFFILE_Cursor_Write_Append(PF_VOLUME* p_vol, PF_FILE* p_file, u8* p_buf, u32 size, u32* p_size_write, u32* p_append_size) {
     int err;
     int v10;
     u32 success_size;
@@ -501,7 +501,7 @@ void VFiPFFILE_Cursor_MoveToClusterEnd(PF_FILE* p_file, u32 size) {
         VFiPFFILE_Cursor_SetPosition(p_file, cluster << (p_vol->bpb.log2_bytes_per_sector + p_vol->bpb.log2_sectors_per_cluster));
 }
 
-static u32 VFiPFFILE_Cursor_IsOutOfFile(PF_FILE* p_file) {
+static inline u32 VFiPFFILE_Cursor_IsOutOfFile(PF_FILE* p_file) {
     return p_file->cursor.position >= p_file->p_sfd->dir_entry.file_size;
 }
 
@@ -607,7 +607,7 @@ static int VFiPFFILE_ReleaseSFD(PF_SFD* p_sfd) {
     return 0;
 }
 
-static u32 VFiPFFILE_CheckUFD(PF_FILE* p_file) {
+static inline u32 VFiPFFILE_CheckUFD(PF_FILE* p_file) {
     u32 is_valid;
 
     is_valid = 1;
@@ -646,7 +646,7 @@ s32 VFiPFFILE_createEmptyFile(PF_VOLUME* p_vol, PF_DIR_ENT* p_ent, PF_STR* p_fna
     return err;
 }
 
-static void VFiPFFILE_EmptyFile(PF_FFD* p_ffd, PF_DIR_ENT* p_ent) {
+static inline void VFiPFFILE_EmptyFile(PF_FFD* p_ffd, PF_DIR_ENT* p_ent) {
     if (p_ent->start_cluster >= 2 && p_ent->start_cluster != -1 && p_ent->file_size)
         VFiPFFAT_FreeChain(p_ffd, p_ent->start_cluster, -1, p_ent->file_size);
     p_ent->start_cluster = 0;

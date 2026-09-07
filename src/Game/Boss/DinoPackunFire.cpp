@@ -21,11 +21,13 @@ namespace NrvDinoPackunFire {
     NEW_NERVE(DinoPackunFireNrvGround, DinoPackunFire, Ground);
 };  // namespace NrvDinoPackunFire
 
-DinoPackunFireHolder::DinoPackunFireHolder(s32 num) : DeriveActorGroup< DinoPackunFire >("ディノパックン炎管理", num) {
-    for (s32 i = 0; i < num; i++) {
-        DinoPackunFire* fire = new DinoPackunFire("ディノパックン炎");
-        fire->initWithoutIter();
-        registerActor(fire);
+DinoPackunFireHolder::DinoPackunFireHolder(s32 numMax) : DeriveActorGroup< DinoPackunFire >("ディノパックン炎管理", numMax) {
+    DinoPackunFire* pFire;
+
+    for (s32 i = 0; i < numMax; i++) {
+        pFire = new DinoPackunFire("ディノパックン炎");
+        pFire->initWithoutIter();
+        registerActor(pFire);
     }
 }
 

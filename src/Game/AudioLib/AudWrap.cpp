@@ -4,6 +4,7 @@
 #include "Game/AudioLib/AudSoundInfo.hpp"
 #include "Game/AudioLib/AudSoundNameConverter.hpp"
 #include "Game/AudioLib/AudSystem.hpp"
+#include "Game/RhythmLib/AudRhythmWrap.hpp"
 
 namespace AudWrap {
     AudSystem* getSystem() {
@@ -76,5 +77,9 @@ namespace AudWrap {
 
     AudSoundObject* getRemixSeqObject() {
         return getRemixMgr()->mSoundObj;
+    }
+
+    AudSoundNameConverter* getSoundNameConverter() {
+        return AudSoundNameConverter::get();
     }
 };  // namespace AudWrap

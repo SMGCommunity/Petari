@@ -41,8 +41,8 @@ void StopSceneController::requestStopScene(s32 frame) {
 }
 
 void StopSceneController::requestStopSceneDelay(s32 frame, s32 delay) {
-    for (s32 i = 0; i < mDelayRequestArray->mObjectCount; i++) {
-        StopSceneDelayRequest* delayRequest = static_cast< StopSceneDelayRequest* >(mDelayRequestArray->mObjects[i]);
+    for (s32 i = 0; i < mDelayRequestArray->getObjNum(); i++) {
+        StopSceneDelayRequest* delayRequest = static_cast< StopSceneDelayRequest* >(mDelayRequestArray->getObj(i));
 
         if (delayRequest->mDelay != 0) {
             continue;

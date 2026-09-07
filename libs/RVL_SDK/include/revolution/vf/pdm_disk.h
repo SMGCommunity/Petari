@@ -26,4 +26,8 @@ s32 VFipdm_disk_format(struct PDM_DISK* p_disk, const u8* param);
 
 s32 VFipdm_disk_physical_write(struct PDM_DISK* p_disk, const u8* buf, u32 psector, u32 num_sector, u16 bps, u32* p_num_success);
 
+s32 VFipdm_disk_physical_erase(struct PDM_DISK* p_disk, u32 block, u32 num_block);
+
+s32 VFipdm_disk_check_data_erase(struct PDM_DISK* p_disk, u32* is_erase);
+
 #endif  // PDM_DISK_H

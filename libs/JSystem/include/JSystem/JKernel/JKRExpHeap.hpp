@@ -11,6 +11,16 @@ public:
         CMemBlock* allocBack(u32, u8, u8, u8, u8);
         static CMemBlock* getHeapBlock(void*);
 
+        bool isTempMemBlock() const {
+            return mFlags & 0x80;
+        }
+
+        int getAlignment() const {
+            return mFlags & 0x7f;
+        }
+
+        int free(JKRExpHeap* heap);
+
         void* getContent() const {
             return (void*)(this + 1);
         }
@@ -63,9 +73,18 @@ public:
     void joinTwoBlocks(CMemBlock*);
     void adjustSize();
 
+    s32 getUsedSize(u8) const;
+
     static JKRExpHeap* createRoot(int, bool);
     static JKRExpHeap* create(u32, JKRHeap*, bool);
     static JKRExpHeap* create(void*, u32, JKRHeap*, bool);
+
+    static s32 getUsedSize_(JKRExpHeap* heap) {
+        return heap->mSize - heap->getTotalFreeSize();
+    }
+    static void* getState_(TState* state) {
+        return getState_buf_(state);
+    }
 
     u8 mAllocMode;       // 0x6C
     u8 mCurrentGroupId;  // 0x6D

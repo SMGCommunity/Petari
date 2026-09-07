@@ -8,14 +8,15 @@ class PurpleCoinStarter;
 
 class PurpleCoinHolder : public DeriveActorGroup< Coin > {
 public:
+    /// @brief Creates a new `PurpleCoinHolder`.
     PurpleCoinHolder();
 
-    virtual ~PurpleCoinHolder();
     virtual void initAfterPlacement();
 
     void start();
+    void registStarter(PurpleCoinStarter*);
 
-    PurpleCoinStarter* mStarter;  // 0x18
+    /* 0x18 */ PurpleCoinStarter* mStarter;
 };
 
 namespace MR {

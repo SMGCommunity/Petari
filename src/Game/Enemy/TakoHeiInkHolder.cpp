@@ -7,10 +7,12 @@ namespace {
 };  // namespace
 
 TakoHeiInkHolder::TakoHeiInkHolder() : DeriveActorGroup< TakoHeiInk >("タコヘイ墨管理", ::sMaxTakoHeiInk) {
+    TakoHeiInk* pInk;
+
     for (int i = 0; i < ::sMaxTakoHeiInk; i++) {
-        TakoHeiInk* newInk = new TakoHeiInk("タコヘイ墨");
-        newInk->initWithoutIter();
-        registerActor(newInk);
+        pInk = new TakoHeiInk("タコヘイ墨");
+        pInk->initWithoutIter();
+        registerActor(pInk);
     }
 }
 
@@ -19,13 +21,15 @@ namespace MR {
         createSceneObj(SceneObj_TakoHeiInkHolder);
     }
 
-    bool spurtTakoHeiInk(const TVec3f& position, const TVec3f& velocity) {
-        TakoHeiInk* spurtInk = static_cast< TakoHeiInkHolder* >(getSceneObjHolder()->getObj(SceneObj_TakoHeiInkHolder))->getDeadMember();
-        if (spurtInk == nullptr) {
+    bool spurtTakoHeiInk(const TVec3f& rTrans, const TVec3f& rVelocity) {
+        TakoHeiInk* pInk = MR::getSceneObj< TakoHeiInkHolder >(SceneObj_TakoHeiInkHolder)->getDeadMember();
+
+        if (pInk == nullptr) {
             return false;
         }
 
-        spurtInk->start(position, velocity, false);
+        pInk->start(rTrans, rVelocity, false);
+
         return true;
     }
 };  // namespace MR

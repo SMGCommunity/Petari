@@ -8,9 +8,8 @@ class LiveActor;
 
 class DemoCastGroupHolder : public NameObjGroup {
 public:
+    /// @brief Creates a new `DemoCastGroupHolder`.
     DemoCastGroupHolder();
-
-    virtual ~DemoCastGroupHolder();
 
     bool tryRegisterDemoActor(LiveActor*, const JMapInfoIter&, const JMapIdInfo&) const;
     bool tryRegisterDemoActor(LiveActor*, const char*, const JMapInfoIter&) const;

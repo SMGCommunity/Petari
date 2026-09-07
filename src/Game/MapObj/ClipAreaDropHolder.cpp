@@ -1,21 +1,18 @@
 #include "Game/MapObj/ClipAreaDropHolder.hpp"
-#include "Game/LiveActor/LiveActorGroup.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/ClipAreaDrop.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
-#include "Game/Util.hpp"
 
 namespace {
     static const s32 sMaxClipAreaDrop = 32;
 };  // namespace
 
 ClipAreaDropHolder::ClipAreaDropHolder() : DeriveActorGroup< ClipAreaDrop >("クリップエリアのしずく管理", ::sMaxClipAreaDrop) {
-    ClipAreaDrop* pClipArea = nullptr;
+    ClipAreaDrop* pClipAreaDrop = nullptr;
 
     for (int i = 0; i < ::sMaxClipAreaDrop; i++) {
-        pClipArea = new ClipAreaDrop("クリップエリアのしずく");
-        pClipArea->initWithoutIter();
-        registerActor(pClipArea);
+        pClipAreaDrop = new ClipAreaDrop("クリップエリアのしずく");
+        pClipAreaDrop->initWithoutIter();
+        registerActor(pClipAreaDrop);
     }
 }
 
@@ -25,29 +22,20 @@ namespace MR {
     }
 
     ClipAreaDrop* getDeadClipAreaDrop() {
-        ClipAreaDropHolder* pHolder = MR::getSceneObj< ClipAreaDropHolder >(SceneObj_ClipAreaDropHolder);
-
-        if (pHolder->getDeadActor() != nullptr) {
-            return static_cast< ClipAreaDrop* >(pHolder->getDeadActor());
-        }
-
-        return nullptr;
+        return MR::getSceneObj< ClipAreaDropHolder >(SceneObj_ClipAreaDropHolder)->getDeadMember();
     }
 
-    bool appearClipAreaDrop(const TVec3f& rPos, f32 f) {
-        ClipAreaDrop* pClipArea = getDeadClipAreaDrop();
+    bool appearClipAreaDrop(const TVec3f& rPos, f32 baseSize) {
+        ClipAreaDrop* pClipAreaDrop = getDeadClipAreaDrop();
 
-        if (pClipArea == nullptr) {
+        if (pClipAreaDrop == nullptr) {
             return false;
         }
 
-        pClipArea->mPosition.set(rPos);
-        pClipArea->setBaseSize(f);
-        pClipArea->appear();
+        pClipAreaDrop->mPosition.set(rPos);
+        pClipAreaDrop->setBaseSize(baseSize);
+        pClipAreaDrop->appear();
 
         return true;
     }
 };  // namespace MR
-
-ClipAreaDropHolder::~ClipAreaDropHolder() {
-}

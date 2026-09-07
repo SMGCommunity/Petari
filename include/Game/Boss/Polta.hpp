@@ -15,14 +15,18 @@ class PoltaSensorCtrl;
 
 class BombTeresaHolder : public DeriveActorGroup< BombTeresa > {
 public:
+    /// @brief Creates a new `BombTeresaHolder`.
     BombTeresaHolder();
 
     void disperseAll();
 };
 
+/// @brief Bouldergeist
 class Polta : public LiveActor {
 public:
-    Polta(const char*);
+    /// @brief Creates a new `Polta`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    Polta(const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
     virtual void calcAnim();
@@ -65,9 +69,9 @@ public:
     /* 0xA8 */ ActorCameraInfo* mCameraInfo;
     /* 0xAC */ ModelObj* mBreakModel;
     /* 0xB0 */ ModelObj* mFormationModel;
-    TQuat4f _B4;
-    TVec3f _C4;
-    TQuat4f _D0;
-    TVec3f _E0;
-    f32 _EC;
+    /* 0xB4 */ TQuat4f _B4;
+    /* 0xC4 */ TVec3f _C4;
+    /* 0xD0 */ TQuat4f _D0;
+    /* 0xE0 */ TVec3f _E0;
+    /* 0xEC */ f32 _EC;
 };

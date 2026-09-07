@@ -27,7 +27,7 @@ void KoopaBattleStairsBase::update() {
 }
 
 void KoopaBattleStairsBase::end() {
-    for (int idx = 0; idx < mStairsGroup->mObjectCount; idx++) {
+    for (int idx = 0; idx < mStairsGroup->getObjNum(); idx++) {
         mStairsGroup->getActor(idx)->makeActorDead();
     }
 

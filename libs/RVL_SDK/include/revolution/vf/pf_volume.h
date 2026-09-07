@@ -4,6 +4,7 @@
 #include "revolution/vf/vf_struct.h"
 #include <revolution.h>
 
+s32 VFiPFVOL_InitModule(u32 config, void* param);
 s32 VFiPFVOL_errnum(void);
 s32 VFiPFVOL_detach(s8);
 s32 VFiPFVOL_attach(PF_DRV_TBL*);

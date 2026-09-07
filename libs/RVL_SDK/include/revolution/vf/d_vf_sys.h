@@ -4,6 +4,7 @@
 #include "revolution/vf/vf_struct.h"
 
 void (*VFSysGetTimeStampCallback())(struct VFSysTime*);
+void (*VFSysSetTimeStampCallback(void (*i_callback)(struct VFSysTime*)))(struct VFSysTime*);
 
 s32 VFSysUnsetDevice(s32 i_handle_idx);
 s32 VFSysCheckExistPrfFile_nandflash_sub(const s8* i_prf_file_name_p, u32 i_handle_idx);

@@ -34,21 +34,21 @@ SkeletalFishBossBattleDirector::SkeletalFishBossBattleDirector(SkeletalFishBoss*
 }
 
 void SkeletalFishBossBattleDirector::initiate() {
-    LiveActorGroup* grp = MR::getGroupFromArray(mFishBoss);
+    LiveActorGroup* group = MR::getGroupFromArray(mFishBoss);
 
-    for (s32 i = 0; i < grp->mObjectCount; i++) {
-        if (!strcmp(grp->getActor(i)->mName, "海底火山巨大石柱") || (!strcmp(grp->getActor(i)->mName, "海底火山石柱（小）"))) {
-            mColumns[_90] = static_cast< SubmarineVolcanoBigColumn* >(grp->getActor(i));
+    for (s32 i = 0; i < group->getObjNum(); i++) {
+        if (strcmp(group->getActor(i)->getName(), "海底火山巨大石柱") == 0 || strcmp(group->getActor(i)->getName(), "海底火山石柱（小）") == 0) {
+            mColumns[_90] = static_cast< SubmarineVolcanoBigColumn* >(group->getActor(i));
             _90++;
         }
 
-        if (strcmp(grp->getActor(i)->mName, "羽虫Ｓ")) {
-            if (strcmp(grp->getActor(i)->mName, "羽虫Ｌ")) {
+        if (strcmp(group->getActor(i)->getName(), "羽虫Ｓ")) {
+            if (strcmp(group->getActor(i)->getName(), "羽虫Ｌ")) {
                 continue;
             }
         }
 
-        _94[_D4] = grp->getActor(i);
+        _94[_D4] = group->getActor(i);
         MR::invalidateClipping(_94[_D4]);
         _D4++;
     }
@@ -97,8 +97,9 @@ void SkeletalFishBossBattleDirector::tryColumnCollision(HitSensor* pSensor) {
 void SkeletalFishBossBattleDirector::pauseOffCast() {
     LiveActorGroup* group = MR::getGroupFromArray(mFishBoss);
 
-    for (s32 i = 0; i < group->mObjectCount; i++) {
+    for (s32 i = 0; i < group->getObjNum(); i++) {
         MR::requestMovementOn(group->getActor(i));
+
         if (MR::isExistEffectKeeper(group->getActor(i))) {
             MR::pauseOffEffectAll(group->getActor(i));
         }

@@ -15,10 +15,12 @@ namespace NrvDinoPackunFire {
 };  // namespace NrvDinoPackunFire
 
 DinoPackunTrackFireHolder::DinoPackunTrackFireHolder(s32 max) : DeriveActorGroup< DinoPackunTrackFire >("シッポ跡炎管理", max) {
+    DinoPackunTrackFire* pTrackFire;
+
     for (s32 i = 0; i < max; i++) {
-        DinoPackunTrackFire* fire = new DinoPackunTrackFire("シッポ跡炎");
-        fire->initWithoutIter();
-        registerActor(fire);
+        pTrackFire = new DinoPackunTrackFire("シッポ跡炎");
+        pTrackFire->initWithoutIter();
+        registerActor(pTrackFire);
     }
 }
 

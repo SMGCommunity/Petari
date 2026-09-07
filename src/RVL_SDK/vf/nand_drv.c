@@ -368,7 +368,7 @@ s32 VFi_NandFlushNANDFromHandleIdx(s32 i_handleIdx, int i_setLastDeviceError) {
     return 0;
 }
 
-static s32 _MountPrfFile(struct PDM_DISK* p_disk, s8* i_fullpath_p) {
+s32 _MountPrfFile(struct PDM_DISK* p_disk, s8* i_fullpath_p) {
     struct PR_BINHEADER header ATTR_ALIGN(64);
     struct VF_HANDLE_DRIVE* drive_p;
     struct NANDFileInfo* fileInfo_p;
@@ -466,12 +466,12 @@ static u16 _UnmountPrfFile(struct PDM_DISK* p_disk) {
     return 0xFFFF;
 }
 
-static s32 nanddrv_BuildUpFSInfoSector(u8* buf) {
+s32 nanddrv_BuildUpFSInfoSector(u8* buf) {
     s32 err = dCommon_MakeFsInfoSec(buf, 0x200);
     return (err == 0) ? 0 : -21;
 }
 
-static s32 nanddrv_BuildUpBootSector(struct PDM_DISK* p_disk, u8* buf, enum FatType* type) {
+s32 nanddrv_BuildUpBootSector(struct PDM_DISK* p_disk, u8* buf, enum FatType* type) {
     struct PDM_DISK* realDisk_p;
     u32 drvSPU;
 
@@ -484,7 +484,7 @@ static s32 nanddrv_BuildUpBootSector(struct PDM_DISK* p_disk, u8* buf, enum FatT
     return 0;
 }
 
-static s32 nanddrv_init(struct PDM_DISK* p_disk) {
+s32 nanddrv_init(struct PDM_DISK* p_disk) {
     if (p_disk == NULL) {
         return -20;
     }
@@ -493,7 +493,7 @@ static s32 nanddrv_init(struct PDM_DISK* p_disk) {
     return 0;
 }
 
-static s32 nanddrv_mount(struct PDM_DISK* p_disk) {
+s32 nanddrv_mount(struct PDM_DISK* p_disk) {
     struct VF_HANDLE_DRIVE* drive_p;
     s32 err;
     if (p_disk == NULL) {
@@ -507,11 +507,11 @@ static s32 nanddrv_mount(struct PDM_DISK* p_disk) {
     return err == 0 ? 0 : err;
 }
 
-static s32 nanddrv_format(struct PDM_DISK* p_disk, const u8* param) {
+s32 nanddrv_format(struct PDM_DISK* p_disk, const u8* param) {
     return p_disk ? 0 : -20;
 }
 
-static s32 nanddrv_pread(struct PDM_DISK* p_disk, u8* p_buf, u32 block, u32 num_blocks, u32* p_num_success) {
+s32 nanddrv_pread(struct PDM_DISK* p_disk, u8* p_buf, u32 block, u32 num_blocks, u32* p_num_success) {
     *p_num_success = 0;
     if (p_disk == NULL || p_buf == NULL || num_blocks == 0 || p_num_success == NULL) {
         return -20;
@@ -519,7 +519,7 @@ static s32 nanddrv_pread(struct PDM_DISK* p_disk, u8* p_buf, u32 block, u32 num_
     return nanddrv_physical_read(num_blocks, p_buf, block, 0x200, p_num_success, p_disk);
 }
 
-static s32 nanddrv_pwrite(struct PDM_DISK* p_disk, const u8* p_buf, u32 block, u32 num_blocks, u32* p_num_success) {
+s32 nanddrv_pwrite(struct PDM_DISK* p_disk, const u8* p_buf, u32 block, u32 num_blocks, u32* p_num_success) {
     *p_num_success = 0;
     if (p_disk == NULL || p_buf == NULL || num_blocks == 0 || p_num_success == NULL) {
         return -20;
@@ -527,7 +527,7 @@ static s32 nanddrv_pwrite(struct PDM_DISK* p_disk, const u8* p_buf, u32 block, u
     return nanddrv_physical_write(num_blocks, p_buf, block, 0x200, p_num_success, p_disk);
 }
 
-static s32 nanddrv_unmount(struct PDM_DISK* p_disk) {
+s32 nanddrv_unmount(struct PDM_DISK* p_disk) {
     u16 nandError;
 
     if (p_disk == NULL) {
@@ -541,7 +541,7 @@ static s32 nanddrv_unmount(struct PDM_DISK* p_disk) {
     return nandError;
 }
 
-static s32 nanddrv_finalize(struct PDM_DISK* p_disk) {
+s32 nanddrv_finalize(struct PDM_DISK* p_disk) {
     if (p_disk == NULL) {
         return -20;
     }
@@ -549,7 +549,7 @@ static s32 nanddrv_finalize(struct PDM_DISK* p_disk) {
     return 0;
 }
 
-static s32 nanddrv_get_disk_info(struct PDM_DISK* p_disk, struct PDM_DISK_INFO* p_disk_info) {
+s32 nanddrv_get_disk_info(struct PDM_DISK* p_disk, struct PDM_DISK_INFO* p_disk_info) {
     u32 fileSize;
     u32 dataSize;
 
@@ -577,7 +577,7 @@ s32 VFi_nanddrv_init_drv_tbl(struct PDM_DISK_TBL* p_disk_tbl, u32 ui_ext) {
     return 0;
 }
 
-static s32 nanddrv_physical_read(u32 num_blocks, u8* buf, u32 block, u32 bps, u32* p_num_success, struct PDM_DISK* p_disk) {
+s32 nanddrv_physical_read(u32 num_blocks, u8* buf, u32 block, u32 bps, u32* p_num_success, struct PDM_DISK* p_disk) {
     u32 fileSize;
     u32 size;
     s32 err;
@@ -620,7 +620,7 @@ static s32 nanddrv_physical_read(u32 num_blocks, u8* buf, u32 block, u32 bps, u3
     return nandError;
 }
 
-static s32 nanddrv_physical_write(u32 num_blocks, const u8* buf, u32 block, u32 bps, u32* p_num_success, struct PDM_DISK* p_disk) {
+s32 nanddrv_physical_write(u32 num_blocks, const u8* buf, u32 block, u32 bps, u32* p_num_success, struct PDM_DISK* p_disk) {
     u32 fileSize;
     u32 size;
     u32 offset;

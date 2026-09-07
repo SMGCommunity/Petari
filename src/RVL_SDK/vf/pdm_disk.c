@@ -291,91 +291,20 @@ s32 VFipdm_disk_release_part_permission(struct PDM_DISK* p_disk, u32 mode) {
 
 s32 VFipdm_disk_physical_read(struct PDM_DISK* p_disk, u8* buf, u32 psector, u32 num_sector, u16 bps, u32* p_num_success) {
     s32 err;
-    u32 block;
-    u32 num_block;
-    u32 tmp_sector;
-    u16 delta;
-    u32 disk_no;
-    u16 handle_no;
     struct PDM_DISK* lp_disk;
 
     if (p_disk == NULL || buf == NULL || num_sector == 0 || bps == 0) {
         return 1;
     }
 
-    disk_no = (u32)p_disk & 0xFF;
-    if (disk_no >= 26 || ((u32)p_disk & 0xFF00) != 0x300) {
-        return 1;
-    }
-
-    lp_disk = &VFipdm_disk_set.disk[disk_no];
-
-    for (handle_no = 0; handle_no < 26; handle_no++) {
-        if (VFipdm_disk_set.disk_handle[handle_no].handle == lp_disk && VFipdm_disk_set.disk_handle[handle_no].signature == (u32)p_disk >> 16) {
-            break;
-        }
-    }
-
-    err = handle_no >= 26;
-    if (err) {
-        return err;
-    }
-
-    block = psector;
-    err = 0;
-    num_block = num_sector;
-
-    if (bps > 512) {
-        delta = bps >> 9;
-
-        if (delta == 2) {
-            block <<= 1;
-        } else if (delta == 4) {
-            block <<= 2;
-        } else if (delta == 8) {
-            block <<= 3;
-        }
-
-        if (delta == 2) {
-            num_block <<= 1;
-        } else if (delta == 4) {
-            num_block <<= 2;
-        } else if (delta == 8) {
-            num_block <<= 3;
-        }
-    } else {
-        if (bps < 512) {
-            err = 4;
-        }
-    }
-
+    err = VFipdm_disk_check_disk_handle(p_disk);
     if (err != 0) {
         return err;
     }
 
-    err = lp_disk->disk_tbl.p_func->physical_read(p_disk, buf, block, num_block, p_num_success);
+    lp_disk = &VFipdm_disk_set.disk[(u32)p_disk & 0xFF];
 
-    tmp_sector = block;
-
-    if (bps > 512) {
-        delta = bps >> 9;
-
-        if (delta == 2) {
-            tmp_sector >>= 1;
-        } else if (delta == 4) {
-            tmp_sector >>= 2;
-        } else if (delta == 8) {
-            tmp_sector >>= 3;
-        }
-
-        if (delta == 2) {
-            *p_num_success >>= 1;
-        } else if (delta == 4) {
-            *p_num_success >>= 2;
-        } else if (delta == 8) {
-            *p_num_success >>= 3;
-        }
-    }
+    err = lp_disk->disk_tbl.p_func->physical_read(p_disk, buf, psector, num_sector, p_num_success);
 
     if (err != 0) {
         if (lp_disk->p_cur_part != NULL) {
@@ -389,90 +318,20 @@ s32 VFipdm_disk_physical_read(struct PDM_DISK* p_disk, u8* buf, u32 psector, u32
 
 s32 VFipdm_disk_physical_write(struct PDM_DISK* p_disk, const u8* buf, u32 psector, u32 num_sector, u16 bps, u32* p_num_success) {
     s32 err;
-    u32 block;
-    u32 num_block;
-    u32 tmp_sector;
-    u16 delta;
-    u32 disk_no;
-    u16 handle_no;
     struct PDM_DISK* lp_disk;
 
     if (p_disk == NULL || buf == NULL || num_sector == 0 || bps == 0) {
         return 1;
     }
 
-    disk_no = (u32)p_disk & 0xFF;
-    if (disk_no >= 26 || ((u32)p_disk & 0xFF00) != 0x300) {
-        return 1;
-    }
-
-    lp_disk = &VFipdm_disk_set.disk[disk_no];
-
-    for (handle_no = 0; handle_no < 26; handle_no++) {
-        if (VFipdm_disk_set.disk_handle[handle_no].handle == lp_disk && VFipdm_disk_set.disk_handle[handle_no].signature == (u32)p_disk >> 16) {
-            break;
-        }
-    }
-
-    if (handle_no >= 26) {
-        return 1;
-    }
-
-    block = psector;
-    err = 0;
-    num_block = num_sector;
-
-    if (bps > 512) {
-        delta = bps >> 9;
-
-        if (delta == 2) {
-            block <<= 1;
-        } else if (delta == 4) {
-            block <<= 2;
-        } else if (delta == 8) {
-            block <<= 3;
-        }
-
-        if (delta == 2) {
-            num_block <<= 1;
-        } else if (delta == 4) {
-            num_block <<= 2;
-        } else if (delta == 8) {
-            num_block <<= 3;
-        }
-    } else {
-        if (bps < 512) {
-            err = 4;
-        }
-    }
-
+    err = VFipdm_disk_check_disk_handle(p_disk);
     if (err != 0) {
         return err;
     }
 
-    err = lp_disk->disk_tbl.p_func->physical_write(p_disk, (u8*)buf, block, num_block, p_num_success);
+    lp_disk = &VFipdm_disk_set.disk[(u32)p_disk & 0xFF];
 
-    tmp_sector = block;
-
-    if (bps > 512) {
-        delta = bps >> 9;
-
-        if (delta == 2) {
-            tmp_sector >>= 1;
-        } else if (delta == 4) {
-            tmp_sector >>= 2;
-        } else if (delta == 8) {
-            tmp_sector >>= 3;
-        }
-
-        if (delta == 2) {
-            *p_num_success >>= 1;
-        } else if (delta == 4) {
-            *p_num_success >>= 2;
-        } else if (delta == 8) {
-            *p_num_success >>= 3;
-        }
-    }
+    err = lp_disk->disk_tbl.p_func->physical_write(p_disk, (u8*)buf, psector, num_sector, p_num_success);
 
     if (err != 0) {
         if (lp_disk->p_cur_part != NULL) {
@@ -486,36 +345,23 @@ s32 VFipdm_disk_physical_write(struct PDM_DISK* p_disk, const u8* buf, u32 psect
 
 s32 VFipdm_disk_physical_erase(struct PDM_DISK* p_disk, u32 block, u32 num_block) {
     s32 err;
-    u32 disk_no;
-    u16 handle_no;
     struct PDM_DISK* lp_disk;
 
     if (p_disk == NULL || num_block == 0) {
         return 1;
     }
 
-    disk_no = (u32)p_disk & 0xFF;
-    if (disk_no >= 26 || ((u32)p_disk & 0xFF00) != 0x300) {
-        return 1;
-    }
-
-    lp_disk = &VFipdm_disk_set.disk[disk_no];
-
-    for (handle_no = 0; handle_no < 26; handle_no++) {
-        if (VFipdm_disk_set.disk_handle[handle_no].handle == lp_disk && VFipdm_disk_set.disk_handle[handle_no].signature == (u32)p_disk >> 16) {
-            break;
-        }
-    }
-
-    err = handle_no >= 26;
-    if (err) {
+    err = VFipdm_disk_check_disk_handle(p_disk);
+    if (err != 0) {
         return err;
     }
 
-    err = VFipdm_disk_set.disk[disk_no].p_erase_func(block, num_block);
+    lp_disk = &VFipdm_disk_set.disk[(u32)p_disk & 0xFF];
+
+    err = lp_disk->p_erase_func(block, num_block);
     if (err != 0) {
-        if (VFipdm_disk_set.disk[disk_no].p_cur_part != NULL) {
-            VFipdm_part_set_driver_error_code(VFipdm_disk_set.disk[disk_no].p_cur_part, err);
+        if (lp_disk->p_cur_part != NULL) {
+            VFipdm_part_set_driver_error_code(lp_disk->p_cur_part, err);
         }
         return 0x15;
     }
@@ -612,8 +458,6 @@ s32 VFipdm_disk_check_media_insert(struct PDM_DISK* p_disk, u32* is_insert) {
 }
 
 s32 VFipdm_disk_check_data_erase(struct PDM_DISK* p_disk, u32* is_erase) {
-    u32 disk_no;
-    u16 handle_no;
     s32 err;
     struct PDM_DISK* lp_disk;
 
@@ -621,25 +465,14 @@ s32 VFipdm_disk_check_data_erase(struct PDM_DISK* p_disk, u32* is_erase) {
         return 1;
     }
 
-    disk_no = (u32)p_disk & 0xFF;
-    if (disk_no >= 26 || ((u32)p_disk & 0xFF00) != 0x300) {
-        return 1;
-    }
-
-    lp_disk = &VFipdm_disk_set.disk[disk_no];
-
-    for (handle_no = 0; handle_no < 26; handle_no++) {
-        if (VFipdm_disk_set.disk_handle[handle_no].handle == lp_disk && VFipdm_disk_set.disk_handle[handle_no].signature == (u32)p_disk >> 16) {
-            break;
-        }
-    }
-
-    err = handle_no >= 26;
-    if (err) {
+    err = VFipdm_disk_check_disk_handle(p_disk);
+    if (err != 0) {
         return err;
     }
 
-    if (VFipdm_disk_set.disk[disk_no].p_erase_func != NULL) {
+    lp_disk = &VFipdm_disk_set.disk[(u32)p_disk & 0xFF];
+
+    if (lp_disk->p_erase_func != NULL) {
         *is_erase = 1;
     } else {
         *is_erase = 0;

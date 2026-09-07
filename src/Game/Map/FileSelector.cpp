@@ -212,7 +212,7 @@ void FileSelector::notifyItem(FileSelectItem* pItem, s32 param2) {
 void FileSelector::control() {
     _C0 = nullptr;
 
-    for (int i = 0; i < mItems->getObjectCount(); i++) {
+    for (int i = 0; i < mItems->getObjNum(); i++) {
         LiveActor* pActor = mItems->getActor(i);
         TVec3f v1 = pActor->mPosition * 0.95f;
         TVec3f v2 = _98[i] * 0.05f;
@@ -221,7 +221,7 @@ void FileSelector::control() {
         pActor->mPosition.z = v3.z;
     }
 
-    for (int i = 0; i < mItems->getObjectCount(); i++) {
+    for (int i = 0; i < mItems->getObjNum(); i++) {
         mItems->getActor(i)->mPosition += TVec3f(0.0f, 1000.0f, 0.0f);
     }
 
@@ -366,7 +366,7 @@ void FileSelector::createSelectEffect() {
 }
 
 void FileSelector::appearAllItems() {
-    for (int i = 0; i < mItems->getObjectCount(); i++) {
+    for (int i = 0; i < mItems->getObjNum(); i++) {
         mItems->getActor(i)->appear();
     }
 }
@@ -421,25 +421,25 @@ void FileSelector::updateFileInfo() {
 }
 
 void FileSelector::appearAllIndex() {
-    for (int i = 0; i < mItems->getObjectCount(); i++) {
+    for (int i = 0; i < mItems->getObjNum(); i++) {
         static_cast< FileSelectItem* >(mItems->getActor(i))->appearIndex();
     }
 }
 
 void FileSelector::disappearAllIndex() {
-    for (int i = 0; i < mItems->getObjectCount(); i++) {
+    for (int i = 0; i < mItems->getObjNum(); i++) {
         static_cast< FileSelectItem* >(mItems->getActor(i))->disappearIndex();
     }
 }
 
 void FileSelector::invalidateSelectAll() {
-    for (int i = 0; i < mItems->getObjectCount(); i++) {
+    for (int i = 0; i < mItems->getObjNum(); i++) {
         static_cast< FileSelectItem* >(mItems->getActor(i))->invalidateSelect();
     }
 }
 
 void FileSelector::validateSelectAll() {
-    for (int i = 0; i < mItems->getObjectCount(); i++) {
+    for (int i = 0; i < mItems->getObjNum(); i++) {
         static_cast< FileSelectItem* >(mItems->getActor(i))->validateSelect();
     }
 }
@@ -614,7 +614,7 @@ void FileSelector::initAllItems() {
 }
 
 void FileSelector::validateRotateAllItems() {
-    for (int i = 0; i < mItems->getObjectCount(); i++) {
+    for (int i = 0; i < mItems->getObjNum(); i++) {
         static_cast< FileSelectItem* >(mItems->getActor(i))->validateRotate();
     }
 }
