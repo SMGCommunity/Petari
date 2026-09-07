@@ -358,7 +358,8 @@ bool Kameck::tryAppearEnd() {
 
 bool Kameck::tryAttackWait() {
     if (MR::isNearPlayer(this, 2000.0f) && !mActiveActorList->isFull()) {
-        if (MR::startFollowKameckBeam(mBeamType, MR::getJointMtx(this, "Wand"), 0.6f, TVec3f(0.0f, 110.0f, 0.0f), mBeamEventListener) != nullptr) {
+        mBeam = MR::startFollowKameckBeam(mBeamType, MR::getJointMtx(this, "Wand"), 0.6f, TVec3f(0.0f, 110.0f, 0.0f), mBeamEventListener);
+        if (mBeam != nullptr) {
             setNerve(&NrvKameck::KameckNrvAttackWait::sInstance);
             return true;
         }
