@@ -9,21 +9,17 @@
 #include <cstdio>
 #include <cstring>
 
-MsgSharedGroup::MsgSharedGroup(const char* pName, s32 a2, const JMapInfoIter& rIter) : LiveActorGroup(_28, a2) {
-    mIDInfo = 0;
-    _1C = -1;
-    _20 = 0;
-    _24 = 0;
-    MR::copyString(_28, pName, 0x30);
-    JMapIdInfo* inf = new JMapIdInfo();
+MsgSharedGroup::MsgSharedGroup(const char* pName, s32 numMax, const JMapInfoIter& rIter) : LiveActorGroup(mGroupName, numMax), mIdInfo(), mMsg(-1), mSensor(), mSensorName() {
+    MR::copyString(mGroupName, pName, sizeof(mGroupName));
+    JMapIdInfo* pIdInfo = new JMapIdInfo();
 
-    if (inf) {
-        JMapIdInfo newInfo = MR::createJMapIdInfoFromClippingGroupId(rIter);
-        inf->_0 = newInfo._0;
-        inf->mZoneID = newInfo.mZoneID;
+    if (pIdInfo != nullptr) {
+        JMapIdInfo newInfo = MR::createJMapIdInfoFromGroupId(rIter);
+        pIdInfo->_0 = newInfo._0;
+        pIdInfo->mZoneID = newInfo.mZoneID;
     }
 
-    mIDInfo = inf;
+    mIdInfo = pIdInfo;
 }
 
 void MsgSharedGroup::init(const JMapInfoIter& rIter) {
@@ -33,25 +29,24 @@ void MsgSharedGroup::init(const JMapInfoIter& rIter) {
 void MsgSharedGroup::movement() {
     NameObj::movement();
 
-    if (_1C != 0xFFFFFFFF) {
-        for (s32 i = 0; i < mObjectCount; i++) {
-            LiveActor* actor = getActor(i);
-            HitSensor* sensor = actor->getSensor(_24);
-            sensor->receiveMessage(_1C, _20);
-        }
-
-        _1C = -1;
+    if (mMsg == -1) {
+        return;
     }
+
+    for (s32 i = 0; i < getObjectCount(); i++) {
+        getActor(i)->getSensor(mSensorName)->receiveMessage(mMsg, mSensor);
+    }
+
+    mMsg = -1;
 }
 
-void MsgSharedGroup::sendMsgToGroupMember(u32 msg, HitSensor* pSensor, const char* pName) {
-    _1C = msg;
-    _20 = pSensor;
-    _24 = pName;
+void MsgSharedGroup::sendMsgToGroupMember(u32 msg, HitSensor* pSensor, const char* pSensorName) {
+    mMsg = msg;
+    mSensor = pSensor;
+    mSensorName = pSensorName;
 }
 
-LiveActorGroupArray::LiveActorGroupArray(const char* pName) : NameObj(pName) {
-    mNumGroups = 0;
+LiveActorGroupArray::LiveActorGroupArray(const char* pName) : NameObj(pName), mGroups() {
 }
 
 void LiveActorGroupArray::init(const JMapInfoIter& rIter) {
@@ -61,31 +56,68 @@ LiveActorGroup* LiveActorGroupArray::getLiveActorGroup(const LiveActor* pActor) 
     return findGroup(pActor);
 }
 
-MsgSharedGroup* LiveActorGroupArray::createGroup(const JMapInfoIter& rIter, const char* pName, s32 msg) {
-    MsgSharedGroup* group = new MsgSharedGroup(pName, msg, rIter);
-    group->initWithoutIter();
-    s32 cnt = mNumGroups;
-    mNumGroups = cnt + 1;
-    mGroups[cnt] = group;
-    return group;
+LiveActorGroup* LiveActorGroupArray::createGroup(const JMapInfoIter& rIter, const char* pName, s32 numMax) {
+    MsgSharedGroup* pGroup;
+
+    pGroup = new MsgSharedGroup(pName, numMax, rIter);
+    pGroup->initWithoutIter();
+
+    mGroups.push_back(pGroup);
+
+    return pGroup;
 }
 
-LiveActorGroup* LiveActorGroupArray::entry(LiveActor* pActor, const JMapInfoIter& rIter, const char* pName, s32 a4) {
+LiveActorGroup* LiveActorGroupArray::findGroup(const LiveActor* pActor) const {
+    MsgSharedGroup* const* it;
+
+    for (it = mGroups.begin(); it != mGroups.end(); it++) {
+        if ((*it)->hasActor(pActor)) {
+            break;
+        }
+    }
+
+    if (it != mGroups.end()) {
+        return *it;
+    }
+
+    return nullptr;
+}
+
+LiveActorGroup* LiveActorGroupArray::findGroup(const JMapInfoIter& rIter) const {
+    JMapIdInfo idInfo = MR::createJMapIdInfoFromGroupId(rIter);
+    MsgSharedGroup* const* it;
+
+    for (it = mGroups.begin(); it != mGroups.end(); it++) {
+        if (*(*it)->mIdInfo == idInfo) {
+            break;
+        }
+    }
+
+    if (it != mGroups.end()) {
+        return *it;
+    }
+
+    return nullptr;
+}
+
+LiveActorGroup* LiveActorGroupArray::entry(LiveActor* pActor, const JMapInfoIter& rIter, const char* pName, s32 numMax) {
     s32 groupID = -1;
     MR::getJMapInfoGroupID(rIter, &groupID);
 
-    if (!pName) {
-        char buf[0x20];
-        snprintf(buf, sizeof(buf), "group%02d", groupID);
-        pName = buf;
+    if (pName == nullptr) {
+        char defaultName[32];
+        snprintf(defaultName, sizeof(defaultName), "group%02d", groupID);
+
+        pName = defaultName;
     }
 
-    LiveActorGroup* group = findGroup(rIter);
+    LiveActorGroup* pGroup = findGroup(rIter);
 
-    if (!group) {
-        group = createGroup(rIter, pName, a4);
+    if (pGroup == nullptr) {
+        pGroup = createGroup(rIter, pName, numMax);
     }
 
-    group->registerActor(pActor);
-    return group;
+    pGroup->registerActor(pActor);
+
+    return pGroup;
 }

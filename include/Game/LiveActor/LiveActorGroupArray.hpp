@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActorGroup.hpp"
+#include "Game/Util/Array.hpp"
 
 class HitSensor;
 class JMapIdInfo;
@@ -14,11 +15,11 @@ public:
 
     void sendMsgToGroupMember(u32, HitSensor*, const char*);
 
-    JMapIdInfo* mIDInfo;  // 0x18
-    s32 _1C;
-    HitSensor* _20;
-    const char* _24;
-    char _28[0x30];
+    /* 0x18 */ JMapIdInfo* mIdInfo;
+    /* 0x1C */ u32 mMsg;
+    /* 0x20 */ HitSensor* mSensor;
+    /* 0x24 */ const char* mSensorName;
+    /* 0x28 */ char mGroupName[48];
 };
 
 class LiveActorGroupArray : public NameObj {
@@ -28,11 +29,10 @@ public:
     virtual void init(const JMapInfoIter&);
 
     LiveActorGroup* getLiveActorGroup(const LiveActor*) const;
-    MsgSharedGroup* createGroup(const JMapInfoIter&, const char*, s32);
+    LiveActorGroup* createGroup(const JMapInfoIter&, const char*, s32);
     LiveActorGroup* findGroup(const LiveActor*) const;
     LiveActorGroup* findGroup(const JMapInfoIter&) const;
     LiveActorGroup* entry(LiveActor*, const JMapInfoIter&, const char*, s32);
 
-    MsgSharedGroup* mGroups[0x20];  // 0xC
-    s32 mNumGroups;                 // 0x8C
+    /* 0x0C */ MR::Vector< MR::FixedArray< MsgSharedGroup*, 32 > > mGroups;
 };
