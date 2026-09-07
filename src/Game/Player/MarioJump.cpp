@@ -2401,7 +2401,7 @@ void Mario::doLanding() {
             goto POST_LANDING;
         }
 
-        if (((isStickFull() || _60D != 0) && _3CA == 0) || (((mMovementStates._B) == 0) && checkSquat(false))) {
+        if (((isStickFull() || _60D) && _3CA == 0) || (((mMovementStates._B) == 0) && checkSquat(false))) {
             stopAnimation(static_cast< const char* >(nullptr), "基本");
             if (!_10._A) {
                 recordTurnSlipAngle();
