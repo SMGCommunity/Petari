@@ -752,17 +752,17 @@ bool KCollisionServer::KCHitSphere(KC_PrismData* pPrism, Fxyz* pCenter, f32 radi
     }
 
     TVec3f* faceNormal = &mFile->mNorms[pPrism->mNormalIndex];
-    f32 faceDist = dir.x * faceNormal->x + dir.y * faceNormal->y + dir.z * faceNormal->z;
-    *pDist = radius - faceDist;
+    f32 faceDot = dir.x * faceNormal->x + dir.y * faceNormal->y + dir.z * faceNormal->z;
+    *pDist = radius - faceDot;
 
-    if (radius - faceDist < 0.0f) {
+    if (*pDist < 0.0f) {
         return false;
     }
 
-    TVec3f closest;
+    f32 nn;
 
-    if (d0 > d1 ? d0 > d2 : d1 > d2) {
-        if (d0 > d1) {
+    if (d0 > d1) {
+        if (d0 > d2) {
             if (d0 <= 0.0f) {
                 if (threshold < *pDist) {
                     return false;
@@ -773,149 +773,140 @@ bool KCollisionServer::KCHitSphere(KC_PrismData* pPrism, Fxyz* pCenter, f32 radi
             }
 
             if (d1 > d2) {
-                f32 nn = n0->x * n1->x + n0->y * n1->y + n0->z * n1->z;
+                nn = n0->x * n1->x + n0->y * n1->y + n0->z * n1->z;
 
-                if (nn * d0 <= d1) {
-                    f32 t = (nn * d1 - d0) / (nn * nn - 1.0f);
-                    f32 s = d1 - t * nn;
-                    *pFlag = 5;
-                    closest.x = t * n0->x + s * n1->x;
-                    closest.y = t * n0->y + s * n1->y;
-                    closest.z = t * n0->z + s * n1->z;
-                    goto edgeRegion;
+                if (nn * d0 > d1) {
+                    goto vertex2;
                 }
 
-                if (d0 <= faceDist) {
-                    *pDist = radiusSq - d0 * d0;
-                    *pFlag = 2;
-                    goto finish;
-                }
-                return false;
-            } else {
-                f32 nn = n0->x * n2->x + n0->y * n2->y + n0->z * n2->z;
-
-                if (nn * d0 <= d2) {
-                    f32 t = (nn * d0 - d2) / (nn * nn - 1.0f);
-                    f32 s = d0 - t * nn;
-                    *pFlag = 7;
-                    closest.x = t * n2->x + s * n0->x;
-                    closest.y = t * n2->y + s * n0->y;
-                    closest.z = t * n2->z + s * n0->z;
-                    goto edgeRegion;
-                }
-
-                if (d0 <= faceDist) {
-                    *pDist = radiusSq - d0 * d0;
-                    *pFlag = 2;
-                    goto finish;
-                }
-                return false;
-            }
-        } else {
-            if (d1 <= 0.0f) {
-                if (threshold < *pDist) {
-                    return false;
-                }
-
-                *pFlag = 1;
-                return true;
+                goto region5;
             }
 
-            if (d2 > d0) {
-                f32 nn = n1->x * n2->x + n1->y * n2->y + n1->z * n2->z;
+            nn = n0->x * n2->x + n0->y * n2->y + n0->z * n2->z;
 
-                if (nn * d1 <= d2) {
-                    f32 t = (nn * d1 - d0) / (nn * nn - 1.0f);
-                    f32 s = d2 - t * nn;
-                    *pFlag = 6;
-                    closest.x = t * n1->x + s * n2->x;
-                    closest.y = t * n1->y + s * n2->y;
-                    closest.z = t * n1->z + s * n2->z;
-                    goto edgeRegion;
-                }
-
-                if (d1 <= faceDist) {
-                    *pDist = radiusSq - d1 * d1;
-                    *pFlag = 3;
-                    goto finish;
-                }
-                return false;
-            } else {
-                f32 nn = n1->x * n0->x + n1->y * n0->y + n1->z * n0->z;
-
-                if (nn * d1 <= d0) {
-                    f32 t = (nn * d1 - d0) / (nn * nn - 1.0f);
-                    f32 s = d1 - t * nn;
-                    *pFlag = 5;
-                    closest.x = t * n0->x + s * n1->x;
-                    closest.y = t * n0->y + s * n1->y;
-                    closest.z = t * n0->z + s * n1->z;
-                    goto edgeRegion;
-                }
-
-                if (d1 <= faceDist) {
-                    *pDist = radiusSq - d1 * d1;
-                    *pFlag = 3;
-                    goto finish;
-                }
-                return false;
+            if (nn * d0 > d2) {
+                goto vertex2;
             }
+
+            goto region7;
         }
-    } else {
-        if (d2 < 0.0f) {
+    } else if (d1 > d2) {
+        if (d1 <= 0.0f) {
             if (threshold < *pDist) {
-                *pFlag = 1;
-                return true;
+                return false;
             }
-            return false;
+
+            *pFlag = 1;
+            return true;
         }
 
-        if (d0 > d1) {
-            f32 nn = n2->x * n0->x + n2->y * n0->y + n2->z * n0->z;
+        if (d2 > d0) {
+            nn = n1->x * n2->x + n1->y * n2->y + n1->z * n2->z;
 
-            if (nn * d2 <= d0) {
-                f32 t = (nn * d0 - d2) / (nn * nn - 1.0f);
-                f32 s = d0 - t * nn;
-                *pFlag = 7;
-                closest.x = t * n2->x + s * n0->x;
-                closest.y = t * n2->y + s * n0->y;
-                closest.z = t * n2->z + s * n0->z;
-                goto edgeRegion;
+            if (nn * d1 > d2) {
+                goto vertex3;
             }
 
-            if (d2 <= faceDist) {
-                *pDist = radiusSq - d2 * d2;
-                *pFlag = 4;
-                goto finish;
-            }
-            return false;
-        } else {
-            f32 nn = n2->x * n1->x + n2->y * n1->y + n2->z * n1->z;
-
-            if (nn * d2 <= d1) {
-                f32 t = (nn * d2 - d1) / (nn * nn - 1.0f);
-                f32 s = d2 - t * nn;
-                *pFlag = 6;
-                closest.x = t * n1->x + s * n2->x;
-                closest.y = t * n1->y + s * n2->y;
-                closest.z = t * n1->z + s * n2->z;
-                goto edgeRegion;
-            }
-
-            if (d2 <= faceDist) {
-                *pDist = radiusSq - d2 * d2;
-                *pFlag = 4;
-                goto finish;
-            }
-            return false;
+            goto region6;
         }
+
+        nn = n1->x * n0->x + n1->y * n0->y + n1->z * n0->z;
+
+        if (nn * d1 > d0) {
+            goto vertex3;
+        }
+
+        goto region5;
     }
 
-edgeRegion: {
-    f32 closestSq = closest.x * closest.x + closest.y * closest.y + closest.z * closest.z;
+    if (d2 <= 0.0f) {
+        if (threshold < *pDist) {
+            return false;
+        }
+
+        *pFlag = 1;
+        return true;
+    }
+
+    if (d0 > d1) {
+        nn = n2->x * n0->x + n2->y * n0->y + n2->z * n0->z;
+
+        if (nn * d2 > d0) {
+            goto vertex4;
+        }
+
+        goto region7;
+    }
+
+    nn = n2->x * n1->x + n2->y * n1->y + n2->z * n1->z;
+
+    if (nn * d2 > d1) {
+        goto vertex4;
+    }
+
+    goto region6;
+
+vertex2:
+    if (d0 > faceDot) {
+        return false;
+    }
+
+    *pDist = radiusSq - d0 * d0;
+    *pFlag = 2;
+    goto finish;
+
+vertex3:
+    if (d1 > faceDot) {
+        return false;
+    }
+
+    *pDist = radiusSq - d1 * d1;
+    *pFlag = 3;
+    goto finish;
+
+vertex4:
+    if (d2 > faceDot) {
+        return false;
+    }
+
+    *pDist = radiusSq - d2 * d2;
+    *pFlag = 4;
+    goto finish;
+
+region5: {
+    f32 t = (nn * d1 - d0) / (nn * nn - 1.0f);
+    f32 s = d1 - t * nn;
+    *pFlag = 5;
+    dir.x = t * n0->x + s * n1->x;
+    dir.y = t * n0->y + s * n1->y;
+    dir.z = t * n0->z + s * n1->z;
+    goto edgeFinish;
+}
+
+region6: {
+    f32 t = (nn * d2 - d1) / (nn * nn - 1.0f);
+    f32 s = d2 - t * nn;
+    *pFlag = 6;
+    dir.x = t * n1->x + s * n2->x;
+    dir.y = t * n1->y + s * n2->y;
+    dir.z = t * n1->z + s * n2->z;
+    goto edgeFinish;
+}
+
+region7: {
+    f32 t = (nn * d0 - d2) / (nn * nn - 1.0f);
+    f32 s = d0 - t * nn;
+    *pFlag = 7;
+    dir.x = t * n2->x + s * n0->x;
+    dir.y = t * n2->y + s * n0->y;
+    dir.z = t * n2->z + s * n0->z;
+}
+
+edgeFinish: {
+    f32 closestSq = dir.x * dir.x + dir.y * dir.y + dir.z * dir.z;
     f32 dist = MR::sqrt(closestSq);
 
-    if (dist > faceDist) {
+    if (dist > faceDot) {
         *pFlag = 0;
         return false;
     }
@@ -929,7 +920,7 @@ edgeRegion: {
 }
 
 finish:
-    *pDist = MR::sqrt(*pDist) - faceDist;
+    *pDist = MR::sqrt(*pDist) - faceDot;
 
     if (*pDist < 0.0f) {
         *pFlag = 0;
@@ -978,17 +969,17 @@ bool KCollisionServer::KCHitSphereWithThickness(KC_PrismData* pPrism, Fxyz* pCen
     }
 
     TVec3f* faceNormal = &mFile->mNorms[pPrism->mNormalIndex];
-    f32 faceDist = dir.x * faceNormal->x + dir.y * faceNormal->y + dir.z * faceNormal->z;
-    *pDist = radius - faceDist;
+    f32 faceDot = dir.x * faceNormal->x + dir.y * faceNormal->y + dir.z * faceNormal->z;
+    *pDist = radius - faceDot;
 
-    if (radius - faceDist < 0.0f) {
+    if (*pDist < 0.0f) {
         return false;
     }
 
-    TVec3f closest;
+    f32 nn;
 
-    if (d0 > d1 ? d0 > d2 : d1 > d2) {
-        if (d0 > d1) {
+    if (d0 > d1) {
+        if (d0 > d2) {
             if (d0 <= 0.0f) {
                 if (threshold < *pDist) {
                     return false;
@@ -999,149 +990,140 @@ bool KCollisionServer::KCHitSphereWithThickness(KC_PrismData* pPrism, Fxyz* pCen
             }
 
             if (d1 > d2) {
-                f32 nn = n0->x * n1->x + n0->y * n1->y + n0->z * n1->z;
+                nn = n0->x * n1->x + n0->y * n1->y + n0->z * n1->z;
 
-                if (nn * d0 <= d1) {
-                    f32 t = (nn * d1 - d0) / (nn * nn - 1.0f);
-                    f32 s = d1 - t * nn;
-                    *pFlag = 5;
-                    closest.x = t * n0->x + s * n1->x;
-                    closest.y = t * n0->y + s * n1->y;
-                    closest.z = t * n0->z + s * n1->z;
-                    goto edgeRegion;
+                if (nn * d0 > d1) {
+                    goto vertex2;
                 }
 
-                if (d0 <= faceDist) {
-                    *pDist = radiusSq - d0 * d0;
-                    *pFlag = 2;
-                    goto finish;
-                }
-                return false;
-            } else {
-                f32 nn = n0->x * n2->x + n0->y * n2->y + n0->z * n2->z;
-
-                if (nn * d0 <= d2) {
-                    f32 t = (nn * d0 - d2) / (nn * nn - 1.0f);
-                    f32 s = d0 - t * nn;
-                    *pFlag = 7;
-                    closest.x = t * n2->x + s * n0->x;
-                    closest.y = t * n2->y + s * n0->y;
-                    closest.z = t * n2->z + s * n0->z;
-                    goto edgeRegion;
-                }
-
-                if (d0 <= faceDist) {
-                    *pDist = radiusSq - d0 * d0;
-                    *pFlag = 2;
-                    goto finish;
-                }
-                return false;
-            }
-        } else {
-            if (d1 <= 0.0f) {
-                if (threshold < *pDist) {
-                    return false;
-                }
-
-                *pFlag = 1;
-                return true;
+                goto region5;
             }
 
-            if (d2 > d0) {
-                f32 nn = n1->x * n2->x + n1->y * n2->y + n1->z * n2->z;
+            nn = n0->x * n2->x + n0->y * n2->y + n0->z * n2->z;
 
-                if (nn * d1 <= d2) {
-                    f32 t = (nn * d1 - d0) / (nn * nn - 1.0f);
-                    f32 s = d2 - t * nn;
-                    *pFlag = 6;
-                    closest.x = t * n1->x + s * n2->x;
-                    closest.y = t * n1->y + s * n2->y;
-                    closest.z = t * n1->z + s * n2->z;
-                    goto edgeRegion;
-                }
-
-                if (d1 <= faceDist) {
-                    *pDist = radiusSq - d1 * d1;
-                    *pFlag = 3;
-                    goto finish;
-                }
-                return false;
-            } else {
-                f32 nn = n1->x * n0->x + n1->y * n0->y + n1->z * n0->z;
-
-                if (nn * d1 <= d0) {
-                    f32 t = (nn * d1 - d0) / (nn * nn - 1.0f);
-                    f32 s = d1 - t * nn;
-                    *pFlag = 5;
-                    closest.x = t * n0->x + s * n1->x;
-                    closest.y = t * n0->y + s * n1->y;
-                    closest.z = t * n0->z + s * n1->z;
-                    goto edgeRegion;
-                }
-
-                if (d1 <= faceDist) {
-                    *pDist = radiusSq - d1 * d1;
-                    *pFlag = 3;
-                    goto finish;
-                }
-                return false;
+            if (nn * d0 > d2) {
+                goto vertex2;
             }
+
+            goto region7;
         }
-    } else {
-        if (d2 < 0.0f) {
+    } else if (d1 > d2) {
+        if (d1 <= 0.0f) {
             if (threshold < *pDist) {
-                *pFlag = 1;
-                return true;
+                return false;
             }
-            return false;
+
+            *pFlag = 1;
+            return true;
         }
 
-        if (d0 > d1) {
-            f32 nn = n2->x * n0->x + n2->y * n0->y + n2->z * n0->z;
+        if (d2 > d0) {
+            nn = n1->x * n2->x + n1->y * n2->y + n1->z * n2->z;
 
-            if (nn * d2 <= d0) {
-                f32 t = (nn * d0 - d2) / (nn * nn - 1.0f);
-                f32 s = d0 - t * nn;
-                *pFlag = 7;
-                closest.x = t * n2->x + s * n0->x;
-                closest.y = t * n2->y + s * n0->y;
-                closest.z = t * n2->z + s * n0->z;
-                goto edgeRegion;
+            if (nn * d1 > d2) {
+                goto vertex3;
             }
 
-            if (d2 <= faceDist) {
-                *pDist = radiusSq - d2 * d2;
-                *pFlag = 4;
-                goto finish;
-            }
-            return false;
-        } else {
-            f32 nn = n2->x * n1->x + n2->y * n1->y + n2->z * n1->z;
-
-            if (nn * d2 <= d1) {
-                f32 t = (nn * d2 - d1) / (nn * nn - 1.0f);
-                f32 s = d2 - t * nn;
-                *pFlag = 6;
-                closest.x = t * n1->x + s * n2->x;
-                closest.y = t * n1->y + s * n2->y;
-                closest.z = t * n1->z + s * n2->z;
-                goto edgeRegion;
-            }
-
-            if (d2 <= faceDist) {
-                *pDist = radiusSq - d2 * d2;
-                *pFlag = 4;
-                goto finish;
-            }
-            return false;
+            goto region6;
         }
+
+        nn = n1->x * n0->x + n1->y * n0->y + n1->z * n0->z;
+
+        if (nn * d1 > d0) {
+            goto vertex3;
+        }
+
+        goto region5;
     }
 
-edgeRegion: {
-    f32 closestSq = closest.x * closest.x + closest.y * closest.y + closest.z * closest.z;
+    if (d2 <= 0.0f) {
+        if (threshold < *pDist) {
+            return false;
+        }
+
+        *pFlag = 1;
+        return true;
+    }
+
+    if (d0 > d1) {
+        nn = n2->x * n0->x + n2->y * n0->y + n2->z * n0->z;
+
+        if (nn * d2 > d0) {
+            goto vertex4;
+        }
+
+        goto region7;
+    }
+
+    nn = n2->x * n1->x + n2->y * n1->y + n2->z * n1->z;
+
+    if (nn * d2 > d1) {
+        goto vertex4;
+    }
+
+    goto region6;
+
+vertex2:
+    if (d0 > faceDot) {
+        return false;
+    }
+
+    *pDist = radiusSq - d0 * d0;
+    *pFlag = 2;
+    goto finish;
+
+vertex3:
+    if (d1 > faceDot) {
+        return false;
+    }
+
+    *pDist = radiusSq - d1 * d1;
+    *pFlag = 3;
+    goto finish;
+
+vertex4:
+    if (d2 > faceDot) {
+        return false;
+    }
+
+    *pDist = radiusSq - d2 * d2;
+    *pFlag = 4;
+    goto finish;
+
+region5: {
+    f32 t = (nn * d1 - d0) / (nn * nn - 1.0f);
+    f32 s = d1 - t * nn;
+    *pFlag = 5;
+    dir.x = t * n0->x + s * n1->x;
+    dir.y = t * n0->y + s * n1->y;
+    dir.z = t * n0->z + s * n1->z;
+    goto edgeFinish;
+}
+
+region6: {
+    f32 t = (nn * d2 - d1) / (nn * nn - 1.0f);
+    f32 s = d2 - t * nn;
+    *pFlag = 6;
+    dir.x = t * n1->x + s * n2->x;
+    dir.y = t * n1->y + s * n2->y;
+    dir.z = t * n1->z + s * n2->z;
+    goto edgeFinish;
+}
+
+region7: {
+    f32 t = (nn * d0 - d2) / (nn * nn - 1.0f);
+    f32 s = d0 - t * nn;
+    *pFlag = 7;
+    dir.x = t * n2->x + s * n0->x;
+    dir.y = t * n2->y + s * n0->y;
+    dir.z = t * n2->z + s * n0->z;
+}
+
+edgeFinish: {
+    f32 closestSq = dir.x * dir.x + dir.y * dir.y + dir.z * dir.z;
     f32 dist = MR::sqrt(closestSq);
 
-    if (dist > faceDist) {
+    if (dist > faceDot) {
         *pFlag = 0;
         return false;
     }
@@ -1155,7 +1137,7 @@ edgeRegion: {
 }
 
 finish:
-    *pDist = MR::sqrt(*pDist) - faceDist;
+    *pDist = MR::sqrt(*pDist) - faceDot;
 
     if (*pDist < 0.0f) {
         *pFlag = 0;
