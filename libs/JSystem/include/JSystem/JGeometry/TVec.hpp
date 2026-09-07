@@ -723,6 +723,14 @@ namespace JGeometry {
             return JMathInlineVEC::PSVECSquareMag(this);
         };
 
+        operator f32*(void) {
+            return reinterpret_cast< f32* >(this);
+        }
+
+        operator const f32*(void) const {
+            return reinterpret_cast< const f32* >(this);
+        }
+
 #ifdef __MWERKS__
         // this theoretically should just forward JMathInlineVEC::PSVECSquareDistance,
         // however using the exact same asm causes mismatches. Keeping it here instead
