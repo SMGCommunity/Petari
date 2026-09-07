@@ -7,6 +7,27 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    // const f32 sDefaultActiveDistance =
+    // const s32 sFrontVecBlendRate =
+    // const s32 sUpVecBlendRate =
+    // const f32 sTurnPlayerLimit =
+    // const s32 sWaitTime =
+    // const s32 mMoveHideTime = // 'm' prefix?
+    // const f32 mMoveSpeed =
+    // const s32 sGuardTime =
+    // const f32 sGuardTurnSpeed =
+    // const f32 sAttackRange =
+    // const s32 sAttackWaitTime =
+    // const s32 sShootTiming =
+    // const f32 sBeamSpeed =
+    // const f32 sHitHorizontalPower =
+    // const f32 sHitVerticalPower =
+    // const f32 sDownGravityAccel =
+    // const s32 sDownFreq =
+    // const s32 sPressTime =
+}
+
 namespace NrvKameck {
     NEW_NERVE(KameckNrvOpeningDemo, Kameck, OpeningDemo);
     NEW_NERVE_ONEND(KameckNrvDemoAppear, Kameck, DemoAppear, DemoAppear);
@@ -26,10 +47,10 @@ namespace NrvKameck {
 };  // namespace NrvKameck
 
 Kameck::Kameck(const char* pName)
-    : LiveActor(pName), mBeam(), _90(), _94(), _98(), _9C(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0.0f, 0.0f, 1.0f), mBeamType(), mMoveStep(240),
+    : LiveActor(pName), mBeam(), mActiveActorList(), mBeamEventListener(), mAnimScalecontroller(), mWalkerStateBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0.0f, 0.0f, 1.0f), mBeamType(), mMoveStep(240),
       mRailCoord(), mRailNextPointCoord(), mActiveDistance(3000.0f) {
-    _90 = new ActiveActorList(8);
-    _94 = new SmallKameckBeamEventListener(this);
+    mActiveActorList = new ActiveActorList(8);
+    mBeamEventListener = new SmallKameckBeamEventListener(this);
 }
 
 void Kameck::init(const JMapInfoIter& rIter) {
@@ -48,9 +69,9 @@ void Kameck::init(const JMapInfoIter& rIter) {
     initBeam();
     initEffectKeeper(1, nullptr, false);
     MR::initStarPointerTarget(this, 80.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    _98 = new AnimScaleController(nullptr);
-    _98->setParamTight();
-    _9C = new WalkerStateBindStarPointer(this, _98);
+    mAnimScalecontroller = new AnimScaleController(nullptr);
+    mAnimScalecontroller->setParamTight();
+    mWalkerStateBindStarPointer = new WalkerStateBindStarPointer(this, mAnimScalecontroller);
     initSound(4, false);
     MR::addToAttributeGroupSearchTurtle(this);
     if (MR::isConnectedWithRail(rIter)) {
@@ -67,14 +88,14 @@ void Kameck::init(const JMapInfoIter& rIter) {
 void Kameck::initBeam() {
     MR::createKameckBeamHolder();
     switch (mBeamType) {
-    case BeamType_None:
+    case 0:
         break;
-    case BeamType_Turtle:
+    case KameckBeam::BeamType_Turtle:
         MR::createKameckBeamTurtleHolder();
         break;
-    case BeamType_Fire:
-    case BeamType_3:
-    case BeamType_4:
+    case KameckBeam::BeamType_1FireBall:
+    case KameckBeam::BeamType_2FireBalls:
+    case KameckBeam::BeamType_3FireBalls:
         MR::createKameckFireBallHolder();
         break;
     }
@@ -84,15 +105,15 @@ void Kameck::initJMapParam(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
         MR::getJMapInfoArg3NoInit(rIter, &mActiveDistance);
-        if (mBeamType == BeamType_Fire) {
+        if (mBeamType == KameckBeam::BeamType_1FireBall) {
             s32 objCastCount;
             MR::getJMapInfoArg0WithInit(rIter, &objCastCount);
             if (objCastCount >= 3) {
-                mBeamType = BeamType_4;
+                mBeamType = KameckBeam::BeamType_3FireBalls;
             } else if (objCastCount >= 2) {
-                mBeamType = BeamType_3;
+                mBeamType = KameckBeam::BeamType_2FireBalls;
             } else {
-                mBeamType = BeamType_Fire;
+                mBeamType = KameckBeam::BeamType_1FireBall;
             }
         }
     }
@@ -124,9 +145,9 @@ void Kameck::kill() {
 }
 
 void Kameck::control() {
-    _98->updateNerve();
+    mAnimScalecontroller->updateNerve();
     MR::blendQuatUpFront(&_A0, -mGravity, _B0, 0.04f, 0.2f);
-    _90->removeDeadActor();
+    mActiveActorList->removeDeadActor();
 }
 
 void Kameck::startClipped() {
@@ -136,7 +157,7 @@ void Kameck::startClipped() {
 
 void Kameck::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _A0);
-    MR::setBaseScale(this, _98->_C * mScale);
+    MR::setBaseScale(this, mAnimScalecontroller->_C * mScale);
 }
 
 void Kameck::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -257,13 +278,13 @@ void Kameck::startDemoAppear() {
 void Kameck::killForce() {
     MR::emitEffect(this, "Death");
     resetBeam();
-    _90->killAll();
+    mActiveActorList->killAll();
     makeActorDead();
 }
 
 void Kameck::makeActorDeadForce() {
     resetBeam();
-    _90->killAll();
+    mActiveActorList->killAll();
     makeActorDead();
 }
 
@@ -272,12 +293,12 @@ void Kameck::hitBeam(s32 num) {
         return;
     }
     switch (num) {
-    case 1:
+    case KameckBeam::BeamType_Turtle:
         MR::startSound(this, "SE_EV_KAMECK_ATK_SUCCESS");
         break;
-    case 2:
-    case 3:
-    case 4:
+    case KameckBeam::BeamType_1FireBall:
+    case KameckBeam::BeamType_2FireBalls:
+    case KameckBeam::BeamType_3FireBalls:
         MR::startSound(this, "SE_EV_KAMECK_ATK_SUCCESS");
         break;
     }
@@ -336,9 +357,8 @@ bool Kameck::tryAppearEnd() {
 }
 
 bool Kameck::tryAttackWait() {
-    if (MR::isNearPlayer(this, 2000.0f) && !_90->isFull()) {
-        mBeam = MR::startFollowKameckBeam(mBeamType, MR::getJointMtx(this, "Wand"), 0.6f, TVec3f(0.0f, 110.0f, 0.0f), _94);
-        if (mBeam != nullptr) {
+    if (MR::isNearPlayer(this, 2000.0f) && !mActiveActorList->isFull()) {
+        if (MR::startFollowKameckBeam(mBeamType, MR::getJointMtx(this, "Wand"), 0.6f, TVec3f(0.0f, 110.0f, 0.0f), mBeamEventListener) != nullptr) {
             setNerve(&NrvKameck::KameckNrvAttackWait::sInstance);
             return true;
         }
@@ -387,7 +407,7 @@ bool Kameck::tryMoveEnd() {
 }
 
 bool Kameck::tryPointBind() {
-    if (_9C->tryStartPointBind()) {
+    if (mWalkerStateBindStarPointer->tryStartPointBind()) {
         resetBeam();
         setNerve(&NrvKameck::KameckNrvBindStarPointer::sInstance);
         return true;
@@ -489,7 +509,7 @@ void Kameck::exeAttack() {
     }
     if (MR::isStep(this, 9)) {
         mBeam->requestShootToPlayerCenter(12.0f);
-        _90->addActor(mBeam);
+        mActiveActorList->addActor(mBeam);
         mBeam = 0;
     }
     if (!tryPointBind() && tryAttackEnd()) {
@@ -571,11 +591,11 @@ void Kameck::exePressDown() {
 }
 
 void Kameck::exeBindStarPointer() {
-    MR::updateActorStateAndNextNerve(this, _9C, &NrvKameck::KameckNrvWait::sInstance);
+    MR::updateActorStateAndNextNerve(this, mWalkerStateBindStarPointer, &NrvKameck::KameckNrvWait::sInstance);
 }
 
 void Kameck::endBindStarPointer() {
-    _9C->kill();
+    mWalkerStateBindStarPointer->kill();
 }
 
 void Kameck::exeHide() {
@@ -628,13 +648,13 @@ bool Kameck::isEnableDown() const {
 namespace MR {
     NameObj* createFireBallBeamKameck(const char* pName) {
         Kameck* kmck = new Kameck(pName);
-        kmck->mBeamType = Kameck::BeamType_Fire;
+        kmck->mBeamType = KameckBeam::KameckBeam::BeamType_1FireBall;
         return kmck;
     }
 
     NameObj* createTurtleBeamKameck(const char* pName) {
         Kameck* kmck = new Kameck(pName);
-        kmck->mBeamType = Kameck::BeamType_Turtle;
+        kmck->mBeamType = KameckBeam::KameckBeam::BeamType_Turtle;
         return kmck;
     }
 };  // namespace MR
