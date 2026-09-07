@@ -86,7 +86,6 @@ bool KCollisionServer::isBinaryInitialized(const void* pData) {
 }
 
 KC_PrismData* KCollisionServer::checkPoint(Fxyz* pPoint, f32 param, f32* pDist) {
-    s32 shift;
     f32 maxDist = mFile->mThickness * param;
     u32 x = (s32)(pPoint->x - mFile->mMin.x);
 
@@ -106,6 +105,7 @@ KC_PrismData* KCollisionServer::checkPoint(Fxyz* pPoint, f32 param, f32* pDist) 
         return nullptr;
     }
 
+    s32 shift;
     u16* prismList = (u16*)searchBlock(&shift, x, y, z);
 
     while (*++prismList != 0) {
