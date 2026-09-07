@@ -13,4 +13,7 @@ public:
     /// @param triangle The triangle for which to get the floor code.
     /// @return The floor code for the triangle or -1 if a nullpointer or invalid triangle is provided.
     s32 getCode(const Triangle*);
+
+    // needed to match object size in Mario constructor
+    /* 0x04 */ u32 _04;
 };
