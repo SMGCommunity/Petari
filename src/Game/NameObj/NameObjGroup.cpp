@@ -1,30 +1,30 @@
 #include "Game/NameObj/NameObjGroup.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-NameObjGroup::NameObjGroup(const char* pName, int numMax) : NameObj(pName), mObjectNumMax(), mObjectCount(), mObjects() {
+NameObjGroup::NameObjGroup(const char* pName, int numMax) : NameObj(pName), mObjNumMax(), mObjNum(), mObjArray() {
     initObjArray(numMax);
 }
 
 NameObjGroup::~NameObjGroup() {
-    delete[] mObjects;
+    delete[] mObjArray;
 }
 
 void NameObjGroup::registerObj(NameObj* pObj) {
-    mObjects[mObjectCount] = pObj;
-    mObjectCount++;
+    mObjArray[mObjNum] = pObj;
+    mObjNum++;
 }
 
 void NameObjGroup::pauseOffAll() const {
-    for (s32 i = 0; i < mObjectCount; i++) {
-        MR::requestMovementOn(mObjects[i]);
+    for (s32 i = 0; i < mObjNum; i++) {
+        MR::requestMovementOn(mObjArray[i]);
     }
 }
 
 void NameObjGroup::initObjArray(int numMax) {
-    mObjectNumMax = numMax;
-    mObjects = new NameObj*[numMax];
+    mObjNumMax = numMax;
+    mObjArray = new NameObj*[numMax];
 
-    for (s32 i = 0; i < mObjectNumMax; i++) {
-        mObjects[i] = nullptr;
+    for (s32 i = 0; i < mObjNumMax; i++) {
+        mObjArray[i] = nullptr;
     }
 }

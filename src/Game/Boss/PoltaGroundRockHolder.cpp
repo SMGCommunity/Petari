@@ -16,9 +16,9 @@ PoltaGroundRockHolder::PoltaGroundRockHolder() : DeriveActorGroup< PoltaGroundRo
 }
 
 void PoltaGroundRockHolder::breakAll() {
-    int objectCount = getObjectCount();
+    int memberNum = getObjNum();
 
-    for (int i = 0; i < objectCount; i++) {
+    for (int i = 0; i < memberNum; i++) {
         getMember(i)->requestBreak();
     }
 }

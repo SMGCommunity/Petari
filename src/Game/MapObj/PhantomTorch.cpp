@@ -132,13 +132,13 @@ bool PhantomTorch::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
 }
 
 void PhantomTorch::soundOrder() {
-    if (MR::getGroupFromArray(this) && MR::getGroupFromArray(this)->mObjectCount > 0) {
+    if (MR::getGroupFromArray(this) && MR::getGroupFromArray(this)->getObjNum() > 0) {
         s32 i;
         LiveActorGroup* group;
         s32 num = 0;
         group = MR::getGroupFromArray(this);
 
-        for (i = 0; i < group->mObjectCount; i++) {
+        for (i = 0; i < group->getObjNum(); i++) {
             if (!MR::isDead(group->getActor(i))) {
                 num++;
             }

@@ -6,7 +6,7 @@ DemoCastGroupHolder::DemoCastGroupHolder() : NameObjGroup("デモ関係者グル
 }
 
 bool DemoCastGroupHolder::tryRegisterDemoActor(LiveActor* pActor, const JMapInfoIter& rIter, const JMapIdInfo& rInfo) const {
-    for (s32 i = 0; i < mObjectCount; i++) {
+    for (s32 i = 0; i < getObjNum(); i++) {
         if (getCastGroup(i)->tryRegisterDemoActor(pActor, rIter, rInfo)) {
             return true;
         }
@@ -16,7 +16,7 @@ bool DemoCastGroupHolder::tryRegisterDemoActor(LiveActor* pActor, const JMapInfo
 }
 
 bool DemoCastGroupHolder::tryRegisterDemoActor(LiveActor* pActor, const char* pName, const JMapInfoIter& rIter) const {
-    for (s32 i = 0; i < mObjectCount; i++) {
+    for (s32 i = 0; i < getObjNum(); i++) {
         if (getCastGroup(i)->tryRegisterDemoActor(pActor, pName, rIter)) {
             return true;
         }
@@ -30,7 +30,7 @@ DemoCastGroup* DemoCastGroupHolder::getCastGroup(int index) const {
 }
 
 DemoCastGroup* DemoCastGroupHolder::findCastGroup(const char* pName) const {
-    for (s32 i = 0; i < mObjectCount; i++) {
+    for (s32 i = 0; i < getObjNum(); i++) {
         DemoCastGroup* castGroup = getCastGroup(i);
 
         if (MR::isName(castGroup, pName)) {

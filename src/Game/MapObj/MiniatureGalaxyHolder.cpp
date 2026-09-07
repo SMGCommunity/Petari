@@ -40,7 +40,7 @@ void MiniatureGalaxyHolder::init(const JMapInfoIter& rIter) {
 #pragma ppc_iro_level 1
 
 bool MiniatureGalaxyHolder::isRegisteredActor(const LiveActor* pActor) {
-    for (int i = 0; i < mMiniatureGalaxyGroup->mObjectCount; i++) {
+    for (int i = 0; i < mMiniatureGalaxyGroup->getObjNum(); i++) {
         if (mMiniatureGalaxyGroup->getActor(i) == pActor) {
             return true;
         }
@@ -54,7 +54,7 @@ bool MiniatureGalaxyHolder::isRegisteredActor(const LiveActor* pActor) {
 MiniatureGalaxy* MiniatureGalaxyHolder::findMiniatureGalaxy(const char* pGalaxyName) const {
     MiniatureGalaxy* miniatureGalaxy;
 
-    for (int i = 0; i < mMiniatureGalaxyGroup->mObjectCount; i++) {
+    for (int i = 0; i < mMiniatureGalaxyGroup->getObjNum(); i++) {
         miniatureGalaxy = static_cast< MiniatureGalaxy* >(mMiniatureGalaxyGroup->getActor(i));
 
         if (MR::isEqualString(miniatureGalaxy->mGalaxyName, pGalaxyName)) {
@@ -66,7 +66,7 @@ MiniatureGalaxy* MiniatureGalaxyHolder::findMiniatureGalaxy(const char* pGalaxyN
 }
 
 void MiniatureGalaxyHolder::killAllMiniatureGalaxy() {
-    for (int i = 0; i < mMiniatureGalaxyGroup->mObjectCount; i++) {
+    for (int i = 0; i < mMiniatureGalaxyGroup->getObjNum(); i++) {
         mMiniatureGalaxyGroup->getActor(i)->kill();
     }
 }
@@ -77,7 +77,7 @@ s32 MiniatureGalaxyHolder::calcIndex(const LiveActor* pActor) const {
     s32 index = 0;
     MiniatureGalaxy* actorGalaxy = findMiniatureGalaxy(galaxyName);
 
-    for (int i = 0; i < mMiniatureGalaxyGroup->mObjectCount; i++) {
+    for (int i = 0; i < mMiniatureGalaxyGroup->getObjNum(); i++) {
         MiniatureGalaxy* currMiniGalaxy = static_cast< MiniatureGalaxy* >(mMiniatureGalaxyGroup->getActor(i));
 
         if (currMiniGalaxy->mType == MiniatureGalaxyType_Koopa) {
@@ -104,7 +104,7 @@ void MiniatureGalaxyHolder::updateCometStatus() {
     mCometID = -1;
     _9C = 0;
 
-    for (int i = 0; i < mMiniatureGalaxyGroup->mObjectCount; i++) {
+    for (int i = 0; i < mMiniatureGalaxyGroup->getObjNum(); i++) {
         MiniatureGalaxy* miniatureGalaxy = static_cast< MiniatureGalaxy* >(mMiniatureGalaxyGroup->getActor(i));
 
         if (MR::isGalaxyCometLandInStage(miniatureGalaxy->mGalaxyName)) {
@@ -124,7 +124,7 @@ void MiniatureGalaxyFunction::registerMiniatureGalaxyToHolder(LiveActor* pActor,
 }
 
 s32 MiniatureGalaxyFunction::getMiniatureGalaxyNum() {
-    return ::getHolder()->mMiniatureGalaxyGroup->mObjectCount;
+    return ::getHolder()->mMiniatureGalaxyGroup->getObjNum();
 }
 
 s32 MiniatureGalaxyFunction::calcMiniatureGalaxyIndex(const LiveActor* pActor) {

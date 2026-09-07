@@ -19,7 +19,7 @@ public:
     void killAll();
 
     bool hasActor(const LiveActor* pActor) const {
-        for (int i = 0; i < getObjectCount(); i++) {
+        for (int i = 0; i < getObjNum(); i++) {
             if (getActor(i) == pActor) {
                 return true;
             }

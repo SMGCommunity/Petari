@@ -698,7 +698,7 @@ namespace MR {
     void sendMsgToAllLiveActor(u32 msg, LiveActor* pActor) {
         AllLiveActorGroup* pGroup = getAllLiveActorGroup();
 
-        for (int i = 0; i < pGroup->getObjectCount(); i++) {
+        for (int i = 0; i < pGroup->getObjNum(); i++) {
             LiveActor* pGroupActor = pGroup->getActor(i);
 
             if (isDead(pGroupActor)) {

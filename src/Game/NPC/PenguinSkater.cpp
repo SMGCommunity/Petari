@@ -86,9 +86,11 @@ void PenguinSkater::init(const JMapInfoIter& rIter) {
 
 void PenguinSkater::initAfterPlacement() {
     if (MR::isExistRail(this)) {
-        LiveActorGroup* grp = MR::getGroupFromArray(this);
-        for (s32 i = 0; i < grp->mObjectCount; i++) {
-            LiveActor* actor = grp->getActor(i);
+        LiveActorGroup* group = MR::getGroupFromArray(this);
+
+        for (s32 i = 0; i < group->getObjNum(); i++) {
+            LiveActor* actor = group->getActor(i);
+
             if (MR::isLoopRail(actor)) {
                 if (actor == this) {
                     mCurrentRail = static_cast< NPCSupportRail* >(actor);

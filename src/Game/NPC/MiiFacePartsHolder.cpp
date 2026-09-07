@@ -39,7 +39,7 @@ void MiiFacePartsHolder::init(const JMapInfoIter& rIter) {
 }
 
 void MiiFacePartsHolder::calcAnim() {
-    for (int i = 0; i < getObjectCount(); i++) {
+    for (int i = 0; i < getObjNum(); i++) {
         LiveActor* pActor = getActor(i);
 
         if (pActor == nullptr) {
@@ -57,7 +57,7 @@ void MiiFacePartsHolder::calcAnim() {
 }
 
 void MiiFacePartsHolder::calcViewAndEntry() {
-    for (int i = 0; i < getObjectCount(); i++) {
+    for (int i = 0; i < getObjNum(); i++) {
         LiveActor* pActor = getActor(i);
 
         if (pActor == nullptr) {
@@ -96,7 +96,7 @@ void MiiFacePartsHolder::reinitCharModel() {
     }
 
     if (_38 == RFLErrcode_Success) {
-        for (int i = 0; i < getObjectCount(); i++) {
+        for (int i = 0; i < getObjNum(); i++) {
             pParts = static_cast< MiiFaceParts* >(getActor(i));
 
             if (pParts->_D0 || pParts->_D1) {
@@ -113,7 +113,7 @@ bool MiiFacePartsHolder::isInitEnd() const {
         return true;
     }
 
-    for (int i = 0; i < getObjectCount(); i++) {
+    for (int i = 0; i < getObjNum(); i++) {
         pParts = static_cast< MiiFaceParts* >(getActor(i));
 
         if (pParts->_D1) {
@@ -147,7 +147,7 @@ MiiFaceParts* MiiFacePartsHolder::createPartsFromDefault(const char* pName, u16 
 void MiiFacePartsHolder::drawEachActor(DrawPartsFuncPtr pDrawFunc, const RFLDrawCoreSetting* pSetting) const {
     MiiFaceParts* pParts;
 
-    for (int i = 0; i < getObjectCount(); i++) {
+    for (int i = 0; i < getObjNum(); i++) {
         pParts = static_cast< MiiFaceParts* >(getActor(i));
 
         if (MR::isDead(pParts)) {

@@ -71,7 +71,7 @@ void FirePressureRadiate::initAfterPlacement() {
     if (mGroup != nullptr) {
         FirePressureRadiate* first = static_cast< FirePressureRadiate* >(MR::getGroupFromArray(this)->getActor(0));
 
-        for (u16 i = 1; i < MR::getGroupFromArray(this)->getObjectCount(); i++) {
+        for (u16 i = 1; i < MR::getGroupFromArray(this)->getObjNum(); i++) {
             FirePressureRadiate* cur = static_cast< FirePressureRadiate* >(MR::getGroupFromArray(this)->getActor(i));
 
             if (first->mWaitTime <= cur->mWaitTime) {

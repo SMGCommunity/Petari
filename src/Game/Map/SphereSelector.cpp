@@ -78,7 +78,7 @@ void SphereSelector::invalidatePointing() {
 }
 
 void SphereSelector::sendMsgToAllActor(u32 msg) {
-    for (int i = 0; i < mSphereGroup->mObjectCount; i++) {
+    for (int i = 0; i < mSphereGroup->getObjNum(); i++) {
         MR::sendSimpleMsgToActor(msg, mSphereGroup->getActor(i));
     }
 }

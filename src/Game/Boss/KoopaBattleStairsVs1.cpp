@@ -271,7 +271,7 @@ void KoopaBattleStairsVs1::exeJumpToNextPosEnd() {
 bool KoopaBattleStairsVs1::tryAttackRequest() {
     KoopaBattleMapStair* pBattleMapStair;
     bool success = false;
-    for (int idx = 0; idx < mStairsGroup->mObjectCount; idx++) {
+    for (int idx = 0; idx < mStairsGroup->getObjNum(); idx++) {
         pBattleMapStair = static_cast< KoopaBattleMapStair* >(mStairsGroup->getActor(idx));
 
         if (pBattleMapStair->isRequestAttackVs1()) {
@@ -286,7 +286,7 @@ bool KoopaBattleStairsVs1::tryAttackRequest() {
 
 bool KoopaBattleStairsVs1::tryRequestedToMoveNextPos() {
     KoopaBattleMapStair* pBattleMapStair;
-    for (int idx = 0; idx < mStairsGroup->mObjectCount; idx++) {
+    for (int idx = 0; idx < mStairsGroup->getObjNum(); idx++) {
         pBattleMapStair = static_cast< KoopaBattleMapStair* >(mStairsGroup->getActor(idx));
 
         if (pBattleMapStair->isRequestAttackVs1()) {

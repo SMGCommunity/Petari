@@ -17,7 +17,7 @@ ArrowSwitchMultiHolder::ArrowSwitchMultiHolder() : DeriveActorGroup("複数方�
 }
 
 ArrowSwitchMulti* ArrowSwitchMultiHolder::findSwitch(const JMapIdInfo* pIdInfo) {
-    for (s32 i = 0; i < getObjectCount(); i++) {
+    for (s32 i = 0; i < getObjNum(); i++) {
         ArrowSwitchMulti* pSwitch = getMember(i);
 
         if (*pSwitch->mIdInfo == *pIdInfo) {

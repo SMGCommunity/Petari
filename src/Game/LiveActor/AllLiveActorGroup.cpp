@@ -2,27 +2,33 @@
 #include "Game/LiveActor/ClippingDirector.hpp"
 #include "Game/Scene/SceneObjHolder.hpp"
 
-AllLiveActorGroup::AllLiveActorGroup() : LiveActorGroup("AllLiveActorGroup", 0xA00) {
-    _18 = 0;
+AllLiveActorGroup::AllLiveActorGroup() : LiveActorGroup("AllLiveActorGroup", 2560), mActorNum() {
+}
+
+void AllLiveActorGroup::startInitActorSystemInfo() {
+    mActorNum = getObjNum();
 }
 
 void AllLiveActorGroup::initActorSystemInfo(const JMapInfoIter& rIter) {
-    if (mObjectCount <= 0) {
+    if (getObjNum() <= 0) {
         return;
     }
 
-    s32 cnt = _18;
+    s32 actorNum = mActorNum;
 
-    if (cnt == mObjectCount) {
+    if (actorNum == getObjNum()) {
         return;
     }
 
-    while (cnt < mObjectCount) {
-        LiveActor* actor = getActor(_18);
-        MR::getClippingDirector()->initActorSystemInfo(actor, rIter);
-        cnt++;
-        _18 = _18 + 1;
+    for (actorNum; actorNum < getObjNum(); actorNum++) {
+        LiveActor* pActor = getActor(mActorNum);
+        MR::getClippingDirector()->initActorSystemInfo(pActor, rIter);
+        mActorNum++;
     }
+}
+
+void AllLiveActorGroup::endInitActorSystemInfo() {
+    MR::getClippingDirector()->endInitActorSystemInfo();
 }
 
 namespace MR {
@@ -31,23 +37,14 @@ namespace MR {
     }
 
     void startInitLiveActorSystemInfo() {
-        AllLiveActorGroup* pAllLiveActorGroup = getAllLiveActorGroup();
-
-        pAllLiveActorGroup->_18 = pAllLiveActorGroup->mObjectCount;
+        getAllLiveActorGroup()->startInitActorSystemInfo();
     }
 
     void initLiveActorSystemInfo(const JMapInfoIter& rIter) {
-        AllLiveActorGroup* pAllLiveActorGroup = getAllLiveActorGroup();
-
-        pAllLiveActorGroup->initActorSystemInfo(rIter);
+        getAllLiveActorGroup()->initActorSystemInfo(rIter);
     }
 
     void endInitLiveActorSystemInfo() {
-        AllLiveActorGroup* pAllLiveActorGroup = getAllLiveActorGroup();
-
-        MR::getClippingDirector()->endInitActorSystemInfo();
+        getAllLiveActorGroup()->endInitActorSystemInfo();
     }
 };  // namespace MR
-
-AllLiveActorGroup::~AllLiveActorGroup() {
-}

@@ -135,9 +135,9 @@ void Polta::appearStarPiece(s32 appearNum) {
 }
 
 void BombTeresaHolder::disperseAll() {
-    s32 objectCount = mObjectCount;
+    s32 memberNum = getObjNum();
 
-    for (s32 i = 0; i < objectCount; i++) {
+    for (s32 i = 0; i < memberNum; i++) {
         getMember(i)->requestDisperse();
     }
 }

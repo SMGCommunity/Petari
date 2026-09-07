@@ -33,7 +33,7 @@ void MsgSharedGroup::movement() {
         return;
     }
 
-    for (s32 i = 0; i < getObjectCount(); i++) {
+    for (s32 i = 0; i < getObjNum(); i++) {
         getActor(i)->getSensor(mSensorName)->receiveMessage(mMsg, mSensor);
     }
 

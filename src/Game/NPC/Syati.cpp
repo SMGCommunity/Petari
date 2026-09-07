@@ -533,7 +533,7 @@ void Syati::updatePoseByRail() {
 
 void Syati::updateNumRingPassed() {
     bool isRingPassed = 0;
-    for (int i = 0; i < mPrizeRingGroup->mObjectCount; i++) {
+    for (int i = 0; i < mPrizeRingGroup->getObjNum(); i++) {
         PrizeRing* pPrizeRing = (PrizeRing*)mPrizeRingGroup->getActor(i);
 
         if (MR::isDead(pPrizeRing))

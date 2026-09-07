@@ -21,7 +21,7 @@ NameObjGroup* MovementOnOffGroupHolder::joinToGroup(const char* pName, NameObj* 
 void MovementOnOffGroupHolder::onMovementGroup(const char* pName) {
     NameObjGroup* group = findGroupFromName(pName);
 
-    for (int i = 0; i < group->mObjectCount; i++) {
+    for (int i = 0; i < group->getObjNum(); i++) {
         MR::requestMovementOn(group->getObj(i));
     }
 }

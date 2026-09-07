@@ -14,18 +14,19 @@ public:
     virtual ~NameObjGroup();
 
     NameObj* getObj(int index) const {
-        return mObjects[index];
+        return mObjArray[index];
     }
 
-    s32 getObjectCount() const {
-        return mObjectCount;
+    s32 getObjNum() const {
+        return mObjNum;
     }
 
     void registerObj(NameObj*);
     void pauseOffAll() const;
     void initObjArray(int);
 
-    /* 0x0C */ s32 mObjectNumMax;
-    /* 0x10 */ s32 mObjectCount;
-    /* 0x14 */ NameObj** mObjects;
+private:
+    /* 0x0C */ s32 mObjNumMax;
+    /* 0x10 */ s32 mObjNum;
+    /* 0x14 */ NameObj** mObjArray;
 };

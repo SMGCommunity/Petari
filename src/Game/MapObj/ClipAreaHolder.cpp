@@ -28,9 +28,9 @@ bool ClipAreaHolder::isInArea(const TVec3f& rParam1, f32 param2) const {
         return false;
     }
 
-    s32 count = getObjectCount();
+    s32 memberNum = getObjNum();
 
-    for (s32 i = 0; i < count; i++) {
+    for (s32 i = 0; i < memberNum; i++) {
         if (MR::isDead(getActor(i))) {
             continue;
         }

@@ -57,7 +57,7 @@ namespace DemoExecutorFunction {
     bool isRegisteredDemoCast(const DemoExecutor* pExecutor, const LiveActor* pActor) {
         LiveActorGroup* pGroup = pExecutor->mGroup;
 
-        for (s32 i = 0; i < pGroup->mObjectCount; i++) {
+        for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             if (MR::isSame(pGroup->getActor(i), pActor)) {
                 return true;
             }

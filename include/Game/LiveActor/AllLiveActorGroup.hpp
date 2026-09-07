@@ -4,13 +4,14 @@
 
 class AllLiveActorGroup : public LiveActorGroup {
 public:
+    /// @brief Creates a new `AllLiveActorGroup`.
     AllLiveActorGroup();
 
-    virtual ~AllLiveActorGroup();
-
+    void startInitActorSystemInfo();
     void initActorSystemInfo(const JMapInfoIter&);
+    void endInitActorSystemInfo();
 
-    s32 _18;
+    /* 0x18 */ s32 mActorNum;
 };
 
 namespace MR {

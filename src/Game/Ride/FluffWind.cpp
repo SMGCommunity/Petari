@@ -118,7 +118,7 @@ void FluffWindHolder::calcWindInfo(const TVec3f& rPosition, TVec3f* pWindDirecti
     TVec3f bestDir(0.0f, 0.0f, 0.0f);
 
     LiveActor* pActor;
-    for (s32 i = 0; i < mObjectCount; i++) {
+    for (s32 i = 0; i < getObjNum(); i++) {
         pActor = getActor(i);
 
         TVec3f railDir(0.0f, 0.0f, 0.0f);
