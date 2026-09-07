@@ -26,7 +26,7 @@ public:
     s32 _DC;
     s32 _E0;
     TVec3f _E4;
-    TVec3f _F0;
+    TVec3f* _F0;
 };
 
 class CoconutTreeLeafGroup : public LiveActor {
@@ -41,4 +41,6 @@ public:
 
     /* 0x8C */ s32 mNumLeaves;
     /* 0x90 */ CoconutTreeLeaf** mLeaves;
+    TVec3f _94;
+    f32 _A0;
 };
