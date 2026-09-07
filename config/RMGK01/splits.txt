@@ -6491,6 +6491,7 @@ Game/NPC/MiiFacePartsHolder.cpp:
 	.text       start:0x802783AC end:0x80279118
 	.rodata     start:0x80539750 end:0x80539760
 	.data       start:0x805B0AD0 end:0x805B0BE0
+	.sdata2     start:0x806BEBF0 end:0x806BEC00
 
 Game/NPC/MiiFaceRecipe.cpp:
 	.text       start:0x80279118 end:0x80279260
