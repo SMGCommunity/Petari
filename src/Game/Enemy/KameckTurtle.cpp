@@ -5,9 +5,9 @@
 #include "Game/Util.hpp"
 
 namespace {
-    // const f32 beamRadius =
-    // const s32 sUpVecBlendRate =
-    // const s32 sFrontVecBlendRate =
+    // const f32 sBeamRadius =
+    const f32 sUpVecBlendRate = 0.2f;
+    const f32 sFrontVecBlendRate = 0.2f;
     // const s32 sRunTime =
     // const s32 sEnableAttackTime =
     // const s32 sDeccelStartTime =
@@ -17,7 +17,7 @@ namespace {
     // const f32 sRunFric =
     // const f32 sRunSpinDegree =
     // const s32 sMorphTime =
-}
+};  // namespace
 
 namespace NrvKameckTurtle {
     NEW_NERVE(KameckTurtleNrvRun, KameckTurtle, Run);
@@ -72,7 +72,7 @@ void KameckTurtle::makeActorDead() {
 }
 
 void KameckTurtle::control() {
-    MR::blendQuatFromGroundAndFront(&_94, this, _A4, 0.2f, 0.2f);
+    MR::blendQuatFromGroundAndFront(&_94, this, _A4, ::sUpVecBlendRate, ::sFrontVecBlendRate);
 }
 
 void KameckTurtle::calcAndSetBaseMtx() {
@@ -117,9 +117,6 @@ bool KameckTurtle::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pRece
         return true;
     }
     return false;
-}
-
-void KameckTurtle::todo(const TVec3f& rVec1) {
 }
 
 void KameckTurtle::appearDirection(const TVec3f& rDir) {

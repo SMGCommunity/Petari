@@ -9,8 +9,8 @@
 
 namespace {
     // const f32 sDefaultActiveDistance =
-    // const s32 sFrontVecBlendRate =
-    // const s32 sUpVecBlendRate =
+    const f32 sFrontVecBlendRate = 0.2f;
+    const f32 sUpVecBlendRate = 0.04f;
     // const f32 sTurnPlayerLimit =
     // const s32 sWaitTime =
     // const s32 mMoveHideTime =
@@ -146,7 +146,7 @@ void Kameck::kill() {
 
 void Kameck::control() {
     mAnimScaleController->updateNerve();
-    MR::blendQuatUpFront(&_A0, -mGravity, _B0, 0.04f, 0.2f);
+    MR::blendQuatUpFront(&_A0, -mGravity, _B0, ::sUpVecBlendRate, ::sFrontVecBlendRate);
     mActiveActorList->removeDeadActor();
 }
 
@@ -240,13 +240,10 @@ bool Kameck::requestDown(HitSensor* pSender, HitSensor* pReceiver) {
 
 bool Kameck::requestGuard(HitSensor* pSender, HitSensor* pReceiver) {
     if (isEnableGurad()) {
-        // Inline, probably
-        TVec3f vec2;
-        TVec3f vec = -pSender->mHost->mVelocity;
-        TVec3f* pGravity = &mGravity;
-        vec2.scaleAdd(-pGravity->dot(vec), *pGravity, vec);
-        if (!MR::normalizeOrZero(&vec2)) {
-            _B0.set(vec2);
+        TVec3f vec;
+        vec.killElement(-pSender->mHost->mVelocity, mGravity);
+        if (!MR::normalizeOrZero(&vec)) {
+            _B0.set(vec);
         }
         resetBeam();
         MR::invalidateClipping(this);

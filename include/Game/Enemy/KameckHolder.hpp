@@ -11,8 +11,4 @@ public:
     void startDemoAppear();
     void endDemoAppear();
     void deadForceAll();
-
-    inline Kameck* getKameckActor(s32 i) {
-        return (Kameck*)getActor(i);
-    }
 };

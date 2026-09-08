@@ -12,11 +12,11 @@ namespace {
     const f32 sFireAngleLebel3[] = {0.0f, 120.0f, -120.0f, 0.0f};
     const f32* sFireAngleList[] = {sFireAngleLebel1, sFireAngleLebel2, sFireAngleLebel3};
 
-    // const s32 sMaxBeamLife =
+    const s32 sMaxBeamLife = 360;
     const f32 sBeamRadius = 80.0f;
     // const s32 sMorphTime =
-    // const s32 sBurningTime =
-    // const f32 sStormRange =
+    const s32 sBurningTime = 40;
+    const f32 sStormRange = 500.0f;
 };  // namespace
 
 KameckBeamEventListener::KameckBeamEventListener() {
@@ -215,7 +215,7 @@ void KameckBeam::requestShoot(const TVec3f& rVec, f32 f) {
 }
 
 bool KameckBeam::requestStorm(HitSensor* pSender, HitSensor* pReceiver) {
-    if (MR::getSensorPos(pSender).distance(MR::getSensorPos(pReceiver)) >= 500.0f) {
+    if (MR::getSensorPos(pSender).distance(MR::getSensorPos(pReceiver)) >= ::sStormRange) {
         return false;
     }
     if (!isNerve(&NrvKameckBeam::KameckBeamNrvShoot::sInstance)) {
@@ -239,7 +239,7 @@ bool KameckBeam::tryShootEnd() {
         setNerve(&NrvKameckBeam::KameckBeamNrvExplosion::sInstance);
         return true;
     }
-    if (MR::isGreaterStep(this, 360)) {
+    if (MR::isGreaterStep(this, ::sMaxBeamLife)) {
         kill();
         return true;
     }
@@ -370,7 +370,7 @@ void KameckBeam::exeFire() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "BeamFireBurn");
     }
-    if (MR::isStep(this, 40)) {
+    if (MR::isStep(this, ::sBurningTime)) {
         MR::deleteEffect(this, "BeamFireBurn");
     }
 

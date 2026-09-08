@@ -24,8 +24,6 @@ public:
     bool isEnableAttack() const;
     void appearJetTurtle(bool);
 
-    inline void todo(const TVec3f& rVec1);
-
     /* 0x8C */ SmallKameckBeamEventListener* _8C;
     /* 0x90 */ JetTurtle* mTurtle;
     /* 0x94 */ TQuat4f _94;
