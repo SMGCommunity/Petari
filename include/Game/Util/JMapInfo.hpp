@@ -105,6 +105,37 @@ public:
         return end();
     }
 
+    inline u16 findElementIndexByName(const char* pSearchName) {
+        s32 low = 0;
+        s32 high = getNumEntries() - 1;
+
+        while (low < high) {
+            const char* pNextVal = "";
+            s32 mid = (low + high) / 2;
+            if (!getValue(mid, "name", &pNextVal)) {
+                return 0xFFFF;
+            }
+            s32 comparison = strcmp(pNextVal, pSearchName);
+            if (comparison == 0) {
+                return mid;
+            } else if (comparison < 0) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+
+        const char* pNextVal = "";
+        if (!getValue(low, "name", &pNextVal)) {
+            return 0xFFFF;
+        } else if (strcmp(pNextVal, pSearchName) == 0) {
+            return low;
+        }
+
+        return 0xFFFF;
+    }
+
+    inline JMapInfoIter begin() const;
     inline JMapInfoIter end() const;
 
     /* 0x00 */ const JMapData* mData;
@@ -148,6 +179,10 @@ public:
     /* 0x00 */ const JMapInfo* mInfo;
     /* 0x04 */ s32 mIndex;
 };
+
+JMapInfoIter JMapInfo::begin() const {
+    return JMapInfoIter(this, 0);
+}
 
 JMapInfoIter JMapInfo::end() const {
     return JMapInfoIter(this, getNumEntries());
