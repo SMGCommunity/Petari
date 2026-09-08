@@ -2,44 +2,40 @@
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "revolution/types.h"
 
 void Mario::checkOnimasu(const HitSensor* pSensor) {
-    if (strstr(pSensor->mHost->mName, "オニマス")) {
-        if (_5FC == nullptr) {
-            _5FC = pSensor;
-            _60C = 1;
-        } else {
-            if (_5FC != pSensor) {
-                if ((pSensor->mPosition - mPosition).length() < (_5FC->mPosition - mPosition).length()) {
-                    _5FC = pSensor;
-                    _60C = 1;
-                }
-            }
-        }
+    if (strstr(pSensor->mHost->mName, "オニマス") == nullptr) {
+        return;
+    }
+
+    if (_5FC == nullptr) {
+        _5FC = pSensor;
+        _60C = 1;
+    } else if (_5FC != pSensor && (pSensor->mPosition - mPosition).length() < (_5FC->mPosition - mPosition).length()) {
+        _5FC = pSensor;
+        _60C = 1;
     }
 }
 
+
 bool Mario::isDossun(const Triangle* pTriangle) const {
-    if (pTriangle->isValid()) {
-        return strstr(pTriangle->mSensor->mHost->mName, "ドッスン") != 0;
+    if (!pTriangle->isValid()) {
+        return false;
+    }
+
+    if (strstr(pTriangle->mSensor->mHost->getName(), "ドッスン") != nullptr) {
+        return true;
     }
 
     return false;
 }
 
 bool Mario::isStageCameraRotate2D() const {
-    bool ret = false;
-
-    if (MR::isEqualStageName("HellProminenceGalaxy")) {
-        if (MR::getCurrentScenarioNo() == 3) {
-            ret = true;
-        }
-    }
-
-    return ret;
+    return MR::isEqualStageName("HellProminenceGalaxy") && MR::getCurrentScenarioNo() == 3;
 }
 
 bool Mario::isNoWalkFallOnDossun() const {
@@ -59,7 +55,8 @@ bool Mario::isNotReflectGlassGround() const {
         return false;
     }
 
-    TVec3f v10 = TVec3f(1627.0f, 783.0f, -2152.0f) - mPosition;
+    TVec3f vec(1627.0f, 783.0f, -2152.0f);
+    TVec3f v10 = mPosition - vec;
 
     f32 v4 = MR::diffAngleAbs(getCamDirZ(), v10);
     f32 v5 = v4;
@@ -93,12 +90,13 @@ bool Mario::isUseAnotherMovingPolygon() const {
 }
 
 bool Mario::isUseFooSpecialGravity(const TVec3f& a1, TVec3f* a2) const {
-    if (!isStatusActive(24)) {
+    if (!isStatusActive(MarioStatus_Foo)) {
         return false;
     }
 
     if (MR::isEqualStageName("HeavensDoorGalaxy") && MR::getCurrentScenarioNo() == 2) {
-        TVec3f res = a1 - TVec3f(14760.0f, -10676.2f, 6770.0f);
+        TVec3f vec(14760.0f, -10676.2f, 6770.0f);
+        TVec3f res = vec - a1;
         a2->set(res);
         MR::normalizeOrZero(a2);
         return true;
@@ -124,7 +122,7 @@ bool Mario::isHeadPushEnableArea() const {
 }
 
 bool Mario::isOnimasuBinderPressSkip() const {
-    if (isStatusActive(21)) {
+    if (isStatusActive(MarioStatus_SideStep)) {
         if (mFrontWallTriangle->mSensor != nullptr) {
             if (strstr(mFrontWallTriangle->mSensor->mHost->mName, "オニマス")) {
                 return true;
