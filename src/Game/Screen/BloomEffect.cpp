@@ -8,6 +8,7 @@
 #include "Game/Util/DrawUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include <JSystem/JUtility/JUTTexture.hpp>
+#include <JSystem/JUtility/JUTVideo.hpp>
 
 namespace {
     struct RadAndOfs {
@@ -207,3 +208,9 @@ void BloomEffect::initBlur(JUTTexture* pTexture, u32 param2, f32 intensity) cons
     pTexture->load(GX_TEXMAP0);
     GXSetBlendMode(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_CLEAR);
 }
+
+namespace MR {
+    s32 getFrameBufferHeight() {
+        return JUTGetVideoManager()->getRenderMode()->efbHeight;
+    }
+};
