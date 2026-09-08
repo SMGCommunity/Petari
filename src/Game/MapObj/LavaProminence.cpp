@@ -4,5 +4,3 @@
 
 LavaProminence::LavaProminence(const char* pName) : LiveActor(pName) {
 }
-LavaProminence::~LavaProminence() {
-}

@@ -218,11 +218,6 @@ namespace nw4r {
                 }
             }
 
-            template < typename T >
-            T Min(T a, T b) NO_INLINE {
-                return (a > b) ? b : a;
-            }
-
         };  // namespace
 
 #pragma dont_inline on
@@ -249,17 +244,17 @@ namespace nw4r {
             const TexCoordGen* const resTexCoordGens = detail::ConvertOffsToPtr< TexCoordGen >(pRes, resOffs);
             resOffs += sizeof(TexCoordGen) * pRes->resNum.GetTexCoordGenNum();
 
-            const u8 texMapNum = Min(pRes->resNum.GetTexMapNum(), u8(GX_MAX_TEXMAP));
-            const u8 texSRTNum = Min(pRes->resNum.GetTexSRTNum(), u8(10));
-            const u8 texCoordGenNum = Min(pRes->resNum.GetTexCoordGenNum(), u8(GX_MAX_TEXCOORD));
+            const u8 texMapNum = ut::Min(pRes->resNum.GetTexMapNum(), u8(GX_MAX_TEXMAP));
+            const u8 texSRTNum = ut::Min(pRes->resNum.GetTexSRTNum(), u8(10));
+            const u8 texCoordGenNum = ut::Min(pRes->resNum.GetTexCoordGenNum(), u8(GX_MAX_TEXCOORD));
             const bool allocChanCtrl = 0 != pRes->resNum.GetChanCtrlNum();
             const bool allocMatCol = 0 != pRes->resNum.GetMatColNum();
             const bool allocTevSwap = pRes->resNum.HasTevSwapTable();
             const bool allocAlpComp = pRes->resNum.HasAlphaCompare();
             const bool allocBlendMode = pRes->resNum.HasBlendMode();
-            u8 indTexSRTNum = Min(pRes->resNum.GetIndTexSRTNum(), u8(3));
-            u8 indStageNum = Min(pRes->resNum.GetIndTexStageNum(), u8(GX_MAX_INDTEXSTAGE));
-            u8 tevStageNum = Min(pRes->resNum.GetTevStageNum(), u8(GX_MAX_TEVSTAGE));
+            u8 indTexSRTNum = ut::Min(pRes->resNum.GetIndTexSRTNum(), u8(3));
+            u8 indStageNum = ut::Min(pRes->resNum.GetIndTexStageNum(), u8(GX_MAX_INDTEXSTAGE));
+            u8 tevStageNum = ut::Min(pRes->resNum.GetTevStageNum(), u8(GX_MAX_TEVSTAGE));
 
             ReserveGXMem(texMapNum, texSRTNum, texCoordGenNum, tevStageNum, allocTevSwap, indStageNum, indTexSRTNum, allocChanCtrl, allocMatCol,
                          allocAlpComp, allocBlendMode);

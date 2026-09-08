@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/RhythmLib/AudMeSeqParser.hpp"
 #include "Game/RhythmLib/AudMeSeqReader.hpp"
 
 class AudMeTrack;
@@ -12,7 +13,7 @@ public:
     void wait(s32, s32);
     void autoWait();
     void inherit(AudMeSeqCtrl*);
-    void rhythmProc(AudMeTrack*, s32);
+    s32 rhythmProc(AudMeTrack*, s32);
 
     AudMeSeqReader* getSeqReader() {
         return &mReader;
@@ -74,11 +75,13 @@ public:
         mIsLocked = false;
     }
 
+    static AudMeSeqParser sDefaultParser;
+
     /* 0x00 */ s32 mWaitTime;
-    /* 0x04 */ u32 mTime;
+    /* 0x04 */ s32 mTime;  // TODO: better name, "note time?"
     /* 0x08 */ AudMeSeqReader mReader;
-    /* 0x44 */ u32 _44;
+    /* 0x44 */ AudMeSeqParser* mParser;
     /* 0x48 */ bool mIsLocked;
+    /* 0x49 */ bool mStopAfterNote;
     /* 0x4C */ s32 mProgress;
-    /* 0x50 */ u8 pad_50[0x88 - 0x50];
 };

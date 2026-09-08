@@ -123,7 +123,7 @@ public:
 
     /* 0x00 */ AudMeTable* mMeSeq;
     /* 0x04 */ JSUList< AudMe > mMeList;
-    /* 0x10 */ u8 _10[64];
+    /* 0x10 */ u8 _10[64];  // mNotes?
     /* 0x50 */ f32 _50;
     /* 0x54 */ AudMePlayingParamsHolder mParams;
 };

@@ -4,10 +4,18 @@
 #include "size_t.h"
 #include "wchar_t.h"
 
-wchar_t* wcschr(const wchar_t *, const wchar_t);
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-int wcscmp(const wchar_t *, const wchar_t *);
-wchar_t* wcsncpy(wchar_t *, const wchar_t *, size_t);
-size_t wcslen(const wchar_t *);
+wchar_t* wcschr(const wchar_t*, const wchar_t);
 
-#endif // WSTRING_H
+int wcscmp(const wchar_t*, const wchar_t*);
+wchar_t* wcsncpy(wchar_t*, const wchar_t*, size_t);
+size_t wcslen(const wchar_t*);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif  // WSTRING_H

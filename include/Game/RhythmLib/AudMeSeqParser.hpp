@@ -20,7 +20,9 @@ public:
 
     static Command sCmdInfo[0xA0];
 
-    AudMeSeqParser();
+    AudMeSeqParser(){};
+
+    virtual ~AudMeSeqParser(){};
 
     s32 cmdBank(AudMeTrack*, u32*);
     s32 cmdPrg(AudMeTrack*, u32*);

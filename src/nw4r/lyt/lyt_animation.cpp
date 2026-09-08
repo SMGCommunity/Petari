@@ -36,7 +36,7 @@ namespace nw4r {
             mpFileResAry = nullptr;
 
             if (pBlock->fileNum > 0) {
-                mpFileResAry = Layout::NewArray< void* >(pBlock->fileNum);
+                mpFileResAry = static_cast< void** >(Layout::AllocMemory(pBlock->fileNum * sizeof(void*)));
                 if (mpFileResAry != nullptr) {
                     const u32* fileNameOffs = detail::ConvertOffsToPtr< u32 >(mpRes, sizeof(*mpRes));
                     for (int i = 0; i < mpRes->fileNum; i++) {
@@ -46,15 +46,17 @@ namespace nw4r {
                 }
             }
 
-            mAnimLinkAry = Layout::NewArray< AnimationLink >(animNum);
+            mAnimLinkAry = static_cast< AnimationLink* >(Layout::AllocMemory(animNum * sizeof(AnimationLink)));
             if (mAnimLinkAry != nullptr) {
                 mAnimLinkNum = animNum;
-                memset(mAnimLinkAry, 0, pBlock->animContNum * sizeof(AnimationLink));
+                memset(mAnimLinkAry, 0, animNum * sizeof(AnimationLink));
 
-                for (u16 i = 0; i < pBlock->animContNum; i++) {
+                for (u16 i = 0; i < animNum; i++) {
                     new (&mAnimLinkAry[i]) AnimationLink();
                 }
             }
         }
+
+        namespace detail {};
     };  // namespace lyt
 };  // namespace nw4r

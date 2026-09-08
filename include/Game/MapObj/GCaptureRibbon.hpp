@@ -8,6 +8,7 @@ class GCaptureRibbon : public LiveActor {
 public:
     GCaptureRibbon(const char*);
 
+    virtual ~GCaptureRibbon();
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
 
@@ -18,9 +19,9 @@ public:
     f32 calcLineWidth() const;
 
     JUTTexture* mTexture;  // 0x8C
-    TVec3f _90;
-    TVec3f _9C;
-    TVec3f _A8[0xBE];
-    u32 _990;
-    u32 _994;
+    TVec3f _90[0x40];
+    TVec3f _390[0x40];
+    TVec3f _690[0x40];
+    s32 _990;
+    s32 _994;
 };
