@@ -7242,7 +7242,7 @@ Game/Player/MarioMoveSphere.cpp:
 
 Game/Player/MarioParts.cpp:
 	.text       start:0x802EDF18 end:0x802EE148
-	.data       start:0x805C8F38 end:0x805C90D0
+	.data       start:0x805C8F38 end:0x805C8FB0
 	.sdata2     start:0x806BFE68 end:0x806BFE70
 
 Game/Player/MarioPress.cpp:
@@ -7253,7 +7253,7 @@ Game/Player/MarioPress.cpp:
 Game/Player/MarioRabbit.cpp:
 	.text       start:0x802EF560 end:0x802F0404
 	.ctors      start:0x8052F114 end:0x8052F118
-	.data       start:0x805C90D0 end:0x805C91D8
+	.data       start:0x805C8FB0 end:0x805C91D8
 	.sdata2     start:0x806BFED8 end:0x806BFF08
 
 Game/Player/MarioSearchLight.cpp:
@@ -7512,7 +7512,7 @@ Game/RhythmLib/AudMeTrack.cpp:
 	.ctors      start:0x8052F1A4 end:0x8052F1A8
 	.rodata     start:0x80539CD0 end:0x80539D20
 	.bss        start:0x8060AF38 end:0x8060AFB0
-	.sbss       start:0x806B62C0 end:0x806B62D0
+    .sbss       start:0x806B62C0 end:0x806B62D0
 	.sdata2     start:0x806C0648 end:0x806C0658
 
 Game/RhythmLib/AudMeChannelMgr.cpp:

@@ -1,14 +1,13 @@
 #pragma once
 
-#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/MapObj/MapObjActorInitInfo.hpp"
 
 class NeedlePlant : public MapObjActor {
 public:
-    NeedlePlant(const char*);
+    /// @brief Creates a new `NeedlePlant`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    NeedlePlant(const char* pName);
 
-    virtual ~NeedlePlant();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void attackSensor(HitSensor*, HitSensor*);
@@ -17,8 +16,8 @@ public:
     virtual bool receiveMsgEnemyAttack(u32, HitSensor*, HitSensor*);
     virtual void connectToScene(const MapObjActorInitInfo&);
 
-    void exeShake();
     void exeWait();
+    void exeShake();
 
-    s32 _C4;  // 0xC4
+    /* 0xC4 */ s32 mObjArg0;
 };

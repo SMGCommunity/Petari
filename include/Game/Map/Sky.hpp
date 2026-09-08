@@ -8,9 +8,10 @@ class SpaceInner;
 
 class Sky : public LiveActor {
 public:
-    Sky(const char*);
+    /// @brief Creates a new `Sky`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    Sky(const char* pName);
 
-    virtual ~Sky();
     virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
     virtual void control();
@@ -22,17 +23,16 @@ public:
     void exeWait();
     void exeChange();
 
-    SpaceInner* mSpaceInner;                  // 0x8C
-    MirrorReflectionModel* mReflectionModel;  // 0x90
+    /* 0x8C */ SpaceInner* mSpaceInner;
+    /* 0x90 */ MirrorReflectionModel* mReflectionModel;
 };
 
 class ProjectionMapSky : public Sky {
 public:
     ProjectionMapSky(const char*);
 
-    virtual ~ProjectionMapSky();
     virtual void calcAndSetBaseMtx();
     virtual void initModel(const char*);
 
-    ProjmapEffectMtxSetter* mMtxSetter;  // 0x94
+    /* 0x94 */ ProjmapEffectMtxSetter* mProjmapEffectMtxSetter;
 };

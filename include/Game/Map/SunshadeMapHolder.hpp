@@ -5,11 +5,10 @@
 
 class SunshadeMapHolder : public NameObj {
 public:
+    /// @brief Creates a new `SunshadeMapHolder`.
     SunshadeMapHolder();
 
-    virtual ~SunshadeMapHolder();
-
-    TVec3f _C;
+    /* 0x0C */ TVec3f _C;
 };
 
 namespace MR {

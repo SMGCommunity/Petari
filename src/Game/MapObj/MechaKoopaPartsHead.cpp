@@ -3,11 +3,20 @@
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
 
+void MechaKoopaPartsHead_FORCE_MATCH_SDATA2() {
+    (void)0.0f;
+    (void)2.0f;
+}
+
 namespace {
-    const char* sDemoPartNameBreak = "壊れ開始";
-    const char* sDemoPartNameFadeOut = "フェードアウト";
-    const char* sDemoPartNameWhite = "白画面";
-    const char* sDemoPartNameFadeIn = "フェードイン";
+    static const s32 sStepForWhiteFadeOut = 60;
+    static const s32 sStepForWhiteFadeIn = 60;
+    static const s32 sStepToBreakFaceEffect = 120;
+    static const s32 sStepToExplosionEffect = 300;
+    static const char* const sDemoPartNameBreak = "壊れ開始";
+    static const char* const sDemoPartNameFadeOut = "フェードアウト";
+    static const char* const sDemoPartNameWhite = "白画面";
+    static const char* const sDemoPartNameFadeIn = "フェードイン";
 };  // namespace
 
 namespace NrvMechaKoopaPartsHead {
@@ -49,14 +58,14 @@ void MechaKoopaPartsHead::exeWait() {
 void MechaKoopaPartsHead::exeDemoBreak() {
     if (MR::isFirstStep(this)) {
         MR::startSound(this, "SE_BM_MECHA_KOOPA_DOWN");
-        MR::moveVolumeStageBGM(0.0f, 0x1E);
+        MR::moveVolumeStageBGM(0.0f, 30);
         MR::shakeCameraInfinity(this, 0.2f, 2.0f);
     }
 
     MR::tryRumblePadMiddle(this, WPAD_CHAN0);
     MR::startLevelSound(this, "SE_BM_LV_MECHA_KOOPA_PRE_BREAK");
 
-    if (MR::isStep(this, 120)) {
+    if (MR::isStep(this, ::sStepToBreakFaceEffect)) {
         MR::emitEffect(this, "Explosion1");
         MR::emitEffect(this, "Explosion2");
         MR::emitEffect(this, "ExplosionEye1");
@@ -64,12 +73,12 @@ void MechaKoopaPartsHead::exeDemoBreak() {
         MR::startSound(this, "SE_OJ_M_KOOPA_EYE_BREAK");
     }
 
-    if (MR::isStep(this, 300)) {
+    if (MR::isStep(this, ::sStepToExplosionEffect)) {
         MR::emitEffect(this, "Explosion");
         MR::startSound(this, "SE_BM_MECHA_KOOPA_BREAK_FIRE_ST");
     }
 
-    if (MR::isGreaterStep(this, 300)) {
+    if (MR::isGreaterStep(this, ::sStepToExplosionEffect)) {
         MR::startLevelSound(this, "SE_BM_LV_MECHA_KOOPA_BREAK_FIRE");
     }
 }
@@ -80,7 +89,7 @@ void MechaKoopaPartsHead::exeDemoWhiteFadeOut() {
         MR::tryRumblePadStrong(this, WPAD_CHAN0);
         MR::shakeCameraStrong();
         MR::startSound(this, "SE_BM_MECHA_KOOPA_EXPLODE");
-        MR::closeWipeWhiteFade(60);
+        MR::closeWipeWhiteFade(::sStepForWhiteFadeOut);
     }
 }
 
@@ -99,7 +108,7 @@ void MechaKoopaPartsHead::exeDemoWhiteWait() {
 
 void MechaKoopaPartsHead::exeDemoWhiteFadeIn() {
     if (MR::isFirstStep(this)) {
-        MR::openWipeWhiteFade(60);
+        MR::openWipeWhiteFade(::sStepForWhiteFadeIn);
     }
 
     if (MR::isDemoPartLastStep(::sDemoPartNameFadeIn)) {
@@ -116,19 +125,4 @@ void MechaKoopaPartsHead::exeDemoAppearStar() {
     if (MR::isEndPowerStarAppearDemo(this)) {
         kill();
     }
-}
-
-MechaKoopaPartsHead::~MechaKoopaPartsHead() {
-}
-
-void MechaKoopaPartsHead::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
-}
-
-void MechaKoopaPartsHead::initCaseUseSwitchB(const MapObjActorInitInfo&) {
-}
-
-void MechaKoopaPartsHead::initCaseNoUseSwitchA(const MapObjActorInitInfo&) {
-}
-
-void MechaKoopaPartsHead::initCaseUseSwitchA(const MapObjActorInitInfo&) {
 }

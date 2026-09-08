@@ -163,24 +163,24 @@ void OtaKing::startAppearDemo() {
     }
 }
 
-void OtaKing::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+void OtaKing::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     bool arg1 = false;
     MR::getJMapInfoArg1NoInit(rIter, &arg1);
     bool isLv2 = arg1;
 
-    pArchiveList->addArchive(CocoNut::getModelName());
-    pArchiveList->addArchive("FireBall");
-    pArchiveList->addArchive("FireBubble");
-    pArchiveList->addArchive("OtaKingMagma");
-    pArchiveList->addArchive("OtaKingMagmaBloom");
+    pCollector->addArchive(CocoNut::getModelName());
+    pCollector->addArchive("FireBall");
+    pCollector->addArchive("FireBubble");
+    pCollector->addArchive("OtaKingMagma");
+    pCollector->addArchive("OtaKingMagmaBloom");
 
     if (!isLv2) {
-        pArchiveList->addArchive("OtaKing");
-        pArchiveList->addArchive("OtaKingFoot");
-        pArchiveList->addArchive("OtaKingLongFoot");
+        pCollector->addArchive("OtaKing");
+        pCollector->addArchive("OtaKingFoot");
+        pCollector->addArchive("OtaKingLongFoot");
     } else {
-        pArchiveList->addArchive("OtaKingLv2");
-        pArchiveList->addArchive("OtaKingFootLv2");
+        pCollector->addArchive("OtaKingLv2");
+        pCollector->addArchive("OtaKingFootLv2");
     }
 }
 

@@ -3,6 +3,16 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
+namespace {
+    static const f32 sHitRange = 870.0f;
+    static const f32 sHitRangeL = 1300.0f;
+    static const f32 sHitRangeTable = 730.0f;
+    static const f32 sRockSLength = 150.0f;
+    static const f32 sRockLLength = 200.0f;
+    static const f32 sRockTableLength = 285.0f;
+    static const f32 sPushVelocity = 50.0f;
+};  // namespace
+
 namespace NrvLavaStrangeRock {
     NEW_NERVE(LavaStrangeRockNrvWait, LavaStrangeRock, Wait);
 };  // namespace NrvLavaStrangeRock
@@ -10,36 +20,42 @@ namespace NrvLavaStrangeRock {
 LavaStrangeRock::~LavaStrangeRock() {
 }
 
-LavaStrangeRock::LavaStrangeRock(const char* pName) : LiveActor(pName), mRockType(3), _90(0), mLodCtrlPlanet(nullptr) {
+LavaStrangeRock::LavaStrangeRock(const char* pName) : LiveActor(pName), mRockType(Type_3), _90(), mLodCtrlPlanet() {
 }
 
 void LavaStrangeRock::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
-    s32 v1 = -1;
-    MR::getJMapInfoArg0NoInit(rIter, &v1);
 
-    if (v1 + 1 <= 1U) {
+    s32 arg0 = -1;
+    MR::getJMapInfoArg0NoInit(rIter, &arg0);
+
+    if (arg0 + 1 <= 1U) {
         _90 = 0;
-    } else if (v1 == 1) {
+    } else if (arg0 == 1) {
         _90 = 1;
-    } else if (v1 == 2) {
+    } else if (arg0 == 2) {
         _90 = 2;
     }
-    const char* pDest = nullptr;
-    MR::getObjectName(&pDest, rIter);
-    if ((MR::isEqualString(pDest, "LavaStrangeRockTable"))) {
-        mRockType = 2;
-        setName("溶岩奇岩台形");  // lavastrangerock in japanese
-    } else if (MR::isEqualString(pDest, "LavaStrangeRockL")) {
-        mRockType = 1;
+
+    const char* objName = nullptr;
+    MR::getObjectName(&objName, rIter);
+
+    if (MR::isEqualString(objName, "LavaStrangeRockTable")) {
+        mRockType = Type_2;
+        setName("溶岩奇岩台形");
+    } else if (MR::isEqualString(objName, "LavaStrangeRockL")) {
+        mRockType = Type_1;
         setName("溶岩奇岩大");
     } else {
-        mRockType = 0;
+        mRockType = Type_0;
     }
+
     initModelAndClipping(rIter);
+
     if (mRockType == 1) {
         mLodCtrlPlanet = MR::createLodCtrlPlanet(this, rIter, -1, -1);
     }
+
     MR::connectToSceneMapObj(this);
     initEffect();
     initSound(4, false);
@@ -47,46 +63,44 @@ void LavaStrangeRock::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
 }
 
-void LavaStrangeRock::initModelAndClipping(const JMapInfoIter& iter) {
-    MR::setGroupClipping(this, iter, 16);
-    s32 v2 = 0;
-    MR::getJMapInfoArg3NoInit(iter, &v2);
+void LavaStrangeRock::initModelAndClipping(const JMapInfoIter& rIter) {
+    MR::setGroupClipping(this, rIter, 16);
+
+    s32 arg3 = 0;
+    MR::getJMapInfoArg3NoInit(rIter, &arg3);
+
     switch (mRockType) {
-    case 0:
+    case Type_0:
         initModelManagerWithAnm("LavaStrangeRock", nullptr, false);
-        MR::setClippingTypeSphere(this, mScale.y * 870.0f);
+        MR::setClippingTypeSphere(this, ::sHitRange * mScale.y);
         break;
-    case 1:
+    case Type_1:
         initModelManagerWithAnm("LavaStrangeRockL", nullptr, false);
-        MR::setClippingTypeSphere(this, mScale.y * 1300.0f);
+        MR::setClippingTypeSphere(this, ::sHitRangeL * mScale.y);
         break;
-    case 2:
+    case Type_2:
         initModelManagerWithAnm("LavaStrangeRockTable", nullptr, false);
-        MR::setClippingTypeSphere(this, mScale.y * 730.0f);
-        break;
-    default:
+        MR::setClippingTypeSphere(this, ::sHitRangeTable * mScale.y);
         break;
     }
 }
 
 void LavaStrangeRock::initEffect() {
     switch (mRockType) {
-    case 0:
+    case Type_0:
         initEffectKeeper(1, "LavaStrangeRock", false);
         break;
-    case 1:
+    case Type_1:
         initEffectKeeper(1, "LavaStrangeRockL", false);
         break;
-    case 2:
+    case Type_2:
         initEffectKeeper(1, "LavaStrangeRockTable", false);
-        break;
-    default:
         break;
     }
 }
 
 void LavaStrangeRock::control() {
-    if (mRockType == 1) {
+    if (mRockType == Type_1) {
         mLodCtrlPlanet->update();
     }
 }
@@ -97,57 +111,51 @@ void LavaStrangeRock::exeWait() {
 
     TVec3f upVec;
     MR::calcUpVec(&upVec, this);
-    TVec3f upVec2 = upVec;
 
-    f32 v1;
+    TVec3f hitOffset = upVec;
+    f32 radius;
+
     switch (mRockType) {
-    case 0:
-        upVec2 *= 870.0f;
-        v1 = 150.0f * mScale.y;
+    case Type_0:
+        hitOffset *= ::sHitRange;
+        radius = ::sRockSLength * mScale.y;
         break;
-    case 1:
-        upVec2 *= 1300.0f;
-        v1 = 200.0f * mScale.y;
+    case Type_1:
+        hitOffset *= ::sHitRangeL;
+        radius = ::sRockLLength * mScale.y;
         break;
-    case 2:
-        upVec2 *= 730.0f;
-        v1 = 285.0f * mScale.y;
-        break;
-    default:
+    case Type_2:
+        hitOffset *= ::sHitRangeTable;
+        radius = ::sRockTableLength * mScale.y;
         break;
     }
 
-    TVec3f checkHitSegSphereRes;
     if (_90 == 1) {
         if (!MR::isPlayerInRush()) {
             return;
         }
 
-        TVec3f upPlusPosition = mPosition + upVec2;
-        if ((MR::checkHitSegmentSphere(*MR::getPlayerCenterPos(), mPosition, upPlusPosition, v1, 0)) != 1) {
+        if (MR::checkHitSegmentSphere(*MR::getPlayerCenterPos(), mPosition, mPosition + hitOffset, radius, nullptr) != true) {
             return;
         }
+
         MR::emitEffect(this, "Break");
+
         switch (mRockType) {  // the lack of breaks here is intentional
-        case 0:
+        case Type_0:
             MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_S");
-        case 1:
+        case Type_1:
             MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_L");
-        case 2:
+        case Type_2:
             MR::startSound(this, "SE_OJ_STRANGEROCK_BREAK_M");
-        default:
-            break;
         }
+
         kill();
-        return;
-    }
-    if (_90 == 2) {
-        TVec3f upPlusPosition2 = mPosition + upVec2;
-        if (!(MR::checkHitSegmentSphere(*MR::getPlayerCenterPos(), mPosition, upPlusPosition2, v1, &checkHitSegSphereRes))) {
-            return;
+    } else if (_90 == 2) {
+        TVec3f hitCheckDir;
+
+        if (MR::checkHitSegmentSphere(*MR::getPlayerCenterPos(), mPosition, mPosition + hitOffset, radius, &hitCheckDir)) {
+            MR::pushPlayer(hitCheckDir * ::sPushVelocity);
         }
-        TVec3f checkHitSegSphereRes2(checkHitSegSphereRes);
-        checkHitSegSphereRes2 *= 50.0f;
-        MR::pushPlayer(checkHitSegSphereRes2);
     }
 }

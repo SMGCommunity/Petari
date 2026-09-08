@@ -9,10 +9,11 @@ class SwitchIdInfo;
 class SleepController {
 public:
     SleepController(const JMapInfoIter&, SwitchEventListener*);
+
     void initSync();
     void update();
 
-    SwitchIdInfo* _0;
-    SwitchEventListener* _4;
-    bool _8;
+    /* 0x00 */ SwitchIdInfo* mSwitchIdInfo;
+    /* 0x04 */ SwitchEventListener* mSwitchEventListener;
+    /* 0x08 */ bool mIsOnSwitchByIdInfo;
 };

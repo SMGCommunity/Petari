@@ -14,10 +14,7 @@ void LavaSunPlanet_FORCE_MATCH_SDATA2() {
     (void)-1.0f;
 }
 
-LavaSunPlanet::LavaSunPlanet(const char* pName) : LiveActor(pName) {
-    mRotator = nullptr;
-    mObjName = nullptr;
-    mLodCtrl = nullptr;
+LavaSunPlanet::LavaSunPlanet(const char* pName) : LiveActor(pName), mRotator(), mObjName(), mLodCtrl() {
 }
 
 void LavaSunPlanet::control() {
@@ -33,10 +30,8 @@ void LavaSunPlanet::calcAndSetBaseMtx() {
         LiveActor::calcAndSetBaseMtx();
     } else {
         TPos3f mtx;
-        mtx.setInline(mRotator->getRotateMtx());
-        mtx.mMtx[0][3] = mPosition.x;
-        mtx.mMtx[1][3] = mPosition.y;
-        mtx.mMtx[2][3] = mPosition.z;
+        mtx.set(mRotator->getRotateMtx());
+        mtx.setTrans(mPosition);
         MR::setBaseTRMtx(this, mtx);
     }
 }
@@ -72,7 +67,4 @@ void LavaSunPlanet::init(const JMapInfoIter& rIter) {
     makeActorAppeared();
     planetEffect->updateMtxUseBaseMtx();
     lodEffect->updateMtxUseBaseMtx();
-}
-
-LavaSunPlanet::~LavaSunPlanet() {
 }

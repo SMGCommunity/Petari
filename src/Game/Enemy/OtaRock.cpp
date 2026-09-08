@@ -79,12 +79,12 @@ void OtaRock::kill() {
     LiveActor::kill();
 }
 
-void OtaRock::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+void OtaRock::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     bool noCocoNut = false;
     MR::getJMapInfoArg0NoInit(rIter, &noCocoNut);
 
     if (!noCocoNut) {
-        pArchiveList->addArchive(CocoNut::getModelName());
+        pCollector->addArchive(CocoNut::getModelName());
     }
 }
 

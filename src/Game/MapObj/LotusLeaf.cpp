@@ -11,8 +11,6 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/PlayerUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
-#include <JSystem/JMath/JMATrigonometric.hpp>
-#include <math_types.hpp>
 
 namespace {
     static const f32 sShadowRadius = 300.0f;
@@ -20,8 +18,8 @@ namespace {
     static const f32 sShakeSpeedAtten = 0.95f;
     static const f32 sShakeSpeedMin = 0.005f;
     static const f32 sShakeAccelMin = 0.0001f;
-    // static const f32 sAfloatSpeed =
-    // static const f32 sAfloatAccel =
+    static const f32 sAfloatSpeed = 0.1f;
+    static const f32 sAfloatAccel = 0.04f;
     static const f32 sShakePeriodStart = 17.0f;
     static const f32 sShakePeriodSlowPitch = 0.65f;
     static const f32 sSinkDepthMax = 25.0f;
@@ -34,7 +32,7 @@ namespace NrvLotusLeaf {
     NEW_NERVE(HostTypeWaitPlayerOn, LotusLeaf, WaitPlayerOn);
 };  // namespace NrvLotusLeaf
 
-LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(0.0f), mShakePeriod(0.0f) {
+LotusLeaf::LotusLeaf(const char* pName) : LiveActor(pName), mInitPos(gZeroVec), mShakeSpeed(), mShakePeriod() {
 }
 
 void LotusLeaf::init(const JMapInfoIter& rIter) {
@@ -49,6 +47,7 @@ void LotusLeaf::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     MR::setEffectHostSRT(this, "LotusLeafRipple", &mInitPos, nullptr, nullptr);
     MR::initShadowVolumeCylinder(this, ::sShadowRadius);
+
     if (MR::useStageSwitchReadAppear(this, rIter)) {
         MR::syncStageSwitchAppear(this);
         makeActorDead();
@@ -59,9 +58,11 @@ void LotusLeaf::init(const JMapInfoIter& rIter) {
 
 void LotusLeaf::exeWait() {
     convergeToInitPos();
+
     if (MR::isFirstStep(this)) {
         MR::deleteEffect(this, "LotusLeafRipple");
     }
+
     if (MR::isOnPlayer(this))
         setNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance);
 }
@@ -70,9 +71,12 @@ void LotusLeaf::exeWaitPlayerOn() {
     if (mInitPos.y < mPosition.y) {
         convergeToInitPos();
     }
-    if (!MR::isOnPlayer(this)) {
-        setNerve(&NrvLotusLeaf::HostTypeWait::sInstance);
+
+    if (MR::isOnPlayer(this)) {
+        return;
     }
+
+    setNerve(&NrvLotusLeaf::HostTypeWait::sInstance);
 }
 
 void LotusLeaf::exeShake() {
@@ -82,6 +86,7 @@ void LotusLeaf::exeShake() {
     if (MR::isFirstStep(this)) {
         mShakeSpeed = ::sShakeInitSpeed;
         mShakePeriod = ::sShakePeriodStart;
+
         MR::startSound(this, "SE_OJ_LOTUS_LEAF_WAVE");
         MR::emitEffect(this, "LotusLeafRipple");
     }
@@ -112,6 +117,7 @@ void LotusLeaf::exeShake() {
 
     if (MR::isNearZero(accel, ::sShakeAccelMin) && MR::isNearZero(vel, ::sShakeSpeedMin)) {
         mVelocity.zero();
+
         if (isNerve(&NrvLotusLeaf::HostTypeShakeOnPlayer::sInstance)) {
             setNerve(&NrvLotusLeaf::HostTypeWaitPlayerOn::sInstance);
         } else {
@@ -122,16 +128,16 @@ void LotusLeaf::exeShake() {
 
 void LotusLeaf::convergeToInitPos() {
     if (mPosition.y < mInitPos.y) {
-        mVelocity.y += 0.04f;
-        mVelocity.y = (mVelocity.y >= 0.1f) ? 0.1f : mVelocity.y;
+        mVelocity.y += ::sAfloatAccel;
+        mVelocity.y = MR::min(mVelocity.y, ::sAfloatSpeed);
 
         if (mInitPos.y <= mPosition.y + mVelocity.y) {
             mPosition.y = mInitPos.y;
             mVelocity.zero();
         }
     } else {
-        mVelocity.y -= 0.04f;
-        mVelocity.y = (mVelocity.y >= -0.1f) ? mVelocity.y : -0.1f;
+        mVelocity.y -= ::sAfloatAccel;
+        mVelocity.y = MR::max(mVelocity.y, -::sAfloatSpeed);
 
         if (mPosition.y + mVelocity.y <= mInitPos.y) {
             mPosition.y = mInitPos.y;

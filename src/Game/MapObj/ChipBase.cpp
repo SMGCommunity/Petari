@@ -324,8 +324,8 @@ bool ChipBase::isNeedBubble(const JMapInfoIter& rIter) {
     return arg3;
 }
 
-void ChipBase::makeArchiveList(NameObjArchiveListCollector* pList, const JMapInfoIter& rIter) {
+void ChipBase::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (ChipBase::isNeedBubble(rIter)) {
-        pList->addArchive("AirBubble");
+        pCollector->addArchive("AirBubble");
     }
 }

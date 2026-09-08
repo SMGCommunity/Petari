@@ -80,12 +80,12 @@ Sandstorm::Sandstorm(const char* pName)
       mTrapModel() {
 }
 
-void Sandstorm::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+void Sandstorm::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     bool useTrapModel = false;
     MR::getJMapInfoArg0NoInit(rIter, &useTrapModel);
 
     if (useTrapModel) {
-        pArchiveList->addArchive("SunakazeKunTrap");
+        pCollector->addArchive("SunakazeKunTrap");
     }
 }
 

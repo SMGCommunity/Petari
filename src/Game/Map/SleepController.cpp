@@ -2,25 +2,28 @@
 #include "Game/Map/ActorAppearSwitchListener.hpp"
 #include "Game/Map/StageSwitch.hpp"
 
-SleepController::SleepController(const JMapInfoIter& rIter, SwitchEventListener* param2) : _4(param2), _0(nullptr), _8(false) {
-    _0 = StageSwitchFunction::createSwitchIdInfo("SW_SLEEP", rIter, false);
+SleepController::SleepController(const JMapInfoIter& rIter, SwitchEventListener* pListener) : mSwitchEventListener(pListener), mSwitchIdInfo(), mIsOnSwitchByIdInfo() {
+    mSwitchIdInfo = StageSwitchFunction::createSwitchIdInfo("SW_SLEEP", rIter, false);
 }
 
 void SleepController::initSync() {
-    if (StageSwitchFunction::isOnSwitchBySwitchIdInfo(*_0)) {
-        _4->listenSwitchOnEvent();
-        return;
+    if (StageSwitchFunction::isOnSwitchBySwitchIdInfo(*mSwitchIdInfo)) {
+        mSwitchEventListener->listenSwitchOnEvent();
+    } else {
+        mSwitchEventListener->listenSwitchOffEvent();
     }
-    _4->listenSwitchOffEvent();
 }
 
 void SleepController::update() {
-    bool v8 = StageSwitchFunction::isOnSwitchBySwitchIdInfo(*_0);
-    if (!_8 && v8) {
-        _4->listenSwitchOnEvent();
+    bool isOnSwitchByIdInfo = StageSwitchFunction::isOnSwitchBySwitchIdInfo(*mSwitchIdInfo);
+
+    if (!mIsOnSwitchByIdInfo && isOnSwitchByIdInfo) {
+        mSwitchEventListener->listenSwitchOnEvent();
     }
-    if (_8 && !v8) {
-        _4->listenSwitchOffEvent();
+
+    if (mIsOnSwitchByIdInfo && !isOnSwitchByIdInfo) {
+        mSwitchEventListener->listenSwitchOffEvent();
     }
-    _8 = v8;
+
+    mIsOnSwitchByIdInfo = isOnSwitchByIdInfo;
 }

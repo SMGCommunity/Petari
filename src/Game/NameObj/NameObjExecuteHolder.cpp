@@ -14,7 +14,7 @@ namespace {
 };  // namespace
 
 NameObjExecuteInfo::NameObjExecuteInfo()
-    : mExecutedObj(nullptr), _4(0), _5(0), mMovementType(-1), mCalcAnimType(-1), mDrawType(-1), mDrawBufferType(-1), _A(-1) {
+    : mExecutedObj(), _4(), _5(), mMovementType(-1), mCalcAnimType(-1), mDrawType(-1), mDrawBufferType(-1), _A(-1) {
 }
 
 void NameObjExecuteInfo::setConnectInfo(NameObj* pObj, int movementType, int calcAnimType, int drawBufferType, int drawType) {
@@ -417,7 +417,6 @@ namespace MR {
 };  // namespace MR
 
 NameObjExecuteHolder::NameObjExecuteHolder(int size)
-    : NameObj("connectToScene情報保持"), mExecuteArray(nullptr), mExecuteArrayMaxSize(size), mExecuteArraySize(0), _18(false), _19(false), _1A(false),
-      _1B(false), _1C(false) {
+    : NameObj("connectToScene情報保持"), mExecuteArray(), mExecuteArrayMaxSize(size), mExecuteArraySize(), _18(), _19(), _1A(), _1B(), _1C() {
     mExecuteArray = new NameObjExecuteInfo[mExecuteArrayMaxSize];
 }

@@ -213,7 +213,7 @@ void MiniatureGalaxy::kill() {
     mOrbit->kill();
 }
 
-void MiniatureGalaxy::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+void MiniatureGalaxy::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     const char* objectName;
 
     s32 arg0 = -1;
@@ -223,11 +223,11 @@ void MiniatureGalaxy::makeArchiveList(NameObjArchiveListCollector* pArchiveList,
     MR::getObjectName(&objectName, rIter);
 
     if (type == MiniatureGalaxyType_Normal) {
-        pArchiveList->addArchive(objectName);
-        pArchiveList->addArchive("MiniatureGalaxyUnknown");
+        pCollector->addArchive(objectName);
+        pCollector->addArchive("MiniatureGalaxyUnknown");
     } else if (type == MiniatureGalaxyType_Hatena) {
-        pArchiveList->addArchive(objectName);
-        pArchiveList->addArchive("MiniHatenaGalaxy");
+        pCollector->addArchive(objectName);
+        pCollector->addArchive("MiniHatenaGalaxy");
     } else if (type == MiniatureGalaxyType_Koopa) {
         // TODO: Should be replaced with ::isUseKoopaFaceModel
         const char* pStageName;
@@ -239,15 +239,15 @@ void MiniatureGalaxy::makeArchiveList(NameObjArchiveListCollector* pArchiveList,
             isUnknownKoopa = false;
         }
 
-        pArchiveList->addArchive(isUnknownKoopa ? "MiniKoopaGalaxy" : objectName);
-        // pArchiveList->addArchive(::isUseKoopaFaceModel(objectName, ::getGalayNameFromObjectName(objectName)) ? "MiniKoopaGalaxy" : objectName);
-        pArchiveList->addArchive("MiniatureGalaxyUnknownKoopa");
+        pCollector->addArchive(isUnknownKoopa ? "MiniKoopaGalaxy" : objectName);
+        // pCollector->addArchive(::isUseKoopaFaceModel(objectName, ::getGalayNameFromObjectName(objectName)) ? "MiniKoopaGalaxy" : objectName);
+        pCollector->addArchive("MiniatureGalaxyUnknownKoopa");
     }
 
-    pArchiveList->addArchive("MiniatureGalaxyShadow");
-    pArchiveList->addArchive("MiniatureGalaxySelect");
-    pArchiveList->addArchive("MiniatureGalaxyStarNumber");
-    pArchiveList->addArchive("GalaxyNamePlate");
+    pCollector->addArchive("MiniatureGalaxyShadow");
+    pCollector->addArchive("MiniatureGalaxySelect");
+    pCollector->addArchive("MiniatureGalaxyStarNumber");
+    pCollector->addArchive("GalaxyNamePlate");
 }
 
 void MiniatureGalaxy::control() {
