@@ -61,7 +61,7 @@ void AudMe::stop(s32 time) {
 
 void AudMe::release() {
     if (mTrack != nullptr) {
-        if (mTrack->_F0 != 0) {
+        if (mTrack->mStatus != AudMeTrack::STATUS_FREE) {
             stop(0);
         }
         delete mTrack;
@@ -111,7 +111,7 @@ void AudMe::update() {
             mTrack->gframeProc();
         }
 
-        if (mTrack->_F0 == 0) {
+        if (mTrack->mStatus == AudMeTrack::STATUS_FREE) {
             delete mTrack;
             mTrack = nullptr;
         }
@@ -158,7 +158,7 @@ void AudMe::updateTimedParams(bool b) {
     }
 
     f32 f1 = _80 * mVolume * mVolumeParam.mValue * mDistFilterParam.mValue;
-    s32 n = mTrack->_E8;
+    s32 n = mTrack->mNumChannelMgrs;
     f32 f2 = mDolbyParam.mValue + _8C;
     f32 f3 = (mPanParam.mValue - 0.5f) + (_88 - 0.5f) + 0.5f;
 
@@ -318,8 +318,8 @@ bool AudMeMgr::isRequestedMe(u32 meId) {
         if (track != nullptr) {
             JASCriticalSection crit;
             if (meId == track->mMeId) {
-                bool b = track->_F0 == 2 || track->_F0 == 1;
-                if (b) {
+                bool requested = track->mStatus == AudMeTrack::STATUS_RUN || track->mStatus == AudMeTrack::STATUS_READY;
+                if (requested) {
                     return true;
                 }
             }

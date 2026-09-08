@@ -1,7 +1,7 @@
 #include "Game/RhythmLib/AudMeChannelMgr.hpp"
 #include "JSystem/JAudio2/JASChannel.hpp"
 
-AudMeChannelMgr::AudMeChannelMgr(AudMeTrack* pTrack) : _20(1.0f), _24(1.0f), _28(0.0f), _2C(0.5f), _30(0.0f), _34(0.0f), mTrack(pTrack) {
+AudMeChannelMgr::AudMeChannelMgr(AudMeTrack* pTrack) : mTrack(pTrack) {
     mParams.init();
     for (int idx = 0; idx < 8; idx++) {
         mChannels[idx] = nullptr;

@@ -5,7 +5,6 @@
 #include "Game/AudioLib/AudWrap.hpp"
 #include "Game/RhythmLib/AudChordInfo.hpp"
 #include "Game/RhythmLib/AudRhythmMeSystem.hpp"
-#include "Game/RhythmLib/AudRhythmWrap.hpp"
 
 bool AudBgmRhythmStrategy::set(AudBgm* pBgm, s32 bgmIndex) {
     AudSoundInfo* info = AudWrap::getSoundInfo();

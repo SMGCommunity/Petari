@@ -40,6 +40,8 @@
 #include <revolution/sc.h>
 #include <revolution/vi/vifuncs.h>
 
+AudSystem* AudSystem::msBasic;
+
 AudSystem* AudNewAudSystem_(JAUSectionHeap* pHeap, JKRArchive* pChordArchive, JKRArchive* pMeArchive, JKRArchive* pRemixArchive, int maxChannels) {
     AudSystem* system = new AudSystem(pHeap, pChordArchive, pMeArchive, pRemixArchive);
     system->mAudience.mMaxChannels = maxChannels;
