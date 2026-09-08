@@ -4,9 +4,10 @@
 
 class SpaceInner : public LiveActor {
 public:
-    SpaceInner(const char*);
+    /// @brief Creates a new `SpaceInner`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    SpaceInner(const char* pName);
 
-    virtual ~SpaceInner();
     virtual void init(const JMapInfoIter&);
     virtual void calcAnim();
     virtual void appear();

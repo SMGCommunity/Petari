@@ -24,10 +24,7 @@ void SpaceInner::init(const JMapInfoIter& rIter) {
 }
 
 void SpaceInner::calcAnim() {
-    TVec3f pos = MR::getCamPos();
-    mPosition.x = pos.x;
-    mPosition.y = pos.y;
-    mPosition.z = pos.z;
+    mPosition.set(MR::getCamPos());
     LiveActor::calcAnim();
 }
 
@@ -57,7 +54,4 @@ bool SpaceInner::isAppeared() const {
     }
 
     return false;
-}
-
-SpaceInner::~SpaceInner() {
 }
