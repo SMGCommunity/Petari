@@ -1,7 +1,7 @@
 #include "Game/NameObj/NameObjListExecutor.hpp"
 #include "Game/Scene/SceneFunction.hpp"
 
-NameObjListExecutor::NameObjListExecutor() : mBufferHolder(nullptr), mMovementList(nullptr), mCalcAnimList(nullptr), mDrawList(nullptr) {
+NameObjListExecutor::NameObjListExecutor() : mBufferHolder(), mMovementList(), mCalcAnimList(), mDrawList() {
 }
 
 NameObjListExecutor::~NameObjListExecutor() {
