@@ -2,6 +2,7 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 #include "Game/Util/SystemUtil.hpp"
+#include "JSystem/JUtility/JUTVideo.hpp"
 
 void CameraContext_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -89,4 +90,10 @@ void CameraContext::updateProjectionMtx() {
     trans.makeTrans(mShakeOffset.x, mShakeOffset.y);
 
     mProjection.concat(trans, mProjection);
+}
+
+namespace MR {
+    s32 getScreenHeight() {
+        return JUTVideo::getManager()->getEfbHeight();
+    }
 }
