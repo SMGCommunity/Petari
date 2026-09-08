@@ -2,6 +2,7 @@
 #include "Game/Map/HitInfo.hpp"
 #include "Game/Player/Mario.hpp"
 #include "Game/Player/MarioActor.hpp"
+#include "Game/Player/MarioState.hpp"
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "revolution/types.h"
@@ -89,7 +90,7 @@ bool Mario::isUseAnotherMovingPolygon() const {
 }
 
 bool Mario::isUseFooSpecialGravity(const TVec3f& a1, TVec3f* a2) const {
-    if (!isStatusActive(24)) {
+    if (!isStatusActive(MarioStatus_Foo)) {
         return false;
     }
 
@@ -121,7 +122,7 @@ bool Mario::isHeadPushEnableArea() const {
 }
 
 bool Mario::isOnimasuBinderPressSkip() const {
-    if (isStatusActive(21)) {
+    if (isStatusActive(MarioStatus_SideStep)) {
         if (mFrontWallTriangle->mSensor != nullptr) {
             if (strstr(mFrontWallTriangle->mSensor->mHost->mName, "オニマス")) {
                 return true;
