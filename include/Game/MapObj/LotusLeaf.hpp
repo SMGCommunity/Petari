@@ -1,15 +1,17 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
 
 class LotusLeaf : public LiveActor {
 public:
-    LotusLeaf(const char*);
+    /// @brief Creates a new `LotusLeaf`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    LotusLeaf(const char* pName);
 
     virtual void init(const JMapInfoIter&);
 
     void convergeToInitPos();
+
     void exeWait();
     void exeWaitPlayerOn();
     void exeShake();
