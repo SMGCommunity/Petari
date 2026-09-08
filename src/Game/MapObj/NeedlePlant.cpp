@@ -1,4 +1,5 @@
 #include "Game/MapObj/NeedlePlant.hpp"
+#include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util/ActorMovementUtil.hpp"
@@ -10,13 +11,17 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StarPointerUtil.hpp"
 
+namespace {
+    // static const f32 sBreakSensorSize = _;
+    static const f32 sAttackSensorSize = 70.0f;
+};  // namespace
+
 namespace NrvNeedlePlant {
     NEW_NERVE(NeedlePlantNrvWait, NeedlePlant, Wait);
     NEW_NERVE(NeedlePlantNrvShake, NeedlePlant, Shake);
 };  // namespace NrvNeedlePlant
 
-NeedlePlant::NeedlePlant(const char* pName) : MapObjActor(pName) {
-    _C4 = -1;
+NeedlePlant::NeedlePlant(const char* pName) : MapObjActor(pName), mObjArg0(-1) {
 }
 
 void NeedlePlant::init(const JMapInfoIter& rIter) {
@@ -27,24 +32,26 @@ void NeedlePlant::init(const JMapInfoIter& rIter) {
     info.setupConnectToScene();
     info.setupAffectedScale();
     info.setupHitSensor();
-    TVec3f vec;
-    vec.set(0.0f, 150.0f * mScale.x, 0.0f);
-    info.setupHitSensorParam(4, 180.0f, vec);
+    info.setupHitSensorParam(4, 180.0f, TVec3f(0.0f, mScale.x * 150.0f, 0.0f));
     info.setupShadow(nullptr);
     info.setupNerve(&NrvNeedlePlant::NeedlePlantNrvWait::sInstance);
     initialize(rIter, info);
     initEffectKeeper(1, "NeedlePlant", false);
     MR::addEffectHitNormal(this, nullptr);
     initSound(4, 0);
-    TVec3f vec3_2;  // Second Vector3f
-    vec3_2.set(0.0f, 150.0f * mScale.x, 0.0f);
-    MR::initStarPointerTarget(this, 150.0f * mScale.x, vec3_2);
-    MR::getJMapInfoArg0NoInit(rIter, &_C4);
+    MR::initStarPointerTarget(this, mScale.x * 150.0f, TVec3f(0.0f, mScale.x * 150.0f, 0.0f));
+    MR::getJMapInfoArg0NoInit(rIter, &mObjArg0);
 
-    if (_C4 == -1) {
+    if (mObjArg0 == -1) {
         MR::declareCoin(this, 1);
-    } else if (!_C4) {
+    } else if (mObjArg0 == 0) {
         MR::declareStarPiece(this, 3);
+    }
+}
+
+void NeedlePlant::exeWait() {
+    if (MR::isFirstStep(this)) {
+        MR::tryStartAllAnim(this, mObjectName);
     }
 }
 
@@ -63,18 +70,19 @@ void NeedlePlant::kill() {
     MR::emitEffect(this, "Break");
     MR::startSound(this, "SE_OJ_NEEDLE_PLANT_BREAK");
 
-    if (!_C4) {
+    if (mObjArg0 == 0) {
         MR::startSound(this, "SE_OJ_STAR_PIECE_BURST");
-        MR::appearStarPiece(this, this->mPosition, 3, 10.0f, 40.0f, false);
-    } else if (_C4 == -1) {
-        MR::appearCoinPop(this, this->mPosition, 1);
+        MR::appearStarPiece(this, mPosition, 3, 10.0f, 40.0f, false);
+    } else if (mObjArg0 == -1) {
+        MR::appearCoinPop(this, mPosition, 1);
     }
+
     MapObjActor::kill();
 }
 
 void NeedlePlant::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     // TODO: Possible inline. https://decomp.me/scratch/zwlUm
-    if (MR::calcDistance(pSender, pReceiver, nullptr) > 70.0f * mScale.x + pReceiver->mRadius) {
+    if (MR::calcDistance(pSender, pReceiver, nullptr) > pReceiver->mRadius + mScale.x * ::sAttackSensorSize) {
         return;
     }
 
@@ -82,11 +90,10 @@ void NeedlePlant::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
         MR::emitEffectHitBetweenSensors(this, pSender, pReceiver, 0.0f, nullptr);
         setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
     } else if (MR::isSensorPlayerOrRide(pReceiver) || MR::isSensorEnemy(pReceiver)) {
-        f32 mRadius;
-        mRadius = getSensor(nullptr)->mRadius;
-        getSensor(nullptr)->mRadius = 70.0f * mScale.x;
+        f32 radius = getSensor(nullptr)->mRadius;
+        getSensor(nullptr)->mRadius = ::sAttackSensorSize * mScale.x;
         MR::sendMsgPush(pReceiver, pSender);
-        getSensor(nullptr)->mRadius = mRadius;
+        getSensor(nullptr)->mRadius = radius;
     }
 }
 
@@ -98,36 +105,34 @@ bool NeedlePlant::receiveMsgPush(HitSensor* pSender, HitSensor* pReceiver) {
     if (!MR::isSensorEnemy(pSender)) {
         return false;
     }
+
     setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
+
     return true;
 }
 
 bool NeedlePlant::receiveMsgPlayerAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgStarPieceReflect(msg)) {
         setNerve(&NrvNeedlePlant::NeedlePlantNrvShake::sInstance);
+
         return true;
-    } else if (MR::isMsgInvincibleAttack(msg)) {
-        kill();
-        return true;
-    } else {
-        return false;
     }
+
+    if (MR::isMsgInvincibleAttack(msg)) {
+        kill();
+
+        return true;
+    }
+
+    return false;
 }
 
 bool NeedlePlant::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     kill();
+
     return true;
 }
 
 void NeedlePlant::connectToScene(const MapObjActorInitInfo&) {
     MR::connectToSceneNoShadowedMapObj(this);
-}
-
-NeedlePlant::~NeedlePlant() {
-}
-
-inline void NeedlePlant::exeWait() {
-    if (MR::isFirstStep(this)) {
-        MR::tryStartAllAnim(this, mObjectName);
-    }
 }
