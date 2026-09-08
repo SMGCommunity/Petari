@@ -91,14 +91,13 @@ nw4r/lyt/lyt_group.cpp:
 
 nw4r/lyt/lyt_layout.cpp:
 	.text       start:0x8000CDD4 end:0x8000DA6C
-	.data       start:0x805646F0 end:0x80564730
+	.data       start:0x805646F0 end:0x80564798
 	.sbss       start:0x806B2E88 end:0x806B2E90
 	.sdata2     start:0x806B7C88 end:0x806B7C90
 
 nw4r/lyt/lyt_picture.cpp:
 	.text       start:0x8000DA6C end:0x8000DF94
 	.ctors      start:0x8052E80C end:0x8052E810
-	.data       start:0x80564730 end:0x80564798
 	.sbss       start:0x806B2E90 end:0x806B2E98
 	.sdata2     start:0x806B7C90 end:0x806B7C98
 
@@ -7242,7 +7241,7 @@ Game/Player/MarioMoveSphere.cpp:
 
 Game/Player/MarioParts.cpp:
 	.text       start:0x802EDF18 end:0x802EE148
-	.data       start:0x805C8F38 end:0x805C90D0
+	.data       start:0x805C8F38 end:0x805C8FB0
 	.sdata2     start:0x806BFE68 end:0x806BFE70
 
 Game/Player/MarioPress.cpp:
@@ -7253,7 +7252,7 @@ Game/Player/MarioPress.cpp:
 Game/Player/MarioRabbit.cpp:
 	.text       start:0x802EF560 end:0x802F0404
 	.ctors      start:0x8052F114 end:0x8052F118
-	.data       start:0x805C90D0 end:0x805C91D8
+	.data       start:0x805C8FB0 end:0x805C91D8
 	.sdata2     start:0x806BFED8 end:0x806BFF08
 
 Game/Player/MarioSearchLight.cpp:
@@ -7361,7 +7360,7 @@ Game/Player/MarioWalk.cpp:
 
 Game/Player/MarioNullBck.cpp:
 	.text       start:0x80308E04 end:0x803090AC
-	.rodata     start:0x80539C58 end:0x80539CD0
+	.rodata     start:0x80539C58 end:0x80539CE8
 	.data       start:0x805CC8B8 end:0x805CC960
 	.sdata2     start:0x806C0370 end:0x806C0378
 
@@ -7500,7 +7499,7 @@ Game/Player/PlayerEventGhostRaceDown.cpp:
 Game/RhythmLib/AudRhythmSeqParser.cpp:
 	.text       start:0x80316D30 end:0x80317C08
 	.data       start:0x805CDF70 end:0x805CDF90
-	.sbss       start:0x806B62B0 end:0x806B62C0
+	.sbss       start:0x806B62B0 end:0x806B62D0
 	.sdata2     start:0x806C0630 end:0x806C0638
 
 Game/RhythmLib/AudBgmTempoAdjuster.cpp:
@@ -7510,9 +7509,9 @@ Game/RhythmLib/AudBgmTempoAdjuster.cpp:
 Game/RhythmLib/AudMeTrack.cpp:
 	.text       start:0x80317F70 end:0x80319C98
 	.ctors      start:0x8052F1A4 end:0x8052F1A8
-	.rodata     start:0x80539CD0 end:0x80539D20
+	.rodata     start:0x80539CE8 end:0x80539D20
 	.bss        start:0x8060AF38 end:0x8060AFB0
-	.sbss       start:0x806B62C0 end:0x806B62D0
+	.sbss       start:0x806B62D0 end:0x806B62D0
 	.sdata2     start:0x806C0648 end:0x806C0658
 
 Game/RhythmLib/AudMeChannelMgr.cpp:
