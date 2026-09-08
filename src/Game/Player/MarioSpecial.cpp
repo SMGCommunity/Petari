@@ -7,17 +7,14 @@
 #include "revolution/types.h"
 
 void Mario::checkOnimasu(const HitSensor* pSensor) {
-    if (!strstr(pSensor->mHost->mName, "オニマス")) {
+    if (strstr(pSensor->mHost->mName, "オニマス") == nullptr) {
         return;
     }
 
     if (_5FC == nullptr) {
         _5FC = pSensor;
         _60C = 1;
-        return;
-    }
-
-    if (_5FC != pSensor && (pSensor->mPosition - mPosition).length() < (_5FC->mPosition - mPosition).length()) {
+    } else if (_5FC != pSensor && (pSensor->mPosition - mPosition).length() < (_5FC->mPosition - mPosition).length()) {
         _5FC = pSensor;
         _60C = 1;
     }
@@ -29,7 +26,7 @@ bool Mario::isDossun(const Triangle* pTriangle) const {
         return false;
     }
 
-    if (strstr(pTriangle->mSensor->mHost->mName, "ドッスン") != 0) {
+    if (strstr(pTriangle->mSensor->mHost->getName(), "ドッスン") != nullptr) {
         return true;
     }
 
