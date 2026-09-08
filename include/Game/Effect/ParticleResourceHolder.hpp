@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Game/Util/Array.hpp"
 #include <revolution/types.h>
 
 class JMapInfo;
@@ -28,6 +29,5 @@ public:
     /* 0x0000 */ JPAResourceManager* mResourceMgr;
     /* 0x0004 */ JMapInfo* mAutoEffectList;
     /* 0x0008 */ JMapInfo* mParticleNames;
-    /* 0x000C */ EffectNum* mEffectNums[1024];
-    /* 0x100C */ int mNumEffectNums;
+    /* 0x000C */ MR::Vector< MR::FixedArray< EffectNum*, 1024 > > mEffectNums;
 };

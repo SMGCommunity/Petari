@@ -119,6 +119,17 @@ public:
     JMapInfoIter(const JMapInfo* pInfo, s32 index) : mInfo(pInfo), mIndex(index) {
     }
 
+    JMapInfoIter& operator++() {
+        mIndex++;
+        return *this;
+    }
+
+    JMapInfoIter operator++(int) {
+        JMapInfoIter temp = *this;
+        mIndex++;
+        return temp;
+    }
+
     bool operator==(const JMapInfoIter& rIter) const {
         return mIndex == rIter.mIndex && mInfo != nullptr && rIter.mInfo != nullptr && *mInfo == *rIter.mInfo;
     }

@@ -8,7 +8,7 @@
 #include <cstring>
 
 ParticleResourceHolder::ParticleResourceHolder(const char* pArchiveName)
-    : mResourceMgr(), mAutoEffectList(new JMapInfo), mParticleNames(new JMapInfo), mNumEffectNums() {
+    : mResourceMgr(), mAutoEffectList(new JMapInfo), mParticleNames(new JMapInfo) {
     JKRMemArchive* pArchive = MR::mountArchive(pArchiveName, nullptr);
     mResourceMgr = new JPAResourceManager(pArchive->getResource("Particles.jpc"), MR::getCurrentHeap());
     mParticleNames->attach(pArchive->getResource("ParticleNames.bcsv"));
@@ -69,7 +69,7 @@ void ParticleResourceHolder::countAutoEffectNum() {
         if (pGroupName != nullptr) {
             bool found = false;
 
-            for (EffectNum** pParticle = mEffectNums; pParticle != mEffectNums + mNumEffectNums; pParticle++) {
+            for (EffectNum** pParticle = mEffectNums.begin(); pParticle != mEffectNums.end(); pParticle++) {
                 if (MR::isEqualStringCase((*pParticle)->mGroupName, pGroupName)) {
                     (*pParticle)->mCount++;
                     found = true;
@@ -78,9 +78,7 @@ void ParticleResourceHolder::countAutoEffectNum() {
             }
 
             if (!found) {
-                EffectNum* pParticle = new EffectNum(pGroupName);
-                const int index = mNumEffectNums++;
-                mEffectNums[index] = pParticle;
+                mEffectNums.push_back(new EffectNum(pGroupName));
             }
         }
     }
@@ -113,7 +111,7 @@ int ParticleResourceHolder::getAutoEffectNum(const char* pGroupName) const {
         return 0;
     }
 
-    for (EffectNum* const* pParticle = mEffectNums; pParticle != mEffectNums + mNumEffectNums; pParticle++) {
+    for (EffectNum* const* pParticle = mEffectNums.begin(); pParticle != mEffectNums.end(); pParticle++) {
         if (MR::isEqualStringCase((*pParticle)->mGroupName, pGroupName)) {
             return (*pParticle)->mCount;
         }
