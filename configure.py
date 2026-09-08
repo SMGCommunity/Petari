@@ -647,7 +647,7 @@ config.libs = [
     NWLib(
         "libnw4r_math",
         [
-            Object(NonMatching, "nw4r/math/math_triangular.cpp"),
+            Object(Matching, "nw4r/math/math_triangular.cpp"),
             Object(Matching, "nw4r/math/math_types.cpp"),
         ],
     ),

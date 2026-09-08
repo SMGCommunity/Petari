@@ -91,13 +91,14 @@ nw4r/lyt/lyt_group.cpp:
 
 nw4r/lyt/lyt_layout.cpp:
 	.text       start:0x8000CDD4 end:0x8000DA6C
-	.data       start:0x805646F0 end:0x80564798
+	.data       start:0x805646F0 end:0x80564730
 	.sbss       start:0x806B2E88 end:0x806B2E90
 	.sdata2     start:0x806B7C88 end:0x806B7C90
 
 nw4r/lyt/lyt_picture.cpp:
 	.text       start:0x8000DA6C end:0x8000DF94
 	.ctors      start:0x8052E80C end:0x8052E810
+	.data       start:0x80564730 end:0x80564798
 	.sbss       start:0x806B2E90 end:0x806B2E98
 	.sdata2     start:0x806B7C90 end:0x806B7C98
 
