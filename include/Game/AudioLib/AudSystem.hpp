@@ -104,6 +104,10 @@ public:
 
     static AudSystem* msBasic;
 
+    static AudSystem* get() {
+        return msBasic;
+    }
+
     /* 0x0814 */ bool mIsResetReady;
     /* 0x0815 */ bool mIsReset;
     /* 0x0816 */ bool mStopThreads;

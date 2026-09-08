@@ -4,8 +4,10 @@ namespace nw4r {
     namespace ut {
         class NonCopyable {
         protected:
-            inline NonCopyable() {}
-            inline ~NonCopyable() {}
+            inline NonCopyable() {
+            }
+            inline ~NonCopyable() {
+            }
 
         private:
             NonCopyable(const NonCopyable&);
@@ -18,14 +20,16 @@ namespace nw4r {
             return static_cast< T >((bits >> pos) & mask);
         }
 
-        template < typename T >
-        inline T Min(T a, T b) {
-            return (a > b) ? b : a;
-        }
+        namespace {
+            template < typename T >
+            inline T Min(T a, T b) {
+                return (a > b) ? b : a;
+            }
 
-        template < typename T >
-        inline T Max(T a, T b) {
-            return (a < b) ? b : a;
-        }
+            template < typename T >
+            inline T Max(T a, T b) {
+                return (a < b) ? b : a;
+            }
+        };  // namespace
     };  // namespace ut
 };  // namespace nw4r

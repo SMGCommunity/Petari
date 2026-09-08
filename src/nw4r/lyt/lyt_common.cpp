@@ -27,20 +27,22 @@ namespace nw4r {
             }
 
             void TexCoordAry::Free() {
-                if (mData != nullptr) {
-                    const u32 coordNum = mCap;
-                    Layout::DeleteArray< math::VEC2 >(&mData[0][0], 4 * coordNum);
-                    mData = nullptr;
-                    mCap = 0;
-                    mNum = 0;
+                if (mData == nullptr) {
+                    return;
                 }
+
+                const u32 coordNum = mCap;
+                Layout::FreeMemory(mData);
+                mData = nullptr;
+                mCap = 0;
+                mNum = 0;
             }
 
             void TexCoordAry::Reserve(u8 num) {
                 if (mCap < num) {
                     Free();
                     const u32 coordNum = num;
-                    math::VEC2* const ary = Layout::NewArray< math::VEC2 >(4 * coordNum);
+                    math::VEC2* const ary = static_cast< math::VEC2* >(Layout::AllocMemory(coordNum * 4 * sizeof(math::VEC2)));
                     mData = reinterpret_cast< TexCoordQuad >(ary);
                     if (mData != nullptr) {
                         mCap = num;

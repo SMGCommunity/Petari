@@ -5,10 +5,16 @@
 namespace nw4r {
     namespace lyt {
         void Group::AppendPane(Pane* pPane) {
-            if (detail::PaneLink* pPaneLink = Layout::NewObj< detail::PaneLink >()) {
-                pPaneLink->mTarget = pPane;
-                mPaneLinkList.PushBack(pPaneLink);
+            void* buf = Layout::AllocMemory(sizeof(detail::PaneLink));
+
+            if (buf == nullptr) {
+                return;
             }
+
+            detail::PaneLink* pLink = new (buf) detail::PaneLink();
+
+            pLink->mTarget = pPane;
+            mPaneLinkList.PushBack(pLink);
         }
 
         void Group::Init() {
@@ -42,8 +48,8 @@ namespace nw4r {
                 GroupList::Iterator currIt = it++;
                 mGroupList.Erase(currIt);
                 if (!currIt->IsUserAllocated()) {
-                    // Layout::FreeMemory(&*currIt);
-                    Layout::DeleteObj(&(*currIt));
+                    currIt->~Group();
+                    Layout::FreeMemory(&*currIt);
                 }
             }
         }

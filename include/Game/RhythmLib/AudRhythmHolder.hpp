@@ -29,6 +29,8 @@ class AudRhythmHolder {
 public:
     AudRhythmHolder();
 
+    ~AudRhythmHolder(){};
+
     void movement();
     void copyInfoFromParser();
     void init();
@@ -37,7 +39,7 @@ public:
     /* 0x000 */ f32 mModifiedTempo;
     /* 0x004 */ f32 mTempo;
     /* 0x008 */ f32 _8;
-    /* 0x00C */ bool _C;
+    /* 0x00C */ bool mIsPaused;
     /* 0x010 */ RhythmInfo mInfos[6];
     /* 0x160 */ bool _160;
     /* 0x164 */ AudRhythmSeqParser* mSeqParser;

@@ -73,7 +73,7 @@ public:
     /* 0x104 */ JASTrack* mCallStack[8];
     /* 0x124 */ NoteOnInfo mNoteOnInfo[8];
     /* 0x1A4 */ u32 _1A4;
-    /* 0x1A8 */ bool _1A8;
+    /* 0x1A8 */ bool mIsUsed;
     /* 0x1A9 */ bool _1A9;
     /* 0x1AC */ u32 _1AC;
 };

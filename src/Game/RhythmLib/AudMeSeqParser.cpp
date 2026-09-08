@@ -332,8 +332,8 @@ s32 AudMeSeqParser::cmdNoWait(AudMeTrack* pTrack, u32* pArgs) {
 
 s32 AudMeSeqParser::cmdNote(AudMeTrack* pTrack, u32* pArgs) {
     u32 addr = pArgs[0];
-    u32 note = pArgs[1];
-    pTrack->setPitch(note);
+    u32 vel = pArgs[1];
+    pTrack->setVelocity(vel);
     pTrack->getSeqCtrl()->call(addr);
     return 1;
 }

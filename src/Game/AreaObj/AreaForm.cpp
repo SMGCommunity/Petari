@@ -1,9 +1,5 @@
 #include "Game/AreaObj/AreaForm.hpp"
 #include "Game/Util.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "JSystem/JMath/JMATrigonometric.hpp"
-#include "JSystem/JMath/JMath.hpp"
 
 AreaFormCube::AreaFormCube(int a1) {
     _4 = 0;
@@ -126,7 +122,7 @@ AreaFormSphere::AreaFormSphere() {
     mTranslation.x = 0.0f;
     mTranslation.y = 0.0f;
     mTranslation.z = 0.0f;
-    _14 = 0.0f;
+    mRadius = 0.0f;
 }
 
 void AreaFormSphere::calcUpVec(TVec3f* pOut) const {
@@ -150,7 +146,7 @@ bool AreaFormSphere::isInVolume(const TVec3f& rVector) const {
     TVec3f pos;
     calcPos(&pos);
 
-    return (rVector - pos).length() < _14;
+    return (rVector - pos).length() < mRadius;
 }
 
 AreaFormBowl::AreaFormBowl() {
@@ -199,8 +195,8 @@ AreaFormCylinder::AreaFormCylinder() {
     mRotation.x = 0.0f;
     mRotation.y = 0.0f;
     mRotation.z = 0.0f;
-    _20 = 0.0f;
-    _24 = 0.0f;
+    mRadius = 0.0f;
+    mHeight = 0.0f;
 }
 
 void AreaFormCylinder::calcPos(TVec3f* pPos) const {
@@ -216,7 +212,7 @@ void AreaFormCylinder::calcCenterPos(TVec3f* pCenterPos) const {
 
     TVec3f upVec;
     calcUpVec(&upVec);
-    pCenterPos->add(upVec * _24 * 0.5f);
+    pCenterPos->add(upVec * mHeight * 0.5f);
 }
 
 void AreaFormCylinder::calcUpVec(TVec3f* pUpVec) const {
@@ -241,7 +237,7 @@ bool AreaFormCylinder::isInVolume(const TVec3f& rVec) const {
 
     bool ret;
 
-    if (MR::isInRange(v6, 0.0f, _24) && (v7 < _20)) {
+    if (MR::isInRange(v6, 0.0f, mHeight) && (v7 < mRadius)) {
         ret = true;
     } else {
         ret = false;
@@ -270,8 +266,8 @@ void AreaFormSphere::init(const JMapInfoIter& rIter) {
     f32 scale_x;
     rIter.getValue< f32 >("scale_x", &scale_x);
 
-    _14 = scale_x;
-    _14 *= 500.0f;
+    mRadius = scale_x;
+    mRadius *= 500.0f;
 
     TVec3f rotation;
     MR::getJMapInfoRotate(rIter, &rotation);
@@ -294,10 +290,10 @@ void AreaFormCylinder::init(const JMapInfoIter& rIter) {
     f32 temp;
     rIter.getValue< f32 >("scale_x", &temp);
 
-    _20 = temp;
-    _20 *= 500.0f;
+    mRadius = temp;
+    mRadius *= 500.0f;
 
     rIter.getValue< f32 >("scale_y", &temp);
-    _24 = temp;
-    _24 *= 500.0f;
+    mHeight = temp;
+    mHeight *= 500.0f;
 }
