@@ -202,9 +202,9 @@ void KuriboChief::initKeySwitch(const JMapInfoIter& rIter) {
     }
 }
 
-void KuriboChief::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+void KuriboChief::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (MR::isExistStageSwitchA(rIter)) {
-        pArchiveList->addArchive("KeySwitch");
+        pCollector->addArchive("KeySwitch");
     }
 }
 

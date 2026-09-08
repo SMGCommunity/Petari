@@ -10,7 +10,7 @@
 u32 JKRArchive::getExpandedResSize(const void* pResource) const {
     return getResSize(pResource);
 }
-void KinopioAstro::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+void KinopioAstro::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     NPCActorItem item("StaffFinalLetter_000");
 
     s32 arg1 = 0;
@@ -19,24 +19,24 @@ void KinopioAstro::makeArchiveList(NameObjArchiveListCollector* pArchiveList, co
     if (arg1 == 2) {
         if (!MR::isEqualStageName("PeachCastleFinalGalaxy")) {
             if (MR::isAnyPlayerLeftSupply()) {
-                PeachLetter::makeArchiveList(pArchiveList, rIter);
+                PeachLetter::makeArchiveList(pCollector, rIter);
             }
 
             if (MR::isLuigiLetterArrivalAtMessenger()) {
-                LuigiLetter::makeArchiveListForNPC(pArchiveList, rIter);
+                LuigiLetter::makeArchiveListForNPC(pCollector, rIter);
             }
         } else {
-            pArchiveList->addArchive("AllCompleteImage");
+            pCollector->addArchive("AllCompleteImage");
         }
 
         MR::getNPCItemData(&item, 3);
-        NPCActor::addArchive(pArchiveList, item);
+        NPCActor::addArchive(pCollector, item);
     } else {
         s32 arg7 = -1;
         MR::getJMapInfoArg7NoInit(rIter, &arg7);
 
         if (MR::getNPCItemData(&item, arg7)) {
-            NPCActor::addArchive(pArchiveList, item);
+            NPCActor::addArchive(pCollector, item);
         }
     }
 }

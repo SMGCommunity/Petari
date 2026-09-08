@@ -125,6 +125,7 @@ void RainCloud::init(const JMapInfoIter& rIter) {
 void RainCloud::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     bool arg3 = false;
     MR::getJMapInfoArg3NoInit(rIter, &arg3);
+
     pCollector->addArchive("RainCloud");
     pCollector->addArchive("RainCloudVolume");
     pCollector->addArchive("RainCloudLow");

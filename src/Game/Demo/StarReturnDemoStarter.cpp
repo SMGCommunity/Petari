@@ -115,14 +115,14 @@ void StarReturnDemoStarter::kill() {
     }
 }
 
-void StarReturnDemoStarter::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter&) {
+void StarReturnDemoStarter::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (::isGrandStar()) {
-        pArchiveList->addArchive("GrandStar");
+        pCollector->addArchive("GrandStar");
     }
 
-    pArchiveList->addArchive("SpinTico");
-    pArchiveList->addArchive("MarioHair");
-    pArchiveList->addArchive("SpinDriverPath");
+    pCollector->addArchive("SpinTico");
+    pCollector->addArchive("MarioHair");
+    pCollector->addArchive("SpinDriverPath");
 }
 
 void StarReturnDemoStarter::control() {

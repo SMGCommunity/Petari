@@ -274,43 +274,43 @@ CreatorFuncPtr PlanetMapCreator::getCreateFunc(const char* pParam1) {
     return nullptr;  // createNameObj<PlanetMap>
 }
 
-void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter, const char* pName) {
+void PlanetMapCreator::makeArchiveListPlanet(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter, const char* pName) {
     PlanetMapData* pTableData = getTableData(pName);
     if (isScenarioForceLow(pTableData)) {
-        pArchiveList->addArchive(pTableData->mData[0]);
+        pCollector->addArchive(pTableData->mData[0]);
     } else {
-        pArchiveList->addArchive(pTableData->mPlanetName);
+        pCollector->addArchive(pTableData->mPlanetName);
 
         const char* pData0 = pTableData->mData[0];
         if (pData0 != nullptr) {
-            pArchiveList->addArchive(pData0);
+            pCollector->addArchive(pData0);
         }
 
         const char* pData1 = pTableData->mData[1];
         if (pData1 != nullptr) {
-            pArchiveList->addArchive(pData1);
+            pCollector->addArchive(pData1);
         }
 
         const char* pData2 = pTableData->mData[2];
         if (pData2 != nullptr) {
-            pArchiveList->addArchive(pData2);
+            pCollector->addArchive(pData2);
         }
 
         const char* pData3 = pTableData->mData[3];
         if (pData3 != nullptr) {
-            pArchiveList->addArchive(pData3);
+            pCollector->addArchive(pData3);
         }
 
         const char* pData4 = pTableData->mData[4];
         if (pData4 != nullptr) {
-            pArchiveList->addArchive(pData4);
+            pCollector->addArchive(pData4);
         }
 
         const char* pPlanetName = pTableData->mPlanetName;
         for (u32 i = 0; i < ARRAY_SIZE(::sUniquePlanetUniqueArchiveName); i++) {
             const UniqueEntry* pUniqueEntry = &::sUniquePlanetUniqueArchiveName[i];
             if (MR::isEqualString(pPlanetName, pUniqueEntry->_0)) {
-                pArchiveList->addArchive(pUniqueEntry->_4);
+                pCollector->addArchive(pUniqueEntry->_4);
             }
         }
     }
@@ -382,8 +382,8 @@ bool PlanetMapCreator::isScenarioForceLow(const PlanetMapData* pData) const {
     return false;
 }
 
-void PlanetMapCreatorFunction::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter, const char* pName) {
-    MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pArchiveList, rIter, pName);
+void PlanetMapCreatorFunction::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter, const char* pName) {
+    MR::getSceneObj< PlanetMapCreator >(SceneObj_PlanetMapCreator)->makeArchiveListPlanet(pCollector, rIter, pName);
 }
 
 // PlanetMapCreatorFunction::getPlanetMapCreator

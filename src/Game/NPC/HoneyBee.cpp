@@ -37,7 +37,7 @@ HoneyBee::HoneyBee(const char* pName) : NPCActor(pName), _15C(-1), mArg0(), _1A0
     _190.zero();
 }
 
-void HoneyBee::makeArchiveList(NameObjArchiveListCollector* pArchive, const JMapInfoIter& rIter) {
+void HoneyBee::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     const char* objName;
     MR::getObjectName(&objName, rIter);
     NPCActorItem npcItem = objName;
@@ -46,7 +46,7 @@ void HoneyBee::makeArchiveList(NameObjArchiveListCollector* pArchive, const JMap
     MR::getJMapInfoArg0NoInit(rIter, &arg0);
 
     if (MR::getNPCItemData(&npcItem, arg0)) {
-        NPCActor::addArchive(pArchive, npcItem);
+        NPCActor::addArchive(pCollector, npcItem);
     }
 }
 

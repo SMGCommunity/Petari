@@ -100,14 +100,14 @@ void LuigiLetter::makeArchiveListForMenu(NameObjArchiveListCollector* pCollector
     LuigiLetter::makeArchiveListCommon(pCollector, MR::getLuigiLetterGalaxyName());
 }
 
-void LuigiLetter::makeArchiveListCommon(NameObjArchiveListCollector* pCollector, const char* pParam2) {
-    char archiveName[256];
-
-    if (pParam2 == nullptr) {
+void LuigiLetter::makeArchiveListCommon(NameObjArchiveListCollector* pCollector, const char* pGalaxyName) {
+    if (pGalaxyName == nullptr) {
         return;
     }
 
-    snprintf(archiveName, sizeof(archiveName), "LuigiPicture%s", pParam2);
+    char archiveName[256];
+    snprintf(archiveName, sizeof(archiveName), "LuigiPicture%s", pGalaxyName);
+
     pCollector->addArchive("LuigiLetter");
     pCollector->addArchive(archiveName);
 }

@@ -635,9 +635,9 @@ bool Coin::isNeedBubble(const JMapInfoIter& rIter) {
     return arg;
 }
 
-void Coin::makeArchiveList(NameObjArchiveListCollector* pList, const JMapInfoIter& rIter) {
+void Coin::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (Coin::isNeedBubble(rIter)) {
-        pList->addArchive("AirBubble");
+        pCollector->addArchive("AirBubble");
     }
 }
 
