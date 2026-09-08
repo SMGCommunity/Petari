@@ -12,7 +12,6 @@ public:
     /// @brief Creates a new `SwitchWatcherHolder`.
     SwitchWatcherHolder();
 
-    virtual ~SwitchWatcherHolder();
     virtual void movement();
 
     void joinSwitchEventListenerA(const StageSwitchCtrl*, SwitchEventListener*);
@@ -22,8 +21,7 @@ public:
     void joinSwitchEventListener(const StageSwitchCtrl*, u32, SwitchEventListener*);
     void addSwitchWatcher(SwitchWatcher*);
 
-    MR::FixedArray< SwitchWatcher*, 256 > mWatchers;  // _C
-    s32 mWatcherCount;                                // _40C
+    /* 0x0C */ MR::Vector< MR::FixedArray< SwitchWatcher*, 256 > > mSwitchWatcher;
 };
 
 namespace MR {
