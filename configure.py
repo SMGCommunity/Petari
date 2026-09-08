@@ -1812,7 +1812,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/ValveSwitch.cpp"),
             Object(NonMatching, "Game/MapObj/WarpPod.cpp"),
             Object(Matching, "Game/MapObj/WatchTowerRotateStep.cpp"),
-            Object(NonMatching, "Game/MapObj/WaterfallCaveCover.cpp"),
+            Object(Matching, "Game/MapObj/WaterfallCaveCover.cpp"),
             Object(Matching, "Game/MapObj/WaterLeakPipe.cpp"),
             Object(NonMatching, "Game/MapObj/WaterPressure.cpp"),
             Object(NonMatching, "Game/MapObj/WaterPressureBullet.cpp"),
