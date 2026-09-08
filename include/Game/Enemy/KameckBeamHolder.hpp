@@ -2,41 +2,36 @@
 
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
-#include <revolution.h>
 
-class KameckBeamEventListener;
 class KameckBeam;
-class KameckTurtle;
+class KameckBeamEventListener;
 class KameckFireBall;
+class KameckTurtle;
 
 class KameckBeamHolder : public DeriveActorGroup< KameckBeam > {
 public:
+    /// @brief Creates a new `KameckBeamHolder`.
     KameckBeamHolder();
-
-    virtual ~KameckBeamHolder();
 };
 
 class KameckFireBallHolder : public DeriveActorGroup< KameckFireBall > {
 public:
+    /// @brief Creates a new `KameckFireBallHolder`.
     KameckFireBallHolder();
-
-    virtual ~KameckFireBallHolder();
 };
 
 class KameckBeamTurtleHolder : public DeriveActorGroup< KameckTurtle > {
 public:
+    /// @brief Creates a new `KameckBeamTurtleHolder`.
     KameckBeamTurtleHolder();
-
-    virtual ~KameckBeamTurtleHolder();
 };
 
 namespace MR {
     void createKameckBeamHolder();
     void createKameckFireBallHolder();
     void createKameckBeamTurtleHolder();
-
-    void setKameckBeamCollisionFilter(LiveActor*);
-
     KameckBeam* startFollowKameckBeam(s32, MtxPtr, f32, const TVec3f&, KameckBeamEventListener*);
     KameckBeam* getKameckBeam();
+    KameckFireBall* getKameckFireBall();
+    KameckTurtle* getKameckBeamTurtle();
 };  // namespace MR

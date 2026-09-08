@@ -141,7 +141,7 @@ namespace {
             return;
         }
 
-        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+        for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             LiveActor* pMember = pGroup->getActor(i);
             if (pMember == pActor) {
                 continue;
@@ -158,7 +158,7 @@ namespace {
             return;
         }
 
-        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+        for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             LiveActor* pMember = pGroup->getActor(i);
             if (pMember == pActor) {
                 continue;
@@ -180,7 +180,7 @@ namespace {
             return 0;
         }
 
-        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+        for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             LiveActor* pMember = pGroup->getActor(i);
             if (pMember == pActor) {
                 continue;
@@ -203,7 +203,7 @@ namespace {
             return 0;
         }
 
-        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+        for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             LiveActor* pMember = pGroup->getActor(i);
             if (pMember == pActor) {
                 continue;
@@ -1215,7 +1215,7 @@ namespace MR {
 
     LiveActor* getPairedGroupMember(const LiveActor* pActor) {
         LiveActorGroup* pGroup = getGroupFromArray(pActor);
-        for (s32 i = 0; i < pGroup->getObjectCount(); i++) {
+        for (s32 i = 0; i < pGroup->getObjNum(); i++) {
             if (pGroup->getActor(i) != pActor) {
                 return pGroup->getActor(i);
             }

@@ -71,7 +71,7 @@ void PenguinStudent::init(const JMapInfoIter& rIter) {
     MR::startBrk(this, "ColorChange");
     MR::setBrkFrameAndStop(this, arg7);
     MR::onCalcShadow(this, nullptr);
-    if (mMsgCtrl) {
+    if (mMsgCtrl != nullptr) {
         MR::registerBranchFunc(mMsgCtrl, TalkMessageFunc_Inline(this, &PenguinStudent::branchFunc));
     }
     makeActorAppeared();
@@ -79,13 +79,18 @@ void PenguinStudent::init(const JMapInfoIter& rIter) {
 
 void PenguinStudent::initAfterPlacement() {
     mActor = nullptr;
+
     LiveActorGroup* group = MR::getGroupFromArray(this);
-    for (s32 i = 0; i < group->mObjectCount; i++) {
+
+    for (s32 i = 0; i < group->getObjNum(); i++) {
         LiveActor* actor = group->getActor(i);
-        if (!actor->isNerve(&NrvPenguinStudent::PenguinStudentNrvSwim::sInstance)) {
-            mActor = actor;
-            return;
+
+        if (actor->isNerve(&NrvPenguinStudent::PenguinStudentNrvSwim::sInstance)) {
+            continue;
         }
+
+        mActor = actor;
+        break;
     }
 }
 

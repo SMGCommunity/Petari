@@ -4,6 +4,7 @@
 #include "Game/MapObj/BlueStarCupsulePlanet.hpp"
 
 class MapPartsRailMover;
+class ActorCameraInfo;
 
 class GCaptureTarget : public LiveActor, public GCaptureTargetable {
 public:
@@ -33,9 +34,9 @@ public:
     void exeHitPointer();
     void exeActive();
 
-    /* 0x90 */ LiveActor* _90;
-    /* 0x94 */ f32 _94;
-    /* 0x98 */ MapPartsRailMover* mRailMover;
+    /* 0x90 */ MapPartsRailMover* mRailMover;
+    /* 0x94 */ f32 mStarAnimSpeed;
+    /* 0x98 */ ActorCameraInfo* mCameraInfo;
     /* 0x9C */ f32 mReleaseDistance;
     /* 0xA0 */ f32 mPointableRange;
     /* 0xA4 */ bool mFarAwayColor;

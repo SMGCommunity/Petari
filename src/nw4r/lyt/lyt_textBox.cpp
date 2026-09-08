@@ -7,24 +7,23 @@
 #include <cstdio>
 #include <wstring.h>
 
+namespace {
+    inline u8 ClampColor(s16 colVal) {
+        return u8(colVal < 0 ? 0 : (colVal > 255 ? 255 : colVal));
+    }
+
+    nw4r::ut::Color GetColor(const GXColorS10& src) {
+        GXColor dst;
+        dst.r = ClampColor(src.r);
+        dst.g = ClampColor(src.g);
+        dst.b = ClampColor(src.b);
+        dst.a = ClampColor(src.a);
+        return nw4r::ut::Color(dst);
+    }
+};  // namespace
+
 namespace nw4r {
     namespace lyt {
-
-        namespace {
-            inline u8 ClampColor(s16 colVal) {
-                return u8(colVal < 0 ? 0 : (colVal > 255 ? 255 : colVal));
-            }
-
-            ut::Color GetColor(const GXColorS10& src) {
-                GXColor dst;
-                dst.r = ClampColor(src.r);
-                dst.g = ClampColor(src.g);
-                dst.b = ClampColor(src.b);
-                dst.a = ClampColor(src.a);
-                return ut::Color(dst);
-            }
-        };  // namespace
-
         TextBox::TextBox(const res::TextBox* pBlock, const ResBlockSet& resBlockSet) : Pane(pBlock) {
             u16 allocStrBufLen = static_cast< u16 >(pBlock->textBufBytes / sizeof(wchar_t));
             if (allocStrBufLen > 0) {

@@ -268,7 +268,7 @@ void Coin::exeMove() {
         MR::validateHitSensors(this);
     }
 
-    if (MR::isGreaterEqualStep(this, mCannotTime) && MR::isBindedGroundDamageFire(this)) {
+    if (MR::isGreaterStep(this, mCannotTime) && MR::isBindedGroundDamageFire(this)) {
         MR::emitEffect(this, "LavaFall");
         MR::startSound(this, "SE_OJ_FALL_IN_MAGMA_S");
         kill();
@@ -425,7 +425,7 @@ void Coin::appearHop(const TVec3f& a1, const TVec3f& a2) {
 
 bool Coin::requestActive() {
     if (isNerve(&NrvCoin::CoinNrvNonActive::sInstance)) {
-        MR::invalidateHitSensors(this);
+        MR::validateHitSensors(this);
         setNerve(&NrvCoin::CoinNrvFix::sInstance);
         return true;
     }

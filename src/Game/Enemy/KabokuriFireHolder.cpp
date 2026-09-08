@@ -8,11 +8,12 @@ namespace {
 
 // "Kabokuri flame holder"
 KabokuriFireHolder::KabokuriFireHolder() : DeriveActorGroup< KabokuriFire >("カボクリ炎管理", ::sMaxKabokuriFire) {
+    KabokuriFire* pFire;
+
     for (int i = 0; i < ::sMaxKabokuriFire; i++) {
-        // "Kabokuri flame"
-        KabokuriFire* fire = new KabokuriFire("カボクリ炎");
-        fire->initWithoutIter();
-        registerActor(fire);
+        pFire = new KabokuriFire("カボクリ炎"); // "Kabokuri flame"
+        pFire->initWithoutIter();
+        registerActor(pFire);
     }
 }
 
@@ -21,13 +22,12 @@ void KabokuriFireHolderFunc::createHolder() {
 }
 
 KabokuriFire* KabokuriFireHolderFunc::getDeadMember() {
-    KabokuriFireHolder* holder = MR::getSceneObj< KabokuriFireHolder >(SceneObj_KabokuriFireHolder);
-
-    return holder->getDeadMember();
+    return MR::getSceneObj< KabokuriFireHolder >(SceneObj_KabokuriFireHolder)->getDeadMember();
 }
 
 bool KabokuriFireHolderFunc::generateFire(const TVec3f& rPosition, const TVec3f& rGravity, bool setGravity) {
-    KabokuriFire* deadMember = KabokuriFireHolderFunc::getDeadMember();
+    KabokuriFire* deadMember = getDeadMember();
+
     if (deadMember == nullptr) {
         return false;
     }
@@ -37,5 +37,6 @@ bool KabokuriFireHolderFunc::generateFire(const TVec3f& rPosition, const TVec3f&
     }
 
     deadMember->start(rPosition, setGravity);
+
     return true;
 }

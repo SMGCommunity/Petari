@@ -1,10 +1,10 @@
 #include "Game/Map/KCollision.hpp"
 
-/*bool KCollisionServer::isInsideMinMaxInLocalSpace(const V3u &point) const {
+bool KCollisionServer::isInsideMinMaxInLocalSpace(const V3u& rPoint) const {
     bool inside = false;
     bool bVar1 = false;
 
-    if ((point.x & mFile->mXMask) == 0 && (point.y & mFile->mYMask) == 0) {
+    if ((rPoint.x & mFile->mXMask) == 0 && (rPoint.y & mFile->mYMask) == 0) {
         bVar1 = true;
     }
 
@@ -12,12 +12,12 @@
         return inside;
     }
 
-    if ((point.z & mFile->mZMask) != 0) {
+    if ((rPoint.z & mFile->mZMask) != 0) {
         return inside;
     }
 
     return true;
-}*/
+}
 
 bool KCollisionServer::outCheck(const TVec3f* pPosA, const TVec3f* pPosB, V3u* pPointA, V3u* pPointB) const {
     objectSpaceToLocalSpace(pPointA, *pPosA);

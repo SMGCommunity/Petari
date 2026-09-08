@@ -163,6 +163,3 @@ void KameckFireBall::exeSweep() {
         kill();
     }
 }
-
-KameckFireBall::~KameckFireBall() {
-}

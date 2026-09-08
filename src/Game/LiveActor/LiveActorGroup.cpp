@@ -1,24 +1,22 @@
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include "Game/LiveActor/LiveActor.hpp"
-#include "Game/Util.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 
-LiveActorGroup::LiveActorGroup(const char* pName, int count) : NameObjGroup(pName, count) {
+LiveActorGroup::LiveActorGroup(const char* pName, int numMax) : NameObjGroup(pName, numMax) {
 }
 
 void LiveActorGroup::registerActor(LiveActor* pActor) {
     registerObj(pActor);
 }
 
-LiveActor* LiveActorGroup::getActor(int idx) const {
-    return static_cast< LiveActor* >(mObjects[idx]);
+LiveActor* LiveActorGroup::getActor(int index) const {
+    return static_cast< LiveActor* >(getObj(index));
 }
 
 LiveActor* LiveActorGroup::getDeadActor() const {
-    for (s32 i = 0; i < mObjectCount; i++) {
-        LiveActor* actor = static_cast< LiveActor* >(mObjects[i]);
-
-        if (MR::isDead(actor)) {
-            return static_cast< LiveActor* >(mObjects[i]);
+    for (s32 i = 0; i < getObjNum(); i++) {
+        if (MR::isDead(getActor(i))) {
+            return getActor(i);
         }
     }
 
@@ -28,27 +26,27 @@ LiveActor* LiveActorGroup::getDeadActor() const {
 s32 LiveActorGroup::getLivingActorNum() const {
     s32 num = 0;
 
-    for (s32 i = 0; i < mObjectCount; i++) {
-        LiveActor* actor = static_cast< LiveActor* >(mObjects[i]);
-
-        if (!MR::isDead(actor)) {
-            num++;
+    for (s32 i = 0; i < getObjNum(); i++) {
+        if (MR::isDead(getActor(i))) {
+            continue;
         }
+
+        num++;
     }
 
     return num;
 }
 
 void LiveActorGroup::appearAll() {
-    for (s32 i = 0; i < mObjectCount; i++) {
-        if (MR::isDead(static_cast< LiveActor* >(mObjects[i]))) {
-            static_cast< LiveActor* >(mObjects[i])->appear();
+    for (s32 i = 0; i < getObjNum(); i++) {
+        if (MR::isDead(getActor(i))) {
+            getActor(i)->appear();
         }
     }
 }
 
 void LiveActorGroup::killAll() {
-    for (s32 i = 0; i < mObjectCount; i++) {
-        static_cast< LiveActor* >(mObjects[i])->makeActorDead();
+    for (s32 i = 0; i < getObjNum(); i++) {
+        getActor(i)->makeActorDead();
     }
 }

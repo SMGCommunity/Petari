@@ -86,7 +86,7 @@ namespace DemoFunction {
 
     DemoExecutor* findDemoExecutor(const LiveActor* pActor) {
         DemoExecutor* executor;
-        for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
+        for (s32 i = 0; i < getDemoDirector()->_18->getObjNum(); i++) {
             executor = static_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor)) {
                 return executor;
@@ -97,7 +97,7 @@ namespace DemoFunction {
 
     DemoExecutor* findDemoExecutorActive(const LiveActor* pActor) {
         DemoExecutor* executor;
-        for (s32 i = 0; i < getDemoDirector()->_18->mObjectCount; i++) {
+        for (s32 i = 0; i < getDemoDirector()->_18->getObjNum(); i++) {
             executor = static_cast< DemoExecutor* >(getDemoDirector()->_18->getCastGroup(i));
             if (DemoExecutorFunction::isRegisteredDemoCast(executor, pActor) && MR::isDemoActive(executor->mName)) {
                 return executor;

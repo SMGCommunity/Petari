@@ -1,14 +1,15 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
-#include "Game/NameObj/NameObjGroup.hpp"
 #include "Game/Util/Array.hpp"
+
+class NameObjGroup;
 
 class MovementOnOffGroupHolder : public NameObj {
 public:
-    MovementOnOffGroupHolder(const char*);
-
-    virtual ~MovementOnOffGroupHolder();
+    /// @brief Creates a new `MovementOnOffGroupHolder`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    MovementOnOffGroupHolder(const char* pName);
 
     NameObjGroup* joinToGroup(const char*, NameObj*, u32);
     void onMovementGroup(const char*);
@@ -16,5 +17,5 @@ public:
     NameObjGroup* findGroupFromName(const char*) const;
 
 private:
-    MR::Vector< MR::FixedArray< NameObjGroup*, 32 > > mGroups;
+    /* 0x0C */ MR::Vector< MR::FixedArray< NameObjGroup*, 32 > > mGroups;
 };

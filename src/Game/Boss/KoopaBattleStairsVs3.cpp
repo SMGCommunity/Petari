@@ -88,7 +88,7 @@ void KoopaBattleStairsVs3::exeWait() {
 void KoopaBattleStairsVs3::tryAttack() {
     KoopaBattleMapStair* pBattleMapStair;
 
-    for (int idx = 0; idx < mStairsGroup->mObjectCount; idx++) {
+    for (int idx = 0; idx < mStairsGroup->getObjNum(); idx++) {
         pBattleMapStair = static_cast< KoopaBattleMapStair* >(mStairsGroup->getActor(idx));
 
         if (pBattleMapStair->isRequestAttackVs3()) {

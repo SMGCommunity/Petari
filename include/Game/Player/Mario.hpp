@@ -75,13 +75,13 @@ public:
     void doExtraServices();
     bool isEnableCheckGround() NO_INLINE;
     void setGroundNorm(const TVec3f&);
-    bool checkForceGrounding();
+    void checkForceGrounding();
     void updateGroundInfo();
     void fixHeadFrontVecByGravity();
     bool isNonFixHeadVec() const;
     void createMtxDir(MtxPtr, const TVec3f&, const TVec3f&, const TVec3f&);
     void createDirectionMtx(MtxPtr);
-    void createCorrectionMtx(MtxPtr, TVec3f*);
+    bool createCorrectionMtx(MtxPtr, TVec3f*);
     void createAngleMtx(MtxPtr, bool);
     void slopeTiltHead(TVec3f*);
     void fixFrontVecByGravity();
@@ -158,7 +158,7 @@ public:
     bool checkBaseTransPoint();
     bool checkHeadPoint();
     const TVec3f* calcShadowPos();
-    void updateBinderInfo();
+    bool updateBinderInfo();
     bool isThroughWall(const Triangle*) const;
     void checkGround();
     CubeCameraArea* getCameraCubeCode() const;
@@ -169,8 +169,8 @@ public:
     void decDamageAfterTimer();
     bool checkDamage();
     u16 getDamageAfterTimer() const;
-    void damageFloorCheck();
-    void damageWallCheck();
+    bool damageFloorCheck();
+    bool damageWallCheck();
     void damagePolygonCheck(const Triangle*);
     bool flipLarge(const TVec3f&);
     bool isEnableAddDamage() const;
@@ -832,7 +832,7 @@ public:
     /* 0x5FC */ u32 _5FC;
     /* 0x600 */ TVec3f _600;
     /* 0x60C */ u8 _60C;
-    /* 0x60D */ u8 _60D;  // bool?
+    /* 0x60D */ bool _60D;
     /* 0x60E */ u8 _60E;
     /* 0x60F */ u8 _60F;
     /* 0x610 */ u8 _610;

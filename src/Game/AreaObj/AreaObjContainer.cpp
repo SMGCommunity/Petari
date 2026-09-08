@@ -11,8 +11,8 @@
 
 namespace {
     template < typename T >
-    AreaObjMgr* createManager(s32 type, const char* pName) {
-        return new T(type, pName);
+    AreaObjMgr* createManager(s32 numMax, const char* pName) {
+        return new T(numMax, pName);
     }
 
     const Name2CreateManagerFunc cCreateTable[] = {

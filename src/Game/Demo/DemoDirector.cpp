@@ -107,7 +107,7 @@ void DemoDirector::endDemo(NameObj* pParam1, const char* pParam2, bool param3) {
 }
 
 bool DemoDirector::isExistTimeKeepDemo(const char* pParam1) const {
-    for (int i = 0; i < _18->getObjectCount(); i++) {
+    for (int i = 0; i < _18->getObjNum(); i++) {
         if (MR::isName(_18->getCastGroup(i), pParam1)) {
             return true;
         }

@@ -145,7 +145,7 @@ namespace PoltaFunction {
     }
 
     s32 getCountDeadGroundRock(Polta* pPolta) {
-        return pPolta->mGroundRockHolder->getObjectCount() - pPolta->mGroundRockHolder->getLivingActorNum();
+        return pPolta->mGroundRockHolder->getObjNum() - pPolta->mGroundRockHolder->getLivingActorNum();
     }
 
     bool appearGroundRock(Polta* pPolta, f32 param2, f32 param3) {

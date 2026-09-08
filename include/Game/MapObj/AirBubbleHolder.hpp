@@ -3,7 +3,9 @@
 #include "Game/LiveActor/LiveActorGroup.hpp"
 #include <JSystem/JGeometry/TVec.hpp>
 
-class AirBubbleHolder : public LiveActorGroup {
+class AirBubble;
+
+class AirBubbleHolder : public DeriveActorGroup< AirBubble > {
 public:
     /// @brief Creates a new `AirBubbleHolder`.
     /// @param pName A pointer to the null-terminated name of the object.

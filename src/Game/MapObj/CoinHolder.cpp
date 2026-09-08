@@ -9,8 +9,20 @@ void FORCE_SCALE() {
     vec.scale(1.0f);
 }
 
-CoinHolder::CoinHolder(const char* pName) : DeriveActorGroup< Coin >(pName, 0x200), mHostInfoArr(nullptr), mHostInfoCount(0) {
-    mHostInfoArr = new CoinHostInfo[0x200];
+namespace {
+    static const s32 sCoinNumMax = 512;
+    static const s32 sCreateCoinNum = 32;
+    // static const f32 sRandomizeVel = _;
+    // static const f32 sRandomizeVelSplash = _;
+    // static const f32 sCoinVelHorizon = _;
+    // static const f32 sCoinVelVertical = _;
+    // static const f32 sCoinVelPlayer = _;
+    // static const f32 sCircleVelHRatio = _;
+    // static const f32 sCircleVelLength = _;
+};  // namespace
+
+CoinHolder::CoinHolder(const char* pName) : DeriveActorGroup< Coin >(pName, ::sCoinNumMax), mHostInfoArr(), mHostInfoCount() {
+    mHostInfoArr = new CoinHostInfo[::sCoinNumMax];
 }
 
 bool CoinHolder::hopCoin(const NameObj* pObj, const TVec3f& a2, const TVec3f& a3) {
@@ -86,10 +98,12 @@ CoinHostInfo* CoinHolder::findHostInfo(const NameObj* pObj) const {
 }
 
 void CoinHolder::init(const JMapInfoIter& rIter) {
-    for (int i = 0; i < 0x20; i++) {
-        Coin* coin = new Coin("コイン(共用)");
-        coin->initWithoutIter();
-        registerActor(coin);
+    Coin* pCoin;
+
+    for (int i = 0; i < ::sCreateCoinNum; i++) {
+        pCoin = new Coin("コイン(共用)");
+        pCoin->initWithoutIter();
+        registerActor(pCoin);
     }
 }
 

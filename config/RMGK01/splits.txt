@@ -2823,14 +2823,14 @@ Game/Enemy/KameckBeam.cpp:
 	.text       start:0x80105E20 end:0x80106F40
 	.ctors      start:0x8052EAC0 end:0x8052EAC4
 	.rodata     start:0x805320C8 end:0x805320E0
-	.data       start:0x8057ECA0 end:0x8057EF28
+	.data       start:0x8057ECA0 end:0x8057EEB0
 	.sbss       start:0x806B4190 end:0x806B41A8
 	.sdata2     start:0x806BA9E8 end:0x806BAA00
 	.sbss2      start:0x806C2908 end:0x806C2918
 
 Game/Enemy/KameckBeamHolder.cpp:
 	.text       start:0x80106F40 end:0x801074F8
-	.data       start:0x8057EF28 end:0x8057EF98
+	.data       start:0x8057EEB0 end:0x8057EF98
 
 Game/Enemy/KameckFireBall.cpp:
 	.text       start:0x801074F8 end:0x80107CC0
@@ -6491,6 +6491,7 @@ Game/NPC/MiiFacePartsHolder.cpp:
 	.text       start:0x802783AC end:0x80279118
 	.rodata     start:0x80539750 end:0x80539760
 	.data       start:0x805B0AD0 end:0x805B0BE0
+	.sdata2     start:0x806BEBF0 end:0x806BEC00
 
 Game/NPC/MiiFaceRecipe.cpp:
 	.text       start:0x80279118 end:0x80279260

@@ -4,6 +4,7 @@
 
 class KameckBeamEventListener {
 public:
+    /// @brief Creates a new `KameckBeamEventListener`.
     KameckBeamEventListener();
 
     virtual void hitBeam(s32) = 0;
@@ -15,35 +16,54 @@ public:
 
     virtual bool isInvalidParts(const CollisionParts*) const;
 
-    TVec3f* _4;
-    f32 _8;
+    /* 0x00 */ const TVec3f* _4;
+    /* 0x08 */ f32 _8;
 };
 
 class KameckBeam : public LiveActor {
 public:
-    KameckBeam(const char*);
+    /// @brief Creates a new `KameckBeam`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    KameckBeam(const char* pName);
 
-    virtual ~KameckBeam();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void calcAnim();
     virtual void kill();
     virtual void control();
-    virtual void attackSensor(HitSensor*, HitSensor*);
-    virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
+    virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);
 
+    void setWandLocalPosition(const TVec3f&);
+    void setBeamKind(s32);
     void setEventListener(KameckBeamEventListener*);
-
-    void requestShootToPlayerCenter(f32);
+    void resetBeam();
+    bool requestFollowWand(MtxPtr, f32);
     void requestShootToPlayerGround(f32);
+    void requestShootToPlayerCenter(f32);
+    void requestShoot(const TVec3f&, f32);
+    bool requestStorm(HitSensor*, HitSensor*);
+    bool tryShootEnd();
+    bool tryChangeTurtle();
+    bool tryChangeFire();
+    void exeFollowWand();
+    void exeShoot();
+    void exeExplosion();
+    void exeJetTurtle();
+    void exeFire();
+    void startBeamLevelSound();
+    void emitBeamReadyEffect();
+    void emitBeamEffect();
 
-    u32 _8C;
-    u32 _90;
-    u32 _94;
-    u32 _98;
-    u32 _9C;
-    MtxPtr _A0;
-    TVec3f _A4;
-    TVec3f _B0;
-    u32 _BC;
-    u32* _C0;
+    /* 0x8C */ KameckBeamEventListener* mEventListener;
+    /* 0x90 */ LiveActor* _90;
+    /* 0x94 */ LiveActor* _94[3];
+    /* 0xA0 */ MtxPtr _A0;
+    /* 0xA4 */ TVec3f _A4;
+    /* 0xB0 */ TVec3f mWandLocalPosition;
+    /* 0xBC */ s32 mBeamKind;
+    /* 0xC0 */ u8 _C0[4];
 };
+
+namespace MR {
+    void setKameckBeamCollisionFilter(LiveActor*);
+};  // namespace MR

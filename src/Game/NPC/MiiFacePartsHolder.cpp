@@ -9,6 +9,7 @@
 #include "Game/System/GameSequenceFunction.hpp"
 #include "Game/Util/FileUtil.hpp"
 #include "Game/Util/Functor.hpp"
+#include "Game/Util/LightUtil.hpp"
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
@@ -16,8 +17,7 @@
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <JSystem/JKernel/JKRSolidHeap.hpp>
 
-MiiFacePartsHolder::MiiFacePartsHolder(int numParts)
-    : LiveActorGroup("Mii顔モデル保持", numParts), JKRDisposer(), mRFLWorkBuffer(), _34() {
+MiiFacePartsHolder::MiiFacePartsHolder(int partsNumMax) : LiveActorGroup("Mii顔モデル保持", partsNumMax), JKRDisposer(), mRFLWorkBuffer(), _34() {
 }
 
 MiiFacePartsHolder::~MiiFacePartsHolder() {
@@ -39,7 +39,7 @@ void MiiFacePartsHolder::init(const JMapInfoIter& rIter) {
 }
 
 void MiiFacePartsHolder::calcAnim() {
-    for (int i = 0; i < getObjectCount(); i++) {
+    for (int i = 0; i < getObjNum(); i++) {
         LiveActor* pActor = getActor(i);
 
         if (pActor == nullptr) {
@@ -57,7 +57,7 @@ void MiiFacePartsHolder::calcAnim() {
 }
 
 void MiiFacePartsHolder::calcViewAndEntry() {
-    for (int i = 0; i < getObjectCount(); i++) {
+    for (int i = 0; i < getObjNum(); i++) {
         LiveActor* pActor = getActor(i);
 
         if (pActor == nullptr) {
@@ -96,7 +96,7 @@ void MiiFacePartsHolder::reinitCharModel() {
     }
 
     if (_38 == RFLErrcode_Success) {
-        for (int i = 0; i < getObjectCount(); i++) {
+        for (int i = 0; i < getObjNum(); i++) {
             pParts = static_cast< MiiFaceParts* >(getActor(i));
 
             if (pParts->_D0 || pParts->_D1) {
@@ -113,7 +113,7 @@ bool MiiFacePartsHolder::isInitEnd() const {
         return true;
     }
 
-    for (int i = 0; i < getObjectCount(); i++) {
+    for (int i = 0; i < getObjNum(); i++) {
         pParts = static_cast< MiiFaceParts* >(getActor(i));
 
         if (pParts->_D1) {
@@ -147,7 +147,7 @@ MiiFaceParts* MiiFacePartsHolder::createPartsFromDefault(const char* pName, u16 
 void MiiFacePartsHolder::drawEachActor(DrawPartsFuncPtr pDrawFunc, const RFLDrawCoreSetting* pSetting) const {
     MiiFaceParts* pParts;
 
-    for (int i = 0; i < getObjectCount(); i++) {
+    for (int i = 0; i < getObjNum(); i++) {
         pParts = static_cast< MiiFaceParts* >(getActor(i));
 
         if (MR::isDead(pParts)) {
@@ -158,72 +158,76 @@ void MiiFacePartsHolder::drawEachActor(DrawPartsFuncPtr pDrawFunc, const RFLDraw
     }
 }
 
-// MiiFacePartsHolder::drawExtra
+void MiiFacePartsHolder::drawExtra() const {
+    RFLDrawCoreSetting setting;
+    setting.txcGenNum = 1;
+    setting.txcID = GX_TEXCOORD0;
+    setting.texMapID = GX_TEXMAP0;
+    setting.tevStageNum = 3;
+    setting.tevSwapTable = GX_TEV_SWAP0;
+    setting.tevKColorID = GX_KCOLOR0;
+    setting.tevOutRegID = GX_TEVPREV;
+    setting.posNrmMtxID = GX_PNMTX0;
+    setting.reverseCulling = 0;
 
-// FIXME: Enumerated GX types might be defined incorrectly?
+    RFLLoadVertexSetting(&setting);
+    RFLLoadMaterialSetting(&setting);
+    MR::loadLight(1);
+    setTevOpa();
+    GXSetZCompLoc(GX_TRUE);
+    GXSetAlphaCompare(GX_NEQUAL, 255, GX_AOP_AND, GX_ALWAYS, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_ONE, GX_BL_ZERO, GX_LO_COPY);
+    drawEachActor(&MiiFaceParts::drawOpa, &setting);
+    setTevXlu();
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_NEVER, 0);
+    GXSetZCompLoc(GX_FALSE);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_COPY);
+    drawEachActor(&MiiFaceParts::drawXlu, &setting);
+}
+
 void MiiFacePartsHolder::setTevOpa() const {
-    GXColorS10 color1 = {0, 0, 0, -89};
-    GXSetTevColorS10(GX_TEVREG1, color1);
-
-    GXColorS10 color2 = {0, 0, 0, 246};
-    GXSetTevColorS10(GX_TEVREG2, color2);
-
+    GXSetTevColorS10(GX_TEVREG0, (GXColorS10){0, 0, 0, -89});
+    GXSetTevColorS10(GX_TEVREG1, (GXColorS10){0, 0, 0, 246});
     GXSetTevDirect(GX_TEVSTAGE1);
     GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
     GXSetTevKAlphaSel(GX_TEVSTAGE1, GX_TEV_KASEL_1_4);
-    // GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_A0, GX_CC_C0, GX_CC_TEXGGG, GX_CC_C2);
-    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVREG0);
-    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_A2, GX_CA_KONST, GX_CA_RASA, GX_CA_A1);
-    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVREG0);
+    GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_C1, GX_CC_CPREV, GX_CC_RASC, GX_CC_C0);
+    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_A1, GX_CA_KONST, GX_CA_RASA, GX_CA_A0);
+    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevDirect(GX_TEVSTAGE2);
     GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
     GXSetTevKAlphaSel(GX_TEVSTAGE2, GX_TEV_KASEL_1_4);
-    // GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ONE, GX_CC_TEXGGG, GX_CC_C1, GX_CC_C0);
-    GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_2, GX_TRUE, GX_TEVREG0);
+    GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ZERO, GX_CC_RASC, GX_CC_APREV, GX_CC_CPREV);
+    GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_2, GX_TRUE, GX_TEVPREV);
     GXSetTevAlphaIn(GX_TEVSTAGE2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_KONST);
-    GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_2, GX_TRUE, GX_TEVREG0);
+    GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_2, GX_TRUE, GX_TEVPREV);
     GXSetNumChans(1);
-    GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT3, GX_DF_CLAMP, GX_AF_NONE);
-    GXSetChanCtrl(GX_ALPHA0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT4, GX_DF_SIGN, GX_AF_NONE);
-
-    GXColor ambColor = {128, 128, 128, 128};
-    GXSetChanAmbColor(GX_COLOR0A0, ambColor);
-
-    GXColor matColor = {165, 165, 165, 255};
-    GXSetChanMatColor(GX_COLOR0A0, matColor);
-
-    GXSetZMode(GX_TRUE, GX_EQUAL, GX_TRUE);
+    GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT0 | GX_LIGHT1, GX_DF_CLAMP, GX_AF_NONE);
+    GXSetChanCtrl(GX_ALPHA0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT2, GX_DF_SIGN, GX_AF_NONE);
+    GXSetChanAmbColor(GX_COLOR0A0, (GXColor){128, 128, 128, 128});
+    GXSetChanMatColor(GX_COLOR0A0, (GXColor){165, 165, 165, 255});
+    GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
 }
 
-// FIXME: Enumerated GX types might be defined incorrectly?
 void MiiFacePartsHolder::setTevXlu() const {
-    GXColorS10 color1 = {0, 0, 0, -89};
-    GXSetTevColorS10(GX_TEVREG1, color1);
-
-    GXColorS10 color2 = {0, 0, 0, 246};
-    GXSetTevColorS10(GX_TEVREG2, color2);
-
+    GXSetTevColorS10(GX_TEVREG0, (GXColorS10){0, 0, 0, -89});
+    GXSetTevColorS10(GX_TEVREG1, (GXColorS10){0, 0, 0, 246});
     GXSetTevDirect(GX_TEVSTAGE1);
     GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
-    // GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_A0, GX_CC_C0, GX_CC_TEXGGG, GX_CC_C2);
-    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVREG0);
-    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
-    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVREG0);
+    GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_C1, GX_CC_CPREV, GX_CC_RASC, GX_CC_C0);
+    GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevDirect(GX_TEVSTAGE2);
     GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
-    GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ONE, GX_CC_ONE, GX_CC_ONE, GX_CC_C0);
-    GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_2, GX_TRUE, GX_TEVREG0);
-    GXSetTevAlphaIn(GX_TEVSTAGE2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
-    GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVREG0);
+    GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO, GX_CC_CPREV);
+    GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_2, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE2, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_APREV);
+    GXSetTevAlphaOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetNumChans(1);
-    GXSetNumChans(1);
-    GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT3, GX_DF_CLAMP, GX_AF_NONE);
-
-    GXColor ambColor = {128, 128, 128, 128};
-    GXSetChanAmbColor(GX_COLOR0A0, ambColor);
-
-    GXColor matColor = {165, 165, 165, 255};
-    GXSetChanMatColor(GX_COLOR0A0, matColor);
-
-    GXSetZMode(GX_TRUE, GX_EQUAL, GX_TRUE);
+    GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT0 | GX_LIGHT1, GX_DF_CLAMP, GX_AF_NONE);
+    GXSetChanAmbColor(GX_COLOR0A0, (GXColor){128, 128, 128, 128});
+    GXSetChanMatColor(GX_COLOR0A0, (GXColor){165, 165, 165, 255});
+    GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
 }
