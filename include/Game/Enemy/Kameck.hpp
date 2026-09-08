@@ -84,7 +84,7 @@ public:
     /* 0x8C */ KameckBeam* mBeam;
     /* 0x90 */ ActiveActorList* mActiveActorList;
     /* 0x94 */ SmallKameckBeamEventListener* mBeamEventListener;
-    /* 0x98 */ AnimScaleController* mAnimScalecontroller;
+    /* 0x98 */ AnimScaleController* mAnimScaleController;
     /* 0x9C */ WalkerStateBindStarPointer* mWalkerStateBindStarPointer;
     /* 0xA0 */ TQuat4f _A0;
     /* 0xB0 */ TVec3f _B0;

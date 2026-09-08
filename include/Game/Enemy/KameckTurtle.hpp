@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Enemy/Kameck.hpp"
 
 class JetTurtle;
 
@@ -8,7 +8,6 @@ class KameckTurtle : public LiveActor {
 public:
     KameckTurtle(const char*);
 
-    virtual ~KameckTurtle();
     virtual void init(const JMapInfoIter&);
     virtual void makeActorAppeared();
     virtual void makeActorDead();
@@ -25,9 +24,11 @@ public:
     bool isEnableAttack() const;
     void appearJetTurtle(bool);
 
-    u32 _8C;
-    JetTurtle* mTurtle;  // 0x90
-    TQuat4f _94;
-    TVec3f _A4;
-    TVec3f _B0;
+    inline void todo(const TVec3f& rVec1);
+
+    /* 0x8C */ SmallKameckBeamEventListener* _8C;
+    /* 0x90 */ JetTurtle* mTurtle;
+    /* 0x94 */ TQuat4f _94;
+    /* 0xA4 */ TVec3f _A4;
+    /* 0xB0 */ TVec3f _B0;
 };

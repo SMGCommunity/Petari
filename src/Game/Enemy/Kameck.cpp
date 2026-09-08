@@ -13,8 +13,8 @@ namespace {
     // const s32 sUpVecBlendRate =
     // const f32 sTurnPlayerLimit =
     // const s32 sWaitTime =
-    // const s32 mMoveHideTime = // 'm' prefix?
-    // const f32 mMoveSpeed =
+    // const s32 mMoveHideTime =
+    // const f32 sMoveSpeed =
     // const s32 sGuardTime =
     // const f32 sGuardTurnSpeed =
     // const f32 sAttackRange =
@@ -47,7 +47,7 @@ namespace NrvKameck {
 };  // namespace NrvKameck
 
 Kameck::Kameck(const char* pName)
-    : LiveActor(pName), mBeam(), mActiveActorList(), mBeamEventListener(), mAnimScalecontroller(), mWalkerStateBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0.0f, 0.0f, 1.0f), mBeamType(), mMoveStep(240),
+    : LiveActor(pName), mBeam(), mActiveActorList(), mBeamEventListener(), mAnimScaleController(), mWalkerStateBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0.0f, 0.0f, 1.0f), mBeamType(), mMoveStep(240),
       mRailCoord(), mRailNextPointCoord(), mActiveDistance(3000.0f) {
     mActiveActorList = new ActiveActorList(8);
     mBeamEventListener = new SmallKameckBeamEventListener(this);
@@ -69,9 +69,9 @@ void Kameck::init(const JMapInfoIter& rIter) {
     initBeam();
     initEffectKeeper(1, nullptr, false);
     MR::initStarPointerTarget(this, 80.0f, TVec3f(0.0f, 0.0f, 0.0f));
-    mAnimScalecontroller = new AnimScaleController(nullptr);
-    mAnimScalecontroller->setParamTight();
-    mWalkerStateBindStarPointer = new WalkerStateBindStarPointer(this, mAnimScalecontroller);
+    mAnimScaleController = new AnimScaleController(nullptr);
+    mAnimScaleController->setParamTight();
+    mWalkerStateBindStarPointer = new WalkerStateBindStarPointer(this, mAnimScaleController);
     initSound(4, false);
     MR::addToAttributeGroupSearchTurtle(this);
     if (MR::isConnectedWithRail(rIter)) {
@@ -93,9 +93,9 @@ void Kameck::initBeam() {
     case KameckBeam::BeamType_Turtle:
         MR::createKameckBeamTurtleHolder();
         break;
-    case KameckBeam::BeamType_1FireBall:
-    case KameckBeam::BeamType_2FireBalls:
-    case KameckBeam::BeamType_3FireBalls:
+    case KameckBeam::BeamType_FireBall1:
+    case KameckBeam::BeamType_FireBall2:
+    case KameckBeam::BeamType_FireBall3:
         MR::createKameckFireBallHolder();
         break;
     }
@@ -105,15 +105,15 @@ void Kameck::initJMapParam(const JMapInfoIter& rIter) {
     if (MR::isValidInfo(rIter)) {
         MR::initDefaultPos(this, rIter);
         MR::getJMapInfoArg3NoInit(rIter, &mActiveDistance);
-        if (mBeamType == KameckBeam::BeamType_1FireBall) {
+        if (mBeamType == KameckBeam::BeamType_FireBall1) {
             s32 objCastCount;
             MR::getJMapInfoArg0WithInit(rIter, &objCastCount);
             if (objCastCount >= 3) {
-                mBeamType = KameckBeam::BeamType_3FireBalls;
+                mBeamType = KameckBeam::BeamType_FireBall3;
             } else if (objCastCount >= 2) {
-                mBeamType = KameckBeam::BeamType_2FireBalls;
+                mBeamType = KameckBeam::BeamType_FireBall2;
             } else {
-                mBeamType = KameckBeam::BeamType_1FireBall;
+                mBeamType = KameckBeam::BeamType_FireBall1;
             }
         }
     }
@@ -145,7 +145,7 @@ void Kameck::kill() {
 }
 
 void Kameck::control() {
-    mAnimScalecontroller->updateNerve();
+    mAnimScaleController->updateNerve();
     MR::blendQuatUpFront(&_A0, -mGravity, _B0, 0.04f, 0.2f);
     mActiveActorList->removeDeadActor();
 }
@@ -157,7 +157,7 @@ void Kameck::startClipped() {
 
 void Kameck::calcAndSetBaseMtx() {
     MR::setBaseTRMtx(this, _A0);
-    MR::setBaseScale(this, mAnimScalecontroller->_C * mScale);
+    MR::setBaseScale(this, mAnimScaleController->_C * mScale);
 }
 
 void Kameck::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -296,9 +296,9 @@ void Kameck::hitBeam(s32 num) {
     case KameckBeam::BeamType_Turtle:
         MR::startSound(this, "SE_EV_KAMECK_ATK_SUCCESS");
         break;
-    case KameckBeam::BeamType_1FireBall:
-    case KameckBeam::BeamType_2FireBalls:
-    case KameckBeam::BeamType_3FireBalls:
+    case KameckBeam::BeamType_FireBall1:
+    case KameckBeam::BeamType_FireBall2:
+    case KameckBeam::BeamType_FireBall3:
         MR::startSound(this, "SE_EV_KAMECK_ATK_SUCCESS");
         break;
     }
@@ -649,7 +649,7 @@ bool Kameck::isEnableDown() const {
 namespace MR {
     NameObj* createFireBallBeamKameck(const char* pName) {
         Kameck* kmck = new Kameck(pName);
-        kmck->mBeamType = KameckBeam::KameckBeam::BeamType_1FireBall;
+        kmck->mBeamType = KameckBeam::KameckBeam::BeamType_FireBall1;
         return kmck;
     }
 

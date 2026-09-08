@@ -4,13 +4,15 @@
 
 class Kameck;
 
-class KameckHolder : public DeriveActorGroup< Kameck > {
+class KameckHolder : public DeriveActorGroup<Kameck> {
 public:
     KameckHolder(s32);
-
-    virtual ~KameckHolder();
 
     void startDemoAppear();
     void endDemoAppear();
     void deadForceAll();
+
+    inline Kameck* getKameckActor(s32 i) {
+        return (Kameck*)getActor(i);
+    }
 };

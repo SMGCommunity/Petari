@@ -11,7 +11,7 @@ public:
     /// @brief Creates a new `KameckBeamEventListener`.
     KameckBeamEventListener();
 
-    virtual void hitBeam(s32){};  // I don't do "= 0" because the function has an empty definition
+    virtual void hitBeam(s32){};
 };
 
 class KameckBeamCollisionFilter : public CollisionPartsFilterBase {
@@ -28,11 +28,9 @@ class KameckBeam : public LiveActor {
 public:
     enum BeamType {
         /* 0x1 */ BeamType_Turtle = 1,
-
-        // From here it's just number of FireBalls
-        /* 0x2 */ BeamType_1FireBall,
-        /* 0x3 */ BeamType_2FireBalls,
-        /* 0x4 */ BeamType_3FireBalls
+        /* 0x2 */ BeamType_FireBall1,
+        /* 0x3 */ BeamType_FireBall2,
+        /* 0x4 */ BeamType_FireBall3,
     };
 
     /// @brief Creates a new `KameckBeam`.
@@ -74,7 +72,7 @@ public:
     /* 0xA4 */ TVec3f _A4;
     /* 0xB0 */ TVec3f mWandLocalPosition;
     /* 0xBC */ s32 mBeamKind;
-    /* 0xC0 */ u32 _C0;   // Not used by its own class
+    /* 0xC0 */ u8 _C0[4];
 };
 
 namespace MR {
