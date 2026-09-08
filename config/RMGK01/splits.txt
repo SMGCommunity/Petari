@@ -7512,7 +7512,7 @@ Game/RhythmLib/AudMeTrack.cpp:
 	.ctors      start:0x8052F1A4 end:0x8052F1A8
 	.rodata     start:0x80539CD0 end:0x80539D20
 	.bss        start:0x8060AF38 end:0x8060AFB0
-	.sbss       start:0x806B62D0 end:0x806B62D0
+    .sbss       start:0x806B62C0 end:0x806B62D0
 	.sdata2     start:0x806C0648 end:0x806C0658
 
 Game/RhythmLib/AudMeChannelMgr.cpp:
