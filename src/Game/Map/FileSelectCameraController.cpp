@@ -4,6 +4,10 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
+void FileSelectCameraController_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
 namespace {
     // const Vec cTitleTargetPos = {};
     // const Vec cTitlePos = {};
@@ -53,7 +57,7 @@ void FileSelectCameraController::goToFarPoint() {
 }
 
 void FileSelectCameraController::goToNearPoint(const TVec3f& rPoint) {
-    mNearTarget = rPoint + TVec3f(::cNearTargetOffset);
+    mNearTarget.set(rPoint + TVec3f(::cNearTargetOffset));
 
     setNerve(&::FileSelectCameraControllerNrvMoveToNearPoint::sInstance);
 }
@@ -100,7 +104,7 @@ void FileSelectCameraController::exeMoveToFarPoint() {
 void FileSelectCameraController::exeFarPoint() {
     mWPoint = ::cFarTarget;
     mFovy = ::cFarFovy;
-    mPosition = ::cFarPoint;
+    mPosition.set(::cFarPoint);
 }
 
 void FileSelectCameraController::exeMoveToNearPoint() {
@@ -119,7 +123,7 @@ void FileSelectCameraController::exeNearPoint() {
     TVec3f nearPoint = mNearTarget + ::cNearPointOffset;
 
     mFovy = ::cNearFovy;
-    mPosition = nearPoint;
+    mPosition.set(nearPoint);
 }
 
 void FileSelectCameraController::control() {
