@@ -5,7 +5,7 @@
 namespace JMath {
     class TRandom_fast_ {
     public:
-        TRandom_fast_() {};
+        TRandom_fast_(){};
 
         TRandom_fast_(u32);
 
@@ -23,6 +23,10 @@ namespace JMath {
             } out;
             out.s = (rand() >> 9) | 0x3f800000;
             return out.f - 1;
+        }
+
+        inline u32 getRand(u32 range) {
+            return (rand() >> 9) % range;
         }
 
         u32 mSeed;

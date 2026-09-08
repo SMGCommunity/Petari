@@ -82,7 +82,6 @@ public:
     /* 0x08 */ AudMeSeqReader mReader;
     /* 0x44 */ AudMeSeqParser* mParser;
     /* 0x48 */ bool mIsLocked;
-    /* 0x49 */ bool _49;
+    /* 0x49 */ bool mStopAfterNote;
     /* 0x4C */ s32 mProgress;
-    /* 0x50 */ u8 pad_50[0x88 - 0x50];
 };

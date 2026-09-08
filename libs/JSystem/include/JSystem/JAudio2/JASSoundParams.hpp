@@ -68,6 +68,26 @@ struct JASSoundParams {
             mDolby = 1.0f;
     }
 
+    f32 getVolume() const {
+        return mVolume;
+    }
+
+    f32 getFxMix() const {
+        return mFxMix;
+    }
+
+    f32 getPitch() const {
+        return mPitch;
+    }
+
+    f32 getPan() const {
+        return mPan;
+    }
+
+    f32 getDolby() const {
+        return mDolby;
+    }
+
     /* 0x00 */ f32 mVolume;
     /* 0x04 */ f32 mFxMix;
     /* 0x08 */ f32 mPitch;

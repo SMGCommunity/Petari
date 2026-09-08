@@ -7359,7 +7359,7 @@ Game/Player/MarioWalk.cpp:
 
 Game/Player/MarioNullBck.cpp:
 	.text       start:0x80308E04 end:0x803090AC
-	.rodata     start:0x80539C58 end:0x80539CE8
+	.rodata     start:0x80539C58 end:0x80539CD0
 	.data       start:0x805CC8B8 end:0x805CC960
 	.sdata2     start:0x806C0370 end:0x806C0378
 
@@ -7498,7 +7498,7 @@ Game/Player/PlayerEventGhostRaceDown.cpp:
 Game/RhythmLib/AudRhythmSeqParser.cpp:
 	.text       start:0x80316D30 end:0x80317C08
 	.data       start:0x805CDF70 end:0x805CDF90
-	.sbss       start:0x806B62B0 end:0x806B62D0
+	.sbss       start:0x806B62B0 end:0x806B62C0
 	.sdata2     start:0x806C0630 end:0x806C0638
 
 Game/RhythmLib/AudBgmTempoAdjuster.cpp:
@@ -7508,9 +7508,9 @@ Game/RhythmLib/AudBgmTempoAdjuster.cpp:
 Game/RhythmLib/AudMeTrack.cpp:
 	.text       start:0x80317F70 end:0x80319C98
 	.ctors      start:0x8052F1A4 end:0x8052F1A8
-	.rodata     start:0x80539CE8 end:0x80539D20
+	.rodata     start:0x80539CD0 end:0x80539D20
 	.bss        start:0x8060AF38 end:0x8060AFB0
-	.sbss       start:0x806B62D0 end:0x806B62D0
+	.sbss       start:0x806B62C0 end:0x806B62D0
 	.sdata2     start:0x806C0648 end:0x806C0658
 
 Game/RhythmLib/AudMeChannelMgr.cpp:

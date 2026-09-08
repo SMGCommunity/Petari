@@ -2,7 +2,7 @@
 
 AudMeSeqParser AudMeSeqCtrl::sDefaultParser = AudMeSeqParser();
 
-AudMeSeqCtrl::AudMeSeqCtrl() : mParser(&sDefaultParser), mIsLocked(), _49(), mProgress(-1) {
+AudMeSeqCtrl::AudMeSeqCtrl() : mParser(&sDefaultParser), mIsLocked(), mStopAfterNote(), mProgress(-1) {
     mReader.init();
     mWaitTime = -1;
     mTime = 0;
@@ -54,7 +54,7 @@ s32 AudMeSeqCtrl::rhythmProc(AudMeTrack* pTrack, s32 time) {
             return -1;
         }
 
-        if (ret == 1 && _49 == true) {
+        if (ret == 1 && mStopAfterNote == true) {
             return 1;
         }
     }
