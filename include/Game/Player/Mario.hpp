@@ -263,7 +263,7 @@ public:
     void decideInertiaOnIce(f32);
     void decideInertiaOnSlip(f32);
     void calcShadowDir(const TVec3f&, TVec3f*);
-    void retainMoveDir(f32, f32, TVec3f*);
+    bool retainMoveDir(f32, f32, TVec3f*);
     void calcMoveDir(f32, f32, TVec3f*, bool);
     bool checkLockOnHoming();
     void doLockOnHoming();
