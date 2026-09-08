@@ -211,15 +211,19 @@ namespace JGadget {
             Insert(end(), element);
         }
 
-        iterator Insert(iterator pos, T* element) NO_INLINE {
+        void Push_front(T* element) {
+            Insert(begin(), element);
+        }
+
+        iterator Insert(iterator pos, T* element) {
             return iterator(TNodeLinkList::Insert((TNodeLinkList::iterator&)pos, Element_toNode(element)));
         }
 
-        static TLinkListNode* Element_toNode(T* element) NO_INLINE {
+        static TLinkListNode* Element_toNode(T* element) {
             return (TLinkListNode*)((u8*)element - NODE_OFFSET);
         }
 
-        static T* Element_toValue(TLinkListNode* element) NO_INLINE {
+        static T* Element_toValue(TLinkListNode* element) {
             return (T*)((u8*)element + NODE_OFFSET);
         }
 
@@ -231,7 +235,7 @@ namespace JGadget {
             return *--end();
         }
 
-        void Remove(T* element) NO_INLINE {
+        void Remove(T* element) {
             TNodeLinkList::Remove(Element_toNode(element));
         }
     };

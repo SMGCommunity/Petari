@@ -84,9 +84,14 @@ namespace nw4r {
         };  // namespace detail
 
         struct Size {
-            Size() : width(0.0f), height(0.0f) {}
+            Size() : width(0.0f), height(0.0f) {
+            }
 
-            Size(f32 aWidth, f32 aHeight) : width(aWidth), height(aHeight) {}
+            Size(const Size& rOther) : width(rOther.width), height(rOther.height) {
+            }
+
+            Size(f32 aWidth, f32 aHeight) : width(aWidth), height(aHeight) {
+            }
 
             f32 width;
             f32 height;
@@ -111,17 +116,25 @@ namespace nw4r {
         };
 
         struct ChanCtrl {
-            ChanCtrl() : reserve1(0), reserve2(0) { Set(GX_SRC_VTX, GX_SRC_VTX); }
+            ChanCtrl() : reserve1(0), reserve2(0) {
+                Set(GX_SRC_VTX, GX_SRC_VTX);
+            }
 
-            ChanCtrl(GXColorSrc colSrc, GXColorSrc alpSrc) : reserve1(0), reserve2(0) { Set(colSrc, alpSrc); }
+            ChanCtrl(GXColorSrc colSrc, GXColorSrc alpSrc) : reserve1(0), reserve2(0) {
+                Set(colSrc, alpSrc);
+            }
 
             void Set(GXColorSrc colSrc, GXColorSrc alpSrc) {
                 matSrcCol = colSrc;
                 matSrcAlp = alpSrc;
             }
 
-            GXColorSrc GetColorSrc() const { return GXColorSrc(matSrcCol); }
-            GXColorSrc GetAlphaSrc() const { return GXColorSrc(matSrcAlp); }
+            GXColorSrc GetColorSrc() const {
+                return GXColorSrc(matSrcCol);
+            }
+            GXColorSrc GetAlphaSrc() const {
+                return GXColorSrc(matSrcAlp);
+            }
 
             u8 matSrcCol;
             u8 matSrcAlp;
@@ -138,7 +151,9 @@ namespace nw4r {
         };
 
         struct TexCoordGen {
-            TexCoordGen() : reserve(0) { Set(GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY); }
+            TexCoordGen() : reserve(0) {
+                Set(GX_TG_MTX2x4, GX_TG_TEX0, GX_IDENTITY);
+            }
 
             TexCoordGen(GXTexGenType aTexGenType, GXTexGenSrc aTexGenSrc, u32 aTexMtx)
                 : reserve(0)
@@ -153,9 +168,15 @@ namespace nw4r {
                 texMtx = u8(aTexMtx);
             }
 
-            GXTexGenType GetTexGenType() const { return GXTexGenType(texGenType); }
-            GXTexGenSrc GetTexGenSrc() const { return GXTexGenSrc(texGenSrc); }
-            u32 GetTexMtx() const { return texMtx; }
+            GXTexGenType GetTexGenType() const {
+                return GXTexGenType(texGenType);
+            }
+            GXTexGenSrc GetTexGenSrc() const {
+                return GXTexGenSrc(texGenSrc);
+            }
+            u32 GetTexMtx() const {
+                return texMtx;
+            }
 
             u8 texGenType;
             u8 texGenSrc;
@@ -164,7 +185,9 @@ namespace nw4r {
         };
 
         struct IndirectStage {
-            IndirectStage() { Set(GX_TEXCOORD0, GX_TEXMAP0, GX_ITS_1, GX_ITS_1); }
+            IndirectStage() {
+                Set(GX_TEXCOORD0, GX_TEXMAP0, GX_ITS_1, GX_ITS_1);
+            }
 
             IndirectStage(GXTexCoordID aTexCoordGen, GXTexMapID aTexMap, GXIndTexScale aScaleS, GXIndTexScale aScaleT) {
                 Set(aTexCoordGen, aTexMap, aScaleS, aScaleT);
@@ -176,10 +199,18 @@ namespace nw4r {
                 scaleS = aScaleS;
                 scaleT = aScaleT;
             }
-            GXTexCoordID GetTexCoordGen() const { return GXTexCoordID(texCoordGen); }
-            GXTexMapID GetTexMap() const { return GXTexMapID(texMap); }
-            GXIndTexScale GetScaleS() const { return GXIndTexScale(scaleS); }
-            GXIndTexScale GetScaleT() const { return GXIndTexScale(scaleT); }
+            GXTexCoordID GetTexCoordGen() const {
+                return GXTexCoordID(texCoordGen);
+            }
+            GXTexMapID GetTexMap() const {
+                return GXTexMapID(texMap);
+            }
+            GXIndTexScale GetScaleS() const {
+                return GXIndTexScale(scaleS);
+            }
+            GXIndTexScale GetScaleT() const {
+                return GXIndTexScale(scaleT);
+            }
 
             u8 texCoordGen;
             u8 texMap;
@@ -198,17 +229,37 @@ namespace nw4r {
                 cl = u8(((clamp ? 1 : 0) << 0) | (outReg << 1) | (kSel << 3));
             }
 
-            u8 GetA() const { return u8((ab >> 0) & 0xF); }
-            u8 GetB() const { return u8((ab >> 4) & 0xF); }
-            u8 GetC() const { return u8((cd >> 0) & 0xF); }
-            u8 GetD() const { return u8((cd >> 4) & 0xF); }
+            u8 GetA() const {
+                return u8((ab >> 0) & 0xF);
+            }
+            u8 GetB() const {
+                return u8((ab >> 4) & 0xF);
+            }
+            u8 GetC() const {
+                return u8((cd >> 0) & 0xF);
+            }
+            u8 GetD() const {
+                return u8((cd >> 4) & 0xF);
+            }
 
-            u8 GetOp() const { return u8((op >> 0) & 0xF); }
-            u8 GetBias() const { return u8((op >> 4) & 0x3); }
-            u8 GetScale() const { return u8((op >> 6) & 0x3); }
-            bool IsClamp() const { return ((cl >> 0) & 0x1) != 0; }
-            u8 GetOutReg() const { return u8((cl >> 1) & 0x3); }
-            u8 GetKSel() const { return u8((cl >> 3) & 0x1F); }
+            u8 GetOp() const {
+                return u8((op >> 0) & 0xF);
+            }
+            u8 GetBias() const {
+                return u8((op >> 4) & 0x3);
+            }
+            u8 GetScale() const {
+                return u8((op >> 6) & 0x3);
+            }
+            bool IsClamp() const {
+                return ((cl >> 0) & 0x1) != 0;
+            }
+            u8 GetOutReg() const {
+                return u8((cl >> 1) & 0x3);
+            }
+            u8 GetKSel() const {
+                return u8((cl >> 3) & 0x1F);
+            }
 
             u8 ab;
             u8 cd;
@@ -233,9 +284,13 @@ namespace nw4r {
                 swapSel = u8(((aTexMap >> 8) << 0) | (rasSel << 1) | (texSel << 3));
             }
 
-            void SetColorIn(GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d) { colIn.SetIn(a, b, c, d); }
+            void SetColorIn(GXTevColorArg a, GXTevColorArg b, GXTevColorArg c, GXTevColorArg d) {
+                colIn.SetIn(a, b, c, d);
+            }
 
-            void SetAlphaIn(GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d) { alpIn.SetIn(a, b, c, d); }
+            void SetAlphaIn(GXTevAlphaArg a, GXTevAlphaArg b, GXTevAlphaArg c, GXTevAlphaArg d) {
+                alpIn.SetIn(a, b, c, d);
+            }
 
             void SetColorOp(GXTevOp op, GXTevBias bias, GXTevScale scale, bool clamp, GXTevRegID outReg, GXTevKColorSel kSel) {
                 colIn.SetOp(op, bias, scale, clamp, outReg, kSel);
@@ -253,45 +308,113 @@ namespace nw4r {
                 indFoAdUtAl = u8((format << 0) | ((addPrev ? 1 : 0) << 2) | ((utcLod ? 1 : 0) << 3) | (alphaSel << 4));
             }
 
-            GXTexCoordID GetTexCoordGen() const { return GXTexCoordID(texCoordGen); }
-            GXTexMapID GetTexMap() const { return GXTexMapID((((swapSel >> 0) & 0x1) << 8) | texMap); }
-            GXChannelID GetColorChan() const { return GXChannelID(colChan); }
-            GXTevSwapSel GetRasSwapSel() const { return GXTevSwapSel((swapSel >> 1) & 0x3); }
-            GXTevSwapSel GetTexSwapSel() const { return GXTevSwapSel((swapSel >> 3) & 0x3); }
+            GXTexCoordID GetTexCoordGen() const {
+                return GXTexCoordID(texCoordGen);
+            }
+            GXTexMapID GetTexMap() const {
+                return GXTexMapID((((swapSel >> 0) & 0x1) << 8) | texMap);
+            }
+            GXChannelID GetColorChan() const {
+                return GXChannelID(colChan);
+            }
+            GXTevSwapSel GetRasSwapSel() const {
+                return GXTevSwapSel((swapSel >> 1) & 0x3);
+            }
+            GXTevSwapSel GetTexSwapSel() const {
+                return GXTevSwapSel((swapSel >> 3) & 0x3);
+            }
 
-            GXTevColorArg GetColorInA() const { return GXTevColorArg(colIn.GetA()); }
-            GXTevColorArg GetColorInB() const { return GXTevColorArg(colIn.GetB()); }
-            GXTevColorArg GetColorInC() const { return GXTevColorArg(colIn.GetC()); }
-            GXTevColorArg GetColorInD() const { return GXTevColorArg(colIn.GetD()); }
+            GXTevColorArg GetColorInA() const {
+                return GXTevColorArg(colIn.GetA());
+            }
+            GXTevColorArg GetColorInB() const {
+                return GXTevColorArg(colIn.GetB());
+            }
+            GXTevColorArg GetColorInC() const {
+                return GXTevColorArg(colIn.GetC());
+            }
+            GXTevColorArg GetColorInD() const {
+                return GXTevColorArg(colIn.GetD());
+            }
 
-            GXTevAlphaArg GetAlphaInA() const { return GXTevAlphaArg(alpIn.GetA()); }
-            GXTevAlphaArg GetAlphaInB() const { return GXTevAlphaArg(alpIn.GetB()); }
-            GXTevAlphaArg GetAlphaInC() const { return GXTevAlphaArg(alpIn.GetC()); }
-            GXTevAlphaArg GetAlphaInD() const { return GXTevAlphaArg(alpIn.GetD()); }
+            GXTevAlphaArg GetAlphaInA() const {
+                return GXTevAlphaArg(alpIn.GetA());
+            }
+            GXTevAlphaArg GetAlphaInB() const {
+                return GXTevAlphaArg(alpIn.GetB());
+            }
+            GXTevAlphaArg GetAlphaInC() const {
+                return GXTevAlphaArg(alpIn.GetC());
+            }
+            GXTevAlphaArg GetAlphaInD() const {
+                return GXTevAlphaArg(alpIn.GetD());
+            }
 
-            GXTevOp GetColorOp() const { return GXTevOp(colIn.GetOp()); }
-            GXTevBias GetColorBias() const { return GXTevBias(colIn.GetBias()); }
-            GXTevScale GetColorScale() const { return GXTevScale(colIn.GetScale()); }
-            bool IsColorClamp() const { return colIn.IsClamp(); }
-            GXTevRegID GetColorOutReg() const { return GXTevRegID(colIn.GetOutReg()); }
-            GXTevKColorSel GetKColorSel() const { return GXTevKColorSel(colIn.GetKSel()); }
+            GXTevOp GetColorOp() const {
+                return GXTevOp(colIn.GetOp());
+            }
+            GXTevBias GetColorBias() const {
+                return GXTevBias(colIn.GetBias());
+            }
+            GXTevScale GetColorScale() const {
+                return GXTevScale(colIn.GetScale());
+            }
+            bool IsColorClamp() const {
+                return colIn.IsClamp();
+            }
+            GXTevRegID GetColorOutReg() const {
+                return GXTevRegID(colIn.GetOutReg());
+            }
+            GXTevKColorSel GetKColorSel() const {
+                return GXTevKColorSel(colIn.GetKSel());
+            }
 
-            GXTevOp GetAlphaOp() const { return GXTevOp(alpIn.GetOp()); }
-            GXTevBias GetAlphaBias() const { return GXTevBias(alpIn.GetBias()); }
-            GXTevScale GetAlphaScale() const { return GXTevScale(alpIn.GetScale()); }
-            bool IsAlphaClamp() const { return alpIn.IsClamp(); }
-            GXTevRegID GetAlphaOutReg() const { return GXTevRegID(alpIn.GetOutReg()); }
-            GXTevKAlphaSel GetKAlphaSel() const { return GXTevKAlphaSel(alpIn.GetKSel()); }
+            GXTevOp GetAlphaOp() const {
+                return GXTevOp(alpIn.GetOp());
+            }
+            GXTevBias GetAlphaBias() const {
+                return GXTevBias(alpIn.GetBias());
+            }
+            GXTevScale GetAlphaScale() const {
+                return GXTevScale(alpIn.GetScale());
+            }
+            bool IsAlphaClamp() const {
+                return alpIn.IsClamp();
+            }
+            GXTevRegID GetAlphaOutReg() const {
+                return GXTevRegID(alpIn.GetOutReg());
+            }
+            GXTevKAlphaSel GetKAlphaSel() const {
+                return GXTevKAlphaSel(alpIn.GetKSel());
+            }
 
-            GXIndTexStageID GetIndStage() const { return GXIndTexStageID(indStage); }
-            GXIndTexFormat GetIndFormat() const { return GXIndTexFormat((indFoAdUtAl >> 0) & 0x3); }
-            GXIndTexBiasSel GetIndBiasSel() const { return GXIndTexBiasSel((indBiMt >> 0) & 0x7); }
-            GXIndTexMtxID GetIndMtxSel() const { return GXIndTexMtxID((indBiMt >> 3) & 0xF); }
-            GXIndTexWrap GetIndWrapS() const { return GXIndTexWrap((indWrap >> 0) & 0x7); }
-            GXIndTexWrap GetIndWrapT() const { return GXIndTexWrap((indWrap >> 3) & 0x7); }
-            bool IsIndAddPrev() const { return ((indFoAdUtAl >> 2) & 0x1) != 0; }
-            bool IsIndUtcLod() const { return ((indFoAdUtAl >> 3) & 0x1) != 0; }
-            GXIndTexAlphaSel GetIndAlphaSel() const { return GXIndTexAlphaSel((indFoAdUtAl >> 4) & 0x3); }
+            GXIndTexStageID GetIndStage() const {
+                return GXIndTexStageID(indStage);
+            }
+            GXIndTexFormat GetIndFormat() const {
+                return GXIndTexFormat((indFoAdUtAl >> 0) & 0x3);
+            }
+            GXIndTexBiasSel GetIndBiasSel() const {
+                return GXIndTexBiasSel((indBiMt >> 0) & 0x7);
+            }
+            GXIndTexMtxID GetIndMtxSel() const {
+                return GXIndTexMtxID((indBiMt >> 3) & 0xF);
+            }
+            GXIndTexWrap GetIndWrapS() const {
+                return GXIndTexWrap((indWrap >> 0) & 0x7);
+            }
+            GXIndTexWrap GetIndWrapT() const {
+                return GXIndTexWrap((indWrap >> 3) & 0x7);
+            }
+            bool IsIndAddPrev() const {
+                return ((indFoAdUtAl >> 2) & 0x1) != 0;
+            }
+            bool IsIndUtcLod() const {
+                return ((indFoAdUtAl >> 3) & 0x1) != 0;
+            }
+            GXIndTexAlphaSel GetIndAlphaSel() const {
+                return GXIndTexAlphaSel((indFoAdUtAl >> 4) & 0x3);
+            }
 
             u8 texCoordGen;
             u8 colChan;
@@ -308,26 +431,42 @@ namespace nw4r {
         };
 
         struct TevSwapMode {
-            TevSwapMode() { Set(GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA); }
+            TevSwapMode() {
+                Set(GX_CH_RED, GX_CH_GREEN, GX_CH_BLUE, GX_CH_ALPHA);
+            }
 
-            TevSwapMode(GXTevColorChan r, GXTevColorChan g, GXTevColorChan b, GXTevColorChan a) { Set(r, g, b, a); }
+            TevSwapMode(GXTevColorChan r, GXTevColorChan g, GXTevColorChan b, GXTevColorChan a) {
+                Set(r, g, b, a);
+            }
 
             void Set(GXTevColorChan r, GXTevColorChan g, GXTevColorChan b, GXTevColorChan a) {
                 swap = u8(((r - GX_CH_RED) << 0) | ((g - GX_CH_RED) << 2) | ((b - GX_CH_RED) << 4) | ((a - GX_CH_RED) << 6));
             }
 
-            GXTevColorChan GetR() const { return GXTevColorChan(GX_CH_RED + ((swap >> 0) & 0x3)); }
-            GXTevColorChan GetG() const { return GXTevColorChan(GX_CH_RED + ((swap >> 2) & 0x3)); }
-            GXTevColorChan GetB() const { return GXTevColorChan(GX_CH_RED + ((swap >> 4) & 0x3)); }
-            GXTevColorChan GetA() const { return GXTevColorChan(GX_CH_RED + ((swap >> 6) & 0x3)); }
+            GXTevColorChan GetR() const {
+                return GXTevColorChan(GX_CH_RED + ((swap >> 0) & 0x3));
+            }
+            GXTevColorChan GetG() const {
+                return GXTevColorChan(GX_CH_RED + ((swap >> 2) & 0x3));
+            }
+            GXTevColorChan GetB() const {
+                return GXTevColorChan(GX_CH_RED + ((swap >> 4) & 0x3));
+            }
+            GXTevColorChan GetA() const {
+                return GXTevColorChan(GX_CH_RED + ((swap >> 6) & 0x3));
+            }
 
             u8 swap;
         };
 
         struct AlphaCompare {
-            AlphaCompare() { Set(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0); }
+            AlphaCompare() {
+                Set(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
+            }
 
-            AlphaCompare(GXCompare aComp0, u8 aRef0, GXAlphaOp aOp, GXCompare aComp1, u8 aRef1) { Set(aComp0, aRef0, aOp, aComp1, aRef1); }
+            AlphaCompare(GXCompare aComp0, u8 aRef0, GXAlphaOp aOp, GXCompare aComp1, u8 aRef1) {
+                Set(aComp0, aRef0, aOp, aComp1, aRef1);
+            }
 
             void Set(GXCompare aComp0, u8 aRef0, GXAlphaOp aOp, GXCompare aComp1, u8 aRef1) {
                 comp = u8(aComp0 << 0 | aComp1 << 4);
@@ -336,11 +475,21 @@ namespace nw4r {
                 ref1 = aRef1;
             }
 
-            GXCompare GetComp0() const { return GXCompare((comp >> 0) & 0xF); }
-            u8 GetRef0() const { return ref0; }
-            GXAlphaOp GetOp() const { return GXAlphaOp(op); }
-            GXCompare GetComp1() const { return GXCompare((comp >> 4) & 0xF); }
-            u8 GetRef1() const { return ref1; }
+            GXCompare GetComp0() const {
+                return GXCompare((comp >> 0) & 0xF);
+            }
+            u8 GetRef0() const {
+                return ref0;
+            }
+            GXAlphaOp GetOp() const {
+                return GXAlphaOp(op);
+            }
+            GXCompare GetComp1() const {
+                return GXCompare((comp >> 4) & 0xF);
+            }
+            u8 GetRef1() const {
+                return ref1;
+            }
 
             u8 comp;
             u8 op;
@@ -349,7 +498,9 @@ namespace nw4r {
         };
 
         struct BlendMode {
-            BlendMode() { Set(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET); }
+            BlendMode() {
+                Set(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+            }
 
             BlendMode(GXBlendMode aType, GXBlendFactor aSrcFactor, GXBlendFactor aDstFactor, GXLogicOp aOp) {
                 Set(aType, aSrcFactor, aDstFactor, aOp);
@@ -362,10 +513,18 @@ namespace nw4r {
                 op = aOp;
             }
 
-            GXBlendMode GetType() const { return GXBlendMode(type); }
-            GXBlendFactor GetSrcFactor() const { return GXBlendFactor(srcFactor); }
-            GXBlendFactor GetDstFactor() const { return GXBlendFactor(dstFactor); }
-            GXLogicOp GetOp() const { return GXLogicOp(op); }
+            GXBlendMode GetType() const {
+                return GXBlendMode(type);
+            }
+            GXBlendFactor GetSrcFactor() const {
+                return GXBlendFactor(srcFactor);
+            }
+            GXBlendFactor GetDstFactor() const {
+                return GXBlendFactor(dstFactor);
+            }
+            GXLogicOp GetOp() const {
+                return GXLogicOp(op);
+            }
 
             u8 type;
             u8 srcFactor;
@@ -377,9 +536,13 @@ namespace nw4r {
 
         class AnimationLink {
         public:
-            AnimationLink() { Reset(); }
+            AnimationLink() {
+                Reset();
+            }
 
-            void Reset() { Set(nullptr, 0, false); }
+            void Reset() {
+                Set(nullptr, 0, false);
+            }
 
             void Set(AnimTransform* pTrans, u16 idx, bool dis) {
                 mAnimTrans = pTrans;
@@ -387,10 +550,18 @@ namespace nw4r {
                 mbDisable = dis;
             }
 
-            bool IsEnable() const { return !mbDisable; }
-            void SetEnable(bool enable) { mbDisable = !enable; }
-            u16 GetIndex() const { return mIdx; }
-            AnimTransform* GetAnimTransform() const { return mAnimTrans; }
+            bool IsEnable() const {
+                return !mbDisable;
+            }
+            void SetEnable(bool enable) {
+                mbDisable = !enable;
+            }
+            u16 GetIndex() const {
+                return mIdx;
+            }
+            AnimTransform* GetAnimTransform() const {
+                return mAnimTrans;
+            }
 
             ut::LinkListNode mLink;
             AnimTransform* mAnimTrans;
@@ -410,7 +581,9 @@ namespace nw4r {
                 memset(padding, 0, sizeof(padding));
             }
 
-            const char* GetName() const { return name; }
+            const char* GetName() const {
+                return name;
+            }
 
             char name[17];
             u8 flag;
@@ -418,9 +591,13 @@ namespace nw4r {
         };
 
         struct AnimationShareInfo {
-            const char* GetSrcPaneName() const { return srcPaneName; }
+            const char* GetSrcPaneName() const {
+                return srcPaneName;
+            }
 
-            const char* GetTargetGroupName() const { return targetGroupName; }
+            const char* GetTargetGroupName() const {
+                return targetGroupName;
+            }
 
             char srcPaneName[17];
             char targetGroupName[17];

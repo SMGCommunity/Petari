@@ -75,13 +75,13 @@ public:
     void doExtraServices();
     bool isEnableCheckGround() NO_INLINE;
     void setGroundNorm(const TVec3f&);
-    bool checkForceGrounding();
+    void checkForceGrounding();
     void updateGroundInfo();
     void fixHeadFrontVecByGravity();
     bool isNonFixHeadVec() const;
     void createMtxDir(MtxPtr, const TVec3f&, const TVec3f&, const TVec3f&);
     void createDirectionMtx(MtxPtr);
-    void createCorrectionMtx(MtxPtr, TVec3f*);
+    bool createCorrectionMtx(MtxPtr, TVec3f*);
     void createAngleMtx(MtxPtr, bool);
     void slopeTiltHead(TVec3f*);
     void fixFrontVecByGravity();
@@ -158,7 +158,7 @@ public:
     bool checkBaseTransPoint();
     bool checkHeadPoint();
     const TVec3f* calcShadowPos();
-    void updateBinderInfo();
+    bool updateBinderInfo();
     bool isThroughWall(const Triangle*) const;
     void checkGround();
     CubeCameraArea* getCameraCubeCode() const;
@@ -169,8 +169,8 @@ public:
     void decDamageAfterTimer();
     bool checkDamage();
     u16 getDamageAfterTimer() const;
-    void damageFloorCheck();
-    void damageWallCheck();
+    bool damageFloorCheck();
+    bool damageWallCheck();
     void damagePolygonCheck(const Triangle*);
     bool flipLarge(const TVec3f&);
     bool isEnableAddDamage() const;
@@ -263,7 +263,7 @@ public:
     void decideInertiaOnIce(f32);
     void decideInertiaOnSlip(f32);
     void calcShadowDir(const TVec3f&, TVec3f*);
-    void retainMoveDir(f32, f32, TVec3f*);
+    bool retainMoveDir(f32, f32, TVec3f*);
     void calcMoveDir(f32, f32, TVec3f*, bool);
     bool checkLockOnHoming();
     void doLockOnHoming();
@@ -308,13 +308,13 @@ public:
     void playSoundTrampleCombo(u8);
     void setSeVersion(u32);
 
-    bool checkOnimasu(const HitSensor*);
+    void checkOnimasu(const HitSensor*);
     bool isDossun(const Triangle*) const;
     bool isStageCameraRotate2D() const;
     bool isNoWalkFallOnDossun() const;
     bool isNotReflectGlassGround() const;
     bool isUseAnotherMovingPolygon() const;
-    bool isUseFoolSpecialGravity(const TVec3f&, TVec3f*) const;
+    bool isUseFooSpecialGravity(const TVec3f&, TVec3f*) const;
     void updateOnimasu();
     bool isHeadPushEnableArea() const;
     bool isOnimasuBinderPressSkip() const;
@@ -502,10 +502,10 @@ public:
         unsigned _14 : 1;
         unsigned _15 : 1;
         unsigned debugMode : 1;  // _16
-        unsigned _17 : 1;
-        unsigned _18 : 1;  // rlwinm rX, rX, 0, 25, 23
-        unsigned _19 : 1;  // extrwi rX, rX, 1, 25
-        unsigned _1A : 1;  // extrwi rX, rX, 1, 26
+        unsigned _17 : 1;        // extrwi rX, rX, 1, 23
+        unsigned _18 : 1;        // rlwinm rX, rX, 0, 25, 23
+        unsigned _19 : 1;        // extrwi rX, rX, 1, 25
+        unsigned _1A : 1;        // extrwi rX, rX, 1, 26
         unsigned _1B : 1;
         unsigned _1C : 1;
         unsigned _1D : 1;
@@ -829,10 +829,10 @@ public:
     /* 0x574 */ u32 _574;
     /* 0x578 */ u32 _578;
     /* 0x57C */ Triangle* _57C[0x20];
-    /* 0x5FC */ u32 _5FC;
+    /* 0x5FC */ const HitSensor* _5FC;
     /* 0x600 */ TVec3f _600;
     /* 0x60C */ u8 _60C;
-    /* 0x60D */ u8 _60D;  // bool?
+    /* 0x60D */ bool _60D;
     /* 0x60E */ u8 _60E;
     /* 0x60F */ u8 _60F;
     /* 0x610 */ u8 _610;

@@ -70,12 +70,40 @@ public:
         return mCurScale->down[idx];
     }
 
+    u8 getFirst() {
+        return mCurChord->mChordTone[0];
+    }
     u8 getThird();
     u8 getFifth();
     u8 getSeventh();
     u8 getSixth();
     u8 getNinth();
     u8 getEleventh();
+
+    bool isBass(u8 note) {
+        return note == getBassNote();
+    }
+    bool isRoot(u8 note) {
+        return note == mCurChord->mChordTone[0];
+    }
+    bool isThird(u8 note) {
+        return note == getThird();
+    }
+    bool isFifth(u8 note) {
+        return note == getFifth();
+    }
+    bool isSixth(u8 note) {
+        return note == getSixth();
+    }
+    bool isSeventh(u8 note) {
+        return note == getSeventh();
+    }
+    bool isNinth(u8 note) {
+        return note == getNinth();
+    }
+    bool isEleventh(u8 note) {
+        return note == getEleventh();
+    }
 
     bool isOnChord(u8 note, bool includeAdd, bool includeBass);
     u8 getNearestChordNoteDir(u8 note, bool up);
