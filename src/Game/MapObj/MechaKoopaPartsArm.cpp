@@ -14,8 +14,7 @@ namespace NrvMechaKoopaPartsArm {
     NEW_NERVE(MechaKoopaPartsArmNrvBreak, MechaKoopaPartsArm, Break);
 };  // namespace NrvMechaKoopaPartsArm
 
-MechaKoopaPartsArm::MechaKoopaPartsArm(const char* pName) : MapObjActor(pName) {
-    mIsRightArm = false;
+MechaKoopaPartsArm::MechaKoopaPartsArm(const char* pName) : MapObjActor(pName), mIsRightArm() {
 }
 
 void MechaKoopaPartsArm::init(const JMapInfoIter& rIter) {
@@ -60,6 +59,7 @@ void MechaKoopaPartsArm::exeMoveStart() {
         }
 
         MR::startSound(this, "SE_OJ_M_KOOPA_ARM_START");
+
         if (MR::isOnPlayer(this)) {
             MR::shakeCameraNormal();
             MR::tryRumblePadMiddle(this, WPAD_CHAN0);
@@ -82,14 +82,16 @@ void MechaKoopaPartsArm::endMoveStart() {
 void MechaKoopaPartsArm::exeMove() {
     MR::startLevelSound(this, "SE_OJ_LV_M_KOOPA_ARM_MOVE");
 
-    if (!MapObjActorUtil::isRotatorMoving(this)) {
-        MR::startSound(this, "SE_OJ_M_KOOPA_ARM_END");
+    if (MapObjActorUtil::isRotatorMoving(this)) {
+        return;
+    }
 
-        if (isNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvMoveFront::sInstance)) {
-            setNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvWaitFront::sInstance);
-        } else {
-            setNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvWaitRear::sInstance);
-        }
+    MR::startSound(this, "SE_OJ_M_KOOPA_ARM_END");
+
+    if (isNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvMoveFront::sInstance)) {
+        setNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvWaitFront::sInstance);
+    } else {
+        setNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvWaitRear::sInstance);
     }
 }
 
@@ -113,6 +115,7 @@ void MechaKoopaPartsArm::exeBreak() {
     }
 
     MR::startLevelSound(this, "SE_OJ_LV_M_KOOPA_ARM_FALL");
+
     if (MapObjActorUtil::isRailMoverReachedEnd(this)) {
         MR::startSound(this, "SE_OJ_M_KOOPA_ARM_BREAK");
         kill();
@@ -130,7 +133,4 @@ void MechaKoopaPartsArm::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
 
 void MechaKoopaPartsArm::startBreak() {
     setNerve(&NrvMechaKoopaPartsArm::MechaKoopaPartsArmNrvBreakStart::sInstance);
-}
-
-MechaKoopaPartsArm::~MechaKoopaPartsArm() {
 }
