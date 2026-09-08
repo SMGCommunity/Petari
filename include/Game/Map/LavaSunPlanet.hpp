@@ -7,14 +7,15 @@ class MapPartsRotator;
 
 class LavaSunPlanet : public LiveActor {
 public:
-    LavaSunPlanet(const char*);
+    /// @brief Creates a new `LavaSunPlanet`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    LavaSunPlanet(const char* pName);
 
-    virtual ~LavaSunPlanet();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void calcAndSetBaseMtx();
 
-    MapPartsRotator* mRotator;  // 0x8C
-    const char* mObjName;       // 0x90
-    LodCtrl* mLodCtrl;          // 0x94
+    /* 0x8C */ MapPartsRotator* mRotator;
+    /* 0x90 */ const char* mObjName;
+    /* 0x94 */ LodCtrl* mLodCtrl;
 };
