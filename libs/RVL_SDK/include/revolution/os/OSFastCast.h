@@ -9,6 +9,9 @@ extern "C" {
 
 #define OSu16tof32(in, out) asm volatile("psq_l   %0, 0(%1), 1, 3  " : "=f"(*(out)) : "b"(in))
 
+#ifndef __MWERKS__
+static u16 __OSf32tou16(f32 arg);
+#else
 static u16 __OSf32tou16(register f32 arg) {
     f32 a;
     register f32* ptr = &a;
@@ -24,6 +27,7 @@ static u16 __OSf32tou16(register f32 arg) {
     r = *(u16*)ptr;
     return r;
 }
+#endif
 
 static void OSf32tou16(f32* in, volatile u16* out) {
     *out = __OSf32tou16(*in);

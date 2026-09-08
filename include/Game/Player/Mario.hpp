@@ -308,13 +308,13 @@ public:
     void playSoundTrampleCombo(u8);
     void setSeVersion(u32);
 
-    bool checkOnimasu(const HitSensor*);
+    void checkOnimasu(const HitSensor*);
     bool isDossun(const Triangle*) const;
     bool isStageCameraRotate2D() const;
     bool isNoWalkFallOnDossun() const;
     bool isNotReflectGlassGround() const;
     bool isUseAnotherMovingPolygon() const;
-    bool isUseFoolSpecialGravity(const TVec3f&, TVec3f*) const;
+    bool isUseFooSpecialGravity(const TVec3f&, TVec3f*) const;
     void updateOnimasu();
     bool isHeadPushEnableArea() const;
     bool isOnimasuBinderPressSkip() const;
@@ -502,10 +502,10 @@ public:
         unsigned _14 : 1;
         unsigned _15 : 1;
         unsigned debugMode : 1;  // _16
-        unsigned _17 : 1;
-        unsigned _18 : 1;  // rlwinm rX, rX, 0, 25, 23
-        unsigned _19 : 1;  // extrwi rX, rX, 1, 25
-        unsigned _1A : 1;  // extrwi rX, rX, 1, 26
+        unsigned _17 : 1;        // extrwi rX, rX, 1, 23
+        unsigned _18 : 1;        // rlwinm rX, rX, 0, 25, 23
+        unsigned _19 : 1;        // extrwi rX, rX, 1, 25
+        unsigned _1A : 1;        // extrwi rX, rX, 1, 26
         unsigned _1B : 1;
         unsigned _1C : 1;
         unsigned _1D : 1;
@@ -829,7 +829,7 @@ public:
     /* 0x574 */ u32 _574;
     /* 0x578 */ u32 _578;
     /* 0x57C */ Triangle* _57C[0x20];
-    /* 0x5FC */ u32 _5FC;
+    /* 0x5FC */ const HitSensor* _5FC;
     /* 0x600 */ TVec3f _600;
     /* 0x60C */ u8 _60C;
     /* 0x60D */ bool _60D;
