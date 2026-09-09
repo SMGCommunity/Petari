@@ -17,9 +17,6 @@
 #include "Game/Util/RailUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/StringUtil.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
-#include "revolution/types.h"
 
 void LavaProminence_FORCE_MATCH_SDATA2() {
     (void)1.0f;
@@ -28,9 +25,9 @@ void LavaProminence_FORCE_MATCH_SDATA2() {
 }
 
 namespace {
-    // sDefaultTimeWait
-    // sTimeSign
-    // sDefaultMoveSpeed
+    static const s32 sDefaultTimeWait = 180;
+    static const s32 sTimeSign = 90;
+    static const f32 sDefaultMoveSpeed = 20.0f;
     // sSubScale
     // sScaleMin
     // sSubNum
@@ -50,29 +47,30 @@ namespace NrvLavaProminence {
 };  // namespace NrvLavaProminence
 
 LavaProminence::LavaProminence(const char* pName)
-    : LiveActor(pName), mStepAppearance(180), mMovementSpeed(20.0f), _94(), mEndPathOffset(), mRailDir(0, 0, 0), mRailDirEnd(0, 0, 0), _B4(0.0f),
-      _C0(0.0f), _12C(0, 0, 0), mBloomModel(), _16C(0.0f, 0.0f, 0.0f, 1.0f), _17C(0, 0, 1), mEmitDropEffect(true) {
-    _CC.identity();
-    _FC.identity();
-    _13C.identity();
+    : LiveActor(pName), mWaitTime(::sDefaultTimeWait), mMoveSpeed(::sDefaultMoveSpeed), mMoveRailCoord(), mMoveRailEndOffset(),
+      mRailStartDir(0, 0, 0), mRailEndDir(0, 0, 0), mRailStartPos(0.0f), mRailEndPos(0.0f), _12C(0, 0, 0), mBloomModel(),
+      _16C(0.0f, 0.0f, 0.0f, 1.0f), mRailDir(0, 0, 1), mEmitDropEffect(true) {
+    mEffectStartMtx.identity();
+    mEffectEndMtx.identity();
+    mBloomModelMtx.identity();
     _18C.identity();
 }
 
 void LavaProminence::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     _16C.setEuler(mRotation);
-    MR::getJMapInfoArg0NoInit(rIter, &mStepAppearance);
-    MR::getJMapInfoArg1NoInit(rIter, &mMovementSpeed);
-    MR::getJMapInfoArg3NoInit(rIter, &mEndPathOffset);
+    MR::getJMapInfoArg0NoInit(rIter, &mWaitTime);
+    MR::getJMapInfoArg1NoInit(rIter, &mMoveSpeed);
+    MR::getJMapInfoArg3NoInit(rIter, &mMoveRailEndOffset);
     MR::useStageSwitchReadA(this, rIter);
     const char* name = nullptr;
     MR::getObjectName(&name, rIter);
-    bool isEqualString = false;
+    bool isWithoutShadow = false;
     initModelManagerWithAnm("LavaProminence", nullptr, false);
     MR::startBtk(this, "LavaProminence");
 
     if (MR::isEqualString(name, "LavaProminenceWithoutShadow")) {
-        isEqualString = true;
+        isWithoutShadow = true;
     }
 
     MR::connectToSceneMapObj(this);
@@ -81,10 +79,10 @@ void LavaProminence::init(const JMapInfoIter& rIter) {
     offset.set(0.0f);
     MR::addHitSensorMapObjSimple(this, "body", 8, 120.0f, offset);
     initRailRider(rIter);
-    MR::calcRailPosAtCoord(&_B4, this, 0.0f);
-    MR::calcRailPosAtCoord(&_C0, this, MR::getRailTotalLength(this));
-    MR::calcRailDirectionAtCoord(&mRailDir, this, 0.0f);
-    MR::calcRailDirectionAtCoord(&mRailDirEnd, this, MR::getRailTotalLength(this));
+    MR::calcRailPosAtCoord(&mRailStartPos, this, 0.0f);
+    MR::calcRailPosAtCoord(&mRailEndPos, this, MR::getRailTotalLength(this));
+    MR::calcRailDirectionAtCoord(&mRailStartDir, this, 0.0f);
+    MR::calcRailDirectionAtCoord(&mRailEndDir, this, MR::getRailTotalLength(this));
     initSound(6, false);
     MR::setGroupClipping(this, rIter, 16);
     MR::initAndSetRailClipping(&_12C, this, 300.0f, 300.0f);
@@ -96,16 +94,16 @@ void LavaProminence::init(const JMapInfoIter& rIter) {
     }
 
     initEffectKeeper(0, nullptr, false);
-    MR::setEffectHostMtx(this, "Sign", _CC);
-    MR::setEffectHostMtx(this, "Start", _CC);
-    MR::setEffectHostMtx(this, "End", _FC);
+    MR::setEffectHostMtx(this, "Sign", mEffectStartMtx);
+    MR::setEffectHostMtx(this, "Start", mEffectStartMtx);
+    MR::setEffectHostMtx(this, "End", mEffectEndMtx);
     MR::setEffectName(this, "Drop", "DropEffect");
 
-    if (!isEqualString) {
+    if (!isWithoutShadow) {
         MR::initShadowVolumeSphere(this, 100.0f);
     }
 
-    mBloomModel = MR::createBloomModel(this, _13C);
+    mBloomModel = MR::createBloomModel(this, mBloomModelMtx);
     MR::startBtk(mBloomModel, "LavaProminenceBloom");
     makeActorAppeared();
 }
@@ -122,24 +120,24 @@ void LavaProminence::initAfterPlacement() {
     TVec3f initPosVec(mPosition);
     TVec3f upVec;
 
-    mPosition.set(_B4);
+    mPosition.set(mRailStartPos);
     MR::calcGravityVectorOrZero(this, &upVec, nullptr, 0);
 
-    if (MR::isNearZero(upVec, 0.001)) {
+    if (MR::isNearZero(upVec)) {
         MR::calcUpVec(&upVec, this);
         upVec = -upVec;
     }
 
-    MR::makeMtxUpNoSupportPos(&_CC, -upVec, _B4);
-    mPosition.set(_C0);
+    MR::makeMtxUpNoSupportPos(&mEffectStartMtx, -upVec, mRailStartPos);
+    mPosition.set(mRailEndPos);
     MR::calcGravityVectorOrZero(this, &upVec, nullptr, 0);
 
-    if (MR::isNearZero(upVec, 0.001f)) {
+    if (MR::isNearZero(upVec)) {
         MR::calcUpVec(&upVec, this);
         upVec = -upVec;
     }
 
-    MR::makeMtxUpNoSupportPos(&_FC, -upVec, _C0);
+    MR::makeMtxUpNoSupportPos(&mEffectEndMtx, -upVec, mRailEndPos);
     mPosition.set(initPosVec);
 }
 
@@ -155,17 +153,19 @@ void LavaProminence::startClipped() {
 }
 
 void LavaProminence::moveOnRail() {
-    _94 += mMovementSpeed;
-    MR::setRailCoord(this, MR::clamp(_94, 0.0f, MR::getRailTotalLength(this)));
-    _17C.set(MR::getRailDirection(this));
+    mMoveRailCoord += mMoveSpeed;
+    MR::setRailCoord(this, MR::clamp(mMoveRailCoord, 0.0f, MR::getRailTotalLength(this)));
+    mRailDir.set(MR::getRailDirection(this));
     MR::moveTransToCurrentRailPos(this);
-    updateEffectClipping(isNrvExtra());
+    updateEffectClipping(isNrvMove());
     MR::calcGravity(this);
     setGravityAndMakeMtx();
 }
 
 void LavaProminence::setGravityAndMakeMtx() {
     MR::makeMtxUpNoSupportPos(&_18C, -mGravity, mPosition);
+
+    // TODO: TRot3f::setScale inline?
     f32 z = mScale.z;
     f32 y = mScale.y;
     f32 x = mScale.x;
@@ -182,11 +182,11 @@ void LavaProminence::setGravityAndMakeMtx() {
 
 void LavaProminence::updateEffectClipping(bool a1) {
     if (!mEmitDropEffect) {
-        if (!a1 || MR::isJudgedToClipFrustum(mPosition, getRadius("body"))) {
+        if (!a1 || MR::isJudgedToClipFrustum(mPosition, getSensor("body")->getRadius())) {
             MR::deleteEffect(this, "DropEffect");
             mEmitDropEffect = true;
         }
-    } else if (a1 && !MR::isJudgedToClipFrustum(mPosition, getRadius("body"))) {
+    } else if (a1 && !MR::isJudgedToClipFrustum(mPosition, getSensor("body")->getRadius())) {
         MR::emitEffect(this, "DropEffect");
         mEmitDropEffect = false;
     }
@@ -209,14 +209,14 @@ void LavaProminence::exeWait() {
         MR::hideModel(this);
         MR::deleteEffect(this, "DropEffect");
         mEmitDropEffect = true;
-        _94 = 0.0f;
+        mMoveRailCoord = 0.0f;
         MR::setRailCoord(this, 0.0f);
         MR::moveTransToCurrentRailPos(this);
     }
 
     if (MR::isValidSwitchA(this) && !MR::isOnSwitchA(this)) {
         setNerve(&NrvLavaProminence::HostTypeNrvWaitSwitch::sInstance);
-    } else if (MR::isStep(this, mStepAppearance)) {
+    } else if (MR::isStep(this, mWaitTime)) {
         setNerve(&NrvLavaProminence::HostTypeNrvSign::sInstance);
     }
 }
@@ -231,7 +231,7 @@ void LavaProminence::exeSign() {
 
     MR::startLevelSound(this, "SE_OJ_LV_PROMINENCE_SIGN");
 
-    if (MR::isStep(this, 90)) {
+    if (MR::isStep(this, ::sTimeSign)) {
         MR::deleteEffect(this, "Sign");
         setNerve(&NrvLavaProminence::HostTypeNrvMoveStartExtra::sInstance);
     }
@@ -241,10 +241,10 @@ void LavaProminence::exeMoveStartExtra() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Start");
         MR::startSound(this, "SE_OJ_PROMINENCE_START");
-        _94 = 0.0f;
+        mMoveRailCoord = 0.0f;
         MR::setRailCoord(this, 0.0f);
-        mPosition.set(_B4 - mRailDir * 300.0f);
-        _17C.set(mRailDir);
+        mPosition.set(mRailStartPos - mRailStartDir * 300.0f);
+        mRailDir.set(mRailStartDir);
         MR::showModel(this);
         MR::emitEffect(this, "DropEffect");
         mEmitDropEffect = false;
@@ -252,10 +252,10 @@ void LavaProminence::exeMoveStartExtra() {
 
     MR::startLevelSound(this, "SE_OJ_LV_PROMINENCE_SIGN");
     MR::startLevelSound(this, "SE_OJ_LV_PROMINENCE_MOVE");
-    mPosition.add(mRailDir * mMovementSpeed);
+    mPosition.add(mRailStartDir * mMoveSpeed);
     MR::calcGravity(this);
     setGravityAndMakeMtx();
-    s32 endStartStep = 300.0f / mMovementSpeed;
+    s32 endStartStep = 300.0f / mMoveSpeed;
 
     if (MR::isGreaterStep(this, endStartStep - 1)) {
         MR::deleteEffect(this, "Start");
@@ -267,7 +267,7 @@ void LavaProminence::exeMoveStart() {
     if (MR::isFirstStep(this)) {
         MR::emitEffect(this, "Start");
         MR::startSound(this, "SE_OJ_PROMINENCE_START");
-        _94 = 0.0f;
+        mMoveRailCoord = 0.0f;
         MR::setRailCoord(this, 0.0f);
         MR::moveTransToCurrentRailPos(this);
         MR::showModel(this);
@@ -279,7 +279,7 @@ void LavaProminence::exeMoveStart() {
     MR::startLevelSound(this, "SE_OJ_LV_PROMINENCE_MOVE");
     moveOnRail();
 
-    if (_94 >= 300.0f) {
+    if (mMoveRailCoord >= 300.0f) {
         MR::deleteEffect(this, "Start");
         setNerve(&NrvLavaProminence::HostTypeNrvMoveLoop::sInstance);
     }
@@ -289,14 +289,14 @@ void LavaProminence::exeMoveLoop() {
     MR::startLevelSound(this, "SE_OJ_LV_PROMINENCE_MOVE");
     moveOnRail();
 
-    if (_94 >= MR::getRailTotalLength(this) - mEndPathOffset) {
+    if (mMoveRailCoord >= MR::getRailTotalLength(this) - mMoveRailEndOffset) {
         setNerve(&NrvLavaProminence::HostTypeNrvMoveEndExtra::sInstance);
     }
 }
 
 void LavaProminence::exeMoveEnd() {
     if (MR::isFirstStep(this)) {
-        MR::setRailCoord(this, _94);
+        MR::setRailCoord(this, mMoveRailCoord);
         MR::emitEffect(this, "End");
     }
 
@@ -304,7 +304,7 @@ void LavaProminence::exeMoveEnd() {
     MR::startLevelSound(this, "SE_OJ_LV_PROMINENCE_END");
     moveOnRail();
 
-    if (_94 >= MR::getRailTotalLength(this)) {
+    if (mMoveRailCoord >= MR::getRailTotalLength(this)) {
         setNerve(&NrvLavaProminence::HostTypeNrvMoveEndExtra::sInstance);
     }
 }
@@ -316,9 +316,9 @@ void LavaProminence::exeMoveEndExtra() {
 
     MR::startLevelSound(this, "SE_OJ_LV_PROMINENCE_MOVE");
     MR::startLevelSound(this, "SE_OJ_LV_PROMINENCE_END");
-    mPosition.add(mRailDirEnd * mMovementSpeed);
+    mPosition.add(mRailEndDir * mMoveSpeed);
 
-    if (90000.0f < _C0.squared(mPosition)) {
+    if (90000.0f < mRailEndPos.squared(mPosition)) {
         MR::hideModel(this);
         MR::deleteEffect(this, "DropEffect");
         mEmitDropEffect = true;
@@ -328,24 +328,23 @@ void LavaProminence::exeMoveEndExtra() {
 }
 
 void LavaProminence::calcAndSetBaseMtx() {
-    TPos3f pos;
-    TVec3f vec(_17C);
-    TVec3f v1;
-    TQuat4f quad;
+    TPos3f mtx;
+    TVec3f vec(mRailDir);
+    TVec3f front;
+    TQuat4f quat;
 
     MR::normalizeOrZero(&vec);
-    if (!MR::isNearZero(vec, 0.001f)) {
-        _16C.getZDir(v1);
-        quad.setRotate(v1, vec);
-        _16C.mult(quad);
+
+    if (!MR::isNearZero(vec)) {
+        _16C.getZDir(front);
+        quat.setRotate(front, vec);
+        _16C.mult(quat);
     }
 
-    pos.makeQuat(_16C);
-    pos[0][3] = mPosition.x;
-    pos[1][3] = mPosition.y;
-    pos[2][3] = mPosition.z;
-    MR::setBaseTRMtx(this, pos);
-    _13C.setInline(pos);
+    mtx.makeQuat(_16C);
+    mtx.setTrans(mPosition);
+    MR::setBaseTRMtx(this, mtx);
+    mBloomModelMtx.set(mtx);
 }
 
 void LavaProminence::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
@@ -354,11 +353,7 @@ void LavaProminence::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     }
 }
 
-inline bool LavaProminence::isNrvExtra() {
+bool LavaProminence::isNrvMove() {
     return isNerve(&NrvLavaProminence::HostTypeNrvMoveStartExtra::sInstance) || isNerve(&NrvLavaProminence::HostTypeNrvMoveLoop::sInstance) ||
            isNerve(&NrvLavaProminence::HostTypeNrvMoveEndExtra::sInstance);
-}
-
-inline f32 LavaProminence::getRadius(const char* pHitSensor) const {
-    return getSensor(pHitSensor)->mRadius;
 }
