@@ -22,10 +22,14 @@ public:
     void loadFixedPosition(const char*);
     void offFixedPosNormalizeScale();
 
+    bool isInitFixedPosition() const {
+        return mFixedPosition != nullptr;
+    }
+
     /* 0x8C */ LiveActor* mHost;
-    /* 0x90 */ FixedPosition* mFixedPos;
+    /* 0x90 */ FixedPosition* mFixedPosition;
     /* 0x94 */ MtxPtr mMtx;
-    /* 0x98 */ bool mCalcOwnMtx;
+    /* 0x98 */ bool mIsCalcOwnMtx;
     /* 0x99 */ bool _99;
     /* 0x9A */ bool mIsDead;
     /* 0x9B */ bool _9B;

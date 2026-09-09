@@ -6,19 +6,13 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelName, MtxPtr mtx, int drawBufferType, bool a6) : LiveActor(pName) {
-    mHost = pActor;
-    mFixedPos = nullptr;
-    mMtx = mtx;
-    mCalcOwnMtx = true;
-    _99 = false;
-    mIsDead = false;
-
+PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelName, MtxPtr mtx, int drawBufferType, bool a6)
+    : LiveActor(pName), mHost(pActor), mFixedPosition(), mMtx(mtx), mIsCalcOwnMtx(true), _99(), mIsDead() {
     if (drawBufferType < 0) {
         drawBufferType = MR::DrawBufferType_MapObj;
     }
 
-    if (mMtx) {
+    if (mMtx != nullptr) {
         mPosition.set< f32 >(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
     } else {
         mPosition.set< f32 >(pActor->mPosition);
@@ -32,7 +26,8 @@ PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelN
     u32 movementType = MR::MovementType_EnemyDecoration;
     u32 calcAnimType = MR::CalcAnimType_MapObjDecoration;
 
-    if ((drawBufferType - MR::DrawBufferType_PlayerDecoration) <= (u32)2) {
+    if (drawBufferType == MR::DrawBufferType_PlayerDecoration || drawBufferType == MR::DrawBufferType_CrystalBox ||
+        drawBufferType == MR::DrawBufferType_UNK_0x17) {
         movementType = MR::MovementType_PlayerDecoration;
         calcAnimType = MR::CalcAnimType_PlayerDecoration;
     }
@@ -41,16 +36,19 @@ PartsModel::PartsModel(LiveActor* pActor, const char* pName, const char* pModelN
         movementType = MR::MovementType_NPC;
         calcAnimType = MR::CalcAnimType_NPC;
     }
+
     MR::connectToScene(this, movementType, calcAnimType, drawBufferType, -1);
 }
 
 void PartsModel::makeActorAppeared() {
     LiveActor::makeActorAppeared();
+
     mIsDead = false;
 }
 
 void PartsModel::makeActorDead() {
     LiveActor::makeActorDead();
+
     mIsDead = true;
 }
 
@@ -59,6 +57,7 @@ void PartsModel::init(const JMapInfoIter& rIter) {
     initSound(8, false);
     MR::invalidateClipping(this);
     makeActorAppeared();
+
     mIsDead = false;
 }
 
@@ -66,6 +65,7 @@ void PartsModel::movement() {
     if (MR::isDead(this) || MR::isDead(mHost) || MR::isClipped(mHost) || !_99 && MR::isHiddenModel(mHost)) {
         if (!mIsDead) {
             mIsDead = true;
+
             MR::invalidateHitSensors(this);
 
             if (!MR::isHiddenModel(this)) {
@@ -75,12 +75,14 @@ void PartsModel::movement() {
     } else {
         if (mIsDead) {
             mIsDead = false;
+
             MR::validateHitSensors(this);
 
             if (!MR::isHiddenModel(this)) {
                 MR::connectToDrawTemporarily(this);
             }
         }
+
         LiveActor::movement();
     }
 }
@@ -90,47 +92,51 @@ void PartsModel::calcAnim() {
         return;
     }
 
-    if (mFixedPos != nullptr) {
-        mFixedPos->calc();
+    if (isInitFixedPosition()) {
+        mFixedPosition->calc();
     }
+
     LiveActor::calcAnim();
 }
 
 void PartsModel::calcViewAndEntry() {
-    if (!mIsDead) {
-        LiveActor::calcViewAndEntry();
+    if (mIsDead) {
+        return;
     }
+
+    LiveActor::calcViewAndEntry();
 }
 
-void PartsModel::initFixedPosition(const TVec3f& rLocalTrans, const TVec3f& a2, const char* pJointName) {
-    if (pJointName) {
-        mFixedPos = new FixedPosition(mHost, pJointName, rLocalTrans, a2);
+void PartsModel::initFixedPosition(const TVec3f& rLocalTrans, const TVec3f& rLocalRotate, const char* pJointName) {
+    if (pJointName != nullptr) {
+        mFixedPosition = new FixedPosition(mHost, pJointName, rLocalTrans, rLocalRotate);
     } else {
-        mFixedPos = new FixedPosition(mHost, rLocalTrans, a2);
+        mFixedPosition = new FixedPosition(mHost, rLocalTrans, rLocalRotate);
     }
-    mMtx = (MtxPtr)&mFixedPos->mMtx;
+
+    mMtx = mFixedPosition->mMtx;
 }
 
 void PartsModel::initFixedPosition(const char* pJointName) {
     initFixedPosition(TVec3f(0.0f, 0.0f, 0.0f), TVec3f(0.0f, 0.0f, 0.0f), pJointName);
 }
 
-void PartsModel::initFixedPosition(MtxPtr mtx, const TVec3f& rLocalTrans, const TVec3f& a3) {
-    mFixedPos = new FixedPosition(mtx, rLocalTrans, a3);
-    mMtx = (MtxPtr)&mFixedPos->mMtx;
+void PartsModel::initFixedPosition(MtxPtr pMtx, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
+    mFixedPosition = new FixedPosition(pMtx, rLocalTrans, rLocalRotate);
+    mMtx = mFixedPosition->mMtx;
 }
 
 void PartsModel::loadFixedPosition(const char* pJointName) {
-    mFixedPos = new FixedPosition(mHost, pJointName, nullptr);
-    mMtx = (MtxPtr)&mFixedPos->mMtx;
+    mFixedPosition = new FixedPosition(mHost, pJointName, nullptr);
+    mMtx = mFixedPosition->mMtx;
 }
 
 void PartsModel::offFixedPosNormalizeScale() {
-    mFixedPos->mNormalizeScale = false;
+    mFixedPosition->mNormalizeScale = false;
 }
 
 void PartsModel::calcAndSetBaseMtx() {
-    if (mMtx && mCalcOwnMtx) {
+    if (mMtx != nullptr && mIsCalcOwnMtx) {
         mPosition.set(mMtx[0][3], mMtx[1][3], mMtx[2][3]);
         MR::setBaseTRMtx(this, mMtx);
     } else {
