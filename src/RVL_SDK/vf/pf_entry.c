@@ -594,13 +594,15 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
     s32 err2;
     PF_VOLUME* p_vol;
     s32 ent_cnt;
-    s32 chain_offset;
     s32 success_cnt;
     u32 entry_sector;
     u16 entry_offset;
+    s32 chain_offset;
     u32 success_size;
     u8 buf[32];
 
+    err = 0;
+    ent_cnt = 1;
     success_cnt = 0;
 
     if (!p_ent) {
@@ -619,7 +621,7 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
         if (p_ent->long_name[0] != 0 && p_ent->num_entry_LFNs != 0 && (p_ent->small_letter_flag & 0x18) == 0) {
             entry_sector = p_ent->entry_sector;
             entry_offset = p_ent->entry_offset;
-            chain_offset = (s32)p_prev_chain;
+            chain_offset = 0;
 
             for (ent_cnt = 1; ent_cnt <= p_ent->num_entry_LFNs; ++ent_cnt) {
                 success_cnt++;
@@ -629,8 +631,8 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
                     if (!p_prev_chain) {
                         err = VFiPFFAT_GetBeforeSector(&entry_sector, p_vol, entry_sector);
                     } else {
-                        entry_sector = *(u32*)chain_offset;
-                        chain_offset += 4;
+                        entry_sector = p_prev_chain[chain_offset];
+                        chain_offset++;
                     }
                 } else {
                     entry_offset -= 32;
@@ -652,7 +654,7 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
         if (err != 0) {
             entry_sector = p_ent->entry_sector;
             entry_offset = p_ent->entry_offset;
-            chain_offset = (s32)p_prev_chain;
+            chain_offset = 0;
             buf[0] = 0xE5;  // FAT deleted mark
 
             for (ent_cnt = 0; ent_cnt < success_cnt; ++ent_cnt) {
@@ -668,8 +670,8 @@ s32 VFiPFENT_UpdateEntry(PF_DIR_ENT* p_ent, u32* p_prev_chain, u32 is_set_ARCH) 
                         if (!p_prev_chain) {
                             err2 = VFiPFFAT_GetBeforeSector(&entry_sector, p_vol, entry_sector);
                         } else {
-                            entry_sector = *(u32*)chain_offset;
-                            chain_offset += 4;
+                            entry_sector = p_prev_chain[chain_offset];
+                            chain_offset++;
                         }
                     } else {
                         entry_offset -= 32;
@@ -711,15 +713,13 @@ s32 VFiPFENT_AdjustSFN(PF_DIR_ENT* p_ent, s8* p_short_name) {
     return 0;
 }
 
-static u8 FAT_DELETED = 0xE5;
 s32 VFiPFENT_RemoveEntry(PF_DIR_ENT* p_ent, PF_ENT_ITER* p_iter) {
     u32 success_size;
     s32 err;
     u32 i;
     PF_VOLUME* p_vol;
-    u8 dir_fb_free[1];
+    u8 dir_fb_free[1] = {0xE5};
 
-    dir_fb_free[0] = FAT_DELETED;
     p_vol = p_ent->p_vol;
 
     if (!p_vol) {

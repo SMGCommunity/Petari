@@ -26,7 +26,7 @@ s32 VFiPFFAT16_ReadFATEntry(PF_VOLUME* p_vol, u32 cluster, u32* p_value) {
     fat_offset = cluster << 1;
     current_fat = 1;
 
-    fat_sector = (u16)(p_vol->bpb.active_FAT_sector + (fat_offset >> p_vol->bpb.log2_bytes_per_sector));
+    fat_sector = (u16)(p_vol->bpb.active_FAT_sector + ((cluster << 1) >> p_vol->bpb.log2_bytes_per_sector));
     offset_in_sector = fat_offset & (p_vol->bpb.bytes_per_sector - 1);
 
     if ((p_vol->bpb.ext_flags & 0x80) == 0) {
@@ -82,7 +82,7 @@ s32 VFiPFFAT16_ReadFATEntryPage(PF_VOLUME* p_vol, u32 cluster, u32* p_value, PF_
         return 14;
     }
 
-    offset = cluster << 1;
+    offset = cluster * 2;
     sector = (u16)(p_vol->bpb.active_FAT_sector + (offset >> p_vol->bpb.log2_bytes_per_sector));
 
     if ((p_vol->bpb.ext_flags & 0x80) == 0) {
@@ -135,6 +135,7 @@ s32 VFiPFFAT16_ReadFATEntryPage(PF_VOLUME* p_vol, u32 cluster, u32* p_value, PF_
 }
 
 s32 VFiPFFAT16_WriteFATEntry(PF_VOLUME* p_vol, u32 cluster, u32 value) {
+    u32 fat_offset;
     u16 fat_sector;
     u16 offset_in_sector;
     u8 buf[2];
@@ -143,8 +144,9 @@ s32 VFiPFFAT16_WriteFATEntry(PF_VOLUME* p_vol, u32 cluster, u32 value) {
         return 10;
     if ((cluster < 2 || cluster >= p_vol->bpb.num_clusters + 2) && cluster != 0 && cluster != 1)
         return 14;
-    fat_sector = p_vol->bpb.active_FAT_sector + ((2 * cluster) >> p_vol->bpb.log2_bytes_per_sector);
-    offset_in_sector = (2 * cluster) & (p_vol->bpb.bytes_per_sector - 1);
+    fat_offset = cluster << 1;
+    fat_sector = p_vol->bpb.active_FAT_sector + ((cluster << 1) >> p_vol->bpb.log2_bytes_per_sector);
+    offset_in_sector = fat_offset & (p_vol->bpb.bytes_per_sector - 1);
     *(u16*)buf = SWAP16((u16)value);
     return VFiPFSEC_WriteFAT(p_vol, buf, fat_sector, offset_in_sector, 2);
 }
@@ -166,7 +168,7 @@ s32 VFiPFFAT16_WriteFATEntryPage(PF_VOLUME* p_vol, u32 cluster, u32 value, PF_CA
     }
 
     fat_offset = cluster << 1;
-    fat_sector = (u16)(p_vol->bpb.active_FAT_sector + (fat_offset >> p_vol->bpb.log2_bytes_per_sector));
+    fat_sector = (u16)(p_vol->bpb.active_FAT_sector + ((cluster << 1) >> p_vol->bpb.log2_bytes_per_sector));
     fat_offset = (u16)(fat_offset & (p_vol->bpb.bytes_per_sector - 1));
 
     if ((*pp_page)->sector > fat_sector || (*pp_page)->sector + p_vol->cache.fat_buff_size <= fat_sector) {

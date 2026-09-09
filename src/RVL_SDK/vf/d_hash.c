@@ -19,37 +19,34 @@ static u16* _GetWStr() {
 static u32 _StrLen(const char* i_Name) {
     u32 len;
 
-    for (len = 0; *i_Name != 0; i_Name++) {
-        len++;
+    for (len = 0; *i_Name != 0; len++) {
+        i_Name++;
     }
     return len;
 }
 
-int _MakeWStr(const char* i_Name) {
-    u16* p;
+static int _MakeWStr(const char* i_Name) {
     u32 len;
     int Id;
     int next2nd;
 
     if (_StrLen(i_Name) < 8) {
         len = _StrLen(i_Name);
-        p = l_tmpWName;
-        next2nd = 0;
-        for (Id = 0; Id < len; Id++) {
+        for (Id = 0, next2nd = 0; Id < len; Id++) {
             if (next2nd) {
                 next2nd = 0;
             } else {
                 if (VFipf_vol_set.codeset.is_oem_mb_char(i_Name[Id], 1) != 0) {
                     next2nd = 1;
-                    *p = ((u32)i_Name[Id + 1] & 0xFFFF) | (i_Name[Id] << 8);
+                    l_tmpWName[Id] = i_Name[Id + 1];
+                    l_tmpWName[Id] |= i_Name[Id] << 8;
                 } else {
-                    *p = i_Name[Id];
+                    l_tmpWName[Id] = i_Name[Id];
                 }
             }
-            p++;
         }
         l_tmpWName[7] = 0;
-        l_tmpWName[len] = 0;
+        l_tmpWName[Id] = 0;
         return 1;
     }
 
@@ -68,54 +65,71 @@ void dHash_InitHashTable() {
     hashTable[30].arg = 0;
 }
 
-int dHash_SearchHashW(const u16* i_Name) {
-    int len;
+static u32 _StrLenW(const u16* i_Name) {
+    u32 len;
+
+    for (len = 0; *i_Name != 0; len++) {
+        i_Name++;
+    }
+    return len;
+}
+
+static s32 dHash_CalcFirstHashW(const u16* i_Name) {
+    int len = _StrLenW(i_Name);
     u32 n;
     u32 hash;
-    int i;
-    int firstHash;
+    u32 weight;
+
+    if (len < 8) {
+        for (n = weight = hash = 0; n < len; n++, weight++) {
+            if (weight > 7) {
+                weight = 0;
+            }
+            hash += i_Name[n] << (weight * 4);
+        }
+        return hash % 31;
+    }
+    return -1;
+}
+
+static s32 dHash_CalcRehash(u32 i_FirstHash) {
+    u32 hashval;
+    u32 k;
+
+    for (k = 1; k < 15; k++) {
+        hashval = (i_FirstHash + k * k) % 31;
+        if (hashTable[hashval].Name[0] == 0) {
+            return hashval;
+        }
+    }
+    return -1;
+}
+
+int dHash_SearchHashW(const u16* i_Name) {
+    s32 firstHash = dHash_CalcFirstHashW(i_Name);
     int len2;
     int slotLen;
-    int k;
+    int i;
     int hashval;
+    int k;
     const u16* str0_p;
     const u16* str1_p;
     int success;
 
-    for (len = 0; i_Name[len] != 0; len++) {
-    }
-
-    if (len < 8) {
-        hash = 0;
-        n = 0;
-        for (i = 0; i < len; i++) {
-            if (n > 7) {
-                n = 0;
-            }
-            hash += i_Name[i] << (n * 4);
-            n++;
-        }
-        firstHash = hash % 31;
-    } else {
-        firstHash = -1;
-    }
-
     if (firstHash != -1) {
-        for (len2 = 0; i_Name[len2] != 0; len2++) {
-        }
+        len2 = _StrLenW(i_Name);
 
         for (k = 0; k < 15; k++) {
             hashval = (firstHash + k * k) % 31;
             str1_p = hashTable[hashval].Name;
 
-            for (slotLen = 0; str1_p[slotLen] != 0; slotLen++) {
-            }
+            slotLen = _StrLenW(str1_p);
 
             if (len2 == slotLen) {
                 str0_p = i_Name;
                 success = 1;
-                for (i = 0; i < len2; i++) {
-                    if (str0_p[i] != str1_p[i]) {
+                for (i = 0; i < len2; i++, str0_p++, str1_p++) {
+                    if (*str0_p != *str1_p) {
                         success = 0;
                         break;
                     }
@@ -145,67 +159,31 @@ int dHash_GetArg(const char* i_Name) {
     return -1;
 }
 
-static inline int dHash_GetNewHashW(const u16* i_Name) {
-    int len;
-    u32 n;
-    u32 hash;
-    int i;
-    int firstHash;
-    int newHash;
-    int k;
-    int hashval;
-
-    for (len = 0; i_Name[len] != 0; len++) {
-    }
-
-    if (len < 8) {
-        hash = 0;
-        n = 0;
-        for (i = 0; i < len; i++) {
-            if (n > 7) {
-                n = 0;
-            }
-            hash += i_Name[i] << (n * 4);
-            n++;
-        }
-        firstHash = hash % 31;
-    } else {
-        firstHash = -1;
-    }
+static s32 dHash_GetNewHashW(const u16* i_Name) {
+    s32 firstHash = dHash_CalcFirstHashW(i_Name);
+    s32 newHash;
 
     if (firstHash != -1) {
         if (hashTable[firstHash].Name[0] != 0) {
-            newHash = -1;
-            for (k = 1; k <= 7; k++) {
-                hashval = (firstHash + k * k) % 31;
-                if (hashTable[hashval].Name[0] == 0) {
-                    newHash = hashval;
-                    break;
-                }
-            }
+            newHash = dHash_CalcRehash(firstHash);
         } else {
             newHash = firstHash;
         }
     } else {
         newHash = -1;
     }
-
     return newHash;
 }
 
-static inline int dHash_SetArgW(const u16* i_Name, u8 i_Arg) {
-    int newHash;
-    VF_HashTableEntry* entry;
+static int dHash_SetArgW(const u16* i_Name, u8 i_Arg) {
+    s32 newHash = dHash_GetNewHashW(i_Name);
 
-    newHash = dHash_GetNewHashW(i_Name);
-    if (newHash == -1) {
-        return 0;
+    if (newHash != -1) {
+        VFipf_memcpy(hashTable[newHash].Name, i_Name, 16);
+        hashTable[newHash].arg = i_Arg;
+        return 1;
     }
-
-    entry = &hashTable[newHash];
-    VFipf_memcpy(entry->Name, i_Name, 16);
-    entry->arg = i_Arg;
-    return 1;
+    return 0;
 }
 
 int dHash_SetArg(const char* i_Name, u8 i_Arg) {

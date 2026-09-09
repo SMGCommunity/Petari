@@ -10297,7 +10297,7 @@ RVL_SDK/nwc24/NWC24Schedule.c:
 
 RVL_SDK/nwc24/NWC24DateParser.c:
 	.text       start:0x8046A794 end:0x8046AF64
-	.rodata     start:0x8055C948 end:0x8055C9E0
+	.rodata     start:0x8055C948 end:0x8055C980
 
 RVL_SDK/nwc24/NWC24FriendList.c:
 	.text       start:0x8046AF64 end:0x8046B080
@@ -10337,6 +10337,7 @@ RVL_SDK/vf/pf_clib.c:
 
 RVL_SDK/vf/pf_code.c:
 	.text       start:0x8046C818 end:0x8046C834
+	.rodata     start:0x8055C980 end:0x8055C9E0
 
 RVL_SDK/vf/pf_service.c:
 	.text       start:0x8046C834 end:0x8046C94C
@@ -10364,7 +10365,7 @@ RVL_SDK/vf/pdm_mbr.c:
 
 RVL_SDK/vf/pdm_dskmng.c:
 	.text       start:0x804715F4 end:0x80471818
-	.bss        start:0x80639120 end:0x80661BA0
+	.bss        start:0x80639120 end:0x80639CF0
 
 RVL_SDK/vf/pf_cache.c:
 	.text       start:0x80471818 end:0x8047341C
@@ -10377,7 +10378,7 @@ RVL_SDK/vf/pf_dir.c:
 
 RVL_SDK/vf/pf_entry.c:
 	.text       start:0x80473948 end:0x8047549C
-	.data       start:0x805EB220 end:0x805EB2E0
+	.data       start:0x805EB220 end:0x805EB230
 	.sdata2     start:0x806C1E78 end:0x806C1E80
 
 RVL_SDK/vf/pf_entry_iterator.c:
@@ -10405,7 +10406,7 @@ RVL_SDK/vf/pf_file.c:
 
 RVL_SDK/vf/pf_path.c:
 	.text       start:0x8047F0EC end:0x8048195C
-	.sdata      start:0x806B2988 end:0x806B29C0
+	.sdata      start:0x806B2988 end:0x806B29B8
 	.sdata2     start:0x806C1E80 end:0x806C1E90
 
 RVL_SDK/vf/pf_sector.c:
@@ -10413,13 +10414,15 @@ RVL_SDK/vf/pf_sector.c:
 
 RVL_SDK/vf/pf_volume.c:
 	.text       start:0x80482204 end:0x804839DC
+	.bss        start:0x80639CF0 end:0x80661A40
 
 RVL_SDK/vf/pf_cp932.c:
 	.text       start:0x804839DC end:0x80483EC0
-	.rodata     start:0x8055CA20 end:0x80560CB8
+	.rodata     start:0x8055CA20 end:0x80560C98
 
 RVL_SDK/vf/pf_api_util.c:
 	.text       start:0x80483EC0 end:0x8048401C
+	.data       start:0x805EB230 end:0x805EB2D0
 
 RVL_SDK/vf/pf_attach.c:
 	.text       start:0x8048401C end:0x804840B0
@@ -10469,24 +10472,31 @@ RVL_SDK/vf/pf_system.c:
 
 RVL_SDK/vf/d_vf.c:
 	.text       start:0x804843D8 end:0x80484E9C
+	.bss        start:0x80661A40 end:0x80661A58 align:32
 	.sbss       start:0x806B74A8 end:0x806B74B0
 
 RVL_SDK/vf/d_vf_sys.c:
 	.text       start:0x80484E9C end:0x80486990
+	.data       start:0x805EB2D0 end:0x805EB2E0
+	.bss        start:0x80661A58 end:0x80661B90
+	.sdata      start:0x806B29B8 end:0x806B29C0
 	.sbss       start:0x806B74B0 end:0x806B74C8
 
 RVL_SDK/vf/d_hash.c:
 	.text       start:0x80486990 end:0x80487010
-	.bss        start:0x80661BA0 end:0x80662178
+	.bss        start:0x80661B90 end:0x80661DD0
 
 RVL_SDK/vf/d_time.c:
 	.text       start:0x80487010 end:0x804870F0
 
 RVL_SDK/vf/d_common.c:
 	.text       start:0x804870F0 end:0x80487C38
+	.bss        start:0x80661DD0 end:0x80661FD8
 
 RVL_SDK/vf/nand_drv.c:
 	.text       start:0x80487C38 end:0x80489AFC
+	.rodata     start:0x80560C98 end:0x80560CB8
+	.bss        start:0x80661FD8 end:0x80662178
 	.sbss       start:0x806B74C8 end:0x806B74D0
 
 RVL_SDK/vf/sd_drv.c:

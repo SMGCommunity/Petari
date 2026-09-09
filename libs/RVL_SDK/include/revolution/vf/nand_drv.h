@@ -3,6 +3,8 @@
 
 #include "revolution/vf/vf_struct.h"
 
+s32 VFi_nanddrv_init_drv_tbl(struct PDM_DISK_TBL* p_disk_tbl, u32 ui_ext);
+
 s32 nanddrv_init(struct PDM_DISK* p_disk);
 s32 nanddrv_mount(struct PDM_DISK* p_disk);
 s32 nanddrv_format(struct PDM_DISK* p_disk, const u8* param);
