@@ -26,8 +26,7 @@ namespace NrvRosettaPictureBook {
     NEW_NERVE(HostTypeNrvFadeIn, RosettaPictureBook, FadeIn);
 };  // namespace NrvRosettaPictureBook
 
-RosettaPictureBook::RosettaPictureBook(const char* pName)
-    : LiveActor(pName), mLayout(), mIconAButton(), mIsValidOpenIconAButton() {
+RosettaPictureBook::RosettaPictureBook(const char* pName) : LiveActor(pName), mLayout(), mIconAButton(), mIsValidOpenIconAButton() {
 }
 
 void RosettaPictureBook::init(const JMapInfoIter& rIter) {

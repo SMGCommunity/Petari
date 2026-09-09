@@ -14,7 +14,7 @@ struct AudCallbackData {
 
 class AudCallback {
 public:
-    AudCallback(){};
+    AudCallback() {};
 
     bool regist(AudCallbackFunc, void*);
     void callback(s32, s32);

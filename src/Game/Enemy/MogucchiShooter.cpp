@@ -276,7 +276,7 @@ void MogucchiShooter::exeStorm() {
 }
 
 void MogucchiShooter::calcAndSetBaseMtx() {
-    if (!mCalcOwnMtx) {
+    if (!mIsCalcOwnMtx) {
         PartsModel::calcAndSetBaseMtx();
         return;
     }
@@ -284,12 +284,12 @@ void MogucchiShooter::calcAndSetBaseMtx() {
     TPos3f posMtx;
     TPos3f copyMtx;
     posMtx.identity();
-    copyMtx.setInline(mFixedPos->mMtx);
+    copyMtx.setInline(mFixedPosition->mMtx);
 
     TVec3f up;
     copyMtx.getYDir(up);
 
-    mFixedPos->mMtx.getTrans(mPosition);
+    mFixedPosition->mMtx.getTrans(mPosition);
     MR::makeMtxUpFrontPos(&posMtx, up, mFront, mPosition);
     MR::setBaseTRMtx(this, posMtx);
 }
@@ -313,7 +313,7 @@ void MogucchiShooter::faceToMario() {
     }
 
     TPos3f mtx;
-    mtx.setInline(mFixedPos->mMtx);
+    mtx.setInline(mFixedPosition->mMtx);
     MR::turnDirectionToTargetDegree(this, &mFront, *MR::getPlayerPos(), ::sTurnRate);
     TVec3f front;
     mtx.getZDir(front);

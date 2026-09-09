@@ -26,8 +26,8 @@ void DashRing_FORCE_MATCH_SDATA2() {
     (void)15.0f;
     (void)0.1f;
     (void)TWO_PI;
-    (void)(1.0f/64.0f);
-    (void)(TWO_PI/64.0f);
+    (void)(1.0f / 64.0f);
+    (void)(TWO_PI / 64.0f);
     (void)30.0f;
 }
 
@@ -299,5 +299,5 @@ void DashRing::draw() const {
         TDDraw::drawCylinder(vecB0 - crossVec * f3 * 0.5f, crossVec * f3, mScale.y * f1 * 30.0f, 0x00808060, 0x00808080, 0x10);
 
         PSMTXMultVec(rotMtx, subAxis, subAxis);
-    } 
+    }
 }

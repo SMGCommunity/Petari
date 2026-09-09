@@ -8,8 +8,7 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 
 EventDirector::EventDirector()
-    : NameObj("イベント指揮"), mPowerStarEventKeeper(), mStageStateKeeper(), mPowerStarHolder(), mCometEventKeeper(),
-      mTimeAttackEventKeeper() {
+    : NameObj("イベント指揮"), mPowerStarEventKeeper(), mStageStateKeeper(), mPowerStarHolder(), mCometEventKeeper(), mTimeAttackEventKeeper() {
 }
 
 void EventDirector::init(const JMapInfoIter& rIter) {

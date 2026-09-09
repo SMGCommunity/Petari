@@ -23,7 +23,7 @@ class Camera : public NameObj {
 public:
     Camera(const char*);
 
-    virtual void reset(){};
+    virtual void reset() {};
     virtual CameraTargetObj* calc() = 0;
     virtual bool isInterpolationOff() const {
         return false;
@@ -40,8 +40,8 @@ public:
     virtual bool isCorrectingErpPositionOff() const {
         return false;
     }
-    virtual void roundLeft(){};
-    virtual void roundRight(){};
+    virtual void roundLeft() {};
+    virtual void roundRight() {};
     virtual bool isEnableToRoundLeft() const {
         return false;
     }
@@ -72,7 +72,7 @@ public:
     CamTranslatorDummy(Camera* pCamera) : mCamera(pCamera) {
     }
 
-    virtual void setParam(const CameraParamChunk*){};
+    virtual void setParam(const CameraParamChunk*) {};
     virtual Camera* getCamera() const {
         return mCamera;
     }

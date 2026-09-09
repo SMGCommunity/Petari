@@ -9,7 +9,8 @@
 #include <cstdio>
 #include <cstring>
 
-MsgSharedGroup::MsgSharedGroup(const char* pName, s32 numMax, const JMapInfoIter& rIter) : LiveActorGroup(mGroupName, numMax), mIdInfo(), mMsg(-1), mSensor(), mSensorName() {
+MsgSharedGroup::MsgSharedGroup(const char* pName, s32 numMax, const JMapInfoIter& rIter)
+    : LiveActorGroup(mGroupName, numMax), mIdInfo(), mMsg(-1), mSensor(), mSensorName() {
     MR::copyString(mGroupName, pName, sizeof(mGroupName));
     JMapIdInfo* pIdInfo = new JMapIdInfo();
 

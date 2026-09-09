@@ -1,28 +1,27 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
-#include "JSystem/JGeometry/TVec.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
 
 class PartsModel;
 
 class LavaProminence : public LiveActor {
 public:
-    LavaProminence(const char*);
+    /// @brief Creates a new `LavaProminence`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    LavaProminence(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
     virtual void startClipped();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
     void moveOnRail();
     void setGravityAndMakeMtx();
     void updateEffectClipping(bool);
-    bool isNrvExtra();
-    f32 getRadius(const char*) const;
 
     void exeWaitSwitch();
     void exeWait();
@@ -33,21 +32,23 @@ public:
     void exeMoveEnd();
     void exeMoveEndExtra();
 
-    /* 0x8C */ s32 mStepAppearance;
-    /* 0x90 */ f32 mMovementSpeed;
-    /* 0x94 */ f32 _94;
-    /* 0x98 */ f32 mEndPathOffset;
-    /* 0x9C */ TVec3f mRailDir;
-    /* 0xA8 */ TVec3f mRailDirEnd;
-    /* 0xB4 */ TVec3f _B4;
-    /* 0xC0 */ TVec3f _C0;
-    /* 0xCC */ TPos3f _CC;
-    /* 0xFC */ TPos3f _FC;
+    bool isNrvMove();
+
+    /* 0x08C */ s32 mWaitTime;
+    /* 0x090 */ f32 mMoveSpeed;
+    /* 0x094 */ f32 mMoveRailCoord;
+    /* 0x098 */ f32 mMoveRailEndOffset;
+    /* 0x09C */ TVec3f mRailStartDir;
+    /* 0x0A8 */ TVec3f mRailEndDir;
+    /* 0x0B4 */ TVec3f mRailStartPos;
+    /* 0x0C0 */ TVec3f mRailEndPos;
+    /* 0x0CC */ TPos3f mEffectStartMtx;
+    /* 0x0FC */ TPos3f mEffectEndMtx;
     /* 0x12C */ TVec3f _12C;
     /* 0x138 */ PartsModel* mBloomModel;
-    /* 0x13C */ TPos3f _13C;
+    /* 0x13C */ TPos3f mBloomModelMtx;
     /* 0x16C */ TQuat4f _16C;
-    /* 0x17C */ TVec3f _17C;
+    /* 0x17C */ TVec3f mRailDir;
     /* 0x188 */ bool mEmitDropEffect;
     /* 0x18C */ TPos3f _18C;
 };

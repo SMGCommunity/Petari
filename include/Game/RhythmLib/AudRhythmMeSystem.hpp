@@ -6,7 +6,6 @@
 #include "Game/RhythmLib/AudRhythmWrap.hpp"
 #include <JSystem/JAudio2/JASGlobal.hpp>
 
-
 class JAISoundHandle;
 class JKRHeap;
 class AudMeMgr;

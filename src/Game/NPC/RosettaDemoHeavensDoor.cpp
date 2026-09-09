@@ -75,7 +75,7 @@ void RosettaDemoHeavensDoor1::fadeOut() {
 }
 
 void RosettaDemoHeavensDoor1::fadeIn() {
-    mLightHaloModel->mCalcOwnMtx = true;
+    mLightHaloModel->mIsCalcOwnMtx = true;
 
     MR::emitEffect(mLightDomeModel, "Light");
     MR::showPlayer();

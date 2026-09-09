@@ -20,7 +20,7 @@ namespace {
     static const s32 sStepForMoveStart = 120;
     static const s32 sStepForMoveEnd = 180;
     static const s32 sStepToStop = 30;
-};
+};  // namespace
 
 namespace NrvSandCapsulePressGround {
     NEW_NERVE(SandCapsulePressGroundNrvWaitBottom, SandCapsulePressGround, Wait);

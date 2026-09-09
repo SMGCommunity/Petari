@@ -6,18 +6,12 @@
 #define ARG_U16 1
 #define ARG_U24 2
 
-#define FUNC_0(func)                                                                                                                                 \
-    { &AudMeSeqParser::func, 0, 0 }
-#define FUNC_1(func, a)                                                                                                                              \
-    { &AudMeSeqParser::func, 1, (a << 0) }
-#define FUNC_2(func, a, b)                                                                                                                           \
-    { &AudMeSeqParser::func, 2, ((a << 0) | (b << 2)) }
-#define FUNC_3(func, a, b, c)                                                                                                                        \
-    { &AudMeSeqParser::func, 3, ((a << 0) | (b << 2) | (c << 4)) }
-#define FUNC_4(func, a, b, c, d)                                                                                                                     \
-    { &AudMeSeqParser::func, 4, ((a << 0) | (b << 2) | (c << 4) | (d << 6)) }
-#define FUNC_5(func, a, b, c, d, e)                                                                                                                  \
-    { &AudMeSeqParser::func, 5, ((a << 0) | (b << 2) | (c << 4) | (d << 6) | (e << 8)) }
+#define FUNC_0(func) {&AudMeSeqParser::func, 0, 0}
+#define FUNC_1(func, a) {&AudMeSeqParser::func, 1, (a << 0)}
+#define FUNC_2(func, a, b) {&AudMeSeqParser::func, 2, ((a << 0) | (b << 2))}
+#define FUNC_3(func, a, b, c) {&AudMeSeqParser::func, 3, ((a << 0) | (b << 2) | (c << 4))}
+#define FUNC_4(func, a, b, c, d) {&AudMeSeqParser::func, 4, ((a << 0) | (b << 2) | (c << 4) | (d << 6))}
+#define FUNC_5(func, a, b, c, d, e) {&AudMeSeqParser::func, 5, ((a << 0) | (b << 2) | (c << 4) | (d << 6) | (e << 8))}
 
 AudMeSeqParser::Command AudMeSeqParser::sCmdInfo[0xA0] = {
     /* 0x00 */ FUNC_1(cmdBank, ARG_U8),

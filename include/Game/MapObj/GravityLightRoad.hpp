@@ -5,7 +5,7 @@
 class GravityLightRoad : public LiveActor {
 public:
     GravityLightRoad(const char*);
-    
+
     virtual void init(const JMapInfoIter&);
     virtual void updateHitSensor(HitSensor*);
     virtual bool receiveOtherMsg(u32, HitSensor*, HitSensor*);

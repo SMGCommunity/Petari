@@ -23,7 +23,7 @@ namespace {
     static const s32 sPowerUpWaitTime = 60;
     // static const s32 sRecoveryCountInterval = _;
     // static const s32 sRecoveryCountStartTime = _;
-};
+};  // namespace
 
 namespace NrvSuddenDeathMeter {
     NEW_NERVE(SuddenDeathMeterNrvAppear, SuddenDeathMeter, Appear);
@@ -234,7 +234,7 @@ void SuddenDeathMeter::calcPowerUpMeterBasePosition(TVec2f* pBasePosition) const
     pBasePosition->y = MR::getPaneTransY(this, "MoveMeterW");
 }
 
-void SuddenDeathMeter::setPowerUpMeterPosition(const TVec2f &rPosition) {
+void SuddenDeathMeter::setPowerUpMeterPosition(const TVec2f& rPosition) {
     TVec2f basePosition;
     calcPowerUpMeterBasePosition(&basePosition);
     mFollowPosW.set(rPosition - basePosition);

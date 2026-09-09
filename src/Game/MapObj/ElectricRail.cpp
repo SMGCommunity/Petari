@@ -211,8 +211,8 @@ void ElectricRailShadowDrawer::drawShadowVolumeShape(ElectricRailSeparator* pSep
 }
 
 ElectricRail::ElectricRail(const char* name)
-    : LiveActor(name), mPoints(), mPointCount(), _94(), mSeparators(), mDisplayListBuffer(), mDisplayListSize(), mRailHeight(1), mEaseIn(), mShadowDrawer(),
-      mIsCalcGravity() {
+    : LiveActor(name), mPoints(), mPointCount(), _94(), mSeparators(), mDisplayListBuffer(), mDisplayListSize(), mRailHeight(1), mEaseIn(),
+      mShadowDrawer(), mIsCalcGravity() {
 }
 
 void ElectricRail::init(const JMapInfoIter& iter) {

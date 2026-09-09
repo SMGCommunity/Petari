@@ -2,8 +2,8 @@
 #include "Game/LiveActor/HitSensor.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/NameObj/NameObjArchiveListCollector.hpp"
-#include "Game/Util/ActorCameraUtil.hpp"
 #include "Game/Util.hpp"
+#include "Game/Util/ActorCameraUtil.hpp"
 
 namespace {
     static const f32 sRailSpeed = 3.0f;

@@ -33,8 +33,7 @@ namespace NrvRabbitStateWaitStart {
 };  // namespace NrvRabbitStateWaitStart
 
 RabbitStateWaitStart::RabbitStateWaitStart(LiveActor* pHost, TVec3f* mHostFrontVec, TalkMessageCtrl* pTalkCtrl)
-    : ActorStateBase("うさぎ会話待ち状態", pHost), mTalkActionName("Wait"), mHostFrontVec(mHostFrontVec),
-      mTalkCtrl(pTalkCtrl), _1C(), _1D(true) {
+    : ActorStateBase("うさぎ会話待ち状態", pHost), mTalkActionName("Wait"), mHostFrontVec(mHostFrontVec), mTalkCtrl(pTalkCtrl), _1C(), _1D(true) {
 }
 
 void RabbitStateWaitStart::setTalkActionName(const char* pName) {
