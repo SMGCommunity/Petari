@@ -553,7 +553,7 @@ void setFbbRegs(HorVer_s* HorVer, u32* tfbb, u32* bfbb, u32* rtfbb, u32* rbfbb) 
         regs[0x15] = *rbfbb & 0xFFFF;
         changed |= (1ull << (63 - (0x15)));
 
-        regs[0x16] = *rbfbb >> 16;
+        regs[0x14] = *rbfbb >> 16;
         changed |= (1ull << (63 - (0x14)));
     }
 }
@@ -744,7 +744,7 @@ void __VIInit(VITVMode mode) {
     for (a = 0; a < 1000; a++)
         ;
 
-    __VIRegs[0] = 0;
+    __VIRegs[1] = 0;
     __VIRegs[3] = (u16)((((unsigned long)(tm->hlw)) << 0));
     __VIRegs[2] = (u16)((((unsigned long)(tm->hce)) << 0) | (((unsigned long)(tm->hcs)) << 8));
     __VIRegs[5] = (u16)((((unsigned long)(tm->hsy)) << 0) | (((unsigned long)(tm->hbe640 & ((1 << (9)) - 1))) << 7));

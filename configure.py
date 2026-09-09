@@ -2856,7 +2856,7 @@ config.libs = [
     SDKLib(
         "vi",
         [
-            Object(NonMatching, "RVL_SDK/vi/vi.c"),
+            Object(NonMatching, "RVL_SDK/vi/vi.c", mw_version="GC/3.0a5.2"),
             Object(Matching, "RVL_SDK/vi/i2c.c"),
             Object(NonMatching, "RVL_SDK/vi/vi3in1.c"),
         ],
