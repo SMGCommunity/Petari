@@ -93,6 +93,7 @@ WUDSetClearDeviceCallback(WUDClearDeviceCallback pCallback);
 BOOL WUDStartSyncDevice(void);
 BOOL WUDStartFastSyncSimple(void);
 BOOL WUDStartSyncSimple(void);
+BOOL WUDCancelSyncDevice(void);
 BOOL WUDStopSyncSimple(void);
 
 BOOL WUDStartClearDevice(void);

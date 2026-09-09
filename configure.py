@@ -2875,7 +2875,7 @@ config.libs = [
     SDKLib(
         "wud",
         [
-            Object(NonMatching, "RVL_SDK/wud/WUD.c"),
+            Object(Matching, "RVL_SDK/wud/WUD.c", mw_version="GC/3.0a5.2"),
             Object(Matching, "RVL_SDK/wud/WUDHidHost.c"),
             Object(Matching, "RVL_SDK/wud/debug_msg.c"),
         ],

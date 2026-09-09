@@ -6,6 +6,7 @@ splits: config/RMGK01/splits.txt
 mw_comment_version: 14
 
 block_relocations:
+- source: .data:0x80603360
 - target: .data:0x805658F0
 - source: .rodata:0x8055FA7C
 - source: .rodata:0x8055FA80

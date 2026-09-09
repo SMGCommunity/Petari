@@ -11416,7 +11416,7 @@ RVL_SDK/usb/usb.c:
 RVL_SDK/wud/WUD.c:
 	.text       start:0x804E5DA0 end:0x804EA758
 	.data       start:0x80602DC8 end:0x80603CE0
-	.bss        start:0x806789F0 end:0x806A2D28
+	.bss        start:0x806782A0 end:0x8067A248
 	.sdata      start:0x806B2D88 end:0x806B2D90
 	.sbss       start:0x806B7B50 end:0x806B7B78
 	.sdata2     start:0x806C22F8 end:0x806C2300
@@ -11437,6 +11437,7 @@ RVL_SDK/bte/gki_time.c:
 
 RVL_SDK/bte/gki_ppc.c:
 	.text       start:0x804EC740 end:0x804EC9D0
+	.bss        start:0x8067A248 end:0x806A2D28
 
 RVL_SDK/bte/hcisu_h2.c:
 	.text       start:0x804EC9D0 end:0x804ED06C

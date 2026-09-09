@@ -221,6 +221,8 @@ u8 SCGetWpadMotorMode(void);
 u8 SCGetWpadSpeakerVolume(void);
 
 BOOL SCGetBtDeviceInfoArray(SCBtDeviceInfoArray* info);
+BOOL SCGetBtCmpDevInfoArray(SCBtCmpDevInfoArray* array);
+BOOL SCSetBtCmpDevInfoArray(const SCBtCmpDevInfoArray* array);
 BOOL SCSetBtDeviceInfoArray(const SCBtDeviceInfoArray*);
 void SCFlushAsync(SCFlushCallback);
 
