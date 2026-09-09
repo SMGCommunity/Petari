@@ -4,6 +4,8 @@
 #include <revolution/gx/GXTypes.h>
 #include <revolution/mtx.h>
 
+#pragma optimizewithasm off
+
 void GXProject(f32 x, f32 y, f32 z, const f32 mtx[3][4], const f32* pm, const f32* vp, f32* sx, f32* sy, f32* sz) {
     Vec peye;
     f32 xc, yc, zc, wc;
@@ -31,9 +33,7 @@ void GXProject(f32 x, f32 y, f32 z, const f32 mtx[3][4], const f32* pm, const f3
 
 // clang-format off
 
-#pragma optimizewithasm off
-
-inline void WriteProjPS(const register f32 proj[6], register volatile void* dest)
+static void WriteProjPS(const register f32 proj[6], register volatile void* dest)
 {
     register f32 p01, p23, p45;
 
@@ -47,10 +47,10 @@ inline void WriteProjPS(const register f32 proj[6], register volatile void* dest
     }
 }
 
-inline void Copy6Floats(register f32* dst, register const f32* src) {
+static void Copy6Floats(const register f32 src[6], register f32 dst[6]) {
     register f32 ps_0, ps_1, ps_2;
 
-    asm volatile {
+    asm {
         psq_l  ps_0,  0(src), 0, 0
         psq_l  ps_1,  8(src), 0, 0
         psq_l  ps_2, 16(src), 0, 0
@@ -59,8 +59,6 @@ inline void Copy6Floats(register f32* dst, register const f32* src) {
         psq_st ps_2, 16(dst), 0, 0
     }
 }
-
-#pragma optimizewithasm reset
 
 // clang-format on
 
@@ -92,18 +90,16 @@ void GXSetProjection(const f32 mtx[4][4], GXProjectionType type) {
 
 void GXSetProjectionv(const f32* ptr) {
     gx->projType = (ptr[0] == 0.0f ? GX_PERSPECTIVE : GX_ORTHOGRAPHIC);
-    Copy6Floats(gx->projMtx, &ptr[1]);
+    Copy6Floats(&ptr[1], gx->projMtx);
     gx->dirtyState |= 0x8000000;
 }
 
 void GXGetProjectionv(f32* ptr) {
     ptr[0] = gx->projType ? 1.0f : 0.0f;
-    Copy6Floats(&ptr[1], gx->projMtx);
+    Copy6Floats(gx->projMtx, &ptr[1]);
 }
 
 // clang-format off
-
-#pragma optimizewithasm off
 
 static void  WriteMTXPS3x3from3x4(register void* mtx, register volatile void* dest) {
     register f32 a00_a01, a02_a03, a10_a11;
@@ -124,11 +120,11 @@ static void  WriteMTXPS3x3from3x4(register void* mtx, register volatile void* de
     }
 }
 
-inline void WriteMTXPS4x3(const register f32 src[3][4], register volatile void* dst) {
+static void WriteMTXPS4x3(const register f32 src[3][4], register volatile void* dst) {
     register f32 ps_0, ps_1, ps_2, ps_3, ps_4, ps_5;
 
     // clang-format off
-    asm volatile {
+    asm {
         psq_l  ps_0,  0(src), 0, 0
         psq_l  ps_1,  8(src), 0, 0
         psq_l  ps_2, 16(src), 0, 0
@@ -164,24 +160,23 @@ static void WriteMTXPS4x2(const register f32 mtx[3][4], register volatile void* 
     }
 }
 
-#pragma optimizewithasm reset
-
 // clang-format on
 
 void GXLoadPosMtxImm(const f32 mtx[3][4], u32 id) {
     u32 reg, addr;
-    volatile void* wgpipe = (volatile void*)0xCC008000;
+
     addr = id << 2;
     reg = CP_XF_LOADREGS(addr, 11);
     GX_WRITE_U8(CP_OPCODE(0, CP_CMD_XF_LOADREGS));
     GX_WRITE_U32(reg);
-    WriteMTXPS4x3(mtx, wgpipe);
+    WriteMTXPS4x3(mtx, (volatile void*)GX_FIFO_ADDR);
 }
 
 void GXLoadNrmMtxImm(const f32 mtx[3][4], u32 id) {
     u32 reg, addr;
+
     addr = 0x400 + (id * 3);
-    reg = CP_XF_LOADREGS(addr, 10);
+    reg = CP_XF_LOADREGS(addr, 3 * 3 - 1);
 
     GX_WRITE_U8(CP_OPCODE(0, CP_CMD_XF_LOADREGS));
     GX_WRITE_U32(reg);
@@ -361,3 +356,5 @@ void __GXSetMatrixIndex(GXAttr matIdxAttr) {
 
     gx->bpSentNot = GX_TRUE;
 }
+
+#pragma optimizewithasm reset
