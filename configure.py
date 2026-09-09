@@ -2675,7 +2675,7 @@ config.libs = [
         "mem",
         [
             Object(Matching, "RVL_SDK/mem/mem_heapCommon.c"),
-            Object(NonMatching, "RVL_SDK/mem/mem_expHeap.c"),
+            Object(Matching, "RVL_SDK/mem/mem_expHeap.c"),
             Object(NonMatching, "RVL_SDK/mem/mem_allocator.c"),
             Object(Matching, "RVL_SDK/mem/mem_list.c"),
         ],
