@@ -2865,11 +2865,11 @@ config.libs = [
     SDKLib(
         "wpad",
         [
-            Object(NonMatching, "RVL_SDK/wpad/WPAD.c", cflags=cflags_sdk_wpad),
-            Object(NonMatching, "RVL_SDK/wpad/WPADHIDParser.c"),
-            Object(NonMatching, "RVL_SDK/wpad/WPADEncrypt.c"),
-            Object(NonMatching, "RVL_SDK/wpad/WPADMem.c"),
-            Object(NonMatching, "RVL_SDK/wpad/debug_msg.c"),
+            Object(Matching, "RVL_SDK/wpad/WPAD.c", cflags=cflags_sdk_wpad),
+            Object(Matching, "RVL_SDK/wpad/WPADHIDParser.c"),
+            Object(Matching, "RVL_SDK/wpad/WPADEncrypt.c"),
+            Object(Matching, "RVL_SDK/wpad/WPADMem.c"),
+            Object(Matching, "RVL_SDK/wpad/debug_msg.c"),
         ],
     ),
     SDKLib(

@@ -7512,7 +7512,7 @@ Game/RhythmLib/AudMeTrack.cpp:
 	.ctors      start:0x8052F1A4 end:0x8052F1A8
 	.rodata     start:0x80539CD0 end:0x80539D20
 	.bss        start:0x8060AF38 end:0x8060AFB0
-    .sbss       start:0x806B62C0 end:0x806B62D0
+	.sbss       start:0x806B62C0 end:0x806B62D0
 	.sdata2     start:0x806C0648 end:0x806C0658
 
 Game/RhythmLib/AudMeChannelMgr.cpp:
@@ -11368,18 +11368,18 @@ RVL_SDK/pad/Pad.c:
 RVL_SDK/wpad/WPAD.c:
 	.text       start:0x804D6B84 end:0x804DE36C
 	.rodata     start:0x80561D38 end:0x80561D78
-	.data       start:0x80600B38 end:0x80600EF0
-	.bss        start:0x80674AC0 end:0x80678238
+	.data       start:0x80600B38 end:0x80600E70
+	.bss        start:0x80674AC0 end:0x806781E8
 	.sdata      start:0x806B2D60 end:0x806B2D78
 	.sbss       start:0x806B7AD8 end:0x806B7B10
-	.sdata2     start:0x806C2290 end:0x806C22A8
+	.sdata2     start:0x806C2290 end:0x806C2298
 
 RVL_SDK/wpad/WPADHIDParser.c:
 	.text       start:0x804DE36C end:0x804E380C
-	.data       start:0x80600EF0 end:0x80601410
-	.bss        start:0x80678238 end:0x80678250
-	.sbss       start:0x806B7B10 end:0x806B7B30
-	.sdata2     start:0x806C22A8 end:0x806C22F8
+	.data       start:0x80600E70 end:0x80601410
+	.bss        start:0x806781E8 end:0x80678250
+	.sbss       start:0x806B7B10 end:0x806B7B28
+	.sdata2     start:0x806C2298 end:0x806C22F8
 
 RVL_SDK/wpad/WPADMem.c:
 	.bss        start:0x80678250 end:0x806782A0
@@ -11387,6 +11387,7 @@ RVL_SDK/wpad/WPADMem.c:
 RVL_SDK/wpad/WPADEncrypt.c:
 	.text       start:0x804E380C end:0x804E48B4
 	.data       start:0x80601410 end:0x80602738
+	.sbss       start:0x806B7B28 end:0x806B7B30
 
 RVL_SDK/wpad/debug_msg.c:
 	.text       start:0x804E48B4 end:0x804E4904
