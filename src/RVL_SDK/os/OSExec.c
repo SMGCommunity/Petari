@@ -225,12 +225,15 @@ void __OSLaunchNextFirmware(void) {
 
     if (__OSNextPartitionType == __OSLaunchPartitionType && *(u32*)OSPhysicalToCached(0x3198)) {
         rc = ESP_InitLib();
-        if (rc == 0)
+        if (rc == 0) {
             rc = ESP_DiGetTicketView(NULL, t2);
-        if (rc == 0)
+        }
+        if (rc == 0) {
             rc = ESP_DiGetTmd(NULL, &numTmdBytes);
-        if (rc == 0)
+        }
+        if (rc == 0) {
             rc = ESP_DiGetTmd(tmd, &numTmdBytes);
+        }
         ESP_CloseLib();
 
         if (OSPlayTimeIsLimited()) {
@@ -255,10 +258,10 @@ void __OSLaunchNextFirmware(void) {
         DVDLowClosePartition(callback);
 
         while (!DVDLowIntType) {
-        };
+        }
 
         if (DVDLowIntType != 1) {
-            OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, __LINE__);
+            OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x395);
             __OSReturnToMenuForError();
         }
 
@@ -266,10 +269,10 @@ void __OSLaunchNextFirmware(void) {
         DVDLowUnencryptedRead(gameToc, OSRoundUp32B(sizeof(DVDGameTOC)), 0x40000 >> 2, callback);
 
         while (!DVDLowIntType) {
-        };
+        }
 
         if (DVDLowIntType != 1) {
-            OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, __LINE__);
+            OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x39F);
             __OSReturnToMenuForError();
         }
 
@@ -277,10 +280,10 @@ void __OSLaunchNextFirmware(void) {
         DVDLowUnencryptedRead(partInfo, OSRoundUp32B(sizeof(DVDPartitionInfo) * 256), (u32)gameToc->partitionInfos, callback);
 
         while (!DVDLowIntType) {
-        };
+        }
 
         if (DVDLowIntType != 1) {
-            OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, __LINE__);
+            OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3AB);
             __OSReturnToMenuForError();
         }
 
@@ -322,7 +325,7 @@ void __OSLaunchNextFirmware(void) {
         }
 
         while (!DVDLowIntType) {
-        };
+        }
 
         if (DVDLowIntType != 1) {
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3E8);
@@ -333,7 +336,7 @@ void __OSLaunchNextFirmware(void) {
         DVDLowClosePartition(callback);
 
         while (!DVDLowIntType) {
-        };
+        }
 
         if (DVDLowIntType != 1) {
             OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x3F2);
@@ -380,9 +383,9 @@ void __OSLaunchNextFirmware(void) {
 
     if (simGddr3Size < *(u32*)OSPhysicalToCached(0x311C)) {
         *(u32*)OSPhysicalToCached(0x3120) = simGddr3Size - (*(u32*)OSPhysicalToCached(0x311C) - *(u32*)OSPhysicalToCached(0x3120));
-        *(u32*)OSPhysicalToCached(0x3124) = simGddr3Size - (*(u32*)OSPhysicalToCached(0x311C) - *(u32*)OSPhysicalToCached(0x3124));
         *(u32*)OSPhysicalToCached(0x3128) = simGddr3Size - (*(u32*)OSPhysicalToCached(0x311C) - *(u32*)OSPhysicalToCached(0x3128));
-        *(u32*)OSPhysicalToCached(0x312C) = simGddr3Size - (*(u32*)OSPhysicalToCached(0x311C) - *(u32*)OSPhysicalToCached(0x312C));
+        *(u32*)OSPhysicalToCached(0x3130) = simGddr3Size - (*(u32*)OSPhysicalToCached(0x311C) - *(u32*)OSPhysicalToCached(0x3130));
+        *(u32*)OSPhysicalToCached(0x3134) = simGddr3Size - (*(u32*)OSPhysicalToCached(0x311C) - *(u32*)OSPhysicalToCached(0x3134));
         *(u32*)OSPhysicalToCached(0x311C) = simGddr3Size;
     }
 
@@ -399,10 +402,10 @@ void __OSLaunchNextFirmware(void) {
     DVDLowReadDiskID(&id, callback);
 
     while (!DVDLowIntType) {
-    };
+    }
 
     if (DVDLowIntType != 1) {
-        OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, __LINE__);
+        OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x44B);
         __OSReturnToMenuForError();
     }
 
@@ -414,7 +417,7 @@ void __OSLaunchNextFirmware(void) {
     }
 
     while (!DVDLowIntType) {
-    };
+    }
 
     if (DVDLowIntType != 1) {
         OSReport("\nOSExec(): Failed to exec %d in %d\n", DVDLowIntType, 0x462);
@@ -503,7 +506,7 @@ static u32 GetApploaderPosition(void) {
         apploaderOffsetInTGC = *(s32*)((u32)tgcHeader + 56);
         apploaderPosition = (u32)((__OSCurrentTGCOffset + apploaderOffsetInTGC) >> 2);
     } else {
-        apploaderPosition = (0x00000440 >> 2);
+        apploaderPosition = (0x00002440 >> 2);
     }
 
     return apploaderPosition;
@@ -612,8 +615,8 @@ void __OSBootDolSimple(u32 doloffset, u32 restartCode, void* regionStart, void* 
     __OSUnmaskInterrupts(OS_INTERRUPTMASK_PI_ACR);
     OSEnableInterrupts();
 
-    while (!(Prepared == TRUE)) {
-    };
+    while (Prepared != TRUE) {
+    }
 
     __OSLaunchNextFirmware();
 
