@@ -470,7 +470,7 @@ s32 VFipdm_part_logical_read(struct PDM_PARTITION* p_part, u8* buf, u32 lsector,
     }
 
     VFipdm_part_convert_lsector_to_block(lp_part, lsector, num_sector, bps, &psector, &num_block);
-    err = VFipdm_disk_physical_read(lp_part->p_disk, buf, psector, num_block, bps, p_num_success);
+    err = VFipdm_disk_physical_read(lp_part->p_disk, buf, psector, num_block, p_num_success);
     num_block = *p_num_success;
     VFipdm_part_convert_block_to_lsector(lp_part, num_block, bps, p_num_success);
 
@@ -513,7 +513,7 @@ s32 VFipdm_part_logical_write(struct PDM_PARTITION* p_part, const u8* buf, u32 l
     }
 
     VFipdm_part_convert_lsector_to_block(lp_part, lsector, num_sector, bps, &psector, &num_block);
-    err = VFipdm_disk_physical_write(lp_part->p_disk, buf, psector, num_block, bps, p_num_success);
+    err = VFipdm_disk_physical_write(lp_part->p_disk, buf, psector, num_block, p_num_success);
     num_block = *p_num_success;
     VFipdm_part_convert_block_to_lsector(lp_part, num_block, bps, p_num_success);
 

@@ -11,6 +11,8 @@
 #include "revolution/vf/pf_sector.h"
 #include "revolution/vf/pf_system.h"
 
+PF_VOLUME_SET VFipf_vol_set;
+
 static inline u32 VFiPFVOL_CheckContextRegistered(s32 context_id) {
     u32 i;
     for (i = 1; i < 1; i++) {

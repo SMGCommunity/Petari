@@ -1,199 +1,279 @@
 #include "revolution/types.h"
 
-static void NETMemCpy_SimpleRev(void* dst, const void* src, unsigned long size) {
-    unsigned char* dst_u8 = (unsigned char*)dst + size;
-    const unsigned char* src_u8 = (const unsigned char*)src + size;
-    unsigned long numWords = size >> 2;
-    unsigned long remainBytes = size & 3;
-    unsigned long tmp;
+static inline void NETMemCpy_DstSize32Aligned(register void* dst, register const void* src, unsigned long size) {
+    register unsigned long tmp0;
+    register unsigned long tmp1;
+    register unsigned long tmp2;
+    register unsigned long tmp3;
+    register unsigned long tmp4;
+    register unsigned long tmp5;
+    register unsigned long loopSize = size >> 5;
+    unsigned long shift = (unsigned long)src & 3;
 
-    while (remainBytes--) {
-        tmp = *--src_u8;
-        *--dst_u8 = (unsigned char)tmp;
+    switch (shift) {
+    case 0:
+        asm {
+            mtctr loopSize
+        aligned_loop:
+            dcbz 0, dst
+            lwz tmp0, 0(src)
+            lwz tmp1, 4(src)
+            stw tmp0, 0(dst)
+            stw tmp1, 4(dst)
+            lwz tmp0, 8(src)
+            lwz tmp1, 12(src)
+            stw tmp0, 8(dst)
+            stw tmp1, 12(dst)
+            lwz tmp0, 16(src)
+            lwz tmp1, 20(src)
+            stw tmp0, 16(dst)
+            stw tmp1, 20(dst)
+            lwz tmp0, 24(src)
+            lwz tmp1, 28(src)
+            stw tmp0, 24(dst)
+            stw tmp1, 28(dst)
+            addi src, src, 32
+            addi dst, dst, 32
+            bdnz aligned_loop
+        }
+        break;
+    case 1:
+        src = (const unsigned char*)src - 1;
+        asm {
+            lwz tmp2, 0(src)
+            mtctr loopSize
+            slwi tmp2, tmp2, 8
+            addi src, src, 4
+        shift8_loop:
+            dcbz 0, dst
+            lwz tmp0, 0(src)
+            slwi tmp3, tmp0, 8
+            rlwimi tmp2, tmp0, 8, 24, 31
+            lwz tmp1, 4(src)
+            stw tmp2, 0(dst)
+            slwi tmp4, tmp1, 8
+            rlwimi tmp3, tmp1, 8, 24, 31
+            lwz tmp0, 8(src)
+            stw tmp3, 4(dst)
+            slwi tmp5, tmp0, 8
+            rlwimi tmp4, tmp0, 8, 24, 31
+            lwz tmp1, 12(src)
+            stw tmp4, 8(dst)
+            slwi tmp2, tmp1, 8
+            rlwimi tmp5, tmp1, 8, 24, 31
+            lwz tmp0, 16(src)
+            stw tmp5, 12(dst)
+            slwi tmp3, tmp0, 8
+            rlwimi tmp2, tmp0, 8, 24, 31
+            lwz tmp1, 20(src)
+            stw tmp2, 16(dst)
+            slwi tmp4, tmp1, 8
+            rlwimi tmp3, tmp1, 8, 24, 31
+            lwz tmp0, 24(src)
+            stw tmp3, 20(dst)
+            slwi tmp5, tmp0, 8
+            rlwimi tmp4, tmp0, 8, 24, 31
+            lwz tmp1, 28(src)
+            stw tmp4, 24(dst)
+            slwi tmp2, tmp1, 8
+            rlwimi tmp5, tmp1, 8, 24, 31
+            addi src, src, 32
+            stw tmp5, 28(dst)
+            addi dst, dst, 32
+            bdnz shift8_loop
+        }
+        break;
+    case 2:
+        src = (const unsigned char*)src - 2;
+        asm {
+            lwz tmp2, 0(src)
+            mtctr loopSize
+            slwi tmp2, tmp2, 16
+            addi src, src, 4
+        shift16_loop:
+            dcbz 0, dst
+            lwz tmp0, 0(src)
+            slwi tmp3, tmp0, 16
+            rlwimi tmp2, tmp0, 16, 16, 31
+            lwz tmp1, 4(src)
+            stw tmp2, 0(dst)
+            slwi tmp4, tmp1, 16
+            rlwimi tmp3, tmp1, 16, 16, 31
+            lwz tmp0, 8(src)
+            stw tmp3, 4(dst)
+            slwi tmp5, tmp0, 16
+            rlwimi tmp4, tmp0, 16, 16, 31
+            lwz tmp1, 12(src)
+            stw tmp4, 8(dst)
+            slwi tmp2, tmp1, 16
+            rlwimi tmp5, tmp1, 16, 16, 31
+            lwz tmp0, 16(src)
+            stw tmp5, 12(dst)
+            slwi tmp3, tmp0, 16
+            rlwimi tmp2, tmp0, 16, 16, 31
+            lwz tmp1, 20(src)
+            stw tmp2, 16(dst)
+            slwi tmp4, tmp1, 16
+            rlwimi tmp3, tmp1, 16, 16, 31
+            lwz tmp0, 24(src)
+            stw tmp3, 20(dst)
+            slwi tmp5, tmp0, 16
+            rlwimi tmp4, tmp0, 16, 16, 31
+            lwz tmp1, 28(src)
+            stw tmp4, 24(dst)
+            slwi tmp2, tmp1, 16
+            rlwimi tmp5, tmp1, 16, 16, 31
+            addi src, src, 32
+            stw tmp5, 28(dst)
+            addi dst, dst, 32
+            bdnz shift16_loop
+        }
+        break;
+    case 3:
+        src = (const unsigned char*)src - 3;
+        asm {
+            lwz tmp2, 0(src)
+            mtctr loopSize
+            slwi tmp2, tmp2, 24
+            addi src, src, 4
+        shift24_loop:
+            dcbz 0, dst
+            lwz tmp0, 0(src)
+            slwi tmp3, tmp0, 24
+            rlwimi tmp2, tmp0, 24, 8, 31
+            lwz tmp1, 4(src)
+            stw tmp2, 0(dst)
+            slwi tmp4, tmp1, 24
+            rlwimi tmp3, tmp1, 24, 8, 31
+            lwz tmp0, 8(src)
+            stw tmp3, 4(dst)
+            slwi tmp5, tmp0, 24
+            rlwimi tmp4, tmp0, 24, 8, 31
+            lwz tmp1, 12(src)
+            stw tmp4, 8(dst)
+            slwi tmp2, tmp1, 24
+            rlwimi tmp5, tmp1, 24, 8, 31
+            lwz tmp0, 16(src)
+            stw tmp5, 12(dst)
+            slwi tmp3, tmp0, 24
+            rlwimi tmp2, tmp0, 24, 8, 31
+            lwz tmp1, 20(src)
+            stw tmp2, 16(dst)
+            slwi tmp4, tmp1, 24
+            rlwimi tmp3, tmp1, 24, 8, 31
+            lwz tmp0, 24(src)
+            stw tmp3, 20(dst)
+            slwi tmp5, tmp0, 24
+            rlwimi tmp4, tmp0, 24, 8, 31
+            lwz tmp1, 28(src)
+            stw tmp4, 24(dst)
+            slwi tmp2, tmp1, 24
+            rlwimi tmp5, tmp1, 24, 8, 31
+            addi src, src, 32
+            stw tmp5, 28(dst)
+            addi dst, dst, 32
+            bdnz shift24_loop
+        }
+        break;
     }
+}
 
-    while (numWords--) {
-        src_u8 -= 4;
-        tmp = *(unsigned long*)src_u8;
-        dst_u8 -= 4;
-        *(unsigned long*)dst_u8 = tmp;
+static inline void NETMemCpy_SimpleFwd(void* dst, const void* src, unsigned long size) {
+    register unsigned char* dst_u8;
+    register const unsigned char* src_u8;
+    register unsigned long numWords;
+    register unsigned long remainBytes;
+    register unsigned long tmp;
+
+    src_u8 = (const unsigned char*)src;
+    dst_u8 = (unsigned char*)dst;
+    numWords = size >> 2;
+    remainBytes = size & 3;
+    if (numWords != 0) {
+        asm {
+            mtctr numWords
+        word_loop:
+            lwz tmp, 0(src_u8)
+            addi src_u8, src_u8, 4
+            stw tmp, 0(dst_u8)
+            addi dst_u8, dst_u8, 4
+            bdnz word_loop
+        }
+    }
+    if (remainBytes != 0) {
+        asm {
+            mtctr remainBytes
+        byte_loop:
+            lbz tmp, 0(src_u8)
+            addi src_u8, src_u8, 1
+            stb tmp, 0(dst_u8)
+            addi dst_u8, dst_u8, 1
+            bdnz byte_loop
+        }
+    }
+}
+
+static inline void NETMemCpy_SimpleRev(void* dst, const void* src, unsigned long size) {
+    register unsigned char* dst_u8;
+    register const unsigned char* src_u8;
+    register unsigned long numWords;
+    register unsigned long remainBytes;
+    register unsigned long tmp;
+
+    src_u8 = (const unsigned char*)src + size;
+    dst_u8 = (unsigned char*)dst + size;
+    numWords = size >> 2;
+    remainBytes = size & 3;
+    if (remainBytes != 0) {
+        asm {
+            mtctr remainBytes
+        byte_loop:
+            lbzu tmp, -1(src_u8)
+            stbu tmp, -1(dst_u8)
+            bdnz byte_loop
+        }
+    }
+    if (numWords != 0) {
+        asm {
+            mtctr numWords
+        word_loop:
+            lwzu tmp, -4(src_u8)
+            stwu tmp, -4(dst_u8)
+            bdnz word_loop
+        }
     }
 }
 
 void* NETMemCpy(void* dst, const void* src, unsigned long size) {
     unsigned long headSize;
     unsigned long accBlkSize;
-    unsigned char* dst_u8;
-    const unsigned char* src_u8;
-    unsigned long numWords;
-    unsigned long remainBytes;
-    unsigned long tmp;
 
     if (dst == src) {
         return dst;
     }
 
-    if ((unsigned char*)dst > (unsigned char*)src && (unsigned char*)dst < (unsigned char*)src + size) {
+    if ((unsigned char*)dst > (const unsigned char*)src && (unsigned char*)dst < (const unsigned char*)src + size) {
         NETMemCpy_SimpleRev(dst, src, size);
         return dst;
     }
 
-    if (((unsigned char*)dst <= (unsigned char*)src - 0x20 || (unsigned char*)dst >= (unsigned char*)src) && size >= 0x40) {
+    if (((unsigned char*)dst <= (const unsigned char*)src - 0x20 || (unsigned char*)dst >= (const unsigned char*)src) && size >= 0x40) {
         headSize = (unsigned long)dst & 0x1F;
         if (headSize != 0) {
             headSize = 0x20 - headSize;
-            dst_u8 = (unsigned char*)dst;
-            src_u8 = (const unsigned char*)src;
-            numWords = headSize >> 2;
-            remainBytes = headSize & 3;
-            while (numWords--) {
-                tmp = *(unsigned long*)src_u8;
-                src_u8 += 4;
-                *(unsigned long*)dst_u8 = tmp;
-                dst_u8 += 4;
-            }
-            while (remainBytes--) {
-                tmp = *src_u8++;
-                *dst_u8++ = (unsigned char)tmp;
-            }
-
+            NETMemCpy_SimpleFwd(dst, src, headSize);
             dst = (unsigned char*)dst + headSize;
-            src = (unsigned char*)src + headSize;
+            src = (const unsigned char*)src + headSize;
             size -= headSize;
         }
 
         accBlkSize = size & ~0x1F;
-
-        {
-            unsigned char* p = (unsigned char*)dst;
-            const unsigned char* q = (const unsigned char*)src;
-            unsigned long shift = (unsigned long)q & 3;
-            unsigned long loopSize = size >> 5;
-            unsigned long tmp0, tmp1, tmp2, tmp3, tmp4, tmp5;
-            unsigned long const32;
-
-            switch (shift) {
-            case 0:
-                while (loopSize--) {
-                    __dcbz(p, 0);
-                    tmp0 = ((unsigned long*)q)[0];
-                    tmp1 = ((unsigned long*)q)[1];
-                    tmp2 = ((unsigned long*)q)[2];
-                    tmp3 = ((unsigned long*)q)[3];
-                    tmp4 = ((unsigned long*)q)[4];
-                    tmp5 = ((unsigned long*)q)[5];
-                    ((unsigned long*)p)[0] = tmp0;
-                    ((unsigned long*)p)[1] = tmp1;
-                    ((unsigned long*)p)[2] = tmp2;
-                    ((unsigned long*)p)[3] = tmp3;
-                    ((unsigned long*)p)[4] = tmp4;
-                    ((unsigned long*)p)[5] = tmp5;
-                    ((unsigned long*)p)[6] = ((unsigned long*)q)[6];
-                    ((unsigned long*)p)[7] = ((unsigned long*)q)[7];
-                    q += 0x20;
-                    p += 0x20;
-                }
-                break;
-            case 1:
-                const32 = *(unsigned long*)(q - 1) << 8;
-                q += 3;
-                while (loopSize--) {
-                    __dcbz(p, 0);
-                    tmp0 = ((unsigned long*)q)[0];
-                    tmp1 = ((unsigned long*)q)[1];
-                    ((unsigned long*)p)[0] = (const32 & 0xFFFFFF00) | (tmp0 >> 24);
-                    tmp2 = ((unsigned long*)q)[2];
-                    ((unsigned long*)p)[1] = ((tmp0 << 8) & 0xFFFFFF00) | (tmp1 >> 24);
-                    tmp3 = ((unsigned long*)q)[3];
-                    ((unsigned long*)p)[2] = ((tmp1 << 8) & 0xFFFFFF00) | (tmp2 >> 24);
-                    tmp4 = ((unsigned long*)q)[4];
-                    ((unsigned long*)p)[3] = ((tmp2 << 8) & 0xFFFFFF00) | (tmp3 >> 24);
-                    tmp5 = ((unsigned long*)q)[5];
-                    ((unsigned long*)p)[4] = ((tmp3 << 8) & 0xFFFFFF00) | (tmp4 >> 24);
-                    tmp0 = ((unsigned long*)q)[6];
-                    ((unsigned long*)p)[5] = ((tmp4 << 8) & 0xFFFFFF00) | (tmp5 >> 24);
-                    tmp1 = ((unsigned long*)q)[7];
-                    ((unsigned long*)p)[6] = ((tmp5 << 8) & 0xFFFFFF00) | (tmp0 >> 24);
-                    q += 0x20;
-                    const32 = tmp1 << 8;
-                    ((unsigned long*)p)[7] = ((tmp0 << 8) & 0xFFFFFF00) | (tmp1 >> 24);
-                    p += 0x20;
-                }
-                break;
-            case 2:
-                const32 = *(unsigned long*)(q - 2) << 16;
-                q += 2;
-                while (loopSize--) {
-                    __dcbz(p, 0);
-                    tmp0 = ((unsigned long*)q)[0];
-                    tmp1 = ((unsigned long*)q)[1];
-                    ((unsigned long*)p)[0] = (const32 & 0xFFFF0000) | (tmp0 >> 16);
-                    tmp2 = ((unsigned long*)q)[2];
-                    ((unsigned long*)p)[1] = ((tmp0 << 16) & 0xFFFF0000) | (tmp1 >> 16);
-                    tmp3 = ((unsigned long*)q)[3];
-                    ((unsigned long*)p)[2] = ((tmp1 << 16) & 0xFFFF0000) | (tmp2 >> 16);
-                    tmp4 = ((unsigned long*)q)[4];
-                    ((unsigned long*)p)[3] = ((tmp2 << 16) & 0xFFFF0000) | (tmp3 >> 16);
-                    tmp5 = ((unsigned long*)q)[5];
-                    ((unsigned long*)p)[4] = ((tmp3 << 16) & 0xFFFF0000) | (tmp4 >> 16);
-                    tmp0 = ((unsigned long*)q)[6];
-                    ((unsigned long*)p)[5] = ((tmp4 << 16) & 0xFFFF0000) | (tmp5 >> 16);
-                    tmp1 = ((unsigned long*)q)[7];
-                    ((unsigned long*)p)[6] = ((tmp5 << 16) & 0xFFFF0000) | (tmp0 >> 16);
-                    q += 0x20;
-                    const32 = tmp1 << 16;
-                    ((unsigned long*)p)[7] = ((tmp0 << 16) & 0xFFFF0000) | (tmp1 >> 16);
-                    p += 0x20;
-                }
-                break;
-            case 3:
-                const32 = *(unsigned long*)(q - 3) << 24;
-                q += 1;
-                while (loopSize--) {
-                    __dcbz(p, 0);
-                    tmp0 = ((unsigned long*)q)[0];
-                    tmp1 = ((unsigned long*)q)[1];
-                    ((unsigned long*)p)[0] = (const32 & 0xFF000000) | (tmp0 >> 8);
-                    tmp2 = ((unsigned long*)q)[2];
-                    ((unsigned long*)p)[1] = ((tmp0 << 24) & 0xFF000000) | (tmp1 >> 8);
-                    tmp3 = ((unsigned long*)q)[3];
-                    ((unsigned long*)p)[2] = ((tmp1 << 24) & 0xFF000000) | (tmp2 >> 8);
-                    tmp4 = ((unsigned long*)q)[4];
-                    ((unsigned long*)p)[3] = ((tmp2 << 24) & 0xFF000000) | (tmp3 >> 8);
-                    tmp5 = ((unsigned long*)q)[5];
-                    ((unsigned long*)p)[4] = ((tmp3 << 24) & 0xFF000000) | (tmp4 >> 8);
-                    tmp0 = ((unsigned long*)q)[6];
-                    ((unsigned long*)p)[5] = ((tmp4 << 24) & 0xFF000000) | (tmp5 >> 8);
-                    tmp1 = ((unsigned long*)q)[7];
-                    ((unsigned long*)p)[6] = ((tmp5 << 24) & 0xFF000000) | (tmp0 >> 8);
-                    q += 0x20;
-                    const32 = tmp1 << 24;
-                    ((unsigned long*)p)[7] = ((tmp0 << 24) & 0xFF000000) | (tmp1 >> 8);
-                    p += 0x20;
-                }
-                break;
-            }
-        }
-
+        NETMemCpy_DstSize32Aligned(dst, src, accBlkSize);
         dst = (unsigned char*)dst + accBlkSize;
-        src = (unsigned char*)src + accBlkSize;
+        src = (const unsigned char*)src + accBlkSize;
         size -= accBlkSize;
     }
 
-    dst_u8 = (unsigned char*)dst;
-    src_u8 = (const unsigned char*)src;
-    numWords = size >> 2;
-    remainBytes = size & 3;
-    while (numWords--) {
-        tmp = *(unsigned long*)src_u8;
-        src_u8 += 4;
-        *(unsigned long*)dst_u8 = tmp;
-        dst_u8 += 4;
-    }
-    while (remainBytes--) {
-        tmp = *src_u8++;
-        *dst_u8++ = (unsigned char)tmp;
-    }
-
+    NETMemCpy_SimpleFwd(dst, src, size);
     return dst;
 }

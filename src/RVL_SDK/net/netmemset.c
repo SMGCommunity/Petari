@@ -1,83 +1,89 @@
 #include "revolution/types.h"
-#include <cstdio>
+
+static inline void NETMemSet_BufSize32Aligned(register void* buf, register unsigned long fill, unsigned long size) {
+    register unsigned long loopSize = size >> 5;
+
+    if (fill == 0) {
+        asm {
+            mtctr loopSize
+        zero_loop:
+            dcbz 0, buf
+            addi buf, buf, 32
+            bdnz zero_loop
+        }
+    } else {
+        asm {
+            mtctr loopSize
+        fill_loop:
+            dcbz 0, buf
+            stw fill, 0(buf)
+            stw fill, 4(buf)
+            stw fill, 8(buf)
+            stw fill, 12(buf)
+            stw fill, 16(buf)
+            stw fill, 20(buf)
+            stw fill, 24(buf)
+            stw fill, 28(buf)
+            addi buf, buf, 32
+            bdnz fill_loop
+        }
+    }
+}
+
+static inline void NETMemSet_Simple(register void* buf, register unsigned long fill, unsigned long size) {
+    register unsigned char* buf_u8 = (unsigned char*)buf;
+    register unsigned long numWords = size >> 2;
+    register unsigned long remainBytes = size & 3;
+
+    if (numWords != 0) {
+        asm {
+            mtctr numWords
+        word_loop:
+            stw fill, 0(buf_u8)
+            addi buf_u8, buf_u8, 4
+            bdnz word_loop
+        }
+    }
+    if (remainBytes != 0) {
+        asm {
+            mtctr remainBytes
+        byte_loop:
+            stb fill, 0(buf_u8)
+            addi buf_u8, buf_u8, 1
+            bdnz byte_loop
+        }
+    }
+}
 
 void* NETMemSet(void* buf, int ch, unsigned long size) {
     unsigned long headSize;
     unsigned long accBlkSize;
-    unsigned long fill;
-    unsigned char* buf_u8;
-    unsigned long numWords;
-    unsigned long remainBytes;
+    register unsigned long fill = ch;
 
     if (size == 0) {
         return buf;
     }
 
-    fill = (unsigned char)ch;
-    fill |= fill << 8;
-    fill |= fill << 16;
+    asm {
+        rlwimi fill, fill, 8, 16, 23
+        rlwimi fill, fill, 16, 0, 15
+    }
 
     if (size >= 0x40) {
         headSize = (unsigned long)buf & 0x1F;
         if (headSize != 0) {
             headSize = 0x20 - headSize;
-
-            buf_u8 = (unsigned char*)buf;
-            numWords = headSize >> 2;
-            remainBytes = headSize & 3;
-            while (numWords--) {
-                *(unsigned long*)buf_u8 = fill;
-                buf_u8 += 4;
-            }
-            while (remainBytes--) {
-                *buf_u8++ = (unsigned char)fill;
-            }
-
+            NETMemSet_Simple(buf, fill, headSize);
             buf = (unsigned char*)buf + headSize;
             size -= headSize;
         }
 
         accBlkSize = size & ~0x1F;
-
-        {
-            unsigned char* p = (unsigned char*)buf;
-            unsigned long loopSize = size >> 5;
-
-            if (fill != 0) {
-                while (loopSize--) {
-                    __dcbz(p, 0);
-                    ((unsigned long*)p)[0] = fill;
-                    ((unsigned long*)p)[1] = fill;
-                    ((unsigned long*)p)[2] = fill;
-                    ((unsigned long*)p)[3] = fill;
-                    ((unsigned long*)p)[4] = fill;
-                    ((unsigned long*)p)[5] = fill;
-                    ((unsigned long*)p)[6] = fill;
-                    ((unsigned long*)p)[7] = fill;
-                    p += 0x20;
-                }
-            } else {
-                while (loopSize--) {
-                    __dcbz(p, 0);
-                    p += 0x20;
-                }
-            }
-        }
-
+        NETMemSet_BufSize32Aligned(buf, fill, accBlkSize);
         buf = (unsigned char*)buf + accBlkSize;
         size -= accBlkSize;
     }
 
-    buf_u8 = (unsigned char*)buf;
-    numWords = size >> 2;
-    remainBytes = size & 3;
-    while (numWords--) {
-        *(unsigned long*)buf_u8 = fill;
-        buf_u8 += 4;
-    }
-    while (remainBytes--) {
-        *buf_u8++ = (unsigned char)fill;
-    }
-
+    NETMemSet_Simple(buf, fill, size);
     return buf;
 }

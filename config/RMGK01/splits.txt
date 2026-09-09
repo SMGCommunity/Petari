@@ -9947,7 +9947,7 @@ JSystem/J3DGraphAnimator/J3DModelData.cpp:
 JSystem/J3DGraphAnimator/J3DMtxBuffer.cpp:
 	.text       start:0x80431CA0 end:0x804329D8
 	.data       start:0x805E9A60 end:0x805E9A68
-	.bss        start:0x8060FC28 end:0x80638CE0
+	.bss        start:0x8060FC28 end:0x80631CC0
 	.sdata      start:0x806B2750 end:0x806B2758
 	.sdata2     start:0x806C1B30 end:0x806C1B38
 
@@ -10112,6 +10112,7 @@ RVL_SDK/gd/GDTransform.c:
 RVL_SDK/kpad/KPAD.c:
 	.text       start:0x8044FC10 end:0x80452EDC
 	.data       start:0x805EA578 end:0x805EA5D0
+	.bss        start:0x80631CC0 end:0x80638CE0
 	.sdata      start:0x806B2788 end:0x806B27F8
 	.sbss       start:0x806B72C0 end:0x806B72E0
 	.sdata2     start:0x806C1CA0 end:0x806C1D08
@@ -10148,7 +10149,7 @@ RVLFaceLib/RFL_System.c:
 	.text       start:0x80457EBC end:0x80458878
 	.rodata     start:0x8055C4C8 end:0x8055C4D8
 	.sdata      start:0x806B2808 end:0x806B2810
-	.sbss       start:0x806B7408 end:0x806B7420
+	.sbss       start:0x806B7408 end:0x806B7418
 
 RVLFaceLib/RFL_NANDLoader.c:
 	extab       start:0x80006500 end:0x80006580
@@ -10224,6 +10225,7 @@ RVLFaceLib/RFL_Format.c:
 
 RVL_SDK/net/nettime.c:
 	.text       start:0x80461FC0 end:0x804620A4
+	.sbss       start:0x806B7418 end:0x806B7420
 
 RVL_SDK/net/NETVersion.c:
 	.text       start:0x804620A4 end:0x804620AC

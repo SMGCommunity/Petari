@@ -1,6 +1,8 @@
 #include "revolution/vf/pf_system.h"
 #include "revolution/vf/d_time.h"
 
+PF_SYSTEM_SET VFipf_sys_set;
+
 void VFiPFSYS_initializeSYS() {
     return;
 }

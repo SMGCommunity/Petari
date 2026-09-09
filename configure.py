@@ -2670,7 +2670,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/ipc/ipcProfile.c"),
         ],
     ),
-    SDKLib_KPAD("kpad", [Object(NonMatching, "RVL_SDK/kpad/KPAD.c")]),
+    SDKLib_KPAD("kpad", [Object(Matching, "RVL_SDK/kpad/KPAD.c")]),
     SDKLib(
         "mem",
         [
@@ -2704,10 +2704,10 @@ config.libs = [
     SDKLib_NET(
         "net",
         [
-            Object(NonMatching, "RVL_SDK/net/nettime.c"),
+            Object(Matching, "RVL_SDK/net/nettime.c"),
             Object(NonMatching, "RVL_SDK/net/NETVersion.c"),
-            Object(NonMatching, "RVL_SDK/net/netmemcpy.c"),
-            Object(NonMatching, "RVL_SDK/net/netmemset.c"),
+            Object(Matching, "RVL_SDK/net/netmemcpy.c", extra_cflags=["-O4,p"]),
+            Object(Matching, "RVL_SDK/net/netmemset.c", extra_cflags=["-O4,p"]),
         ],
     ),
     SDKLib_NWC24(
@@ -2809,7 +2809,7 @@ config.libs = [
             Object(NonMatching, "RVL_SDK/vf/pf_w_clib.c"),
             Object(NonMatching, "RVL_SDK/vf/pf_driver.c"),
             Object(NonMatching, "RVL_SDK/vf/pdm_bpb.c"),
-            Object(NonMatching, "RVL_SDK/vf/pdm_disk.c"),
+            Object(Matching, "RVL_SDK/vf/pdm_disk.c"),
             Object(NonMatching, "RVL_SDK/vf/pdm_partition.c"),
             Object(NonMatching, "RVL_SDK/vf/pdm_mbr.c"),
             Object(NonMatching, "RVL_SDK/vf/pdm_dskmng.c"),

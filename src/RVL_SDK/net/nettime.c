@@ -2,36 +2,31 @@
 #include "revolution/nwc24/NWC24Time.h"
 #include "revolution/os.h"
 
-static s64 whenCached = 0;
+static inline BOOL NETGetUniversalSeconds(s64* utcSec) {
+    static s64 whenCached;
+    NWC24Err err;
 
-// https://decomp.me/scratch/Gda4L
-BOOL NETGetUniversalCalendar(OSCalendarTime* time) {
-    NWC24iDate date;
-    s64 universalTime;
-
-    if (whenCached == 0) {
-        goto update;
+    if (whenCached == 0 || whenCached + OSSecondsToTicks(60) < __OSGetSystemTime()) {
+        NWC24iSynchronizeRtcCounter(FALSE);
+        whenCached = __OSGetSystemTime();
     }
 
-    if (whenCached + OSSecondsToTicks(60) >= __OSGetSystemTime()) {
-        goto use_cache;
-    }
-
-update:
-    NWC24iSynchronizeRtcCounter(FALSE);
-    whenCached = __OSGetSystemTime();
-use_cache:
-    if (NWC24iGetUniversalTime(&universalTime) < 0) {
-        goto error;
-    }
-    if (NWC24iEpochSecondsToDate(&date, universalTime) < 0) {
-        goto error;
-    }
-    if (NWC24iDateToOSCalendarTime(time, &date) < 0) {
-        goto error;
+    err = NWC24iGetUniversalTime(utcSec);
+    if (err < 0) {
+        return FALSE;
     }
     return TRUE;
-error:
+}
+
+BOOL NETGetUniversalCalendar(OSCalendarTime* time) {
+    NWC24iDate nwcDate;
+    s64 utcSec;
+
+    if (NETGetUniversalSeconds(&utcSec) && NWC24iEpochSecondsToDate(&nwcDate, utcSec) >= 0 &&
+        NWC24iDateToOSCalendarTime(time, &nwcDate) >= 0) {
+        return TRUE;
+    }
+
     OSTicksToCalendarTime(OSGetTime(), time);
     return FALSE;
 }

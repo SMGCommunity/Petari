@@ -4,27 +4,26 @@ void VFipdm_bpb_calculate_common_bpb_fields(struct PDM_BPB* p_bpb) {
     u32 num_data_sectors;
     u16 val;
     u32 fat_max_cluster_count;
-    u32 temp;
 
     p_bpb->log2_bytes_per_sector = 0;
-    temp = p_bpb->bytes_per_sector;
-    while ((temp = (temp >> 1) & 0x7FFF) != 0) {
+    val = p_bpb->bytes_per_sector;
+    while ((val >>= 1) != 0) {
         p_bpb->log2_bytes_per_sector++;
     }
 
     p_bpb->log2_sectors_per_cluster = 0;
-    temp = p_bpb->sectors_per_cluster;
-    while ((temp = (temp >> 1) & 0x7FFF) != 0) {
+    val = p_bpb->sectors_per_cluster;
+    while ((val >>= 1) != 0) {
         p_bpb->log2_sectors_per_cluster++;
     }
 
-    val = ((p_bpb->bytes_per_sector + (p_bpb->num_root_dir_entries * 32)) - 1) >> p_bpb->log2_bytes_per_sector;
-    p_bpb->num_root_dir_sectors = val;
+    p_bpb->num_root_dir_sectors =
+        ((p_bpb->bytes_per_sector + (p_bpb->num_root_dir_entries * 32)) - 1) >> p_bpb->log2_bytes_per_sector;
 
-    val = ((u16)val + p_bpb->num_reserved_sectors) + (p_bpb->num_FATs * p_bpb->sectors_per_FAT);
-    p_bpb->first_data_sector = val;
+    p_bpb->first_data_sector =
+        (p_bpb->num_root_dir_sectors + p_bpb->num_reserved_sectors) + (p_bpb->num_FATs * p_bpb->sectors_per_FAT);
 
-    num_data_sectors = p_bpb->total_sectors - val;
+    num_data_sectors = p_bpb->total_sectors - p_bpb->first_data_sector;
     p_bpb->num_clusters = num_data_sectors >> p_bpb->log2_sectors_per_cluster;
 
     if (p_bpb->num_clusters < 0xFF5) {

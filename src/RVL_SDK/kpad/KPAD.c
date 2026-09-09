@@ -3,6 +3,8 @@
 #include <cmath>
 #include <cstdio>
 
+static const char* __KPADVersion = "<< RVL_SDK - KPAD \trelease build: Jun  3 2008 11:53:11 (0x4201_134) >>";
+
 static Vec2 icenter_org = {0.000f, 0.000f};
 static f32 idist_org = 1.000f;
 static Vec2 iaccXY_nrm_hori = {0.000f, -1.000f};
@@ -50,8 +52,6 @@ KPADInsideStatus inside_kpads[4];
 static Vec2 Vec2_0 = {0.0f, 0.0f};
 static Mtx kp_fs_rot;
 static f32 kp_fs_revise_deg = 24.0f;
-
-static const char* __KPADVersion = "<< RVL_SDK - KPAD \trelease build: Jun  3 2008 11:53:11 (0x4201_134) >>";
 
 void KPADSetBtnRepeat(s32 chan, f32 delay_sec, f32 pulse_sec) {
     KPADInsideStatus* kp = &inside_kpads[chan];
@@ -342,7 +342,7 @@ void calc_acc_vertical(KPADInsideStatus* kp) {
     if (f1 == 0.0f || f1 >= 2.0f) {
         return;
     }
-    ax /= f1;
+    f2 = ax / f1;
     ay /= f1;
 
     if (f1 > 1.0f) {
@@ -350,7 +350,7 @@ void calc_acc_vertical(KPADInsideStatus* kp) {
     }
     f1 *= f1 * kp_acc_horizon_pw;
 
-    ax = (ax - sp->acc_vertical.x) * f1 + sp->acc_vertical.x;
+    ax = (f2 - sp->acc_vertical.x) * f1 + sp->acc_vertical.x;
     ay = (ay - sp->acc_vertical.y) * f1 + sp->acc_vertical.y;
 
     f1 = sqrt(ax * ax + ay * ay);
@@ -706,15 +706,15 @@ void calc_dpd_variable(KPADInsideStatus* kp, s8 valid_fg_next) {
 
         if (kp->hori_play_mode == KPAD_PLAY_MODE_LOOSE) {
             if (f1 >= kp->hori_play_radius) {
-                f1 = 1.0f;
+                f2 = 1.0f;
             } else {
-                f1 /= kp->hori_play_radius;
-                f1 *= f1;
-                f1 *= f1;
+                f2 = f1 / kp->hori_play_radius;
+                f2 *= f2;
+                f2 *= f2;
             }
-            f1 *= kp->hori_sensitivity;
-            vec.x = f1 * vec.x + sp->horizon.x;
-            vec.y = f1 * vec.y + sp->horizon.y;
+            f2 *= kp->hori_sensitivity;
+            vec.x = f2 * vec.x + sp->horizon.x;
+            vec.y = f2 * vec.y + sp->horizon.y;
             f1 = sqrt(vec.x * vec.x + vec.y * vec.y);
             vec.x /= f1;
             vec.y /= f1;
@@ -818,19 +818,17 @@ void calc_dpd_variable(KPADInsideStatus* kp, s8 valid_fg_next) {
         f1 = sqrt(vec.x * vec.x + vec.y * vec.y);
 
         if (kp->pos_play_mode == KPAD_PLAY_MODE_LOOSE) {
-            // looks like a change was made here
-            // todo -- find it
             if (f1 >= kp->pos_play_radius) {
-                f1 = 1.0f;
+                f2 = 1.0f;
             } else {
-                f1 /= kp->pos_play_radius;
-                f1 *= f1;
-                f1 *= f1;
+                f2 = f1 / kp->pos_play_radius;
+                f2 *= f2;
+                f2 *= f2;
             }
-            f1 *= kp->pos_sensitivity;
+            f2 *= kp->pos_sensitivity;
 
-            sp->vec.x = f1 * vec.x;
-            sp->vec.y = f1 * vec.y;
+            sp->vec.x = f2 * vec.x;
+            sp->vec.y = f2 * vec.y;
             sp->speed = sqrt(sp->vec.x * sp->vec.x + sp->vec.y * sp->vec.y);
 
             sp->pos.x += sp->vec.x;
@@ -855,17 +853,20 @@ void calc_dpd_variable(KPADInsideStatus* kp, s8 valid_fg_next) {
 }
 
 void calc_obj_horizon(KPADInsideStatus* kp) {
-    f32 f1, vx, vy;
+    f32 f1, f2, vx, vy;
 
     vx = kp->kobj_regular[1].center.x - kp->kobj_regular[0].center.x;
     vy = kp->kobj_regular[1].center.y - kp->kobj_regular[0].center.y;
-    kp->sec_length = sqrt(vx * vx + vy * vy);
+    f1 = sqrt(vx * vx + vy * vy);
+    kp->sec_length = f1;
 
-    f1 = 1.0f / kp->sec_length;
-    kp->sec_dist = kp->dist_vv1 * f1;
+    f2 = 1.0f / f1;
+    kp->sec_dist = kp->dist_vv1 * f2;
 
-    kp->sec_nrm.x = (vx *= f1);
-    kp->sec_nrm.y = (vy *= f1);
+    vx *= f2;
+    vy *= f2;
+    kp->sec_nrm.x = vx;
+    kp->sec_nrm.y = vy;
 
     kp->obj_horizon.x = kp->sec_nrm_hori.x * vx + kp->sec_nrm_hori.y * vy;
     kp->obj_horizon.y = kp->sec_nrm_hori.y * vx - kp->sec_nrm_hori.x * vy;
@@ -1142,6 +1143,12 @@ static void KPADiSamplingCallback(s32 chan);
 static void KPADiControlDpdCallback(s32 chan, s32 result);
 
 // https://decomp.me/scratch/UtYxQ
+static const WPADAcc core1GInit = {1, 1, 1};
+static const WPADAcc fs1GInit = {1, 1, 1};
+
+// Preserve the SDK compiler's halfword copies for WPAD status structures.
+#pragma push
+#pragma legacy_struct_alignment on
 s32 KPADRead(s32 chan, KPADStatus samplingBufs[], u32 length) {
     KPADTmpStatus* tp = (KPADTmpStatus*)samplingBufs;
     KPADUnifiedWpadStatus uwStatus;
@@ -1215,25 +1222,30 @@ s32 KPADRead(s32 chan, KPADStatus samplingBufs[], u32 length) {
 
         OSRestoreInterrupts(enabled);
         {
-            WPADAcc core1G = {1, 1, 1};
-            WPADAcc fs1G = {1, 1, 1};
+            // The original compiler reserves eight bytes for each six-byte vector.
+            struct {
+                WPADAcc acc;
+                s16 padding;
+            } core1G, fs1G;
 
-            WPADGetAccGravityUnit(chan, WPAD_DEV_CORE, &core1G);
-            if (core1G.x * core1G.y * core1G.z != 0) {
-                kp->acc_scale_x = 1.0f / core1G.x;
-                kp->acc_scale_y = 1.0f / core1G.y;
-                kp->acc_scale_z = 1.0f / core1G.z;
+            core1G.acc = core1GInit;
+            fs1G.acc = fs1GInit;
+            WPADGetAccGravityUnit(chan, WPAD_DEV_CORE, &core1G.acc);
+            if (core1G.acc.x * core1G.acc.y * core1G.acc.z != 0) {
+                kp->acc_scale_x = 1.0f / core1G.acc.x;
+                kp->acc_scale_y = 1.0f / core1G.acc.y;
+                kp->acc_scale_z = 1.0f / core1G.acc.z;
             } else {
                 kp->acc_scale_x = 1.0f / 100;
                 kp->acc_scale_y = 1.0f / 100;
                 kp->acc_scale_z = 1.0f / 100;
             }
 
-            WPADGetAccGravityUnit(chan, WPAD_DEV_FREESTYLE, &fs1G);
-            if (fs1G.x * fs1G.y * fs1G.z != 0) {
-                kp->fs_acc_scale_x = 1.0f / fs1G.x;
-                kp->fs_acc_scale_y = 1.0f / fs1G.y;
-                kp->fs_acc_scale_z = 1.0f / fs1G.z;
+            WPADGetAccGravityUnit(chan, WPAD_DEV_FREESTYLE, &fs1G.acc);
+            if (fs1G.acc.x * fs1G.acc.y * fs1G.acc.z != 0) {
+                kp->fs_acc_scale_x = 1.0f / fs1G.acc.x;
+                kp->fs_acc_scale_y = 1.0f / fs1G.acc.y;
+                kp->fs_acc_scale_z = 1.0f / fs1G.acc.z;
             } else {
                 kp->fs_acc_scale_x = 1.0f / 200;
                 kp->fs_acc_scale_y = 1.0f / 200;
@@ -1325,6 +1337,8 @@ finish:
     return (s32)return_ct;
 }
 
+#pragma pop
+
 void KPADInit(void) {
     s32 i;
     KPADInsideStatus* kp;
@@ -1404,7 +1418,7 @@ static void KPADiSamplingCallback(s32 chan) {
         u8 dpd;
         u8 fmt;
     } table[] = {{0, WPAD_FMT_CORE_ACC},          {3, WPAD_FMT_CORE_ACC_DPD}, {0, WPAD_FMT_FREESTYLE_ACC},
-                 {0, WPAD_FMT_FREESTYLE_ACC_DPD}, {0, WPAD_FMT_CLASSIC_ACC},  {1, WPAD_FMT_CLASSIC_ACC_DPD}};
+                 {1, WPAD_FMT_FREESTYLE_ACC_DPD}, {0, WPAD_FMT_CLASSIC_ACC},  {1, WPAD_FMT_CLASSIC_ACC_DPD}};
 
     ASSERT((0 <= chan) && (chan < WPAD_MAX_CONTROLLERS));
 
