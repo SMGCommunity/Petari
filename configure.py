@@ -2778,7 +2778,7 @@ config.libs = [
     SDKLib(
         "sc",
         [
-            Object(NonMatching, "RVL_SDK/sc/scsystem.c"),
+            Object(Matching, "RVL_SDK/sc/scsystem.c"),
             Object(NonMatching, "RVL_SDK/sc/scapi.c"),
             Object(Matching, "RVL_SDK/sc/scapi_prdinfo.c"),
         ],
