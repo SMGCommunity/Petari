@@ -2687,7 +2687,7 @@ config.libs = [
             Object(Matching, "RVL_SDK/mtx/mtxvec.c"),
             Object(NonMatching, "RVL_SDK/mtx/mtx44.c"),
             Object(Matching, "RVL_SDK/mtx/vec.c"),
-            Object(NonMatching, "RVL_SDK/mtx/quat.c"),
+            Object(Matching, "RVL_SDK/mtx/quat.c"),
         ],
     ),
     SDKLib(

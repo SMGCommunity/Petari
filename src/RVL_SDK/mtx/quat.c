@@ -63,6 +63,8 @@ f32 PSQUATDotProduct( const register Quaternion *p, const register Quaternion *q
 
 // clang-format on
 
+static const f32 one[] = {1.0f};
+
 void C_QUATMtx(Quaternion* r, const Mtx m) {
     f32 tr, s;
     s32 i, j, k;
@@ -71,9 +73,9 @@ void C_QUATMtx(Quaternion* r, const Mtx m) {
 
     tr = m[0][0] + m[1][1] + m[2][2];
     if (tr > 0.0f) {
-        s = (f32)sqrt(tr + 1.0f);
-        r->w = s * 0.5f;
-        s = 0.5f / s;
+        tr = (f32)sqrt(one[0] + tr);
+        r->w = tr * 0.5f;
+        s = 0.5f / tr;
         r->x = (m[2][1] - m[1][2]) * s;
         r->y = (m[0][2] - m[2][0]) * s;
         r->z = (m[1][0] - m[0][1]) * s;
@@ -85,7 +87,7 @@ void C_QUATMtx(Quaternion* r, const Mtx m) {
             i = 2;
         j = nxt[i];
         k = nxt[j];
-        s = (f32)sqrt((m[i][i] - (m[j][j] + m[k][k])) + 1.0f);
+        s = (f32)sqrt((m[i][i] - (m[j][j] + m[k][k])) + one[0]);
         q[i] = s * 0.5f;
 
         if (s != 0.0f)
@@ -105,7 +107,7 @@ void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t)
     f32 theta, sin_th, cos_th, tp, tq, sin_1mtth, sin_tth;
 
     cos_th = p->x * q->x + p->y * q->y + p->z * q->z + p->w * q->w;
-    tq = 1.0F;
+    tq = one[0];
 
     if (cos_th < 0.0F) {
         cos_th = -cos_th;
@@ -115,12 +117,13 @@ void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t)
     if (cos_th <= 1.0F - 0.00001f) {
         theta = acos(cos_th);
         sin_th = sin(theta);
-        sin_1mtth = sin((1.0F - t) * theta);
+        tp = one[0] - t;
+        sin_1mtth = sin(tp * theta);
         tp = sin_1mtth / sin_th;
         sin_tth = sin(t * theta);
         tq *= sin_tth/sin_th;
     } else {
-        tp = 1.0F - t;
+        tp = one[0] - t;
         tq = tq * t;
     }
 
