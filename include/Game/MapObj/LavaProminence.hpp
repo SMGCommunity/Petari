@@ -2,6 +2,9 @@
 
 #include "Game/LiveActor/LiveActor.hpp"
 #include "JSystem/JGeometry/TMatrix.hpp"
+#include "JSystem/JGeometry/TVec.hpp"
+
+class PartsModel;
 
 class LavaProminence : public LiveActor {
 public:
@@ -18,6 +21,8 @@ public:
     void moveOnRail();
     void setGravityAndMakeMtx();
     void updateEffectClipping(bool);
+    bool isNrvExtra();
+    f32 getRadius(const char*) const;
 
     void exeWaitSwitch();
     void exeWait();
@@ -28,28 +33,21 @@ public:
     void exeMoveEnd();
     void exeMoveEndExtra();
 
-    /* 0x8C */ s32 _8C;
-    /* 0x90 */ f32 _90;
+    /* 0x8C */ s32 mStepAppearance;
+    /* 0x90 */ f32 mMovementSpeed;
     /* 0x94 */ f32 _94;
-    /* 0x98 */ f32 _98;
-    /* 0x9C */ TVec3f _9C;
-    /* 0xA8 */ TVec3f _A8;
-    /* 0xB4 */ f32 _B4;
-    /* 0xB8 */ f32 _B8;
-    /* 0xBC */ f32 _BC;
-    /* 0xC0 */ f32 _C0;
-    /* 0xC4 */ f32 _C4;
-    /* 0xC8 */ f32 _C8;
-    /* 0xCC */ TMtx34f _CC;
-    /* 0xFC */ TMtx34f _FC;
+    /* 0x98 */ f32 mEndPathOffset;
+    /* 0x9C */ TVec3f mRailDir;
+    /* 0xA8 */ TVec3f mRailDirEnd;
+    /* 0xB4 */ TVec3f _B4;
+    /* 0xC0 */ TVec3f _C0;
+    /* 0xCC */ TPos3f _CC;
+    /* 0xFC */ TPos3f _FC;
     /* 0x12C */ TVec3f _12C;
-    /* 0x138 */ s32 _138;
-    /* 0x13C */ TMtx34f _13C;
-    /* 0x16C */ f32 _16C;
-    /* 0x170 */ f32 _170;
-    /* 0x174 */ f32 _174;
-    /* 0x178 */ f32 _178;
+    /* 0x138 */ PartsModel* mBloomModel;
+    /* 0x13C */ TPos3f _13C;
+    /* 0x16C */ TQuat4f _16C;
     /* 0x17C */ TVec3f _17C;
-    /* 0x188 */ bool _188;
-    /* 0x18C */ TMtx34f _18C;
+    /* 0x188 */ bool mEmitDropEffect;
+    /* 0x18C */ TPos3f _18C;
 };
