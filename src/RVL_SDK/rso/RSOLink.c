@@ -30,6 +30,7 @@ void RSONotifyPostRSOLinkFar(RSOObjectHeader*, const RSOObjectHeader*, void*) NO
 }
 
 static RSOImportTable* RSOGetImport(const RSOSymbolHeader* imp);
+static void RSOUnresolveImportSymbolAll(RSOObjectHeader* rso);
 static int RSOGetNumImportSymbols(const RSOSymbolHeader* imp);
 void RSORelocate(RSORel* rel, int index, u32 offset);
 
@@ -54,19 +55,19 @@ int LocateObject(void* newModule, void* bss, int i_fix_level) {
 
     moduleHeader = (RSOObjectHeader*)newModule;
     moduleHeader->mBssSection = 0;
-    moduleHeader->mInfo.mSectionInfoOffset += (u32)moduleHeader;
-    moduleHeader->mInfo.mNameOffset += (u32)moduleHeader;
-    moduleHeader->mInternalRelOffset += (u32)moduleHeader;
-    moduleHeader->mExternalRelOffset += (u32)moduleHeader;
-    moduleHeader->mExpHeader.mTableOffset += (u32)moduleHeader;
-    moduleHeader->mExpHeader.mStringOffset += (u32)moduleHeader;
-    moduleHeader->mImpHeader.mTableOffset += (u32)moduleHeader;
-    moduleHeader->mImpHeader.mStringOffset += (u32)moduleHeader;
+    moduleHeader->mInfo.mSectionInfoOffset += (u32)newModule;
+    moduleHeader->mInfo.mNameOffset += (u32)newModule;
+    moduleHeader->mInternalRelOffset += (u32)newModule;
+    moduleHeader->mExternalRelOffset += (u32)newModule;
+    moduleHeader->mExpHeader.mTableOffset += (u32)newModule;
+    moduleHeader->mExpHeader.mStringOffset += (u32)newModule;
+    moduleHeader->mImpHeader.mTableOffset += (u32)newModule;
+    moduleHeader->mImpHeader.mStringOffset += (u32)newModule;
 
     for (i = 1; i < moduleHeader->mInfo.mNumSections; i++) {
         si = &((RSOSectionInfo*)moduleHeader->mInfo.mSectionInfoOffset)[i];
         if (si->mOffset != 0) {
-            si->mOffset += (u32)moduleHeader;
+            si->mOffset += (u32)newModule;
         } else if (si->mSize != 0) {
             moduleHeader->mBssSection = i;
             si->mOffset = (u32)bss;
@@ -86,7 +87,7 @@ int LocateObject(void* newModule, void* bss, int i_fix_level) {
     a_max = moduleHeader->mInternalRelSize / sizeof(RSORel);
     for (i = 0; i < a_max; i++) {
         intRel = &((RSORel*)moduleHeader->mInternalRelOffset)[i];
-        intRel->offset += (u32)moduleHeader;
+        intRel->offset += (u32)newModule;
         RSORelocate(intRel, 0, ((RSOSectionInfo*)moduleHeader->mInfo.mSectionInfoOffset)[intRel->info >> 8].mOffset);
     }
 
@@ -96,19 +97,10 @@ int LocateObject(void* newModule, void* bss, int i_fix_level) {
 
     a_max = moduleHeader->mExternalRelSize / sizeof(RSORel);
     for (i = 0; i < a_max; i++) {
-        ((RSORel*)moduleHeader->mExternalRelOffset)[i].offset += (u32)moduleHeader;
+        ((RSORel*)moduleHeader->mExternalRelOffset)[i].offset += (u32)newModule;
     }
 
-    a_max = RSOGetNumImportSymbols(&moduleHeader->mImpHeader);
-    for (i = 0; i < a_max; i++) {
-        RSOImportTable* impTab = &RSOGetImport(&moduleHeader->mImpHeader)[i];
-        impTab->value = moduleHeader->mUnresolved;
-        extRel = (RSORel*)(moduleHeader->mExternalRelOffset + impTab->relOffset);
-        while ((extRel->info >> 8) == (u32)i) {
-            RSORelocate(extRel, 0, impTab->value);
-            extRel++;
-        }
-    }
+    RSOUnresolveImportSymbolAll(moduleHeader);
 
     if (i_fix_level <= 1) {
         memset(bss, 0, moduleHeader->mBssSize);
@@ -126,7 +118,6 @@ int RSOStaticLocateObject(void* newModule) {
 
     moduleHeader = (RSOObjectHeader*)newModule;
     moduleHeader->mBssSection = 0;
-    // I'm not sure if  this is actually what it's doing
     moduleHeader->mInfo.mSectionInfoOffset += (u32)moduleHeader;
     moduleHeader->mInfo.mNameOffset += (u32)moduleHeader;
     moduleHeader->mInternalRelOffset += (u32)moduleHeader;
@@ -170,16 +161,16 @@ int RSOStaticLocateObject(void* newModule) {
         case 8:
             si->mOffset = (u32)_f_sdata;
             break;
-        case 9:
+        case 11:
             si->mOffset = (u32)_f_sbss;
             break;
-        case 10:
+        case 9:
             si->mOffset = (u32)_f_sdata2;
             break;
-        case 11:
+        case 12:
             si->mOffset = (u32)_f_sbss2;
             break;
-        case 12:
+        case 10:
             si->mOffset = 0;
             break;
         case 13:
@@ -187,7 +178,7 @@ int RSOStaticLocateObject(void* newModule) {
             break;
         default:
             if (si->mSize != 0) {
-                OSReport("Warning! unknown section[%d]! size=%x\n", i, si->mSize);
+                OSReport("Warrning! unknown section[%d]! size=%x\n", i, si->mSize);
             }
             si->mOffset = 0;
             break;
@@ -204,6 +195,11 @@ int RSOStaticLocateObject(void* newModule) {
 
 static RSOImportTable* RSOGetImport(const RSOSymbolHeader* imp) {
     return (RSOImportTable*)imp->mTableOffset;
+}
+
+static char* RSOGetImportSymbolName(const RSOSymbolHeader* imp, u32 index) {
+    RSOImportTable* impTab = &RSOGetImport(imp)[index];
+    return (char*)impTab->strOffset + imp->mStringOffset;
 }
 
 static int RSOGetNumImportSymbols(const RSOSymbolHeader* imp) {
@@ -225,6 +221,21 @@ static void RSOResolveImportSymbol(RSOObjectHeader* rsoImp, int index, void* add
     RSOImportTable* impTab = &RSOGetImport(&rsoImp->mImpHeader)[index];
     impTab->value = (u32)addr;
     RSORelocateImportSymbol(rsoImp, impTab, index);
+}
+
+static void RSOUnresolveImportSymbol(RSOObjectHeader* rsoImp, int index) {
+    RSOImportTable* impTab = &RSOGetImport(&rsoImp->mImpHeader)[index];
+    impTab->value = rsoImp->mUnresolved;
+    RSORelocateImportSymbol(rsoImp, impTab, index);
+}
+
+static void RSOUnresolveImportSymbolAll(RSOObjectHeader* rso) {
+    int i;
+    int s_max = RSOGetNumImportSymbols(&rso->mImpHeader);
+
+    for (i = 0; i < s_max; i++) {
+        RSOUnresolveImportSymbol(rso, i);
+    }
 }
 
 int RSOLink(RSOObjectHeader* rsoImp, const RSOObjectHeader* rsoExp) {
@@ -282,27 +293,23 @@ BOOL RSOIsImportSymbolResolvedAll(const RSOObjectHeader* rso) {
 }
 
 static int RSOGetNumExportSymbols(const RSOSymbolHeader* exp) {
-    return exp->mTableSize >> 4;
+    return exp->mTableSize / sizeof(RSOExportTable);
 }
 
 static RSOHash RSOGetHash(const char* symbolName) {
-    char v2;
-    int v3;
-    u32 v4;
-    RSOHash hash = 0;
+    u32 h = 0;
+    u32 g;
 
     while (*symbolName != 0) {
-        v2 = *symbolName++;
-        v3 = 16 * hash + v2;
-        v4 = v3 & 0xF0000000;
-        if (v4 != 0) {
-            v3 ^= v4 >> 24;
+        h = (h << 4) + *symbolName++;
+        g = h & 0xF0000000;
+        if (g != 0) {
+            h ^= g >> 24;
         }
-
-        hash = v3 & ~v4;
+        h &= ~g;
     }
 
-    return hash;
+    return h;
 }
 
 static void* RSOGetExportSymbolAddr(const RSOObjectHeader* rso, int index) {
@@ -313,12 +320,12 @@ static void* RSOGetExportSymbolAddr(const RSOObjectHeader* rso, int index) {
 
 static char* RSOGetExportSymbolName(const RSOSymbolHeader* exp, int index) {
     RSOExportTable* expTab = (RSOExportTable*)exp->mTableOffset + index;
-    return (char*)(exp->mStringOffset + expTab->strOffset);
+    return (char*)expTab->strOffset + exp->mStringOffset;
 }
 
 int FindExportIndex(const RSOObjectHeader* rso, const char* name) {
     u32 a_hash = RSOGetHash(name);
-    int i;
+    u32 i;
     const char* expName;
     int s_max = RSOGetNumExportSymbols(&rso->mExpHeader);
     RSOExportTable* expTab = (RSOExportTable*)rso->mExpHeader.mTableOffset;
@@ -336,13 +343,13 @@ int FindExportIndex(const RSOObjectHeader* rso, const char* name) {
         a_expTab = &expTab[i];
 
         if (a_hash > a_expTab->hash) {
-            if (a_top == i) {
+            if (a_top == (int)i) {
                 a_idx = a_last;
             } else {
                 a_top = i;
             }
         } else if (a_hash < a_expTab->hash) {
-            if (a_top == i) {
+            if (a_top == (int)i) {
                 a_idx = a_top;
             } else {
                 a_last = i;
@@ -362,7 +369,7 @@ int FindExportIndex(const RSOObjectHeader* rso, const char* name) {
         return a_idx;
     }
 
-    for (i = a_idx + 1; i <= a_last; i++) {
+    for (i = a_idx + 1; (int)i <= a_last; i++) {
         a_expTab = &expTab[i];
         if (a_hash == a_expTab->hash) {
             expName = RSOGetExportSymbolName(&rso->mExpHeader, i);
@@ -374,7 +381,7 @@ int FindExportIndex(const RSOObjectHeader* rso, const char* name) {
         }
     }
 
-    for (i = a_idx - 1; i >= a_top; i--) {
+    for (i = a_idx - 1; (int)i >= a_top; i--) {
         a_expTab = &expTab[i];
         if (a_hash == a_expTab->hash) {
             expName = RSOGetExportSymbolName(&rso->mExpHeader, i);
@@ -435,11 +442,12 @@ void RSORelocate(RSORel* rel, int index, u32 offset) {
         *p = (*p & 0xFFFF0003) | ((offset + rel->addend) & 0xFFFC);
         break;
     case 10:
-        x = (*p & 0xFC000003) | (((offset + rel->addend) - (u32)p) & 0x03FFFFFC);
-        *p = x;
-        y = offset + rel->addend;
-        if (y != 0 && y != (((u32)p & 0xFC000003) | ((((u32)p & 0x03FFFFFC) + (x & 0x03FFFFFC)) & 0x03FFFFFC))) {
-            *p = (x & 0xFC000003) | 0x03FFFFFC;
+        x = offset + rel->addend - (u32)p;
+        *p = (*p & 0xFC000003) | (x & 0x03FFFFFC);
+        x = offset + rel->addend;
+        y = ((u32)p & 0xFC000003) | ((((u32)p & 0x03FFFFFC) + (*p & 0x03FFFFFC)) & 0x03FFFFFC);
+        if (x != 0 && x != y) {
+            *p = (*p & 0xFC000003) | 0x03FFFFFC;
         }
         break;
     case 11:
@@ -479,71 +487,67 @@ void RSORelocateSmallDataSection(RSOObjectHeader* rsoImp, int impIndex, RSOObjec
     RSOSectionInfo* si;
 
     impTab = &RSOGetImport(&rsoImp->mImpHeader)[impIndex];
-    rel = (RSORel*)(rsoImp->mExternalRelOffset + impTab->relOffset);
-    impName = (const char*)(impTab->strOffset + rsoImp->mImpHeader.mStringOffset);
+    impName = RSOGetImportSymbolName(&rsoImp->mImpHeader, impIndex);
+    rel = (RSORel*)((u8*)rsoImp->mExternalRelOffset + impTab->relOffset);
 
     while ((rel->info >> 8) == (u32)impIndex) {
-        if ((u8)rel->info != 109) {
-            rel++;
-            continue;
-        }
+        if ((u8)rel->info == 109) {
+            p = (u8*)rel->offset;
 
-        p = (u8*)rel->offset;
-
-        switch ((u32)p & 3) {
-        case 0:
-            p += 1;
-            break;
-        case 2:
-            p -= 1;
-            break;
-        case 3:
-            p -= 2;
-            break;
-        }
-
-        expTab = RSOFindExportSymbol(rsoExp, impName);
-        if (expTab == NULL) {
-            rel++;
-            continue;
-        }
-
-        switch (expTab->section) {
-        case 8:
-        case 11:
-            *p = (*p & 0xE0) | 0xD;
-            baseTab = RSOFindExportSymbol(rsoExp, "_SDA_BASE_");
-            if (baseTab == NULL) {
-                rel++;
-                continue;
+            switch ((u32)p & 3) {
+            case 0:
+                p += 1;
+                break;
+            case 2:
+                p -= 1;
+                break;
+            case 3:
+                p -= 2;
+                break;
             }
-            base = baseTab->value;
-            break;
-        case 9:
-        case 12:
-            *p = (*p & 0xE0) | 2;
-            baseTab = RSOFindExportSymbol(rsoExp, "_SDA2_BASE_");
-            if (baseTab == NULL) {
-                rel++;
-                continue;
-            }
-            base = baseTab->value;
-            break;
-        case 10:
-        case 13:
-            base = 0;
-            *p &= 0xE0;
-            break;
-        case 0xF1:
-        default:
-            OSReport("ERROR: incorrect R_PPC_EMB_SDA21 data.\n");
-            break;
-        }
 
-        si = &((RSOSectionInfo*)rsoExp->mInfo.mSectionInfoOffset)[expTab->section];
-        *(u16*)(p + 1) = (u16)((si->mOffset + expTab->value + rel->addend) - base);
-        DCFlushRange(p, 0x20);
-        ICInvalidateRange(p, 0x20);
+            expTab = RSOFindExportSymbol(rsoExp, impName);
+            if (expTab != NULL) {
+                switch (expTab->section) {
+                case 8:
+                case 11:
+                    *p = (*p & ~0x1F) | 0xD;
+                    baseTab = RSOFindExportSymbol(rsoExp, "_SDA_BASE_");
+                    if (baseTab == NULL) {
+                        rel++;
+                        continue;
+                    }
+                    base = baseTab->value;
+                    break;
+                case 9:
+                case 12:
+                    *p = (*p & ~0x1F) | 2;
+                    baseTab = RSOFindExportSymbol(rsoExp, "_SDA2_BASE_");
+                    if (baseTab == NULL) {
+                        rel++;
+                        continue;
+                    }
+                    base = baseTab->value;
+                    break;
+                case 10:
+                case 13:
+                    base = 0;
+                    *p &= 0xE0;
+                    break;
+                case 0xF1:
+                    OSReport("ERROR: incorrect R_PPC_EMB_SDA21 data.\n");
+                    break;
+                default:
+                    OSReport("ERROR: incorrect R_PPC_EMB_SDA21 data.\n");
+                    break;
+                }
+
+                si = &((RSOSectionInfo*)rsoExp->mInfo.mSectionInfoOffset)[expTab->section];
+                *(u16*)(p + 1) = (u16)((si->mOffset + expTab->value + rel->addend) - base);
+                DCFlushRange(p, 0x20);
+                ICInvalidateRange(p, 0x20);
+            }
+        }
 
         rel++;
     }
@@ -628,15 +632,16 @@ int cnvJumpCode(const RSOObjectHeader* rso, RSOImportTable* impTab, int impIndex
 
     while ((rel->info >> 8) == (u32)impIndex) {
         if ((u8)rel->info == 10) {
+            offset = addr;
             p = (u32*)rel->offset;
-            offset = addr + rel->addend;
-            x = (*p & 0xFC000003) | ((offset - (u32)p) & 0x03FFFFFC);
-            *p = x;
-            y = addr + rel->addend;
-            if (y != 0 && y != (((u32)p & 0xFC000003) | ((((u32)p & 0x03FFFFFC) + (x & 0x03FFFFFC)) & 0x03FFFFFC))) {
-                x = (x & 0xFC000003) | (((u32)i_buff - (u32)p) & 0x03FFFFFC);
+            x = offset + rel->addend - (u32)p;
+            *p = (*p & 0xFC000003) | (x & 0x03FFFFFC);
+            x = offset + rel->addend;
+            y = ((u32)p & 0xFC000003) | ((((u32)p & 0x03FFFFFC) + (*p & 0x03FFFFFC)) & 0x03FFFFFC);
+            if (x != 0 && x != y) {
                 i_sw = 1;
-                *p = x;
+                x = (u32)i_buff - (u32)p;
+                *p = (*p & 0xFC000003) | (x & 0x03FFFFFC);
                 DCFlushRange(p, 0x20);
                 ICInvalidateRange(p, 0x20);
             }
@@ -654,7 +659,7 @@ int RSOGetJumpCodeSize(const RSOObjectHeader* pHeader) {
 
 static void makeCode(u32 addr, u32* i_buff) {
     i_buff[0] = 0x91810004;
-    i_buff[1] = 0x3D800000 | ((addr >> 16) + ((addr >> 15) & 1));
+    i_buff[1] = 0x3D800000 | (((addr >> 16) + ((addr >> 15) & 1)) & 0xFFFF);
     i_buff[2] = 0x398C0000 | (addr & 0xFFFF);
     i_buff[3] = 0x7D8903A6;
     i_buff[4] = 0x81810004;
@@ -665,15 +670,15 @@ void RSOMakeJumpCode(const RSOObjectHeader* i_rsoExp, void* i_buff) {
     int s_max;
     u32* r_buff;
     u32 a_addr;
-    int i;
+    u32 i;
 
-    s_max = i_rsoExp->mExpHeader.mTableSize >> 4;
+    s_max = RSOGetNumExportSymbols(&i_rsoExp->mExpHeader);
     r_buff = (u32*)i_buff;
 
-    for (i = 0; i < s_max; i++) {
+    for (i = 0; (int)i < s_max; i++) {
         a_addr = (u32)RSOGetExportSymbolAddr(i_rsoExp, i);
         makeCode(a_addr, r_buff);
-        r_buff += RSO_FAR_JUMP_SIZE / sizeof(u32);
+        r_buff += RSO_FAR_JUMP_SIZE / 4;
     }
 
     DCFlushRange(i_buff, s_max * RSO_FAR_JUMP_SIZE);
@@ -702,7 +707,7 @@ int RSOLinkJump(RSOObjectHeader* i_rsoImp, const RSOObjectHeader* i_rsoExp, void
             a_idx = FindExportIndex(i_rsoExp, impName);
 
             if (a_idx >= 0) {
-                a_buff = (u32*)i_buff + a_idx * (RSO_FAR_JUMP_SIZE / sizeof(u32));
+                a_buff = (u32*)i_buff + a_idx * (RSO_FAR_JUMP_SIZE / 4);
                 if (cnvJumpCode(i_rsoImp, impTab, i, (u32)RSOGetExportSymbolAddr(i_rsoExp, a_idx), a_buff) != 0) {
                     count++;
                 }

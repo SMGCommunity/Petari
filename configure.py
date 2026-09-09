@@ -2774,7 +2774,7 @@ config.libs = [
         ],
     ),
     SDKLib("pad", [Object(Matching, "RVL_SDK/pad/Pad.c")]),
-    SDKLib("rso", [Object(NonMatching, "RVL_SDK/rso/RSOLink.c")]),
+    SDKLib("rso", [Object(Matching, "RVL_SDK/rso/RSOLink.c")]),
     SDKLib(
         "sc",
         [

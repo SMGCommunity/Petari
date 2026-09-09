@@ -10141,13 +10141,14 @@ RVL_SDK/wenc/wenc.c:
 
 RVL_SDK/rso/RSOLink.c:
 	.text       start:0x80456B4C end:0x80457EBC
-	.data       start:0x805EA648 end:0x805EA7A8
+	.data       start:0x805EA648 end:0x805EA760
 
 RVLFaceLib/RFL_System.c:
 	extab       start:0x800064E0 end:0x80006500
 	extabindex  start:0x800069A0 end:0x800069D0
 	.text       start:0x80457EBC end:0x80458878
 	.rodata     start:0x8055C4C8 end:0x8055C4D8
+	.data       start:0x805EA760 end:0x805EA7A8
 	.sdata      start:0x806B2808 end:0x806B2810
 	.sbss       start:0x806B7408 end:0x806B7418
 
