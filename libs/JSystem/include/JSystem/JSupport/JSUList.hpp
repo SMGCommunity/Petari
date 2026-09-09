@@ -103,7 +103,7 @@ public:
     JSUList(bool thing) : JSUPtrList(thing) {
     }
 
-    ~JSUList(){};
+    ~JSUList() {};
 
     JSULink< T >* getFirst() const {
         return (JSULink< T >*)getFirstLink();

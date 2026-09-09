@@ -408,10 +408,10 @@ void EarthenPipe::control() {
 bool EarthenPipe::receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isMsgAutoRushBegin(msg)) {
         if (!(!isNerve(&NrvEarthenPipe::EarthenPipeNrvInvalid::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvHide::sInstance) &&
-            !isNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToShowUp::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance) &&
-            !isNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToHideDown::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvHideDown::sInstance) &&
-            !MR::isPlayerDead())) {
-                return false;
+              !isNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToShowUp::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvShowUp::sInstance) &&
+              !isNerve(&NrvEarthenPipe::EarthenPipeNrvWaitToHideDown::sInstance) && !isNerve(&NrvEarthenPipe::EarthenPipeNrvHideDown::sInstance) &&
+              !MR::isPlayerDead())) {
+            return false;
         }
         TVec3f sensorPos(TVec3f(mTopJointMtx[0][3], mTopJointMtx[1][3], mTopJointMtx[2][3]));
         TVec3f playerPos(*MR::getPlayerPos());

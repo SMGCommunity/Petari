@@ -212,7 +212,7 @@ public:
 class AudAudience_withSetting_doppler : public AudAudience_withSetting {
 public:
     /// @brief Creates a new `AudAudience_withSetting_doppler`.
-    AudAudience_withSetting_doppler() : AudAudience_withSetting(){};
+    AudAudience_withSetting_doppler() : AudAudience_withSetting() {};
 };
 
 template < int MAX_CHANNELS, class Audible, class AudienceState, class Audience >
@@ -419,7 +419,7 @@ template < int MAX_CHANNELS >
 class AudAudience : public AudAudience_< MAX_CHANNELS, AudDopplerAudible< MAX_CHANNELS >, AudDopplerAudienceState, AudAudience_withSetting_doppler > {
 public:
     AudAudience()
-        : AudAudience_< MAX_CHANNELS, AudDopplerAudible< MAX_CHANNELS >, AudDopplerAudienceState, AudAudience_withSetting_doppler >(){
+        : AudAudience_< MAX_CHANNELS, AudDopplerAudible< MAX_CHANNELS >, AudDopplerAudienceState, AudAudience_withSetting_doppler >() {
 
           };
     /* 0x1A8 */  // AudDopplerAudible< MAX_CHANNELS >* mAudible;

@@ -87,7 +87,7 @@ public:
     virtual void init(const JMapInfoIter&);
     virtual void draw() const;
     virtual void control();
-    
+
     virtual void calcBrightInfo(u16, const BrightCamInfo&);
     virtual void getNowCenter(TVec2f*) const;
 

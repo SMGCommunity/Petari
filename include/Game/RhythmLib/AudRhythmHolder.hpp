@@ -29,7 +29,7 @@ class AudRhythmHolder {
 public:
     AudRhythmHolder();
 
-    ~AudRhythmHolder(){};
+    ~AudRhythmHolder() {};
 
     void movement();
     void copyInfoFromParser();

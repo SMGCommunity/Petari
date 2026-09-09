@@ -2,7 +2,8 @@
 #include "Game/Map/ActorAppearSwitchListener.hpp"
 #include "Game/Map/StageSwitch.hpp"
 
-SleepController::SleepController(const JMapInfoIter& rIter, SwitchEventListener* pListener) : mSwitchEventListener(pListener), mSwitchIdInfo(), mIsOnSwitchByIdInfo() {
+SleepController::SleepController(const JMapInfoIter& rIter, SwitchEventListener* pListener)
+    : mSwitchEventListener(pListener), mSwitchIdInfo(), mIsOnSwitchByIdInfo() {
     mSwitchIdInfo = StageSwitchFunction::createSwitchIdInfo("SW_SLEEP", rIter, false);
 }
 

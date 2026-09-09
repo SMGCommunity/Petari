@@ -26,9 +26,8 @@
 #include <revolution/vi.h>
 
 GameSystemObjHolder::GameSystemObjHolder()
-    : mObjHolder(), mParticleResHolder(), mRenderModeObj(), mCaptureScreenDirector(), mScreenPreserver(),
-      mAudioSystem(), mWPadHolder(), mFunctionAsyncExecutor(), mMessageHolder(), mStarPointerDirector(), mRandom(0),
-      mLanguage(MR::getDecidedLanguageFromIPL()) {
+    : mObjHolder(), mParticleResHolder(), mRenderModeObj(), mCaptureScreenDirector(), mScreenPreserver(), mAudioSystem(), mWPadHolder(),
+      mFunctionAsyncExecutor(), mMessageHolder(), mStarPointerDirector(), mRandom(0), mLanguage(MR::getDecidedLanguageFromIPL()) {
     initDvd();
     initNAND();
     initNameObj();

@@ -11,7 +11,9 @@ public:
 
     virtual ~KoopaBattleMapPlanet();
     virtual void init(const JMapInfoIter&);
-    virtual MtxPtr getBaseMtx() const { return (MtxPtr)&mBaseMtx; }
+    virtual MtxPtr getBaseMtx() const {
+        return (MtxPtr)&mBaseMtx;
+    }
     virtual void control();
     virtual void calcAndSetBaseMtx();
 

@@ -42,7 +42,7 @@ void MarioActor::setupSensors() {
 
 // void MarioActor::trampleJump(f32, f32) {}
 
-//void MarioActor::attackSensor(HitSensor*, HitSensor*) {}
+// void MarioActor::attackSensor(HitSensor*, HitSensor*) {}
 
 bool MarioActor::sendMsgToSensor(HitSensor* pSensor, u32 msg) {
     return pSensor->receiveMessage(msg, getSensor("body"));

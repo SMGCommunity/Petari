@@ -249,7 +249,7 @@ namespace JGeometry {
         inline void getZDir2(TVec3f& rDest) const {
             rDest.set< f32 >(this->mMtx[0][2], this->mMtx[1][2], this->mMtx[2][2]);
         }
-        
+
         inline void setXYZDir2(const TVec3f& rSrcX, const TVec3f& rSrcY, const TVec3f& rSrcZ) {
             this->mMtx[0][0] = rSrcX.x;
             this->mMtx[0][1] = rSrcX.y;
@@ -504,7 +504,7 @@ namespace JGeometry {
     template < class T >
     struct TPosition3 : public TRotation3< T > {
     public:
-        TPosition3(){};
+        TPosition3() {};
 
         TPosition3(MtxPtr rSrc) {
             JMath::gekko_ps_copy12(this, rSrc);
@@ -903,7 +903,7 @@ namespace JGeometry {
     template < class T >
     struct TProjection3 : public T {
     public:
-        TProjection3(){};
+        TProjection3() {};
 
         TProjection3(const Mtx44Ptr rSrc) {
             JMath::gekko_ps_copy16(this, rSrc);

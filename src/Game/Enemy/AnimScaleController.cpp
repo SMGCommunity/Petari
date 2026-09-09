@@ -189,4 +189,4 @@ void AnimScaleController::updateScale(f32 f1, f32 f2) {
     _C.z = _C.x;
 }
 
-AnimScaleController::~AnimScaleController(){};
+AnimScaleController::~AnimScaleController() {};

@@ -117,9 +117,9 @@ bool KoopaBattleMapDamagePlate::receiveOtherMsg(u32 msg, HitSensor* pSender, Hit
 
     MR::invalidateClipping(this);
     MR::invalidateCollisionParts(this);
-    
+
     setNerve(GET_NERVE(KoopaBattleMapDamagePlate, KoopaBattleMapDamagePlateNrvBreak));
-    
+
     return true;
 }
 

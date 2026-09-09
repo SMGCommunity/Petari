@@ -2,7 +2,8 @@
 #include "Game/Map/ActorAppearSwitchListener.hpp"
 #include "Game/Map/StageSwitch.hpp"
 
-SwitchWatcher::SwitchWatcher(const StageSwitchCtrl* pSwitchCtrl) : NameObj("スイッチ監視"), mFlags(), mSwitchCtrl(pSwitchCtrl), mSwitchListenerA(), mSwitchListenerB(), mSwitchListenerAppear() {
+SwitchWatcher::SwitchWatcher(const StageSwitchCtrl* pSwitchCtrl)
+    : NameObj("スイッチ監視"), mFlags(), mSwitchCtrl(pSwitchCtrl), mSwitchListenerA(), mSwitchListenerB(), mSwitchListenerAppear() {
 }
 
 void SwitchWatcher::movement() {

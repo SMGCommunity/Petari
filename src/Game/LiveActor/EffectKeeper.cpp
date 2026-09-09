@@ -33,7 +33,8 @@ namespace {
     }
 };  // namespace
 
-EffectKeeper::EffectKeeper(const char* pParam1, ResourceHolder* pParam2, int param3, const char* pParam4) : _0(pParam1), _4(pParam2), _8(pParam4), _C(), _18(), _1C(), _20(), mBinder(), _28(), _2C(), _30() {
+EffectKeeper::EffectKeeper(const char* pParam1, ResourceHolder* pParam2, int param3, const char* pParam4)
+    : _0(pParam1), _4(pParam2), _8(pParam4), _C(), _18(), _1C(), _20(), mBinder(), _28(), _2C(), _30() {
     if (_8 == nullptr && _4 != nullptr) {
         _8 = _4->getModelName();
     }
@@ -77,7 +78,8 @@ void EffectKeeper::registerEffectWithoutSRT(const char* pParam1, const char* pPa
     registMultiEmitter(new MultiEmitter(pParam1), pParam1, pParam2);
 }
 
-void EffectKeeper::registerSyncBckEffect(XanimePlayer* pParam1, const char* pParam2, const char* pParam3, s32 param4, f32 param5, f32 param6, bool param7) {
+void EffectKeeper::registerSyncBckEffect(XanimePlayer* pParam1, const char* pParam2, const char* pParam3, s32 param4, f32 param5, f32 param6,
+                                         bool param7) {
     if (_20 == nullptr) {
         _20 = new SyncBckEffectChecker(pParam1);
     }

@@ -12,9 +12,9 @@ class CameraTargetObj : public NameObj {
 public:
     CameraTargetObj(const char*);
 
-    virtual ~CameraTargetObj(){};
+    virtual ~CameraTargetObj() {};
 
-    virtual void init(const JMapInfoIter&){};
+    virtual void init(const JMapInfoIter&) {};
 
     virtual const TVec3f& getPosition() const = 0;
     virtual const TVec3f& getUpVec() const = 0;

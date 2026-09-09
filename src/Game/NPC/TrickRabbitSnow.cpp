@@ -51,8 +51,8 @@ namespace NrvTrickRabbitFreeRun {
 
 TrickRabbitSnow::TrickRabbitSnow(const char* pName)
     : LiveActor(pName), mFinishQuat(0.0f, 0.0f, 0.0f, 1.0f), mFinishPos(0.0f, 0.0f, 0.0f), mRotateQuat(0.0f, 0.0f, 0.0f, 1.0f),
-      mFrontVec(0.0f, 0.0f, 1.0f), mStateWaitStart(), mStateRunaway(), mStateBlowDamage(), mStateCaught(), mMsgCtrl(), mFootPrint(),
-      mSpotMarkLight(), mListener(), mNotCaughtableTimer(), mIsValidAppearStarPiece(true) {
+      mFrontVec(0.0f, 0.0f, 1.0f), mStateWaitStart(), mStateRunaway(), mStateBlowDamage(), mStateCaught(), mMsgCtrl(), mFootPrint(), mSpotMarkLight(),
+      mListener(), mNotCaughtableTimer(), mIsValidAppearStarPiece(true) {
 }
 
 void TrickRabbitSnow::setListener(TrickRabbitSnowListener* pListener) {

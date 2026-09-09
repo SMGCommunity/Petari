@@ -36,7 +36,7 @@ namespace {
 
             return true;
         }
-        
+
         return false;
     }
 };  // namespace
@@ -193,7 +193,7 @@ ModelObj* ElectricRailHolder::createModel(ElectricRailType railType) const {
     ModelObj* pModel;
     const char* pModelName;
     const char* pName;
-    
+
     switch (railType) {
     case ElectricRail_Red:
         pModelName = "ElectricRail";

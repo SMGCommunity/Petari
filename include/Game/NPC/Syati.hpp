@@ -70,10 +70,10 @@ public:
     /* 0x10C */ TMtx34f _10C;
     /* 0x13C */ RaceManagerLayout* mRaceManagerLayout;
     /* 0x140 */ LiveActorGroup* mPrizeRingGroup;
-    /* 0x144 */ s32 mNumRings; // Obj_arg0
+    /* 0x144 */ s32 mNumRings;  // Obj_arg0
     /* 0x148 */ s32 mStarSpawnType;
     /* 0x14C */ s32 mSwimMode;
-    /* 0x150 */ s32 mPrizeRingLife; // Obj_arg3
+    /* 0x150 */ s32 mPrizeRingLife;  // Obj_arg3
     /* 0x154 */ s32 mPrizeRingCount;
     /* 0x158 */ s32 mCurrentRailPointNo;
 };
