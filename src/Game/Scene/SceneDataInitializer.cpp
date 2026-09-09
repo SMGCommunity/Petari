@@ -27,7 +27,7 @@ void SceneDataInitializer::startStageFileLoadAfterScenarioSelected() {
 
     LuigiLetter::makeArchiveListForMenu(&collector, JMapInfoIter());
 
-    for (int i = 0; i < collector.mCount; i++) {
+    for (int i = 0; i < collector.getArchiveNum(); i++) {
         MR::mountAsyncArchiveByObjectOrLayoutName(collector.getArchive(i), nullptr);
     }
 }

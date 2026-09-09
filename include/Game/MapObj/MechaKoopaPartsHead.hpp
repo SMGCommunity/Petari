@@ -4,14 +4,15 @@
 
 class MechaKoopaPartsHead : public MapObjActor {
 public:
-    MechaKoopaPartsHead(const char*);
+    /// @brief Creates a new `MechaKoopaPartsHead`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    MechaKoopaPartsHead(const char* pName);
 
-    virtual ~MechaKoopaPartsHead();
     virtual void init(const JMapInfoIter&);
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {};
+    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {};
+    virtual void initCaseUseSwitchB(const MapObjActorInitInfo&) {};
+    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {};
 
     void exeWait();
     void exeDemoBreak();

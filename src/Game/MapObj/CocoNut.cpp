@@ -583,8 +583,8 @@ const char* CocoNut::getBreakEffectName() {
     return watermelonMode ? "BreakWatermelon" : "CocoNutBreak";
 }
 
-void CocoNut::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
-    pArchiveList->addArchive(getModelName());
+void CocoNut::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
+    pCollector->addArchive(getModelName());
 }
 
 void CocoNut::calcAndSetBaseMtx() {

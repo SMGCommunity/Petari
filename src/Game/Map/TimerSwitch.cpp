@@ -4,14 +4,12 @@
 #include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-TimerSwitch::TimerSwitch(const char* pName) : LiveActor(pName) {
-    mTimerLength = -1;
-    mCurrentTime = -1;
+TimerSwitch::TimerSwitch(const char* pName) : LiveActor(pName), mTimeLimit(-1), mTimeLeft(-1) {
 }
 
 void TimerSwitch::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
-    MR::getJMapInfoArg0NoInit(rIter, &mTimerLength);
+    MR::getJMapInfoArg0NoInit(rIter, &mTimeLimit);
     MR::needStageSwitchWriteA(this, rIter);
     MR::needStageSwitchReadB(this, rIter);
     MR::invalidateClipping(this);
@@ -19,20 +17,20 @@ void TimerSwitch::init(const JMapInfoIter& rIter) {
 }
 
 void TimerSwitch::control() {
-    if (mCurrentTime < 0 && MR::isOnSwitchB(this)) {
-        mCurrentTime = mTimerLength;
+    if (mTimeLeft < 0 && MR::isOnSwitchB(this)) {
+        mTimeLeft = mTimeLimit;
     }
 
-    s32 current = mCurrentTime;
-    if (current > 0) {
-        mCurrentTime = current - 1;
-
-        if (current - 1 <= 0) {
-            MR::onSwitchA(this);
-            kill();
-        }
+    if (mTimeLeft <= 0) {
+        return;
     }
-}
 
-TimerSwitch::~TimerSwitch() {
+    mTimeLeft--;
+
+    if (mTimeLeft > 0) {
+        return;
+    }
+
+    MR::onSwitchA(this);
+    kill();
 }

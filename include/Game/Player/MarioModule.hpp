@@ -71,7 +71,7 @@ public:
     void playEffectRTZ(const char*, const TVec3f&, const TVec3f&);
     void playEffectRTW(const char*, const TVec3f&, const TVec3f&);
     void playEffectSRT(const char*, f32, const TVec3f&, const TVec3f&);
-    void stopEFfect(const char*);
+    void stopEffect(const char*);
     void stopEffectForce(const char*);
     void playSound(const char*, s32 a2 = -1);
     void stopSound(const char*, u32);
@@ -103,7 +103,6 @@ public:
     HitSensor* getSensor(const Triangle*) const;
     f32 marioAcos(f32) const;
     bool isInputDisable() const;
-    void stopEffect(const char*);
 
     MarioActor* mActor;  // 0x4
 };

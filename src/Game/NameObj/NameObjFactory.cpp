@@ -8174,20 +8174,20 @@ namespace NameObjFactory {
     }
 
     void requestMountObjectArchives(const char* pName, const JMapInfoIter& rIter) {
-        NameObjArchiveListCollector archiveList;
-        getMountObjectArchiveList(&archiveList, pName, rIter);
+        NameObjArchiveListCollector collector;
+        getMountObjectArchiveList(&collector, pName, rIter);
 
-        for (s32 i = 0; i < archiveList.mCount; i++) {
-            MR::mountAsyncArchiveByObjectOrLayoutName(archiveList.getArchive(i), nullptr);
+        for (s32 i = 0; i < collector.getArchiveNum(); i++) {
+            MR::mountAsyncArchiveByObjectOrLayoutName(collector.getArchive(i), nullptr);
         }
     }
 
     bool isReadResourceFromDVD(const char* pName, const JMapInfoIter& rIter) {
-        NameObjArchiveListCollector archiveList;
-        getMountObjectArchiveList(&archiveList, pName, rIter);
+        NameObjArchiveListCollector collector;
+        getMountObjectArchiveList(&collector, pName, rIter);
 
-        for (s32 i = 0; i < archiveList.mCount; i++) {
-            if (!MR::isLoadedObjectOrLayoutArchive(archiveList.getArchive(i))) {
+        for (s32 i = 0; i < collector.getArchiveNum(); i++) {
+            if (!MR::isLoadedObjectOrLayoutArchive(collector.getArchive(i))) {
                 return true;
             }
         }
@@ -8225,27 +8225,27 @@ namespace NameObjFactory {
         return nullptr;
     }
 
-    void getMountObjectArchiveList(NameObjArchiveListCollector* pArchiveList, const char* pName, const JMapInfoIter& rIter) {
+    void getMountObjectArchiveList(NameObjArchiveListCollector* pCollector, const char* pName, const JMapInfoIter& rIter) {
         if (PlanetMapCreatorFunction::isRegisteredObj(pName)) {
-            PlanetMapCreatorFunction::makeArchiveList(pArchiveList, rIter, pName);
+            PlanetMapCreatorFunction::makeArchiveList(pCollector, rIter, pName);
         } else {
             const Name2CreateFunc* pName2CreateFunc = getName2CreateFunc(pName, nullptr);
 
             if (pName2CreateFunc != nullptr && pName2CreateFunc->mArchiveName != nullptr) {
-                pArchiveList->addArchive(pName2CreateFunc->mArchiveName);
+                pCollector->addArchive(pName2CreateFunc->mArchiveName);
             }
 
             for (const Name2Archive* pName2Archive = ::cName2ArchiveNamesTable;
                  pName2Archive != ::cName2ArchiveNamesTable + ARRAY_SIZE(::cName2ArchiveNamesTable); pName2Archive++) {
                 if (MR::isEqualString(pName2Archive->mObjectName, pName)) {
-                    pArchiveList->addArchive(pName2Archive->mArchiveName);
+                    pCollector->addArchive(pName2Archive->mArchiveName);
                 }
             }
 
             for (const Name2MakeArchiveListFunc* pName2ArchiveFunc = ::cName2MakeArchiveListFuncTable;
                  pName2ArchiveFunc != ::cName2MakeArchiveListFuncTable + ARRAY_SIZE(::cName2MakeArchiveListFuncTable); pName2ArchiveFunc++) {
                 if (MR::isEqualString(pName2ArchiveFunc->mName, pName)) {
-                    pName2ArchiveFunc->mArchiveFunc(pArchiveList, rIter);
+                    pName2ArchiveFunc->mArchiveFunc(pCollector, rIter);
                 }
             }
         }

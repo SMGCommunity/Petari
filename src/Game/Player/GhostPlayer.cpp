@@ -113,16 +113,17 @@ namespace NrvGhostPlayer {
     NEW_NERVE(HostTypeNrvRun, GhostPlayer, Wait);
 };  // namespace NrvGhostPlayer
 
-void GhostPlayer::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter&) {
+void GhostPlayer::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     char archiveName[256];
     strcpy(archiveName, "GhostData");
     strcat(archiveName, MR::getCurrentStageName());
-    pArchiveList->addArchive(archiveName);
+
+    pCollector->addArchive(archiveName);
 
     if (MR::isPlayerLuigi()) {
-        pArchiveList->addArchive("GhostLuigi");
+        pCollector->addArchive("GhostLuigi");
     } else {
-        pArchiveList->addArchive("GhostMario");
+        pCollector->addArchive("GhostMario");
     }
 }
 

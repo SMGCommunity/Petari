@@ -2,25 +2,20 @@
 #include "Game/Map/ActorAppearSwitchListener.hpp"
 #include "Game/Map/StageSwitch.hpp"
 
-SwitchWatcher::SwitchWatcher(const StageSwitchCtrl* pCtrl) : NameObj("スイッチ監視") {
-    mFlags = 0;
-    mSwitchCtrl = pCtrl;
-    mSwitchAListener = nullptr;
-    mSwitchBListener = nullptr;
-    mSwitchApprListener = nullptr;
+SwitchWatcher::SwitchWatcher(const StageSwitchCtrl* pSwitchCtrl) : NameObj("スイッチ監視"), mFlags(), mSwitchCtrl(pSwitchCtrl), mSwitchListenerA(), mSwitchListenerB(), mSwitchListenerAppear() {
 }
 
 void SwitchWatcher::movement() {
-    if (mSwitchAListener != nullptr) {
-        checkSwitch(mSwitchAListener, 1, mSwitchCtrl->isOnSwitchA());
+    if (mSwitchListenerA != nullptr) {
+        checkSwitch(mSwitchListenerA, 1, mSwitchCtrl->isOnSwitchA());
     }
 
-    if (mSwitchBListener != nullptr) {
-        checkSwitch(mSwitchBListener, 2, mSwitchCtrl->isOnSwitchB());
+    if (mSwitchListenerB != nullptr) {
+        checkSwitch(mSwitchListenerB, 2, mSwitchCtrl->isOnSwitchB());
     }
 
-    if (mSwitchApprListener != nullptr) {
-        checkSwitch(mSwitchApprListener, 4, mSwitchCtrl->isOnSwitchAppear());
+    if (mSwitchListenerAppear != nullptr) {
+        checkSwitch(mSwitchListenerAppear, 4, mSwitchCtrl->isOnSwitchAppear());
     }
 }
 
@@ -40,23 +35,20 @@ void SwitchWatcher::checkSwitch(SwitchEventListener* pListener, u32 type, bool i
     }
 }
 
-bool SwitchWatcher::isSameSwitch(const StageSwitchCtrl* pCtrl) const {
-    return mSwitchCtrl == pCtrl;
+bool SwitchWatcher::isSameSwitch(const StageSwitchCtrl* pSwitchCtrl) const {
+    return mSwitchCtrl == pSwitchCtrl;
 }
 
 void SwitchWatcher::addSwitchListener(SwitchEventListener* pListener, u32 type) {
     switch (type) {
     case 1:
-        mSwitchAListener = pListener;
+        mSwitchListenerA = pListener;
         break;
     case 2:
-        mSwitchBListener = pListener;
+        mSwitchListenerB = pListener;
         break;
     case 4:
-        mSwitchApprListener = pListener;
+        mSwitchListenerAppear = pListener;
         break;
     }
-}
-
-SwitchWatcher::~SwitchWatcher() {
 }

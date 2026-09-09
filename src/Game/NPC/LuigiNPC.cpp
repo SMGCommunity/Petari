@@ -47,10 +47,10 @@ namespace NrvLuigiNPC {
 LuigiNPC::LuigiNPC(const char* pName) : NPCActor(pName), mTakeOutStar(), mType(Type_Invalid) {
 }
 
-void LuigiNPC::makeArchiveList(NameObjArchiveListCollector* pArchive, const JMapInfoIter& rIter) {
-    pArchive->addArchive("LuigiNPC");
-    pArchive->addArchive("LuigiNPCMiddle");
-    pArchive->addArchive("LuigiNPCLow");
+void LuigiNPC::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
+    pCollector->addArchive("LuigiNPC");
+    pCollector->addArchive("LuigiNPCMiddle");
+    pCollector->addArchive("LuigiNPCLow");
 }
 
 bool LuigiNPC::branchFunc(u32 msg) {

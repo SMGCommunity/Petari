@@ -43,53 +43,53 @@ namespace NrvMorphItemObjNeo {
     NEW_NERVE(MorphItemObjNeoNrvDemo, MorphItemObjNeo, Wait);
 };  // namespace NrvMorphItemObjNeo
 
-void MorphItemObjNeo::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+void MorphItemObjNeo::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (MR::isEqualObjectName(rIter, "MorphItemNeoHopper") || MR::isEqualObjectName(rIter, "Hopper")) {
         if (MR::isPlayerLuigi()) {
-            pArchiveList->addArchive("HopperLuigi");
+            pCollector->addArchive("HopperLuigi");
         } else {
-            pArchiveList->addArchive("HopperMario");
+            pCollector->addArchive("HopperMario");
         }
     }
 
     if (MR::isEqualObjectName(rIter, "MorphItemNeoBee")) {
-        pArchiveList->addArchive("BeeMarioWing");
+        pCollector->addArchive("BeeMarioWing");
 
         if (MR::isPlayerLuigi()) {
-            pArchiveList->addArchive("BeeLuigi");
+            pCollector->addArchive("BeeLuigi");
         } else {
-            pArchiveList->addArchive("BeeMario");
+            pCollector->addArchive("BeeMario");
         }
     }
 
     if (MR::isEqualObjectName(rIter, "MorphItemNeoTeresa")) {
         if (MR::isPlayerLuigi()) {
-            pArchiveList->addArchive("TeresaLuigi");
+            pCollector->addArchive("TeresaLuigi");
         } else {
-            pArchiveList->addArchive("TeresaMario");
+            pCollector->addArchive("TeresaMario");
         }
     }
 
     if (MR::isEqualObjectName(rIter, "MorphItemNeoIce")) {
-        pArchiveList->addArchive("IceMarioHandL");
-        pArchiveList->addArchive("IceMarioHandR");
+        pCollector->addArchive("IceMarioHandL");
+        pCollector->addArchive("IceMarioHandR");
 
         if (MR::isPlayerLuigi()) {
-            pArchiveList->addArchive("IceLuigi");
+            pCollector->addArchive("IceLuigi");
         } else {
-            pArchiveList->addArchive("IceMario");
+            pCollector->addArchive("IceMario");
         }
     }
 
     if (MR::isEqualObjectName(rIter, "BenefitItemInvincible")) {
-        pArchiveList->addArchive("InvincibleMarioHandL");
-        pArchiveList->addArchive("InvincibleMarioHandR");
+        pCollector->addArchive("InvincibleMarioHandL");
+        pCollector->addArchive("InvincibleMarioHandR");
 
         if (MR::isPlayerLuigi()) {
-            pArchiveList->addArchive("InvincibleLuigi");
+            pCollector->addArchive("InvincibleLuigi");
             return;
         } else {
-            pArchiveList->addArchive("InvincibleMario");
+            pCollector->addArchive("InvincibleMario");
             return;
         }
     }
@@ -105,10 +105,10 @@ void MorphItemObjNeo::makeArchiveList(NameObjArchiveListCollector* pArchiveList,
     }
 
     if (arg3 == 0) {
-        pArchiveList->addArchive("ItemBubble");
+        pCollector->addArchive("ItemBubble");
     } else if (arg3 == -1) {
-        pArchiveList->addArchive("CrystalBox");
-        pArchiveList->addArchive("CrystalBoxBreak");
+        pCollector->addArchive("CrystalBox");
+        pCollector->addArchive("CrystalBoxBreak");
     }
 }
 

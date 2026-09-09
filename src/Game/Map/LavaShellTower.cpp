@@ -7,6 +7,13 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+namespace {
+    static const f32 sCamShakeIntensity = 0.1f;
+    static const f32 sCamShakeSpeed = 2.2f;
+    // static const f32 sCamStartOffsetY = _;
+    // static const f32 sCamEndOffsetY = _;
+};  // namespace
+
 namespace NrvLavaShellTower {
     NEW_NERVE(HostTypeWait, LavaShellTower, Wait);
     NEW_NERVE(HostTypeDemo, LavaShellTower, Demo);
@@ -35,7 +42,7 @@ void LavaShellTower::exeWait() {
 
 void LavaShellTower::exeDemo() {
     if (MR::isFirstStep(this)) {
-        MR::shakeCameraInfinity(this, 0.1f, 2.2f);
+        MR::shakeCameraInfinity(this, ::sCamShakeIntensity, ::sCamShakeSpeed);
         MR::overlayWithPreviousScreen(2);
     }
 

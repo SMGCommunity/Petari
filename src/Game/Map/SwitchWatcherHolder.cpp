@@ -6,15 +6,14 @@
 #include "Game/Scene/SceneObjHolder.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-SwitchWatcherHolder::SwitchWatcherHolder() : NameObj("SwitchWatcherHolder") {
-    mWatcherCount = 0;
+SwitchWatcherHolder::SwitchWatcherHolder() : NameObj("SwitchWatcherHolder"), mSwitchWatcher() {
     MR::connectToScene(this, MR::MovementType_SwitchWatcherHolder, -1, -1, -1);
 }
 
 void SwitchWatcherHolder::movement() {
     // not quite sure what is going on here
     // but it seems to just call movement on all watchers
-    mWatchers.callAllFunc(&SwitchWatcher::movement);
+    mSwitchWatcher.mArray.callAllFunc(&SwitchWatcher::movement);
 }
 
 void SwitchWatcherHolder::joinSwitchEventListenerA(const StageSwitchCtrl* pCtrl, SwitchEventListener* pListener) {
@@ -30,7 +29,7 @@ void SwitchWatcherHolder::joinSwitchEventListenerAppear(const StageSwitchCtrl* p
 }
 
 SwitchWatcher* SwitchWatcherHolder::findSwitchWatcher(const StageSwitchCtrl* pCtrl) {
-    for (SwitchWatcher** it = mWatchers.begin(); it != mWatchers.end(); it++) {
+    for (SwitchWatcher** it = mSwitchWatcher.begin(); it != mSwitchWatcher.end(); it++) {
         if ((*it)->isSameSwitch(pCtrl)) {
             return *it;
         }
@@ -40,16 +39,18 @@ SwitchWatcher* SwitchWatcherHolder::findSwitchWatcher(const StageSwitchCtrl* pCt
 }
 
 void SwitchWatcherHolder::joinSwitchEventListener(const StageSwitchCtrl* pCtrl, u32 type, SwitchEventListener* pListener) {
-    SwitchWatcher* watcher = findSwitchWatcher(pCtrl);
-    if (watcher == nullptr) {
-        watcher = new SwitchWatcher(pCtrl);
-        addSwitchWatcher(watcher);
+    SwitchWatcher* pSwitchWatcher = findSwitchWatcher(pCtrl);
+
+    if (pSwitchWatcher == nullptr) {
+        pSwitchWatcher = new SwitchWatcher(pCtrl);
+        addSwitchWatcher(pSwitchWatcher);
     }
-    watcher->addSwitchListener(pListener, type);
+
+    pSwitchWatcher->addSwitchListener(pListener, type);
 }
 
-void SwitchWatcherHolder::addSwitchWatcher(SwitchWatcher* pWatcher) {
-    mWatchers[++mWatcherCount] = pWatcher;
+void SwitchWatcherHolder::addSwitchWatcher(SwitchWatcher* pSwitchWatcher) {
+    mSwitchWatcher.push_back(pSwitchWatcher);
 }
 
 namespace MR {
@@ -61,6 +62,3 @@ namespace MR {
         MR::requestMovementOn(getSwitchWatcherHolder());
     }
 };  // namespace MR
-
-SwitchWatcherHolder::~SwitchWatcherHolder() {
-}

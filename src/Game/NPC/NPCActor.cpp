@@ -240,12 +240,11 @@ void NPCActor::makeArchiveList(NameObjArchiveListCollector* pCollector, const JM
     const char* name;
     MR::getObjectName(&name, rIter);
     NPCActorItem item(name);
+
     s32 item_type = -1;
     MR::getJMapInfoArg7NoInit(rIter, &item_type);
 
-    bool ret = MR::getNPCItemData(&item, item_type);
-
-    if (ret) {
+    if (MR::getNPCItemData(&item, item_type)) {
         NPCActor::addArchive(pCollector, item);
     }
 }
@@ -261,12 +260,11 @@ void NPCActor::addArchive(NameObjArchiveListCollector* pCollector, const NPCActo
 }
 
 void NPCActor::makeArchiveListDefault(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
-    const char* name;
-    MR::getObjectName(&name, rIter);
-    NPCActorItem item(name);
-    bool ret = MR::getNPCItemData(&item, 0);
+    const char* objName;
+    MR::getObjectName(&objName, rIter);
+    NPCActorItem item(objName);
 
-    if (ret) {
+    if (MR::getNPCItemData(&item, 0)) {
         NPCActor::addArchive(pCollector, item);
     }
 }

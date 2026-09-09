@@ -3,10 +3,11 @@
 #include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/MapUtil.hpp"
 
-SunshadeMapHolder::SunshadeMapHolder() : NameObj("日よけコリジョン管理") {
-    _C.x = 0.0f;
-    _C.y = 1.0f;
-    _C.z = 0.0f;
+void SunshadeMapHolder_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
+SunshadeMapHolder::SunshadeMapHolder() : NameObj("日よけコリジョン管理"), _C(0.0f, 1.0f, 0.0f) {
 }
 
 namespace MR {
@@ -21,13 +22,10 @@ namespace MR {
 
         SunshadeMapHolder* holder = MR::getSceneObj< SunshadeMapHolder >(SceneObj_SunshadeMapHolder);
 
-        return Collision::checkStrikeLineToSunshade(rPos, holder->_C * a2, 0, nullptr, nullptr) != 0;
+        return Collision::checkStrikeLineToSunshade(rPos, holder->_C * a2, 0, nullptr, nullptr);
     }
 
     void createSunshadeMapHolder() {
         MR::createSceneObj(SceneObj_SunshadeMapHolder);
     }
 };  // namespace MR
-
-SunshadeMapHolder::~SunshadeMapHolder() {
-}

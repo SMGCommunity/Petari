@@ -156,7 +156,7 @@ void UFOKinokoUnderConstruction::init(const JMapInfoIter& rIter) {
 }
 
 namespace MR {
-    void makeArchiveListUFOKinokoUnderConstruction(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+    void makeArchiveListUFOKinokoUnderConstruction(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
         const char* archive;
 
         if (MR::isUFOKinokoBeforeConstruction()) {
@@ -165,7 +165,7 @@ namespace MR {
             archive = "UFOKinokoLandingAstro";
         }
 
-        pArchiveList->addArchive(archive);
+        pCollector->addArchive(archive);
     }
 };  // namespace MR
 

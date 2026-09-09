@@ -21,7 +21,7 @@ namespace NrvWaterfallCaveCover {
 void WaterfallCaveCover::init(const JMapInfoIter& rIter) {
     MapObjActor::init(rIter);
     MapObjActorInitInfo rInitInfo;
-    rInitInfo.setupHioNode("n形オブジェ");
+    rInitInfo.setupHioNode("地形オブジェ");
     rInitInfo.setupDefaultPos();
     rInitInfo.setupConnectToScene();
     rInitInfo.setupSound(4);

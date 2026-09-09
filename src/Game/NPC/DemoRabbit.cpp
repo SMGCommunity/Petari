@@ -8,10 +8,10 @@ DemoRabbit::DemoRabbit(const char* pName) : NPCActor(pName) {
 DemoRabbit::~DemoRabbit() {
 }
 
-void DemoRabbit::makeArchiveList(NameObjArchiveListCollector* pArchiveList, const JMapInfoIter& rIter) {
+void DemoRabbit::makeArchiveList(NameObjArchiveListCollector* pCollector, const JMapInfoIter& rIter) {
     if (MR::getDemoCastID(rIter) == 0) {
-        pArchiveList->addArchive("TrickRabbitBaby");
+        pCollector->addArchive("TrickRabbitBaby");
     } else {
-        pArchiveList->addArchive("TrickRabbit");
+        pCollector->addArchive("TrickRabbit");
     }
 }
