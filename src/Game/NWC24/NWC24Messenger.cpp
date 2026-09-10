@@ -432,7 +432,6 @@ namespace NWC24MessengerSub {
     void SendState::exeOpenErrorFG() {
         if (MR::isFirstStep(this)) {
             switch (mTask->mErr) {
-            case NWC24_ERR_FATAL:
             case NWC24_ERR_BROKEN:
             case NWC24_ERR_FILE_OPEN:
             case NWC24_ERR_FILE_CLOSE:
@@ -451,6 +450,7 @@ namespace NWC24MessengerSub {
                 appearSysInfo("WC24_02", mTask->mErrCode);
                 break;
             case NWC24_ERR_INTERNAL_IPC:
+            case NWC24_ERR_FATAL:
                 appearSysInfo("WC24_03", mTask->mErrCode);
                 break;
             default:
@@ -521,14 +521,14 @@ namespace NWC24MessengerSub {
             case NWC24_ERR_FILE_NOEXISTS:
             case NWC24_ERR_FILE_OTHER:
             case NWC24_ERR_FILE_BROKEN:
-                pMessageId = "WC24_10";
+                pMessageId = "WC24_09";
 
                 if (mWindow != nullptr) {
                     mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             default:
-                pMessageId = "WC24_09";
+                pMessageId = "WC24_10";
 
                 if (mWindow != nullptr) {
                     mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
@@ -549,14 +549,14 @@ namespace NWC24MessengerSub {
 
             switch (mTask->mErr) {
             case NWC24_ERR_FULL:
-                pMessageId = "WC24_10";
+                pMessageId = "WC24_SENDLIMIT";
 
                 if (mWindow != nullptr) {
                     mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
                 }
                 break;
             default:
-                pMessageId = "WC24_SENDLIMIT";
+                pMessageId = "WC24_10";
 
                 if (mWindow != nullptr) {
                     mWindow->appear(pMessageId, SysInfoWindow::Type_Key, SysInfoWindow::TextPos_Center, SysInfoWindow::MessageType_System);
@@ -672,16 +672,11 @@ namespace NWC24MessengerSub {
             setNerve(&SendStateNrvWaitCloseSysInfoMini::sInstance);
         }
     }
-
-    SendTask::SendTask()
-        : _0(false), mIsBG(false), _2(false), mIsMsgLedPattern(false), mRetryNo(0), mErr(NWC24_OK), mErrCode(0), mSentSize(0), mTaskName(nullptr),
-          mMessage(nullptr), mAltName(nullptr) {
-    }
 };  // namespace NWC24MessengerSub
 
 namespace MR {
     SendMailObj::SendMailObj(const char* pTaskName)
-        : mTaskName(pTaskName), mMessage(nullptr), mSenderID(nullptr), mImage(nullptr), mImageSize(0), mIsBG(true), mIsLed(true), mTag(0), mDelay(0) {
+        : mTaskName(pTaskName), mMessage(), mSenderID(), mImage(), mImageSize(), mIsBG(true), mIsLed(true), mTag(), mDelay() {
     }
 
     void SendMailObj::setMessageDirect(const wchar_t* pMessage) {

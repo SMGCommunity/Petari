@@ -4,15 +4,51 @@
 #include "Game/System/NerveExecutor.hpp"
 #include <revolution/nwc24.h>
 
-class NWC24Messenger;
+namespace NWC24MessengerSub {
+    class SendTask;
+    class SendState;
+};  // namespace NWC24MessengerSub
+
 class NWC24System;
+
+class NWC24Messenger : public NameObj {
+public:
+    /// @brief Creates a new `NWC24Messenger`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    NWC24Messenger(const char* pName);
+
+    virtual void movement();
+    virtual void draw() const;
+    virtual void calcAnim();
+
+    void initAfterResourceLoaded();
+    void send(const char*, const wchar_t*, const wchar_t*, const u8*, u32, bool, bool, u16, u8);
+    void term(const char*);
+    bool isSent(const char*) const;
+    bool isError(const char*) const;
+    void prepareReset();
+    bool isRunning() const;
+    void reset();
+    NWC24MessengerSub::SendTask* findTask(const char*) const;
+    NWC24MessengerSub::SendTask* selectTask() const;
+    void clearBackgroundTask();
+
+    /* 0x0C */ NWC24MessengerSub::SendTask* mForegroundTask;
+    /* 0x10 */ NWC24MessengerSub::SendTask* mBackgroundTaskArray;
+    /* 0x14 */ NWC24MessengerSub::SendState* mSendState;
+    /* 0x18 */ NWC24System* mSystem;
+    /* 0x1C */ bool _1C;
+};
+
 class SysInfoWindow;
 
 namespace NWC24MessengerSub {
     class SendTask {
     public:
         /// @brief Creates a new `SendTask`.
-        SendTask();
+        SendTask()
+            : _0(), mIsBG(), _2(), mIsMsgLedPattern(), mRetryNo(), mErr(NWC24_OK), mErrCode(), mSentSize(), mTaskName(), mMessage(), mAltName() {
+        }
 
         /* 0x00 */ bool _0;
         /* 0x01 */ bool mIsBG;
@@ -77,35 +113,6 @@ namespace NWC24MessengerSub {
         /* 0x18 */ const Nerve* _18;
     };
 };  // namespace NWC24MessengerSub
-
-class NWC24Messenger : public NameObj {
-public:
-    /// @brief Creates a new `NWC24Messenger`.
-    /// @param pName A pointer to the null-terminated name of the object.
-    NWC24Messenger(const char* pName);
-
-    virtual void movement();
-    virtual void draw() const;
-    virtual void calcAnim();
-
-    void initAfterResourceLoaded();
-    void send(const char*, const wchar_t*, const wchar_t*, const u8*, u32, bool, bool, u16, u8);
-    void term(const char*);
-    bool isSent(const char*) const;
-    bool isError(const char*) const;
-    void prepareReset();
-    bool isRunning() const;
-    void reset();
-    NWC24MessengerSub::SendTask* findTask(const char*) const;
-    NWC24MessengerSub::SendTask* selectTask() const;
-    void clearBackgroundTask();
-
-    /* 0x0C */ NWC24MessengerSub::SendTask* mForegroundTask;
-    /* 0x10 */ NWC24MessengerSub::SendTask* mBackgroundTaskArray;
-    /* 0x14 */ NWC24MessengerSub::SendState* mSendState;
-    /* 0x18 */ NWC24System* mSystem;
-    /* 0x1C */ bool _1C;
-};
 
 namespace MR {
     class SendMailObj {
