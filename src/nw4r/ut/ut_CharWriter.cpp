@@ -20,6 +20,8 @@ namespace {
 
 namespace nw4r {
     namespace ut {
+        CharWriter::LoadingTexture CharWriter::mLoadingTexture;
+
         CharWriter::CharWriter() : mAlpha(Color::ALPHA_MAX), mIsWidthFixed(false), mFixedWidth(0), mFont(NULL) {
             mLoadingTexture.Reset();
             ResetColorMapping();

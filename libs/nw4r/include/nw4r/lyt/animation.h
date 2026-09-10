@@ -33,6 +33,9 @@ namespace nw4r {
 
             u16 GetFrameSize() const;
             bool IsLoopData() const;
+            const res::AnimationBlock* GetAnimResource() const {
+                return mpRes;
+            }
 
             ut::LinkListNode mLink;
             const res::AnimationBlock* mpRes;
@@ -51,6 +54,9 @@ namespace nw4r {
             virtual void Animate(u32, Pane*);
             virtual void Animate(u32, Material*);
 
+            template < typename T >
+            AnimationLink* Bind(T* target, AnimationLink* link, u16 idx);
+            AnimationLink* FindUnbindLink(AnimationLink* link) const;
             void** mpFileResAry;
             AnimationLink* mAnimLinkAry;
             u16 mAnimLinkNum;
@@ -60,11 +66,16 @@ namespace nw4r {
         public:
             AnimResource();
 
-            explicit AnimResource(const void* anmResBuf) { Set(anmResBuf); }
+            explicit AnimResource(const void* anmResBuf) {
+                Set(anmResBuf);
+            }
 
             void Set(const void*);
+            void Init();
 
-            const res::AnimationBlock* GetResourceBlock() const { return mpResBlock; }
+            const res::AnimationBlock* GetResourceBlock() const {
+                return mpResBlock;
+            }
 
             bool IsDescendingBind() const;
 
@@ -81,20 +92,23 @@ namespace nw4r {
             const res::BinaryFileHeader* mpFileHeader;
             const res::AnimationBlock* mpResBlock;
             const res::AnimationTagBlock* mpTagBlock;
-            const res::AnimationShareBlock* mpShareBlock;
         };
 
         namespace detail {
             class AnimPaneTree {
             public:
-                AnimPaneTree() { Init(); }
+                AnimPaneTree() {
+                    Init();
+                }
 
                 AnimPaneTree(Pane* pTargetPane, const AnimResource& animRes) {
                     Init();
                     Set(pTargetPane, animRes);
                 }
 
-                bool IsEnabled() const { return mLinkNum > 0; }
+                bool IsEnabled() const {
+                    return mLinkNum > 0;
+                }
 
                 AnimTransform* Bind(Layout*, Pane*, ResourceAccessor*) const;
 

@@ -126,6 +126,7 @@ nw4r/lyt/lyt_material.cpp:
 	.text       start:0x80011370 end:0x800140C8
 	.data       start:0x80564930 end:0x80564998
 	.sdata2     start:0x806B7CC8 end:0x806B7CE8
+	.sbss2      start:0x806C2900 end:0x806C2908
 
 nw4r/lyt/lyt_texMap.cpp:
 	.text       start:0x800140C8 end:0x800143F4
@@ -9634,13 +9635,13 @@ Game/NWC24/ReceiverTagMail.cpp:
 
 JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x8040AB8C end:0x8040B528
-	.data       start:0x805E7220 end:0x805E75E0
+	.data       start:0x805E71E8 end:0x805E7280
 	.sdata      start:0x806B26D8 end:0x806B26E8
 	.sbss       start:0x806B70A8 end:0x806B70D0
 
 JSystem/JKernel/JKRExpHeap.cpp:
 	.text       start:0x8040B528 end:0x8040D08C
-	.data       start:0x805E75E0 end:0x805E7798
+	.data       start:0x805E7280 end:0x805E7798
 	.sbss       start:0x806B70D0 end:0x806B70E8
 	.sdata2     start:0x806C19F0 end:0x806C19F8
 

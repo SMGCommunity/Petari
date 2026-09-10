@@ -4,6 +4,8 @@
 
 namespace nw4r {
     namespace ut {
+        template < typename CharT >
+        typename TextWriterBase< CharT >::TagProcessor TextWriterBase< CharT >::mDefaultTagProcessor;
         template < typename CharType >
         TextWriterBase< CharType >::TextWriterBase()
             : CharWriter(), mWidthLimit(nw4r::math::F_MAX), mCharSpace(0), mLineSpace(0), mTabWidth(4), mDrawFlag(DEFAULT_DRAWFLAG),

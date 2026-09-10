@@ -1,7 +1,15 @@
-#include "nw4r/ut/Font.h"
+#include "nw4r/ut/RomFont.h"
 
 namespace nw4r {
     namespace ut {
-        // Font::~Font() {}
-    };  // namespace ut
-};  // namespace nw4r
+        RomFont::RomFont() : mFontHeader(NULL), mAlternateChar('?') {
+            mDefaultWidths.left = 0;
+            mDefaultWidths.glyphWidth = 0;
+            mDefaultWidths.charWidth = 0;
+        }
+
+        RomFont::~RomFont() {
+        }
+
+    }
+}

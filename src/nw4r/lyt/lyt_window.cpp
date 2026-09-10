@@ -32,23 +32,19 @@ namespace nw4r {
                 pSize->height = rFrameSize.t;
             }
 
-            void GetLTTexCoord(math::VEC2* pTexCoords, const Size& rSize, const Size& rTexSize, u8 flipType) {
-                const TextureFlipInfo& rInfo = GetTexutreFlipInfo(flipType);
+            void GetLTTexCoord(math::VEC2 texCds[], const Size& polSize, const Size& texSize, u8 textureFlip) {
+                const TextureFlipInfo& flipInfo = GetTexutreFlipInfo(textureFlip);
+                const int ix = flipInfo.idx[0];
+                const int iy = flipInfo.idx[1];
+                const math::VEC2 tSz(texSize.width, texSize.height);
 
-                int ix = rInfo.idx[0];
-                int iy = rInfo.idx[1];
+                texCds[0][ix] = texCds[2][ix] = flipInfo.coords[0][ix];
+                texCds[0][iy] = texCds[1][iy] = flipInfo.coords[0][iy];
 
-                math::VEC2 texSize(rTexSize.width, rTexSize.height);
-
-                pTexCoords[0][ix] = pTexCoords[2][ix] = rInfo.coords[0][ix];
-
-                pTexCoords[0][iy] = pTexCoords[1][iy] = rInfo.coords[0][iy];
-
-                pTexCoords[3][ix] = pTexCoords[1][ix] =
-                    rInfo.coords[0][ix] + rSize.width / ((rInfo.coords[1][ix] - rInfo.coords[0][ix]) * texSize[ix]);
-
-                pTexCoords[3][iy] = pTexCoords[2][iy] =
-                    rInfo.coords[0][iy] + rSize.height / ((rInfo.coords[2][iy] - rInfo.coords[0][iy]) * texSize[iy]);
+                texCds[3][ix] = texCds[1][ix] =
+                    polSize.width / ((flipInfo.coords[1][ix] - flipInfo.coords[0][ix]) * tSz[ix]) + flipInfo.coords[0][ix];
+                texCds[3][iy] = texCds[2][iy] =
+                    polSize.height / ((flipInfo.coords[2][iy] - flipInfo.coords[0][iy]) * tSz[iy]) + flipInfo.coords[0][iy];
             }
 
             void GetRTFrameSize(math::VEC2* pPoint, Size* pSize, const math::VEC2& rBase, const Size& rWindowSize,
@@ -59,23 +55,19 @@ namespace nw4r {
                 pSize->height = rWindowSize.height - rFrameSize.b;
             }
 
-            void GetRTTexCoord(math::VEC2* pTexCoords, const Size& rSize, const Size& rTexSize, u8 flipType) {
-                const TextureFlipInfo& rInfo = GetTexutreFlipInfo(flipType);
+            void GetRTTexCoord(math::VEC2 texCds[], const Size& polSize, const Size& texSize, u8 textureFlip) {
+                const TextureFlipInfo& flipInfo = GetTexutreFlipInfo(textureFlip);
+                const int ix = flipInfo.idx[0];
+                const int iy = flipInfo.idx[1];
+                const math::VEC2 tSz(texSize.width, texSize.height);
 
-                int ix = rInfo.idx[0];
-                int iy = rInfo.idx[1];
+                texCds[1][ix] = texCds[3][ix] = flipInfo.coords[1][ix];
+                texCds[1][iy] = texCds[0][iy] = flipInfo.coords[1][iy];
 
-                math::VEC2 texSize(rTexSize.width, rTexSize.height);
-
-                pTexCoords[1][ix] = pTexCoords[3][ix] = rInfo.coords[1][ix];
-
-                pTexCoords[1][iy] = pTexCoords[0][iy] = rInfo.coords[1][iy];
-
-                pTexCoords[2][ix] = pTexCoords[0][ix] =
-                    rInfo.coords[1][ix] + rSize.width / ((rInfo.coords[0][ix] - rInfo.coords[1][ix]) * texSize[ix]);
-
-                pTexCoords[2][iy] = pTexCoords[3][iy] =
-                    rInfo.coords[1][iy] + rSize.height / ((rInfo.coords[3][iy] - rInfo.coords[1][iy]) * texSize[iy]);
+                texCds[2][ix] = texCds[0][ix] =
+                    polSize.width / ((flipInfo.coords[0][ix] - flipInfo.coords[1][ix]) * tSz[ix]) + flipInfo.coords[1][ix];
+                texCds[2][iy] = texCds[3][iy] =
+                    polSize.height / ((flipInfo.coords[3][iy] - flipInfo.coords[1][iy]) * tSz[iy]) + flipInfo.coords[1][iy];
             }
 
             void GetLBFrameSize(math::VEC2* pPoint, Size* pSize, const math::VEC2& rBase, const Size& rWindowSize,
@@ -86,23 +78,19 @@ namespace nw4r {
                 pSize->height = rWindowSize.height - rFrameSize.t;
             }
 
-            void GetLBTexCoord(math::VEC2* pTexCoords, const Size& rSize, const Size& rTexSize, u8 flipType) {
-                const TextureFlipInfo& rInfo = GetTexutreFlipInfo(flipType);
+            void GetLBTexCoord(math::VEC2 texCds[], const Size& polSize, const Size& texSize, u8 textureFlip) {
+                const TextureFlipInfo& flipInfo = GetTexutreFlipInfo(textureFlip);
+                const int ix = flipInfo.idx[0];
+                const int iy = flipInfo.idx[1];
+                const math::VEC2 tSz(texSize.width, texSize.height);
 
-                int ix = rInfo.idx[0];
-                int iy = rInfo.idx[1];
+                texCds[2][ix] = texCds[0][ix] = flipInfo.coords[2][ix];
+                texCds[2][iy] = texCds[3][iy] = flipInfo.coords[2][iy];
 
-                math::VEC2 texSize(rTexSize.width, rTexSize.height);
-
-                pTexCoords[2][ix] = pTexCoords[0][ix] = rInfo.coords[2][ix];
-
-                pTexCoords[2][iy] = pTexCoords[3][iy] = rInfo.coords[2][iy];
-
-                pTexCoords[1][ix] = pTexCoords[3][ix] =
-                    rInfo.coords[2][ix] + rSize.width / ((rInfo.coords[3][ix] - rInfo.coords[2][ix]) * texSize[ix]);
-
-                pTexCoords[1][iy] = pTexCoords[0][iy] =
-                    rInfo.coords[2][iy] + rSize.height / ((rInfo.coords[0][iy] - rInfo.coords[2][iy]) * texSize[iy]);
+                texCds[1][ix] = texCds[3][ix] =
+                    polSize.width / ((flipInfo.coords[3][ix] - flipInfo.coords[2][ix]) * tSz[ix]) + flipInfo.coords[2][ix];
+                texCds[1][iy] = texCds[0][iy] =
+                    polSize.height / ((flipInfo.coords[0][iy] - flipInfo.coords[2][iy]) * tSz[iy]) + flipInfo.coords[2][iy];
             }
 
             void GetRBFrameSize(math::VEC2* pPoint, Size* pSize, const math::VEC2& rBase, const Size& rWindowSize,
@@ -113,21 +101,19 @@ namespace nw4r {
                 pSize->height = rFrameSize.b;
             }
 
-            void GetRBTexCoord(math::VEC2* pTexCoords, const Size& rSize, const Size& rTexSize, u8 flipType) {
-                const TextureFlipInfo& rInfo = GetTexutreFlipInfo(flipType);
+            void GetRBTexCoord(math::VEC2 texCds[], const Size& polSize, const Size& texSize, u8 textureFlip) {
+                const TextureFlipInfo& flipInfo = GetTexutreFlipInfo(textureFlip);
+                const int ix = flipInfo.idx[0];
+                const int iy = flipInfo.idx[1];
+                const math::VEC2 tSz(texSize.width, texSize.height);
 
-                int ix = rInfo.idx[0];
-                int iy = rInfo.idx[1];
+                texCds[3][ix] = texCds[1][ix] = flipInfo.coords[3][ix];
+                texCds[3][iy] = texCds[2][iy] = flipInfo.coords[3][iy];
 
-                math::VEC2 texSize(rTexSize.width, rTexSize.height);
-                pTexCoords[3][ix] = pTexCoords[1][ix] = rInfo.coords[3][ix];
-                pTexCoords[3][iy] = pTexCoords[2][iy] = rInfo.coords[3][iy];
-
-                pTexCoords[0][ix] = pTexCoords[2][ix] =
-                    rInfo.coords[3][ix] + rSize.width / ((rInfo.coords[2][ix] - rInfo.coords[3][ix]) * texSize[ix]);
-
-                pTexCoords[0][iy] = pTexCoords[1][iy] =
-                    rInfo.coords[3][iy] + rSize.height / ((rInfo.coords[1][iy] - rInfo.coords[3][iy]) * texSize[iy]);
+                texCds[0][ix] = texCds[2][ix] =
+                    polSize.width / ((flipInfo.coords[2][ix] - flipInfo.coords[3][ix]) * tSz[ix]) + flipInfo.coords[3][ix];
+                texCds[0][iy] = texCds[1][iy] =
+                    polSize.height / ((flipInfo.coords[1][iy] - flipInfo.coords[3][iy]) * tSz[iy]) + flipInfo.coords[3][iy];
             }
 
         };  // namespace
@@ -258,44 +244,11 @@ namespace nw4r {
             detail::SetVtxColorElement(mContent.vtxColors, idx, value);
         }
 
-        WindowFrameSize Window::GetFrameSize(u8 frameNum, const Frame* pFrames) {
-            WindowFrameSize frameSize = {0.0f, 0.0f, 0.0f, 0.0f};
-
-            switch (frameNum) {
-            case 1: {
-                Size texSize = detail::GetTextureSize(pFrames[0].pMaterial, 0);
-
-                frameSize.l = texSize.width;
-                frameSize.t = texSize.height;
-
-                frameSize.r = texSize.width;
-                frameSize.b = texSize.height;
-                break;
-            }
-
-            case 4:
-            case 8: {
-                Size texSize = detail::GetTextureSize(pFrames[0].pMaterial, 0);
-
-                frameSize.l = texSize.width;
-                frameSize.t = texSize.height;
-
-                texSize = detail::GetTextureSize(pFrames[3].pMaterial, 0);
-
-                frameSize.r = texSize.width;
-                frameSize.b = texSize.height;
-                break;
-            }
-            }
-
-            return frameSize;
-        }
-
         void Window::DrawSelf(const DrawInfo& rInfo) {
             LoadMtx(rInfo);
 
-            WindowFrameSize size = GetFrameSize(mFrameNum, mFrames);
-            math::VEC2 base = GetVtxPos();
+            const WindowFrameSize size = GetFrameSize(mFrameNum, mFrames);
+            const math::VEC2 base = GetVtxPos();
             DrawContent(base, size, mGlbAlpha);
 
             switch (mFrameNum) {
@@ -500,6 +453,39 @@ namespace nw4r {
                 detail::SetVertexFormat(bUseVtxCol, texCoordNum);
                 detail::DrawQuad(math::VEC2(basePt.x, basePt.y + frameSize.t), polSize, texCoordNum, texCds, bUseVtxCol ? vtxColors : 0, alpha);
             }
+        }
+
+        const WindowFrameSize Window::GetFrameSize(u8 frameNum, const Frame* pFrames) {
+            WindowFrameSize frameSize = {0.0f, 0.0f, 0.0f, 0.0f};
+
+            switch (frameNum) {
+            case 1: {
+                Size texSize = detail::GetTextureSize(pFrames[0].pMaterial, 0);
+
+                frameSize.l = texSize.width;
+                frameSize.t = texSize.height;
+
+                frameSize.r = texSize.width;
+                frameSize.b = texSize.height;
+                break;
+            }
+
+            case 4:
+            case 8: {
+                Size texSize = detail::GetTextureSize(pFrames[0].pMaterial, 0);
+
+                frameSize.l = texSize.width;
+                frameSize.t = texSize.height;
+
+                texSize = detail::GetTextureSize(pFrames[3].pMaterial, 0);
+
+                frameSize.r = texSize.width;
+                frameSize.b = texSize.height;
+                break;
+            }
+            }
+
+            return frameSize;
         }
 
         Material* Window::GetFrameMaterial(u32 idx) const {

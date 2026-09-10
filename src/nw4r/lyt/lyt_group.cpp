@@ -5,16 +5,11 @@
 namespace nw4r {
     namespace lyt {
         void Group::AppendPane(Pane* pPane) {
-            void* buf = Layout::AllocMemory(sizeof(detail::PaneLink));
-
-            if (buf == nullptr) {
-                return;
+            if (void* pMem = Layout::AllocMemory(sizeof(detail::PaneLink))) {
+                detail::PaneLink* pPaneLink = new (pMem) detail::PaneLink;
+                pPaneLink->mTarget = pPane;
+                mPaneLinkList.PushBack(pPaneLink);
             }
-
-            detail::PaneLink* pLink = new (buf) detail::PaneLink();
-
-            pLink->mTarget = pPane;
-            mPaneLinkList.PushBack(pLink);
         }
 
         void Group::Init() {
