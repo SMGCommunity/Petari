@@ -6,6 +6,10 @@
 
 #define STACK_SIZE 0x8000
 
+OSMessage NWC24SendThread::mMessage;
+s32 NWC24SendThread::mMessageMax = 1;
+OSMessageQueue NWC24SendThread::mMessageQueue;
+
 NWC24SendThread::NWC24SendThread(s32 priority, JKRHeap* pHeap) {
     if (pHeap == nullptr) {
         pHeap = MR::getCurrentHeap();
