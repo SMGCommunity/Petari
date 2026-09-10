@@ -1,7 +1,7 @@
-#include "revolution/nwc24/NWC24DateParser.h"
+#include "revolution/nwc24/NWC24Internal.h"
 #include "revolution/nwc24.h"
 
-const u8 DAYS_OF_MONTH[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, 0, 0, 0, 0};
+const u8 DAYS_OF_MONTH[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 const u16 DAYS_OF_YEAR[] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
 
 s32 ConvertDateToDays(u16 year, u16 month, u16 day);
@@ -11,7 +11,7 @@ inline BOOL IsLeapYear(u16 year) {
     return (((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) != 0);
 }
 
-NWC24Err NWC24iDateToMinutes(s32* outMinutes, const NWC24iDate* date) {
+NWC24Err NWC24iDateToMinutes(s32* outMinutes, const NWC24Date* date) {
     s32 days;
     s32 minutes;
     u8 seconds;
@@ -22,14 +22,14 @@ NWC24Err NWC24iDateToMinutes(s32* outMinutes, const NWC24iDate* date) {
         return NWC24_ERR_FAILED;
     }
 
-    seconds = date->sec;
+    seconds = date->min;
     if (date->hour > 23 || seconds > 59) {
         minutes = -1;
     } else {
         minutes = seconds + (date->hour * 60);
     }
 
-    if (minutes == -1 || date->min > 60) {
+    if (minutes == -1 || date->sec > 60) {
         return NWC24_ERR_FAILED;
     }
 
@@ -37,23 +37,26 @@ NWC24Err NWC24iDateToMinutes(s32* outMinutes, const NWC24iDate* date) {
     return NWC24_OK;
 }
 
-NWC24Err NWC24iMinutesToDate(NWC24iDate* pDate, s32 days) {
-    s32 v2 = days;
-    s32 v4;
-
-    if (days < 0) {
-        v2 = 0;
+static void ConvertMinutesToDays(s32* day, u8* hour, u8* min, s32 minutes) {
+    if (minutes < 0) {
+        minutes = 0;
     }
 
-    days = v2 / 1440;
-    v4 = v2 % 1440;
-    pDate->hour = (u8)(v4 / 60);
-    pDate->sec = (u8)(v4 % 60);
-    ConvertDaysToDate(&pDate->year, &pDate->month, &pDate->day, days);
+    *day = minutes / (24 * 60);
+    minutes %= (24 * 60);
+    *hour = minutes / 60;
+    *min = minutes % 60;
+}
+
+NWC24Err NWC24iMinutesToDate(NWC24Date* date, s32 minutes) {
+    s32 days;
+
+    ConvertMinutesToDays(&days, &date->hour, &date->min, minutes);
+    ConvertDaysToDate(&date->year, &date->month, &date->day, days);
     return NWC24_OK;
 }
 
-NWC24Err NWC24iEpochSecondsToDate(NWC24iDate* date, s64 timestamp) {
+NWC24Err NWC24iEpochSecondsToDate(NWC24Date* date, s64 timestamp) {
     s64 adjusted = -0x7c558180U;
     s32 minutes;
     u32 days;
@@ -63,7 +66,7 @@ NWC24Err NWC24iEpochSecondsToDate(NWC24iDate* date, s64 timestamp) {
     }
 
     timestamp += adjusted;
-    date->min = (u8)(timestamp % 60);
+    date->sec = (u8)(timestamp % 60);
     minutes = timestamp / 60;
     if (minutes < 0) {
         minutes = 0;
@@ -72,20 +75,31 @@ NWC24Err NWC24iEpochSecondsToDate(NWC24iDate* date, s64 timestamp) {
     days = minutes / (24 * 60);
     minutes %= (24 * 60);
     date->hour = (u8)(minutes / 60);
-    date->sec = (u8)(minutes % 60);
+    date->min = (u8)(minutes % 60);
     ConvertDaysToDate(&date->year, &date->month, &date->day, days);
     return NWC24_OK;
 }
 
-NWC24Err NWC24iDateToOSCalendarTime(OSCalendarTime* time, const NWC24iDate* date) {
+NWC24Err NWC24iEpochSecondsToMinutes(s32* minutes, s64 timestamp) {
+    s64 adjusted = -0x7c558180U;
+
+    if (0 > timestamp + adjusted) {
+        timestamp = -adjusted;
+    }
+
+    *minutes = (timestamp + adjusted) / 60;
+    return NWC24_OK;
+}
+
+NWC24Err NWC24iDateToOSCalendarTime(OSCalendarTime* time, const NWC24Date* date) {
     s32 daysSinceEpoch;
 
     time->year = date->year;
     time->mon = date->month - 1;
     time->mday = date->day;
     time->hour = date->hour;
-    time->min = date->sec;  // Swapped?
-    time->sec = date->min;  // Swapped?
+    time->min = date->min;
+    time->sec = date->sec;
     time->msec = 0;
     time->usec = 0;
     time->yday = (DAYS_OF_YEAR[time->mon] + date->day) - 1;

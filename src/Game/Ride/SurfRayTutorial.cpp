@@ -9,7 +9,6 @@
 #include "Game/Util/SoundUtil.hpp"
 #include "Game/Util/TalkUtil.hpp"
 
-
 namespace {
     static const s32 sStepTalk = 150;
     static const s32 sStepToSuccess = 90;

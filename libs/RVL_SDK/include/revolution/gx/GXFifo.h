@@ -12,17 +12,7 @@ extern "C" {
 typedef void (*GXBreakPtCallback)(void);
 
 typedef struct _GXFifoObj {
-    u8* base;
-    u8* top;
-    u32 size;
-    u32 hiWatermark;
-    u32 loWatermark;
-    void* rdPtr;
-    void* wrPtr;
-    s32 count;
-    GXBool wrap;
-    GXBool bind_cpu;
-    GXBool bind_gp;
+    u8 pad[128];
 } GXFifoObj;
 
 typedef struct __GXFifoObj {

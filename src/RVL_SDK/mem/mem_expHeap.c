@@ -155,15 +155,13 @@ static void* AllocUsedBlockFromFreeBlock_(MEMiExpHeapHead* pEHHead, MEMiExpHeapM
 
     pMBHeadFreePrev = RemoveMBlock_(&pEHHead->mbFreeList, pMBHeadFree);
 
-    if ((GetOffsetFromPtr(freeRgnT.start, freeRgnT.end) < sizeof(MEMiExpHeapMBlockHead) + 4) ||
-        (direction == 0 && !pEHHead->feature.fields.useMarginOfAlign)) {
+    if (GetOffsetFromPtr(freeRgnT.start, freeRgnT.end) < sizeof(MEMiExpHeapMBlockHead) + 4) {
         freeRgnT.end = freeRgnT.start;
     } else {
         pMBHeadFreePrev = InsertMBlock_(&pEHHead->mbFreeList, InitFreeMBlock_(&freeRgnT), pMBHeadFreePrev);
     }
 
-    if ((GetOffsetFromPtr(freeRgnB.start, freeRgnB.end) < sizeof(MEMiExpHeapMBlockHead) + 4) ||
-        (direction == 1 && !pEHHead->feature.fields.useMarginOfAlign)) {
+    if (GetOffsetFromPtr(freeRgnB.start, freeRgnB.end) < sizeof(MEMiExpHeapMBlockHead) + 4) {
         freeRgnB.start = freeRgnB.end;
     } else {
         (void)InsertMBlock_(&pEHHead->mbFreeList, InitFreeMBlock_(&freeRgnB), pMBHeadFreePrev);
@@ -343,21 +341,22 @@ static inline MEMiExpHeapHead* GetExpHeapHeadPtrFromHandle_(MEMHeapHandle heap) 
 }
 
 void MEMFreeToExpHeap(MEMHeapHandle heap, void* memBlock) {
+    MEMiHeapHead* pHeapHd = heap;
+    MEMiExpHeapHead* pExpHeapHd;
+    MEMiExpHeapMBlockHead* pMBHead;
+    MemRegion region;
+
     if (memBlock == NULL) {
         return;
     }
 
-    LockHeap(heap);
-    {
-        MEMiHeapHead* pHeapHd = heap;
-        MEMiExpHeapHead* pExpHeapHd = GetExpHeapHeadPtrFromHandle_(pHeapHd);
-        MEMiExpHeapMBlockHead* pMBHead = GetMBlockHeadPtr_(memBlock);
-        MemRegion region;
+    pExpHeapHd = GetExpHeapHeadPtrFromHandle_(pHeapHd);
+    pMBHead = GetMBlockHeadPtr_(memBlock);
 
-        GetRegionOfMBlock_(&region, pMBHead);
-        (void)RemoveMBlock_(&pExpHeapHd->mbUsedList, pMBHead);
-        (void)RecycleRegion_(pExpHeapHd, &region);
-    }
+    LockHeap(heap);
+    GetRegionOfMBlock_(&region, pMBHead);
+    (void)RemoveMBlock_(&pExpHeapHd->mbUsedList, pMBHead);
+    (void)RecycleRegion_(pExpHeapHd, &region);
     UnlockHeap(heap);
 }
 

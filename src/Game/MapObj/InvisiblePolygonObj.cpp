@@ -15,7 +15,7 @@ void InvisiblePolygonObj::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
 
     initCollision(rIter);
-    
+
     MR::connectToSceneMapObjMovement(this);
     MR::setClippingTypeSphere(this, MR::getCollisionBoundingSphereRange(this));
 

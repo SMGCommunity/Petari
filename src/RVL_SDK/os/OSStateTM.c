@@ -14,24 +14,25 @@ static u32 StmVdOutBuf[8] __attribute__((align(32)));
 static u32 StmEhInBuf[8] __attribute__((align(32)));
 static u32 StmEhOutBuf[8] __attribute__((align(32)));
 
+static BOOL ResetDown = FALSE;
 static int StmReady = 0;
 static int StmImDesc = 0;
 static int StmEhDesc = 0;
 static int StmEhRegistered = 0;
 
-static int StmVdInUse = 0;
-
-static BOOL ResetDown;
+static vu32 StmVdInUse = 0;
 
 static OSResetCallback ResetCallback;
 static OSPowerCallback PowerCallback;
 
+static int AccessVIDimRegs(void);
 static BOOL __OSGetResetButtonStateRaw(void);
 static s32 __OSStateEventHandler(s32, void*);
 static s32 __OSVIDimReplyHandler(s32, void*);
 static void __OSDefaultResetCallback(void);
 static void __OSDefaultPowerCallback(void);
 static void __OSRegisterStateEvent(void);
+static void LockUp(void);
 
 OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
     BOOL enabled;
@@ -52,7 +53,7 @@ OSPowerCallback OSSetPowerCallback(OSPowerCallback callback) {
 
     OSRestoreInterrupts(enabled);
 
-    if (prevCallback == __OSDefaultResetCallback) {
+    if (prevCallback == __OSDefaultPowerCallback) {
         return NULL;
     } else {
         return prevCallback;
@@ -75,16 +76,60 @@ BOOL OSGetResetButtonState(void) {
     return state;
 }
 
-// from a debug build of the OS lib, this function is inlined in __OSSetVIForceDimming
-static int AccessVIDimRegs(void) {
-    int res;
-    res = IOS_IoctlAsync(StmImDesc, 0x5001, StmVdInBuf, 0x20, StmVdOutBuf, 0x20, __OSVIDimReplyHandler, 0);
-    switch (res) {
-    default:
-        return res;
-    case 0:
+int __OSInitSTM(void) {
+    PowerCallback = __OSDefaultPowerCallback;
+    ResetCallback = __OSDefaultResetCallback;
+    ResetDown = 0;
+
+    if (StmReady) {
         return 1;
     }
+
+    StmVdInUse = 0;
+    StmImDesc = IOS_Open("/dev/stm/immediate", 0);
+
+    if (StmImDesc < 0) {
+        StmReady = 0;
+        return 0;
+    }
+
+    StmEhDesc = IOS_Open("/dev/stm/eventhook", 0);
+
+    if (StmEhDesc < 0) {
+        StmReady = 0;
+        return 0;
+    }
+
+    __OSRegisterStateEvent();
+    StmReady = 1;
+    return 1;
+}
+
+void __OSShutdownToSBY(void) {
+    int result;
+
+    __VIRegs[1] = 0;
+
+    if (!StmReady) {
+        OSPanic(__FILE__, 0x13C, "Error: The firmware doesn't support shutdown feature.\n");
+    }
+
+    StmImInBuf[0] = 0;
+    result = IOS_Ioctl(StmImDesc, 0x2003, StmImInBuf, sizeof(StmImInBuf), StmImOutBuf, sizeof(StmImOutBuf));
+
+    LockUp();
+}
+
+void __OSHotReset(void) {
+    int result;
+    __VIRegs[1] = 0;
+
+    if (!StmReady) {
+        OSPanic(__FILE__, 380, "Error: The firmware doesn't support reboot feature.\n");
+    }
+
+    result = IOS_Ioctl(StmImDesc, 0x2001, StmImInBuf, sizeof(StmImInBuf), StmImOutBuf, sizeof(StmImOutBuf));
+    LockUp();
 }
 
 int __OSSetVIForceDimming(BOOL isEnabled, u32 yShift, u32 xShift) {
@@ -116,9 +161,13 @@ int __OSSetVIForceDimming(BOOL isEnabled, u32 yShift, u32 xShift) {
     return AccessVIDimRegs();
 }
 
-// this function is inlined but isn't in some games, so thanks
 BOOL __OSGetResetButtonStateRaw(void) {
-    return (!(__PIRegs[0] & 0x10000)) ? TRUE : FALSE;
+    u32 reg = __PIRegs[0];
+    if (!(reg & 0x10000)) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
 s32 __OSSetIdleLEDMode(u32 led_mode) {
@@ -153,13 +202,22 @@ s32 __OSUnRegisterStateEvent(void) {
     return ret;
 }
 
+static int AccessVIDimRegs(void) {
+    int res;
+    res = IOS_IoctlAsync(StmImDesc, 0x5001, StmVdInBuf, 0x20, StmVdOutBuf, 0x20, __OSVIDimReplyHandler, 0);
+    switch (res) {
+    default:
+        return res;
+    case 0:
+        return 1;
+    }
+}
+
 s32 __OSVIDimReplyHandler(s32 ret, void* pUnused) {
     StmVdInUse = 0;
     return 0;
 }
 
-// this function is the culprit of a lot of codeegen diffs
-// todo -- fix me
 static void __OSRegisterStateEvent(void) {
     int err, enabled;
     enabled = OSDisableInterrupts();
@@ -181,7 +239,6 @@ void __OSDefaultResetCallback(void) {
 void __OSDefaultPowerCallback(void) {
 }
 
-// arg seems to be unused and it's only there so we can register our states
 static s32 __OSStateEventHandler(s32 ret, void* pUnused) {
     int en;
     OSResetCallback cb;
@@ -193,7 +250,7 @@ static s32 __OSStateEventHandler(s32 ret, void* pUnused) {
     StmEhRegistered = 0;
 
     if (StmEhOutBuf[0] == 0x20000) {
-        // this won't inline properly. sigh
+
         if (__OSGetResetButtonStateRaw()) {
             en = OSDisableInterrupts();
             ResetDown = TRUE;
@@ -218,64 +275,6 @@ static s32 __OSStateEventHandler(s32 ret, void* pUnused) {
     return 0;
 }
 
-int __OSInitSTM(void) {
-    PowerCallback = __OSDefaultPowerCallback;
-    ResetCallback = __OSDefaultResetCallback;
-    ResetDown = 0;
-
-    if (StmReady) {
-        return 1;
-    }
-
-    StmVdInUse = 0;
-    StmImDesc = IOS_Open("/dev/stm/immediate", 0);
-
-    if (StmImDesc < 0) {
-        StmReady = 0;
-        return 0;
-    }
-
-    StmEhDesc = IOS_Open("/dev/stm/eventhook", 0);
-
-    if (StmEhDesc < 0) {
-        StmReady = 0;
-        return 0;
-    }
-
-    __OSRegisterStateEvent();
-    StmReady = 1;
-    return 1;
-}
-
-static void LockUp(void);
-
-void __OSShutdownToSBY(void) {
-    int result;
-
-    __VIRegs[1] = 0;
-
-    if (!StmReady) {
-        OSPanic(__FILE__, 0x13C, "Error: The firmware doesn't support shutdown feature.\n");
-    }
-
-    StmImInBuf[0] = 0;
-    result = IOS_Ioctl(StmImDesc, 0x2003, StmImInBuf, sizeof(StmImInBuf), StmImOutBuf, sizeof(StmImOutBuf));
-
-    LockUp();
-}
-
-void __OSHotReset(void) {
-    int result;
-    __VIRegs[1] = 0;
-
-    if (!StmReady) {
-        OSPanic(__FILE__, 380, "Error: The firmware doesn't support reboot feature.\n");
-    }
-
-    result = IOS_Ioctl(StmImDesc, 0x2001, StmImInBuf, sizeof(StmImInBuf), StmImOutBuf, sizeof(StmImOutBuf));
-    LockUp();
-}
-
 static void LockUp(void) {
     BOOL en = OSDisableInterrupts();
 
@@ -284,3 +283,4 @@ static void LockUp(void) {
     while (1) {
     }
 }
+

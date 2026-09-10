@@ -1,9 +1,9 @@
 #include "revolution/nwc24.h"
 
-static u8 TtableInv[16];
-static u8 ExcTable[8];
+static const u8 TtableInv[16] = {13, 5, 9, 7, 0, 15, 10, 2, 12, 3, 14, 1, 8, 6, 11, 4};
+static const u8 ExcTable[8] = {1, 5, 0, 4, 2, 3, 6, 7};
 
-unsigned long long getUnScrambleId(unsigned long long v);
+unsigned long long getUnScrambleId(u64 v);
 
 static int checkCRC(u64 v) {
     int i;
@@ -16,7 +16,7 @@ static int checkCRC(u64 v) {
     return v != 0;
 }
 
-NWC24Err NWC24iCheckUserIdCRC(u64 userId) {
+NWC24Err NWC24iCheckUserIdCRC(NWC24UserId userId) {
     u64 idDecoded = getUnScrambleId(userId);
     if (!checkCRC(idDecoded)) {
         return NWC24_OK;
@@ -26,41 +26,33 @@ NWC24Err NWC24iCheckUserIdCRC(u64 userId) {
 }
 
 static u8 getbyte(u64 value, u8 index) {
-    return value >> (index * 8);
+    return (value >> (index * 8)) & 0xFF;
 }
 
 static u64 setbyte(u64 value, u8 index, u8 set) {
-    u64 mask = 0xFFULL << (8 * index);
-    return (value & ~mask) | ((u64)set << (8 * index));
+    return (value & ~(0xFFULL << ((u64)8 * index))) | ((u64)set << ((u64)8 * index));
 }
 
 u64 getUnScrambleId(u64 v) {
-    u32 v1;
-    u32 lo;
-    u32 hi;
-    u64 temp;
+    u64 uidtemp;
     u8 i;
-    u8 byte;
 
-    v1 = ((v >> 32) & 0x1FFFFF) ^ 0x5E5E;
-    v1 |= ((v ^ 0x5E) & 1) << 21;
+    v &= 0x1FFFFFFFFFFFFFULL;
+    v ^= 0x5E5E5E5E5E5EULL;
+    v &= 0x1FFFFFFFFFFFFFULL;
+    v |= (((v & 0xFF) << 5) & 0x20) << 48;
+    v >>= 1;
 
-    lo = (v1 << 31) | ((v ^ 0x5E5E5E5E) >> 1);
-    hi = v1 >> 1;
-
-    temp = ((u64)hi << 32) | lo;
-
-    for (i = 0; i < 6; ++i)
-        temp = setbyte(temp, i, getbyte(temp, ExcTable[i]));
-
+    uidtemp = v;
     for (i = 0; i < 6; ++i) {
-        byte = getbyte(temp, i);
-        byte = TtableInv[byte & 0xF] | (TtableInv[byte >> 4] << 4);
-        temp = setbyte(temp, i, byte);
+        v = setbyte(v, i, getbyte(uidtemp, ExcTable[i]));
     }
 
-    lo = temp;
-    hi = temp >> 32;
+    for (i = 0; i < 6; ++i) {
+        v = setbyte(v, i, (TtableInv[(getbyte(v, i) >> 4) & 0xF] << 4) | TtableInv[getbyte(v, i) & 0xF]);
+    }
 
-    return (((u64)((lo >> 22) | ((hi & 0x7FF) << 10)) << 32) | ((lo << 10) | ((hi >> 11) & 0x3FF))) ^ 0xB3B3B3B3B3B3ULL;
+    v = ((v & 0x7FFFFFFFFFFULL) << 10) | ((v >> 43) & 0x3FF);
+    v ^= 0xB3B3B3B3B3B3ULL;
+    return v;
 }

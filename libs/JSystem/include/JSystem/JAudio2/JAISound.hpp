@@ -315,14 +315,14 @@ struct JAISoundFader {
 
 template < typename T >
 struct JAISoundStrategy {
-    virtual ~JAISoundStrategy(){};
+    virtual ~JAISoundStrategy() {};
     virtual void calc(T*);
     virtual void mix(T*, JASSoundParams*);
 };
 
 template < typename T >
 struct JAISoundStrategyMgr {
-    virtual ~JAISoundStrategyMgr(){};
+    virtual ~JAISoundStrategyMgr() {};
     virtual JAISoundStrategy< T >* newStrategy(JAISoundID) = 0;
     virtual bool deleteStrategy(JAISoundStrategy< T >*) = 0;
 };

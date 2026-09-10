@@ -4,8 +4,8 @@
 #include "revolution/vf/vf_struct.h"
 
 extern struct PDM_DISK_SET VFipdm_disk_set;
-s32 VF_nand_retry_max;
 s32 VF_nand_sleep_msec;
+s32 VF_nand_retry_max;
 
 static struct {
     s32 (*create)(const char*, u8, u8);
@@ -205,7 +205,7 @@ s32 VFi_NandOpenSp(const char* path, void* info, u8 accType, u32 i_handleIdx) {
 
     if (i_handleIdx < 26) {
         tmpOpen = (s32(*)(const char*, struct NANDFileInfo*, u8))l_nandFunc[i_handleIdx].open;
-        if (tmpOpen != NULL) {
+        if (tmpOpen != 0) {
             return tmpOpen(path, info_p, accType);
         }
         return VFi_NandOpen(path, info_p, accType);
@@ -329,11 +329,11 @@ s32 VFi_NandFlushNANDFromHandleIdx(s32 i_handleIdx, int i_setLastDeviceError) {
     drive_p = (struct VF_HANDLE_DRIVE*)VFSysGetDriveP(i_handleIdx);
     handle_p = (struct VF_HANDLE_TYPE*)VFSysGetHandleP(i_handleIdx);
 
-    if (handle_p != NULL && handle_p->device_p != NULL && handle_p->device_p->sync_mode == 1) {
+    if (handle_p != 0 && handle_p->device_p != 0 && handle_p->device_p->sync_mode == 1) {
         return 0;
     }
 
-    if (drive_p != NULL) {
+    if (drive_p != 0) {
         sys_name_p = (const char*)drive_p->pf_filename;
         fileInfo_p = drive_p->file_p;
         NANDError = VFi_NandClose(fileInfo_p);
@@ -347,7 +347,7 @@ s32 VFi_NandFlushNANDFromHandleIdx(s32 i_handleIdx, int i_setLastDeviceError) {
 
         if ((u32)i_handleIdx < 26) {
             s32 (*tmpOpen)(const char*, struct NANDFileInfo*, u8) = l_nandFunc[i_handleIdx].open;
-            if (tmpOpen != NULL) {
+            if (tmpOpen != 0) {
                 NANDError = tmpOpen(sys_name_p, fileInfo_p, 3);
             } else {
                 NANDError = VFi_NandOpen(sys_name_p, fileInfo_p, 3);
@@ -380,26 +380,17 @@ s32 _MountPrfFile(struct PDM_DISK* p_disk, s8* i_fullpath_p) {
     enum FatType fatType;
 
     drive_p = (struct VF_HANDLE_DRIVE*)VFSysPDMDisk2DriveP(p_disk);
+    fileInfo_p = 0;
+    nandError = 0;
     handleIdx = dCommon_getHandleIdxFromDisk(p_disk);
 
-    if (drive_p == NULL) {
+    if (drive_p == 0) {
         return -20;
     }
 
     fileInfo_p = drive_p->file_p;
 
-    if (handleIdx < 26) {
-        s32 (*tmpOpen)(const char*, struct NANDFileInfo*, u8) = (s32(*)(const char*, struct NANDFileInfo*, u8))l_nandFunc[handleIdx].open;
-        if (tmpOpen != NULL) {
-            nandError = tmpOpen((const char*)i_fullpath_p, fileInfo_p, 1);
-        } else {
-            nandError = VFi_NandOpen((const char*)i_fullpath_p, fileInfo_p, 1);
-        }
-    } else if (handleIdx == 0xFFFFFFF6) {
-        nandError = VFi_NandOpen((const char*)i_fullpath_p, fileInfo_p, 1);
-    } else {
-        nandError = VFi_NandPrivateOpen((const char*)i_fullpath_p, fileInfo_p, 1);
-    }
+    nandError = VFi_NandOpenSp((const char*)i_fullpath_p, fileInfo_p, 1, handleIdx);
     if (nandError == 0) {
         VFipf_memset(&header, 0, 0x20);
         nandError = A32_NANDRead(fileInfo_p, &header, 0x20);
@@ -429,18 +420,7 @@ s32 _MountPrfFile(struct PDM_DISK* p_disk, s8* i_fullpath_p) {
         return nandError;
     }
 
-    if (handleIdx < 26) {
-        s32 (*tmpOpen)(const char*, struct NANDFileInfo*, u8) = (s32(*)(const char*, struct NANDFileInfo*, u8))l_nandFunc[handleIdx].open;
-        if (tmpOpen != NULL) {
-            nandError = tmpOpen((const char*)i_fullpath_p, fileInfo_p, 3);
-        } else {
-            nandError = VFi_NandOpen((const char*)i_fullpath_p, fileInfo_p, 3);
-        }
-    } else if (handleIdx == 0xFFFFFFF6) {
-        nandError = VFi_NandOpen((const char*)i_fullpath_p, fileInfo_p, 3);
-    } else {
-        nandError = VFi_NandPrivateOpen((const char*)i_fullpath_p, fileInfo_p, 3);
-    }
+    nandError = VFi_NandOpenSp((const char*)i_fullpath_p, fileInfo_p, 3, handleIdx);
     if (nandError == 0) {
         return 0;
     }
@@ -455,7 +435,7 @@ static u16 _UnmountPrfFile(struct PDM_DISK* p_disk) {
     struct NANDFileInfo* fileInfo_p;
 
     drive_p = (struct VF_HANDLE_DRIVE*)VFSysPDMDisk2DriveP(p_disk);
-    if (drive_p != NULL) {
+    if (drive_p != 0) {
         fileInfo_p = drive_p->file_p;
         nandError = VFi_NandClose(fileInfo_p);
         if (nandError == 0) {
@@ -485,7 +465,7 @@ s32 nanddrv_BuildUpBootSector(struct PDM_DISK* p_disk, u8* buf, enum FatType* ty
 }
 
 s32 nanddrv_init(struct PDM_DISK* p_disk) {
-    if (p_disk == NULL) {
+    if (p_disk == 0) {
         return -20;
     }
     dCommon_setFatTypeToDisk(p_disk, 1);
@@ -496,11 +476,11 @@ s32 nanddrv_init(struct PDM_DISK* p_disk) {
 s32 nanddrv_mount(struct PDM_DISK* p_disk) {
     struct VF_HANDLE_DRIVE* drive_p;
     s32 err;
-    if (p_disk == NULL) {
+    if (p_disk == 0) {
         return -20;
     }
     drive_p = (struct VF_HANDLE_DRIVE*)VFSysPDMDisk2DriveP(p_disk);
-    if (drive_p == NULL) {
+    if (drive_p == 0) {
         return -20;
     }
     err = _MountPrfFile(p_disk, (s8*)drive_p->pf_filename);
@@ -513,7 +493,7 @@ s32 nanddrv_format(struct PDM_DISK* p_disk, const u8* param) {
 
 s32 nanddrv_pread(struct PDM_DISK* p_disk, u8* p_buf, u32 block, u32 num_blocks, u32* p_num_success) {
     *p_num_success = 0;
-    if (p_disk == NULL || p_buf == NULL || num_blocks == 0 || p_num_success == NULL) {
+    if (p_disk == 0 || p_buf == 0 || num_blocks == 0 || p_num_success == 0) {
         return -20;
     }
     return nanddrv_physical_read(num_blocks, p_buf, block, 0x200, p_num_success, p_disk);
@@ -521,7 +501,7 @@ s32 nanddrv_pread(struct PDM_DISK* p_disk, u8* p_buf, u32 block, u32 num_blocks,
 
 s32 nanddrv_pwrite(struct PDM_DISK* p_disk, const u8* p_buf, u32 block, u32 num_blocks, u32* p_num_success) {
     *p_num_success = 0;
-    if (p_disk == NULL || p_buf == NULL || num_blocks == 0 || p_num_success == NULL) {
+    if (p_disk == 0 || p_buf == 0 || num_blocks == 0 || p_num_success == 0) {
         return -20;
     }
     return nanddrv_physical_write(num_blocks, p_buf, block, 0x200, p_num_success, p_disk);
@@ -530,7 +510,7 @@ s32 nanddrv_pwrite(struct PDM_DISK* p_disk, const u8* p_buf, u32 block, u32 num_
 s32 nanddrv_unmount(struct PDM_DISK* p_disk) {
     u16 nandError;
 
-    if (p_disk == NULL) {
+    if (p_disk == 0) {
         return -20;
     }
 
@@ -542,7 +522,7 @@ s32 nanddrv_unmount(struct PDM_DISK* p_disk) {
 }
 
 s32 nanddrv_finalize(struct PDM_DISK* p_disk) {
-    if (p_disk == NULL) {
+    if (p_disk == 0) {
         return -20;
     }
     dCommon_setFatTypeToDisk(p_disk, 1);
@@ -553,7 +533,7 @@ s32 nanddrv_get_disk_info(struct PDM_DISK* p_disk, struct PDM_DISK_INFO* p_disk_
     u32 fileSize;
     u32 dataSize;
 
-    if (p_disk == NULL || p_disk_info == NULL) {
+    if (p_disk == 0 || p_disk_info == 0) {
         return -20;
     }
 
@@ -566,7 +546,7 @@ s32 nanddrv_get_disk_info(struct PDM_DISK* p_disk, struct PDM_DISK_INFO* p_disk_
     p_disk_info->sectors_per_track = 0x3F;
     p_disk_info->bytes_per_sector = 0x200;
     p_disk_info->media_attr = 0;
-    p_disk_info->format_param = NULL;
+    p_disk_info->format_param = 0;
 
     return 0;
 }
@@ -589,7 +569,7 @@ s32 nanddrv_physical_read(u32 num_blocks, u8* buf, u32 block, u32 bps, u32* p_nu
     fileSize = dCommon_getFileSizeFromDisk(p_disk);
     drive_p = (struct VF_HANDLE_DRIVE*)VFSysPDMDisk2DriveP(p_disk);
 
-    if (drive_p == NULL) {
+    if (drive_p == 0) {
         return -20;
     }
 
@@ -633,7 +613,7 @@ s32 nanddrv_physical_write(u32 num_blocks, const u8* buf, u32 block, u32 bps, u3
     drive_p = (struct VF_HANDLE_DRIVE*)VFSysPDMDisk2DriveP(p_disk);
     err = 0;
 
-    if (drive_p == NULL) {
+    if (drive_p == 0) {
         return -20;
     }
 

@@ -81,8 +81,8 @@ namespace NrvTripodBoss {
 
 TripodBoss::TripodBoss(const char* pName)
     : LiveActor(pName), mLowModel(), mMovableArea(), mDummyModel(), _5BC(0.0f, 3200.0f), _5C8(0, 0, 0), _5D4(0, 0, 0), _5E0(0, 0, 0), _5EC(0, 0, 0),
-      _5F8(7500.0f), _5FC(), _600(1.0f), _604(3000.0f), _608(4000.0f), _60C(4000.0f), _610(2400.0f), _614(), _618(0.1f), _61C(3000.0f),
-      _620(2.0f), mCurrentStepSeq(-1), mNextStepSeq(-1), _630(), _634(2), _638(), _63C(1), _640(), mEventCamera() {
+      _5F8(7500.0f), _5FC(), _600(1.0f), _604(3000.0f), _608(4000.0f), _60C(4000.0f), _610(2400.0f), _614(), _618(0.1f), _61C(3000.0f), _620(2.0f),
+      mCurrentStepSeq(-1), mNextStepSeq(-1), _630(), _634(2), _638(), _63C(1), _640(), mEventCamera() {
     mBodyMtx.identity();
     _EC.identity();
 

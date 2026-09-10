@@ -14,8 +14,9 @@ extern BOOL __OSInNandBoot;
 
 extern BOOL __OSIsDiag;
 
-static volatile u32 DVDLowIntType = 0;
-static DVDDiskID id;
+BOOL __OSInReboot;
+static volatile u32 DVDLowIntType;
+static DVDDiskID id ATTRIBUTE_ALIGN(32);
 u32 __OSNextPartitionType = 0;
 
 OSExecParams* __OSExecParamsAddr : OS_BASE_CACHED + 0x30F0;
@@ -23,17 +24,7 @@ s32 __OSCurrentTGCOffset : OS_BASE_CACHED + 0x30F4;
 vu32 __OSLaunchPartitionType : (OS_BASE_CACHED | 0x3194);
 vu8 __OSLockedFlag : (OS_BASE_CACHED | 0x3187);
 
-BOOL __OSInReboot = FALSE;
-
 extern void __DVDShowFatalMessageForSystem(u32 command, u32 intType);
-
-static void callback(u32 intType) {
-    DVDLowIntType = intType;
-}
-
-static void Callback(s32 result, DVDCommandBlock* block) {
-    Prepared = TRUE;
-}
 
 extern u16 OSSetFontEncode(u16);
 
@@ -72,17 +63,15 @@ static BOOL PackArgs(void* addr, s32 argc, char* argv[]) {
             argv[argc] = (char*)(ptr - bootInfo2);
         }
 
-        ptr = bootInfo2 + ((ptr - bootInfo2) & ~3);
-        ptr -= 4 * (numArgs + 1);
-        list = (char**)ptr;
+        list = (char**)(bootInfo2 + ((ptr - bootInfo2) & ~3));
+        list -= numArgs + 1;
 
         for (i = 0; i < numArgs + 1; i++) {
             list[i] = argv[i];
         }
 
-        ptr -= 4;
-        *(s32*)ptr = numArgs;
-        *(u32*)&bootInfo2[8] = (u32)(ptr - bootInfo2);
+        *(s32*)(list - 1) = numArgs;
+        *(u32*)&bootInfo2[8] = (u32)((char*)(list - 1) - bootInfo2);
     }
 
     return TRUE;
@@ -124,7 +113,7 @@ static BOOL Utf16ToArg(char* dstArg, u16* srcName) {
     return FALSE;
 }
 
-BOOL PackInstallerArgs(void* addr, s32 argc, char* argv[]) {
+static BOOL PackInstallerArgs(void* addr, s32 argc, char* argv[]) {
     s32 numArgs;
     char* bootInfo2;
     char* ptr;
@@ -154,19 +143,16 @@ BOOL PackInstallerArgs(void* addr, s32 argc, char* argv[]) {
             }
         }
 
-        ptr = bootInfo2 + ((ptr - bootInfo2) & ~3);
-        ptr -= 4 * (numArgs + 1);
-
-        list = (char**)ptr;
+        list = (char**)(bootInfo2 + ((ptr - bootInfo2) & ~3));
+        list -= numArgs + 1;
 
         for (i = 0; i < numArgs + 1; i++) {
             list[i] = argv[i];
         }
 
-        ptr -= 4;
-        *(s32*)ptr = numArgs;
+        *(s32*)(list - 1) = numArgs;
 
-        *(u32*)&bootInfo2[8] = (u32)(ptr - bootInfo2);
+        *(u32*)&bootInfo2[8] = (u32)((char*)(list - 1) - bootInfo2);
     }
 
     return TRUE;
@@ -185,6 +171,10 @@ static asm void Run(register void* entryPoint) {
 }
 // clang-format on
 
+static void Callback(s32 result, DVDCommandBlock* block) {
+    Prepared = TRUE;
+}
+
 void __OSGetExecParams(OSExecParams* params) {
     if (0x80000000 <= (u32)__OSExecParamsAddr) {
         memcpy(params, __OSExecParamsAddr, 0x1C);
@@ -201,6 +191,10 @@ void __OSSetExecParams(const OSExecParams* params, OSExecParams* addr) {
 extern void __OSInitIPCBuffer(void);
 extern void IPCReInit(void);
 extern IOSError IPCCltReInit(void);
+
+static void callback(u32 intType) {
+    DVDLowIntType = intType;
+}
 
 void __OSLaunchNextFirmware(void) {
     u8 i;
@@ -433,8 +427,6 @@ void __OSLaunchMenu(void) {
     u32 ticketCnt = 1;
     ESTicketView* t;
     ESSysVersion version = 0x0000000100000003;
-    GXColor bg = {0, 0, 0, 0};
-    GXColor fg = {255, 255, 255, 0};
 
     OSSetArenaLo((void*)0x81280000);
     OSSetArenaHi((void*)0x812F0000);

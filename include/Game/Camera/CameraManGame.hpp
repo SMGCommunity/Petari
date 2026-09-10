@@ -19,7 +19,7 @@ public:
 
     virtual void calc();
     virtual void notifyActivate();
-    virtual void notifyDeactivate(){};
+    virtual void notifyDeactivate() {};
     virtual bool isInterpolationOff() const;
     virtual bool isCollisionOff() const;
     virtual bool isZeroFrameMoveOff() const;

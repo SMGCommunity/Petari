@@ -1,6 +1,11 @@
 #include "revolution/vf/pf_api_util.h"
 
-int VFipf_error_to_api_error[40];
+int VFipf_error_to_api_error[40] = {
+    0, 22, 22, 2, 16, 90, 28, 8, 17, 8,
+    22, 13, 88, 8, 8, 8, 13, 5, 8, 13,
+    2, 23, 24, 21, 13, 1, 8, 8, 8, 8,
+    12, 22, 22, 8, 2, 8, 8, 27, 9, 46,
+};
 
 #include <revolution/types.h>
 

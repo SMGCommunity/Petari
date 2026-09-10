@@ -65,8 +65,7 @@ static inline s32 VFiPFENT_ITER_DoMoveTo(struct PF_ENT_ITER* p_iter, u32 index, 
         VFiPFENT_ITER_RecalcEntryIterator(p_iter, 0);
     } else {
         err = VFiPFENT_ITER_LoadEntry(p_iter);
-        // idk
-        return err & ((-err | err) >> 31);
+        return err != 0 ? err : 0;
     }
     return err;
 }
@@ -76,12 +75,10 @@ static inline u32 VFiPFENT_ITER_IsAtPhysicalEnd(struct PF_ENT_ITER* p_iter) {
 }
 
 s32 VFiPFENT_ITER_GetEntry(struct PF_DIR_ENT* p_ent, struct PF_ENT_ITER* p_iter, struct PF_STR* p_pattern, u8 attr_required, u32* p_lpos,
-                                  u32 is_reverse) {
+                           u32 is_reverse) {
     u8 attr;
     s32 is_valid;
     s32 is_match;
-    s32 lengthName;
-    s8 filename[13];
 
     attr = p_iter->buf[11];
     if ((attr & 0xF) == 0xF) {
@@ -101,6 +98,8 @@ s32 VFiPFENT_ITER_GetEntry(struct PF_DIR_ENT* p_ent, struct PF_ENT_ITER* p_iter,
                 p_ent->long_name[0] = 0;
             }
             if ((VFipf_vol_set.setting & 2) == 2 && p_ent->num_entry_LFNs == 0 && (p_iter->buf[12] & 0x18) != 0) {
+                s32 lengthName;
+                s8 filename[13];
                 VFiPFPATH_getLongNameformShortName(p_ent->short_name, filename, p_iter->buf[12]);
                 lengthName = VFiPFPATH_transformInUnicode(p_ent->long_name, filename);
                 p_ent->num_entry_LFNs = (lengthName / 13) + ((lengthName % 13) != 0);
@@ -127,7 +126,9 @@ s32 VFiPFENT_ITER_GetEntry(struct PF_DIR_ENT* p_ent, struct PF_ENT_ITER* p_iter,
         return -1;
     }
 
-    if ((VFipf_vol_set.setting & 2) == 2 && p_ent->num_entry_LFNs == 0 && (p_iter->buf[12] & 0x18) != 0) {
+    if ((VFipf_vol_set.setting & 2) != 2 && p_ent->num_entry_LFNs == 0 && (p_iter->buf[12] & 0x18) != 0) {
+        s32 lengthName;
+        s8 filename[13];
         VFiPFPATH_getLongNameformShortName(p_ent->short_name, filename, p_iter->buf[12]);
         lengthName = VFiPFPATH_transformInUnicode(p_ent->long_name, filename);
         p_ent->num_entry_LFNs = (lengthName / 13) + ((lengthName % 13) != 0);
@@ -144,14 +145,13 @@ s32 VFiPFENT_ITER_GetEntry(struct PF_DIR_ENT* p_ent, struct PF_ENT_ITER* p_iter,
     return 0;
 }
 
-s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent, struct PF_STR* p_pattern, u8 attr_required,
-                                     u32* p_is_found, u32* p_ppos, u32* p_lpos, u32 is_skip) {
+s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent, struct PF_STR* p_pattern, u8 attr_required, u32* p_is_found,
+                              u32* p_ppos, u32* p_lpos, u32 is_skip) {
     s32 err;
     u32 index_search_from;
     u32 is_extsfn;
 
     err = 0;
-    is_extsfn = 0;
     *p_is_found = 0;
     if (p_ppos) {
         *p_ppos = 999999;
@@ -160,6 +160,7 @@ s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_e
         *p_lpos = 999999;
     }
 
+    is_extsfn = 0;
     if (*p_iter->ffd.p_start_cluster == (p_iter->ffd.p_vol->bpb.fat_type == FAT_32 ? p_iter->ffd.p_vol->bpb.root_dir_cluster : 1) &&
         (VFiPFSTR_StrNCmp(p_pattern, (const s8*)"..\\", 1, 0, 3) == 0 || VFiPFSTR_StrNCmp(p_pattern, (const s8*)"../", 1, 0, 3) == 0 ||
          VFiPFSTR_StrCmp(p_pattern, (const s8*)"..") == 0)) {
@@ -168,25 +169,26 @@ s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_e
 
     if (VFiPFSTR_StrNCmp(p_pattern, (const s8*)".\\", 1, 0, 2) == 0 || VFiPFSTR_StrNCmp(p_pattern, (const s8*)"./", 1, 0, 2) == 0 ||
         VFiPFSTR_StrCmp(p_pattern, (const s8*)".") == 0) {
-        if (!VFiPFENT_CompareAttr(0x10, attr_required)) {
-            return 0;
-        }
-        if (!is_skip && (*p_iter->ffd.p_start_cluster == 1 ||
-                         (p_iter->ffd.p_vol->bpb.fat_type == FAT_32 && *p_iter->ffd.p_start_cluster == p_iter->ffd.p_vol->bpb.root_dir_cluster))) {
-            err = VFiPFENT_GetRootDir(p_iter->p_vol, p_ent);
-            if (err != 0) {
-                return err;
+        if (VFiPFENT_CompareAttr(0x10, attr_required)) {
+            if (!is_skip && (*p_iter->ffd.p_start_cluster == 1 || (p_iter->ffd.p_vol->bpb.fat_type == FAT_32 &&
+                                                                   *p_iter->ffd.p_start_cluster == p_iter->ffd.p_vol->bpb.root_dir_cluster))) {
+                err = VFiPFENT_GetRootDir(p_iter->p_vol, p_ent);
+                if (err != 0) {
+                    return err;
+                }
+                is_skip = 1;
             }
-            is_skip = 1;
-        }
-        if (is_skip) {
-            if (p_ppos) {
-                *p_ppos = 0;
+            if (is_skip) {
+                if (p_ppos) {
+                    *p_ppos = 0;
+                }
+                if (p_lpos) {
+                    *p_lpos = 0;
+                }
+                *p_is_found = 1;
+                return 0;
             }
-            if (p_lpos) {
-                *p_lpos = 0;
-            }
-            *p_is_found = 1;
+        } else {
             return 0;
         }
     }
@@ -211,25 +213,24 @@ s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_e
                 return 3;
             }
             if ((p_iter->buf[0] & 0x40) != 0) {
-                break;
+                err = VFiPFENT_ITER_IteratorInitialize(p_iter, index_search_from);
+                if (err != 0) {
+                    return err;
+                }
+                err = VFiPFENT_ITER_GetEntry(p_ent, p_iter, p_pattern, attr_required, p_lpos, 1);
+                if (err == 0) {
+                    p_ent->p_vol = p_iter->ffd.p_vol;
+                    if (p_ppos) {
+                        *p_ppos = p_iter->index;
+                    }
+                    *p_is_found = 1;
+                    return 0;
+                } else {
+                    return 3;
+                }
             }
             err = VFiPFENT_ITER_Retreat(p_iter, 0);
         }
-
-        err = VFiPFENT_ITER_IteratorInitialize(p_iter, index_search_from);
-        if (err != 0) {
-            return err;
-        }
-        err = VFiPFENT_ITER_GetEntry(p_ent, p_iter, p_pattern, attr_required, p_lpos, 1);
-        if (err != 0) {
-            return 3;
-        }
-        p_ent->p_vol = p_iter->ffd.p_vol;
-        if (p_ppos) {
-            *p_ppos = p_iter->index;
-        }
-        *p_is_found = 1;
-        return 0;
     } else {
         while (!VFiPFENT_ITER_IsAtLogicalEnd(p_iter)) {
             if (err != 0) {
@@ -259,7 +260,7 @@ s32 VFiPFENT_ITER_DoFindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_e
 }
 
 s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_ffd, u32* p_prev_chain, PF_STR* p_filename, u8 attr_required,
-                                         u32* p_pos) {
+                                  u32* p_pos) {
     s32 err;
     u32 is_found;
     PF_DIR_ENT wk_ent;
@@ -287,14 +288,15 @@ s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_f
     p_prev_chain[0] = 0xFFFFFFFF;
 
     iter.ffd = *p_ffd;
-    iter.p_vol = iter.ffd.p_vol;
-    if (!iter.p_vol) {
-        err = 10;
-    } else {
-        err = VFiPFENT_ITER_IteratorInitialize(&iter, 0);
-    }
+    err = VFiPFENT_ITER_IteratorInitialize(&iter, 0);
 
-    while (err == 0) {
+    while (1) {
+        if (err != 0) {
+            if (err == 16) {
+                break;
+            }
+            return err;
+        }
         if (!is_found) {
             if (run_count == 0) {
                 sector_c = iter.sector;
@@ -333,7 +335,7 @@ s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_f
                     return 8;
                 }
             }
-            if (is_found && iter.offset + 32 == iter.p_vol->bpb.bytes_per_sector) {
+            if (is_found && iter.offset + 32 == p_ffd->p_vol->bpb.bytes_per_sector) {
                 err = VFiPFFAT_GetSectorSpecified(p_ffd, iter.file_sector_index + 1, 0, &sector);
                 if (err != 0) {
                     return err;
@@ -349,9 +351,6 @@ s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_f
         err = VFiPFENT_ITER_Advance(&iter, 1);
     }
 
-    if (err != 0 && err != 16) {
-        return err;
-    }
     if (!is_found) {
         return 5;
     }
@@ -362,8 +361,8 @@ s32 VFiPFENT_ITER_DoAllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_f
     return 0;
 }
 
-s32 VFiPFENT_ITER_DoGetEntryOfPath(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent, struct PF_VOLUME* p_vol, struct PF_STR* p_path,
-                                          u32 wildcard, u32 is_parent) {
+s32 VFiPFENT_ITER_DoGetEntryOfPath(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent, struct PF_VOLUME* p_vol, struct PF_STR* p_path, u32 wildcard,
+                                   u32 is_parent) {
     s8* p;
     struct PF_STR token;
     u32 is_found;
@@ -387,7 +386,7 @@ s32 VFiPFENT_ITER_DoGetEntryOfPath(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT
         if (err != 0) {
             return err;
         }
-        if (VFiPFSTR_StrNumChar(p_path, 1) == 1 && VFiPFSTR_StrNCmp(p_path, (const s8*)"\0\0", 2, 0, 1) == 0) {
+        if (VFiPFSTR_StrNumChar(p_path, 1) == 1 && VFiPFSTR_StrNCmp(p_path, (const s8*)"\0", 2, 0, 1) == 0) {
             return 0;
         }
     } else {
@@ -404,11 +403,11 @@ s32 VFiPFENT_ITER_DoGetEntryOfPath(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT
     VFiPFPATH_InitTokenOfPath(&token, p, code_mode);
     err = VFiPFPATH_GetNextTokenOfPath(&token, wildcard);
 
-    while (*(void**)&token != NULL) {
+    while (token.p_head != NULL) {
         if (err != 0) {
             return err;
         }
-        if (is_parent != 0 && VFiPFSTR_StrNCmp(&token, (const s8*)"\0\0", 2, 0, 1) == 0) {
+        if (is_parent != 0 && VFiPFSTR_StrNCmp(&token, (const s8*)"\0", 2, 0, 1) == 0) {
             break;
         }
         if ((p_ent->attr & 0x10) == 0) {
@@ -437,17 +436,13 @@ s32 VFiPFENT_ITER_DoGetEntryOfPath(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT
             }
         }
 
-        err = VFiPFENT_ITER_DoFindEntry(p_iter, p_ent, &token, 0x7F, &is_found, &ppos, &lpos, 1);
+        err = VFiPFENT_ITER_DoFindEntry(p_iter, p_ent, &token, 0x77, &is_found, &ppos, &lpos, 1);
         if (err != 0) {
             return err;
         }
 
         if (is_found == 0) {
-            err = VFiPFPATH_GetNextTokenOfPath(&token, wildcard);
-            if (err != 0) {
-                return err;
-            }
-            return (*(void**)&token == NULL) ? 3 : 2;
+            return VFiPFSTR_StrNumChar(&token, 2) != 0 ? 2 : 3;
         }
 
         if (wildcard == 0) {
@@ -478,7 +473,7 @@ s32 VFiPFENT_ITER_DoGetEntryOfPath(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT
                 }
             } else if ((p_ent->attr & 0x10) == 0 || p_ent->short_name[0] != '.') {
                 p_ent->path_len += VFiPFSTR_StrNumChar(&token, 1) + 1;
-                if (VFiPFSTR_StrNCmp(&token, (const s8*)"\0\0", 2, 0, 1) != 0) {
+                if (VFiPFSTR_StrNCmp(&token, (const s8*)"\0", 2, 0, 1) != 0) {
                     p_ent->path_len -= VFiPFSTR_StrNumChar(&token, 2);
                 }
             }
@@ -521,7 +516,7 @@ u32 VFiPFENT_ITER_IsAtLogicalEnd(struct PF_ENT_ITER* p_iter) {
         }
         if (p_iter->sector != 0xFFFFFFFF) {
             err = VFiPFENT_ITER_LoadEntry(p_iter);
-            return (-err | (u32)err) >> 31;
+            return err != 0;
         }
         return 1;
     }
@@ -614,7 +609,10 @@ s32 VFiPFENT_ITER_FindEntry(struct PF_ENT_ITER* p_iter, struct PF_DIR_ENT* p_ent
     }
     *p_is_found = 0;
     err = VFiPFENT_ITER_DoFindEntry(p_iter, p_ent, p_pattern, attr_required, p_is_found, p_ppos, p_lpos, is_skip);
-    return err & ((-err | err) >> 31);
+    if (err != 0) {
+        return err;
+    }
+    return 0;
 }
 
 s32 VFiPFENT_ITER_AllocateEntry(PF_DIR_ENT* p_ent, u8 num_entries, PF_FFD* p_ffd, u32* p_prev_chain, PF_STR* p_filename, u8 attr_required,

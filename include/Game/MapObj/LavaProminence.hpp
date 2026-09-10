@@ -1,19 +1,23 @@
 #pragma once
 
 #include "Game/LiveActor/LiveActor.hpp"
-#include "JSystem/JGeometry/TMatrix.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class PartsModel;
 
 class LavaProminence : public LiveActor {
 public:
-    LavaProminence(const char*);
+    /// @brief Creates a new `LavaProminence`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    LavaProminence(const char* pName);
 
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void initAfterPlacement();
     virtual void appear();
     virtual void kill();
     virtual void startClipped();
     virtual void calcAndSetBaseMtx();
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
     void moveOnRail();
     void setGravityAndMakeMtx();
@@ -28,28 +32,23 @@ public:
     void exeMoveEnd();
     void exeMoveEndExtra();
 
-    /* 0x8C */ s32 _8C;
-    /* 0x90 */ f32 _90;
-    /* 0x94 */ f32 _94;
-    /* 0x98 */ f32 _98;
-    /* 0x9C */ TVec3f _9C;
-    /* 0xA8 */ TVec3f _A8;
-    /* 0xB4 */ f32 _B4;
-    /* 0xB8 */ f32 _B8;
-    /* 0xBC */ f32 _BC;
-    /* 0xC0 */ f32 _C0;
-    /* 0xC4 */ f32 _C4;
-    /* 0xC8 */ f32 _C8;
-    /* 0xCC */ TMtx34f _CC;
-    /* 0xFC */ TMtx34f _FC;
+    bool isNrvMove();
+
+    /* 0x08C */ s32 mWaitTime;
+    /* 0x090 */ f32 mMoveSpeed;
+    /* 0x094 */ f32 mMoveRailCoord;
+    /* 0x098 */ f32 mMoveRailEndOffset;
+    /* 0x09C */ TVec3f mRailStartDir;
+    /* 0x0A8 */ TVec3f mRailEndDir;
+    /* 0x0B4 */ TVec3f mRailStartPos;
+    /* 0x0C0 */ TVec3f mRailEndPos;
+    /* 0x0CC */ TPos3f mEffectStartMtx;
+    /* 0x0FC */ TPos3f mEffectEndMtx;
     /* 0x12C */ TVec3f _12C;
-    /* 0x138 */ s32 _138;
-    /* 0x13C */ TMtx34f _13C;
-    /* 0x16C */ f32 _16C;
-    /* 0x170 */ f32 _170;
-    /* 0x174 */ f32 _174;
-    /* 0x178 */ f32 _178;
-    /* 0x17C */ TVec3f _17C;
-    /* 0x188 */ bool _188;
-    /* 0x18C */ TMtx34f _18C;
+    /* 0x138 */ PartsModel* mBloomModel;
+    /* 0x13C */ TPos3f mBloomModelMtx;
+    /* 0x16C */ TQuat4f _16C;
+    /* 0x17C */ TVec3f mRailDir;
+    /* 0x188 */ bool mEmitDropEffect;
+    /* 0x18C */ TPos3f _18C;
 };

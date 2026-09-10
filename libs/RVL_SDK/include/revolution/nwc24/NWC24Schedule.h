@@ -1,7 +1,9 @@
-#ifndef NWC24SCHEDULE_H
-#define NWC24SCHEDULE_H
+#ifndef RVL_SDK_NWC24_SCHEDULE_H
+#define RVL_SDK_NWC24_SCHEDULE_H
+#include <revolution/types.h>
+#include <cstdlib>
 
-#include "revolution/nwc24.h"
+#include <revolution/nwc24/NWC24Types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -9,12 +11,8 @@ extern "C" {
 
 s32 NWC24SuspendScheduler(void);
 s32 NWC24ResumeScheduler(void);
-NWC24Err NWC24iRequestGenerateUserId(u64* idOut, u32* arg1);
-NWC24Err NWC24iTrySuspendForOpenLib(void);
-NWC24Err NWC24iResumeForCloseLib(void);
 
 #ifdef __cplusplus
 }
 #endif
-
-#endif  // NWC24SCHEDULE_H
+#endif

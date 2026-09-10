@@ -4,7 +4,7 @@
 
 namespace {
     static f32 sThreshold = JGeometry::TUtil< f32 >::PI() / 180.0f;  // FIXME
-};                                                                   // namespace
+};  // namespace
 
 CameraRotChecker::CameraRotChecker() {
     mMtx.identity();

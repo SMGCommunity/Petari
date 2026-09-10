@@ -298,8 +298,7 @@ bool GameSystemSceneController::isScenarioDecided() const {
 }
 
 void GameSystemSceneController::loadScenarioWaveData() {
-    ::getAudioSystemWrapper()->loadScenarioWaveData(mCurrSceneControlInfo.mScene, mCurrSceneControlInfo.mStage,
-                                                    mCurrSceneControlInfo.mScenarioNo);
+    ::getAudioSystemWrapper()->loadScenarioWaveData(mCurrSceneControlInfo.mScene, mCurrSceneControlInfo.mStage, mCurrSceneControlInfo.mScenarioNo);
 }
 
 bool GameSystemSceneController::isLoadDoneScenarioWaveData() const {

@@ -11,7 +11,7 @@ KabokuriFireHolder::KabokuriFireHolder() : DeriveActorGroup< KabokuriFire >("カ
     KabokuriFire* pFire;
 
     for (int i = 0; i < ::sMaxKabokuriFire; i++) {
-        pFire = new KabokuriFire("カボクリ炎"); // "Kabokuri flame"
+        pFire = new KabokuriFire("カボクリ炎");  // "Kabokuri flame"
         pFire->initWithoutIter();
         registerActor(pFire);
     }

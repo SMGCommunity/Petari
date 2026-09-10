@@ -8,7 +8,7 @@ class JASSoundParams;
 
 class AudSeStrategy : public JAISoundStrategy< JAISe >, public JASPoolAllocObject< AudSeStrategy > {
 public:
-    AudSeStrategy(){};
+    AudSeStrategy() {};
 
     virtual void calc(JAISe*);
     virtual void mix(JAISe*, JASSoundParams*);
@@ -16,7 +16,7 @@ public:
 
 class AudSeStrategyMgr : public JAISoundStrategyMgr< JAISe > {
 public:
-    AudSeStrategyMgr(){};
+    AudSeStrategyMgr() {};
 
     virtual JAISoundStrategy< JAISe >* newStrategy(JAISoundID);
     virtual bool deleteStrategy(JAISoundStrategy< JAISe >*);

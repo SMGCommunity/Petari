@@ -15,9 +15,9 @@ void BenefitItemLifeUp::exeCatch() {
     MR::hideModel(this);
 
     MR::changePlayerItemStatus(0xA);
-    
+
     runEfx("Get");
-    
+
     kill();
 }
 

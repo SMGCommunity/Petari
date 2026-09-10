@@ -2,6 +2,8 @@
 #include <mem.h>
 #include <revolution/sc.h>
 
+const char* __SCVersion = "<< RVL_SDK - SC \trelease build: Feb 22 2008 06:21:38 (0x4199_60831) >>";
+
 static void __SCFlushSyncCallback(u32 result);
 
 typedef struct {
@@ -65,8 +67,6 @@ static u32 ItemNumTotal;
 static u32 ItemRestSize;
 static SCControl Control;
 
-const char* __SCVersion = "<< RVL_SDK - SC \trelease build: Feb 22 2008 06:21:38 (0x4199_60831) >>";
-
 static void OpenCallbackFromReload(s32, NANDCommandBlock*);
 static void ReadCallbackFromReload(s32 result, NANDCommandBlock* block);
 static void CloseCallbackFromReloadError(s32 result, NANDCommandBlock* block);
@@ -74,6 +74,7 @@ static void CloseCallbackFromReload(s32 result, NANDCommandBlock* block);
 static void ErrorFromReload(s32 result);
 void FinishFromReload(void);
 static BOOL UnpackItem(const u8*, SCItem*);
+u32 ParseConfBuf(u8* bufp, u32 bufSize);
 
 static u8* __SCGetConfBuf(void) {
     return ConfBuf;
@@ -137,6 +138,175 @@ void SCInit(void) {
     if (NANDInit() != 0 || SCReloadConfFileAsync(__SCGetConfBuf(), __SCGetConfBufSize(), NULL) != 0) {
         SetBgJobStatus(2);
     }
+}
+
+static void __SCSetDirtyFlag(void) {
+    DirtyFlag = TRUE;
+}
+
+static void __SCClearDirtyFlag(void) {
+    DirtyFlag = FALSE;
+}
+
+u32 SCCheckStatus(void) {
+    BOOL enabled;
+    u32 ret;
+
+    enabled = OSDisableInterrupts();
+    ret = BgJobStatus;
+
+    if (ret == 3) {
+        SetBgJobStatus(1);
+        OSRestoreInterrupts(enabled);
+
+        if (ParseConfBuf(Control.reloadBufp[0], Control.reloadedSize[0]) == 0) {
+            enabled = OSDisableInterrupts();
+
+            if (__SCGetConfBuf() != Control.reloadBufp[0]) {
+                memcpy(__SCGetConfBuf(), Control.reloadBufp[0], __SCGetConfBufSize());
+            }
+
+            __SCClearDirtyFlag();
+            OSRestoreInterrupts(enabled);
+        } else {
+            enabled = OSDisableInterrupts();
+            ClearConfBuf(Control.reloadBufp[0]);
+            __SCClearDirtyFlag();
+            OSRestoreInterrupts(enabled);
+        }
+
+        ret = 0;
+        SetBgJobStatus(ret);
+    } else {
+        OSRestoreInterrupts(enabled);
+    }
+
+    return ret;
+}
+
+static s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback callback) {
+    u32 i;
+
+    if (bufSize < __SCGetConfBufSize()) {
+        return -128;
+    }
+
+    SetBgJobStatus(1);
+    Control.reloadCallback = callback;
+    Control.reloadResult = 0;
+    Control.reloadFileCount = 0;
+
+    for (i = 0; i < 2; i++) {
+        Control.reloadedSize[i] = 0;
+    }
+
+    Control.reloadFileName[0] = ConfFileName;
+    Control.reloadFileName[1] = ProductInfoFileName;
+    Control.reloadBufp[0] = bufp;
+    Control.reloadBufp[1] = (u8*)OSPhysicalToCached(0x3800);
+    Control.reloadSizeExpected[0] = __SCGetConfBufSize();
+    Control.reloadSizeExpected[1] = 0x100;
+    ClearConfBuf(bufp);
+    ItemIDOffsetTblOffset = 0;
+    ItemNumTotal = 0;
+    ItemRestSize = 0;
+    Control.nandNeedClose = FALSE;
+    return NANDPrivateOpenAsync(Control.reloadFileName[Control.reloadFileCount], &Control.nandFileInfo, 1, OpenCallbackFromReload,
+                                &Control.nandCommandBlock);
+}
+
+static void OpenCallbackFromReload(s32 result, NANDCommandBlock* block) {
+    if (result == 0) {
+        Control.nandNeedClose = TRUE;
+
+        if (NANDReadAsync(&Control.nandFileInfo, Control.reloadBufp[Control.reloadFileCount], Control.reloadSizeExpected[Control.reloadFileCount],
+                          ReadCallbackFromReload, &Control.nandCommandBlock) == 0) {
+            return;
+        }
+    }
+
+    ErrorFromReload(result);
+}
+
+static void ReadCallbackFromReload(s32 result, NANDCommandBlock* block) {
+    if (result == Control.reloadSizeExpected[Control.reloadFileCount]) {
+        Control.reloadedSize[Control.reloadFileCount] = (u32)result;
+        Control.nandNeedClose = FALSE;
+
+        if (NANDCloseAsync(&Control.nandFileInfo, CloseCallbackFromReload, &Control.nandCommandBlock) == 0) {
+            return;
+        }
+    }
+
+    ErrorFromReload((s32)((result == 0) ? -128 : result));
+}
+
+static void CloseCallbackFromReload(s32 result, NANDCommandBlock* block) {
+    if (result == 0) {
+        FinishFromReload();
+        return;
+    }
+
+    ErrorFromReload(result);
+}
+
+void FinishFromReload(void) {
+    u32 status;
+
+nextFile:
+    Control.reloadFileCount++;
+
+    if (Control.reloadFileCount < 2) {
+        Control.nandNeedClose = FALSE;
+
+        if (NANDPrivateOpenAsync(Control.reloadFileName[Control.reloadFileCount], &Control.nandFileInfo, 1, OpenCallbackFromReload,
+                                 &Control.nandCommandBlock) == 0) {
+            return;
+        }
+
+        goto nextFile;
+    }
+
+    switch (Control.reloadResult) {
+    case 0:
+        status = 3;
+        break;
+    default:
+    case -12:
+        ClearConfBuf(Control.reloadBufp[0]);
+        Control.reloadedSize[0] = Control.reloadSizeExpected[0];
+        status = 3;
+        break;
+    }
+
+    *(u8*)((u8*)OSPhysicalToCached(0x3800) + 0x100 - 1) = '\0';
+
+    if (Control.reloadCallback) {
+        Control.reloadCallback(Control.reloadResult);
+        Control.reloadCallback = NULL;
+    }
+
+    SetBgJobStatus(status);
+}
+
+static void ErrorFromReload(s32 result) {
+    if (Control.reloadFileCount == 0) {
+        Control.reloadResult = result;
+    }
+
+    Control.reloadedSize[Control.reloadFileCount] = 0;
+
+    if (Control.nandNeedClose) {
+        if (NANDCloseAsync(&Control.nandFileInfo, CloseCallbackFromReloadError, &Control.nandCommandBlock) == 0) {
+            return;
+        }
+    }
+
+    FinishFromReload();
+}
+
+static void CloseCallbackFromReloadError(s32 result, NANDCommandBlock* block) {
+    FinishFromReload();
 }
 
 u32 ParseConfBuf(u8* bufp, u32 bufSize) {
@@ -220,7 +390,7 @@ u32 ParseConfBuf(u8* bufp, u32 bufSize) {
         for (loopItem = 0; loopItem < numItems; loopItem++) {
             p = bufTop + itemOfsp[loopItem];
 
-            if (nameLen == (u32)(((*p) & ~0xE0) + 1) && memcmp(name, p + sizeof(SCType), nameLen) == 0) {
+            if (nameLen == (u32)(((*p) & 0x1F) + 1) && memcmp(name, p + sizeof(SCType), nameLen) == 0) {
                 runtimeRefp[-tblp->id] = (u16)((u8*)(&itemOfsp[loopItem]) - bufTop);
                 break;
             }
@@ -244,7 +414,7 @@ static BOOL UnpackItem(const u8* bufp, SCItem* itemp) {
     memset(itemp, 0, sizeof(SCItem));
     type = (u8)(*bufp & 0xE0);
     itemp->name = (char*)(bufp + sizeof(SCType));
-    itemp->nameLen = (u32)((*bufp & ~0xE0) + 1);
+    itemp->nameLen = (u32)((*bufp & 0x1F) + 1);
     itemp->data = (u8*)(bufp + sizeof(SCType) + itemp->nameLen);
 
     switch (type) {
@@ -314,14 +484,14 @@ void DeleteItemByID(SCItemID id) {
         targetRef = refp[-id];
 
         if (targetRef != 0 && ItemNumTotal != 0) {
-            itemOfsTop = (u16*)(conf + 4);
+            itemOfsTop = (u16*)(conf + 6);
             itemOfsTargetp = (u16*)(conf + targetRef);
             itemOfsEndp = itemOfsTop + ItemNumTotal;
             initialTopOfFreeSpace = *itemOfsEndp;
             shrinkSize = 2 + (itemOfsTargetp[1] - itemOfsTargetp[0]);
 
-            moveSize = *itemOfsTargetp - (targetRef + 4);
-            memmove(conf + targetRef, conf + targetRef + 4, moveSize);
+            moveSize = *itemOfsTargetp - (targetRef + 2);
+            memmove(conf + targetRef, conf + targetRef + 2, moveSize);
 
             for (itemOfsp = itemOfsEndp - 1; itemOfsp >= itemOfsTop; itemOfsp--) {
                 if (itemOfsp < itemOfsTargetp) {
@@ -561,175 +731,6 @@ BOOL SCReplaceU8Item(u8 data, SCItemID id) {
     return SCReplaceIntegerItem(&data, id, 0x60);
 }
 
-static void __SCSetDirtyFlag(void) {
-    DirtyFlag = TRUE;
-}
-
-static void __SCClearDirtyFlag(void) {
-    DirtyFlag = FALSE;
-}
-
-u32 SCCheckStatus(void) {
-    BOOL enabled;
-    u32 ret;
-
-    enabled = OSDisableInterrupts();
-    ret = BgJobStatus;
-
-    if (ret == 3) {
-        SetBgJobStatus(1);
-        OSRestoreInterrupts(enabled);
-
-        if (ParseConfBuf(Control.reloadBufp[0], Control.reloadedSize[0]) == 0) {
-            enabled = OSDisableInterrupts();
-
-            if (__SCGetConfBuf() != Control.reloadBufp[0]) {
-                memcpy(__SCGetConfBuf(), Control.reloadBufp[0], __SCGetConfBufSize());
-            }
-
-            __SCClearDirtyFlag();
-            OSRestoreInterrupts(enabled);
-        } else {
-            enabled = OSDisableInterrupts();
-            ClearConfBuf(Control.reloadBufp[0]);
-            __SCClearDirtyFlag();
-            OSRestoreInterrupts(enabled);
-        }
-
-        ret = 0;
-        SetBgJobStatus(ret);
-    } else {
-        OSRestoreInterrupts(enabled);
-    }
-
-    return ret;
-}
-
-static s32 SCReloadConfFileAsync(u8* bufp, u32 bufSize, SCReloadConfFileCallback callback) {
-    u32 i;
-
-    if (bufSize < __SCGetConfBufSize()) {
-        return -128;
-    }
-
-    SetBgJobStatus(1);
-    Control.reloadCallback = callback;
-    Control.reloadResult = 0;
-    Control.reloadFileCount = 0;
-
-    for (i = 0; i < 2; i++) {
-        Control.reloadedSize[i] = 0;
-    }
-
-    Control.reloadFileName[0] = ConfFileName;
-    Control.reloadFileName[1] = ProductInfoFileName;
-    Control.reloadBufp[0] = bufp;
-    Control.reloadBufp[1] = (u8*)OSPhysicalToCached(0x3800);
-    Control.reloadSizeExpected[0] = __SCGetConfBufSize();
-    Control.reloadSizeExpected[1] = 0x100;
-    ClearConfBuf(bufp);
-    ItemIDOffsetTblOffset = 0;
-    ItemNumTotal = 0;
-    ItemRestSize = 0;
-    Control.nandNeedClose = FALSE;
-    return NANDPrivateOpenAsync(Control.reloadFileName[Control.reloadFileCount], &Control.nandFileInfo, 1, OpenCallbackFromReload,
-                                &Control.nandCommandBlock);
-}
-
-static void OpenCallbackFromReload(s32 result, NANDCommandBlock* block) {
-    if (result == 0) {
-        Control.nandNeedClose = TRUE;
-
-        if (NANDReadAsync(&Control.nandFileInfo, Control.reloadBufp[Control.reloadFileCount], Control.reloadSizeExpected[Control.reloadFileCount],
-                          ReadCallbackFromReload, &Control.nandCommandBlock) == 0) {
-            return;
-        }
-    }
-
-    ErrorFromReload(result);
-}
-
-static void ReadCallbackFromReload(s32 result, NANDCommandBlock* block) {
-    if (result == Control.reloadSizeExpected[Control.reloadFileCount]) {
-        Control.reloadedSize[Control.reloadFileCount] = (u32)result;
-        Control.nandNeedClose = FALSE;
-
-        if (NANDCloseAsync(&Control.nandFileInfo, CloseCallbackFromReload, &Control.nandCommandBlock) == 0) {
-            return;
-        }
-    }
-
-    ErrorFromReload((s32)((result == 0) ? -128 : result));
-}
-
-static void CloseCallbackFromReload(s32 result, NANDCommandBlock* block) {
-    if (result == 0) {
-        FinishFromReload();
-        return;
-    }
-
-    ErrorFromReload(result);
-}
-
-void FinishFromReload(void) {
-    u32 status;
-
-nextFile:
-    Control.reloadFileCount++;
-
-    if (Control.reloadFileCount < 2) {
-        Control.nandNeedClose = FALSE;
-
-        if (NANDPrivateOpenAsync(Control.reloadFileName[Control.reloadFileCount], &Control.nandFileInfo, 1, OpenCallbackFromReload,
-                                 &Control.nandCommandBlock) == 0) {
-            return;
-        }
-
-        goto nextFile;
-    }
-
-    switch (Control.reloadResult) {
-    case 0:
-        status = 3;
-        break;
-    default:
-    case -12:
-        ClearConfBuf(Control.reloadBufp[0]);
-        Control.reloadedSize[0] = Control.reloadSizeExpected[0];
-        status = 3;
-        break;
-    }
-
-    *(u8*)((u8*)OSPhysicalToCached(0x3800) + 0x100 - 1) = '\0';
-
-    if (Control.reloadCallback) {
-        Control.reloadCallback(Control.reloadResult);
-        Control.reloadCallback = NULL;
-    }
-
-    SetBgJobStatus(status);
-}
-
-static void ErrorFromReload(s32 result) {
-    if (Control.reloadFileCount == 0) {
-        Control.reloadResult = result;
-    }
-
-    Control.reloadedSize[Control.reloadFileCount] = 0;
-
-    if (Control.nandNeedClose) {
-        if (NANDCloseAsync(&Control.nandFileInfo, CloseCallbackFromReloadError, &Control.nandCommandBlock) == 0) {
-            return;
-        }
-    }
-
-    FinishFromReload();
-}
-
-static void CloseCallbackFromReloadError(s32 result, NANDCommandBlock* block) {
-    FinishFromReload();
-}
-
 static void __SCFlushSyncCallback(u32) {
     OSWakeupThread(&Control.threadQueue);
 }
@@ -747,6 +748,8 @@ static u32 __SCFlushSync(void) {
     return ret;
 }
 
+static void MyNandCallback(s32 result, NANDCommandBlock* block);
+BOOL __SCIsDirty(void);
 static void FinishFromFlush(void);
 static void ErrorFromFlush(void);
 
@@ -762,6 +765,45 @@ enum {
     MY_STEP_FLUSH_CLOSE_FILE,
     MY_STEP_FLUSH_CLOSE_FILE_FROM_ERROR
 };
+
+void SCFlushAsync(SCFlushCallback callback) {
+    SCControl* cp = &Control;
+    BOOL enabled;
+    u32 ret;
+
+    enabled = OSDisableInterrupts();
+    ret = BgJobStatus;
+    if (ret == SC_STATUS_OK) {
+        SetBgJobStatus(SC_STATUS_BUSY);
+        if (callback == NULL) {
+            callback = __SCFlushSyncCallback;
+        }
+        cp->flushCallback = callback;
+        cp->flushResult = SC_STATUS_OK;
+        cp->nandNeedClose = FALSE;
+        cp->flushSize = __SCGetConfBufSize();
+
+        if (__SCIsDirty() == FALSE) {
+            OSRestoreInterrupts(enabled);
+            FinishFromFlush();
+            return;
+        }
+        __SCClearDirtyFlag();
+        memcpy(ConfBufForFlush, __SCGetConfBuf(), sizeof(ConfBufForFlush));
+        OSRestoreInterrupts(enabled);
+
+        cp->nandStep = MY_STEP_FLUSH_GETTYPE_FILE;
+        if (NANDPrivateGetTypeAsync(ConfFileName, &cp->u.nandType, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
+            ErrorFromFlush();
+            return;
+        }
+    } else {
+        if (callback) {
+            callback((ret == SC_STATUS_BUSY) ? ret : SC_STATUS_ERROR);
+        }
+        OSRestoreInterrupts(enabled);
+    }
+}
 
 static void MyNandCallback(s32 result, NANDCommandBlock* block) {
     SCControl* cp = &Control;
@@ -904,41 +946,3 @@ BOOL __SCIsDirty(void) {
     return DirtyFlag ? TRUE : FALSE;
 }
 
-void SCFlushAsync(SCFlushCallback callback) {
-    SCControl* cp = &Control;
-    BOOL enabled;
-    u32 ret;
-
-    enabled = OSDisableInterrupts();
-    ret = BgJobStatus;
-    if (ret == SC_STATUS_OK) {
-        SetBgJobStatus(SC_STATUS_BUSY);
-        if (callback == NULL) {
-            callback = __SCFlushSyncCallback;
-        }
-        cp->flushCallback = callback;
-        cp->flushResult = SC_STATUS_OK;
-        cp->nandNeedClose = FALSE;
-        cp->flushSize = __SCGetConfBufSize();
-
-        if (__SCIsDirty() == FALSE) {
-            OSRestoreInterrupts(enabled);
-            FinishFromFlush();
-            return;
-        }
-        __SCClearDirtyFlag();
-        memcpy(ConfBufForFlush, __SCGetConfBuf(), sizeof(ConfBufForFlush));
-        OSRestoreInterrupts(enabled);
-
-        cp->nandStep = MY_STEP_FLUSH_GETTYPE_FILE;
-        if (NANDPrivateGetTypeAsync(ConfFileName, &cp->u.nandType, MyNandCallback, &cp->nandCommandBlock) != NAND_RESULT_OK) {
-            ErrorFromFlush();
-            return;
-        }
-    } else {
-        if (callback) {
-            callback((ret == SC_STATUS_BUSY) ? ret : SC_STATUS_ERROR);
-        }
-        OSRestoreInterrupts(enabled);
-    }
-}

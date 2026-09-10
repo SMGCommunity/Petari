@@ -12,7 +12,7 @@ public:
         DATA_STREAM = 0x70,
     };
 
-    JAUSoundInfo(bool set) : JASGlobalInstance< JAUSoundInfo >(set){};
+    JAUSoundInfo(bool set) : JASGlobalInstance< JAUSoundInfo >(set) {};
 
     virtual u16 getAudibleSw(JAISoundID) const = 0;
     virtual u16 getBgmSeqResourceID(JAISoundID) const = 0;

@@ -96,4 +96,4 @@ namespace MarioAccess {
     void endRemoteDemo(const RushEndInfo*);
     bool isInWaterMode();
     void changeItemStatus(s32);
-};
+};  // namespace MarioAccess

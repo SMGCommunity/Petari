@@ -923,4 +923,4 @@ bool TakoHei::isInSightMario() const {
     }
 }
 
-TakoHei::~TakoHei(){};
+TakoHei::~TakoHei() {};

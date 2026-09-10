@@ -485,7 +485,7 @@ void BenefitItemObj::doRotateY() {
 }
 
 void BenefitItemObj::exeShoot() {
-    //FIXME
+    // FIXME
     if (MR::isFirstStep(this)) {
         MR::onBind(this);
     }
@@ -511,7 +511,7 @@ void BenefitItemObj::exeShoot() {
         return;
     }
 
-    //FIXME: regswap
+    // FIXME: regswap
     val += ::cGravity;
 
     if (getNerveStep() == 60) {

@@ -143,9 +143,8 @@ void BombTeresaHolder::disperseAll() {
 }
 
 Polta::Polta(const char* pName)
-    : LiveActor(pName), mSensorCtrl(), mLeftArm(), mRightArm(), mSequencer(), mBombTeresaHolder(),
-      mRockHolder(), mGroundRockHolder(), mCameraInfo(), mBreakModel(), mFormationModel(), _B4(0, 0, 0, 1),
-      _C4(0, 0, 1), _D0(0, 0, 0, 1), _E0(0, 0, 0), _EC() {
+    : LiveActor(pName), mSensorCtrl(), mLeftArm(), mRightArm(), mSequencer(), mBombTeresaHolder(), mRockHolder(), mGroundRockHolder(), mCameraInfo(),
+      mBreakModel(), mFormationModel(), _B4(0, 0, 0, 1), _C4(0, 0, 1), _D0(0, 0, 0, 1), _E0(0, 0, 0), _EC() {
 }
 
 void Polta::initSensor() {
