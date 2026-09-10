@@ -10262,7 +10262,7 @@ RVL_SDK/nwc24/NWC24Manage.c:
 	.text       start:0x80464CE4 end:0x80465074
 	.data       start:0x805EA980 end:0x805EAA90
 	.sdata      start:0x806B2848 end:0x806B2850
-	.sbss       start:0x806B7438 end:0x806B7458
+	.sbss       start:0x806B7438 end:0x806B7450
 
 RVL_SDK/nwc24/NWC24MsgObj.c:
 	.text       start:0x80465074 end:0x804659CC
@@ -10271,6 +10271,7 @@ RVL_SDK/nwc24/NWC24MBoxCtrl.c:
 	.text       start:0x804659CC end:0x80467304
 	.data       start:0x805EAA90 end:0x805EAB38
 	.sdata      start:0x806B2850 end:0x806B2860
+	.sbss       start:0x806B7450 end:0x806B7458
 
 RVL_SDK/nwc24/NWC24Mime.c:
 	.text       start:0x80467304 end:0x80467A68
@@ -10297,7 +10298,7 @@ RVL_SDK/nwc24/NWC24Schedule.c:
 
 RVL_SDK/nwc24/NWC24DateParser.c:
 	.text       start:0x8046A794 end:0x8046AF64
-	.rodata     start:0x8055C948 end:0x8055C980
+	.rodata     start:0x8055C948 end:0x8055C970
 
 RVL_SDK/nwc24/NWC24FriendList.c:
 	.text       start:0x8046AF64 end:0x8046B080
@@ -10306,15 +10307,17 @@ RVL_SDK/nwc24/NWC24FriendList.c:
 
 RVL_SDK/nwc24/NWC24SecretFList.c:
 	.text       start:0x8046B080 end:0x8046B19C
-	.data       start:0x805EB158 end:0x805EB190
+	.data       start:0x805EB158 end:0x805EB178
 	.sdata      start:0x806B2948 end:0x806B2950
 
 RVL_SDK/nwc24/NWC24UserId.c:
 	.text       start:0x8046B19C end:0x8046B4B8
+	.rodata     start:0x8055C970 end:0x8055C980
 
 RVL_SDK/nwc24/NWC24Time.c:
 	.text       start:0x8046B4B8 end:0x8046B9A0
-	.data       start:0x805EB190 end:0x805EB1B8
+	.data       start:0x805EB178 end:0x805EB1B8
+	.bss        start:0x80638FE0 end:0x806390C0
 	.sbss       start:0x806B7470 end:0x806B7488
 
 RVL_SDK/nwc24/NWC24Ipc.c:
@@ -10329,6 +10332,7 @@ RVL_SDK/nwc24/NWC24Download.c:
 RVL_SDK/nwc24/NWC24System.c:
 	.text       start:0x8046C388 end:0x8046C518
 	.data       start:0x805EB1D8 end:0x805EB220
+	.bss        start:0x806390C0 end:0x80639120
 	.sdata      start:0x806B2958 end:0x806B2960
 	.sbss       start:0x806B7490 end:0x806B74A0
 

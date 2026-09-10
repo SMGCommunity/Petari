@@ -1,26 +1,26 @@
 #include <revolution/nwc24.h>
+#include <revolution/nwc24/NWC24Internal.h>
 
-void NWC24Data_Init(NWC24Data* data) {
-    data->ptr = 0;
-    data->size = 0;
+void NWC24Data_Init(NWC24Data* pData) {
+    pData->pData = NULL;
+    pData->size = 0;
 }
 
-void NWC24Data_SetDataP(NWC24Data* data, const void* ptr, u32 size) {
-    data->ptr = ptr;
-    data->size = size;
+void NWC24Data_SetDataP(NWC24Data* pData, const void* pPtr, u32 size) {
+    pData->pData = pPtr;
+    pData->size = size;
 }
 
-void NWC24Date_Init(NWC24Date* date) {
-    date->year = 2000;
-    date->month = 1;
-    date->day = 1;
-    date->hour = 12;
-    date->min = 0;
-    date->sec = 0;
-    date->BYTE_0x7 = 0;
+void NWC24Date_Init(NWC24Date* pDate) {
+    pDate->year = 2000;
+    pDate->month = 1;
+    pDate->day = 1;
+    pDate->hour = 12;
+    pDate->min = 0;
+    pDate->sec = 0;
+    pDate->BYTE_0x7 = 0;
 }
 
-//NOTE: Ported from OGWS
 void NWC24iConvIdToStr(u64 addr, char* pBuffer) {
     u64 temp = addr;
     int i;

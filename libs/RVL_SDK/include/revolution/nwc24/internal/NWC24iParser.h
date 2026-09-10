@@ -1,5 +1,5 @@
-#ifndef RVL_SDK_NWC24_MSG_COMMIT_H
-#define RVL_SDK_NWC24_MSG_COMMIT_H
+#ifndef RVL_SDK_NWC24_INTERNAL_PARSER_H
+#define RVL_SDK_NWC24_INTERNAL_PARSER_H
 #include <revolution/types.h>
 #include <cstdlib>
 
@@ -8,9 +8,7 @@
 extern "C" {
 #endif
 
-typedef struct NWC24MsgObj NWC24MsgObj;
-
-NWC24Err NWC24CommitMsg(NWC24MsgObj* pMsg);
+const char* NWC24iGetMIMETypeSuffix(NWC24MIMEType type);
 
 #ifdef __cplusplus
 }

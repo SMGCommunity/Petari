@@ -1,5 +1,5 @@
-#ifndef RVL_SDK_NWC24_MSG_COMMIT_H
-#define RVL_SDK_NWC24_MSG_COMMIT_H
+#ifndef RVL_SDK_NWC24_SYSTEM_H
+#define RVL_SDK_NWC24_SYSTEM_H
 #include <revolution/types.h>
 #include <cstdlib>
 
@@ -8,9 +8,8 @@
 extern "C" {
 #endif
 
-typedef struct NWC24MsgObj NWC24MsgObj;
-
-NWC24Err NWC24CommitMsg(NWC24MsgObj* pMsg);
+NWC24Err NWC24EnableLedNotification(BOOL enable);
+BOOL NWC24Shutdown(BOOL final, u32 event);
 
 #ifdef __cplusplus
 }
