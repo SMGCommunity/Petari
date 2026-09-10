@@ -1583,7 +1583,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/ClipAreaDrop.cpp"),
             Object(Matching, "Game/MapObj/ClipAreaDropHolder.cpp"),
             Object(NonMatching, "Game/MapObj/ClipAreaDropLaser.cpp"),
-            Object(NonMatching, "Game/MapObj/ClipAreaHolder.cpp"),
+            Object(Matching, "Game/MapObj/ClipAreaHolder.cpp"),
             Object(NonMatching, "Game/MapObj/ClipAreaMovable.cpp"),
             Object(NonMatching, "Game/MapObj/ClipAreaShape.cpp"),
             Object(NonMatching, "Game/MapObj/ClipFieldFillDraw.cpp"),

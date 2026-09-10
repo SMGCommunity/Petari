@@ -24,3 +24,11 @@ public:
     /* 0x8C */ TPos3f mBaseMtx;
     /* 0xBC */ ClipAreaShape* mShape;
 };
+
+namespace MR {
+    void setClipSphereArea(ClipArea*);
+    void setClipCenterBoxArea(ClipArea*);
+    void setClipBottomBoxArea(ClipArea*);
+    void setClipTopConeArea(ClipArea*);
+    void setClipBottomConeArea(ClipArea*);
+};  // namespace MR
