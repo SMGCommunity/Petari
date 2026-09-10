@@ -1,8 +1,18 @@
 #include "Game/MapObj/CollapsePlane.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
+
+void CollapsePlane_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+}
+
+namespace {
+    static const s32 sDefaultCollapseTime = 140;
+    static const f32 sScaleMin = 0.7f;
+};  // namespace
 
 namespace NrvCollapsePlane {
     NEW_NERVE(CollapsePlaneNrvWait, CollapsePlane, Wait);
@@ -11,12 +21,8 @@ namespace NrvCollapsePlane {
     NEW_NERVE(CollapsePlaneNrvEnd, CollapsePlane, End);
 };  // namespace NrvCollapsePlane
 
-CollapsePlane::CollapsePlane(const char* pName) : MapObjActor(pName) {
-    mScaleController = nullptr;
-    mStarPointerBind = nullptr;
-    mJointController = nullptr;
-    _D0 = -1;
-    mTimer = 140;
+CollapsePlane::CollapsePlane(const char* pName)
+    : MapObjActor(pName), mScaleController(), mStateBindStartPointer(), mJointController(), mCollapseStep(-1), mCollapseTime(::sDefaultCollapseTime) {
 }
 
 void CollapsePlane::init(const JMapInfoIter& rIter) {
@@ -32,46 +38,50 @@ void CollapsePlane::init(const JMapInfoIter& rIter) {
     initialize(rIter, info);
     initEffectKeeper(1, nullptr, false);
     MR::initStarPointerTarget(this, mScale.x * 200.0f, TVec3f(0.0f, 0.0f, 0.0f));
+
     mScaleController = new AnimScaleController(nullptr);
     mScaleController->setParamTight();
-    mStarPointerBind = new WalkerStateBindStarPointer(this, mScaleController);
+
+    mStateBindStartPointer = new WalkerStateBindStarPointer(this, mScaleController);
+
     mJointController = MR::createJointDelegatorWithNullChildFunc(this, &CollapsePlane::calcJointPlane, "Plane");
+
     MR::initCollisionPartsAutoEqualScale(this, "Move", getSensor(nullptr), MR::getJointMtx(this, "Plane"));
     MR::validateCollisionParts(this);
-    MR::getJMapInfoArg0NoInit(rIter, &mTimer);
+    MR::getJMapInfoArg0NoInit(rIter, &mCollapseTime);
 }
 
 void CollapsePlane::exeWait() {
     if (MR::isOnPlayer(this)) {
-        _D0 = 0;
+        mCollapseStep = 0;
         setNerve(&NrvCollapsePlane::CollapsePlaneNrvCollapse::sInstance);
     }
 }
 
 void CollapsePlane::exeCollapse() {
-    if (_D0 == 1) {
+    if (mCollapseStep == 1) {
         MR::startSound(this, "SE_OJ_COLLAPSE_PLANE_SHRINK");
     }
 
-    if (_D0 >= mTimer) {
+    if (mCollapseStep >= mCollapseTime) {
         MR::hideMaterial(this, "PlaneMat_v");
         MR::invalidateCollisionParts(this);
         MR::emitEffect(this, "Vanish");
         MR::startSound(this, "SE_OJ_COLLAPSE_PLANE_VANISH");
-        _D0 = -1;
+        mCollapseStep = -1;
         setNerve(&NrvCollapsePlane::CollapsePlaneNrvEnd::sInstance);
     } else {
-        _D0 += 1;
+        mCollapseStep++;
     }
 }
 
 void CollapsePlane::exeDPDStop() {
-    if (_D0 == -1 && MR::isOnPlayer(this)) {
-        _D0 = 0;
+    if (mCollapseStep == -1 && MR::isOnPlayer(this)) {
+        mCollapseStep = 0;
     }
 
-    if (MR::updateActorState(this, mStarPointerBind)) {
-        if (_D0 != -1) {
+    if (MR::updateActorState(this, mStateBindStartPointer)) {
+        if (mCollapseStep != -1) {
             setNerve(&NrvCollapsePlane::CollapsePlaneNrvCollapse::sInstance);
         } else {
             setNerve(&NrvCollapsePlane::CollapsePlaneNrvWait::sInstance);
@@ -85,13 +95,12 @@ void CollapsePlane::exeEnd() {
 void CollapsePlane::calcAndSetBaseMtx() {
     MapObjActor::calcAndSetBaseMtx();
 
-    if (_D0 != -1) {
+    if (mCollapseStep != -1) {
         mJointController->registerCallBack();
     }
 
     if (MR::isInitializeStateEnd()) {
-        TVec3f scale = mScaleController->_C * mScale;
-        MR::setBaseScale(this, scale);
+        MR::setBaseScale(this, mScaleController->_C * mScale);
     }
 }
 
@@ -100,13 +109,15 @@ void CollapsePlane::control() {
     tryDPDStop();
 }
 
-bool CollapsePlane::calcJointPlane(TPos3f* pPos, const JointControllerInfo&) {
-    f32 new_scale = (1.0f - ((0.7f * _D0)) / mTimer);
+bool CollapsePlane::calcJointPlane(TPos3f* pMtx, const JointControllerInfo&) {
+    f32 xzScale = 1.0f - (::sScaleMin * mCollapseStep) / mCollapseTime;
+
     TPos3f mtx;
     mtx.identity();
-    MR::preScaleMtx(mtx, new_scale, 1.0f, new_scale);
-    pPos->concat(mtx);
-    pPos->setTrans(mPosition);
+    MR::preScaleMtx(mtx, xzScale, 1.0f, xzScale);
+    pMtx->concat(mtx);
+    pMtx->setTrans(mPosition);
+
     return true;
 }
 
@@ -119,13 +130,11 @@ bool CollapsePlane::tryDPDStop() {
         return false;
     }
 
-    if (!mStarPointerBind->tryStartPointBind()) {
+    if (!mStateBindStartPointer->tryStartPointBind()) {
         return false;
     }
 
     setNerve(&NrvCollapsePlane::CollapsePlaneNrvDPDStop::sInstance);
-    return true;
-}
 
-CollapsePlane::~CollapsePlane() {
+    return true;
 }

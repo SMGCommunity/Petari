@@ -4488,7 +4488,7 @@ Game/MapObj/BumpAppearPlanet.cpp:
 Game/MapObj/Candlestand.cpp:
 	.text       start:0x801BC5EC end:0x801BD31C
 	.ctors      start:0x8052EC8C end:0x8052EC90
-	.rodata     start:0x80533088 end:0x80533118
+	.rodata     start:0x80533088 end:0x805330E0
 	.data       start:0x80590C00 end:0x80590DE8
 	.sbss       start:0x806B4F00 end:0x806B4F18
 	.sdata2     start:0x806BC9B8 end:0x806BC9E0
@@ -4533,11 +4533,13 @@ Game/MapObj/ChipHolder.cpp:
 
 Game/MapObj/ChooChooTrain.cpp:
 	.text       start:0x801C0464 end:0x801C0C2C
+	.rodata     start:0x805330E0 end:0x805330E8
 	.data       start:0x80591440 end:0x80591518
 	.sdata2     start:0x806BCA28 end:0x806BCA50
 
 Game/MapObj/CircleCoinGroup.cpp:
 	.text       start:0x801C0C2C end:0x801C1020
+	.rodata     start:0x805330E8 end:0x805330F0
 	.data       start:0x80591518 end:0x805915C8
 	.sdata2     start:0x806BCA50 end:0x806BCA68
 
@@ -4561,6 +4563,7 @@ Game/MapObj/ClipAreaDropHolder.cpp:
 Game/MapObj/ClipAreaDropLaser.cpp:
 	.text       start:0x801C18D4 end:0x801C1DDC
 	.ctors      start:0x8052ECA8 end:0x8052ECAC
+	.rodata     start:0x805330F0 end:0x805330F8
 	.data       start:0x80591730 end:0x80591800
 	.sbss       start:0x806B4F80 end:0x806B4F88
 	.sdata2     start:0x806BCA70 end:0x806BCA88
@@ -4581,6 +4584,7 @@ Game/MapObj/ClipAreaShape.cpp:
 
 Game/MapObj/ClipFieldFillDraw.cpp:
 	.text       start:0x801C2EAC end:0x801C3540
+	.rodata     start:0x805330F8 end:0x80533100
 	.data       start:0x80591918 end:0x80591940
 	.sdata2     start:0x806BCAB0 end:0x806BCAC0
 
@@ -4633,6 +4637,7 @@ Game/MapObj/CoinGroup.cpp:
 
 Game/MapObj/CoinHolder.cpp:
 	.text       start:0x801C9118 end:0x801C9A10
+	.rodata     start:0x80533100 end:0x80533108
 	.data       start:0x80592200 end:0x80592258
 	.sdata2     start:0x806BCC18 end:0x806BCC38
 
@@ -4642,6 +4647,7 @@ Game/MapObj/CoinReplica.cpp:
 
 Game/MapObj/CoinRotater.cpp:
 	.text       start:0x801C9DE8 end:0x801CA030
+	.rodata     start:0x80533108 end:0x80533110
 	.data       start:0x805922F0 end:0x80592320
 	.sdata2     start:0x806BCC38 end:0x806BCC50
 
@@ -4655,6 +4661,7 @@ Game/MapObj/CoinSpot.cpp:
 Game/MapObj/CollapsePlane.cpp:
 	.text       start:0x801CA398 end:0x801CAB90
 	.ctors      start:0x8052ECC0 end:0x8052ECC4
+	.rodata     start:0x80533110 end:0x80533118
 	.data       start:0x805923B8 end:0x80592510
 	.sbss       start:0x806B4FE0 end:0x806B4FF0
 	.sdata2     start:0x806BCC58 end:0x806BCC68
