@@ -147,7 +147,7 @@ NWC24Err NWC24iSetScriptMode(s32 mode) {
     return err;
 }
 
-NWC24Err NWC24iRequestGenerateUserId(u64* pId, u32* arg1) {
+NWC24Err NWC24iRequestGenerateUserId(NWC24UserId* pUserId, u32* arg1) {
     s32 fd;
     NWC24Err result;
     NWC24Err close;
@@ -168,11 +168,11 @@ NWC24Err NWC24iRequestGenerateUserId(u64* pId, u32* arg1) {
                 result = nwc24ScdCommonResult.result;
 
                 if (result == NWC24_OK || result == NWC24_ERR_ID_GENERATED || result == NWC24_ERR_ID_REGISTERED) {
-                    if (pId != (void*)NULL) {
-                        *pId = *(u64*)nwc24ScdCommonResult.userid;
+                    if (pUserId != NULL) {
+                        *pUserId = *(NWC24UserId*)nwc24ScdCommonResult.userid;
                     }
 
-                    if (arg1 != (void*)NULL) {
+                    if (arg1 != NULL) {
                         *arg1 = nwc24ScdCommonResult.WORD_0xC;
                     }
                 }

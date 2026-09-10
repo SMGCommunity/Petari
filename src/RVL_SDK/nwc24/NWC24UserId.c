@@ -3,7 +3,7 @@
 static const u8 TtableInv[16] = {13, 5, 9, 7, 0, 15, 10, 2, 12, 3, 14, 1, 8, 6, 11, 4};
 static const u8 ExcTable[8] = {1, 5, 0, 4, 2, 3, 6, 7};
 
-unsigned long long getUnScrambleId(unsigned long long v);
+unsigned long long getUnScrambleId(u64 v);
 
 static int checkCRC(u64 v) {
     int i;
@@ -16,7 +16,7 @@ static int checkCRC(u64 v) {
     return v != 0;
 }
 
-NWC24Err NWC24iCheckUserIdCRC(u64 userId) {
+NWC24Err NWC24iCheckUserIdCRC(NWC24UserId userId) {
     u64 idDecoded = getUnScrambleId(userId);
     if (!checkCRC(idDecoded)) {
         return NWC24_OK;

@@ -42,7 +42,7 @@ typedef enum NWC24iMsgObjFlags {
 } NWC24iMsgObjFlags;
 
 typedef union NWC24iAddr {
-    u64 id;
+    NWC24UserId id;
     NWC24Data data;
 } NWC24iAddr;
 

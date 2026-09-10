@@ -70,10 +70,10 @@ NWC24Err NWC24CommitMsg(NWC24MsgObj* pMsg) {
     }
 
     if (LoopBackEnable && (pMsgImpl->flags & NWC24_MSGOBJ_FOR_RECIPIENT)) {
-        u64 self;
-        NWC24GetMyUserId(&self);
+        NWC24UserId myId;
+        NWC24GetMyUserId(&myId);
 
-        if (pMsgImpl->numTo == 1 && pMsgImpl->to[0].id == self) {
+        if (pMsgImpl->numTo == 1 && pMsgImpl->to[0].id == myId) {
             box = NWC24_MSGBOX_RECV;
         }
     }
@@ -298,7 +298,7 @@ _exit:
 }
 
 static NWC24Err CorrectHeadersForMBDelay(NWC24iMsgObj* pMsg) {
-    u64 userId = 0;
+    NWC24UserId myId = 0;
     NWC24Err result;
     if (!NWC24i_MSGOBJ_GET_MB_DELAY(pMsg)) {
         return NWC24_OK;
@@ -306,11 +306,11 @@ static NWC24Err CorrectHeadersForMBDelay(NWC24iMsgObj* pMsg) {
     if (!(pMsg->flags & NWC24_MSGOBJ_FOR_MENU)) {
         return NWC24_ERR_NOT_SUPPORTED;
     }
-    result = NWC24GetMyUserId(&userId);
+    result = NWC24GetMyUserId(&myId);
     if (result < 0) {
         return result;
     }
-    if (pMsg->numTo != 1 || pMsg->to[0].id != userId) {
+    if (pMsg->numTo != 1 || pMsg->to[0].id != myId) {
         return NWC24_ERR_INVALID_VALUE;
     }
     result = NWC24SetMsgDesignatedTime((NWC24MsgObj*)pMsg, ((pMsg->msgBoard >> 16) & 255) * 60);
@@ -764,18 +764,18 @@ static NWC24Err WriteMessageIdField(NWC24iMsgObj* pMsg) {
     u32 fieldLen;
     char buffer[NWC24i_MSG_ID_LEN + 1 + 1];
     const char* pDomain;
-    u64 user;
+    NWC24UserId myId;
 
     pWork = NWC24WorkP->stringWork;
 
     pDomain = NWC24GetAccountDomain();
-    NWC24GetMyUserId(&user);
+    NWC24GetMyUserId(&myId);
 
     Mail_memset(pWork, 0, NWC24i_STRING_WORK_SIZE);
     Mail_strcpy(pWork, "Message-Id: <");
 
     Mail_memset(buffer, 0, sizeof(buffer));
-    Mail_sprintf(buffer, "%05X%08X%08X%08X", pMsg->id, (u32)(user >> 32), (u32)(user >> 0), pMsg->createTime);
+    Mail_sprintf(buffer, "%05X%08X%08X%08X", pMsg->id, (u32)(myId >> 32), (u32)(myId >> 0), pMsg->createTime);
     Mail_strcat(pWork, buffer);
 
     Mail_strcat(pWork, pDomain);

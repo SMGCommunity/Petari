@@ -10,8 +10,8 @@ extern "C" {
 
 typedef enum { NWC24_IDCS_INITIAL, NWC24_IDCS_GENERATED, NWC24_IDCS_REGISTERED } NWC24IDCreationStage;
 
-NWC24Err NWC24GetMyUserId(u64* pId);
-NWC24Err NWC24GenerateNewUserId(u64* pId);
+NWC24Err NWC24GetMyUserId(NWC24UserId* pUserId);
+NWC24Err NWC24GenerateNewUserId(NWC24UserId* pUserId);
 const char* NWC24GetAccountDomain(void);
 const char* NWC24GetMBoxDir(void);
 u32 NWC24GetAppId(void);

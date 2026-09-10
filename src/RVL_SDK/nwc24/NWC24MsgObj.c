@@ -29,7 +29,7 @@ NWC24Err NWC24InitMsgObj(NWC24MsgObj* pMsg, NWC24MsgType type) {
         break;
     }
 
-    case NWC24_MSGTYPE_RVL: {
+    case NWC24_MSGTYPE_RVL_APP: {
         pMsgImpl->flags |= NWC24_MSGOBJ_FOR_RECIPIENT | NWC24_MSGOBJ_FOR_APP;
         break;
     }
@@ -39,7 +39,7 @@ NWC24Err NWC24InitMsgObj(NWC24MsgObj* pMsg, NWC24MsgType type) {
         break;
     }
 
-    case NWC24_MSGTYPE_RVL_HIDDEN: {
+    case NWC24_MSGTYPE_RVL_APP_HIDDEN: {
         pMsgImpl->flags |= NWC24_MSGOBJ_FOR_RECIPIENT;
         break;
     }
@@ -77,7 +77,7 @@ NWC24Err NWC24InitMsgObj(NWC24MsgObj* pMsg, NWC24MsgType type) {
     for (i = 0; i < NWC24i_MSG_ATTACHMENT_MAX; i++) {
         NWC24Data_Init(&pMsgImpl->attached[i]);
         pMsgImpl->attachedSize[i] = 0;
-        pMsgImpl->attachedType[i] = NWC24_TEXT_PLAIN;
+        pMsgImpl->attachedType[i] = NWC24_TXT_PLAIN;
     }
 
     NWC24Data_Init(&pMsgImpl->fromField);
@@ -94,7 +94,7 @@ NWC24Err NWC24InitMsgObj(NWC24MsgObj* pMsg, NWC24MsgType type) {
     return NWC24_OK;
 }
 
-NWC24Err NWC24SetMsgToId(NWC24MsgObj* pMsg, u64 id) {
+NWC24Err NWC24SetMsgToId(NWC24MsgObj* pMsg, NWC24UserId userId) {
     NWC24iMsgObj* pMsgImpl = (NWC24iMsgObj*)pMsg;
 
     if (!(pMsgImpl->flags & NWC24_MSGOBJ_INITIALIZED) || (pMsgImpl->flags & NWC24_MSGOBJ_DELIVERING)) {
@@ -109,7 +109,7 @@ NWC24Err NWC24SetMsgToId(NWC24MsgObj* pMsg, u64 id) {
         return NWC24_ERR_FULL;
     }
 
-    pMsgImpl->to[pMsgImpl->numTo].id = id;
+    pMsgImpl->to[pMsgImpl->numTo].id = userId;
     pMsgImpl->numTo++;
 
     return NWC24_OK;
@@ -249,7 +249,7 @@ NWC24Err NWC24SetMsgTag(NWC24MsgObj* pMsg, u16 tag) {
     return NWC24_OK;
 }
 
-NWC24Err NWC24SetMsgAltName(NWC24MsgObj* pMsg, const wchar_t* pName, u32 len) {
+NWC24Err NWC24SetMsgAltName(NWC24MsgObj* pMsg, const u16* pName, u32 len) {
     NWC24iMsgObj* pMsgImpl = (NWC24iMsgObj*)pMsg;
 
     if (!(pMsgImpl->flags & NWC24_MSGOBJ_INITIALIZED) || (pMsgImpl->flags & NWC24_MSGOBJ_DELIVERING)) {
@@ -268,7 +268,7 @@ NWC24Err NWC24SetMsgAltName(NWC24MsgObj* pMsg, const wchar_t* pName, u32 len) {
         return NWC24_ERR_NULL;
     }
 
-    NWC24Data_SetDataP(&pMsgImpl->alt, pName, len * sizeof(wchar_t));
+    NWC24Data_SetDataP(&pMsgImpl->alt, pName, len * sizeof(u16));
     return NWC24_OK;
 }
 
@@ -324,7 +324,7 @@ NWC24Err NWC24SetMsgMBRegDate(NWC24MsgObj* pMsg, u16 year, u8 month, u8 day) {
 
 NWC24Err NWC24SetMsgMBDelay(NWC24MsgObj* pMsg, u8 delay) {
     NWC24iMsgObj* obj = (NWC24iMsgObj*)pMsg;
-    u64 userId;
+    NWC24UserId myId;
     NWC24Err result;
     if (!(obj->flags & NWC24_MSGOBJ_INITIALIZED) || (obj->flags & NWC24_MSGOBJ_DELIVERING)) {
         return NWC24_ERR_PROTECTED;
@@ -332,11 +332,11 @@ NWC24Err NWC24SetMsgMBDelay(NWC24MsgObj* pMsg, u8 delay) {
     if (!(obj->flags & NWC24_MSGOBJ_FOR_MENU)) {
         return NWC24_ERR_NOT_SUPPORTED;
     }
-    result = NWC24GetMyUserId(&userId);
+    result = NWC24GetMyUserId(&myId);
     if (result < 0) {
         return result;
     }
-    if (obj->numTo != 1 || obj->to[0].id != userId) {
+    if (obj->numTo != 1 || obj->to[0].id != myId) {
         return NWC24_ERR_NOT_SUPPORTED;
     }
     NWC24i_MSGOBJ_SET_MB_DELAY(obj, delay << 16);
