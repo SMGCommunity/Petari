@@ -2656,7 +2656,7 @@ config.libs = [
             Object(Matching, "RVL_SDK/gx/GXBump.c"),
             Object(NonMatching, "RVL_SDK/gx/GXTev.c"),
             Object(NonMatching, "RVL_SDK/gx/GXPixel.c", mw_version="GC/3.0a5.2"),
-            Object(NonMatching, "RVL_SDK/gx/GXDisplayList.c"),
+            Object(Matching, "RVL_SDK/gx/GXDisplayList.c"),
             Object(Matching, "RVL_SDK/gx/GXTransform.c"),
             Object(Matching, "RVL_SDK/gx/GXPerf.c"),
         ],
@@ -2798,7 +2798,7 @@ config.libs = [
         ],
     ),
     SDKLib("tpl", [Object(Matching, "RVL_SDK/tpl/TPL.c")]),
-    SDKLib("usb", [Object(NonMatching, "RVL_SDK/usb/usb.c")]),
+    SDKLib("usb", [Object(Matching, "RVL_SDK/usb/usb.c")]),
     SDKLib(
         "vf",
         [
@@ -2856,7 +2856,7 @@ config.libs = [
     SDKLib(
         "vi",
         [
-            Object(NonMatching, "RVL_SDK/vi/vi.c", mw_version="GC/3.0a5.2"),
+            Object(Matching, "RVL_SDK/vi/vi.c", mw_version="GC/3.0a5.2"),
             Object(Matching, "RVL_SDK/vi/i2c.c"),
             Object(NonMatching, "RVL_SDK/vi/vi3in1.c"),
         ],

@@ -139,7 +139,7 @@ asm unsigned long __cvt_fp2unsigned(register double d)
 {
 		nofralloc
 	    stwu    r1,-16(r1)
-		lis		r4, __constants@h
+		lis		r4, __constants@ha
 		addi    r4, r4, __constants@l
 		li		r3,0
 		lfd		fp0,0(r4)
