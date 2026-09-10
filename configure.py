@@ -3254,7 +3254,7 @@ config.libs = [
     JSysLib(
         "JKernel",
         [
-            Object(NonMatching, "JSystem/JKernel/JKRHeap.cpp"),
+            Object(NonMatching, "JSystem/JKernel/JKRHeap.cpp", extra_cflags=["-ipa file"]),
             Object(NonMatching, "JSystem/JKernel/JKRExpHeap.cpp"),
             Object(NonMatching, "JSystem/JKernel/JKRSolidHeap.cpp"),
             Object(NonMatching, "JSystem/JKernel/JKRUnitHeap.cpp"),
