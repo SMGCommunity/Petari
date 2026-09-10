@@ -1579,7 +1579,7 @@ config.libs = [
             Object(Matching, "Game/MapObj/ChipHolder.cpp"),
             Object(NonMatching, "Game/MapObj/ChooChooTrain.cpp"),
             Object(NonMatching, "Game/MapObj/CircleCoinGroup.cpp"),
-            Object(NonMatching, "Game/MapObj/ClipArea.cpp"),
+            Object(Matching, "Game/MapObj/ClipArea.cpp"),
             Object(NonMatching, "Game/MapObj/ClipAreaDrop.cpp"),
             Object(Matching, "Game/MapObj/ClipAreaDropHolder.cpp"),
             Object(NonMatching, "Game/MapObj/ClipAreaDropLaser.cpp"),

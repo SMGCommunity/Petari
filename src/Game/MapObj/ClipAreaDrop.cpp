@@ -38,7 +38,7 @@ void ClipAreaDrop::control() {
     mtx[0][3] = mPosition.x;
     mtx[1][3] = mPosition.y;
     mtx[2][3] = mPosition.z;
-    mBaseMatrix.setInline(mtx);
+    mBaseMtx.setInline(mtx);
 }
 
 void ClipAreaDrop::setBaseSize(f32 v1) {
