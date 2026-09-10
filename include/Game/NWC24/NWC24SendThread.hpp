@@ -4,7 +4,7 @@
 #include <revolution/os.h>
 
 class JKRHeap;
-class NWC24MsgObj;
+struct NWC24MsgObj;
 
 class NWC24SendThread : OSThread {
 public:
