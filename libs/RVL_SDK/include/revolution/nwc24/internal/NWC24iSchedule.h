@@ -10,7 +10,7 @@ extern "C" {
 
 #define NWC24i_SCHEDULER_DEVICE "/dev/net/kd/request"
 
-NWC24Err NWC24iRequestGenerateUserId(u64* pId, u32* arg1);
+NWC24Err NWC24iRequestGenerateUserId(NWC24UserId* pUserId, u32* arg1);
 NWC24Err NWC24iTrySuspendForOpenLib(void);
 NWC24Err NWC24iResumeForCloseLib(void);
 

@@ -1,10 +1,14 @@
 #include "Game/NWC24/NWC24SendThread.hpp"
 #include "Game/NWC24/NWC24Function.hpp"
-// #include "Game/NWC24/UTF16Util.hpp"
+#include "Game/NWC24/UTF16Util.hpp"
 #include "Game/Util/MemoryUtil.hpp"
 #include <JSystem/JKernel/JKRHeap.hpp>
 
 #define STACK_SIZE 0x8000
+
+OSMessage NWC24SendThread::mMessage;
+s32 NWC24SendThread::mMessageMax = 1;
+OSMessageQueue NWC24SendThread::mMessageQueue;
 
 NWC24SendThread::NWC24SendThread(s32 priority, JKRHeap* pHeap) {
     if (pHeap == nullptr) {
@@ -94,13 +98,11 @@ void NWC24SendThread::initMsgSendStatus() {
     mMsgSendStatus.mDelayHours = 0;
 }
 
-/*
-TODO: Define all of the NWC24 API.
 NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSize) {
     NWC24Err err;
     NWC24MsgObj msgObj;
 
-    err = NWC24InitMsgObj(&msgObj, NWC24_MSGTYPE_RVL_APP);
+    err = NWC24InitMsgObj(&msgObj, NWC24_MSGTYPE_RVL_MENU);
 
     if (err != NWC24_OK) {
         return err;
@@ -112,8 +114,10 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
         return err;
     }
 
-    if (pMsgSendStatus->mAltName != nullptr) {
-        err = NWC24SetMsgAltName(&msgObj, pMsgSendStatus->mAltName, MR::strlenUTF16(pMsgSendStatus->mAltName));
+    const u16* pAltName = pMsgSendStatus->mAltName;
+
+    if (pAltName != nullptr) {
+        err = NWC24SetMsgAltName(&msgObj, pAltName, MR::strlenUTF16(pAltName) + 1);
 
         if (err != NWC24_OK) {
             return err;
@@ -134,14 +138,16 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
         }
     }
 
-    err = NWC24SetMsgText(&msgObj, pMsgSendStatus->mText, MR::strlenUTF16(pMsgSendStatus->mText) * sizeof(u16), NWC24_UTF_16, NWC24_ENC_8BIT);
+    err = NWC24SetMsgText(&msgObj, reinterpret_cast< const char* >(pMsgSendStatus->mText), MR::strlenUTF16(pMsgSendStatus->mText) * sizeof(u16),
+                          NWC24_UTF_16, NWC24_ENC_8BIT);
 
     if (err != NWC24_OK) {
         return err;
     }
 
     if (pMsgSendStatus->mLetter != nullptr) {
-        err = NWC24SetMsgAttached(&msgObj, pMsgSendStatus->mLetter, pMsgSendStatus->mLetterSize, NWC24_APP_WII_MSGBOARD);
+        err = NWC24SetMsgAttached(&msgObj, reinterpret_cast< const char* >(pMsgSendStatus->mLetter), pMsgSendStatus->mLetterSize,
+                                  NWC24_APP_WII_MSGBOARD);
 
         if (err != NWC24_OK) {
             return err;
@@ -149,7 +155,8 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
     }
 
     if (pMsgSendStatus->mPicture != nullptr) {
-        err = NWC24SetMsgAttached(&msgObj, pMsgSendStatus->mPicture, pMsgSendStatus->mPictureSize, NWC24_IMG_WII_PICTURE);
+        err = NWC24SetMsgAttached(&msgObj, reinterpret_cast< const char* >(pMsgSendStatus->mPicture), pMsgSendStatus->mPictureSize,
+                                  NWC24_IMG_WII_PICTURE);
 
         if (err != NWC24_OK) {
             return err;
@@ -158,6 +165,10 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
 
     if (pMsgSendStatus->mIsMsgLedPattern) {
         err = NWC24SetMsgLedPattern(&msgObj, NWC24_LED_APP_DEFAULT);
+
+        if (err != NWC24_OK) {
+            return err;
+        }
     }
 
     err = NWC24SetMsgMBNoReply(&msgObj, true);
@@ -176,7 +187,6 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
 
     return err;
 }
-*/
 
 bool NWC24SendThread::checkTotalSize(MsgSendStatus* pMsgSendStatus) {
     u32 letterSize;
@@ -197,18 +207,15 @@ bool NWC24SendThread::checkTotalSize(MsgSendStatus* pMsgSendStatus) {
     return MR::checkWiiMailLimit(MR::calcWiiMailSize(pMsgSendStatus->mAltName, pMsgSendStatus->mText, pictureSize, letterSize));
 }
 
-/*
-TODO: Define all of the NWC24 API.
 NWC24Err NWC24SendThread::setToMyself(NWC24MsgObj* pMsgObj) {
     NWC24Err err;
     NWC24UserId userId;
 
     err = NWC24GetMyUserId(&userId);
 
-    if (err == NWC24_OK) {
-        return NWC24SetMsgToId(pMsgObj, userId);
+    if (err != NWC24_OK) {
+        return err;
     }
 
-    return err;
+    return NWC24SetMsgToId(pMsgObj, userId);
 }
-*/

@@ -16,24 +16,24 @@ static const char* MBoxDir = "/shared2/wc24/mbox";
 static const char* ConfigFile = "/shared2/wc24/nwc24msg.cfg";
 static const char* CfgBakFile = "/shared2/wc24/nwc24msg.cbk";
 
-#define NWC24UserId (*(u64*)0x800031C0)
+#define UserId (*(u64*)0x800031C0)
 static u16 VirtualGroupId = 1;
 
 static u32 GetConfigCheckSum(void);
 static NWC24Err CheckConfig(void) NO_INLINE;
-static NWC24Err GenerateUserId(u64* pId);
+static NWC24Err GenerateUserId(NWC24UserId* pUserId);
 
-NWC24Err NWC24GetMyUserId(u64* pId) {
+NWC24Err NWC24GetMyUserId(NWC24UserId* pUserId) {
     NWC24Err scdErr;
     NWC24Err result;
 
     result = NWC24_OK;
 
     if (NWC24IsMsgLibOpened() || NWC24IsMsgLibOpenedByTool()) {
-        *pId = config->userId;
+        *pUserId = config->userId;
     } else {
-        *pId = NWC24UserId;
-        scdErr = *pId == 0 ? NWC24_ERR_NULL : NWC24iCheckUserIdCRC(*pId);
+        *pUserId = UserId;
+        scdErr = *pUserId == 0 ? NWC24_ERR_NULL : NWC24iCheckUserIdCRC(*pUserId);
         if (scdErr == NWC24_OK) {
             return scdErr;
         }
@@ -42,7 +42,7 @@ NWC24Err NWC24GetMyUserId(u64* pId) {
             return scdErr;
         }
 
-        result = NWC24GenerateNewUserId(pId);
+        result = NWC24GenerateNewUserId(pUserId);
         if (result == NWC24_ERR_ID_GENERATED || result == NWC24_ERR_ID_REGISTERED) {
             result = NWC24_OK;
         }
@@ -56,7 +56,7 @@ NWC24Err NWC24GetMyUserId(u64* pId) {
     return result;
 }
 
-NWC24Err NWC24GenerateNewUserId(u64* pId) {
+NWC24Err NWC24GenerateNewUserId(NWC24UserId* pUserId) {
     NWC24Err open;
     NWC24Err close;
 
@@ -65,7 +65,7 @@ NWC24Err NWC24GenerateNewUserId(u64* pId) {
         return open;
     }
 
-    open = GenerateUserId(pId);
+    open = GenerateUserId(pUserId);
     close = NWC24BlockOpenMsgLib(FALSE);
 
     return open >= 0 ? close : open;
@@ -79,7 +79,7 @@ NWC24Err NWC24iConfigOpen(void) {
     err = NWC24iConfigReload();
 
     if (err != NWC24_ERR_FILE_NOEXISTS && err == NWC24_OK) {
-        NWC24UserId = config->userId;
+        UserId = config->userId;
         DCStoreRange((void*)0x800031C0, 0x20);
     }
 
@@ -268,17 +268,17 @@ static NWC24Err CheckConfig(void) {
     return NWC24_OK;
 }
 
-static NWC24Err GenerateUserId(u64* pId) {
+static NWC24Err GenerateUserId(NWC24UserId* pUserId) {
     NWC24Err result;
     u32 dummy = 0;
 
-    if (pId == NULL) {
+    if (pUserId == NULL) {
         return NWC24_ERR_INVALID_VALUE;
     }
 
-    *pId = 9999999999999999;
-    result = NWC24iRequestGenerateUserId(pId, &dummy);
-    NWC24UserId = *pId;
+    *pUserId = 9999999999999999;
+    result = NWC24iRequestGenerateUserId(pUserId, &dummy);
+    UserId = *pUserId;
     DCStoreRange((void*)0x800031C0, 0x20);
     return result;
 }

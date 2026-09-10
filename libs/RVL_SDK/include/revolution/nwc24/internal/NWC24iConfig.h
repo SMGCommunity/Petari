@@ -11,7 +11,7 @@ extern "C" {
 typedef struct NWC24iConfig {
     u32 magic;
     u32 version;
-    u64 userId;
+    NWC24UserId userId;
     u32 createCount;
     u32 createStage;
     char acctDomain[64];
