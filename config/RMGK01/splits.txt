@@ -10928,12 +10928,13 @@ RVL_SDK/os/OSContext.c:
 RVL_SDK/os/OSError.c:
 	.text       start:0x804A60D4 end:0x804A6808
 	.data       start:0x805EFC00 end:0x805EFF20
-	.bss        start:0x80664E50 end:0x80664EC0
+	.bss        start:0x80664E50 end:0x80664EA0
 	.sdata      start:0x806B2A50 end:0x806B2A58
 
 RVL_SDK/os/OSExec.c:
 	.text       start:0x804A6808 end:0x804A7E78
 	.data       start:0x805EFF20 end:0x805EFF90
+	.bss        start:0x80664EA0 end:0x80664EC0
 	.sdata      start:0x806B2A58 end:0x806B2A68
 	.sbss       start:0x806B7690 end:0x806B76A8
 	.sdata2     start:0x806C2080 end:0x806C2088
@@ -11008,17 +11009,24 @@ RVL_SDK/os/OSIpc.c:
 RVL_SDK/os/OSStateTM.c:
 	.text       start:0x804AE070 end:0x804AE728
 	.data       start:0x805FCC08 end:0x805FCCD0
-	.sbss       start:0x806B7700 end:0x806B7728
+	.bss        start:0x80665C00 end:0x80665CC0
+	.sbss       start:0x806B7700 end:0x806B7720
+
+RVL_SDK/os/init/__start.c:
+	.init       start:0x80004000 end:0x800042E0
+	.sbss       start:0x806B7720 end:0x806B7728
 
 RVL_SDK/os/OSPlayRecord.c:
 	.text       start:0x804AE728 end:0x804AEE20
-	.data       start:0x805FCCD0 end:0x805FCD40
-	.bss        start:0x80665D70 end:0x806661F0
-	.sdata      start:0x806B2A90 end:0x806B2AA8
+	.data       start:0x805FCCD0 end:0x805FCD18
+	.bss        start:0x80665CC0 end:0x80665EC0
+	.sdata      start:0x806B2A90 end:0x806B2A98
 	.sbss       start:0x806B7728 end:0x806B7748
 
 RVL_SDK/os/OSStateFlags.c:
 	.text       start:0x804AEE20 end:0x804AF02C
+	.data       start:0x805FCD18 end:0x805FCD40
+	.bss        start:0x80665EC0 end:0x80665EE0
 
 RVL_SDK/os/OSNet.c:
 	.text       start:0x804AF02C end:0x804AF0E0
@@ -11031,12 +11039,15 @@ RVL_SDK/os/OSNandbootInfo.c:
 RVL_SDK/os/OSPlayTime.c:
 	.text       start:0x804AF2E8 end:0x804AFB80
 	.data       start:0x805FCEC8 end:0x805FCF08
+	.bss        start:0x80665EE0 end:0x80665F10
+	.sdata      start:0x806B2A98 end:0x806B2AA0
 	.sbss       start:0x806B7748 end:0x806B7760
 	.sdata2     start:0x806C20D0 end:0x806C20E0
 
 RVL_SDK/os/OSLaunch.c:
 	.text       start:0x804AFB80 end:0x804B0940
 	.data       start:0x805FCF08 end:0x805FD0F8
+	.sdata      start:0x806B2AA0 end:0x806B2AA8
 	.sbss       start:0x806B7760 end:0x806B7768
 
 RVL_SDK/os/__ppc_eabi_init.c:
@@ -11045,6 +11056,7 @@ RVL_SDK/os/__ppc_eabi_init.c:
 RVL_SDK/exi/EXIBios.c:
 	.text       start:0x804B09F4 end:0x804B2288
 	.data       start:0x805FD0F8 end:0x805FD140
+	.bss        start:0x80665F10 end:0x80665FD0
 	.sdata      start:0x806B2AA8 end:0x806B2AB0
 	.sbss       start:0x806B7768 end:0x806B7770
 
@@ -11059,6 +11071,7 @@ RVL_SDK/exi/EXICommon.c:
 RVL_SDK/si/SIBios.c:
 	.text       start:0x804B2748 end:0x804B3750
 	.data       start:0x805FD140 end:0x805FD210
+	.bss        start:0x80665FD0 end:0x806661F0
 	.sdata      start:0x806B2AB0 end:0x806B2AB8
 	.sbss       start:0x806B7780 end:0x806B7790
 
@@ -11716,9 +11729,6 @@ RVL_SDK/bte/sdp_server.c:
 RVL_SDK/bte/sdp_utils.c:
 	.text       start:0x80517310 end:0x80518350
 	.data       start:0x80609630 end:0x80609868
-
-RVL_SDK/os/init/__start.c:
-	.init       start:0x80004000 end:0x800042E0
 
 RVL_SDK/os/init/__ppc_eabi_init.cpp:
 	.init       start:0x800042E0 end:0x80004338
