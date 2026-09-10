@@ -85,6 +85,11 @@ enum
 
 enum
 {
+	APPL_EVT_7 = 15,
+};
+
+enum
+{
 	GKI_RESTRICTED_POOL	= 1,
 };
 

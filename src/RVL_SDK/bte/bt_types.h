@@ -283,10 +283,17 @@
 	extern "C" {
 #endif
 
+#define BT_EVT_MASK 0xFF00
+
 typedef UINT16 tBT_EVT;
 enum
 {
+	BT_EVT_TO_BTU_HCI_EVT = 16 << 8,
+	BT_EVT_TO_BTU_HCI_ACL = 17 << 8,
+	BT_EVT_TO_BTU_HCI_SCO = 18 << 8,
 	BT_EVT_TO_BTU_SP_DATA	= 21 << 8,
+	BT_EVT_TO_BTU_HCI_CMD = 22 << 8,
+	BT_EVT_TO_BTU_L2C_SEG_XMIT = 25 << 8,
 	BT_EVT_TO_LM_HCI_ACL	= 33 << 8,
 	BT_EVT_TO_START_TIMER	= 62 << 8,
 };
