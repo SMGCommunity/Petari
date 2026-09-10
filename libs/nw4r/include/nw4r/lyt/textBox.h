@@ -49,6 +49,9 @@ namespace nw4r {
             f32 GetTextAlignMag() const;
 
             void Init(u16);
+            void SetTagProcessor(ut::TagProcessorBase< wchar_t >* pTagProcessor) {
+                mpTagProcessor = pTagProcessor;
+            }
 
             void SetFontSize(const Size& rFontSize) {
                 mFontSize = rFontSize;
@@ -65,6 +68,7 @@ namespace nw4r {
             u8 GetTextPositionH() const {
                 return detail::GetHorizontalPosition(mTextPosition);
             }
+
             u8 GetTextPositionV() const {
                 return detail::GetVerticalPosition(mTextPosition);
             }

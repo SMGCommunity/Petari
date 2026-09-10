@@ -27,11 +27,13 @@ namespace nw4r {
         };  // namespace detail
         class Material {
         public:
+            Material();
             Material(const res::Material*, const ResBlockSet&);
 
             const char* GetName() const {
                 return mName;
             }
+
             bool IsUserAllocated() const {
                 return mbUserAllocated;
             }
@@ -50,14 +52,37 @@ namespace nw4r {
             void ReserveGXMem(u8 texMapNum, u8 texSRTNum, u8 texCoordGenNum, u8 tevStageNum, bool allocTevSwap, u8 indStageNum, u8 indSRTNum,
                               bool allocChanCtrl, bool allocMatCol, bool allocAlpComp, bool allocBlendMode);
 
+            u8 GetTexSRTCap() const {
+                return u8(mGXMemCap.texSRT);
+            }
+
+            u8 GetIndTexSRTCap() const {
+                return u8(mGXMemCap.indSRT);
+            }
+            TexMap* GetTexturePtr(u8 idx) {
+                return &GetTexMapAry()[idx];
+            }
+
+            void SetTexSRTElement(u32 idx, u32 element, f32 value) {
+                f32* const srtAry = &GetTexSRTAry()[idx].translate.x;
+                srtAry[element] = value;
+            }
+
+            void SetIndTexSRTElement(u32 idx, u32 element, f32 value) {
+                f32* const srtAry = &GetIndTexSRTAry()[idx].translate.x;
+                srtAry[element] = value;
+            }
+
             u8 GetTextureNum() const {
                 return u8(mGXMemNum.texMap);
             }
+
             void SetTextureNum(u8 num);
 
             u8 GetTextureCap() const {
                 return u8(mGXMemCap.texMap);
             }
+
             u8 GetTexCoordGenCap() const {
                 return u8(mGXMemCap.texCoordGen);
             }
@@ -93,6 +118,50 @@ namespace nw4r {
 
             const TexMap& GetTexture(u8 texMapIdx) const {
                 return GetTexMapAry()[texMapIdx];
+            }
+
+            void SetTevColor(u32 idx, const GXColorS10& color) {
+                mTevCols[idx] = color;
+            }
+
+            void SetTevKColor(u32 idx, ut::Color value) {
+                mTevKCols[idx] = value;
+            }
+
+            void SetTexSRT(u32 texSRTIdx, const TexSRT& value) {
+                GetTexSRTAry()[texSRTIdx] = value;
+            }
+
+            void SetTevStage(u32 idx, const TevStage& value) {
+                GetTevStageAry()[idx] = value;
+            }
+
+            void SetTevSwapMode(u32 idx, TevSwapMode value) {
+                GetTevSwapAry()[idx] = value;
+            }
+
+            void SetIndStage(u32 idx, IndirectStage value) {
+                GetIndirectStageAry()[idx] = value;
+            }
+
+            void SetIndTexSRT(u32 texSRTIdx, const TexSRT& value) {
+                GetIndTexSRTAry()[texSRTIdx] = value;
+            }
+
+            void SetChanCtrl(ChanCtrl value) {
+                GetChanCtrlAry()[0] = value;
+            }
+
+            void SetMatColor(ut::Color value) {
+                GetMatColAry()[0] = value;
+            }
+
+            void SetAlphaCompare(AlphaCompare value) {
+                *GetAlphaComparePtr() = value;
+            }
+
+            void SetBlendMode(BlendMode value) {
+                *GetBlendModePtr() = value;
             }
 
             const GXColorS10 GetTevColor(u32 idx) const {

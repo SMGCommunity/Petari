@@ -126,6 +126,7 @@ nw4r/lyt/lyt_material.cpp:
 	.text       start:0x80011370 end:0x800140C8
 	.data       start:0x80564930 end:0x80564998
 	.sdata2     start:0x806B7CC8 end:0x806B7CE8
+	.sbss2      start:0x806C2900 end:0x806C2908
 
 nw4r/lyt/lyt_texMap.cpp:
 	.text       start:0x800140C8 end:0x800143F4

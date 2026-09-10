@@ -7,6 +7,44 @@
 namespace nw4r {
     namespace lyt {
         namespace res {
+            const u32 FILESIGNATURE_RLYT = 'RLYT';
+
+            const u32 DATABLOCKKIND_LAYOUT = 'lyt1';
+            const u32 DATABLOCKKIND_PANE = 'pan1';
+            const u32 DATABLOCKKIND_PANEBEGIN = 'pas1';
+            const u32 DATABLOCKKIND_PANEEND = 'pae1';
+            const u32 DATABLOCKKIND_PICTURE = 'pic1';
+            const u32 DATABLOCKKIND_TEXTBOX = 'txt1';
+            const u32 DATABLOCKKIND_WINDOW = 'wnd1';
+            const u32 DATABLOCKKIND_BOUNDING = 'bnd1';
+            const u32 DATABLOCKKIND_GROUP = 'grp1';
+            const u32 DATABLOCKKIND_GROUPBEGIN = 'grs1';
+            const u32 DATABLOCKKIND_GROUPEND = 'gre1';
+            const u32 DATABLOCKKIND_FONTLIST = 'fnl1';
+            const u32 DATABLOCKKIND_TEXTURELIST = 'txl1';
+            const u32 DATABLOCKKIND_MATERIALLIST = 'mat1';
+            const u32 DATABLOCKKIND_USERDATALIST = 'usd1';
+
+            const u32 FILESIGNATURE_RLAN = 'RLAN';
+
+            const u32 ANIMATIONTYPE_RLPA = 'RLPA';
+            const u32 ANIMATIONTYPE_RLVI = 'RLVI';
+            const u32 ANIMATIONTYPE_RLVC = 'RLVC';
+            const u32 ANIMATIONTYPE_RLMC = 'RLMC';
+            const u32 ANIMATIONTYPE_RLTS = 'RLTS';
+            const u32 ANIMATIONTYPE_RLTP = 'RLTP';
+            const u32 ANIMATIONTYPE_RLIM = 'RLIM';
+
+            const u32 DATABLOCKKIND_PANEANIMTAG = 'pat1';
+            const u32 DATABLOCKKIND_PANEANIMSHARE = 'pah1';
+            const u32 DATABLOCKKIND_PANEANIMINFO = 'pai1';
+
+            const u32 RESOURCETYPE_LAYOUT = 'blyt';
+            const u32 RESOURCETYPE_ANIMATION = 'anim';
+            const u32 RESOURCETYPE_TEXTURE = 'timg';
+            const u32 RESOURCETYPE_FONT = 'font';
+            const u32 RESOURCETYPE_ARCHIVEFONT = 'fnta';
+
             struct BinaryFileHeader {
                 char signature[4];
                 u16 byteOrder;
@@ -53,10 +91,16 @@ namespace nw4r {
             };
 
             struct TexMap {
-                TexMap() : texIdx(0), wrapSflt(0), wrapTflt(0) {}
+                TexMap() : texIdx(0), wrapSflt(0), wrapTflt(0) {
+                }
 
-                GXTexWrapMode GetWarpModeS() const { return GXTexWrapMode(detail::GetBits(wrapSflt, 0, 2)); }
-                GXTexWrapMode GetWarpModeT() const { return GXTexWrapMode(detail::GetBits(wrapTflt, 0, 2)); }
+                GXTexWrapMode GetWarpModeS() const {
+                    return GXTexWrapMode(detail::GetBits(wrapSflt, 0, 2));
+                }
+
+                GXTexWrapMode GetWarpModeT() const {
+                    return GXTexWrapMode(detail::GetBits(wrapTflt, 0, 2));
+                }
 
                 GXTexFilter GetMinFilter() const {
                     const int bitLen = 3;
@@ -70,8 +114,13 @@ namespace nw4r {
                     return GXTexFilter(detail::GetBits(bitData + GX_LINEAR, 0, bitLen));
                 }
 
-                void SetWarpModeS(GXTexWrapMode value) { detail::SetBits(&wrapSflt, 0, 2, u8(value)); }
-                void SetWarpModeT(GXTexWrapMode value) { detail::SetBits(&wrapTflt, 0, 2, u8(value)); }
+                void SetWarpModeS(GXTexWrapMode value) {
+                    detail::SetBits(&wrapSflt, 0, 2, u8(value));
+                }
+
+                void SetWarpModeT(GXTexWrapMode value) {
+                    detail::SetBits(&wrapTflt, 0, 2, u8(value));
+                }
 
                 void SetMinFilter(GXTexFilter value) {
                     const int bitLen = 3;
@@ -171,17 +220,49 @@ namespace nw4r {
             };
 
             struct MaterialResourceNum {
-                u8 GetTexMapNum() const NO_INLINE { return u8(detail::GetBits(bits, 0, 4)); }
-                u8 GetTexSRTNum() const NO_INLINE { return u8(detail::GetBits(bits, 4, 4)); }
-                u8 GetTexCoordGenNum() const NO_INLINE { return u8(detail::GetBits(bits, 8, 4)); }
-                bool HasTevSwapTable() const NO_INLINE { return detail::TestBit(bits, 12); }
-                u8 GetIndTexSRTNum() const NO_INLINE { return u8(detail::GetBits(bits, 13, 2)); }
-                u8 GetIndTexStageNum() const NO_INLINE { return u8(detail::GetBits(bits, 15, 3)); }
-                u8 GetTevStageNum() const NO_INLINE { return u8(detail::GetBits(bits, 18, 5)); }
-                bool HasAlphaCompare() const NO_INLINE { return detail::TestBit(bits, 23); }
-                bool HasBlendMode() const NO_INLINE { return detail::TestBit(bits, 24); }
-                u8 GetChanCtrlNum() const NO_INLINE { return u8(detail::GetBits(bits, 25, 1)); }
-                u8 GetMatColNum() const NO_INLINE { return u8(detail::GetBits(bits, 27, 1)); }
+                u8 GetTexMapNum() const NO_INLINE {
+                    return u8(detail::GetBits(bits, 0, 4));
+                }
+
+                u8 GetTexSRTNum() const NO_INLINE {
+                    return u8(detail::GetBits(bits, 4, 4));
+                }
+
+                u8 GetTexCoordGenNum() const NO_INLINE {
+                    return u8(detail::GetBits(bits, 8, 4));
+                }
+
+                bool HasTevSwapTable() const NO_INLINE {
+                    return detail::TestBit(bits, 12);
+                }
+
+                u8 GetIndTexSRTNum() const NO_INLINE {
+                    return u8(detail::GetBits(bits, 13, 2));
+                }
+
+                u8 GetIndTexStageNum() const NO_INLINE {
+                    return u8(detail::GetBits(bits, 15, 3));
+                }
+
+                u8 GetTevStageNum() const NO_INLINE {
+                    return u8(detail::GetBits(bits, 18, 5));
+                }
+
+                bool HasAlphaCompare() const NO_INLINE {
+                    return detail::TestBit(bits, 23);
+                }
+
+                bool HasBlendMode() const NO_INLINE {
+                    return detail::TestBit(bits, 24);
+                }
+
+                u8 GetChanCtrlNum() const NO_INLINE {
+                    return u8(detail::GetBits(bits, 25, 1));
+                }
+
+                u8 GetMatColNum() const NO_INLINE {
+                    return u8(detail::GetBits(bits, 27, 1));
+                }
 
                 u32 bits;
             };
@@ -220,6 +301,33 @@ namespace nw4r {
                 u16 fileNum;
                 u16 animContNum;
                 u32 animContOffsetsOffset;
+            };
+
+            struct AnimationContent {
+                char name[MaterialNameStrMax];
+
+                u8 num;
+                u8 type;
+                u8 padding[2];
+            };
+
+            struct AnimationInfo {
+                u32 kind;
+
+                u8 num;
+                u8 padding[3];
+            };
+
+            struct AnimationTarget {
+                u8 id;
+                u8 target;
+                u8 curveType;
+                u8 padding1;
+
+                u16 keyNum;
+                u8 padding2[2];
+
+                u32 keysOffset;
             };
 
             struct HermiteKey {

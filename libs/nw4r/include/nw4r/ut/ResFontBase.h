@@ -41,12 +41,12 @@ namespace nw4r {
                 const CharWidths& GetCharWidthsFromIndex(const FontWidth* pWidth, u16 index) const;
                 void GetGlyphFromIndex(Glyph* pGlyph, u16 index) const;
 
-                bool IsManaging(const void* pBuffer) const { return mResource == pBuffer; }
+                bool IsManaging(const void* pBuffer) const {
+                    return mResource == pBuffer;
+                }
 
                 void* mResource;
                 FontInformation* mFontInfo;
-                CharCode mLastCharCode;
-                u16 mLastGlyphIndex;
             };
         };  // namespace detail
 

@@ -27,15 +27,12 @@ namespace nw4r {
             }
 
             void TexCoordAry::Free() {
-                if (mData == nullptr) {
-                    return;
+                if (mData != nullptr) {
+                    Layout::FreeMemory(mData);
+                    mData = nullptr;
+                    mCap = 0;
+                    mNum = 0;
                 }
-
-                const u32 coordNum = mCap;
-                Layout::FreeMemory(mData);
-                mData = nullptr;
-                mCap = 0;
-                mNum = 0;
             }
 
             void TexCoordAry::Reserve(u8 num) {

@@ -25,49 +25,87 @@ namespace nw4r {
                 SetPaletteEntryNum(0);
             }
 
-            void SetImage(void* pImage) { mImage = pImage; }
+            void SetImage(void* pImage) {
+                mImage = pImage;
+            }
 
-            void SetAnisotropy(GXAnisotropy aniso) { mBits.anisotropy = aniso; }
+            void SetAnisotropy(GXAnisotropy aniso) {
+                mBits.anisotropy = aniso;
+            }
 
             void Get(_GXTexObj*) const;
             void Get(_GXTlutObj*) const;
             void Set(const _GXTexObj&);
             void ReplaceImage(const TPLDescriptor*);
-            void ReplaceImage(TPLPalette*, u32);
+            void ReplaceImage(TPLPalette*, u32 = 0);
 
-            inline GXTexFmt GetTexelFormat() const { return GXTexFmt(mBits.textureFormat); }
+            inline GXTexFmt GetTexelFormat() const {
+                return GXTexFmt(mBits.textureFormat);
+            }
 
-            inline GXTexWrapMode GetWrapModeS() const { return GXTexWrapMode(mBits.wrapS); }
+            inline GXTexWrapMode GetWrapModeS() const {
+                return GXTexWrapMode(mBits.wrapS);
+            }
 
-            inline GXTexWrapMode GetWrapModeT() const { return GXTexWrapMode(mBits.wrapT); }
+            inline GXTexWrapMode GetWrapModeT() const {
+                return GXTexWrapMode(mBits.wrapT);
+            }
 
-            inline GXTexFilter GetMinFilter() const { return GXTexFilter(mBits.minFilter); }
+            inline GXTexFilter GetMinFilter() const {
+                return GXTexFilter(mBits.minFilter);
+            }
 
-            inline GXTexFilter GetMagFilter() const { return GXTexFilter(mBits.magFilter); }
+            inline GXTexFilter GetMagFilter() const {
+                return GXTexFilter(mBits.magFilter);
+            }
 
-            inline bool IsBiasClampEnable() const { return 0 != mBits.biasClampEnable; }
+            inline bool IsBiasClampEnable() const {
+                return 0 != mBits.biasClampEnable;
+            }
 
-            inline bool IsEdgeLODEnable() const { return 0 != mBits.edgeLODEnable; }
+            inline bool IsEdgeLODEnable() const {
+                return 0 != mBits.edgeLODEnable;
+            }
 
-            inline GXAnisotropy GetAnisotropy() const { return GXAnisotropy(mBits.anisotropy); }
+            inline GXAnisotropy GetAnisotropy() const {
+                return GXAnisotropy(mBits.anisotropy);
+            }
 
-            inline f32 GetLODBias() const { return mLODBias / 256.0f; }
+            inline f32 GetLODBias() const {
+                return mLODBias / 256.0f;
+            }
 
-            inline f32 GetMinLOD() const { return mMinLOD; }
+            inline f32 GetMinLOD() const {
+                return mMinLOD;
+            }
 
-            inline f32 GetMaxLOD() const { return mMaxLOD; }
+            inline f32 GetMaxLOD() const {
+                return mMaxLOD;
+            }
 
-            inline bool IsMipMap() const { return 0 != mBits.mipmap; }
+            inline bool IsMipMap() const {
+                return 0 != mBits.mipmap;
+            }
 
-            inline void* GetPalette() const { return mPalette; }
+            inline void* GetPalette() const {
+                return mPalette;
+            }
 
-            inline GXTlutFmt GetPaletteFormat() const { return GXTlutFmt(mBits.paletteFormat); }
+            inline GXTlutFmt GetPaletteFormat() const {
+                return GXTlutFmt(mBits.paletteFormat);
+            }
 
-            inline u16 GetPaletteEntryNum() const { return mPltEntryNum; }
+            inline u16 GetPaletteEntryNum() const {
+                return mPltEntryNum;
+            }
 
-            void SetMipMap(bool mipmap) { mBits.mipmap = mipmap; }
+            void SetMipMap(bool mipmap) {
+                mBits.mipmap = mipmap;
+            }
 
-            void SetLODBias(f32 bias) { mLODBias = u16(bias * 256); }
+            void SetLODBias(f32 bias) {
+                mLODBias = u16(bias * 256);
+            }
 
             void SetWrapMode(GXTexWrapMode wrapS, GXTexWrapMode wrapT) {
                 mBits.wrapS = wrapS;
@@ -84,26 +122,42 @@ namespace nw4r {
                 mMaxLOD = maxLOD;
             }
 
-            void SetBiasClampEnable(bool enable) { mBits.biasClampEnable = enable; }
+            void SetBiasClampEnable(bool enable) {
+                mBits.biasClampEnable = enable;
+            }
 
-            void SetEdgeLODEnable(bool enable) { mBits.edgeLODEnable = enable; }
+            void SetEdgeLODEnable(bool enable) {
+                mBits.edgeLODEnable = enable;
+            }
 
             void SetSize(u16 width, u16 height) {
                 mWidth = width;
                 mHeight = height;
             }
 
-            void SetTexelFormat(GXTexFmt value) { mBits.textureFormat = value; }
+            void SetTexelFormat(GXTexFmt value) {
+                mBits.textureFormat = value;
+            }
 
-            void SetPalette(void* pPalette) { mPalette = pPalette; }
+            void SetPalette(void* pPalette) {
+                mPalette = pPalette;
+            }
 
-            void SetPaletteFormat(GXTlutFmt value) { mBits.paletteFormat = value; }
+            void SetPaletteFormat(GXTlutFmt value) {
+                mBits.paletteFormat = value;
+            }
 
-            void SetPaletteEntryNum(u16 value) { mPltEntryNum = value; }
+            void SetPaletteEntryNum(u16 value) {
+                mPltEntryNum = value;
+            }
 
-            void Set(const TexMap& texMap) { *this = texMap; }
+            void Set(const TexMap& texMap) {
+                *this = texMap;
+            }
 
-            const Size GetSize() const { return Size(mWidth, mHeight); }
+            const Size GetSize() const {
+                return Size(mWidth, mHeight);
+            }
 
             void* mImage;      // 0x00
             void* mPalette;    // 0x04

@@ -80,15 +80,19 @@ namespace nw4r {
             f32 GetCursorX() const {
                 return mCursorPos.x;
             }
+
             void SetCursorX(f32 x) {
                 mCursorPos.x = x;
             }
+
             f32 GetCursorY() const {
                 return mCursorPos.y;
             }
+
             void SetCursorY(f32 y) {
                 mCursorPos.y = y;
             }
+
             void SetFont(const Font& rFont) {
                 mFont = &rFont;
             }
@@ -140,7 +144,12 @@ namespace nw4r {
             void EnableLinearFilter(bool, bool);
             void SetColorMapping(Color, Color);
             void SetTextColor(Color);
-            void SetTextColor(Color, Color);
+            void SetTextColor(Color start, Color end) {
+                mTextColor.start = start;
+                mTextColor.end = end;
+                UpdateVertexColor();
+            }
+
             f32 GetFontWidth() const;
             f32 GetFontHeight() const;
             void SetFontSize(f32 width, f32 height);
