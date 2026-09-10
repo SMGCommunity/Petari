@@ -1563,7 +1563,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/BigBubbleHolder.cpp"),
             Object(NonMatching, "Game/MapObj/BigBubbleMoveLimitter.cpp"),
             Object(NonMatching, "Game/MapObj/BigFan.cpp"),
-            Object(NonMatching, "Game/MapObj/BigFanHolder.cpp"),
+            Object(Matching, "Game/MapObj/BigFanHolder.cpp"),
             Object(NonMatching, "Game/MapObj/BlackHole.cpp"),
             Object(Matching, "Game/MapObj/BlueChip.cpp"),
             Object(NonMatching, "Game/MapObj/BlueStarCupsulePlanet.cpp"),
