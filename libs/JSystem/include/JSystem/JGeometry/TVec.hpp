@@ -937,6 +937,22 @@ namespace JGeometry {
         void setEulerDegree(T _x, T _y, T _z) {
             setEuler(_x * PI_180, _y * PI_180, _z * PI_180);
         }
+        void setEulerX(T _x) {
+            f32 s = sin(_x * 0.5f);
+            f32 c = cos(_x * 0.5f);
+            this->x = s;
+            this->y = 0.0f;
+            this->z = 0.0f;
+            this->w = c;
+        }
+        void setEulerY(T _y) {
+            f32 s = sin(_y * 0.5f);
+            f32 c = cos(_y * 0.5f);
+            this->y = s;
+            this->x = 0.0f;
+            this->z = 0.0f;
+            this->w = c;
+        }
         void setEulerZ(T _z) {
             f32 s = sin(_z * 0.5f);
             f32 c = cos(_z * 0.5f);

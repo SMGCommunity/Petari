@@ -3230,15 +3230,15 @@ Game/Enemy/Unizo.cpp:
 	.text       start:0x8014D14C end:0x8014F86C
 	.ctors      start:0x8052EB68 end:0x8052EB6C
 	.rodata     start:0x80532598 end:0x805325A0
-	.data       start:0x80585BB0 end:0x80585EC8
+	.data       start:0x80585BB0 end:0x80585EB4
 	.sbss       start:0x806B4948 end:0x806B4970
-	.sdata2     start:0x806BB900 end:0x806BB9B0
+	.sdata2     start:0x806BB900 end:0x806BB9AC
 
 Game/Enemy/UnizoLauncher.cpp:
 	.text       start:0x8014F86C end:0x8014FBD0
 	.ctors      start:0x8052EB6C end:0x8052EB70
 	.rodata     start:0x805325A0 end:0x805325A8
-	.data       start:0x80585EC8 end:0x80585F60
+	.data       start:0x80585EB8 end:0x80585F60
 	.sbss       start:0x806B4970 end:0x806B4978
 	.sdata2     start:0x806BB9B0 end:0x806BB9B8
 
