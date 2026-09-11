@@ -8,7 +8,6 @@ class TicoGalaxy : public TicoFat {
 public:
     TicoGalaxy(const char*);
 
-    virtual ~TicoGalaxy();
     virtual void init(const JMapInfoIter&);
     virtual void initAfterPlacement();
     virtual void shootStarPiece();
@@ -19,6 +18,6 @@ public:
     virtual void disappear(bool);
     virtual void appearInformation() const;
 
-    const char* mGalaxyName;  // 0x208
-    TicoStarRing* mStarRing;  // 0x20C
+    /* 0x208 */ const char* mGalaxyName;
+    /* 0x208 */ TicoStarRing* mStarRing;
 };

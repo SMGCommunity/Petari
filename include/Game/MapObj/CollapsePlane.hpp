@@ -1,15 +1,20 @@
 #pragma once
 
-#include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/Util/JointController.hpp"
+#include <JSystem/JGeometry/TMatrix.hpp>
+
+class AnimScaleController;
+class JointController;
+class JointControllerInfo;
+class WalkerStateBindStarPointer;
 
 class CollapsePlane : public MapObjActor {
 public:
-    CollapsePlane(const char*);
+    /// @brief Creates a new `CollapsePlane`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    CollapsePlane(const char* pName);
 
-    virtual ~CollapsePlane();
-    virtual void init(const JMapInfoIter&);
+    virtual void init(const JMapInfoIter& rIter);
     virtual void control();
     virtual void calcAndSetBaseMtx();
 
@@ -20,9 +25,9 @@ public:
     bool calcJointPlane(TPos3f*, const JointControllerInfo&);
     bool tryDPDStop();
 
-    AnimScaleController* mScaleController;         // 0xC4
-    WalkerStateBindStarPointer* mStarPointerBind;  // 0xC8
-    JointController* mJointController;             // 0xCC
-    s32 _D0;
-    s32 mTimer;  // 0xD4
+    /* 0xC4 */ AnimScaleController* mScaleController;
+    /* 0xC8 */ WalkerStateBindStarPointer* mStateBindStartPointer;
+    /* 0xCC */ JointController* mJointController;
+    /* 0xD0 */ s32 mCollapseStep;
+    /* 0xD4 */ s32 mCollapseTime;
 };
