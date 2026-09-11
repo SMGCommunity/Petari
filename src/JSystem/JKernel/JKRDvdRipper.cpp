@@ -8,14 +8,6 @@
 #include <stdint.h>
 
 
-template <>
-inline JSUList< JKRDMCommand >::JSUList() : JSUPtrList() {
-}
-
-template <>
-inline JSUList< JKRDMCommand >::~JSUList() {
-}
-
 JSUList< JKRDMCommand > JKRDvdRipper::sDvdAsyncList = JSUList< JKRDMCommand >();
 
 static int JKRDecompressFromDVD(JKRDvdFile*, void*, u32, u32, u32, u32, u32*);

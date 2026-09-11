@@ -11,7 +11,7 @@
 #include "JSystem/JSupport/JSUFileStream.hpp"
 #include <cstring>
 
-static int JKRDecompressFromDVDToAram(JKRDvdFile*, u32, u32, u32, u32, u32, u32*) NO_INLINE;
+int JKRDecompressFromDVDToAram(JKRDvdFile*, u32, u32, u32, u32, u32, u32*);
 static inline u8* firstSrcData();
 static inline u8* nextSrcData(u8*);
 static inline int decompSZS_subroutine(u8*, u32);

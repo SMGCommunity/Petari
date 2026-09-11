@@ -523,7 +523,7 @@ u32 J3DShapeMtx::sTexMtxLoadType;
 J3DTexGenBlock* J3DDifferedTexMtx::sTexGenBlock;
 J3DTexMtxObj* J3DDifferedTexMtx::sTexMtxObj;
 
-void J3DPSMtx33Copy(Mtx3P src, Mtx3P dst) NO_INLINE {
+void J3DPSMtx33Copy(Mtx3P src, Mtx3P dst) {
 #ifdef __MWERKS__
     __REGISTER const void* source = src;
     __REGISTER void* destination = dst;

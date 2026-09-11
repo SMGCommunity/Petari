@@ -38,7 +38,9 @@ public:
     virtual void close();
     virtual s32 readData(void*, s32, s32);
     virtual s32 writeData(const void*, s32, s32);
-    virtual s32 getFileSize() const;
+    virtual s32 getFileSize() const {
+        return mFileInfo.length;
+    }
     virtual bool open(s32);
 
     s32 sync();

@@ -16,7 +16,7 @@ public:
     class TLoad {
     public:
         TLoad();
-        void clear() NO_INLINE;
+        void clear();
 
         u8 _0;
         u32 _4;
@@ -30,7 +30,9 @@ public:
     JKRThread(OSThread* thread, int message_count);
 
     virtual ~JKRThread();
-    virtual void* run();
+    virtual void* run() {
+        return nullptr;
+    }
 
     void setCommon_mesgQueue(JKRHeap* heap, int message_count);
     void setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3);

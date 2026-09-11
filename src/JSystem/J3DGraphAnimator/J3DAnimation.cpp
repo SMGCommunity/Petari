@@ -1,4 +1,3 @@
-#define J3D_ANIMATION_DEFER_INLINE
 #include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAttach.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
@@ -1339,15 +1338,3 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DMaterialTable* pMatTable) {
 void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* pModelData) {
     searchUpdateMaterialID(&pModelData->getMaterialTable());
 }
-
-J3DAnmBase::J3DAnmBase() {
-    mAttribute = 0;
-    field_0x5 = 0;
-    mFrameMax = 0;
-    mFrame = 0.0f;
-}
-
-
-J3D_ANM_BASE_INLINE_DEFINITIONS
-#undef J3D_ANM_BASE_INLINE_DEFINITIONS
-#undef J3D_ANIMATION_DEFER_INLINE

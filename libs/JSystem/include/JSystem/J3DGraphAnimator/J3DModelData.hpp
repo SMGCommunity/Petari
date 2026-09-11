@@ -166,7 +166,7 @@ public:
     void syncJ3DSys() const {
         syncJ3DSysFlags();
     }
-    void makeHierarchy(J3DJoint* joint, J3DModelHierarchy const** hierarchy) NO_INLINE {
+    void makeHierarchy(J3DJoint* joint, J3DModelHierarchy const** hierarchy) {
         mJointTree.makeHierarchy(joint, hierarchy, &mMaterialTable, &mShapeTable);
         mShapeTable.initShapeNodes(getDrawMtxData(), &getVertexData());
     }

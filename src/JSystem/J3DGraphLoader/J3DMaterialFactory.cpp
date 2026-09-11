@@ -182,7 +182,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
         i_material->mColorBlock->setColorChan(i, color_chan);
     }
     for (u8 i = 0; i < texgens; i++) {
-        J3DTexCoord tex_coord = CALL_INLINE_FUNC(J3DTexCoord, newTexCoord(i_idx, i));
+        J3DTexCoord tex_coord = newTexCoord(i_idx, i);
         i_material->mTexGenBlock->setTexCoord(i, &tex_coord);
     }
     for (u8 i = 0; i < 8; i++) {
@@ -285,7 +285,7 @@ J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, 
         i_material->mTexGenBlock->setTexMtx(i, newTexMtx(i_idx, i));
     }
     for (u8 i = 0; i < texgens; i++) {
-        J3DTexCoord tex_coord = CALL_INLINE_FUNC(J3DTexCoord, newTexCoord(i_idx, i));
+        J3DTexCoord tex_coord = newTexCoord(i_idx, i);
         i_material->mTexGenBlock->setTexCoord(i, &tex_coord);
     }
     if (indFlag && mpIndInitData != NULL) {
@@ -339,7 +339,7 @@ J3DMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* i_material, i
     i_material->getTevBlock()->setTevRegOffset(mpPatchingInfo[i_idx].mTevRegOffset);
     i_material->getPEBlock()->setFogOffset(mpPatchingInfo[i_idx].mFogOffset);
     if (i_material->mSharedDLObj == NULL) {
-        i_material->mSharedDLObj = new CALL_INLINE_FUNC_NO_ARG(J3DDisplayListObj);
+        i_material->mSharedDLObj = new J3DDisplayListObj();
         i_material->mSharedDLObj->setSingleDisplayList((void*)(mpDisplayListInit[i_idx].mOffset + (uintptr_t)&mpDisplayListInit[i_idx]),
                                                        mpDisplayListInit[i_idx].field_0x4);
     }

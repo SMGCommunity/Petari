@@ -11,7 +11,7 @@
 
 static u8* firstSrcData();
 static u8* nextSrcData(u8* param_0);
-static int JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength, u32 offset, u32* resourceSize) NO_INLINE;
+int JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength, u32 offset, u32* resourceSize);
 static inline int decompSZS_subroutine(u8* src, u8* dest);
 
 JKRAram* JKRAram::sAramObject;
@@ -402,7 +402,7 @@ static inline int decompSZS_subroutine(u8* src, u8* dest) {
     return 0;
 }
 
-static int JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength, u32 offset, u32* resourceSize) {
+int JKRDecompressFromAramToMainRam(u32 src, void* dst, u32 srcLength, u32 dstLength, u32 offset, u32* resourceSize) {
     BOOL interrupts = OSDisableInterrupts();
     if (s_is_decompress_mutex_initialized == false) {
         OSInitMutex(&decompMutex);

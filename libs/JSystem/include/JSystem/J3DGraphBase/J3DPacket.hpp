@@ -76,9 +76,7 @@ inline int calcDifferedBufferSize_TevStageDirectSize(u32 param_1) {
 
 class J3DDisplayListObj {
 public:
-    J3DDisplayListObj();
-
-    inline INLINE_FUNC_DECL_NO_ARG(J3DDisplayListObj) {
+    J3DDisplayListObj() {
         mpDisplayList[0] = nullptr;
         mpDisplayList[1] = nullptr;
         mSize = 0;

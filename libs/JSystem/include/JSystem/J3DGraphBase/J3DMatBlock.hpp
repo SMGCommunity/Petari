@@ -7,7 +7,7 @@ struct J3DIndTexOrder : public J3DIndTexOrderInfo {
     J3DIndTexOrder() {
         *reinterpret_cast< u32* >(this) = *reinterpret_cast< const u32* >(&j3dDefaultIndTexOrderNull);
     }
-    J3DIndTexOrder& operator=(J3DIndTexOrder const& other) NO_INLINE {
+    J3DIndTexOrder& operator=(J3DIndTexOrder const& other) {
         __memcpy(this, &other, sizeof(J3DIndTexOrder));
         return *this;
     }
@@ -41,7 +41,7 @@ struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
         return mScaleT;
     }
 
-    J3DIndTexCoordScale& operator=(const J3DIndTexCoordScale& other) NO_INLINE {
+    J3DIndTexCoordScale& operator=(const J3DIndTexCoordScale& other) {
         __memcpy(this, &other, sizeof(J3DIndTexCoordScale));
         return *this;
     }
@@ -126,7 +126,7 @@ public:
 
 class J3DColorBlockLightOff : public J3DColorBlock {
 public:
-    J3DColorBlockLightOff() NO_INLINE {
+    J3DColorBlockLightOff() {
         initialize();
     }
     void initialize();

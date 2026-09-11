@@ -272,7 +272,7 @@ struct J3DGXColorS10 : public GXColorS10 {
     J3DGXColorS10(const GXColorS10& color) : GXColorS10(color) {
     }
 
-    J3DGXColorS10& operator=(const GXColorS10& color) NO_INLINE {
+    J3DGXColorS10& operator=(const GXColorS10& color) {
         __memcpy(this, &color, sizeof(GXColorS10));
         return *this;
     }

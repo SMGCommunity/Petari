@@ -188,7 +188,7 @@ void makeTevSwapTable();
 extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 
 struct J3DNBTScale : public J3DNBTScaleInfo {
-    J3DNBTScale() NO_INLINE {
+    J3DNBTScale() {
         mbHasScale = j3dDefaultNBTScaleInfo.mbHasScale;
         mScale.x = j3dDefaultNBTScaleInfo.mScale.x;
         mScale.y = j3dDefaultNBTScaleInfo.mScale.y;
@@ -216,7 +216,7 @@ struct J3DTevOrder : public J3DTevOrderInfo {
     J3DTevOrder(const J3DTevOrderInfo& info) {
         *reinterpret_cast< u32* >(this) = *reinterpret_cast< const u32* >(&info);
     }
-    J3DTevOrder& operator=(const J3DTevOrder& other) NO_INLINE;
+    J3DTevOrder& operator=(const J3DTevOrder& other);
     J3DTevOrderInfo& getTevOrderInfo() {
         return *this;
     }
@@ -343,9 +343,7 @@ u16 getTexNoReg(void* param_0);
 extern J3DTexCoordInfo const j3dDefaultTexCoordInfo[8];
 
 struct J3DTexCoord : public J3DTexCoordInfo {
-    inline INLINE_FUNC_DECL(J3DTexCoord, const J3DTexCoord& other) {
-        __memcpy(this, &other, sizeof(J3DTexCoord));
-    }
+
 
 
     J3DTexCoord() {
@@ -379,7 +377,7 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     void setTexMtxReg(u16 reg) {
         mTexMtxReg = reg;
     }
-    J3DTexCoord& operator=(const J3DTexCoord& other) NO_INLINE {
+    J3DTexCoord& operator=(const J3DTexCoord& other) {
         __memcpy(this, &other, sizeof(J3DTexCoordInfo));
         return *this;
     }
@@ -458,7 +456,7 @@ inline u16 calcAlphaCmpID(u8 comp0, u8 op, u8 comp1) {
 }
 
 struct J3DAlphaComp {
-    J3DAlphaComp() NO_INLINE : mID(j3dDefaultAlphaCmpID), mRef0(0), mRef1(0) {
+    J3DAlphaComp() : mID(j3dDefaultAlphaCmpID), mRef0(0), mRef1(0) {
     }
     J3DAlphaComp(u16 id) : mID(id), mRef0(0), mRef1(0) {
     }

@@ -21,7 +21,6 @@ JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param
     setCommon_mesgQueue(mHeap, message_count);
 }
 
-#include "JSystem/JKernel/JKRThread.inl"
 
 JKRThread::~JKRThread() {
     sThreadList.remove(&mThreadListLink);
@@ -101,7 +100,6 @@ void setThreadColor(JUtility::TColor& destination, u8 r, u8 g, u8 b, u8 a) {
     destination = JUtility::TColor(r, g, b, a);
 }
 
-#include "JSystem/JKernel/JKRThreadList.inl"
 
 JSUList< JKRThread > JKRThread::sThreadList = JSUList< JKRThread >(false);
 u64 JKRThreadSwitch::sTotalStart;

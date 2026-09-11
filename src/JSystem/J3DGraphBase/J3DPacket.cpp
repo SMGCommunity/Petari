@@ -347,12 +347,7 @@ void J3DShapePacket::drawFast() {
     }
 }
 
-J3DDisplayListObj::J3DDisplayListObj() {
-    mpDisplayList[0] = nullptr;
-    mpDisplayList[1] = nullptr;
-    mSize = 0;
-    mMaxSize = 0;
-}
+
 
 int J3DMatPacket::entry(J3DDrawBuffer* pBuffer) {
     J3DDrawBuffer::sortFunc func = J3DDrawBuffer::sortFuncTable[pBuffer->getSortMode()];

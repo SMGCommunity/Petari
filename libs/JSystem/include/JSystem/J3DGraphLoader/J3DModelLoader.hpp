@@ -239,7 +239,7 @@ public:
     u32 calcSizeInformation(J3DModelInfoBlock const*, u32);
     u32 calcSizeJoint(J3DJointBlock const*);
     u32 calcSizeEnvelope(J3DEnvelopeBlock const*);
-    u32 calcSizeDraw(J3DDrawBlock const*) NO_INLINE;
+    u32 calcSizeDraw(J3DDrawBlock const*);
     u32 calcSizeShape(J3DShapeBlock const*, u32);
     u32 calcSizeTexture(J3DTextureBlock const*);
     u32 calcSizeTextureTable(J3DTextureBlock const*);

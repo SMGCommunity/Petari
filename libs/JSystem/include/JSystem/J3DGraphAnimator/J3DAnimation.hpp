@@ -341,25 +341,22 @@ struct J3DAnmClusterFullTable {
 
 class J3DAnmBase {
 public:
-    J3DAnmBase();
-
-    inline INLINE_FUNC_DECL_NO_ARG(J3DAnmBase) {
+    J3DAnmBase() {
         mAttribute = 0;
         field_0x5 = 0;
         mFrameMax = 0;
         mFrame = 0.0f;
     }
 
-    inline INLINE_FUNC_DECL(J3DAnmBase, s16 frameMax) {
+    J3DAnmBase(s16 frameMax) {
         mAttribute = 0;
         field_0x5 = 0;
         mFrameMax = frameMax;
         mFrame = 0.0f;
     }
 
-    inline J3DAnmBase(s16 frameMax) NO_INLINE;
-
-    virtual inline ~J3DAnmBase();
+    virtual ~J3DAnmBase() {
+    }
     virtual s32 getKind() const = 0;
 
     u8 getAttribute() const {
@@ -523,7 +520,7 @@ public:
 
 class J3DAnmCluster : public J3DAnmBase {
 public:
-    J3DAnmCluster(s16 frameMax, f32* pWeight) : CALL_INLINE_FUNC(J3DAnmBase, frameMax) {
+    J3DAnmCluster(s16 frameMax, f32* pWeight) : J3DAnmBase(frameMax) {
         mWeight = pWeight;
     }
 
@@ -786,7 +783,7 @@ public:
 
 class J3DAnmVisibilityFull : public J3DAnmBase {
 public:
-    J3DAnmVisibilityFull() : CALL_INLINE_FUNC_NO_ARG(J3DAnmBase) {
+    J3DAnmVisibilityFull() : J3DAnmBase() {
         mUpdateMaterialNum = 0;
         field_0xe = 0;
         mAnmTable = NULL;
@@ -894,19 +891,3 @@ public:
     /* 0x0C */ f32 mRate;
     /* 0x10 */ f32 mFrame;
 };  // Size: 0x14
-
-#define J3D_ANM_BASE_INLINE_DEFINITIONS \
-inline J3DAnmBase::~J3DAnmBase() { \
-} \
- \
-inline J3DAnmBase::J3DAnmBase(s16 frameMax) { \
-    mAttribute = 0; \
-    field_0x5 = 0; \
-    mFrameMax = frameMax; \
-    mFrame = 0.0f; \
-}
-
-#ifndef J3D_ANIMATION_DEFER_INLINE
-J3D_ANM_BASE_INLINE_DEFINITIONS
-#undef J3D_ANM_BASE_INLINE_DEFINITIONS
-#endif
