@@ -4,16 +4,20 @@
 #include "Game/System/GameSystem.hpp"
 #include "Game/System/GameSystemSceneController.hpp"
 #include "Game/Util/FileUtil.hpp"
+#include "Game/Util/JMapInfo.hpp"
 #include "Game/Util/SceneUtil.hpp"
 #include "Game/Util/SingletonHolder.hpp"
 #include "Game/Util/StringUtil.hpp"
 #include <JSystem/JKernel/JKRMemArchive.hpp>
 #include <algorithm>
 
+template const bool JMapInfo::getValue< s32 >(int, const char*, s32*) const NO_INLINE;
+
 namespace {
     struct GalaxyNameSortLt {
         bool operator()(ScenarioData* ppLhs, ScenarioData* ppRhs) {
-            return GalaxyNameSortTable::getGalaxySortIndex(ppLhs->mGalaxyName) < GalaxyNameSortTable::getGalaxySortIndex(ppRhs->mGalaxyName);
+            return static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(ppLhs->mGalaxyName)) <
+                   static_cast< u32 >(GalaxyNameSortTable::getGalaxySortIndex(ppRhs->mGalaxyName));
         }
     };
 
@@ -26,7 +30,8 @@ ScenarioData::ScenarioData(const char* pFilePath) : mScenarioData(nullptr), mGal
     char fileName[64];
     MR::removeExtensionString(fileName, sizeof(fileName), MR::getBasename(pFilePath));
 
-    char* pGalaxyName = strstr(fileName, "Scenario");
+    const char* pSuffix = "Scenario";
+    char* pGalaxyName = strstr(fileName, pSuffix);
 
     if (pGalaxyName != nullptr) {
         pGalaxyName[0] = '\0';
@@ -46,12 +51,33 @@ ScenarioData::ScenarioData(const char* pFilePath) : mScenarioData(nullptr), mGal
     mZoneList->attach(pArchive->getResource("/ZoneList.bcsv"));
 }
 
-// ScenarioData::getScenarioNum
-// ScenarioData::getPowerStarNum
+s32 ScenarioData::getScenarioNum() const {
+    s32 count = 0;
+    for (s32 scenarioNo = 1; scenarioNo <= mScenarioData->getNumEntries(); ++scenarioNo) {
+        bool hidden = false;
+        getValueBool("IsHidden", scenarioNo, &hidden);
+        if (!hidden) {
+            ++count;
+        }
+    }
+    return count;
+}
 
-bool ScenarioData::getValueString(const char* pKey, s32 a2, const char** ppOut) const {
-    ScenarioDataIter iter = getScenarioDataIter(a2);
-    bool isExist = reinterpret_cast< const JMapInfo* >(iter.mParser)->getValue< const char* >(iter.mCur, pKey, ppOut);
+s32 ScenarioData::getPowerStarNum() const {
+    s32 count = 0;
+    for (s32 scenarioNo = 1; scenarioNo <= mScenarioData->getNumEntries(); ++scenarioNo) {
+        u32 powerStarId = 0;
+        getValueU32("PowerStarId", scenarioNo, &powerStarId);
+        if (powerStarId != 0) {
+            ++count;
+        }
+    }
+    return count;
+}
+
+bool ScenarioData::getValueString(const char* pKey, s32 scenarioNo, const char** ppOut) const {
+    JMapInfoIter iter = getScenarioDataIter(scenarioNo);
+    bool isExist = iter.getValue(pKey, ppOut);
 
     if (isExist) {
         if (MR::isEqualString(*ppOut, "")) {
@@ -69,20 +95,20 @@ const char* ScenarioData::getZoneName(s32 zoneId) const {
     return pZoneName;
 }
 
-// ScenarioData::getScenarioDataIter
-
-bool ScenarioData::getValueU32(const char* pKey, s32 a2, u32* pOut) const {
-    ScenarioDataIter iter = getScenarioDataIter(a2);
-    s32 index = reinterpret_cast< const JMapInfo* >(iter.mParser)->searchItemInfo(pKey);
-
-    if (index < 0) {
-        return nullptr;
-    }
-
-    return reinterpret_cast< const JMapInfo* >(iter.mParser)->getValueFast(a2, index, pOut);
+JMapInfoIter ScenarioData::getScenarioDataIter(s32 scenarioNo) const {
+    JMapInfoIter iter = mScenarioData->findElement< s32 >("ScenarioNo", scenarioNo, 0);
+    return iter;
 }
 
-// ScenarioData::getValueBool
+bool ScenarioData::getValueU32(const char* pKey, s32 scenarioNo, u32* pOut) const {
+    JMapInfoIter iter = getScenarioDataIter(scenarioNo);
+    return iter.getValue(pKey, pOut);
+}
+
+bool ScenarioData::getValueBool(const char* pKey, s32 scenarioNo, bool* pOut) const {
+    JMapInfoIter iter = getScenarioDataIter(scenarioNo);
+    return iter.getValue(pKey, pOut);
+}
 
 s32 ScenarioData::getZoneNum() const {
     if (mZoneList->mData != nullptr) {
