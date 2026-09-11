@@ -86,9 +86,9 @@ public:
         return getState_buf_(state);
     }
 
-    u8 mAllocMode;       // 0x6C
-    u8 mCurrentGroupId;  // 0x6D
-    u8 _6E;
+    u8 mAllocMode;
+    u8 mCurrentGroupId;
+    bool mIsExternal;
     void* _70;
     u32 _74;
     CMemBlock* mHeadFreeList;  // 0x78
@@ -96,3 +96,9 @@ public:
     CMemBlock* mHeadUsedList;  // 0x80
     CMemBlock* mTailUsedList;  // 0x84
 };
+
+inline int JKRExpHeap::CMemBlock::free(JKRExpHeap* heap) {
+    heap->removeUsedBlock(this);
+    heap->recycleFreeBlock(this);
+    return 0;
+}

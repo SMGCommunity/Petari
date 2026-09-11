@@ -52,7 +52,7 @@ inline static u16 __GDLightID2Index(GXLightID id) {
     return idx;
 }
 
-static u16 __GDLightID2Offset(GXLightID id) {
+static inline u16 __GDLightID2Offset(GXLightID id) {
     return __GDLightID2Index(id) * 16;
 }
 

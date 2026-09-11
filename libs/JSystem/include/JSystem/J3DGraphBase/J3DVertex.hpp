@@ -136,7 +136,7 @@ public:
         mCurrentVtxCol = pVtxCol;
     }
 
-    void frameInit() {
+    void frameInit() NO_INLINE {
         setCurrentVtxPos(mVtxPosArray[0]);
         setCurrentVtxNrm(mVtxNrmArray[0]);
         setCurrentVtxCol(mVtxColArray[0]);

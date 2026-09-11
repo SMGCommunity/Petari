@@ -239,7 +239,7 @@ public:
     u32 calcSizeInformation(J3DModelInfoBlock const*, u32);
     u32 calcSizeJoint(J3DJointBlock const*);
     u32 calcSizeEnvelope(J3DEnvelopeBlock const*);
-    u32 calcSizeDraw(J3DDrawBlock const*);
+    u32 calcSizeDraw(J3DDrawBlock const*) NO_INLINE;
     u32 calcSizeShape(J3DShapeBlock const*, u32);
     u32 calcSizeTexture(J3DTextureBlock const*);
     u32 calcSizeTextureTable(J3DTextureBlock const*);
@@ -256,6 +256,19 @@ public:
     u16 mEnvelopeSize;  // 0x1A
 };
 
+class J3DModelLoader_v26 : public J3DModelLoader {
+public:
+    J3DModelLoader_v26() {
+    }
+    ~J3DModelLoader_v26() {
+    }
+
+    void readMaterial(J3DMaterialBlock const*, u32);
+    void readMaterialTable(J3DMaterialBlock const*, u32);
+    u32 calcSizeMaterial(J3DMaterialBlock const*, u32);
+    u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32);
+};
+
 class J3DModelLoader_v21 : public J3DModelLoader {
 public:
     inline J3DModelLoader_v21() {
@@ -266,17 +279,6 @@ public:
 
     void readMaterial_v21(J3DMaterialBlock_v21 const*, u32);
     void readMaterialTable_v21(J3DMaterialBlock_v21 const*, u32);
-};
-
-class J3DModelLoader_v26 : public J3DModelLoader {
-public:
-    ~J3DModelLoader_v26() {
-    }
-
-    void readMaterial(J3DMaterialBlock const*, u32);
-    void readMaterialTable(J3DMaterialBlock const*, u32);
-    u32 calcSizeMaterial(J3DMaterialBlock const*, u32);
-    u32 calcSizeMaterialTable(J3DMaterialBlock const*, u32);
 };
 
 class J3DModelLoaderDataBase {

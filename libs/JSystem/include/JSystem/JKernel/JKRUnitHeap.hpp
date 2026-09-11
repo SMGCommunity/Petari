@@ -5,6 +5,7 @@
 class JKRUnitHeap : public JKRHeap {
 public:
     static JKRUnitHeap* create(u32, u32, u32, JKRHeap*, bool);
+    JKRUnitHeap(u8*, u8*, u32, u32, u32, u32, JKRHeap*, bool);
 
     virtual ~JKRUnitHeap();
     virtual u32 getHeapType();
@@ -31,13 +32,14 @@ public:
     s32 findFreeBlock_fromTail(u32);
     void* indexToAddress(int);
     s32 addressToIndex(void*);
-    bool isUnitUsed(int) const;
+    BOOL isUnitUsed(int) const;
+    void setUnitUsed(int);
 
-    u32 _6C;
-    u32 _70;
-    u32 _74;
-    u8* _78;
-    u8* _7C;
+    u32 mUnitSize;
+    u32 mUnitCount;
+    u32 mAlignment;
+    u8* mBat;
+    u8* mUnits;
     /* 0x80 */ s32 mTotalFreeSize;
-    u8 _84;
+    u8 mAllocMode;
 };

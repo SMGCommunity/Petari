@@ -62,5 +62,3 @@ void J3DModelData::syncJ3DSysFlags() const {
     }
 }
 
-J3DModelData::~J3DModelData() {
-}

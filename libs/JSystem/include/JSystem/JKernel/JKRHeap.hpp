@@ -216,8 +216,6 @@ public:
     JSUList< JKRDisposer > mDisposerList;  // 0x5C
     bool mErrorFlag;                       // 0x68
     u8 _69;
-    u8 _6A;
-    u8 _6B;
 };
 
 #ifdef __MWERKS__

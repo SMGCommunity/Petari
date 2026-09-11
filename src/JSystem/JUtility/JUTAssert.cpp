@@ -6,7 +6,7 @@
 #include <cstdio>
 #include <revolution/vi.h>
 
-bool sAssertVisible = true;
+extern bool sAssertVisible;
 
 namespace JUTAssertion {
 
@@ -16,9 +16,8 @@ namespace JUTAssertion {
         static char sMessageString[256];
         static s32 sDisplayTime = -1;
         static s32 sDevice = 3;
-        static bool mVisible = true;
 
-    };  // namespace
+    }
 
     void create() {
     }
@@ -51,9 +50,9 @@ namespace JUTAssertion {
     }
 
     void flushMessage_dbPrint() {
-        if (flush_subroutine() && sAssertVisible == true && JUTDbPrint::getManager() != NULL) {
+        if (flush_subroutine() && sAssertVisible == true && JUTDbPrint::getManager() != nullptr) {
             JUTFont* font = JUTDbPrint::getManager()->getFont();
-            if (font != NULL) {
+            if (font != nullptr) {
                 u8 tmp = ((VIGetRetraceCount() & 0x3C) << 2) | 0xF;
                 font->setGX();
                 font->setCharColor(JUtility::TColor(255, tmp, tmp, 255));
@@ -75,4 +74,6 @@ namespace JUTAssertion {
         sAssertVisible = visible;
     }
 
-};  // namespace JUTAssertion
+};
+
+bool sAssertVisible = true;

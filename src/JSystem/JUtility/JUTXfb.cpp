@@ -42,18 +42,8 @@ void JUTXfb::destroyManager() {
 
 void JUTXfb::initiate(void* a1, void* a2, void* a3, JUTXfb::EXfbNumber num) {
     mXfbs[0] = a1;
-
-    if (num < 2) {
-        a2 = nullptr;
-    }
-
-    mXfbs[1] = a2;
-
-    if (num < 3) {
-        a3 = nullptr;
-    }
-
-    mXfbs[2] = a3;
+    mXfbs[1] = num >= 2 ? a2 : nullptr;
+    mXfbs[2] = num >= 3 ? a3 : nullptr;
     mXfbAllocated[0] = false;
     mXfbAllocated[1] = false;
     mXfbAllocated[2] = false;

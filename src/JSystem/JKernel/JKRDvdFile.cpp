@@ -1,8 +1,7 @@
 #include "JSystem/JKernel/JKRDvdFile.hpp"
+#include "JSystem/JKernel/JKRDvdFile.inl"
 #include "JSystem/JUtility/JUTException.hpp"
 #include <stdint.h>
-
-JSUList< JKRDvdFile > JKRDvdFile::sDvdList;
 
 JKRDvdFile::JKRDvdFile() : mDvdLink(this) {
     initiate();
@@ -104,10 +103,4 @@ void JKRDvdFile::doneProcess(s32 id, DVDFileInfo* fileInfo) {
     OSSendMessage(&dvdFile->mMessageQueue2, (OSMessage)(intptr_t)id, OS_MESSAGE_NOBLOCK);
 }
 
-JKRFile::JKRFile() : JKRDisposer() {
-    mIsAvailable = false;
-}
-
-s32 JKRDvdFile::getFileSize(void) const {
-    return mFileInfo.length;
-}
+JSUList< JKRDvdFile > JKRDvdFile::sDvdList;

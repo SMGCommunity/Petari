@@ -3,6 +3,13 @@
 #include "JSystem/J3DGraphBase/J3DShape.hpp"
 #include <revolution.h>
 
+inline J3DShapeMtx::~J3DShapeMtx() {
+}
+
+inline u32 J3DShapeMtx::getType() const {
+    return 'SMTX';
+}
+
 class J3DTexMtx;
 class J3DTexGenBlock;
 
@@ -45,6 +52,31 @@ public:
 class J3DShapeMtxConcatView;
 typedef void (J3DShapeMtxConcatView::*J3DShapeMtxConcatView_LoadFunc)(int, u16) const;
 
+class J3DShapeMtxMulti : public J3DShapeMtx {
+public:
+    J3DShapeMtxMulti(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
+        : J3DShapeMtx(useMtxIndex), mUseMtxNum(useMtxNum), mUseMtxIndexTable(useMtxIndexTable) {
+    }
+
+    virtual ~J3DShapeMtxMulti() {
+    }
+    virtual u32 getType() const {
+        return 'SMML';
+    }
+    virtual u16 getUseMtxNum() const {
+        return mUseMtxNum;
+    }
+    virtual u16 getUseMtxIndex(u16 no) const {
+        return mUseMtxIndexTable[no];
+    }
+    virtual void load() const;
+    virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
+
+private:
+    /* 0x8 */ u16 mUseMtxNum;
+    /* 0xC */ u16* mUseMtxIndexTable;
+};
+
 class J3DShapeMtxConcatView : public J3DShapeMtx {
 public:
     J3DShapeMtxConcatView(u16 useMtxIndex) : J3DShapeMtx(useMtxIndex) {
@@ -69,57 +101,6 @@ public:
     static J3DShapeMtxConcatView_LoadFunc sMtxLoadPipeline[4];
     static J3DShapeMtxConcatView_LoadFunc sMtxLoadLODPipeline[4];
     static MtxPtr sMtxPtrTbl[2];
-};
-
-class J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
-public:
-    J3DShapeMtxYBBoardConcatView(u16 useMtxIndex) : J3DShapeMtxConcatView(useMtxIndex) {
-    }
-
-    virtual ~J3DShapeMtxYBBoardConcatView() {
-    }
-    virtual u32 getType() const {
-        return 'SMYB';
-    }
-    virtual void load() const;
-};
-
-class J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {
-public:
-    J3DShapeMtxBBoardConcatView(u16 useMtxIndex) : J3DShapeMtxConcatView(useMtxIndex) {
-    }
-
-    virtual ~J3DShapeMtxBBoardConcatView() {
-    }
-    virtual u32 getType() const {
-        return 'SMBB';
-    }
-    virtual void load() const;
-};
-
-class J3DShapeMtxMulti : public J3DShapeMtx {
-public:
-    J3DShapeMtxMulti(u16 useMtxIndex, u16 useMtxNum, u16* useMtxIndexTable)
-        : J3DShapeMtx(useMtxIndex), mUseMtxNum(useMtxNum), mUseMtxIndexTable(useMtxIndexTable) {
-    }
-
-    virtual ~J3DShapeMtxMulti() {
-    }
-    virtual u32 getType() const {
-        return 'SMML';
-    }
-    virtual u16 getUseMtxNum() const {
-        return mUseMtxNum;
-    }
-    virtual u16 getUseMtxIndex(u16 no) const {
-        return mUseMtxIndexTable[no];
-    }
-    virtual void load() const;
-    virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
-
-private:
-    /* 0x8 */ u16 mUseMtxNum;
-    /* 0xC */ u16* mUseMtxIndexTable;
 };
 
 class J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
@@ -147,4 +128,30 @@ public:
 private:
     /* 0x8 */ u16 mUseMtxNum;
     /* 0xC */ u16* mUseMtxIndexTable;
+};
+
+class J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {
+public:
+    J3DShapeMtxBBoardConcatView(u16 useMtxIndex) : J3DShapeMtxConcatView(useMtxIndex) {
+    }
+
+    virtual ~J3DShapeMtxBBoardConcatView() {
+    }
+    virtual u32 getType() const {
+        return 'SMBB';
+    }
+    virtual void load() const;
+};
+
+class J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
+public:
+    J3DShapeMtxYBBoardConcatView(u16 useMtxIndex) : J3DShapeMtxConcatView(useMtxIndex) {
+    }
+
+    virtual ~J3DShapeMtxYBBoardConcatView() {
+    }
+    virtual u32 getType() const {
+        return 'SMYB';
+    }
+    virtual void load() const;
 };

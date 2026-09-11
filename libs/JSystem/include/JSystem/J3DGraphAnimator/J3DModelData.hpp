@@ -11,7 +11,8 @@ class J3DModelData {
 public:
     J3DModelData();
 
-    virtual ~J3DModelData();
+    virtual ~J3DModelData() {
+    }
 
     s32 newSharedDisplayList(u32);
     void indexToPtr();

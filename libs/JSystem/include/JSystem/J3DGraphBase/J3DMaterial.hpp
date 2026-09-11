@@ -17,6 +17,11 @@ class J3DDisplayListObj;
 
 class J3DMaterial {
 public:
+    J3DMaterial() {
+        initialize();
+    }
+    ~J3DMaterial() {
+    }
     virtual void calc(f32 const (*)[4]);
     virtual void calcDiffTexMtx(f32 const (*)[4]);
     virtual void makeDisplayList();
@@ -48,11 +53,7 @@ public:
     s32 newSingleSharedDisplayList(u32);
 
     inline J3DMaterialAnm* getMaterialAnm() {
-        if ((uintptr_t)mMaterialAnm < 0xC0000000) {
-            return mMaterialAnm;
-        } else {
-            return NULL;
-        }
+        return reinterpret_cast< uintptr_t >(mMaterialAnm) < 0xC0000000 ? mMaterialAnm : nullptr;
     }
 
     bool isDrawModeOpaTexEdge() {

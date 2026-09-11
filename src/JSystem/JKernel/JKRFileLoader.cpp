@@ -1,11 +1,9 @@
 #include "JSystem/JKernel/JKRFileLoader.hpp"
 #include "revolution.h"
 
-namespace {
-    OSMutex gLoaderMutex;  // 0x8060CFA8
-}
-
-JSUList< JKRFileLoader > JKRFileLoader::sFileLoaderList = JSUList< JKRFileLoader >();
+JKRFileLoader* JKRFileLoader::sCurrentVolume;
+JSUList< JKRFileLoader > JKRFileLoader::sVolumeList = JSUList< JKRFileLoader >();
+OSMutex JKRFileLoader::sVolumeListMutex;
 
 JKRFileLoader::JKRFileLoader() : JKRDisposer(), mLoaderLink(this) {
     mLoaderName = nullptr;
@@ -14,8 +12,8 @@ JKRFileLoader::JKRFileLoader() : JKRDisposer(), mLoaderLink(this) {
 }
 
 JKRFileLoader::~JKRFileLoader() {
-    if (gCurrentFileLoader == this) {
-        gCurrentFileLoader = nullptr;
+    if (sCurrentVolume == this) {
+        sCurrentVolume = nullptr;
     }
 }
 
@@ -37,7 +35,7 @@ void* JKRFileLoader::getGlbResource(const char* pName, JKRFileLoader* pLoader) {
     if (pLoader != nullptr) {
         resource = pLoader->getResource(0, pName);
     } else {
-        JSUPtrLink* current = sFileLoaderList.mHead;
+        JSUPtrLink* current = sVolumeList.mHead;
 
         while (current != nullptr) {
             resource = reinterpret_cast< JKRFileLoader* >(current->mData)->getResource(0, pName);
@@ -54,21 +52,21 @@ void* JKRFileLoader::getGlbResource(const char* pName, JKRFileLoader* pLoader) {
 }
 
 void JKRFileLoader::initializeVolumeList() {
-    OSInitMutex(&gLoaderMutex);
+    OSInitMutex(&sVolumeListMutex);
 }
 
 void JKRFileLoader::prependVolumeList(JSULink< JKRFileLoader >* pLoader) {
-    OSLockMutex(&gLoaderMutex);
+    OSLockMutex(&sVolumeListMutex);
 
-    sFileLoaderList.prepend(pLoader);
+    sVolumeList.prepend(pLoader);
 
-    OSUnlockMutex(&gLoaderMutex);
+    OSUnlockMutex(&sVolumeListMutex);
 }
 
 void JKRFileLoader::removeVolumeList(JSULink< JKRFileLoader >* pLoader) {
-    OSLockMutex(&gLoaderMutex);
+    OSLockMutex(&sVolumeListMutex);
 
-    sFileLoaderList.remove(pLoader);
+    sVolumeList.remove(pLoader);
 
-    OSUnlockMutex(&gLoaderMutex);
+    OSUnlockMutex(&sVolumeListMutex);
 }

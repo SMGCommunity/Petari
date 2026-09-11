@@ -3,48 +3,45 @@
 #include "JSystem/JMath.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include <revolution/mtx.h>
+#include <cmath>
 
-inline f32 J3D_sqrtf(__REGISTER f32 x) {
-    __REGISTER f32 recip;
+const J3DTransformInfo j3dDefaultTransformInfo = {
+    {1.0f, 1.0f, 1.0f},
+    {0, 0, 0},
+    {0.0f, 0.0f, 0.0f},
+};
 
-    if (x > 0.0f) {
-#ifdef __MWERKS__  // clang-format off
-		asm { frsqrte recip, x }
-#endif  // clang-format on
-        return recip * x;
-    }
-    return x;
-}
+const Vec j3dDefaultScale = {1.0f, 1.0f, 1.0f};
 
-void J3DCalcBBoardMtx(register Mtx mtx) {
+const Mtx j3dDefaultMtx = {
+    {1.0f, 0.0f, 0.0f, 0.0f},
+    {0.0f, 1.0f, 0.0f, 0.0f},
+    {0.0f, 0.0f, 1.0f, 0.0f},
+};
+
+void J3DCalcBBoardMtx(Mtx mtx) {
     f32 x = (mtx[0][0] * mtx[0][0]) + (mtx[1][0] * mtx[1][0]) + (mtx[2][0] * mtx[2][0]);
     f32 y = (mtx[0][1] * mtx[0][1]) + (mtx[1][1] * mtx[1][1]) + (mtx[2][1] * mtx[2][1]);
     f32 z = (mtx[0][2] * mtx[0][2]) + (mtx[1][2] * mtx[1][2]) + (mtx[2][2] * mtx[2][2]);
 
     if (x > 0.0f) {
-        x = J3D_sqrtf(x);
+        x = sqrt(x);
     }
     if (y > 0.0f) {
-        y = J3D_sqrtf(y);
+        y = sqrt(y);
     }
     if (z > 0.0f) {
-        z = J3D_sqrtf(z);
+        z = sqrt(z);
     }
-
-    __REGISTER f32 zero = 0.0f;
-// zero out gaps of zeroes
-#ifdef __MWERKS__  // clang-format off
-    asm {
-        psq_st zero, 0x04(mtx), 0, 0
-      
-        psq_st zero, 0x20(mtx), 0, 0
-    }
-#endif  // clang-format on
 
     mtx[0][0] = x;
-    mtx[1][0] = zero;
+    mtx[0][1] = 0.0f;
+    mtx[0][2] = 0.0f;
+    mtx[2][0] = 0.0f;
+    mtx[2][1] = 0.0f;
+    mtx[1][0] = 0.0f;
     mtx[1][1] = y;
-    mtx[1][2] = zero;
+    mtx[1][2] = 0.0f;
     mtx[2][2] = z;
 }
 

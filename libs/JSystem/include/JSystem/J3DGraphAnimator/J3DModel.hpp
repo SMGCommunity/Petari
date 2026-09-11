@@ -55,7 +55,7 @@ public:
     s32 setSkinDeform(J3DSkinDeform*, u32);
     void calcAnmMtx();
     void calcWeightEnvelopeMtx();
-    void calcNrmMtx();
+    inline void calcNrmMtx();
     void calcBumpMtx();
     void calcBBoardMtx();
     void prepareShapePackets();

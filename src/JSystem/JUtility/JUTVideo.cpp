@@ -11,21 +11,21 @@ OSTick JUTVideo::sVideoInterval;
 static bool data_80451544;
 
 JUTVideo* JUTVideo::createManager(_GXRenderModeObj const* param_0) {
-    if (sManager == NULL) {
+    if (sManager == nullptr) {
         sManager = new JUTVideo(param_0);
     }
     return sManager;
 }
 
 void JUTVideo::destroyManager() {
-    if (sManager != NULL) {
+    if (sManager != nullptr) {
         delete sManager;
-        sManager = NULL;
+        sManager = nullptr;
     }
 }
 
 JUTVideo::JUTVideo(GXRenderModeObj const* param_0) {
-    mRenderObj = NULL;
+    mRenderObj = nullptr;
     VIInit();
     mSetBlack = true;
     mSetBlackFrameCount = 2;
@@ -40,8 +40,8 @@ JUTVideo::JUTVideo(GXRenderModeObj const* param_0) {
     sVideoInterval = 670000;
     mPreRetraceCallback = VISetPreRetraceCallback(preRetraceProc);
     mPostRetraceCallback = VISetPostRetraceCallback(postRetraceProc);
-    mPreCallback = NULL;
-    mPostCallback = NULL;
+    mPreCallback = nullptr;
+    mPostCallback = nullptr;
     OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
     GXSetDrawDoneCallback(drawDoneCallback);
 }
@@ -52,10 +52,6 @@ JUTVideo::~JUTVideo() {
 }
 
 void JUTVideo::preRetraceProc(u32 retrace_count) {
-    if (!sManager) {
-        return;
-    }
-
     if (sManager->mPreCallback) {
         (*sManager->mPreCallback)(retrace_count);
     }
@@ -64,14 +60,14 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
     sVideoInterval = tick - sVideoLastTick;
     sVideoLastTick = tick;
 
-    JUTXfb* xfb = JUTXfb::getManager();
+    JUTXfb* xfb = JUTXfb::sManager;
     if (!xfb) {
         VISetBlack(TRUE);
         VIFlush();
         return;
     }
 
-    static void* frameBuffer = NULL;
+    static void* frameBuffer = nullptr;
 
     if (frameBuffer) {
         JUTVideo* videoManager = JUTGetVideoManager();
@@ -99,7 +95,8 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
         return;
     }
 
-    if (xfb->getBufferNum() == 3 || xfb->getBufferNum() == 2) {
+    u32 bufferNum = xfb->getBufferNum();
+    if (bufferNum == 2 || bufferNum == 3) {
         if (!data_80451544) {
             s16 index = xfb->getDrawnXfbIndex();
             xfb->setDisplayingXfbIndex(index);
@@ -143,7 +140,7 @@ void JUTVideo::dummyNoDrawWait() {
 }
 
 void JUTVideo::drawDoneCallback() {
-    JUTXfb* xfb = JUTXfb::getManager();
+    JUTXfb* xfb = JUTXfb::sManager;
     if (!xfb) {
         return;
     }
@@ -163,21 +160,20 @@ void JUTVideo::drawDoneCallback() {
 }
 
 void JUTVideo::postRetraceProc(u32 retrace_count) {
-    // SMG removed the manager nullptr check
-    if (sManager->mPostCallback != NULL) {
+    if (sManager->mPostCallback != nullptr) {
         sManager->mPostCallback(retrace_count);
     }
 
-    OSMessage message = (OSMessage*)VIGetRetraceCount();
+    OSMessage message = reinterpret_cast< OSMessage >(VIGetRetraceCount());
     OSSendMessage(&sManager->mMessageQueue, message, OS_MESSAGE_NOBLOCK);
 }
 
 void JUTVideo::setRenderMode(GXRenderModeObj const* pObj) {
-    if (mRenderObj != NULL && pObj->viTVmode != mRenderObj->viTVmode) {
+    if (mRenderObj != nullptr && pObj->viTVmode != mRenderObj->viTVmode) {
         mSetBlack = true;
         mSetBlackFrameCount = 4;
     }
-    mRenderObj = (GXRenderModeObj*)pObj;
+    mRenderObj = const_cast< GXRenderModeObj* >(pObj);
     VIConfigure(mRenderObj);
     VIFlush();
 
