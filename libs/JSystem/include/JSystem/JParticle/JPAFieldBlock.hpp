@@ -18,8 +18,7 @@ public:
 
     virtual ~JPAFieldBase() {
     }
-    virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*) {
-    }
+    virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*);
     virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*) = 0;
 
     /* 0x04 */ JGeometry::TVec3< f32 > mAccel;
@@ -251,3 +250,7 @@ private:
         /* 0x8 */ FIELD_SPIN,
     };
 };
+
+#ifndef JPA_FIELD_BLOCK_DEFER_INLINE
+#include "JSystem/JParticle/JPAFieldBlockInline.hpp"
+#endif

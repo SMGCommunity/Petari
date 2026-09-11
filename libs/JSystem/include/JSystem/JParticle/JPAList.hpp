@@ -4,10 +4,8 @@
 
 template < class T >
 struct JPANode {
-    JPANode() : mpPrev(NULL), mpNext(NULL) {
-    }
-    ~JPANode() {
-    }
+    JPANode();
+    ~JPANode();
     JPANode< T >* getPrev() {
         return mpPrev;
     }
@@ -29,8 +27,7 @@ struct JPAList {
     /* 0x04 */ JPANode< T >* mpLast;
     /* 0x08 */ u32 mNum;
 
-    JPAList() : mpFirst(NULL), mpLast(NULL), mNum() {
-    }
+    JPAList();
     ~JPAList() {
     }
 
@@ -47,21 +44,7 @@ struct JPAList {
         return mNum;
     }
 
-    void push_front(JPANode< T >* node) {
-        if (mpFirst != NULL) {
-            node->mpPrev = NULL;
-            node->mpNext = mpFirst;
-            mpFirst->mpPrev = node;
-            mpFirst = node;
-        } else {
-            mpLast = node;
-            mpFirst = node;
-            node->mpPrev = NULL;
-            node->mpNext = NULL;
-        }
-
-        mNum++;
-    }
+    void push_front(JPANode< T >* node);
 
     void push_back(JPANode< T >* node) {
         if (mpLast != NULL) {
@@ -78,60 +61,13 @@ struct JPAList {
         mNum++;
     }
 
-    JPANode< T >* pop_front() {
-        JPANode< T >* ret = NULL;
+    JPANode< T >* pop_front();
 
-        if (mNum == 1) {
-            ret = mpFirst;
-            mpLast = NULL;
-            mpFirst = NULL;
-            mNum--;
-        } else if (mNum) {
-            ret = mpFirst;
-            ret->mpNext->mpPrev = NULL;
-            mpFirst = ret->mpNext;
-            mNum--;
-        }
+    JPANode< T >* pop_back();
 
-        return ret;
-    }
-
-    JPANode< T >* pop_back() {
-        JPANode< T >* ret = NULL;
-
-        if (mNum == 1) {
-            ret = mpLast;
-            mpLast = NULL;
-            mpFirst = NULL;
-            mNum--;
-        } else if (mNum) {
-            ret = mpLast;
-            ret->mpPrev->mpNext = NULL;
-            mpLast = ret->mpPrev;
-            mNum--;
-        }
-
-        return ret;
-    }
-
-    JPANode< T >* erase(JPANode< T >* node) {
-        if (node->mpNext != NULL && node->mpPrev != NULL) {
-            node->mpPrev->mpNext = node->mpNext;
-            node->mpNext->mpPrev = node->mpPrev;
-            mNum--;
-        } else if (node->mpNext != NULL) {
-            node->mpNext->mpPrev = NULL;
-            mpFirst = node->mpNext;
-            mNum--;
-        } else if (node->mpPrev != NULL) {
-            node->mpPrev->mpNext = NULL;
-            mpLast = node->mpPrev;
-            mNum--;
-        } else {
-            mpLast = NULL;
-            mpFirst = NULL;
-            mNum--;
-        }
-        return node;
-    }
+    JPANode< T >* erase(JPANode< T >* node);
 };
+
+#ifndef JPA_LIST_DEFER_INLINE
+#include "JSystem/JParticle/JPAListInline.hpp"
+#endif

@@ -597,7 +597,11 @@ namespace JGeometry {
             JGeometry::negateInternal(&rVec.x, &this->x);
         }
 
+#ifdef JGEOMETRY_VEC3_ZERO_NOINLINE
+        void zero() NO_INLINE {
+#else
         void zero() {
+#endif
             x = y = z = 0;
         }
 

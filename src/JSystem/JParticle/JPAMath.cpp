@@ -2,7 +2,7 @@
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
 void JPAGetDirMtx(JGeometry::TVec3< f32 > const& param_0, f32 (*param_1)[4]) {
-    JGeometry::TVec3< float > local_78(param_0.y, -param_0.x, 0.0f);
+    JGeometry::TVec3< f32 > local_78 = JGeometry::TVec3< f32 >(param_0.y, -param_0.x, 0.0f);
     f32 len = local_78.length();
 
     if (len <= JGeometry::TUtil< f32 >::epsilon()) {
@@ -49,25 +49,25 @@ void JPAGetYZRotateMtx(s16 angleY, s16 angleZ, f32 (*param_2)[4]) {
 }
 
 void JPAGetXYZRotateMtx(s16 x, s16 y, s16 z, Mtx mtx) {
-    f32 cosx = JMASCos(x);
-    f32 cosy = JMASCos(y);
+    f32 siny = JMASSin(y);
     f32 cosz = JMASCos(z);
     f32 sinx = JMASSin(x);
-    f32 siny = JMASSin(y);
+    f32 cosy = JMASCos(y);
+    f32 cosx = JMASCos(x);
     f32 sinz = JMASSin(z);
     mtx[0][0] = cosy * cosz;
     mtx[1][0] = cosy * sinz;
     mtx[2][0] = -siny;
     mtx[2][1] = sinx * cosy;
     mtx[2][2] = cosx * cosy;
-    f32 cosxsinz = cosx * sinz;
-    f32 sinxcosz = sinx * cosz;
-    mtx[0][1] = sinxcosz * siny - cosxsinz;
-    mtx[1][2] = cosxsinz * siny - sinxcosz;
-    f32 sinxsinz = sinx * sinz;
-    f32 cosxcosz = cosx * cosz;
-    mtx[0][2] = sinxsinz + cosxcosz * siny;
-    mtx[1][1] = cosxcosz + sinxsinz * siny;
+    f32 product1 = cosx * sinz;
+    f32 product2 = sinx * cosz;
+    mtx[1][2] = product1 * siny - product2;
+    mtx[0][1] = product2 * siny - product1;
+    product1 = sinx * sinz;
+    product2 = cosx * cosz;
+    mtx[0][2] = product1 + product2 * siny;
+    mtx[1][1] = product2 + product1 * siny;
     mtx[2][3] = 0.0f;
     mtx[1][3] = 0.0f;
     mtx[0][3] = 0.0f;
@@ -86,12 +86,11 @@ void JPASetRMtxTVecfromMtx(f32 const (*param_0)[4], f32 (*param_1)[4], JGeometry
 }
 
 void JPASetRMtxSTVecfromMtx(f32 const (*param_0)[4], f32 (*param_1)[4], JGeometry::TVec3< f32 >* param_2, JGeometry::TVec3< f32 >* param_3) {
-    JGeometry::TVec3< float > aTStack_54;
-    aTStack_54.set(param_0[0][0], param_0[1][0], param_0[2][0]);
+    JGeometry::TVec3< f32 > aTStack_54 = JGeometry::TVec3< f32 >(param_0[0][0], param_0[1][0], param_0[2][0]);
     param_2->x = aTStack_54.length();
-    aTStack_54.set(param_0[0][1], param_0[1][1], param_0[2][1]);
+    aTStack_54.set< f32 >(param_0[0][1], param_0[1][1], param_0[2][1]);
     param_2->y = aTStack_54.length();
-    aTStack_54.set(param_0[0][2], param_0[1][2], param_0[2][2]);
+    aTStack_54.set< f32 >(param_0[0][2], param_0[1][2], param_0[2][2]);
     param_2->z = aTStack_54.length();
     PSMTXIdentity(param_1);
     if (param_2->x != 0.0f) {
@@ -112,7 +111,7 @@ void JPASetRMtxSTVecfromMtx(f32 const (*param_0)[4], f32 (*param_1)[4], JGeometr
         param_1[1][2] = param_0[1][2] * fVar5;
         param_1[2][2] = param_0[2][2] * fVar5;
     }
-    param_3->set(param_0[0][3], param_0[1][3], param_0[2][3]);
+    param_3->set< f32 >(param_0[0][3], param_0[1][3], param_0[2][3]);
 }
 
 f32 JPACalcKeyAnmValue(f32 param_0, u16 param_1, f32 const* param_2) {
@@ -121,7 +120,7 @@ f32 JPACalcKeyAnmValue(f32 param_0, u16 param_1, f32 const* param_2) {
     }
     int ind = param_1 - 1;
     if (param_2[ind * 4] <= param_0) {
-        return param_2[ind * 4 + 1];
+        return (param_2 + ind * 4)[1];
     }
     int x = param_1;
     while (x > 1) {

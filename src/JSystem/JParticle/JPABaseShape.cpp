@@ -1,3 +1,14 @@
+#include "Inline.hpp"
+#include <revolution/mtx.h>
+
+extern "C" {
+static void GXPosition3f32(f32, f32, f32) NO_INLINE;
+}
+
+namespace JMathInlineVEC {
+    void PSVECSubtract(const Vec*, const Vec*, Vec*) NO_INLINE;
+}
+
 #include "JSystem/JParticle/JPABaseShape.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
@@ -133,13 +144,11 @@ void JPACalcClrIdxNormal(JPAEmitterWorkData* work) {
 
 void JPACalcClrIdxNormal(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     JPABaseShape* shape = work->mpRes->getBsp();
-    s16 age = param_1->mAge;
-    s16 maxFrm = shape->getClrAnmMaxFrm();
     s16 keyFrame;
-    if (age < maxFrm) {
-        keyFrame = age;
+    if (param_1->mAge < shape->getClrAnmMaxFrm()) {
+        keyFrame = param_1->mAge;
     } else {
-        keyFrame = maxFrm;
+        keyFrame = shape->getClrAnmMaxFrm();
     }
     work->mClrKeyFrame = keyFrame;
 }
@@ -151,8 +160,8 @@ void JPACalcClrIdxRepeat(JPAEmitterWorkData* work) {
 
 void JPACalcClrIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     JPABaseShape* shape = work->mpRes->getBsp();
-    s32 tick = shape->getClrLoopOfst(param_1->mAnmRandom);
-    tick = param_1->mAge + tick;
+    s32 age = param_1->mAge;
+    s32 tick = age + shape->getClrLoopOfst(param_1->mAnmRandom);
     work->mClrKeyFrame = tick % (shape->getClrAnmMaxFrm() + 1);
 }
 
@@ -318,7 +327,8 @@ void JPACalcTexIdxRepeat(JPAEmitterWorkData* work) {
 
 void JPACalcTexIdxRepeat(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     JPABaseShape* shape = work->mpRes->getBsp();
-    param_1->mTexAnmIdx = shape->getTexIdx(((int)shape->getTexLoopOfst(param_1->mAnmRandom) + param_1->mAge) % shape->getTexAnmKeyNum());
+    u8 texIdx = ((int)shape->getTexLoopOfst(param_1->mAnmRandom) + param_1->mAge) % shape->getTexAnmKeyNum();
+    param_1->mTexAnmIdx = shape->getTexIdx(texIdx);
 }
 
 void JPACalcTexIdxReverse(JPAEmitterWorkData* work) {
@@ -336,7 +346,8 @@ void JPACalcTexIdxReverse(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     int keyNum = (int)shape->getTexAnmKeyNum() - 1;
     int div = tick / keyNum;
     int rem = tick % keyNum;
-    param_1->mTexAnmIdx = shape->getTexIdx(rem + (div & 1) * (keyNum - rem * 2));
+    u8 texIdx = rem + (div & 1) * (keyNum - rem * 2);
+    param_1->mTexAnmIdx = shape->getTexIdx(texIdx);
 }
 
 void JPACalcTexIdxMerge(JPAEmitterWorkData* work) {
@@ -347,7 +358,8 @@ void JPACalcTexIdxMerge(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     JPABaseShape* shape = work->mpRes->getBsp();
     s32 maxFrm = shape->getTexAnmKeyNum();
     s32 tick = (s32)(maxFrm * param_1->mTime) + shape->getTexLoopOfst(param_1->mAnmRandom);
-    param_1->mTexAnmIdx = shape->getTexIdx(tick % maxFrm);
+    u8 texIdx = tick % maxFrm;
+    param_1->mTexAnmIdx = shape->getTexIdx(texIdx);
 }
 
 void JPACalcTexIdxRandom(JPAEmitterWorkData* work) {
@@ -356,7 +368,8 @@ void JPACalcTexIdxRandom(JPAEmitterWorkData* work) {
 
 void JPACalcTexIdxRandom(JPAEmitterWorkData* work, JPABaseParticle* param_1) {
     JPABaseShape* shape = work->mpRes->getBsp();
-    param_1->mTexAnmIdx = shape->getTexIdx(((int)shape->getTexLoopOfst(param_1->mAnmRandom)) % shape->getTexAnmKeyNum());
+    u8 texIdx = ((int)shape->getTexLoopOfst(param_1->mAnmRandom)) % shape->getTexAnmKeyNum();
+    param_1->mTexAnmIdx = shape->getTexIdx(texIdx);
 }
 
 void JPALoadPosMtxCam(JPAEmitterWorkData* work) {
@@ -403,14 +416,19 @@ static void loadPrjAnm(JPAEmitterWorkData const* work, const Mtx srt) {
     GXLoadTexMtxImm(local_108, 0x1e, GX_MTX3x4);
 }
 
-static u8 jpa_dl[32] = {
+static u8 jpa_dl[32] ATTRIBUTE_ALIGN(32) = {
     0x80, 0x00, 0x04, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
-static u8 jpa_dl_x[32] = {
+static u8 jpa_dl_x[32] ATTRIBUTE_ALIGN(32) = {
     0x80, 0x00, 0x08, 0x00, 0x00, 0x01, 0x01, 0x02, 0x02, 0x03, 0x03, 0x48, 0x00, 0x49, 0x01, 0x4A,
     0x02, 0x4B, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
+
+static u8* p_dl[2] = {
+    jpa_dl,
+    jpa_dl_x,
 };
 
 typedef void (*projectionFunc)(JPAEmitterWorkData const*, const Mtx);
@@ -550,23 +568,22 @@ static void rotTypeZ(f32 param_0, f32 param_1, Mtx& param_2) {
 }
 
 static void rotTypeXYZ(f32 param_0, f32 param_1, Mtx& param_2) {
-    f32 f3 = 0.33333298563957214f * (1.0f - param_1);
-    f32 fVar1;
-    f32 f4;
-    f4 = f3 + 0.5773500204086304f * param_0;
-    fVar1 = f3 - 0.5773500204086304f * param_0;
-    f3 += param_1;
-    param_2[0][0] = f3;
-    param_2[0][1] = fVar1;
-    param_2[0][2] = f4;
+    f32 third = 0.33333298563957214f * (1.0f - param_1);
+    f32 sine = 0.5773500204086304f * param_0;
+    f32 diagonal = third + param_1;
+    f32 plus = third + sine;
+    f32 minus = third - sine;
+    param_2[0][0] = diagonal;
+    param_2[0][1] = minus;
+    param_2[0][2] = plus;
     param_2[0][3] = 0.0f;
-    param_2[1][0] = f4;
-    param_2[1][1] = f3;
-    param_2[1][2] = fVar1;
+    param_2[1][0] = plus;
+    param_2[1][1] = diagonal;
+    param_2[1][2] = minus;
     param_2[1][3] = 0.0f;
-    param_2[2][0] = fVar1;
-    param_2[2][1] = f4;
-    param_2[2][2] = f3;
+    param_2[2][0] = minus;
+    param_2[2][1] = plus;
+    param_2[2][2] = diagonal;
     param_2[2][3] = 0.0f;
 }
 
@@ -601,17 +618,14 @@ static void basePlaneTypeX(MtxPtr param_0, f32 param_1, f32 param_2) {
 }
 
 typedef void (*dirTypeFunc)(JPAEmitterWorkData const*, JPABaseParticle const*, JGeometry::TVec3< f32 >*);
-static dirTypeFunc p_direction[5] = {
+__declspec(force_export) static dirTypeFunc p_direction[5] = {
     dirTypeVel, dirTypePos, dirTypePosInv, dirTypeEmtrDir, dirTypePrevPtcl,
 };
 
 typedef void (*rotTypeFunc)(f32, f32, Mtx&);
-#pragma push
-#pragma force_active on
 static rotTypeFunc p_rot[5] = {
     rotTypeY, rotTypeX, rotTypeZ, rotTypeXYZ, rotTypeY,
 };
-#pragma pop
 
 typedef void (*planeFunc)(MtxPtr, f32, f32);
 
@@ -621,10 +635,7 @@ static planeFunc p_plane[3] = {
     basePlaneTypeX,
 };
 
-static u8* p_dl[2] = {
-    jpa_dl,
-    jpa_dl_x,
-};
+
 
 void JPADrawRotation(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
     if (param_1->checkStatus(8) == 0) {
@@ -659,28 +670,6 @@ void JPADrawPoint(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 }
 
-void JPADrawLine(JPAEmitterWorkData* param_0, JPABaseParticle* param_1) {
-    if (param_1->checkStatus(8) == 0) {
-        JGeometry::TVec3< f32 > local_1c;
-        param_1->mPosition.x = local_1c.x;
-        JGeometry::TVec3< f32 > local_28;
-        param_1->getVelVec(local_28);
-        if (!local_28.isZero()) {
-            local_28.setLength(param_0->mGlobalPtclScl.y * (25.0f * param_1->mParticleScaleY));
-            local_28.sub(local_1c, local_28);
-            GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
-            GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-            GXBegin(GX_LINES, GX_VTXFMT1, 2);
-            GXPosition3f32(local_1c.x, local_1c.y, local_1c.z);
-            GXTexCoord2f32(0.0f, 0.0f);
-            GXPosition3f32(local_28.x, local_28.y, local_28.z);
-            GXTexCoord2f32(0.0f, 1.0f);
-            GXEnd();
-            GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
-            GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
-        }
-    }
-}
 
 void JPADrawEmitterCallBackB(JPAEmitterWorkData* work) {
     if (work->mpEmtr->mpEmtrCallBack == NULL)
@@ -714,11 +703,15 @@ static void makeColorTable(GXColor** o_color_table, JPAClrAnmKeyData const* i_da
             a = i_data[j].color.a;
             j++;
             if (j < param_2) {
+                r_step = static_cast< f32 >(i_data[j].color.r) - r;
+                b_step = static_cast< f32 >(i_data[j].color.b) - b;
+                g_step = static_cast< f32 >(i_data[j].color.g) - g;
+                a_step = static_cast< f32 >(i_data[j].color.a) - a;
                 f32 base_step = 1.0f / (i_data[j].index - i_data[j - 1].index);
-                r_step = base_step * ((f32)i_data[j].color.r - r);
-                g_step = base_step * ((f32)i_data[j].color.g - g);
-                b_step = base_step * ((f32)i_data[j].color.b - b);
-                a_step = base_step * ((f32)i_data[j].color.a - a);
+                r_step = base_step * r_step;
+                b_step = base_step * b_step;
+                g_step = base_step * g_step;
+                a_step = base_step * a_step;
             } else {
                 r_step = g_step = b_step = a_step = 0.0f;
             }

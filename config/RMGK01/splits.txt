@@ -10057,13 +10057,13 @@ JSystem/JParticle/JPAResourceManager.cpp:
 JSystem/JParticle/JPAResource.cpp:
 	.text       start:0x80442E7C end:0x804457D4
 	.rodata     start:0x8055C3B0 end:0x8055C3B8
-	.data       start:0x805EA020 end:0x805EA280
+	.data       start:0x805EA020 end:0x805EA240
 	.sdata2     start:0x806C1BC8 end:0x806C1BD8
 
 JSystem/JParticle/JPABaseShape.cpp:
 	.text       start:0x804457D4 end:0x80447798
 	.rodata     start:0x8055C3B8 end:0x8055C3C8
-	.data       start:0x805EA280 end:0x805EA3F0
+	.data       start:0x805EA240 end:0x805EA3F0
 	.sdata2     start:0x806C1BD8 end:0x806C1BF0
 
 JSystem/JParticle/JPAExtraShape.cpp:
