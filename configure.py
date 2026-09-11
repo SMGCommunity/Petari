@@ -3312,9 +3312,9 @@ config.libs = [
         [
             Object(NonMatching, "JSystem/JSupport/JSUList.cpp"),
             Object(NonMatching, "JSystem/JSupport/JSUInputStream.cpp"),
-            Object(NonMatching, "JSystem/JSupport/JSUOutputStream.cpp"),
+            Object(Matching, "JSystem/JSupport/JSUOutputStream.cpp"),
             Object(Matching, "JSystem/JSupport/JSUMemoryStream.cpp"),
-            Object(NonMatching, "JSystem/JSupport/JSUFileStream.cpp"),
+            Object(Matching, "JSystem/JSupport/JSUFileStream.cpp", extra_cflags=["-ipa file"]),
         ],
     ),
     JSysLib(
