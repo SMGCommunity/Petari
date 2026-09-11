@@ -36,7 +36,7 @@ private:
     static NWC24Err setToMyself(NWC24MsgObj*);
 
 private:
-    static OSMessage mMessage;
+    static OSMessage* mMessage;
     static s32 mMessageMax;
     static OSMessageQueue mMessageQueue;
 

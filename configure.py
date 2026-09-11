@@ -1936,13 +1936,13 @@ config.libs = [
     GameLib(
         "NWC24",
         [
-            Object(NonMatching, "Game/NWC24/NWC24Function.cpp"),
+            Object(Matching, "Game/NWC24/NWC24Function.cpp"),
             Object(Matching, "Game/NWC24/NWC24Messenger.cpp"),
-            Object(NonMatching, "Game/NWC24/NWC24SendThread.cpp"),
+            Object(Matching, "Game/NWC24/NWC24SendThread.cpp"),
             Object(Matching, "Game/NWC24/NWC24System.cpp"),
             Object(Matching, "Game/NWC24/UTF16Util.cpp"),
-            Object(NonMatching, "Game/NWC24/LuigiMailDirector.cpp"),
-            Object(NonMatching, "Game/NWC24/ReceiverTagMail.cpp"),
+            Object(Matching, "Game/NWC24/LuigiMailDirector.cpp", mw_version="GC/3.0a3.2"),
+            Object(Matching, "Game/NWC24/ReceiverTagMail.cpp", mw_version="GC/3.0a3.2"),
         ],
     ),
     GameLib(
