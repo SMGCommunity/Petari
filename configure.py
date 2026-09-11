@@ -3247,8 +3247,8 @@ config.libs = [
     JSysLib(
         "JGadget",
         [
-            Object(NonMatching, "JSystem/JGadget/hashcode.cpp"),
-            Object(NonMatching, "JSystem/JGadget/linklist.cpp"),
+            Object(Matching, "JSystem/JGadget/hashcode.cpp", extra_cflags=["-ipa file"]),
+            Object(Matching, "JSystem/JGadget/linklist.cpp", extra_cflags=["-ipa file"]),
         ],
     ),
     JSysLib(

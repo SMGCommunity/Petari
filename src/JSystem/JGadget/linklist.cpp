@@ -1,3 +1,4 @@
+#define JGADGET_LINKLIST_NOINLINE NO_INLINE
 #include "JSystem/JGadget/linklist.hpp"
 #include "JSystem/JGadget/predicate.hpp"
 
@@ -44,7 +45,6 @@ namespace JGadget {
     }
 
     void TNodeLinkList::Remove(TLinkListNode* node) {
-        // FIXME: inline moment
         remove_if(TPRIsEqual_pointer_< TLinkListNode >(node));
     }
 }  // namespace JGadget
