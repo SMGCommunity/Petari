@@ -200,12 +200,7 @@ public:
     void setTexCoord(JUTTexture const*, J2DBinding, J2DMirror, bool);
     GXTlut getTlutID(ResTIMG const*, u8);
 
-    void setCornerColor(JUtility::TColor c0, JUtility::TColor c1, JUtility::TColor c2, JUtility::TColor c3) {
-        mCornerColor[0] = c0;
-        mCornerColor[1] = c1;
-        mCornerColor[2] = c2;
-        mCornerColor[3] = c3;
-    }
+    void setCornerColor(JUtility::TColor c0, JUtility::TColor c1, JUtility::TColor c2, JUtility::TColor c3);
     void setCornerColor(JUtility::TColor c0) {
         setCornerColor(c0, c0, c0, c0);
     }

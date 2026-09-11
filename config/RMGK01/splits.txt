@@ -9846,6 +9846,7 @@ JSystem/JUtility/JUTConsole.cpp:
 
 JSystem/J2DGraph/J2DGrafContext.cpp:
 	.text       start:0x8041C268 end:0x8041CB88
+	.rodata     start:0x8055C148 end:0x8055C150
 	.data       start:0x805E8688 end:0x805E86B0
 	.sdata2     start:0x806C1A50 end:0x806C1A60
 
@@ -9860,6 +9861,7 @@ JSystem/J2DGraph/J2DMatBlock.cpp:
 JSystem/J2DGraph/J2DPane.cpp:
 	.text       start:0x8041CEAC end:0x8041E1F0
 	.ctors      start:0x8052F3E8 end:0x8052F3EC
+	.rodata     start:0x8055C150 end:0x8055C160
 	.data       start:0x805E86D8 end:0x805E8790
 	.bss        start:0x8060D4F0 end:0x8060D500
 	.sdata2     start:0x806C1A68 end:0x806C1A80
@@ -9870,6 +9872,7 @@ JSystem/J2DGraph/J2DScreen.cpp:
 
 JSystem/J2DGraph/J2DPicture.cpp:
 	.text       start:0x8041E240 end:0x80420C74
+	.rodata     start:0x8055C160 end:0x8055C168
 	.data       start:0x805E8790 end:0x805E88E0
 	.sdata2     start:0x806C1A80 end:0x806C1A90
 

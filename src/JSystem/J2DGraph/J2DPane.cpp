@@ -1,4 +1,5 @@
 #include "JSystem/J2DGraph/J2DPane.hpp"
+#include "JSystem/J2DGraph/J2DAnimation.hpp"
 #include <cmath>
 
 J2DPane::J2DPane() : mBounds(), mGlobalBounds(), mClipRect(), mPaneTree(this) {
@@ -48,9 +49,7 @@ void J2DPane::changeUseTrans(J2DPane* p_pane) {
     mRotateOffsetX = xOffset;
     mRotateOffsetY = yOffset;
 
-    f32 addX = -mTranslateX;
-    f32 addY = -mTranslateY;
-    mBounds.addPos(addX, addY);
+    mBounds.addPos(JGeometry::TVec2< f32 >(-mTranslateX, -mTranslateY));
 
     if (p_pane != NULL) {
         u8 otherBasePos = p_pane->mBasePosition;
@@ -133,7 +132,9 @@ void J2DPane::place(JGeometry::TBox2< f32 > const& box) {
 void J2DPane::move(f32 x, f32 y) {
     f32 width = getWidth();
     f32 height = getHeight();
-    place(JGeometry::TBox2< f32 >(x, y, x + width, y + height));
+    JGeometry::TBox2< f32 > bounds;
+    bounds.set(x, y, x + width, y + height);
+    place(bounds);
 }
 
 void J2DPane::add(f32 x, f32 y) {
@@ -143,22 +144,18 @@ void J2DPane::add(f32 x, f32 y) {
 }
 
 void J2DPane::resize(f32 x, f32 y) {
-    JGeometry::TBox2< f32 > box = mBounds;
+    JGeometry::TBox2< f32 > box;
+    box.set(mBounds);
 
-    f32 tX = mTranslateX;
-    f32 tY = mTranslateY;
-
-    box.addPos(tX, tY);
+    box.addPos(JGeometry::TVec2< f32 >(mTranslateX, mTranslateY));
 
     const J2DPane* parent = getParentPane();
     if (parent != NULL) {
-        f32 xAdd = -parent->mBounds.i.x;
-        f32 yAdd = -parent->mBounds.i.y;
-        box.addPos(xAdd, yAdd);
+        box.addPos(JGeometry::TVec2< f32 >(-parent->mBounds.i.x, -parent->mBounds.i.y));
     }
 
-    box.f.x = box.f.x + x;
-    box.f.y = box.f.y + y;
+    box.f.x = box.i.x + x;
+    box.f.y = box.i.y + y;
     place(box);
 }
 
@@ -277,6 +274,34 @@ s16 J2DPane::J2DCast_F32_to_S16(f32 value, u8 arg2) {
     }
 }
 
+void J2DPane::setAnimation(J2DAnmBase* anm) {
+    if (anm != NULL) {
+        switch (anm->getKind()) {
+        case kJ2DAnm_Transform:
+            setAnimation(static_cast< J2DAnmTransform* >(anm));
+            break;
+        case kJ2DAnm_Color:
+            setAnimation(reinterpret_cast< J2DAnmColor* >(anm));
+            break;
+        case kJ2DAnm_VtxColor:
+            setAnimation(reinterpret_cast< J2DAnmVtxColor* >(anm));
+            break;
+        case kJ2DAnm_TextureSRT:
+            setAnimation(reinterpret_cast< J2DAnmTextureSRTKey* >(anm));
+            break;
+        case kJ2DAnm_TexPattern:
+            setAnimation(reinterpret_cast< J2DAnmTexPattern* >(anm));
+            break;
+        case kJ2DAnm_Visibility:
+            setAnimation(reinterpret_cast< J2DAnmVisibilityFull* >(anm));
+            break;
+        case kJ2DAnm_TevReg:
+            setAnimation(reinterpret_cast< J2DAnmTevRegKey* >(anm));
+            break;
+        }
+    }
+}
+
 void J2DPane::setAnimation(J2DAnmTransform* p_anm) {
     mTransform = p_anm;
 }
@@ -342,22 +367,20 @@ const J2DAnmTransform* J2DPane::animationPane(const J2DAnmTransform* p_transform
     return p;
 }
 
-/*
 void J2DPane::updateTransform(J2DAnmTransform const* p_anmTransform) {
     if (_4 != 0xFFFF && p_anmTransform != NULL) {
         J3DTransformInfo info;
         p_anmTransform->getTransform(_4, &info);
         mScaleX = info.mScale.x;
         mScaleY = info.mScale.z;
-        mRotateX = (u16)info.mRotation.x * 360.0f / 65535.0f;
-        mRotateY = (u16)info.mRotation.z * 360.0f / 65535.0f;
-        mRotateZ = (u16)info.mRotation.y * 360.0f / 65535.0f;
+        mRotateX = static_cast< u16 >(info.mRotation.x) * 360.0f / 65535.0f;
+        mRotateY = static_cast< u16 >(info.mRotation.z) * 360.0f / 65535.0f;
+        mRotateZ = static_cast< u16 >(info.mRotation.y) * 360.0f / 65535.0f;
         mTranslateX = info.mTranslate.x;
         mTranslateY = info.mTranslate.z;
         calcMtx();
     }
 }
-*/
 
 JGeometry::TBox2< f32 > J2DPane::static_mBounds(0, 0, 0, 0);
 

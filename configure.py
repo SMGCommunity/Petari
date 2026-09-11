@@ -3098,13 +3098,13 @@ config.libs = [
     JSysLib(
         "J2DGraph",
         [
-            Object(NonMatching, "JSystem/J2DGraph/J2DGrafContext.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DGrafContext.cpp", extra_cflags=["-ipa file", "-sym on"]),
             Object(NonMatching, "JSystem/J2DGraph/J2DOrthoGraph.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
+            Object(Matching, "JSystem/J2DGraph/J2DMatBlock.cpp"),
             Object(NonMatching, "JSystem/J2DGraph/J2DPane.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DScreen.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DPicture.cpp"),
-            Object(NonMatching, "JSystem/J2DGraph/J2DManage.cpp"),
+            Object(Matching, "JSystem/J2DGraph/J2DScreen.cpp"),
+            Object(NonMatching, "JSystem/J2DGraph/J2DPicture.cpp", extra_cflags=["-ipa file", "-sym on"]),
+            Object(Matching, "JSystem/J2DGraph/J2DManage.cpp"),
         ],
     ),
     JSysLib(
