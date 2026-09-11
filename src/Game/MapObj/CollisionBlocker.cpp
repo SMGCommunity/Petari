@@ -1,5 +1,4 @@
 #include "Game/MapObj/CollisionBlocker.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/Util.hpp"
 
 namespace {
@@ -13,7 +12,7 @@ void CollisionBlocker::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     initHitSensor(1);
 
-    MR::addHitSensorEye(this, "eye", 4, ::cRadius * mScale.y, TVec3f(0.0f, 0.0f, 0.0f));
+    MR::addHitSensorEye(this, "eye", 4, ::cRadius * mScale.x, TVec3f(0.0f, 0.0f, 0.0f));
     MR::connectToSceneMapObjMovement(this);
     MR::setClippingFar50m(this);
     makeActorAppeared();
@@ -40,7 +39,4 @@ void CollisionBlocker::attackSensor(HitSensor* pSender, HitSensor* pReceiver) {
     if (MR::isSensorPlayer(pReceiver)) {
         MR::sendArbitraryMsg(ACTMES_PUSH_FORCE, pReceiver, pSender);
     }
-}
-
-CollisionBlocker::~CollisionBlocker() {
 }

@@ -2,7 +2,11 @@
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/MapObjActorInitInfo.hpp"
 #include "Game/Util.hpp"
-#include "Game/Util/Functor.hpp"
+
+namespace {
+    static const f32 sFallSpeed = 15.0f;
+    static const s32 sStepForFall = 350;
+};  // namespace
 
 namespace NrvCannonFortressBreakStep {
     NEW_NERVE(CannonFortressBreakStepNrvWait, CannonFortressBreakStep, Wait);
@@ -43,12 +47,13 @@ void CannonFortressBreakStep::exeFallStart() {
 }
 
 void CannonFortressBreakStep::exeFall() {
-    TVec3f up;
-    MR::calcUpVec(&up, this);
-    mVelocity.scale(-15.0f, up);
+    TVec3f upVec;
+    MR::calcUpVec(&upVec, this);
+    mVelocity.scale(-::sFallSpeed, upVec);
+
     MR::startLevelSound(this, "SE_OJ_LV_CNFORT_BKSTEP_FALL");
 
-    if (MR::isStep(this, 350)) {
+    if (MR::isStep(this, ::sStepForFall)) {
         setNerve(&NrvCannonFortressBreakStep::CannonFortressBreakStepNrvBreak::sInstance);
     }
 }
@@ -70,7 +75,4 @@ void CannonFortressBreakStep::initCaseUseSwitchB(const MapObjActorInitInfo& rInf
 }
 
 void CannonFortressBreakStep::initCaseNoUseSwitchB(const MapObjActorInitInfo&) {
-}
-
-CannonFortressBreakStep::~CannonFortressBreakStep() {
 }

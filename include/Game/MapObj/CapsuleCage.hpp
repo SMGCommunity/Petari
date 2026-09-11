@@ -6,22 +6,24 @@ class ActorCameraInfo;
 
 class CapsuleCage : public MapObjActor {
 public:
-    CapsuleCage(const char*);
+    /// @brief Creates a new `CapsuleCage`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    CapsuleCage(const char* pName);
 
-    virtual ~CapsuleCage();
     virtual void init(const JMapInfoIter&);
     virtual void kill();
     virtual void connectToScene(const MapObjActorInitInfo&);
-    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&);
+    virtual void initCaseUseSwitchA(const MapObjActorInitInfo&) {};
+    virtual void initCaseNoUseSwitchA(const MapObjActorInitInfo&) {};
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
-    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);
+    virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&) {};
+
+    void startOpen();
 
     void exeWait();
     void exeStartCamera();
-    void exeEndCamera();
     void exeOpen();
-    void startOpen();
+    void exeEndCamera();
 
-    ActorCameraInfo* mInfo;  // 0xC4
+    /* 0xC4 */ ActorCameraInfo* mCameraInfo;
 };

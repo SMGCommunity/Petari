@@ -1,13 +1,15 @@
 #pragma once
 
 #include "Game/MapObj/MapObjActor.hpp"
-#include "Game/MapObj/MapObjActorInitInfo.hpp"
+
+class MapObjActorInitInfo;
 
 class CannonFortressBreakStep : public MapObjActor {
 public:
-    CannonFortressBreakStep(const char*);
+    /// @brief Creates a new `CannonFortressBreakStep`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    CannonFortressBreakStep(const char* pName);
 
-    virtual ~CannonFortressBreakStep();
     virtual void init(const JMapInfoIter&);
     virtual void initCaseUseSwitchB(const MapObjActorInitInfo&);
     virtual void initCaseNoUseSwitchB(const MapObjActorInitInfo&);

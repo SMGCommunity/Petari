@@ -10,25 +10,40 @@ namespace nw4r {
 
             static const u32 WHITE = 0xFFFFFFFF;
 
-            Color() { *this = 0xFFFFFFFF; }
+            Color() {
+                *this = 0xFFFFFFFF;
+            }
 
-            Color(u32 color) { *this = color; }
+            Color(u32 color) {
+                *this = color;
+            }
 
-            Color(const GXColor& color) { *this = color; }
+            Color(const GXColor& color) {
+                *this = color;
+            }
 
             Color& operator=(u32 color) {
                 ToU32ref() = color;
                 return *this;
             }
 
-            Color& operator=(const GXColor& color) { return operator=(*reinterpret_cast< const u32* >(&color)); }
+            Color& operator=(const GXColor& color) {
+                return operator=(*reinterpret_cast< const u32* >(&color));
+            }
 
-            ~Color() {}
+            ~Color() {
+            }
 
-            operator u32() const { return ToU32ref(); }
+            operator u32() const {
+                return ToU32ref();
+            }
 
-            u32& ToU32ref() { return *reinterpret_cast< u32* >(this); }
-            const u32& ToU32ref() const { return *reinterpret_cast< const u32* >(this); }
-        };
+            u32& ToU32ref() {
+                return *reinterpret_cast< u32* >(this);
+            }
+            const u32& ToU32ref() const {
+                return *reinterpret_cast< const u32* >(this);
+            }
+        } ATTRIBUTE_ALIGN(4);
     };  // namespace ut
 };  // namespace nw4r

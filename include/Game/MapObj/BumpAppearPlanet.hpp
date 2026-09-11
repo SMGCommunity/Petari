@@ -4,9 +4,10 @@
 
 class BumpAppearPlanet : public MapObjActor {
 public:
-    BumpAppearPlanet(const char*);
+    /// @brief Creates a new `BumpAppearPlanet`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    BumpAppearPlanet(const char* pName);
 
-    virtual ~BumpAppearPlanet();
     virtual void init(const JMapInfoIter&);
     virtual void control();
     virtual void initCaseUseSwitchA(const MapObjActorInitInfo&);
@@ -17,6 +18,6 @@ public:
     void startBumpOut();
     void startBumpIn();
 
-    CollisionParts* _C4;
-    CollisionParts* _C8;
+    /* 0xC4 */ CollisionParts* _C4;
+    /* 0xC8 */ CollisionParts* _C8;
 };

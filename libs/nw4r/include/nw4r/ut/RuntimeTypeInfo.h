@@ -17,7 +17,8 @@ namespace nw4r {
         namespace detail {
             struct RuntimeTypeInfo {
                 const RuntimeTypeInfo* mParentTypeInfo;
-                explicit RuntimeTypeInfo(const RuntimeTypeInfo* parent) : mParentTypeInfo(parent) {}
+                explicit RuntimeTypeInfo(const RuntimeTypeInfo* parent) : mParentTypeInfo(parent) {
+                }
 
                 bool IsDerivedFrom(const RuntimeTypeInfo* typeInfo) const {
                     const RuntimeTypeInfo* self = this;
@@ -32,7 +33,20 @@ namespace nw4r {
                     return false;
                 }
             };
+            template < class T >
+            inline const RuntimeTypeInfo* GetTypeInfoFromPtr_(T*) {
+                return &T::typeInfo;
+            }
+
         };  // namespace detail
+        template < class UP, class T >
+        inline UP DynamicCast(T* obj) {
+            const detail::RuntimeTypeInfo* typeInfoU = detail::GetTypeInfoFromPtr_(UP(0));
+            if (obj && obj->GetRuntimeTypeInfo()->IsDerivedFrom(typeInfoU)) {
+                return static_cast< UP >(obj);
+            }
+            return NULL;
+        }
     };  // namespace ut
 };  // namespace nw4r
 

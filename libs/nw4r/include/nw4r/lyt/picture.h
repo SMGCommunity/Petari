@@ -12,6 +12,8 @@ namespace nw4r {
         public:
             NW4R_UT_RTTI_DECL(Picture);
 
+            Picture(u8 texNum);
+            Picture(const TexMap& texMap);
             Picture(const res::Picture*, const ResBlockSet&);
 
             virtual ~Picture();

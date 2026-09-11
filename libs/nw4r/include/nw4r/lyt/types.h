@@ -8,7 +8,16 @@
 
 namespace nw4r {
     namespace lyt {
+        enum AnimContentType { ANIMCONTENTTYPE_PANE, ANIMCONTENTTYPE_MATERIAL };
+        const int ResourceNameStrMax = 16;
+        const int MaterialNameStrMax = ResourceNameStrMax + 4;
         namespace detail {
+            template < typename T >
+            inline void SetBit(T* pBits, int pos, bool val) {
+                const T mask = T(~(1 << pos));
+                *pBits = T((*pBits & mask) | (int(val) << pos));
+            }
+
             typedef s16 ResS16;
             typedef u16 ResU16;
             typedef s32 ResS32;
@@ -132,6 +141,7 @@ namespace nw4r {
             GXColorSrc GetColorSrc() const {
                 return GXColorSrc(matSrcCol);
             }
+
             GXColorSrc GetAlphaSrc() const {
                 return GXColorSrc(matSrcAlp);
             }
@@ -143,8 +153,6 @@ namespace nw4r {
         };
 
         struct TexSRT {
-            TexSRT& operator=(const TexSRT&);
-
             math::VEC2 translate;
             f32 rotate;
             math::VEC2 scale;
@@ -171,9 +179,11 @@ namespace nw4r {
             GXTexGenType GetTexGenType() const {
                 return GXTexGenType(texGenType);
             }
+
             GXTexGenSrc GetTexGenSrc() const {
                 return GXTexGenSrc(texGenSrc);
             }
+
             u32 GetTexMtx() const {
                 return texMtx;
             }
@@ -199,15 +209,19 @@ namespace nw4r {
                 scaleS = aScaleS;
                 scaleT = aScaleT;
             }
+
             GXTexCoordID GetTexCoordGen() const {
                 return GXTexCoordID(texCoordGen);
             }
+
             GXTexMapID GetTexMap() const {
                 return GXTexMapID(texMap);
             }
+
             GXIndTexScale GetScaleS() const {
                 return GXIndTexScale(scaleS);
             }
+
             GXIndTexScale GetScaleT() const {
                 return GXIndTexScale(scaleT);
             }
@@ -232,12 +246,15 @@ namespace nw4r {
             u8 GetA() const {
                 return u8((ab >> 0) & 0xF);
             }
+
             u8 GetB() const {
                 return u8((ab >> 4) & 0xF);
             }
+
             u8 GetC() const {
                 return u8((cd >> 0) & 0xF);
             }
+
             u8 GetD() const {
                 return u8((cd >> 4) & 0xF);
             }
@@ -245,18 +262,23 @@ namespace nw4r {
             u8 GetOp() const {
                 return u8((op >> 0) & 0xF);
             }
+
             u8 GetBias() const {
                 return u8((op >> 4) & 0x3);
             }
+
             u8 GetScale() const {
                 return u8((op >> 6) & 0x3);
             }
+
             bool IsClamp() const {
                 return ((cl >> 0) & 0x1) != 0;
             }
+
             u8 GetOutReg() const {
                 return u8((cl >> 1) & 0x3);
             }
+
             u8 GetKSel() const {
                 return u8((cl >> 3) & 0x1F);
             }
@@ -311,15 +333,19 @@ namespace nw4r {
             GXTexCoordID GetTexCoordGen() const {
                 return GXTexCoordID(texCoordGen);
             }
+
             GXTexMapID GetTexMap() const {
                 return GXTexMapID((((swapSel >> 0) & 0x1) << 8) | texMap);
             }
+
             GXChannelID GetColorChan() const {
                 return GXChannelID(colChan);
             }
+
             GXTevSwapSel GetRasSwapSel() const {
                 return GXTevSwapSel((swapSel >> 1) & 0x3);
             }
+
             GXTevSwapSel GetTexSwapSel() const {
                 return GXTevSwapSel((swapSel >> 3) & 0x3);
             }
@@ -327,12 +353,15 @@ namespace nw4r {
             GXTevColorArg GetColorInA() const {
                 return GXTevColorArg(colIn.GetA());
             }
+
             GXTevColorArg GetColorInB() const {
                 return GXTevColorArg(colIn.GetB());
             }
+
             GXTevColorArg GetColorInC() const {
                 return GXTevColorArg(colIn.GetC());
             }
+
             GXTevColorArg GetColorInD() const {
                 return GXTevColorArg(colIn.GetD());
             }
@@ -340,12 +369,15 @@ namespace nw4r {
             GXTevAlphaArg GetAlphaInA() const {
                 return GXTevAlphaArg(alpIn.GetA());
             }
+
             GXTevAlphaArg GetAlphaInB() const {
                 return GXTevAlphaArg(alpIn.GetB());
             }
+
             GXTevAlphaArg GetAlphaInC() const {
                 return GXTevAlphaArg(alpIn.GetC());
             }
+
             GXTevAlphaArg GetAlphaInD() const {
                 return GXTevAlphaArg(alpIn.GetD());
             }
@@ -353,18 +385,23 @@ namespace nw4r {
             GXTevOp GetColorOp() const {
                 return GXTevOp(colIn.GetOp());
             }
+
             GXTevBias GetColorBias() const {
                 return GXTevBias(colIn.GetBias());
             }
+
             GXTevScale GetColorScale() const {
                 return GXTevScale(colIn.GetScale());
             }
+
             bool IsColorClamp() const {
                 return colIn.IsClamp();
             }
+
             GXTevRegID GetColorOutReg() const {
                 return GXTevRegID(colIn.GetOutReg());
             }
+
             GXTevKColorSel GetKColorSel() const {
                 return GXTevKColorSel(colIn.GetKSel());
             }
@@ -372,18 +409,23 @@ namespace nw4r {
             GXTevOp GetAlphaOp() const {
                 return GXTevOp(alpIn.GetOp());
             }
+
             GXTevBias GetAlphaBias() const {
                 return GXTevBias(alpIn.GetBias());
             }
+
             GXTevScale GetAlphaScale() const {
                 return GXTevScale(alpIn.GetScale());
             }
+
             bool IsAlphaClamp() const {
                 return alpIn.IsClamp();
             }
+
             GXTevRegID GetAlphaOutReg() const {
                 return GXTevRegID(alpIn.GetOutReg());
             }
+
             GXTevKAlphaSel GetKAlphaSel() const {
                 return GXTevKAlphaSel(alpIn.GetKSel());
             }
@@ -391,27 +433,35 @@ namespace nw4r {
             GXIndTexStageID GetIndStage() const {
                 return GXIndTexStageID(indStage);
             }
+
             GXIndTexFormat GetIndFormat() const {
                 return GXIndTexFormat((indFoAdUtAl >> 0) & 0x3);
             }
+
             GXIndTexBiasSel GetIndBiasSel() const {
                 return GXIndTexBiasSel((indBiMt >> 0) & 0x7);
             }
+
             GXIndTexMtxID GetIndMtxSel() const {
                 return GXIndTexMtxID((indBiMt >> 3) & 0xF);
             }
+
             GXIndTexWrap GetIndWrapS() const {
                 return GXIndTexWrap((indWrap >> 0) & 0x7);
             }
+
             GXIndTexWrap GetIndWrapT() const {
                 return GXIndTexWrap((indWrap >> 3) & 0x7);
             }
+
             bool IsIndAddPrev() const {
                 return ((indFoAdUtAl >> 2) & 0x1) != 0;
             }
+
             bool IsIndUtcLod() const {
                 return ((indFoAdUtAl >> 3) & 0x1) != 0;
             }
+
             GXIndTexAlphaSel GetIndAlphaSel() const {
                 return GXIndTexAlphaSel((indFoAdUtAl >> 4) & 0x3);
             }
@@ -446,12 +496,15 @@ namespace nw4r {
             GXTevColorChan GetR() const {
                 return GXTevColorChan(GX_CH_RED + ((swap >> 0) & 0x3));
             }
+
             GXTevColorChan GetG() const {
                 return GXTevColorChan(GX_CH_RED + ((swap >> 2) & 0x3));
             }
+
             GXTevColorChan GetB() const {
                 return GXTevColorChan(GX_CH_RED + ((swap >> 4) & 0x3));
             }
+
             GXTevColorChan GetA() const {
                 return GXTevColorChan(GX_CH_RED + ((swap >> 6) & 0x3));
             }
@@ -478,15 +531,19 @@ namespace nw4r {
             GXCompare GetComp0() const {
                 return GXCompare((comp >> 0) & 0xF);
             }
+
             u8 GetRef0() const {
                 return ref0;
             }
+
             GXAlphaOp GetOp() const {
                 return GXAlphaOp(op);
             }
+
             GXCompare GetComp1() const {
                 return GXCompare((comp >> 4) & 0xF);
             }
+
             u8 GetRef1() const {
                 return ref1;
             }
@@ -516,12 +573,15 @@ namespace nw4r {
             GXBlendMode GetType() const {
                 return GXBlendMode(type);
             }
+
             GXBlendFactor GetSrcFactor() const {
                 return GXBlendFactor(srcFactor);
             }
+
             GXBlendFactor GetDstFactor() const {
                 return GXBlendFactor(dstFactor);
             }
+
             GXLogicOp GetOp() const {
                 return GXLogicOp(op);
             }
@@ -536,26 +596,27 @@ namespace nw4r {
 
         class AnimationLink {
         public:
-            AnimationLink() {
+            AnimationLink() : mbDisable(false) {
                 Reset();
             }
 
             void Reset() {
-                Set(nullptr, 0, false);
+                Set(nullptr, 0);
             }
 
-            void Set(AnimTransform* pTrans, u16 idx, bool dis) {
+            void Set(AnimTransform* pTrans, u16 idx) {
                 mAnimTrans = pTrans;
                 mIdx = idx;
-                mbDisable = dis;
             }
 
             bool IsEnable() const {
                 return !mbDisable;
             }
+
             void SetEnable(bool enable) {
                 mbDisable = !enable;
             }
+
             u16 GetIndex() const {
                 return mIdx;
             }

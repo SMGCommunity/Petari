@@ -1,24 +1,26 @@
 #include "Game/NPC/TicoGalaxy.hpp"
-#include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/StarPieceDirector.hpp"
 #include "Game/NPC/TicoStarRing.hpp"
 #include "Game/System/GameEventFlagTable.hpp"
-#include "Game/Util.hpp"
 #include "Game/Util/EventUtil.hpp"
+#include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/LiveActorUtil.hpp"
 #include "Game/Util/MessageUtil.hpp"
+#include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/ScreenUtil.hpp"
 
 namespace {
     static const char* sInfoMessageID = "InformationGalaxy";
 };  // namespace
 
-TicoGalaxy::TicoGalaxy(const char* pName) : TicoFat(pName) {
-    mGalaxyName = nullptr;
+TicoGalaxy::TicoGalaxy(const char* pName) : TicoFat(pName), mGalaxyName() {
 }
 
 void TicoGalaxy::init(const JMapInfoIter& rIter) {
     TicoFat::init(rIter);
+
     _1F0 = 2;
+
     if (MR::isOnTicoGalaxyAlreadyTalk(_1EC)) {
         MR::forwardNode(mMsgCtrl);
         MR::forwardNode(mMsgCtrl);
@@ -35,6 +37,7 @@ void TicoGalaxy::initAfterPlacement() {
 
 void TicoGalaxy::shootStarPiece() {
     s32 v5 = 5;
+
     if (_1E0 <= 5) {
         v5 = _1E0;
     }
@@ -78,7 +81,4 @@ void TicoGalaxy::disappear(bool a1) {
 void TicoGalaxy::appearInformation() const {
     MR::appearInformationMessage(MR::getGameMessageDirect(::sInfoMessageID), true);
     MR::setInformationMessageReplaceString(MR::getGalaxyNameShortOnCurrentLanguage(mGalaxyName), 0);
-}
-
-TicoGalaxy::~TicoGalaxy() {
 }

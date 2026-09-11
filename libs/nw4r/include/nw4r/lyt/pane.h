@@ -41,6 +41,7 @@ namespace nw4r {
         public:
             NW4R_UT_RUNTIME_TYPEINFO;
 
+            Pane();
             Pane(const res::Pane*);
             virtual ~Pane();
             virtual void CalculateMtx(const DrawInfo&);
@@ -69,20 +70,45 @@ namespace nw4r {
             void SetName(const char*);
             void SetUserData(const char*);
 
-            bool IsUserAllocated() const { return mbUserAllocated; }
-            bool IsInfluencedAlpha() const { return detail::TestBit(mFlag, 1); }
-            bool IsLocationAdjust() const { return detail::TestBit(mFlag, 2); }
+            bool IsUserAllocated() const {
+                return mbUserAllocated;
+            }
 
-            Pane* GetParent() const { return mpParent; }
+            bool IsInfluencedAlpha() const {
+                return detail::TestBit(mFlag, 1);
+            }
+
+            bool IsLocationAdjust() const {
+                return detail::TestBit(mFlag, 2);
+            }
+
+            Pane* GetParent() const {
+                return mpParent;
+            }
 
             void InsertChild(PaneList::Iterator, Pane*);
             void RemoveChild(Pane*);
             void AppendChild(Pane*);
             void AddAnimationLink(AnimationLink*);
-            math::VEC2 GetVtxPos() const;
+            const math::VEC2 GetVtxPos() const;
             void CalculateMtxChild(const DrawInfo& rInfo);
 
-            bool IsVisible() const { return detail::TestBit(mFlag, 0); }
+            PaneList& GetChildList() {
+                return mChildList;
+            }
+
+            void SetSRTElement(u32 idx, f32 value) {
+                f32* srtAry = &mTranslate.x;
+                srtAry[idx] = value;
+            }
+
+            void SetVisible(bool visible) {
+                detail::SetBit(&mFlag, 0, visible);
+            }
+
+            bool IsVisible() const {
+                return detail::TestBit(mFlag, 0);
+            }
 
             Pane* mpParent;
             PaneList mChildList;

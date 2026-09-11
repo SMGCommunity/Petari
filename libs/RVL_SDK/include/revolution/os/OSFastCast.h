@@ -7,31 +7,25 @@
 extern "C" {
 #endif
 
-#define OSu16tof32(in, out) asm volatile("psq_l   %0, 0(%1), 1, 3  " : "=f"(*(out)) : "b"(in))
-
-#ifndef __MWERKS__
-static u16 __OSf32tou16(f32 arg);
-#else
-static u16 __OSf32tou16(register f32 arg) {
+#ifdef __MWERKS__
+static inline u16 __OSf32tou16(register f32 in) {
     f32 a;
     register f32* ptr = &a;
-    u16 r;
-
-    // clang-format off
-    __asm {
-        psq_st arg, 0(ptr), 1, 3
-    };
-
-    // clang-format on
-
-    r = *(u16*)ptr;
+    register u16 r;
+    asm {
+        psq_st in, 0(ptr), 1, 3
+        lhz r, 0(ptr)
+    }
     return r;
 }
-#endif
 
-static void OSf32tou16(f32* in, volatile u16* out) {
+static inline void OSf32tou16(register f32* in, volatile register u16* out) {
     *out = __OSf32tou16(*in);
 }
+#else
+#define OSf32tou16(in, out) asm volatile("psq_st   %1, 0(%0), 1, 3 " : : "b"(out), "f"(*(in)) : "memory")
+#endif
+#define OSu16tof32(in, out) asm volatile("psq_l   %0, 0(%1), 1, 3  " : "=f"(*(out)) : "b"(in))
 
 static inline void OSInitFastCast(void) {
 #ifdef __MWERKS__

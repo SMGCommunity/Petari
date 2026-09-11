@@ -1,3 +1,4 @@
+#include "nw4r/lyt/drawInfo.h"
 #include "nw4r/lyt/layout.h"
 #include "nw4r/lyt/resourceAccessor.h"
 #include "nw4r/lyt/textBox.h"
@@ -5,25 +6,30 @@
 #include "nw4r/ut/ResFont.h"
 #include "nw4r/ut/WideTextWriter.h"
 #include <cstdio>
+extern "C" {
 #include <wstring.h>
+}
 
 namespace {
+    using namespace nw4r;
+
     inline u8 ClampColor(s16 colVal) {
         return u8(colVal < 0 ? 0 : (colVal > 255 ? 255 : colVal));
     }
 
-    nw4r::ut::Color GetColor(const GXColorS10& src) {
+    ut::Color GetColor(const GXColorS10& src) {
         GXColor dst;
         dst.r = ClampColor(src.r);
         dst.g = ClampColor(src.g);
         dst.b = ClampColor(src.b);
         dst.a = ClampColor(src.a);
-        return nw4r::ut::Color(dst);
+        return ut::Color(dst);
     }
 };  // namespace
-
 namespace nw4r {
     namespace lyt {
+        NW4R_UT_RUNTIME_TYPEINFO_DEFINITION(TextBox, Pane);
+
         TextBox::TextBox(const res::TextBox* pBlock, const ResBlockSet& resBlockSet) : Pane(pBlock) {
             u16 allocStrBufLen = static_cast< u16 >(pBlock->textBufBytes / sizeof(wchar_t));
             if (allocStrBufLen > 0) {
@@ -44,7 +50,6 @@ namespace nw4r {
 
             mFontSize = pBlock->fontSize;
             mTextPosition = pBlock->textPosition;
-            mBits.textAlignment = pBlock->textAlignment;
             mCharSpace = pBlock->charSpace;
             mLineSpace = pBlock->lineSpace;
 
@@ -54,17 +59,20 @@ namespace nw4r {
             if (ut::Font* pFont = resBlockSet.pResAccessor->GetFont(fontName)) {
                 mpFont = pFont;
             } else if (void* fontRes = resBlockSet.pResAccessor->GetResource('font', fontName, 0)) {
-                ut::ResFont* pResFont = Layout::NewObj< ut::ResFont >();
-                pResFont->SetResource(fontRes);
-
-                mpFont = pResFont;
-                mBits.bAllocFont = true;
+                if (void* pMem = Layout::AllocMemory(sizeof(ut::ResFont))) {
+                    ut::ResFont* pResFont = new (pMem) ut::ResFont;
+                    pResFont->SetResource(fontRes);
+                    mpFont = pResFont;
+                    mBits.bAllocFont = true;
+                }
             }
 
-            const u32* const matOffsTbl = detail::ConvertOffsToPtr< u32 >(resBlockSet.pMaterialList, sizeof(*resBlockSet.pMaterialList));
-            const res::Material* const pResMaterial =
-                detail::ConvertOffsToPtr< res::Material >(resBlockSet.pMaterialList, matOffsTbl[pBlock->materialIdx]);
-            mpMaterial = Layout::NewObj< Material >(pResMaterial, resBlockSet);
+            if (void* pMem = Layout::AllocMemory(sizeof(Material))) {
+                const u32* const matOffsTbl = detail::ConvertOffsToPtr< u32 >(resBlockSet.pMaterialList, sizeof(*resBlockSet.pMaterialList));
+                const res::Material* const pResMaterial =
+                    detail::ConvertOffsToPtr< res::Material >(resBlockSet.pMaterialList, matOffsTbl[pBlock->materialIdx]);
+                mpMaterial = new (pMem) Material(pResMaterial, resBlockSet);
+            }
         }
 
         void TextBox::Init(u16 allocStrLen) {
@@ -123,8 +131,14 @@ namespace nw4r {
             return GetTextDrawRect(&writer);
         }
 
-        const ut::Rect TextBox::GetTextDrawRect(const DrawInfo&) const {
-            return GetTextDrawRect();
+        const ut::Rect TextBox::GetTextDrawRect(const DrawInfo& drawInfo) const {
+            ut::WideTextWriter writer;
+            ut::Rect rect = GetTextDrawRect(&writer);
+            if (drawInfo.IsYAxisUp()) {
+                rect.top = -rect.top;
+                rect.bottom = -rect.bottom;
+            }
+            return rect;
         }
 
         void TextBox::DrawSelf(const DrawInfo& drawInfo) {
@@ -148,48 +162,8 @@ namespace nw4r {
             writer.SetupGX();
 
             GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
-        }
-
-        void TextBox::SetFont(const ut::Font* pFont) {
-            if (mBits.bAllocFont) {
-                mpFont->~Font();
-                Layout::FreeMemory(const_cast< ut::Font* >(mpFont));
-                mBits.bAllocFont = false;
-            }
-
-            mpFont = pFont;
-
-            if (mpFont != NULL) {
-                SetFontSize(Size(static_cast< f32 >(mpFont->GetWidth()), static_cast< f32 >(mpFont->GetHeight())));
-            } else {
-                SetFontSize(Size(0.0f, 0.0f));
-            }
-        }
-
-        const ut::Rect TextBox::GetTextDrawRect(ut::WideTextWriter* pWriter) const {
-            ut::Rect rect;
-
-            pWriter->SetCursor(0.0f, 0.0f);
-
-            pWriter->SetFont(*mpFont);
-            pWriter->SetFontSize(mFontSize.width, mFontSize.height);
-
-            pWriter->SetLineSpace(mLineSpace);
-            pWriter->SetCharSpace(mCharSpace);
-
-            pWriter->SetWidthLimit(mSize.width);
-            pWriter->SetDrawFlag(MakeDrawFlag());
-
-            if (mpTagProcessor != NULL) {
-                pWriter->SetTagProcessor(mpTagProcessor);
-            }
-
-            pWriter->CalcStringRect(&rect, mTextBuf, mTextLen);
-
-            math::VEC2 base = GetVtxPos();
-            rect.MoveTo(base.x + (mSize.width - rect.GetWidth()) * GetTextMagH(), base.y + (mSize.height - rect.GetHeight()) * GetTextMagV());
-
-            return rect;
+            writer.SetCursor(textRect.left, textRect.top);
+            writer.Print(mTextBuf, mTextLen);
         }
 
         u16 TextBox::GetStringBufferLength() const {
@@ -249,6 +223,48 @@ namespace nw4r {
             mTextBuf[mTextLen] = L'\0';
 
             return chars;
+        }
+
+        void TextBox::SetFont(const ut::Font* pFont) {
+            if (mBits.bAllocFont) {
+                mpFont->~Font();
+                Layout::FreeMemory(const_cast< ut::Font* >(mpFont));
+                mBits.bAllocFont = false;
+            }
+
+            mpFont = pFont;
+
+            if (mpFont != NULL) {
+                SetFontSize(Size(static_cast< f32 >(mpFont->GetWidth()), static_cast< f32 >(mpFont->GetHeight())));
+            } else {
+                SetFontSize(Size(0.0f, 0.0f));
+            }
+        }
+
+        const ut::Rect TextBox::GetTextDrawRect(ut::WideTextWriter* pWriter) const {
+            ut::Rect rect;
+
+            pWriter->SetCursor(0.0f, 0.0f);
+
+            pWriter->SetFont(*mpFont);
+            pWriter->SetFontSize(mFontSize.width, mFontSize.height);
+
+            pWriter->SetLineSpace(mLineSpace);
+            pWriter->SetCharSpace(mCharSpace);
+
+            pWriter->SetWidthLimit(mSize.width);
+            pWriter->SetDrawFlag(MakeDrawFlag());
+
+            if (mpTagProcessor != NULL) {
+                pWriter->SetTagProcessor(mpTagProcessor);
+            }
+
+            pWriter->CalcStringRect(&rect, mTextBuf, mTextLen);
+
+            const math::VEC2 base = GetVtxPos();
+            rect.MoveTo(base.x + (mSize.width - rect.GetWidth()) * GetTextMagH(), base.y + (mSize.height - rect.GetHeight()) * GetTextMagV());
+
+            return rect;
         }
 
         f32 TextBox::GetTextMagH() const {

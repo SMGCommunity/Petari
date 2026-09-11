@@ -11,12 +11,12 @@ namespace {
     OSMessageQueue gMessageQueue;     // 0x8060D058
 }  // namespace
 
-JKRDecompCommand::JKRDecompCommand() {
-    OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
-    mThis = this;  // Probably a pointer to the data stored at 0x00 instead
-    _14 = 0;
-    _1C = nullptr;
-    _20 = 0;
+JKRDecomp* JKRDecomp::create(long a1) {
+    if (gDecompInstance == nullptr) {
+        gDecompInstance = new (JKRHeap::sSystemHeap, 0) JKRDecomp(a1);
+    }
+
+    return gDecompInstance;
 }
 
 JKRDecomp::JKRDecomp(long a1) : JKRThread(0x4000, 0x10, a1) {
@@ -59,17 +59,9 @@ void* JKRDecomp::run() {
     }
 }
 
-JKRDecomp* JKRDecomp::create(long a1) {
-    if (gDecompInstance == nullptr) {
-        gDecompInstance = new (JKRHeap::sGameHeap, 0) JKRDecomp(a1);
-    }
-
-    return gDecompInstance;
-}
-
 JKRDecompCommand* JKRDecomp::prepareCommand(unsigned char* pSrc, unsigned char* pDst, unsigned long compressedSize, unsigned long decompressedSize,
                                             void (*a5)(unsigned long)) {
-    JKRDecompCommand* command = new (JKRHeap::sGameHeap, -4) JKRDecompCommand();
+    JKRDecompCommand* command = new (JKRHeap::sSystemHeap, -4) JKRDecompCommand();
 
     command->mSrc = pSrc;
     command->mDst = pDst;
@@ -121,23 +113,23 @@ void JKRDecomp::decode(unsigned char* pSrc, unsigned char* pDst, unsigned long c
 #define READU32_BE(ptr, offset) (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
 
 void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
+    int linkInfo;
+    int offset;
+    u32 chunkBits;
     int srcChunkOffset;
     int count;
     int dstOffset;
     u32 length = srcLength;
-    int linkInfo;
-    int offset;
     int i;
 
     int decodedSize = READU32_BE(src, 4);
     int linkTableOffset = READU32_BE(src, 8);
     int srcDataOffset = READU32_BE(src, 12);
 
-    dstOffset = 0;
     u32 counter = 0;
+    dstOffset = 0;
     srcChunkOffset = 16;
 
-    u32 chunkBits;
     if (srcLength == 0)
         return;
     if (dstLength > decodedSize)
@@ -191,10 +183,9 @@ void JKRDecomp::decodeSZP(u8* src, u8* dst, u32 srcLength, u32 dstLength) {
     } while (dstOffset < decodedSize);
 }
 
-// Wrong registers
 void JKRDecomp::decodeSZS(u8* pSrc, u8* pDst, u32 compressedSize, u32 a4) {
     u32 decompSize = ((s32)pDst + *(u32*)(pSrc + 4)) - a4;
-    u8 byte1, byte2;
+    u8* copySrc;
     s32 validBitCount = 0;
     u32 curBlock;
 
@@ -229,14 +220,10 @@ void JKRDecomp::decodeSZS(u8* pSrc, u8* pDst, u32 compressedSize, u32 a4) {
 
             pSrc++;
         } else {
-            // This bit specifically
-            byte1 = *pSrc++;
-            byte2 = *pSrc++;
-
-            u8* copySrc = pDst;
-            copySrc -= ((byte1 & 0xF) << 8) | byte2;
-            ;
-            u32 numBytes = byte1 >> 4;
+            u32 distance = pSrc[1] | ((pSrc[0] & 0xF) << 8);
+            u32 numBytes = pSrc[0] >> 4;
+            pSrc += 2;
+            copySrc = pDst - distance;
 
             if (numBytes == 0) {
                 numBytes = *pSrc++ + 0x12;
@@ -282,4 +269,12 @@ EJKRCompression JKRDecomp::checkCompressed(unsigned char* pSrc) {
     }
 
     return JKR_COMPRESSION_NONE;
+}
+
+JKRDecompCommand::JKRDecompCommand() {
+    OSInitMessageQueue(&mMessageQueue, &mMessage, 1);
+    mThis = this;  // Probably a pointer to the data stored at 0x00 instead
+    _14 = 0;
+    _1C = nullptr;
+    _20 = 0;
 }

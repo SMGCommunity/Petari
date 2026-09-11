@@ -15,7 +15,8 @@ namespace nw4r {
             };
 
             struct Frame {
-                Frame() : textureFlip(0), pMaterial(nullptr) {}
+                Frame() : textureFlip(0), pMaterial(nullptr) {
+                }
 
                 u8 textureFlip;
                 Material* pMaterial;
@@ -42,7 +43,7 @@ namespace nw4r {
             virtual void DrawFrame4(const math::VEC2&, const Frame*, const WindowFrameSize&, u8);
             virtual void DrawFrame8(const math::VEC2&, const Frame*, const WindowFrameSize&, u8);
 
-            WindowFrameSize GetFrameSize(u8 frameNum, const Frame* pFrames);
+            const WindowFrameSize GetFrameSize(u8 frameNum, const Frame* pFrames);
 
             InflationLRTB mContentInflation;
             Content mContent;

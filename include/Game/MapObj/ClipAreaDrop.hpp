@@ -1,21 +1,23 @@
 #pragma once
 
 #include "Game/MapObj/ClipArea.hpp"
-#include "Game/MapObj/ClipAreaShape.hpp"
-#include "Game/Util/JMapInfo.hpp"
-#include "revolution/types.h"
+
+class ClipAreaShapeSphere;
 
 class ClipAreaDrop : public ClipArea {
 public:
-    ClipAreaDrop(const char*);
-    virtual void init(const JMapInfoIter&);
+    /// @brief Creates a new `ClipArea`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    ClipAreaDrop(const char* pName);
+
+    virtual void init(const JMapInfoIter& rIter);
     virtual void appear();
     virtual void control();
-    virtual ~ClipAreaDrop();
 
     void setBaseSize(f32);
+
     void exeWait();
 
-    ClipAreaShapeSphere* _C0;
-    f32 _C4;
+    /* 0xC0 */ ClipAreaShapeSphere* mShapeSphere;
+    /* 0xC4 */ f32 mBaseSize;
 };
