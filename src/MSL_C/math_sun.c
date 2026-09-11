@@ -1,5 +1,7 @@
 #include <cmath>
 
+#pragma exceptions on
+
 double scalbn(double x, int n) {
     double man;
     int exponent;

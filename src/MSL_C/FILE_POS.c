@@ -2,6 +2,8 @@
 #include "buffer_io.h"
 #include <cerrno>
 
+#pragma exceptions on
+
 long _ftell(FILE *pFile) {
     int buf = 0;
     long pos;

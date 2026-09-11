@@ -1,5 +1,7 @@
 #include "file_struct.h"
 
+#pragma exceptions on
+
 void __prep_buffer(FILE *pFile) {
     pFile->buffer_ptr = pFile->buffer;
     pFile->buffer_len = pFile->buffer_size;

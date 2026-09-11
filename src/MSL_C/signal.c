@@ -1,6 +1,8 @@
 #include "signal.h"
 #include "ansi_params.h"
 
+#pragma exceptions on
+
 int exit(int);
 
 __signal_func_ptr signal_funcs[7];

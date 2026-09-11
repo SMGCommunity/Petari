@@ -4,6 +4,8 @@
 #include "string_api.h"
 #include "wchar_io.h"
 
+#pragma exceptions on
+
 void __stdio_atexit(void);
 void* memcpy(void *, const void *, unsigned long);
 int _fseek(FILE *, long, int);
