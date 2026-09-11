@@ -3282,9 +3282,9 @@ config.libs = [
     JSysLib(
         "JMath",
         [
-            Object(NonMatching, "JSystem/JMath/JMath.cpp"),
+            Object(Matching, "JSystem/JMath/JMath.cpp", extra_cflags=["-opt nocse"]),
             Object(NonMatching, "JSystem/JMath/random.cpp"),
-            Object(NonMatching, "JSystem/JMath/JMATrigonometric.cpp"),
+            Object(NonMatching, "JSystem/JMath/JMATrigonometric.cpp", extra_cflags=["-opt nocse"]),
         ],
     ),
     JSys_JParticleLib(
