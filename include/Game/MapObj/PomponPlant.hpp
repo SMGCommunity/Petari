@@ -5,8 +5,18 @@
 class PomponPlant : public LiveActor {
 public:
     PomponPlant(const char*);
-    virtual ~PomponPlant();
 
-private:
-    u8 mPad[(0x98) - sizeof(LiveActor)];
+    virtual ~PomponPlant();
+    virtual void init(const JMapInfoIter&) override;
+    virtual void attackSensor(HitSensor*, HitSensor*) override;
+    virtual bool receiveMsgPlayerAttack(u32, HitSensor*, HitSensor*) override;
+
+    bool tryGenItem();
+    void exeWait();
+    void exeSwingDpd();
+    void exeSwingPlayer();
+
+    /* 0x8C */ s32 mItemType;
+    /* 0x90 */ s32 mItemCount;
+    /* 0x94 */ bool mCanGenItem;
 };

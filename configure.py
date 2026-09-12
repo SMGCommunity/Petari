@@ -1712,7 +1712,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/PlantGroup.cpp"),
             Object(Matching, "Game/MapObj/PlantPoint.cpp"),
             Object(NonMatching, "Game/MapObj/PlantRailInfo.cpp"),
-            Object(NonMatching, "Game/MapObj/PomponPlant.cpp"),
+            Object(Matching, "Game/MapObj/PomponPlant.cpp"),
             Object(NonMatching, "Game/MapObj/PowerStar.cpp"),
             Object(Matching, "Game/MapObj/PowerStarAppearPoint.cpp"),
             Object(Matching, "Game/MapObj/PowerStarHolder.cpp"),
