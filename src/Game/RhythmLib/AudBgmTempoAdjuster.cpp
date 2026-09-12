@@ -1,57 +1,110 @@
 #include "Game/RhythmLib/AudBgmTempoAdjuster.hpp"
 #include "Game/AudioLib/AudParams.hpp"
+#include "JSystem/JAudio2/JAIStream.hpp"
+#include "JSystem/JAudio2/JASCriticalSection.hpp"
 
-AudBgmTempoAdjuster::AudBgmTempoAdjuster() {
-    mStream = nullptr;
-    _4 = 1.0f;
-    _8 = 0;
-    _C = 0;
-    _10 = 0;
-    _14 = 0;
-    _18 = 0.0f;
+AudBgmTempoAdjuster::AudBgmTempoAdjuster()
+    : mStream(), mBeatMul(1.0f), mIntroBeats(), mLoopBeats(), mLoopStartSamples(), mLoopEndSamples(), mLoopSamples() {
     init();
 }
 
 void AudBgmTempoAdjuster::init() {
-    _1C = 0;
-    _20 = 0;
-    _24 = false;
-    _25 = false;
+    mLoopCount = 0;
+    mCurrentBeat = 0;
+    mIsBeatNeedSync = false;
+    mIsStreamNeedSync = false;
+}
+
+void AudBgmTempoAdjuster::setInfo(f32 beatMul, u32 introBeats, u32 loopBeats, u32 loopStartSamples, u32 loopEndSamples) {
+    mBeatMul = beatMul;
+    mIntroBeats = introBeats;
+    mLoopBeats = loopBeats;
+    mLoopStartSamples = loopStartSamples;
+    mLoopEndSamples = loopEndSamples;
+    mLoopSamples = loopEndSamples - loopStartSamples;
 }
 
 void AudBgmTempoAdjuster::setStream(JAIStream* pStream) {
-    BOOL inter = OSDisableInterrupts();
+    JASCriticalSection crit;
     init();
     mStream = pStream;
-    OSRestoreInterrupts(inter);
 }
 
 void AudBgmTempoAdjuster::reject() {
-    BOOL inter = OSDisableInterrupts();
+    JASCriticalSection crit;
     mStream = nullptr;
     init();
-    OSRestoreInterrupts(inter);
 }
 
-// AudBgmTempoAdjuster::beatProc
-
-f32 AudBgmTempoAdjuster::calcAdjustRate(f32 a1, f32 a2) {
-    bool val = false;
-    f32 v4 = ((a1 - 500.0f) / (_4 * ((60.0f * AudParams::streamSampleRate) / a2)));
-
-    if (v4 < 0.0f) {
-        val = true;
+f32 AudBgmTempoAdjuster::beatProc(f32 tempo) {
+    if (mStream == nullptr) {
+        return 1.0f;
     }
 
-    f32 v5 = (v4 * v4);
+    f32 currSample = mStream->inner_.aramStream._0B8;
+    u32 loopCount = mStream->inner_.aramStream._0C4;
 
-    if (v5 > 1.0f) {
-        v5 = 1.0f;
+    bool newStreamLoop = false;
+    if (loopCount != mLoopCount) {
+        newStreamLoop = true;
+        mLoopCount = loopCount;
     }
 
-    if (!val) {
-        return v5 + 1.0f;
+    bool newBeatLoop = false;
+    if (mLoopBeats != 0 && mCurrentBeat >= mIntroBeats + mLoopBeats) {
+        mCurrentBeat = mIntroBeats;
+        newBeatLoop = true;
     }
 
-    return 1.0f / (1.0f + v5);
+    // (samples/beat) * mBeatMul * mCurrentBeat
+    f32 beatSampleStart = (60.0f * AudParams::streamSampleRate / tempo) * mBeatMul * mCurrentBeat;
+
+    if (mLoopSamples != 0.0f) {
+        if (newBeatLoop && !newStreamLoop && !mIsStreamNeedSync) {
+            currSample -= mLoopSamples;
+        } else if (!newBeatLoop && newStreamLoop && !mIsBeatNeedSync) {
+            currSample += mLoopSamples;
+        }
+    }
+
+    f32 samples = currSample - beatSampleStart;  // how many samples out-of-sync
+    f32 rate = calcAdjustRate(samples, tempo);
+
+    if (newBeatLoop) {
+        mIsBeatNeedSync = true;
+    }
+    if (newStreamLoop) {
+        mIsStreamNeedSync = true;
+    }
+
+    if (mIsBeatNeedSync && mIsStreamNeedSync) {
+        mIsBeatNeedSync = false;
+        mIsStreamNeedSync = false;
+    }
+
+    mCurrentBeat++;
+
+    return rate;
+}
+
+f32 AudBgmTempoAdjuster::calcAdjustRate(f32 syncSamples, f32 tempo) {
+    f32 rate = (syncSamples - 500.0f) / ((60.0f * AudParams::streamSampleRate / tempo) * mBeatMul);
+
+    bool early = false;
+    if (rate < 0.0f) {
+        early = true;
+    }
+
+    rate *= rate;
+
+    if (rate > 1.0f) {
+        rate = 1.0f;
+    }
+
+    if (!early) {
+        rate += 1.0f;
+        return rate;
+    }
+
+    return 1.0f / (1.0f + rate);
 }

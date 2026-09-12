@@ -2083,7 +2083,7 @@ config.libs = [
         "RhythmLib",
         [
             Object(NonMatching, "Game/RhythmLib/AudRhythmSeqParser.cpp"),
-            Object(NonMatching, "Game/RhythmLib/AudBgmTempoAdjuster.cpp"),
+            Object(Matching, "Game/RhythmLib/AudBgmTempoAdjuster.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeTrack.cpp"),
             Object(Matching, "Game/RhythmLib/AudMeChannelMgr.cpp"),
             Object(NonMatching, "Game/RhythmLib/AudMeSeqCtrl.cpp"),
