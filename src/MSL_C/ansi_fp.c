@@ -3,6 +3,8 @@
 #include "types.h"
 #include <cmath>
 
+#pragma exceptions on
+
 extern double pow(double, double);
 
 /* builtin for __num2dec_internal*/
@@ -644,7 +646,7 @@ double __dec2num(const decimal *d)
         first_guess = ldexp(first_guess, exponent);
 
         if (__fpclassifyd(first_guess) == 2) {
-            first_guess = (double)0x7FEFFFFFFFFFFFFF;
+            first_guess = 1.7976931348623157e308;
         }
 
         {

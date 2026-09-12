@@ -1,6 +1,8 @@
 void __sys_free(void *ptr);
 void* memset(void *, int, int);
 
+#pragma exceptions on
+
 typedef struct Block {
     struct Block* prev;
     struct Block* next;
@@ -81,7 +83,6 @@ typedef struct mem_pool_obj {
 
 } mem_pool_obj;
 
-mem_pool_obj __malloc_pool;
 static int initialized = 0;
 
 static SubBlock* SubBlock_merge_prev(SubBlock*, SubBlock**);
@@ -294,7 +295,7 @@ void deallocate_from_fixed_pools(__mem_pool_obj* pool_obj, void* ptr, unsigned l
     }
 }
 
-void __pool_free(__mem_pool *pool, void *ptr) {
+static void __pool_free(__mem_pool *pool, void *ptr) {
     __mem_pool_obj* pool_obj;
     unsigned long size;
 
@@ -313,7 +314,7 @@ void __pool_free(__mem_pool *pool, void *ptr) {
     }
 }
 
-void __init_pool_obj(__mem_pool* pool_obj) {
+static void __init_pool_obj(__mem_pool* pool_obj) {
 	memset(pool_obj, 0, sizeof(__mem_pool_obj));
 }
 

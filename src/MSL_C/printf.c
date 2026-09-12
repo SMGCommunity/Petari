@@ -1271,6 +1271,17 @@ int fprintf(FILE* pFile, const char* format, ...) {
     }
 }
 
+int vprintf(const char* pFormat, va_list arg) {
+    int ret;
+
+    if (fwide(stdout, -1) >= 0) {
+        return -1;
+    }
+
+    ret = __pformatter(&__FileWrite, (void*)stdout, pFormat, arg);
+    return ret;
+}
+
 int vsnprintf(char* s, size_t n, const char* format, va_list arg) {
     int end;
     __OutStrCtrl osc;
@@ -1295,17 +1306,6 @@ int vsnprintf(char* s, size_t n, const char* format, va_list arg) {
 
 int vsprintf(char* s, const char* format, va_list arg) {
     return vsnprintf(s, 0xFFFFFFFF, format, arg);
-}
-
-int vprintf(const char* pFormat, va_list arg) {
-    int ret;
-
-    if (fwide(stdout, -1) >= 0) {
-        return -1;
-    }
-
-    ret = __pformatter(&__FileWrite, (void*)stdout, pFormat, arg);
-    return ret;
 }
 
 int snprintf(char* s, size_t n, const char* format, ...) {

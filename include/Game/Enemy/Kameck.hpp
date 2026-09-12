@@ -19,14 +19,6 @@ public:
 
 class Kameck : public LiveActor {
 public:
-    enum BeamType {
-        /* 0x0 */ BeamType_None,
-        /* 0x1 */ BeamType_Turtle,
-        /* 0x2 */ BeamType_Fire,
-        /* 0x3 */ BeamType_3,
-        /* 0x4 */ BeamType_4
-    };
-
     Kameck(const char*);
 
     virtual void init(const JMapInfoIter& rIter);
@@ -90,12 +82,12 @@ public:
     void makeActorDeadForce();
 
     /* 0x8C */ KameckBeam* mBeam;
-    /* 0x90 */ ActiveActorList* _90;
-    /* 0x94 */ SmallKameckBeamEventListener* _94;
-    /* 0x98 */ AnimScaleController* _98;
-    /* 0x9C */ WalkerStateBindStarPointer* _9C;
+    /* 0x90 */ ActiveActorList* mActiveActorList;
+    /* 0x94 */ SmallKameckBeamEventListener* mBeamEventListener;
+    /* 0x98 */ AnimScaleController* mAnimScaleController;
+    /* 0x9C */ WalkerStateBindStarPointer* mWalkerStateBindStarPointer;
     /* 0xA0 */ TQuat4f _A0;
-    /* 0xB0 */ TVec3f _B0;
+    /* 0xB0 */ TVec3f mFrontVec;
     /* 0xBC */ s32 mBeamType;
     /* 0xC0 */ s32 mMoveStep;
     /* 0xC4 */ f32 mRailCoord;

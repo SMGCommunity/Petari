@@ -1,27 +1,39 @@
 #pragma once
 
-#include "Game/LiveActor/LiveActor.hpp"
+#include "Game/Util/CollisionPartsFilter.hpp"
+
+class Kameck;
+class KameckTurtle;
+class KameckFireBall;
 
 class KameckBeamEventListener {
 public:
     /// @brief Creates a new `KameckBeamEventListener`.
     KameckBeamEventListener();
 
-    virtual void hitBeam(s32) = 0;
+    virtual void hitBeam(s32){};
 };
 
-class KameckBeamCollisionFilter {
+class KameckBeamCollisionFilter : public CollisionPartsFilterBase {
 public:
     KameckBeamCollisionFilter(const TVec3f*, f32);
 
     virtual bool isInvalidParts(const CollisionParts*) const;
 
-    /* 0x00 */ const TVec3f* _4;
-    /* 0x08 */ f32 _8;
+    /* 0x4 */ const TVec3f* _4;
+    /* 0x8 */ f32 _8;
 };
 
 class KameckBeam : public LiveActor {
 public:
+    enum BeamType {
+        /* 0x0 */ BeamType_None,
+        /* 0x1 */ BeamType_Turtle,
+        /* 0x2 */ BeamType_FireBall1,
+        /* 0x3 */ BeamType_FireBall2,
+        /* 0x4 */ BeamType_FireBall3,
+    };
+
     /// @brief Creates a new `KameckBeam`.
     /// @param pName A pointer to the null-terminated name of the object.
     KameckBeam(const char* pName);
@@ -55,8 +67,8 @@ public:
     void emitBeamEffect();
 
     /* 0x8C */ KameckBeamEventListener* mEventListener;
-    /* 0x90 */ LiveActor* _90;
-    /* 0x94 */ LiveActor* _94[3];
+    /* 0x90 */ KameckTurtle* mKameckTurtle;
+    /* 0x94 */ KameckFireBall* mKameckFireBalls[3];
     /* 0xA0 */ MtxPtr _A0;
     /* 0xA4 */ TVec3f _A4;
     /* 0xB0 */ TVec3f mWandLocalPosition;

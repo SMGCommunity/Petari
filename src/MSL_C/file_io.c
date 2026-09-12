@@ -2,6 +2,8 @@
 #include "file_struct.h"
 #include "locale.h"
 
+#pragma exceptions on
+
 int fflush(FILE*);
 void free(void*);
 int __flush_all(void);
