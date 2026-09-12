@@ -71,6 +71,14 @@ namespace std {
         }
     }
 
+    template < class OutputIt, class Size, class T >
+    inline OutputIt fill_n(OutputIt first, Size count, const T& value) {
+        for (; count > 0; count--, first++) {
+            *first = value;
+        }
+        return first;
+    }
+
     // mostly yoinked from OGWS decomp
     template < typename TIt, typename TCompare >
     inline TIt min_element(TIt first, TIt last, TCompare compare) {

@@ -60,7 +60,7 @@ namespace std {
 
     template < size_t N >
     __bitset_base< N >::__bitset_base() {
-        std::fill(data, data + N, 0);
+        std::fill_n(data, N, 0);
     }
 
     template < size_t N >
@@ -105,7 +105,7 @@ namespace std {
     public:
         typedef __bitset_base< (N - 1) / (sizeof(size_t) * 8) + 1 > base;
 
-        bitset(){};
+        bitset() {};
 
         const base& set(size_t pos, bool val) {
             if (pos >= N) {

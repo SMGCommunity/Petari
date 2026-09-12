@@ -41,8 +41,10 @@ bool MarioActor::isUseScreenBox() const {
 }
 
 void MarioActor::calcScreenBoxRange() {
-    if (!isUseScreenBox())
+    if (!isUseScreenBox()) {
         return;
+    }
+
     TVec3f position;
     position = _B18;
     TVec2f center;
@@ -73,14 +75,23 @@ void MarioActor::calcScreenBoxRange() {
     s16 height = static_cast< s32 >(frameMax.y) - top;
     width = (width + 1) & ~1;
     height = (height + 1) & ~1;
-    if (width > 256)
+
+    if (width > 256) {
         width = 256;
-    if (height > 256)
+    }
+
+    if (height > 256) {
         height = 256;
-    if (!width)
+    }
+
+    if (!width) {
         width = 2;
-    if (!height)
+    }
+
+    if (!height) {
         height = 2;
+    }
+
     _B34 = left;
     _B38 = top;
     _B3C = width;
@@ -91,10 +102,12 @@ void MarioActor::calcScreenBoxRange() {
     f32 frameHeight = screenHeight;
     TBox2f screen(0.0f, 0.0f, frameWidth, frameHeight);
     TBox2f clipped(capture);
+
     if (!clipped.intersect(screen)) {
         clipped.i.zero();
         clipped.f.zero();
     }
+
     _B34 = clipped.i.x;
     _B38 = clipped.i.y;
     _B3C = clipped.getWidth();
@@ -105,6 +118,7 @@ void MarioActor::captureScreenBox() const {
     if (!isUseScreenBox()) {
         return;
     }
+
     if (_B3C < 1.0f || _B40 < 1.0f) {
         return;
     }
@@ -124,10 +138,14 @@ void MarioActor::captureScreenBox() const {
 }
 
 void MarioActor::writeBackScreenBox() const {
-    if (!isUseScreenBox())
+    if (!isUseScreenBox()) {
         return;
-    if (_B3C < 1.0f || _B40 < 1.0f)
+    }
+
+    if (_B3C < 1.0f || _B40 < 1.0f) {
         return;
+    }
+
     GXTexObj texture;
     TVec2f minimum;
     TVec2f maximum;
@@ -173,6 +191,7 @@ void MarioActor::calc1stPersonView() {
     }
 
     u8 compareVal = 255.0f * val;
+
     if (compareVal == 0) {
         _1A1 = true;
         hideBeeFur();
@@ -185,10 +204,13 @@ void MarioActor::calc1stPersonView() {
 void MarioActor::hideBeeFur() {
     if (mMario->isPlayerModeBee()) {
         _9E8->kill();
-        static_cast< FurMulti* >(_9EC)->offDraw(-1);
+        _9EC->offDraw(-1);
     }
-    if (getCarrySensor())
+
+    if (getCarrySensor()) {
         MR::hideModel(getCarrySensor()->mHost);
+    }
+
     if (mMario->isPlayerModeInvincible()) {
         _A6E = 0;
         stopEffect("無敵中");
@@ -197,17 +219,24 @@ void MarioActor::hideBeeFur() {
 
 void MarioActor::calcFogLighting() {
     Color8 fog(240, 16, 80, 0);
+
     if (!mMario->isStatusActive(MarioStatus_Paralyze) && isNeedDamageFog()) {
         f32 phase = ((_1A8 + 31) & 63) / 63.0f;
-        if (phase > 0.5f)
+
+        if (phase > 0.5f) {
             phase = 1.0f - phase;
+        }
+
         f32 wave = 2.0f * phase;
         f32 low = getConst().getTable()->mDamageFogLow;
         _1A4 = (low + wave * (getConst().getTable()->mDamageFogHigh - getConst().getTable()->mDamageFogLow)) / 255.0f;
     } else if (_1AA) {
         fog.mGXColor = _1B0.mGXColor;
-        if (_1B5)
+
+        if (_1B5) {
             fog.g = 255.0f * MR::sin(PI * (_1AA / 20.0f));
+        }
+
         _1A4 = _1AC * MR::sin(PI * (_1AA / static_cast< f32 >(getConst().getTable()->mStarPieceFogTime)));
     } else if (mMario->_434) {
         fog.set(255, 255, 0, 0);
@@ -215,6 +244,7 @@ void MarioActor::calcFogLighting() {
     } else {
         resetFog();
     }
+
     Color8 ambient = *MR::getLightAmbientColor(this);
     Color8 material(255, 255, 255, 255);
     updateLightDL(ambient, material, fog, _1A4);
@@ -298,6 +328,7 @@ void MarioActor::updateLightDL(const Color8& ambient, const Color8& material, co
     GXColor materialColor = material.mGXColor;
     GDSetChanMatColor(GX_COLOR0A0, materialColor);
     GDSetChanCtrl(GX_COLOR1, GX_FALSE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_CLAMP, GX_AF_NONE);
+
     if (!MR::isNearZero(strength)) {
         f32 nearZ = MR::getNearZ();
         f32 farZ = MR::getFarZ();
@@ -307,6 +338,7 @@ void MarioActor::updateLightDL(const Color8& ambient, const Color8& material, co
         MR::calcFogStartEnd(mPosition, strength, &start, &end);
         GDSetFog(GX_FOG_LIN, start, end, nearZ, farZ, color);
     }
+
     GDPadCurr32();
     u32 length = displayList.ptr - displayList.start;
     mCurrDL = 1 - mCurrDL;
@@ -321,23 +353,32 @@ void MarioActor::createRainbowDL() {
     u8 buffer[256] ATTRIBUTE_ALIGN(32);
     GDLObj displayList;
     MR::ProhibitSchedulerAndInterrupts lock(false);
+
     for (u32 alpha = 0; alpha < 8; alpha++) {
         for (u32 index = 0; index < 8; index++) {
             _94[alpha * 8 + index] = new DLchanger(1, 32);
             GDInitGDLObj(&displayList, buffer, sizeof(buffer));
             __GDCurrentDL = &displayList;
             GXColor color = {0, 0, 0, 0};
-            if (index & 1)
+
+            if (index & 1) {
                 color.r = 255;
-            if (index & 2)
+            }
+
+            if (index & 2) {
                 color.g = 255;
-            if (index & 4)
+            }
+
+            if (index & 4) {
                 color.b = 255;
+            }
+
             if (!index) {
                 color.r = 64;
                 color.g = 64;
                 color.b = 64;
             }
+
             color.a = 16 + (alpha + 1) * 24;
             GDSetTevColor(GX_TEVREG0, color);
             GDPadCurr32();
@@ -356,8 +397,11 @@ void MarioActor::drawScreenBlend() const {
     if (mMario->_97C && mMario->_97C->getBlurOffset() != 0.0f) {
         MR::drawFullScreenBlur(mMario->_97C->getBlurOffset());
     }
-    if (_1C6)
+
+    if (_1C6) {
         MR::drawFullScreenBlur(_1C8, _1CC, _1D0, _1D1);
+    }
+
     if (mBeeWallWalk) {
         TVec2f position;
         TVec2f opposite;
@@ -366,6 +410,7 @@ void MarioActor::drawScreenBlend() const {
         TDDraw::project2D(&position, mMario->mShadowPos);
         opposite = position + TVec2f(100.0f, 100.0f);
         position = position + TVec2f(-100.0f, -100.0f);
+
         if (position.x >= opposite.x) {
             minimum.x = opposite.x;
             maximum.x = position.x;
@@ -373,6 +418,7 @@ void MarioActor::drawScreenBlend() const {
             minimum.x = position.x;
             maximum.x = opposite.x;
         }
+
         if (position.y >= opposite.y) {
             minimum.y = opposite.y;
             maximum.y = position.y;
@@ -380,6 +426,7 @@ void MarioActor::drawScreenBlend() const {
             minimum.y = position.y;
             maximum.y = opposite.y;
         }
+
         position = minimum + TVec2f(-10.0f, -10.0f);
         opposite = maximum + TVec2f(10.0f, 10.0f);
         TDDraw::setup(0, 0, 2);
@@ -393,10 +440,14 @@ void MarioActor::drawScreenBlend() const {
         MR::loadProjectionMtx();
         MR::loadViewMtx();
     }
+
     if (_BC4) {
         u32 color = 0xFF000080;
-        if (mMario->_1C._3)
+
+        if (mMario->_1C._3) {
             color = 0x00004020;
+        }
+
         TDDraw::setup(0, 1, 2);
         TDDraw::drawFillBox(TVec3f(0.0f, 0.0f, 0.0f),
                             TVec3f(static_cast< f32 >(MR::getScreenWidth()), static_cast< f32 >(MR::getScreenHeight()), 0.0f), color);
@@ -410,19 +461,25 @@ void MarioActor::updateRandomTexture(f32 distance) {
     u8* image = mMaskTextures[_B88]->mImage;
     distance = 1.0f - distance / 1000.0f;
     f32 probability = MR::clamp(distance, 0.0f, 1.0f);
+
     for (u32 y = 0; y < 8; y++) {
         pixel = image + y * 8;
+
         for (u32 x = 0; x < 8; x++) {
             s32 alpha = *pixel >> 4;
-            if (MR::getRandom() < probability)
+
+            if (MR::getRandom() < probability) {
                 alpha += 4;
-            else
+            } else {
                 alpha--;
+            }
+
             alpha = MR::clamp(alpha, 0, 15);
             *pixel = (alpha * 16) & 0xF0;
             pixel++;
         }
     }
+
     DCStoreRange(image, 64);
 }
 
@@ -445,14 +502,18 @@ void MarioActor::drawWallShade(const TVec3f& position, const TVec3f& normal, f32
     GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
     Mtx rotation;
     TVec3f tangent(0.0f, normal.z, -normal.y);
-    if (MR::isNearZero(tangent))
+
+    if (MR::isNearZero(tangent)) {
         tangent.set< f32 >(normal.z, 0.0f, normal.x);
+    }
+
     MR::normalizeOrZero(&tangent);
     PSMTXRotAxisRad(rotation, &normal, 0.3926991f);
     GXBegin(GX_TRIANGLEFAN, GX_VTXFMT0, 18);
     GXPosition3f32(position.x - 5.0f * normal.x, position.y - 5.0f * normal.y, position.z - 5.0f * normal.z);
     GXColor1u32(128);
     GXTexCoord2f32(0.0f, 0.0f);
+
     for (u32 i = 0; i <= 16; i++) {
         f32 angle = 2.0f * ((i / 16.0f) * PI);
         TVec3f point = position - normal * 5.0f + tangent * radius;
@@ -461,6 +522,7 @@ void MarioActor::drawWallShade(const TVec3f& position, const TVec3f& normal, f32
         GXTexCoord2f32(10.0f * MR::cos(angle), 10.0f * MR::sin(angle));
         PSMTXMultVecSR(rotation, &tangent, &tangent);
     }
+
     GXEnd();
 }
 
@@ -485,8 +547,11 @@ void MarioActor::drawColdWaterDamage() const {
     GXCopyTex(_1D8, GX_FALSE);
     f32 textureStep = 1.0f / static_cast< f32 >(stripHeight);
     f32 frequency = 89.0f * MR::sin((TWO_PI * mMario->mSwim->mColdWaterDamageInterval) / 120.0f);
-    if (frequency > 0.0f)
+
+    if (frequency > 0.0f) {
         frequency = 0.0f;
+    }
+
     for (u32 y = 0; y < MR::getScreenHeight(); y += 4) {
         GXTexModeSync();
         GXPixModeSync();
@@ -495,6 +560,7 @@ void MarioActor::drawColdWaterDamage() const {
         GXCopyTex(mRasterBuffers[next], GX_FALSE);
         GXLoadTexObj(&textures[current], GX_TEXMAP0);
         f32 v = 0.0f;
+
         for (u32 row = y; row < y + 4; row++) {
             f32 offset = 5.0f * MR::sin(2.0f * (((_37C + row * frequency) / MR::getScreenHeight()) * PI));
             GXBegin(GX_LINES, GX_VTXFMT0, 2);
@@ -505,8 +571,10 @@ void MarioActor::drawColdWaterDamage() const {
             GXEnd();
             v += textureStep;
         }
+
         current = next;
     }
+
     GXDrawDone();
 }
 
@@ -536,10 +604,14 @@ void MarioActor::updateRasterScroll() {
 }
 
 void MarioActor::drawRasterScroll(f32 amplitude, s16 period, f32 wavelength) const {
-    if (wavelength == 0.0f)
+    if (wavelength == 0.0f) {
         return;
-    if (period == 0)
+    }
+
+    if (period == 0) {
         return;
+    }
+
     u32 next;
     u32 stripHeight = 4;
     GXTexObj textures[2];
@@ -560,6 +632,7 @@ void MarioActor::drawRasterScroll(f32 amplitude, s16 period, f32 wavelength) con
     f32 phase = _37C;
     phase *= TWO_PI;
     phase /= period;
+
     for (u32 y = 0; y < MR::getScreenHeight(); y += 4) {
         GXTexModeSync();
         GXPixModeSync();
@@ -568,6 +641,7 @@ void MarioActor::drawRasterScroll(f32 amplitude, s16 period, f32 wavelength) con
         GXCopyTex(mRasterBuffers[next], GX_FALSE);
         GXLoadTexObj(&textures[current], GX_TEXMAP0);
         f32 v = 0.0f;
+
         for (u32 row = y; row < y + 4; row++) {
             f32 angle = MR::sin(spatialPhase * row);
             angle *= PI;
@@ -581,8 +655,10 @@ void MarioActor::drawRasterScroll(f32 amplitude, s16 period, f32 wavelength) con
             GXEnd();
             v += textureStep;
         }
+
         current = next;
     }
+
     GXDrawDone();
 }
 
@@ -597,33 +673,49 @@ void MarioActor::calcSpinEffect() {
     f32 radiusScale = 5.8f;
     _6D4 = 0.0f;
     _6D8 = 0.0f;
-    if (selectAction("スピン回復エフェクト") != 1)
+
+    if (selectAction("スピン回復エフェクト") != 1) {
         return;
-    if (!_945)
+    }
+
+    if (!_945) {
         return;
-    if (_944)
+    }
+
+    if (_944) {
         return;
-    if (!_946)
+    }
+
+    if (!_946) {
         return;
+    }
+
     s32 frame = _946 - 9;
+
     if (frame <= 0 || frame > 15) {
         _6D4 = 0.0f;
         return;
     }
+
     if (frame < 10) {
         _6D4 = baseRadius + (frame / 10.0f) * (_945 * radiusScale);
         _6D8 = 120.0f;
         return;
     }
+
     _6D4 = baseRadius + _945 * radiusScale;
     _6D8 = 120.0f;
 }
 
 void MarioActor::drawSpinEffect() const {
-    if (_6D4 == 0.0f)
+    if (_6D4 == 0.0f) {
         return;
-    if (!isEnableNerveChange())
+    }
+
+    if (!isEnableNerveChange()) {
         return;
+    }
+
     TDDraw::setup(0, 1, 0);
     GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_ONE, GX_LO_NOOP);
     Mtx rotation;
@@ -632,16 +724,22 @@ void MarioActor::drawSpinEffect() const {
     TVec3f previous;
     PSMTXRotAxisRad(rotation, &mMario->mHeadVec, 0.09817477f);
     GXSetLineWidth(36, GX_TO_ZERO);
+
     for (u32 i = 0; i <= 64; i++) {
         TVec3f point(direction);
         point.setLength(_6D4);
         point += mMario->mHeadVec * MR::getRandom() * 10.0f;
-        if (i)
+
+        if (i) {
             TDDraw::drawLine(center + previous, center + point, 0xFFFFFF20);
+        }
+
         previous = point;
         PSMTXMultVecSR(rotation, &direction, &direction);
     }
+
     GXSetLineWidth(18, GX_TO_ZERO);
+
     for (u32 i = 0; i <= 64; i++) {
         TVec3f point(direction);
         point.setLength(_6D4);
@@ -649,17 +747,23 @@ void MarioActor::drawSpinEffect() const {
         f32 wave = MR::sin((((_37C + i) & 31) / 32.0f) * PI);
         f32 square = wave * wave;
         u32 alpha = 160.0f * (square * square);
-        if (i)
+
+        if (i) {
             TDDraw::drawLine(center + previous, center + point, alpha | 0x40FF00 | (alpha << 24));
+        }
+
         previous = point;
         PSMTXMultVecSR(rotation, &direction, &direction);
     }
+
     TDDraw::close();
 }
 
 void MarioActor::drawSphereMask() const {
-    if (!mMario->isVisibleRecoveryWarpBubble())
+    if (!mMario->isVisibleRecoveryWarpBubble()) {
         return;
+    }
+
     TDDraw::setup(0, 1, 0);
     GXSetZScaleOffset(1.0f, 0.00001f);
     GXSetCullMode(GX_CULL_FRONT);
@@ -674,19 +778,25 @@ void MarioActor::drawSphereMask() const {
 void MarioActor::initDarkMask() {
     for (u32 texture = 0; texture < 2; texture++) {
         u8* image = mMaskTextures[texture]->mImage;
+
         for (u32 y = 0; y < 8; y++) {
             u8* pixel = image + y * 8;
-            for (u32 x = 0; x < 8; x++)
+
+            for (u32 x = 0; x < 8; x++) {
                 pixel[x] = 0;
+            }
         }
     }
+
     _1C3 = true;
     _1C4 = 0;
 }
 
 void MarioActor::updateDarkMask(u16 unused) {
-    if (!_1C3)
+    if (!_1C3) {
         return;
+    }
+
     u8* previous = mMaskTextures[_B88]->mImage;
     _B88 = 1 - _B88;
     u8* image = mMaskTextures[_B88]->mImage;
@@ -699,8 +809,10 @@ void MarioActor::updateDarkMask(u16 unused) {
 }
 
 bool MarioActor::drawDarkMask() const {
-    if (!_1C3)
+    if (!_1C3) {
         return false;
+    }
+
     TDDraw::setup(1, 0, 2);
     GXSetAlphaUpdate(GX_TRUE);
     GXSetColorUpdate(GX_FALSE);
@@ -719,8 +831,11 @@ bool MarioActor::drawDarkMask() const {
     TVec2f maximum;
     getRealPos("Spine1", &spine);
     f32 radius = _1C4;
-    if (radius >= 240.0f)
+
+    if (radius >= 240.0f) {
         radius = 240.0f;
+    }
+
     TVec3f position(mPosition);
     TDDraw::project2D(&center, position);
     TDDraw::project2D(&screenX, position + mCamDirX * radius);
@@ -758,10 +873,13 @@ bool MarioActor::drawDarkMask() const {
 void MarioActor::showBeeFur() {
     if (mMario->isPlayerModeBee()) {
         _9E8->appear();
-        static_cast< FurMulti* >(_9EC)->onDraw(-1);
+        _9EC->onDraw(-1);
     }
-    if (getCarrySensor())
+
+    if (getCarrySensor()) {
         MR::showModel(getCarrySensor()->mHost);
+    }
+
     if (mMario->isPlayerModeInvincible()) {
         MR::showJoint(getJ3DModel(), "Face0");
         _A6E = 2;

@@ -36,36 +36,47 @@ public:
     void* getVtxPosArray() const {
         return mVtxPosArray;
     }
+
     void* getVtxNrmArray() const {
         return mVtxNrmArray;
     }
+
     GXColor* getVtxColorArray(u8 idx) const {
         return mVtxColorArray[idx];
     }
+
     void* getVtxTexCoordArray(u8 idx) const {
         return mVtxTexCoordArray[idx];
     }
+
     void* getVtxNBTArray() const {
         return mVtxNBTArray;
     }
+
     u32 getNrmNum() const {
         return mNrmNum;
     }
+
     u32 getVtxNum() const {
         return mVtxNum;
     }
+
     GXVtxAttrFmtList* getVtxAttrFmtList() const {
         return mVtxAttrFmtList;
     }
+
     u8 getVtxPosFrac() const {
         return mVtxPosFrac;
     }
+
     u8 getVtxNrmFrac() const {
         return mVtxNrmFrac;
     }
+
     int getVtxPosType() const {
         return mVtxPosType;
     }
+
     int getVtxNrmType() const {
         return mVtxNrmType;
     }
@@ -73,12 +84,15 @@ public:
     void setVtxPosFrac(u8 frac) {
         mVtxPosFrac = frac;
     }
+
     void setVtxPosType(GXCompType type) {
         mVtxPosType = type;
     }
+
     void setVtxNrmFrac(u8 frac) {
         mVtxNrmFrac = frac;
     }
+
     void setVtxNrmType(GXCompType type) {
         mVtxNrmType = type;
     }
@@ -108,6 +122,23 @@ public:
         init();
     }
 
+    J3DVertexBuffer& operator=(const J3DVertexBuffer& other) {
+        mVtxData = other.mVtxData;
+
+        for (s32 i = 0; i < 2; i++) {
+            mVtxPosArray[i] = other.mVtxPosArray[i];
+            mVtxNrmArray[i] = other.mVtxNrmArray[i];
+            mVtxColArray[i] = other.mVtxColArray[i];
+            mTransformedVtxPosArray[i] = other.mTransformedVtxPosArray[i];
+            mTransformedVtxNrmArray[i] = other.mTransformedVtxNrmArray[i];
+        }
+
+        mCurrentVtxPos = other.mCurrentVtxPos;
+        mCurrentVtxNrm = other.mCurrentVtxNrm;
+        mCurrentVtxCol = other.mCurrentVtxCol;
+        return *this;
+    }
+
     void setVertexData(J3DVertexData*);
     void init();
     ~J3DVertexBuffer();
@@ -121,6 +152,7 @@ public:
     void setCurrentVtxPos(void* pVtxPos) {
         mCurrentVtxPos = pVtxPos;
     }
+
     void* getCurrentVtxPos() {
         return mCurrentVtxPos;
     }
@@ -128,6 +160,7 @@ public:
     void setCurrentVtxNrm(void* pVtxNrm) {
         mCurrentVtxNrm = pVtxNrm;
     }
+
     void* getCurrentVtxNrm() {
         return mCurrentVtxNrm;
     }
@@ -145,9 +178,11 @@ public:
     void* getTransformedVtxPos(int idx) {
         return mTransformedVtxPosArray[idx];
     }
+
     void* getTransformedVtxNrm(int idx) {
         return mTransformedVtxNrmArray[idx];
     }
+
     J3DVertexData* getVertexData() const {
         return mVtxData;
     }
