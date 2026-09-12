@@ -2177,7 +2177,7 @@ config.libs = [
             Object(NonMatching, "Game/Screen/CounterLayoutAppearer.cpp"),
             Object(NonMatching, "Game/Screen/CounterLayoutController.cpp"),
             Object(NonMatching, "Game/Screen/CountUpPaneRumbler.cpp"),
-            Object(NonMatching, "Game/Screen/CustomTagProcessor.cpp"),
+            Object(NonMatching, "Game/Screen/CustomTagProcessor.cpp", mw_version="GC/3.0a3.2", extra_cflags=["-DNW4R_DEBUG"]),
             Object(NonMatching, "Game/Screen/DepthOfFieldBlur.cpp"),
             Object(Matching, "Game/Screen/EncouragePal60Window.cpp"),
             Object(Matching, "Game/Screen/ErrorMessageWindow.cpp"),
