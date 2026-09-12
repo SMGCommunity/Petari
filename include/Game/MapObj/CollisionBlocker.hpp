@@ -4,11 +4,12 @@
 
 class CollisionBlocker : public LiveActor {
 public:
-    CollisionBlocker(const char*);
+    /// @brief Creates a new `CollisionBlocker`.
+    /// @param pName A pointer to the null-terminated name of the object.
+    CollisionBlocker(const char* pName);
 
-    virtual ~CollisionBlocker();
-    virtual void init(const JMapInfoIter&);
-    virtual void attackSensor(HitSensor*, HitSensor*);
+    virtual void init(const JMapInfoIter& rIter);
+    virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
 
     void forceBreak();
 };

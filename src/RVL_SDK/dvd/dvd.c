@@ -60,8 +60,8 @@ extern BOOL __OSInIPL;
 
 static u8 __DVDGameTocBuffer[OSRoundUp32B(sizeof(DVDGameTOC) * 4)] __attribute__((aligned(32)));
 static u8 __DVDPartInfoBuffer[OSRoundUp32B(sizeof(DVDPartitionInfo) * 4)] __attribute__((aligned(32)));
-static u8 __DVDTmdBuffer[OSRoundUp32B(sizeof(ESTitleMeta))] __attribute__((aligned(32)));
-static u8 __DVDTicketViewBuffer[OSRoundUp32B(sizeof(ESTicketView))] __attribute__((aligned(32)));
+static u8 __DVDTmdBuffer[OSRoundUp32B(sizeof(ESTitleMeta))] __attribute__((aligned(64)));
+static u8 __DVDTicketViewBuffer[OSRoundUp32B(sizeof(ESTicketView))] __attribute__((aligned(64)));
 
 vu16 __OSDeviceCode : (OS_BASE_CACHED | 0x30E6);
 vu8 __OSLockedFlag : (OS_BASE_CACHED | 0x3187);
@@ -1215,7 +1215,7 @@ static void stateBusy(DVDCommandBlock* block) {
             stateReady();
         } else {
             DVDLowClearCoverInterrupt(0);
-            block->currTransferSize = MIN(block->length - block->transferredSize, 0x80000);
+            block->currTransferSize = MIN(0x80000, block->length - block->transferredSize);
             StampCommand(block->command, ((block->offset) + (block->transferredSize >> 2)), block->currTransferSize);
             DVDLowRead((void*)((u8*)block->addr + block->transferredSize), block->currTransferSize, ((block->offset) + (block->transferredSize >> 2)),
                        cbForStateBusy);
@@ -1262,7 +1262,7 @@ static void stateBusy(DVDCommandBlock* block) {
             stateReady();
         } else {
             DVDLowClearCoverInterrupt(0);
-            block->currTransferSize = MIN(block->length - block->transferredSize, 0x80000);
+            block->currTransferSize = MIN(0x80000, block->length - block->transferredSize);
             StampCommand(block->command, ((block->offset) + (block->transferredSize >> 2)), block->currTransferSize);
             DVDLowUnencryptedRead((void*)((u8*)block->addr + block->transferredSize), block->currTransferSize,
                                   ((block->offset) + (block->transferredSize >> 2)), cbForStateBusy);

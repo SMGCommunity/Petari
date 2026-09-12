@@ -35,8 +35,8 @@ public:
     bool isUseIndirect() const {
         return !!(mpData->mFlags & 0x01);
     }
-    bool isUseSecTex() const {
-        return !!(mpData->mFlags & 0x0100);
+    BOOL isUseSecTex() const {
+        return (mpData->mFlags & 0x0100);
     }
 
 public:

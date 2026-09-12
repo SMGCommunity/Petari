@@ -32,9 +32,7 @@ public:
     virtual J2DGrafType getGrafType() const;
     virtual void setLookat();
 
-    void setColor(JUtility::TColor c) {
-        this->setColor(c, c, c, c);
-    }
+    void setColor(JUtility::TColor c);
     void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
     void fillBox(const TBox2f&);
 

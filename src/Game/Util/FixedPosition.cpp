@@ -5,18 +5,16 @@
 #include "Game/Util/MtxUtil.hpp"
 #include "Game/Util/ObjUtil.hpp"
 
-FixedPosition::FixedPosition(const LiveActor* pActor, const char* pJointName, const TVec3f& rLocalTrans, const TVec3f& rRotAxes) {
-    MtxPtr jointMtx = MR::getJointMtx(pActor, pJointName);
-    init(jointMtx, rLocalTrans, rRotAxes);
+FixedPosition::FixedPosition(const LiveActor* pActor, const char* pJointName, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
+    init(MR::getJointMtx(pActor, pJointName), rLocalTrans, rLocalRotate);
 }
 
-FixedPosition::FixedPosition(const LiveActor* pActor, const TVec3f& rLocalTrans, const TVec3f& rRotAxes) {
-    MtxPtr baseMtx = pActor->getBaseMtx();
-    init(baseMtx, rLocalTrans, rRotAxes);
+FixedPosition::FixedPosition(const LiveActor* pActor, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
+    init(pActor->getBaseMtx(), rLocalTrans, rLocalRotate);
 }
 
-FixedPosition::FixedPosition(MtxPtr mtx, const TVec3f& rLocalTrans, const TVec3f& rRotAxes) {
-    init(mtx, rLocalTrans, rRotAxes);
+FixedPosition::FixedPosition(MtxPtr pBaseMtx, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
+    init(pBaseMtx, rLocalTrans, rLocalRotate);
 }
 
 void FixedPosition::calc() {
@@ -24,13 +22,13 @@ void FixedPosition::calc() {
     // https://decomp.me/scratch/Q7A0B
 
     mMtx.identity();
-    mMtx.setRotate(mRotDegrees * PI_180);
+    mMtx.setRotate(mLocalRotate * PI_180);
     mMtx.setTrans(mLocalTrans);
 
     if (mBaseMtx != nullptr) {
-        TMtx34f mtx;
-        mtx.set((const MtxPtr)mBaseMtx);
-        mMtx.concat(mtx, mMtx);
+        TMtx34f baseMtx;
+        baseMtx.set(mBaseMtx);
+        mMtx.concat(baseMtx, mMtx);
     }
 
     if (mNormalizeScale) {
@@ -38,32 +36,34 @@ void FixedPosition::calc() {
     }
 }
 
-void FixedPosition::setBaseMtx(MtxPtr mtx) {
-    mBaseMtx = (TMtx34f*)mtx;
+void FixedPosition::setBaseMtx(MtxPtr pBaseMtx) {
+    mBaseMtx = pBaseMtx;
 }
 
 void FixedPosition::setLocalTrans(const TVec3f& rLocalTrans) {
     mLocalTrans.set(rLocalTrans);
 }
 
-void FixedPosition::init(MtxPtr mtx, const TVec3f& rLocalTrans, const TVec3f& rRotAxes) {
-    setBaseMtx(mtx);
+void FixedPosition::init(MtxPtr pBaseMtx, const TVec3f& rLocalTrans, const TVec3f& rLocalRotate) {
+    setBaseMtx(pBaseMtx);
     mLocalTrans.set(rLocalTrans);
-    mRotDegrees.set(rRotAxes);
+    mLocalRotate.set(rLocalRotate);
     mMtx.identity();
     mNormalizeScale = true;
 }
 
-FixedPosition::FixedPosition(const LiveActor* pActor, const char* pBcsvName, const LiveActor* pResourceActor) {
-    if (pResourceActor == nullptr) {
-        pResourceActor = pActor;
+FixedPosition::FixedPosition(const LiveActor* pActor, const char* pResName, const LiveActor* pResActor) {
+    if (pResActor == nullptr) {
+        pResActor = pActor;
     }
-    ResourceHolder* resourceHolder = MR::getResourceHolder(pResourceActor);
-    JMapInfo* csv = MR::tryCreateCsvParser(resourceHolder, "%s.bcsv", pBcsvName);
+
+    ResourceHolder* resourceHolder = MR::getResourceHolder(pResActor);
+    JMapInfo* csv = MR::tryCreateCsvParser(resourceHolder, "%s.bcsv", pResName);
 
     const char* jointName = nullptr;
     TVec3f trans(0.0f, 0.0f, 0.0f);
     TVec3f rotate(0.0f, 0.0f, 0.0f);
+
     MR::getCsvDataStrOrNULL(&jointName, csv, "JointName", 0);
     MR::getCsvDataVec(&trans, csv, "Trans", 0);
     MR::getCsvDataVec(&rotate, csv, "Rotate", 0);

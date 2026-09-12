@@ -495,47 +495,37 @@ inline f32 J3DHermiteInterpolation(f32 p1, f32 const* p2, f32 const* p3, f32 con
 inline f32 J3DHermiteInterpolation(__REGISTER f32 pp1, __REGISTER s16 const* pp2, __REGISTER s16 const* pp3, __REGISTER s16 const* pp4,
                                    __REGISTER s16 const* pp5, __REGISTER s16 const* pp6, __REGISTER s16 const* pp7) {
 #ifdef __MWERKS__
-    register f32 p1 = pp1;
-    register f32 ff8;
-    register f32 ff7;
-    register f32 ff6;
-    register f32 ff5;
-    register f32 ff4;
-    register f32 ff3;
-    register f32 ff2;
-    register f32 ff0;
-    register f32 fout;
-    register s16 const* p2 = pp2;
-    register s16 const* p3 = pp3;
-    register s16 const* p4 = pp4;
-    register s16 const* p5 = pp5;
-    register s16 const* p6 = pp6;
-    register s16 const* p7 = pp7;
-    // clang-format off
+    register f32 value = pp1;
+    register f32 time;
+    register f32 start;
+    register f32 end;
+    register f32 duration;
+    register f32 delta;
+    register f32 t;
+    register f32 squared;
     asm {
-        psq_l ff2, 0(p2), 0x1, 5
-        psq_l ff0, 0(p5), 0x1, 5
-        psq_l ff7, 0(p3), 0x1, 5
-        fsubs ff5, ff0, ff2
-        psq_l ff6, 0(p6), 0x1, 5
-        fsubs ff3, p1, ff2
-        psq_l ff0, 0(p7), 0x1, 5
-        fsubs ff4, ff6, ff7
-        fdivs ff3, ff3, ff5
-        psq_l fout, 0(p4), 0x1, 5
-        fmadds ff0, ff0, ff5, ff7
-        fmuls ff2, ff3, ff3
-        fnmsubs ff4, ff5, fout, ff4
-        fsubs ff0, ff0, ff6
-        fsubs ff0, ff0, ff4
-        fmuls ff0, ff2, ff0
-        fmadds fout, ff5, fout, ff0
-        fmadds fout, fout, ff3, ff7
-        fmadds fout, ff4, ff2, fout
-        fsubs fout, fout, ff0
+        psq_l time, 0(pp2), 1, 5
+        psq_l end, 0(pp5), 1, 5
+        psq_l start, 0(pp3), 1, 5
+        fsubs duration, end, time
+        psq_l end, 0(pp6), 1, 5
+        fsubs t, value, time
+        psq_l value, 0(pp7), 1, 5
+        fsubs delta, end, start
+        fdivs t, t, duration
+        psq_l time, 0(pp4), 1, 5
+        fmadds value, value, duration, start
+        fnmsubs delta, duration, time, delta
+        fmuls squared, t, t
+        fsubs value, value, end
+        fsubs value, value, delta
+        fmuls end, squared, value
+        fmadds value, duration, time, end
+        fmadds value, value, t, start
+        fmadds value, delta, squared, value
+        fsubs value, value, end
     }
-    // clang-format on
-    return fout;
+    return value;
 #endif
 }
 
@@ -546,9 +536,9 @@ f32 J3DGetKeyFrameInterpolation(f32 frame, J3DAnmKeyTableBase* pKeyTable, T* pDa
     }
 
     if (pKeyTable->mType == 0) {
-        u32 idx = pKeyTable->mMaxFrame - 1;
-        if (pData[idx * 3] <= frame) {
-            return pData[idx * 3 + 1];
+        u32 idx = (pKeyTable->mMaxFrame - 1) * 3;
+        if (pData[idx] <= frame) {
+            return pData[idx + 1];
         }
 
         u32 uVar7 = pKeyTable->mMaxFrame;
@@ -952,6 +942,10 @@ void J3DAnmColor::searchUpdateMaterialID(J3DMaterialTable* pMatTable) {
     }
 }
 
+void J3DAnmColor::searchUpdateMaterialID(J3DModelData* pModelData) {
+    searchUpdateMaterialID(&pModelData->getMaterialTable());
+}
+
 J3DAnmColorFull::J3DAnmColorFull() {
     mColorR = NULL;
     mColorG = NULL;
@@ -1113,6 +1107,18 @@ void J3DAnmTexPattern::getTexNo(u16 index, u16* pTexNo) const {
         *pTexNo = mTextureIndex[mAnmTable[index].mOffset + ((u16)maxFrame - 1)];
     } else {
         *pTexNo = mTextureIndex[mAnmTable[index].mOffset + (int)mFrame];
+    }
+}
+
+void J3DAnmVisibilityFull::getVisibility(u16 index, u8* visibility) const {
+    int maxFrame = mAnmTable[index].mMaxFrame;
+    int frame = static_cast< int >(mFrame + 0.5f);
+    if (frame < 0) {
+        *visibility = mVisibility[mAnmTable[index].mOffset];
+    } else if (frame >= maxFrame) {
+        *visibility = mVisibility[maxFrame + mAnmTable[index].mOffset - 1];
+    } else {
+        *visibility = mVisibility[mAnmTable[index].mOffset + frame];
     }
 }
 

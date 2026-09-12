@@ -2,23 +2,21 @@
 #include "JSystem/JUtility/JUTException.hpp"
 #include <revolution/os/OSBootInfo.h>
 
+JKRHeap* JKRHeap::sSystemHeap;
 JKRHeap* JKRHeap::sCurrentHeap;
 JKRHeap* JKRHeap::sRootHeap;
-JKRHeap* JKRHeap::sSystemHeap;
+JKRErrorHandler JKRHeap::mErrorHandler;
+
+static bool byte_806B70B8;
 
 void* JKRHeap::mCodeStart;
 void* JKRHeap::mCodeEnd;
 void* JKRHeap::mUserRamStart;
 void* JKRHeap::mUserRamEnd;
-
-JKRErrorHandler JKRHeap::mErrorHandler;
-
-static bool byte_806B26D8;
-static bool byte_806B70B8;
-
 u32 JKRHeap::mMemorySize;
 
-u32 JKRHeap::ARALT_AramStartAddr = 0x90000000;
+static bool byte_806B26D8 = true;
+u32 ARALT_AramStartAdr = 0x90000000;
 
 JKRHeap::JKRHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRDisposer(), mChildTree(this), mDisposerList() {
     OSInitMutex(&mMutex);
@@ -186,7 +184,6 @@ JKRHeap* JKRHeap::findFromRoot(void* pData) {
     return root->findAllHeap(pData);
 }
 
-/* functionally equiv but not matching */
 JKRHeap* JKRHeap::find(void* pData) const {
     if (mStart <= pData && pData < mEnd) {
         const JSUTree< JKRHeap >& tree = mChildTree;
@@ -201,14 +198,12 @@ JKRHeap* JKRHeap::find(void* pData) const {
             }
         }
 
-        // this is to avoid returning a const JKRHeap ptr
         return const_cast< JKRHeap* >(this);
     }
 
     return nullptr;
 }
 
-/* same here */
 JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
     if (mChildTree.getNumChildren() != 0) {
         for (JSUTreeIterator< JKRHeap > iterator(mChildTree.getFirstChild()); iterator != mChildTree.getEndChild(); ++iterator) {
@@ -228,26 +223,25 @@ JKRHeap* JKRHeap::findAllHeap(void* ptr) const {
 }
 
 void JKRHeap::dispose_subroutine(u32 start, u32 end) {
+    JSUListIterator< JKRDisposer > it(mDisposerList.getFirst());
     JSUListIterator< JKRDisposer > last_it;
-    JSUListIterator< JKRDisposer > next_it;
-    JSUListIterator< JKRDisposer > it;
 
-    for (it = mDisposerList.getFirst(); it != mDisposerList.getEnd(); it = next_it) {
-        JKRDisposer* disp = it.getObject();
+    JSULink< JKRDisposer >* link;
+    while ((link = it.mLink) != nullptr) {
+        JKRDisposer* disp = link->getObject();
 
-        if ((void*)start <= disp && disp < (void*)end) {
+        if (reinterpret_cast< void* >(start) <= disp && disp < reinterpret_cast< void* >(end)) {
             disp->~JKRDisposer();
 
             if (last_it == nullptr) {
-                next_it = mDisposerList.getFirst();
+                it = mDisposerList.getFirst();
             } else {
-                next_it = last_it;
-                next_it++;
+                it = last_it;
+                it++;
             }
         } else {
             last_it = it;
-            next_it = it;
-            next_it++;
+            it++;
         }
     }
 }
@@ -287,7 +281,7 @@ void JKRHeap::copyMemory(void* pDst, void* pSrc, u32 size) {
 }
 
 void JKRDefaultMemoryErrorRoutine(void* pHeap, u32 size, int alignment) {
-    JUTException::panic_f(__FILE__, 0x355, "%s", "abort\n");
+    JUTException::panic(__FILE__, 0x355, "abort\n");
 }
 
 JKRErrorHandler JKRHeap::setErrorHandler(JKRErrorHandler errorHandler) {
@@ -346,11 +340,11 @@ void JKRHeap::state_dump(const TState&) const {
 }
 
 void JKRHeap::setAltAramStartAdr(u32 addr) {
-    ARALT_AramStartAddr = addr;
+    ARALT_AramStartAdr = addr;
 }
 
 u32 JKRHeap::getAltAramStartAdr() {
-    return ARALT_AramStartAddr;
+    return ARALT_AramStartAdr;
 }
 
 s32 JKRHeap::do_changeGroupID(u8) {

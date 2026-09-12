@@ -8,7 +8,9 @@ public:
     KabokuriFire(const char* pName);
 
     virtual void init(const JMapInfoIter& rIter);
-    virtual MtxPtr getBaseMtx() const { return const_cast<TPos3f*>(&_8C)->toMtxPtr(); }
+    virtual MtxPtr getBaseMtx() const {
+        return const_cast< TPos3f* >(&_8C)->toMtxPtr();
+    }
     virtual void control();
     virtual void attackSensor(HitSensor* pSender, HitSensor* pReceiver);
     virtual bool receiveOtherMsg(u32 msg, HitSensor* pSender, HitSensor* pReceiver);

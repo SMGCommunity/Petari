@@ -130,17 +130,17 @@ public:
     bool isDrawPrntAhead() const {
         return !!(mpData->mFlags & 0x00400000);
     }
-    bool isClipOn() const {
-        return !!(mpData->mFlags & 0x00800000);
+    BOOL isClipOn() const {
+        return (mpData->mFlags & 0x00800000);
     }
     BOOL isTexCrdAnm() const {
         return mpData->mFlags & 0x01000000;
     }
-    bool isNoDrawParent() const {
-        return !!(mpData->mFlags & 0x08000000);
+    u32 isNoDrawParent() const {
+        return (mpData->mFlags >> 27) & 1;
     }
-    bool isNoDrawChild() const {
-        return !!(mpData->mFlags & 0x10000000);
+    u32 isNoDrawChild() const {
+        return (mpData->mFlags >> 28) & 1;
     }
 
     BOOL isPrmAnm() const {
@@ -149,7 +149,7 @@ public:
     BOOL isEnvAnm() const {
         return mpData->mClrFlg & 0x08;
     }
-    inline u8 getClrAnmType() const {
+    inline u32 getClrAnmType() const {
         return (mpData->mClrFlg >> 4) & 0x07;
     }
     s16 getClrAnmMaxFrm() const {
@@ -171,7 +171,7 @@ public:
     BOOL isTexAnm() const {
         return mpData->mTexFlg & 0x01;
     }
-    u8 getTexAnmType() const {
+    u32 getTexAnmType() const {
         return (mpData->mTexFlg >> 2) & 0x07;
     }
     u32 getTexIdx() const {

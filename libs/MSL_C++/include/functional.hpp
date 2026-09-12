@@ -24,7 +24,7 @@ namespace std {
         typedef typename Base::argument_type Arg;
         typedef typename Base::result_type Result;
 
-        binder1st(const Func& mf, const Type& v) : mf_(mf), v_(v){};
+        binder1st(const Func& mf, const Type& v) : mf_(mf), v_(v) {};
 
         Result operator()(const Arg& a) const {
             return mf_(a, v_);
@@ -46,7 +46,7 @@ namespace std {
         typedef typename Base::argument_type Arg;
         typedef typename Base::result_type Result;
 
-        binder2nd(const Func& mf, const Type& v) : mf_(mf), v_(v){};
+        binder2nd(const Func& mf, const Type& v) : mf_(mf), v_(v) {};
 
         Result operator()(const Arg& a) const {
             return mf_(a, v_);
@@ -76,7 +76,7 @@ namespace std {
     template < class Return, class Type >
     class mem_fun_t : public unary_function< Type*, Return > {
     public:
-        explicit mem_fun_t(Return (Type::*mf)()) : mf_(mf){};
+        explicit mem_fun_t(Return (Type::*mf)()) : mf_(mf) {};
 
         Return operator()(Type* t) const {
             return (t->*mf_)();
@@ -102,7 +102,7 @@ namespace std {
     template < class Return, class Type >
     class const_mem_fun_t : public unary_function< const Type*, Return > {
     public:
-        explicit const_mem_fun_t(Return (Type::*mf)() const) : mf_(mf){};
+        explicit const_mem_fun_t(Return (Type::*mf)() const) : mf_(mf) {};
 
         Return operator()(const Type* t) const {
             return (t->*mf_)();
@@ -115,7 +115,7 @@ namespace std {
     template < class Result, class Type, class Arg >
     class mem_fun1_t : public binary_function< Type*, Arg, Result > {
     public:
-        explicit mem_fun1_t(Result (Type::*mf)(Arg)) : mf_(mf){};
+        explicit mem_fun1_t(Result (Type::*mf)(Arg)) : mf_(mf) {};
 
         Result operator()(Type* t, Arg a) const {
             return (t->*mf_)(a);
@@ -141,7 +141,7 @@ namespace std {
     template < class Result, class Type, class Arg >
     class const_mem_fun1_t : public binary_function< const Type*, Arg, Result > {
     public:
-        explicit const_mem_fun1_t(Result (Type::*mf)(Arg) const) : mf_(mf){};
+        explicit const_mem_fun1_t(Result (Type::*mf)(Arg) const) : mf_(mf) {};
 
         Result operator()(const Type* t, Arg a) const {
             return (t->*mf_)(a);

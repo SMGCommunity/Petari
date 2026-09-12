@@ -15,9 +15,13 @@ public:
     void set(bool);
     u16 mask() const;
 
-    u16 _0;
-    u16 _2;
-    u16 _4;
+    bool operator==(const AlreadyDoneInfo& other) const {
+        return isEqual(other);
+    }
+
+    /* 0x0 */ u16 _0;
+    /* 0x2 */ u16 _2;
+    /* 0x4 */ u16 _4;
 };
 
 class AlreadyDoneFlagInGalaxy {
@@ -28,6 +32,6 @@ public:
     u32 setupFlag(const char*, const JMapInfoIter&, u32*);
     void updateValue(int, u32);
 
-    MR::AssignableArray< AlreadyDoneInfo > mDoneInfos;
-    u32 _8;  // 0x8
+    /* 0x0 */ MR::AssignableArray< AlreadyDoneInfo > mDoneInfos;
+    /* 0x8 */ u32 _8;
 };

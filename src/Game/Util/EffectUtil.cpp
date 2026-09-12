@@ -86,7 +86,8 @@ namespace MR {
             return nullptr;
         }
 
-        return emitEffect(pActor, pEffectName);;
+        return emitEffect(pActor, pEffectName);
+        ;
     }
 
     bool tryDeleteEffect(LiveActor* pActor, const char* pEffectName) {

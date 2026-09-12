@@ -86,7 +86,7 @@ class AudDopplerAudible : public AudGenericAudible_< SIZE, JAUDopplerAudibleChan
 public:
     typedef AudGenericAudible_< SIZE, JAUDopplerAudibleChannel, JAUDopplerAudibleAbsPos > Base;
     AudDopplerAudible(const TVec3f& rPos, const TVec3f* pPos, u32 mask)
-        : Base(rPos, pPos, mask){
+        : Base(rPos, pPos, mask) {
 
           };
 

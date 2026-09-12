@@ -3,6 +3,19 @@
 #include "JSystem/JUtility/JUTPalette.hpp"
 #include <revolution/gx/GXVert.h>
 
+J2DPicture::J2DPicture(JUTTexture* texture) {
+    for (u32 i = 0; i < 4; i++) {
+        mTexture[i] = NULL;
+    }
+    field_0x109 = 0;
+    mTextureNum = 0;
+    if (texture != NULL) {
+        append(texture, 1.0f);
+    }
+    mPalette = NULL;
+    initinfo();
+}
+
 void J2DPicture::initiate(const ResTIMG* img, const ResTLUT* lut) {
     private_initiate(img, lut);
     if (mTexture[0] == NULL) {
@@ -44,7 +57,7 @@ void J2DPicture::private_initiate(const ResTIMG* timg, const ResTLUT* tlut) {
 
 void J2DPicture::initinfo() {
     mKind = 'PIC1';
-    setTexCoord(NULL, BIND15, MIRROR0, false);
+    setTexCoord(field_0x10a, NULL, BIND15, MIRROR0, false);
     setBlendRatio(1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f);
 
     mBlack = 0;
@@ -64,7 +77,7 @@ J2DPicture::~J2DPicture() {
 
 bool J2DPicture::prepareTexture(u8 param_0) {
     for (u8 i = 0; i < param_0; i++) {
-        if (i >= 2) {
+        if (i >= 4) {
             return 0;
         }
 
@@ -82,12 +95,12 @@ bool J2DPicture::prepareTexture(u8 param_0) {
 }
 
 bool J2DPicture::insert(ResTIMG const* img, JUTPalette* palette, u8 param_2, f32 param_3) {
-    if (img == NULL || mTextureNum >= 2 || param_2 >= 2 || param_2 > mTextureNum) {
+    if (img == NULL || mTextureNum >= 4 || param_2 >= 4 || param_2 > mTextureNum) {
         return false;
     }
 
     u8 var_r26 = 0;
-    if (img->mImageNum != 0 && palette == NULL) {
+    if (img->mPaletteName != 0 && palette == NULL) {
         var_r26 = getUsableTlut(mTextureNum);
     }
 
@@ -99,7 +112,7 @@ bool J2DPicture::insert(ResTIMG const* img, JUTPalette* palette, u8 param_2, f32
             var_r31->storeTIMG(img, palette);
         }
 
-        for (u8 i = 1; i > param_2; i--) {
+        for (u8 i = 3; i > param_2; i--) {
             mTexture[i] = mTexture[i - 1];
             field_0x11c[i] = field_0x11c[i - 1];
             field_0x124[i] = field_0x124[i - 1];
@@ -115,8 +128,8 @@ bool J2DPicture::insert(ResTIMG const* img, JUTPalette* palette, u8 param_2, f32
             mTexture[mTextureNum]->storeTIMG(img, palette);
         }
 
-        u8 sp8[2];
-        for (u8 i = 0; i < 2; i++) {
+        u8 sp8[4];
+        for (u8 i = 0; i < 4; i++) {
             sp8[i] = (field_0x109 & (1 << i)) != 0;
         }
 
@@ -129,7 +142,7 @@ bool J2DPicture::insert(ResTIMG const* img, JUTPalette* palette, u8 param_2, f32
 
         field_0x109 = 0;
 
-        for (u8 i = 0; i < 2; i++) {
+        for (u8 i = 0; i < 4; i++) {
             if (sp8[i] != 0) {
                 field_0x109 |= (1 << i);
             }
@@ -144,7 +157,7 @@ bool J2DPicture::insert(ResTIMG const* img, JUTPalette* palette, u8 param_2, f32
 
     if (mTextureNum == 0 && mTexture[0] != NULL) {
         place(JGeometry::TBox2< f32 >(0.0f, 0.0f, mTexture[0]->getWidth(), mTexture[0]->getHeight()));
-        setTexCoord(NULL, BIND15, MIRROR0, false);
+        setTexCoord(field_0x10a, NULL, BIND15, MIRROR0, false);
     }
 
     mTextureNum++;
@@ -159,16 +172,16 @@ bool J2DPicture::insert(char const* resName, JUTPalette* palette, u8 param_2, f3
 }
 
 bool J2DPicture::insert(JUTTexture* texture, u8 param_1, f32 param_2) {
-    if (texture == NULL || mTextureNum >= 2 || param_1 >= 2 || param_1 > mTextureNum) {
+    if (texture == NULL || mTextureNum >= 4 || param_1 >= 4 || param_1 > mTextureNum) {
         return false;
     }
 
-    if (mTexture[1] != NULL && field_0x109 & 2) {
-        delete mTexture[1];
-        field_0x109 &= 1;
+    if (mTexture[3] != NULL && field_0x109 & 8) {
+        delete mTexture[3];
+        field_0x109 &= 7;
     }
 
-    for (u8 i = 1; i > param_1; i--) {
+    for (u8 i = 3; i > param_1; i--) {
         mTexture[i] = mTexture[i - 1];
         field_0x11c[i] = field_0x11c[i - 1];
         field_0x124[i] = field_0x124[i - 1];
@@ -183,7 +196,7 @@ bool J2DPicture::insert(JUTTexture* texture, u8 param_1, f32 param_2) {
 
     if (mTextureNum == 0 && &mTexture[0] != NULL) {
         place(JGeometry::TBox2< f32 >(0.0f, 0.0f, mTexture[0]->getWidth(), mTexture[0]->getHeight()));
-        setTexCoord(NULL, BIND15, MIRROR0, false);
+        setTexCoord(field_0x10a, NULL, BIND15, MIRROR0, false);
     }
 
     mTextureNum++;
@@ -289,7 +302,7 @@ void J2DPicture::drawSelf(f32 param_0, f32 param_1) {
 
 void J2DPicture::drawSelf(f32 param_0, f32 param_1, Mtx* param_2) {
     if (mTexture[0] != NULL && mTextureNum != 0) {
-        drawFullSet(mGlobalBounds.i.x + param_0, mGlobalBounds.i.y + param_1, mBounds.f.x - mBounds.i.x, mBounds.f.y - mBounds.i.y, param_2);
+        drawFullSet(mGlobalBounds.i.x + param_0, mGlobalBounds.i.y + param_1, getWidth(), getHeight(), param_2);
     }
 }
 
@@ -572,10 +585,9 @@ void J2DPicture::setBlendKonstColor() {
             tmp += field_0x11c[j];
         }
 
-        f32 tmp2 = tmp + field_0x11c[i];
-        if (tmp2 != 0.0f) {
-            // probably fake match but idk whats happening here
-            uvar3 |= (u8)(255.0f * (1.0f - tmp / tmp2)) << (i - 1) * 8;
+        if (tmp + field_0x11c[i] != 0.0f) {
+            f32 value = 255.0f * (1.0f - tmp / (tmp + field_0x11c[i]));
+            uvar3 |= static_cast< u8 >(value) << (i - 1) * 8;
         }
     }
     mBlendKonstColor = uvar3;
@@ -589,10 +601,9 @@ void J2DPicture::setBlendKonstAlpha() {
             tmp += field_0x124[j];
         }
 
-        f32 tmp2 = tmp + field_0x124[i];
-        if (tmp2 != 0.0f) {
-            // probably fake match but idk whats happening here
-            uvar3 |= (u8)(255.0f * (1.0f - tmp / tmp2)) << (i - 1) * 8;
+        if (tmp + field_0x124[i] != 0.0f) {
+            f32 value = 255.0f * (1.0f - tmp / (tmp + field_0x124[i]));
+            uvar3 |= static_cast< u8 >(value) << (i - 1) * 8;
         }
     }
     mBlendKonstAlpha = uvar3;
@@ -774,4 +785,11 @@ GXTlut J2DPicture::getTlutID(ResTIMG const* img, u8 param_1) {
     }
 
     return (GXTlut)param_1;
+}
+
+void J2DPicture::setCornerColor(JUtility::TColor c0, JUtility::TColor c1, JUtility::TColor c2, JUtility::TColor c3) {
+    mCornerColor[0] = c0;
+    mCornerColor[1] = c1;
+    mCornerColor[2] = c2;
+    mCornerColor[3] = c3;
 }

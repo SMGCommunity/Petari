@@ -112,8 +112,6 @@ J3DMaterial* J3DMaterialFactory::create(J3DMaterial* i_material, MaterialType i_
     return i_material;
 }
 
-/*
-uncomment me when it no longer crashes to include this func
 J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, int i_idx, u32 i_flags) const {
     if (mpDisplayListInit != NULL) {
         return createLockedMaterial(i_material, i_idx, i_flags);
@@ -121,7 +119,7 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
 
     const u32 stages = countStages(i_idx);
     u32 tev_stage_num = getMdlDataFlag_TevStageNum(i_flags);
-    u32 tev_stage_num_max = JMAMax(stages, tev_stage_num);
+    u32 tev_stage_num_max = (stages > tev_stage_num ? stages : tev_stage_num);
     u32 tex_num = tev_stage_num_max > 8 ? 8 : tev_stage_num_max;
     u32 texgens = countTexGens(i_idx);
     u32 texgen_flag = texgens > 4 ? getMdlDataFlag_TexGenFlag(0) : getMdlDataFlag_TexGenFlag(i_flags);
@@ -223,19 +221,16 @@ J3DMaterial* J3DMaterialFactory::createNormalMaterial(J3DMaterial* i_material, i
     }
     return i_material;
 }
-*/
 
-/*
-same here
 J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, int i_idx, u32 i_flags) const {
     if (i_material == NULL) {
         i_material = new J3DPatchedMaterial();
     }
-    bool bVar1 = i_flags & 0x3000000 ? true : false;
+    u8 indFlag = (i_flags & 0x3000000) != 0 ? static_cast< u8 >(1) : static_cast< u8 >(0);
     i_material->mColorBlock = J3DMaterial::createColorBlock(0x40000000);
     i_material->mTexGenBlock = new J3DTexGenBlockPatched();
     i_material->mTevBlock = new J3DTevBlockPatched();
-    i_material->mIndBlock = J3DMaterial::createIndBlock(bVar1);
+    i_material->mIndBlock = J3DMaterial::createIndBlock(indFlag);
     i_material->mPEBlock = J3DMaterial::createPEBlock(0x10000000, getMaterialMode(i_idx));
     i_material->mIndex = i_idx;
     i_material->mMaterialMode = getMaterialMode(i_idx);
@@ -293,7 +288,7 @@ J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, 
         J3DTexCoord tex_coord = newTexCoord(i_idx, i);
         i_material->mTexGenBlock->setTexCoord(i, &tex_coord);
     }
-    if (bVar1 && mpIndInitData != NULL) {
+    if (indFlag && mpIndInitData != NULL) {
         u8 ind_tex_stage_num = newIndTexStageNum(i_idx);
         i_material->mIndBlock->setIndTexStageNum(newIndTexStageNum(i_idx));
         for (u8 i = 0; i < ind_tex_stage_num; i++) {
@@ -311,13 +306,12 @@ J3DMaterial* J3DMaterialFactory::createPatchedMaterial(J3DMaterial* i_material, 
     }
     return i_material;
 }
-*/
 
 void J3DMaterialFactory::modifyPatchedCurrentMtx(J3DMaterial* i_material, int i_idx) const {
     J3DTexCoord coord[8];
     u32 tex_gens = countTexGens(i_idx);
     for (u8 i = 0; i < tex_gens; i++) {
-        coord[i] = newTexCoord(i_idx, i);
+        coord[i].J3DTexCoordInfo::operator=(newTexCoord(i_idx, i));
     }
     J3DCurrentMtx currentMtx;
     currentMtx.setCurrentTexMtx(coord[0].getTexGenMtx(), coord[1].getTexGenMtx(), coord[2].getTexGenMtx(), coord[3].getTexGenMtx(),
@@ -376,7 +370,7 @@ u32 J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial* i_material, int i_id
 
     const u32 stages = countStages(i_idx);
     u32 tev_stage_num = getMdlDataFlag_TevStageNum(i_flags);
-    u32 tev_stage_num_max = JMAMax(stages, tev_stage_num);
+    u32 tev_stage_num_max = (stages > tev_stage_num ? stages : tev_stage_num);
     u32 tex_num = tev_stage_num_max > 8 ? 8 : tev_stage_num_max;
     u32 tex_gens = countTexGens(i_idx);
     u32 tex_gen_flag = tex_gens > 4 ? getMdlDataFlag_TexGenFlag(0) : getMdlDataFlag_TexGenFlag(i_flags);

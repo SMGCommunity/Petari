@@ -98,7 +98,7 @@ void WatchTowerRotateStep::initLift(const JMapInfoIter& rIter) {
         MtxPtr mtx = MR::getJointMtx(this, i + 1);
 
         mLift[i] = new PartsModel(this, "物見の塔リフト", "WatchTowerRotateStepLift", mtx, -1, false);
-        mLift[i]->mCalcOwnMtx = false;
+        mLift[i]->mIsCalcOwnMtx = false;
 
         MR::initCollisionParts(mLift[i], "WatchTowerRotateStepLift", getSensor(nullptr), nullptr);
         MR::initShadowVolumeBox(mLift[i], TVec3f(600.0f, 200.0f, 400.0f), mLift[i]->getBaseMtx());

@@ -347,7 +347,7 @@ namespace nw4r {
             GXSetCurrentMtx(GX_PNMTX0);
         }
 
-        math::VEC2 Pane::GetVtxPos() const {
+        const math::VEC2 Pane::GetVtxPos() const {
             math::VEC2 base(0.0f, 0.0f);
 
             switch (mBasePosition % 3) {

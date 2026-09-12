@@ -79,10 +79,8 @@ enum {
 
 class JPABaseEmitter {
 public:
-    ~JPABaseEmitter() {
-    }
-    JPABaseEmitter() : mLink(this), mRndm(0) {
-    }
+    ~JPABaseEmitter();
+    JPABaseEmitter();
     void init(JPAEmitterManager*, JPAResource*);
     bool processTillStartFrame();
     bool processTermination();
@@ -393,3 +391,7 @@ public:
 enum {
     JPAPtclStts_Invisible = 0x08,
 };
+
+#ifndef JPA_EMITTER_DEFER_INLINE
+#include "JSystem/JParticle/JPAEmitterInline.hpp"
+#endif

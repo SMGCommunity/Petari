@@ -9,17 +9,51 @@
 #include "nw4r/ut/inlines.h"
 #include <cstdio>
 
-static const GXColorS10 DefaultBlackColor = {0, 0, 0, 0};
-static const GXColorS10 DefaultWhiteColor = {255, 255, 255, 255};
+const GXColorS10 DefaultBlackColor = {0, 0, 0, 0};
 
 namespace nw4r {
     namespace lyt {
         namespace {
+            bool IsWhiteColor(const GXColorS10& color) {
+                return color.r == 255 && color.g == 255 && color.b == 255 && color.a == 255;
+            }
+
             bool operator==(const GXColorS10& rLhs, const GXColorS10& rRhs) {
                 return rLhs.r == rRhs.r && rLhs.g == rRhs.g && rLhs.b == rRhs.b && rLhs.a == rRhs.a;
             }
+
             bool operator!=(const GXColorS10& rLhs, const GXColorS10& rRhs) {
                 return !(rLhs == rRhs);
+            }
+
+            void CalcTextureMtx(nw4r::math::MTX34* pMtx, const nw4r::lyt::TexSRT& rSrt) {
+                nw4r::math::VEC2 center(0.5f, 0.5f);
+
+                f32 cr = nw4r::math::CosDeg(rSrt.rotate);
+                f32 sr = nw4r::math::SinDeg(rSrt.rotate);
+
+                f32 a0, a1;
+
+                a0 = cr * rSrt.scale.x;
+                a1 = -sr * rSrt.scale.y;
+
+                pMtx->_00 = a0;
+                pMtx->_01 = a1;
+                pMtx->_02 = 0.0f;
+                pMtx->_03 = rSrt.translate.x + center.x + a0 * -center.x + a1 * -center.y;
+
+                a0 = sr * rSrt.scale.x;
+                a1 = cr * rSrt.scale.y;
+
+                pMtx->_10 = a0;
+                pMtx->_11 = a1;
+                pMtx->_12 = 0.0f;
+                pMtx->_13 = rSrt.translate.y + center.y + a0 * -center.x + a1 * -center.y;
+
+                pMtx->_20 = 0.0f;
+                pMtx->_21 = 0.0f;
+                pMtx->_22 = 1.0f;
+                pMtx->_23 = 0.0f;
             }
 
             void SetIndTexMtx(GXIndTexMtxID id, const f32 mtx[2][3]) {
@@ -90,36 +124,6 @@ namespace nw4r {
                 GXSetIndTexMtx(id, outMtx, scaleExp);
             }
 
-            void CalcTextureMtx(nw4r::math::MTX34* pMtx, const nw4r::lyt::TexSRT& rSrt) {
-                nw4r::math::VEC2 center(0.5f, 0.5f);
-
-                f32 cr = nw4r::math::CosDeg(rSrt.rotate);
-                f32 sr = nw4r::math::SinDeg(rSrt.rotate);
-
-                f32 a0, a1;
-
-                a0 = cr * rSrt.scale.x;
-                a1 = -sr * rSrt.scale.y;
-
-                pMtx->_00 = a0;
-                pMtx->_01 = a1;
-                pMtx->_02 = 0.0f;
-                pMtx->_03 = rSrt.translate.x + center.x + a0 * -center.x + a1 * -center.y;
-
-                a0 = sr * rSrt.scale.x;
-                a1 = cr * rSrt.scale.y;
-
-                pMtx->_10 = a0;
-                pMtx->_11 = a1;
-                pMtx->_12 = 0.0f;
-                pMtx->_13 = rSrt.translate.y + center.y + a0 * -center.x + a1 * -center.y;
-
-                pMtx->_20 = 0.0f;
-                pMtx->_21 = 0.0f;
-                pMtx->_22 = 1.0f;
-                pMtx->_23 = 0.0f;
-            }
-
             void CalcIndTexMtx(f32 mtx[2][3], const nw4r::lyt::TexSRT& rSrt) {
                 f32 cr = nw4r::math::CosDeg(rSrt.rotate);
                 f32 sr = nw4r::math::SinDeg(rSrt.rotate);
@@ -136,6 +140,7 @@ namespace nw4r {
             inline u32 GetTexMtxIdx(u32 mtx) {
                 return (mtx - GX_TEXMTX0) / 3;
             }
+
             inline u32 GetTexMtx(u32 idx) {
                 return GX_TEXMTX0 + idx * 3;
             }
@@ -219,6 +224,11 @@ namespace nw4r {
             }
 
         };  // namespace
+
+        Material::Material() {
+            Init();
+            memset(mName, 0, sizeof(mName));
+        }
 
 #pragma dont_inline on
 
@@ -360,8 +370,8 @@ namespace nw4r {
 
         void Material::Init() {
             mTevCols[0] = DefaultBlackColor;
-            mTevCols[1] = DefaultWhiteColor;
-            mTevCols[2] = DefaultWhiteColor;
+            mTevCols[1].a = mTevCols[1].b = mTevCols[1].g = mTevCols[1].r = 255;
+            mTevCols[2].a = mTevCols[2].b = mTevCols[2].g = mTevCols[2].r = 255;
 
             InitBitGXNums(&mGXMemCap);
             InitBitGXNums(&mGXMemNum);
@@ -876,7 +886,7 @@ namespace nw4r {
                             }
                         }
 
-                        if (mTevCols[0] != DefaultBlackColor || mTevCols[1] != DefaultWhiteColor) {
+                        if (mTevCols[0] != DefaultBlackColor || !IsWhiteColor(mTevCols[1])) {
                             GXTevStageID tevStage = static_cast< GXTevStageID >(tevStageID);
 
                             GXSetTevOrder(tevStage, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);

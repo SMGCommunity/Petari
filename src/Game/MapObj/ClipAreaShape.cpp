@@ -99,22 +99,21 @@ ClipAreaShapeBox::ClipAreaShapeBox(s32 u1) : ClipAreaShape("VolumeBox") {
 
 bool ClipAreaShapeBox::isInArea(const TVec3f& rVec) const {
     switch (_C) {
-        case 0:
-            return (MR::isInRange(rVec.x, -mRadius, mRadius) && MR::isInRange(rVec.y, -mRadius, mRadius) && MR::isInRange(rVec.z, -mRadius, mRadius));
+    case 0:
+        return (MR::isInRange(rVec.x, -mRadius, mRadius) && MR::isInRange(rVec.y, -mRadius, mRadius) && MR::isInRange(rVec.z, -mRadius, mRadius));
         break;
-        case 1:
-            return (MR::isInRange(rVec.x, -mRadius, mRadius) && MR::isInRange(rVec.y, 0.0f, 2.0f*mRadius) && MR::isInRange(rVec.z, -mRadius, mRadius));
+    case 1:
+        return (MR::isInRange(rVec.x, -mRadius, mRadius) && MR::isInRange(rVec.y, 0.0f, 2.0f * mRadius) && MR::isInRange(rVec.z, -mRadius, mRadius));
         break;
     }
 
     return false;
-
 }
 
 void ClipAreaShapeBox::calcVolumeMatrix(TPos3f* pPos, const TPos3f& rPos, const TVec3f& rVec) const {
     pPos->set(rPos);
     if (_C == 1) {
-        MR::addTransMtxLocalY((MtxPtr)pPos, mRadius*rVec.y);
+        MR::addTransMtxLocalY((MtxPtr)pPos, mRadius * rVec.y);
     }
 
     MR::preScaleMtx((MtxPtr)pPos, rVec);

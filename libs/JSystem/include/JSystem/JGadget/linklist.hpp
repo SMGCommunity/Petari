@@ -7,6 +7,11 @@
 
 #include "Inline.hpp"
 
+// this limits the NO_INLINE to this specific file. certainly a fakematch, but oh well.
+#ifndef JGADGET_LINKLIST_NOINLINE
+#define JGADGET_LINKLIST_NOINLINE
+#endif
+
 #define JGADGET_LINK_LIST(type, node) JGadget::TLinkList< type, -offsetof(type, node) >
 
 namespace std {
@@ -102,7 +107,7 @@ namespace JGadget {
 
         ~TNodeLinkList();
 
-        void Initialize_() {
+        void Initialize_() JGADGET_LINKLIST_NOINLINE {
             mLen = 0;
             mEnd.mNext = &mEnd;
             mEnd.mPrev = &mEnd;
@@ -122,12 +127,14 @@ namespace JGadget {
         template < typename T >
         inline void Remove_if(T p, TNodeLinkList& removed) {
             iterator it = begin();
+            iterator dest = removed.end();
+            iterator stop = end();
 
-            while (it.curr != &mEnd) {
+            while (it != stop) {
+                iterator prev = it;
                 if (p(*it)) {
-                    iterator prev = it;
                     ++it;
-                    removed.splice(removed.end(), *this, prev);
+                    removed.splice(dest, *this, prev);
                 } else {
                     ++it;
                 }
@@ -240,3 +247,5 @@ namespace JGadget {
         }
     };
 }  // namespace JGadget
+
+#undef JGADGET_LINKLIST_NOINLINE

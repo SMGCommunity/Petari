@@ -18,8 +18,7 @@ u16 J3DModelLoader::countMaterialNum(const void* stream) {
     return 0;
 }
 
-u32 J3DModelLoader::calcLoadSize(void const* stream, u32 flags_) {
-    int flags = flags_;
+u32 J3DModelLoader::calcLoadSize(void const* stream, u32 flags) {
     const J3DModelFileData* header = static_cast< const J3DModelFileData* >(stream);
     size_t size = 0;
     const J3DModelBlock* nextBlock = header->mBlocks;
@@ -80,7 +79,7 @@ u32 J3DModelLoader::calcLoadMaterialTableSize(const void* stream) {
                                           J3DMLF_21 | J3DMLF_Material_UseIndirect | J3DMLF_Material_PE_Full | J3DMLF_Material_Color_LightOn);
             break;
         case 'TEX1':
-            size += calcSizeTextureTable((const J3DTextureBlock*)nextBlock);
+            size += calcSizeTexture((const J3DTextureBlock*)nextBlock);
             hasTextureTable = true;
             break;
         default:
@@ -270,8 +269,7 @@ u32 J3DModelLoader::calcSizePatchedMaterial(const J3DMaterialBlock* block, u32 f
     return size;
 }
 
-u32 J3DModelLoader::calcSizeMaterialDL(const J3DMaterialDLBlock* block, u32 flags_) {
-    int flags = flags_;
+u32 J3DModelLoader::calcSizeMaterialDL(const J3DMaterialDLBlock* block, u32 flags) {
     size_t size = 0;
     J3DMaterialFactory factory(*block);
     ;

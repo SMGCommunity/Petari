@@ -15,8 +15,8 @@ namespace nw4r {
             ResourceAccessor();
 
             virtual ~ResourceAccessor();
-            virtual void* GetResource(ResType, const char *, u32* ) = 0;
-            virtual ut::Font* GetFont(const char *);
+            virtual void* GetResource(ResType, const char*, u32* = 0) = 0;
+            virtual ut::Font* GetFont(const char*);
         };
     };
 };

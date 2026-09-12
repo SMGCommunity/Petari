@@ -8,7 +8,9 @@ class JSUFileInputStream;
 
 class JKRFile : public JKRDisposer {
 public:
-    JKRFile();
+    JKRFile() : JKRDisposer() {
+        mIsAvailable = false;
+    }
 
     virtual ~JKRFile() {
     }
@@ -36,7 +38,9 @@ public:
     virtual void close();
     virtual s32 readData(void*, s32, s32);
     virtual s32 writeData(const void*, s32, s32);
-    virtual s32 getFileSize() const;
+    virtual s32 getFileSize() const {
+        return mFileInfo.length;
+    }
     virtual bool open(s32);
 
     s32 sync();
@@ -70,3 +74,4 @@ public:
     static JSUList< JKRDvdFile > sDvdList;
     static void doneProcess(s32, DVDFileInfo*);
 };
+

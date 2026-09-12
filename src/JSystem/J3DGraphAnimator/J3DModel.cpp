@@ -94,14 +94,8 @@ s32 J3DModel::createShapePacket(J3DModelData* pModelData) {
 }
 
 s32 J3DModel::createMatPacket(J3DModelData* pModelData, u32 mdlFlags) {
-    s32 ret = 0;
-
     if (pModelData->getMaterialNum() != 0) {
         mMatPacket = new J3DMatPacket[pModelData->getMaterialNum()];
-
-        if (mMatPacket == NULL) {
-            return kJ3DError_Alloc;
-        }
     }
 
     u16 matNum = pModelData->getMaterialNum();
@@ -130,41 +124,32 @@ s32 J3DModel::createMatPacket(J3DModelData* pModelData, u32 mdlFlags) {
                     matPacket->setDisplayListObj(matPacket->mpDisplayListObj);
                 } else {
                     J3DDisplayListObj* dlobj = materialNode->getSharedDisplayListObj();
-                    ret = dlobj->single_To_Double();
-                    if (ret != kJ3DError_Success)
+                    s32 ret = dlobj->single_To_Double();
+                    if (ret != kJ3DError_Success) {
                         return ret;
+                    }
 
                     matPacket->setDisplayListObj(dlobj);
                 }
             } else if (mdlFlags & J3DMdlFlag_UseSharedDL) {
                 if (mdlFlags & J3DMdlFlag_UseSingleDL) {
-                    ret = materialNode->newSingleSharedDisplayList(materialNode->countDLSize());
-                    if (ret != kJ3DError_Success)
-                        return ret;
+                    materialNode->newSingleSharedDisplayList(materialNode->countDLSize());
 
                     J3DDisplayListObj* dlobj = materialNode->getSharedDisplayListObj();
                     matPacket->setDisplayListObj(dlobj);
                 } else {
-                    ret = materialNode->newSharedDisplayList(materialNode->countDLSize());
-                    if (ret != kJ3DError_Success)
-                        return ret;
+                    materialNode->newSharedDisplayList(materialNode->countDLSize());
 
                     J3DDisplayListObj* dlobj = materialNode->getSharedDisplayListObj();
-                    ret = dlobj->single_To_Double();
-                    if (ret != kJ3DError_Success)
-                        return ret;
+                    dlobj->single_To_Double();
 
                     matPacket->setDisplayListObj(dlobj);
                 }
             } else {
                 if (mdlFlags & J3DMdlFlag_UseSingleDL) {
-                    ret = matPacket->newSingleDisplayList(materialNode->countDLSize());
-                    if (ret != kJ3DError_Success)
-                        return ret;
+                    matPacket->newSingleDisplayList(materialNode->countDLSize());
                 } else {
-                    ret = matPacket->newDisplayList(materialNode->countDLSize());
-                    if (ret != kJ3DError_Success)
-                        return ret;
+                    matPacket->newDisplayList(materialNode->countDLSize());
                 }
             }
         }
@@ -293,7 +278,9 @@ void J3DModel::calc() {
     }
 
     mModelData->syncJ3DSysFlags();
-    mVertexBuffer.frameInit();
+    mVertexBuffer.setCurrentVtxPos(mVertexBuffer.mVtxPosArray[0]);
+    mVertexBuffer.setCurrentVtxNrm(mVertexBuffer.mVtxNrmArray[0]);
+    mVertexBuffer.setCurrentVtxCol(mVertexBuffer.mVtxColArray[0]);
 
     if (mUnkCalc2 != NULL) {
         mUnkCalc2->calc(mModelData);
@@ -427,4 +414,8 @@ Mtx33* J3DModel::getNrmMtxPtr() {
 
 Mtx33* J3DModel::getBumpMtxPtr(int idx) {
     return mMtxBuffer->getBumpMtxPtr(idx);
+}
+
+inline void J3DModel::calcNrmMtx() {
+    mMtxBuffer->calcNrmMtx();
 }

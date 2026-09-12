@@ -4,7 +4,7 @@
 #include <revolution/os.h>
 
 class JKRHeap;
-class NWC24MsgObj;
+struct NWC24MsgObj;
 
 class NWC24SendThread : OSThread {
 public:
@@ -33,10 +33,10 @@ private:
     void initMsgSendStatus();
     static NWC24Err sendMessage(NWC24SendThread::MsgSendStatus*, u32*);
     static bool checkTotalSize(NWC24SendThread::MsgSendStatus*);
-    NWC24Err setToMyself(NWC24MsgObj*);
+    static NWC24Err setToMyself(NWC24MsgObj*);
 
 private:
-    static OSMessage mMessage;
+    static OSMessage* mMessage;
     static s32 mMessageMax;
     static OSMessageQueue mMessageQueue;
 
@@ -45,7 +45,3 @@ private:
     // TODO: Alignment?
     /* 0x31C */ MsgSendStatus mMsgSendStatus;
 };
-
-OSMessage NWC24SendThread::mMessage;
-s32 NWC24SendThread::mMessageMax = 1;
-OSMessageQueue NWC24SendThread::mMessageQueue;

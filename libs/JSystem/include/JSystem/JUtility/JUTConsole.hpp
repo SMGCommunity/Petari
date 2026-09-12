@@ -21,7 +21,7 @@ class JUTFont;
 
 class JUTConsole : public JKRDisposer {
 public:
-    static void print_f(const char*, ...);
+    void print_f(const char*, ...);
 
     enum EConsoleType {
         CONSOLE_TYPE_0 = 0,
@@ -68,14 +68,8 @@ public:
     }
 
     int diffIndex(int param_0, int param_1) const {
-        int result;
         int diff = param_1 - param_0;
-        if (diff >= 0) {
-            result = diff;
-        } else {
-            result = diff + mMaxLines;
-        }
-        return result;
+        return diff >= 0 ? diff : diff + mMaxLines;
     }
 
     void print_f_va(const char* fmt, va_list args) {

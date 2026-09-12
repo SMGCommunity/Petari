@@ -536,7 +536,7 @@ static void EXTIntrruptHandler(__OSInterrupt interrupt, OSContext* context) {
 void EXIInit(void) {
     u32 id;
 
-    while(EXI_0CR_GET_TSTART(REG(0, 3)) == 1 || EXI_0CR_GET_TSTART(REG(1, 0)) == 1 || EXI_0CR_GET_TSTART(REG(2, 0)) == 1) {
+    while(EXI_0CR_GET_TSTART(REG(0, 3)) == 1 || EXI_0CR_GET_TSTART(REG(1, 3)) == 1 || EXI_0CR_GET_TSTART(REG(2, 3)) == 1) {
 
     }
 

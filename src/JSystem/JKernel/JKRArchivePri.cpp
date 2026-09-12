@@ -3,42 +3,7 @@
 #include <cstring>
 #include <ctype.h>
 
-void JKRArchive::CArcName::store(const char* name) {
-    mHash = 0;
-    s32 length = 0;
-    while (*name) {
-        s32 ch = tolower(*name);
-        mHash = ch + mHash * 3;
-        if (length < ARRAY_SIZE(mName)) {
-            mName[length++] = ch;
-        }
-        name++;
-    }
-
-    mLength = (u16)length;
-    mName[length] = 0;
-}
-
-const char* JKRArchive::CArcName::store(const char* name, char endChar) {
-    mHash = 0;
-    s32 length = 0;
-    while (*name && *name != endChar) {
-        s32 lch = tolower((int)*name);
-        mHash = lch + mHash * 3;
-        if (length < ARRAY_SIZE(mName)) {
-            mName[length++] = lch;
-        }
-        name++;
-    }
-
-    mLength = (u16)length;
-    mName[length] = 0;
-
-    if (*name == 0) {
-        return NULL;
-    }
-    return name + 1;
-}
+u32 JKRArchive::sCurrentDirID;
 
 JKRArchive::JKRArchive() {
     mIsMounted = false;
@@ -58,31 +23,13 @@ JKRArchive::JKRArchive(s32 entryNum, EMountMode mountMode) {
 
     mEntryNum = entryNum;
 
-    if (gCurrentFileLoader == nullptr) {
+    if (sCurrentVolume == nullptr) {
         sCurrentDirID = 0;
-        gCurrentFileLoader = this;
+        sCurrentVolume = this;
     }
 }
 
 JKRArchive::~JKRArchive() {
-}
-
-void JKRArchive::setExpandSize(SDIFileEntry* pFile, u32 size) {
-    u32 fileIndex = static_cast< u32 >(pFile - mFiles);
-    if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
-        return;
-    }
-
-    mExpandSizes[fileIndex] = size;
-}
-
-u32 JKRArchive::getExpandSize(SDIFileEntry* pFile) const {
-    u32 fileIndex = static_cast< u32 >(pFile - mFiles);
-    if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
-        return 0;
-    }
-
-    return mExpandSizes[fileIndex];
 }
 
 bool JKRArchive::isSameName(CArcName& rName, u32 nameOffset, u16 hash) const {
@@ -232,4 +179,59 @@ JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16 fileID) const {
     }
 
     return nullptr;
+}
+
+void JKRArchive::CArcName::store(const char* name) {
+    mHash = 0;
+    s32 length = 0;
+    while (*name) {
+        s32 ch = tolower(*name);
+        mHash = ch + mHash * 3;
+        if (length < ARRAY_SIZE(mName)) {
+            mName[length++] = ch;
+        }
+        name++;
+    }
+
+    mLength = static_cast< u16 >(length);
+    mName[length] = 0;
+}
+
+const char* JKRArchive::CArcName::store(const char* name, char endChar) {
+    mHash = 0;
+    s32 length = 0;
+    while (*name && *name != endChar) {
+        s32 lch = tolower(static_cast< int >(*name));
+        mHash = lch + mHash * 3;
+        if (length < ARRAY_SIZE(mName)) {
+            mName[length++] = lch;
+        }
+        name++;
+    }
+
+    mLength = static_cast< u16 >(length);
+    mName[length] = 0;
+
+    if (*name == 0) {
+        return NULL;
+    }
+    return name + 1;
+}
+
+void JKRArchive::setExpandSize(SDIFileEntry* pFile, u32 size) {
+    u32 fileIndex = static_cast< u32 >(pFile - mFiles);
+    if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
+        return;
+    }
+
+    mExpandSizes[fileIndex] = size;
+}
+
+u32 JKRArchive::getExpandSize(SDIFileEntry* pFile) const {
+    u32 fileIndex = static_cast< u32 >(pFile - mFiles);
+    if (mExpandSizes == nullptr || fileIndex >= mInfoBlock->mNrFiles) {
+        return 0;
+    }
+
+    return mExpandSizes[fileIndex];
 }

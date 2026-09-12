@@ -6,9 +6,13 @@
 
 J3DSys j3dSys;
 
-J3DTexCoordScaleInfo J3DSys::sTexCoordScaleTable[8];
+Mtx J3DSys::mCurrentMtx;
+Vec J3DSys::mCurrentS;
+Vec J3DSys::mParentS;
 
 static u8 NullTexData[0x10] ATTRIBUTE_ALIGN(32) = {0};
+
+J3DTexCoordScaleInfo J3DSys::sTexCoordScaleTable[8];
 
 static Mtx j3dIdentityMtx = {
     1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f,
@@ -34,20 +38,20 @@ J3DSys::J3DSys() {
     PSMTXIdentity(mViewMtx);
     mDrawMode = 1;
     mMaterialMode = 0;
-    mModel = NULL;
-    mShape = NULL;
+    mModel = nullptr;
+    mShape = nullptr;
 
     for (int i = 0; i < 2; i++)
-        mDrawBuffer[i] = NULL;
+        mDrawBuffer[i] = nullptr;
 
-    mTexture = NULL;
-    mMatPacket = NULL;
-    mShapePacket = NULL;
-    mModelDrawMtx = NULL;
-    mModelNrmMtx = NULL;
-    mVtxPos = NULL;
-    mVtxNrm = NULL;
-    mVtxCol = NULL;
+    mTexture = nullptr;
+    mMatPacket = nullptr;
+    mShapePacket = nullptr;
+    mModelDrawMtx = nullptr;
+    mModelNrmMtx = nullptr;
+    mVtxPos = nullptr;
+    mVtxNrm = nullptr;
+    mVtxCol = nullptr;
 
     for (int i = 0; i < 8; i++) {
         sTexCoordScaleTable[i].field_0x00 = 1;
@@ -78,19 +82,21 @@ void J3DSys::setTexCacheRegion(GXTexCacheSize size) {
     mTexCacheRegionNum = kRegionNum[size];
 
     if (checkFlag(0x80000000)) {
-        for (u32 i = 0; i < kRegionNum[size]; i++) {
+        u32 regionNum = kRegionNum[size];
+        for (u32 i = 0; i < regionNum; i++) {
             if (i & 1) {
                 GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size] + 0x80000, size, i * kSize[size], size);
-                J3DFifoLoadTexCached((GXTexMapID)i, i * kSize[size] + 0x80000, size, i * kSize[size], size);
+                J3DFifoLoadTexCached(static_cast< GXTexMapID >(i), i * kSize[size] + 0x80000, size, i * kSize[size], size);
             } else {
                 GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size], size, i * kSize[size] + 0x80000, size);
-                J3DFifoLoadTexCached((GXTexMapID)i, i * kSize[size], size, i * kSize[size] + 0x80000, size);
+                J3DFifoLoadTexCached(static_cast< GXTexMapID >(i), i * kSize[size], size, i * kSize[size] + 0x80000, size);
             }
         }
     } else {
-        for (u32 i = 0; i < kRegionNum[size]; i++) {
+        u32 regionNum = kRegionNum[size];
+        for (u32 i = 0; i < regionNum; i++) {
             GXInitTexCacheRegion(&mTexCacheRegion[i], GX_FALSE, i * kSize[size], size, i * kSize[size] + 0x80000, size);
-            J3DFifoLoadTexCached((GXTexMapID)i, i * kSize[size], size, i * kSize[size] + 0x80000, size);
+            J3DFifoLoadTexCached(static_cast< GXTexMapID >(i), i * kSize[size], size, i * kSize[size] + 0x80000, size);
         }
     }
 }
@@ -339,7 +345,7 @@ void J3DSys::reinitPixelProc() {
     GXSetAlphaUpdate(GX_TRUE);
     GXSetDither(GX_TRUE);
     GXSetFog(GX_FOG_NONE, 0.0f, 1.0f, 0.1f, 1.0f, ColorBlack);
-    GXSetFogRangeAdj(GX_FALSE, 0, NULL);
+    GXSetFogRangeAdj(GX_FALSE, 0, nullptr);
     GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
     GXSetZCompLoc(GX_TRUE);
 }

@@ -1,3 +1,7 @@
+#include "nw4r/lyt/textBox.h"
+#include "nw4r/lyt/picture.h"
+#include "nw4r/lyt/window.h"
+#include "nw4r/lyt/bounding.h"
 #include "nw4r/lyt/animation.h"
 #include "nw4r/lyt/common.h"
 #include "nw4r/lyt/group.h"
@@ -8,6 +12,20 @@
 #include "nw4r/lyt/util.h"
 #include "nw4r/ut/Rect.h"
 #include "revolution/mem/allocator.h"
+
+namespace {
+    using namespace nw4r;
+    using namespace nw4r::lyt;
+    void SetTagProcessorImpl(Pane* pPane, ut::TagProcessorBase< wchar_t >* pTagProcessor) {
+        if (TextBox* pTextBox = ut::DynamicCast< TextBox* >(pPane)) {
+            pTextBox->SetTagProcessor(pTagProcessor);
+        }
+
+        for (PaneList::Iterator it = pPane->GetChildList().GetBeginIter(); it != pPane->GetChildList().GetEndIter(); ++it) {
+            SetTagProcessorImpl(&(*it), pTagProcessor);
+        }
+    }
+}
 
 namespace nw4r {
     namespace lyt {
@@ -42,16 +60,21 @@ namespace nw4r {
         }
 
         Layout::~Layout() {
-            DeleteObj(mpGroupContainer);
+            if (mpGroupContainer) {
+                mpGroupContainer->~GroupContainer();
+                FreeMemory(mpGroupContainer);
+            }
 
             if (mpRootPane != nullptr && !mpRootPane->IsUserAllocated()) {
-                DeleteObj(mpRootPane);
+                mpRootPane->~Pane();
+                FreeMemory(mpRootPane);
             }
 
             for (AnimTransformList::Iterator it = mAnimTransList.GetBeginIter(); it != mAnimTransList.GetEndIter();) {
                 AnimTransformList::Iterator currIt = it++;
                 mAnimTransList.Erase(currIt);
-                DeleteObj(&(*currIt));
+                currIt->~AnimTransform();
+                FreeMemory(&*currIt);
             }
         }
 
@@ -297,8 +320,36 @@ namespace nw4r {
             return ut::Rect(0.0f, 0.0f, mLayoutSize.width, mLayoutSize.height);
         }
 
-        // have to do more headers to decomp these two
-        // nw4r::lyt::Layout::SetTagProcessor
-        // nw4r::lyt::Layout::BuildPaneObj
-    };  // namespace lyt
-};  // namespace nw4r
+        void Layout::SetTagProcessor(ut::TagProcessorBase< wchar_t >* pTagProcessor) {
+            SetTagProcessorImpl(mpRootPane, pTagProcessor);
+        }
+        Pane* Layout::BuildPaneObj(s32 kind, const void* dataPtr, const ResBlockSet& resBlockSet) {
+            switch (kind) {
+            case res::DATABLOCKKIND_PANE: {
+                const res::Pane* pResPane = static_cast< const res::Pane* >(dataPtr);
+                return NewObj< Pane >(pResPane);
+            } break;
+            case res::DATABLOCKKIND_PICTURE: {
+                const res::Picture* pResPic = static_cast< const res::Picture* >(dataPtr);
+                return NewObj< Picture >(pResPic, resBlockSet);
+            } break;
+            case res::DATABLOCKKIND_TEXTBOX: {
+                const res::TextBox* pBlock = static_cast< const res::TextBox* >(dataPtr);
+                return NewObj< TextBox >(pBlock, resBlockSet);
+            } break;
+            case res::DATABLOCKKIND_WINDOW: {
+                const res::Window* pBlock = static_cast< const res::Window* >(dataPtr);
+                return NewObj< Window >(pBlock, resBlockSet);
+            } break;
+            case res::DATABLOCKKIND_BOUNDING: {
+                const res::Bounding* pResBounding = static_cast< const res::Bounding* >(dataPtr);
+                return NewObj< Bounding >(pResBounding, resBlockSet);
+            } break;
+            default:
+                break;
+            }
+
+            return 0;
+        }
+    }
+}

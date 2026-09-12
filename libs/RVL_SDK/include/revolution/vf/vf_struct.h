@@ -386,7 +386,7 @@ typedef struct PF_DRV_TBL {
     unsigned char stat;       // offset 0x9, size 0x1
 } PF_DRV_TBL;
 
-struct PF_VOLUME_SET VFipf_vol_set;
+extern struct PF_VOLUME_SET VFipf_vol_set;
 
 typedef struct PF_DEV_INF {
     // total size: 0x10
@@ -443,7 +443,7 @@ typedef struct PF_SYSTEM_SET {
     unsigned long flock_count;  // offset 0x0, size 0x4
 } PF_SYSTEM_SET;
 
-struct PF_SYSTEM_SET VFipf_sys_set;
+extern struct PF_SYSTEM_SET VFipf_sys_set;
 
 typedef struct VFSysTime {
     // total size: 0x18

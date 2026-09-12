@@ -80,7 +80,7 @@ public:
     void dispose_subroutine(u32, u32);
     s32 getTotalFreeSize();
 
-    u32 getMaxAllocatableSize(int a1) NO_INLINE {
+    u32 getMaxAllocatableSize(int a1) {
         u32 v4 = (u32)getMaxFreeBlock();
         return ~(a1 - 1) & (getFreeSize() - ((a1 - 1) & (a1 - (v4 & 0xF))));
     }
@@ -196,8 +196,6 @@ public:
     static void* mUserRamEnd;
     static u32 mMemorySize;
 
-    static u32 ARALT_AramStartAddr;
-
     inline void* getStartAddr() const {
         return (void*)mStart;
     }
@@ -218,8 +216,6 @@ public:
     JSUList< JKRDisposer > mDisposerList;  // 0x5C
     bool mErrorFlag;                       // 0x68
     u8 _69;
-    u8 _6A;
-    u8 _6B;
 };
 
 #ifdef __MWERKS__

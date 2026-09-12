@@ -1,3 +1,4 @@
+#define JGEOMETRY_VEC3_ZERO_NOINLINE
 #include "JSystem/JParticle/JPAFieldBlock.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JParticle/JPAEmitter.hpp"
@@ -101,7 +102,7 @@ void JPAFieldConvection::calc(JPAEmitterWorkData* work, JPAFieldBlock* block, JP
 void JPAFieldRandom::calc(JPAEmitterWorkData* work, JPAFieldBlock* block, JPABaseParticle* ptcl) {
     if (ptcl->mAge == 0 || (block->getCycle() != 0 && ptcl->mAge % block->getCycle() == 0)) {
         JPABaseEmitter* emtr = work->mpEmtr;
-        mAccel.set(emtr->get_r_zh(), emtr->get_r_zh(), emtr->get_r_zh());
+        mAccel.set< f32 >(emtr->get_r_zh(), emtr->get_r_zh(), emtr->get_r_zh());
         mAccel.scale(block->getMag());
         calcAffect(block, ptcl);
     }
@@ -130,7 +131,7 @@ void JPAFieldSpin::calc(JPAEmitterWorkData* work, JPAFieldBlock* block, JPABaseP
     mtx[0][3] = mtx[1][3] = mtx[2][3] = 0.0f;
     Vec vec;
     PSMTXMultVecSR(mtx, &ptcl->mLocalPosition, &vec);
-    mAccel.set(vec.x - ptcl->mLocalPosition.x, vec.y - ptcl->mLocalPosition.y, vec.z - ptcl->mLocalPosition.z);
+    mAccel.set< f32 >(vec.x - ptcl->mLocalPosition.x, vec.y - ptcl->mLocalPosition.y, vec.z - ptcl->mLocalPosition.z);
     calcAffect(block, ptcl);
 }
 

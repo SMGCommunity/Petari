@@ -113,29 +113,20 @@ s32 VFipdm_disk_do_get_permission(struct PDM_DISK* p_disk, struct PDM_DISK* lp_d
 }
 
 s32 VFipdm_disk_check_disk_handle(struct PDM_DISK* p_disk) {
-    u32 disk_no;
+    s32 err;
     u32 disk_id;
-    u32 disk_sig;
     u16 handle_no;
     struct PDM_DISK* lp_disk;
 
-    disk_no = (u32)p_disk & 0xFF;
     disk_id = (u32)p_disk & 0xFF00;
 
-    if (disk_no >= 26 || disk_id != 0x300) {
+    if (((u32)p_disk & 0xFF) >= 26 || disk_id != 0x300) {
         return 1;
     }
 
-    lp_disk = &VFipdm_disk_set.disk[disk_no];
-    disk_sig = (u32)p_disk >> 16;
-
-    for (handle_no = 0; handle_no < 26; handle_no++) {
-        if (VFipdm_disk_set.disk_handle[handle_no].handle == lp_disk && VFipdm_disk_set.disk_handle[handle_no].signature == disk_sig) {
-            break;
-        }
-    }
-
-    return handle_no >= 26;
+    lp_disk = &VFipdm_disk_set.disk[(u32)p_disk & 0xFF];
+    err = VFipdm_disk_search_handle(p_disk, lp_disk, &handle_no);
+    return err;
 }
 
 s32 VFipdm_disk_open_disk(struct PDM_INIT_DISK* p_init_disk_tbl, struct PDM_DISK** pp_disk) {
@@ -289,11 +280,11 @@ s32 VFipdm_disk_release_part_permission(struct PDM_DISK* p_disk, u32 mode) {
     return err;
 }
 
-s32 VFipdm_disk_physical_read(struct PDM_DISK* p_disk, u8* buf, u32 psector, u32 num_sector, u16 bps, u32* p_num_success) {
+s32 VFipdm_disk_physical_read(struct PDM_DISK* p_disk, u8* buf, u32 block, u32 num_block, u32* p_num_success) {
     s32 err;
     struct PDM_DISK* lp_disk;
 
-    if (p_disk == NULL || buf == NULL || num_sector == 0 || bps == 0) {
+    if (p_disk == NULL || buf == NULL || num_block == 0 || p_num_success == NULL) {
         return 1;
     }
 
@@ -304,7 +295,7 @@ s32 VFipdm_disk_physical_read(struct PDM_DISK* p_disk, u8* buf, u32 psector, u32
 
     lp_disk = &VFipdm_disk_set.disk[(u32)p_disk & 0xFF];
 
-    err = lp_disk->disk_tbl.p_func->physical_read(p_disk, buf, psector, num_sector, p_num_success);
+    err = lp_disk->disk_tbl.p_func->physical_read(p_disk, buf, block, num_block, p_num_success);
 
     if (err != 0) {
         if (lp_disk->p_cur_part != NULL) {
@@ -316,11 +307,11 @@ s32 VFipdm_disk_physical_read(struct PDM_DISK* p_disk, u8* buf, u32 psector, u32
     return 0;
 }
 
-s32 VFipdm_disk_physical_write(struct PDM_DISK* p_disk, const u8* buf, u32 psector, u32 num_sector, u16 bps, u32* p_num_success) {
+s32 VFipdm_disk_physical_write(struct PDM_DISK* p_disk, const u8* buf, u32 block, u32 num_block, u32* p_num_success) {
     s32 err;
     struct PDM_DISK* lp_disk;
 
-    if (p_disk == NULL || buf == NULL || num_sector == 0 || bps == 0) {
+    if (p_disk == NULL || buf == NULL || num_block == 0 || p_num_success == NULL) {
         return 1;
     }
 
@@ -331,7 +322,7 @@ s32 VFipdm_disk_physical_write(struct PDM_DISK* p_disk, const u8* buf, u32 psect
 
     lp_disk = &VFipdm_disk_set.disk[(u32)p_disk & 0xFF];
 
-    err = lp_disk->disk_tbl.p_func->physical_write(p_disk, (u8*)buf, psector, num_sector, p_num_success);
+    err = lp_disk->disk_tbl.p_func->physical_write(p_disk, (u8*)buf, block, num_block, p_num_success);
 
     if (err != 0) {
         if (lp_disk->p_cur_part != NULL) {

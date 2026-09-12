@@ -22,21 +22,20 @@ s32 VFipdm_mbr_get_table(u8* buf, u32 sector, PDM_MBR* p_mbr_tbl) {
         p_mbr_tbl->current_sector = sector;
     }
     p_buf = buf + 446;
-    for (i = 4; i != 0; --i) {
-        p_mbr_tbl->partition_table[0].boot_flag = p_buf[0];
-        p_mbr_tbl->partition_table[0].partition_type = p_buf[4];
-        p_mbr_tbl->partition_table[0].s_head = p_buf[1];
+    for (i = 0; i < 4; i++) {
+        p_mbr_tbl->partition_table[i].boot_flag = p_buf[0];
+        p_mbr_tbl->partition_table[i].partition_type = p_buf[4];
+        p_mbr_tbl->partition_table[i].s_head = p_buf[1];
         cs_val = p_buf[2] | (p_buf[3] << 8);
-        p_mbr_tbl->partition_table[0].s_cylinder = 4 * (cs_val & 0xC0) + (cs_val >> 8);
-        p_mbr_tbl->partition_table[0].s_sector = cs_val & 0x3F;
-        p_mbr_tbl->partition_table[0].e_head = p_buf[5];
+        p_mbr_tbl->partition_table[i].s_cylinder = ((cs_val & 0xC0) << 2) + (cs_val >> 8);
+        p_mbr_tbl->partition_table[i].s_sector = cs_val & 0x3F;
+        p_mbr_tbl->partition_table[i].e_head = p_buf[5] | (p_buf[6] << 8);
         cs_val = p_buf[6] | (p_buf[7] << 8);
-        p_mbr_tbl->partition_table[0].e_cylinder = 4 * (cs_val & 0xC0) + (cs_val >> 8);
-        p_mbr_tbl->partition_table[0].e_sector = cs_val & 0x3F;
-        p_mbr_tbl->partition_table[0].lba_start_sector = p_buf[8] | (p_buf[9] << 8) | (p_buf[10] << 16) | (p_buf[11] << 24);
-        p_mbr_tbl->partition_table[0].lba_num_sectors = p_buf[12] | (p_buf[13] << 8) | (p_buf[14] << 16) | (p_buf[15] << 24);
+        p_mbr_tbl->partition_table[i].e_cylinder = ((cs_val & 0xC0) << 2) + (cs_val >> 8);
+        p_mbr_tbl->partition_table[i].e_sector = cs_val & 0x3F;
+        p_mbr_tbl->partition_table[i].lba_start_sector = p_buf[8] | (p_buf[9] << 8) | (p_buf[10] << 16) | (p_buf[11] << 24);
+        p_mbr_tbl->partition_table[i].lba_num_sectors = p_buf[12] | (p_buf[13] << 8) | (p_buf[14] << 16) | (p_buf[15] << 24);
         p_buf += 16;
-        p_mbr_tbl = (PDM_MBR*)((u8*)p_mbr_tbl + sizeof(PDM_PART_TBL));
     }
     return 0;
 }

@@ -8,11 +8,11 @@
 #include <cstdarg>
 #include <new>
 
-size_t JUTConsole::getLineFromObjectSize(u32 bufferSize, unsigned int param_1) {
-    bufferSize -= sizeof(JUTConsole);
-    size_t result = (bufferSize) / (param_1 + 2);
-    return result;
-}
+#pragma inline_max_size(250)
+
+JUTConsoleManager* JUTConsoleManager::sManager;
+static JUTConsole* sReportConsole;
+static JUTConsole* sWarningConsole;
 
 JUTConsole* JUTConsole::create(unsigned int param_0, void* buffer, u32 bufferSize) {
     JUTConsoleManager* pManager = JUTConsoleManager::getManager();
@@ -20,7 +20,7 @@ JUTConsole* JUTConsole::create(unsigned int param_0, void* buffer, u32 bufferSiz
     u32 maxLines = getLineFromObjectSize(bufferSize, param_0);
 
     JUTConsole* console = new (buffer) JUTConsole(param_0, maxLines, false);
-    console->mBuf = (u8*)buffer + sizeof(JUTConsole);
+    console->mBuf = static_cast< u8* >(buffer) + sizeof(JUTConsole);
     console->clear();
 
     pManager->appendConsole(console);
@@ -40,7 +40,7 @@ JUTConsole::JUTConsole(unsigned int param_0, unsigned int maxLines, bool param_2
         mHeight = mMaxLines;
     }
 
-    mFont = NULL;
+    mFont = nullptr;
     mVisible = true;
     field_0x69 = false;
     field_0x6a = false;
@@ -54,6 +54,12 @@ JUTConsole::JUTConsole(unsigned int param_0, unsigned int maxLines, bool param_2
 
 JUTConsole::~JUTConsole() {
     JUTConsoleManager::getManager()->removeConsole(this);
+}
+
+size_t JUTConsole::getLineFromObjectSize(u32 bufferSize, unsigned int param_1) {
+    bufferSize -= sizeof(JUTConsole);
+    size_t result = (bufferSize) / (param_1 + 2);
+    return result;
 }
 
 void JUTConsole::clear() {
@@ -72,18 +78,14 @@ void JUTConsole::clear() {
 
 void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
     f32 font_yOffset;
-    s32 changeLine_1;
-    s32 changeLine_2;
 
-    if (mVisible && (mFont != NULL || consoleType == CONSOLE_TYPE_2)) {
+    if (mVisible && (mFont != nullptr || consoleType == CONSOLE_TYPE_2)) {
         if (mHeight != 0) {
             bool spA = consoleType == CONSOLE_TYPE_0 ? true : false;
-            int spA4 = spA ? 1 : 0;
-            spA4 = 0;
             font_yOffset = 2.0f + mFontSizeY;
 
             if (consoleType != CONSOLE_TYPE_2) {
-                if (JUTGetVideoManager() == NULL) {
+                if (JUTGetVideoManager() == nullptr) {
                     J2DOrthoGraph ortho(0.0f, 0.0f, 640.0f, 480.0f, -1.0f, 1.0f);
                     ortho.setPort();
                 } else {
@@ -91,12 +93,12 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
                     ortho.setPort();
                 }
 
-                J2DFillBox(mPositionX - 2, (int)(mPositionY - font_yOffset), (int)((mFontSizeX * field_0x20) + 4.0f),
-                           (int)(font_yOffset * (mHeight + spA4)), spA ? field_0x60 : field_0x5c);
+                J2DFillBox(mPositionX - 2, static_cast< int >(mPositionY - font_yOffset), static_cast< int >((mFontSizeX * field_0x20) + 4.0f),
+                           static_cast< int >(font_yOffset * mHeight), spA ? field_0x60 : field_0x5c);
                 mFont->setGX();
 
                 if (spA) {
-                    if (((diffIndex(field_0x30, field_0x38) - (int)mHeight) + 1) <= 0) {
+                    if (((diffIndex(field_0x30, field_0x38) - static_cast< int >(mHeight)) + 1) <= 0) {
                         mFont->setCharColor(JUtility::TColor(255, 255, 255, 255));
                     } else if (field_0x30 == field_0x34) {
                         mFont->setCharColor(JUtility::TColor(255, 230, 230, 255));
@@ -107,7 +109,8 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
                     mFont->setCharColor(JUtility::TColor(230, 230, 230, 255));
                 }
             } else {
-                JUTDirectPrint::getManager()->erase(mPositionX - 3, mPositionY - 2, (field_0x20 * 6) + 6, (int)(font_yOffset * mHeight) + 4);
+                JUTDirectPrint::getManager()->erase(mPositionX - 3, mPositionY - 2, (field_0x20 * 6) + 6,
+                                                    static_cast< int >(font_yOffset * mHeight) + 4);
                 JUTDirectPrint::getManager()->setCharColor(JUtility::TColor(255, 255, 255, 255));
             }
 
@@ -123,9 +126,10 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
                 }
 
                 if (consoleType != CONSOLE_TYPE_2) {
-                    mFont->drawString_scale(mPositionX, ((yFactor * font_yOffset) + mPositionY), mFontSizeX, mFontSizeY, (char*)linePtr, true);
+                    mFont->drawString_scale(mPositionX, ((yFactor * font_yOffset) + mPositionY), mFontSizeX, mFontSizeY,
+                                            reinterpret_cast< char* >(linePtr), true);
                 } else {
-                    JUTDirectPrint::getManager()->drawString(mPositionX, ((yFactor * font_yOffset) + mPositionY), (char*)linePtr);
+                    JUTDirectPrint::getManager()->drawString(mPositionX, ((yFactor * font_yOffset) + mPositionY), reinterpret_cast< char* >(linePtr));
                 }
                 curLine = nextIndex(curLine);
                 yFactor++;
@@ -134,61 +138,21 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType consoleType) const {
                     break;
                 }
             }
-
-            if (spA4 != 0) {
-                f32 f31 = mPositionX;
-                int sp94 = mHeight * font_yOffset + mPositionY;
-                mFont->setCharColor(JUtility::TColor(0xff, mVisible ? 0xff : 200, 0xc8, 0xff));
-                mFont->drawString_scale((int)f31, sp94, mFontSizeX, mFontSizeY, "X", TRUE);
-                f31 += mFontSizeX;
-                mFont->drawString_scale((int)f31, sp94, mFontSizeX, mFontSizeY, mVisible ? "[ON]" : "[OFF]", TRUE);
-                f31 += (int)(mFontSizeX * 6.0f);
-                if (IS_REF_NULL(*this))  // ????
-                {
-                    mFont->setCharColor(JUtility::TColor(0xff, 0xff, 0x64, 0xff));
-                    mFont->drawString_scale((int)(f31 - mFontSizeX), mFontSizeX, mFontSizeY, sp94, "*", TRUE);
-                }
-                mFont->setCharColor(JUtility::TColor(0xc8, 0xc8, 0xc8, 0xff));
-                char spA8[] = "S----------E";
-                char spB8[0x20];
-                int sp90 = diffIndex(field_0x34, field_0x38) + 1;
-                int sp8C = diffIndex(field_0x34, field_0x30);
-                int sp88 = 0;
-                int sp84;
-                if (sp90 <= mHeight) {
-                    sp84 = 9;
-                    sp88 = 1;
-                } else {
-                    sp84 = (sp8C * 9) / (int)(sp90 - mHeight);
-                }
-                spA8[sp84 + 1] = 'O';
-                mFont->drawString_scale((int)f31, sp94, mFontSizeX, mFontSizeY, spA8, TRUE);
-                f31 += mFontSizeX * 13.0f;
-                if (sp88) {
-                    sprintf(spB8, "ALL");
-                } else {
-                    f32 f29 = sp8C / (f32)(sp90 - mHeight);
-                    sprintf(spB8, "%3d%%(%dL)", (int)(100.0 * f29), sp90);
-                }
-                mFont->drawString_scale(f31, sp94, mFontSizeX, mFontSizeY, spB8, TRUE);
-            }
         }
     }
 }
 
-/*
 void JUTConsole::print_f(char const* fmt, ...) {
     va_list args;
     va_start(args, fmt);
-    JUTConsole::print_f_va(fmt, args);
+    print_f_va(fmt, args);
     va_end(args);
 }
-    */
 
 void JUTConsole::print(char const* str) {
     if (mOutput & 1) {
-        u8* src = (u8*)const_cast< char* >(str);  // needs to be non-const to match debug
-        u8* dst = (u8*)getLinePtr(field_0x38) + field_0x3c;
+        u8* src = reinterpret_cast< u8* >(const_cast< char* >(str));
+        u8* dst = getLinePtr(field_0x38) + field_0x3c;
         while (*src != 0) {
             if (field_0x6a && field_0x34 == nextIndex(field_0x38)) {
                 break;
@@ -276,7 +240,7 @@ void JUTConsole::scroll(int scrollAmnt) {
         field_0x30 += mMaxLines;
     }
 
-    if (field_0x30 >= (u32)mMaxLines) {
+    if (field_0x30 >= static_cast< u32 >(mMaxLines)) {
         field_0x30 -= mMaxLines;
     }
 }
@@ -292,12 +256,12 @@ int JUTConsole::getLineOffset() const {
 }
 
 JUTConsoleManager::JUTConsoleManager() {
-    mActiveConsole = NULL;
-    mDirectConsole = NULL;
+    mActiveConsole = nullptr;
+    mDirectConsole = nullptr;
 }
 
 JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* pHeap) {
-    if (pHeap == NULL) {
+    if (pHeap == nullptr) {
         pHeap = JKRGetCurrentHeap();
     }
 
@@ -306,31 +270,45 @@ JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* pHeap) {
 }
 
 void JUTConsoleManager::appendConsole(JUTConsole* console) {
-    mList.Push_back(console);
+    mList.Insert(mList.end(), console);
 
-    if (mActiveConsole == NULL) {
+    if (mActiveConsole == nullptr) {
         mActiveConsole = console;
     }
 }
 
-/*
 void JUTConsoleManager::removeConsole(JUTConsole* console) {
     if (mActiveConsole == console) {
         if (mList.size() <= 1) {
-            mActiveConsole = NULL;
+            mActiveConsole = nullptr;
         } else {
-            mActiveConsole = console != &mList.back() ? mList.Element_toValue(console->mListNode.getNext()) : &mList.front();
+            ConsoleList::iterator last = mList.end();
+            --last;
+            mActiveConsole = console != *last ? mList.Element_toValue(console->mListNode.getNext()) : *mList.begin();
         }
     }
 
     if (JUTGetWarningConsole() == console)
-        JUTSetWarningConsole(NULL);
+        sWarningConsole = nullptr;
     if (JUTGetReportConsole() == console)
-        JUTSetReportConsole(NULL);
+        sReportConsole = nullptr;
 
     mList.Remove(console);
 }
-    */
+
+void JUTConsoleManager::draw() const {
+    ConsoleList& consoles = const_cast< ConsoleList& >(mList);
+    ConsoleList::iterator it = consoles.begin();
+    ConsoleList::iterator end = consoles.end();
+    for (; it != end; ++it) {
+        if (*it != mActiveConsole) {
+            (*it)->doDraw(JUTConsole::CONSOLE_TYPE_1);
+        }
+    }
+    if (mActiveConsole != nullptr) {
+        mActiveConsole->doDraw(JUTConsole::CONSOLE_TYPE_0);
+    }
+}
 
 void JUTConsoleManager::drawDirect(bool a1) const {
     if (mDirectConsole != nullptr) {
@@ -361,9 +339,6 @@ void JUTConsoleManager::setDirectConsole(JUTConsole* pConsole) {
     mDirectConsole = pConsole;
 }
 
-static JUTConsole* sReportConsole;
-static JUTConsole* sWarningConsole;
-
 extern "C" JUTConsole* JUTGetReportConsole() {
     return sReportConsole;
 }
@@ -376,7 +351,7 @@ extern "C" void JUTReportConsole_f_va(const char* fmt, va_list args) {
     char buf[256];
     int len;
 
-    if (JUTGetReportConsole() == NULL) {
+    if (JUTGetReportConsole() == nullptr) {
         len = vsnprintf(buf, sizeof(buf), fmt, args);
     } else if (JUTGetReportConsole()->getOutput() & (JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT)) {
         len = vsnprintf(buf, sizeof(buf), fmt, args);
@@ -399,7 +374,7 @@ extern "C" void JUTWarningConsole_f_va(const char* fmt, va_list args) {
     char buf[256];
     int len;
 
-    if (JUTGetWarningConsole() == NULL) {
+    if (JUTGetWarningConsole() == nullptr) {
         len = vsnprintf(buf, sizeof(buf), fmt, args);
     } else if (JUTGetWarningConsole()->getOutput() & (JUTConsole::OUTPUT_CONSOLE | JUTConsole::OUTPUT_OSREPORT)) {
         len = vsnprintf(buf, sizeof(buf), fmt, args);

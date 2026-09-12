@@ -1,6 +1,8 @@
 #include "JSystem/JMath/JMath.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 
+// -opt nocse matches this function...but why? is there another solution?
+// https://decomp.me/scratch/U3MdF
 void JMAEulerToQuat(s16 x, s16 y, s16 z, Quaternion* quat) {
     f32 cosX = JMASCos(x / 2);
     f32 cosY = JMASCos(y / 2);
@@ -67,4 +69,28 @@ void JMAVECScaleAdd(__REGISTER const Vec* vec1, __REGISTER const Vec* vec2, __RE
         psq_st rz, 8(dst), 1, 0
 	}
 #endif  // clang-format on
+}
+
+void JMAVECLerp(__REGISTER const Vec* a, __REGISTER const Vec* b, __REGISTER Vec* dst, __REGISTER f32 t) {
+    __REGISTER f32 axy, bxy, az, bz;
+#ifdef __MWERKS__
+    asm {
+        psq_l axy, 0(a), 0, 0
+        psq_l bxy, 0(b), 0, 0
+        lfs az, 8(a)
+        lfs bz, 8(b)
+        ps_sub bxy, bxy, axy
+        fsubs bz, bz, az
+        ps_madds0 bxy, bxy, t, axy
+        fmadds bz, bz, t, az
+        psq_st bxy, 0(dst), 0, 0
+        stfs bz, 8(dst)
+    }
+#endif
+}
+
+void JMAMTXApplyScale(const Mtx src, Mtx dst, f32 x, f32 y, f32 z) {
+    Mtx scale;
+    PSMTXScale(scale, x, y, z);
+    PSMTXConcat(src, scale, dst);
 }

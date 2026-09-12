@@ -1,9 +1,13 @@
 #include <revolution/gx.h>
 #include <revolution/gx/GXRegs.h>
+#include <revolution/os.h>
 
 void GXSetTevIndirect(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXIndTexFormat format, GXIndTexBiasSel bias_sel, GXIndTexMtxID matrix_sel,
                       GXIndTexWrap wrap_s, GXIndTexWrap wrap_t, GXBool add_prev, GXBool utc_lod, GXIndTexAlphaSel alpha_sel) {
-    u32 reg = 0;
+    u32 reg;
+
+    CHECK_IN_BGN(GXInitIndTexture);
+    reg = 0;
     SC_BP_CMD_SET_BT(reg, ind_stage);
     SC_BP_CMD_SET_FMT(reg, format);
     SC_BP_CMD_SET_BIAS(reg, bias_sel);
@@ -148,11 +152,14 @@ void GXSetNumIndStages(u8 nIndStages) {
 }
 
 void GXSetTevDirect(GXTevStageID tev_stage) {
+    CHECK_IN_BGN(GXSetTevDirect);
     GXSetTevIndirect(tev_stage, GX_INDTEXSTAGE0, GX_ITF_8, GX_ITB_NONE, GX_ITM_OFF, GX_ITW_OFF, GX_ITW_OFF, FALSE, FALSE, GX_ITBA_OFF);
 }
 
 void GXSetTevIndWarp(GXTevStageID tev_stage, GXIndTexStageID ind_stage, GXBool signed_offset, GXBool replace_mode, GXIndTexMtxID matrix_sel) {
     GXIndTexWrap wrap = (replace_mode) ? GX_ITW_0 : GX_ITW_OFF;
+
+    CHECK_IN_BGN(GXSetTevIndWarp);
     GXSetTevIndirect(tev_stage, ind_stage, GX_ITF_8, (signed_offset) ? GX_ITB_STU : GX_ITB_NONE, matrix_sel, wrap, wrap, FALSE, FALSE, GX_ITBA_OFF);
 }
 

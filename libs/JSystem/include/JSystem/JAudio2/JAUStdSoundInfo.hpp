@@ -11,19 +11,19 @@ class JAUDisposer_ {
 public:
     JAUDisposer_() {
     }
-    virtual ~JAUDisposer_(){};
+    virtual ~JAUDisposer_() {};
 };
 
 template < class T >
 class JAUDisposerObject_ : public T, public JAUDisposer_, public JSULink< JAUDisposer_ > {
 public:
-    JAUDisposerObject_(bool set) : T(set), JAUDisposer_(), JSULink< JAUDisposer_ >(this){};
-    virtual ~JAUDisposerObject_(){};
+    JAUDisposerObject_(bool set) : T(set), JAUDisposer_(), JSULink< JAUDisposer_ >(this) {};
+    virtual ~JAUDisposerObject_() {};
 };
 
 class JAUStdSoundInfo : public JAISoundInfo, public JAUSoundInfo, public JAIStreamDataMgr {
 public:
-    JAUStdSoundInfo(bool b) : JAISoundInfo(b), JAUSoundInfo(b), JAIStreamDataMgr(){};
+    JAUStdSoundInfo(bool b) : JAISoundInfo(b), JAUSoundInfo(b), JAIStreamDataMgr() {};
 
     virtual int getSoundType(JAISoundID) const;
     virtual int getCategory(JAISoundID) const;

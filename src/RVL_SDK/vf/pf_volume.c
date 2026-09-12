@@ -11,6 +11,8 @@
 #include "revolution/vf/pf_sector.h"
 #include "revolution/vf/pf_system.h"
 
+PF_VOLUME_SET VFipf_vol_set;
+
 static inline u32 VFiPFVOL_CheckContextRegistered(s32 context_id) {
     u32 i;
     for (i = 1; i < 1; i++) {
@@ -135,6 +137,7 @@ static inline s32 VFiPFVOL_p_attach(PF_VOLUME* p_vol, PF_DRV_TBL* p_drv, s16 vol
     VFiPFCACHE_SetCache(p_vol, p_drv->cache->pages, p_drv->cache->buffers, p_drv->cache->num_fat_pages, p_drv->cache->num_data_pages);
     VFiPFCACHE_SetFATBufferSize(p_vol, p_drv->cache->num_fat_buf_size);
     VFiPFCACHE_SetDataBufferSize(p_vol, p_drv->cache->num_data_buf_size);
+    p_vol->flags |= 1;
     return 0;
 }
 
@@ -467,7 +470,7 @@ s32 VFiPFVOL_getdev(s8 drv_char, PF_DEV_INF* dev_inf) {
 }
 
 s32 VFiPFVOL_attach(PF_DRV_TBL* p_drv) {
-    s16 vol_idx;
+    s32 vol_idx;
     PF_VOLUME* p_vol;
     s8 drv_char;
     s32 err;
@@ -513,23 +516,16 @@ s32 VFiPFVOL_attach(PF_DRV_TBL* p_drv) {
     }
 
     if (drv_char != 0) {
-        if ((drv_char < 'a' || drv_char > 'z') && (drv_char < 'A' || drv_char > 'Z')) {
+        if ((drv_char >= 'a' && drv_char <= 'z') || (drv_char >= 'A' && drv_char <= 'Z')) {
+            vol_idx = VFipf_toupper(drv_char) - 'A';
+        } else {
             VFipf_vol_set.last_error = 10;
             return 10;
         }
-        vol_idx = VFipf_toupper(drv_char) - 'A';
+    }
 
-        if (vol_idx < 0 || vol_idx >= 26) {
-            VFipf_vol_set.last_error = 18;
-            return 18;
-        }
-        p_vol = &VFipf_vol_set.volumes[vol_idx];
-        if ((p_vol->flags & 1) != 0) {
-            VFipf_vol_set.last_error = 18;
-            return 18;
-        }
-    } else {
-        for (; vol_idx < 26; vol_idx++) {
+    if (drv_char == 0) {
+        for (vol_idx = 0; vol_idx < 26; vol_idx++) {
             p_vol = &VFipf_vol_set.volumes[vol_idx];
             if ((p_vol->flags & 1) == 0) {
                 break;
@@ -538,6 +534,16 @@ s32 VFiPFVOL_attach(PF_DRV_TBL* p_drv) {
         if (vol_idx < 0 || vol_idx >= 26) {
             VFipf_vol_set.last_error = 4;
             return 4;
+        }
+    } else {
+        if (vol_idx < 0 || vol_idx >= 26) {
+            VFipf_vol_set.last_error = 18;
+            return 18;
+        }
+        p_vol = &VFipf_vol_set.volumes[vol_idx];
+        if ((p_vol->flags & 1) != 0) {
+            VFipf_vol_set.last_error = 18;
+            return 18;
         }
     }
 
@@ -564,15 +570,7 @@ s32 VFiPFVOL_attach(PF_DRV_TBL* p_drv) {
     if (VFiPFDRV_IsInserted(p_vol)) {
         p_drv->stat |= 4;
 
-        if ((p_vol->flags & 2) == 0) {
-            err = VFiPFVOL_DoMountVolume(p_vol);
-            if (err == 0) {
-                p_vol->fsi_flag &= ~7;
-                VFipf_vol_set.num_mounted_volumes++;
-            }
-        } else {
-            err = 0;
-        }
+        err = VFiPFVOL_p_mount(p_vol);
 
         if (err != 0) {
             VFipf_vol_set.last_error = err;

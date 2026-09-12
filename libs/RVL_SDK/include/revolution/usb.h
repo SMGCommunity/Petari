@@ -30,6 +30,12 @@ typedef struct {
     u8 bNumConfigurations;
 } USB_DevDescr;
 
+typedef struct USBDeviceInfo {
+    IOSFd fd;
+    u16 vid;
+    u16 pid;
+} USBDeviceInfo;
+
 typedef struct IsoTransfer {
     void* buf;
     u8 numPackets;

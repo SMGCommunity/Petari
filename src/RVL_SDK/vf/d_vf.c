@@ -51,6 +51,12 @@ void VFInitEx(void* i_heap_start_address_p, u32 i_size) {
     _VFUnlockMutex();
 }
 
+static char l_vf_drive_work[0x68000] ATTRIBUTE_ALIGN(32);
+
+void VFInit(void) {
+    VFInitEx(l_vf_drive_work, sizeof(l_vf_drive_work));
+}
+
 static s32 VFAttachDriveNANDFlash(const s8* i_drive) {
     s32 err = VF_ERR_0xB004;
     s32 idx = -1;

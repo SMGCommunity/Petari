@@ -117,6 +117,7 @@ public:
 
 class J3DMtxCalcNoAnmBase : public J3DMtxCalc {
 public:
+    J3DMtxCalcNoAnmBase();
     virtual ~J3DMtxCalcNoAnmBase() {
     }
 };

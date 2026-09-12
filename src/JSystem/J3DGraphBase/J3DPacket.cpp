@@ -184,13 +184,13 @@ void J3DMatPacket::draw() {
     J3DShape::resetVcdVatCache();
 }
 
-static u32 sDifferedRegister[8] = {
-    J3DDiffFlag_AmbColor, J3DDiffFlag_MatColor, J3DDiffFlag_ColorChan,  J3DDiffFlag_TevReg,
+static u32 sDifferedRegister[7] = {
+    J3DDiffFlag_MatColor, J3DDiffFlag_ColorChan,  J3DDiffFlag_TevReg,
     J3DDiffFlag_Fog,      J3DDiffFlag_Blend,    J3DDiffFlag_KonstColor, J3DDiffFlag_TevStageIndirect,
 };
 
-static s32 sSizeOfDiffered[8] = {
-    13, 13, 21, 120, 55, 15, 19, 45,
+static s32 sSizeOfDiffered[7] = {
+    13, 21, 120, 55, 15, 19, 45,
 };
 
 J3DShapePacket::J3DShapePacket() {
@@ -223,7 +223,7 @@ u32 J3DShapePacket::calcDifferedBufferSize(u32 diffFlags) {
         u32 sp30 = texGenNum > mat_texGenNum ? texGenNum : mat_texGenNum;
 
         if (diffFlags & J3DDiffFlag_TexGen) {
-            bufferSize += calcDifferedBufferSize_TexGenSize(sp30);
+            bufferSize += sp30 * 0x3d + 10;
         } else {
             bufferSize += calcDifferedBufferSize_TexMtxSize(sp30);
         }
@@ -269,18 +269,16 @@ u32 J3DShapePacket::calcDifferedBufferSize(u32 diffFlags) {
     return OSRoundUp32B(bufferSize);
 }
 
-int J3DShapePacket::newDifferedDisplayList(u32 diffFlags) {
+J3DError J3DShapePacket::newDifferedDisplayList(u32 diffFlags) {
     mDiffFlag = diffFlags;
 
     u32 bufSize = calcDifferedBufferSize(diffFlags);
-    int ret = newDisplayList(bufSize);
+    J3DError ret = newDisplayList(bufSize);
     if (ret != kJ3DError_Success) {
-        ret = 0;
+        return ret;
     }
 
-    // J3DDisplayListObj* dlobj = getDisplayListObj();
-    // setDisplayListObj(dlobj);
-    return ret;
+    return kJ3DError_Success;
 }
 
 void J3DShapePacket::prepareDraw() const {
@@ -349,7 +347,12 @@ void J3DShapePacket::drawFast() {
     }
 }
 
+
+
 int J3DMatPacket::entry(J3DDrawBuffer* pBuffer) {
     J3DDrawBuffer::sortFunc func = J3DDrawBuffer::sortFuncTable[pBuffer->getSortMode()];
     return (pBuffer->*func)(this);
 }
+
+GDLObj J3DDisplayListObj::sGDLObj;
+s32 J3DDisplayListObj::sInterruptFlag;

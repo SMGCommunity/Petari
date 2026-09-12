@@ -1,46 +1,43 @@
-#include "revolution/nwc24/NWC24Manage.h"
-#include "revolution/nwc24/NWC24MBoxCtrl.h"
-#include "revolution/nwc24/NWC24Mime.h"
-#include "revolution/nwc24/NWC24Schedule.h"
 #include <revolution/nwc24.h>
+#include <revolution/nwc24/NWC24Internal.h>
 #include <revolution/os.h>
 #include <revolution/vf.h>
-#include <stdint.h>
-
-#define MANAGE_ERROR_CODE_BASE 109000
 
 typedef enum { NWC24_LIB_CLOSED, NWC24_LIB_OPENED, NWC24_LIB_OPENED_BY_TOOL, NWC24_LIB_BLOCKED } NWC24LibState;
 
-typedef enum { NWC24_FAIL_SFL = (1 << 0), NWC24_FAIL_DL_TASK = (1 << 1), NWC24_FAIL_FATAL = (1 << 2) } NWC24FailFlag;
+typedef enum { NWC24_FAIL_SFL = 1 << 0, NWC24_FAIL_DL_TASK = 1 << 1, NWC24_FAIL_FATAL = 1 << 2 } NWC24FailFlag;
+
+const char* __NWC24Version = "<< RVL_SDK - NWC24 	release build: Dec 10 2007 10:02:25 (0x4199_60831) >>";
+
+NWC24iWork* NWC24WorkP = NULL;
 
 static NWC24LibState Opened = NWC24_LIB_CLOSED;
 static u32 YouGotMail = 0;
 static u32 GlobalErrorCode = 0;
 static BOOL Registered = FALSE;
 
-const char* __NWC24Version = "<< RVL_SDK - NWC24 \trelease build: Dec 10 2007 10:02:25 (0x4199_60831) >>";
+static NWC24Err NWC24OpenLibInternal(NWC24iWork* pWork, NWC24LibState state);
 
 void NWC24iRegister(void) {
-    if (Registered == 0) {
-        OSRegisterVersion(__NWC24Version);
-        Registered = 1;
+    if (Registered) {
+        return;
     }
+
+    OSRegisterVersion(__NWC24Version);
+    Registered = TRUE;
 }
 
-int NWC24IsMsgLibOpened(void) {
-    return Opened == 1;
-}
+NWC24Err NWC24OpenLib(void* pWork) {
+    NWC24iWork* pWorkImpl = (NWC24iWork*)pWork;
 
-static NWC24Err NWC24OpenLibInternal(NWC24Work* work, NWC24LibState state);
-
-NWC24Err NWC24OpenLib(NWC24Work* work) {
-    if (Opened == 2) {
-        return -0x1a;
+    if (Opened == NWC24_LIB_OPENED_BY_TOOL) {
+        return NWC24_ERR_BUSY;
     }
-    return NWC24OpenLibInternal(work, 1);
+
+    return NWC24OpenLibInternal(pWorkImpl, NWC24_LIB_OPENED);
 }
 
-static NWC24Err NWC24OpenLibInternal(NWC24Work* work, NWC24LibState state) {
+static NWC24Err NWC24OpenLibInternal(NWC24iWork* pWork, NWC24LibState state) {
     NWC24Err result;
     NWC24Err failErr;
     u32 failFlag;
@@ -59,11 +56,11 @@ static NWC24Err NWC24OpenLibInternal(NWC24Work* work, NWC24LibState state) {
         return NWC24_ERR_BUSY;
     }
 
-    if (work == NULL) {
+    if (pWork == NULL) {
         return NWC24_ERR_NULL;
     }
 
-    if ((uintptr_t)work % 32 != 0) {
+    if ((u32)pWork % 32 != 0) {
         return NWC24_ERR_ALIGNMENT;
     }
 
@@ -71,8 +68,8 @@ static NWC24Err NWC24OpenLibInternal(NWC24Work* work, NWC24LibState state) {
     if (result == NWC24_OK) {
         NWC24iRegister();
 
-        YouGotMail &= ~(1 << NWC24_MSGTYPE_RVL_MENU_SHARED);
-        NWC24WorkP = work;
+        YouGotMail &= ~NWC24_MSG_ARRIVED;
+        NWC24WorkP = pWork;
 
         NWC24InitBase64Table(NWC24WorkP->base64Work);
 
@@ -101,7 +98,7 @@ static NWC24Err NWC24OpenLibInternal(NWC24Work* work, NWC24LibState state) {
         if (result != NWC24_OK) {
             failErr = result;
 
-            if (result == NWC24_ERR_FILE_NOEXISTS) {
+            if (result != NWC24_ERR_FILE_NOEXISTS) {
                 failFlag |= NWC24_FAIL_FATAL;
             } else {
                 failFlag |= NWC24_FAIL_SFL;
@@ -112,7 +109,7 @@ static NWC24Err NWC24OpenLibInternal(NWC24Work* work, NWC24LibState state) {
         if (result < 0) {
             failErr = result;
 
-            if (result == NWC24_ERR_FILE_NOEXISTS) {
+            if (result != NWC24_ERR_FILE_NOEXISTS) {
                 failFlag |= NWC24_FAIL_FATAL;
             } else {
                 failFlag |= NWC24_FAIL_DL_TASK;
@@ -150,7 +147,7 @@ static NWC24Err NWC24OpenLibInternal(NWC24Work* work, NWC24LibState state) {
     case NWC24_ERR_FILE_OPEN:
     case NWC24_ERR_BROKEN:
     case NWC24_ERR_FATAL: {
-        NWC24iSetErrorCode(result - MANAGE_ERROR_CODE_BASE);
+        NWC24iSetErrorCode(result - NWC24i_MANAGE_ERROR_CODE_BASE);
         break;
     }
 
@@ -189,12 +186,16 @@ NWC24Err NWC24CloseLib(void) {
     return result;
 }
 
-int NWC24IsMsgLibOpenedByTool(void) {
-    return Opened == 2;
+BOOL NWC24IsMsgLibOpened(void) {
+    return Opened == NWC24_LIB_OPENED;
 }
 
-int NWC24IsMsgLibOpenBlocking(void) {
-    return Opened == 3;
+BOOL NWC24IsMsgLibOpenedByTool(void) {
+    return Opened == NWC24_LIB_OPENED_BY_TOOL;
+}
+
+BOOL NWC24IsMsgLibOpenBlocking(void) {
+    return Opened == NWC24_LIB_BLOCKED;
 }
 
 NWC24Err NWC24BlockOpenMsgLib(BOOL block) {
@@ -229,7 +230,7 @@ NWC24Err NWC24iSetNewMsgArrived(u32 flags) {
     return NWC24_OK;
 }
 
-u32 NWC24GetErrorCode() {
+s32 NWC24GetErrorCode(void) {
     return GlobalErrorCode;
 }
 

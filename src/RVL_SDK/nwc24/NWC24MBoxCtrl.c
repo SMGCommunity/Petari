@@ -1,935 +1,1013 @@
-#include "revolution/nwc24/NWC24MBoxCtrl.h"
-#include "revolution/nwc24.h"
-#include "revolution/nwc24/NWC24FileApi.h"
-#include "revolution/nwc24/NWC24Manage.h"
+#include <revolution/nwc24.h>
+#include <revolution/nwc24/NWC24Internal.h>
+
 #include <mem.h>
 
-MountInfoStruct MountInfo;
+#define MBOX_CTRL_MAGIC FOURCC('W', 'c', 'T', 'f')
+#define MBOX_CTRL_VERSION 4
 
-int Mail_sprintf(char* buffer, const char* format, ...);
+#define MSG_ID_MIN 1
+#define MSG_ID_MAX 1000000
 
-NWC24Err NWC24iOpenMBox(void);
-NWC24Err NWC24iMBoxOpenNewMsg(s32 mboxType, NWC24File* file, u32* msgId);
-NWC24Err NWC24iMBoxCloseMsg(NWC24File* file);
-NWC24Err NWC24iMBoxCancelMsg(NWC24File* file, s32 mboxType, u32 msgId);
-NWC24Err NWC24iMBoxAddMsgObj(s32 mboxType, NWC24MsgObj* msg);
-NWC24Err NWC24iMBoxFlushHeader(s32 mboxType);
-NWC24Err NWC24iMBoxCheck(s32 mboxType, u32 requiredSize);
-static NWC24Err GetMBoxFilePath(char* buffer, s32 mboxType, u32 msgId);
-static NWC24Err MakeMailPath(char* buffer, s32 mboxType);
-static BOOL IsFileThere(const char* path);
-NWC24Err DeleteMsg(s32 mboxType, u32 msgId, u32 flags);
-NWC24Err DuplicationCheck(MBoxControlHeader* header, const NWC24MsgObj* msg, NWC24File* file, s32 mboxType);
-NWC24Err GetCachedMBCHeader(s32 mboxType, MBoxControlHeader** headerOut);
-static NWC24Err LoadMBCHeader(NWC24File* file, MBoxControlHeader* header);
-static NWC24Err SaveMBCHeader(NWC24File* file, MBoxControlHeader* header);
-NWC24Err AddMBCEntry(MBoxControlHeader* header, const NWC24MsgObj* msg, NWC24File* file);
-static NWC24Err ClearMBCEntry(MBoxControlHeader* header, u32 offset, NWC24File* file);
-static NWC24Err GetNewMsgId(MBoxControlHeader* header, u32* msgIdOut);
-inline static s32 CompareMsgId(u32 id1, u32 id2);
-NWC24Err MountVFMBox(s32 mboxType);
-inline static NWC24Err UnmountVFMBox(void);
-NWC24Err CopyMsgObjToMBCFmt(const NWC24MsgObj* src, MBoxControlEntry* dst);
+#define SEND_MAIL_MBOX "/wc24send.mbx"
+#define RECV_MAIL_MBOX "/wc24recv.mbx"
 
-NWC24Err NWC24iOpenMBox(void) {
-    NWC24Err err;
-    MBoxControlHeader* header;
-    char* pathWork;
-    const char* mboxDir;
+#define SEND_MAIL_CTRL "/wc24send.ctl"
+#define RECV_MAIL_CTRL "/wc24recv.ctl"
 
-    pathWork = NWC24WorkP->pathWork;
+#define RECV_MAIL_FMT NWC24i_VF_DRIVE ":/mb/r%07d.msg"
+#define SEND_MAIL_FMT NWC24i_VF_DRIVE ":/mb/s%07d.msg"
 
-    Mail_memset(NWC24WorkP->WORK_0x1100, 0, sizeof(MBoxControlHeader));
-    err = GetCachedMBCHeader(0, &header);
-    if (err != NWC24_OK) {
-        return err;
+typedef struct NWC24iMountInfo {
+    s32 count;
+    NWC24MsgBoxId id;
+} NWC24iMountInfo;
+
+static NWC24iMountInfo MountInfo;
+
+static NWC24Err GetMBoxFilePath(NWC24MsgBoxId id, char* pDst, s32 maxlen);
+static NWC24Err MakeMailPath(NWC24MsgBoxId id, u32 msgId, char* pDst, s32 maxlen);
+static NWC24Err IsFileThere(const char* pPath);
+
+static NWC24Err DeleteMsg(NWC24MsgBoxId id, u32 msgId, BOOL checkPermission);
+static NWC24Err DeleteMsgFile(NWC24MsgBoxId id, u32 msgId);
+static NWC24Err DuplicationCheck(NWC24iMBCHeader* pHeader, const NWC24iMsgObj* pMsg, NWC24File* pFile, NWC24MsgBoxId id);
+
+static NWC24Err GetCachedMBCHeader(NWC24MsgBoxId id, NWC24iMBCHeader** ppHeader);
+static NWC24Err LoadMBCHeader(NWC24iMBCHeader* pHeader, NWC24File* pFile);
+static NWC24Err SaveMBCHeader(NWC24iMBCHeader* pHeader, NWC24File* pFile);
+static NWC24Err AddMBCEntry(NWC24iMBCHeader* pHeader, const NWC24iMsgObj* pMsg, NWC24File* pFile);
+static NWC24Err ClearMBCEntry(NWC24iMBCHeader* pHeader, NWC24File* pFile, u32 offset);
+
+static NWC24Err GetNewMsgId(NWC24iMBCHeader* pHeader, u32* pMsgId);
+static int CompareMsgId(u32 lhs, u32 rhs);
+
+static NWC24Err MountVFMBox(NWC24MsgBoxId id) NO_INLINE;
+static NWC24Err UnmountVFMBox(void);
+static NWC24Err UnmountVFMBoxForced(void);
+
+static u32 PackNWC24Data(const NWC24Data* pData);
+static NWC24Err CopyMsgObjToMBCFmt(const NWC24iMsgObj* pSrc, NWC24iMBCEntry* pDst);
+
+NWC24Err NWC24iMBoxGetCtrlFilePath(NWC24MsgBoxId id, char* pDst, s32 maxlen) {
+    const char* pMBoxDir = NWC24GetMBoxDir();
+
+    if (STD_strnlen(pMBoxDir, NWC24i_MBOX_DIR_LENGTH) + NWC24i_KSTRLEN("/wc24****.ctl") > maxlen) {
+        return NWC24_ERR_NOMEM;
     }
 
-    Mail_memset(NWC24WorkP->WORK_0x1180, 0, sizeof(MBoxControlHeader));
-    err = GetCachedMBCHeader(1, &header);
-    if (err != NWC24_OK) {
-        return err;
+    switch (id) {
+    case NWC24_MSGBOX_SEND: {
+        Mail_sprintf(pDst, "%s%s", pMBoxDir, SEND_MAIL_CTRL);
+        break;
     }
 
-    mboxDir = NWC24GetMBoxDir();
-    if (STD_strnlen(mboxDir, 0x40) + 14 > 0x100) {
-        err = NWC24_ERR_NOMEM;
-    } else {
-        Mail_sprintf(pathWork, "%s%s", mboxDir, "/wc24recv.mbx");
-        err = NWC24_OK;
+    case NWC24_MSGBOX_RECV: {
+        Mail_sprintf(pDst, "%s%s", pMBoxDir, RECV_MAIL_CTRL);
+        break;
     }
 
-    if (err != NWC24_OK) {
-        return err;
+    default: {
+        return NWC24_ERR_INVALID_VALUE;
+    }
     }
 
-    err = IsFileThere(pathWork);
-    if (err != NWC24_OK) {
-        return err;
-    }
-
-    mboxDir = NWC24GetMBoxDir();
-    if (STD_strnlen(mboxDir, 0x40) + 14 > 0x100) {
-        err = NWC24_ERR_NOMEM;
-    } else {
-        Mail_sprintf(pathWork, "%s%s", mboxDir, "/wc24send.mbx");
-        err = NWC24_OK;
-    }
-
-    if (err != NWC24_OK) {
-        return err;
-    }
-
-    err = IsFileThere(pathWork);
-    if (err != NWC24_OK) {
-        return err;
-    }
-
-    MountInfo.count = 0;
-    MountInfo.type = 0;
     return NWC24_OK;
 }
 
-NWC24Err NWC24iMBoxOpenNewMsg(s32 mboxType, NWC24File* file, u32* msgId) {
-    NWC24Err err;
-    MBoxControlHeader* header;
-    char* path;
+NWC24Err NWC24iOpenMBox(void) {
+    NWC24Err result;
+    NWC24iMBCHeader* pHeader;
+    char* pPath;
+    const char* pMBoxDir;
 
-    err = GetCachedMBCHeader(mboxType, &header);
-    if (err != NWC24_OK) {
-        return err;
+    pPath = NWC24WorkP->pathWork;
+
+    Mail_memset(&NWC24WorkP->sendCtrl, 0, sizeof(NWC24iMBCHeader));
+    result = GetCachedMBCHeader(NWC24_MSGBOX_SEND, &pHeader);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    err = GetNewMsgId(header, msgId);
-    if (err != NWC24_OK) {
-        return err;
+    Mail_memset(&NWC24WorkP->recvCtrl, 0, sizeof(NWC24iMBCHeader));
+    result = GetCachedMBCHeader(NWC24_MSGBOX_RECV, &pHeader);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    err = MountVFMBox(mboxType);
-    if (err != NWC24_OK) {
-        return err;
+    result = GetMBoxFilePath(NWC24_MSGBOX_RECV, pPath, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    path = NWC24WorkP->pathWork;
-
-    err = GetMBoxFilePath(path, mboxType, *msgId);
-    if (err != NWC24_OK) {
-        return err;
+    result = IsFileThere(pPath);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    err = NWC24FOpen(file, path, 0x109);
-    return err;
+    result = GetMBoxFilePath(NWC24_MSGBOX_SEND, pPath, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    result = IsFileThere(pPath);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    MountInfo.count = 0;
+    MountInfo.id = NWC24_MSGBOX_SEND;
+
+    return NWC24_OK;
 }
 
-NWC24Err NWC24iMBoxCloseMsg(NWC24File* file) {
-    NWC24Err err;
-    u32 freeSize;
-    MBoxControlHeader* header;
-    s32 count;
-    NWC24Err unmountErr;
-    NWC24Err closeErr;
+static NWC24Err CreateCtrlFile(NWC24MsgBoxId id, BOOL forceCreate);
 
-    closeErr = NWC24FClose(file);
-    // unmountErr = UnmountVFMBox();
-    // This code could be replaced with a call to UnmountVFMBox but that causes issues with the assembly matching.
-
-    count = MountInfo.count;
-    if (count == 0) {
-        unmountErr = NWC24_OK;
-    } else {
-        count--;
-        MountInfo.count = count;
-        if (count > 0) {
-            unmountErr = NWC24_OK;
-        } else {
-            err = GetCachedMBCHeader(MountInfo.type, &header);
-            if (err != NWC24_OK) {
-                unmountErr = err;
-            } else {
-                err = NWC24CheckSizeVF("@24", &freeSize);
-                if (err != NWC24_OK) {
-                    unmountErr = err;
-                } else {
-                    header->freeSpace = freeSize;
-                    unmountErr = NWC24UnmountVF("@24");
-                }
-            }
-        }
+NWC24Err NWC24iInitMBox(void) {
+    NWC24Err result;
+    char* path = NWC24WorkP->pathWork;
+    int renewSend, renewRecv;
+    Mail_memset(&NWC24WorkP->sendCtrl, 0, sizeof(NWC24iMBCHeader));
+    renewSend = CreateCtrlFile(NWC24_MSGBOX_SEND, FALSE);
+    if (renewSend < 0) {
+        return renewSend;
     }
-
-    if (closeErr != NWC24_OK && unmountErr != NWC24_OK) {
-        return unmountErr;
+    Mail_memset(&NWC24WorkP->recvCtrl, 0, sizeof(NWC24iMBCHeader));
+    renewRecv = CreateCtrlFile(NWC24_MSGBOX_RECV, FALSE);
+    if (renewRecv < 0) {
+        return renewRecv;
     }
-    return closeErr;
-}
-
-NWC24Err NWC24iMBoxCancelMsg(NWC24File* file, s32 mboxType, u32 msgId) {
-    s32 result;
-    char* pathWork;
-    NWC24Err tempErr;
-    NWC24Err deleteErr;
-    NWC24Err closeErr;
-    NWC24Err unmountErr;
-
-    closeErr = NWC24FClose(file);
-    unmountErr = MountVFMBox(mboxType);
-
-    if (unmountErr != NWC24_OK) {
-        result = unmountErr;
-    } else {
-        pathWork = NWC24WorkP->pathWork;
-        deleteErr = GetMBoxFilePath(pathWork, mboxType, msgId);
-        // TODO(Alex9303) Permuter fake(?)match
-        if ((deleteErr) != NWC24_OK) {
-            result = deleteErr;
-        } else {
-            deleteErr = NWC24FDeleteVF(pathWork);
-            tempErr = deleteErr;
-            unmountErr = UnmountVFMBox();
-            if (tempErr != NWC24_OK) {
-                result = tempErr;
-            } else {
-                result = unmountErr;
-            }
-        }
+    result = GetMBoxFilePath(NWC24_MSGBOX_RECV, path, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
     }
-
-    MountInfo.count = 1;
-
-    unmountErr = UnmountVFMBox();
-    if (closeErr != NWC24_OK) {
-        return closeErr;
+    result = IsFileThere(path);
+    if (result == NWC24_ERR_FILE_NOEXISTS || renewRecv) {
+        result = NWC24CreateVF(path, 0x700000);
     }
     if (result != NWC24_OK) {
         return result;
     }
-    if (unmountErr != NWC24_OK) {
-        return unmountErr;
+    result = GetMBoxFilePath(NWC24_MSGBOX_SEND, path, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
     }
+    result = IsFileThere(path);
+    if (result == NWC24_ERR_FILE_NOEXISTS || renewSend) {
+        result = NWC24CreateVF(path, 0x200000);
+    }
+    if (result != NWC24_OK) {
+        return result;
+    }
+    MountInfo.count = 0;
+    MountInfo.id = NWC24_MSGBOX_SEND;
+    NWC24FDelete("/shared2/wc24/mbox/recvtmp.msg");
+    NWC24FDelete("/shared2/wc24/mbox/dlcnt.bin");
+    return result;
+}
+
+NWC24Err NWC24iMBoxOpenNewMsg(NWC24MsgBoxId id, NWC24File* pFile, u32* pMsgId) {
+    NWC24Err result;
+    NWC24iMBCHeader* pHeader;
+    char* pPath;
+
+    result = GetCachedMBCHeader(id, &pHeader);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    result = GetNewMsgId(pHeader, pMsgId);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    result = MountVFMBox(id);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    pPath = NWC24WorkP->pathWork;
+
+    result = MakeMailPath(id, *pMsgId, pPath, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    result = NWC24FOpen(pFile, pPath, NWC24_OPEN_VF_WBUFF);
+    return result;
+}
+
+NWC24Err NWC24iMBoxCloseMsg(NWC24File* pFile) {
+    NWC24Err closeResult;
+    NWC24Err unmountResult;
+
+    closeResult = NWC24FClose(pFile);
+    unmountResult = UnmountVFMBox();
+
+    if (closeResult != NWC24_OK && unmountResult != NWC24_OK) {
+        return unmountResult;
+    }
+
+    return closeResult;
+}
+
+NWC24Err NWC24iMBoxCancelMsg(NWC24File* pFile, NWC24MsgBoxId id, u32 msgId) {
+    NWC24Err closeResult;
+    NWC24Err deleteResult;
+    NWC24Err unmountResult;
+
+    closeResult = NWC24FClose(pFile);
+    deleteResult = DeleteMsgFile(id, msgId);
+    unmountResult = UnmountVFMBoxForced();
+
+    if (closeResult != NWC24_OK) {
+        return closeResult;
+    }
+
+    if (deleteResult != NWC24_OK) {
+        return deleteResult;
+    }
+
+    if (unmountResult != NWC24_OK) {
+        return unmountResult;
+    }
+
     return NWC24_OK;
 }
 
-NWC24Err NWC24iMBoxAddMsgObj(s32 mboxType, NWC24MsgObj* msg) {
-    NWC24Err err;
-    NWC24Err closeErr;
-    MBoxControlHeader* header;
-    MBoxControlHeader* header2;
-    char* pathWork;
+NWC24Err NWC24iMBoxAddMsgObj(NWC24MsgBoxId id, NWC24iMsgObj* pMsg) {
+    NWC24Err result;
+    NWC24Err closeResult;
+    NWC24iMBCHeader* pHeader;
+    char* pPath;
     NWC24File file;
 
-    err = GetCachedMBCHeader(mboxType, &header);
-    if (err != NWC24_OK) {
-        return err;
+    result = GetCachedMBCHeader(id, &pHeader);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    if (header->msgCount == header->capacity) {
+    if (pHeader->numMsgs == pHeader->capacity) {
         return NWC24_ERR_FULL;
     }
 
-    pathWork = NWC24WorkP->pathWork;
-    err = MakeMailPath(pathWork, mboxType);
-    if (err != NWC24_OK) {
-        return err;
+    pPath = NWC24WorkP->pathWork;
+    result = NWC24iMBoxGetCtrlFilePath(id, pPath, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    err = NWC24FOpen(&file, pathWork, 4);
-    if (err != NWC24_OK) {
-        return err;
+    result = NWC24FOpen(&file, pPath, NWC24_OPEN_NAND_RW);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    err = AddMBCEntry(header, msg, &file);
-    if (err == NWC24_OK) {
-        err = DuplicationCheck(header, msg, &file, mboxType);
-        if (err == NWC24_OK) {
-            header2 = header;
-            err = NWC24FSeek(&file, 0, NWC24_SEEK_BEG);
-
-            if (err != NWC24_OK) {
-                return err;
-            }
-
-            err = NWC24FWrite(header2, sizeof(MBoxControlHeader), &file);
+    result = AddMBCEntry(pHeader, pMsg, &file);
+    if (result == NWC24_OK) {
+        result = DuplicationCheck(pHeader, pMsg, &file, id);
+        if (result != NWC24_OK) {
+            goto _exit;
         }
+    } else if (result == NWC24_ERR_BROKEN) {
+        pHeader->magic = 0x42524B4E;
+    } else {
+        goto _exit;
     }
 
-    closeErr = NWC24FClose(&file);
-    if (err != NWC24_OK) {
-        return err;
-    }
+    result = SaveMBCHeader(pHeader, &file);
 
-    return closeErr;
+_exit:
+    closeResult = NWC24FClose(&file);
+    return result != NWC24_OK ? result : closeResult;
 }
 
-NWC24Err NWC24iMBoxFlushHeader(s32 mboxType) {
-    NWC24Err err;
-    NWC24Err closeErr;
-    MBoxControlHeader* header;
-    char* pathWork;
+NWC24Err NWC24iMBoxFlushHeader(NWC24MsgBoxId id) {
+    NWC24Err result;
+    NWC24Err closeResult;
+    NWC24iMBCHeader* pHeader;
+    char* pPath;
     NWC24File file;
 
-    err = GetCachedMBCHeader(mboxType, &header);
-    if (err != NWC24_OK) {
-        return err;
+    result = GetCachedMBCHeader(id, &pHeader);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    pathWork = NWC24WorkP->pathWork;
-    err = MakeMailPath(pathWork, mboxType);
-    if (err != NWC24_OK) {
-        return err;
+    pPath = NWC24WorkP->pathWork;
+    result = NWC24iMBoxGetCtrlFilePath(id, pPath, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    err = NWC24FOpen(&file, pathWork, 4);
-    if (err != NWC24_OK) {
-        return err;
+    result = NWC24FOpen(&file, pPath, NWC24_OPEN_NAND_RW);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    err = SaveMBCHeader(&file, header);
-    closeErr = NWC24FClose(&file);
+    result = SaveMBCHeader(pHeader, &file);
 
-    if (err != NWC24_OK) {
-        return err;
-    }
-
-    return closeErr;
+    closeResult = NWC24FClose(&file);
+    return result != NWC24_OK ? result : closeResult;
 }
 
-NWC24Err NWC24iMBoxCheck(s32 mboxType, u32 requiredSize) {
-    NWC24Err err;
-    MBoxControlHeader* header;
-    volatile long oldestMsgId;
-    u32 spaceWithBuffer;
+NWC24Err NWC24iMBoxCheck(NWC24MsgBoxId id, u32 size) {
+    NWC24Err result;
+    NWC24iMBCHeader* pHeader;
+    volatile u32 oldestMsgId;
+    u32 freeSpaceNeed;
 
-    if (requiredSize >= 0x31C00) {
+    if (size >= NWC24i_MBOX_MAX_SIZE) {
         return NWC24_ERR_OVERFLOW;
     }
 
-    spaceWithBuffer = requiredSize + 0x4000;
+    freeSpaceNeed = size + 0x4000;
 
-    err = GetCachedMBCHeader(mboxType, &header);
-    if (err != NWC24_OK) {
-        return err;
+    result = GetCachedMBCHeader(id, &pHeader);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    if (mboxType == 0) {
-        if (header->msgCount >= header->capacity) {
+    if (id == NWC24_MSGBOX_SEND) {
+        if (pHeader->numMsgs >= pHeader->capacity) {
             return NWC24_ERR_FULL;
         }
-        if (header->freeSpace <= spaceWithBuffer) {
+
+        if (pHeader->freeSpace <= freeSpaceNeed) {
             return NWC24_ERR_FULL;
         }
-    } else if (mboxType == 1) {
-        while (header->msgCount >= header->capacity || header->freeSpace <= spaceWithBuffer) {
-            oldestMsgId = header->oldestMsgId;
-            err = DeleteMsg(mboxType, oldestMsgId, 0);
-            if (err != NWC24_OK) {
-                return err;
+
+    } else if (id == NWC24_MSGBOX_RECV) {
+        while (pHeader->numMsgs >= pHeader->capacity || pHeader->freeSpace <= freeSpaceNeed) {
+            oldestMsgId = pHeader->oldestMsgId;
+
+            result = DeleteMsg(id, oldestMsgId, FALSE);
+            if (result != NWC24_OK) {
+                return result;
             }
 
-            err = GetCachedMBCHeader(mboxType, &header);
-            if (err != NWC24_OK) {
-                return err;
+            result = GetCachedMBCHeader(id, &pHeader);
+            if (result != NWC24_OK) {
+                return result;
             }
         }
+
     } else {
         return NWC24_ERR_INVALID_VALUE;
     }
+
     return NWC24_OK;
 }
 
-static NWC24Err GetMBoxFilePath(char* buffer, s32 mboxType, u32 msgId) {
-    const char* workDir;
-    NWC24Err err;
+static NWC24Err GetMBoxFilePath(NWC24MsgBoxId id, char* pDst, s32 maxlen) {
+    const char* pMBoxDir = NWC24GetMBoxDir();
 
-    switch (mboxType) {
-    case 0:
-        Mail_sprintf(buffer, "@24:/mb/s%07d.msg", msgId);
-        break;
-    case 1:
-        Mail_sprintf(buffer, "@24:/mb/r%07d.msg", msgId);
-        break;
-    default:
-        return NWC24_ERR_INVALID_VALUE;
-    }
-    return NWC24_OK;
-}
-
-static NWC24Err MakeMailPath(char* buffer, s32 mboxType) {
-    const char* mboxDir = NWC24GetMBoxDir();
-    s32 pathLen = STD_strnlen(mboxDir, 0x40);
-
-    if (pathLen + 14 > 0x100) {
+    if (STD_strnlen(pMBoxDir, NWC24i_MBOX_DIR_LENGTH) + NWC24i_KSTRLEN("/wc24****.mbx") > maxlen) {
         return NWC24_ERR_NOMEM;
-    } else {
-        switch (mboxType) {
-        case 0:
-            Mail_sprintf(buffer, "%s%s", mboxDir, "/wc24send.ctl");
-            break;
-        case 1:
-            Mail_sprintf(buffer, "%s%s", mboxDir, "/wc24recv.ctl");
-            break;
-        default:
-            return NWC24_ERR_INVALID_VALUE;
-        }
-        return NWC24_OK;
     }
+
+    switch (id) {
+    case NWC24_MSGBOX_SEND: {
+        Mail_sprintf(pDst, "%s%s", pMBoxDir, SEND_MAIL_MBOX);
+        break;
+    }
+
+    case NWC24_MSGBOX_RECV: {
+        Mail_sprintf(pDst, "%s%s", pMBoxDir, RECV_MAIL_MBOX);
+        break;
+    }
+
+    default: {
+        return NWC24_ERR_INVALID_VALUE;
+    }
+    }
+
+    return NWC24_OK;
 }
 
-static BOOL IsFileThere(const char* path) {
-    NWC24File file;
-    NWC24Err err;
-
-    // NEW IN SMG1 -- checks if the open was successful before closing
-    err = NWC24FOpen(&file, path, NWC24_SEEK_END);
-    if (err == NWC24_OK) {
-        return NWC24FClose(&file);
+static NWC24Err MakeMailPath(NWC24MsgBoxId id, u32 msgId, char* pDst, s32 maxlen) {
+    if (maxlen < NWC24i_KSTRLEN("*******.msg")) {
+        return NWC24_ERR_NOMEM;
     }
-    return err;
+
+    switch (id) {
+    case NWC24_MSGBOX_SEND: {
+        Mail_sprintf(pDst, SEND_MAIL_FMT, msgId);
+        break;
+    }
+
+    case NWC24_MSGBOX_RECV: {
+        Mail_sprintf(pDst, RECV_MAIL_FMT, msgId);
+        break;
+    }
+
+    default: {
+        return NWC24_ERR_INVALID_VALUE;
+    }
+    }
+
+    return NWC24_OK;
 }
 
-NWC24Err DeleteMsg(s32 mboxType, u32 msgId, u32 flags) {
-    NWC24Err err;
-    const char* mboxDir;
-    MBoxControlHeader* header;
-    u32 entryOffsetToDelete = 0;
-    MBoxControlHeader* header3;
+static NWC24Err IsFileThere(const char* pPath) {
     NWC24File file;
-    s32 pathLen;
-    u32 offset;
-    char* pathWorkCopy;
-    MBoxControlHeader* header2;
-    int cmp;
-    u32 checkedCount = 0;
-    u32 oldestMsgId = 0;
-    MBoxControlEntry* entry;
-    NWC24Err mountErr = NWC24_OK;
-    NWC24Err writeErr = NWC24_OK;
-    NWC24Err deleteErr = NWC24_OK;
+    NWC24Err result;
+
+    result = NWC24FOpen(&file, pPath, NWC24_SEEK_END);
+    if (result == NWC24_OK) {
+        result = NWC24FClose(&file);
+    }
+
+    return result;
+}
+
+static NWC24Err DeleteMsg(NWC24MsgBoxId id, u32 msgId, BOOL checkPermission) {
+    NWC24Err result;
+    NWC24Err fileResult;
+    NWC24iMBCHeader* pHeader;
     char* pathWork;
+    u32 lastId;
+    u32 offset;
+    u32 clearOffset;
+    u32 oldestMsgId;
+    NWC24iMBCEntry* pEntry;
+    NWC24File file;
+
+    lastId = 0;
+    offset = 0;
+    clearOffset = 0;
+    oldestMsgId = 0;
 
     if (!NWC24IsMsgLibOpened() && !NWC24IsMsgLibOpenedByTool()) {
         return NWC24_ERR_LIB_NOT_OPENED;
     }
-    entry = (MBoxControlEntry*)((char*)NWC24WorkP + 0x1200);
 
-    err = GetCachedMBCHeader(mboxType, &header);
-    if (err != NWC24_OK) {
-        return err;
+    pEntry = &NWC24WorkP->mbcEntry;
+
+    result = GetCachedMBCHeader(id, &pHeader);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    pathWorkCopy = NWC24WorkP->pathWork;
-    pathWork = pathWorkCopy;
+    pathWork = NWC24WorkP->pathWork;
 
-    err = MakeMailPath(pathWork, mboxType);
-    if (err != NWC24_OK) {
-        return err;
+    result = NWC24iMBoxGetCtrlFilePath(id, pathWork, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    err = NWC24FOpen(&file, pathWork, 4);
-    if (err != NWC24_OK) {
-        return err;
+    result = NWC24FOpen(&file, pathWork, NWC24_OPEN_NAND_RW);
+    if (result != NWC24_OK) {
+        return result;
     }
 
-    err = NWC24_ERR_NOT_FOUND;
+    result = NWC24_ERR_NOT_FOUND;
 
-    for (offset = sizeof(MBoxControlHeader); offset < header->mailDataOffset; offset += sizeof(MBoxControlHeader)) {
-        NWC24Err readErr;
-        NWC24FSeek(&file, offset, NWC24_SEEK_BEG);
-        readErr = NWC24FRead(entry, sizeof(MBoxControlHeader), &file);
-        if (readErr != NWC24_OK) {
-            err = readErr;
+    for (offset = sizeof(NWC24iMBCHeader); offset < pHeader->fileSize; offset += sizeof(NWC24iMBCHeader)) {
+        fileResult = NWC24FSeek(&file, offset, NWC24_SEEK_BEG);
+        if (fileResult != NWC24_OK) {
+            result = fileResult;
+            break;
+        }
+        fileResult = NWC24FRead(pEntry, sizeof(NWC24iMBCHeader), &file);
+        if (fileResult != NWC24_OK) {
+            result = fileResult;
             break;
         }
 
-        if (entry->id == 0) {
+        if (pEntry->id == 0) {
             continue;
         }
 
-        entryOffsetToDelete++;
+        lastId++;
 
-        if (entry->id == msgId) {
-            if (flags != 0) {
-                if ((entry->flags & 0x2) != 0) {
-                    if (NWC24GetAppId() - 0x48410000 != 0x4541) {
-                        err = NWC24_ERR_PROTECTED;
+        if (pEntry->id == msgId) {
+            if (checkPermission) {
+                if ((pEntry->flags & NWC24_MSGOBJ_FOR_PUBLIC) && pEntry->appId == 0) {
+                    if (NWC24GetAppId() != NWC24i_APP_ID_IPL) {
+                        result = NWC24_ERR_PROTECTED;
                         break;
                     }
-                } else {
-                    if ((entry->appId & 0xFFFFFF00) != (NWC24GetAppId() & 0xFFFFFF00)) {
-                        if ((entry->flags & 0x8) != 0) {
-                            if (NWC24GetAppId() - 0x48410000 == 0x4541) {
-                                goto permission_ok;
-                            }
-                        }
-                        err = NWC24_ERR_PROTECTED;
-                        break;
-                    }
+
+                } else if ((pEntry->appId & 0xFFFFFF00) != (NWC24GetAppId() & 0xFFFFFF00) &&
+
+                           (!(pEntry->flags & NWC24_MSGOBJ_FOR_MENU) || NWC24GetAppId() != NWC24i_APP_ID_IPL)) {
+                    result = NWC24_ERR_PROTECTED;
+                    break;
                 }
             }
-        permission_ok:
 
-            checkedCount = offset;
-            err = NWC24_OK;
+            clearOffset = offset;
+            result = NWC24_OK;
             continue;
         }
 
         if (oldestMsgId != 0) {
-            if (CompareMsgId(oldestMsgId, entry->id) <= 0) {
+            if (CompareMsgId(oldestMsgId, pEntry->id) <= 0) {
                 continue;
             }
         }
-        oldestMsgId = entry->id;
+
+        oldestMsgId = pEntry->id;
     }
 
-    if (err == NWC24_ERR_NOT_FOUND) {
-        if (header->msgCount != entryOffsetToDelete) {
-            header->msgCount = entryOffsetToDelete;
-
-            // TODO(Alex9303) Fakematch: (possibly) Missing inline function
-            header3 = header;
-            NWC24FSeek(&file, 0, NWC24_SEEK_BEG);
-            NWC24FWrite(header3, sizeof(MBoxControlHeader), &file);
-        }
+    if (result == NWC24_ERR_NOT_FOUND && pHeader->numMsgs != lastId) {
+        pHeader->numMsgs = lastId;
+        SaveMBCHeader(pHeader, &file);
     }
 
-    if (err != NWC24_OK) {
-        NWC24FClose(&file);
+    if (result != NWC24_OK) {
+        fileResult = NWC24FClose(&file);
 
         if (msgId == 0) {
-            err = NWC24_ERR_INVALID_VALUE;
+            return NWC24_ERR_INVALID_VALUE;
         }
 
-        return err;
+        return result;
     }
 
-    header->oldestMsgId = oldestMsgId;
+    pHeader->oldestMsgId = oldestMsgId;
+    result = ClearMBCEntry(pHeader, &file, clearOffset);
 
-    writeErr = ClearMBCEntry(header, checkedCount, &file);
+    fileResult = DeleteMsgFile(id, msgId);
+    result = result != NWC24_OK ? result : fileResult;
 
-    mountErr = MountVFMBox(mboxType);
-    switch (mountErr) {
-    case NWC24_OK:
-        pathWork = NWC24WorkP->pathWork;
-        mountErr = GetMBoxFilePath(pathWork, mboxType, msgId);
-        switch (mountErr) {
-        case NWC24_OK:
-            deleteErr = NWC24FDeleteVF(pathWork);
-            mountErr = UnmountVFMBox();
-            if (deleteErr != NWC24_OK) {
-                mountErr = deleteErr;
-            }
-            break;
-        }
-        break;
-    }
+    fileResult = SaveMBCHeader(pHeader, &file);
+    result = result != NWC24_OK ? result : fileResult;
 
-    // TODO(Alex9303) Fakematch: Reusing arguments msgId/mboxType as error variables to match r23/r22
-    msgId = mountErr;
-    if (writeErr != NWC24_OK) {
-        msgId = writeErr;
-    }
+    fileResult = NWC24FClose(&file);
+    result = result != NWC24_OK ? result : fileResult;
 
-    // TODO(Alex9303) Fakematch: (possibly) Missing inline function
-    header2 = header;
-    NWC24FSeek(&file, 0, NWC24_SEEK_BEG);
-
-    mboxType = NWC24FWrite(header2, sizeof(MBoxControlHeader), &file);
-    if (msgId != NWC24_OK) {
-        mboxType = msgId;
-    }
-
-    err = NWC24FClose(&file);
-    if (mboxType != NWC24_OK) {
-        err = mboxType;
-    }
-
-    return err;
+    return result;
 }
 
-NWC24Err DuplicationCheck(MBoxControlHeader* header, const NWC24MsgObj* msg, NWC24File* file, s32 mboxType) {
-    NWC24Err err;
+static NWC24Err DeleteMsgFile(NWC24MsgBoxId id, u32 msgId) {
+    char* pPath;
+    NWC24Err mountResult;
+    NWC24Err result;
+
+    mountResult = NWC24_OK;
+
+    mountResult = MountVFMBox(id);
+    if (mountResult != NWC24_OK) {
+        return mountResult;
+    }
+
+    pPath = NWC24WorkP->pathWork;
+
+    result = MakeMailPath(id, msgId, pPath, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    result = NWC24FDeleteVF(pPath);
+    mountResult = UnmountVFMBox();
+
+    result = result != NWC24_OK ? result : mountResult;
+    return result;
+}
+
+static NWC24Err DuplicationCheck(NWC24iMBCHeader* pHeader, const NWC24iMsgObj* pMsg, NWC24File* pFile, NWC24MsgBoxId id) {
+    NWC24Err result;
+    NWC24Err deleteErr;
     u32 offset;
     u32 checkedCount;
     u32 bestMsgId;
     u32 bestOffset;
     u32 oldestMsgId;
-    MBoxControlEntry* entry;
-    char* pathWork;
-    char** pathWorkPtr;
+    NWC24iMBCEntry* pEntry;
+    char* pPath;
 
-    err = NWC24_OK;
+    result = NWC24_OK;
     checkedCount = 0;
     bestMsgId = 0;
     bestOffset = 0;
     oldestMsgId = 0;
 
-    pathWorkPtr = &pathWork;
-
-    if (mboxType == 0) {
+    if (id == 0) {
         return NWC24_OK;
     }
 
-    entry = (MBoxControlEntry*)((char*)NWC24WorkP + 0x1200);
+    pEntry = &NWC24WorkP->mbcEntry;
 
-    for (offset = sizeof(MBoxControlHeader); offset < header->mailDataOffset; offset += sizeof(MBoxControlHeader)) {
-        int isDuplicate;
-        int cmp;
+    for (offset = sizeof(NWC24iMBCHeader); offset < pHeader->fileSize; offset += sizeof(NWC24iMBCHeader)) {
+        BOOL isDuplicate = FALSE;
 
-        if (checkedCount >= header->msgCount) {
+        if (checkedCount >= pHeader->numMsgs) {
             break;
         }
 
-        NWC24FSeek(file, offset, NWC24_SEEK_BEG);
-        err = NWC24FRead(entry, sizeof(MBoxControlHeader), file);
-        if (err != NWC24_OK) {
+        result = NWC24FSeek(pFile, offset, NWC24_SEEK_BEG);
+        if (result != NWC24_OK) {
+            break;
+        }
+        result = NWC24FRead(pEntry, sizeof(NWC24iMBCHeader), pFile);
+        if (result != NWC24_OK) {
             break;
         }
 
-        if (entry->id == 0) {
+        if (pEntry->id == 0) {
             continue;
         }
 
         checkedCount++;
-        isDuplicate = 1;
+        isDuplicate = TRUE;
 
-        if (entry->id == msg->id) {
-            isDuplicate = 0;
+        if (pEntry->id == pMsg->id) {
+            isDuplicate = FALSE;
         }
 
-        if ((entry->flags & msg->flags & 1) != 0) {
-            if (entry->appId != msg->appId) {
-                isDuplicate = 0;
+        if (pEntry->flags & pMsg->flags & NWC24_MSGOBJ_FOR_RECIPIENT) {
+            if (pEntry->appId != pMsg->appId) {
+                isDuplicate = FALSE;
             }
-            if (entry->fromId != msg->fromId) {
-                isDuplicate = 0;
+
+            if (pEntry->from.id != pMsg->from.id) {
+                isDuplicate = FALSE;
             }
         }
 
         if (isDuplicate) {
-            u32 msgTag = msg->tag & 0xFFFF;
-            u32 msgCreationMs;
-
-            if (msgTag != 0) {
-                if ((entry->tag & 0xFFFF) == msgTag) {
-                    bestMsgId = entry->id;
-                    bestOffset = offset;
-                    continue;
-                }
+            if ((pMsg->tag & 0xFFFF) != 0 && (pEntry->tag & 0xFFFF) == (pMsg->tag & 0xFFFF)) {
+                bestMsgId = pEntry->id;
+                bestOffset = offset;
+                continue;
             }
 
-            msgCreationMs = ((const u32*)msg)[7];
-            if (msgCreationMs != 0 && entry->nextFreeOrCreationMs == msgCreationMs && entry->flags == msg->flags && entry->length == msg->length &&
-                entry->UNK_0x10 == ((const u32*)msg)[4] && (s32)entry->createTime == (s32)((const u32*)msg)[10]) {
-                bestMsgId = entry->id;
+            if (pMsg->unk1C != 0 && pEntry->unk1C == pMsg->unk1C && pEntry->flags == pMsg->flags && pEntry->length == pMsg->length &&
+                pEntry->unk10 == pMsg->unk10 && pEntry->createTime == pMsg->createTime) {
+                bestMsgId = pEntry->id;
                 bestOffset = offset;
                 continue;
             }
         }
 
-        if (oldestMsgId != 0) {
-            if (CompareMsgId(oldestMsgId, entry->id) <= 0) {
-                continue;
-            }
-        }
-        oldestMsgId = entry->id;
-    }
-
-    if (err != NWC24_OK) {
-        return err;
-    }
-
-    header->oldestMsgId = oldestMsgId;
-
-    if (bestMsgId != 0) {
-        NWC24Err writeErr;
-        NWC24Err result;
-
-        entry = (MBoxControlEntry*)(((char*)NWC24WorkP) + 0x1200);
-        pathWork = NWC24WorkP->WORK_0x1200;
-
-        err = NWC24FSeek(file, bestOffset, NWC24_SEEK_BEG);
-        err = NWC24FRead(*pathWorkPtr, sizeof(MBoxControlHeader), file);
-
-        header->msgCount--;
-        header->totalMsgSize -= entry->length;
-
-        memset(entry, 0, sizeof(MBoxControlHeader));
-        entry->appId = header->nextFreeEntry;
-        header->nextFreeEntry = bestOffset;
-
-        err = NWC24FSeek(file, bestOffset, NWC24_SEEK_BEG);
-        writeErr = NWC24FWrite(entry, sizeof(MBoxControlHeader), file);
-
-        err = MountVFMBox(mboxType);
-        if (err != NWC24_OK) {
-            result = err;
-        } else {
-            pathWork = NWC24WorkP->pathWork;
-            err = GetMBoxFilePath(pathWork, mboxType, bestMsgId);
-            if (err != NWC24_OK) {
-                result = err;
-            } else {
-                NWC24Err deleteErr = NWC24FDeleteVF(pathWork);
-
-                result = UnmountVFMBox();
-                if (deleteErr != NWC24_OK) {
-                    result = deleteErr;
-                }
-            }
+        if (oldestMsgId != 0 && CompareMsgId(oldestMsgId, pEntry->id) <= 0) {
+            continue;
         }
 
-        if (writeErr != NWC24_OK) {
-            result = writeErr;
-        }
-
-        return result;
+        oldestMsgId = pEntry->id;
     }
 
-    return err;
-}
-
-NWC24Err GetCachedMBCHeader(s32 mboxType, MBoxControlHeader** headerOut) {
-    NWC24Err err;
-    const char* mboxDir;
-    NWC24File file;
-    NWC24Err result = NWC24_OK;
-    char* pathWork;
-
-    if (mboxType == 0) {
-        *headerOut = (MBoxControlHeader*)NWC24WorkP->WORK_0x1100;
-    } else if (mboxType == 1) {
-        *headerOut = (MBoxControlHeader*)NWC24WorkP->WORK_0x1180;
-    } else {
-        *headerOut = 0;
-        return NWC24_ERR_INVALID_VALUE;
-    }
-
-    if ((*headerOut)->magic != 0x57635466) {
-        pathWork = NWC24WorkP->pathWork;
-        err = MakeMailPath(pathWork, mboxType);
-        if (err != NWC24_OK) {
-            return err;
-        }
-
-        err = NWC24FOpen(&file, pathWork, 2);
-        if (err != NWC24_OK) {
-            return err;
-        }
-
-        result = LoadMBCHeader(&file, *headerOut);
-        err = NWC24FClose(&file);
-        if (result == NWC24_OK) {
-            if (err != NWC24_OK) {
-                result = err;
-            }
-        }
-    }
-
-    if ((*headerOut)->version != 4) {
-        result = NWC24_ERR_VER_MISMATCH;
-    }
-    return result;
-}
-
-static NWC24Err LoadMBCHeader(NWC24File* file, MBoxControlHeader* header) {
-    NWC24Err err;
-
-    NWC24FSeek(file, 0, NWC24_SEEK_BEG);
-    err = NWC24FRead(header, sizeof(MBoxControlHeader), file);
-    if (err != NWC24_OK) {
-        return err;
-    }
-
-    if (header->magic != 0x57635466) {
-        return NWC24_ERR_BROKEN;
-    }
-
-    return NWC24_OK;
-}
-
-static NWC24Err SaveMBCHeader(NWC24File* file, MBoxControlHeader* header) {
-    NWC24Err err = NWC24FSeek(file, 0, NWC24_SEEK_BEG);
-    if (err != NWC24_OK) {
-        return err;
-    }
-
-    return NWC24FWrite(header, sizeof(MBoxControlHeader), file);
-}
-
-NWC24Err AddMBCEntry(MBoxControlHeader* header, const NWC24MsgObj* msg, NWC24File* file) {
-    s32 entryOffset = header->nextFreeEntry;
-    MBoxControlEntry* entryBuffer;
-    s32 nextEntryOffset;
-    NWC24Err err;
-
-    entryBuffer = (MBoxControlEntry*)NWC24WorkP->WORK_0x1200;
-
-    if (entryOffset == 0) {
-        return NWC24_ERR_FULL;
-    }
-
-    if ((u32)entryOffset >= header->mailDataOffset || ((entryOffset - sizeof(MBoxControlHeader)) & 0x7F) != 0) {
-        return NWC24_ERR_BROKEN;
-    }
-
-    NWC24FSeek(file, entryOffset, NWC24_SEEK_BEG);
-
-    err = NWC24FRead(entryBuffer, sizeof(MBoxControlEntry), file);
-    if (err != NWC24_OK) {
-        return err;
-    }
-
-    nextEntryOffset = entryBuffer->appId;
-
-    if ((u32)nextEntryOffset >= header->mailDataOffset || ((nextEntryOffset - sizeof(MBoxControlHeader)) & 0x7F) != 0) {
-        return NWC24_ERR_BROKEN;
-    }
-
-    header->nextFreeEntry = nextEntryOffset;
-    CopyMsgObjToMBCFmt(msg, entryBuffer);
-
-    NWC24FSeek(file, entryOffset, NWC24_SEEK_BEG);
-
-    err = NWC24FWrite(entryBuffer, sizeof(MBoxControlEntry), file);
-    if (err != NWC24_OK) {
-        return err;
-    }
-
-    if (header->msgCount == 0) {
-        header->oldestMsgId = msg->id;
-    }
-
-    header->msgCount++;
-    header->totalMsgSize += msg->length;
-    return NWC24_OK;
-}
-
-static NWC24Err ClearMBCEntry(MBoxControlHeader* header, u32 offset, NWC24File* file) {
-    MBoxControlEntry* entryBuffer;
-
-    entryBuffer = (MBoxControlEntry*)NWC24WorkP->WORK_0x1200;
-    NWC24FSeek(file, offset, NWC24_SEEK_BEG);
-    NWC24FRead(entryBuffer, sizeof(MBoxControlEntry), file);
-
-    header->msgCount--;
-    header->totalMsgSize -= entryBuffer->length;
-
-    memset(entryBuffer, 0, sizeof(MBoxControlEntry));
-    entryBuffer->appId = header->nextFreeEntry;
-    header->nextFreeEntry = offset;
-
-    NWC24FSeek(file, offset, NWC24_SEEK_BEG);
-    return NWC24FWrite(entryBuffer, sizeof(MBoxControlEntry), file);
-}
-
-NWC24Err GetNewMsgId(MBoxControlHeader* header, u32* msgIdOut) {
-    if (header->magic != 0x57635466) {
-        return NWC24_ERR_INVALID_VALUE;
-    }
-
-    if (header->nextMsgId > 1000000) {
-        header->nextMsgId = 1;
-    }
-
-    *msgIdOut = header->nextMsgId;
-    header->nextMsgId++;
-
-    return NWC24_OK;
-}
-
-static s32 CompareMsgId(u32 id1, u32 id2) {
-    if (id1 == id2) {
-        return 0;
-    } else if (id1 > 900000 && id2 < 100000) {
-        return -1;
-    } else if (id1 < 100000 && id2 > 900000) {
-        return 1;
-    } else if (id1 > id2) {
-        return 1;
-    } else {
-        return -1;
-    }
-}
-
-NWC24Err MountVFMBox(s32 mboxType) {
-    s32 result;
-    NWC24Err err;
-    const char* mboxDir;
-    char* pathWork;
-
-    if (MountInfo.count != 0 && MountInfo.type != mboxType) {
-        MountInfo.count = 1;
-        UnmountVFMBox();
-        return NWC24_ERR_FATAL;
-    }
-
-    if ((s32)(++MountInfo.count) > 1) {
-        return NWC24_OK;
-    }
-
-    pathWork = NWC24WorkP->pathWork;
-    result = MakeMailPath(pathWork, mboxType);
     if (result != NWC24_OK) {
         return result;
     }
 
-    result = NWC24_OK;
-    err = NWC24MountVF("@24", pathWork);
-    if (err != result) {
-        return err;
-    } else {
-        err = result;
-        MountInfo.type = mboxType;
+    pHeader->oldestMsgId = oldestMsgId;
+
+    if (bestMsgId != 0) {
+        result = ClearMBCEntry(pHeader, pFile, bestOffset);
+        deleteErr = DeleteMsgFile(id, bestMsgId);
+
+        return result != NWC24_OK ? result : deleteErr;
     }
 
-    return err;
+    return result;
 }
 
-NWC24Err CopyMsgObjToMBCFmt(const NWC24MsgObj* src, MBoxControlEntry* dst) {
-    u32 packData30 = (((u32)src->DATA_0x30.ptr) & 0xFFFFF) | (src->DATA_0x30.size << 20);
-    u32 packData38 = (((u32)src->DATA_0x38.ptr) & 0xFFFFF) | (src->DATA_0x38.size << 20);
-    u32 packSubject = (((u32)src->subject.ptr) & 0xFFFFF) | (src->subject.size << 20);
-    u32 packContent = (((u32)src->DATA_0x50.ptr) & 0xFFFFF) | (src->DATA_0x50.size << 20);
-    u32 packTransfer = (((u32)src->DATA_0x58.ptr) & 0xFFFFF) | (src->DATA_0x58.size << 20);
+static NWC24Err GetCachedMBCHeader(NWC24MsgBoxId id, NWC24iMBCHeader** ppHeader) {
+    NWC24Err result;
+    NWC24Err closeResult;
+    NWC24File file;
+    char* pPath;
 
-    dst->id = src->id;
-    dst->flags = src->flags;
-    dst->length = src->length;
-    dst->appId = src->appId;
-    *(u32*)&dst->UNK_0x10 = src->UNK_0x10;
-    dst->tag = src->tag;
-    dst->ledPattern = src->ledPattern;
-    dst->nextFreeOrCreationMs = *(const u32*)((const u8*)src + 0x1C);
-    ((u32*)&dst->fromId)[0] = ((u32*)&src->fromId)[0];
+    result = NWC24_OK;
 
-    ((u32*)&dst->fromId)[1] = ((u32*)&src->fromId)[1];
+    if (id == NWC24_MSGBOX_SEND) {
+        *ppHeader = &NWC24WorkP->sendCtrl;
+    } else if (id == NWC24_MSGBOX_RECV) {
+        *ppHeader = &NWC24WorkP->recvCtrl;
+    } else {
+        *ppHeader = NULL;
+        return NWC24_ERR_INVALID_VALUE;
+    }
 
-    dst->createTime = src->WORD_0x28;
-    dst->UNK_0x2C = src->WORD_0x2C;
+    if ((*ppHeader)->magic != MBOX_CTRL_MAGIC) {
+        pPath = NWC24WorkP->pathWork;
 
-    *(u8*)&dst->numTo = src->numTo;
-    *(u8*)((u8*)dst + 0x31) = src->numAttached;
-    *(u16*)((u8*)dst + 0x32) = src->groupId;
+        result = NWC24iMBoxGetCtrlFilePath(id, pPath, NWC24i_PATH_WORK_SIZE);
+        if (result != NWC24_OK) {
+            return result;
+        }
 
-    dst->packedSubjectText = packData30;
-    dst->packedTextSubjectSize = packData38;
-    dst->packedSubjectTextSize = packSubject;
-    dst->packedTextSizeContentType = packContent;
-    dst->packedContentTypeTransferEnc = packTransfer;
+        result = NWC24FOpen(&file, pPath, NWC24_OPEN_READ);
+        if (result != NWC24_OK) {
+            return result;
+        }
 
-    dst->textPtr = (u32)src->text.ptr;
-    dst->textSize = src->text.size;
-    dst->textOrigSize = *(const u32*)((const u8*)src + 0xE8);
-    dst->UNK_0x74 = *(const u32*)((const u8*)src + 0xEC);
+        result = LoadMBCHeader(*ppHeader, &file);
+        closeResult = NWC24FClose(&file);
 
-    dst->attached0Ptr = (u32)src->attached[0].ptr;
-    dst->attached0Size = src->attached[0].size;
-    dst->attached0OrigSize = src->attachedSize[0];
-    dst->attached0_type = src->attachedType[0];
+        if (result == NWC24_OK && closeResult != NWC24_OK) {
+            result = closeResult;
+        }
+    }
 
-    dst->attached1Ptr = (u32)src->attached[1].ptr;
-    dst->attached1Size = src->attached[1].size;
-    dst->attached1OrigSize = src->attachedSize[1];
-    dst->attached1_type = src->attachedType[1];
+    if ((*ppHeader)->version != MBOX_CTRL_VERSION) {
+        return NWC24_ERR_VER_MISMATCH;
+    }
+    if ((*ppHeader)->freeChain & 31) {
+        return NWC24_ERR_BROKEN;
+    }
+
+    return result;
+}
+
+static NWC24Err LoadMBCHeader(NWC24iMBCHeader* pHeader, NWC24File* pFile) {
+    NWC24Err result;
+
+    result = NWC24FSeek(pFile, 0, NWC24_SEEK_BEG);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    result = NWC24FRead(pHeader, sizeof(NWC24iMBCHeader), pFile);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    if (pHeader->magic != MBOX_CTRL_MAGIC) {
+        return NWC24_ERR_BROKEN;
+    }
 
     return NWC24_OK;
+}
+
+static NWC24Err SaveMBCHeader(NWC24iMBCHeader* pHeader, NWC24File* pFile) {
+    NWC24Err result = NWC24FSeek(pFile, 0, NWC24_SEEK_BEG);
+    if (result != NWC24_OK) {
+        return result;
+    }
+    return NWC24FWrite(pHeader, sizeof(NWC24iMBCHeader), pFile);
+}
+
+static NWC24Err AddMBCEntry(NWC24iMBCHeader* pHeader, const NWC24iMsgObj* pMsg, NWC24File* pFile) {
+    u32 headerNext;
+    u32 entryNext;
+    NWC24iMBCEntry* pEntry;
+    NWC24Err result;
+
+    headerNext = pHeader->freeChain;
+    pEntry = &NWC24WorkP->mbcEntry;
+
+    if (headerNext == 0) {
+        return NWC24_ERR_FULL;
+    }
+
+    if (headerNext >= pHeader->fileSize || ((headerNext - sizeof(NWC24iMBCHeader)) & 0x7F)) {
+        return NWC24_ERR_BROKEN;
+    }
+
+    result = NWC24FSeek(pFile, headerNext, NWC24_SEEK_BEG);
+    if (result != NWC24_OK) {
+        return result;
+    }
+    result = NWC24FRead(pEntry, sizeof(NWC24iMBCEntry), pFile);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    entryNext = pEntry->appId;
+
+    if (entryNext >= pHeader->fileSize || ((entryNext - sizeof(NWC24iMBCHeader)) & 0x7F)) {
+        return NWC24_ERR_BROKEN;
+    }
+
+    pHeader->freeChain = entryNext;
+    CopyMsgObjToMBCFmt(pMsg, pEntry);
+
+    result = NWC24FSeek(pFile, headerNext, NWC24_SEEK_BEG);
+    if (result != NWC24_OK) {
+        return result;
+    }
+    result = NWC24FWrite(pEntry, sizeof(NWC24iMBCEntry), pFile);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    if (pHeader->numMsgs == 0) {
+        pHeader->oldestMsgId = pMsg->id;
+    }
+
+    pHeader->numMsgs++;
+    pHeader->totalMsgSize += pMsg->length;
+
+    return NWC24_OK;
+}
+
+static NWC24Err ClearMBCEntry(NWC24iMBCHeader* pHeader, NWC24File* pFile, u32 offset) {
+    NWC24iMBCEntry* pEntry;
+    NWC24Err result;
+
+    pEntry = &NWC24WorkP->mbcEntry;
+
+    result = NWC24FSeek(pFile, offset, NWC24_SEEK_BEG);
+    if (result != NWC24_OK) {
+        return result;
+    }
+    result = NWC24FRead(pEntry, sizeof(NWC24iMBCEntry), pFile);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    pHeader->numMsgs--;
+    pHeader->totalMsgSize -= pEntry->length;
+
+    memset(pEntry, 0, sizeof(NWC24iMBCEntry));
+    pEntry->appId = pHeader->freeChain;
+    pHeader->freeChain = offset;
+
+    result = NWC24FSeek(pFile, offset, NWC24_SEEK_BEG);
+    if (result != NWC24_OK) {
+        return result;
+    }
+    result = NWC24FWrite(pEntry, sizeof(NWC24iMBCEntry), pFile);
+    return result;
+}
+
+static NWC24Err GetNewMsgId(NWC24iMBCHeader* pHeader, u32* pMsgId) {
+    if (pHeader->magic != MBOX_CTRL_MAGIC) {
+        return NWC24_ERR_INVALID_VALUE;
+    }
+
+    if (pHeader->nextMsgId > MSG_ID_MAX) {
+        pHeader->nextMsgId = MSG_ID_MIN;
+    }
+
+    *pMsgId = pHeader->nextMsgId;
+    pHeader->nextMsgId++;
+
+    return NWC24_OK;
+}
+
+static int CompareMsgId(u32 lhs, u32 rhs) {
+    if (lhs == rhs) {
+        return 0;
+    }
+
+    if (lhs > 900000 && rhs < 100000) {
+        return -1;
+    }
+
+    if (lhs < 100000 && rhs > 900000) {
+        return 1;
+    }
+
+    return lhs > rhs ? 1 : -1;
+}
+
+static NWC24Err MountVFMBox(NWC24MsgBoxId id) {
+    NWC24Err result;
+    const char* pMBoxDir;
+    char* pPath;
+
+    if (MountInfo.count != 0 && MountInfo.id != id) {
+        UnmountVFMBoxForced();
+        return NWC24_ERR_FATAL;
+    }
+
+    if (++MountInfo.count > 1) {
+        return NWC24_OK;
+    }
+
+    pPath = NWC24WorkP->pathWork;
+
+    result = GetMBoxFilePath(id, pPath, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    result = NWC24MountVF(NWC24i_VF_DRIVE, pPath);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    MountInfo.id = id;
+    return NWC24_OK;
+}
+
+static NWC24Err UnmountVFMBox(void) {
+    NWC24Err result;
+    NWC24iMBCHeader* pHeader;
+    u32 freeSize;
+
+    if (MountInfo.count == 0) {
+        return NWC24_OK;
+    }
+
+    if (--MountInfo.count > 0) {
+        return NWC24_OK;
+    }
+
+    result = GetCachedMBCHeader(MountInfo.id, &pHeader);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    result = NWC24CheckSizeVF(NWC24i_VF_DRIVE, &freeSize);
+    if (result != NWC24_OK) {
+        return result;
+    }
+
+    pHeader->freeSpace = freeSize;
+    result = NWC24UnmountVF(NWC24i_VF_DRIVE);
+
+    return result;
+}
+
+static NWC24Err UnmountVFMBoxForced(void) {
+    MountInfo.count = 1;
+    return UnmountVFMBox();
+}
+
+static u32 PackNWC24Data(const NWC24Data* pData) {
+    return (pData->offset << 0) & 0x000FFFFF | (pData->size << 20) & 0xFFF00000;
+}
+
+static NWC24Err CopyMsgObjToMBCFmt(const NWC24iMsgObj* pSrc, NWC24iMBCEntry* pDst) {
+    int i;
+
+    u32 fromFieldPacked = PackNWC24Data(&pSrc->fromField);
+    u32 toFieldPacked = PackNWC24Data(&pSrc->toField);
+    u32 subjectPacked = PackNWC24Data(&pSrc->subject);
+    u32 contentPacked = PackNWC24Data(&pSrc->contentType);
+    u32 txEncodingPacked = PackNWC24Data(&pSrc->txEncoding);
+
+    pDst->id = pSrc->id;
+    pDst->flags = pSrc->flags;
+    pDst->length = pSrc->length;
+    pDst->appId = pSrc->appId;
+    pDst->unk10 = pSrc->unk10;
+    pDst->tag = pSrc->tag;
+    pDst->command = pSrc->command;
+    pDst->unk1C = pSrc->unk1C;
+    pDst->from = pSrc->from;
+    pDst->createTime = pSrc->createTime;
+    pDst->unk2C = pSrc->unk2C;
+    pDst->numTo = pSrc->numTo;
+    pDst->numAttached = pSrc->numAttached;
+    pDst->groupId = pSrc->groupId;
+
+    pDst->fromField = fromFieldPacked;
+    pDst->toField = toFieldPacked;
+    pDst->subject = subjectPacked;
+    pDst->contentType = contentPacked;
+    pDst->txEncoding = txEncodingPacked;
+
+    pDst->text = pSrc->text;
+    pDst->dwcId = pSrc->dwcId;
+    pDst->unk78 = pSrc->iconNew;
+
+    for (i = 0; i < NWC24i_MSG_ATTACHMENT_MAX; i++) {
+        pDst->attached[i] = pSrc->attached[i];
+        pDst->attachedSize[i] = pSrc->attachedSize[i];
+        pDst->attachedType[i] = pSrc->attachedType[i];
+    }
+
+    return NWC24_OK;
+}
+
+static NWC24Err CreateCtrlFile(NWC24MsgBoxId id, BOOL forceCreate) {
+    NWC24Err result;
+    NWC24Err close;
+    NWC24File file;
+    NWC24iMBCHeader* header;
+    NWC24iMBCEntry* entry = &NWC24WorkP->mbcEntry;
+    char* path = NWC24WorkP->pathWork;
+    u32 offset;
+    result = GetCachedMBCHeader(id, &header);
+    if (result == NWC24_OK && !forceCreate) {
+        return result;
+    }
+    result = NWC24iMBoxGetCtrlFilePath(id, path, NWC24i_PATH_WORK_SIZE);
+    if (result != NWC24_OK) {
+        return result;
+    }
+    result = NWC24FOpen(&file, path, NWC24_OPEN_NAND_W);
+    if (result != NWC24_OK) {
+        return result;
+    }
+    header = id == NWC24_MSGBOX_SEND ? &NWC24WorkP->sendCtrl : &NWC24WorkP->recvCtrl;
+    Mail_memset(header, 0, sizeof(NWC24iMBCHeader));
+    header->magic = MBOX_CTRL_MAGIC;
+    header->version = MBOX_CTRL_VERSION;
+    header->capacity = id == NWC24_MSGBOX_SEND ? 127 : 255;
+    header->freeSpace = id == NWC24_MSGBOX_SEND ? 0x200000 : 0x700000;
+    Mail_memset(header->lastUIDL, '0', sizeof(header->lastUIDL) - 1);
+    header->fileSize = sizeof(NWC24iMBCHeader) + header->capacity * sizeof(NWC24iMBCEntry);
+    header->nextMsgId = MSG_ID_MIN;
+    header->freeChain = sizeof(NWC24iMBCHeader);
+    result = NWC24FWrite(header, sizeof(NWC24iMBCHeader), &file);
+    Mail_memset(entry, 0, sizeof(NWC24iMBCEntry));
+    for (offset = sizeof(NWC24iMBCHeader); offset < header->fileSize; offset += sizeof(NWC24iMBCEntry)) {
+        entry->appId = (offset + sizeof(NWC24iMBCEntry)) % header->fileSize;
+        close = NWC24FWrite(entry, sizeof(NWC24iMBCEntry), &file);
+        if (result == NWC24_OK) {
+            result = close;
+        }
+    }
+    close = NWC24FClose(&file);
+    if (result != NWC24_OK) {
+        return result;
+    }
+    return close != NWC24_OK ? close : 1;
 }

@@ -12,7 +12,7 @@ public:
     u16 mFileFlag;      // 0xA
 
     JKRFileFinder();
-    virtual ~JKRFileFinder();
+    virtual ~JKRFileFinder() {}
 
     virtual bool findNextFile() = 0;
 

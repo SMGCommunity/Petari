@@ -5,7 +5,7 @@
 class RushEndInfo {
 public:
     RushEndInfo(LiveActor*, u32, const TVec3f&, bool, u32);
-    
+
     /* 0x00 */ u32 _0;
     /* 0x04 */ u32 _4;
     /* 0x08 */ TVec3f _8;

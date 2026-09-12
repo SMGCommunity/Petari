@@ -6,28 +6,23 @@
 #include "JSystem/J3DGraphBase/J3DSys.hpp"
 
 void J3DMtxCalcJ3DSysInitBasic::init(Vec const& scale, Mtx const& mtx) {
+    Vec unitScale = {1.0f, 1.0f, 1.0f};
     J3DSys::mCurrentS = scale;
-    J3DSys::mParentS = (Vec){1.0f, 1.0f, 1.0f};
-    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
+    J3DSys::mParentS = unitScale;
+    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, scale.x, scale.y, scale.z);
 }
 
 void J3DMtxCalcJ3DSysInitMaya::init(Vec const& scale, Mtx const& mtx) {
     J3DSys::mParentS = (Vec){1.0f, 1.0f, 1.0f};
     J3DSys::mCurrentS = scale;
-    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, J3DSys::mCurrentS.x, J3DSys::mCurrentS.y, J3DSys::mCurrentS.z);
+    JMAMTXApplyScale(mtx, J3DSys::mCurrentMtx, scale.x, scale.y, scale.z);
 }
 
 J3DMtxBuffer* J3DMtxCalc::mMtxBuffer;
 
 J3DJoint* J3DMtxCalc::mJoint;
 
-inline s32 checkScaleOne(const Vec& param_0) {
-    if (param_0.x == 1.0f && param_0.y == 1.0f && param_0.z == 1.0f) {
-        return true;
-    } else {
-        return false;
-    }
-}
+inline s32 checkScaleOne(const Vec&);
 
 void J3DMtxCalcCalcTransformBasic::calcTransform(J3DTransformInfo const& transInfo) {
     J3DMtxBuffer* mtxBuf = J3DMtxCalc::getMtxBuffer();
@@ -95,19 +90,20 @@ void J3DMtxCalcCalcTransformMaya::calcTransform(J3DTransformInfo const& transInf
     }
 
     if (joint->getScaleCompensate() == 1) {
-        f32 invX = JMath::fastReciprocal(J3DSys::mParentS.x);
-        f32 invY = JMath::fastReciprocal(J3DSys::mParentS.y);
-        f32 invZ = JMath::fastReciprocal(J3DSys::mParentS.z);
+        Vec inverseScale;
+        inverseScale.x = JMath::fastReciprocal(J3DSys::mParentS.x);
+        inverseScale.y = JMath::fastReciprocal(J3DSys::mParentS.y);
+        inverseScale.z = JMath::fastReciprocal(J3DSys::mParentS.z);
 
-        anmMtx[0][0] *= invX;
-        anmMtx[0][1] *= invX;
-        anmMtx[0][2] *= invX;
-        anmMtx[1][0] *= invY;
-        anmMtx[1][1] *= invY;
-        anmMtx[1][2] *= invY;
-        anmMtx[2][0] *= invZ;
-        anmMtx[2][1] *= invZ;
-        anmMtx[2][2] *= invZ;
+        anmMtx[0][0] *= inverseScale.x;
+        anmMtx[0][1] *= inverseScale.x;
+        anmMtx[0][2] *= inverseScale.x;
+        anmMtx[1][0] *= inverseScale.y;
+        anmMtx[1][1] *= inverseScale.y;
+        anmMtx[1][2] *= inverseScale.y;
+        anmMtx[2][0] *= inverseScale.z;
+        anmMtx[2][1] *= inverseScale.z;
+        anmMtx[2][2] *= inverseScale.z;
     }
 
     PSMTXConcat(J3DSys::mCurrentMtx, anmMtx, J3DSys::mCurrentMtx);
@@ -146,8 +142,7 @@ J3DJoint::J3DJoint() {
 
     Vec init = {0.0f, 0.0f, 0.0f};
     mMin = init;
-    Vec init2 = {0.0f, 0.0f, 0.0f};
-    mMax = init2;
+    mMax = init;
 }
 
 void J3DJoint::entryIn() {
@@ -171,12 +166,62 @@ void J3DJoint::entryIn() {
             matPacket->setMaterialAnmID(mesh->getMaterialAnm());
             matPacket->setShapePacket(shapePacket);
             J3DDrawBuffer* drawBuffer = j3dSys.getDrawBuffer(mesh->isDrawModeOpaTexEdge());
-            if ((u8)matPacket->entry(drawBuffer)) {
+            if (matPacket->entry(drawBuffer)) {
                 j3dSys.setMatPacket(matPacket);
                 J3DDrawBuffer::entryNum++;
                 mesh->makeDisplayList();
             }
             mesh = mesh->getNext();
         }
+    }
+}
+
+J3DMtxCalc* J3DJoint::mCurrentMtxCalc;
+
+void J3DJoint::recursiveCalc() {
+    Mtx currentMtx;
+    Vec currentScale;
+    Vec parentScale;
+    J3DJointCallBack callback;
+    J3DMtxCalc* previousCalc = NULL;
+    PSMTXCopy(J3DSys::mCurrentMtx, currentMtx);
+    currentScale = J3DSys::mCurrentS;
+    parentScale = J3DSys::mParentS;
+    J3DMtxCalc* calc = mMtxCalc;
+    if (calc != NULL) {
+        previousCalc = mCurrentMtxCalc;
+        J3DMtxCalc::setJoint(this);
+        mCurrentMtxCalc = calc;
+        calc->calc();
+    } else if (mCurrentMtxCalc != NULL) {
+        J3DMtxCalc::setJoint(this);
+        mCurrentMtxCalc->calc();
+    }
+    callback = mCallBack;
+    if (callback != NULL) {
+        callback(this, 0);
+    }
+    if (mChild != NULL) {
+        mChild->recursiveCalc();
+    }
+    PSMTXCopy(currentMtx, J3DSys::mCurrentMtx);
+    J3DSys::mCurrentS = currentScale;
+    J3DSys::mParentS = parentScale;
+    if (previousCalc != NULL) {
+        mCurrentMtxCalc = previousCalc;
+    }
+    if (callback != NULL) {
+        callback(this, 1);
+    }
+    if (mYounger != NULL) {
+        mYounger->recursiveCalc();
+    }
+}
+
+inline s32 checkScaleOne(const Vec& param_0) {
+    if (param_0.x == 1.0f && param_0.y == 1.0f && param_0.z == 1.0f) {
+        return true;
+    } else {
+        return false;
     }
 }

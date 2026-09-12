@@ -394,7 +394,7 @@ void J3DGDSetIndTexMtx(GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp) {
     offsetS32[4] = (s32)(offset[0][2] * 0x400) & 0x7FF;
     offsetS32[5] = (s32)(offset[1][2] * 0x400) & 0x7FF;
 
-    scale_exp += (s8)17;
+    scale_exp = static_cast< s8 >(scale_exp + 17);
     GDOverflowCheck(15);
 
     J3DGDWriteBPCmd(BP_IND_MTX(offsetS32[0], offsetS32[1], scale_exp & 3, 6 + id_offset * 3));

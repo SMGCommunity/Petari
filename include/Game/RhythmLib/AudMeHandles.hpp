@@ -8,7 +8,7 @@ class AudMe;
 class AudMeHandle {
 public:
     /// @brief Creates a new `AudMeHandle`.
-    AudMeHandle() : mMe(nullptr){};
+    AudMeHandle() : mMe(nullptr) {};
 
     /// @brief Destroys the `AudMeHandle`.
     ~AudMeHandle() {

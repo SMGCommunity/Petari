@@ -37,47 +37,107 @@ JKRMemArchive::~JKRMemArchive() {
     }
 }
 
-void JKRMemArchive::removeResourceAll() {
-    if (mInfoBlock == nullptr) {
+void JKRMemArchive::fixedInit(long entryNum) {
+    mIsMounted = false;
+    mMountMode = MOUNT_MODE_MEM;
+    _34 = 1;
+    _58 = 2;
+    mHeap = JKRHeap::sCurrentHeap;
+    mEntryNum = entryNum;
+
+    if (sCurrentVolume != nullptr) {
         return;
     }
 
-    if (mMountMode == MOUNT_MODE_MEM) {
-        return;
-    }
-
-    SDIFileEntry* current = mFiles;
-
-    for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
-        if (current->mFileData != nullptr) {
-            current->mFileData = nullptr;
-        }
-    }
+    sCurrentVolume = this;
+    sCurrentDirID = 0;
 }
 
-bool JKRMemArchive::removeResource(void* pResource) {
-    SDIFileEntry* file = findPtrResource(pResource);
-
-    if (file == nullptr) {
+bool JKRMemArchive::mountFixed(void* a1, JKRMemBreakFlag breakFlag) {
+    if (check_mount_already(reinterpret_cast< s32 >(a1)) != nullptr) {
         return false;
     }
 
-    file->mFileData = nullptr;
+    fixedInit(reinterpret_cast< s32 >(a1));
+
+    if (!open(a1, 0xFFFF, breakFlag)) {
+        return false;
+    }
+
+    SDIDirEntry* firstDir = mDirs;
+    char* stringTable = mStringTable;
+
+    mLoaderType = RARC_MAGIC;
+    mLoaderName = stringTable + firstDir->mNameOffset;
+
+    prependVolumeList(&mLoaderLink);
+
+    mIsMounted = true;
+    _6C = breakFlag == JKR_MEM_BREAK_FLAG_1;
+
     return true;
 }
 
-u32 JKRMemArchive::getExpandedResSize(const void* pResource) const {
-    SDIFileEntry* file = findPtrResource(pResource);
+bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
+    mHeader = nullptr;
+    mInfoBlock = nullptr;
+    mFileDataStart = nullptr;
+    mDirs = nullptr;
+    mFiles = nullptr;
+    mStringTable = nullptr;
+    _6C = false;
+    mMountDir = mountDir;
 
-    if (file == nullptr) {
-        return -1;
+    if (mountDir == MOUNT_DIRECTION_1) {
+        u32 size;
+
+        void* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0,
+                                                  reinterpret_cast< int* >(&_5C), &size);
+
+        mHeader = reinterpret_cast< RarcHeader* >(pData);
+
+        if (pData != nullptr) {
+            DCInvalidateRange(pData, size);
+        }
+    } else {
+        u32 size;
+
+        void* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_BACKWARD, 0,
+                                                  reinterpret_cast< int* >(&_5C), &size);
+
+        mHeader = reinterpret_cast< RarcHeader* >(pData);
+
+        if (pData != nullptr) {
+            DCInvalidateRange(pData, size);
+        }
     }
 
-    if ((file->mFlag & FILE_FLAG_COMPRESSED) == 0) {
-        return getResSize(pResource);
+    if (mHeader == nullptr) {
+        mMountMode = MOUNT_MODE_0;
+    } else {
+        mInfoBlock = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
+        mDirs = reinterpret_cast< SDIDirEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mDirOffset]);
+        mFiles = reinterpret_cast< SDIFileEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mFileOffset]);
+        mStringTable = reinterpret_cast< char* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mStringTableOffset]);
+        mFileDataStart = reinterpret_cast< u8* >(mHeader->mFileDataOffset + (reinterpret_cast< u32 >(mHeader) + mHeader->mHeaderSize));
+        _6C = true;
     }
 
-    return JKRDecompExpandSize(reinterpret_cast< u8* >(const_cast< void* >(pResource)));
+    return mMountMode != MOUNT_MODE_0;
+}
+
+bool JKRMemArchive::open(void* pData, unsigned long a2, JKRMemBreakFlag breakFlag) {
+    mHeader = reinterpret_cast< RarcHeader* >(pData);
+    mInfoBlock = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
+    mDirs = reinterpret_cast< SDIDirEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mDirOffset]);
+    mFiles = reinterpret_cast< SDIFileEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mFileOffset]);
+    mStringTable = reinterpret_cast< char* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mStringTableOffset]);
+    mFileDataStart = reinterpret_cast< u8* >(mHeader->mFileDataOffset + (reinterpret_cast< u32 >(mHeader) + mHeader->mHeaderSize));
+    _6C = breakFlag == JKR_MEM_BREAK_FLAG_1;
+    mHeap = JKRHeap::findFromRoot(pData);
+    _5C = 0;
+
+    return true;
 }
 
 void* JKRMemArchive::fetchResource(SDIFileEntry* pFile, unsigned long* pSize) {
@@ -122,112 +182,35 @@ void* JKRMemArchive::fetchResource(void* pData, unsigned long dataSize, SDIFileE
     return pData;
 }
 
-void JKRMemArchive::fixedInit(long entryNum) {
-    mIsMounted = false;
-    mMountMode = MOUNT_MODE_MEM;
-    _34 = 1;
-    _58 = 2;
-    mHeap = JKRHeap::sCurrentHeap;
-    mEntryNum = entryNum;
-
-    if (gCurrentFileLoader != nullptr) {
+void JKRMemArchive::removeResourceAll() {
+    if (mInfoBlock == nullptr) {
         return;
     }
 
-    gCurrentFileLoader = this;
-    sCurrentDirID = 0;
+    if (mMountMode == MOUNT_MODE_MEM) {
+        return;
+    }
+
+    SDIFileEntry* current = mFiles;
+
+    for (s32 i = 0; i < mInfoBlock->mNrFiles; i++) {
+        if (current->mFileData != nullptr) {
+            current->mFileData = nullptr;
+        }
+    }
 }
 
-bool JKRMemArchive::mountFixed(void* a1, JKRMemBreakFlag breakFlag) {
-    if (check_mount_already(reinterpret_cast< s32 >(a1)) != nullptr) {
+bool JKRMemArchive::removeResource(void* pResource) {
+    SDIFileEntry* file = findPtrResource(pResource);
+
+    if (file == nullptr) {
         return false;
     }
 
-    fixedInit(reinterpret_cast< s32 >(a1));
-
-    if (!open(a1, 0xFFFF, breakFlag)) {
-        return false;
-    }
-
-    SDIDirEntry* firstDir = mDirs;
-    char* stringTable = mStringTable;
-
-    mLoaderType = RARC_MAGIC;
-    mLoaderName = stringTable + firstDir->mNameOffset;
-
-    prependVolumeList(&mLoaderLink);
-
-    mIsMounted = true;
-    _6C = breakFlag == JKR_MEM_BREAK_FLAG_1;
-
+    file->mFileData = nullptr;
     return true;
 }
 
-// add r3, r5, r3 instead of add r3, r3, r5
-bool JKRMemArchive::open(long entryNum, EMountDirection mountDir) {
-    mHeader = nullptr;
-    mInfoBlock = nullptr;
-    mFileDataStart = nullptr;
-    mDirs = nullptr;
-    mFiles = nullptr;
-    mStringTable = nullptr;
-    _6C = false;
-    mMountDir = mountDir;
-
-    if (mountDir == MOUNT_DIRECTION_1) {
-        u32 size;
-
-        void* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0,
-                                                  reinterpret_cast< int* >(&_5C), &size);
-
-        mHeader = reinterpret_cast< RarcHeader* >(pData);
-
-        if (pData != nullptr) {
-            DCInvalidateRange(pData, size);
-        }
-    } else {
-        u32 size;
-
-        void* pData = JKRDvdRipper::loadToMainRAM(entryNum, nullptr, EXPAND_SWITCH_UNKNOWN1, 0, mHeap, JKRDvdRipper::ALLOC_DIRECTION_BACKWARD, 0,
-                                                  reinterpret_cast< int* >(&_5C), &size);
-
-        mHeader = reinterpret_cast< RarcHeader* >(pData);
-
-        if (pData != nullptr) {
-            DCInvalidateRange(pData, size);
-        }
-    }
-
-    if (mHeader == nullptr) {
-        mMountMode = MOUNT_MODE_0;
-    } else {
-        mInfoBlock = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
-        mDirs = reinterpret_cast< SDIDirEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mDirOffset]);
-        mFiles = reinterpret_cast< SDIFileEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mFileOffset]);
-        mStringTable = reinterpret_cast< char* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mStringTableOffset]);
-        mFileDataStart = &reinterpret_cast< u8* >(mHeader)[mHeader->mFileDataOffset + mHeader->mHeaderSize];
-        _6C = true;
-    }
-
-    return mMountMode != MOUNT_MODE_0;
-}
-
-// add r5, r4, r5 instead of add r5, r5, r4
-bool JKRMemArchive::open(void* pData, unsigned long a2, JKRMemBreakFlag breakFlag) {
-    mHeader = reinterpret_cast< RarcHeader* >(pData);
-    mInfoBlock = reinterpret_cast< RarcInfoBlock* >(reinterpret_cast< u8* >(mHeader) + mHeader->mHeaderSize);
-    mDirs = reinterpret_cast< SDIDirEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mDirOffset]);
-    mFiles = reinterpret_cast< SDIFileEntry* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mFileOffset]);
-    mStringTable = reinterpret_cast< char* >(&reinterpret_cast< u8* >(mInfoBlock)[mInfoBlock->mStringTableOffset]);
-    mFileDataStart = reinterpret_cast< u8* >(mHeader) + mHeader->mFileDataOffset + mHeader->mHeaderSize;
-    _6C = breakFlag == JKR_MEM_BREAK_FLAG_1;
-    mHeap = JKRHeap::findFromRoot(pData);
-    _5C = 0;
-
-    return true;
-}
-
-// Register mismatch
 s32 JKRMemArchive::fetchResource_subroutine(unsigned char* pSrc, unsigned long srcSize, unsigned char* pDst, unsigned long dstSize, int compression) {
     switch (compression) {
     case JKR_COMPRESSION_NONE:
@@ -240,19 +223,32 @@ s32 JKRMemArchive::fetchResource_subroutine(unsigned char* pSrc, unsigned long s
         return srcSize;
     case JKR_COMPRESSION_SZP:
     case JKR_COMPRESSION_SZS:
-        srcSize = JKRDecompExpandSize(pSrc);
-        ;
+        u32 size = JKRDecompExpandSize(pSrc);
 
-        if (srcSize > dstSize) {
-            srcSize = dstSize;
+        if (size > dstSize) {
+            size = dstSize;
         }
 
-        JKRDecomp::orderSync(pSrc, pDst, srcSize, 0);
-        return srcSize;
+        JKRDecomp::orderSync(pSrc, pDst, size, 0);
+        return size;
     default:
-        JUTException::panic_f(__FILE__, 723, "%s", "??? bad sequence\n");
+        JUTException::panic(__FILE__, 723, "??? bad sequence\n");
         break;
     }
 
     return 0;
+}
+
+u32 JKRMemArchive::getExpandedResSize(const void* pResource) const {
+    SDIFileEntry* file = findPtrResource(pResource);
+
+    if (file == nullptr) {
+        return -1;
+    }
+
+    if ((file->mFlag & FILE_FLAG_COMPRESSED) == 0) {
+        return getResSize(pResource);
+    }
+
+    return JKRDecompExpandSize(reinterpret_cast< u8* >(const_cast< void* >(pResource)));
 }

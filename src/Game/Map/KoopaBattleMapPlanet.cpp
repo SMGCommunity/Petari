@@ -40,7 +40,8 @@ KoopaBattleMapPlanet::~KoopaBattleMapPlanet() {
 }
 
 KoopaBattleMapPlanet::KoopaBattleMapPlanet(const char* pName, const char* pModelName, bool b1, bool b2, bool b3)
-    : LiveActor(pName), mModelName(pModelName), _C0(0.0f, 0.0f, 0.0f), mDamagePlateGroup(), mCoinPlateGroup(), mPlateGroup(), mDamagePlate(), _DC(b1), _DD(b2), _DE(b3) {
+    : LiveActor(pName), mModelName(pModelName), _C0(0.0f, 0.0f, 0.0f), mDamagePlateGroup(), mCoinPlateGroup(), mPlateGroup(), mDamagePlate(), _DC(b1),
+      _DD(b2), _DE(b3) {
     mBaseMtx.identity();
 }
 

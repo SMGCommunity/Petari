@@ -1,9 +1,14 @@
 #include "revolution/vf/d_vf_sys.h"
+#include "revolution/vf/nand_drv.h"
 #include "macros.h"
 #include "revolution/dvd.h"
 #include "revolution/mem.h"
 #include "revolution/nand.h"
 #include "revolution/vf/pf_fopen.h"
+#include "revolution/vf/pf_getdev.h"
+#include "revolution/vf/pf_fwrite.h"
+#include "revolution/vf/pf_detach.h"
+#include "revolution/vf/pf_unmount.h"
 #include "revolution/vf/pf_volume.h"
 #include "revolution/vf/vf_struct.h"
 
@@ -37,8 +42,9 @@ s32 VFSysSetSyncMode(s32 i_handle_idx, u32 i_mode);
 static union VFSysDeviceTableEntry* l_vfsys_dev_table[26];
 static struct PDM_INIT_DISK l_dev_init_info_table[26];
 
-static struct PDM_INIT_DISK l_dev_nandflash_init_info;
+static struct PDM_INIT_DISK l_dev_nandflash_init_info = {VFi_nanddrv_init_drv_tbl, 0};
 
+static void (*l_timeStampCallback)(struct VFSysTime*);
 static struct VF_HANDLE_TYPE* l_sys_handle_table_p;
 static s32 l_vfsys_dev_table_init;
 static struct MEMiHeapHead* l_vfsys_exp_heap_handle;
@@ -958,7 +964,6 @@ s32 VFSysSetSyncMode(s32 i_handle_idx, u32 i_mode) {
     return -1;
 }
 
-static void (*l_timeStampCallback)(struct VFSysTime*);
 
 void (*VFSysSetTimeStampCallback(void (*i_callback)(struct VFSysTime*)))(struct VFSysTime*) {
     void (*old_callback)(struct VFSysTime*) = l_timeStampCallback;

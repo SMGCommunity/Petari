@@ -171,7 +171,7 @@ public:
     u16 getDamageAfterTimer() const;
     bool damageFloorCheck();
     bool damageWallCheck();
-    void damagePolygonCheck(const Triangle*);
+    bool damagePolygonCheck(const Triangle*);
     bool flipLarge(const TVec3f&);
     bool isEnableAddDamage() const;
     bool damage(const TVec3f&);
@@ -203,7 +203,7 @@ public:
     void beeMarioOnGround();
     bool beeMarioOnAir();
 
-    void blown(const TVec3f&);
+    bool blown(const TVec3f&);
 
     bool taskOnEffectCheck(u32);
 

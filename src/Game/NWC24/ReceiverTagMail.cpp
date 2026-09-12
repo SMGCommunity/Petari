@@ -34,7 +34,6 @@ void ReceiverTagMail::send(const u8* pImage, u32 imageSize) {
 */
 
 void ReceiverTagMail::send(const u8* pImage, u32 imageSize, bool isLedOn) {
-    // FIXME: Missing crclr instruction.
     ReplaceTagFunction::ReplaceArgs(mMessage, mMessageLength, MR::getGameMessageDirect(mMessageID), GameDataFunction::getUserName());
 
     MR::SendMailObj sendMailObj = MR::SendMailObj(mTaskName);

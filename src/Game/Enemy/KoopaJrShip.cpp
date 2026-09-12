@@ -32,7 +32,7 @@ namespace {
     static const char* cJointNamePodPos = "KoopaJrShipPod";
 
     static const Vec sKillerLauncherAngle[] = {{0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f},
-                                                {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}};
+                                               {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 0.0f}};
 
     static const Vec sKoopaJrPos = {135.0f, 188.0f, 0.0f};
     static const Vec sKoopaJrPosFront = {0.0f, 188.0f, 135.0f};

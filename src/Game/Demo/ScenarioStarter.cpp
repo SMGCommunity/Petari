@@ -7,7 +7,6 @@
 #include "Game/Screen/SimpleLayout.hpp"
 #include "Game/Util.hpp"
 
-
 namespace NrvScenarioStarter {
     NEW_NERVE(ScenarioStarterWaitScenarioCameraEnd, ScenarioStarter, WaitScenarioCameraEnd);
     NEW_NERVE(ScenarioStarterWaitToStart, ScenarioStarter, WaitToStart);
@@ -19,8 +18,8 @@ namespace NrvScenarioStarter {
 
 ScenarioStarter::ScenarioStarter(const char* pName)
     : LiveActor(pName), _8C(), _90(0.0f, 1.0f, 0.0f), _9C(0.0f, 0.0f, 0.0f), _B8(), mSpinDriverCamera(), _C0(0.0f, 1.0f, 0.0f), _CC(0.0f, 0.0f, 1.0f),
-      _D8(1.0f, 0.0f, 0.0f), _E4(), _E8(), _EC(), mFlightTime(300), mFlyMotionStartStep(), _F8(), mFallMotionStartStep(), mInitalPlayerRotation(), mWelcomeLayout(), mTitle(), _10C(0.0f, 0.0f, 0.0f),
-      _118(0.0f, 0.0f, 0.0f), _124() {
+      _D8(1.0f, 0.0f, 0.0f), _E4(), _E8(), _EC(), mFlightTime(300), mFlyMotionStartStep(), _F8(), mFallMotionStartStep(), mInitalPlayerRotation(),
+      mWelcomeLayout(), mTitle(), _10C(0.0f, 0.0f, 0.0f), _118(0.0f, 0.0f, 0.0f), _124() {
     _A8.set(0.0f, 0.0f, 0.0f, 1.0f);
 }
 

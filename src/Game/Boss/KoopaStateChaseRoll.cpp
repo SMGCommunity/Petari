@@ -123,7 +123,7 @@ bool KoopaStateChaseRoll::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRec
 
     if (isNerve(&NrvKoopaStateChaseRoll::KoopaStateChaseRollNrvRollGround::sInstance)) {
         KoopaRockBreak* pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
-        pKoopaRockBreak->mCalcOwnMtx = true;
+        pKoopaRockBreak->mIsCalcOwnMtx = true;
         KoopaFunction::getKoopaRockBreak(mHost)->appear();
         MR::calcAnimDirect(KoopaFunction::getKoopaRockBreak(mHost));
 
@@ -131,7 +131,7 @@ bool KoopaStateChaseRoll::tryDamage(u32 msg, HitSensor* pSender, HitSensor* pRec
         MR::startSound(mHost, "SE_BM_KOOPA_ROCK_BREAK");
 
         pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
-        pKoopaRockBreak->mCalcOwnMtx = false;
+        pKoopaRockBreak->mIsCalcOwnMtx = false;
 
         return true;
     }
@@ -165,7 +165,7 @@ void KoopaStateChaseRoll::exeStart() {
         KoopaFunction::getKoopaRockBreak(mHost)->appear();
 
         KoopaRockBreak* pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
-        pKoopaRockBreak->mCalcOwnMtx = true;
+        pKoopaRockBreak->mIsCalcOwnMtx = true;
 
         MR::startAction(mHost, "ChaseRollStart");
         MR::startAction(KoopaFunction::getKoopaRock(mHost), "AttackRollStart");
@@ -242,14 +242,14 @@ void KoopaStateChaseRoll::exeEndAir() {
         MR::startAction(KoopaFunction::getKoopaRock(mHost), "AttackRollEnd");
 
         KoopaRockBreak* pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
-        pKoopaRockBreak->mCalcOwnMtx = true;
+        pKoopaRockBreak->mIsCalcOwnMtx = true;
 
         KoopaFunction::getKoopaRockBreak(mHost)->appear();
         MR::calcAnimDirect(KoopaFunction::getKoopaRockBreak(mHost));
         MR::startAction(KoopaFunction::getKoopaRockBreak(mHost), "AttackRollEnd");
 
         pKoopaRockBreak = KoopaFunction::getKoopaRockBreak(mHost);
-        pKoopaRockBreak->mCalcOwnMtx = false;
+        pKoopaRockBreak->mIsCalcOwnMtx = false;
 
         MR::startSound(mHost, "SE_BM_KOOPA_ROCK_BREAK");
     }

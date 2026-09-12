@@ -12,9 +12,9 @@ JUTNameTab::JUTNameTab(const ResNTAB* pNameTable) {
 void JUTNameTab::setResource(const ResNTAB* pNameTable) {
     mResource = pNameTable;
 
-    if (pNameTable != NULL) {
+    if (pNameTable != nullptr) {
         mNameNum = pNameTable->mEntryNum;
-        mStrData = (const char*)(pNameTable->mEntries + mNameNum);
+        mStrData = reinterpret_cast< const char* >(pNameTable->mEntries + mNameNum);
     } else {
         mNameNum = 0;
         mStrData = nullptr;
@@ -26,7 +26,7 @@ s32 JUTNameTab::getIndex(const char* pName) const {
     u16 keyCode = calcKeyCode(pName);
 
     for (u16 i = 0; i < mNameNum; i++) {
-        if (pEntry->mKeyCode == keyCode && strcmp((mResource->mEntries[i].mOffs + ((const char*)mResource)), pName) == 0) {
+        if (pEntry->mKeyCode == keyCode && strcmp((mResource->mEntries[i].mOffs + reinterpret_cast< const char* >(mResource)), pName) == 0) {
             return i;
         }
         pEntry++;
@@ -37,7 +37,7 @@ s32 JUTNameTab::getIndex(const char* pName) const {
 
 const char* JUTNameTab::getName(u16 index) const {
     if (index < mNameNum) {
-        return ((const char*)mResource) + mResource->mEntries[index].mOffs;
+        return reinterpret_cast< const char* >(mResource) + mResource->mEntries[index].mOffs;
     }
 
     return nullptr;

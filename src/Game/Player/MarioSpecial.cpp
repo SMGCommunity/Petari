@@ -21,7 +21,6 @@ void Mario::checkOnimasu(const HitSensor* pSensor) {
     }
 }
 
-
 bool Mario::isDossun(const Triangle* pTriangle) const {
     if (!pTriangle->isValid()) {
         return false;

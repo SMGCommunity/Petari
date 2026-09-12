@@ -5,7 +5,6 @@
 #include <JSystem/JGeometry.hpp>
 #include <revolution.h>
 
-
 class LiveActor;
 
 class PointLightInfo {

@@ -22,30 +22,30 @@ namespace {
     const f32 cHeadSensorRadius = 100.0f;
     const f32 cTrampleSensorRadius = 150.0f;
     const s32 cFallFrame = 45;
-    // const f32 cFallGravity = 
+    // const f32 cFallGravity =
     const s32 cSwoonFrame = 180;
     const s32 cSwoonEndDamagedFrame = 95;
-    // const s32 cRecoverWaitFrame = 
+    // const s32 cRecoverWaitFrame =
     const s32 cPressFrame = 35;
-    // const s32 cAttackEffectEmitStep = 
-    // const s32 cHitStopSceneFrame = 
-    // const s32 cBlowStopSceneStep = 
-    // const s32 cBlowStopSceneFrame = 
-    // const f32 cBlowGravity = 
+    // const s32 cAttackEffectEmitStep =
+    // const s32 cHitStopSceneFrame =
+    // const s32 cBlowStopSceneStep =
+    // const s32 cBlowStopSceneFrame =
+    // const f32 cBlowGravity =
     const s32 cBlowFrame = 20;
-    // const f32 cSensorRadius = 
-    // const f32 cAttackDistance = 
-    // const s32 cAttackInterval = 
-    // const f32 cRotateSpeed = 
-    // const s32 cAttackRotateFrame = 
+    // const f32 cSensorRadius =
+    // const f32 cAttackDistance =
+    // const s32 cAttackInterval =
+    // const f32 cRotateSpeed =
+    // const s32 cAttackRotateFrame =
     const s32 cAppearUpFrame = 60;
     const s32 cAppearLandFrame = 105;
-    // const s32 cHideDownFrame = 
+    // const s32 cHideDownFrame =
     // const s32 cSwoonEndHideShadowFrame =
     const s32 cPointingActorNum = 4;
-    // const f32 cPointingRadius = 
-    // const f32 cPointingOffset = 
-    // const f32 cAppearDistance = 
+    // const f32 cPointingRadius =
+    // const f32 cPointingOffset =
+    // const f32 cAppearDistance =
 };  // namespace
 
 CocoSamboHead::CocoSamboHead(LiveActor* pHost) : PartsModel(pHost, "ココサンボ[頭]", "CocoSamboHead", 0, 18, 0) {
@@ -70,7 +70,7 @@ void CocoSamboHead::kill() {
 }
 
 void CocoSamboHead::calcAndSetBaseMtx() {
-    if (mCalcOwnMtx != false) {
+    if (mIsCalcOwnMtx != false) {
         PartsModel::calcAndSetBaseMtx();
     } else {
         TVec3f grav;
@@ -116,9 +116,9 @@ void CocoSamboHead::exeFall() {
     TVec3f v16 = gravity * 2.0f;
 
     if (MR::isFirstStep(this)) {
-        mFixedPos->copyTrans(&mPosition);
+        mFixedPosition->copyTrans(&mPosition);
         mRotation.zero();
-        mCalcOwnMtx = false;
+        mIsCalcOwnMtx = false;
         MR::startBck(this, "Fall", nullptr);
         updateFrontVecToPlayer(gravity);
 
@@ -560,7 +560,7 @@ void CocoSambo::exeRecover() {
     if (MR::isFirstStep(this)) {
         MR::setBckRate(this, 1.0f);
         MR::startBck(mHead, "Recover", nullptr);
-        mHead->mCalcOwnMtx = true;
+        mHead->mIsCalcOwnMtx = true;
         MR::showMaterial(mHead, "SanboNeedleMat_v");
     }
     dirToPlayer(180.0f);

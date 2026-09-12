@@ -38,7 +38,7 @@ static inline s32 VFipdm_part_check_partition_handle(struct PDM_PARTITION* p_par
         return 1;
     }
 
-    lp_part = &VFipdm_disk_set.partition[part_no];
+    lp_part = &VFipdm_disk_set.partition[(u32)p_part & 0xFF];
     return VFipdm_part_search_handle(p_part, lp_part, &handle_no);
 }
 
@@ -431,10 +431,11 @@ s32 VFipdm_part_format(struct PDM_PARTITION* p_part, const u8* param) {
     }
 
     err = VFipdm_disk_format(lp_part->p_disk, param);
-    {
-        s32 mask = (-err | err) >> 31;
-        return err & mask;
+    if (err != 0) {
+        return err;
     }
+
+    return 0;
 }
 
 s32 VFipdm_part_logical_read(struct PDM_PARTITION* p_part, u8* buf, u32 lsector, u32 num_sector, u16 bps, u32* p_num_success) {
@@ -470,14 +471,15 @@ s32 VFipdm_part_logical_read(struct PDM_PARTITION* p_part, u8* buf, u32 lsector,
     }
 
     VFipdm_part_convert_lsector_to_block(lp_part, lsector, num_sector, bps, &psector, &num_block);
-    err = VFipdm_disk_physical_read(lp_part->p_disk, buf, psector, num_block, bps, p_num_success);
+    err = VFipdm_disk_physical_read(lp_part->p_disk, buf, psector, num_block, p_num_success);
     num_block = *p_num_success;
     VFipdm_part_convert_block_to_lsector(lp_part, num_block, bps, p_num_success);
 
-    {
-        s32 mask = (-err | err) >> 31;
-        return err & mask;
+    if (err != 0) {
+        return err;
     }
+
+    return 0;
 }
 
 s32 VFipdm_part_logical_write(struct PDM_PARTITION* p_part, const u8* buf, u32 lsector, u32 num_sector, u16 bps, u32* p_num_success) {
@@ -513,14 +515,15 @@ s32 VFipdm_part_logical_write(struct PDM_PARTITION* p_part, const u8* buf, u32 l
     }
 
     VFipdm_part_convert_lsector_to_block(lp_part, lsector, num_sector, bps, &psector, &num_block);
-    err = VFipdm_disk_physical_write(lp_part->p_disk, buf, psector, num_block, bps, p_num_success);
+    err = VFipdm_disk_physical_write(lp_part->p_disk, buf, psector, num_block, p_num_success);
     num_block = *p_num_success;
     VFipdm_part_convert_block_to_lsector(lp_part, num_block, bps, p_num_success);
 
-    {
-        s32 mask = (-err | err) >> 31;
-        return err & mask;
+    if (err != 0) {
+        return err;
     }
+
+    return 0;
 }
 
 s32 VFipdm_part_logical_erase(struct PDM_PARTITION* p_part, u32 lsector, u32 num_sector, u16 bps) {
@@ -573,10 +576,11 @@ s32 VFipdm_part_get_media_information(struct PDM_PARTITION* p_part, struct PDM_D
 
     lp_part = &VFipdm_disk_set.partition[(u32)p_part & 0xFF];
     err = VFipdm_disk_get_media_information(lp_part->p_disk, p_disk_info);
-    {
-        s32 mask = (-err | err) >> 31;
-        return err & mask;
+    if (err != 0) {
+        return err;
     }
+
+    return 0;
 }
 
 s32 VFipdm_part_check_media_write_protect(struct PDM_PARTITION* p_part, u32* is_wprotect) {
@@ -667,10 +671,11 @@ s32 VFipdm_part_check_data_erase(struct PDM_PARTITION* p_part, u32* is_erase) {
     lp_part = &VFipdm_disk_set.partition[(u32)p_part & 0xFF];
 
     err = VFipdm_disk_check_data_erase(lp_part->p_disk, is_erase);
-    {
-        s32 mask = (-err | err) >> 31;
-        return err & mask;
+    if (err != 0) {
+        return err;
     }
+
+    return 0;
 }
 
 void VFipdm_part_set_change_media_state(struct PDM_DISK* p_disk, u32 event) {

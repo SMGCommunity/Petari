@@ -32,10 +32,10 @@ void AstroDomeCameraController::init(const JMapInfoIter& rIter) {
     MR::connectToSceneMapObjMovement(this);
 
     MR::invalidateClipping(this);
-    
+
     MR::initActorCameraProgrammable(this);
     initNerve(GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxySelectStart));
-    
+
     SphereSelectorFunction::registerTarget(this);
     MR::registerDemoSimpleCastAll(this);
 
@@ -49,9 +49,9 @@ void AstroDomeCameraController::appear() {
     mZoomPos.reset(mStartPos);
     mTargetPos.reset(mZeroPos);
     mUpPos.reset(::cDefaultUp);
-    
+
     MR::startActorCameraProgrammable(this, SphereSelectorFunction::getSelectStartFrame());
-    
+
     setNerve(GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxySelectStart));
 }
 
@@ -94,7 +94,7 @@ void AstroDomeCameraController::calcZoomOutPos(TVec3f* pDst) const {
 void AstroDomeCameraController::calcZoomInPos(TVec3f* pDst, const TVec3f& rUp) const {
     TVec3f zoomOutPos;
     calcZoomOutPos(&zoomOutPos);
-    
+
     TVec3f x;
     x.sub(SphereSelectorFunction::getSelectedActorTrans(), zoomOutPos);
     SphereSelectorFunction::calcOffsetPos(pDst, SphereSelectorFunction::getSelectedActorTrans(), ::cZoomInPos, x, rUp);
@@ -115,7 +115,7 @@ void AstroDomeCameraController::calcZoomInUp(TVec3f* pDst) const {
 void AstroDomeCameraController::exeGalaxySelectStart() {
     s32 startFrame = SphereSelectorFunction::getSelectStartFrame();
     TVec3f zoomOutPos;
-    
+
     if (MR::isFirstStep(this)) {
         calcZoomOutPos(&zoomOutPos);
 
@@ -141,10 +141,10 @@ void AstroDomeCameraController::exeGalaxySelect() {
 
 void AstroDomeCameraController::exeGalaxyConfirmStart() {
     s32 frame = SphereSelectorFunction::getConfirmStartCancelFrame();
-    
+
     TVec3f vecUp;
     calcZoomInUp(&vecUp);
-    
+
     TVec3f vecTarget;
     calcZoomInTarget(&vecTarget, vecUp);
 
@@ -160,18 +160,18 @@ void AstroDomeCameraController::exeGalaxyConfirmStart() {
 
     mEaseRate = MR::calcNerveEaseOutRate(this, frame);
     mTargetPos.mEnd.set(vecTarget);
-    
+
     MR::setNerveAtStep(this, GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxyConfirm), frame);
 }
 
 void AstroDomeCameraController::exeGalaxyConfirm() {
     TVec3f vecUp;
     calcZoomInUp(&vecUp);
-    
+
     if (MR::isFirstStep(this)) {
         mEaseRate = 1.0f;
     }
-    
+
     TVec3f zoomInPos;
     calcZoomInPos(&zoomInPos, vecUp);
     mZoomPos.reset(zoomInPos);
@@ -187,12 +187,12 @@ void AstroDomeCameraController::exeGalaxyConfirmCancel() {
     if (MR::isFirstStep(this)) {
         TVec3f zoomOutPos;
         calcZoomOutPos(&zoomOutPos);
-        
+
         mZoomPos.setEnd(zoomOutPos);
         mTargetPos.setEnd(mZeroPos);
         mUpPos.setEnd(::cDefaultUp);
     }
-    
+
     mEaseRate = MR::calcNerveEaseInRate(this, frame);
     MR::setNerveAtStep(this, GET_NERVE(AstroDomeCameraController, AstroDomeCameraControllerNrvGalaxySelect), frame);
 }

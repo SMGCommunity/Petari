@@ -51,6 +51,13 @@ namespace std {
     }
 
     template < class InputIt, class UnaryPredicate >
+    InputIt* find_if_array(InputIt* first, InputIt* last, UnaryPredicate p) {
+        for (; first != last && !p(first); ++first) {
+        }
+        return first;
+    }
+
+    template < class InputIt, class UnaryPredicate >
     InputIt rfind_if(InputIt first, InputIt last, UnaryPredicate p) {
         for (; first != last && !p(*first); --first) {
         }

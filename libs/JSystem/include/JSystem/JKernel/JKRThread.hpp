@@ -7,6 +7,8 @@
 
 class JKRTask {
 public:
+    static JSUList< JKRTask > sTaskList;
+    static u8 sEndMesgQueue[32];
 };
 
 class JKRThread : public JKRDisposer {
@@ -14,7 +16,6 @@ public:
     class TLoad {
     public:
         TLoad();
-
         void clear();
 
         u8 _0;
@@ -29,7 +30,9 @@ public:
     JKRThread(OSThread* thread, int message_count);
 
     virtual ~JKRThread();
-    virtual void* run();
+    virtual void* run() {
+        return nullptr;
+    }
 
     void setCommon_mesgQueue(JKRHeap* heap, int message_count);
     void setCommon_heapSpecified(JKRHeap* heap, u32 stack_size, int param_3);
@@ -100,8 +103,19 @@ public:
     /* 0x78 */ s32 mCurrentHeapError;
 
     static JSUList< JKRThread > sThreadList;
-    static JSUList< JKRTask > sTaskList;
 };
+
+inline JKRThread::TLoad::TLoad() {
+    clear();
+    _0 = 0;
+    _10 = 0;
+}
+
+inline void JKRThread::TLoad::clear() {
+    _8 = 0;
+    _4 = 0;
+    _C = 0;
+}
 
 class JKRThreadSwitch {
 public:
@@ -112,4 +126,6 @@ public:
     }
 
     static JKRThreadSwitch* sManager;
+    static u32 sTotalCount;
+    static u64 sTotalStart;
 };

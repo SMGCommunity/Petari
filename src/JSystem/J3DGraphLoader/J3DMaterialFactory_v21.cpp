@@ -74,7 +74,6 @@ u32 J3DMaterialFactory_v21::countStages(int i_idx) const {
     return count2;
 }
 
-/*
 J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* i_material, int i_idx, u32 i_flags) const {
     const u32 stages = countStages(i_idx);
     u32 tev_stage_num = getMdlDataFlag_TevStageNum(i_flags);
@@ -160,7 +159,6 @@ J3DMaterial* J3DMaterialFactory_v21::create(J3DMaterial* i_material, int i_idx, 
     }
     return i_material;
 }
-*/
 
 J3DGXColor J3DMaterialFactory_v21::newMatColor(int i_idx, int i_no) const {
     J3DGXColor defaultColor((GXColor){0xff, 0xff, 0xff, 0xff});
@@ -246,7 +244,6 @@ J3DTevOrder J3DMaterialFactory_v21::newTevOrder(int i_idx, int i_no) const {
     }
 }
 
-/*
 J3DGXColorS10 J3DMaterialFactory_v21::newTevColor(int i_idx, int i_no) const {
     GXColorS10 defaultTevColor = {0, 0, 0, 0};
     J3DGXColorS10 dflt = defaultTevColor;
@@ -257,7 +254,6 @@ J3DGXColorS10 J3DMaterialFactory_v21::newTevColor(int i_idx, int i_no) const {
         return dflt;
     }
 }
-*/
 
 J3DGXColor J3DMaterialFactory_v21::newTevKColor(int i_idx, int param_1) const {
     J3DGXColor defaultColor((GXColor){0xff, 0xff, 0xff, 0xff});

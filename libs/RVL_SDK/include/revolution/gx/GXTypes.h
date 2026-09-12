@@ -98,6 +98,13 @@ typedef struct _GXData {
 extern GXData* const __GXData;
 #define gx __GXData
 
+#ifdef _DEBUG
+extern GXBool __GXinBegin;
+#endif
+
+// this is required to match some functions, even when stripped
+#define CHECK_IN_BGN(func) ASSERTMSG(!__GXinBegin, "'" #func "' is not allowed between GXBegin/GXEnd")
+
 #define BP_SENT() gx->bpSentNot = GX_FALSE;
 #define XF_SENT() gx->bpSentNot = GX_TRUE;
 

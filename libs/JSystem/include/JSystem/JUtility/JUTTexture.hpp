@@ -82,7 +82,7 @@ public:
         return mTIMG->mHeight;
     }
     void setCaptureFlag(bool flag) {
-        mFlag &= 2 | flag;
+        mFlag = (mFlag & 2) | flag;
     }
     bool getCaptureFlag() const {
         return mFlag & 1;

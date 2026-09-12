@@ -44,7 +44,7 @@ public:
     /* 0x8C */ TPos3f mBaseMtx;
     /* 0xBC */ MR::AssignableArray< Ball > mBalls;
     /* 0xC4 */ TVec3f mClosestBallPos;
-    /* 0xD0 */ f32 mRadius;    // Obj_arg1
+    /* 0xD0 */ f32 mRadius;        // Obj_arg1
     /* 0xD4 */ f32 mAngularSpeed;  // Obj_arg2
     /* 0xD8 */ MapPartsRailMover* mRailMover;
 };

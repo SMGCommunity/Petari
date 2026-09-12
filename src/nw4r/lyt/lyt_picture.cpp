@@ -6,6 +6,24 @@ namespace nw4r {
     namespace lyt {
         NW4R_UT_RTTI_DEF_DERIVED(Picture, Pane);
 
+        Picture::Picture(u8 texNum) {
+            Init(texNum);
+            mpMaterial = Layout::NewObj< Material >();
+            if (mpMaterial) {
+                mpMaterial->ReserveGXMem(texNum, texNum, texNum, 0, false, 0, 0, false, false, false, false);
+            }
+        }
+
+        Picture::Picture(const TexMap& texMap) {
+            const int texNum = 1;
+            Init(texNum);
+            mpMaterial = Layout::NewObj< Material >();
+            if (mpMaterial) {
+                mpMaterial->ReserveGXMem(texNum, texNum, texNum, 0, false, 0, 0, false, false, false, false);
+                Append(texMap);
+            }
+        }
+
         Picture::Picture(const res::Picture* pRes, const ResBlockSet& rBlockSet) : Pane(pRes) {
             u8 num = ut::Min< u8 >(pRes->texCoordNum, GX_MAX_TEXCOORD);
             Init(num);

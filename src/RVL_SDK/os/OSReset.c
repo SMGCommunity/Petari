@@ -130,32 +130,6 @@ void __OSShutdownDevices(u32 event) {
     KillThreads();
 }
 
-void __OSHotResetForError(void) {
-    if (__OSInNandBoot || __OSInReboot) {
-        __OSInitSTM();
-    }
-
-    __OSHotReset();
-
-    OSPanic(__FILE__, 0x3D3, "__OSHotReset(): Falied to reset system.\n");
-}
-
-u32 OSGetResetCode(void) {
-    u32 code;
-
-    if (__OSRebootParams.valid) {
-        code = (0x80000000 | __OSRebootParams.restartCode);
-    } else {
-        code = (__PIRegs[9] & 0xFFFFFFF8) >> 3;
-    }
-
-    return code;
-}
-
-void OSResetSystem(int, u32, int) {
-    OSPanic(__FILE__, 1130, "OSResetSystem() is obsoleted. It doesn't work any longer.\n");
-}
-
 u8 __OSGetDiscState(u8 last) {
     u32 flags;
 
@@ -294,6 +268,11 @@ void OSReturnToMenu(void) {
     OSPanic(__FILE__, 0x348, "OSReturnToMenu(): Falied to boot system menu.\n");
 }
 
+void OSReturnToDataManager(void) {
+    __OSReturnToMenu(1);
+    OSPanic(__FILE__, __LINE__, "OSReturnToDataManager(): Falied to boot system menu.\n");
+}
+
 void OSReturnToSetting(u8 setting) {
     char* url;
 
@@ -348,4 +327,35 @@ void __OSReturnToMenuForError(void) {
     __VISetRGBModeImm();
     __OSHotResetForError();
     OSPanic(__FILE__, 0x3BB, "__OSReturnToMenu(): Falied to boot system menu.\n");
+}
+
+void __OSHotResetForError(void) {
+    if (__OSInNandBoot || __OSInReboot) {
+        __OSInitSTM();
+    }
+
+    __OSHotReset();
+
+    OSPanic(__FILE__, 0x3D3, "__OSHotReset(): Falied to reset system.\n");
+}
+
+u32 OSGetResetCode(void) {
+    u32 code;
+
+    if (__OSRebootParams.valid) {
+        code = (0x80000000 | __OSRebootParams.restartCode);
+    } else {
+        code = (__PIRegs[9] & 0xFFFFFFF8) >> 3;
+    }
+
+    return code;
+}
+
+void OSResetSystem(int, u32, int) {
+    OSPanic(__FILE__, 1130, "OSResetSystem() is obsoleted. It doesn't work any longer.\n");
+}
+
+u32 OSSetBootDol(u32 dolOffset) {
+    OSPanic(__FILE__, __LINE__, "OSSetBootDol() is obsoleted. It doesn't work any longer.\n");
+    return 0;
 }

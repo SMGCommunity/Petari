@@ -165,9 +165,13 @@ inline u8 __OSf32tou8(__REGISTER f32 inF) {
     return out;
 }
 
+#ifdef OS_F32_TO_U8_DEFER_INLINE
+static void OSf32tou8(f32* f, u8* out);
+#else
 inline void OSf32tou8(f32* f, u8* out) {
     *out = __OSf32tou8(*f);
 }
+#endif
 
 #include <revolution/base/PPCArch.h>
 #include <revolution/gx.h>

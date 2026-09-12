@@ -195,7 +195,8 @@ bool DinoPackunBall::receiveMsgEnemyAttack(u32 msg, HitSensor* pSender, HitSenso
 }
 
 bool DinoPackunBall::requestPunch(HitSensor* pReceiver, HitSensor* pSender) {
-    if (isNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance) && MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_PUNCHED_BALL, mWeakSensor, pReceiver)) {
+    if (isNerve(&NrvDinoPackunBall::DinoPackunBallNrvWait::sInstance) &&
+        MR::sendArbitraryMsg(ACTMES_DINO_PACKUN_PUNCHED_BALL, mWeakSensor, pReceiver)) {
         MR::addVelocitySeparateHV(this, pSender, pReceiver, 120.0f, 40.0f);
         setNerve(&NrvDinoPackunBall::DinoPackunBallNrvShoot::sInstance);
         return true;

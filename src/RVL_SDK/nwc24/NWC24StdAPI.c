@@ -1,38 +1,34 @@
-#include "revolution/nwc24/NWC24StdApi.h"
-#include "revolution/net.h"
-#include "revolution/nwc24.h"
+#include <revolution/nwc24.h>
+#include <revolution/nwc24/NWC24Internal.h>
 
-char* Mail_strcpy(char* dst, const char* src) {
-    char* backup = dst;
+char* Mail_strcpy(char* pDst, const char* pSrc) {
+    char* pOrigin = pDst;
 
-    while (*src != '\0') {
-        *dst++ = *src++;
-    };
+    while (*pSrc != '\0') {
+        *pDst++ = *pSrc++;
+    }
 
-    *dst = '\0';
-    return backup;
+    *pDst = '\0';
+    return pOrigin;
 }
 
-size_t Mail_strlen(const char* str) {
-    size_t len = 0;
+int Mail_strlen(const char* pStr) {
+    int len = 0;
 
-    while (str[len] != '\0') {
+    while (pStr[len] != '\0') {
         len++;
     }
 
     return len;
 }
 
-size_t STD_strnlen(const char* str, size_t n) {
+int STD_strnlen(const char* pStr, size_t maxlen) {
     size_t len = 0;
-    int i;
 
-    for (i = 0; i < n; i++) {
-        if (str[len] == '\0') {
+    for (; len < maxlen; len++) {
+        if (pStr[len] == '\0') {
             break;
         }
-
-        len++;
     }
 
     return len;
@@ -46,123 +42,110 @@ void* Mail_memset(void* dst, int ch, size_t n) {
     NETMemSet(dst, ch, n);
 }
 
-char* Mail_strcat(char* dst, const char* src) {
-    Mail_strcpy(dst + Mail_strlen(dst), src);
-    return dst;
+char* Mail_strcat(char* pDst, const char* pSrc) {
+    Mail_strcpy(pDst + Mail_strlen(pDst), pSrc);
+    return pDst;
 }
 
-char* Mail_strncat(char* dst, const char* src, size_t n) {
-    const size_t len = Mail_strlen(dst);
-    size_t i;
-
-    for (i = 0; i < n && src[i] != '\0'; i++) {
-        dst[i + len] = src[i];
-    };
-
-    dst[(int)len + (int)i] = '\0';
-    return dst;
-}
-
-inline static int Mail_strlen_inline(const char* str) {
-    int len = 0;
-    while (str[len] != '\0') {
-        len++;
-    }
-    return len;
-}
-
-inline static void set_to_head(char* str, char c) {
-    int len = Mail_strlen_inline(str);
+char* Mail_strncat(char* pDst, const char* pSrc, size_t maxlen) {
+    int len = Mail_strlen(pDst);
     int i;
-    for (i = len; i >= 0; i--) {
-        str[i + 1] = str[i];
+
+    for (i = 0; i < maxlen && pSrc[i] != '\0'; i++) {
+        pDst[len + i] = pSrc[i];
     }
-    *str = c;
+
+    pDst[len + i] = '\0';
+    return pDst;
 }
 
-inline static void set_to_tail(char* str, char c) {
-    int len;
-    len = Mail_strlen(str);
-    str[len++] = c;
-    str[len] = '\0';
+static void set_to_head(char* pStr, char ch) {
+    int i;
+
+    for (i = Mail_strlen(pStr); i >= 0; i--) {
+        pStr[i + 1] = pStr[i];
+    }
+
+    *pStr = ch;
 }
 
-int convNum(char* dst, int number, int numberBase, char charBase, int signedFlag, int width, char specifierChar, char justifyChar) {
-    unsigned int workingValue;
-    int charsWritten;
-    int digitcharsWritten;
+static void set_to_tail(char* pStr, char ch) {
+    int i = Mail_strlen(pStr);
+
+    pStr[i++] = ch;
+    pStr[i] = '\0';
+}
+
+static s32 convNum(char* pDst, u32 number, s32 numberBase, char charBase, BOOL isSigned, s32 width, char specifierChar, char justifyChar) {
+    s32 charsWritten;
+    s32 digitsWritten;
     char remainder;
-    char digitCharBase;
-    char finalPadChar;
-    BOOL isNegative;
 
-    if ((signedFlag != 0) && (number & 0x80000000)) {
-        isNegative = 1;
-        workingValue = -number;
+    if (isSigned && (number & 0x80000000)) {
+        isSigned = TRUE;
+        number = -number;
     } else {
-        isNegative = 0;
-        workingValue = number;
+        isSigned = FALSE;
+        number = number;
     }
 
-    digitcharsWritten = 0;
-    charsWritten = 0;
+    charsWritten = digitsWritten = 0;
 
-    while (workingValue != 0) {
-        remainder = workingValue % numberBase;
+    while (number != 0) {
+        remainder = number % numberBase;
+        number /= numberBase;
 
-        workingValue /= numberBase;
-        digitCharBase = charBase;
-        set_to_head(dst, remainder + ((char)((remainder <= 9) ? (0x30) : (digitCharBase))));
-        digitcharsWritten++;
+        set_to_head(pDst, remainder + (char)(remainder > 9 ? charBase : '0'));
+        digitsWritten++;
         charsWritten++;
     }
 
-    if ((*dst) == '\0') {
-        set_to_head(dst, '0');
-        digitcharsWritten++;
+    if (*pDst == '\0') {
+        set_to_head(pDst, '0');
+        digitsWritten++;
         charsWritten++;
     }
 
-    finalPadChar = specifierChar;
-    if (finalPadChar != '0') {
-        finalPadChar = ' ';
+    if (specifierChar != '0') {
+        specifierChar = ' ';
     }
 
-    digitcharsWritten += isNegative;
+    digitsWritten += isSigned;
 
-    while (digitcharsWritten < width) {
+    while (digitsWritten < width) {
         if (justifyChar == 'L') {
-            set_to_tail(dst, ' ');
+            set_to_tail(pDst, ' ');
             charsWritten++;
         } else {
-            set_to_head(dst, finalPadChar);
+            set_to_head(pDst, specifierChar);
             charsWritten++;
         }
-        digitcharsWritten++;
+
+        digitsWritten++;
     }
 
-    if (isNegative) {
-        set_to_head(dst, '-');
+    if (isSigned) {
+        set_to_head(pDst, '-');
     }
 
     return charsWritten;
 }
 
-int Mail_sprintf(char* buffer, const char* format, ...) {
-    va_list args;
+int Mail_sprintf(char* pDst, char* pFmt, ...) {
+    va_list argv;
     int ret;
 
-    va_start(args, format);
-    ret = Mail_vsprintf(buffer, format, args);
-    va_end(args);
+    va_start(argv, pFmt);
+    ret = Mail_vsprintf(pDst, pFmt, argv);
+    va_end(argv);
 
     return ret;
 }
 
-int Mail_vsprintf(char* str, char* format, va_list arg) {
-    s32 charsWritten;
+int Mail_vsprintf(char* pDst, char* pFmt, va_list argv) {
+    int charsWritten;
     BOOL isNumberFormat;
-    BOOL signedFlag;
+    BOOL isSigned;
     s32 stringLength;
     s32 numberBase;
     s32 width;
@@ -170,114 +153,136 @@ int Mail_vsprintf(char* str, char* format, va_list arg) {
     char justifyChar;
     char specifierChar;
     char charBase;
-    char* stringArg;
+    char* pStrArg;
     char longFlag;
     u32 number;
 
-    *str = 0;
+    *pDst = 0;
     charsWritten = 0;
 
-    while ((formatChar = *format++) != 0) {
-        while (*str) {
-            str++;
+    while ((formatChar = *pFmt++) != '\0') {
+        while (*pDst != '\0') {
+            pDst++;
         }
 
         if (formatChar == '%') {
-            (formatChar = *format++);
+            formatChar = *pFmt++;
+
             if (formatChar == '%') {
-                set_to_tail(str++, formatChar);
+                set_to_tail(pDst++, formatChar);
                 charsWritten++;
             } else {
                 justifyChar = formatChar;
                 if (formatChar == '-') {
-                    formatChar = *format++;
+                    formatChar = *pFmt++;
                 }
 
                 specifierChar = formatChar;
-                signedFlag = FALSE;
+                isSigned = FALSE;
                 numberBase = 10;
                 charBase = '0';
                 isNumberFormat = FALSE;
 
                 if (formatChar == '*') {
-                    width = va_arg(arg, int);
-                    formatChar = *format++;
+                    width = va_arg(argv, s32);
+                    formatChar = *pFmt++;
                 } else {
                     width = 0;
-                    while ((formatChar >= '0') && (formatChar <= '9')) {
+
+                    while (formatChar >= '0' && formatChar <= '9') {
                         width = width * 10 + formatChar - '0';
-                        formatChar = *format++;
+                        formatChar = *pFmt++;
                     }
                 }
 
-                longFlag = formatChar & 0xDF;
-                if (longFlag == 'L') {
-                    formatChar = *format++;
+                if ((longFlag = formatChar & (u8)~0x20) == 'L') {
+                    formatChar = *pFmt++;
                 }
 
                 switch (formatChar) {
-                case 'd':
+                case 'd': {
                     isNumberFormat = TRUE;
-                    signedFlag = TRUE;
+                    isSigned = TRUE;
                     break;
-                case 'o':
+                }
+
+                case 'o': {
                     isNumberFormat = TRUE;
                     numberBase = 8;
                     break;
-                case 'u':
+                }
+
+                case 'u': {
                     isNumberFormat = TRUE;
                     break;
-                case 'x':
+                }
+
+                case 'x': {
                     isNumberFormat = TRUE;
                     numberBase = 16;
                     charBase = 'a' - 10;
                     break;
-                case 'X':
+                }
+
+                case 'X': {
                     isNumberFormat = TRUE;
                     numberBase = 16;
                     charBase = 'A' - 10;
                     break;
-                case 'c':
-                    formatChar = va_arg(arg, s32);
-                    set_to_tail(str++, formatChar);
+                }
+
+                case 'c': {
+                    formatChar = va_arg(argv, s32);
+                    set_to_tail(pDst++, formatChar);
                     charsWritten++;
                     break;
-                case 's':
-                    stringArg = va_arg(arg, char*);
-                    if (stringArg) {
-                        stringLength = Mail_strlen(stringArg);
-                        Mail_strcat(str, stringArg);
+                }
+
+                case 's': {
+                    pStrArg = va_arg(argv, char*);
+
+                    if (pStrArg) {
+                        stringLength = Mail_strlen(pStrArg);
+                        Mail_strcat(pDst, pStrArg);
                     } else {
                         stringLength = 0;
                     }
+
                     charsWritten += stringLength;
+
                     while (stringLength < width) {
                         charsWritten++;
+
                         if (justifyChar == '-') {
-                            set_to_tail(str, ' ');
+                            set_to_tail(pDst, ' ');
                         } else {
-                            set_to_head(str, ' ');
+                            set_to_head(pDst, ' ');
                         }
+
                         stringLength++;
                     }
                     break;
                 }
+                }
 
                 if (isNumberFormat) {
                     if (longFlag == 'L') {
-                        number = va_arg(arg, u32);
-                    } else if (signedFlag) {
-                        number = va_arg(arg, s32);
+                        number = va_arg(argv, u32);
+                    } else if (isSigned) {
+                        number = va_arg(argv, s32);
                     } else {
-                        number = va_arg(arg, u32);
+                        number = va_arg(argv, u32);
                     }
-                    charsWritten += convNum(str, number, numberBase, charBase, signedFlag, width, specifierChar, justifyChar);
+
+                    charsWritten += convNum(pDst, number, numberBase, charBase, isSigned, width, specifierChar, justifyChar);
                 }
             }
+
         } else {
-            set_to_tail(str++, formatChar);
+            set_to_tail(pDst++, formatChar);
             charsWritten++;
         }
     }
+
     return charsWritten;
 }

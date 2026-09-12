@@ -1,4 +1,5 @@
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.hpp"
+#include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
 #include "JSystem/JSupport/JSupport.hpp"
 
 J3DAnmBase* J3DAnmLoaderDataBase::load(const void* i_data, J3DAnmLoaderDataBaseFlag flag) {
@@ -99,22 +100,25 @@ J3DAnmBase* J3DAnmFullLoader_v15::load(const void* param_1) {
     for (int i = 0; i < header->mBlockNum; i++) {
         switch (block->mType) {
         case 'ANF1':
-            readAnmTransform((J3DAnmTransformFullData*)block);
+            setAnmTransform(static_cast< J3DAnmTransformFull* >(mAnm),
+                            static_cast< const J3DAnmTransformFullData* >(static_cast< const void* >(block)));
             break;
         case 'PAF1':
-            readAnmColor((J3DAnmColorFullData*)block);
+            setAnmColor(static_cast< J3DAnmColorFull* >(mAnm), static_cast< const J3DAnmColorFullData* >(static_cast< const void* >(block)));
             break;
         case 'TPT1':
-            readAnmTexPattern((J3DAnmTexPatternFullData*)block);
+            setAnmTexPattern(static_cast< J3DAnmTexPattern* >(mAnm),
+                             static_cast< const J3DAnmTexPatternFullData* >(static_cast< const void* >(block)));
             break;
         case 'CLF1':
-            readAnmCluster((J3DAnmClusterFullData*)block);
+            setAnmCluster(static_cast< J3DAnmClusterFull* >(mAnm), static_cast< const J3DAnmClusterFullData* >(static_cast< const void* >(block)));
             break;
         case 'VAF1':
-            readAnmVisibility((J3DAnmVisibilityFullData*)block);
+            setAnmVisibility(static_cast< J3DAnmVisibilityFull* >(mAnm),
+                             static_cast< const J3DAnmVisibilityFullData* >(static_cast< const void* >(block)));
             break;
         case 'VCF1':
-            readAnmVtxColor((J3DAnmVtxColorFullData*)block);
+            setAnmVtxColor(static_cast< J3DAnmVtxColorFull* >(mAnm), static_cast< const J3DAnmVtxColorFullData* >(static_cast< const void* >(block)));
             break;
         default:
             break;
@@ -239,22 +243,24 @@ J3DAnmBase* J3DAnmKeyLoader_v15::load(const void* param_1) {
     for (int i = 0; i < header->mBlockNum; i++) {
         switch (block->mType) {
         case 'ANK1':
-            readAnmTransform((J3DAnmTransformKeyData*)block);
+            setAnmTransform(static_cast< J3DAnmTransformKey* >(mAnm),
+                            static_cast< const J3DAnmTransformKeyData* >(static_cast< const void* >(block)));
             break;
         case 'PAK1':
-            readAnmColor((J3DAnmColorKeyData*)block);
+            setAnmColor(static_cast< J3DAnmColorKey* >(mAnm), static_cast< const J3DAnmColorKeyData* >(static_cast< const void* >(block)));
             break;
         case 'CLK1':
-            readAnmCluster((J3DAnmClusterKeyData*)block);
+            setAnmCluster(static_cast< J3DAnmClusterKey* >(mAnm), static_cast< const J3DAnmClusterKeyData* >(static_cast< const void* >(block)));
             break;
         case 'TTK1':
-            readAnmTextureSRT((J3DAnmTextureSRTKeyData*)block);
+            setAnmTextureSRT(static_cast< J3DAnmTextureSRTKey* >(mAnm),
+                             static_cast< const J3DAnmTextureSRTKeyData* >(static_cast< const void* >(block)));
             break;
         case 'TRK1':
-            readAnmTevReg((J3DAnmTevRegKeyData*)block);
+            setAnmTevReg(static_cast< J3DAnmTevRegKey* >(mAnm), static_cast< const J3DAnmTevRegKeyData* >(static_cast< const void* >(block)));
             break;
         case 'VCK1':
-            readAnmVtxColor((J3DAnmVtxColorKeyData*)block);
+            setAnmVtxColor(static_cast< J3DAnmVtxColorKey* >(mAnm), static_cast< const J3DAnmVtxColorKeyData* >(static_cast< const void* >(block)));
             break;
         default:
             break;

@@ -23,7 +23,7 @@ s32 JSUOutputStream::skip(s32 count, s8 param_1) {
 
 s32 JSURandomOutputStream::seek(s32 param_0, JSUStreamSeekFrom param_1) {
     s32 seekResult = seekPos(param_0, param_1);
-    clearState(IO_ERROR);
+    mState &= ~IO_ERROR;
     return seekResult;
 }
 

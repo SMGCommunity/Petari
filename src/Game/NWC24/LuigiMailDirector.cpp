@@ -173,9 +173,7 @@ void LuigiMailDirector::reset() {
 }
 
 void LuigiMailDirector::prepareMessage() {
-    // FIXME: Missing crclr instruction.
     ReplaceTagFunction::ReplaceArgs(mLostMessage, mLostMessageLength, MR::getGameMessageDirect(::cLostMessageID), GameDataFunction::getUserName());
-    // FIXME: Missing crclr instruction.
     ReplaceTagFunction::ReplaceArgs(mFoundMessage, mFoundMessageLength, MR::getGameMessageDirect(::cFoundMessageID), GameDataFunction::getUserName());
 }
 
@@ -184,12 +182,11 @@ u8 LuigiMailDirector::calcDelayHours() const {
 
     OSTicksToCalendarTime(OSGetTime(), &td);
 
-    // FIXME: Missing addi and clrlwi instructions within return statements.
     if (td.hour >= 1 && td.hour < 13) {
-        return 13 - td.hour;
+        return static_cast< u8 >(13 - td.hour) + 4;
     } else if (td.hour < 1) {
-        return 1 - td.hour;
+        return static_cast< u8 >(1 - td.hour) + 4;
     } else {
-        return 25 - td.hour;
+        return static_cast< u8 >(25 - td.hour) + 4;
     }
 }

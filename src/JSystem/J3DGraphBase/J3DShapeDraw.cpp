@@ -6,34 +6,32 @@
 
 u32 J3DShapeDraw::countVertex(u32 stride) {
     u32 count = 0;
-    u8* dlStart = (u8*)getDisplayList();
+    u8* dlStart = static_cast< u8* >(getDisplayList());
 
     for (u8* dl = dlStart; (dl - dlStart) < getDisplayListSize();) {
-        u8 cmd = *(u8*)dl;
+        u8 cmd = *dl;
         dl++;
         if (cmd != GX_TRIANGLEFAN && cmd != GX_TRIANGLESTRIP)
             break;
-        int vtxNum = *((u16*)(dl));
+        int vtxNum = *reinterpret_cast< u16* >(dl);
         dl += 2;
         count += vtxNum;
-        dl = (u8*)dl + stride * vtxNum;
+        dl = static_cast< u8* >(dl) + stride * vtxNum;
     }
 
     return count;
 }
 
 void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
-    u32 byteNum = countVertex(stride);
-    u32 oldSize = mDisplayListSize;
-    u32 newSize = ALIGN_NEXT(oldSize + byteNum, 0x20);
+    u32 newSize = ALIGN_NEXT(countVertex(stride) + mDisplayListSize, 0x20);
     u8* newDLStart = new (0x20) u8[newSize];
-    u8* oldDLStart = (u8*)mDisplayList;
+    u8* oldDLStart = static_cast< u8* >(mDisplayList);
     u8* oldDL = oldDLStart;
     u8* newDL = newDLStart;
 
     for (; (oldDL - oldDLStart) < mDisplayListSize;) {
         // Copy command
-        u8 cmd = *(u8*)oldDL;
+        u8 cmd = *oldDL;
         oldDL++;
         *newDL++ = cmd;
 
@@ -41,25 +39,25 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
             break;
 
         // Copy count
-        int vtxNum = *(u16*)oldDL;
+        int vtxNum = *reinterpret_cast< u16* >(oldDL);
         oldDL += 2;
-        *(u16*)newDL = vtxNum;
+        *reinterpret_cast< u16* >(newDL) = vtxNum;
         newDL += 2;
 
         for (int i = 0; i < vtxNum; i++) {
             u8* oldDLVtx = &oldDL[stride * i];
             u8 pnmtxidx = *oldDLVtx;
-            memcpy(newDL, oldDLVtx, (int)attrOffs);
+            memcpy(newDL, oldDLVtx, static_cast< int >(attrOffs));
             newDL += attrOffs;
             *newDL++ = valueBase + pnmtxidx;
             memcpy(newDL, oldDLVtx + attrOffs, stride - attrOffs);
             newDL += (stride - attrOffs);
         }
 
-        oldDL = (u8*)oldDL + stride * vtxNum;
+        oldDL = static_cast< u8* >(oldDL) + stride * vtxNum;
     }
 
-    u32 realSize = ALIGN_NEXT((uintptr_t)newDL - (uintptr_t)newDLStart, 0x20);
+    u32 realSize = ALIGN_NEXT(reinterpret_cast< uintptr_t >(newDL) - reinterpret_cast< uintptr_t >(newDLStart), 0x20);
     for (; (newDL - newDLStart) < newSize; newDL++)
         *newDL = 0;
 
@@ -69,7 +67,7 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
 }
 
 J3DShapeDraw::J3DShapeDraw(const u8* displayList, u32 displayListSize) {
-    mDisplayList = (void*)displayList;
+    mDisplayList = const_cast< u8* >(displayList);
     mDisplayListSize = displayListSize;
 }
 

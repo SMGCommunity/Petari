@@ -8,9 +8,6 @@ static u8 _devType[WPAD_MAX_CONTROLLERS];
 static u8 _devMode[WPAD_MAX_CONTROLLERS];
 static u8 _devCmpt[WPAD_MAX_CONTROLLERS];
 static u8 _retryCnt[WPAD_MAX_CONTROLLERS];
-static u8 checkInvalidData[21] = {
-    0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
-};
 static u8 checkBuffer[21];
 static f32 rolag[WPAD_MAX_CONTROLLERS];
 static f32 calibX[WPAD_MAX_CONTROLLERS];
@@ -73,6 +70,10 @@ void (*__a1_input_reports_array[])(u8 chan, u8* data) = {
     __a1_unused_report,    __a1_unused_report, __a1_30_data_type,  __a1_31_data_type,  __a1_32_data_type,  __a1_33_data_type,  __a1_34_data_type,
     __a1_35_data_type,     __a1_36_data_type,  __a1_37_data_type,  __a1_unused_report, __a1_unused_report, __a1_unused_report, __a1_unused_report,
     __a1_unused_report,    __a1_3d_data_type,  __a1_3e_data_type,  __a1_3f_data_type};
+
+static u8 checkInvalidData[21] = {
+    0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
+};
 
 void initExtension(s32);
 
@@ -791,7 +792,7 @@ void __a1_22_ack(u8 chan, u8* data) {
     OSRestoreInterrupts(enable);
 }
 
-const f32 PI = 3.141592f;
+static const f32 PI = 3.141592f;
 
 // small regswap
 void __parse_dpd_data(s32 chan, WPADStatus** p_status, u8 fmt, u8* p_data, u8 len) {
@@ -853,9 +854,10 @@ void __parse_dpd_data(s32 chan, WPADStatus** p_status, u8 fmt, u8* p_data, u8 le
 
     for (i = 0; i < WPAD_DPD_MAX_OBJECTS; i++) {
         if ((*p_status)->obj[i].x != 0 || (*p_status)->obj[i].y != (WPAD_DPD_IMG_RESO_WY - 1)) {
+            WPADStatus* p_cur = *p_status;
             a = (((f32)(*p_status)->obj[i].x) + calibX[chan] - centerX[chan]);
-            b = (((f32)(*p_status)->obj[i].y) + calibY[chan] - centerY[chan]);
-            (*p_status)->obj[i].x =
+            b = (((f32)p_cur->obj[i].y) + calibY[chan] - centerY[chan]);
+            p_cur->obj[i].x =
                 (s16)((f32)((f32)a * (f32)cos(-1.0f * rolag[chan])) - (f32)((f32)b * (f32)sin(-1.0f * rolag[chan])) + centerX[chan]);
             (*p_status)->obj[i].y =
                 (s16)((f32)((f32)a * (f32)sin(-1.0f * rolag[chan])) + (f32)((f32)b * (f32)cos(-1.0f * rolag[chan])) + centerY[chan]);

@@ -8,7 +8,7 @@ s32 VFipdm_disk_close_disk(PDM_DISK* p_disk);
 
 s32 VFipdm_disk_check_disk_handle(PDM_DISK* p_disk);
 
-s32 VFipdm_disk_physical_read(struct PDM_DISK* p_disk, u8* buf, u32 psector, u32 num_sector, u16 bps, u32* p_num_success);
+s32 VFipdm_disk_physical_read(struct PDM_DISK* p_disk, u8* buf, u32 block, u32 num_block, u32* p_num_success);
 
 s32 VFipdm_disk_get_lba_size(PDM_DISK* p_disk, u16* p_lba_size);
 
@@ -24,7 +24,7 @@ s32 VFipdm_disk_release_part_permission(struct PDM_DISK* p_disk, u32 mode);
 
 s32 VFipdm_disk_format(struct PDM_DISK* p_disk, const u8* param);
 
-s32 VFipdm_disk_physical_write(struct PDM_DISK* p_disk, const u8* buf, u32 psector, u32 num_sector, u16 bps, u32* p_num_success);
+s32 VFipdm_disk_physical_write(struct PDM_DISK* p_disk, const u8* buf, u32 block, u32 num_block, u32* p_num_success);
 
 s32 VFipdm_disk_physical_erase(struct PDM_DISK* p_disk, u32 block, u32 num_block);
 

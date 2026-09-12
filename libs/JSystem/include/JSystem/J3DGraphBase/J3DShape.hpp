@@ -70,11 +70,8 @@ public:
     void loadMtxIndx_NCPU(int, u16) const;
     void loadMtxIndx_PNCPU(int, u16) const;
 
-    virtual ~J3DShapeMtx() {
-    }
-    virtual u32 getType() const {
-        return 'SMTX';
-    }
+    virtual inline ~J3DShapeMtx();
+    virtual inline u32 getType() const;
     virtual u16 getUseMtxNum() const {
         return 1;
     }

@@ -140,3 +140,7 @@ void J2DGrafContext::setLookat() {
 J2DGrafType J2DGrafContext::getGrafType() const {
     return J2DGraf_Base;
 }
+
+void J2DGrafContext::setColor(JUtility::TColor c) {
+    setColor(c, c, c, c);
+}

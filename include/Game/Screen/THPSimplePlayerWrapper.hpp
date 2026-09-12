@@ -63,10 +63,10 @@ public:
 
     static THPSimplePlayerStaticAudio mStaticAudioPlayer;
 
-    /* 0x008 */u8 _8;
-    /* 0x009 */u8 _9;
-    /* 0x00C */u32 _C;
-    /* 0x010 */u32 _10;
+    /* 0x008 */ u8 _8;
+    /* 0x009 */ u8 _9;
+    /* 0x00C */ u32 _C;
+    /* 0x010 */ u32 _10;
     /* 0x014 */ DVDFileInfo mFileInfo;
     /* 0x050 */ THPHeader mHeader;
     /* 0x080 */ THPFrameCompInfo mFrameComp;

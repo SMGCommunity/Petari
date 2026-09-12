@@ -100,7 +100,7 @@ s32 VFiPFSEC_ReadDataSector(PF_VOLUME* p_vol, u8* p_buf, u32 sector, u32 size, u
                 *p_success_size += v12 << p_vol->bpb.log2_bytes_per_sector;
                 size -= v12 << p_vol->bpb.log2_bytes_per_sector;
                 sector += v12;
-            } else {
+            } else if (v12 > size >> p_vol->bpb.log2_bytes_per_sector) {
                 VFipf_memcpy(p_buf, p_page->p_buf, size);
                 *p_success_size += size;
                 size = 0;
