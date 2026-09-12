@@ -6014,7 +6014,7 @@ Game/MapObj/SuperSpinDriver.cpp:
 	.ctors      start:0x8052EEF4 end:0x8052EEF8
 	.rodata     start:0x80534C68 end:0x80534C78
 	.data       start:0x805A4288 end:0x805A4728
-	.sdata      start:0x806B2068 end:0x806B2080
+	.sdata      start:0x806B2068 end:0x806B2078
 	.sbss       start:0x806B5990 end:0x806B59C0
 	.sdata2     start:0x806BE540 end:0x806BE5B0
 
@@ -6032,6 +6032,7 @@ Game/MapObj/Swinger.cpp:
 Game/MapObj/SwingLight.cpp:
 	.text       start:0x80249440 end:0x80249B3C
 	.data       start:0x805A4810 end:0x805A4A00
+	.sdata      start:0x806B2078 end:0x806B2080
 	.sdata2     start:0x806BE5C8 end:0x806BE5D0
 
 Game/MapObj/SwitchBox.cpp:

@@ -13,11 +13,8 @@ VolumeModelDrawInit::VolumeModelDrawInit() : NameObj("ボリュームモデル�
     MR::registerPreDrawFunction(MR::Functor_Inline(&MR::setupShadowVolumeDraw), MR::DrawType_VolumeModel);
 }
 
-VolumeModelDrawer::VolumeModelDrawer(const char* pName, const char* pFileName, MtxPtr mtx) : NameObj(pName), mMtx(), mModelData() {
-    mColor.r = 0xFF;
-    mColor.g = 0xA9;
-    mColor.b = 0;
-    mColor.a = 0xFF;
+VolumeModelDrawer::VolumeModelDrawer(const char* pName, const char* pFileName, MtxPtr mtx)
+    : NameObj(pName), mMtx(), mModelData(), mColor(0xFF, 0xA9, 0, 0xFF) {
     MR::createSceneObj(SceneObj_VolumeModelDrawInit);
     mMtx = mtx;
     char buf[0x100];

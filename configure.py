@@ -1798,7 +1798,7 @@ config.libs = [
             Object(NonMatching, "Game/MapObj/SuperSpinDriver.cpp"),
             Object(Matching, "Game/MapObj/SurprisedGalaxy.cpp"),
             Object(NonMatching, "Game/MapObj/Swinger.cpp"),
-            Object(NonMatching, "Game/MapObj/SwingLight.cpp"),
+            Object(Matching, "Game/MapObj/SwingLight.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/MapObj/SwitchBox.cpp"),
             Object(Matching, "Game/MapObj/TimeAppearObj.cpp"),
             Object(NonMatching, "Game/MapObj/TimerMoveWall.cpp"),
