@@ -36,6 +36,7 @@ class MultiEmitter;
 class RushEndInfo;
 class TornadoMario;
 class Triangle;
+class XanimePlayer;
 class XanimeResourceTable;
 class XjointTransform;
 struct DLholder;
@@ -475,7 +476,7 @@ public:
     // Defined in MarioActorDefensiveMsg
     bool tryAttackMsg(u32, const HitSensor*, bool*);
     bool tryVectorAttackMsg(u32, const TVec3f&);
-    void cylinderHitCheck(const HitSensor*, TVec3f*);
+    bool cylinderHitCheck(const HitSensor*, TVec3f*);
 
     // Defined in MarioActorRushMsg
     void addRushSensor(HitSensor*, bool);
@@ -499,7 +500,7 @@ public:
     void tryCoinPull();
     void tryCoinPullInRush();
     void flushCoinPull();
-    bool tryCoinPullOne(HitSensor*);
+    bool tryCoinPullOne(HitSensor*) NO_INLINE;
     void tryPullTrans(TVec3f*, const TVec3f&);
     bool releaseThrowMemoSensor();
     void tryReleaseWithMsg(u32);
@@ -507,6 +508,7 @@ public:
     void tryReleaseBombTeresa();
 
     void runTeresaBaseAnimation();
+    void updateTeresaAnimation();
     void getThrowVec(TVec3f*) const;
 
     const MarioConst& getConst() const {
@@ -551,7 +553,7 @@ public:
     }
 
     inline const bool is481or482On() const {
-        return _481 || _482;
+        return _482 || _481;
     }
 
     inline Mario* getMario() {
@@ -594,8 +596,13 @@ public:
     /* 0x1D0 */ u8 _1D0;
     /* 0x1D1 */ u8 _1D1;
     /* 0x1D4 */ f32 _1D4;
-    /* 0x1D8 */ FBO* _1D8;
-    /* 0x1DC */ FBO* _1DC;
+    union {
+        /* 0x1D8 */ FBO* mRasterBuffers[2];
+        struct {
+            /* 0x1D8 */ FBO* _1D8;
+            /* 0x1DC */ FBO* _1DC;
+        };
+    };
     /* 0x1E0 */ bool _1E0;
     /* 0x1E1 */ bool _1E1;
     /* 0x1E2 */ u8 _1E2;
@@ -605,7 +612,7 @@ public:
     /* 0x1F0 */ TVec3f _1F0;
     /* 0x1FC */ TVec3f _1FC;
     /* 0x208 */ f32 _208;
-    /* 0x20C */ u32 _20C;
+    /* 0x20C */ const AreaObj* _20C;
     /* 0x210 */ u8 _210;
     /* 0x211 */ u8 _211;
     /* 0x214 */ CollisionShadow* _214;
@@ -719,7 +726,7 @@ public:
     /* 0x49C */ FixedPosition* _49C;
     /* 0x4A0 */ FixedPosition* mSearchLightThrowPos;
     /* 0x4A4 */ HitSensor* _4A4;  // used in calcAnimInMovement()
-    /* 0x4A8 */ u32 _4A8;
+    /* 0x4A8 */ HitSensor* _4A8;
     /* 0x4AC */ f32 _4AC;
     /* 0x4B0 */ f32 _4B0;
     /* 0x4B4 */ f32 _4B4;
@@ -769,14 +776,14 @@ public:
     /* 0x9AC */ f32 _9AC;
     /* 0x9B0 */ f32 _9B0;
     /* 0x9B4 */ u16 _9B4;
-    /* 0x9B8 */ u32 _9B8;
-    /* 0x9BC */ u32 _9BC;
+    /* 0x9B8 */ XanimePlayer* _9B8;
+    /* 0x9BC */ XanimeResourceTable* _9BC;
     /* 0x9C0 */ ModelHolder* _9C0;
     /* 0x9C4 */ MarioParts* _9C4;
     /* 0x9C8 */ ModelHolder* _9C8;
     /* 0x9CC */ f32 _9CC;
     /* 0x9D0 */ f32 _9D0;
-    /* 0x9D4 */ u32 _9D4;
+    /* 0x9D4 */ HitSensor* _9D4;
     /* 0x9D8 */ TVec3f _9D8;
     /* 0x9E4 */ ModelHolder* _9E4;
     /* 0x9E8 */ MarioParts* _9E8;
@@ -816,22 +823,47 @@ public:
     /* 0xA68 */ f32 _A68;
     /* 0xA6C */ u16 _A6C;
     /* 0xA6E */ u8 _A6E;
-    /* 0xA70 */ Mtx* _A70[8];
-    /* 0xA90 */ Mtx* _A90[8];
+    union {
+        struct {
+            /* 0xA70 */ Mtx* _A70[8];
+            /* 0xA90 */ Mtx* _A90[8];
+        };
+        /* 0xA70 */ Mtx* mBlurMatrices[2][8];
+    };
     /* 0xAB0 */ TMtx34f _AB0;
     /* 0xAE0 */ TMtx34f _AE0;
     /* 0xB10 */ u16 _B10;
     /* 0xB12 */ u16 _B12;
     /* 0xB14 */ u16 _B14;
     /* 0xB18 */ TVec3f _B18;
-    /* 0xB24 */ f32 _B24;
-    /* 0xB28 */ f32 _B28;
-    /* 0xB2C */ f32 _B2C;
-    /* 0xB30 */ f32 _B30;
-    /* 0xB34 */ f32 _B34;
-    /* 0xB38 */ f32 _B38;
-    /* 0xB3C */ f32 _B3C;
-    /* 0xB40 */ f32 _B40;
+    union {
+        /* 0xB24 */ TVec2f mScreenBoxMin;
+        struct {
+            /* 0xB24 */ f32 _B24;
+            /* 0xB28 */ f32 _B28;
+        };
+    };
+    union {
+        /* 0xB2C */ TVec2f mScreenBoxMax;
+        struct {
+            /* 0xB2C */ f32 _B2C;
+            /* 0xB30 */ f32 _B30;
+        };
+    };
+    union {
+        /* 0xB34 */ TVec2f mScreenBoxPos;
+        struct {
+            /* 0xB34 */ f32 _B34;
+            /* 0xB38 */ f32 _B38;
+        };
+    };
+    union {
+        /* 0xB3C */ TVec2f mScreenBoxSize;
+        struct {
+            /* 0xB3C */ f32 _B3C;
+            /* 0xB40 */ f32 _B40;
+        };
+    };
     /* 0xB44 */ void* _B44;
     /* 0xB48 */ FootPrint* _B48;
     /* 0xB4C */ IceStep** _B4C;
@@ -847,8 +879,13 @@ public:
     /* 0xB74 */ u16 _B74;
     /* 0xB78 */ J3DAnmTexPattern* mEyeRes;
     /* 0xB7C */ JUTTexture* _B7C;
-    /* 0xB80 */ JUTTexture* _B80;
-    /* 0xB84 */ JUTTexture* _B84;
+    union {
+        /* 0xB80 */ JUTTexture* mMaskTextures[2];
+        struct {
+            /* 0xB80 */ JUTTexture* _B80;
+            /* 0xB84 */ JUTTexture* _B84;
+        };
+    };
     /* 0xB88 */ u16 _B88;
     /* 0xB8C */ MarioNullBck* mNullAnimation;
     /* 0xB90 */ bool _B90;

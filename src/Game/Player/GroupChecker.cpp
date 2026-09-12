@@ -15,11 +15,13 @@ void GroupChecker::add(const NameObj* pObj) {
     mHashTable->add(name, 0, true);
 }
 
-/*
-void GroupCheckManager::add(const NameObj *pObj, s32 idx) {
-    mShellSearchGroup[idx].add(pObj);
+void GroupCheckManager::add(const NameObj* object, s32 index) {
+    mGroups[index]->add(object);
 }
-*/
+
+bool GroupCheckManager::isExist(const NameObj* object, s32 index) {
+    return mGroups[index]->mHashTable->search(object->mName, nullptr);
+}
 
 GroupChecker::~GroupChecker() {
 }
@@ -28,7 +30,7 @@ GroupCheckManager::~GroupCheckManager() {
 }
 
 GroupCheckManager::GroupCheckManager(const char* pName) : NameObj(pName) {
-    mShellSearchGroup = new GroupChecker("カメサーチ対象物グループ", 0x20);
-    mSpinningBoxSearchGroup = new GroupChecker("スピニングボックス反射グループ", 0x8);
+    mGroups[0] = new GroupChecker("カメサーチ対象物グループ", 0x20);
+    mGroups[1] = new GroupChecker("スピニングボックス反射グループ", 0x8);
     _14 = 2;
 }

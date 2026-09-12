@@ -2,9 +2,11 @@
 
 #include "Game/NameObj/NameObj.hpp"
 #include "Game/Util/Array.hpp"
+#include "Inline.hpp"
 
 class GalaxyStatusAccessor;
 class JMapInfo;
+class JMapInfoIter;
 class ScenarioData;
 
 class ScenarioDataParser : public NameObj {
@@ -40,7 +42,7 @@ public:
     s32 getPowerStarNum() const;
     bool getValueString(const char*, s32, const char**) const;
     const char* getZoneName(s32) const;
-    ScenarioDataIter getScenarioDataIter(s32) const;
+    JMapInfoIter getScenarioDataIter(s32) const;
     bool getValueU32(const char*, s32, u32*) const;
     bool getValueBool(const char*, s32, bool*) const;
     s32 getZoneNum() const;
@@ -52,7 +54,7 @@ public:
 };
 
 namespace ScenarioDataFunction {
-    ScenarioDataParser* getScenarioDataParser();
+    ScenarioDataParser* getScenarioDataParser() NO_INLINE;
     u32 getCurrentCommonLayers(const char*);
     u32 getCurrentScenarioLayers(const char*, s32);
 };  // namespace ScenarioDataFunction

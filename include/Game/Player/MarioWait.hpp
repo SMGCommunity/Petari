@@ -8,6 +8,12 @@ class MarioWait : public MarioState {
 public:
     MarioWait(MarioActor*);
 
+    virtual bool start();
+    virtual bool close();
+    virtual bool update();
+
+    bool checkStart();
+
     /* 0x12 */ u16 _12;
     /* 0x14 */ u16 _14;
     /* 0x16 */ u16 _16;

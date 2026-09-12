@@ -78,19 +78,14 @@ BOOL JKRAramPiece::orderSync(int direction, u32 source, u32 destination, u32 len
     return result;
 }
 
-// branch inserted here
 void JKRAramPiece::doneDMA(u32 requestAddress) {
-    JKRAMCommand* command = (JKRAMCommand*)requestAddress;
+    JKRAMCommand* command = reinterpret_cast< JKRAMCommand* >(requestAddress);
 
     if (command->field_0x60 != 0) {
         if (command->field_0x60 == 2) {
             JKRDecompress_SendCommand(command->mDecompCommand);
-            return;
         }
-        return;
-    }
-
-    if (command->mCallback) {
+    } else if (command->mCallback) {
         (*command->mCallback)(requestAddress);
     } else if (command->field_0x5C) {
         OSSendMessage(command->field_0x5C, command, OS_MESSAGE_NOBLOCK);

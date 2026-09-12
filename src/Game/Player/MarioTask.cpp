@@ -6,9 +6,7 @@
 #include "revolution/mtx.h"
 #include "revolution/types.h"
 
-extern "C" {
-extern u8 lbl_806B6288;
-}
+extern "C" {}
 
 static const f32 sOne = 1.0f;
 static const f32 sZero = 0.0f;
@@ -290,7 +288,7 @@ bool Mario::taskOnHandy(u32) {
 
 void Mario::startHipDropBlur() {
     if (isPlayerModeHopper()) {
-        if (lbl_806B6288) {
+        if (gIsLuigi) {
             playEffect("ホッパー尻落ルイージ");
         } else {
             playEffect("ホッパー尻落");
@@ -299,7 +297,7 @@ void Mario::startHipDropBlur() {
         return;
     }
 
-    if (lbl_806B6288) {
+    if (gIsLuigi) {
         playEffect("尻落ルイージ");
     } else {
         playEffect("尻落");
@@ -387,16 +385,3 @@ void Mario::startJumpDropSlide(const HitSensor* pSensor) {
     mJumpVec.y = sZero;
     mJumpVec.z = sZero;
 }
-
-namespace NrvMarioActor {
-    INIT_NERVE(MarioActorNrvWait);
-    INIT_NERVE(MarioActorNrvGameOver);
-    INIT_NERVE(MarioActorNrvGameOverAbyss);
-    INIT_NERVE(MarioActorNrvGameOverAbyss2);
-    INIT_NERVE(MarioActorNrvGameOverFire);
-    INIT_NERVE(MarioActorNrvGameOverBlackHole);
-    INIT_NERVE(MarioActorNrvGameOverNonStop);
-    INIT_NERVE(MarioActorNrvGameOverSink);
-    INIT_NERVE(MarioActorNrvTimeWait);
-    INIT_NERVE(MarioActorNrvNoRush);
-};  // namespace NrvMarioActor

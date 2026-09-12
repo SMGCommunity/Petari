@@ -39,6 +39,8 @@ namespace JMath {
     template < int Bits, typename T >
     class TSinCosTable {
     public:
+        TSinCosTable();
+
         static const u32 LEN = 1 << Bits;
         std::pair< T, T > table[LEN];
 

@@ -38,8 +38,8 @@ void Mario::initMember() {
     _688.zero();
     _694.zero();
 
-    _6CC = 0.0f;
-    _6C8 = 0.0f;
+    _6C8.y = 0.0f;
+    _6C8.x = 0.0f;
     _6D0.zero();
     _6DC.zero();
     _6E8.zero();

@@ -2,6 +2,7 @@
 #include "Game/Util/HashUtil.hpp"
 #include "Game/Util/JMapUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
+#include <algorithm>
 
 AlreadyDoneInfo::AlreadyDoneInfo() {
     _0 = 0;
@@ -61,27 +62,19 @@ u32 AlreadyDoneFlagInGalaxy::setupFlag(const char* pName, const JMapInfoIter& rI
     MR::getJMapInfoLinkID(rIter, &linkID);
     s32 zoneID = MR::getPlacedZoneId(rIter);
 
-    // There may be a function that got inlined here, because in SMG2 there is a function call here with the
-    // contents below this comment
-
     AlreadyDoneInfo info;
     info.init(pName, zoneID, linkID);
 
-    AlreadyDoneInfo* infs = mDoneInfos.begin();
-    AlreadyDoneInfo* lastInfs = &mDoneInfos[_8];
+    AlreadyDoneInfo* it = std::find(mDoneInfos.begin(), &mDoneInfos[_8], info);
 
-    while (infs != lastInfs && !infs->isEqual(info)) {
-        infs++;
-    }
+    AlreadyDoneInfo* end = &mDoneInfos[_8];
 
-    AlreadyDoneInfo* new_infs = &mDoneInfos[_8];
-
-    if (infs != new_infs) {
-        result = infs - mDoneInfos.begin();
-        *a3 = (infs->_0 >> 15) & 0x1;
+    if (it != end) {
+        result = it - mDoneInfos.begin();
+        *a3 = (it->_0 >> 15) & 0x1;
     } else {
         result = _8++;
-        *new_infs = info;
+        *end = info;
         *a3 = 0;
     }
 

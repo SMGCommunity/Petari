@@ -597,7 +597,11 @@ namespace JGeometry {
             JGeometry::negateInternal(&rVec.x, &this->x);
         }
 
+#ifdef JGEOMETRY_VEC3_ZERO_NOINLINE
+        void zero() NO_INLINE {
+#else
         void zero() {
+#endif
             x = y = z = 0;
         }
 
@@ -658,6 +662,29 @@ namespace JGeometry {
             }
 
             return ret;
+        }
+
+        void scaleAdd(register f32 scale, const TVec3& src) {
+#ifdef __MWERKS__
+            register TVec3* dest = this;
+            register const TVec3* source = &src;
+            register f32 srcXY, destXY, srcZ, destZ;
+
+            asm {
+                psq_l srcXY, 0(source), 0, 0
+                psq_l srcZ, 8(source), 1, 0
+                psq_l destXY, 0(dest), 0, 0
+                psq_l destZ, 8(dest), 1, 0
+                ps_madds0 destXY, srcXY, scale, destXY
+                ps_madds0 destZ, srcZ, scale, destZ
+                psq_st destXY, 0(dest), 0, 0
+                psq_st destZ, 8(dest), 1, 0
+            }
+#else
+            x += src.x * scale;
+            y += src.y * scale;
+            z += src.z * scale;
+#endif
         }
 
         void scaleAdd(f32 sc, const TVec3& a, const TVec3& b) {
@@ -932,6 +959,22 @@ namespace JGeometry {
         }
         void setEulerDegree(T _x, T _y, T _z) {
             setEuler(_x * PI_180, _y * PI_180, _z * PI_180);
+        }
+        void setEulerX(T _x) {
+            f32 s = sin(_x * 0.5f);
+            f32 c = cos(_x * 0.5f);
+            this->x = s;
+            this->y = 0.0f;
+            this->z = 0.0f;
+            this->w = c;
+        }
+        void setEulerY(T _y) {
+            f32 s = sin(_y * 0.5f);
+            f32 c = cos(_y * 0.5f);
+            this->y = s;
+            this->x = 0.0f;
+            this->z = 0.0f;
+            this->w = c;
         }
         void setEulerZ(T _z) {
             f32 s = sin(_z * 0.5f);

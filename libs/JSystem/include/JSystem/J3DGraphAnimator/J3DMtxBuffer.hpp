@@ -85,7 +85,25 @@ public:
     }
 
     void setNrmMtx(int idx, Mtx mtx) {
-        J3DPSMtx33CopyFrom34(mtx, mpNrmMtxArr[1][mCurrentViewNo][idx]);
+#ifdef __MWERKS__
+        __REGISTER const void* source = mtx;
+        __REGISTER void* destination = mpNrmMtxArr[1][mCurrentViewNo][idx];
+        __REGISTER f32 v, u, w, z, y, x;
+        asm {
+            psq_l x, 0(source), 0, 0
+            lfs y, 8(source)
+            psq_l z, 16(source), 0, 0
+            lfs w, 24(source)
+            psq_l u, 32(source), 0, 0
+            lfs v, 40(source)
+            psq_st x, 0(destination), 0, 0
+            stfs y, 8(destination)
+            psq_st z, 12(destination), 0, 0
+            stfs w, 20(destination)
+            psq_st u, 24(destination), 0, 0
+            stfs v, 32(destination)
+        }
+#endif
     }
 
     void swapDrawMtx() {

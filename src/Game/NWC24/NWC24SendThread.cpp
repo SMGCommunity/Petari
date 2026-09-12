@@ -6,7 +6,7 @@
 
 #define STACK_SIZE 0x8000
 
-OSMessage NWC24SendThread::mMessage;
+OSMessage* NWC24SendThread::mMessage;
 s32 NWC24SendThread::mMessageMax = 1;
 OSMessageQueue NWC24SendThread::mMessageQueue;
 
@@ -18,7 +18,7 @@ NWC24SendThread::NWC24SendThread(s32 priority, JKRHeap* pHeap) {
     mMessage = new (pHeap, 0) OSMessage[mMessageMax];
 
     initMsgSendStatus();
-    OSInitMessageQueue(&mMessageQueue, &mMessage, mMessageMax);
+    OSInitMessageQueue(&mMessageQueue, mMessage, mMessageMax);
 
     u8* pStackBase = new (pHeap, 0) u8[STACK_SIZE];
 
@@ -138,8 +138,9 @@ NWC24Err NWC24SendThread::sendMessage(MsgSendStatus* pMsgSendStatus, u32* pMsgSi
         }
     }
 
-    err = NWC24SetMsgText(&msgObj, reinterpret_cast< const char* >(pMsgSendStatus->mText), MR::strlenUTF16(pMsgSendStatus->mText) * sizeof(u16),
-                          NWC24_UTF_16, NWC24_ENC_8BIT);
+    const u16* pText = pMsgSendStatus->mText;
+    u32 textLength = MR::strlenUTF16(pText);
+    err = NWC24SetMsgText(&msgObj, reinterpret_cast< const char* >(pText), textLength * sizeof(u16), NWC24_UTF_16, NWC24_ENC_8BIT);
 
     if (err != NWC24_OK) {
         return err;

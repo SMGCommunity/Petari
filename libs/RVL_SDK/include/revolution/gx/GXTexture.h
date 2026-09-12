@@ -25,6 +25,7 @@ void GXInitTexObjTlut(GXTexObj *, u32);
 void GXLoadTlut(const GXTlutObj *, u32);
 
 void GXInvalidateTexAll(void);
+void GXTexModeSync(void);
 
 void GXInitTexCacheRegion(GXTexRegion *, GXBool, u32, GXTexCacheSize, u32, GXTexCacheSize);
 

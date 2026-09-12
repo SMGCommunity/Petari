@@ -11,8 +11,6 @@ class Triangle {
 public:
     Triangle();
 
-    Triangle& operator=(const Triangle&);
-
     void fillData(CollisionParts*, u32, HitSensor*);
     const char* getHostName() const;
     s32 getHostPlacementZoneID() const;

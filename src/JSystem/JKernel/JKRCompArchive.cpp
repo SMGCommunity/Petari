@@ -10,9 +10,11 @@
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JKernel/JKRMemArchive.hpp"
 #include "JSystem/JUtility/JUTException.hpp"
-#include <cstdlib>
+
 #include <mem.h>
 #include <stdint.h>
+
+extern "C" int abs(int);
 
 JKRCompArchive::JKRCompArchive(s32 entryNum, JKRArchive::EMountDirection eMountDirection) : JKRArchive(entryNum, MOUNT_MODE_COMP) {
     mMountDir = eMountDirection;
@@ -33,7 +35,7 @@ JKRCompArchive::~JKRCompArchive() {
     if (mInfoBlock != NULL) {
         SDIFileEntry* file = mFiles;
         for (int i = 0; i < mInfoBlock->mNrFiles; i++) {
-            if (!((file->mFlag)) && file->mFileData != NULL) {
+            if ((file->mFlag & FILE_FLAG_MRAM) == 0 && file->mFileData != NULL) {
                 JKRFreeToHeap(mHeap, file->mFileData);
             }
 

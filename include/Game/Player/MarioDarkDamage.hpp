@@ -7,5 +7,11 @@ class MarioActor;
 class MarioDarkDamage : public MarioState {
 public:
     MarioDarkDamage(MarioActor*);
-    u8 _11[7];
+
+    virtual bool start();
+    virtual bool update();
+    virtual bool notice();
+
+    /* 0x12 */ u16 _12;
+    /* 0x14 */ u16 _14;
 };

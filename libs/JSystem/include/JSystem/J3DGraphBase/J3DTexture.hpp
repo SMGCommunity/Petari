@@ -1,6 +1,6 @@
 #pragma once
 
-#include "JSystem/J3DGraphBase/J3DStruct.hpp"
+#include "JSystem/J3DGraphBase/J3DTevs.hpp"
 #include "JSystem/JUtility/JUTTexture.hpp"
 #include <stdint.h>
 
@@ -35,49 +35,6 @@ public:
     }
 };
 
-extern J3DTexCoordInfo const j3dDefaultTexCoordInfo[8];
-
-struct J3DTexCoord : public J3DTexCoordInfo {
-    J3DTexCoord() {
-        J3DTexCoordInfo::operator=(j3dDefaultTexCoordInfo[0]);
-        mTexMtxReg = mTexGenMtx;
-    }
-    J3DTexCoord(const J3DTexCoordInfo& info) {
-        J3DTexCoordInfo::operator=(info);
-        mTexMtxReg = mTexGenMtx;
-    }
-
-    void setTexCoordInfo(const J3DTexCoordInfo& info) {
-        __memcpy(this, &info, sizeof(J3DTexCoordInfo));
-    }
-
-    u8 getTexGenType() const {
-        return mTexGenType;
-    }
-    u8 getTexGenSrc() const {
-        return mTexGenSrc;
-    }
-    u8 getTexGenMtx() const {
-        return mTexGenMtx;
-    }
-    u32 getTexMtxReg() const {
-        return mTexMtxReg & 0xff;
-    }
-    void setTexGenMtx(u8 param_1) {
-        mTexGenMtx = param_1;
-    }
-    void setTexMtxReg(u16 reg) {
-        mTexMtxReg = reg;
-    }
-    J3DTexCoord& operator=(const J3DTexCoord& other);
-
-    void resetTexMtxReg() {
-        mTexMtxReg = mTexGenMtx;
-    }
-
-    /* 0x4 */ u16 mTexMtxReg;
-};  // Size: 0x6
-
 extern J3DTexMtxInfo const j3dDefaultTexMtxInfo;
 
 class J3DTexMtx {
@@ -94,8 +51,8 @@ public:
     void calc(const Mtx);
     void calcTexMtx(const Mtx);
     void calcPostTexMtx(const Mtx);
-    void loadTexMtx(u32) const;
-    void loadPostTexMtx(u32) const;
+    inline void loadTexMtx(u32) const;
+    inline void loadPostTexMtx(u32) const;
 
     J3DTexMtxInfo& getTexMtxInfo() {
         return mTexMtxInfo;

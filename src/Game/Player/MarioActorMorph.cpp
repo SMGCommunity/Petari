@@ -345,7 +345,7 @@ static myStruct cMorphStringTable[] = {{"DieBlackHole", 0, 0, 0, "DieBlackHoleBe
 
 void MarioActor::touchSensor(HitSensor* pSensor) {
     switch (pSensor->mType) {
-    case ACTMES_GROUP_ATTACK:
+    case ATYPE_WATER_PRESSURE_BULLET_BIND:
         if (MR::isExistMapCollision(_2A0, pSensor->mPosition - _2A0)) {
             return;
         }
@@ -368,4 +368,24 @@ void MarioActor::initMorphStringTable() {
     }
 }
 
-// const char* MarioActor::changeMorphString(const char* pName) const {}
+const char* MarioActor::changeMorphString(const char* name) const {
+    u32 hash = MR::getHashCode(name);
+    for (myStruct* item = cMorphStringTable;; item++) {
+        if (item->_0[0] == nullptr) {
+            break;
+        }
+        if (item->_24 == hash) {
+            const char* morph = item->_0[mPlayerMode];
+            if (morph == nullptr || mPlayerMode == PlayerMode_Normal) {
+                if (gIsLuigi) {
+                    if (item->_0[8] != nullptr) {
+                        return item->_0[8];
+                    }
+                }
+                return item->_0[0];
+            }
+            return morph;
+        }
+    }
+    return name;
+}

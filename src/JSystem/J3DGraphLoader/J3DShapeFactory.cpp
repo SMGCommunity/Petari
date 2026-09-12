@@ -49,8 +49,8 @@ J3DShape* J3DShapeFactory::create(int no, u32 flag, GXVtxDescList* vtxDesc) {
 
 J3DShapeMtx* J3DShapeFactory::newShapeMtx(u32 flag, int shapeNo, int mtxGroupNo) const {
     J3DShapeMtx* ret = NULL;
-    const J3DShapeInitData& shapeInitData = mShapeInitData[mIndexTable[shapeNo]];
-    const J3DShapeMtxInitData& mtxInitData = (&mMtxInitData[shapeInitData.mMtxInitDataIndex])[mtxGroupNo];
+    J3DShapeInitData& shapeInitData = mShapeInitData[mIndexTable[shapeNo]];
+    J3DShapeMtxInitData& mtxInitData = (&mMtxInitData[shapeInitData.mMtxInitDataIndex])[mtxGroupNo];
 
     switch (getMdlDataFlag_MtxLoadType(flag)) {
     case J3DMdlDataFlag_ConcatView:
@@ -93,7 +93,7 @@ J3DShapeMtx* J3DShapeFactory::newShapeMtx(u32 flag, int shapeNo, int mtxGroupNo)
 }
 
 J3DShapeDraw* J3DShapeFactory::newShapeDraw(int shapeNo, int mtxGroupNo) const {
-    const J3DShapeInitData& shapeInitData = mShapeInitData[mIndexTable[shapeNo]];
+    J3DShapeInitData& shapeInitData = mShapeInitData[mIndexTable[shapeNo]];
     const J3DShapeDrawInitData& drawInitData = (&mDrawInitData[shapeInitData.mDrawInitDataIndex])[mtxGroupNo];
     return new J3DShapeDraw(&mDisplayListData[drawInitData.mDisplayListIndex], drawInitData.mDisplayListSize);
 }
@@ -107,7 +107,7 @@ void J3DShapeFactory::allocVcdVatCmdBuffer(u32 count) {
 s32 J3DShapeFactory::calcSize(int shapeNo, u32 flag) {
     s32 size = 0x68;
 
-    s32 mtxGroupNo = getMtxGroupNum(shapeNo);
+    u16 mtxGroupNo = getMtxGroupNum(shapeNo);
     size += mtxGroupNo * 4;
     size += mtxGroupNo * 4;
 
@@ -125,7 +125,7 @@ s32 J3DShapeFactory::calcSizeVcdVatCmdBuffer(u32 count) {
 }
 
 s32 J3DShapeFactory::calcSizeShapeMtx(u32 flag, int shapeNo, int mtxGroupNo) const {
-    const J3DShapeInitData& shapeInitData = mShapeInitData[mIndexTable[shapeNo]];
+    J3DShapeInitData& shapeInitData = mShapeInitData[mIndexTable[shapeNo]];
     u32 ret = 0;
 
     u32 mtxLoadType = getMdlDataFlag_MtxLoadType(flag);

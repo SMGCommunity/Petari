@@ -18,10 +18,6 @@ inline void loadAmbColors(const J3DGXColor* color) {
     J3DGDWrite_u32(*(u32*)(color + 1));
 }
 
-inline void loadTexCoordScale(GXTexCoordID coord, const J3DTexCoordScaleInfo& info) {
-    J3DGDSetTexCoordScale2(coord, info.field_0x00, info.field_0x04 == 1, 0, info.field_0x02, info.field_0x06 == 1, 0);
-}
-
 inline void loadTevColor(u32 reg, const J3DGXColorS10& color) {
     J3DGDSetTevColorS10(GXTevRegID(reg + 1), color);
 }
@@ -452,7 +448,7 @@ void J3DColorBlockLightOff::diffMatColor() {
     loadMatColors(mMatColor);
 }
 
-void J3DColorBlockLightOff::diffColorChan() {
+void J3DColorBlockLightOff::diffLight() {
     GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(0x100E, 4);
     mColorChan[0].load();
@@ -465,8 +461,8 @@ void J3DColorBlockLightOn::diff(u32 diffFlags) {
     if (diffFlags & J3DDiffFlag_MatColor)
         diffMatColor();
 
-    if (diffFlags & J3DDiffFlag_ColorChan)
-        diffColorChan();
+    if ((diffFlags & J3DDiffFlag_ColorChan) || ((diffFlags >> 4) & 0xF))
+        diffLight();
 }
 
 void J3DColorBlockLightOn::diffMatColor() {
@@ -474,13 +470,19 @@ void J3DColorBlockLightOn::diffMatColor() {
     loadMatColors(mMatColor);
 }
 
-void J3DColorBlockLightOn::diffColorChan() {
+void J3DColorBlockLightOn::diffLight() {
     GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(0x100E, 4);
     mColorChan[0].load();
     mColorChan[2].load();
     mColorChan[1].load();
     mColorChan[3].load();
+
+    for (u32 i = 0; i < ARRAY_SIZE(mLight); i++) {
+        if (mLight[i] != nullptr) {
+            mLight[i]->load(i);
+        }
+    }
 }
 
 void J3DTexGenBlock4::load() {
@@ -1552,9 +1554,14 @@ void J3DTevBlockPatched::reset(J3DTevBlock* pBlock) {
 
 void J3DTevBlock1::reset(J3DTevBlock* pBlock) {
     mTexNo[0] = pBlock->getTexNo(0);
-    mTevOrder[0] = *pBlock->getTevOrder(0);
+    mTevOrder[0].getTevOrderInfo() = pBlock->getTevOrder(0)->getTevOrderInfo();
     mTevStage[0] = *pBlock->getTevStage(0);
     mIndTevStage[0] = *pBlock->getIndTevStage(0);
+}
+
+J3DTevOrder& J3DTevOrder::operator=(const J3DTevOrder& other) {
+    __memcpy(this, &other, sizeof(J3DTevOrder));
+    return *this;
 }
 
 void J3DTevBlock2::reset(J3DTevBlock* pBlock) {
@@ -1565,8 +1572,8 @@ void J3DTevBlock2::reset(J3DTevBlock* pBlock) {
     mTevStage[1] = *pBlock->getTevStage(1);
     mIndTevStage[0] = *pBlock->getIndTevStage(0);
     mIndTevStage[1] = *pBlock->getIndTevStage(1);
-    mTevOrder[0] = *pBlock->getTevOrder(0);
-    mTevOrder[1] = *pBlock->getTevOrder(1);
+    mTevOrder[0].getTevOrderInfo() = pBlock->getTevOrder(0)->getTevOrderInfo();
+    mTevOrder[1].getTevOrderInfo() = pBlock->getTevOrder(1)->getTevOrderInfo();
     mTevKColorSel[0] = pBlock->getTevKColorSel(0);
     mTevKColorSel[1] = pBlock->getTevKColorSel(1);
     mTevKAlphaSel[0] = pBlock->getTevKAlphaSel(0);
@@ -1599,10 +1606,10 @@ void J3DTevBlock4::reset(J3DTevBlock* pBlock) {
     mIndTevStage[1] = *pBlock->getIndTevStage(1);
     mIndTevStage[2] = *pBlock->getIndTevStage(2);
     mIndTevStage[3] = *pBlock->getIndTevStage(3);
-    mTevOrder[0] = *pBlock->getTevOrder(0);
-    mTevOrder[1] = *pBlock->getTevOrder(1);
-    mTevOrder[2] = *pBlock->getTevOrder(2);
-    mTevOrder[3] = *pBlock->getTevOrder(3);
+    mTevOrder[0].getTevOrderInfo() = pBlock->getTevOrder(0)->getTevOrderInfo();
+    mTevOrder[1].getTevOrderInfo() = pBlock->getTevOrder(1)->getTevOrderInfo();
+    mTevOrder[2].getTevOrderInfo() = pBlock->getTevOrder(2)->getTevOrderInfo();
+    mTevOrder[3].getTevOrderInfo() = pBlock->getTevOrder(3)->getTevOrderInfo();
     mTevKColorSel[0] = pBlock->getTevKColorSel(0);
     mTevKColorSel[1] = pBlock->getTevKColorSel(1);
     mTevKColorSel[2] = pBlock->getTevKColorSel(2);
@@ -1892,20 +1899,4 @@ void J3DTexGenBlockPatched::calcPostTexMtxWithoutViewMtx(f32 const (*param_0)[4]
             }
         }
     }
-}
-
-inline void J3DGDWriteBPCmd(u32 regval) {
-    J3DGDWrite_u8(0x61);
-    J3DGDWrite_u32(regval);
-}
-
-inline void J3DGDSetZCompLoc(u32 compLocEnable) {
-    J3DGDWriteBPCmd(0xFE000040);
-    J3DGDWriteBPCmd(compLocEnable << 6 | 0x43 << 24);
-}
-
-inline void J3DGDWriteXFCmdHdr(u16 addr, u8 len) {
-    J3DGDWrite_u8(0x10);
-    J3DGDWrite_u16(len - 1);
-    J3DGDWrite_u16(addr);
 }

@@ -1,3 +1,5 @@
+#define JPA_LIST_DEFER_INLINE
+#define JPA_FIELD_BLOCK_DEFER_INLINE
 #include "JSystem/JParticle/JPAResource.hpp"
 #include "JSystem/JKernel/JKRHeap.hpp"
 #include "JSystem/JParticle/JPABaseShape.hpp"
@@ -62,8 +64,8 @@ static u8 jpa_crd[32] ATTRIBUTE_ALIGN(32) = {
 };
 
 void JPAResource::init(JKRHeap* heap) {
-    BOOL is_glbl_clr_anm = mpBaseShape->isGlblClrAnm();
-    BOOL is_glbl_tex_anm = mpBaseShape->isGlblTexAnm();
+    u32 is_glbl_clr_anm = mpBaseShape->isGlblClrAnm();
+    u32 is_glbl_tex_anm = mpBaseShape->isGlblTexAnm();
     BOOL is_prm_anm = mpBaseShape->isPrmAnm();
     BOOL is_env_anm = mpBaseShape->isEnvAnm();
     BOOL is_tex_anm = mpBaseShape->isTexAnm();
@@ -735,13 +737,13 @@ bool JPAResource::calc(JPAEmitterWorkData* work, JPABaseEmitter* emtr) {
             node = next;
         }
 
-        node = emtr->mAlivePtclChld.getFirst();
-        while (node != emtr->mAlivePtclChld.getEnd()) {
-            next = node->getNext();
-            if (node->getObject()->calc_c(work)) {
-                emtr->mpPtclPool->push_front(emtr->mAlivePtclChld.erase(node));
+        JPANode< JPABaseParticle >* child = emtr->mAlivePtclChld.getFirst();
+        while (child != emtr->mAlivePtclChld.getEnd()) {
+            JPANode< JPABaseParticle >* childNext = child->getNext();
+            if (child->getObject()->calc_c(work)) {
+                emtr->mpPtclPool->push_front(emtr->mAlivePtclChld.erase(child));
             }
-            node = next;
+            child = childNext;
         }
 
         emtr->mTick++;
@@ -958,7 +960,7 @@ void JPAResource::setCTev(JPAEmitterWorkData* work) {
         GXSetClipMode(GX_CLIP_DISABLE);
     }
     GXSetNumTexGens(1);
-    work->mpResMgr->load(work->mpRes->getTexIdx(mpChildShape->getTexIdx()), GX_TEXMAP1);
+    work->mpResMgr->CALL_INLINE_FUNC(load, work->mpRes->getTexIdx(mpChildShape->getTexIdx()), GX_TEXMAP1);
 }
 
 void JPAResource::calc_p(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
@@ -1050,3 +1052,9 @@ void JPAResource::calcWorkData_d(JPAEmitterWorkData* work) {
     PSMTXConcat(work->mpEmtr->mGlobalRot, mtx, work->mGlobalRot);
     PSMTXMultVecSR(work->mGlobalRot, &work->mpEmtr->mLocalDir, &work->mGlobalEmtrDir);
 }
+
+#include "JSystem/JParticle/JPAFieldBlockInline.hpp"
+#include "JSystem/JParticle/JPAListInline.hpp"
+
+template JPANode< JPABaseParticle >* JPAList< JPABaseParticle >::erase(JPANode< JPABaseParticle >*);
+template void JPAList< JPABaseParticle >::push_front(JPANode< JPABaseParticle >*);

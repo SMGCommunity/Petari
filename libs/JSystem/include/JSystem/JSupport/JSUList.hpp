@@ -97,8 +97,12 @@ public:
 template < class T >
 class JSUList : public JSUPtrList {
 public:
+#ifndef JSU_LIST_DEFER_INLINE
     JSUList() : JSUPtrList() {
     }
+#else
+    JSUList();
+#endif
 
     JSUList(bool thing) : JSUPtrList(thing) {
     }
@@ -291,3 +295,4 @@ public:
 
     JSUTree< T >* mTree;  // 0x0
 };
+

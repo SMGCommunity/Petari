@@ -4,20 +4,23 @@
 
 void JPAVolumePoint(JPAEmitterWorkData* work) {
     work->mVolumeCalcData.mVolumePos.zero();
-    work->mVolumeCalcData.mVelOmni.set(work->mpEmtr->get_r_zh(), work->mpEmtr->get_r_zh(), work->mpEmtr->get_r_zh());
-    work->mVolumeCalcData.mVelAxis.set(work->mVolumeCalcData.mVelOmni.x, 0.0f, work->mVolumeCalcData.mVelOmni.z);
+    f32 z = work->mpEmtr->mRndm.get_rndm_f() - 0.5f;
+    f32 y = work->mpEmtr->mRndm.get_rndm_f() - 0.5f;
+    f32 x = work->mpEmtr->mRndm.get_rndm_f() - 0.5f;
+    work->mVolumeCalcData.mVelOmni.set< f32 >(x, y, z);
+    work->mVolumeCalcData.mVelAxis.set< f32 >(work->mVolumeCalcData.mVelOmni.x, 0.0f, work->mVolumeCalcData.mVelOmni.z);
 }
 
 void JPAVolumeLine(JPAEmitterWorkData* work) {
     if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
-        work->mVolumeCalcData.mVolumePos.set(0.0f, 0.0f, work->mVolumeSize * ((work->mVolumeEmitIdx / (work->mEmitCount - 1.0f) - 0.5f)));
+        work->mVolumeCalcData.mVolumePos.set< f32 >(0.0f, 0.0f, work->mVolumeSize * ((work->mVolumeEmitIdx / (work->mEmitCount - 1.0f) - 0.5f)));
         work->mVolumeEmitIdx++;
     } else {
-        work->mVolumeCalcData.mVolumePos.set(0.0f, 0.0f, work->mVolumeSize * work->mpEmtr->get_r_zh());
+        work->mVolumeCalcData.mVolumePos.set< f32 >(0.0f, 0.0f, work->mVolumeSize * (work->mpEmtr->mRndm.get_rndm_f() - 0.5f));
     }
 
-    work->mVolumeCalcData.mVelOmni.set(0.0f, 0.0f, work->mVolumeCalcData.mVolumePos.z * work->mGlobalScl.z);
-    work->mVolumeCalcData.mVelAxis.set(0.0f, 0.0f, work->mVolumeCalcData.mVolumePos.z);
+    work->mVolumeCalcData.mVelOmni.set< f32 >(0.0f, 0.0f, work->mVolumeCalcData.mVolumePos.z * work->mGlobalScl.z);
+    work->mVolumeCalcData.mVelAxis.set< f32 >(0.0f, 0.0f, work->mVolumeCalcData.mVolumePos.z);
 }
 
 void JPAVolumeCircle(JPAEmitterWorkData* work) {
@@ -26,7 +29,7 @@ void JPAVolumeCircle(JPAEmitterWorkData* work) {
 
     if (work->mpEmtr->checkFlag(JPADynFlag_FixedInterval)) {
         theta = (s16)((work->mVolumeEmitIdx << 16) / work->mEmitCount);
-        theta = theta * work->mVolumeSweep;
+        theta *= work->mVolumeSweep;
         work->mVolumeEmitIdx++;
     } else {
         theta = work->mVolumeSweep * work->mpEmtr->get_r_ss();
@@ -38,16 +41,18 @@ void JPAVolumeCircle(JPAEmitterWorkData* work) {
     }
 
     distance = work->mVolumeSize * (work->mVolumeMinRad + distance * (1.0f - work->mVolumeMinRad));
-    work->mVolumeCalcData.mVolumePos.set(distance * JMASSin(theta), 0.0f, distance * JMASCos(theta));
+    work->mVolumeCalcData.mVolumePos.set< f32 >(distance * JMASSin(theta), 0.0f, distance * JMASCos(theta));
     work->mVolumeCalcData.mVelOmni.mul(work->mVolumeCalcData.mVolumePos, work->mGlobalScl);
-    work->mVolumeCalcData.mVelAxis.set(work->mVolumeCalcData.mVolumePos.x, 0.0f, work->mVolumeCalcData.mVolumePos.z);
+    work->mVolumeCalcData.mVelAxis.set< f32 >(work->mVolumeCalcData.mVolumePos.x, 0.0f, work->mVolumeCalcData.mVolumePos.z);
 }
 
 void JPAVolumeCube(JPAEmitterWorkData* work) {
-    work->mVolumeCalcData.mVolumePos.set(work->mpEmtr->get_r_zh() * work->mVolumeSize, work->mpEmtr->get_r_zh() * work->mVolumeSize,
-                                         work->mpEmtr->get_r_zh() * work->mVolumeSize);
+    f32 z = work->mpEmtr->mRndm.get_rndm_f() - 0.5f;
+    f32 y = work->mpEmtr->mRndm.get_rndm_f() - 0.5f;
+    f32 x = work->mpEmtr->mRndm.get_rndm_f() - 0.5f;
+    work->mVolumeCalcData.mVolumePos.set< f32 >(work->mVolumeSize * x, work->mVolumeSize * y, work->mVolumeSize * z);
     work->mVolumeCalcData.mVelOmni.mul(work->mVolumeCalcData.mVolumePos, work->mGlobalScl);
-    work->mVolumeCalcData.mVelAxis.set(work->mVolumeCalcData.mVolumePos.x, 0.0f, work->mVolumeCalcData.mVolumePos.z);
+    work->mVolumeCalcData.mVelAxis.set< f32 >(work->mVolumeCalcData.mVolumePos.x, 0.0f, work->mVolumeCalcData.mVolumePos.z);
 }
 
 static void JPAVolumeSphere(JPAEmitterWorkData* work) {
@@ -75,10 +80,10 @@ static void JPAVolumeSphere(JPAEmitterWorkData* work) {
     if (work->mpEmtr->checkFlag(JPADynFlag_FixedDensity)) {
         rnd = 1.0f - rnd * rnd * rnd;
     }
-    f32 rad = work->mVolumeSize * (work->mVolumeMinRad + rnd * (1.0f - work->mVolumeMinRad));
-    work->mVolumeCalcData.mVolumePos.set(rad * JMASCos(phi) * JMASSin(theta), -rad * JMASSin(phi), rad * JMASCos(phi) * JMASCos(theta));
+    rnd = work->mVolumeSize * (work->mVolumeMinRad + rnd * (1.0f - work->mVolumeMinRad));
+    work->mVolumeCalcData.mVolumePos.set< f32 >(rnd * JMASCos(phi) * JMASSin(theta), -rnd * JMASSin(phi), rnd * JMASCos(phi) * JMASCos(theta));
     work->mVolumeCalcData.mVelOmni.mul(work->mVolumeCalcData.mVolumePos, work->mGlobalScl);
-    work->mVolumeCalcData.mVelAxis.set(work->mVolumeCalcData.mVolumePos.x, 0.0f, work->mVolumeCalcData.mVolumePos.z);
+    work->mVolumeCalcData.mVelAxis.set< f32 >(work->mVolumeCalcData.mVolumePos.x, 0.0f, work->mVolumeCalcData.mVolumePos.z);
 }
 
 static void JPAVolumeCylinder(JPAEmitterWorkData* work) {
@@ -88,18 +93,19 @@ static void JPAVolumeCylinder(JPAEmitterWorkData* work) {
         rnd = 1.0f - rnd * rnd;
     }
     f32 rad = work->mVolumeSize * (work->mVolumeMinRad + rnd * (1.0f - work->mVolumeMinRad));
-    work->mVolumeCalcData.mVolumePos.set(rad * JMASSin(theta), work->mVolumeSize * work->mpEmtr->get_r_zp(), rad * JMASCos(theta));
+    work->mVolumeCalcData.mVolumePos.set< f32 >(rad * JMASSin(theta), work->mVolumeSize * work->mpEmtr->get_r_zp(), rad * JMASCos(theta));
     work->mVolumeCalcData.mVelOmni.mul(work->mVolumeCalcData.mVolumePos, work->mGlobalScl);
-    work->mVolumeCalcData.mVelAxis.set(work->mVolumeCalcData.mVolumePos.x, 0.0f, work->mVolumeCalcData.mVolumePos.z);
+    work->mVolumeCalcData.mVelAxis.set< f32 >(work->mVolumeCalcData.mVolumePos.x, 0.0f, work->mVolumeCalcData.mVolumePos.z);
 }
 
 static void JPAVolumeTorus(JPAEmitterWorkData* work) {
     s16 theta = work->mVolumeSweep * work->mpEmtr->get_r_ss();
     s16 phi = work->mpEmtr->get_r_ss();
     f32 rad = work->mVolumeSize * work->mVolumeMinRad;
-    work->mVolumeCalcData.mVelAxis.set(rad * JMASSin(theta) * JMASCos(phi), rad * JMASSin(phi), rad * JMASCos(theta) * JMASCos(phi));
-    work->mVolumeCalcData.mVolumePos.set(work->mVolumeCalcData.mVelAxis.x + work->mVolumeSize * JMASSin(theta), work->mVolumeCalcData.mVelAxis.y,
-                                         work->mVolumeCalcData.mVelAxis.z + work->mVolumeSize * JMASCos(theta));
+    work->mVolumeCalcData.mVelAxis.set< f32 >(rad * JMASSin(theta) * JMASCos(phi), rad * JMASSin(phi), rad * JMASCos(theta) * JMASCos(phi));
+    work->mVolumeCalcData.mVolumePos.set< f32 >(work->mVolumeCalcData.mVelAxis.x + work->mVolumeSize * JMASSin(theta),
+                                                work->mVolumeCalcData.mVelAxis.y,
+                                                work->mVolumeCalcData.mVelAxis.z + work->mVolumeSize * JMASCos(theta));
     work->mVolumeCalcData.mVelOmni.mul(work->mVolumeCalcData.mVolumePos, work->mGlobalScl);
 }
 
@@ -161,9 +167,11 @@ void JPADynamicsBlock::create(JPAEmitterWorkData* work) {
 
             work->mVolumeEmitIdx = 0;
         } else {
-            f32 newPtclCount = work->mpEmtr->mRate * (getRateRndm() * work->mpEmtr->get_r_zp() + 1.0f);
-            f32 newEmitCount = work->mpEmtr->mEmitCount + newPtclCount;
-            work->mpEmtr->mEmitCount = newEmitCount;
+            f32 rateRndm = getRateRndm();
+            JPABaseEmitter* emtr = work->mpEmtr;
+            f32 newPtclCount = emtr->mRate * (rateRndm * emtr->get_r_zp() + 1.0f);
+            f32 newEmitCount = emtr->mEmitCount + newPtclCount;
+            emtr->mEmitCount = newEmitCount;
             emitCount = (s32)newEmitCount;
             work->mpEmtr->mEmitCount -= emitCount;
 
@@ -186,7 +194,8 @@ void JPADynamicsBlock::create(JPAEmitterWorkData* work) {
         }
     }
 
-    if (++work->mpEmtr->mRateStepTimer >= (work->mpEmtr->mRateStep + 1)) {
+    JPABaseEmitter* emtr = work->mpEmtr;
+    if (++emtr->mRateStepTimer >= (emtr->mRateStep + 1)) {
         work->mpEmtr->mRateStepTimer -= (work->mpEmtr->mRateStep + 1);
         work->mpEmtr->setStatus(JPAEmtrStts_RateStepEmit);
     } else {

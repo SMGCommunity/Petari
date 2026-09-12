@@ -9,6 +9,15 @@
 static void J3DGDLoadTexMtxImm(f32 (*)[4], u32, GXTexMtxType);
 static void J3DGDLoadPostTexMtxImm(f32 (*)[4], u32);
 
+void J3DLightObj::load(u32 lightIdx) const {
+    GDOverflowCheck(0x48);
+    J3DGDSetLightPos(GXLightID(1 << lightIdx), mInfo.mLightPosition.x, mInfo.mLightPosition.y, mInfo.mLightPosition.z);
+    J3DGDSetLightAttn(GXLightID(1 << lightIdx), mInfo.mCosAtten.x, mInfo.mCosAtten.y, mInfo.mCosAtten.z, mInfo.mDistAtten.x, mInfo.mDistAtten.y,
+                      mInfo.mDistAtten.z);
+    J3DGDSetLightColor(GXLightID(1 << lightIdx), mInfo.mColor);
+    J3DGDSetLightDir(GXLightID(1 << lightIdx), mInfo.mLightDirection.x, mInfo.mLightDirection.y, mInfo.mLightDirection.z);
+}
+
 void loadTexCoordGens(u32 texGenNum, J3DTexCoord* texCoords) {
     u32 var_r28;
     GDOverflowCheck(texGenNum * 4 * 2 + 10);
@@ -265,8 +274,8 @@ void loadTexNo(u32 param_0, const u16& texNo) {
     J3DGDSetTexImgPtr(GXTexMapID(param_0), (u8*)resTIMG + resTIMG->mImageDataOffset);
     J3DGDSetTexImgAttr(GXTexMapID(param_0), resTIMG->mWidth, resTIMG->mHeight, GXTexFmt(resTIMG->mFormat & 0x0f));
     J3DGDSetTexLookupMode(GXTexMapID(param_0), GXTexWrapMode(resTIMG->mWrapS), GXTexWrapMode(resTIMG->mWrapT), GXTexFilter(resTIMG->mMinType),
-                          GXTexFilter(resTIMG->mMagType), resTIMG->mMinLod * 0.125f, resTIMG->mMaxLod * 0.125f, resTIMG->mLodBias * 0.01f,
-                          resTIMG->mBiasClamp, resTIMG->mDoEdgeLod, GXAnisotropy(resTIMG->mMaxAnisotropy));
+                          GXTexFilter(resTIMG->mMagType), static_cast< s8 >(resTIMG->mMinLod) * 0.125f, static_cast< s8 >(resTIMG->mMaxLod) * 0.125f,
+                          resTIMG->mLodBias * 0.01f, resTIMG->mBiasClamp, resTIMG->mDoEdgeLod, GXAnisotropy(resTIMG->mMaxAnisotropy));
 
     if (resTIMG->mPaletteName == true) {
         GXTlutSize tlutSize = resTIMG->mPaletteNum > 16 ? GX_TLUT_256 : GX_TLUT_16;
@@ -289,10 +298,6 @@ void loadNBTScale(J3DNBTScale& NBTScale) {
     }
 }
 
-const J3DLightInfo j3dDefaultLightInfo = {
-    0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0xff, 0xff, 0xff, 0xff, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-};
-
 J3DTexCoordInfo const j3dDefaultTexCoordInfo[8] = {
     {GX_MTX2x4, GX_TG_TEX0, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX1, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX2, GX_IDENTITY, 0},
     {GX_MTX2x4, GX_TG_TEX3, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX4, GX_IDENTITY, 0}, {GX_MTX2x4, GX_TG_TEX5, GX_IDENTITY, 0},
@@ -300,10 +305,18 @@ J3DTexCoordInfo const j3dDefaultTexCoordInfo[8] = {
 };
 
 J3DTexMtxInfo const j3dDefaultTexMtxInfo = {
-    0x01, 0x00, 0xFF, 0xFF, {0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 0, 0.0f, 0.0f},
+    0x01,
+    0x00,
+    0xFF,
+    0xFF,
+    {0.0f, 0.0f, 0.0f},
+    {1.0f, 1.0f, 0, 0.0f, 0.0f},
+    {{1.0f, 0.0f, 0.0f, 0.0f}, {0.0f, 1.0f, 0.0f, 0.0f}, {0.0f, 0.0f, 1.0f, 0.0f}, {0.0f, 0.0f, 0.0f, 1.0f}},
 };
 
 J3DIndTexMtxInfo const j3dDefaultIndTexMtxInfo = {0.5f, 0.0f, 0.0f, 0.0f, 0.5f, 0.0f, 1};
+
+const GXColorS10 j3dDefaultTevColor = {0xFF, 0xFF, 0xFF, 0xFF};
 
 J3DTevStageInfo const j3dDefaultTevStageInfo = {
     0x04, 0x0A, 0x0F, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x05, 0x07, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00,
@@ -323,6 +336,10 @@ J3DNBTScaleInfo const j3dDefaultNBTScaleInfo = {
     1.0f,
     1.0f,
     1.0f,
+};
+
+const J3DColorChanInfo j3dDefaultColorChanInfo = {
+    0x00, 0x00, 0x00, 0x02, 0x02, 0x00, 0xFF, 0xFF,
 };
 
 static u8 j3dTexCoordTable[7623];
@@ -440,3 +457,34 @@ inline void J3DGDLoadPostTexMtxImm(f32 (*param_1)[4], u32 param_2) {
     J3DGDWrite_f32(param_1[2][2]);
     J3DGDWrite_f32(param_1[2][3]);
 }
+
+const GXColor j3dDefaultColInfo = {0xFF, 0xFF, 0xFF, 0xFF};
+
+const GXColor j3dDefaultAmbInfo = {0x32, 0x32, 0x32, 0x32};
+
+const u8 j3dDefaultNumChans = 1;
+
+const J3DTevOrderInfo j3dDefaultTevOrderInfoNull = {0xFF, 0xFF, 0xFF, 0x00};
+
+const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull = {0xFF, 0xFF, 0x00, 0x00};
+
+const GXColor j3dDefaultTevKColor = {0xFF, 0xFF, 0xFF, 0xFF};
+
+const J3DIndTexCoordScaleInfo j3dDefaultIndTexCoordScaleInfo = {};
+
+J3DTevSwapModeInfo const j3dDefaultTevSwapMode = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
+
+const J3DTevSwapModeTableInfo j3dDefaultTevSwapModeTable = {0x00, 0x01, 0x02, 0x03};
+
+const J3DBlendInfo j3dDefaultBlendInfo = {GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_NOOP};
+
+const u8 j3dDefaultTevSwapTableID = 0x1B;
+
+const u16 j3dDefaultAlphaCmpID = 0x00E7;
+
+const u16 j3dDefaultZModeID = 0x0017;

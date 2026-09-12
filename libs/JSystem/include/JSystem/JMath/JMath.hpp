@@ -61,6 +61,32 @@ namespace JMath {
         return JMAFastSqrt(value);
     }
 
+    inline void gekko_ps_copy3(__REGISTER void* dest, __REGISTER const void* src) {
+#ifdef __MWERKS__
+        __REGISTER f32 x, y;
+        asm {
+            psq_l x, 0(src), 0, 0
+            lfs y, 8(src)
+            psq_st x, 0(dest), 0, 0
+            stfs y, 8(dest)
+        }
+#endif
+    }
+
+    inline void gekko_ps_copy6(__REGISTER void* dest, __REGISTER const void* src) {
+#ifdef __MWERKS__
+        __REGISTER f32 x, y, z;
+        asm {
+            psq_l x, 0(src), 0, 0
+            psq_l y, 8(src), 0, 0
+            psq_l z, 16(src), 0, 0
+            psq_st x, 0(dest), 0, 0
+            psq_st y, 8(dest), 0, 0
+            psq_st z, 16(dest), 0, 0
+        }
+#endif
+    }
+
     inline void gekko_ps_copy12(__REGISTER void* pDest, __REGISTER const void* pSrc) {
 #ifdef __MWERKS__
         register f32 f_0, f_1, f_2, f_3, f_4, f_5;

@@ -1,8 +1,10 @@
 #include "JSystem/JKernel/JKRExpHeap.hpp"
-#include "JSystem/JSupport/JSupport.hpp"
 #include "JSystem/JUtility/JUTConsole.hpp"
 #include "JSystem/JUtility/JUTException.hpp"
 #include <new>
+
+extern "C" void JUTWarningConsole(const char*);
+extern "C" void JUTReportConsole(const char*);
 
 static u32 DBfoundSize;
 static u32 DBfoundOffset;
@@ -10,20 +12,20 @@ static JKRExpHeap::CMemBlock* DBfoundBlock;
 static JKRExpHeap::CMemBlock* DBnewFreeBlock;
 static JKRExpHeap::CMemBlock* DBnewUsedBlock;
 
-JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool a2) {
+JKRExpHeap* JKRExpHeap::createRoot(int heapNum, bool errorFlag) {
     JKRExpHeap* heap = nullptr;
 
     if (!JKRHeap::sRootHeap) {
-        char* stack_C;
+        char* arena;
         u32 arenaSize;
-        JKRHeap::initArena(&stack_C, &arenaSize, heapNum);
-        char* area = stack_C + 0x90;
+        JKRHeap::initArena(&arena, &arenaSize, heapNum);
+        char* area = arena + 0x90;
         u32 size = arenaSize - 0x90;
-        heap = new (stack_C) JKRExpHeap(area, size, nullptr, a2);
+        heap = new (arena) JKRExpHeap(area, size, nullptr, errorFlag);
         JKRHeap::sRootHeap = heap;
     }
 
-    heap->mAllocMode = 1;
+    heap->mIsExternal = 1;
     return heap;
 }
 
@@ -43,7 +45,7 @@ JKRExpHeap* JKRExpHeap::create(u32 size, JKRHeap* pParent, bool errorFlag) {
         return nullptr;
     }
 
-    u8* mem = (u8*)JKRHeap::alloc(alignedSize, 16, pParent);
+    u8* mem = static_cast< u8* >(JKRHeap::alloc(alignedSize, 16, pParent));
     u8* data = (mem + heapSize);
     if (mem == nullptr) {
         return nullptr;
@@ -56,7 +58,7 @@ JKRExpHeap* JKRExpHeap::create(u32 size, JKRHeap* pParent, bool errorFlag) {
         return nullptr;
     }
 
-    heap->mAllocMode = 0;
+    heap->mIsExternal = 0;
     return heap;
 }
 
@@ -80,20 +82,20 @@ JKRExpHeap* JKRExpHeap::create(void* ptr, u32 size, JKRHeap* pParent, bool error
         return nullptr;
     }
 
-    void* data = (u8*)ptr + heapSize;
-    u32 alignSize = ALIGN_PREV((u32)ptr + size - (u32)data, 0x10);
+    void* data = static_cast< u8* >(ptr) + heapSize;
+    u32 alignSize = ALIGN_PREV(reinterpret_cast< u32 >(ptr) + size - reinterpret_cast< u32 >(data), 0x10);
     if (ptr != nullptr) {
         heap = new (ptr) JKRExpHeap(data, alignSize, parent, errorFlag);
     }
 
-    heap->mAllocMode = 1;
+    heap->mIsExternal = 1;
     heap->_70 = ptr;
     heap->_74 = size;
     return heap;
 }
 
 void JKRExpHeap::do_destroy() {
-    if (_6E) {
+    if (!mIsExternal) {
         JKRHeap* heap = mChildTree.getParent()->getObject();
 
         if (heap != nullptr) {
@@ -103,6 +105,22 @@ void JKRExpHeap::do_destroy() {
     } else {
         this->~JKRExpHeap();
     }
+}
+
+JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRHeap(data, size, parent, error) {
+    CMemBlock* block = static_cast< CMemBlock* >(data);
+
+    mAllocMode = 0;
+    mCurrentGroupId = 0xFF;
+    mHeadFreeList = block;
+    mTailFreeList = block;
+    block->initiate(nullptr, nullptr, size - sizeof(CMemBlock), 0, 0);
+    mHeadUsedList = nullptr;
+    mTailUsedList = nullptr;
+}
+
+JKRExpHeap::~JKRExpHeap() {
+    dispose();
 }
 
 void* JKRExpHeap::do_alloc(u32 size, int align) {
@@ -142,27 +160,31 @@ void* JKRExpHeap::do_alloc(u32 size, int align) {
 }
 
 void* JKRExpHeap::allocFromHead(u32 size, int align) {
+    u32 content;
+    u32 blockSize;
     u32 foundOffset;
     int foundSize;
 
     size = ALIGN_NEXT(size, 4);
     foundSize = -1;
     foundOffset = 0;
-    CMemBlock* foundBlock = NULL;
-    CMemBlock* newFreeBlock = NULL;
-    CMemBlock* newUsedBlock = NULL;
+    CMemBlock* foundBlock = nullptr;
+    CMemBlock* newFreeBlock = nullptr;
+    CMemBlock* newUsedBlock = nullptr;
 
     for (CMemBlock* block = mHeadFreeList; block; block = block->mNext) {
-        u32 offset = ALIGN_PREV(align - 1 + (uintptr_t)block->getContent(), align) - (uintptr_t)block->getContent();
-        if (block->mSize < size + offset) {
+        content = reinterpret_cast< u32 >(block->getContent());
+        blockSize = block->mSize;
+        u32 offset = ALIGN_PREV(align + content - 1, align) - content;
+        if (blockSize < size + offset) {
             continue;
         }
 
-        if (foundSize <= (u32)block->mSize) {
+        if (foundSize <= blockSize) {
             continue;
         }
 
-        foundSize = block->mSize;
+        foundSize = blockSize;
         foundBlock = block;
         foundOffset = offset;
         if (mAllocMode != 0) {
@@ -187,7 +209,7 @@ void* JKRExpHeap::allocFromHead(u32 size, int align) {
             if (newUsedBlock) {
                 newFreeBlock = newUsedBlock->allocFore(size, mCurrentGroupId, 0, 0, 0);
             } else {
-                newFreeBlock = NULL;
+                newFreeBlock = nullptr;
             }
 
             if (newFreeBlock) {
@@ -209,9 +231,9 @@ void* JKRExpHeap::allocFromHead(u32 size, int align) {
                 CMemBlock* prev = foundBlock->mPrev;
                 CMemBlock* next = foundBlock->mNext;
                 removeFreeBlock(foundBlock);
-                newUsedBlock = (CMemBlock*)((uintptr_t)foundBlock + foundOffset);
+                newUsedBlock = reinterpret_cast< CMemBlock* >(reinterpret_cast< u32 >(foundBlock) + foundOffset);
                 newUsedBlock->mSize = foundBlock->mSize - foundOffset;
-                newFreeBlock = newUsedBlock->allocFore(size, mCurrentGroupId, (u8)foundOffset, 0, 0);
+                newFreeBlock = newUsedBlock->allocFore(size, mCurrentGroupId, static_cast< u8 >(foundOffset), 0, 0);
                 if (newFreeBlock) {
                     setFreeBlock(newFreeBlock, prev, next);
                 }
@@ -232,14 +254,14 @@ void* JKRExpHeap::allocFromHead(u32 size, int align) {
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void* JKRExpHeap::allocFromHead(u32 size) {
     size = ALIGN_NEXT(size, 4);
     s32 foundSize = -1;
-    CMemBlock* foundBlock = NULL;
-    CMemBlock* newblock = NULL;
+    CMemBlock* foundBlock = nullptr;
+    CMemBlock* newBlock = nullptr;
     for (CMemBlock* block = mHeadFreeList; block; block = block->mNext) {
         if (block->mSize < size) {
             continue;
@@ -261,67 +283,65 @@ void* JKRExpHeap::allocFromHead(u32 size) {
     }
 
     if (foundBlock) {
-        newblock = foundBlock->allocFore(size, mCurrentGroupId, 0, 0, 0);
-        if (newblock) {
-            setFreeBlock(newblock, foundBlock->mPrev, foundBlock->mNext);
+        newBlock = foundBlock->allocFore(size, mCurrentGroupId, 0, 0, 0);
+        if (newBlock) {
+            setFreeBlock(newBlock, foundBlock->mPrev, foundBlock->mNext);
         } else {
             removeFreeBlock(foundBlock);
         }
         appendUsedList(foundBlock);
         return foundBlock->getContent();
     }
-    return NULL;
+    return nullptr;
 }
 
 void* JKRExpHeap::allocFromTail(u32 size, int align) {
-    u32 local_2c = 0;
     u32 offset = 0;
-    CMemBlock* foundBlock = NULL;
-    CMemBlock* newBlock = NULL;
+    CMemBlock* foundBlock = nullptr;
+    CMemBlock* newBlock = nullptr;
     u32 usedSize;
     u32 start;
 
     for (CMemBlock* block = mTailFreeList; block; block = block->mPrev) {
-        start = ALIGN_PREV((uintptr_t)block->getContent() + block->mSize - size, align);
-        usedSize = (uintptr_t)block->getContent() + block->mSize - start;
+        start = ALIGN_PREV(reinterpret_cast< u32 >(block->getContent()) + block->mSize - size, align);
+        usedSize = reinterpret_cast< u32 >(block->getContent()) + block->mSize - start;
         if (block->mSize >= usedSize) {
-            local_2c = usedSize;
             foundBlock = block;
             offset = block->mSize - usedSize;
-            newBlock = (CMemBlock*)start - 1;
+            newBlock = reinterpret_cast< CMemBlock* >(start) - 1;
             break;
         }
     }
 
-    if (foundBlock != NULL) {
+    if (foundBlock != nullptr) {
         if (offset >= sizeof(CMemBlock)) {
-            newBlock->initiate(NULL, NULL, usedSize, mCurrentGroupId, -0x80);
+            newBlock->initiate(nullptr, nullptr, usedSize, mCurrentGroupId, -0x80);
             foundBlock->mSize = foundBlock->mSize - usedSize - sizeof(CMemBlock);
             appendUsedList(newBlock);
             return newBlock->getContent();
         } else {
             if (offset != 0) {
                 removeFreeBlock(foundBlock);
-                newBlock->initiate(NULL, NULL, usedSize, mCurrentGroupId, offset | 0x80);
+                newBlock->initiate(nullptr, nullptr, usedSize, mCurrentGroupId, offset | 0x80);
                 appendUsedList(newBlock);
                 return newBlock->getContent();
             } else {
                 removeFreeBlock(foundBlock);
-                newBlock->initiate(NULL, NULL, usedSize, mCurrentGroupId, -0x80);
+                newBlock->initiate(nullptr, nullptr, usedSize, mCurrentGroupId, -0x80);
                 appendUsedList(newBlock);
                 return newBlock->getContent();
             }
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void* JKRExpHeap::allocFromTail(u32 size) {
     size = ALIGN_NEXT(size, 4);
-    CMemBlock* foundBlock = NULL;
-    CMemBlock* freeBlock = NULL;
-    CMemBlock* usedBlock = NULL;
+    CMemBlock* foundBlock = nullptr;
+    CMemBlock* freeBlock = nullptr;
+    CMemBlock* usedBlock = nullptr;
     for (CMemBlock* block = mTailFreeList; block; block = block->mPrev) {
         if (block->mSize >= size) {
             foundBlock = block;
@@ -329,14 +349,14 @@ void* JKRExpHeap::allocFromTail(u32 size) {
         }
     }
 
-    if (foundBlock != NULL) {
+    if (foundBlock != nullptr) {
         usedBlock = foundBlock->allocBack(size, 0, 0, mCurrentGroupId, 0);
         if (usedBlock) {
             freeBlock = foundBlock;
         } else {
             removeFreeBlock(foundBlock);
             usedBlock = foundBlock;
-            freeBlock = NULL;
+            freeBlock = nullptr;
         }
 
         if (freeBlock) {
@@ -345,13 +365,7 @@ void* JKRExpHeap::allocFromTail(u32 size) {
         appendUsedList(usedBlock);
         return usedBlock->getContent();
     }
-    return NULL;
-}
-
-int JKRExpHeap::CMemBlock::free(JKRExpHeap* heap) {
-    heap->removeUsedBlock(this);
-    heap->recycleFreeBlock(this);
-    return 0;
+    return nullptr;
 }
 
 void JKRExpHeap::do_free(void* ptr) {
@@ -361,7 +375,6 @@ void JKRExpHeap::do_free(void* ptr) {
         if (block) {
             block->free(this);
         }
-    } else {
     }
     unlock();
 }
@@ -369,17 +382,17 @@ void JKRExpHeap::do_free(void* ptr) {
 void JKRExpHeap::do_freeAll() {
     lock();
     JKRHeap::callAllDisposer();
-    mHeadFreeList = (CMemBlock*)mStart;
+    mHeadFreeList = reinterpret_cast< CMemBlock* >(mStart);
     mTailFreeList = mHeadFreeList;
-    mHeadFreeList->initiate(NULL, NULL, mSize - sizeof(CMemBlock), 0, 0);
-    mHeadUsedList = NULL;
-    mTailUsedList = NULL;
+    mHeadFreeList->initiate(nullptr, nullptr, mSize - sizeof(CMemBlock), 0, 0);
+    mHeadUsedList = nullptr;
+    mTailUsedList = nullptr;
     unlock();
 }
 
 void JKRExpHeap::do_freeTail() {
     lock();
-    for (CMemBlock* block = mHeadUsedList; block != NULL;) {
+    for (CMemBlock* block = mHeadUsedList; block != nullptr;) {
         if (block->isTempMemBlock()) {
             dispose(block->getContent(), block->mSize);
             CMemBlock* temp = block->mNext;
@@ -391,21 +404,25 @@ void JKRExpHeap::do_freeTail() {
     }
     unlock();
 }
+
 void JKRExpHeap::do_fillFreeArea() {
 }
 
-s32 JKRExpHeap::do_changeGroupID(u8 param_0) {
+s32 JKRExpHeap::do_changeGroupID(u8 groupId) {
     lock();
     u8 prev = mCurrentGroupId;
-    mCurrentGroupId = param_0;
+    mCurrentGroupId = groupId;
     unlock();
     return prev;
 }
 
 s32 JKRExpHeap::do_resize(void* ptr, u32 size) {
+    u32 end;
+    CMemBlock* foundBlock;
+
     lock();
     CMemBlock* block = CMemBlock::getHeapBlock(ptr);
-    if (block == NULL || ptr < mStart || mEnd < ptr) {
+    if (block == nullptr || ptr < mStart || mEnd < ptr) {
         unlock();
         return -1;
     }
@@ -417,15 +434,17 @@ s32 JKRExpHeap::do_resize(void* ptr, u32 size) {
     }
 
     if (size > block->mSize) {
-        CMemBlock* foundBlock = NULL;
+        end = reinterpret_cast< u32 >(block + 1);
+        end += block->mSize;
+        foundBlock = nullptr;
         for (CMemBlock* freeBlock = mHeadFreeList; freeBlock; freeBlock = freeBlock->mNext) {
-            if (freeBlock == (CMemBlock*)((uintptr_t)(block + 1) + block->mSize)) {
+            if (freeBlock == reinterpret_cast< CMemBlock* >(end)) {
                 foundBlock = freeBlock;
                 break;
             }
         }
 
-        if (foundBlock == NULL) {
+        if (foundBlock == nullptr) {
             unlock();
             return -1;
         }
@@ -435,7 +454,6 @@ s32 JKRExpHeap::do_resize(void* ptr, u32 size) {
             return -1;
         }
 
-        u32 local_24 = block->mSize;
         removeFreeBlock(foundBlock);
         block->mSize += foundBlock->mSize + sizeof(CMemBlock);
         if (block->mSize - size > sizeof(CMemBlock)) {
@@ -472,7 +490,7 @@ s32 JKRExpHeap::do_getFreeSize() {
     lock();
     s32 size = 0;
     for (CMemBlock* block = mHeadFreeList; block; block = block->mNext) {
-        if (size < (s32)block->mSize) {
+        if (size < static_cast< s32 >(block->mSize)) {
             size = block->mSize;
         }
     }
@@ -483,9 +501,9 @@ s32 JKRExpHeap::do_getFreeSize() {
 void* JKRExpHeap::do_getMaxFreeBlock() {
     lock();
     s32 size = 0;
-    CMemBlock* res = NULL;
+    CMemBlock* res = nullptr;
     for (CMemBlock* block = mHeadFreeList; block; block = block->mNext) {
-        if (size < (s32)block->mSize) {
+        if (size < static_cast< s32 >(block->mSize)) {
             size = block->mSize;
             res = block;
         }
@@ -520,45 +538,45 @@ s32 JKRExpHeap::getUsedSize(u8 groupId) const {
 
 bool JKRExpHeap::isEmpty() {
     lock();
-    bool result = !mHeadUsedList ? true : false;
+    bool result = !mHeadUsedList;
     unlock();
     return result;
 }
 
-void JKRExpHeap::appendUsedList(JKRExpHeap::CMemBlock* newblock) {
-    if (!newblock) {
+void JKRExpHeap::appendUsedList(JKRExpHeap::CMemBlock* newBlock) {
+    if (!newBlock) {
         JUTException::panic(__FILE__, 1568, "bad appendUsedList\n");
     }
 
     CMemBlock* block = mTailUsedList;
-    newblock->mMagic = 'HM';
+    newBlock->mMagic = 'HM';
 
     if (block) {
-        block->mNext = newblock;
-        newblock->mPrev = block;
+        block->mNext = newBlock;
+        newBlock->mPrev = block;
     } else {
-        newblock->mPrev = NULL;
+        newBlock->mPrev = nullptr;
     }
 
-    mTailUsedList = newblock;
+    mTailUsedList = newBlock;
     if (!mHeadUsedList) {
-        mHeadUsedList = newblock;
+        mHeadUsedList = newBlock;
     }
-    newblock->mNext = NULL;
+    newBlock->mNext = nullptr;
 }
 
 void JKRExpHeap::setFreeBlock(CMemBlock* block, CMemBlock* prev, CMemBlock* next) {
-    if (prev == NULL) {
+    if (prev == nullptr) {
         mHeadFreeList = block;
-        block->mPrev = NULL;
+        block->mPrev = nullptr;
     } else {
         prev->mNext = block;
         block->mPrev = prev;
     }
 
-    if (next == NULL) {
+    if (next == nullptr) {
         mTailFreeList = block;
-        block->mNext = NULL;
+        block->mNext = nullptr;
     } else {
         next->mPrev = block;
         block->mNext = next;
@@ -571,13 +589,13 @@ void JKRExpHeap::removeFreeBlock(CMemBlock* block) {
     CMemBlock* prev = block->mPrev;
     CMemBlock* next = block->mNext;
 
-    if (prev == NULL) {
+    if (prev == nullptr) {
         mHeadFreeList = next;
     } else {
         prev->mNext = next;
     }
 
-    if (next == NULL) {
+    if (next == nullptr) {
         mTailFreeList = prev;
     } else {
         next->mPrev = prev;
@@ -588,13 +606,13 @@ void JKRExpHeap::removeUsedBlock(JKRExpHeap::CMemBlock* block) {
     CMemBlock* prev = block->mPrev;
     CMemBlock* next = block->mNext;
 
-    if (prev == NULL) {
+    if (prev == nullptr) {
         mHeadUsedList = next;
     } else {
         prev->mNext = next;
     }
 
-    if (next == NULL) {
+    if (next == nullptr) {
         mTailUsedList = prev;
     } else {
         next->mPrev = prev;
@@ -604,36 +622,35 @@ void JKRExpHeap::removeUsedBlock(JKRExpHeap::CMemBlock* block) {
 void JKRExpHeap::recycleFreeBlock(JKRExpHeap::CMemBlock* block) {
     JKRExpHeap::CMemBlock* newBlock = block;
     int size = block->mSize;
-    void* blockEnd = (u8*)newBlock + size;
+    void* blockEnd = reinterpret_cast< u8* >(newBlock) + size;
     block->mMagic = 0;
 
     if ((block->mFlags & 0x7f) != 0) {
-        newBlock = (CMemBlock*)((u8*)newBlock - (block->mFlags & 0x7f));
+        newBlock = reinterpret_cast< CMemBlock* >(reinterpret_cast< u8* >(newBlock) - (block->mFlags & 0x7f));
         size += (block->mFlags & 0x7f);
-        blockEnd = (u8*)newBlock + size;
+        blockEnd = reinterpret_cast< u8* >(newBlock) + size;
         newBlock->mGroupId = 0;
         newBlock->mFlags = 0;
         newBlock->mSize = size;
     }
-
     if (!mHeadFreeList) {
-        newBlock->initiate(NULL, NULL, size, 0, 0);
+        newBlock->initiate(nullptr, nullptr, size, 0, 0);
         mHeadFreeList = newBlock;
         mTailFreeList = newBlock;
-        setFreeBlock(newBlock, NULL, NULL);
+        setFreeBlock(newBlock, nullptr, nullptr);
         return;
     }
 
     if (mHeadFreeList >= blockEnd) {
-        newBlock->initiate(NULL, NULL, size, 0, 0);
-        setFreeBlock(newBlock, NULL, mHeadFreeList);
+        newBlock->initiate(nullptr, nullptr, size, 0, 0);
+        setFreeBlock(newBlock, nullptr, mHeadFreeList);
         joinTwoBlocks(newBlock);
         return;
     }
 
     if (mTailFreeList <= newBlock) {
-        newBlock->initiate(NULL, NULL, size, 0, 0);
-        setFreeBlock(newBlock, mTailFreeList, NULL);
+        newBlock->initiate(nullptr, nullptr, size, 0, 0);
+        setFreeBlock(newBlock, mTailFreeList, nullptr);
         joinTwoBlocks(newBlock->mPrev);
         return;
     }
@@ -654,11 +671,12 @@ void JKRExpHeap::recycleFreeBlock(JKRExpHeap::CMemBlock* block) {
 }
 
 void JKRExpHeap::joinTwoBlocks(CMemBlock* block) {
-    u32 endAddr = (uintptr_t)(block + 1) + block->mSize;
+    u32 endAddr = reinterpret_cast< u32 >(block + 1) + block->mSize;
     CMemBlock* next = block->mNext;
-    u32 nextAddr = (uintptr_t)next - (next->mFlags & 0x7f);
+    u32 nextAddr = reinterpret_cast< u32 >(next) - (next->mFlags & 0x7f);
     if (endAddr > nextAddr) {
         JUTWarningConsole_f(":::Heap may be broken. (block = %x)", block);
+
         JKRHeap* heap = JKRGetCurrentHeap();
         heap->dump();
         JUTException::panic(__FILE__, 1820, "Bad Block\n");
@@ -666,8 +684,8 @@ void JKRExpHeap::joinTwoBlocks(CMemBlock* block) {
 
     if (endAddr == nextAddr) {
         block->mSize = next->mSize + sizeof(CMemBlock) + (next->mFlags & 0x7f) + block->mSize;
-        CMemBlock* local_30 = next->mNext;
-        setFreeBlock(block, block->mPrev, local_30);
+        CMemBlock* nextFree = next->mNext;
+        setFreeBlock(block, block->mPrev, nextFree);
     }
 }
 
@@ -678,7 +696,7 @@ bool JKRExpHeap::check() {
     for (CMemBlock* block = mHeadUsedList; block; block = block->mNext) {
         if (block->mMagic != 'HM') {
             ok = false;
-            JUTWarningConsole_f(":::addr %08x: bad heap signature. (%c%c)\n", block, JSUHiByte(block->mMagic), JSULoByte(block->mMagic));
+            JUTWarningConsole_f(":::addr %08x: bad heap signature. (%c%c)\n", block, (block->mMagic >> 8), (block->mMagic & 0xff));
         }
 
         if (block->mNext) {
@@ -708,7 +726,7 @@ bool JKRExpHeap::check() {
                 JUTWarningConsole_f(":::addr %08x: bad previous pointer (%08x)\n", block->mNext, block->mNext->mPrev);
             }
 
-            if ((uintptr_t)block + block->mSize + sizeof(CMemBlock) > (uintptr_t)block->mNext) {
+            if (reinterpret_cast< u32 >(block) + block->mSize + sizeof(CMemBlock) > reinterpret_cast< u32 >(block->mNext)) {
                 ok = false;
                 JUTWarningConsole_f(":::addr %08x: bad block size (%08x)\n", block, block->mSize);
             }
@@ -769,7 +787,8 @@ bool JKRExpHeap::dump() {
         freeCount++;
     }
 
-    JUTReportConsole_f("%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n", usedBytes, mSize, (f32(usedBytes) / f32(mSize)) * 100.0f, usedCount, freeCount);
+    JUTReportConsole_f("%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n", usedBytes, mSize,
+                       (static_cast< f32 >(usedBytes) / static_cast< f32 >(mSize)) * 100.0f, usedCount, freeCount);
     unlock();
     return result;
 }
@@ -783,24 +802,24 @@ bool JKRExpHeap::dump_sort() {
     JUTReportConsole(" attr  address:   size    gid aln   prev_ptr next_ptr\n");
     JUTReportConsole("(Used Blocks)\n");
 
-    if (mHeadUsedList == NULL) {
+    if (mHeadUsedList == nullptr) {
         JUTReportConsole(" NONE\n");
     } else {
-        CMemBlock* var1 = NULL;
+        CMemBlock* previousBlock = nullptr;
         while (true) {
-            CMemBlock* block = (CMemBlock*)0xffffffff;
+            CMemBlock* block = reinterpret_cast< CMemBlock* >(0xffffffff);
             for (CMemBlock* iterBlock = mHeadUsedList; iterBlock; iterBlock = iterBlock->mNext) {
-                if (var1 < iterBlock && iterBlock < block) {
+                if (previousBlock < iterBlock && iterBlock < block) {
                     block = iterBlock;
                 }
             }
 
-            if (uintptr_t(block) == 0xffffffff) {
+            if (reinterpret_cast< u32 >(block) == 0xffffffff) {
                 break;
             }
 
             if (block->mMagic != 'HM') {
-                JUTReportConsole_f("xxxxx %08x: --------  --- ---  (-------- --------)\nabort\n", var1);
+                JUTReportConsole_f("xxxxx %08x: --------  --- ---  (-------- --------)\nabort\n", previousBlock);
                 break;
             }
 
@@ -808,12 +827,12 @@ bool JKRExpHeap::dump_sort() {
                                block->mSize, block->mGroupId, block->getAlignment(), block->mPrev, block->mNext);
             usedBytes += sizeof(CMemBlock) + block->mSize + block->getAlignment();
             usedCount++;
-            var1 = block;
+            previousBlock = block;
         }
     }
 
     JUTReportConsole("(Free Blocks)\n");
-    if (mHeadFreeList == NULL) {
+    if (mHeadFreeList == nullptr) {
         JUTReportConsole(" NONE\n");
     }
 
@@ -823,25 +842,10 @@ bool JKRExpHeap::dump_sort() {
         freeCount++;
     }
 
-    JUTReportConsole_f("%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n", usedBytes, mSize, (f32(usedBytes) / f32(mSize)) * 100.0f, usedCount, freeCount);
+    JUTReportConsole_f("%d / %d bytes (%6.2f%%) used (U:%d F:%d)\n", usedBytes, mSize,
+                       (static_cast< f32 >(usedBytes) / static_cast< f32 >(mSize)) * 100.0f, usedCount, freeCount);
     unlock();
     return result;
-}
-
-JKRExpHeap::JKRExpHeap(void* data, u32 size, JKRHeap* parent, bool error) : JKRHeap(data, size, parent, error) {
-    CMemBlock* block = (CMemBlock*)data;
-
-    _6A = 0;
-    _6B = 0xFF;
-    mHeadFreeList = block;
-    mTailFreeList = block;
-    block->initiate(nullptr, nullptr, size - sizeof(CMemBlock), 0, 0);
-    mHeadUsedList = nullptr;
-    mTailUsedList = nullptr;
-}
-
-JKRExpHeap::~JKRExpHeap() {
-    dispose();
 }
 
 void JKRExpHeap::CMemBlock::initiate(CMemBlock* prev, CMemBlock* next, u32 size, u8 groupID, u8 align) {
@@ -859,7 +863,7 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocFore(u32 size, u8 group_1, u8
     mFlags = align_1;
 
     if (mSize >= size + sizeof(CMemBlock)) {
-        block = (CMemBlock*)((u32)this + size);
+        block = reinterpret_cast< CMemBlock* >(reinterpret_cast< u32 >(this) + size);
         block[1].mGroupId = group_2;
         block[1].mFlags = align_2;
         block[1].mSize = mSize - (size + sizeof(CMemBlock));
@@ -874,7 +878,7 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocBack(u32 size, u8 group_1, u8
     CMemBlock* block = nullptr;
 
     if (mSize >= size + sizeof(CMemBlock)) {
-        block = (CMemBlock*)((u32)this + mSize - size);
+        block = reinterpret_cast< CMemBlock* >(reinterpret_cast< u32 >(this) + mSize - size);
         block->mGroupId = group_2;
         block->mFlags = align_2 | 0x80;
         block->mSize = size;
@@ -891,7 +895,7 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::allocBack(u32 size, u8 group_1, u8
 
 JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::getHeapBlock(void* ptr) {
     if (ptr != nullptr) {
-        CMemBlock* block = (CMemBlock*)ptr - 1;
+        CMemBlock* block = static_cast< CMemBlock* >(ptr) - 1;
 
         if (block->mMagic == 'HM') {
             return block;
@@ -901,24 +905,34 @@ JKRExpHeap::CMemBlock* JKRExpHeap::CMemBlock::getHeapBlock(void* ptr) {
     return nullptr;
 }
 
-void JKRExpHeap::state_register(JKRHeap::TState* p, u32 param_1) const {
-    void* r24 = getState_(p);
-    u32 r25 = param_1;
-    setState_u32ID_(p, param_1);
-    if (param_1 <= 0xff) {
-        setState_uUsedSize_(p, getUsedSize(r25));
+static void dumpDebugInfo() {
+    JUTReportConsole("+---------------JKRExpHeap\n");
+    JUTReportConsole("|         Align Group  size    ( prev , next )\n");
+    JUTReportConsole("| ---- FreeFirst\n");
+    JUTReportConsole("| %08x  ");
+    JUTReportConsole("%2x  %3d  %6x  (%08x %08x)\n");
+    JUTReportConsole("| ---- FreeLast\n");
+    JUTReportConsole("| ---- UsedFirst\n");
+    JUTReportConsole("| ---- UsedLast\n");
+    JUTReportConsole("+---------------End\n");
+}
+
+void JKRExpHeap::state_register(JKRHeap::TState* p, u32 id) const {
+    setState_u32ID_(p, id);
+    if (id <= 0xff) {
+        setState_uUsedSize_(p, getUsedSize(id));
     } else {
-        setState_uUsedSize_(p, getUsedSize_(const_cast< JKRExpHeap* >(this)));
+        setState_uUsedSize_(p, (mSize - const_cast< JKRExpHeap* >(this)->getTotalFreeSize()));
     }
 
     u32 checkCode = 0;
     for (CMemBlock* block = mHeadUsedList; block; block = block->mNext) {
-        if (param_1 <= 0xff) {
-            if (block->mGroupId == param_1) {
-                checkCode += (uintptr_t)block * 3;
+        if (id <= 0xff) {
+            if (block->mGroupId == id) {
+                checkCode += reinterpret_cast< u32 >(block) * 3;
             }
         } else {
-            checkCode += (uintptr_t)block * 3;
+            checkCode += reinterpret_cast< u32 >(block) * 3;
         }
     }
     setState_u32CheckCode_(p, checkCode);
@@ -937,10 +951,10 @@ bool JKRExpHeap::state_compare(JKRHeap::TState const& r1, JKRHeap::TState const&
     return result;
 }
 
-u32 JKRExpHeap::getHeapType() {
-    return 'EXPH';
-}
-
 u8 JKRExpHeap::do_getCurrentGroupId() {
     return mCurrentGroupId;
+}
+
+u32 JKRExpHeap::getHeapType() {
+    return 'EXPH';
 }

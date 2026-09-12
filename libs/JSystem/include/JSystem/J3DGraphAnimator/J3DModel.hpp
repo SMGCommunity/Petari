@@ -55,7 +55,7 @@ public:
     s32 setSkinDeform(J3DSkinDeform*, u32);
     void calcAnmMtx();
     void calcWeightEnvelopeMtx();
-    void calcNrmMtx();
+    inline void calcNrmMtx();
     void calcBumpMtx();
     void calcBBoardMtx();
     void prepareShapePackets();
@@ -67,7 +67,8 @@ public:
     virtual void calcMaterial();
     virtual void calcDiffTexMtx();
     virtual void viewCalc();
-    virtual ~J3DModel();
+    virtual ~J3DModel() {
+    }
 
     J3DModelData* getModelData() {
         return mModelData;
@@ -115,6 +116,10 @@ public:
     Mtx33* getNrmMtxPtr();
     Mtx* getDrawMtxPtr() {
         return mMtxBuffer->getDrawMtxPtr();
+    }
+
+    MtxPtr getDrawMtx(int index) {
+        return mMtxBuffer->getDrawMtxPtr()[index];
     }
     void setBaseScale(const Vec& scale) {
         mBaseScale = scale;

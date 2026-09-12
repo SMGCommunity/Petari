@@ -16,6 +16,8 @@ class XanimeResourceTable;
 
 namespace MR {
 
+    ResTIMG* getTexture(ResourceHolder*, const char*);
+
     XanimePlayer* newXanimePlayer(const ResourceHolder*, const char*, const ResourceHolder*, J3DMdlFlag, XanimeResourceTable*);
     XanimeResourceTable* newXanimeResourceTable(ResourceHolder*);
     void updateModelManager(LiveActor*);

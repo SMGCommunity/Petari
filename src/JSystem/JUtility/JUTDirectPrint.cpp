@@ -3,7 +3,7 @@
 JUTDirectPrint* JUTDirectPrint::sDirectPrint;
 
 JUTDirectPrint::JUTDirectPrint() {
-    changeFrameBuffer(NULL, 0, 0);
+    changeFrameBuffer(nullptr, 0, 0);
     setCharColor(0xff, 0xff, 0xff);
 }
 
@@ -121,11 +121,11 @@ void JUTDirectPrint::drawChar(int position_x, int position_y, int ch) {
 
 void JUTDirectPrint::changeFrameBuffer(void* frameBuffer, u16 width, u16 height) {
     this->field_0x00 = frameBuffer;
-    mFrameBuffer = (u16*)frameBuffer;
+    mFrameBuffer = static_cast< u16* >(frameBuffer);
     mFrameBufferWidth = width;
     mFrameBufferHeight = height;
     mStride = ALIGN_NEXT(width & 0xFFFF, 16);
-    mFrameBufferSize = (u32)mStride * (u32)mFrameBufferHeight * 2;
+    mFrameBufferSize = static_cast< u32 >(mStride) * static_cast< u32 >(mFrameBufferHeight) * 2;
 }
 
 void JUTDirectPrint::printSub(u16 position_x, u16 position_y, char const* format, va_list args, bool clear) {
@@ -180,16 +180,19 @@ void JUTDirectPrint::setCharColor(JUtility::TColor color) {
 }
 
 void JUTDirectPrint::setCharColor(u8 r, u8 g, u8 b) {
-    mCharColor = JUtility::TColor(r, g, b, 0xFF);
-    int Y = 0.257 * (int)r + 0.504 * (int)g + 0.098 * (int)b + 16.0f;
-    int Cb = -0.148 * (int)r - 0.291 * (int)g + 0.439 * (int)b + 128.0f;
-    int Cr = 0.439 * (int)r - 0.368 * (int)g - 0.071 * (int)b + 128.0f;
+    mCharColor.r = r;
+    mCharColor.g = g;
+    mCharColor.b = b;
+    mCharColor.a = 0xFF;
+    int Y = 0.257 * static_cast< int >(r) + 0.504 * static_cast< int >(g) + 0.098 * static_cast< int >(b) + 16.0f;
+    int Cb = -0.148 * static_cast< int >(r) - 0.291 * static_cast< int >(g) + 0.439 * static_cast< int >(b) + 128.0f;
+    int Cr = 0.439 * static_cast< int >(r) - 0.368 * static_cast< int >(g) - 0.071 * static_cast< int >(b) + 128.0f;
 
-    mCharColor_Y = (u16)Y * 256;
+    mCharColor_Y = static_cast< u16 >(Y) * 256;
     mCharColor_Cb = Cb;
-    mCharColor_Cb2 = (u16)Cb / 2;
-    mCharColor_Cb4 = (u16)Cb / 4;
+    mCharColor_Cb2 = static_cast< u16 >(Cb) / 2;
+    mCharColor_Cb4 = static_cast< u16 >(Cb) / 4;
     mCharColor_Cr = Cr;
-    mCharColor_Cr2 = (u16)Cr / 2;
-    mCharColor_Cr4 = (u16)Cr / 4;
+    mCharColor_Cr2 = static_cast< u16 >(Cr) / 2;
+    mCharColor_Cr4 = static_cast< u16 >(Cr) / 4;
 }

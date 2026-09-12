@@ -7,8 +7,7 @@
 struct J3DGXColor : public GXColor {
     J3DGXColor() {
     }
-    J3DGXColor(const J3DGXColor& other) {
-        __memcpy(this, &other, sizeof(J3DGXColor));
+    J3DGXColor(const J3DGXColor& other) : GXColor(other) {
     }
 
     J3DGXColor(const GXColor color) : GXColor(color) {
@@ -141,10 +140,10 @@ struct J3DTexCoordInfo {
     /* 0x3 */ u8 pad;
 
     J3DTexCoordInfo& operator=(const J3DTexCoordInfo& other) {
-        __memcpy(this, &other, sizeof(J3DTexCoordInfo));
+        *reinterpret_cast< u32* >(this) = *reinterpret_cast< const u32* >(&other);
         return *this;
     }
-};
+} ATTRIBUTE_ALIGN(2);
 
 struct J3DNBTScaleInfo {
     J3DNBTScaleInfo& operator=(J3DNBTScaleInfo const&);
@@ -155,7 +154,7 @@ struct J3DNBTScaleInfo {
 
 struct J3DTevOrderInfo {
     void operator=(const J3DTevOrderInfo& other) {
-        *(u32*)this = *(u32*)&other;
+        __memcpy(this, &other, sizeof(J3DTevOrderInfo));
     }
 
     /* 0x0 */ u8 mTexCoord;
@@ -262,3 +261,40 @@ struct J3DAlphaCompInfo {
         return *this;
     }
 };
+
+struct J3DGXColorS10 : public GXColorS10 {
+    J3DGXColorS10() {
+    }
+
+    J3DGXColorS10(const J3DGXColorS10& other) : GXColorS10(other) {
+    }
+
+    J3DGXColorS10(const GXColorS10& color) : GXColorS10(color) {
+    }
+
+    J3DGXColorS10& operator=(const GXColorS10& color) {
+        __memcpy(this, &color, sizeof(GXColorS10));
+        return *this;
+    }
+};
+
+
+inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8 attnFn, u8 ambSrc) {
+    u32 reg = 0;
+    reg = (reg & ~0x0002) | enable << 1;
+    reg = (reg & ~0x0001) | matSrc;
+    reg = (reg & ~0x0040) | ambSrc << 6;
+    reg = (reg & ~0x0004) | bool(lightMask & 0x01) << 2;
+    reg = (reg & ~0x0008) | bool(lightMask & 0x02) << 3;
+    reg = (reg & ~0x0010) | bool(lightMask & 0x04) << 4;
+    reg = (reg & ~0x0020) | bool(lightMask & 0x08) << 5;
+    reg = (reg & ~0x0800) | bool(lightMask & 0x10) << 11;
+    reg = (reg & ~0x1000) | bool(lightMask & 0x20) << 12;
+    reg = (reg & ~0x2000) | bool(lightMask & 0x40) << 13;
+    reg = (reg & ~0x4000) | bool(lightMask & 0x80) << 14;
+    reg = (reg & ~0x0180) | (attnFn == GX_AF_SPEC ? 0 : diffuseFn) << 7;
+    reg = (reg & ~0x0200) | (attnFn != GX_AF_NONE) << 9;
+    reg = (reg & ~0x0400) | (attnFn != GX_AF_SPEC) << 10;
+    return reg;
+}
+

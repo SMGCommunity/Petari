@@ -99,6 +99,10 @@ void* JKRSolidHeap::allocFromTail(u32 size, int alignment) {
     return ptr;
 }
 
+static void reportFreeBlock(void* ptr) {
+    JUTWarningConsole_f("free: cannot free memory block (%08x)\n", ptr);
+}
+
 void JKRSolidHeap::do_freeAll(void) {
     lock();
 

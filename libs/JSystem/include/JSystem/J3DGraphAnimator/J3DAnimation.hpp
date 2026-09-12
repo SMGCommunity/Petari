@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Inline.hpp"
+
 #include "JSystem/J3DGraphBase/J3DTransform.hpp"
 #include "JSystem/JUtility/JUTNameTab.hpp"
 #include "revolution.h"
@@ -72,8 +74,8 @@ struct J3DAnmColorFullTable {
 };  // Size = 0x10
 
 struct J3DAnmVisibilityFullTable {
-    u16 _0;
-    u16 _2;
+    u16 mMaxFrame;
+    u16 mOffset;
 };  // Size = 0x4
 
 struct J3DAnmTransformKeyTable {
@@ -396,35 +398,14 @@ public:
     /* 0x1E */ u16 field_0x1e;
 };  // Size: 0x20
 
-class J3DAnmTransformKey : public J3DAnmTransform {
-public:
-    J3DAnmTransformKey() : J3DAnmTransform(0, NULL, NULL, NULL) {
-        mDecShift = 0;
-        mAnmTable = 0;
-    }
-
-    void calcTransform(f32, u16, J3DTransformInfo*) const;
-
-    virtual ~J3DAnmTransformKey() {
-    }
-    virtual s32 getKind() const {
-        return 8;
-    }
-    virtual void getTransform(u16 jointNo, J3DTransformInfo* pTransform) const {
-        calcTransform(mFrame, jointNo, pTransform);
-    }
-
-    /* 0x20 */ int mDecShift;
-    /* 0x24 */ J3DAnmTransformKeyTable* mAnmTable;
-};  // Size: 0x28
-
 class J3DAnmTransformFull : public J3DAnmTransform {
 public:
     J3DAnmTransformFull() : J3DAnmTransform(0, NULL, NULL, NULL) {
         mAnmTable = NULL;
     }
 
-    virtual ~J3DAnmTransformFull();
+    virtual ~J3DAnmTransformFull() {
+    }
     virtual s32 getKind() const {
         return 9;
     }
@@ -446,6 +427,28 @@ public:
 struct J3DTextureSRTInfo;
 class J3DModelData;
 class J3DMaterialTable;
+
+class J3DAnmTransformKey : public J3DAnmTransform {
+public:
+    J3DAnmTransformKey() : J3DAnmTransform(0, NULL, NULL, NULL) {
+        mDecShift = 0;
+        mAnmTable = 0;
+    }
+
+    void calcTransform(f32, u16, J3DTransformInfo*) const;
+
+    virtual ~J3DAnmTransformKey() {
+    }
+    virtual s32 getKind() const {
+        return 8;
+    }
+    virtual void getTransform(u16 jointNo, J3DTransformInfo* pTransform) const {
+        calcTransform(mFrame, jointNo, pTransform);
+    }
+
+    /* 0x20 */ int mDecShift;
+    /* 0x24 */ J3DAnmTransformKeyTable* mAnmTable;
+};  // Size: 0x28
 
 class J3DAnmTextureSRTKey : public J3DAnmBase {
 public:
@@ -515,40 +518,168 @@ public:
     /* 0x78 */ u32 mTexMtxCalcType;
 };  // Size: 0x7C
 
-class J3DAnmTexPattern : public J3DAnmBase {
+class J3DAnmCluster : public J3DAnmBase {
 public:
-    J3DAnmTexPattern();
-    void getTexNo(u16, u16*) const;
+    J3DAnmCluster(s16 frameMax, f32* pWeight) : J3DAnmBase(frameMax) {
+        mWeight = pWeight;
+    }
+
+    virtual ~J3DAnmCluster() {
+    }
+    virtual s32 getKind() const {
+        return 3;
+    }
+    virtual f32 getWeight(u16) const {
+        return 1.0f;
+    }
+
+    /* 0x0C */ f32* mWeight;
+};  // Size: 0x10
+class J3DAnmClusterFull : public J3DAnmCluster {
+public:
+    J3DAnmClusterFull() : J3DAnmCluster(0, NULL) {
+        mAnmTable = NULL;
+    }
+
+    virtual ~J3DAnmClusterFull() {
+    }
+    virtual s32 getKind() const {
+        return 12;
+    }
+    virtual f32 getWeight(u16) const;
+
+    /* 0x10 */ J3DAnmClusterFullTable* mAnmTable;
+};
+class J3DAnmClusterKey : public J3DAnmCluster {
+public:
+    J3DAnmClusterKey() : J3DAnmCluster(0, NULL) {
+        mAnmTable = NULL;
+    }
+
+    virtual ~J3DAnmClusterKey() {
+    }
+    virtual s32 getKind() const {
+        return 13;
+    }
+    virtual f32 getWeight(u16) const;
+
+    /* 0x10 */ J3DAnmClusterKeyTable* mAnmTable;
+};
+class J3DAnmVtxColor : public J3DAnmBase {
+public:
+    J3DAnmVtxColor();
+
+    virtual ~J3DAnmVtxColor() {
+    }
+    virtual s32 getKind() const {
+        return 7;
+    }
+    virtual void getColor(u8, u16, GXColor*) const {
+    }
+
+    /* 0x0C */ u16 mAnmTableNum[2];
+    /* 0x10 */ J3DAnmVtxColorIndexData* mAnmVtxColorIndexData[2];
+};  // Size: 0x18
+class J3DAnmVtxColorFull : public J3DAnmVtxColor {
+public:
+    J3DAnmVtxColorFull();
+
+    virtual ~J3DAnmVtxColorFull() {
+    }
+    virtual s32 getKind() const {
+        return 14;
+    }
+    virtual void getColor(u8, u16, GXColor*) const;
+
+    /* 0x18 */ J3DAnmColorFullTable* mpTable[2];
+    /* 0x20 */ u8* mColorR;
+    /* 0x24 */ u8* mColorG;
+    /* 0x28 */ u8* mColorB;
+    /* 0x2C */ u8* mColorA;
+};
+class J3DAnmVtxColorKey : public J3DAnmVtxColor {
+public:
+    J3DAnmVtxColorKey();
+
+    virtual ~J3DAnmVtxColorKey() {
+    }
+    virtual s32 getKind() const {
+        return 15;
+    }
+    virtual void getColor(u8, u16, GXColor*) const;
+
+    /* 0x18 */ J3DAnmColorKeyTable* mpTable[2];
+    /* 0x20 */ s16* mColorR;
+    /* 0x24 */ s16* mColorG;
+    /* 0x28 */ s16* mColorB;
+    /* 0x2C */ s16* mColorA;
+};
+class J3DAnmColor : public J3DAnmBase {
+public:
+    J3DAnmColor();
     void searchUpdateMaterialID(J3DMaterialTable*);
     void searchUpdateMaterialID(J3DModelData*);
 
-    virtual ~J3DAnmTexPattern() {
+    virtual ~J3DAnmColor() {
     }
     virtual s32 getKind() const {
-        return 2;
+        return 1;
+    }
+    virtual void getColor(u16, GXColor*) const {
     }
 
-    u16 getUpdateMaterialID(u16 idx) const {
-        return mUpdateMaterialID[idx];
-    }
     u16 getUpdateMaterialNum() const {
         return mUpdateMaterialNum;
     }
     bool isValidUpdateMaterialID(u16 id) const {
         return mUpdateMaterialID[id] != 0xFFFF;
     }
-    J3DAnmTexPatternFullTable* getAnmTable() {
-        return mAnmTable;
+    u16 getUpdateMaterialID(u16 idx) const {
+        return mUpdateMaterialID[idx];
     }
 
-    /* 0x0C */ u16* mTextureIndex;
-    /* 0x10 */ J3DAnmTexPatternFullTable* mAnmTable;
-    /* 0x14 */ u16 field_0x14;
-    /* 0x16 */ u16 mUpdateMaterialNum;
+    /* 0x0C */ u16 field_0xc;
+    /* 0x0E */ u16 field_0xe;
+    /* 0x10 */ u16 field_0x10;
+    /* 0x12 */ u16 field_0x12;
+    /* 0x14 */ u16 mUpdateMaterialNum;
     /* 0x18 */ u16* mUpdateMaterialID;
     /* 0x1C */ JUTNameTab mUpdateMaterialName;
 };  // Size: 0x2C
+class J3DAnmColorFull : public J3DAnmColor {
+public:
+    J3DAnmColorFull();
 
+    virtual ~J3DAnmColorFull() {
+    }
+    virtual s32 getKind() const {
+        return 10;
+    }
+    virtual void getColor(u16, GXColor*) const;
+
+    /* 0x2C */ u8* mColorR;
+    /* 0x30 */ u8* mColorG;
+    /* 0x34 */ u8* mColorB;
+    /* 0x38 */ u8* mColorA;
+    /* 0x3C */ J3DAnmColorFullTable* mAnmTable;
+};
+class J3DAnmColorKey : public J3DAnmColor {
+public:
+    J3DAnmColorKey();
+
+    virtual ~J3DAnmColorKey() {
+    }
+    virtual s32 getKind() const {
+        return 11;
+    }
+    virtual void getColor(u16, GXColor*) const;
+
+    /* 0x2C */ s16* mColorR;
+    /* 0x30 */ s16* mColorG;
+    /* 0x34 */ s16* mColorB;
+    /* 0x38 */ s16* mColorA;
+    /* 0x3C */ J3DAnmColorKeyTable* mAnmTable;
+};
 class J3DAnmTevRegKey : public J3DAnmBase {
 public:
     J3DAnmTevRegKey();
@@ -616,180 +747,43 @@ public:
     /* 0x68 */ s16* mAnmKRegDataB;
     /* 0x6C */ s16* mAnmKRegDataA;
 };  // Size: 0x70
-
-class J3DAnmColor : public J3DAnmBase {
+class J3DAnmTexPattern : public J3DAnmBase {
 public:
-    J3DAnmColor();
+    J3DAnmTexPattern();
+    void getTexNo(u16, u16*) const;
     void searchUpdateMaterialID(J3DMaterialTable*);
+    void searchUpdateMaterialID(J3DModelData*);
 
-    virtual ~J3DAnmColor() {
+    virtual ~J3DAnmTexPattern() {
     }
     virtual s32 getKind() const {
-        return 1;
-    }
-    virtual void getColor(u16, GXColor*) const {
+        return 2;
     }
 
+    u16 getUpdateMaterialID(u16 idx) const {
+        return mUpdateMaterialID[idx];
+    }
     u16 getUpdateMaterialNum() const {
         return mUpdateMaterialNum;
     }
     bool isValidUpdateMaterialID(u16 id) const {
         return mUpdateMaterialID[id] != 0xFFFF;
     }
-    u16 getUpdateMaterialID(u16 idx) const {
-        return mUpdateMaterialID[idx];
+    J3DAnmTexPatternFullTable* getAnmTable() {
+        return mAnmTable;
     }
 
-    /* 0x0C */ u16 field_0xc;
-    /* 0x0E */ u16 field_0xe;
-    /* 0x10 */ u16 field_0x10;
-    /* 0x12 */ u16 field_0x12;
-    /* 0x14 */ u16 mUpdateMaterialNum;
+    /* 0x0C */ u16* mTextureIndex;
+    /* 0x10 */ J3DAnmTexPatternFullTable* mAnmTable;
+    /* 0x14 */ u16 field_0x14;
+    /* 0x16 */ u16 mUpdateMaterialNum;
     /* 0x18 */ u16* mUpdateMaterialID;
     /* 0x1C */ JUTNameTab mUpdateMaterialName;
 };  // Size: 0x2C
 
-class J3DAnmColorKey : public J3DAnmColor {
-public:
-    J3DAnmColorKey();
-
-    virtual ~J3DAnmColorKey() {
-    }
-    virtual s32 getKind() const {
-        return 11;
-    }
-    virtual void getColor(u16, GXColor*) const;
-
-    /* 0x2C */ s16* mColorR;
-    /* 0x30 */ s16* mColorG;
-    /* 0x34 */ s16* mColorB;
-    /* 0x38 */ s16* mColorA;
-    /* 0x3C */ J3DAnmColorKeyTable* mAnmTable;
-};
-
-class J3DAnmColorFull : public J3DAnmColor {
-public:
-    J3DAnmColorFull();
-
-    virtual ~J3DAnmColorFull() {
-    }
-    virtual s32 getKind() const {
-        return 10;
-    }
-    virtual void getColor(u16, GXColor*) const;
-
-    /* 0x2C */ u8* mColorR;
-    /* 0x30 */ u8* mColorG;
-    /* 0x34 */ u8* mColorB;
-    /* 0x38 */ u8* mColorA;
-    /* 0x3C */ J3DAnmColorFullTable* mAnmTable;
-};
-
-class J3DAnmVtxColor : public J3DAnmBase {
-public:
-    J3DAnmVtxColor();
-
-    virtual ~J3DAnmVtxColor() {
-    }
-    virtual s32 getKind() const {
-        return 7;
-    }
-    virtual void getColor(u8, u16, GXColor*) const {
-    }
-
-    /* 0x0C */ u16 mAnmTableNum[2];
-    /* 0x10 */ J3DAnmVtxColorIndexData* mAnmVtxColorIndexData[2];
-};  // Size: 0x18
-
-class J3DAnmVtxColorKey : public J3DAnmVtxColor {
-public:
-    J3DAnmVtxColorKey();
-
-    virtual ~J3DAnmVtxColorKey() {
-    }
-    virtual s32 getKind() const {
-        return 15;
-    }
-    virtual void getColor(u8, u16, GXColor*) const;
-
-    /* 0x18 */ J3DAnmColorKeyTable* mpTable[2];
-    /* 0x20 */ s16* mColorR;
-    /* 0x24 */ s16* mColorG;
-    /* 0x28 */ s16* mColorB;
-    /* 0x2C */ s16* mColorA;
-};
-
-class J3DAnmVtxColorFull : public J3DAnmVtxColor {
-public:
-    J3DAnmVtxColorFull();
-
-    virtual ~J3DAnmVtxColorFull() {
-    }
-    virtual s32 getKind() const {
-        return 14;
-    }
-    virtual void getColor(u8, u16, GXColor*) const;
-
-    /* 0x18 */ J3DAnmColorFullTable* mpTable[2];
-    /* 0x20 */ u8* mColorR;
-    /* 0x24 */ u8* mColorG;
-    /* 0x28 */ u8* mColorB;
-    /* 0x2C */ u8* mColorA;
-};
-
-class J3DAnmCluster : public J3DAnmBase {
-public:
-    J3DAnmCluster(s16 frameMax, f32* pWeight) : J3DAnmBase(frameMax) {
-        mWeight = pWeight;
-    }
-
-    virtual ~J3DAnmCluster() {
-    }
-    virtual s32 getKind() const {
-        return 3;
-    }
-    virtual f32 getWeight(u16) const {
-        return 1.0f;
-    }
-
-    /* 0x0C */ f32* mWeight;
-};  // Size: 0x10
-
-class J3DAnmClusterFull : public J3DAnmCluster {
-public:
-    J3DAnmClusterFull() : J3DAnmCluster(0, NULL) {
-        mAnmTable = NULL;
-    }
-
-    virtual ~J3DAnmClusterFull() {
-    }
-    virtual s32 getKind() const {
-        return 12;
-    }
-    virtual f32 getWeight(u16) const;
-
-    /* 0x10 */ J3DAnmClusterFullTable* mAnmTable;
-};
-
-class J3DAnmClusterKey : public J3DAnmCluster {
-public:
-    J3DAnmClusterKey() : J3DAnmCluster(0, NULL) {
-        mAnmTable = NULL;
-    }
-
-    virtual ~J3DAnmClusterKey() {
-    }
-    virtual s32 getKind() const {
-        return 13;
-    }
-    virtual f32 getWeight(u16) const;
-
-    /* 0x10 */ J3DAnmClusterKeyTable* mAnmTable;
-};
-
 class J3DAnmVisibilityFull : public J3DAnmBase {
 public:
-    J3DAnmVisibilityFull() : J3DAnmBase(0) {
+    J3DAnmVisibilityFull() : J3DAnmBase() {
         mUpdateMaterialNum = 0;
         field_0xe = 0;
         mAnmTable = NULL;

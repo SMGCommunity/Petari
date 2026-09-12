@@ -1,3 +1,4 @@
+#define OS_F32_TO_U8_DEFER_INLINE
 #include "JSystem/JParticle/JPAExtraShape.hpp"
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include "JSystem/JParticle/JPAEmitter.hpp"
@@ -37,31 +38,33 @@ void JPACalcScaleAnmNormal(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
 
 void JPACalcScaleAnmRepeatX(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     JPAExtraShape* esp = work->mpRes->getEsp();
-    work->mScaleAnm = (ptcl->mAge % esp->getScaleAnmCycleX()) / (f32)esp->getScaleAnmCycleX();
+    s16 cycle = esp->getScaleAnmCycleX();
+    work->mScaleAnm = (ptcl->mAge % cycle) / static_cast< f32 >(cycle);
 }
 
 void JPACalcScaleAnmRepeatY(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     JPAExtraShape* esp = work->mpRes->getEsp();
-    work->mScaleAnm = (ptcl->mAge % esp->getScaleAnmCycleY()) / (f32)esp->getScaleAnmCycleY();
+    s16 cycle = esp->getScaleAnmCycleY();
+    work->mScaleAnm = (ptcl->mAge % cycle) / static_cast< f32 >(cycle);
 }
 
 void JPACalcScaleAnmReverseX(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     JPAExtraShape* esp = work->mpRes->getEsp();
-    s32 cycle = ptcl->mAge / esp->getScaleAnmCycleX();
+    f32 cycle = (ptcl->mAge / esp->getScaleAnmCycleX()) & 1;
     f32 base = (ptcl->mAge % esp->getScaleAnmCycleX()) / (f32)esp->getScaleAnmCycleX();
-    work->mScaleAnm = base + ((cycle & 1) * (1.0f - base * 2.0f));
+    work->mScaleAnm = base + (cycle * (1.0f - base * 2.0f));
 }
 
 void JPACalcScaleAnmReverseY(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     JPAExtraShape* esp = work->mpRes->getEsp();
-    s32 cycle = ptcl->mAge / esp->getScaleAnmCycleY();
+    f32 cycle = (ptcl->mAge / esp->getScaleAnmCycleY()) & 1;
     f32 base = (ptcl->mAge % esp->getScaleAnmCycleY()) / (f32)esp->getScaleAnmCycleY();
-    work->mScaleAnm = base + ((cycle & 1) * (1.0f - base * 2.0f));
+    work->mScaleAnm = base + (cycle * (1.0f - base * 2.0f));
 }
 
 void JPACalcAlphaAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     JPAExtraShape* esp = work->mpRes->getEsp();
-    f32 alpha;
+    f32 alpha = 0.0f;
     if (ptcl->mTime < esp->getAlphaInTiming()) {
         alpha = 255.0f * (esp->getAlphaInValue() + esp->getAlphaIncRate() * ptcl->mTime);
     } else if (ptcl->mTime > esp->getAlphaOutTiming()) {
@@ -74,7 +77,7 @@ void JPACalcAlphaAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
 
 void JPACalcAlphaFlickAnm(JPAEmitterWorkData* work, JPABaseParticle* ptcl) {
     JPAExtraShape* esp = work->mpRes->getEsp();
-    f32 alpha;
+    f32 alpha = 0.0f;
     if (ptcl->mTime < esp->getAlphaInTiming()) {
         alpha = (esp->getAlphaInValue() + esp->getAlphaIncRate() * ptcl->mTime);
     } else if (ptcl->mTime > esp->getAlphaOutTiming()) {
@@ -110,4 +113,8 @@ void JPAExtraShape::init() {
     } else {
         mScaleDecRateX = mScaleDecRateY = 1.0f;
     }
+}
+
+static void OSf32tou8(f32* f, u8* out) {
+    *out = __OSf32tou8(*f);
 }

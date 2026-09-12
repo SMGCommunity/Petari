@@ -1,5 +1,5 @@
 #include "Game/NWC24/NWC24Function.hpp"
-// #include "Game/NWC24/UTF16Util.hpp"
+#include "Game/NWC24/UTF16Util.hpp"
 #include "Game/System/GameDataFunction.hpp"
 #include "Game/Util/MessageUtil.hpp"
 #include <revolution/os.h>
@@ -31,7 +31,15 @@ namespace {
 };  // namespace
 
 namespace MR {
-    // calcWiiMailSize
+    u32 calcWiiMailSize(const u16* pTitle, const u16* pBody, u32 pictureSize, u32 letterSize) {
+        u32 mailSize = 360;
+        mailSize += ((strlenUTF16(pTitle) + 1) * 2 * 4 + 2) / 3 + (strlenUTF16(pTitle) + 1) * 2 / 57 * 2 + 4;
+        mailSize += ((strlenUTF16(pBody) + 1) * 2 * 4 + 2) / 3 + (strlenUTF16(pBody) + 1) * 2 / 57 * 2 + 4;
+        mailSize += (pictureSize * 4 + 2) / 3 + pictureSize / 57 * 2 + 4;
+        mailSize += (letterSize * 4 + 2) / 3 + letterSize / 57 * 2 + 4;
+
+        return mailSize;
+    }
 
     bool checkWiiMailLimit(u32 mailSize) {
         if (::isLastUpdateToday(nullptr)) {

@@ -1,6 +1,29 @@
 #pragma once
 
-#include "JSystem/J3DGraphAnimator/J3DAnimation.hpp"
+class J3DAnmClusterFull;
+struct J3DAnmClusterFullData;
+class J3DAnmClusterKey;
+struct J3DAnmClusterKeyData;
+class J3DAnmColorFull;
+struct J3DAnmColorFullData;
+class J3DAnmColorKey;
+struct J3DAnmColorKeyData;
+class J3DAnmTevRegKey;
+struct J3DAnmTevRegKeyData;
+class J3DAnmTexPattern;
+struct J3DAnmTexPatternFullData;
+class J3DAnmTextureSRTKey;
+struct J3DAnmTextureSRTKeyData;
+class J3DAnmTransformFull;
+struct J3DAnmTransformFullData;
+class J3DAnmTransformKey;
+struct J3DAnmTransformKeyData;
+class J3DAnmVisibilityFull;
+struct J3DAnmVisibilityFullData;
+class J3DAnmVtxColorFull;
+struct J3DAnmVtxColorFullData;
+class J3DAnmVtxColorKey;
+struct J3DAnmVtxColorKeyData;
 
 enum J3DAnmLoaderDataBaseFlag {
     J3DLOADER_UNK_FLAG0,
@@ -26,6 +49,29 @@ public:
     }
 };
 
+class J3DAnmFullLoader_v15 : public J3DAnmLoader {
+public:
+    J3DAnmFullLoader_v15();
+    void readAnmTransform(J3DAnmTransformFullData const*);
+    void setAnmTransform(J3DAnmTransformFull*, J3DAnmTransformFullData const*);
+    void readAnmColor(J3DAnmColorFullData const*);
+    void setAnmColor(J3DAnmColorFull*, J3DAnmColorFullData const*);
+    void readAnmTexPattern(J3DAnmTexPatternFullData const*);
+    void setAnmTexPattern(J3DAnmTexPattern*, J3DAnmTexPatternFullData const*);
+    void readAnmVisibility(J3DAnmVisibilityFullData const*);
+    void setAnmVisibility(J3DAnmVisibilityFull*, J3DAnmVisibilityFullData const*);
+    void readAnmCluster(J3DAnmClusterFullData const*);
+    void setAnmCluster(J3DAnmClusterFull*, J3DAnmClusterFullData const*);
+    void readAnmVtxColor(J3DAnmVtxColorFullData const*);
+    void setAnmVtxColor(J3DAnmVtxColorFull*, J3DAnmVtxColorFullData const*);
+
+    virtual J3DAnmBase* load(void const*);
+    virtual void setResource(J3DAnmBase*, void const*);
+    virtual ~J3DAnmFullLoader_v15();
+
+    /* 0x4 */ J3DAnmBase* mAnm;
+};
+
 class J3DAnmKeyLoader_v15 : public J3DAnmLoader {
 public:
     J3DAnmKeyLoader_v15();
@@ -49,25 +95,3 @@ public:
     /* 0x4 */ J3DAnmBase* mAnm;
 };
 
-class J3DAnmFullLoader_v15 : public J3DAnmLoader {
-public:
-    J3DAnmFullLoader_v15();
-    void readAnmTransform(J3DAnmTransformFullData const*);
-    void setAnmTransform(J3DAnmTransformFull*, J3DAnmTransformFullData const*);
-    void readAnmColor(J3DAnmColorFullData const*);
-    void setAnmColor(J3DAnmColorFull*, J3DAnmColorFullData const*);
-    void readAnmTexPattern(J3DAnmTexPatternFullData const*);
-    void setAnmTexPattern(J3DAnmTexPattern*, J3DAnmTexPatternFullData const*);
-    void readAnmVisibility(J3DAnmVisibilityFullData const*);
-    void setAnmVisibility(J3DAnmVisibilityFull*, J3DAnmVisibilityFullData const*);
-    void readAnmCluster(J3DAnmClusterFullData const*);
-    void setAnmCluster(J3DAnmClusterFull*, J3DAnmClusterFullData const*);
-    void readAnmVtxColor(J3DAnmVtxColorFullData const*);
-    void setAnmVtxColor(J3DAnmVtxColorFull*, J3DAnmVtxColorFullData const*);
-
-    virtual J3DAnmBase* load(void const*);
-    virtual void setResource(J3DAnmBase*, void const*);
-    virtual ~J3DAnmFullLoader_v15();
-
-    /* 0x4 */ J3DAnmBase* mAnm;
-};

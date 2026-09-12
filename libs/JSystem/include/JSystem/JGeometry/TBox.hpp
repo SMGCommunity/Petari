@@ -24,7 +24,7 @@ namespace JGeometry {
         }
 
         bool isValid() const {
-            return f.isAbove(i);
+            return f.x >= i.x && f.y >= i.y;
         }
 
         void addPos(f32 x, f32 y) {
@@ -32,8 +32,10 @@ namespace JGeometry {
         }
 
         void addPos(const TVec2< f32 >& pos) {
-            i.add(pos);
-            f.add(pos);
+            i.x += pos.x;
+            i.y += pos.y;
+            f.x += pos.x;
+            f.y += pos.y;
         }
 
         bool intersect(const TBox< TVec2< f32 > >& other) {
@@ -123,6 +125,8 @@ namespace JGeometry {
         TBox2() {
         }
 
+        TBox2(const TBox2< T >& other);
+
         TBox2(const TVec2< T >& _i, const TVec2< T >& _f) {
             TBox< TVec2< T > >::i.set(_i);
             TBox< TVec2< T > >::f.set(_f);
@@ -131,30 +135,23 @@ namespace JGeometry {
         TBox2(T x0, T y0, T x1, T y1) {
             set(x0, y0, x1, y1);
         }
+
         // void set<T>(const TBox2<T> &a1, const TBox2<T> &a2);
 
-        void operator=(const JGeometry::TBox2< T >&);
+        void operator=(const JGeometry::TBox2< T >& other);
 
-        void absolute() {
-            if (!this->isValid()) {
-                TBox2< T > box(*this);
-                this->i.setMin(box.i);
-                this->i.setMin(box.f);
-                this->f.setMax(box.i);
-                this->f.setMax(box.f);
-            }
-        }
+        void absolute();
 
         void set(const TBox< TVec2< T > >& other) {
-            set(other.i, other.f);
+            this->i.x = other.i.x;
+            this->i.y = other.i.y;
+            this->f.x = other.f.x;
+            this->f.y = other.f.y;
         }
         void set(const TVec2< T >& i, const TVec2< T >& f) {
             this->i.set(i), this->f.set(f);
         }
-        void set(T x0, T y0, T x1, T y1) NO_INLINE {
-            this->i.set(x0, y0);
-            this->f.set(x1, y1);
-        }
+        void set(T x0, T y0, T x1, T y1);
 
         void setInline(T x0, T y0, T x1, T y1) {
             this->i.set(x0, y0);
@@ -182,6 +179,36 @@ namespace JGeometry {
         JGeometry::TVec3< T > _24;
         JGeometry::TVec3< T > _30;
     };
+
+    template < typename T >
+    void TBox2< T >::operator=(const TBox2< T >& other) {
+        *static_cast< TBox< TVec2< T > >* >(this) = other;
+    }
+
+    template < typename T >
+    TBox2< T >::TBox2(const TBox2< T >& other) {
+        this->i.x = other.i.x;
+        this->i.y = other.i.y;
+        this->f.x = other.f.x;
+        this->f.y = other.f.y;
+    }
+
+    template < typename T >
+    void TBox2< T >::absolute() {
+        if (!this->isValid()) {
+            TBox< TVec2< T > > box = *this;
+            this->i.setMin(box.i);
+            this->i.setMin(box.f);
+            this->f.setMax(box.i);
+            this->f.setMax(box.f);
+        }
+    }
+
+    template < typename T >
+    void TBox2< T >::set(T x0, T y0, T x1, T y1) {
+        this->i.set(x0, y0);
+        this->f.set(x1, y1);
+    }
 };  // namespace JGeometry
 
 typedef JGeometry::TBox2< f32 > TBox2f;

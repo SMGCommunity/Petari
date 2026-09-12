@@ -31,6 +31,7 @@ public:
     virtual ~WarpCubeMgr() {
     }
 
+    WarpCube* getPairCube(const AreaObj*);
     void setInvalidateTimer(AreaObj*, u16);
     void startEventCamera(const AreaObj*);
     void endEventCamera();

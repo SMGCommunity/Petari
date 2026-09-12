@@ -179,8 +179,8 @@ static f32 J3DUnit01[] = {0.0f, 1.0f};
 
 void J3DMtxBuffer::calcWeightEnvelopeMtx() {
     __REGISTER MtxPtr weightAnmMtx;
-    __REGISTER Mtx* worldMtx;
-    __REGISTER Mtx* invMtx;
+    __REGISTER MtxPtr worldMtx;
+    __REGISTER MtxPtr invMtx;
     __REGISTER f32 weight;
     int idx;
     int j;
@@ -209,6 +209,9 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx() {
     __REGISTER f32 var_f29;
     __REGISTER f32 var_f28;
     __REGISTER f32 var_f27;
+    __REGISTER f32 var_f26;
+    __REGISTER f32 var_f25;
+    __REGISTER f32 var_f24;
     __REGISTER f32* var_r7 = J3DUnit01;
 
     i = -1;
@@ -217,10 +220,10 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx() {
     weights = mJointTree->getWEvlpMixWeight() - 1;
 
     asm {
-        psq_l var_f27, 0x0(var_r7), 0, 0 /* qr0 */
-        ps_merge00 var_f10, var_f27, var_f27
-        ps_merge00 var_f12, var_f27, var_f27
-        ps_merge00 var_f31, var_f27, var_f27
+        psq_l var_f24, 0(var_r7), 0, 0
+        ps_merge00 var_f11, var_f24, var_f24
+        ps_merge00 var_f13, var_f24, var_f24
+        ps_merge00 var_f30, var_f24, var_f24
     }
 
     while (++i < max) {
@@ -229,79 +232,73 @@ void J3DMtxBuffer::calcWeightEnvelopeMtx() {
         weightAnmMtx = mpWeightEvlpMtx[i];
 
         asm {
-            ps_merge00 var_f9, var_f27, var_f27
-            ps_merge00 var_f11, var_f27, var_f27
-            ps_merge00 var_f13, var_f27, var_f27
+            ps_merge00 var_f10, var_f24, var_f24
+            ps_merge00 var_f12, var_f24, var_f24
+            ps_merge00 var_f31, var_f24, var_f24
         }
 
         j = 0;
         mixNum = mJointTree->getWEvlpMixMtxNum(i);
         do {
             idx = *++indices;
-            worldMtx = &mpAnmMtx[idx];
-            invMtx = &mJointTree->getInvJointMtx((u16)idx);
-
-            // Fakematch? Doesn't match if worldMtx and invMtx are used directly.
-            __REGISTER void* var_r5 = worldMtx;
-            __REGISTER void* var_r6 = invMtx;
-            asm {
-                psq_l var_f2, 0x0(var_r6), 0, 0 /* qr0 */
-                psq_l var_f1, 0x0(var_r5), 0, 0 /* qr0 */
-                psq_l var_f3, 0x10(var_r5), 0, 0 /* qr0 */
-                psq_l var_f5, 0x20(var_r5), 0, 0 /* qr0 */
-                ps_muls0 var_f8, var_f2, var_f1
-                psq_l var_f6, 0x10(var_r6), 0, 0 /* qr0 */
-                ps_muls0 var_f30, var_f2, var_f3
-                ps_muls0 var_f29, var_f2, var_f5
-                psq_l var_f7, 0x20(var_r6), 0, 0 /* qr0 */
-                ps_madds1 var_f8, var_f6, var_f1, var_f8
-                psq_l var_f2, 0x8(var_r5), 0, 0 /* qr0 */
-                ps_madds1 var_f30, var_f6, var_f3, var_f30
-                psq_l var_f4, 0x18(var_r5), 0, 0 /* qr0 */
-                ps_madds1 var_f29, var_f6, var_f5, var_f29
-                psq_l var_f6, 0x28(var_r5), 0, 0 /* qr0 */
-                ps_madds0 var_f8, var_f7, var_f2, var_f8
-            }
+            invMtx = mJointTree->getInvJointMtx((u16)idx);
+            worldMtx = mpAnmMtx[idx];
 
             weight = *++weights;
             asm {
-                ps_madds0 var_f30, var_f7, var_f4, var_f30
-                ps_madds0 var_f29, var_f7, var_f6, var_f29
-                psq_l var_f7, 0x8(var_r6), 0, 0 /* qr0 */
-                ps_madds0 var_f9, var_f8, weight, var_f9
-                ps_madds0 var_f11, var_f30, weight, var_f11
-                ps_madds0 var_f13, var_f29, weight, var_f13
-                psq_l var_f8, 0x18(var_r6), 0, 0 /* qr0 */
-                ps_muls0 var_f30, var_f7, var_f1
-                ps_muls0 var_f29, var_f7, var_f3
-                ps_muls0 var_f28, var_f7, var_f5
-                psq_l var_f7, 0x28(var_r6), 0, 0 /* qr0 */
-                psq_st var_f9, 0x0(weightAnmMtx), 0, 0 /* qr0 */
-                ps_madds1 var_f30, var_f8, var_f1, var_f30
-                ps_madds1 var_f29, var_f8, var_f3, var_f29
-                ps_madds1 var_f28, var_f8, var_f5, var_f28
-                ps_madds0 var_f30, var_f7, var_f2, var_f30
-                ps_madds0 var_f29, var_f7, var_f4, var_f29
-                ps_madds0 var_f28, var_f7, var_f6, var_f28
-                psq_st var_f11, 0x10(weightAnmMtx), 0, 0 /* qr0 */
-                psq_st var_f13, 0x20(weightAnmMtx), 0, 0 /* qr0 */
-                ps_madd var_f30, var_f27, var_f2, var_f30
-                ps_madd var_f29, var_f27, var_f4, var_f29
-                ps_madd var_f28, var_f27, var_f6, var_f28
-                ps_madds0 var_f10, var_f30, weight, var_f10
-                ps_madds0 var_f12, var_f29, weight, var_f12
-                ps_madds0 var_f31, var_f28, weight, var_f31
+                psq_l var_f2, 0x0(invMtx), 0, 0
+                psq_l var_f1, 0x0(worldMtx), 0, 0
+                psq_l var_f3, 0x10(worldMtx), 0, 0
+                ps_muls0 var_f29, var_f2, var_f1
+                psq_l var_f8, 0x10(invMtx), 0, 0
+                ps_muls0 var_f27, var_f2, var_f3
+                psq_l var_f5, 0x20(worldMtx), 0, 0
+                psq_l var_f7, 0x8(invMtx), 0, 0
+                ps_muls0 var_f25, var_f2, var_f5
+                ps_madds1 var_f29, var_f8, var_f1, var_f29
+                psq_l var_f9, 0x20(invMtx), 0, 0
+                psq_l var_f2, 0x8(worldMtx), 0, 0
+                ps_madds1 var_f27, var_f8, var_f3, var_f27
+                psq_l var_f4, 0x18(worldMtx), 0, 0
+                ps_madds0 var_f29, var_f9, var_f2, var_f29
+                ps_madds1 var_f25, var_f8, var_f5, var_f25
+                psq_l var_f6, 0x28(worldMtx), 0, 0
+                ps_madds0 var_f27, var_f9, var_f4, var_f27
+                psq_l var_f8, 0x18(invMtx), 0, 0
+                ps_muls0 var_f28, var_f7, var_f1
+                ps_muls0 var_f26, var_f7, var_f3
+                ps_madds0 var_f25, var_f9, var_f6, var_f25
+                psq_l var_f9, 0x28(invMtx), 0, 0
+                ps_madds0 var_f10, var_f29, weight, var_f10
+                ps_muls0 var_f7, var_f7, var_f5
+                ps_madds1 var_f28, var_f8, var_f1, var_f28
+                ps_madds1 var_f26, var_f8, var_f3, var_f26
+                psq_st var_f10, 0x0(weightAnmMtx), 0, 0
+                ps_madds0 var_f12, var_f27, weight, var_f12
+                ps_madds1 var_f7, var_f8, var_f5, var_f7
+                ps_madds0 var_f28, var_f9, var_f2, var_f28
+                ps_madds0 var_f26, var_f9, var_f4, var_f26
+                psq_st var_f12, 0x10(weightAnmMtx), 0, 0
+                ps_madds0 var_f31, var_f25, weight, var_f31
+                ps_madds0 var_f7, var_f9, var_f6, var_f7
+                ps_madd var_f28, var_f24, var_f2, var_f28
+                psq_st var_f31, 0x20(weightAnmMtx), 0, 0
+                ps_madd var_f26, var_f24, var_f4, var_f26
+                ps_madd var_f7, var_f24, var_f6, var_f7
+                ps_madds0 var_f11, var_f28, weight, var_f11
+                ps_madds0 var_f13, var_f26, weight, var_f13
+                ps_madds0 var_f30, var_f7, weight, var_f30
             }
 
             *pScale &= mpScaleFlagArr[idx];
         } while (++j < mixNum);
         asm {
-            psq_st var_f10, 0x8(weightAnmMtx), 0, 0 /* qr0 */
-            ps_merge00 var_f10, var_f27, var_f27
-            psq_st var_f12, 0x18(weightAnmMtx), 0, 0 /* qr0 */
-            ps_merge00 var_f12, var_f27, var_f27
-            psq_st var_f31, 0x28(weightAnmMtx), 0, 0 /* qr0 */
-            ps_merge00 var_f31, var_f27, var_f27
+            psq_st var_f11, 8(weightAnmMtx), 0, 0
+            ps_merge00 var_f11, var_f24, var_f24
+            psq_st var_f13, 24(weightAnmMtx), 0, 0
+            ps_merge00 var_f13, var_f24, var_f24
+            psq_st var_f30, 40(weightAnmMtx), 0, 0
+            ps_merge00 var_f30, var_f24, var_f24
         }
     }
 }

@@ -7,5 +7,3 @@ MiiDatabase::~MiiDatabase() {
     delete mStoreDataArray;
 }
 
-JKRFileFinder::~JKRFileFinder() {
-}

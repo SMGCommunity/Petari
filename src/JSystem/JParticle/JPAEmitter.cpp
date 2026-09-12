@@ -1,3 +1,4 @@
+#define JPA_LIST_DEFER_INLINE
 #include "JSystem/JParticle/JPAEmitter.hpp"
 #include "JSystem/JParticle/JPABaseShape.hpp"
 #include "JSystem/JParticle/JPAEmitterManager.hpp"
@@ -81,3 +82,5 @@ void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3< f32 >* dst) con
     mtx[2][3] = mGlobalTrs.z;
     PSMTXMultVec(mtx, mLocalTrs, *dst);
 }
+
+#include "JSystem/JParticle/JPAListInline.hpp"

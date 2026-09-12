@@ -10,13 +10,7 @@ inline T* JSUConvertOffsetToPtr(const void* ptr, uintptr_t offset) {
 
 template < typename T >
 inline T* JSUConvertOffsetToPtr(const void* ptr, const void* offset) {
-    T* ret;
-    if (offset == NULL) {
-        ret = NULL;
-    } else {
-        ret = (T*)((intptr_t)ptr + (intptr_t)offset);
-    }
-    return ret;
+    return offset == NULL ? NULL : reinterpret_cast< T* >(reinterpret_cast< intptr_t >(ptr) + reinterpret_cast< intptr_t >(offset));
 }
 
 inline u8 JSULoNibble(u8 value) {

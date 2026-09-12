@@ -59,7 +59,7 @@ public:
     virtual bool state_compare(const TState&, const TState&) const;
     virtual void state_dump(const TState&) const;
 
-    void* alloc(u32, int) NO_INLINE;
+    void* alloc(u32, int);
     JKRHeap* becomeSystemHeap();
     JKRHeap* becomeCurrentHeap();
     void destroy();
@@ -80,7 +80,7 @@ public:
     void dispose_subroutine(u32, u32);
     s32 getTotalFreeSize();
 
-    u32 getMaxAllocatableSize(int a1) NO_INLINE {
+    u32 getMaxAllocatableSize(int a1) {
         u32 v4 = (u32)getMaxFreeBlock();
         return ~(a1 - 1) & (getFreeSize() - ((a1 - 1) & (a1 - (v4 & 0xF))));
     }
@@ -135,7 +135,7 @@ public:
     static bool initArena(char** memory, u32* size, int maxHeaps);
     static bool initArena2(char** memory, u32* size, int maxHeaps);
     static void* alloc(u32 size, int alignment, JKRHeap* heap);
-    static void free(void* ptr, JKRHeap* heap) NO_INLINE;
+    static void free(void* ptr, JKRHeap* heap);
     static s32 resize(void* ptr, u32 size, JKRHeap* heap);
     static s32 getSize(void* ptr, JKRHeap* heap);
     static JKRHeap* findFromRoot(void* ptr);
@@ -216,8 +216,6 @@ public:
     JSUList< JKRDisposer > mDisposerList;  // 0x5C
     bool mErrorFlag;                       // 0x68
     u8 _69;
-    u8 _6A;
-    u8 _6B;
 };
 
 #ifdef __MWERKS__

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <JSystem/JGeometry/TVec.hpp>
+
 #include <JSystem/J3DGraphAnimator/J3DModel.hpp>
 #include <revolution/gd/GDBase.h>
 
@@ -15,10 +17,12 @@ public:
 
     void viewCalc2();
     void viewCalc3(u32, MtxPtr);
+    void viewCalcRef(u32, J3DModel*);
+    void viewCalcRefPos(u32, J3DModel*, const TVec3f&, const TVec3f&);
     bool simpleDrawSetup(J3DMaterial*);
     void simpleDrawShape(J3DMaterial*);
     void storeDisplayList(_GDLObj*, u32);
-    void shapePacketDrawFast(J3DShapePacketX*);
+    void shapePacketDrawFast(J3DShapePacketX*) const;
     void shapeDrawFast(J3DShapeX*) const;
     void copyExtraMtxBuffer(const J3DModelX*);
     void copyAnmMtxBuffer(const J3DModelX*);
@@ -27,6 +31,7 @@ public:
     void setDrawViewBuffer(MtxPtr);
     void setDrawView(u32);
     void directDraw(J3DModel*);
+    void drawIn(J3DMaterial*, bool, MtxPtr, J3DModel*);
 
     struct Flags {
         inline void clear() {
@@ -62,49 +67,53 @@ public:
         unsigned _1A : 1;
         unsigned _1B : 1;
         unsigned _1C : 1;
+        unsigned _1D : 1;
+        unsigned _1E : 1;
+        unsigned _1F : 1;
     };
 
-    u8 _DC;
-    u8 _DD;
+    /* 0xDC */ u8 _DC;
+    /* 0xDD */ u8 _DD;
     union {
         struct {
-            Mtx* _E0;
-            Mtx* _E4;
-            Mtx* _E8;
-            Mtx* _EC;
-            Mtx* _F0;
-            Mtx* _F4;
-            Mtx* _F8;
-            Mtx* _FC;
-            Mtx* _100;
-            Mtx* _104;
-            Mtx* _108;
-            Mtx* _10C;
-            Mtx* _110;
-            Mtx* _114;
-            Mtx* _118;
-            Mtx* _11C;
-            Mtx* _120;
+            /* 0xE0 */ Mtx* _E0;
+            /* 0xE4 */ Mtx* _E4;
+            /* 0xE8 */ Mtx* _E8;
+            /* 0xEC */ Mtx* _EC;
+            /* 0xF0 */ Mtx* _F0;
+            /* 0xF4 */ Mtx* _F4;
+            /* 0xF8 */ Mtx* _F8;
+            /* 0xFC */ Mtx* _FC;
+            /* 0x100 */ Mtx* _100;
+            /* 0x104 */ Mtx* _104;
+            /* 0x108 */ Mtx* _108;
+            /* 0x10C */ Mtx* _10C;
+            /* 0x110 */ Mtx* _110;
+            /* 0x114 */ Mtx* _114;
+            /* 0x118 */ Mtx* _118;
+            /* 0x11C */ Mtx* _11C;
         };
-        Mtx* mExtraMtxBuffer[17];
+        Mtx* mExtraMtxBuffer[16];
     };
-    void (*mShapeCallback)(J3DShape*);
-    u32 _128;
-    u32 _12C;
-    u8 _130[0x1B0 - 0x130];
-    Flags mFlags;
-    u32 _1B4;
-    u8* _1B8;
-    u32 _1BC;
-    u32 _1C0;
-    u32* _1C4;
-    u8** _1C8;
-    u16* _1CC;
-    u8 _1D0;
-    f32 _1D4;
-    u32 _1D8;
-    u32 _1DC;
-    s32 _1E0;
-    u8 _1E4;
-    u8 _1E5;
+    /* 0x120 */ void (*_120)(void*, u16);
+    /* 0x124 */ void (*mShapeCallback)(J3DShape*);
+    /* 0x128 */ void* _128;
+    /* 0x12C */ J3DModel* _12C;
+    /* 0x130 */ u8* mDisplayLists[16];
+    /* 0x170 */ u32 mDisplayListSizes[16];
+    /* 0x1B0 */ Flags mFlags;
+    /* 0x1B4 */ u8* _1B4;
+    /* 0x1B8 */ u8* _1B8;
+    /* 0x1BC */ u32 _1BC;
+    /* 0x1C0 */ u16 _1C0;
+    /* 0x1C4 */ u8** _1C4;
+    /* 0x1C8 */ u8** _1C8;
+    /* 0x1CC */ u16* _1CC;
+    /* 0x1D0 */ u8 _1D0;
+    /* 0x1D4 */ f32 _1D4;
+    /* 0x1D8 */ u32 _1D8;
+    /* 0x1DC */ u32 _1DC;
+    /* 0x1E0 */ s32 _1E0;
+    /* 0x1E4 */ u8 _1E4;
+    /* 0x1E5 */ u8 _1E5;
 };

@@ -65,6 +65,7 @@ public:
     void initTexObj(_GXTlut);
     void load(_GXTexMapID);
     void capture(int, int, GXTexFmt, bool, u8);
+    static void captureDolTexture(void*, int, int, int, int, bool, GXTexFmt);
 
     const ResTIMG* getTexInfo() const {
         return mTIMG;
@@ -82,7 +83,7 @@ public:
         return mTIMG->mHeight;
     }
     void setCaptureFlag(bool flag) {
-        mFlag &= 2 | flag;
+        mFlag = (mFlag & 2) | flag;
     }
     bool getCaptureFlag() const {
         return mFlag & 1;

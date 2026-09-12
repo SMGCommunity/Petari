@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/JKernel/JKRDisposer.hpp"
+#include "revolution/os/OSMutex.h"
 
 class JKRArcFinder;
 
@@ -22,17 +23,15 @@ public:
     virtual s32 getResSize(const void*) const = 0;
     virtual s32 countFile(const char*) const = 0;
     virtual JKRArcFinder* getFirstFile(const char*) const = 0;
-    virtual u32 getExpandedResSize(const void*) const = 0;
 
     static void* getGlbResource(const char*, JKRFileLoader*);
     static void initializeVolumeList();
     void prependVolumeList(JSULink< JKRFileLoader >*);
     void removeVolumeList(JSULink< JKRFileLoader >*);
 
-    static JSUList< JKRFileLoader > sFileLoaderList;  // 0x8060CF9C
-    static JKRFileLoader* gCurrentFileLoader;         // 0x806B7140;
-
     static JSUList< JKRFileLoader > sVolumeList;
+    static JKRFileLoader* sCurrentVolume;
+    static OSMutex sVolumeListMutex;
 
     JSULink< JKRFileLoader > mLoaderLink;  // 0x18
     char* mLoaderName;                     // 0x28
