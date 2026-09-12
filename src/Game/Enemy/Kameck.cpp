@@ -27,7 +27,7 @@ namespace {
     // const f32 sDownGravityAccel =
     // const s32 sDownFreq =
     // const s32 sPressTime =
-}
+};  // namespace
 
 namespace NrvKameck {
     NEW_NERVE(KameckNrvOpeningDemo, Kameck, OpeningDemo);
@@ -48,8 +48,8 @@ namespace NrvKameck {
 };  // namespace NrvKameck
 
 Kameck::Kameck(const char* pName)
-    : LiveActor(pName), mBeam(), mActiveActorList(), mBeamEventListener(), mAnimScaleController(), mWalkerStateBindStarPointer(), _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0.0f, 0.0f, 1.0f), mBeamType(), mMoveStep(240),
-      mRailCoord(), mRailNextPointCoord(), mActiveDistance(3000.0f) {
+    : LiveActor(pName), mBeam(), mActiveActorList(), mBeamEventListener(), mAnimScaleController(), mWalkerStateBindStarPointer(),
+      _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0.0f, 0.0f, 1.0f), mBeamType(), mMoveStep(240), mRailCoord(), mRailNextPointCoord(), mActiveDistance(3000.0f) {
     mActiveActorList = new ActiveActorList(8);
     mBeamEventListener = new SmallKameckBeamEventListener(this);
 }
@@ -647,13 +647,13 @@ bool Kameck::isEnableDown() const {
 namespace MR {
     NameObj* createFireBallBeamKameck(const char* pName) {
         Kameck* kmck = new Kameck(pName);
-        kmck->mBeamType = KameckBeam::KameckBeam::BeamType_FireBall1;
+        kmck->mBeamType = KameckBeam::BeamType_FireBall1;
         return kmck;
     }
 
     NameObj* createTurtleBeamKameck(const char* pName) {
         Kameck* kmck = new Kameck(pName);
-        kmck->mBeamType = KameckBeam::KameckBeam::BeamType_Turtle;
+        kmck->mBeamType = KameckBeam::BeamType_Turtle;
         return kmck;
     }
 };  // namespace MR

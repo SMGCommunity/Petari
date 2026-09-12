@@ -170,7 +170,8 @@ void KameckTurtle::exeRun() {
 }
 
 void KameckTurtle::exeWait() {
-    MR::isFirstStep(this);
+    if (MR::isFirstStep(this)) {
+    }
     if (mTurtle->isRestart() || (mTurtle->isWait() && MR::isGreaterStep(this, 600))) {
         MR::emitEffectHit(this, mTurtle->mPosition, "BeamTurtleVanish");
         MR::startSound(this, "SE_BM_KAMECK_DISAPPEAR_TURT");
