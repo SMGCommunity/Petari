@@ -1210,7 +1210,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/BegomanSpring.cpp"),
             Object(NonMatching, "Game/Enemy/BegomanSpringHead.cpp"),
             Object(NonMatching, "Game/Enemy/Birikyu.cpp"),
-            Object(NonMatching, "Game/Enemy/BombBird.cpp"),
+            Object(Matching, "Game/Enemy/BombBird.cpp"),
             Object(NonMatching, "Game/Enemy/BombBirdBomb.cpp"),
             Object(Matching, "Game/Enemy/BombHei.cpp"),
             Object(NonMatching, "Game/Enemy/BombHeiLauncher.cpp"),
