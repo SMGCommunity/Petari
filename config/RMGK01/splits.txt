@@ -5779,7 +5779,7 @@ Game/MapObj/SnowFloorTile.cpp:
 	.ctors      start:0x8052EEA0 end:0x8052EEA4
 	.rodata     start:0x805337A0 end:0x805337B0
 	.data       start:0x805A0088 end:0x805A0138
-	.sdata      start:0x806B1FD8 end:0x806B2020
+	.sdata      start:0x806B1FD8 end:0x806B2010
 	.sbss       start:0x806B5850 end:0x806B5858
 	.sdata2     start:0x806BDFD8 end:0x806BE030
 
@@ -5807,6 +5807,7 @@ Game/MapObj/SpaceMine.cpp:
 	.text       start:0x8022E260 end:0x8022E950
 	.ctors      start:0x8052EEAC end:0x8052EEB0
 	.data       start:0x805A0438 end:0x805A0558
+	.sdata      start:0x806B2010 end:0x806B2018
 	.sbss       start:0x806B5880 end:0x806B5888
 	.sdata2     start:0x806BE050 end:0x806BE068
 
@@ -5828,6 +5829,7 @@ Game/MapObj/SpiderCoin.cpp:
 	.text       start:0x8022F560 end:0x8022FE24
 	.ctors      start:0x8052EEB8 end:0x8052EEBC
 	.data       start:0x805A0778 end:0x805A0848
+	.sdata      start:0x806B2018 end:0x806B2020
 	.sbss       start:0x806B58A0 end:0x806B58B0
 	.sdata2     start:0x806BE0A8 end:0x806BE0E0
 
