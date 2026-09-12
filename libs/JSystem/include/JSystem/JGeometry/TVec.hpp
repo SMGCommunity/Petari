@@ -664,6 +664,29 @@ namespace JGeometry {
             return ret;
         }
 
+        void scaleAdd(register f32 scale, const TVec3& src) {
+#ifdef __MWERKS__
+            register TVec3* dest = this;
+            register const TVec3* source = &src;
+            register f32 srcXY, destXY, srcZ, destZ;
+
+            asm {
+                psq_l srcXY, 0(source), 0, 0
+                psq_l srcZ, 8(source), 1, 0
+                psq_l destXY, 0(dest), 0, 0
+                psq_l destZ, 8(dest), 1, 0
+                ps_madds0 destXY, srcXY, scale, destXY
+                ps_madds0 destZ, srcZ, scale, destZ
+                psq_st destXY, 0(dest), 0, 0
+                psq_st destZ, 8(dest), 1, 0
+            }
+#else
+            x += src.x * scale;
+            y += src.y * scale;
+            z += src.z * scale;
+#endif
+        }
+
         void scaleAdd(f32 sc, const TVec3& a, const TVec3& b) {
             JMAVECScaleAdd(a, b, this, sc);
         }

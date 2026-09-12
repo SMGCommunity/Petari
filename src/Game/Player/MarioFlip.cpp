@@ -66,7 +66,93 @@ bool MarioFlip::start() {
     return true;
 }
 
-// bool MarioFlip::update() {}
+bool MarioFlip::update() {
+    if (_12 == 0) {
+        changeAnimationNonStop("はねとばされ");
+    }
+    _12++;
+    TVec3f velocity(_18);
+    TVec3f direction(_18);
+    MR::normalizeOrZero(&direction);
+    f32 control;
+    if (_12 < 30) {
+        control = static_cast< f32 >(_12) / 30.0f;
+    } else {
+        control = 1.0f;
+    }
+    TVec3f lateral;
+    f32 along = MR::vecKillElement(getWorldPadDir(), direction, &lateral);
+    if (along <= 0.0f) {
+        _18 += direction * mActor->mConst->getTable()->mFlipFriction3 * along * control;
+    }
+    _18 += lateral * mActor->mConst->getTable()->mFlipFriction3;
+    switch (_14) {
+    case 0:
+        _24 += _28;
+        _28 *= 0.98f;
+        playSound("はねとばされ");
+        addVelocity(velocity);
+        _18.scale(mActor->mConst->getTable()->mFlipFriction1);
+        if (_12 == mActor->mConst->getTable()->mFlipTimer1) {
+            _14++;
+        }
+        break;
+    case 1:
+        _24 += _28;
+        _28 *= 0.97f;
+        playSound("はねとばされ");
+        if (!getPlayer()->mMovementStates._1) {
+            return false;
+        }
+        addVelocity(velocity);
+        _18.scale(mActor->mConst->getTable()->mFlipFriction2);
+        if (_12 == mActor->mConst->getTable()->mFlipTimer1 + mActor->mConst->getTable()->mFlipTimer2) {
+            _14++;
+        }
+        break;
+    case 2:
+        addVelocity(velocity);
+        _18.scale(mActor->mConst->getTable()->mFlipFriction2);
+        _28 *= 0.97f;
+        playSound("はねとばされ");
+        _24 += _28;
+        if (MR::isAngleBetween(_24, -0.1f, 0.1f)) {
+            changeAnimation("はねとばされ終了", static_cast< const char* >(nullptr));
+            _14++;
+        }
+        break;
+    case 3:
+        _24 = 0.0f;
+        if (!isAnimationRun("はねとばされ終了")) {
+            return false;
+        }
+        break;
+    }
+    _24 = MR::normalizeAngleAbs(_24);
+    setYangleOffset(_24);
+    if (getPlayer()->mMovementStates._8 || getPlayer()->mMovementStates._1A || getPlayer()->mMovementStates._19) {
+        TVec3f normal(getPlayer()->getWallNorm());
+        TVec3f tangent;
+        f32 incoming = MR::vecKillElement(_18, normal, &tangent);
+        if (incoming < 0.0f) {
+            stopAnimation(nullptr, static_cast< const char* >(nullptr));
+            changeAnimationNonStop("はねとばされ");
+            playEffectTrans("壁ヒット", getPlayer()->getWallPos());
+            _18 = tangent + normal * -incoming * 1.2f;
+            addVelocity(_18, 2.0f);
+            _28 *= 1.2f;
+            getPlayer()->setFrontVecKeepUp(-_18);
+        }
+    }
+    if (_14 >= 1 && checkTrgA()) {
+        getPlayer()->tryJump();
+        return false;
+    }
+    if (_14 == 3 && getStickP() != 0.0f) {
+        return false;
+    }
+    return true;
+}
 
 bool Mario::doFlipRot(const TVec3f& rVec) {
     getCurrentStatus();

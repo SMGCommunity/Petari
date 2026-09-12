@@ -348,8 +348,8 @@ namespace MR {
         return pModelData->mMaterialTable.getTexture()->getResTIMG(idx);
     }
 
-    JUTTexture* getTexture(ResourceHolder* pResourceHolder, const char* pTextureName) {
-        return static_cast< JUTTexture* >(pResourceHolder->mFileInfoTable->getRes(pTextureName));
+    ResTIMG* getTexture(ResourceHolder* pResourceHolder, const char* pTextureName) {
+        return static_cast< ResTIMG* >(pResourceHolder->mFileInfoTable->getRes(pTextureName));
     }
 
     const char* getTextureName(const LiveActor* pActor, int idx) {

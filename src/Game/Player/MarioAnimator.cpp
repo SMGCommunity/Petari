@@ -21,7 +21,7 @@
 #include "JSystem/JMath/JMATrigonometric.hpp"
 #include <cstring>
 
-extern const char* jname_chest;
+const char* jname_chest = "Spine1";
 static const char sHip[] = "Hip";
 static const char sRun[8] = "Run";
 
@@ -1312,16 +1312,3 @@ f32 XanimePlayer::tellAnimationFrame() const {
 
     return _20->getFrame();
 }
-
-namespace NrvMarioActor {
-    INIT_NERVE(MarioActorNrvWait);
-    INIT_NERVE(MarioActorNrvGameOver);
-    INIT_NERVE(MarioActorNrvGameOverAbyss);
-    INIT_NERVE(MarioActorNrvGameOverAbyss2);
-    INIT_NERVE(MarioActorNrvGameOverFire);
-    INIT_NERVE(MarioActorNrvGameOverBlackHole);
-    INIT_NERVE(MarioActorNrvGameOverNonStop);
-    INIT_NERVE(MarioActorNrvGameOverSink);
-    INIT_NERVE(MarioActorNrvTimeWait);
-    INIT_NERVE(MarioActorNrvNoRush);
-};  // namespace NrvMarioActor

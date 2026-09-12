@@ -65,6 +65,7 @@ public:
     void initTexObj(_GXTlut);
     void load(_GXTexMapID);
     void capture(int, int, GXTexFmt, bool, u8);
+    static void captureDolTexture(void*, int, int, int, int, bool, GXTexFmt);
 
     const ResTIMG* getTexInfo() const {
         return mTIMG;

@@ -49,10 +49,7 @@ public:
     }
 
     void set(GXColor color) {
-        r = color.r;
-        g = color.g;
-        b = color.b;
-        a = color.a;
+        mGXColor = color;
     }
 
     union {

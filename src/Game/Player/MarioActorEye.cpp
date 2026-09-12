@@ -34,7 +34,6 @@ void MarioActor::setBlink(const char* pName) {
 }
 
 void MarioActor::updateBlink() {
-    // FIXME: double regswap
     if (mCurrModel == 1) {
         return;
     }
@@ -44,7 +43,7 @@ void MarioActor::updateBlink() {
         f32 frame;
 
         if (pPattern->mAttribute == 2) {
-            frame = pPattern->mFrame + 1.0f;
+            frame = 1.0f + pPattern->mFrame;
 
             if (frame >= pPattern->mFrameMax - 1.0f) {
                 frame = 0.0f;
@@ -61,7 +60,7 @@ void MarioActor::updateBlink() {
             u16 texNo;
             mEyeRes->getTexNo(i, &texNo);
 
-            if (mEyeRes->mUpdateMaterialID[i] == eyeLidMaterial) {
+            if (eyeLidMaterial == mEyeRes->mUpdateMaterialID[i]) {
                 _B6A = texNo - _B70;
                 _B68 = 1;
                 return;
@@ -86,9 +85,8 @@ void MarioActor::updateBlink() {
     }
 
     if (_B72) {
-        u8 blinkStep = _B72 - 1;
-        _B72 = blinkStep;
-        _B6A = sBlinkStates[9 - blinkStep];
+        _B72--;
+        _B6A = sBlinkStates[9 - _B72];
         _B74 = MR::getRandom(60L, 360L);
         return;
     }
@@ -101,16 +99,3 @@ void MarioActor::updateBlink() {
         _B72 = 10;
     }
 }
-
-namespace NrvMarioActor {
-    INIT_NERVE(MarioActorNrvWait);
-    INIT_NERVE(MarioActorNrvGameOver);
-    INIT_NERVE(MarioActorNrvGameOverAbyss);
-    INIT_NERVE(MarioActorNrvGameOverAbyss2);
-    INIT_NERVE(MarioActorNrvGameOverFire);
-    INIT_NERVE(MarioActorNrvGameOverBlackHole);
-    INIT_NERVE(MarioActorNrvGameOverNonStop);
-    INIT_NERVE(MarioActorNrvGameOverSink);
-    INIT_NERVE(MarioActorNrvTimeWait);
-    INIT_NERVE(MarioActorNrvNoRush);
-};  // namespace NrvMarioActor

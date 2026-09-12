@@ -119,7 +119,7 @@ public:
     void touchWater();
 
     bool isBlendWaitGround() const;
-    bool checkSpecialWaitAnimation();
+    void checkSpecialWaitAnimation();
     void resetSleepTimer();
 
     void connectToClimb();
@@ -150,17 +150,17 @@ public:
     void updateWallFloorCode();
     void saveLastSafetyTrans();
     void setNotSafetyTimer();
-    TVec3f* getLastSafetyTrans(TVec3f*) const;
+    const TVec3f* getLastSafetyTrans(TVec3f*) const;
     bool checkCurrentFloorCodeSevere(u32) const;
     bool isCurrentFloorSink() const;
     bool isCurrentFloorSand() const;
     bool isCurrentShadowFloorDangerAction() const;
-    bool checkBaseTransPoint();
-    bool checkHeadPoint();
-    const TVec3f* calcShadowPos();
+    void checkBaseTransPoint();
+    void checkHeadPoint();
+    void calcShadowPos();
     bool updateBinderInfo();
     bool isThroughWall(const Triangle*) const;
-    void checkGround();
+    bool checkGround();
     CubeCameraArea* getCameraCubeCode() const;
     void updateCubeCode();
 
@@ -175,16 +175,16 @@ public:
     bool flipLarge(const TVec3f&);
     bool isEnableAddDamage() const;
     bool damage(const TVec3f&);
-    void doAbyssDamage();
+    bool doAbyssDamage();
     void connectToFireRun();
-    void doFireDanceWithInitialDamage(u8);
-    void doFireObjHitWithInitialDamage();
-    void doNeedleWithInitialDamage(u8);
-    void doNeedleWithInitialDamage(const Triangle*);
-    void doNeedle(const Triangle*);
-    void doFireDance();
+    bool doFireDanceWithInitialDamage(u8);
+    bool doFireObjHitWithInitialDamage();
+    bool doNeedleWithInitialDamage(u8);
+    bool doNeedleWithInitialDamage(const Triangle*);
+    bool doNeedle(const Triangle*);
+    bool doFireDance();
     void checkKarikariDamage();
-    void doDarkDamage();
+    bool doDarkDamage();
     bool doParalyze();
     bool doFreeze();
     bool requestCrush();
@@ -260,8 +260,8 @@ public:
     bool isEnableTurn();
     void recordTurnSlipAngle();
     f32 decideInertia(f32);
-    void decideInertiaOnIce(f32);
-    void decideInertiaOnSlip(f32);
+    f32 decideInertiaOnIce(f32);
+    f32 decideInertiaOnSlip(f32);
     void calcShadowDir(const TVec3f&, TVec3f*);
     bool retainMoveDir(f32, f32, TVec3f*);
     void calcMoveDir(f32, f32, TVec3f*, bool);
@@ -292,10 +292,10 @@ public:
     void endRabbitMode();
 
     bool checkWallJumpCode();
-    void doSideStep();
+    bool doSideStep();
 
     bool isSkatableFloor() const;
-    void doSkate();
+    bool doSkate();
 
     u32 initSoundTable(SoundList* list, u32);
     void initSound();
@@ -326,7 +326,7 @@ public:
     void forceStopTornado();
     void startRotationTask(u32);
     void doSpinWallEffect();
-    void taskOnRotation(u32);
+    bool taskOnRotation(u32);
 
     void sendStateMsg(u32);
     bool updatePosture(MtxPtr);
@@ -344,23 +344,23 @@ public:
 
     bool isWalling() const;
     void checkWallStick();
-    void checkStickWallSide();
+    u8 checkStickWallSide();
     s32 checkStickFrontBack();
-    void fixWallingPosition(bool);
-    void fixWallingDir();
-    void fixWallingTop();
-    void checkWallFloorCode(u16) const;
+    bool fixWallingPosition(bool);
+    void fixWallingDir(bool);
+    bool fixWallingTop();
+    bool checkWallFloorCode(u16) const;
     bool checkWallCode(const char*, bool) const;
-    void checkWallCodeNorm(u16, TVec3f*, bool) const;
+    bool checkWallCodeNorm(u16, TVec3f*, bool) const;
     void setWallCancel();
     void keepDistFrontWall();
     bool isEnableStickWall();
-    void fixWallingDist();
+    bool fixWallingDist();
     bool isInhibitWall() const;
-    bool tryWallPunch();
+    void tryWallPunch();
 
     bool isHanging() const;
-    void fixHangDir(const TVec3f&, TVec3f*);
+    bool fixHangDir(const TVec3f&, TVec3f*);
     bool isEnableBackHang();
     bool isEnableSideHang();
     void checkHang();
@@ -400,7 +400,7 @@ public:
     void updateOnPoison();
     void updateOnWater();
 
-    void doRecovery();
+    bool doRecovery();
 
     bool isSliderFloor() const NO_INLINE;
     bool checkSliderMode() const;
@@ -455,7 +455,7 @@ public:
     void startJumpDropSlide(const HitSensor*);
 
     void startTeresaMode();
-    void getHitWallNorm(TVec3f*);
+    bool getHitWallNorm(TVec3f*);
     void resetTeresaMode();
     void doTeresaReflection(const TVec3f&, bool);
     void startTeresaDisappear();
@@ -823,10 +823,10 @@ public:
     // NOT FAKE
 
     /* 0x564 */ s32 _564;
-    /* 0x568 */ u32 _568;
+    /* 0x568 */ CubeCameraArea* _568;
     /* 0x56C */ AreaObj* _56C;
     /* 0x570 */ u8 _570;
-    /* 0x574 */ u32 _574;
+    /* 0x574 */ void* _574;
     /* 0x578 */ u32 _578;
     /* 0x57C */ Triangle* _57C[0x20];
     /* 0x5FC */ const HitSensor* _5FC;
@@ -861,8 +861,7 @@ public:
     /* 0x6AD */ u8 _6AD;
     /* 0x6B0 */ TVec3f _6B0;
     /* 0x6BC */ TVec3f _6BC;
-    /* 0x6C8 */ f32 _6C8;
-    /* 0x6CC */ f32 _6CC;
+    /* 0x6C8 */ TVec2f _6C8;
     /* 0x6D0 */ TVec3f _6D0;
     /* 0x6DC */ TVec3f _6DC;
     /* 0x6E8 */ TVec3f _6E8;

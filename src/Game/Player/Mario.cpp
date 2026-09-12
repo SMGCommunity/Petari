@@ -1,4 +1,5 @@
 #include "Game/Player/Mario.hpp"
+#include "Game/Animation/XanimeCore.hpp"
 #include "Game/Enemy/KarikariDirector.hpp"
 #include "Game/LiveActor/Binder.hpp"
 #include "Game/LiveActor/HitSensor.hpp"
@@ -44,11 +45,6 @@
 #include "Game/Player/MarioWall.hpp"
 #include "Game/Player/MarioWarp.hpp"
 #include "Game/Util.hpp"
-
-void FORCE_OPERATOR() {
-    TVec3f vec;
-    vec.scale(1.0f);
-}
 
 Mario::Mario(MarioActor* actor) : MarioModule(actor) {
     initMember();
@@ -2121,4 +2117,14 @@ void Mario::touchWater() {
     if (mActor->isActionOk("水解除") && mMorphResetTimer == 0) {
         mMorphResetTimer = 10;
     }
+}
+
+XjointTransform* XanimeCore::getJointTransform(u32 index) {
+    if (mTransformList == nullptr) {
+        return nullptr;
+    }
+    return &mTransformList[index];
+}
+
+void MarioState::draw3D() const {
 }
