@@ -2,6 +2,8 @@
 #include <cctype>
 #include <cerrno>
 
+#pragma exceptions on
+
 #define final_state(scan_state)	(scan_state & (0x20 | 0x40))
 #define success(scan_state) (scan_state & (0x4 | 0x10 | 0x20))
 #define fetch() (count++, (*ReadProc)(ReadProcArg, 0, __GetAChar))

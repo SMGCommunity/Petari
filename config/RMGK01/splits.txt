@@ -11650,7 +11650,7 @@ RVL_SDK/bte/btu_hcif.c:
 
 RVL_SDK/bte/btu_init.c:
 	.text       start:0x804FF9D8 end:0x804FFA50
-	.sdata2     start:0x806C2350 end:0x806C2390
+	.sdata2     start:0x806C2350 end:0x806C2358
 
 RVL_SDK/bte/wbt_ext.c:
 	.text       start:0x804FFA50 end:0x804FFB30
@@ -11774,7 +11774,7 @@ RVL_SDK/bte/sdp_server.c:
 
 RVL_SDK/bte/sdp_utils.c:
 	.text       start:0x80517310 end:0x80518350
-	.data       start:0x80609630 end:0x80609868
+	.data       start:0x80609630 end:0x80609728
 
 RVL_SDK/os/init/__ppc_eabi_init.cpp:
 	.init       start:0x800042E0 end:0x80004338
@@ -11788,10 +11788,7 @@ Runtime/__va_arg.c:
 
 Runtime/global_destructor_chain.c:
 	.text       start:0x80518434 end:0x80518494
-	.sbss       start:0x806B7BB0 end:0x806B7BC0
-
-MSL_C/errno.c:
-	.sbss       start:0x806B7BC0 end:0x806B7BC8
+	.sbss       start:0x806B7BB0 end:0x806B7BB8
 
 Runtime/NMWException.cpp:
 	extab       start:0x80006780 end:0x800067C8
@@ -11815,7 +11812,7 @@ Runtime/__init_cpp_exceptions.cpp:
 
 Runtime/Gecko_ExceptionPPC.cpp:
 	.text       start:0x805190A4 end:0x80519108
-	.bss        start:0x806AEDF8 end:0x806AF140
+	.bss        start:0x806AEDF8 end:0x806AEE08
 
 Runtime/GCN_mem_alloc.c:
 	.text       start:0x80519108 end:0x805191C0
@@ -11826,11 +11823,18 @@ MSL_C/alloc.c:
 	extabindex  start:0x80006DCC end:0x80006DF0
 	.text       start:0x805191C0 end:0x805196D4
 	.rodata     start:0x80562288 end:0x805622A0
+	.bss        start:0x806AEE08 end:0x806AEE40
+	.sbss       start:0x806B7BB8 end:0x806B7BC0
+
+MSL_C/errno.c:
+	.sbss       start:0x806B7BC0 end:0x806B7BC8
 
 MSL_C/ansi_files.c:
 	extab       start:0x800067E0 end:0x800067F0
 	extabindex  start:0x80006DF0 end:0x80006E08
 	.text       start:0x805196D4 end:0x805197E4
+	.data       start:0x80609728 end:0x80609868
+	.bss        start:0x806AEE40 end:0x806AF140
 
 MSL_C/ansi_fp.c:
 	extab       start:0x800067F0 end:0x80006828
@@ -11838,11 +11842,12 @@ MSL_C/ansi_fp.c:
 	.text       start:0x805197E4 end:0x8051B154
 	.rodata     start:0x805622A0 end:0x80562380
 	.data       start:0x80609868 end:0x806099D0
+	.sdata2     start:0x806C2358 end:0x806C2390
 
 MSL_C/locale.c:
 	.rodata     start:0x80562380 end:0x80562888
 	.data       start:0x806099D0 end:0x80609BC8
-	.sdata2     start:0x806C2390 end:0x806C23B0
+	.sdata2     start:0x806C2390 end:0x806C23A8
 
 MSL_C/arith.c:
 	.text       start:0x8051B154 end:0x8051B164
@@ -11898,6 +11903,7 @@ MSL_C/printf.c:
 	.rodata     start:0x80562888 end:0x805628B8
 	.data       start:0x80609BC8 end:0x80609E18
 	.sdata      start:0x806B2E38 end:0x806B2E40
+	.sdata2     start:0x806C23A8 end:0x806C23B0
 
 MSL_C/float.c:
 	.sdata      start:0x806B2E40 end:0x806B2E50
