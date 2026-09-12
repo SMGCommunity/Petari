@@ -12,4 +12,6 @@ public:
     virtual void draw() const override;
 
     void setSize(const TVec3f&);
+
+    /* 0x10 */ TVec3f mSize;
 };
