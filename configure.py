@@ -1219,7 +1219,7 @@ config.libs = [
             Object(NonMatching, "Game/Enemy/CocoNutBall.cpp"),
             Object(NonMatching, "Game/Enemy/CocoSambo.cpp"),
             Object(NonMatching, "Game/Enemy/DharmaSambo.cpp"),
-            Object(NonMatching, "Game/Enemy/Dossun.cpp"),
+            Object(Matching, "Game/Enemy/Dossun.cpp"),
             Object(Matching, "Game/Enemy/ElectricPressureBullet.cpp"),
             Object(NonMatching, "Game/Enemy/EyeBeamer.cpp"),
             Object(NonMatching, "Game/Enemy/FireBall.cpp"),

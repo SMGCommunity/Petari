@@ -14,6 +14,24 @@
 #include "Game/Util/ObjUtil.hpp"
 #include "Game/Util/SoundUtil.hpp"
 
+void Dossun_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+}
+
+namespace {
+    // sShadowBoxSize
+    const f32 sUpperHeight = 1000.0f;
+    const s32 sUpperFrame = 180;
+    const f32 sFallingSpeed = 30.0f;
+    const s32 sOnGroundFrame = 120;
+    const f32 sRisingSpeed = 10.0f;
+    const f32 sQuickRatio = 2.5f;
+    const f32 sCamShakeDistanceStrong = 2000.0f;
+    const f32 sCamShakeDistanceWeak = 3500.0f;
+    const f32 sShadowDropDepth = 0.0f;
+}  // namespace
+
 namespace NrvDossun {
     NEW_NERVE(DossunNrvReady, Dossun, Ready);
     NEW_NERVE(DossunNrvUpper, Dossun, Upper);
@@ -32,8 +50,8 @@ Dossun::Dossun(const char* pName) : LiveActor(pName) {
     _98.z = 0.0f;
     mFallingTime = 0;
     mHoldTime = 0;
-    mMovementDist = 1000.0f;
-    mRisenWaitTime = 180;
+    mMovementDist = sUpperHeight;
+    mRisenWaitTime = sUpperFrame;
     mShadowType = -1;
     mHasShadow = false;
 }
@@ -56,7 +74,7 @@ void Dossun::init(const JMapInfoIter& rIter) {
     initEffectKeeper(0, nullptr, false);
     initSound(4, false);
     initShadow();
-    initNerve(&NrvDossun::DossunNrvUpper::sInstance);
+    initNerve(GET_NERVE(Dossun, DossunNrvUpper));
     MR::setClippingTypeSphereContainsModelBoundingBox(this, 100.0f);
     s16 frameMax = MR::getBckFrameMax(this, "FallStart");
     mRisenWaitTime = (mRisenWaitTime - frameMax <= 0) ? 0 : (mRisenWaitTime - frameMax);
@@ -69,9 +87,9 @@ void Dossun::appear() {
     calcParameters();
     mPosition.set< f32 >(_8C);
     if (MR::isValidSwitchA(this)) {
-        setNerve(&NrvDossun::DossunNrvReady::sInstance);
+        setNerve(GET_NERVE(Dossun, DossunNrvReady));
     } else {
-        setNerve(&NrvDossun::DossunNrvUpper::sInstance);
+        setNerve(GET_NERVE(Dossun, DossunNrvUpper));
     }
 }
 
@@ -99,20 +117,25 @@ void Dossun::initShadow() {
     }
 }
 
-/*
 void Dossun::calcParameters() {
+    TPos3f mtx;
+    mtx.set(getBaseMtx());
+    TVec3f offset(0.0f, mMovementDist, 0.0f);
+    mtx.mult33(offset);
+    _8C.add(_98, offset);
 
+    mFallingTime = static_cast< s16 >(mMovementDist / (MR::isGalaxyQuickCometAppearInCurrentStage() ? sFallingSpeed * sQuickRatio : sFallingSpeed));
+    mHoldTime = static_cast< s16 >(mMovementDist / (MR::isGalaxyQuickCometAppearInCurrentStage() ? sRisingSpeed * sQuickRatio : sRisingSpeed));
 }
-*/
 
 s32 Dossun::getUpperFrame() const {
     if (MR::isGalaxyQuickCometAppearInCurrentStage()) {
-        f32 frame = MR::getBckFrameMax(this, "FallStart") / 2.5f;
-        int r5 = mRisenWaitTime / 2.5f;
-        if (r5 - (int)frame <= 0) {
+        f32 frame = MR::getBckFrameMax(this, "FallStart") / sQuickRatio;
+        s32 waitFrames = mRisenWaitTime / sQuickRatio;
+        if (waitFrames - static_cast< s32 >(frame) <= 0) {
             return 0;
         } else {
-            return r5 - (int)frame;
+            return waitFrames - static_cast< s32 >(frame);
         }
     }
 
@@ -121,7 +144,7 @@ s32 Dossun::getUpperFrame() const {
 
 void Dossun::exeReady() {
     if (MR::isOnSwitchA(this)) {
-        setNerve(&NrvDossun::DossunNrvFallSign::sInstance);
+        setNerve(GET_NERVE(Dossun, DossunNrvFallSign));
     }
 }
 
@@ -131,7 +154,7 @@ void Dossun::exeUpper() {
     }
 
     if (MR::isStep(this, getUpperFrame())) {
-        setNerve(&NrvDossun::DossunNrvFallSign::sInstance);
+        setNerve(GET_NERVE(Dossun, DossunNrvFallSign));
     }
 }
 
@@ -141,15 +164,15 @@ void Dossun::exeFallSign() {
         MR::startBva(this, "Attack");
 
         if (MR::isGalaxyQuickCometAppearInCurrentStage()) {
-            MR::setBckRate(this, 2.5f);
-            MR::setBvaRate(this, 2.5f);
+            MR::setBckRate(this, sQuickRatio);
+            MR::setBvaRate(this, sQuickRatio);
         }
 
         MR::startSound(this, "SE_OJ_DOSSUN_FALL_SIGN");
     }
 
     if (MR::isBckStopped(this)) {
-        setNerve(&NrvDossun::DossunNrvFalling::sInstance);
+        setNerve(GET_NERVE(Dossun, DossunNrvFalling));
     }
 }
 
@@ -158,21 +181,21 @@ void Dossun::exeFalling() {
     mPosition.lerp(_8C, _98, ease);
     MR::startLevelSound(this, "SE_OJ_LV_DOSSUN_FALL");
     if (MR::isStep(this, mFallingTime)) {
-        setNerve(&NrvDossun::DossunNrvOnGround::sInstance);
+        setNerve(GET_NERVE(Dossun, DossunNrvOnGround));
     }
 }
 
 void Dossun::exeOnGround() {
     if (MR::isFirstStep(this)) {
         mPosition.set< f32 >(_98);
-        MR::startRumbleWithShakeCameraNormalWeak(this, "中", "弱", 2000.0f, 3500.0f);
+        MR::startRumbleWithShakeCameraNormalWeak(this, "中", "弱", sCamShakeDistanceStrong, sCamShakeDistanceWeak);
         MR::startSound(this, "SE_OJ_DOSSUN_LAND");
         MR::emitEffect(this, "Land");
     }
 
     bool b = MR::isGalaxyQuickCometAppearInCurrentStage();
-    if (MR::isStep(this, b ? 0x30 : 0x78)) {
-        setNerve(&NrvDossun::DossunNrvRising::sInstance);
+    if (MR::isStep(this, b ? static_cast< s32 >(sOnGroundFrame / sQuickRatio) : sOnGroundFrame)) {
+        setNerve(GET_NERVE(Dossun, DossunNrvRising));
     }
 }
 
@@ -186,6 +209,6 @@ void Dossun::exeRising() {
     MR::startLevelSound(this, "SE_OJ_LV_DOSSUN_UPPER");
     if (MR::isStep(this, mHoldTime)) {
         MR::startSound(this, "SE_OJ_DOSSUN_STOP");
-        setNerve(&NrvDossun::DossunNrvUpper::sInstance);
+        setNerve(GET_NERVE(Dossun, DossunNrvUpper));
     }
 }
