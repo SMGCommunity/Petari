@@ -87,7 +87,7 @@ public:
     /* 0x98 */ AnimScaleController* mAnimScaleController;
     /* 0x9C */ WalkerStateBindStarPointer* mWalkerStateBindStarPointer;
     /* 0xA0 */ TQuat4f _A0;
-    /* 0xB0 */ TVec3f _B0;
+    /* 0xB0 */ TVec3f mFrontVec;
     /* 0xBC */ s32 mBeamType;
     /* 0xC0 */ s32 mMoveStep;
     /* 0xC4 */ f32 mRailCoord;

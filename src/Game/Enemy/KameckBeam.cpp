@@ -178,7 +178,7 @@ bool KameckBeam::requestFollowWand(MtxPtr pMtx, f32 scale) {
     return true;
 }
 
-void KameckBeam::requestShootToPlayerGround(f32 f) {
+void KameckBeam::requestShootToPlayerGround(f32 speed) {
     TVec3f dir;
     MR::getPlayerGroundPos(&dir);
     TVec3f vec(mGravity * ::sBeamRadius);
@@ -189,7 +189,7 @@ void KameckBeam::requestShootToPlayerGround(f32 f) {
         MR::calcGravity(this);
         dir.set(mGravity);
     }
-    requestShoot(dir, f);
+    requestShoot(dir, speed);
 }
 
 void KameckBeam::requestShootToPlayerCenter(f32 speed) {

@@ -49,7 +49,8 @@ namespace NrvKameck {
 
 Kameck::Kameck(const char* pName)
     : LiveActor(pName), mBeam(), mActiveActorList(), mBeamEventListener(), mAnimScaleController(), mWalkerStateBindStarPointer(),
-      _A0(0.0f, 0.0f, 0.0f, 1.0f), _B0(0.0f, 0.0f, 1.0f), mBeamType(), mMoveStep(240), mRailCoord(), mRailNextPointCoord(), mActiveDistance(3000.0f) {
+      _A0(0.0f, 0.0f, 0.0f, 1.0f), mFrontVec(0.0f, 0.0f, 1.0f), mBeamType(), mMoveStep(240), mRailCoord(), mRailNextPointCoord(),
+      mActiveDistance(3000.0f) {
     mActiveActorList = new ActiveActorList(8);
     mBeamEventListener = new SmallKameckBeamEventListener(this);
 }
@@ -61,7 +62,7 @@ void Kameck::init(const JMapInfoIter& rIter) {
     MR::initLightCtrl(this);
     MR::onCalcGravity(this);
     MR::initShadowVolumeSphere(this, 70.0f);
-    MR::makeQuatAndFrontFromRotate(&_A0, &_B0, this);
+    MR::makeQuatAndFrontFromRotate(&_A0, &mFrontVec, this);
     initHitSensor(2);
     MR::addHitSensorEnemy(this, "body", 8, 120.0f, TVec3f(0.0f, 40.0f, 0.0f));
     MR::addHitSensorEnemyAttack(this, "attack", 8, 80.0f, TVec3f(0.0f, 0.0f, 0.0f));
@@ -147,7 +148,7 @@ void Kameck::kill() {
 
 void Kameck::control() {
     mAnimScaleController->updateNerve();
-    MR::blendQuatUpFront(&_A0, -mGravity, _B0, ::sUpVecBlendRate, ::sFrontVecBlendRate);
+    MR::blendQuatUpFront(&_A0, -mGravity, mFrontVec, ::sUpVecBlendRate, ::sFrontVecBlendRate);
     mActiveActorList->removeDeadActor();
 }
 
@@ -244,7 +245,7 @@ bool Kameck::requestGuard(HitSensor* pSender, HitSensor* pReceiver) {
         TVec3f vec;
         vec.killElement(-pSender->mHost->mVelocity, mGravity);
         if (!MR::normalizeOrZero(&vec)) {
-            _B0.set(vec);
+            mFrontVec.set(vec);
         }
         resetBeam();
         MR::invalidateClipping(this);
@@ -432,7 +433,7 @@ void Kameck::exeDemoAppear() {
         MR::startSound(this, "SE_EM_KAMECK_SMOKE");
         MR::startSound(this, "SE_EM_KAMECK_APPEAR");
     }
-    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
+    MR::turnDirectionToTarget(this, &mFrontVec, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     if (MR::isBckOneTimeAndStopped(this)) {
         MR::startBck(this, "Wait", nullptr);
     }
@@ -461,7 +462,7 @@ void Kameck::exeAppear() {
         MR::invalidateClipping(this);
     }
     if (MR::isNearPlayer(this, 2000.0f)) {
-        MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
+        MR::turnDirectionToTarget(this, &mFrontVec, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     }
     if (!tryPointBind() && tryAppearEnd()) {
         return;
@@ -485,7 +486,7 @@ void Kameck::exeAttackWait() {
         MR::invalidateClipping(this);
     }
     MR::startLevelSound(this, "SE_EM_LV_KAMECK_STAFF_TURN");
-    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
+    MR::turnDirectionToTarget(this, &mFrontVec, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     if (!tryPointBind() && tryAttack()) {
         return;
     }
@@ -530,7 +531,7 @@ void Kameck::exeMoveHide() {
         MR::startBck(this, "Hide", nullptr);
         MR::startSound(this, "SE_EM_KAMECK_HIDE");
     }
-    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
+    MR::turnDirectionToTarget(this, &mFrontVec, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     if (!tryPointBind() && !tryMove()) {
         MR::startSound(this, "SE_EM_KAMECK_SMOKE");
     }
@@ -556,7 +557,7 @@ void Kameck::exeMove() {
         MR::setRailCoord(this, MR::calcNerveEaseInOutValue(this, mMoveStep, mRailCoord, mRailNextPointCoord));
         MR::moveTransToCurrentRailPos(this);
     }
-    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
+    MR::turnDirectionToTarget(this, &mFrontVec, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     if (tryMoveEnd()) {
         return;
     }
