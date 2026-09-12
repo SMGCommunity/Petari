@@ -1,8 +1,9 @@
 #pragma once
 
-#include "Game/Enemy/Kameck.hpp"
+#include "Game/LiveActor/LiveActor.hpp"
 
 class JetTurtle;
+class SmallKameckBeamEventListener;
 
 class KameckTurtle : public LiveActor {
 public:

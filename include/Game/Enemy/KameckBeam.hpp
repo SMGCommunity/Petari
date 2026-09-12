@@ -27,7 +27,8 @@ public:
 class KameckBeam : public LiveActor {
 public:
     enum BeamType {
-        /* 0x1 */ BeamType_Turtle = 1,
+        /* 0x0 */ BeamType_None,
+        /* 0x1 */ BeamType_Turtle,
         /* 0x2 */ BeamType_FireBall1,
         /* 0x3 */ BeamType_FireBall2,
         /* 0x4 */ BeamType_FireBall3,

@@ -1,4 +1,5 @@
 #include "Game/Enemy/KameckTurtle.hpp"
+#include "Game/Enemy/Kameck.hpp"
 #include "Game/Enemy/KameckBeam.hpp"
 #include "Game/LiveActor/Nerve.hpp"
 #include "Game/MapObj/JetTurtle.hpp"
@@ -8,14 +9,14 @@ namespace {
     // const f32 sBeamRadius =
     const f32 sUpVecBlendRate = 0.2f;
     const f32 sFrontVecBlendRate = 0.2f;
-    // const s32 sRunTime =
-    // const s32 sEnableAttackTime =
-    // const s32 sDeccelStartTime =
-    // const s32 sDeccelEndTime =
-    // const f32 sRunSpeed =
-    // const f32 sRunGravity =
-    // const f32 sRunFric =
-    // const f32 sRunSpinDegree =
+    const s32 sRunTime = 600;
+    const s32 sEnableAttackTime = 300;
+    const s32 sDeccelStartTime = 200;
+    const s32 sDeccelEndTime = 400;
+    const f32 sRunSpeed = 15.0f;
+    const f32 sRunGravity = 0.7f;
+    const f32 sRunFric = 0.98f;
+    const f32 sRunSpinDegree = -25.0f;
     // const s32 sMorphTime =
 };  // namespace
 
@@ -143,25 +144,25 @@ void KameckTurtle::exeRun() {
         MR::startLevelSound(this, "SE_EM_LV_TURTLE_SLIDE");
     }
     if (!MR::isBindedGround(this)) {
-        MR::addVelocityToGravity(this, 0.7f);
+        MR::addVelocityToGravity(this, ::sRunGravity);
     }
     f32 easeInOut = 1.0f;
-    if (MR::isGreaterStep(this, 200)) {
-        easeInOut = 1.0f - MR::calcNerveEaseInOutRate(this, 200, 400);
+    if (MR::isGreaterStep(this, ::sDeccelStartTime)) {
+        easeInOut = 1.0f - MR::calcNerveEaseInOutRate(this, ::sDeccelStartTime, ::sDeccelEndTime);
     }
     MR::addVelocityMoveToDirection(this, _B0, 0.5f * easeInOut);
-    MR::rotateDirectionGravityDegree(this, &_A4, -25.0f * easeInOut);
+    MR::rotateDirectionGravityDegree(this, &_A4, ::sRunSpinDegree * easeInOut);
     MR::turnDirectionToGround(this, &_A4);
-    MR::attenuateVelocity(this, 0.98f);
+    MR::attenuateVelocity(this, ::sRunFric);
     if (MR::isBindedWall(this) && MR::calcReboundVelocity(&mVelocity, *MR::getWallNormal(this), 0.5f)) {
         TVec3f dir = MR::getVelocityHorizon(this);
         if (!MR::normalizeOrZero(&dir)) {
             _B0.set(dir);
         }
-        MR::addVelocityJump(this, 15.0f);
+        MR::addVelocityJump(this, ::sRunSpeed);
         MR::startSound(this, "SE_EM_TURTLE_REBOUND");
     }
-    if (MR::isGreaterStep(this, 600)) {
+    if (MR::isGreaterStep(this, ::sRunTime)) {
         MR::emitEffectHit(this, mPosition, "BeamTurtleVanish");
         MR::startSound(this, "SE_BM_KAMECK_DISAPPEAR_TURT");
         kill();
@@ -181,7 +182,7 @@ bool KameckTurtle::isEnableAttack() const {
     if (!isNerve(&NrvKameckTurtle::KameckTurtleNrvRun::sInstance)) {
         return false;
     }
-    if (MR::isLessStep(this, 300)) {
+    if (MR::isLessStep(this, ::sEnableAttackTime)) {
         return true;
     }
     return false;
@@ -197,7 +198,7 @@ void KameckTurtle::appearJetTurtle(bool tryTaken) {
     mTurtle->becomeSlowType();
     if (tryTaken) {
         mTurtle->appearAndTryTaken();
-        return;
+    } else {
+        mTurtle->appear();
     }
-    mTurtle->appear();
 }

@@ -48,7 +48,7 @@ namespace NrvKameckBeam {
 };  // namespace NrvKameckBeam
 
 KameckBeam::KameckBeam(const char* pName)
-    : LiveActor(pName), mEventListener(nullptr), mKameckTurtle(), _A0(), _A4(0, 0, 1), mWandLocalPosition(0, 0, 0), mBeamKind(BeamType_FireBall1) {
+    : LiveActor(pName), mEventListener(), mKameckTurtle(), _A0(), _A4(0, 0, 1), mWandLocalPosition(0, 0, 0), mBeamKind(BeamType_FireBall1) {
     for (u32 i = 0; i < ARRAY_SIZE(mKameckFireBalls); i++) {
         mKameckFireBalls[i] = nullptr;
     }
@@ -85,7 +85,7 @@ void KameckBeam::kill() {
 }
 
 void KameckBeam::calcAnim() {
-    if (_A0) {
+    if (_A0 != nullptr) {
         PSMTXMultVec(_A0, mWandLocalPosition, mPosition);
     }
 }
@@ -136,8 +136,8 @@ void KameckBeam::setWandLocalPosition(const TVec3f& rWandLocalPos) {
     mWandLocalPosition.set(rWandLocalPos);
 }
 
-void KameckBeam::setBeamKind(s32 type) {
-    mBeamKind = type;
+void KameckBeam::setBeamKind(s32 kind) {
+    mBeamKind = kind;
 }
 
 void KameckBeam::setEventListener(KameckBeamEventListener* pListener) {
@@ -163,13 +163,13 @@ void KameckBeam::resetBeam() {
     mEventListener = nullptr;
 }
 
-bool KameckBeam::requestFollowWand(MtxPtr mtx, f32 f) {
-    mScale.set(f);
-    MR::setShadowVolumeSphereRadius(this, nullptr, f * ::sBeamRadius);
-    MR::setBinderRadius(this, f * ::sBeamRadius);
-    MR::setSensorRadius(this, "attack", f * ::sBeamRadius);
+bool KameckBeam::requestFollowWand(MtxPtr pMtx, f32 scale) {
+    mScale.set(scale);
+    MR::setShadowVolumeSphereRadius(this, nullptr, scale * ::sBeamRadius);
+    MR::setBinderRadius(this, scale * ::sBeamRadius);
+    MR::setSensorRadius(this, "attack", scale * ::sBeamRadius);
     emitBeamReadyEffect();
-    _A0 = mtx;
+    _A0 = pMtx;
     makeActorAppeared();
     setNerve(&NrvKameckBeam::KameckBeamNrvFollowWand::sInstance);
     MR::offBind(this);
@@ -179,39 +179,39 @@ bool KameckBeam::requestFollowWand(MtxPtr mtx, f32 f) {
 }
 
 void KameckBeam::requestShootToPlayerGround(f32 f) {
-    TVec3f groundPos;
-    MR::getPlayerGroundPos(&groundPos);
+    TVec3f dir;
+    MR::getPlayerGroundPos(&dir);
     TVec3f vec(mGravity * ::sBeamRadius);
-    groundPos -= vec;
-    groundPos -= mPosition;
-    MR::normalizeOrZero(&groundPos);
-    if (MR::isNearZero(groundPos)) {
+    dir -= vec;
+    dir -= mPosition;
+    MR::normalizeOrZero(&dir);
+    if (MR::isNearZero(dir)) {
         MR::calcGravity(this);
-        groundPos.set(mGravity);
+        dir.set(mGravity);
     }
-    requestShoot(groundPos, f);
+    requestShoot(dir, f);
 }
 
-void KameckBeam::requestShootToPlayerCenter(f32 f) {
-    TVec3f vec;
-    vec.set(*MR::getPlayerCenterPos() - mPosition);
-    MR::normalizeOrZero(&vec);
-    if (MR::isNearZero(vec)) {
+void KameckBeam::requestShootToPlayerCenter(f32 speed) {
+    TVec3f dir;
+    dir.set(*MR::getPlayerCenterPos() - mPosition);
+    MR::normalizeOrZero(&dir);
+    if (MR::isNearZero(dir)) {
         MR::calcGravity(this);
-        vec.set(mGravity);
+        dir.set(mGravity);
     }
-    requestShoot(vec, f);
+    requestShoot(dir, speed);
 }
 
-void KameckBeam::requestShoot(const TVec3f& rVec, f32 f) {
+void KameckBeam::requestShoot(const TVec3f& rDir, f32 speed) {
     emitBeamEffect();
     MR::onBind(this);
     MR::validateHitSensors(this);
     MR::validateShadow(this, nullptr);
     _A0 = nullptr;
     setNerve(&NrvKameckBeam::KameckBeamNrvShoot::sInstance);
-    _A4.set(rVec);
-    mVelocity.set(rVec * f);
+    _A4.set(rDir);
+    mVelocity.set(rDir * speed);
 }
 
 bool KameckBeam::requestStorm(HitSensor* pSender, HitSensor* pReceiver) {
@@ -267,7 +267,6 @@ bool KameckBeam::tryChangeFire() {
     case BeamType_FireBall1:
         fireAngleListIndex = 1;
         break;
-
     case BeamType_FireBall2:
         fireAngleListIndex = 2;
         break;

@@ -1,5 +1,6 @@
 #include "Game/Enemy/Kameck.hpp"
 #include "Game/Enemy/AnimScaleController.hpp"
+#include "Game/Enemy/KameckBeam.hpp"
 #include "Game/Enemy/KameckBeamHolder.hpp"
 #include "Game/Enemy/WalkerStateBindStarPointer.hpp"
 #include "Game/LiveActor/ActiveActorList.hpp"
@@ -11,7 +12,7 @@ namespace {
     // const f32 sDefaultActiveDistance =
     const f32 sFrontVecBlendRate = 0.2f;
     const f32 sUpVecBlendRate = 0.04f;
-    // const f32 sTurnPlayerLimit =
+    const f32 sTurnPlayerLimit = 0.98f;
     // const s32 sWaitTime =
     // const s32 mMoveHideTime =
     // const f32 sMoveSpeed =
@@ -88,7 +89,7 @@ void Kameck::init(const JMapInfoIter& rIter) {
 void Kameck::initBeam() {
     MR::createKameckBeamHolder();
     switch (mBeamType) {
-    case 0:
+    case KameckBeam::BeamType_None:
         break;
     case KameckBeam::BeamType_Turtle:
         MR::createKameckBeamTurtleHolder();
@@ -431,7 +432,7 @@ void Kameck::exeDemoAppear() {
         MR::startSound(this, "SE_EM_KAMECK_SMOKE");
         MR::startSound(this, "SE_EM_KAMECK_APPEAR");
     }
-    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), 0.98f);
+    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     if (MR::isBckOneTimeAndStopped(this)) {
         MR::startBck(this, "Wait", nullptr);
     }
@@ -460,7 +461,7 @@ void Kameck::exeAppear() {
         MR::invalidateClipping(this);
     }
     if (MR::isNearPlayer(this, 2000.0f)) {
-        MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), 0.98f);
+        MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     }
     if (!tryPointBind() && tryAppearEnd()) {
         return;
@@ -484,7 +485,7 @@ void Kameck::exeAttackWait() {
         MR::invalidateClipping(this);
     }
     MR::startLevelSound(this, "SE_EM_LV_KAMECK_STAFF_TURN");
-    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), 0.98f);
+    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     if (!tryPointBind() && tryAttack()) {
         return;
     }
@@ -529,7 +530,7 @@ void Kameck::exeMoveHide() {
         MR::startBck(this, "Hide", nullptr);
         MR::startSound(this, "SE_EM_KAMECK_HIDE");
     }
-    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), 0.98f);
+    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     if (!tryPointBind() && !tryMove()) {
         MR::startSound(this, "SE_EM_KAMECK_SMOKE");
     }
@@ -555,7 +556,7 @@ void Kameck::exeMove() {
         MR::setRailCoord(this, MR::calcNerveEaseInOutValue(this, mMoveStep, mRailCoord, mRailNextPointCoord));
         MR::moveTransToCurrentRailPos(this);
     }
-    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), 0.98f);
+    MR::turnDirectionToTarget(this, &_B0, *MR::getPlayerPos(), ::sTurnPlayerLimit);
     if (tryMoveEnd()) {
         return;
     }
