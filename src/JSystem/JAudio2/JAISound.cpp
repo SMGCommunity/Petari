@@ -130,12 +130,6 @@ void JAISound::die_JAISound_() {
     die();
 }
 
-void JAISound::increasePrepareCount_JAISound_() {
-    if ((++mPrepareCount & 0xFF) == 0) {
-        JASReport("It cost %d steps to prepare Sound(ID:%08x, Address%08x).\n", mPrepareCount, *(u32*)&mSoundID, this);
-    }
-}
-
 bool JAISound::calc_JAISound_() {
     setCalcedOnce(true);
     if (isStopping() && JAISound_tryDie_()) {
@@ -195,5 +189,11 @@ void JAISound::initTrack_JAISound_(JASTrack* track) {
 
     for (u32 i = 0; i < track->getChannelMgrCount(); i++) {
         track->assignExtBuffer(i, soundParams[i]);
+    }
+}
+
+void JAISound::increasePrepareCount_JAISound_() {
+    if ((++mPrepareCount & 0xFF) == 0) {
+        JASReport("It cost %d steps to prepare Sound(ID:%08x, Address%08x).\n", mPrepareCount, *(u32*)&mSoundID, this);
     }
 }

@@ -10756,7 +10756,7 @@ JSystem/JAudio2/JASAudioThread.cpp:
 
 JSystem/JAudio2/JASAudioReseter.cpp:
 	.text       start:0x80497034 end:0x80497240
-	.rodata     start:0x80561350 end:0x80561360
+	.rodata     start:0x80561350 end:0x80561358
 
 JSystem/JAudio2/JASDSPChannel.cpp:
 	.text       start:0x80497240 end:0x8049789C
@@ -10764,7 +10764,7 @@ JSystem/JAudio2/JASDSPChannel.cpp:
 
 JSystem/JAudio2/JASDSPInterface.cpp:
 	.text       start:0x8049789C end:0x80497EDC
-	.rodata     start:0x80561360 end:0x805618C8
+	.rodata     start:0x80561358 end:0x805618C8
 	.data       start:0x805ECF78 end:0x805ECFA0
 	.sdata      start:0x806B29E0 end:0x806B29E8
 	.sbss       start:0x806B7598 end:0x806B75A8

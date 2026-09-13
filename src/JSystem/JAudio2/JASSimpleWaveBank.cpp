@@ -43,15 +43,3 @@ int JASSimpleWaveBank::TWaveHandle::getWavePtr() const {
     }
     return (intptr_t)base + mWaveInfo.mAWStartOffs;
 }
-
-JASSimpleWaveBank::TWaveHandle::TWaveHandle() {
-    mHeap = nullptr;
-}
-
-u32 JASSimpleWaveBank::getArcCount() const {
-    return 1;
-}
-
-const JASWaveInfo* JASSimpleWaveBank::TWaveHandle::getWaveInfo() const {
-    return &mWaveInfo;
-}

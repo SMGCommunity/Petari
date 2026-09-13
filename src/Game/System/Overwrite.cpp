@@ -1,8 +1,8 @@
 #include "Game/System/WPad.hpp"
-#include "JSystem/JUtility/JUTException.hpp"
 #include "JSystem/JAudio2/JASHeapCtrl.hpp"
 #include "JSystem/JKernel/JKRSolidHeap.hpp"
 #include "JSystem/JKernel/JKRThread.hpp"
+#include "JSystem/JUtility/JUTException.hpp"
 #include <JSystem/JAudio2/JASAudioThread.hpp>
 
 JASAudioThread::JASAudioThread(int stackSize, int msgCount, u32 threadPriority)

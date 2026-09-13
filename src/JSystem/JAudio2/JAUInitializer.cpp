@@ -1,8 +1,15 @@
 #include "JSystem/JAudio2/JAUInitializer.hpp"
+
+// NOTE: these must be included in this exact order for sinit to match
 #include "JSystem/JAudio2/JAISe.hpp"
+//
 #include "JSystem/JAudio2/JAISeq.hpp"
-#include "JSystem/JAudio2/JAISoundChild.hpp"
+//
 #include "JSystem/JAudio2/JAIStream.hpp"
+//
+#include "JSystem/JAudio2/JAISoundChild.hpp"
+//
+
 #include "JSystem/JAudio2/JASAramStream.hpp"
 #include "JSystem/JAudio2/JASAudioThread.hpp"
 #include "JSystem/JAudio2/JASDriverIF.hpp"
