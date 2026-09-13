@@ -2,13 +2,12 @@
 #include "Game/Util.hpp"
 
 OnimasuPivot::OnimasuPivot(const char* pName) : Onimasu(pName), mCurNormal(), mNormals() {
-    _110.set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
-    _120.set< f32 >(0.0f, 0.0f, 0.0f, 1.0f);
+    _110.set(0.0f, 0.0f, 0.0f, 1.0f);
+    _120.set(0.0f, 0.0f, 0.0f, 1.0f);
 }
 
 void OnimasuPivot::initFromRailPoint() {
-    s32 railPointNum = MR::getRailPointNum(this) / 2;
-    mNormals.init(railPointNum);
+    mNormals.init(MR::getRailPointNum(this) / 2);
 }
 
 void OnimasuPivot::startMoveInner() {
@@ -28,21 +27,24 @@ void OnimasuPivot::startMoveInner() {
 }
 
 const TVec3f OnimasuPivot::getLastPointPos() const {
-    TVec3f point;
-    MR::calcRailPointPos(&point, this, 2 * getLastPointNo());
-    return point;
+    TVec3f railPointPos;
+    MR::calcRailPointPos(&railPointPos, this, getLastPointNo() * 2);
+
+    return railPointPos;
 }
 
 const TVec3f OnimasuPivot::getPivotPointPos() const {
-    TVec3f point;
-    MR::calcRailPointPos(&point, this, (getLastPointNo() * 2) + 1);
-    return point;
+    TVec3f railPointPos;
+    MR::calcRailPointPos(&railPointPos, this, (getLastPointNo() * 2) + 1);
+
+    return railPointPos;
 }
 
 const TVec3f OnimasuPivot::getNextPointPos() const {
-    TVec3f point;
-    MR::calcRailPointPos(&point, this, 2 * mCurNormal);
-    return point;
+    TVec3f railPointPos;
+    MR::calcRailPointPos(&railPointPos, this, mCurNormal * 2);
+
+    return railPointPos;
 }
 
 // OnimasuPivot::updatePoseInner
@@ -53,6 +55,7 @@ s32 OnimasuPivot::getNextPointNo() const {
 
 s32 OnimasuPivot::getLastPointNo() const {
     s32 n = mCurNormal - 1;
+
     if (n < 0) {
         return (MR::getRailPointNum(this) / 2) - 1;
     }
@@ -76,15 +79,11 @@ void OnimasuPivot::incrementNextPoint() {
     }
 }
 
-// this function will (probably) match once the rest of the file is done. TVec3::set<f> inline.
 void OnimasuPivot::collectRailPointInfo() {
     for (s32 i = 0; i < mNormals.size(); i++) {
         TVec3f v5(gZeroVec);
         TVec3f v4(gZeroVec);
         OnimasuFunction::getPolygonOnRailPoint(&v4, &v5, this, i * 2);
-        mNormals[i].set< f32 >(v5);
+        mNormals[i].set(v5);
     }
-}
-
-OnimasuPivot::~OnimasuPivot() {
 }
