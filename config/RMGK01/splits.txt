@@ -10791,7 +10791,7 @@ JSystem/JAudio2/dsptask.cpp:
 	.rodata     start:0x805618F0 end:0x80561A60
 	.data       start:0x805ECFA0 end:0x805EEEA0
 	.bss        start:0x80662B00 end:0x80664BE0
-	.sbss       start:0x806B75B0 end:0x806B75C0
+	.sbss       start:0x806B75B0 end:0x806B75B8
 
 JSystem/JAudio2/osdsp.cpp:
 	.text       start:0x80498760 end:0x804987E0
@@ -10801,7 +10801,7 @@ JSystem/JAudio2/osdsp_task.cpp:
 	.text       start:0x804987E0 end:0x80498CCC
 	.rodata     start:0x80561A80 end:0x80561B08
 	.bss        start:0x80664BE0 end:0x80664BF8
-	.sbss       start:0x806B75C0 end:0x806B75C0
+	.sbss       start:0x806B75B8 end:0x806B75C0
 
 JSystem/JAudio2/JAIAudible.cpp:
 	.text       start:0x80498CCC end:0x80498D0C

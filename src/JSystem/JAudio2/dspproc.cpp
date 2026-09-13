@@ -2,8 +2,6 @@
 #include "JSystem/JAudio2/JASDSPInterface.hpp"
 #include "JSystem/JAudio2/dsptask.hpp"
 
-// NOTE: unfinished
-
 void DSPReleaseHalt2(u32 msg) {
     u32 msgs[2];
     u16 dspMap = DSP_CreateMap2(msg);
@@ -63,7 +61,7 @@ void DsyncFrame4ch(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param
 
 static void dummy_callback(u16 param_0) {
     d_waitflag = FALSE;
-    OSReport("D-Wait end\n", param_0);
+    OSReport("D-Wait end\n");
 }
 
 void DsetVARAM(u32 param_0) {

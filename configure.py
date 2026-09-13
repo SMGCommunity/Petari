@@ -263,7 +263,7 @@ cflags_jsys = [
 cflags_jsys_j3d = [*cflags_jsys, "-O4,p"]
 
 cflags_jsys_jaudio = [*cflags_jsys, "-ipa file"]
-cflags_jsys_jasdsp = [*cflags_jsys_jaudio, "-func_align 32"]
+cflags_jsys_jasdsp = [flag for flag in cflags_jsys if flag != "-enc SJIS"] + ["-func_align 32", "-rostr", "-inline noauto"]
 cflags_jsys_jpa = [*cflags_jsys, "-ipa file"]
 
 cflags_trk = [
@@ -3201,14 +3201,14 @@ config.libs = [
             Object(Matching, "JSystem/JAudio2/JASDSPChannel.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASDSPInterface.cpp"),
             Object(
-                NonMatching, "JSystem/JAudio2/dspproc.cpp", cflags=cflags_jsys_jasdsp
+                Matching, "JSystem/JAudio2/dspproc.cpp", cflags=cflags_jsys_jasdsp, mw_version="GC/2.7"
             ),
             Object(
-                NonMatching, "JSystem/JAudio2/dsptask.cpp", cflags=cflags_jsys_jasdsp
+                Matching, "JSystem/JAudio2/dsptask.cpp", cflags=cflags_jsys_jasdsp, mw_version="GC/2.7"
             ),
-            Object(NonMatching, "JSystem/JAudio2/osdsp.cpp", cflags=cflags_jsys_jasdsp),
+            Object(Matching, "JSystem/JAudio2/osdsp.cpp", cflags=cflags_jsys_jasdsp, mw_version="GC/2.7"),
             Object(
-                NonMatching, "JSystem/JAudio2/osdsp_task.cpp", cflags=cflags_jsys_jasdsp
+                Matching, "JSystem/JAudio2/osdsp_task.cpp", cflags=cflags_jsys_jasdsp, mw_version="GC/2.7"
             ),
             Object(NonMatching, "JSystem/JAudio2/JASDriverIF.cpp"),
             Object(Matching, "JSystem/JAudio2/JASSoundParams.cpp"),
