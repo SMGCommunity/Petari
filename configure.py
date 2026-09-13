@@ -1423,7 +1423,7 @@ config.libs = [
             Object(NonMatching, "Game/LiveActor/SimpleJ3DModelDrawer.cpp"),
             Object(Matching, "Game/LiveActor/Spine.cpp"),
             Object(Matching, "Game/LiveActor/SpotMarkLight.cpp"),
-            Object(NonMatching, "Game/LiveActor/ViewGroupCtrl.cpp"),
+            Object(Matching, "Game/LiveActor/ViewGroupCtrl.cpp"),
             Object(Matching, "Game/LiveActor/VolumeModelDrawer.cpp"),
         ],
     ),
