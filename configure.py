@@ -1946,7 +1946,7 @@ config.libs = [
             Object(NonMatching, "Game/NPC/NPCActor.cpp"),
             Object(NonMatching, "Game/NPC/NPCParameter.cpp"),
             Object(Matching, "Game/NPC/NPCDirector.cpp"),
-            Object(NonMatching, "Game/NPC/NPCFunction.cpp"),
+            Object(Matching, "Game/NPC/NPCFunction.cpp"),
             Object(Matching, "Game/NPC/NPCSupportRail.cpp"),
             Object(Matching, "Game/NPC/StageStateKeeper.cpp"),
             Object(NonMatching, "Game/NPC/TalkBalloon.cpp"),
