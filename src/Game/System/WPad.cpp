@@ -26,7 +26,7 @@ WPad::WPad(s32 channel)
     mStick = new WPadStick(this);
     mLeaveWatcher = new WPadLeaveWatcher(this);
     mInfoChecker = new WPadInfoChecker(this);
-    mSubPadSwing->_8 = 2.0f;
+    mSubPadSwing->mDistanceSwingThreshold = 2.0f;
 }
 
 void WPad::setReadInfo(WPadReadDataInfo* pReadInfo) {
