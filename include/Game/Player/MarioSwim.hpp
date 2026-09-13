@@ -59,7 +59,7 @@ public:
     bool startJet(u32);
     void addDamage(const TVec3f&);
     void addFaint(const TVec3f&);
-    AreaInfo* getWaterAreaInfo(WaterInfo*, const TVec3f&, TVec2f*);
+    bool getWaterAreaInfo(WaterInfo*, const TVec3f&, TVec2f*);
     void decOxygen(u16 amount);
     void incOxygen();
     void incLife();

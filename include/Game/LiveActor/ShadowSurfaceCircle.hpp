@@ -12,5 +12,5 @@ public:
 
     void setRadius(f32);
 
-    f32 _10;
+    /* 0x10 */ f32 mRadius;
 };
