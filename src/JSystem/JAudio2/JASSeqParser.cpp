@@ -829,8 +829,8 @@ void JASSeqParser::execNoteOnGate(JASTrack* track, u32 pitch, u32 velocity, u32 
     }
 }
 
-void JASSeqParser::execNoteOnMidi(JASTrack* track, u32 a, u32 b, u32 c) {
-    track->noteOn(a, b, c);
+bool JASSeqParser::execNoteOnMidi(JASTrack* track, u32 a, u32 b, u32 c) {
+    return track->noteOn(a, b, c);
 }
 
 void JASSeqParser::execNoteOff(JASTrack* track, u32 a) {

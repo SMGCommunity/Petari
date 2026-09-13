@@ -21,11 +21,11 @@ public:
 
     static Command sExtCmdInfo[0xff];
 
-    JASSeqParser() {};
+    JASSeqParser(){};
 
-    virtual ~JASSeqParser() {};
+    virtual ~JASSeqParser(){};
     virtual s32 parse(JASTrack*);
-    virtual void execNoteOnMidi(JASTrack*, u32, u32, u32);
+    virtual bool execNoteOnMidi(JASTrack*, u32, u32, u32);
     virtual void execNoteOnGate(JASTrack*, u32, u32, u32, u32);
     virtual void execNoteOff(JASTrack*, u32);
     virtual s32 execCommand(JASTrack*, JASSeqParser::CommandFunc, u32, u32*);

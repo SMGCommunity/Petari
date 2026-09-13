@@ -4,7 +4,7 @@ AudMeSeqParser AudMeSeqCtrl::sDefaultParser = AudMeSeqParser();
 
 AudMeSeqCtrl::AudMeSeqCtrl() : mParser(&sDefaultParser), mIsLocked(), mStopAfterNote(), mProgress(-1) {
     mReader.init();
-    mWaitTime = -1;
+    mType = -1;
     mTime = 0;
 }
 
@@ -14,8 +14,8 @@ void AudMeSeqCtrl::start(void* pData, u32 addr) {
     mReader.jump(addr);
 }
 
-void AudMeSeqCtrl::wait(s32 waitTime, s32 time) {
-    mWaitTime = waitTime;
+void AudMeSeqCtrl::wait(s32 type, s32 time) {
+    mType = type;
     mTime = time;
 }
 
@@ -23,7 +23,7 @@ void AudMeSeqCtrl::autoWait() {
     if (mProgress < 0) {
         return;
     }
-    mWaitTime = mProgress;
+    mType = mProgress;
     mTime = 1;
 }
 
@@ -32,14 +32,14 @@ void AudMeSeqCtrl::inherit(AudMeSeqCtrl* pOther) {
     autoWait();
 }
 
-s32 AudMeSeqCtrl::rhythmProc(AudMeTrack* pTrack, s32 time) {
+s32 AudMeSeqCtrl::rhythmProc(AudMeTrack* pTrack, s32 rhythmType) {
     if (getBase() == nullptr) {
         return 0;
     }
 
-    if (mWaitTime == time) {
+    if (mType == rhythmType) {
         if (mTime > 0 && --mTime == 0) {
-            mWaitTime = -1;
+            mType = -1;
             mTime = 0;
         }
     }

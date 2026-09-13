@@ -77,7 +77,7 @@ public:
 
     static AudMeSeqParser sDefaultParser;
 
-    /* 0x00 */ s32 mWaitTime;
+    /* 0x00 */ s32 mType;
     /* 0x04 */ s32 mTime;  // TODO: better name, "note time?"
     /* 0x08 */ AudMeSeqReader mReader;
     /* 0x44 */ AudMeSeqParser* mParser;

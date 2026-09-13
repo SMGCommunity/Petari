@@ -44,6 +44,9 @@ public:
     void* getAddr(u32 param_0) {
         return mReader.getAddr(param_0);
     }
+    u32 getOffset() {
+        return mReader.getOffset();
+    }
     u8 getByte(u32 param_0) const {
         return mReader.getByte(param_0);
     }

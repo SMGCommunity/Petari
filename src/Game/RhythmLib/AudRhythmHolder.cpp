@@ -1,5 +1,4 @@
 #include "Game/RhythmLib/AudRhythmHolder.hpp"
-#include "Game/RhythmLib/AudRhythmMeSystem.hpp"
 
 AudRhythmHolder::AudRhythmHolder() : mIsPaused(), mSeqParser(), _168() {
     init();

@@ -193,7 +193,7 @@ void AudMeTrack::stopAtCurrentNoteEnd() {
     }
 }
 
-s32 AudMeTrack::rhythmProc(s32 time, s32 a2) {
+s32 AudMeTrack::rhythmProc(s32 type, s32 time) {
     if (mParent == nullptr && mStatus == STATUS_FREE) {
         return -1;
     }
@@ -206,7 +206,7 @@ s32 AudMeTrack::rhythmProc(s32 time, s32 a2) {
     mChordTableId = AudSystem::get()->getChordInfo()->mTableId;
 
     if (!mIsProcStopped) {
-        s32 ret = mSeqCtrl.rhythmProc(this, time);
+        s32 ret = mSeqCtrl.rhythmProc(this, type);
         if (ret == 1 && mStopAfterNote == true) {
             mIsProcStopped = true;
         }
@@ -218,7 +218,7 @@ s32 AudMeTrack::rhythmProc(s32 time, s32 a2) {
 
     for (s32 i = 0; i < MAX_CHILDREN; i++) {
         if (mChildren[i] != nullptr) {
-            s32 ret = mChildren[i]->getSeqCtrl()->rhythmProc(mChildren[i], time);
+            s32 ret = mChildren[i]->getSeqCtrl()->rhythmProc(mChildren[i], type);
             if (ret == 1 && mStopAfterNote == true) {
                 deleteChild(i);
             }
@@ -761,8 +761,8 @@ void AudMeTrack::TTrackInfo::init() {
     mNoteRangeStart = 12 * 5;
 }
 
-s32 AudMeTrack::TList::cbSeqMain(s32 time, s32 a2, void* self) {
-    ((AudMeTrack::TList*)self)->seqMain(time, a2);
+s32 AudMeTrack::TList::cbSeqMain(s32 type, s32 time, void* self) {
+    ((AudMeTrack::TList*)self)->seqMain(type, time);
     return 0;
 }
 
@@ -777,11 +777,11 @@ void AudMeTrack::TList::append(AudMeTrack* track) {
     Push_front(track);
 }
 
-void AudMeTrack::TList::seqMain(s32 time, s32 a2) {
+void AudMeTrack::TList::seqMain(s32 type, s32 time) {
     for (iterator it = begin(); it != end();) {
         AudMeTrack* track = *it;
         ++it;
-        if (track->rhythmProc(time, a2) < 0) {
+        if (track->rhythmProc(type, time) < 0) {
             Remove(track);
         }
     }
