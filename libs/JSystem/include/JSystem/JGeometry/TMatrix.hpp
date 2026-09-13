@@ -365,7 +365,26 @@ namespace JGeometry {
             return (f64)rot.getRotate(rAxis);
         }
 
-        void getScale(TVec3f& rDest) const;
+        void getScale(TVec3f& rDest) const {
+            {
+                f32 y = this->mMtx[1][0];
+                f32 x = this->mMtx[0][0];
+                f32 z = this->mMtx[2][0];
+                rDest.x = TUtil< f32 >::sqrt(x * x + y * y + z * z);
+            }
+            {
+                f32 y = this->mMtx[1][1];
+                f32 x = this->mMtx[0][1];
+                f32 z = this->mMtx[2][1];
+                rDest.y = TUtil< f32 >::sqrt(x * x + y * y + z * z);
+            }
+            {
+                f32 y = this->mMtx[1][2];
+                f32 x = this->mMtx[0][2];
+                f32 z = this->mMtx[2][2];
+                rDest.z = TUtil< f32 >::sqrt(x * x + y * y + z * z);
+            }
+        }
         void setScale(const TVec3f& rSrc);
         void setScale(f32 x, f32 y, f32 z) NO_INLINE {
             this->mMtx[0][0] = x;

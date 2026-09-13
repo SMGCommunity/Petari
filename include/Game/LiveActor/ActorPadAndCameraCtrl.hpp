@@ -35,7 +35,7 @@ public:
     /* 0x00 */ const ModelManager* _0;
     /* 0x04 */ const TVec3f* _4;
     /* 0x08 */ const ResourceHolder* _8;
-    /* 0x0C */ u32 _C;
+    /* 0x0C */ const char* _C;
     /* 0x10 */ s32 mInfoNum;
     /* 0x14 */ ActorPadAndCameraCtrlInfo* mInfo;
 };

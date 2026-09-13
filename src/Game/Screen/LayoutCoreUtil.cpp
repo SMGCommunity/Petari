@@ -26,21 +26,21 @@ namespace LayoutCoreUtil {
         CustomTagProcessor* processor = new CustomTagProcessor(pTextBox);
 
         if (strncmp(pTextBox->mName, "Sha", 3) == 0) {
-            processor->mAlphaCtrl._0 = true;
+            processor->mIsShadow = true;
         } else {
-            processor->mAlphaCtrl._0 = false;
+            processor->mIsShadow = false;
         }
 
         if (strncmp(pTextBox->mName, "Txt", 3) == 0) {
-            processor->mAlphaCtrl._1 = true;
+            processor->mIsText = true;
         } else {
-            processor->mAlphaCtrl._1 = false;
+            processor->mIsText = false;
         }
 
         if (strncmp(pTextBox->mName, "Inf", 3) == 0) {
-            processor->mAlphaCtrl._2 = true;
+            processor->mIsInfo = true;
         } else {
-            processor->mAlphaCtrl._2 = false;
+            processor->mIsInfo = false;
         }
 
         pTextBox->mpTagProcessor = processor;

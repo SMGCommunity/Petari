@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game/NameObj/NameObj.hpp"
+#include "Game/Util/Color.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 #include <revolution.h>
 
@@ -14,7 +15,7 @@ public:
 
     /* 0x0C */ MtxPtr mMtx;
     /* 0x10 */ J3DModelData* mModelData;
-    /* 0x14 */ GXColor mColor;
+    /* 0x14 */ Color8 mColor;
 };
 
 class VolumeModelDrawInit : public NameObj {

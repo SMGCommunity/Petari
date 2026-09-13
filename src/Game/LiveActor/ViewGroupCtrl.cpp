@@ -1,18 +1,21 @@
 #include "Game/LiveActor/ViewGroupCtrl.hpp"
+#include "Game/AreaObj/AreaObj.hpp"
 #include "Game/LiveActor/ClippingActorInfo.hpp"
 #include "Game/LiveActor/LodCtrl.hpp"
+#include "Game/Util/AreaObjUtil.hpp"
 #include "Game/Util/Array.hpp"
 #include "Game/Util/JMapUtil.hpp"
+#include "Game/Util/PlayerUtil.hpp"
 
-ViewGroupCtrl::ViewGroupCtrl() {
-    mViewCubeMgr = nullptr;
-    mMaxViewGroupId = 0;
-    mViewGroupData = nullptr;
-    mViewCtrlCount = 0;
-    mLodCtrls = nullptr;
-    mLodCtrls = new LodCtrl*[0x100];
+namespace {
+    // sLodCtrlNumMax
+    const u32 sAllLodCtrlNumMax = 0x100;
+}  // namespace
 
-    for (u32 i = 0; i < 0x100; i++) {
+ViewGroupCtrl::ViewGroupCtrl() : mViewCubeMgr(), mMaxViewGroupId(), mViewGroupData(), mViewCtrlCount(), mLodCtrls() {
+    mLodCtrls = new LodCtrl*[sAllLodCtrlNumMax];
+
+    for (u32 i = 0; i < sAllLodCtrlNumMax; i++) {
         mLodCtrls[i] = nullptr;
     }
 }
@@ -46,5 +49,72 @@ void ViewGroupCtrl::entryLodCtrl(LodCtrl* pCtrl, const JMapInfoIter& rIter) {
         pCtrl->mViewGroupID = groupID;
         mLodCtrls[mViewCtrlCount] = pCtrl;
         mViewCtrlCount++;
+    }
+}
+
+void ViewGroupCtrl::update() {
+    ViewGroupCtrlDataEntry* entry;
+    if (!mViewCubeMgr) {
+        return;
+    }
+
+    for (s32 i = 0; i < mMaxViewGroupId; i++) {
+        entry = &mViewGroupData[i];
+        entry->_0 = false;
+        entry->_1 = false;
+        entry->_2 = false;
+        entry->_3 = false;
+        entry->_4 = false;
+    }
+
+    for (s32 i = 0; i < mViewCubeMgr->getNumAreaObj(); i++) {
+        AreaObj* area = mViewCubeMgr->getAreaObj(i);
+        if (area->isInVolume(*MR::getPlayerPos())) {
+            ViewGroupCtrlDataEntry* entry = &mViewGroupData[area->mObjArg0];
+            entry->_0 = true;
+            if (area->mObjArg1 == 1) {
+                entry->_1 = true;
+            } else if (area->mObjArg1 == 2) {
+                entry->_2 = true;
+            } else if (area->mObjArg1 == 3) {
+                entry->_3 = true;
+            } else if (area->mObjArg1 == 4) {
+                entry->_0 = false;
+                entry->_4 = true;
+            }
+        }
+    }
+}
+
+void ViewGroupCtrl::startInitViewGroupTable() {
+    mViewCubeMgr = MR::getAreaObjManager("ViewGroupCtrlCube");
+    if (mViewCubeMgr) {
+        for (s32 i = 0; i < mViewCubeMgr->getNumAreaObj(); i++) {
+            s32 groupID = mViewCubeMgr->getAreaObj(i)->mObjArg0;
+            if (groupID >= mMaxViewGroupId) {
+                mMaxViewGroupId = groupID + 1;
+            }
+        }
+    }
+
+    mViewGroupData = new ViewGroupCtrlDataEntry[mMaxViewGroupId + 1];
+    for (s32 i = 0; i < mMaxViewGroupId + 1; i++) {
+        ViewGroupCtrlDataEntry* entry = &mViewGroupData[i];
+        entry->_0 = false;
+        entry->_1 = false;
+        entry->_2 = false;
+        entry->_3 = false;
+        entry->_4 = false;
+    }
+
+    for (s32 i = 0; i < mViewCtrlCount; i++) {
+        LodCtrl* ctrl = mLodCtrls[i];
+        s32 groupID = ctrl->mViewGroupID;
+        if (groupID < 0) {
+            groupID = mMaxViewGroupId;
+        }
+
+        ViewGroupCtrlDataEntry* entry = &mViewGroupData[groupID];
+        ctrl->setViewCtrlPtr(&entry->_1, &entry->_2, &entry->_3, &entry->_4);
     }
 }

@@ -66,16 +66,20 @@ public:
     bool isBuilding() const {
         return field_0x2c;
     }
+
     bool isOpen() const;
     JAUSectionHeap* asSectionHeap() {
         if ((JAUSection*)sectionHeap_ == this) {
             return sectionHeap_;
         }
+
         return nullptr;
     }
+
     JAUSectionHeap* getSectionHeap() {
         return sectionHeap_;
     }
+
     const TSectionData& getSectionData() const {
         return data_;
     }
@@ -123,25 +127,29 @@ public:
     JAISeqDataMgr* getSeqSeqDataMgr() {
         return this;
     }
+
     JAISeqDataMgr* getSeSeqDataMgr() {
         return sectionHeapData_.seSeqDataMgr_;
     }
+
     JAIStreamDataMgr* getStreamDataMgr() {
         return sectionHeapData_.streamDataMgr_;
     }
+
     TSectionHeapData const& getSectionHeapData() const {
         return sectionHeapData_;
     }
+
     JAUWaveBankTable& getWaveBankTable() {
         return sectionHeapData_.waveBankTable;
     }
-    JAUSoundTable* getSoundTable() NO_INLINE {
-        return sectionHeapData_.soundTable;
-    }
+
+    JAUSoundTable* getSoundTable();
     JKRHeap* getHeap() {
         if (getOpenSection()->isBuilding() != 0) {
             return mHeap;
         }
+
         return nullptr;
     }
 
@@ -154,6 +162,7 @@ public:
 inline JKRHeap* JAUSection::getHeap_() {
     return sectionHeap_->mHeap;
 }
+
 inline bool JAUSection::isOpen() const {
     return sectionHeap_->getOpenSection() == this;
 }

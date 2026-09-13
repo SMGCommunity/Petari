@@ -5,6 +5,16 @@
 
 namespace std {
 
+    template < typename T >
+    const T& min(const T& a, const T& b) {
+        return b < a ? b : a;
+    }
+
+    template < typename T >
+    const T& max(const T& a, const T& b) {
+        return a < b ? b : a;
+    }
+
     template < class InputIterator, class Function >
     inline Function for_each(InputIterator first, InputIterator last, Function f) {
         for (; first != last; ++first) {
@@ -69,6 +79,14 @@ namespace std {
         for (; first != last; ++first) {
             *first = value;
         }
+    }
+
+    template < class OutputIt, class Size, class T >
+    inline OutputIt fill_n(OutputIt first, Size count, const T& value) {
+        for (; count > 0; count--, first++) {
+            *first = value;
+        }
+        return first;
     }
 
     // mostly yoinked from OGWS decomp

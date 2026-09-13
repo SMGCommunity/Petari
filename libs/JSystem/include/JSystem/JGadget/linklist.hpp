@@ -7,7 +7,6 @@
 
 #include "Inline.hpp"
 
-// this limits the NO_INLINE to this specific file. certainly a fakematch, but oh well.
 #ifndef JGADGET_LINKLIST_NOINLINE
 #define JGADGET_LINKLIST_NOINLINE
 #endif
@@ -48,11 +47,13 @@ namespace JGadget {
 
     class TLinkListNode {
     public:
-        TLinkListNode() : mPrev(nullptr), mNext(nullptr) {
+        TLinkListNode() : mPrev(), mNext() {
         }
+
         TLinkListNode* getNext() const {
             return mNext;
         }
+
         TLinkListNode* getPrev() const {
             return mPrev;
         }
@@ -64,25 +65,30 @@ namespace JGadget {
     class TNodeLinkList {
     public:
         struct iterator {
-            iterator(){};
-            explicit iterator(TLinkListNode* node) : curr(node){};
+            iterator() {};
+            explicit iterator(TLinkListNode* node) : curr(node) {};
             iterator& operator=(const iterator& other) {
                 curr = other.curr;
                 return *this;
             }
+
             friend bool operator==(iterator a, iterator b) {
                 return a.curr == b.curr;
             }
+
             friend bool operator!=(iterator a, iterator b) {
                 return !(a == b);
             }
+
             iterator& operator++() {
                 curr = curr->getNext();
                 return *this;
             }
+
             TLinkListNode* operator->() const {
                 return curr;
             }
+
             TLinkListNode& operator*() const {
                 return *curr;
             }
@@ -116,9 +122,11 @@ namespace JGadget {
         iterator begin() {
             return iterator(mEnd.getNext());
         }
+
         iterator end() {
             return iterator(&mEnd);
         }
+
         iterator Insert(iterator, TLinkListNode*);
         iterator Erase(TLinkListNode*);
         void Remove(TLinkListNode*);
@@ -132,6 +140,7 @@ namespace JGadget {
 
             while (it != stop) {
                 iterator prev = it;
+
                 if (p(*it)) {
                     ++it;
                     removed.splice(dest, *this, prev);
@@ -159,11 +168,11 @@ namespace JGadget {
     class TLinkList : public TNodeLinkList {
     public:
         struct iterator : public TIterator< std::bidirectional_iterator_tag, T >, public TNodeLinkList::iterator {
-            iterator(){};
+            iterator() {};
 
-            iterator(TLinkListNode* iter) : TNodeLinkList::iterator(iter){};
+            iterator(TLinkListNode* iter) : TNodeLinkList::iterator(iter) {};
 
-            explicit iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter){};
+            explicit iterator(TNodeLinkList::iterator iter) : TNodeLinkList::iterator(iter) {};
 
             const iterator& operator=(const iterator& rOther) {
                 TIterator< std::bidirectional_iterator_tag, T >::operator=(rOther);
@@ -179,6 +188,7 @@ namespace JGadget {
             friend bool operator==(iterator a, iterator b) {
                 return (TNodeLinkList::iterator&)a == (TNodeLinkList::iterator&)b;
             }
+
             friend bool operator!=(iterator a, iterator b) {
                 return !(a == b);
             }

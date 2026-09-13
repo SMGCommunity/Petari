@@ -1,6 +1,7 @@
 #pragma once
 
 #include "JSystem/J3DGraphAnimator/J3DSkinDeform.hpp"
+#include "JSystem/J3DGraphAnimator/J3DVtxShader.hpp"
 #include "JSystem/J3DGraphBase/J3DPacket.hpp"
 #include "JSystem/J3DGraphBase/J3DVertex.hpp"
 #include <revolution.h>
@@ -19,10 +20,6 @@ enum J3DMdlFlag {
     /* 0x20000 */ J3DMdlFlag_UseSharedDL = 0x20000,
     /* 0x40000 */ J3DMdlFlag_UseSingleDL = 0x40000,
     /* 0x80000 */ J3DMdlFlag_DifferedDLBuffer = 0x80000,
-};
-
-struct J3DUnkCalc1 {
-    virtual void calc(J3DModel* model);
 };
 
 struct J3DUnkCalc2 {
@@ -77,9 +74,11 @@ public:
     void onFlag(u32 flag) {
         mFlags |= flag;
     }
+
     void offFlag(u32 flag) {
         mFlags &= ~flag;
     }
+
     bool checkFlag(u32 flag) const {
         return (mFlags & flag) ? true : false;
     }
@@ -91,27 +90,35 @@ public:
     Mtx& getBaseTRMtx() {
         return mBaseTransformMtx;
     }
+
     void setBaseTRMtx(Mtx m) {
         PSMTXCopy(m, mBaseTransformMtx);
     }
+
     u32 getMtxCalcMode() {
         return mFlags & (J3DMdlFlag_Unk1 | J3DMdlFlag_UseDefaultJ3D);
     }
+
     J3DVertexBuffer* getVertexBuffer() {
         return (J3DVertexBuffer*)&mVertexBuffer;
     }
+
     J3DMatPacket* getMatPacket(u16 idx) const {
         return &mMatPacket[idx];
     }
+
     J3DShapePacket* getShapePacket(u16 idx) const {
         return &mShapePacket[idx];
     }
+
     J3DMtxBuffer* getMtxBuffer() {
         return mMtxBuffer;
     }
+
     void setScaleFlag(int idx, u8 flag) {
         mMtxBuffer->setScaleFlag(idx, flag);
     }
+
     Mtx33* getBumpMtxPtr(int idx);
     Mtx33* getNrmMtxPtr();
     Mtx* getDrawMtxPtr() {
@@ -121,30 +128,39 @@ public:
     MtxPtr getDrawMtx(int index) {
         return mMtxBuffer->getDrawMtxPtr()[index];
     }
+
     void setBaseScale(const Vec& scale) {
         mBaseScale = scale;
     }
+
     void setUserArea(uintptr_t area) {
         mUserArea = area;
     }
+
     uintptr_t getUserArea() const {
         return mUserArea;
     }
+
     Vec* getBaseScale() {
         return &mBaseScale;
     }
+
     void setAnmMtx(int jointNo, Mtx m) {
         mMtxBuffer->setAnmMtx(jointNo, m);
     }
+
     void setWeightAnmMtx(int i, Mtx m) {
         mMtxBuffer->setWeightAnmMtx(i, m);
     }
+
     MtxPtr getAnmMtx(int jointNo) {
         return mMtxBuffer->getAnmMtx(jointNo);
     }
+
     MtxPtr getWeightAnmMtx(int i) {
         return mMtxBuffer->getWeightAnmMtx(i);
     }
+
     J3DSkinDeform* getSkinDeform() {
         return mSkinDeform;
     }
@@ -164,6 +180,6 @@ public:
     /* 0xC8 */ J3DDeformData* mDeformData;
     /* 0xCC */ J3DSkinDeform* mSkinDeform;
     /* 0xD0 */ J3DVtxColorCalc* mVtxColorCalc;
-    /* 0xD4 */ J3DUnkCalc1* mUnkCalc1;
+    /* 0xD4 */ J3DVtxShader* mUnkCalc1;
     /* 0xD8 */ J3DUnkCalc2* mUnkCalc2;
 };
