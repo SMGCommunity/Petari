@@ -34,3 +34,5 @@ namespace nw4r {
                       "NW4R:Alignment Error(0x%x)\n" #exp " must be aligned to 2 bytes boundary.", (exp))
 
 #define NW4R_REFERENCE_ASSERT_AT(line, ref) NW4R_POINTER_ASSERT_AT(line, &ref)
+
+#define NW4R_NULL_ASSERT_AT(line, exp) NW4R_ASSERTMSG_AT(line, (exp) != NULL, "NW4R:Pointer must not be NULL (" #exp ")")

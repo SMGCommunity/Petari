@@ -2,6 +2,8 @@
 
 #include <JSystem/JGeometry/TVec.hpp>
 #include <nw4r/lyt/drawInfo.h>
+#include <nw4r/lyt/layout.h>
+#include <nw4r/lyt/pane.h>
 
 namespace nw4r {
     namespace lyt {
@@ -52,8 +54,16 @@ public:
     void initGroupCtrlList();
     void initTextBoxRecursive(nw4r::lyt::Pane*, nw4r::lyt::Pane*, const char*, u32);
     void animateRecursive(u32&, nw4r::lyt::Pane*);
-    nw4r::lyt::Pane* getPane(const char*) const;
-    nw4r::lyt::Pane* findPaneByName(const char*) const;
+    nw4r::lyt::Pane* getPane(const char* pName) const {
+        if (!pName) {
+            return mLayout->mpRootPane;
+        } else {
+            return findPaneByName(pName);
+        }
+    }
+    nw4r::lyt::Pane* findPaneByName(const char* pName) const {
+        return mLayout->mpRootPane->FindPaneByName(pName, true);
+    }
     void replaceIndDummyTexture();
     void removeUnnecessaryPanes(nw4r::lyt::Pane*);
 

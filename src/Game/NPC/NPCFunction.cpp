@@ -7,6 +7,12 @@
 #include "Game/Util/JMapInfo.hpp"
 #include <cstdio>
 
+void NPCFunction::createNPCData() {
+}
+
+void NPCFunction::deleteNPCData() {
+}
+
 bool NPCFunction::getNPCItemData(NPCActorItem* pItem, s32 idx) {
     NPCDirector* pDirector = MR::getSceneObj< NPCDirector >(SceneObj_NPCDirector);
 

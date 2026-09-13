@@ -1,5 +1,6 @@
 #pragma once
 
+#include "nw4r/db/assert.h"
 #include "nw4r/lyt/resources.h"
 #include "nw4r/math/types.h"
 #include "nw4r/ut/Color.h"
@@ -93,10 +94,12 @@ namespace nw4r {
             const Size GetTextureSize(Material* pMaterial, u8 texMapIdx);
 
             inline void SetHorizontalPosition(u8* pVar, u8 newVal) {
+                NW4R_ASSERT_AT(252, newVal < HORIZONTALPOSITION_MAX);
                 *pVar = u8(GetVerticalPosition(*pVar) * 3 + newVal);
             }
 
             inline void SetVerticalPosition(u8* pVar, u8 newVal) {
+                NW4R_ASSERT_AT(261, newVal < VERTICALPOSITION_MAX);
                 *pVar = u8(newVal * 3 + GetHorizontalPosition(*pVar));
             }
 

@@ -97,6 +97,14 @@ namespace nw4r {
                 return mChildList;
             }
 
+            const PaneList& GetChildList() const {
+                return mChildList;
+            }
+
+            void SetInfluencedAlpha(bool influenced) {
+                detail::SetBit(&mFlag, 1, influenced);
+            }
+
             void SetSRTElement(u32 idx, f32 value) {
                 f32* srtAry = &mTranslate.x;
                 srtAry[idx] = value;

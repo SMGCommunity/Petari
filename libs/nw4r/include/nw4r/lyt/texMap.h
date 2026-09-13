@@ -25,6 +25,13 @@ namespace nw4r {
                 SetPaletteEntryNum(0);
             }
 
+            TexMap(const GXTexObj& rTexObj) {
+                Set(rTexObj);
+                SetPalette(0);
+                SetPaletteFormat(GXTlutFmt(0));
+                SetPaletteEntryNum(0);
+            }
+
             void SetImage(void* pImage) {
                 mImage = pImage;
             }

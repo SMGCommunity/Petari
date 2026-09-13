@@ -8,6 +8,9 @@
 
 namespace nw4r {
     namespace lyt {
+        enum { HORIZONTALPOSITION_LEFT, HORIZONTALPOSITION_CENTER, HORIZONTALPOSITION_RIGHT, HORIZONTALPOSITION_MAX };
+        enum { VERTICALPOSITION_TOP, VERTICALPOSITION_CENTER, VERTICALPOSITION_BOTTOM, VERTICALPOSITION_MAX };
+
         enum AnimContentType { ANIMCONTENTTYPE_PANE, ANIMCONTENTTYPE_MATERIAL };
         const int ResourceNameStrMax = 16;
         const int MaterialNameStrMax = ResourceNameStrMax + 4;
@@ -15,7 +18,8 @@ namespace nw4r {
             template < typename T >
             inline void SetBit(T* pBits, int pos, bool val) {
                 const T mask = T(~(1 << pos));
-                *pBits = T((*pBits & mask) | (int(val) << pos));
+                *pBits &= mask;
+                *pBits |= (val ? 1 : 0) << pos;
             }
 
             typedef s16 ResS16;

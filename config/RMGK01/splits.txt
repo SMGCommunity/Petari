@@ -9391,7 +9391,7 @@ Game/Util/JointUtil.cpp:
 Game/Util/LayoutUtil.cpp:
 	.text       start:0x803D6EF4 end:0x803DA0AC
 	.rodata     start:0x8053EBB0 end:0x8053EBB8
-	.data       start:0x805E1558 end:0x805E16D0
+	.data       start:0x805E1558 end:0x805E16B0
 	.sdata      start:0x806B2648 end:0x806B2650
 	.sdata2     start:0x806C16E0 end:0x806C1700
 
@@ -9401,13 +9401,14 @@ Game/Util/LightUtil.cpp:
 Game/Util/LiveActorUtil.cpp:
 	.text       start:0x803DA22C end:0x803E0ECC
 	.rodata     start:0x8053EBB8 end:0x8053EBC8
-	.data       start:0x805E16D0 end:0x805E1808
+	.data       start:0x805E16B0 end:0x805E1768
 	.sdata2     start:0x806C1700 end:0x806C1720
 
 Game/Util/MapPartsUtil.cpp:
 	.text       start:0x803E0ECC end:0x803E19D0
 	.rodata     start:0x8053EBC8 end:0x8053EBD0
-	.sdata      start:0x806B2658 end:0x806B2668
+	.data       start:0x805E1768 end:0x805E1808
+	.sdata      start:0x806B2658 end:0x806B2660
 	.sdata2     start:0x806C1720 end:0x806C1730
 
 Game/Util/MapUtil.cpp:
@@ -9437,6 +9438,7 @@ Game/Util/MessageUtil.cpp:
 Game/Util/ModelUtil.cpp:
 	.text       start:0x803E9560 end:0x803EB224
 	.data       start:0x805E18B8 end:0x805E1A58
+	.sdata      start:0x806B2660 end:0x806B2668
 	.sdata2     start:0x806C17D0 end:0x806C17E0
 
 Game/Util/MtxUtil.cpp:
@@ -9456,15 +9458,17 @@ Game/Util/NerveUtil.cpp:
 Game/Util/NPCUtil.cpp:
 	.text       start:0x803EE208 end:0x803F03A8
 	.ctors      start:0x8052F3B0 end:0x8052F3B4
-	.data       start:0x805E1B60 end:0x805E1DD8
-	.sdata      start:0x806B2668 end:0x806B26A8
-	.sbss       start:0x806B7020 end:0x806B7050
+	.data       start:0x805E1B60 end:0x805E1D48
+	.sdata      start:0x806B2668 end:0x806B2680
+	.sbss       start:0x806B7020 end:0x806B7048
 	.sdata2     start:0x806C1800 end:0x806C1840
 
 Game/Util/ObjUtil.cpp:
 	.text       start:0x803F03A8 end:0x803F2FC8
 	.ctors      start:0x8052F3B4 end:0x8052F3B8
+	.data       start:0x805E1D48 end:0x805E1DD8
 	.bss        start:0x8060C570 end:0x8060C580
+	.sdata      start:0x806B2680 end:0x806B26A8
 	.sdata2     start:0x806C1840 end:0x806C1868
 
 Game/Util/ParabolicPath.cpp:
@@ -9564,6 +9568,7 @@ Game/Util/CollisionPartsFilter.cpp:
 Game/Util/DirectDraw.cpp:
 	.text       start:0x80401F78 end:0x804044C8
 	.bss        start:0x8060C5A0 end:0x8060CE00
+	.sbss       start:0x806B7048 end:0x806B7050
 	.sdata2     start:0x806C1920 end:0x806C1948
 
 Game/Util/DirectDrawUtil.cpp:
