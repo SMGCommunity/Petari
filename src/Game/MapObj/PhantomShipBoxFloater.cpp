@@ -17,6 +17,10 @@ namespace NrvPhantomShipBoxFloater {
 PhantomShipBoxFloater::PhantomShipBoxFloater(const char* pName) : LiveActor(pName), mObjectName(), mFloaterOffset(gZeroVec), mRippleSeCounter() {
 }
 
+inline bool floaterIsMoving(FloaterFloatingForceTypeSpring* force) {
+    return 0.1f < force->getCurrentVelocity().length();
+}
+
 void PhantomShipBoxFloater::init(const JMapInfoIter& rIter) {
     MR::initDefaultPos(this, rIter);
     mFloaterOffset.set(mPosition);
@@ -54,9 +58,7 @@ f32 PhantomShipBoxFloater::getCurrentSinkDepth() const {
 }
 
 void PhantomShipBoxFloater::exeWait() {
-    bool isMoving = 0.1f < mFloatingForce->getCurrentVelocity().length();
-
-    if (isMoving) {
+    if (floaterIsMoving(mFloatingForce)) {
         setNerve(&NrvPhantomShipBoxFloater::HostTypeMove::sInstance);
     }
 }
@@ -88,9 +90,7 @@ void PhantomShipBoxFloater::exeMove() {
             setNerve(&NrvPhantomShipBoxFloater::HostTypeMoveUnderWater::sInstance);
         }
     } else {
-        bool val = 0.1f < mFloatingForce->getCurrentVelocity().length();
-
-        if (!val) {
+        if (!floaterIsMoving(mFloatingForce)) {
             MR::deleteEffect(this, ::cEffectName);
             setNerve(&NrvPhantomShipBoxFloater::HostTypeWait::sInstance);
         }
