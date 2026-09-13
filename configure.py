@@ -2513,7 +2513,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/StringUtil.cpp"),
             Object(Matching, "Game/Util/SwitchEventFunctorListener.cpp"),
             Object(NonMatching, "Game/Util/SystemUtil.cpp"),
-            Object(NonMatching, "Game/Util/TalkUtil.cpp"),
+            Object(Matching, "Game/Util/TalkUtil.cpp"),
             Object(NonMatching, "Game/Util/AreaObjUtil.cpp"),
             Object(NonMatching, "Game/Util/BaseMatrixFollowTargetHolder.cpp"),
             Object(NonMatching, "Game/Util/BezierSurface.cpp"),

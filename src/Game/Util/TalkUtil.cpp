@@ -25,8 +25,8 @@ namespace MR {
         pCtrl->registerKillFunc(rFunc);
     }
 
-    void setMessageArg(TalkMessageCtrl* pCtrl, int a2) {
-        CustomTagArg arg(a2, CustomTagArg::Type_Int);
+    void setMessageArg(TalkMessageCtrl* pCtrl, int value) {
+        CustomTagArg arg(value, CustomTagArg::Type_Int);
         pCtrl->setMessageArg(arg);
     }
 
@@ -35,7 +35,24 @@ namespace MR {
         pCtrl->setMessageArg(arg);
     }
 
-    // ...
+    TalkMessageCtrl* createTalkCtrl(LiveActor* pActor, const JMapInfoIter& rIter, const char* pMessageID, const TVec3f& rOffset, MtxPtr pMtx) {
+        TalkMessageCtrl* pCtrl = new TalkMessageCtrl(pActor, rOffset, pMtx);
+        pCtrl->createMessage(rIter, pMessageID);
+        return pCtrl;
+    }
+
+    TalkMessageCtrl* createTalkCtrlDirect(LiveActor* pActor, const JMapInfoIter& rIter, const char* pMessageID, const TVec3f& rOffset, MtxPtr pMtx) {
+        TalkMessageCtrl* pCtrl = new TalkMessageCtrl(pActor, rOffset, pMtx);
+        pCtrl->createMessageDirect(rIter, pMessageID);
+        return pCtrl;
+    }
+
+    TalkMessageCtrl* createTalkCtrlDirectOnRootNodeAutomatic(LiveActor* pActor, const JMapInfoIter& rIter, const char* pMessageID,
+                                                             const TVec3f& rOffset, MtxPtr pMtx) {
+        TalkMessageCtrl* pCtrl = createTalkCtrlDirect(pActor, rIter, pMessageID, rOffset, pMtx);
+        onRootNodeAutomatic(pCtrl);
+        return pCtrl;
+    }
 
     bool tryTalkNearPlayer(TalkMessageCtrl* pCtrl) {
         if (MR::isTimeKeepDemoActive()) {
@@ -134,8 +151,6 @@ namespace MR {
         if (MR::isTimeKeepDemoActive()) {
             return false;
         }
-
-        bool ret = false;
 
         if (pCtrl->endTalk()) {
             return true;
