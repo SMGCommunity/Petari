@@ -2182,7 +2182,7 @@ config.libs = [
             Object(Matching, "Game/Scene/ScenePlayingResult.cpp"),
             Object(NonMatching, "Game/Scene/SceneNameObjListExecutor.cpp"),
             Object(Matching, "Game/Scene/SceneNameObjMovementController.cpp"),
-            Object(NonMatching, "Game/Scene/StageDataHolder.cpp"),
+            Object(Matching, "Game/Scene/StageDataHolder.cpp", extra_cflags=["-sym off"]),
             Object(Matching, "Game/Scene/StageFileLoader.cpp"),
             Object(Matching, "Game/Scene/StageResourceLoader.cpp"),
             Object(NonMatching, "Game/Scene/StopSceneController.cpp"),
