@@ -5804,7 +5804,7 @@ Game/MapObj/SnowplowSwitch.cpp:
 Game/MapObj/SoundEmitter.cpp:
 	.text       start:0x8022DE74 end:0x8022E260
 	.ctors      start:0x8052EEA8 end:0x8052EEAC
-	.rodata     start:0x805337B0 end:0x80533858
+	.rodata     start:0x805337B0 end:0x80533840
 	.data       start:0x805A0318 end:0x805A0438
 	.sbss       start:0x806B5878 end:0x806B5880
 	.sdata2     start:0x806BE048 end:0x806BE050
@@ -5827,6 +5827,7 @@ Game/MapObj/SpaceShipStep.cpp:
 Game/MapObj/SphereRailDash.cpp:
 	.text       start:0x8022EF24 end:0x8022F560
 	.ctors      start:0x8052EEB4 end:0x8052EEB8
+	.rodata     start:0x80533840 end:0x80533848
 	.data       start:0x805A06D8 end:0x805A0778
 	.sbss       start:0x806B5898 end:0x806B58A0
 	.sdata2     start:0x806BE080 end:0x806BE0A8
@@ -5834,6 +5835,7 @@ Game/MapObj/SphereRailDash.cpp:
 Game/MapObj/SpiderCoin.cpp:
 	.text       start:0x8022F560 end:0x8022FE24
 	.ctors      start:0x8052EEB8 end:0x8052EEBC
+	.rodata     start:0x80533848 end:0x80533858
 	.data       start:0x805A0778 end:0x805A0848
 	.sdata      start:0x806B2018 end:0x806B2020
 	.sbss       start:0x806B58A0 end:0x806B58B0
