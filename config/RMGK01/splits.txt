@@ -5333,7 +5333,7 @@ Game/MapObj/NeedlePlant.cpp:
 	.text       start:0x80202CF8 end:0x8020332C
 	.ctors      start:0x8052EDD8 end:0x8052EDDC
 	.data       start:0x8059A2F0 end:0x8059A408
-	.sbss       start:0x806B54B8 end:0x806B54C8
+	.sbss       start:0x806B54B8 end:0x806B54C0
 	.sdata2     start:0x806BD830 end:0x806BD848
 
 Game/MapObj/NormalMapBase.cpp:
@@ -5341,6 +5341,7 @@ Game/MapObj/NormalMapBase.cpp:
 	.rodata     start:0x80533540 end:0x80533558
 	.data       start:0x8059A408 end:0x8059A5C8
 	.sdata      start:0x806B1ED0 end:0x806B1ED8
+	.sbss       start:0x806B54C0 end:0x806B54C8
 	.sdata2     start:0x806BD848 end:0x806BD888
 
 Game/MapObj/NormalMapTestObj.cpp:

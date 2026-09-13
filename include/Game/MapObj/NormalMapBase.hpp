@@ -6,6 +6,7 @@
 class BtkPlayer;
 class J3DMaterial;
 class J3DModel;
+class J3DShape;
 class JUTTexture;
 
 class NormalMapBase : public LiveActor {
@@ -34,6 +35,12 @@ public:
     void standardDraw(J3DModel*) const;
     void shapeAnalyzeDraw(J3DModel*) const;
 
+    void drawShape(J3DModel*, J3DShape*) const;
+    void loadTexture1(J3DMaterial*) const;
+    void createGradTexture();
+    void swapColorGB(JUTTexture*);
+    void loadData(const char*, u32);
+
     void loadDirectLightTex(GXTexMapID) const;
 
     void indirectCapture() const;
@@ -47,10 +54,11 @@ public:
     /* 0x08C */ u32 _8C;
     /* 0x090 */ JUTTexture* _90;
     /* 0x094 */ JUTTexture* mNormalTex;
-    /* 0x098 */ u8 _98[0xDC - 0x98];
+    /* 0x098 */ JUTTexture* mTextures[16];
+    /* 0x0D8 */ u32 _D8;
     /* 0x0DC */ void* mImagePtr;
     /* 0x0E0 */ u32 _E0;
-    /* 0x0E4 */ s32 nGradTexMode;
+    /* 0x0E4 */ s32 mGradTexMode;
     /* 0x0E8 */ u32 _E8;
     /* 0x0EC */ s32 _EC;
     /* 0x0F0 */ u32 _F0;
@@ -77,7 +85,9 @@ public:
     /* 0x14B */ u8 mLightingLowLevel;
     /* 0x14C */ BtkPlayer* mBtkPlayer;
     /* 0x150 */ u8 _150;
-    /* 0x151 */ u8 _151[0x184 - 0x151];
+    /* 0x151 */ u8 _151;
+    /* 0x152 */ u16 mBtkMtxCount;
+    /* 0x154 */ u16 mBtkMtxIndices[24];
     /* 0x184 */ Mtx _184[0x10];
     /* 0x484 */ u8 _484[0x34];
     /* 0x4B8 */ JUTTexture* _4B8;
