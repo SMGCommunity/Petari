@@ -1383,7 +1383,7 @@ config.libs = [
             Object(Matching, "Game/LiveActor/DisplayListMaker.cpp"),
             Object(NonMatching, "Game/LiveActor/DynamicJointCtrl.cpp"),
             Object(NonMatching, "Game/LiveActor/EffectKeeper.cpp"),
-            Object(NonMatching, "Game/LiveActor/FaceJointCtrl.cpp"),
+            Object(Matching, "Game/LiveActor/FaceJointCtrl.cpp"),
             Object(Matching, "Game/LiveActor/FlashingCtrl.cpp"),
             Object(Matching, "Game/LiveActor/HitSensor.cpp"),
             Object(Matching, "Game/LiveActor/HitSensorInfo.cpp"),
