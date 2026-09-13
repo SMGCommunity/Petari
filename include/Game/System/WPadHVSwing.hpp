@@ -13,16 +13,16 @@ public:
     void update();
 
     const WPad* mPad;  // 0x0
-    u32 _4;
-    f32 _8;
+    s32 mChannel;
+    f32 mDistanceSwingThreshold;
     bool mIsSwing;  // 0xC
-    bool _D;
-    u32 _10;
-    u32 _14;
+    bool mIsSwingLatched;
+    s32 mSwingLatchedFrames;
+    s32 mSwingBelowThresholdFrames;
     bool mIsTriggerSwing;  // 0x18
-    f32 _1C;
-    bool _20;
-    bool _21;
-    u32 _24;
-    u32 _28;
+    f32 mSwingThreshold;
+    bool mSwingDetected;
+    bool mSwingTriggered;
+    s32 mSwingHoldFrames;
+    s32 mSwingCooldownFrames;
 };
