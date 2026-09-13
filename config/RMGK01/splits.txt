@@ -2567,14 +2567,16 @@ Game/Enemy/BegomanSpike.cpp:
 	.ctors      start:0x8052EA44 end:0x8052EA48
 	.rodata     start:0x80531CE0 end:0x80531D50
 	.data       start:0x80579B58 end:0x80579FD0
+	.sdata      start:0x806B18C8 end:0x806B18D0
 	.sbss       start:0x806B3C00 end:0x806B3C50
 	.sdata2     start:0x806BA018 end:0x806BA070
 
 Game/Enemy/BegomanSpring.cpp:
 	.text       start:0x800D7B20 end:0x800D9DC8
 	.ctors      start:0x8052EA48 end:0x8052EA4C
-	.rodata     start:0x80531D50 end:0x80531DC8
+	.rodata     start:0x80531D50 end:0x80531DC0
 	.data       start:0x80579FD0 end:0x8057A4B0
+	.sdata      start:0x806B18D0 end:0x806B18D8
 	.sbss       start:0x806B3C50 end:0x806B3CA0
 	.sdata2     start:0x806BA070 end:0x806BA0E0
 
@@ -2588,6 +2590,7 @@ Game/Enemy/BegomanSpringHead.cpp:
 Game/Enemy/Birikyu.cpp:
 	.text       start:0x800DA3D8 end:0x800DB234
 	.ctors      start:0x8052EA50 end:0x8052EA54
+	.rodata     start:0x80531DC0 end:0x80531DC8
 	.data       start:0x8057A670 end:0x8057A808
 	.sbss       start:0x806B3CB8 end:0x806B3CD0
 	.sdata2     start:0x806BA0E8 end:0x806BA118
