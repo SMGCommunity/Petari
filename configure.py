@@ -2515,7 +2515,7 @@ config.libs = [
             Object(NonMatching, "Game/Util/SystemUtil.cpp"),
             Object(Matching, "Game/Util/TalkUtil.cpp"),
             Object(NonMatching, "Game/Util/AreaObjUtil.cpp"),
-            Object(NonMatching, "Game/Util/BaseMatrixFollowTargetHolder.cpp"),
+            Object(Matching, "Game/Util/BaseMatrixFollowTargetHolder.cpp", extra_cflags=["-sym off"]),
             Object(NonMatching, "Game/Util/BezierSurface.cpp"),
             Object(Matching, "Game/Util/BothDirList.cpp"),
             Object(Matching, "Game/Util/CollisionPartsFilter.cpp"),
