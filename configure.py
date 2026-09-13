@@ -2454,6 +2454,7 @@ config.libs = [
             Object(NonMatching, "Game/System/StorySequenceExecutor.cpp"),
             Object(Matching, "Game/System/SysConfigFile.cpp"),
             Object(Matching, "Game/System/UserFile.cpp"),
+            Object(Matching, "Game/System/BCSVInclude.s"),
         ],
     ),
     GameLib(
@@ -3108,6 +3109,9 @@ config.libs = [
                 "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c",
             ),
             Object(Matching, "MetroTRK/debugger/embedded/MetroTRK/Export/mslsupp.c"),
+            Object(
+                Matching, 
+                "MetroTRK/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s"),
             Object(
                 Matching,
                 "MetroTRK/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c",
