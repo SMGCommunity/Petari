@@ -2172,7 +2172,7 @@ config.libs = [
             Object(NonMatching, "Game/Scene/PlayTimerScene.cpp"),
             Object(NonMatching, "Game/Scene/PlacementInfoOrdered.cpp"),
             Object(Matching, "Game/Scene/PlacementStateChecker.cpp"),
-            Object(NonMatching, "Game/Scene/ScenarioSelectScene.cpp"),
+            Object(Matching, "Game/Scene/ScenarioSelectScene.cpp"),
             Object(Matching, "Game/Scene/Scene.cpp"),
             Object(Matching, "Game/Scene/SceneDataInitializer.cpp"),
             Object(Matching, "Game/Scene/SceneExecutor.cpp"),

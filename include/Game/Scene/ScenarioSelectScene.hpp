@@ -12,7 +12,6 @@ class ScenarioSelectScene : public Scene {
 public:
     ScenarioSelectScene();
 
-    virtual ~ScenarioSelectScene();
     virtual void init();
     virtual void start();
     virtual void update();
@@ -25,7 +24,7 @@ public:
     bool isExecForeground() const;
     bool isScenarioSelecting() const;
     void validateScenarioSelect();
-    void requestReset(bool);
+    void requestReset(bool waitForInitialize);
     bool isResetEnd() const;
     void setupCameraMtx() const;
     bool trySetCurrentScenarioNo() const;
@@ -42,18 +41,18 @@ public:
     void exeWaitResumeInitializeThreadIfRequestedReset();
     void exeWaitResumeInitializeThreadIfCanceledSelect();
 
-    u8 _14;
-    u8 _15;
-    u8 _16;
-    u8 _17;
-    ScenarioSelectLayout* mScenarioLayout;  // 0x18
-    CinemaFrame* mCinemaFrame;              // 0x1C
-    J3DDrawBuffer* _20;
-    J3DDrawBuffer* _24;
-    u8 _28;
-    u8 _29;
-    u8 _2A;
-    u8 _2B;
-    EffectSystem* mEffectSystem;    // 0x2C
-    CameraContext* mCameraContext;  // 0x30
+    /* 0x14 */ u8 _14;
+    /* 0x15 */ u8 _15;
+    /* 0x16 */ u8 _16;
+    /* 0x17 */ u8 _17;
+    /* 0x18 */ ScenarioSelectLayout* mScenarioLayout;
+    /* 0x1C */ CinemaFrame* mCinemaFrame;
+    /* 0x20 */ J3DDrawBuffer* _20;
+    /* 0x24 */ J3DDrawBuffer* _24;
+    /* 0x28 */ u8 _28;
+    /* 0x29 */ u8 _29;
+    /* 0x2A */ u8 _2A;
+    /* 0x2B */ u8 _2B;
+    /* 0x2C */ EffectSystem* mEffectSystem;
+    /* 0x30 */ CameraContext* mCameraContext;
 };
