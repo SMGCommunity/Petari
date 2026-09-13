@@ -7442,6 +7442,7 @@ Game/Player/MarioFpView.cpp:
 	.text       start:0x80311B40 end:0x803120B0
 	.ctors      start:0x8052F184 end:0x8052F188
 	.data       start:0x805CD3D8 end:0x805CD450
+	.sbss       start:0x806B62B0 end:0x806B62B8
 	.sdata2     start:0x806C0560 end:0x806C0578
 
 Game/Player/Mario2D.cpp:
@@ -7522,7 +7523,7 @@ Game/RhythmLib/AudRhythmSeqParser.cpp:
 	.text       start:0x80316D30 end:0x80317C08
 	.rodata     start:0x80539CC0 end:0x80539CC8
 	.data       start:0x805CDF70 end:0x805CDF90
-	.sbss       start:0x806B62B0 end:0x806B62C0
+	.sbss       start:0x806B62B8 end:0x806B62C0
 	.sdata2     start:0x806C0630 end:0x806C0638
 
 Game/RhythmLib/AudBgmTempoAdjuster.cpp:
@@ -7575,7 +7576,6 @@ Game/RhythmLib/AudMePlayer.cpp:
 Game/RhythmLib/AudRhythmMeSystem.cpp:
 	.text       start:0x8031C004 end:0x8031C510
 	.ctors      start:0x8052F1B8 end:0x8052F1BC
-	.rodata     start:0x80539D38 end:0x80539D40
 	.bss        start:0x8060B0D8 end:0x8060B0F0
 
 Game/RhythmLib/AudMeHandles.cpp:
@@ -7590,6 +7590,7 @@ Game/RhythmLib/AudChordInfo.cpp:
 
 Game/RhythmLib/AudRhythmHolder.cpp:
 	.text       start:0x8031DF40 end:0x8031E30C
+	.rodata     start:0x80539D38 end:0x80539D40
 	.sdata2     start:0x806C0680 end:0x806C0690
 
 Game/RhythmLib/AudRhythmWrap.cpp:

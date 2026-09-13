@@ -10,17 +10,14 @@ class AudRhythmSeqParser;
 
 // TODO: replace with proper struct/class
 struct RhythmInfo {
-    /* 0x00 */ bool _0;
+    /* 0x00 */ bool mIsActive;
     /* 0x04 */ u32 _4;
     /* 0x08 */ u32 _8;
     /* 0x0C */ f32 _C;
-    /* 0x10 */ s64 _10;
-    /* 0x18 */ u32 _18;
-    /* 0x1C */ u32 _1C;
-    /* 0x20 */ u32 _20;
-    /* 0x24 */ u32 _24;
-    /* 0x28 */ u32 _28;
-    /* 0x2C */ u32 _2C;
+    /* 0x10 */ s64 mStartTime;
+    /* 0x18 */ s64 mPlayTime;
+    /* 0x20 */ s64 mLastMeasuredTime;
+    /* 0x28 */ s64 mPausedTime;
     /* 0x30 */ u32 _30;
     /* 0x34 */ u32 _34;
 };
@@ -29,7 +26,7 @@ class AudRhythmHolder {
 public:
     AudRhythmHolder();
 
-    ~AudRhythmHolder() {};
+    ~AudRhythmHolder(){};
 
     void movement();
     void copyInfoFromParser();
@@ -41,7 +38,7 @@ public:
     /* 0x008 */ f32 _8;
     /* 0x00C */ bool mIsPaused;
     /* 0x010 */ RhythmInfo mInfos[6];
-    /* 0x160 */ bool _160;
+    /* 0x160 */ bool mIsRhythmActive;
     /* 0x164 */ AudRhythmSeqParser* mSeqParser;
     /* 0x168 */ u32 _168;
     /* 0x16C */ u32 _16C;
