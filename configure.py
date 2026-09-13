@@ -2510,7 +2510,7 @@ config.libs = [
             Object(Matching, "Game/Util/ShareUtil.cpp"),
             Object(NonMatching, "Game/Util/SoundUtil.cpp"),
             Object(NonMatching, "Game/Util/StarPointerUtil.cpp"),
-            Object(NonMatching, "Game/Util/StringUtil.cpp"),
+            Object(Matching, "Game/Util/StringUtil.cpp"),
             Object(Matching, "Game/Util/SwitchEventFunctorListener.cpp"),
             Object(NonMatching, "Game/Util/SystemUtil.cpp"),
             Object(Matching, "Game/Util/TalkUtil.cpp"),
