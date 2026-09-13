@@ -1,7 +1,10 @@
 #pragma once
 
+#include "Game/Util/StringUtil.hpp"
 #include "JSystem/J3DGraphAnimator/J3DModelData.hpp"
 #include "JSystem/J3DGraphBase/J3DStruct.hpp"
+#include "JSystem/J3DGraphBase/J3DTexture.hpp"
+#include "JSystem/JUtility/JUTNameTab.hpp"
 #include <revolution.h>
 
 class J3DTexMtx;
@@ -14,8 +17,8 @@ public:
     virtual void update();
     virtual void updateMaterial(J3DMaterial*);
 
-    J3DModelData* mModelData;  // 0x4
-    J3DMaterial* mMaterial;    // 0x8
+    /* 0x04 */ J3DModelData* mModelData;
+    /* 0x08 */ J3DMaterial* mMaterial;
 };
 
 class FogCtrl : public MaterialCtrl {
@@ -24,9 +27,9 @@ public:
 
     virtual void update() override;
 
-    J3DFogInfo mFogInfo;       // 0xC
-    s32 mNumMaterials;         // 0x38
-    J3DMaterial** mMaterials;  // 0x3C
+    /* 0x0C */ J3DFogInfo mFogInfo;
+    /* 0x38 */ s32 mNumMaterials;
+    /* 0x3C */ J3DMaterial** mMaterials;
 };
 
 class MatColorCtrl : public MaterialCtrl {
@@ -35,8 +38,8 @@ public:
 
     virtual void updateMaterial(J3DMaterial*) override;
 
-    u32 mColorChoice;          // 0xC
-    const J3DGXColor* mColor;  // 0x10
+    /* 0x0C */ u32 mColorChoice;
+    /* 0x10 */ const J3DGXColor* mColor;
 };
 
 class ViewProjmapEffectMtxSetter : public MaterialCtrl {
@@ -45,8 +48,63 @@ public:
 
     virtual void update() override;
 
-    J3DTexMtxInfo** mMatricies;  // 0xC
-    s32 mNumMatricies;           // 0x10
+    /* 0x0C */ J3DTexMtxInfo** mMatricies;
+    /* 0x10 */ s32 mNumMatricies;
+};
+
+class ProjmapEffectMtxSetter : public MaterialCtrl {
+public:
+    struct UpdateEffectMtxInfo {
+        UpdateEffectMtxInfo() {
+        }
+
+        /* 0x00 */ J3DTexMtx* mTexMtx;
+        /* 0x04 */ TPos3f mInitEffectMtx;
+    };
+
+    ProjmapEffectMtxSetter(J3DModel*, const ResourceHolder*);
+
+    virtual void update() override;
+    void getBaseTrans(TVec3f*) const;
+    void updateMtxUseBaseMtx();
+    void updateMtxUseBaseMtxWithLocalOffset(const TVec3f&);
+
+    /* 0x0C */ UpdateEffectMtxInfo* mUpdatingMtxInfo;
+    /* 0x10 */ s32 mNumUpdatingMtx;
+    /* 0x14 */ TPos3f mEffectMtx;
+    /* 0x44 */ J3DModel* mModel;
+};
+
+class MirrorReflectionMtxSetter : public MaterialCtrl {
+public:
+    MirrorReflectionMtxSetter(J3DModel*, const ResourceHolder*);
+
+    void addUpdatingTexMtxFromName(J3DModelData* pModelData) NO_INLINE {
+        u16 textureNum = pModelData->getTexture()->getNum();
+        for (u16 i = 0; i < textureNum; i++) {
+            if (MR::isEqualString(pModelData->getTextureName()->getName(i), sMirrorTextureName)) {
+                addUpdatingTexMtxFromTexNo(pModelData, i);
+            }
+        }
+    }
+    void addUpdatingTexMtxFromTexNo(J3DModelData*, u16);
+    void addUpdatingTexMtxFromTexCoord(J3DMaterial*);
+    void addUpdatingTexMtx(J3DTexMtx*);
+    virtual void update() override;
+
+    static char sMirrorTextureName[];
+
+    /* 0x0C */ J3DTexMtx* mUpdatingTexMtx[8];
+    /* 0x2C */ s32 mNumUpdatingTexMtx;
+};
+
+class MarioShadowProjmapMtxSetter : public MaterialCtrl {
+public:
+    MarioShadowProjmapMtxSetter(J3DModel*, const ResourceHolder*);
+
+    virtual void update() override;
+
+    /* 0x0C */ ProjmapEffectMtxSetter* mProjmapMtxSetter;
 };
 
 class TexMtxCtrl : public MaterialCtrl {
@@ -54,17 +112,7 @@ public:
     TexMtxCtrl(J3DModelData*, const char*);
 
     void setTexMtx(u32, J3DTexMtx*);
+    virtual void updateMaterial(J3DMaterial*) override;
 
-    J3DTexMtx* mMatricies[8];  // 0xC
-};
-
-class ProjmapEffectMtxSetter : public MaterialCtrl {
-public:
-    ProjmapEffectMtxSetter(J3DModel*, const ResourceHolder*);
-
-    void updateMtxUseBaseMtx();
-
-    void updateMtxUseBaseMtxWithLocalOffset(const TVec3f&);
-
-    u8 temp[0x3C];
+    /* 0x0C */ J3DTexMtx* mMatricies[8];
 };

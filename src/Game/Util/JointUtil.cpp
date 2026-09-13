@@ -189,7 +189,7 @@ namespace MR {
     }
     */
 
-    s32 getParentJoint(const LiveActor* pActor, J3DJoint* pJoint) {
+    J3DJoint* getParentJoint(const LiveActor* pActor, J3DJoint* pJoint) {
         return getParentJoint(getJ3DModelData(pActor), pJoint);
     }
 };  // namespace MR

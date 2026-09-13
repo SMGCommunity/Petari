@@ -4,46 +4,22 @@
 #include "Game/Util/MathUtil.hpp"
 #include "Game/Util/SceneUtil.hpp"
 
-RailRider::RailRider(const JMapInfoIter& rIter) {
-    mBezierRail = nullptr;
-    mCoord = 0.0f;
-    mSpeed = 0.0f;
-    mIsNotReverse = true;
-    mCurPos.x = 0.0f;
-    mCurPos.y = 0.0f;
-    mCurPos.z = 0.0f;
-    mCurDirection.x = 1.0f;
-    mCurDirection.y = 0.0f;
-    mCurDirection.z = 0.0f;
-    mStartPos.x = 0.0f;
-    mStartPos.y = 0.0f;
-    mStartPos.z = 0.0f;
-    mEndPos.x = 0.0f;
-    mEndPos.y = 0.0f;
-    mEndPos.z = 0.0f;
+void RailRider_FORCE_MATCH_SDATA2() {
+    (void)1.0f;
+    (void)0.0f;
+    (void)-1.0f;
+}
+
+RailRider::RailRider(const JMapInfoIter& rIter)
+    : mBezierRail(), mCoord(), mSpeed(), mIsNotReverse(true), mCurPos(0.0f), mCurDirection(1.0f, 0.0f, 0.0f), mStartPos(0.0f), mEndPos(0.0f) {
     const JMapInfo* info = nullptr;
     JMapInfoIter iter;
     MR::getRailInfo(&iter, &info, rIter);
     initBezierRail(iter, info);
 }
 
-RailRider::RailRider(s32 a1, s32 a2) {
-    mBezierRail = nullptr;
-    mCoord = 0.0f;
-    mSpeed = 0.0f;
-    mIsNotReverse = true;
-    mCurPos.x = 0.0f;
-    mCurPos.y = 0.0f;
-    mCurPos.z = 0.0f;
-    mCurDirection.x = 1.0f;
-    mCurDirection.y = 0.0f;
-    mCurDirection.z = 0.0f;
-    mStartPos.x = 0.0f;
-    mStartPos.y = 0.0f;
-    mStartPos.z = 0.0f;
-    mEndPos.x = 0.0f;
-    mEndPos.y = 0.0f;
-    mEndPos.z = 0.0f;
+RailRider::RailRider(s32 a1, s32 a2)
+    : mBezierRail(), mCoord(), mSpeed(), mIsNotReverse(true), mCurPos(0.0f), mCurDirection(1.0f, 0.0f, 0.0f), mStartPos(0.0f), mEndPos(0.0f) {
     const JMapInfo* info = nullptr;
     JMapInfoIter iter;
     MR::getCameraRailInfo(&iter, &info, a1, a2);
@@ -66,7 +42,22 @@ void RailRider::moveToNearestPos(const TVec3f& rPos) {
     syncPosDir();
 }
 
-// RailRider::moveToNearestPoint()
+void RailRider::moveToNearestPoint(const TVec3f& rPos) {
+    f32 nearestDistance = FLOAT_MAX;
+    int nearestPoint = 0;
+    TVec3f pointPos;
+    for (int i = 0; i < getPointNum(); i++) {
+        copyPointPos(&pointPos, i);
+        f32 distance = rPos.squared(pointPos);
+        if (distance < nearestDistance) {
+            nearestDistance = distance;
+            nearestPoint = i;
+        }
+    }
+
+    mCoord = getPointCoord(nearestPoint);
+    syncPosDir();
+}
 
 void RailRider::moveToNextPoint() {
     mCoord = mBezierRail->getRailPosCoord(getNextPointNo());
@@ -107,33 +98,33 @@ bool RailRider::isLoop() const {
     return mBezierRail->mIsClosed;
 }
 
-// Wrong registers
 bool RailRider::isReachedGoal() const {
-    if (mBezierRail->mIsClosed) {
+    if (isLoop()) {
         return false;
     }
 
-    bool v3 = true;
-    bool v4 = false;
-
+    bool result;
+    bool forwardGoal;
+    result = true;
+    forwardGoal = false;
     if (mIsNotReverse) {
-        if (MR::isNearZero(mCoord - mBezierRail->getTotalLength(), 0.0f)) {
-            v4 = true;
+        if (MR::isNearZero(mCoord - getTotalLength())) {
+            forwardGoal = true;
         }
     }
 
-    if (!v4) {
-        bool v6 = false;
+    if (!forwardGoal) {
+        bool reverseGoal = false;
         if (!mIsNotReverse && MR::isNearZero(mCoord)) {
-            v6 = true;
+            reverseGoal = true;
         }
 
-        if (!v6) {
-            v3 = false;
+        if (!reverseGoal) {
+            result = false;
         }
     }
 
-    return v3;
+    return result;
 }
 
 bool RailRider::isReachedEdge() const {
@@ -211,7 +202,6 @@ f32 RailRider::getPointCoord(s32 idx) const {
     return mBezierRail->getRailPosCoord(idx);
 }
 
-// Second call to setCoord gets inlined
 void RailRider::initBezierRail(const JMapInfoIter& rIter, const JMapInfo* pInfo) {
     mBezierRail = new BezierRail(rIter, pInfo);
     syncPosDir();
@@ -290,7 +280,17 @@ bool RailRider::getNextPointArgS32WithInit(const char* pStr, s32* pOut) const {
     return true;
 }
 
-// RailRider::getNextPointNo()
+s32 RailRider::getNextPointNo() const {
+    int step = mIsNotReverse ? 1 : -1;
+    if (isLoop()) {
+        int pointNum = getPointNum();
+        int nextPoint = pointNum + mCurPoint;
+        int offset = step + pointNum;
+        return (offset + nextPoint) % pointNum;
+    }
+
+    return MR::clamp(mCurPoint + step, 0, getPointNum() - 1);
+}
 
 void RailRider::syncPosDir() {
     if (0.0f < mCoord && mCoord < mBezierRail->getTotalLength()) {
@@ -301,17 +301,16 @@ void RailRider::syncPosDir() {
             mBezierRail->calcDirection(&mCurDirection, 0.1f);
         } else {
             mBezierRail->calcPos(&mCurPos, mCoord);
-            mBezierRail->calcDirection(&mCurDirection, (mBezierRail->getTotalLength() - 0x1f));
+            mBezierRail->calcDirection(&mCurDirection, mBezierRail->getTotalLength() - 0.1f);
         }
     }
 
     if (!mIsNotReverse) {
-        mCurDirection.x *= -1.0f;
-        mCurDirection.y *= -1.0f;
-        mCurDirection.z *= -1.0f;
+        mCurDirection.scale(-1.0f);
     }
 
     JMapInfoIter iter;
-    mBezierRail->calcCurrentRailCtrlPointIter(&iter, mCoord, mIsNotReverse);
+    f32 coord = mCoord;
+    mBezierRail->calcCurrentRailCtrlPointIter(&iter, coord, mIsNotReverse);
     iter.getValue< s32 >("id", &mCurPoint);
 }
