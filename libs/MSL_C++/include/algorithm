@@ -6,18 +6,18 @@
 namespace std {
 
     template < typename T >
-    const T& min(const T& a, const T& b) {
-        return b < a ? b : a;
+    const T& min(const T& rA, const T& rB) {
+        return rB < rA ? rB : rA;
     }
 
     template < typename T >
-    const T& max(const T& a, const T& b) {
-        return a < b ? b : a;
+    const T& max(const T& rA, const T& rB) {
+        return rA < rB ? rB : rA;
     }
 
     template < class InputIterator, class Function >
-    inline Function for_each(InputIterator first, InputIterator last, Function f) {
-        for (; first != last; ++first) {
+    Function for_each(InputIterator first, InputIterator last, Function f) {
+        for (; first != last; first++) {
             f(*first);
         }
 
@@ -25,29 +25,29 @@ namespace std {
     }
 
     template < class InputIterator, class Function >
-    inline Function for_each_array(InputIterator* first, InputIterator* last, Function f) {
-        for (; first != last; ++first) {
-            f(first);
+    inline Function for_each_array(InputIterator* pFirst, InputIterator* pLast, Function f) {
+        for (; pFirst != pLast; pFirst++) {
+            f(pFirst);
         }
 
         return f;
     }
 
     template < typename TIt, typename T >
-    inline TIt find(TIt first, TIt last, T& value) {
+    inline TIt find(TIt first, TIt last, T& rValue) {
         TIt it = first;
 
-        for (; first != last && !(*first == value); ++first) {
+        for (; first != last && !(*first == rValue); first++) {
         }
 
         return first;
     }
 
     template < typename TIt, typename T >
-    inline TIt find(TIt first, TIt last, const T& value) {
+    inline TIt find(TIt first, TIt last, const T& rValue) {
         TIt it = first;
 
-        for (; first != last && !(*first == value); ++first) {
+        for (; first != last && !(*first == rValue); first++) {
         }
 
         return first;
@@ -55,37 +55,41 @@ namespace std {
 
     template < class InputIt, class UnaryPredicate >
     InputIt find_if(InputIt first, InputIt last, UnaryPredicate p) {
-        for (; first != last && !p(*first); ++first) {
+        for (; first != last && !p(*first); first++) {
         }
+
         return first;
     }
 
     template < class InputIt, class UnaryPredicate >
-    InputIt* find_if_array(InputIt* first, InputIt* last, UnaryPredicate p) {
-        for (; first != last && !p(first); ++first) {
+    InputIt* find_if_array(InputIt* pFirst, InputIt* pLast, UnaryPredicate p) {
+        for (; pFirst != pLast && !p(pFirst); pFirst++) {
         }
-        return first;
+
+        return pFirst;
     }
 
     template < class InputIt, class UnaryPredicate >
     InputIt rfind_if(InputIt first, InputIt last, UnaryPredicate p) {
-        for (; first != last && !p(*first); --first) {
+        for (; first != last && !p(*first); first--) {
         }
+
         return first;
     }
 
     template < class ForwardIt, class T >
-    inline void fill(ForwardIt first, ForwardIt last, const T& value) {
-        for (; first != last; ++first) {
-            *first = value;
+    inline void fill(ForwardIt first, ForwardIt last, const T& rValue) {
+        for (; first != last; first++) {
+            *first = rValue;
         }
     }
 
     template < class OutputIt, class Size, class T >
-    inline OutputIt fill_n(OutputIt first, Size count, const T& value) {
+    inline OutputIt fill_n(OutputIt first, Size count, const T& rValue) {
         for (; count > 0; count--, first++) {
-            *first = value;
+            *first = rValue;
         }
+
         return first;
     }
 
@@ -95,7 +99,7 @@ namespace std {
         TIt it = first;
 
         if (first != last) {
-            for (++first; first != last; ++first) {
+            for (first++; first != last; first++) {
                 if (compare(*first, *it)) {
                     it = first;
                 }
@@ -106,22 +110,22 @@ namespace std {
     }
 
     template < typename T >
-    inline T& move(T& x) {
-        return x;
+    inline T& move(T& rX) {
+        return rX;
     }
 
     template < typename T >
-    inline void swap(T& a, T& b) {
-        T tmp = move(a);
-        a = move(b);
-        b = move(tmp);
+    inline void swap(T& rA, T& rB) {
+        T tmp = move(rA);
+        rA = move(rB);
+        rB = move(tmp);
     }
 
     template < typename TCompare, typename TIt >
     inline void __selection_sort(TIt first, TIt last, TCompare compare) {
         if (first != last) {
             TIt j = last;
-            for (--j; first != j; ++first) {
+            for (j--; first != j; first++) {
                 TIt i = min_element< TIt, TCompare& >(first, last, compare);
 
                 if (i != first) {

@@ -24,14 +24,14 @@ namespace std {
         typedef typename Base::argument_type Arg;
         typedef typename Base::result_type Result;
 
-        binder1st(const Func& mf, const Type& v) : mf_(mf), v_(v) {};
+        binder1st(const Func& rFunc, const Type& rValue) : mf_(rFunc), v_(rValue) {};
 
-        Result operator()(const Arg& a) const {
-            return mf_(a, v_);
+        Result operator()(const Arg& rArg) const {
+            return mf_(rArg, v_);
         }
 
-        Result operator()(Arg& a) const {
-            return mf_(a, v_);
+        Result operator()(Arg& rArg) const {
+            return mf_(rArg, v_);
         }
 
     private:
@@ -46,14 +46,14 @@ namespace std {
         typedef typename Base::argument_type Arg;
         typedef typename Base::result_type Result;
 
-        binder2nd(const Func& mf, const Type& v) : mf_(mf), v_(v) {};
+        binder2nd(const Func& rFunc, const Type& rValue) : mf_(rFunc), v_(rValue) {};
 
-        Result operator()(const Arg& a) const {
-            return mf_(a, v_);
+        Result operator()(const Arg& rArg) const {
+            return mf_(rArg, v_);
         }
 
-        Result operator()(Arg& a) const {
-            return mf_(a, v_);
+        Result operator()(Arg& rArg) const {
+            return mf_(rArg, v_);
         }
 
     private:
@@ -62,13 +62,13 @@ namespace std {
     };
 
     template < class Func, class Type >
-    binder1st< Func, const Type& > bind1st(const Func& mf, const Type& a) {
-        return binder1st< Func, const Type& >(mf, a);
+    binder1st< Func, const Type& > bind1st(const Func& rFunc, const Type& rArg) {
+        return binder1st< Func, const Type& >(rFunc, rArg);
     }
 
     template < class Func, class Type >
-    binder2nd< Func, const Type& > bind2nd(const Func& mf, const Type& a) {
-        return binder2nd< Func, const Type& >(mf, a);
+    binder2nd< Func, const Type& > bind2nd(const Func& rFunc, const Type& rArg) {
+        return binder2nd< Func, const Type& >(rFunc, rArg);
     }
 
     // Mem funcs
@@ -78,8 +78,8 @@ namespace std {
     public:
         explicit mem_fun_t(Return (Type::*mf)()) : mf_(mf) {};
 
-        Return operator()(Type* t) const {
-            return (t->*mf_)();
+        Return operator()(Type* pObject) const {
+            return (pObject->*mf_)();
         }
 
     private:
@@ -91,8 +91,8 @@ namespace std {
     public:
         explicit mem_fun_ref_t(Return (Type::*mf)()) : mf_(mf) {};
 
-        Return operator()(Type& t) const {
-            return (t.*mf_)();
+        Return operator()(Type& rObject) const {
+            return (rObject.*mf_)();
         }
 
     private:
@@ -104,8 +104,8 @@ namespace std {
     public:
         explicit const_mem_fun_t(Return (Type::*mf)() const) : mf_(mf) {};
 
-        Return operator()(const Type* t) const {
-            return (t->*mf_)();
+        Return operator()(const Type* pObject) const {
+            return (pObject->*mf_)();
         }
 
     private:
@@ -117,8 +117,8 @@ namespace std {
     public:
         explicit mem_fun1_t(Result (Type::*mf)(Arg)) : mf_(mf) {};
 
-        Result operator()(Type* t, Arg a) const {
-            return (t->*mf_)(a);
+        Result operator()(Type* pObject, Arg a) const {
+            return (pObject->*mf_)(a);
         }
 
     private:
@@ -130,8 +130,8 @@ namespace std {
     public:
         explicit mem_fun1_ref_t(Result (Type::*mf)(Arg)) : mf_(mf) {};
 
-        Result operator()(Type& t, Arg a) const {
-            return (t.*mf_)(a);
+        Result operator()(Type& rObject, Arg a) const {
+            return (rObject.*mf_)(a);
         }
 
     private:
@@ -143,13 +143,18 @@ namespace std {
     public:
         explicit const_mem_fun1_t(Result (Type::*mf)(Arg) const) : mf_(mf) {};
 
-        Result operator()(const Type* t, Arg a) const {
-            return (t->*mf_)(a);
+        Result operator()(const Type* pObject, Arg a) const {
+            return (pObject->*mf_)(a);
         }
 
     private:
         Result (Type::*mf_)(Arg) const;
     };
+
+    template < class Result, class Type >
+    mem_fun_t< Result, Type > mem_fun(Result (Type::*func)()) {
+        return mem_fun_t< Result, Type >(func);
+    }
 
     template < class Result, class Type >
     inline mem_fun_t< Result, Type > mem_func(Result (Type::*f)()) {
@@ -173,17 +178,19 @@ namespace std {
 
     template < class Predicate >
     struct unary_negate : public unary_function< typename Predicate::argument_type, bool > {
-        explicit unary_negate(const Predicate& pred) : mPred(pred) {
+        explicit unary_negate(const Predicate& rPredicate) : mPred(rPredicate) {
         }
-        bool operator()(const typename Predicate::argument_type& x) const {
-            return (bool)!mPred(x);
+
+        bool operator()(const typename Predicate::argument_type& rArg) const {
+            return (bool)!mPred(rArg);
         }
+
         Predicate mPred;
     };
 
     template < class Predicate >
-    unary_negate< Predicate > not1(const Predicate& pred) {
-        return unary_negate< Predicate >(pred);
+    unary_negate< Predicate > not1(const Predicate& rPredicate) {
+        return unary_negate< Predicate >(rPredicate);
     }
 
     template < class Arg, class Result >
@@ -191,9 +198,11 @@ namespace std {
     public:
         explicit pointer_to_unary_function(Result (*f)(Arg)) : mF(f) {
         }
+
         Result operator()(Arg x) const {
             return mF(x);
         }
+
         Result (*mF)(Arg);
     };
 
@@ -207,9 +216,11 @@ namespace std {
     public:
         explicit pointer_to_binary_function(Result (*f)(Arg1, Arg2)) : mF(f) {
         }
+
         Result operator()(Arg1 x, Arg2 y) const {
             return mF(x, y);
         }
+
         Result (*mF)(Arg1, Arg2);
     };
 

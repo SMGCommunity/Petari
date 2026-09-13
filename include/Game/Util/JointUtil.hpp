@@ -40,8 +40,8 @@ namespace MR {
     f32 getJointTransY(const J3DJoint*);
     f32 getJointTransZ(const J3DJoint*);
     s32 searchChildJoint(J3DJoint*, J3DJoint*);
-    s32 getParentJoint(J3DModelData*, J3DJoint*);
-    s32 getParentJoint(const LiveActor*, J3DJoint*);
+    J3DJoint* getParentJoint(J3DModelData*, J3DJoint*);
+    J3DJoint* getParentJoint(const LiveActor*, J3DJoint*);
 
     inline TVec3f getJointPos(const LiveActor* pActor, const char* pJointName) {
         TVec3f jointPos;
