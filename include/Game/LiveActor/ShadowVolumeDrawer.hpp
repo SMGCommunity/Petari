@@ -15,7 +15,8 @@ class ShadowVolumeDrawer : public ShadowDrawer {
 public:
     ShadowVolumeDrawer(const char*);
 
-    virtual ~ShadowVolumeDrawer();
+    virtual ~ShadowVolumeDrawer() {
+    }
 
     virtual void draw() const override;
     virtual void loadModelDrawMtx() const override;
@@ -31,7 +32,7 @@ public:
     f32 calcBaseDropLength() const;
     f32 calcBaseDropLength(const ShadowController*) const;
 
-    f32 mStartDrawShapeOffset;  // 0x10
-    f32 mEndDrawShapeOffset;    // 0x14
-    bool mIsCutDropShadow;      // 0x18
+    /* 0x10 */ f32 mStartDrawShapeOffset;
+    /* 0x14 */ f32 mEndDrawShapeOffset;
+    /* 0x18 */ bool mIsCutDropShadow;
 };

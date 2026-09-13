@@ -99,16 +99,14 @@ ClippingInfoGroup* ClippingGroupHolder::createGroup(ClippingActorInfo* pInfo, co
     return group;
 }
 
-// reg usage issue, and not reloading the array to return
 ClippingInfoGroup* ClippingGroupHolder::findGroup(const JMapInfoIter& rIter) {
     JMapIdInfo info = MR::createJMapIdInfoFromClippingGroupId(rIter);
 
     for (s32 i = 0; i < mNumGroups; i++) {
-        bool isFound = false;
-        JMapIdInfo* inf = mInfoGroups[i]->_18;
+        JMapIdInfo* infoGroup = getGroup(i)->_18;
 
-        if (*inf == info) {
-            return mInfoGroups[i];
+        if (info == *infoGroup) {
+            return getGroup(i);
         }
     }
 

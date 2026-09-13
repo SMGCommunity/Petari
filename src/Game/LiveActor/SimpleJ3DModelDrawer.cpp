@@ -30,5 +30,5 @@ void SimpleJ3DModelDrawer::initDraw() const {
     mShape->loadVtxArray();
 }
 
-SimpleJ3DModelDrawer::~SimpleJ3DModelDrawer() {
-}
+template void MR::FunctorV0M< const SimpleJ3DModelDrawer*, void (SimpleJ3DModelDrawer::*)() const >::operator()() const;
+template MR::FunctorBase* MR::FunctorV0M< const SimpleJ3DModelDrawer*, void (SimpleJ3DModelDrawer::*)() const >::clone(JKRHeap*) const;

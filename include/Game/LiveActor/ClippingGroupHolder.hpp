@@ -17,11 +17,11 @@ public:
     void startClippedAll();
     void endClippedAll();
 
-    int _C;
-    s32 _10;
-    ClippingActorInfo** _14;
-    JMapIdInfo* _18;
-    u8 _1C;
+    /* 0x0C */ int _C;
+    /* 0x10 */ s32 _10;
+    /* 0x14 */ ClippingActorInfo** _14;
+    /* 0x18 */ JMapIdInfo* _18;
+    /* 0x1C */ u8 _1C;
 };
 
 class ClippingGroupHolder : public NameObj {
@@ -35,7 +35,10 @@ public:
     ClippingInfoGroup* createGroup(ClippingActorInfo*, const JMapInfoIter&, int);
 
     ClippingInfoGroup* findGroup(const JMapInfoIter&);
+    ClippingInfoGroup* getGroup(int index) const {
+        return mInfoGroups[index];
+    }
 
-    s32 mNumGroups;                   // 0xC
-    ClippingInfoGroup** mInfoGroups;  // 0x10
+    /* 0x0C */ s32 mNumGroups;
+    /* 0x10 */ ClippingInfoGroup** mInfoGroups;
 };

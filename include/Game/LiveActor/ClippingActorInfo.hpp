@@ -18,13 +18,13 @@ public:
     void setTypeToSphere(f32, const TVec3f*);
     void setGroupClippingNo(const JMapInfoIter&);
 
-    LiveActor* mActor;  // 0x0
-    const TVec3f* _4;
-    f32 _8;
-    JMapIdInfo* mInfo;  // 0xC
-    s16 mFarClipLevel;  // 0x10
-    s16 _12;
-    ViewGroupCtrlDataEntry* _14;
+    /* 0x00 */ LiveActor* mActor;
+    /* 0x04 */ const TVec3f* _4;
+    /* 0x08 */ f32 _8;
+    /* 0x0C */ JMapIdInfo* mInfo;
+    /* 0x10 */ s16 mFarClipLevel;
+    /* 0x12 */ s16 _12;
+    /* 0x14 */ ViewGroupCtrlDataEntry* _14;
 };
 
 class ClippingActorInfoList {
@@ -38,7 +38,7 @@ public:
 
     ClippingActorInfo* remove(LiveActor*);
 
-    int _0;
-    s32 _4;
-    ClippingActorInfo** mClippingActorList;  // 0x8
+    /* 0x00 */ int _0;
+    /* 0x04 */ s32 _4;
+    /* 0x08 */ ClippingActorInfo** mClippingActorList;
 };

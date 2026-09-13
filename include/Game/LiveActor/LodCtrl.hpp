@@ -37,22 +37,22 @@ public:
     void initLightCtrl();
     ModelObj* initLodModel(int, int, int, bool) const;
 
-    f32 _0;
-    f32 _4;
-    LiveActor* _8;
-    LiveActor* mActor;  // 0xC
-    ModelObj* _10;
-    ModelObj* _14;
-    u8 _18;
-    u8 _19;
-    u8 _1A;
-    u8 _1B;
-    const bool* _1C;
-    const bool* _20;
-    const bool* _24;
-    const bool* _28;
-    s16 mViewGroupID;                 // 0x2C
-    ActorLightCtrl* mActorLightCtrl;  // 0x30
+    /* 0x00 */ f32 _0;
+    /* 0x04 */ f32 _4;
+    /* 0x08 */ LiveActor* _8;
+    /* 0x0C */ LiveActor* mActor;
+    /* 0x10 */ ModelObj* _10;
+    /* 0x14 */ ModelObj* _14;
+    /* 0x18 */ u8 _18;
+    /* 0x19 */ u8 _19;
+    /* 0x1A */ u8 _1A;
+    /* 0x1B */ u8 _1B;
+    /* 0x1C */ const bool* _1C;
+    /* 0x20 */ const bool* _20;
+    /* 0x24 */ const bool* _24;
+    /* 0x28 */ const bool* _28;
+    /* 0x2C */ s16 mViewGroupID;
+    /* 0x30 */ ActorLightCtrl* mActorLightCtrl;
 };
 
 class LodCtrlFunction {

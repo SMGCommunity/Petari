@@ -300,7 +300,8 @@ namespace JGeometry {
             x = x;  // TODO: This shouldn't be here, but it's the only way to get a Ctor generated in OceanRingPipe.cpp
         }
 
-        TVec3(s16 x, s16 y, s16 z) {
+        template < typename J >
+        TVec3(J x, J y, J z) {
             set(x, y, z);
         }
 

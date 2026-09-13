@@ -42,11 +42,18 @@ void ShadowVolumeDrawer::calcBaseDropPosition(TVec3f* pVec) const {
     calcBaseDropPosition(pVec, getController());
 }
 
+void ShadowVolumeDrawer::calcBaseDropPosition(TVec3f* pPosition, const ShadowController* pController) const {
+    TVec3f position;
+    TVec3f direction;
+    pController->getDropPos(&position);
+    pController->getDropDir(&direction);
+    pPosition->set(position + direction * mStartDrawShapeOffset);
+}
+
 f32 ShadowVolumeDrawer::calcBaseDropLength() const {
     return calcBaseDropLength(getController());
 }
 
-// reg usage issues at the bottom
 f32 ShadowVolumeDrawer::calcBaseDropLength(const ShadowController* pController) const {
     f32 length = pController->getDropLength();
 
@@ -56,8 +63,9 @@ f32 ShadowVolumeDrawer::calcBaseDropLength(const ShadowController* pController) 
         }
     }
 
-    f32 negStart = -mStartDrawShapeOffset;
-    length += mEndDrawShapeOffset + negStart;
+    f32 endOffset = mEndDrawShapeOffset;
+    f32 startOffset = mStartDrawShapeOffset;
+    length += -startOffset + endOffset;
     return length;
 }
 

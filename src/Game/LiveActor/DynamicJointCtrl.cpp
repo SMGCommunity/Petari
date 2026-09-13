@@ -2,6 +2,8 @@
 #include "Game/Util.hpp"
 #include <JSystem/J3DGraphAnimator/J3DJoint.hpp>
 
+template const bool JMapInfo::getValue< f32 >(int, const char*, f32*) const;
+
 namespace {
     DynamicJointCtrlParam sDefaultParam = {0.3f, 0.98f, 0.01f, 45.0f, -1};
     const s32 sDefaultCtrlTime = 10;

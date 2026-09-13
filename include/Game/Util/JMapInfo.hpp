@@ -89,13 +89,7 @@ public:
     JMapInfoIter findElementBinary(const char*, const char*) const;
 
     template < typename T >
-    const bool getValue(int entryIndex, const char* pKey, T* pValueOut) const {
-        s32 itemIndex = searchItemInfo(pKey);
-        if (itemIndex < 0) {
-            return false;
-        }
-        return getValueFast(entryIndex, itemIndex, pValueOut);
-    }
+    const bool getValue(int entryIndex, const char* pKey, T* pValueOut) const;
 
     template < typename T >
     JMapInfoIter findElement(const char* pKey, T searchValue, int startIndex) const {
@@ -116,6 +110,15 @@ public:
     /* 0x00 */ const JMapData* mData;
     /* 0x04 */ const char* mName;
 };
+
+template < typename T >
+const bool JMapInfo::getValue(int entryIndex, const char* pKey, T* pValueOut) const {
+    s32 itemIndex = searchItemInfo(pKey);
+    if (itemIndex < 0) {
+        return false;
+    }
+    return getValueFast(entryIndex, itemIndex, pValueOut);
+}
 
 class JMapInfoIter {
 public:

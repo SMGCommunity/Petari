@@ -3659,13 +3659,13 @@ Game/LiveActor/ShadowVolumeBox.cpp:
 
 Game/LiveActor/ShadowVolumeCylinder.cpp:
 	.text       start:0x8016E440 end:0x8016E654
-	.data       start:0x805883C8 end:0x80588448
+	.data       start:0x805883C8 end:0x80588428
 	.sdata2     start:0x806BBD48 end:0x806BBD50
 
 Game/LiveActor/ShadowVolumeDrawer.cpp:
 	.text       start:0x8016E654 end:0x8016EB1C
 	.ctors      start:0x8052EB9C end:0x8052EBA0
-	.data       start:0x80588448 end:0x805884A0
+	.data       start:0x80588428 end:0x805884A0
 	.sbss       start:0x806B4A18 end:0x806B4A20
 	.sdata2     start:0x806BBD50 end:0x806BBD58
 
@@ -3685,17 +3685,17 @@ Game/LiveActor/ShadowVolumeModel.cpp:
 
 Game/LiveActor/ShadowVolumeOval.cpp:
 	.text       start:0x8016F3AC end:0x8016F760
-	.data       start:0x80588570 end:0x80588600
+	.data       start:0x80588570 end:0x805885D0
 	.sdata2     start:0x806BBD68 end:0x806BBD80
 
 Game/LiveActor/ShadowVolumeOvalPole.cpp:
 	.text       start:0x8016F760 end:0x8016FAF4
-	.data       start:0x80588600 end:0x80588658
+	.data       start:0x805885D0 end:0x80588630
 	.sdata2     start:0x806BBD80 end:0x806BBD98
 
 Game/LiveActor/ShadowVolumeSphere.cpp:
 	.text       start:0x8016FAF4 end:0x8016FCE4
-	.data       start:0x80588658 end:0x80588688
+	.data       start:0x80588630 end:0x80588688
 	.sdata2     start:0x806BBD98 end:0x806BBDA0
 
 Game/LiveActor/SimpleJ3DModelDrawer.cpp:

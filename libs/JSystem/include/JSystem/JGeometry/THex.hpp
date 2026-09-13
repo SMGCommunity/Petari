@@ -9,24 +9,27 @@ namespace JGeometry {
         THexahedron3() {
         }
 
-        bool mayIntersectBall3(const TVec3f& rVec, f32 a2) const {
-            f32 neg = -a2;
-            const TPartition3< f32 >* end = mPlanes + 6;
-            const TPartition3< f32 >* cur = mPlanes;
-
-            while (cur < end) {
-                if (cur->mNormal.dot(rVec) - cur->mDot < neg) {
-                    return false;
-                }
-
-                cur++;
-            }
-
-            return true;
-        }
+        bool mayIntersectBall3(const TVec3f& rVec, f32 a2) const;
 
         TPartition3< f32 > mPlanes[0x6];  // 0x0
     };
+
+    template < typename T >
+    bool THexahedron3< T >::mayIntersectBall3(const TVec3f& rVec, f32 a2) const {
+        f32 neg = -a2;
+        const TPartition3< f32 >* end = mPlanes + 6;
+        const TPartition3< f32 >* cur = mPlanes;
+
+        while (cur < end) {
+            if (cur->mNormal.dot(rVec) - cur->mDot < neg) {
+                return false;
+            }
+
+            cur++;
+        }
+
+        return true;
+    }
 };  // namespace JGeometry
 
 typedef JGeometry::THexahedron3< f32 > THex3f;

@@ -10,8 +10,7 @@ namespace {
     static int sActorNumMax = 2560;
 };  // namespace
 
-ClippingActorHolder::ClippingActorHolder()
-    : NameObj("クリッピングアクター保持"), _C(0), _10(nullptr), _14(nullptr), _18(nullptr), _1C(nullptr), mViewGroupCtrl(nullptr) {
+ClippingActorHolder::ClippingActorHolder() : NameObj("クリッピングアクター保持"), _C(), _10(), _14(), _18(), _1C(), mViewGroupCtrl() {
     _10 = new ClippingActorInfoList(::sActorNumMax);
     _14 = new ClippingActorInfoList(::sActorNumMax);
     _18 = new ClippingActorInfoList(::sActorNumMax);
@@ -93,11 +92,13 @@ void ClippingActorHolder::addToClippingTarget(LiveActor* pActor) {
     if (MR::isInvalidClipping(pActor) || _10->isInList(pActor) || _1C->isInList(pActor)) {
         return;
     }
+
     ClippingActorInfo* pActorInfo = _18->remove(pActor);
     if (pActorInfo->isGroupClipping()) {
         _1C->add(pActorInfo);
         return;
     }
+
     _10->add(pActorInfo);
 }
 
@@ -109,6 +110,7 @@ void ClippingActorHolder::removeFromClippingTarget(LiveActor* pActor) {
         } else {
             pActorInfo = _10->remove(pActor);
         }
+
         _18->add(pActorInfo);
     }
 }
@@ -125,17 +127,18 @@ ClippingActorInfo* ClippingActorHolder::startGroupClipping(LiveActor* pActor, co
         _1C->add(pActorInfo);
         pActor->endClipped();
     }
+
     pActorInfo->setGroupClippingNo(rIter);
     return pActorInfo;
 }
 
-void ClippingActorHolder::setTypeToSphere(LiveActor* pActor, f32 range, const TVec3f* a3) {
-    find(pActor)->setTypeToSphere(range, a3);
+void ClippingActorHolder::setTypeToSphere(LiveActor* pActor, f32 range, const TVec3f* pCenter) {
+    find(pActor)->setTypeToSphere(range, pCenter);
 }
 
-// cast issues
 void ClippingActorHolder::setFarClipLevel(LiveActor* pActor, s32 level) {
-    find(pActor)->mFarClipLevel = level;
+    ClippingActorInfo* info = find(pActor);
+    info->mFarClipLevel = level;
 }
 
 ClippingActorInfo* ClippingActorHolder::find(const LiveActor* pActor) const {
